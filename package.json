@@ -99,6 +99,7 @@
     "eslint-plugin-unicorn": "^27.0.0",
     "eslint-webpack-plugin": "^2.4.3",
     "foreman": "^3.0.1",
+    "immer": " >=8.0.1",
     "prettier-eslint": "^12.0.0",
     "prettier-eslint-cli": "^5.0.0",
     "react-scripts": "4.0.2",
