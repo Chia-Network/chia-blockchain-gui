@@ -18,7 +18,7 @@ function loadConfig() {
 
     // package major will be 0 until release
     if (sv.major == 0) {
-      version = `beta-1.0b${sv.patch}`;
+      version = `beta-0.1.${sv.patch}`;
     }
 
     const config_root_dir = path.join(os.homedir(), '.chia', version);
