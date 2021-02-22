@@ -15,7 +15,8 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Backdrop from '@material-ui/core/Backdrop';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import { AlertDialog, Card, Dropzone, Flex } from '@chia/core';
+import { AlertDialog, Card, Flex, } from '@chia/core';
+import { Dropzone } from '@chia/core';
 
 import {
   did_generate_backup_file,
@@ -290,13 +291,11 @@ const RecoveryCard = (props) => {
   let recovery_files = [];
 
   function handleDrop(acceptedFiles) {
-    if (acceptedFiles.length === 0) {
-      return;
-    }
-    console.log('FILE: ', acceptedFiles);
+    if (acceptedFiles.length === 0) { return; }
+    console.log("FILE: ", acceptedFiles)
     const offer_file_path = acceptedFiles[0].path;
-    recovery_files.push(offer_file_path);
-    console.log('RECOVERY FILES', recovery_files);
+    recovery_files.push(offer_file_path)
+    console.log("RECOVERY FILES", recovery_files)
 
     const offer_name = offer_file_path.replace(/^.*[/\\]/, '');
 
@@ -352,9 +351,9 @@ const RecoveryCard = (props) => {
           <Dropzone onDrop={handleDrop}>
             {({ isDragActive, isDragReject, acceptedFiles, rejectedFiles }) => {
               if (recovery_files.length === 0) {
-                return <p>Try dragging a file here!</p>;
+                return <p>Drag and drop attest packet(s)</p>
               }
-              return recovery_files.map((file) => file);
+              return recovery_files.map((file) => (file));
             }}
           </Dropzone>
         </Grid>
@@ -365,9 +364,7 @@ const RecoveryCard = (props) => {
 
 const MyDIDCard = (props) => {
   const id = props.wallet_id;
-  console.log(id);
   const mydid = useSelector((state) => state.wallet_state.wallets[id].mydid);
-  console.log(mydid);
   let filename_input = null;
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -474,7 +471,7 @@ const BalanceCardSubSection = (props) => {
           </Box>
           <Box>
             <Typography variant="subtitle1">
-              {mojo_to_chia_string(props.balance)} {currencyCode}
+              {mojo_to_chia_string(props.balance)} TXCH
             </Typography>
           </Box>
         </Box>
@@ -568,8 +565,6 @@ const ViewDIDsSubsection = (props) => {
   let backup_list = props.backup_did_list;
   let dids_num_req = props.dids_num_req;
   let dids_length = backup_list.length;
-  console.log(props.backup_did_list);
-  console.log(props.dids_num_req);
   let isEmptyList = false;
   if (backup_list.length === 0) {
     isEmptyList = true;
@@ -876,7 +871,7 @@ const CreateAttest = (props) => {
                   fullWidth
                   label="Attest Packet"
                   value={attest_packet}
-                  variant="filled"
+                  variant="outlined"
                 />
               </Box>
               <Box>
@@ -988,38 +983,30 @@ const HistoryCard = (props) => {
 export default function DistributedWallet(props) {
   const classes = useStyles();
   const id = useSelector((state) => state.wallet_menu.id);
-  const wallets = useSelector((state) => state.wallet_state.wallets ?? []);
+  console.log("DIDWallet ID")
+  console.log(id)
+  const wallets = useSelector((state) => state.wallet_state.wallets);
   const data = useSelector((state) => state.wallet_state.wallets[id].data);
   const data_parsed = JSON.parse(data);
-  console.log('DID DATA PARSED');
-  console.log(data_parsed);
-  let temp_coin = data_parsed['temp_coin'];
-  console.log('TEMP COIN');
-  console.log(temp_coin);
+  let temp_coin = data_parsed.temp_coin;
 
   if (wallets.length > props.wallet_id) {
     if (temp_coin) {
-      console.log('YES TEMP COIN');
-      return wallets.length > props.wallet_id ? (
-        <Grid className={classes.walletContainer} item xs={12}>
-          <RecoveryCard wallet_id={id}></RecoveryCard>
-        </Grid>
-      ) : (
-        ''
+      return (
+        <Flex flexDirection="column" gap={3}>
+          <RecoveryCard wallet_id={id} />
+        </Flex>
       );
     } else {
-      console.log('NO TEMP COIN');
-      return wallets.length > props.wallet_id ? (
-        <Grid className={classes.walletContainer} item xs={12}>
-          <MyDIDCard wallet_id={id}></MyDIDCard>
-          <BalanceCard wallet_id={id}></BalanceCard>
-          <ManageDIDsCard wallet_id={id}></ManageDIDsCard>
-          <CreateAttest wallet_id={id}></CreateAttest>
-          <CashoutCard wallet_id={id}></CashoutCard>
+      return (
+        <Flex flexDirection="column" gap={3}>
+          <MyDIDCard wallet_id={id} />
+          <BalanceCard wallet_id={id} />
+          <ManageDIDsCard wallet_id={id} />
+          <CreateAttest wallet_id={id} />
+          <CashoutCard wallet_id={id} />
           <WalletHistory walletId={id} />
-        </Grid>
-      ) : (
-        ''
+        </Flex>
       );
     }
   }
