@@ -9,12 +9,6 @@ const WebSocketConnection = (props) => {
   if (!connected && !connecting) {
     dispatch(wsConnecting());
     const { host } = props;
-    if (connected) {
-      console.log("Connected");
-      clearInterval(timeout);
-    } else{
-      console.log("Not connected");
-    }
     dispatch(wsConnect(host));
   }
 
