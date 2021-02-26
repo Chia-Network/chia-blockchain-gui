@@ -57,7 +57,6 @@ jobs:
         if ! output=$(npm audit --audit-level=high); then echo "$output" && exit 1; fi
         echo "$output"
         npm run locale:extract
-#       if git is unclean due to locales needing compiling, exit with error
         touch dirtyfile
         if [ -z $(git status -s) ]; then echo "locales need to be extracted!" && exit 1; fi
         git status
