@@ -58,7 +58,5 @@ jobs:
         echo "$output"
         npm run locale:extract
         git status
-        touch dirtyfile
-        if [[ "$(git status --short)" != '' ]]; then echo "locales need to be extracted!" && exit 1; fi
-        git status
+        if [[ "$(git status --short)" != '' ]]; then echo "locales need to be extracted - git unclean!" && exit 1; fi
         echo "No issues found."
