@@ -1,8 +1,10 @@
+import isElectron from 'is-electron';
 import * as actions from '../modules/websocket';
 import {
   registerService,
   startService,
   startServiceTest,
+  getGenesisChallengeStatus,
 } from '../modules/daemon_messages';
 import { handle_message } from './middleware_api';
 import {
@@ -13,14 +15,12 @@ import {
   service_farmer,
   service_harvester,
 } from '../util/service_names';
-import isElectron from 'is-electron';
 
 const crypto = require('crypto');
-const config = require('../config/config');
 
 const callback_map = {};
 if (isElectron()) {
-  var remote = window.require('electron').remote;
+  var { remote } = window.require('electron');
   var fs = remote.require('fs');
   var WS = window.require('ws');
 }
@@ -44,16 +44,7 @@ const socketMiddleware = () => {
     store.dispatch(actions.wsConnected(event.target.url));
     store.dispatch(registerService('wallet_ui'));
     store.dispatch(registerService(service_plotter));
-
-    if (config.local_test) {
-      store.dispatch(startServiceTest(service_wallet));
-      store.dispatch(startService(service_simulator));
-    } else {
-      store.dispatch(startService(service_wallet));
-      store.dispatch(startService(service_full_node));
-      store.dispatch(startService(service_farmer));
-      store.dispatch(startService(service_harvester));
-    }
+    store.dispatch(getGenesisChallengeStatus());
   };
 
   const onClose = (store) => () => {
@@ -76,9 +67,12 @@ const socketMiddleware = () => {
   return (store) => (next) => (action) => {
     switch (action.type) {
       case 'WS_CONNECT':
-        let wsConnectInterval = setInterval(() => {
-          if (socket !== null && (socket.readyState == 0 || socket.readyState == 1)) {
-            console.log("Already connected, not reconnecting.");
+        const wsConnectInterval = setInterval(() => {
+          if (
+            socket !== null &&
+            (socket.readyState == 0 || socket.readyState == 1)
+          ) {
+            console.log('Already connected, not reconnecting.');
             console.log(socket.readyState);
             return;
           }
@@ -104,8 +98,8 @@ const socketMiddleware = () => {
           socket.onmessage = onMessage(store);
           socket.onclose = onClose(store);
           socket.addEventListener('open', onOpen(store, wsConnectInterval));
-         }, 1000);
-         break;
+        }, 1000);
+        break;
       case 'WS_DISCONNECT':
         if (socket !== null) {
           socket.close();
