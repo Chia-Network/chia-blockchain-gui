@@ -8,7 +8,7 @@ msgstr ""
 "Language: de_DE\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-03-03 17:23\n"
+"PO-Revision-Date: 2021-03-03 18:24\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -138,7 +138,7 @@ msgstr ""
 msgid "Balance"
 msgstr "Guthaben"
 
-#: src/components/block/Block.jsx:292
+#: src/components/block/Block.jsx:301
 msgid "Base Farmer Reward Amount"
 msgstr ""
 
@@ -151,26 +151,31 @@ msgstr ""
 msgid "Best estimate over last 5 hours"
 msgstr ""
 
-#: src/components/block/Block.jsx:117
-#: src/components/block/Block.jsx:129
+#: src/components/block/Block.jsx:107
+#: src/components/block/Block.jsx:119
 #: src/components/block/Block.jsx:141
-#: src/components/block/Block.jsx:308
+#: src/components/block/Block.jsx:146
+#: src/components/block/Block.jsx:317
 msgid "Block"
 msgstr ""
 
-#: src/components/block/Block.jsx:216
+#: src/components/block/Block.jsx:225
 msgid "Block VDF Iterations"
 msgstr ""
 
-#: src/components/block/Block.jsx:317
+#: src/components/block/Block.jsx:322
 msgid "Block at height {0} in the Chia blockchain"
 msgstr ""
 
 #: src/components/fullNode/FullNode.jsx:331
-msgid "Block hash"
+#~ msgid "Block hash"
+#~ msgstr ""
+
+#: src/components/block/Block.jsx:124
+msgid "Block with hash {headerHash}"
 msgstr ""
 
-#: src/components/block/Block.jsx:144
+#: src/components/block/Block.jsx:153
 msgid "Block with hash {headerHash} does not exists."
 msgstr ""
 
@@ -318,7 +323,7 @@ msgid "Connect to other peers"
 msgstr "Verbinde zu anderen Peers"
 
 #: src/components/core/components/FormatConnectionStatus/FormatConnectionStatus.tsx:47
-#: src/components/fullNode/FullNode.jsx:158
+#: src/components/fullNode/FullNode.jsx:157
 msgid "Connected"
 msgstr "Verbunden"
 
@@ -326,7 +331,7 @@ msgstr "Verbunden"
 msgid "Connecting to wallet"
 msgstr "Verbinde mit Brieftasche"
 
-#: src/components/fullNode/FullNode.jsx:156
+#: src/components/fullNode/FullNode.jsx:155
 msgid "Connection Status"
 msgstr "Verbindungsstatus"
 
@@ -514,8 +519,8 @@ msgstr ""
 msgid "Developer Tools"
 msgstr ""
 
-#: src/components/block/Block.jsx:202
-#: src/components/fullNode/FullNode.jsx:189
+#: src/components/block/Block.jsx:211
+#: src/components/fullNode/FullNode.jsx:188
 msgid "Difficulty"
 msgstr "Schwierigkeit"
 
@@ -571,11 +576,11 @@ msgstr "Fehler"
 msgid "Error: Cannot send chia to coloured address. Please enter a chia address."
 msgstr "Fehler: Chia kann nicht zu der farbigen Adresse geschickt werden. Bitte gib eine Chia Adresse ein."
 
-#: src/components/fullNode/FullNode.jsx:208
+#: src/components/fullNode/FullNode.jsx:207
 msgid "Estimated network space"
 msgstr "Geschätzte Netzwerkgröße"
 
-#: src/components/fullNode/FullNode.jsx:211
+#: src/components/fullNode/FullNode.jsx:210
 msgid "Estimated sum of all the plotted disk space of all farmers in the network"
 msgstr "Geschätzter Speicherplatzverbrauch der Summe aller Plots aller Farmer"
 
@@ -594,7 +599,7 @@ msgstr "Öffnen fehlgeschlagen (ungültige Plots)"
 msgid "Farm"
 msgstr "Farm"
 
-#: src/components/block/Block.jsx:238
+#: src/components/block/Block.jsx:247
 msgid "Farmer Puzzle Hash"
 msgstr "Farmer Puzzle Hash"
 
@@ -641,7 +646,7 @@ msgstr "Gebühr"
 msgid "Fee (TXCH)"
 msgstr "Gebühr (TXCH)"
 
-#: src/components/block/Block.jsx:296
+#: src/components/block/Block.jsx:305
 msgid "Fees Amount"
 msgstr "Höhe der Gebühr"
 
@@ -664,8 +669,8 @@ msgstr "Dateiname"
 msgid "Final folder location"
 msgstr "Finaler Speicherort"
 
-#: src/components/fullNode/FullNode.jsx:51
-#: src/components/fullNode/FullNode.jsx:107
+#: src/components/fullNode/FullNode.jsx:50
+#: src/components/fullNode/FullNode.jsx:106
 msgid "Finished"
 msgstr "Beendet"
 
@@ -678,11 +683,11 @@ msgid "Frequently Asked Questions"
 msgstr ""
 
 #: src/components/dashboard/DashboardSideBar.tsx:23
-#: src/components/fullNode/FullNode.jsx:347
+#: src/components/fullNode/FullNode.jsx:316
 msgid "Full Node"
 msgstr "Full Node"
 
-#: src/components/fullNode/FullNode.jsx:261
+#: src/components/fullNode/FullNode.jsx:260
 msgid "Full Node Status"
 msgstr "Full Node Status"
 
@@ -698,16 +703,16 @@ msgstr "Erstelle neue Farbe"
 msgid "Harvester ID"
 msgstr "Harvester ID"
 
-#: src/components/fullNode/FullNode.jsx:69
+#: src/components/fullNode/FullNode.jsx:68
 msgid "Header Hash"
 msgstr "Header Hash"
 
-#: src/components/block/Block.jsx:166
+#: src/components/block/Block.jsx:175
 msgid "Header hash"
 msgstr "Header hash"
 
-#: src/components/block/Block.jsx:180
-#: src/components/fullNode/FullNode.jsx:88
+#: src/components/block/Block.jsx:189
+#: src/components/fullNode/FullNode.jsx:87
 #: src/components/fullNode/FullNodeConnections.tsx:54
 msgid "Height"
 msgstr "Höhe"
@@ -753,7 +758,7 @@ msgstr "Brieftasche aus Mnemonics importieren"
 msgid "Import from Mnemonics (24 words)"
 msgstr "Importiere von Mnemonics (14 Worte)"
 
-#: src/components/fullNode/FullNode.jsx:53
+#: src/components/fullNode/FullNode.jsx:52
 msgid "In Progress"
 msgstr "In Bearbeitung"
 
@@ -889,7 +894,7 @@ msgstr "Neue Adresse"
 msgid "New Wallet"
 msgstr "Neue Brieftasche"
 
-#: src/components/block/Block.jsx:332
+#: src/components/block/Block.jsx:336
 #: src/components/wallet/WalletAdd.tsx:47
 #: src/components/wallet/WalletImport.tsx:77
 msgid "Next"
@@ -933,7 +938,7 @@ msgstr ""
 msgid "Not Available"
 msgstr ""
 
-#: src/components/fullNode/FullNode.jsx:137
+#: src/components/fullNode/FullNode.jsx:136
 msgid "Not Synced"
 msgstr ""
 
@@ -946,8 +951,8 @@ msgid "Not confirmed yet"
 msgstr ""
 
 #: src/components/core/components/FormatConnectionStatus/FormatConnectionStatus.tsx:48
-#: src/components/fullNode/FullNode.jsx:160
-#: src/components/fullNode/FullNode.jsx:167
+#: src/components/fullNode/FullNode.jsx:159
+#: src/components/fullNode/FullNode.jsx:166
 msgid "Not connected"
 msgstr ""
 
@@ -979,7 +984,7 @@ msgstr ""
 msgid "Outgoing"
 msgstr ""
 
-#: src/components/fullNode/FullNode.jsx:175
+#: src/components/fullNode/FullNode.jsx:174
 msgid "Peak Height"
 msgstr ""
 
@@ -987,7 +992,7 @@ msgstr ""
 #~ msgid "Peak Sub-block Height"
 #~ msgstr "Peak Sub-block Height"
 
-#: src/components/fullNode/FullNode.jsx:180
+#: src/components/fullNode/FullNode.jsx:179
 msgid "Peak Time"
 msgstr ""
 
@@ -1088,7 +1093,7 @@ msgstr ""
 msgid "Plot Count"
 msgstr ""
 
-#: src/components/block/Block.jsx:254
+#: src/components/block/Block.jsx:263
 msgid "Plot Id"
 msgstr ""
 
@@ -1100,7 +1105,7 @@ msgstr ""
 msgid "Plot Name"
 msgstr ""
 
-#: src/components/block/Block.jsx:230
+#: src/components/block/Block.jsx:239
 msgid "Plot Public Key"
 msgstr ""
 
@@ -1140,15 +1145,15 @@ msgstr ""
 msgid "Pool Key"
 msgstr ""
 
-#: src/components/block/Block.jsx:234
+#: src/components/block/Block.jsx:243
 msgid "Pool Public Key"
 msgstr ""
 
-#: src/components/block/Block.jsx:246
+#: src/components/block/Block.jsx:255
 msgid "Pool Puzzle Hash"
 msgstr ""
 
-#: src/components/block/Block.jsx:288
+#: src/components/block/Block.jsx:297
 msgid "Pool Reward Amount"
 msgstr ""
 
@@ -1159,11 +1164,11 @@ msgstr ""
 msgid "Port"
 msgstr ""
 
-#: src/components/block/Block.jsx:327
+#: src/components/block/Block.jsx:331
 msgid "Previous"
 msgstr ""
 
-#: src/components/block/Block.jsx:194
+#: src/components/block/Block.jsx:203
 msgid "Previous Block Hash"
 msgstr ""
 
@@ -1183,7 +1188,7 @@ msgstr ""
 msgid "Private key:"
 msgstr ""
 
-#: src/components/block/Block.jsx:226
+#: src/components/block/Block.jsx:235
 msgid "Proof of Space Size"
 msgstr ""
 
@@ -1271,12 +1276,12 @@ msgid "Save"
 msgstr ""
 
 #: src/components/fullNode/FullNode.jsx:338
-msgid "Search"
-msgstr ""
+#~ msgid "Search"
+#~ msgstr ""
 
 #: src/components/fullNode/FullNode.jsx:326
-msgid "Search block by header hash"
-msgstr ""
+#~ msgid "Search block by header hash"
+#~ msgstr ""
 
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:75
 msgid "Second temporary folder location"
@@ -1397,14 +1402,14 @@ msgstr ""
 msgid "Spending Limit (chia per interval): {0}"
 msgstr ""
 
-#: src/components/fullNode/FullNode.jsx:109
+#: src/components/fullNode/FullNode.jsx:108
 msgid "State"
 msgstr ""
 
-#: src/components/fullNode/FullNode.jsx:119
-#: src/components/fullNode/FullNode.jsx:136
-#: src/components/fullNode/FullNode.jsx:144
-#: src/components/fullNode/FullNode.jsx:166
+#: src/components/fullNode/FullNode.jsx:118
+#: src/components/fullNode/FullNode.jsx:135
+#: src/components/fullNode/FullNode.jsx:143
+#: src/components/fullNode/FullNode.jsx:165
 #: src/components/plot/overview/PlotOverviewPlots.tsx:73
 #: src/components/trading/TradingOverview.jsx:128
 #: src/components/wallet/WalletHistory.tsx:42
@@ -1449,7 +1454,7 @@ msgstr ""
 msgid "Submit"
 msgstr ""
 
-#: src/components/fullNode/FullNode.jsx:145
+#: src/components/fullNode/FullNode.jsx:144
 msgid "Synced"
 msgstr ""
 
@@ -1459,7 +1464,7 @@ msgstr ""
 msgid "Syncing"
 msgstr ""
 
-#: src/components/fullNode/FullNode.jsx:121
+#: src/components/fullNode/FullNode.jsx:120
 msgid "Syncing {progress}/{tip}"
 msgstr ""
 
@@ -1499,27 +1504,27 @@ msgstr ""
 msgid "The minimum required size for mainnet is k=32"
 msgstr ""
 
-#: src/components/fullNode/FullNode.jsx:139
+#: src/components/fullNode/FullNode.jsx:138
 msgid "The node is not synced"
 msgstr ""
 
-#: src/components/fullNode/FullNode.jsx:127
+#: src/components/fullNode/FullNode.jsx:126
 msgid "The node is syncing, which means it is downloading blocks from other nodes, to reach the latest block in the chain"
 msgstr ""
 
-#: src/components/block/Block.jsx:257
+#: src/components/block/Block.jsx:266
 msgid "The seed used to create the plot. This depends on the pool pk and plot pk."
 msgstr ""
 
-#: src/components/block/Block.jsx:209
+#: src/components/block/Block.jsx:218
 msgid "The total number of VDF (verifiable delay function) or proof of time iterations on the whole chain up to this sub block."
 msgstr ""
 
-#: src/components/block/Block.jsx:219
+#: src/components/block/Block.jsx:228
 msgid "The total number of VDF (verifiable delay function) or proof of time iterations on this block."
 msgstr ""
 
-#: src/components/block/Block.jsx:299
+#: src/components/block/Block.jsx:308
 msgid "The total transactions fees in this block. Rewarded to the farmer."
 msgstr ""
 
@@ -1549,11 +1554,11 @@ msgstr ""
 msgid "This is the sum of the incoming and outgoing pending transactions (not yet included into the blockchain). This does not include farming rewards."
 msgstr ""
 
-#: src/components/fullNode/FullNode.jsx:184
+#: src/components/fullNode/FullNode.jsx:183
 msgid "This is the time of the latest peak sub block."
 msgstr ""
 
-#: src/components/block/Block.jsx:173
+#: src/components/block/Block.jsx:182
 msgid "This is the time the block was created by the farmer, which is before it is finalized with a proof of time"
 msgstr ""
 
@@ -1565,7 +1570,7 @@ msgstr ""
 msgid "This is the total balance + pending balance: it is what your balance will be after all pending transactions are confirmed."
 msgstr ""
 
-#: src/components/fullNode/FullNode.jsx:148
+#: src/components/fullNode/FullNode.jsx:147
 msgid "This node is fully caught up and validating the network"
 msgstr ""
 
@@ -1581,7 +1586,7 @@ msgstr ""
 msgid "This trade was included on blockchain at this block height"
 msgstr ""
 
-#: src/components/fullNode/FullNode.jsx:101
+#: src/components/fullNode/FullNode.jsx:100
 msgid "Time Created"
 msgstr ""
 
@@ -1589,7 +1594,7 @@ msgstr ""
 #~ msgid "Time this trade was created at this time"
 #~ msgstr ""
 
-#: src/components/block/Block.jsx:170
+#: src/components/block/Block.jsx:179
 msgid "Timestamp"
 msgstr ""
 
@@ -1607,7 +1612,7 @@ msgstr ""
 msgid "Total Chia Farmed"
 msgstr ""
 
-#: src/components/fullNode/FullNode.jsx:202
+#: src/components/fullNode/FullNode.jsx:201
 msgid "Total Iterations"
 msgstr ""
 
@@ -1623,11 +1628,11 @@ msgstr ""
 msgid "Total Size of Plots"
 msgstr ""
 
-#: src/components/block/Block.jsx:206
+#: src/components/block/Block.jsx:215
 msgid "Total VDF Iterations"
 msgstr ""
 
-#: src/components/fullNode/FullNode.jsx:204
+#: src/components/fullNode/FullNode.jsx:203
 msgid "Total iterations since the start of the blockchain"
 msgstr ""
 
@@ -1663,7 +1668,7 @@ msgstr ""
 msgid "Trading History"
 msgstr ""
 
-#: src/components/block/Block.jsx:265
+#: src/components/block/Block.jsx:274
 msgid "Transactions Filter Hash"
 msgstr ""
 
@@ -1671,7 +1676,7 @@ msgstr ""
 msgid "Type"
 msgstr ""
 
-#: src/components/fullNode/FullNode.jsx:107
+#: src/components/fullNode/FullNode.jsx:106
 msgid "Unfinished"
 msgstr ""
 
@@ -1684,7 +1689,7 @@ msgstr ""
 msgid "User Pubkey"
 msgstr ""
 
-#: src/components/fullNode/FullNode.jsx:196
+#: src/components/fullNode/FullNode.jsx:195
 msgid "VDF Sub Slot Iterations"
 msgstr ""
 
@@ -1761,11 +1766,11 @@ msgstr ""
 msgid "Want to have a delay before the next plot starts?"
 msgstr ""
 
-#: src/components/block/Block.jsx:184
+#: src/components/block/Block.jsx:193
 msgid "Weight"
 msgstr ""
 
-#: src/components/block/Block.jsx:187
+#: src/components/block/Block.jsx:196
 msgid "Weight is the total added difficulty of all sub blocks up to and including this one"
 msgstr ""
 
