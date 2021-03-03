@@ -8,7 +8,7 @@ msgstr ""
 "Language: ru_RU\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-03-03 17:23\n"
+"PO-Revision-Date: 2021-03-03 18:24\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "Plural-Forms: nplurals=4; plural=((n%10==1 && n%100!=11) ? 0 : ((n%10 >= 2 && n%10 <=4 && (n%100 < 12 || n%100 > 14)) ? 1 : ((n%10 == 0 || (n%10 >= 5 && n%10 <=9)) || (n%100 >= 11 && n%100 <= 14)) ? 2 : 3));\n"
@@ -138,7 +138,7 @@ msgstr "Файл резервной копии используется для �
 msgid "Balance"
 msgstr "Баланс"
 
-#: src/components/block/Block.jsx:292
+#: src/components/block/Block.jsx:301
 msgid "Base Farmer Reward Amount"
 msgstr "Базовая сумма вознаграждения фермера"
 
@@ -151,26 +151,31 @@ msgstr "Ниже приведены значения испытаний для �
 msgid "Best estimate over last 5 hours"
 msgstr "Лучшая оценка за последние 5 часов"
 
-#: src/components/block/Block.jsx:117
-#: src/components/block/Block.jsx:129
+#: src/components/block/Block.jsx:107
+#: src/components/block/Block.jsx:119
 #: src/components/block/Block.jsx:141
-#: src/components/block/Block.jsx:308
+#: src/components/block/Block.jsx:146
+#: src/components/block/Block.jsx:317
 msgid "Block"
 msgstr "Блок"
 
-#: src/components/block/Block.jsx:216
+#: src/components/block/Block.jsx:225
 msgid "Block VDF Iterations"
 msgstr "VDF итераций блока"
 
-#: src/components/block/Block.jsx:317
+#: src/components/block/Block.jsx:322
 msgid "Block at height {0} in the Chia blockchain"
 msgstr "Блок на высоте {0} в блокчейне Chia"
 
 #: src/components/fullNode/FullNode.jsx:331
-msgid "Block hash"
-msgstr "Хэш блока"
+#~ msgid "Block hash"
+#~ msgstr ""
 
-#: src/components/block/Block.jsx:144
+#: src/components/block/Block.jsx:124
+msgid "Block with hash {headerHash}"
+msgstr ""
+
+#: src/components/block/Block.jsx:153
 msgid "Block with hash {headerHash} does not exists."
 msgstr "Блок с хешем {headerHash} не существует."
 
@@ -318,7 +323,7 @@ msgid "Connect to other peers"
 msgstr "Подключиться к другим узлам"
 
 #: src/components/core/components/FormatConnectionStatus/FormatConnectionStatus.tsx:47
-#: src/components/fullNode/FullNode.jsx:158
+#: src/components/fullNode/FullNode.jsx:157
 msgid "Connected"
 msgstr "Подключен"
 
@@ -326,7 +331,7 @@ msgstr "Подключен"
 msgid "Connecting to wallet"
 msgstr "Подключение к кошельку"
 
-#: src/components/fullNode/FullNode.jsx:156
+#: src/components/fullNode/FullNode.jsx:155
 msgid "Connection Status"
 msgstr "Состояние соединения"
 
@@ -510,8 +515,8 @@ msgstr ""
 msgid "Developer Tools"
 msgstr ""
 
-#: src/components/block/Block.jsx:202
-#: src/components/fullNode/FullNode.jsx:189
+#: src/components/block/Block.jsx:211
+#: src/components/fullNode/FullNode.jsx:188
 msgid "Difficulty"
 msgstr "Сложность"
 
@@ -567,11 +572,11 @@ msgstr "Ошибка"
 msgid "Error: Cannot send chia to coloured address. Please enter a chia address."
 msgstr "Ошибка: не удается отправить чиа на цветной адрес. Пожалуйста, введите адрес chia."
 
-#: src/components/fullNode/FullNode.jsx:208
+#: src/components/fullNode/FullNode.jsx:207
 msgid "Estimated network space"
 msgstr "Расчетное пространство сети"
 
-#: src/components/fullNode/FullNode.jsx:211
+#: src/components/fullNode/FullNode.jsx:210
 msgid "Estimated sum of all the plotted disk space of all farmers in the network"
 msgstr "Оценка размера всего дискового пространства, занимаемого участками суммарно всех фермеров в сети"
 
@@ -590,7 +595,7 @@ msgstr "Неудается открыть (некоррекные участки
 msgid "Farm"
 msgstr "Ферма"
 
-#: src/components/block/Block.jsx:238
+#: src/components/block/Block.jsx:247
 msgid "Farmer Puzzle Hash"
 msgstr "Хеш-головоломка фермера"
 
@@ -637,7 +642,7 @@ msgstr "Комиссия"
 msgid "Fee (TXCH)"
 msgstr "Комиссия (TXCH)"
 
-#: src/components/block/Block.jsx:296
+#: src/components/block/Block.jsx:305
 msgid "Fees Amount"
 msgstr "Объем коммисий"
 
@@ -660,8 +665,8 @@ msgstr "Имя файла"
 msgid "Final folder location"
 msgstr "Путь к папке для окончательного хранения"
 
-#: src/components/fullNode/FullNode.jsx:51
-#: src/components/fullNode/FullNode.jsx:107
+#: src/components/fullNode/FullNode.jsx:50
+#: src/components/fullNode/FullNode.jsx:106
 msgid "Finished"
 msgstr "Завершен"
 
@@ -674,11 +679,11 @@ msgid "Frequently Asked Questions"
 msgstr ""
 
 #: src/components/dashboard/DashboardSideBar.tsx:23
-#: src/components/fullNode/FullNode.jsx:347
+#: src/components/fullNode/FullNode.jsx:316
 msgid "Full Node"
 msgstr "Полный узел"
 
-#: src/components/fullNode/FullNode.jsx:261
+#: src/components/fullNode/FullNode.jsx:260
 msgid "Full Node Status"
 msgstr "Статус полного узла"
 
@@ -694,16 +699,16 @@ msgstr "Сгенерировать новый цвет"
 msgid "Harvester ID"
 msgstr "Идентификатор комбайна"
 
-#: src/components/fullNode/FullNode.jsx:69
+#: src/components/fullNode/FullNode.jsx:68
 msgid "Header Hash"
 msgstr "Хэш заголовка"
 
-#: src/components/block/Block.jsx:166
+#: src/components/block/Block.jsx:175
 msgid "Header hash"
 msgstr "Хэш заголовка"
 
-#: src/components/block/Block.jsx:180
-#: src/components/fullNode/FullNode.jsx:88
+#: src/components/block/Block.jsx:189
+#: src/components/fullNode/FullNode.jsx:87
 #: src/components/fullNode/FullNodeConnections.tsx:54
 msgid "Height"
 msgstr "Высота"
@@ -749,7 +754,7 @@ msgstr "Импортировать кошелек из мнемоники"
 msgid "Import from Mnemonics (24 words)"
 msgstr "Импорт мнемоники (24 слова)"
 
-#: src/components/fullNode/FullNode.jsx:53
+#: src/components/fullNode/FullNode.jsx:52
 msgid "In Progress"
 msgstr "В процессе"
 
@@ -885,7 +890,7 @@ msgstr "Новый адрес"
 msgid "New Wallet"
 msgstr "Новый кошелек"
 
-#: src/components/block/Block.jsx:332
+#: src/components/block/Block.jsx:336
 #: src/components/wallet/WalletAdd.tsx:47
 #: src/components/wallet/WalletImport.tsx:77
 msgid "Next"
@@ -929,7 +934,7 @@ msgstr "Ни один из ваших участков пока не проше�
 msgid "Not Available"
 msgstr "Не определено"
 
-#: src/components/fullNode/FullNode.jsx:137
+#: src/components/fullNode/FullNode.jsx:136
 msgid "Not Synced"
 msgstr "Не синхронизирован"
 
@@ -942,8 +947,8 @@ msgid "Not confirmed yet"
 msgstr "Еще не подтверждено"
 
 #: src/components/core/components/FormatConnectionStatus/FormatConnectionStatus.tsx:48
-#: src/components/fullNode/FullNode.jsx:160
-#: src/components/fullNode/FullNode.jsx:167
+#: src/components/fullNode/FullNode.jsx:159
+#: src/components/fullNode/FullNode.jsx:166
 msgid "Not connected"
 msgstr "Нет подключения"
 
@@ -975,7 +980,7 @@ msgstr "Предложение создано"
 msgid "Outgoing"
 msgstr "Исходящие"
 
-#: src/components/fullNode/FullNode.jsx:175
+#: src/components/fullNode/FullNode.jsx:174
 msgid "Peak Height"
 msgstr "Пиковая высота"
 
@@ -983,7 +988,7 @@ msgstr "Пиковая высота"
 #~ msgid "Peak Sub-block Height"
 #~ msgstr "Peak Sub-block Height"
 
-#: src/components/fullNode/FullNode.jsx:180
+#: src/components/fullNode/FullNode.jsx:179
 msgid "Peak Time"
 msgstr "Пиковое время"
 
@@ -1084,7 +1089,7 @@ msgstr "Участок"
 msgid "Plot Count"
 msgstr "Количество участков"
 
-#: src/components/block/Block.jsx:254
+#: src/components/block/Block.jsx:263
 msgid "Plot Id"
 msgstr "ID участка"
 
@@ -1096,7 +1101,7 @@ msgstr "Публ. ключ"
 msgid "Plot Name"
 msgstr "Имя участка"
 
-#: src/components/block/Block.jsx:230
+#: src/components/block/Block.jsx:239
 msgid "Plot Public Key"
 msgstr "Публичный ключ участка"
 
@@ -1136,15 +1141,15 @@ msgstr "Параллельное засеивание позволяет сэк�
 msgid "Pool Key"
 msgstr "Ключ пула"
 
-#: src/components/block/Block.jsx:234
+#: src/components/block/Block.jsx:243
 msgid "Pool Public Key"
 msgstr "Публичный ключ пула"
 
-#: src/components/block/Block.jsx:246
+#: src/components/block/Block.jsx:255
 msgid "Pool Puzzle Hash"
 msgstr "Хеш-головоломка пула"
 
-#: src/components/block/Block.jsx:288
+#: src/components/block/Block.jsx:297
 msgid "Pool Reward Amount"
 msgstr "Сумма вознаграждения пула"
 
@@ -1155,11 +1160,11 @@ msgstr "Сумма вознаграждения пула"
 msgid "Port"
 msgstr "Порт"
 
-#: src/components/block/Block.jsx:327
+#: src/components/block/Block.jsx:331
 msgid "Previous"
 msgstr "Предыдущий"
 
-#: src/components/block/Block.jsx:194
+#: src/components/block/Block.jsx:203
 msgid "Previous Block Hash"
 msgstr "Хэш предыдущего блока"
 
@@ -1179,7 +1184,7 @@ msgstr "Закрытый ключ {0}"
 msgid "Private key:"
 msgstr "Закрытый ключ:"
 
-#: src/components/block/Block.jsx:226
+#: src/components/block/Block.jsx:235
 msgid "Proof of Space Size"
 msgstr "Размер доказательства пространства (Proof of Space)"
 
@@ -1267,12 +1272,12 @@ msgid "Save"
 msgstr "Сохранить"
 
 #: src/components/fullNode/FullNode.jsx:338
-msgid "Search"
-msgstr "Поиск"
+#~ msgid "Search"
+#~ msgstr ""
 
 #: src/components/fullNode/FullNode.jsx:326
-msgid "Search block by header hash"
-msgstr "Поиск блока по хешу заголовка"
+#~ msgid "Search block by header hash"
+#~ msgstr ""
 
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:75
 msgid "Second temporary folder location"
@@ -1393,14 +1398,14 @@ msgstr "Длина интервала расходования (количест
 msgid "Spending Limit (chia per interval): {0}"
 msgstr "Лимит расходования (chia за интервал): {0}"
 
-#: src/components/fullNode/FullNode.jsx:109
+#: src/components/fullNode/FullNode.jsx:108
 msgid "State"
 msgstr "Состояние"
 
-#: src/components/fullNode/FullNode.jsx:119
-#: src/components/fullNode/FullNode.jsx:136
-#: src/components/fullNode/FullNode.jsx:144
-#: src/components/fullNode/FullNode.jsx:166
+#: src/components/fullNode/FullNode.jsx:118
+#: src/components/fullNode/FullNode.jsx:135
+#: src/components/fullNode/FullNode.jsx:143
+#: src/components/fullNode/FullNode.jsx:165
 #: src/components/plot/overview/PlotOverviewPlots.tsx:73
 #: src/components/trading/TradingOverview.jsx:128
 #: src/components/wallet/WalletHistory.tsx:42
@@ -1445,7 +1450,7 @@ msgstr "Размер полосы"
 msgid "Submit"
 msgstr "Подтвердить"
 
-#: src/components/fullNode/FullNode.jsx:145
+#: src/components/fullNode/FullNode.jsx:144
 msgid "Synced"
 msgstr "Синхронизован"
 
@@ -1455,7 +1460,7 @@ msgstr "Синхронизован"
 msgid "Syncing"
 msgstr "Синхронизация"
 
-#: src/components/fullNode/FullNode.jsx:121
+#: src/components/fullNode/FullNode.jsx:120
 msgid "Syncing {progress}/{tip}"
 msgstr "Синхронизация {progress}/{tip}"
 
@@ -1495,27 +1500,27 @@ msgstr "Полный узел, к которому подключен ваш ф�
 msgid "The minimum required size for mainnet is k=32"
 msgstr "Минимальный требуемый размер участка для основной сети равен k=32"
 
-#: src/components/fullNode/FullNode.jsx:139
+#: src/components/fullNode/FullNode.jsx:138
 msgid "The node is not synced"
 msgstr "Узел не синхронизирован с сетью"
 
-#: src/components/fullNode/FullNode.jsx:127
+#: src/components/fullNode/FullNode.jsx:126
 msgid "The node is syncing, which means it is downloading blocks from other nodes, to reach the latest block in the chain"
 msgstr "Узел синхронизируется, что означает, что он загружает блоки с других узлов, чтобы достичь последнего блока в цепи"
 
-#: src/components/block/Block.jsx:257
+#: src/components/block/Block.jsx:266
 msgid "The seed used to create the plot. This depends on the pool pk and plot pk."
 msgstr "Зерно, которое использовалось для создания участка. Зерно зависит от публичного ключа пула и публичного ключа участка."
 
-#: src/components/block/Block.jsx:209
+#: src/components/block/Block.jsx:218
 msgid "The total number of VDF (verifiable delay function) or proof of time iterations on the whole chain up to this sub block."
 msgstr "Общее количество итерации VDF (от англ. Verifiable Delay Function - проверяемая функция задержки) или доказательств временных итераций по всей цепочке до этого подблока."
 
-#: src/components/block/Block.jsx:219
+#: src/components/block/Block.jsx:228
 msgid "The total number of VDF (verifiable delay function) or proof of time iterations on this block."
 msgstr "Общее количество итераций VDF (от англ. Verifiable Delay Function - проверяемая функция задержки), другими словами общее количество доказательств временных итераций (proof of time) в этом блоке."
 
-#: src/components/block/Block.jsx:299
+#: src/components/block/Block.jsx:308
 msgid "The total transactions fees in this block. Rewarded to the farmer."
 msgstr "Общая комиссия за транзакции в этом блоке, полученная в награду фермерами."
 
@@ -1545,11 +1550,11 @@ msgstr "Здесь рассчитан размер ожидаемой сдачи
 msgid "This is the sum of the incoming and outgoing pending transactions (not yet included into the blockchain). This does not include farming rewards."
 msgstr "Здесь рассчитана сумма входящих и исходящих ожидающих транзакций (еще не включенных в цепь блоков). Награды за фарминг не включены в сумму."
 
-#: src/components/fullNode/FullNode.jsx:184
+#: src/components/fullNode/FullNode.jsx:183
 msgid "This is the time of the latest peak sub block."
 msgstr "Это время последнего пикового суб блока."
 
-#: src/components/block/Block.jsx:173
+#: src/components/block/Block.jsx:182
 msgid "This is the time the block was created by the farmer, which is before it is finalized with a proof of time"
 msgstr "Это момент времени, когда блок был создан фермером, то есть до того, как он был завершен с применением алгоритма подтверждения времени (proof of time)."
 
@@ -1561,7 +1566,7 @@ msgstr "Это общее количество монет Чиа в блокче
 msgid "This is the total balance + pending balance: it is what your balance will be after all pending transactions are confirmed."
 msgstr "Это общий баланс + отложенный баланс: это то, каким будет ваш баланс после подтверждения всех ожидающих транзакций."
 
-#: src/components/fullNode/FullNode.jsx:148
+#: src/components/fullNode/FullNode.jsx:147
 msgid "This node is fully caught up and validating the network"
 msgstr "Этот узел полностью догнал соседние узлы и выполняет валидацию в сети"
 
@@ -1577,7 +1582,7 @@ msgstr "Сделка была создана в это время"
 msgid "This trade was included on blockchain at this block height"
 msgstr "Сделка была включена в блокчейн на указанной высоте блока"
 
-#: src/components/fullNode/FullNode.jsx:101
+#: src/components/fullNode/FullNode.jsx:100
 msgid "Time Created"
 msgstr "Время создания"
 
@@ -1585,7 +1590,7 @@ msgstr "Время создания"
 #~ msgid "Time this trade was created at this time"
 #~ msgstr ""
 
-#: src/components/block/Block.jsx:170
+#: src/components/block/Block.jsx:179
 msgid "Timestamp"
 msgstr "Временная метка"
 
@@ -1603,7 +1608,7 @@ msgstr "Итоговый баланс"
 msgid "Total Chia Farmed"
 msgstr "Всего выращено монет"
 
-#: src/components/fullNode/FullNode.jsx:202
+#: src/components/fullNode/FullNode.jsx:201
 msgid "Total Iterations"
 msgstr "Всего итераций"
 
@@ -1619,11 +1624,11 @@ msgstr "Общий объем участков:"
 msgid "Total Size of Plots"
 msgstr "Общий объем участков"
 
-#: src/components/block/Block.jsx:206
+#: src/components/block/Block.jsx:215
 msgid "Total VDF Iterations"
 msgstr "Общее количество итерации VDF"
 
-#: src/components/fullNode/FullNode.jsx:204
+#: src/components/fullNode/FullNode.jsx:203
 msgid "Total iterations since the start of the blockchain"
 msgstr "Общее количество итераций с момента запуска блокчейна"
 
@@ -1659,7 +1664,7 @@ msgstr "Торговля"
 msgid "Trading History"
 msgstr "История торгов"
 
-#: src/components/block/Block.jsx:265
+#: src/components/block/Block.jsx:274
 msgid "Transactions Filter Hash"
 msgstr "Хэш фильтра транзакций"
 
@@ -1667,7 +1672,7 @@ msgstr "Хэш фильтра транзакций"
 msgid "Type"
 msgstr "Тип"
 
-#: src/components/fullNode/FullNode.jsx:107
+#: src/components/fullNode/FullNode.jsx:106
 msgid "Unfinished"
 msgstr "Незаконченный"
 
@@ -1680,7 +1685,7 @@ msgstr "Уникальный идентификатор"
 msgid "User Pubkey"
 msgstr "Пользовательский публичный ключ"
 
-#: src/components/fullNode/FullNode.jsx:196
+#: src/components/fullNode/FullNode.jsx:195
 msgid "VDF Sub Slot Iterations"
 msgstr "Итерации VDF суб слота"
 
@@ -1757,11 +1762,11 @@ msgstr "Хотите получать больше дохода в Чиа? До�
 msgid "Want to have a delay before the next plot starts?"
 msgstr "Хотите установить задержку между стартом параллельного засевания файлов?"
 
-#: src/components/block/Block.jsx:184
+#: src/components/block/Block.jsx:193
 msgid "Weight"
 msgstr "Вес"
 
-#: src/components/block/Block.jsx:187
+#: src/components/block/Block.jsx:196
 msgid "Weight is the total added difficulty of all sub blocks up to and including this one"
 msgstr "Вес - это общая добавленная сложность всех подблоков, включая этот"
 
