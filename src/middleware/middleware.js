@@ -75,11 +75,7 @@ const socketMiddleware = () => {
   return (store) => (next) => (action) => {
     switch (action.type) {
       case 'WS_CONNECT':
-<<<<<<< HEAD
-        let wsConnectInterval = setInterval(() => {
-=======
         const wsConnectInterval = setInterval(() => {
->>>>>>> genesis wait changes
           if (
             socket !== null &&
             (socket.readyState == 0 || socket.readyState == 1)
