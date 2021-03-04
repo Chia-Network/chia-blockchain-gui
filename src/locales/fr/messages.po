@@ -8,7 +8,7 @@ msgstr ""
 "Language: fr_FR\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-03-03 18:24\n"
+"PO-Revision-Date: 2021-03-04 08:16\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
@@ -264,7 +264,7 @@ msgstr "Choisir la taille de la parcelle"
 msgid "Close"
 msgstr "Fermer"
 
-#: src/components/app/AppRouter.tsx:18
+#: src/components/app/AppRouter.tsx:19
 msgid "Closing down node and server"
 msgstr "Arrêt du nœud et du serveur"
 
@@ -327,7 +327,7 @@ msgstr "Se connecter à d'autres pairs"
 msgid "Connected"
 msgstr "Connecté"
 
-#: src/components/app/AppRouter.tsx:23
+#: src/components/app/AppRouter.tsx:29
 msgid "Connecting to wallet"
 msgstr "En cours de connexion au porte-monnaie"
 
@@ -819,7 +819,7 @@ msgstr "Chargement..."
 msgid "Local Harvester Plots"
 msgstr "Parcelles locales du récolteur"
 
-#: src/components/app/AppRouter.tsx:28
+#: src/components/app/AppRouter.tsx:34
 msgid "Logging in"
 msgstr "Identification"
 
@@ -881,6 +881,10 @@ msgstr "Plus de mémoire augmente légèrement la vitesse"
 msgid "My Pubkey"
 msgstr "Ma clé publique"
 
+#: src/components/app/AppRouter.tsx:24
+msgid "Network not launched yet, waiting for genesis challenge!"
+msgstr ""
+
 #: src/components/wallet/coloured/WalletColoured.tsx:469
 #: src/components/wallet/standard/WalletStandard.tsx:397
 msgid "New Address"
@@ -905,7 +909,7 @@ msgstr "Surnom"
 msgid "No"
 msgstr "Non"
 
-#: src/middleware/middleware_api.jsx:277
+#: src/middleware/middleware_api.jsx:293
 msgid "No 24 word seed, since this key is imported."
 msgstr ""
 
@@ -1176,11 +1180,11 @@ msgstr ""
 msgid "Private key with public fingerprint {fingerprint}"
 msgstr ""
 
-#: src/middleware/middleware_api.jsx:241
+#: src/middleware/middleware_api.jsx:257
 msgid "Private key {0}"
 msgstr ""
 
-#: src/middleware/middleware_api.jsx:251
+#: src/middleware/middleware_api.jsx:267
 msgid "Private key:"
 msgstr ""
 
@@ -1196,7 +1200,7 @@ msgstr ""
 msgid "Pubkey"
 msgstr ""
 
-#: src/middleware/middleware_api.jsx:259
+#: src/middleware/middleware_api.jsx:275
 msgid "Public key:"
 msgstr ""
 
@@ -1287,7 +1291,7 @@ msgstr ""
 msgid "See private key"
 msgstr ""
 
-#: src/middleware/middleware_api.jsx:269
+#: src/middleware/middleware_api.jsx:285
 msgid "Seed:"
 msgstr ""
 
