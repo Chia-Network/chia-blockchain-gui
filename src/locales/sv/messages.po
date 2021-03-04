@@ -8,7 +8,7 @@ msgstr ""
 "Language: sv_SE\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-03-04 08:15\n"
+"PO-Revision-Date: 2021-03-04 10:32\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -33,7 +33,7 @@ msgstr "En skördare är en tjänst som körs på en maskin där plottar lagras.
 #: src/electron-starter.js:353
 #: src/electron-starter.js:446
 msgid "About Chia Blockchain"
-msgstr ""
+msgstr "Om Chia Blockchain"
 
 #: src/components/trading/ViewOffer.jsx:85
 msgid "Accept"
@@ -76,11 +76,11 @@ msgstr "Lägg till en plott"
 
 #: src/components/plot/PlotAddDirectoryDialog.tsx:40
 msgid "Add a plot"
-msgstr ""
+msgstr "Lägg till en plott"
 
 #: src/components/plot/PlotAddDirectoryDialog.tsx:69
 msgid "Add plot directory"
-msgstr ""
+msgstr "Lägg till mapp med plottar"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:403
 #: src/components/wallet/coloured/WalletColoured.tsx:455
@@ -117,11 +117,11 @@ msgstr "Är det säkert att du vill ta bort plotten? Den kan inte återställas.
 
 #: src/components/fullNode/FullNodeCloseConnection.tsx:23
 msgid "Are you sure you want to disconnect?"
-msgstr ""
+msgstr "Är det säkert att du vill koppla ifrån?"
 
 #: src/electron-starter.js:125
 msgid "Are you sure you want to quit? GUI Plotting and farming will stop."
-msgstr ""
+msgstr "Är det säkert att du vill stänga av? Plottning och odling i GUI kommer att stoppas."
 
 #: src/components/selectKey/SelectKey.tsx:39
 #: src/components/selectKey/SelectKey.tsx:53
@@ -173,7 +173,7 @@ msgstr "Block vid höjd {0} i Chia-blockkedjan"
 
 #: src/components/block/Block.jsx:124
 msgid "Block with hash {headerHash}"
-msgstr ""
+msgstr "Block med hash {headerHash}"
 
 #: src/components/block/Block.jsx:153
 msgid "Block with hash {headerHash} does not exists."
@@ -237,15 +237,15 @@ msgstr "Verifieringshash"
 
 #: src/electron-starter.js:332
 msgid "Chat on KeyBase"
-msgstr ""
+msgstr "Chatta på KeyBase"
 
 #: src/electron-starter.js:350
 msgid "Chia"
-msgstr ""
+msgstr "Chia"
 
 #: src/electron-starter.js:289
 msgid "Chia Blockchain Wiki"
-msgstr ""
+msgstr "Chia Blockchains wiki"
 
 #: src/components/wallet/Wallets.tsx:30
 msgid "Chia Wallet"
@@ -299,11 +299,11 @@ msgstr "Alternativ för färgade mynt"
 
 #: src/electron-starter.js:123
 msgid "Confirm"
-msgstr ""
+msgstr "Bekräfta"
 
 #: src/components/fullNode/FullNodeCloseConnection.tsx:22
 msgid "Confirm Disconnect"
-msgstr ""
+msgstr "Bekräfta frånkoppling"
 
 #: src/components/trading/TradingOverview.jsx:202
 msgid "Confirmed at block:"
@@ -350,7 +350,7 @@ msgstr "Anslutningar"
 
 #: src/electron-starter.js:313
 msgid "Contribute on GitHub"
-msgstr ""
+msgstr "Delta på GitHub"
 
 #: src/components/core/components/CopyToClipboard/CopyToClipboard.tsx:22
 msgid "Copied"
@@ -509,11 +509,11 @@ msgstr "Om du tar bort nyckeln kommer den att permanent tas bort från datorn. S
 
 #: src/electron-starter.js:235
 msgid "Developer"
-msgstr ""
+msgstr "Utvecklare"
 
 #: src/electron-starter.js:238
 msgid "Developer Tools"
-msgstr ""
+msgstr "Utvecklarverktyg"
 
 #: src/components/block/Block.jsx:211
 #: src/components/fullNode/FullNode.jsx:188
@@ -522,7 +522,7 @@ msgstr "Svårighetsgrad"
 
 #: src/components/fullNode/FullNodeCloseConnection.tsx:22
 msgid "Disconnect"
-msgstr ""
+msgstr "Koppla ifrån"
 
 #: src/components/wallet/create/WalletCreate.jsx:144
 #~ msgid "Distributed Identity"
@@ -552,7 +552,7 @@ msgstr "Drag och släpp din säkerhetskopierade fil"
 
 #: src/electron-starter.js:194
 msgid "Edit"
-msgstr ""
+msgstr "Redigera"
 
 #: src/components/wallet/WalletImport.tsx:67
 msgid "Enter the 24 word mnemonic that you have saved in order to restore your Chia wallet."
@@ -653,7 +653,7 @@ msgstr "Avgiftsbelopp"
 #: src/electron-starter.js:186
 #: src/electron-starter.js:393
 msgid "File"
-msgstr ""
+msgstr "Fil"
 
 #: src/components/plot/PlotsFailed.tsx:10
 #: src/components/plot/PlotsNotFound.tsx:10
@@ -672,11 +672,11 @@ msgstr "Färdig"
 
 #: src/electron-starter.js:338
 msgid "Follow on Twitter"
-msgstr ""
+msgstr "Följ på Twitter"
 
 #: src/electron-starter.js:297
 msgid "Frequently Asked Questions"
-msgstr ""
+msgstr "Vanliga frågor"
 
 #: src/components/dashboard/DashboardSideBar.tsx:23
 #: src/components/fullNode/FullNode.jsx:316
@@ -689,7 +689,7 @@ msgstr "Status för full nod"
 
 #: src/electron-starter.js:263
 msgid "Full Screen"
-msgstr ""
+msgstr "Helskärm"
 
 #: src/components/wallet/create/createNewColouredCoin.jsx:106
 msgid "Generate New Colour"
@@ -715,7 +715,7 @@ msgstr "Höjd"
 
 #: src/electron-starter.js:285
 msgid "Help"
-msgstr ""
+msgstr "Hjälp"
 
 #: src/components/core/components/LocaleToggle/LocaleToggle.tsx:50
 msgid "Help translate"
@@ -883,7 +883,7 @@ msgstr "Min publika nyckel"
 
 #: src/components/app/AppRouter.tsx:24
 msgid "Network not launched yet, waiting for genesis challenge!"
-msgstr ""
+msgstr "Nätverket har inte startat ännu. Väntar på genesis-verifiering!"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:469
 #: src/components/wallet/standard/WalletStandard.tsx:397
@@ -1252,7 +1252,7 @@ msgstr "Uppdatera plottar"
 
 #: src/electron-starter.js:305
 msgid "Release Notes"
-msgstr ""
+msgstr "Viktig information"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:205
 msgid "Rename"
@@ -1260,7 +1260,7 @@ msgstr "Byt namn"
 
 #: src/electron-starter.js:324
 msgid "Report an Issue..."
-msgstr ""
+msgstr "Rapportera ett problem ..."
 
 #: src/components/backup/BackupRestore.tsx:107
 msgid "Restore Smart Wallets From Backup"
@@ -1588,7 +1588,7 @@ msgstr "Denna affärstransaktion lades till i blockkedjan vid denna blockhöjd"
 
 #: src/components/fullNode/FullNode.jsx:100
 msgid "Time Created"
-msgstr "Skapad kl"
+msgstr "Skapad"
 
 #: src/components/trading/TradingOverview.jsx:192
 #~ msgid "Time this trade was created at this time"
@@ -1788,7 +1788,7 @@ msgstr ""
 
 #: src/electron-starter.js:271
 msgid "Window"
-msgstr ""
+msgstr "Fönster"
 
 #: src/components/farm/card/FarmCardBlockRewards.tsx:15
 msgid "Without fees"
