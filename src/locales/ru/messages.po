@@ -8,7 +8,7 @@ msgstr ""
 "Language: ru_RU\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-03-04 08:16\n"
+"PO-Revision-Date: 2021-03-05 01:34\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "Plural-Forms: nplurals=4; plural=((n%10==1 && n%100!=11) ? 0 : ((n%10 >= 2 && n%10 <=4 && (n%100 < 12 || n%100 > 14)) ? 1 : ((n%10 == 0 || (n%10 >= 5 && n%10 <=9)) || (n%100 >= 11 && n%100 <= 14)) ? 2 : 3));\n"
@@ -45,7 +45,7 @@ msgstr "Принято в:"
 
 #: src/components/plot/PlotsFailed.tsx:14
 #: src/components/plot/PlotsNotFound.tsx:14
-#: src/components/plot/overview/PlotOverviewPlots.tsx:76
+#: src/components/plot/overview/PlotOverviewPlots.tsx:69
 msgid "Action"
 msgstr "Действие"
 
@@ -657,7 +657,7 @@ msgstr ""
 
 #: src/components/plot/PlotsFailed.tsx:10
 #: src/components/plot/PlotsNotFound.tsx:10
-#: src/components/plot/overview/PlotOverviewPlots.tsx:70
+#: src/components/plot/overview/PlotOverviewPlots.tsx:61
 msgid "Filename"
 msgstr "Имя файла"
 
@@ -695,9 +695,9 @@ msgstr ""
 msgid "Generate New Colour"
 msgstr "Сгенерировать новый цвет"
 
-#: src/components/plot/overview/PlotOverviewPlots.tsx:50
-msgid "Harvester ID"
-msgstr "Идентификатор комбайна"
+#: src/components/plot/overview/PlotOverviewPlots.tsx:49
+#~ msgid "Harvester ID"
+#~ msgstr ""
 
 #: src/components/fullNode/FullNode.jsx:68
 msgid "Header Hash"
@@ -791,7 +791,7 @@ msgstr "Инициализируйте кошелек пользователя �
 msgid "Interval"
 msgstr "Интервал"
 
-#: src/components/plot/overview/PlotOverviewPlots.tsx:40
+#: src/components/plot/overview/PlotOverviewPlots.tsx:37
 msgid "K-Size"
 msgstr "K-размер"
 
@@ -815,7 +815,7 @@ msgstr "Последние испытания блоков"
 msgid "Loading..."
 msgstr "Загрузка..."
 
-#: src/components/plot/overview/PlotOverviewPlots.tsx:86
+#: src/components/plot/overview/PlotOverviewPlots.tsx:80
 msgid "Local Harvester Plots"
 msgstr "Участки для локальных комбайнов"
 
@@ -1097,19 +1097,19 @@ msgstr "Количество участков"
 msgid "Plot Id"
 msgstr "ID участка"
 
-#: src/components/plot/overview/PlotOverviewPlots.tsx:60
+#: src/components/plot/overview/PlotOverviewPlots.tsx:49
 msgid "Plot Key"
 msgstr "Публ. ключ"
 
-#: src/components/plot/overview/PlotOverviewPlots.tsx:45
-msgid "Plot Name"
-msgstr "Имя участка"
+#: src/components/plot/overview/PlotOverviewPlots.tsx:43
+#~ msgid "Plot Name"
+#~ msgstr ""
 
 #: src/components/block/Block.jsx:239
 msgid "Plot Public Key"
 msgstr "Публичный ключ участка"
 
-#: src/components/plot/overview/PlotOverviewPlots.tsx:55
+#: src/components/plot/overview/PlotOverviewPlots.tsx:43
 msgid "Plot Seed"
 msgstr "Зерно"
 
@@ -1117,7 +1117,7 @@ msgstr "Зерно"
 msgid "Plot Size"
 msgstr "Размер участка"
 
-#: src/components/plot/overview/PlotOverviewPlots.tsx:27
+#: src/components/plot/overview/PlotOverviewPlots.tsx:26
 msgid "Plot is duplicate of {0}"
 msgstr "Плот дубликат {0}"
 
@@ -1141,7 +1141,7 @@ msgstr "Засеивание"
 msgid "Plotting in parallel can save time. Otherwise, add plot(s) to the queue."
 msgstr "Параллельное засеивание позволяет сэкономить время. Также вы можете создать очередь засеивания участков."
 
-#: src/components/plot/overview/PlotOverviewPlots.tsx:65
+#: src/components/plot/overview/PlotOverviewPlots.tsx:55
 msgid "Pool Key"
 msgstr "Ключ пула"
 
@@ -1410,7 +1410,7 @@ msgstr "Состояние"
 #: src/components/fullNode/FullNode.jsx:135
 #: src/components/fullNode/FullNode.jsx:143
 #: src/components/fullNode/FullNode.jsx:165
-#: src/components/plot/overview/PlotOverviewPlots.tsx:73
+#: src/components/plot/overview/PlotOverviewPlots.tsx:65
 #: src/components/trading/TradingOverview.jsx:128
 #: src/components/wallet/WalletHistory.tsx:42
 #: src/components/wallet/WalletStatusCard.tsx:11
@@ -1620,7 +1620,7 @@ msgstr "Всего итераций"
 msgid "Total Network Space"
 msgstr "Суммарное пространство сети"
 
-#: src/components/plot/overview/PlotOverviewPlots.tsx:99
+#: src/components/plot/overview/PlotOverviewPlots.tsx:91
 msgid "Total Plot Size:"
 msgstr "Общий объем участков:"
 
@@ -1758,7 +1758,7 @@ msgstr "Кошельки"
 #~ msgid "Wallets.title"
 #~ msgstr ""
 
-#: src/components/plot/overview/PlotOverviewPlots.tsx:92
+#: src/components/plot/overview/PlotOverviewPlots.tsx:84
 msgid "Want to earn more Chia? Add more plots to your farm."
 msgstr "Хотите получать больше дохода в Чиа? Добавьте больше участков к своей ферме."
 
