@@ -8,7 +8,7 @@ msgstr ""
 "Language: da_DK\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-03-05 20:05\n"
+"PO-Revision-Date: 2021-03-05 20:13\n"
 "Last-Translator: \n"
 "Language-Team: Danish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -241,11 +241,11 @@ msgstr "Chat på KeyBase"
 
 #: src/electron-starter.js:350
 msgid "Chia"
-msgstr ""
+msgstr "Chia"
 
 #: src/electron-starter.js:289
 msgid "Chia Blockchain Wiki"
-msgstr ""
+msgstr "Chia Blockchain Wiki"
 
 #: src/components/wallet/Wallets.tsx:30
 msgid "Chia Wallet"
@@ -299,11 +299,11 @@ msgstr "Farvet Mønt Indstillinger"
 
 #: src/electron-starter.js:123
 msgid "Confirm"
-msgstr ""
+msgstr "Bekræft"
 
 #: src/components/fullNode/FullNodeCloseConnection.tsx:22
 msgid "Confirm Disconnect"
-msgstr ""
+msgstr "Bekræft Afkobling"
 
 #: src/components/trading/TradingOverview.jsx:202
 msgid "Confirmed at block:"
@@ -350,7 +350,7 @@ msgstr "Forbindelser"
 
 #: src/electron-starter.js:313
 msgid "Contribute on GitHub"
-msgstr ""
+msgstr "Bidrag på GitHub"
 
 #: src/components/core/components/CopyToClipboard/CopyToClipboard.tsx:22
 msgid "Copied"
@@ -509,11 +509,11 @@ msgstr "Sletning af nøglen vil permanent fjerne nøglen fra denne computer, væ
 
 #: src/electron-starter.js:235
 msgid "Developer"
-msgstr ""
+msgstr "Udvikler"
 
 #: src/electron-starter.js:238
 msgid "Developer Tools"
-msgstr ""
+msgstr "Udvikler Værktøjer"
 
 #: src/components/block/Block.jsx:211
 #: src/components/fullNode/FullNode.jsx:188
@@ -522,7 +522,7 @@ msgstr "Sværhed"
 
 #: src/components/fullNode/FullNodeCloseConnection.tsx:22
 msgid "Disconnect"
-msgstr ""
+msgstr "Afbryd forbindelse"
 
 #: src/components/wallet/create/WalletCreate.jsx:144
 #~ msgid "Distributed Identity"
@@ -552,7 +552,7 @@ msgstr "Træk og slip din backup fil"
 
 #: src/electron-starter.js:194
 msgid "Edit"
-msgstr ""
+msgstr "Rediger"
 
 #: src/components/wallet/WalletImport.tsx:67
 msgid "Enter the 24 word mnemonic that you have saved in order to restore your Chia wallet."
@@ -653,7 +653,7 @@ msgstr "Gebyr Beløb"
 #: src/electron-starter.js:186
 #: src/electron-starter.js:393
 msgid "File"
-msgstr ""
+msgstr "Fil"
 
 #: src/components/plot/PlotsFailed.tsx:10
 #: src/components/plot/PlotsNotFound.tsx:10
@@ -672,11 +672,11 @@ msgstr "Færdig"
 
 #: src/electron-starter.js:338
 msgid "Follow on Twitter"
-msgstr ""
+msgstr "Følg på Twitter"
 
 #: src/electron-starter.js:297
 msgid "Frequently Asked Questions"
-msgstr ""
+msgstr "Ofte Stillet Spørgsmål"
 
 #: src/components/dashboard/DashboardSideBar.tsx:23
 #: src/components/fullNode/FullNode.jsx:316
@@ -689,7 +689,7 @@ msgstr "Fuld Node Status"
 
 #: src/electron-starter.js:263
 msgid "Full Screen"
-msgstr ""
+msgstr "Fuld Skærm"
 
 #: src/components/wallet/create/createNewColouredCoin.jsx:106
 msgid "Generate New Colour"
@@ -715,7 +715,7 @@ msgstr "Højde"
 
 #: src/electron-starter.js:285
 msgid "Help"
-msgstr ""
+msgstr "Hjælp"
 
 #: src/components/core/components/LocaleToggle/LocaleToggle.tsx:50
 msgid "Help translate"
@@ -883,7 +883,7 @@ msgstr "Min Pubkey"
 
 #: src/components/app/AppRouter.tsx:24
 msgid "Network not launched yet, waiting for genesis challenge!"
-msgstr ""
+msgstr "Netværk ikke startet endnu, afventer genesis udfordring!"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:469
 #: src/components/wallet/standard/WalletStandard.tsx:397
@@ -1174,7 +1174,7 @@ msgstr "Tidligere"
 
 #: src/components/block/Block.jsx:203
 msgid "Previous Header Hash"
-msgstr ""
+msgstr "Foregående Header Hash"
 
 #: src/components/block/Block.jsx:217
 #~ msgid "Previous Sub Block Hash"
@@ -1256,7 +1256,7 @@ msgstr "Opdater Plotfiler"
 
 #: src/electron-starter.js:305
 msgid "Release Notes"
-msgstr ""
+msgstr "Udgivelses Noter"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:205
 msgid "Rename"
@@ -1264,7 +1264,7 @@ msgstr "Omdøb"
 
 #: src/electron-starter.js:324
 msgid "Report an Issue..."
-msgstr ""
+msgstr "Raportér et Problem..."
 
 #: src/components/backup/BackupRestore.tsx:107
 msgid "Restore Smart Wallets From Backup"
@@ -1376,7 +1376,7 @@ msgstr "Spring Over"
 
 #: src/electron-starter.js:407
 msgid "Speech"
-msgstr ""
+msgstr "Tale"
 
 #: src/components/wallet/create/createRLAdmin.jsx:247
 msgid "Spendable Amount"
@@ -1538,7 +1538,7 @@ msgstr "Disse plotfiler er invalide, måske vil du fjerne dem."
 
 #: src/components/plot/PlotAddDirectoryDialog.tsx:44
 msgid "This allows you to add a directory that has plots in it. If you have not created any plots, go to the plotting screen."
-msgstr ""
+msgstr "Dette lader dig tilføje en folder med plotfiler i. Hvis du ikke har genereret nogle plotfiler, gå til plot skærmen."
 
 #: src/components/trading/CreateOffer.jsx:132
 #: src/hooks/useSelectDirectory.tsx:26
@@ -1699,7 +1699,7 @@ msgstr "VDF blok iterationer"
 
 #: src/electron-starter.js:226
 msgid "View"
-msgstr ""
+msgstr "Se"
 
 #: src/components/plot/queue/PlotQueueActions.tsx:49
 #: src/components/plot/queue/PlotQueueLogDialog.tsx:20
@@ -1792,7 +1792,7 @@ msgstr "Når du modtager din opsætningspakke fra din admin, indtast den herunde
 
 #: src/electron-starter.js:271
 msgid "Window"
-msgstr ""
+msgstr "Vindue"
 
 #: src/components/farm/card/FarmCardBlockRewards.tsx:15
 msgid "Without fees"
