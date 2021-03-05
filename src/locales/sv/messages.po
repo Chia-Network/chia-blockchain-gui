@@ -8,7 +8,7 @@ msgstr ""
 "Language: sv_SE\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-03-05 05:33\n"
+"PO-Revision-Date: 2021-03-05 09:04\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -668,7 +668,7 @@ msgstr "Sökväg till slutlig mapp"
 #: src/components/fullNode/FullNode.jsx:50
 #: src/components/fullNode/FullNode.jsx:106
 msgid "Finished"
-msgstr "Färdig"
+msgstr "Färdigt"
 
 #: src/electron-starter.js:338
 msgid "Follow on Twitter"
@@ -1131,7 +1131,7 @@ msgstr "Plottar som passerat filtret"
 
 #: src/components/plot/overview/PlotOverviewHero.tsx:23
 msgid "Plots are allocated space on your hard drive used to farm and earn Chia. <0>Learn more</0>"
-msgstr "Plottar allokeras utrymme på din hårddisk som används för att odla och tjäna Chia. <0>Läs mer</0>"
+msgstr "Plottar är reserverat utrymme på din hårddisk som används för att odla och tjäna Chia. <0>Läs mer</0>"
 
 #: src/components/plot/queue/PlotQueueIndicator.tsx:8
 msgid "Plotting"
@@ -1174,7 +1174,7 @@ msgstr "Föregående"
 
 #: src/components/block/Block.jsx:203
 msgid "Previous Header Hash"
-msgstr ""
+msgstr "Föregående huvudhash"
 
 #: src/components/block/Block.jsx:217
 #~ msgid "Previous Sub Block Hash"
@@ -1538,7 +1538,7 @@ msgstr "Dessa plottar är ogiltiga. Det kan vara lämpligt att ta bort dem."
 
 #: src/components/plot/PlotAddDirectoryDialog.tsx:44
 msgid "This allows you to add a directory that has plots in it. If you have not created any plots, go to the plotting screen."
-msgstr ""
+msgstr "Detta låter dig lägga till en mapp som innehåller plottar. Om du inte har skapat några plottar går du till sidan plottning."
 
 #: src/components/trading/CreateOffer.jsx:132
 #: src/hooks/useSelectDirectory.tsx:26
@@ -1682,7 +1682,7 @@ msgstr "Typ"
 
 #: src/components/fullNode/FullNode.jsx:106
 msgid "Unfinished"
-msgstr "Ej färdig"
+msgstr "Ej färdigt"
 
 #: src/components/trading/TradingOverview.jsx:177
 msgid "Unique identifier"
