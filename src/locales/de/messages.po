@@ -8,7 +8,7 @@ msgstr ""
 "Language: de_DE\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-03-04 08:16\n"
+"PO-Revision-Date: 2021-03-05 01:34\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -45,7 +45,7 @@ msgstr ""
 
 #: src/components/plot/PlotsFailed.tsx:14
 #: src/components/plot/PlotsNotFound.tsx:14
-#: src/components/plot/overview/PlotOverviewPlots.tsx:76
+#: src/components/plot/overview/PlotOverviewPlots.tsx:69
 msgid "Action"
 msgstr ""
 
@@ -661,7 +661,7 @@ msgstr ""
 
 #: src/components/plot/PlotsFailed.tsx:10
 #: src/components/plot/PlotsNotFound.tsx:10
-#: src/components/plot/overview/PlotOverviewPlots.tsx:70
+#: src/components/plot/overview/PlotOverviewPlots.tsx:61
 msgid "Filename"
 msgstr "Dateiname"
 
@@ -699,9 +699,9 @@ msgstr ""
 msgid "Generate New Colour"
 msgstr "Erstelle neue Farbe"
 
-#: src/components/plot/overview/PlotOverviewPlots.tsx:50
-msgid "Harvester ID"
-msgstr "Harvester ID"
+#: src/components/plot/overview/PlotOverviewPlots.tsx:49
+#~ msgid "Harvester ID"
+#~ msgstr ""
 
 #: src/components/fullNode/FullNode.jsx:68
 msgid "Header Hash"
@@ -795,7 +795,7 @@ msgstr "Initialisiere eine beschränkte Benutzer-Brieftasche:"
 msgid "Interval"
 msgstr "Intervall"
 
-#: src/components/plot/overview/PlotOverviewPlots.tsx:40
+#: src/components/plot/overview/PlotOverviewPlots.tsx:37
 msgid "K-Size"
 msgstr "K-Größe"
 
@@ -819,7 +819,7 @@ msgstr "Jüngste Block Herausforderung"
 msgid "Loading..."
 msgstr "Lädt..."
 
-#: src/components/plot/overview/PlotOverviewPlots.tsx:86
+#: src/components/plot/overview/PlotOverviewPlots.tsx:80
 msgid "Local Harvester Plots"
 msgstr "Lokale Harvester Plots"
 
@@ -1101,19 +1101,19 @@ msgstr ""
 msgid "Plot Id"
 msgstr ""
 
-#: src/components/plot/overview/PlotOverviewPlots.tsx:60
+#: src/components/plot/overview/PlotOverviewPlots.tsx:49
 msgid "Plot Key"
 msgstr ""
 
-#: src/components/plot/overview/PlotOverviewPlots.tsx:45
-msgid "Plot Name"
-msgstr ""
+#: src/components/plot/overview/PlotOverviewPlots.tsx:43
+#~ msgid "Plot Name"
+#~ msgstr ""
 
 #: src/components/block/Block.jsx:239
 msgid "Plot Public Key"
 msgstr ""
 
-#: src/components/plot/overview/PlotOverviewPlots.tsx:55
+#: src/components/plot/overview/PlotOverviewPlots.tsx:43
 msgid "Plot Seed"
 msgstr ""
 
@@ -1121,7 +1121,7 @@ msgstr ""
 msgid "Plot Size"
 msgstr ""
 
-#: src/components/plot/overview/PlotOverviewPlots.tsx:27
+#: src/components/plot/overview/PlotOverviewPlots.tsx:26
 msgid "Plot is duplicate of {0}"
 msgstr ""
 
@@ -1145,7 +1145,7 @@ msgstr ""
 msgid "Plotting in parallel can save time. Otherwise, add plot(s) to the queue."
 msgstr ""
 
-#: src/components/plot/overview/PlotOverviewPlots.tsx:65
+#: src/components/plot/overview/PlotOverviewPlots.tsx:55
 msgid "Pool Key"
 msgstr ""
 
@@ -1414,7 +1414,7 @@ msgstr ""
 #: src/components/fullNode/FullNode.jsx:135
 #: src/components/fullNode/FullNode.jsx:143
 #: src/components/fullNode/FullNode.jsx:165
-#: src/components/plot/overview/PlotOverviewPlots.tsx:73
+#: src/components/plot/overview/PlotOverviewPlots.tsx:65
 #: src/components/trading/TradingOverview.jsx:128
 #: src/components/wallet/WalletHistory.tsx:42
 #: src/components/wallet/WalletStatusCard.tsx:11
@@ -1624,7 +1624,7 @@ msgstr ""
 msgid "Total Network Space"
 msgstr ""
 
-#: src/components/plot/overview/PlotOverviewPlots.tsx:99
+#: src/components/plot/overview/PlotOverviewPlots.tsx:91
 msgid "Total Plot Size:"
 msgstr ""
 
@@ -1762,7 +1762,7 @@ msgstr ""
 #~ msgid "Wallets.title"
 #~ msgstr ""
 
-#: src/components/plot/overview/PlotOverviewPlots.tsx:92
+#: src/components/plot/overview/PlotOverviewPlots.tsx:84
 msgid "Want to earn more Chia? Add more plots to your farm."
 msgstr ""
 
