@@ -8,7 +8,7 @@ msgstr ""
 "Language: sk_SK\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-03-05 05:34\n"
+"PO-Revision-Date: 2021-03-05 16:30\n"
 "Last-Translator: \n"
 "Language-Team: Slovak\n"
 "Plural-Forms: nplurals=4; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 3;\n"
@@ -28,12 +28,12 @@ msgstr "0 automaticky vyberie počet sektorov"
 
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:58
 msgid "A harvester is a service running on a machine where plot(s) are actually stored. A farmer and harvester talk to a full node to see the state of the chain. View your network of connected harvesters below Learn more"
-msgstr ""
+msgstr "Kombajn je služba bežiaca na stroji, kde sú uložené polia. Farmár a kombajn kumunikujú s plným uzlom, aby zistili stav reťaze. Nižšie si pozrite svoju sieť prepojených kombajnov. Viac informácií"
 
 #: src/electron-starter.js:353
 #: src/electron-starter.js:446
 msgid "About Chia Blockchain"
-msgstr ""
+msgstr "O Chia blockchaine"
 
 #: src/components/trading/ViewOffer.jsx:85
 msgid "Accept"
@@ -76,11 +76,11 @@ msgstr "Pridať pole"
 
 #: src/components/plot/PlotAddDirectoryDialog.tsx:40
 msgid "Add a plot"
-msgstr ""
+msgstr "Pridať pole"
 
 #: src/components/plot/PlotAddDirectoryDialog.tsx:69
 msgid "Add plot directory"
-msgstr ""
+msgstr "Pridať adresár pre pole"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:403
 #: src/components/wallet/coloured/WalletColoured.tsx:455
@@ -117,11 +117,11 @@ msgstr "Naozaj chcete odstrániť pole? Pole nie je možné obnoviť."
 
 #: src/components/fullNode/FullNodeCloseConnection.tsx:23
 msgid "Are you sure you want to disconnect?"
-msgstr ""
+msgstr "Naozaj sa chcete odpojiť?"
 
 #: src/electron-starter.js:125
 msgid "Are you sure you want to quit? GUI Plotting and farming will stop."
-msgstr ""
+msgstr "Naozaj chete skončiť? GUI pre polia a farmy bude ukončené."
 
 #: src/components/selectKey/SelectKey.tsx:39
 #: src/components/selectKey/SelectKey.tsx:53
@@ -229,7 +229,7 @@ msgstr "Pozor, tieto polia sa odstránia navždy. Skontrolujte, či sú pamäťo
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:13
 msgid "Challenge"
-msgstr ""
+msgstr "Výzva"
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:11
 msgid "Challenge Hash"
@@ -237,15 +237,15 @@ msgstr "Hash výzvy"
 
 #: src/electron-starter.js:332
 msgid "Chat on KeyBase"
-msgstr ""
+msgstr "Pokec na KeyBase"
 
 #: src/electron-starter.js:350
 msgid "Chia"
-msgstr ""
+msgstr "Chia"
 
 #: src/electron-starter.js:289
 msgid "Chia Blockchain Wiki"
-msgstr ""
+msgstr "Chia Blockchain Wiki"
 
 #: src/components/wallet/Wallets.tsx:30
 msgid "Chia Wallet"
@@ -275,11 +275,11 @@ msgstr "Mince:"
 #: src/components/trading/CreateOffer.jsx:192
 #: src/components/trading/TradesTable.tsx:19
 msgid "Colour"
-msgstr ""
+msgstr "Farba"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:180
 msgid "Colour Info"
-msgstr ""
+msgstr "Informácie o farbe"
 
 #: src/components/wallet/create/createExistingColouredCoin.jsx:115
 msgid "Colour String"
@@ -287,23 +287,23 @@ msgstr ""
 
 #: src/components/wallet/coloured/WalletColoured.tsx:185
 msgid "Colour:"
-msgstr ""
+msgstr "Farba:"
 
 #: src/components/wallet/create/WalletCreate.jsx:120
 msgid "Coloured Coin"
-msgstr ""
+msgstr "Farebná minca"
 
 #: src/components/wallet/create/WalletCreate.jsx:168
 msgid "Coloured Coin Options"
-msgstr ""
+msgstr "Možnosti farebných mincí"
 
 #: src/electron-starter.js:123
 msgid "Confirm"
-msgstr ""
+msgstr "Potvrdiť"
 
 #: src/components/fullNode/FullNodeCloseConnection.tsx:22
 msgid "Confirm Disconnect"
-msgstr ""
+msgstr "Potvrďte odpojenie"
 
 #: src/components/trading/TradingOverview.jsx:202
 msgid "Confirmed at block:"
@@ -382,7 +382,7 @@ msgstr ""
 
 #: src/components/trading/TradeManager.tsx:22
 msgid "Create Offer"
-msgstr ""
+msgstr "Vytvoriť ponuku"
 
 #: src/components/plot/add/PlotAdd.tsx:66
 msgid "Create Plot"
@@ -424,7 +424,7 @@ msgstr "Vytvoriť peňaženku pre správcu"
 
 #: src/components/wallet/create/WalletCreate.jsx:180
 msgid "Create new coloured coin"
-msgstr ""
+msgstr "Vytvoriť novú farebnú mincu"
 
 #: src/components/wallet/create/WalletCreate.jsx:256
 msgid "Create user wallet"
@@ -432,11 +432,11 @@ msgstr "Vytvoriť peňaženku pre používateľa"
 
 #: src/components/wallet/create/createExistingColouredCoin.jsx:95
 msgid "Create wallet for colour"
-msgstr ""
+msgstr "Vytvoriť peňaženku pre farbu"
 
 #: src/components/wallet/create/WalletCreate.jsx:192
 msgid "Create wallet for existing colour"
-msgstr ""
+msgstr "Vytvoriť peňaženku pre existujúcu farbu"
 
 #: src/components/wallet/Wallets.tsx:81
 #~ msgid "CreateWallet.addWallet"
@@ -509,11 +509,11 @@ msgstr "Odstránením kľúča natrvalo odstránite kľúč z počítača. Uisti
 
 #: src/electron-starter.js:235
 msgid "Developer"
-msgstr ""
+msgstr "Vývojár"
 
 #: src/electron-starter.js:238
 msgid "Developer Tools"
-msgstr ""
+msgstr "Nástroje pre vývojárov"
 
 #: src/components/block/Block.jsx:211
 #: src/components/fullNode/FullNode.jsx:188
@@ -522,7 +522,7 @@ msgstr "Zložitosť"
 
 #: src/components/fullNode/FullNodeCloseConnection.tsx:22
 msgid "Disconnect"
-msgstr ""
+msgstr "Odpojiť"
 
 #: src/components/wallet/create/WalletCreate.jsx:144
 #~ msgid "Distributed Identity"
@@ -552,7 +552,7 @@ msgstr ""
 
 #: src/electron-starter.js:194
 msgid "Edit"
-msgstr ""
+msgstr "Editovať"
 
 #: src/components/wallet/WalletImport.tsx:67
 msgid "Enter the 24 word mnemonic that you have saved in order to restore your Chia wallet."
@@ -602,12 +602,12 @@ msgstr ""
 #: src/components/farm/card/FarmCardStatus.tsx:21
 #: src/components/plot/PlotStatus.tsx:28
 msgid "Farmer is not connected"
-msgstr ""
+msgstr "Farmár nie je pripojený"
 
 #: src/components/farm/card/FarmCardStatus.tsx:26
 #: src/components/plot/PlotStatus.tsx:29
 msgid "Farmer is not running"
-msgstr ""
+msgstr "Farmár neberží"
 
 #: src/components/farm/overview/FarmOverviewHero.tsx:27
 msgid "Farmers earn block rewards and transaction fees by committing spare space to the network to help secure transactions. This is where your farm will be once you add a plot. <0>Learn more</0>"
@@ -653,13 +653,13 @@ msgstr "Množstvo odmeny"
 #: src/electron-starter.js:186
 #: src/electron-starter.js:393
 msgid "File"
-msgstr ""
+msgstr "Súbor"
 
 #: src/components/plot/PlotsFailed.tsx:10
 #: src/components/plot/PlotsNotFound.tsx:10
 #: src/components/plot/overview/PlotOverviewPlots.tsx:61
 msgid "Filename"
-msgstr ""
+msgstr "Meno súboru"
 
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:37
 msgid "Final folder location"
@@ -672,11 +672,11 @@ msgstr "Dokončené"
 
 #: src/electron-starter.js:338
 msgid "Follow on Twitter"
-msgstr ""
+msgstr "Sledujte na twitteri"
 
 #: src/electron-starter.js:297
 msgid "Frequently Asked Questions"
-msgstr ""
+msgstr "Často kladené otázky (FAQ)"
 
 #: src/components/dashboard/DashboardSideBar.tsx:23
 #: src/components/fullNode/FullNode.jsx:316
@@ -689,11 +689,11 @@ msgstr "Stav siete"
 
 #: src/electron-starter.js:263
 msgid "Full Screen"
-msgstr ""
+msgstr "Na celú obrazovku"
 
 #: src/components/wallet/create/createNewColouredCoin.jsx:106
 msgid "Generate New Colour"
-msgstr ""
+msgstr "Vygenerujte nový farbu"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:49
 #~ msgid "Harvester ID"
@@ -715,7 +715,7 @@ msgstr "Poradie"
 
 #: src/electron-starter.js:285
 msgid "Help"
-msgstr ""
+msgstr "Pomocník"
 
 #: src/components/core/components/LocaleToggle/LocaleToggle.tsx:50
 msgid "Help translate"
@@ -732,7 +732,7 @@ msgstr "História"
 #: src/components/farm/FarmFullNodeConnections.tsx:24
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:24
 msgid "Host Name"
-msgstr ""
+msgstr "Meno hostiteľa"
 
 #: src/components/fullNode/FullNodeConnections.tsx:27
 msgid "IP address"
@@ -744,7 +744,7 @@ msgstr "IP Adresa / host"
 
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:85
 msgid "If none selected, then it will default to the temporary directory."
-msgstr ""
+msgstr "Ak nie je vybraný žiadny adresár, použije sa ako predvolený, dočasný adresár."
 
 #: src/components/wallet/WalletImport.tsx:64
 msgid "Import Wallet from Mnemonics"
@@ -764,7 +764,7 @@ msgstr "Prichádzajúce"
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:15
 msgid "Index"
-msgstr ""
+msgstr "Index"
 
 #: src/components/trading/TradingOverview.jsx:218
 msgid "Indicated if this offer was created by us"
@@ -777,7 +777,7 @@ msgstr "Čas, v akom bola táto ponuka prijatá"
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:341
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:490
 msgid "Info Packet"
-msgstr ""
+msgstr "Informačný paket"
 
 #: src/components/wallet/create/createRLAdmin.jsx:283
 msgid "Initial Amount"
@@ -793,7 +793,7 @@ msgstr "Interval"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:37
 msgid "K-Size"
-msgstr ""
+msgstr "K-veľkosť"
 
 #: src/components/dashboard/DashboardSideBar.tsx:28
 msgid "Keys"
@@ -940,7 +940,7 @@ msgstr "Nie je k dispozícií"
 
 #: src/components/fullNode/FullNode.jsx:136
 msgid "Not Synced"
-msgstr ""
+msgstr "Nesynchronizované"
 
 #: src/components/trading/TradingOverview.jsx:227
 msgid "Not accepted yet"
@@ -994,7 +994,7 @@ msgstr ""
 
 #: src/components/fullNode/FullNode.jsx:179
 msgid "Peak Time"
-msgstr ""
+msgstr "Špička"
 
 #: src/components/wallet/WalletHistory.tsx:41
 msgid "Pending"
@@ -1068,7 +1068,7 @@ msgstr "Prosím vyberte kúpiť alebo predať"
 
 #: src/components/trading/CreateOffer.jsx:63
 msgid "Please select coin colour"
-msgstr ""
+msgstr "Vyberte farbu mince"
 
 #: src/components/trading/CreateOffer.jsx:63
 #~ msgid "Please select coin type"
@@ -1111,7 +1111,7 @@ msgstr "Verejný kľúč poľa"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:43
 msgid "Plot Seed"
-msgstr ""
+msgstr "Zrnko poľa"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:28
 msgid "Plot Size"
@@ -1143,7 +1143,7 @@ msgstr "Paralelné vytváranie polí môže ušetriť čas. V opačnom prípade 
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:55
 msgid "Pool Key"
-msgstr ""
+msgstr "Kľúč k poľu"
 
 #: src/components/block/Block.jsx:243
 msgid "Pool Public Key"
@@ -1256,7 +1256,7 @@ msgstr "Obnoviť polia"
 
 #: src/electron-starter.js:305
 msgid "Release Notes"
-msgstr ""
+msgstr "Poznámky k vydaniu"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:205
 msgid "Rename"
@@ -1264,7 +1264,7 @@ msgstr "Premenovať"
 
 #: src/electron-starter.js:324
 msgid "Report an Issue..."
-msgstr ""
+msgstr "Nahlásiť problém..."
 
 #: src/components/backup/BackupRestore.tsx:107
 msgid "Restore Smart Wallets From Backup"
@@ -1297,7 +1297,7 @@ msgstr "Zobraziť privátny kľúč"
 
 #: src/middleware/middleware_api.jsx:285
 msgid "Seed:"
-msgstr ""
+msgstr "Zrnko:"
 
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:70
 msgid "Select 2nd Temporary Directory"
@@ -1313,7 +1313,7 @@ msgstr "Vyberte kľúč"
 
 #: src/components/trading/ViewOffer.jsx:38
 msgid "Select Offer"
-msgstr ""
+msgstr "Vyberte ponuku"
 
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:39
 msgid "Select Temporary Directory"
@@ -1376,7 +1376,7 @@ msgstr "Preskočiť"
 
 #: src/electron-starter.js:407
 msgid "Speech"
-msgstr ""
+msgstr "Hlas"
 
 #: src/components/wallet/create/createRLAdmin.jsx:247
 msgid "Spendable Amount"
@@ -1408,7 +1408,7 @@ msgstr ""
 
 #: src/components/fullNode/FullNode.jsx:108
 msgid "State"
-msgstr ""
+msgstr "Stav"
 
 #: src/components/fullNode/FullNode.jsx:118
 #: src/components/fullNode/FullNode.jsx:135
@@ -1510,7 +1510,7 @@ msgstr "Minimálna požadovaná veľkosť pre sieť je k = 32"
 
 #: src/components/fullNode/FullNode.jsx:138
 msgid "The node is not synced"
-msgstr ""
+msgstr "Uzol nie je synchronizovaný"
 
 #: src/components/fullNode/FullNode.jsx:126
 msgid "The node is syncing, which means it is downloading blocks from other nodes, to reach the latest block in the chain"
@@ -1792,11 +1792,11 @@ msgstr ""
 
 #: src/electron-starter.js:271
 msgid "Window"
-msgstr ""
+msgstr "Okno"
 
 #: src/components/farm/card/FarmCardBlockRewards.tsx:15
 msgid "Without fees"
-msgstr ""
+msgstr "Bez poplatkov"
 
 #: src/components/trading/TradingOverview.jsx:212
 #: src/electron-starter.js:122
@@ -1831,20 +1831,20 @@ msgstr "pozícia:"
 
 #: src/components/wallet/Wallets.tsx:107
 msgid "not synced"
-msgstr ""
+msgstr "nesynchronizované"
 
 #: src/components/wallet/WalletStatusCard.tsx:16
 #: src/components/wallet/Wallets.tsx:98
 msgid "status:"
-msgstr ""
+msgstr "stav:"
 
 #: src/components/wallet/WalletStatusCard.tsx:19
 #: src/components/wallet/Wallets.tsx:105
 msgid "synced"
-msgstr ""
+msgstr "synchronizované"
 
 #: src/components/wallet/WalletStatusCard.tsx:19
 #: src/components/wallet/Wallets.tsx:103
 msgid "syncing"
-msgstr ""
+msgstr "synchronizácia"
 
