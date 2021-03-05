@@ -8,7 +8,7 @@ msgstr ""
 "Language: es_ES\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-03-05 01:34\n"
+"PO-Revision-Date: 2021-03-05 04:31\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -479,7 +479,7 @@ msgstr "Retraso"
 #: src/components/plot/PlotAction.tsx:24
 #: src/components/plot/PlotAction.tsx:43
 #: src/components/plot/queue/PlotQueueActions.tsx:26
-#: src/components/plot/queue/PlotQueueActions.tsx:57
+#: src/components/plot/queue/PlotQueueActions.tsx:60
 #: src/components/selectKey/SelectKey.tsx:39
 #: src/components/selectKey/SelectKey.tsx:53
 msgid "Delete"
@@ -883,7 +883,7 @@ msgstr "Mi Llave Pública"
 
 #: src/components/app/AppRouter.tsx:24
 msgid "Network not launched yet, waiting for genesis challenge!"
-msgstr ""
+msgstr "Red aún no lanzada, ¡esperando el desafío génesis!"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:469
 #: src/components/wallet/standard/WalletStandard.tsx:397
@@ -1697,7 +1697,7 @@ msgstr "Iteraciones VDF Sub Slot"
 msgid "View"
 msgstr "Vista"
 
-#: src/components/plot/queue/PlotQueueActions.tsx:48
+#: src/components/plot/queue/PlotQueueActions.tsx:49
 #: src/components/plot/queue/PlotQueueLogDialog.tsx:20
 msgid "View Log"
 msgstr "Ver Registro"
