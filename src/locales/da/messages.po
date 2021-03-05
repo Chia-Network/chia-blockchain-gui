@@ -8,7 +8,7 @@ msgstr ""
 "Language: da_DK\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-03-05 05:34\n"
+"PO-Revision-Date: 2021-03-05 20:05\n"
 "Last-Translator: \n"
 "Language-Team: Danish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -33,7 +33,7 @@ msgstr "En harvester er en service der kører på en maskine hvor plot filen(fil
 #: src/electron-starter.js:353
 #: src/electron-starter.js:446
 msgid "About Chia Blockchain"
-msgstr ""
+msgstr "Om Chia Blockchain"
 
 #: src/components/trading/ViewOffer.jsx:85
 msgid "Accept"
@@ -76,11 +76,11 @@ msgstr "Tilføj et plot"
 
 #: src/components/plot/PlotAddDirectoryDialog.tsx:40
 msgid "Add a plot"
-msgstr ""
+msgstr "Tilføj plotfil"
 
 #: src/components/plot/PlotAddDirectoryDialog.tsx:69
 msgid "Add plot directory"
-msgstr ""
+msgstr "Tilføj plot folder"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:403
 #: src/components/wallet/coloured/WalletColoured.tsx:455
@@ -117,11 +117,11 @@ msgstr "Er du sikker du vil slette plotfilen? Plotfilen kan ikke gendannes."
 
 #: src/components/fullNode/FullNodeCloseConnection.tsx:23
 msgid "Are you sure you want to disconnect?"
-msgstr ""
+msgstr "Er du sikker du vil afbryde forbindelsen?"
 
 #: src/electron-starter.js:125
 msgid "Are you sure you want to quit? GUI Plotting and farming will stop."
-msgstr ""
+msgstr "Er du sikker du vil afslutter? GUI Plotning og farmning vil stoppe."
 
 #: src/components/selectKey/SelectKey.tsx:39
 #: src/components/selectKey/SelectKey.tsx:53
@@ -173,7 +173,7 @@ msgstr "Block ved højde {0} i Chia blockchainen"
 
 #: src/components/block/Block.jsx:124
 msgid "Block with hash {headerHash}"
-msgstr ""
+msgstr "Blokke med hash {headerHash}"
 
 #: src/components/block/Block.jsx:153
 msgid "Block with hash {headerHash} does not exists."
@@ -237,7 +237,7 @@ msgstr "Udfordringshash"
 
 #: src/electron-starter.js:332
 msgid "Chat on KeyBase"
-msgstr ""
+msgstr "Chat på KeyBase"
 
 #: src/electron-starter.js:350
 msgid "Chia"
