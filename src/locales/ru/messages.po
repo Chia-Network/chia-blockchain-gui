@@ -8,7 +8,7 @@ msgstr ""
 "Language: ru_RU\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-03-05 08:06\n"
+"PO-Revision-Date: 2021-03-05 09:04\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "Plural-Forms: nplurals=4; plural=((n%10==1 && n%100!=11) ? 0 : ((n%10 >= 2 && n%10 <=4 && (n%100 < 12 || n%100 > 14)) ? 1 : ((n%10 == 0 || (n%10 >= 5 && n%10 <=9)) || (n%100 >= 11 && n%100 <= 14)) ? 2 : 3));\n"
@@ -20,7 +20,7 @@ msgstr ""
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:39
 msgid "*Want to explore Chia’s blocks further? Check out <0>Chia Explorer</0> built by an open source developer."
-msgstr "Хотите посмотреть больше информации о блоках Чиа? Загляните в обозреватель блоков <0>Chia Explorer</0>, созданный на основе открытого исходного кода."
+msgstr "*Хотите посмотреть больше информации о блоках Чиа? Загляните в обозреватель блоков <0>Chia Explorer</0>, созданный на основе открытого исходного кода."
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:94
 msgid "0 automatically chooses bucket count"
@@ -33,7 +33,7 @@ msgstr "Комбайн - это служба, работающая на маши
 #: src/electron-starter.js:353
 #: src/electron-starter.js:446
 msgid "About Chia Blockchain"
-msgstr ""
+msgstr "О программе Chia Blockchain"
 
 #: src/components/trading/ViewOffer.jsx:85
 msgid "Accept"
@@ -76,11 +76,11 @@ msgstr "Добавить участок"
 
 #: src/components/plot/PlotAddDirectoryDialog.tsx:40
 msgid "Add a plot"
-msgstr ""
+msgstr "Добавить участок"
 
 #: src/components/plot/PlotAddDirectoryDialog.tsx:69
 msgid "Add plot directory"
-msgstr ""
+msgstr "Добавить директорию с участками"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:403
 #: src/components/wallet/coloured/WalletColoured.tsx:455
@@ -117,11 +117,11 @@ msgstr "Вы уверены, что хотите удалить участок? 
 
 #: src/components/fullNode/FullNodeCloseConnection.tsx:23
 msgid "Are you sure you want to disconnect?"
-msgstr ""
+msgstr "Вы уверены, что хотите отключиться?"
 
 #: src/electron-starter.js:125
 msgid "Are you sure you want to quit? GUI Plotting and farming will stop."
-msgstr ""
+msgstr "Вы уверены, что хотите выйти? Засеивание и фарминг будут остановлены."
 
 #: src/components/selectKey/SelectKey.tsx:39
 #: src/components/selectKey/SelectKey.tsx:53
@@ -173,7 +173,7 @@ msgstr "Блок на высоте {0} в блокчейне Chia"
 
 #: src/components/block/Block.jsx:124
 msgid "Block with hash {headerHash}"
-msgstr ""
+msgstr "Блок с хэшем {headerHash}"
 
 #: src/components/block/Block.jsx:153
 msgid "Block with hash {headerHash} does not exists."
@@ -237,15 +237,15 @@ msgstr "Хэш испытания"
 
 #: src/electron-starter.js:332
 msgid "Chat on KeyBase"
-msgstr ""
+msgstr "Чат в KeyBase"
 
 #: src/electron-starter.js:350
 msgid "Chia"
-msgstr ""
+msgstr "Чиа"
 
 #: src/electron-starter.js:289
 msgid "Chia Blockchain Wiki"
-msgstr ""
+msgstr "Блокчейн Chia на Wiki"
 
 #: src/components/wallet/Wallets.tsx:30
 msgid "Chia Wallet"
@@ -299,11 +299,11 @@ msgstr "Настройки Цветной Монеты"
 
 #: src/electron-starter.js:123
 msgid "Confirm"
-msgstr ""
+msgstr "Подтвердить"
 
 #: src/components/fullNode/FullNodeCloseConnection.tsx:22
 msgid "Confirm Disconnect"
-msgstr ""
+msgstr "Подтвердить отключение"
 
 #: src/components/trading/TradingOverview.jsx:202
 msgid "Confirmed at block:"
@@ -350,7 +350,7 @@ msgstr "Подключения"
 
 #: src/electron-starter.js:313
 msgid "Contribute on GitHub"
-msgstr ""
+msgstr "Сотрудничать на GitHub"
 
 #: src/components/core/components/CopyToClipboard/CopyToClipboard.tsx:22
 msgid "Copied"
@@ -509,11 +509,11 @@ msgstr "Удаление ключа приведет к безвозвратно
 
 #: src/electron-starter.js:235
 msgid "Developer"
-msgstr ""
+msgstr "Разработчик"
 
 #: src/electron-starter.js:238
 msgid "Developer Tools"
-msgstr ""
+msgstr "Инструменты разработчика"
 
 #: src/components/block/Block.jsx:211
 #: src/components/fullNode/FullNode.jsx:188
@@ -522,7 +522,7 @@ msgstr "Сложность"
 
 #: src/components/fullNode/FullNodeCloseConnection.tsx:22
 msgid "Disconnect"
-msgstr ""
+msgstr "Отключить"
 
 #: src/components/wallet/create/WalletCreate.jsx:144
 #~ msgid "Distributed Identity"
@@ -552,7 +552,7 @@ msgstr "Перетащите файл резервной копии"
 
 #: src/electron-starter.js:194
 msgid "Edit"
-msgstr ""
+msgstr "Правка"
 
 #: src/components/wallet/WalletImport.tsx:67
 msgid "Enter the 24 word mnemonic that you have saved in order to restore your Chia wallet."
@@ -653,7 +653,7 @@ msgstr "Объем коммисий"
 #: src/electron-starter.js:186
 #: src/electron-starter.js:393
 msgid "File"
-msgstr ""
+msgstr "Файл"
 
 #: src/components/plot/PlotsFailed.tsx:10
 #: src/components/plot/PlotsNotFound.tsx:10
@@ -672,11 +672,11 @@ msgstr "Завершен"
 
 #: src/electron-starter.js:338
 msgid "Follow on Twitter"
-msgstr ""
+msgstr "Следить в Twitter"
 
 #: src/electron-starter.js:297
 msgid "Frequently Asked Questions"
-msgstr ""
+msgstr "Часто задаваемые вопросы"
 
 #: src/components/dashboard/DashboardSideBar.tsx:23
 #: src/components/fullNode/FullNode.jsx:316
@@ -689,7 +689,7 @@ msgstr "Статус полного узла"
 
 #: src/electron-starter.js:263
 msgid "Full Screen"
-msgstr ""
+msgstr "Полный экран"
 
 #: src/components/wallet/create/createNewColouredCoin.jsx:106
 msgid "Generate New Colour"
@@ -715,7 +715,7 @@ msgstr "Высота"
 
 #: src/electron-starter.js:285
 msgid "Help"
-msgstr ""
+msgstr "Помощь"
 
 #: src/components/core/components/LocaleToggle/LocaleToggle.tsx:50
 msgid "Help translate"
@@ -883,7 +883,7 @@ msgstr "Мой публичный ключ"
 
 #: src/components/app/AppRouter.tsx:24
 msgid "Network not launched yet, waiting for genesis challenge!"
-msgstr ""
+msgstr "Сеть еще не запущена, ждем появления genesis challenge!"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:469
 #: src/components/wallet/standard/WalletStandard.tsx:397
@@ -1174,7 +1174,7 @@ msgstr "Предыдущий"
 
 #: src/components/block/Block.jsx:203
 msgid "Previous Header Hash"
-msgstr ""
+msgstr "Хэш предыдущего блока"
 
 #: src/components/block/Block.jsx:217
 #~ msgid "Previous Sub Block Hash"
@@ -1256,7 +1256,7 @@ msgstr "Обновить участки"
 
 #: src/electron-starter.js:305
 msgid "Release Notes"
-msgstr ""
+msgstr "Примечания к релизу"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:205
 msgid "Rename"
@@ -1264,7 +1264,7 @@ msgstr "Переименовать"
 
 #: src/electron-starter.js:324
 msgid "Report an Issue..."
-msgstr ""
+msgstr "Сообщить о проблеме..."
 
 #: src/components/backup/BackupRestore.tsx:107
 msgid "Restore Smart Wallets From Backup"
@@ -1376,7 +1376,7 @@ msgstr "Пропустить"
 
 #: src/electron-starter.js:407
 msgid "Speech"
-msgstr ""
+msgstr "Речь"
 
 #: src/components/wallet/create/createRLAdmin.jsx:247
 msgid "Spendable Amount"
@@ -1538,7 +1538,7 @@ msgstr "Эти участки невалидны, вы можете удалит
 
 #: src/components/plot/PlotAddDirectoryDialog.tsx:44
 msgid "This allows you to add a directory that has plots in it. If you have not created any plots, go to the plotting screen."
-msgstr ""
+msgstr "Это позволяет вам добавить каталог, в котором уже есть участки. Если вы еще не создали никаких участков, перейдите к экрану создания участков."
 
 #: src/components/trading/CreateOffer.jsx:132
 #: src/hooks/useSelectDirectory.tsx:26
@@ -1699,7 +1699,7 @@ msgstr "Итерации VDF суб слота"
 
 #: src/electron-starter.js:226
 msgid "View"
-msgstr ""
+msgstr "Вид"
 
 #: src/components/plot/queue/PlotQueueActions.tsx:49
 #: src/components/plot/queue/PlotQueueLogDialog.tsx:20
@@ -1792,7 +1792,7 @@ msgstr "Когда вы получите пакет информации о на
 
 #: src/electron-starter.js:271
 msgid "Window"
-msgstr ""
+msgstr "Окно"
 
 #: src/components/farm/card/FarmCardBlockRewards.tsx:15
 msgid "Without fees"
