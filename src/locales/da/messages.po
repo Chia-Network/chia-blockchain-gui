@@ -8,7 +8,7 @@ msgstr ""
 "Language: da_DK\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-03-04 08:16\n"
+"PO-Revision-Date: 2021-03-05 01:34\n"
 "Last-Translator: \n"
 "Language-Team: Danish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -45,7 +45,7 @@ msgstr "Accepteret tidspunkt:"
 
 #: src/components/plot/PlotsFailed.tsx:14
 #: src/components/plot/PlotsNotFound.tsx:14
-#: src/components/plot/overview/PlotOverviewPlots.tsx:76
+#: src/components/plot/overview/PlotOverviewPlots.tsx:69
 msgid "Action"
 msgstr "Aktion"
 
@@ -657,7 +657,7 @@ msgstr ""
 
 #: src/components/plot/PlotsFailed.tsx:10
 #: src/components/plot/PlotsNotFound.tsx:10
-#: src/components/plot/overview/PlotOverviewPlots.tsx:70
+#: src/components/plot/overview/PlotOverviewPlots.tsx:61
 msgid "Filename"
 msgstr "Filnavn"
 
@@ -695,9 +695,9 @@ msgstr ""
 msgid "Generate New Colour"
 msgstr "Generer Ny Farve"
 
-#: src/components/plot/overview/PlotOverviewPlots.tsx:50
-msgid "Harvester ID"
-msgstr "Harvester ID"
+#: src/components/plot/overview/PlotOverviewPlots.tsx:49
+#~ msgid "Harvester ID"
+#~ msgstr ""
 
 #: src/components/fullNode/FullNode.jsx:68
 msgid "Header Hash"
@@ -791,7 +791,7 @@ msgstr "Initialiser en Takst Begrænset Bruger Pung:"
 msgid "Interval"
 msgstr "Interval"
 
-#: src/components/plot/overview/PlotOverviewPlots.tsx:40
+#: src/components/plot/overview/PlotOverviewPlots.tsx:37
 msgid "K-Size"
 msgstr "K-Størrelse"
 
@@ -815,7 +815,7 @@ msgstr "Sidste Blok Udfordring"
 msgid "Loading..."
 msgstr "Loader..."
 
-#: src/components/plot/overview/PlotOverviewPlots.tsx:86
+#: src/components/plot/overview/PlotOverviewPlots.tsx:80
 msgid "Local Harvester Plots"
 msgstr "Lokal Harvester Plotfiler"
 
@@ -1097,19 +1097,19 @@ msgstr "Plot Antal"
 msgid "Plot Id"
 msgstr "Plot ID"
 
-#: src/components/plot/overview/PlotOverviewPlots.tsx:60
+#: src/components/plot/overview/PlotOverviewPlots.tsx:49
 msgid "Plot Key"
 msgstr "Plot Nøgle"
 
-#: src/components/plot/overview/PlotOverviewPlots.tsx:45
-msgid "Plot Name"
-msgstr "Plot Navn"
+#: src/components/plot/overview/PlotOverviewPlots.tsx:43
+#~ msgid "Plot Name"
+#~ msgstr ""
 
 #: src/components/block/Block.jsx:239
 msgid "Plot Public Key"
 msgstr "Plot Offentlig Nøgle"
 
-#: src/components/plot/overview/PlotOverviewPlots.tsx:55
+#: src/components/plot/overview/PlotOverviewPlots.tsx:43
 msgid "Plot Seed"
 msgstr "Plot Seed"
 
@@ -1117,7 +1117,7 @@ msgstr "Plot Seed"
 msgid "Plot Size"
 msgstr "Plot Størrelse"
 
-#: src/components/plot/overview/PlotOverviewPlots.tsx:27
+#: src/components/plot/overview/PlotOverviewPlots.tsx:26
 msgid "Plot is duplicate of {0}"
 msgstr "Plot er en duplikat af {0}"
 
@@ -1141,7 +1141,7 @@ msgstr "Plotter"
 msgid "Plotting in parallel can save time. Otherwise, add plot(s) to the queue."
 msgstr "Plotte i parallel can spare tid. Ellers tilføj plot til kø."
 
-#: src/components/plot/overview/PlotOverviewPlots.tsx:65
+#: src/components/plot/overview/PlotOverviewPlots.tsx:55
 msgid "Pool Key"
 msgstr "Pool Nøgle"
 
@@ -1410,7 +1410,7 @@ msgstr "Status"
 #: src/components/fullNode/FullNode.jsx:135
 #: src/components/fullNode/FullNode.jsx:143
 #: src/components/fullNode/FullNode.jsx:165
-#: src/components/plot/overview/PlotOverviewPlots.tsx:73
+#: src/components/plot/overview/PlotOverviewPlots.tsx:65
 #: src/components/trading/TradingOverview.jsx:128
 #: src/components/wallet/WalletHistory.tsx:42
 #: src/components/wallet/WalletStatusCard.tsx:11
@@ -1620,7 +1620,7 @@ msgstr "Total iterationer"
 msgid "Total Network Space"
 msgstr "Total Netværks Plads"
 
-#: src/components/plot/overview/PlotOverviewPlots.tsx:99
+#: src/components/plot/overview/PlotOverviewPlots.tsx:91
 msgid "Total Plot Size:"
 msgstr "Total Plot Størrelse:"
 
@@ -1758,7 +1758,7 @@ msgstr "Punge"
 #~ msgid "Wallets.title"
 #~ msgstr ""
 
-#: src/components/plot/overview/PlotOverviewPlots.tsx:92
+#: src/components/plot/overview/PlotOverviewPlots.tsx:84
 msgid "Want to earn more Chia? Add more plots to your farm."
 msgstr "Vil du tjene flere Chia? Tilføj flere plotfiler til din farmer."
 
