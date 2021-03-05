@@ -8,7 +8,7 @@ msgstr ""
 "Language: ro_RO\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-03-05 04:31\n"
+"PO-Revision-Date: 2021-03-05 05:33\n"
 "Last-Translator: \n"
 "Language-Team: Romanian\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100>0 && n%100<20)) ? 1 : 2);\n"
@@ -1169,7 +1169,11 @@ msgid "Previous"
 msgstr ""
 
 #: src/components/block/Block.jsx:203
-msgid "Previous Block Hash"
+#~ msgid "Previous Block Hash"
+#~ msgstr ""
+
+#: src/components/block/Block.jsx:203
+msgid "Previous Header Hash"
 msgstr ""
 
 #: src/components/block/Block.jsx:217
