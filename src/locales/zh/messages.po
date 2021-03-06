@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh_CN\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-03-06 07:25\n"
+"PO-Revision-Date: 2021-03-06 08:21\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -20,7 +20,7 @@ msgstr ""
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:39
 msgid "*Want to explore Chia’s blocks further? Check out <0>Chia Explorer</0> built by an open source developer."
-msgstr "*想要进一步了解Chia的区块吗? 来看看开源开发者制作的这个 <0>Chia区块浏览器</0>"
+msgstr "*想要进一步了解奇亚Chia区块链吗? 来看看开源开发者制作的这个 <0>奇亚Chia区块浏览器</0>"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:94
 msgid "0 automatically chooses bucket count"
@@ -28,7 +28,7 @@ msgstr "0 自动选择桶数"
 
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:58
 msgid "A harvester is a service running on a machine where plot(s) are actually stored. A farmer and harvester talk to a full node to see the state of the chain. View your network of connected harvesters below Learn more"
-msgstr "收割者（程序）是一个在存有plot(s)文件的机器上运行的服务。农夫（程序）和收割者（程序）通过和全节点交互来得到链的状态。你可以在下面看到你网络所连接的收割者们。 了解更多"
+msgstr "收割者（程序）是一个在存有农田plot(s) 文件的机器上运行的服务。农夫（程序）和收割者（程序）通过和全节点交互来得到链的状态。你可以在下面看到你网络所连接的收割者们。 了解更多"
 
 #: src/electron-starter.js:353
 #: src/electron-starter.js:446
@@ -61,7 +61,7 @@ msgstr "添加"
 
 #: src/components/plot/PlotHeader.tsx:51
 msgid "Add Plot Directory"
-msgstr "添加绘图文件目录"
+msgstr "添加农田文件目录"
 
 #: src/components/wallet/Wallets.tsx:81
 msgid "Add Wallet"
@@ -113,7 +113,7 @@ msgstr "初始币的数目"
 #: src/components/plot/PlotAction.tsx:25
 #: src/components/plot/queue/PlotQueueActions.tsx:27
 msgid "Are you sure you want to delete the plot? The plot cannot be recovered."
-msgstr "你确定要删除这个plot文件吗？删除后将不可恢复"
+msgstr "你确定要删除这个农田文件吗？删除后将不可恢复"
 
 #: src/components/fullNode/FullNodeCloseConnection.tsx:23
 msgid "Are you sure you want to disconnect?"
@@ -130,7 +130,7 @@ msgstr "后退"
 
 #: src/components/backup/BackupCreate.tsx:61
 msgid "Backup file is used to restore smart wallets."
-msgstr "备份文件可以用来恢复智能钱包"
+msgstr "用来恢复智能钱包的备份文件."
 
 #: src/components/wallet/coloured/WalletColoured.tsx:285
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:559
@@ -390,11 +390,11 @@ msgstr "创建绘图"
 
 #: src/components/wallet/create/createRLAdmin.jsx:198
 msgid "Create Rate Limited Admin Wallet"
-msgstr "创建费率限定型管理钱包"
+msgstr "创建费用限定型管理钱包"
 
 #: src/components/wallet/create/createRLUser.jsx:78
 msgid "Create Rate Limited User Wallet"
-msgstr "创建费率限定型用户钱包"
+msgstr "创建费用限定型用户钱包"
 
 #: src/components/trading/TradeManager.tsx:22
 #~ msgid "Create Trade"
@@ -785,7 +785,7 @@ msgstr "初始金额"
 
 #: src/components/wallet/create/createRLUser.jsx:89
 msgid "Initialize a Rate Limited User Wallet:"
-msgstr "初始化费率限定型用户钱包:"
+msgstr "初始化费用限定型用户钱包:"
 
 #: src/components/wallet/create/createRLAdmin.jsx:234
 msgid "Interval"
@@ -1008,7 +1008,7 @@ msgstr "待处理的结余"
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:610
 #: src/components/wallet/standard/WalletStandard.tsx:232
 msgid "Pending Change"
-msgstr "待处理的更改"
+msgstr "待处理的找回"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:592
 #: src/components/wallet/standard/WalletStandard.tsx:218
@@ -1218,7 +1218,7 @@ msgstr "内存最大使用量"
 
 #: src/components/wallet/Wallets.tsx:41
 msgid "RL Wallet"
-msgstr "RL钱包"
+msgstr "费用限定钱包"
 
 #: src/components/wallet/create/WalletCreate.jsx:246
 #~ msgid "RLListItems.title"
@@ -1226,20 +1226,20 @@ msgstr "RL钱包"
 
 #: src/components/wallet/create/WalletCreate.jsx:130
 msgid "Rate Limited"
-msgstr "费率限制"
+msgstr "费用限定"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:401
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:452
 msgid "Rate Limited Info"
-msgstr "费率限制信息"
+msgstr "费用限制信息"
 
 #: src/components/wallet/create/WalletCreate.jsx:232
 msgid "Rate Limited Options"
-msgstr "费率限制选项"
+msgstr "费用限定型选项"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:274
 msgid "Rate Limited User Wallet Setup"
-msgstr "用户钱包费率限制设置"
+msgstr "费用限定型用户钱包设置"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:451
 #: src/components/wallet/standard/WalletStandard.tsx:379
@@ -1351,11 +1351,11 @@ msgstr "发送"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:477
 msgid "Send this info packet to your Rate Limited Wallet user who must use it to complete setup of their wallet:"
-msgstr "把这段信息发给你的费用设定型钱包用户, 以便他/她可以完成自己的钱包设置:"
+msgstr "把这段信息发给你的费用限定型钱包用户, 以便他/她可以完成自己的钱包设置:"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:284
 msgid "Send your pubkey to your Rate Limited Wallet admin:"
-msgstr "将你的公钥发送到你的费率限定型管理者钱包:"
+msgstr "将你的公钥发送到你的费用限定型管理者钱包:"
 
 #: src/components/core/components/AdvancedOptions/AdvancedOptions.tsx:40
 msgid "Show Advanced Options"
@@ -1552,7 +1552,7 @@ msgstr "这是你目前可以使用的全部奇亚Chia数. 不包含待处理的
 
 #: src/components/wallet/standard/WalletStandard.tsx:234
 msgid "This is the pending change, which are change coins which you have sent to yourself, but have not been confirmed yet."
-msgstr ""
+msgstr "处理中的找零钱, 是你发送支出的找回, 但是没有被链上确认."
 
 #: src/components/wallet/standard/WalletStandard.tsx:227
 msgid "This is the sum of the incoming and outgoing pending transactions (not yet included into the blockchain). This does not include farming rewards."
@@ -1560,15 +1560,15 @@ msgstr "待处理的收入与支出总和(还未上链). 不包括农场耕种�
 
 #: src/components/fullNode/FullNode.jsx:183
 msgid "This is the time of the latest peak sub block."
-msgstr ""
+msgstr "最新的子块时间."
 
 #: src/components/block/Block.jsx:182
 msgid "This is the time the block was created by the farmer, which is before it is finalized with a proof of time"
-msgstr ""
+msgstr "由农夫创建的区块的时间, 这个时间早于它被确认的时间."
 
 #: src/components/wallet/standard/WalletStandard.tsx:193
 msgid "This is the total amount of chia in the blockchain at the current peak sub block that is controlled by your private keys. It includes frozen farming rewards, but not pending incoming and outgoing transactions."
-msgstr ""
+msgstr "这里是你的私钥所控制的, 到目前最新子块高度为止的全部奇亚数. 包含被冻结的耕种奖励, 但不包含待处理的收入与支出."
 
 #: src/components/wallet/standard/WalletStandard.tsx:220
 msgid "This is the total balance + pending balance: it is what your balance will be after all pending transactions are confirmed."
@@ -1776,7 +1776,7 @@ msgstr "权重"
 
 #: src/components/block/Block.jsx:196
 msgid "Weight is the total added difficulty of all sub blocks up to and including this one"
-msgstr ""
+msgstr "权重是施加给所有子块包括目前这块的额外的困难度."
 
 #: src/components/selectKey/SelectKey.tsx:77
 msgid "Welcome to Chia. Please log in with an existing key, or create a new key."
@@ -1788,7 +1788,7 @@ msgstr "欢迎使用奇亚! 下面的词语列表是你的钱包密语, 请务�
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:323
 msgid "When you receive the setup info packet from your admin, enter it below to complete your Rate Limited Wallet setup:"
-msgstr ""
+msgstr "当你从管理员那收到这个设置信息后, 请把它输入到下面以便完成费用限定型钱包设置:"
 
 #: src/electron-starter.js:271
 msgid "Window"
