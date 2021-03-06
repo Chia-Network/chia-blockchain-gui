@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh_CN\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-03-06 04:21\n"
+"PO-Revision-Date: 2021-03-06 05:23\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -33,7 +33,7 @@ msgstr "收割者（程序）是一个在存有plot(s)文件的机器上运行�
 #: src/electron-starter.js:353
 #: src/electron-starter.js:446
 msgid "About Chia Blockchain"
-msgstr "关于Chia区块链"
+msgstr "关于Chia奇亚区块链"
 
 #: src/components/trading/ViewOffer.jsx:85
 msgid "Accept"
@@ -72,15 +72,15 @@ msgstr "添加钱包"
 #: src/components/plot/add/PlotAdd.tsx:54
 #: src/components/plot/overview/PlotOverviewHero.tsx:29
 msgid "Add a Plot"
-msgstr "添加绘图文件"
+msgstr "增加一个农田文件"
 
 #: src/components/plot/PlotAddDirectoryDialog.tsx:40
 msgid "Add a plot"
-msgstr "增加一个Plot"
+msgstr "增加一个农田文件"
 
 #: src/components/plot/PlotAddDirectoryDialog.tsx:69
 msgid "Add plot directory"
-msgstr "设置Plot目录"
+msgstr "设置农田文件所在目录"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:403
 #: src/components/wallet/coloured/WalletColoured.tsx:455
@@ -279,11 +279,11 @@ msgstr "色彩"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:180
 msgid "Colour Info"
-msgstr ""
+msgstr "色彩信息"
 
 #: src/components/wallet/create/createExistingColouredCoin.jsx:115
 msgid "Colour String"
-msgstr ""
+msgstr "色彩字符串"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:185
 msgid "Colour:"
@@ -295,7 +295,7 @@ msgstr "染色币"
 
 #: src/components/wallet/create/WalletCreate.jsx:168
 msgid "Coloured Coin Options"
-msgstr ""
+msgstr "色彩币选项"
 
 #: src/electron-starter.js:123
 msgid "Confirm"
@@ -998,34 +998,34 @@ msgstr ""
 
 #: src/components/wallet/WalletHistory.tsx:41
 msgid "Pending"
-msgstr ""
+msgstr "待处理"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:601
 #: src/components/wallet/standard/WalletStandard.tsx:225
 msgid "Pending Balance"
-msgstr ""
+msgstr "待处理的结余"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:610
 #: src/components/wallet/standard/WalletStandard.tsx:232
 msgid "Pending Change"
-msgstr ""
+msgstr "待处理的更改"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:592
 #: src/components/wallet/standard/WalletStandard.tsx:218
 msgid "Pending Total Balance"
-msgstr ""
+msgstr "待处理的总结余"
 
 #: src/components/trading/CreateOffer.jsx:109
 msgid "Please add a trade pair"
-msgstr ""
+msgstr "请增加一个交易对"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:709
 msgid "Please enter 0 fee. Positive fees not supported yet for RL."
-msgstr ""
+msgstr "请输入费用数字0. 正费用目前在RL上还不支持."
 
 #: src/components/wallet/create/createRLAdmin.jsx:146
 msgid "Please enter a valid initial coin amount"
-msgstr ""
+msgstr "请输入一个有效的初始币数量"
 
 #: src/components/wallet/create/createNewColouredCoin.jsx:69
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:676
@@ -1043,7 +1043,7 @@ msgstr "请输入一个正确的费用"
 
 #: src/components/wallet/create/createRLAdmin.jsx:100
 msgid "Please enter a valid numeric interval length"
-msgstr ""
+msgstr "请输入一个有效的长度数字"
 
 #: src/components/wallet/create/createRLAdmin.jsx:117
 msgid "Please enter a valid numeric spendable amount"
@@ -1068,7 +1068,7 @@ msgstr "请选择买或卖"
 
 #: src/components/trading/CreateOffer.jsx:63
 msgid "Please select coin colour"
-msgstr ""
+msgstr "请选择币的色彩"
 
 #: src/components/trading/CreateOffer.jsx:63
 #~ msgid "Please select coin type"
@@ -1139,7 +1139,7 @@ msgstr "正在绘图"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:35
 msgid "Plotting in parallel can save time. Otherwise, add plot(s) to the queue."
-msgstr ""
+msgstr "并发拓荒可以有效节省拓荒时间但对系统资源要求很高. 系统硬件不够的话建议选择按队列顺序拓荒."
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:55
 msgid "Pool Key"
@@ -1155,7 +1155,7 @@ msgstr ""
 
 #: src/components/block/Block.jsx:297
 msgid "Pool Reward Amount"
-msgstr ""
+msgstr "农田池奖励数"
 
 #: src/components/farm/FarmFullNodeConnections.tsx:30
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:30
@@ -1174,7 +1174,7 @@ msgstr "上一个"
 
 #: src/components/block/Block.jsx:203
 msgid "Previous Header Hash"
-msgstr ""
+msgstr "上个区块的头部哈希"
 
 #: src/components/block/Block.jsx:217
 #~ msgid "Previous Sub Block Hash"
@@ -1444,7 +1444,7 @@ msgstr "状态："
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:103
 msgid "Stripe Size"
-msgstr ""
+msgstr "阵列块大小"
 
 #: src/components/block/Block.jsx:199
 #~ msgid "Sub Block Height"
@@ -1784,7 +1784,7 @@ msgstr "欢迎来到Chia。请用已有的密钥登录，或者创建一个新�
 
 #: src/components/wallet/WalletAdd.tsx:35
 msgid "Welcome! The following words are used for your wallet backup. Without them, you will lose access to your wallet, keep them safe! Write down each word along with the order number next to them. (Order is important)"
-msgstr ""
+msgstr "欢迎使用奇亚! 下面的词语列表是你的钱包密语, 请务必严格完整的把它们记下来(保持顺序). 没有这段密语的话, 你就没办法找回钱包里的币. 千万也不要透露给别人."
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:323
 msgid "When you receive the setup info packet from your admin, enter it below to complete your Rate Limited Wallet setup:"
