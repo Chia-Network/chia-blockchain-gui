@@ -8,7 +8,7 @@ msgstr ""
 "Language: ja_JP\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-03-05 05:34\n"
+"PO-Revision-Date: 2021-03-06 23:02\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -681,7 +681,7 @@ msgstr ""
 #: src/components/dashboard/DashboardSideBar.tsx:23
 #: src/components/fullNode/FullNode.jsx:316
 msgid "Full Node"
-msgstr ""
+msgstr "フルノード"
 
 #: src/components/fullNode/FullNode.jsx:260
 msgid "Full Node Status"
@@ -797,7 +797,7 @@ msgstr ""
 
 #: src/components/dashboard/DashboardSideBar.tsx:28
 msgid "Keys"
-msgstr ""
+msgstr "鍵"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:37
 msgid "Last Attempted Proof"
@@ -970,7 +970,7 @@ msgstr ""
 
 #: src/components/core/components/ConfirmDialog/ConfirmDialog.tsx:51
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: src/components/trading/ViewOffer.jsx:71
 msgid "Offer"
@@ -1182,7 +1182,7 @@ msgstr ""
 
 #: src/components/selectKey/SelectKey.tsx:87
 msgid "Private key with public fingerprint {fingerprint}"
-msgstr ""
+msgstr "公開指紋 {fingerprint} に対応する秘密鍵"
 
 #: src/middleware/middleware_api.jsx:257
 msgid "Private key {0}"
@@ -1309,7 +1309,7 @@ msgstr ""
 
 #: src/components/selectKey/SelectKey.tsx:71
 msgid "Select Key"
-msgstr ""
+msgstr "鍵を選択してください:"
 
 #: src/components/trading/ViewOffer.jsx:38
 msgid "Select Offer"
