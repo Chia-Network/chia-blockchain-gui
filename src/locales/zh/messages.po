@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh_CN\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-03-06 06:24\n"
+"PO-Revision-Date: 2021-03-06 07:25\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -108,7 +108,7 @@ msgstr "数量 ({cc_unit})"
 
 #: src/components/wallet/create/createRLAdmin.jsx:259
 msgid "Amount For Initial Coin"
-msgstr ""
+msgstr "初始币的数目"
 
 #: src/components/plot/PlotAction.tsx:25
 #: src/components/plot/queue/PlotQueueActions.tsx:27
@@ -201,7 +201,7 @@ msgstr "购买"
 
 #: src/components/wallet/Wallets.tsx:34
 msgid "CC Wallet"
-msgstr "CC钱包"
+msgstr "上色的钱包"
 
 #: src/components/wallet/create/WalletCreate.jsx:182
 #~ msgid "CCListItems.title"
@@ -209,7 +209,7 @@ msgstr "CC钱包"
 
 #: src/components/selectKey/SelectKey.tsx:89
 msgid "Can be backed up to mnemonic seed"
-msgstr ""
+msgstr "可以备份到密语中"
 
 #: src/components/core/components/ConfirmDialog/ConfirmDialog.tsx:50
 #: src/components/fullNode/FullNodeAddConnection.tsx:67
@@ -295,7 +295,7 @@ msgstr "染色币"
 
 #: src/components/wallet/create/WalletCreate.jsx:168
 msgid "Coloured Coin Options"
-msgstr "色彩币选项"
+msgstr "染色币选项"
 
 #: src/electron-starter.js:123
 msgid "Confirm"
@@ -390,11 +390,11 @@ msgstr "创建绘图"
 
 #: src/components/wallet/create/createRLAdmin.jsx:198
 msgid "Create Rate Limited Admin Wallet"
-msgstr ""
+msgstr "创建费率限定型管理钱包"
 
 #: src/components/wallet/create/createRLUser.jsx:78
 msgid "Create Rate Limited User Wallet"
-msgstr ""
+msgstr "创建费率限定型用户钱包"
 
 #: src/components/trading/TradeManager.tsx:22
 #~ msgid "Create Trade"
@@ -424,7 +424,7 @@ msgstr "创建管理者钱包"
 
 #: src/components/wallet/create/WalletCreate.jsx:180
 msgid "Create new coloured coin"
-msgstr "创建新的色彩币"
+msgstr "创建新的染色币"
 
 #: src/components/wallet/create/WalletCreate.jsx:256
 msgid "Create user wallet"
@@ -432,11 +432,11 @@ msgstr "创建用户钱包"
 
 #: src/components/wallet/create/createExistingColouredCoin.jsx:95
 msgid "Create wallet for colour"
-msgstr "创建有色彩的钱包"
+msgstr "创建染色钱包"
 
 #: src/components/wallet/create/WalletCreate.jsx:192
 msgid "Create wallet for existing colour"
-msgstr ""
+msgstr "基于已有的染色币来创建一个钱包"
 
 #: src/components/wallet/Wallets.tsx:81
 #~ msgid "CreateWallet.addWallet"
@@ -578,7 +578,7 @@ msgstr "预估网络大小"
 
 #: src/components/fullNode/FullNode.jsx:210
 msgid "Estimated sum of all the plotted disk space of all farmers in the network"
-msgstr ""
+msgstr "估算全网总空间量"
 
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:32
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:34
@@ -597,7 +597,7 @@ msgstr "农场"
 
 #: src/components/block/Block.jsx:247
 msgid "Farmer Puzzle Hash"
-msgstr ""
+msgstr "农场谜语哈希"
 
 #: src/components/farm/card/FarmCardStatus.tsx:21
 #: src/components/plot/PlotStatus.tsx:28
@@ -768,11 +768,11 @@ msgstr "索引"
 
 #: src/components/trading/TradingOverview.jsx:218
 msgid "Indicated if this offer was created by us"
-msgstr ""
+msgstr "该项出价是否由我们创建的标识"
 
 #: src/components/trading/TradingOverview.jsx:234
 msgid "Indicated what time this offer was accepted"
-msgstr ""
+msgstr "该项出价被接受的时间标识"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:341
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:490
@@ -785,7 +785,7 @@ msgstr "初始金额"
 
 #: src/components/wallet/create/createRLUser.jsx:89
 msgid "Initialize a Rate Limited User Wallet:"
-msgstr ""
+msgstr "初始化费率限定型用户钱包:"
 
 #: src/components/wallet/create/createRLAdmin.jsx:234
 msgid "Interval"
@@ -911,7 +911,7 @@ msgstr "否"
 
 #: src/middleware/middleware_api.jsx:293
 msgid "No 24 word seed, since this key is imported."
-msgstr ""
+msgstr "自密钥输入以来, 没有24个密语."
 
 #: src/components/farm/card/FarmCardLastHeightFarmed.tsx:11
 msgid "No blocks farmed yet"
@@ -986,7 +986,7 @@ msgstr "开支"
 
 #: src/components/fullNode/FullNode.jsx:174
 msgid "Peak Height"
-msgstr ""
+msgstr "最高高度"
 
 #: src/components/fullNode/FullNode.jsx:204
 #~ msgid "Peak Sub-block Height"
@@ -994,7 +994,7 @@ msgstr ""
 
 #: src/components/fullNode/FullNode.jsx:179
 msgid "Peak Time"
-msgstr ""
+msgstr "最高时间"
 
 #: src/components/wallet/WalletHistory.tsx:41
 msgid "Pending"
@@ -1151,7 +1151,7 @@ msgstr "矿池公钥"
 
 #: src/components/block/Block.jsx:255
 msgid "Pool Puzzle Hash"
-msgstr ""
+msgstr "农场次谜语哈希"
 
 #: src/components/block/Block.jsx:297
 msgid "Pool Reward Amount"
@@ -1351,11 +1351,11 @@ msgstr "发送"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:477
 msgid "Send this info packet to your Rate Limited Wallet user who must use it to complete setup of their wallet:"
-msgstr ""
+msgstr "把这段信息发给你的费用设定型钱包用户, 以便他/她可以完成自己的钱包设置:"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:284
 msgid "Send your pubkey to your Rate Limited Wallet admin:"
-msgstr ""
+msgstr "将你的公钥发送到你的费率限定型管理者钱包:"
 
 #: src/components/core/components/AdvancedOptions/AdvancedOptions.tsx:40
 msgid "Show Advanced Options"
@@ -1395,11 +1395,11 @@ msgstr "可用余额"
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:407
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:458
 msgid "Spending Interval (number of blocks): {interval}"
-msgstr ""
+msgstr "支出迭代(区块数){interval}"
 
 #: src/components/wallet/create/createRLAdmin.jsx:209
 msgid "Spending Interval Length (number of blocks)"
-msgstr ""
+msgstr "支出迭代长度(区块数)"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:414
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:465
@@ -1522,15 +1522,15 @@ msgstr "密语用于创建农田. 农田是与农场池的公钥与农地的公�
 
 #: src/components/block/Block.jsx:218
 msgid "The total number of VDF (verifiable delay function) or proof of time iterations on the whole chain up to this sub block."
-msgstr ""
+msgstr "截至该子区块为止全链已完成的VDF(延迟验证函数) 或时间证明的迭代次数."
 
 #: src/components/block/Block.jsx:228
 msgid "The total number of VDF (verifiable delay function) or proof of time iterations on this block."
-msgstr ""
+msgstr "本区块上花费的总VDF(延迟验证函数) 或时间验证的迭代次数."
 
 #: src/components/block/Block.jsx:308
 msgid "The total transactions fees in this block. Rewarded to the farmer."
-msgstr ""
+msgstr "本区块上奖励给农夫的全部交易费用."
 
 #: src/components/plot/PlotsFailed.tsx:26
 msgid "These plots are invalid, you might want to delete them."
@@ -1674,7 +1674,7 @@ msgstr "交易历史"
 
 #: src/components/block/Block.jsx:274
 msgid "Transactions Filter Hash"
-msgstr ""
+msgstr "交易过滤器哈希"
 
 #: src/components/wallet/WalletHistory.tsx:21
 msgid "Type"
@@ -1695,7 +1695,7 @@ msgstr "用户公钥"
 
 #: src/components/fullNode/FullNode.jsx:195
 msgid "VDF Sub Slot Iterations"
-msgstr ""
+msgstr "VDF子项迭代数"
 
 #: src/electron-starter.js:226
 msgid "View"
