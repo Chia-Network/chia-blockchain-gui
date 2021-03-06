@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh_CN\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-03-05 16:30\n"
+"PO-Revision-Date: 2021-03-06 03:24\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -241,23 +241,23 @@ msgstr "在Keybase上讨论"
 
 #: src/electron-starter.js:350
 msgid "Chia"
-msgstr "Chia"
+msgstr "奇亚"
 
 #: src/electron-starter.js:289
 msgid "Chia Blockchain Wiki"
-msgstr "Chia区块链项目维基"
+msgstr "奇亚区块链项目维基"
 
 #: src/components/wallet/Wallets.tsx:30
 msgid "Chia Wallet"
-msgstr "Chia钱包"
+msgstr "奇亚钱包"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:13
 msgid "Choose Number of Plots"
-msgstr "选择绘图文件数量"
+msgstr "选择要拓荒的数量"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:16
 msgid "Choose Plot Size"
-msgstr "选择绘图文件大小"
+msgstr "选择拓荒文件大小"
 
 #: src/components/plot/PlotAddDirectoryDialog.tsx:76
 #: src/components/plot/queue/PlotQueueLogDialog.tsx:29
@@ -488,7 +488,7 @@ msgstr "删除"
 #: src/components/plot/PlotAction.tsx:24
 #: src/components/plot/queue/PlotQueueActions.tsx:26
 msgid "Delete Plot"
-msgstr "删除绘图文件"
+msgstr "删除拓荒文件"
 
 #: src/components/selectKey/SelectKey.tsx:53
 #: src/components/selectKey/SelectKey.tsx:122
@@ -583,7 +583,7 @@ msgstr ""
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:32
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:34
 msgid "Expected Time to Win"
-msgstr "预计挖到的时间"
+msgstr "预计收割到的时间"
 
 #: src/components/plot/PlotsFailed.tsx:24
 msgid "Failed to open (invalid plots)"
