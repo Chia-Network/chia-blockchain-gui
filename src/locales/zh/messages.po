@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh_CN\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-03-06 05:23\n"
+"PO-Revision-Date: 2021-03-06 06:24\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -173,7 +173,7 @@ msgstr "Chia 区块链上高度为 {0} 的区块"
 
 #: src/components/block/Block.jsx:124
 msgid "Block with hash {headerHash}"
-msgstr ""
+msgstr "区块哈希{headerHash}"
 
 #: src/components/block/Block.jsx:153
 msgid "Block with hash {headerHash} does not exists."
@@ -221,7 +221,7 @@ msgstr "取消"
 
 #: src/components/trading/TradingOverview.jsx:399
 msgid "Cancel and Spend"
-msgstr ""
+msgstr "取消与花费"
 
 #: src/components/plot/PlotsNotFound.tsx:26
 msgid "Caution, deleting these plots will delete them forever. Check that the storage devices are properly connected."
@@ -424,7 +424,7 @@ msgstr "创建管理者钱包"
 
 #: src/components/wallet/create/WalletCreate.jsx:180
 msgid "Create new coloured coin"
-msgstr ""
+msgstr "创建新的色彩币"
 
 #: src/components/wallet/create/WalletCreate.jsx:256
 msgid "Create user wallet"
@@ -432,7 +432,7 @@ msgstr "创建用户钱包"
 
 #: src/components/wallet/create/createExistingColouredCoin.jsx:95
 msgid "Create wallet for colour"
-msgstr ""
+msgstr "创建有色彩的钱包"
 
 #: src/components/wallet/create/WalletCreate.jsx:192
 msgid "Create wallet for existing colour"
@@ -570,7 +570,7 @@ msgstr "错误"
 
 #: src/components/wallet/standard/WalletStandard.tsx:304
 msgid "Error: Cannot send chia to coloured address. Please enter a chia address."
-msgstr ""
+msgstr "错误: 无法发送奇亚到上色的地址. 请输入一个奇亚钱包地址."
 
 #: src/components/fullNode/FullNode.jsx:207
 msgid "Estimated network space"
@@ -919,7 +919,7 @@ msgstr "尚未有区块有收获"
 
 #: src/components/wallet/WalletHistory.tsx:62
 msgid "No previous transactions"
-msgstr ""
+msgstr "无过往交易"
 
 #: src/components/farm/FarmFullNodeConnections.tsx:20
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:20
@@ -1047,7 +1047,7 @@ msgstr "请输入一个有效的长度数字"
 
 #: src/components/wallet/create/createRLAdmin.jsx:117
 msgid "Please enter a valid numeric spendable amount"
-msgstr ""
+msgstr "请输入一个有效的支出数目"
 
 #: src/components/wallet/create/createRLAdmin.jsx:129
 msgid "Please enter a valid pubkey"
@@ -1364,7 +1364,7 @@ msgstr "显示高级选项"
 #: src/components/trading/CreateOffer.jsx:174
 #: src/components/trading/TradesTable.tsx:13
 msgid "Side"
-msgstr ""
+msgstr "边"
 
 #: src/components/selectKey/SelectKey.tsx:74
 msgid "Sign In"
@@ -1384,7 +1384,7 @@ msgstr "可用金额"
 
 #: src/components/wallet/create/createRLAdmin.jsx:216
 msgid "Spendable Amount Per Interval"
-msgstr ""
+msgstr "每次迭代的支出数目"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:287
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:568
@@ -1404,7 +1404,7 @@ msgstr ""
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:414
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:465
 msgid "Spending Limit (chia per interval): {0}"
-msgstr ""
+msgstr "支出限制(Chia per interval){0}"
 
 #: src/components/fullNode/FullNode.jsx:108
 msgid "State"
@@ -1538,7 +1538,7 @@ msgstr "这些绘图无效，你可能想要删除它们。"
 
 #: src/components/plot/PlotAddDirectoryDialog.tsx:44
 msgid "This allows you to add a directory that has plots in it. If you have not created any plots, go to the plotting screen."
-msgstr ""
+msgstr "在这里可以把事先准备好的农田文件添加进来. 如果还没有的话, 就去开垦几块农田吧."
 
 #: src/components/trading/CreateOffer.jsx:132
 #: src/hooks/useSelectDirectory.tsx:26
@@ -1548,7 +1548,7 @@ msgstr "亲, 这个功能才图形界面里面才提供."
 
 #: src/components/wallet/standard/WalletStandard.tsx:199
 msgid "This is the amount of Chia that you can currently use to make transactions. It does not include pending farming rewards, pending incoming transactions, and Chia that you have just spent but is not yet in the blockchain."
-msgstr ""
+msgstr "这是你目前可以使用的全部奇亚Chia数. 不包含待处理的农场奖励, 也不包含待处理的收入和已花费但还没有上链的支出."
 
 #: src/components/wallet/standard/WalletStandard.tsx:234
 msgid "This is the pending change, which are change coins which you have sent to yourself, but have not been confirmed yet."
@@ -1556,7 +1556,7 @@ msgstr ""
 
 #: src/components/wallet/standard/WalletStandard.tsx:227
 msgid "This is the sum of the incoming and outgoing pending transactions (not yet included into the blockchain). This does not include farming rewards."
-msgstr ""
+msgstr "待处理的收入与支出总和(还未上链). 不包括农场耕种奖励."
 
 #: src/components/fullNode/FullNode.jsx:183
 msgid "This is the time of the latest peak sub block."
@@ -1572,23 +1572,23 @@ msgstr ""
 
 #: src/components/wallet/standard/WalletStandard.tsx:220
 msgid "This is the total balance + pending balance: it is what your balance will be after all pending transactions are confirmed."
-msgstr ""
+msgstr "目前结余+待处理的结余: 在链上确认完成后就是你的最终总结余."
 
 #: src/components/fullNode/FullNode.jsx:147
 msgid "This node is fully caught up and validating the network"
-msgstr ""
+msgstr "本节点完全同步好了"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:39
 msgid "This table shows you the last time your farm attempted to win a block challenge."
-msgstr ""
+msgstr "这个表格里面显示的是你的农场尝试过的区块挑战."
 
 #: src/components/trading/TradingOverview.jsx:192
 msgid "This trade was created at this time"
-msgstr ""
+msgstr "本交易创建于"
 
 #: src/components/trading/TradingOverview.jsx:206
 msgid "This trade was included on blockchain at this block height"
-msgstr ""
+msgstr "该交易在链上的区块高度"
 
 #: src/components/fullNode/FullNode.jsx:100
 msgid "Time Created"
@@ -1634,11 +1634,11 @@ msgstr "总绘图大小："
 
 #: src/components/block/Block.jsx:215
 msgid "Total VDF Iterations"
-msgstr ""
+msgstr "总VDF迭代数"
 
 #: src/components/fullNode/FullNode.jsx:203
 msgid "Total iterations since the start of the blockchain"
-msgstr ""
+msgstr "自区块开始以来的迭代数"
 
 #: src/components/dashboard/DashboardSideBar.tsx:27
 msgid "Trade"
