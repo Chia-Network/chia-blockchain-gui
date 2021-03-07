@@ -8,7 +8,7 @@ msgstr ""
 "Language: ja_JP\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-03-07 01:10\n"
+"PO-Revision-Date: 2021-03-07 02:09\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -100,11 +100,11 @@ msgstr ""
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:767
 #: src/components/wallet/standard/WalletStandard.tsx:343
 msgid "Amount"
-msgstr ""
+msgstr "金額"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:413
 msgid "Amount ({cc_unit})"
-msgstr ""
+msgstr "金額 ({cc_unit})"
 
 #: src/components/wallet/create/createRLAdmin.jsx:259
 msgid "Amount For Initial Coin"
@@ -311,7 +311,7 @@ msgstr ""
 
 #: src/components/wallet/WalletHistory.tsx:39
 msgid "Confirmed at height {0}"
-msgstr ""
+msgstr "高さ {0} で承認完了"
 
 #: src/components/fullNode/FullNodeAddConnection.tsx:70
 msgid "Connect"
@@ -732,7 +732,7 @@ msgstr "取引履歴"
 #: src/components/farm/FarmFullNodeConnections.tsx:24
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:24
 msgid "Host Name"
-msgstr ""
+msgstr "ホスト名"
 
 #: src/components/fullNode/FullNodeConnections.tsx:27
 msgid "IP address"
@@ -744,11 +744,11 @@ msgstr "IP アドレス・ホスト"
 
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:85
 msgid "If none selected, then it will default to the temporary directory."
-msgstr ""
+msgstr "空欄の場合、1つ目の一時ディレクトリを使用します。"
 
 #: src/components/wallet/WalletImport.tsx:64
 msgid "Import Wallet from Mnemonics"
-msgstr ""
+msgstr "合言葉でウォレットをインポート"
 
 #: src/components/selectKey/SelectKey.tsx:116
 msgid "Import from Mnemonics (24 words)"
@@ -760,7 +760,7 @@ msgstr ""
 
 #: src/components/wallet/WalletHistory.tsx:19
 msgid "Incoming"
-msgstr ""
+msgstr "入金"
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:15
 msgid "Index"
@@ -940,7 +940,7 @@ msgstr ""
 
 #: src/components/fullNode/FullNode.jsx:136
 msgid "Not Synced"
-msgstr ""
+msgstr "同期されていません"
 
 #: src/components/trading/TradingOverview.jsx:227
 msgid "Not accepted yet"
@@ -1214,7 +1214,7 @@ msgstr "順番待ち"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:73
 msgid "RAM max usage"
-msgstr ""
+msgstr "最大使用 RAM"
 
 #: src/components/wallet/Wallets.tsx:41
 msgid "RL Wallet"
@@ -1268,7 +1268,7 @@ msgstr "問題を報告"
 
 #: src/components/backup/BackupRestore.tsx:107
 msgid "Restore Smart Wallets From Backup"
-msgstr ""
+msgstr "スマートウォレットをバックアップから復元"
 
 #: src/components/fullNode/FullNode.jsx:57
 #: src/components/fullNode/FullNodeConnections.jsx:107
@@ -1289,7 +1289,7 @@ msgstr "保存"
 
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:75
 msgid "Second temporary folder location"
-msgstr ""
+msgstr "2つ目の一時フォルダの場所"
 
 #: src/components/selectKey/SelectKey.tsx:93
 msgid "See private key"
@@ -1301,11 +1301,11 @@ msgstr "乱数種:"
 
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:70
 msgid "Select 2nd Temporary Directory"
-msgstr ""
+msgstr "2つ目の一時ファイルのディレクトリを選択"
 
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:29
 msgid "Select Final Directory"
-msgstr ""
+msgstr "最終ディレクトリを選択"
 
 #: src/components/selectKey/SelectKey.tsx:71
 msgid "Select Key"
@@ -1317,7 +1317,7 @@ msgstr ""
 
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:39
 msgid "Select Temporary Directory"
-msgstr ""
+msgstr "一時ファイルのディレクトリを選択"
 
 #: src/components/wallet/create/WalletCreate.jsx:108
 msgid "Select Wallet Type"
@@ -1359,7 +1359,7 @@ msgstr ""
 
 #: src/components/core/components/AdvancedOptions/AdvancedOptions.tsx:40
 msgid "Show Advanced Options"
-msgstr ""
+msgstr "詳細設定を表示"
 
 #: src/components/trading/CreateOffer.jsx:174
 #: src/components/trading/TradesTable.tsx:13
@@ -1498,7 +1498,7 @@ msgstr ""
 
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:48
 msgid "Temporary folder location"
-msgstr ""
+msgstr "一時フォルダの場所"
 
 #: src/components/farm/FarmFullNodeConnections.tsx:58
 msgid "The full node that your farmer is connected to is below. <0>Learn more</0>"
@@ -1510,11 +1510,11 @@ msgstr ""
 
 #: src/components/fullNode/FullNode.jsx:138
 msgid "The node is not synced"
-msgstr ""
+msgstr "ノードが同期されていません"
 
 #: src/components/fullNode/FullNode.jsx:126
 msgid "The node is syncing, which means it is downloading blocks from other nodes, to reach the latest block in the chain"
-msgstr ""
+msgstr "ノードが同期中です。ブロックチェーンの先端に辿り着くまで他のノードからブロックをダウンロードします。"
 
 #: src/components/block/Block.jsx:266
 msgid "The seed used to create the plot. This depends on the pool pk and plot pk."
@@ -1522,11 +1522,11 @@ msgstr ""
 
 #: src/components/block/Block.jsx:218
 msgid "The total number of VDF (verifiable delay function) or proof of time iterations on the whole chain up to this sub block."
-msgstr ""
+msgstr "このブロックまでに全ブロックチェーンに行った VDF (検証可能遅延関数)、つまり時間証明の評価回数"
 
 #: src/components/block/Block.jsx:228
 msgid "The total number of VDF (verifiable delay function) or proof of time iterations on this block."
-msgstr ""
+msgstr "このブロックに行った VDF (検証可能遅延関数)、つまり時間証明の評価回数"
 
 #: src/components/block/Block.jsx:308
 msgid "The total transactions fees in this block. Rewarded to the farmer."
@@ -1588,11 +1588,11 @@ msgstr ""
 
 #: src/components/trading/TradingOverview.jsx:206
 msgid "This trade was included on blockchain at this block height"
-msgstr ""
+msgstr "この取引はこのブロック高でブロックチェーンに取り込まれました。"
 
 #: src/components/fullNode/FullNode.jsx:100
 msgid "Time Created"
-msgstr ""
+msgstr "作成日時"
 
 #: src/components/trading/TradingOverview.jsx:192
 #~ msgid "Time this trade was created at this time"
@@ -1600,17 +1600,17 @@ msgstr ""
 
 #: src/components/block/Block.jsx:179
 msgid "Timestamp"
-msgstr ""
+msgstr "タイムスタンプ"
 
 #: src/components/wallet/WalletHistory.tsx:31
 msgid "To"
-msgstr ""
+msgstr "宛先"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:286
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:562
 #: src/components/wallet/standard/WalletStandard.tsx:193
 msgid "Total Balance"
-msgstr ""
+msgstr "全残高"
 
 #: src/components/farm/card/FarmCardTotalChiaFarmed.tsx:15
 msgid "Total Chia Farmed"
@@ -1618,7 +1618,7 @@ msgstr ""
 
 #: src/components/fullNode/FullNode.jsx:201
 msgid "Total Iterations"
-msgstr ""
+msgstr "全評価回数"
 
 #: src/components/farm/card/FarmCardTotalNetworkSpace.tsx:8
 msgid "Total Network Space"
@@ -1634,15 +1634,15 @@ msgstr ""
 
 #: src/components/block/Block.jsx:215
 msgid "Total VDF Iterations"
-msgstr ""
+msgstr "全 VDF 評価回数"
 
 #: src/components/fullNode/FullNode.jsx:203
 msgid "Total iterations since the start of the blockchain"
-msgstr ""
+msgstr "ブロックチェーンの開始からの合計評価回数"
 
 #: src/components/dashboard/DashboardSideBar.tsx:27
 msgid "Trade"
-msgstr ""
+msgstr "取引"
 
 #: src/components/trading/TradingOverview.jsx:360
 msgid "Trade Details"
@@ -1650,7 +1650,7 @@ msgstr ""
 
 #: src/components/trading/TradingOverview.jsx:125
 msgid "Trade ID"
-msgstr ""
+msgstr "取引ID"
 
 #: src/components/trading/TradingOverview.jsx:174
 msgid "Trade ID:"
@@ -1658,11 +1658,11 @@ msgstr ""
 
 #: src/components/trading/TradeManager.tsx:17
 msgid "Trade Overview"
-msgstr ""
+msgstr "取引一覧"
 
 #: src/components/trading/TradingOverview.jsx:153
 msgid "Trades will show up here"
-msgstr ""
+msgstr "取引はここに表示されます"
 
 #: src/components/trading/TradeManager.tsx:13
 msgid "Trading"
@@ -1670,7 +1670,7 @@ msgstr ""
 
 #: src/components/trading/TradingOverview.jsx:435
 msgid "Trading History"
-msgstr ""
+msgstr "取引履歴"
 
 #: src/components/block/Block.jsx:274
 msgid "Transactions Filter Hash"
@@ -1678,7 +1678,7 @@ msgstr ""
 
 #: src/components/wallet/WalletHistory.tsx:21
 msgid "Type"
-msgstr ""
+msgstr "種類"
 
 #: src/components/fullNode/FullNode.jsx:106
 msgid "Unfinished"
@@ -1695,7 +1695,7 @@ msgstr ""
 
 #: src/components/fullNode/FullNode.jsx:195
 msgid "VDF Sub Slot Iterations"
-msgstr ""
+msgstr "VDF サブスロット評価回数"
 
 #: src/electron-starter.js:226
 msgid "View"
@@ -1756,7 +1756,7 @@ msgstr ""
 #: src/components/dashboard/DashboardSideBar.tsx:24
 #: src/components/wallet/Wallets.tsx:131
 msgid "Wallets"
-msgstr ""
+msgstr "ウォレット"
 
 #: src/components/wallet/Wallets.tsx:131
 #~ msgid "Wallets.title"
@@ -1772,15 +1772,15 @@ msgstr ""
 
 #: src/components/block/Block.jsx:193
 msgid "Weight"
-msgstr ""
+msgstr "重さ"
 
 #: src/components/block/Block.jsx:196
 msgid "Weight is the total added difficulty of all sub blocks up to and including this one"
-msgstr ""
+msgstr "ブロック重とはこのブロックを含めた全てのブロックの難易度の合計です。"
 
 #: src/components/selectKey/SelectKey.tsx:77
 msgid "Welcome to Chia. Please log in with an existing key, or create a new key."
-msgstr ""
+msgstr "チアにようこそ。お持ちの鍵でログインするか、新しく鍵を作成してください。"
 
 #: src/components/wallet/WalletAdd.tsx:35
 msgid "Welcome! The following words are used for your wallet backup. Without them, you will lose access to your wallet, keep them safe! Write down each word along with the order number next to them. (Order is important)"
@@ -1792,7 +1792,7 @@ msgstr ""
 
 #: src/electron-starter.js:271
 msgid "Window"
-msgstr ""
+msgstr "ウィンドウ"
 
 #: src/components/farm/card/FarmCardBlockRewards.tsx:15
 msgid "Without fees"
@@ -1801,7 +1801,7 @@ msgstr ""
 #: src/components/trading/TradingOverview.jsx:212
 #: src/electron-starter.js:122
 msgid "Yes"
-msgstr ""
+msgstr "はい"
 
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:34
 msgid "You have {0}% of the space on the network, so farming a block will take {expectedTimeToWin} in expectation."
@@ -1822,16 +1822,16 @@ msgstr ""
 #: src/components/wallet/WalletStatusCard.tsx:30
 #: src/components/wallet/Wallets.tsx:119
 msgid "connections:"
-msgstr ""
+msgstr "接続数:"
 
 #: src/components/wallet/WalletStatusCard.tsx:24
 #: src/components/wallet/Wallets.tsx:113
 msgid "height:"
-msgstr ""
+msgstr "高さ:"
 
 #: src/components/wallet/Wallets.tsx:107
 msgid "not synced"
-msgstr ""
+msgstr "同期されていません"
 
 #: src/components/wallet/WalletStatusCard.tsx:16
 #: src/components/wallet/Wallets.tsx:98
@@ -1841,10 +1841,10 @@ msgstr "状態:"
 #: src/components/wallet/WalletStatusCard.tsx:19
 #: src/components/wallet/Wallets.tsx:105
 msgid "synced"
-msgstr ""
+msgstr "同期完了"
 
 #: src/components/wallet/WalletStatusCard.tsx:19
 #: src/components/wallet/Wallets.tsx:103
 msgid "syncing"
-msgstr ""
+msgstr "同期中"
 
