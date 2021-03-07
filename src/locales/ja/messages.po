@@ -8,7 +8,7 @@ msgstr ""
 "Language: ja_JP\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-03-06 23:58\n"
+"PO-Revision-Date: 2021-03-07 01:10\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -33,7 +33,7 @@ msgstr ""
 #: src/electron-starter.js:353
 #: src/electron-starter.js:446
 msgid "About Chia Blockchain"
-msgstr "Chia Blockchainについて"
+msgstr "Chia Blockchain について"
 
 #: src/components/trading/ViewOffer.jsx:85
 msgid "Accept"
@@ -86,7 +86,7 @@ msgstr ""
 #: src/components/wallet/coloured/WalletColoured.tsx:455
 #: src/components/wallet/standard/WalletStandard.tsx:383
 msgid "Address"
-msgstr ""
+msgstr "アドレス"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:745
 #: src/components/wallet/standard/WalletStandard.tsx:333
@@ -117,7 +117,7 @@ msgstr ""
 
 #: src/components/fullNode/FullNodeCloseConnection.tsx:23
 msgid "Are you sure you want to disconnect?"
-msgstr ""
+msgstr "本当に接続を解除しますか？"
 
 #: src/electron-starter.js:125
 msgid "Are you sure you want to quit? GUI Plotting and farming will stop."
@@ -126,7 +126,7 @@ msgstr ""
 #: src/components/selectKey/SelectKey.tsx:39
 #: src/components/selectKey/SelectKey.tsx:53
 msgid "Back"
-msgstr ""
+msgstr "戻る"
 
 #: src/components/backup/BackupCreate.tsx:61
 msgid "Backup file is used to restore smart wallets."
@@ -136,7 +136,7 @@ msgstr ""
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:559
 #: src/components/wallet/standard/WalletStandard.tsx:192
 msgid "Balance"
-msgstr ""
+msgstr "残高"
 
 #: src/components/block/Block.jsx:301
 msgid "Base Farmer Reward Amount"
@@ -157,7 +157,7 @@ msgstr ""
 #: src/components/block/Block.jsx:146
 #: src/components/block/Block.jsx:317
 msgid "Block"
-msgstr ""
+msgstr "ブロック"
 
 #: src/components/block/Block.jsx:225
 msgid "Block VDF Iterations"
@@ -173,7 +173,7 @@ msgstr ""
 
 #: src/components/block/Block.jsx:124
 msgid "Block with hash {headerHash}"
-msgstr ""
+msgstr "ハッシュ値 {headerHash} のブロック"
 
 #: src/components/block/Block.jsx:153
 msgid "Block with hash {headerHash} does not exists."
@@ -181,7 +181,7 @@ msgstr ""
 
 #: src/components/fullNode/FullNode.jsx:300
 msgid "Blocks"
-msgstr ""
+msgstr "ブロック"
 
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:52
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:63
@@ -237,7 +237,7 @@ msgstr ""
 
 #: src/electron-starter.js:332
 msgid "Chat on KeyBase"
-msgstr "Keybaseでチャット"
+msgstr "Keybase でチャット"
 
 #: src/electron-starter.js:350
 msgid "Chia"
@@ -262,7 +262,7 @@ msgstr ""
 #: src/components/plot/PlotAddDirectoryDialog.tsx:76
 #: src/components/plot/queue/PlotQueueLogDialog.tsx:29
 msgid "Close"
-msgstr ""
+msgstr "閉じる"
 
 #: src/components/app/AppRouter.tsx:19
 msgid "Closing down node and server"
@@ -303,7 +303,7 @@ msgstr ""
 
 #: src/components/fullNode/FullNodeCloseConnection.tsx:22
 msgid "Confirm Disconnect"
-msgstr ""
+msgstr "接続解除の確認"
 
 #: src/components/trading/TradingOverview.jsx:202
 msgid "Confirmed at block:"
@@ -315,42 +315,42 @@ msgstr ""
 
 #: src/components/fullNode/FullNodeAddConnection.tsx:70
 msgid "Connect"
-msgstr ""
+msgstr "接続"
 
 #: src/components/fullNode/FullNodeAddConnection.tsx:55
 #: src/components/fullNode/FullNodeConnections.tsx:75
 msgid "Connect to other peers"
-msgstr ""
+msgstr "手動で接続"
 
 #: src/components/core/components/FormatConnectionStatus/FormatConnectionStatus.tsx:47
 #: src/components/fullNode/FullNode.jsx:157
 msgid "Connected"
-msgstr ""
+msgstr "接続済み"
 
 #: src/components/app/AppRouter.tsx:29
 msgid "Connecting to wallet"
-msgstr ""
+msgstr "ウォレットに接続中"
 
 #: src/components/fullNode/FullNode.jsx:155
 msgid "Connection Status"
-msgstr ""
+msgstr "接続状態"
 
 #: src/components/farm/FarmFullNodeConnections.tsx:66
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:65
 msgid "Connection Status:"
-msgstr ""
+msgstr "接続状態:"
 
 #: src/components/fullNode/FullNodeConnections.tsx:50
 msgid "Connection type"
-msgstr ""
+msgstr "接続の種類"
 
 #: src/components/fullNode/FullNodeConnections.tsx:73
 msgid "Connections"
-msgstr ""
+msgstr "接続数"
 
 #: src/electron-starter.js:313
 msgid "Contribute on GitHub"
-msgstr ""
+msgstr "GitHub で開発協力"
 
 #: src/components/core/components/CopyToClipboard/CopyToClipboard.tsx:22
 msgid "Copied"
@@ -374,7 +374,7 @@ msgstr "クリップボードにコピー"
 #: src/components/wallet/create/createRLAdmin.jsx:333
 #: src/components/wallet/create/createRLUser.jsx:103
 msgid "Create"
-msgstr ""
+msgstr "作成"
 
 #: src/components/wallet/create/WalletCreate.jsx:308
 msgid "Create DID wallet"
@@ -497,7 +497,7 @@ msgstr "全ての鍵を削除"
 
 #: src/components/selectKey/SelectKey.tsx:39
 msgid "Delete key"
-msgstr "鍵を削除しますか？"
+msgstr "鍵を削除"
 
 #: src/components/selectKey/SelectKey.tsx:54
 msgid "Deleting all keys will permanently remove the keys from your computer, make sure you have backups. Are you sure you want to continue?"
@@ -509,11 +509,11 @@ msgstr "鍵を削除すると復元することができませんので、必ず
 
 #: src/electron-starter.js:235
 msgid "Developer"
-msgstr ""
+msgstr "開発者"
 
 #: src/electron-starter.js:238
 msgid "Developer Tools"
-msgstr ""
+msgstr "開発者向けツール"
 
 #: src/components/block/Block.jsx:211
 #: src/components/fullNode/FullNode.jsx:188
@@ -522,7 +522,7 @@ msgstr ""
 
 #: src/components/fullNode/FullNodeCloseConnection.tsx:22
 msgid "Disconnect"
-msgstr ""
+msgstr "解除"
 
 #: src/components/wallet/create/WalletCreate.jsx:144
 #~ msgid "Distributed Identity"
@@ -556,7 +556,7 @@ msgstr "編集"
 
 #: src/components/wallet/WalletImport.tsx:67
 msgid "Enter the 24 word mnemonic that you have saved in order to restore your Chia wallet."
-msgstr ""
+msgstr "Chia ウォレットを復元するには、24語の合言葉を入力してください。"
 
 #: src/components/farm/FarmerStatus.tsx:30
 #: src/components/farm/FarmerStatus.tsx:31
@@ -574,7 +574,7 @@ msgstr ""
 
 #: src/components/fullNode/FullNode.jsx:207
 msgid "Estimated network space"
-msgstr ""
+msgstr "推定ネットワーク容量"
 
 #: src/components/fullNode/FullNode.jsx:210
 msgid "Estimated sum of all the plotted disk space of all farmers in the network"
@@ -636,15 +636,15 @@ msgstr ""
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:780
 #: src/components/wallet/standard/WalletStandard.tsx:348
 msgid "Fee"
-msgstr ""
+msgstr "手数料"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:420
 msgid "Fee (TXCH)"
-msgstr ""
+msgstr "手数料 (TXCH)"
 
 #: src/components/block/Block.jsx:305
 msgid "Fees Amount"
-msgstr ""
+msgstr "全手数料"
 
 #: src/components/block/Block.jsx:313
 #~ msgid "Fees Puzzle Hash"
@@ -659,7 +659,7 @@ msgstr "ファイル"
 #: src/components/plot/PlotsNotFound.tsx:10
 #: src/components/plot/overview/PlotOverviewPlots.tsx:61
 msgid "Filename"
-msgstr ""
+msgstr "ファイル名"
 
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:37
 msgid "Final folder location"
@@ -672,11 +672,11 @@ msgstr ""
 
 #: src/electron-starter.js:338
 msgid "Follow on Twitter"
-msgstr ""
+msgstr "Twitter でフォロー"
 
 #: src/electron-starter.js:297
 msgid "Frequently Asked Questions"
-msgstr ""
+msgstr "よくある質問"
 
 #: src/components/dashboard/DashboardSideBar.tsx:23
 #: src/components/fullNode/FullNode.jsx:316
@@ -719,15 +719,15 @@ msgstr "ヘルプ"
 
 #: src/components/core/components/LocaleToggle/LocaleToggle.tsx:50
 msgid "Help translate"
-msgstr ""
+msgstr "翻訳に協力"
 
 #: src/components/core/components/AdvancedOptions/AdvancedOptions.tsx:35
 msgid "Hide Advanced Options"
-msgstr ""
+msgstr "詳細設定を隠す"
 
 #: src/components/wallet/WalletHistory.tsx:60
 msgid "History"
-msgstr ""
+msgstr "取引履歴"
 
 #: src/components/farm/FarmFullNodeConnections.tsx:24
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:24
@@ -736,11 +736,11 @@ msgstr ""
 
 #: src/components/fullNode/FullNodeConnections.tsx:27
 msgid "IP address"
-msgstr ""
+msgstr "IP アドレス"
 
 #: src/components/fullNode/FullNodeAddConnection.tsx:61
 msgid "IP address / host"
-msgstr ""
+msgstr "IP アドレス・ホスト"
 
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:85
 msgid "If none selected, then it will default to the temporary directory."
@@ -919,13 +919,13 @@ msgstr ""
 
 #: src/components/wallet/WalletHistory.tsx:62
 msgid "No previous transactions"
-msgstr ""
+msgstr "履歴無し"
 
 #: src/components/farm/FarmFullNodeConnections.tsx:20
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:20
 #: src/components/fullNode/FullNodeConnections.tsx:23
 msgid "Node ID"
-msgstr ""
+msgstr "ノード ID"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:43
 msgid "None of your plots have passed the plot filter yet."
@@ -986,7 +986,7 @@ msgstr ""
 
 #: src/components/fullNode/FullNode.jsx:174
 msgid "Peak Height"
-msgstr ""
+msgstr "先端の高さ"
 
 #: src/components/fullNode/FullNode.jsx:204
 #~ msgid "Peak Sub-block Height"
@@ -994,7 +994,7 @@ msgstr ""
 
 #: src/components/fullNode/FullNode.jsx:179
 msgid "Peak Time"
-msgstr ""
+msgstr "先端の日時"
 
 #: src/components/wallet/WalletHistory.tsx:41
 msgid "Pending"
@@ -1162,11 +1162,11 @@ msgstr ""
 #: src/components/fullNode/FullNodeAddConnection.tsx:62
 #: src/components/fullNode/FullNodeConnections.tsx:33
 msgid "Port"
-msgstr ""
+msgstr "ポート"
 
 #: src/components/block/Block.jsx:331
 msgid "Previous"
-msgstr ""
+msgstr "前へ"
 
 #: src/components/block/Block.jsx:203
 #~ msgid "Previous Block Hash"
@@ -1202,7 +1202,7 @@ msgstr ""
 
 #: src/components/wallet/create/createRLAdmin.jsx:323
 msgid "Pubkey"
-msgstr ""
+msgstr "公開鍵"
 
 #: src/middleware/middleware_api.jsx:275
 msgid "Public key:"
@@ -1474,7 +1474,7 @@ msgstr "同期中 {progress}/{tip}"
 
 #: src/components/farm/card/FarmCardBlockRewards.tsx:15
 msgid "TXCH Block Rewards"
-msgstr "TXCHブロック報酬"
+msgstr "TXCH ブロック報酬"
 
 #: src/components/farm/card/FarmCardCoinbaseRewards.tsx:12
 #~ msgid "TXCH Farming Rewards"
@@ -1836,7 +1836,7 @@ msgstr ""
 #: src/components/wallet/WalletStatusCard.tsx:16
 #: src/components/wallet/Wallets.tsx:98
 msgid "status:"
-msgstr ""
+msgstr "状態:"
 
 #: src/components/wallet/WalletStatusCard.tsx:19
 #: src/components/wallet/Wallets.tsx:105
