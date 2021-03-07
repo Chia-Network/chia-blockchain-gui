@@ -8,7 +8,7 @@ msgstr ""
 "Language: ja_JP\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-03-07 02:09\n"
+"PO-Revision-Date: 2021-03-07 03:12\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -1017,7 +1017,7 @@ msgstr ""
 
 #: src/components/trading/CreateOffer.jsx:109
 msgid "Please add a trade pair"
-msgstr ""
+msgstr "交換条件を追加してください。"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:709
 msgid "Please enter 0 fee. Positive fees not supported yet for RL."
@@ -1056,7 +1056,7 @@ msgstr ""
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:658
 #: src/components/wallet/standard/WalletStandard.tsx:274
 msgid "Please finish syncing before making a transaction"
-msgstr ""
+msgstr "取引を行う前に同期を完了してください"
 
 #: src/components/trading/CreateOffer.jsx:75
 msgid "Please select amount"
@@ -1588,7 +1588,7 @@ msgstr ""
 
 #: src/components/trading/TradingOverview.jsx:206
 msgid "This trade was included on blockchain at this block height"
-msgstr "この取引はこのブロック高でブロックチェーンに取り込まれました。"
+msgstr "このトレードはこのブロック高でブロックチェーンに取り込まれました。"
 
 #: src/components/fullNode/FullNode.jsx:100
 msgid "Time Created"
@@ -1642,27 +1642,27 @@ msgstr "ブロックチェーンの開始からの合計評価回数"
 
 #: src/components/dashboard/DashboardSideBar.tsx:27
 msgid "Trade"
-msgstr "取引"
+msgstr "交換"
 
 #: src/components/trading/TradingOverview.jsx:360
 msgid "Trade Details"
-msgstr ""
+msgstr "交換詳細"
 
 #: src/components/trading/TradingOverview.jsx:125
 msgid "Trade ID"
-msgstr "取引ID"
+msgstr "交換 ID"
 
 #: src/components/trading/TradingOverview.jsx:174
 msgid "Trade ID:"
-msgstr ""
+msgstr "交換 ID:"
 
 #: src/components/trading/TradeManager.tsx:17
 msgid "Trade Overview"
-msgstr "取引一覧"
+msgstr "交換一覧"
 
 #: src/components/trading/TradingOverview.jsx:153
 msgid "Trades will show up here"
-msgstr "取引はここに表示されます"
+msgstr "交換はここに表示されます"
 
 #: src/components/trading/TradeManager.tsx:13
 msgid "Trading"
