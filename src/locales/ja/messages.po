@@ -8,7 +8,7 @@ msgstr ""
 "Language: ja_JP\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-03-07 03:12\n"
+"PO-Revision-Date: 2021-03-08 04:48\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -61,7 +61,7 @@ msgstr ""
 
 #: src/components/plot/PlotHeader.tsx:51
 msgid "Add Plot Directory"
-msgstr ""
+msgstr "耕地ディレクトリを追加"
 
 #: src/components/wallet/Wallets.tsx:81
 msgid "Add Wallet"
@@ -72,15 +72,15 @@ msgstr "ウォレット追加"
 #: src/components/plot/add/PlotAdd.tsx:54
 #: src/components/plot/overview/PlotOverviewHero.tsx:29
 msgid "Add a Plot"
-msgstr ""
+msgstr "耕地を追加"
 
 #: src/components/plot/PlotAddDirectoryDialog.tsx:40
 msgid "Add a plot"
-msgstr ""
+msgstr "耕地を追加"
 
 #: src/components/plot/PlotAddDirectoryDialog.tsx:69
 msgid "Add plot directory"
-msgstr ""
+msgstr "耕地ディレクトリを追加"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:403
 #: src/components/wallet/coloured/WalletColoured.tsx:455
@@ -113,7 +113,7 @@ msgstr ""
 #: src/components/plot/PlotAction.tsx:25
 #: src/components/plot/queue/PlotQueueActions.tsx:27
 msgid "Are you sure you want to delete the plot? The plot cannot be recovered."
-msgstr ""
+msgstr "本当にこの耕地を削除しますか？耕地は削除すると復元できません。"
 
 #: src/components/fullNode/FullNodeCloseConnection.tsx:23
 msgid "Are you sure you want to disconnect?"
@@ -225,7 +225,7 @@ msgstr ""
 
 #: src/components/plot/PlotsNotFound.tsx:26
 msgid "Caution, deleting these plots will delete them forever. Check that the storage devices are properly connected."
-msgstr ""
+msgstr "注意: 耕地を削除すると復元できません。保存先のデバイスが正しく接続されているかご確認ください。"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:13
 msgid "Challenge"
@@ -253,11 +253,11 @@ msgstr "Chia ウォレット"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:13
 msgid "Choose Number of Plots"
-msgstr ""
+msgstr "耕地数を選択"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:16
 msgid "Choose Plot Size"
-msgstr ""
+msgstr "耕地容量を選択"
 
 #: src/components/plot/PlotAddDirectoryDialog.tsx:76
 #: src/components/plot/queue/PlotQueueLogDialog.tsx:29
@@ -386,7 +386,7 @@ msgstr ""
 
 #: src/components/plot/add/PlotAdd.tsx:66
 msgid "Create Plot"
-msgstr ""
+msgstr "耕地を作る"
 
 #: src/components/wallet/create/createRLAdmin.jsx:198
 msgid "Create Rate Limited Admin Wallet"
@@ -488,7 +488,7 @@ msgstr "削除"
 #: src/components/plot/PlotAction.tsx:24
 #: src/components/plot/queue/PlotQueueActions.tsx:26
 msgid "Delete Plot"
-msgstr ""
+msgstr "耕地を削除"
 
 #: src/components/selectKey/SelectKey.tsx:53
 #: src/components/selectKey/SelectKey.tsx:122
@@ -535,7 +535,7 @@ msgstr ""
 #: src/components/farm/overview/FarmOverviewHero.tsx:41
 #: src/components/plot/overview/PlotOverviewHero.tsx:35
 msgid "Do you have existing plots on this machine? <0>Add Plot Directory</0>"
-msgstr ""
+msgstr "既にこのデバイス上に耕地をお持ちですか？<0>耕地ディレクトリを追加</0>"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:30
 msgid "Does your machine support parallel plotting?"
@@ -1123,15 +1123,15 @@ msgstr ""
 
 #: src/components/dashboard/DashboardSideBar.tsx:25
 msgid "Plots"
-msgstr ""
+msgstr "耕地"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:19
 msgid "Plots Passed Filter"
-msgstr ""
+msgstr "フィルターを通過した耕地数"
 
 #: src/components/plot/overview/PlotOverviewHero.tsx:23
 msgid "Plots are allocated space on your hard drive used to farm and earn Chia. <0>Learn more</0>"
-msgstr ""
+msgstr "耕地とは、チアを収穫し、得るためにハードドライブ上に確保する領域です。<0>詳しくはこちら</0>"
 
 #: src/components/plot/queue/PlotQueueIndicator.tsx:8
 msgid "Plotting"
@@ -1252,7 +1252,7 @@ msgstr ""
 
 #: src/components/plot/PlotHeader.tsx:43
 msgid "Refresh Plots"
-msgstr ""
+msgstr "耕地一覧を更新"
 
 #: src/electron-starter.js:305
 msgid "Release Notes"
@@ -1630,7 +1630,7 @@ msgstr ""
 
 #: src/components/farm/card/FarmCardTotalSizeOfPlots.tsx:8
 msgid "Total Size of Plots"
-msgstr ""
+msgstr "全耕地容量"
 
 #: src/components/block/Block.jsx:215
 msgid "Total VDF Iterations"
