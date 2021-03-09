@@ -8,7 +8,7 @@ msgstr ""
 "Language: tr_TR\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-03-09 02:20\n"
+"PO-Revision-Date: 2021-03-09 23:14\n"
 "Last-Translator: \n"
 "Language-Team: Turkish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -156,11 +156,14 @@ msgid "Best estimate over last 5 hours"
 msgstr ""
 
 #: src/components/block/Block.jsx:107
-#: src/components/block/Block.jsx:119
 #: src/components/block/Block.jsx:141
 #: src/components/block/Block.jsx:146
 #: src/components/block/Block.jsx:317
 msgid "Block"
+msgstr ""
+
+#: src/components/block/Block.jsx:119
+msgid "Block Test"
 msgstr ""
 
 #: src/components/block/Block.jsx:225
