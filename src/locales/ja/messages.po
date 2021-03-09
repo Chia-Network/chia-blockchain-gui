@@ -8,7 +8,7 @@ msgstr ""
 "Language: ja_JP\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-03-09 06:40\n"
+"PO-Revision-Date: 2021-03-09 07:46\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -57,11 +57,11 @@ msgstr "操作"
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:43
 #: src/components/fullNode/FullNodeConnections.tsx:57
 msgid "Actions"
-msgstr ""
+msgstr "操作"
 
 #: src/components/trading/CreateOffer.jsx:222
 msgid "Add"
-msgstr ""
+msgstr "追加"
 
 #: src/components/plot/PlotHeader.tsx:51
 msgid "Add Plot Directory"
@@ -95,7 +95,7 @@ msgstr "アドレス"
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:745
 #: src/components/wallet/standard/WalletStandard.tsx:333
 msgid "Address / Puzzle hash"
-msgstr ""
+msgstr "アドレス・パズルハッシュ値"
 
 #: src/components/trading/CreateOffer.jsx:213
 #: src/components/trading/TradesTable.tsx:16
@@ -144,12 +144,12 @@ msgstr "残高"
 
 #: src/components/block/Block.jsx:301
 msgid "Base Farmer Reward Amount"
-msgstr ""
+msgstr "農家への基本報酬額"
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:25
 #: src/components/farm/FarmLatestBlockChallenges.tsx:31
 msgid "Below are the current block challenges. You may or may not have a proof of space for these challenges. These blocks do not currently contain a proof of time."
-msgstr ""
+msgstr "以下が現在のブロックチャレンジです。これらのチャレンジに当てはまる空間証明を持っている場合があります。これらのブロックには現在、時間証明が付いていません。"
 
 #: src/components/farm/card/FarmCardTotalNetworkSpace.tsx:8
 msgid "Best estimate over last 5 hours"
@@ -201,7 +201,7 @@ msgstr ""
 #: src/components/trading/TradesTable.tsx:31
 #: src/components/trading/TradingOverview.jsx:297
 msgid "Buy"
-msgstr ""
+msgstr "購入"
 
 #: src/components/wallet/Wallets.tsx:34
 msgid "CC Wallet"
@@ -474,7 +474,7 @@ msgstr "DID ウォレット"
 #: src/components/trading/TradingOverview.jsx:137
 #: src/components/wallet/WalletHistory.tsx:35
 msgid "Date"
-msgstr ""
+msgstr "日時"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:57
 msgid "Delay"
@@ -781,7 +781,7 @@ msgstr "この注文が承諾された日時を表示します"
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:341
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:490
 msgid "Info Packet"
-msgstr ""
+msgstr "情報パケット"
 
 #: src/components/wallet/create/createRLAdmin.jsx:283
 msgid "Initial Amount"
@@ -789,7 +789,7 @@ msgstr ""
 
 #: src/components/wallet/create/createRLUser.jsx:89
 msgid "Initialize a Rate Limited User Wallet:"
-msgstr ""
+msgstr "支払い制限付きユーザーウォレットを初期化:"
 
 #: src/components/wallet/create/createRLAdmin.jsx:234
 msgid "Interval"
@@ -805,15 +805,15 @@ msgstr "鍵"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:37
 msgid "Last Attempted Proof"
-msgstr ""
+msgstr "最後に試みた証明"
 
 #: src/components/farm/card/FarmCardLastHeightFarmed.tsx:11
 msgid "Last Height Farmed"
-msgstr ""
+msgstr "最後に収穫した高さ"
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:23
 msgid "Latest Block Challenges"
-msgstr ""
+msgstr "最近のブロックチャレンジ"
 
 #: src/components/plot/queue/PlotQueueLogDialog.tsx:9
 msgid "Loading..."
@@ -871,7 +871,7 @@ msgstr "ログイン中"
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:40
 #: src/components/fullNode/FullNodeConnections.tsx:43
 msgid "MiB Up/Down"
-msgstr "アップロード/ダウンロード [MiB]"
+msgstr "アップロード・ダウンロード [MiB]"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:60
 msgid "Minutes"
@@ -1361,7 +1361,7 @@ msgstr "選択済"
 #: src/components/trading/TradesTable.tsx:30
 #: src/components/trading/TradingOverview.jsx:295
 msgid "Sell"
-msgstr "売る"
+msgstr "売却"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:433
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:795
@@ -1371,11 +1371,11 @@ msgstr "送る"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:477
 msgid "Send this info packet to your Rate Limited Wallet user who must use it to complete setup of their wallet:"
-msgstr ""
+msgstr "レート制限ウォレットのユーザーに、セットアップを完了するために必要な情報パケットを送ってください:"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:284
 msgid "Send your pubkey to your Rate Limited Wallet admin:"
-msgstr ""
+msgstr "レート制限付きウォレットの管理者にあなたの公開鍵を送ってください:"
 
 #: src/components/core/components/AdvancedOptions/AdvancedOptions.tsx:40
 msgid "Show Advanced Options"
@@ -1592,19 +1592,19 @@ msgstr "現在の先端サブブロックにおいて、あなたの秘密鍵が
 
 #: src/components/wallet/standard/WalletStandard.tsx:220
 msgid "This is the total balance + pending balance: it is what your balance will be after all pending transactions are confirmed."
-msgstr ""
+msgstr "こちらが全残高 + 保留中残高です: 全ての保留中の取引が承認されたら、残高はこの額になります。"
 
 #: src/components/fullNode/FullNode.jsx:147
 msgid "This node is fully caught up and validating the network"
-msgstr ""
+msgstr "このノードは先端に辿り着いて、ネットワークの検証に携わっています"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:39
 msgid "This table shows you the last time your farm attempted to win a block challenge."
-msgstr ""
+msgstr "この表には、最後にあなたの畑がブロックチャレンジに勝とうと試みた詳細が記録されています。"
 
 #: src/components/trading/TradingOverview.jsx:192
 msgid "This trade was created at this time"
-msgstr ""
+msgstr "この注文の作成日時です"
 
 #: src/components/trading/TradingOverview.jsx:206
 msgid "This trade was included on blockchain at this block height"
