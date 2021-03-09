@@ -8,7 +8,7 @@ msgstr ""
 "Language: ja_JP\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-03-09 03:37\n"
+"PO-Revision-Date: 2021-03-09 06:40\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -817,7 +817,7 @@ msgstr ""
 
 #: src/components/plot/queue/PlotQueueLogDialog.tsx:9
 msgid "Loading..."
-msgstr ""
+msgstr "読み込み中…"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:86
 msgid "Local Harvester Plots"
@@ -825,7 +825,7 @@ msgstr "ローカル収穫機上の耕地"
 
 #: src/components/app/AppRouter.tsx:34
 msgid "Logging in"
-msgstr ""
+msgstr "ログイン中"
 
 #: src/components/wallet/create/WalletCreate.jsx:124
 #~ msgid "MainWalletList.colouredCoin"
@@ -871,7 +871,7 @@ msgstr ""
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:40
 #: src/components/fullNode/FullNodeConnections.tsx:43
 msgid "MiB Up/Down"
-msgstr ""
+msgstr "アップロード/ダウンロード [MiB]"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:60
 msgid "Minutes"
@@ -1333,7 +1333,7 @@ msgstr "鍵を選択してください:"
 
 #: src/components/trading/ViewOffer.jsx:38
 msgid "Select Offer"
-msgstr ""
+msgstr "注文を選択"
 
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:39
 msgid "Select Temporary Directory"
@@ -1642,7 +1642,7 @@ msgstr "全評価回数"
 
 #: src/components/farm/card/FarmCardTotalNetworkSpace.tsx:8
 msgid "Total Network Space"
-msgstr ""
+msgstr "全ネットワーク容量"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:97
 msgid "Total Plot Size:"
@@ -1706,7 +1706,7 @@ msgstr "未完"
 
 #: src/components/trading/TradingOverview.jsx:177
 msgid "Unique identifier"
-msgstr ""
+msgstr "一意的識別子"
 
 #: src/components/wallet/create/createRLAdmin.jsx:307
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:299
