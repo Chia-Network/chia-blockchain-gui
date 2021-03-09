@@ -8,7 +8,7 @@ msgstr ""
 "Language: ja_JP\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-03-09 02:21\n"
+"PO-Revision-Date: 2021-03-09 03:37\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -440,7 +440,7 @@ msgstr "色付きウォレットを作成"
 
 #: src/components/wallet/create/WalletCreate.jsx:192
 msgid "Create wallet for existing colour"
-msgstr ""
+msgstr "既に存在する色のウォレットを作成"
 
 #: src/components/wallet/Wallets.tsx:81
 #~ msgid "CreateWallet.addWallet"
@@ -448,23 +448,23 @@ msgstr ""
 
 #: src/components/trading/TradingOverview.jsx:188
 msgid "Created At:"
-msgstr ""
+msgstr "作成日:"
 
 #: src/components/trading/TradingOverview.jsx:214
 msgid "Created by us:"
-msgstr ""
+msgstr "こちらが作成:"
 
 #: src/components/trading/TradingOverview.jsx:184
 msgid "Current trade status"
-msgstr ""
+msgstr "現在の交換状態"
 
 #: src/components/selectKey/SelectKey.tsx:98
 msgid "DANGER: permanently delete private key"
-msgstr ""
+msgstr "！危険！: 秘密鍵を永久的に削除"
 
 #: src/components/wallet/Wallets.tsx:48
 msgid "DID Wallet"
-msgstr ""
+msgstr "DID ウォレット"
 
 #: src/components/wallet/create/WalletCreate.jsx:310
 #~ msgid "DIDListItems.title"
@@ -522,7 +522,7 @@ msgstr "開発者向けツール"
 #: src/components/block/Block.jsx:211
 #: src/components/fullNode/FullNode.jsx:188
 msgid "Difficulty"
-msgstr ""
+msgstr "難易度"
 
 #: src/components/fullNode/FullNodeCloseConnection.tsx:22
 msgid "Disconnect"
@@ -534,7 +534,7 @@ msgstr "解除"
 
 #: src/components/wallet/create/WalletCreate.jsx:296
 msgid "Distributed Identity Options"
-msgstr ""
+msgstr "分散型アイデンティティのオプション"
 
 #: src/components/farm/overview/FarmOverviewHero.tsx:41
 #: src/components/plot/overview/PlotOverviewHero.tsx:35
@@ -548,11 +548,11 @@ msgstr "お使いのデバイスは並列で耕せますか？"
 #: src/components/trading/ViewOffer.jsx:41
 #: src/components/wallet/create/recoverDIDWallet.js:294
 msgid "Drag and drop offer file"
-msgstr ""
+msgstr "注文ファイルをここにドラッグ&ドロップ"
 
 #: src/components/backup/BackupRestore.tsx:114
 msgid "Drag and drop your backup file"
-msgstr ""
+msgstr "バックアップファイルをここにドラッグ&ドロップ"
 
 #: src/electron-starter.js:194
 msgid "Edit"
@@ -587,7 +587,7 @@ msgstr "ネットワーク上の全農家が耕した全容量の推定値"
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:32
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:34
 msgid "Expected Time to Win"
-msgstr ""
+msgstr "報酬が当たるまでの推定時間"
 
 #: src/components/plot/PlotsFailed.tsx:24
 msgid "Failed to open (invalid plots)"
@@ -597,11 +597,11 @@ msgstr "開けませんでした (耕地に問題あり)"
 #: src/components/wallet/coloured/WalletColoured.tsx:428
 #: src/components/wallet/standard/WalletStandard.tsx:356
 msgid "Farm"
-msgstr ""
+msgstr "畑"
 
 #: src/components/block/Block.jsx:247
 msgid "Farmer Puzzle Hash"
-msgstr ""
+msgstr "農家パズルハッシュ値"
 
 #: src/components/farm/card/FarmCardStatus.tsx:21
 #: src/components/plot/PlotStatus.tsx:28
@@ -630,7 +630,7 @@ msgstr "耕作中"
 #: src/components/farm/card/FarmCardStatus.tsx:24
 #: src/components/farm/card/FarmCardStatus.tsx:28
 msgid "Farming Status"
-msgstr ""
+msgstr "耕作の状態"
 
 #: src/components/wallet/WalletHistory.tsx:52
 #: src/components/wallet/create/createExistingColouredCoin.jsx:131
@@ -667,12 +667,12 @@ msgstr "ファイル名"
 
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:37
 msgid "Final folder location"
-msgstr ""
+msgstr "最終フォルダの場所"
 
 #: src/components/fullNode/FullNode.jsx:50
 #: src/components/fullNode/FullNode.jsx:106
 msgid "Finished"
-msgstr ""
+msgstr "完了"
 
 #: src/electron-starter.js:338
 msgid "Follow on Twitter"
@@ -697,7 +697,7 @@ msgstr "全画面表示"
 
 #: src/components/wallet/create/createNewColouredCoin.jsx:106
 msgid "Generate New Colour"
-msgstr ""
+msgstr "新しい色を生成"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:49
 #~ msgid "Harvester ID"
@@ -760,7 +760,7 @@ msgstr "合言葉 (24語) で鍵をインポート"
 
 #: src/components/fullNode/FullNode.jsx:52
 msgid "In Progress"
-msgstr ""
+msgstr "進行中"
 
 #: src/components/wallet/WalletHistory.tsx:19
 msgid "Incoming"
@@ -772,11 +772,11 @@ msgstr ""
 
 #: src/components/trading/TradingOverview.jsx:218
 msgid "Indicated if this offer was created by us"
-msgstr ""
+msgstr "当方がこの注文を作成したのかを表示します"
 
 #: src/components/trading/TradingOverview.jsx:234
 msgid "Indicated what time this offer was accepted"
-msgstr ""
+msgstr "この注文が承諾された日時を表示します"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:341
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:490
@@ -793,7 +793,7 @@ msgstr ""
 
 #: src/components/wallet/create/createRLAdmin.jsx:234
 msgid "Interval"
-msgstr ""
+msgstr "インターバル"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:37
 msgid "K-Size"
@@ -883,16 +883,16 @@ msgstr "メモリ使用量を増やすと速度が微上昇します"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:428
 msgid "My Pubkey"
-msgstr ""
+msgstr "私の公開鍵"
 
 #: src/components/app/AppRouter.tsx:24
 msgid "Network not launched yet, waiting for genesis challenge!"
-msgstr ""
+msgstr "ネットワークがまだ開始されていません。起源チャレンジを待機中!"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:469
 #: src/components/wallet/standard/WalletStandard.tsx:397
 msgid "New Address"
-msgstr ""
+msgstr "新規アドレス"
 
 #: src/components/wallet/WalletAdd.tsx:32
 msgid "New Wallet"
@@ -906,20 +906,20 @@ msgstr "次へ"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:199
 msgid "Nickname"
-msgstr ""
+msgstr "ニックネーム"
 
 #: src/components/trading/TradingOverview.jsx:212
 #: src/electron-starter.js:122
 msgid "No"
-msgstr ""
+msgstr "いいえ"
 
 #: src/middleware/middleware_api.jsx:293
 msgid "No 24 word seed, since this key is imported."
-msgstr ""
+msgstr "この鍵はインポートされているため、24語の種がありません。"
 
 #: src/components/farm/card/FarmCardLastHeightFarmed.tsx:11
 msgid "No blocks farmed yet"
-msgstr ""
+msgstr "まだ収穫ブロックはありません"
 
 #: src/components/wallet/WalletHistory.tsx:62
 msgid "No previous transactions"
@@ -952,13 +952,13 @@ msgstr ""
 
 #: src/components/trading/TradingOverview.jsx:199
 msgid "Not confirmed yet"
-msgstr ""
+msgstr "未承認"
 
 #: src/components/core/components/FormatConnectionStatus/FormatConnectionStatus.tsx:48
 #: src/components/fullNode/FullNode.jsx:159
 #: src/components/fullNode/FullNode.jsx:166
 msgid "Not connected"
-msgstr ""
+msgstr "未接続"
 
 #: src/components/plot/PlotsNotFound.tsx:24
 msgid "Not found Plots"
@@ -978,15 +978,15 @@ msgstr "OK"
 
 #: src/components/trading/ViewOffer.jsx:71
 msgid "Offer"
-msgstr ""
+msgstr "注文"
 
 #: src/components/trading/TradingOverview.jsx:424
 msgid "Offers Created"
-msgstr ""
+msgstr "作成した注文"
 
 #: src/components/wallet/WalletHistory.tsx:18
 msgid "Outgoing"
-msgstr ""
+msgstr "出金"
 
 #: src/components/fullNode/FullNode.jsx:174
 msgid "Peak Height"
@@ -1002,22 +1002,22 @@ msgstr "先端の日時"
 
 #: src/components/wallet/WalletHistory.tsx:41
 msgid "Pending"
-msgstr ""
+msgstr "保留中"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:601
 #: src/components/wallet/standard/WalletStandard.tsx:225
 msgid "Pending Balance"
-msgstr ""
+msgstr "保留中の残高"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:610
 #: src/components/wallet/standard/WalletStandard.tsx:232
 msgid "Pending Change"
-msgstr ""
+msgstr "保留中の増減"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:592
 #: src/components/wallet/standard/WalletStandard.tsx:218
 msgid "Pending Total Balance"
-msgstr ""
+msgstr "保留中の全残高"
 
 #: src/components/trading/CreateOffer.jsx:109
 msgid "Please add a trade pair"
@@ -1025,7 +1025,7 @@ msgstr "交換条件を追加してください。"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:709
 msgid "Please enter 0 fee. Positive fees not supported yet for RL."
-msgstr ""
+msgstr "手数料は 0 を入力してください。 RL ではまだ正の手数料が未実装です。"
 
 #: src/components/wallet/create/createRLAdmin.jsx:146
 msgid "Please enter a valid initial coin amount"
@@ -1035,7 +1035,7 @@ msgstr ""
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:676
 #: src/components/wallet/standard/WalletStandard.tsx:286
 msgid "Please enter a valid numeric amount"
-msgstr ""
+msgstr "数字を入力してください"
 
 #: src/components/wallet/create/createExistingColouredCoin.jsx:70
 #: src/components/wallet/create/createNewColouredCoin.jsx:81
@@ -1043,11 +1043,11 @@ msgstr ""
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:688
 #: src/components/wallet/standard/WalletStandard.tsx:294
 msgid "Please enter a valid numeric fee"
-msgstr ""
+msgstr "数字の手数料を入力してください"
 
 #: src/components/wallet/create/createRLAdmin.jsx:100
 msgid "Please enter a valid numeric interval length"
-msgstr ""
+msgstr "数字のインターバル長を入力してください"
 
 #: src/components/wallet/create/createRLAdmin.jsx:117
 msgid "Please enter a valid numeric spendable amount"
@@ -1055,7 +1055,7 @@ msgstr ""
 
 #: src/components/wallet/create/createRLAdmin.jsx:129
 msgid "Please enter a valid pubkey"
-msgstr ""
+msgstr "有効な公開鍵を入力してください"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:658
 #: src/components/wallet/standard/WalletStandard.tsx:274
@@ -1064,15 +1064,15 @@ msgstr "取引を行う前に同期を完了してください"
 
 #: src/components/trading/CreateOffer.jsx:75
 msgid "Please select amount"
-msgstr ""
+msgstr "額を選択してください"
 
 #: src/components/trading/CreateOffer.jsx:85
 msgid "Please select buy or sell"
-msgstr ""
+msgstr "売買の別を選択してください"
 
 #: src/components/trading/CreateOffer.jsx:63
 msgid "Please select coin colour"
-msgstr ""
+msgstr "コインの色を選択してください"
 
 #: src/components/trading/CreateOffer.jsx:63
 #~ msgid "Please select coin type"
@@ -1081,12 +1081,12 @@ msgstr ""
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:44
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:48
 msgid "Please specify final directory"
-msgstr ""
+msgstr "最終ディレクトリを指定してください"
 
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:55
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:59
 msgid "Please specify temporary directory"
-msgstr ""
+msgstr "一時ディレクトリを指定してください"
 
 #: src/components/plot/Plot.tsx:13
 msgid "Plot"
@@ -1099,7 +1099,7 @@ msgstr "耕地数"
 
 #: src/components/block/Block.jsx:263
 msgid "Plot Id"
-msgstr ""
+msgstr "耕地 Id"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:55
 msgid "Plot Key"
@@ -1111,7 +1111,7 @@ msgstr "耕地鍵"
 
 #: src/components/block/Block.jsx:239
 msgid "Plot Public Key"
-msgstr ""
+msgstr "耕地公開鍵"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:49
 msgid "Plot Seed"
@@ -1151,15 +1151,15 @@ msgstr "プール鍵"
 
 #: src/components/block/Block.jsx:243
 msgid "Pool Public Key"
-msgstr ""
+msgstr "プール公開鍵"
 
 #: src/components/block/Block.jsx:255
 msgid "Pool Puzzle Hash"
-msgstr ""
+msgstr "プールパズルハッシュ値"
 
 #: src/components/block/Block.jsx:297
 msgid "Pool Reward Amount"
-msgstr ""
+msgstr "プール報酬額"
 
 #: src/components/farm/FarmFullNodeConnections.tsx:30
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:30
@@ -1178,7 +1178,7 @@ msgstr "前へ"
 
 #: src/components/block/Block.jsx:203
 msgid "Previous Header Hash"
-msgstr ""
+msgstr "前ヘッダーハッシュ値"
 
 #: src/components/block/Block.jsx:217
 #~ msgid "Previous Sub Block Hash"
@@ -1198,11 +1198,11 @@ msgstr "秘密鍵:"
 
 #: src/components/block/Block.jsx:235
 msgid "Proof of Space Size"
-msgstr ""
+msgstr "空間証明の大きさ"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:23
 msgid "Proofs Found"
-msgstr ""
+msgstr "発見証明数"
 
 #: src/components/wallet/create/createRLAdmin.jsx:323
 msgid "Pubkey"
@@ -1230,7 +1230,7 @@ msgstr "最大使用 RAM"
 
 #: src/components/wallet/Wallets.tsx:41
 msgid "RL Wallet"
-msgstr ""
+msgstr "RL ウォレット"
 
 #: src/components/wallet/create/WalletCreate.jsx:246
 #~ msgid "RLListItems.title"
@@ -1238,29 +1238,29 @@ msgstr ""
 
 #: src/components/wallet/create/WalletCreate.jsx:130
 msgid "Rate Limited"
-msgstr ""
+msgstr "レート制限付き"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:401
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:452
 msgid "Rate Limited Info"
-msgstr ""
+msgstr "レート制限付きの情報"
 
 #: src/components/wallet/create/WalletCreate.jsx:232
 msgid "Rate Limited Options"
-msgstr ""
+msgstr "レート制限付きのオプション"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:274
 msgid "Rate Limited User Wallet Setup"
-msgstr ""
+msgstr "レート制限付きユーザーウォレットのセットアップ"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:451
 #: src/components/wallet/standard/WalletStandard.tsx:379
 msgid "Receive Address"
-msgstr ""
+msgstr "受取アドレス"
 
 #: src/components/wallet/create/WalletCreate.jsx:320
 msgid "Recover DID wallet"
-msgstr ""
+msgstr "DID ウォレットを復元"
 
 #: src/components/plot/PlotHeader.tsx:43
 msgid "Refresh Plots"
@@ -1268,11 +1268,11 @@ msgstr "耕地一覧を更新"
 
 #: src/electron-starter.js:305
 msgid "Release Notes"
-msgstr ""
+msgstr "リリースノート"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:205
 msgid "Rename"
-msgstr ""
+msgstr "名称変更"
 
 #: src/electron-starter.js:324
 msgid "Report an Issue..."
@@ -1280,7 +1280,7 @@ msgstr "問題を報告"
 
 #: src/components/backup/BackupRestore.tsx:107
 msgid "Restore Metadata for Coloured Coins and other Smart Wallets from Backup"
-msgstr ""
+msgstr "バックアップからカラードコイン・その他スマートウォレットのメタデータを復元"
 
 #: src/components/backup/BackupRestore.tsx:107
 #~ msgid "Restore Smart Wallets From Backup"
@@ -1355,19 +1355,19 @@ msgstr "耕地の一時保存先となるフォルダを選択してください
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:63
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:81
 msgid "Selected"
-msgstr ""
+msgstr "選択済"
 
 #: src/components/trading/CreateOffer.jsx:182
 #: src/components/trading/TradesTable.tsx:30
 #: src/components/trading/TradingOverview.jsx:295
 msgid "Sell"
-msgstr ""
+msgstr "売る"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:433
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:795
 #: src/components/wallet/standard/WalletStandard.tsx:361
 msgid "Send"
-msgstr ""
+msgstr "送る"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:477
 msgid "Send this info packet to your Rate Limited Wallet user who must use it to complete setup of their wallet:"
@@ -1384,11 +1384,11 @@ msgstr "詳細設定を表示"
 #: src/components/trading/CreateOffer.jsx:174
 #: src/components/trading/TradesTable.tsx:13
 msgid "Side"
-msgstr ""
+msgstr "売買種別"
 
 #: src/components/selectKey/SelectKey.tsx:74
 msgid "Sign In"
-msgstr ""
+msgstr "ログイン"
 
 #: src/components/backup/BackupRestore.tsx:122
 #~ msgid "Skip"
@@ -1404,22 +1404,22 @@ msgstr ""
 
 #: src/components/wallet/create/createRLAdmin.jsx:216
 msgid "Spendable Amount Per Interval"
-msgstr ""
+msgstr "インターバル毎支払い可能額"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:287
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:568
 #: src/components/wallet/standard/WalletStandard.tsx:199
 msgid "Spendable Balance"
-msgstr ""
+msgstr "支払い可能額"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:407
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:458
 msgid "Spending Interval (number of blocks): {interval}"
-msgstr ""
+msgstr "支払いインターバル (ブロック数): {interval}"
 
 #: src/components/wallet/create/createRLAdmin.jsx:209
 msgid "Spending Interval Length (number of blocks)"
-msgstr ""
+msgstr "支払いインターバル長 (ブロック数)"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:414
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:465
@@ -1476,7 +1476,7 @@ msgstr "状態:"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:356
 msgid "Submit"
-msgstr ""
+msgstr "提出"
 
 #: src/components/fullNode/FullNode.jsx:144
 msgid "Synced"
@@ -1510,7 +1510,7 @@ msgstr "TXCH ブロック報酬"
 
 #: src/components/farm/card/FarmCardUserFees.tsx:15
 msgid "TXCH User Transaction Fees"
-msgstr ""
+msgstr "TXCH ユーザー取引手数料"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:18
 #~ msgid "Temporary files are created during the plotting process which exceeds the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
@@ -1522,11 +1522,11 @@ msgstr "一時フォルダの場所"
 
 #: src/components/farm/FarmFullNodeConnections.tsx:58
 msgid "The full node that your farmer is connected to is below. <0>Learn more</0>"
-msgstr ""
+msgstr "以下が農家の接続先のフルノードです。<0>詳しく</0>"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:36
 msgid "The minimum required size for mainnet is k=32"
-msgstr ""
+msgstr "メインネットで必要な最小サイズは k=32 です"
 
 #: src/components/fullNode/FullNode.jsx:138
 msgid "The node is not synced"
@@ -1538,7 +1538,7 @@ msgstr "ノードが同期中です。ブロックチェーンの先端に辿り
 
 #: src/components/block/Block.jsx:266
 msgid "The seed used to create the plot. This depends on the pool pk and plot pk."
-msgstr ""
+msgstr "耕地作成に使用する種。プール pk 及び耕地 pk に依存した値です。"
 
 #: src/components/block/Block.jsx:218
 msgid "The total number of VDF (verifiable delay function) or proof of time iterations on the whole chain up to this sub block."
@@ -1550,7 +1550,7 @@ msgstr "このブロックに行った VDF (検証可能遅延関数)、つま�
 
 #: src/components/block/Block.jsx:308
 msgid "The total transactions fees in this block. Rewarded to the farmer."
-msgstr ""
+msgstr "このブロック内の取引手数料の合計。農家への報酬となります。"
 
 #: src/components/plot/PlotsFailed.tsx:26
 msgid "These plots are invalid, you might want to delete them."
@@ -1564,7 +1564,7 @@ msgstr "ここから既にお持ちの耕地ディレクトリを追加できま
 #: src/hooks/useSelectDirectory.tsx:26
 #: src/hooks/useSelectFile.tsx:26
 msgid "This feature is available only from the GUI."
-msgstr ""
+msgstr "この機能は GUI 限定です。"
 
 #: src/components/wallet/standard/WalletStandard.tsx:199
 msgid "This is the amount of Chia that you can currently use to make transactions. It does not include pending farming rewards, pending incoming transactions, and Chia that you have just spent but is not yet in the blockchain."
@@ -1690,11 +1690,11 @@ msgstr ""
 
 #: src/components/trading/TradingOverview.jsx:435
 msgid "Trading History"
-msgstr "取引履歴"
+msgstr "交換履歴"
 
 #: src/components/block/Block.jsx:274
 msgid "Transactions Filter Hash"
-msgstr ""
+msgstr "取引フィルターハッシュ値"
 
 #: src/components/wallet/WalletHistory.tsx:21
 msgid "Type"
@@ -1702,7 +1702,7 @@ msgstr "種類"
 
 #: src/components/fullNode/FullNode.jsx:106
 msgid "Unfinished"
-msgstr ""
+msgstr "未完"
 
 #: src/components/trading/TradingOverview.jsx:177
 msgid "Unique identifier"
@@ -1711,7 +1711,7 @@ msgstr ""
 #: src/components/wallet/create/createRLAdmin.jsx:307
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:299
 msgid "User Pubkey"
-msgstr ""
+msgstr "ユーザー公開鍵"
 
 #: src/components/fullNode/FullNode.jsx:195
 msgid "VDF Sub Slot Iterations"
@@ -1728,16 +1728,16 @@ msgstr "ログを表示"
 
 #: src/components/trading/TradeManager.tsx:27
 msgid "View Offer"
-msgstr ""
+msgstr "注文を表示"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:583
 #: src/components/wallet/standard/WalletStandard.tsx:211
 msgid "View pending balances"
-msgstr ""
+msgstr "保留中残高を表示"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:295
 msgid "View pending balances..."
-msgstr ""
+msgstr "保留中残高を表示…"
 
 #: src/components/farm/card/FarmCardNotAvailable.tsx:9
 #: src/components/plot/PlotStatus.tsx:22
@@ -1816,7 +1816,7 @@ msgstr "ウィンドウ"
 
 #: src/components/farm/card/FarmCardBlockRewards.tsx:15
 msgid "Without fees"
-msgstr ""
+msgstr "手数料抜き"
 
 #: src/components/trading/TradingOverview.jsx:212
 #: src/electron-starter.js:122
@@ -1825,23 +1825,23 @@ msgstr "はい"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:18
 msgid "You do not need to be synched or connected to Plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
-msgstr ""
+msgstr "耕地作成には同期も接続も必要ありません。耕し中に作成される一時ファイルは、最終的な耕地ファイルより多くの容量を消費します。容量が足りるか今一度ご確認ください。<0>詳しく</0>"
 
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:34
 msgid "You have {0}% of the space on the network, so farming a block will take {expectedTimeToWin} in expectation."
-msgstr ""
+msgstr "あなたはネットワークの {0}% の容量を所有しているので、ブロック収穫には推定 {expectedTimeToWin} かかります。"
 
 #: src/components/farm/overview/FarmOverview.tsx:13
 msgid "Your Farm Overview"
-msgstr ""
+msgstr "あなたの畑の概要"
 
 #: src/components/farm/FarmFullNodeConnections.tsx:56
 msgid "Your Full Node Connection"
-msgstr ""
+msgstr "あなたのフルノード接続"
 
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:56
 msgid "Your Harvester Network"
-msgstr ""
+msgstr "あなたの収穫機ネットワーク"
 
 #: src/components/wallet/WalletStatusCard.tsx:30
 #: src/components/wallet/Wallets.tsx:119
