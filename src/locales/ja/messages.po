@@ -8,7 +8,7 @@ msgstr ""
 "Language: ja_JP\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-03-09 07:46\n"
+"PO-Revision-Date: 2021-03-09 23:15\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -156,12 +156,15 @@ msgid "Best estimate over last 5 hours"
 msgstr "過去5時間を基に推定"
 
 #: src/components/block/Block.jsx:107
-#: src/components/block/Block.jsx:119
 #: src/components/block/Block.jsx:141
 #: src/components/block/Block.jsx:146
 #: src/components/block/Block.jsx:317
 msgid "Block"
 msgstr "ブロック"
+
+#: src/components/block/Block.jsx:119
+msgid "Block Test"
+msgstr ""
 
 #: src/components/block/Block.jsx:225
 msgid "Block VDF Iterations"
