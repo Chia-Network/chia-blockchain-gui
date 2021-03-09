@@ -8,7 +8,7 @@ msgstr ""
 "Language: ja_JP\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-03-09 01:21\n"
+"PO-Revision-Date: 2021-03-09 02:21\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -20,7 +20,7 @@ msgstr ""
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:39
 msgid "*Want to explore Chia’s blocks further? Check out <0>Chia Explorer</0> built by an open source developer."
-msgstr ""
+msgstr "*チアのブロックをさらに調べたいですか？オープンソース開発者に提供していただいた <0>Chia Explorer</0> を是非ご覧ください。"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:94
 #~ msgid "0 automatically chooses bucket count"
@@ -28,16 +28,16 @@ msgstr ""
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:94
 msgid "128 buckets is recommended"
-msgstr ""
+msgstr "バケツ数は 128 がおすすめ"
 
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:58
 msgid "A harvester is a service running on a machine where plot(s) are actually stored. A farmer and harvester talk to a full node to see the state of the chain. View your network of connected harvesters below Learn more"
-msgstr ""
+msgstr "収穫機は耕地が実際に保存されているデバイス上に走らせるサービスです。農家と収穫機はフルノードと通信することでブロックチェーンの状態を認識します。以下が接続されている収穫機ネットワークです。詳しく"
 
 #: src/electron-starter.js:353
 #: src/electron-starter.js:446
 msgid "About Chia Blockchain"
-msgstr "Chia Blockchain について"
+msgstr "チアブロックチェーンについて"
 
 #: src/components/trading/ViewOffer.jsx:85
 msgid "Accept"
@@ -51,7 +51,7 @@ msgstr ""
 #: src/components/plot/PlotsNotFound.tsx:14
 #: src/components/plot/overview/PlotOverviewPlots.tsx:75
 msgid "Action"
-msgstr ""
+msgstr "操作"
 
 #: src/components/farm/FarmFullNodeConnections.tsx:43
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:43
@@ -125,7 +125,7 @@ msgstr "本当に接続を解除しますか？"
 
 #: src/electron-starter.js:125
 msgid "Are you sure you want to quit? GUI Plotting and farming will stop."
-msgstr ""
+msgstr "本当に終了しますか？ GUI 上の耕地作り及び耕作も停止します。"
 
 #: src/components/selectKey/SelectKey.tsx:39
 #: src/components/selectKey/SelectKey.tsx:53
@@ -153,7 +153,7 @@ msgstr ""
 
 #: src/components/farm/card/FarmCardTotalNetworkSpace.tsx:8
 msgid "Best estimate over last 5 hours"
-msgstr ""
+msgstr "過去5時間を基に推定"
 
 #: src/components/block/Block.jsx:107
 #: src/components/block/Block.jsx:119
@@ -165,11 +165,11 @@ msgstr "ブロック"
 
 #: src/components/block/Block.jsx:225
 msgid "Block VDF Iterations"
-msgstr ""
+msgstr "ブロック VDF 評価回数"
 
 #: src/components/block/Block.jsx:322
 msgid "Block at height {0} in the Chia blockchain"
-msgstr ""
+msgstr "チアブロックチェーン内の高さ {0} のブロック"
 
 #: src/components/fullNode/FullNode.jsx:331
 #~ msgid "Block hash"
@@ -181,7 +181,7 @@ msgstr "ハッシュ値 {headerHash} のブロック"
 
 #: src/components/block/Block.jsx:153
 msgid "Block with hash {headerHash} does not exists."
-msgstr ""
+msgstr "ハッシュ値 {headerHash} のブロックは存在しません。"
 
 #: src/components/fullNode/FullNode.jsx:300
 msgid "Blocks"
@@ -191,7 +191,7 @@ msgstr "ブロック"
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:63
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:81
 msgid "Browse"
-msgstr ""
+msgstr "参照"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:49
 msgid "But you are currently farming <0/>"
@@ -233,11 +233,11 @@ msgstr "注意: 耕地を削除すると復元できません。保存先のデ�
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:13
 msgid "Challenge"
-msgstr ""
+msgstr "チャレンジ"
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:11
 msgid "Challenge Hash"
-msgstr ""
+msgstr "チャレンジのハッシュ値"
 
 #: src/electron-starter.js:332
 msgid "Chat on KeyBase"
@@ -245,15 +245,15 @@ msgstr "Keybase でチャット"
 
 #: src/electron-starter.js:350
 msgid "Chia"
-msgstr ""
+msgstr "チア"
 
 #: src/electron-starter.js:289
 msgid "Chia Blockchain Wiki"
-msgstr "Chia Blockchain の Wiki"
+msgstr "チアブロックチェーンの Wiki"
 
 #: src/components/wallet/Wallets.tsx:30
 msgid "Chia Wallet"
-msgstr "Chia ウォレット"
+msgstr "チアウォレット"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:13
 msgid "Choose Number of Plots"
@@ -274,24 +274,24 @@ msgstr "ノードとサーバーを停止中"
 
 #: src/components/trading/TradingOverview.jsx:376
 msgid "Coins:"
-msgstr ""
+msgstr "コイン:"
 
 #: src/components/trading/CreateOffer.jsx:192
 #: src/components/trading/TradesTable.tsx:19
 msgid "Colour"
-msgstr ""
+msgstr "色"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:180
 msgid "Colour Info"
-msgstr ""
+msgstr "色の情報"
 
 #: src/components/wallet/create/createExistingColouredCoin.jsx:115
 msgid "Colour String"
-msgstr ""
+msgstr "色文字列"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:185
 msgid "Colour:"
-msgstr ""
+msgstr "色:"
 
 #: src/components/wallet/create/WalletCreate.jsx:120
 msgid "Coloured Coin"
@@ -299,11 +299,11 @@ msgstr "カラードコイン"
 
 #: src/components/wallet/create/WalletCreate.jsx:168
 msgid "Coloured Coin Options"
-msgstr ""
+msgstr "カラードコインのオプション"
 
 #: src/electron-starter.js:123
 msgid "Confirm"
-msgstr ""
+msgstr "了承"
 
 #: src/components/fullNode/FullNodeCloseConnection.tsx:22
 msgid "Confirm Disconnect"
@@ -311,7 +311,7 @@ msgstr "接続解除の確認"
 
 #: src/components/trading/TradingOverview.jsx:202
 msgid "Confirmed at block:"
-msgstr ""
+msgstr "承認ブロック:"
 
 #: src/components/wallet/WalletHistory.tsx:39
 msgid "Confirmed at height {0}"
@@ -382,11 +382,11 @@ msgstr "作成"
 
 #: src/components/wallet/create/WalletCreate.jsx:308
 msgid "Create DID wallet"
-msgstr ""
+msgstr "DID ウォレットを作成"
 
 #: src/components/trading/TradeManager.tsx:22
 msgid "Create Offer"
-msgstr ""
+msgstr "注文を作成"
 
 #: src/components/plot/add/PlotAdd.tsx:67
 msgid "Create Plot"
@@ -394,11 +394,11 @@ msgstr "耕地を作る"
 
 #: src/components/wallet/create/createRLAdmin.jsx:198
 msgid "Create Rate Limited Admin Wallet"
-msgstr ""
+msgstr "支払い制限付き管理者ウォレットを作成"
 
 #: src/components/wallet/create/createRLUser.jsx:78
 msgid "Create Rate Limited User Wallet"
-msgstr ""
+msgstr "支払い制限付きユーザーウォレットを作成"
 
 #: src/components/trading/TradeManager.tsx:22
 #~ msgid "Create Trade"
@@ -406,17 +406,17 @@ msgstr ""
 
 #: src/components/trading/CreateOffer.jsx:146
 msgid "Create Trade Offer"
-msgstr ""
+msgstr "交換の注文を作成"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:394
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:726
 #: src/components/wallet/standard/WalletStandard.tsx:324
 msgid "Create Transaction"
-msgstr ""
+msgstr "取引を作成"
 
 #: src/components/backup/BackupCreate.tsx:58
 msgid "Create a Backup"
-msgstr ""
+msgstr "バックアップを作成"
 
 #: src/components/selectKey/SelectKey.tsx:109
 msgid "Create a new private key"
@@ -424,19 +424,19 @@ msgstr "秘密鍵を新規作成"
 
 #: src/components/wallet/create/WalletCreate.jsx:244
 msgid "Create admin wallet"
-msgstr ""
+msgstr "管理者ウォレットを作成"
 
 #: src/components/wallet/create/WalletCreate.jsx:180
 msgid "Create new coloured coin"
-msgstr ""
+msgstr "新規カラードコインを作成"
 
 #: src/components/wallet/create/WalletCreate.jsx:256
 msgid "Create user wallet"
-msgstr ""
+msgstr "ユーザーウォレットを作成"
 
 #: src/components/wallet/create/createExistingColouredCoin.jsx:95
 msgid "Create wallet for colour"
-msgstr ""
+msgstr "色付きウォレットを作成"
 
 #: src/components/wallet/create/WalletCreate.jsx:192
 msgid "Create wallet for existing colour"
@@ -478,7 +478,7 @@ msgstr ""
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:57
 msgid "Delay"
-msgstr ""
+msgstr "遅延時間"
 
 #: src/components/plot/PlotAction.tsx:24
 #: src/components/plot/PlotAction.tsx:43
@@ -543,7 +543,7 @@ msgstr "既にこのデバイス上に耕地をお持ちですか？<0>耕地デ
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:30
 msgid "Does your machine support parallel plotting?"
-msgstr ""
+msgstr "お使いのデバイスは並列で耕せますか？"
 
 #: src/components/trading/ViewOffer.jsx:41
 #: src/components/wallet/create/recoverDIDWallet.js:294
@@ -560,7 +560,7 @@ msgstr "編集"
 
 #: src/components/wallet/WalletImport.tsx:67
 msgid "Enter the 24 word mnemonic that you have saved in order to restore your Chia wallet."
-msgstr "Chia ウォレットを復元するには、24語の合言葉を入力してください。"
+msgstr "チアウォレットを復元するには、24語の合言葉を入力してください。"
 
 #: src/components/farm/FarmerStatus.tsx:30
 #: src/components/farm/FarmerStatus.tsx:31
@@ -574,7 +574,7 @@ msgstr "エラー"
 
 #: src/components/wallet/standard/WalletStandard.tsx:304
 msgid "Error: Cannot send chia to coloured address. Please enter a chia address."
-msgstr ""
+msgstr "エラー: チアは色付きのアドレスには送れません。チアのアドレスを入力してください。"
 
 #: src/components/fullNode/FullNode.jsx:207
 msgid "Estimated network space"
@@ -582,7 +582,7 @@ msgstr "推定ネットワーク容量"
 
 #: src/components/fullNode/FullNode.jsx:210
 msgid "Estimated sum of all the plotted disk space of all farmers in the network"
-msgstr ""
+msgstr "ネットワーク上の全農家が耕した全容量の推定値"
 
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:32
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:34
@@ -591,7 +591,7 @@ msgstr ""
 
 #: src/components/plot/PlotsFailed.tsx:24
 msgid "Failed to open (invalid plots)"
-msgstr ""
+msgstr "開けませんでした (耕地に問題あり)"
 
 #: src/components/dashboard/DashboardSideBar.tsx:26
 #: src/components/wallet/coloured/WalletColoured.tsx:428
@@ -606,23 +606,23 @@ msgstr ""
 #: src/components/farm/card/FarmCardStatus.tsx:21
 #: src/components/plot/PlotStatus.tsx:28
 msgid "Farmer is not connected"
-msgstr ""
+msgstr "農家が未接続"
 
 #: src/components/farm/card/FarmCardStatus.tsx:26
 #: src/components/plot/PlotStatus.tsx:29
 msgid "Farmer is not running"
-msgstr ""
+msgstr "農家が未実行"
 
 #: src/components/farm/overview/FarmOverviewHero.tsx:27
 msgid "Farmers earn block rewards and transaction fees by committing spare space to the network to help secure transactions. This is where your farm will be once you add a plot. <0>Learn more</0>"
-msgstr ""
+msgstr "農家は空いている容量をネットワークに提供することで取引の正確性を担保し、対価としてブロック報酬や取引手数料を得られます。耕地を追加したら、ここにあなたの畑が表示されます。<0>詳しく</0>"
 
 #: src/components/farm/Farm.tsx:15
 #: src/components/farm/FarmerStatus.tsx:27
 #: src/components/farm/card/FarmCardStatus.tsx:29
 #: src/components/plot/PlotStatus.tsx:14
 msgid "Farming"
-msgstr ""
+msgstr "耕作中"
 
 #: src/components/farm/card/FarmCardStatus.tsx:11
 #: src/components/farm/card/FarmCardStatus.tsx:16
@@ -797,7 +797,7 @@ msgstr ""
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:37
 msgid "K-Size"
-msgstr ""
+msgstr "K 値"
 
 #: src/components/dashboard/DashboardSideBar.tsx:28
 msgid "Keys"
@@ -821,7 +821,7 @@ msgstr ""
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:86
 msgid "Local Harvester Plots"
-msgstr ""
+msgstr "ローカル収穫機上の耕地"
 
 #: src/components/app/AppRouter.tsx:34
 msgid "Logging in"
@@ -875,11 +875,11 @@ msgstr ""
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:60
 msgid "Minutes"
-msgstr ""
+msgstr "分"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:73
 msgid "More memory slightly increases speed"
-msgstr ""
+msgstr "メモリ使用量を増やすと速度が微上昇します"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:428
 msgid "My Pubkey"
@@ -933,14 +933,14 @@ msgstr "ノード ID"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:43
 msgid "None of your plots have passed the plot filter yet."
-msgstr ""
+msgstr "お持ちの耕地は現在、どれも耕地フィルターを通過できていません。"
 
 #: src/components/farm/FarmerStatus.tsx:29
 #: src/components/farm/card/FarmCardNotAvailable.tsx:8
 #: src/components/farm/card/FarmCardNotAvailable.tsx:9
 #: src/components/plot/PlotStatus.tsx:16
 msgid "Not Available"
-msgstr ""
+msgstr "該当なし"
 
 #: src/components/fullNode/FullNode.jsx:136
 msgid "Not Synced"
@@ -962,15 +962,15 @@ msgstr ""
 
 #: src/components/plot/PlotsNotFound.tsx:24
 msgid "Not found Plots"
-msgstr ""
+msgstr "見つからない耕地"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:92
 msgid "Number of buckets"
-msgstr ""
+msgstr "バケツ数"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:83
 msgid "Number of threads"
-msgstr ""
+msgstr "スレッド数"
 
 #: src/components/core/components/ConfirmDialog/ConfirmDialog.tsx:51
 msgid "OK"
@@ -1090,12 +1090,12 @@ msgstr ""
 
 #: src/components/plot/Plot.tsx:13
 msgid "Plot"
-msgstr ""
+msgstr "耕地"
 
 #: src/components/farm/card/FarmCardPlotCount.tsx:7
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:18
 msgid "Plot Count"
-msgstr ""
+msgstr "耕地数"
 
 #: src/components/block/Block.jsx:263
 msgid "Plot Id"
@@ -1103,7 +1103,7 @@ msgstr ""
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:55
 msgid "Plot Key"
-msgstr ""
+msgstr "耕地鍵"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:43
 #~ msgid "Plot Name"
@@ -1115,15 +1115,15 @@ msgstr ""
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:49
 msgid "Plot Seed"
-msgstr ""
+msgstr "耕地種"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:28
 msgid "Plot Size"
-msgstr ""
+msgstr "耕地容量"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:26
 msgid "Plot is duplicate of {0}"
-msgstr ""
+msgstr "この耕地は {0} と重複しています"
 
 #: src/components/dashboard/DashboardSideBar.tsx:25
 msgid "Plots"
@@ -1135,19 +1135,19 @@ msgstr "フィルターを通過した耕地数"
 
 #: src/components/plot/overview/PlotOverviewHero.tsx:23
 msgid "Plots are allocated space on your hard drive used to farm and earn Chia. <0>Learn more</0>"
-msgstr "耕地とは、チアを収穫し、得るためにハードドライブ上に確保する領域です。<0>詳しくはこちら</0>"
+msgstr "耕地とは、チアを収穫し、得るためにハードドライブ上に確保する領域です。<0>詳しく</0>"
 
 #: src/components/plot/queue/PlotQueueIndicator.tsx:8
 msgid "Plotting"
-msgstr ""
+msgstr "耕し中"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:35
 msgid "Plotting in parallel can save time. Otherwise, add plot(s) to the queue."
-msgstr ""
+msgstr "並行で耕すと時間の節約になる場合があります。スペックが足りない場合はキューに追加してください。"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:61
 msgid "Pool Key"
-msgstr ""
+msgstr "プール鍵"
 
 #: src/components/block/Block.jsx:243
 msgid "Pool Public Key"
@@ -1214,11 +1214,11 @@ msgstr "公開鍵:"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:103
 msgid "Queue Name"
-msgstr ""
+msgstr "キュー名"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:43
 msgid "Queue name"
-msgstr ""
+msgstr "キュー名"
 
 #: src/components/plot/queue/PlotQueueIndicator.tsx:11
 msgid "Queued"
@@ -1345,11 +1345,11 @@ msgstr "ウォレットの種類を選択してください:"
 
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:31
 msgid "Select the final destination for the folder where you would like the plot to be stored. We recommend you use a large slow hard drive (like external HDD)."
-msgstr ""
+msgstr "耕地の最終保存先となるフォルダを選択してください。大容量の遅いハードドライブがおすすめです。 (外部 HDD など)"
 
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:41
 msgid "Select the temporary destination for the folder where you would like the plot to be stored. We recommend you use a fast SSD."
-msgstr ""
+msgstr "耕地の一時保存先となるフォルダを選択してください。高速な SSD がおすすめです。"
 
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:52
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:63
@@ -1424,7 +1424,7 @@ msgstr ""
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:414
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:465
 msgid "Spending Limit (chia per interval): {0}"
-msgstr ""
+msgstr "支払い額上限 (チア毎インターバル): {0}"
 
 #: src/components/fullNode/FullNode.jsx:108
 msgid "State"
@@ -1513,8 +1513,8 @@ msgid "TXCH User Transaction Fees"
 msgstr ""
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:18
-msgid "Temporary files are created during the plotting process which exceeds the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
-msgstr ""
+#~ msgid "Temporary files are created during the plotting process which exceeds the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
+#~ msgstr ""
 
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:48
 msgid "Temporary folder location"
@@ -1554,11 +1554,11 @@ msgstr ""
 
 #: src/components/plot/PlotsFailed.tsx:26
 msgid "These plots are invalid, you might want to delete them."
-msgstr ""
+msgstr "これらの耕地には問題があるため、削除をご検討ください。"
 
 #: src/components/plot/PlotAddDirectoryDialog.tsx:44
 msgid "This allows you to add a directory that has plots in it. If you have not created any plots, go to the plotting screen."
-msgstr ""
+msgstr "ここから既にお持ちの耕地ディレクトリを追加できます。まだ耕地をお持ちでない場合は耕し画面を開いてください。"
 
 #: src/components/trading/CreateOffer.jsx:132
 #: src/hooks/useSelectDirectory.tsx:26
@@ -1568,7 +1568,7 @@ msgstr ""
 
 #: src/components/wallet/standard/WalletStandard.tsx:199
 msgid "This is the amount of Chia that you can currently use to make transactions. It does not include pending farming rewards, pending incoming transactions, and Chia that you have just spent but is not yet in the blockchain."
-msgstr ""
+msgstr "取引に使用できるチアの額です。承認待ちの耕作報酬、承認待ちの入金取引、及びブロックチェーンにまだ含まれていない消費チアはいずれも含まれていません。"
 
 #: src/components/wallet/standard/WalletStandard.tsx:234
 msgid "This is the pending change, which are change coins which you have sent to yourself, but have not been confirmed yet."
@@ -1588,7 +1588,7 @@ msgstr ""
 
 #: src/components/wallet/standard/WalletStandard.tsx:193
 msgid "This is the total amount of chia in the blockchain at the current peak sub block that is controlled by your private keys. It includes frozen farming rewards, but not pending incoming and outgoing transactions."
-msgstr ""
+msgstr "現在の先端サブブロックにおいて、あなたの秘密鍵が所有している全チアの額です。凍結中の耕作報酬は含まれますが、承認待ちの入出金取引は反映されていません。"
 
 #: src/components/wallet/standard/WalletStandard.tsx:220
 msgid "This is the total balance + pending balance: it is what your balance will be after all pending transactions are confirmed."
@@ -1634,7 +1634,7 @@ msgstr "全残高"
 
 #: src/components/farm/card/FarmCardTotalChiaFarmed.tsx:15
 msgid "Total Chia Farmed"
-msgstr ""
+msgstr "全収穫済チア"
 
 #: src/components/fullNode/FullNode.jsx:201
 msgid "Total Iterations"
@@ -1646,11 +1646,11 @@ msgstr ""
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:97
 msgid "Total Plot Size:"
-msgstr ""
+msgstr "全耕地容量:"
 
 #: src/components/farm/card/FarmCardTotalSizeOfPlots.tsx:8
 msgid "Total Size of Plots"
-msgstr "全耕地容量"
+msgstr "全ての耕地の容量の合計"
 
 #: src/components/block/Block.jsx:215
 msgid "Total VDF Iterations"
@@ -1743,7 +1743,7 @@ msgstr ""
 #: src/components/plot/PlotStatus.tsx:22
 #: src/components/plot/PlotStatus.tsx:25
 msgid "Wait for synchronization"
-msgstr ""
+msgstr "同期待ち"
 
 #: src/components/wallet/Wallets.tsx:34
 #~ msgid "WalletItem.ccWallet"
@@ -1784,11 +1784,11 @@ msgstr "ウォレット"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:90
 msgid "Want to earn more Chia? Add more plots to your farm."
-msgstr ""
+msgstr "畑に耕地を増やしましょう。さらにチアを得られますよ。"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:53
 msgid "Want to have a delay before the next plot starts?"
-msgstr ""
+msgstr "次の耕地を耕しはじめる前に遅延時間を挟みますか？"
 
 #: src/components/block/Block.jsx:193
 msgid "Weight"
@@ -1822,6 +1822,10 @@ msgstr ""
 #: src/electron-starter.js:122
 msgid "Yes"
 msgstr "はい"
+
+#: src/components/plot/add/PlotAddChooseSize.tsx:18
+msgid "You do not need to be synched or connected to Plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
+msgstr ""
 
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:34
 msgid "You have {0}% of the space on the network, so farming a block will take {expectedTimeToWin} in expectation."
