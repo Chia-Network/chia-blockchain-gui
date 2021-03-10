@@ -3,7 +3,6 @@ import { i18n } from '@lingui/core';
 import * as actions from '../modules/websocket';
 import {
   registerService,
-  getGenesisChallengeStatus,
   startService,
   startServiceTest,
 } from '../modules/daemon_messages';
