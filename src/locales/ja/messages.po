@@ -8,7 +8,7 @@ msgstr ""
 "Language: ja_JP\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-03-10 20:49\n"
+"PO-Revision-Date: 2021-03-10 23:47\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -275,7 +275,7 @@ msgstr "耕地容量を選択"
 msgid "Close"
 msgstr "閉じる"
 
-#: src/components/app/AppRouter.tsx:19
+#: src/components/app/AppRouter.tsx:18
 msgid "Closing down node and server"
 msgstr "ノードとサーバーを停止中"
 
@@ -334,15 +334,15 @@ msgid "Connect to other peers"
 msgstr "手動で接続"
 
 #: src/components/core/components/FormatConnectionStatus/FormatConnectionStatus.tsx:47
-#: src/components/fullNode/FullNode.jsx:157
+#: src/components/fullNode/FullNode.jsx:156
 msgid "Connected"
 msgstr "接続済み"
 
-#: src/components/app/AppRouter.tsx:29
+#: src/components/app/AppRouter.tsx:23
 msgid "Connecting to wallet"
 msgstr "ウォレットに接続中"
 
-#: src/components/fullNode/FullNode.jsx:155
+#: src/components/fullNode/FullNode.jsx:154
 msgid "Connection Status"
 msgstr "接続状態"
 
@@ -527,7 +527,7 @@ msgid "Developer Tools"
 msgstr "開発者向けツール"
 
 #: src/components/block/Block.jsx:213
-#: src/components/fullNode/FullNode.jsx:194
+#: src/components/fullNode/FullNode.jsx:191
 msgid "Difficulty"
 msgstr "難易度"
 
@@ -583,11 +583,11 @@ msgstr "エラー"
 msgid "Error: Cannot send chia to coloured address. Please enter a chia address."
 msgstr "エラー: チアは色付きのアドレスには送れません。チアのアドレスを入力してください。"
 
-#: src/components/fullNode/FullNode.jsx:213
+#: src/components/fullNode/FullNode.jsx:210
 msgid "Estimated network space"
 msgstr "推定ネットワーク容量"
 
-#: src/components/fullNode/FullNode.jsx:216
+#: src/components/fullNode/FullNode.jsx:213
 msgid "Estimated sum of all the plotted disk space of all farmers in the network"
 msgstr "ネットワーク上の全農家が耕した全容量の推定値"
 
@@ -684,8 +684,8 @@ msgstr "ファイル名"
 msgid "Final folder location"
 msgstr "最終フォルダの場所"
 
-#: src/components/fullNode/FullNode.jsx:50
-#: src/components/fullNode/FullNode.jsx:106
+#: src/components/fullNode/FullNode.jsx:41
+#: src/components/fullNode/FullNode.jsx:92
 msgid "Finished"
 msgstr "完了"
 
@@ -698,11 +698,11 @@ msgid "Frequently Asked Questions"
 msgstr "よくある質問"
 
 #: src/components/dashboard/DashboardSideBar.tsx:23
-#: src/components/fullNode/FullNode.jsx:327
+#: src/components/fullNode/FullNode.jsx:325
 msgid "Full Node"
 msgstr "フルノード"
 
-#: src/components/fullNode/FullNode.jsx:271
+#: src/components/fullNode/FullNode.jsx:268
 msgid "Full Node Status"
 msgstr "フルノードの状態"
 
@@ -718,7 +718,7 @@ msgstr "新しい色を生成"
 #~ msgid "Harvester ID"
 #~ msgstr ""
 
-#: src/components/fullNode/FullNode.jsx:68
+#: src/components/fullNode/FullNode.jsx:59
 msgid "Header Hash"
 msgstr "ヘッダーのハッシュ値"
 
@@ -727,7 +727,7 @@ msgid "Header hash"
 msgstr "ヘッダーのハッシュ値"
 
 #: src/components/block/Block.jsx:191
-#: src/components/fullNode/FullNode.jsx:87
+#: src/components/fullNode/FullNode.jsx:75
 #: src/components/fullNode/FullNodeConnections.tsx:54
 msgid "Height"
 msgstr "高さ"
@@ -773,7 +773,7 @@ msgstr "合言葉でウォレットをインポート"
 msgid "Import from Mnemonics (24 words)"
 msgstr "合言葉 (24語) で鍵をインポート"
 
-#: src/components/fullNode/FullNode.jsx:52
+#: src/components/fullNode/FullNode.jsx:43
 msgid "In Progress"
 msgstr "進行中"
 
@@ -838,7 +838,7 @@ msgstr "読み込み中…"
 msgid "Local Harvester Plots"
 msgstr "ローカル収穫機上の耕地"
 
-#: src/components/app/AppRouter.tsx:34
+#: src/components/app/AppRouter.tsx:28
 msgid "Logging in"
 msgstr "ログイン中"
 
@@ -900,13 +900,17 @@ msgstr "メモリ使用量を増やすと速度が微上昇します"
 msgid "My Pubkey"
 msgstr "私の公開鍵"
 
-#: src/components/fullNode/FullNode.jsx:174
+#: src/components/fullNode/FullNode.jsx:173
 msgid "Network Name"
 msgstr ""
 
+#: src/components/fullNode/FullNode.jsx:106
+msgid "Network has not yet been launched, once it launches full node will start automatically."
+msgstr ""
+
 #: src/components/app/AppRouter.tsx:24
-msgid "Network not launched yet, waiting for genesis challenge!"
-msgstr "ネットワークがまだ開始されていません。起源チャレンジを待機中!"
+#~ msgid "Network not launched yet, waiting for genesis challenge!"
+#~ msgstr "Network not launched yet, waiting for genesis challenge!"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:471
 #: src/components/wallet/standard/WalletStandard.tsx:399
@@ -932,7 +936,7 @@ msgstr "ニックネーム"
 msgid "No"
 msgstr "いいえ"
 
-#: src/middleware/middleware_api.jsx:298
+#: src/middleware/middleware_api.jsx:283
 msgid "No 24 word seed, since this key is imported."
 msgstr "この鍵はインポートされているため、24語の種がありません。"
 
@@ -961,7 +965,7 @@ msgstr "お持ちの耕地は現在、どれも耕地フィルターを通過で
 msgid "Not Available"
 msgstr "該当なし"
 
-#: src/components/fullNode/FullNode.jsx:136
+#: src/components/fullNode/FullNode.jsx:135
 msgid "Not Synced"
 msgstr "同期されていません"
 
@@ -974,8 +978,8 @@ msgid "Not confirmed yet"
 msgstr "未承認"
 
 #: src/components/core/components/FormatConnectionStatus/FormatConnectionStatus.tsx:48
-#: src/components/fullNode/FullNode.jsx:159
-#: src/components/fullNode/FullNode.jsx:166
+#: src/components/fullNode/FullNode.jsx:158
+#: src/components/fullNode/FullNode.jsx:165
 msgid "Not connected"
 msgstr "未接続"
 
@@ -1007,15 +1011,15 @@ msgstr "作成した注文"
 msgid "Outgoing"
 msgstr "出金"
 
-#: src/components/fullNode/FullNode.jsx:180
+#: src/components/fullNode/FullNode.jsx:179
 msgid "Peak Height"
 msgstr "先端の高さ"
 
 #: src/components/fullNode/FullNode.jsx:204
 #~ msgid "Peak Sub-block Height"
-#~ msgstr "Peak Sub-block Height"
+#~ msgstr "Peak Sub-block Height<<<<<<< HEAD"
 
-#: src/components/fullNode/FullNode.jsx:185
+#: src/components/fullNode/FullNode.jsx:184
 msgid "Peak Time"
 msgstr "先端の日時"
 
@@ -1207,11 +1211,11 @@ msgstr "前ヘッダーハッシュ値"
 msgid "Private key with public fingerprint {fingerprint}"
 msgstr "公開指紋 {fingerprint} に対応する秘密鍵"
 
-#: src/middleware/middleware_api.jsx:262
+#: src/middleware/middleware_api.jsx:247
 msgid "Private key {0}"
 msgstr "秘密鍵 {0}"
 
-#: src/middleware/middleware_api.jsx:272
+#: src/middleware/middleware_api.jsx:257
 msgid "Private key:"
 msgstr "秘密鍵:"
 
@@ -1227,7 +1231,7 @@ msgstr "発見証明数"
 msgid "Pubkey"
 msgstr "公開鍵"
 
-#: src/middleware/middleware_api.jsx:280
+#: src/middleware/middleware_api.jsx:265
 msgid "Public key:"
 msgstr "公開鍵:"
 
@@ -1338,7 +1342,7 @@ msgstr "2つ目の一時フォルダの場所"
 msgid "See private key"
 msgstr "秘密鍵を表示"
 
-#: src/middleware/middleware_api.jsx:290
+#: src/middleware/middleware_api.jsx:275
 msgid "Seed:"
 msgstr "乱数種:"
 
@@ -1453,19 +1457,20 @@ msgstr "支払いインターバル長 (ブロック数)"
 msgid "Spending Limit (chia per interval): {0}"
 msgstr "支払い額上限 (チア毎インターバル): {0}"
 
-#: src/components/fullNode/FullNode.jsx:108
+#: src/components/fullNode/FullNode.jsx:94
 msgid "State"
 msgstr "状態"
 
-#: src/components/fullNode/FullNode.jsx:118
-#: src/components/fullNode/FullNode.jsx:135
-#: src/components/fullNode/FullNode.jsx:143
-#: src/components/fullNode/FullNode.jsx:165
+#: src/components/fullNode/FullNode.jsx:102
+#: src/components/fullNode/FullNode.jsx:117
+#: src/components/fullNode/FullNode.jsx:134
+#: src/components/fullNode/FullNode.jsx:142
+#: src/components/fullNode/FullNode.jsx:164
 #: src/components/plot/overview/PlotOverviewPlots.tsx:71
 #: src/components/trading/TradingOverview.jsx:128
 #: src/components/wallet/WalletHistory.tsx:42
-#: src/components/wallet/WalletStatusCard.tsx:11
-#: src/components/wallet/Wallets.tsx:93
+#: src/components/wallet/WalletStatusCard.tsx:12
+#: src/components/wallet/Wallets.tsx:94
 msgid "Status"
 msgstr "状態"
 
@@ -1505,7 +1510,7 @@ msgstr "状態:"
 msgid "Submit"
 msgstr "提出"
 
-#: src/components/fullNode/FullNode.jsx:144
+#: src/components/fullNode/FullNode.jsx:143
 msgid "Synced"
 msgstr "同期完了"
 
@@ -1515,7 +1520,7 @@ msgstr "同期完了"
 msgid "Syncing"
 msgstr "同期中"
 
-#: src/components/fullNode/FullNode.jsx:120
+#: src/components/fullNode/FullNode.jsx:119
 msgid "Syncing {progress}/{tip}"
 msgstr "同期中 {progress}/{tip}"
 
@@ -1556,11 +1561,11 @@ msgstr "以下が農家の接続先のフルノードです。<0>詳しく</0>"
 msgid "The minimum required size for mainnet is k=32"
 msgstr "メインネットで必要な最小サイズは k=32 です"
 
-#: src/components/fullNode/FullNode.jsx:138
+#: src/components/fullNode/FullNode.jsx:137
 msgid "The node is not synced"
 msgstr "ノードが同期されていません"
 
-#: src/components/fullNode/FullNode.jsx:126
+#: src/components/fullNode/FullNode.jsx:125
 msgid "The node is syncing, which means it is downloading blocks from other nodes, to reach the latest block in the chain"
 msgstr "ノードが同期中です。ブロックチェーンの先端に辿り着くまで他のノードからブロックをダウンロードします。"
 
@@ -1606,7 +1611,7 @@ msgstr ""
 msgid "This is the sum of the incoming and outgoing pending transactions (not yet included into the blockchain). This does not include farming rewards."
 msgstr ""
 
-#: src/components/fullNode/FullNode.jsx:189
+#: src/components/fullNode/FullNode.jsx:186
 msgid "This is the time of the latest peak sub block."
 msgstr ""
 
@@ -1622,7 +1627,7 @@ msgstr "現在の先端サブブロックにおいて、あなたの秘密鍵が
 msgid "This is the total balance + pending balance: it is what your balance will be after all pending transactions are confirmed."
 msgstr "こちらが全残高 + 保留中残高です: 全ての保留中の取引が承認されたら、残高はこの額になります。"
 
-#: src/components/fullNode/FullNode.jsx:147
+#: src/components/fullNode/FullNode.jsx:146
 msgid "This node is fully caught up and validating the network"
 msgstr "このノードは先端に辿り着いて、ネットワークの検証に携わっています"
 
@@ -1638,7 +1643,7 @@ msgstr "この注文の作成日時です"
 msgid "This trade was included on blockchain at this block height"
 msgstr "このトレードはこのブロック高でブロックチェーンに取り込まれました。"
 
-#: src/components/fullNode/FullNode.jsx:100
+#: src/components/fullNode/FullNode.jsx:86
 msgid "Time Created"
 msgstr "作成日時"
 
@@ -1664,7 +1669,7 @@ msgstr "全残高"
 msgid "Total Chia Farmed"
 msgstr "全収穫済チア"
 
-#: src/components/fullNode/FullNode.jsx:207
+#: src/components/fullNode/FullNode.jsx:204
 msgid "Total Iterations"
 msgstr "全評価回数"
 
@@ -1684,7 +1689,7 @@ msgstr "全ての耕地の容量の合計"
 msgid "Total VDF Iterations"
 msgstr "全 VDF 評価回数"
 
-#: src/components/fullNode/FullNode.jsx:209
+#: src/components/fullNode/FullNode.jsx:206
 msgid "Total iterations since the start of the blockchain"
 msgstr "ブロックチェーンの開始からの合計評価回数"
 
@@ -1728,7 +1733,7 @@ msgstr "取引フィルターハッシュ値"
 msgid "Type"
 msgstr "種類"
 
-#: src/components/fullNode/FullNode.jsx:106
+#: src/components/fullNode/FullNode.jsx:92
 msgid "Unfinished"
 msgstr "未完"
 
@@ -1741,7 +1746,7 @@ msgstr "一意的識別子"
 msgid "User Pubkey"
 msgstr "ユーザー公開鍵"
 
-#: src/components/fullNode/FullNode.jsx:201
+#: src/components/fullNode/FullNode.jsx:198
 msgid "VDF Sub Slot Iterations"
 msgstr "VDF サブスロット評価回数"
 
@@ -1773,6 +1778,15 @@ msgstr "保留中残高を表示…"
 msgid "Wait for synchronization"
 msgstr "同期待ち"
 
+#: src/components/wallet/Wallets.tsx:104
+msgid "Waiting for launch"
+msgstr ""
+
+#: src/components/fullNode/FullNode.jsx:103
+#: src/components/wallet/WalletStatusCard.tsx:20
+msgid "Waiting for network to launch"
+msgstr ""
+
 #: src/components/wallet/Wallets.tsx:34
 #~ msgid "WalletItem.ccWallet"
 #~ msgstr ""
@@ -1802,7 +1816,7 @@ msgstr "同期待ち"
 #~ msgstr ""
 
 #: src/components/dashboard/DashboardSideBar.tsx:24
-#: src/components/wallet/Wallets.tsx:131
+#: src/components/wallet/Wallets.tsx:134
 msgid "Wallets"
 msgstr "ウォレット"
 
@@ -1872,32 +1886,32 @@ msgstr "あなたのフルノード接続"
 msgid "Your Harvester Network"
 msgstr "あなたの収穫機ネットワーク"
 
-#: src/components/wallet/WalletStatusCard.tsx:30
-#: src/components/wallet/Wallets.tsx:119
+#: src/components/wallet/WalletStatusCard.tsx:31
+#: src/components/wallet/Wallets.tsx:122
 msgid "connections:"
 msgstr "接続数:"
 
-#: src/components/wallet/WalletStatusCard.tsx:24
-#: src/components/wallet/Wallets.tsx:113
+#: src/components/wallet/WalletStatusCard.tsx:25
+#: src/components/wallet/Wallets.tsx:116
 msgid "height:"
 msgstr "高さ:"
 
-#: src/components/wallet/Wallets.tsx:107
+#: src/components/wallet/Wallets.tsx:110
 msgid "not synced"
 msgstr "同期されていません"
 
-#: src/components/wallet/WalletStatusCard.tsx:16
-#: src/components/wallet/Wallets.tsx:98
+#: src/components/wallet/WalletStatusCard.tsx:17
+#: src/components/wallet/Wallets.tsx:99
 msgid "status:"
 msgstr "状態:"
 
-#: src/components/wallet/WalletStatusCard.tsx:19
-#: src/components/wallet/Wallets.tsx:105
+#: src/components/wallet/WalletStatusCard.tsx:20
+#: src/components/wallet/Wallets.tsx:108
 msgid "synced"
 msgstr "同期完了"
 
-#: src/components/wallet/WalletStatusCard.tsx:19
-#: src/components/wallet/Wallets.tsx:103
+#: src/components/wallet/WalletStatusCard.tsx:20
+#: src/components/wallet/Wallets.tsx:106
 msgid "syncing"
 msgstr "同期中"
 
