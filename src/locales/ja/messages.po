@@ -8,7 +8,7 @@ msgstr ""
 "Language: ja_JP\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-03-09 23:15\n"
+"PO-Revision-Date: 2021-03-10 01:10\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -34,8 +34,8 @@ msgstr "バケツ数は 128 がおすすめ"
 msgid "A harvester is a service running on a machine where plot(s) are actually stored. A farmer and harvester talk to a full node to see the state of the chain. View your network of connected harvesters below Learn more"
 msgstr "収穫機は耕地が実際に保存されているデバイス上に走らせるサービスです。農家と収穫機はフルノードと通信することでブロックチェーンの状態を認識します。以下が接続されている収穫機ネットワークです。詳しく"
 
-#: src/electron-starter.js:353
-#: src/electron-starter.js:446
+#: src/electron-starter.js:366
+#: src/electron-starter.js:459
 msgid "About Chia Blockchain"
 msgstr "チアブロックチェーンについて"
 
@@ -123,7 +123,7 @@ msgstr "本当にこの耕地を削除しますか？耕地は削除すると復
 msgid "Are you sure you want to disconnect?"
 msgstr "本当に接続を解除しますか？"
 
-#: src/electron-starter.js:125
+#: src/electron-starter.js:93
 msgid "Are you sure you want to quit? GUI Plotting and farming will stop."
 msgstr "本当に終了しますか？ GUI 上の耕地作り及び耕作も停止します。"
 
@@ -242,15 +242,15 @@ msgstr "チャレンジ"
 msgid "Challenge Hash"
 msgstr "チャレンジのハッシュ値"
 
-#: src/electron-starter.js:332
+#: src/electron-starter.js:345
 msgid "Chat on KeyBase"
 msgstr "Keybase でチャット"
 
-#: src/electron-starter.js:350
+#: src/electron-starter.js:363
 msgid "Chia"
 msgstr "チア"
 
-#: src/electron-starter.js:289
+#: src/electron-starter.js:302
 msgid "Chia Blockchain Wiki"
 msgstr "チアブロックチェーンの Wiki"
 
@@ -304,7 +304,7 @@ msgstr "カラードコイン"
 msgid "Coloured Coin Options"
 msgstr "カラードコインのオプション"
 
-#: src/electron-starter.js:123
+#: src/electron-starter.js:91
 msgid "Confirm"
 msgstr "了承"
 
@@ -355,7 +355,7 @@ msgstr "接続の種類"
 msgid "Connections"
 msgstr "接続数"
 
-#: src/electron-starter.js:313
+#: src/electron-starter.js:326
 msgid "Contribute on GitHub"
 msgstr "GitHub で開発協力"
 
@@ -514,11 +514,11 @@ msgstr "全ての鍵を削除するとどれも復元することができなく
 msgid "Deleting the key will permanently remove the key from your computer, make sure you have backups. Are you sure you want to continue?"
 msgstr "鍵を削除すると復元することができませんので、必ずバックアップを取ってください。本当に続行しますか？"
 
-#: src/electron-starter.js:235
+#: src/electron-starter.js:248
 msgid "Developer"
 msgstr "開発者"
 
-#: src/electron-starter.js:238
+#: src/electron-starter.js:251
 msgid "Developer Tools"
 msgstr "開発者向けツール"
 
@@ -557,7 +557,7 @@ msgstr "注文ファイルをここにドラッグ&ドロップ"
 msgid "Drag and drop your backup file"
 msgstr "バックアップファイルをここにドラッグ&ドロップ"
 
-#: src/electron-starter.js:194
+#: src/electron-starter.js:207
 msgid "Edit"
 msgstr "編集"
 
@@ -657,8 +657,8 @@ msgstr "全手数料"
 #~ msgid "Fees Puzzle Hash"
 #~ msgstr ""
 
-#: src/electron-starter.js:186
-#: src/electron-starter.js:393
+#: src/electron-starter.js:199
+#: src/electron-starter.js:406
 msgid "File"
 msgstr "ファイル"
 
@@ -677,11 +677,11 @@ msgstr "最終フォルダの場所"
 msgid "Finished"
 msgstr "完了"
 
-#: src/electron-starter.js:338
+#: src/electron-starter.js:351
 msgid "Follow on Twitter"
 msgstr "Twitter でフォロー"
 
-#: src/electron-starter.js:297
+#: src/electron-starter.js:310
 msgid "Frequently Asked Questions"
 msgstr "よくある質問"
 
@@ -694,7 +694,7 @@ msgstr "フルノード"
 msgid "Full Node Status"
 msgstr "フルノードの状態"
 
-#: src/electron-starter.js:263
+#: src/electron-starter.js:276
 msgid "Full Screen"
 msgstr "全画面表示"
 
@@ -720,7 +720,7 @@ msgstr "ヘッダーのハッシュ値"
 msgid "Height"
 msgstr "高さ"
 
-#: src/electron-starter.js:285
+#: src/electron-starter.js:298
 msgid "Help"
 msgstr "ヘルプ"
 
@@ -912,7 +912,7 @@ msgid "Nickname"
 msgstr "ニックネーム"
 
 #: src/components/trading/TradingOverview.jsx:212
-#: src/electron-starter.js:122
+#: src/electron-starter.js:90
 msgid "No"
 msgstr "いいえ"
 
@@ -1227,6 +1227,10 @@ msgstr "キュー名"
 msgid "Queued"
 msgstr "順番待ち"
 
+#: src/electron-starter.js:80
+msgid "Quit"
+msgstr ""
+
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:73
 msgid "RAM max usage"
 msgstr "最大使用 RAM"
@@ -1269,7 +1273,7 @@ msgstr "DID ウォレットを復元"
 msgid "Refresh Plots"
 msgstr "耕地一覧を更新"
 
-#: src/electron-starter.js:305
+#: src/electron-starter.js:318
 msgid "Release Notes"
 msgstr "リリースノート"
 
@@ -1277,7 +1281,7 @@ msgstr "リリースノート"
 msgid "Rename"
 msgstr "名称変更"
 
-#: src/electron-starter.js:324
+#: src/electron-starter.js:337
 msgid "Report an Issue..."
 msgstr "問題を報告"
 
@@ -1384,6 +1388,10 @@ msgstr "レート制限付きウォレットの管理者にあなたの公開鍵
 msgid "Show Advanced Options"
 msgstr "詳細設定を表示"
 
+#: src/electron-starter.js:79
+msgid "Show app"
+msgstr ""
+
 #: src/components/trading/CreateOffer.jsx:174
 #: src/components/trading/TradesTable.tsx:13
 msgid "Side"
@@ -1397,7 +1405,7 @@ msgstr "ログイン"
 #~ msgid "Skip"
 #~ msgstr ""
 
-#: src/electron-starter.js:407
+#: src/electron-starter.js:420
 msgid "Speech"
 msgstr ""
 
@@ -1720,7 +1728,7 @@ msgstr "ユーザー公開鍵"
 msgid "VDF Sub Slot Iterations"
 msgstr "VDF サブスロット評価回数"
 
-#: src/electron-starter.js:226
+#: src/electron-starter.js:239
 msgid "View"
 msgstr "表示"
 
@@ -1813,7 +1821,7 @@ msgstr "ご利用ありがとうございます！以下の合言葉はあなた
 msgid "When you receive the setup info packet from your admin, enter it below to complete your Rate Limited Wallet setup:"
 msgstr ""
 
-#: src/electron-starter.js:271
+#: src/electron-starter.js:284
 msgid "Window"
 msgstr "ウィンドウ"
 
@@ -1822,7 +1830,7 @@ msgid "Without fees"
 msgstr "手数料抜き"
 
 #: src/components/trading/TradingOverview.jsx:212
-#: src/electron-starter.js:122
+#: src/electron-starter.js:90
 msgid "Yes"
 msgstr "はい"
 
