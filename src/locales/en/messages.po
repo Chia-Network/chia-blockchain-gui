@@ -188,13 +188,9 @@ msgstr "Block with hash {headerHash}"
 
 #: src/components/block/Block.jsx:155
 msgid "Block with hash {headerHash} does not exists."
-msgstr ""
+msgstr "<<<<<<< HEAD"
 
-<<<<<<< HEAD
 #: src/components/fullNode/FullNode.jsx:311
-=======
-#: src/components/fullNode/FullNode.jsx:302
->>>>>>> new locales
 msgid "Blocks"
 msgstr ""
 
@@ -528,15 +524,10 @@ msgstr ""
 
 #: src/electron-starter.js:251
 msgid "Developer Tools"
-msgstr ""
+msgstr "<<<<<<< HEAD"
 
-<<<<<<< HEAD
 #: src/components/block/Block.jsx:213
-#: src/components/fullNode/FullNode.jsx:194
-=======
-#: src/components/block/Block.jsx:211
-#: src/components/fullNode/FullNode.jsx:185
->>>>>>> new locales
+#: src/components/fullNode/FullNode.jsx:191
 msgid "Difficulty"
 msgstr ""
 
@@ -590,21 +581,13 @@ msgstr ""
 
 #: src/components/wallet/standard/WalletStandard.tsx:306
 msgid "Error: Cannot send chia to coloured address. Please enter a chia address."
+msgstr "<<<<<<< HEAD"
+
+#: src/components/fullNode/FullNode.jsx:210
+msgid "Estimated network space"
 msgstr ""
 
-<<<<<<< HEAD
 #: src/components/fullNode/FullNode.jsx:213
-msgid "Estimated network space"
-msgstr ""
-
-#: src/components/fullNode/FullNode.jsx:216
-=======
-#: src/components/fullNode/FullNode.jsx:204
-msgid "Estimated network space"
-msgstr ""
-
-#: src/components/fullNode/FullNode.jsx:207
->>>>>>> new locales
 msgid "Estimated sum of all the plotted disk space of all farmers in the network"
 msgstr ""
 
@@ -715,15 +698,11 @@ msgid "Frequently Asked Questions"
 msgstr ""
 
 #: src/components/dashboard/DashboardSideBar.tsx:23
-#: src/components/fullNode/FullNode.jsx:327
+#: src/components/fullNode/FullNode.jsx:325
 msgid "Full Node"
-msgstr ""
+msgstr "<<<<<<< HEAD"
 
-<<<<<<< HEAD
-#: src/components/fullNode/FullNode.jsx:271
-=======
-#: src/components/fullNode/FullNode.jsx:259
->>>>>>> new locales
+#: src/components/fullNode/FullNode.jsx:268
 msgid "Full Node Status"
 msgstr ""
 
@@ -745,15 +724,10 @@ msgstr ""
 
 #: src/components/block/Block.jsx:177
 msgid "Header hash"
-msgstr ""
+msgstr "<<<<<<< HEAD"
 
-<<<<<<< HEAD
 #: src/components/block/Block.jsx:191
-#: src/components/fullNode/FullNode.jsx:87
-=======
-#: src/components/block/Block.jsx:189
 #: src/components/fullNode/FullNode.jsx:75
->>>>>>> new locales
 #: src/components/fullNode/FullNodeConnections.tsx:54
 msgid "Height"
 msgstr ""
@@ -924,17 +898,15 @@ msgstr ""
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:429
 msgid "My Pubkey"
-msgstr ""
+msgstr "<<<<<<< HEAD"
 
-<<<<<<< HEAD
-#: src/components/fullNode/FullNode.jsx:174
+#: src/components/fullNode/FullNode.jsx:173
 msgid "Network Name"
-msgstr "Network Name"
-=======
+msgstr "Network Name======="
+
 #: src/components/fullNode/FullNode.jsx:106
 msgid "Network has not yet been launched, once it launches full node will start automatically."
-msgstr "Network has not yet been launched, once it launches full node will start automatically."
->>>>>>> new locales
+msgstr "Network has not yet been launched, once it launches full node will start automatically.>>>>>>> new locales"
 
 #: src/components/app/AppRouter.tsx:24
 #~ msgid "Network not launched yet, waiting for genesis challenge!"
@@ -962,13 +934,9 @@ msgstr ""
 #: src/components/trading/TradingOverview.jsx:212
 #: src/electron-starter.js:90
 msgid "No"
-msgstr ""
+msgstr "<<<<<<< HEAD"
 
-<<<<<<< HEAD
-#: src/middleware/middleware_api.jsx:298
-=======
-#: src/middleware/middleware_api.jsx:278
->>>>>>> new locales
+#: src/middleware/middleware_api.jsx:283
 msgid "No 24 word seed, since this key is imported."
 msgstr ""
 
@@ -1041,25 +1009,17 @@ msgstr ""
 
 #: src/components/wallet/WalletHistory.tsx:18
 msgid "Outgoing"
-msgstr ""
+msgstr "<<<<<<< HEAD"
 
-<<<<<<< HEAD
-#: src/components/fullNode/FullNode.jsx:180
-=======
-#: src/components/fullNode/FullNode.jsx:173
->>>>>>> new locales
+#: src/components/fullNode/FullNode.jsx:179
 msgid "Peak Height"
 msgstr ""
 
 #: src/components/fullNode/FullNode.jsx:204
 #~ msgid "Peak Sub-block Height"
-#~ msgstr "Peak Sub-block Height"
+#~ msgstr "Peak Sub-block Height<<<<<<< HEAD"
 
-<<<<<<< HEAD
-#: src/components/fullNode/FullNode.jsx:185
-=======
-#: src/components/fullNode/FullNode.jsx:178
->>>>>>> new locales
+#: src/components/fullNode/FullNode.jsx:184
 msgid "Peak Time"
 msgstr ""
 
@@ -1249,21 +1209,13 @@ msgstr "Previous Header Hash"
 
 #: src/components/selectKey/SelectKey.tsx:87
 msgid "Private key with public fingerprint {fingerprint}"
-msgstr ""
+msgstr "<<<<<<< HEAD"
 
-<<<<<<< HEAD
-#: src/middleware/middleware_api.jsx:262
+#: src/middleware/middleware_api.jsx:247
 msgid "Private key {0}"
 msgstr ""
 
-#: src/middleware/middleware_api.jsx:272
-=======
-#: src/middleware/middleware_api.jsx:242
-msgid "Private key {0}"
-msgstr ""
-
-#: src/middleware/middleware_api.jsx:252
->>>>>>> new locales
+#: src/middleware/middleware_api.jsx:257
 msgid "Private key:"
 msgstr ""
 
@@ -1277,13 +1229,9 @@ msgstr ""
 
 #: src/components/wallet/create/createRLAdmin.jsx:323
 msgid "Pubkey"
-msgstr ""
+msgstr "<<<<<<< HEAD"
 
-<<<<<<< HEAD
-#: src/middleware/middleware_api.jsx:280
-=======
-#: src/middleware/middleware_api.jsx:260
->>>>>>> new locales
+#: src/middleware/middleware_api.jsx:265
 msgid "Public key:"
 msgstr ""
 
@@ -1392,13 +1340,9 @@ msgstr ""
 
 #: src/components/selectKey/SelectKey.tsx:93
 msgid "See private key"
-msgstr ""
+msgstr "<<<<<<< HEAD"
 
-<<<<<<< HEAD
-#: src/middleware/middleware_api.jsx:290
-=======
-#: src/middleware/middleware_api.jsx:270
->>>>>>> new locales
+#: src/middleware/middleware_api.jsx:275
 msgid "Seed:"
 msgstr ""
 
@@ -1665,13 +1609,9 @@ msgstr ""
 
 #: src/components/wallet/standard/WalletStandard.tsx:229
 msgid "This is the sum of the incoming and outgoing pending transactions (not yet included into the blockchain). This does not include farming rewards."
-msgstr ""
+msgstr "<<<<<<< HEAD"
 
-<<<<<<< HEAD
-#: src/components/fullNode/FullNode.jsx:189
-=======
-#: src/components/fullNode/FullNode.jsx:180
->>>>>>> new locales
+#: src/components/fullNode/FullNode.jsx:186
 msgid "This is the time of the latest peak sub block."
 msgstr ""
 
@@ -1727,13 +1667,9 @@ msgstr ""
 
 #: src/components/farm/card/FarmCardTotalChiaFarmed.tsx:12
 msgid "Total Chia Farmed"
-msgstr ""
+msgstr "<<<<<<< HEAD"
 
-<<<<<<< HEAD
-#: src/components/fullNode/FullNode.jsx:207
-=======
-#: src/components/fullNode/FullNode.jsx:198
->>>>>>> new locales
+#: src/components/fullNode/FullNode.jsx:204
 msgid "Total Iterations"
 msgstr ""
 
@@ -1751,13 +1687,9 @@ msgstr ""
 
 #: src/components/block/Block.jsx:217
 msgid "Total VDF Iterations"
-msgstr ""
+msgstr "<<<<<<< HEAD"
 
-<<<<<<< HEAD
-#: src/components/fullNode/FullNode.jsx:209
-=======
-#: src/components/fullNode/FullNode.jsx:200
->>>>>>> new locales
+#: src/components/fullNode/FullNode.jsx:206
 msgid "Total iterations since the start of the blockchain"
 msgstr ""
 
@@ -1812,13 +1744,9 @@ msgstr ""
 #: src/components/wallet/create/createRLAdmin.jsx:307
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:300
 msgid "User Pubkey"
-msgstr ""
+msgstr "<<<<<<< HEAD"
 
-<<<<<<< HEAD
-#: src/components/fullNode/FullNode.jsx:201
-=======
-#: src/components/fullNode/FullNode.jsx:192
->>>>>>> new locales
+#: src/components/fullNode/FullNode.jsx:198
 msgid "VDF Sub Slot Iterations"
 msgstr ""
 
