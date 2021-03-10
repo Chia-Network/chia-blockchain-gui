@@ -73,7 +73,7 @@ msgstr "Lägg till plånbok"
 
 #: src/components/farm/overview/FarmOverviewHero.tsx:35
 #: src/components/plot/PlotHeader.tsx:33
-#: src/components/plot/add/PlotAdd.tsx:55
+#: src/components/plot/add/PlotAdd.tsx:54
 #: src/components/plot/overview/PlotOverviewHero.tsx:29
 msgid "Add a Plot"
 msgstr "Lägg till en plott"
@@ -125,6 +125,10 @@ msgstr ""
 
 #: src/electron-starter.js:93
 msgid "Are you sure you want to quit? GUI Plotting and farming will stop."
+msgstr ""
+
+#: src/components/plot/add/PlotAddChooseSize.tsx:31
+msgid "Are you sure you want to use k={plotSize}"
 msgstr ""
 
 #: src/components/selectKey/SelectKey.tsx:39
@@ -262,7 +266,7 @@ msgstr "Chia-plånbok"
 msgid "Choose Number of Plots"
 msgstr "Välj antal plottar"
 
-#: src/components/plot/add/PlotAddChooseSize.tsx:16
+#: src/components/plot/add/PlotAddChooseSize.tsx:54
 msgid "Choose Plot Size"
 msgstr "Välj plottstorlek"
 
@@ -391,7 +395,7 @@ msgstr "Skapa DID-plånbok"
 msgid "Create Offer"
 msgstr "Skapa erbjudande"
 
-#: src/components/plot/add/PlotAdd.tsx:67
+#: src/components/plot/add/PlotAdd.tsx:66
 msgid "Create Plot"
 msgstr "Skapa plott"
 
@@ -928,7 +932,7 @@ msgstr "Smeknamn"
 msgid "No"
 msgstr "Nej"
 
-#: src/middleware/middleware_api.jsx:295
+#: src/middleware/middleware_api.jsx:298
 msgid "No 24 word seed, since this key is imported."
 msgstr "Ingen 24 ords minnesfras eftersom denna nyckel har importerats."
 
@@ -1132,7 +1136,7 @@ msgstr "Publik nyckel för plott"
 msgid "Plot Seed"
 msgstr "Minnesfras för plott"
 
-#: src/components/plot/add/PlotAddChooseSize.tsx:28
+#: src/components/plot/add/PlotAddChooseSize.tsx:66
 msgid "Plot Size"
 msgstr "Plottstorlek"
 
@@ -1203,11 +1207,11 @@ msgstr ""
 msgid "Private key with public fingerprint {fingerprint}"
 msgstr "Privat nyckel med publikt fingeravtryck {fingerprint}"
 
-#: src/middleware/middleware_api.jsx:259
+#: src/middleware/middleware_api.jsx:262
 msgid "Private key {0}"
 msgstr "Privat nyckel {0}"
 
-#: src/middleware/middleware_api.jsx:269
+#: src/middleware/middleware_api.jsx:272
 msgid "Private key:"
 msgstr "Privat nyckel:"
 
@@ -1223,7 +1227,7 @@ msgstr "Hittade bevis"
 msgid "Pubkey"
 msgstr "Publik nyckel"
 
-#: src/middleware/middleware_api.jsx:277
+#: src/middleware/middleware_api.jsx:280
 msgid "Public key:"
 msgstr "Publik nyckel:"
 
@@ -1334,7 +1338,7 @@ msgstr "Andra tillfällig mapp"
 msgid "See private key"
 msgstr "Visa privat nyckel"
 
-#: src/middleware/middleware_api.jsx:287
+#: src/middleware/middleware_api.jsx:290
 msgid "Seed:"
 msgstr "Minnesfras:"
 
@@ -1547,7 +1551,8 @@ msgstr "Tillfällig mapp"
 msgid "The full node that your farmer is connected to is below. <0>Learn more</0>"
 msgstr "Den fullständiga nod din odlare är ansluten till är nedan. <0>Läs mer</0>"
 
-#: src/components/plot/add/PlotAddChooseSize.tsx:36
+#: src/components/plot/add/PlotAddChooseSize.tsx:30
+#: src/components/plot/add/PlotAddChooseSize.tsx:74
 msgid "The minimum required size for mainnet is k=32"
 msgstr "Den minsta storlek som krävs för mainnet är k=32"
 
@@ -1655,7 +1660,7 @@ msgstr "Till"
 msgid "Total Balance"
 msgstr "Totalt saldo"
 
-#: src/components/farm/card/FarmCardTotalChiaFarmed.tsx:15
+#: src/components/farm/card/FarmCardTotalChiaFarmed.tsx:12
 msgid "Total Chia Farmed"
 msgstr "Totalt antal Chia som odlats"
 
@@ -1841,12 +1846,13 @@ msgstr ""
 msgid "Without fees"
 msgstr "Utan avgifter"
 
+#: src/components/plot/add/PlotAddChooseSize.tsx:30
 #: src/components/trading/TradingOverview.jsx:212
 #: src/electron-starter.js:90
 msgid "Yes"
 msgstr "Ja"
 
-#: src/components/plot/add/PlotAddChooseSize.tsx:18
+#: src/components/plot/add/PlotAddChooseSize.tsx:56
 msgid "You do not need to be synched or connected to Plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
 msgstr ""
 
