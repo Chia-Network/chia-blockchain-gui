@@ -20,6 +20,7 @@ import { calculatePoolReward, calculateBaseFarmerReward } from '../../util/block
 import LayoutMain from '../layout/LayoutMain';
 import toBech32m from '../../util/toBech32m';
 import BlockTitle from './BlockTitle';
+import useCurrencyCode from '../../hooks/useCurrencyCode';
 
 /* global BigInt */
 
@@ -41,6 +42,7 @@ export default function Block() {
   const [prevBlockRecord, setPrevBlockRecord] = useState();
   const [newPlotId, setNewPlotId] = useState();
   const [nextSubBlocks, setNextSubBlocks] = useState([]);
+  const currencyCode = useCurrencyCode();
 
   const [error, setError] = useState();
   const [loading, setLoading] = useState(true);
@@ -279,15 +281,15 @@ export default function Block() {
     },
     {
       name: <Trans>Pool Reward Amount</Trans>,
-      value: `${poolReward} ${CurrencyCode.CHIA}`,
+      value: `${poolReward} ${currencyCode}`,
     },
     {
       name: <Trans>Base Farmer Reward Amount</Trans>,
-      value: `${baseFarmerReward} ${CurrencyCode.CHIA}`,
+      value: `${baseFarmerReward} ${currencyCode}`,
     },
     {
       name: <Trans>Fees Amount</Trans>,
-      value: chiaFees ? `${chiaFees} ${CurrencyCode.CHIA}` : '',
+      value: chiaFees ? `${chiaFees} ${currencyCode}` : '',
       tooltip: (
         <Trans>
           The total transactions fees in this block. Rewarded to the farmer.
