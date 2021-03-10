@@ -146,7 +146,7 @@ msgstr ""
 msgid "Balance"
 msgstr "Zostatok"
 
-#: src/components/block/Block.jsx:301
+#: src/components/block/Block.jsx:285
 msgid "Base Farmer Reward Amount"
 msgstr ""
 
@@ -162,7 +162,7 @@ msgstr "Najlepší odhad za posledných 5 hodín"
 #: src/components/block/Block.jsx:107
 #: src/components/block/Block.jsx:141
 #: src/components/block/Block.jsx:146
-#: src/components/block/Block.jsx:317
+#: src/components/block/Block.jsx:301
 msgid "Block"
 msgstr "Blok"
 
@@ -174,7 +174,7 @@ msgstr ""
 msgid "Block VDF Iterations"
 msgstr "Blok VDF iterácii"
 
-#: src/components/block/Block.jsx:322
+#: src/components/block/Block.jsx:306
 msgid "Block at height {0} in the Chia blockchain"
 msgstr ""
 
@@ -650,10 +650,14 @@ msgid "Fee"
 msgstr "Poplatok"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:420
-msgid "Fee (TXCH)"
-msgstr "Poplatok (TXCH)"
+#~ msgid "Fee (TXCH)"
+#~ msgstr "Poplatok (TXCH)"
 
-#: src/components/block/Block.jsx:305
+#: src/components/wallet/coloured/WalletColoured.tsx:420
+msgid "Fee ({0})"
+msgstr ""
+
+#: src/components/block/Block.jsx:289
 msgid "Fees Amount"
 msgstr "Množstvo odmeny"
 
@@ -905,7 +909,7 @@ msgstr "Nová adresa"
 msgid "New Wallet"
 msgstr "Pridať peňaženku"
 
-#: src/components/block/Block.jsx:336
+#: src/components/block/Block.jsx:320
 #: src/components/wallet/WalletAdd.tsx:47
 #: src/components/wallet/WalletImport.tsx:77
 msgid "Next"
@@ -1164,7 +1168,7 @@ msgstr "Verejný kľúč poolu"
 msgid "Pool Puzzle Hash"
 msgstr ""
 
-#: src/components/block/Block.jsx:297
+#: src/components/block/Block.jsx:281
 msgid "Pool Reward Amount"
 msgstr ""
 
@@ -1175,7 +1179,7 @@ msgstr ""
 msgid "Port"
 msgstr "Port"
 
-#: src/components/block/Block.jsx:331
+#: src/components/block/Block.jsx:315
 msgid "Previous"
 msgstr "Predchádzajúci"
 
@@ -1508,8 +1512,8 @@ msgid "Syncing {progress}/{tip}"
 msgstr "Synchronizácia {progress}/{tip}"
 
 #: src/components/farm/card/FarmCardBlockRewards.tsx:15
-msgid "TXCH Block Rewards"
-msgstr ""
+#~ msgid "TXCH Block Rewards"
+#~ msgstr ""
 
 #: src/components/farm/card/FarmCardCoinbaseRewards.tsx:12
 #~ msgid "TXCH Farming Rewards"
@@ -1524,8 +1528,8 @@ msgstr ""
 #~ msgstr "TXCH User Fees"
 
 #: src/components/farm/card/FarmCardUserFees.tsx:15
-msgid "TXCH User Transaction Fees"
-msgstr ""
+#~ msgid "TXCH User Transaction Fees"
+#~ msgstr ""
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:18
 #~ msgid "Temporary files are created during the plotting process which exceeds the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
@@ -1564,7 +1568,7 @@ msgstr ""
 msgid "The total number of VDF (verifiable delay function) or proof of time iterations on this block."
 msgstr "Celkový počet VDF (overiteľná funkcia oneskorenia) alebo dôkaz o časových iteráciách v tomto bloku."
 
-#: src/components/block/Block.jsx:308
+#: src/components/block/Block.jsx:292
 msgid "The total transactions fees in this block. Rewarded to the farmer."
 msgstr "Celkové poplatky v tomto bloku idú ťažiarovi."
 
@@ -1830,7 +1834,7 @@ msgstr ""
 msgid "Window"
 msgstr ""
 
-#: src/components/farm/card/FarmCardBlockRewards.tsx:15
+#: src/components/farm/card/FarmCardBlockRewards.tsx:16
 msgid "Without fees"
 msgstr ""
 
@@ -1887,4 +1891,12 @@ msgstr ""
 #: src/components/wallet/WalletStatusCard.tsx:19
 #: src/components/wallet/Wallets.tsx:103
 msgid "syncing"
+msgstr ""
+
+#: src/components/farm/card/FarmCardBlockRewards.tsx:16
+msgid "{0} Block Rewards"
+msgstr ""
+
+#: src/components/farm/card/FarmCardUserFees.tsx:16
+msgid "{0} User Transaction Fees"
 msgstr ""

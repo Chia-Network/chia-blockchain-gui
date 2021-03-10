@@ -15,8 +15,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Backdrop from '@material-ui/core/Backdrop';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import { AlertDialog, Card, Flex, } from '@chia/core';
-import { Dropzone } from '@chia/core';
+import { AlertDialog, Card, Dropzone, Flex, CurrencyCode } from '@chia/core';
 
 import {
   did_generate_backup_file,
@@ -471,7 +470,7 @@ const BalanceCardSubSection = (props) => {
           </Box>
           <Box>
             <Typography variant="subtitle1">
-              {mojo_to_chia_string(props.balance)} TXCH
+              {mojo_to_chia_string(props.balance)} {CurrencyCode.CHIA}
             </Typography>
           </Box>
         </Box>

@@ -146,7 +146,7 @@ msgstr "Il file di backup viene usato per ripristinare gli smart wallet."
 msgid "Balance"
 msgstr "Bilancio"
 
-#: src/components/block/Block.jsx:301
+#: src/components/block/Block.jsx:285
 msgid "Base Farmer Reward Amount"
 msgstr "Importo Base Ricompensa Farmer"
 
@@ -162,7 +162,7 @@ msgstr "Migliore stima sulle ultime 5 ore"
 #: src/components/block/Block.jsx:107
 #: src/components/block/Block.jsx:141
 #: src/components/block/Block.jsx:146
-#: src/components/block/Block.jsx:317
+#: src/components/block/Block.jsx:301
 msgid "Block"
 msgstr "Blocco"
 
@@ -174,7 +174,7 @@ msgstr ""
 msgid "Block VDF Iterations"
 msgstr "Blocco Iterazioni VDF"
 
-#: src/components/block/Block.jsx:322
+#: src/components/block/Block.jsx:306
 msgid "Block at height {0} in the Chia blockchain"
 msgstr "Blocco all'altezza {0} nella blockchain Chia"
 
@@ -650,10 +650,14 @@ msgid "Fee"
 msgstr "Fee"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:420
-msgid "Fee (TXCH)"
-msgstr "Fee (TXCH)"
+#~ msgid "Fee (TXCH)"
+#~ msgstr "Fee (TXCH)"
 
-#: src/components/block/Block.jsx:305
+#: src/components/wallet/coloured/WalletColoured.tsx:420
+msgid "Fee ({0})"
+msgstr ""
+
+#: src/components/block/Block.jsx:289
 msgid "Fees Amount"
 msgstr "Ammontare delle Fee"
 
@@ -905,7 +909,7 @@ msgstr "Nuovo Indirizzo"
 msgid "New Wallet"
 msgstr "Nuovo Wallet"
 
-#: src/components/block/Block.jsx:336
+#: src/components/block/Block.jsx:320
 #: src/components/wallet/WalletAdd.tsx:47
 #: src/components/wallet/WalletImport.tsx:77
 msgid "Next"
@@ -1164,7 +1168,7 @@ msgstr "Chiave Pubblica Pool"
 msgid "Pool Puzzle Hash"
 msgstr "Hash Puzzle della Pool"
 
-#: src/components/block/Block.jsx:297
+#: src/components/block/Block.jsx:281
 msgid "Pool Reward Amount"
 msgstr "Ammontare della Ricompensa della Pool"
 
@@ -1175,7 +1179,7 @@ msgstr "Ammontare della Ricompensa della Pool"
 msgid "Port"
 msgstr "Porta"
 
-#: src/components/block/Block.jsx:331
+#: src/components/block/Block.jsx:315
 msgid "Previous"
 msgstr "Precedente"
 
@@ -1508,8 +1512,8 @@ msgid "Syncing {progress}/{tip}"
 msgstr "Sincronizzando {progress}/{tip}"
 
 #: src/components/farm/card/FarmCardBlockRewards.tsx:15
-msgid "TXCH Block Rewards"
-msgstr "Ricompense Blocco TXCH"
+#~ msgid "TXCH Block Rewards"
+#~ msgstr "Ricompense Blocco TXCH"
 
 #: src/components/farm/card/FarmCardCoinbaseRewards.tsx:12
 #~ msgid "TXCH Farming Rewards"
@@ -1524,8 +1528,8 @@ msgstr "Ricompense Blocco TXCH"
 #~ msgstr "TXCH User Fees"
 
 #: src/components/farm/card/FarmCardUserFees.tsx:15
-msgid "TXCH User Transaction Fees"
-msgstr "Tasse Transazioni Utente TXCH"
+#~ msgid "TXCH User Transaction Fees"
+#~ msgstr "Tasse Transazioni Utente TXCH"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:18
 #~ msgid "Temporary files are created during the plotting process which exceeds the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
@@ -1564,7 +1568,7 @@ msgstr "Il numero totale di VDF (funzione a verifica ritardata) o iterazioni del
 msgid "The total number of VDF (verifiable delay function) or proof of time iterations on this block."
 msgstr "Il numero totale di VDF (funzione a verifica ritardata) o iterazioni di prove di tempo su questo blocco."
 
-#: src/components/block/Block.jsx:308
+#: src/components/block/Block.jsx:292
 msgid "The total transactions fees in this block. Rewarded to the farmer."
 msgstr "Il totale delle tasse di transazione in questo blocco. Date come ricompensa al coltivatore."
 
@@ -1830,7 +1834,7 @@ msgstr "Quando ricevi il tuo pacchetto di informazioni di setup dal tuo amminist
 msgid "Window"
 msgstr "Finestra"
 
-#: src/components/farm/card/FarmCardBlockRewards.tsx:15
+#: src/components/farm/card/FarmCardBlockRewards.tsx:16
 msgid "Without fees"
 msgstr "Senza tasse"
 
@@ -1888,3 +1892,11 @@ msgstr "sincronizzato"
 #: src/components/wallet/Wallets.tsx:103
 msgid "syncing"
 msgstr "sincronizzando"
+
+#: src/components/farm/card/FarmCardBlockRewards.tsx:16
+msgid "{0} Block Rewards"
+msgstr ""
+
+#: src/components/farm/card/FarmCardUserFees.tsx:16
+msgid "{0} User Transaction Fees"
+msgstr ""

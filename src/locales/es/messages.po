@@ -146,7 +146,7 @@ msgstr "El archivo de respaldo se usa para restaurar carteras inteligentes."
 msgid "Balance"
 msgstr "Balance"
 
-#: src/components/block/Block.jsx:301
+#: src/components/block/Block.jsx:285
 msgid "Base Farmer Reward Amount"
 msgstr "Monto Base de Recompensa del Agricultor"
 
@@ -162,7 +162,7 @@ msgstr "Mejor estimado de las últimas 5 horas"
 #: src/components/block/Block.jsx:107
 #: src/components/block/Block.jsx:141
 #: src/components/block/Block.jsx:146
-#: src/components/block/Block.jsx:317
+#: src/components/block/Block.jsx:301
 msgid "Block"
 msgstr "Bloque"
 
@@ -174,7 +174,7 @@ msgstr ""
 msgid "Block VDF Iterations"
 msgstr "Iteraciones de Bloque VDF"
 
-#: src/components/block/Block.jsx:322
+#: src/components/block/Block.jsx:306
 msgid "Block at height {0} in the Chia blockchain"
 msgstr "Bloque a la altura {0} en la cadena de bloques de Chia"
 
@@ -650,10 +650,14 @@ msgid "Fee"
 msgstr "Tarifa"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:420
-msgid "Fee (TXCH)"
-msgstr "Tarifa (TXCH)"
+#~ msgid "Fee (TXCH)"
+#~ msgstr "Tarifa (TXCH)"
 
-#: src/components/block/Block.jsx:305
+#: src/components/wallet/coloured/WalletColoured.tsx:420
+msgid "Fee ({0})"
+msgstr ""
+
+#: src/components/block/Block.jsx:289
 msgid "Fees Amount"
 msgstr "Monto de tarifas"
 
@@ -905,7 +909,7 @@ msgstr "Nueva dirección"
 msgid "New Wallet"
 msgstr "Nuevo Monedero"
 
-#: src/components/block/Block.jsx:336
+#: src/components/block/Block.jsx:320
 #: src/components/wallet/WalletAdd.tsx:47
 #: src/components/wallet/WalletImport.tsx:77
 msgid "Next"
@@ -1164,7 +1168,7 @@ msgstr "Llave Pública de Conjunto"
 msgid "Pool Puzzle Hash"
 msgstr "Enigma Hash de Conjunto"
 
-#: src/components/block/Block.jsx:297
+#: src/components/block/Block.jsx:281
 msgid "Pool Reward Amount"
 msgstr "Monto de Recompensa de Conjunto"
 
@@ -1175,7 +1179,7 @@ msgstr "Monto de Recompensa de Conjunto"
 msgid "Port"
 msgstr "Puerto"
 
-#: src/components/block/Block.jsx:331
+#: src/components/block/Block.jsx:315
 msgid "Previous"
 msgstr "Anterior"
 
@@ -1508,8 +1512,8 @@ msgid "Syncing {progress}/{tip}"
 msgstr "Sincronizando {progress}/{tip}"
 
 #: src/components/farm/card/FarmCardBlockRewards.tsx:15
-msgid "TXCH Block Rewards"
-msgstr "TXCH Recompensas de Bloque"
+#~ msgid "TXCH Block Rewards"
+#~ msgstr "TXCH Recompensas de Bloque"
 
 #: src/components/farm/card/FarmCardCoinbaseRewards.tsx:12
 #~ msgid "TXCH Farming Rewards"
@@ -1524,8 +1528,8 @@ msgstr "TXCH Recompensas de Bloque"
 #~ msgstr "TXCH User Fees"
 
 #: src/components/farm/card/FarmCardUserFees.tsx:15
-msgid "TXCH User Transaction Fees"
-msgstr "TXCH Tarifas de Transacción de Usuario"
+#~ msgid "TXCH User Transaction Fees"
+#~ msgstr "TXCH Tarifas de Transacción de Usuario"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:18
 #~ msgid "Temporary files are created during the plotting process which exceeds the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
@@ -1564,7 +1568,7 @@ msgstr "Número total de VDF (funcione de retardo verificable) o iteraciones de 
 msgid "The total number of VDF (verifiable delay function) or proof of time iterations on this block."
 msgstr "Número total de VDF (funcione de retardo verificable) o iteraciones de prueba de tiempo en este bloque."
 
-#: src/components/block/Block.jsx:308
+#: src/components/block/Block.jsx:292
 msgid "The total transactions fees in this block. Rewarded to the farmer."
 msgstr "Las tarifas totales de transacciones en este bloque. Recompensado al agricultor."
 
@@ -1830,7 +1834,7 @@ msgstr "Cuando reciba el paquete de información de configuración de su adminis
 msgid "Window"
 msgstr "Ventana"
 
-#: src/components/farm/card/FarmCardBlockRewards.tsx:15
+#: src/components/farm/card/FarmCardBlockRewards.tsx:16
 msgid "Without fees"
 msgstr "Sin tarifas"
 
@@ -1888,3 +1892,11 @@ msgstr "sincronizado"
 #: src/components/wallet/Wallets.tsx:103
 msgid "syncing"
 msgstr "sincronizando"
+
+#: src/components/farm/card/FarmCardBlockRewards.tsx:16
+msgid "{0} Block Rewards"
+msgstr ""
+
+#: src/components/farm/card/FarmCardUserFees.tsx:16
+msgid "{0} User Transaction Fees"
+msgstr ""

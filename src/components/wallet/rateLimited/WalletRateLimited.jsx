@@ -13,7 +13,7 @@ import AccordionDetails from '@material-ui/core/AccordionDetails';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { Tooltip } from '@material-ui/core';
 import HelpIcon from '@material-ui/icons/Help';
-import { AlertDialog, Card, Flex, } from '@chia/core';
+import { AlertDialog, Card, Flex, CurrencyCode } from '@chia/core';
 import {
   send_transaction,
   rl_set_user_info_action,
@@ -529,7 +529,7 @@ const BalanceCardSubSection = (props) => {
         </Box>
         <Box>
           <Typography variant="subtitle1">
-            {mojo_to_chia_string(props.balance)} TXCH
+            {mojo_to_chia_string(props.balance)} {CurrencyCode.CHIA}
           </Typography>
         </Box>
       </Box>

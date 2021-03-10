@@ -146,7 +146,7 @@ msgstr "Varmuuskopiotiedostoa käytetään lompakkojen palauttamiseen."
 msgid "Balance"
 msgstr "Saldo"
 
-#: src/components/block/Block.jsx:301
+#: src/components/block/Block.jsx:285
 msgid "Base Farmer Reward Amount"
 msgstr "Farmarin Peruspalkkio"
 
@@ -162,7 +162,7 @@ msgstr "Viiden viimeisen tunnin estimaatti"
 #: src/components/block/Block.jsx:107
 #: src/components/block/Block.jsx:141
 #: src/components/block/Block.jsx:146
-#: src/components/block/Block.jsx:317
+#: src/components/block/Block.jsx:301
 msgid "Block"
 msgstr "Lohko"
 
@@ -174,7 +174,7 @@ msgstr ""
 msgid "Block VDF Iterations"
 msgstr "Lohkon VDF-iteraatiot"
 
-#: src/components/block/Block.jsx:322
+#: src/components/block/Block.jsx:306
 msgid "Block at height {0} in the Chia blockchain"
 msgstr "Lohko korkeudessa {0} Chian lohkoketjussa"
 
@@ -650,10 +650,14 @@ msgid "Fee"
 msgstr "Veloitus"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:420
-msgid "Fee (TXCH)"
-msgstr "Veloitus (XCH)"
+#~ msgid "Fee (TXCH)"
+#~ msgstr "Veloitus (XCH)"
 
-#: src/components/block/Block.jsx:305
+#: src/components/wallet/coloured/WalletColoured.tsx:420
+msgid "Fee ({0})"
+msgstr ""
+
+#: src/components/block/Block.jsx:289
 msgid "Fees Amount"
 msgstr "Palkkiosumma"
 
@@ -905,7 +909,7 @@ msgstr "Uusi Osoite"
 msgid "New Wallet"
 msgstr "Uusi Lompakko"
 
-#: src/components/block/Block.jsx:336
+#: src/components/block/Block.jsx:320
 #: src/components/wallet/WalletAdd.tsx:47
 #: src/components/wallet/WalletImport.tsx:77
 msgid "Next"
@@ -1164,7 +1168,7 @@ msgstr "Poolin Julkinen Avain"
 msgid "Pool Puzzle Hash"
 msgstr "Poolin Osoitetiiviste"
 
-#: src/components/block/Block.jsx:297
+#: src/components/block/Block.jsx:281
 msgid "Pool Reward Amount"
 msgstr "Poolin Palkkiosumma"
 
@@ -1175,7 +1179,7 @@ msgstr "Poolin Palkkiosumma"
 msgid "Port"
 msgstr "Portti"
 
-#: src/components/block/Block.jsx:331
+#: src/components/block/Block.jsx:315
 msgid "Previous"
 msgstr "Edellinen"
 
@@ -1508,8 +1512,8 @@ msgid "Syncing {progress}/{tip}"
 msgstr "Synkronoi {progress}/{tip}"
 
 #: src/components/farm/card/FarmCardBlockRewards.tsx:15
-msgid "TXCH Block Rewards"
-msgstr "TXCH Lohkopalkkiot"
+#~ msgid "TXCH Block Rewards"
+#~ msgstr "TXCH Lohkopalkkiot"
 
 #: src/components/farm/card/FarmCardCoinbaseRewards.tsx:12
 #~ msgid "TXCH Farming Rewards"
@@ -1524,8 +1528,8 @@ msgstr "TXCH Lohkopalkkiot"
 #~ msgstr "TXCH User Fees"
 
 #: src/components/farm/card/FarmCardUserFees.tsx:15
-msgid "TXCH User Transaction Fees"
-msgstr "TXCH Transaktioveloitukset Käyttäjälle"
+#~ msgid "TXCH User Transaction Fees"
+#~ msgstr "TXCH Transaktioveloitukset Käyttäjälle"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:18
 #~ msgid "Temporary files are created during the plotting process which exceeds the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
@@ -1564,7 +1568,7 @@ msgstr "Tähän lohkoon asti iteroitujen VDF-aikatodisteiden lukumäärä."
 msgid "The total number of VDF (verifiable delay function) or proof of time iterations on this block."
 msgstr "Tähän lohkoon asti iteroitujen VDF-aikatodisteiden lukumäärä."
 
-#: src/components/block/Block.jsx:308
+#: src/components/block/Block.jsx:292
 msgid "The total transactions fees in this block. Rewarded to the farmer."
 msgstr "Kokonaistransaktioveloitukset tässä lohkossa. Suoritetaan farmarille."
 
@@ -1830,7 +1834,7 @@ msgstr "Kun saat infopaketin pääkäyttäjältä, lisää se alle viimeistellä
 msgid "Window"
 msgstr "Ikkuna"
 
-#: src/components/farm/card/FarmCardBlockRewards.tsx:15
+#: src/components/farm/card/FarmCardBlockRewards.tsx:16
 msgid "Without fees"
 msgstr "Ilman veloituksia"
 
@@ -1888,3 +1892,11 @@ msgstr "synkronoitu"
 #: src/components/wallet/Wallets.tsx:103
 msgid "syncing"
 msgstr "synkronoi"
+
+#: src/components/farm/card/FarmCardBlockRewards.tsx:16
+msgid "{0} Block Rewards"
+msgstr ""
+
+#: src/components/farm/card/FarmCardUserFees.tsx:16
+msgid "{0} User Transaction Fees"
+msgstr ""

@@ -146,7 +146,7 @@ msgstr "Файл резервной копии используется для �
 msgid "Balance"
 msgstr "Баланс"
 
-#: src/components/block/Block.jsx:301
+#: src/components/block/Block.jsx:285
 msgid "Base Farmer Reward Amount"
 msgstr "Базовая сумма вознаграждения фермера"
 
@@ -162,7 +162,7 @@ msgstr "Лучшая оценка за последние 5 часов"
 #: src/components/block/Block.jsx:107
 #: src/components/block/Block.jsx:141
 #: src/components/block/Block.jsx:146
-#: src/components/block/Block.jsx:317
+#: src/components/block/Block.jsx:301
 msgid "Block"
 msgstr "Блок"
 
@@ -174,7 +174,7 @@ msgstr ""
 msgid "Block VDF Iterations"
 msgstr "VDF итераций блока"
 
-#: src/components/block/Block.jsx:322
+#: src/components/block/Block.jsx:306
 msgid "Block at height {0} in the Chia blockchain"
 msgstr "Блок на высоте {0} в блокчейне Chia"
 
@@ -650,10 +650,14 @@ msgid "Fee"
 msgstr "Комиссия"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:420
-msgid "Fee (TXCH)"
-msgstr "Комиссия (TXCH)"
+#~ msgid "Fee (TXCH)"
+#~ msgstr "Комиссия (TXCH)"
 
-#: src/components/block/Block.jsx:305
+#: src/components/wallet/coloured/WalletColoured.tsx:420
+msgid "Fee ({0})"
+msgstr ""
+
+#: src/components/block/Block.jsx:289
 msgid "Fees Amount"
 msgstr "Объем коммисий"
 
@@ -905,7 +909,7 @@ msgstr "Новый адрес"
 msgid "New Wallet"
 msgstr "Новый кошелек"
 
-#: src/components/block/Block.jsx:336
+#: src/components/block/Block.jsx:320
 #: src/components/wallet/WalletAdd.tsx:47
 #: src/components/wallet/WalletImport.tsx:77
 msgid "Next"
@@ -1164,7 +1168,7 @@ msgstr "Публичный ключ пула"
 msgid "Pool Puzzle Hash"
 msgstr "Хеш-головоломка пула"
 
-#: src/components/block/Block.jsx:297
+#: src/components/block/Block.jsx:281
 msgid "Pool Reward Amount"
 msgstr "Сумма вознаграждения пула"
 
@@ -1175,7 +1179,7 @@ msgstr "Сумма вознаграждения пула"
 msgid "Port"
 msgstr "Порт"
 
-#: src/components/block/Block.jsx:331
+#: src/components/block/Block.jsx:315
 msgid "Previous"
 msgstr "Предыдущий"
 
@@ -1508,8 +1512,8 @@ msgid "Syncing {progress}/{tip}"
 msgstr "Синхронизация {progress}/{tip}"
 
 #: src/components/farm/card/FarmCardBlockRewards.tsx:15
-msgid "TXCH Block Rewards"
-msgstr "TXCH Вознаграждение За Создание Блока"
+#~ msgid "TXCH Block Rewards"
+#~ msgstr "TXCH Вознаграждение За Создание Блока"
 
 #: src/components/farm/card/FarmCardCoinbaseRewards.tsx:12
 #~ msgid "TXCH Farming Rewards"
@@ -1524,8 +1528,8 @@ msgstr "TXCH Вознаграждение За Создание Блока"
 #~ msgstr "TXCH User Fees"
 
 #: src/components/farm/card/FarmCardUserFees.tsx:15
-msgid "TXCH User Transaction Fees"
-msgstr "TXCH Комиссия За Транзакцию Пользователя"
+#~ msgid "TXCH User Transaction Fees"
+#~ msgstr "TXCH Комиссия За Транзакцию Пользователя"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:18
 #~ msgid "Temporary files are created during the plotting process which exceeds the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
@@ -1564,7 +1568,7 @@ msgstr "Общее количество итерации VDF (от англ. Ver
 msgid "The total number of VDF (verifiable delay function) or proof of time iterations on this block."
 msgstr "Общее количество итераций VDF (от англ. Verifiable Delay Function - проверяемая функция задержки), другими словами общее количество доказательств временных итераций (proof of time) в этом блоке."
 
-#: src/components/block/Block.jsx:308
+#: src/components/block/Block.jsx:292
 msgid "The total transactions fees in this block. Rewarded to the farmer."
 msgstr "Общая комиссия за транзакции в этом блоке, полученная в награду фермерами."
 
@@ -1830,7 +1834,7 @@ msgstr "Когда вы получите пакет информации о на
 msgid "Window"
 msgstr ""
 
-#: src/components/farm/card/FarmCardBlockRewards.tsx:15
+#: src/components/farm/card/FarmCardBlockRewards.tsx:16
 msgid "Without fees"
 msgstr "Без комиссии"
 
@@ -1888,3 +1892,11 @@ msgstr "синхр."
 #: src/components/wallet/Wallets.tsx:103
 msgid "syncing"
 msgstr "синх-ция"
+
+#: src/components/farm/card/FarmCardBlockRewards.tsx:16
+msgid "{0} Block Rewards"
+msgstr ""
+
+#: src/components/farm/card/FarmCardUserFees.tsx:16
+msgid "{0} User Transaction Fees"
+msgstr ""

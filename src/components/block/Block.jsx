@@ -4,7 +4,7 @@ import { Alert } from '@material-ui/lab';
 import { Trans } from '@lingui/macro';
 import { useParams, useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { Card, Link, Loading, TooltipIcon, Flex } from '@chia/core';
+import { Card, Link, Loading, TooltipIcon, Flex, CurrencyCode } from '@chia/core';
 import {
   unix_to_short_date,
   hex_to_array,
@@ -15,7 +15,7 @@ import {
   getBlockRecord,
   getBlock,
 } from '../../modules/fullnodeMessages';
-import { chia_formatter, mojo_to_chia } from '../../util/chia';
+import { mojo_to_chia } from '../../util/chia';
 import { calculatePoolReward, calculateBaseFarmerReward } from '../../util/blockRewards';
 import LayoutMain from '../layout/LayoutMain';
 import toBech32m from '../../util/toBech32m';
@@ -277,33 +277,17 @@ export default function Block() {
       ),
       value: block.foliage_transaction_block?.filter_hash,
     },
-    /*
-    {
-      name: <Trans>Coinbase Amount</Trans>,
-      value: `${chia_cb} TXCH`,
-      tooltip: (
-        <Trans>
-          This is the chia block reward which goes to the pool (or farmer if not pooling)
-        </Trans>
-      ),
-    },
-    {
-      name: <Trans>Coinbase Puzzle Hash</Trans>,
-      value: blockRecord.pool_puzzle_hash,
-    },
-    */
-
     {
       name: <Trans>Pool Reward Amount</Trans>,
-      value: `${poolReward} TXCH`,
+      value: `${poolReward} ${CurrencyCode.CHIA}`,
     },
     {
       name: <Trans>Base Farmer Reward Amount</Trans>,
-      value: `${baseFarmerReward} TXCH`,
+      value: `${baseFarmerReward} ${CurrencyCode.CHIA}`,
     },
     {
       name: <Trans>Fees Amount</Trans>,
-      value: chiaFees ? `${chiaFees} TXCH` : '',
+      value: chiaFees ? `${chiaFees} ${CurrencyCode.CHIA}` : '',
       tooltip: (
         <Trans>
           The total transactions fees in this block. Rewarded to the farmer.

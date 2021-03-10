@@ -3,7 +3,7 @@ import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { Trans } from '@lingui/macro';
-import { AlertDialog, Card, Flex } from '@chia/core';
+import { AlertDialog, Card, Flex, CurrencyCode } from '@chia/core';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import {
@@ -602,7 +602,7 @@ function SendCard(props: SendCardProps) {
               inputRef={(input) => {
                 fee_input = input;
               }}
-              label={<Trans>Fee (TXCH)</Trans>}
+              label={<Trans>Fee ({CurrencyCode.CHIA})</Trans>}
             />
           </Box>
         </Box>

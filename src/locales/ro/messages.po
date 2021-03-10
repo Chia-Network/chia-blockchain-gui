@@ -146,7 +146,7 @@ msgstr "Fisierul backup este utilizat pentru restaurarea portofelelor inteligent
 msgid "Balance"
 msgstr "Sold"
 
-#: src/components/block/Block.jsx:301
+#: src/components/block/Block.jsx:285
 msgid "Base Farmer Reward Amount"
 msgstr "Recompensa de baza pentru Farmer"
 
@@ -162,7 +162,7 @@ msgstr "Cea mai buna estimare pentru ultimele 5 ore"
 #: src/components/block/Block.jsx:107
 #: src/components/block/Block.jsx:141
 #: src/components/block/Block.jsx:146
-#: src/components/block/Block.jsx:317
+#: src/components/block/Block.jsx:301
 msgid "Block"
 msgstr "Bloc"
 
@@ -174,7 +174,7 @@ msgstr ""
 msgid "Block VDF Iterations"
 msgstr "Iteratiile VDF pentru bloc"
 
-#: src/components/block/Block.jsx:322
+#: src/components/block/Block.jsx:306
 msgid "Block at height {0} in the Chia blockchain"
 msgstr "Blocul la inaltimea {0} in blockchainul Chia"
 
@@ -650,10 +650,14 @@ msgid "Fee"
 msgstr "Taxe"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:420
-msgid "Fee (TXCH)"
-msgstr "Taxe (TXCH)"
+#~ msgid "Fee (TXCH)"
+#~ msgstr "Taxe (TXCH)"
 
-#: src/components/block/Block.jsx:305
+#: src/components/wallet/coloured/WalletColoured.tsx:420
+msgid "Fee ({0})"
+msgstr ""
+
+#: src/components/block/Block.jsx:289
 msgid "Fees Amount"
 msgstr "Suma taxe"
 
@@ -905,7 +909,7 @@ msgstr "Adresa noua"
 msgid "New Wallet"
 msgstr "Portofel nou"
 
-#: src/components/block/Block.jsx:336
+#: src/components/block/Block.jsx:320
 #: src/components/wallet/WalletAdd.tsx:47
 #: src/components/wallet/WalletImport.tsx:77
 msgid "Next"
@@ -1164,7 +1168,7 @@ msgstr ""
 msgid "Pool Puzzle Hash"
 msgstr ""
 
-#: src/components/block/Block.jsx:297
+#: src/components/block/Block.jsx:281
 msgid "Pool Reward Amount"
 msgstr ""
 
@@ -1175,7 +1179,7 @@ msgstr ""
 msgid "Port"
 msgstr ""
 
-#: src/components/block/Block.jsx:331
+#: src/components/block/Block.jsx:315
 msgid "Previous"
 msgstr ""
 
@@ -1508,8 +1512,8 @@ msgid "Syncing {progress}/{tip}"
 msgstr "Sincronizare {progress}/{tip}"
 
 #: src/components/farm/card/FarmCardBlockRewards.tsx:15
-msgid "TXCH Block Rewards"
-msgstr "Recompense bloc TXCH"
+#~ msgid "TXCH Block Rewards"
+#~ msgstr "Recompense bloc TXCH"
 
 #: src/components/farm/card/FarmCardCoinbaseRewards.tsx:12
 #~ msgid "TXCH Farming Rewards"
@@ -1524,8 +1528,8 @@ msgstr "Recompense bloc TXCH"
 #~ msgstr "TXCH User Fees"
 
 #: src/components/farm/card/FarmCardUserFees.tsx:15
-msgid "TXCH User Transaction Fees"
-msgstr "Taxe Tranzactie user TXCH"
+#~ msgid "TXCH User Transaction Fees"
+#~ msgstr "Taxe Tranzactie user TXCH"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:18
 #~ msgid "Temporary files are created during the plotting process which exceeds the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
@@ -1564,7 +1568,7 @@ msgstr "Numărul total de VDF (funcție de întârziere verificabilă) sau dovez
 msgid "The total number of VDF (verifiable delay function) or proof of time iterations on this block."
 msgstr "Numărul total de VDF (funcție de întârziere verificabilă) sau dovezi ale iterațiilor de timp pe acest bloc."
 
-#: src/components/block/Block.jsx:308
+#: src/components/block/Block.jsx:292
 msgid "The total transactions fees in this block. Rewarded to the farmer."
 msgstr "Taxele totale pentru tranzacții din acest bloc. Recompensat fermierului."
 
@@ -1830,7 +1834,7 @@ msgstr "Cand primiti pachetul de informatii despre configurare de la administrat
 msgid "Window"
 msgstr ""
 
-#: src/components/farm/card/FarmCardBlockRewards.tsx:15
+#: src/components/farm/card/FarmCardBlockRewards.tsx:16
 msgid "Without fees"
 msgstr "Fara taxe"
 
@@ -1888,3 +1892,11 @@ msgstr "sincronizat"
 #: src/components/wallet/Wallets.tsx:103
 msgid "syncing"
 msgstr "se sincronizeaza"
+
+#: src/components/farm/card/FarmCardBlockRewards.tsx:16
+msgid "{0} Block Rewards"
+msgstr ""
+
+#: src/components/farm/card/FarmCardUserFees.tsx:16
+msgid "{0} User Transaction Fees"
+msgstr ""

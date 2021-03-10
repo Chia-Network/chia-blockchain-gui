@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react';
 import { Trans } from '@lingui/macro';
 import { useSelector } from 'react-redux';
+import { CurrencyCode } from '@chia/core';
 import type { RootState } from '../../../modules/rootReducer';
 import FarmCard from './FarmCard';
 import computeStatistics from '../../../util/computeStatistics';
@@ -18,7 +19,7 @@ export default function FarmCardBlockRewards() {
 
   return (
     <FarmCard
-      title={<Trans>TXCH Block Rewards</Trans>}
+      title={<Trans>{CurrencyCode.CHIA} Block Rewards</Trans>}
       description={<Trans>Without fees</Trans>}
       value={blockRewards}
       loading={loading}

@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import { Trans } from '@lingui/macro';
 import Grid from '@material-ui/core/Grid';
-import { AlertDialog, Flex, Card } from '@chia/core';
+import { AlertDialog, Flex, Card, CurrencyCode } from '@chia/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -210,7 +210,7 @@ function BalanceCardSubSection(props: BalanceCardSubSectionProps) {
         </Box>
         <Box>
           <Typography variant="subtitle1">
-            {mojo_to_chia_string(props.balance)} TXCH
+            {mojo_to_chia_string(props.balance)} {CurrencyCode.CHIA}
           </Typography>
         </Box>
       </Box>

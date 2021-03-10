@@ -146,7 +146,7 @@ msgstr "Säkerhetskopierad fil används för att återställa smarta plånböcke
 msgid "Balance"
 msgstr "Saldo"
 
-#: src/components/block/Block.jsx:301
+#: src/components/block/Block.jsx:285
 msgid "Base Farmer Reward Amount"
 msgstr "Grundbelopp för odlarbelöning"
 
@@ -162,7 +162,7 @@ msgstr "Bästa uppskattning under de senaste 5 timmarna"
 #: src/components/block/Block.jsx:107
 #: src/components/block/Block.jsx:141
 #: src/components/block/Block.jsx:146
-#: src/components/block/Block.jsx:317
+#: src/components/block/Block.jsx:301
 msgid "Block"
 msgstr "Block"
 
@@ -174,7 +174,7 @@ msgstr ""
 msgid "Block VDF Iterations"
 msgstr "VDF-iterationer för block"
 
-#: src/components/block/Block.jsx:322
+#: src/components/block/Block.jsx:306
 msgid "Block at height {0} in the Chia blockchain"
 msgstr "Block vid höjd {0} i Chia-blockkedjan"
 
@@ -650,10 +650,14 @@ msgid "Fee"
 msgstr "Avgift"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:420
-msgid "Fee (TXCH)"
-msgstr "Avgift (TXCH)"
+#~ msgid "Fee (TXCH)"
+#~ msgstr "Avgift (TXCH)"
 
-#: src/components/block/Block.jsx:305
+#: src/components/wallet/coloured/WalletColoured.tsx:420
+msgid "Fee ({0})"
+msgstr ""
+
+#: src/components/block/Block.jsx:289
 msgid "Fees Amount"
 msgstr "Avgiftsbelopp"
 
@@ -905,7 +909,7 @@ msgstr "Ny adress"
 msgid "New Wallet"
 msgstr "Ny plånbok"
 
-#: src/components/block/Block.jsx:336
+#: src/components/block/Block.jsx:320
 #: src/components/wallet/WalletAdd.tsx:47
 #: src/components/wallet/WalletImport.tsx:77
 msgid "Next"
@@ -1164,7 +1168,7 @@ msgstr "Publik nyckel för pool"
 msgid "Pool Puzzle Hash"
 msgstr "Pool-pusselhash"
 
-#: src/components/block/Block.jsx:297
+#: src/components/block/Block.jsx:281
 msgid "Pool Reward Amount"
 msgstr "Belopp för pool-belöning"
 
@@ -1175,7 +1179,7 @@ msgstr "Belopp för pool-belöning"
 msgid "Port"
 msgstr "Port"
 
-#: src/components/block/Block.jsx:331
+#: src/components/block/Block.jsx:315
 msgid "Previous"
 msgstr "Föregående"
 
@@ -1508,8 +1512,8 @@ msgid "Syncing {progress}/{tip}"
 msgstr "Synkroniserar {progress}/{tip}"
 
 #: src/components/farm/card/FarmCardBlockRewards.tsx:15
-msgid "TXCH Block Rewards"
-msgstr "TXCH-blockbelöningar"
+#~ msgid "TXCH Block Rewards"
+#~ msgstr "TXCH-blockbelöningar"
 
 #: src/components/farm/card/FarmCardCoinbaseRewards.tsx:12
 #~ msgid "TXCH Farming Rewards"
@@ -1524,8 +1528,8 @@ msgstr "TXCH-blockbelöningar"
 #~ msgstr "TXCH User Fees"
 
 #: src/components/farm/card/FarmCardUserFees.tsx:15
-msgid "TXCH User Transaction Fees"
-msgstr "TXCH-avgifter för användartransaktion"
+#~ msgid "TXCH User Transaction Fees"
+#~ msgstr "TXCH-avgifter för användartransaktion"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:18
 #~ msgid "Temporary files are created during the plotting process which exceeds the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
@@ -1564,7 +1568,7 @@ msgstr "Sammanlagt antal VDF- (verifiable delay function) eller bevis-på-tid-it
 msgid "The total number of VDF (verifiable delay function) or proof of time iterations on this block."
 msgstr "Sammanlagt antal VDF- (verifiable delay function) eller bevis-på-tid-iterationer på detta block."
 
-#: src/components/block/Block.jsx:308
+#: src/components/block/Block.jsx:292
 msgid "The total transactions fees in this block. Rewarded to the farmer."
 msgstr "Summan av transaktionsavgifterna i detta block. Utbetalda till odlaren."
 
@@ -1830,7 +1834,7 @@ msgstr ""
 msgid "Window"
 msgstr ""
 
-#: src/components/farm/card/FarmCardBlockRewards.tsx:15
+#: src/components/farm/card/FarmCardBlockRewards.tsx:16
 msgid "Without fees"
 msgstr "Utan avgifter"
 
@@ -1888,3 +1892,11 @@ msgstr "synkad"
 #: src/components/wallet/Wallets.tsx:103
 msgid "syncing"
 msgstr "synkar"
+
+#: src/components/farm/card/FarmCardBlockRewards.tsx:16
+msgid "{0} Block Rewards"
+msgstr ""
+
+#: src/components/farm/card/FarmCardUserFees.tsx:16
+msgid "{0} User Transaction Fees"
+msgstr ""
