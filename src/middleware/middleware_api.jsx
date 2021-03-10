@@ -194,22 +194,7 @@ export const handle_message = async (store, payload, errorProcessed) => {
   const stateBefore = store.getState();
 
   await store.dispatch(incomingMessage(payload));
-  if (command === 'get_status') {
-    if (payload.data.success) {
-      const { genesis_initialized } = payload.data;
-      if (genesis_initialized === true) {
-        if (config.local_test) {
-          store.dispatch(startServiceTest(service_wallet));
-          store.dispatch(startService(service_simulator));
-        } else {
-          store.dispatch(startService(service_wallet));
-          store.dispatch(startService(service_full_node));
-          store.dispatch(startService(service_farmer));
-          store.dispatch(startService(service_harvester));
-        }
-      }
-    }
-  } else if (command === 'get_blockchain_state') {
+  if (command === 'get_blockchain_state') {
     const state = store.getState();
 
     if (
