@@ -8,7 +8,7 @@ msgstr ""
 "Language: he_IL\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-03-10 23:46\n"
+"PO-Revision-Date: 2021-03-11 01:44\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3;\n"
@@ -1017,7 +1017,7 @@ msgstr ""
 
 #: src/components/fullNode/FullNode.jsx:204
 #~ msgid "Peak Sub-block Height"
-#~ msgstr "Peak Sub-block Height<<<<<<< HEAD"
+#~ msgstr "Peak Sub-block Height"
 
 #: src/components/fullNode/FullNode.jsx:184
 msgid "Peak Time"
