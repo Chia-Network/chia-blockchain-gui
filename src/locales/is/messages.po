@@ -8,7 +8,7 @@ msgstr ""
 "Language: is_IS\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-03-10 23:46\n"
+"PO-Revision-Date: 2021-03-11 01:43\n"
 "Last-Translator: \n"
 "Language-Team: Icelandic\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -1017,7 +1017,7 @@ msgstr ""
 
 #: src/components/fullNode/FullNode.jsx:204
 #~ msgid "Peak Sub-block Height"
-#~ msgstr "Peak Sub-block Height<<<<<<< HEAD"
+#~ msgstr "Peak Sub-block Height"
 
 #: src/components/fullNode/FullNode.jsx:184
 msgid "Peak Time"
