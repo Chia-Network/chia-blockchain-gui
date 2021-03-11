@@ -9,7 +9,7 @@ import { useDispatch } from 'react-redux';
 import { getRewardTargets, setRewardTargets } from '../../modules/farmerMessages';
 
 const StyledTextField = styled(TextField)`
-  min-width: 600px;
+  min-width: 640px;
 `;
 
 type FormData = {
