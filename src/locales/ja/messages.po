@@ -8,7 +8,7 @@ msgstr ""
 "Language: ja_JP\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-03-10 23:47\n"
+"PO-Revision-Date: 2021-03-11 01:44\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -1017,7 +1017,7 @@ msgstr "先端の高さ"
 
 #: src/components/fullNode/FullNode.jsx:204
 #~ msgid "Peak Sub-block Height"
-#~ msgstr "Peak Sub-block Height<<<<<<< HEAD"
+#~ msgstr "Peak Sub-block Height"
 
 #: src/components/fullNode/FullNode.jsx:184
 msgid "Peak Time"
