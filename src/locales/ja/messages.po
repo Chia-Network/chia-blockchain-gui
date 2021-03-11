@@ -8,7 +8,7 @@ msgstr ""
 "Language: ja_JP\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-03-11 07:00\n"
+"PO-Revision-Date: 2021-03-11 10:09\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -41,11 +41,11 @@ msgstr "チアブロックチェーンについて"
 
 #: src/components/trading/ViewOffer.jsx:85
 msgid "Accept"
-msgstr ""
+msgstr "承諾"
 
 #: src/components/trading/TradingOverview.jsx:230
 msgid "Accepted at time:"
-msgstr ""
+msgstr "承諾日時:"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:75
 #: src/components/plot/PlotsFailed.tsx:14
@@ -129,7 +129,7 @@ msgstr "本当に終了しますか？ GUI 上の耕地作り及び耕作も停�
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:31
 msgid "Are you sure you want to use k={plotSize}"
-msgstr ""
+msgstr "本当に k={plotSize} を使用しますか"
 
 #: src/components/selectKey/SelectKey.tsx:39
 #: src/components/selectKey/SelectKey.tsx:53
@@ -138,7 +138,7 @@ msgstr "戻る"
 
 #: src/components/backup/BackupCreate.tsx:61
 msgid "Backup file is used to restore smart wallets."
-msgstr ""
+msgstr "バックアップファイルはスマートウォレットの復元に使用します。"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:286
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:562
@@ -168,7 +168,7 @@ msgstr "ブロック"
 
 #: src/components/block/Block.jsx:121
 msgid "Block Test"
-msgstr ""
+msgstr "ブロックテスト"
 
 #: src/components/block/Block.jsx:227
 msgid "Block VDF Iterations"
@@ -212,7 +212,7 @@ msgstr "購入"
 
 #: src/components/wallet/Wallets.tsx:34
 msgid "CC Wallet"
-msgstr ""
+msgstr "CC ウォレット"
 
 #: src/components/wallet/create/WalletCreate.jsx:182
 #~ msgid "CCListItems.title"
@@ -659,7 +659,7 @@ msgstr "手数料"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:422
 msgid "Fee ({currencyCode})"
-msgstr ""
+msgstr "手数料 ({currencyCode})"
 
 #: src/components/block/Block.jsx:291
 msgid "Fees Amount"
@@ -783,7 +783,7 @@ msgstr "入金"
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:15
 msgid "Index"
-msgstr ""
+msgstr "インデックス"
 
 #: src/components/trading/TradingOverview.jsx:218
 msgid "Indicated if this offer was created by us"
@@ -902,11 +902,11 @@ msgstr "私の公開鍵"
 
 #: src/components/fullNode/FullNode.jsx:173
 msgid "Network Name"
-msgstr ""
+msgstr "ネットワーク名"
 
 #: src/components/fullNode/FullNode.jsx:106
 msgid "Network has not yet been launched, once it launches full node will start automatically."
-msgstr ""
+msgstr "ネットワークがまだ開始していません。開始したらフルノードが自動的に起動します。"
 
 #: src/components/app/AppRouter.tsx:24
 #~ msgid "Network not launched yet, waiting for genesis challenge!"
@@ -971,7 +971,7 @@ msgstr "同期されていません"
 
 #: src/components/trading/TradingOverview.jsx:227
 msgid "Not accepted yet"
-msgstr ""
+msgstr "未承諾"
 
 #: src/components/trading/TradingOverview.jsx:199
 msgid "Not confirmed yet"
@@ -1427,11 +1427,11 @@ msgstr "ログイン"
 
 #: src/electron-starter.js:407
 msgid "Speech"
-msgstr ""
+msgstr "スピーチ"
 
 #: src/components/wallet/create/createRLAdmin.jsx:247
 msgid "Spendable Amount"
-msgstr ""
+msgstr "支払い可能額"
 
 #: src/components/wallet/create/createRLAdmin.jsx:216
 msgid "Spendable Amount Per Interval"
@@ -1719,7 +1719,7 @@ msgstr "交換はここに表示されます"
 
 #: src/components/trading/TradeManager.tsx:13
 msgid "Trading"
-msgstr ""
+msgstr "交換"
 
 #: src/components/trading/TradingOverview.jsx:435
 msgid "Trading History"
@@ -1780,12 +1780,12 @@ msgstr "同期待ち"
 
 #: src/components/wallet/Wallets.tsx:104
 msgid "Waiting for launch"
-msgstr ""
+msgstr "開始待ち"
 
 #: src/components/fullNode/FullNode.jsx:103
 #: src/components/wallet/WalletStatusCard.tsx:20
 msgid "Waiting for network to launch"
-msgstr ""
+msgstr "ネットワーク開始待ち"
 
 #: src/components/wallet/Wallets.tsx:34
 #~ msgid "WalletItem.ccWallet"
@@ -1850,7 +1850,7 @@ msgstr "ご利用ありがとうございます！以下の合言葉はあなた
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:324
 msgid "When you receive the setup info packet from your admin, enter it below to complete your Rate Limited Wallet setup:"
-msgstr ""
+msgstr "管理者からセットアップ用の情報パケットを受け取ったら、以下に入力してレート制限付きウォレットのセットアップを完了してください:"
 
 #: src/electron-starter.js:271
 msgid "Window"
@@ -1925,9 +1925,9 @@ msgstr "同期中"
 
 #: src/components/farm/card/FarmCardBlockRewards.tsx:17
 msgid "{currencyCode} Block Rewards"
-msgstr ""
+msgstr "{currencyCode} ブロック報酬"
 
 #: src/components/farm/card/FarmCardUserFees.tsx:17
 msgid "{currencyCode} User Transaction Fees"
-msgstr ""
+msgstr "{currencyCode} ユーザー取引手数料"
 
