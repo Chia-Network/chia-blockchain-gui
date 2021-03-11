@@ -8,7 +8,7 @@ msgstr ""
 "Language: fi_FI\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-03-11 07:00\n"
+"PO-Revision-Date: 2021-03-11 12:07\n"
 "Last-Translator: \n"
 "Language-Team: Finnish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -28,7 +28,7 @@ msgstr "Haluatko tarkastella Chian lohkoketjua? Katso avoimen koodin <0>Chia Exp
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:94
 msgid "128 buckets is recommended"
-msgstr ""
+msgstr "128 muistilohkoa on suositusmäärä"
 
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:58
 msgid "A harvester is a service running on a machine where plot(s) are actually stored. A farmer and harvester talk to a full node to see the state of the chain. View your network of connected harvesters below Learn more"
@@ -129,7 +129,7 @@ msgstr "Haluatko lopettaa? Käyttöliittymäplottaus ja farmi sammutetaan."
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:31
 msgid "Are you sure you want to use k={plotSize}"
-msgstr ""
+msgstr "Haluatko varmasti käyttää k-arvoa {plotSize}"
 
 #: src/components/selectKey/SelectKey.tsx:39
 #: src/components/selectKey/SelectKey.tsx:53
@@ -168,7 +168,7 @@ msgstr "Lohko"
 
 #: src/components/block/Block.jsx:121
 msgid "Block Test"
-msgstr ""
+msgstr "Lohkon Testi"
 
 #: src/components/block/Block.jsx:227
 msgid "Block VDF Iterations"
@@ -659,7 +659,7 @@ msgstr "Veloitus"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:422
 msgid "Fee ({currencyCode})"
-msgstr ""
+msgstr "Veloitus ({currencyCode})"
 
 #: src/components/block/Block.jsx:291
 msgid "Fees Amount"
@@ -902,11 +902,11 @@ msgstr "Julkinen Avaimeni"
 
 #: src/components/fullNode/FullNode.jsx:173
 msgid "Network Name"
-msgstr ""
+msgstr "Verkon Nimi"
 
 #: src/components/fullNode/FullNode.jsx:106
 msgid "Network has not yet been launched, once it launches full node will start automatically."
-msgstr ""
+msgstr "Verkkoa ei ole vielä käynnistetty. Noodi käynnistyy automaattisesti kun verkko käynnistetään."
 
 #: src/components/app/AppRouter.tsx:24
 #~ msgid "Network not launched yet, waiting for genesis challenge!"
@@ -1237,11 +1237,11 @@ msgstr "Julkinen avain:"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:103
 msgid "Queue Name"
-msgstr ""
+msgstr "Jonon Nimi"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:43
 msgid "Queue name"
-msgstr ""
+msgstr "Jonon Nimi"
 
 #: src/components/plot/queue/PlotQueueIndicator.tsx:11
 msgid "Queued"
@@ -1307,7 +1307,7 @@ msgstr "Raportoi Ongelma..."
 
 #: src/components/backup/BackupRestore.tsx:107
 msgid "Restore Metadata for Coloured Coins and other Smart Wallets from Backup"
-msgstr ""
+msgstr "Palauta väritettyjen kolikkojen metatiedot ja muut älylompakot varmuuskopiosta"
 
 #: src/components/backup/BackupRestore.tsx:107
 #~ msgid "Restore Smart Wallets From Backup"
@@ -1320,7 +1320,7 @@ msgstr ""
 
 #: src/components/backup/BackupRestore.tsx:122
 msgid "Safe To Skip"
-msgstr ""
+msgstr "Turvalista Ohittaa"
 
 #: src/components/trading/CreateOffer.jsx:160
 msgid "Save"
@@ -1780,12 +1780,12 @@ msgstr "Odota synkroinointia"
 
 #: src/components/wallet/Wallets.tsx:104
 msgid "Waiting for launch"
-msgstr ""
+msgstr "Odotetaan käynnistystä"
 
 #: src/components/fullNode/FullNode.jsx:103
 #: src/components/wallet/WalletStatusCard.tsx:20
 msgid "Waiting for network to launch"
-msgstr ""
+msgstr "Odotetaan verkon käynnistystä"
 
 #: src/components/wallet/Wallets.tsx:34
 #~ msgid "WalletItem.ccWallet"
@@ -1868,7 +1868,7 @@ msgstr "Kyllä"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:56
 msgid "You do not need to be synched or connected to Plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
-msgstr ""
+msgstr "Plottaamista varten noodin ei tarvitse olla synkronissa eikä yhteyksien päällä. Plottausporsessin aikana luodaan väliaikaistiedostoja, joiden koko ylittää lopullisen plottitiedoston koon. Varmista, että levyllä on tarpeeksi tilaa. <0>Katso lisää</0>"
 
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:34
 msgid "You have {0}% of the space on the network, so farming a block will take {expectedTimeToWin} in expectation."
@@ -1925,9 +1925,9 @@ msgstr "synkronoi"
 
 #: src/components/farm/card/FarmCardBlockRewards.tsx:17
 msgid "{currencyCode} Block Rewards"
-msgstr ""
+msgstr "{currencyCode} Lohkopalkkiot"
 
 #: src/components/farm/card/FarmCardUserFees.tsx:17
 msgid "{currencyCode} User Transaction Fees"
-msgstr ""
+msgstr "{currencyCode} Transaktioveloitukset Käyttäjälle"
 
