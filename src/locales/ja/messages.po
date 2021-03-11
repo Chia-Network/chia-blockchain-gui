@@ -8,7 +8,7 @@ msgstr ""
 "Language: ja_JP\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-03-11 10:09\n"
+"PO-Revision-Date: 2021-03-11 11:07\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -202,7 +202,7 @@ msgstr "参照"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:49
 msgid "But you are currently farming <0/>"
-msgstr ""
+msgstr "しかし、現在 <0/> で耕作中です。"
 
 #: src/components/trading/CreateOffer.jsx:181
 #: src/components/trading/TradesTable.tsx:31
@@ -232,7 +232,7 @@ msgstr "キャンセル"
 
 #: src/components/trading/TradingOverview.jsx:399
 msgid "Cancel and Spend"
-msgstr ""
+msgstr "キャンセルして払う"
 
 #: src/components/plot/PlotsNotFound.tsx:26
 msgid "Caution, deleting these plots will delete them forever. Check that the storage devices are properly connected."
@@ -687,7 +687,7 @@ msgstr "最終フォルダの場所"
 #: src/components/fullNode/FullNode.jsx:41
 #: src/components/fullNode/FullNode.jsx:92
 msgid "Finished"
-msgstr "完了"
+msgstr "完成"
 
 #: src/electron-starter.js:338
 msgid "Follow on Twitter"
@@ -1074,7 +1074,7 @@ msgstr "数字のインターバル長を入力してください"
 
 #: src/components/wallet/create/createRLAdmin.jsx:117
 msgid "Please enter a valid numeric spendable amount"
-msgstr ""
+msgstr "支払い可能額を数字で入力してください"
 
 #: src/components/wallet/create/createRLAdmin.jsx:129
 msgid "Please enter a valid pubkey"
@@ -1320,7 +1320,7 @@ msgstr "バックアップからカラードコイン・その他スマートウ
 
 #: src/components/backup/BackupRestore.tsx:122
 msgid "Safe To Skip"
-msgstr ""
+msgstr "安全にスキップ可能"
 
 #: src/components/trading/CreateOffer.jsx:160
 msgid "Save"
@@ -1605,19 +1605,19 @@ msgstr "取引に使用できるチアの額です。承認待ちの耕作報酬
 
 #: src/components/wallet/standard/WalletStandard.tsx:236
 msgid "This is the pending change, which are change coins which you have sent to yourself, but have not been confirmed yet."
-msgstr ""
+msgstr "保留中のお釣り、つまり自己送信したが、まだ承認されていないお釣りのコインの額です。"
 
 #: src/components/wallet/standard/WalletStandard.tsx:229
 msgid "This is the sum of the incoming and outgoing pending transactions (not yet included into the blockchain). This does not include farming rewards."
-msgstr ""
+msgstr "これが (まだブロックチェーンに含まれていない) 保留中の入出金の合計です。耕作報酬は含まれていません。"
 
 #: src/components/fullNode/FullNode.jsx:186
 msgid "This is the time of the latest peak sub block."
-msgstr ""
+msgstr "最新のピークサブブロックの日時です。"
 
 #: src/components/block/Block.jsx:184
 msgid "This is the time the block was created by the farmer, which is before it is finalized with a proof of time"
-msgstr ""
+msgstr "これが農家がブロックを作成した日時です。時間証明によって完成する前の段階です。"
 
 #: src/components/wallet/standard/WalletStandard.tsx:195
 msgid "This is the total amount of chia in the blockchain at the current peak sub block that is controlled by your private keys. It includes frozen farming rewards, but not pending incoming and outgoing transactions."
@@ -1625,7 +1625,7 @@ msgstr "現在の先端サブブロックにおいて、あなたの秘密鍵が
 
 #: src/components/wallet/standard/WalletStandard.tsx:222
 msgid "This is the total balance + pending balance: it is what your balance will be after all pending transactions are confirmed."
-msgstr "こちらが全残高 + 保留中残高です: 全ての保留中の取引が承認されたら、残高はこの額になります。"
+msgstr "これが全残高 + 保留中残高です: 全ての保留中の取引が承認されたら、残高はこの額になります。"
 
 #: src/components/fullNode/FullNode.jsx:146
 msgid "This node is fully caught up and validating the network"
@@ -1735,7 +1735,7 @@ msgstr "種類"
 
 #: src/components/fullNode/FullNode.jsx:92
 msgid "Unfinished"
-msgstr "未完"
+msgstr "未完成"
 
 #: src/components/trading/TradingOverview.jsx:177
 msgid "Unique identifier"
