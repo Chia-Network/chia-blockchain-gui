@@ -8,7 +8,7 @@ msgstr ""
 "Language: ja_JP\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-03-11 11:07\n"
+"PO-Revision-Date: 2021-03-11 19:15\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -47,9 +47,9 @@ msgstr "承諾"
 msgid "Accepted at time:"
 msgstr "承諾日時:"
 
-#: src/components/plot/overview/PlotOverviewPlots.tsx:75
 #: src/components/plot/PlotsFailed.tsx:14
 #: src/components/plot/PlotsNotFound.tsx:14
+#: src/components/plot/overview/PlotOverviewPlots.tsx:75
 msgid "Action"
 msgstr "操作"
 
@@ -72,9 +72,9 @@ msgid "Add Wallet"
 msgstr "ウォレット追加"
 
 #: src/components/farm/overview/FarmOverviewHero.tsx:35
+#: src/components/plot/PlotHeader.tsx:33
 #: src/components/plot/add/PlotAdd.tsx:54
 #: src/components/plot/overview/PlotOverviewHero.tsx:29
-#: src/components/plot/PlotHeader.tsx:33
 msgid "Add a Plot"
 msgstr "耕地を追加"
 
@@ -99,10 +99,10 @@ msgstr "アドレス・パズルハッシュ値"
 
 #: src/components/trading/CreateOffer.jsx:213
 #: src/components/trading/TradesTable.tsx:16
+#: src/components/wallet/WalletHistory.tsx:48
 #: src/components/wallet/create/createNewColouredCoin.jsx:125
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:770
 #: src/components/wallet/standard/WalletStandard.tsx:345
-#: src/components/wallet/WalletHistory.tsx:48
 msgid "Amount"
 msgstr "金額"
 
@@ -569,10 +569,10 @@ msgstr "編集"
 msgid "Enter the 24 word mnemonic that you have saved in order to restore your Chia wallet."
 msgstr "チアウォレットを復元するには、24語の合言葉を入力してください。"
 
-#: src/components/farm/card/FarmCardStatus.tsx:20
-#: src/components/farm/card/FarmCardStatus.tsx:25
 #: src/components/farm/FarmerStatus.tsx:30
 #: src/components/farm/FarmerStatus.tsx:31
+#: src/components/farm/card/FarmCardStatus.tsx:20
+#: src/components/farm/card/FarmCardStatus.tsx:25
 #: src/components/plot/PlotStatus.tsx:17
 #: src/components/plot/PlotStatus.tsx:18
 #: src/components/plot/queue/PlotQueueIndicator.tsx:14
@@ -624,9 +624,9 @@ msgstr "農家が未実行"
 msgid "Farmers earn block rewards and transaction fees by committing spare space to the network to help secure transactions. This is where your farm will be once you add a plot. <0>Learn more</0>"
 msgstr "農家は空いている容量をネットワークに提供することで取引の正確性を担保し、対価としてブロック報酬や取引手数料を得られます。耕地を追加したら、ここにあなたの畑が表示されます。<0>詳しく</0>"
 
-#: src/components/farm/card/FarmCardStatus.tsx:29
 #: src/components/farm/Farm.tsx:15
 #: src/components/farm/FarmerStatus.tsx:27
+#: src/components/farm/card/FarmCardStatus.tsx:29
 #: src/components/plot/PlotStatus.tsx:14
 msgid "Farming"
 msgstr "耕作中"
@@ -639,13 +639,13 @@ msgstr "耕作中"
 msgid "Farming Status"
 msgstr "耕作の状態"
 
+#: src/components/wallet/WalletHistory.tsx:52
 #: src/components/wallet/create/createExistingColouredCoin.jsx:131
 #: src/components/wallet/create/createNewColouredCoin.jsx:138
 #: src/components/wallet/create/createRLAdmin.jsx:266
 #: src/components/wallet/create/createRLAdmin.jsx:298
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:783
 #: src/components/wallet/standard/WalletStandard.tsx:350
-#: src/components/wallet/WalletHistory.tsx:52
 msgid "Fee"
 msgstr "手数料"
 
@@ -674,9 +674,9 @@ msgstr "全手数料"
 msgid "File"
 msgstr "ファイル"
 
-#: src/components/plot/overview/PlotOverviewPlots.tsx:67
 #: src/components/plot/PlotsFailed.tsx:10
 #: src/components/plot/PlotsNotFound.tsx:10
+#: src/components/plot/overview/PlotOverviewPlots.tsx:67
 msgid "Filename"
 msgstr "ファイル名"
 
@@ -822,7 +822,7 @@ msgstr "鍵"
 msgid "Last Attempted Proof"
 msgstr "最後に試みた証明"
 
-#: src/components/farm/card/FarmCardLastHeightFarmed.tsx:11
+#: src/components/farm/card/FarmCardLastHeightFarmed.tsx:8
 msgid "Last Height Farmed"
 msgstr "最後に収穫した高さ"
 
@@ -940,7 +940,7 @@ msgstr "いいえ"
 msgid "No 24 word seed, since this key is imported."
 msgstr "この鍵はインポートされているため、24語の種がありません。"
 
-#: src/components/farm/card/FarmCardLastHeightFarmed.tsx:11
+#: src/components/farm/card/FarmCardLastHeightFarmed.tsx:8
 msgid "No blocks farmed yet"
 msgstr "まだ収穫ブロックはありません"
 
@@ -958,9 +958,9 @@ msgstr "ノード ID"
 msgid "None of your plots have passed the plot filter yet."
 msgstr "お持ちの耕地は現在、どれも耕地フィルターを通過できていません。"
 
+#: src/components/farm/FarmerStatus.tsx:29
 #: src/components/farm/card/FarmCardNotAvailable.tsx:8
 #: src/components/farm/card/FarmCardNotAvailable.tsx:9
-#: src/components/farm/FarmerStatus.tsx:29
 #: src/components/plot/PlotStatus.tsx:16
 msgid "Not Available"
 msgstr "該当なし"
@@ -1469,8 +1469,8 @@ msgstr "状態"
 #: src/components/plot/overview/PlotOverviewPlots.tsx:71
 #: src/components/trading/TradingOverview.jsx:128
 #: src/components/wallet/WalletHistory.tsx:42
-#: src/components/wallet/Wallets.tsx:94
 #: src/components/wallet/WalletStatusCard.tsx:12
+#: src/components/wallet/Wallets.tsx:94
 msgid "Status"
 msgstr "状態"
 
@@ -1514,8 +1514,8 @@ msgstr "提出"
 msgid "Synced"
 msgstr "同期完了"
 
-#: src/components/farm/card/FarmCardStatus.tsx:12
 #: src/components/farm/FarmerStatus.tsx:28
+#: src/components/farm/card/FarmCardStatus.tsx:12
 #: src/components/plot/PlotStatus.tsx:15
 msgid "Syncing"
 msgstr "同期中"
@@ -1665,9 +1665,9 @@ msgstr "宛先"
 msgid "Total Balance"
 msgstr "全残高"
 
-#: src/components/farm/card/FarmCardTotalChiaFarmed.tsx:12
-msgid "Total Chia Farmed"
-msgstr "全収穫済チア"
+#: src/components/farm/card/FarmCardTotalChiaFarmed.tsx:15
+#~ msgid "Total Chia Farmed"
+#~ msgstr ""
 
 #: src/components/fullNode/FullNode.jsx:204
 msgid "Total Iterations"
@@ -1856,7 +1856,7 @@ msgstr "管理者からセットアップ用の情報パケットを受け取っ
 msgid "Window"
 msgstr "ウィンドウ"
 
-#: src/components/farm/card/FarmCardBlockRewards.tsx:17
+#: src/components/farm/card/FarmCardBlockRewards.tsx:18
 msgid "Without fees"
 msgstr "手数料抜き"
 
@@ -1886,13 +1886,13 @@ msgstr "あなたのフルノード接続"
 msgid "Your Harvester Network"
 msgstr "あなたの収穫機ネットワーク"
 
-#: src/components/wallet/Wallets.tsx:122
 #: src/components/wallet/WalletStatusCard.tsx:31
+#: src/components/wallet/Wallets.tsx:122
 msgid "connections:"
 msgstr "接続数:"
 
-#: src/components/wallet/Wallets.tsx:116
 #: src/components/wallet/WalletStatusCard.tsx:25
+#: src/components/wallet/Wallets.tsx:116
 msgid "height:"
 msgstr "高さ:"
 
@@ -1900,18 +1900,18 @@ msgstr "高さ:"
 msgid "not synced"
 msgstr "同期されていません"
 
-#: src/components/wallet/Wallets.tsx:99
 #: src/components/wallet/WalletStatusCard.tsx:17
+#: src/components/wallet/Wallets.tsx:99
 msgid "status:"
 msgstr "状態:"
 
-#: src/components/wallet/Wallets.tsx:108
 #: src/components/wallet/WalletStatusCard.tsx:20
+#: src/components/wallet/Wallets.tsx:108
 msgid "synced"
 msgstr "同期完了"
 
-#: src/components/wallet/Wallets.tsx:106
 #: src/components/wallet/WalletStatusCard.tsx:20
+#: src/components/wallet/Wallets.tsx:106
 msgid "syncing"
 msgstr "同期中"
 
@@ -1923,9 +1923,13 @@ msgstr "同期中"
 #~ msgid "{0} User Transaction Fees"
 #~ msgstr "{0} User Transaction Fees"
 
-#: src/components/farm/card/FarmCardBlockRewards.tsx:17
+#: src/components/farm/card/FarmCardBlockRewards.tsx:18
 msgid "{currencyCode} Block Rewards"
 msgstr "{currencyCode} ブロック報酬"
+
+#: src/components/farm/card/FarmCardTotalChiaFarmed.tsx:17
+msgid "{currencyCode} Total Chia Farmed"
+msgstr ""
 
 #: src/components/farm/card/FarmCardUserFees.tsx:17
 msgid "{currencyCode} User Transaction Fees"
