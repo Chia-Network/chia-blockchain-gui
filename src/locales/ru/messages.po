@@ -8,7 +8,7 @@ msgstr ""
 "Language: ru_RU\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-03-12 07:05\n"
+"PO-Revision-Date: 2021-03-12 08:01\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "Plural-Forms: nplurals=4; plural=((n%10==1 && n%100!=11) ? 0 : ((n%10 >= 2 && n%10 <=4 && (n%100 < 12 || n%100 > 14)) ? 1 : ((n%10 == 0 || (n%10 >= 5 && n%10 <=9)) || (n%100 >= 11 && n%100 <= 14)) ? 2 : 3));\n"
@@ -923,7 +923,7 @@ msgstr "Имя сети"
 
 #: src/components/fullNode/FullNode.jsx:106
 msgid "Network has not yet been launched, once it launches full node will start automatically."
-msgstr ""
+msgstr "Сеть еще не запущена. Как только сеть будет запущена, полный узел стартует автоматически."
 
 #: src/components/app/AppRouter.tsx:24
 #~ msgid "Network not launched yet, waiting for genesis challenge!"
@@ -967,7 +967,7 @@ msgstr "Нет предыдущих транзакций"
 
 #: src/components/farm/FarmManageFarmingRewards.tsx:91
 msgid "No private keys for one or both addresses. Safe only if you are sending rewards to another wallet."
-msgstr ""
+msgstr "Не найдено закрытых ключей для одного или обоих адресов. Безопасно только в том случае, если вы отправляете вознаграждение на другой кошелек."
 
 #: src/components/farm/FarmFullNodeConnections.tsx:20
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:20
@@ -1203,7 +1203,7 @@ msgstr "Хеш-головоломка пула"
 
 #: src/components/farm/FarmManageFarmingRewards.tsx:96
 msgid "Pool Reward Address"
-msgstr ""
+msgstr "Адрес выплаты пулу"
 
 #: src/components/block/Block.jsx:283
 msgid "Pool Reward Amount"
@@ -1262,11 +1262,11 @@ msgstr "Открытый ключ:"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:103
 msgid "Queue Name"
-msgstr ""
+msgstr "Имя очереди"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:43
 msgid "Queue name"
-msgstr ""
+msgstr "Имя очереди"
 
 #: src/components/plot/queue/PlotQueueIndicator.tsx:11
 msgid "Queued"
@@ -1811,7 +1811,7 @@ msgstr ""
 #: src/components/fullNode/FullNode.jsx:103
 #: src/components/wallet/WalletStatusCard.tsx:20
 msgid "Waiting for network to launch"
-msgstr ""
+msgstr "Ожидание запуска сети"
 
 #: src/components/wallet/Wallets.tsx:34
 #~ msgid "WalletItem.ccWallet"
@@ -1894,7 +1894,7 @@ msgstr "Да"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:56
 msgid "You do not need to be synched or connected to Plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
-msgstr ""
+msgstr "Вам не нужно синхронизировать узел или быть подключенным к Участку. Во время процесса засеивания участков создаются временные файлы, размер которых превышает размер окончательных файлов участков. Убедитесь, что у вас достаточно места. <0>Подробности</0>"
 
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:34
 msgid "You have {0}% of the space on the network, so farming a block will take {expectedTimeToWin} in expectation."
