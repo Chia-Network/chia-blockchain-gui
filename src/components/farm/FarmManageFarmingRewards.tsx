@@ -54,7 +54,7 @@ export default function FarmManageFarmingRewards(props: Props) {
       setValue('pool_target', response.pool_target || '');
 
       // @ts-ignore
-      if (!response.have_farmer_sk && !response.have_pool_sk) {
+      if (!response.have_farmer_sk !! !response.have_pool_sk) {
         setShowWarning(true);
       }
     } catch (error) {
@@ -109,7 +109,7 @@ export default function FarmManageFarmingRewards(props: Props) {
                 {showWarning && (
                   <Alert severity="warning">
                     <Trans>
-                      Both values are empty. This is ok if you are, for example, sending your rewards to an offline wallet.
+                      No private keys for one or both addresses. Safe only if you are sending rewards to another wallet.
                     </Trans>
                   </Alert>
                 )}
