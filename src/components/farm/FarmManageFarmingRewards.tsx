@@ -54,7 +54,7 @@ export default function FarmManageFarmingRewards(props: Props) {
       setValue('pool_target', response.pool_target || '');
 
       // @ts-ignore
-      if (!response.have_farmer_sk !! !response.have_pool_sk) {
+      if (!response.have_farmer_sk || !response.have_pool_sk) {
         setShowWarning(true);
       }
     } catch (error) {
