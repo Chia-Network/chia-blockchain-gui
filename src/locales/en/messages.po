@@ -227,7 +227,7 @@ msgid "Can be backed up to mnemonic seed"
 msgstr ""
 
 #: src/components/core/components/ConfirmDialog/ConfirmDialog.tsx:50
-#: src/components/farm/FarmManageFarmingRewards.tsx:104
+#: src/components/farm/FarmManageFarmingRewards.tsx:102
 #: src/components/fullNode/FullNodeAddConnection.tsx:67
 #: src/components/trading/CreateOffer.jsx:153
 #: src/components/trading/TradingOverview.jsx:410
@@ -615,7 +615,7 @@ msgstr ""
 msgid "Farmer Puzzle Hash"
 msgstr ""
 
-#: src/components/farm/FarmManageFarmingRewards.tsx:97
+#: src/components/farm/FarmManageFarmingRewards.tsx:95
 msgid "Farmer Reward Address"
 msgstr "Farmer Reward Address"
 
@@ -895,7 +895,7 @@ msgstr ""
 msgid "Manage Farming Rewards"
 msgstr "Manage Farming Rewards"
 
-#: src/components/farm/FarmManageFarmingRewards.tsx:84
+#: src/components/farm/FarmManageFarmingRewards.tsx:82
 msgid "Manage Your Farming Rewards Target Addresses"
 msgstr "Manage Your Farming Rewards Target Addresses"
 
@@ -965,7 +965,7 @@ msgstr ""
 msgid "No previous transactions"
 msgstr ""
 
-#: src/components/farm/FarmManageFarmingRewards.tsx:93
+#: src/components/farm/FarmManageFarmingRewards.tsx:91
 msgid "No private keys for one or both addresses. Safe only if you are sending rewards to another wallet."
 msgstr "No private keys for one or both addresses. Safe only if you are sending rewards to another wallet."
 
@@ -1201,7 +1201,7 @@ msgstr ""
 msgid "Pool Puzzle Hash"
 msgstr ""
 
-#: src/components/farm/FarmManageFarmingRewards.tsx:98
+#: src/components/farm/FarmManageFarmingRewards.tsx:96
 msgid "Pool Reward Address"
 msgstr "Pool Reward Address"
 
@@ -1347,7 +1347,7 @@ msgstr "Restore Metadata for Coloured Coins and other Smart Wallets from Backup"
 msgid "Safe To Skip"
 msgstr "Safe To Skip"
 
-#: src/components/farm/FarmManageFarmingRewards.tsx:107
+#: src/components/farm/FarmManageFarmingRewards.tsx:105
 #: src/components/trading/CreateOffer.jsx:160
 msgid "Save"
 msgstr ""
