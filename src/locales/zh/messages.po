@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh_TW\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-03-14 16:34\n"
+"PO-Revision-Date: 2021-03-14 21:08\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -805,7 +805,7 @@ msgstr ""
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:342
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:491
 msgid "Info Packet"
-msgstr ""
+msgstr "資料封包"
 
 #: src/components/wallet/create/createRLAdmin.jsx:283
 msgid "Initial Amount"
@@ -817,7 +817,7 @@ msgstr ""
 
 #: src/components/wallet/create/createRLAdmin.jsx:234
 msgid "Interval"
-msgstr ""
+msgstr "間隔"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:37
 msgid "K-Size"
