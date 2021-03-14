@@ -2,7 +2,10 @@ import React from 'react';
 import { Trans } from '@lingui/macro';
 import { AdvancedOptions, CardStep, Select, TextField, RadioGroup, Flex, Checkbox } from '@chia/core';
 import { Grid, FormControl, InputLabel, MenuItem, InputAdornment, Typography, FormControlLabel, Radio } from '@material-ui/core';
+import Autocomplete from '@material-ui/lab/Autocomplete';
 import { useFormContext } from 'react-hook-form';
+
+import usePlots from '../../../hooks/usePlots';
 
 const plotCountOptions: number[] = [];
 
@@ -11,8 +14,16 @@ for (let i = 1; i < 30; i += 1) {
 }
 
 export default function PlotAddNumberOfPlots() {
+  const { queue } = usePlots();
   const { watch } = useFormContext();
   const parallel = watch('parallel');
+
+  const queueOptions: {[key: string]: boolean} = {'default': true};
+  queue?.forEach((item) => {
+    if (item.queue) {
+      queueOptions[item.queue] = true
+    }
+  });
 
   return (
     <CardStep
@@ -178,12 +189,12 @@ export default function PlotAddNumberOfPlots() {
               variant="filled"
               fullWidth
             >
-              <TextField
-                name="queue"
-                type="text"
-                variant="filled"
-                placeholder="default"
-                label={<Trans>Queue Name</Trans>}
+              <Autocomplete
+                freeSolo
+                renderInput={(params) => <TextField {...params} label={<Trans>Queue Name</Trans>} variant='filled' name="queue"/>}
+                getOptionLabel={(option) => option}
+                defaultValue="default"
+                options={Object.keys(queueOptions)}
               />
             </FormControl>
           </Grid>
