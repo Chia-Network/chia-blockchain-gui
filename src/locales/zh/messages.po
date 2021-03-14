@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh_TW\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-03-14 21:08\n"
+"PO-Revision-Date: 2021-03-14 22:12\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -1741,7 +1741,7 @@ msgstr "交易概觀"
 
 #: src/components/trading/TradingOverview.jsx:153
 msgid "Trades will show up here"
-msgstr ""
+msgstr "交易將會在此顯示"
 
 #: src/components/trading/TradeManager.tsx:13
 msgid "Trading"
