@@ -36,8 +36,8 @@ msgstr "Un cosechador es un servicio que se ejecuta en una máquina en donde act
 
 #: src/electron-starter.js:362
 #: src/electron-starter.js:455
-msgid "About Chia Blockchain"
-msgstr "Acerca de Chia Blockchain"
+#~ msgid "About Chia Blockchain"
+#~ msgstr "Acerca de Chia Blockchain"
 
 #: src/components/trading/ViewOffer.jsx:85
 msgid "Accept"
@@ -47,9 +47,9 @@ msgstr "Aceptar"
 msgid "Accepted at time:"
 msgstr "Aceptado en el tiempo:"
 
-#: src/components/plot/overview/PlotOverviewPlots.tsx:75
 #: src/components/plot/PlotsFailed.tsx:14
 #: src/components/plot/PlotsNotFound.tsx:14
+#: src/components/plot/overview/PlotOverviewPlots.tsx:75
 msgid "Action"
 msgstr "Acción"
 
@@ -72,9 +72,9 @@ msgid "Add Wallet"
 msgstr "Añadir Monedero"
 
 #: src/components/farm/overview/FarmOverviewHero.tsx:35
+#: src/components/plot/PlotHeader.tsx:33
 #: src/components/plot/add/PlotAdd.tsx:54
 #: src/components/plot/overview/PlotOverviewHero.tsx:29
-#: src/components/plot/PlotHeader.tsx:33
 msgid "Add a Plot"
 msgstr "Añadir una Parcela"
 
@@ -99,10 +99,10 @@ msgstr "Dirección / Enigma hash"
 
 #: src/components/trading/CreateOffer.jsx:213
 #: src/components/trading/TradesTable.tsx:16
+#: src/components/wallet/WalletHistory.tsx:48
 #: src/components/wallet/create/createNewColouredCoin.jsx:125
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:770
 #: src/components/wallet/standard/WalletStandard.tsx:331
-#: src/components/wallet/WalletHistory.tsx:48
 msgid "Amount"
 msgstr "Cantidad"
 
@@ -124,8 +124,8 @@ msgid "Are you sure you want to disconnect?"
 msgstr ""
 
 #: src/electron-starter.js:134
-msgid "Are you sure you want to quit? GUI Plotting and farming will stop."
-msgstr "¿Está seguro que quiere salir? Sembrar y Cultivar en el GUI se detendrán."
+#~ msgid "Are you sure you want to quit? GUI Plotting and farming will stop."
+#~ msgstr "¿Está seguro que quiere salir? Sembrar y Cultivar en el GUI se detendrán."
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:31
 msgid "Are you sure you want to use k={plotSize}"
@@ -252,16 +252,16 @@ msgid "Challenge Hash"
 msgstr "Desafío Hash"
 
 #: src/electron-starter.js:341
-msgid "Chat on KeyBase"
-msgstr "Chatear en Keybase"
+#~ msgid "Chat on KeyBase"
+#~ msgstr "Chatear en Keybase"
 
 #: src/electron-starter.js:359
-msgid "Chia"
-msgstr "Chia"
+#~ msgid "Chia"
+#~ msgstr "Chia"
 
 #: src/electron-starter.js:298
-msgid "Chia Blockchain Wiki"
-msgstr "Wiki de Cadena de Bloques Chia"
+#~ msgid "Chia Blockchain Wiki"
+#~ msgstr "Wiki de Cadena de Bloques Chia"
 
 #: src/components/wallet/Wallets.tsx:30
 msgid "Chia Wallet"
@@ -314,8 +314,8 @@ msgid "Coloured Coin Options"
 msgstr "Opciones de Moneda de Color"
 
 #: src/electron-starter.js:132
-msgid "Confirm"
-msgstr "Confirmar"
+#~ msgid "Confirm"
+#~ msgstr "Confirmar"
 
 #: src/components/fullNode/FullNodeCloseConnection.tsx:22
 msgid "Confirm Disconnect"
@@ -365,8 +365,8 @@ msgid "Connections"
 msgstr "Conexiones"
 
 #: src/electron-starter.js:322
-msgid "Contribute on GitHub"
-msgstr "Contribuir en GitHub"
+#~ msgid "Contribute on GitHub"
+#~ msgstr "Contribuir en GitHub"
 
 #: src/components/core/components/CopyToClipboard/CopyToClipboard.tsx:22
 msgid "Copied"
@@ -524,12 +524,12 @@ msgid "Deleting the key will permanently remove the key from your computer, make
 msgstr "Borrar la llave eliminará permanentemente la llave de su ordenador, asegurase de tener una copia de seguridad. ¿Está seguro de que quiere continuar?"
 
 #: src/electron-starter.js:244
-msgid "Developer"
-msgstr "Desarrollador"
+#~ msgid "Developer"
+#~ msgstr "Desarrollador"
 
 #: src/electron-starter.js:247
-msgid "Developer Tools"
-msgstr "Herramientas de Desarrollador"
+#~ msgid "Developer Tools"
+#~ msgstr "Herramientas de Desarrollador"
 
 #: src/components/block/Block.jsx:213
 #: src/components/fullNode/FullNode.jsx:191
@@ -567,17 +567,17 @@ msgid "Drag and drop your backup file"
 msgstr "Arrastra y suelta tu archivo de respaldo"
 
 #: src/electron-starter.js:203
-msgid "Edit"
-msgstr "Editar"
+#~ msgid "Edit"
+#~ msgstr "Editar"
 
 #: src/components/wallet/WalletImport.tsx:67
 msgid "Enter the 24 word mnemonic that you have saved in order to restore your Chia wallet."
 msgstr "Introduzca las 24 palabras mnemotécnicas que has guardado en orden para restaurar su monedero Chia."
 
-#: src/components/farm/card/FarmCardStatus.tsx:20
-#: src/components/farm/card/FarmCardStatus.tsx:25
 #: src/components/farm/FarmerStatus.tsx:30
 #: src/components/farm/FarmerStatus.tsx:31
+#: src/components/farm/card/FarmCardStatus.tsx:20
+#: src/components/farm/card/FarmCardStatus.tsx:25
 #: src/components/plot/PlotStatus.tsx:17
 #: src/components/plot/PlotStatus.tsx:18
 #: src/components/plot/queue/PlotQueueIndicator.tsx:14
@@ -633,9 +633,9 @@ msgstr "El Agricultor no está funcionando"
 msgid "Farmers earn block rewards and transaction fees by committing spare space to the network to help secure transactions. This is where your farm will be once you add a plot. <0>Learn more</0>"
 msgstr "Los agricultores obtienen recompensas en bloque y tarifas de transacción al asignar espacio libre a la red para ayudar a asegurar las transacciones. Aquí es donde estará su granja una vez que agregue una parcela. <0> Más información </0>"
 
-#: src/components/farm/card/FarmCardStatus.tsx:29
 #: src/components/farm/Farm.tsx:15
 #: src/components/farm/FarmerStatus.tsx:27
+#: src/components/farm/card/FarmCardStatus.tsx:29
 #: src/components/plot/PlotStatus.tsx:14
 msgid "Farming"
 msgstr "Cultivando"
@@ -648,13 +648,13 @@ msgstr "Cultivando"
 msgid "Farming Status"
 msgstr "Estado de Cultivo"
 
+#: src/components/wallet/WalletHistory.tsx:52
 #: src/components/wallet/create/createExistingColouredCoin.jsx:131
 #: src/components/wallet/create/createNewColouredCoin.jsx:138
 #: src/components/wallet/create/createRLAdmin.jsx:266
 #: src/components/wallet/create/createRLAdmin.jsx:298
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:783
 #: src/components/wallet/standard/WalletStandard.tsx:336
-#: src/components/wallet/WalletHistory.tsx:52
 msgid "Fee"
 msgstr "Tarifa"
 
@@ -680,12 +680,12 @@ msgstr "Monto de tarifas"
 
 #: src/electron-starter.js:195
 #: src/electron-starter.js:402
-msgid "File"
-msgstr "Archivo"
+#~ msgid "File"
+#~ msgstr "Archivo"
 
-#: src/components/plot/overview/PlotOverviewPlots.tsx:67
 #: src/components/plot/PlotsFailed.tsx:10
 #: src/components/plot/PlotsNotFound.tsx:10
+#: src/components/plot/overview/PlotOverviewPlots.tsx:67
 msgid "Filename"
 msgstr "Nombre del Archivo"
 
@@ -699,12 +699,12 @@ msgid "Finished"
 msgstr "Finalizado"
 
 #: src/electron-starter.js:347
-msgid "Follow on Twitter"
-msgstr "Seguir en Twitter"
+#~ msgid "Follow on Twitter"
+#~ msgstr "Seguir en Twitter"
 
 #: src/electron-starter.js:306
-msgid "Frequently Asked Questions"
-msgstr "Preguntas Frecuentes"
+#~ msgid "Frequently Asked Questions"
+#~ msgstr "Preguntas Frecuentes"
 
 #: src/components/dashboard/DashboardSideBar.tsx:23
 #: src/components/fullNode/FullNode.jsx:325
@@ -716,8 +716,8 @@ msgid "Full Node Status"
 msgstr "Estado de Nodo Completo"
 
 #: src/electron-starter.js:272
-msgid "Full Screen"
-msgstr "Pantalla Completa"
+#~ msgid "Full Screen"
+#~ msgstr "Pantalla Completa"
 
 #: src/components/wallet/create/createNewColouredCoin.jsx:106
 msgid "Generate New Colour"
@@ -742,8 +742,8 @@ msgid "Height"
 msgstr "Altura"
 
 #: src/electron-starter.js:294
-msgid "Help"
-msgstr "Ayuda"
+#~ msgid "Help"
+#~ msgstr "Ayuda"
 
 #: src/components/core/components/LocaleToggle/LocaleToggle.tsx:50
 msgid "Help translate"
@@ -949,7 +949,6 @@ msgid "Nickname"
 msgstr "Apodo"
 
 #: src/components/trading/TradingOverview.jsx:212
-#: src/electron-starter.js:131
 msgid "No"
 msgstr "No"
 
@@ -979,9 +978,9 @@ msgstr "ID de Nodo"
 msgid "None of your plots have passed the plot filter yet."
 msgstr "Ninguna de sus parcelas a pasado un filtro de parcela aún."
 
+#: src/components/farm/FarmerStatus.tsx:29
 #: src/components/farm/card/FarmCardNotAvailable.tsx:8
 #: src/components/farm/card/FarmCardNotAvailable.tsx:9
-#: src/components/farm/FarmerStatus.tsx:29
 #: src/components/plot/PlotStatus.tsx:16
 msgid "Not Available"
 msgstr "No Disponible"
@@ -1319,16 +1318,16 @@ msgid "Refresh Plots"
 msgstr "Actualizar Parcelas"
 
 #: src/electron-starter.js:314
-msgid "Release Notes"
-msgstr "Notas de lanzamiento"
+#~ msgid "Release Notes"
+#~ msgstr "Notas de lanzamiento"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:206
 msgid "Rename"
 msgstr "Renombrar"
 
 #: src/electron-starter.js:333
-msgid "Report an Issue..."
-msgstr "Reportar un problema..."
+#~ msgid "Report an Issue..."
+#~ msgstr "Reportar un problema..."
 
 #: src/components/backup/BackupRestore.tsx:107
 msgid "Restore Metadata for Coloured Coins and other Smart Wallets from Backup"
@@ -1452,8 +1451,8 @@ msgstr "Iniciar Sesión"
 #~ msgstr "Saltar"
 
 #: src/electron-starter.js:416
-msgid "Speech"
-msgstr "Habla"
+#~ msgid "Speech"
+#~ msgstr "Habla"
 
 #: src/components/wallet/create/createRLAdmin.jsx:247
 msgid "Spendable Amount"
@@ -1495,8 +1494,8 @@ msgstr "Estado"
 #: src/components/plot/overview/PlotOverviewPlots.tsx:71
 #: src/components/trading/TradingOverview.jsx:128
 #: src/components/wallet/WalletHistory.tsx:42
-#: src/components/wallet/Wallets.tsx:94
 #: src/components/wallet/WalletStatusCard.tsx:12
+#: src/components/wallet/Wallets.tsx:94
 msgid "Status"
 msgstr "Estado"
 
@@ -1540,8 +1539,8 @@ msgstr "Enviar"
 msgid "Synced"
 msgstr "Sincronizado"
 
-#: src/components/farm/card/FarmCardStatus.tsx:12
 #: src/components/farm/FarmerStatus.tsx:28
+#: src/components/farm/card/FarmCardStatus.tsx:12
 #: src/components/plot/PlotStatus.tsx:15
 msgid "Syncing"
 msgstr "Sincronizando"
@@ -1777,8 +1776,8 @@ msgid "VDF Sub Slot Iterations"
 msgstr "Iteraciones VDF Sub Slot"
 
 #: src/electron-starter.js:235
-msgid "View"
-msgstr "Vista"
+#~ msgid "View"
+#~ msgstr "Vista"
 
 #: src/components/plot/queue/PlotQueueActions.tsx:49
 #: src/components/plot/queue/PlotQueueLogDialog.tsx:20
@@ -1879,8 +1878,8 @@ msgid "When you receive the setup info packet from your admin, enter it below to
 msgstr "Cuando reciba el paquete de información de configuración de su administrador, ingréselo a continuación para completar la configuración de su Monedero con Tarifa Limitada:"
 
 #: src/electron-starter.js:280
-msgid "Window"
-msgstr "Ventana"
+#~ msgid "Window"
+#~ msgstr "Ventana"
 
 #: src/components/farm/card/FarmCardBlockRewards.tsx:18
 msgid "Without fees"
@@ -1888,7 +1887,6 @@ msgstr "Sin tarifas"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:30
 #: src/components/trading/TradingOverview.jsx:212
-#: src/electron-starter.js:131
 msgid "Yes"
 msgstr "Sí"
 
@@ -1912,13 +1910,13 @@ msgstr "Su Conexión de Nodo Completo"
 msgid "Your Harvester Network"
 msgstr "Su Red de Cosechadores"
 
-#: src/components/wallet/Wallets.tsx:122
 #: src/components/wallet/WalletStatusCard.tsx:31
+#: src/components/wallet/Wallets.tsx:122
 msgid "connections:"
 msgstr "conexiones:"
 
-#: src/components/wallet/Wallets.tsx:116
 #: src/components/wallet/WalletStatusCard.tsx:25
+#: src/components/wallet/Wallets.tsx:116
 msgid "height:"
 msgstr "altura:"
 
@@ -1926,18 +1924,18 @@ msgstr "altura:"
 msgid "not synced"
 msgstr "no sincronizado"
 
-#: src/components/wallet/Wallets.tsx:99
 #: src/components/wallet/WalletStatusCard.tsx:17
+#: src/components/wallet/Wallets.tsx:99
 msgid "status:"
 msgstr "estado:"
 
-#: src/components/wallet/Wallets.tsx:108
 #: src/components/wallet/WalletStatusCard.tsx:20
+#: src/components/wallet/Wallets.tsx:108
 msgid "synced"
 msgstr "sincronizado"
 
-#: src/components/wallet/Wallets.tsx:106
 #: src/components/wallet/WalletStatusCard.tsx:20
+#: src/components/wallet/Wallets.tsx:106
 msgid "syncing"
 msgstr "sincronizando"
 
