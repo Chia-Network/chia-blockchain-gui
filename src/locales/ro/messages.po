@@ -8,7 +8,7 @@ msgstr ""
 "Language: ro_RO\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-03-14 01:55\n"
+"PO-Revision-Date: 2021-03-14 11:10\n"
 "Last-Translator: \n"
 "Language-Team: Romanian\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100>0 && n%100<20)) ? 1 : 2);\n"
@@ -28,7 +28,7 @@ msgstr "Vrei sa explorezi blocurile Chia mai mult? Verifică <0>Chia Explorer</0
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:94
 msgid "128 buckets is recommended"
-msgstr ""
+msgstr "128 găleți recomandat"
 
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:58
 msgid "A harvester is a service running on a machine where plot(s) are actually stored. A farmer and harvester talk to a full node to see the state of the chain. View your network of connected harvesters below Learn more"
@@ -37,7 +37,7 @@ msgstr "Un harvester este un serviciu care rulează pe o mașină în care plot 
 #: src/electron-starter.js:362
 #: src/electron-starter.js:455
 msgid "About Chia Blockchain"
-msgstr ""
+msgstr "Despre blockchain-ul Chia"
 
 #: src/components/trading/ViewOffer.jsx:85
 msgid "Accept"
@@ -80,11 +80,11 @@ msgstr "Adaugati un plot"
 
 #: src/components/plot/PlotAddDirectoryDialog.tsx:40
 msgid "Add a plot"
-msgstr ""
+msgstr "Adaugă o parcelă"
 
 #: src/components/plot/PlotAddDirectoryDialog.tsx:69
 msgid "Add plot directory"
-msgstr ""
+msgstr "Adaugă un director cu parcele"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:405
 #: src/components/wallet/coloured/WalletColoured.tsx:457
@@ -121,15 +121,15 @@ msgstr "Sunteti sigur ca vreti sa stergeti plotul? Plotul nu va putea fi recuper
 
 #: src/components/fullNode/FullNodeCloseConnection.tsx:23
 msgid "Are you sure you want to disconnect?"
-msgstr ""
+msgstr "Sigur vrei să deconectezi?"
 
 #: src/electron-starter.js:134
 msgid "Are you sure you want to quit? GUI Plotting and farming will stop."
-msgstr ""
+msgstr "Sigur vrei să închizi? Parcelarea și cultivarea se vor opri."
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:31
 msgid "Are you sure you want to use k={plotSize}"
-msgstr ""
+msgstr "Sigur vrei să folosești k={plotSize}"
 
 #: src/components/selectKey/SelectKey.tsx:39
 #: src/components/selectKey/SelectKey.tsx:53
@@ -168,7 +168,7 @@ msgstr "Bloc"
 
 #: src/components/block/Block.jsx:121
 msgid "Block Test"
-msgstr ""
+msgstr "Bloc Test"
 
 #: src/components/block/Block.jsx:227
 msgid "Block VDF Iterations"
@@ -184,7 +184,7 @@ msgstr "Blocul la inaltimea {0} in blockchainul Chia"
 
 #: src/components/block/Block.jsx:126
 msgid "Block with hash {headerHash}"
-msgstr ""
+msgstr "Bloc cu hash {headerHash}"
 
 #: src/components/block/Block.jsx:155
 msgid "Block with hash {headerHash} does not exists."
@@ -253,15 +253,15 @@ msgstr "Hashul provocarii"
 
 #: src/electron-starter.js:341
 msgid "Chat on KeyBase"
-msgstr ""
+msgstr "Discută pe KeyBase"
 
 #: src/electron-starter.js:359
 msgid "Chia"
-msgstr ""
+msgstr "Chia"
 
 #: src/electron-starter.js:298
 msgid "Chia Blockchain Wiki"
-msgstr ""
+msgstr "Wiki Blockchain Chia"
 
 #: src/components/wallet/Wallets.tsx:30
 msgid "Chia Wallet"
@@ -315,11 +315,11 @@ msgstr "Opțiuni monede colorate"
 
 #: src/electron-starter.js:132
 msgid "Confirm"
-msgstr ""
+msgstr "Confirmare"
 
 #: src/components/fullNode/FullNodeCloseConnection.tsx:22
 msgid "Confirm Disconnect"
-msgstr ""
+msgstr "Confirmare Deconectare"
 
 #: src/components/trading/TradingOverview.jsx:202
 msgid "Confirmed at block:"
@@ -366,7 +366,7 @@ msgstr "Conexiuni"
 
 #: src/electron-starter.js:322
 msgid "Contribute on GitHub"
-msgstr ""
+msgstr "Contribuie pe GitHub"
 
 #: src/components/core/components/CopyToClipboard/CopyToClipboard.tsx:22
 msgid "Copied"
@@ -525,11 +525,11 @@ msgstr "Ștergerea tuturor cheilor va elimina definitiv cheile de pe computer, a
 
 #: src/electron-starter.js:244
 msgid "Developer"
-msgstr ""
+msgstr "Dezvoltator"
 
 #: src/electron-starter.js:247
 msgid "Developer Tools"
-msgstr ""
+msgstr "Unelte Dezvoltator"
 
 #: src/components/block/Block.jsx:213
 #: src/components/fullNode/FullNode.jsx:191
@@ -538,7 +538,7 @@ msgstr "Dificultate"
 
 #: src/components/fullNode/FullNodeCloseConnection.tsx:22
 msgid "Disconnect"
-msgstr ""
+msgstr "Deconectare"
 
 #: src/components/wallet/create/WalletCreate.jsx:144
 #~ msgid "Distributed Identity"
@@ -568,7 +568,7 @@ msgstr "Drag and drop fisierul backup"
 
 #: src/electron-starter.js:203
 msgid "Edit"
-msgstr ""
+msgstr "Edit"
 
 #: src/components/wallet/WalletImport.tsx:67
 msgid "Enter the 24 word mnemonic that you have saved in order to restore your Chia wallet."
@@ -617,7 +617,7 @@ msgstr "Farmer Puzzle Hash"
 
 #: src/components/farm/FarmManageFarmingRewards.tsx:95
 msgid "Farmer Reward Address"
-msgstr ""
+msgstr "Adresă Răsplată Fermier"
 
 #: src/components/farm/card/FarmCardStatus.tsx:21
 #: src/components/plot/PlotStatus.tsx:28
@@ -668,7 +668,7 @@ msgstr "Taxe"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:422
 msgid "Fee ({currencyCode})"
-msgstr ""
+msgstr "Comision ({currencyCode})"
 
 #: src/components/block/Block.jsx:291
 msgid "Fees Amount"
@@ -681,7 +681,7 @@ msgstr "Suma taxe"
 #: src/electron-starter.js:195
 #: src/electron-starter.js:402
 msgid "File"
-msgstr ""
+msgstr "Filă"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:67
 #: src/components/plot/PlotsFailed.tsx:10
@@ -700,11 +700,11 @@ msgstr "Terminat"
 
 #: src/electron-starter.js:347
 msgid "Follow on Twitter"
-msgstr ""
+msgstr "Urmărește pe Twitter"
 
 #: src/electron-starter.js:306
 msgid "Frequently Asked Questions"
-msgstr ""
+msgstr "Întrebări frecvente"
 
 #: src/components/dashboard/DashboardSideBar.tsx:23
 #: src/components/fullNode/FullNode.jsx:325
@@ -717,7 +717,7 @@ msgstr "Stare nod complet"
 
 #: src/electron-starter.js:272
 msgid "Full Screen"
-msgstr ""
+msgstr "Ecran Complet"
 
 #: src/components/wallet/create/createNewColouredCoin.jsx:106
 msgid "Generate New Colour"
@@ -743,7 +743,7 @@ msgstr "Inaltime"
 
 #: src/electron-starter.js:294
 msgid "Help"
-msgstr ""
+msgstr "Ajutor"
 
 #: src/components/core/components/LocaleToggle/LocaleToggle.tsx:50
 msgid "Help translate"
@@ -893,7 +893,7 @@ msgstr "Logare"
 
 #: src/components/farm/overview/FarmOverview.tsx:34
 msgid "Manage Farming Rewards"
-msgstr ""
+msgstr "Administrare Răsplată Cultivare"
 
 #: src/components/farm/FarmManageFarmingRewards.tsx:82
 msgid "Manage Your Farming Rewards Target Addresses"
