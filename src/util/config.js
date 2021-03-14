@@ -9,17 +9,26 @@ global.daemon_rpc_ws = `wss://${self_hostname}:55400`;
 global.cert_path = 'config/ssl/daemon/private_daemon.crt';
 global.key_path = 'config/ssl/daemon/private_daemon.key';
 
-function loadConfig(version) {
-  try {
-    // finding the right config file uses this precedence
-    // 1) CHIA_ROOT environment variable
-    // 2) version passed in and determined by the `chia version` call
+function getConfigFolder() {
+  // finding the right config file uses this precedence
+  // 1) CHIA_ROOT environment variable
+  // 2) see if mainnet folder exists
+  // 3) then just not assume testnet
+  if ('CHIA_ROOT' in process.env) {
+    return process.env.CHIA_ROOT;
+  }
+  const mainnet = path.join(os.homedir(), '.chia', 'mainnet');
+  if (fs.existsSync(mainnet)) {
+    return mainnet;
+  }
+  return path.join(os.homedir(), '.chia', 'testnet');
+}
 
-    // check if CHIA_ROOT is set. it overrides everything else
-    const config_root_dir =
-      'CHIA_ROOT' in process.env
-        ? process.env.CHIA_ROOT
-        : path.join(os.homedir(), '.chia', version);
+function loadConfig() {
+  try {
+    const config_root_dir = getConfigFolder();
+    console.log(`loading config from ${config_root_dir}`);
+
     const config = yaml.load(
       fs.readFileSync(path.join(config_root_dir, 'config/config.yaml'), 'utf8'),
     );

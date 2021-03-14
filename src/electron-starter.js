@@ -51,7 +51,7 @@ if (!setupEvents.handleSquirrelEvent()) {
   ensureCorrectEnvironment();
 
   // this needs to happen early in startup so all processes share the same global config
-  chiaConfig.loadConfig(chiaEnvironment.getChiaVersion());
+  chiaConfig.loadConfig();
   global.sharedObj = { local_test: local_test };
 
   const exitPyProc = e => {};
