@@ -8,7 +8,7 @@ msgstr ""
 "Language: sk_SK\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-03-13 22:42\n"
+"PO-Revision-Date: 2021-03-14 00:59\n"
 "Last-Translator: \n"
 "Language-Team: Slovak\n"
 "Plural-Forms: nplurals=4; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 3;\n"
@@ -34,8 +34,8 @@ msgstr ""
 msgid "A harvester is a service running on a machine where plot(s) are actually stored. A farmer and harvester talk to a full node to see the state of the chain. View your network of connected harvesters below Learn more"
 msgstr "Kombajn je služba bežiaca na stroji, kde sú uložené polia. Farmár a kombajn kumunikujú s plným uzlom, aby zistili stav reťaze. Nižšie si pozrite svoju sieť prepojených kombajnov. Viac informácií"
 
-#: src/electron-starter.js:353
-#: src/electron-starter.js:446
+#: src/electron-starter.js:362
+#: src/electron-starter.js:455
 msgid "About Chia Blockchain"
 msgstr "O Chia blockchaine"
 
@@ -123,7 +123,7 @@ msgstr "Naozaj chcete odstrániť pole? Pole nie je možné obnoviť."
 msgid "Are you sure you want to disconnect?"
 msgstr "Naozaj sa chcete odpojiť?"
 
-#: src/electron-starter.js:125
+#: src/electron-starter.js:134
 msgid "Are you sure you want to quit? GUI Plotting and farming will stop."
 msgstr "Naozaj chete skončiť? GUI pre polia a farmy bude ukončené."
 
@@ -251,15 +251,15 @@ msgstr "Výzva"
 msgid "Challenge Hash"
 msgstr "Hash výzvy"
 
-#: src/electron-starter.js:332
+#: src/electron-starter.js:341
 msgid "Chat on KeyBase"
 msgstr "Pokec na KeyBase"
 
-#: src/electron-starter.js:350
+#: src/electron-starter.js:359
 msgid "Chia"
 msgstr "Chia"
 
-#: src/electron-starter.js:289
+#: src/electron-starter.js:298
 msgid "Chia Blockchain Wiki"
 msgstr "Chia Blockchain Wiki"
 
@@ -313,7 +313,7 @@ msgstr "Farebná minca"
 msgid "Coloured Coin Options"
 msgstr "Možnosti farebných mincí"
 
-#: src/electron-starter.js:123
+#: src/electron-starter.js:132
 msgid "Confirm"
 msgstr "Potvrdiť"
 
@@ -364,7 +364,7 @@ msgstr "Typ pripojenia"
 msgid "Connections"
 msgstr "Pripojenia"
 
-#: src/electron-starter.js:313
+#: src/electron-starter.js:322
 msgid "Contribute on GitHub"
 msgstr ""
 
@@ -523,11 +523,11 @@ msgstr "Po stlačení tlačidla zmazať odstránite natrvalo všetký kľúče z
 msgid "Deleting the key will permanently remove the key from your computer, make sure you have backups. Are you sure you want to continue?"
 msgstr "Odstránením kľúča natrvalo odstránite kľúč z počítača. Uistite sa, že máte zálohy. Ste si istý, že chcete pokračovať?"
 
-#: src/electron-starter.js:235
+#: src/electron-starter.js:244
 msgid "Developer"
 msgstr "Vývojár"
 
-#: src/electron-starter.js:238
+#: src/electron-starter.js:247
 msgid "Developer Tools"
 msgstr "Nástroje pre vývojárov"
 
@@ -566,7 +566,7 @@ msgstr "Súbor s ponukami presuňte tu"
 msgid "Drag and drop your backup file"
 msgstr ""
 
-#: src/electron-starter.js:194
+#: src/electron-starter.js:203
 msgid "Edit"
 msgstr "Editovať"
 
@@ -678,8 +678,8 @@ msgstr "Množstvo odmeny"
 #~ msgid "Fees Puzzle Hash"
 #~ msgstr ""
 
-#: src/electron-starter.js:186
-#: src/electron-starter.js:393
+#: src/electron-starter.js:195
+#: src/electron-starter.js:402
 msgid "File"
 msgstr "Súbor"
 
@@ -698,11 +698,11 @@ msgstr "Cieľový adresár"
 msgid "Finished"
 msgstr "Dokončené"
 
-#: src/electron-starter.js:338
+#: src/electron-starter.js:347
 msgid "Follow on Twitter"
 msgstr "Sledujte na twitteri"
 
-#: src/electron-starter.js:297
+#: src/electron-starter.js:306
 msgid "Frequently Asked Questions"
 msgstr "Často kladené otázky (FAQ)"
 
@@ -715,7 +715,7 @@ msgstr "Domov"
 msgid "Full Node Status"
 msgstr "Stav siete"
 
-#: src/electron-starter.js:263
+#: src/electron-starter.js:272
 msgid "Full Screen"
 msgstr "Na celú obrazovku"
 
@@ -741,7 +741,7 @@ msgstr "Poradie hlavičky"
 msgid "Height"
 msgstr "Poradie"
 
-#: src/electron-starter.js:285
+#: src/electron-starter.js:294
 msgid "Help"
 msgstr "Pomocník"
 
@@ -949,7 +949,7 @@ msgid "Nickname"
 msgstr "Prezývka"
 
 #: src/components/trading/TradingOverview.jsx:212
-#: src/electron-starter.js:122
+#: src/electron-starter.js:131
 msgid "No"
 msgstr "Nie"
 
@@ -1318,7 +1318,7 @@ msgstr ""
 msgid "Refresh Plots"
 msgstr "Obnoviť polia"
 
-#: src/electron-starter.js:305
+#: src/electron-starter.js:314
 msgid "Release Notes"
 msgstr "Poznámky k vydaniu"
 
@@ -1326,7 +1326,7 @@ msgstr "Poznámky k vydaniu"
 msgid "Rename"
 msgstr "Premenovať"
 
-#: src/electron-starter.js:324
+#: src/electron-starter.js:333
 msgid "Report an Issue..."
 msgstr "Nahlásiť problém..."
 
@@ -1451,7 +1451,7 @@ msgstr "Prihlásiť sa"
 #~ msgid "Skip"
 #~ msgstr ""
 
-#: src/electron-starter.js:407
+#: src/electron-starter.js:416
 msgid "Speech"
 msgstr "Hlas"
 
@@ -1776,7 +1776,7 @@ msgstr "Používateľov verejný kľúč"
 msgid "VDF Sub Slot Iterations"
 msgstr ""
 
-#: src/electron-starter.js:226
+#: src/electron-starter.js:235
 msgid "View"
 msgstr ""
 
@@ -1878,7 +1878,7 @@ msgstr "Vitajte! Pre zálohovanie vašej peňaženky sa používajú nasledujúc
 msgid "When you receive the setup info packet from your admin, enter it below to complete your Rate Limited Wallet setup:"
 msgstr ""
 
-#: src/electron-starter.js:271
+#: src/electron-starter.js:280
 msgid "Window"
 msgstr "Okno"
 
@@ -1888,7 +1888,7 @@ msgstr "Bez poplatkov"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:30
 #: src/components/trading/TradingOverview.jsx:212
-#: src/electron-starter.js:122
+#: src/electron-starter.js:131
 msgid "Yes"
 msgstr "Áno"
 
