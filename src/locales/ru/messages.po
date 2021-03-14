@@ -26,7 +26,7 @@ msgstr "Хотите посмотреть больше информации о �
 #~ msgid "0 automatically chooses bucket count"
 #~ msgstr "Значение 0 автоматически выбирает количество вёдер"
 
-#: src/components/plot/add/PlotAddNumberOfPlots.tsx:94
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:103
 msgid "128 buckets is recommended"
 msgstr ""
 
@@ -47,9 +47,9 @@ msgstr "Принять"
 msgid "Accepted at time:"
 msgstr "Принято в:"
 
-#: src/components/plot/overview/PlotOverviewPlots.tsx:75
 #: src/components/plot/PlotsFailed.tsx:14
 #: src/components/plot/PlotsNotFound.tsx:14
+#: src/components/plot/overview/PlotOverviewPlots.tsx:75
 msgid "Action"
 msgstr "Действие"
 
@@ -72,9 +72,9 @@ msgid "Add Wallet"
 msgstr "Добавить кошелек"
 
 #: src/components/farm/overview/FarmOverviewHero.tsx:35
+#: src/components/plot/PlotHeader.tsx:33
 #: src/components/plot/add/PlotAdd.tsx:54
 #: src/components/plot/overview/PlotOverviewHero.tsx:29
-#: src/components/plot/PlotHeader.tsx:33
 msgid "Add a Plot"
 msgstr "Добавить участок"
 
@@ -99,10 +99,10 @@ msgstr "Адрес / Хэш-головоломка"
 
 #: src/components/trading/CreateOffer.jsx:213
 #: src/components/trading/TradesTable.tsx:16
+#: src/components/wallet/WalletHistory.tsx:48
 #: src/components/wallet/create/createNewColouredCoin.jsx:125
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:770
 #: src/components/wallet/standard/WalletStandard.tsx:331
-#: src/components/wallet/WalletHistory.tsx:48
 msgid "Amount"
 msgstr "Количество"
 
@@ -267,7 +267,7 @@ msgstr ""
 msgid "Chia Wallet"
 msgstr "Кошелек Chia"
 
-#: src/components/plot/add/PlotAddNumberOfPlots.tsx:13
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:22
 msgid "Choose Number of Plots"
 msgstr "Выберите количество участков"
 
@@ -488,7 +488,7 @@ msgstr "DID кошелек"
 msgid "Date"
 msgstr "Дата"
 
-#: src/components/plot/add/PlotAddNumberOfPlots.tsx:57
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:66
 msgid "Delay"
 msgstr "Задержка"
 
@@ -553,7 +553,7 @@ msgstr "Настройки Децентрализованного Идентиф
 msgid "Do you have existing plots on this machine? <0>Add Plot Directory</0>"
 msgstr "Есть ли у вас на этой машине участки? <0>Добавить каталог с участками</0>"
 
-#: src/components/plot/add/PlotAddNumberOfPlots.tsx:30
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:39
 msgid "Does your machine support parallel plotting?"
 msgstr "Поддерживает ли ваша машина параллельное засеивание?"
 
@@ -574,10 +574,10 @@ msgstr ""
 msgid "Enter the 24 word mnemonic that you have saved in order to restore your Chia wallet."
 msgstr "Введите мнемонику из 24 слов, которую вы сохранили, чтобы восстановить свой кошелек Chia."
 
-#: src/components/farm/card/FarmCardStatus.tsx:20
-#: src/components/farm/card/FarmCardStatus.tsx:25
 #: src/components/farm/FarmerStatus.tsx:30
 #: src/components/farm/FarmerStatus.tsx:31
+#: src/components/farm/card/FarmCardStatus.tsx:20
+#: src/components/farm/card/FarmCardStatus.tsx:25
 #: src/components/plot/PlotStatus.tsx:17
 #: src/components/plot/PlotStatus.tsx:18
 #: src/components/plot/queue/PlotQueueIndicator.tsx:14
@@ -633,9 +633,9 @@ msgstr "Фермер не запущен"
 msgid "Farmers earn block rewards and transaction fees by committing spare space to the network to help secure transactions. This is where your farm will be once you add a plot. <0>Learn more</0>"
 msgstr "Farmers earn block rewards and transaction fees by committing spare space to the network to help secure transactions. This is where your farm will be once you add a plot. <0>Learn more</0>"
 
-#: src/components/farm/card/FarmCardStatus.tsx:29
 #: src/components/farm/Farm.tsx:15
 #: src/components/farm/FarmerStatus.tsx:27
+#: src/components/farm/card/FarmCardStatus.tsx:29
 #: src/components/plot/PlotStatus.tsx:14
 msgid "Farming"
 msgstr "Фарминг"
@@ -648,13 +648,13 @@ msgstr "Фарминг"
 msgid "Farming Status"
 msgstr "Статус фарминга"
 
+#: src/components/wallet/WalletHistory.tsx:52
 #: src/components/wallet/create/createExistingColouredCoin.jsx:131
 #: src/components/wallet/create/createNewColouredCoin.jsx:138
 #: src/components/wallet/create/createRLAdmin.jsx:266
 #: src/components/wallet/create/createRLAdmin.jsx:298
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:783
 #: src/components/wallet/standard/WalletStandard.tsx:336
-#: src/components/wallet/WalletHistory.tsx:52
 msgid "Fee"
 msgstr "Комиссия"
 
@@ -683,9 +683,9 @@ msgstr "Объем коммисий"
 msgid "File"
 msgstr ""
 
-#: src/components/plot/overview/PlotOverviewPlots.tsx:67
 #: src/components/plot/PlotsFailed.tsx:10
 #: src/components/plot/PlotsNotFound.tsx:10
+#: src/components/plot/overview/PlotOverviewPlots.tsx:67
 msgid "Filename"
 msgstr "Имя файла"
 
@@ -905,11 +905,11 @@ msgstr ""
 msgid "MiB Up/Down"
 msgstr "МиБ Исх./Вх."
 
-#: src/components/plot/add/PlotAddNumberOfPlots.tsx:60
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:69
 msgid "Minutes"
 msgstr "Минут"
 
-#: src/components/plot/add/PlotAddNumberOfPlots.tsx:73
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:82
 msgid "More memory slightly increases speed"
 msgstr "Больше количество памяти немного увеличивает скорость"
 
@@ -979,9 +979,9 @@ msgstr "Идентификатор узла"
 msgid "None of your plots have passed the plot filter yet."
 msgstr "Ни один из ваших участков пока не прошел через фильтр."
 
+#: src/components/farm/FarmerStatus.tsx:29
 #: src/components/farm/card/FarmCardNotAvailable.tsx:8
 #: src/components/farm/card/FarmCardNotAvailable.tsx:9
-#: src/components/farm/FarmerStatus.tsx:29
 #: src/components/plot/PlotStatus.tsx:16
 msgid "Not Available"
 msgstr "Не определено"
@@ -1008,11 +1008,11 @@ msgstr "Нет подключения"
 msgid "Not found Plots"
 msgstr "Участки не найдены"
 
-#: src/components/plot/add/PlotAddNumberOfPlots.tsx:92
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:101
 msgid "Number of buckets"
 msgstr "Количество вёдер"
 
-#: src/components/plot/add/PlotAddNumberOfPlots.tsx:83
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:92
 msgid "Number of threads"
 msgstr "Количество потоков"
 
@@ -1137,7 +1137,7 @@ msgid "Plot"
 msgstr "Участок"
 
 #: src/components/farm/card/FarmCardPlotCount.tsx:7
-#: src/components/plot/add/PlotAddNumberOfPlots.tsx:18
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:27
 msgid "Plot Count"
 msgstr "Количество участков"
 
@@ -1185,7 +1185,7 @@ msgstr "Участки - это выделенное пространство н
 msgid "Plotting"
 msgstr "Засеивание"
 
-#: src/components/plot/add/PlotAddNumberOfPlots.tsx:35
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:44
 msgid "Plotting in parallel can save time. Otherwise, add plot(s) to the queue."
 msgstr "Параллельное засеивание позволяет сэкономить время. Также вы можете создать очередь засеивания участков."
 
@@ -1260,7 +1260,7 @@ msgstr "Публичный ключ"
 msgid "Public key:"
 msgstr "Открытый ключ:"
 
-#: src/components/plot/add/PlotAddNumberOfPlots.tsx:103
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:112
 msgid "Queue Name"
 msgstr ""
 
@@ -1276,7 +1276,7 @@ msgstr "В очереди"
 #~ msgid "Quit"
 #~ msgstr ""
 
-#: src/components/plot/add/PlotAddNumberOfPlots.tsx:73
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:82
 msgid "RAM max usage"
 msgstr "Максимольное использование ОЗУ"
 
@@ -1495,8 +1495,8 @@ msgstr "Состояние"
 #: src/components/plot/overview/PlotOverviewPlots.tsx:71
 #: src/components/trading/TradingOverview.jsx:128
 #: src/components/wallet/WalletHistory.tsx:42
-#: src/components/wallet/Wallets.tsx:94
 #: src/components/wallet/WalletStatusCard.tsx:12
+#: src/components/wallet/Wallets.tsx:94
 msgid "Status"
 msgstr "Статус"
 
@@ -1540,8 +1540,8 @@ msgstr "Подтвердить"
 msgid "Synced"
 msgstr "Синхронизован"
 
-#: src/components/farm/card/FarmCardStatus.tsx:12
 #: src/components/farm/FarmerStatus.tsx:28
+#: src/components/farm/card/FarmCardStatus.tsx:12
 #: src/components/plot/PlotStatus.tsx:15
 msgid "Syncing"
 msgstr "Синхронизация"
@@ -1854,7 +1854,7 @@ msgstr "Кошельки"
 msgid "Want to earn more Chia? Add more plots to your farm."
 msgstr "Хотите получать больше дохода в Чиа? Добавьте больше участков к своей ферме."
 
-#: src/components/plot/add/PlotAddNumberOfPlots.tsx:53
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:62
 msgid "Want to have a delay before the next plot starts?"
 msgstr "Хотите установить задержку между стартом параллельного засевания файлов?"
 
@@ -1912,13 +1912,13 @@ msgstr "Ваше подключение к полному узлу"
 msgid "Your Harvester Network"
 msgstr "Ваша сеть комбайнов"
 
-#: src/components/wallet/Wallets.tsx:122
 #: src/components/wallet/WalletStatusCard.tsx:31
+#: src/components/wallet/Wallets.tsx:122
 msgid "connections:"
 msgstr "подключения:"
 
-#: src/components/wallet/Wallets.tsx:116
 #: src/components/wallet/WalletStatusCard.tsx:25
+#: src/components/wallet/Wallets.tsx:116
 msgid "height:"
 msgstr "высота:"
 
@@ -1926,18 +1926,18 @@ msgstr "высота:"
 msgid "not synced"
 msgstr "не синхронизированный"
 
-#: src/components/wallet/Wallets.tsx:99
 #: src/components/wallet/WalletStatusCard.tsx:17
+#: src/components/wallet/Wallets.tsx:99
 msgid "status:"
 msgstr "статус:"
 
-#: src/components/wallet/Wallets.tsx:108
 #: src/components/wallet/WalletStatusCard.tsx:20
+#: src/components/wallet/Wallets.tsx:108
 msgid "synced"
 msgstr "синхр."
 
-#: src/components/wallet/Wallets.tsx:106
 #: src/components/wallet/WalletStatusCard.tsx:20
+#: src/components/wallet/Wallets.tsx:106
 msgid "syncing"
 msgstr "синх-ция"
 
