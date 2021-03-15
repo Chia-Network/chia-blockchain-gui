@@ -8,7 +8,7 @@ msgstr ""
 "Language: ro_RO\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-03-15 10:51\n"
+"PO-Revision-Date: 2021-03-15 12:00\n"
 "Last-Translator: \n"
 "Language-Team: Romanian\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100>0 && n%100<20)) ? 1 : 2);\n"
@@ -638,7 +638,7 @@ msgstr "Fermierii câștigă recompense bloc și taxe de tranzacționare prin an
 #: src/components/farm/FarmerStatus.tsx:27
 #: src/components/plot/PlotStatus.tsx:14
 msgid "Farming"
-msgstr "Farmare"
+msgstr "Cultivare"
 
 #: src/components/farm/card/FarmCardStatus.tsx:11
 #: src/components/farm/card/FarmCardStatus.tsx:16
@@ -646,7 +646,7 @@ msgstr "Farmare"
 #: src/components/farm/card/FarmCardStatus.tsx:24
 #: src/components/farm/card/FarmCardStatus.tsx:28
 msgid "Farming Status"
-msgstr "Status farmare"
+msgstr "Stare cultivare"
 
 #: src/components/wallet/create/createExistingColouredCoin.jsx:131
 #: src/components/wallet/create/createNewColouredCoin.jsx:138
@@ -1544,7 +1544,7 @@ msgstr "Sincronizat"
 #: src/components/farm/FarmerStatus.tsx:28
 #: src/components/plot/PlotStatus.tsx:15
 msgid "Syncing"
-msgstr "Se sincronizeaza"
+msgstr "Se sincronizează"
 
 #: src/components/fullNode/FullNode.jsx:119
 msgid "Syncing {progress}/{tip}"
@@ -1898,7 +1898,7 @@ msgstr "Nu este necesar să fii sincronizat sau conectat la o Parcelă. Atenție
 
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:34
 msgid "You have {0}% of the space on the network, so farming a block will take {expectedTimeToWin} in expectation."
-msgstr "Ai {0}% din spatiul din retea, asa ca farmarea unui bloc va dura {expectedTimeToWin} estimativ."
+msgstr "Ai {0}% din spațiul din retea, așadar cultivarea unui bloc va dura apriximativ {expectedTimeToWin}."
 
 #: src/components/farm/overview/FarmOverview.tsx:24
 msgid "Your Farm Overview"
