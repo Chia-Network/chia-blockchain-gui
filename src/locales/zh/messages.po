@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh_TW\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-03-15 18:25\n"
+"PO-Revision-Date: 2021-03-15 19:52\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -172,7 +172,7 @@ msgstr "測試區塊"
 
 #: src/components/block/Block.jsx:227
 msgid "Block VDF Iterations"
-msgstr ""
+msgstr "VDF 區塊迭代次數"
 
 #: src/components/block/Block.jsx:308
 msgid "Block at height {0} in the Chia blockchain"
@@ -237,7 +237,7 @@ msgstr "取消"
 
 #: src/components/trading/TradingOverview.jsx:399
 msgid "Cancel and Spend"
-msgstr ""
+msgstr "取消和花費"
 
 #: src/components/plot/PlotsNotFound.tsx:26
 msgid "Caution, deleting these plots will delete them forever. Check that the storage devices are properly connected."
@@ -406,11 +406,11 @@ msgstr "建立農田區"
 
 #: src/components/wallet/create/createRLAdmin.jsx:198
 msgid "Create Rate Limited Admin Wallet"
-msgstr ""
+msgstr "建立速率限制管理員錢包"
 
 #: src/components/wallet/create/createRLUser.jsx:78
 msgid "Create Rate Limited User Wallet"
-msgstr ""
+msgstr "建立速率限制使用者錢包"
 
 #: src/components/trading/TradeManager.tsx:22
 #~ msgid "Create Trade"
@@ -1601,11 +1601,11 @@ msgstr ""
 
 #: src/components/block/Block.jsx:220
 msgid "The total number of VDF (verifiable delay function) or proof of time iterations on the whole chain up to this sub block."
-msgstr ""
+msgstr "總 VDF(可驗證的延遲功能) 數量或直到這子區塊的整個鏈上的時間迭代證明。"
 
 #: src/components/block/Block.jsx:230
 msgid "The total number of VDF (verifiable delay function) or proof of time iterations on this block."
-msgstr ""
+msgstr "總 VDF(可驗證的延遲功能) 數量或這區塊上的時間迭代證明。"
 
 #: src/components/block/Block.jsx:294
 msgid "The total transactions fees in this block. Rewarded to the farmer."
@@ -1697,7 +1697,7 @@ msgstr "總餘額"
 
 #: src/components/fullNode/FullNode.jsx:204
 msgid "Total Iterations"
-msgstr ""
+msgstr "總迭代次數"
 
 #: src/components/farm/card/FarmCardTotalNetworkSpace.tsx:8
 msgid "Total Network Space"
@@ -1713,11 +1713,11 @@ msgstr "總農田區大小"
 
 #: src/components/block/Block.jsx:217
 msgid "Total VDF Iterations"
-msgstr ""
+msgstr "總 VDF 迭代次數"
 
 #: src/components/fullNode/FullNode.jsx:206
 msgid "Total iterations since the start of the blockchain"
-msgstr ""
+msgstr "從開始區塊鏈後的總迭代次數"
 
 #: src/components/dashboard/DashboardSideBar.tsx:27
 msgid "Trade"
@@ -1774,7 +1774,7 @@ msgstr "使用者金鑰"
 
 #: src/components/fullNode/FullNode.jsx:198
 msgid "VDF Sub Slot Iterations"
-msgstr ""
+msgstr "VDF 子欄位迭代次數"
 
 #: src/electron-starter.js:235
 msgid "View"
