@@ -123,7 +123,11 @@ msgid "Are you sure you want to quit? GUI Plotting and farming will stop."
 msgstr ""
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:31
-msgid "Are you sure you want to use k={plotSize}"
+#~ msgid "Are you sure you want to use k={plotSize}"
+#~ msgstr ""
+
+#: src/components/plot/add/PlotAddChooseSize.tsx:31
+msgid "Are you sure you want to use k={plotSize}?"
 msgstr ""
 
 #: src/components/selectKey/SelectKey.tsx:39
@@ -199,7 +203,7 @@ msgstr ""
 msgid "Browse"
 msgstr ""
 
-#: src/components/farm/FarmLastAttemptedProof.tsx:49
+#: src/components/farm/FarmLastAttemptedProof.tsx:50
 msgid "But you are currently farming <0/>"
 msgstr ""
 
@@ -970,7 +974,7 @@ msgstr ""
 msgid "Node ID"
 msgstr ""
 
-#: src/components/farm/FarmLastAttemptedProof.tsx:43
+#: src/components/farm/FarmLastAttemptedProof.tsx:44
 msgid "None of your plots have passed the plot filter yet."
 msgstr ""
 
@@ -1653,7 +1657,11 @@ msgid "This node is fully caught up and validating the network"
 msgstr ""
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:39
-msgid "This table shows you the last time your farm attempted to win a block challenge."
+#~ msgid "This table shows you the last time your farm attempted to win a block challenge."
+#~ msgstr ""
+
+#: src/components/farm/FarmLastAttemptedProof.tsx:39
+msgid "This table shows you the last time your farm attempted to win a block challenge. <0>Learn more</0>"
 msgstr ""
 
 #: src/components/trading/TradingOverview.jsx:192
@@ -1888,7 +1896,11 @@ msgid "Yes"
 msgstr ""
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:56
-msgid "You do not need to be synched or connected to Plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
+#~ msgid "You do not need to be synched or connected to Plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
+#~ msgstr ""
+
+#: src/components/plot/add/PlotAddChooseSize.tsx:56
+msgid "You do not need to be synched or connected to plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
 msgstr ""
 
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:34

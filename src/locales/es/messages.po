@@ -128,7 +128,11 @@ msgid "Are you sure you want to quit? GUI Plotting and farming will stop."
 msgstr "¿Está seguro que quiere salir? Sembrar y Cultivar en el GUI se detendrán."
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:31
-msgid "Are you sure you want to use k={plotSize}"
+#~ msgid "Are you sure you want to use k={plotSize}"
+#~ msgstr ""
+
+#: src/components/plot/add/PlotAddChooseSize.tsx:31
+msgid "Are you sure you want to use k={plotSize}?"
 msgstr ""
 
 #: src/components/selectKey/SelectKey.tsx:39
@@ -204,7 +208,7 @@ msgstr "Bloques"
 msgid "Browse"
 msgstr "Navegar"
 
-#: src/components/farm/FarmLastAttemptedProof.tsx:49
+#: src/components/farm/FarmLastAttemptedProof.tsx:50
 msgid "But you are currently farming <0/>"
 msgstr "Pero actualmente estás cultivando <0 />"
 
@@ -975,7 +979,7 @@ msgstr ""
 msgid "Node ID"
 msgstr "ID de Nodo"
 
-#: src/components/farm/FarmLastAttemptedProof.tsx:43
+#: src/components/farm/FarmLastAttemptedProof.tsx:44
 msgid "None of your plots have passed the plot filter yet."
 msgstr "Ninguna de sus parcelas a pasado un filtro de parcela aún."
 
@@ -1658,8 +1662,12 @@ msgid "This node is fully caught up and validating the network"
 msgstr "Este nodo esta al día y validando la red"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:39
-msgid "This table shows you the last time your farm attempted to win a block challenge."
-msgstr "Esta tabla muestra la última vez que su granja intentó ganar un desafío de bloque."
+#~ msgid "This table shows you the last time your farm attempted to win a block challenge."
+#~ msgstr "Esta tabla muestra la última vez que su granja intentó ganar un desafío de bloque."
+
+#: src/components/farm/FarmLastAttemptedProof.tsx:39
+msgid "This table shows you the last time your farm attempted to win a block challenge. <0>Learn more</0>"
+msgstr ""
 
 #: src/components/trading/TradingOverview.jsx:192
 msgid "This trade was created at this time"
@@ -1893,7 +1901,11 @@ msgid "Yes"
 msgstr "Sí"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:56
-msgid "You do not need to be synched or connected to Plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
+#~ msgid "You do not need to be synched or connected to Plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
+#~ msgstr ""
+
+#: src/components/plot/add/PlotAddChooseSize.tsx:56
+msgid "You do not need to be synched or connected to plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
 msgstr ""
 
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:34
