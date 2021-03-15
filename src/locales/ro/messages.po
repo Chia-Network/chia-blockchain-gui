@@ -8,7 +8,7 @@ msgstr ""
 "Language: ro_RO\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-03-14 12:55\n"
+"PO-Revision-Date: 2021-03-15 10:51\n"
 "Last-Translator: \n"
 "Language-Team: Romanian\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100>0 && n%100<20)) ? 1 : 2);\n"
@@ -148,16 +148,16 @@ msgstr "Sold"
 
 #: src/components/block/Block.jsx:287
 msgid "Base Farmer Reward Amount"
-msgstr "Recompensa de baza pentru Farmer"
+msgstr "Recompensa de bază pentru Fermier"
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:25
 #: src/components/farm/FarmLatestBlockChallenges.tsx:31
 msgid "Below are the current block challenges. You may or may not have a proof of space for these challenges. These blocks do not currently contain a proof of time."
-msgstr "Mai jos sunt provocările pentru blocul actual. Este posibil să aveți sau nu un 'proof of space' pentru aceste provocări. Aceste blocuri nu conțin în prezent un 'proof of time'."
+msgstr "Mai jos sunt provocările pentru blocul actual. Este posibil să deții sau nu un 'proof of space' pentru aceste provocări. Aceste blocuri nu conțin în prezent un 'proof of time'."
 
 #: src/components/farm/card/FarmCardTotalNetworkSpace.tsx:8
 msgid "Best estimate over last 5 hours"
-msgstr "Cea mai buna estimare pentru ultimele 5 ore"
+msgstr "Cea mai bună estimare pentru ultimele 5 ore"
 
 #: src/components/block/Block.jsx:109
 #: src/components/block/Block.jsx:143
@@ -206,7 +206,7 @@ msgstr "Selectează"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:49
 msgid "But you are currently farming <0/>"
-msgstr "Dar tu cultivi acum <0/>"
+msgstr "Însă tu cultivi acum <0/>"
 
 #: src/components/trading/CreateOffer.jsx:181
 #: src/components/trading/TradesTable.tsx:31
@@ -241,7 +241,7 @@ msgstr "Anulează și cheltuie"
 
 #: src/components/plot/PlotsNotFound.tsx:26
 msgid "Caution, deleting these plots will delete them forever. Check that the storage devices are properly connected."
-msgstr "Atenție, îndepărtarea acestor ploturi le va șterge definitiv. Verifică dacă dispozitivele de stocare sunt conectate corespunzator."
+msgstr "Atenție, îndepărtarea acestor parcele le va șterge definitiv. Verifică dacă dispozitivele de stocare sunt conectate corespunzator."
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:13
 msgid "Challenge"
@@ -617,7 +617,7 @@ msgstr "Farmer Puzzle Hash"
 
 #: src/components/farm/FarmManageFarmingRewards.tsx:95
 msgid "Farmer Reward Address"
-msgstr "Adresă Răsplată Fermier"
+msgstr "Adresă Recompensă Fermier"
 
 #: src/components/farm/card/FarmCardStatus.tsx:21
 #: src/components/plot/PlotStatus.tsx:28
@@ -627,7 +627,7 @@ msgstr "Fermierul nu este conectat"
 #: src/components/farm/card/FarmCardStatus.tsx:26
 #: src/components/plot/PlotStatus.tsx:29
 msgid "Farmer is not running"
-msgstr "Fermierul nu ruleaza"
+msgstr "Fermierul nu este pornit"
 
 #: src/components/farm/overview/FarmOverviewHero.tsx:27
 msgid "Farmers earn block rewards and transaction fees by committing spare space to the network to help secure transactions. This is where your farm will be once you add a plot. <0>Learn more</0>"
@@ -1580,7 +1580,7 @@ msgstr "Locatia folderului temporar"
 
 #: src/components/farm/FarmFullNodeConnections.tsx:58
 msgid "The full node that your farmer is connected to is below. <0>Learn more</0>"
-msgstr "Nodul la care este conectat farmerul dvs. este mai jos. <0> Aflați mai multe </0>"
+msgstr "Nodul la care este conectat fermierul tău este mai jos. <0> Află mai multe </0>"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:30
 #: src/components/plot/add/PlotAddChooseSize.tsx:74
@@ -1609,7 +1609,7 @@ msgstr "Numărul total de VDF (funcție de întârziere verificabilă) sau dovez
 
 #: src/components/block/Block.jsx:294
 msgid "The total transactions fees in this block. Rewarded to the farmer."
-msgstr "Taxele totale pentru tranzacții din acest bloc. Recompensat fermierului."
+msgstr "Taxele totale pentru tranzacții din acest bloc. Câștigate de fermier."
 
 #: src/components/plot/PlotsFailed.tsx:26
 msgid "These plots are invalid, you might want to delete them."
@@ -1643,7 +1643,7 @@ msgstr "Acesta este momentul celui mai recent subbloc peak."
 
 #: src/components/block/Block.jsx:184
 msgid "This is the time the block was created by the farmer, which is before it is finalized with a proof of time"
-msgstr "Acesta este momentul în care blocul a fost creat de farmer, care este înainte de a fi finalizat cu o 'proof of time'"
+msgstr "Acesta este momentul în care blocul a fost creat de fermier, care este înainte de a fi finalizat cu o 'proof of time'"
 
 #: src/components/wallet/standard/WalletStandard.tsx:195
 msgid "This is the total amount of chia in the blockchain at the current peak sub block that is controlled by your private keys. It includes frozen farming rewards, but not pending incoming and outgoing transactions."
