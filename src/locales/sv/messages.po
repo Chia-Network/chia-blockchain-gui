@@ -8,7 +8,7 @@ msgstr ""
 "Language: sv_SE\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-03-15 18:25\n"
+"PO-Revision-Date: 2021-03-15 22:47\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -36,8 +36,8 @@ msgstr "En skördare är en tjänst som körs på en maskin där plottar lagras.
 
 #: src/electron-starter.js:362
 #: src/electron-starter.js:455
-msgid "About Chia Blockchain"
-msgstr "Om Chia Blockchain"
+#~ msgid "About Chia Blockchain"
+#~ msgstr ""
 
 #: src/components/trading/ViewOffer.jsx:85
 msgid "Accept"
@@ -124,8 +124,8 @@ msgid "Are you sure you want to disconnect?"
 msgstr "Är det säkert att du vill koppla ifrån?"
 
 #: src/electron-starter.js:134
-msgid "Are you sure you want to quit? GUI Plotting and farming will stop."
-msgstr "Är det säkert att du vill stänga av? Plottning och odling i GUI kommer att stoppas."
+#~ msgid "Are you sure you want to quit? GUI Plotting and farming will stop."
+#~ msgstr ""
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:31
 msgid "Are you sure you want to use k={plotSize}"
@@ -252,16 +252,16 @@ msgid "Challenge Hash"
 msgstr "Verifieringshash"
 
 #: src/electron-starter.js:341
-msgid "Chat on KeyBase"
-msgstr "Chatta på KeyBase"
+#~ msgid "Chat on KeyBase"
+#~ msgstr ""
 
 #: src/electron-starter.js:359
-msgid "Chia"
-msgstr "Chia"
+#~ msgid "Chia"
+#~ msgstr ""
 
 #: src/electron-starter.js:298
-msgid "Chia Blockchain Wiki"
-msgstr "Chia Blockchains wiki"
+#~ msgid "Chia Blockchain Wiki"
+#~ msgstr ""
 
 #: src/components/wallet/Wallets.tsx:30
 msgid "Chia Wallet"
@@ -314,8 +314,8 @@ msgid "Coloured Coin Options"
 msgstr "Alternativ för färgade mynt"
 
 #: src/electron-starter.js:132
-msgid "Confirm"
-msgstr "Bekräfta"
+#~ msgid "Confirm"
+#~ msgstr ""
 
 #: src/components/fullNode/FullNodeCloseConnection.tsx:22
 msgid "Confirm Disconnect"
@@ -365,8 +365,8 @@ msgid "Connections"
 msgstr "Anslutningar"
 
 #: src/electron-starter.js:322
-msgid "Contribute on GitHub"
-msgstr "Delta på GitHub"
+#~ msgid "Contribute on GitHub"
+#~ msgstr ""
 
 #: src/components/core/components/CopyToClipboard/CopyToClipboard.tsx:22
 msgid "Copied"
@@ -524,12 +524,12 @@ msgid "Deleting the key will permanently remove the key from your computer, make
 msgstr "Om du tar bort nyckeln kommer den att permanent tas bort från datorn. Se till att du har säkerhetskopierat den. Är det säkert att du vill fortsätta?"
 
 #: src/electron-starter.js:244
-msgid "Developer"
-msgstr "Utvecklare"
+#~ msgid "Developer"
+#~ msgstr ""
 
 #: src/electron-starter.js:247
-msgid "Developer Tools"
-msgstr "Utvecklarverktyg"
+#~ msgid "Developer Tools"
+#~ msgstr ""
 
 #: src/components/block/Block.jsx:213
 #: src/components/fullNode/FullNode.jsx:191
@@ -567,8 +567,8 @@ msgid "Drag and drop your backup file"
 msgstr "Drag och släpp din säkerhetskopierade fil"
 
 #: src/electron-starter.js:203
-msgid "Edit"
-msgstr "Redigera"
+#~ msgid "Edit"
+#~ msgstr ""
 
 #: src/components/wallet/WalletImport.tsx:67
 msgid "Enter the 24 word mnemonic that you have saved in order to restore your Chia wallet."
@@ -680,8 +680,8 @@ msgstr "Avgiftsbelopp"
 
 #: src/electron-starter.js:195
 #: src/electron-starter.js:402
-msgid "File"
-msgstr "Fil"
+#~ msgid "File"
+#~ msgstr ""
 
 #: src/components/plot/PlotsFailed.tsx:10
 #: src/components/plot/PlotsNotFound.tsx:10
@@ -699,12 +699,12 @@ msgid "Finished"
 msgstr "Färdigt"
 
 #: src/electron-starter.js:347
-msgid "Follow on Twitter"
-msgstr "Följ på Twitter"
+#~ msgid "Follow on Twitter"
+#~ msgstr ""
 
 #: src/electron-starter.js:306
-msgid "Frequently Asked Questions"
-msgstr "Vanliga frågor"
+#~ msgid "Frequently Asked Questions"
+#~ msgstr ""
 
 #: src/components/dashboard/DashboardSideBar.tsx:23
 #: src/components/fullNode/FullNode.jsx:325
@@ -716,8 +716,8 @@ msgid "Full Node Status"
 msgstr "Status för full nod"
 
 #: src/electron-starter.js:272
-msgid "Full Screen"
-msgstr "Helskärm"
+#~ msgid "Full Screen"
+#~ msgstr ""
 
 #: src/components/wallet/create/createNewColouredCoin.jsx:106
 msgid "Generate New Colour"
@@ -742,8 +742,8 @@ msgid "Height"
 msgstr "Höjd"
 
 #: src/electron-starter.js:294
-msgid "Help"
-msgstr "Hjälp"
+#~ msgid "Help"
+#~ msgstr ""
 
 #: src/components/core/components/LocaleToggle/LocaleToggle.tsx:50
 msgid "Help translate"
@@ -949,7 +949,6 @@ msgid "Nickname"
 msgstr "Smeknamn"
 
 #: src/components/trading/TradingOverview.jsx:212
-#: src/electron-starter.js:131
 msgid "No"
 msgstr "Nej"
 
@@ -1319,16 +1318,16 @@ msgid "Refresh Plots"
 msgstr "Uppdatera plottar"
 
 #: src/electron-starter.js:314
-msgid "Release Notes"
-msgstr "Viktig information"
+#~ msgid "Release Notes"
+#~ msgstr ""
 
 #: src/components/wallet/coloured/WalletColoured.tsx:206
 msgid "Rename"
 msgstr "Byt namn"
 
 #: src/electron-starter.js:333
-msgid "Report an Issue..."
-msgstr "Rapportera ett problem ..."
+#~ msgid "Report an Issue..."
+#~ msgstr ""
 
 #: src/components/backup/BackupRestore.tsx:107
 msgid "Restore Metadata for Coloured Coins and other Smart Wallets from Backup"
@@ -1452,8 +1451,8 @@ msgstr "Logga in"
 #~ msgstr ""
 
 #: src/electron-starter.js:416
-msgid "Speech"
-msgstr "Tal"
+#~ msgid "Speech"
+#~ msgstr ""
 
 #: src/components/wallet/create/createRLAdmin.jsx:247
 msgid "Spendable Amount"
@@ -1777,8 +1776,8 @@ msgid "VDF Sub Slot Iterations"
 msgstr "VDF-underslot-iterationer"
 
 #: src/electron-starter.js:235
-msgid "View"
-msgstr "Visa"
+#~ msgid "View"
+#~ msgstr ""
 
 #: src/components/plot/queue/PlotQueueActions.tsx:49
 #: src/components/plot/queue/PlotQueueLogDialog.tsx:20
@@ -1879,8 +1878,8 @@ msgid "When you receive the setup info packet from your admin, enter it below to
 msgstr ""
 
 #: src/electron-starter.js:280
-msgid "Window"
-msgstr "Fönster"
+#~ msgid "Window"
+#~ msgstr ""
 
 #: src/components/farm/card/FarmCardBlockRewards.tsx:18
 msgid "Without fees"
@@ -1888,7 +1887,6 @@ msgstr "Utan avgifter"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:30
 #: src/components/trading/TradingOverview.jsx:212
-#: src/electron-starter.js:131
 msgid "Yes"
 msgstr "Ja"
 
