@@ -8,7 +8,7 @@ msgstr ""
 "Language: ja_JP\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-03-15 18:26\n"
+"PO-Revision-Date: 2021-03-15 22:48\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -36,8 +36,8 @@ msgstr "収穫機は耕地が実際に保存されているデバイス上に走
 
 #: src/electron-starter.js:362
 #: src/electron-starter.js:455
-msgid "About Chia Blockchain"
-msgstr "チアブロックチェーンについて"
+#~ msgid "About Chia Blockchain"
+#~ msgstr ""
 
 #: src/components/trading/ViewOffer.jsx:85
 msgid "Accept"
@@ -124,8 +124,8 @@ msgid "Are you sure you want to disconnect?"
 msgstr "本当に接続を解除しますか？"
 
 #: src/electron-starter.js:134
-msgid "Are you sure you want to quit? GUI Plotting and farming will stop."
-msgstr "本当に終了しますか？ GUI 上の耕地作り及び耕作も停止します。"
+#~ msgid "Are you sure you want to quit? GUI Plotting and farming will stop."
+#~ msgstr ""
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:31
 msgid "Are you sure you want to use k={plotSize}"
@@ -252,16 +252,16 @@ msgid "Challenge Hash"
 msgstr "チャレンジのハッシュ値"
 
 #: src/electron-starter.js:341
-msgid "Chat on KeyBase"
-msgstr "Keybase でチャット"
+#~ msgid "Chat on KeyBase"
+#~ msgstr ""
 
 #: src/electron-starter.js:359
-msgid "Chia"
-msgstr "チア"
+#~ msgid "Chia"
+#~ msgstr ""
 
 #: src/electron-starter.js:298
-msgid "Chia Blockchain Wiki"
-msgstr "チアブロックチェーンの Wiki"
+#~ msgid "Chia Blockchain Wiki"
+#~ msgstr ""
 
 #: src/components/wallet/Wallets.tsx:30
 msgid "Chia Wallet"
@@ -314,8 +314,8 @@ msgid "Coloured Coin Options"
 msgstr "カラードコインのオプション"
 
 #: src/electron-starter.js:132
-msgid "Confirm"
-msgstr "了承"
+#~ msgid "Confirm"
+#~ msgstr ""
 
 #: src/components/fullNode/FullNodeCloseConnection.tsx:22
 msgid "Confirm Disconnect"
@@ -365,8 +365,8 @@ msgid "Connections"
 msgstr "接続数"
 
 #: src/electron-starter.js:322
-msgid "Contribute on GitHub"
-msgstr "GitHub で開発協力"
+#~ msgid "Contribute on GitHub"
+#~ msgstr ""
 
 #: src/components/core/components/CopyToClipboard/CopyToClipboard.tsx:22
 msgid "Copied"
@@ -524,12 +524,12 @@ msgid "Deleting the key will permanently remove the key from your computer, make
 msgstr "鍵を削除すると復元することができませんので、必ずバックアップを取ってください。本当に続行しますか？"
 
 #: src/electron-starter.js:244
-msgid "Developer"
-msgstr "開発者"
+#~ msgid "Developer"
+#~ msgstr ""
 
 #: src/electron-starter.js:247
-msgid "Developer Tools"
-msgstr "開発者向けツール"
+#~ msgid "Developer Tools"
+#~ msgstr ""
 
 #: src/components/block/Block.jsx:213
 #: src/components/fullNode/FullNode.jsx:191
@@ -567,8 +567,8 @@ msgid "Drag and drop your backup file"
 msgstr "バックアップファイルをここにドラッグ&ドロップ"
 
 #: src/electron-starter.js:203
-msgid "Edit"
-msgstr "編集"
+#~ msgid "Edit"
+#~ msgstr ""
 
 #: src/components/wallet/WalletImport.tsx:67
 msgid "Enter the 24 word mnemonic that you have saved in order to restore your Chia wallet."
@@ -680,8 +680,8 @@ msgstr "全手数料"
 
 #: src/electron-starter.js:195
 #: src/electron-starter.js:402
-msgid "File"
-msgstr "ファイル"
+#~ msgid "File"
+#~ msgstr ""
 
 #: src/components/plot/PlotsFailed.tsx:10
 #: src/components/plot/PlotsNotFound.tsx:10
@@ -699,12 +699,12 @@ msgid "Finished"
 msgstr "完成"
 
 #: src/electron-starter.js:347
-msgid "Follow on Twitter"
-msgstr "Twitter でフォロー"
+#~ msgid "Follow on Twitter"
+#~ msgstr ""
 
 #: src/electron-starter.js:306
-msgid "Frequently Asked Questions"
-msgstr "よくある質問"
+#~ msgid "Frequently Asked Questions"
+#~ msgstr ""
 
 #: src/components/dashboard/DashboardSideBar.tsx:23
 #: src/components/fullNode/FullNode.jsx:325
@@ -716,8 +716,8 @@ msgid "Full Node Status"
 msgstr "フルノードの状態"
 
 #: src/electron-starter.js:272
-msgid "Full Screen"
-msgstr "全画面表示"
+#~ msgid "Full Screen"
+#~ msgstr ""
 
 #: src/components/wallet/create/createNewColouredCoin.jsx:106
 msgid "Generate New Colour"
@@ -742,8 +742,8 @@ msgid "Height"
 msgstr "高さ"
 
 #: src/electron-starter.js:294
-msgid "Help"
-msgstr "ヘルプ"
+#~ msgid "Help"
+#~ msgstr ""
 
 #: src/components/core/components/LocaleToggle/LocaleToggle.tsx:50
 msgid "Help translate"
@@ -949,7 +949,6 @@ msgid "Nickname"
 msgstr "ニックネーム"
 
 #: src/components/trading/TradingOverview.jsx:212
-#: src/electron-starter.js:131
 msgid "No"
 msgstr "いいえ"
 
@@ -1319,16 +1318,16 @@ msgid "Refresh Plots"
 msgstr "耕地一覧を更新"
 
 #: src/electron-starter.js:314
-msgid "Release Notes"
-msgstr "リリースノート"
+#~ msgid "Release Notes"
+#~ msgstr ""
 
 #: src/components/wallet/coloured/WalletColoured.tsx:206
 msgid "Rename"
 msgstr "名称変更"
 
 #: src/electron-starter.js:333
-msgid "Report an Issue..."
-msgstr "問題を報告"
+#~ msgid "Report an Issue..."
+#~ msgstr ""
 
 #: src/components/backup/BackupRestore.tsx:107
 msgid "Restore Metadata for Coloured Coins and other Smart Wallets from Backup"
@@ -1452,8 +1451,8 @@ msgstr "ログイン"
 #~ msgstr ""
 
 #: src/electron-starter.js:416
-msgid "Speech"
-msgstr "スピーチ"
+#~ msgid "Speech"
+#~ msgstr ""
 
 #: src/components/wallet/create/createRLAdmin.jsx:247
 msgid "Spendable Amount"
@@ -1777,8 +1776,8 @@ msgid "VDF Sub Slot Iterations"
 msgstr "VDF サブスロット評価回数"
 
 #: src/electron-starter.js:235
-msgid "View"
-msgstr "表示"
+#~ msgid "View"
+#~ msgstr ""
 
 #: src/components/plot/queue/PlotQueueActions.tsx:49
 #: src/components/plot/queue/PlotQueueLogDialog.tsx:20
@@ -1879,8 +1878,8 @@ msgid "When you receive the setup info packet from your admin, enter it below to
 msgstr "管理者からセットアップ用の情報パケットを受け取ったら、以下に入力してレート制限付きウォレットのセットアップを完了してください:"
 
 #: src/electron-starter.js:280
-msgid "Window"
-msgstr "ウィンドウ"
+#~ msgid "Window"
+#~ msgstr ""
 
 #: src/components/farm/card/FarmCardBlockRewards.tsx:18
 msgid "Without fees"
@@ -1888,7 +1887,6 @@ msgstr "手数料抜き"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:30
 #: src/components/trading/TradingOverview.jsx:212
-#: src/electron-starter.js:131
 msgid "Yes"
 msgstr "はい"
 
