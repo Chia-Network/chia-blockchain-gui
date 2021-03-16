@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh_CN\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-03-16 05:19\n"
+"PO-Revision-Date: 2021-03-16 06:27\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -546,11 +546,11 @@ msgstr "难度"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:114
 msgid "Disable bifield plotting when your temporary directory is on fast storage like SSD or you need lower per process RAM requirements. Plotting with bitfield enabled has about 20% less overall writes."
-msgstr ""
+msgstr "关闭bitfield选项可以有效节省内存使用, 如果是你是用SSD等快速硬盘做临时文件存储空间的话, 建议这么做. 反之打开bitfield可以减少约20%的磁盘访问, 但会要求更多内存."
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:109
 msgid "Disable bitfield plotting"
-msgstr ""
+msgstr "关闭bitfield"
 
 #: src/components/fullNode/FullNodeCloseConnection.tsx:22
 msgid "Disconnect"
@@ -1186,7 +1186,7 @@ msgstr "绘图大小"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:43
 msgid "Plot in Parallel"
-msgstr ""
+msgstr "并发拓荒"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:26
 msgid "Plot is duplicate of {0}"
@@ -1686,7 +1686,7 @@ msgstr "本节点完全同步好了"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:39
 msgid "This table shows you the last time your farm attempted to win a block challenge. <0>Learn more</0>"
-msgstr ""
+msgstr "这个表格里面显示的是你的农场尝试过的区块挑战. <0>了解更多</0>"
 
 #: src/components/trading/TradingOverview.jsx:192
 msgid "This trade was created at this time"
@@ -1924,7 +1924,7 @@ msgstr "是"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:56
 msgid "You do not need to be synched or connected to plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
-msgstr ""
+msgstr "不需要同步或者连接到网络节点就可以拓荒, 注意在拓荒过程中产生的临时文件尺寸会大于最终的农田大小, 请确认你有足够的存储空间. <0>了解更多</0>"
 
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:34
 msgid "You have {0}% of the space on the network, so farming a block will take {expectedTimeToWin} in expectation."
