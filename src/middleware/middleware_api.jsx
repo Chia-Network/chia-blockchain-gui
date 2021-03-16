@@ -120,44 +120,15 @@ let timeout_balance = null;
 let timeout_height = null;
 
 async function get_height(store) {
-  if (can_call === true) {
-    store.dispatch(get_height_info());
-    can_call = false;
-    timeout_height = setTimeout(() => {
-      can_call = true;
-    }, 2000);
-  }
+  store.dispatch(get_height_info());
 }
 
 async function get_wallet_transactions(store, id) {
-  if (
-    can_call_get_wallet_transactions[id] === true ||
-    !(id in can_call_get_wallet_transactions)
-  ) {
-    can_call_get_wallet_transactions[id] = false;
-    store.dispatch(get_transactions(id));
-    can_call_get_wallet_transactions[id] = false;
-    timeout_balance = setTimeout(() => {
-      store.dispatch(get_transactions(id));
-      can_call_get_wallet_transactions[id] = true;
-    }, 10000);
-  }
+  store.dispatch(get_transactions(id));
 }
 
 async function get_wallet_balance(store, id) {
-  if (
-    can_call_get_wallet_balance[id] === true ||
-    !(id in can_call_get_wallet_balance)
-  ) {
-    can_call_get_wallet_balance[id] = false;
-    store.dispatch(get_balance_for_wallet(id));
-    store.dispatch(get_farmed_amount());
-    timeout_balance = setTimeout(() => {
-      store.dispatch(get_balance_for_wallet(id));
-      store.dispatch(get_farmed_amount());
-      can_call_get_wallet_balance[id] = true;
-    }, 10000);
-  }
+  store.dispatch(get_balance_for_wallet(id));
 }
 
 export function refreshAllState() {
