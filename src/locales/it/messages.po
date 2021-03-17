@@ -5,10 +5,10 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: @lingui/cli\n"
-"Language: it\n"
+"Language: it_IT\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-03-02 16:54\n"
+"PO-Revision-Date: 2021-03-17 17:48\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -24,7 +24,7 @@ msgstr "Vuoi esplorare ulteriormente i blocchi di Chia? Dai uno sguardo a <0>Chi
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:94
 #~ msgid "0 automatically chooses bucket count"
-#~ msgstr "0 sceglie automaticamente il conteggio di bucket"
+#~ msgstr ""
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:94
 msgid "128 buckets is recommended"
@@ -37,7 +37,7 @@ msgstr "Un harvester è un servizio eseguito sulla macchina in cui i plot sono r
 #: src/electron-starter.js:369
 #: src/electron-starter.js:462
 msgid "About Chia Blockchain"
-msgstr "Sulla Blockchain Chia"
+msgstr ""
 
 #: src/components/trading/ViewOffer.jsx:85
 msgid "Accept"
@@ -129,11 +129,11 @@ msgstr ""
 
 #: src/electron-starter.js:140
 msgid "Are you sure you want to quit? GUI Plotting and farming will stop."
-msgstr "Sei sicuro di voler uscire? Il plotting ed il farming da GUI si interromperanno."
+msgstr ""
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:31
 #~ msgid "Are you sure you want to use k={plotSize}"
-#~ msgstr ""
+#~ msgstr "Are you sure you want to use k={plotSize}"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:31
 msgid "Are you sure you want to use k={plotSize}?"
@@ -188,7 +188,7 @@ msgstr "Blocco all'altezza {0} nella blockchain Chia"
 
 #: src/components/fullNode/FullNode.jsx:331
 #~ msgid "Block hash"
-#~ msgstr "Hash del blocco"
+#~ msgstr ""
 
 #: src/components/block/Block.jsx:126
 msgid "Block with hash {headerHash}"
@@ -204,7 +204,7 @@ msgstr "Blocchi"
 
 #: src/components/farm/FarmManageFarmingRewards.tsx:91
 #~ msgid "Both values are empty. This is ok if you are, for example, sending your rewards to an offline wallet."
-#~ msgstr ""
+#~ msgstr "Both values are empty. This is ok if you are, for example, sending your rewards to an offline wallet."
 
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:52
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:63
@@ -261,15 +261,15 @@ msgstr "Hash Sfida"
 
 #: src/electron-starter.js:348
 msgid "Chat on KeyBase"
-msgstr "Chatta su KeyBase"
+msgstr ""
 
 #: src/electron-starter.js:366
 msgid "Chia"
-msgstr "Chia"
+msgstr ""
 
 #: src/electron-starter.js:305
 msgid "Chia Blockchain Wiki"
-msgstr "Wiki Blockchain Chia"
+msgstr ""
 
 #: src/components/wallet/Wallets.tsx:30
 msgid "Chia Wallet"
@@ -323,7 +323,7 @@ msgstr "Opzioni Monete Colorate"
 
 #: src/electron-starter.js:138
 msgid "Confirm"
-msgstr "Conferma"
+msgstr ""
 
 #: src/components/fullNode/FullNodeCloseConnection.tsx:22
 msgid "Confirm Disconnect"
@@ -374,7 +374,7 @@ msgstr "Connessioni"
 
 #: src/electron-starter.js:329
 msgid "Contribute on GitHub"
-msgstr "Contribuisci su GitHub"
+msgstr ""
 
 #: src/components/core/components/CopyToClipboard/CopyToClipboard.tsx:22
 msgid "Copied"
@@ -533,11 +533,11 @@ msgstr "Eliminando la chiave questa sarà rimossa definitivamente dal tuo comput
 
 #: src/electron-starter.js:251
 msgid "Developer"
-msgstr "Sviluppatore"
+msgstr ""
 
 #: src/electron-starter.js:254
 msgid "Developer Tools"
-msgstr "Strumenti Sviluppatore"
+msgstr ""
 
 #: src/components/block/Block.jsx:213
 #: src/components/fullNode/FullNode.jsx:191
@@ -584,7 +584,7 @@ msgstr "Trascina e rilascia il tuo file di backup"
 
 #: src/electron-starter.js:210
 msgid "Edit"
-msgstr "Modifica"
+msgstr ""
 
 #: src/components/wallet/WalletImport.tsx:67
 msgid "Enter the 24 word mnemonic that you have saved in order to restore your Chia wallet."
@@ -676,11 +676,11 @@ msgstr "Fee"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:420
 #~ msgid "Fee (TXCH)"
-#~ msgstr "Fee (TXCH)"
+#~ msgstr ""
 
 #: src/components/wallet/coloured/WalletColoured.tsx:420
 #~ msgid "Fee ({0})"
-#~ msgstr ""
+#~ msgstr "Fee ({0})"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:422
 msgid "Fee ({currencyCode})"
@@ -697,7 +697,7 @@ msgstr "Ammontare delle Fee"
 #: src/electron-starter.js:202
 #: src/electron-starter.js:409
 msgid "File"
-msgstr "File"
+msgstr ""
 
 #: src/components/plot/PlotsFailed.tsx:10
 #: src/components/plot/PlotsNotFound.tsx:10
@@ -716,11 +716,11 @@ msgstr "Finito"
 
 #: src/electron-starter.js:354
 msgid "Follow on Twitter"
-msgstr "Segui su Twitter"
+msgstr ""
 
 #: src/electron-starter.js:313
 msgid "Frequently Asked Questions"
-msgstr "Domande Frequenti"
+msgstr ""
 
 #: src/components/dashboard/DashboardSideBar.tsx:23
 #: src/components/fullNode/FullNode.jsx:325
@@ -733,7 +733,7 @@ msgstr "Stato del Full Node"
 
 #: src/electron-starter.js:279
 msgid "Full Screen"
-msgstr "Schermo Intero"
+msgstr ""
 
 #: src/components/wallet/create/createNewColouredCoin.jsx:106
 msgid "Generate New Colour"
@@ -745,7 +745,7 @@ msgstr ""
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:49
 #~ msgid "Harvester ID"
-#~ msgstr "ID Harvester"
+#~ msgstr ""
 
 #: src/components/fullNode/FullNode.jsx:59
 msgid "Header Hash"
@@ -763,7 +763,7 @@ msgstr "Altezza"
 
 #: src/electron-starter.js:301
 msgid "Help"
-msgstr "Aiuto"
+msgstr ""
 
 #: src/components/core/components/LocaleToggle/LocaleToggle.tsx:51
 msgid "Help translate"
@@ -947,7 +947,7 @@ msgstr ""
 
 #: src/components/app/AppRouter.tsx:24
 #~ msgid "Network not launched yet, waiting for genesis challenge!"
-#~ msgstr ""
+#~ msgstr "Network not launched yet, waiting for genesis challenge!"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:471
 #: src/components/wallet/standard/WalletStandard.tsx:387
@@ -1171,7 +1171,7 @@ msgstr "Chiave Plot"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:43
 #~ msgid "Plot Name"
-#~ msgstr "Nome Plot"
+#~ msgstr ""
 
 #: src/components/block/Block.jsx:241
 msgid "Plot Public Key"
@@ -1246,7 +1246,7 @@ msgstr "Precedente"
 
 #: src/components/block/Block.jsx:203
 #~ msgid "Previous Block Hash"
-#~ msgstr "Hash del Blocco Precedente"
+#~ msgstr ""
 
 #: src/components/block/Block.jsx:205
 msgid "Previous Header Hash"
@@ -1298,7 +1298,7 @@ msgstr "In coda"
 
 #: src/electron-starter.js:80
 #~ msgid "Quit"
-#~ msgstr ""
+#~ msgstr "Quit"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:73
 msgid "RAM max usage"
@@ -1344,7 +1344,7 @@ msgstr "Aggiorna Plot"
 
 #: src/electron-starter.js:321
 msgid "Release Notes"
-msgstr "Note di Rilascio"
+msgstr ""
 
 #: src/components/wallet/coloured/WalletColoured.tsx:206
 msgid "Rename"
@@ -1352,7 +1352,7 @@ msgstr "Rinomina"
 
 #: src/electron-starter.js:340
 msgid "Report an Issue..."
-msgstr "Segnala un Problema..."
+msgstr ""
 
 #: src/components/backup/BackupRestore.tsx:107
 msgid "Restore Metadata for Coloured Coins and other Smart Wallets from Backup"
@@ -1360,7 +1360,7 @@ msgstr ""
 
 #: src/components/backup/BackupRestore.tsx:107
 #~ msgid "Restore Smart Wallets From Backup"
-#~ msgstr "Ripristina degli Smart Wallet Dal Backup"
+#~ msgstr ""
 
 #: src/components/fullNode/FullNode.jsx:57
 #: src/components/fullNode/FullNodeConnections.jsx:107
@@ -1378,11 +1378,11 @@ msgstr "Salva"
 
 #: src/components/fullNode/FullNode.jsx:338
 #~ msgid "Search"
-#~ msgstr "Cerca"
+#~ msgstr ""
 
 #: src/components/fullNode/FullNode.jsx:326
 #~ msgid "Search block by header hash"
-#~ msgstr "Cerca blocco dal header hash"
+#~ msgstr ""
 
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:75
 msgid "Second temporary folder location"
@@ -1460,7 +1460,7 @@ msgstr "Mostra Opzioni Avanzate"
 
 #: src/electron-starter.js:79
 #~ msgid "Show app"
-#~ msgstr ""
+#~ msgstr "Show app"
 
 #: src/components/trading/CreateOffer.jsx:174
 #: src/components/trading/TradesTable.tsx:13
@@ -1473,11 +1473,11 @@ msgstr "Registrati"
 
 #: src/components/backup/BackupRestore.tsx:122
 #~ msgid "Skip"
-#~ msgstr "Salta"
+#~ msgstr ""
 
 #: src/electron-starter.js:423
 msgid "Speech"
-msgstr "Speech"
+msgstr ""
 
 #: src/components/wallet/create/createRLAdmin.jsx:247
 msgid "Spendable Amount"
@@ -1546,7 +1546,7 @@ msgstr "Stato:"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:103
 #~ msgid "Stripe Size"
-#~ msgstr "Dimensione Striscia"
+#~ msgstr ""
 
 #: src/components/block/Block.jsx:199
 #~ msgid "Sub Block Height"
@@ -1576,7 +1576,7 @@ msgstr "Sincronizzando {progress}/{tip}"
 
 #: src/components/farm/card/FarmCardBlockRewards.tsx:15
 #~ msgid "TXCH Block Rewards"
-#~ msgstr "Ricompense Blocco TXCH"
+#~ msgstr ""
 
 #: src/components/farm/card/FarmCardCoinbaseRewards.tsx:12
 #~ msgid "TXCH Farming Rewards"
@@ -1592,11 +1592,11 @@ msgstr "Sincronizzando {progress}/{tip}"
 
 #: src/components/farm/card/FarmCardUserFees.tsx:15
 #~ msgid "TXCH User Transaction Fees"
-#~ msgstr "Tasse Transazioni Utente TXCH"
+#~ msgstr ""
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:18
 #~ msgid "Temporary files are created during the plotting process which exceeds the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
-#~ msgstr "I file temporanei vengono creati durante il processo di creazione dei plot ed eccedono le dimensioni dei file plot finali. Assicurati di avere spazio sufficiente. <0>Scopri di più</0>"
+#~ msgstr ""
 
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:48
 msgid "Temporary folder location"
@@ -1683,7 +1683,7 @@ msgstr "Questo nodo è pronto e sta validando la rete"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:39
 #~ msgid "This table shows you the last time your farm attempted to win a block challenge."
-#~ msgstr "Questa tabella ti mostra le ultime volte che la tua coltivazione ha tentato di vincere la sfida del blocco."
+#~ msgstr ""
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:39
 msgid "This table shows you the last time your farm attempted to win a block challenge. <0>Learn more</0>"
@@ -1721,7 +1721,7 @@ msgstr "Bilancio Totale"
 
 #: src/components/farm/card/FarmCardTotalChiaFarmed.tsx:15
 #~ msgid "Total Chia Farmed"
-#~ msgstr "Totale Chia Coltivati"
+#~ msgstr ""
 
 #: src/components/fullNode/FullNode.jsx:204
 msgid "Total Iterations"
@@ -1806,7 +1806,7 @@ msgstr "Iterazioni Sottoslot VDF"
 
 #: src/electron-starter.js:242
 msgid "View"
-msgstr "Visualizza"
+msgstr ""
 
 #: src/components/plot/queue/PlotQueueActions.tsx:49
 #: src/components/plot/queue/PlotQueueLogDialog.tsx:20
@@ -1908,7 +1908,7 @@ msgstr "Quando ricevi il tuo pacchetto di informazioni di setup dal tuo amminist
 
 #: src/electron-starter.js:287
 msgid "Window"
-msgstr "Finestra"
+msgstr ""
 
 #: src/components/farm/card/FarmCardBlockRewards.tsx:18
 msgid "Without fees"
@@ -1922,7 +1922,7 @@ msgstr "Sì"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:56
 #~ msgid "You do not need to be synched or connected to Plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
-#~ msgstr ""
+#~ msgstr "You do not need to be synched or connected to Plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:56
 msgid "You do not need to be synched or connected to plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
@@ -1975,11 +1975,11 @@ msgstr "sincronizzando"
 
 #: src/components/farm/card/FarmCardBlockRewards.tsx:16
 #~ msgid "{0} Block Rewards"
-#~ msgstr ""
+#~ msgstr "{0} Block Rewards"
 
 #: src/components/farm/card/FarmCardUserFees.tsx:16
 #~ msgid "{0} User Transaction Fees"
-#~ msgstr ""
+#~ msgstr "{0} User Transaction Fees"
 
 #: src/components/farm/card/FarmCardBlockRewards.tsx:18
 msgid "{currencyCode} Block Rewards"
@@ -1992,3 +1992,4 @@ msgstr ""
 #: src/components/farm/card/FarmCardUserFees.tsx:17
 msgid "{currencyCode} User Transaction Fees"
 msgstr ""
+
