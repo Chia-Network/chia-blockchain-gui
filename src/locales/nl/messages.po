@@ -8,7 +8,7 @@ msgstr ""
 "Language: nl_NL\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-03-18 12:23\n"
+"PO-Revision-Date: 2021-03-18 13:38\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -28,7 +28,7 @@ msgstr "Wil je Chia verder verkennen? Kijk dan zeker even naar <0>Chia Explorer<
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:94
 msgid "128 buckets is recommended"
-msgstr ""
+msgstr "128 buckets is aanbevolen"
 
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:58
 msgid "A harvester is a service running on a machine where plot(s) are actually stored. A farmer and harvester talk to a full node to see the state of the chain. View your network of connected harvesters below Learn more"
@@ -156,12 +156,12 @@ msgstr "Saldo"
 
 #: src/components/block/Block.jsx:287
 msgid "Base Farmer Reward Amount"
-msgstr ""
+msgstr "Basis Farmer Bonus Bedrag"
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:25
 #: src/components/farm/FarmLatestBlockChallenges.tsx:31
 msgid "Below are the current block challenges. You may or may not have a proof of space for these challenges. These blocks do not currently contain a proof of time."
-msgstr ""
+msgstr "Hieronder vind je de huidige block challenges. Je hebt of hebt geen proof of space voor deze challenges. Deze blocks bevatten momenteel geen proof of time."
 
 #: src/components/farm/card/FarmCardTotalNetworkSpace.tsx:8
 msgid "Best estimate over last 5 hours"
@@ -176,7 +176,7 @@ msgstr "Blok"
 
 #: src/components/block/Block.jsx:121
 msgid "Block Test"
-msgstr ""
+msgstr "Block Test"
 
 #: src/components/block/Block.jsx:227
 msgid "Block VDF Iterations"
@@ -184,7 +184,7 @@ msgstr "Blok VDF iteraties"
 
 #: src/components/block/Block.jsx:308
 msgid "Block at height {0} in the Chia blockchain"
-msgstr ""
+msgstr "Block op hoogte {0} in de Chia blockchain"
 
 #: src/components/fullNode/FullNode.jsx:331
 #~ msgid "Block hash"
@@ -192,11 +192,11 @@ msgstr ""
 
 #: src/components/block/Block.jsx:126
 msgid "Block with hash {headerHash}"
-msgstr ""
+msgstr "Block met hash {headerHash}"
 
 #: src/components/block/Block.jsx:155
 msgid "Block with hash {headerHash} does not exists."
-msgstr ""
+msgstr "Block met hash {headerHash} bestaat niet."
 
 #: src/components/fullNode/FullNode.jsx:311
 msgid "Blocks"
@@ -214,7 +214,7 @@ msgstr "Zoek"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:50
 msgid "But you are currently farming <0/>"
-msgstr ""
+msgstr "Maar momenteel ben je <0/> aan het farmen"
 
 #: src/components/trading/CreateOffer.jsx:181
 #: src/components/trading/TradesTable.tsx:31
@@ -224,7 +224,7 @@ msgstr "Koop"
 
 #: src/components/wallet/Wallets.tsx:34
 msgid "CC Wallet"
-msgstr ""
+msgstr "CC wallet"
 
 #: src/components/wallet/create/WalletCreate.jsx:182
 #~ msgid "CCListItems.title"
@@ -245,7 +245,7 @@ msgstr "Annuleer"
 
 #: src/components/trading/TradingOverview.jsx:399
 msgid "Cancel and Spend"
-msgstr ""
+msgstr "Annuleren en Betalen"
 
 #: src/components/plot/PlotsNotFound.tsx:26
 msgid "Caution, deleting these plots will delete them forever. Check that the storage devices are properly connected."
