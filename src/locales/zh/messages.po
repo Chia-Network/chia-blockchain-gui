@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh_TW\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-03-18 20:01\n"
+"PO-Revision-Date: 2021-03-18 21:04\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -625,7 +625,7 @@ msgstr "打開失敗 (無效耕地)"
 #: src/components/wallet/coloured/WalletColoured.tsx:430
 #: src/components/wallet/standard/WalletStandard.tsx:344
 msgid "Farm"
-msgstr "種田"
+msgstr "耕種"
 
 #: src/components/block/Block.jsx:249
 msgid "Farmer Puzzle Hash"
@@ -647,14 +647,14 @@ msgstr "農夫未運作"
 
 #: src/components/farm/overview/FarmOverviewHero.tsx:27
 msgid "Farmers earn block rewards and transaction fees by committing spare space to the network to help secure transactions. This is where your farm will be once you add a plot. <0>Learn more</0>"
-msgstr "農夫可通過在網路上提交備用空間來幫助保護交易，從而獲得區塊獎勵和交易費。這便是增加農田區後成為你的農場的所在位置。<0>了解詳情</0>"
+msgstr "農夫可通過在網路上保證空閒的空間來幫助保護交易，從而獲得區塊獎勵和交易費。這就是新增農地後耕種的方式。　<0>了解詳情</0>"
 
 #: src/components/farm/Farm.tsx:15
 #: src/components/farm/FarmerStatus.tsx:27
 #: src/components/farm/card/FarmCardStatus.tsx:29
 #: src/components/plot/PlotStatus.tsx:14
 msgid "Farming"
-msgstr "種田中"
+msgstr "耕種中"
 
 #: src/components/farm/card/FarmCardStatus.tsx:11
 #: src/components/farm/card/FarmCardStatus.tsx:16
@@ -662,7 +662,7 @@ msgstr "種田中"
 #: src/components/farm/card/FarmCardStatus.tsx:24
 #: src/components/farm/card/FarmCardStatus.tsx:28
 msgid "Farming Status"
-msgstr "種田狀態"
+msgstr "耕種狀態"
 
 #: src/components/wallet/WalletHistory.tsx:52
 #: src/components/wallet/create/createExistingColouredCoin.jsx:131
@@ -716,7 +716,7 @@ msgstr "已完成"
 
 #: src/electron-starter.js:354
 msgid "Follow on Twitter"
-msgstr "追蹤Twitter"
+msgstr "Twitter 上追隨"
 
 #: src/electron-starter.js:313
 msgid "Frequently Asked Questions"
@@ -741,7 +741,7 @@ msgstr "生成新顏色"
 
 #: src/components/wallet/standard/WalletStandard.tsx:367
 msgid "HD or Hierarchical Deterministic keys are a type of public key/private key scheme where one private key can have a nearly infinite number of different public keys (and therefor wallet receive addresses) that will all ultimately come back to and be spendable by a single private key."
-msgstr "分層確定性鑰匙是一種公鑰/私鑰格式，一個私鑰可以具有幾乎無限數量的不同公鑰(類似錢包接收地址)，最終所有這些公鑰都將返回並由一個私鑰使用。"
+msgstr "層及式確定性鑰匙是一種公鑰/私鑰格式，一個私鑰可以具有幾乎無限數量的不同公鑰（以此類推，同錢包接收地址），最終所有這些公鑰都將回朔於一個私鑰使用／花用。"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:49
 #~ msgid "Harvester ID"
@@ -749,11 +749,11 @@ msgstr "分層確定性鑰匙是一種公鑰/私鑰格式，一個私鑰可以�
 
 #: src/components/fullNode/FullNode.jsx:59
 msgid "Header Hash"
-msgstr "表頭雜湊"
+msgstr "表頭雜湊值"
 
 #: src/components/block/Block.jsx:177
 msgid "Header hash"
-msgstr "表頭雜湊"
+msgstr "表頭雜湊值"
 
 #: src/components/block/Block.jsx:191
 #: src/components/fullNode/FullNode.jsx:75
@@ -792,15 +792,15 @@ msgstr "IP 位址 / 主機"
 
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:85
 msgid "If none selected, then it will default to the temporary directory."
-msgstr "如無選擇，將會以預設到臨時資料夾。"
+msgstr "如無選擇，將會預設至臨時資料夾。"
 
 #: src/components/wallet/WalletImport.tsx:64
 msgid "Import Wallet from Mnemonics"
-msgstr "從助記符匯入錢包"
+msgstr "以助記符號匯入錢包"
 
 #: src/components/selectKey/SelectKey.tsx:116
 msgid "Import from Mnemonics (24 words)"
-msgstr "從助記符(24 個字) 匯入"
+msgstr "從助記符號（24 字）匯入"
 
 #: src/components/fullNode/FullNode.jsx:43
 msgid "In Progress"
