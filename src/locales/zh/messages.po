@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh_TW\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-03-18 22:14\n"
+"PO-Revision-Date: 2021-03-18 23:39\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -1340,7 +1340,7 @@ msgstr "恢復 DID 錢包"
 
 #: src/components/plot/PlotHeader.tsx:43
 msgid "Refresh Plots"
-msgstr "重新整理農田區"
+msgstr "刷新耕地"
 
 #: src/electron-starter.js:321
 msgid "Release Notes"
