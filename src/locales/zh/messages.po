@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh_TW\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-03-18 21:04\n"
+"PO-Revision-Date: 2021-03-18 22:14\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -816,16 +816,16 @@ msgstr "索引"
 
 #: src/components/trading/TradingOverview.jsx:218
 msgid "Indicated if this offer was created by us"
-msgstr "此交易如果是由我們創建的指示"
+msgstr "指出如果此提案由我方創建"
 
 #: src/components/trading/TradingOverview.jsx:234
 msgid "Indicated what time this offer was accepted"
-msgstr "此交易什麼時候接受的指示"
+msgstr "指出此提案於何時被接受"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:342
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:491
 msgid "Info Packet"
-msgstr "資料封包"
+msgstr "資訊封包"
 
 #: src/components/wallet/create/createRLAdmin.jsx:283
 msgid "Initial Amount"
@@ -849,11 +849,11 @@ msgstr "金鑰"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:37
 msgid "Last Attempted Proof"
-msgstr "最後嘗試證明"
+msgstr "最後試過證明"
 
 #: src/components/farm/card/FarmCardLastHeightFarmed.tsx:8
 msgid "Last Height Farmed"
-msgstr "已種田的最後高度"
+msgstr "最後耕種高度"
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:23
 msgid "Latest Block Challenges"
@@ -865,7 +865,7 @@ msgstr "載入中..."
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:86
 msgid "Local Harvester Plots"
-msgstr "本地端取圖器圖表"
+msgstr "本地端收割機用耕地"
 
 #: src/components/app/AppRouter.tsx:28
 msgid "Logging in"
@@ -913,11 +913,11 @@ msgstr "登入中"
 
 #: src/components/farm/overview/FarmOverview.tsx:34
 msgid "Manage Farming Rewards"
-msgstr "管理種田獎勵"
+msgstr "管理耕種獎勵"
 
 #: src/components/farm/FarmManageFarmingRewards.tsx:82
 msgid "Manage Your Farming Rewards Target Addresses"
-msgstr "管理你的種田獎勵目標地址"
+msgstr "管理你的耕種獎勵目標地址"
 
 #: src/components/farm/FarmFullNodeConnections.tsx:40
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:40
@@ -943,7 +943,7 @@ msgstr "網路名稱"
 
 #: src/components/fullNode/FullNode.jsx:106
 msgid "Network has not yet been launched, once it launches full node will start automatically."
-msgstr "網路還未啟動，一旦啟動完整節點將會自動開始。"
+msgstr "網路還未啟動，一旦啟動後完整節點將會自動開始。"
 
 #: src/components/app/AppRouter.tsx:24
 #~ msgid "Network not launched yet, waiting for genesis challenge!"
@@ -979,7 +979,7 @@ msgstr "由這個鑰匙是匯入的，沒有 24 個字種子。"
 
 #: src/components/farm/card/FarmCardLastHeightFarmed.tsx:8
 msgid "No blocks farmed yet"
-msgstr "還沒有區塊種田"
+msgstr "還沒有耕種收穫到的區塊"
 
 #: src/components/wallet/WalletHistory.tsx:62
 msgid "No previous transactions"
@@ -987,7 +987,7 @@ msgstr "沒有上一個交易"
 
 #: src/components/farm/FarmManageFarmingRewards.tsx:91
 msgid "No private keys for one or both addresses. Safe only if you are sending rewards to another wallet."
-msgstr "沒有私鑰給一個或多個地址。只有你將獎勵發送到另一個錢包時才是安全。"
+msgstr "一邊或雙邊地址沒有私鑰。只有你發送獎勵到另一個錢包時才算安全。"
 
 #: src/components/farm/FarmFullNodeConnections.tsx:20
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:20
@@ -997,14 +997,14 @@ msgstr "節點 ID"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:44
 msgid "None of your plots have passed the plot filter yet."
-msgstr "你還沒有任何的農田區通過過濾。"
+msgstr "你還沒有任何的耕地通過篩選。"
 
 #: src/components/farm/FarmerStatus.tsx:29
 #: src/components/farm/card/FarmCardNotAvailable.tsx:8
 #: src/components/farm/card/FarmCardNotAvailable.tsx:9
 #: src/components/plot/PlotStatus.tsx:16
 msgid "Not Available"
-msgstr "不可用"
+msgstr "無可用"
 
 #: src/components/fullNode/FullNode.jsx:135
 msgid "Not Synced"
@@ -1026,7 +1026,7 @@ msgstr "未連線"
 
 #: src/components/plot/PlotsNotFound.tsx:24
 msgid "Not found Plots"
-msgstr "沒找到農田區"
+msgstr "沒找到的耕地"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:92
 msgid "Number of buckets"
@@ -1085,11 +1085,11 @@ msgstr "確認中總餘額"
 
 #: src/components/trading/CreateOffer.jsx:109
 msgid "Please add a trade pair"
-msgstr "請增加交易配對"
+msgstr "請增加一對貿易方"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:712
 msgid "Please enter 0 fee. Positive fees not supported yet for RL."
-msgstr "請輸入 0 費用。還未支援 RL 的正向費用。"
+msgstr "請輸入 0 費用。 RL 尚未支援正向費用。"
 
 #: src/components/wallet/create/createRLAdmin.jsx:146
 msgid "Please enter a valid initial coin amount"
@@ -1099,7 +1099,7 @@ msgstr "請輸入有效的初始金額"
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:679
 #: src/components/wallet/standard/WalletStandard.tsx:278
 msgid "Please enter a valid numeric amount"
-msgstr "請輸入有效的數值"
+msgstr "請輸入有效的數字值"
 
 #: src/components/wallet/create/createExistingColouredCoin.jsx:70
 #: src/components/wallet/create/createNewColouredCoin.jsx:81
@@ -1107,15 +1107,15 @@ msgstr "請輸入有效的數值"
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:691
 #: src/components/wallet/standard/WalletStandard.tsx:284
 msgid "Please enter a valid numeric fee"
-msgstr "請輸入有效的費用"
+msgstr "請輸入有效的數字費用值"
 
 #: src/components/wallet/create/createRLAdmin.jsx:100
 msgid "Please enter a valid numeric interval length"
-msgstr "請輸入有效的間隔長度"
+msgstr "請輸入有效的數字間隔長度值"
 
 #: src/components/wallet/create/createRLAdmin.jsx:117
 msgid "Please enter a valid numeric spendable amount"
-msgstr "請輸入有效的可花費數量"
+msgstr "請輸入有效的可花費數字量值"
 
 #: src/components/wallet/create/createRLAdmin.jsx:129
 msgid "Please enter a valid pubkey"
@@ -1132,7 +1132,7 @@ msgstr "請選擇數量"
 
 #: src/components/trading/CreateOffer.jsx:85
 msgid "Please select buy or sell"
-msgstr "請選擇購買或賣出"
+msgstr "請選擇購入或售出"
 
 #: src/components/trading/CreateOffer.jsx:63
 msgid "Please select coin colour"
@@ -1145,7 +1145,7 @@ msgstr "請選擇代幣顏色"
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:44
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:48
 msgid "Please specify final directory"
-msgstr "請指定最後資料夾"
+msgstr "請指定最終資料夾"
 
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:55
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:59
@@ -1154,20 +1154,20 @@ msgstr "請指定臨時資料夾"
 
 #: src/components/plot/Plot.tsx:13
 msgid "Plot"
-msgstr "農田區"
+msgstr "耕地"
 
 #: src/components/farm/card/FarmCardPlotCount.tsx:7
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:18
 msgid "Plot Count"
-msgstr "農田區數量"
+msgstr "耕地數量"
 
 #: src/components/block/Block.jsx:265
 msgid "Plot Id"
-msgstr "農田區 ID"
+msgstr "耕地 ID"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:55
 msgid "Plot Key"
-msgstr "農田區鑰匙"
+msgstr "耕地金鑰"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:43
 #~ msgid "Plot Name"
@@ -1175,43 +1175,43 @@ msgstr "農田區鑰匙"
 
 #: src/components/block/Block.jsx:241
 msgid "Plot Public Key"
-msgstr "農田區公鑰"
+msgstr "耕地公鑰"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:49
 msgid "Plot Seed"
-msgstr "農田區種子"
+msgstr "耕地種子"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:66
 msgid "Plot Size"
-msgstr "農田區大小"
+msgstr "耕地大小"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:43
 msgid "Plot in Parallel"
-msgstr "並行產成Plot"
+msgstr "平行耕地"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:26
 msgid "Plot is duplicate of {0}"
-msgstr "農田區與 {0} 重複"
+msgstr "耕地與 {0} 重複"
 
 #: src/components/dashboard/DashboardSideBar.tsx:25
 msgid "Plots"
-msgstr "農田區"
+msgstr "耕地"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:19
 msgid "Plots Passed Filter"
-msgstr "農田區通過過濾"
+msgstr "已通過篩選耕地"
 
 #: src/components/plot/overview/PlotOverviewHero.tsx:23
 msgid "Plots are allocated space on your hard drive used to farm and earn Chia. <0>Learn more</0>"
-msgstr "農田區是在你的硬盤規劃空間用來種田和獲得 Chia。<0>了解更多</0>"
+msgstr "耕地是在您硬碟上劃出的空間，用於耕種來賺取 Chia 。 <0>了解更多</0>"
 
 #: src/components/plot/queue/PlotQueueIndicator.tsx:8
 msgid "Plotting"
-msgstr "規劃農田中"
+msgstr "規劃耕地中"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:35
 msgid "Plotting in parallel can save time. Otherwise, add plot(s) to the queue."
-msgstr "平行規劃農田區可省時間。否則，增加農田區到隊列。"
+msgstr "平行規劃耕地可節省時間。若不，新增耕地至隊列。"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:61
 msgid "Pool Key"
@@ -1223,7 +1223,7 @@ msgstr "池公鑰"
 
 #: src/components/block/Block.jsx:257
 msgid "Pool Puzzle Hash"
-msgstr "池拼圖雜湊"
+msgstr "池拼圖雜湊值"
 
 #: src/components/farm/FarmManageFarmingRewards.tsx:96
 msgid "Pool Reward Address"
@@ -1250,7 +1250,7 @@ msgstr "上一個"
 
 #: src/components/block/Block.jsx:205
 msgid "Previous Header Hash"
-msgstr "前一個表頭雜湊"
+msgstr "前一個表頭雜湊值"
 
 #: src/components/block/Block.jsx:217
 #~ msgid "Previous Sub Block Hash"
@@ -1274,7 +1274,7 @@ msgstr "證明的空間大小"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:23
 msgid "Proofs Found"
-msgstr "發現證明"
+msgstr "發現證明數"
 
 #: src/components/wallet/create/createRLAdmin.jsx:323
 msgid "Pubkey"
@@ -1286,11 +1286,11 @@ msgstr "公鑰："
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:103
 msgid "Queue Name"
-msgstr "隊列名字"
+msgstr "隊列名稱"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:43
 msgid "Queue name"
-msgstr "隊列名字"
+msgstr "隊列名稱"
 
 #: src/components/plot/queue/PlotQueueIndicator.tsx:11
 msgid "Queued"
@@ -1302,7 +1302,7 @@ msgstr "已隊列"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:73
 msgid "RAM max usage"
-msgstr "RAM 最大使用量"
+msgstr "最大記憶體使用量"
 
 #: src/components/wallet/Wallets.tsx:41
 msgid "RL Wallet"
