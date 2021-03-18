@@ -8,7 +8,7 @@ msgstr ""
 "Language: ro_RO\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-03-17 17:47\n"
+"PO-Revision-Date: 2021-03-18 07:24\n"
 "Last-Translator: \n"
 "Language-Team: Romanian\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100>0 && n%100<20)) ? 1 : 2);\n"
@@ -37,7 +37,7 @@ msgstr "Un 'cultivator' este un serviciu care rulează pe o mașină care dețin
 #: src/electron-starter.js:369
 #: src/electron-starter.js:462
 msgid "About Chia Blockchain"
-msgstr ""
+msgstr "Despre blockchain-ul Chia"
 
 #: src/components/trading/ViewOffer.jsx:85
 msgid "Accept"
@@ -69,7 +69,7 @@ msgstr "Adaugă Director cu Parcele"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:44
 msgid "Add Plot to Queue"
-msgstr ""
+msgstr "Adaugă Parcelă la Coadă"
 
 #: src/components/wallet/Wallets.tsx:81
 msgid "Add Wallet"
@@ -129,7 +129,7 @@ msgstr "Sigur vrei să deconectezi?"
 
 #: src/electron-starter.js:140
 msgid "Are you sure you want to quit? GUI Plotting and farming will stop."
-msgstr ""
+msgstr "Sigur vrei să închizi? Parcelarea și cultivarea se vor opri."
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:31
 #~ msgid "Are you sure you want to use k={plotSize}"
@@ -137,7 +137,7 @@ msgstr ""
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:31
 msgid "Are you sure you want to use k={plotSize}?"
-msgstr ""
+msgstr "Sigur vrei să folosești k={plotSize}?"
 
 #: src/components/selectKey/SelectKey.tsx:39
 #: src/components/selectKey/SelectKey.tsx:53
@@ -261,15 +261,15 @@ msgstr "Hash-ul provocării"
 
 #: src/electron-starter.js:348
 msgid "Chat on KeyBase"
-msgstr ""
+msgstr "Discută pe KeyBase"
 
 #: src/electron-starter.js:366
 msgid "Chia"
-msgstr ""
+msgstr "Chia"
 
 #: src/electron-starter.js:305
 msgid "Chia Blockchain Wiki"
-msgstr ""
+msgstr "Wiki Blockchain Chia"
 
 #: src/components/wallet/Wallets.tsx:30
 msgid "Chia Wallet"
@@ -323,7 +323,7 @@ msgstr "Opțiuni monede colorate"
 
 #: src/electron-starter.js:138
 msgid "Confirm"
-msgstr ""
+msgstr "Confirmare"
 
 #: src/components/fullNode/FullNodeCloseConnection.tsx:22
 msgid "Confirm Disconnect"
@@ -374,7 +374,7 @@ msgstr "Conexiuni"
 
 #: src/electron-starter.js:329
 msgid "Contribute on GitHub"
-msgstr ""
+msgstr "Contribuie pe GitHub"
 
 #: src/components/core/components/CopyToClipboard/CopyToClipboard.tsx:22
 msgid "Copied"
@@ -533,11 +533,11 @@ msgstr "Ștergerea tuturor cheilor va elimina definitiv cheile de pe computer, a
 
 #: src/electron-starter.js:251
 msgid "Developer"
-msgstr ""
+msgstr "Dezvoltator"
 
 #: src/electron-starter.js:254
 msgid "Developer Tools"
-msgstr ""
+msgstr "Unelte Dezvoltator"
 
 #: src/components/block/Block.jsx:213
 #: src/components/fullNode/FullNode.jsx:191
@@ -546,11 +546,11 @@ msgstr "Dificultate"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:114
 msgid "Disable bifield plotting when your temporary directory is on fast storage like SSD or you need lower per process RAM requirements. Plotting with bitfield enabled has about 20% less overall writes."
-msgstr ""
+msgstr "Dezactivați scrierea 'bitfeld' atunci când directorul dvs. temporar este rapid, cum ar fi SSD sau aveți cerințe RAM mai mici per proces. Parcelarea cu opțiunea 'bitfield' activă face în general cu 20% mai puține scrieri."
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:109
 msgid "Disable bitfield plotting"
-msgstr ""
+msgstr "Dezactivează parcelarea 'bitfield'"
 
 #: src/components/fullNode/FullNodeCloseConnection.tsx:22
 msgid "Disconnect"
@@ -584,7 +584,7 @@ msgstr "Drag and drop fisierul backup"
 
 #: src/electron-starter.js:210
 msgid "Edit"
-msgstr ""
+msgstr "Editare"
 
 #: src/components/wallet/WalletImport.tsx:67
 msgid "Enter the 24 word mnemonic that you have saved in order to restore your Chia wallet."
@@ -697,7 +697,7 @@ msgstr "Suma taxe"
 #: src/electron-starter.js:202
 #: src/electron-starter.js:409
 msgid "File"
-msgstr ""
+msgstr "Filă"
 
 #: src/components/plot/PlotsFailed.tsx:10
 #: src/components/plot/PlotsNotFound.tsx:10
@@ -716,11 +716,11 @@ msgstr "Terminat"
 
 #: src/electron-starter.js:354
 msgid "Follow on Twitter"
-msgstr ""
+msgstr "Urmărește pe Twitter"
 
 #: src/electron-starter.js:313
 msgid "Frequently Asked Questions"
-msgstr ""
+msgstr "Întrebări frecvente"
 
 #: src/components/dashboard/DashboardSideBar.tsx:23
 #: src/components/fullNode/FullNode.jsx:325
@@ -733,7 +733,7 @@ msgstr "Stare nod complet"
 
 #: src/electron-starter.js:279
 msgid "Full Screen"
-msgstr ""
+msgstr "Ecran Complet"
 
 #: src/components/wallet/create/createNewColouredCoin.jsx:106
 msgid "Generate New Colour"
@@ -741,7 +741,7 @@ msgstr "Genereaza culoare noua"
 
 #: src/components/wallet/standard/WalletStandard.tsx:367
 msgid "HD or Hierarchical Deterministic keys are a type of public key/private key scheme where one private key can have a nearly infinite number of different public keys (and therefor wallet receive addresses) that will all ultimately come back to and be spendable by a single private key."
-msgstr ""
+msgstr "Cheile DI sau Deterministic Ierarhice sunt un tip de schemă de cheie publică/cheie privată în care o cheie privată poate avea un număr aproape infinit de chei publice diferite (și, prin urmare, adrese de intrare în portofel), care în cele din urmă converg la și vor putea fi cheltuite de o singură cheie privată."
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:49
 #~ msgid "Harvester ID"
@@ -749,21 +749,21 @@ msgstr ""
 
 #: src/components/fullNode/FullNode.jsx:59
 msgid "Header Hash"
-msgstr "Hashul Headerului"
+msgstr "Hash-ul Antetului"
 
 #: src/components/block/Block.jsx:177
 msgid "Header hash"
-msgstr "hashul Headerului"
+msgstr "Hash-ul Antetului"
 
 #: src/components/block/Block.jsx:191
 #: src/components/fullNode/FullNode.jsx:75
 #: src/components/fullNode/FullNodeConnections.tsx:54
 msgid "Height"
-msgstr "Inaltime"
+msgstr "Înălțime"
 
 #: src/electron-starter.js:301
 msgid "Help"
-msgstr ""
+msgstr "Ajutor"
 
 #: src/components/core/components/LocaleToggle/LocaleToggle.tsx:51
 msgid "Help translate"
@@ -1187,7 +1187,7 @@ msgstr "Dimensiune Parcelă"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:43
 msgid "Plot in Parallel"
-msgstr ""
+msgstr "Parcelează în paralel"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:26
 msgid "Plot is duplicate of {0}"
@@ -1344,7 +1344,7 @@ msgstr "Re-scanează parcele"
 
 #: src/electron-starter.js:321
 msgid "Release Notes"
-msgstr ""
+msgstr "Note de lansare"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:206
 msgid "Rename"
@@ -1352,7 +1352,7 @@ msgstr "Redenumește"
 
 #: src/electron-starter.js:340
 msgid "Report an Issue..."
-msgstr ""
+msgstr "Semnalează o problemă..."
 
 #: src/components/backup/BackupRestore.tsx:107
 msgid "Restore Metadata for Coloured Coins and other Smart Wallets from Backup"
@@ -1477,7 +1477,7 @@ msgstr "Loghează-te"
 
 #: src/electron-starter.js:423
 msgid "Speech"
-msgstr ""
+msgstr "Vorbire"
 
 #: src/components/wallet/create/createRLAdmin.jsx:247
 msgid "Spendable Amount"
@@ -1687,11 +1687,11 @@ msgstr "Acest nod este complet prins și validează rețeaua"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:39
 msgid "This table shows you the last time your farm attempted to win a block challenge. <0>Learn more</0>"
-msgstr ""
+msgstr "Acest tabel vă arată ultima dată când ferma dvs. a încercat să câștige o provocare de bloc."
 
 #: src/components/trading/TradingOverview.jsx:192
 msgid "This trade was created at this time"
-msgstr "Această tranzactie a fost creată în acest moment"
+msgstr "Această tranzacție a fost creată în acest moment"
 
 #: src/components/trading/TradingOverview.jsx:206
 msgid "This trade was included on blockchain at this block height"
@@ -1806,16 +1806,16 @@ msgstr "Iteratii sub slot VDF"
 
 #: src/electron-starter.js:242
 msgid "View"
-msgstr ""
+msgstr "Afișare"
 
 #: src/components/plot/queue/PlotQueueActions.tsx:49
 #: src/components/plot/queue/PlotQueueLogDialog.tsx:20
 msgid "View Log"
-msgstr "Vezualizeaza loguri"
+msgstr "Vezi Jurnal"
 
 #: src/components/trading/TradeManager.tsx:27
 msgid "View Offer"
-msgstr "Vizualizeaza oferta"
+msgstr "Vezi oferta"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:586
 #: src/components/wallet/standard/WalletStandard.tsx:213
@@ -1908,7 +1908,7 @@ msgstr "Cand primiti pachetul de informatii despre configurare de la administrat
 
 #: src/electron-starter.js:287
 msgid "Window"
-msgstr ""
+msgstr "Fereastră"
 
 #: src/components/farm/card/FarmCardBlockRewards.tsx:18
 msgid "Without fees"
@@ -1926,7 +1926,7 @@ msgstr "Da"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:56
 msgid "You do not need to be synched or connected to plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
-msgstr ""
+msgstr "Nu este necesar să fii sincronizat sau conectat la o Parcelă. Atenție: fișierele temporare create în timpul procesului de parcelare depășesc dimensiunea fișierelor parcelă finale. Asigură-te că ai suficient spațiu liber pe disc. <0>Află mai multe</0>"
 
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:34
 msgid "You have {0}% of the space on the network, so farming a block will take {expectedTimeToWin} in expectation."
