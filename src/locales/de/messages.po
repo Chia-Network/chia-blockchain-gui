@@ -8,7 +8,7 @@ msgstr ""
 "Language: de_DE\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-03-18 11:23\n"
+"PO-Revision-Date: 2021-03-20 21:54\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -701,7 +701,7 @@ msgstr "Höhe der Gebühr"
 #: src/electron-starter.js:202
 #: src/electron-starter.js:409
 msgid "File"
-msgstr ""
+msgstr "Datei"
 
 #: src/components/plot/PlotsFailed.tsx:10
 #: src/components/plot/PlotsNotFound.tsx:10
@@ -720,11 +720,11 @@ msgstr "Beendet"
 
 #: src/electron-starter.js:354
 msgid "Follow on Twitter"
-msgstr ""
+msgstr "Folge auf Twitter"
 
 #: src/electron-starter.js:313
 msgid "Frequently Asked Questions"
-msgstr ""
+msgstr "Häufig gestellte Fragen"
 
 #: src/components/dashboard/DashboardSideBar.tsx:23
 #: src/components/fullNode/FullNode.jsx:325
@@ -737,7 +737,7 @@ msgstr "Full Node Status"
 
 #: src/electron-starter.js:279
 msgid "Full Screen"
-msgstr ""
+msgstr "Vollbild"
 
 #: src/components/wallet/create/createNewColouredCoin.jsx:106
 msgid "Generate New Colour"
@@ -767,7 +767,7 @@ msgstr "Höhe"
 
 #: src/electron-starter.js:301
 msgid "Help"
-msgstr ""
+msgstr "Hilfe"
 
 #: src/components/core/components/LocaleToggle/LocaleToggle.tsx:51
 msgid "Help translate"
@@ -943,7 +943,7 @@ msgstr "Mein öffentlicher Schlüssel"
 
 #: src/components/fullNode/FullNode.jsx:173
 msgid "Network Name"
-msgstr ""
+msgstr "Netzwerkname"
 
 #: src/components/fullNode/FullNode.jsx:106
 msgid "Network has not yet been launched, once it launches full node will start automatically."
@@ -1020,41 +1020,41 @@ msgstr ""
 
 #: src/components/trading/TradingOverview.jsx:199
 msgid "Not confirmed yet"
-msgstr ""
+msgstr "Bisher nicht bestätigt"
 
 #: src/components/core/components/FormatConnectionStatus/FormatConnectionStatus.tsx:48
 #: src/components/fullNode/FullNode.jsx:158
 #: src/components/fullNode/FullNode.jsx:165
 msgid "Not connected"
-msgstr ""
+msgstr "Nicht verbunden"
 
 #: src/components/plot/PlotsNotFound.tsx:24
 msgid "Not found Plots"
-msgstr ""
+msgstr "Nicht gefundene Plots"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:92
 msgid "Number of buckets"
-msgstr ""
+msgstr "Anzahl der Buckets"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:83
 msgid "Number of threads"
-msgstr ""
+msgstr "Anzahl der Threads"
 
 #: src/components/core/components/ConfirmDialog/ConfirmDialog.tsx:51
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: src/components/trading/ViewOffer.jsx:71
 msgid "Offer"
-msgstr ""
+msgstr "Angebot"
 
 #: src/components/trading/TradingOverview.jsx:424
 msgid "Offers Created"
-msgstr ""
+msgstr "Angebote erstellt"
 
 #: src/components/wallet/WalletHistory.tsx:18
 msgid "Outgoing"
-msgstr ""
+msgstr "Ausgehend"
 
 #: src/components/fullNode/FullNode.jsx:179
 msgid "Peak Height"
@@ -1070,7 +1070,7 @@ msgstr ""
 
 #: src/components/wallet/WalletHistory.tsx:41
 msgid "Pending"
-msgstr ""
+msgstr "Ausstehend"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:604
 #: src/components/wallet/standard/WalletStandard.tsx:223
@@ -1132,15 +1132,15 @@ msgstr ""
 
 #: src/components/trading/CreateOffer.jsx:75
 msgid "Please select amount"
-msgstr ""
+msgstr "Bitte Menge auswählen"
 
 #: src/components/trading/CreateOffer.jsx:85
 msgid "Please select buy or sell"
-msgstr ""
+msgstr "Bitte kaufen oder verkaufen auswählen"
 
 #: src/components/trading/CreateOffer.jsx:63
 msgid "Please select coin colour"
-msgstr ""
+msgstr "Bitte Coin Farbe auswählen"
 
 #: src/components/trading/CreateOffer.jsx:63
 #~ msgid "Please select coin type"
@@ -1149,29 +1149,29 @@ msgstr ""
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:44
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:48
 msgid "Please specify final directory"
-msgstr ""
+msgstr "Bitte finales Verzeichnis definieren"
 
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:55
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:59
 msgid "Please specify temporary directory"
-msgstr ""
+msgstr "Bitte temporäres Verzeichnis definieren"
 
 #: src/components/plot/Plot.tsx:13
 msgid "Plot"
-msgstr ""
+msgstr "Plot"
 
 #: src/components/farm/card/FarmCardPlotCount.tsx:7
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:18
 msgid "Plot Count"
-msgstr ""
+msgstr "Plot Anzahl"
 
 #: src/components/block/Block.jsx:265
 msgid "Plot Id"
-msgstr ""
+msgstr "Plot Id"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:55
 msgid "Plot Key"
-msgstr ""
+msgstr "Plot Schlüssel"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:43
 #~ msgid "Plot Name"
@@ -1179,19 +1179,19 @@ msgstr ""
 
 #: src/components/block/Block.jsx:241
 msgid "Plot Public Key"
-msgstr ""
+msgstr "Öffentlicher Plot Schlüssel"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:49
 msgid "Plot Seed"
-msgstr ""
+msgstr "Plot Seed"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:66
 msgid "Plot Size"
-msgstr ""
+msgstr "Plot Größe"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:43
 msgid "Plot in Parallel"
-msgstr ""
+msgstr "Parallel plotten"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:26
 msgid "Plot is duplicate of {0}"
@@ -1199,11 +1199,11 @@ msgstr ""
 
 #: src/components/dashboard/DashboardSideBar.tsx:25
 msgid "Plots"
-msgstr ""
+msgstr "Plots"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:19
 msgid "Plots Passed Filter"
-msgstr ""
+msgstr "Plots Filter bestanden"
 
 #: src/components/plot/overview/PlotOverviewHero.tsx:23
 msgid "Plots are allocated space on your hard drive used to farm and earn Chia. <0>Learn more</0>"
@@ -1211,7 +1211,7 @@ msgstr ""
 
 #: src/components/plot/queue/PlotQueueIndicator.tsx:8
 msgid "Plotting"
-msgstr ""
+msgstr "Plotting"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:35
 msgid "Plotting in parallel can save time. Otherwise, add plot(s) to the queue."
