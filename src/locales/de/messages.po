@@ -8,7 +8,7 @@ msgstr ""
 "Language: de_DE\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-03-20 23:03\n"
+"PO-Revision-Date: 2021-03-23 09:30\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -20,7 +20,7 @@ msgstr ""
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:39
 msgid "*Want to explore Chia’s blocks further? Check out <0>Chia Explorer</0> built by an open source developer."
-msgstr ""
+msgstr "*Möchtest du mehr über Chia's Blocks erfahren? Besuche <0>Chia Explorer</0>, erstellt durch einen open source Entwickler."
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:94
 #~ msgid "0 automatically chooses bucket count"
@@ -32,7 +32,7 @@ msgstr "Eine Größe von 128 buckets ist empfohlen"
 
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:58
 msgid "A harvester is a service running on a machine where plot(s) are actually stored. A farmer and harvester talk to a full node to see the state of the chain. View your network of connected harvesters below Learn more"
-msgstr ""
+msgstr "Ein harvester ist ein Dienst auf einer Machine auf der die Plots gespeichert sind. Ein farmer und harvester kommunizieren zu einem full node um den Status der Chain zu ermitteln. Betrachte unten dein Netzwerk an verbundenen Harvestern Lerne mehr"
 
 #: src/electron-starter.js:369
 #: src/electron-starter.js:462
@@ -116,16 +116,16 @@ msgstr "Anzahl ({cc_unit})"
 
 #: src/components/wallet/create/createRLAdmin.jsx:259
 msgid "Amount For Initial Coin"
-msgstr ""
+msgstr "Anzahl für initialen Coin"
 
 #: src/components/plot/PlotAction.tsx:25
 #: src/components/plot/queue/PlotQueueActions.tsx:27
 msgid "Are you sure you want to delete the plot? The plot cannot be recovered."
-msgstr ""
+msgstr "Bist du sicher, dass du den Plot löschen möchtest? Der Plot kann nicht wiederhergestellt werden."
 
 #: src/components/fullNode/FullNodeCloseConnection.tsx:23
 msgid "Are you sure you want to disconnect?"
-msgstr ""
+msgstr "Bist du sicher, dass du die Verbindung beenden möchtest?"
 
 #: src/electron-starter.js:140
 msgid "Are you sure you want to quit? GUI Plotting and farming will stop."
