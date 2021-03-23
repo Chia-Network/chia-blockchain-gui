@@ -198,7 +198,7 @@ msgstr "Blokke med hash {headerHash}"
 msgid "Block with hash {headerHash} does not exists."
 msgstr "Blok med hash {headerHash} eksisterer ikke."
 
-#: src/components/fullNode/FullNode.jsx:311
+#: src/components/fullNode/FullNode.jsx:298
 msgid "Blocks"
 msgstr "Blokke"
 
@@ -347,7 +347,7 @@ msgid "Connect to other peers"
 msgstr "Forbundet med andre brugere"
 
 #: src/components/core/components/FormatConnectionStatus/FormatConnectionStatus.tsx:47
-#: src/components/fullNode/FullNode.jsx:156
+#: src/components/fullNode/FullNode.jsx:143
 msgid "Connected"
 msgstr "Forbundet"
 
@@ -355,7 +355,7 @@ msgstr "Forbundet"
 msgid "Connecting to wallet"
 msgstr "Forbinder pung"
 
-#: src/components/fullNode/FullNode.jsx:154
+#: src/components/fullNode/FullNode.jsx:141
 msgid "Connection Status"
 msgstr "Forbindelses Status"
 
@@ -540,7 +540,7 @@ msgid "Developer Tools"
 msgstr ""
 
 #: src/components/block/Block.jsx:213
-#: src/components/fullNode/FullNode.jsx:191
+#: src/components/fullNode/FullNode.jsx:178
 msgid "Difficulty"
 msgstr "Sværhed"
 
@@ -604,11 +604,11 @@ msgstr "Fejl"
 msgid "Error: Cannot send chia to coloured address. Please enter a chia address."
 msgstr "Fejl: Kan ikke sende chia til en farvet addresse. Venligst indtast en chia addresse."
 
-#: src/components/fullNode/FullNode.jsx:210
+#: src/components/fullNode/FullNode.jsx:197
 msgid "Estimated network space"
 msgstr "Estimeret netværk størrelse"
 
-#: src/components/fullNode/FullNode.jsx:213
+#: src/components/fullNode/FullNode.jsx:200
 msgid "Estimated sum of all the plotted disk space of all farmers in the network"
 msgstr "Estimeret sum af alt plottet drev plads af alle farmerer på netværket"
 
@@ -723,11 +723,11 @@ msgid "Frequently Asked Questions"
 msgstr ""
 
 #: src/components/dashboard/DashboardSideBar.tsx:23
-#: src/components/fullNode/FullNode.jsx:325
+#: src/components/fullNode/FullNode.jsx:312
 msgid "Full Node"
 msgstr "Fuld Node"
 
-#: src/components/fullNode/FullNode.jsx:268
+#: src/components/fullNode/FullNode.jsx:255
 msgid "Full Node Status"
 msgstr "Fuld Node Status"
 
@@ -937,13 +937,13 @@ msgstr "Mere hukommelse øger hastighed en smule"
 msgid "My Pubkey"
 msgstr "Min Pubkey"
 
-#: src/components/fullNode/FullNode.jsx:173
+#: src/components/fullNode/FullNode.jsx:160
 msgid "Network Name"
 msgstr "Netværksnavn"
 
 #: src/components/fullNode/FullNode.jsx:106
-msgid "Network has not yet been launched, once it launches full node will start automatically."
-msgstr "Netværk ikke startet endnu, når det er startet vil den fulde node starte automatisk."
+#~ msgid "Network has not yet been launched, once it launches full node will start automatically."
+#~ msgstr "Netværk ikke startet endnu, når det er startet vil den fulde node starte automatisk."
 
 #: src/components/app/AppRouter.tsx:24
 #~ msgid "Network not launched yet, waiting for genesis challenge!"
@@ -1006,7 +1006,7 @@ msgstr "Ingen af dine plotfiler har passeret plotfilteret endnu."
 msgid "Not Available"
 msgstr "Ikke Tilgængelig"
 
-#: src/components/fullNode/FullNode.jsx:135
+#: src/components/fullNode/FullNode.jsx:122
 msgid "Not Synced"
 msgstr "Ikke Synkroniseret"
 
@@ -1019,8 +1019,8 @@ msgid "Not confirmed yet"
 msgstr "Ikke bekrætet endnu"
 
 #: src/components/core/components/FormatConnectionStatus/FormatConnectionStatus.tsx:48
-#: src/components/fullNode/FullNode.jsx:158
-#: src/components/fullNode/FullNode.jsx:165
+#: src/components/fullNode/FullNode.jsx:145
+#: src/components/fullNode/FullNode.jsx:152
 msgid "Not connected"
 msgstr "Ikke forbundet"
 
@@ -1052,7 +1052,7 @@ msgstr "Bud Oprettet"
 msgid "Outgoing"
 msgstr "Udgående"
 
-#: src/components/fullNode/FullNode.jsx:179
+#: src/components/fullNode/FullNode.jsx:166
 msgid "Peak Height"
 msgstr "Top Højde"
 
@@ -1060,7 +1060,7 @@ msgstr "Top Højde"
 #~ msgid "Peak Sub-block Height"
 #~ msgstr "Peak Sub-block Height"
 
-#: src/components/fullNode/FullNode.jsx:184
+#: src/components/fullNode/FullNode.jsx:171
 msgid "Peak Time"
 msgstr "Top Tidspunkt"
 
@@ -1511,16 +1511,15 @@ msgstr "Forbrugsgrænse (chia per interval): {0}"
 msgid "State"
 msgstr "Status"
 
-#: src/components/fullNode/FullNode.jsx:102
-#: src/components/fullNode/FullNode.jsx:117
-#: src/components/fullNode/FullNode.jsx:134
-#: src/components/fullNode/FullNode.jsx:142
-#: src/components/fullNode/FullNode.jsx:164
+#: src/components/fullNode/FullNode.jsx:104
+#: src/components/fullNode/FullNode.jsx:121
+#: src/components/fullNode/FullNode.jsx:129
+#: src/components/fullNode/FullNode.jsx:151
 #: src/components/plot/overview/PlotOverviewPlots.tsx:71
 #: src/components/trading/TradingOverview.jsx:128
 #: src/components/wallet/WalletHistory.tsx:42
-#: src/components/wallet/WalletStatusCard.tsx:12
-#: src/components/wallet/Wallets.tsx:94
+#: src/components/wallet/WalletStatusCard.tsx:11
+#: src/components/wallet/Wallets.tsx:93
 msgid "Status"
 msgstr ""
 
@@ -1560,7 +1559,7 @@ msgstr ""
 msgid "Submit"
 msgstr "Indsend"
 
-#: src/components/fullNode/FullNode.jsx:143
+#: src/components/fullNode/FullNode.jsx:130
 msgid "Synced"
 msgstr "Synkroniseret"
 
@@ -1570,7 +1569,7 @@ msgstr "Synkroniseret"
 msgid "Syncing"
 msgstr "Synkroniserer"
 
-#: src/components/fullNode/FullNode.jsx:119
+#: src/components/fullNode/FullNode.jsx:106
 msgid "Syncing {progress}/{tip}"
 msgstr "Synkroniserer {progress}/{tip}"
 
@@ -1611,11 +1610,11 @@ msgstr "Den fulder node som din farmer er forbundet til herunder. <0>Lær mere</
 msgid "The minimum required size for mainnet is k=32"
 msgstr "Den mindste tilladte størrelse for mainnet er k=32"
 
-#: src/components/fullNode/FullNode.jsx:137
+#: src/components/fullNode/FullNode.jsx:124
 msgid "The node is not synced"
 msgstr "Noden er ikke synkroniseret"
 
-#: src/components/fullNode/FullNode.jsx:125
+#: src/components/fullNode/FullNode.jsx:112
 msgid "The node is syncing, which means it is downloading blocks from other nodes, to reach the latest block in the chain"
 msgstr "Noden Synkroniserer, hvilket betyder at den er ved at hente blokke fra andre noder, for at nå den sidste blok i kæden"
 
@@ -1661,7 +1660,7 @@ msgstr "Dette er den afventende ændring, som er vekslet til dig selv, men ikke 
 msgid "This is the sum of the incoming and outgoing pending transactions (not yet included into the blockchain). This does not include farming rewards."
 msgstr "Dette er summen af indkommende og udgående afventende transaktioner (ikke skrevet ind i blokkæden endnu). Dette er ekslusivt farmede gevinster."
 
-#: src/components/fullNode/FullNode.jsx:186
+#: src/components/fullNode/FullNode.jsx:173
 msgid "This is the time of the latest peak sub block."
 msgstr "Dette er tidstemplet for den sidste blok."
 
@@ -1677,7 +1676,7 @@ msgstr "Dette er det tottale beløb af chia i blokkæden ved den nuværende sids
 msgid "This is the total balance + pending balance: it is what your balance will be after all pending transactions are confirmed."
 msgstr "Dette er den totalle + afventende balance: det er hvad din balance vil være når alle afventende transaktioner er bevist."
 
-#: src/components/fullNode/FullNode.jsx:146
+#: src/components/fullNode/FullNode.jsx:133
 msgid "This node is fully caught up and validating the network"
 msgstr "Denne node er fuldt synkroniseret og validerer netværket"
 
@@ -1723,7 +1722,7 @@ msgstr ""
 #~ msgid "Total Chia Farmed"
 #~ msgstr ""
 
-#: src/components/fullNode/FullNode.jsx:204
+#: src/components/fullNode/FullNode.jsx:191
 msgid "Total Iterations"
 msgstr "Total iterationer"
 
@@ -1743,7 +1742,7 @@ msgstr "Total Størrelse af Plotfiler"
 msgid "Total VDF Iterations"
 msgstr "Total VDF Iterationer"
 
-#: src/components/fullNode/FullNode.jsx:206
+#: src/components/fullNode/FullNode.jsx:193
 msgid "Total iterations since the start of the blockchain"
 msgstr "Total iterationer siden blokkædens start"
 
@@ -1800,7 +1799,7 @@ msgstr "Unik identifikator"
 msgid "User Pubkey"
 msgstr "Bruger Pubkey"
 
-#: src/components/fullNode/FullNode.jsx:198
+#: src/components/fullNode/FullNode.jsx:185
 msgid "VDF Sub Slot Iterations"
 msgstr "VDF blok iterationer"
 
@@ -1833,13 +1832,13 @@ msgid "Wait for synchronization"
 msgstr "Afvent synkronisering"
 
 #: src/components/wallet/Wallets.tsx:104
-msgid "Waiting for launch"
-msgstr "Afventer start"
+#~ msgid "Waiting for launch"
+#~ msgstr "Afventer start"
 
 #: src/components/fullNode/FullNode.jsx:103
 #: src/components/wallet/WalletStatusCard.tsx:20
-msgid "Waiting for network to launch"
-msgstr "Afventer netværksstart"
+#~ msgid "Waiting for network to launch"
+#~ msgstr "Afventer netværksstart"
 
 #: src/components/wallet/Wallets.tsx:34
 #~ msgid "WalletItem.ccWallet"
@@ -1870,7 +1869,7 @@ msgstr "Afventer netværksstart"
 #~ msgstr ""
 
 #: src/components/dashboard/DashboardSideBar.tsx:24
-#: src/components/wallet/Wallets.tsx:134
+#: src/components/wallet/Wallets.tsx:131
 msgid "Wallets"
 msgstr "Punge"
 
@@ -1944,32 +1943,32 @@ msgstr "Din Fulde Node Forbindelse"
 msgid "Your Harvester Network"
 msgstr "Dit Harvester netværk"
 
-#: src/components/wallet/WalletStatusCard.tsx:31
-#: src/components/wallet/Wallets.tsx:122
+#: src/components/wallet/WalletStatusCard.tsx:30
+#: src/components/wallet/Wallets.tsx:119
 msgid "connections:"
 msgstr "forbindelser:"
 
-#: src/components/wallet/WalletStatusCard.tsx:25
-#: src/components/wallet/Wallets.tsx:116
+#: src/components/wallet/WalletStatusCard.tsx:24
+#: src/components/wallet/Wallets.tsx:113
 msgid "height:"
 msgstr "højde:"
 
-#: src/components/wallet/Wallets.tsx:110
+#: src/components/wallet/Wallets.tsx:107
 msgid "not synced"
 msgstr "ikke synkroniseret"
 
-#: src/components/wallet/WalletStatusCard.tsx:17
-#: src/components/wallet/Wallets.tsx:99
+#: src/components/wallet/WalletStatusCard.tsx:16
+#: src/components/wallet/Wallets.tsx:98
 msgid "status:"
 msgstr ""
 
-#: src/components/wallet/WalletStatusCard.tsx:20
-#: src/components/wallet/Wallets.tsx:108
+#: src/components/wallet/WalletStatusCard.tsx:19
+#: src/components/wallet/Wallets.tsx:105
 msgid "synced"
 msgstr "synkroniseret"
 
-#: src/components/wallet/WalletStatusCard.tsx:20
-#: src/components/wallet/Wallets.tsx:106
+#: src/components/wallet/WalletStatusCard.tsx:19
+#: src/components/wallet/Wallets.tsx:103
 msgid "syncing"
 msgstr "synkroniserer"
 
