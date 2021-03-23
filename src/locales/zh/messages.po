@@ -5,22 +5,22 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: @lingui/cli\n"
-"Language: zh_CN\n"
+"Language: zh_TW\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
 "PO-Revision-Date: 2021-03-23 16:35\n"
 "Last-Translator: \n"
-"Language-Team: Chinese Simplified\n"
+"Language-Team: Chinese Traditional\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Crowdin-Project: chia-blockchain\n"
 "X-Crowdin-Project-ID: 440660\n"
-"X-Crowdin-Language: zh-CN\n"
+"X-Crowdin-Language: zh-TW\n"
 "X-Crowdin-File: /main/src/locales/en/messages.po\n"
 "X-Crowdin-File-ID: 94\n"
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:39
 msgid "*Want to explore Chia’s blocks further? Check out <0>Chia Explorer</0> built by an open source developer."
-msgstr ""
+msgstr "＊想更進一步探索 Chia 區塊鍵？看看開源開發者打造的 <0>Chia Explorer</0>"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:94
 #~ msgid "0 automatically chooses bucket count"
@@ -32,7 +32,7 @@ msgstr ""
 
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:58
 msgid "A harvester is a service running on a machine where plot(s) are actually stored. A farmer and harvester talk to a full node to see the state of the chain. View your network of connected harvesters below Learn more"
-msgstr ""
+msgstr "取圖器是在實際存放圖區的機器上運作的服務。塊農和取圖器會與一個完整節點溝通以取得區塊鍵狀態。以下是你的取圖器與塊農網路 學習更多"
 
 #: src/electron-starter.js:369
 #: src/electron-starter.js:462
@@ -41,11 +41,11 @@ msgstr ""
 
 #: src/components/trading/ViewOffer.jsx:85
 msgid "Accept"
-msgstr ""
+msgstr "接受"
 
 #: src/components/trading/TradingOverview.jsx:230
 msgid "Accepted at time:"
-msgstr ""
+msgstr "接受於："
 
 #: src/components/plot/PlotsFailed.tsx:14
 #: src/components/plot/PlotsNotFound.tsx:14
@@ -61,7 +61,7 @@ msgstr ""
 
 #: src/components/trading/CreateOffer.jsx:222
 msgid "Add"
-msgstr ""
+msgstr "增加"
 
 #: src/components/plot/PlotHeader.tsx:51
 msgid "Add Plot Directory"
@@ -73,7 +73,7 @@ msgstr ""
 
 #: src/components/wallet/Wallets.tsx:81
 msgid "Add Wallet"
-msgstr ""
+msgstr "增加錢包"
 
 #: src/components/farm/overview/FarmOverviewHero.tsx:35
 #: src/components/plot/PlotHeader.tsx:33
@@ -94,7 +94,7 @@ msgstr ""
 #: src/components/wallet/coloured/WalletColoured.tsx:457
 #: src/components/wallet/standard/WalletStandard.tsx:373
 msgid "Address"
-msgstr ""
+msgstr "位址"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:748
 #: src/components/wallet/standard/WalletStandard.tsx:321
@@ -142,7 +142,7 @@ msgstr ""
 #: src/components/selectKey/SelectKey.tsx:39
 #: src/components/selectKey/SelectKey.tsx:53
 msgid "Back"
-msgstr ""
+msgstr "上一步"
 
 #: src/components/backup/BackupCreate.tsx:61
 msgid "Backup file is used to restore smart wallets."
@@ -152,7 +152,7 @@ msgstr ""
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:562
 #: src/components/wallet/standard/WalletStandard.tsx:194
 msgid "Balance"
-msgstr ""
+msgstr "餘額"
 
 #: src/components/block/Block.jsx:287
 msgid "Base Farmer Reward Amount"
@@ -165,14 +165,14 @@ msgstr ""
 
 #: src/components/farm/card/FarmCardTotalNetworkSpace.tsx:8
 msgid "Best estimate over last 5 hours"
-msgstr ""
+msgstr "已過5小時最佳預估值"
 
 #: src/components/block/Block.jsx:109
 #: src/components/block/Block.jsx:143
 #: src/components/block/Block.jsx:148
 #: src/components/block/Block.jsx:303
 msgid "Block"
-msgstr ""
+msgstr "區塊"
 
 #: src/components/block/Block.jsx:121
 msgid "Block Test"
@@ -200,7 +200,7 @@ msgstr ""
 
 #: src/components/fullNode/FullNode.jsx:311
 msgid "Blocks"
-msgstr ""
+msgstr "區塊"
 
 #: src/components/farm/FarmManageFarmingRewards.tsx:91
 #~ msgid "Both values are empty. This is ok if you are, for example, sending your rewards to an offline wallet."
@@ -210,7 +210,7 @@ msgstr ""
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:63
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:81
 msgid "Browse"
-msgstr ""
+msgstr "瀏覽"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:50
 msgid "But you are currently farming <0/>"
@@ -220,7 +220,7 @@ msgstr ""
 #: src/components/trading/TradesTable.tsx:31
 #: src/components/trading/TradingOverview.jsx:297
 msgid "Buy"
-msgstr ""
+msgstr "買"
 
 #: src/components/wallet/Wallets.tsx:34
 msgid "CC Wallet"
@@ -241,7 +241,7 @@ msgstr ""
 #: src/components/trading/TradingOverview.jsx:410
 #: src/components/trading/ViewOffer.jsx:78
 msgid "Cancel"
-msgstr ""
+msgstr "取消"
 
 #: src/components/trading/TradingOverview.jsx:399
 msgid "Cancel and Spend"
@@ -273,7 +273,7 @@ msgstr ""
 
 #: src/components/wallet/Wallets.tsx:30
 msgid "Chia Wallet"
-msgstr ""
+msgstr "Chia錢包"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:13
 msgid "Choose Number of Plots"
@@ -286,11 +286,11 @@ msgstr ""
 #: src/components/plot/PlotAddDirectoryDialog.tsx:76
 #: src/components/plot/queue/PlotQueueLogDialog.tsx:29
 msgid "Close"
-msgstr ""
+msgstr "關閉"
 
 #: src/components/app/AppRouter.tsx:18
 msgid "Closing down node and server"
-msgstr ""
+msgstr "關閉此節點和伺服器"
 
 #: src/components/trading/TradingOverview.jsx:376
 msgid "Coins:"
@@ -299,7 +299,7 @@ msgstr ""
 #: src/components/trading/CreateOffer.jsx:192
 #: src/components/trading/TradesTable.tsx:19
 msgid "Colour"
-msgstr ""
+msgstr "彩色"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:181
 msgid "Colour Info"
@@ -339,7 +339,7 @@ msgstr ""
 
 #: src/components/fullNode/FullNodeAddConnection.tsx:70
 msgid "Connect"
-msgstr ""
+msgstr "連線"
 
 #: src/components/fullNode/FullNodeAddConnection.tsx:55
 #: src/components/fullNode/FullNodeConnections.tsx:75
@@ -349,24 +349,24 @@ msgstr ""
 #: src/components/core/components/FormatConnectionStatus/FormatConnectionStatus.tsx:47
 #: src/components/fullNode/FullNode.jsx:156
 msgid "Connected"
-msgstr ""
+msgstr "已連線"
 
 #: src/components/app/AppRouter.tsx:23
 msgid "Connecting to wallet"
-msgstr ""
+msgstr "連線到錢包"
 
 #: src/components/fullNode/FullNode.jsx:154
 msgid "Connection Status"
-msgstr ""
+msgstr "連線狀態"
 
 #: src/components/farm/FarmFullNodeConnections.tsx:66
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:65
 msgid "Connection Status:"
-msgstr ""
+msgstr "連線狀態："
 
 #: src/components/fullNode/FullNodeConnections.tsx:50
 msgid "Connection type"
-msgstr ""
+msgstr "連線類別"
 
 #: src/components/fullNode/FullNodeConnections.tsx:73
 msgid "Connections"
@@ -386,7 +386,7 @@ msgstr ""
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:505
 #: src/components/wallet/standard/WalletStandard.tsx:377
 msgid "Copy"
-msgstr ""
+msgstr "複製"
 
 #: src/components/core/components/CopyToClipboard/CopyToClipboard.tsx:23
 msgid "Copy to Clipboard"
@@ -398,11 +398,11 @@ msgstr ""
 #: src/components/wallet/create/createRLAdmin.jsx:333
 #: src/components/wallet/create/createRLUser.jsx:103
 msgid "Create"
-msgstr ""
+msgstr "建立"
 
 #: src/components/wallet/create/WalletCreate.jsx:308
 msgid "Create DID wallet"
-msgstr ""
+msgstr "建立DID錢包"
 
 #: src/components/trading/TradeManager.tsx:22
 msgid "Create Offer"
@@ -440,7 +440,7 @@ msgstr ""
 
 #: src/components/selectKey/SelectKey.tsx:109
 msgid "Create a new private key"
-msgstr ""
+msgstr "建立一個新的私人鑰匙"
 
 #: src/components/wallet/create/WalletCreate.jsx:244
 msgid "Create admin wallet"
@@ -452,7 +452,7 @@ msgstr ""
 
 #: src/components/wallet/create/WalletCreate.jsx:256
 msgid "Create user wallet"
-msgstr ""
+msgstr "建立使用者錢包"
 
 #: src/components/wallet/create/createExistingColouredCoin.jsx:95
 msgid "Create wallet for colour"
@@ -472,7 +472,7 @@ msgstr ""
 
 #: src/components/trading/TradingOverview.jsx:214
 msgid "Created by us:"
-msgstr ""
+msgstr "由我們創造"
 
 #: src/components/trading/TradingOverview.jsx:184
 msgid "Current trade status"
@@ -484,7 +484,7 @@ msgstr ""
 
 #: src/components/wallet/Wallets.tsx:48
 msgid "DID Wallet"
-msgstr ""
+msgstr "DID錢包"
 
 #: src/components/wallet/create/WalletCreate.jsx:310
 #~ msgid "DIDListItems.title"
@@ -494,11 +494,11 @@ msgstr ""
 #: src/components/trading/TradingOverview.jsx:137
 #: src/components/wallet/WalletHistory.tsx:35
 msgid "Date"
-msgstr ""
+msgstr "日期"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:57
 msgid "Delay"
-msgstr ""
+msgstr "延遲"
 
 #: src/components/plot/PlotAction.tsx:24
 #: src/components/plot/PlotAction.tsx:43
@@ -507,7 +507,7 @@ msgstr ""
 #: src/components/selectKey/SelectKey.tsx:39
 #: src/components/selectKey/SelectKey.tsx:53
 msgid "Delete"
-msgstr ""
+msgstr "刪除"
 
 #: src/components/plot/PlotAction.tsx:24
 #: src/components/plot/queue/PlotQueueActions.tsx:26
@@ -517,11 +517,11 @@ msgstr ""
 #: src/components/selectKey/SelectKey.tsx:53
 #: src/components/selectKey/SelectKey.tsx:122
 msgid "Delete all keys"
-msgstr ""
+msgstr "刪除全部鑰匙"
 
 #: src/components/selectKey/SelectKey.tsx:39
 msgid "Delete key"
-msgstr ""
+msgstr "刪除鑰匙"
 
 #: src/components/selectKey/SelectKey.tsx:54
 msgid "Deleting all keys will permanently remove the keys from your computer, make sure you have backups. Are you sure you want to continue?"
@@ -542,7 +542,7 @@ msgstr ""
 #: src/components/block/Block.jsx:213
 #: src/components/fullNode/FullNode.jsx:191
 msgid "Difficulty"
-msgstr ""
+msgstr "難度"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:114
 msgid "Disable bifield plotting when your temporary directory is on fast storage like SSD or you need lower per process RAM requirements. Plotting with bitfield enabled has about 20% less overall writes."
@@ -562,7 +562,7 @@ msgstr ""
 
 #: src/components/wallet/create/WalletCreate.jsx:296
 msgid "Distributed Identity Options"
-msgstr ""
+msgstr "分散式識別選項"
 
 #: src/components/farm/overview/FarmOverviewHero.tsx:41
 #: src/components/plot/overview/PlotOverviewHero.tsx:35
@@ -598,7 +598,7 @@ msgstr ""
 #: src/components/plot/PlotStatus.tsx:18
 #: src/components/plot/queue/PlotQueueIndicator.tsx:14
 msgid "Error"
-msgstr ""
+msgstr "錯誤"
 
 #: src/components/wallet/standard/WalletStandard.tsx:292
 msgid "Error: Cannot send chia to coloured address. Please enter a chia address."
@@ -672,7 +672,7 @@ msgstr ""
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:783
 #: src/components/wallet/standard/WalletStandard.tsx:336
 msgid "Fee"
-msgstr ""
+msgstr "費用"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:420
 #~ msgid "Fee (TXCH)"
@@ -703,16 +703,16 @@ msgstr ""
 #: src/components/plot/PlotsNotFound.tsx:10
 #: src/components/plot/overview/PlotOverviewPlots.tsx:67
 msgid "Filename"
-msgstr ""
+msgstr "檔案名稱"
 
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:37
 msgid "Final folder location"
-msgstr ""
+msgstr "最終文件位置"
 
 #: src/components/fullNode/FullNode.jsx:41
 #: src/components/fullNode/FullNode.jsx:92
 msgid "Finished"
-msgstr ""
+msgstr "完成"
 
 #: src/electron-starter.js:354
 msgid "Follow on Twitter"
@@ -725,11 +725,11 @@ msgstr ""
 #: src/components/dashboard/DashboardSideBar.tsx:23
 #: src/components/fullNode/FullNode.jsx:325
 msgid "Full Node"
-msgstr ""
+msgstr "全節點"
 
 #: src/components/fullNode/FullNode.jsx:268
 msgid "Full Node Status"
-msgstr ""
+msgstr "全節點狀態"
 
 #: src/electron-starter.js:279
 msgid "Full Screen"
@@ -759,7 +759,7 @@ msgstr ""
 #: src/components/fullNode/FullNode.jsx:75
 #: src/components/fullNode/FullNodeConnections.tsx:54
 msgid "Height"
-msgstr ""
+msgstr "高度"
 
 #: src/electron-starter.js:301
 msgid "Help"
@@ -767,28 +767,28 @@ msgstr ""
 
 #: src/components/core/components/LocaleToggle/LocaleToggle.tsx:51
 msgid "Help translate"
-msgstr ""
+msgstr "協助翻譯"
 
 #: src/components/core/components/AdvancedOptions/AdvancedOptions.tsx:35
 msgid "Hide Advanced Options"
-msgstr ""
+msgstr "隱藏進階選項"
 
 #: src/components/wallet/WalletHistory.tsx:60
 msgid "History"
-msgstr ""
+msgstr "歷史"
 
 #: src/components/farm/FarmFullNodeConnections.tsx:24
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:24
 msgid "Host Name"
-msgstr ""
+msgstr "主機名稱"
 
 #: src/components/fullNode/FullNodeConnections.tsx:27
 msgid "IP address"
-msgstr ""
+msgstr "IP位址"
 
 #: src/components/fullNode/FullNodeAddConnection.tsx:61
 msgid "IP address / host"
-msgstr ""
+msgstr "IP位址 / 主機"
 
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:85
 msgid "If none selected, then it will default to the temporary directory."
@@ -804,11 +804,11 @@ msgstr ""
 
 #: src/components/fullNode/FullNode.jsx:43
 msgid "In Progress"
-msgstr ""
+msgstr "進行中"
 
 #: src/components/wallet/WalletHistory.tsx:19
 msgid "Incoming"
-msgstr ""
+msgstr "接收中"
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:15
 msgid "Index"
@@ -845,7 +845,7 @@ msgstr ""
 
 #: src/components/dashboard/DashboardSideBar.tsx:28
 msgid "Keys"
-msgstr ""
+msgstr "金鑰"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:37
 msgid "Last Attempted Proof"
@@ -861,7 +861,7 @@ msgstr ""
 
 #: src/components/plot/queue/PlotQueueLogDialog.tsx:9
 msgid "Loading..."
-msgstr ""
+msgstr "載入中"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:86
 msgid "Local Harvester Plots"
@@ -869,7 +869,7 @@ msgstr ""
 
 #: src/components/app/AppRouter.tsx:28
 msgid "Logging in"
-msgstr ""
+msgstr "登入中"
 
 #: src/components/wallet/create/WalletCreate.jsx:124
 #~ msgid "MainWalletList.colouredCoin"
@@ -923,19 +923,19 @@ msgstr ""
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:40
 #: src/components/fullNode/FullNodeConnections.tsx:43
 msgid "MiB Up/Down"
-msgstr ""
+msgstr "MiB 上傳/下傳"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:60
 msgid "Minutes"
-msgstr ""
+msgstr "分鐘"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:73
 msgid "More memory slightly increases speed"
-msgstr ""
+msgstr "更多記憶體略微提高速度"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:429
 msgid "My Pubkey"
-msgstr ""
+msgstr "我的公鑰"
 
 #: src/components/fullNode/FullNode.jsx:173
 msgid "Network Name"
@@ -952,17 +952,17 @@ msgstr ""
 #: src/components/wallet/coloured/WalletColoured.tsx:471
 #: src/components/wallet/standard/WalletStandard.tsx:387
 msgid "New Address"
-msgstr ""
+msgstr "新位址"
 
 #: src/components/wallet/WalletAdd.tsx:32
 msgid "New Wallet"
-msgstr ""
+msgstr "新錢包"
 
 #: src/components/block/Block.jsx:322
 #: src/components/wallet/WalletAdd.tsx:47
 #: src/components/wallet/WalletImport.tsx:77
 msgid "Next"
-msgstr ""
+msgstr "下一步"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:200
 msgid "Nickname"
@@ -971,7 +971,7 @@ msgstr ""
 #: src/components/trading/TradingOverview.jsx:212
 #: src/electron-starter.js:137
 msgid "No"
-msgstr ""
+msgstr "否"
 
 #: src/middleware/middleware_api.jsx:283
 msgid "No 24 word seed, since this key is imported."
@@ -1066,12 +1066,12 @@ msgstr ""
 
 #: src/components/wallet/WalletHistory.tsx:41
 msgid "Pending"
-msgstr ""
+msgstr "確認中"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:604
 #: src/components/wallet/standard/WalletStandard.tsx:223
 msgid "Pending Balance"
-msgstr ""
+msgstr "確認中餘額"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:613
 #: src/components/wallet/standard/WalletStandard.tsx:228
@@ -1081,7 +1081,7 @@ msgstr ""
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:595
 #: src/components/wallet/standard/WalletStandard.tsx:218
 msgid "Pending Total Balance"
-msgstr ""
+msgstr "確認中總餘額"
 
 #: src/components/trading/CreateOffer.jsx:109
 msgid "Please add a trade pair"
@@ -1093,7 +1093,7 @@ msgstr ""
 
 #: src/components/wallet/create/createRLAdmin.jsx:146
 msgid "Please enter a valid initial coin amount"
-msgstr ""
+msgstr "請輸入有效的初始金額"
 
 #: src/components/wallet/create/createNewColouredCoin.jsx:69
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:679
@@ -1119,7 +1119,7 @@ msgstr ""
 
 #: src/components/wallet/create/createRLAdmin.jsx:129
 msgid "Please enter a valid pubkey"
-msgstr ""
+msgstr "請輸入有效的公鑰"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:661
 #: src/components/wallet/standard/WalletStandard.tsx:268
@@ -1278,7 +1278,7 @@ msgstr ""
 
 #: src/components/wallet/create/createRLAdmin.jsx:323
 msgid "Pubkey"
-msgstr ""
+msgstr "公鑰"
 
 #: src/middleware/middleware_api.jsx:265
 msgid "Public key:"
@@ -1374,7 +1374,7 @@ msgstr ""
 #: src/components/farm/FarmManageFarmingRewards.tsx:105
 #: src/components/trading/CreateOffer.jsx:160
 msgid "Save"
-msgstr ""
+msgstr "儲存"
 
 #: src/components/fullNode/FullNode.jsx:338
 #~ msgid "Search"
@@ -1438,7 +1438,7 @@ msgstr ""
 #: src/components/trading/TradesTable.tsx:30
 #: src/components/trading/TradingOverview.jsx:295
 msgid "Sell"
-msgstr ""
+msgstr "賣出"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:435
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:798
@@ -1456,7 +1456,7 @@ msgstr ""
 
 #: src/components/core/components/AdvancedOptions/AdvancedOptions.tsx:40
 msgid "Show Advanced Options"
-msgstr ""
+msgstr "顯示進階選項"
 
 #: src/electron-starter.js:79
 #~ msgid "Show app"
@@ -1469,7 +1469,7 @@ msgstr ""
 
 #: src/components/selectKey/SelectKey.tsx:74
 msgid "Sign In"
-msgstr ""
+msgstr "登入"
 
 #: src/components/backup/BackupRestore.tsx:122
 #~ msgid "Skip"
@@ -1481,7 +1481,7 @@ msgstr ""
 
 #: src/components/wallet/create/createRLAdmin.jsx:247
 msgid "Spendable Amount"
-msgstr ""
+msgstr "可用餘額"
 
 #: src/components/wallet/create/createRLAdmin.jsx:216
 msgid "Spendable Amount Per Interval"
@@ -1522,11 +1522,11 @@ msgstr ""
 #: src/components/wallet/WalletStatusCard.tsx:12
 #: src/components/wallet/Wallets.tsx:94
 msgid "Status"
-msgstr ""
+msgstr "狀態"
 
 #: src/components/trading/TradingOverview.jsx:181
 msgid "Status:"
-msgstr ""
+msgstr "狀態"
 
 #: src/components/wallet/Wallets.tsx:119
 #~ msgid "StatusCard.connections"
@@ -1558,7 +1558,7 @@ msgstr ""
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:357
 msgid "Submit"
-msgstr ""
+msgstr "確認"
 
 #: src/components/fullNode/FullNode.jsx:143
 msgid "Synced"
@@ -1699,7 +1699,7 @@ msgstr ""
 
 #: src/components/fullNode/FullNode.jsx:86
 msgid "Time Created"
-msgstr ""
+msgstr "建立時間"
 
 #: src/components/trading/TradingOverview.jsx:192
 #~ msgid "Time this trade was created at this time"
@@ -1749,11 +1749,11 @@ msgstr ""
 
 #: src/components/dashboard/DashboardSideBar.tsx:27
 msgid "Trade"
-msgstr ""
+msgstr "交易"
 
 #: src/components/trading/TradingOverview.jsx:360
 msgid "Trade Details"
-msgstr ""
+msgstr "交易明細"
 
 #: src/components/trading/TradingOverview.jsx:125
 msgid "Trade ID"
@@ -1820,11 +1820,11 @@ msgstr ""
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:586
 #: src/components/wallet/standard/WalletStandard.tsx:213
 msgid "View pending balances"
-msgstr ""
+msgstr "查看確認中餘額"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:296
 msgid "View pending balances..."
-msgstr ""
+msgstr "查看確認中餘額"
 
 #: src/components/farm/card/FarmCardNotAvailable.tsx:9
 #: src/components/plot/PlotStatus.tsx:22
@@ -1872,7 +1872,7 @@ msgstr ""
 #: src/components/dashboard/DashboardSideBar.tsx:24
 #: src/components/wallet/Wallets.tsx:134
 msgid "Wallets"
-msgstr ""
+msgstr "錢包"
 
 #: src/components/wallet/Wallets.tsx:131
 #~ msgid "Wallets.title"
@@ -1888,7 +1888,7 @@ msgstr ""
 
 #: src/components/block/Block.jsx:195
 msgid "Weight"
-msgstr ""
+msgstr "權重"
 
 #: src/components/block/Block.jsx:198
 msgid "Weight is the total added difficulty of all sub blocks up to and including this one"
@@ -1918,7 +1918,7 @@ msgstr ""
 #: src/components/trading/TradingOverview.jsx:212
 #: src/electron-starter.js:137
 msgid "Yes"
-msgstr ""
+msgstr "是"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:56
 #~ msgid "You do not need to be synched or connected to Plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
@@ -1938,7 +1938,7 @@ msgstr ""
 
 #: src/components/farm/FarmFullNodeConnections.tsx:56
 msgid "Your Full Node Connection"
-msgstr ""
+msgstr "你結點完整的連線"
 
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:56
 msgid "Your Harvester Network"
@@ -1947,7 +1947,7 @@ msgstr ""
 #: src/components/wallet/WalletStatusCard.tsx:31
 #: src/components/wallet/Wallets.tsx:122
 msgid "connections:"
-msgstr ""
+msgstr "連線"
 
 #: src/components/wallet/WalletStatusCard.tsx:25
 #: src/components/wallet/Wallets.tsx:116
