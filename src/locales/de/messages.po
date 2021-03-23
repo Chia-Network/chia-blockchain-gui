@@ -8,7 +8,7 @@ msgstr ""
 "Language: de_DE\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-03-23 10:30\n"
+"PO-Revision-Date: 2021-03-23 11:30\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -146,7 +146,7 @@ msgstr "Zurück"
 
 #: src/components/backup/BackupCreate.tsx:61
 msgid "Backup file is used to restore smart wallets."
-msgstr "Das backup file wird benutzt um smart wallets wiederherzustellen."
+msgstr "Die Backup Datei wird benutzt um smart wallets wiederherzustellen."
 
 #: src/components/wallet/coloured/WalletColoured.tsx:286
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:562
@@ -307,7 +307,7 @@ msgstr "Farb-Info"
 
 #: src/components/wallet/create/createExistingColouredCoin.jsx:115
 msgid "Colour String"
-msgstr "Farbband"
+msgstr "Farbstring"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:186
 msgid "Colour:"
@@ -315,11 +315,11 @@ msgstr "Farbe:"
 
 #: src/components/wallet/create/WalletCreate.jsx:120
 msgid "Coloured Coin"
-msgstr "Farbige Münze"
+msgstr "Farbiger Coin"
 
 #: src/components/wallet/create/WalletCreate.jsx:168
 msgid "Coloured Coin Options"
-msgstr "Optionen für farbige Münze"
+msgstr "Optionen für farbigen Coin"
 
 #: src/electron-starter.js:138
 msgid "Confirm"
@@ -353,7 +353,7 @@ msgstr "Verbunden"
 
 #: src/components/app/AppRouter.tsx:23
 msgid "Connecting to wallet"
-msgstr "Verbinde mit Brieftasche"
+msgstr "Verbinde mit Wallet"
 
 #: src/components/fullNode/FullNode.jsx:154
 msgid "Connection Status"
@@ -402,7 +402,7 @@ msgstr "Erstelle"
 
 #: src/components/wallet/create/WalletCreate.jsx:308
 msgid "Create DID wallet"
-msgstr "Erstelle DID Brieftasche"
+msgstr "Erstelle DID Wallet"
 
 #: src/components/trading/TradeManager.tsx:22
 msgid "Create Offer"
@@ -414,11 +414,11 @@ msgstr "Erstelle Plot"
 
 #: src/components/wallet/create/createRLAdmin.jsx:198
 msgid "Create Rate Limited Admin Wallet"
-msgstr "Erstelle beschränkte Admin-Brieftasche"
+msgstr "Erstelle beschränkts Admin-Wallet"
 
 #: src/components/wallet/create/createRLUser.jsx:78
 msgid "Create Rate Limited User Wallet"
-msgstr "Erstelle beschränkte Benutzer-Brieftasche"
+msgstr "Erstelle beschränktes Benutzer-Wallet"
 
 #: src/components/trading/TradeManager.tsx:22
 #~ msgid "Create Trade"
@@ -444,23 +444,23 @@ msgstr "Erstelle einen neuen privaten Schlüssel"
 
 #: src/components/wallet/create/WalletCreate.jsx:244
 msgid "Create admin wallet"
-msgstr "Erstelle Admin Brieftasche"
+msgstr "Erstelle Admin Wallet"
 
 #: src/components/wallet/create/WalletCreate.jsx:180
 msgid "Create new coloured coin"
-msgstr "Erstelle neue farbige Münze"
+msgstr "Erstelle neuen farbigen Coin"
 
 #: src/components/wallet/create/WalletCreate.jsx:256
 msgid "Create user wallet"
-msgstr "Erstelle Nutzer Brieftasche"
+msgstr "Erstelle Nutzer Wallet"
 
 #: src/components/wallet/create/createExistingColouredCoin.jsx:95
 msgid "Create wallet for colour"
-msgstr "Erstelle Brieftasche für Farbe"
+msgstr "Erstelle Wallet für Farbe"
 
 #: src/components/wallet/create/WalletCreate.jsx:192
 msgid "Create wallet for existing colour"
-msgstr "Erstelle Brieftasche für bestehende Farbe"
+msgstr "Erstelle Wallet für bestehende Farbe"
 
 #: src/components/wallet/Wallets.tsx:81
 #~ msgid "CreateWallet.addWallet"
@@ -484,7 +484,7 @@ msgstr "ACHTUNG: Privaten Schlüssel unwiederbringlich löschen"
 
 #: src/components/wallet/Wallets.tsx:48
 msgid "DID Wallet"
-msgstr "DID Brieftasche"
+msgstr "DID Wallet"
 
 #: src/components/wallet/create/WalletCreate.jsx:310
 #~ msgid "DIDListItems.title"
@@ -592,7 +592,7 @@ msgstr "Ändern"
 
 #: src/components/wallet/WalletImport.tsx:67
 msgid "Enter the 24 word mnemonic that you have saved in order to restore your Chia wallet."
-msgstr "Gib dein gespeichertes 24 Worte langes Mnemonic ein um deine Chia Brieftasche wieder herzustellen."
+msgstr "Gib dein gespeichertes 24 Worte langes Mnemonic ein um dein Chia Wallet wiederherzustellen."
 
 #: src/components/farm/FarmerStatus.tsx:30
 #: src/components/farm/FarmerStatus.tsx:31
@@ -800,7 +800,7 @@ msgstr "Wenn nichts anderes angegeben, wird das Standardverzeichnis ausgewählt.
 
 #: src/components/wallet/WalletImport.tsx:64
 msgid "Import Wallet from Mnemonics"
-msgstr "Brieftasche aus Mnemonics importieren"
+msgstr "Wallet aus Mnemonics importieren"
 
 #: src/components/selectKey/SelectKey.tsx:116
 msgid "Import from Mnemonics (24 words)"
@@ -837,7 +837,7 @@ msgstr "Anfängliche Menge"
 
 #: src/components/wallet/create/createRLUser.jsx:89
 msgid "Initialize a Rate Limited User Wallet:"
-msgstr "Initialisiere eine beschränkte Benutzer-Brieftasche:"
+msgstr "Initialisiere ein beschränktes Benutzer-Wallet:"
 
 #: src/components/wallet/create/createRLAdmin.jsx:234
 msgid "Interval"
@@ -960,7 +960,7 @@ msgstr "Neue Adresse"
 
 #: src/components/wallet/WalletAdd.tsx:32
 msgid "New Wallet"
-msgstr "Neue Brieftasche"
+msgstr "Neues Wallet"
 
 #: src/components/block/Block.jsx:322
 #: src/components/wallet/WalletAdd.tsx:47
@@ -1675,7 +1675,7 @@ msgstr "Das ist die Zeit, zu der der Block vom Farmer erstellt wurde, bevor er m
 
 #: src/components/wallet/standard/WalletStandard.tsx:195
 msgid "This is the total amount of chia in the blockchain at the current peak sub block that is controlled by your private keys. It includes frozen farming rewards, but not pending incoming and outgoing transactions."
-msgstr "Dies ist die Gesamtmenge an Chia in der Blockchaim im aktuellen peak sub block, die von deinen privaten Schlüsseln gesteuert wird. Es enthält eingefrorene Belohnungen, jedoch keine ausstehenden und ausgehenden Transaktionen."
+msgstr "Dies ist die Gesamtmenge an Chia in der Blockchaim im aktuellen Peak-Unterblock, die von deinen privaten Schlüsseln gesteuert wird. Es enthält eingefrorene Belohnungen, jedoch keine ausstehenden und ausgehenden Transaktionen."
 
 #: src/components/wallet/standard/WalletStandard.tsx:218
 msgid "This is the total balance + pending balance: it is what your balance will be after all pending transactions are confirmed."
