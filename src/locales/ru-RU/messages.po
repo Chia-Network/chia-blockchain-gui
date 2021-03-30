@@ -5,22 +5,22 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: @lingui/cli\n"
-"Language: zh_CN\n"
+"Language: ru_RU\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-03-30 17:26\n"
+"PO-Revision-Date: 2021-03-30 17:27\n"
 "Last-Translator: \n"
-"Language-Team: Chinese Simplified\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Language-Team: Russian\n"
+"Plural-Forms: nplurals=4; plural=((n%10==1 && n%100!=11) ? 0 : ((n%10 >= 2 && n%10 <=4 && (n%100 < 12 || n%100 > 14)) ? 1 : ((n%10 == 0 || (n%10 >= 5 && n%10 <=9)) || (n%100 >= 11 && n%100 <= 14)) ? 2 : 3));\n"
 "X-Crowdin-Project: chia-blockchain\n"
 "X-Crowdin-Project-ID: 440660\n"
-"X-Crowdin-Language: zh-CN\n"
+"X-Crowdin-Language: ru\n"
 "X-Crowdin-File: /main/src/locales/en/messages.po\n"
 "X-Crowdin-File-ID: 94\n"
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:39
 msgid "*Want to explore Chia’s blocks further? Check out <0>Chia Explorer</0> built by an open source developer."
-msgstr "*想要进一步了解奇亚Chia区块链吗? 来看看开源开发者制作的这个 <0>奇亚Chia区块浏览器</0>"
+msgstr "Хотите посмотреть больше информации о блоках Чиа? Загляните в обозреватель блоков <0>Chia Explorer</0>, созданный на основе открытого исходного кода."
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:94
 #~ msgid "0 automatically chooses bucket count"
@@ -28,78 +28,78 @@ msgstr "*想要进一步了解奇亚Chia区块链吗? 来看看开源开发者�
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:94
 msgid "128 buckets is recommended"
-msgstr "推荐设置为128个桶"
+msgstr "128 корзин рекомендуется"
 
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:58
 msgid "A harvester is a service running on a machine where plot(s) are actually stored. A farmer and harvester talk to a full node to see the state of the chain. View your network of connected harvesters below Learn more"
-msgstr "收割者（程序）是一个在存有农田plot(s) 文件的机器上运行的服务。农夫（程序）和收割者（程序）通过和全节点交互来得到链的状态。你可以在下面看到你网络所连接的收割者们。 了解更多"
+msgstr "Комбайн - это служба, работающая на машине, в которой фактически хранятся участки. Фермер и комбайн разговаривают с полным узлом, чтобы увидеть состояние цепи. Просмотрите сеть своих подключенных комбайнов ниже. <0>Подробнее</0>"
 
 #: src/electron-starter.js:362
 #: src/electron-starter.js:455
 msgid "About Chia Blockchain"
-msgstr "关于奇亚Chia区块链项目"
+msgstr "О программе Chia Blockchain"
 
 #: src/components/trading/ViewOffer.jsx:85
 msgid "Accept"
-msgstr "接受"
+msgstr "Принять"
 
 #: src/components/trading/TradingOverview.jsx:230
 msgid "Accepted at time:"
-msgstr "接受时间："
+msgstr "Принято в:"
 
 #: src/components/plot/PlotsFailed.tsx:14
 #: src/components/plot/PlotsNotFound.tsx:14
 #: src/components/plot/overview/PlotOverviewPlots.tsx:69
 msgid "Action"
-msgstr "动作"
+msgstr "Действие"
 
 #: src/components/farm/FarmFullNodeConnections.tsx:43
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:43
 #: src/components/fullNode/FullNodeConnections.tsx:57
 msgid "Actions"
-msgstr "动作"
+msgstr "Действия"
 
 #: src/components/trading/CreateOffer.jsx:222
 msgid "Add"
-msgstr "添加"
+msgstr "Добавить"
 
 #: src/components/plot/PlotHeader.tsx:51
 msgid "Add Plot Directory"
-msgstr "添加农田文件目录"
+msgstr "Добавить директорию с участками"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:44
 msgid "Add Plot to Queue"
-msgstr "在队列中加入一个绘图作业"
+msgstr "Добавить участок в очередь"
 
 #: src/components/wallet/Wallets.tsx:81
 msgid "Add Wallet"
-msgstr "添加钱包"
+msgstr "Добавить кошелек"
 
 #: src/components/farm/overview/FarmOverviewHero.tsx:35
 #: src/components/plot/PlotHeader.tsx:33
 #: src/components/plot/add/PlotAdd.tsx:55
 #: src/components/plot/overview/PlotOverviewHero.tsx:29
 msgid "Add a Plot"
-msgstr "增加一个农田文件"
+msgstr "Добавить участок"
 
 #: src/components/plot/PlotAddDirectoryDialog.tsx:40
 msgid "Add a plot"
-msgstr "增加一个农田文件"
+msgstr "Добавить участок"
 
 #: src/components/plot/PlotAddDirectoryDialog.tsx:69
 msgid "Add plot directory"
-msgstr "设置农田文件所在目录"
+msgstr "Добавить директорию с участками"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:405
 #: src/components/wallet/coloured/WalletColoured.tsx:457
 #: src/components/wallet/standard/WalletStandard.tsx:373
 msgid "Address"
-msgstr "地址"
+msgstr "Адрес"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:748
 #: src/components/wallet/standard/WalletStandard.tsx:321
 msgid "Address / Puzzle hash"
-msgstr "地址 / 谜语哈希"
+msgstr "Адрес / Хэш-головоломка"
 
 #: src/components/trading/CreateOffer.jsx:213
 #: src/components/trading/TradesTable.tsx:16
@@ -108,28 +108,28 @@ msgstr "地址 / 谜语哈希"
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:770
 #: src/components/wallet/standard/WalletStandard.tsx:331
 msgid "Amount"
-msgstr "数量"
+msgstr "Количество"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:415
 msgid "Amount ({cc_unit})"
-msgstr "数量 ({cc_unit})"
+msgstr "Количество ({cc_unit})"
 
 #: src/components/wallet/create/createRLAdmin.jsx:259
 msgid "Amount For Initial Coin"
-msgstr "初始币的数目"
+msgstr "Начальное количество монет"
 
 #: src/components/plot/PlotAction.tsx:25
 #: src/components/plot/queue/PlotQueueActions.tsx:27
 msgid "Are you sure you want to delete the plot? The plot cannot be recovered."
-msgstr "你确定要删除这个绘图文件吗？删除后将不可恢复"
+msgstr "Вы уверены, что хотите удалить участок? Участок не подлежит восстановлению."
 
 #: src/components/fullNode/FullNodeCloseConnection.tsx:23
 msgid "Are you sure you want to disconnect?"
-msgstr "确定要断开连接吗?"
+msgstr "Вы уверены, что хотите отключиться?"
 
 #: src/electron-starter.js:140
 msgid "Are you sure you want to quit? GUI Plotting and farming will stop."
-msgstr "确定要退出吗? 当前正在绘图中."
+msgstr "Вы уверены, что хотите выйти? Засеивание и фарминг будут остановлены."
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:31
 #~ msgid "Are you sure you want to use k={plotSize}"
@@ -137,54 +137,54 @@ msgstr "确定要退出吗? 当前正在绘图中."
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:31
 msgid "Are you sure you want to use k={plotSize}?"
-msgstr "你确定要使用k={plotSize}?"
+msgstr "Вы уверены, что хотите использовать k={plotSize}?"
 
 #: src/components/selectKey/SelectKey.tsx:39
 #: src/components/selectKey/SelectKey.tsx:53
 msgid "Back"
-msgstr "后退"
+msgstr "Назад"
 
 #: src/components/backup/BackupCreate.tsx:61
 msgid "Backup file is used to restore smart wallets."
-msgstr "用来恢复智能钱包的备份文件."
+msgstr "Файл резервной копии используется для восстановления умных кошельков."
 
 #: src/components/wallet/coloured/WalletColoured.tsx:286
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:562
 #: src/components/wallet/standard/WalletStandard.tsx:194
 msgid "Balance"
-msgstr "余额"
+msgstr "Баланс"
 
 #: src/components/block/Block.jsx:287
 msgid "Base Farmer Reward Amount"
-msgstr "基础挖矿奖励数量"
+msgstr "Базовая сумма вознаграждения фермера"
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:25
 #: src/components/farm/FarmLatestBlockChallenges.tsx:31
 msgid "Below are the current block challenges. You may or may not have a proof of space for these challenges. These blocks do not currently contain a proof of time."
-msgstr "下面是当前区块的挑战。 你的plot或许包含了对这些挑战的空间证明。这些区块目前还未包含时间证明。"
+msgstr "Ниже приведены значения испытаний для блоков. У вас может быть или не быть доказательств наличия места (proof of space) для этих испытаний. Эти блоки еще не содержат подтверждений времени (proof of time)."
 
 #: src/components/farm/card/FarmCardTotalNetworkSpace.tsx:8
 msgid "Best estimate over last 5 hours"
-msgstr "基于前5小时的最佳估计"
+msgstr "Лучшая оценка за последние 5 часов"
 
 #: src/components/block/Block.jsx:109
 #: src/components/block/Block.jsx:143
 #: src/components/block/Block.jsx:148
 #: src/components/block/Block.jsx:303
 msgid "Block"
-msgstr "区块"
+msgstr "Блок"
 
 #: src/components/block/Block.jsx:121
 msgid "Block Test"
-msgstr "区块测试"
+msgstr "Проверка блока"
 
 #: src/components/block/Block.jsx:227
 msgid "Block VDF Iterations"
-msgstr "区块可验证延迟函数迭代"
+msgstr "VDF итераций блока"
 
 #: src/components/block/Block.jsx:308
 msgid "Block at height {0} in the Chia blockchain"
-msgstr "Chia 区块链上高度为 {0} 的区块"
+msgstr "Блок на высоте {0} в блокчейне Chia"
 
 #: src/components/fullNode/FullNode.jsx:331
 #~ msgid "Block hash"
@@ -192,15 +192,15 @@ msgstr "Chia 区块链上高度为 {0} 的区块"
 
 #: src/components/block/Block.jsx:126
 msgid "Block with hash {headerHash}"
-msgstr "区块哈希{headerHash}"
+msgstr "Блок с хэшем {headerHash}"
 
 #: src/components/block/Block.jsx:155
 msgid "Block with hash {headerHash} does not exists."
-msgstr "哈希为 {headerHash} 的区块不存在。"
+msgstr "Блок с хешем {headerHash} не существует."
 
 #: src/components/fullNode/FullNode.jsx:298
 msgid "Blocks"
-msgstr "区块"
+msgstr "Блоки"
 
 #: src/components/farm/FarmManageFarmingRewards.tsx:91
 #~ msgid "Both values are empty. This is ok if you are, for example, sending your rewards to an offline wallet."
@@ -210,21 +210,21 @@ msgstr "区块"
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:63
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:81
 msgid "Browse"
-msgstr "浏览"
+msgstr "Обзор"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:50
 msgid "But you are currently farming <0/>"
-msgstr "但你目前正在耕种<0/>"
+msgstr "Но в настоящий момент выполняется фарминг на <0/>"
 
 #: src/components/trading/CreateOffer.jsx:181
 #: src/components/trading/TradesTable.tsx:31
 #: src/components/trading/TradingOverview.jsx:297
 msgid "Buy"
-msgstr "购买"
+msgstr "Покупка"
 
 #: src/components/wallet/Wallets.tsx:34
 msgid "CC Wallet"
-msgstr "染色钱包"
+msgstr "Кошелек Цветной Монеты"
 
 #: src/components/wallet/create/WalletCreate.jsx:182
 #~ msgid "CCListItems.title"
@@ -232,7 +232,7 @@ msgstr "染色钱包"
 
 #: src/components/selectKey/SelectKey.tsx:89
 msgid "Can be backed up to mnemonic seed"
-msgstr "可以备份到助记词中"
+msgstr "может быть сохранен в качестве резервной копии при помощи мнемонического зерна"
 
 #: src/components/core/components/ConfirmDialog/ConfirmDialog.tsx:50
 #: src/components/farm/FarmManageFarmingRewards.tsx:102
@@ -241,144 +241,144 @@ msgstr "可以备份到助记词中"
 #: src/components/trading/TradingOverview.jsx:410
 #: src/components/trading/ViewOffer.jsx:78
 msgid "Cancel"
-msgstr "取消"
+msgstr "Отмена"
 
 #: src/components/trading/TradingOverview.jsx:399
 msgid "Cancel and Spend"
-msgstr "取消与花费"
+msgstr "Отменить и отправить"
 
 #: src/components/plot/PlotsNotFound.tsx:26
 msgid "Caution, deleting these plots will delete them forever. Check that the storage devices are properly connected."
-msgstr "注意，删除这些绘图的操作是永久的。请检查存储设备连接正常。"
+msgstr "Внимание! Удаление этих участков приведет к безвозвратному удалению файлов навсегда. Убедитесь, что устройства хранения правильно подключены."
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:13
 msgid "Challenge"
-msgstr "挑战"
+msgstr "Испытание"
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:11
 msgid "Challenge Hash"
-msgstr "挑战哈希"
+msgstr "Хэш испытания"
 
 #: src/electron-starter.js:341
 msgid "Chat on KeyBase"
-msgstr "在Keybase上讨论"
+msgstr "Чат в KeyBase"
 
 #: src/electron-starter.js:359
 msgid "Chia"
-msgstr "奇亚"
+msgstr "Чиа"
 
 #: src/electron-starter.js:298
 msgid "Chia Blockchain Wiki"
-msgstr "奇亚区块链项目维基"
+msgstr "Блокчейн Chia на Wiki"
 
 #: src/components/wallet/Wallets.tsx:30
 msgid "Chia Wallet"
-msgstr "奇亚钱包"
+msgstr "Кошелек Chia"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:13
 msgid "Choose Number of Plots"
-msgstr "选择要拓荒的数量"
+msgstr "Выберите количество участков"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:54
 msgid "Choose Plot Size"
-msgstr "选择拓荒文件大小"
+msgstr "Выберите размер участка"
 
 #: src/components/plot/PlotAddDirectoryDialog.tsx:76
 #: src/components/plot/queue/PlotQueueLogDialog.tsx:48
 msgid "Close"
-msgstr "关闭"
+msgstr "Закрыть"
 
 #: src/components/app/AppRouter.tsx:18
 msgid "Closing down node and server"
-msgstr "关闭节点与服务器"
+msgstr "Закрытие узла и сервера"
 
 #: src/components/trading/TradingOverview.jsx:376
 msgid "Coins:"
-msgstr "币:"
+msgstr "Монет:"
 
 #: src/components/trading/CreateOffer.jsx:192
 #: src/components/trading/TradesTable.tsx:19
 msgid "Colour"
-msgstr "色彩"
+msgstr "Цвет"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:181
 msgid "Colour Info"
-msgstr "色彩信息"
+msgstr "Информация о цвете"
 
 #: src/components/wallet/create/createExistingColouredCoin.jsx:115
 msgid "Colour String"
-msgstr "色彩字符串"
+msgstr "Шеснадцатеричная строка цвета"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:186
 msgid "Colour:"
-msgstr "色彩："
+msgstr "Цвет:"
 
 #: src/components/wallet/create/WalletCreate.jsx:120
 msgid "Coloured Coin"
-msgstr "染色币"
+msgstr "Цветная Монета"
 
 #: src/components/wallet/create/WalletCreate.jsx:168
 msgid "Coloured Coin Options"
-msgstr "染色币选项"
+msgstr "Настройки Цветной Монеты"
 
 #: src/electron-starter.js:138
 msgid "Confirm"
-msgstr "确认"
+msgstr "Подтвердить"
 
 #: src/components/fullNode/FullNodeCloseConnection.tsx:22
 msgid "Confirm Disconnect"
-msgstr "确认断开连接"
+msgstr "Подтвердить отключение"
 
 #: src/components/trading/TradingOverview.jsx:202
 msgid "Confirmed at block:"
-msgstr "在区块上有确认:"
+msgstr "Подтверждено на блоке:"
 
 #: src/components/wallet/WalletHistory.tsx:39
 msgid "Confirmed at height {0}"
-msgstr "在区块高度有确认 {0}"
+msgstr "Подтверждено на высоте {0}"
 
 #: src/components/fullNode/FullNodeAddConnection.tsx:70
 msgid "Connect"
-msgstr "连接"
+msgstr "Подключиться"
 
 #: src/components/fullNode/FullNodeAddConnection.tsx:55
 #: src/components/fullNode/FullNodeConnections.tsx:75
 msgid "Connect to other peers"
-msgstr "连接到其他节点"
+msgstr "Подключиться к другим узлам"
 
 #: src/components/core/components/FormatConnectionStatus/FormatConnectionStatus.tsx:47
 #: src/components/fullNode/FullNode.jsx:143
 msgid "Connected"
-msgstr "已连接"
+msgstr "Подключен"
 
 #: src/components/app/AppRouter.tsx:23
 msgid "Connecting to wallet"
-msgstr "正在连接到钱包"
+msgstr "Подключение к кошельку"
 
 #: src/components/fullNode/FullNode.jsx:141
 msgid "Connection Status"
-msgstr "连接状态"
+msgstr "Состояние соединения"
 
 #: src/components/farm/FarmFullNodeConnections.tsx:66
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:65
 msgid "Connection Status:"
-msgstr "连接状态:"
+msgstr "Состояние соединения:"
 
 #: src/components/fullNode/FullNodeConnections.tsx:50
 msgid "Connection type"
-msgstr "连接类型"
+msgstr "Тип подключения"
 
 #: src/components/fullNode/FullNodeConnections.tsx:73
 msgid "Connections"
-msgstr "连接数"
+msgstr "Подключения"
 
 #: src/electron-starter.js:322
 msgid "Contribute on GitHub"
-msgstr "来Github出点力"
+msgstr "Сотрудничать на GitHub"
 
 #: src/components/core/components/CopyToClipboard/CopyToClipboard.tsx:22
 msgid "Copied"
-msgstr "复制成功"
+msgstr "Скопировано"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:461
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:314
@@ -386,11 +386,11 @@ msgstr "复制成功"
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:505
 #: src/components/wallet/standard/WalletStandard.tsx:377
 msgid "Copy"
-msgstr "复制"
+msgstr "Копировать"
 
 #: src/components/core/components/CopyToClipboard/CopyToClipboard.tsx:23
 msgid "Copy to Clipboard"
-msgstr "复制到剪贴板"
+msgstr "Скопировать в буфер обмена"
 
 #: src/components/backup/BackupCreate.tsx:70
 #: src/components/wallet/create/createExistingColouredCoin.jsx:141
@@ -398,27 +398,27 @@ msgstr "复制到剪贴板"
 #: src/components/wallet/create/createRLAdmin.jsx:333
 #: src/components/wallet/create/createRLUser.jsx:103
 msgid "Create"
-msgstr "创建"
+msgstr "Создать"
 
 #: src/components/wallet/create/WalletCreate.jsx:308
 msgid "Create DID wallet"
-msgstr "创建DID钱包"
+msgstr "Создать DID кошелек"
 
 #: src/components/trading/TradeManager.tsx:22
 msgid "Create Offer"
-msgstr "创建一个出价"
+msgstr "Создать Предложение"
 
 #: src/components/plot/add/PlotAdd.tsx:67
 msgid "Create Plot"
-msgstr "创建绘图"
+msgstr "Создать участок"
 
 #: src/components/wallet/create/createRLAdmin.jsx:198
 msgid "Create Rate Limited Admin Wallet"
-msgstr "创建费用限定型管理钱包"
+msgstr "Создать кошелек администратора с ограниченнием скорости"
 
 #: src/components/wallet/create/createRLUser.jsx:78
 msgid "Create Rate Limited User Wallet"
-msgstr "创建费用限定型用户钱包"
+msgstr "Создать кошелек пользователя с ограниченнием скорости вывода"
 
 #: src/components/trading/TradeManager.tsx:22
 #~ msgid "Create Trade"
@@ -426,41 +426,41 @@ msgstr "创建费用限定型用户钱包"
 
 #: src/components/trading/CreateOffer.jsx:146
 msgid "Create Trade Offer"
-msgstr "创建一个交易出价"
+msgstr "Создать торговое предложение"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:396
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:729
 #: src/components/wallet/standard/WalletStandard.tsx:312
 msgid "Create Transaction"
-msgstr "创建交易"
+msgstr "Создать транзакцию"
 
 #: src/components/backup/BackupCreate.tsx:58
 msgid "Create a Backup"
-msgstr "创建备份"
+msgstr "Создать Резервную Копию"
 
 #: src/components/selectKey/SelectKey.tsx:109
 msgid "Create a new private key"
-msgstr "创建一个新的私钥"
+msgstr "Создать новый приватный ключ"
 
 #: src/components/wallet/create/WalletCreate.jsx:244
 msgid "Create admin wallet"
-msgstr "创建管理者钱包"
+msgstr "Создать администрационный кошелек"
 
 #: src/components/wallet/create/WalletCreate.jsx:180
 msgid "Create new coloured coin"
-msgstr "创建新的染色币"
+msgstr "Создать новую цветную монету"
 
 #: src/components/wallet/create/WalletCreate.jsx:256
 msgid "Create user wallet"
-msgstr "创建用户钱包"
+msgstr "Создать кошелек пользователя"
 
 #: src/components/wallet/create/createExistingColouredCoin.jsx:95
 msgid "Create wallet for colour"
-msgstr "创建染色钱包"
+msgstr "Создать кошелек для цвета"
 
 #: src/components/wallet/create/WalletCreate.jsx:192
 msgid "Create wallet for existing colour"
-msgstr "基于已有的染色币来创建一个钱包"
+msgstr "Создать кошелек для существующей цветной монеты"
 
 #: src/components/wallet/Wallets.tsx:81
 #~ msgid "CreateWallet.addWallet"
@@ -468,23 +468,23 @@ msgstr "基于已有的染色币来创建一个钱包"
 
 #: src/components/trading/TradingOverview.jsx:188
 msgid "Created At:"
-msgstr "创建于:"
+msgstr "Создано в:"
 
 #: src/components/trading/TradingOverview.jsx:214
 msgid "Created by us:"
-msgstr "由我们创造:"
+msgstr "Создано нами?"
 
 #: src/components/trading/TradingOverview.jsx:184
 msgid "Current trade status"
-msgstr "当前交易状态"
+msgstr "Текущий торговый статус"
 
 #: src/components/selectKey/SelectKey.tsx:98
 msgid "DANGER: permanently delete private key"
-msgstr "注意: 永久性删除私钥"
+msgstr "ОПАСНОСТЬ: удалить закрытый ключ навсегда"
 
 #: src/components/wallet/Wallets.tsx:48
 msgid "DID Wallet"
-msgstr "DID钱包"
+msgstr "DID кошелек"
 
 #: src/components/wallet/create/WalletCreate.jsx:310
 #~ msgid "DIDListItems.title"
@@ -494,11 +494,11 @@ msgstr "DID钱包"
 #: src/components/trading/TradingOverview.jsx:137
 #: src/components/wallet/WalletHistory.tsx:35
 msgid "Date"
-msgstr "日期"
+msgstr "Дата"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:57
 msgid "Delay"
-msgstr "延迟"
+msgstr "Задержка"
 
 #: src/components/plot/PlotAction.tsx:24
 #: src/components/plot/PlotAction.tsx:43
@@ -507,54 +507,54 @@ msgstr "延迟"
 #: src/components/selectKey/SelectKey.tsx:39
 #: src/components/selectKey/SelectKey.tsx:53
 msgid "Delete"
-msgstr "删除"
+msgstr "Удалить"
 
 #: src/components/plot/PlotAction.tsx:24
 #: src/components/plot/queue/PlotQueueActions.tsx:26
 msgid "Delete Plot"
-msgstr "删除拓荒文件"
+msgstr "Удалить участок"
 
 #: src/components/selectKey/SelectKey.tsx:53
 #: src/components/selectKey/SelectKey.tsx:122
 msgid "Delete all keys"
-msgstr "删除所有密钥"
+msgstr "Удалить все ключи"
 
 #: src/components/selectKey/SelectKey.tsx:39
 msgid "Delete key"
-msgstr "删除密钥"
+msgstr "Удалить ключ"
 
 #: src/components/selectKey/SelectKey.tsx:54
 msgid "Deleting all keys will permanently remove the keys from your computer, make sure you have backups. Are you sure you want to continue?"
-msgstr "删除所有密钥将会把你的密钥永久删除，请确保你已备份。确定还要继续吗？"
+msgstr "Удаление всех ключей приведет к безвозвратному удалению ключей с вашего компьютера, убедитесь, что у вас есть резервные копии. Вы уверены что хотите продолжить?"
 
 #: src/components/selectKey/SelectKey.tsx:40
 msgid "Deleting the key will permanently remove the key from your computer, make sure you have backups. Are you sure you want to continue?"
-msgstr "删除密钥将会把此密钥永久删除，请确保你已备份。确定还要继续吗？"
+msgstr "Удаление ключа приведет к безвозвратному удалению ключа с вашего компьютера, убедитесь, что у вас есть резервные копии. Вы уверены что хотите продолжить?"
 
 #: src/electron-starter.js:244
 msgid "Developer"
-msgstr "开发者"
+msgstr "Разработчик"
 
 #: src/electron-starter.js:247
 msgid "Developer Tools"
-msgstr "开发工具"
+msgstr "Инструменты разработчика"
 
 #: src/components/block/Block.jsx:213
 #: src/components/fullNode/FullNode.jsx:178
 msgid "Difficulty"
-msgstr "难度"
+msgstr "Сложность"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:114
 msgid "Disable bifield plotting when your temporary directory is on fast storage like SSD or you need lower per process RAM requirements. Plotting with bitfield enabled has about 20% less overall writes."
-msgstr "关闭bitfield选项可以有效节省内存使用, 如果是你是用SSD等快速硬盘做临时文件存储空间的话, 建议这么做. 反之打开bitfield可以减少约20%的磁盘访问, 但会要求更多内存."
+msgstr "Отключайте битовое поле при засевании участков, когда ваш временный каталог расположен на быстром хранилище, таком как SSD, или вам нужны более низкие требования к ОЗУ при засевании для каждого процесса. При засевании с включенным битовым полем общее количество операций записи сокращается примерно на 20%."
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:109
 msgid "Disable bitfield plotting"
-msgstr "关闭bitfield"
+msgstr "Отключить битовое поле"
 
 #: src/components/fullNode/FullNodeCloseConnection.tsx:22
 msgid "Disconnect"
-msgstr "断开连接"
+msgstr "Отключить"
 
 #: src/components/wallet/create/WalletCreate.jsx:144
 #~ msgid "Distributed Identity"
@@ -562,33 +562,33 @@ msgstr "断开连接"
 
 #: src/components/wallet/create/WalletCreate.jsx:296
 msgid "Distributed Identity Options"
-msgstr "分布式身份选项"
+msgstr "Настройки Децентрализованного Идентификатора"
 
 #: src/components/farm/overview/FarmOverviewHero.tsx:41
 #: src/components/plot/overview/PlotOverviewHero.tsx:35
 msgid "Do you have existing plots on this machine? <0>Add Plot Directory</0>"
-msgstr "你的机器上有已经完成的绘图文件吗？ <0>添加绘图文件路径</0>"
+msgstr "Есть ли у вас на этой машине участки? <0>Добавить каталог с участками</0>"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:30
 msgid "Does your machine support parallel plotting?"
-msgstr "你的机器支持并行P盘吗？"
+msgstr "Поддерживает ли ваша машина параллельное засеивание?"
 
 #: src/components/trading/ViewOffer.jsx:41
 #: src/components/wallet/create/recoverDIDWallet.js:294
 msgid "Drag and drop offer file"
-msgstr "拖放Offer文件"
+msgstr "Перетащите сюда файл с предложением сделки"
 
 #: src/components/backup/BackupRestore.tsx:114
 msgid "Drag and drop your backup file"
-msgstr "拖拽你的备份文件"
+msgstr "Перетащите файл резервной копии"
 
 #: src/electron-starter.js:203
 msgid "Edit"
-msgstr "编辑"
+msgstr "Правка"
 
 #: src/components/wallet/WalletImport.tsx:67
 msgid "Enter the 24 word mnemonic that you have saved in order to restore your Chia wallet."
-msgstr "输入你之前记下来的24个助记词以便现在恢复你的Chia钱包"
+msgstr "Введите мнемонику из 24 слов, которую вы сохранили, чтобы восстановить свой кошелек Chia."
 
 #: src/components/farm/FarmerStatus.tsx:30
 #: src/components/farm/FarmerStatus.tsx:31
@@ -598,19 +598,19 @@ msgstr "输入你之前记下来的24个助记词以便现在恢复你的Chia钱
 #: src/components/plot/PlotStatus.tsx:18
 #: src/components/plot/queue/PlotQueueIndicator.tsx:14
 msgid "Error"
-msgstr "错误"
+msgstr "Ошибка"
 
 #: src/components/wallet/standard/WalletStandard.tsx:292
 msgid "Error: Cannot send chia to coloured address. Please enter a chia address."
-msgstr "错误: 无法发送奇亚到上色的地址. 请输入一个奇亚钱包地址."
+msgstr "Ошибка: не удается отправить чиа на цветной адрес. Пожалуйста, введите адрес chia."
 
 #: src/components/fullNode/FullNode.jsx:197
 msgid "Estimated network space"
-msgstr "预估网络大小"
+msgstr "Расчетное пространство сети"
 
 #: src/components/fullNode/FullNode.jsx:200
 msgid "Estimated sum of all the plotted disk space of all farmers in the network"
-msgstr "估算全网总空间量"
+msgstr "Оценка размера всего дискового пространства, занимаемого участками суммарно всех фермеров в сети"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:124
 msgid "Exclude final directory"
@@ -619,46 +619,46 @@ msgstr ""
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:32
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:34
 msgid "Expected Time to Win"
-msgstr "预计收割到的时间"
+msgstr "Ожидаемое время до выигрыша"
 
 #: src/components/plot/PlotsFailed.tsx:24
 msgid "Failed to open (invalid plots)"
-msgstr "打开失败（绘图无效）"
+msgstr "Неудается открыть (некоррекные участки)"
 
 #: src/components/dashboard/DashboardSideBar.tsx:26
 #: src/components/wallet/coloured/WalletColoured.tsx:430
 #: src/components/wallet/standard/WalletStandard.tsx:344
 msgid "Farm"
-msgstr "农场"
+msgstr "Ферма"
 
 #: src/components/block/Block.jsx:249
 msgid "Farmer Puzzle Hash"
-msgstr "农场谜语哈希"
+msgstr "Хеш-головоломка фермера"
 
 #: src/components/farm/FarmManageFarmingRewards.tsx:95
 msgid "Farmer Reward Address"
-msgstr "农场奖励地址"
+msgstr "Адрес выплаты фермеру"
 
 #: src/components/farm/card/FarmCardStatus.tsx:21
 #: src/components/plot/PlotStatus.tsx:28
 msgid "Farmer is not connected"
-msgstr "耕种节点未能连接上"
+msgstr "Фермер не подключен"
 
 #: src/components/farm/card/FarmCardStatus.tsx:26
 #: src/components/plot/PlotStatus.tsx:29
 msgid "Farmer is not running"
-msgstr "耕种节点没有运行"
+msgstr "Фермер не запущен"
 
 #: src/components/farm/overview/FarmOverviewHero.tsx:27
 msgid "Farmers earn block rewards and transaction fees by committing spare space to the network to help secure transactions. This is where your farm will be once you add a plot. <0>Learn more</0>"
-msgstr "农民们通过贡献自己的空余存储空间, 可以帮助提高整个网络的安全性, 进而获得区块奖励和交易费用的奖励. 农地越多奖励越多.<0>了解更多</0>"
+msgstr "Farmers earn block rewards and transaction fees by committing spare space to the network to help secure transactions. This is where your farm will be once you add a plot. <0>Learn more</0>"
 
 #: src/components/farm/Farm.tsx:15
 #: src/components/farm/FarmerStatus.tsx:27
 #: src/components/farm/card/FarmCardStatus.tsx:29
 #: src/components/plot/PlotStatus.tsx:14
 msgid "Farming"
-msgstr "耕种"
+msgstr "Фарминг"
 
 #: src/components/farm/card/FarmCardStatus.tsx:11
 #: src/components/farm/card/FarmCardStatus.tsx:16
@@ -666,7 +666,7 @@ msgstr "耕种"
 #: src/components/farm/card/FarmCardStatus.tsx:24
 #: src/components/farm/card/FarmCardStatus.tsx:28
 msgid "Farming Status"
-msgstr "耕种状态"
+msgstr "Статус фарминга"
 
 #: src/components/wallet/WalletHistory.tsx:52
 #: src/components/wallet/create/createExistingColouredCoin.jsx:131
@@ -676,7 +676,7 @@ msgstr "耕种状态"
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:783
 #: src/components/wallet/standard/WalletStandard.tsx:336
 msgid "Fee"
-msgstr "费用"
+msgstr "Комиссия"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:420
 #~ msgid "Fee (TXCH)"
@@ -688,11 +688,11 @@ msgstr "费用"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:422
 msgid "Fee ({currencyCode})"
-msgstr "费用({currencyCode})"
+msgstr "Комиссия ({currencyCode})"
 
 #: src/components/block/Block.jsx:291
 msgid "Fees Amount"
-msgstr "费用数据"
+msgstr "Объем коммисий"
 
 #: src/components/block/Block.jsx:313
 #~ msgid "Fees Puzzle Hash"
@@ -701,51 +701,51 @@ msgstr "费用数据"
 #: src/electron-starter.js:195
 #: src/electron-starter.js:402
 msgid "File"
-msgstr "文件"
+msgstr "Файл"
 
 #: src/components/plot/PlotsFailed.tsx:10
 #: src/components/plot/PlotsNotFound.tsx:10
 #: src/components/plot/overview/PlotOverviewPlots.tsx:61
 msgid "Filename"
-msgstr "文件名"
+msgstr "Имя файла"
 
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:37
 msgid "Final folder location"
-msgstr "最终文件夹位置"
+msgstr "Путь к папке для окончательного хранения"
 
 #: src/components/fullNode/FullNode.jsx:41
 #: src/components/fullNode/FullNode.jsx:92
 msgid "Finished"
-msgstr "已完成"
+msgstr "Завершен"
 
 #: src/electron-starter.js:347
 msgid "Follow on Twitter"
-msgstr "关注我们的Twitter"
+msgstr "Следить в Twitter"
 
 #: src/electron-starter.js:306
 msgid "Frequently Asked Questions"
-msgstr "常见问题解答"
+msgstr "Часто задаваемые вопросы"
 
 #: src/components/dashboard/DashboardSideBar.tsx:23
 #: src/components/fullNode/FullNode.jsx:312
 msgid "Full Node"
-msgstr "全节点"
+msgstr "Полный узел"
 
 #: src/components/fullNode/FullNode.jsx:255
 msgid "Full Node Status"
-msgstr "全节点状态"
+msgstr "Статус полного узла"
 
 #: src/electron-starter.js:272
 msgid "Full Screen"
-msgstr "全屏"
+msgstr "Полный экран"
 
 #: src/components/wallet/create/createNewColouredCoin.jsx:106
 msgid "Generate New Colour"
-msgstr "产生新的色彩"
+msgstr "Сгенерировать новый цвет"
 
 #: src/components/wallet/standard/WalletStandard.tsx:367
 msgid "HD or Hierarchical Deterministic keys are a type of public key/private key scheme where one private key can have a nearly infinite number of different public keys (and therefor wallet receive addresses) that will all ultimately come back to and be spendable by a single private key."
-msgstr "分层确定性钱包中的私钥可以对应有无限多个公钥(也就是你的钱包接受地址), 这所有的公钥都受这个单一的私钥控制."
+msgstr "HD или иерархические детерминированные ключи (Hierarchical Deterministic keys) - это схема открытого/закрытого ключей, в которой один закрытый ключ может иметь почти бесконечное количество различных открытых ключей (и, следовательно, адресов для получения кошелька), которые в конечном итоге будут возвращаться и использоваться одним закрытым ключом."
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:49
 #~ msgid "Harvester ID"
@@ -753,127 +753,127 @@ msgstr "分层确定性钱包中的私钥可以对应有无限多个公钥(也�
 
 #: src/components/fullNode/FullNode.jsx:59
 msgid "Header Hash"
-msgstr "头部哈希"
+msgstr "Хэш заголовка"
 
 #: src/components/block/Block.jsx:177
 msgid "Header hash"
-msgstr "头部哈希"
+msgstr "Хэш заголовка"
 
 #: src/components/block/Block.jsx:191
 #: src/components/fullNode/FullNode.jsx:75
 #: src/components/fullNode/FullNodeConnections.tsx:54
 msgid "Height"
-msgstr "高度"
+msgstr "Высота"
 
 #: src/electron-starter.js:294
 msgid "Help"
-msgstr "帮助"
+msgstr "Помощь"
 
 #: src/components/core/components/LocaleToggle/LocaleToggle.tsx:58
 msgid "Help translate"
-msgstr "帮助翻译"
+msgstr "Помогите с переводом"
 
 #: src/components/core/components/AdvancedOptions/AdvancedOptions.tsx:35
 msgid "Hide Advanced Options"
-msgstr "隐藏高级选项"
+msgstr "Скрыть дополнительные опции"
 
 #: src/components/wallet/WalletHistory.tsx:60
 msgid "History"
-msgstr "历史"
+msgstr "История"
 
 #: src/components/farm/FarmFullNodeConnections.tsx:24
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:24
 msgid "Host Name"
-msgstr "主机名"
+msgstr "Имя хоста"
 
 #: src/components/fullNode/FullNodeConnections.tsx:27
 msgid "IP address"
-msgstr "IP地址"
+msgstr "IP адрес"
 
 #: src/components/fullNode/FullNodeAddConnection.tsx:61
 msgid "IP address / host"
-msgstr "IP地址 / 主机"
+msgstr "IP адрес / хост"
 
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:85
 msgid "If none selected, then it will default to the temporary directory."
-msgstr "如果不做任何选择, 那么它会被缺省当成临时目录."
+msgstr "Если ничего не выбрано, по умолчанию используется временный каталог."
 
 #: src/components/wallet/WalletImport.tsx:64
 msgid "Import Wallet from Mnemonics"
-msgstr "根据助记词导入钱包"
+msgstr "Импортировать кошелек из мнемоники"
 
 #: src/components/selectKey/SelectKey.tsx:116
 msgid "Import from Mnemonics (24 words)"
-msgstr "自助记词中导入(24个词)"
+msgstr "Импорт мнемоники (24 слова)"
 
 #: src/components/fullNode/FullNode.jsx:43
 msgid "In Progress"
-msgstr "进行中"
+msgstr "В процессе"
 
 #: src/components/wallet/WalletHistory.tsx:19
 msgid "Incoming"
-msgstr "收入"
+msgstr "Входящие"
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:15
 msgid "Index"
-msgstr "索引"
+msgstr "Индекс"
 
 #: src/components/trading/TradingOverview.jsx:218
 msgid "Indicated if this offer was created by us"
-msgstr "该项出价是否由我们创建的标识"
+msgstr "Показывает, было ли это предложение создано нами или нет"
 
 #: src/components/trading/TradingOverview.jsx:234
 msgid "Indicated what time this offer was accepted"
-msgstr "该项出价被接受的时间标识"
+msgstr "Показывает, в какое время было принято это предложение"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:342
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:491
 msgid "Info Packet"
-msgstr "信息包"
+msgstr "Информационный пакет"
 
 #: src/components/wallet/create/createRLAdmin.jsx:283
 msgid "Initial Amount"
-msgstr "初始金额"
+msgstr "Начальное количество монет"
 
 #: src/components/wallet/create/createRLUser.jsx:89
 msgid "Initialize a Rate Limited User Wallet:"
-msgstr "初始化费用限定型用户钱包:"
+msgstr "Инициализируйте кошелек пользователя с ограничением скорости вывода монет:"
 
 #: src/components/wallet/create/createRLAdmin.jsx:234
 msgid "Interval"
-msgstr "间隔"
+msgstr "Интервал"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:37
 msgid "K-Size"
-msgstr "K的大小"
+msgstr "K-размер"
 
 #: src/components/dashboard/DashboardSideBar.tsx:28
 msgid "Keys"
-msgstr "密钥"
+msgstr "Ключи"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:37
 msgid "Last Attempted Proof"
-msgstr "最近尝试过的证明"
+msgstr "Последняя попытка доказательства"
 
 #: src/components/farm/card/FarmCardLastHeightFarmed.tsx:8
 msgid "Last Height Farmed"
-msgstr "最新的收割区块高度"
+msgstr "Высота последнего выращенного блока"
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:23
 msgid "Latest Block Challenges"
-msgstr "最新的区块挑战"
+msgstr "Последние испытания блоков"
 
 #: src/components/plot/queue/PlotQueueLogDialog.tsx:15
 msgid "Loading..."
-msgstr "正在载入"
+msgstr "Загрузка..."
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:80
 msgid "Local Harvester Plots"
-msgstr "本地收割农地"
+msgstr "Участки для локальных комбайнов"
 
 #: src/components/app/AppRouter.tsx:28
 msgid "Logging in"
-msgstr "正在登录"
+msgstr "Вход в систему"
 
 #: src/components/wallet/create/WalletCreate.jsx:124
 #~ msgid "MainWalletList.colouredCoin"
@@ -917,33 +917,33 @@ msgstr "正在登录"
 
 #: src/components/farm/overview/FarmOverview.tsx:34
 msgid "Manage Farming Rewards"
-msgstr "管理耕种奖励"
+msgstr "Управление вознаграждением за фарминг"
 
 #: src/components/farm/FarmManageFarmingRewards.tsx:82
 msgid "Manage Your Farming Rewards Target Addresses"
-msgstr "管理你的耕种奖励目标地址"
+msgstr "Управление целевыми адресами для получения вознаграждений за фарминг"
 
 #: src/components/farm/FarmFullNodeConnections.tsx:40
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:40
 #: src/components/fullNode/FullNodeConnections.tsx:43
 msgid "MiB Up/Down"
-msgstr "MiB 上传/下载"
+msgstr "МиБ Исх./Вх."
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:60
 msgid "Minutes"
-msgstr "分钟"
+msgstr "Минут"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:73
 msgid "More memory slightly increases speed"
-msgstr "更多的内存可以略微增加速度"
+msgstr "Больше количество памяти немного увеличивает скорость"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:429
 msgid "My Pubkey"
-msgstr "我的公钥"
+msgstr "Мой публичный ключ"
 
 #: src/components/fullNode/FullNode.jsx:160
 msgid "Network Name"
-msgstr "网络名称"
+msgstr "Имя сети"
 
 #: src/components/fullNode/FullNode.jsx:106
 #~ msgid "Network has not yet been launched, once it launches full node will start automatically."
@@ -956,109 +956,109 @@ msgstr "网络名称"
 #: src/components/wallet/coloured/WalletColoured.tsx:471
 #: src/components/wallet/standard/WalletStandard.tsx:387
 msgid "New Address"
-msgstr "新地址"
+msgstr "Новый адрес"
 
 #: src/components/wallet/WalletAdd.tsx:32
 msgid "New Wallet"
-msgstr "新钱包"
+msgstr "Новый кошелек"
 
 #: src/components/block/Block.jsx:322
 #: src/components/wallet/WalletAdd.tsx:47
 #: src/components/wallet/WalletImport.tsx:77
 msgid "Next"
-msgstr "下一步"
+msgstr "Далее"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:200
 msgid "Nickname"
-msgstr "昵称"
+msgstr "Псевдоним"
 
 #: src/components/trading/TradingOverview.jsx:212
 #: src/electron-starter.js:137
 msgid "No"
-msgstr "否"
+msgstr "Нет"
 
 #: src/middleware/middleware_api.jsx:283
 msgid "No 24 word seed, since this key is imported."
-msgstr "自密钥输入以来, 没有24个密语."
+msgstr "Нет 24 слов семя, так как этот ключ импортируется."
 
 #: src/components/farm/card/FarmCardLastHeightFarmed.tsx:8
 msgid "No blocks farmed yet"
-msgstr "尚未有区块有收获"
+msgstr "Выращенных блоков пока нет"
 
 #: src/components/wallet/WalletHistory.tsx:62
 msgid "No previous transactions"
-msgstr "无过往交易"
+msgstr "Нет предыдущих транзакций"
 
 #: src/components/farm/FarmManageFarmingRewards.tsx:91
 msgid "No private keys for one or both addresses. Safe only if you are sending rewards to another wallet."
-msgstr "这个地址没有对应的私钥, 建议把奖励发送到另外一个钱包."
+msgstr "Не найдено закрытых ключей для одного или обоих адресов. Безопасно только в том случае, если вы отправляете вознаграждение на другой кошелек."
 
 #: src/components/farm/FarmFullNodeConnections.tsx:20
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:20
 #: src/components/fullNode/FullNodeConnections.tsx:23
 msgid "Node ID"
-msgstr "节点ID"
+msgstr "Идентификатор узла"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:44
 msgid "None of your plots have passed the plot filter yet."
-msgstr "你的农地还没有通过过滤器检查."
+msgstr "Ни один из ваших участков пока не прошел через фильтр."
 
 #: src/components/farm/FarmerStatus.tsx:29
 #: src/components/farm/card/FarmCardNotAvailable.tsx:8
 #: src/components/farm/card/FarmCardNotAvailable.tsx:9
 #: src/components/plot/PlotStatus.tsx:16
 msgid "Not Available"
-msgstr "不可用"
+msgstr "Не определено"
 
 #: src/components/fullNode/FullNode.jsx:122
 msgid "Not Synced"
-msgstr "未同步"
+msgstr "Не синхронизирован"
 
 #: src/components/trading/TradingOverview.jsx:227
 msgid "Not accepted yet"
-msgstr "尚未被接受"
+msgstr "Еще не принято"
 
 #: src/components/trading/TradingOverview.jsx:199
 msgid "Not confirmed yet"
-msgstr "尚未被确认"
+msgstr "Еще не подтверждено"
 
 #: src/components/core/components/FormatConnectionStatus/FormatConnectionStatus.tsx:48
 #: src/components/fullNode/FullNode.jsx:145
 #: src/components/fullNode/FullNode.jsx:152
 msgid "Not connected"
-msgstr "未连接"
+msgstr "Нет подключения"
 
 #: src/components/plot/PlotsNotFound.tsx:24
 msgid "Not found Plots"
-msgstr "未找到绘图"
+msgstr "Участки не найдены"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:92
 msgid "Number of buckets"
-msgstr "桶的数量"
+msgstr "Количество вёдер"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:83
 msgid "Number of threads"
-msgstr "线程数量"
+msgstr "Количество потоков"
 
 #: src/components/core/components/ConfirmDialog/ConfirmDialog.tsx:51
 msgid "OK"
-msgstr "确定"
+msgstr "OK"
 
 #: src/components/trading/ViewOffer.jsx:71
 msgid "Offer"
-msgstr "出价"
+msgstr "Предложение"
 
 #: src/components/trading/TradingOverview.jsx:424
 msgid "Offers Created"
-msgstr "已创立的出价"
+msgstr "Предложение создано"
 
 #: src/components/wallet/WalletHistory.tsx:18
 msgid "Outgoing"
-msgstr "开支"
+msgstr "Исходящие"
 
 #: src/components/fullNode/FullNode.jsx:166
 msgid "Peak Height"
-msgstr "最高高度"
+msgstr "Пиковая высота"
 
 #: src/components/fullNode/FullNode.jsx:204
 #~ msgid "Peak Sub-block Height"
@@ -1066,44 +1066,44 @@ msgstr "最高高度"
 
 #: src/components/fullNode/FullNode.jsx:171
 msgid "Peak Time"
-msgstr "最高时间"
+msgstr "Пиковое время"
 
 #: src/components/wallet/WalletHistory.tsx:41
 msgid "Pending"
-msgstr "待处理"
+msgstr "Ожидающие"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:604
 #: src/components/wallet/standard/WalletStandard.tsx:223
 msgid "Pending Balance"
-msgstr "待处理的结余"
+msgstr "Баланс в ожидани"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:613
 #: src/components/wallet/standard/WalletStandard.tsx:228
 msgid "Pending Change"
-msgstr "待处理的找回"
+msgstr "Сдача в ожидании"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:595
 #: src/components/wallet/standard/WalletStandard.tsx:218
 msgid "Pending Total Balance"
-msgstr "待处理的总结余"
+msgstr "Ожидаемый итоговый баланс"
 
 #: src/components/trading/CreateOffer.jsx:109
 msgid "Please add a trade pair"
-msgstr "请增加一个交易对"
+msgstr "Пожалуйста, добавьте торговую пару"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:712
 msgid "Please enter 0 fee. Positive fees not supported yet for RL."
-msgstr "请输入费用数字0. 正费用目前在RL上还不支持."
+msgstr "Пожалуйста, введите комиссию 0. Положительные комиссии для кошельков с ограничением скорости пока не поддерживаются."
 
 #: src/components/wallet/create/createRLAdmin.jsx:146
 msgid "Please enter a valid initial coin amount"
-msgstr "请输入一个有效的初始币数量"
+msgstr "Пожалуйста, укажите корректное численное начальное значение баланса кошелька"
 
 #: src/components/wallet/create/createNewColouredCoin.jsx:69
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:679
 #: src/components/wallet/standard/WalletStandard.tsx:278
 msgid "Please enter a valid numeric amount"
-msgstr "请输入一个正确的数目"
+msgstr "Пожалуйста, укажите корректное численное значение"
 
 #: src/components/wallet/create/createExistingColouredCoin.jsx:70
 #: src/components/wallet/create/createNewColouredCoin.jsx:81
@@ -1111,36 +1111,36 @@ msgstr "请输入一个正确的数目"
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:691
 #: src/components/wallet/standard/WalletStandard.tsx:284
 msgid "Please enter a valid numeric fee"
-msgstr "请输入一个正确的费用"
+msgstr "Пожалуйста, укажите корректное численное значение комиссии"
 
 #: src/components/wallet/create/createRLAdmin.jsx:100
 msgid "Please enter a valid numeric interval length"
-msgstr "请输入一个有效的长度数字"
+msgstr "Пожалуйста, укажите корректное целочисленное значение интервала в блоках"
 
 #: src/components/wallet/create/createRLAdmin.jsx:117
 msgid "Please enter a valid numeric spendable amount"
-msgstr "请输入一个有效的支出数目"
+msgstr "Пожалуйста, укажите корректное числовое значение количества монет, которое можно будет потратить за указанный интервал"
 
 #: src/components/wallet/create/createRLAdmin.jsx:129
 msgid "Please enter a valid pubkey"
-msgstr "请输入一个正确的公钥"
+msgstr "Пожалуйста, введите действующий публичный ключ"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:661
 #: src/components/wallet/standard/WalletStandard.tsx:268
 msgid "Please finish syncing before making a transaction"
-msgstr "完成同步才可以开始一个交易"
+msgstr "Пожалуйста, завершите синхронизацию перед совершением транзакции"
 
 #: src/components/trading/CreateOffer.jsx:75
 msgid "Please select amount"
-msgstr "请选择金额"
+msgstr "Пожалуйста, укажите количество"
 
 #: src/components/trading/CreateOffer.jsx:85
 msgid "Please select buy or sell"
-msgstr "请选择买或卖"
+msgstr "Пожалуйста, выберите купить или продать"
 
 #: src/components/trading/CreateOffer.jsx:63
 msgid "Please select coin colour"
-msgstr "请选择币的色彩"
+msgstr "Пожалуйста, выберите тип монеты"
 
 #: src/components/trading/CreateOffer.jsx:63
 #~ msgid "Please select coin type"
@@ -1149,29 +1149,29 @@ msgstr "请选择币的色彩"
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:44
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:48
 msgid "Please specify final directory"
-msgstr "请指定最终目录"
+msgstr "Пожалуйста, укажите окончательный каталог хранения"
 
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:55
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:59
 msgid "Please specify temporary directory"
-msgstr "请指定临时目录"
+msgstr "Пожалуйста, укажите временную директорию"
 
 #: src/components/plot/Plot.tsx:13
 msgid "Plot"
-msgstr "绘图"
+msgstr "Участок"
 
 #: src/components/farm/card/FarmCardPlotCount.tsx:7
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:18
 msgid "Plot Count"
-msgstr "绘图数"
+msgstr "Количество участков"
 
 #: src/components/block/Block.jsx:265
 msgid "Plot Id"
-msgstr "绘图ID"
+msgstr "ID участка"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:49
 msgid "Plot Key"
-msgstr "绘图密钥"
+msgstr "Публ. ключ"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:43
 #~ msgid "Plot Name"
@@ -1179,7 +1179,7 @@ msgstr "绘图密钥"
 
 #: src/components/block/Block.jsx:241
 msgid "Plot Public Key"
-msgstr "绘图公钥"
+msgstr "Публичный ключ участка"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:49
 #~ msgid "Plot Seed"
@@ -1187,66 +1187,66 @@ msgstr "绘图公钥"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:66
 msgid "Plot Size"
-msgstr "绘图大小"
+msgstr "Размер участка"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:43
 msgid "Plot in Parallel"
-msgstr "并发拓荒"
+msgstr "Засеивать паралельно"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:26
 msgid "Plot is duplicate of {0}"
-msgstr "绘图与 {0} 重复"
+msgstr "Плот дубликат {0}"
 
 #: src/components/dashboard/DashboardSideBar.tsx:25
 msgid "Plots"
-msgstr "绘图"
+msgstr "Участки"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:19
 msgid "Plots Passed Filter"
-msgstr "通过初筛的绘图"
+msgstr "Участки, прошедшие фильтр"
 
 #: src/components/plot/overview/PlotOverviewHero.tsx:23
 msgid "Plots are allocated space on your hard drive used to farm and earn Chia. <0>Learn more</0>"
-msgstr "农地就是在你的硬盘上分配的一块空间,用来收获Chia.<0>了解更多<0>"
+msgstr "Участки - это выделенное пространство на вашем жестком диске. Участки используются для фарминга и приносят доход в чиа. <0>Подробности</0>"
 
 #: src/components/plot/queue/PlotQueueIndicator.tsx:8
 msgid "Plotting"
-msgstr "正在绘图"
+msgstr "Засеивание"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:35
 msgid "Plotting in parallel can save time. Otherwise, add plot(s) to the queue."
-msgstr "并发拓荒可以有效节省拓荒时间但对系统资源要求很高. 系统硬件不够的话建议选择按队列顺序拓荒."
+msgstr "Параллельное засеивание позволяет сэкономить время. Также вы можете создать очередь засеивания участков."
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:55
 msgid "Pool Key"
-msgstr "矿池密钥"
+msgstr "Ключ пула"
 
 #: src/components/block/Block.jsx:245
 msgid "Pool Public Key"
-msgstr "矿池公钥"
+msgstr "Публичный ключ пула"
 
 #: src/components/block/Block.jsx:257
 msgid "Pool Puzzle Hash"
-msgstr "农场次谜语哈希"
+msgstr "Хеш-головоломка пула"
 
 #: src/components/farm/FarmManageFarmingRewards.tsx:96
 msgid "Pool Reward Address"
-msgstr "农池奖励地址"
+msgstr "Адрес выплаты пулу"
 
 #: src/components/block/Block.jsx:283
 msgid "Pool Reward Amount"
-msgstr "农田池奖励数"
+msgstr "Сумма вознаграждения пула"
 
 #: src/components/farm/FarmFullNodeConnections.tsx:30
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:30
 #: src/components/fullNode/FullNodeAddConnection.tsx:62
 #: src/components/fullNode/FullNodeConnections.tsx:33
 msgid "Port"
-msgstr "端口"
+msgstr "Порт"
 
 #: src/components/block/Block.jsx:317
 msgid "Previous"
-msgstr "上一个"
+msgstr "Предыдущий"
 
 #: src/components/block/Block.jsx:203
 #~ msgid "Previous Block Hash"
@@ -1254,7 +1254,7 @@ msgstr "上一个"
 
 #: src/components/block/Block.jsx:205
 msgid "Previous Header Hash"
-msgstr "上个区块的头部哈希"
+msgstr "Хэш предыдущего блока"
 
 #: src/components/block/Block.jsx:217
 #~ msgid "Previous Sub Block Hash"
@@ -1262,43 +1262,43 @@ msgstr "上个区块的头部哈希"
 
 #: src/components/selectKey/SelectKey.tsx:87
 msgid "Private key with public fingerprint {fingerprint}"
-msgstr "公共指纹为 {fingerprint} 的私钥"
+msgstr "Приватный ключ с публичным отпечатком {fingerprint}"
 
 #: src/middleware/middleware_api.jsx:247
 msgid "Private key {0}"
-msgstr "私钥 {0}"
+msgstr "Закрытый ключ {0}"
 
 #: src/middleware/middleware_api.jsx:257
 msgid "Private key:"
-msgstr "私钥:"
+msgstr "Закрытый ключ:"
 
 #: src/components/block/Block.jsx:237
 msgid "Proof of Space Size"
-msgstr "空间证明的大小"
+msgstr "Размер доказательства пространства (Proof of Space)"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:23
 msgid "Proofs Found"
-msgstr "已找到证明"
+msgstr "Доказательств найдено"
 
 #: src/components/wallet/create/createRLAdmin.jsx:323
 msgid "Pubkey"
-msgstr "公钥"
+msgstr "Публичный ключ"
 
 #: src/middleware/middleware_api.jsx:265
 msgid "Public key:"
-msgstr "公钥："
+msgstr "Открытый ключ:"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:103
 msgid "Queue Name"
-msgstr "队列名"
+msgstr "Имя очереди"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:43
 msgid "Queue name"
-msgstr "队列名"
+msgstr "Имя очереди"
 
 #: src/components/plot/queue/PlotQueueIndicator.tsx:11
 msgid "Queued"
-msgstr "队列"
+msgstr "В очереди"
 
 #: src/electron-starter.js:80
 #~ msgid "Quit"
@@ -1306,11 +1306,11 @@ msgstr "队列"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:73
 msgid "RAM max usage"
-msgstr "内存最大使用量"
+msgstr "Максимольное использование ОЗУ"
 
 #: src/components/wallet/Wallets.tsx:41
 msgid "RL Wallet"
-msgstr "费用限定钱包"
+msgstr "Кошелек Ограниченной Скорости"
 
 #: src/components/wallet/create/WalletCreate.jsx:246
 #~ msgid "RLListItems.title"
@@ -1318,49 +1318,49 @@ msgstr "费用限定钱包"
 
 #: src/components/wallet/create/WalletCreate.jsx:130
 msgid "Rate Limited"
-msgstr "费用限定"
+msgstr "Ограниченной Скорости"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:402
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:453
 msgid "Rate Limited Info"
-msgstr "费用限制信息"
+msgstr "Информация об ограничении скорости"
 
 #: src/components/wallet/create/WalletCreate.jsx:232
 msgid "Rate Limited Options"
-msgstr "费用限定型选项"
+msgstr "Настройки Ограниченной Скорости"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:275
 msgid "Rate Limited User Wallet Setup"
-msgstr "费用限定型用户钱包设置"
+msgstr "Настройка кошелька пользователя с ограничением скорости"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:453
 #: src/components/wallet/standard/WalletStandard.tsx:367
 msgid "Receive Address"
-msgstr "接收地址"
+msgstr "Адрес для получения платежа"
 
 #: src/components/wallet/create/WalletCreate.jsx:320
 msgid "Recover DID wallet"
-msgstr "恢复DID钱包"
+msgstr "Восстанавление Кошелека Децентрализованного Идентификатора"
 
 #: src/components/plot/PlotHeader.tsx:43
 msgid "Refresh Plots"
-msgstr "刷新绘图"
+msgstr "Обновить участки"
 
 #: src/electron-starter.js:314
 msgid "Release Notes"
-msgstr "发布通知"
+msgstr "Примечания к релизу"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:206
 msgid "Rename"
-msgstr "重命名"
+msgstr "Переименовать"
 
 #: src/electron-starter.js:333
 msgid "Report an Issue..."
-msgstr "报告问题"
+msgstr "Сообщить о проблеме..."
 
 #: src/components/backup/BackupRestore.tsx:107
 msgid "Restore Metadata for Coloured Coins and other Smart Wallets from Backup"
-msgstr "从备份中恢复染色币与智能钱包的元信息"
+msgstr "Восстановление метаданных цветных монет и других смарт-кошельков из резервной копии"
 
 #: src/components/backup/BackupRestore.tsx:107
 #~ msgid "Restore Smart Wallets From Backup"
@@ -1373,12 +1373,12 @@ msgstr "从备份中恢复染色币与智能钱包的元信息"
 
 #: src/components/backup/BackupRestore.tsx:122
 msgid "Safe To Skip"
-msgstr "安全跳过"
+msgstr "Можно пропустить"
 
 #: src/components/farm/FarmManageFarmingRewards.tsx:105
 #: src/components/trading/CreateOffer.jsx:160
 msgid "Save"
-msgstr "保存"
+msgstr "Сохранить"
 
 #: src/components/fullNode/FullNode.jsx:338
 #~ msgid "Search"
@@ -1390,77 +1390,77 @@ msgstr "保存"
 
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:75
 msgid "Second temporary folder location"
-msgstr "第二临时文件夹位置"
+msgstr "Расположение второй временной папки"
 
 #: src/components/selectKey/SelectKey.tsx:93
 msgid "See private key"
-msgstr "查看私钥："
+msgstr "Увидеть закрытый ключ"
 
 #: src/middleware/middleware_api.jsx:275
 msgid "Seed:"
-msgstr "种子："
+msgstr "Семя:"
 
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:70
 msgid "Select 2nd Temporary Directory"
-msgstr "选择第二临时目录"
+msgstr "Выберите 2-й временный каталог"
 
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:29
 msgid "Select Final Directory"
-msgstr "选择最终目录"
+msgstr "Выберите окончательный каталог"
 
 #: src/components/selectKey/SelectKey.tsx:71
 msgid "Select Key"
-msgstr "选择密钥"
+msgstr "Выбор ключа"
 
 #: src/components/trading/ViewOffer.jsx:38
 msgid "Select Offer"
-msgstr "选择出价"
+msgstr "Выберите предложение"
 
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:39
 msgid "Select Temporary Directory"
-msgstr "选择临时目录"
+msgstr "Выберите временный каталог"
 
 #: src/components/wallet/create/WalletCreate.jsx:108
 msgid "Select Wallet Type"
-msgstr "选择钱包类别"
+msgstr "Выберите Тип Кошелька"
 
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:31
 msgid "Select the final destination for the folder where you would like the plot to be stored. We recommend you use a large slow hard drive (like external HDD)."
-msgstr "选择您希望保存绘图文件的最终目录。我们建议您使用大容量、慢速的硬盘（比如外置机械硬盘）"
+msgstr "Выберите конечный пункт назначения для папки, в которой вы хотите сохранить график. Мы рекомендуем вам использовать большой медленный жесткий диск (например, внешний жесткий диск HDD)."
 
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:41
 msgid "Select the temporary destination for the folder where you would like the plot to be stored. We recommend you use a fast SSD."
-msgstr "选择您希望保存绘图文件的临时目录。我们建议您使用快速的固态硬盘。"
+msgstr "Выберите путь до временной папки, в которой вы хотите формировать участок. Мы рекомендуем использовать быстрый твердотельный накопитель SSD."
 
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:52
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:63
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:81
 msgid "Selected"
-msgstr "已选择"
+msgstr "Выбран"
 
 #: src/components/trading/CreateOffer.jsx:182
 #: src/components/trading/TradesTable.tsx:30
 #: src/components/trading/TradingOverview.jsx:295
 msgid "Sell"
-msgstr "卖出"
+msgstr "Продажа"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:435
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:798
 #: src/components/wallet/standard/WalletStandard.tsx:349
 msgid "Send"
-msgstr "发送"
+msgstr "Отправить"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:478
 msgid "Send this info packet to your Rate Limited Wallet user who must use it to complete setup of their wallet:"
-msgstr "把这段信息发给你的费用限定型钱包用户, 以便他/她可以完成自己的钱包设置:"
+msgstr "Отправьте этот информационный пакет пользователям вашего кошелька с ограниченной скоростью вывода. Эта информация потребуется пользователям для завершения настройки своего кошелька:"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:285
 msgid "Send your pubkey to your Rate Limited Wallet admin:"
-msgstr "将你的公钥发送到你的费用限定型管理者钱包:"
+msgstr "Отправьте этот публичный ключ администратору вашего кошелька с ограниченной скоростью вывода средств:"
 
 #: src/components/core/components/AdvancedOptions/AdvancedOptions.tsx:40
 msgid "Show Advanced Options"
-msgstr "显示高级选项"
+msgstr "Показать дополнительные опции"
 
 #: src/electron-starter.js:79
 #~ msgid "Show app"
@@ -1469,11 +1469,11 @@ msgstr "显示高级选项"
 #: src/components/trading/CreateOffer.jsx:174
 #: src/components/trading/TradesTable.tsx:13
 msgid "Side"
-msgstr "边"
+msgstr "Направление"
 
 #: src/components/selectKey/SelectKey.tsx:74
 msgid "Sign In"
-msgstr "登录"
+msgstr "Войти в систему"
 
 #: src/components/backup/BackupRestore.tsx:122
 #~ msgid "Skip"
@@ -1489,39 +1489,39 @@ msgstr ""
 
 #: src/electron-starter.js:416
 msgid "Speech"
-msgstr "演说"
+msgstr "Речь"
 
 #: src/components/wallet/create/createRLAdmin.jsx:247
 msgid "Spendable Amount"
-msgstr "可用金额"
+msgstr "Расходуемое количество"
 
 #: src/components/wallet/create/createRLAdmin.jsx:216
 msgid "Spendable Amount Per Interval"
-msgstr "每次迭代的支出数目"
+msgstr "Расходуемое количество монет за интервал"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:288
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:571
 #: src/components/wallet/standard/WalletStandard.tsx:201
 msgid "Spendable Balance"
-msgstr "可用余额"
+msgstr "Расходуемый баланс"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:408
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:459
 msgid "Spending Interval (number of blocks): {interval}"
-msgstr "支出迭代(区块数){interval}"
+msgstr "Интервал расходования (количество блоков): {interval}"
 
 #: src/components/wallet/create/createRLAdmin.jsx:209
 msgid "Spending Interval Length (number of blocks)"
-msgstr "支出迭代长度(区块数)"
+msgstr "Длина интервала расходования (количество блоков)"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:415
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:466
 msgid "Spending Limit (chia per interval): {0}"
-msgstr "支出限制(Chia per interval){0}"
+msgstr "Лимит расходования (chia за интервал): {0}"
 
 #: src/components/fullNode/FullNode.jsx:94
 msgid "State"
-msgstr "状态"
+msgstr "Состояние"
 
 #: src/components/fullNode/FullNode.jsx:104
 #: src/components/fullNode/FullNode.jsx:121
@@ -1533,11 +1533,11 @@ msgstr "状态"
 #: src/components/wallet/WalletStatusCard.tsx:11
 #: src/components/wallet/Wallets.tsx:93
 msgid "Status"
-msgstr "状态"
+msgstr "Статус"
 
 #: src/components/trading/TradingOverview.jsx:181
 msgid "Status:"
-msgstr "状态："
+msgstr "Статус:"
 
 #: src/components/wallet/Wallets.tsx:119
 #~ msgid "StatusCard.connections"
@@ -1569,21 +1569,21 @@ msgstr "状态："
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:357
 msgid "Submit"
-msgstr "提交"
+msgstr "Подтвердить"
 
 #: src/components/fullNode/FullNode.jsx:130
 msgid "Synced"
-msgstr "已同步"
+msgstr "Синхронизован"
 
 #: src/components/farm/FarmerStatus.tsx:28
 #: src/components/farm/card/FarmCardStatus.tsx:12
 #: src/components/plot/PlotStatus.tsx:15
 msgid "Syncing"
-msgstr "正在同步"
+msgstr "Синхронизация"
 
 #: src/components/fullNode/FullNode.jsx:106
 msgid "Syncing {progress}/{tip}"
-msgstr "正在同步 {progress}/{tip}"
+msgstr "Синхронизация {progress}/{tip}"
 
 #: src/components/farm/card/FarmCardBlockRewards.tsx:15
 #~ msgid "TXCH Block Rewards"
@@ -1611,86 +1611,86 @@ msgstr "正在同步 {progress}/{tip}"
 
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:48
 msgid "Temporary folder location"
-msgstr "临时文件夹位置"
+msgstr "Расположение временной папки"
 
 #: src/components/farm/FarmFullNodeConnections.tsx:58
 msgid "The full node that your farmer is connected to is below. <0>Learn more</0>"
-msgstr "你的农场连接的全节点如下.<0>了解更多</0>"
+msgstr "Полный узел, к которому подключен ваш фермер, указан ниже. <0>Подробнее</0>"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:30
 #: src/components/plot/add/PlotAddChooseSize.tsx:74
 msgid "The minimum required size for mainnet is k=32"
-msgstr "主网要求的最小绘图大小为k=32"
+msgstr "Минимальный требуемый размер участка для основной сети равен k=32"
 
 #: src/components/fullNode/FullNode.jsx:124
 msgid "The node is not synced"
-msgstr "节点没有同步"
+msgstr "Узел не синхронизирован с сетью"
 
 #: src/components/fullNode/FullNode.jsx:112
 msgid "The node is syncing, which means it is downloading blocks from other nodes, to reach the latest block in the chain"
-msgstr "节点正在同步中, 也就是说它正在从其他节点下载区块, 以便达到最新的区块高度"
+msgstr "Узел синхронизируется, что означает, что он загружает блоки с других узлов, чтобы достичь последнего блока в цепи"
 
 #: src/components/block/Block.jsx:268
 msgid "The seed used to create the plot. This depends on the pool pk and plot pk."
-msgstr "密语用于创建农田. 农田是与农场池的公钥与农地的公钥相关联的."
+msgstr "Зерно, которое использовалось для создания участка. Зерно зависит от публичного ключа пула и публичного ключа участка."
 
 #: src/components/block/Block.jsx:220
 msgid "The total number of VDF (verifiable delay function) or proof of time iterations on the whole chain up to this sub block."
-msgstr "截至该子区块为止全链已完成的VDF(延迟验证函数) 或时间证明的迭代次数."
+msgstr "Общее количество итерации VDF (от англ. Verifiable Delay Function - проверяемая функция задержки) или доказательств временных итераций по всей цепочке до этого подблока."
 
 #: src/components/block/Block.jsx:230
 msgid "The total number of VDF (verifiable delay function) or proof of time iterations on this block."
-msgstr "本区块上花费的总VDF(延迟验证函数) 或时间验证的迭代次数."
+msgstr "Общее количество итераций VDF (от англ. Verifiable Delay Function - проверяемая функция задержки), другими словами общее количество доказательств временных итераций (proof of time) в этом блоке."
 
 #: src/components/block/Block.jsx:294
 msgid "The total transactions fees in this block. Rewarded to the farmer."
-msgstr "本区块上奖励给农夫的全部交易费用."
+msgstr "Общая комиссия за транзакции в этом блоке, полученная в награду фермерами."
 
 #: src/components/plot/PlotsFailed.tsx:26
 msgid "These plots are invalid, you might want to delete them."
-msgstr "这些绘图无效，你可能想要删除它们。"
+msgstr "Эти участки невалидны, вы можете удалить их."
 
 #: src/components/plot/PlotAddDirectoryDialog.tsx:44
 msgid "This allows you to add a directory that has plots in it. If you have not created any plots, go to the plotting screen."
-msgstr "在这里可以把事先准备好的农田文件添加进来. 如果还没有的话, 就去开垦几块农田吧."
+msgstr "Это позволяет вам добавить каталог, в котором уже есть участки. Если вы еще не создали никаких участков, перейдите к экрану создания участков."
 
 #: src/components/trading/CreateOffer.jsx:132
 #: src/hooks/useSelectDirectory.tsx:26
 #: src/hooks/useSelectFile.tsx:26
 msgid "This feature is available only from the GUI."
-msgstr "亲, 这个功能才图形界面里面才提供."
+msgstr "Эта функция доступна только из графического интерфейса."
 
 #: src/components/wallet/standard/WalletStandard.tsx:201
 msgid "This is the amount of Chia that you can currently use to make transactions. It does not include pending farming rewards, pending incoming transactions, and Chia that you have just spent but is not yet in the blockchain."
-msgstr "这是你目前可以使用的全部奇亚Chia数. 不包含待处理的农场奖励, 也不包含待处理的收入和已花费但还没有上链的支出."
+msgstr "Это количество монет Чиа, которое в настоящее время вы можете использовать для совершения транзакций. Баланс не включает ожидающие вознаграждения за фармиг, ожидающие входящие транзакции и монеты, которые вы только что потратили, но они еще не попали в блокчейн."
 
 #: src/components/wallet/standard/WalletStandard.tsx:228
 msgid "This is the pending change, which are change coins which you have sent to yourself, but have not been confirmed yet."
-msgstr "处理中的找零钱, 是你发送支出的找回, 但是没有被链上确认."
+msgstr "Здесь рассчитан размер ожидаемой сдачи, которая осталась в качестве размена после отправки монет. Размен вы отправили себе, но транзакция еще не была подтверждена."
 
 #: src/components/wallet/standard/WalletStandard.tsx:223
 msgid "This is the sum of the incoming and outgoing pending transactions (not yet included into the blockchain). This does not include farming rewards."
-msgstr "待处理的收入与支出总和(还未上链). 不包括农场耕种奖励."
+msgstr "Здесь рассчитана сумма входящих и исходящих ожидающих транзакций (еще не включенных в цепь блоков). Награды за фарминг не включены в сумму."
 
 #: src/components/fullNode/FullNode.jsx:173
 msgid "This is the time of the latest peak sub block."
-msgstr "最新的子块时间."
+msgstr "Это время последнего пикового суб блока."
 
 #: src/components/block/Block.jsx:184
 msgid "This is the time the block was created by the farmer, which is before it is finalized with a proof of time"
-msgstr "由农夫创建的区块的时间, 这个时间早于它被确认的时间."
+msgstr "Это момент времени, когда блок был создан фермером, то есть до того, как он был завершен с применением алгоритма подтверждения времени (proof of time)."
 
 #: src/components/wallet/standard/WalletStandard.tsx:195
 msgid "This is the total amount of chia in the blockchain at the current peak sub block that is controlled by your private keys. It includes frozen farming rewards, but not pending incoming and outgoing transactions."
-msgstr "这里是你的私钥所控制的, 到目前最新子块高度为止的全部奇亚数. 包含被冻结的耕种奖励, 但不包含待处理的收入与支出."
+msgstr "Это общее количество монет Чиа в блокчейне в текущем пиковом суб блоке, которые контролируются вашими приватными ключами. Баланс включает в себя замороженные награды за фарм, но не включает ожидающие входящие и исходящие транзакции."
 
 #: src/components/wallet/standard/WalletStandard.tsx:218
 msgid "This is the total balance + pending balance: it is what your balance will be after all pending transactions are confirmed."
-msgstr "目前结余+待处理的结余: 在链上确认完成后就是你的最终总结余."
+msgstr "Это общий баланс + отложенный баланс: это то, каким будет ваш баланс после подтверждения всех ожидающих транзакций."
 
 #: src/components/fullNode/FullNode.jsx:133
 msgid "This node is fully caught up and validating the network"
-msgstr "本节点完全同步好了"
+msgstr "Этот узел полностью догнал соседние узлы и выполняет валидацию в сети"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:39
 #~ msgid "This table shows you the last time your farm attempted to win a block challenge."
@@ -1698,19 +1698,19 @@ msgstr "本节点完全同步好了"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:39
 msgid "This table shows you the last time your farm attempted to win a block challenge. <0>Learn more</0>"
-msgstr "这个表格里面显示的是你的农场尝试过的区块挑战. <0>了解更多</0>"
+msgstr "Эта таблица показывает вам, когда ваша ферма в последний раз пыталась выиграть испытание при фарминге блока. <0>Подробнее</0>"
 
 #: src/components/trading/TradingOverview.jsx:192
 msgid "This trade was created at this time"
-msgstr "本交易创建于"
+msgstr "Сделка была создана в это время"
 
 #: src/components/trading/TradingOverview.jsx:206
 msgid "This trade was included on blockchain at this block height"
-msgstr "该交易在链上的区块高度"
+msgstr "Сделка была включена в блокчейн на указанной высоте блока"
 
 #: src/components/fullNode/FullNode.jsx:86
 msgid "Time Created"
-msgstr "创建时间"
+msgstr "Время создания"
 
 #: src/components/trading/TradingOverview.jsx:192
 #~ msgid "Time this trade was created at this time"
@@ -1718,17 +1718,17 @@ msgstr "创建时间"
 
 #: src/components/block/Block.jsx:181
 msgid "Timestamp"
-msgstr "时间戳"
+msgstr "Временная метка"
 
 #: src/components/wallet/WalletHistory.tsx:31
 msgid "To"
-msgstr "给"
+msgstr "Кому"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:287
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:565
 #: src/components/wallet/standard/WalletStandard.tsx:195
 msgid "Total Balance"
-msgstr "总余额"
+msgstr "Итоговый баланс"
 
 #: src/components/farm/card/FarmCardTotalChiaFarmed.tsx:15
 #~ msgid "Total Chia Farmed"
@@ -1736,112 +1736,112 @@ msgstr "总余额"
 
 #: src/components/fullNode/FullNode.jsx:191
 msgid "Total Iterations"
-msgstr "总迭代次数"
+msgstr "Всего итераций"
 
 #: src/components/farm/card/FarmCardTotalNetworkSpace.tsx:8
 msgid "Total Network Space"
-msgstr "全网大小"
+msgstr "Суммарное пространство сети"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:91
 msgid "Total Plot Size:"
-msgstr "总绘图大小："
+msgstr "Общий объем участков:"
 
 #: src/components/farm/card/FarmCardTotalSizeOfPlots.tsx:8
 msgid "Total Size of Plots"
-msgstr "总绘图大小："
+msgstr "Общий объем участков"
 
 #: src/components/block/Block.jsx:217
 msgid "Total VDF Iterations"
-msgstr "总VDF迭代数"
+msgstr "Общее количество итерации VDF"
 
 #: src/components/fullNode/FullNode.jsx:193
 msgid "Total iterations since the start of the blockchain"
-msgstr "自区块开始以来的迭代数"
+msgstr "Общее количество итераций с момента запуска блокчейна"
 
 #: src/components/dashboard/DashboardSideBar.tsx:27
 msgid "Trade"
-msgstr "交易"
+msgstr "Торговля"
 
 #: src/components/trading/TradingOverview.jsx:360
 msgid "Trade Details"
-msgstr "交易详情"
+msgstr "Детали сделки"
 
 #: src/components/trading/TradingOverview.jsx:125
 msgid "Trade ID"
-msgstr "交易ID"
+msgstr "Идентификатор сделки"
 
 #: src/components/trading/TradingOverview.jsx:174
 msgid "Trade ID:"
-msgstr "交易ID："
+msgstr "Идентификатор сделки:"
 
 #: src/components/trading/TradeManager.tsx:17
 msgid "Trade Overview"
-msgstr "交易概况"
+msgstr "Обзор торгов"
 
 #: src/components/trading/TradingOverview.jsx:153
 msgid "Trades will show up here"
-msgstr "交易会在这里显示"
+msgstr "Здесь будут отображаться сделки"
 
 #: src/components/trading/TradeManager.tsx:13
 msgid "Trading"
-msgstr "交易"
+msgstr "Торговля"
 
 #: src/components/trading/TradingOverview.jsx:435
 msgid "Trading History"
-msgstr "交易历史"
+msgstr "История торгов"
 
 #: src/components/block/Block.jsx:276
 msgid "Transactions Filter Hash"
-msgstr "交易过滤器哈希"
+msgstr "Хэш фильтра транзакций"
 
 #: src/components/wallet/WalletHistory.tsx:21
 msgid "Type"
-msgstr "类别"
+msgstr "Тип"
 
 #: src/components/fullNode/FullNode.jsx:92
 msgid "Unfinished"
-msgstr "未完成"
+msgstr "Незаконченный"
 
 #: src/components/trading/TradingOverview.jsx:177
 msgid "Unique identifier"
-msgstr "唯一识别码"
+msgstr "Уникальный идентификатор"
 
 #: src/components/wallet/create/createRLAdmin.jsx:307
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:300
 msgid "User Pubkey"
-msgstr "用户公钥"
+msgstr "Пользовательский публичный ключ"
 
 #: src/components/fullNode/FullNode.jsx:185
 msgid "VDF Sub Slot Iterations"
-msgstr "VDF子项迭代数"
+msgstr "Итерации VDF суб слота"
 
 #: src/electron-starter.js:235
 msgid "View"
-msgstr "查看"
+msgstr "Вид"
 
 #: src/components/plot/queue/PlotQueueActions.tsx:49
 #: src/components/plot/queue/PlotQueueLogDialog.tsx:26
 msgid "View Log"
-msgstr "查看日志"
+msgstr "Посмотреть журнал"
 
 #: src/components/trading/TradeManager.tsx:27
 msgid "View Offer"
-msgstr "查看出价"
+msgstr "Просмотр заявок"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:586
 #: src/components/wallet/standard/WalletStandard.tsx:213
 msgid "View pending balances"
-msgstr "查看处理中的余额"
+msgstr "Просмотр ожидаемого баланса"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:296
 msgid "View pending balances..."
-msgstr "查看处理中的余额…"
+msgstr "Просмотр ожидаемого баланса..."
 
 #: src/components/farm/card/FarmCardNotAvailable.tsx:9
 #: src/components/plot/PlotStatus.tsx:22
 #: src/components/plot/PlotStatus.tsx:25
 msgid "Wait for synchronization"
-msgstr "等待同步"
+msgstr "Дождитесь синхронизации"
 
 #: src/components/wallet/Wallets.tsx:104
 #~ msgid "Waiting for launch"
@@ -1883,7 +1883,7 @@ msgstr "等待同步"
 #: src/components/dashboard/DashboardSideBar.tsx:24
 #: src/components/wallet/Wallets.tsx:131
 msgid "Wallets"
-msgstr "钱包"
+msgstr "Кошельки"
 
 #: src/components/wallet/Wallets.tsx:131
 #~ msgid "Wallets.title"
@@ -1891,45 +1891,45 @@ msgstr "钱包"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:84
 msgid "Want to earn more Chia? Add more plots to your farm."
-msgstr "想要赚更多奇亚吗? 那就给你的农场多加一些农田吧."
+msgstr "Хотите получать больше дохода в Чиа? Добавьте больше участков к своей ферме."
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:53
 msgid "Want to have a delay before the next plot starts?"
-msgstr "想要在下一次绘图开始前等待一会？"
+msgstr "Хотите установить задержку между стартом параллельного засевания файлов?"
 
 #: src/components/block/Block.jsx:195
 msgid "Weight"
-msgstr "权重"
+msgstr "Вес"
 
 #: src/components/block/Block.jsx:198
 msgid "Weight is the total added difficulty of all sub blocks up to and including this one"
-msgstr "权重是施加给所有子块包括目前这块的额外的困难度."
+msgstr "Вес - это общая добавленная сложность всех подблоков, включая этот"
 
 #: src/components/selectKey/SelectKey.tsx:77
 msgid "Welcome to Chia. Please log in with an existing key, or create a new key."
-msgstr "欢迎来到Chia。请用已有的密钥登录，或者创建一个新的密钥。"
+msgstr "Добро пожаловать в Чиа. Пожалуйста, войдите в систему с существующим ключом или создайте новый ключ."
 
 #: src/components/wallet/WalletAdd.tsx:35
 msgid "Welcome! The following words are used for your wallet backup. Without them, you will lose access to your wallet, keep them safe! Write down each word along with the order number next to them. (Order is important)"
-msgstr "欢迎使用奇亚! 下面的词语列表是你的钱包密语, 请务必严格完整的把它们记下来(保持顺序). 没有这段密语的话, 你就没办法找回钱包里的币. 千万也不要透露给别人."
+msgstr "Добро пожаловать! Перечисленные слова используются для резервного копирования вашего кошелька. Без них вы потеряете доступ к своему кошельку, берегите их! Запишите каждое слово вместе с порядковым номером рядом с ним. (Порядок важен)"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:324
 msgid "When you receive the setup info packet from your admin, enter it below to complete your Rate Limited Wallet setup:"
-msgstr "当你从管理员那收到这个设置信息后, 请把它输入到下面以便完成费用限定型钱包设置:"
+msgstr "Когда вы получите пакет информации о настройке от администратора, введите его ниже, чтобы завершить настройку кошелька с ограниченнием скорости вывода:"
 
 #: src/electron-starter.js:280
 msgid "Window"
-msgstr "窗口"
+msgstr "Окно"
 
 #: src/components/farm/card/FarmCardBlockRewards.tsx:18
 msgid "Without fees"
-msgstr "没有费用"
+msgstr "Без комиссии"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:30
 #: src/components/trading/TradingOverview.jsx:212
 #: src/electron-starter.js:137
 msgid "Yes"
-msgstr "是"
+msgstr "Да"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:56
 #~ msgid "You do not need to be synched or connected to Plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
@@ -1937,52 +1937,52 @@ msgstr "是"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:56
 msgid "You do not need to be synched or connected to plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
-msgstr "不需要同步或者连接到网络节点就可以拓荒, 注意在拓荒过程中产生的临时文件尺寸会大于最终的农田大小, 请确认你有足够的存储空间. <0>了解更多</0>"
+msgstr "Вам не нужно синхронизировать узел или быть подключенным к участку. Во время процесса засеивания участков создаются временные файлы, размер которых превышает размер итоговых файлов участков. Убедитесь, что у вас достаточно места. <0>Подробнее</0>"
 
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:34
 msgid "You have {0}% of the space on the network, so farming a block will take {expectedTimeToWin} in expectation."
-msgstr "在整个网络中, 你的农地的空间占比是{0}%, 所以预计收获下一个区块的话, 要花费的时间是 {expectedTimeToWin}."
+msgstr "Вы владеете {0}% пространства в сети, поэтому для обработки блока потребуется {expectedTimeToWin}."
 
 #: src/components/farm/overview/FarmOverview.tsx:24
 msgid "Your Farm Overview"
-msgstr "你的农场概览"
+msgstr "Обзор вашей фермы"
 
 #: src/components/farm/FarmFullNodeConnections.tsx:56
 msgid "Your Full Node Connection"
-msgstr "你的全节点连接"
+msgstr "Ваше подключение к полному узлу"
 
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:56
 msgid "Your Harvester Network"
-msgstr "你的收割网络"
+msgstr "Ваша сеть комбайнов"
 
 #: src/components/wallet/WalletStatusCard.tsx:30
 #: src/components/wallet/Wallets.tsx:119
 msgid "connections:"
-msgstr "连接："
+msgstr "подключения:"
 
 #: src/components/wallet/WalletStatusCard.tsx:24
 #: src/components/wallet/Wallets.tsx:113
 msgid "height:"
-msgstr "高度："
+msgstr "высота:"
 
 #: src/components/wallet/Wallets.tsx:107
 msgid "not synced"
-msgstr "未同步"
+msgstr "не синхронизированный"
 
 #: src/components/wallet/WalletStatusCard.tsx:16
 #: src/components/wallet/Wallets.tsx:98
 msgid "status:"
-msgstr "状态："
+msgstr "статус:"
 
 #: src/components/wallet/WalletStatusCard.tsx:19
 #: src/components/wallet/Wallets.tsx:105
 msgid "synced"
-msgstr "已同步"
+msgstr "синхр."
 
 #: src/components/wallet/WalletStatusCard.tsx:19
 #: src/components/wallet/Wallets.tsx:103
 msgid "syncing"
-msgstr "正在同步"
+msgstr "синх-ция"
 
 #: src/components/farm/card/FarmCardBlockRewards.tsx:16
 #~ msgid "{0} Block Rewards"
@@ -1994,12 +1994,12 @@ msgstr "正在同步"
 
 #: src/components/farm/card/FarmCardBlockRewards.tsx:18
 msgid "{currencyCode} Block Rewards"
-msgstr "{currencyCode} 区块奖励"
+msgstr "{currencyCode} Награда за блок"
 
 #: src/components/farm/card/FarmCardTotalChiaFarmed.tsx:17
 msgid "{currencyCode} Total Chia Farmed"
-msgstr "{currencyCode} 总收获到的奇亚"
+msgstr "{currencyCode} Всего Чиа выращено"
 
 #: src/components/farm/card/FarmCardUserFees.tsx:17
 msgid "{currencyCode} User Transaction Fees"
-msgstr "{currencyCode} 用户交易费用"
+msgstr "{currencyCode} Комиссия за транзакции пользователей"
