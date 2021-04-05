@@ -1,6 +1,6 @@
 import React from 'react';
 import { Trans } from '@lingui/macro';
-import { AdvancedOptions, CardStep, Select, TextField, RadioGroup, Flex, Checkbox } from '@chia/core';
+import { AdvancedOptions, CardStep, Select, TextField, RadioGroup, Flex, Checkbox, TooltipIcon } from '@chia/core';
 import { Grid, FormControl, InputLabel, MenuItem, InputAdornment, Typography, FormControlLabel, Radio } from '@material-ui/core';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import { useFormContext } from 'react-hook-form';
@@ -71,13 +71,13 @@ export default function PlotAddNumberOfPlots() {
               <Flex gap={2} flexWrap="wrap">
                 <FormControlLabel
                   control={<Radio />}
-                  label="Plot in Parallel"
+                  label={<Trans>Plot in Parallel</Trans>}
                   value
                 />
                 <FormControlLabel
                   value={false}
                   control={<Radio />}
-                  label="Add Plot to Queue"
+                  label={<Trans>Add Plot to Queue</Trans>}
                 />
               </Flex>
             </RadioGroup>
@@ -198,7 +198,7 @@ export default function PlotAddNumberOfPlots() {
               />
             </FormControl>
           </Grid>
-          <Grid xs={12} sm={6} item>
+          <Grid xs={12} item>
             <FormControl
               variant="filled"
               fullWidth
@@ -209,7 +209,46 @@ export default function PlotAddNumberOfPlots() {
                     name="disableBitfieldPlotting"
                   />
                 )}
-                label="Disable bitfield plotting"
+                label={(
+                  <>
+                    <Trans>
+                      Disable bitfield plotting
+                    </Trans>
+                    {' '}
+                    <TooltipIcon>
+                      <Trans>
+                        Disable bifield plotting when your temporary directory is on fast storage like SSD or you need lower per process RAM requirements. Plotting with bitfield enabled has about 20% less overall writes.
+                      </Trans>
+                    </TooltipIcon>
+                  </>
+                )}
+              />
+            </FormControl>
+          </Grid>
+          <Grid xs={12} item>
+            <FormControl
+              variant="filled"
+              fullWidth
+            >
+              <FormControlLabel
+                control={(
+                  <Checkbox
+                    name="excludeFinalDir"
+                  />
+                )}
+                label={(
+                  <>
+                    <Trans>
+                      Exclude final directory
+                    </Trans>
+                    {' '}
+                    <TooltipIcon>
+                      <Trans>
+                        Skips adding a final directory to harvester for farming
+                      </Trans>
+                    </TooltipIcon>
+                  </>
+                )}
               />
             </FormControl>
           </Grid>

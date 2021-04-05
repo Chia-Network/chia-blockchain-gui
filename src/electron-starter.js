@@ -25,7 +25,9 @@ if (!setupEvents.handleSquirrelEvent()) {
     const gotTheLock = app.requestSingleInstanceLock();
 
     if (!gotTheLock) {
+      console.log("Second instance. Quitting.");
       app.quit();
+      return false;
     } else {
       app.on('second-instance', (event, commandLine, workingDirectory) => {
         // Someone tried to run a second instance, we should focus our window.
@@ -37,6 +39,8 @@ if (!setupEvents.handleSquirrelEvent()) {
         }
       });
     }
+
+    return true;
   };
 
   const ensureCorrectEnvironment = () => {
@@ -44,150 +48,146 @@ if (!setupEvents.handleSquirrelEvent()) {
     if (!chiaEnvironment.guessPackaged() && !('VIRTUAL_ENV' in process.env)) {
       console.log("App must be installed or in venv");
       app.quit();
-    }    
+      return false;
+    }
+
+    return true;
   };
 
-  ensureSingleInstance();
-  ensureCorrectEnvironment();
+  let mainWindow = null;  
 
-  // this needs to happen early in startup so all processes share the same global config
-  chiaConfig.loadConfig(chiaEnvironment.getChiaVersion());
-  global.sharedObj = { local_test: local_test };
+  // if any of these checks return false, don't do any other initialization since the app is quitting
+  if (ensureSingleInstance() && ensureCorrectEnvironment()) {
+    // this needs to happen early in startup so all processes share the same global config
+    chiaConfig.loadConfig(chiaEnvironment.getChiaVersion());
+    global.sharedObj = { local_test: local_test };
 
-  const exitPyProc = e => {};
+    const exitPyProc = e => {};
 
-  app.on("will-quit", exitPyProc);
+    app.on("will-quit", exitPyProc);
 
-  /*************************************************************
-   * window management
-   *************************************************************/
+    /*************************************************************
+     * window management
+     *************************************************************/
+    let decidedToClose = false;
+    let isClosing = false;
 
-  let mainWindow = null;
-  let decidedToClose = false;
-  let isClosing = false;
-
-  const createWindow = () => {
-    decidedToClose = false;
-    mainWindow = new BrowserWindow({
-      width: 1200,
-      height: 1200,
-      minWidth: 500,
-      minHeight: 500,
-      backgroundColor: "#ffffff",
-      show: false,
-      webPreferences: {
-        preload: __dirname + "/preload.js",
-        nodeIntegration: true,
-        enableRemoteModule: true
-      }
-    });
-
-    if (dev_config.redux_tool) {
-      BrowserWindow.addDevToolsExtension(
-        path.join(os.homedir(), dev_config.redux_tool)
-      );
-    }
-
-    if (dev_config.react_tool) {
-      BrowserWindow.addDevToolsExtension(
-        path.join(os.homedir(), dev_config.react_tool)
-      );
-    }
-
-    var startUrl =
-      process.env.ELECTRON_START_URL ||
-      url.format({
-        pathname: path.join(__dirname, "/../build/index.html"),
-        protocol: "file:",
-        slashes: true
+    const createWindow = () => {
+      decidedToClose = false;
+      mainWindow = new BrowserWindow({
+        width: 1200,
+        height: 1200,
+        minWidth: 500,
+        minHeight: 500,
+        backgroundColor: "#ffffff",
+        show: false,
+        webPreferences: {
+          preload: __dirname + "/preload.js",
+          nodeIntegration: true,
+          enableRemoteModule: true
+        }
       });
 
-    mainWindow.loadURL(startUrl);
+      if (dev_config.redux_tool) {
+        BrowserWindow.addDevToolsExtension(
+          path.join(os.homedir(), dev_config.redux_tool)
+        );
+      }
 
-    mainWindow.once("ready-to-show", function() {
-      mainWindow.show();
-    });
+      if (dev_config.react_tool) {
+        BrowserWindow.addDevToolsExtension(
+          path.join(os.homedir(), dev_config.react_tool)
+        );
+      }
 
-    // don't show remote daeomn detials in the title bar
-    if (!chiaConfig.manageDaemonLifetime()) {
-      mainWindow.webContents.on('did-finish-load', () => {
-        mainWindow.setTitle(`${app.getName()} [${global.daemon_rpc_ws}]`);
+      var startUrl =
+        process.env.ELECTRON_START_URL ||
+        url.format({
+          pathname: path.join(__dirname, "/../build/index.html"),
+          protocol: "file:",
+          slashes: true
+        });
+
+      mainWindow.loadURL(startUrl);
+
+      mainWindow.once("ready-to-show", function() {
+        mainWindow.show();
       });
-    }
-    // Uncomment this to open devtools by default
-    // if (!guessPackaged()) {
-    //   mainWindow.webContents.openDevTools();
-    // }
-    mainWindow.on("close", e => {
-      // if the daemon isn't local we aren't going to try to start/stop it
-      if (decidedToClose || !chiaConfig.manageDaemonLifetime()) {
-        return;
+
+      // don't show remote daeomn detials in the title bar
+      if (!chiaConfig.manageDaemonLifetime()) {
+        mainWindow.webContents.on('did-finish-load', () => {
+          mainWindow.setTitle(`${app.getName()} [${global.daemon_rpc_ws}]`);
+        });
       }
-      e.preventDefault();
-      if (!isClosing) {
-          isClosing = true
-          var choice = dialog.showMessageBoxSync({
-            type: "question",
-            buttons: [i18n._(/*i18n*/{id: "No"}), i18n._(/*i18n*/{id: "Yes"})],
-            title: i18n._(/*i18n*/{id: "Confirm"}),
-            message:
-              i18n._(/*i18n*/{id: "Are you sure you want to quit? GUI Plotting and farming will stop."})
-          });
-          if (choice == 0) {
-            isClosing = false
-            return;
-          }
-          isClosing = false
-          decidedToClose = true;
-          mainWindow.webContents.send("exit-daemon");
-          mainWindow.setBounds({ height: 500, width: 500 });
-          ipcMain.on("daemon-exited", (event, args) => {
-            mainWindow.close();
-          });
-      }
-    });
-  };
+      // Uncomment this to open devtools by default
+      // if (!guessPackaged()) {
+      //   mainWindow.webContents.openDevTools();
+      // }
+      mainWindow.on("close", e => {
+        // if the daemon isn't local we aren't going to try to start/stop it
+        if (decidedToClose || !chiaConfig.manageDaemonLifetime()) {
+          return;
+        }
+        e.preventDefault();
+        if (!isClosing) {
+            isClosing = true;
+            var choice = dialog.showMessageBoxSync({
+              type: "question",
+              buttons: [i18n._(/*i18n*/{id: "No"}), i18n._(/*i18n*/{id: "Yes"})],
+              title: i18n._(/*i18n*/{id: "Confirm"}),
+              message:
+                i18n._(/*i18n*/{id: "Are you sure you want to quit? GUI Plotting and farming will stop."})
+            });
+            if (choice == 0) {
+              isClosing = false;
+              return;
+            }
+            isClosing = false;
+            decidedToClose = true;
+            mainWindow.webContents.send("exit-daemon");
+            mainWindow.setBounds({ height: 500, width: 500 });
+            ipcMain.on("daemon-exited", (event, args) => {
+              mainWindow.close();
+            });
+        }
+      });
+    };
 
-  const createMenu = () => {
-    const menu = Menu.buildFromTemplate(getMenuTemplate());
-    return menu;
-  };
+    const createMenu = () => {
+      return Menu.buildFromTemplate(getMenuTemplate());
+    };
 
-  const appReady = async () => {
-    app.applicationMenu = createMenu();
-    // if the daemon isn't local we aren't going to try to start/stop it
-    if (chiaConfig.manageDaemonLifetime()) {
-      chiaEnvironment.startChiaDaemon();
-    }
-    createWindow();
-  };
-
-  app.on("ready", appReady);
-
-  app.on("window-all-closed", () => {
-    app.quit();
-  });
-
-  app.on("activate", () => {
-    if (mainWindow === null) {
+    const appReady = async () => {
       createWindow();
-    }
-  });
+      app.applicationMenu = createMenu();
+      // if the daemon isn't local we aren't going to try to start/stop it
+      if (chiaConfig.manageDaemonLifetime()) {
+        chiaEnvironment.startChiaDaemon();
+      }
+    };
 
-  ipcMain.on("load-page", (event, arg) => {
-    mainWindow.loadURL(
-      require("url").format({
-        pathname: path.join(__dirname, arg.file),
-        protocol: "file:",
-        slashes: true
-      }) + arg.query
-    );
-  });
+    app.on("ready", appReady);
 
-  ipcMain.on("set-locale", (event, locale) => {
-    i18n.activate(locale || 'en');
-    app.applicationMenu = createMenu();
-  });
+    app.on("window-all-closed", () => {
+      app.quit();
+    });
+
+    ipcMain.on("load-page", (event, arg) => {
+      mainWindow.loadURL(
+        require("url").format({
+          pathname: path.join(__dirname, arg.file),
+          protocol: "file:",
+          slashes: true
+        }) + arg.query
+      );
+    });
+
+    ipcMain.on("set-locale", (event, locale) => {
+      i18n.activate(locale || 'en-US');
+      app.applicationMenu = createMenu();
+    });
+  }
 
   const getMenuTemplate = () => {
     const template = [
