@@ -378,53 +378,54 @@ export default function incomingReducer(
           ),
         };
       } else if (command === 'did_get_did') {
-        const { wallet_id, my_did: mydid, coin_id: didcoin } = data;
-        const { wallets, ...rest } = state;
-
-        return {
-          ...rest,
-          wallets: mergeArrayItem(
-            wallets,
-            (wallet: Wallet) => wallet.id === wallet_id,
-            {
-              mydid,
-              didcoin,
-            },
-          ),
-        };
+        const id = data.wallet_id;
+        const mydid = data.my_did;
+        wallets = state.wallets;
+        const wallet = wallets[Number.parseInt(id, 10)];
+        if (!wallet) {
+          return state;
+        }
+        wallet.mydid = mydid;
+        if (data.coin_id) {
+          const { coin_id } = data;
+          wallet.didcoin = coin_id;
+        }
+        return { ...state };
       } else if (command === 'did_get_recovery_list') {
-        const {
-          wallet_id,
-          recover_list: backup_dids,
-          num_required: dids_num_req,
-        } = data;
-        const { wallets, ...rest } = state;
-
-        return {
-          ...rest,
-          wallets: mergeArrayItem(
-            wallets,
-            (wallet: Wallet) => wallet.id === wallet_id,
-            {
-              backup_dids,
-              dids_num_req,
-            },
-          ),
-        };
-      } else if (command === 'did_create_attest') {
-        const { wallet_id, message_spend_bundle: did_attest } = data;
-        const { wallets, ...rest } = state;
-
-        return {
-          ...rest,
-          wallets: mergeArrayItem(
-            wallets,
-            (wallet: Wallet) => wallet.id === wallet_id,
-            {
-              did_attest,
-            },
-          ),
-        };
+        const id = data.wallet_id;
+        const dids = data.recover_list;
+        const dids_num_req = data.num_required;
+        wallets = state.wallets;
+        const wallet = wallets[Number.parseInt(id, 10)];
+        if (!wallet) {
+          return state;
+        }
+        wallet.backup_dids = dids;
+        wallet.dids_num_req = dids_num_req;
+        return { ...state };
+      } else if (command === 'did_create_backup_file') {
+        success = data.success;
+      } else if (command === 'did_get_information_needed_for_recovery') {
+        success = data.success;
+        const id = data.wallet_id;
+        const { my_did } = data;
+        const { coin_name } = data;
+        const { newpuzhash } = data;
+        const { pubkey } = data;
+        const { backup_dids } = data;
+        wallets = state.wallets;
+        const wallet = wallets[Number.parseInt(id, 10)];
+        if (!wallet) {
+          return state;
+        }
+        wallet.mydid = my_did;
+        wallet.didcoin = coin_name;
+        wallet.did_rec_puzhash = newpuzhash;
+        wallet.did_rec_pubkey = pubkey;
+        wallet.backup_dids = backup_dids;
+      } else if (command === 'did_recovery_spend') {
+        success = data.success;
+        console.log("INCOMING DATA REC SPEND")
       }
 
       if (command === 'state_changed' && data.state === 'tx_update') {

@@ -142,6 +142,18 @@ export default function CreateDIDWallet() {
       );
       return;
     }
+    if (
+      (data.amount) % 2 === 0
+    ) {
+      dispatch(
+        openDialog(
+          <AlertDialog>
+            <Trans>Amount must be an odd amount</Trans>
+          </AlertDialog>
+        ),
+      );
+      return;
+    }
     let amount_val = chia_to_mojo(parseInt(data.amount));
     let num_of_backup_ids_needed = data.num_needed;
     dispatch(createState(true, true));
