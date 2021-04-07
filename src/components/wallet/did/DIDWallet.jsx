@@ -310,9 +310,6 @@ const RecoveryCard = (props) => {
     setFiles([...files, acceptedFiles[0].path]);
   }
 
-  const testpubkey = "817ec0759fb181f90a94d9fc679906959991348bc0e7eaa4dbb4d8a007a1804d79999a865841dc383eaeb954c4b31479"
-  const testpuzhash = "fc34a72937dccd22a3bf2f3eb7f89f9fa683a855e4a3a8396058d555ce4152ae"
-
   function submit() {
     if (
       files.length < dids_num_req
