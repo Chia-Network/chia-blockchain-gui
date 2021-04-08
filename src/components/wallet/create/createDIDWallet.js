@@ -264,3 +264,4 @@ export default function CreateDIDWallet() {
       </form>
     </Flex>
   );
+}
