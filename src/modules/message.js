@@ -819,8 +819,12 @@ export const recover_did_action = (filename) => {
         if (response.data.success) {
           // Go to wallet
           dispatch(format_message('get_wallets', {}));
-          var id = response.data.wallet_id
-          dispatch(format_message('did_get_information_needed_for_recovery', {wallet_id: id}));
+          var id = response.data.wallet_id;
+          dispatch(
+            format_message('did_get_information_needed_for_recovery', {
+              wallet_id: id,
+            }),
+          );
           dispatch(showCreateBackup(false));
           dispatch(createState(true, false));
           dispatch(changeCreateWallet(ALL_OPTIONS));
@@ -887,45 +891,47 @@ export const did_get_recovery_list = (wallet_id) => {
   return action;
 };
 
-export const did_recovery_spend = (
-  wallet_id,
-  attest_filenames
-) => {
+export const did_recovery_spend = (wallet_id, attest_filenames) => {
   var action = walletMessage();
   action.message.command = 'did_recovery_spend';
   action.message.data = {
     wallet_id: wallet_id,
-    attest_filenames: attest_filenames
+    attest_filenames: attest_filenames,
   };
   return action;
 };
 
-export const did_recovery_spend_action = (
-  wallet_id,
-  attest_filenames
-) => {
+export const did_recovery_spend_action = (wallet_id, attest_filenames) => {
   return (dispatch) => {
-    return async_api(dispatch, did_recovery_spend(wallet_id, attest_filenames), true).then(
-      (response) => {
-        dispatch(closeProgress());
+    return async_api(
+      dispatch,
+      did_recovery_spend(wallet_id, attest_filenames),
+      true,
+    ).then((response) => {
+      dispatch(closeProgress());
+      dispatch(createState(true, false));
+      if (response.data.success) {
+        // Go to wallet
+        dispatch(format_message('get_wallets', {}));
+        var id = response.data.wallet_id;
+        dispatch(showCreateBackup(false));
         dispatch(createState(true, false));
-        if (response.data.success) {
-          // Go to wallet
-          dispatch(format_message('get_wallets', {}));
-          var id = response.data.wallet_id
-          dispatch(showCreateBackup(false));
-          dispatch(createState(true, false));
-          dispatch(changeCreateWallet(ALL_OPTIONS));
-        } else {
-          const error = response.data.error;
-          dispatch(openErrorDialog(error));
-        }
-      },
-    );
+        dispatch(changeCreateWallet(ALL_OPTIONS));
+      } else {
+        const error = response.data.error;
+        dispatch(openErrorDialog(error));
+      }
+    });
   };
 };
 
-export const did_create_attest = (wallet_id, filename, coin_name, pubkey, puzhash) => {
+export const did_create_attest = (
+  wallet_id,
+  filename,
+  coin_name,
+  pubkey,
+  puzhash,
+) => {
   var action = walletMessage();
   action.message.command = 'did_create_attest';
   action.message.data = {
@@ -953,4 +959,4 @@ export const did_get_recovery_info = (wallet_id) => {
   action.message.command = 'did_get_information_needed_for_recovery';
   action.message.data = { wallet_id: wallet_id };
   return action;
-}
+};
