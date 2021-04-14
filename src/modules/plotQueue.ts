@@ -8,7 +8,7 @@ import PlotStatus from '../constants/PlotStatus';
 import { stopService } from './daemon_messages';
 import { service_plotter } from '../util/service_names';
 
-const FINISHED_LOG_LINES = 2083;
+const FINISHED_LOG_LINES = 2630;
 
 export function plotQueueAdd(
   config: PlotAdd,
