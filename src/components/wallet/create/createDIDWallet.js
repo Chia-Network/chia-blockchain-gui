@@ -154,7 +154,7 @@ export default function CreateDIDWallet() {
       );
       return;
     }
-    let amount_val = chia_to_mojo(parseInt(data.amount));
+    let amount_val = chia_to_mojo(data.amount);
     let num_of_backup_ids_needed = data.num_needed;
     dispatch(createState(true, true));
     dispatch(create_did_action(amount_val, didArray, num_of_backup_ids_needed));
