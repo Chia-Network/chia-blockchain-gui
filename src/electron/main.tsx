@@ -1,8 +1,10 @@
 import { app, dialog, shell, ipcMain, BrowserWindow, Menu } from 'electron';
 import path from 'path';
+import React from 'react';
 import url from 'url';
 import os from 'os';
-import openAboutWindow from 'about-window';
+import ReactDOMServer from 'react-dom/server';
+import { ServerStyleSheet } from 'styled-components';
 //handle setupevents as quickly as possible
 import '../config/env';
 import handleSquirrelEvent from './handleSquirrelEvent';
@@ -11,7 +13,26 @@ import dev_config from '../dev_config';
 import chiaEnvironment from '../util/chiaEnvironment';
 import chiaConfig from '../util/config';
 import i18n from '../config/locales';
-import icon from '../assets/img/chia_circle.png';
+import About from '../components/about/About';
+import packageJson from '../../package.json';
+
+console.log('packageJson', packageJson);
+
+function renderAbout() {
+  const css = new ServerStyleSheet();
+  const about = ReactDOMServer.renderToStaticMarkup(css.collectStyles((
+    <About 
+      packageJson={packageJson}
+      versions={process.versions}
+      version={app.getVersion()}
+    />
+  )));
+
+  return about.replace('{{CSS}}', css.getStyleTags());
+}
+
+const about = renderAbout();
+console.log('about', about);
 
 const { local_test } = config;
 
@@ -367,15 +388,11 @@ if (!handleSquirrelEvent()) {
         submenu: [
           {
             label: i18n._(/*i18n*/ { id: 'About Chia Blockchain' }),
-            click: () =>
-              openAboutWindow({
-                homepage: 'https://www.chia.net/',
-                bug_report_url:
-                  'https://github.com/Chia-Network/chia-blockchain/issues',
-                icon_path: path.join(__dirname, icon),
-                copyright: 'Copyright (c) 2021 Chia Network',
-                license: 'Apache 2.0',
-              }),
+            click: () => {
+              const aboutWindow = new BrowserWindow({ width: 400, height: 400 });
+              aboutWindow.loadURL(`data:text/html;charset=utf-8,${about}`);
+              aboutWindow.setAlwaysOnTop(true);
+            },
           },
           {
             type: 'separator',
@@ -460,15 +477,10 @@ if (!handleSquirrelEvent()) {
         },
         {
           label: i18n._(/*i18n*/ { id: 'About Chia Blockchain' }),
-          click: () =>
-            openAboutWindow({
-              homepage: 'https://www.chia.net/',
-              bug_report_url:
-                'https://github.com/Chia-Network/chia-blockchain/issues',
-              icon_path: path.join(__dirname, icon),
-              copyright: 'Copyright (c) 2021 Chia Network',
-              license: 'Apache 2.0',
-            }),
+          click() {
+            const aboutWindow = new BrowserWindow({ width: 400, height: 400 });
+            aboutWindow.loadURL(`data:text/html;charset=utf-8,${about}`);
+          },
         },
       );
     }
