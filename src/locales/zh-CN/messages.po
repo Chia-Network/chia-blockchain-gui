@@ -69,7 +69,7 @@ msgstr "添加农田文件目录"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:44
 msgid "Add Plot to Queue"
-msgstr "在队列中加入一个绘图作业"
+msgstr "将农田开荒作业加入队列"
 
 #: src/components/wallet/Wallets.tsx:81
 msgid "Add Wallet"
@@ -80,11 +80,11 @@ msgstr "添加钱包"
 #: src/components/plot/add/PlotAdd.tsx:55
 #: src/components/plot/overview/PlotOverviewHero.tsx:29
 msgid "Add a Plot"
-msgstr "添加Plot文件"
+msgstr "添加P农田文件"
 
 #: src/components/plot/PlotAddDirectoryDialog.tsx:40
 msgid "Add a plot"
-msgstr "增加一个农田文件"
+msgstr "增加农田文件"
 
 #: src/components/plot/PlotAddDirectoryDialog.tsx:69
 msgid "Add plot directory"
@@ -121,7 +121,7 @@ msgstr "初始币的数目"
 #: src/components/plot/PlotAction.tsx:25
 #: src/components/plot/queue/PlotQueueActions.tsx:27
 msgid "Are you sure you want to delete the plot? The plot cannot be recovered."
-msgstr "你确定要删除这个绘图文件吗？删除后将不可恢复"
+msgstr "你确定要删除这个农田吗？删除后将不可恢复"
 
 #: src/components/fullNode/FullNodeCloseConnection.tsx:23
 msgid "Are you sure you want to disconnect?"
@@ -129,7 +129,7 @@ msgstr "确定要断开连接吗?"
 
 #: src/electron/main.tsx:164
 msgid "Are you sure you want to quit? GUI Plotting and farming will stop."
-msgstr "确定要退出吗? 当前正在绘图中."
+msgstr "确定要退出吗? 当前正在开垦农田中."
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:31
 #~ msgid "Are you sure you want to use k={plotSize}"
@@ -188,7 +188,7 @@ msgstr "Chia 区块链上高度为 {0} 的区块"
 
 #: src/components/fullNode/FullNode.jsx:331
 #~ msgid "Block hash"
-#~ msgstr ""
+#~ msgstr "区块哈希"
 
 #: src/components/block/Block.jsx:126
 msgid "Block with hash {headerHash}"
@@ -249,7 +249,7 @@ msgstr "取消与花费"
 
 #: src/components/plot/PlotsNotFound.tsx:26
 msgid "Caution, deleting these plots will delete them forever. Check that the storage devices are properly connected."
-msgstr "注意，删除这些绘图的操作是永久的。请检查存储设备连接正常。"
+msgstr "注意，删除这些农田的操作是永久的。请检查存储设备连接正常。"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:13
 msgid "Challenge"
@@ -277,11 +277,11 @@ msgstr "Chia钱包"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:13
 msgid "Choose Number of Plots"
-msgstr "选择要拓荒的数量"
+msgstr "选择要开荒的数量"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:54
 msgid "Choose Plot Size"
-msgstr "选择Plot文件大小"
+msgstr "选择农田文件大小"
 
 #: src/components/plot/PlotAddDirectoryDialog.tsx:76
 #: src/components/plot/queue/PlotQueueLogDialog.tsx:48
@@ -410,7 +410,7 @@ msgstr "创建一个出价"
 
 #: src/components/plot/add/PlotAdd.tsx:67
 msgid "Create Plot"
-msgstr "创建绘图"
+msgstr "开垦农田"
 
 #: src/components/wallet/create/createRLAdmin.jsx:198
 msgid "Create Rate Limited Admin Wallet"
@@ -426,13 +426,13 @@ msgstr "创建费用限定型用户钱包"
 
 #: src/components/trading/CreateOffer.jsx:146
 msgid "Create Trade Offer"
-msgstr "创建一个交易出价"
+msgstr "发起交易出价"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:396
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:729
 #: src/components/wallet/standard/WalletStandard.tsx:312
 msgid "Create Transaction"
-msgstr "创建交易"
+msgstr "发起交易"
 
 #: src/components/backup/BackupCreate.tsx:58
 msgid "Create a Backup"
@@ -512,7 +512,7 @@ msgstr "删除"
 #: src/components/plot/PlotAction.tsx:24
 #: src/components/plot/queue/PlotQueueActions.tsx:26
 msgid "Delete Plot"
-msgstr "删除Plot文件"
+msgstr "删除农田"
 
 #: src/components/selectKey/SelectKey.tsx:53
 #: src/components/selectKey/SelectKey.tsx:122
@@ -567,7 +567,7 @@ msgstr "分布式身份选项"
 #: src/components/farm/overview/FarmOverviewHero.tsx:41
 #: src/components/plot/overview/PlotOverviewHero.tsx:35
 msgid "Do you have existing plots on this machine? <0>Add Plot Directory</0>"
-msgstr "你的机器上有已经完成的绘图文件吗？ <0>添加绘图文件路径</0>"
+msgstr "你的机器上有已经完成的农田文件吗？ <0>添加农田文件路径</0>"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:30
 msgid "Does your machine support parallel plotting?"
@@ -628,7 +628,7 @@ msgstr "排除最终目录"
 
 #: src/components/plot/PlotsFailed.tsx:24
 msgid "Failed to open (invalid plots)"
-msgstr "打开失败（绘图无效）"
+msgstr "打开失败（农田无效）"
 
 #: src/components/dashboard/DashboardSideBar.tsx:26
 #: src/components/wallet/coloured/WalletColoured.tsx:430
@@ -638,7 +638,7 @@ msgstr "农场"
 
 #: src/components/block/Block.jsx:249
 msgid "Farmer Puzzle Hash"
-msgstr "农场谜语哈希"
+msgstr "农场解谜哈希"
 
 #: src/components/farm/FarmManageFarmingRewards.tsx:95
 msgid "Farmer Reward Address"
@@ -656,7 +656,7 @@ msgstr "耕种节点没有运行"
 
 #: src/components/farm/overview/FarmOverviewHero.tsx:27
 msgid "Farmers earn block rewards and transaction fees by committing spare space to the network to help secure transactions. This is where your farm will be once you add a plot. <0>Learn more</0>"
-msgstr "农民们通过贡献自己的空余存储空间, 可以帮助提高整个网络的安全性, 进而获得区块奖励和交易费用的奖励. 农地越多奖励越多.<0>了解更多</0>"
+msgstr "农民们通过贡献自己的空余存储空间, 可以帮助提高整个网络的安全性, 进而获得区块奖励和交易费用的奖励. 农田越多奖励越多.<0>了解更多</0>"
 
 #: src/components/farm/Farm.tsx:15
 #: src/components/farm/FarmerStatus.tsx:27
@@ -701,7 +701,7 @@ msgstr "费用数据"
 
 #: src/components/block/Block.jsx:313
 #~ msgid "Fees Puzzle Hash"
-#~ msgstr ""
+#~ msgstr "费用解谜哈希"
 
 #: src/electron/main.tsx:211
 #: src/electron/main.tsx:399
@@ -952,7 +952,7 @@ msgstr "网络名称"
 
 #: src/components/fullNode/FullNode.jsx:106
 #~ msgid "Network has not yet been launched, once it launches full node will start automatically."
-#~ msgstr "Network has not yet been launched, once it launches full node will start automatically."
+#~ msgstr "网络尚未发布。全节点将在其发布后自动启动。"
 
 #: src/components/app/AppRouter.tsx:24
 #~ msgid "Network not launched yet, waiting for genesis challenge!"
@@ -1006,7 +1006,7 @@ msgstr "节点ID"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:44
 msgid "None of your plots have passed the plot filter yet."
-msgstr "你的农地还没有通过过滤器检查."
+msgstr "你的农田还没有通过过滤器检查."
 
 #: src/components/farm/FarmerStatus.tsx:29
 #: src/components/farm/card/FarmCardNotAvailable.tsx:8
@@ -1035,11 +1035,11 @@ msgstr "未连接"
 
 #: src/components/plot/PlotsNotFound.tsx:24
 msgid "Not found Plots"
-msgstr "未找到绘图"
+msgstr "未找到农田"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:92
 msgid "Number of buckets"
-msgstr "桶的数量"
+msgstr "桶数量"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:83
 msgid "Number of threads"
@@ -1163,7 +1163,7 @@ msgstr "请指定临时目录"
 
 #: src/components/plot/Plot.tsx:13
 msgid "Plot"
-msgstr "耕地"
+msgstr "农田"
 
 #: src/components/farm/card/FarmCardPlotCount.tsx:7
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:18
@@ -1180,7 +1180,7 @@ msgstr "农田密钥"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:43
 #~ msgid "Plot Name"
-#~ msgstr ""
+#~ msgstr "农田名称"
 
 #: src/components/block/Block.jsx:241
 msgid "Plot Public Key"
@@ -1188,7 +1188,7 @@ msgstr "农田公钥"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:49
 #~ msgid "Plot Seed"
-#~ msgstr ""
+#~ msgstr "农田种子"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:66
 msgid "Plot Size"
@@ -1196,7 +1196,7 @@ msgstr "农田大小"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:43
 msgid "Plot in Parallel"
-msgstr "并发拓荒"
+msgstr "并发开垦"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:26
 msgid "Plot is duplicate of {0}"
@@ -1216,15 +1216,15 @@ msgstr "农地就是在你的硬盘上分配的一块空间,用来收获Chia.<0>
 
 #: src/components/plot/queue/PlotQueueIndicator.tsx:8
 msgid "Plotting"
-msgstr "正在耕地"
+msgstr "正在开垦农田"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:35
 msgid "Plotting in parallel can save time. Otherwise, add plot(s) to the queue."
-msgstr "并发拓荒可以有效节省拓荒时间但对系统资源要求很高. 系统硬件不够的话建议选择按队列顺序拓荒."
+msgstr "并发开垦可以有效节省开垦时间但对系统资源要求很高. 系统硬件不够的话建议选择按队列顺序开垦."
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:114
 msgid "Plotting with bitfield enabled has about 30% less overall writes and is now almost always faster. You may see reduced memory requirements with bitfield plotting disabled. If your CPU design is from before 2010 you may have to disbale bitfield plotting."
-msgstr "在耕地时启用bitfield会减少约30%的磁盘写入，而且几乎总是更快。但如果您在耕地时禁用bitfield，所需内存则可能会减少。如果您的CPU是2010年以前的老款，您可能必须禁用bitfield耕地。"
+msgstr "在开垦农田时启用bitfield会减少约30%的磁盘写入，而且几乎总是更快。但如果您在耕地时禁用bitfield，所需内存则可能会减少。如果您的CPU是2010年以前的老款，您可能必须禁用bitfield耕地。"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:55
 msgid "Pool Key"
@@ -1435,11 +1435,11 @@ msgstr "选择钱包类别"
 
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:31
 msgid "Select the final destination for the folder where you would like the plot to be stored. We recommend you use a large slow hard drive (like external HDD)."
-msgstr "选择您希望保存绘图文件的最终目录。我们建议您使用大容量、慢速的硬盘（比如外置机械硬盘）"
+msgstr "选择您希望保存农田文件的最终目录。我们建议您使用大容量、慢速的硬盘（比如外置机械硬盘）"
 
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:41
 msgid "Select the temporary destination for the folder where you would like the plot to be stored. We recommend you use a fast SSD."
-msgstr "选择您希望保存绘图文件的临时目录。我们建议您使用快速的固态硬盘。"
+msgstr "选择您希望保存农田文件的临时目录。我们建议您使用快速的固态硬盘。"
 
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:52
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:63
@@ -1486,7 +1486,7 @@ msgstr "登录"
 
 #: src/components/backup/BackupRestore.tsx:122
 #~ msgid "Skip"
-#~ msgstr ""
+#~ msgstr "跳过"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:129
 #~ msgid "Skips adding [final dir] to harvester for farming"
@@ -1633,7 +1633,7 @@ msgstr "你的农场连接的全节点如下.<0>了解更多</0>"
 #: src/components/plot/add/PlotAddChooseSize.tsx:30
 #: src/components/plot/add/PlotAddChooseSize.tsx:74
 msgid "The minimum required size for mainnet is k=32"
-msgstr "主网要求的最小绘图大小为k=32"
+msgstr "主网要求的最小农田大小为k=32"
 
 #: src/components/fullNode/FullNode.jsx:124
 msgid "The node is not synced"
@@ -1661,7 +1661,7 @@ msgstr "本区块上奖励给农夫的全部交易费用."
 
 #: src/components/plot/PlotsFailed.tsx:26
 msgid "These plots are invalid, you might want to delete them."
-msgstr "这些绘图无效，你可能想要删除它们。"
+msgstr "这些农田无效，你可能想要删除它们。"
 
 #: src/components/plot/PlotAddDirectoryDialog.tsx:44
 msgid "This allows you to add a directory that has plots in it. If you have not created any plots, go to the plotting screen."
@@ -1912,7 +1912,7 @@ msgstr "想要赚更多奇亚吗? 那就给你的农场多加一些农田吧."
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:53
 msgid "Want to have a delay before the next plot starts?"
-msgstr "想要在下一次绘图开始前等待一会？"
+msgstr "想要在开垦下一块农田前等待一会？"
 
 #: src/components/block/Block.jsx:195
 msgid "Weight"
@@ -1954,7 +1954,7 @@ msgstr "是"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:56
 msgid "You do not need to be synched or connected to plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
-msgstr "不需要同步或者连接到网络节点就可以拓荒, 注意在拓荒过程中产生的临时文件尺寸会大于最终的农田大小, 请确认你有足够的存储空间. <0>了解更多</0>"
+msgstr "不需要同步或者连接到网络节点就可以开垦农田, 注意在开垦过程中产生的临时文件尺寸会大于最终的农田大小, 请确认你有足够的存储空间. <0>了解更多</0>"
 
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:34
 #~ msgid "You have {0}% of the space on the network, so farming a block will take {expectedTimeToWin} in expectation."
