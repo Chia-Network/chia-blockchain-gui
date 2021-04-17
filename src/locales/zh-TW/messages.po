@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh_TW\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-04-07 03:52\n"
+"PO-Revision-Date: 2021-04-15 08:00\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -20,7 +20,7 @@ msgstr ""
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:39
 msgid "*Want to explore Chia’s blocks further? Check out <0>Chia Explorer</0> built by an open source developer."
-msgstr "＊想更進一步探索 Chia 區塊鍵？看看開源開發者打造的 <0>Chia Explorer</0>。"
+msgstr "＊想更進一步探索 Chia 區塊鍵？看看開源開發者打造的 <0>Chia Explorer</0>"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:94
 #~ msgid "0 automatically chooses bucket count"
@@ -290,7 +290,7 @@ msgstr "關閉"
 
 #: src/components/app/AppRouter.tsx:18
 msgid "Closing down node and server"
-msgstr "關閉此節點和伺服器"
+msgstr "關閉節點和伺服器"
 
 #: src/components/trading/TradingOverview.jsx:376
 msgid "Coins:"
@@ -366,7 +366,7 @@ msgstr "連線狀態："
 
 #: src/components/fullNode/FullNodeConnections.tsx:50
 msgid "Connection type"
-msgstr "連線類別"
+msgstr "連線類型"
 
 #: src/components/fullNode/FullNodeConnections.tsx:73
 msgid "Connections"
@@ -546,7 +546,7 @@ msgstr "難度"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:114
 #~ msgid "Disable bifield plotting when your temporary directory is on fast storage like SSD or you need lower per process RAM requirements. Plotting with bitfield enabled has about 20% less overall writes."
-#~ msgstr "若你的暫存目錄位於高速儲存設備如固態硬碟 SSD ，或你需要降低每個執行序的記憶體需求，禁用 bitfield 耕地。啟用 bitfield 耕地可以減少約 20％總寫入量。"
+#~ msgstr ""
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:109
 msgid "Disable bitfield plotting"
@@ -567,7 +567,7 @@ msgstr "分散式識別選項"
 #: src/components/farm/overview/FarmOverviewHero.tsx:41
 #: src/components/plot/overview/PlotOverviewHero.tsx:35
 msgid "Do you have existing plots on this machine? <0>Add Plot Directory</0>"
-msgstr "你有已存在的耕地在本機上？ <0>加入耕地目錄</0>"
+msgstr "你有已存在的耕地在本機上？ <0>增加耕地資料夾</0>"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:30
 msgid "Does your machine support parallel plotting?"
@@ -607,7 +607,7 @@ msgstr "錯誤：不能發送 Chia 到有色地址。請輸入 Chia 地址。"
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:32
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:34
 msgid "Estimated Time to Win"
-msgstr ""
+msgstr "估計贏取時間"
 
 #: src/components/fullNode/FullNode.jsx:197
 msgid "Estimated network space"
@@ -615,7 +615,7 @@ msgstr "估計的網路空間"
 
 #: src/components/fullNode/FullNode.jsx:200
 msgid "Estimated sum of all the plotted disk space of all farmers in the network"
-msgstr "網路中所有塊農的所有已耕地磁碟空間的估計總和"
+msgstr "網路中所有農夫的所有耕地磁盤空間估計總和"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:124
 msgid "Exclude final directory"
@@ -624,11 +624,11 @@ msgstr "排除最終資料夾"
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:32
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:34
 #~ msgid "Expected Time to Win"
-#~ msgstr "預計贏取時間"
+#~ msgstr ""
 
 #: src/components/plot/PlotsFailed.tsx:24
 msgid "Failed to open (invalid plots)"
-msgstr "打開失敗 (無效耕地)"
+msgstr "開啟失敗（無效耕地）"
 
 #: src/components/dashboard/DashboardSideBar.tsx:26
 #: src/components/wallet/coloured/WalletColoured.tsx:430
@@ -638,7 +638,7 @@ msgstr "耕種"
 
 #: src/components/block/Block.jsx:249
 msgid "Farmer Puzzle Hash"
-msgstr "塊農拼圖雜湊值"
+msgstr "農夫拼圖雜湊值"
 
 #: src/components/farm/FarmManageFarmingRewards.tsx:95
 msgid "Farmer Reward Address"
@@ -656,7 +656,7 @@ msgstr "塊農未運作"
 
 #: src/components/farm/overview/FarmOverviewHero.tsx:27
 msgid "Farmers earn block rewards and transaction fees by committing spare space to the network to help secure transactions. This is where your farm will be once you add a plot. <0>Learn more</0>"
-msgstr "塊農可通過在網路上承諾閒置的空間來幫助保護交易，從而獲得區塊獎勵和交易費。這就是新增耕地後耕種的地方。　<0>了解詳情</0>"
+msgstr "農夫可通過提交閒置空間到網路上來幫助保護交易，從而獲得區塊獎勵和交易費。這便是新增耕地後耕種的地方。<0>了解詳情</0>"
 
 #: src/components/farm/Farm.tsx:15
 #: src/components/farm/FarmerStatus.tsx:27
@@ -742,7 +742,7 @@ msgstr "完整節點狀態"
 
 #: src/electron/main.tsx:287
 msgid "Full Screen"
-msgstr "全螢幕"
+msgstr "全畫面"
 
 #: src/components/wallet/create/createNewColouredCoin.jsx:106
 msgid "Generate New Colour"
@@ -774,7 +774,7 @@ msgstr "高度"
 msgid "Help"
 msgstr "幫助"
 
-#: src/components/core/components/LocaleToggle/LocaleToggle.tsx:61
+#: src/components/core/components/LocaleToggle/LocaleToggle.tsx:62
 msgid "Help translate"
 msgstr "協助翻譯"
 
@@ -879,7 +879,7 @@ msgstr "載入中..."
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:80
 msgid "Local Harvester Plots"
-msgstr "本地耕地收割機"
+msgstr "本地端收割機用耕地"
 
 #: src/components/app/AppRouter.tsx:28
 msgid "Logging in"
@@ -1050,7 +1050,7 @@ msgstr "執行緒數："
 
 #: src/components/core/components/ConfirmDialog/ConfirmDialog.tsx:51
 msgid "OK"
-msgstr "可以"
+msgstr "好"
 
 #: src/components/trading/ViewOffer.jsx:71
 msgid "Offer"
@@ -1078,12 +1078,12 @@ msgstr "峰值時間"
 
 #: src/components/wallet/WalletHistory.tsx:41
 msgid "Pending"
-msgstr "未結"
+msgstr "待確認中"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:604
 #: src/components/wallet/standard/WalletStandard.tsx:223
 msgid "Pending Balance"
-msgstr "未結餘額"
+msgstr "待確認中餘額"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:613
 #: src/components/wallet/standard/WalletStandard.tsx:228
@@ -1093,7 +1093,7 @@ msgstr "未結更動"
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:595
 #: src/components/wallet/standard/WalletStandard.tsx:218
 msgid "Pending Total Balance"
-msgstr "未結總餘額"
+msgstr "待確認中總餘額"
 
 #: src/components/trading/CreateOffer.jsx:109
 msgid "Please add a trade pair"
@@ -1227,7 +1227,7 @@ msgstr "平行規劃耕地可節省時間。若不，新增耕地至隊列。"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:114
 msgid "Plotting with bitfield enabled has about 30% less overall writes and is now almost always faster. You may see reduced memory requirements with bitfield plotting disabled. If your CPU design is from before 2010 you may have to disbale bitfield plotting."
-msgstr ""
+msgstr "以 bitfield 規劃耕地可以減少約 30％ 的總寫入量，而現在也都幾乎比較快。 關閉 Bitfield 規劃耕地的話有可能降低記憶體需求。如果你的 CPU 設計是 2010 年以前的話很有可能需要關閉 bitfield 規劃耕地。"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:55
 msgid "Pool Key"
@@ -1360,7 +1360,7 @@ msgstr "刷新耕地"
 
 #: src/electron/main.tsx:325
 msgid "Release Notes"
-msgstr "版本注釋"
+msgstr "發行說明"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:206
 msgid "Rename"
@@ -1627,7 +1627,7 @@ msgstr "暫存資料夾位置"
 
 #: src/components/app/AppTimeBomb.tsx:28
 msgid "The application will stop working at block height 193536."
-msgstr ""
+msgstr "這個應用程式會在區塊高度 193536 時停止運作。"
 
 #: src/components/farm/FarmFullNodeConnections.tsx:58
 msgid "The full node that your farmer is connected to is below. <0>Learn more</0>"
@@ -1664,11 +1664,11 @@ msgstr "在這個區塊的總交易費用。是獎勵給塊農的。"
 
 #: src/components/plot/PlotsFailed.tsx:26
 msgid "These plots are invalid, you might want to delete them."
-msgstr "這些農田區是無效的，你可能想要刪除他們。"
+msgstr "這些耕地是無效的，你可能想要刪除他們。"
 
 #: src/components/plot/PlotAddDirectoryDialog.tsx:44
 msgid "This allows you to add a directory that has plots in it. If you have not created any plots, go to the plotting screen."
-msgstr "這允許你增加已存有耕地的資料夾。如果你還沒建立任何的耕地，去規劃耕地畫面吧。"
+msgstr "這允許你增加已存有耕地的資料夾。如果你還沒建立任何的耕地，去耕地規劃畫面吧。"
 
 #: src/components/trading/CreateOffer.jsx:132
 #: src/hooks/useSelectDirectory.tsx:26
@@ -1726,7 +1726,7 @@ msgstr "此貿易已包含在區塊鏈中的這個區塊高度"
 
 #: src/components/app/AppTimeBombAlert.tsx:11
 msgid "This version of Chia is no longer compatible with the blockchain and can not safely farm."
-msgstr ""
+msgstr "此版本的 Chia 不再與區塊鏈相容，因此無法安全地進行耕種。"
 
 #: src/components/fullNode/FullNode.jsx:86
 msgid "Time Created"
@@ -1768,23 +1768,23 @@ msgstr "總耕地大小："
 
 #: src/components/farm/card/FarmCardTotalSizeOfPlots.tsx:8
 msgid "Total Size of Plots"
-msgstr "總農田區大小"
+msgstr "總耕地大小"
 
 #: src/components/block/Block.jsx:217
 msgid "Total VDF Iterations"
-msgstr "總 VDF 疊代"
+msgstr "總 VDF 疊代次數"
 
 #: src/components/fullNode/FullNode.jsx:193
 msgid "Total iterations since the start of the blockchain"
-msgstr "從起始區塊鏈後的總疊代次數"
+msgstr "從區塊鏈開始後的總疊代次數"
 
 #: src/components/dashboard/DashboardSideBar.tsx:27
 msgid "Trade"
-msgstr "貿易"
+msgstr "交易"
 
 #: src/components/trading/TradingOverview.jsx:360
 msgid "Trade Details"
-msgstr "貿易明細"
+msgstr "交易明細"
 
 #: src/components/trading/TradingOverview.jsx:125
 msgid "Trade ID"
@@ -1943,7 +1943,7 @@ msgstr "視窗"
 
 #: src/components/farm/card/FarmCardBlockRewards.tsx:18
 msgid "Without fees"
-msgstr "不用費用"
+msgstr "未計雜費"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:30
 #: src/components/trading/TradingOverview.jsx:212
@@ -1961,7 +1961,7 @@ msgstr "你不需要同步或連線後才能規劃耕地。規劃耕地時所產
 
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:34
 #~ msgid "You have {0}% of the space on the network, so farming a block will take {expectedTimeToWin} in expectation."
-#~ msgstr "你擁有網路 {0}%的空間，因此耕種一區塊將預期使用 {expectedTimeToWin} 的時間。"
+#~ msgstr ""
 
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:34
 msgid "You have {0}% of the space on the network, so farming a block will take {expectedTimeToWin} in expectation. Actual results may take 3 to 4 times longer than this estimate."
@@ -1969,15 +1969,15 @@ msgstr ""
 
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:34
 #~ msgid "You have {0}% of the space on the network, so farming a block will take {expectedTimeToWin} in expectation. Actual results may take 3-4 times longer - actual results may be 3x this estimate.<0>Learn about Expected Value</0>"
-#~ msgstr ""
+#~ msgstr "You have {0}% of the space on the network, so farming a block will take {expectedTimeToWin} in expectation. Actual results may take 3-4 times longer - actual results may be 3x this estimate.<0>Learn about Expected Value</0>"
 
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:34
 #~ msgid "You have {0}% of the space on the network, so farming a block will take {expectedTimeToWin} in expectation. Actual results may take 3-4 times longer this estimate. <0>Learn about Expected Value</0>"
-#~ msgstr ""
+#~ msgstr "You have {0}% of the space on the network, so farming a block will take {expectedTimeToWin} in expectation. Actual results may take 3-4 times longer this estimate. <0>Learn about Expected Value</0>"
 
 #: src/components/app/AppTimeBomb.tsx:28
 #~ msgid "You need to upgrade the Chia application as this version will stop working soon!"
-#~ msgstr ""
+#~ msgstr "You need to upgrade the Chia application as this version will stop working soon!"
 
 #: src/components/farm/overview/FarmOverview.tsx:24
 msgid "Your Farm Overview"

@@ -8,7 +8,7 @@ msgstr ""
 "Language: vi_VN\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-04-07 09:51\n"
+"PO-Revision-Date: 2021-04-15 13:36\n"
 "Last-Translator: \n"
 "Language-Team: Vietnamese\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -32,10 +32,10 @@ msgstr "128 nhóm được khuyến nghị"
 
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:58
 msgid "A harvester is a service running on a machine where plot(s) are actually stored. A farmer and harvester talk to a full node to see the state of the chain. View your network of connected harvesters below Learn more"
-msgstr "Harvester là một dịch vụ chạy trên một  máy chứa các tệp plot  . Một farmer và harvester tương tác với một nút đầy đủ để xác định trạng thái của chuỗi. Xem các harvester được kết nối của bạn dưới đây Tìm hiểu thêm"
+msgstr "Harvester là một dịch vụ chạy trên một  máy chứa các tệp plot. Một farmer và harvester tương tác với một nút đầy đủ để xác định trạng thái của chuỗi. Xem các harvester được kết nối của bạn dưới đây Tìm hiểu thêm"
 
-#: src/electron-starter.js:362
-#: src/electron-starter.js:455
+#: src/electron/main.tsx:366
+#: src/electron/main.tsx:444
 msgid "About Chia Blockchain"
 msgstr "Về Chia Blockchain"
 
@@ -127,7 +127,7 @@ msgstr "Bạn có muốn xoá plot ? Plot sẽ không thể khôi phục."
 msgid "Are you sure you want to disconnect?"
 msgstr "Bạn có muốn ngắt kết nối?"
 
-#: src/electron-starter.js:140
+#: src/electron/main.tsx:164
 msgid "Are you sure you want to quit? GUI Plotting and farming will stop."
 msgstr "Bạn có muốn thoát? GUI Plotting và farming sẽ dừng."
 
@@ -259,15 +259,15 @@ msgstr "Challenge"
 msgid "Challenge Hash"
 msgstr "Challenge Hash"
 
-#: src/electron-starter.js:341
+#: src/electron/main.tsx:346
 msgid "Chat on KeyBase"
 msgstr "Chat trên Keybase"
 
-#: src/electron-starter.js:359
+#: src/electron/main.tsx:363
 msgid "Chia"
 msgstr "Chia"
 
-#: src/electron-starter.js:298
+#: src/electron/main.tsx:313
 msgid "Chia Blockchain Wiki"
 msgstr "Chia Blockchain Wiki"
 
@@ -321,7 +321,7 @@ msgstr " Coin sắc tố"
 msgid "Coloured Coin Options"
 msgstr "Tuỳ chọn coin sắc tố"
 
-#: src/electron-starter.js:138
+#: src/electron/main.tsx:162
 msgid "Confirm"
 msgstr "Xác nhận"
 
@@ -372,7 +372,7 @@ msgstr "Kiểu kết nối"
 msgid "Connections"
 msgstr "Các kết nối"
 
-#: src/electron-starter.js:322
+#: src/electron/main.tsx:331
 msgid "Contribute on GitHub"
 msgstr "Đóng góp qua GitHub"
 
@@ -531,11 +531,11 @@ msgstr "Xóa tất cả các khóa sẽ xóa vĩnh viễn các khóa khỏi máy
 msgid "Deleting the key will permanently remove the key from your computer, make sure you have backups. Are you sure you want to continue?"
 msgstr "Xóa khóa sẽ xóa vĩnh viễn khóa khỏi máy tính của bạn, hãy đảm bảo rằng bạn có các bản sao lưu. Bạn có chắc chắn muốn tiếp tục không?"
 
-#: src/electron-starter.js:244
+#: src/electron/main.tsx:260
 msgid "Developer"
 msgstr "Nhà phát triển"
 
-#: src/electron-starter.js:247
+#: src/electron/main.tsx:263
 msgid "Developer Tools"
 msgstr "Công cụ nhà phát triển"
 
@@ -545,8 +545,8 @@ msgid "Difficulty"
 msgstr "Độ khó"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:114
-msgid "Disable bifield plotting when your temporary directory is on fast storage like SSD or you need lower per process RAM requirements. Plotting with bitfield enabled has about 20% less overall writes."
-msgstr "Tắt tính năng ploting bifield khi thư mục tạm thời của bạn được lưu trữ nhanh như SSD hoặc bạn cần yêu cầu RAM thấp hơn cho mỗi quá trình. Vẽ plot với bifield được kích hoạt có tổng số lần ghi ít hơn khoảng 20%."
+#~ msgid "Disable bifield plotting when your temporary directory is on fast storage like SSD or you need lower per process RAM requirements. Plotting with bitfield enabled has about 20% less overall writes."
+#~ msgstr ""
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:109
 msgid "Disable bitfield plotting"
@@ -582,7 +582,7 @@ msgstr "Kéo và thả tệp đề nghị"
 msgid "Drag and drop your backup file"
 msgstr "Kéo và thả tệp sao lưu của bạn"
 
-#: src/electron-starter.js:203
+#: src/electron/main.tsx:219
 msgid "Edit"
 msgstr "Chỉnh sửa"
 
@@ -604,6 +604,11 @@ msgstr "Lỗi"
 msgid "Error: Cannot send chia to coloured address. Please enter a chia address."
 msgstr "Lỗi: Không thể gửi chia đến địa chỉ coloured. Vui lòng nhập địa chỉ chia."
 
+#: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:32
+#: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:34
+msgid "Estimated Time to Win"
+msgstr ""
+
 #: src/components/fullNode/FullNode.jsx:197
 msgid "Estimated network space"
 msgstr "Không gian mạng ước tính"
@@ -618,8 +623,8 @@ msgstr "Loại trừ thư mục cuối cùng"
 
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:32
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:34
-msgid "Expected Time to Win"
-msgstr "Thời gian giành phần thưởng dự kiến"
+#~ msgid "Expected Time to Win"
+#~ msgstr ""
 
 #: src/components/plot/PlotsFailed.tsx:24
 msgid "Failed to open (invalid plots)"
@@ -698,8 +703,8 @@ msgstr "Số lượng phí"
 #~ msgid "Fees Puzzle Hash"
 #~ msgstr ""
 
-#: src/electron-starter.js:195
-#: src/electron-starter.js:402
+#: src/electron/main.tsx:211
+#: src/electron/main.tsx:399
 msgid "File"
 msgstr "Tệp"
 
@@ -718,11 +723,11 @@ msgstr "Thư mục cuối"
 msgid "Finished"
 msgstr "Hoàn thành"
 
-#: src/electron-starter.js:347
+#: src/electron/main.tsx:352
 msgid "Follow on Twitter"
 msgstr "Theo dõi trên Twitter"
 
-#: src/electron-starter.js:306
+#: src/electron/main.tsx:319
 msgid "Frequently Asked Questions"
 msgstr "Câu hỏi thường gặp"
 
@@ -735,7 +740,7 @@ msgstr "Node hoàn thiện"
 msgid "Full Node Status"
 msgstr "Tình trạng Node mạng"
 
-#: src/electron-starter.js:272
+#: src/electron/main.tsx:287
 msgid "Full Screen"
 msgstr "Toàn màn hình"
 
@@ -765,11 +770,11 @@ msgstr "Băm tiêu đề"
 msgid "Height"
 msgstr "Chiều cao"
 
-#: src/electron-starter.js:294
+#: src/electron/main.tsx:309
 msgid "Help"
 msgstr "Hỗ trợ"
 
-#: src/components/core/components/LocaleToggle/LocaleToggle.tsx:58
+#: src/components/core/components/LocaleToggle/LocaleToggle.tsx:61
 msgid "Help translate"
 msgstr "Hỗ trợ dịch thuật"
 
@@ -869,7 +874,7 @@ msgstr "Đang xử lý..."
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:80
 msgid "Local Harvester Plots"
-msgstr "Các plot hiện tại"
+msgstr "Harvester Plots hiện có"
 
 #: src/components/app/AppRouter.tsx:28
 msgid "Logging in"
@@ -973,7 +978,7 @@ msgid "Nickname"
 msgstr "Biệt danh"
 
 #: src/components/trading/TradingOverview.jsx:212
-#: src/electron-starter.js:137
+#: src/electron/main.tsx:159
 msgid "No"
 msgstr "Không"
 
@@ -1217,6 +1222,10 @@ msgstr "Plotting"
 msgid "Plotting in parallel can save time. Otherwise, add plot(s) to the queue."
 msgstr "Plotting song song có thể tiết kiệm thời gian. Nếu không, hãy thêm plot vào hàng đợi."
 
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:114
+msgid "Plotting with bitfield enabled has about 30% less overall writes and is now almost always faster. You may see reduced memory requirements with bitfield plotting disabled. If your CPU design is from before 2010 you may have to disbale bitfield plotting."
+msgstr ""
+
 #: src/components/plot/overview/PlotOverviewPlots.tsx:55
 msgid "Pool Key"
 msgstr "Khoá của Pool"
@@ -1346,7 +1355,7 @@ msgstr "Khôi phục ví DID"
 msgid "Refresh Plots"
 msgstr "Làm mới plot"
 
-#: src/electron-starter.js:314
+#: src/electron/main.tsx:325
 msgid "Release Notes"
 msgstr "Ghi chú phát hành"
 
@@ -1354,7 +1363,7 @@ msgstr "Ghi chú phát hành"
 msgid "Rename"
 msgstr "Đổi tên"
 
-#: src/electron-starter.js:333
+#: src/electron/main.tsx:340
 msgid "Report an Issue..."
 msgstr "Báo cáo vấn đề..."
 
@@ -1485,9 +1494,9 @@ msgstr "Đăng nhập"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:129
 msgid "Skips adding a final directory to harvester for farming"
-msgstr "Bỏ qua việc thêm thư mục cuối cùng vào máy gặt để trồng trọt"
+msgstr "Bỏ qua việc thêm thư mục cuối cùng vào harvester để farm"
 
-#: src/electron-starter.js:416
+#: src/electron/main.tsx:410
 msgid "Speech"
 msgstr "Phát biểu"
 
@@ -1613,6 +1622,10 @@ msgstr "Đang đồng bộ {progress}{tip}"
 msgid "Temporary folder location"
 msgstr "Vị trí thư mục tạm thời thứ hai"
 
+#: src/components/app/AppTimeBomb.tsx:28
+msgid "The application will stop working at block height 193536."
+msgstr ""
+
 #: src/components/farm/FarmFullNodeConnections.tsx:58
 msgid "The full node that your farmer is connected to is below. <0>Learn more</0>"
 msgstr "Nút đầy đủ mà farmer của bạn được kết nối ở bên dưới. <0> Tìm hiểu thêm </0>"
@@ -1707,6 +1720,10 @@ msgstr "Giao dịch này đã được tạo vào lúc này"
 #: src/components/trading/TradingOverview.jsx:206
 msgid "This trade was included on blockchain at this block height"
 msgstr "Giao dịch này đã được đưa vào blockchain ở chiều cao khối này"
+
+#: src/components/app/AppTimeBombAlert.tsx:11
+msgid "This version of Chia is no longer compatible with the blockchain and can not safely farm."
+msgstr ""
 
 #: src/components/fullNode/FullNode.jsx:86
 msgid "Time Created"
@@ -1815,7 +1832,7 @@ msgstr "Khoá công khai"
 msgid "VDF Sub Slot Iterations"
 msgstr "Lặp lại vùng phụ VDF"
 
-#: src/electron-starter.js:235
+#: src/electron/main.tsx:251
 msgid "View"
 msgstr "Xem"
 
@@ -1917,7 +1934,7 @@ msgstr "Chào mừng! Các từ sau được sử dụng để sao lưu ví củ
 msgid "When you receive the setup info packet from your admin, enter it below to complete your Rate Limited Wallet setup:"
 msgstr "Khi bạn nhận được gói thông tin thiết lập từ quản trị viên của mình, hãy nhập gói này vào bên dưới để hoàn tất quá trình thiết lập Ví giới hạn giá của bạn:"
 
-#: src/electron-starter.js:280
+#: src/electron/main.tsx:295
 msgid "Window"
 msgstr "Cửa sổ"
 
@@ -1927,7 +1944,7 @@ msgstr "Không mất phí"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:30
 #: src/components/trading/TradingOverview.jsx:212
-#: src/electron-starter.js:137
+#: src/electron/main.tsx:160
 msgid "Yes"
 msgstr "Đồng ý"
 
@@ -1940,8 +1957,24 @@ msgid "You do not need to be synched or connected to plot. Temporary files are c
 msgstr "Bạn không cần phải được đồng bộ hóa hoặc kết nối với plot. Các tệp tạm thời được tạo trong quá trình ploting vượt quá kích thước của tệp plot cuối cùng. Đảm bảo rằng bạn có đủ không gian. <0> Tìm hiểu thêm </0>"
 
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:34
-msgid "You have {0}% of the space on the network, so farming a block will take {expectedTimeToWin} in expectation."
-msgstr "Bạn có {0}% dung lượng trên mạng, vì vậy, việc farm một khối sẽ chiếm {{expectedTimeToWin} trong dự kiến ."
+#~ msgid "You have {0}% of the space on the network, so farming a block will take {expectedTimeToWin} in expectation."
+#~ msgstr ""
+
+#: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:34
+msgid "You have {0}% of the space on the network, so farming a block will take {expectedTimeToWin} in expectation. Actual results may take 3 to 4 times longer than this estimate."
+msgstr ""
+
+#: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:34
+#~ msgid "You have {0}% of the space on the network, so farming a block will take {expectedTimeToWin} in expectation. Actual results may take 3-4 times longer - actual results may be 3x this estimate.<0>Learn about Expected Value</0>"
+#~ msgstr "You have {0}% of the space on the network, so farming a block will take {expectedTimeToWin} in expectation. Actual results may take 3-4 times longer - actual results may be 3x this estimate.<0>Learn about Expected Value</0>"
+
+#: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:34
+#~ msgid "You have {0}% of the space on the network, so farming a block will take {expectedTimeToWin} in expectation. Actual results may take 3-4 times longer this estimate. <0>Learn about Expected Value</0>"
+#~ msgstr "You have {0}% of the space on the network, so farming a block will take {expectedTimeToWin} in expectation. Actual results may take 3-4 times longer this estimate. <0>Learn about Expected Value</0>"
+
+#: src/components/app/AppTimeBomb.tsx:28
+#~ msgid "You need to upgrade the Chia application as this version will stop working soon!"
+#~ msgstr "You need to upgrade the Chia application as this version will stop working soon!"
 
 #: src/components/farm/overview/FarmOverview.tsx:24
 msgid "Your Farm Overview"
@@ -1953,7 +1986,7 @@ msgstr "Kết nối nút đầy đủ của bạn"
 
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:56
 msgid "Your Harvester Network"
-msgstr "Mạng lưới máy gặt của bạn"
+msgstr "Mạng lưới Harvester của bạn"
 
 #: src/components/wallet/WalletStatusCard.tsx:30
 #: src/components/wallet/Wallets.tsx:119

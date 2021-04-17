@@ -8,7 +8,7 @@ msgstr ""
 "Language: en_PT\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-04-04 02:02\n"
+"PO-Revision-Date: 2021-04-15 08:00\n"
 "Last-Translator: \n"
 "Language-Team: Pirate English\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -32,7 +32,7 @@ msgstr "128 buckets be good fer many"
 
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:58
 msgid "A harvester is a service running on a machine where plot(s) are actually stored. A farmer and harvester talk to a full node to see the state of the chain. View your network of connected harvesters below Learn more"
-msgstr "A tender be a vessel where crewdogs are actually at. A plunderer 'n tender coordinate wit' a cap'n t' see the state o' the chain. View yer connected tenders below Learn more"
+msgstr "A tender be a vessel where crewdogs are actually at. A plunderer 'n tender coordinate wit' a capt'n t' see the state o' the chain. View yer connected tenders below Learn more"
 
 #: src/electron/main.tsx:366
 #: src/electron/main.tsx:444
@@ -161,7 +161,7 @@ msgstr "Base Plunderer Reward Amount"
 #: src/components/farm/FarmLatestBlockChallenges.tsx:25
 #: src/components/farm/FarmLatestBlockChallenges.tsx:31
 msgid "Below are the current block challenges. You may or may not have a proof of space for these challenges. These blocks do not currently contain a proof of time."
-msgstr "Below are the current challenges. Ye may or may nah 'ave action at these challenges. These booty do nah currently contain a proof o' time."
+msgstr "Below are the current victims. Ye may or may nah 'ave action at these. These booty do nah currently contain a proof o' time."
 
 #: src/components/farm/card/FarmCardTotalNetworkSpace.tsx:8
 msgid "Best estimate over last 5 hours"
@@ -253,11 +253,11 @@ msgstr "YO, maroonin' these crewdogs will let 'em be gone forever. Check that th
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:13
 msgid "Challenge"
-msgstr "Challenge"
+msgstr "Victim"
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:11
 msgid "Challenge Hash"
-msgstr "Challenge Hash"
+msgstr "Victim"
 
 #: src/electron/main.tsx:346
 msgid "Chat on KeyBase"
@@ -290,7 +290,7 @@ msgstr "Close"
 
 #: src/components/app/AppRouter.tsx:18
 msgid "Closing down node and server"
-msgstr "Cap'n 'n server gettin' mighty drunk right now"
+msgstr "Capt'n 'n server gettin' mighty drunk right now"
 
 #: src/components/trading/TradingOverview.jsx:376
 msgid "Coins:"
@@ -335,7 +335,7 @@ msgstr "Let through at booty:"
 
 #: src/components/wallet/WalletHistory.tsx:39
 msgid "Confirmed at height {0}"
-msgstr "Let through at booty number {0}"
+msgstr "Confirmed at booty {0}"
 
 #: src/components/fullNode/FullNodeAddConnection.tsx:70
 msgid "Connect"
@@ -349,7 +349,7 @@ msgstr "Say ahoy to other peers"
 #: src/components/core/components/FormatConnectionStatus/FormatConnectionStatus.tsx:47
 #: src/components/fullNode/FullNode.jsx:143
 msgid "Connected"
-msgstr "Nattered wit' me hearties jus' now"
+msgstr "Natter'd wit' me hearties jus' now"
 
 #: src/components/app/AppRouter.tsx:23
 msgid "Connecting to wallet"
@@ -546,7 +546,7 @@ msgstr "Pirate Hunters"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:114
 #~ msgid "Disable bifield plotting when your temporary directory is on fast storage like SSD or you need lower per process RAM requirements. Plotting with bitfield enabled has about 20% less overall writes."
-#~ msgstr "Disable bitfield recruitin' when yer temporary folder be on fast storage like SSD or ye needs lower per process RAM. Recruitin' wit' bitfield enabled has about 20% less overall writes."
+#~ msgstr ""
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:109
 msgid "Disable bitfield plotting"
@@ -607,7 +607,7 @@ msgstr "Arrgh: Can nah send chia 't jinxed coordinates. Give chia coordinates."
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:32
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:34
 msgid "Estimated Time to Win"
-msgstr ""
+msgstr "Fortune Teller's Next Prize Prophecy"
 
 #: src/components/fullNode/FullNode.jsx:197
 msgid "Estimated network space"
@@ -624,7 +624,7 @@ msgstr "Don't add final folder"
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:32
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:34
 #~ msgid "Expected Time to Win"
-#~ msgstr "Expected Time t' next Boardin'"
+#~ msgstr ""
 
 #: src/components/plot/PlotsFailed.tsx:24
 msgid "Failed to open (invalid plots)"
@@ -734,11 +734,11 @@ msgstr "Oftentimes Asked Questions"
 #: src/components/dashboard/DashboardSideBar.tsx:23
 #: src/components/fullNode/FullNode.jsx:312
 msgid "Full Node"
-msgstr "Captain"
+msgstr "Capt'n"
 
 #: src/components/fullNode/FullNode.jsx:255
 msgid "Full Node Status"
-msgstr "Report o' yer Cap'n"
+msgstr "Report o' yer Capt'n"
 
 #: src/electron/main.tsx:287
 msgid "Full Screen"
@@ -774,7 +774,7 @@ msgstr "Booty Number"
 msgid "Help"
 msgstr "Help"
 
-#: src/components/core/components/LocaleToggle/LocaleToggle.tsx:61
+#: src/components/core/components/LocaleToggle/LocaleToggle.tsx:62
 msgid "Help translate"
 msgstr "Help translate"
 
@@ -784,7 +784,7 @@ msgstr "Hide Voodoo"
 
 #: src/components/wallet/WalletHistory.tsx:60
 msgid "History"
-msgstr "Olde treasure maps"
+msgstr "Yer Treasure Log"
 
 #: src/components/farm/FarmFullNodeConnections.tsx:24
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:24
@@ -1227,7 +1227,7 @@ msgstr "Recruitin' in parallel can save time. Otherwise, add crewdog(s) to the q
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:114
 msgid "Plotting with bitfield enabled has about 30% less overall writes and is now almost always faster. You may see reduced memory requirements with bitfield plotting disabled. If your CPU design is from before 2010 you may have to disbale bitfield plotting."
-msgstr ""
+msgstr "Recruitin' wit' bitfield on makes about 30% less overall writes 'n be now well-nigh always faster. Ye may see less memory used wit' bitfield off. If yer CPU design be from afore 2010 ye may 'ave t' turn bitfield off."
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:55
 msgid "Pool Key"
@@ -1348,7 +1348,7 @@ msgstr "Rate Limited Scallywag Treasure Chest Setup"
 #: src/components/wallet/coloured/WalletColoured.tsx:453
 #: src/components/wallet/standard/WalletStandard.tsx:367
 msgid "Receive Address"
-msgstr "Receive Coordinates"
+msgstr "Yer Treasure's Coordinates (give t'is to scallywags who owe you)"
 
 #: src/components/wallet/create/WalletCreate.jsx:320
 msgid "Recover DID wallet"
@@ -1545,11 +1545,11 @@ msgstr "State"
 #: src/components/wallet/WalletStatusCard.tsx:11
 #: src/components/wallet/Wallets.tsx:93
 msgid "Status"
-msgstr "State o' things"
+msgstr "State o' t'ings"
 
 #: src/components/trading/TradingOverview.jsx:181
 msgid "Status:"
-msgstr "State o' things:"
+msgstr "State o' t'ings:"
 
 #: src/components/wallet/Wallets.tsx:119
 #~ msgid "StatusCard.connections"
@@ -1591,7 +1591,7 @@ msgstr "Everythin' lookin' jolly"
 #: src/components/farm/card/FarmCardStatus.tsx:12
 #: src/components/plot/PlotStatus.tsx:15
 msgid "Syncing"
-msgstr "Catchin' up wit' other Captains"
+msgstr "Catchin' up wit' other Capt'ns"
 
 #: src/components/fullNode/FullNode.jsx:106
 msgid "Syncing {progress}/{tip}"
@@ -1627,11 +1627,11 @@ msgstr "Temporary folder"
 
 #: src/components/app/AppTimeBomb.tsx:28
 msgid "The application will stop working at block height 193536."
-msgstr ""
+msgstr "T'is version o' Chia will stop workin' at booty 193536."
 
 #: src/components/farm/FarmFullNodeConnections.tsx:58
 msgid "The full node that your farmer is connected to is below. <0>Learn more</0>"
-msgstr "The Cap'n that yer Plunderer be connected t' be below. <0>Look fer more</0>"
+msgstr "The Capt'n that yer Plunderer be connected t' be below. <0>Look fer more</0>"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:30
 #: src/components/plot/add/PlotAddChooseSize.tsx:74
@@ -1640,11 +1640,11 @@ msgstr "Minimum size fer mainnet be k=32"
 
 #: src/components/fullNode/FullNode.jsx:124
 msgid "The node is not synced"
-msgstr "The Cap'n be three sheets to the wind"
+msgstr "The Capt'n be three sheets to the wind"
 
 #: src/components/fullNode/FullNode.jsx:112
 msgid "The node is syncing, which means it is downloading blocks from other nodes, to reach the latest block in the chain"
-msgstr "The cap'n be collectin' reports, which means he's gettin' information o' other captains' boarded ships"
+msgstr "The capt'n be collectin' reports, which means he's gettin' information o' other capt'ns' boarded ships"
 
 #: src/components/block/Block.jsx:268
 msgid "The seed used to create the plot. This depends on the pool pk and plot pk."
@@ -1726,7 +1726,7 @@ msgstr "This trade was added t' the blockchain at this booty number"
 
 #: src/components/app/AppTimeBombAlert.tsx:11
 msgid "This version of Chia is no longer compatible with the blockchain and can not safely farm."
-msgstr ""
+msgstr "T'is version o' Chia is no longer workin' wit' the blockchain 'n no good fer plunderin'."
 
 #: src/components/fullNode/FullNode.jsx:86
 msgid "Time Created"
@@ -1961,23 +1961,23 @@ msgstr "Ye nah need t' be synched or connected t' recruit. Temporary files are c
 
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:34
 #~ msgid "You have {0}% of the space on the network, so farming a block will take {expectedTimeToWin} in expectation."
-#~ msgstr "Ye have {0}% o' th' manpower o' all pirates, so takin' a ship will take about {expectedTimeToWin} dependin' on yer luck."
+#~ msgstr ""
 
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:34
 msgid "You have {0}% of the space on the network, so farming a block will take {expectedTimeToWin} in expectation. Actual results may take 3 to 4 times longer than this estimate."
-msgstr ""
+msgstr "Ye 'ave {0}% o' all pirates' strength, so getting' booty will take {expectedTimeToWin} in expectation. Plunderin' depends on luck so it can take 3 to 4 times more as t'is."
 
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:34
 #~ msgid "You have {0}% of the space on the network, so farming a block will take {expectedTimeToWin} in expectation. Actual results may take 3-4 times longer - actual results may be 3x this estimate.<0>Learn about Expected Value</0>"
-#~ msgstr ""
+#~ msgstr "You have {0}% of the space on the network, so farming a block will take {expectedTimeToWin} in expectation. Actual results may take 3-4 times longer - actual results may be 3x this estimate.<0>Learn about Expected Value</0>"
 
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:34
 #~ msgid "You have {0}% of the space on the network, so farming a block will take {expectedTimeToWin} in expectation. Actual results may take 3-4 times longer this estimate. <0>Learn about Expected Value</0>"
-#~ msgstr ""
+#~ msgstr "You have {0}% of the space on the network, so farming a block will take {expectedTimeToWin} in expectation. Actual results may take 3-4 times longer this estimate. <0>Learn about Expected Value</0>"
 
 #: src/components/app/AppTimeBomb.tsx:28
 #~ msgid "You need to upgrade the Chia application as this version will stop working soon!"
-#~ msgstr ""
+#~ msgstr "You need to upgrade the Chia application as this version will stop working soon!"
 
 #: src/components/farm/overview/FarmOverview.tsx:24
 msgid "Your Farm Overview"
@@ -1985,11 +1985,11 @@ msgstr "State o' yer lootin'"
 
 #: src/components/farm/FarmFullNodeConnections.tsx:56
 msgid "Your Full Node Connection"
-msgstr "Connection t' yer Cap'n"
+msgstr "Connection t' yer Capt'n"
 
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:56
 msgid "Your Harvester Network"
-msgstr "State o' yer tenders"
+msgstr "State o' yer Tenders"
 
 #: src/components/wallet/WalletStatusCard.tsx:30
 #: src/components/wallet/Wallets.tsx:119
@@ -2008,7 +2008,7 @@ msgstr "not there yet"
 #: src/components/wallet/WalletStatusCard.tsx:16
 #: src/components/wallet/Wallets.tsx:98
 msgid "status:"
-msgstr "state o' things:"
+msgstr "state o' t'ings:"
 
 #: src/components/wallet/WalletStatusCard.tsx:19
 #: src/components/wallet/Wallets.tsx:105

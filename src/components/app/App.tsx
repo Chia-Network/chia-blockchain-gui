@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Provider } from 'react-redux';
 import { I18nProvider } from '@lingui/react';
-import moment from 'moment';
-import { deDE, enUS, zhCN, esES, frFR, fiFI, itIT, jaJP, nlNL, ptBR, ptPT, plPL, roRO, ruRU, skSK, svSE } from '@material-ui/core/locale';
+import { deDE, enUS, zhCN, esES, frFR, fiFI, itIT, jaJP, nlNL, ptBR, ptPT, plPL, roRO, ruRU, skSK, svSE, viVN } from '@material-ui/core/locale';
 import useDarkMode from 'use-dark-mode';
+import moment from 'moment';
 import isElectron from 'is-electron';
 import { createGlobalStyle } from 'styled-components'
 import { ConnectedRouter } from 'connected-react-router';
@@ -66,6 +66,8 @@ function localeToMaterialLocale(locale: string): object {
       return skSK;
     case 'sv-SE':
       return svSE;
+    case 'vi-VN':
+      return viVN;
     case 'zh-TW':
     case 'zh-CN':
       return zhCN;

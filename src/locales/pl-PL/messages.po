@@ -8,7 +8,7 @@ msgstr ""
 "Language: pl_PL\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-04-03 20:03\n"
+"PO-Revision-Date: 2021-04-15 01:46\n"
 "Last-Translator: \n"
 "Language-Team: Polish\n"
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
@@ -624,7 +624,7 @@ msgstr "Pomiń folder docelowy"
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:32
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:34
 #~ msgid "Expected Time to Win"
-#~ msgstr "Szacunkowy czas oczekiwania na wygraną"
+#~ msgstr ""
 
 #: src/components/plot/PlotsFailed.tsx:24
 msgid "Failed to open (invalid plots)"
@@ -774,7 +774,7 @@ msgstr "Wysokość"
 msgid "Help"
 msgstr "Pomoc"
 
-#: src/components/core/components/LocaleToggle/LocaleToggle.tsx:61
+#: src/components/core/components/LocaleToggle/LocaleToggle.tsx:62
 msgid "Help translate"
 msgstr "Pomóż przetłumaczyć"
 
@@ -1788,19 +1788,19 @@ msgstr "Szczegóły handlu"
 
 #: src/components/trading/TradingOverview.jsx:125
 msgid "Trade ID"
-msgstr "ID handlu"
+msgstr "ID transakcji"
 
 #: src/components/trading/TradingOverview.jsx:174
 msgid "Trade ID:"
-msgstr "ID handlu:"
+msgstr "ID transakcji:"
 
 #: src/components/trading/TradeManager.tsx:17
 msgid "Trade Overview"
-msgstr "Podsumowanie handlu"
+msgstr "Podsumowanie transakcji"
 
 #: src/components/trading/TradingOverview.jsx:153
 msgid "Trades will show up here"
-msgstr "Biznesy pojawią się tutaj"
+msgstr "Transakcje pojawią się tutaj"
 
 #: src/components/trading/TradeManager.tsx:13
 msgid "Trading"
@@ -1808,11 +1808,11 @@ msgstr "Handel"
 
 #: src/components/trading/TradingOverview.jsx:435
 msgid "Trading History"
-msgstr "Historia Handlowania"
+msgstr "Historia Transakcji"
 
 #: src/components/block/Block.jsx:276
 msgid "Transactions Filter Hash"
-msgstr "Hash filtra biznesu"
+msgstr "Hash filtra transakcji"
 
 #: src/components/wallet/WalletHistory.tsx:21
 msgid "Type"
@@ -1842,7 +1842,7 @@ msgstr "Widok"
 #: src/components/plot/queue/PlotQueueActions.tsx:49
 #: src/components/plot/queue/PlotQueueLogDialog.tsx:26
 msgid "View Log"
-msgstr "Zobacz Log"
+msgstr "Zobacz Logi"
 
 #: src/components/trading/TradeManager.tsx:27
 msgid "View Offer"
@@ -1927,7 +1927,7 @@ msgstr "Waga to całkowita dodana trudność wszystkich bloków włącznie z tym
 
 #: src/components/selectKey/SelectKey.tsx:77
 msgid "Welcome to Chia. Please log in with an existing key, or create a new key."
-msgstr "Witaj w Chia. Proszę się zalogować z instniejącym kluczem, lub utworzyć nowy klucz."
+msgstr "Witaj w Chia. Zaloguj się z instniejącym kluczem, lub utwórz nowy klucz."
 
 #: src/components/wallet/WalletAdd.tsx:35
 msgid "Welcome! The following words are used for your wallet backup. Without them, you will lose access to your wallet, keep them safe! Write down each word along with the order number next to them. (Order is important)"
@@ -1957,11 +1957,11 @@ msgstr "Tak"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:56
 msgid "You do not need to be synched or connected to plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
-msgstr "Nie musisz być zsynchronizowany ani połączony aby generować działki. Podczas generowania działki tworzone są pliki tymczasowe, a wartość wymaganego miejsca jest większa od docelowej działki. Upewnij się, że masz wystarczającą ilość miejsca. <0>Dowiedz się więcej</0>"
+msgstr "Nie musisz być zsynchronizowany ani połączony aby generować działki. Podczas generowania działki tworzone są pliki tymczasowe, a wielkość wymaganego miejsca jest większa od docelowej działki. Upewnij się, że masz wystarczającą ilość miejsca. <0>Dowiedz się więcej</0>"
 
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:34
 #~ msgid "You have {0}% of the space on the network, so farming a block will take {expectedTimeToWin} in expectation."
-#~ msgstr "Masz {0}% udziału w sieci, więc farmienie bloku zajmie około {expectedTimeToWin}."
+#~ msgstr ""
 
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:34
 msgid "You have {0}% of the space on the network, so farming a block will take {expectedTimeToWin} in expectation. Actual results may take 3 to 4 times longer than this estimate."
@@ -1969,15 +1969,15 @@ msgstr ""
 
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:34
 #~ msgid "You have {0}% of the space on the network, so farming a block will take {expectedTimeToWin} in expectation. Actual results may take 3-4 times longer - actual results may be 3x this estimate.<0>Learn about Expected Value</0>"
-#~ msgstr ""
+#~ msgstr "You have {0}% of the space on the network, so farming a block will take {expectedTimeToWin} in expectation. Actual results may take 3-4 times longer - actual results may be 3x this estimate.<0>Learn about Expected Value</0>"
 
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:34
 #~ msgid "You have {0}% of the space on the network, so farming a block will take {expectedTimeToWin} in expectation. Actual results may take 3-4 times longer this estimate. <0>Learn about Expected Value</0>"
-#~ msgstr ""
+#~ msgstr "You have {0}% of the space on the network, so farming a block will take {expectedTimeToWin} in expectation. Actual results may take 3-4 times longer this estimate. <0>Learn about Expected Value</0>"
 
 #: src/components/app/AppTimeBomb.tsx:28
 #~ msgid "You need to upgrade the Chia application as this version will stop working soon!"
-#~ msgstr ""
+#~ msgstr "You need to upgrade the Chia application as this version will stop working soon!"
 
 #: src/components/farm/overview/FarmOverview.tsx:24
 msgid "Your Farm Overview"
@@ -1989,7 +1989,7 @@ msgstr "Twoje połączenie pełnego węzła"
 
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:56
 msgid "Your Harvester Network"
-msgstr "Twoja sieć żniwiarza"
+msgstr "Twoja sieć zbieracza"
 
 #: src/components/wallet/WalletStatusCard.tsx:30
 #: src/components/wallet/Wallets.tsx:119
@@ -2003,7 +2003,7 @@ msgstr "wysokość:"
 
 #: src/components/wallet/Wallets.tsx:107
 msgid "not synced"
-msgstr "nie zsynchronizowane"
+msgstr "nie zsynchronizowano"
 
 #: src/components/wallet/WalletStatusCard.tsx:16
 #: src/components/wallet/Wallets.tsx:98
@@ -2034,8 +2034,8 @@ msgstr "{currencyCode} Nagroda bloku"
 
 #: src/components/farm/card/FarmCardTotalChiaFarmed.tsx:17
 msgid "{currencyCode} Total Chia Farmed"
-msgstr "{currencyCode} Całkowita ilość wyhodowanego Chia"
+msgstr "{currencyCode} Całkowita ilość wydobytego Chia"
 
 #: src/components/farm/card/FarmCardUserFees.tsx:17
 msgid "{currencyCode} User Transaction Fees"
-msgstr "{currencyCode} Opłaty transakcyjne użytkownika"
+msgstr "{currencyCode} Opłaty za transakcję użytkownika"
