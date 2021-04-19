@@ -20,8 +20,7 @@ import {
 } from './backup';
 import { exitDaemon } from './daemon_messages';
 import { wsDisconnect } from './websocket';
-
-const config = require('../config/config');
+import config from '../config/config';
 
 const { backup_host } = config;
 

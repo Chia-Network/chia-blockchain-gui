@@ -61,7 +61,7 @@ import {
   DISTRIBUTED_ID,
 } from '../util/wallet_types';
 
-const config = require('../config/config');
+import config from '../config/config';
 
 const StyledTypographyDD = styled(Typography)`
   word-break: break-all;
@@ -397,7 +397,8 @@ export const handle_message = async (store, payload, errorProcessed) => {
         ping_farmer(store);
       } else if (service === service_harvester) {
         ping_harvester(store);
-      } else if (service === service_plotter) {}
+      } else if (service === service_plotter) {
+      }
     }
   } else if (payload.command === 'stop_service') {
     if (payload.data.success) {

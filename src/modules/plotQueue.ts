@@ -8,6 +8,10 @@ import PlotStatus from '../constants/PlotStatus';
 import { stopService } from './daemon_messages';
 import { service_plotter } from '../util/service_names';
 
+const FINISHED_LOG_LINES = 2626; // 128
+// const FINISHED_LOG_LINES_64 = 1379; // 64
+// const FINISHED_LOG_LINES_32 = 754; // 32
+
 export function plotQueueAdd(
   config: PlotAdd,
 ): ThunkAction<any, RootState, unknown, Action<Object>> {
@@ -26,6 +30,7 @@ export function plotQueueAdd(
       parallel,
       delay,
       disableBitfieldPlotting,
+      excludeFinalDir,
       overrideK,
     } = config;
 
@@ -44,6 +49,7 @@ export function plotQueueAdd(
         parallel,
         delay,
         disableBitfieldPlotting,
+        excludeFinalDir,
         overrideK,
       ),
     );
@@ -90,6 +96,31 @@ const initialState: PlotQueueState = {
   deleting: [],
 };
 
+function addPlotProgress(queue: PlotQueueItem[]): PlotQueueItem[] {
+  if (!queue) {
+    return queue;
+  }
+
+  return queue.map((item) => {
+    const { log, state } = item;
+    if (state !== 'RUNNING') {
+      return item;
+    }
+
+    let progress = 0;
+
+    if (log) {
+      const lines = log.trim().split(/\r\n|\r|\n/).length;
+      progress = lines > FINISHED_LOG_LINES ? 1 : lines / FINISHED_LOG_LINES;
+    }
+
+    return {
+      ...item,
+      progress,
+    };
+  });
+}
+
 export default function plotQueueReducer(
   state = { ...initialState },
   action: any,
@@ -100,7 +131,7 @@ export default function plotQueueReducer(
 
       return {
         ...state,
-        queue,
+        queue: addPlotProgress(queue),
       };
     default:
       return state;

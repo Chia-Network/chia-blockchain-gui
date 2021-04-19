@@ -1,4 +1,4 @@
-module.exports = {
-  local_test: false, // process.env.NODE_ENV === 'development' && process.env.TESTNET !== 'true',
+export default {
+  local_test: process.env.LOCAL_TEST === 'true',
   backup_host: 'https://backup.chia.net',
 };
