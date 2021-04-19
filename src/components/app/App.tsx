@@ -32,6 +32,10 @@ const GlobalStyle = createGlobalStyle`
     display: flex;
     flex-direction: column;
   }
+
+  ul .MuiBox-root {
+    outline: none;
+  }
 `;
 
 function localeToMaterialLocale(locale: string): object {
