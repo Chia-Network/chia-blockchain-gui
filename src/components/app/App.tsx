@@ -19,7 +19,6 @@ import AppModalDialogs from './AppModalDialogs';
 import AppLoading from './AppLoading';
 import i18n from '../../config/locales';
 import Fonts from './fonts/Fonts';
-import TimeBomb from './AppTimeBomb';
 
 const GlobalStyle = createGlobalStyle`
   html,
@@ -124,7 +123,6 @@ export default function App() {
             <ThemeProvider theme={theme}>
               <GlobalStyle />
               <Fonts />
-              <TimeBomb />
               <AppRouter />
               <AppModalDialogs />
               <AppLoading />
