@@ -15,9 +15,6 @@ import {
 } from '../../../modules/createWallet';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import { recover_did_action } from '../../../modules/message';
-import { chia_to_mojo } from '../../../util/chia';
-import { openDialog } from '../../../modules/dialog';
-import { useForm, Controller, useFieldArray } from 'react-hook-form';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -134,7 +131,6 @@ export const RecoverDIDWallet = () => {
 
   function handleDrop(acceptedFiles) {
     const recovery_file_path = acceptedFiles[0].path;
-    const recovery_name = recovery_file_path.replace(/^.*[\\/]/, '');
     dispatch(recover_did_action(recovery_file_path));
   };
 
