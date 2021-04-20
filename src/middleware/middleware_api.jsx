@@ -17,7 +17,6 @@ import {
   did_get_recovery_list,
   did_get_did,
   pingWallet,
-  get_farmed_amount,
   getNetworkInfo,
 } from '../modules/message';
 
@@ -110,14 +109,6 @@ async function ping_harvester(store) {
     ping_harvester(store);
   }
 }
-
-let can_call = true;
-const can_call_get_wallet_transactions = {};
-const can_call_get_wallet_balance = {};
-
-const timeout_tx = null;
-let timeout_balance = null;
-let timeout_height = null;
 
 async function get_height(store) {
   store.dispatch(get_height_info());

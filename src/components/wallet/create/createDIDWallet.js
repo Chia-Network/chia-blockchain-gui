@@ -1,14 +1,11 @@
 import React from 'react';
 import { Trans } from '@lingui/macro';
-import { AlertDialog, Card, Flex } from '@chia/core';
+import { AlertDialog, Flex } from '@chia/core';
 import {
-  Grid,
   Typography,
   Button,
   Box,
   TextField,
-  Backdrop,
-  CircularProgress,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -17,7 +14,7 @@ import {
   changeCreateWallet,
   CREATE_DID_WALLET_OPTIONS,
 } from '../../../modules/createWallet';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import { useStyles } from './WalletCreate';
 import { create_did_action } from '../../../modules/message';
