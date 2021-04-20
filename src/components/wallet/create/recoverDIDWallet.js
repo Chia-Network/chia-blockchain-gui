@@ -1,24 +1,15 @@
-import { useDispatch, useSelector } from 'react-redux';
-import React, { useMemo } from 'react';
+import { useDispatch } from 'react-redux';
+import React from 'react';
 import { Dropzone } from '@chia/core';
 import { Trans } from '@lingui/macro';
 import {
-  CssBaseline, 
-  Container,
   Typography,
-  Paper,
-  Grid,
   Button,
   Box,
-  TextField,
-  Backdrop,
-  CircularProgress,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import { Card } from '@chia/core';
 
 import {
-  createState,
   changeCreateWallet,
   CREATE_DID_WALLET_OPTIONS,
 } from '../../../modules/createWallet';

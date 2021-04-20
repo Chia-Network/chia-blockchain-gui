@@ -118,10 +118,6 @@ export default function CreateDIDWallet() {
     name: 'backup_dids',
   });
 
-  function handleAddBackup() {
-    console.log("TEST ADD")
-  }
-
   const onSubmit = (data) => {
     const didArray = data.backup_dids?.map((item) => item.backupid) ?? [];
     if (
