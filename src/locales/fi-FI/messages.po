@@ -63,6 +63,10 @@ msgstr "Toiminnot"
 msgid "Add"
 msgstr "Lisää"
 
+#: src/components/wallet/create/createDIDWallet.js:230
+msgid "Add Backup ID"
+msgstr ""
+
 #: src/components/plot/PlotHeader.tsx:51
 msgid "Add Plot Directory"
 msgstr "Lisää Plot-hakemisto"
@@ -90,8 +94,8 @@ msgstr "Plottaa tiedosto"
 msgid "Add plot directory"
 msgstr "Lisää plottihakemisto"
 
-#: src/components/wallet/coloured/WalletColoured.tsx:405
-#: src/components/wallet/coloured/WalletColoured.tsx:457
+#: src/components/wallet/coloured/WalletColoured.tsx:406
+#: src/components/wallet/coloured/WalletColoured.tsx:458
 #: src/components/wallet/standard/WalletStandard.tsx:373
 msgid "Address"
 msgstr "Osoite"
@@ -110,13 +114,17 @@ msgstr "Osoite / Puzzle-tiiviste"
 msgid "Amount"
 msgstr "Määrä"
 
-#: src/components/wallet/coloured/WalletColoured.tsx:415
+#: src/components/wallet/coloured/WalletColoured.tsx:416
 msgid "Amount ({cc_unit})"
 msgstr "Määrä ({cc_unit})"
 
 #: src/components/wallet/create/createRLAdmin.jsx:259
 msgid "Amount For Initial Coin"
 msgstr "Alkumäärä"
+
+#: src/components/wallet/create/createDIDWallet.js:151
+msgid "Amount must be an odd amount"
+msgstr ""
 
 #: src/components/plot/PlotAction.tsx:30
 #: src/components/plot/queue/PlotQueueActions.tsx:32
@@ -148,7 +156,7 @@ msgstr "Palaa"
 msgid "Backup file is used to restore smart wallets."
 msgstr "Varmuuskopiotiedostoa käytetään lompakkojen palauttamiseen."
 
-#: src/components/wallet/coloured/WalletColoured.tsx:286
+#: src/components/wallet/coloured/WalletColoured.tsx:287
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:562
 #: src/components/wallet/standard/WalletStandard.tsx:194
 msgid "Balance"
@@ -313,11 +321,11 @@ msgstr "Värin Teksti"
 msgid "Colour:"
 msgstr "Väri:"
 
-#: src/components/wallet/create/WalletCreate.jsx:120
+#: src/components/wallet/create/WalletCreate.jsx:124
 msgid "Coloured Coin"
 msgstr "Väritetty Kolikko"
 
-#: src/components/wallet/create/WalletCreate.jsx:168
+#: src/components/wallet/create/WalletCreate.jsx:182
 msgid "Coloured Coin Options"
 msgstr "Värikolikon Valinnat"
 
@@ -380,7 +388,7 @@ msgstr "Anna panoksesi GitHubissa"
 msgid "Copied"
 msgstr "Kopioitu"
 
-#: src/components/wallet/coloured/WalletColoured.tsx:461
+#: src/components/wallet/coloured/WalletColoured.tsx:462
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:314
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:442
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:505
@@ -393,6 +401,7 @@ msgid "Copy to Clipboard"
 msgstr "Kopioi Leikepöydälle"
 
 #: src/components/backup/BackupCreate.tsx:70
+#: src/components/wallet/create/createDIDWallet.js:199
 #: src/components/wallet/create/createExistingColouredCoin.jsx:141
 #: src/components/wallet/create/createNewColouredCoin.jsx:148
 #: src/components/wallet/create/createRLAdmin.jsx:333
@@ -400,7 +409,7 @@ msgstr "Kopioi Leikepöydälle"
 msgid "Create"
 msgstr "Luo"
 
-#: src/components/wallet/create/WalletCreate.jsx:308
+#: src/components/wallet/create/WalletCreate.jsx:322
 msgid "Create DID wallet"
 msgstr "Luo Digitaalisen Identiteetin lompakko"
 
@@ -428,7 +437,7 @@ msgstr "Luo Siirtorajoitettu Käyttäjälompakko"
 msgid "Create Trade Offer"
 msgstr "Tarjoa"
 
-#: src/components/wallet/coloured/WalletColoured.tsx:396
+#: src/components/wallet/coloured/WalletColoured.tsx:397
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:729
 #: src/components/wallet/standard/WalletStandard.tsx:312
 msgid "Create Transaction"
@@ -442,15 +451,15 @@ msgstr "Luo Varmuuskopio"
 msgid "Create a new private key"
 msgstr "Luo yksityinen avain"
 
-#: src/components/wallet/create/WalletCreate.jsx:244
+#: src/components/wallet/create/WalletCreate.jsx:258
 msgid "Create admin wallet"
 msgstr "Luo pääkäyttäjälompakko"
 
-#: src/components/wallet/create/WalletCreate.jsx:180
+#: src/components/wallet/create/WalletCreate.jsx:194
 msgid "Create new coloured coin"
 msgstr "Luo uusi väritetty kolikko"
 
-#: src/components/wallet/create/WalletCreate.jsx:256
+#: src/components/wallet/create/WalletCreate.jsx:270
 msgid "Create user wallet"
 msgstr "Luo käyttäjälompakko"
 
@@ -458,7 +467,7 @@ msgstr "Luo käyttäjälompakko"
 msgid "Create wallet for colour"
 msgstr "Luo lompakko väriä varten"
 
-#: src/components/wallet/create/WalletCreate.jsx:192
+#: src/components/wallet/create/WalletCreate.jsx:206
 msgid "Create wallet for existing colour"
 msgstr "Luo lompakko olemassa olevaa väriä varten"
 
@@ -506,6 +515,7 @@ msgstr "Viive"
 #: src/components/plot/queue/PlotQueueActions.tsx:65
 #: src/components/selectKey/SelectKey.tsx:39
 #: src/components/selectKey/SelectKey.tsx:53
+#: src/components/wallet/create/createDIDWallet.js:257
 msgid "Delete"
 msgstr "Poista"
 
@@ -557,10 +567,10 @@ msgid "Disconnect"
 msgstr "Katkaise Yhteys"
 
 #: src/components/wallet/create/WalletCreate.jsx:144
-#~ msgid "Distributed Identity"
-#~ msgstr ""
+msgid "Distributed Identity"
+msgstr ""
 
-#: src/components/wallet/create/WalletCreate.jsx:296
+#: src/components/wallet/create/WalletCreate.jsx:310
 msgid "Distributed Identity Options"
 msgstr "Hajautetun Identiteetin Valinnat"
 
@@ -573,10 +583,17 @@ msgstr "Onko sinulla plot-tiedostoja koneella? <0>Lisää Hakemisto</0>"
 msgid "Does your machine support parallel plotting?"
 msgstr "Tukeeko tietokoneesi rinnakkaisplottausta?"
 
+#: src/components/wallet/did/DIDWallet.js:417
+msgid "Drag and drop attestation packet(s)"
+msgstr ""
+
 #: src/components/trading/ViewOffer.jsx:41
-#: src/components/wallet/create/recoverDIDWallet.js:294
 msgid "Drag and drop offer file"
 msgstr "Raahaa ja pudota tarjoustiedosto"
+
+#: src/components/wallet/create/recoverDIDWallet.js:171
+msgid "Drag and drop recovery file"
+msgstr ""
 
 #: src/components/backup/BackupRestore.tsx:114
 msgid "Drag and drop your backup file"
@@ -631,7 +648,7 @@ msgid "Failed to open (invalid plots)"
 msgstr "Ei voi avata (epäkelpo plotti)"
 
 #: src/components/dashboard/DashboardSideBar.tsx:26
-#: src/components/wallet/coloured/WalletColoured.tsx:430
+#: src/components/wallet/coloured/WalletColoured.tsx:431
 #: src/components/wallet/standard/WalletStandard.tsx:344
 msgid "Farm"
 msgstr "Farmi"
@@ -691,7 +708,7 @@ msgstr "Veloitus"
 #~ msgid "Fee ({0})"
 #~ msgstr "Fee ({0})"
 
-#: src/components/wallet/coloured/WalletColoured.tsx:422
+#: src/components/wallet/coloured/WalletColoured.tsx:423
 msgid "Fee ({currencyCode})"
 msgstr "Veloitus ({currencyCode})"
 
@@ -961,7 +978,7 @@ msgstr "Verkon Nimi"
 #~ msgid "Network not launched yet, waiting for genesis challenge!"
 #~ msgstr "Network not launched yet, waiting for genesis challenge!"
 
-#: src/components/wallet/coloured/WalletColoured.tsx:471
+#: src/components/wallet/coloured/WalletColoured.tsx:472
 #: src/components/wallet/standard/WalletStandard.tsx:387
 msgid "New Address"
 msgstr "Uusi Osoite"
@@ -985,7 +1002,7 @@ msgstr "Alias"
 msgid "No"
 msgstr "Ei"
 
-#: src/middleware/middleware_api.jsx:283
+#: src/middleware/middleware_api.jsx:254
 msgid "No 24 word seed, since this key is imported."
 msgstr "Tuotu avain, ei 24 muistisanaa."
 
@@ -1107,6 +1124,7 @@ msgstr "Anna nollaveloitus. Positiivisia veloituksia ei vielä tueta."
 msgid "Please enter a valid initial coin amount"
 msgstr "Anna käypä kolikoiden määrä"
 
+#: src/components/wallet/create/createDIDWallet.js:139
 #: src/components/wallet/create/createNewColouredCoin.jsx:69
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:679
 #: src/components/wallet/standard/WalletStandard.tsx:278
@@ -1280,11 +1298,11 @@ msgstr "Edellinen Tunnistetiiviste"
 msgid "Private key with public fingerprint {fingerprint}"
 msgstr "Yksityinen avain julkisella sormenjäljellä {fingerprint}"
 
-#: src/middleware/middleware_api.jsx:247
+#: src/middleware/middleware_api.jsx:218
 msgid "Private key {0}"
 msgstr "Yksityinen avain {0}"
 
-#: src/middleware/middleware_api.jsx:257
+#: src/middleware/middleware_api.jsx:228
 msgid "Private key:"
 msgstr "Yksityinen avain:"
 
@@ -1300,7 +1318,7 @@ msgstr "Todisteita Löytynyt"
 msgid "Pubkey"
 msgstr "Julkinen avain"
 
-#: src/middleware/middleware_api.jsx:265
+#: src/middleware/middleware_api.jsx:236
 msgid "Public key:"
 msgstr "Julkinen avain:"
 
@@ -1332,7 +1350,7 @@ msgstr "Rajoitettu Lompakko"
 #~ msgid "RLListItems.title"
 #~ msgstr ""
 
-#: src/components/wallet/create/WalletCreate.jsx:130
+#: src/components/wallet/create/WalletCreate.jsx:134
 msgid "Rate Limited"
 msgstr "Siirtorajoitettu"
 
@@ -1341,7 +1359,7 @@ msgstr "Siirtorajoitettu"
 msgid "Rate Limited Info"
 msgstr "Siirtorajoitetetun Tiedot"
 
-#: src/components/wallet/create/WalletCreate.jsx:232
+#: src/components/wallet/create/WalletCreate.jsx:246
 msgid "Rate Limited Options"
 msgstr "Siirtorajoitetun Valinnat"
 
@@ -1349,12 +1367,12 @@ msgstr "Siirtorajoitetun Valinnat"
 msgid "Rate Limited User Wallet Setup"
 msgstr "Siirtorajoitetun Lompakon Asennus"
 
-#: src/components/wallet/coloured/WalletColoured.tsx:453
+#: src/components/wallet/coloured/WalletColoured.tsx:454
 #: src/components/wallet/standard/WalletStandard.tsx:367
 msgid "Receive Address"
 msgstr "Vastaanottajan Osoite"
 
-#: src/components/wallet/create/WalletCreate.jsx:320
+#: src/components/wallet/create/WalletCreate.jsx:334
 msgid "Recover DID wallet"
 msgstr "Palauta hajautetettu lompakko"
 
@@ -1412,7 +1430,7 @@ msgstr "Toinen väliaikaishakemistosijainti"
 msgid "See private key"
 msgstr "Katso yksityinen avain"
 
-#: src/middleware/middleware_api.jsx:275
+#: src/middleware/middleware_api.jsx:246
 msgid "Seed:"
 msgstr "Siemenarvo:"
 
@@ -1436,7 +1454,7 @@ msgstr "Valitse Tarjous"
 msgid "Select Temporary Directory"
 msgstr "Valitse Väliaikaistyöhakemisto"
 
-#: src/components/wallet/create/WalletCreate.jsx:108
+#: src/components/wallet/create/WalletCreate.jsx:112
 msgid "Select Wallet Type"
 msgstr "Valitse Lompakkotyyppi"
 
@@ -1460,7 +1478,7 @@ msgstr "Valittu"
 msgid "Sell"
 msgstr "Myy"
 
-#: src/components/wallet/coloured/WalletColoured.tsx:435
+#: src/components/wallet/coloured/WalletColoured.tsx:436
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:798
 #: src/components/wallet/standard/WalletStandard.tsx:349
 msgid "Send"
@@ -1515,7 +1533,7 @@ msgstr "Käytettävissä"
 msgid "Spendable Amount Per Interval"
 msgstr "Käytettävissä Ajanjaksoa Kohti"
 
-#: src/components/wallet/coloured/WalletColoured.tsx:288
+#: src/components/wallet/coloured/WalletColoured.tsx:289
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:571
 #: src/components/wallet/standard/WalletStandard.tsx:201
 msgid "Spendable Balance"
@@ -1583,6 +1601,7 @@ msgstr "Tila:"
 #~ msgid "Sub Block at height {0} in the Chia blockchain"
 #~ msgstr "Sub Block at height {0} in the Chia blockchain"
 
+#: src/components/wallet/did/DIDWallet.js:451
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:357
 msgid "Submit"
 msgstr "Lähetä"
@@ -1748,7 +1767,7 @@ msgstr "Aikaleima"
 msgid "To"
 msgstr "Osoitteeseen"
 
-#: src/components/wallet/coloured/WalletColoured.tsx:287
+#: src/components/wallet/coloured/WalletColoured.tsx:288
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:565
 #: src/components/wallet/standard/WalletStandard.tsx:195
 msgid "Total Balance"
@@ -1857,7 +1876,7 @@ msgstr "Näytä Tarjous"
 msgid "View pending balances"
 msgstr "Näytä avoimet saldot"
 
-#: src/components/wallet/coloured/WalletColoured.tsx:296
+#: src/components/wallet/coloured/WalletColoured.tsx:297
 msgid "View pending balances..."
 msgstr "Näytä avoimet saldot..."
 
@@ -1982,6 +2001,10 @@ msgstr ""
 #: src/components/app/AppTimeBomb.tsx:28
 #~ msgid "You need to upgrade the Chia application as this version will stop working soon!"
 #~ msgstr "You need to upgrade the Chia application as this version will stop working soon!"
+
+#: src/components/wallet/did/DIDWallet.js:320
+msgid "Your DID requires at least {dids_num_req} attestation file(s) for recovery. Please upload additional files."
+msgstr ""
 
 #: src/components/farm/overview/FarmOverview.tsx:24
 msgid "Your Farm Overview"

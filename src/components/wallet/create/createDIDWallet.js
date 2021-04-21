@@ -1,11 +1,11 @@
 import React from 'react';
+import { Trans } from '@lingui/macro';
+import { AlertDialog, Flex } from '@chia/core';
 import {
   Typography,
   Button,
   Box,
   TextField,
-  Backdrop,
-  CircularProgress,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -14,7 +14,7 @@ import {
   changeCreateWallet,
   CREATE_DID_WALLET_OPTIONS,
 } from '../../../modules/createWallet';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import { useStyles } from './WalletCreate';
 import { create_did_action } from '../../../modules/message';
@@ -39,8 +39,6 @@ export const customStyles = makeStyles((theme) => ({
   inputDID: {
     marginLeft: theme.spacing(0),
     marginBottom: theme.spacing(2),
-    width: '50%',
-    height: 56,
   },
   inputRight: {
     marginRight: theme.spacing(3),
@@ -91,17 +89,27 @@ export const customStyles = makeStyles((theme) => ({
   sideButton: {
     marginTop: theme.spacing(0),
     marginBottom: theme.spacing(2),
-    width: 50,
     height: 56,
   },
+  numNeeded: {
+    width: '50%',
+    marginBottom: theme.spacing(2),
+  },
+  addID: {
+    height: 56,
+    marginBottom: theme.spacing(2),
+    paddingRight: theme.spacing(2),
+  },
+  addText: {
+    marginTop: theme.spacing(2),
+    marginBottom: theme.spacing(2),
+  }
 }));
 
-export const CreateDIDWallet = () => {
+export default function CreateDIDWallet() {
   const classes = useStyles();
   const custom = customStyles();
   const dispatch = useDispatch();
-  var pending = useSelector((state) => state.create_options.pending);
-  var created = useSelector((state) => state.create_options.created);
 
   const { handleSubmit, control } = useForm();
 
@@ -118,11 +126,29 @@ export const CreateDIDWallet = () => {
       !Number(data.amount) ||
       isNaN(Number(data.amount))
     ) {
-      dispatch(openDialog('Please enter a valid numeric amount'));
+      dispatch(
+        openDialog(
+          <AlertDialog>
+            <Trans>Please enter a valid numeric amount</Trans>
+          </AlertDialog>
+        ),
+      );
       return;
     }
-    var amount_val = chia_to_mojo(parseInt(data.amount));
-    const num_of_backup_ids_needed = parseInt(1);
+    if (
+      (data.amount) % 2 === 0
+    ) {
+      dispatch(
+        openDialog(
+          <AlertDialog>
+            <Trans>Amount must be an odd amount</Trans>
+          </AlertDialog>
+        ),
+      );
+      return;
+    }
+    let amount_val = chia_to_mojo(data.amount);
+    let num_of_backup_ids_needed = data.num_needed;
     dispatch(createState(true, true));
     dispatch(create_did_action(amount_val, didArray, num_of_backup_ids_needed));
   };
@@ -132,120 +158,103 @@ export const CreateDIDWallet = () => {
   }
 
   return (
-    <div>
-      <div className={classes.cardTitle}>
-        <Box display="flex">
-          <Box>
-            <Button onClick={goBack}>
-              <ArrowBackIosIcon> </ArrowBackIosIcon>
-            </Button>
+    <Flex flexDirection="column" gap={3}>
+      <Box display="flex">
+        <Box>
+          <Button onClick={goBack}>
+            <ArrowBackIosIcon> </ArrowBackIosIcon>
+          </Button>
+        </Box>
+        <Box flexGrow={1} className={classes.title}>
+          <Typography component="h6" variant="h6">
+            Create Distributed Identity Wallet
+          </Typography>
+        </Box>
+      </Box>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <Flex alignItems="stretch">
+          <Box flexGrow={1}>
+            <Controller
+              as={TextField}
+              name="amount"
+              control={control}
+              label="Amount"
+              variant="outlined"
+              fullWidth
+              defaultValue=""
+            />
           </Box>
-          <Box flexGrow={1} className={classes.title}>
-            <Typography component="h6" variant="h6">
-              Create Distributed Identity Wallet
+          <Button
+            type="submit"
+            variant="contained"
+            disableElevation
+          >
+            <Trans>Create</Trans>
+          </Button>
+        </Flex>
+        <Box display="flex">
+          <Box flexGrow={6} className={custom.addText}>
+            <Typography variant="subtitle1">
+              (Optional) Add Backup IDs:
             </Typography>
           </Box>
         </Box>
-      </div>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div className={custom.topTitleCard}>
-          <Box display="flex">
-            <Box flexGrow={6} className={custom.inputTitleLeft}>
-              <Typography variant="subtitle1">Amount</Typography>
-            </Box>
+        <Flex alignItems="stretch">
+          <Box flexGrow={1}>
+            <Controller
+              as={TextField}
+              name="num_needed"
+              control={control}
+              label="Number of Backup IDs needed for recovery"
+              variant="outlined"
+              fullWidth
+              defaultValue=""
+              className={custom.numNeeded}
+            />
           </Box>
-        </div>
-        <div className={custom.subCard}>
-          <Box display="flex">
-            <Box flexGrow={1}>
-              <Controller
-                as={TextField}
-                name="amount"
-                control={control}
-                label="Amount"
-                variant="filled"
-                color="secondary"
-                fullWidth
-                className={custom.input}
-                defaultValue=""
-              />
-            </Box>
-            <Box>
-              <Button
-                type="submit"
-                className={custom.sendButton}
-                variant="contained"
-                color="primary"
-              >
-                Create
-              </Button>
-            </Box>
-          </Box>
-        </div>
-        <div className={custom.inputLeft}>
-          <Box display="flex">
-            <Box flexGrow={6}>
-              <Typography variant="subtitle1">
-                (Optional) Add Backup IDs
-              </Typography>
-            </Box>
-          </Box>
-        </div>
-        <div className={custom.inputLeft}>
-          <Box display="flex">
-            <Box flexGrow={6}>
-              <Button
-                type="button"
-                className={custom.addButton}
-                variant="contained"
-                color="primary"
-                onClick={() => {
-                  append({ backupid: 'Backup ID' });
-                }}
-              >
-                ADD
-              </Button>
-            </Box>
-          </Box>
-        </div>
-        <div>
-          <Box display="flex">
-            <Box flexGrow={1} className={custom.inputDIDs}>
-              <ul>
-                {fields.map((item, index) => {
-                  return (
-                    <li key={item.id} style={{ listStyleType: 'none' }}>
-                      <Controller
-                        as={TextField}
-                        name={`backup_dids[${index}].backupid`}
-                        control={control}
-                        defaultValue=""
-                        label="Backup ID"
-                        variant="filled"
-                        color="secondary"
-                        className={custom.inputDID}
-                      />
-                      <Button
-                        type="button"
-                        className={custom.sideButton}
-                        variant="contained"
-                        color="secondary"
-                        disableElevation
-                        onClick={() => remove(index)}
-                      >
-                        Delete
-                      </Button>
-                    </li>
-                  );
-                })}
-              </ul>
-            </Box>
-          </Box>
-        </div>
+          <Button
+            onClick={() => {
+              append({ backupid: 'Backup ID' });
+            }}
+            variant="contained"
+            disableElevation
+            className={custom.addID}
+          >
+            <Trans>Add Backup ID</Trans>
+          </Button>
+        </Flex>
+        <ul>
+          {fields.map((item, index) => {
+            return (
+              <li key={item.id} style={{ listStyleType: 'none' }}>
+                <Flex alignItems="stretch">
+                  <Box flexGrow={1}>
+                    <Controller
+                      as={TextField}
+                      name={`backup_dids[${index}].backupid`}
+                      control={control}
+                      defaultValue=""
+                      label="Backup ID"
+                      variant="outlined"
+                      fullWidth
+                      color="secondary"
+                      className={custom.inputDID}
+                    />
+                  </Box>
+                  <Button
+                    onClick={() => remove(index)}
+                    variant="contained"
+                    disableElevation
+                    className={custom.sideButton}
+                  >
+                    <Trans>Delete</Trans>
+                  </Button>
+                </Flex>
+              </li>
+            );
+          })}
+        </ul>
       </form>
-      <Backdrop className={classes.backdrop} open={pending && created}>
-        <CircularProgress color="inherit" />
-      </Backdrop>
-    </div>
+    </Flex>
   );
-};
+}

@@ -63,6 +63,10 @@ msgstr "Orders"
 msgid "Add"
 msgstr "Add"
 
+#: src/components/wallet/create/createDIDWallet.js:230
+msgid "Add Backup ID"
+msgstr ""
+
 #: src/components/plot/PlotHeader.tsx:51
 msgid "Add Plot Directory"
 msgstr "Add Crew Room"
@@ -90,8 +94,8 @@ msgstr "Add a crewdog"
 msgid "Add plot directory"
 msgstr "Add crew room"
 
-#: src/components/wallet/coloured/WalletColoured.tsx:405
-#: src/components/wallet/coloured/WalletColoured.tsx:457
+#: src/components/wallet/coloured/WalletColoured.tsx:406
+#: src/components/wallet/coloured/WalletColoured.tsx:458
 #: src/components/wallet/standard/WalletStandard.tsx:373
 msgid "Address"
 msgstr "Coordinates"
@@ -110,13 +114,17 @@ msgstr "Coordinates / Puzzle hash"
 msgid "Amount"
 msgstr "Amount"
 
-#: src/components/wallet/coloured/WalletColoured.tsx:415
+#: src/components/wallet/coloured/WalletColoured.tsx:416
 msgid "Amount ({cc_unit})"
 msgstr "Amount ({cc_unit})"
 
 #: src/components/wallet/create/createRLAdmin.jsx:259
 msgid "Amount For Initial Coin"
 msgstr "Amount Fer First Dubloon"
+
+#: src/components/wallet/create/createDIDWallet.js:151
+msgid "Amount must be an odd amount"
+msgstr ""
 
 #: src/components/plot/PlotAction.tsx:30
 #: src/components/plot/queue/PlotQueueActions.tsx:32
@@ -148,7 +156,7 @@ msgstr "Backwarrrds"
 msgid "Backup file is used to restore smart wallets."
 msgstr "Scribble (backup) file be used t' restore smart wallets."
 
-#: src/components/wallet/coloured/WalletColoured.tsx:286
+#: src/components/wallet/coloured/WalletColoured.tsx:287
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:562
 #: src/components/wallet/standard/WalletStandard.tsx:194
 msgid "Balance"
@@ -313,11 +321,11 @@ msgstr "Jinx Words"
 msgid "Colour:"
 msgstr "Jinx:"
 
-#: src/components/wallet/create/WalletCreate.jsx:120
+#: src/components/wallet/create/WalletCreate.jsx:124
 msgid "Coloured Coin"
 msgstr "Jinxed Dubloon"
 
-#: src/components/wallet/create/WalletCreate.jsx:168
+#: src/components/wallet/create/WalletCreate.jsx:182
 msgid "Coloured Coin Options"
 msgstr "Jinxed Dubloon Voodoo"
 
@@ -380,7 +388,7 @@ msgstr "Get yerself busy on GitHub"
 msgid "Copied"
 msgstr "'tis in yer hand now"
 
-#: src/components/wallet/coloured/WalletColoured.tsx:461
+#: src/components/wallet/coloured/WalletColoured.tsx:462
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:314
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:442
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:505
@@ -393,6 +401,7 @@ msgid "Copy to Clipboard"
 msgstr "Take into yer hand (Clipboard)"
 
 #: src/components/backup/BackupCreate.tsx:70
+#: src/components/wallet/create/createDIDWallet.js:199
 #: src/components/wallet/create/createExistingColouredCoin.jsx:141
 #: src/components/wallet/create/createNewColouredCoin.jsx:148
 #: src/components/wallet/create/createRLAdmin.jsx:333
@@ -400,7 +409,7 @@ msgstr "Take into yer hand (Clipboard)"
 msgid "Create"
 msgstr "Make"
 
-#: src/components/wallet/create/WalletCreate.jsx:308
+#: src/components/wallet/create/WalletCreate.jsx:322
 msgid "Create DID wallet"
 msgstr "Make DID treasure chest"
 
@@ -428,7 +437,7 @@ msgstr "Make Rate Limited Scallywag Treasure Chest"
 msgid "Create Trade Offer"
 msgstr "Make Trade Offer"
 
-#: src/components/wallet/coloured/WalletColoured.tsx:396
+#: src/components/wallet/coloured/WalletColoured.tsx:397
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:729
 #: src/components/wallet/standard/WalletStandard.tsx:312
 msgid "Create Transaction"
@@ -442,15 +451,15 @@ msgstr "Make a Scribble (Backup)"
 msgid "Create a new private key"
 msgstr "Make a new private treasure map"
 
-#: src/components/wallet/create/WalletCreate.jsx:244
+#: src/components/wallet/create/WalletCreate.jsx:258
 msgid "Create admin wallet"
 msgstr "Make pirate lord treasure chest"
 
-#: src/components/wallet/create/WalletCreate.jsx:180
+#: src/components/wallet/create/WalletCreate.jsx:194
 msgid "Create new coloured coin"
 msgstr "Make new jinxed dubloon"
 
-#: src/components/wallet/create/WalletCreate.jsx:256
+#: src/components/wallet/create/WalletCreate.jsx:270
 msgid "Create user wallet"
 msgstr "Make scallywag treasure chest"
 
@@ -458,7 +467,7 @@ msgstr "Make scallywag treasure chest"
 msgid "Create wallet for colour"
 msgstr "Make treasure chest fer jinx"
 
-#: src/components/wallet/create/WalletCreate.jsx:192
+#: src/components/wallet/create/WalletCreate.jsx:206
 msgid "Create wallet for existing colour"
 msgstr "Make treasure chest fer known jinx"
 
@@ -506,6 +515,7 @@ msgstr "Wait"
 #: src/components/plot/queue/PlotQueueActions.tsx:65
 #: src/components/selectKey/SelectKey.tsx:39
 #: src/components/selectKey/SelectKey.tsx:53
+#: src/components/wallet/create/createDIDWallet.js:257
 msgid "Delete"
 msgstr "Maroon"
 
@@ -557,10 +567,10 @@ msgid "Disconnect"
 msgstr "Say Goodbye"
 
 #: src/components/wallet/create/WalletCreate.jsx:144
-#~ msgid "Distributed Identity"
-#~ msgstr ""
+msgid "Distributed Identity"
+msgstr ""
 
-#: src/components/wallet/create/WalletCreate.jsx:296
+#: src/components/wallet/create/WalletCreate.jsx:310
 msgid "Distributed Identity Options"
 msgstr "Distributed Identity Voodoo"
 
@@ -573,10 +583,17 @@ msgstr "Ye 'ave existin' crewdogs on this ship? <0>Add Crewdog Folder</0>"
 msgid "Does your machine support parallel plotting?"
 msgstr "Is yer ship (machine) good at recruitin' many at the same time?"
 
+#: src/components/wallet/did/DIDWallet.js:417
+msgid "Drag and drop attestation packet(s)"
+msgstr ""
+
 #: src/components/trading/ViewOffer.jsx:41
-#: src/components/wallet/create/recoverDIDWallet.js:294
 msgid "Drag and drop offer file"
 msgstr "Drag 'n drop offer file"
+
+#: src/components/wallet/create/recoverDIDWallet.js:171
+msgid "Drag and drop recovery file"
+msgstr ""
 
 #: src/components/backup/BackupRestore.tsx:114
 msgid "Drag and drop your backup file"
@@ -631,7 +648,7 @@ msgid "Failed to open (invalid plots)"
 msgstr "Fail t' respond (incapacitated crew)"
 
 #: src/components/dashboard/DashboardSideBar.tsx:26
-#: src/components/wallet/coloured/WalletColoured.tsx:430
+#: src/components/wallet/coloured/WalletColoured.tsx:431
 #: src/components/wallet/standard/WalletStandard.tsx:344
 msgid "Farm"
 msgstr "Lootin'"
@@ -691,7 +708,7 @@ msgstr "Fee"
 #~ msgid "Fee ({0})"
 #~ msgstr "Fee ({0})"
 
-#: src/components/wallet/coloured/WalletColoured.tsx:422
+#: src/components/wallet/coloured/WalletColoured.tsx:423
 msgid "Fee ({currencyCode})"
 msgstr "Fee ({currencyCode})"
 
@@ -961,7 +978,7 @@ msgstr "Ocean"
 #~ msgid "Network not launched yet, waiting for genesis challenge!"
 #~ msgstr "Network not launched yet, waiting for genesis challenge!"
 
-#: src/components/wallet/coloured/WalletColoured.tsx:471
+#: src/components/wallet/coloured/WalletColoured.tsx:472
 #: src/components/wallet/standard/WalletStandard.tsx:387
 msgid "New Address"
 msgstr "New Coordinates"
@@ -985,7 +1002,7 @@ msgstr "Nickname"
 msgid "No"
 msgstr "Nay"
 
-#: src/middleware/middleware_api.jsx:283
+#: src/middleware/middleware_api.jsx:254
 msgid "No 24 word seed, since this key is imported."
 msgstr "No 24 word seed 'cause this treasure map be imported."
 
@@ -1107,6 +1124,7 @@ msgstr "Give 0 fee. Positive fees are nah good yet fer RL."
 msgid "Please enter a valid initial coin amount"
 msgstr "Give a good first dubloon amount"
 
+#: src/components/wallet/create/createDIDWallet.js:139
 #: src/components/wallet/create/createNewColouredCoin.jsx:69
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:679
 #: src/components/wallet/standard/WalletStandard.tsx:278
@@ -1280,11 +1298,11 @@ msgstr "Before Header Hash"
 msgid "Private key with public fingerprint {fingerprint}"
 msgstr "Private treasure map wit' public fingerprint {fingerprint}"
 
-#: src/middleware/middleware_api.jsx:247
+#: src/middleware/middleware_api.jsx:218
 msgid "Private key {0}"
 msgstr "Private treasure map {0}"
 
-#: src/middleware/middleware_api.jsx:257
+#: src/middleware/middleware_api.jsx:228
 msgid "Private key:"
 msgstr "Private treasure map:"
 
@@ -1300,7 +1318,7 @@ msgstr "Lucky Boardin's"
 msgid "Pubkey"
 msgstr "Pubkey"
 
-#: src/middleware/middleware_api.jsx:265
+#: src/middleware/middleware_api.jsx:236
 msgid "Public key:"
 msgstr "Public treasure map:"
 
@@ -1332,7 +1350,7 @@ msgstr "RL Treasure Chest"
 #~ msgid "RLListItems.title"
 #~ msgstr ""
 
-#: src/components/wallet/create/WalletCreate.jsx:130
+#: src/components/wallet/create/WalletCreate.jsx:134
 msgid "Rate Limited"
 msgstr "Rate Limited"
 
@@ -1341,7 +1359,7 @@ msgstr "Rate Limited"
 msgid "Rate Limited Info"
 msgstr "Rate Limited Info"
 
-#: src/components/wallet/create/WalletCreate.jsx:232
+#: src/components/wallet/create/WalletCreate.jsx:246
 msgid "Rate Limited Options"
 msgstr "Rate Limited Voodoo"
 
@@ -1349,12 +1367,12 @@ msgstr "Rate Limited Voodoo"
 msgid "Rate Limited User Wallet Setup"
 msgstr "Rate Limited Scallywag Treasure Chest Setup"
 
-#: src/components/wallet/coloured/WalletColoured.tsx:453
+#: src/components/wallet/coloured/WalletColoured.tsx:454
 #: src/components/wallet/standard/WalletStandard.tsx:367
 msgid "Receive Address"
 msgstr "Yer Treasure's Coordinates (give t'is to scallywags who owe you)"
 
-#: src/components/wallet/create/WalletCreate.jsx:320
+#: src/components/wallet/create/WalletCreate.jsx:334
 msgid "Recover DID wallet"
 msgstr "Recover DID treasure chest"
 
@@ -1412,7 +1430,7 @@ msgstr "Sec'nd temporary folder"
 msgid "See private key"
 msgstr "Look at private treasure map"
 
-#: src/middleware/middleware_api.jsx:275
+#: src/middleware/middleware_api.jsx:246
 msgid "Seed:"
 msgstr "Seed:"
 
@@ -1436,7 +1454,7 @@ msgstr "Choose Offer"
 msgid "Select Temporary Directory"
 msgstr "Give Temporary Folder"
 
-#: src/components/wallet/create/WalletCreate.jsx:108
+#: src/components/wallet/create/WalletCreate.jsx:112
 msgid "Select Wallet Type"
 msgstr "Choose type o' treasure chest"
 
@@ -1460,7 +1478,7 @@ msgstr "Aye"
 msgid "Sell"
 msgstr "Sell"
 
-#: src/components/wallet/coloured/WalletColoured.tsx:435
+#: src/components/wallet/coloured/WalletColoured.tsx:436
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:798
 #: src/components/wallet/standard/WalletStandard.tsx:349
 msgid "Send"
@@ -1515,7 +1533,7 @@ msgstr "Squanderable Amount"
 msgid "Spendable Amount Per Interval"
 msgstr "Squanderable Amount Per Interval"
 
-#: src/components/wallet/coloured/WalletColoured.tsx:288
+#: src/components/wallet/coloured/WalletColoured.tsx:289
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:571
 #: src/components/wallet/standard/WalletStandard.tsx:201
 msgid "Spendable Balance"
@@ -1583,6 +1601,7 @@ msgstr "State o' t'ings:"
 #~ msgid "Sub Block at height {0} in the Chia blockchain"
 #~ msgstr "Sub Block at height {0} in the Chia blockchain"
 
+#: src/components/wallet/did/DIDWallet.js:451
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:357
 msgid "Submit"
 msgstr "Go Ahead"
@@ -1748,7 +1767,7 @@ msgstr "Time 'n Date"
 msgid "To"
 msgstr "To"
 
-#: src/components/wallet/coloured/WalletColoured.tsx:287
+#: src/components/wallet/coloured/WalletColoured.tsx:288
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:565
 #: src/components/wallet/standard/WalletStandard.tsx:195
 msgid "Total Balance"
@@ -1857,7 +1876,7 @@ msgstr "Look at Offer"
 msgid "View pending balances"
 msgstr "Look at under way treasures"
 
-#: src/components/wallet/coloured/WalletColoured.tsx:296
+#: src/components/wallet/coloured/WalletColoured.tsx:297
 msgid "View pending balances..."
 msgstr "Look at under way treasures..."
 
@@ -1982,6 +2001,10 @@ msgstr "Ye 'ave {0}% o' all pirates' strength, so getting' booty will take {expe
 #: src/components/app/AppTimeBomb.tsx:28
 #~ msgid "You need to upgrade the Chia application as this version will stop working soon!"
 #~ msgstr "You need to upgrade the Chia application as this version will stop working soon!"
+
+#: src/components/wallet/did/DIDWallet.js:320
+msgid "Your DID requires at least {dids_num_req} attestation file(s) for recovery. Please upload additional files."
+msgstr ""
 
 #: src/components/farm/overview/FarmOverview.tsx:24
 msgid "Your Farm Overview"

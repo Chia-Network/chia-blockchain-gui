@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import { useDispatch, useSelector } from 'react-redux';
@@ -15,13 +15,16 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Backdrop from '@material-ui/core/Backdrop';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import { AlertDialog, Card, Dropzone, Flex } from '@chia/core';
+import { AlertDialog, Card, Flex, } from '@chia/core';
+import { Dropzone } from '@chia/core';
 
 import {
   did_generate_backup_file,
   did_spend,
   did_update_recovery_ids_action,
   did_create_attest,
+  did_recovery_spend,
+  did_get_recovery_info
 } from '../../../modules/message';
 import {
   Accordion,
@@ -275,9 +278,18 @@ const useStyles = makeStyles((theme) => ({
 
 const RecoveryCard = (props) => {
   const id = props.wallet_id;
-  console.log(id);
-  const mydid = useSelector((state) => state.wallet_state.wallets[id].mydid);
-  console.log(mydid);
+  const mydid = useSelector(
+    (state) => state.wallet_state.wallets[id].mydid,
+  );
+  let didcoin = useSelector(
+    (state) => state.wallet_state.wallets[id].didcoin,
+  );
+  let did_rec_pubkey = useSelector(
+    (state) => state.wallet_state.wallets[id].did_rec_pubkey,
+  );
+  let did_rec_puzhash = useSelector(
+    (state) => state.wallet_state.wallets[id].did_rec_puzhash,
+  );
   let backup_did_list = useSelector(
     (state) => state.wallet_state.wallets[id].backup_dids,
   );
@@ -287,20 +299,32 @@ const RecoveryCard = (props) => {
   const classes = useStyles();
   const dispatch = useDispatch();
 
-  let recovery_files = [];
+  const [files, setFiles] = useState([]);
+
+  const handleRemoveFile = (e) => {
+    const name = e.target.getAttribute("name")
+    setFiles(files.filter(object => object !== name));
+  }
 
   function handleDrop(acceptedFiles) {
-    if (acceptedFiles.length === 0) { return; }
-    console.log("FILE: ", acceptedFiles)
-    const offer_file_path = acceptedFiles[0].path;
-    recovery_files.push(offer_file_path)
-    console.log("RECOVERY FILES", recovery_files)
+    setFiles([...files, acceptedFiles[0].path]);
+  }
 
-    const offer_name = offer_file_path.replace(/^.*[/\\]/, '');
-
-    // dispatch(offerParsingName(offer_name, offer_file_path));
-    // dispatch(parse_trade_action(offer_file_path));
-    // dispatch(parsingStarted());
+  function submit() {
+    if (
+      files.length < dids_num_req
+    ) {
+      dispatch(
+        openDialog(
+          <AlertDialog>
+            <Trans>Your DID requires at least {dids_num_req} attestation file(s) for recovery. Please upload additional files.</Trans>
+          </AlertDialog>
+        ),
+      );
+      return;
+    } else {
+      dispatch(did_recovery_spend(id, files));
+    }
   }
 
   return (
@@ -329,6 +353,48 @@ const RecoveryCard = (props) => {
                 <Typography variant="subtitle1">{mydid}</Typography>
               </Box>
             </Box>
+            <Box display="flex">
+              <Box flexGrow={1} style={{ marginBottom: 20 }}>
+                <Typography variant="subtitle1">Coin Name:</Typography>
+              </Box>
+              <Box
+                style={{
+                  paddingLeft: 20,
+                  width: '80%',
+                  overflowWrap: 'break-word',
+                }}
+              >
+                <Typography variant="subtitle1">{didcoin}</Typography>
+              </Box>
+            </Box>
+            <Box display="flex">
+              <Box flexGrow={1} style={{ marginBottom: 20 }}>
+                <Typography variant="subtitle1">Pubkey:</Typography>
+              </Box>
+              <Box
+                style={{
+                  paddingLeft: 20,
+                  width: '80%',
+                  overflowWrap: 'break-word',
+                }}
+              >
+                <Typography variant="subtitle1">{did_rec_pubkey}</Typography>
+              </Box>
+            </Box>
+            <Box display="flex">
+              <Box flexGrow={1} style={{ marginBottom: 20 }}>
+                <Typography variant="subtitle1">Puzzlehash:</Typography>
+              </Box>
+              <Box
+                style={{
+                  paddingLeft: 20,
+                  width: '80%',
+                  overflowWrap: 'break-word',
+                }}
+              >
+                <Typography variant="subtitle1">{did_rec_puzhash}</Typography>
+              </Box>
+            </Box>
           </div>
         </Grid>
         <ViewDIDsSubsection
@@ -348,13 +414,45 @@ const RecoveryCard = (props) => {
         </Grid>
         <Grid item xs={12}>
           <Dropzone onDrop={handleDrop}>
-            {({ isDragActive, isDragReject, acceptedFiles, rejectedFiles }) => {
-              if (recovery_files.length === 0) {
-                return <p>Try dragging a file here!</p>
-              }
-              return recovery_files.map((file) => (file));
-            }}
+            <Trans>
+              Drag and drop attestation packet(s)
+            </Trans>
           </Dropzone>
+        </Grid>
+        <Grid item xs={12}>
+          <div className={classes.cardSubSection}>
+            <Box display="flex">
+              <Box flexGrow={1} style={{ marginBottom: 10, marginTop: 30 }}>
+                <Typography variant="subtitle1">
+                  Attestation Packets:
+                </Typography>
+              </Box>
+            </Box>
+            <Box>
+              <Box flexGrow={1} style={{ marginBottom: 10 }}>
+                {files.map(object => {
+                  return (
+                    <Typography key={object} variant="subtitle1">
+                      <span> {object} </span>
+                      <span name={object} onClick={handleRemoveFile} style={{textAlign: 'right'}}> [X] </span>
+                    </Typography>
+                  );
+                })}
+              </Box>
+            </Box>
+            <Box display="flex">
+              <Box flexGrow={1} style={{ marginBottom: 10 }}>
+                <Button
+                  onClick={submit}
+                  className={classes.sendButton}
+                  variant="contained"
+                  color="primary"
+                >
+                  <Trans>Submit</Trans>
+                </Button>
+              </Box>
+            </Box>
+          </div>
         </Grid>
       </Grid>
     </Paper>
@@ -363,9 +461,7 @@ const RecoveryCard = (props) => {
 
 const MyDIDCard = (props) => {
   const id = props.wallet_id;
-  console.log(id);
   const mydid = useSelector((state) => state.wallet_state.wallets[id].mydid);
-  console.log(mydid);
   let filename_input = null;
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -472,7 +568,7 @@ const BalanceCardSubSection = (props) => {
           </Box>
           <Box>
             <Typography variant="subtitle1">
-              {mojo_to_chia_string(props.balance)} {currencyCode}
+              {mojo_to_chia_string(props.balance)} TXCH
             </Typography>
           </Box>
         </Box>
@@ -566,8 +662,6 @@ const ViewDIDsSubsection = (props) => {
   let backup_list = props.backup_did_list;
   let dids_num_req = props.dids_num_req;
   let dids_length = backup_list.length;
-  console.log(props.backup_did_list);
-  console.log(props.dids_num_req);
   let isEmptyList = false;
   if (backup_list.length === 0) {
     isEmptyList = true;
@@ -747,20 +841,15 @@ const ManageDIDsCard = (props) => {
 
 const CreateAttest = (props) => {
   const id = props.wallet_id;
+  let filename_input = null;
   let coin_input = null;
   let pubkey_input = null;
   let puzhash_input = null;
-  const attest_packet = useSelector(
-    (state) => state.wallet_state.wallets[id].did_attest,
-  );
   const classes = useStyles();
-  const dispatch = useDispatch;
+  const dispatch = useDispatch();
 
-  function copy() {
-    navigator.clipboard.writeText(attest_packet);
-  }
-
-  function create_attest() {
+  function createAttestPacket() {
+    let filename = filename_input.value;
     if (coin_input.value === '') {
       dispatch(openDialog('Please enter a valid coin'));
       return;
@@ -781,9 +870,7 @@ const CreateAttest = (props) => {
       address = address.substring(2);
     }
 
-    dispatch(
-      did_create_attest(id, coin_input.value, pubkey_input.value, address),
-    );
+    dispatch(did_create_attest(id, filename, coin_input.value, pubkey_input.value, address));
 
     coin_input.value = '';
     pubkey_input.value = '';
@@ -802,6 +889,21 @@ const CreateAttest = (props) => {
         </Grid>
         <Grid item xs={12}>
           <div className={classes.cardSubSection}>
+            <Box display="flex">
+              <Box flexGrow={1}>
+                <TextField
+                  variant="filled"
+                  color="secondary"
+                  margin="normal"
+                  fullWidth
+                  inputRef={(input) => {
+                    filename_input = input;
+                  }}
+                  label="Filename"
+                />
+              </Box>
+              <Box></Box>
+            </Box>
             <Box display="flex">
               <Box flexGrow={1}>
                 <TextField
@@ -854,38 +956,12 @@ const CreateAttest = (props) => {
             <Box display="flex">
               <Box>
                 <Button
-                  onClick={create_attest}
+                  onClick={createAttestPacket}
                   className={classes.sendButton}
                   variant="contained"
                   color="primary"
                 >
                   Create Attest
-                </Button>
-              </Box>
-            </Box>
-          </div>
-        </Grid>
-        <Grid item xs={12}>
-          <div className={classes.cardSubSection}>
-            <Box display="flex">
-              <Box flexGrow={1}>
-                <TextField
-                  disabled
-                  fullWidth
-                  label="Attest Packet"
-                  value={attest_packet}
-                  variant="outlined"
-                />
-              </Box>
-              <Box>
-                <Button
-                  onClick={copy}
-                  className={classes.copyButton}
-                  variant="contained"
-                  color="secondary"
-                  disableElevation
-                >
-                  Copy
                 </Button>
               </Box>
             </Box>
@@ -983,41 +1059,33 @@ const HistoryCard = (props) => {
   );
 };
 
-export default function DistributedWallet(props) {
+export default function DistributedIDWallet(props) {
   const classes = useStyles();
+  const dispatch = useDispatch();
   const id = useSelector((state) => state.wallet_menu.id);
   const wallets = useSelector((state) => state.wallet_state.wallets);
   const data = useSelector((state) => state.wallet_state.wallets[id].data);
   const data_parsed = JSON.parse(data);
-  console.log('DID DATA PARSED');
-  console.log(data_parsed);
-  let temp_coin = data_parsed['temp_coin'];
-  console.log('TEMP COIN');
-  console.log(temp_coin);
+  let temp_coin = data_parsed.temp_coin;
 
   if (wallets.length > props.wallet_id) {
     if (temp_coin) {
-      console.log('YES TEMP COIN');
-      return wallets.length > props.wallet_id ? (
-        <Grid className={classes.walletContainer} item xs={12}>
-          <RecoveryCard wallet_id={id}></RecoveryCard>
-        </Grid>
-      ) : (
-        ''
+      dispatch(did_get_recovery_info(id))
+      return (
+        <Flex flexDirection="column" gap={3}>
+          <RecoveryCard wallet_id={id} />
+        </Flex>
       );
     } else {
-      console.log('NO TEMP COIN');
-      return wallets.length > props.wallet_id ? (
-        <Grid className={classes.walletContainer} item xs={12}>
-          <MyDIDCard wallet_id={id}></MyDIDCard>
-          <BalanceCard wallet_id={id}></BalanceCard>
-          <ManageDIDsCard wallet_id={id}></ManageDIDsCard>
-          <CreateAttest wallet_id={id}></CreateAttest>
-          <CashoutCard wallet_id={id}></CashoutCard>
+      return (
+        <Flex flexDirection="column" gap={3}>
+          <MyDIDCard wallet_id={id} />
+          <BalanceCard wallet_id={id} />
+          <ManageDIDsCard wallet_id={id} />
+          <CreateAttest wallet_id={id} />
+          <CashoutCard wallet_id={id} />
           <WalletHistory walletId={id} />
-        </Grid>
-      ) : (
-        ''
+        </Flex>
       );
     }
   }

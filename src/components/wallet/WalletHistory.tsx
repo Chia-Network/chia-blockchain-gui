@@ -15,10 +15,10 @@ const getCols = (type: WalletType) => [
   {
     field(row: Row) {
       const isOutgoing = [
-        TransactionType.OUTGOING, 
+        TransactionType.OUTGOING,
         TransactionType.OUTGOING_TRADE,
       ].includes(row.type);
-  
+
       return isOutgoing
         ? <Trans>Outgoing</Trans>
         : <Trans>Incoming</Trans>;
@@ -47,12 +47,13 @@ const getCols = (type: WalletType) => [
     title: <Trans>Date</Trans>,
   },
   {
-    field: (row: Row) => row.confirmed 
-      ? (
-        <Trans>
-          Confirmed at height {row.confirmed_at_height}
-        </Trans>
-      ) : <Trans>Pending</Trans>,
+    field: (row: Row) =>
+      row.confirmed
+        ? (
+          <Trans>
+            Confirmed at height {row.confirmed_at_height}
+          </Trans>
+        ) : <Trans>Pending</Trans>,
     title: <Trans>Status</Trans>,
   },
   {

@@ -35,7 +35,7 @@ import { CreateNewCCWallet } from './createNewColouredCoin';
 import { CreateExistingCCWallet } from './createExistingColouredCoin';
 import { CreateRLAdminWallet } from './createRLAdmin';
 import { CreateRLUserWallet } from './createRLUser';
-import { CreateDIDWallet } from './createDIDWallet';
+import CreateDIDWallet from './createDIDWallet';
 import { RecoverDIDWallet } from './recoverDIDWallet';
 
 export const useStyles = makeStyles((theme) => ({
@@ -98,6 +98,10 @@ export const MainWalletList = () => {
     dispatch(changeCreateWallet(CREATE_RL_WALLET_OPTIONS));
   }
 
+  function select_option_did() {
+    dispatch(changeCreateWallet(CREATE_DID_WALLET_OPTIONS));
+  }
+
   return (
     <Grid container spacing={0}>
       <Grid item xs={12}>
@@ -128,6 +132,16 @@ export const MainWalletList = () => {
             <ListItemText
               primary={
                 <Trans>Rate Limited</Trans>
+              }
+            />
+          </ListItem>
+          <ListItem button onClick={select_option_did}>
+            <ListItemIcon>
+              <InvertColorsIcon />
+            </ListItemIcon>
+            <ListItemText
+              primary={
+                <Trans>Distributed Identity</Trans>
               }
             />
           </ListItem>
@@ -224,7 +238,7 @@ export const RLListItems = () => {
           <Box display="flex">
             <Box>
               <Button onClick={goBack}>
-                <ArrowBackIosIcon />
+                <ArrowBackIosIcon> </ArrowBackIosIcon>
               </Button>
             </Box>
             <Box flexGrow={1} className={classes.title}>
@@ -288,7 +302,7 @@ export const DIDListItems = () => {
           <Box display="flex">
             <Box>
               <Button onClick={goBack}>
-                <ArrowBackIosIcon />
+                <ArrowBackIosIcon> </ArrowBackIosIcon>
               </Button>
             </Box>
             <Box flexGrow={1} className={classes.title}>

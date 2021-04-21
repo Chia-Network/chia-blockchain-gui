@@ -63,6 +63,10 @@ msgstr "动作"
 msgid "Add"
 msgstr "添加"
 
+#: src/components/wallet/create/createDIDWallet.js:230
+msgid "Add Backup ID"
+msgstr ""
+
 #: src/components/plot/PlotHeader.tsx:51
 msgid "Add Plot Directory"
 msgstr "添加农田文件目录"
@@ -90,8 +94,8 @@ msgstr "增加一个农田文件"
 msgid "Add plot directory"
 msgstr "设置农田文件所在目录"
 
-#: src/components/wallet/coloured/WalletColoured.tsx:405
-#: src/components/wallet/coloured/WalletColoured.tsx:457
+#: src/components/wallet/coloured/WalletColoured.tsx:406
+#: src/components/wallet/coloured/WalletColoured.tsx:458
 #: src/components/wallet/standard/WalletStandard.tsx:373
 msgid "Address"
 msgstr "地址"
@@ -110,13 +114,17 @@ msgstr "地址 / 谜语哈希"
 msgid "Amount"
 msgstr "数量"
 
-#: src/components/wallet/coloured/WalletColoured.tsx:415
+#: src/components/wallet/coloured/WalletColoured.tsx:416
 msgid "Amount ({cc_unit})"
 msgstr "数量 ({cc_unit})"
 
 #: src/components/wallet/create/createRLAdmin.jsx:259
 msgid "Amount For Initial Coin"
 msgstr "初始币的数目"
+
+#: src/components/wallet/create/createDIDWallet.js:151
+msgid "Amount must be an odd amount"
+msgstr ""
 
 #: src/components/plot/PlotAction.tsx:30
 #: src/components/plot/queue/PlotQueueActions.tsx:32
@@ -148,7 +156,7 @@ msgstr "后退"
 msgid "Backup file is used to restore smart wallets."
 msgstr "用来恢复智能钱包的备份文件."
 
-#: src/components/wallet/coloured/WalletColoured.tsx:286
+#: src/components/wallet/coloured/WalletColoured.tsx:287
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:562
 #: src/components/wallet/standard/WalletStandard.tsx:194
 msgid "Balance"
@@ -313,11 +321,11 @@ msgstr "色彩字符串"
 msgid "Colour:"
 msgstr "色彩："
 
-#: src/components/wallet/create/WalletCreate.jsx:120
+#: src/components/wallet/create/WalletCreate.jsx:124
 msgid "Coloured Coin"
 msgstr "染色币"
 
-#: src/components/wallet/create/WalletCreate.jsx:168
+#: src/components/wallet/create/WalletCreate.jsx:182
 msgid "Coloured Coin Options"
 msgstr "染色币选项"
 
@@ -380,7 +388,7 @@ msgstr "来Github出点力"
 msgid "Copied"
 msgstr "复制成功"
 
-#: src/components/wallet/coloured/WalletColoured.tsx:461
+#: src/components/wallet/coloured/WalletColoured.tsx:462
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:314
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:442
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:505
@@ -393,6 +401,7 @@ msgid "Copy to Clipboard"
 msgstr "复制到剪贴板"
 
 #: src/components/backup/BackupCreate.tsx:70
+#: src/components/wallet/create/createDIDWallet.js:199
 #: src/components/wallet/create/createExistingColouredCoin.jsx:141
 #: src/components/wallet/create/createNewColouredCoin.jsx:148
 #: src/components/wallet/create/createRLAdmin.jsx:333
@@ -400,7 +409,7 @@ msgstr "复制到剪贴板"
 msgid "Create"
 msgstr "创建"
 
-#: src/components/wallet/create/WalletCreate.jsx:308
+#: src/components/wallet/create/WalletCreate.jsx:322
 msgid "Create DID wallet"
 msgstr "创建DID钱包"
 
@@ -428,7 +437,7 @@ msgstr "创建费用限定型用户钱包"
 msgid "Create Trade Offer"
 msgstr "创建一个交易出价"
 
-#: src/components/wallet/coloured/WalletColoured.tsx:396
+#: src/components/wallet/coloured/WalletColoured.tsx:397
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:729
 #: src/components/wallet/standard/WalletStandard.tsx:312
 msgid "Create Transaction"
@@ -442,15 +451,15 @@ msgstr "创建备份"
 msgid "Create a new private key"
 msgstr "创建一个新的私钥"
 
-#: src/components/wallet/create/WalletCreate.jsx:244
+#: src/components/wallet/create/WalletCreate.jsx:258
 msgid "Create admin wallet"
 msgstr "创建管理者钱包"
 
-#: src/components/wallet/create/WalletCreate.jsx:180
+#: src/components/wallet/create/WalletCreate.jsx:194
 msgid "Create new coloured coin"
 msgstr "创建新的染色币"
 
-#: src/components/wallet/create/WalletCreate.jsx:256
+#: src/components/wallet/create/WalletCreate.jsx:270
 msgid "Create user wallet"
 msgstr "创建用户钱包"
 
@@ -458,7 +467,7 @@ msgstr "创建用户钱包"
 msgid "Create wallet for colour"
 msgstr "创建染色钱包"
 
-#: src/components/wallet/create/WalletCreate.jsx:192
+#: src/components/wallet/create/WalletCreate.jsx:206
 msgid "Create wallet for existing colour"
 msgstr "基于已有的染色币来创建一个钱包"
 
@@ -506,6 +515,7 @@ msgstr "延迟"
 #: src/components/plot/queue/PlotQueueActions.tsx:65
 #: src/components/selectKey/SelectKey.tsx:39
 #: src/components/selectKey/SelectKey.tsx:53
+#: src/components/wallet/create/createDIDWallet.js:257
 msgid "Delete"
 msgstr "删除"
 
@@ -557,10 +567,10 @@ msgid "Disconnect"
 msgstr "断开连接"
 
 #: src/components/wallet/create/WalletCreate.jsx:144
-#~ msgid "Distributed Identity"
-#~ msgstr ""
+msgid "Distributed Identity"
+msgstr ""
 
-#: src/components/wallet/create/WalletCreate.jsx:296
+#: src/components/wallet/create/WalletCreate.jsx:310
 msgid "Distributed Identity Options"
 msgstr "分布式身份选项"
 
@@ -573,10 +583,17 @@ msgstr "你的机器上有已经完成的绘图文件吗？ <0>添加绘图文�
 msgid "Does your machine support parallel plotting?"
 msgstr "你的机器支持并行P盘吗？"
 
+#: src/components/wallet/did/DIDWallet.js:417
+msgid "Drag and drop attestation packet(s)"
+msgstr ""
+
 #: src/components/trading/ViewOffer.jsx:41
-#: src/components/wallet/create/recoverDIDWallet.js:294
 msgid "Drag and drop offer file"
 msgstr "拖放Offer文件"
+
+#: src/components/wallet/create/recoverDIDWallet.js:171
+msgid "Drag and drop recovery file"
+msgstr ""
 
 #: src/components/backup/BackupRestore.tsx:114
 msgid "Drag and drop your backup file"
@@ -631,7 +648,7 @@ msgid "Failed to open (invalid plots)"
 msgstr "打开失败（绘图无效）"
 
 #: src/components/dashboard/DashboardSideBar.tsx:26
-#: src/components/wallet/coloured/WalletColoured.tsx:430
+#: src/components/wallet/coloured/WalletColoured.tsx:431
 #: src/components/wallet/standard/WalletStandard.tsx:344
 msgid "Farm"
 msgstr "农场"
@@ -691,7 +708,7 @@ msgstr "费用"
 #~ msgid "Fee ({0})"
 #~ msgstr "Fee ({0})"
 
-#: src/components/wallet/coloured/WalletColoured.tsx:422
+#: src/components/wallet/coloured/WalletColoured.tsx:423
 msgid "Fee ({currencyCode})"
 msgstr "费用({currencyCode})"
 
@@ -961,7 +978,7 @@ msgstr "网络名称"
 #~ msgid "Network not launched yet, waiting for genesis challenge!"
 #~ msgstr "Network not launched yet, waiting for genesis challenge!"
 
-#: src/components/wallet/coloured/WalletColoured.tsx:471
+#: src/components/wallet/coloured/WalletColoured.tsx:472
 #: src/components/wallet/standard/WalletStandard.tsx:387
 msgid "New Address"
 msgstr "新地址"
@@ -985,7 +1002,7 @@ msgstr "昵称"
 msgid "No"
 msgstr "否"
 
-#: src/middleware/middleware_api.jsx:283
+#: src/middleware/middleware_api.jsx:254
 msgid "No 24 word seed, since this key is imported."
 msgstr "自密钥输入以来, 没有24个密语."
 
@@ -1107,6 +1124,7 @@ msgstr "请输入费用数字0. 正费用目前在RL上还不支持."
 msgid "Please enter a valid initial coin amount"
 msgstr "请输入一个有效的初始币数量"
 
+#: src/components/wallet/create/createDIDWallet.js:139
 #: src/components/wallet/create/createNewColouredCoin.jsx:69
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:679
 #: src/components/wallet/standard/WalletStandard.tsx:278
@@ -1280,11 +1298,11 @@ msgstr "上个区块的头部哈希"
 msgid "Private key with public fingerprint {fingerprint}"
 msgstr "公共指纹为 {fingerprint} 的私钥"
 
-#: src/middleware/middleware_api.jsx:247
+#: src/middleware/middleware_api.jsx:218
 msgid "Private key {0}"
 msgstr "私钥 {0}"
 
-#: src/middleware/middleware_api.jsx:257
+#: src/middleware/middleware_api.jsx:228
 msgid "Private key:"
 msgstr "私钥:"
 
@@ -1300,7 +1318,7 @@ msgstr "已找到证明"
 msgid "Pubkey"
 msgstr "公钥"
 
-#: src/middleware/middleware_api.jsx:265
+#: src/middleware/middleware_api.jsx:236
 msgid "Public key:"
 msgstr "公钥："
 
@@ -1332,7 +1350,7 @@ msgstr "费用限定钱包"
 #~ msgid "RLListItems.title"
 #~ msgstr ""
 
-#: src/components/wallet/create/WalletCreate.jsx:130
+#: src/components/wallet/create/WalletCreate.jsx:134
 msgid "Rate Limited"
 msgstr "费用限定"
 
@@ -1341,7 +1359,7 @@ msgstr "费用限定"
 msgid "Rate Limited Info"
 msgstr "费用限制信息"
 
-#: src/components/wallet/create/WalletCreate.jsx:232
+#: src/components/wallet/create/WalletCreate.jsx:246
 msgid "Rate Limited Options"
 msgstr "费用限定型选项"
 
@@ -1349,12 +1367,12 @@ msgstr "费用限定型选项"
 msgid "Rate Limited User Wallet Setup"
 msgstr "费用限定型用户钱包设置"
 
-#: src/components/wallet/coloured/WalletColoured.tsx:453
+#: src/components/wallet/coloured/WalletColoured.tsx:454
 #: src/components/wallet/standard/WalletStandard.tsx:367
 msgid "Receive Address"
 msgstr "接收地址"
 
-#: src/components/wallet/create/WalletCreate.jsx:320
+#: src/components/wallet/create/WalletCreate.jsx:334
 msgid "Recover DID wallet"
 msgstr "恢复DID钱包"
 
@@ -1412,7 +1430,7 @@ msgstr "第二临时文件夹位置"
 msgid "See private key"
 msgstr "查看私钥："
 
-#: src/middleware/middleware_api.jsx:275
+#: src/middleware/middleware_api.jsx:246
 msgid "Seed:"
 msgstr "种子："
 
@@ -1436,7 +1454,7 @@ msgstr "选择出价"
 msgid "Select Temporary Directory"
 msgstr "选择临时目录"
 
-#: src/components/wallet/create/WalletCreate.jsx:108
+#: src/components/wallet/create/WalletCreate.jsx:112
 msgid "Select Wallet Type"
 msgstr "选择钱包类别"
 
@@ -1460,7 +1478,7 @@ msgstr "已选择"
 msgid "Sell"
 msgstr "卖出"
 
-#: src/components/wallet/coloured/WalletColoured.tsx:435
+#: src/components/wallet/coloured/WalletColoured.tsx:436
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:798
 #: src/components/wallet/standard/WalletStandard.tsx:349
 msgid "Send"
@@ -1515,7 +1533,7 @@ msgstr "可用金额"
 msgid "Spendable Amount Per Interval"
 msgstr "每次迭代的支出数目"
 
-#: src/components/wallet/coloured/WalletColoured.tsx:288
+#: src/components/wallet/coloured/WalletColoured.tsx:289
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:571
 #: src/components/wallet/standard/WalletStandard.tsx:201
 msgid "Spendable Balance"
@@ -1583,6 +1601,7 @@ msgstr "状态："
 #~ msgid "Sub Block at height {0} in the Chia blockchain"
 #~ msgstr "Sub Block at height {0} in the Chia blockchain"
 
+#: src/components/wallet/did/DIDWallet.js:451
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:357
 msgid "Submit"
 msgstr "提交"
@@ -1748,7 +1767,7 @@ msgstr "时间戳"
 msgid "To"
 msgstr "给"
 
-#: src/components/wallet/coloured/WalletColoured.tsx:287
+#: src/components/wallet/coloured/WalletColoured.tsx:288
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:565
 #: src/components/wallet/standard/WalletStandard.tsx:195
 msgid "Total Balance"
@@ -1857,7 +1876,7 @@ msgstr "查看出价"
 msgid "View pending balances"
 msgstr "查看处理中的余额"
 
-#: src/components/wallet/coloured/WalletColoured.tsx:296
+#: src/components/wallet/coloured/WalletColoured.tsx:297
 msgid "View pending balances..."
 msgstr "查看处理中的余额…"
 
@@ -1982,6 +2001,10 @@ msgstr "您在网络上拥有{0}%的空间，因此收割一个区块所花费�
 #: src/components/app/AppTimeBomb.tsx:28
 #~ msgid "You need to upgrade the Chia application as this version will stop working soon!"
 #~ msgstr "You need to upgrade the Chia application as this version will stop working soon!"
+
+#: src/components/wallet/did/DIDWallet.js:320
+msgid "Your DID requires at least {dids_num_req} attestation file(s) for recovery. Please upload additional files."
+msgstr ""
 
 #: src/components/farm/overview/FarmOverview.tsx:24
 msgid "Your Farm Overview"
