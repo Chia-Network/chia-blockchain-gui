@@ -8,7 +8,7 @@ msgstr ""
 "Language: sv_SE\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-04-15 01:46\n"
+"PO-Revision-Date: 2021-04-23 00:13\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -165,11 +165,11 @@ msgstr "Nedan visas aktuella blockverifieringar. Eventuellt har du ett bevis-på
 
 #: src/components/farm/card/FarmCardTotalNetworkSpace.tsx:8
 msgid "Best estimate over last 24 hours"
-msgstr ""
+msgstr "Bästa uppskattning under de senaste 24 timmarna"
 
 #: src/components/farm/card/FarmCardTotalNetworkSpace.tsx:8
 #~ msgid "Best estimate over last 5 hours"
-#~ msgstr "Bästa uppskattning under de senaste 5 timmarna"
+#~ msgstr ""
 
 #: src/components/block/Block.jsx:112
 #: src/components/block/Block.jsx:146
@@ -611,7 +611,7 @@ msgstr "Fel: det går inte att skicka chia till färgad adress. Ange en chia-adr
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:32
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:34
 msgid "Estimated Time to Win"
-msgstr ""
+msgstr "Förväntad tid till vinst"
 
 #: src/components/fullNode/FullNode.jsx:197
 msgid "Estimated network space"
@@ -863,7 +863,7 @@ msgstr "Nycklar"
 #: src/components/farm/FarmFullNodeConnections.tsx:40
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:40
 msgid "KiB Up/Down"
-msgstr ""
+msgstr "KiB Upp/Ner"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:37
 msgid "Last Attempted Proof"
@@ -1975,7 +1975,7 @@ msgstr ""
 
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:34
 msgid "You have {0}% of the space on the network, so farming a block will take {expectedTimeToWin} in expectation. Actual results may take 3 to 4 times longer than this estimate."
-msgstr ""
+msgstr "Du har {0}% av utrymmet på nätverket, skapande av ett block förväntas ta {expectedTimeToWin}. Faktiska tid kan vara 3 till 4 gånger än denna uppskattning."
 
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:34
 #~ msgid "You have {0}% of the space on the network, so farming a block will take {expectedTimeToWin} in expectation. Actual results may take 3-4 times longer - actual results may be 3x this estimate.<0>Learn about Expected Value</0>"

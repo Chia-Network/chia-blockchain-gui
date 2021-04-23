@@ -8,7 +8,7 @@ msgstr ""
 "Language: pl_PL\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-04-15 01:46\n"
+"PO-Revision-Date: 2021-04-23 12:38\n"
 "Last-Translator: \n"
 "Language-Team: Polish\n"
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
@@ -28,7 +28,7 @@ msgstr "Chciałbyś dokładniej przejrzeć bloki Chia? Sprawdź otwartoźródło
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:94
 msgid "128 buckets is recommended"
-msgstr ""
+msgstr "Zalecane jest 128 wiader"
 
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:58
 msgid "A harvester is a service running on a machine where plot(s) are actually stored. A farmer and harvester talk to a full node to see the state of the chain. View your network of connected harvesters below Learn more"
@@ -165,11 +165,11 @@ msgstr "Poniżej są aktualne wyzwania blokowe. Możesz mieć, albo nie, proof o
 
 #: src/components/farm/card/FarmCardTotalNetworkSpace.tsx:8
 msgid "Best estimate over last 24 hours"
-msgstr ""
+msgstr "Najlepsze przybliżenie w ciągu ostatnich 24 godzin"
 
 #: src/components/farm/card/FarmCardTotalNetworkSpace.tsx:8
 #~ msgid "Best estimate over last 5 hours"
-#~ msgstr "Najlepsze przybliżenie ostatnich 5 godzin"
+#~ msgstr ""
 
 #: src/components/block/Block.jsx:112
 #: src/components/block/Block.jsx:146
@@ -418,11 +418,11 @@ msgstr "Stwórz działkę"
 
 #: src/components/wallet/create/createRLAdmin.jsx:198
 msgid "Create Rate Limited Admin Wallet"
-msgstr ""
+msgstr "Utwórz Portfel z limitowaną stawką administratora"
 
 #: src/components/wallet/create/createRLUser.jsx:78
 msgid "Create Rate Limited User Wallet"
-msgstr ""
+msgstr "Stwórz portfel użytkownika ograniczony czasowo"
 
 #: src/components/trading/TradeManager.tsx:22
 #~ msgid "Create Trade"
@@ -566,12 +566,12 @@ msgstr "Rozłącz"
 
 #: src/components/wallet/create/WalletCreate.jsx:296
 msgid "Distributed Identity Options"
-msgstr ""
+msgstr "Opcje Rozproszonej Tożsamości"
 
 #: src/components/farm/overview/FarmOverviewHero.tsx:41
 #: src/components/plot/overview/PlotOverviewHero.tsx:35
 msgid "Do you have existing plots on this machine? <0>Add Plot Directory</0>"
-msgstr ""
+msgstr "Czy masz już istniejące działki na tej maszynie? <0>Dodaj lokalizację działki</0>"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:30
 msgid "Does your machine support parallel plotting?"
@@ -611,7 +611,7 @@ msgstr "Błąd: Nie można wysłać chia na adres colored. Proszę podać adres 
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:32
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:34
 msgid "Estimated Time to Win"
-msgstr ""
+msgstr "Szacunkowy czas oczekiwania na wygraną"
 
 #: src/components/fullNode/FullNode.jsx:197
 msgid "Estimated network space"
@@ -754,7 +754,7 @@ msgstr "Wygeneruj nowy kolor"
 
 #: src/components/wallet/standard/WalletStandard.tsx:367
 msgid "HD or Hierarchical Deterministic keys are a type of public key/private key scheme where one private key can have a nearly infinite number of different public keys (and therefor wallet receive addresses) that will all ultimately come back to and be spendable by a single private key."
-msgstr ""
+msgstr "HD lub Hierarchiczne klucze Deterministyczne to rodzaj systemu klucza publicznego/kluczy prywatnych, w którym jeden klucz prywatny może mieć prawie nieskończoną liczbę różnych kluczy publicznych (i adresów odbierających portfela), które ostatecznie powrócą do jednego klucza prywatnego i będą mogły zostać wydane przez jeden klucz prywatny."
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:49
 #~ msgid "Harvester ID"
@@ -829,11 +829,11 @@ msgstr "Indeks"
 
 #: src/components/trading/TradingOverview.jsx:218
 msgid "Indicated if this offer was created by us"
-msgstr ""
+msgstr "Wskazuje, czy ta oferta została stworzona przez nas"
 
 #: src/components/trading/TradingOverview.jsx:234
 msgid "Indicated what time this offer was accepted"
-msgstr ""
+msgstr "Oznaczenie kiedy ta oferta została zaakceptowana"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:342
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:491
@@ -863,7 +863,7 @@ msgstr "Klucze"
 #: src/components/farm/FarmFullNodeConnections.tsx:40
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:40
 msgid "KiB Up/Down"
-msgstr ""
+msgstr "KiB Wysyłanie/Pobieranie"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:37
 msgid "Last Attempted Proof"
@@ -935,11 +935,11 @@ msgstr "Zarządaj nagrodami farmienia"
 
 #: src/components/farm/FarmManageFarmingRewards.tsx:82
 msgid "Manage Your Farming Rewards Target Addresses"
-msgstr ""
+msgstr "Zarządzaj Swoimi Adresami Docelowymi Nagród Rolniczych"
 
 #: src/components/fullNode/FullNodeConnections.tsx:43
 msgid "MiB Up/Down"
-msgstr ""
+msgstr "MiB Wysyłanie/Pobieranie"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:60
 msgid "Minutes"
@@ -991,7 +991,7 @@ msgstr "Nie"
 
 #: src/middleware/middleware_api.jsx:283
 msgid "No 24 word seed, since this key is imported."
-msgstr ""
+msgstr "Brak seeda 24 słów, ponieważ ten klucz jest zaimportowany."
 
 #: src/components/farm/card/FarmCardLastHeightFarmed.tsx:8
 msgid "No blocks farmed yet"
@@ -1003,7 +1003,7 @@ msgstr "Brak wcześniejszych transakcji"
 
 #: src/components/farm/FarmManageFarmingRewards.tsx:91
 msgid "No private keys for one or both addresses. Safe only if you are sending rewards to another wallet."
-msgstr ""
+msgstr "Brak kluczy prywatnych dla jednego lub obu adresów. Bezpieczne tylko jeśli wysyłasz nagrody do innego portfela."
 
 #: src/components/farm/FarmFullNodeConnections.tsx:20
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:20
@@ -1046,7 +1046,7 @@ msgstr "Nie znaleziono działek"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:92
 msgid "Number of buckets"
-msgstr ""
+msgstr "Liczba wiader"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:83
 msgid "Number of threads"
@@ -1070,7 +1070,7 @@ msgstr "Wychodzące"
 
 #: src/components/fullNode/FullNode.jsx:166
 msgid "Peak Height"
-msgstr ""
+msgstr "Wysokość szczytowa"
 
 #: src/components/fullNode/FullNode.jsx:204
 #~ msgid "Peak Sub-block Height"
@@ -1078,7 +1078,7 @@ msgstr ""
 
 #: src/components/fullNode/FullNode.jsx:171
 msgid "Peak Time"
-msgstr ""
+msgstr "Czas szczytu"
 
 #: src/components/wallet/WalletHistory.tsx:42
 msgid "Pending"
@@ -1087,29 +1087,29 @@ msgstr "Oczekujące"
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:604
 #: src/components/wallet/standard/WalletStandard.tsx:223
 msgid "Pending Balance"
-msgstr ""
+msgstr "Oczekujące saldo"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:613
 #: src/components/wallet/standard/WalletStandard.tsx:228
 msgid "Pending Change"
-msgstr ""
+msgstr "Oczekujące saldo"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:595
 #: src/components/wallet/standard/WalletStandard.tsx:218
 msgid "Pending Total Balance"
-msgstr ""
+msgstr "Oczekujące saldo"
 
 #: src/components/trading/CreateOffer.jsx:109
 msgid "Please add a trade pair"
-msgstr ""
+msgstr "Proszę dodać parę transakcji"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:712
 msgid "Please enter 0 fee. Positive fees not supported yet for RL."
-msgstr ""
+msgstr "Wprowadź prowizję 0. Dodatnie prowizje nieobsługiwane jeszcze dla RL."
 
 #: src/components/wallet/create/createRLAdmin.jsx:146
 msgid "Please enter a valid initial coin amount"
-msgstr ""
+msgstr "Wprowadź prawidłową wartość monet"
 
 #: src/components/wallet/create/createNewColouredCoin.jsx:69
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:679
@@ -1127,7 +1127,7 @@ msgstr "Wprowadź prawidłową wartość numeryczną"
 
 #: src/components/wallet/create/createRLAdmin.jsx:100
 msgid "Please enter a valid numeric interval length"
-msgstr ""
+msgstr "Wprowadź poprawną wartość numeryczną długości interwału"
 
 #: src/components/wallet/create/createRLAdmin.jsx:117
 msgid "Please enter a valid numeric spendable amount"
@@ -1135,12 +1135,12 @@ msgstr ""
 
 #: src/components/wallet/create/createRLAdmin.jsx:129
 msgid "Please enter a valid pubkey"
-msgstr ""
+msgstr "Wprowadź prawidłowy klucz publiczny"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:661
 #: src/components/wallet/standard/WalletStandard.tsx:268
 msgid "Please finish syncing before making a transaction"
-msgstr ""
+msgstr "Proszę zakończyć synchronizację przez dokonaniem transakcji"
 
 #: src/components/trading/CreateOffer.jsx:75
 msgid "Please select amount"
@@ -1251,11 +1251,11 @@ msgstr ""
 
 #: src/components/farm/FarmManageFarmingRewards.tsx:96
 msgid "Pool Reward Address"
-msgstr ""
+msgstr "Adres nagród z puli"
 
 #: src/components/block/Block.jsx:286
 msgid "Pool Reward Amount"
-msgstr ""
+msgstr "Kwota nagród z puli"
 
 #: src/components/farm/FarmFullNodeConnections.tsx:30
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:30
@@ -1274,7 +1274,7 @@ msgstr "Poprzedni"
 
 #: src/components/block/Block.jsx:208
 msgid "Previous Header Hash"
-msgstr ""
+msgstr "Hasz poprzedniego bloku"
 
 #: src/components/block/Block.jsx:217
 #~ msgid "Previous Sub Block Hash"
@@ -1282,7 +1282,7 @@ msgstr ""
 
 #: src/components/selectKey/SelectKey.tsx:87
 msgid "Private key with public fingerprint {fingerprint}"
-msgstr ""
+msgstr "Klucz prywatny z publicznym odciskiem {fingerprint}"
 
 #: src/middleware/middleware_api.jsx:247
 msgid "Private key {0}"
@@ -1338,16 +1338,16 @@ msgstr "Portfel RL"
 
 #: src/components/wallet/create/WalletCreate.jsx:130
 msgid "Rate Limited"
-msgstr ""
+msgstr "Ograniczenie czasowe"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:402
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:453
 msgid "Rate Limited Info"
-msgstr ""
+msgstr "Informacje o ograniczeniu czasowym"
 
 #: src/components/wallet/create/WalletCreate.jsx:232
 msgid "Rate Limited Options"
-msgstr ""
+msgstr "Opcje ograniczenia czasowego"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:275
 msgid "Rate Limited User Wallet Setup"
@@ -1489,7 +1489,7 @@ msgstr "Pokaż zaawansowane opcje"
 #: src/components/trading/CreateOffer.jsx:174
 #: src/components/trading/TradesTable.tsx:13
 msgid "Side"
-msgstr ""
+msgstr "Strona"
 
 #: src/components/selectKey/SelectKey.tsx:74
 msgid "Sign In"
@@ -1513,31 +1513,31 @@ msgstr "Mowa"
 
 #: src/components/wallet/create/createRLAdmin.jsx:247
 msgid "Spendable Amount"
-msgstr ""
+msgstr "Dostępna kwota"
 
 #: src/components/wallet/create/createRLAdmin.jsx:216
 msgid "Spendable Amount Per Interval"
-msgstr ""
+msgstr "Kwota do wydania na przedział"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:288
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:571
 #: src/components/wallet/standard/WalletStandard.tsx:201
 msgid "Spendable Balance"
-msgstr ""
+msgstr "Dostępne saldo"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:408
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:459
 msgid "Spending Interval (number of blocks): {interval}"
-msgstr ""
+msgstr "Ograniczenie wydawania (liczba bloków): {interval}"
 
 #: src/components/wallet/create/createRLAdmin.jsx:209
 msgid "Spending Interval Length (number of blocks)"
-msgstr ""
+msgstr "Długość ograniczenia wydawania (number bloków)"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:415
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:466
 msgid "Spending Limit (chia per interval): {0}"
-msgstr ""
+msgstr "Limit wydawania (chia/interwał): {0}"
 
 #: src/components/fullNode/FullNode.jsx:94
 msgid "State"
@@ -1635,7 +1635,7 @@ msgstr "Lokalizacja folderu tymczasowego"
 
 #: src/components/app/AppTimeBomb.tsx:28
 msgid "The application will stop working at block height 193536."
-msgstr ""
+msgstr "Aplikacja przestanie działać na wysokości bloku 193536."
 
 #: src/components/farm/FarmFullNodeConnections.tsx:58
 msgid "The full node that your farmer is connected to is below. <0>Learn more</0>"
@@ -1668,7 +1668,7 @@ msgstr ""
 
 #: src/components/block/Block.jsx:297
 msgid "The total transactions fees in this block. Rewarded to the farmer."
-msgstr ""
+msgstr "Łączne opłaty transakcyjne w tym bloku. Przyznawane rolnikowi."
 
 #: src/components/plot/PlotsFailed.tsx:26
 msgid "These plots are invalid, you might want to delete them."
@@ -1710,11 +1710,11 @@ msgstr ""
 
 #: src/components/wallet/standard/WalletStandard.tsx:218
 msgid "This is the total balance + pending balance: it is what your balance will be after all pending transactions are confirmed."
-msgstr ""
+msgstr "To jest całkowite saldo + oczekujące saldo: taki będzie twój stan konta po potwierdzeniu oczekujących transakcji."
 
 #: src/components/fullNode/FullNode.jsx:133
 msgid "This node is fully caught up and validating the network"
-msgstr ""
+msgstr "Ten węzeł jest w pełni zsynchronizowany i sprawdza poprawność sieci"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:39
 #~ msgid "This table shows you the last time your farm attempted to win a block challenge."
@@ -1734,7 +1734,7 @@ msgstr "To zlecenie zostało uwzględnione w blockchainie na tej wysokości"
 
 #: src/components/app/AppTimeBombAlert.tsx:11
 msgid "This version of Chia is no longer compatible with the blockchain and can not safely farm."
-msgstr ""
+msgstr "Ta wersja Chia nie jest już kompatybilna z blockchain i nie może bezpiecznie uprawiać."
 
 #: src/components/fullNode/FullNode.jsx:86
 msgid "Time Created"
@@ -1841,7 +1841,7 @@ msgstr "Klucz Publiczny Użytkownika"
 
 #: src/components/fullNode/FullNode.jsx:185
 msgid "VDF Sub Slot Iterations"
-msgstr ""
+msgstr "Podrzędne Iteracje VDF"
 
 #: src/electron/main.tsx:251
 msgid "View"
@@ -1859,11 +1859,11 @@ msgstr "Zobacz Ofertę"
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:586
 #: src/components/wallet/standard/WalletStandard.tsx:213
 msgid "View pending balances"
-msgstr ""
+msgstr "Zobacz oczekujące saldo"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:296
 msgid "View pending balances..."
-msgstr ""
+msgstr "Zobacz oczekujące saldo..."
 
 #: src/components/farm/card/FarmCardNotAvailable.tsx:9
 #: src/components/plot/PlotStatus.tsx:22
@@ -1939,11 +1939,11 @@ msgstr "Witaj w Chia. Zaloguj się z instniejącym kluczem, lub utwórz nowy klu
 
 #: src/components/wallet/WalletAdd.tsx:35
 msgid "Welcome! The following words are used for your wallet backup. Without them, you will lose access to your wallet, keep them safe! Write down each word along with the order number next to them. (Order is important)"
-msgstr ""
+msgstr "Witamy! Poniższe słowa służą do tworzenia kopii zapasowej portfela. Bez nich stracisz dostęp do swojego portfela, chroń je! Zapisz każde słowo wraz z numerem zamówienia obok nich. (Kolejność jest ważna)"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:324
 msgid "When you receive the setup info packet from your admin, enter it below to complete your Rate Limited Wallet setup:"
-msgstr ""
+msgstr "Gdy otrzymasz pakiet informacji konfiguracyjnych od administratora, wprowadź go poniżej, aby zakończyć konfigurację portfela z ograniczeniami dotyczącymi stawek:"
 
 #: src/electron/main.tsx:294
 msgid "Window"
@@ -1973,7 +1973,7 @@ msgstr "Nie musisz być zsynchronizowany ani połączony aby generować działki
 
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:34
 msgid "You have {0}% of the space on the network, so farming a block will take {expectedTimeToWin} in expectation. Actual results may take 3 to 4 times longer than this estimate."
-msgstr ""
+msgstr "Masz {0}% miejsca w sieci, więc rolnictwo bloku zajmie {expectedTimeToWin}. Rzeczywiste wyniki mogą trwać od 3 do 4 razy dłużej niż to oszacowane."
 
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:34
 #~ msgid "You have {0}% of the space on the network, so farming a block will take {expectedTimeToWin} in expectation. Actual results may take 3-4 times longer - actual results may be 3x this estimate.<0>Learn about Expected Value</0>"
