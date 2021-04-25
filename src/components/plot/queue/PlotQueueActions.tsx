@@ -66,14 +66,6 @@ export default function PlotQueueAction(props: Props) {
         <Box>
           {state === PlotStatus.RUNNING && (
             <>
-              <MenuItem onClick={() => { onClose(); handleViewLog(); }}>
-                <ListItemIcon>
-                  <InfoIcon fontSize="small" />
-                </ListItemIcon>
-                <Typography variant="inherit" noWrap>
-                  <Trans>View Log</Trans>
-                </Typography>
-              </MenuItem>
               <Divider />
             </>
           )}
