@@ -10,7 +10,6 @@ import useOpenDialog from '../../../hooks/useOpenDialog';
 import type PlotQueueItem from '../../../types/PlotQueueItem';
 import PlotStatus from '../../../constants/PlotStatus';
 import { stopPlotting } from '../../../modules/plotter_messages';
-import PlotQueueLogDialog from './PlotQueueLogDialog';
 import isWindows from '../../../util/isWindows';
 
 type Props = {
