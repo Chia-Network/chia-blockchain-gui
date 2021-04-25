@@ -110,7 +110,7 @@ function addPlotProgress(queue: PlotQueueItem[]): PlotQueueItem[] {
     let progress = 0;
 
     if (log) {
-      const lines = log;
+      const lines = parseInt(log);
       progress = lines >= FINISHED_LOG_LINES ? 1 : lines / FINISHED_LOG_LINES;
     }
 

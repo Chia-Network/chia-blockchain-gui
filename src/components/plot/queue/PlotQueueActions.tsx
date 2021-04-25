@@ -5,7 +5,6 @@ import { ConfirmDialog, More } from '@chia/core';
 import { Box, Divider, ListItemIcon, MenuItem, Typography } from '@material-ui/core';
 import {
   DeleteForever as DeleteForeverIcon,
-  Info as InfoIcon,
 } from '@material-ui/icons';
 import useOpenDialog from '../../../hooks/useOpenDialog';
 import type PlotQueueItem from '../../../types/PlotQueueItem';
@@ -52,12 +51,6 @@ export default function PlotQueueAction(props: Props) {
     if (deleteConfirmed) {
       dispatch(stopPlotting(id));
     }
-  }
-
-  function handleViewLog() {
-    openDialog((
-      <PlotQueueLogDialog id={id} />
-    ));
   }
 
   return (
