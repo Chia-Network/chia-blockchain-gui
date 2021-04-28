@@ -17,7 +17,7 @@ type PlotQueueItemPartial = PlotQueueItem & {
 };
 
 function mergeQueue(
-  currentQueue: PlotQueueItem[], 
+  currentQueue: PlotQueueItem[],
   partialQueue: PlotQueueItemPartial[],
   event: string,
 ): PlotQueueItem[] {
@@ -25,8 +25,8 @@ function mergeQueue(
 
   partialQueue.forEach((item) => {
     const { id, log, log_new, ...rest } = item;
-  
-    const index = currentQueue.findIndex(queueItem => queueItem.id === id);
+
+    const index = currentQueue.findIndex((queueItem) => queueItem.id === id);
     if (index === -1) {
       result = [...currentQueue, item];
       return;
@@ -39,7 +39,7 @@ function mergeQueue(
 
     if (event === 'log_changed' && log_new !== undefined) {
       const originalItem = currentQueue[index];
-      const newLog = originalItem.log 
+      const newLog = originalItem.log
         ? `${originalItem.log}${log_new}`
         : log_new;
 
