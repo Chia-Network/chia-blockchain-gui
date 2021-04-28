@@ -28,7 +28,7 @@ function mergeQueue(
   
     const index = currentQueue.findIndex(queueItem => queueItem.id === id);
     if (index === -1) {
-      result = [item, ...currentQueue];
+      result = [...currentQueue, item];
       return;
     }
 
