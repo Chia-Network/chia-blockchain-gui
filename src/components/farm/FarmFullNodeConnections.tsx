@@ -81,7 +81,7 @@ export default function FarmFullNodeConnections() {
   );
 
   return (
-    <Card 
+    <Card
       title={(
         <Trans>
           Your Full Node Connection

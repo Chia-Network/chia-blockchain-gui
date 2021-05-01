@@ -3,7 +3,7 @@ import React, { useMemo } from 'react';
 import { Dropzone } from '@chia/core';
 import { Trans } from '@lingui/macro';
 import {
-  CssBaseline, 
+  CssBaseline,
   Container,
   Typography,
   Paper,
@@ -273,7 +273,7 @@ export const RecoverDIDWallet = () => {
   function goBack() {
     dispatch(changeCreateWallet(CREATE_DID_WALLET_OPTIONS));
   }
-  
+
   return (
     <div>
       <div className={classes.cardTitle}>

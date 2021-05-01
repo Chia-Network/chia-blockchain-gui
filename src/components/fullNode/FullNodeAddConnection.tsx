@@ -70,7 +70,7 @@ export default function FullNodeAddConnection(props: Props) {
         <DialogTitle id="alert-dialog-title">
           <Trans>Connect to other peers</Trans>
         </DialogTitle>
-        <DialogContent>          
+        <DialogContent>
           <Flex gap={2} flexDirection="column">
             {error && (
               <Alert severity="error">{error.message}</Alert>

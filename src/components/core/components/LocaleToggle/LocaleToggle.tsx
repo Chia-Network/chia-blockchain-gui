@@ -44,7 +44,7 @@ export default function LocaleToggle(props: Props) {
   }
 
   const localeData = useMemo(
-    () => locales.find((item)=> item.locale === currentLocale), 
+    () => locales.find((item)=> item.locale === currentLocale),
     [currentLocale, locales],
   );
 

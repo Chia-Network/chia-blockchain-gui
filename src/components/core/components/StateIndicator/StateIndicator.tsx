@@ -36,7 +36,7 @@ export default function StateComponent(props: Props) {
       </span>
       {indicator && (
         <StyledFiberManualRecordIcon />
-      )} 
+      )}
     </StyledFlexContainer>
   );
 }

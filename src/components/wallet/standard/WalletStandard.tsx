@@ -546,7 +546,7 @@ function AddressCard(props: AddressCardProps) {
   }
 
   return (
-    <Card 
+    <Card
       title={<Trans>Receive Address</Trans>}
       tooltip={(
         <Trans>

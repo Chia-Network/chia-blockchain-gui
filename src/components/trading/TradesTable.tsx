@@ -14,7 +14,7 @@ const cols = [{
   field: 'side',
   title: <Trans>Side</Trans>,
 }, {
-  field: 'amount', 
+  field: 'amount',
   title: <Trans>Amount</Trans>,
 }, {
   field: 'name',
@@ -55,7 +55,7 @@ export default function TradesTable(props: Props) {
   }), [rows]);
 
   return (
-    <Table 
+    <Table
       cols={cols}
       rows={tableRows}
     />

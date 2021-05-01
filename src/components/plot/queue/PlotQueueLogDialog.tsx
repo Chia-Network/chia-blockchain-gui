@@ -20,7 +20,7 @@ type Props = {
 
 export default function PlotQueueLogDialog(props: Props) {
   const { id, open, onClose } = props;
-  const queueItem = useThrottleSelector((state: RootState) => state.plot_queue.queue.find((item) => item.id === id), { 
+  const queueItem = useThrottleSelector((state: RootState) => state.plot_queue.queue.find((item) => item.id === id), {
     wait: 2000,
     force(_data, _dataBefore, state) {
       const event = state.plot_queue?.event;
@@ -66,7 +66,7 @@ export default function PlotQueueLogDialog(props: Props) {
                   {`${Math.round(queueItem.progress * 100)}%`}
                 </Typography>
               </Flex>
-            </Flex>  
+            </Flex>
           )}
           <Log>{log}</Log>
         </Flex>

@@ -26,7 +26,7 @@ type Props = {
 export default function Dropzone(props: Props) {
   const { children, onDrop, maxFiles, accept, ratio, processing } = props;
 
-  const config: DropzoneOptions = { 
+  const config: DropzoneOptions = {
     onDrop,
     maxFiles,
   };

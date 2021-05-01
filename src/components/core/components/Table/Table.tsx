@@ -141,9 +141,9 @@ export default function Table(props: Props) {
         <TableBody>
           {children}
           {currentRows.map((row) => (
-            <StyledTableRow 
-              key={row.id} 
-              onClick={(e) => handleRowClick(e, row)} 
+            <StyledTableRow
+              key={row.id}
+              onClick={(e) => handleRowClick(e, row)}
               hover={rowHover}
             >
               {currentCols.map((col) => {
@@ -175,11 +175,11 @@ export default function Table(props: Props) {
                   >
                     {tooltipValue ? (
                       <Tooltip title={tooltipValue}>
-    
+
                           <StyledTableCellContent>
                             {value}
                           </StyledTableCellContent>
-    
+
                       </Tooltip>
                     ) : (
                     <StyledTableCellContent>

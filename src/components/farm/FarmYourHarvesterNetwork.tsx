@@ -94,8 +94,8 @@ export default function FarmYourHarvesterNetwork() {
       )}
       tooltip={(
         <Trans>
-          A harvester is a service running on a machine where plot(s) are actually stored. 
-          A farmer and harvester talk to a full node to see the state of the chain. 
+          A harvester is a service running on a machine where plot(s) are actually stored.
+          A farmer and harvester talk to a full node to see the state of the chain.
           View your network of connected harvesters below Learn more
         </Trans>
       )}

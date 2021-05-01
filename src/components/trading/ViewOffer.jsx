@@ -23,7 +23,7 @@ export const DropView = () => {
   const dispatch = useDispatch();
   const parsing_state = useSelector((state) => state.trade_state.parsing_state);
   const isParsing = parsing_state === parsingStatePending;
- 
+
   function handleDrop(acceptedFiles) {
     const offer_file_path = acceptedFiles[0].path;
     const offer_name = offer_file_path.replace(/^.*[/\\]/, '');

@@ -15,10 +15,10 @@ const getCols = (type: WalletType) => [
   {
     field(row: Row) {
       const isOutgoing = [
-        TransactionType.OUTGOING, 
+        TransactionType.OUTGOING,
         TransactionType.OUTGOING_TRADE,
       ].includes(row.type);
-  
+
       return isOutgoing
         ? <Trans>Outgoing</Trans>
         : <Trans>Incoming</Trans>;
@@ -28,13 +28,13 @@ const getCols = (type: WalletType) => [
   {
     minWidth: '150px',
     field: (row: Row) => (
-      <Tooltip 
+      <Tooltip
         title={(
           <Flex alignItems="center" gap={1}>
             <Box maxWidth={200}>{row.to_address}</Box>
             <CopyToClipboard value={row.to_address} fontSize="small" />
           </Flex>
-        )} 
+        )}
         interactive
       >
         <span>{row.to_address}</span>
@@ -47,7 +47,7 @@ const getCols = (type: WalletType) => [
     title: <Trans>Date</Trans>,
   },
   {
-    field: (row: Row) => row.confirmed 
+    field: (row: Row) => row.confirmed
       ? (
         <Trans>
           Confirmed at height {row.confirmed_at_height}
