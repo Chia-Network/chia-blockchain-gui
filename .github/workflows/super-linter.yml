@@ -57,7 +57,6 @@ jobs:
           VALIDATE_BASH: true
           VALIDATE_CSS: true
           VALIDATE_DOCKER: true
-          VALIDATE_EDITORCONFIG: true
           VALIDATE_GO: true
           VALIDATE_HTML: true
           VALIDATE_JAVASCRIPT_ES: true
