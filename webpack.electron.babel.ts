@@ -32,7 +32,7 @@ export default {
   },
   plugins: [
     new CopyPlugin({
-      patterns: [{ 
+      patterns: [{
         from: path.resolve(__dirname, './src/electron/preload.js'),
         to: path.resolve(__dirname, './build/electron'),
       }],
