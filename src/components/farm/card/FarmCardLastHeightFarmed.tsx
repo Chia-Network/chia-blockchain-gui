@@ -27,6 +27,7 @@ export default function FarmCardLastHeightFarmed() {
         )
       }
       loading={loading}
+      hideable={true}
     />
   );
 }
