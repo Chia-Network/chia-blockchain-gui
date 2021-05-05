@@ -6,6 +6,7 @@ import {
   Button,
   Box,
   TextField,
+  Tooltip,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -21,6 +22,7 @@ import { create_did_action } from '../../../modules/message';
 import { chia_to_mojo } from '../../../util/chia';
 import { openDialog } from '../../../modules/dialog';
 import { useForm, Controller, useFieldArray } from 'react-hook-form';
+import { Help as HelpIcon } from '@material-ui/icons';
 
 export const customStyles = makeStyles((theme) => ({
   input: {
@@ -83,9 +85,6 @@ export const customStyles = makeStyles((theme) => ({
     marginLeft: theme.spacing(3),
     width: '50%',
   },
-  ul: {
-    listStyle: 'none',
-  },
   sideButton: {
     marginTop: theme.spacing(0),
     marginBottom: theme.spacing(2),
@@ -98,6 +97,7 @@ export const customStyles = makeStyles((theme) => ({
   addID: {
     height: 56,
     marginBottom: theme.spacing(2),
+    marginTop: theme.spacing(1),
     paddingRight: theme.spacing(2),
   },
   addText: {
@@ -120,37 +120,65 @@ export default function CreateDIDWallet() {
 
   const onSubmit = (data) => {
     const didArray = data.backup_dids?.map((item) => item.backupid) ?? [];
-    if (
-      data.amount === '' ||
-      Number(data.amount) === 0 ||
-      !Number(data.amount) ||
-      isNaN(Number(data.amount))
-    ) {
-      dispatch(
-        openDialog(
-          <AlertDialog>
-            <Trans>Please enter a valid numeric amount</Trans>
-          </AlertDialog>
-        ),
-      );
-      return;
-    }
-    if (
-      (data.amount) % 2 === 0
-    ) {
-      dispatch(
-        openDialog(
-          <AlertDialog>
-            <Trans>Amount must be an odd amount</Trans>
-          </AlertDialog>
-        ),
-      );
-      return;
-    }
+    let uniqDidArray = Array.from(new Set(didArray));
+    uniqDidArray = uniqDidArray.filter(item => item !== "")
     let amount_val = chia_to_mojo(data.amount);
+    if (
+      amount_val === '' ||
+      Number(amount_val) === 0 ||
+      !Number(amount_val) ||
+      isNaN(Number(amount_val))
+    ) {
+      dispatch(
+        openDialog(
+          <AlertDialog>
+            <Trans>Please enter a valid numeric amount.</Trans>
+          </AlertDialog>
+        ),
+      );
+      return;
+    }
+    if (
+      (amount_val) % 2 != 0
+    ) {
+      dispatch(
+        openDialog(
+          <AlertDialog>
+            <Trans>Amount must be an even amount.</Trans>
+          </AlertDialog>
+        ),
+      );
+      return;
+    }
     let num_of_backup_ids_needed = data.num_needed;
-    dispatch(createState(true, true));
-    dispatch(create_did_action(amount_val, didArray, num_of_backup_ids_needed));
+    if (
+      num_of_backup_ids_needed === '' ||
+      isNaN(Number(num_of_backup_ids_needed))
+    ) {
+      dispatch(
+        openDialog(
+          <AlertDialog>
+            <Trans>Please enter a valid integer of 0 or greater for the number of Backup IDs needed for recovery.</Trans>
+          </AlertDialog>
+        ),
+      );
+      return;
+    }
+    if (
+      num_of_backup_ids_needed > uniqDidArray.length
+    )
+    {
+      dispatch(
+        openDialog(
+          <AlertDialog>
+            <Trans>The number of Backup IDs needed for recovery cannot exceed the number of Backup IDs added.</Trans>
+          </AlertDialog>
+        ),
+      );
+      return;
+    }
+    // dispatch(createState(true, true));
+    // dispatch(create_did_action(amount_val, uniqDidArray, num_of_backup_ids_needed));
   };
 
   function goBack() {
@@ -172,7 +200,17 @@ export default function CreateDIDWallet() {
         </Box>
       </Box>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <Flex alignItems="stretch">
+        <Box display="flex">
+          <Flex alignItems="stretch" className={custom.addText}>
+            <Typography variant="subtitle1">
+              Enter amount:
+            </Typography>
+            <Tooltip title="The amount of Chia you enter must correspond to an even amount of mojos. One additional mojo will be added to the total amount for security purposes.">
+              <HelpIcon style={{ color: '#c8c8c8', fontSize: 12 }} />
+            </Tooltip>
+          </Flex>
+        </Box>
+        <Flex alignItems="center" gap="15px">
           <Box flexGrow={1}>
             <Controller
               as={TextField}
@@ -184,23 +222,27 @@ export default function CreateDIDWallet() {
               defaultValue=""
             />
           </Box>
-          <Button
-            type="submit"
-            variant="contained"
-            disableElevation
-          >
-            <Trans>Create</Trans>
-          </Button>
+          <Box display="flex" style={{ paddingRight: 5 }}>
+            <Typography variant="subtitle1">
+              + 1 mojo
+            </Typography>
+            <Tooltip title="This additional mojo will be added to the total amount for security purposes.">
+              <HelpIcon style={{ color: '#c8c8c8', fontSize: 12 }} />
+            </Tooltip>
+          </Box>
         </Flex>
         <Box display="flex">
-          <Box flexGrow={6} className={custom.addText}>
+          <Flex alignItems="stretch" className={custom.addText}>
             <Typography variant="subtitle1">
-              (Optional) Add Backup IDs:
+              Enter number of Backup IDs needed for recovery:
             </Typography>
-          </Box>
+            <Tooltip title="This number must be an integer greater than or equal to 0. It cannot exceed the number of Backup IDs added. You will be able to change this number as well as your list of Backup IDs.">
+              <HelpIcon style={{ color: '#c8c8c8', fontSize: 12 }} />
+            </Tooltip>
+          </Flex>
         </Box>
-        <Flex alignItems="stretch">
-          <Box flexGrow={1}>
+        <Flex flexDirection="row" justifyContent="space-between">
+          <Box flexGrow={6}>
             <Controller
               as={TextField}
               name="num_needed"
@@ -209,9 +251,25 @@ export default function CreateDIDWallet() {
               variant="outlined"
               fullWidth
               defaultValue=""
-              className={custom.numNeeded}
             />
           </Box>
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            disableElevation
+          >
+            <Trans>Create</Trans>
+          </Button>
+        </Flex>
+        <Box display="flex">
+          <Box flexGrow={6} className={custom.addText}>
+            <Typography variant="subtitle1">
+              Add Backup IDs:
+            </Typography>
+          </Box>
+        </Box>
+        <Flex alignItems="stretch">
           <Button
             onClick={() => {
               append({ backupid: 'Backup ID' });
