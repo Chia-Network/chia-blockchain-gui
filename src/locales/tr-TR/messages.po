@@ -202,7 +202,7 @@ msgstr "Blok Hash {headerHash}"
 msgid "Block with hash {headerHash} does not exists."
 msgstr "{headerHash} Hash'li blok mevcut değil."
 
-#: src/components/fullNode/FullNode.jsx:298
+#: src/components/fullNode/FullNode.jsx:299
 msgid "Blocks"
 msgstr "Bloklar"
 
@@ -351,7 +351,7 @@ msgid "Connect to other peers"
 msgstr "Diğer eşlere bağlan"
 
 #: src/components/core/components/FormatConnectionStatus/FormatConnectionStatus.tsx:47
-#: src/components/fullNode/FullNode.jsx:143
+#: src/components/fullNode/FullNode.jsx:144
 msgid "Connected"
 msgstr "Bağlandı"
 
@@ -359,7 +359,7 @@ msgstr "Bağlandı"
 msgid "Connecting to wallet"
 msgstr "Cüzdana bağlanılıyor"
 
-#: src/components/fullNode/FullNode.jsx:141
+#: src/components/fullNode/FullNode.jsx:142
 msgid "Connection Status"
 msgstr "Bağlantı durumu"
 
@@ -544,7 +544,7 @@ msgid "Developer Tools"
 msgstr "Geliştirici araçları"
 
 #: src/components/block/Block.jsx:216
-#: src/components/fullNode/FullNode.jsx:178
+#: src/components/fullNode/FullNode.jsx:179
 msgid "Difficulty"
 msgstr "Zorluk"
 
@@ -613,11 +613,11 @@ msgstr "Hata: Renkli adrese chia gönderemiyorum. Lütfen bir chia adresi girin.
 msgid "Estimated Time to Win"
 msgstr "Tahmini kazanma süresi"
 
-#: src/components/fullNode/FullNode.jsx:197
+#: src/components/fullNode/FullNode.jsx:198
 msgid "Estimated network space"
 msgstr "Tahmini Ağ büyüklüğü"
 
-#: src/components/fullNode/FullNode.jsx:200
+#: src/components/fullNode/FullNode.jsx:201
 msgid "Estimated sum of all the plotted disk space of all farmers in the network"
 msgstr "Ağ üzerindeki toplam bölümlendirilmiş disk alanı büyüklüğü"
 
@@ -722,8 +722,8 @@ msgstr "Dosya Adı"
 msgid "Final folder location"
 msgstr "Dosya Adresi"
 
-#: src/components/fullNode/FullNode.jsx:41
-#: src/components/fullNode/FullNode.jsx:92
+#: src/components/fullNode/FullNode.jsx:42
+#: src/components/fullNode/FullNode.jsx:93
 msgid "Finished"
 msgstr "Bitti"
 
@@ -736,11 +736,11 @@ msgid "Frequently Asked Questions"
 msgstr "Sıkça Sorulan Sorular"
 
 #: src/components/dashboard/DashboardSideBar.tsx:23
-#: src/components/fullNode/FullNode.jsx:312
+#: src/components/fullNode/FullNode.jsx:313
 msgid "Full Node"
 msgstr "Tam Node"
 
-#: src/components/fullNode/FullNode.jsx:255
+#: src/components/fullNode/FullNode.jsx:256
 msgid "Full Node Status"
 msgstr "Tam Node Durumu"
 
@@ -760,7 +760,7 @@ msgstr "HD veya Hiyerarşik Deterministik anahtarlar, bir public key/private ana
 #~ msgid "Harvester ID"
 #~ msgstr ""
 
-#: src/components/fullNode/FullNode.jsx:59
+#: src/components/fullNode/FullNode.jsx:60
 msgid "Header Hash"
 msgstr "Baştaki Hash"
 
@@ -769,7 +769,7 @@ msgid "Header hash"
 msgstr "Baştaki hash"
 
 #: src/components/block/Block.jsx:194
-#: src/components/fullNode/FullNode.jsx:75
+#: src/components/fullNode/FullNode.jsx:76
 #: src/components/fullNode/FullNodeConnections.tsx:54
 msgid "Height"
 msgstr "Yükseklik"
@@ -815,7 +815,7 @@ msgstr "Cüzdanı Mnemonics'ten içe aktar"
 msgid "Import from Mnemonics (24 words)"
 msgstr "Mneminocs'ten içe aktar. (24 kelime)"
 
-#: src/components/fullNode/FullNode.jsx:43
+#: src/components/fullNode/FullNode.jsx:44
 msgid "In Progress"
 msgstr "İşlem Sürüyor"
 
@@ -953,7 +953,7 @@ msgstr "Daha fazla memory hızı bir miktar artırır"
 msgid "My Pubkey"
 msgstr "Herkese Açık Anahtarım"
 
-#: src/components/fullNode/FullNode.jsx:160
+#: src/components/fullNode/FullNode.jsx:161
 msgid "Network Name"
 msgstr "Network Adı"
 
@@ -1022,7 +1022,7 @@ msgstr "Henüz plot'larınızdan hiçbiri plot filtresinden geçemedi."
 msgid "Not Available"
 msgstr "Uygun Değil"
 
-#: src/components/fullNode/FullNode.jsx:122
+#: src/components/fullNode/FullNode.jsx:123
 msgid "Not Synced"
 msgstr "Senkronize değil"
 
@@ -1035,8 +1035,8 @@ msgid "Not confirmed yet"
 msgstr "Henüz Onaylanmadı"
 
 #: src/components/core/components/FormatConnectionStatus/FormatConnectionStatus.tsx:48
-#: src/components/fullNode/FullNode.jsx:145
-#: src/components/fullNode/FullNode.jsx:152
+#: src/components/fullNode/FullNode.jsx:146
+#: src/components/fullNode/FullNode.jsx:153
 msgid "Not connected"
 msgstr "Bağlantı Yok"
 
@@ -1072,7 +1072,7 @@ msgstr ""
 msgid "Outgoing"
 msgstr "Giden"
 
-#: src/components/fullNode/FullNode.jsx:166
+#: src/components/fullNode/FullNode.jsx:167
 msgid "Peak Height"
 msgstr "Tepe Yüksekliği"
 
@@ -1080,7 +1080,7 @@ msgstr "Tepe Yüksekliği"
 #~ msgid "Peak Sub-block Height"
 #~ msgstr "Peak Sub-block Height"
 
-#: src/components/fullNode/FullNode.jsx:171
+#: src/components/fullNode/FullNode.jsx:172
 msgid "Peak Time"
 msgstr "En Yoğun Zaman"
 
@@ -1547,14 +1547,14 @@ msgstr "Harcama Aralığı Uzunluğu (blokların sayısı)"
 msgid "Spending Limit (chia per interval): {0}"
 msgstr "Harcama Limiti (aralık başına chia): {0}"
 
-#: src/components/fullNode/FullNode.jsx:94
+#: src/components/fullNode/FullNode.jsx:95
 msgid "State"
 msgstr "Bölge"
 
-#: src/components/fullNode/FullNode.jsx:104
-#: src/components/fullNode/FullNode.jsx:121
-#: src/components/fullNode/FullNode.jsx:129
-#: src/components/fullNode/FullNode.jsx:151
+#: src/components/fullNode/FullNode.jsx:105
+#: src/components/fullNode/FullNode.jsx:122
+#: src/components/fullNode/FullNode.jsx:130
+#: src/components/fullNode/FullNode.jsx:152
 #: src/components/plot/overview/PlotOverviewPlots.tsx:65
 #: src/components/trading/TradingOverview.jsx:128
 #: src/components/wallet/WalletHistory.tsx:43
@@ -1599,7 +1599,7 @@ msgstr "Durum:"
 msgid "Submit"
 msgstr "Onayla"
 
-#: src/components/fullNode/FullNode.jsx:130
+#: src/components/fullNode/FullNode.jsx:131
 msgid "Synced"
 msgstr "Senkronize Edildi"
 
@@ -1609,7 +1609,7 @@ msgstr "Senkronize Edildi"
 msgid "Syncing"
 msgstr "Senkronize ediliyor"
 
-#: src/components/fullNode/FullNode.jsx:106
+#: src/components/fullNode/FullNode.jsx:107
 msgid "Syncing {progress}/{tip}"
 msgstr "Senkronize ediliyor {progress}/{tip}"
 
@@ -1654,11 +1654,11 @@ msgstr "Çiftçinizin bağlı olduğu tam düğüm aşağıdadır. <0> Daha fazl
 msgid "The minimum required size for mainnet is k=32"
 msgstr "Ana ağ için gerekli minimum boyut k=32'dir"
 
-#: src/components/fullNode/FullNode.jsx:124
+#: src/components/fullNode/FullNode.jsx:125
 msgid "The node is not synced"
 msgstr "Düğüm senkronize edilmedi"
 
-#: src/components/fullNode/FullNode.jsx:112
+#: src/components/fullNode/FullNode.jsx:113
 msgid "The node is syncing, which means it is downloading blocks from other nodes, to reach the latest block in the chain"
 msgstr "Düğüm senkronize oluyor, ki bu zincirdeki en son bloğa ulaşmak için diğer düğümlerden bloklar indirildiği anlamına geliyor"
 
@@ -1704,7 +1704,7 @@ msgstr "Bu, kendinize gönderdiğiniz fakat henüz onaylanmayan değişim conile
 msgid "This is the sum of the incoming and outgoing pending transactions (not yet included into the blockchain). This does not include farming rewards."
 msgstr "Bu toplam, gelen, giden ve bekleyen işlemlerin toplamıdır (henüz blok zincirine dahil edilmemiştir). Bu, çiftçilik ödüllerini içermez."
 
-#: src/components/fullNode/FullNode.jsx:173
+#: src/components/fullNode/FullNode.jsx:174
 msgid "This is the time of the latest peak sub block."
 msgstr "Bu, en son tepe alt bloğunun zamanıdır."
 
@@ -1720,7 +1720,7 @@ msgstr "Bu, özel anahtarlarınız tarafından kontrol edilen mevcut en yüksek 
 msgid "This is the total balance + pending balance: it is what your balance will be after all pending transactions are confirmed."
 msgstr "Bu, toplam bakiye + bekleyen bakiyedir: ki bu tüm bekleyen işlemler onaylandıktan sonra bakiyenizin oluşacak bakiyedir."
 
-#: src/components/fullNode/FullNode.jsx:133
+#: src/components/fullNode/FullNode.jsx:134
 msgid "This node is fully caught up and validating the network"
 msgstr "Bu düğüm tamamen yakalandı ve ağı doğruluyor"
 
@@ -1744,7 +1744,7 @@ msgstr "Bu ticaret, bu blok yüksekliğindeki blok zincirine dahil edildi"
 msgid "This version of Chia is no longer compatible with the blockchain and can not safely farm."
 msgstr "Chia'nın bu sürümü artık blockchain ile uyumlu değil ve güvenli bir şekilde hasat yapamıyor."
 
-#: src/components/fullNode/FullNode.jsx:86
+#: src/components/fullNode/FullNode.jsx:87
 msgid "Time Created"
 msgstr "Oluşturulma Zamanı"
 
@@ -1770,7 +1770,7 @@ msgstr "Toplam Bakiye"
 #~ msgid "Total Chia Farmed"
 #~ msgstr ""
 
-#: src/components/fullNode/FullNode.jsx:191
+#: src/components/fullNode/FullNode.jsx:192
 msgid "Total Iterations"
 msgstr "Toplam Yineleme"
 
@@ -1790,7 +1790,7 @@ msgstr "Plot'ların Toplam Boyutu"
 msgid "Total VDF Iterations"
 msgstr "Toplam VDF Yinelemeleri"
 
-#: src/components/fullNode/FullNode.jsx:193
+#: src/components/fullNode/FullNode.jsx:194
 msgid "Total iterations since the start of the blockchain"
 msgstr "Blok zincirinin başlangıcından bu yana toplam yineleme"
 
@@ -1834,7 +1834,7 @@ msgstr "Karma Transfer Filtresi"
 msgid "Type"
 msgstr "Tür"
 
-#: src/components/fullNode/FullNode.jsx:92
+#: src/components/fullNode/FullNode.jsx:93
 msgid "Unfinished"
 msgstr "Bitmemiş"
 
@@ -1851,7 +1851,7 @@ msgstr "Bilinmeyen"
 msgid "User Pubkey"
 msgstr "Herkese Açık Kullanıcı Anahtarı"
 
-#: src/components/fullNode/FullNode.jsx:185
+#: src/components/fullNode/FullNode.jsx:186
 msgid "VDF Sub Slot Iterations"
 msgstr "VDF alt alan yinelemeleri"
 
