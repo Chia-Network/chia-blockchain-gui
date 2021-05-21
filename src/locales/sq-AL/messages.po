@@ -8,7 +8,7 @@ msgstr ""
 "Language: sq_AL\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-05-20 23:19\n"
+"PO-Revision-Date: 2021-05-21 17:20\n"
 "Last-Translator: \n"
 "Language-Team: Albanian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -584,15 +584,15 @@ msgstr "Terhiq dhe zgjidh skedarin"
 
 #: src/components/backup/BackupRestore.tsx:114
 msgid "Drag and drop your backup file"
-msgstr ""
+msgstr "Terhiq dhe zgjidh skedarin e ruajtur"
 
 #: src/electron/main.tsx:219
 msgid "Edit"
-msgstr ""
+msgstr "Modifiko"
 
 #: src/components/wallet/WalletImport.tsx:67
 msgid "Enter the 24 word mnemonic that you have saved in order to restore your Chia wallet."
-msgstr ""
+msgstr "Shkruaj 24 fjalët mnemonic që ke ruajtur pëer të rikthyer Kuletën tende Chia."
 
 #: src/components/farm/FarmerStatus.tsx:30
 #: src/components/farm/FarmerStatus.tsx:31
@@ -602,16 +602,16 @@ msgstr ""
 #: src/components/plot/PlotStatus.tsx:18
 #: src/components/plot/queue/PlotQueueIndicator.tsx:12
 msgid "Error"
-msgstr ""
+msgstr "Gabim"
 
 #: src/components/wallet/standard/WalletStandard.tsx:292
 msgid "Error: Cannot send chia to coloured address. Please enter a chia address."
-msgstr ""
+msgstr "Gabim: Nuk mund te dergojmë Chia në Adresën e dhënë. Ju lutemi vendosni një adresë Chia."
 
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:32
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:34
 msgid "Estimated Time to Win"
-msgstr ""
+msgstr "Koha e parashikuar për të fituar"
 
 #: src/components/fullNode/FullNode.jsx:198
 msgid "Estimated network space"
