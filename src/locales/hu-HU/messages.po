@@ -8,7 +8,7 @@ msgstr ""
 "Language: hu_HU\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-05-20 23:19\n"
+"PO-Revision-Date: 2021-05-21 11:22\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -20,7 +20,7 @@ msgstr ""
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:39
 msgid "*Want to explore Chia’s blocks further? Check out <0>Chia Explorer</0> built by an open source developer."
-msgstr "Felszeretnéd fedezni a Chia rendszerét bővebben? Csekkold a <0> Chia Explorert</0> amit egy nyílt forráskóddal foglalkozó fejlesztő készített."
+msgstr "Fel szeretnéd fedezni a Chia rendszerét bővebben? Nézd meg a <0> Chia Explorert</0> amit egy nyílt forráskóddal foglalkozó fejlesztő készített."
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:94
 #~ msgid "0 automatically chooses bucket count"
