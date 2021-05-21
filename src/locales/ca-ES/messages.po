@@ -8,7 +8,7 @@ msgstr ""
 "Language: ca_ES\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-05-20 23:19\n"
+"PO-Revision-Date: 2021-05-21 11:22\n"
 "Last-Translator: \n"
 "Language-Team: Catalan\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -200,7 +200,7 @@ msgstr "Bloc amb hash {headerHash}"
 
 #: src/components/block/Block.jsx:158
 msgid "Block with hash {headerHash} does not exist."
-msgstr ""
+msgstr "No existeix el bloc amb hash {headerHash}."
 
 #: src/components/fullNode/FullNode.jsx:299
 msgid "Blocks"
@@ -947,7 +947,7 @@ msgstr "Minuts"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:73
 msgid "More memory slightly increases speed"
-msgstr ""
+msgstr "Més memòria fa augmentar una mica la velocitat"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:429
 msgid "My Pubkey"
@@ -991,7 +991,7 @@ msgstr "No"
 
 #: src/middleware/middleware_api.jsx:285
 msgid "No 24 word seed, since this key is imported."
-msgstr ""
+msgstr "No hi ha llavor de 24 paraules, ja que aquesta clau ha estat importada."
 
 #: src/components/farm/card/FarmCardLastHeightFarmed.tsx:9
 msgid "No blocks farmed yet"
@@ -1003,7 +1003,7 @@ msgstr "No hi ha transaccions prèvies"
 
 #: src/components/farm/FarmManageFarmingRewards.tsx:91
 msgid "No private keys for one or both addresses. Safe only if you are sending rewards to another wallet."
-msgstr ""
+msgstr "No hi ha claus privades per a cap de les dues adreces. És segur només si envieu recompenses a una altra cartera."
 
 #: src/components/farm/FarmFullNodeConnections.tsx:20
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:20
@@ -1013,7 +1013,7 @@ msgstr "ID del node"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:44
 msgid "None of your plots have passed the plot filter yet."
-msgstr ""
+msgstr "Cap dels teus plots encara no ha passat el filtre de plots."
 
 #: src/components/farm/FarmerStatus.tsx:29
 #: src/components/farm/card/FarmCardNotAvailable.tsx:8
@@ -1042,7 +1042,7 @@ msgstr "Desconnectat"
 
 #: src/components/plot/PlotsNotFound.tsx:24
 msgid "Not found Plots"
-msgstr ""
+msgstr "No s'han trobat Plots"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:92
 msgid "Number of buckets"
@@ -1062,11 +1062,11 @@ msgstr "Oferta"
 
 #: src/components/trading/TradingOverview.jsx:424
 msgid "Offers Created"
-msgstr ""
+msgstr "S'ha creat una oferta"
 
 #: src/components/wallet/standard/WalletStandard.tsx:312
 msgid "On average there is one minute between each transaction block. Unless there is congestion you can expect your transaction to be included in less than a minute."
-msgstr ""
+msgstr "De mitjana tarda un minut entre cada transacció de block. A no ser que hi hagi saturació, la teva transacció hauria d'incloure's en menys d'un minut."
 
 #: src/components/wallet/WalletHistory.tsx:19
 msgid "Outgoing"
@@ -1074,7 +1074,7 @@ msgstr "Sortint"
 
 #: src/components/fullNode/FullNode.jsx:167
 msgid "Peak Height"
-msgstr ""
+msgstr "Altura màxima"
 
 #: src/components/fullNode/FullNode.jsx:204
 #~ msgid "Peak Sub-block Height"
@@ -1082,7 +1082,7 @@ msgstr ""
 
 #: src/components/fullNode/FullNode.jsx:172
 msgid "Peak Time"
-msgstr ""
+msgstr "Hora punta"
 
 #: src/components/wallet/WalletHistory.tsx:42
 msgid "Pending"
@@ -1091,29 +1091,29 @@ msgstr "Pendent"
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:604
 #: src/components/wallet/standard/WalletStandard.tsx:223
 msgid "Pending Balance"
-msgstr ""
+msgstr "Saldo pendent"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:613
 #: src/components/wallet/standard/WalletStandard.tsx:228
 msgid "Pending Change"
-msgstr ""
+msgstr "Canvi pendent"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:595
 #: src/components/wallet/standard/WalletStandard.tsx:218
 msgid "Pending Total Balance"
-msgstr ""
+msgstr "Saldo total pendent"
 
 #: src/components/trading/CreateOffer.jsx:109
 msgid "Please add a trade pair"
-msgstr ""
+msgstr "Si us plau, afegeix la informació d'intercanvi"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:712
 msgid "Please enter 0 fee. Positive fees not supported yet for RL."
-msgstr ""
+msgstr "Si us plau, afegeix 0 de comissió. Encara no es podem enviar comissions positives per RL."
 
 #: src/components/wallet/create/createRLAdmin.jsx:146
 msgid "Please enter a valid initial coin amount"
-msgstr ""
+msgstr "Si us plau, introdueixi una quantitat de moneda inicial vàlida"
 
 #: src/components/wallet/create/createNewColouredCoin.jsx:69
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:679
