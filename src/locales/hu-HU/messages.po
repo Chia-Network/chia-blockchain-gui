@@ -8,7 +8,7 @@ msgstr ""
 "Language: hu_HU\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-05-22 11:18\n"
+"PO-Revision-Date: 2021-05-22 23:19\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -28,7 +28,7 @@ msgstr "Fel szeretnéd fedezni a Chia rendszerét bővebben? Nézd meg a <0> Chi
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:94
 msgid "128 buckets is recommended"
-msgstr "128 vödör az ajánlott"
+msgstr "Az ajánlott vödrök száma 128"
 
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:58
 msgid "A harvester is a service running on a machine where plot(s) are actually stored. A farmer and harvester talk to a full node to see the state of the chain. View your network of connected harvesters below Learn more"
@@ -129,7 +129,7 @@ msgstr "Biztos megszakítod?"
 
 #: src/electron/main.tsx:164
 msgid "Are you sure you want to quit? GUI Plotting and farming will stop."
-msgstr "Biztos vagy benne, hogy kilépsz? Az ültetés és a gyűjtés meg fog állni."
+msgstr "Biztos vagy benne, hogy kilépsz? Az ültetés és a betakarítás meg fog állni."
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:31
 #~ msgid "Are you sure you want to use k={plotSize}"
@@ -137,7 +137,7 @@ msgstr "Biztos vagy benne, hogy kilépsz? Az ültetés és a gyűjtés meg fog �
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:31
 msgid "Are you sure you want to use k={plotSize}?"
-msgstr "Biztos vagy benne, hogy használni szeretnéd k={plotSize}?"
+msgstr "Biztos vagy benne, hogy használni szeretnéd a k={plotSize}-t?"
 
 #: src/components/selectKey/SelectKey.tsx:39
 #: src/components/selectKey/SelectKey.tsx:53
@@ -218,7 +218,7 @@ msgstr "Tallózás"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:50
 msgid "But you are currently farming <0/>"
-msgstr "De te jelenleg farmolsz <0/>"
+msgstr "De te jelenleg betakarítasz <0/>"
 
 #: src/components/trading/CreateOffer.jsx:181
 #: src/components/trading/TradesTable.tsx:31
@@ -236,7 +236,7 @@ msgstr "CC Tárca"
 
 #: src/components/selectKey/SelectKey.tsx:89
 msgid "Can be backed up to mnemonic seed"
-msgstr "Biztonsági mentés elérhető a mnemonic seed-del"
+msgstr "Biztonsági mentés elérhető a mnemonic maggal"
 
 #: src/components/core/components/ConfirmDialog/ConfirmDialog.tsx:50
 #: src/components/farm/FarmManageFarmingRewards.tsx:102
