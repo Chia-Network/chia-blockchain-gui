@@ -8,7 +8,7 @@ msgstr ""
 "Language: hu_HU\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-05-21 11:22\n"
+"PO-Revision-Date: 2021-05-22 11:18\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -32,7 +32,7 @@ msgstr "128 vödör az ajánlott"
 
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:58
 msgid "A harvester is a service running on a machine where plot(s) are actually stored. A farmer and harvester talk to a full node to see the state of the chain. View your network of connected harvesters below Learn more"
-msgstr "A betakarító egy szolgáltatás ahol a parcellák valójában tárolásra kerülnek. A gazdász és a betakarító kommunikációjából kivehető egy teljes rész, hogy látható legyen miként is áll a lánc. Alább láthatód azokat a betakarítókat akik a hálózatodhoz vannak csatlakozva. Tuddj meg többet"
+msgstr "A betakarító egy szolgáltatás ahol a parcellák valójában tárolásra kerülnek. A gazdász és a betakarító kommunikációjából kivehető egy teljes rész, hogy látható legyen miként is áll a lánc. Alább láthatód azokat a betakarítókat akik a hálózatodhoz vannak csatlakozva. Tudj meg többet"
 
 #: src/electron/main.tsx:365
 #: src/electron/main.tsx:443
@@ -444,7 +444,7 @@ msgstr "Mentés létrehozása"
 
 #: src/components/selectKey/SelectKey.tsx:109
 msgid "Create a new private key"
-msgstr "Új titkos kulcs készítése"
+msgstr "Új privát kulcs készítése"
 
 #: src/components/wallet/create/WalletCreate.jsx:244
 msgid "Create admin wallet"
