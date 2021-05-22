@@ -8,7 +8,7 @@ msgstr ""
 "Language: sq_AL\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-05-22 05:22\n"
+"PO-Revision-Date: 2021-05-22 16:26\n"
 "Last-Translator: \n"
 "Language-Team: Albanian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -780,7 +780,7 @@ msgstr "Ndihmë"
 
 #: src/components/core/components/LocaleToggle/LocaleToggle.tsx:39
 msgid "Help translate"
-msgstr "Ndihmo ta përkthesh"
+msgstr "Ndihmo në përkthim"
 
 #: src/components/core/components/AdvancedOptions/AdvancedOptions.tsx:35
 msgid "Hide Advanced Options"
@@ -788,7 +788,7 @@ msgstr "Fshih opsionet e avancuara"
 
 #: src/components/wallet/WalletHistory.tsx:62
 msgid "History"
-msgstr "Historiku"
+msgstr "Historia"
 
 #: src/components/farm/FarmFullNodeConnections.tsx:24
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:24
@@ -2035,7 +2035,7 @@ msgstr "lartësia:"
 
 #: src/components/wallet/Wallets.tsx:109
 msgid "not synced"
-msgstr "jo i sinkronizuar"
+msgstr "i pa sinkronizuar"
 
 #: src/components/wallet/WalletStatusCard.tsx:17
 #: src/components/wallet/Wallets.tsx:100
