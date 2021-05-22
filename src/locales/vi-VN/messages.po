@@ -8,7 +8,7 @@ msgstr ""
 "Language: vi_VN\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-05-20 23:18\n"
+"PO-Revision-Date: 2021-05-22 17:16\n"
 "Last-Translator: \n"
 "Language-Team: Vietnamese\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -1611,7 +1611,7 @@ msgstr "Đang đồng bộ"
 
 #: src/components/fullNode/FullNode.jsx:107
 msgid "Syncing <0/>/<1/>"
-msgstr ""
+msgstr "Đang đồng bộ <0/>/<1/>"
 
 #: src/components/fullNode/FullNode.jsx:107
 #~ msgid "Syncing {progress}/{tip}"
