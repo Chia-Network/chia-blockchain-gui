@@ -132,8 +132,8 @@ msgid "Are you sure you want to quit? GUI Plotting and farming will stop."
 msgstr "Bạn có chắc chắn muốn thoát? GUI Plotting và farming sẽ dừng."
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:31
-#~ msgid "Are you sure you want to use k={plotSize}"
-#~ msgstr "Are you sure you want to use k={plotSize}"
+msgid "Are you sure you want to use k={plotSize}"
+msgstr "Bạn có chắc chắn muốn dùng k={plotSize}"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:31
 msgid "Are you sure you want to use k={plotSize}?"
@@ -168,8 +168,8 @@ msgid "Best estimate over last 24 hours"
 msgstr "Ước tính tốt nhất trong 24 giờ qua"
 
 #: src/components/farm/card/FarmCardTotalNetworkSpace.tsx:8
-#~ msgid "Best estimate over last 5 hours"
-#~ msgstr ""
+msgid "Best estimate over last 5 hours"
+msgstr "Ước lượng trong 5 giờ gần nhất"
 
 #: src/components/block/Block.jsx:112
 #: src/components/block/Block.jsx:146
@@ -191,8 +191,8 @@ msgid "Block at height {0} in the Chia blockchain"
 msgstr "Khối tại height {0} trong Chia blockchain"
 
 #: src/components/fullNode/FullNode.jsx:331
-#~ msgid "Block hash"
-#~ msgstr ""
+msgid "Block hash"
+msgstr "Mã hash của khối"
 
 #: src/components/block/Block.jsx:129
 msgid "Block with hash {headerHash}"
@@ -207,8 +207,8 @@ msgid "Blocks"
 msgstr "Block"
 
 #: src/components/farm/FarmManageFarmingRewards.tsx:91
-#~ msgid "Both values are empty. This is ok if you are, for example, sending your rewards to an offline wallet."
-#~ msgstr "Both values are empty. This is ok if you are, for example, sending your rewards to an offline wallet."
+msgid "Both values are empty. This is ok if you are, for example, sending your rewards to an offline wallet."
+msgstr "Cả 2 giá trị đều trống. Chỉ sử dụng trong một số trường hợp, ví dụ nếu bạn muốn gửi phần thưởng của bạn tới ví offline."
 
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:52
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:63
@@ -425,8 +425,8 @@ msgid "Create Rate Limited User Wallet"
 msgstr "Tạo Ví Người Dùng Giới Hạn"
 
 #: src/components/trading/TradeManager.tsx:22
-#~ msgid "Create Trade"
-#~ msgstr ""
+msgid "Create Trade"
+msgstr "Tạo giao dịch"
 
 #: src/components/trading/CreateOffer.jsx:146
 msgid "Create Trade Offer"
@@ -472,7 +472,7 @@ msgstr "Tạo ví cho sắc tố hiện có"
 
 #: src/components/trading/TradingOverview.jsx:188
 msgid "Created At:"
-msgstr "Ngày tạo:"
+msgstr "Tạo vào lúc:"
 
 #: src/components/trading/TradingOverview.jsx:214
 msgid "Created by us:"
@@ -549,8 +549,8 @@ msgid "Difficulty"
 msgstr "Độ khó"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:114
-#~ msgid "Disable bifield plotting when your temporary directory is on fast storage like SSD or you need lower per process RAM requirements. Plotting with bitfield enabled has about 20% less overall writes."
-#~ msgstr ""
+msgid "Disable bifield plotting when your temporary directory is on fast storage like SSD or you need lower per process RAM requirements. Plotting with bitfield enabled has about 20% less overall writes."
+msgstr "Tắt bifield khi mà thư mục temporary của bạn nằm trên phần cứng tốc độ nhanh như SSD hoặc bạn cần giảm mức chiếm dụng RAM trên mỗi tiến trình. Mở bitfield sẽ giảm khoảng 20% lưu lượng ghi xuống đĩa."
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:109
 msgid "Disable bitfield plotting"
@@ -561,8 +561,8 @@ msgid "Disconnect"
 msgstr "Ngắt kết nối"
 
 #: src/components/wallet/create/WalletCreate.jsx:144
-#~ msgid "Distributed Identity"
-#~ msgstr ""
+msgid "Distributed Identity"
+msgstr "Nhận dạng phân tán"
 
 #: src/components/wallet/create/WalletCreate.jsx:296
 msgid "Distributed Identity Options"
@@ -627,8 +627,8 @@ msgstr "Loại trừ thư mục cuối cùng"
 
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:32
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:34
-#~ msgid "Expected Time to Win"
-#~ msgstr ""
+msgid "Expected Time to Win"
+msgstr "Ước tính thời gian thắng"
 
 #: src/components/plot/PlotsFailed.tsx:24
 msgid "Failed to open (invalid plots)"
@@ -688,12 +688,12 @@ msgid "Fee"
 msgstr "Phí"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:420
-#~ msgid "Fee (TXCH)"
-#~ msgstr ""
+msgid "Fee (TXCH)"
+msgstr "Phí (TXCH)"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:420
-#~ msgid "Fee ({0})"
-#~ msgstr "Fee ({0})"
+msgid "Fee ({0})"
+msgstr "Phí ({0})"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:422
 msgid "Fee ({currencyCode})"
@@ -738,11 +738,11 @@ msgstr "Câu hỏi thường gặp"
 #: src/components/dashboard/DashboardSideBar.tsx:23
 #: src/components/fullNode/FullNode.jsx:312
 msgid "Full Node"
-msgstr "Node hoàn thiện"
+msgstr "Node-full"
 
 #: src/components/fullNode/FullNode.jsx:255
 msgid "Full Node Status"
-msgstr "Tình trạng Node mạng"
+msgstr "Tình trạng Node-full"
 
 #: src/electron/main.tsx:287
 msgid "Full Screen"
@@ -757,16 +757,16 @@ msgid "HD or Hierarchical Deterministic keys are a type of public key/private ke
 msgstr "Khóa xác định phân cấp hoặc HD là một loại khóa công khai / lược đồ khóa riêng trong đó một khóa riêng có thể có số lượng gần như vô hạn các khóa công khai khác nhau (và ở đó đối với địa chỉ nhận ví), tất cả cuối cùng sẽ quay trở lại và có thể sử dụng được bởi một khóa riêng tư. Chìa khóa."
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:49
-#~ msgid "Harvester ID"
-#~ msgstr ""
+msgid "Harvester ID"
+msgstr "ID của Harvester"
 
 #: src/components/fullNode/FullNode.jsx:59
 msgid "Header Hash"
-msgstr "Băm tiêu đề"
+msgstr "Hash của Header"
 
 #: src/components/block/Block.jsx:180
 msgid "Header hash"
-msgstr "Băm tiêu đề"
+msgstr "Hash của Header"
 
 #: src/components/block/Block.jsx:194
 #: src/components/fullNode/FullNode.jsx:75
@@ -958,12 +958,12 @@ msgid "Network Name"
 msgstr "Tên mạng"
 
 #: src/components/fullNode/FullNode.jsx:106
-#~ msgid "Network has not yet been launched, once it launches full node will start automatically."
-#~ msgstr "Network has not yet been launched, once it launches full node will start automatically."
+msgid "Network has not yet been launched, once it launches full node will start automatically."
+msgstr "Mạng chưa khởi động, sau khi khởi động xong, full-node sẽ tự động chạy."
 
 #: src/components/app/AppRouter.tsx:24
-#~ msgid "Network not launched yet, waiting for genesis challenge!"
-#~ msgstr "Network not launched yet, waiting for genesis challenge!"
+msgid "Network not launched yet, waiting for genesis challenge!"
+msgstr "Mạng chưa khởi động, đang chờ thử thách từ khối genesis!"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:471
 #: src/components/wallet/standard/WalletStandard.tsx:389
@@ -1077,8 +1077,8 @@ msgid "Peak Height"
 msgstr "Peak Height"
 
 #: src/components/fullNode/FullNode.jsx:204
-#~ msgid "Peak Sub-block Height"
-#~ msgstr "Peak Sub-block Height"
+msgid "Peak Sub-block Height"
+msgstr "Độ cao chóp của block con"
 
 #: src/components/fullNode/FullNode.jsx:171
 msgid "Peak Time"
@@ -1159,8 +1159,8 @@ msgid "Please select coin colour"
 msgstr "Vui lòng chọn sắc tố"
 
 #: src/components/trading/CreateOffer.jsx:63
-#~ msgid "Please select coin type"
-#~ msgstr ""
+msgid "Please select coin type"
+msgstr "Vui lòng chọn loại coin"
 
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:44
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:48
@@ -1190,16 +1190,16 @@ msgid "Plot Key"
 msgstr "Khoá của Plot"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:43
-#~ msgid "Plot Name"
-#~ msgstr ""
+msgid "Plot Name"
+msgstr "Tên plot"
 
 #: src/components/block/Block.jsx:244
 msgid "Plot Public Key"
 msgstr "Khoá công khai của Plot"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:49
-#~ msgid "Plot Seed"
-#~ msgstr ""
+msgid "Plot Seed"
+msgstr "Seed của plot"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:66
 msgid "Plot Size"
@@ -1238,8 +1238,8 @@ msgid "Plotting with bitfield enabled has about 30% less overall writes and is n
 msgstr "Lập kế hoạch với trường bit được kích hoạt có tổng số lần ghi ít hơn khoảng 30% và hầu như lúc nào cũng nhanh hơn. Bạn có thể thấy yêu cầu bộ nhớ giảm khi tính năng vẽ trường bit bị tắt. Nếu thiết kế CPU của bạn là từ trước năm 2010, bạn có thể phải tắt tính năng bitfield."
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:114
-#~ msgid "Plotting with bitfield enabled has about 30% less overall writes and is now almost always faster. You may see reduced memory requirements with bitfield plotting disabled. If your CPU design is from before 2010 you may have to disbale bitfield plotting."
-#~ msgstr ""
+msgid "Plotting with bitfield enabled has about 30% less overall writes and is now almost always faster. You may see reduced memory requirements with bitfield plotting disabled. If your CPU design is from before 2010 you may have to disbale bitfield plotting."
+msgstr "Bật bitfield khi vẽ plot sẽ giảm cỡ 30% lượng ghi và luôn nhanh hơn. Tắt bitfield sẽ giúp giảm lượng RAM cần cho mỗi tiến trình. Nếu CPU của bạn có năm sản xuất trước 2010 thì bạn nên tắt bitfield"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:55
 msgid "Pool Key"
@@ -1273,16 +1273,16 @@ msgid "Previous"
 msgstr "Trở lại"
 
 #: src/components/block/Block.jsx:203
-#~ msgid "Previous Block Hash"
-#~ msgstr ""
+msgid "Previous Block Hash"
+msgstr "Mã hash của block trước"
 
 #: src/components/block/Block.jsx:208
 msgid "Previous Header Hash"
-msgstr "Header Hash trước đó"
+msgstr "Mã Hash của header trước đó"
 
 #: src/components/block/Block.jsx:217
-#~ msgid "Previous Sub Block Hash"
-#~ msgstr "Previous Sub Block Hash"
+msgid "Previous Sub Block Hash"
+msgstr "Mã Hash của block con trước đó"
 
 #: src/components/selectKey/SelectKey.tsx:87
 msgid "Private key with public fingerprint {fingerprint}"
@@ -1325,8 +1325,8 @@ msgid "Queued"
 msgstr "Đã lên danh sách"
 
 #: src/electron-starter.js:80
-#~ msgid "Quit"
-#~ msgstr "Quit"
+msgid "Quit"
+msgstr "Thoát"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:73
 msgid "RAM max usage"
@@ -1391,13 +1391,13 @@ msgid "Restore Metadata for Coloured Coins and other Smart Wallets from Backup"
 msgstr "Khôi phục siêu dữ liệu cho  coin sắc màu và các ví thông minh khác từ bản sao lưu"
 
 #: src/components/backup/BackupRestore.tsx:107
-#~ msgid "Restore Smart Wallets From Backup"
-#~ msgstr ""
+msgid "Restore Smart Wallets From Backup"
+msgstr "Phục hồi Ví thông minh từ bản lưu"
 
 #: src/components/fullNode/FullNode.jsx:57
 #: src/components/fullNode/FullNodeConnections.jsx:107
-#~ msgid "SB Height"
-#~ msgstr "SB Height"
+msgid "SB Height"
+msgstr "Độ cao SB"
 
 #: src/components/backup/BackupRestore.tsx:122
 msgid "Safe To Skip"
@@ -1409,8 +1409,8 @@ msgid "Save"
 msgstr "Lưu"
 
 #: src/components/fullNode/FullNode.jsx:338
-#~ msgid "Search"
-#~ msgstr ""
+msgid "Search"
+msgstr "Tìm"
 
 #: src/components/fullNode/FullNodeBlockSearch.tsx:30
 msgid "Search block by header hash"
@@ -1491,8 +1491,8 @@ msgid "Show Advanced Options"
 msgstr "Hiển thị tuỳ chọn nâng cao"
 
 #: src/electron-starter.js:79
-#~ msgid "Show app"
-#~ msgstr "Show app"
+msgid "Show app"
+msgstr "Hiển thị ứng dụng"
 
 #: src/components/trading/CreateOffer.jsx:174
 #: src/components/trading/TradesTable.tsx:13
@@ -1504,12 +1504,12 @@ msgid "Sign In"
 msgstr "Đăng nhập"
 
 #: src/components/backup/BackupRestore.tsx:122
-#~ msgid "Skip"
-#~ msgstr ""
+msgid "Skip"
+msgstr "Bỏ qua"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:129
-#~ msgid "Skips adding [final dir] to harvester for farming"
-#~ msgstr "Skips adding [final dir] to harvester for farming"
+msgid "Skips adding [final dir] to harvester for farming"
+msgstr "Không tự thêm [final dir] vào harvester để farm"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:129
 msgid "Skips adding a final directory to harvester for farming"
@@ -1584,16 +1584,16 @@ msgstr "Tình trạng:"
 #~ msgstr ""
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:103
-#~ msgid "Stripe Size"
-#~ msgstr ""
+msgid "Stripe Size"
+msgstr "Kích thước Stripe"
 
 #: src/components/block/Block.jsx:199
-#~ msgid "Sub Block Height"
-#~ msgstr "Sub Block Height"
+msgid "Sub Block Height"
+msgstr "Độ cao Block con"
 
 #: src/components/block/Block.jsx:338
-#~ msgid "Sub Block at height {0} in the Chia blockchain"
-#~ msgstr "Sub Block at height {0} in the Chia blockchain"
+msgid "Sub Block at height {0} in the Chia blockchain"
+msgstr "Độ cao block con tại {0} trên Chia blockchain"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:357
 msgid "Submit"
@@ -1614,28 +1614,28 @@ msgid "Syncing {progress}/{tip}"
 msgstr "Đang đồng bộ {progress}{tip}"
 
 #: src/components/farm/card/FarmCardBlockRewards.tsx:15
-#~ msgid "TXCH Block Rewards"
-#~ msgstr ""
+msgid "TXCH Block Rewards"
+msgstr "Phần thưởng TXCH Block"
 
 #: src/components/farm/card/FarmCardCoinbaseRewards.tsx:12
-#~ msgid "TXCH Farming Rewards"
-#~ msgstr ""
+msgid "TXCH Farming Rewards"
+msgstr "Phần thưởng TXCH Farming"
 
 #: src/components/farm/card/FarmCardFeesReward.tsx:12
-#~ msgid "TXCH Fees Collected"
-#~ msgstr ""
+msgid "TXCH Fees Collected"
+msgstr "Phí TXCH đã thu thập"
 
 #: src/components/farm/card/FarmCardUserFees.tsx:12
-#~ msgid "TXCH User Fees"
-#~ msgstr "TXCH User Fees"
+msgid "TXCH User Fees"
+msgstr "Phí người dùng TXCH"
 
 #: src/components/farm/card/FarmCardUserFees.tsx:15
-#~ msgid "TXCH User Transaction Fees"
-#~ msgstr ""
+msgid "TXCH User Transaction Fees"
+msgstr "Phí giao dịch của người dùng TXCH"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:18
-#~ msgid "Temporary files are created during the plotting process which exceeds the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
-#~ msgstr ""
+msgid "Temporary files are created during the plotting process which exceeds the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
+msgstr "File tạm được tạo trong quá trình vẽ plot vượt quá dung lượng trống của thư mục cuối cùng. Hãy chắc rằng bạn có đủ dung lượng trống <0>Tìm hiểu</0>"
 
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:48
 msgid "Temporary folder location"
@@ -1647,7 +1647,7 @@ msgstr "Ứng dụng sẽ ngưng hoạt động tại height 193536."
 
 #: src/components/farm/FarmFullNodeConnections.tsx:58
 msgid "The full node that your farmer is connected to is below. <0>Learn more</0>"
-msgstr "Nút đầy đủ mà farmer của bạn được kết nối ở bên dưới. <0> Tìm hiểu thêm </0>"
+msgstr "Full-node mà farmer của bạn được kết nối ở bên dưới. <0> Tìm hiểu thêm </0>"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:30
 #: src/components/plot/add/PlotAddChooseSize.tsx:74
@@ -1656,11 +1656,11 @@ msgstr "Kích thước yêu cầu tối thiểu cho mainnet là k = 32"
 
 #: src/components/fullNode/FullNode.jsx:124
 msgid "The node is not synced"
-msgstr "Nút không được đồng bộ hóa"
+msgstr "Node không được đồng bộ"
 
 #: src/components/fullNode/FullNode.jsx:112
 msgid "The node is syncing, which means it is downloading blocks from other nodes, to reach the latest block in the chain"
-msgstr "Nút đang đồng bộ hóa, có nghĩa là nó đang tải xuống các khối từ các nút khác, để đạt được khối mới nhất trong chuỗi"
+msgstr "Node đang đồng bộ, có nghĩa là nó đang tải xuống các khối từ các ndoe khác, để đạt được khối mới nhất trong chuỗi"
 
 #: src/components/block/Block.jsx:271
 msgid "The seed used to create the plot. This depends on the pool pk and plot pk."
@@ -1725,12 +1725,12 @@ msgid "This node is fully caught up and validating the network"
 msgstr "Nút này được bắt kịp hoàn toàn và xác thực mạng"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:39
-#~ msgid "This table shows you the last time your farm attempted to win a block challenge."
-#~ msgstr ""
+msgid "This table shows you the last time your farm attempted to win a block challenge."
+msgstr "Bảng này hiển thị lần cuối farm của bạn cố gắng giành phần thưởng trong một thử thách khối"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:39
 msgid "This table shows you the last time your farm attempted to win a block challenge. <0>Learn more</0>"
-msgstr "Bảng này hiển thị cho bạn lần cuối cùng trang trại của bạn cố gắng giành phần thưởng trong một thử thách khối. <0> Tìm hiểu thêm </0>"
+msgstr "Bảng này hiển thị cho bạn lần cuối cùng farm của bạn cố gắng giành phần thưởng trong một thử thách khối. <0> Tìm hiểu thêm </0>"
 
 #: src/components/trading/TradingOverview.jsx:192
 msgid "This trade was created at this time"
@@ -1767,8 +1767,8 @@ msgid "Total Balance"
 msgstr "Tổng số dư"
 
 #: src/components/farm/card/FarmCardTotalChiaFarmed.tsx:15
-#~ msgid "Total Chia Farmed"
-#~ msgstr ""
+msgid "Total Chia Farmed"
+msgstr "Tổng số Chia đã farm được"
 
 #: src/components/fullNode/FullNode.jsx:191
 msgid "Total Iterations"
@@ -1795,8 +1795,8 @@ msgid "Total iterations since the start of the blockchain"
 msgstr "Tổng số lần lặp kể từ khi bắt đầu blockchain"
 
 #: src/components/dashboard/DashboardSideBar.tsx:27
-#~ msgid "Trade"
-#~ msgstr "Trade"
+msgid "Trade"
+msgstr "Giao dịch"
 
 #: src/components/trading/TradingOverview.jsx:360
 msgid "Trade Details"
@@ -1884,13 +1884,13 @@ msgid "Wait for synchronization"
 msgstr "Chờ đồng bộ hóa"
 
 #: src/components/wallet/Wallets.tsx:104
-#~ msgid "Waiting for launch"
-#~ msgstr "Waiting for launch"
+msgid "Waiting for launch"
+msgstr "Chờ khởi động"
 
 #: src/components/fullNode/FullNode.jsx:103
 #: src/components/wallet/WalletStatusCard.tsx:20
-#~ msgid "Waiting for network to launch"
-#~ msgstr "Waiting for network to launch"
+msgid "Waiting for network to launch"
+msgstr "Chờ kết nối mạng"
 
 #: src/components/wallet/Wallets.tsx:34
 #~ msgid "WalletItem.ccWallet"
@@ -1923,7 +1923,7 @@ msgstr "Chờ đồng bộ hóa"
 #: src/components/dashboard/DashboardSideBar.tsx:24
 #: src/components/wallet/Wallets.tsx:133
 msgid "Wallets"
-msgstr "Wallets"
+msgstr "Các ví"
 
 #: src/components/wallet/Wallets.tsx:131
 #~ msgid "Wallets.title"
@@ -1972,32 +1972,32 @@ msgid "Yes"
 msgstr "Đồng ý"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:56
-#~ msgid "You do not need to be synched or connected to Plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
-#~ msgstr "You do not need to be synched or connected to Plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
+msgid "You do not need to be synched or connected to Plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
+msgstr "Bạn không cần đồng bộ hoặc kết nối mạng vẫn plot được. File tạm được tạo trong quá trình vẽ plot vượt quá dung lượng trống của plot cuối cùng. Hãy chắc rằng bạn có đủ dung lượng trống <0>Tìm hiểu</0>"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:56
 msgid "You do not need to be synched or connected to plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
-msgstr "Bạn không cần phải được đồng bộ hóa hoặc kết nối với plot. Các tệp tạm thời được tạo trong quá trình ploting vượt quá kích thước của tệp plot cuối cùng. Đảm bảo rằng bạn có đủ không gian. <0> Tìm hiểu thêm </0>"
+msgstr "Bạn không cần phải được đồng bộ hóa hoặc kết nối với plot. File tạm được tạo trong quá trình vẽ plot vượt quá dung lượng trống của plot cuối cùng. Hãy chắc rằng bạn có đủ dung lượng trống <0>Tìm hiểu</0>"
 
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:34
-#~ msgid "You have {0}% of the space on the network, so farming a block will take {expectedTimeToWin} in expectation."
-#~ msgstr ""
+msgid "You have {0}% of the space on the network, so farming a block will take {expectedTimeToWin} in expectation."
+msgstr "Bạn chiếm {0}% của tổng không gian mạng, ước lượng sẽ mất {expectedTimeToWin} để giành được phần thưởng khối."
 
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:34
 msgid "You have {0}% of the space on the network, so farming a block will take {expectedTimeToWin} in expectation. Actual results may take 3 to 4 times longer than this estimate."
 msgstr "Bạn chiếm {0}% dung lượng của mạng lưới, vì vậy để đào được một block dự kiến sẽ mất khoảng {expectedTimeToWin}. Kết quả thực tế có thể gấp 3 đến 4 lần dự kiến này."
 
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:34
-#~ msgid "You have {0}% of the space on the network, so farming a block will take {expectedTimeToWin} in expectation. Actual results may take 3-4 times longer - actual results may be 3x this estimate.<0>Learn about Expected Value</0>"
-#~ msgstr "You have {0}% of the space on the network, so farming a block will take {expectedTimeToWin} in expectation. Actual results may take 3-4 times longer - actual results may be 3x this estimate.<0>Learn about Expected Value</0>"
+msgid "You have {0}% of the space on the network, so farming a block will take {expectedTimeToWin} in expectation. Actual results may take 3-4 times longer - actual results may be 3x this estimate.<0>Learn about Expected Value</0>"
+msgstr "Bạn chiếm {0}% của tổng không gian mạng, ước lượng sẽ mất {expectedTimeToWin} để giành được phần thưởng khối. Thường thời gian thực tế sẽ lâu hơn 3 đến 4 lần, thường là 3 lần.<0>Tỉm hiểu thêm về ước tính thời gian</0>"
 
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:34
-#~ msgid "You have {0}% of the space on the network, so farming a block will take {expectedTimeToWin} in expectation. Actual results may take 3-4 times longer this estimate. <0>Learn about Expected Value</0>"
-#~ msgstr "You have {0}% of the space on the network, so farming a block will take {expectedTimeToWin} in expectation. Actual results may take 3-4 times longer this estimate. <0>Learn about Expected Value</0>"
+msgid "You have {0}% of the space on the network, so farming a block will take {expectedTimeToWin} in expectation. Actual results may take 3-4 times longer this estimate. <0>Learn about Expected Value</0>"
+msgstr "Bạn chiếm {0}% của tổng không gian mạng, ước lượng sẽ mất {expectedTimeToWin} để giành được phần thưởng khối. Thường thời gian thực tế sẽ lâu hơn 3 đến 4 lần.<0>Tỉm hiểu thêm về ước tính thời gian</0>"
 
 #: src/components/app/AppTimeBomb.tsx:28
-#~ msgid "You need to upgrade the Chia application as this version will stop working soon!"
-#~ msgstr "You need to upgrade the Chia application as this version will stop working soon!"
+msgid "You need to upgrade the Chia application as this version will stop working soon!"
+msgstr "Bạn phải nâng cấp phiên bản Chia, phiên bản bạn đang dùng sẽ ngưng hoạt động vài ngày tới!"
 
 #: src/components/farm/overview/FarmOverview.tsx:24
 msgid "Your Farm Overview"
@@ -2005,7 +2005,7 @@ msgstr "Tổng quan về nông trại của bạn"
 
 #: src/components/farm/FarmFullNodeConnections.tsx:56
 msgid "Your Full Node Connection"
-msgstr "Kết nối nút đầy đủ của bạn"
+msgstr "Kết nối full-node của bạn"
 
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:56
 msgid "Your Harvester Network"
@@ -2049,12 +2049,12 @@ msgid "syncing"
 msgstr "đang đồng bộ"
 
 #: src/components/farm/card/FarmCardBlockRewards.tsx:16
-#~ msgid "{0} Block Rewards"
-#~ msgstr "{0} Block Rewards"
+msgid "{0} Block Rewards"
+msgstr "{0} phần thưởng khối"
 
 #: src/components/farm/card/FarmCardUserFees.tsx:16
-#~ msgid "{0} User Transaction Fees"
-#~ msgstr "{0} User Transaction Fees"
+msgid "{0} User Transaction Fees"
+msgstr "{0} Phí giao dịch của người dùng"
 
 #: src/components/farm/card/FarmCardBlockRewards.tsx:18
 msgid "{currencyCode} Block Rewards"
