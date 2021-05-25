@@ -101,9 +101,13 @@ export const customStyles = makeStyles((theme) => ({
     paddingRight: theme.spacing(2),
   },
   addText: {
-    marginTop: theme.spacing(2),
+    marginTop: theme.spacing(3),
     marginBottom: theme.spacing(2),
-  }
+  },
+  addIDsText: {
+    marginTop: theme.spacing(3),
+    marginBottom: theme.spacing(1),
+  },
 }));
 
 export default function CreateDIDWallet() {
@@ -177,8 +181,9 @@ export default function CreateDIDWallet() {
       );
       return;
     }
-    // dispatch(createState(true, true));
-    // dispatch(create_did_action(amount_val, uniqDidArray, num_of_backup_ids_needed));
+    let amount_plus = amount_val + 1
+    dispatch(createState(true, true));
+    dispatch(create_did_action(amount_plus, uniqDidArray, num_of_backup_ids_needed));
   };
 
   function goBack() {
@@ -263,7 +268,7 @@ export default function CreateDIDWallet() {
           </Button>
         </Flex>
         <Box display="flex">
-          <Box flexGrow={6} className={custom.addText}>
+          <Box flexGrow={6} className={custom.addIDsText}>
             <Typography variant="subtitle1">
               Add Backup IDs:
             </Typography>

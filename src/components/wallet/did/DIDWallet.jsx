@@ -216,8 +216,6 @@ const useStyles = makeStyles((theme) => ({
   inputDID: {
     marginLeft: theme.spacing(0),
     marginBottom: theme.spacing(2),
-    width: '50%',
-    height: 56,
   },
   walletContainer: {
     marginBottom: theme.spacing(5),
@@ -271,8 +269,21 @@ const useStyles = makeStyles((theme) => ({
   sideButton: {
     marginTop: theme.spacing(0),
     marginBottom: theme.spacing(2),
-    width: 50,
     height: 56,
+  },
+  addText: {
+    marginTop: theme.spacing(3),
+    marginBottom: theme.spacing(2),
+  },
+  addIDsText: {
+    marginTop: theme.spacing(4),
+    marginBottom: theme.spacing(1),
+  },
+  addID: {
+    height: 56,
+    marginBottom: theme.spacing(2),
+    marginTop: theme.spacing(1),
+    paddingRight: theme.spacing(2),
   },
 }));
 
@@ -466,10 +477,21 @@ const MyDIDCard = (props) => {
   const classes = useStyles();
   const dispatch = useDispatch();
 
-  function generateBackup() {
+  const generateBackup = () => {
     let filename = filename_input.value;
+    if (filename === '') {
+      dispatch(
+        openDialog(
+          <AlertDialog>
+            <Trans>Please enter a filename</Trans>
+          </AlertDialog>
+        ),
+      );
+      return;
+    };
     dispatch(did_generate_backup_file(id, filename));
-  }
+    filename_input.value = '';
+  };
 
   return (
     <Paper className={classes.paper}>
@@ -734,15 +756,40 @@ const ManageDIDsCard = (props) => {
 
   const onSubmit = (data) => {
     const didArray = data.backup_dids?.map((item) => item.backupid) ?? [];
-    const cleanDidArray = didArray.filter(function (e) {
-      return e !== '';
-    });
-    const num_verifications_required = parseInt(1);
+    let uniqDidArray = Array.from(new Set(didArray));
+    uniqDidArray = uniqDidArray.filter(item => item !== "")
+    let num_of_backup_ids_needed = data.num_needed;
+    if (
+      num_of_backup_ids_needed === '' ||
+      isNaN(Number(num_of_backup_ids_needed))
+    ) {
+      dispatch(
+        openDialog(
+          <AlertDialog>
+            <Trans>Please enter a valid integer of 0 or greater for the number of Backup IDs needed for recovery.</Trans>
+          </AlertDialog>
+        ),
+      );
+      return;
+    }
+    if (
+      num_of_backup_ids_needed > uniqDidArray.length
+    )
+    {
+      dispatch(
+        openDialog(
+          <AlertDialog>
+            <Trans>The number of Backup IDs needed for recovery cannot exceed the number of Backup IDs added.</Trans>
+          </AlertDialog>
+        ),
+      );
+      return;
+    }
     dispatch(
       did_update_recovery_ids_action(
         id,
-        cleanDidArray,
-        num_verifications_required,
+        uniqDidArray,
+        num_of_backup_ids_needed,
       ),
     );
   };
@@ -765,69 +812,89 @@ const ManageDIDsCard = (props) => {
           <div className={classes.cardSubSection}>
             <form onSubmit={handleSubmit(onSubmit)}>
               <Box display="flex">
-                <Box flexGrow={6} className={classes.updateDIDsTitle}>
+                <Flex alignItems="stretch" className={classes.addText}>
                   <Typography variant="subtitle1">
-                    Update Backup DIDs
+                    Update number of Backup IDs needed for recovery:
                   </Typography>
-                </Box>
+                  <Tooltip title="This number must be an integer greater than or equal to 0. It cannot exceed the number of Backup IDs added. You will be able to change this number as well as your list of Backup IDs.">
+                    <HelpIcon style={{ color: '#c8c8c8', fontSize: 12 }} />
+                  </Tooltip>
+                </Flex>
               </Box>
+              <Flex flexDirection="row" justifyContent="space-between">
+                <Box flexGrow={6}>
+                  <Controller
+                    as={TextField}
+                    name="num_needed"
+                    control={control}
+                    label="Number of Backup IDs needed for recovery"
+                    variant="outlined"
+                    fullWidth
+                    defaultValue=""
+                  />
+                </Box>
+                <Button
+                  type="submit"
+                  variant="contained"
+                  color="primary"
+                  disableElevation
+                >
+                  <Trans>Submit</Trans>
+                </Button>
+              </Flex>
               <Box display="flex">
-                <Box flexGrow={1}>
-                  <Button
-                    type="button"
-                    className={classes.sendButton}
-                    variant="contained"
-                    color="primary"
-                    onClick={() => {
-                      append({ backupid: 'Backup ID' });
-                    }}
-                  >
-                    ADD
-                  </Button>
-                </Box>
-                <Box>
-                  <Button
-                    type="submit"
-                    className={classes.sendButton}
-                    variant="contained"
-                    color="primary"
-                  >
-                    Submit
-                  </Button>
-                </Box>
+                <Flex alignItems="stretch" className={classes.addIDsText}>
+                  <Typography variant="subtitle1">
+                    Update Backup IDs:
+                  </Typography>
+                  <Tooltip title="Please enter a new set of recovery IDs. Be sure to re-enter any current recovery IDs which you would like to keep in your recovery list.">
+                    <HelpIcon style={{ color: '#c8c8c8', fontSize: 12 }} />
+                  </Tooltip>
+                </Flex>
               </Box>
-              <Box display="flex">
-                <Box flexGrow={1} className={classes.inputDIDs}>
-                  <ul>
-                    {fields.map((item, index) => {
-                      return (
-                        <li key={item.id} style={{ listStyleType: 'none' }}>
+              <Flex alignItems="stretch">
+                <Button
+                  onClick={() => {
+                    append({ backupid: 'Backup ID' });
+                  }}
+                  variant="contained"
+                  disableElevation
+                  className={classes.addID}
+                >
+                  <Trans>Add Backup ID</Trans>
+                </Button>
+              </Flex>
+              <ul>
+                {fields.map((item, index) => {
+                  return (
+                    <li key={item.id} style={{ listStyleType: 'none' }}>
+                      <Flex alignItems="stretch">
+                        <Box flexGrow={1}>
                           <Controller
                             as={TextField}
                             name={`backup_dids[${index}].backupid`}
                             control={control}
                             defaultValue=""
                             label="Backup ID"
-                            variant="filled"
+                            variant="outlined"
+                            fullWidth
                             color="secondary"
                             className={classes.inputDID}
                           />
-                          <Button
-                            type="button"
-                            className={classes.sideButton}
-                            variant="contained"
-                            color="secondary"
-                            disableElevation
-                            onClick={() => remove(index)}
-                          >
-                            Delete
-                          </Button>
-                        </li>
-                      );
-                    })}
-                  </ul>
-                </Box>
-              </Box>
+                        </Box>
+                        <Button
+                          onClick={() => remove(index)}
+                          variant="contained"
+                          disableElevation
+                          className={classes.sideButton}
+                        >
+                          <Trans>Delete</Trans>
+                        </Button>
+                      </Flex>
+                    </li>
+                  );
+                })}
+              </ul>
             </form>
           </div>
         </Grid>
@@ -849,17 +916,44 @@ const CreateAttest = (props) => {
   const dispatch = useDispatch();
 
   function createAttestPacket() {
-    let filename = filename_input.value;
+    if (filename_input.value === '') {
+      dispatch(
+        openDialog(
+          <AlertDialog>
+            <Trans>Please enter a filename</Trans>
+          </AlertDialog>
+        ),
+      );
+      return;
+    }
     if (coin_input.value === '') {
-      dispatch(openDialog('Please enter a valid coin'));
+      dispatch(
+        openDialog(
+          <AlertDialog>
+            <Trans>Please enter a coin</Trans>
+          </AlertDialog>
+        ),
+      );
       return;
     }
     if (pubkey_input.value === '') {
-      dispatch(openDialog('Please enter a valid pubkey'));
+      dispatch(
+        openDialog(
+          <AlertDialog>
+            <Trans>Please enter a pubkey</Trans>
+          </AlertDialog>
+        ),
+      );
       return;
     }
     if (puzhash_input.value === '') {
-      dispatch(openDialog('Please enter a valid puzzlehash'));
+      dispatch(
+        openDialog(
+          <AlertDialog>
+            <Trans>Please enter a puzzlehash</Trans>
+          </AlertDialog>
+        ),
+      );
       return;
     }
     let address = puzhash_input.value.trim();
@@ -870,8 +964,9 @@ const CreateAttest = (props) => {
       address = address.substring(2);
     }
 
-    dispatch(did_create_attest(id, filename, coin_input.value, pubkey_input.value, address));
+    dispatch(did_create_attest(id, filename_input.value, coin_input.value, pubkey_input.value, address));
 
+    filename_input.value = '';
     coin_input.value = '';
     pubkey_input.value = '';
     puzhash_input.value = '';
@@ -981,8 +1076,11 @@ const CashoutCard = (props) => {
   function cashout() {
     let puzzlehash = address_input.value.trim();
 
+    if (puzzlehash.slice(0, 12) === 'chia_addr://') {
+      puzzlehash = puzzlehash.slice(12);
+    }
     if (puzzlehash.startsWith('0x') || puzzlehash.startsWith('0X')) {
-      puzzlehash = puzzlehash.substring(2);
+      puzzlehash = puzzlehash.slice(2);
     }
 
     dispatch(did_spend(id, puzzlehash));

@@ -403,8 +403,6 @@ export default function incomingReducer(
         wallet.backup_dids = dids;
         wallet.dids_num_req = dids_num_req;
         return { ...state };
-      } else if (command === 'did_create_backup_file') {
-        success = data.success;
       } else if (command === 'did_get_information_needed_for_recovery') {
         success = data.success;
         const id = data.wallet_id;
