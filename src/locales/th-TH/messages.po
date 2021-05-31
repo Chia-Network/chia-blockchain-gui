@@ -8,7 +8,7 @@ msgstr ""
 "Language: th_TH\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-05-30 23:26\n"
+"PO-Revision-Date: 2021-05-31 16:21\n"
 "Last-Translator: \n"
 "Language-Team: Thai\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -118,8 +118,8 @@ msgstr "จำนวน ({cc_unit})"
 msgid "Amount For Initial Coin"
 msgstr "จำนวนเหรียญเริ่มต้น"
 
-#: src/components/plot/PlotAction.tsx:41
-#: src/components/plot/queue/PlotQueueActions.tsx:44
+#: src/components/plot/PlotAction.tsx:36
+#: src/components/plot/queue/PlotQueueActions.tsx:43
 msgid "Are you sure you want to delete the plot? The plot cannot be recovered."
 msgstr "พล็อตที่ถูกลบจะไม่สามารถกู้คืนได้ คุณแน่ใจหรือไม่ว่าต้องการลบพล็อตนี้?"
 
@@ -504,17 +504,17 @@ msgstr "วันที่"
 msgid "Delay"
 msgstr "หน่วงเวลา"
 
-#: src/components/plot/PlotAction.tsx:39
-#: src/components/plot/PlotAction.tsx:63
-#: src/components/plot/queue/PlotQueueActions.tsx:41
-#: src/components/plot/queue/PlotQueueActions.tsx:86
+#: src/components/plot/PlotAction.tsx:34
+#: src/components/plot/PlotAction.tsx:58
+#: src/components/plot/queue/PlotQueueActions.tsx:40
+#: src/components/plot/queue/PlotQueueActions.tsx:85
 #: src/components/selectKey/SelectKey.tsx:61
 #: src/components/selectKey/SelectKey.tsx:82
 msgid "Delete"
 msgstr "ลบ"
 
-#: src/components/plot/PlotAction.tsx:38
-#: src/components/plot/queue/PlotQueueActions.tsx:40
+#: src/components/plot/PlotAction.tsx:33
+#: src/components/plot/queue/PlotQueueActions.tsx:39
 msgid "Delete Plot"
 msgstr "ลบพล็อต"
 
@@ -1867,7 +1867,7 @@ msgstr "VDF Sub Slot Iterations"
 msgid "View"
 msgstr "แสดง"
 
-#: src/components/plot/queue/PlotQueueActions.tsx:74
+#: src/components/plot/queue/PlotQueueActions.tsx:73
 #: src/components/plot/queue/PlotQueueLogDialog.tsx:52
 msgid "View Log"
 msgstr "ดู Log"
