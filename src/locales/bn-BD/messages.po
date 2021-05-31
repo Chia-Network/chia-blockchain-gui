@@ -8,7 +8,7 @@ msgstr ""
 "Language: bn_BD\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-05-30 23:26\n"
+"PO-Revision-Date: 2021-05-31 16:21\n"
 "Last-Translator: \n"
 "Language-Team: Bengali\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -118,8 +118,8 @@ msgstr "পরিমাণ ({cc_unit})"
 msgid "Amount For Initial Coin"
 msgstr "প্রাথমিক মুদ্রার জন্য পরিমাণ"
 
-#: src/components/plot/PlotAction.tsx:41
-#: src/components/plot/queue/PlotQueueActions.tsx:44
+#: src/components/plot/PlotAction.tsx:36
+#: src/components/plot/queue/PlotQueueActions.tsx:43
 msgid "Are you sure you want to delete the plot? The plot cannot be recovered."
 msgstr "আপনি কি প্লটটি মুছে ফেলার বিষয়ে নিশ্চিত? প্লটটি পুনরুদ্ধার করা যাবেনা।"
 
@@ -504,17 +504,17 @@ msgstr ""
 msgid "Delay"
 msgstr ""
 
-#: src/components/plot/PlotAction.tsx:39
-#: src/components/plot/PlotAction.tsx:63
-#: src/components/plot/queue/PlotQueueActions.tsx:41
-#: src/components/plot/queue/PlotQueueActions.tsx:86
+#: src/components/plot/PlotAction.tsx:34
+#: src/components/plot/PlotAction.tsx:58
+#: src/components/plot/queue/PlotQueueActions.tsx:40
+#: src/components/plot/queue/PlotQueueActions.tsx:85
 #: src/components/selectKey/SelectKey.tsx:61
 #: src/components/selectKey/SelectKey.tsx:82
 msgid "Delete"
 msgstr "মুছুন"
 
-#: src/components/plot/PlotAction.tsx:38
-#: src/components/plot/queue/PlotQueueActions.tsx:40
+#: src/components/plot/PlotAction.tsx:33
+#: src/components/plot/queue/PlotQueueActions.tsx:39
 msgid "Delete Plot"
 msgstr "প্লট মুছুন"
 
@@ -1867,7 +1867,7 @@ msgstr ""
 msgid "View"
 msgstr ""
 
-#: src/components/plot/queue/PlotQueueActions.tsx:74
+#: src/components/plot/queue/PlotQueueActions.tsx:73
 #: src/components/plot/queue/PlotQueueLogDialog.tsx:52
 msgid "View Log"
 msgstr ""
