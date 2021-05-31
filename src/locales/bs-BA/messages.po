@@ -8,7 +8,7 @@ msgstr ""
 "Language: bs_BA\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-05-30 23:26\n"
+"PO-Revision-Date: 2021-05-31 16:21\n"
 "Last-Translator: \n"
 "Language-Team: Bosnian\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
@@ -118,8 +118,8 @@ msgstr "Ukupno"
 msgid "Amount For Initial Coin"
 msgstr "Ukupno za početnu vrijednost"
 
-#: src/components/plot/PlotAction.tsx:41
-#: src/components/plot/queue/PlotQueueActions.tsx:44
+#: src/components/plot/PlotAction.tsx:36
+#: src/components/plot/queue/PlotQueueActions.tsx:43
 msgid "Are you sure you want to delete the plot? The plot cannot be recovered."
 msgstr "Da li ste sigurni da želite da obrišete ovaj plot? Kasnije neće biti moguće da se povrati!"
 
@@ -504,17 +504,17 @@ msgstr ""
 msgid "Delay"
 msgstr ""
 
-#: src/components/plot/PlotAction.tsx:39
-#: src/components/plot/PlotAction.tsx:63
-#: src/components/plot/queue/PlotQueueActions.tsx:41
-#: src/components/plot/queue/PlotQueueActions.tsx:86
+#: src/components/plot/PlotAction.tsx:34
+#: src/components/plot/PlotAction.tsx:58
+#: src/components/plot/queue/PlotQueueActions.tsx:40
+#: src/components/plot/queue/PlotQueueActions.tsx:85
 #: src/components/selectKey/SelectKey.tsx:61
 #: src/components/selectKey/SelectKey.tsx:82
 msgid "Delete"
 msgstr ""
 
-#: src/components/plot/PlotAction.tsx:38
-#: src/components/plot/queue/PlotQueueActions.tsx:40
+#: src/components/plot/PlotAction.tsx:33
+#: src/components/plot/queue/PlotQueueActions.tsx:39
 msgid "Delete Plot"
 msgstr ""
 
@@ -1867,7 +1867,7 @@ msgstr ""
 msgid "View"
 msgstr ""
 
-#: src/components/plot/queue/PlotQueueActions.tsx:74
+#: src/components/plot/queue/PlotQueueActions.tsx:73
 #: src/components/plot/queue/PlotQueueLogDialog.tsx:52
 msgid "View Log"
 msgstr ""
