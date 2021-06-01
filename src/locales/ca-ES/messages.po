@@ -8,7 +8,7 @@ msgstr ""
 "Language: ca_ES\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-05-31 16:21\n"
+"PO-Revision-Date: 2021-06-01 12:54\n"
 "Last-Translator: \n"
 "Language-Team: Catalan\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -1484,15 +1484,15 @@ msgstr "Envia"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:478
 msgid "Send this info packet to your Rate Limited Wallet user who must use it to complete setup of their wallet:"
-msgstr ""
+msgstr "Envia aquest paquet d'informació a la usuària del Moneder amb Tarifa Limitada, que l'ha d'utilitzar per a completar la configuració del seu moneder:"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:285
 msgid "Send your pubkey to your Rate Limited Wallet admin:"
-msgstr ""
+msgstr "Envia la seva clau pública al seu administrador de Moneder de Tarifa Limitada:"
 
 #: src/components/core/components/AdvancedOptions/AdvancedOptions.tsx:48
 msgid "Show Advanced Options"
-msgstr ""
+msgstr "Mostra Opcions Avançades"
 
 #: src/electron-starter.js:79
 #~ msgid "Show app"
@@ -1517,7 +1517,7 @@ msgstr "Inicia la sessió"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:235
 msgid "Skips adding a final directory to harvester for farming"
-msgstr ""
+msgstr "Saltar el pas d'afegir el directori final al granger per a cultivar"
 
 #: src/electron/main.tsx:471
 msgid "Speech"
@@ -1525,35 +1525,35 @@ msgstr "Parla"
 
 #: src/components/wallet/create/createRLAdmin.jsx:247
 msgid "Spendable Amount"
-msgstr ""
+msgstr "Quantitat per a gastar"
 
 #: src/components/wallet/create/createRLAdmin.jsx:216
 msgid "Spendable Amount Per Interval"
-msgstr ""
+msgstr "Quantitat per a gastar per interval"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:387
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:571
 #: src/components/wallet/standard/WalletStandard.tsx:261
 msgid "Spendable Balance"
-msgstr ""
+msgstr "Saldo per a gastar"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:408
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:459
 msgid "Spending Interval (number of blocks): {interval}"
-msgstr ""
+msgstr "Interval per a gastar (en nombre de blocks): {interval}"
 
 #: src/components/wallet/create/createRLAdmin.jsx:209
 msgid "Spending Interval Length (number of blocks)"
-msgstr ""
+msgstr "Longitud del interval per a gastar (en nombre de blocks)"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:415
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:466
 msgid "Spending Limit (chia per interval): {0}"
-msgstr ""
+msgstr "Límit de cost (chia per interval): {0}"
 
 #: src/components/fullNode/FullNode.jsx:95
 msgid "State"
-msgstr ""
+msgstr "Estat"
 
 #: src/components/fullNode/FullNode.jsx:105
 #: src/components/fullNode/FullNode.jsx:122
@@ -1615,7 +1615,7 @@ msgstr "Sincronitzant"
 
 #: src/components/fullNode/FullNode.jsx:107
 msgid "Syncing <0/>/<1/>"
-msgstr ""
+msgstr "Sincronitzant <0/>/<1/>"
 
 #: src/components/fullNode/FullNode.jsx:107
 #~ msgid "Syncing {progress}/{tip}"
@@ -1647,32 +1647,32 @@ msgstr ""
 
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:51
 msgid "Temporary folder location"
-msgstr ""
+msgstr "Localització del directori temporal"
 
 #: src/components/app/AppTimeBomb.tsx:27
 msgid "The application will stop working at block height 193536."
-msgstr ""
+msgstr "L'aplicació deixarà de funcionar a l'alçada del block 193536."
 
 #: src/components/farm/FarmFullNodeConnections.tsx:91
 msgid "The full node that your farmer is connected to is below. <0>Learn more</0>"
-msgstr ""
+msgstr "El node complet al que s'està connectant el seu granger es troba a continuació. <0>Aprendre més</0>"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:27
 #: src/components/plot/add/PlotAddChooseSize.tsx:87
 msgid "The minimum required size for mainnet is k=32"
-msgstr ""
+msgstr "El tamany mínim requerit per la mainnet es k=32"
 
 #: src/components/fullNode/FullNode.jsx:125
 msgid "The node is not synced"
-msgstr ""
+msgstr "El node no està sincronitzat"
 
 #: src/components/fullNode/FullNode.jsx:113
 msgid "The node is syncing, which means it is downloading blocks from other nodes, to reach the latest block in the chain"
-msgstr ""
+msgstr "El node està sincronitzant, el que significa que està descarregant blocs de altres nodes, per a assolir l'últim bloc de la cadena"
 
 #: src/components/block/Block.jsx:271
 msgid "The seed used to create the plot. This depends on the pool pk and plot pk."
-msgstr ""
+msgstr "La llavó utilitzada per a crear el plot. Això depen del pool pk i el plot pk."
 
 #: src/components/block/Block.jsx:223
 msgid "The total number of VDF (verifiable delay function) or proof of time iterations on the whole chain up to this sub block."
@@ -1754,7 +1754,7 @@ msgstr ""
 
 #: src/components/fullNode/FullNode.jsx:87
 msgid "Time Created"
-msgstr ""
+msgstr "Temps de creació"
 
 #: src/components/trading/TradingOverview.jsx:192
 #~ msgid "Time this trade was created at this time"
@@ -1762,7 +1762,7 @@ msgstr ""
 
 #: src/components/block/Block.jsx:184
 msgid "Timestamp"
-msgstr ""
+msgstr "Marca horària"
 
 #: src/components/wallet/WalletHistory.tsx:43
 msgid "To"
@@ -1784,7 +1784,7 @@ msgstr "Iteracions totals"
 
 #: src/components/farm/card/FarmCardTotalNetworkSpace.tsx:16
 msgid "Total Network Space"
-msgstr ""
+msgstr "Espai total de xarxa"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:114
 msgid "Total Plot Size:"
