@@ -8,7 +8,7 @@ msgstr ""
 "Language: ca_ES\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-06-01 12:54\n"
+"PO-Revision-Date: 2021-06-01 18:49\n"
 "Last-Translator: \n"
 "Language-Team: Catalan\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -1174,20 +1174,20 @@ msgstr "Si us plau, introdueix un directori temporal"
 
 #: src/components/plot/Plot.tsx:18
 msgid "Plot"
-msgstr "Traçat"
+msgstr "Parcel·la"
 
 #: src/components/farm/card/FarmCardPlotCount.tsx:12
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:31
 msgid "Plot Count"
-msgstr "Recompte de traçats"
+msgstr "Recompte de parcel·les"
 
 #: src/components/block/Block.jsx:268
 msgid "Plot Id"
-msgstr "Id de traçat"
+msgstr "Id de parcel·la"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:68
 msgid "Plot Key"
-msgstr "Clau de traçat"
+msgstr "Clau de parcel·la"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:43
 #~ msgid "Plot Name"
@@ -1195,7 +1195,7 @@ msgstr "Clau de traçat"
 
 #: src/components/block/Block.jsx:244
 msgid "Plot Public Key"
-msgstr "Clau pública de traçat"
+msgstr "Clau pública de parcel·la"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:49
 #~ msgid "Plot Seed"
@@ -1203,19 +1203,19 @@ msgstr "Clau pública de traçat"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:76
 msgid "Plot Size"
-msgstr "Tamany de traçat"
+msgstr "Mida de la parcel·la"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:63
 msgid "Plot in Parallel"
-msgstr "Traçat en paral·lel"
+msgstr "Llaurar en paral·lel"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:39
 msgid "Plot is duplicate of {0}"
-msgstr "El traçat es un duplicat de {0}"
+msgstr "La parcel·la es una duplicada de {0}"
 
 #: src/components/dashboard/DashboardSideBar.tsx:49
 msgid "Plots"
-msgstr "Traçats"
+msgstr "Parcel·les"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:22
 msgid "Plots Passed Filter"
@@ -1676,7 +1676,7 @@ msgstr "La llavó utilitzada per a crear el plot. Això depen del pool pk i el p
 
 #: src/components/block/Block.jsx:223
 msgid "The total number of VDF (verifiable delay function) or proof of time iterations on the whole chain up to this sub block."
-msgstr ""
+msgstr "El nombre total de VDF (funcions de retard verificable) o iteracions de prova de temps a tota la cadena fins a aquest sub bloc."
 
 #: src/components/block/Block.jsx:233
 msgid "The total number of VDF (verifiable delay function) or proof of time iterations on this block."
@@ -1788,11 +1788,11 @@ msgstr "Espai total de xarxa"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:114
 msgid "Total Plot Size:"
-msgstr ""
+msgstr "Mida total de la parcela:"
 
 #: src/components/farm/card/FarmCardTotalSizeOfPlots.tsx:13
 msgid "Total Size of Plots"
-msgstr ""
+msgstr "Mida total de les parceles"
 
 #: src/components/block/Block.jsx:220
 msgid "Total VDF Iterations"
@@ -1812,23 +1812,23 @@ msgstr ""
 
 #: src/components/trading/TradingOverview.jsx:125
 msgid "Trade ID"
-msgstr ""
+msgstr "ID de la operació"
 
 #: src/components/trading/TradingOverview.jsx:174
 msgid "Trade ID:"
-msgstr ""
+msgstr "ID de la operació:"
 
 #: src/components/trading/TradeManager.tsx:35
 msgid "Trade Overview"
-msgstr ""
+msgstr "Resum de la operació"
 
 #: src/components/trading/TradingOverview.jsx:153
 msgid "Trades will show up here"
-msgstr ""
+msgstr "Les operacions es mostraran aquí"
 
 #: src/components/trading/TradeManager.tsx:23
 msgid "Trading"
-msgstr ""
+msgstr "Comerç"
 
 #: src/components/trading/TradingOverview.jsx:435
 msgid "Trading History"
