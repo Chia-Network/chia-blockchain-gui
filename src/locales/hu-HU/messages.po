@@ -8,7 +8,7 @@ msgstr ""
 "Language: hu_HU\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-06-02 00:46\n"
+"PO-Revision-Date: 2021-06-02 06:48\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -65,11 +65,11 @@ msgstr "Hozzáadás"
 
 #: src/components/plot/PlotHeader.tsx:65
 msgid "Add Plot Directory"
-msgstr "Parcella könyvtár hozzáadása"
+msgstr "Plot könyvtár hozzáadása"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:69
 msgid "Add Plot to Queue"
-msgstr "Parcella hozzáadása a sorhoz"
+msgstr "Plot hozzáadása a sorhoz"
 
 #: src/components/wallet/Wallets.tsx:110
 msgid "Add Wallet"
@@ -80,7 +80,7 @@ msgstr "Tárca hozzáadása"
 #: src/components/plot/add/PlotAdd.tsx:80
 #: src/components/plot/overview/PlotOverviewHero.tsx:40
 msgid "Add a Plot"
-msgstr "Parcella hozzáadása"
+msgstr "Plot hozzáadása"
 
 #: src/components/plot/PlotAddDirectoryDialog.tsx:56
 msgid "Add a plot"
@@ -642,7 +642,7 @@ msgstr "Farm"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:254
 msgid "Farmer Public Key"
-msgstr ""
+msgstr "Farmer nyilvános kulcsa"
 
 #: src/components/block/Block.jsx:252
 msgid "Farmer Puzzle Hash"
