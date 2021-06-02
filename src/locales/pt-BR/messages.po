@@ -8,7 +8,7 @@ msgstr ""
 "Language: pt_BR\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-06-02 00:45\n"
+"PO-Revision-Date: 2021-06-02 06:48\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -642,7 +642,7 @@ msgstr "Fazenda"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:254
 msgid "Farmer Public Key"
-msgstr ""
+msgstr "Chave Pública do Fazendeiro"
 
 #: src/components/block/Block.jsx:252
 msgid "Farmer Puzzle Hash"
@@ -1467,7 +1467,7 @@ msgstr "Selecione o destino final para a pasta onde você gostaria que o lote fo
 
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:40
 msgid "Select the temporary destination for the folder where you would like the plot to be stored. We recommend you use a fast drive."
-msgstr "Selecione o destino temporário para a pasta onde você gostaria que o plot seja armazenado. Recomendamos que use um disco rápido."
+msgstr "Selecione a pasta onde você gostaria que o lote temporário seja armazenado. Recomendamos que você use um disco rápido."
 
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:63
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:74
