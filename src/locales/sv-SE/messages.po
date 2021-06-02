@@ -8,7 +8,7 @@ msgstr ""
 "Language: sv_SE\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-06-02 06:48\n"
+"PO-Revision-Date: 2021-06-02 13:08\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -642,7 +642,7 @@ msgstr "Odling"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:254
 msgid "Farmer Public Key"
-msgstr "Publik huvudnyckel farm"
+msgstr "Publik nyckel för odlare"
 
 #: src/components/block/Block.jsx:252
 msgid "Farmer Puzzle Hash"
