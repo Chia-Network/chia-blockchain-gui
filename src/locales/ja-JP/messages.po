@@ -8,7 +8,7 @@ msgstr ""
 "Language: ja_JP\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-06-02 00:46\n"
+"PO-Revision-Date: 2021-06-02 06:48\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -642,7 +642,7 @@ msgstr "畑"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:254
 msgid "Farmer Public Key"
-msgstr ""
+msgstr "農家公開鍵"
 
 #: src/components/block/Block.jsx:252
 msgid "Farmer Puzzle Hash"
@@ -1467,7 +1467,7 @@ msgstr "耕地の最終保存先となるフォルダを選択してください
 
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:40
 msgid "Select the temporary destination for the folder where you would like the plot to be stored. We recommend you use a fast drive."
-msgstr ""
+msgstr "耕地の一時保存先となるフォルダを選択してください。読み書きの速いドライブの使用をおすすめします。"
 
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:63
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:74
@@ -1620,7 +1620,7 @@ msgstr "同期中"
 
 #: src/components/fullNode/FullNode.jsx:107
 msgid "Syncing <0/>/<1/>"
-msgstr ""
+msgstr "同期中 <0/>/<1/>"
 
 #: src/components/fullNode/FullNode.jsx:107
 #~ msgid "Syncing {progress}/{tip}"
