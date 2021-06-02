@@ -8,7 +8,7 @@ msgstr ""
 "Language: it_IT\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-05-31 16:21\n"
+"PO-Revision-Date: 2021-06-02 00:46\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -77,7 +77,7 @@ msgstr "Aggiungi portafoglio"
 
 #: src/components/farm/overview/FarmOverviewHero.tsx:47
 #: src/components/plot/PlotHeader.tsx:46
-#: src/components/plot/add/PlotAdd.tsx:77
+#: src/components/plot/add/PlotAdd.tsx:80
 #: src/components/plot/overview/PlotOverviewHero.tsx:40
 msgid "Add a Plot"
 msgstr "Aggiungi un Plot"
@@ -412,7 +412,7 @@ msgstr "Crea portafoglio DID"
 msgid "Create Offer"
 msgstr "Crea Offerta"
 
-#: src/components/plot/add/PlotAdd.tsx:89
+#: src/components/plot/add/PlotAdd.tsx:92
 msgid "Create Plot"
 msgstr "Crea Plot"
 
@@ -639,6 +639,10 @@ msgstr "Impossibile aprire (plot non validi)"
 #: src/components/wallet/standard/WalletStandard.tsx:515
 msgid "Farm"
 msgstr "Coltiva"
+
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:254
+msgid "Farmer Public Key"
+msgstr "Chiave pubblica del farmer"
 
 #: src/components/block/Block.jsx:252
 msgid "Farmer Puzzle Hash"
@@ -1246,6 +1250,7 @@ msgid "Pool Key"
 msgstr "Chiave Pool"
 
 #: src/components/block/Block.jsx:248
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:268
 msgid "Pool Public Key"
 msgstr "Chiave Pubblica Pool"
 
