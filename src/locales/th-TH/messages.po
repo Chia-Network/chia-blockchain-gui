@@ -8,7 +8,7 @@ msgstr ""
 "Language: th_TH\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-05-31 16:21\n"
+"PO-Revision-Date: 2021-06-02 00:45\n"
 "Last-Translator: \n"
 "Language-Team: Thai\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -77,7 +77,7 @@ msgstr "เพิ่มวอลเล็ต"
 
 #: src/components/farm/overview/FarmOverviewHero.tsx:47
 #: src/components/plot/PlotHeader.tsx:46
-#: src/components/plot/add/PlotAdd.tsx:77
+#: src/components/plot/add/PlotAdd.tsx:80
 #: src/components/plot/overview/PlotOverviewHero.tsx:40
 msgid "Add a Plot"
 msgstr "เพิ่มพล็อต"
@@ -412,7 +412,7 @@ msgstr "สร้าง DID wallet"
 msgid "Create Offer"
 msgstr "สร้างข้อเสนอ"
 
-#: src/components/plot/add/PlotAdd.tsx:89
+#: src/components/plot/add/PlotAdd.tsx:92
 msgid "Create Plot"
 msgstr "สร้างพล็อต"
 
@@ -639,6 +639,10 @@ msgstr "ไม่สามารถเปิดได้ (พล็อตไม�
 #: src/components/wallet/standard/WalletStandard.tsx:515
 msgid "Farm"
 msgstr "ฟาร์ม"
+
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:254
+msgid "Farmer Public Key"
+msgstr "คีย์สาธารณะของผู้ฟาร์ม"
 
 #: src/components/block/Block.jsx:252
 msgid "Farmer Puzzle Hash"
@@ -1246,6 +1250,7 @@ msgid "Pool Key"
 msgstr "คีย์ของพูล"
 
 #: src/components/block/Block.jsx:248
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:268
 msgid "Pool Public Key"
 msgstr "คีย์สาธารณะของพูล"
 
