@@ -8,7 +8,7 @@ msgstr ""
 "Language: es_ES\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-06-02 00:46\n"
+"PO-Revision-Date: 2021-06-03 14:22\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -642,7 +642,7 @@ msgstr "Granja"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:254
 msgid "Farmer Public Key"
-msgstr ""
+msgstr "Clave Pública de Granjero"
 
 #: src/components/block/Block.jsx:252
 msgid "Farmer Puzzle Hash"
