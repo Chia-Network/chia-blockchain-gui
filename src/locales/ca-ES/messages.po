@@ -8,7 +8,7 @@ msgstr ""
 "Language: ca_ES\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-06-02 00:46\n"
+"PO-Revision-Date: 2021-06-04 21:51\n"
 "Last-Translator: \n"
 "Language-Team: Catalan\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -642,7 +642,7 @@ msgstr "Granja"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:254
 msgid "Farmer Public Key"
-msgstr ""
+msgstr "Clau Pública de pagès"
 
 #: src/components/block/Block.jsx:252
 msgid "Farmer Puzzle Hash"
@@ -1801,7 +1801,7 @@ msgstr "Mida total de les parceles"
 
 #: src/components/block/Block.jsx:220
 msgid "Total VDF Iterations"
-msgstr ""
+msgstr "Iteracions VDF totals"
 
 #: src/components/fullNode/FullNode.jsx:194
 msgid "Total iterations since the start of the blockchain"
@@ -1813,7 +1813,7 @@ msgstr ""
 
 #: src/components/trading/TradingOverview.jsx:360
 msgid "Trade Details"
-msgstr ""
+msgstr "Detalls de la transacció"
 
 #: src/components/trading/TradingOverview.jsx:125
 msgid "Trade ID"
@@ -1837,11 +1837,11 @@ msgstr "Comerç"
 
 #: src/components/trading/TradingOverview.jsx:435
 msgid "Trading History"
-msgstr ""
+msgstr "Historial de transaccions"
 
 #: src/components/block/Block.jsx:279
 msgid "Transactions Filter Hash"
-msgstr ""
+msgstr "Hash de filtre de transaccions"
 
 #: src/components/wallet/WalletHistory.tsx:26
 msgid "Type"
@@ -1853,7 +1853,7 @@ msgstr "Inacabat"
 
 #: src/components/trading/TradingOverview.jsx:177
 msgid "Unique identifier"
-msgstr ""
+msgstr "Identificador únic"
 
 #: src/components/core/components/LocaleToggle/LocaleToggle.tsx:51
 msgid "Unknown"
@@ -1862,7 +1862,7 @@ msgstr "Desconegut"
 #: src/components/wallet/create/createRLAdmin.jsx:307
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:300
 msgid "User Pubkey"
-msgstr ""
+msgstr "Clau pública de l'usuari"
 
 #: src/components/fullNode/FullNode.jsx:186
 msgid "VDF Sub Slot Iterations"
@@ -1884,17 +1884,17 @@ msgstr "Mostra les ofertes"
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:586
 #: src/components/wallet/standard/WalletStandard.tsx:282
 msgid "View pending balances"
-msgstr ""
+msgstr "Veure saldos pendents"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:399
 msgid "View pending balances..."
-msgstr ""
+msgstr "Veure saldos pendents..."
 
 #: src/components/farm/card/FarmCardNotAvailable.tsx:25
 #: src/components/plot/PlotStatus.tsx:27
 #: src/components/plot/PlotStatus.tsx:32
 msgid "Wait for synchronization"
-msgstr ""
+msgstr "Espera que sincronitzi"
 
 #: src/components/wallet/Wallets.tsx:104
 #~ msgid "Waiting for launch"
