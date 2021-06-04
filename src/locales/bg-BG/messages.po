@@ -8,7 +8,7 @@ msgstr ""
 "Language: bg_BG\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-06-02 00:46\n"
+"PO-Revision-Date: 2021-06-04 02:29\n"
 "Last-Translator: \n"
 "Language-Team: Bulgarian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -69,7 +69,7 @@ msgstr "Добави директория на полето"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:69
 msgid "Add Plot to Queue"
-msgstr "Добави полето към опашката"
+msgstr "Добавяне на плот към опашката"
 
 #: src/components/wallet/Wallets.tsx:110
 msgid "Add Wallet"
@@ -642,7 +642,7 @@ msgstr "Ферма"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:254
 msgid "Farmer Public Key"
-msgstr ""
+msgstr "Фермерски публичен ключ"
 
 #: src/components/block/Block.jsx:252
 msgid "Farmer Puzzle Hash"
@@ -1070,7 +1070,7 @@ msgstr "Създадени оферти"
 
 #: src/components/wallet/standard/WalletStandard.tsx:444
 msgid "On average there is one minute between each transaction block. Unless there is congestion you can expect your transaction to be included in less than a minute."
-msgstr ""
+msgstr "Обикновенно има една минута между всеки блок с транзакции. Те могат да се осъществяват за по- малко от минута, в случай че няма натоварване."
 
 #: src/components/wallet/WalletHistory.tsx:23
 msgid "Outgoing"
@@ -1109,7 +1109,7 @@ msgstr "Изчакващ общ баланс"
 
 #: src/components/trading/CreateOffer.jsx:109
 msgid "Please add a trade pair"
-msgstr ""
+msgstr "Моля добавете двойка за търгуване"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:712
 msgid "Please enter 0 fee. Positive fees not supported yet for RL."
@@ -1140,7 +1140,7 @@ msgstr "Моля, въведете валидна продължителност
 
 #: src/components/wallet/create/createRLAdmin.jsx:117
 msgid "Please enter a valid numeric spendable amount"
-msgstr ""
+msgstr "Моля въведете валидна числова сума, която може да бъде изразходвана"
 
 #: src/components/wallet/create/createRLAdmin.jsx:129
 msgid "Please enter a valid pubkey"
@@ -1224,11 +1224,11 @@ msgstr "Полета"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:22
 msgid "Plots Passed Filter"
-msgstr ""
+msgstr "Филтър за преминали плотове"
 
 #: src/components/plot/overview/PlotOverviewHero.tsx:30
 msgid "Plots are allocated space on your hard drive used to farm and earn Chia. <0>Learn more</0>"
-msgstr ""
+msgstr "Плотовете са разпределено място на вашия хард диск, които се ползват за фармете и печелене на Чиа. <0>Научете повече</0>"
 
 #: src/components/plot/queue/PlotQueueIndicator.tsx:33
 msgid "Plotting"
@@ -1257,15 +1257,15 @@ msgstr "Публичен ключ на басейна"
 
 #: src/components/block/Block.jsx:260
 msgid "Pool Puzzle Hash"
-msgstr ""
+msgstr "Пъзел хеш на басейна"
 
 #: src/components/farm/FarmManageFarmingRewards.tsx:122
 msgid "Pool Reward Address"
-msgstr ""
+msgstr "Адрес за възнаграждаване от басейна"
 
 #: src/components/block/Block.jsx:286
 msgid "Pool Reward Amount"
-msgstr ""
+msgstr "Стойност на възнаграждената от басейна"
 
 #: src/components/farm/FarmFullNodeConnections.tsx:42
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:46
@@ -1284,7 +1284,7 @@ msgstr "Предишен"
 
 #: src/components/block/Block.jsx:208
 msgid "Previous Header Hash"
-msgstr ""
+msgstr "Минал хедър хеш"
 
 #: src/components/block/Block.jsx:217
 #~ msgid "Previous Sub Block Hash"
@@ -1292,7 +1292,7 @@ msgstr ""
 
 #: src/components/selectKey/SelectKey.tsx:139
 msgid "Private key with public fingerprint {fingerprint}"
-msgstr ""
+msgstr "Личен ключ със публичен отпечатък {fingerprint}"
 
 #: src/middleware/middleware_api.jsx:249
 msgid "Private key {0}"
@@ -1353,11 +1353,11 @@ msgstr "Скоростта е ограничена"
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:402
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:453
 msgid "Rate Limited Info"
-msgstr ""
+msgstr "Информация за ограничена скорост"
 
 #: src/components/wallet/create/WalletCreate.jsx:232
 msgid "Rate Limited Options"
-msgstr ""
+msgstr "Опции за ограничаване на скорост"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:275
 msgid "Rate Limited User Wallet Setup"
@@ -1420,7 +1420,7 @@ msgstr "Запази"
 
 #: src/components/fullNode/FullNodeBlockSearch.tsx:44
 msgid "Search block by header hash"
-msgstr ""
+msgstr "Търсене на блок чрез хедър хеш"
 
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:93
 msgid "Second temporary folder location"
@@ -1468,7 +1468,7 @@ msgstr "Изберете финалната дестинация на папка
 
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:40
 msgid "Select the temporary destination for the folder where you would like the plot to be stored. We recommend you use a fast drive."
-msgstr ""
+msgstr "Изберете временна дестинация за папката, в която бихте искали плота да се съхранява. Препоръчваме да използвате бързо устройство."
 
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:63
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:74
