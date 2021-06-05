@@ -8,7 +8,7 @@ msgstr ""
 "Language: ca_ES\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-06-05 03:55\n"
+"PO-Revision-Date: 2021-06-05 10:14\n"
 "Last-Translator: \n"
 "Language-Team: Catalan\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -1711,11 +1711,11 @@ msgstr "Aquesta és la quantitat de Chia que pots fer servir per fer transaccion
 
 #: src/components/wallet/standard/WalletStandard.tsx:313
 msgid "This is the pending change, which are change coins which you have sent to yourself, but have not been confirmed yet."
-msgstr ""
+msgstr "Aquest és el canvi pendent, que són monedes que t'has enviat a tu mateix, però que encara no han estat confirmades."
 
 #: src/components/wallet/standard/WalletStandard.tsx:302
 msgid "This is the sum of the incoming and outgoing pending transactions (not yet included into the blockchain). This does not include farming rewards."
-msgstr ""
+msgstr "Aquesta és la suma de les transaccions pendents entrants i sortints (encara no incloses a la cadena de blocs). Això no inclou les recompenses per cultivar."
 
 #: src/components/fullNode/FullNode.jsx:174
 msgid "This is the time of the latest peak sub block."
@@ -1723,15 +1723,15 @@ msgstr "Aquesta és l'hora de l'últim sub bloc de punt més alt."
 
 #: src/components/block/Block.jsx:187
 msgid "This is the time the block was created by the farmer, which is before it is finalized with a proof of time"
-msgstr ""
+msgstr "Moment en què el bloc ha estat creat pel pagès, abans de ser finalitzat amb una prova de temps"
 
 #: src/components/wallet/standard/WalletStandard.tsx:252
 msgid "This is the total amount of chia in the blockchain at the current peak sub block that is controlled by your private keys. It includes frozen farming rewards, but not pending incoming and outgoing transactions."
-msgstr ""
+msgstr "Aquesta és la quantitat total de Chia, a la cadena de blocs del subbloc pic actual, controlada per les teves claus privades. Inclou les recompenses pel cultiu congelades, però no les transaccions entrants i sortints pendents."
 
 #: src/components/wallet/standard/WalletStandard.tsx:291
 msgid "This is the total balance + pending balance: it is what your balance will be after all pending transactions are confirmed."
-msgstr ""
+msgstr "Aquest és el saldo total + saldo pendent: serà el teu saldo quan totes les transaccions pendents hagin estat confirmades."
 
 #: src/components/fullNode/FullNode.jsx:134
 msgid "This node is fully caught up and validating the network"
@@ -1743,7 +1743,7 @@ msgstr "Aquest node està al dia i valida la xarxa"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:51
 msgid "This table shows you the last time your farm attempted to win a block challenge. <0>Learn more</0>"
-msgstr ""
+msgstr "Aquesta taula mostra l'última vegada que el teu cultiu va intentar guanyar un repte de blocs. <0>Més informació</0>"
 
 #: src/components/trading/TradingOverview.jsx:192
 msgid "This trade was created at this time"
