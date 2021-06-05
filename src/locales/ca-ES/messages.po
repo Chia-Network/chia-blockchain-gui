@@ -8,7 +8,7 @@ msgstr ""
 "Language: ca_ES\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-06-05 10:14\n"
+"PO-Revision-Date: 2021-06-05 16:17\n"
 "Last-Translator: \n"
 "Language-Team: Catalan\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -20,7 +20,7 @@ msgstr ""
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:70
 msgid "*Want to explore Chia’s blocks further? Check out <0>Chia Explorer</0> built by an open source developer."
-msgstr "*Vols explorar encara més els blocs de Chia? Dóna un cop d'ull a <0>Chia Explorer</0> creat per un desenvolupador de codi lliure."
+msgstr "*Vols explorar encara més els blocs de Chia? Dona un cop d'ull a <0>Chia Explorer</0> creat per un desenvolupador de codi lliure."
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:94
 #~ msgid "0 automatically chooses bucket count"
@@ -32,12 +32,12 @@ msgstr "Es recomanen 128 cubells"
 
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:96
 msgid "A harvester is a service running on a machine where plot(s) are actually stored. A farmer and harvester talk to a full node to see the state of the chain. View your network of connected harvesters below Learn more"
-msgstr "Un recolector és un servei que s'executa en una màquina on actualment s'emmagatzemen les parcel·les. Un agricultor i un recolector es comuniquen amb un node complert per veure l'estat de la cadena. Mireu la vostra cadena de recolectors connectats a continuació Mé informació"
+msgstr "Un recol·lector és un servei que s'executa en una màquina on actualment s'emmagatzemen parcel·les. Un pagès i un recol·lector es comuniquen amb un node complet per veure l'estat de la cadena. Mira la teva cadena de recol·lectors connectats a continuació Més informació"
 
 #: src/electron/main.tsx:423
 #: src/electron/main.tsx:510
 msgid "About Chia Blockchain"
-msgstr "Sobre Chia Blockchain"
+msgstr "Sobre la cadena de blocs de Chia"
 
 #: src/components/trading/ViewOffer.jsx:85
 msgid "Accept"
@@ -65,26 +65,26 @@ msgstr "Afegeix"
 
 #: src/components/plot/PlotHeader.tsx:65
 msgid "Add Plot Directory"
-msgstr "Afegeix Directori per posar-hi la Parcel·la"
+msgstr "Afegeix un directori on desar les parcel·les"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:69
 msgid "Add Plot to Queue"
-msgstr "Afegeix Parcel·la a la Cua"
+msgstr "Afegeix parcel·la a la cua"
 
 #: src/components/wallet/Wallets.tsx:110
 msgid "Add Wallet"
-msgstr "Afegeix un Moneder"
+msgstr "Afegeix un moneder"
 
 #: src/components/farm/overview/FarmOverviewHero.tsx:47
 #: src/components/plot/PlotHeader.tsx:46
 #: src/components/plot/add/PlotAdd.tsx:80
 #: src/components/plot/overview/PlotOverviewHero.tsx:40
 msgid "Add a Plot"
-msgstr "Afegeix una Parcel·la per plantar"
+msgstr "Afegeix una parcel·la per cultivar"
 
 #: src/components/plot/PlotAddDirectoryDialog.tsx:56
 msgid "Add a plot"
-msgstr "Afegeix una parcel·la per plantar"
+msgstr "Afegeix una parcel·la per cultivar"
 
 #: src/components/plot/PlotAddDirectoryDialog.tsx:95
 msgid "Add plot directory"
@@ -99,7 +99,7 @@ msgstr "Adreça"
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:748
 #: src/components/wallet/standard/WalletStandard.tsx:466
 msgid "Address / Puzzle hash"
-msgstr "Adreça / Puzzle hash"
+msgstr "Adreça / Hash de trencaclosques"
 
 #: src/components/trading/CreateOffer.jsx:213
 #: src/components/trading/TradesTable.tsx:18
@@ -116,20 +116,20 @@ msgstr "Quantitat ({cc_unit})"
 
 #: src/components/wallet/create/createRLAdmin.jsx:259
 msgid "Amount For Initial Coin"
-msgstr "Quantitat Per Moneda Inicial"
+msgstr "Quantitat per moneda inicial"
 
 #: src/components/plot/PlotAction.tsx:36
 #: src/components/plot/queue/PlotQueueActions.tsx:43
 msgid "Are you sure you want to delete the plot? The plot cannot be recovered."
-msgstr "Segur que voleu eliminar la parcel·la? La parcel·la no podrà ser recuperada."
+msgstr "Segur que vols eliminar la parcel·la? La parcel·la no podrà ser recuperada."
 
 #: src/components/fullNode/FullNodeCloseConnection.tsx:25
 msgid "Are you sure you want to disconnect?"
-msgstr "Segur que voleu desconnectar?"
+msgstr "Segur que vols desconnectar?"
 
 #: src/electron/main.tsx:197
 msgid "Are you sure you want to quit? GUI Plotting and farming will stop."
-msgstr "Estàs segur que vols sortir? Sembrar i Cultivar en el GUI s'aturaran."
+msgstr "Estàs segur que vols sortir? El parcel·lat i el cultiu a través de la interfície gràfica seran aturats."
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:31
 #~ msgid "Are you sure you want to use k={plotSize}"
@@ -137,7 +137,7 @@ msgstr "Estàs segur que vols sortir? Sembrar i Cultivar en el GUI s'aturaran."
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:31
 msgid "Are you sure you want to use k={plotSize}?"
-msgstr "Esàs segur que vols utilitzar k={plotSize}?"
+msgstr "Estàs segur que vols fer servir k={plotSize}?"
 
 #: src/components/selectKey/SelectKey.tsx:62
 #: src/components/selectKey/SelectKey.tsx:83
@@ -146,7 +146,7 @@ msgstr "Enrere"
 
 #: src/components/backup/BackupCreate.tsx:66
 msgid "Backup file is used to restore smart wallets."
-msgstr "El fitxer de còpia de seguretat s'utilitza per restaurar les carteres intel·ligentes."
+msgstr "El fitxer de còpia de seguretat es fa servir per restaurar els moneders intel·ligents."
 
 #: src/components/wallet/coloured/WalletColoured.tsx:376
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:562
@@ -156,12 +156,12 @@ msgstr "Saldo"
 
 #: src/components/block/Block.jsx:290
 msgid "Base Farmer Reward Amount"
-msgstr "Valor base de la recompensa de l'agricultor"
+msgstr "Quantitat base de la recompensa del pagès"
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:46
 #: src/components/farm/FarmLatestBlockChallenges.tsx:55
 msgid "Below are the current block challenges. You may or may not have a proof of space for these challenges. These blocks do not currently contain a proof of time."
-msgstr "A continuació es mostren els reptes actuals de blocs. Podeu tenir o no una prova d’espai per a aquests reptes. Aquests blocs no contenen actualment una prova de temps."
+msgstr "A continuació es mostren els reptes de bloc actuals. Pots tenir o no una prova d’espai per a aquests reptes. Actualment aquests blocs no contenen una prova de temps."
 
 #: src/components/farm/card/FarmCardTotalNetworkSpace.tsx:20
 msgid "Best estimate over last 24 hours"
@@ -180,15 +180,15 @@ msgstr "Bloc"
 
 #: src/components/block/Block.jsx:124
 msgid "Block Test"
-msgstr "Prova de Bloc"
+msgstr "Prova de bloc"
 
 #: src/components/block/Block.jsx:230
 msgid "Block VDF Iterations"
-msgstr "Iteraciones de bloc VDF"
+msgstr "Iteracions de bloc VDF"
 
 #: src/components/block/Block.jsx:311
 msgid "Block at height {0} in the Chia blockchain"
-msgstr "Bloc a la alçada {0} en la cadena de blocs de Chia"
+msgstr "Bloc a la alçada {0} a la cadena de blocs de Chia"
 
 #: src/components/fullNode/FullNode.jsx:331
 #~ msgid "Block hash"
@@ -224,7 +224,7 @@ msgstr "Però actualment estàs cultivant <0/>"
 #: src/components/trading/TradesTable.tsx:45
 #: src/components/trading/TradingOverview.jsx:297
 msgid "Buy"
-msgstr "Comprar"
+msgstr "Compra"
 
 #: src/components/wallet/Wallets.tsx:59
 msgid "CC Wallet"
@@ -236,7 +236,7 @@ msgstr "Moneder CC"
 
 #: src/components/selectKey/SelectKey.tsx:144
 msgid "Can be backed up to mnemonic seed"
-msgstr "Pot crear-se una còpia de seguretat en una llavor mnemónica"
+msgstr "Pot crear-se una còpia de seguretat cap a una llavor mnemónica"
 
 #: src/components/core/components/ConfirmDialog/ConfirmDialog.tsx:66
 #: src/components/farm/FarmManageFarmingRewards.tsx:132
@@ -281,11 +281,11 @@ msgstr "Moneder Chia"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:21
 msgid "Choose Number of Plots"
-msgstr "Escollir el Nombre de Parcel·les"
+msgstr "Escollir el nombre de parcel·les"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:59
 msgid "Choose Plot Size"
-msgstr "Escollir la Mida de la Parcel·la"
+msgstr "Escollir la mida de la parcel·la"
 
 #: src/components/plot/PlotAddDirectoryDialog.tsx:102
 #: src/components/plot/queue/PlotQueueLogDialog.tsx:76
@@ -303,11 +303,11 @@ msgstr "Monedes:"
 #: src/components/trading/CreateOffer.jsx:192
 #: src/components/trading/TradesTable.tsx:21
 msgid "Colour"
-msgstr "Coloreja"
+msgstr "Acoloreix"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:220
 msgid "Colour Info"
-msgstr "Informació del Colorejat"
+msgstr "Informació sobre l'acoloriment"
 
 #: src/components/wallet/create/createExistingColouredCoin.jsx:115
 msgid "Colour String"
@@ -315,15 +315,15 @@ msgstr "Cadena de Colorejat"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:226
 msgid "Colour:"
-msgstr "Coloreja:"
+msgstr "Acoloreix:"
 
 #: src/components/wallet/create/WalletCreate.jsx:120
 msgid "Coloured Coin"
-msgstr "Moneda Colorejada"
+msgstr "Moneda acolorida"
 
 #: src/components/wallet/create/WalletCreate.jsx:168
 msgid "Coloured Coin Options"
-msgstr "Opcions de Moneda Colorejada"
+msgstr "Opcions de moneda acolorida"
 
 #: src/electron/main.tsx:195
 msgid "Confirm"
@@ -331,11 +331,11 @@ msgstr "Confirma"
 
 #: src/components/fullNode/FullNodeCloseConnection.tsx:21
 msgid "Confirm Disconnect"
-msgstr "Confirma la Desconnexió"
+msgstr "Confirma la desconnexió"
 
 #: src/components/trading/TradingOverview.jsx:202
 msgid "Confirmed at block:"
-msgstr "Confirmat al Bloc:"
+msgstr "Confirmat al bloc:"
 
 #: src/components/wallet/WalletHistory.tsx:52
 msgid "Confirmed at height {0}"
@@ -361,12 +361,12 @@ msgstr "Connectant al moneder"
 
 #: src/components/fullNode/FullNode.jsx:142
 msgid "Connection Status"
-msgstr "Estat de la Connexió"
+msgstr "Estat de la connexió"
 
 #: src/components/farm/FarmFullNodeConnections.tsx:102
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:106
 msgid "Connection Status:"
-msgstr "Estat de la Connexió:"
+msgstr "Estat de la connexió:"
 
 #: src/components/fullNode/FullNodeConnections.tsx:58
 msgid "Connection type"
@@ -410,19 +410,19 @@ msgstr "Crear moneder DID"
 
 #: src/components/trading/TradeManager.tsx:49
 msgid "Create Offer"
-msgstr "Crear Oferta"
+msgstr "Crear oferta"
 
 #: src/components/plot/add/PlotAdd.tsx:92
 msgid "Create Plot"
-msgstr "Crear Parcel·la"
+msgstr "Crear parcel·la"
 
 #: src/components/wallet/create/createRLAdmin.jsx:198
 msgid "Create Rate Limited Admin Wallet"
-msgstr "Crear Moneder d'Administrador amb Tarifa Limitada"
+msgstr "Crear moneder d'administrador amb tarifa limitada"
 
 #: src/components/wallet/create/createRLUser.jsx:78
 msgid "Create Rate Limited User Wallet"
-msgstr "Crear Moneder d'Usuari amb Tarifa Limitada"
+msgstr "Crear moneder d'usuari amb tarifa limitada"
 
 #: src/components/trading/TradeManager.tsx:22
 #~ msgid "Create Trade"
@@ -430,17 +430,17 @@ msgstr "Crear Moneder d'Usuari amb Tarifa Limitada"
 
 #: src/components/trading/CreateOffer.jsx:146
 msgid "Create Trade Offer"
-msgstr "Crear Oferta Comercial"
+msgstr "Crear oferta de transacció"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:550
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:729
 #: src/components/wallet/standard/WalletStandard.tsx:442
 msgid "Create Transaction"
-msgstr "Crear Transacció"
+msgstr "Crear transacció"
 
 #: src/components/backup/BackupCreate.tsx:63
 msgid "Create a Backup"
-msgstr "Crear Còpia de Seguretat"
+msgstr "Crear còpia de seguretat"
 
 #: src/components/selectKey/SelectKey.tsx:182
 msgid "Create a new private key"
@@ -456,15 +456,15 @@ msgstr "Crear nova moneda de color"
 
 #: src/components/wallet/create/WalletCreate.jsx:256
 msgid "Create user wallet"
-msgstr "Crear monoder d'usuari"
+msgstr "Crear moneder d'usuari"
 
 #: src/components/wallet/create/createExistingColouredCoin.jsx:95
 msgid "Create wallet for colour"
-msgstr "Crea una cartera per al color"
+msgstr "Crea un moneder per acolorir"
 
 #: src/components/wallet/create/WalletCreate.jsx:192
 msgid "Create wallet for existing colour"
-msgstr "Crea una cartera per al color existent"
+msgstr "Crea un moneder per un color existent"
 
 #: src/components/wallet/Wallets.tsx:81
 #~ msgid "CreateWallet.addWallet"
@@ -472,7 +472,7 @@ msgstr "Crea una cartera per al color existent"
 
 #: src/components/trading/TradingOverview.jsx:188
 msgid "Created At:"
-msgstr "Creat El:"
+msgstr "Creat el:"
 
 #: src/components/trading/TradingOverview.jsx:214
 msgid "Created by us:"
@@ -484,11 +484,11 @@ msgstr "Estat comercial actual"
 
 #: src/components/selectKey/SelectKey.tsx:159
 msgid "DANGER: permanently delete private key"
-msgstr "PERILL: elimineu definitivament la clau privada"
+msgstr "PERILL: elimina definitivament la clau privada"
 
 #: src/components/wallet/Wallets.tsx:71
 msgid "DID Wallet"
-msgstr "Cartera DID"
+msgstr "Moneder DID"
 
 #: src/components/wallet/create/WalletCreate.jsx:310
 #~ msgid "DIDListItems.title"
@@ -511,25 +511,25 @@ msgstr "Retard"
 #: src/components/selectKey/SelectKey.tsx:61
 #: src/components/selectKey/SelectKey.tsx:82
 msgid "Delete"
-msgstr "Esborrar"
+msgstr "Elimina"
 
 #: src/components/plot/PlotAction.tsx:33
 #: src/components/plot/queue/PlotQueueActions.tsx:39
 msgid "Delete Plot"
-msgstr "Esborrar parcel·la"
+msgstr "Elimina parcel·la"
 
 #: src/components/selectKey/SelectKey.tsx:81
 #: src/components/selectKey/SelectKey.tsx:202
 msgid "Delete all keys"
-msgstr "Esborrar totes les claus"
+msgstr "Elimina totes les claus"
 
 #: src/components/selectKey/SelectKey.tsx:60
 msgid "Delete key"
-msgstr "Suprimir clau"
+msgstr "Elimina la clau"
 
 #: src/components/selectKey/SelectKey.tsx:86
 msgid "Deleting all keys will permanently remove the keys from your computer, make sure you have backups. Are you sure you want to continue?"
-msgstr "Si esborreu totes les claus, se suprimiran definitivament de l'ordinador i assegureu-vos que teniu còpies de seguretat. Esteu segur que voleu continuar?"
+msgstr "Si esborres totes les claus, se eliminades definitivament de l'ordinador i assegura't que tens còpies de seguretat. Estas segur que vols continuar?"
 
 #: src/components/selectKey/SelectKey.tsx:65
 msgid "Deleting the key will permanently remove the key from your computer, make sure you have backups. Are you sure you want to continue?"
@@ -1964,11 +1964,11 @@ msgstr "Benvingut a Chia. Inicia la sessió amb una clau existent o crea'n una d
 
 #: src/components/wallet/WalletAdd.tsx:66
 msgid "Welcome! The following words are used for your wallet backup. Without them, you will lose access to your wallet, keep them safe! Write down each word along with the order number next to them. (Order is important)"
-msgstr ""
+msgstr "Benvingut/da! Les paraules següents són necessàries per a la còpia de seguretat de la cartera. Sense elles, perdràs l'accés a la teva cartera, guarda-les a un lloc segur. Guarda cada paraula juntament amb el número d’ordre al costat. (L'ordre és important)"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:324
 msgid "When you receive the setup info packet from your admin, enter it below to complete your Rate Limited Wallet setup:"
-msgstr ""
+msgstr "Quan rebis el paquet d'informació sobre la configuració del teu administrador, introdueix-lo aquí per completar la configuració de la cartera de tarifa limitada:"
 
 #: src/electron/main.tsx:341
 msgid "Window"
@@ -1990,7 +1990,7 @@ msgstr "Sí"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:63
 msgid "You do not need to be synched or connected to plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
-msgstr ""
+msgstr "No cal que estiguis sincronitzat ni connectat a la teva parcel·la. Durant el procés de parcel·lació, es generen fitxers temporals que superen la mida dels fitxers de parcel·la finals. Assegura't que tens prou espai. <0> Més informació </0>"
 
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:34
 #~ msgid "You have {0}% of the space on the network, so farming a block will take {expectedTimeToWin} in expectation."
