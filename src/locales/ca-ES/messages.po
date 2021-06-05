@@ -8,7 +8,7 @@ msgstr ""
 "Language: ca_ES\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-06-04 21:51\n"
+"PO-Revision-Date: 2021-06-05 03:55\n"
 "Last-Translator: \n"
 "Language-Team: Catalan\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -1685,29 +1685,29 @@ msgstr "El nombre total de VDF (funcions de retard verificable) o iteracions de 
 
 #: src/components/block/Block.jsx:233
 msgid "The total number of VDF (verifiable delay function) or proof of time iterations on this block."
-msgstr ""
+msgstr "El nombre total de VDF (funció de retard verificable) o proves d'iteracions de temps en aquest bloc."
 
 #: src/components/block/Block.jsx:297
 msgid "The total transactions fees in this block. Rewarded to the farmer."
-msgstr ""
+msgstr "Comissions per transacció totals en aquest bloc. Recompensades al pagès."
 
 #: src/components/plot/PlotsFailed.tsx:38
 msgid "These plots are invalid, you might want to delete them."
-msgstr ""
+msgstr "Aquestes parcel·les són invàlides, probablement les voleu suprimir."
 
 #: src/components/plot/PlotAddDirectoryDialog.tsx:60
 msgid "This allows you to add a directory that has plots in it. If you have not created any plots, go to the plotting screen."
-msgstr ""
+msgstr "Això et permet afegir un directori que conté parcel·les. Si no has creat cap parcel·la, vés a secció de parcel·les."
 
 #: src/components/trading/CreateOffer.jsx:132
 #: src/hooks/useSelectDirectory.tsx:31
 #: src/hooks/useSelectFile.tsx:21
 msgid "This feature is available only from the GUI."
-msgstr ""
+msgstr "Aquesta característica només està disponible a la interfície gràfica."
 
 #: src/components/wallet/standard/WalletStandard.tsx:264
 msgid "This is the amount of Chia that you can currently use to make transactions. It does not include pending farming rewards, pending incoming transactions, and Chia that you have just spent but is not yet in the blockchain."
-msgstr ""
+msgstr "Aquesta és la quantitat de Chia que pots fer servir per fer transaccions. No inclou recompenses agrícoles pendents, transaccions entrants pendents ni Chia que acabis de gastar, però que encara no es troba a la cadena de blocs."
 
 #: src/components/wallet/standard/WalletStandard.tsx:313
 msgid "This is the pending change, which are change coins which you have sent to yourself, but have not been confirmed yet."
@@ -1719,7 +1719,7 @@ msgstr ""
 
 #: src/components/fullNode/FullNode.jsx:174
 msgid "This is the time of the latest peak sub block."
-msgstr ""
+msgstr "Aquesta és l'hora de l'últim sub bloc de punt més alt."
 
 #: src/components/block/Block.jsx:187
 msgid "This is the time the block was created by the farmer, which is before it is finalized with a proof of time"
@@ -1735,7 +1735,7 @@ msgstr ""
 
 #: src/components/fullNode/FullNode.jsx:134
 msgid "This node is fully caught up and validating the network"
-msgstr ""
+msgstr "Aquest node està al dia i valida la xarxa"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:39
 #~ msgid "This table shows you the last time your farm attempted to win a block challenge."
@@ -1747,15 +1747,15 @@ msgstr ""
 
 #: src/components/trading/TradingOverview.jsx:192
 msgid "This trade was created at this time"
-msgstr ""
+msgstr "Aquesta transacció va ser creada en aquest moment"
 
 #: src/components/trading/TradingOverview.jsx:206
 msgid "This trade was included on blockchain at this block height"
-msgstr ""
+msgstr "Aquesta transacció va ser inclosa en aquesta alçada de bloc"
 
 #: src/components/app/AppTimeBombAlert.tsx:18
 msgid "This version of Chia is no longer compatible with the blockchain and can not safely farm."
-msgstr ""
+msgstr "Aquesta versió de Chia ja no és compatible amb la cadena de blocs i pot no cultivar amb seguretat."
 
 #: src/components/fullNode/FullNode.jsx:87
 msgid "Time Created"
@@ -1805,7 +1805,7 @@ msgstr "Iteracions VDF totals"
 
 #: src/components/fullNode/FullNode.jsx:194
 msgid "Total iterations since the start of the blockchain"
-msgstr ""
+msgstr "Iteracions totals des de l'inici de la cadena de blocs"
 
 #: src/components/dashboard/DashboardSideBar.tsx:27
 #~ msgid "Trade"
@@ -1866,7 +1866,7 @@ msgstr "Clau pública de l'usuari"
 
 #: src/components/fullNode/FullNode.jsx:186
 msgid "VDF Sub Slot Iterations"
-msgstr ""
+msgstr "Iteracions sub slot VDF"
 
 #: src/electron/main.tsx:296
 msgid "View"
@@ -1944,11 +1944,11 @@ msgstr "Cartera"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:107
 msgid "Want to earn more Chia? Add more plots to your farm."
-msgstr ""
+msgstr "Vols aconseguir més Chia? Afegeix més parcel·les al teu cultiu."
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:82
 msgid "Want to have a delay before the next plot starts?"
-msgstr ""
+msgstr "Vols deixar un marge de temps abans que comenci la següent parcel·la?"
 
 #: src/components/block/Block.jsx:198
 msgid "Weight"
@@ -1956,11 +1956,11 @@ msgstr "Pes"
 
 #: src/components/block/Block.jsx:201
 msgid "Weight is the total added difficulty of all sub blocks up to and including this one"
-msgstr ""
+msgstr "El pes és la dificultat afegida total de tots els subblocs incloent l'actual"
 
 #: src/components/selectKey/SelectKey.tsx:115
 msgid "Welcome to Chia. Please log in with an existing key, or create a new key."
-msgstr ""
+msgstr "Benvingut a Chia. Inicia la sessió amb una clau existent o crea'n una de nova."
 
 #: src/components/wallet/WalletAdd.tsx:66
 msgid "Welcome! The following words are used for your wallet backup. Without them, you will lose access to your wallet, keep them safe! Write down each word along with the order number next to them. (Order is important)"
@@ -1976,7 +1976,7 @@ msgstr "Finestra"
 
 #: src/components/farm/card/FarmCardBlockRewards.tsx:33
 msgid "Without fees"
-msgstr ""
+msgstr "Sense comissions"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:28
 #: src/components/trading/TradingOverview.jsx:212
@@ -1998,7 +1998,7 @@ msgstr ""
 
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:65
 msgid "You have {0}% of the space on the network, so farming a block will take {expectedTimeToWin} in expectation. Actual results may take 3 to 4 times longer than this estimate."
-msgstr ""
+msgstr "Tens un {0}% de l'espai a la xarxa, per tant trigaràs aproximadament {expectedTimeToWin} a cultivar un bloc. Els resultats reals poden trigar entre tres i quatre vegades més que aquesta estimació."
 
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:34
 #~ msgid "You have {0}% of the space on the network, so farming a block will take {expectedTimeToWin} in expectation. Actual results may take 3-4 times longer - actual results may be 3x this estimate.<0>Learn about Expected Value</0>"
@@ -2014,15 +2014,15 @@ msgstr ""
 
 #: src/components/farm/overview/FarmOverview.tsx:33
 msgid "Your Farm Overview"
-msgstr ""
+msgstr "Vista general del teu cultiu"
 
 #: src/components/farm/FarmFullNodeConnections.tsx:86
 msgid "Your Full Node Connection"
-msgstr ""
+msgstr "La teva connexió de node complet"
 
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:91
 msgid "Your Harvester Network"
-msgstr ""
+msgstr "La teva xarxa de collita"
 
 #: src/util/getDescriptiveError.ts:5
 msgid "[Error 13] Permission denied. You are trying to access a file/directory without having the necessary permissions. Most likely one of the plot folders in your config.yaml has an issue."
@@ -2071,13 +2071,13 @@ msgstr "sincronitzant"
 
 #: src/components/farm/card/FarmCardBlockRewards.tsx:32
 msgid "{currencyCode} Block Rewards"
-msgstr ""
+msgstr "{currencyCode} Recompenses per bloc"
 
 #: src/components/farm/card/FarmCardTotalChiaFarmed.tsx:29
 msgid "{currencyCode} Total Chia Farmed"
-msgstr ""
+msgstr "{currencyCode} Chia total cultivada"
 
 #: src/components/farm/card/FarmCardUserFees.tsx:28
 msgid "{currencyCode} User Transaction Fees"
-msgstr ""
+msgstr "{currencyCode} Comissions de transacció de l'usuari"
 
