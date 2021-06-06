@@ -8,7 +8,7 @@ msgstr ""
 "Language: tr_TR\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-06-02 00:46\n"
+"PO-Revision-Date: 2021-06-06 13:13\n"
 "Last-Translator: \n"
 "Language-Team: Turkish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -69,7 +69,7 @@ msgstr "Bir Plot Dizini Ekleyin"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:69
 msgid "Add Plot to Queue"
-msgstr "Kuyruğa Plot Ekle"
+msgstr "Plot'u Sıraya Ekle"
 
 #: src/components/wallet/Wallets.tsx:110
 msgid "Add Wallet"
@@ -642,7 +642,7 @@ msgstr "Çiftlik"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:254
 msgid "Farmer Public Key"
-msgstr ""
+msgstr "Ana Açık Anahtar"
 
 #: src/components/block/Block.jsx:252
 msgid "Farmer Puzzle Hash"
@@ -1467,7 +1467,7 @@ msgstr "Grafiğin depolanmasını istediğiniz klasör için son hedefi seçin. 
 
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:40
 msgid "Select the temporary destination for the folder where you would like the plot to be stored. We recommend you use a fast drive."
-msgstr ""
+msgstr "Grafiğin depolanmasını istediğiniz klasör için geçici hedefi seçin. Hızlı bir SSD kullanmanızı tavsiye ederiz."
 
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:63
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:74
