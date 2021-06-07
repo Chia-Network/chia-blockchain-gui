@@ -8,7 +8,7 @@ msgstr ""
 "Language: nl_NL\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-06-07 10:55\n"
+"PO-Revision-Date: 2021-06-07 16:51\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -1223,7 +1223,7 @@ msgstr "Plot bestanden"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:22
 msgid "Plots Passed Filter"
-msgstr ""
+msgstr "Plots Doorgegeven aan Filter"
 
 #: src/components/plot/overview/PlotOverviewHero.tsx:30
 msgid "Plots are allocated space on your hard drive used to farm and earn Chia. <0>Learn more</0>"
@@ -1381,7 +1381,7 @@ msgstr "Release Nota's"
 
 #: src/components/plot/queue/PlotQueueIndicator.tsx:39
 msgid "Removing"
-msgstr ""
+msgstr "Aan het verwijderen"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:263
 msgid "Rename"
@@ -1506,7 +1506,7 @@ msgstr "Toon geavanceerde opties"
 #: src/components/trading/CreateOffer.jsx:174
 #: src/components/trading/TradesTable.tsx:15
 msgid "Side"
-msgstr ""
+msgstr "Kant"
 
 #: src/components/selectKey/SelectKey.tsx:112
 msgid "Sign In"
