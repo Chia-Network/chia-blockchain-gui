@@ -8,7 +8,7 @@ msgstr ""
 "Language: nl_NL\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-06-04 02:29\n"
+"PO-Revision-Date: 2021-06-07 10:55\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -1303,7 +1303,7 @@ msgstr "Private sleutel:"
 
 #: src/components/block/Block.jsx:240
 msgid "Proof of Space Size"
-msgstr ""
+msgstr "Grootte Proof of Space"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:26
 msgid "Proofs Found"
@@ -1311,7 +1311,7 @@ msgstr "Bewijs gevonden"
 
 #: src/components/wallet/create/createRLAdmin.jsx:323
 msgid "Pubkey"
-msgstr ""
+msgstr "Pubkey"
 
 #: src/middleware/middleware_api.jsx:267
 msgid "Public key:"
@@ -1620,7 +1620,7 @@ msgstr "Aan het synchroniseren"
 
 #: src/components/fullNode/FullNode.jsx:107
 msgid "Syncing <0/>/<1/>"
-msgstr ""
+msgstr "Synchroniseren <0/>/<1/>"
 
 #: src/components/fullNode/FullNode.jsx:107
 #~ msgid "Syncing {progress}/{tip}"
@@ -1660,7 +1660,7 @@ msgstr "Dit programma zal op blok hoogte 193536 niet meer werken."
 
 #: src/components/farm/FarmFullNodeConnections.tsx:91
 msgid "The full node that your farmer is connected to is below. <0>Learn more</0>"
-msgstr ""
+msgstr "De volledige node waarmee jou farmer is verbonden wordt hieronder weergegeven. <0>Meer informatie</0>"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:27
 #: src/components/plot/add/PlotAddChooseSize.tsx:87
@@ -1673,7 +1673,7 @@ msgstr "De node is niet gesynchroniseerd"
 
 #: src/components/fullNode/FullNode.jsx:113
 msgid "The node is syncing, which means it is downloading blocks from other nodes, to reach the latest block in the chain"
-msgstr ""
+msgstr "De node is aan het synchroniseren, wat betekent dat hij blokken van andere nodes downloadt, om het laatste blok in de keten te bereiken"
 
 #: src/components/block/Block.jsx:271
 msgid "The seed used to create the plot. This depends on the pool pk and plot pk."
@@ -1857,7 +1857,7 @@ msgstr "Unieke id"
 
 #: src/components/core/components/LocaleToggle/LocaleToggle.tsx:51
 msgid "Unknown"
-msgstr ""
+msgstr "Onbekend"
 
 #: src/components/wallet/create/createRLAdmin.jsx:307
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:300
@@ -1948,7 +1948,7 @@ msgstr "Wil je meer Chia verdienen? Voeg meer plotbestanden toe aan je farm."
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:82
 msgid "Want to have a delay before the next plot starts?"
-msgstr ""
+msgstr "Wil je de volgende plot starten met een vertraging?"
 
 #: src/components/block/Block.jsx:198
 msgid "Weight"
