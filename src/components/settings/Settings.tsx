@@ -1,32 +1,26 @@
-import React, { ReactElement } from 'react';
+import React from 'react';
 import { Trans } from '@lingui/macro';
 import LayoutMain from '../layout/LayoutMain';
 import { makeStyles } from '@material-ui/core/styles';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import {
-  AlertDialog,
-  ConfirmDialog,
   Flex,
   Card,
 } from '@chia/core';
 import {
   Grid,
   Typography,
+  TextField,
   Box,
   Button,
-  Tooltip,
 } from '@material-ui/core';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+/*
 import {
-  Help as HelpIcon,
-  Lock as LockIcon,
-  NoEncryption as NoEncryptionIcon,
-} from '@material-ui/icons';
-import { openDialog } from '../../modules/dialog';
-import { RootState } from '../../modules/rootReducer';
-import { skipKeyringMigration } from '../../modules/message';
-import ChangePassphrasePrompt from './ChangePassphrasePrompt';
-import RemovePassphrasePrompt from './RemovePassphrasePrompt';
-import SetPassphrasePrompt from './SetPassphrasePrompt';
+  toggle_passcode,
+  update_passcode,
+} from '../../../modules/message';
+*/
 
 const useStyles = makeStyles((theme) => ({
   passToggleBox: {
@@ -39,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
     paddingRight: 20,
   },
   togglePassButton: {
-    marginLeft: theme.spacing(4),
+    marginLeft: theme.spacing(2),
   },
   updatePassButton: {
     marginLeft: theme.spacing(6),
@@ -52,206 +46,97 @@ const useStyles = makeStyles((theme) => ({
 const SecurityCard = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const { user_passphrase_set: userPassphraseIsSet, needs_migration: needsMigration } = useSelector(
-    (state: RootState) => state.keyring_state
-  );
+  let oldpass1_input: HTMLInputElement;
+  let oldpass2_input: HTMLInputElement;
+  let newpass_input: HTMLInputElement;
 
-  const [changePassphraseOpen, setChangePassphraseOpen] = React.useState(false);
-  const [removePassphraseOpen, setRemovePassphraseOpen] = React.useState(false);
-  const [addPassphraseOpen, setAddPassphraseOpen] = React.useState(false);
+  // const color = isPassActive ? '#3AAC59' : 'red';
 
-  async function changePassphraseSucceeded() {
-    closeChangePassphrase();
-    dispatch(
-      openDialog(
-        <AlertDialog>
-          <Trans>
-          Your passphrase has been updated
-          </Trans>
-        </AlertDialog>
-      )
-    );
+  function togglePasscode() {
+    console.log("TOGGLE PASS")
+    // dispatch(toggle_passcode());
   }
 
-  async function setPassphraseSucceeded() {
-    closeSetPassphrase();
-    dispatch(
-      openDialog(
-        <AlertDialog>
-          <Trans>
-            Your passphrase has been set
-          </Trans>
-        </AlertDialog>
-      )
-    );
-  }
-
-  async function removePassphraseSucceeded() {
-    closeRemovePassphrase();
-    dispatch(
-      openDialog(
-        <AlertDialog>
-          <Trans>
-            Passphrase protection has been disabled
-          </Trans>
-        </AlertDialog>
-      )
-    );
-  }
-
-  async function closeChangePassphrase() {
-    setChangePassphraseOpen(false);
-  }
-
-  async function closeSetPassphrase() {
-    setAddPassphraseOpen(false);
-  }
-
-  async function closeRemovePassphrase() {
-    setRemovePassphraseOpen(false);
-  }
-
-  async function promptForKeyringMigration() {
-    const beginMigration = await openDialog((
-      <ConfirmDialog
-        title={<Trans>Migration required</Trans>}
-        confirmTitle={<Trans>Migrate</Trans>}
-        cancelTitle={<Trans>Cancel</Trans>}
-        confirmColor="default"
-      >
-        <Trans>
-          Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Would you like to migrate your keys now?
-        </Trans>
-      </ConfirmDialog>
-    ));
-
-    // @ts-ignore
-    if (beginMigration) {
-      dispatch(skipKeyringMigration(false));
-    }
-  }
-
-  function PassphraseFeatureStatus(): JSX.Element | null {
-    let icon: JSX.Element | null = null;
-    let statusMessage: JSX.Element | null = null;
-    let tooltipTitle: React.ReactElement;
-    const tooltipIconStyle: React.CSSProperties = { color: '#c8c8c8', fontSize: 12 };
-
-    if (needsMigration) {
-      icon = (<NoEncryptionIcon style={{ color: 'red',  marginRight: 6 }} />);
-      statusMessage = (<Trans>Migration required to support passphrase protection</Trans>);
-      tooltipTitle = (<Trans>Passphrase support requires migrating your keys to a new keyring</Trans>);
-    } else {
-      if (userPassphraseIsSet) {
-        icon = (<LockIcon style={{ color: '#3AAC59',  marginRight: 6 }} />);
-        statusMessage = (<Trans>Passphrase protection is enabled</Trans>);
-        tooltipTitle = (<Trans>Passphrase support requires migrating your keys to a new keyring</Trans>);
-      } else {
-        icon = (<NoEncryptionIcon style={{ color: 'red',  marginRight: 6 }} />);
-        statusMessage = (<Trans>Passphrase protection is disabled</Trans>);
-        tooltipTitle = (<Trans>Secure your keychain using a strong passphrase</Trans>);
-      }
-    }
-
-    if (icon && statusMessage) {
-      return (
-        <Box display="flex" className={classes.passToggleBox}>
-          {icon}
-          <Typography variant="subtitle1" style={{ marginRight: 5 }}>
-            {statusMessage}
-          </Typography>
-          <Tooltip title={tooltipTitle}>
-            <HelpIcon style={tooltipIconStyle} />
-          </Tooltip>
-        </Box>
-      );
-    } else {
-      return (null);
-    }
-  }
-
-  function DisplayChangePassphrase(): JSX.Element | null {
-    if (needsMigration === false && userPassphraseIsSet) {
-      return (
-        <Box display="flex" className={classes.passChangeBox}>
-          <Button
-            onClick={() => setChangePassphraseOpen(true)}
-            className={classes.togglePassButton}
-            variant="contained"
-            disableElevation
-          >
-            <Trans>Change Passphrase</Trans>
-          </Button>
-          { changePassphraseOpen &&
-            <ChangePassphrasePrompt
-              onSuccess={changePassphraseSucceeded}
-              onCancel={closeChangePassphrase}
-            />}
-        </Box>
-      )
-    }
-    else {
-      return (null);
-    }
-  }
-
-  function ActionButtons(): JSX.Element | null {
-    if (needsMigration) {
-      return (
-        <Button
-          onClick={() => dispatch(skipKeyringMigration(false))}
-          className={classes.togglePassButton}
-          variant="contained"
-          disableElevation
-        >
-          <Trans>Migrate Keyring</Trans>
-        </Button>
-      )
-    } else {
-      if (userPassphraseIsSet) {
-        return (
-          <Button
-            onClick={() => setRemovePassphraseOpen(true)}
-            className={classes.togglePassButton}
-            variant="contained"
-            disableElevation
-          >
-            <Trans>Remove Passphrase</Trans>
-          </Button>
-        );
-      } else {
-        return (
-          <Button
-            onClick={() => setAddPassphraseOpen(true)}
-            className={classes.togglePassButton}
-            variant="contained"
-            disableElevation
-          >
-            <Trans>Set Passphrase</Trans>
-          </Button>
-        )
-      }
-    }
+  function updatePasscode() {
+    console.log("UPDATE PASS")
+    // dispatch(update_passcode(oldpass1, oldpass2, newpass));
   }
 
   return (
-    <Card title={<Trans>Passphrase Settings</Trans>}>
+    <Card title={<Trans>Passcode Settings</Trans>}>
       <Grid spacing={4} container>
         <Grid item xs={12}>
-          <PassphraseFeatureStatus />
-          <DisplayChangePassphrase />
+          <Box display="flex" className={classes.passToggleBox}>
+            <Typography variant="subtitle1" style={{ marginRight: 6 }}>Passcode is currently:</Typography>
+            <Typography variant="subtitle1" style={{ color: '#3AAC59' }}> ON </Typography>
+            /
+            <Typography variant="subtitle1" style={{ color: 'red' }}> OFF</Typography>
+            <Button
+              onClick={togglePasscode}
+              className={classes.togglePassButton}
+              variant="contained"
+              color="secondary"
+              disableElevation
+            >
+              Toggle
+            </Button>
+          </Box>
+        </Grid>
+        <Grid item xs={12}>
+          <Typography variant="subtitle1">Change Passcode:</Typography>
           <Box display="flex" className={classes.passChangeBox}>
-            <ActionButtons />
-            {removePassphraseOpen &&
-              <RemovePassphrasePrompt
-                onSuccess={removePassphraseSucceeded}
-                onCancel={closeRemovePassphrase}
-              />}
-            {addPassphraseOpen &&
-              <SetPassphrasePrompt
-                onSuccess={setPassphraseSucceeded}
-                onCancel={closeSetPassphrase}
-              />}
+            <Box flexGrow={6}>
+              <TextField
+                id="filled-secondary"
+                variant="filled"
+                color="secondary"
+                input type="password"
+                fullWidth
+                className={classes.oldPass}
+                inputRef={(input) => {
+                  oldpass1_input = input;
+                }}
+                label={<Trans>Old Passcode</Trans>}
+              />
+            </Box>
+            <Box flexGrow={6}>
+              <TextField
+                id="filled-secondary"
+                variant="filled"
+                color="secondary"
+                input type="password"
+                fullWidth
+                inputRef={(input) => {
+                  oldpass2_input = input;
+                }}
+                label={<Trans>Re-enter Old Passcode</Trans>}
+              />
+            </Box>
+          </Box>
+          <Box display="flex" className={classes.passChangeBox}>
+            <Box flexGrow={6}>
+              <TextField
+                id="filled-secondary"
+                variant="filled"
+                color="secondary"
+                input type="password"
+                fullWidth
+                inputRef={(input) => {
+                  newpass_input = input;
+                }}
+                label={<Trans>New Passcode</Trans>}
+              />
+            </Box>
+            <Box>
+              <Button
+                onClick={updatePasscode}
+                className={classes.updatePassButton}
+                variant="contained"
+                color="primary"
+              >
+                Update
+              </Button>
+            </Box>
           </Box>
         </Grid>
       </Grid>
