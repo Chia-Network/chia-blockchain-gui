@@ -66,6 +66,11 @@ export default function DashboardSideBar() {
           title={<Trans>Keys</Trans>}
           exact
         />
+        <SideBarItem
+          to="/dashboard/settings"
+          icon={<FarmIcon fontSize="large" />}
+          title={<Trans>Settings</Trans>}
+        />
       </StyledList>
     </StyledRoot>
   );
