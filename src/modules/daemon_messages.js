@@ -46,19 +46,6 @@ export const isKeyringLocked = () => {
   return action;
 }
 
-export const keyringStatus = () => {
-  const action = daemonMessage();
-  action.message.command = 'keyring_status';
-  return action;
-}
-
-export const setKeyringPassphrase = (new_passphrase) => {
-  const action = daemonMessage();
-  action.message.command = 'set_keyring_passphrase';
-  action.message.data = { new_passphrase: new_passphrase };
-  return action;
-}
-
 export const exitDaemon = () => {
   const action = daemonMessage();
   action.message.command = 'exit';
