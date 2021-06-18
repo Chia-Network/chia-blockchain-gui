@@ -1,6 +1,7 @@
 import isElectron from 'is-electron';
 import * as actions from '../modules/websocket';
 import {
+  isKeyringLocked,
   registerService,
   startService,
   startServiceTest,
@@ -42,8 +43,12 @@ const socketMiddleware = () => {
     clearInterval(wsConnectInterval);
     connected = true;
     store.dispatch(actions.wsConnected(event.target.url));
+
+    store.dispatch(isKeyringLocked());
+
     store.dispatch(registerService('wallet_ui'));
     store.dispatch(registerService(service_plotter));
+    // Do this stuff after isKeyringLocked updates state
     if (config.local_test) {
       store.dispatch(startServiceTest(service_wallet));
       store.dispatch(startService(service_simulator));
@@ -62,6 +67,7 @@ const socketMiddleware = () => {
 
   const onMessage = (store) => (event) => {
     const payload = JSON.parse(event.data);
+    console.log("***** received payload: ", payload);
     const { request_id } = payload;
     const action = callback_map[request_id];
     if (action) {

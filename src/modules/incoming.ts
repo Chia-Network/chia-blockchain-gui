@@ -237,8 +237,13 @@ export default function incomingReducer(
           public_key_fingerprints: [],
           logged_in_received: true,
         };
-      } 
-      if (command === 'get_public_keys' && success) {
+      } else if (command === 'is_keyring_locked' && success) {
+          const { is_keyring_locked } = data;
+          return {
+            ...state,
+            password_status: is_keyring_locked,
+          };
+      } else if (command === 'get_public_keys' && success) {
         const { public_key_fingerprints } = data;
 
         return {
