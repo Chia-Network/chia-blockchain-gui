@@ -240,7 +240,18 @@ export default function incomingReducer(
           public_key_fingerprints: [],
           logged_in_received: true, 
         };
-      } else if (command === 'is_keyring_locked' && success) {
+      } else if (command === 'is_keyring_locked') {
+         success = data.success;
+         if (success) {
+           const { is_keyring_locked } = data;
+           return {
+             ...state,
+             password_status: is_keyring_locked,
+           };
+         }
+      } else if (command === 'get_public_keys') {
+        success = data.success;
+        if (success) {
           const { is_keyring_locked } = data;
           return {
             ...state,
