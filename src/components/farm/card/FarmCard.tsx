@@ -1,6 +1,11 @@
-import React, { ReactNode, ReactElement } from 'react';
+import React, { ReactNode, ReactElement, useState } from 'react';
+import { Trans } from '@lingui/macro';
 import styled from 'styled-components';
-import { Flex, TooltipIcon } from '@chia/core';
+import { Flex, IconButton, TooltipIcon } from '@chia/core';
+import {
+  Visibility as VisibilityIcon,
+  VisibilityOff as VisibilityOffIcon,
+} from '@material-ui/icons';
 import {
   Box,
   Card,
@@ -21,10 +26,13 @@ type Props = {
   description?: ReactNode;
   loading?: boolean;
   tooltip?: ReactElement<any>;
+  hideable?: boolean;
 };
 
 export default function FarmCard(props: Props) {
-  const { title, value, description, valueColor, loading, tooltip } = props;
+  const { title, value, description, valueColor, loading, tooltip, hideable } = props;
+
+  const [ hidden, setHidden ] = useState(false);
 
   return (
     <StyledCard>
@@ -34,11 +42,34 @@ export default function FarmCard(props: Props) {
             {title}
           </Typography>
           {tooltip && <TooltipIcon>{tooltip}</TooltipIcon>}
+          {hideable && (
+            hidden ? (
+              <IconButton
+                edge="end"
+                aria-label="show"
+                onClick={() => setHidden(!hidden)}
+              >
+                <VisibilityIcon />
+              </IconButton>
+            ) : (
+              <IconButton
+                edge="end"
+                aria-label="hide"
+                onClick={() => setHidden(!hidden)}
+              >
+                <VisibilityOffIcon />
+              </IconButton>
+            )
+          )}
         </Flex>
         {loading ? (
           <Box>
             <CircularProgress color="primary" size={25} />
           </Box>
+        ) : hidden ? (
+          <Typography variant="h5" color="textSecondary">
+            <Trans>Hidden</Trans>
+          </Typography>
         ) : (
           <Typography variant="h5" color={valueColor}>
             {value}
@@ -59,4 +90,5 @@ FarmCard.defaultProps = {
   valueColor: 'primary',
   description: undefined,
   loading: false,
+  hideable: false,
 };
