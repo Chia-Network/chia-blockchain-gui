@@ -58,7 +58,6 @@ export default function SelectKey() {
   }
 
   async function handleDeletePrivateKey(fingerprint: Fingerprint) {
-   
     dispatch(openProgress());
     const response: any = await dispatch(check_delete_key_action(fingerprint));
     dispatch(closeProgress());
@@ -70,31 +69,37 @@ export default function SelectKey() {
         cancelTitle={<Trans>Back</Trans>}
         confirmColor="danger"
       >
-      {response.used_for_farmer_rewards && (<Alert severity="warning">
-        <Trans>
-          Warning: This key is used for your farming rewards address. 
-          By deleting this key you may lose access to any future farming rewards
-        </Trans>
-      </Alert>)}
+        {response.used_for_farmer_rewards && (
+          <Alert severity="warning">
+            <Trans>
+              Warning: This key is used for your farming rewards address. 
+              By deleting this key you may lose access to any future farming rewards
+            </Trans>
+          </Alert>
+        )}
 
-      {response.used_for_pool_rewards && (<Alert severity="warning">
-        <Trans>
-          Warning: This key is used for your pool rewards address. 
-          By deleting this key you may lose access to any future pool rewards
-        </Trans>
-      </Alert>)}
+        {response.used_for_pool_rewards && (
+          <Alert severity="warning">
+            <Trans>
+              Warning: This key is used for your pool rewards address. 
+              By deleting this key you may lose access to any future pool rewards
+            </Trans>
+          </Alert>
+        )}
 
-      {response.wallet_balance && (<Alert severity="warning">
-        <Trans>
-          Warning: This key is used for a wallet that may have a non-zero balance. 
-          By deleting this key you may lose access to this wallet
-        </Trans>
-      </Alert>)}
+        {response.wallet_balance && (
+          <Alert severity="warning">
+            <Trans>
+              Warning: This key is used for a wallet that may have a non-zero balance. 
+              By deleting this key you may lose access to this wallet
+            </Trans>
+          </Alert>
+        )}
 
-      <Trans>
-        Deleting the key will permanently remove the key from your computer,
-        make sure you have backups. Are you sure you want to continue?
-      </Trans>
+        <Trans>
+          Deleting the key will permanently remove the key from your computer,
+          make sure you have backups. Are you sure you want to continue?
+        </Trans>
       </ConfirmDialog>
     ));
     
