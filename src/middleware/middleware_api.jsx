@@ -254,7 +254,7 @@ export const handle_message = async (store, payload, errorProcessed) => {
             component="dl" // mount a Definition List
             spacing={2}
           >
-            <Grid item>
+            <Grid xs={12} item>
               <Typography component="dt" variant="subtitle2">
                 <Trans>Private key:</Trans>
               </Typography>
@@ -262,7 +262,7 @@ export const handle_message = async (store, payload, errorProcessed) => {
                 {payload.data.private_key.sk}
               </StyledTypographyDD>
             </Grid>
-            <Grid item>
+            <Grid xs={12} item>
               <Typography component="dt" variant="subtitle2">
                 <Trans>Public key: </Trans>
               </Typography>
@@ -270,23 +270,27 @@ export const handle_message = async (store, payload, errorProcessed) => {
                 {payload.data.private_key.pk}
               </StyledTypographyDD>
             </Grid>
-            <Grid item>
-              <Typography component="dt" variant="subtitle2">
-                <Trans>Farmer public key: </Trans>
-              </Typography>
-              <StyledTypographyDD component="dd" variant="body2">
-                {payload.data.private_key.farmer_pk}
-              </StyledTypographyDD>
-            </Grid>
-            <Grid item>
-              <Typography component="dt" variant="subtitle2">
-                <Trans>Pool public key: </Trans>
-              </Typography>
-              <StyledTypographyDD component="dd" variant="body2">
-                {payload.data.private_key.pool_pk}
-              </StyledTypographyDD>
-            </Grid>
-            <Grid item>
+            {!!payload.data.private_key.farmer_pk && (
+              <Grid xs={12} item>
+                <Typography component="dt" variant="subtitle2">
+                  <Trans>Farmer public key: </Trans>
+                </Typography>
+                <StyledTypographyDD component="dd" variant="body2">
+                  {payload.data.private_key.farmer_pk}
+                </StyledTypographyDD>
+              </Grid>
+            )}
+            {!!payload.data.private_key.pool_pk && (
+              <Grid xs={12} item>
+                <Typography component="dt" variant="subtitle2">
+                  <Trans>Pool public key: </Trans>
+                </Typography>
+                <StyledTypographyDD component="dd" variant="body2">
+                  {payload.data.private_key.pool_pk}
+                </StyledTypographyDD>
+              </Grid>
+            )}
+            <Grid xs={12} item>
               {payload.data.private_key.seed ? (
                 <>
                   <Typography component="dt" variant="subtitle2">
