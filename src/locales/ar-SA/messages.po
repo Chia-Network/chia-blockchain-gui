@@ -662,6 +662,10 @@ msgstr "المزرعة غير متصلة"
 msgid "Farmer is not running"
 msgstr "المزارع لا يعمل"
 
+#: src/middleware/middleware_api.jsx:276
+msgid "Farmer public key:"
+msgstr ""
+
 #: src/components/farm/overview/FarmOverviewHero.tsx:35
 msgid "Farmers earn block rewards and transaction fees by committing spare space to the network to help secure transactions. This is where your farm will be once you add a plot. <0>Learn more</0>"
 msgstr "يحصل المزارعون على مكافآت مربعات ورسوم معاملة من خلال تخصيص مساحة احتياطية للشبكة للمساعدة في تأمين المعاملات. هذا هو المكان الذي ستكون فيه مزرعتك بمجرد إضافة قطعة. <0>عرض المزيد</0>"
@@ -993,7 +997,7 @@ msgstr "الإسم المستعار"
 msgid "No"
 msgstr "لايوجد"
 
-#: src/middleware/middleware_api.jsx:285
+#: src/middleware/middleware_api.jsx:305
 msgid "No 24 word seed, since this key is imported."
 msgstr "لا يوجد بذور 24 كلمة، لأن هذا المفتاح مستورد."
 
@@ -1266,6 +1270,10 @@ msgstr "عنوان مكافأة المجمع"
 msgid "Pool Reward Amount"
 msgstr "مبلغ مكافأة المجمع"
 
+#: src/middleware/middleware_api.jsx:286
+msgid "Pool public key:"
+msgstr ""
+
 #: src/components/farm/FarmFullNodeConnections.tsx:42
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:46
 #: src/components/fullNode/FullNodeAddConnection.tsx:85
@@ -1429,7 +1437,7 @@ msgstr "موقع المجلد المؤقت الثاني"
 msgid "See private key"
 msgstr "عرض المفتاح الخاص"
 
-#: src/middleware/middleware_api.jsx:277
+#: src/middleware/middleware_api.jsx:297
 msgid "Seed:"
 msgstr "توزيع الجدول:"
 

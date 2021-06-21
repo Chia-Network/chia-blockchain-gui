@@ -668,6 +668,10 @@ msgstr "مزرعه‌دار متصل نیست"
 msgid "Farmer is not running"
 msgstr "مزرعه دار درحال اجرا نیست"
 
+#: src/middleware/middleware_api.jsx:276
+msgid "Farmer public key:"
+msgstr ""
+
 #: src/components/farm/overview/FarmOverviewHero.tsx:35
 msgid "Farmers earn block rewards and transaction fees by committing spare space to the network to help secure transactions. This is where your farm will be once you add a plot. <0>Learn more</0>"
 msgstr "مزرعه داران با در اختیار گذاشتن فضای خالی برای کمک در امن کردن معاملات شبکه، جایزه های بلوکی و کارمزد تراکنش کسب می‌کنند.وقتی پلاتی را اضافه کنید قرار می‌گیرد، مزرعه شما اینجا قرار می‌گیرد. <0>بیشتر بدانید</0>"
@@ -999,7 +1003,7 @@ msgstr "نام مستعار"
 msgid "No"
 msgstr "خیر"
 
-#: src/middleware/middleware_api.jsx:285
+#: src/middleware/middleware_api.jsx:305
 msgid "No 24 word seed, since this key is imported."
 msgstr "هیچ بذر ۲۴ کلمه‌ای نیست، از هنگامی که این کلید را وارد کرده اید."
 
@@ -1274,6 +1278,10 @@ msgstr "آدرس پاداش استخر"
 msgid "Pool Reward Amount"
 msgstr "مقدار پاداش استخر"
 
+#: src/middleware/middleware_api.jsx:286
+msgid "Pool public key:"
+msgstr ""
+
 #: src/components/farm/FarmFullNodeConnections.tsx:42
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:46
 #: src/components/fullNode/FullNodeAddConnection.tsx:85
@@ -1437,7 +1445,7 @@ msgstr "مکان ثانویه پوشه موقت"
 msgid "See private key"
 msgstr "دیدن کلید خصوصی"
 
-#: src/middleware/middleware_api.jsx:277
+#: src/middleware/middleware_api.jsx:297
 msgid "Seed:"
 msgstr "بذر:"
 
