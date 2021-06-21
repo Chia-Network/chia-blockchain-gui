@@ -264,7 +264,7 @@ export const handle_message = async (store, payload, errorProcessed) => {
             </Grid>
             <Grid xs={12} item>
               <Typography component="dt" variant="subtitle2">
-                <Trans>Public key: </Trans>
+                <Trans>Public key:</Trans>
               </Typography>
               <StyledTypographyDD component="dd" variant="body2">
                 {payload.data.private_key.pk}
@@ -273,7 +273,7 @@ export const handle_message = async (store, payload, errorProcessed) => {
             {!!payload.data.private_key.farmer_pk && (
               <Grid xs={12} item>
                 <Typography component="dt" variant="subtitle2">
-                  <Trans>Farmer public key: </Trans>
+                  <Trans>Farmer public key:</Trans>
                 </Typography>
                 <StyledTypographyDD component="dd" variant="body2">
                   {payload.data.private_key.farmer_pk}
@@ -283,7 +283,7 @@ export const handle_message = async (store, payload, errorProcessed) => {
             {!!payload.data.private_key.pool_pk && (
               <Grid xs={12} item>
                 <Typography component="dt" variant="subtitle2">
-                  <Trans>Pool public key: </Trans>
+                  <Trans>Pool public key:</Trans>
                 </Typography>
                 <StyledTypographyDD component="dd" variant="body2">
                   {payload.data.private_key.pool_pk}
@@ -294,7 +294,7 @@ export const handle_message = async (store, payload, errorProcessed) => {
               {payload.data.private_key.seed ? (
                 <>
                   <Typography component="dt" variant="subtitle2">
-                    <Trans>Seed: </Trans>
+                    <Trans>Seed:</Trans>
                   </Typography>
                   <StyledTypographyDD component="dd" variant="body2">
                     {payload.data.private_key.seed}

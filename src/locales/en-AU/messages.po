@@ -662,6 +662,10 @@ msgstr "Farmer is not connected you drongo"
 msgid "Farmer is not running"
 msgstr "Farmer is not running you drongo"
 
+#: src/middleware/middleware_api.jsx:276
+msgid "Farmer public key:"
+msgstr ""
+
 #: src/components/farm/overview/FarmOverviewHero.tsx:35
 msgid "Farmers earn block rewards and transaction fees by committing spare space to the network to help secure transactions. This is where your farm will be once you add a plot. <0>Learn more</0>"
 msgstr "Farmers earn block rewards and transaction fees by committing spare space to the network to help secure transactions. This is where your farm will be once you add a plot. <0>Learn more</0>"
@@ -993,7 +997,7 @@ msgstr "Nickname"
 msgid "No"
 msgstr "Yeh nah"
 
-#: src/middleware/middleware_api.jsx:285
+#: src/middleware/middleware_api.jsx:305
 msgid "No 24 word seed, since this key is imported."
 msgstr "No 24 word seed, since this key is imported."
 
@@ -1266,6 +1270,10 @@ msgstr "Pool Reward Address for your beer money"
 msgid "Pool Reward Amount"
 msgstr "Pool Reward Amount"
 
+#: src/middleware/middleware_api.jsx:286
+msgid "Pool public key:"
+msgstr ""
+
 #: src/components/farm/FarmFullNodeConnections.tsx:42
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:46
 #: src/components/fullNode/FullNodeAddConnection.tsx:85
@@ -1429,7 +1437,7 @@ msgstr "Second temporary folder location"
 msgid "See private key"
 msgstr "See private key"
 
-#: src/middleware/middleware_api.jsx:277
+#: src/middleware/middleware_api.jsx:297
 msgid "Seed:"
 msgstr "Seed:"
 
