@@ -231,18 +231,18 @@ export default function incomingReducer(
         };
       }
       if (command === 'delete_all_keys' && success) {
-        return {
-          ...state,
-          logged_in: false,
-          selected_fingerprint: undefined,
-          public_key_fingerprints: [],
-          logged_in_received: true,
-        };
-      } else if (command === 'is_keyring_locked' && success) {
-          const { is_keyring_locked } = data;
           return {
             ...state,
-            password_status: is_keyring_locked,
+            logged_in: false,
+            selected_fingerprint: undefined,
+            public_key_fingerprints: [],
+            logged_in_received: true,
+          };
+      } else if (command === 'is_keyring_locked' && success) {
+           const { is_keyring_locked } = data;
+           return {
+             ...state,
+             password_status: is_keyring_locked,
           };
       } else if (command === 'get_public_keys' && success) {
         const { public_key_fingerprints } = data;
