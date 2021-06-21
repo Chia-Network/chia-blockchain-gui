@@ -114,7 +114,6 @@ export type IncomingState = {
 };
 
 const initialState: IncomingState = {
-  password_status: false,
   mnemonic: [],
   public_key_fingerprints: [],
   selected_fingerprint: null,
@@ -237,12 +236,6 @@ export default function incomingReducer(
             selected_fingerprint: undefined,
             public_key_fingerprints: [],
             logged_in_received: true,
-          };
-      } else if (command === 'is_keyring_locked' && success) {
-           const { is_keyring_locked } = data;
-           return {
-             ...state,
-             password_status: is_keyring_locked,
           };
       } else if (command === 'get_public_keys' && success) {
         const { public_key_fingerprints } = data;
