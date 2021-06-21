@@ -81,7 +81,6 @@ export function deleteUnconfirmedTransactions(walletId: number) {
 
 export type IncomingState = {
 type IncomingState = {
-  password_status: boolean;
   mnemonic: string[];
   public_key_fingerprints: number[];
   selected_fingerprint?: number | null;
@@ -116,7 +115,6 @@ type IncomingState = {
 };
 
 const initialState: IncomingState = {
-  password_status: false,
   mnemonic: [],
   public_key_fingerprints: [],
   selected_fingerprint: null,

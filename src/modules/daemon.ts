@@ -9,6 +9,7 @@ import {
 } from '../util/service_names';
 
 type DeamonState = {
+  password_status: boolean;
   daemon_running: boolean;
   daemon_connected: boolean;
   wallet_running: boolean;
@@ -24,6 +25,7 @@ type DeamonState = {
 };
 
 const initialState: DeamonState = {
+  password_status: false,
   daemon_running: false,
   daemon_connected: false,
   wallet_running: false,
