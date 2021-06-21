@@ -1,6 +1,6 @@
 import React from 'react';
 // import React, { useState } from 'react';
-// import { useSelector } from 'react-redux';
+// import { useDispatch, useSelector } from 'react-redux';
 // import { RootState } from '../../modules/rootReducer';
 import {
   Dialog,
@@ -13,6 +13,7 @@ import {
 } from '@material-ui/core';
 import { Trans } from '@lingui/macro';
 import { AlertDialog } from '@chia/core';
+// import { launch_password_submit } from '../../../modules/message';
 
 export default function AppPassLogin() {
   /* const walletConnected = useSelector(
@@ -43,6 +44,7 @@ export default function AppPassLogin() {
       return;
     }
     console.log(password_input.value)
+    // dispatch(launch_password_submit(password_input.value));
   }
 
   return (

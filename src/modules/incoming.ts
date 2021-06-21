@@ -80,6 +80,8 @@ export function deleteUnconfirmedTransactions(walletId: number) {
 }
 
 export type IncomingState = {
+type IncomingState = {
+  password_status: boolean;
   mnemonic: string[];
   public_key_fingerprints: number[];
   selected_fingerprint?: number | null;
@@ -114,6 +116,7 @@ export type IncomingState = {
 };
 
 const initialState: IncomingState = {
+  password_status: false,
   mnemonic: [],
   public_key_fingerprints: [],
   selected_fingerprint: null,
@@ -235,7 +238,7 @@ export default function incomingReducer(
           logged_in: false,
           selected_fingerprint: undefined,
           public_key_fingerprints: [],
-          logged_in_received: true,
+          logged_in_received: true, 
         };
       } else if (command === 'is_keyring_locked' && success) {
           const { is_keyring_locked } = data;
