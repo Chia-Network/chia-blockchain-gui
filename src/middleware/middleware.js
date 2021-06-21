@@ -5,6 +5,7 @@ import {
   registerService,
   startService,
   startServiceTest,
+  unlockKeyring,
 } from '../modules/daemon_messages';
 import { handle_message } from './middleware_api';
 import {
@@ -45,6 +46,9 @@ const socketMiddleware = () => {
     store.dispatch(actions.wsConnected(event.target.url));
 
     store.dispatch(isKeyringLocked());
+
+    // TODO: Remove. Just for testing
+    store.dispatch(unlockKeyring("asdfasdf"));
 
     store.dispatch(registerService('wallet_ui'));
     store.dispatch(registerService(service_plotter));

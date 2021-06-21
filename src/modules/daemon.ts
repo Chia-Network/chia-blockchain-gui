@@ -115,6 +115,18 @@ export default function daemonReducer(
             return { ...state, plotter_running: false };
           }
         }
+      } else if (command === 'unlock_keyring') {
+        if (data.success) {
+          console.log("Keyring was successfully unlocked");
+        }
+        else {
+          if (data.error === 'bad password') {
+            console.log("Keyring password is invalid");
+          }
+          else {
+            console.log("Failed to unlock keyring: " + data.error);
+          }
+        }
       }
       return state;
     case 'OUTGOING_MESSAGE':
