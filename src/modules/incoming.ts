@@ -114,6 +114,7 @@ export type IncomingState = {
 };
 
 const initialState: IncomingState = {
+  password_status: false,
   mnemonic: [],
   public_key_fingerprints: [],
   selected_fingerprint: null,
