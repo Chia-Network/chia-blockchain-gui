@@ -10,6 +10,7 @@ import {
 
 type DeamonState = {
   password_status: boolean;
+  password_lock_status: boolean;
   daemon_running: boolean;
   daemon_connected: boolean;
   wallet_running: boolean;
@@ -26,6 +27,7 @@ type DeamonState = {
 
 const initialState: DeamonState = {
   password_status: false,
+  password_lock_status: false,
   daemon_running: false,
   daemon_connected: false,
   wallet_running: false,
@@ -117,9 +119,27 @@ export default function daemonReducer(
             return { ...state, plotter_running: false };
           }
         }
+      } else if (command === 'is_keyring_locked') {
+        let success = data.success;
+        console.log("INCOMING SUCCESS")
+        console.log(success)
+        if (success) {
+          const { is_keyring_locked } = data;
+          console.log("INCOMING DATA")
+          console.log(is_keyring_locked)
+          return {
+            ...state,
+            password_status: is_keyring_locked,
+            password_lock_status: is_keyring_locked,
+          };
+        }
       } else if (command === 'unlock_keyring') {
         if (data.success) {
           console.log("Keyring was successfully unlocked");
+          return {
+            ...state,
+            password_lock_status: false,
+          };
         }
         else {
           if (data.error === 'bad password') {

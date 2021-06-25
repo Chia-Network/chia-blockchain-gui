@@ -84,7 +84,6 @@ export default function App() {
               <AppRouter />
               <AppModalDialogs />
               <AppLoading />
-              <AppPassLogin />
             </ThemeProvider>
           </WebSocketConnection>
         </I18nProvider>
