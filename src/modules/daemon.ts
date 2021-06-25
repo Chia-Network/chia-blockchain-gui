@@ -130,15 +130,15 @@ export default function daemonReducer(
           return {
             ...state,
             password_status: is_keyring_locked,
-            password_lock_status: is_keyring_locked,
           };
         }
       } else if (command === 'unlock_keyring') {
         if (data.success) {
           console.log("Keyring was successfully unlocked");
+
           return {
             ...state,
-            password_lock_status: false,
+            password_status: false,
           };
         }
         else {

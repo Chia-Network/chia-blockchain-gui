@@ -188,6 +188,10 @@ export const handle_message = async (store, payload, errorProcessed) => {
         store.dispatch(getPlotDirectories());
       }
     }
+  } else if (payload.command === 'unlock_keyring') {
+    if (payload.data.success) {
+      store.dispatch(format_message('get_public_keys', {}));
+    }
   } else if (payload.command === 'delete_key') {
     if (payload.data.success) {
       store.dispatch(format_message('get_public_keys', {}));
