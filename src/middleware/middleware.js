@@ -47,9 +47,6 @@ const socketMiddleware = () => {
 
     store.dispatch(isKeyringLocked());
 
-    // TODO: Remove. Just for testing
-    // store.dispatch(unlockKeyring("asdfasdf"));
-
     store.dispatch(registerService('wallet_ui'));
     store.dispatch(registerService(service_plotter));
     // Do this stuff after isKeyringLocked updates state
