@@ -10,6 +10,7 @@ import Dashboard from '../dashboard/Dashboard';
 import BackupRestore from '../backup/BackupRestore';
 import type { RootState } from '../../modules/rootReducer';
 import LayoutLoading from '../layout/LayoutLoading';
+import AppPassLogin from './AppPassLogin';
 
 export default function AppRouter() {
   const loggedInReceived = useSelector(
@@ -19,12 +20,23 @@ export default function AppRouter() {
     (state: RootState) => state.daemon_state.wallet_connected,
   );
 
+  let passwordLockStatus = useSelector(
+    (state) => state.daemon_state.password_lock_status,
+  );
+
   const exiting = useSelector((state: RootState) => state.daemon_state.exiting);
 
   if (exiting) {
     return (
       <LayoutLoading>
         <Trans>Closing down node and server</Trans>
+      </LayoutLoading>
+    );
+  }
+  if (passwordLockStatus) {
+    return (
+      <LayoutLoading>
+        <AppPassLogin />
       </LayoutLoading>
     );
   }
