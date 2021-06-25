@@ -13,12 +13,15 @@ import {
 } from '@material-ui/core';
 import { Trans } from '@lingui/macro';
 import { AlertDialog } from '@chia/core';
-// import { launch_password_submit } from '../../../modules/message';
+import { unlockKeyring } from '../../modules/daemon_messages';
 
 export default function AppPassLogin() {
+  const dispatch = useDispatch();
   let password_status = useSelector((state) => state.daemon_state.password_status);
+  let password_lock_status = useSelector((state) => state.daemon_state.password_lock_status);
   console.log("APP PASS LOGIN")
   console.log(password_status)
+  console.log(password_lock_status)
   if (password_status) {
     const open = true
 
@@ -40,7 +43,7 @@ export default function AppPassLogin() {
         return;
       }
       console.log(password_input.value)
-      // dispatch(launch_password_submit(password_input.value));
+      dispatch(unlockKeyring(password_input.value));
     }
 
     return (
@@ -81,6 +84,7 @@ export default function AppPassLogin() {
     )
   }
 
+  console.log("APP PASS LOGIN END")
   return null;
 
 }

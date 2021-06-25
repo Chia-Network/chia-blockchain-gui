@@ -10,9 +10,7 @@ import Dashboard from '../dashboard/Dashboard';
 import BackupRestore from '../backup/BackupRestore';
 import type { RootState } from '../../modules/rootReducer';
 import LayoutLoading from '../layout/LayoutLoading';
-import AppKeyringMigrator from './AppKeyringMigrator';
-import AppPassPrompt from './AppPassPrompt';
-import PassphrasePromptReason from '../core/constants/PassphrasePromptReason';
+import AppPassLogin from './AppPassLogin';
 
 export default function AppRouter() {
   const loggedInReceived = useSelector(
@@ -22,16 +20,8 @@ export default function AppRouter() {
     (state: RootState) => state.daemon_state.wallet_connected,
   );
 
-  let keyringNeedsMigration = useSelector(
-    (state: RootState) => state.keyring_state.needs_migration
-  );
-
-  let keyringMigrationSkipped = useSelector(
-    (state: RootState) => state.keyring_state.migration_skipped
-  );
-
-  let keyringLocked = useSelector(
-    (state: RootState) => state.keyring_state.is_locked,
+  let passwordLockStatus = useSelector(
+    (state) => state.daemon_state.password_lock_status,
   );
 
   const exiting = useSelector((state: RootState) => state.daemon_state.exiting);
@@ -43,15 +33,10 @@ export default function AppRouter() {
       </LayoutLoading>
     );
   }
-  if (keyringNeedsMigration && !keyringMigrationSkipped) {
-    return (
-      <AppKeyringMigrator />
-    );
-  }
-  if (keyringLocked) {
+  if (passwordLockStatus) {
     return (
       <LayoutLoading>
-        <AppPassPrompt reason={PassphrasePromptReason.KEYRING_LOCKED} />
+        <AppPassLogin />
       </LayoutLoading>
     );
   }
