@@ -9,8 +9,8 @@ import {
 } from '../util/service_names';
 
 type DeamonState = {
-  password_status: boolean;
-  password_lock_status: boolean;
+  passphrase_status: boolean;
+  passphrase_lock_status: boolean;
   daemon_running: boolean;
   daemon_connected: boolean;
   wallet_running: boolean;
@@ -26,8 +26,8 @@ type DeamonState = {
 };
 
 const initialState: DeamonState = {
-  password_status: false,
-  password_lock_status: false,
+  passphrase_status: false,
+  passphrase_lock_status: false,
   daemon_running: false,
   daemon_connected: false,
   wallet_running: false,
@@ -129,8 +129,8 @@ export default function daemonReducer(
           console.log(is_keyring_locked)
           return {
             ...state,
-            password_status: is_keyring_locked,
-            password_lock_status: is_keyring_locked,
+            passphrase_status: is_keyring_locked,
+            passphrase_lock_status: is_keyring_locked,
           };
         }
       } else if (command === 'unlock_keyring') {
@@ -138,12 +138,12 @@ export default function daemonReducer(
           console.log("Keyring was successfully unlocked");
           return {
             ...state,
-            password_lock_status: false,
+            passphrase_lock_status: false,
           };
         }
         else {
-          if (data.error === 'bad password') {
-            console.log("Keyring password is invalid");
+          if (data.error === 'bad passphrase') {
+            console.log("Keyring passphrase is invalid");
           }
           else {
             console.log("Failed to unlock keyring: " + data.error);

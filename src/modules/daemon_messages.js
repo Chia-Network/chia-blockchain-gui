@@ -53,6 +53,15 @@ export const unlockKeyring = (key) => {
   return action;
 }
 
+/*
+export const togglePassphrase = (passphrase) => {
+  const action = daemonMessage();
+  action.message.command = 'fill in name here';
+  action.message.data = { passphrase: passphrase };
+  return action;
+}
+*/
+
 export const exitDaemon = () => {
   const action = daemonMessage();
   action.message.command = 'exit';

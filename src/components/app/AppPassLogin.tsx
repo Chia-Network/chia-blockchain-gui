@@ -17,33 +17,32 @@ import { unlockKeyring } from '../../modules/daemon_messages';
 
 export default function AppPassLogin() {
   const dispatch = useDispatch();
-  let password_status = useSelector((state) => state.daemon_state.password_status);
-  let password_lock_status = useSelector((state) => state.daemon_state.password_lock_status);
+  let passphrase_status = useSelector((state) => state.daemon_state.passphrase_status);
+  let passphrase_lock_status = useSelector((state) => state.daemon_state.passphrase_lock_status);
   console.log("APP PASS LOGIN")
-  console.log(password_status)
-  console.log(password_lock_status)
-  if (password_status) {
+  console.log(passphrase_status)
+  console.log(passphrase_lock_status)
+  if (passphrase_status) {
     const open = true
 
-    let password_input = null;
+    let passphrase_input = null;
 
     function handleSubmit() {
       if (
-        password_input.value === ''
+        passphrase_input.value === ''
       ) {
         dispatch(
           openDialog(
             <AlertDialog>
               <Trans>
-                Please enter a password
+                Please enter a passphrase
               </Trans>
             </AlertDialog>
           ),
         );
         return;
       }
-      console.log(password_input.value)
-      dispatch(unlockKeyring(password_input.value));
+      dispatch(unlockKeyring(passphrase_input.value));
     }
 
     return (
@@ -54,16 +53,16 @@ export default function AppPassLogin() {
           fullWidth={true}
           maxWidth = {'xs'}
         >
-          <DialogTitle id="form-dialog-title">Enter your password:</DialogTitle>
+          <DialogTitle id="form-dialog-title">Enter your passphrase:</DialogTitle>
           <DialogContent>
             <TextField
               autoFocus
               color="secondary"
               margin="dense"
-              id="password_input"
-              label={<Trans>Password</Trans>}
+              id="passphrase_input"
+              label={<Trans>Passphrase</Trans>}
               inputRef={(input) => {
-                password_input = input;
+                passphrase_input = input;
               }}
               type="password"
               fullWidth
@@ -84,7 +83,6 @@ export default function AppPassLogin() {
     )
   }
 
-  console.log("APP PASS LOGIN END")
   return null;
 
 }
