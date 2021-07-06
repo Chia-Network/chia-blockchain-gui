@@ -188,9 +188,18 @@ export const handle_message = async (store, payload, errorProcessed) => {
         store.dispatch(getPlotDirectories());
       }
     }
+  } else if (payload.command === 'is_keyring_locked') {
+    if (payload.data.success) {
+      const { is_keyring_locked } = payload.data;
+      if (is_keyring_locked == false) {
+        console.log("Keyring is unlocked, refreshing all state");
+        store.dispatch(refreshAllState());
+      }
+    }
   } else if (payload.command === 'unlock_keyring') {
     if (payload.data.success) {
-      store.dispatch(format_message('get_public_keys', {}));
+      store.dispatch(refreshAllState());
+      // store.dispatch(format_message('get_public_keys', {}));
     }
   } else if (payload.command === 'delete_key') {
     if (payload.data.success) {
