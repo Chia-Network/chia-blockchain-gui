@@ -1,5 +1,6 @@
 import React from 'react';
 import bytes from 'bytes-iec';
+import FormatLargeNumber from '../FormatLargeNumber';
 
 type Props = {
   value: number;
@@ -12,7 +13,15 @@ type Props = {
 };
 
 export default function FormatBytes(props: Props) {
-  const { value, mode, precision, unit, unitSeparator, removeUnit, fixedDecimals } = props;
+  const {
+    value,
+    mode,
+    precision,
+    unit,
+    unitSeparator,
+    removeUnit,
+    fixedDecimals,
+  } = props;
   const humanValue = bytes(value, {
     unit,
     mode,
@@ -21,12 +30,22 @@ export default function FormatBytes(props: Props) {
     fixedDecimals,
   });
 
-  if (humanValue && removeUnit && unitSeparator) {
-    const [justValue] = humanValue.split(unitSeparator);
-    return <>{justValue}</>;
+  if (humanValue === null) {
+    return <>{humanValue}</>;
   }
 
-  return <>{humanValue}</>;
+  const [justValue, unitValue] = humanValue.split(unitSeparator);
+  if (humanValue && removeUnit && unitSeparator) {
+    return <FormatLargeNumber value={justValue} />;
+  }
+
+  return (
+    <>
+      <FormatLargeNumber value={justValue} />
+      {unitSeparator}
+      {unitValue}
+    </>
+  );
 }
 
 FormatBytes.defaultProps = {

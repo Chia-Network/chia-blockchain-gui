@@ -2,6 +2,7 @@ import React from 'react';
 import { Trans } from '@lingui/macro';
 import { useSelector } from 'react-redux';
 import { Box, Typography } from '@material-ui/core';
+import { FormatLargeNumber } from '@chia/core';
 import type { RootState } from '../../modules/rootReducer';
 
 export default function WalletStatusCard() {
@@ -14,6 +15,7 @@ export default function WalletStatusCard() {
   const connectionCount = useSelector(
     (state: RootState) => state.wallet_state.status.connection_count,
   );
+
   return (
     <div style={{ margin: 16 }}>
       <Typography variant="subtitle1">
@@ -24,25 +26,23 @@ export default function WalletStatusCard() {
           <Box flexGrow={1}>
             <Trans>status:</Trans>
           </Box>
-          <Box>
-            {syncing ? (
-              <Trans>syncing</Trans>
-            ) : (
-              <Trans>synced</Trans>
-            )}
-          </Box>
+          <Box>{syncing ? <Trans>syncing</Trans> : <Trans>synced</Trans>}</Box>
         </Box>
         <Box display="flex">
           <Box flexGrow={1}>
             <Trans>height:</Trans>
           </Box>
-          <Box>{height}</Box>
+          <Box>
+            <FormatLargeNumber value={height} />
+          </Box>
         </Box>
         <Box display="flex">
           <Box flexGrow={1}>
             <Trans>connections:</Trans>
           </Box>
-          <Box>{connectionCount}</Box>
+          <Box>
+            <FormatLargeNumber value={connectionCount} />
+          </Box>
         </Box>
       </div>
     </div>

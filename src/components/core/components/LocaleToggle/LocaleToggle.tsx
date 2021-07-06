@@ -1,17 +1,19 @@
 import React, { useMemo } from 'react';
 import { Trans, t } from '@lingui/macro';
 import { useToggle } from 'react-use';
-import { Button, Menu, MenuItem } from '@material-ui/core';
+import { Button, Divider, Menu, MenuItem } from '@material-ui/core';
 import { Translate, ExpandMore } from '@material-ui/icons';
 import useLocale from '../../../../hooks/useLocale';
 import useOpenExternal from '../../../../hooks/useOpenExternal';
 
 type Props = {
   defaultLocale: string;
-  locales: [{
-    locale: string;
-    label: string;
-  }];
+  locales: [
+    {
+      locale: string;
+      label: string;
+    },
+  ];
 };
 
 export default function LocaleToggle(props: Props) {
@@ -40,11 +42,13 @@ export default function LocaleToggle(props: Props) {
   function handleHelpTranslate() {
     handleClose();
 
-    openExternal('https://github.com/Chia-Network/chia-blockchain-gui/tree/main/src/locales/README.md');
+    openExternal(
+      'https://github.com/Chia-Network/chia-blockchain-gui/tree/main/src/locales/README.md',
+    );
   }
 
   const localeData = useMemo(
-    () => locales.find((item)=> item.locale === currentLocale),
+    () => locales.find((item) => item.locale === currentLocale),
     [currentLocale, locales],
   );
 
@@ -68,6 +72,10 @@ export default function LocaleToggle(props: Props) {
         open={open}
         onClose={handleClose}
       >
+        <MenuItem onClick={handleHelpTranslate}>
+          <Trans>Help translate</Trans>
+        </MenuItem>
+        <Divider />
         {locales.map((item) => (
           <MenuItem
             key={item.locale}
@@ -77,9 +85,6 @@ export default function LocaleToggle(props: Props) {
             {item.label}
           </MenuItem>
         ))}
-        <MenuItem onClick={handleHelpTranslate}>
-          <Trans>Help translate</Trans>
-        </MenuItem>
       </Menu>
     </>
   );

@@ -2,7 +2,8 @@ import React from 'react';
 import { Trans } from '@lingui/macro';
 import { get } from 'lodash';
 import {
-  FormatBytes,
+  // FormatBytes,
+  FormatLargeNumber,
   Flex,
   Card,
   Loading,
@@ -12,12 +13,13 @@ import {
 import { Status } from '@chia/icons';
 import { useRouteMatch, useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { Box, Grid, Tooltip, Typography } from '@material-ui/core';
-import HelpIcon from '@material-ui/icons/Help';
+import { Box, Tooltip, Typography } from '@material-ui/core';
+// import HelpIcon from '@material-ui/icons/Help';
 import { unix_to_short_date } from '../../util/utils';
 import FullNodeConnections from './FullNodeConnections';
 import LayoutMain from '../layout/LayoutMain';
 import FullNodeBlockSearch from './FullNodeBlockSearch';
+import FullNodeCards from './card/FullNodeCards';
 
 /* global BigInt */
 
@@ -67,10 +69,14 @@ const cols = [
       const height = get(row, 'reward_chain_block.height');
 
       if (!isFinished) {
-        return <i>{foliageHeight}</i>;
+        return (
+          <i>
+            <FormatLargeNumber value={foliageHeight} />
+          </i>
+        );
       }
 
-      return height;
+      return <FormatLargeNumber value={height} />;
     },
     title: <Trans>Height</Trans>,
   },
@@ -95,6 +101,7 @@ const cols = [
   },
 ];
 
+/*
 const getStatusItems = (state, connected, latestPeakTimestamp, networkInfo) => {
   const status_items = [];
   if (state.sync && state.sync.sync_mode) {
@@ -104,7 +111,8 @@ const getStatusItems = (state, connected, latestPeakTimestamp, networkInfo) => {
       label: <Trans>Status</Trans>,
       value: (
         <Trans>
-          Syncing {progress}/{tip}
+          Syncing <FormatLargeNumber value={progress} />/
+          <FormatLargeNumber value={tip} />
         </Trans>
       ),
       colour: 'orange',
@@ -164,7 +172,7 @@ const getStatusItems = (state, connected, latestPeakTimestamp, networkInfo) => {
   const peakHeight = state.peak?.height ?? 0;
   status_items.push({
     label: <Trans>Peak Height</Trans>,
-    value: peakHeight,
+    value: <FormatLargeNumber value={peakHeight} />,
   });
 
   status_items.push({
@@ -176,20 +184,20 @@ const getStatusItems = (state, connected, latestPeakTimestamp, networkInfo) => {
   const { difficulty } = state;
   const diff_item = {
     label: <Trans>Difficulty</Trans>,
-    value: difficulty,
+    value: <FormatLargeNumber value={difficulty} />,
   };
   status_items.push(diff_item);
 
   const { sub_slot_iters } = state;
   status_items.push({
     label: <Trans>VDF Sub Slot Iterations</Trans>,
-    value: sub_slot_iters,
+    value: <FormatLargeNumber value={sub_slot_iters} />,
   });
 
   const totalIters = state.peak?.total_iters ?? 0;
   status_items.push({
     label: <Trans>Total Iterations</Trans>,
-    value: totalIters,
+    value: <FormatLargeNumber value={totalIters} />,
     tooltip: <Trans>Total iterations since the start of the blockchain</Trans>,
   });
 
@@ -233,6 +241,7 @@ const StatusCell = (props) => {
   );
 };
 
+
 const FullNodeStatus = (props) => {
   const blockchainState = useSelector(
     (state) => state.full_node_state.blockchain_state,
@@ -245,11 +254,16 @@ const FullNodeStatus = (props) => {
     (state) => state.full_node_state.latest_peak_timestamp,
   );
 
-  const networkInfo = useSelector(
-    (state) => state.wallet_state.network_info,
-  );
+  const networkInfo = useSelector((state) => state.wallet_state.network_info);
 
-  const statusItems = blockchainState && getStatusItems(blockchainState, connected, latestPeakTimestamp, networkInfo);
+  const statusItems =
+    blockchainState &&
+    getStatusItems(
+      blockchainState,
+      connected,
+      latestPeakTimestamp,
+      networkInfo,
+    );
 
   return (
     <Card title={<Trans>Full Node Status</Trans>}>
@@ -267,6 +281,7 @@ const FullNodeStatus = (props) => {
     </Card>
   );
 };
+*/
 
 const BlocksCard = () => {
   const { url } = useRouteMatch();
@@ -310,8 +325,13 @@ const BlocksCard = () => {
 export default function FullNode() {
   return (
     <LayoutMain title={<Trans>Full Node</Trans>}>
+      <Flex gap={1}>
+        <Typography variant="h5" gutterBottom>
+          <Trans>Full Node Overview</Trans>
+        </Typography>
+      </Flex>
       <Flex flexDirection="column" gap={3}>
-        <FullNodeStatus />
+        <FullNodeCards />
         <BlocksCard />
         <FullNodeConnections />
       </Flex>

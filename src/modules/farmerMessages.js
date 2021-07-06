@@ -78,3 +78,52 @@ export const closeConnection = (node_id) => {
   action.message.data = { node_id };
   return action;
 };
+
+export const getPoolState = () => {
+  return async (dispatch) => {
+    const { data } = await async_api(
+      dispatch,
+      farmerMessage({
+        command: 'get_pool_state',
+      }),
+      false,
+    );
+
+    return data?.pool_state;
+  };
+};
+
+export const setPoolPayoutInstructions = (
+  singletonGenesis,
+  poolPayoutInstructions,
+) => {
+  return async (dispatch) => {
+    const { data } = await async_api(
+      dispatch,
+      farmerMessage({
+        command: 'set_pool_payout_instructions',
+        data: {
+          singleton_genesis: singletonGenesis,
+          pool_payout_instructions: poolPayoutInstructions,
+        },
+      }),
+      false,
+    );
+
+    return data;
+  };
+};
+
+export const getPlots = () => {
+  return async (dispatch) => {
+    const { data } = await async_api(
+      dispatch,
+      farmerMessage({
+        command: 'get_plots',
+      }),
+      false,
+    );
+
+    return data;
+  };
+};

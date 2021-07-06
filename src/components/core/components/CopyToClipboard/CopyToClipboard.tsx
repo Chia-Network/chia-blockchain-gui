@@ -27,14 +27,16 @@ export default function CopyToClipboard(props: Props) {
     timeout.start();
   }
 
-  const tooltipTitle = copied
-    ? <Trans>Copied</Trans>
-    : <Trans>Copy to Clipboard</Trans>
+  const tooltipTitle = copied ? (
+    <Trans>Copied</Trans>
+  ) : (
+    <Trans>Copy to Clipboard</Trans>
+  );
 
   return (
     <Tooltip title={tooltipTitle}>
-      <IconButton>
-        <AssignmentIcon onClick={handleCopy} fontSize={fontSize} />
+      <IconButton onClick={handleCopy}>
+        <AssignmentIcon fontSize={fontSize} />
       </IconButton>
     </Tooltip>
   );

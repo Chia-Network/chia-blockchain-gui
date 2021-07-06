@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { Collapse } from '@material-ui/core';
 
 type Props = {
   children?: ReactNode;
@@ -9,19 +9,7 @@ type Props = {
 export default function Accordion(props: Props) {
   const { expanded, children } = props;
 
-  return (
-    <AnimatePresence>
-      {expanded && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-        >
-          {children}
-        </motion.div>
-      )}
-    </AnimatePresence>
-  );
+  return <Collapse in={expanded}>{children}</Collapse>;
 }
 
 Accordion.defaultProps = {
