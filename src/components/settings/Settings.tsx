@@ -64,6 +64,19 @@ const SecurityCard = () => {
     setOpen(false);
   };
 
+  function DisplayToggleStatus() {
+    if (passphraseStatus) {
+      return (
+        <Typography> TOGGLE OFF </Typography>
+      )
+    }
+    else {
+      return (
+        <Typography> TOGGLE ON </Typography>
+      )
+    }
+  }
+
   function DisplayLockStatus() {
     console.log("SETTINGS PASS STATUS")
     console.log(passphraseStatus)
@@ -104,7 +117,7 @@ const SecurityCard = () => {
               color="secondary"
               disableElevation
             >
-              Toggle
+              <DisplayToggleStatus />
             </Button>
             <Dialog
               open={open}
