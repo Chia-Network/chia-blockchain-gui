@@ -21,7 +21,7 @@ export default function AppRouter() {
   );
 
   let passwordLockStatus = useSelector(
-    (state) => state.daemon_state.password_lock_status,
+    (state) => state.daemon_state.passphrase_lock_status,
   );
 
   const exiting = useSelector((state: RootState) => state.daemon_state.exiting);

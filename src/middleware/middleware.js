@@ -52,16 +52,8 @@ const socketMiddleware = () => {
 
     store.dispatch(registerService('wallet_ui'));
     store.dispatch(registerService(service_plotter));
-    // Do this stuff after isKeyringLocked updates state
-    if (config.local_test) {
-      store.dispatch(startServiceTest(service_wallet));
-      store.dispatch(startService(service_simulator));
-    } else {
-      store.dispatch(startService(service_wallet));
-      store.dispatch(startService(service_full_node));
-      store.dispatch(startService(service_farmer));
-      store.dispatch(startService(service_harvester));
-    }
+
+    // Wait until we know the keyring is unlocked before launching additional services
   };
 
   const onClose = (store) => () => {
