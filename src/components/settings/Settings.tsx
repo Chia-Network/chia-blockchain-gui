@@ -4,6 +4,7 @@ import LayoutMain from '../layout/LayoutMain';
 import { makeStyles } from '@material-ui/core/styles';
 import { useDispatch, useSelector } from 'react-redux';
 import {
+  AlertDialog,
   Flex,
   Card,
 } from '@chia/core';
@@ -20,7 +21,8 @@ import {
   DialogActions,
 } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-// import { togglePassphrase } from '../../modules/daemon_messages';
+import { openDialog } from '../../modules/dialog';
+import { setKeyringPassphrase, changeKeyringPassphrase, removeKeyringPassphrase } from '../../modules/daemon_messages';
 
 const useStyles = makeStyles((theme) => ({
   passToggleBox: {
@@ -64,6 +66,19 @@ const SecurityCard = () => {
     setOpen(false);
   };
 
+  function DisplayLockStatus() {
+    if (passphraseStatus) {
+      return (
+        <Typography variant="subtitle1" style={{ color: '#3AAC59', fontWeight: "bold" }}> ON </Typography>
+      )
+    }
+    else {
+      return (
+        <Typography variant="subtitle1" style={{ color: 'red', fontWeight: "bold" }}> OFF</Typography>
+      )
+    }
+  }
+
   function DisplayToggleStatus() {
     if (passphraseStatus) {
       return (
@@ -77,30 +92,50 @@ const SecurityCard = () => {
     }
   }
 
-  function DisplayLockStatus() {
-    console.log("SETTINGS PASS STATUS")
-    console.log(passphraseStatus)
+  function DisplayDialogTextStatus() {
     if (passphraseStatus) {
       return (
-        <Typography variant="subtitle1" style={{ color: '#3AAC59', fontWeight: "bold" }}> ON </Typography>
+        <DialogTitle id="form-dialog-title"> Enter your current passphrase: </DialogTitle>
       )
     }
     else {
       return (
-        <Typography variant="subtitle1" style={{ color: 'red', fontWeight: "bold" }}> OFF</Typography>
+        <DialogTitle id="form-dialog-title"> Enter a new passphrase: </DialogTitle>
       )
     }
   }
 
   function handleToggleSubmit() {
-    console.log("TOGGLE PASS")
-
-    // dispatch(toggle_passphrase());
+    if (passphraseStatus) {
+      dispatch(removeKeyringPassphrase(toggle_passphrase_input.value))
+    }
+    else {
+      dispatch(setKeyringPassphrase(toggle_passphrase_input.value))
+    }
   }
 
   function updatePassphrase() {
-    console.log("UPDATE PASS")
-    // dispatch(update_passphrase(oldpass1, oldpass2, newpass));
+    if (oldpass1_input.value !== oldpass2_input.value) {
+      dispatch(
+        openDialog(
+          <AlertDialog>
+            <Trans>Your inputs for old passphrase do not match</Trans>
+          </AlertDialog>,
+        ),
+      );
+      return;
+    }
+    if (newpass_input.value.length < 8) {
+      dispatch(
+        openDialog(
+          <AlertDialog>
+            <Trans>Your new passphrase must be at least 8 characters</Trans>
+          </AlertDialog>,
+        ),
+      );
+      return;
+    }
+    dispatch(changeKeyringPassphrase(oldpass2_input.value, newpass_input.value));
   }
 
   return (
@@ -125,7 +160,7 @@ const SecurityCard = () => {
               fullWidth={true}
               maxWidth = {'xs'}
             >
-              <DialogTitle id="form-dialog-title">Enter your passphrase:</DialogTitle>
+              <DisplayDialogTextStatus />
               <DialogContent>
                 <TextField
                   autoFocus
