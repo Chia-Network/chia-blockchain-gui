@@ -1059,7 +1059,7 @@ msgid "Launcher Id"
 msgstr ""
 
 #: src/components/plotNFT/PlotNFTGetPoolLoginLinkDialog.tsx:102
-#: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:102
+#: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:101
 msgid "Learn More"
 msgstr ""
 
@@ -1273,7 +1273,7 @@ msgstr "تعداد رشته های پردازنده"
 
 #: src/components/core/components/ConfirmDialog/ConfirmDialog.tsx:87
 #: src/components/plotNFT/PlotNFTGetPoolLoginLinkDialog.tsx:113
-#: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:115
+#: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:114
 msgid "OK"
 msgstr "تأیید"
 
@@ -1527,8 +1527,8 @@ msgstr "کلید استخر"
 msgid "Pool Login Link"
 msgstr ""
 
-#: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:64
-#: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:78
+#: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:63
+#: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:77
 msgid "Pool Payout Instructions"
 msgstr ""
 
@@ -2046,13 +2046,17 @@ msgstr "گره در حال همگام‌سازی است، به این معنی �
 msgid "The pool URL \"{normalizedUrl}\" is not working. Is it pool? Error: {0}"
 msgstr ""
 
+#: src/hooks/usePoolInfo.ts:44
+msgid "The pool URL is not valid. {normalizedUrl}"
+msgstr ""
+
 #: src/hooks/usePoolInfo.ts:39
 msgid "The pool URL needs to use protocol https. {normalizedUrl}"
 msgstr ""
 
 #: src/hooks/usePoolInfo.ts:44
-msgid "The pool URL speciefied is not valid. {normalizedUrl}"
-msgstr ""
+#~ msgid "The pool URL speciefied is not valid. {normalizedUrl}"
+#~ msgstr ""
 
 #: src/hooks/usePoolInfo.ts:23
 #~ msgid "The pool URL speciefied is not valid. {poolUrl}"
@@ -2078,7 +2082,7 @@ msgstr "تعداد کل VDF (عملکرد تأخیری قابل تأیید) یا
 msgid "The total transactions fees in this block. Rewarded to the farmer."
 msgstr "کل کارمزد های تراکنش ها در این بلوک. به مزرعه دار پاداش داده شده."
 
-#: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:90
+#: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:89
 msgid "These are the instructions for how the farmer wants to get paid. By default this will be an XCH address, but it can be set to any string with a size of less than 1024 characters, so it can represent another blockchain or payment system identifier."
 msgstr ""
 

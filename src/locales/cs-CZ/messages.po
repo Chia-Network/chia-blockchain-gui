@@ -1053,7 +1053,7 @@ msgid "Launcher Id"
 msgstr "Id spouštěče"
 
 #: src/components/plotNFT/PlotNFTGetPoolLoginLinkDialog.tsx:102
-#: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:102
+#: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:101
 msgid "Learn More"
 msgstr ""
 
@@ -1267,7 +1267,7 @@ msgstr "Počet vláken"
 
 #: src/components/core/components/ConfirmDialog/ConfirmDialog.tsx:87
 #: src/components/plotNFT/PlotNFTGetPoolLoginLinkDialog.tsx:113
-#: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:115
+#: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:114
 msgid "OK"
 msgstr "OK"
 
@@ -1519,8 +1519,8 @@ msgstr "Klíč poolu"
 msgid "Pool Login Link"
 msgstr ""
 
-#: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:64
-#: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:78
+#: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:63
+#: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:77
 msgid "Pool Payout Instructions"
 msgstr ""
 
@@ -2038,13 +2038,17 @@ msgstr "Uzel se synchronizuje, což znamená, že stahuje bloky z jiných uzlů,
 msgid "The pool URL \"{normalizedUrl}\" is not working. Is it pool? Error: {0}"
 msgstr ""
 
+#: src/hooks/usePoolInfo.ts:44
+msgid "The pool URL is not valid. {normalizedUrl}"
+msgstr ""
+
 #: src/hooks/usePoolInfo.ts:39
 msgid "The pool URL needs to use protocol https. {normalizedUrl}"
 msgstr ""
 
 #: src/hooks/usePoolInfo.ts:44
-msgid "The pool URL speciefied is not valid. {normalizedUrl}"
-msgstr ""
+#~ msgid "The pool URL speciefied is not valid. {normalizedUrl}"
+#~ msgstr ""
 
 #: src/hooks/usePoolInfo.ts:23
 #~ msgid "The pool URL speciefied is not valid. {poolUrl}"
@@ -2070,7 +2074,7 @@ msgstr "Celkový počet VDF (verifiable delay function) nebo tzv. proof of time 
 msgid "The total transactions fees in this block. Rewarded to the farmer."
 msgstr "Souhrnná výše transakčních poplatků v tomto bloku. Vyplaceno farmářům."
 
-#: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:90
+#: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:89
 msgid "These are the instructions for how the farmer wants to get paid. By default this will be an XCH address, but it can be set to any string with a size of less than 1024 characters, so it can represent another blockchain or payment system identifier."
 msgstr ""
 
