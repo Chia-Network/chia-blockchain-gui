@@ -53,14 +53,26 @@ export const unlockKeyring = (key) => {
   return action;
 }
 
-/*
-export const togglePassphrase = (passphrase) => {
+export const setKeyringPassphrase = (new_passphrase) => {
   const action = daemonMessage();
-  action.message.command = 'fill in name here';
-  action.message.data = { passphrase: passphrase };
+  action.message.command = 'set_keyring_passphrase';
+  action.message.data = { new_passphrase: new_passphrase };
   return action;
 }
-*/
+
+export const changeKeyringPassphrase = (current_passphrase, new_passphrase) => {
+  const action = daemonMessage();
+  action.message.command = 'set_keyring_passphrase';
+  action.message.data = { current_passphrase: current_passphrase, new_passphrase: new_passphrase };
+  return action;
+}
+
+export const removeKeyringPassphrase = (current_passphrase) => {
+  const action = daemonMessage();
+  action.message.command = 'remove_keyring_passphrase';
+  action.message.data = { current_passphrase: current_passphrase };
+  return action;
+}
 
 export const exitDaemon = () => {
   const action = daemonMessage();
