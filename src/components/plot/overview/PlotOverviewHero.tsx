@@ -1,14 +1,17 @@
 import React from 'react';
 import { Trans } from '@lingui/macro';
+import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { Button, Grid, Typography, Divider } from '@material-ui/core';
-import { CardHero, Link } from '@chia/core';
+import { CardHero, Flex, Link } from '@chia/core';
 import { PlotHero as PlotHeroIcon } from '@chia/icons';
 import PlotAddDirectoryDialog from '../PlotAddDirectoryDialog';
+import { refreshPlots } from '../../../modules/harvesterMessages';
 import useOpenDialog from '../../../hooks/useOpenDialog';
 
 export default function PlotOverviewHero() {
   const history = useHistory();
+  const dispatch = useDispatch();
   const openDialog = useOpenDialog();
 
   function handleAddPlot() {
@@ -16,36 +19,58 @@ export default function PlotOverviewHero() {
   }
 
   function handleAddPlotDirectory() {
-    openDialog((
-      <PlotAddDirectoryDialog />
-    ));
+    openDialog(<PlotAddDirectoryDialog />);
+  }
+
+  function handleRefreshPlots() {
+    dispatch(refreshPlots());
   }
 
   return (
     <Grid container>
-      <Grid xs={12} md={6} lg={4} item>
+      <Grid xs={12} md={6} lg={5} item>
         <CardHero>
           <PlotHeroIcon fontSize="large" />
           <Typography variant="body1">
             <Trans>
-              {'Plots are allocated space on your hard drive used to farm and earn Chia. '}
-              <Link target="_blank" href="https://github.com/Chia-Network/chia-blockchain/wiki/Network-Architecture">Learn more</Link>
+              {
+                'Plots are allocated space on your hard drive used to farm and earn Chia. '
+              }
+              <Link
+                target="_blank"
+                href="https://github.com/Chia-Network/chia-blockchain/wiki/Network-Architecture"
+              >
+                Learn more
+              </Link>
             </Trans>
           </Typography>
-          <Button
-            onClick={handleAddPlot}
-            variant="contained"
-            color="primary"
-          >
-            <Trans>Add a Plot</Trans>
-          </Button>
+          <Flex gap={1}>
+            <Button
+              onClick={handleAddPlot}
+              variant="contained"
+              color="primary"
+              fullWidth
+            >
+              <Trans>Add a Plot</Trans>
+            </Button>
+            <Button
+              onClick={handleRefreshPlots}
+              variant="outlined"
+              color="primary"
+              fullWidth
+            >
+              <Trans>Refresh Plots</Trans>
+            </Button>
+          </Flex>
 
           <Divider />
 
           <Typography variant="body1">
             <Trans>
               {'Do you have existing plots on this machine? '}
-              <Link onClick={handleAddPlotDirectory} variant="body1">Add Plot Directory</Link>
+              <Link onClick={handleAddPlotDirectory} variant="body1">
+                Add Plot Directory
+              </Link>
             </Trans>
           </Typography>
         </CardHero>

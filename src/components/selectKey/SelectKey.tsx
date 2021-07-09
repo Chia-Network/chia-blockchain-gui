@@ -2,7 +2,7 @@ import React from 'react';
 import { Trans } from '@lingui/macro';
 import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
-import { ConfirmDialog, Flex, Button, Link, Logo } from '@chia/core';
+import { ConfirmDialog, Flex, Button, Logo } from '@chia/core';
 import { Alert } from '@material-ui/lab';
 import {
   Card,
@@ -24,7 +24,6 @@ import {
   login_action,
   delete_key,
   get_private_key,
-  selectFingerprint,
   delete_all_keys,
   check_delete_key_action
 } from '../../modules/message';
@@ -47,10 +46,9 @@ export default function SelectKey() {
   const hasFingerprints =
     publicKeyFingerprints && !!publicKeyFingerprints.length;
 
-  function handleClick(fingerprint: Fingerprint) {
-    dispatch(resetMnemonic());
-    dispatch(selectFingerprint(fingerprint));
-    dispatch(login_action(fingerprint));
+  async function handleClick(fingerprint: Fingerprint) {
+    await dispatch(resetMnemonic());
+    await dispatch(login_action(fingerprint));
   }
 
   function handleShowKey(fingerprint: Fingerprint) {
@@ -110,20 +108,19 @@ export default function SelectKey() {
   }
 
   async function handleDeleteAllKeys() {
-    const deleteAllKeys = await openDialog((
+    const deleteAllKeys = await openDialog(
       <ConfirmDialog
         title={<Trans>Delete all keys</Trans>}
         confirmTitle={<Trans>Delete</Trans>}
         cancelTitle={<Trans>Back</Trans>}
-        confirmColor="default"
+        confirmColor="danger"
       >
         <Trans>
-          Deleting all keys will permanently remove the keys from your
-          computer, make sure you have backups. Are you sure you want to
-          continue?
+          Deleting all keys will permanently remove the keys from your computer,
+          make sure you have backups. Are you sure you want to continue?
         </Trans>
-      </ConfirmDialog>
-    ));
+      </ConfirmDialog>,
+    );
 
     // @ts-ignore
     if (deleteAllKeys) {
@@ -175,9 +172,7 @@ export default function SelectKey() {
                           </Trans>
                         }
                         secondary={
-                          <Trans>
-                            Can be backed up to mnemonic seed
-                          </Trans>
+                          <Trans>Can be backed up to mnemonic seed</Trans>
                         }
                       />
                       <ListItemSecondaryAction>
@@ -190,7 +185,13 @@ export default function SelectKey() {
                             <VisibilityIcon />
                           </IconButton>
                         </Tooltip>
-                        <Tooltip title={<Trans>DANGER: permanently delete private key</Trans>}>
+                        <Tooltip
+                          title={
+                            <Trans>
+                              DANGER: permanently delete private key
+                            </Trans>
+                          }
+                        >
                           <IconButton
                             edge="end"
                             aria-label="delete"
@@ -205,30 +206,27 @@ export default function SelectKey() {
                 </List>
               </Card>
             )}
-            <Link to="/wallet/add">
-              <Button
-                type="submit"
-                variant="contained"
-                color="primary"
-                size="large"
-                fullWidth
-              >
-                <Trans>
-                  Create a new private key
-                </Trans>
-              </Button>
-            </Link>
-            <Link to="/wallet/import">
-              <Button type="submit" variant="contained" size="large" fullWidth>
-                <Trans>
-                  Import from Mnemonics (24 words)
-                </Trans>
-              </Button>
-            </Link>
+            <Button
+              to="/wallet/add"
+              variant="contained"
+              color="primary"
+              size="large"
+              fullWidth
+            >
+              <Trans>Create a new private key</Trans>
+            </Button>
+            <Button
+              to="/wallet/import"
+              type="submit"
+              variant="outlined"
+              size="large"
+              fullWidth
+            >
+              <Trans>Import from Mnemonics (24 words)</Trans>
+            </Button>
             <Button
               onClick={handleDeleteAllKeys}
-              type="submit"
-              variant="contained"
+              variant="outlined"
               color="danger"
               size="large"
               fullWidth

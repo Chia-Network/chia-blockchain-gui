@@ -33,7 +33,8 @@ export const startPlotting = (
   x,
   overrideK,
   f,
-  p
+  p,
+  c,
 ) => {
   const action = daemonMessage();
   action.message.command = 'start_plotting';
@@ -68,26 +69,14 @@ export const startPlotting = (
     data.p = p;
   }
 
+  if (c) {
+    data.c = c;
+  }
+
   action.message.data = data;
 
   return action;
 };
-
-/*
-export const workspaceSelected = (location) => {
-  const action = plotControl();
-  action.command = 'workspace_location';
-  action.location = location;
-  return action;
-};
-
-export const finalSelected = (location) => {
-  const action = plotControl();
-  action.command = 'final_location';
-  action.location = location;
-  return action;
-};
-*/
 
 export const plottingStarted = () => {
   const action = plotControl();
