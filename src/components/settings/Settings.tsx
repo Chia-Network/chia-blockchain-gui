@@ -19,8 +19,10 @@ import {
   DialogContent,
   DialogContentText,
   DialogActions,
+  Tooltip,
 } from '@material-ui/core';
 import {
+  Help as HelpIcon,
   Lock as LockIcon,
   NoEncryption as NoEncryptionIcon,
 } from '@material-ui/icons';
@@ -130,7 +132,7 @@ const SecurityCard = () => {
   }
 
   function DisplayChangePassphrase() {
-    // if (passphraseStatus) {
+    if (passphraseStatus) {
       return (
         <Box display="flex" className={classes.passChangeBox}>
           <Button
@@ -208,10 +210,10 @@ const SecurityCard = () => {
           </Dialog>
         </Box>
       )
-    // }
-    // else {
-      // return (null);
-    // }
+    }
+    else {
+      return (null);
+    }
   }
 
   function handleToggleSubmit() {
@@ -257,20 +259,23 @@ const SecurityCard = () => {
             ) : (
               <NoEncryptionIcon style={{ color: 'red',  marginRight: 6 }} />
             )}
-            <Typography variant="subtitle1" style={{ marginRight: 6 }}>Passphrase protection is </Typography>
+            <Typography variant="subtitle1" style={{ marginRight: 5 }}>Passphrase protection is</Typography>
             {passphraseStatus ? (
-              <Typography variant="subtitle1">enabled</Typography>
+              <Typography variant="subtitle1" style={{ marginRight: 5 }}>enabled</Typography>
             ) : (
-              <Typography variant="subtitle1">disabled</Typography>
+              <Typography variant="subtitle1" style={{ marginRight: 5 }}>disabled</Typography>
             )}
+            <Tooltip title="Secure your keychain using a strong passphrase.">
+              <HelpIcon style={{ color: '#c8c8c8', fontSize: 12 }} />
+            </Tooltip>
           </Box>
+          <DisplayChangePassphrase />
           <Box display="flex" className={classes.passChangeBox}>
             {passphraseStatus ? (
               <Button
                 onClick={handleToggleOpen}
                 className={classes.togglePassButton}
                 variant="contained"
-                color="secondary"
                 disableElevation
               >
               REMOVE PASSPHRASE
@@ -327,7 +332,6 @@ const SecurityCard = () => {
               </DialogActions>
             </Dialog>
           </Box>
-          <DisplayChangePassphrase />
         </Grid>
       </Grid>
     </Card>
