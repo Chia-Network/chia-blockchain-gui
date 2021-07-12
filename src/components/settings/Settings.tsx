@@ -20,7 +20,10 @@ import {
   DialogContentText,
   DialogActions,
 } from '@material-ui/core';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import {
+  Lock as LockIcon,
+  NoEncryption as NoEncryptionIcon,
+} from '@material-ui/icons';
 import { openDialog } from '../../modules/dialog';
 import { setKeyringPassphrase, changeKeyringPassphrase, removeKeyringPassphrase } from '../../modules/daemon_messages';
 
@@ -56,25 +59,35 @@ const SecurityCard = () => {
     (state) => state.daemon_state.passphrase_status,
   );
 
-  const [open, setOpen] = React.useState(false);
+  const [toggleOpen, setToggleOpen] = React.useState(false);
 
   const handleToggleOpen = () => {
-    setOpen(true);
+    setToggleOpen(true);
   };
 
   const handleToggleClose = () => {
-    setOpen(false);
+    setToggleOpen(false);
+  };
+
+  const [changeOpen, setChangeOpen] = React.useState(false);
+
+  const handleChangeOpen = () => {
+    setChangeOpen(true);
+  }
+
+  const handleChangeClose = () => {
+    setChangeOpen(false);
   };
 
   function DisplayLockStatus() {
     if (passphraseStatus) {
       return (
-        <Typography variant="subtitle1" style={{ color: '#3AAC59', fontWeight: "bold" }}> ON </Typography>
+        <Typography variant="subtitle1" style={{ color: '#3AAC59', fontWeight: "bold" }}> ENABLED </Typography>
       )
     }
     else {
       return (
-        <Typography variant="subtitle1" style={{ color: 'red', fontWeight: "bold" }}> OFF</Typography>
+        <Typography variant="subtitle1" style={{ color: 'red', fontWeight: "bold" }}> NOT ENABLED </Typography>
       )
     }
   }
@@ -82,12 +95,12 @@ const SecurityCard = () => {
   function DisplayToggleStatus() {
     if (passphraseStatus) {
       return (
-        <Typography> TOGGLE OFF </Typography>
+        <Typography> REMOVE PASSPHRASE </Typography>
       )
     }
     else {
       return (
-        <Typography> TOGGLE ON </Typography>
+        <Typography> ADD PASSPHRASE </Typography>
       )
     }
   }
@@ -95,14 +108,110 @@ const SecurityCard = () => {
   function DisplayDialogTextStatus() {
     if (passphraseStatus) {
       return (
-        <DialogTitle id="form-dialog-title"> Enter your current passphrase: </DialogTitle>
+        <DialogTitle id="form-dialog-title">Remove Passphrase</DialogTitle>
       )
-    }
-    else {
+    } else {
       return (
-        <DialogTitle id="form-dialog-title"> Enter a new passphrase: </DialogTitle>
+        <DialogTitle id="form-dialog-title">Add Passphrase</DialogTitle>
       )
     }
+  }
+
+  function DisplayDialogContentText() {
+    if (passphraseStatus) {
+      return (
+        <DialogContentText>Enter your current passphrase:</DialogContentText>
+      )
+    } else {
+      return (
+        <DialogContentText>Enter a new passphrase:</DialogContentText>
+      )
+    }
+  }
+
+  function DisplayChangePassphrase() {
+    // if (passphraseStatus) {
+      return (
+        <Box display="flex" className={classes.passChangeBox}>
+          <Button
+            onClick={handleChangeOpen}
+            className={classes.togglePassButton}
+            variant="contained"
+            disableElevation
+          >
+            CHANGE PASSPHRASE
+          </Button>
+          <Dialog
+            open={changeOpen}
+            aria-labelledby="form-dialog-title"
+            fullWidth={true}
+            maxWidth = {'xs'}
+          >
+            <DialogTitle id="form-dialog-title">Change Passphrase</DialogTitle>
+            <DialogContent>
+              <DialogContentText>Enter your current passphrase:</DialogContentText>
+              <TextField
+                autoFocus
+                color="secondary"
+                margin="dense"
+                id="passphrase_input"
+                inputRef={(input) => {
+                  oldpass1_input = input;
+                }}
+                label={<Trans>Old Passphrase</Trans>}
+                type="password"
+                fullWidth
+              />
+              <TextField
+                autoFocus
+                color="secondary"
+                margin="dense"
+                id="passphrase_input"
+                inputRef={(input) => {
+                  oldpass2_input = input;
+                }}
+                label={<Trans>Re-enter Old Passphrase</Trans>}
+                type="password"
+                fullWidth
+              />
+              <TextField
+                autoFocus
+                color="secondary"
+                margin="dense"
+                id="passphrase_input"
+                inputRef={(input) => {
+                  newpass_input = input;
+                }}
+                label={<Trans>New Passphrase</Trans>}
+                type="password"
+                fullWidth
+              />
+            </DialogContent>
+            <DialogActions>
+              <Button
+                onClick={handleChangeClose}
+                color="primary"
+                variant="contained"
+                style={{ marginBottom: '8px', marginRight: '8px' }}
+              >
+                Cancel
+              </Button>
+              <Button
+                onClick={handleChangeSubmit}
+                color="primary"
+                variant="contained"
+                style={{ marginBottom: '8px', marginRight: '8px' }}
+              >
+                Submit
+              </Button>
+            </DialogActions>
+          </Dialog>
+        </Box>
+      )
+    // }
+    // else {
+      // return (null);
+    // }
   }
 
   function handleToggleSubmit() {
@@ -114,7 +223,7 @@ const SecurityCard = () => {
     }
   }
 
-  function updatePassphrase() {
+  function handleChangeSubmit() {
     if (oldpass1_input.value !== oldpass2_input.value) {
       dispatch(
         openDialog(
@@ -143,25 +252,48 @@ const SecurityCard = () => {
       <Grid spacing={4} container>
         <Grid item xs={12}>
           <Box display="flex" className={classes.passToggleBox}>
-            <Typography variant="subtitle1" style={{ marginRight: 6 }}>Passphrase is currently:</Typography>
-            <DisplayLockStatus />
-            <Button
-              onClick={handleToggleOpen}
-              className={classes.togglePassButton}
-              variant="contained"
-              color="secondary"
-              disableElevation
-            >
-              <DisplayToggleStatus />
-            </Button>
+            {passphraseStatus ? (
+              <LockIcon style={{ color: '#3AAC59',  marginRight: 6 }} />
+            ) : (
+              <NoEncryptionIcon style={{ color: 'red',  marginRight: 6 }} />
+            )}
+            <Typography variant="subtitle1" style={{ marginRight: 6 }}>Passphrase protection is </Typography>
+            {passphraseStatus ? (
+              <Typography variant="subtitle1">enabled</Typography>
+            ) : (
+              <Typography variant="subtitle1">disabled</Typography>
+            )}
+          </Box>
+          <Box display="flex" className={classes.passChangeBox}>
+            {passphraseStatus ? (
+              <Button
+                onClick={handleToggleOpen}
+                className={classes.togglePassButton}
+                variant="contained"
+                color="secondary"
+                disableElevation
+              >
+              REMOVE PASSPHRASE
+              </Button>
+            ) : (
+              <Button
+                onClick={handleToggleOpen}
+                className={classes.togglePassButton}
+                variant="contained"
+                disableElevation
+              >
+              ADD PASSPHRASE
+              </Button>
+            )}
             <Dialog
-              open={open}
+              open={toggleOpen}
               aria-labelledby="form-dialog-title"
               fullWidth={true}
               maxWidth = {'xs'}
             >
               <DisplayDialogTextStatus />
               <DialogContent>
+                <DisplayDialogContentText />
                 <TextField
                   autoFocus
                   color="secondary"
@@ -195,63 +327,7 @@ const SecurityCard = () => {
               </DialogActions>
             </Dialog>
           </Box>
-        </Grid>
-        <Grid item xs={12}>
-          <Typography variant="subtitle1">Change Passphrase:</Typography>
-          <Box display="flex" className={classes.passChangeBox}>
-            <Box flexGrow={6}>
-              <TextField
-                id="filled-secondary"
-                variant="filled"
-                color="secondary"
-                input type="password"
-                fullWidth
-                className={classes.oldPass}
-                inputRef={(input) => {
-                  oldpass1_input = input;
-                }}
-                label={<Trans>Old Passphrase</Trans>}
-              />
-            </Box>
-            <Box flexGrow={6}>
-              <TextField
-                id="filled-secondary"
-                variant="filled"
-                color="secondary"
-                input type="password"
-                fullWidth
-                inputRef={(input) => {
-                  oldpass2_input = input;
-                }}
-                label={<Trans>Re-enter Old Passphrase</Trans>}
-              />
-            </Box>
-          </Box>
-          <Box display="flex" className={classes.passChangeBox}>
-            <Box flexGrow={6}>
-              <TextField
-                id="filled-secondary"
-                variant="filled"
-                color="secondary"
-                input type="password"
-                fullWidth
-                inputRef={(input) => {
-                  newpass_input = input;
-                }}
-                label={<Trans>New Passphrase</Trans>}
-              />
-            </Box>
-            <Box>
-              <Button
-                onClick={updatePassphrase}
-                className={classes.updatePassButton}
-                variant="contained"
-                color="primary"
-              >
-                Update
-              </Button>
-            </Box>
-          </Box>
+          <DisplayChangePassphrase />
         </Grid>
       </Grid>
     </Card>
