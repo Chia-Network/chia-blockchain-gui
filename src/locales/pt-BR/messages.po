@@ -8,7 +8,7 @@ msgstr ""
 "Language: pt_BR\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-07-06 23:46\n"
+"PO-Revision-Date: 2021-07-09 12:12\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -53,7 +53,7 @@ msgstr "Aceitar"
 
 #: src/components/trading/TradingOverview.jsx:228
 msgid "Accepted at time:"
-msgstr "Aceito no tempo:"
+msgstr "Aceito na hora:"
 
 #: src/components/plot/PlotsFailed.tsx:19
 #: src/components/plot/PlotsNotFound.tsx:19
@@ -107,7 +107,7 @@ msgstr "Adicionar diretório de lotes"
 
 #: src/components/plotNFT/select/PlotNFTSelectFaucet.tsx:42
 msgid "Add {currencyCode} from the Faucet"
-msgstr ""
+msgstr "Adiciona {currencyCode} do Faucet"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:561
 #: src/components/wallet/coloured/WalletColoured.tsx:657
@@ -146,7 +146,7 @@ msgstr "Tem certeza que deseja deletar o plot? O plot não poderá ser recuperad
 #: src/components/plotNFT/PlotNFTCard.tsx:122
 #: src/components/wallet/standard/WalletStandard.tsx:632
 msgid "Are you sure you want to delete unconfirmed transactions?"
-msgstr ""
+msgstr "Tem certeza que deseja excluir as transações não confirmadas?"
 
 #: src/components/fullNode/FullNodeCloseConnection.tsx:25
 msgid "Are you sure you want to disconnect?"
@@ -181,7 +181,7 @@ msgstr "O arquivo de backup é usado para restaurar carteiras inteligentes."
 #: src/components/wallet/coloured/WalletColoured.tsx:377
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:541
 msgid "Balance"
-msgstr "Balanço"
+msgstr "Saldo"
 
 #: src/components/block/Block.jsx:317
 msgid "Base Farmer Reward Amount"
@@ -302,7 +302,7 @@ msgstr "Alterar"
 #: src/components/plotNFT/PlotNFTChangePool.tsx:110
 #: src/components/pool/PoolOverview.tsx:115
 msgid "Change Pool"
-msgstr "Trocar Pool"
+msgstr "Trocar Bolão"
 
 #: src/electron/main.tsx:401
 msgid "Chat on KeyBase"
@@ -365,11 +365,11 @@ msgstr "Cor:"
 
 #: src/components/wallet/create/WalletCreate.jsx:118
 msgid "Coloured Coin"
-msgstr "Moeda de Cor"
+msgstr "Moeda Colorida"
 
 #: src/components/wallet/create/WalletCreate.jsx:160
 msgid "Coloured Coin Options"
-msgstr "Opções da Moeda de Cor"
+msgstr "Opções da Moeda Colorida"
 
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:168
 #: src/electron/main.tsx:195
@@ -897,7 +897,7 @@ msgstr "HD (Hierarchical Deterministic) ou chaves determinísticas hierárquicas
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:132
 msgid "Harvester Plots"
-msgstr ""
+msgstr "Lotes da colheita local"
 
 #: src/components/fullNode/FullNode.jsx:61
 msgid "Header Hash"
@@ -1001,7 +1001,7 @@ msgstr "Estado inválido"
 
 #: src/components/plotNFT/PlotNFTGetPoolLoginLinkDialog.tsx:90
 msgid "It is a one-time login link that can be used to log in to a pool's website. It contains a signature using the farmer's key from the plot NFT. Not all pools support this feature."
-msgstr ""
+msgstr "É um link de login único que pode ser usado para fazer login no site de um bolão. Contém uma assinatura que usa a chave do fazendeiro do lote NFT. Nem todos os bolões suportam este recurso."
 
 #: src/components/plotNFT/PlotNFTCard.tsx:394
 #: src/components/pool/PoolOverview.tsx:113
@@ -1020,7 +1020,7 @@ msgstr "Junte-se a um bolão e obtenha recompensas consistentes de cultivo em XC
 
 #: src/components/plotNFT/PlotNFTAdd.tsx:59
 msgid "Join a pool and get consistent XCH farming rewards. The average returns are the same, but it is much less volatile. Assign plots to a plot NFT. You can easily switch pools without having to re-plot."
-msgstr "Junte-se a bolão e obtenha recompensas consistentes de cultivo em XCH. Os retornos médios são iguais, mas são muito menos voláteis. Atribua seus lotes a um lote NFT. Você pode facilmente trocar de bolão sem precisar recriar seu lote."
+msgstr "Junte-se a um bolão e obtenha recompensas consistentes de cultivo em XCH. Os retornos médios são iguais, mas são muito menos voláteis. Atribua seus lotes a um lote NFT. Você pode facilmente trocar de bolão sem precisar recriar seus lotes."
 
 #: src/components/plot/add/PlotAddNFT.tsx:135
 msgid "Join a pool and get more consistent XCH farming rewards. Create a plot NFT and assign your new plots to a group."
@@ -1083,7 +1083,7 @@ msgstr "Carregando..."
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:126
 #~ msgid "Local Harvester Plots"
-#~ msgstr "Lotes da colheita local"
+#~ msgstr "Local Harvester Plots"
 
 #: src/components/app/AppRouter.tsx:41
 msgid "Logging in"
@@ -1217,11 +1217,11 @@ msgstr "ID do nó"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:87
 msgid "Node Id"
-msgstr ""
+msgstr "Id do nó"
 
 #: src/components/plot/add/PlotAddNFT.tsx:88
 msgid "None"
-msgstr "Nada"
+msgstr "Nenhum"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:68
 msgid "None of your plots have passed the plot filter yet."
@@ -1258,7 +1258,7 @@ msgstr "Lotes não encontrados"
 
 #: src/components/farm/FarmManageFarmingRewards.tsx:184
 msgid "Note that this does not change your pooling payout addresses. This only affects old format plots, and the 0.25XCH reward for pooling plots."
-msgstr "Note que isso não muda seus endereços de pagamento no bolão. Isso afeta apenas os lotes de formato antigo e a recompensa 0.25XCH por agrupamento de pontos."
+msgstr "Note que isso não muda seus endereços de pagamento no bolão. Isso afeta apenas os lotes de formato antigo e a recompensa 0.25XCH em lotes de bolão."
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:120
 #: src/components/plotNFT/PlotNFTCard.tsx:159
@@ -1465,7 +1465,7 @@ msgstr "O lote é duplicado de {0}"
 
 #: src/components/plotNFT/PlotNFTState.tsx:46
 msgid "PlotNFT is transitioning to (target state). This can take a while. Please do not close the application until this is finalized."
-msgstr ""
+msgstr "LoteNFT está transicionando para (estado de destino). Isto pode levar um tempo. Por favor não feche a aplicação até que esta seja finalizada."
 
 #: src/components/dashboard/DashboardSideBar.tsx:50
 msgid "Plots"
@@ -1508,7 +1508,7 @@ msgstr "Pontos encontrados nas últimas 24 horas"
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:196
 #: src/components/plotNFT/PlotNFTCard.tsx:235
 msgid "Points Successful in Last 24 Hours"
-msgstr ""
+msgstr "Pontos bem-sucedidos nas últimas 24 horas"
 
 #: src/components/dashboard/DashboardSideBar.tsx:60
 #: src/components/pool/Pool.tsx:25
@@ -1525,12 +1525,12 @@ msgstr "Chave do Pool"
 
 #: src/components/plotNFT/PlotNFTGetPoolLoginLinkDialog.tsx:77
 msgid "Pool Login Link"
-msgstr ""
+msgstr "Link para entrar no bolão"
 
 #: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:63
 #: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:75
 msgid "Pool Payout Instructions"
-msgstr ""
+msgstr "Instruções de pagamento do bolão"
 
 #: src/components/block/Block.jsx:263
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:222
@@ -1571,7 +1571,7 @@ msgstr "O bolão não fornece o alvo_desafio_hash."
 
 #: src/middleware/middleware_api.jsx:283
 msgid "Pool public key:"
-msgstr "Chave pública do pool:"
+msgstr "Chave pública do bolão:"
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:274
 #: src/components/plotNFT/PlotNFTCard.tsx:326
@@ -2049,15 +2049,15 @@ msgstr "A URL do bolão \"{normalizedUrl}\" não está funcionando. Isso é um b
 
 #: src/hooks/usePoolInfo.ts:44
 msgid "The pool URL is not valid. {normalizedUrl}"
-msgstr ""
+msgstr "A URL do bolão não é válida. {normalizedUrl}"
 
 #: src/hooks/usePoolInfo.ts:39
 msgid "The pool URL needs to use protocol https. {normalizedUrl}"
-msgstr ""
+msgstr "A URL da pool precisa usar o protocolo https. {normalizedUrl}"
 
 #: src/hooks/usePoolInfo.ts:44
 #~ msgid "The pool URL speciefied is not valid. {normalizedUrl}"
-#~ msgstr ""
+#~ msgstr "The specified pool URL is not valid. {normalizedUrl}"
 
 #: src/hooks/usePoolInfo.ts:23
 #~ msgid "The pool URL speciefied is not valid. {poolUrl}"
@@ -2085,7 +2085,7 @@ msgstr "As taxas de transações totais neste bloco. Recompensado ao fazendeiro.
 
 #: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:87
 msgid "These are the instructions for how the farmer wants to get paid. By default this will be an XCH address, but it can be set to any string with a size of less than 1024 characters, so it can represent another blockchain or payment system identifier."
-msgstr ""
+msgstr "Estas são as instruções sobre como o fazendeiro quer ser pago. Por padrão este será um endereço XCH, mas pode ser definido como qualquer sequência de caracteres com menos de 1024 caracteres, assim, ele pode representar outro blockchain ou identificador do sistema de pagamento."
 
 #: src/components/plot/PlotsFailed.tsx:40
 msgid "These plots are invalid, you might want to delete them."
@@ -2154,7 +2154,7 @@ msgstr "Este lote NFT está atribuído a uma chave diferente. Você ainda pode c
 
 #: src/components/plotNFT/PlotNFTGetPoolLoginLinkDialog.tsx:52
 msgid "This plot NFT is not connected to pool"
-msgstr ""
+msgstr "Este lote de NFT não está conectado ao bolão"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:39
 #~ msgid "This table shows you the last time your farm attempted to win a block challenge."
@@ -2328,11 +2328,11 @@ msgstr "Ver oferta"
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:256
 #: src/components/plotNFT/PlotNFTCard.tsx:298
 #~ msgid "View Payout Instructions"
-#~ msgstr ""
+#~ msgstr "View Payout Instructions"
 
 #: src/components/plotNFT/PlotNFTCard.tsx:285
 msgid "View Pool Login Link"
-msgstr ""
+msgstr "Ver Link de Login do bolão"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:562
 msgid "View pending balances"
@@ -2500,7 +2500,7 @@ msgstr "Você precisa coletar suas recompensas primeiro"
 
 #: src/components/plotNFT/select/PlotNFTSelectFaucet.tsx:37
 msgid "You need {currencyCode} to join a pool."
-msgstr ""
+msgstr "Você precisa de {currencyCode} para entrar em um bolão."
 
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:137
 msgid "You will recieve <0/> to {0}"
@@ -2594,3 +2594,4 @@ msgstr "{currencyCode} Taxas de transação do usuário"
 #: src/components/core/components/Amount/Amount.tsx:82
 msgid "{mojo, plural, one {mojo} other {mojos}}"
 msgstr "{mojo, plural, one {mojo} other {mojos}}"
+

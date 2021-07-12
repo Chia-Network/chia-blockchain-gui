@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh_TW\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-07-07 05:45\n"
+"PO-Revision-Date: 2021-07-09 18:12\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -28,7 +28,7 @@ msgstr "＊想更進一步探索 Chia 區塊鍵？看看開源開發者打造的
 
 #: src/components/plot/add/PlotAddNFT.tsx:125
 msgid "+ Add New Plot NFT"
-msgstr "+ 新增新的耕地 NFT"
+msgstr "+ 新增新的農場"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:94
 #~ msgid "0 automatically chooses bucket count"
@@ -95,7 +95,7 @@ msgstr "新增耕地"
 
 #: src/components/plotNFT/PlotNFTAdd.tsx:51
 msgid "Add a Plot NFT"
-msgstr "新增一塊耕地 NFT"
+msgstr "新增一塊農場"
 
 #: src/components/plot/PlotAddDirectoryDialog.tsx:68
 msgid "Add a plot"
@@ -502,7 +502,7 @@ msgstr "建立備份"
 
 #: src/components/plot/add/PlotAddNFT.tsx:42
 msgid "Create a Plot NFT"
-msgstr "建立一塊耕地 NFT"
+msgstr "建立一塊農場"
 
 #: src/components/selectKey/SelectKey.tsx:182
 msgid "Create a new private key"
@@ -560,7 +560,7 @@ msgstr "目前難度"
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:158
 #: src/components/plotNFT/PlotNFTCard.tsx:197
 msgid "Current Points Balance"
-msgstr "目前點數餘額"
+msgstr "目前積分餘額"
 
 #: src/components/trading/TradingOverview.jsx:182
 msgid "Current trade status"
@@ -607,7 +607,7 @@ msgstr "刪除耕地"
 #: src/components/plotNFT/PlotNFTCard.tsx:314
 #: src/components/wallet/standard/WalletStandard.tsx:663
 msgid "Delete Unconfirmed Transactions"
-msgstr "刪除未確認的交易"
+msgstr "刪除與農會的合約"
 
 #: src/components/selectKey/SelectKey.tsx:79
 #: src/components/selectKey/SelectKey.tsx:200
@@ -649,7 +649,7 @@ msgstr "禁用 bitfield 耕地"
 
 #: src/components/core/components/FormBackButton/FormBackButton.tsx:26
 msgid "Discard"
-msgstr "放棄"
+msgstr "放棄變更"
 
 #: src/components/fullNode/FullNodeCloseConnection.tsx:22
 msgid "Disconnect"
@@ -897,7 +897,7 @@ msgstr "層及式確定性金鑰是一種公鑰/私鑰格式，一個私鑰可�
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:132
 msgid "Harvester Plots"
-msgstr ""
+msgstr "耕地收割機"
 
 #: src/components/fullNode/FullNode.jsx:61
 msgid "Header Hash"
@@ -952,7 +952,7 @@ msgstr "以助記符號匯入錢包"
 
 #: src/components/selectKey/SelectKey.tsx:191
 msgid "Import from Mnemonics (24 words)"
-msgstr "從助記符號（24 字）匯入"
+msgstr "從助記詞(24 字) 匯入"
 
 #: src/components/fullNode/FullNode.jsx:45
 msgid "In Progress"
@@ -964,7 +964,7 @@ msgstr "轉入"
 
 #: src/components/core/components/Fee/Fee.tsx:36
 msgid "Incorrect value"
-msgstr "數值不正確"
+msgstr "錯誤費用數值"
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:18
 msgid "Index"
@@ -1006,13 +1006,13 @@ msgstr "這是一個一次性登錄連結, 可用於登記在農會的網站. �
 #: src/components/plotNFT/PlotNFTCard.tsx:394
 #: src/components/pool/PoolOverview.tsx:113
 msgid "Join Pool"
-msgstr "加入農會"
+msgstr "加入礦池"
 
 #: src/components/plot/add/PlotAddNFT.tsx:59
 #: src/components/plot/add/PlotAddNFT.tsx:143
 #: src/components/pool/PoolHero.tsx:31
 msgid "Join a Pool"
-msgstr "加入一個農會"
+msgstr "加入一個農場"
 
 #: src/components/plot/add/PlotAddNFT.tsx:44
 msgid "Join a pool and get consistent XCH farming rewards. The average returns are the same, but it is much less volatile."
@@ -1071,7 +1071,7 @@ msgstr "清單檢視"
 
 #: src/components/pool/Pool.tsx:21
 msgid "Loading Plot NFTs"
-msgstr "正在讀取耕地 NFT"
+msgstr "正在讀取農場"
 
 #: src/components/wallet/Wallets.tsx:172
 msgid "Loading list of wallets"
@@ -1083,7 +1083,7 @@ msgstr "載入中..."
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:126
 #~ msgid "Local Harvester Plots"
-#~ msgstr "本地端收割機用耕地"
+#~ msgstr "Local Harvester Plots"
 
 #: src/components/app/AppRouter.tsx:41
 msgid "Logging in"
@@ -1217,7 +1217,7 @@ msgstr "節點 ID"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:87
 msgid "Node Id"
-msgstr ""
+msgstr "節點 ID"
 
 #: src/components/plot/add/PlotAddNFT.tsx:88
 msgid "None"
@@ -1428,7 +1428,7 @@ msgstr "耕地金鑰"
 
 #: src/components/pool/PoolOverview.tsx:40
 msgid "Plot NFT"
-msgstr "耕地 NFT"
+msgstr "農場"
 
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:103
 #: src/components/plotNFT/PlotNFTChangePool.tsx:81
@@ -1517,7 +1517,7 @@ msgstr "農會"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:100
 msgid "Pool Contract Address"
-msgstr "礦池合約位址"
+msgstr "農會合約地址"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:81
 msgid "Pool Key"
@@ -1535,7 +1535,7 @@ msgstr "查看農會支付說明"
 #: src/components/block/Block.jsx:263
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:222
 msgid "Pool Public Key"
-msgstr "池公鑰"
+msgstr "礦池公鑰"
 
 #: src/components/block/Block.jsx:283
 msgid "Pool Puzzle Hash"
@@ -1543,7 +1543,7 @@ msgstr "池拼圖雜湊值"
 
 #: src/components/farm/FarmManageFarmingRewards.tsx:173
 msgid "Pool Reward Address"
-msgstr "池獎勵地址"
+msgstr "礦池獎勵地址"
 
 #: src/components/farm/FarmManageFarmingRewards.tsx:149
 msgid "Pool Reward Address is not properly formatted."
@@ -1559,25 +1559,25 @@ msgstr "農會獎勵地址不能為空。"
 
 #: src/components/block/Block.jsx:313
 msgid "Pool Reward Amount"
-msgstr "池獎勵數量"
+msgstr "礦池勵數量"
 
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:38
 msgid "Pool does not provide relative_lock_height."
-msgstr "礦池未提供 相對_鎖定_高度。"
+msgstr "農會未提供 相對_鎖定_高度。"
 
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:35
 msgid "Pool does not provide target_puzzle_hash."
-msgstr "礦池未提供 目標_拼圖_雜湊值。"
+msgstr "農會未提供 目標_拼圖_雜湊值。"
 
 #: src/middleware/middleware_api.jsx:283
 msgid "Pool public key:"
-msgstr "礦池公鑰:"
+msgstr "礦池公鑰 (PPK):"
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:274
 #: src/components/plotNFT/PlotNFTCard.tsx:326
 #: src/components/plotNFT/PlotNFTUnconfirmedCard.tsx:57
 msgid "Pool:"
-msgstr "池："
+msgstr "農會："
 
 #: src/components/plotNFT/PlotNFTExternalState.tsx:24
 #: src/components/plotNFT/PlotNFTState.tsx:59
@@ -1594,7 +1594,7 @@ msgstr "通訊埠"
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:88
 #: src/components/plotNFT/PlotNFTChangePool.tsx:74
 msgid "Preparing Plot NFT"
-msgstr "正在準備耕地 NFT"
+msgstr "正在準備農場"
 
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:96
 msgid "Preparing standard wallet"
@@ -1807,7 +1807,7 @@ msgstr "選擇你想要儲存耕地的暫存資料夾。我們建議你使用快
 
 #: src/components/plot/add/PlotAddNFT.tsx:83
 msgid "Select your Plot NFT"
-msgstr "選擇您的耕地 NFT"
+msgstr "選擇您的農場"
 
 #: src/components/plot/add/PlotAddNFT.tsx:74
 msgid "Select your Plot NFT from the dropdown or create a new one."
@@ -1826,7 +1826,7 @@ msgstr "正在為自己的農會耕種中"
 
 #: src/components/plotNFT/select/PlotNFTSelectBase.tsx:105
 msgid "Self pool. When you win a block you will earn XCH rewards."
-msgstr "自己的農會。當你贏取一個區塊時你將獲得完整的 XCH 獎勵 (2 XCH)。"
+msgstr "自己的農會。當你贏取一個區塊時你將獲得 XCH 獎勵。"
 
 #: src/components/trading/CreateOffer.jsx:164
 #: src/components/trading/TradesTable.tsx:47
@@ -2049,7 +2049,7 @@ msgstr "農會網址：「 {normalizedUrl} 」錯誤。這是農會嗎？錯誤�
 
 #: src/hooks/usePoolInfo.ts:44
 msgid "The pool URL is not valid. {normalizedUrl}"
-msgstr ""
+msgstr "農會網址無效. {normalizedUrl}"
 
 #: src/hooks/usePoolInfo.ts:39
 msgid "The pool URL needs to use protocol https. {normalizedUrl}"
@@ -2057,7 +2057,7 @@ msgstr "農會網址需要使用https協議. {normalizedUrl}"
 
 #: src/hooks/usePoolInfo.ts:44
 #~ msgid "The pool URL speciefied is not valid. {normalizedUrl}"
-#~ msgstr "農會網址無效. {normalizedUrl}"
+#~ msgstr "The specified pool URL is not valid. {normalizedUrl}"
 
 #: src/hooks/usePoolInfo.ts:23
 #~ msgid "The pool URL speciefied is not valid. {poolUrl}"
@@ -2306,11 +2306,11 @@ msgstr "VDF 子欄位疊代次數"
 
 #: src/components/core/components/Fee/Fee.tsx:28
 msgid "Value seems high"
-msgstr "數值太高"
+msgstr "數值有點高"
 
 #: src/components/plotNFT/select/PlotNFTSelectBase.tsx:156
 msgid "Verify Pool Details"
-msgstr "確認農會資訊"
+msgstr "驗證農會細節"
 
 #: src/electron/main.tsx:295
 msgid "View"
@@ -2328,7 +2328,7 @@ msgstr "檢視提案"
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:256
 #: src/components/plotNFT/PlotNFTCard.tsx:298
 #~ msgid "View Payout Instructions"
-#~ msgstr "查看支付指示"
+#~ msgstr "View Payout Instructions"
 
 #: src/components/plotNFT/PlotNFTCard.tsx:285
 msgid "View Pool Login Link"
@@ -2500,15 +2500,15 @@ msgstr "您需要先領取你的獎勵"
 
 #: src/components/plotNFT/select/PlotNFTSelectFaucet.tsx:37
 msgid "You need {currencyCode} to join a pool."
-msgstr "你需要 {currencyCode} 來加入農會"
+msgstr "你需要 {currencyCode} 來加入農會。"
 
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:137
 msgid "You will recieve <0/> to {0}"
-msgstr "你將會收到 <0/> 至 {0}"
+msgstr "你將會收到 <0/> 到 {0}"
 
 #: src/hooks/useAbsorbRewards.tsx:49
 msgid "You will recieve <0/> to {address}"
-msgstr "你將會收到 <0/> 至 {address}"
+msgstr "你將會收到 <0/> 到 {address}"
 
 #: src/components/farm/overview/FarmOverview.tsx:37
 msgid "Your Farm Overview"
@@ -2524,7 +2524,7 @@ msgstr "你的收割機網路"
 
 #: src/components/pool/PoolOverview.tsx:160
 msgid "Your Pool Overview"
-msgstr "你的耕地NFT概觀"
+msgstr "您的農場概觀"
 
 #: src/util/getDescriptiveError.ts:5
 msgid "[Error 13] Permission denied. You are trying to access a file/directory without having the necessary permissions. Most likely one of the plot folders in your config.yaml has an issue."
@@ -2594,3 +2594,4 @@ msgstr "{currencyCode} 使用者交易費用"
 #: src/components/core/components/Amount/Amount.tsx:82
 msgid "{mojo, plural, one {mojo} other {mojos}}"
 msgstr "{mojo, plural, other {mojos}}"
+
