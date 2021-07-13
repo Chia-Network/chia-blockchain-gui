@@ -122,7 +122,7 @@ const SecurityCard = () => {
   function DisplayDialogContentText() {
     if (passphraseStatus) {
       return (
-        <DialogContentText>Enter your current passphrase:</DialogContentText>
+        <DialogContentText>Enter your passphrase:</DialogContentText>
       )
     } else {
       return (
@@ -151,11 +151,10 @@ const SecurityCard = () => {
           >
             <DialogTitle id="form-dialog-title">Change Passphrase</DialogTitle>
             <DialogContent>
-              <DialogContentText>Enter your current passphrase:</DialogContentText>
+              <DialogContentText>Enter your current passphrase and a new passphrase:</DialogContentText>
               <TextField
                 autoFocus
                 color="secondary"
-                margin="dense"
                 id="passphrase_input"
                 inputRef={(input) => {
                   oldpass1_input = input;

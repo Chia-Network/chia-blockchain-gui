@@ -10,7 +10,9 @@ import {
 
 type DeamonState = {
   passphrase_status: boolean;
+  passphrase_support_enabled: boolean;
   passphrase_lock_status: boolean;
+  needs_migration: boolean;
   daemon_running: boolean;
   daemon_connected: boolean;
   wallet_running: boolean;
@@ -27,7 +29,9 @@ type DeamonState = {
 
 const initialState: DeamonState = {
   passphrase_status: false,
+  passphrase_support_enabled: false,
   passphrase_lock_status: false,
+  needs_migration: false,
   daemon_running: false,
   daemon_connected: false,
   wallet_running: false,
@@ -121,16 +125,30 @@ export default function daemonReducer(
         }
       } else if (command === 'is_keyring_locked') {
         let success = data.success;
-        console.log("INCOMING SUCCESS")
-        console.log(success)
         if (success) {
           const { is_keyring_locked } = data;
-          console.log("INCOMING DATA")
-          console.log(is_keyring_locked)
           return {
             ...state,
             passphrase_status: is_keyring_locked,
-            passphrase_lock_status: is_keyring_locked,
+          };
+        }
+      } else if (command === 'keyring_status') {
+        let success = data.success;
+        console.log("INCOMING SUCCESS")
+        console.log(success)
+        if (success) {
+          console.log("INCOMING DATA")
+          console.log(data)
+          const { is_keyring_locked } = data;
+          const { passphrase_support_enabled } = data;
+          const { user_passphrase_is_set } = data;
+          const { needs_migration } = data;
+          return {
+            ...state,
+            passphrase_status: is_keyring_locked,
+            passphrase_support_enabled: passphrase_support_enabled,
+            passphrase_lock_status: user_passphrase_is_set,
+            needs_migration: needs_migration,
           };
         }
       } else if (command === 'unlock_keyring') {
