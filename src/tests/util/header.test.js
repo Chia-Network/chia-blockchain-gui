@@ -20,7 +20,7 @@ describe('header', () => {
           aggregated_signature: null,
           coinbase: {
             amount: '14000000000000',
-            parent_coin_info:
+            parent_coin_id:
               '0x0000000000000000000000000000000000000000000000000000000000001268',
             puzzle_hash:
               '0xa927f72c69e0cc51098a41e1e0ea9d6894e961d1db80b4452cdf33e77f20da9e',
@@ -33,7 +33,7 @@ describe('header', () => {
             '0x0000000000000000000000000000000000000000000000000000000000000000',
           fees_coin: {
             amount: '2000000000000',
-            parent_coin_info:
+            parent_coin_id:
               '0xd34ea9ed5d0f43bfd98dbdea2e3f14d637c965f9f9addb618d163504f7560714',
             puzzle_hash:
               '0xa927f72c69e0cc51098a41e1e0ea9d6894e961d1db80b4452cdf33e77f20da9e',

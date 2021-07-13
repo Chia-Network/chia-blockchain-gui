@@ -12,7 +12,7 @@ type PoolWalletStatus = {
   current_inner: string;
   launcher_coin: {
     amount: number;
-    parent_coin_info: string;
+    parent_coin_id: string;
     puzzle_hash: string;
   };
   launcher_id: string;
