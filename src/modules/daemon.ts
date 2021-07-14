@@ -129,7 +129,7 @@ export default function daemonReducer(
           const { is_keyring_locked } = data;
           return {
             ...state,
-            passphrase_status: is_keyring_locked,
+            passphrase_lock_status: is_keyring_locked,
           };
         }
       } else if (command === 'keyring_status') {
@@ -145,9 +145,9 @@ export default function daemonReducer(
           const { needs_migration } = data;
           return {
             ...state,
-            passphrase_status: is_keyring_locked,
+            passphrase_lock_status: is_keyring_locked,
             passphrase_support_enabled: passphrase_support_enabled,
-            passphrase_lock_status: user_passphrase_is_set,
+            passphrase_status: user_passphrase_is_set,
             needs_migration: needs_migration,
           };
         }

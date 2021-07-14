@@ -46,6 +46,12 @@ export const isKeyringLocked = () => {
   return action;
 }
 
+export const keyringStatus = () => {
+  const action = daemonMessage();
+  action.message.command = 'keyring_status';
+  return action;
+}
+
 export const unlockKeyring = (key) => {
   const action = daemonMessage();
   action.message.command = 'unlock_keyring';
