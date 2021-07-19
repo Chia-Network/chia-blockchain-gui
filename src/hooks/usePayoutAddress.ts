@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 import PlotNFT from '../types/PlotNFT';
 import { setPayoutInstructions } from '../modules/farmerMessages';
-import toBech32m, { decode, removePrefix } from '../util/toBech32m';
+import toBech32m, { decode } from '../util/toBech32m';
 
 export default function usePayoutAddress(nft: PlotNFT): {
   loading: boolean;

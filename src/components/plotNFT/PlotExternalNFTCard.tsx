@@ -20,7 +20,7 @@ import {
   MenuItem,
   ListItemIcon,
 } from '@material-ui/core';
-import { Link as LinkIcon, Payment as PaymentIcon } from '@material-ui/icons';
+import { /* Link as LinkIcon, */ Payment as PaymentIcon } from '@material-ui/icons';
 import PlotNFTName from './PlotNFTName';
 import PlotNFTExternalState from './PlotNFTExternalState';
 import PlotIcon from '../icons/Plot';
