@@ -29,9 +29,10 @@ export const StyledTableRow = styled(TableRow)`
 const StyledTableCell = styled(({ width, minWidth, maxWidth, ...rest }) => (
   <TableCell {...rest} />
 ))`
-  max-width: ${({ minWidth, maxWidth, width }) => ((maxWidth || width || minWidth) ?? 'none')};
-  min-width: ${({ minWidth }) => (minWidth || '0')};
-  width: ${({ width, minWidth }) => width || minWidth ? width : 'auto'}};
+  max-width: ${({ minWidth, maxWidth, width }) =>
+    (maxWidth || width || minWidth) ?? 'none'};
+  min-width: ${({ minWidth }) => minWidth || '0'};
+  width: ${({ width, minWidth }) => (width || minWidth ? width : 'auto')}};
 `;
 
 const StyledTableCellContent = styled.div`
@@ -69,12 +70,27 @@ type Props = {
   caption?: ReactNode;
   onRowClick?: (e: SyntheticEvent, row: Row) => void;
   rowHover?: boolean;
+  uniqueField?: string;
 };
 
 export default function Table(props: Props) {
-  const { cols, rows, children, pages, rowsPerPageOptions, rowsPerPage: defaultRowsPerPage, hideHeader, caption, onRowClick, rowHover } = props;
+  const {
+    cols,
+    rows,
+    children,
+    pages,
+    rowsPerPageOptions,
+    rowsPerPage: defaultRowsPerPage,
+    hideHeader,
+    caption,
+    onRowClick,
+    rowHover,
+    uniqueField,
+  } = props;
   const [page, setPage] = useState<number>(0);
-  const [rowsPerPage, setRowsPerPage] = useState<number>(defaultRowsPerPage ?? 10);
+  const [rowsPerPage, setRowsPerPage] = useState<number>(
+    defaultRowsPerPage ?? 10,
+  );
 
   function handleChangePage(
     event: React.MouseEvent<HTMLButtonElement, MouseEvent> | null,
@@ -83,29 +99,40 @@ export default function Table(props: Props) {
     setPage(newPage);
   }
 
-  function handleChangeRowsPerPage (
+  function handleChangeRowsPerPage(
     event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>,
   ) {
     setRowsPerPage(+event.target.value);
     setPage(0);
   }
 
-  const currentCols = useMemo<InternalTableCol[]>(() => cols.map((col, index) => ({
-    key: index,
-    ...col,
-  })), [cols]);
+  const currentCols = useMemo<InternalTableCol[]>(
+    () =>
+      cols.map((col, index) => ({
+        key: index,
+        ...col,
+      })),
+    [cols],
+  );
 
-  const preparedRows = useMemo<InternalTableRow[]>(() => rows.map((row, rowIndex) => ({
-    id: rowIndex,
-    ...row,
-  })), [rows]);
+  const preparedRows = useMemo<InternalTableRow[]>(
+    () =>
+      rows.map((row, rowIndex) => ({
+        $uniqueId: uniqueField ? row[uniqueField] : rowIndex,
+        ...row,
+      })),
+    [rows],
+  );
 
   const currentRows = useMemo<InternalTableRow[]>(() => {
     if (!pages) {
       return preparedRows;
     }
 
-    return preparedRows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
+    return preparedRows.slice(
+      page * rowsPerPage,
+      page * rowsPerPage + rowsPerPage,
+    );
   }, [preparedRows, pages, page, rowsPerPage]);
 
   function handleRowClick(e: SyntheticEvent, row: Row) {
@@ -117,9 +144,7 @@ export default function Table(props: Props) {
   return (
     <TableContainer component={Paper}>
       <TableBase>
-        {caption && (
-          <caption>{caption}</caption>
-        )}
+        {caption && <caption>{caption}</caption>}
         {!hideHeader && (
           <StyledTableHead>
             <TableRow>
@@ -130,9 +155,7 @@ export default function Table(props: Props) {
                   maxWidth={col.maxWidth}
                   width={col.width}
                 >
-                  <StyledTableCellContent>
-                    {col.title}
-                  </StyledTableCellContent>
+                  <StyledTableCellContent>{col.title}</StyledTableCellContent>
                 </StyledTableCell>
               ))}
             </TableRow>
@@ -141,9 +164,9 @@ export default function Table(props: Props) {
         <TableBody>
           {children}
           {currentRows.map((row) => (
-            <StyledTableRow 
-              key={row.id} 
-              onClick={(e) => handleRowClick(e, row)} 
+            <StyledTableRow
+              key={row.$uniqueId}
+              onClick={(e) => handleRowClick(e, row)}
               hover={rowHover}
             >
               {currentCols.map((col) => {
@@ -159,10 +182,11 @@ export default function Table(props: Props) {
                   if (tooltip === true) {
                     tooltipValue = value;
                   } else {
-                    tooltipValue = typeof tooltip === 'function'
-                    ? tooltip(row)
-                    : // @ts-ignore
-                      row[tooltip];
+                    tooltipValue =
+                      typeof tooltip === 'function'
+                        ? tooltip(row)
+                        : // @ts-ignore
+                          get(row, tooltip);
                   }
                 }
 
@@ -175,16 +199,10 @@ export default function Table(props: Props) {
                   >
                     {tooltipValue ? (
                       <Tooltip title={tooltipValue}>
-    
-                          <StyledTableCellContent>
-                            {value}
-                          </StyledTableCellContent>
-    
+                        <StyledTableCellContent>{value}</StyledTableCellContent>
                       </Tooltip>
                     ) : (
-                    <StyledTableCellContent>
-                      {value}
-                    </StyledTableCellContent>
+                      <StyledTableCellContent>{value}</StyledTableCellContent>
                     )}
                   </StyledTableCell>
                 );
@@ -216,4 +234,5 @@ Table.defaultProps = {
   caption: undefined,
   children: undefined,
   rowHover: false,
+  uniqueField: undefined,
 };

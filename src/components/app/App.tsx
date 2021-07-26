@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { Provider } from 'react-redux';
 import { I18nProvider } from '@lingui/react';
-import { enUS, zhCN, esES, fiFI, itIT, roRO, ruRU, skSK, svSE } from '@material-ui/core/locale';
 import useDarkMode from 'use-dark-mode';
 import isElectron from 'is-electron';
+import { createGlobalStyle } from 'styled-components';
 import { ConnectedRouter } from 'connected-react-router';
 import { ThemeProvider } from '@chia/core';
 import AppRouter from './AppRouter';
@@ -13,59 +13,53 @@ import WebSocketConnection from '../../hocs/WebsocketConnection';
 import store, { history } from '../../modules/store';
 import { exit_and_close } from '../../modules/message';
 import useLocale from '../../hooks/useLocale';
-import './App.css';
 import AppModalDialogs from './AppModalDialogs';
 import AppLoading from './AppLoading';
-import i18n from '../../config/locales';
+import {
+  i18n,
+  activateLocale,
+  defaultLocale,
+  getMaterialLocale,
+} from '../../config/locales';
+import Fonts from './fonts/Fonts';
 
-function localeToMaterialLocale(locale: string): object {
-    switch(locale) {
-        case 'en':
-            return enUS;
-        case 'es':
-            return esES;
-        case 'it':
-            return itIT;
-        case 'fi':
-            return fiFI;
-        case'ro':
-            return roRO;
-        case 'ru':
-            return ruRU;
-        case 'sk':
-            return skSK;
-        case 'sv':
-            return svSE;
-        case 'zh-CN':
-            return zhCN;
-        default:
-            return enUS;
-    }
-}
+const GlobalStyle = createGlobalStyle`
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  #root {
+    display: flex;
+    flex-direction: column;
+  }
+
+  ul .MuiBox-root {
+    outline: none;
+  }
+`;
 
 export default function App() {
   const { value: darkMode } = useDarkMode();
-  const [locale] = useLocale('en');
-  const [theme, setTheme] = useState(lightTheme(localeToMaterialLocale(locale)));
+  const [locale] = useLocale(defaultLocale);
+
+  const theme = useMemo(() => {
+    const material = getMaterialLocale(locale);
+    return darkMode ? darkTheme(material) : lightTheme(material);
+  }, [locale, darkMode]);
 
   // get the daemon's uri from global storage (put there by loadConfig)
   let daemon_uri = null;
   if (isElectron()) {
     const electron = window.require('electron');
-    const { remote : r } = electron;
+    const { remote: r } = electron;
     daemon_uri = r.getGlobal('daemon_rpc_ws');
   }
 
   useEffect(() => {
-    i18n.activate(locale);
-    // @ts-ignore
-    window.ipcRenderer.send("set-locale", locale)
-    if (darkMode) {
-      setTheme(darkTheme(localeToMaterialLocale(locale)));
-    } else {
-      setTheme(lightTheme(localeToMaterialLocale(locale)));
-    }
-  }, [locale, darkMode]);
+    activateLocale(locale);
+  }, [locale]);
 
   useEffect(() => {
     window.addEventListener('load', () => {
@@ -84,6 +78,8 @@ export default function App() {
         <I18nProvider i18n={i18n}>
           <WebSocketConnection host={daemon_uri}>
             <ThemeProvider theme={theme}>
+              <GlobalStyle />
+              <Fonts />
               <AppRouter />
               <AppModalDialogs />
               <AppLoading />

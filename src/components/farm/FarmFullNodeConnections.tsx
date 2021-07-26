@@ -45,13 +45,23 @@ const cols = [
     field(row: Connection) {
       return (
         <>
-          <FormatBytes value={row.bytes_written} unit="MiB" removeUnit fixedDecimals />
+          <FormatBytes
+            value={row.bytes_written}
+            unit="kiB"
+            removeUnit
+            fixedDecimals
+          />
           /
-          <FormatBytes value={row.bytes_read} unit="MiB" removeUnit fixedDecimals />
+          <FormatBytes
+            value={row.bytes_read}
+            unit="kiB"
+            removeUnit
+            fixedDecimals
+          />
         </>
       );
     },
-    title: <Trans>MiB Up/Down</Trans>,
+    title: <Trans>KiB Up/Down</Trans>,
   },
   {
     title: <Trans>Actions</Trans>,
@@ -81,27 +91,24 @@ export default function FarmFullNodeConnections() {
   );
 
   return (
-    <Card 
-      title={(
-        <Trans>
-          Your Full Node Connection
-        </Trans>
-      )}
-      tooltip={(
+    <Card
+      title={<Trans>Your Full Node Connection</Trans>}
+      tooltip={
         <Trans>
           {'The full node that your farmer is connected to is below. '}
-          <Link target="_blank" href="https://github.com/Chia-Network/chia-blockchain/wiki/Network-Architecture">
+          <Link
+            target="_blank"
+            href="https://github.com/Chia-Network/chia-blockchain/wiki/Network-Architecture"
+          >
             Learn more
           </Link>
         </Trans>
-      )}
+      }
       interactive
     >
       <Flex justifyContent="flex-end" gap={1}>
         <Typography variant="caption" color="textSecondary">
-          <Trans>
-            Connection Status:
-          </Trans>
+          <Trans>Connection Status:</Trans>
         </Typography>
         <FormatConnectionStatus connected={connected} />
       </Flex>

@@ -12,15 +12,11 @@ export default function PlotOverview() {
 
   return (
     <Flex flexDirection="column" gap={3}>
-      {loading && (
-        <Flex alignItems="center" justifyContent="center">
-          <Loading />
-        </Flex>
-      )}
+      {loading && <Loading center />}
 
       {!loading && (
         <>
-          {(hasPlots || hasQueue) ? (
+          {hasPlots || hasQueue ? (
             <PlotOverviewPlots />
           ) : (
             <Grid container spacing={3}>

@@ -78,3 +78,79 @@ export const closeConnection = (node_id) => {
   action.message.data = { node_id };
   return action;
 };
+
+export const getPoolState = () => {
+  return async (dispatch) => {
+    const { data } = await async_api(
+      dispatch,
+      farmerMessage({
+        command: 'get_pool_state',
+      }),
+      false,
+      true,
+    );
+
+    return data?.pool_state;
+  };
+};
+
+export const setPayoutInstructions = (
+  launcherId,
+  payoutInstructions,
+) => {
+  return async (dispatch) => {
+    const { data } = await async_api(
+      dispatch,
+      farmerMessage({
+        command: 'set_payout_instructions',
+        data: {
+          launcher_id: launcherId,
+          payout_instructions: payoutInstructions,
+        },
+      }),
+      false,
+    );
+
+    /*
+    console.log('data', data);
+    /*
+    const { success, error } = data;
+    if (!success) {
+      throw new Error(error);
+    }
+    */
+
+    return data;
+  };
+};
+
+export function getHarvesters() {
+  return async (dispatch) => {
+    const { data } = await async_api(
+      dispatch,
+      farmerMessage({
+        command: 'get_harvesters',
+      }),
+      false,
+    );
+
+    return data;
+  };
+}
+
+export function getPoolLoginLink(launcherId) {
+  return async (dispatch) => {
+    const { data } = await async_api(
+      dispatch,
+      farmerMessage({
+        command: 'get_pool_login_link',
+        data: {
+          launcher_id: launcherId,
+        },
+      }),
+      false,
+    );
+
+    return data;
+  };
+}
