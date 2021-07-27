@@ -8,6 +8,8 @@ import {
   ViewModule as ViewModuleIcon,
   Payment as PaymentIcon,
   Power as PowerIcon,
+  Visibility as VisibilityIcon,
+  VisibilityOff as VisibilityOffIcon
 } from '@material-ui/icons';
 import {
   Box,
@@ -33,6 +35,7 @@ import PlotNFTState from '../plotNFT/PlotNFTState';
 import useUnconfirmedPlotNFTs from '../../hooks/useUnconfirmedPlotNFTs';
 import { mojo_to_chia } from '../../util/chia';
 import WalletStatus from '../wallet/WalletStatus';
+import usePlotNFTDetails from '../../hooks/usePlotNFTDetails';
 
 const groupsCols = [
   {
@@ -129,6 +132,7 @@ const groupsCols = [
 export default function PoolOverview() {
   const history = useHistory();
   const [showTable, toggleShowTable] = useToggle(false);
+  const [showNFTWithoutPlot, toggleHideNFTWithoutPlots] = useToggle(true);
   const { nfts, external, loading } = usePlotNFTs();
   const { unconfirmed } = useUnconfirmedPlotNFTs();
 
@@ -141,6 +145,10 @@ export default function PoolOverview() {
 
   function handleToggleView() {
     toggleShowTable();
+  }
+
+  function handleToggleHideNFTWithoutPlots() {
+    toggleHideNFTWithoutPlots();
   }
 
   if (loading) {
@@ -180,6 +188,15 @@ export default function PoolOverview() {
               {showTable ? <ViewModuleIcon /> : <ViewListIcon />}
             </IconButton>
           </Tooltip>
+          <Tooltip
+            title={
+              showNFTWithoutPlot ? <Trans>Show NFTs without plots</Trans> : <Trans>Hide NFTs without plots</Trans>
+            }
+          >
+            <IconButton size="small" onClick={handleToggleHideNFTWithoutPlots}>
+              {showNFTWithoutPlot ? <VisibilityOffIcon /> : <VisibilityIcon />}
+            </IconButton>
+          </Tooltip>
           <Flex gap={1}>
             <Typography variant="body1" color="textSecondary">
               <Trans>Wallet Status:</Trans>
@@ -202,8 +219,9 @@ export default function PoolOverview() {
                 />
               </Grid>
             ))}
-            {nfts.map((item) => (
-              <Grid
+            {nfts.map((item) => {
+              {(showNFTWithoutPlot || usePlotNFTDetails(item).plots?.length) && (
+                <Grid
                 key={item.pool_state.p2_singleton_puzzle_hash}
                 xs={12}
                 md={6}
@@ -211,7 +229,8 @@ export default function PoolOverview() {
               >
                 <PlotNFTCard nft={item} />
               </Grid>
-            ))}
+              )}
+            })}
             {external.map((item) => (
               <Grid
                 key={item.pool_state.p2_singleton_puzzle_hash}
