@@ -339,6 +339,18 @@ export const handle_message = async (store, payload, errorProcessed) => {
       const { wallet_id } = payload.data;
       store.dispatch(get_colour_name(wallet_id));
     }
+  } else if (payload.command === 'did_create_backup_file') {
+    if (payload.data.success) {
+      store.dispatch(
+        openDialog(<AlertDialog title="Success!">Your backup file has been created</AlertDialog>),
+      );
+    }
+  } else if (payload.command === 'did_create_attest') {
+    if (payload.data.success) {
+      store.dispatch(
+        openDialog(<AlertDialog title="Success!">Your attest packet has been created</AlertDialog>),
+      );
+    }
   } else if (payload.command === 'respond_to_offer') {
     if (payload.data.success) {
       store.dispatch(
