@@ -1,7 +1,7 @@
 import isElectron from 'is-electron';
 import * as actions from '../modules/websocket';
 import {
-  isKeyringLocked,
+  keyringStatus,
   registerService,
   startService,
   startServiceTest,
@@ -45,7 +45,7 @@ const socketMiddleware = () => {
     connected = true;
     store.dispatch(actions.wsConnected(event.target.url));
 
-    store.dispatch(isKeyringLocked());
+    store.dispatch(keyringStatus());
 
     // TODO: Remove. Just for testing
     // store.dispatch(unlockKeyring("asdfasdf"));
