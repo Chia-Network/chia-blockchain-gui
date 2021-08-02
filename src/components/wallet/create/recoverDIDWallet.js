@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
-import React from 'react';
-import { Dropzone } from '@chia/core';
+import React, { useState } from 'react';
+import { AlertDialog, Dropzone } from '@chia/core';
 import { Trans } from '@lingui/macro';
 import {
   Typography,
@@ -8,6 +8,7 @@ import {
   Box,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import { openDialog } from '../../../modules/dialog';
 
 import {
   changeCreateWallet,
@@ -123,16 +124,50 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  sendButton: {
+    marginTop: theme.spacing(2),
+    marginBottom: theme.spacing(2),
+    width: 150,
+    height: 50,
+  },
+  deleteButton: {
+    marginLeft: theme.spacing(2),
+    width: 75,
+    height: 30,
+  },
 }));
 
 export const RecoverDIDWallet = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
 
+  const [file, setFile] = useState([]);
+
   function handleDrop(acceptedFiles) {
-    const recovery_file_path = acceptedFiles[0].path;
-    dispatch(recover_did_action(recovery_file_path));
+    if (
+      file.length >= 1
+    ) {
+      dispatch(
+        openDialog(
+          <AlertDialog>
+            <Trans>Only one backup recovery file is allowed. To add a new backup file, please delete any previously uploaded files and try again.</Trans>
+          </AlertDialog>
+        ),
+      );
+      return;
+    } else {
+      setFile([...file, acceptedFiles[0].path]);
+    }
   };
+
+  const handleRemoveFile = (e) => {
+    const name = e.target.getAttribute("name")
+    setFile(file.filter(object => object !== name));
+  }
+
+  function submit() {
+    dispatch(recover_did_action(file[0]));
+  }
 
   function goBack() {
     dispatch(changeCreateWallet(CREATE_DID_WALLET_OPTIONS));
@@ -156,9 +191,48 @@ export const RecoverDIDWallet = () => {
       </div>
       <Dropzone onDrop={handleDrop}>
         <Trans>
-          Drag and drop recovery file
+          Drag and drop your recovery backup file
         </Trans>
       </Dropzone>
+      <div className={classes.cardSubSection}>
+        <Box display="flex">
+          <Box flexGrow={1} style={{ marginTop: 30 }}>
+            <Typography variant="subtitle1">
+              Recovery Backup File:
+            </Typography>
+          </Box>
+        </Box>
+        <Box display="flex">
+          <Box flexGrow={1}>
+            {file.map(object => {
+              return (
+                <Typography key={object} variant="subtitle1">
+                  <span> {object} </span>
+                  <Button
+                    onClick={handleRemoveFile}
+                    className={classes.deleteButton}
+                    variant="contained"
+                  >
+                    <span name={object}>Delete</span>
+                  </Button>
+                </Typography>
+              );
+            })}
+          </Box>
+        </Box>
+        <Box display="flex">
+          <Box flexGrow={1} style={{ marginBottom: 10 }}>
+            <Button
+              onClick={submit}
+              className={classes.sendButton}
+              variant="contained"
+              color="primary"
+            >
+              <Trans>Submit</Trans>
+            </Button>
+          </Box>
+        </Box>
+      </div>
     </div>
   );
 };

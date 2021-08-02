@@ -285,6 +285,11 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(1),
     paddingRight: theme.spacing(2),
   },
+  deleteButton: {
+    marginLeft: theme.spacing(2),
+    width: 75,
+    height: 30,
+  },
 }));
 
 const RecoveryCard = (props) => {
@@ -445,7 +450,13 @@ const RecoveryCard = (props) => {
                   return (
                     <Typography key={object} variant="subtitle1">
                       <span> {object} </span>
-                      <span name={object} onClick={handleRemoveFile} style={{textAlign: 'right'}}> [X] </span>
+                      <Button
+                        onClick={handleRemoveFile}
+                        className={classes.deleteButton}
+                        variant="contained"
+                      >
+                        <span name={object}>Delete</span>
+                      </Button>
                     </Typography>
                   );
                 })}
