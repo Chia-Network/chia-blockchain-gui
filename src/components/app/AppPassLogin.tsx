@@ -13,6 +13,7 @@ import {
 } from '@material-ui/core';
 import { Trans } from '@lingui/macro';
 import { AlertDialog } from '@chia/core';
+import { openDialog } from '../../modules/dialog';
 import { unlockKeyring } from '../../modules/daemon_messages';
 
 export default function AppPassLogin() {
@@ -49,7 +50,7 @@ export default function AppPassLogin() {
     }
 
     function handleKeyDown(e) {
-      if (e.keyCode === 13) {
+      if (e.key === 'Enter') {
         handleSubmit();
       }
     }
