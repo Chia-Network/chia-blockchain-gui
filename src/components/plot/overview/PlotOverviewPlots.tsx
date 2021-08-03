@@ -2,7 +2,14 @@ import React from 'react';
 import { Trans } from '@lingui/macro';
 import styled from 'styled-components';
 import { Warning as WarningIcon } from '@material-ui/icons';
-import { Card, Flex, Table, FormatBytes, StateColor } from '@chia/core';
+import {
+  Card,
+  Flex,
+  Table,
+  FormatBytes,
+  StateColor,
+  Address,
+} from '@chia/core';
 import {
   Box,
   Typography,
@@ -63,12 +70,6 @@ const cols = [
   },
   {
     minWidth: '100px',
-    field: 'plot-seed',
-    tooltip: 'plot-seed',
-    title: <Trans>Plot Seed</Trans>,
-  },
-  {
-    minWidth: '100px',
     field: 'plot_public_key',
     tooltip: 'plot_public_key',
     title: <Trans>Plot Key</Trans>,
@@ -78,6 +79,25 @@ const cols = [
     field: 'pool_public_key',
     tooltip: 'pool_public_key',
     title: <Trans>Pool Key</Trans>,
+  },
+  {
+    minWidth: '100px',
+    field: 'harvester.node_id',
+    tooltip: 'harvester.node_id',
+    title: <Trans>Node Id</Trans>,
+  },
+  {
+    minWidth: '100px',
+    field: ({ pool_contract_puzzle_hash }: Plot) => (
+      <Address value={pool_contract_puzzle_hash} tooltip copyToClipboard>
+        {(address) => (
+          <Typography variant="body2" noWrap>
+            {address}
+          </Typography>
+        )}
+      </Address>
+    ),
+    title: <Trans>Pool Contract Address</Trans>,
   },
   {
     minWidth: '100px',
@@ -101,14 +121,18 @@ export default function PlotOverviewPlots() {
     return null;
   }
 
-  const queuePlots = queue?.filter((item) =>
-    [PlotStatusEnum.SUBMITTED, PlotStatusEnum.RUNNING].includes(item.state),
+  const queuePlots = queue?.filter(
+    (item) => item.state !== PlotStatusEnum.FINISHED,
   );
 
   return (
     <>
-      <PlotHeader />
-      <Card title={<Trans>Local Harvester Plots</Trans>}>
+      <PlotHeader>
+        <Typography variant="h5">
+          <Trans>Harvester Plots</Trans>
+        </Typography>
+      </PlotHeader>
+      <Card>
         <Flex gap={1}>
           <Flex flexGrow={1}>
             <Typography variant="body2">
@@ -136,6 +160,7 @@ export default function PlotOverviewPlots() {
                       <PlotQueueSize queueItem={item} />
                     </TableCell>
                     <TableCell>{item.queue}</TableCell>
+                    <TableCell />
                     <TableCell />
                     <TableCell />
                     <TableCell />

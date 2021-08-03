@@ -1,5 +1,6 @@
 import React from 'react';
 import { Trans } from '@lingui/macro';
+import { FormatLargeNumber } from '@chia/core';
 import { useSelector } from 'react-redux';
 import type { RootState } from '../../../modules/rootReducer';
 import FarmCard from './FarmCard';
@@ -15,17 +16,9 @@ export default function FarmCardLastHeightFarmed() {
 
   return (
     <FarmCard
-      title={
-        <Trans>Last Height Farmed</Trans>
-      }
-      value={lastHeightFarmed}
-      description={
-        !lastHeightFarmed && (
-          <Trans>
-            No blocks farmed yet
-          </Trans>
-        )
-      }
+      title={<Trans>Last Height Farmed</Trans>}
+      value={<FormatLargeNumber value={lastHeightFarmed} />}
+      description={!lastHeightFarmed && <Trans>No blocks farmed yet</Trans>}
       loading={loading}
     />
   );

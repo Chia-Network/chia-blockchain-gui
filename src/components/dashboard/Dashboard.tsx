@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Route, Switch, useRouteMatch } from 'react-router';
-import { Box, AppBar, Toolbar, Drawer, Divider } from '@material-ui/core';
+import { AppBar, Toolbar, Drawer, Divider } from '@material-ui/core';
 import {
   DarkModeToggle,
   LocaleToggle,
@@ -9,10 +9,12 @@ import {
   Logo,
   ToolbarSpacing,
 } from '@chia/core';
+import { defaultLocale, locales } from '../../config/locales';
 import Wallets from '../wallet/Wallets';
 import FullNode from '../fullNode/FullNode';
 import Plot from '../plot/Plot';
 import Farm from '../farm/Farm';
+import Pool from '../pool/Pool';
 import Block from '../block/Block';
 import DashboardSideBar from './DashboardSideBar';
 import { DashboardTitleTarget } from './DashboardTitle';
@@ -30,11 +32,11 @@ const StyledAppBar = styled(AppBar)`
   box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
   width: ${({ theme }) => `calc(100% - ${theme.drawer.width})`};
   margin-left: ${({ theme }) => theme.drawer.width};
-  z-index: ${({ theme}) => theme.zIndex.drawer + 1};
+  z-index: ${({ theme }) => theme.zIndex.drawer + 1};
 `;
 
 const StyledDrawer = styled(Drawer)`
-  z-index: ${({ theme}) => theme.zIndex.drawer + 2};
+  z-index: ${({ theme }) => theme.zIndex.drawer + 2};
   width: ${({ theme }) => theme.drawer.width};
   flex-shrink: 0;
 
@@ -43,7 +45,7 @@ const StyledDrawer = styled(Drawer)`
   }
 `;
 
-const StyledBody = styled(Box)`
+const StyledBody = styled(Flex)`
   min-width: 0;
 `;
 
@@ -65,7 +67,7 @@ export default function Dashboard() {
         <Toolbar>
           <DashboardTitleTarget />
           <Flex flexGrow={1} />
-          <LocaleToggle />
+          <LocaleToggle locales={locales} defaultLocale={defaultLocale} />
           <DarkModeToggle />
         </Toolbar>
       </StyledAppBar>
@@ -76,7 +78,7 @@ export default function Dashboard() {
         <Divider />
         <DashboardSideBar />
       </StyledDrawer>
-      <StyledBody flexGrow={1}>
+      <StyledBody flexDirection="column" flexGrow={1}>
         <ToolbarSpacing />
         <Switch>
           <Route path={`${path}`} exact>
@@ -93,6 +95,9 @@ export default function Dashboard() {
           </Route>
           <Route path={`${path}/farm`}>
             <Farm />
+          </Route>
+          <Route path={`${path}/pool`}>
+            <Pool />
           </Route>
           <Route path={`${path}/trade`}>
             <TradeManager />

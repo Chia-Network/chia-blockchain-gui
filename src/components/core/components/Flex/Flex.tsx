@@ -1,5 +1,6 @@
 import React from 'react';
-import { Box, BoxProps, useTheme } from '@material-ui/core';
+import { Box, BoxProps } from '@material-ui/core';
+import { useTheme } from '@material-ui/core/styles';
 import styled from 'styled-components';
 
 type GAP_SIZE = number | string | 'small' | 'normal' | 'large';
@@ -24,14 +25,9 @@ function getGap(gap: GAP_SIZE, theme: any): string {
 const StyledGapBox = styled(({ rowGap, columnGap, ...rest }) => (
   <Box {...rest} />
 ))`
-  > * {
-    margin-bottom: ${({ rowGap }) => rowGap};
+  > *:not(:last-child) {
+    ${({ rowGap }) => rowGap && `margin-bottom: ${rowGap}`};
     ${({ columnGap }) => columnGap && `margin-right: ${columnGap}`};
-
-    &:last-child {
-      margin-bottom: 0;
-      ${({ columnGap }) => columnGap && `margin-right: 0`};
-    }
   }
 `;
 
@@ -39,14 +35,16 @@ type Props = BoxProps & {
   gap?: GAP_SIZE;
   rowGap?: GAP_SIZE;
   columnGap?: GAP_SIZE;
+  inline?: boolean;
 };
 
 export default function Flex(props: Props) {
   const {
-    gap = '0px',
+    gap = '0',
     flexDirection,
     rowGap = gap,
     columnGap = gap,
+    inline,
     ...rest
   } = props;
 
@@ -59,7 +57,7 @@ export default function Flex(props: Props) {
 
   return (
     <StyledGapBox
-      display="flex"
+      display={inline ? 'inline-flex' : 'flex'}
       flexDirection={flexDirection}
       rowGap={rowGapValue}
       columnGap={columnGapValue}
@@ -67,3 +65,7 @@ export default function Flex(props: Props) {
     />
   );
 }
+
+Flex.defaultProps = {
+  inline: false,
+};

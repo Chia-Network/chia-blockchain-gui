@@ -12,11 +12,21 @@ import {
 
 const StyledCard = styled(Card)`
   height: 100%;
+  overflow: visible;
+  margin-bottom: -0.5rem;
+`;
+
+const StyledTitle = styled.div`
+  margin-bottom: 0.5rem;
+`;
+
+const StyledValue = styled(Typography)`
+  font-size: 1.25rem;
 `;
 
 type Props = {
   title: ReactNode;
-  value: ReactNode;
+  value?: ReactNode;
   valueColor?: TypographyProps['color'];
   description?: ReactNode;
   loading?: boolean;
@@ -29,20 +39,20 @@ export default function FarmCard(props: Props) {
   return (
     <StyledCard>
       <CardContent>
-        <Flex gap={1} alignItems="center">
-          <Typography color="textSecondary" gutterBottom>
-            {title}
-          </Typography>
-          {tooltip && <TooltipIcon>{tooltip}</TooltipIcon>}
-        </Flex>
+        <StyledTitle>
+          <Flex gap={1} alignItems="center">
+            <Typography color="textSecondary">{title}</Typography>
+            {tooltip && <TooltipIcon>{tooltip}</TooltipIcon>}
+          </Flex>
+        </StyledTitle>
         {loading ? (
           <Box>
-            <CircularProgress color="primary" size={25} />
+            <CircularProgress color="secondary" size={25} />
           </Box>
         ) : (
-          <Typography variant="h5" color={valueColor}>
+          <StyledValue variant="h5" color={valueColor}>
             {value}
-          </Typography>
+          </StyledValue>
         )}
 
         {description && (
@@ -59,4 +69,5 @@ FarmCard.defaultProps = {
   valueColor: 'primary',
   description: undefined,
   loading: false,
+  value: undefined,
 };

@@ -3,12 +3,8 @@ import { Trans } from '@lingui/macro';
 import { useDispatch } from 'react-redux';
 import { ConfirmDialog, More } from '@chia/core';
 import { Box, ListItemIcon, MenuItem, Typography } from '@material-ui/core';
-import {
-  DeleteForever as DeleteForeverIcon,
-} from '@material-ui/icons';
-import {
-  deletePlot,
-} from '../../modules/harvesterMessages';
+import { DeleteForever as DeleteForeverIcon } from '@material-ui/icons';
+import { deletePlot } from '../../modules/harvesterMessages';
 import type Plot from '../../types/Plot';
 import useOpenDialog from '../../hooks/useOpenDialog';
 
@@ -18,29 +14,28 @@ type Props = {
 
 export default function PlotAction(props: Props) {
   const {
-    plot: {
-      filename,
-    }
+    plot: { filename },
   } = props;
 
   const dispatch = useDispatch();
   const openDialog = useOpenDialog();
 
   async function handleDeletePlot() {
-    const canDelete = await openDialog((
+    const deleteConfirmed = await openDialog(
       <ConfirmDialog
         title={<Trans>Delete Plot</Trans>}
         confirmTitle={<Trans>Delete</Trans>}
+        confirmColor="danger"
       >
         <Trans>
           Are you sure you want to delete the plot? The plot cannot be
           recovered.
         </Trans>
-      </ConfirmDialog>
-    ));
+      </ConfirmDialog>,
+    );
 
     // @ts-ignore
-    if (canDelete) {
+    if (deleteConfirmed) {
       dispatch(deletePlot(filename));
     }
   }
@@ -49,14 +44,17 @@ export default function PlotAction(props: Props) {
     <More>
       {({ onClose }) => (
         <Box>
-          <MenuItem onClick={() => { onClose(); handleDeletePlot(); }}>
+          <MenuItem
+            onClick={() => {
+              onClose();
+              handleDeletePlot();
+            }}
+          >
             <ListItemIcon>
               <DeleteForeverIcon fontSize="small" />
             </ListItemIcon>
             <Typography variant="inherit" noWrap>
-              <Trans>
-                Delete
-              </Trans>
+              <Trans>Delete</Trans>
             </Typography>
           </MenuItem>
         </Box>

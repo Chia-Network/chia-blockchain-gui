@@ -42,16 +42,16 @@ import {
   getLatestChallenges,
   getFarmerConnections,
   pingFarmer,
+  getHarvesters,
 } from '../modules/farmerMessages';
 import {
-  getPlots,
   getPlotDirectories,
   pingHarvester,
   refreshPlots,
 } from '../modules/harvesterMessages';
 import { plottingStopped } from '../modules/plotter_messages';
 
-import { plotQueueUpdate } from '../modules/plotQueue';
+import { plotQueueInit, plotQueueUpdate } from '../modules/plotQueue';
 import { startService, startServiceTest } from '../modules/daemon_messages';
 import { get_all_trades } from '../modules/trade_messages';
 import {
@@ -61,7 +61,7 @@ import {
   DISTRIBUTED_ID,
 } from '../util/wallet_types';
 
-const config = require('../config/config');
+import config from '../config/config';
 
 const StyledTypographyDD = styled(Typography)`
   word-break: break-all;
@@ -182,7 +182,7 @@ export function refreshAllState() {
     dispatch(getFullNodeConnections());
     dispatch(getLatestChallenges());
     dispatch(getFarmerConnections());
-    dispatch(getPlots());
+    dispatch(getHarvesters());
     dispatch(getPlotDirectories());
     dispatch(get_all_trades());
   };
@@ -192,6 +192,8 @@ export const handle_message = async (store, payload, errorProcessed) => {
   const { dispatch } = store;
   const { command } = payload;
   const stateBefore = store.getState();
+
+  // console.log('payload', payload);
 
   await store.dispatch(incomingMessage(payload));
   if (command === 'get_blockchain_state') {
@@ -215,10 +217,10 @@ export const handle_message = async (store, payload, errorProcessed) => {
       store.dispatch(getLatestChallenges());
       store.dispatch(getFarmerConnections());
     } else if (payload.origin === service_harvester) {
-      // get plots is working only when harcester is connected
+      // get plots is working only when harvester is connected
       const state = store.getState();
       if (!state.farming_state.harvester?.plots) {
-        store.dispatch(getPlots());
+        store.dispatch(getHarvesters());
       }
       if (!state.farming_state.harvester?.plot_directories) {
         store.dispatch(getPlotDirectories());
@@ -269,6 +271,22 @@ export const handle_message = async (store, payload, errorProcessed) => {
               </StyledTypographyDD>
             </Grid>
             <Grid item>
+              <Typography component="dt" variant="subtitle2">
+                <Trans>Farmer public key: </Trans>
+              </Typography>
+              <StyledTypographyDD component="dd" variant="body2">
+                {payload.data.private_key.farmer_pk}
+              </StyledTypographyDD>
+            </Grid>
+            <Grid item>
+              <Typography component="dt" variant="subtitle2">
+                <Trans>Pool public key: </Trans>
+              </Typography>
+              <StyledTypographyDD component="dd" variant="body2">
+                {payload.data.private_key.pool_pk}
+              </StyledTypographyDD>
+            </Grid>
+            <Grid item>
               {payload.data.private_key.seed ? (
                 <>
                   <Typography component="dt" variant="subtitle2">
@@ -291,7 +309,7 @@ export const handle_message = async (store, payload, errorProcessed) => {
   } else if (payload.command === 'delete_plot') {
     store.dispatch(refreshPlots());
   } else if (payload.command === 'refresh_plots') {
-    store.dispatch(getPlots());
+    store.dispatch(getHarvesters());
   } else if (payload.command === 'get_wallets') {
     if (payload.data.success) {
       const { wallets } = payload.data;
@@ -324,18 +342,18 @@ export const handle_message = async (store, payload, errorProcessed) => {
   } else if (payload.command === 'register_service') {
     const { service, queue } = payload.data;
     if (service === service_plotter) {
-      store.dispatch(plotQueueUpdate(queue));
+      store.dispatch(plotQueueInit(queue));
     }
   } else if (payload.command === 'state_changed') {
     const { origin } = payload;
     const { state } = payload.data;
 
     if (origin === service_plotter) {
-      const { queue } = payload.data;
-      await store.dispatch(plotQueueUpdate(queue));
+      const { queue, state } = payload.data;
+      store.dispatch(plotQueueUpdate(queue, state));
 
       // updated state of the plots
-      if (state === 'state') {
+      if (state === 'state_changed') {
         store.dispatch(refreshPlots());
       }
     } else if (state === 'coin_added' || state === 'coin_removed') {
@@ -397,7 +415,8 @@ export const handle_message = async (store, payload, errorProcessed) => {
         ping_farmer(store);
       } else if (service === service_harvester) {
         ping_harvester(store);
-      } else if (service === service_plotter) {}
+      } else if (service === service_plotter) {
+      }
     }
   } else if (payload.command === 'stop_service') {
     if (payload.data.success) {
@@ -416,7 +435,8 @@ export const handle_message = async (store, payload, errorProcessed) => {
 
     // DEPRECATED we will throw Error instead
     if (payload.data.error && !errorProcessed) {
-      store.dispatch(openErrorDialog(payload.data.error));
+      const error = payload.data.error;
+      store.dispatch(openErrorDialog(error));
     }
   }
 };

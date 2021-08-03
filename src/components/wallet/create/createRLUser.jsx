@@ -1,13 +1,13 @@
 import React from 'react';
 import { Trans } from '@lingui/macro';
 import {
-  makeStyles,
   Typography,
   Button,
   Box,
   Backdrop,
   CircularProgress,
 } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 
 import { useDispatch, useSelector } from 'react-redux';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
@@ -75,9 +75,7 @@ export const CreateRLUserWallet = () => {
           </Box>
           <Box flexGrow={1} className={classes.title}>
             <Typography component="h6" variant="h6">
-              <Trans>
-                Create Rate Limited User Wallet
-              </Trans>
+              <Trans>Create Rate Limited User Wallet</Trans>
             </Typography>
           </Box>
         </Box>
@@ -86,9 +84,7 @@ export const CreateRLUserWallet = () => {
         <Box display="flex">
           <Box flexGrow={1} className={custom.inputTitleLeft}>
             <Typography variant="subtitle1">
-              <Trans>
-                Initialize a Rate Limited User Wallet:
-              </Trans>
+              <Trans>Initialize a Rate Limited User Wallet:</Trans>
             </Typography>
           </Box>
         </Box>

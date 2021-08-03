@@ -9,7 +9,7 @@ import {
   Keys as KeysIcon,
   Home as HomeIcon,
   Plot as PlotIcon,
-  Trade as TradeIcon,
+  Pool as PoolIcon,
 } from '@chia/icons';
 import { Flex, SideBarItem } from '@chia/core';
 import { logOut } from '../../modules/message';
@@ -55,9 +55,9 @@ export default function DashboardSideBar() {
           title={<Trans>Farm</Trans>}
         />
         <SideBarItem
-          to="/dashboard/trade"
-          icon={<TradeIcon fontSize="large" />}
-          title={<Trans>Trade</Trans>}
+          to="/dashboard/pool"
+          icon={<PoolIcon fontSize="large" />}
+          title={<Trans>Pool</Trans>}
         />
         <SideBarItem
           to="/"
