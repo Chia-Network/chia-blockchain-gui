@@ -19,9 +19,12 @@ export default function AppPassLogin() {
   const dispatch = useDispatch();
   let passphrase_status = useSelector((state) => state.daemon_state.passphrase_status);
   let passphrase_lock_status = useSelector((state) => state.daemon_state.passphrase_lock_status);
-  console.log("APP PASS LOGIN")
-  console.log(passphrase_status)
-  console.log(passphrase_lock_status)
+  let unlock_in_progress = useSelector((state) => state.daemon_state.keyring_unlock_in_progress);
+
+  console.log("APP PASS LOGIN");
+  console.log(passphrase_status);
+  console.log(passphrase_lock_status);
+  console.log("unlock_in_progress: " + unlock_in_progress);
   if (passphrase_status) {
     const open = true
 
@@ -45,6 +48,12 @@ export default function AppPassLogin() {
       dispatch(unlockKeyring(passphrase_input.value));
     }
 
+    function handleKeyDown(e) {
+      if (e.keyCode === 13) {
+        handleSubmit();
+      }
+    }
+
     return (
       <div>
         <Dialog
@@ -56,8 +65,10 @@ export default function AppPassLogin() {
           <DialogTitle id="form-dialog-title">Enter your passphrase:</DialogTitle>
           <DialogContent>
             <TextField
+              onKeyDown={handleKeyDown}
               autoFocus
               color="secondary"
+              disabled={unlock_in_progress}
               margin="dense"
               id="passphrase_input"
               label={<Trans>Passphrase</Trans>}
@@ -72,6 +83,7 @@ export default function AppPassLogin() {
             <Button
               onClick={handleSubmit}
               color="primary"
+              disabled={unlock_in_progress}
               variant="contained"
               style={{ marginBottom: '8px', marginRight: '8px' }}
             >

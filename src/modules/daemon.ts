@@ -25,6 +25,7 @@ type DeamonState = {
   harvester_connected: boolean;
   plotter_running: boolean;
   exiting: boolean;
+  keyring_unlock_in_progress: boolean;
 };
 
 const initialState: DeamonState = {
@@ -44,6 +45,7 @@ const initialState: DeamonState = {
   harvester_connected: false,
   plotter_running: false,
   exiting: false,
+  keyring_unlock_in_progress: false,
 };
 
 export default function daemonReducer(
@@ -152,6 +154,8 @@ export default function daemonReducer(
           };
         }
       } else if (command === 'unlock_keyring') {
+        // Clear the keyring_unlock_in_progress flag
+        state = { ...state, keyring_unlock_in_progress: false };
         if (data.success) {
           console.log("Keyring was successfully unlocked");
           return {
@@ -175,6 +179,13 @@ export default function daemonReducer(
         action.message.destination === 'daemon'
       ) {
         return { ...state, exiting: true };
+      }
+      else if (
+        action.message.command === 'unlock_keyring' &&
+        action.message.destination === 'daemon'
+      ) {
+        // Set a flag indicating that we're attempting to unlock the keyring
+        return { ...state, keyring_unlock_in_progress: true };
       }
       return state;
     case 'WS_DISCONNECTED':
