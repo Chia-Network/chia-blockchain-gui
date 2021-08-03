@@ -9,10 +9,6 @@ import {
 } from '../util/service_names';
 
 type DeamonState = {
-  passphrase_status: boolean;
-  passphrase_support_enabled: boolean;
-  passphrase_lock_status: boolean;
-  needs_migration: boolean;
   daemon_running: boolean;
   daemon_connected: boolean;
   wallet_running: boolean;
@@ -25,14 +21,14 @@ type DeamonState = {
   harvester_connected: boolean;
   plotter_running: boolean;
   exiting: boolean;
+  keyring_locked: boolean;
   keyring_unlock_in_progress: boolean;
+  keyring_passphrase_support_enabled: boolean;
+  keyring_user_passphrase_set: boolean;
+  keyring_needs_migration: boolean;
 };
 
 const initialState: DeamonState = {
-  passphrase_status: false,
-  passphrase_support_enabled: false,
-  passphrase_lock_status: false,
-  needs_migration: false,
   daemon_running: false,
   daemon_connected: false,
   wallet_running: false,
@@ -45,7 +41,11 @@ const initialState: DeamonState = {
   harvester_connected: false,
   plotter_running: false,
   exiting: false,
+  keyring_locked: false,
   keyring_unlock_in_progress: false,
+  keyring_passphrase_support_enabled: false,
+  keyring_user_passphrase_set: false,
+  keyring_needs_migration: false,
 };
 
 export default function daemonReducer(
@@ -131,7 +131,7 @@ export default function daemonReducer(
           const { is_keyring_locked } = data;
           return {
             ...state,
-            passphrase_lock_status: is_keyring_locked,
+            keyring_locked: is_keyring_locked,
           };
         }
       } else if (command === 'keyring_status') {
@@ -147,10 +147,10 @@ export default function daemonReducer(
           const { needs_migration } = data;
           return {
             ...state,
-            passphrase_lock_status: is_keyring_locked,
-            passphrase_support_enabled: passphrase_support_enabled,
-            passphrase_status: user_passphrase_is_set,
-            needs_migration: needs_migration,
+            keyring_locked: is_keyring_locked,
+            keyring_passphrase_support_enabled: passphrase_support_enabled,
+            keyring_user_passphrase_set: user_passphrase_is_set,
+            keyring_needs_migration: needs_migration,
           };
         }
       } else if (command === 'unlock_keyring') {
@@ -160,7 +160,7 @@ export default function daemonReducer(
           console.log("Keyring was successfully unlocked");
           return {
             ...state,
-            passphrase_lock_status: false,
+            keyring_locked: false,
           };
         }
         else {

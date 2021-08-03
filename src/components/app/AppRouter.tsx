@@ -20,8 +20,8 @@ export default function AppRouter() {
     (state: RootState) => state.daemon_state.wallet_connected,
   );
 
-  let passwordLockStatus = useSelector(
-    (state) => state.daemon_state.passphrase_lock_status,
+  let keyringLocked = useSelector(
+    (state: RootState) => state.daemon_state.keyring_locked,
   );
 
   const exiting = useSelector((state: RootState) => state.daemon_state.exiting);
@@ -33,7 +33,7 @@ export default function AppRouter() {
       </LayoutLoading>
     );
   }
-  if (passwordLockStatus) {
+  if (keyringLocked) {
     return (
       <LayoutLoading>
         <AppPassLogin />
