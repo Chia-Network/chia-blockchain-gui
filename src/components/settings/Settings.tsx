@@ -28,6 +28,7 @@ import {
 } from '@material-ui/icons';
 import { openDialog } from '../../modules/dialog';
 import { setKeyringPassphrase, changeKeyringPassphrase, removeKeyringPassphrase } from '../../modules/daemon_messages';
+import { RootState } from '../../modules/rootReducer';
 
 const useStyles = makeStyles((theme) => ({
   passToggleBox: {
@@ -57,8 +58,8 @@ const SecurityCard = () => {
   let oldpass1_input: HTMLInputElement;
   let oldpass2_input: HTMLInputElement;
   let newpass_input: HTMLInputElement;
-  let passphraseStatus = useSelector(
-    (state) => state.daemon_state.passphrase_status,
+  let userPassphraseIsSet = useSelector(
+    (state: RootState) => state.daemon_state.keyring_user_passphrase_set,
   );
 
   const [toggleOpen, setToggleOpen] = React.useState(false);
@@ -82,7 +83,7 @@ const SecurityCard = () => {
   };
 
   function DisplayLockStatus() {
-    if (passphraseStatus) {
+    if (userPassphraseIsSet) {
       return (
         <Typography variant="subtitle1" style={{ color: '#3AAC59', fontWeight: "bold" }}> ENABLED </Typography>
       )
@@ -95,7 +96,7 @@ const SecurityCard = () => {
   }
 
   function DisplayToggleStatus() {
-    if (passphraseStatus) {
+    if (userPassphraseIsSet) {
       return (
         <Typography> REMOVE PASSPHRASE </Typography>
       )
@@ -108,7 +109,7 @@ const SecurityCard = () => {
   }
 
   function DisplayDialogTextStatus() {
-    if (passphraseStatus) {
+    if (userPassphraseIsSet) {
       return (
         <DialogTitle id="form-dialog-title">Remove Passphrase</DialogTitle>
       )
@@ -120,7 +121,7 @@ const SecurityCard = () => {
   }
 
   function DisplayDialogContentText() {
-    if (passphraseStatus) {
+    if (userPassphraseIsSet) {
       return (
         <DialogContentText>Enter your passphrase:</DialogContentText>
       )
@@ -132,7 +133,7 @@ const SecurityCard = () => {
   }
 
   function DisplayChangePassphrase() {
-    if (passphraseStatus) {
+    if (userPassphraseIsSet) {
       return (
         <Box display="flex" className={classes.passChangeBox}>
           <Button
@@ -216,7 +217,7 @@ const SecurityCard = () => {
   }
 
   function handleToggleSubmit() {
-    if (passphraseStatus) {
+    if (userPassphraseIsSet) {
       dispatch(removeKeyringPassphrase(toggle_passphrase_input.value))
     }
     else {
@@ -253,13 +254,13 @@ const SecurityCard = () => {
       <Grid spacing={4} container>
         <Grid item xs={12}>
           <Box display="flex" className={classes.passToggleBox}>
-            {passphraseStatus ? (
+            {userPassphraseIsSet ? (
               <LockIcon style={{ color: '#3AAC59',  marginRight: 6 }} />
             ) : (
               <NoEncryptionIcon style={{ color: 'red',  marginRight: 6 }} />
             )}
             <Typography variant="subtitle1" style={{ marginRight: 5 }}>Passphrase protection is</Typography>
-            {passphraseStatus ? (
+            {userPassphraseIsSet ? (
               <Typography variant="subtitle1" style={{ marginRight: 5 }}>enabled</Typography>
             ) : (
               <Typography variant="subtitle1" style={{ marginRight: 5 }}>disabled</Typography>
@@ -270,7 +271,7 @@ const SecurityCard = () => {
           </Box>
           <DisplayChangePassphrase />
           <Box display="flex" className={classes.passChangeBox}>
-            {passphraseStatus ? (
+            {userPassphraseIsSet ? (
               <Button
                 onClick={handleToggleOpen}
                 className={classes.togglePassButton}
