@@ -5,7 +5,6 @@ import {
   registerService,
   startService,
   startServiceTest,
-  unlockKeyring,
 } from '../modules/daemon_messages';
 import { handle_message } from './middleware_api';
 import {

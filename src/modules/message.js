@@ -18,7 +18,7 @@ import {
   presentBackupInfo,
   selectFilePath,
 } from './backup';
-import { daemonMessage, exitDaemon, keyringStatus } from './daemon_messages';
+import { daemonMessage, exitDaemon } from './daemon_messages';
 import { wsDisconnect } from './websocket';
 import config from '../config/config';
 
@@ -966,4 +966,24 @@ export const did_get_recovery_info = (wallet_id) => {
   action.message.command = 'did_get_information_needed_for_recovery';
   action.message.data = { wallet_id: wallet_id };
   return action;
+};
+
+export const unlock_keyring = (key) => {
+  const action = daemonMessage();
+  action.message.command = 'unlock_keyring';
+  action.message.data = { key: key };
+  return action;
+}
+
+export const unlock_keyring_action = (key, onFailure) => (dispatch) => {
+  return async_api(dispatch, unlock_keyring(key), false, true).then(
+    (response) => {
+      if (response.data.success) {
+        dispatch(refreshAllState());
+      } else if (onFailure) {
+        const { error } = response.data;
+        onFailure(error);
+      }
+    }
+  );
 };
