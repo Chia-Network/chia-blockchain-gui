@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { KeyboardEvent } from 'react';
 // import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 // import { RootState } from '../../modules/rootReducer';
@@ -13,14 +13,15 @@ import {
 } from '@material-ui/core';
 import { Trans } from '@lingui/macro';
 import { AlertDialog } from '@chia/core';
-import { openDialog } from '../../modules/dialog';
-import { unlockKeyring } from '../../modules/daemon_messages';
+import { openDialog, openErrorDialog } from '../../modules/dialog';
+import { unlock_keyring_action } from '../../modules/message';
 import { RootState } from 'modules/rootReducer';
 
 export default function AppPassLogin() {
   const dispatch = useDispatch();
   let user_passphrase_is_set = useSelector((state: RootState) => state.daemon_state.keyring_user_passphrase_set);
   let keyring_locked = useSelector((state: RootState) => state.daemon_state.keyring_locked);
+  let unlock_bad_passphrase = useSelector((state: RootState) => state.daemon_state.keyring_unlock_bad_passphrase);
   let unlock_in_progress = useSelector((state: RootState) => state.daemon_state.keyring_unlock_in_progress);
   let passphrase_input: any = null;
 
@@ -45,12 +46,25 @@ export default function AppPassLogin() {
       );
       return;
     }
-    dispatch(unlockKeyring(passphrase_input.value));
+    dispatch(unlock_keyring_action(passphrase_input.value));
   }
 
-  function handleKeyDown(e) {
+  function handleKeyDown(e: KeyboardEvent) {
     if (e.key === 'Enter') {
       handleSubmit();
+    }
+  }
+
+  function stashInputRef(input: any) {
+    passphrase_input = input;
+    updatePassphraseInputIfNecessary();
+  }
+
+  function updatePassphraseInputIfNecessary() {
+    if (passphrase_input && unlock_bad_passphrase) {
+      // When a bad passphrase is provided, focus and select the text as a user convenience
+      passphrase_input.focus();
+      passphrase_input.select();
     }
   }
 
@@ -73,9 +87,7 @@ export default function AppPassLogin() {
               margin="dense"
               id="passphrase_input"
               label={<Trans>Passphrase</Trans>}
-              inputRef={(input) => {
-                passphrase_input = input;
-              }}
+              inputRef={stashInputRef}
               type="password"
               fullWidth
             />
