@@ -34,12 +34,9 @@ export const customStyles = makeStyles((theme) => ({
     width: '75%',
     height: 56,
   },
-  inputDIDs: {
-    paddingTop: theme.spacing(3),
-    marginLeft: theme.spacing(0),
-  },
   inputDID: {
-    marginLeft: theme.spacing(0),
+    marginTop: theme.spacing(1),
+    marginLeft: theme.spacing(-5),
     marginBottom: theme.spacing(2),
   },
   inputRight: {
@@ -48,7 +45,7 @@ export const customStyles = makeStyles((theme) => ({
     height: 56,
   },
   sendButton: {
-    marginLeft: theme.spacing(6),
+    marginLeft: theme.spacing(5),
     marginRight: theme.spacing(2),
     height: 56,
     width: 150,
@@ -86,7 +83,7 @@ export const customStyles = makeStyles((theme) => ({
     width: '50%',
   },
   sideButton: {
-    marginTop: theme.spacing(0),
+    marginTop: theme.spacing(1),
     marginBottom: theme.spacing(2),
     height: 56,
   },
@@ -108,6 +105,9 @@ export const customStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(3),
     marginBottom: theme.spacing(1),
   },
+  numberOfIDs: {
+    paddingRight: theme.spacing(2),
+  }
 }));
 
 export default function CreateDIDWallet() {
@@ -260,6 +260,7 @@ export default function CreateDIDWallet() {
           </Box>
           <Button
             type="submit"
+            className={custom.sendButton}
             variant="contained"
             color="primary"
             disableElevation
@@ -270,7 +271,7 @@ export default function CreateDIDWallet() {
         <Box display="flex">
           <Box flexGrow={6} className={custom.addIDsText}>
             <Typography variant="subtitle1">
-              Add Backup IDs:
+              Add Backup IDs (optional):
             </Typography>
           </Box>
         </Box>
