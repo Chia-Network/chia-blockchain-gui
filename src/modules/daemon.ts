@@ -22,6 +22,7 @@ type DeamonState = {
   plotter_running: boolean;
   exiting: boolean;
   keyring_locked: boolean;
+  keyring_unlock_bad_passphrase: boolean;
   keyring_unlock_in_progress: boolean;
   keyring_passphrase_support_enabled: boolean;
   keyring_user_passphrase_set: boolean;
@@ -42,6 +43,7 @@ const initialState: DeamonState = {
   plotter_running: false,
   exiting: false,
   keyring_locked: false,
+  keyring_unlock_bad_passphrase: false,
   keyring_unlock_in_progress: false,
   keyring_passphrase_support_enabled: false,
   keyring_user_passphrase_set: false,
@@ -161,11 +163,16 @@ export default function daemonReducer(
           return {
             ...state,
             keyring_locked: false,
+            keyring_unlock_bad_passphrase: false,
           };
         }
         else {
           if (data.error === 'bad passphrase') {
             console.log("Keyring passphrase is invalid");
+            return {
+              ...state,
+              keyring_unlock_bad_passphrase: true,
+            };
           }
           else {
             console.log("Failed to unlock keyring: " + data.error);
