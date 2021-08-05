@@ -145,11 +145,17 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(2),
     marginBottom: theme.spacing(2),
     width: 150,
-    height: 50,
+    height: 56,
+  },
+  submitButton: {
+    marginLeft: theme.spacing(3),
+    marginRight: theme.spacing(2),
+    height: 56,
+    width: 150,
   },
   sendButtonSide: {
     marginLeft: theme.spacing(6),
-    marginRight: theme.spacing(2),
+    marginRight: theme.spacing(3),
     height: 56,
     width: 150,
   },
@@ -209,12 +215,9 @@ const useStyles = makeStyles((theme) => ({
   updateDIDsTitle: {
     marginTop: theme.spacing(3),
   },
-  inputDIDs: {
-    paddingTop: theme.spacing(0),
-    marginLeft: theme.spacing(0),
-  },
   inputDID: {
-    marginLeft: theme.spacing(0),
+    marginTop: theme.spacing(1),
+    marginLeft: theme.spacing(-5),
     marginBottom: theme.spacing(2),
   },
   walletContainer: {
@@ -251,12 +254,6 @@ const useStyles = makeStyles((theme) => ({
   leftField: {
     paddingRight: 20,
   },
-  submitButton: {
-    marginTop: theme.spacing(2),
-    marginBottom: theme.spacing(2),
-    width: 150,
-    height: 50,
-  },
   ul: {
     listStyle: 'none',
   },
@@ -267,7 +264,7 @@ const useStyles = makeStyles((theme) => ({
     width: 50,
   },
   sideButton: {
-    marginTop: theme.spacing(0),
+    marginTop: theme.spacing(1),
     marginBottom: theme.spacing(2),
     height: 56,
   },
@@ -361,8 +358,7 @@ const RecoveryCard = (props) => {
               </Box>
               <Box
                 style={{
-                  paddingLeft: 20,
-                  width: '80%',
+                  width: '85%',
                   overflowWrap: 'break-word',
                 }}
               >
@@ -375,8 +371,7 @@ const RecoveryCard = (props) => {
               </Box>
               <Box
                 style={{
-                  paddingLeft: 20,
-                  width: '80%',
+                  width: '85%',
                   overflowWrap: 'break-word',
                 }}
               >
@@ -389,8 +384,7 @@ const RecoveryCard = (props) => {
               </Box>
               <Box
                 style={{
-                  paddingLeft: 20,
-                  width: '80%',
+                  width: '85%',
                   overflowWrap: 'break-word',
                 }}
               >
@@ -403,8 +397,7 @@ const RecoveryCard = (props) => {
               </Box>
               <Box
                 style={{
-                  paddingLeft: 20,
-                  width: '80%',
+                  width: '85%',
                   overflowWrap: 'break-word',
                 }}
               >
@@ -522,8 +515,7 @@ const MyDIDCard = (props) => {
               </Box>
               <Box
                 style={{
-                  paddingLeft: 20,
-                  width: '80%',
+                  width: '85%',
                   overflowWrap: 'break-word',
                 }}
               >
@@ -711,8 +703,7 @@ const ViewDIDsSubsection = (props) => {
                 id="panel1a-header"
               >
                 <Typography className={classes.heading}>
-                  View backup DID list ({dids_num_req}/{dids_length} required
-                  for recovery)
+                  View your list of Backup IDs ({dids_num_req} Backup ID{dids_num_req === 1 ? " is " : "s are "} required for recovery)
                 </Typography>
               </AccordionSummary>
               <AccordionDetails>
@@ -827,7 +818,7 @@ const ManageDIDsCard = (props) => {
                   <Typography variant="subtitle1">
                     Update number of Backup IDs needed for recovery:
                   </Typography>
-                  <Tooltip title="This number must be an integer greater than or equal to 0. It cannot exceed the number of Backup IDs added. You will be able to change this number as well as your list of Backup IDs.">
+                  <Tooltip title="This number must be greater than or equal to 0, and it may not exceed the number of Backup IDs you have added. You will be able to change this number as well as your list of Backup IDs.">
                     <HelpIcon style={{ color: '#c8c8c8', fontSize: 12 }} />
                   </Tooltip>
                 </Flex>
@@ -846,6 +837,7 @@ const ManageDIDsCard = (props) => {
                 </Box>
                 <Button
                   type="submit"
+                  className={classes.submitButton}
                   variant="contained"
                   color="primary"
                   disableElevation
@@ -989,7 +981,7 @@ const CreateAttest = (props) => {
         <Grid item xs={12}>
           <div className={classes.cardTitle}>
             <Typography component="h6" variant="h6">
-              Create An Attest
+              Create An Attestation Packet
             </Typography>
           </div>
         </Grid>
@@ -1067,7 +1059,7 @@ const CreateAttest = (props) => {
                   variant="contained"
                   color="primary"
                 >
-                  Create Attest
+                  Create
                 </Button>
               </Box>
             </Box>
