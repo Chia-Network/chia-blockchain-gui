@@ -128,11 +128,14 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(2),
     marginBottom: theme.spacing(2),
     width: 150,
-    height: 50,
+    height: 56,
   },
   deleteButton: {
     marginLeft: theme.spacing(2),
     width: 75,
+    height: 30,
+  },
+  fileWaitText: {
     height: 30,
   },
 }));
@@ -150,7 +153,7 @@ export const RecoverDIDWallet = () => {
       dispatch(
         openDialog(
           <AlertDialog>
-            <Trans>Only one backup recovery file is allowed. To add a new backup file, please delete any previously uploaded files and try again.</Trans>
+            <Trans>Only one backup file is allowed. To add a new backup file, please delete any previously uploaded files and try again.</Trans>
           </AlertDialog>
         ),
       );
@@ -196,14 +199,22 @@ export const RecoverDIDWallet = () => {
       </Dropzone>
       <div className={classes.cardSubSection}>
         <Box display="flex">
-          <Box flexGrow={1} style={{ marginTop: 30 }}>
+          <Box flexGrow={1} style={{ marginBottom: 10, marginTop: 30 }}>
             <Typography variant="subtitle1">
               Recovery Backup File:
             </Typography>
           </Box>
         </Box>
         <Box display="flex">
-          <Box flexGrow={1}>
+          <Box flexGrow={1} style={{ marginBottom: 10 }}>
+            {(file.length === 0) ? (
+              <Typography variant="subtitle1" className={classes.fileWaitText}>
+                Waiting for backup file to be added . . .
+              </Typography>
+            ) : (
+              <div>
+              </div>
+            )}
             {file.map(object => {
               return (
                 <Typography key={object} variant="subtitle1">

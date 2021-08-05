@@ -287,6 +287,9 @@ const useStyles = makeStyles((theme) => ({
     width: 75,
     height: 30,
   },
+  packetWaitText: {
+    height: 30,
+  },
 }));
 
 const RecoveryCard = (props) => {
@@ -352,6 +355,16 @@ const RecoveryCard = (props) => {
         </Grid>
         <Grid item xs={12}>
           <div className={classes.cardSubSection}>
+            <Box display="flex">
+              <Box flexGrow={1} style={{ marginBottom: 20 }}>
+                <Flex alignItems="stretch">
+                  <Typography variant="subtitle1">Recovery Information:</Typography>
+                  <Tooltip title="Send your DID's coin name, pubkey, and puzzlehash to your Backup ID(s) so that they may create an attestation packet.">
+                    <HelpIcon style={{ color: '#c8c8c8', fontSize: 12 }} />
+                  </Tooltip>
+                </Flex>
+              </Box>
+            </Box>
             <Box display="flex">
               <Box flexGrow={1} style={{ marginBottom: 20 }}>
                 <Typography variant="subtitle1">My DID:</Typography>
@@ -439,6 +452,14 @@ const RecoveryCard = (props) => {
             </Box>
             <Box>
               <Box flexGrow={1} style={{ marginBottom: 10 }}>
+                {(files.length === 0) ? (
+                  <Typography variant="subtitle1" className={classes.packetWaitText}>
+                    Waiting for attestation(s) packets to be added . . .
+                  </Typography>
+                ) : (
+                  <div>
+                  </div>
+                )}
                 {files.map(object => {
                   return (
                     <Typography key={object} variant="subtitle1">
