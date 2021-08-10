@@ -54,12 +54,12 @@ const useStyles = makeStyles((theme) => ({
 const SecurityCard = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  let toggle_passphrase_input: null;
-  let oldpass1_input: HTMLInputElement;
-  let oldpass2_input: HTMLInputElement;
+  let toggle_passphrase_input: HTMLInputElement | null;
+  let oldpass_input: HTMLInputElement;
   let newpass_input: HTMLInputElement;
+  let confirmpass_input: HTMLInputElement;
   let userPassphraseIsSet = useSelector(
-    (state: RootState) => state.daemon_state.keyring_user_passphrase_set,
+    (state: RootState) => state.keyring_state.user_passphrase_set,
   );
 
   const [toggleOpen, setToggleOpen] = React.useState(false);
@@ -158,26 +158,13 @@ const SecurityCard = () => {
                 color="secondary"
                 id="passphrase_input"
                 inputRef={(input) => {
-                  oldpass1_input = input;
+                  oldpass_input = input;
                 }}
                 label={<Trans>Old Passphrase</Trans>}
                 type="password"
                 fullWidth
               />
               <TextField
-                autoFocus
-                color="secondary"
-                margin="dense"
-                id="passphrase_input"
-                inputRef={(input) => {
-                  oldpass2_input = input;
-                }}
-                label={<Trans>Re-enter Old Passphrase</Trans>}
-                type="password"
-                fullWidth
-              />
-              <TextField
-                autoFocus
                 color="secondary"
                 margin="dense"
                 id="passphrase_input"
@@ -185,6 +172,17 @@ const SecurityCard = () => {
                   newpass_input = input;
                 }}
                 label={<Trans>New Passphrase</Trans>}
+                type="password"
+                fullWidth
+              />
+              <TextField
+                color="secondary"
+                margin="dense"
+                id="passphrase_input"
+                inputRef={(input) => {
+                  confirmpass_input = input;
+                }}
+                label={<Trans>Confirm New Passphrase</Trans>}
                 type="password"
                 fullWidth
               />
@@ -217,20 +215,26 @@ const SecurityCard = () => {
   }
 
   function handleToggleSubmit() {
+    if (!toggle_passphrase_input) {
+      return;
+    }
+    
+    let passphrase = toggle_passphrase_input.value;
+
     if (userPassphraseIsSet) {
-      dispatch(removeKeyringPassphrase(toggle_passphrase_input.value))
+      dispatch(removeKeyringPassphrase(passphrase))
     }
     else {
-      dispatch(setKeyringPassphrase(toggle_passphrase_input.value))
+      dispatch(setKeyringPassphrase(passphrase))
     }
   }
 
   function handleChangeSubmit() {
-    if (oldpass1_input.value !== oldpass2_input.value) {
+    if (newpass_input.value !== confirmpass_input.value) {
       dispatch(
         openDialog(
           <AlertDialog>
-            <Trans>Your inputs for old passphrase do not match</Trans>
+            <Trans>The provided new passphrase and confirmation do not match</Trans>
           </AlertDialog>,
         ),
       );
@@ -246,7 +250,7 @@ const SecurityCard = () => {
       );
       return;
     }
-    dispatch(changeKeyringPassphrase(oldpass2_input.value, newpass_input.value));
+    dispatch(changeKeyringPassphrase(oldpass_input.value, newpass_input.value));
   }
 
   return (

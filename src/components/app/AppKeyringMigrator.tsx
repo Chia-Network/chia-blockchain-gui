@@ -24,14 +24,18 @@ import { RootState } from 'modules/rootReducer';
 
 export default function AppKeyringMigrator() {
   const dispatch = useDispatch();
-  let passphraseInput: any = null;
-  let confirmationInput: any = null;
-  let cleanupKeyringCheckbox: any = null;
+  let passphraseInput: HTMLInputElement | null = null;
+  let confirmationInput: HTMLInputElement | null = null;
+  let cleanupKeyringCheckbox: HTMLInputElement | null = null;
   let minPassphraseLen = useSelector((state: RootState) => state.keyring_state.min_passphrase_length);
 
   function handleMigrate() {
+    if (!passphraseInput || !confirmationInput) {
+      return;
+    }
+
     let passphrase = passphraseInput.value;
-    let confirmation = confirmationInput.value;
+    let confirmation = confirmationInput?.value;
 
     if (passphrase != confirmation) {
       dispatch(
