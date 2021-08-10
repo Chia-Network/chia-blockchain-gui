@@ -1,16 +1,15 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import styled from 'styled-components';
 import { Trans } from '@lingui/macro';
 import {
   Box,
   Button,
   Checkbox,
-  CircularProgress,
   Dialog,
   DialogActions,
   DialogContent,
   DialogTitle,
-  Fade,
   FormControlLabel,
   TextField,
   Tooltip,
@@ -19,72 +18,41 @@ import {
 import {
   Help as HelpIcon,
 } from '@material-ui/icons';
-import { AlertDialog, ConfirmDialog, Flex, Logo } from '@chia/core';
+import { AlertDialog, TooltipIcon } from '@chia/core';
 import { openDialog } from '../../modules/dialog';
-import { RootState } from '../../modules/rootReducer';
-import { migrate_keyring_action, skipKeyringMigration } from '../../modules/message';
-import { validateChangePassphraseParams } from './AppPassPrompt';
-import { ReactElement } from 'react';
+import { RootState } from 'modules/rootReducer';
 
 export default function AppKeyringMigrator() {
   const dispatch = useDispatch();
-  const keyring_state = useSelector((state: RootState) => state.keyring_state);
-  const allowEmptyPassphrase = keyring_state.allow_empty_passphrase;
-  const migrationInProgress = keyring_state.migration_in_progress;
-  let passphraseInput: HTMLInputElement | null = null;
-  let confirmationInput: HTMLInputElement | null = null;
-  let cleanupKeyringCheckbox: HTMLInputElement | null = null;
+  let passphraseInput: any = null;
+  let confirmationInput: any = null;
+  let cleanupKeyringCheckbox: any = null;
+  let minPassphraseLen = useSelector((state: RootState) => state.keyring_state.min_passphrase_length);
 
-  async function validateDialog(passphrase: string, confirmation: string): Promise<boolean> {
-    return await validateChangePassphraseParams(dispatch, keyring_state, null, passphrase, confirmation);
-  }
+  function handleMigrate() {
+    let passphrase = passphraseInput.value;
+    let confirmation = confirmationInput.value;
 
-  async function handleSkipMigration() {
-    const skipMigration = await dispatch(
-      openDialog(
-        <ConfirmDialog
-          title={<Trans>Skip Keyring Migration</Trans>}
-          confirmTitle={<Trans>Skip</Trans>}
-          confirmColor="danger"
-          // @ts-ignore
-          maxWidth="xs"
-        >
-          <Trans>
-            Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Are you sure you want to skip migrating your keys?
-          </Trans>
-        </ConfirmDialog>
-      )
-    );
-
-      // @ts-ignore
-    if (skipMigration) {
-      dispatch(skipKeyringMigration(true));
-    }
-  }
-
-  async function handleMigrate() {
-    const passphrase: string = passphraseInput?.value ?? "";
-    const confirmation: string = confirmationInput?.value ?? "";
-    const cleanup = cleanupKeyringCheckbox?.checked ?? false;
-    const isValid = await validateDialog(passphrase, confirmation);
-
-    if (isValid) {
+    if (passphrase != confirmation) {
       dispatch(
-        migrate_keyring_action(
-          passphrase,
-          cleanup,
-          (error: string) => {
-            dispatch(
-              openDialog(
-                <AlertDialog>
-                  <Trans>
-                    Keyring migration failed: {error}
-                  </Trans>
-                </AlertDialog>
-              )
-            )
-          }
-        )
+        openDialog(
+          <AlertDialog>
+            <Trans>
+              The provided passphrase and confirmation do not match
+            </Trans>
+          </AlertDialog>
+        ),
+      );
+    }
+    else if (passphrase.length < minPassphraseLen) {
+      dispatch(
+        openDialog(
+          <AlertDialog>
+            <Trans>
+              Passphrases must be at least {minPassphraseLen} characters in length
+            </Trans>
+          </AlertDialog>
+        ),
       );
     }
   }
@@ -97,21 +65,6 @@ export default function AppKeyringMigrator() {
     confirmationInput = input;
   }
 
-  let dialogMessage: ReactElement | null = null;
-  if (allowEmptyPassphrase) {
-    dialogMessage = (
-      <Trans>
-        Your keys need to be migrated to a new keyring that is optionally secured by a master passphrase.
-      </Trans>
-    );
-  } else {
-    dialogMessage = (
-      <Trans>
-        Your keys need to be migrated to a new keyring that is secured by a master passphrase.
-      </Trans>
-    );
-  }
-
   return (
     <div>
       <Dialog 
@@ -122,7 +75,11 @@ export default function AppKeyringMigrator() {
         >
         <DialogTitle id="keyring-migration-dialog-title">Migration required</DialogTitle>
         <DialogContent>
-          <Typography variant="body1">{dialogMessage}</Typography>
+          <Typography variant="body1">
+            <Trans>
+              Your keys need to be migrated to a new keyring that is optionally secured by a master passphrase.
+            </Trans>
+          </Typography>
           <Typography variant="body1" style={{ marginTop: '12px' }}>
             <Trans>
               Enter a strong passphrase and click Migrate to secure your keys
@@ -131,7 +88,6 @@ export default function AppKeyringMigrator() {
           <TextField
             autoFocus
             color="secondary"
-            disabled={migrationInProgress}
             margin="dense"
             id="passphrase_input"
             label={<Trans>Passphrase</Trans>}
@@ -142,7 +98,6 @@ export default function AppKeyringMigrator() {
             />
           <TextField
             color="secondary"
-            disabled={migrationInProgress}
             margin="dense"
             id="confirmation_input"
             label={<Trans>Confirm Passphrase</Trans>}
@@ -151,16 +106,15 @@ export default function AppKeyringMigrator() {
             type="password"
             fullWidth
             />
-          <Box display="flex" alignItems="center">
+          <Box display="flex" alignItems="center" >
             <FormControlLabel
               control={(
                 <Checkbox 
-                  disabled={migrationInProgress}
                   name="cleanupKeyringPostMigration"
                   inputRef={(input) => cleanupKeyringCheckbox = input}
                 />
               )}
-              label="Remove keys from old keyring upon successful migration"
+              label="Cleanup old keyring upon successful migration"
               style={{ marginRight: '8px' }}
             />
             <Tooltip title="After your keys are successfully migrated to the new keyring, you may choose to have your keys removed from the old keyring.">
@@ -168,32 +122,14 @@ export default function AppKeyringMigrator() {
             </Tooltip>                
           </Box>
           <DialogActions>
-            <Box display="flex" alignItems="center" style={{ marginTop: '8px' }}>
-              <Fade in={migrationInProgress}>
-                <CircularProgress
-                  size={32}
-                  style={{ marginRight: '4px' }}
-                />
-              </Fade>
-              <Button
-                disabled={migrationInProgress}
-                onClick={handleSkipMigration}
-                color="secondary"
-                variant="contained"
-                style={{ marginLeft: '8px' }}
-              >
-                Skip
-              </Button>
-              <Button
-                disabled={migrationInProgress}
+            <Button
                 onClick={handleMigrate}
                 color="primary"
                 variant="contained"
-                style={{ marginLeft: '8px' }}
+                style={{ marginTop: '8px' }}
               >
                 Migrate Keys
               </Button>
-            </Box>
           </DialogActions>
         </DialogContent>
       </Dialog>
