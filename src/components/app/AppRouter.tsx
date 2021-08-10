@@ -10,6 +10,7 @@ import Dashboard from '../dashboard/Dashboard';
 import BackupRestore from '../backup/BackupRestore';
 import type { RootState } from '../../modules/rootReducer';
 import LayoutLoading from '../layout/LayoutLoading';
+import AppKeyringMigrator from './AppKeyringMigrator';
 import AppPassLogin from './AppPassLogin';
 
 export default function AppRouter() {
@@ -18,6 +19,10 @@ export default function AppRouter() {
   );
   const walletConnected = useSelector(
     (state: RootState) => state.daemon_state.wallet_connected,
+  );
+
+  let keyringNeedsMigration = useSelector(
+    (state: RootState) => state.daemon_state.keyring_needs_migration
   );
 
   let keyringLocked = useSelector(
@@ -32,6 +37,11 @@ export default function AppRouter() {
         <Trans>Closing down node and server</Trans>
       </LayoutLoading>
     );
+  }
+  if (keyringNeedsMigration) {
+    return (
+      <AppKeyringMigrator />
+    )
   }
   if (keyringLocked) {
     return (
