@@ -22,11 +22,11 @@ export default function AppRouter() {
   );
 
   let keyringNeedsMigration = useSelector(
-    (state: RootState) => state.daemon_state.keyring_needs_migration
+    (state: RootState) => state.keyring_state.needs_migration
   );
 
   let keyringLocked = useSelector(
-    (state: RootState) => state.daemon_state.keyring_locked,
+    (state: RootState) => state.keyring_state.is_locked,
   );
 
   const exiting = useSelector((state: RootState) => state.daemon_state.exiting);

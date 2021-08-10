@@ -19,11 +19,11 @@ import { RootState } from 'modules/rootReducer';
 
 export default function AppPassLogin() {
   const dispatch = useDispatch();
-  let user_passphrase_is_set = useSelector((state: RootState) => state.daemon_state.keyring_user_passphrase_set);
-  let keyring_locked = useSelector((state: RootState) => state.daemon_state.keyring_locked);
-  let unlock_bad_passphrase = useSelector((state: RootState) => state.daemon_state.keyring_unlock_bad_passphrase);
-  let unlock_in_progress = useSelector((state: RootState) => state.daemon_state.keyring_unlock_in_progress);
-  let passphrase_input: any = null;
+  let user_passphrase_is_set = useSelector((state: RootState) => state.keyring_state.user_passphrase_set);
+  let keyring_locked = useSelector((state: RootState) => state.keyring_state.is_locked);
+  let unlock_bad_passphrase = useSelector((state: RootState) => state.keyring_state.unlock_bad_passphrase);
+  let unlock_in_progress = useSelector((state: RootState) => state.keyring_state.unlock_in_progress);
+  let passphrase_input: HTMLInputElement | null = null;
 
 
   console.log("APP PASS LOGIN");
@@ -33,7 +33,7 @@ export default function AppPassLogin() {
 
   function handleSubmit() {
     if (
-      passphrase_input.value === ''
+      passphrase_input?.value === ''
     ) {
       dispatch(
         openDialog(
@@ -46,7 +46,21 @@ export default function AppPassLogin() {
       );
       return;
     }
-    dispatch(unlock_keyring_action(passphrase_input.value));
+    dispatch(
+      unlock_keyring_action(
+        passphrase_input?.value,
+        () => {
+          dispatch(
+            openDialog(
+              <AlertDialog>
+                <Trans>
+                  Passphrase is incorrect
+                </Trans>
+              </AlertDialog>
+            ),
+          );
+        })
+    );
   }
 
   function handleKeyDown(e: KeyboardEvent) {
