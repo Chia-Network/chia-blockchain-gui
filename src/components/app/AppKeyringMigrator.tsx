@@ -20,22 +20,21 @@ import {
 } from '@material-ui/icons';
 import { AlertDialog, TooltipIcon } from '@chia/core';
 import { openDialog } from '../../modules/dialog';
-import { RootState } from 'modules/rootReducer';
+import { RootState } from '../../modules/rootReducer';
+import { migrate_keyring_action } from '../../modules/message';
 
 export default function AppKeyringMigrator() {
   const dispatch = useDispatch();
   let passphraseInput: HTMLInputElement | null = null;
   let confirmationInput: HTMLInputElement | null = null;
   let cleanupKeyringCheckbox: HTMLInputElement | null = null;
+  let allowEmptyPassphrase = useSelector((state: RootState) => state.keyring_state.allow_empty_passphrase);
   let minPassphraseLen = useSelector((state: RootState) => state.keyring_state.min_passphrase_length);
 
   function handleMigrate() {
-    if (!passphraseInput || !confirmationInput) {
-      return;
-    }
-
-    let passphrase = passphraseInput.value;
-    let confirmation = confirmationInput?.value;
+    let passphrase = passphraseInput?.value ?? "";
+    let confirmation = confirmationInput?.value ?? "";
+    let cleanup = cleanupKeyringCheckbox?.checked ?? false;
 
     if (passphrase != confirmation) {
       dispatch(
@@ -47,8 +46,17 @@ export default function AppKeyringMigrator() {
           </AlertDialog>
         ),
       );
-    }
-    else if (passphrase.length < minPassphraseLen) {
+    } else if (passphrase.length == 0 && !allowEmptyPassphrase) {
+      dispatch(
+        openDialog(
+          <AlertDialog>
+            <Trans>
+              Please enter a passphrase of at least {minPassphraseLen} characters
+            </Trans>
+          </AlertDialog>
+        ),
+      );
+    } else if (passphrase.length > 0 && passphrase.length < minPassphraseLen) {
       dispatch(
         openDialog(
           <AlertDialog>
@@ -57,6 +65,24 @@ export default function AppKeyringMigrator() {
             </Trans>
           </AlertDialog>
         ),
+      );
+    } else {
+      dispatch(
+        migrate_keyring_action(
+          passphrase,
+          cleanup,
+          (error: string) => {
+            dispatch(
+              openDialog(
+                <AlertDialog>
+                  <Trans>
+                    Keyring migration failed: {error}
+                  </Trans>
+                </AlertDialog>
+              )
+            )
+          }
+        )
       );
     }
   }
