@@ -5,6 +5,7 @@ type KeyringState = {
   passphrase_support_enabled: boolean;
   user_passphrase_set: boolean;
   needs_migration: boolean;
+  migration_in_progress: boolean;
   allow_empty_passphrase: boolean;
   min_passphrase_length: number;
 };
@@ -16,6 +17,7 @@ const initialState: KeyringState = {
   passphrase_support_enabled: false,
   user_passphrase_set: false,
   needs_migration: false,
+  migration_in_progress: false,
   allow_empty_passphrase: false,
   min_passphrase_length: 0,
 };
@@ -60,7 +62,7 @@ export default function keyringReducer(
           };
         }
       } else if (command === 'unlock_keyring') {
-        // Clear the keyring_unlock_in_progress flag
+        // Clear the unlock_in_progress flag
         state = {
           ...state,
           unlock_in_progress: false
@@ -78,10 +80,23 @@ export default function keyringReducer(
               ...state,
               unlock_bad_passphrase: true,
             };
-          }
-          else {
+          } else {
             console.log("Failed to unlock keyring: " + data.error);
           }
+        }
+      } else if (command === 'migrate_keyring') {
+        // Clear the migration_in_progress flag
+        state = {
+          ...state,
+          migration_in_progress: false
+        };
+        if (data.success) {
+          return {
+            ...state,
+            needs_migration: false,
+          };
+        } else {
+          console.log("Failed to migrate keyring: " + data.error);
         }
       }
       return state;
@@ -94,6 +109,15 @@ export default function keyringReducer(
         return {
           ...state,
           unlock_in_progress: true
+        };
+      } else if (
+        action.message.command === 'migrate_keyring' &&
+        action.message.destination === 'daemon'
+      ) {
+        // Set a flag indicating that we're attempting to migrate the keyring
+        return {
+          ...state,
+          migration_in_progress: true
         };
       }
       return state;
