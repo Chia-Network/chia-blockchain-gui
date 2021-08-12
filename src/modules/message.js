@@ -18,7 +18,7 @@ import {
   presentBackupInfo,
   selectFilePath,
 } from './backup';
-import { daemonMessage, exitDaemon } from './daemon_messages';
+import { daemonMessage, exitDaemon, keyringStatus } from './daemon_messages';
 import { wsDisconnect } from './websocket';
 import config from '../config/config';
 
@@ -982,3 +982,23 @@ export const unlock_keyring_action = (key, onFailure) => (dispatch) => {
     }
   );
 };
+
+export const migrate_keyring = (passphrase, cleanup_legacy_keyring) => {
+  const action = daemonMessage();
+  action.message.command = 'migrate_keyring';
+  action.message.data = { passphrase: passphrase, cleanup_legacy_keyring: cleanup_legacy_keyring };
+  return action;
+}
+
+export const migrate_keyring_action = (passphrase, cleanup_legacy_keyring, onFailure) => (dispatch) => {
+  return async_api(dispatch, migrate_keyring(passphrase, cleanup_legacy_keyring), false, true).then(
+    (response) => {
+      if (response.data.success) {
+        dispatch(keyringStatus());
+      } else if (onFailure) {
+        const { error } = response.data;
+        onFailure(error);
+      }
+    }
+  )
+}
