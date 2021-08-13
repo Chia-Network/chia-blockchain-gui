@@ -2,8 +2,7 @@ import React from 'react';
 import { Trans } from '@lingui/macro';
 import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
-import { Button, ConfirmDialog, Flex, Logo } from '@chia/core';
-import { Alert } from '@material-ui/lab';
+import { ConfirmDialog, Flex, Button, Link, Logo } from '@chia/core';
 import {
   Card,
   Typography,
@@ -24,14 +23,14 @@ import {
   login_action,
   delete_key,
   get_private_key,
+  selectFingerprint,
+  skipKeyringMigration,
   delete_all_keys,
-  check_delete_key_action
 } from '../../modules/message';
 import { resetMnemonic } from '../../modules/mnemonic';
 import type { RootState } from '../../modules/rootReducer';
 import type Fingerprint from '../../types/Fingerprint';
 import useOpenDialog from '../../hooks/useOpenDialog';
-import { openProgress, closeProgress } from '../../modules/progress';
 
 const StyledFingerprintListItem = styled(ListItem)`
   padding-right: ${({ theme }) => `${theme.spacing(11)}px`};
@@ -45,82 +44,107 @@ export default function SelectKey() {
   );
   const hasFingerprints =
     publicKeyFingerprints && !!publicKeyFingerprints.length;
+  const needsKeyringMigration = useSelector(
+    (state: RootState) => state.keyring_state.needs_migration
+  );
+  const skippedKeyringMigration = useSelector(
+    (state: RootState) => state.keyring_state.migration_skipped
+  );
 
-  async function handleClick(fingerprint: Fingerprint) {
-    await dispatch(resetMnemonic());
-    await dispatch(login_action(fingerprint));
+  function handleClick(fingerprint: Fingerprint) {
+    dispatch(resetMnemonic());
+    dispatch(selectFingerprint(fingerprint));
+    dispatch(login_action(fingerprint));
   }
 
   function handleShowKey(fingerprint: Fingerprint) {
     dispatch(get_private_key(fingerprint));
   }
 
-  async function handleDeletePrivateKey(fingerprint: Fingerprint) {
+  async function handleDeletePrivateKey(e: React.MouseEvent<HTMLButtonElement>, fingerprint: Fingerprint) {
+    const keyringCanBeModified = await handleKeyringMutator(e);
 
-    dispatch(openProgress());
-    const response: any = await dispatch(check_delete_key_action(fingerprint));
-    dispatch(closeProgress());
-
-    const deletePrivateKey = await openDialog(
-      <ConfirmDialog
-        title={<Trans>Delete key {fingerprint}</Trans>}
-        confirmTitle={<Trans>Delete</Trans>}
-        cancelTitle={<Trans>Back</Trans>}
-        confirmColor="danger"
-      >
-        {response.used_for_farmer_rewards && (<Alert severity="warning">
+    if (keyringCanBeModified) {
+      const deletePrivateKey = await openDialog((
+        <ConfirmDialog
+          title={<Trans>Delete key</Trans>}
+          confirmTitle={<Trans>Delete</Trans>}
+          cancelTitle={<Trans>Back</Trans>}
+          confirmColor="default"
+        >
           <Trans>
-            Warning: This key is used for your farming rewards address. 
-            By deleting this key you may lose access to any future farming rewards
-            </Trans>
-        </Alert>)}
-
-        {response.used_for_pool_rewards && (<Alert severity="warning">
-          <Trans>
-            Warning: This key is used for your pool rewards address. 
-            By deleting this key you may lose access to any future pool rewards
+            Deleting the key will permanently remove the key from your computer,
+            make sure you have backups. Are you sure you want to continue?
           </Trans>
-        </Alert>)}
+        </ConfirmDialog>
+      ));
 
-        {response.wallet_balance && (<Alert severity="warning">
-          <Trans>
-            Warning: This key is used for a wallet that may have a non-zero balance. 
-            By deleting this key you may lose access to this wallet
-          </Trans>
-        </Alert>)}
-
-        <Trans>
-          Deleting the key will permanently remove the key from your computer,
-          make sure you have backups. Are you sure you want to continue?
-        </Trans>
-      </ConfirmDialog>,
-    );
-
-    // @ts-ignore
-    if (deletePrivateKey) {
-      dispatch(delete_key(fingerprint));
+      // @ts-ignore
+      if (deletePrivateKey) {
+        dispatch(delete_key(fingerprint));
+      }
     }
   }
 
-  async function handleDeleteAllKeys() {
-    const deleteAllKeys = await openDialog(
+  async function handleDeleteAllKeys(e: React.MouseEvent<HTMLButtonElement>) {
+    const keyringCanBeModified = await handleKeyringMutator(e);
+
+    if (keyringCanBeModified) {
+      const deleteAllKeys = await openDialog((
+        <ConfirmDialog
+          title={<Trans>Delete all keys</Trans>}
+          confirmTitle={<Trans>Delete</Trans>}
+          cancelTitle={<Trans>Back</Trans>}
+          confirmColor="default"
+        >
+          <Trans>
+            Deleting all keys will permanently remove the keys from your
+            computer, make sure you have backups. Are you sure you want to
+            continue?
+          </Trans>
+        </ConfirmDialog>
+      ));
+
+      // @ts-ignore
+      if (deleteAllKeys) {
+        dispatch(delete_all_keys());
+      }
+    }
+  }
+
+  async function promptForKeyringMigration() {
+    const beginMigration = await openDialog((
       <ConfirmDialog
-        title={<Trans>Delete all keys</Trans>}
-        confirmTitle={<Trans>Delete</Trans>}
-        cancelTitle={<Trans>Back</Trans>}
-        confirmColor="danger"
+        title={<Trans>Migration required</Trans>}
+        confirmTitle={<Trans>Migrate</Trans>}
+        cancelTitle={<Trans>Cancel</Trans>}
+        confirmColor="default"
       >
         <Trans>
-          Deleting all keys will permanently remove the keys from your computer,
-          make sure you have backups. Are you sure you want to continue?
+          Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Would you like to migrate your keys now?
         </Trans>
-      </ConfirmDialog>,
-    );
+      </ConfirmDialog>
+    ));
 
     // @ts-ignore
-    if (deleteAllKeys) {
-      dispatch(delete_all_keys());
+    if (beginMigration) {
+      dispatch(skipKeyringMigration(false));
     }
+  }
+
+  async function handleKeyringMutator(e: React.MouseEvent<HTMLButtonElement>): Promise<boolean> {
+    // If the keyring requires migration and the user prevoiusly skipped migration, prompt again
+    if (needsKeyringMigration && skippedKeyringMigration) {
+      // Disable default event handling to avoid navigation updates
+      e.preventDefault();
+      e.stopPropagation();
+
+      promptForKeyringMigration();
+
+      return false;
+    }
+
+    return true;
   }
 
   return (
@@ -167,7 +191,9 @@ export default function SelectKey() {
                           </Trans>
                         }
                         secondary={
-                          <Trans>Can be backed up to mnemonic seed</Trans>
+                          <Trans>
+                            Can be backed up to mnemonic seed
+                          </Trans>
                         }
                       />
                       <ListItemSecondaryAction>
@@ -180,17 +206,11 @@ export default function SelectKey() {
                             <VisibilityIcon />
                           </IconButton>
                         </Tooltip>
-                        <Tooltip
-                          title={
-                            <Trans>
-                              DANGER: permanently delete private key
-                            </Trans>
-                          }
-                        >
+                        <Tooltip title={<Trans>DANGER: permanently delete private key</Trans>}>
                           <IconButton
                             edge="end"
                             aria-label="delete"
-                            onClick={() => handleDeletePrivateKey(fingerprint)}
+                            onClick={(e) => handleDeletePrivateKey(e, fingerprint)}
                           >
                             <DeleteIcon />
                           </IconButton>
@@ -201,27 +221,36 @@ export default function SelectKey() {
                 </List>
               </Card>
             )}
-            <Button
-              to="/wallet/add"
-              variant="contained"
-              color="primary"
-              size="large"
-              fullWidth
-            >
-              <Trans>Create a new private key</Trans>
-            </Button>
-            <Button
-              to="/wallet/import"
-              type="submit"
-              variant="outlined"
-              size="large"
-              fullWidth
-            >
-              <Trans>Import from Mnemonics (24 words)</Trans>
-            </Button>
+            <Link to="/wallet/add">
+              <Button
+                onClick={(e) => handleKeyringMutator(e)}
+                type="submit"
+                variant="contained"
+                color="primary"
+                size="large"
+                fullWidth
+              >
+                <Trans>
+                  Create a new private key
+                </Trans>
+              </Button>
+            </Link>
+            <Link to="/wallet/import">
+              <Button
+                onClick={(e) => handleKeyringMutator(e)}
+                type="submit"
+                variant="contained"
+                size="large"
+                fullWidth>
+                <Trans>
+                  Import from Mnemonics (24 words)
+                </Trans>
+              </Button>
+            </Link>
             <Button
               onClick={handleDeleteAllKeys}
-              variant="outlined"
+              type="submit"
+              variant="contained"
               color="danger"
               size="large"
               fullWidth

@@ -107,7 +107,7 @@ export default function AppKeyringMigrator() {
 
       // @ts-ignore
     if (skipMigration) {
-      dispatch(skipKeyringMigration());
+      dispatch(skipKeyringMigration(true));
     }
   }
 
