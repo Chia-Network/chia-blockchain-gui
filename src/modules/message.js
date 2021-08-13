@@ -62,8 +62,9 @@ export const showCreateBackup = (show) => ({
   show,
 });
 
-export const skipKeyringMigration = () => ({
+export const skipKeyringMigration = (skip) => ({
   type: 'SKIP_KEYRING_MIGRATION',
+  skip,
 });
 
 export const async_api = (dispatch, action, openSpinner, usePromiseReject) => {
