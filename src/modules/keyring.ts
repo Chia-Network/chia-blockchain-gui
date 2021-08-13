@@ -32,7 +32,7 @@ export default function keyringReducer(
     case 'SKIP_KEYRING_MIGRATION':
       return {
         ...state,
-        migration_skipped: true,
+        migration_skipped: action.skip,
       };
     case 'INCOMING_MESSAGE':
       const { message } = action;
