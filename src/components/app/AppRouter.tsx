@@ -25,6 +25,10 @@ export default function AppRouter() {
     (state: RootState) => state.keyring_state.needs_migration
   );
 
+  let keyringMigrationSkipped = useSelector(
+    (state: RootState) => state.keyring_state.migration_skipped
+  );
+
   let keyringLocked = useSelector(
     (state: RootState) => state.keyring_state.is_locked,
   );
@@ -38,10 +42,10 @@ export default function AppRouter() {
       </LayoutLoading>
     );
   }
-  if (keyringNeedsMigration) {
+  if (keyringNeedsMigration && !keyringMigrationSkipped) {
     return (
       <AppKeyringMigrator />
-    )
+    );
   }
   if (keyringLocked) {
     return (
