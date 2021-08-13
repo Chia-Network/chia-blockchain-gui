@@ -6,6 +6,7 @@ type KeyringState = {
   user_passphrase_set: boolean;
   needs_migration: boolean;
   migration_in_progress: boolean;
+  migration_skipped: boolean;
   allow_empty_passphrase: boolean;
   min_passphrase_length: number;
 };
@@ -18,6 +19,7 @@ const initialState: KeyringState = {
   user_passphrase_set: false,
   needs_migration: false,
   migration_in_progress: false,
+  migration_skipped: false,
   allow_empty_passphrase: false,
   min_passphrase_length: 0,
 };
@@ -27,6 +29,11 @@ export default function keyringReducer(
   action: any
 ): KeyringState {
   switch (action.type) {
+    case 'SKIP_KEYRING_MIGRATION':
+      return {
+        ...state,
+        migration_skipped: true,
+      };
     case 'INCOMING_MESSAGE':
       const { message } = action;
       const { data } = message;
