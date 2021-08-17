@@ -76,6 +76,11 @@ msgstr "Действия"
 msgid "Add"
 msgstr "Добавить"
 
+#: src/components/wallet/create/createDIDWallet.js:287
+#: src/components/wallet/did/DIDWallet.jsx:876
+msgid "Add Backup ID"
+msgstr ""
+
 #: src/components/plot/PlotHeader.tsx:91
 msgid "Add Plot Directory"
 msgstr "Добавить директорию с участками"
@@ -142,6 +147,10 @@ msgstr "Количество ({cc_unit})"
 msgid "Amount For Initial Coin"
 msgstr "Начальное количество монет"
 
+#: src/components/wallet/create/createDIDWallet.js:151
+msgid "Amount must be an even amount."
+msgstr ""
+
 #: src/components/plot/PlotAction.tsx:30
 #: src/components/plot/queue/PlotQueueActions.tsx:46
 msgid "Are you sure you want to delete the plot? The plot cannot be recovered."
@@ -183,6 +192,7 @@ msgid "Backup file is used to restore smart wallets."
 msgstr "Файл резервной копии используется для восстановления умных кошельков."
 
 #: src/components/wallet/coloured/WalletColoured.tsx:377
+#: src/components/wallet/did/DIDWallet.jsx:655
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:541
 msgid "Balance"
 msgstr "Баланс"
@@ -540,11 +550,11 @@ msgstr "Шеснадцатеричная строка цвета"
 msgid "Colour:"
 msgstr "Цвет:"
 
-#: src/components/wallet/create/WalletCreate.jsx:118
+#: src/components/wallet/create/WalletCreate.jsx:122
 msgid "Coloured Coin"
 msgstr "Цветная Монета"
 
-#: src/components/wallet/create/WalletCreate.jsx:160
+#: src/components/wallet/create/WalletCreate.jsx:174
 msgid "Coloured Coin Options"
 msgstr "Настройки Цветной Монеты"
 
@@ -632,6 +642,7 @@ msgstr "Скопировать в буфер обмена"
 #: src/components/backup/BackupCreate.tsx:78
 #: src/components/plot/add/PlotAdd.tsx:177
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:175
+#: src/components/wallet/create/createDIDWallet.js:268
 #: src/components/wallet/create/createExistingColouredCoin.jsx:133
 #: src/components/wallet/create/createNewColouredCoin.jsx:142
 #: src/components/wallet/create/createRLAdmin.jsx:307
@@ -639,7 +650,11 @@ msgstr "Скопировать в буфер обмена"
 msgid "Create"
 msgstr "Создать"
 
-#: src/components/wallet/create/WalletCreate.jsx:276
+#: src/components/wallet/did/DIDWallet.jsx:986
+msgid "Create An Attestation Packet"
+msgstr ""
+
+#: src/components/wallet/create/WalletCreate.jsx:290
 msgid "Create DID wallet"
 msgstr "Создать DID кошелек"
 
@@ -685,15 +700,15 @@ msgstr "Создать участок NFT"
 msgid "Create a new private key"
 msgstr "Создать новый приватный ключ"
 
-#: src/components/wallet/create/WalletCreate.jsx:224
+#: src/components/wallet/create/WalletCreate.jsx:238
 msgid "Create admin wallet"
 msgstr "Создать администрационный кошелек"
 
-#: src/components/wallet/create/WalletCreate.jsx:170
+#: src/components/wallet/create/WalletCreate.jsx:184
 msgid "Create new coloured coin"
 msgstr "Создать новую цветную монету"
 
-#: src/components/wallet/create/WalletCreate.jsx:230
+#: src/components/wallet/create/WalletCreate.jsx:244
 msgid "Create user wallet"
 msgstr "Создать кошелек пользователя"
 
@@ -701,7 +716,7 @@ msgstr "Создать кошелек пользователя"
 msgid "Create wallet for colour"
 msgstr "Создать кошелек для цвета"
 
-#: src/components/wallet/create/WalletCreate.jsx:177
+#: src/components/wallet/create/WalletCreate.jsx:191
 msgid "Create wallet for existing colour"
 msgstr "Создать кошелек для существующей цветной монеты"
 
@@ -772,6 +787,8 @@ msgstr "Задержка"
 #: src/components/plotNFT/PlotNFTCard.tsx:122
 #: src/components/selectKey/SelectKey.tsx:67
 #: src/components/selectKey/SelectKey.tsx:109
+#: src/components/wallet/create/createDIDWallet.js:314
+#: src/components/wallet/did/DIDWallet.jsx:903
 #: src/components/wallet/standard/WalletStandard.tsx:630
 msgid "Delete"
 msgstr "Удалить"
@@ -836,11 +853,11 @@ msgstr "Oтказаться"
 msgid "Disconnect"
 msgstr "Отключить"
 
-#: src/components/wallet/create/WalletCreate.jsx:144
-#~ msgid "Distributed Identity"
-#~ msgstr ""
+#: src/components/wallet/create/WalletCreate.jsx:136
+msgid "Distributed Identity"
+msgstr ""
 
-#: src/components/wallet/create/WalletCreate.jsx:266
+#: src/components/wallet/create/WalletCreate.jsx:280
 msgid "Distributed Identity Options"
 msgstr "Настройки Децентрализованного Идентификатора"
 
@@ -853,14 +870,21 @@ msgstr "Есть ли у вас на этой машине участки? <0>Д
 msgid "Does your machine support parallel plotting?"
 msgstr "Поддерживает ли ваша машина параллельное засеивание?"
 
+#: src/components/wallet/did/DIDWallet.jsx:429
+msgid "Drag and drop attestation packet(s)"
+msgstr ""
+
 #: src/components/trading/ViewOffer.jsx:39
-#: src/components/wallet/create/recoverDIDWallet.js:294
 msgid "Drag and drop offer file"
 msgstr "Перетащите сюда файл с предложением сделки"
 
 #: src/components/backup/BackupRestore.tsx:173
 msgid "Drag and drop your backup file"
 msgstr "Перетащите файл резервной копии"
+
+#: src/components/wallet/create/recoverDIDWallet.js:196
+msgid "Drag and drop your recovery backup file"
+msgstr ""
 
 #: src/electron/main.tsx:263
 msgid "Edit"
@@ -960,7 +984,7 @@ msgstr "Фермер не подключен"
 msgid "Farmer is not running"
 msgstr "Фермер не запущен"
 
-#: src/middleware/middleware_api.jsx:275
+#: src/middleware/middleware_api.jsx:237
 msgid "Farmer public key:"
 msgstr "Открытый ключ фермера:"
 
@@ -1320,6 +1344,10 @@ msgstr "Вход в систему"
 msgid "Manage Farming Rewards"
 msgstr "Управление вознаграждением за фарминг"
 
+#: src/components/wallet/did/DIDWallet.jsx:818
+msgid "Manage Recovery DIDs"
+msgstr ""
+
 #: src/components/farm/FarmManageFarmingRewards.tsx:119
 msgid "Manage Your Farming Rewards Target Addresses"
 msgstr "Управление целевыми адресами для получения вознаграждений за фарминг"
@@ -1339,6 +1367,10 @@ msgstr "Минут"
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:116
 msgid "More memory slightly increases speed"
 msgstr "Больше количество памяти немного увеличивает скорость"
+
+#: src/components/wallet/did/DIDWallet.jsx:550
+msgid "My DID Wallet"
+msgstr ""
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:415
 msgid "My Pubkey"
@@ -1380,7 +1412,7 @@ msgstr "Псевдоним"
 msgid "No"
 msgstr "Нет"
 
-#: src/middleware/middleware_api.jsx:301
+#: src/middleware/middleware_api.jsx:263
 msgid "No 24 word seed, since this key is imported."
 msgstr "Нет 24 слов семя, так как этот ключ импортируется."
 
@@ -1478,6 +1510,10 @@ msgstr "Предложение создано"
 msgid "On average there is one minute between each transaction block. Unless there is congestion you can expect your transaction to be included in less than a minute."
 msgstr "В среднем между каждым блоком транзакций проходит одна минута. Если нет перегрузки, вы можете ожидать что ваша транзакция будет включена менее чем за минуту."
 
+#: src/components/wallet/create/recoverDIDWallet.js:156
+msgid "Only one backup file is allowed. To add a new backup file, please delete any previously uploaded files and try again."
+msgstr ""
+
 #: src/components/wallet/WalletHistory.tsx:23
 msgid "Outgoing"
 msgstr "Исходящие"
@@ -1531,15 +1567,41 @@ msgstr "Пожалуйста, добавьте торговую пару"
 msgid "Please enter 0 fee. Positive fees not supported yet for RL."
 msgstr "Пожалуйста, введите комиссию 0. Положительные комиссии для кошельков с ограничением скорости пока не поддерживаются."
 
+#: src/components/wallet/did/DIDWallet.jsx:943
+msgid "Please enter a coin"
+msgstr ""
+
+#: src/components/wallet/did/DIDWallet.jsx:539
+#: src/components/wallet/did/DIDWallet.jsx:933
+msgid "Please enter a filename"
+msgstr ""
+
+#: src/components/wallet/did/DIDWallet.jsx:953
+msgid "Please enter a pubkey"
+msgstr ""
+
+#: src/components/wallet/did/DIDWallet.jsx:963
+msgid "Please enter a puzzlehash"
+msgstr ""
+
 #: src/components/wallet/create/createRLAdmin.jsx:140
 msgid "Please enter a valid initial coin amount"
 msgstr "Пожалуйста, укажите корректное численное начальное значение баланса кошелька"
+
+#: src/components/wallet/create/createDIDWallet.js:165
+#: src/components/wallet/did/DIDWallet.jsx:789
+msgid "Please enter a valid integer of 0 or greater for the number of Backup IDs needed for recovery."
+msgstr ""
 
 #: src/components/wallet/create/createNewColouredCoin.jsx:69
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:639
 #: src/components/wallet/standard/WalletStandard.tsx:432
 msgid "Please enter a valid numeric amount"
 msgstr "Пожалуйста, укажите корректное численное значение"
+
+#: src/components/wallet/create/createDIDWallet.js:139
+msgid "Please enter a valid numeric amount."
+msgstr ""
 
 #: src/components/wallet/create/createExistingColouredCoin.jsx:70
 #: src/components/wallet/create/createNewColouredCoin.jsx:79
@@ -1759,7 +1821,7 @@ msgstr "Pool не предоставляет relative_lock_height."
 msgid "Pool does not provide target_puzzle_hash."
 msgstr "Пул не предоставляет target_puzzle_hash."
 
-#: src/middleware/middleware_api.jsx:283
+#: src/middleware/middleware_api.jsx:245
 msgid "Pool public key:"
 msgstr "Публичный ключ пула:"
 
@@ -1810,11 +1872,11 @@ msgstr "Хэш предыдущего блока"
 msgid "Private key with public fingerprint {fingerprint}"
 msgstr "Приватный ключ с публичным отпечатком {fingerprint}"
 
-#: src/middleware/middleware_api.jsx:249
+#: src/middleware/middleware_api.jsx:211
 msgid "Private key {0}"
 msgstr "Закрытый ключ {0}"
 
-#: src/middleware/middleware_api.jsx:259
+#: src/middleware/middleware_api.jsx:221
 msgid "Private key:"
 msgstr "Закрытый ключ:"
 
@@ -1834,7 +1896,7 @@ msgstr "Версия Протокола"
 msgid "Pubkey"
 msgstr "Публичный ключ"
 
-#: src/middleware/middleware_api.jsx:267
+#: src/middleware/middleware_api.jsx:229
 msgid "Public key:"
 msgstr "Открытый ключ:"
 
@@ -1866,7 +1928,7 @@ msgstr "Максимальное использование ОЗУ"
 #~ msgid "RLListItems.title"
 #~ msgstr ""
 
-#: src/components/wallet/create/WalletCreate.jsx:124
+#: src/components/wallet/create/WalletCreate.jsx:128
 msgid "Rate Limited"
 msgstr "Ограниченной Скорости"
 
@@ -1875,7 +1937,7 @@ msgstr "Ограниченной Скорости"
 msgid "Rate Limited Info"
 msgstr "Информация об ограничении скорости"
 
-#: src/components/wallet/create/WalletCreate.jsx:214
+#: src/components/wallet/create/WalletCreate.jsx:228
 msgid "Rate Limited Options"
 msgstr "Настройки Ограниченной Скорости"
 
@@ -1888,7 +1950,12 @@ msgstr "Настройка кошелька пользователя с огра
 msgid "Receive Address"
 msgstr "Адрес для получения платежа"
 
-#: src/components/wallet/create/WalletCreate.jsx:282
+#: src/components/wallet/did/DIDWallet.jsx:345
+#: src/components/wallet/did/DIDWallet.jsx:494
+msgid "Recover DID Wallet"
+msgstr ""
+
+#: src/components/wallet/create/WalletCreate.jsx:296
 msgid "Recover DID wallet"
 msgstr "Восстанавление Кошелека Децентрализованного Идентификатора"
 
@@ -1956,7 +2023,7 @@ msgstr "Расположение второй временной папки"
 msgid "See private key"
 msgstr "Посмотреть закрытый ключ"
 
-#: src/middleware/middleware_api.jsx:293
+#: src/middleware/middleware_api.jsx:255
 msgid "Seed:"
 msgstr "Семя:"
 
@@ -1980,7 +2047,7 @@ msgstr "Выберите предложение"
 msgid "Select Temporary Directory"
 msgstr "Выберите временный каталог"
 
-#: src/components/wallet/create/WalletCreate.jsx:108
+#: src/components/wallet/create/WalletCreate.jsx:112
 msgid "Select Wallet Type"
 msgstr "Выберите Тип Кошелька"
 
@@ -2157,6 +2224,9 @@ msgstr "Статус:"
 #~ msgid "Sub Block at height {0} in the Chia blockchain"
 #~ msgstr "Sub Block at height {0} in the Chia blockchain"
 
+#: src/components/wallet/create/recoverDIDWallet.js:242
+#: src/components/wallet/did/DIDWallet.jsx:476
+#: src/components/wallet/did/DIDWallet.jsx:854
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:347
 msgid "Submit"
 msgstr "Подтвердить"
@@ -2233,6 +2303,11 @@ msgstr "Узел не синхронизирован с сетью"
 #: src/components/fullNode/card/FullNodeCardStatus.tsx:29
 msgid "The node is syncing, which means it is downloading blocks from other nodes, to reach the latest block in the chain"
 msgstr "Узел синхронизируется, что означает, что он загружает блоки с других узлов, чтобы достичь последнего блока в цепи"
+
+#: src/components/wallet/create/createDIDWallet.js:178
+#: src/components/wallet/did/DIDWallet.jsx:802
+msgid "The number of Backup IDs needed for recovery cannot exceed the number of Backup IDs added."
+msgstr ""
 
 #: src/hooks/usePoolInfo.ts:57
 msgid "The pool URL \"{normalizedUrl}\" is not working. Is it pool? Error: {0}"
@@ -2712,6 +2787,10 @@ msgstr "Вы получите <0/> на {0}"
 #: src/hooks/useAbsorbRewards.tsx:49
 msgid "You will recieve <0/> to {address}"
 msgstr "Вы получите <0/> на {address}"
+
+#: src/components/wallet/did/DIDWallet.jsx:334
+msgid "Your DID requires at least {dids_num_req} attestation file{0} for recovery. Please upload additional files."
+msgstr ""
 
 #: src/components/farm/overview/FarmOverview.tsx:37
 msgid "Your Farm Overview"

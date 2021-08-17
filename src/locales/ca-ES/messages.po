@@ -76,6 +76,11 @@ msgstr "Accions"
 msgid "Add"
 msgstr "Afegeix"
 
+#: src/components/wallet/create/createDIDWallet.js:287
+#: src/components/wallet/did/DIDWallet.jsx:876
+msgid "Add Backup ID"
+msgstr ""
+
 #: src/components/plot/PlotHeader.tsx:91
 msgid "Add Plot Directory"
 msgstr "Afegir un directori on desar les parcel·les"
@@ -142,6 +147,10 @@ msgstr "Quantitat ({cc_unit})"
 msgid "Amount For Initial Coin"
 msgstr "Quantitat per moneda inicial"
 
+#: src/components/wallet/create/createDIDWallet.js:151
+msgid "Amount must be an even amount."
+msgstr ""
+
 #: src/components/plot/PlotAction.tsx:30
 #: src/components/plot/queue/PlotQueueActions.tsx:46
 msgid "Are you sure you want to delete the plot? The plot cannot be recovered."
@@ -183,6 +192,7 @@ msgid "Backup file is used to restore smart wallets."
 msgstr "El fitxer de còpia de seguretat es fa servir per restaurar els moneders intel·ligents."
 
 #: src/components/wallet/coloured/WalletColoured.tsx:377
+#: src/components/wallet/did/DIDWallet.jsx:655
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:541
 msgid "Balance"
 msgstr "Saldo"
@@ -368,11 +378,11 @@ msgstr "Cadena de Colorejat"
 msgid "Colour:"
 msgstr "Acoloreix:"
 
-#: src/components/wallet/create/WalletCreate.jsx:118
+#: src/components/wallet/create/WalletCreate.jsx:122
 msgid "Coloured Coin"
 msgstr "Moneda acolorida"
 
-#: src/components/wallet/create/WalletCreate.jsx:160
+#: src/components/wallet/create/WalletCreate.jsx:174
 msgid "Coloured Coin Options"
 msgstr "Opcions de moneda acolorida"
 
@@ -460,6 +470,7 @@ msgstr "Copiar al porta-retalls"
 #: src/components/backup/BackupCreate.tsx:78
 #: src/components/plot/add/PlotAdd.tsx:177
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:175
+#: src/components/wallet/create/createDIDWallet.js:268
 #: src/components/wallet/create/createExistingColouredCoin.jsx:133
 #: src/components/wallet/create/createNewColouredCoin.jsx:142
 #: src/components/wallet/create/createRLAdmin.jsx:307
@@ -467,7 +478,11 @@ msgstr "Copiar al porta-retalls"
 msgid "Create"
 msgstr "Crear"
 
-#: src/components/wallet/create/WalletCreate.jsx:276
+#: src/components/wallet/did/DIDWallet.jsx:986
+msgid "Create An Attestation Packet"
+msgstr ""
+
+#: src/components/wallet/create/WalletCreate.jsx:290
 msgid "Create DID wallet"
 msgstr "Crear moneder DID"
 
@@ -513,15 +528,15 @@ msgstr ""
 msgid "Create a new private key"
 msgstr "Crear una nova clau privada"
 
-#: src/components/wallet/create/WalletCreate.jsx:224
+#: src/components/wallet/create/WalletCreate.jsx:238
 msgid "Create admin wallet"
 msgstr "Crear moneder d'administrador"
 
-#: src/components/wallet/create/WalletCreate.jsx:170
+#: src/components/wallet/create/WalletCreate.jsx:184
 msgid "Create new coloured coin"
 msgstr "Crear nova moneda de color"
 
-#: src/components/wallet/create/WalletCreate.jsx:230
+#: src/components/wallet/create/WalletCreate.jsx:244
 msgid "Create user wallet"
 msgstr "Crear moneder d'usuari"
 
@@ -529,7 +544,7 @@ msgstr "Crear moneder d'usuari"
 msgid "Create wallet for colour"
 msgstr "Crear un moneder per acolorir"
 
-#: src/components/wallet/create/WalletCreate.jsx:177
+#: src/components/wallet/create/WalletCreate.jsx:191
 msgid "Create wallet for existing colour"
 msgstr "Crear un moneder per un color existent"
 
@@ -600,6 +615,8 @@ msgstr "Retard"
 #: src/components/plotNFT/PlotNFTCard.tsx:122
 #: src/components/selectKey/SelectKey.tsx:67
 #: src/components/selectKey/SelectKey.tsx:109
+#: src/components/wallet/create/createDIDWallet.js:314
+#: src/components/wallet/did/DIDWallet.jsx:903
 #: src/components/wallet/standard/WalletStandard.tsx:630
 msgid "Delete"
 msgstr "Eliminar"
@@ -664,11 +681,11 @@ msgstr ""
 msgid "Disconnect"
 msgstr "Desconnectar"
 
-#: src/components/wallet/create/WalletCreate.jsx:144
-#~ msgid "Distributed Identity"
-#~ msgstr ""
+#: src/components/wallet/create/WalletCreate.jsx:136
+msgid "Distributed Identity"
+msgstr ""
 
-#: src/components/wallet/create/WalletCreate.jsx:266
+#: src/components/wallet/create/WalletCreate.jsx:280
 msgid "Distributed Identity Options"
 msgstr "Opcions d'identitat distribuïdes"
 
@@ -681,14 +698,21 @@ msgstr "Ja tens parcel·les en aquesta màquina? <0> Afegeix un directori de par
 msgid "Does your machine support parallel plotting?"
 msgstr "La teva màquina suporta parcel·lat en paral·lel?"
 
+#: src/components/wallet/did/DIDWallet.jsx:429
+msgid "Drag and drop attestation packet(s)"
+msgstr ""
+
 #: src/components/trading/ViewOffer.jsx:39
-#: src/components/wallet/create/recoverDIDWallet.js:294
 msgid "Drag and drop offer file"
 msgstr "Arrossega i deixa anar aquí el fitxer d’oferta"
 
 #: src/components/backup/BackupRestore.tsx:173
 msgid "Drag and drop your backup file"
 msgstr "Arrossega i deixa anar aquí el teu fitxer de copia de seguretat"
+
+#: src/components/wallet/create/recoverDIDWallet.js:196
+msgid "Drag and drop your recovery backup file"
+msgstr ""
 
 #: src/electron/main.tsx:263
 msgid "Edit"
@@ -788,7 +812,7 @@ msgstr "El pagès no està connectat"
 msgid "Farmer is not running"
 msgstr "El pagès no s'està cultivant"
 
-#: src/middleware/middleware_api.jsx:275
+#: src/middleware/middleware_api.jsx:237
 msgid "Farmer public key:"
 msgstr ""
 
@@ -1148,6 +1172,10 @@ msgstr "Iniciant sessió"
 msgid "Manage Farming Rewards"
 msgstr "Gestió de recompenses de collita"
 
+#: src/components/wallet/did/DIDWallet.jsx:818
+msgid "Manage Recovery DIDs"
+msgstr ""
+
 #: src/components/farm/FarmManageFarmingRewards.tsx:119
 msgid "Manage Your Farming Rewards Target Addresses"
 msgstr "Gestionar les teves adreces de les recompenses de cultiu"
@@ -1167,6 +1195,10 @@ msgstr "Minuts"
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:116
 msgid "More memory slightly increases speed"
 msgstr "Més memòria fa augmentar una mica la velocitat"
+
+#: src/components/wallet/did/DIDWallet.jsx:550
+msgid "My DID Wallet"
+msgstr ""
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:415
 msgid "My Pubkey"
@@ -1208,7 +1240,7 @@ msgstr "Pseudònim"
 msgid "No"
 msgstr "No"
 
-#: src/middleware/middleware_api.jsx:301
+#: src/middleware/middleware_api.jsx:263
 msgid "No 24 word seed, since this key is imported."
 msgstr "No hi ha llavor de 24 paraules, ja que aquesta clau ha estat importada."
 
@@ -1306,6 +1338,10 @@ msgstr "Han estat creades ofertes"
 msgid "On average there is one minute between each transaction block. Unless there is congestion you can expect your transaction to be included in less than a minute."
 msgstr "De mitjana passa un minut entre cada transacció de block. A no ser que hi hagi saturació, la teva transacció hauria de ser inclosa en menys d'un minut."
 
+#: src/components/wallet/create/recoverDIDWallet.js:156
+msgid "Only one backup file is allowed. To add a new backup file, please delete any previously uploaded files and try again."
+msgstr ""
+
 #: src/components/wallet/WalletHistory.tsx:23
 msgid "Outgoing"
 msgstr "Sortint"
@@ -1359,15 +1395,41 @@ msgstr "Si us plau, afegeix la informació d'intercanvi"
 msgid "Please enter 0 fee. Positive fees not supported yet for RL."
 msgstr "Si us plau, afegeix 0 de comissió. Encara no es poden enviar comissions positives per RL."
 
+#: src/components/wallet/did/DIDWallet.jsx:943
+msgid "Please enter a coin"
+msgstr ""
+
+#: src/components/wallet/did/DIDWallet.jsx:539
+#: src/components/wallet/did/DIDWallet.jsx:933
+msgid "Please enter a filename"
+msgstr ""
+
+#: src/components/wallet/did/DIDWallet.jsx:953
+msgid "Please enter a pubkey"
+msgstr ""
+
+#: src/components/wallet/did/DIDWallet.jsx:963
+msgid "Please enter a puzzlehash"
+msgstr ""
+
 #: src/components/wallet/create/createRLAdmin.jsx:140
 msgid "Please enter a valid initial coin amount"
 msgstr "Si us plau, introdueix una quantitat de moneda inicial vàlida"
+
+#: src/components/wallet/create/createDIDWallet.js:165
+#: src/components/wallet/did/DIDWallet.jsx:789
+msgid "Please enter a valid integer of 0 or greater for the number of Backup IDs needed for recovery."
+msgstr ""
 
 #: src/components/wallet/create/createNewColouredCoin.jsx:69
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:639
 #: src/components/wallet/standard/WalletStandard.tsx:432
 msgid "Please enter a valid numeric amount"
 msgstr "Si us plau, introdueix una quantitat numèrica vàlida"
+
+#: src/components/wallet/create/createDIDWallet.js:139
+msgid "Please enter a valid numeric amount."
+msgstr ""
 
 #: src/components/wallet/create/createExistingColouredCoin.jsx:70
 #: src/components/wallet/create/createNewColouredCoin.jsx:79
@@ -1587,7 +1649,7 @@ msgstr ""
 msgid "Pool does not provide target_puzzle_hash."
 msgstr ""
 
-#: src/middleware/middleware_api.jsx:283
+#: src/middleware/middleware_api.jsx:245
 msgid "Pool public key:"
 msgstr ""
 
@@ -1638,11 +1700,11 @@ msgstr "Hash del bloc previ"
 msgid "Private key with public fingerprint {fingerprint}"
 msgstr "Clau privada amb l'empremta pública {fingerprint}"
 
-#: src/middleware/middleware_api.jsx:249
+#: src/middleware/middleware_api.jsx:211
 msgid "Private key {0}"
 msgstr "Clau privada{0}"
 
-#: src/middleware/middleware_api.jsx:259
+#: src/middleware/middleware_api.jsx:221
 msgid "Private key:"
 msgstr "Clau privada:"
 
@@ -1662,7 +1724,7 @@ msgstr ""
 msgid "Pubkey"
 msgstr "Clau pública"
 
-#: src/middleware/middleware_api.jsx:267
+#: src/middleware/middleware_api.jsx:229
 msgid "Public key:"
 msgstr "Clau pública:"
 
@@ -1694,7 +1756,7 @@ msgstr "Màxima RAM a fer servir"
 #~ msgid "RLListItems.title"
 #~ msgstr ""
 
-#: src/components/wallet/create/WalletCreate.jsx:124
+#: src/components/wallet/create/WalletCreate.jsx:128
 msgid "Rate Limited"
 msgstr "Límit de freqüència"
 
@@ -1703,7 +1765,7 @@ msgstr "Límit de freqüència"
 msgid "Rate Limited Info"
 msgstr "Informació de la limitació de la tarifa"
 
-#: src/components/wallet/create/WalletCreate.jsx:214
+#: src/components/wallet/create/WalletCreate.jsx:228
 msgid "Rate Limited Options"
 msgstr "Opcions de la tarifa limitada"
 
@@ -1716,7 +1778,12 @@ msgstr "Configuració del moneder de tarifa limitada"
 msgid "Receive Address"
 msgstr "Adreça per rebre"
 
-#: src/components/wallet/create/WalletCreate.jsx:282
+#: src/components/wallet/did/DIDWallet.jsx:345
+#: src/components/wallet/did/DIDWallet.jsx:494
+msgid "Recover DID Wallet"
+msgstr ""
+
+#: src/components/wallet/create/WalletCreate.jsx:296
 msgid "Recover DID wallet"
 msgstr "Recupera el moneder DID"
 
@@ -1784,7 +1851,7 @@ msgstr "Ubicació de la segona carpeta temporal"
 msgid "See private key"
 msgstr "Veure la clau privada"
 
-#: src/middleware/middleware_api.jsx:293
+#: src/middleware/middleware_api.jsx:255
 msgid "Seed:"
 msgstr "Llavors:"
 
@@ -1808,7 +1875,7 @@ msgstr "Escollir l'oferta"
 msgid "Select Temporary Directory"
 msgstr "Escollir el directori temporal"
 
-#: src/components/wallet/create/WalletCreate.jsx:108
+#: src/components/wallet/create/WalletCreate.jsx:112
 msgid "Select Wallet Type"
 msgstr "Escollir el tipus de moneder"
 
@@ -1985,6 +2052,9 @@ msgstr "Estat:"
 #~ msgid "Sub Block at height {0} in the Chia blockchain"
 #~ msgstr "Sub Block at height {0} in the Chia blockchain"
 
+#: src/components/wallet/create/recoverDIDWallet.js:242
+#: src/components/wallet/did/DIDWallet.jsx:476
+#: src/components/wallet/did/DIDWallet.jsx:854
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:347
 msgid "Submit"
 msgstr "Enviar"
@@ -2061,6 +2131,11 @@ msgstr "El node no està sincronitzat"
 #: src/components/fullNode/card/FullNodeCardStatus.tsx:29
 msgid "The node is syncing, which means it is downloading blocks from other nodes, to reach the latest block in the chain"
 msgstr "El node està sincronitzant, el que significa que està descarregant blocs d'altres nodes, per a assolir l'últim bloc de la cadena"
+
+#: src/components/wallet/create/createDIDWallet.js:178
+#: src/components/wallet/did/DIDWallet.jsx:802
+msgid "The number of Backup IDs needed for recovery cannot exceed the number of Backup IDs added."
+msgstr ""
 
 #: src/hooks/usePoolInfo.ts:57
 msgid "The pool URL \"{normalizedUrl}\" is not working. Is it pool? Error: {0}"
@@ -2539,6 +2614,10 @@ msgstr ""
 
 #: src/hooks/useAbsorbRewards.tsx:49
 msgid "You will recieve <0/> to {address}"
+msgstr ""
+
+#: src/components/wallet/did/DIDWallet.jsx:334
+msgid "Your DID requires at least {dids_num_req} attestation file{0} for recovery. Please upload additional files."
 msgstr ""
 
 #: src/components/farm/overview/FarmOverview.tsx:37

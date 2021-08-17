@@ -78,6 +78,11 @@ msgstr "عملیات"
 msgid "Add"
 msgstr "افزودن"
 
+#: src/components/wallet/create/createDIDWallet.js:287
+#: src/components/wallet/did/DIDWallet.jsx:876
+msgid "Add Backup ID"
+msgstr ""
+
 #: src/components/plot/PlotHeader.tsx:91
 msgid "Add Plot Directory"
 msgstr "افزودن پوشه حاوی پلات"
@@ -144,6 +149,10 @@ msgstr "مقدار ({cc_unit})"
 msgid "Amount For Initial Coin"
 msgstr "مقدار سکه اولیه"
 
+#: src/components/wallet/create/createDIDWallet.js:151
+msgid "Amount must be an even amount."
+msgstr ""
+
 #: src/components/plot/PlotAction.tsx:30
 #: src/components/plot/queue/PlotQueueActions.tsx:46
 msgid "Are you sure you want to delete the plot? The plot cannot be recovered."
@@ -185,6 +194,7 @@ msgid "Backup file is used to restore smart wallets."
 msgstr "فایل های پشتیبان برای بازگردانی کیف پول هوشمند استفاده می شوند."
 
 #: src/components/wallet/coloured/WalletColoured.tsx:377
+#: src/components/wallet/did/DIDWallet.jsx:655
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:541
 msgid "Balance"
 msgstr "موجودی حساب"
@@ -372,11 +382,11 @@ msgstr "رشته ی رنگی"
 msgid "Colour:"
 msgstr "Colour:"
 
-#: src/components/wallet/create/WalletCreate.jsx:118
+#: src/components/wallet/create/WalletCreate.jsx:122
 msgid "Coloured Coin"
 msgstr "سکه رنگ شده"
 
-#: src/components/wallet/create/WalletCreate.jsx:160
+#: src/components/wallet/create/WalletCreate.jsx:174
 msgid "Coloured Coin Options"
 msgstr "Coloured Coin Options"
 
@@ -464,6 +474,7 @@ msgstr "رونوشت در کلیپ بورد"
 #: src/components/backup/BackupCreate.tsx:78
 #: src/components/plot/add/PlotAdd.tsx:177
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:175
+#: src/components/wallet/create/createDIDWallet.js:268
 #: src/components/wallet/create/createExistingColouredCoin.jsx:133
 #: src/components/wallet/create/createNewColouredCoin.jsx:142
 #: src/components/wallet/create/createRLAdmin.jsx:307
@@ -471,7 +482,11 @@ msgstr "رونوشت در کلیپ بورد"
 msgid "Create"
 msgstr "ایجاد"
 
-#: src/components/wallet/create/WalletCreate.jsx:276
+#: src/components/wallet/did/DIDWallet.jsx:986
+msgid "Create An Attestation Packet"
+msgstr ""
+
+#: src/components/wallet/create/WalletCreate.jsx:290
 msgid "Create DID wallet"
 msgstr "ساخت کیف پول DID"
 
@@ -517,15 +532,15 @@ msgstr "Create a Plot NFT"
 msgid "Create a new private key"
 msgstr "Create a new private key"
 
-#: src/components/wallet/create/WalletCreate.jsx:224
+#: src/components/wallet/create/WalletCreate.jsx:238
 msgid "Create admin wallet"
 msgstr "Create admin wallet"
 
-#: src/components/wallet/create/WalletCreate.jsx:170
+#: src/components/wallet/create/WalletCreate.jsx:184
 msgid "Create new coloured coin"
 msgstr "Create new coloured coin"
 
-#: src/components/wallet/create/WalletCreate.jsx:230
+#: src/components/wallet/create/WalletCreate.jsx:244
 msgid "Create user wallet"
 msgstr "Create user wallet"
 
@@ -533,7 +548,7 @@ msgstr "Create user wallet"
 msgid "Create wallet for colour"
 msgstr "Create wallet for colour"
 
-#: src/components/wallet/create/WalletCreate.jsx:177
+#: src/components/wallet/create/WalletCreate.jsx:191
 msgid "Create wallet for existing colour"
 msgstr "Create wallet for existing colour"
 
@@ -604,6 +619,8 @@ msgstr "تاخیر"
 #: src/components/plotNFT/PlotNFTCard.tsx:122
 #: src/components/selectKey/SelectKey.tsx:67
 #: src/components/selectKey/SelectKey.tsx:109
+#: src/components/wallet/create/createDIDWallet.js:314
+#: src/components/wallet/did/DIDWallet.jsx:903
 #: src/components/wallet/standard/WalletStandard.tsx:630
 msgid "Delete"
 msgstr "حذف"
@@ -670,11 +687,11 @@ msgstr "لغو"
 msgid "Disconnect"
 msgstr "قطع ارتباط"
 
-#: src/components/wallet/create/WalletCreate.jsx:144
-#~ msgid "Distributed Identity"
-#~ msgstr ""
+#: src/components/wallet/create/WalletCreate.jsx:136
+msgid "Distributed Identity"
+msgstr ""
 
-#: src/components/wallet/create/WalletCreate.jsx:266
+#: src/components/wallet/create/WalletCreate.jsx:280
 msgid "Distributed Identity Options"
 msgstr "گزینه های هویتی توزیع شده"
 
@@ -687,14 +704,21 @@ msgstr "پلاتی روی این ماشین دارید؟ <0>اضافه کردن 
 msgid "Does your machine support parallel plotting?"
 msgstr "آیا دستگاه شما از پلات سازی همزمان پشتیبانی می‌کند؟"
 
+#: src/components/wallet/did/DIDWallet.jsx:429
+msgid "Drag and drop attestation packet(s)"
+msgstr ""
+
 #: src/components/trading/ViewOffer.jsx:39
-#: src/components/wallet/create/recoverDIDWallet.js:294
 msgid "Drag and drop offer file"
 msgstr "کشیدن و رها کردن فایل پیشنهاد"
 
 #: src/components/backup/BackupRestore.tsx:173
 msgid "Drag and drop your backup file"
 msgstr "Drag and drop your backup file"
+
+#: src/components/wallet/create/recoverDIDWallet.js:196
+msgid "Drag and drop your recovery backup file"
+msgstr ""
 
 #: src/electron/main.tsx:263
 msgid "Edit"
@@ -794,7 +818,7 @@ msgstr "Farmer is not connected"
 msgid "Farmer is not running"
 msgstr "مزرعه دار درحال اجرا نیست"
 
-#: src/middleware/middleware_api.jsx:275
+#: src/middleware/middleware_api.jsx:237
 msgid "Farmer public key:"
 msgstr "Farmer public key:"
 
@@ -1154,6 +1178,10 @@ msgstr "Logging in"
 msgid "Manage Farming Rewards"
 msgstr "مدیریت پاداش های مزرعه داری"
 
+#: src/components/wallet/did/DIDWallet.jsx:818
+msgid "Manage Recovery DIDs"
+msgstr ""
+
 #: src/components/farm/FarmManageFarmingRewards.tsx:119
 msgid "Manage Your Farming Rewards Target Addresses"
 msgstr "آدرس های مقصد خود را برای پاداش های مزرعه داری مدیریت کنید"
@@ -1173,6 +1201,10 @@ msgstr "Minutes"
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:116
 msgid "More memory slightly increases speed"
 msgstr "More memory slightly increases speed"
+
+#: src/components/wallet/did/DIDWallet.jsx:550
+msgid "My DID Wallet"
+msgstr ""
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:415
 msgid "My Pubkey"
@@ -1214,7 +1246,7 @@ msgstr "Nickname"
 msgid "No"
 msgstr "No"
 
-#: src/middleware/middleware_api.jsx:301
+#: src/middleware/middleware_api.jsx:263
 msgid "No 24 word seed, since this key is imported."
 msgstr "هیچ بذر ۲۴ کلمه‌ای نیست، از هنگامی که این کلید را وارد کرده اید."
 
@@ -1312,6 +1344,10 @@ msgstr "Offers Created"
 msgid "On average there is one minute between each transaction block. Unless there is congestion you can expect your transaction to be included in less than a minute."
 msgstr "On average there is one minute between each transaction block. Unless there is congestion you can expect your transaction to be included in less than a minute."
 
+#: src/components/wallet/create/recoverDIDWallet.js:156
+msgid "Only one backup file is allowed. To add a new backup file, please delete any previously uploaded files and try again."
+msgstr ""
+
 #: src/components/wallet/WalletHistory.tsx:23
 msgid "Outgoing"
 msgstr "در حال خروج"
@@ -1365,15 +1401,41 @@ msgstr "Please add a trade pair"
 msgid "Please enter 0 fee. Positive fees not supported yet for RL."
 msgstr "Please enter 0 fee. Positive fees not supported yet for RL."
 
+#: src/components/wallet/did/DIDWallet.jsx:943
+msgid "Please enter a coin"
+msgstr ""
+
+#: src/components/wallet/did/DIDWallet.jsx:539
+#: src/components/wallet/did/DIDWallet.jsx:933
+msgid "Please enter a filename"
+msgstr ""
+
+#: src/components/wallet/did/DIDWallet.jsx:953
+msgid "Please enter a pubkey"
+msgstr ""
+
+#: src/components/wallet/did/DIDWallet.jsx:963
+msgid "Please enter a puzzlehash"
+msgstr ""
+
 #: src/components/wallet/create/createRLAdmin.jsx:140
 msgid "Please enter a valid initial coin amount"
 msgstr "Please enter a valid initial coin amount"
+
+#: src/components/wallet/create/createDIDWallet.js:165
+#: src/components/wallet/did/DIDWallet.jsx:789
+msgid "Please enter a valid integer of 0 or greater for the number of Backup IDs needed for recovery."
+msgstr ""
 
 #: src/components/wallet/create/createNewColouredCoin.jsx:69
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:639
 #: src/components/wallet/standard/WalletStandard.tsx:432
 msgid "Please enter a valid numeric amount"
 msgstr "Please enter a valid numeric amount"
+
+#: src/components/wallet/create/createDIDWallet.js:139
+msgid "Please enter a valid numeric amount."
+msgstr ""
 
 #: src/components/wallet/create/createExistingColouredCoin.jsx:70
 #: src/components/wallet/create/createNewColouredCoin.jsx:79
@@ -1593,7 +1655,7 @@ msgstr "Pool does not provide relative_lock_height."
 msgid "Pool does not provide target_puzzle_hash."
 msgstr "Pool does not provide target_puzzle_hash."
 
-#: src/middleware/middleware_api.jsx:283
+#: src/middleware/middleware_api.jsx:245
 msgid "Pool public key:"
 msgstr "کلید عمومی استخر:"
 
@@ -1644,11 +1706,11 @@ msgstr "عنوان هش قبلی"
 msgid "Private key with public fingerprint {fingerprint}"
 msgstr "کلید خصوصی به همراه اثر انگشت عمومی {fingerprint}"
 
-#: src/middleware/middleware_api.jsx:249
+#: src/middleware/middleware_api.jsx:211
 msgid "Private key {0}"
 msgstr "Private key {0}"
 
-#: src/middleware/middleware_api.jsx:259
+#: src/middleware/middleware_api.jsx:221
 msgid "Private key:"
 msgstr "Private key:"
 
@@ -1668,7 +1730,7 @@ msgstr "Protocol Version"
 msgid "Pubkey"
 msgstr "Pubkey"
 
-#: src/middleware/middleware_api.jsx:267
+#: src/middleware/middleware_api.jsx:229
 msgid "Public key:"
 msgstr "Public key:"
 
@@ -1700,7 +1762,7 @@ msgstr "حداکثر مقدار استفاده از فضای رم"
 #~ msgid "RLListItems.title"
 #~ msgstr ""
 
-#: src/components/wallet/create/WalletCreate.jsx:124
+#: src/components/wallet/create/WalletCreate.jsx:128
 msgid "Rate Limited"
 msgstr "نرخ محدود شده است"
 
@@ -1709,7 +1771,7 @@ msgstr "نرخ محدود شده است"
 msgid "Rate Limited Info"
 msgstr "اطلاعاتِ نرخ محدود"
 
-#: src/components/wallet/create/WalletCreate.jsx:214
+#: src/components/wallet/create/WalletCreate.jsx:228
 msgid "Rate Limited Options"
 msgstr "تنظیمات محدودیت نرخ(سرعت)"
 
@@ -1722,7 +1784,12 @@ msgstr "پیکره بندی کیف پولِ با نرخ(سرعت) محدود"
 msgid "Receive Address"
 msgstr "آدرس گیرنده"
 
-#: src/components/wallet/create/WalletCreate.jsx:282
+#: src/components/wallet/did/DIDWallet.jsx:345
+#: src/components/wallet/did/DIDWallet.jsx:494
+msgid "Recover DID Wallet"
+msgstr ""
+
+#: src/components/wallet/create/WalletCreate.jsx:296
 msgid "Recover DID wallet"
 msgstr "بازیابی کیف پول DID"
 
@@ -1790,7 +1857,7 @@ msgstr "Second temporary folder location"
 msgid "See private key"
 msgstr "See private key"
 
-#: src/middleware/middleware_api.jsx:293
+#: src/middleware/middleware_api.jsx:255
 msgid "Seed:"
 msgstr "بذر:"
 
@@ -1814,7 +1881,7 @@ msgstr "Select Offer"
 msgid "Select Temporary Directory"
 msgstr "انتخاب پوشه موقت"
 
-#: src/components/wallet/create/WalletCreate.jsx:108
+#: src/components/wallet/create/WalletCreate.jsx:112
 msgid "Select Wallet Type"
 msgstr "Select Wallet Type"
 
@@ -1991,6 +2058,9 @@ msgstr "Status:"
 #~ msgid "Sub Block at height {0} in the Chia blockchain"
 #~ msgstr "Sub Block at height {0} in the Chia blockchain"
 
+#: src/components/wallet/create/recoverDIDWallet.js:242
+#: src/components/wallet/did/DIDWallet.jsx:476
+#: src/components/wallet/did/DIDWallet.jsx:854
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:347
 msgid "Submit"
 msgstr "ثبت و ارسال"
@@ -2067,6 +2137,11 @@ msgstr "گره همگام سازی نشده"
 #: src/components/fullNode/card/FullNodeCardStatus.tsx:29
 msgid "The node is syncing, which means it is downloading blocks from other nodes, to reach the latest block in the chain"
 msgstr "The node is syncing, which means it is downloading blocks from other nodes, to reach the latest block in the chain"
+
+#: src/components/wallet/create/createDIDWallet.js:178
+#: src/components/wallet/did/DIDWallet.jsx:802
+msgid "The number of Backup IDs needed for recovery cannot exceed the number of Backup IDs added."
+msgstr ""
 
 #: src/hooks/usePoolInfo.ts:57
 msgid "The pool URL \"{normalizedUrl}\" is not working. Is it pool? Error: {0}"
@@ -2552,6 +2627,10 @@ msgstr "You will recieve <0/> to {0}"
 #: src/hooks/useAbsorbRewards.tsx:49
 msgid "You will recieve <0/> to {address}"
 msgstr "You will recieve <0/> to {address}"
+
+#: src/components/wallet/did/DIDWallet.jsx:334
+msgid "Your DID requires at least {dids_num_req} attestation file{0} for recovery. Please upload additional files."
+msgstr ""
 
 #: src/components/farm/overview/FarmOverview.tsx:37
 msgid "Your Farm Overview"
