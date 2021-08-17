@@ -348,7 +348,7 @@ export const handle_message = async (store, payload, errorProcessed) => {
   } else if (payload.command === 'did_create_attest') {
     if (payload.data.success) {
       store.dispatch(
-        openDialog(<AlertDialog title="Success!">Your attest packet has been created</AlertDialog>),
+        openDialog(<AlertDialog title="Success!">Your attestation packet has been created</AlertDialog>),
       );
     }
   } else if (payload.command === 'respond_to_offer') {

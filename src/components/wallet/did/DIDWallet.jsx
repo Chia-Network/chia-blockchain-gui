@@ -23,7 +23,7 @@ import {
   did_spend,
   did_update_recovery_ids_action,
   did_create_attest,
-  did_recovery_spend,
+  did_recovery_spend_action,
   did_get_recovery_info
 } from '../../../modules/message';
 import {
@@ -154,8 +154,7 @@ const useStyles = makeStyles((theme) => ({
     width: 150,
   },
   sendButtonSide: {
-    marginLeft: theme.spacing(6),
-    marginRight: theme.spacing(3),
+    marginLeft: theme.spacing(3),
     height: 56,
     width: 150,
   },
@@ -191,7 +190,6 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: theme.spacing(0),
   },
   input: {
-    marginLeft: theme.spacing(3),
     height: 56,
   },
   inputLeft: {
@@ -265,7 +263,7 @@ const useStyles = makeStyles((theme) => ({
   },
   sideButton: {
     marginTop: theme.spacing(1),
-    marginBottom: theme.spacing(2),
+    marginBottom: theme.spacing(0),
     height: 56,
   },
   addText: {
@@ -278,7 +276,7 @@ const useStyles = makeStyles((theme) => ({
   },
   addID: {
     height: 56,
-    marginBottom: theme.spacing(2),
+    marginBottom: theme.spacing(0),
     marginTop: theme.spacing(1),
     paddingRight: theme.spacing(2),
   },
@@ -333,165 +331,195 @@ const RecoveryCard = (props) => {
       dispatch(
         openDialog(
           <AlertDialog>
-            <Trans>Your DID requires at least {dids_num_req} attestation file(s) for recovery. Please upload additional files.</Trans>
+            <Trans>Your DID requires at least {dids_num_req} attestation file{dids_num_req === 1 ? "" : "s"} for recovery. Please upload additional files.</Trans>
           </AlertDialog>
         ),
       );
       return;
     } else {
-      dispatch(did_recovery_spend(id, files));
+      dispatch(did_recovery_spend_action(id, files));
     }
   }
 
   return (
-    <Paper className={classes.paper}>
-      <Grid container spacing={0}>
-        <Grid item xs={12}>
-          <div className={classes.cardTitle}>
-            <Typography component="h6" variant="h6">
-              Recover DID Wallet
-            </Typography>
-          </div>
-        </Grid>
-        <Grid item xs={12}>
-          <div className={classes.cardSubSection}>
-            <Box display="flex">
-              <Box flexGrow={1} style={{ marginBottom: 20 }}>
-                <Flex alignItems="stretch">
-                  <Typography variant="subtitle1">Recovery Information:</Typography>
-                  <Tooltip title="Send your DID's coin name, pubkey, and puzzlehash to your Backup ID(s) so that they may create an attestation packet.">
-                    <HelpIcon style={{ color: '#c8c8c8', fontSize: 12 }} />
-                  </Tooltip>
-                </Flex>
-              </Box>
-            </Box>
-            <Box display="flex">
-              <Box flexGrow={1} style={{ marginBottom: 20 }}>
-                <Typography variant="subtitle1">My DID:</Typography>
-              </Box>
-              <Box
-                style={{
-                  width: '85%',
-                  overflowWrap: 'break-word',
-                }}
-              >
-                <Typography variant="subtitle1">{mydid}</Typography>
-              </Box>
-            </Box>
-            <Box display="flex">
-              <Box flexGrow={1} style={{ marginBottom: 20 }}>
-                <Typography variant="subtitle1">Coin Name:</Typography>
-              </Box>
-              <Box
-                style={{
-                  width: '85%',
-                  overflowWrap: 'break-word',
-                }}
-              >
-                <Typography variant="subtitle1">{didcoin}</Typography>
-              </Box>
-            </Box>
-            <Box display="flex">
-              <Box flexGrow={1} style={{ marginBottom: 20 }}>
-                <Typography variant="subtitle1">Pubkey:</Typography>
-              </Box>
-              <Box
-                style={{
-                  width: '85%',
-                  overflowWrap: 'break-word',
-                }}
-              >
-                <Typography variant="subtitle1">{did_rec_pubkey}</Typography>
-              </Box>
-            </Box>
-            <Box display="flex">
-              <Box flexGrow={1} style={{ marginBottom: 20 }}>
-                <Typography variant="subtitle1">Puzzlehash:</Typography>
-              </Box>
-              <Box
-                style={{
-                  width: '85%',
-                  overflowWrap: 'break-word',
-                }}
-              >
-                <Typography variant="subtitle1">{did_rec_puzhash}</Typography>
-              </Box>
-            </Box>
-          </div>
-        </Grid>
-        <ViewDIDsSubsection
-          backup_did_list={backup_did_list}
-          dids_num_req={dids_num_req}
-        />
-        <Grid item xs={12}>
-          <div className={classes.cardSubSection}>
-            <Box display="flex">
-              <Box flexGrow={1} style={{ marginBottom: 10, marginTop: 30 }}>
-                <Typography variant="subtitle1">
-                  Input Attestation Packets:
-                </Typography>
-              </Box>
-            </Box>
-          </div>
-        </Grid>
-        <Grid item xs={12}>
-          <Dropzone onDrop={handleDrop}>
-            <Trans>
-              Drag and drop attestation packet(s)
-            </Trans>
-          </Dropzone>
-        </Grid>
-        <Grid item xs={12}>
-          <div className={classes.cardSubSection}>
-            <Box display="flex">
-              <Box flexGrow={1} style={{ marginBottom: 10, marginTop: 30 }}>
-                <Typography variant="subtitle1">
-                  Attestation Packets:
-                </Typography>
-              </Box>
-            </Box>
-            <Box>
-              <Box flexGrow={1} style={{ marginBottom: 10 }}>
-                {(files.length === 0) ? (
-                  <Typography variant="subtitle1" className={classes.packetWaitText}>
-                    Waiting for attestation(s) packets to be added . . .
-                  </Typography>
-                ) : (
-                  <div>
-                  </div>
-                )}
-                {files.map(object => {
-                  return (
-                    <Typography key={object} variant="subtitle1">
-                      <span> {object} </span>
-                      <Button
-                        onClick={handleRemoveFile}
-                        className={classes.deleteButton}
-                        variant="contained"
-                      >
-                        <span name={object}>Delete</span>
-                      </Button>
-                    </Typography>
-                  );
-                })}
-              </Box>
-            </Box>
-            <Box display="flex">
-              <Box flexGrow={1} style={{ marginBottom: 10 }}>
-                <Button
-                  onClick={submit}
-                  className={classes.sendButton}
-                  variant="contained"
-                  color="primary"
-                >
-                  <Trans>Submit</Trans>
-                </Button>
-              </Box>
-            </Box>
-          </div>
-        </Grid>
+    <Card title={<Trans>Recover DID Wallet</Trans>}>
+      <Grid item xs={12}>
+        <Box display="flex">
+          <Box flexGrow={1} style={{ marginBottom: 20 }}>
+            <Flex alignItems="stretch">
+              <Typography variant="subtitle1">Recovery Information:</Typography>
+              <Tooltip title="Send your DID's coin name, pubkey, and puzzlehash to your Backup ID(s) so that they may create an attestation packet.">
+                <HelpIcon style={{ color: '#c8c8c8', fontSize: 12 }} />
+              </Tooltip>
+            </Flex>
+          </Box>
+        </Box>
+        <Box display="flex">
+          <Box flexGrow={1}>
+            <Typography variant="subtitle1">My DID:</Typography>
+          </Box>
+          <Box
+            style={{
+              width: '85%',
+              overflowWrap: 'break-word',
+              marginBottom: 20,
+            }}
+          >
+            <Typography variant="subtitle1">{mydid}</Typography>
+          </Box>
+        </Box>
+        <Box display="flex">
+          <Box flexGrow={1}>
+            <Typography variant="subtitle1">Coin Name:</Typography>
+          </Box>
+          <Box
+            style={{
+              width: '85%',
+              overflowWrap: 'break-word',
+              marginBottom: 20,
+            }}
+          >
+            <Typography variant="subtitle1">{didcoin}</Typography>
+          </Box>
+        </Box>
+        <Box display="flex">
+          <Box flexGrow={1}>
+            <Typography variant="subtitle1">Pubkey:</Typography>
+          </Box>
+          <Box
+            style={{
+              width: '85%',
+              overflowWrap: 'break-word',
+              marginBottom: 20,
+            }}
+          >
+            <Typography variant="subtitle1">{did_rec_pubkey}</Typography>
+          </Box>
+        </Box>
+        <Box display="flex">
+          <Box flexGrow={1}>
+            <Typography variant="subtitle1">Puzzlehash:</Typography>
+          </Box>
+          <Box
+            style={{
+              width: '85%',
+              overflowWrap: 'break-word',
+              marginBottom: 20,
+            }}
+          >
+            <Typography variant="subtitle1">{did_rec_puzhash}</Typography>
+          </Box>
+        </Box>
       </Grid>
-    </Paper>
+      <ViewDIDsSubsection
+        backup_did_list={backup_did_list}
+        dids_num_req={dids_num_req}
+      />
+      <Grid item xs={12}>
+        <Box display="flex">
+          <Box flexGrow={1} style={{ marginTop: 30 }}>
+            <Typography variant="subtitle1">
+              Input Attestation Packet(s)
+            </Typography>
+          </Box>
+        </Box>
+      </Grid>
+      <Grid item xs={12}>
+        <Dropzone onDrop={handleDrop}>
+          <Trans>
+            Drag and drop attestation packet(s)
+          </Trans>
+        </Dropzone>
+      </Grid>
+      <Grid item xs={12}>
+        <Box display="flex">
+          <Box flexGrow={1} style={{ marginBottom: 10, marginTop: 10 }}>
+            <Typography variant="subtitle1">
+              Attestation Packet(s):
+            </Typography>
+          </Box>
+        </Box>
+        <Box>
+          <Box flexGrow={1} style={{ marginBottom: 10 }}>
+            {(files.length === 0) ? (
+              <Typography variant="subtitle1" className={classes.packetWaitText}>
+                Waiting for attestation packet to be added . . .
+              </Typography>
+            ) : (
+              <div>
+              </div>
+            )}
+            {files.map(object => {
+              return (
+                <Typography key={object} variant="subtitle1">
+                  <span> {object} </span>
+                  <Button
+                    onClick={handleRemoveFile}
+                    className={classes.deleteButton}
+                    variant="contained"
+                  >
+                    <span name={object}>Delete</span>
+                  </Button>
+                </Typography>
+              );
+            })}
+          </Box>
+        </Box>
+        <Box display="flex">
+          <Box flexGrow={1} style={{ marginBottom: 10 }}>
+            <Button
+              onClick={submit}
+              className={classes.sendButton}
+              variant="contained"
+              color="primary"
+            >
+              <Trans>Submit</Trans>
+            </Button>
+          </Box>
+        </Box>
+      </Grid>
+    </Card>
+  );
+};
+
+const RecoveryTransCard = (props) => {
+  const id = props.wallet_id
+  const mydid = useSelector((state) => state.wallet_state.wallets[id].mydid);
+  let data = useSelector((state) => state.wallet_state.wallets[id].data);
+  let data_parsed = JSON.parse(data);
+  let temp_coin = data_parsed.temp_coin;
+  const classes = useStyles();
+
+  return (
+    <Card title={<Trans>Recover DID Wallet</Trans>}>
+      <Grid item xs={12}>
+        <div className={classes.cardSubSection}>
+          <Box display="flex" style={{ marginTop: 20, marginBottom: 20 }}>
+            <Box flexGrow={1}>
+              <Typography variant="subtitle1">My DID:</Typography>
+            </Box>
+            <Box
+              style={{
+                width: '85%',
+                overflowWrap: 'break-word',
+              }}
+            >
+              <Typography variant="subtitle1">{mydid}</Typography>
+            </Box>
+          </Box>
+          <Box display="flex">
+            <Box flexGrow={1} style={{ marginTop: 20, marginBottom: 20 }}>
+              <Flex alignItems="stretch">
+                <Typography variant="subtitle1">Your DID wallet recovery is in progress. Please check back soon.</Typography>
+                <Tooltip title="The DID recovery process usually resolves after the addition of a few blockheights.">
+                  <HelpIcon style={{ color: '#c8c8c8', fontSize: 12 }} />
+                </Tooltip>
+              </Flex>
+            </Box>
+          </Box>
+        </div>
+      </Grid>
+    </Card>
   );
 };
 
@@ -519,75 +547,60 @@ const MyDIDCard = (props) => {
   };
 
   return (
-    <Paper className={classes.paper}>
-      <Grid container spacing={0}>
-        <Grid item xs={12}>
-          <div className={classes.cardTitle}>
-            <Typography component="h6" variant="h6">
-              My DID
-            </Typography>
-          </div>
-        </Grid>
-        <Grid item xs={12}>
-          <div className={classes.cardSubSection}>
-            <Box display="flex">
-              <Box flexGrow={1} style={{ marginBottom: 20 }}>
-                <Typography variant="subtitle1">My DID:</Typography>
-              </Box>
-              <Box
-                style={{
-                  width: '85%',
-                  overflowWrap: 'break-word',
-                }}
-              >
-                <Typography variant="subtitle1">{mydid}</Typography>
-              </Box>
-            </Box>
-          </div>
-        </Grid>
-        <Grid item xs={12}>
-          <div className={classes.cardSubSection}>
-            <Box display="flex">
-              <Box
-                flexGrow={6}
-                className={classes.inputTitleLeft}
-                style={{ marginBottom: 10 }}
-              >
-                <Typography variant="subtitle1">
-                  Generate a backup file:
-                </Typography>
-              </Box>
-            </Box>
-          </div>
-          <div className={classes.subCard}>
-            <Box display="flex">
-              <Box flexGrow={1}>
-                <TextField
-                  className={classes.input}
-                  variant="filled"
-                  color="secondary"
-                  fullWidth
-                  inputRef={(input) => {
-                    filename_input = input;
-                  }}
-                  label="Filename"
-                />
-              </Box>
-              <Box>
-                <Button
-                  onClick={generateBackup}
-                  className={classes.sendButtonSide}
-                  variant="contained"
-                  color="primary"
-                >
-                  Generate
-                </Button>
-              </Box>
-            </Box>
-          </div>
-        </Grid>
+    <Card title={<Trans>My DID Wallet</Trans>}>
+      <Grid item xs={12}>
+        <Box display="flex">
+          <Box flexGrow={1}>
+            <Typography variant="subtitle1">My DID:</Typography>
+          </Box>
+          <Box
+            style={{
+              width: '85%',
+              overflowWrap: 'break-word',
+            }}
+          >
+            <Typography variant="subtitle1">{mydid}</Typography>
+          </Box>
+        </Box>
       </Grid>
-    </Paper>
+      <Grid item xs={12}>
+        <Box display="flex">
+          <Box
+            flexGrow={6}
+            className={classes.inputTitleLeft}
+            style={{ marginBottom: 10 }}
+          >
+            <Typography variant="subtitle1">
+              Create a backup file:
+            </Typography>
+          </Box>
+        </Box>
+        <Box display="flex">
+          <Box flexGrow={1}>
+            <TextField
+              className={classes.input}
+              variant="filled"
+              color="secondary"
+              fullWidth
+              inputRef={(input) => {
+                filename_input = input;
+              }}
+              label="Filename"
+            />
+          </Box>
+          <Box>
+            <Button
+              onClick={generateBackup}
+              className={classes.sendButtonSide}
+              variant="contained"
+              color="primary"
+            >
+              Create
+            </Button>
+          </Box>
+        </Box>
+      </Grid>
+    </Card>
   );
 };
 
@@ -596,29 +609,27 @@ const BalanceCardSubSection = (props) => {
   const classes = useStyles();
   return (
     <Grid item xs={12}>
-      <div className={classes.cardSubSection}>
-        <Box display="flex">
-          <Box flexGrow={1}>
-            <Typography variant="subtitle1">
-              {props.title}
-              {props.tooltip ? (
-                <Tooltip title={props.tooltip}>
-                  <HelpIcon
-                    style={{ color: '#c8c8c8', fontSize: 12 }}
-                  ></HelpIcon>
-                </Tooltip>
-              ) : (
-                ''
-              )}
-            </Typography>
-          </Box>
-          <Box>
-            <Typography variant="subtitle1">
-              {mojo_to_chia_string(props.balance)} TXCH
-            </Typography>
-          </Box>
+      <Box display="flex">
+        <Box flexGrow={1}>
+          <Typography variant="subtitle1">
+            {props.title}
+            {props.tooltip ? (
+              <Tooltip title={props.tooltip}>
+                <HelpIcon
+                  style={{ color: '#c8c8c8', fontSize: 12 }}
+                ></HelpIcon>
+              </Tooltip>
+            ) : (
+              ''
+            )}
+          </Typography>
         </Box>
-      </div>
+        <Box>
+          <Typography variant="subtitle1">
+            {mojo_to_chia_string(props.balance)} TXCH
+          </Typography>
+        </Box>
+      </Box>
     </Grid>
   );
 };
@@ -641,80 +652,18 @@ const BalanceCard = (props) => {
   const classes = useStyles();
 
   return (
-    <Paper className={classes.paper}>
-      <Grid container spacing={0}>
-        <Grid item xs={12}>
-          <div className={classes.cardTitle}>
-            <Typography component="h6" variant="h6">
-              Balance
-            </Typography>
-          </div>
-        </Grid>
-        <BalanceCardSubSection
-          title="Total Balance"
-          balance={balance}
-          tooltip=""
-        />
-        <BalanceCardSubSection
-          title="Spendable Balance"
-          balance={balance_spendable}
-          tooltip={''}
-        />
-        <Grid item xs={12}>
-          <div className={classes.cardSubSection}>
-            <Box display="flex">
-              <Box flexGrow={1}>
-                <Accordion className={classes.front}>
-                  <AccordionSummary
-                    expandIcon={<ExpandMoreIcon />}
-                    aria-controls="panel1a-content"
-                    id="panel1a-header"
-                  >
-                    <Typography className={classes.heading}>
-                      View pending balances
-                    </Typography>
-                  </AccordionSummary>
-                  <AccordionDetails>
-                    <Grid container spacing={0}>
-                      <BalanceCardSubSection
-                        title="Pending Total Balance"
-                        balance={balance_ptotal}
-                        tooltip={''}
-                      />
-                      <BalanceCardSubSection
-                        title="Pending Balance"
-                        balance={balance_pending}
-                        tooltip={''}
-                      />
-                      <BalanceCardSubSection
-                        title="Pending Change"
-                        balance={balance_change}
-                        tooltip={''}
-                      />
-                    </Grid>
-                  </AccordionDetails>
-                </Accordion>
-              </Box>
-            </Box>
-          </div>
-        </Grid>
-      </Grid>
-    </Paper>
-  );
-};
-
-const ViewDIDsSubsection = (props) => {
-  const classes = useStyles();
-  let backup_list = props.backup_did_list;
-  let dids_num_req = props.dids_num_req;
-  let dids_length = backup_list.length;
-  let isEmptyList = false;
-  if (backup_list.length === 0) {
-    isEmptyList = true;
-  }
-  return (
-    <Grid item xs={12}>
-      <div className={classes.cardSubSection}>
+    <Card title={<Trans>Balance</Trans>}>
+      <BalanceCardSubSection
+        title="Total Balance"
+        balance={balance}
+        tooltip=""
+      />
+      <BalanceCardSubSection
+        title="Spendable Balance"
+        balance={balance_spendable}
+        tooltip={''}
+      />
+      <Grid item xs={12}>
         <Box display="flex">
           <Box flexGrow={1}>
             <Accordion className={classes.front}>
@@ -724,37 +673,85 @@ const ViewDIDsSubsection = (props) => {
                 id="panel1a-header"
               >
                 <Typography className={classes.heading}>
-                  View your list of Backup IDs ({dids_num_req} Backup ID{dids_num_req === 1 ? " is " : "s are "} required for recovery)
+                  View pending balances
                 </Typography>
               </AccordionSummary>
               <AccordionDetails>
-                <Grid item xs={12}>
-                  <div className={classes.cardSubSection}>
-                    <Box display="flex">
-                      <Box flexGrow={1}>
-                        <Typography variant="subtitle1">
-                          {isEmptyList
-                            ? 'Your backup list is currently empty.'
-                            : null}
-                          {backup_list.map((object, i) => {
-                            return (
-                              <span key={i}>
-                                <Typography variant="subtitle1">
-                                  &#8226; {object}
-                                </Typography>
-                              </span>
-                            );
-                          })}
-                        </Typography>
-                      </Box>
-                    </Box>
-                  </div>
+                <Grid container spacing={0}>
+                  <BalanceCardSubSection
+                    title="Pending Total Balance"
+                    balance={balance_ptotal}
+                    tooltip={''}
+                  />
+                  <BalanceCardSubSection
+                    title="Pending Balance"
+                    balance={balance_pending}
+                    tooltip={''}
+                  />
+                  <BalanceCardSubSection
+                    title="Pending Change"
+                    balance={balance_change}
+                    tooltip={''}
+                  />
                 </Grid>
               </AccordionDetails>
             </Accordion>
           </Box>
         </Box>
-      </div>
+      </Grid>
+    </Card>
+  );
+};
+
+const ViewDIDsSubsection = (props) => {
+  const classes = useStyles();
+  let backup_list = props.backup_did_list;
+  let dids_num_req = props.dids_num_req;
+  let isEmptyList = false;
+  if (backup_list.length === 0) {
+    isEmptyList = true;
+  }
+  return (
+    <Grid item xs={12}>
+      <Box display="flex">
+        <Box flexGrow={1}>
+          <Accordion className={classes.front}>
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1a-content"
+              id="panel1a-header"
+            >
+              <Typography className={classes.heading}>
+                View your list of Backup IDs ({dids_num_req} Backup ID{dids_num_req === 1 ? " is " : "s are "} required for recovery)
+              </Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Grid item xs={12}>
+                <div className={classes.cardSubSection}>
+                  <Box display="flex">
+                    <Box flexGrow={1}>
+                      <Typography variant="subtitle1">
+                        {isEmptyList
+                          ? 'Your backup list is currently empty.'
+                          : null}
+                        {backup_list.map((object, i) => {
+                          return (
+                            <span key={i}>
+                              <Typography variant="subtitle1">
+                                &#8226; {object}
+                              </Typography>
+                            </span>
+                          );
+                        })}
+                      </Typography>
+                    </Box>
+                  </Box>
+                </div>
+              </Grid>
+            </AccordionDetails>
+          </Accordion>
+        </Box>
+      </Box>
     </Grid>
   );
 };
@@ -818,115 +815,104 @@ const ManageDIDsCard = (props) => {
   };
 
   return (
-    <Paper className={classes.paper}>
-      <Grid container spacing={0}>
-        <Grid item xs={12}>
-          <div className={classes.cardTitle}>
-            <Typography component="h6" variant="h6">
-              Manage Recovery DIDs
-            </Typography>
-          </div>
-        </Grid>
-        <ViewDIDsSubsection
-          backup_did_list={backup_did_list}
-          dids_num_req={dids_num_req}
-        />
-        <Grid item xs={12}>
-          <div className={classes.cardSubSection}>
-            <form onSubmit={handleSubmit(onSubmit)}>
-              <Box display="flex">
-                <Flex alignItems="stretch" className={classes.addText}>
-                  <Typography variant="subtitle1">
-                    Update number of Backup IDs needed for recovery:
-                  </Typography>
-                  <Tooltip title="This number must be greater than or equal to 0, and it may not exceed the number of Backup IDs you have added. You will be able to change this number as well as your list of Backup IDs.">
-                    <HelpIcon style={{ color: '#c8c8c8', fontSize: 12 }} />
-                  </Tooltip>
-                </Flex>
-              </Box>
-              <Flex flexDirection="row" justifyContent="space-between">
-                <Box flexGrow={6}>
-                  <Controller
-                    as={TextField}
-                    name="num_needed"
-                    control={control}
-                    label="Number of Backup IDs needed for recovery"
-                    variant="outlined"
-                    fullWidth
-                    defaultValue=""
-                  />
-                </Box>
-                <Button
-                  type="submit"
-                  className={classes.submitButton}
-                  variant="contained"
-                  color="primary"
-                  disableElevation
-                >
-                  <Trans>Submit</Trans>
-                </Button>
-              </Flex>
-              <Box display="flex">
-                <Flex alignItems="stretch" className={classes.addIDsText}>
-                  <Typography variant="subtitle1">
-                    Update Backup IDs:
-                  </Typography>
-                  <Tooltip title="Please enter a new set of recovery IDs. Be sure to re-enter any current recovery IDs which you would like to keep in your recovery list.">
-                    <HelpIcon style={{ color: '#c8c8c8', fontSize: 12 }} />
-                  </Tooltip>
-                </Flex>
-              </Box>
-              <Flex alignItems="stretch">
-                <Button
-                  onClick={() => {
-                    append({ backupid: 'Backup ID' });
-                  }}
-                  variant="contained"
-                  disableElevation
-                  className={classes.addID}
-                >
-                  <Trans>Add Backup ID</Trans>
-                </Button>
-              </Flex>
-              <ul>
-                {fields.map((item, index) => {
-                  return (
-                    <li key={item.id} style={{ listStyleType: 'none' }}>
-                      <Flex alignItems="stretch">
-                        <Box flexGrow={1}>
-                          <Controller
-                            as={TextField}
-                            name={`backup_dids[${index}].backupid`}
-                            control={control}
-                            defaultValue=""
-                            label="Backup ID"
-                            variant="outlined"
-                            fullWidth
-                            color="secondary"
-                            className={classes.inputDID}
-                          />
-                        </Box>
-                        <Button
-                          onClick={() => remove(index)}
-                          variant="contained"
-                          disableElevation
-                          className={classes.sideButton}
-                        >
-                          <Trans>Delete</Trans>
-                        </Button>
-                      </Flex>
-                    </li>
-                  );
-                })}
-              </ul>
-            </form>
-          </div>
-        </Grid>
-        <Backdrop className={classes.backdrop} open={pending && created}>
-          <CircularProgress color="inherit" />
-        </Backdrop>
+    <Card title={<Trans>Manage Recovery DIDs</Trans>}>
+      <ViewDIDsSubsection
+        backup_did_list={backup_did_list}
+        dids_num_req={dids_num_req}
+      />
+      <Grid item xs={12}>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <Box display="flex">
+            <Flex alignItems="stretch" className={classes.addText}>
+              <Typography variant="subtitle1">
+                Update number of Backup IDs needed for recovery:
+              </Typography>
+              <Tooltip title="This number must be greater than or equal to 0, and it may not exceed the number of Backup IDs you have added. You will be able to change this number as well as your list of Backup IDs.">
+                <HelpIcon style={{ color: '#c8c8c8', fontSize: 12 }} />
+              </Tooltip>
+            </Flex>
+          </Box>
+          <Flex flexDirection="row" justifyContent="space-between">
+            <Box flexGrow={6}>
+              <Controller
+                as={TextField}
+                name="num_needed"
+                control={control}
+                label="Number of Backup IDs needed for recovery"
+                variant="outlined"
+                fullWidth
+                defaultValue=""
+              />
+            </Box>
+            <Button
+              type="submit"
+              className={classes.submitButton}
+              variant="contained"
+              color="primary"
+              disableElevation
+            >
+              <Trans>Submit</Trans>
+            </Button>
+          </Flex>
+          <Box display="flex">
+            <Flex alignItems="stretch" className={classes.addIDsText}>
+              <Typography variant="subtitle1">
+                Update Backup IDs:
+              </Typography>
+              <Tooltip title="Please enter a new set of recovery IDs. Be sure to re-enter any current recovery IDs which you would like to keep in your recovery list.">
+                <HelpIcon style={{ color: '#c8c8c8', fontSize: 12 }} />
+              </Tooltip>
+            </Flex>
+          </Box>
+          <Flex alignItems="stretch">
+            <Button
+              onClick={() => {
+                append({ backupid: 'Backup ID' });
+              }}
+              variant="contained"
+              disableElevation
+              className={classes.addID}
+            >
+              <Trans>Add Backup ID</Trans>
+            </Button>
+          </Flex>
+          <ul>
+            {fields.map((item, index) => {
+              return (
+                <li key={item.id} style={{ listStyleType: 'none' }}>
+                  <Flex alignItems="stretch">
+                    <Box flexGrow={1}>
+                      <Controller
+                        as={TextField}
+                        name={`backup_dids[${index}].backupid`}
+                        control={control}
+                        defaultValue=""
+                        label="Backup ID"
+                        variant="outlined"
+                        fullWidth
+                        color="secondary"
+                        className={classes.inputDID}
+                      />
+                    </Box>
+                    <Button
+                      onClick={() => remove(index)}
+                      variant="contained"
+                      disableElevation
+                      className={classes.sideButton}
+                    >
+                      <Trans>Delete</Trans>
+                    </Button>
+                  </Flex>
+                </li>
+              );
+            })}
+          </ul>
+        </form>
       </Grid>
-    </Paper>
+      <Backdrop className={classes.backdrop} open={pending && created}>
+        <CircularProgress color="inherit" />
+      </Backdrop>
+    </Card>
   );
 };
 
@@ -997,100 +983,86 @@ const CreateAttest = (props) => {
   }
 
   return (
-    <Paper className={classes.paper}>
-      <Grid container spacing={0}>
-        <Grid item xs={12}>
-          <div className={classes.cardTitle}>
-            <Typography component="h6" variant="h6">
-              Create An Attestation Packet
-            </Typography>
-          </div>
-        </Grid>
-        <Grid item xs={12}>
-          <div className={classes.cardSubSection}>
-            <Box display="flex">
-              <Box flexGrow={1}>
-                <TextField
-                  variant="filled"
-                  color="secondary"
-                  margin="normal"
-                  fullWidth
-                  inputRef={(input) => {
-                    filename_input = input;
-                  }}
-                  label="Filename"
-                />
-              </Box>
-              <Box></Box>
-            </Box>
-            <Box display="flex">
-              <Box flexGrow={1}>
-                <TextField
-                  variant="filled"
-                  color="secondary"
-                  margin="normal"
-                  fullWidth
-                  inputRef={(input) => {
-                    coin_input = input;
-                  }}
-                  label="Coin"
-                />
-              </Box>
-              <Box></Box>
-            </Box>
-            <Box display="flex">
-              <Box flexGrow={1}>
-                <TextField
-                  variant="filled"
-                  color="secondary"
-                  margin="normal"
-                  fullWidth
-                  inputRef={(input) => {
-                    pubkey_input = input;
-                  }}
-                  label="Pubkey"
-                />
-              </Box>
-              <Box></Box>
-            </Box>
-            <Box display="flex">
-              <Box flexGrow={1}>
-                <TextField
-                  variant="filled"
-                  color="secondary"
-                  margin="normal"
-                  fullWidth
-                  inputRef={(input) => {
-                    puzhash_input = input;
-                  }}
-                  label="Puzzlehash"
-                />
-              </Box>
-              <Box></Box>
-            </Box>
-          </div>
-        </Grid>
-        <Grid item xs={12}>
-          <div className={classes.cardSubSection}>
-            <Box display="flex">
-              <Box>
-                <Button
-                  onClick={createAttestPacket}
-                  className={classes.sendButton}
-                  variant="contained"
-                  color="primary"
-                >
-                  Create
-                </Button>
-              </Box>
-            </Box>
-          </div>
-        </Grid>
+    <Card title={<Trans>Create An Attestation Packet</Trans>}>
+      <Box display="flex">
+        <Box flexGrow={1}>
+          <TextField
+            variant="filled"
+            color="secondary"
+            margin="normal"
+            fullWidth
+            inputRef={(input) => {
+              filename_input = input;
+            }}
+            label="Filename"
+          />
+        </Box>
+        <Box></Box>
+      </Box>
+      <Box display="flex">
+        <Box flexGrow={1}>
+          <TextField
+            variant="filled"
+            color="secondary"
+            margin="normal"
+            fullWidth
+            inputRef={(input) => {
+              coin_input = input;
+            }}
+            label="Coin"
+          />
+        </Box>
+        <Box></Box>
+      </Box>
+      <Box display="flex">
+        <Box flexGrow={1}>
+          <TextField
+            variant="filled"
+            color="secondary"
+            margin="normal"
+            fullWidth
+            inputRef={(input) => {
+              pubkey_input = input;
+            }}
+            label="Pubkey"
+          />
+        </Box>
+        <Box></Box>
+      </Box>
+      <Box display="flex">
+        <Box flexGrow={1}>
+          <TextField
+            variant="filled"
+            color="secondary"
+            margin="normal"
+            fullWidth
+            inputRef={(input) => {
+              puzhash_input = input;
+            }}
+            label="Puzzlehash"
+          />
+        </Box>
+        <Box></Box>
+      </Box>
+      <Grid item xs={12}>
+        <Box display="flex">
+          <Box>
+            <Button
+              onClick={createAttestPacket}
+              className={classes.sendButton}
+              variant="contained"
+              color="primary"
+            >
+              Create
+            </Button>
+          </Box>
+        </Box>
       </Grid>
-    </Paper>
+    </Card>
   );
 };
 
+// this is currently not being displayed; did_spend does not exist in wallet_rpc_api.py
 const CashoutCard = (props) => {
   var id = props.wallet_id;
   var address_input = null;
@@ -1189,15 +1161,26 @@ export default function DistributedIDWallet(props) {
   const data = useSelector((state) => state.wallet_state.wallets[id].data);
   const data_parsed = JSON.parse(data);
   let temp_coin = data_parsed.temp_coin;
+  let sent_recovery_transaction = data_parsed.sent_recovery_transaction;
+  console.log("DID SWITCH")
+  console.log()
 
   if (wallets.length > props.wallet_id) {
     if (temp_coin) {
-      dispatch(did_get_recovery_info(id))
-      return (
-        <Flex flexDirection="column" gap={3}>
-          <RecoveryCard wallet_id={id} />
-        </Flex>
-      );
+      if (sent_recovery_transaction) {
+        return (
+          <Flex flexDirection="column" gap={3}>
+            <RecoveryTransCard wallet_id={id} />
+          </Flex>
+        )
+      } else {
+        dispatch(did_get_recovery_info(id))
+        return (
+          <Flex flexDirection="column" gap={3}>
+            <RecoveryCard wallet_id={id} />
+          </Flex>
+        );
+      }
     } else {
       return (
         <Flex flexDirection="column" gap={3}>
@@ -1205,7 +1188,6 @@ export default function DistributedIDWallet(props) {
           <BalanceCard wallet_id={id} />
           <ManageDIDsCard wallet_id={id} />
           <CreateAttest wallet_id={id} />
-          <CashoutCard wallet_id={id} />
           <WalletHistory walletId={id} />
         </Flex>
       );

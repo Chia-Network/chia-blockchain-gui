@@ -423,7 +423,6 @@ export default function incomingReducer(
         wallet.backup_dids = backup_dids;
       } else if (command === 'did_recovery_spend') {
         success = data.success;
-        console.log("INCOMING DATA REC SPEND")
       }
 
       if (command === 'state_changed' && data.state === 'tx_update') {
@@ -441,6 +440,11 @@ export default function incomingReducer(
             },
           ),
         };
+      }
+      if (command === 'state_changed') {
+        if (message.data.state === 'did_coin_added') {
+          console.log("INCOMING did coin added")
+        }
       }
       if (command === 'get_farmed_amount') {
         return { ...state, farmed_amount: data };
