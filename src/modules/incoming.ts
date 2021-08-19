@@ -388,8 +388,6 @@ export default function incomingReducer(
         const { wallet_id, my_did: mydid, coin_id: didcoin  } = data;
         const { wallets, ...rest } = state;
 
-        console.log('did_get_did', mydid, didcoin);
-
         return {
           ...rest,
           wallets: mergeArrayItem(
@@ -404,8 +402,6 @@ export default function incomingReducer(
       } else if (command === 'did_get_recovery_list') {
         const { wallet_id, recover_list: backup_dids, num_required: dids_num_req  } = data;
         const { wallets, ...rest } = state;
-
-        console.log('did_get_recovery_list', backup_dids, dids_num_req);
 
         return {
           ...rest,
@@ -428,8 +424,6 @@ export default function incomingReducer(
           backup_dids,
         } = data;
         const { wallets, ...rest } = state;
-
-        console.log('did_get_information_needed_for_recovery', mydid, didcoin, backup_dids);
 
         return {
           ...rest,
@@ -464,11 +458,6 @@ export default function incomingReducer(
             },
           ),
         };
-      }
-      if (command === 'state_changed') {
-        if (message.data.state === 'did_coin_added') {
-          console.log("INCOMING did coin added")
-        }
       }
       if (command === 'get_farmed_amount') {
         return { ...state, farmed_amount: data };

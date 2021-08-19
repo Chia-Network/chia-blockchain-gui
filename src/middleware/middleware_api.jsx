@@ -333,6 +333,8 @@ export const handle_message = async (store, payload, errorProcessed) => {
       wallet_id = payload.data.wallet_id;
       get_wallet_balance(store, wallet_id);
       get_wallet_transactions(store, wallet_id);
+    } else if (state === 'did_coin_added') {
+      store.dispatch(format_message('get_wallets', {}));
     }
   } else if (payload.command === 'cc_set_name') {
     if (payload.data.success) {
