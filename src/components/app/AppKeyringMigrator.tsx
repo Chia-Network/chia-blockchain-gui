@@ -23,69 +23,20 @@ import { AlertDialog, ConfirmDialog, Flex, Logo } from '@chia/core';
 import { openDialog } from '../../modules/dialog';
 import { RootState } from '../../modules/rootReducer';
 import { migrate_keyring_action, skipKeyringMigration } from '../../modules/message';
+import { validateChangePassphraseParams } from './AppPassPrompt';
 import { ReactElement } from 'react';
 
 export default function AppKeyringMigrator() {
   const dispatch = useDispatch();
-  // const openDialog = useOpenDialog();
+  const keyring_state = useSelector((state: RootState) => state.keyring_state);
+  const allowEmptyPassphrase = keyring_state.allow_empty_passphrase;
+  const migrationInProgress = keyring_state.migration_in_progress;
   let passphraseInput: HTMLInputElement | null = null;
   let confirmationInput: HTMLInputElement | null = null;
   let cleanupKeyringCheckbox: HTMLInputElement | null = null;
-  let allowEmptyPassphrase = useSelector((state: RootState) => state.keyring_state.allow_empty_passphrase);
-  let minPassphraseLen = useSelector((state: RootState) => state.keyring_state.min_passphrase_length);
-  let migrationInProgress = useSelector((state: RootState) => state.keyring_state.migration_in_progress);
 
   async function validateDialog(passphrase: string, confirmation: string): Promise<boolean> {
-    let valid: boolean = false;
-
-    if (passphrase != confirmation) {
-      dispatch(
-        openDialog(
-          <AlertDialog>
-            <Trans>
-              The provided passphrase and confirmation do not match
-            </Trans>
-          </AlertDialog>
-        ),
-      );
-    } else if ((passphrase.length == 0 && !allowEmptyPassphrase) || // Passphrase required, no passphrase provided
-               (passphrase.length > 0 && passphrase.length < minPassphraseLen)) { // Passphrase provided, not long enough
-      dispatch(
-        openDialog(
-          <AlertDialog>
-            <Trans>
-              Passphrases must be at least {minPassphraseLen} characters in length
-            </Trans>
-          </AlertDialog>
-        ),
-      );
-    } else if (passphrase.length == 0) {
-      // Warn about using an empty passphrase
-      const useEmptyPassphrase = await dispatch(
-        openDialog(
-          <ConfirmDialog
-            title={<Trans>Skip Passphrase Protection</Trans>}
-            confirmTitle={<Trans>Skip</Trans>}
-            confirmColor="danger"
-            // @ts-ignore
-            maxWidth="xs"
-          >
-            <Trans>
-              Setting a passphrase is strongly recommended to protect your keys. Are you sure you want to skip setting a passphrase?
-            </Trans>
-          </ConfirmDialog>
-        )
-      );
-  
-      // @ts-ignore
-      if (useEmptyPassphrase) {
-        valid = true;
-      }
-    } else {
-      valid = true;
-    }
-
-    return valid;
+    return await validateChangePassphraseParams(dispatch, keyring_state, null, passphrase, confirmation);
   }
 
   async function handleSkipMigration() {
