@@ -11,14 +11,8 @@ import {
 import {
   Grid,
   Typography,
-  TextField,
   Box,
   Button,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogContentText,
-  DialogActions,
   Tooltip,
 } from '@material-ui/core';
 import {
@@ -27,8 +21,10 @@ import {
   NoEncryption as NoEncryptionIcon,
 } from '@material-ui/icons';
 import { openDialog } from '../../modules/dialog';
-import { setKeyringPassphrase, changeKeyringPassphrase, removeKeyringPassphrase } from '../../modules/daemon_messages';
 import { RootState } from '../../modules/rootReducer';
+import ChangePassphrasePrompt from './ChangePassphrasePrompt';
+import RemovePassphrasePrompt from './RemovePassphrasePrompt';
+import SetPassphrasePrompt from './SetPassphrasePrompt';
 
 const useStyles = makeStyles((theme) => ({
   passToggleBox: {
@@ -54,82 +50,63 @@ const useStyles = makeStyles((theme) => ({
 const SecurityCard = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  let toggle_passphrase_input: HTMLInputElement | null;
-  let oldpass_input: HTMLInputElement;
-  let newpass_input: HTMLInputElement;
-  let confirmpass_input: HTMLInputElement;
   let userPassphraseIsSet = useSelector(
     (state: RootState) => state.keyring_state.user_passphrase_set,
   );
 
-  const [toggleOpen, setToggleOpen] = React.useState(false);
+  const [changePassphraseOpen, setChangePassphraseOpen] = React.useState(false);
+  const [removePassphraseOpen, setRemovePassphraseOpen] = React.useState(false);
+  const [addPassphraseOpen, setAddPassphraseOpen] = React.useState(false);
 
-  const handleToggleOpen = () => {
-    setToggleOpen(true);
-  };
-
-  const handleToggleClose = () => {
-    setToggleOpen(false);
-  };
-
-  const [changeOpen, setChangeOpen] = React.useState(false);
-
-  const handleChangeOpen = () => {
-    setChangeOpen(true);
+  async function changePassphraseSucceeded() {
+    closeChangePassphrase();
+    dispatch(
+      openDialog(
+        <AlertDialog>
+          <Trans>
+          Your passphrase has been updated
+          </Trans>
+        </AlertDialog>
+      )
+    );
   }
 
-  const handleChangeClose = () => {
-    setChangeOpen(false);
-  };
-
-  function DisplayLockStatus() {
-    if (userPassphraseIsSet) {
-      return (
-        <Typography variant="subtitle1" style={{ color: '#3AAC59', fontWeight: "bold" }}> ENABLED </Typography>
+  async function setPassphraseSucceeded() {
+    closeSetPassphrase();
+    dispatch(
+      openDialog(
+        <AlertDialog>
+          <Trans>
+            Your passphrase has been set
+          </Trans>
+        </AlertDialog>
       )
-    }
-    else {
-      return (
-        <Typography variant="subtitle1" style={{ color: 'red', fontWeight: "bold" }}> NOT ENABLED </Typography>
-      )
-    }
+    );
   }
 
-  function DisplayToggleStatus() {
-    if (userPassphraseIsSet) {
-      return (
-        <Typography> REMOVE PASSPHRASE </Typography>
+  async function removePassphraseSucceeded() {
+    closeRemovePassphrase();
+    dispatch(
+      openDialog(
+        <AlertDialog>
+          <Trans>
+            Passphrase protection has been disabled
+          </Trans>
+        </AlertDialog>
       )
-    }
-    else {
-      return (
-        <Typography> ADD PASSPHRASE </Typography>
-      )
-    }
+    );
   }
 
-  function DisplayDialogTextStatus() {
-    if (userPassphraseIsSet) {
-      return (
-        <DialogTitle id="form-dialog-title">Remove Passphrase</DialogTitle>
-      )
-    } else {
-      return (
-        <DialogTitle id="form-dialog-title">Add Passphrase</DialogTitle>
-      )
-    }
+  async function closeChangePassphrase() {
+    setChangePassphraseOpen(false);
   }
 
-  function DisplayDialogContentText() {
-    if (userPassphraseIsSet) {
-      return (
-        <DialogContentText>Enter your passphrase:</DialogContentText>
-      )
-    } else {
-      return (
-        <DialogContentText>Enter a new passphrase:</DialogContentText>
-      )
-    }
+  async function closeSetPassphrase() {
+    setAddPassphraseOpen(false);
+  }
+
+  async function closeRemovePassphrase() {
+    setRemovePassphraseOpen(false);
   }
 
   function DisplayChangePassphrase() {
@@ -137,120 +114,24 @@ const SecurityCard = () => {
       return (
         <Box display="flex" className={classes.passChangeBox}>
           <Button
-            onClick={handleChangeOpen}
+            onClick={() => setChangePassphraseOpen(true)}
             className={classes.togglePassButton}
             variant="contained"
             disableElevation
           >
-            CHANGE PASSPHRASE
+            <Trans>Change Passphrase</Trans>
           </Button>
-          <Dialog
-            open={changeOpen}
-            aria-labelledby="form-dialog-title"
-            fullWidth={true}
-            maxWidth = {'xs'}
-          >
-            <DialogTitle id="form-dialog-title">Change Passphrase</DialogTitle>
-            <DialogContent>
-              <DialogContentText>Enter your current passphrase and a new passphrase:</DialogContentText>
-              <TextField
-                autoFocus
-                color="secondary"
-                id="passphrase_input"
-                inputRef={(input) => {
-                  oldpass_input = input;
-                }}
-                label={<Trans>Old Passphrase</Trans>}
-                type="password"
-                fullWidth
-              />
-              <TextField
-                color="secondary"
-                margin="dense"
-                id="passphrase_input"
-                inputRef={(input) => {
-                  newpass_input = input;
-                }}
-                label={<Trans>New Passphrase</Trans>}
-                type="password"
-                fullWidth
-              />
-              <TextField
-                color="secondary"
-                margin="dense"
-                id="passphrase_input"
-                inputRef={(input) => {
-                  confirmpass_input = input;
-                }}
-                label={<Trans>Confirm New Passphrase</Trans>}
-                type="password"
-                fullWidth
-              />
-            </DialogContent>
-            <DialogActions>
-              <Button
-                onClick={handleChangeClose}
-                color="primary"
-                variant="contained"
-                style={{ marginBottom: '8px', marginRight: '8px' }}
-              >
-                Cancel
-              </Button>
-              <Button
-                onClick={handleChangeSubmit}
-                color="primary"
-                variant="contained"
-                style={{ marginBottom: '8px', marginRight: '8px' }}
-              >
-                Submit
-              </Button>
-            </DialogActions>
-          </Dialog>
+          { changePassphraseOpen &&
+            <ChangePassphrasePrompt
+              onSuccess={changePassphraseSucceeded}
+              onCancel={closeChangePassphrase}
+            />}
         </Box>
       )
     }
     else {
       return (null);
     }
-  }
-
-  function handleToggleSubmit() {
-    if (!toggle_passphrase_input) {
-      return;
-    }
-    
-    let passphrase = toggle_passphrase_input.value;
-
-    if (userPassphraseIsSet) {
-      dispatch(removeKeyringPassphrase(passphrase))
-    }
-    else {
-      dispatch(setKeyringPassphrase(passphrase))
-    }
-  }
-
-  function handleChangeSubmit() {
-    if (newpass_input.value !== confirmpass_input.value) {
-      dispatch(
-        openDialog(
-          <AlertDialog>
-            <Trans>The provided new passphrase and confirmation do not match</Trans>
-          </AlertDialog>,
-        ),
-      );
-      return;
-    }
-    if (newpass_input.value.length < 8) {
-      dispatch(
-        openDialog(
-          <AlertDialog>
-            <Trans>Your new passphrase must be at least 8 characters</Trans>
-          </AlertDialog>,
-        ),
-      );
-      return;
-    }
-    dispatch(changeKeyringPassphrase(oldpass_input.value, newpass_input.value));
   }
 
   return (
@@ -277,64 +158,33 @@ const SecurityCard = () => {
           <Box display="flex" className={classes.passChangeBox}>
             {userPassphraseIsSet ? (
               <Button
-                onClick={handleToggleOpen}
+                onClick={() => setRemovePassphraseOpen(true)}
                 className={classes.togglePassButton}
                 variant="contained"
                 disableElevation
               >
-              REMOVE PASSPHRASE
+                <Trans>Remove Passphrase</Trans>
               </Button>
             ) : (
               <Button
-                onClick={handleToggleOpen}
+                onClick={() => setAddPassphraseOpen(true)}
                 className={classes.togglePassButton}
                 variant="contained"
                 disableElevation
               >
-              ADD PASSPHRASE
+                <Trans>Set Passphrase</Trans>
               </Button>
             )}
-            <Dialog
-              open={toggleOpen}
-              aria-labelledby="form-dialog-title"
-              fullWidth={true}
-              maxWidth = {'xs'}
-            >
-              <DisplayDialogTextStatus />
-              <DialogContent>
-                <DisplayDialogContentText />
-                <TextField
-                  autoFocus
-                  color="secondary"
-                  margin="dense"
-                  id="passphrase_input"
-                  label={<Trans>Passphrase</Trans>}
-                  inputRef={(input) => {
-                    toggle_passphrase_input = input;
-                  }}
-                  type="password"
-                  fullWidth
-                />
-              </DialogContent>
-              <DialogActions>
-                <Button
-                  onClick={handleToggleClose}
-                  color="primary"
-                  variant="contained"
-                  style={{ marginBottom: '8px', marginRight: '8px' }}
-                >
-                  Cancel
-                </Button>
-                <Button
-                  onClick={handleToggleSubmit}
-                  color="primary"
-                  variant="contained"
-                  style={{ marginBottom: '8px', marginRight: '8px' }}
-                >
-                  Submit
-                </Button>
-              </DialogActions>
-            </Dialog>
+            {removePassphraseOpen &&
+              <RemovePassphrasePrompt
+                onSuccess={removePassphraseSucceeded}
+                onCancel={closeRemovePassphrase}
+              />}
+            {addPassphraseOpen &&
+              <SetPassphrasePrompt
+                onSuccess={setPassphraseSucceeded}
+                onCancel={closeSetPassphrase}
+              />}
           </Box>
         </Grid>
       </Grid>
