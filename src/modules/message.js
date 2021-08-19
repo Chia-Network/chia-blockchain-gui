@@ -1005,5 +1005,53 @@ export const migrate_keyring_action = (passphrase, cleanup_legacy_keyring, onFai
         onFailure(error);
       }
     }
-  )
+  );
+}
+
+export const change_keyring_passphrase = (current_passphrase, new_passphrase) => {
+  const action = daemonMessage();
+  action.message.command = 'set_keyring_passphrase';
+  action.message.data = { current_passphrase: current_passphrase, new_passphrase: new_passphrase };
+  return action;
+}
+
+export const change_keyring_passphrase_action = (current_passphrase, new_passphrase, onSuccess, onFailure) => (dispatch) => {
+  return async_api(dispatch, change_keyring_passphrase(current_passphrase, new_passphrase), false, true).then(
+    (response) => {
+      if (response.data.success) {
+        dispatch(keyringStatus());
+        if (onSuccess) {
+          onSuccess();
+        }
+      }
+      else if (onFailure) {
+        const { error } = response.data;
+        onFailure(error);
+      }
+    }
+  );
+}
+
+export const remove_keyring_passphrase = (current_passphrase) => {
+  const action = daemonMessage();
+  action.message.command = 'remove_keyring_passphrase';
+  action.message.data = { current_passphrase: current_passphrase };
+  return action;
+}
+
+export const remove_keyring_passphrase_action = (current_passphrase, onSuccess, onFailure) => (dispatch) => {
+  return async_api(dispatch, remove_keyring_passphrase(current_passphrase), false, true).then(
+    (response) => {
+      if (response.data.success) {
+        dispatch(keyringStatus());
+        if (onSuccess) {
+          onSuccess();
+        }
+      }
+      else if (onFailure) {
+        const { error } = response.data;
+        onFailure(error);
+      }
+    }
+  );
 }

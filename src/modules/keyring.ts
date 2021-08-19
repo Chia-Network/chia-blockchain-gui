@@ -1,4 +1,4 @@
-type KeyringState = {
+export type KeyringState = {
   is_locked: boolean;
   unlock_bad_passphrase: boolean;
   unlock_in_progress: boolean;
@@ -23,7 +23,7 @@ const initialState: KeyringState = {
   allow_empty_passphrase: false,
   min_passphrase_length: 0,
 };
-  
+
 export default function keyringReducer(
   state = { ...initialState },
   action: any

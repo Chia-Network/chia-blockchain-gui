@@ -11,7 +11,8 @@ import BackupRestore from '../backup/BackupRestore';
 import type { RootState } from '../../modules/rootReducer';
 import LayoutLoading from '../layout/LayoutLoading';
 import AppKeyringMigrator from './AppKeyringMigrator';
-import AppPassLogin from './AppPassLogin';
+import AppPassPrompt from './AppPassPrompt';
+import PassphrasePromptReason from '../core/constants/PassphrasePromptReason';
 
 export default function AppRouter() {
   const loggedInReceived = useSelector(
@@ -50,7 +51,7 @@ export default function AppRouter() {
   if (keyringLocked) {
     return (
       <LayoutLoading>
-        <AppPassLogin />
+        <AppPassPrompt reason={PassphrasePromptReason.KEYRING_LOCKED} />
       </LayoutLoading>
     );
   }
