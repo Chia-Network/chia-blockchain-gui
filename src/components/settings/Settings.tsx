@@ -111,26 +111,6 @@ const SecurityCard = () => {
     setRemovePassphraseOpen(false);
   }
 
-  async function promptForKeyringMigration() {
-    const beginMigration = await openDialog((
-      <ConfirmDialog
-        title={<Trans>Migration required</Trans>}
-        confirmTitle={<Trans>Migrate</Trans>}
-        cancelTitle={<Trans>Cancel</Trans>}
-        confirmColor="default"
-      >
-        <Trans>
-          Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Would you like to migrate your keys now?
-        </Trans>
-      </ConfirmDialog>
-    ));
-
-    // @ts-ignore
-    if (beginMigration) {
-      dispatch(skipKeyringMigration(false));
-    }
-  }
-
   function PassphraseFeatureStatus(): JSX.Element | null {
     let icon: JSX.Element | null = null;
     let statusMessage: JSX.Element | null = null;
