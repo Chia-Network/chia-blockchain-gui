@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { Trans } from '@lingui/macro';
 import LayoutMain from '../layout/LayoutMain';
 import { makeStyles } from '@material-ui/core/styles';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   AlertDialog,
+  ConfirmDialog,
   Flex,
   Card,
 } from '@chia/core';
@@ -22,6 +23,7 @@ import {
 } from '@material-ui/icons';
 import { openDialog } from '../../modules/dialog';
 import { RootState } from '../../modules/rootReducer';
+import { skipKeyringMigration } from '../../modules/message';
 import ChangePassphrasePrompt from './ChangePassphrasePrompt';
 import RemovePassphrasePrompt from './RemovePassphrasePrompt';
 import SetPassphrasePrompt from './SetPassphrasePrompt';
@@ -50,8 +52,8 @@ const useStyles = makeStyles((theme) => ({
 const SecurityCard = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  let userPassphraseIsSet = useSelector(
-    (state: RootState) => state.keyring_state.user_passphrase_set,
+  const { user_passphrase_set: userPassphraseIsSet, needs_migration: needsMigration } = useSelector(
+    (state: RootState) => state.keyring_state
   );
 
   const [changePassphraseOpen, setChangePassphraseOpen] = React.useState(false);
@@ -109,8 +111,67 @@ const SecurityCard = () => {
     setRemovePassphraseOpen(false);
   }
 
-  function DisplayChangePassphrase() {
-    if (userPassphraseIsSet) {
+  async function promptForKeyringMigration() {
+    const beginMigration = await openDialog((
+      <ConfirmDialog
+        title={<Trans>Migration required</Trans>}
+        confirmTitle={<Trans>Migrate</Trans>}
+        cancelTitle={<Trans>Cancel</Trans>}
+        confirmColor="default"
+      >
+        <Trans>
+          Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Would you like to migrate your keys now?
+        </Trans>
+      </ConfirmDialog>
+    ));
+
+    // @ts-ignore
+    if (beginMigration) {
+      dispatch(skipKeyringMigration(false));
+    }
+  }
+
+  function PassphraseFeatureStatus(): JSX.Element | null {
+    let icon: JSX.Element | null = null;
+    let statusMessage: JSX.Element | null = null;
+    let tooltipTitle: React.ReactElement;
+    const tooltipIconStyle: React.CSSProperties = { color: '#c8c8c8', fontSize: 12 };
+
+    if (needsMigration) {
+      icon = (<NoEncryptionIcon style={{ color: 'red',  marginRight: 6 }} />);
+      statusMessage = (<Trans>Migration required to support passphrase protection</Trans>);
+      tooltipTitle = (<Trans>Passphrase support requires migrating your keys to a new keyring</Trans>);
+    } else {
+      if (userPassphraseIsSet) {
+        icon = (<LockIcon style={{ color: '#3AAC59',  marginRight: 6 }} />);
+        statusMessage = (<Trans>Passphrase protection is enabled</Trans>);
+        tooltipTitle = (<Trans>Passphrase support requires migrating your keys to a new keyring</Trans>);
+      } else {
+        icon = (<NoEncryptionIcon style={{ color: 'red',  marginRight: 6 }} />);
+        statusMessage = (<Trans>Passphrase protection is disabled</Trans>);
+        tooltipTitle = (<Trans>Secure your keychain using a strong passphrase</Trans>);
+      }
+    }
+
+    if (icon && statusMessage) {
+      return (
+        <Box display="flex" className={classes.passToggleBox}>
+          {icon}
+          <Typography variant="subtitle1" style={{ marginRight: 5 }}>
+            {statusMessage}
+          </Typography>
+          <Tooltip title={tooltipTitle}>
+            <HelpIcon style={tooltipIconStyle} />
+          </Tooltip>
+        </Box>
+      );
+    } else {
+      return (null);
+    }
+  }
+
+  function DisplayChangePassphrase(): JSX.Element | null {
+    if (needsMigration === false && userPassphraseIsSet) {
       return (
         <Box display="flex" className={classes.passChangeBox}>
           <Button
@@ -134,47 +195,53 @@ const SecurityCard = () => {
     }
   }
 
+  function ActionButtons(): JSX.Element | null {
+    if (needsMigration) {
+      return (
+        <Button
+          onClick={() => dispatch(skipKeyringMigration(false))}
+          className={classes.togglePassButton}
+          variant="contained"
+          disableElevation
+        >
+          <Trans>Migrate Keyring</Trans>
+        </Button>
+      )
+    } else {
+      if (userPassphraseIsSet) {
+        return (
+          <Button
+            onClick={() => setRemovePassphraseOpen(true)}
+            className={classes.togglePassButton}
+            variant="contained"
+            disableElevation
+          >
+            <Trans>Remove Passphrase</Trans>
+          </Button>
+        );
+      } else {
+        return (
+          <Button
+            onClick={() => setAddPassphraseOpen(true)}
+            className={classes.togglePassButton}
+            variant="contained"
+            disableElevation
+          >
+            <Trans>Set Passphrase</Trans>
+          </Button>
+        )
+      }
+    }
+  }
+
   return (
     <Card title={<Trans>Passphrase Settings</Trans>}>
       <Grid spacing={4} container>
         <Grid item xs={12}>
-          <Box display="flex" className={classes.passToggleBox}>
-            {userPassphraseIsSet ? (
-              <LockIcon style={{ color: '#3AAC59',  marginRight: 6 }} />
-            ) : (
-              <NoEncryptionIcon style={{ color: 'red',  marginRight: 6 }} />
-            )}
-            <Typography variant="subtitle1" style={{ marginRight: 5 }}>Passphrase protection is</Typography>
-            {userPassphraseIsSet ? (
-              <Typography variant="subtitle1" style={{ marginRight: 5 }}>enabled</Typography>
-            ) : (
-              <Typography variant="subtitle1" style={{ marginRight: 5 }}>disabled</Typography>
-            )}
-            <Tooltip title="Secure your keychain using a strong passphrase.">
-              <HelpIcon style={{ color: '#c8c8c8', fontSize: 12 }} />
-            </Tooltip>
-          </Box>
+          <PassphraseFeatureStatus />
           <DisplayChangePassphrase />
           <Box display="flex" className={classes.passChangeBox}>
-            {userPassphraseIsSet ? (
-              <Button
-                onClick={() => setRemovePassphraseOpen(true)}
-                className={classes.togglePassButton}
-                variant="contained"
-                disableElevation
-              >
-                <Trans>Remove Passphrase</Trans>
-              </Button>
-            ) : (
-              <Button
-                onClick={() => setAddPassphraseOpen(true)}
-                className={classes.togglePassButton}
-                variant="contained"
-                disableElevation
-              >
-                <Trans>Set Passphrase</Trans>
-              </Button>
-            )}
+            <ActionButtons />
             {removePassphraseOpen &&
               <RemovePassphrasePrompt
                 onSuccess={removePassphraseSucceeded}
