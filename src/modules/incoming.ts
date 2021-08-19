@@ -237,7 +237,8 @@ export default function incomingReducer(
           public_key_fingerprints: [],
           logged_in_received: true,
         };
-      } else if (command === 'get_public_keys' && success) {
+      } 
+      if (command === 'get_public_keys' && success) {
         const { public_key_fingerprints } = data;
 
         return {
@@ -245,19 +246,22 @@ export default function incomingReducer(
           public_key_fingerprints,
           logged_in_received: true,
         };
-      } else if (command === 'ping') {
+      } 
+      if (command === 'ping') {
         return {
           ...state,
           server_started: success,
         };
-      } else if (command === 'get_wallets' && success) {
+      } 
+      if (command === 'get_wallets' && success) {
         const { wallets } = data;
 
         return {
           ...state,
           wallets: mergeArrays(state.wallets, (wallet) => wallet.id, wallets),
         };
-      } else if (command === 'get_wallet_balance' && success) {
+      } 
+      if (command === 'get_wallet_balance' && success) {
         const { wallets, ...rest } = state;
 
         const {
@@ -285,7 +289,8 @@ export default function incomingReducer(
             },
           ),
         };
-      } else if (command === 'get_transactions' && success) {
+      } 
+      if (command === 'get_transactions' && success) {
         const { wallet_id, transactions } = data;
         const { wallets, ...rest } = state;
 
@@ -299,7 +304,8 @@ export default function incomingReducer(
             },
           ),
         };
-      } else if (command === 'get_next_address' && success) {
+      } 
+      if (command === 'get_next_address' && success) {
         const { wallet_id, address } = data;
         const { wallets, ...rest } = state;
 
@@ -313,7 +319,8 @@ export default function incomingReducer(
             },
           ),
         };
-      } else if (command === 'get_connections' && success) {
+      } 
+      if (command === 'get_connections' && success) {
         if (data.connections) {
           return {
             ...state,
@@ -378,51 +385,68 @@ export default function incomingReducer(
           ),
         };
       } else if (command === 'did_get_did') {
-        const id = data.wallet_id;
-        const mydid = data.my_did;
-        wallets = state.wallets;
-        const wallet = wallets[Number.parseInt(id, 10)];
-        if (!wallet) {
-          return state;
-        }
-        wallet.mydid = mydid;
-        if (data.coin_id) {
-          const { coin_id } = data;
-          wallet.didcoin = coin_id;
-        }
-        return { ...state };
+        const { wallet_id, my_did: mydid, coin_id: didcoin  } = data;
+        const { wallets, ...rest } = state;
+
+        console.log('did_get_did', mydid, didcoin);
+
+        return {
+          ...rest,
+          wallets: mergeArrayItem(
+            wallets,
+            (wallet: Wallet) => wallet.id === wallet_id,
+            {
+              mydid,
+              didcoin,
+            },
+          ),
+        };
       } else if (command === 'did_get_recovery_list') {
-        const id = data.wallet_id;
-        const dids = data.recover_list;
-        const dids_num_req = data.num_required;
-        wallets = state.wallets;
-        const wallet = wallets[Number.parseInt(id, 10)];
-        if (!wallet) {
-          return state;
-        }
-        wallet.backup_dids = dids;
-        wallet.dids_num_req = dids_num_req;
-        return { ...state };
+        const { wallet_id, recover_list: backup_dids, num_required: dids_num_req  } = data;
+        const { wallets, ...rest } = state;
+
+        console.log('did_get_recovery_list', backup_dids, dids_num_req);
+
+        return {
+          ...rest,
+          wallets: mergeArrayItem(
+            wallets,
+            (wallet: Wallet) => wallet.id === wallet_id,
+            {
+              backup_dids,
+              dids_num_req,
+            },
+          ),
+        };
       } else if (command === 'did_get_information_needed_for_recovery') {
-        success = data.success;
-        const id = data.wallet_id;
-        const { my_did } = data;
-        const { coin_name } = data;
-        const { newpuzhash } = data;
-        const { pubkey } = data;
-        const { backup_dids } = data;
-        wallets = state.wallets;
-        const wallet = wallets[Number.parseInt(id, 10)];
-        if (!wallet) {
-          return state;
-        }
-        wallet.mydid = my_did;
-        wallet.didcoin = coin_name;
-        wallet.did_rec_puzhash = newpuzhash;
-        wallet.did_rec_pubkey = pubkey;
-        wallet.backup_dids = backup_dids;
+        const { 
+          wallet_id, 
+          my_did: mydid, 
+          coin_name: didcoin,
+          newpuzhash: did_rec_puzhash,
+          pubkey: did_rec_pubkey,
+          backup_dids,
+        } = data;
+        const { wallets, ...rest } = state;
+
+        console.log('did_get_information_needed_for_recovery', mydid, didcoin, backup_dids);
+
+        return {
+          ...rest,
+          wallets: mergeArrayItem(
+            wallets,
+            (wallet: Wallet) => wallet.id === wallet_id,
+            {
+              mydid,
+              didcoin,
+              did_rec_puzhash,
+              did_rec_pubkey,
+              backup_dids,
+            },
+          ),
+        };
       } else if (command === 'did_recovery_spend') {
-        success = data.success;
+        // success = data.success;
       }
 
       if (command === 'state_changed' && data.state === 'tx_update') {

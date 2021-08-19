@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Grid from '@material-ui/core/Grid';
+import { Alert } from '@material-ui/lab';
 import { makeStyles } from '@material-ui/core/styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { Trans } from '@lingui/macro';
@@ -8,16 +9,9 @@ import Paper from '@material-ui/core/Paper';
 import Box from '@material-ui/core/Box';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
 import Backdrop from '@material-ui/core/Backdrop';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import { AlertDialog, Card, Flex, } from '@chia/core';
-import { Dropzone } from '@chia/core';
-
+import { AlertDialog, Card, Flex, Loading, Dropzone } from '@chia/core';
 import {
   did_generate_backup_file,
   did_spend,
@@ -39,6 +33,7 @@ import { useForm, Controller, useFieldArray } from 'react-hook-form';
 import { openDialog } from '../../../modules/dialog';
 import useCurrencyCode from '../../../hooks/useCurrencyCode';
 import WalletHistory from '../WalletHistory';
+import useWallet from '../../../hooks/useWallet';
 
 const drawerWidth = 240;
 
@@ -292,24 +287,17 @@ const useStyles = makeStyles((theme) => ({
 
 const RecoveryCard = (props) => {
   const id = props.wallet_id;
-  const mydid = useSelector(
-    (state) => state.wallet_state.wallets[id].mydid,
-  );
-  let didcoin = useSelector(
-    (state) => state.wallet_state.wallets[id].didcoin,
-  );
-  let did_rec_pubkey = useSelector(
-    (state) => state.wallet_state.wallets[id].did_rec_pubkey,
-  );
-  let did_rec_puzhash = useSelector(
-    (state) => state.wallet_state.wallets[id].did_rec_puzhash,
-  );
-  let backup_did_list = useSelector(
-    (state) => state.wallet_state.wallets[id].backup_dids,
-  );
-  let dids_num_req = useSelector(
-    (state) => state.wallet_state.wallets[id].dids_num_req,
-  );
+  const { wallet } = useWallet(id);
+
+  const { 
+    mydid, 
+    didcoin, 
+    did_rec_pubkey, 
+    did_rec_puzhash, 
+    backup_dids: backup_did_list,
+    dids_num_req,
+  } = wallet;
+
   const classes = useStyles();
   const dispatch = useDispatch();
 
@@ -483,9 +471,9 @@ const RecoveryCard = (props) => {
 };
 
 const RecoveryTransCard = (props) => {
-  const id = props.wallet_id
-  const mydid = useSelector((state) => state.wallet_state.wallets[id].mydid);
-  let data = useSelector((state) => state.wallet_state.wallets[id].data);
+  const id = props.wallet_id;
+  const { wallet } = useWallet(id);
+  const { mydid, data } = wallet;
   let data_parsed = JSON.parse(data);
   let temp_coin = data_parsed.temp_coin;
   const classes = useStyles();
@@ -525,7 +513,8 @@ const RecoveryTransCard = (props) => {
 
 const MyDIDCard = (props) => {
   const id = props.wallet_id;
-  const mydid = useSelector((state) => state.wallet_state.wallets[id].mydid);
+  const { wallet } = useWallet(id);
+  const { mydid } = wallet;
   let filename_input = null;
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -635,19 +624,16 @@ const BalanceCardSubSection = (props) => {
 };
 
 const BalanceCard = (props) => {
-  var id = props.wallet_id;
-  const balance = useSelector(
-    (state) => state.wallet_state.wallets[id].balance_total,
-  );
-  var balance_spendable = useSelector(
-    (state) => state.wallet_state.wallets[id].balance_spendable,
-  );
-  const balance_pending = useSelector(
-    (state) => state.wallet_state.wallets[id].balance_pending,
-  );
-  const balance_change = useSelector(
-    (state) => state.wallet_state.wallets[id].balance_change,
-  );
+  const id = props.wallet_id;
+
+  const { wallet } = useWallet(id);
+  const { 
+    balance_total: balance,
+    balance_spendable,
+    balance_pending,
+    balance_change,
+  } = wallet;
+
   const balance_ptotal = balance + balance_pending;
   const classes = useStyles();
 
@@ -707,10 +693,8 @@ const ViewDIDsSubsection = (props) => {
   const classes = useStyles();
   let backup_list = props.backup_did_list;
   let dids_num_req = props.dids_num_req;
-  let isEmptyList = false;
-  if (backup_list.length === 0) {
-    isEmptyList = true;
-  }
+  let isEmptyList = !backup_list || !backup_list.length;
+
   return (
     <Grid item xs={12}>
       <Box display="flex">
@@ -733,16 +717,13 @@ const ViewDIDsSubsection = (props) => {
                       <Typography variant="subtitle1">
                         {isEmptyList
                           ? 'Your backup list is currently empty.'
-                          : null}
-                        {backup_list.map((object, i) => {
-                          return (
+                          : backup_list.map((object, i) => (
                             <span key={i}>
                               <Typography variant="subtitle1">
                                 &#8226; {object}
                               </Typography>
                             </span>
-                          );
-                        })}
+                          ))}
                       </Typography>
                     </Box>
                   </Box>
@@ -762,12 +743,13 @@ const ManageDIDsCard = (props) => {
   const dispatch = useDispatch();
   var pending = useSelector((state) => state.create_options.pending);
   var created = useSelector((state) => state.create_options.created);
-  let backup_did_list = useSelector(
-    (state) => state.wallet_state.wallets[id].backup_dids,
-  );
-  let dids_num_req = useSelector(
-    (state) => state.wallet_state.wallets[id].dids_num_req,
-  );
+
+  const { wallet } = useWallet(id);
+  const { 
+    backup_dids: backup_did_list,
+    dids_num_req
+  } = wallet;
+
   const { handleSubmit, control } = useForm();
   const { fields, append, remove } = useFieldArray({
     control,
@@ -1132,67 +1114,58 @@ const CashoutCard = (props) => {
   );
 };
 
-const HistoryCard = (props) => {
-  var id = props.wallet_id;
-  const classes = useStyles();
-  return (
-    <Paper className={classes.paper}>
-      <Grid container spacing={0}>
-        <Grid item xs={12}>
-          <div className={classes.cardTitle}>
-            <Typography component="h6" variant="h6">
-              History
-            </Typography>
-          </div>
-        </Grid>
-        <Grid item xs={12}>
-          <TransactionTable wallet_id={id}> </TransactionTable>
-        </Grid>
-      </Grid>
-    </Paper>
-  );
+type Props = {
+  walletId: number;
 };
 
-export default function DistributedIDWallet(props) {
-  const classes = useStyles();
+export default function WalletDID(props: Props) {
+  const { walletId } = props;
   const dispatch = useDispatch();
-  const id = useSelector((state) => state.wallet_menu.id);
-  const wallets = useSelector((state) => state.wallet_state.wallets);
-  const data = useSelector((state) => state.wallet_state.wallets[id].data);
-  const data_parsed = JSON.parse(data);
-  let temp_coin = data_parsed.temp_coin;
-  let sent_recovery_transaction = data_parsed.sent_recovery_transaction;
-  console.log("DID SWITCH")
-  console.log()
+  const { wallet, loading } = useWallet(walletId);
 
-  if (wallets.length > props.wallet_id) {
-    if (temp_coin) {
-      if (sent_recovery_transaction) {
-        return (
-          <Flex flexDirection="column" gap={3}>
-            <RecoveryTransCard wallet_id={id} />
-          </Flex>
-        )
-      } else {
-        dispatch(did_get_recovery_info(id))
-        return (
-          <Flex flexDirection="column" gap={3}>
-            <RecoveryCard wallet_id={id} />
-          </Flex>
-        );
-      }
-    } else {
+  if (loading) {
+    return (
+      <Loading />
+    );
+  }
+
+  if (!wallet) {
+    return (
+      <Alert severity="error">
+        <Trans>Wallet does not exists</Trans>
+      </Alert>
+    );
+  }
+
+  const { data } = wallet;
+  const {
+    temp_coin: tempCoin,
+    sent_recovery_transaction: sentRecoveryTransaction,
+  } = JSON.parse(data);
+
+  if (tempCoin) {
+    if (sentRecoveryTransaction) {
       return (
         <Flex flexDirection="column" gap={3}>
-          <MyDIDCard wallet_id={id} />
-          <BalanceCard wallet_id={id} />
-          <ManageDIDsCard wallet_id={id} />
-          <CreateAttest wallet_id={id} />
-          <WalletHistory walletId={id} />
+          <RecoveryTransCard wallet_id={walletId} />
         </Flex>
       );
     }
+
+    return (
+      <Flex flexDirection="column" gap={3}>
+        <RecoveryCard wallet_id={walletId} />
+      </Flex>
+    );
   }
 
-  return null;
+  return (
+    <Flex flexDirection="column" gap={3}>
+      <MyDIDCard wallet_id={walletId} />
+      <BalanceCard wallet_id={walletId} />
+      <ManageDIDsCard wallet_id={walletId} />
+      <CreateAttest wallet_id={walletId} />
+      <WalletHistory walletId={walletId} />
+    </Flex>
+  );
 }
