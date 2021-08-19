@@ -1,7 +1,7 @@
 import React from 'react';
 import { useHistory, useRouteMatch } from "react-router";
 import { Trans } from '@lingui/macro';
-import { Grid, GridList, Typography } from '@material-ui/core';
+import { Grid, Typography } from '@material-ui/core';
 import { Share as ShareIcon, Speed as SpeedIcon, HomeWork as HomeWorkIcon } from '@material-ui/icons';
 import { Flex } from '@chia/core';
 import WalletCreateCard from './WalletCreateCard';
@@ -27,22 +27,14 @@ export default function WalletCreateList() {
             onSelect={handleCreateDistributedIdentity}
             title={<Trans>Distributed Identity</Trans>}
             icon={<ShareIcon fontSize="large" color="primary" />}
-          >
-            <Trans>
-              DID Wallet will help you backup your wallet with your friends
-            </Trans>
-          </WalletCreateCard>
+          />
         </Grid>
         <Grid xs={12} sm={6} md={4} item>
           <WalletCreateCard
             title={<Trans>Coloured Coin</Trans>}
             icon={<HomeWorkIcon fontSize="large" color="primary" />}
             disabled
-          >
-            <Trans>
-              Coloured Coin Description
-            </Trans>
-          </WalletCreateCard>
+          />
         </Grid>
 
         <Grid xs={12} sm={6} md={4} item>
@@ -50,11 +42,7 @@ export default function WalletCreateList() {
             title={<Trans>Rate Limited</Trans>}
             icon={<SpeedIcon fontSize="large" color="primary" />}
             disabled
-          >
-            <Trans>
-              Rate Limited Description
-            </Trans>
-          </WalletCreateCard>
+          />
         </Grid>
       </Grid>
     </Flex>

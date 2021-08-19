@@ -1,17 +1,16 @@
-import React, { useEffect, useState } from 'react';
-import { t, Trans } from '@lingui/macro';
+import React, { useEffect } from 'react';
+import { Trans } from '@lingui/macro';
 import {
   Box,
   Typography,
   Tabs,
   Tab,
-  Paper,
   Container,
 } from '@material-ui/core';
 import styled from 'styled-components';
 // import { useRouteMatch, useHistory } from 'react-router';
 import { /*useDispatch, */ useSelector } from 'react-redux';
-import { Button, Flex, FormatLargeNumber } from '@chia/core';
+import { FormatLargeNumber } from '@chia/core';
 import StandardWallet from './standard/WalletStandard';
 import { CreateWalletView } from './create/WalletCreate';
 import ColouredWallet from './coloured/WalletColoured';
