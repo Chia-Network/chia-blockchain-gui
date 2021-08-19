@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Trans } from '@lingui/macro';
-import { Amount, Form, AlertDialog, Back, Card, Flex } from '@chia/core';
+import { Amount, Form, AlertDialog, Back, Card, Flex, ButtonLoading } from '@chia/core';
 import {
   Typography,
   Button,
@@ -21,75 +21,83 @@ import { Help as HelpIcon } from '@material-ui/icons';
 export default function WalletDIDCreate() {
   const dispatch = useDispatch();
   const methods = useForm();
-  const { handleSubmit, control } = methods;
+  const [loading, setLoading] = useState<boolean>(false);
+  const { control } = methods;
   const { fields, append, remove } = useFieldArray({
     control,
     name: 'backup_dids',
   });
 
-  const onSubmit = (data) => {
-    const didArray = data.backup_dids?.map((item) => item.backupid) ?? [];
-    let uniqDidArray = Array.from(new Set(didArray));
-    uniqDidArray = uniqDidArray.filter(item => item !== "")
-    let amount_val = chia_to_mojo(data.amount);
-    if (
-      amount_val === '' ||
-      Number(amount_val) === 0 ||
-      !Number(amount_val) ||
-      isNaN(Number(amount_val))
-    ) {
-      dispatch(
-        openDialog(
-          <AlertDialog>
-            <Trans>Please enter a valid numeric amount.</Trans>
-          </AlertDialog>
-        ),
-      );
-      return;
+  async function onSubmit(data) {
+    try {
+      setLoading(true);
+      const didArray = data.backup_dids?.map((item) => item.backupid) ?? [];
+      let uniqDidArray = Array.from(new Set(didArray));
+      uniqDidArray = uniqDidArray.filter(item => item !== "")
+      const amount_val = chia_to_mojo(data.amount);
+      if (
+        amount_val === '' ||
+        Number(amount_val) === 0 ||
+        !Number(amount_val) ||
+        isNaN(Number(amount_val))
+      ) {
+        dispatch(
+          openDialog(
+            <AlertDialog>
+              <Trans>Please enter a valid numeric amount.</Trans>
+            </AlertDialog>
+          ),
+        );
+        return;
+      }
+      if (
+        (amount_val) % 2 !== 0
+      ) {
+        dispatch(
+          openDialog(
+            <AlertDialog>
+              <Trans>Amount must be an even amount.</Trans>
+            </AlertDialog>
+          ),
+        );
+        return;
+      }
+      const num_of_backup_ids_needed = data.num_needed;
+      if (
+        num_of_backup_ids_needed === '' ||
+        isNaN(Number(num_of_backup_ids_needed))
+      ) {
+        dispatch(
+          openDialog(
+            <AlertDialog>
+              <Trans>Please enter a valid integer of 0 or greater for the number of Backup IDs needed for recovery.</Trans>
+            </AlertDialog>
+          ),
+        );
+        return;
+      }
+      if (
+        num_of_backup_ids_needed > uniqDidArray.length
+      )
+      {
+        dispatch(
+          openDialog(
+            <AlertDialog>
+              <Trans>The number of Backup IDs needed for recovery cannot exceed the number of Backup IDs added.</Trans>
+            </AlertDialog>
+          ),
+        );
+        return;
+      }
+      const amount_plus = amount_val + 1;
+      await dispatch(createState(true, true));
+      const response = await dispatch(create_did_action(amount_plus, uniqDidArray, num_of_backup_ids_needed));
+      console.log('response', response);
+      return response;
+    } finally {
+      setLoading(false);
     }
-    if (
-      (amount_val) % 2 != 0
-    ) {
-      dispatch(
-        openDialog(
-          <AlertDialog>
-            <Trans>Amount must be an even amount.</Trans>
-          </AlertDialog>
-        ),
-      );
-      return;
-    }
-    let num_of_backup_ids_needed = data.num_needed;
-    if (
-      num_of_backup_ids_needed === '' ||
-      isNaN(Number(num_of_backup_ids_needed))
-    ) {
-      dispatch(
-        openDialog(
-          <AlertDialog>
-            <Trans>Please enter a valid integer of 0 or greater for the number of Backup IDs needed for recovery.</Trans>
-          </AlertDialog>
-        ),
-      );
-      return;
-    }
-    if (
-      num_of_backup_ids_needed > uniqDidArray.length
-    )
-    {
-      dispatch(
-        openDialog(
-          <AlertDialog>
-            <Trans>The number of Backup IDs needed for recovery cannot exceed the number of Backup IDs added.</Trans>
-          </AlertDialog>
-        ),
-      );
-      return;
-    }
-    const amount_plus = amount_val + 1;
-    dispatch(createState(true, true));
-    dispatch(create_did_action(amount_plus, uniqDidArray, num_of_backup_ids_needed));
-  };
+  }
 
   return (
     <Form methods={methods} onSubmit={onSubmit}>
@@ -197,13 +205,14 @@ export default function WalletDIDCreate() {
           </Flex>
         </Card>
         <Box>
-          <Button
+          <ButtonLoading
             type="submit"
             variant="contained"
             color="primary"
+            loading={loading}
           >
             <Trans>Create</Trans>
-          </Button>
+          </ButtonLoading>
         </Box>
       </Flex>
     </Form>
