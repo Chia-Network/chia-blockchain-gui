@@ -118,7 +118,14 @@ export default function Wallets() {
       title={<Trans>Wallets</Trans>}
       bodyHeader={(
         <Container maxWidth="lg">
-          <StyledTabs value={walletId} onChange={handleChange} indicatorColor="primary" textColor="primary">
+          <StyledTabs
+            value={walletId}
+            onChange={handleChange}
+            indicatorColor="primary"
+            textColor="primary"
+            scrollButtons="auto"
+            variant="scrollable"
+          >
             {wallets?.map((wallet) => (
               <Tab label={wallet.name} value={String(wallet.id)} key={wallet.id} />
             ))}
