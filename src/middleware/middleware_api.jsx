@@ -188,7 +188,7 @@ export const handle_message = async (store, payload, errorProcessed) => {
         store.dispatch(getPlotDirectories());
       }
     }
-  } else if ((payload.command === 'is_keyring_locked') || (payload.command === 'keyring_status')) {
+  } else if ((payload.command === 'keyring_status') || (payload.command === 'keyring_status_changed')) {
     if (payload.data.success) {
       const { is_keyring_locked } = payload.data;
       if (is_keyring_locked == false) {

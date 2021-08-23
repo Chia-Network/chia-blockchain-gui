@@ -40,12 +40,6 @@ export const isServiceRunning = (service_name) => {
   return action;
 };
 
-export const isKeyringLocked = () => {
-  const action = daemonMessage();
-  action.message.command = 'is_keyring_locked';
-  return action;
-}
-
 export const keyringStatus = () => {
   const action = daemonMessage();
   action.message.command = 'keyring_status';

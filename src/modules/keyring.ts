@@ -38,9 +38,9 @@ export default function keyringReducer(
       const { message } = action;
       const { data } = message;
       const { command } = message;
-      if (command === 'keyring_status') {
+      if ((command === 'keyring_status') || (command === 'keyring_status_changed')) {
         if (data.success) {
-          console.log("keyring_status");
+          console.log(command);
           console.log(data);
           const { is_keyring_locked } = data;
           const { passphrase_support_enabled } = data;
@@ -57,15 +57,6 @@ export default function keyringReducer(
             needs_migration: needs_migration,
             allow_empty_passphrase: allow_empty_passphrase,
             min_passphrase_length: min_passphrase_length,
-          };
-        }
-      } else if (command === 'is_keyring_locked') {
-        let success = data.success;
-        if (success) {
-          const { is_keyring_locked } = data;
-          return {
-            ...state,
-            is_locked: is_keyring_locked,
           };
         }
       } else if (command === 'unlock_keyring') {
