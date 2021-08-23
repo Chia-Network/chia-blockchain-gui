@@ -122,14 +122,14 @@ const SecurityCard = () => {
       statusMessage = (<Trans>Migration required to support passphrase protection</Trans>);
       tooltipTitle = (<Trans>Passphrase support requires migrating your keys to a new keyring</Trans>);
     } else {
+      tooltipTitle = (<Trans>Secure your keychain using a strong passphrase</Trans>);
+      
       if (userPassphraseIsSet) {
         icon = (<LockIcon style={{ color: '#3AAC59',  marginRight: 6 }} />);
         statusMessage = (<Trans>Passphrase protection is enabled</Trans>);
-        tooltipTitle = (<Trans>Passphrase support requires migrating your keys to a new keyring</Trans>);
       } else {
         icon = (<NoEncryptionIcon style={{ color: 'red',  marginRight: 6 }} />);
         statusMessage = (<Trans>Passphrase protection is disabled</Trans>);
-        tooltipTitle = (<Trans>Secure your keychain using a strong passphrase</Trans>);
       }
     }
 
