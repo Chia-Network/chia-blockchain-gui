@@ -40,8 +40,6 @@ export default function keyringReducer(
       const { command } = message;
       if ((command === 'keyring_status') || (command === 'keyring_status_changed')) {
         if (data.success) {
-          console.log(command);
-          console.log(data);
           const { is_keyring_locked } = data;
           const { passphrase_support_enabled } = data;
           const { user_passphrase_is_set } = data;

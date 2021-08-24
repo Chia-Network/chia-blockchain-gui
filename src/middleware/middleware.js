@@ -62,7 +62,6 @@ const socketMiddleware = () => {
 
   const onMessage = (store) => (event) => {
     const payload = JSON.parse(event.data);
-    console.log("***** received payload: ", payload);
     const { request_id } = payload;
     const action = callback_map[request_id];
     if (action) {
