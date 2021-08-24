@@ -60,7 +60,7 @@ export default function WalletDIDRecovery() {
           {file ? (
             <Flex flexDirection="column" gap={2} flexBasis={0} width="100%">
               <Typography variant="subtitle1" align="center">
-                <Trans>Selected recovery file</Trans>
+                <Trans>Selected recovery file:</Trans>
               </Typography>
               <Typography variant="body2" align="center" noWrap textOverflow>
                 {file.name}
@@ -92,7 +92,7 @@ export default function WalletDIDRecovery() {
           variant="contained"
           color="primary"
         >
-          <Trans>Recovery</Trans>
+          <Trans>Recover</Trans>
         </Button>
       </Box>
     </Flex>

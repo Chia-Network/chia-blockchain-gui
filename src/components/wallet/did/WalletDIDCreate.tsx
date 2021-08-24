@@ -17,6 +17,7 @@ import { chia_to_mojo } from '../../../util/chia';
 import { openDialog } from '../../../modules/dialog';
 import { useForm, Controller, useFieldArray } from 'react-hook-form';
 import { Help as HelpIcon } from '@material-ui/icons';
+import { divide } from 'lodash';
 
 export default function WalletDIDCreate() {
   const dispatch = useDispatch();
@@ -115,7 +116,6 @@ export default function WalletDIDCreate() {
                 <Tooltip title="The amount of Chia you enter must correspond to an even amount of mojos. One additional mojo will be added to the total amount for security purposes.">
                   <HelpIcon style={{ color: '#c8c8c8', fontSize: 12 }} />
                 </Tooltip>
-                :
               </Flex>
               <Flex alignItems="center" gap={1}>
                 <Flex flexGrow={1}>
@@ -124,29 +124,30 @@ export default function WalletDIDCreate() {
                     variant="outlined"
                     defaultValue=""
                     fullWidth
-                  />
-                </Flex>
-                <Flex display="flex" gap={1} alignItems="center">
-                  <Typography variant="subtitle1">
-                    + 1 mojo
-                  </Typography>
-                  <Tooltip title="This additional mojo will be added to the total amount for security purposes.">
-                    <HelpIcon style={{ color: '#c8c8c8', fontSize: 12 }} />
-                  </Tooltip>
+                  >
+                    {() => (
+                      <Flex display="flex" gap={1} alignItems="center">
+                        <div>
+                          + 1 mojo
+                        </div>
+                        <Tooltip title="This additional mojo will be added to the total amount for security purposes.">
+                          <HelpIcon style={{ color: '#c8c8c8', fontSize: 12 }} />
+                        </Tooltip>
+                      </Flex>
+                    )}
+                  </Amount>
                 </Flex>
               </Flex>
             </Flex>
             <Flex flexDirection="column" gap={1}>
-              <Box display="flex">
-                <Flex alignItems="stretch">
-                  <Typography variant="subtitle1">
-                    Enter number of Backup IDs needed for recovery:
-                  </Typography>
-                  <Tooltip title="This number must be an integer greater than or equal to 0. It cannot exceed the number of Backup IDs added. You will be able to change this number as well as your list of Backup IDs.">
-                    <HelpIcon style={{ color: '#c8c8c8', fontSize: 12 }} />
-                  </Tooltip>
-                </Flex>
-              </Box>
+              <Flex alignItems="center" gap={1}>
+                <Typography variant="subtitle1">
+                  Enter number of Backup IDs needed for recovery
+                </Typography>
+                <Tooltip title="This number must be an integer greater than or equal to 0. It cannot exceed the number of Backup IDs added. You will be able to change this number as well as your list of Backup IDs.">
+                  <HelpIcon style={{ color: '#c8c8c8', fontSize: 12 }} />
+                </Tooltip>
+              </Flex>
               <Flex flexDirection="row" justifyContent="space-between">
                 <Box flexGrow={6}>
                   <Controller

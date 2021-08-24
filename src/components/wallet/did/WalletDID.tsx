@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Grid from '@material-ui/core/Grid';
 import { Alert } from '@material-ui/lab';
 import { makeStyles } from '@material-ui/core/styles';
@@ -806,18 +806,16 @@ const ManageDIDsCard = (props) => {
       />
       <Grid item xs={12}>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <Box display="flex">
-            <Flex alignItems="stretch" className={classes.addText}>
-              <Typography variant="subtitle1">
-                Update number of Backup IDs needed for recovery:
-              </Typography>
-              <Tooltip title="This number must be greater than or equal to 0, and it may not exceed the number of Backup IDs you have added. You will be able to change this number as well as your list of Backup IDs.">
-                <HelpIcon style={{ color: '#c8c8c8', fontSize: 12 }} />
-              </Tooltip>
-            </Flex>
-          </Box>
-          <Flex flexDirection="row" justifyContent="space-between">
-            <Box flexGrow={6}>
+          <Flex flexDirection="column" gap={3}>
+            <Flex flexDirection="column" gap={1}>
+              <Flex alignItems="center" gap={1}>
+                <Typography variant="subtitle1">
+                  Update number of Backup IDs needed for recovery
+                </Typography>
+                <Tooltip title="This number must be greater than or equal to 0, and it may not exceed the number of Backup IDs you have added. You will be able to change this number as well as your list of Backup IDs.">
+                  <HelpIcon style={{ color: '#c8c8c8', fontSize: 12 }} />
+                </Tooltip>
+              </Flex>
               <Controller
                 as={TextField}
                 name="num_needed"
@@ -827,75 +825,71 @@ const ManageDIDsCard = (props) => {
                 fullWidth
                 defaultValue=""
               />
-            </Box>
-            <Button
-              type="submit"
-              className={classes.submitButton}
-              variant="contained"
-              color="primary"
-              disableElevation
-            >
-              <Trans>Submit</Trans>
-            </Button>
-          </Flex>
-          <Box display="flex">
-            <Flex alignItems="stretch" className={classes.addIDsText}>
-              <Typography variant="subtitle1">
-                Update Backup IDs:
-              </Typography>
-              <Tooltip title="Please enter a new set of recovery IDs. Be sure to re-enter any current recovery IDs which you would like to keep in your recovery list.">
-                <HelpIcon style={{ color: '#c8c8c8', fontSize: 12 }} />
-              </Tooltip>
             </Flex>
-          </Box>
-          <Flex alignItems="stretch">
-            <Button
-              onClick={() => {
-                append({ backupid: 'Backup ID' });
-              }}
-              variant="contained"
-              disableElevation
-              className={classes.addID}
-            >
-              <Trans>Add Backup ID</Trans>
-            </Button>
+              
+            <Flex flexDirection="column" gap={1}>
+              <Flex alignItems="center" gap={1}>
+                <Typography variant="subtitle1">
+                  Update Backup IDs
+                </Typography>
+                <Tooltip title="Please enter a new set of recovery IDs. Be sure to re-enter any current recovery IDs which you would like to keep in your recovery list.">
+                  <HelpIcon style={{ color: '#c8c8c8', fontSize: 12 }} />
+                </Tooltip>
+              </Flex>
+              {fields.map((item, index) => (
+                <Flex alignItems="stretch">
+                  <Box flexGrow={1}>
+                    <Controller
+                      as={TextField}
+                      name={`backup_dids[${index}].backupid`}
+                      control={control}
+                      defaultValue=""
+                      label="Backup ID"
+                      variant="outlined"
+                      fullWidth
+                      color="secondary"
+                    />
+                  </Box>
+                  <Button
+                    onClick={() => remove(index)}
+                    variant="contained"
+                    disableElevation
+                  >
+                    <Trans>Delete</Trans>
+                  </Button>
+                </Flex>
+              ))}
+              <Box>
+                <Button
+                  onClick={() => {
+                    append({ backupid: 'Backup ID' });
+                  }}
+                  variant="contained"
+                  disableElevation
+                >
+                  <Trans>Add Backup ID</Trans>
+                </Button>
+              </Box>
+            </Flex>
+
+            <Box>
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                disableElevation
+              >
+                <Trans>Submit</Trans>
+              </Button>
+            </Box>
           </Flex>
-          <ul>
-            {fields.map((item, index) => {
-              return (
-                <li key={item.id} style={{ listStyleType: 'none' }}>
-                  <Flex alignItems="stretch">
-                    <Box flexGrow={1}>
-                      <Controller
-                        as={TextField}
-                        name={`backup_dids[${index}].backupid`}
-                        control={control}
-                        defaultValue=""
-                        label="Backup ID"
-                        variant="outlined"
-                        fullWidth
-                        color="secondary"
-                        className={classes.inputDID}
-                      />
-                    </Box>
-                    <Button
-                      onClick={() => remove(index)}
-                      variant="contained"
-                      disableElevation
-                      className={classes.sideButton}
-                    >
-                      <Trans>Delete</Trans>
-                    </Button>
-                  </Flex>
-                </li>
-              );
-            })}
-          </ul>
         </form>
       </Grid>
-      <Backdrop className={classes.backdrop} open={pending && created}>
-        <CircularProgress color="inherit" />
-      </Backdrop>
+      {pending && created && (
+        <Backdrop className={classes.backdrop} open={pending && created}>
+          <CircularProgress color="inherit" />
+        </Backdrop>
+      )}
     </Card>
   );
 };
@@ -906,7 +900,6 @@ const CreateAttest = (props) => {
   let coin_input = null;
   let pubkey_input = null;
   let puzhash_input = null;
-  const classes = useStyles();
   const dispatch = useDispatch();
 
   function createAttestPacket() {
@@ -968,80 +961,51 @@ const CreateAttest = (props) => {
 
   return (
     <Card title={<Trans>Create An Attestation Packet</Trans>}>
-      <Box display="flex">
-        <Box flexGrow={1}>
-          <TextField
-            variant="filled"
-            color="secondary"
-            margin="normal"
-            fullWidth
-            inputRef={(input) => {
-              filename_input = input;
-            }}
-            label="Filename"
-          />
-        </Box>
-        <Box></Box>
+      <TextField
+        variant="filled"
+        color="secondary"
+        fullWidth
+        inputRef={(input) => {
+          filename_input = input;
+        }}
+        label={<Trans>Filename</Trans>}
+      />
+      <TextField
+        variant="filled"
+        color="secondary"
+        fullWidth
+        inputRef={(input) => {
+          coin_input = input;
+        }}
+        label={<Trans>Coin Name</Trans>}
+      />
+      <TextField
+        variant="filled"
+        color="secondary"
+        fullWidth
+        inputRef={(input) => {
+          pubkey_input = input;
+        }}
+        label={<Trans>Pubkey</Trans>}
+      />
+      <TextField
+        variant="filled"
+        color="secondary"
+        fullWidth
+        inputRef={(input) => {
+          puzhash_input = input;
+        }}
+        label={<Trans>Puzzlehash</Trans>}
+      />
+      <Box>
+        <Button
+          onClick={createAttestPacket}
+          variant="contained"
+          color="primary"
+        >
+          Create
+        </Button>
       </Box>
-      <Box display="flex">
-        <Box flexGrow={1}>
-          <TextField
-            variant="filled"
-            color="secondary"
-            margin="normal"
-            fullWidth
-            inputRef={(input) => {
-              coin_input = input;
-            }}
-            label="Coin"
-          />
-        </Box>
-        <Box></Box>
-      </Box>
-      <Box display="flex">
-        <Box flexGrow={1}>
-          <TextField
-            variant="filled"
-            color="secondary"
-            margin="normal"
-            fullWidth
-            inputRef={(input) => {
-              pubkey_input = input;
-            }}
-            label="Pubkey"
-          />
-        </Box>
-        <Box></Box>
-      </Box>
-      <Box display="flex">
-        <Box flexGrow={1}>
-          <TextField
-            variant="filled"
-            color="secondary"
-            margin="normal"
-            fullWidth
-            inputRef={(input) => {
-              puzhash_input = input;
-            }}
-            label="Puzzlehash"
-          />
-        </Box>
-        <Box></Box>
-      </Box>
-      <Grid item xs={12}>
-        <Box display="flex">
-          <Box>
-            <Button
-              onClick={createAttestPacket}
-              className={classes.sendButton}
-              variant="contained"
-              color="primary"
-            >
-              Create
-            </Button>
-          </Box>
-        </Box>
-      </Grid>
     </Card>
   );
 };
@@ -1124,6 +1088,19 @@ export default function WalletDID(props: Props) {
   const { walletId } = props;
   const dispatch = useDispatch();
   const { wallet, loading } = useWallet(walletId);
+
+  useEffect(() => {
+    if (wallet && wallet.data) {
+      const {
+        temp_coin: tempCoin,
+        sent_recovery_transaction: sentRecoveryTransaction,
+      } = JSON.parse(wallet.data);
+
+      if (tempCoin && !sentRecoveryTransaction) {
+        dispatch(did_get_recovery_info(walletId));
+      }
+    }
+  }, [wallet, dispatch, walletId]);
 
   if (loading) {
     return (

@@ -116,7 +116,7 @@ export default function Wallets() {
       loading={loading}
       loadingTitle={<Trans>Loading list of wallets</Trans>}
       title={<Trans>Wallets</Trans>}
-      bodyHeader={(
+      bodyHeader={multipleWallets ? (
         <Container maxWidth="lg">
           <StyledTabs
             value={walletId}
@@ -132,7 +132,7 @@ export default function Wallets() {
             <Tab value="create" label={<Trans>+ Add Wallet</Trans>} />
           </StyledTabs>
         </Container>
-      )}
+      ) : undefined}
     >
       {multipleWallets ? (
         <Switch>
