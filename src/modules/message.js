@@ -790,6 +790,7 @@ export const create_did_action = (
         dispatch(showCreateBackup(true));
         dispatch(createState(true, false));
         dispatch(changeCreateWallet(ALL_OPTIONS));
+        return response;
       } else {
         const error = response.data.error;
         dispatch(openErrorDialog(error));

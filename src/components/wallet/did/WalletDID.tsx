@@ -627,11 +627,13 @@ const BalanceCard = (props) => {
   const id = props.wallet_id;
 
   const { wallet } = useWallet(id);
-  const { 
-    balance_total: balance,
-    balance_spendable,
-    balance_pending,
-    balance_change,
+  const {
+    wallet_balance: {
+      confirmed_wallet_balance: balance,
+      balance_spendable,
+      balance_pending,
+      balance_change,
+    },
   } = wallet;
 
   const balance_ptotal = balance + balance_pending;

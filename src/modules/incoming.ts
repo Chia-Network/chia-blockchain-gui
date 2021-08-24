@@ -273,7 +273,7 @@ export default function incomingReducer(
           },
         } = data;
 
-        const pending_balance =
+        const balance_pending =
           unconfirmed_wallet_balance - confirmed_wallet_balance;
 
         return {
@@ -284,7 +284,7 @@ export default function incomingReducer(
             {
               wallet_balance: {
                 ...wallet_balance,
-                pending_balance,
+                balance_pending,
               },
             },
           ),
