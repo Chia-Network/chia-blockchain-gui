@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Trans } from '@lingui/macro';
+import { t, Trans } from '@lingui/macro';
 import {
   Box,
   Button,
@@ -26,7 +26,7 @@ import { migrate_keyring_action, skipKeyringMigration } from '../../modules/mess
 import { validateChangePassphraseParams } from './AppPassPrompt';
 import { ReactElement } from 'react';
 
-export default function AppKeyringMigrator() {
+export default function AppKeyringMigrator(): JSX.Element {
   const dispatch = useDispatch();
   const keyring_state = useSelector((state: RootState) => state.keyring_state);
   const allowEmptyPassphrase = keyring_state.allow_empty_passphrase;
@@ -39,7 +39,7 @@ export default function AppKeyringMigrator() {
     return await validateChangePassphraseParams(dispatch, keyring_state, null, passphrase, confirmation);
   }
 
-  async function handleSkipMigration() {
+  async function handleSkipMigration(): Promise<void> {
     const skipMigration = await dispatch(
       openDialog(
         <ConfirmDialog
@@ -62,11 +62,11 @@ export default function AppKeyringMigrator() {
     }
   }
 
-  async function handleMigrate() {
+  async function handleMigrate(): Promise<void> {
     const passphrase: string = passphraseInput?.value ?? "";
     const confirmation: string = confirmationInput?.value ?? "";
-    const cleanup = cleanupKeyringCheckbox?.checked ?? false;
-    const isValid = await validateDialog(passphrase, confirmation);
+    const cleanup: boolean = cleanupKeyringCheckbox?.checked ?? false;
+    const isValid: boolean = await validateDialog(passphrase, confirmation);
 
     if (isValid) {
       dispatch(
@@ -87,14 +87,6 @@ export default function AppKeyringMigrator() {
         )
       );
     }
-  }
-
-  function stashInputRef(input: any) {
-    passphraseInput = input;
-  }
-
-  function stashConfirmationInputRef(input: any) {
-    confirmationInput = input;
   }
 
   let dialogMessage: ReactElement | null = null;
@@ -120,7 +112,7 @@ export default function AppKeyringMigrator() {
         fullWidth={true}
         maxWidth={'sm'}
         >
-        <DialogTitle id="keyring-migration-dialog-title">Migration required</DialogTitle>
+        <DialogTitle id="keyring-migration-dialog-title"><Trans>Migration required</Trans></DialogTitle>
         <DialogContent>
           <Typography variant="body1">{dialogMessage}</Typography>
           <Typography variant="body1" style={{ marginTop: '12px' }}>
@@ -135,8 +127,8 @@ export default function AppKeyringMigrator() {
             margin="dense"
             id="passphrase_input"
             label={<Trans>Passphrase</Trans>}
-            placeholder="Passphrase"
-            inputRef={stashInputRef}
+            placeholder={t`Passphrase`}
+            inputRef={(input: HTMLInputElement) => passphraseInput = input}
             type="password"
             fullWidth
             />
@@ -146,8 +138,8 @@ export default function AppKeyringMigrator() {
             margin="dense"
             id="confirmation_input"
             label={<Trans>Confirm Passphrase</Trans>}
-            placeholder="Confirm Passphrase"
-            inputRef={stashConfirmationInputRef}
+            placeholder={t`Confirm Passphrase`}
+            inputRef={(input: HTMLInputElement) => confirmationInput = input}
             type="password"
             fullWidth
             />
@@ -160,10 +152,10 @@ export default function AppKeyringMigrator() {
                   inputRef={(input) => cleanupKeyringCheckbox = input}
                 />
               )}
-              label="Remove keys from old keyring upon successful migration"
+              label={t`Remove keys from old keyring upon successful migration`}
               style={{ marginRight: '8px' }}
             />
-            <Tooltip title="After your keys are successfully migrated to the new keyring, you may choose to have your keys removed from the old keyring.">
+            <Tooltip title={t`After your keys are successfully migrated to the new keyring, you may choose to have your keys removed from the old keyring.`}>
               <HelpIcon style={{ color: '#c8c8c8', fontSize: 12 }} />
             </Tooltip>                
           </Box>
@@ -182,7 +174,9 @@ export default function AppKeyringMigrator() {
                 variant="contained"
                 style={{ marginLeft: '8px' }}
               >
-                Skip
+                <Trans>
+                  Skip
+                </Trans>
               </Button>
               <Button
                 disabled={migrationInProgress}
@@ -191,7 +185,9 @@ export default function AppKeyringMigrator() {
                 variant="contained"
                 style={{ marginLeft: '8px' }}
               >
-                Migrate Keys
+                <Trans>
+                  Migrate Keys
+                </Trans>
               </Button>
             </Box>
           </DialogActions>
