@@ -1,16 +1,15 @@
-import React, { KeyboardEvent } from 'react';
+import React, { useEffect, KeyboardEvent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   Dialog,
   DialogTitle,
   DialogContent,
-  DialogContentText,
   DialogActions,
   TextField,
   Typography,
   Button,
 } from '@material-ui/core';
-import { Trans } from '@lingui/macro';
+import { Plural, Trans } from '@lingui/macro';
 import { AlertDialog, ConfirmDialog } from '@chia/core';
 import { openDialog } from '../../modules/dialog';
 import { unlock_keyring_action } from '../../modules/message';
@@ -46,9 +45,11 @@ export async function validateChangePassphraseParams(
     await dispatch(
       openDialog(
         <AlertDialog>
-          <Trans>
-            Passphrases must be at least {keyring_state.min_passphrase_length} characters in length
-          </Trans>
+          <Plural
+            value={keyring_state.min_passphrase_length}
+            one="Passphrases must be at least # character in length"
+            other="Passphrases must be at least # characters in length"
+          />
         </AlertDialog>
       ),
     );
@@ -103,75 +104,76 @@ export async function validateChangePassphraseParams(
   return valid;
 }
 
-export default function AppPassPrompt(props: Props) {
+export default function AppPassPrompt(props: Props): JSX.Element | null {
   const dispatch = useDispatch();
   const { reason } = props;
-  let user_passphrase_is_set = useSelector((state: RootState) => state.keyring_state.user_passphrase_set);
-  let keyring_locked = reason === PassphrasePromptReason.KEYRING_LOCKED;
-  let unlock_bad_passphrase = useSelector((state: RootState) => state.keyring_state.unlock_bad_passphrase);
-  let unlock_in_progress = useSelector((state: RootState) => state.keyring_state.unlock_in_progress);
-  let passphrase_input: HTMLInputElement | null = null;
+  const { user_passphrase_set: userPassphraseIsSet } = useSelector((state: RootState) => state.keyring_state);
+  const [actionInProgress, setActionInProgress] = React.useState(false);
+  let passphraseInput: HTMLInputElement | null = null;
 
-
-  console.log("APP PASS LOGIN");
-  console.log("user_passphrase_is_set: " + user_passphrase_is_set);
-  console.log("keyring_locked: " + keyring_locked);
-  console.log("unlock_in_progress: " + unlock_in_progress);
-
-  function handleSubmit() {
-    if (
-      passphrase_input?.value === ''
-    ) {
-      dispatch(
-        openDialog(
-          <AlertDialog>
-            <Trans>
-              Please enter a passphrase
-            </Trans>
-          </AlertDialog>
-        ),
-      );
-      return;
+  const [needsFocusAndSelect, setNeedsFocusAndSelect] = React.useState(false);
+  useEffect(() => {
+    if (needsFocusAndSelect && passphraseInput) {
+      passphraseInput.focus();
+      passphraseInput.select();
+      setNeedsFocusAndSelect(false);
     }
-    dispatch(
-      unlock_keyring_action(
-        passphrase_input?.value,
-        () => {
-          dispatch(
-            openDialog(
-              <AlertDialog>
-                <Trans>
-                  Passphrase is incorrect
-                </Trans>
-              </AlertDialog>
-            ),
-          );
-        })
-    );
+  });
+
+  async function handleSubmit(): Promise<void> {
+    const passphrase: string | undefined = passphraseInput?.value;
+
+    setActionInProgress(true);
+
+    try {
+      if (!passphrase || passphrase.length == 0) {
+        await dispatch(
+          openDialog(
+            <AlertDialog>
+              <Trans>
+                Please enter a passphrase
+              </Trans>
+            </AlertDialog>
+          ),
+        );
+        setActionInProgress(false);
+        setNeedsFocusAndSelect(true);
+      } else {
+        await dispatch(
+          unlock_keyring_action(
+            passphrase,
+            async () => {
+              await dispatch(
+                openDialog(
+                  <AlertDialog>
+                    <Trans>
+                      Passphrase is incorrect
+                    </Trans>
+                  </AlertDialog>
+                ),
+              );
+              setActionInProgress(false);
+              setNeedsFocusAndSelect(true);
+            }
+          )
+        );
+      }
+    }
+    catch (e) {
+      setActionInProgress(false);
+    }
   }
 
-  function handleKeyDown(e: KeyboardEvent) {
+  function handleKeyDown(e: KeyboardEvent): void {
     if (e.key === 'Enter') {
       handleSubmit();
-    }
-  }
-
-  function stashInputRef(input: any) {
-    passphrase_input = input;
-    updatePassphraseInputIfNecessary();
-  }
-
-  function updatePassphraseInputIfNecessary() {
-    if (passphrase_input && unlock_bad_passphrase) {
-      // When a bad passphrase is provided, focus and select the text as a user convenience
-      passphrase_input.focus();
-      passphrase_input.select();
     }
   }
 
   let dialogTitle: React.ReactElement;
   let submitButtonTitle: React.ReactElement;
   let cancellable: boolean = true;
+
   switch (reason) {
     case PassphrasePromptReason.KEYRING_LOCKED:
       dialogTitle = (
@@ -198,10 +200,11 @@ export default function AppPassPrompt(props: Props) {
       break;
   }
 
-  if (user_passphrase_is_set) {
+  if (userPassphraseIsSet) {
     return (
       <div>
         <Dialog
+          onKeyDown={handleKeyDown}
           open={true}
           aria-labelledby="form-dialog-title"
           fullWidth={true}
@@ -210,14 +213,13 @@ export default function AppPassPrompt(props: Props) {
           <DialogTitle id="form-dialog-title">{dialogTitle}</DialogTitle>
           <DialogContent>
             <TextField
-              onKeyDown={handleKeyDown}
               autoFocus
               color="secondary"
-              disabled={unlock_in_progress}
+              disabled={actionInProgress}
               margin="dense"
-              id="passphrase_input"
+              id="passphraseInput"
               label={<Trans>Passphrase</Trans>}
-              inputRef={stashInputRef}
+              inputRef={(input: HTMLInputElement) => passphraseInput = input}
               type="password"
               fullWidth
             />
@@ -226,7 +228,7 @@ export default function AppPassPrompt(props: Props) {
             <Button
               onClick={handleSubmit}
               color="primary"
-              disabled={unlock_in_progress}
+              disabled={actionInProgress}
               variant="contained"
               style={{ marginBottom: '8px', marginRight: '8px' }}
             >
@@ -234,7 +236,9 @@ export default function AppPassPrompt(props: Props) {
             </Button>
             { cancellable && (
               <Button>
-                Cancel
+                <Trans>
+                  Cancel
+                </Trans>
               </Button>
             )}
           </DialogActions>
@@ -244,5 +248,4 @@ export default function AppPassPrompt(props: Props) {
   }
 
   return null;
-
 }

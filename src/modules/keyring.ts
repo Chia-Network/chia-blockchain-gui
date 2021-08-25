@@ -1,7 +1,5 @@
 export type KeyringState = {
   is_locked: boolean;
-  unlock_bad_passphrase: boolean;
-  unlock_in_progress: boolean;
   passphrase_support_enabled: boolean;
   user_passphrase_set: boolean;
   needs_migration: boolean;
@@ -13,8 +11,6 @@ export type KeyringState = {
 
 const initialState: KeyringState = {
   is_locked: false,
-  unlock_bad_passphrase: false,
-  unlock_in_progress: false,
   passphrase_support_enabled: false,
   user_passphrase_set: false,
   needs_migration: false,
@@ -58,27 +54,14 @@ export default function keyringReducer(
           };
         }
       } else if (command === 'unlock_keyring') {
-        // Clear the unlock_in_progress flag
-        state = {
-          ...state,
-          unlock_in_progress: false
-        };
         if (data.success) {
           return {
             ...state,
             is_locked: false,
-            unlock_bad_passphrase: false,
           };
         }
         else {
-          if (data.error === 'bad passphrase') {
-            return {
-              ...state,
-              unlock_bad_passphrase: true,
-            };
-          } else {
-            console.log("Failed to unlock keyring: " + data.error);
-          }
+          console.log("Failed to unlock keyring: " + data.error);
         }
       } else if (command === 'migrate_keyring') {
         // Clear the migration_in_progress flag
@@ -98,15 +81,6 @@ export default function keyringReducer(
       return state;
     case 'OUTGOING_MESSAGE':
       if (
-        action.message.command === 'unlock_keyring' &&
-        action.message.destination === 'daemon'
-      ) {
-        // Set a flag indicating that we're attempting to unlock the keyring
-        return {
-          ...state,
-          unlock_in_progress: true
-        };
-      } else if (
         action.message.command === 'migrate_keyring' &&
         action.message.destination === 'daemon'
       ) {
