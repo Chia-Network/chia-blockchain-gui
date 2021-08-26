@@ -1,11 +1,10 @@
-import React, { ReactElement } from 'react';
+import React from 'react';
 import { Trans } from '@lingui/macro';
 import LayoutMain from '../layout/LayoutMain';
 import { makeStyles } from '@material-ui/core/styles';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   AlertDialog,
-  ConfirmDialog,
   Flex,
   Card,
 } from '@chia/core';
@@ -111,7 +110,7 @@ const SecurityCard = () => {
     setRemovePassphraseOpen(false);
   }
 
-  function PassphraseFeatureStatus(): JSX.Element | null {
+  function PassphraseFeatureStatus(): JSX.Element {
     let icon: JSX.Element | null = null;
     let statusMessage: JSX.Element | null = null;
     let tooltipTitle: React.ReactElement;
@@ -133,21 +132,17 @@ const SecurityCard = () => {
       }
     }
 
-    if (icon && statusMessage) {
-      return (
-        <Box display="flex" className={classes.passToggleBox}>
-          {icon}
-          <Typography variant="subtitle1" style={{ marginRight: 5 }}>
-            {statusMessage}
-          </Typography>
-          <Tooltip title={tooltipTitle}>
-            <HelpIcon style={tooltipIconStyle} />
-          </Tooltip>
-        </Box>
-      );
-    } else {
-      return (null);
-    }
+    return (
+      <Box display="flex" className={classes.passToggleBox}>
+        {icon}
+        <Typography variant="subtitle1" style={{ marginRight: 5 }}>
+          {statusMessage}
+        </Typography>
+        <Tooltip title={tooltipTitle}>
+          <HelpIcon style={tooltipIconStyle} />
+        </Tooltip>
+      </Box>
+    );
   }
 
   function DisplayChangePassphrase(): JSX.Element | null {
