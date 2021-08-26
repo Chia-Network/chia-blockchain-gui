@@ -4,6 +4,7 @@ import { Alert } from '@material-ui/lab';
 import { makeStyles } from '@material-ui/core/styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { Trans } from '@lingui/macro';
+import { Backup as BackupIcon } from '@material-ui/icons';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import Box from '@material-ui/core/Box';
@@ -298,24 +299,29 @@ const RecoveryCard = (props) => {
     dids_num_req,
   } = wallet;
 
-  const classes = useStyles();
   const dispatch = useDispatch();
 
   const [files, setFiles] = useState([]);
 
-  const handleRemoveFile = (e) => {
-    const name = e.target.getAttribute("name")
-    setFiles(files.filter(object => object !== name));
+  function handleRemoveFile(event, name) {
+    event.stopPropagation();
+    event.preventDefault();
+
+    setFiles(files.filter((object) => object !== name));
   }
 
   function handleDrop(acceptedFiles) {
-    setFiles([...files, acceptedFiles[0].path]);
+    const newFiles = [...files];
+
+    acceptedFiles.forEach((file) => {
+      newFiles.push(file.path);
+    });
+
+    setFiles(newFiles);
   }
 
   function submit() {
-    if (
-      files.length < dids_num_req
-    ) {
+    if (files.length < dids_num_req) {
       dispatch(
         openDialog(
           <AlertDialog>
@@ -330,143 +336,135 @@ const RecoveryCard = (props) => {
   }
 
   return (
-    <Card title={<Trans>Recover DID Wallet</Trans>}>
-      <Grid item xs={12}>
-        <Box display="flex">
-          <Box flexGrow={1} style={{ marginBottom: 20 }}>
-            <Flex alignItems="stretch">
-              <Typography variant="subtitle1">Recovery Information:</Typography>
-              <Tooltip title="Send your DID's coin name, pubkey, and puzzlehash to your Backup ID(s) so that they may create an attestation packet.">
-                <HelpIcon style={{ color: '#c8c8c8', fontSize: 12 }} />
-              </Tooltip>
-            </Flex>
+    <Flex flexDirection="column" gap={2}>
+      <Card title={<Trans>Recover DID Wallet</Trans>}>
+        <Grid item xs={12}>
+          <Box display="flex">
+            <Box flexGrow={1} style={{ marginBottom: 20 }}>
+              <Flex gap={1} alignItems="center">
+                <Typography variant="subtitle1">Recovery Information</Typography>
+                <Tooltip title="Send your DID's coin name, pubkey, and puzzlehash to your Backup ID(s) so that they may create an attestation packet.">
+                  <HelpIcon style={{ color: '#c8c8c8', fontSize: 12 }} />
+                </Tooltip>
+              </Flex>
+            </Box>
           </Box>
-        </Box>
-        <Box display="flex">
-          <Box flexGrow={1}>
-            <Typography variant="subtitle1">My DID:</Typography>
-          </Box>
-          <Box
-            style={{
-              width: '85%',
-              overflowWrap: 'break-word',
-              marginBottom: 20,
-            }}
-          >
-            <Typography variant="subtitle1">{mydid}</Typography>
-          </Box>
-        </Box>
-        <Box display="flex">
-          <Box flexGrow={1}>
-            <Typography variant="subtitle1">Coin Name:</Typography>
-          </Box>
-          <Box
-            style={{
-              width: '85%',
-              overflowWrap: 'break-word',
-              marginBottom: 20,
-            }}
-          >
-            <Typography variant="subtitle1">{didcoin}</Typography>
-          </Box>
-        </Box>
-        <Box display="flex">
-          <Box flexGrow={1}>
-            <Typography variant="subtitle1">Pubkey:</Typography>
-          </Box>
-          <Box
-            style={{
-              width: '85%',
-              overflowWrap: 'break-word',
-              marginBottom: 20,
-            }}
-          >
-            <Typography variant="subtitle1">{did_rec_pubkey}</Typography>
-          </Box>
-        </Box>
-        <Box display="flex">
-          <Box flexGrow={1}>
-            <Typography variant="subtitle1">Puzzlehash:</Typography>
-          </Box>
-          <Box
-            style={{
-              width: '85%',
-              overflowWrap: 'break-word',
-              marginBottom: 20,
-            }}
-          >
-            <Typography variant="subtitle1">{did_rec_puzhash}</Typography>
-          </Box>
-        </Box>
-      </Grid>
-      <ViewDIDsSubsection
-        backup_did_list={backup_did_list}
-        dids_num_req={dids_num_req}
-      />
-      <Grid item xs={12}>
-        <Box display="flex">
-          <Box flexGrow={1} style={{ marginTop: 30 }}>
-            <Typography variant="subtitle1">
-              Input Attestation Packet(s)
-            </Typography>
-          </Box>
-        </Box>
-      </Grid>
-      <Grid item xs={12}>
-        <Dropzone onDrop={handleDrop}>
-          <Trans>
-            Drag and drop attestation packet(s)
-          </Trans>
-        </Dropzone>
-      </Grid>
-      <Grid item xs={12}>
-        <Box display="flex">
-          <Box flexGrow={1} style={{ marginBottom: 10, marginTop: 10 }}>
-            <Typography variant="subtitle1">
-              Attestation Packet(s):
-            </Typography>
-          </Box>
-        </Box>
-        <Box>
-          <Box flexGrow={1} style={{ marginBottom: 10 }}>
-            {(files.length === 0) ? (
-              <Typography variant="subtitle1" className={classes.packetWaitText}>
-                Waiting for attestation packet to be added . . .
-              </Typography>
-            ) : (
-              <div>
-              </div>
-            )}
-            {files.map(object => {
-              return (
-                <Typography key={object} variant="subtitle1">
-                  <span> {object} </span>
-                  <Button
-                    onClick={handleRemoveFile}
-                    className={classes.deleteButton}
-                    variant="contained"
-                  >
-                    <span name={object}>Delete</span>
-                  </Button>
-                </Typography>
-              );
-            })}
-          </Box>
-        </Box>
-        <Box display="flex">
-          <Box flexGrow={1} style={{ marginBottom: 10 }}>
-            <Button
-              onClick={submit}
-              className={classes.sendButton}
-              variant="contained"
-              color="primary"
+          <Box display="flex">
+            <Box flexGrow={1}>
+              <Typography variant="subtitle1">My DID:</Typography>
+            </Box>
+            <Box
+              style={{
+                width: '85%',
+                overflowWrap: 'break-word',
+                marginBottom: 20,
+              }}
             >
-              <Trans>Submit</Trans>
-            </Button>
+              <Typography variant="subtitle1">{mydid}</Typography>
+            </Box>
           </Box>
-        </Box>
-      </Grid>
-    </Card>
+          <Box display="flex">
+            <Box flexGrow={1}>
+              <Typography variant="subtitle1">Coin Name:</Typography>
+            </Box>
+            <Box
+              style={{
+                width: '85%',
+                overflowWrap: 'break-word',
+                marginBottom: 20,
+              }}
+            >
+              <Typography variant="subtitle1">{didcoin}</Typography>
+            </Box>
+          </Box>
+          <Box display="flex">
+            <Box flexGrow={1}>
+              <Typography variant="subtitle1">Pubkey:</Typography>
+            </Box>
+            <Box
+              style={{
+                width: '85%',
+                overflowWrap: 'break-word',
+                marginBottom: 20,
+              }}
+            >
+              <Typography variant="subtitle1">{did_rec_pubkey}</Typography>
+            </Box>
+          </Box>
+          <Box display="flex">
+            <Box flexGrow={1}>
+              <Typography variant="subtitle1">Puzzlehash:</Typography>
+            </Box>
+            <Box
+              style={{
+                width: '85%',
+                overflowWrap: 'break-word',
+                marginBottom: 20,
+              }}
+            >
+              <Typography variant="subtitle1">{did_rec_puzhash}</Typography>
+            </Box>
+          </Box>
+        </Grid>
+        <ViewDIDsSubsection
+          backup_did_list={backup_did_list}
+          dids_num_req={dids_num_req}
+        />
+        <Grid item xs={12}>
+          <Box display="flex">
+            <Box flexGrow={1} style={{ marginTop: 30 }}>
+              <Typography variant="subtitle1">
+                Input Attestation Packet(s)
+              </Typography>
+            </Box>
+          </Box>
+        </Grid>
+        <Grid item xs={12}>
+          <Dropzone onDrop={handleDrop}>
+            {!files.length ? (
+              <Flex flexDirection="column" gap={2} alignItems="center">
+                <BackupIcon fontSize="large" />
+                <Typography variant="body2" align="center">
+                  <Trans>
+                    Drag and drop attestation packet(s)
+                  </Trans>
+                </Typography>
+              </Flex>
+            ) : (
+              <Flex flexDirection="column" gap={2}>
+                <Typography variant="subtitle1">
+                  Attestation Packet(s):
+                </Typography>
+                {files.map((object, index) => (
+                  <Flex flexBasis={0} key={index} gap={1} alignItems="center">
+                    <Flex flexGrow={1} flexBasis={0}>
+                      <Typography variant="body2" noWrap>
+                        {object}
+                      </Typography>
+                    </Flex>
+                    <Button
+                      onClick={(event) => handleRemoveFile(event, object)}
+                      variant="contained"
+                    >
+                      <Trans>Delete</Trans>
+                    </Button>
+                  </Flex>
+                ))}
+              </Flex>
+            )}
+          </Dropzone>
+        </Grid>
+      </Card>
+      <Box>
+        <Button
+          onClick={submit}
+          variant="contained"
+          color="primary"
+        >
+          <Trans>Recover</Trans>
+        </Button>
+      </Box>
+    </Flex>
   );
 };
 

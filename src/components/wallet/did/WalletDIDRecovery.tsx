@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { AlertDialog, Back, ButtonLoading, Card, Flex, Dropzone } from '@chia/core';
 import { Trans } from '@lingui/macro';
 import {
@@ -9,8 +9,11 @@ import {
   Box,
 } from '@material-ui/core';
 import { Backup as BackupIcon } from '@material-ui/icons';
+import type { RootState } from '../../../modules/rootReducer';
 import { recover_did_action } from '../../../modules/message';
 import useOpenDialog from '../../../hooks/useOpenDialog';
+import SyncingStatus from '../../../constants/SyncingStatus';
+import getWalletSyncingStatus from '../../../util/getWalletSyncingStatus';
 
 export default function WalletDIDRecovery() {
   const openDialog = useOpenDialog();
@@ -18,6 +21,11 @@ export default function WalletDIDRecovery() {
   const [loading, setLoading] = useState<boolean>(false);
   const dispatch = useDispatch();
   const [file, setFile] = useState();
+
+  const walletState = useSelector((state: RootState) => state.wallet_state);
+  const syncingStatus = getWalletSyncingStatus(walletState);
+
+  const isSynced = syncingStatus === SyncingStatus.SYNCED;
 
   function handleDrop(acceptedFiles) {
     if (acceptedFiles.length > 1) {
@@ -45,6 +53,15 @@ export default function WalletDIDRecovery() {
       await openDialog((
         <AlertDialog>
           <Trans>Please select backup file first</Trans>
+        </AlertDialog>
+      ));
+      return;
+    }
+
+    if (!isSynced) {
+      await openDialog((
+        <AlertDialog>
+          <Trans>Please wait for wallet synchronization</Trans>
         </AlertDialog>
       ));
       return;
