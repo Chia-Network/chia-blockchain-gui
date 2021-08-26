@@ -3,19 +3,11 @@ import * as actions from '../modules/websocket';
 import {
   keyringStatus,
   registerService,
-  startService,
-  startServiceTest,
 } from '../modules/daemon_messages';
 import { handle_message } from './middleware_api';
 import {
   service_plotter,
-  service_wallet,
-  service_full_node,
-  service_simulator,
-  service_farmer,
-  service_harvester,
 } from '../util/service_names';
-import config from '../config/config';
 
 const crypto = require('crypto');
 

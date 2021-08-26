@@ -19,7 +19,7 @@ import {
 import {
   Help as HelpIcon,
 } from '@material-ui/icons';
-import { AlertDialog, ConfirmDialog, Flex, Logo } from '@chia/core';
+import { AlertDialog, ConfirmDialog } from '@chia/core';
 import { openDialog } from '../../modules/dialog';
 import { RootState } from '../../modules/rootReducer';
 import { migrate_keyring_action, skipKeyringMigration } from '../../modules/message';

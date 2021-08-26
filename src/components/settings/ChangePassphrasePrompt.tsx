@@ -12,7 +12,7 @@ import {
 import { Trans } from '@lingui/macro';
 import { AlertDialog } from '@chia/core';
 import { openDialog } from '../../modules/dialog';
-import { change_keyring_passphrase_action, remove_keyring_passphrase, remove_keyring_passphrase_action } from '../../modules/message';
+import { change_keyring_passphrase_action, remove_keyring_passphrase_action } from '../../modules/message';
 import { validateChangePassphraseParams } from '../app/AppPassPrompt';
 import { RootState } from '../../modules/rootReducer';
 
