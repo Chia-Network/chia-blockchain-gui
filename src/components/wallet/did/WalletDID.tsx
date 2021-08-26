@@ -626,7 +626,14 @@ const BalanceCardSubSection = (props) => {
 const BalanceCard = (props) => {
   const id = props.wallet_id;
 
-  const { wallet } = useWallet(id);
+  const classes = useStyles();
+  const { wallet, loading } = useWallet(id);
+  if (loading || !wallet.wallet_balance) {
+    return (
+      <Loading center />
+    );
+  }
+
   const {
     wallet_balance: {
       confirmed_wallet_balance: balance,
@@ -637,7 +644,6 @@ const BalanceCard = (props) => {
   } = wallet;
 
   const balance_ptotal = balance + balance_pending;
-  const classes = useStyles();
 
   return (
     <Card title={<Trans>Balance</Trans>}>

@@ -1,6 +1,7 @@
-import { useDispatch } from 'react-redux';
 import React, { useState } from 'react';
-import { AlertDialog, Back, Card, Flex, Dropzone } from '@chia/core';
+import { useHistory } from 'react-router';
+import { useDispatch } from 'react-redux';
+import { AlertDialog, Back, ButtonLoading, Card, Flex, Dropzone } from '@chia/core';
 import { Trans } from '@lingui/macro';
 import {
   Typography,
@@ -13,6 +14,8 @@ import useOpenDialog from '../../../hooks/useOpenDialog';
 
 export default function WalletDIDRecovery() {
   const openDialog = useOpenDialog();
+  const history = useHistory();
+  const [loading, setLoading] = useState<boolean>(false);
   const dispatch = useDispatch();
   const [file, setFile] = useState();
 
@@ -47,7 +50,15 @@ export default function WalletDIDRecovery() {
       return;
     }
 
-    dispatch(recover_did_action(file.path));
+    try {
+      setLoading(true);
+      const response = await dispatch(recover_did_action(file.path));
+      if (response && response.data && response.data.success === true) {
+        history.push(`/dashboard/wallets/${response.data.wallet_id}`);
+      }
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
@@ -62,7 +73,7 @@ export default function WalletDIDRecovery() {
               <Typography variant="subtitle1" align="center">
                 <Trans>Selected recovery file:</Trans>
               </Typography>
-              <Typography variant="body2" align="center" noWrap textOverflow>
+              <Typography variant="body2" align="center" noWrap>
                 {file.name}
               </Typography>
               <Flex justifyContent="center">
@@ -87,13 +98,14 @@ export default function WalletDIDRecovery() {
         </Dropzone>
       </Card>
       <Box>
-        <Button
+        <ButtonLoading
           onClick={handleSubmit}
           variant="contained"
           color="primary"
+          loading={loading}
         >
           <Trans>Recover</Trans>
-        </Button>
+        </ButtonLoading>
       </Box>
     </Flex>
   );

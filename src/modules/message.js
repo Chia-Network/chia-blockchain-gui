@@ -790,11 +790,11 @@ export const create_did_action = (
         dispatch(showCreateBackup(true));
         dispatch(createState(true, false));
         dispatch(changeCreateWallet(ALL_OPTIONS));
-        return response;
       } else {
         const error = response.data.error;
         dispatch(openErrorDialog(error));
       }
+      return response;
     });
   };
 };
@@ -820,7 +820,7 @@ export const recover_did_action = (filename) => {
         if (response.data.success) {
           // Go to wallet
           dispatch(format_message('get_wallets', {}));
-          var id = response.data.wallet_id;
+          const id = response.data.wallet_id;
           dispatch(
             format_message('did_get_information_needed_for_recovery', {
               wallet_id: id,
@@ -833,6 +833,7 @@ export const recover_did_action = (filename) => {
           const error = response.data.error;
           dispatch(openErrorDialog(error));
         }
+        return response;
       },
     );
   };

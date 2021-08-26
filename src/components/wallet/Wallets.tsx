@@ -119,7 +119,7 @@ export default function Wallets() {
       bodyHeader={multipleWallets ? (
         <Container maxWidth="lg">
           <StyledTabs
-            value={walletId}
+            value={walletId || '1'}
             onChange={handleChange}
             indicatorColor="primary"
             textColor="primary"

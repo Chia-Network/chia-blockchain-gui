@@ -18,9 +18,11 @@ import { openDialog } from '../../../modules/dialog';
 import { useForm, Controller, useFieldArray } from 'react-hook-form';
 import { Help as HelpIcon } from '@material-ui/icons';
 import { divide } from 'lodash';
+import { useHistory } from 'react-router';
 
 export default function WalletDIDCreate() {
   const dispatch = useDispatch();
+  const history = useHistory();
   const methods = useForm();
   const [loading, setLoading] = useState<boolean>(false);
   const { control } = methods;
@@ -93,8 +95,9 @@ export default function WalletDIDCreate() {
       const amount_plus = amount_val + 1;
       await dispatch(createState(true, true));
       const response = await dispatch(create_did_action(amount_plus, uniqDidArray, num_of_backup_ids_needed));
-      console.log('response', response);
-      return response;
+      if (response && response.data && response.data.success === true) {
+        history.push(`/dashboard/wallets/${response.data.wallet_id}`);
+      }
     } finally {
       setLoading(false);
     }
