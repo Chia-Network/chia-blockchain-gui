@@ -41,8 +41,8 @@ export default function keyringReducer(
           const { user_passphrase_is_set } = data;
           const { needs_migration } = data;
           const { passphrase_requirements } = data;
-          const allow_empty_passphrase = passphrase_requirements.is_optional || false;
-          const min_passphrase_length = passphrase_requirements.min_length || 10;
+          const allow_empty_passphrase = passphrase_requirements?.is_optional || false;
+          const min_passphrase_length = passphrase_requirements?.min_length || 10;
           return {
             ...state,
             is_locked: is_keyring_locked,
