@@ -1045,7 +1045,7 @@ msgstr "Tilslut en pulje og få stabil XCH farm belønninger. Opret en plot NFT 
 msgid "K-Size"
 msgstr "K-Størrelse"
 
-#: src/components/dashboard/DashboardSideBar.tsx:66
+#: src/components/dashboard/DashboardSideBar.tsx:71
 msgid "Keys"
 msgstr "Nøgler"
 
@@ -1084,6 +1084,10 @@ msgstr "Forlader Pulje"
 msgid "List view"
 msgstr "Listevisning"
 
+#: src/components/logs/Logs.tsx:40
+msgid "Loading Logs"
+msgstr ""
+
 #: src/components/pool/Pool.tsx:21
 msgid "Loading Plot NFTs"
 msgstr "Indlæser Plot NFT'er"
@@ -1103,6 +1107,11 @@ msgstr "Loader..."
 #: src/components/app/AppRouter.tsx:41
 msgid "Logging in"
 msgstr "Logger ind"
+
+#: src/components/dashboard/DashboardSideBar.tsx:65
+#: src/components/logs/Logs.tsx:44
+msgid "Logs"
+msgstr ""
 
 #: src/components/wallet/create/WalletCreate.jsx:124
 #~ msgid "MainWalletList.colouredCoin"

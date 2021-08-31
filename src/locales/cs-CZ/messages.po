@@ -1045,7 +1045,7 @@ msgstr "Připojte se k Poolu a získejte konzistentní farmářskou odměnu XCH.
 msgid "K-Size"
 msgstr "K - velikost"
 
-#: src/components/dashboard/DashboardSideBar.tsx:66
+#: src/components/dashboard/DashboardSideBar.tsx:71
 msgid "Keys"
 msgstr "Klíče"
 
@@ -1084,6 +1084,10 @@ msgstr "Opustit Pool"
 msgid "List view"
 msgstr "Zobrazení jako seznam"
 
+#: src/components/logs/Logs.tsx:40
+msgid "Loading Logs"
+msgstr ""
+
 #: src/components/pool/Pool.tsx:21
 msgid "Loading Plot NFTs"
 msgstr "Načítání vykreslovani NFT polí"
@@ -1103,6 +1107,11 @@ msgstr "Načítá se..."
 #: src/components/app/AppRouter.tsx:41
 msgid "Logging in"
 msgstr "Probíhá přihlašování"
+
+#: src/components/dashboard/DashboardSideBar.tsx:65
+#: src/components/logs/Logs.tsx:44
+msgid "Logs"
+msgstr ""
 
 #: src/components/wallet/create/WalletCreate.jsx:124
 #~ msgid "MainWalletList.colouredCoin"

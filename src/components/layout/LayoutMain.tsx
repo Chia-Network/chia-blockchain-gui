@@ -21,17 +21,18 @@ type Props = {
   title?: ReactNode;
   loading?: boolean;
   loadingTitle?: ReactNode;
+  maxWidth?: string;
 };
 
 export default function LayoutMain(props: Props) {
-  const { children, title, loading, loadingTitle } = props;
+  const { children, title, loading, loadingTitle, maxWidth } = props;
 
   return (
     <>
       <DashboardTitle>{title}</DashboardTitle>
 
       <StyledInnerContainer>
-        <StyledContainer maxWidth="lg">
+        <StyledContainer maxWidth={maxWidth || "lg"}>
           <Flex flexDirection="column" gap={2} flexGrow="1">
             {loading ? (
               <Flex

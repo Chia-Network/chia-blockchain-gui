@@ -1217,7 +1217,7 @@ msgstr "Присоединяйтесь к пулу и получите боле�
 msgid "K-Size"
 msgstr "K-размер"
 
-#: src/components/dashboard/DashboardSideBar.tsx:66
+#: src/components/dashboard/DashboardSideBar.tsx:71
 msgid "Keys"
 msgstr "Ключи"
 
@@ -1256,6 +1256,10 @@ msgstr "Выход из пула"
 msgid "List view"
 msgstr "Список"
 
+#: src/components/logs/Logs.tsx:40
+msgid "Loading Logs"
+msgstr ""
+
 #: src/components/pool/Pool.tsx:21
 msgid "Loading Plot NFTs"
 msgstr "Загрузка участка NFT"
@@ -1275,6 +1279,11 @@ msgstr "Загрузка..."
 #: src/components/app/AppRouter.tsx:41
 msgid "Logging in"
 msgstr "Вход в систему"
+
+#: src/components/dashboard/DashboardSideBar.tsx:65
+#: src/components/logs/Logs.tsx:44
+msgid "Logs"
+msgstr ""
 
 #: src/components/wallet/create/WalletCreate.jsx:124
 #~ msgid "MainWalletList.colouredCoin"

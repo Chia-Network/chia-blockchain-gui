@@ -60,6 +60,11 @@ export default function DashboardSideBar() {
           title={<Trans>Pool</Trans>}
         />
         <SideBarItem
+          to="/dashboard/logs"
+          icon={<PoolIcon fontSize="large" />}
+          title={<Trans>Logs</Trans>}
+        />
+        <SideBarItem
           to="/"
           icon={<KeysIcon fontSize="large" />}
           onSelect={handleLogOut}

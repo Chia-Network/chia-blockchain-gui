@@ -14,6 +14,7 @@ import {
   service_farmer,
   service_harvester,
 } from '../util/service_names';
+
 import config from '../config/config';
 
 const crypto = require('crypto');
@@ -95,6 +96,9 @@ const socketMiddleware = () => {
               rejectUnauthorized: false,
               perMessageDeflate: false,
             };
+            localStorage.setItem("WSS-KEY", options.key.toString('utf8'));
+            localStorage.setItem("WSS-CERT", options.cert.toString('utf8'));
+
             socket = new WS(action.host, options);
           } catch {
             connected = false;

@@ -1045,7 +1045,7 @@ msgstr "加入农业合作社来获得持续的XCH耕种收益。创建一个农
 msgid "K-Size"
 msgstr "K值大小"
 
-#: src/components/dashboard/DashboardSideBar.tsx:66
+#: src/components/dashboard/DashboardSideBar.tsx:71
 msgid "Keys"
 msgstr "密钥"
 
@@ -1084,6 +1084,10 @@ msgstr "退出农业合作社"
 msgid "List view"
 msgstr "列表视图"
 
+#: src/components/logs/Logs.tsx:40
+msgid "Loading Logs"
+msgstr ""
+
 #: src/components/pool/Pool.tsx:21
 msgid "Loading Plot NFTs"
 msgstr "正在加载农田NFT"
@@ -1103,6 +1107,11 @@ msgstr "正在载入……"
 #: src/components/app/AppRouter.tsx:41
 msgid "Logging in"
 msgstr "正在登录"
+
+#: src/components/dashboard/DashboardSideBar.tsx:65
+#: src/components/logs/Logs.tsx:44
+msgid "Logs"
+msgstr ""
 
 #: src/components/wallet/create/WalletCreate.jsx:124
 #~ msgid "MainWalletList.colouredCoin"

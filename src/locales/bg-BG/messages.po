@@ -1045,7 +1045,7 @@ msgstr ""
 msgid "K-Size"
 msgstr "К-размер"
 
-#: src/components/dashboard/DashboardSideBar.tsx:66
+#: src/components/dashboard/DashboardSideBar.tsx:71
 msgid "Keys"
 msgstr "Ключове"
 
@@ -1084,6 +1084,10 @@ msgstr ""
 msgid "List view"
 msgstr ""
 
+#: src/components/logs/Logs.tsx:40
+msgid "Loading Logs"
+msgstr ""
+
 #: src/components/pool/Pool.tsx:21
 msgid "Loading Plot NFTs"
 msgstr ""
@@ -1103,6 +1107,11 @@ msgstr "Зареждане..."
 #: src/components/app/AppRouter.tsx:41
 msgid "Logging in"
 msgstr "Влизане"
+
+#: src/components/dashboard/DashboardSideBar.tsx:65
+#: src/components/logs/Logs.tsx:44
+msgid "Logs"
+msgstr ""
 
 #: src/components/wallet/create/WalletCreate.jsx:124
 #~ msgid "MainWalletList.colouredCoin"

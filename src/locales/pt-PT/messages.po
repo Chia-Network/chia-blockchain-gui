@@ -1045,7 +1045,7 @@ msgstr "Junte-se a um Pool e obtenha recompensas consistentes de XCH. Crie um pl
 msgid "K-Size"
 msgstr "Tamanho-K"
 
-#: src/components/dashboard/DashboardSideBar.tsx:66
+#: src/components/dashboard/DashboardSideBar.tsx:71
 msgid "Keys"
 msgstr "Chaves"
 
@@ -1084,6 +1084,10 @@ msgstr "Saindo da Pool"
 msgid "List view"
 msgstr "Vista de lista"
 
+#: src/components/logs/Logs.tsx:40
+msgid "Loading Logs"
+msgstr ""
+
 #: src/components/pool/Pool.tsx:21
 msgid "Loading Plot NFTs"
 msgstr "Carregando Plot NFTs"
@@ -1103,6 +1107,11 @@ msgstr "Carregando..."
 #: src/components/app/AppRouter.tsx:41
 msgid "Logging in"
 msgstr "Iniciando a sessão"
+
+#: src/components/dashboard/DashboardSideBar.tsx:65
+#: src/components/logs/Logs.tsx:44
+msgid "Logs"
+msgstr ""
 
 #: src/components/wallet/create/WalletCreate.jsx:124
 #~ msgid "MainWalletList.colouredCoin"
