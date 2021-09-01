@@ -6,7 +6,7 @@ const crypto = window.require('crypto');
 const WebSocket = window.require('ws');
 
 export default (url, weboptions, cert_options) => {
-    const { onOpen, onClose, onError, formatMessage } = weboptions;
+    const { onClose, onError } = weboptions;
     const emitter = mitt();
     let encodedLog = new Uint8Array();
     let overage = null;

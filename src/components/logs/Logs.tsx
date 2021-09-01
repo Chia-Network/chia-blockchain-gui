@@ -1,11 +1,11 @@
 import React from 'react';
 import { Trans } from '@lingui/macro';
-import { useRouteMatch } from 'react-router-dom';
 import { Link } from '@chia/core';
 import { LazyLog, ScrollFollow } from 'react-lazylog'
 import LayoutMain from '../layout/LayoutMain';
 import { LogsHeaderTarget } from './LogsHeader';
 import logwebsocket from './logwebsocket';
+import isElectron from 'is-electron';
 
 class ChiaLog extends LazyLog {
   initEmitter() {
@@ -30,8 +30,14 @@ class ChiaLog extends LazyLog {
 }
 
 export default function Logs() {
-  const { path } = useRouteMatch();
-  const url = 'wss://localhost:55400';
+
+  // get the daemon's uri from global storage (put there by loadConfig)
+  let url = null;
+  if (isElectron()) {
+    const electron = window.require('electron');
+    const { remote: r } = electron;
+    url = r.getGlobal('daemon_rpc_ws');
+  }
 
   return (
     <LayoutMain
