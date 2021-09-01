@@ -30,7 +30,7 @@ msgstr "Haluatko tarkastella lohkoja? Katso avoimen koodin <0>Chia Explorer</0>.
 msgid "+ Add New Plot NFT"
 msgstr "+ Lisää Uusi Plot NFT"
 
-#: src/components/wallet/Wallets.tsx:122
+#: src/components/wallet/Wallets.tsx:132
 msgid "+ Add Wallet"
 msgstr ""
 
@@ -76,8 +76,8 @@ msgstr "Toiminnot"
 msgid "Add"
 msgstr "Lisää"
 
-#: src/components/wallet/create/createDIDWallet.js:287
-#: src/components/wallet/did/DIDWallet.jsx:876
+#: src/components/wallet/did/WalletDID.tsx:874
+#: src/components/wallet/did/WalletDIDCreate.tsx:205
 msgid "Add Backup ID"
 msgstr ""
 
@@ -129,7 +129,7 @@ msgstr "Osoite"
 msgid "Address / Puzzle hash"
 msgstr "Osoite / Puzzle-tiiviste"
 
-#: src/components/core/components/Amount/Amount.tsx:96
+#: src/components/core/components/Amount/Amount.tsx:99
 #: src/components/trading/CreateOffer.jsx:196
 #: src/components/trading/TradesTable.tsx:20
 #: src/components/wallet/WalletHistory.tsx:62
@@ -147,7 +147,7 @@ msgstr "Määrä ({cc_unit})"
 msgid "Amount For Initial Coin"
 msgstr "Alkumäärä"
 
-#: src/components/wallet/create/createDIDWallet.js:151
+#: src/components/wallet/did/WalletDIDCreate.tsx:62
 msgid "Amount must be an even amount."
 msgstr ""
 
@@ -187,17 +187,17 @@ msgstr "Automaattisesti luotu nimi poolin sopimusosoitteesta"
 msgid "Back"
 msgstr "Palaa"
 
-#: src/components/backup/BackupCreate.tsx:66
+#: src/components/backup/BackupCreate.tsx:45
 msgid "Backup file is used to restore smart wallets."
 msgstr "Varmuuskopiotiedostoa käytetään lompakkojen palauttamiseen."
 
 #: src/components/wallet/coloured/WalletColoured.tsx:377
-#: src/components/wallet/did/DIDWallet.jsx:655
+#: src/components/wallet/did/WalletDID.tsx:647
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:541
 msgid "Balance"
 msgstr "Saldo"
 
-#: src/components/block/Block.jsx:317
+#: src/components/block/Block.jsx:318
 msgid "Base Farmer Reward Amount"
 msgstr "Farmarin Peruspalkkio"
 
@@ -214,22 +214,22 @@ msgstr "Paras arvio viimeisten 24 tunnin ajalta"
 #~ msgid "Best estimate over last 5 hours"
 #~ msgstr ""
 
-#: src/components/block/Block.jsx:129
-#: src/components/block/Block.jsx:153
-#: src/components/block/Block.jsx:157
-#: src/components/block/Block.jsx:332
+#: src/components/block/Block.jsx:130
+#: src/components/block/Block.jsx:154
+#: src/components/block/Block.jsx:158
+#: src/components/block/Block.jsx:333
 msgid "Block"
 msgstr "Lohko"
 
-#: src/components/block/Block.jsx:137
+#: src/components/block/Block.jsx:138
 msgid "Block Test"
 msgstr "Lohkon Testi"
 
-#: src/components/block/Block.jsx:235
+#: src/components/block/Block.jsx:236
 msgid "Block VDF Iterations"
 msgstr "Lohkon VDF-iteraatiot"
 
-#: src/components/block/Block.jsx:336
+#: src/components/block/Block.jsx:337
 msgid "Block at height {0} in the Chia blockchain"
 msgstr "Lohko korkeudessa {0} Chian lohkoketjussa"
 
@@ -237,11 +237,11 @@ msgstr "Lohko korkeudessa {0} Chian lohkoketjussa"
 #~ msgid "Block hash"
 #~ msgstr ""
 
-#: src/components/block/Block.jsx:141
+#: src/components/block/Block.jsx:142
 msgid "Block with hash {headerHash}"
 msgstr "Lohko tiivisteellä {headerHash}"
 
-#: src/components/block/Block.jsx:162
+#: src/components/block/Block.jsx:163
 msgid "Block with hash {headerHash} does not exist."
 msgstr "Lohkoa tunnistetiivisteellä {headerHash} ei ole olemassa."
 
@@ -281,6 +281,7 @@ msgstr "Osta"
 msgid "Can be backed up to mnemonic seed"
 msgstr "Varmuuskopioitavissa muistisanoiksi"
 
+#: src/components/backup/BackupCreate.tsx:50
 #: src/components/core/components/ConfirmDialog/ConfirmDialog.tsx:86
 #: src/components/farm/FarmManageFarmingRewards.tsx:196
 #: src/components/fullNode/FullNodeAddConnection.tsx:89
@@ -357,6 +358,10 @@ msgstr "Sulje"
 msgid "Closing down node and server"
 msgstr "Suljetaan noodi ja palvelut"
 
+#: src/components/wallet/did/WalletDID.tsx:984
+msgid "Coin Name"
+msgstr ""
+
 #: src/components/trading/TradingOverview.jsx:366
 msgid "Coins:"
 msgstr "Kolikot:"
@@ -378,11 +383,11 @@ msgstr "Värin Teksti"
 msgid "Colour:"
 msgstr "Väri:"
 
-#: src/components/wallet/create/WalletCreate.jsx:122
+#: src/components/wallet/create/WalletCreateList.tsx:34
 msgid "Coloured Coin"
 msgstr "Väritetty Kolikko"
 
-#: src/components/wallet/create/WalletCreate.jsx:174
+#: src/components/wallet/create/WalletCreate.jsx:122
 msgid "Coloured Coin Options"
 msgstr "Värikolikon Valinnat"
 
@@ -467,24 +472,32 @@ msgstr "Kopioi"
 msgid "Copy to Clipboard"
 msgstr "Kopioi Leikepöydälle"
 
-#: src/components/backup/BackupCreate.tsx:78
+#: src/components/backup/BackupCreate.tsx:58
 #: src/components/plot/add/PlotAdd.tsx:177
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:175
-#: src/components/wallet/create/createDIDWallet.js:268
 #: src/components/wallet/create/createExistingColouredCoin.jsx:133
 #: src/components/wallet/create/createNewColouredCoin.jsx:142
 #: src/components/wallet/create/createRLAdmin.jsx:307
 #: src/components/wallet/create/createRLUser.jsx:99
+#: src/components/wallet/did/WalletDIDCreate.tsx:218
 msgid "Create"
 msgstr "Luo"
 
-#: src/components/wallet/did/DIDWallet.jsx:986
+#: src/components/wallet/did/WalletDID.tsx:967
 msgid "Create An Attestation Packet"
 msgstr ""
 
 #: src/components/wallet/create/WalletCreate.jsx:290
-msgid "Create DID wallet"
-msgstr "Luo Digitaalisen Identiteetin lompakko"
+#~ msgid "Create DID wallet"
+#~ msgstr "Luo Digitaalisen Identiteetin lompakko"
+
+#: src/components/wallet/did/WalletDIDCreate.tsx:110
+msgid "Create Distributed Identity Wallet"
+msgstr ""
+
+#: src/components/wallet/did/WalletDIDSelect.tsx:32
+msgid "Create New Wallet"
+msgstr ""
 
 #: src/components/trading/TradeManager.tsx:45
 msgid "Create Offer"
@@ -516,7 +529,7 @@ msgstr "Tarjoa"
 msgid "Create Transaction"
 msgstr "Luo Transaktio"
 
-#: src/components/backup/BackupCreate.tsx:63
+#: src/components/backup/BackupCreate.tsx:41
 msgid "Create a Backup"
 msgstr "Luo Varmuuskopio"
 
@@ -528,15 +541,15 @@ msgstr "Luo Plot NFT"
 msgid "Create a new private key"
 msgstr "Luo yksityinen avain"
 
-#: src/components/wallet/create/WalletCreate.jsx:238
+#: src/components/wallet/create/WalletCreate.jsx:186
 msgid "Create admin wallet"
 msgstr "Luo pääkäyttäjälompakko"
 
-#: src/components/wallet/create/WalletCreate.jsx:184
+#: src/components/wallet/create/WalletCreate.jsx:132
 msgid "Create new coloured coin"
 msgstr "Luo uusi väritetty kolikko"
 
-#: src/components/wallet/create/WalletCreate.jsx:244
+#: src/components/wallet/create/WalletCreate.jsx:192
 msgid "Create user wallet"
 msgstr "Luo käyttäjälompakko"
 
@@ -544,7 +557,7 @@ msgstr "Luo käyttäjälompakko"
 msgid "Create wallet for colour"
 msgstr "Luo lompakko väriä varten"
 
-#: src/components/wallet/create/WalletCreate.jsx:191
+#: src/components/wallet/create/WalletCreate.jsx:139
 msgid "Create wallet for existing colour"
 msgstr "Luo lompakko olemassa olevaa väriä varten"
 
@@ -615,8 +628,10 @@ msgstr "Viive"
 #: src/components/plotNFT/PlotNFTCard.tsx:122
 #: src/components/selectKey/SelectKey.tsx:67
 #: src/components/selectKey/SelectKey.tsx:109
-#: src/components/wallet/create/createDIDWallet.js:314
-#: src/components/wallet/did/DIDWallet.jsx:903
+#: src/components/wallet/did/WalletDID.tsx:449
+#: src/components/wallet/did/WalletDID.tsx:862
+#: src/components/wallet/did/WalletDIDCreate.tsx:194
+#: src/components/wallet/did/WalletDIDRecovery.tsx:101
 #: src/components/wallet/standard/WalletStandard.tsx:630
 msgid "Delete"
 msgstr "Poista"
@@ -660,7 +675,7 @@ msgstr "Kehittäjä"
 msgid "Developer Tools"
 msgstr "Kehitystyökalut"
 
-#: src/components/block/Block.jsx:221
+#: src/components/block/Block.jsx:222
 #: src/components/fullNode/card/FullNodeCardDifficulty.tsx:20
 msgid "Difficulty"
 msgstr "Vaikeusaste"
@@ -681,13 +696,14 @@ msgstr "Hylkää"
 msgid "Disconnect"
 msgstr "Katkaise Yhteys"
 
-#: src/components/wallet/create/WalletCreate.jsx:136
+#: src/components/wallet/create/WalletCreateList.tsx:28
+#: src/components/wallet/did/WalletDIDSelect.tsx:25
 msgid "Distributed Identity"
 msgstr ""
 
 #: src/components/wallet/create/WalletCreate.jsx:280
-msgid "Distributed Identity Options"
-msgstr "Hajautetun Identiteetin Valinnat"
+#~ msgid "Distributed Identity Options"
+#~ msgstr "Hajautetun Identiteetin Valinnat"
 
 #: src/components/farm/overview/FarmOverviewHero.tsx:52
 #: src/components/plot/overview/PlotOverviewHero.tsx:69
@@ -698,7 +714,7 @@ msgstr "Onko sinulla plot-tiedostoja koneella? <0>Lisää Hakemisto</0>"
 msgid "Does your machine support parallel plotting?"
 msgstr "Tukeeko tietokoneesi rinnakkaisplottausta?"
 
-#: src/components/wallet/did/DIDWallet.jsx:429
+#: src/components/wallet/did/WalletDID.tsx:428
 msgid "Drag and drop attestation packet(s)"
 msgstr ""
 
@@ -710,7 +726,7 @@ msgstr "Raahaa ja pudota tarjoustiedosto"
 msgid "Drag and drop your backup file"
 msgstr "Raahaa ja pudota varmuuskopiotiedosto"
 
-#: src/components/wallet/create/recoverDIDWallet.js:196
+#: src/components/wallet/did/WalletDIDRecovery.tsx:109
 msgid "Drag and drop your recovery backup file"
 msgstr ""
 
@@ -782,7 +798,7 @@ msgstr "Farmi"
 msgid "Farmer Public Key"
 msgstr "Farmarin Julkinen Avain"
 
-#: src/components/block/Block.jsx:267
+#: src/components/block/Block.jsx:268
 msgid "Farmer Puzzle Hash"
 msgstr "Farmarin Osoitetiiviste"
 
@@ -861,7 +877,7 @@ msgstr "Veloitus"
 msgid "Fee ({currencyCode})"
 msgstr "Veloitus ({currencyCode})"
 
-#: src/components/block/Block.jsx:321
+#: src/components/block/Block.jsx:322
 msgid "Fees Amount"
 msgstr "Palkkiosumma"
 
@@ -877,6 +893,7 @@ msgstr "Tiedosto"
 #: src/components/plot/PlotsFailed.tsx:14
 #: src/components/plot/PlotsNotFound.tsx:14
 #: src/components/plot/overview/PlotOverviewPlots.tsx:106
+#: src/components/wallet/did/WalletDID.tsx:975
 msgid "Filename"
 msgstr "Tiedoston nimi"
 
@@ -942,11 +959,11 @@ msgstr "Harvesterin Plotit"
 msgid "Header Hash"
 msgstr "Lohkotunniste"
 
-#: src/components/block/Block.jsx:185
+#: src/components/block/Block.jsx:186
 msgid "Header hash"
 msgstr "Lohkotunniste"
 
-#: src/components/block/Block.jsx:201
+#: src/components/block/Block.jsx:202
 #: src/components/fullNode/FullNode.jsx:81
 #: src/components/fullNode/FullNodeConnections.tsx:79
 msgid "Height"
@@ -1112,7 +1129,7 @@ msgstr "Luettelonäkymä"
 msgid "Loading Plot NFTs"
 msgstr "Ladataan Plot-NFT:itä"
 
-#: src/components/wallet/Wallets.tsx:111
+#: src/components/wallet/Wallets.tsx:117
 msgid "Loading list of wallets"
 msgstr "Ladataan lompakkojen luetteloa"
 
@@ -1172,7 +1189,7 @@ msgstr "Kirjaudutaan"
 msgid "Manage Farming Rewards"
 msgstr "Hallitse Farmaripalkkioita"
 
-#: src/components/wallet/did/DIDWallet.jsx:818
+#: src/components/wallet/did/WalletDID.tsx:806
 msgid "Manage Recovery DIDs"
 msgstr ""
 
@@ -1196,7 +1213,7 @@ msgstr "Minuuttia"
 msgid "More memory slightly increases speed"
 msgstr "Lisää muistia nopeuttaa hieman"
 
-#: src/components/wallet/did/DIDWallet.jsx:550
+#: src/components/wallet/did/WalletDID.tsx:537
 msgid "My DID Wallet"
 msgstr ""
 
@@ -1225,7 +1242,7 @@ msgstr "Uusi Osoite"
 msgid "New Wallet"
 msgstr "Uusi Lompakko"
 
-#: src/components/block/Block.jsx:350
+#: src/components/block/Block.jsx:351
 #: src/components/wallet/WalletAdd.tsx:95
 #: src/components/wallet/WalletImport.tsx:163
 msgid "Next"
@@ -1338,9 +1355,13 @@ msgstr "Tehdyt Tarjoukset"
 msgid "On average there is one minute between each transaction block. Unless there is congestion you can expect your transaction to be included in less than a minute."
 msgstr "Transaktiolohkon väli on keskimäärin minuutti. Ruuhkattomana aikana transaktiosi voidaan lisätä alle minuutissa lohkoketjuun."
 
-#: src/components/wallet/create/recoverDIDWallet.js:156
-msgid "Only one backup file is allowed. To add a new backup file, please delete any previously uploaded files and try again."
+#: src/components/wallet/did/WalletDIDRecovery.tsx:34
+msgid "Only one backup file is allowed."
 msgstr ""
+
+#: src/components/wallet/create/recoverDIDWallet.js:156
+#~ msgid "Only one backup file is allowed. To add a new backup file, please delete any previously uploaded files and try again."
+#~ msgstr ""
 
 #: src/components/wallet/WalletHistory.tsx:23
 msgid "Outgoing"
@@ -1395,20 +1416,20 @@ msgstr "Anna kaupankäyntipari"
 msgid "Please enter 0 fee. Positive fees not supported yet for RL."
 msgstr "Anna nollaveloitus. Positiivisia veloituksia ei vielä tueta."
 
-#: src/components/wallet/did/DIDWallet.jsx:943
+#: src/components/wallet/did/WalletDID.tsx:924
 msgid "Please enter a coin"
 msgstr ""
 
-#: src/components/wallet/did/DIDWallet.jsx:539
-#: src/components/wallet/did/DIDWallet.jsx:933
+#: src/components/wallet/did/WalletDID.tsx:526
+#: src/components/wallet/did/WalletDID.tsx:914
 msgid "Please enter a filename"
 msgstr ""
 
-#: src/components/wallet/did/DIDWallet.jsx:953
+#: src/components/wallet/did/WalletDID.tsx:934
 msgid "Please enter a pubkey"
 msgstr ""
 
-#: src/components/wallet/did/DIDWallet.jsx:963
+#: src/components/wallet/did/WalletDID.tsx:944
 msgid "Please enter a puzzlehash"
 msgstr ""
 
@@ -1416,8 +1437,8 @@ msgstr ""
 msgid "Please enter a valid initial coin amount"
 msgstr "Anna käypä kolikoiden määrä"
 
-#: src/components/wallet/create/createDIDWallet.js:165
-#: src/components/wallet/did/DIDWallet.jsx:789
+#: src/components/wallet/did/WalletDID.tsx:777
+#: src/components/wallet/did/WalletDIDCreate.tsx:76
 msgid "Please enter a valid integer of 0 or greater for the number of Backup IDs needed for recovery."
 msgstr ""
 
@@ -1427,7 +1448,7 @@ msgstr ""
 msgid "Please enter a valid numeric amount"
 msgstr "Anna käypä numeerinen arvo"
 
-#: src/components/wallet/create/createDIDWallet.js:139
+#: src/components/wallet/did/WalletDIDCreate.tsx:50
 msgid "Please enter a valid numeric amount."
 msgstr ""
 
@@ -1460,6 +1481,10 @@ msgstr "Synkronoi loppuun ennen transaktion tekemistä"
 msgid "Please select amount"
 msgstr "Valitse määrä"
 
+#: src/components/wallet/did/WalletDIDRecovery.tsx:55
+msgid "Please select backup file first"
+msgstr ""
+
 #: src/components/trading/CreateOffer.jsx:76
 msgid "Please select buy or sell"
 msgstr "Valitse osta tai myy"
@@ -1486,6 +1511,7 @@ msgstr "Valitse väliaikaishakemisto"
 msgid "Please wait for synchronization"
 msgstr "Ole hyvä ja odota synkronointia"
 
+#: src/components/wallet/did/WalletDIDRecovery.tsx:64
 #: src/hooks/useJoinPool.tsx:27
 msgid "Please wait for wallet synchronization"
 msgstr "Ole hyvä ja odota lompakon synkronointia"
@@ -1499,7 +1525,7 @@ msgstr "Plotti"
 msgid "Plot Count"
 msgstr "Plottien Määrä"
 
-#: src/components/block/Block.jsx:299
+#: src/components/block/Block.jsx:300
 msgid "Plot Id"
 msgstr "Plotin Tunnus"
 
@@ -1520,7 +1546,7 @@ msgstr "Plot-NFT:tä p2_singleton_puzzle_hashilla {plotNFTId} ei ole olemassa"
 #~ msgid "Plot Name"
 #~ msgstr ""
 
-#: src/components/block/Block.jsx:259
+#: src/components/block/Block.jsx:260
 msgid "Plot Public Key"
 msgstr "Plotin Julkinen Avain"
 
@@ -1612,12 +1638,12 @@ msgstr "Poolin Kirjautumislinkki"
 msgid "Pool Payout Instructions"
 msgstr "Poolin Maksuohjeet"
 
-#: src/components/block/Block.jsx:263
+#: src/components/block/Block.jsx:264
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:222
 msgid "Pool Public Key"
 msgstr "Poolin Julkinen Avain"
 
-#: src/components/block/Block.jsx:283
+#: src/components/block/Block.jsx:284
 msgid "Pool Puzzle Hash"
 msgstr "Poolin Osoitetiiviste"
 
@@ -1637,7 +1663,7 @@ msgstr "Poolin palkkio-osoitteen formaatti on väärä."
 msgid "Pool Reward Address must not be empty."
 msgstr "Poolin Palkkio-osoite on pakollinen."
 
-#: src/components/block/Block.jsx:313
+#: src/components/block/Block.jsx:314
 msgid "Pool Reward Amount"
 msgstr "Poolin Palkkiosumma"
 
@@ -1680,7 +1706,7 @@ msgstr "Valmistellaan Plot-NFT:tä"
 msgid "Preparing standard wallet"
 msgstr "Valmistellaan normaalia lompakkoa"
 
-#: src/components/block/Block.jsx:347
+#: src/components/block/Block.jsx:348
 msgid "Previous"
 msgstr "Edellinen"
 
@@ -1688,7 +1714,7 @@ msgstr "Edellinen"
 #~ msgid "Previous Block Hash"
 #~ msgstr ""
 
-#: src/components/block/Block.jsx:215
+#: src/components/block/Block.jsx:216
 msgid "Previous Header Hash"
 msgstr "Edellinen Tunnistetiiviste"
 
@@ -1708,7 +1734,7 @@ msgstr "Yksityinen avain {0}"
 msgid "Private key:"
 msgstr "Yksityinen avain:"
 
-#: src/components/block/Block.jsx:251
+#: src/components/block/Block.jsx:252
 msgid "Proof of Space Size"
 msgstr "Tilatodisteavaruuden Koko"
 
@@ -1721,12 +1747,17 @@ msgid "Protocol Version"
 msgstr "Protokollaversio"
 
 #: src/components/wallet/create/createRLAdmin.jsx:297
+#: src/components/wallet/did/WalletDID.tsx:993
 msgid "Pubkey"
 msgstr "Julkinen avain"
 
 #: src/middleware/middleware_api.jsx:229
 msgid "Public key:"
 msgstr "Julkinen avain:"
+
+#: src/components/wallet/did/WalletDID.tsx:1002
+msgid "Puzzlehash"
+msgstr ""
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:162
 msgid "Queue Name"
@@ -1756,7 +1787,7 @@ msgstr "RAM enimmäismäärä"
 #~ msgid "RLListItems.title"
 #~ msgstr ""
 
-#: src/components/wallet/create/WalletCreate.jsx:128
+#: src/components/wallet/create/WalletCreateList.tsx:42
 msgid "Rate Limited"
 msgstr "Siirtorajoitettu"
 
@@ -1765,7 +1796,7 @@ msgstr "Siirtorajoitettu"
 msgid "Rate Limited Info"
 msgstr "Siirtorajoitetetun Tiedot"
 
-#: src/components/wallet/create/WalletCreate.jsx:228
+#: src/components/wallet/create/WalletCreate.jsx:176
 msgid "Rate Limited Options"
 msgstr "Siirtorajoitetun Valinnat"
 
@@ -1778,14 +1809,27 @@ msgstr "Siirtorajoitetun Lompakon Asennus"
 msgid "Receive Address"
 msgstr "Vastaanottajan Osoite"
 
-#: src/components/wallet/did/DIDWallet.jsx:345
-#: src/components/wallet/did/DIDWallet.jsx:494
+#: src/components/wallet/did/WalletDID.tsx:464
+#: src/components/wallet/did/WalletDIDRecovery.tsx:124
+msgid "Recover"
+msgstr ""
+
+#: src/components/wallet/did/WalletDID.tsx:340
+#: src/components/wallet/did/WalletDID.tsx:480
 msgid "Recover DID Wallet"
 msgstr ""
 
 #: src/components/wallet/create/WalletCreate.jsx:296
-msgid "Recover DID wallet"
-msgstr "Palauta hajautetettu lompakko"
+#~ msgid "Recover DID wallet"
+#~ msgstr "Palauta hajautetettu lompakko"
+
+#: src/components/wallet/did/WalletDIDRecovery.tsx:84
+msgid "Recover Distributed Identity Wallet"
+msgstr ""
+
+#: src/components/wallet/did/WalletDIDSelect.tsx:39
+msgid "Recover Wallet"
+msgstr ""
 
 #: src/components/plot/PlotHeader.tsx:78
 #: src/components/plot/overview/PlotOverviewHero.tsx:62
@@ -1875,7 +1919,7 @@ msgstr "Valitse Tarjous"
 msgid "Select Temporary Directory"
 msgstr "Valitse Väliaikaistyöhakemisto"
 
-#: src/components/wallet/create/WalletCreate.jsx:112
+#: src/components/wallet/create/WalletCreateList.tsx:21
 msgid "Select Wallet Type"
 msgstr "Valitse Lompakkotyyppi"
 
@@ -1904,6 +1948,10 @@ msgstr "Valitse Plot-NFT pudotusvalikosta tai luo uusi."
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:108
 msgid "Selected"
 msgstr "Valittu"
+
+#: src/components/wallet/did/WalletDIDRecovery.tsx:91
+msgid "Selected recovery file:"
+msgstr ""
 
 #: src/components/plotNFT/PlotNFTExternalState.tsx:23
 #: src/components/plotNFT/PlotNFTState.tsx:57
@@ -2016,7 +2064,7 @@ msgstr "Tila"
 #: src/components/trading/TradingOverview.jsx:128
 #: src/components/wallet/WalletHistory.tsx:55
 #: src/components/wallet/WalletStatusCard.tsx:22
-#: src/components/wallet/Wallets.tsx:52
+#: src/components/wallet/Wallets.tsx:50
 msgid "Status"
 msgstr "Tila"
 
@@ -2052,9 +2100,7 @@ msgstr "Tila:"
 #~ msgid "Sub Block at height {0} in the Chia blockchain"
 #~ msgstr "Sub Block at height {0} in the Chia blockchain"
 
-#: src/components/wallet/create/recoverDIDWallet.js:242
-#: src/components/wallet/did/DIDWallet.jsx:476
-#: src/components/wallet/did/DIDWallet.jsx:854
+#: src/components/wallet/did/WalletDID.tsx:886
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:347
 msgid "Submit"
 msgstr "Lähetä"
@@ -2132,8 +2178,8 @@ msgstr "Noodi ei ole synkronoitu"
 msgid "The node is syncing, which means it is downloading blocks from other nodes, to reach the latest block in the chain"
 msgstr "Noodi synkronoi. Se lataa lohkoketjua muilta solmuilta"
 
-#: src/components/wallet/create/createDIDWallet.js:178
-#: src/components/wallet/did/DIDWallet.jsx:802
+#: src/components/wallet/did/WalletDID.tsx:790
+#: src/components/wallet/did/WalletDIDCreate.tsx:89
 msgid "The number of Backup IDs needed for recovery cannot exceed the number of Backup IDs added."
 msgstr ""
 
@@ -2161,19 +2207,19 @@ msgstr "Poolin URL-osoite tarvitsee HTTPS-protokollan. {normalizedUrl}"
 msgid "The pool switching operation was cancelled, please try again by changing pool, or self pooling"
 msgstr "Poolin vaihtaminen peruttiin, yritä uudelleen vaihtamalla poolia, tai itsepoolaamalla"
 
-#: src/components/block/Block.jsx:302
+#: src/components/block/Block.jsx:303
 msgid "The seed used to create the plot. This depends on the pool pk and plot pk."
 msgstr "Siemenarvo plot-tiedostojen luontia varten. Riippuu poolin ja plotin julkisista avaimista."
 
-#: src/components/block/Block.jsx:228
+#: src/components/block/Block.jsx:229
 msgid "The total number of VDF (verifiable delay function) or proof of time iterations on the whole chain up to this sub block."
 msgstr "Tähän lohkoon asti iteroitujen VDF-aikatodisteiden lukumäärä."
 
-#: src/components/block/Block.jsx:244
+#: src/components/block/Block.jsx:245
 msgid "The total number of VDF (verifiable delay function) or proof of time iterations on this block."
 msgstr "Tähän lohkoon asti iteroitujen VDF-aikatodisteiden lukumäärä."
 
-#: src/components/block/Block.jsx:324
+#: src/components/block/Block.jsx:325
 msgid "The total transactions fees in this block. Rewarded to the farmer."
 msgstr "Kokonaistransaktioveloitukset tässä lohkossa. Suoritetaan farmarille."
 
@@ -2216,7 +2262,7 @@ msgstr "Lähtevien ja saapuvien avointen transaktioiden summa (ei vielä lohkoke
 msgid "This is the time of the latest peak sub block."
 msgstr "Viimeisimmän lohkon aikaleima."
 
-#: src/components/block/Block.jsx:194
+#: src/components/block/Block.jsx:195
 msgid "This is the time the block was created by the farmer, which is before it is finalized with a proof of time"
 msgstr "Ajankohta jolloin farmari on luonut lohkon. Aikatodiste viimeistelee lohkon tämän ajankohdan jälkeen"
 
@@ -2278,7 +2324,7 @@ msgstr "Luontiaika"
 #~ msgid "Time this trade was created at this time"
 #~ msgstr ""
 
-#: src/components/block/Block.jsx:189
+#: src/components/block/Block.jsx:190
 msgid "Timestamp"
 msgstr "Aikaleima"
 
@@ -2312,7 +2358,7 @@ msgstr "Plottien Yhteiskoko:"
 msgid "Total Size of Plots"
 msgstr "Plottien Yhteiskoko"
 
-#: src/components/block/Block.jsx:225
+#: src/components/block/Block.jsx:226
 msgid "Total VDF Iterations"
 msgstr "VDF-iteraatioiden Määrä"
 
@@ -2352,7 +2398,7 @@ msgstr "Kaupankäynti"
 msgid "Trading History"
 msgstr "Kaupankäyntihistoria"
 
-#: src/components/block/Block.jsx:309
+#: src/components/block/Block.jsx:310
 msgid "Transactions Filter Hash"
 msgstr "Transaktion Filtteritiiviste"
 
@@ -2460,6 +2506,10 @@ msgstr "Odotetaan, että tapahtuma on vahvistettu"
 msgid "Wallet Status:"
 msgstr "Lompakon Tila:"
 
+#: src/components/wallet/did/WalletDID.tsx:1118
+msgid "Wallet does not exists"
+msgstr ""
+
 #: src/components/wallet/Wallets.tsx:34
 #~ msgid "WalletItem.ccWallet"
 #~ msgstr ""
@@ -2489,7 +2539,7 @@ msgstr "Lompakon Tila:"
 #~ msgstr ""
 
 #: src/components/dashboard/DashboardSideBar.tsx:45
-#: src/components/wallet/Wallets.tsx:112
+#: src/components/wallet/Wallets.tsx:118
 msgid "Wallets"
 msgstr "Lompakot"
 
@@ -2521,11 +2571,11 @@ msgstr "Varoitus: tätä avainta käytetään farmarin palkinto-osoitteeseen. Po
 msgid "Warning: This key is used for your pool rewards address. By deleting this key you may lose access to any future pool rewards"
 msgstr "Varoitus: tätä avainta käytetään poolin palkinto-osoitteeseen. Poistamalla tämän avaimen voit menettää pääsyn tuleviin poolipalkkioihin"
 
-#: src/components/block/Block.jsx:205
+#: src/components/block/Block.jsx:206
 msgid "Weight"
 msgstr "Paino"
 
-#: src/components/block/Block.jsx:208
+#: src/components/block/Block.jsx:209
 msgid "Weight is the total added difficulty of all sub blocks up to and including this one"
 msgstr "Paino on kaikkien tähänastisten lohkojen vaikeuskerroin"
 
@@ -2616,7 +2666,7 @@ msgstr "Saat <0/> osoiteeseen {0}"
 msgid "You will recieve <0/> to {address}"
 msgstr "Saat <0/> osoitteeseen {address}"
 
-#: src/components/wallet/did/DIDWallet.jsx:334
+#: src/components/wallet/did/WalletDID.tsx:328
 msgid "Your DID requires at least {dids_num_req} attestation file{0} for recovery. Please upload additional files."
 msgstr ""
 
@@ -2645,16 +2695,16 @@ msgid "[Error 22] File not found. Most likely one of the plot folders in your co
 msgstr "[Virhe 22] Tiedostoa ei löydy. Todennäköisesti yhdessä config.yaml-tiedostosi juontikansioista on ongelma."
 
 #: src/components/wallet/WalletStatusCard.tsx:41
-#: src/components/wallet/Wallets.tsx:77
+#: src/components/wallet/Wallets.tsx:75
 msgid "connections:"
 msgstr "yhteydet:"
 
 #: src/components/wallet/WalletStatusCard.tsx:33
-#: src/components/wallet/Wallets.tsx:69
+#: src/components/wallet/Wallets.tsx:67
 msgid "height:"
 msgstr "korkeus:"
 
-#: src/components/wallet/Wallets.tsx:63
+#: src/components/wallet/Wallets.tsx:61
 msgid "not synced"
 msgstr "ei synkronoitu"
 
@@ -2663,17 +2713,17 @@ msgid "p2_singleton_puzzle_hash is not defined"
 msgstr "p2_singleton_puzzle_hashia ei ole määritelty"
 
 #: src/components/wallet/WalletStatusCard.tsx:27
-#: src/components/wallet/Wallets.tsx:57
+#: src/components/wallet/Wallets.tsx:55
 msgid "status:"
 msgstr "tila:"
 
 #: src/components/wallet/WalletStatusCard.tsx:29
-#: src/components/wallet/Wallets.tsx:62
+#: src/components/wallet/Wallets.tsx:60
 msgid "synced"
 msgstr "synkronoitu"
 
 #: src/components/wallet/WalletStatusCard.tsx:29
-#: src/components/wallet/Wallets.tsx:61
+#: src/components/wallet/Wallets.tsx:59
 msgid "syncing"
 msgstr "synkronoi"
 
@@ -2701,6 +2751,6 @@ msgstr "{currencyCode} Chioja Farmaroitu"
 msgid "{currencyCode} User Transaction Fees"
 msgstr "{currencyCode} Transaktioveloitukset Käyttäjälle"
 
-#: src/components/core/components/Amount/Amount.tsx:80
+#: src/components/core/components/Amount/Amount.tsx:82
 msgid "{mojo, plural, one {mojo} other {mojos}}"
 msgstr "{mojo, plural, one {mojo} other {mojoa}}"

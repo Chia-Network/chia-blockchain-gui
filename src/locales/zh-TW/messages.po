@@ -30,7 +30,7 @@ msgstr "＊想更進一步探索 Chia 區塊鍵？看看開源開發者打造的
 msgid "+ Add New Plot NFT"
 msgstr "+ 新增新的農場"
 
-#: src/components/wallet/Wallets.tsx:122
+#: src/components/wallet/Wallets.tsx:132
 msgid "+ Add Wallet"
 msgstr ""
 
@@ -76,8 +76,8 @@ msgstr "動作"
 msgid "Add"
 msgstr "新增"
 
-#: src/components/wallet/create/createDIDWallet.js:287
-#: src/components/wallet/did/DIDWallet.jsx:876
+#: src/components/wallet/did/WalletDID.tsx:874
+#: src/components/wallet/did/WalletDIDCreate.tsx:205
 msgid "Add Backup ID"
 msgstr ""
 
@@ -129,7 +129,7 @@ msgstr "位址"
 msgid "Address / Puzzle hash"
 msgstr "位址 / 拼圖雜湊值"
 
-#: src/components/core/components/Amount/Amount.tsx:96
+#: src/components/core/components/Amount/Amount.tsx:99
 #: src/components/trading/CreateOffer.jsx:196
 #: src/components/trading/TradesTable.tsx:20
 #: src/components/wallet/WalletHistory.tsx:62
@@ -147,7 +147,7 @@ msgstr "數量 ({cc_unit})"
 msgid "Amount For Initial Coin"
 msgstr "初始代幣數量"
 
-#: src/components/wallet/create/createDIDWallet.js:151
+#: src/components/wallet/did/WalletDIDCreate.tsx:62
 msgid "Amount must be an even amount."
 msgstr ""
 
@@ -187,17 +187,17 @@ msgstr "自動從農會合約地址建立名稱"
 msgid "Back"
 msgstr "返回"
 
-#: src/components/backup/BackupCreate.tsx:66
+#: src/components/backup/BackupCreate.tsx:45
 msgid "Backup file is used to restore smart wallets."
 msgstr "備份檔案可用於復原智慧錢包。"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:377
-#: src/components/wallet/did/DIDWallet.jsx:655
+#: src/components/wallet/did/WalletDID.tsx:647
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:541
 msgid "Balance"
 msgstr "餘額"
 
-#: src/components/block/Block.jsx:317
+#: src/components/block/Block.jsx:318
 msgid "Base Farmer Reward Amount"
 msgstr "基礎塊農獎勵數量"
 
@@ -214,22 +214,22 @@ msgstr "已過 24 小時最佳預估值"
 #~ msgid "Best estimate over last 5 hours"
 #~ msgstr ""
 
-#: src/components/block/Block.jsx:129
-#: src/components/block/Block.jsx:153
-#: src/components/block/Block.jsx:157
-#: src/components/block/Block.jsx:332
+#: src/components/block/Block.jsx:130
+#: src/components/block/Block.jsx:154
+#: src/components/block/Block.jsx:158
+#: src/components/block/Block.jsx:333
 msgid "Block"
 msgstr "區塊"
 
-#: src/components/block/Block.jsx:137
+#: src/components/block/Block.jsx:138
 msgid "Block Test"
 msgstr "區塊測試"
 
-#: src/components/block/Block.jsx:235
+#: src/components/block/Block.jsx:236
 msgid "Block VDF Iterations"
 msgstr "區塊 VDF 疊代次數"
 
-#: src/components/block/Block.jsx:336
+#: src/components/block/Block.jsx:337
 msgid "Block at height {0} in the Chia blockchain"
 msgstr "Chia 區塊鏈區塊高度 {0}"
 
@@ -237,11 +237,11 @@ msgstr "Chia 區塊鏈區塊高度 {0}"
 #~ msgid "Block hash"
 #~ msgstr ""
 
-#: src/components/block/Block.jsx:141
+#: src/components/block/Block.jsx:142
 msgid "Block with hash {headerHash}"
 msgstr "帶雜湊值 {headerHash} 的區塊"
 
-#: src/components/block/Block.jsx:162
+#: src/components/block/Block.jsx:163
 msgid "Block with hash {headerHash} does not exist."
 msgstr "帶雜湊值 {headerHash} 的區塊不存在。"
 
@@ -281,6 +281,7 @@ msgstr "購買"
 msgid "Can be backed up to mnemonic seed"
 msgstr "可以備份到助記符號種子"
 
+#: src/components/backup/BackupCreate.tsx:50
 #: src/components/core/components/ConfirmDialog/ConfirmDialog.tsx:86
 #: src/components/farm/FarmManageFarmingRewards.tsx:196
 #: src/components/fullNode/FullNodeAddConnection.tsx:89
@@ -357,6 +358,10 @@ msgstr "關閉"
 msgid "Closing down node and server"
 msgstr "關閉節點和伺服器"
 
+#: src/components/wallet/did/WalletDID.tsx:984
+msgid "Coin Name"
+msgstr ""
+
 #: src/components/trading/TradingOverview.jsx:366
 msgid "Coins:"
 msgstr "幣種："
@@ -378,11 +383,11 @@ msgstr "顏色字串"
 msgid "Colour:"
 msgstr "顏色："
 
-#: src/components/wallet/create/WalletCreate.jsx:122
+#: src/components/wallet/create/WalletCreateList.tsx:34
 msgid "Coloured Coin"
 msgstr "有色代幣"
 
-#: src/components/wallet/create/WalletCreate.jsx:174
+#: src/components/wallet/create/WalletCreate.jsx:122
 msgid "Coloured Coin Options"
 msgstr "有色代幣選項"
 
@@ -467,24 +472,32 @@ msgstr "複製"
 msgid "Copy to Clipboard"
 msgstr "複製到剪貼板"
 
-#: src/components/backup/BackupCreate.tsx:78
+#: src/components/backup/BackupCreate.tsx:58
 #: src/components/plot/add/PlotAdd.tsx:177
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:175
-#: src/components/wallet/create/createDIDWallet.js:268
 #: src/components/wallet/create/createExistingColouredCoin.jsx:133
 #: src/components/wallet/create/createNewColouredCoin.jsx:142
 #: src/components/wallet/create/createRLAdmin.jsx:307
 #: src/components/wallet/create/createRLUser.jsx:99
+#: src/components/wallet/did/WalletDIDCreate.tsx:218
 msgid "Create"
 msgstr "建立"
 
-#: src/components/wallet/did/DIDWallet.jsx:986
+#: src/components/wallet/did/WalletDID.tsx:967
 msgid "Create An Attestation Packet"
 msgstr ""
 
 #: src/components/wallet/create/WalletCreate.jsx:290
-msgid "Create DID wallet"
-msgstr "建立 DID 錢包"
+#~ msgid "Create DID wallet"
+#~ msgstr "建立 DID 錢包"
+
+#: src/components/wallet/did/WalletDIDCreate.tsx:110
+msgid "Create Distributed Identity Wallet"
+msgstr ""
+
+#: src/components/wallet/did/WalletDIDSelect.tsx:32
+msgid "Create New Wallet"
+msgstr ""
 
 #: src/components/trading/TradeManager.tsx:45
 msgid "Create Offer"
@@ -516,7 +529,7 @@ msgstr "建立貿易提案"
 msgid "Create Transaction"
 msgstr "建立交易"
 
-#: src/components/backup/BackupCreate.tsx:63
+#: src/components/backup/BackupCreate.tsx:41
 msgid "Create a Backup"
 msgstr "建立備份"
 
@@ -528,15 +541,15 @@ msgstr "建立一塊農場"
 msgid "Create a new private key"
 msgstr "建立一個新的私鑰"
 
-#: src/components/wallet/create/WalletCreate.jsx:238
+#: src/components/wallet/create/WalletCreate.jsx:186
 msgid "Create admin wallet"
 msgstr "建立管理員錢包"
 
-#: src/components/wallet/create/WalletCreate.jsx:184
+#: src/components/wallet/create/WalletCreate.jsx:132
 msgid "Create new coloured coin"
 msgstr "建立新的有色代幣"
 
-#: src/components/wallet/create/WalletCreate.jsx:244
+#: src/components/wallet/create/WalletCreate.jsx:192
 msgid "Create user wallet"
 msgstr "建立使用者錢包"
 
@@ -544,7 +557,7 @@ msgstr "建立使用者錢包"
 msgid "Create wallet for colour"
 msgstr "建立有色代幣錢包"
 
-#: src/components/wallet/create/WalletCreate.jsx:191
+#: src/components/wallet/create/WalletCreate.jsx:139
 msgid "Create wallet for existing colour"
 msgstr "用已有的有色代幣去建立錢包"
 
@@ -615,8 +628,10 @@ msgstr "延遲"
 #: src/components/plotNFT/PlotNFTCard.tsx:122
 #: src/components/selectKey/SelectKey.tsx:67
 #: src/components/selectKey/SelectKey.tsx:109
-#: src/components/wallet/create/createDIDWallet.js:314
-#: src/components/wallet/did/DIDWallet.jsx:903
+#: src/components/wallet/did/WalletDID.tsx:449
+#: src/components/wallet/did/WalletDID.tsx:862
+#: src/components/wallet/did/WalletDIDCreate.tsx:194
+#: src/components/wallet/did/WalletDIDRecovery.tsx:101
 #: src/components/wallet/standard/WalletStandard.tsx:630
 msgid "Delete"
 msgstr "刪除"
@@ -660,7 +675,7 @@ msgstr "開發者"
 msgid "Developer Tools"
 msgstr "開發者工具"
 
-#: src/components/block/Block.jsx:221
+#: src/components/block/Block.jsx:222
 #: src/components/fullNode/card/FullNodeCardDifficulty.tsx:20
 msgid "Difficulty"
 msgstr "難度"
@@ -681,13 +696,14 @@ msgstr "放棄"
 msgid "Disconnect"
 msgstr "斷線"
 
-#: src/components/wallet/create/WalletCreate.jsx:136
+#: src/components/wallet/create/WalletCreateList.tsx:28
+#: src/components/wallet/did/WalletDIDSelect.tsx:25
 msgid "Distributed Identity"
 msgstr ""
 
 #: src/components/wallet/create/WalletCreate.jsx:280
-msgid "Distributed Identity Options"
-msgstr "分散式識別選項"
+#~ msgid "Distributed Identity Options"
+#~ msgstr "分散式識別選項"
 
 #: src/components/farm/overview/FarmOverviewHero.tsx:52
 #: src/components/plot/overview/PlotOverviewHero.tsx:69
@@ -698,7 +714,7 @@ msgstr "你有已存在的耕地在本機上？ <0>增加耕地資料夾</0>"
 msgid "Does your machine support parallel plotting?"
 msgstr "你的機器支援平行耕地嗎？"
 
-#: src/components/wallet/did/DIDWallet.jsx:429
+#: src/components/wallet/did/WalletDID.tsx:428
 msgid "Drag and drop attestation packet(s)"
 msgstr ""
 
@@ -710,7 +726,7 @@ msgstr "拖放提案檔案"
 msgid "Drag and drop your backup file"
 msgstr "拖放你的備份檔案"
 
-#: src/components/wallet/create/recoverDIDWallet.js:196
+#: src/components/wallet/did/WalletDIDRecovery.tsx:109
 msgid "Drag and drop your recovery backup file"
 msgstr ""
 
@@ -782,7 +798,7 @@ msgstr "耕種"
 msgid "Farmer Public Key"
 msgstr "農夫公鑰"
 
-#: src/components/block/Block.jsx:267
+#: src/components/block/Block.jsx:268
 msgid "Farmer Puzzle Hash"
 msgstr "塊農拼圖雜湊值"
 
@@ -861,7 +877,7 @@ msgstr "費用"
 msgid "Fee ({currencyCode})"
 msgstr "費用 ({currencyCode})"
 
-#: src/components/block/Block.jsx:321
+#: src/components/block/Block.jsx:322
 msgid "Fees Amount"
 msgstr "費用數量"
 
@@ -877,6 +893,7 @@ msgstr "檔案"
 #: src/components/plot/PlotsFailed.tsx:14
 #: src/components/plot/PlotsNotFound.tsx:14
 #: src/components/plot/overview/PlotOverviewPlots.tsx:106
+#: src/components/wallet/did/WalletDID.tsx:975
 msgid "Filename"
 msgstr "檔案名稱"
 
@@ -942,11 +959,11 @@ msgstr "耕地收割機"
 msgid "Header Hash"
 msgstr "表頭雜湊值"
 
-#: src/components/block/Block.jsx:185
+#: src/components/block/Block.jsx:186
 msgid "Header hash"
 msgstr "表頭雜湊值"
 
-#: src/components/block/Block.jsx:201
+#: src/components/block/Block.jsx:202
 #: src/components/fullNode/FullNode.jsx:81
 #: src/components/fullNode/FullNodeConnections.tsx:79
 msgid "Height"
@@ -1112,7 +1129,7 @@ msgstr "清單檢視"
 msgid "Loading Plot NFTs"
 msgstr "正在讀取農場"
 
-#: src/components/wallet/Wallets.tsx:111
+#: src/components/wallet/Wallets.tsx:117
 msgid "Loading list of wallets"
 msgstr "正在讀取錢包列表"
 
@@ -1172,7 +1189,7 @@ msgstr "登入中"
 msgid "Manage Farming Rewards"
 msgstr "管理耕種獎勵"
 
-#: src/components/wallet/did/DIDWallet.jsx:818
+#: src/components/wallet/did/WalletDID.tsx:806
 msgid "Manage Recovery DIDs"
 msgstr ""
 
@@ -1196,7 +1213,7 @@ msgstr "分鐘"
 msgid "More memory slightly increases speed"
 msgstr "更多記憶體可略微提高速度"
 
-#: src/components/wallet/did/DIDWallet.jsx:550
+#: src/components/wallet/did/WalletDID.tsx:537
 msgid "My DID Wallet"
 msgstr ""
 
@@ -1225,7 +1242,7 @@ msgstr "新位址"
 msgid "New Wallet"
 msgstr "新錢包"
 
-#: src/components/block/Block.jsx:350
+#: src/components/block/Block.jsx:351
 #: src/components/wallet/WalletAdd.tsx:95
 #: src/components/wallet/WalletImport.tsx:163
 msgid "Next"
@@ -1338,9 +1355,13 @@ msgstr "已建立提案"
 msgid "On average there is one minute between each transaction block. Unless there is congestion you can expect your transaction to be included in less than a minute."
 msgstr "平均每個交易區塊之間有 1 分鐘的時間。除非出現擁塞，否則你可以在不到 1 分鐘的時間內完成交易。"
 
-#: src/components/wallet/create/recoverDIDWallet.js:156
-msgid "Only one backup file is allowed. To add a new backup file, please delete any previously uploaded files and try again."
+#: src/components/wallet/did/WalletDIDRecovery.tsx:34
+msgid "Only one backup file is allowed."
 msgstr ""
+
+#: src/components/wallet/create/recoverDIDWallet.js:156
+#~ msgid "Only one backup file is allowed. To add a new backup file, please delete any previously uploaded files and try again."
+#~ msgstr ""
 
 #: src/components/wallet/WalletHistory.tsx:23
 msgid "Outgoing"
@@ -1395,20 +1416,20 @@ msgstr "請增加一對貿易方"
 msgid "Please enter 0 fee. Positive fees not supported yet for RL."
 msgstr "請輸入 0 費用。 RL 尚未支援正向費用。"
 
-#: src/components/wallet/did/DIDWallet.jsx:943
+#: src/components/wallet/did/WalletDID.tsx:924
 msgid "Please enter a coin"
 msgstr ""
 
-#: src/components/wallet/did/DIDWallet.jsx:539
-#: src/components/wallet/did/DIDWallet.jsx:933
+#: src/components/wallet/did/WalletDID.tsx:526
+#: src/components/wallet/did/WalletDID.tsx:914
 msgid "Please enter a filename"
 msgstr ""
 
-#: src/components/wallet/did/DIDWallet.jsx:953
+#: src/components/wallet/did/WalletDID.tsx:934
 msgid "Please enter a pubkey"
 msgstr ""
 
-#: src/components/wallet/did/DIDWallet.jsx:963
+#: src/components/wallet/did/WalletDID.tsx:944
 msgid "Please enter a puzzlehash"
 msgstr ""
 
@@ -1416,8 +1437,8 @@ msgstr ""
 msgid "Please enter a valid initial coin amount"
 msgstr "請輸入有效的初始金額"
 
-#: src/components/wallet/create/createDIDWallet.js:165
-#: src/components/wallet/did/DIDWallet.jsx:789
+#: src/components/wallet/did/WalletDID.tsx:777
+#: src/components/wallet/did/WalletDIDCreate.tsx:76
 msgid "Please enter a valid integer of 0 or greater for the number of Backup IDs needed for recovery."
 msgstr ""
 
@@ -1427,7 +1448,7 @@ msgstr ""
 msgid "Please enter a valid numeric amount"
 msgstr "請輸入有效的數字值"
 
-#: src/components/wallet/create/createDIDWallet.js:139
+#: src/components/wallet/did/WalletDIDCreate.tsx:50
 msgid "Please enter a valid numeric amount."
 msgstr ""
 
@@ -1460,6 +1481,10 @@ msgstr "請在交易前先完成同步"
 msgid "Please select amount"
 msgstr "請選擇數量"
 
+#: src/components/wallet/did/WalletDIDRecovery.tsx:55
+msgid "Please select backup file first"
+msgstr ""
+
 #: src/components/trading/CreateOffer.jsx:76
 msgid "Please select buy or sell"
 msgstr "請選擇購入或售出"
@@ -1486,6 +1511,7 @@ msgstr "請指定暫存目錄"
 msgid "Please wait for synchronization"
 msgstr "請等候同步"
 
+#: src/components/wallet/did/WalletDIDRecovery.tsx:64
 #: src/hooks/useJoinPool.tsx:27
 msgid "Please wait for wallet synchronization"
 msgstr "請等候錢包同步"
@@ -1499,7 +1525,7 @@ msgstr "耕地"
 msgid "Plot Count"
 msgstr "耕地數量"
 
-#: src/components/block/Block.jsx:299
+#: src/components/block/Block.jsx:300
 msgid "Plot Id"
 msgstr "耕地 ID"
 
@@ -1520,7 +1546,7 @@ msgstr "耕地 NFT 的 p2_singleton_puzzle_hash {plotNFTId} 不存在"
 #~ msgid "Plot Name"
 #~ msgstr ""
 
-#: src/components/block/Block.jsx:259
+#: src/components/block/Block.jsx:260
 msgid "Plot Public Key"
 msgstr "耕地公鑰"
 
@@ -1612,12 +1638,12 @@ msgstr "農會登入連結"
 msgid "Pool Payout Instructions"
 msgstr "查看農會支付說明"
 
-#: src/components/block/Block.jsx:263
+#: src/components/block/Block.jsx:264
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:222
 msgid "Pool Public Key"
 msgstr "礦池公鑰"
 
-#: src/components/block/Block.jsx:283
+#: src/components/block/Block.jsx:284
 msgid "Pool Puzzle Hash"
 msgstr "池拼圖雜湊值"
 
@@ -1637,7 +1663,7 @@ msgstr "農會獎勵地址並不符合格式。"
 msgid "Pool Reward Address must not be empty."
 msgstr "農會獎勵地址不能為空。"
 
-#: src/components/block/Block.jsx:313
+#: src/components/block/Block.jsx:314
 msgid "Pool Reward Amount"
 msgstr "礦池勵數量"
 
@@ -1680,7 +1706,7 @@ msgstr "正在準備農場"
 msgid "Preparing standard wallet"
 msgstr "正在準備標準錢包"
 
-#: src/components/block/Block.jsx:347
+#: src/components/block/Block.jsx:348
 msgid "Previous"
 msgstr "上一個"
 
@@ -1688,7 +1714,7 @@ msgstr "上一個"
 #~ msgid "Previous Block Hash"
 #~ msgstr ""
 
-#: src/components/block/Block.jsx:215
+#: src/components/block/Block.jsx:216
 msgid "Previous Header Hash"
 msgstr "前一個表頭雜湊值"
 
@@ -1708,7 +1734,7 @@ msgstr "私鑰 {0}"
 msgid "Private key:"
 msgstr "私鑰："
 
-#: src/components/block/Block.jsx:251
+#: src/components/block/Block.jsx:252
 msgid "Proof of Space Size"
 msgstr "空間證明的大小"
 
@@ -1721,12 +1747,17 @@ msgid "Protocol Version"
 msgstr "協議版本"
 
 #: src/components/wallet/create/createRLAdmin.jsx:297
+#: src/components/wallet/did/WalletDID.tsx:993
 msgid "Pubkey"
 msgstr "公鑰"
 
 #: src/middleware/middleware_api.jsx:229
 msgid "Public key:"
 msgstr "公鑰："
+
+#: src/components/wallet/did/WalletDID.tsx:1002
+msgid "Puzzlehash"
+msgstr ""
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:162
 msgid "Queue Name"
@@ -1756,7 +1787,7 @@ msgstr "最大記憶體使用量"
 #~ msgid "RLListItems.title"
 #~ msgstr ""
 
-#: src/components/wallet/create/WalletCreate.jsx:128
+#: src/components/wallet/create/WalletCreateList.tsx:42
 msgid "Rate Limited"
 msgstr "已限速"
 
@@ -1765,7 +1796,7 @@ msgstr "已限速"
 msgid "Rate Limited Info"
 msgstr "速率限制資訊"
 
-#: src/components/wallet/create/WalletCreate.jsx:228
+#: src/components/wallet/create/WalletCreate.jsx:176
 msgid "Rate Limited Options"
 msgstr "速率限制選項"
 
@@ -1778,14 +1809,27 @@ msgstr "速率限制使用者錢包設定"
 msgid "Receive Address"
 msgstr "接收位址"
 
-#: src/components/wallet/did/DIDWallet.jsx:345
-#: src/components/wallet/did/DIDWallet.jsx:494
+#: src/components/wallet/did/WalletDID.tsx:464
+#: src/components/wallet/did/WalletDIDRecovery.tsx:124
+msgid "Recover"
+msgstr ""
+
+#: src/components/wallet/did/WalletDID.tsx:340
+#: src/components/wallet/did/WalletDID.tsx:480
 msgid "Recover DID Wallet"
 msgstr ""
 
 #: src/components/wallet/create/WalletCreate.jsx:296
-msgid "Recover DID wallet"
-msgstr "恢復 DID 錢包"
+#~ msgid "Recover DID wallet"
+#~ msgstr "恢復 DID 錢包"
+
+#: src/components/wallet/did/WalletDIDRecovery.tsx:84
+msgid "Recover Distributed Identity Wallet"
+msgstr ""
+
+#: src/components/wallet/did/WalletDIDSelect.tsx:39
+msgid "Recover Wallet"
+msgstr ""
 
 #: src/components/plot/PlotHeader.tsx:78
 #: src/components/plot/overview/PlotOverviewHero.tsx:62
@@ -1875,7 +1919,7 @@ msgstr "選擇提案"
 msgid "Select Temporary Directory"
 msgstr "選擇暫存資料夾"
 
-#: src/components/wallet/create/WalletCreate.jsx:112
+#: src/components/wallet/create/WalletCreateList.tsx:21
 msgid "Select Wallet Type"
 msgstr "選擇錢包類型"
 
@@ -1904,6 +1948,10 @@ msgstr "在下拉式選單中選擇你的農場或是創建一個新的。"
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:108
 msgid "Selected"
 msgstr "已選擇"
+
+#: src/components/wallet/did/WalletDIDRecovery.tsx:91
+msgid "Selected recovery file:"
+msgstr ""
 
 #: src/components/plotNFT/PlotNFTExternalState.tsx:23
 #: src/components/plotNFT/PlotNFTState.tsx:57
@@ -2016,7 +2064,7 @@ msgstr "狀態"
 #: src/components/trading/TradingOverview.jsx:128
 #: src/components/wallet/WalletHistory.tsx:55
 #: src/components/wallet/WalletStatusCard.tsx:22
-#: src/components/wallet/Wallets.tsx:52
+#: src/components/wallet/Wallets.tsx:50
 msgid "Status"
 msgstr "狀態"
 
@@ -2052,9 +2100,7 @@ msgstr "狀態："
 #~ msgid "Sub Block at height {0} in the Chia blockchain"
 #~ msgstr "Sub Block at height {0} in the Chia blockchain"
 
-#: src/components/wallet/create/recoverDIDWallet.js:242
-#: src/components/wallet/did/DIDWallet.jsx:476
-#: src/components/wallet/did/DIDWallet.jsx:854
+#: src/components/wallet/did/WalletDID.tsx:886
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:347
 msgid "Submit"
 msgstr "確認"
@@ -2132,8 +2178,8 @@ msgstr "此節點尚未同步"
 msgid "The node is syncing, which means it is downloading blocks from other nodes, to reach the latest block in the chain"
 msgstr "節點同步中，這代表正從其他節點中下載區塊，直到到達區塊鏈的最新區塊"
 
-#: src/components/wallet/create/createDIDWallet.js:178
-#: src/components/wallet/did/DIDWallet.jsx:802
+#: src/components/wallet/did/WalletDID.tsx:790
+#: src/components/wallet/did/WalletDIDCreate.tsx:89
 msgid "The number of Backup IDs needed for recovery cannot exceed the number of Backup IDs added."
 msgstr ""
 
@@ -2161,19 +2207,19 @@ msgstr "農會網址需要使用https協議. {normalizedUrl}"
 msgid "The pool switching operation was cancelled, please try again by changing pool, or self pooling"
 msgstr "切換農會操作已被取消，請重試切換農會或自己的農會。"
 
-#: src/components/block/Block.jsx:302
+#: src/components/block/Block.jsx:303
 msgid "The seed used to create the plot. This depends on the pool pk and plot pk."
 msgstr "用來建立耕地的種子。這取決於池主鍵和耕地主鍵。"
 
-#: src/components/block/Block.jsx:228
+#: src/components/block/Block.jsx:229
 msgid "The total number of VDF (verifiable delay function) or proof of time iterations on the whole chain up to this sub block."
 msgstr "總 VDF（可驗證的延遲函數）數量或整個鏈上直到此子區塊的時間疊代證明。"
 
-#: src/components/block/Block.jsx:244
+#: src/components/block/Block.jsx:245
 msgid "The total number of VDF (verifiable delay function) or proof of time iterations on this block."
 msgstr "VDF（可驗證的延遲函數）數量或此區塊上的時間疊代證明。"
 
-#: src/components/block/Block.jsx:324
+#: src/components/block/Block.jsx:325
 msgid "The total transactions fees in this block. Rewarded to the farmer."
 msgstr "在這個區塊的總交易費用。是獎勵給塊農的。"
 
@@ -2216,7 +2262,7 @@ msgstr "這是匯入和匯出的未結交易的總和（還沒包含在區塊鏈
 msgid "This is the time of the latest peak sub block."
 msgstr "這是最後的峰值子區塊的時間。"
 
-#: src/components/block/Block.jsx:194
+#: src/components/block/Block.jsx:195
 msgid "This is the time the block was created by the farmer, which is before it is finalized with a proof of time"
 msgstr "這是塊農建立區塊的時間，這是在用時間證明最終確定之前的時間"
 
@@ -2278,7 +2324,7 @@ msgstr "建立時間"
 #~ msgid "Time this trade was created at this time"
 #~ msgstr ""
 
-#: src/components/block/Block.jsx:189
+#: src/components/block/Block.jsx:190
 msgid "Timestamp"
 msgstr "時間戳記"
 
@@ -2312,7 +2358,7 @@ msgstr "總耕地大小："
 msgid "Total Size of Plots"
 msgstr "總耕地大小"
 
-#: src/components/block/Block.jsx:225
+#: src/components/block/Block.jsx:226
 msgid "Total VDF Iterations"
 msgstr "總 VDF 疊代次數"
 
@@ -2352,7 +2398,7 @@ msgstr "貿易中"
 msgid "Trading History"
 msgstr "貿易歷史"
 
-#: src/components/block/Block.jsx:309
+#: src/components/block/Block.jsx:310
 msgid "Transactions Filter Hash"
 msgstr "交易過濾雜湊值"
 
@@ -2460,6 +2506,10 @@ msgstr "正在等待交易結算"
 msgid "Wallet Status:"
 msgstr "錢包狀態："
 
+#: src/components/wallet/did/WalletDID.tsx:1118
+msgid "Wallet does not exists"
+msgstr ""
+
 #: src/components/wallet/Wallets.tsx:34
 #~ msgid "WalletItem.ccWallet"
 #~ msgstr ""
@@ -2489,7 +2539,7 @@ msgstr "錢包狀態："
 #~ msgstr ""
 
 #: src/components/dashboard/DashboardSideBar.tsx:45
-#: src/components/wallet/Wallets.tsx:112
+#: src/components/wallet/Wallets.tsx:118
 msgid "Wallets"
 msgstr "錢包"
 
@@ -2521,11 +2571,11 @@ msgstr "警告：這個金鑰用於你的耕種獎勵地址。刪除金鑰後可
 msgid "Warning: This key is used for your pool rewards address. By deleting this key you may lose access to any future pool rewards"
 msgstr "警告：這個金鑰用於你的農會獎勵地址。刪除金鑰後可能會無法領取之後的農會獎勵。"
 
-#: src/components/block/Block.jsx:205
+#: src/components/block/Block.jsx:206
 msgid "Weight"
 msgstr "權重"
 
-#: src/components/block/Block.jsx:208
+#: src/components/block/Block.jsx:209
 msgid "Weight is the total added difficulty of all sub blocks up to and including this one"
 msgstr "權重是所有包括這個的子區塊的總增加難度"
 
@@ -2616,7 +2666,7 @@ msgstr "你將會收到 <0/> 到 {0}"
 msgid "You will recieve <0/> to {address}"
 msgstr "你將會收到 <0/> 到 {address}"
 
-#: src/components/wallet/did/DIDWallet.jsx:334
+#: src/components/wallet/did/WalletDID.tsx:328
 msgid "Your DID requires at least {dids_num_req} attestation file{0} for recovery. Please upload additional files."
 msgstr ""
 
@@ -2645,16 +2695,16 @@ msgid "[Error 22] File not found. Most likely one of the plot folders in your co
 msgstr "［錯誤 22］找不到檔案。很有可能你 config.yaml 裡其中一個耕地資料夾有問題。"
 
 #: src/components/wallet/WalletStatusCard.tsx:41
-#: src/components/wallet/Wallets.tsx:77
+#: src/components/wallet/Wallets.tsx:75
 msgid "connections:"
 msgstr "連線："
 
 #: src/components/wallet/WalletStatusCard.tsx:33
-#: src/components/wallet/Wallets.tsx:69
+#: src/components/wallet/Wallets.tsx:67
 msgid "height:"
 msgstr "高度："
 
-#: src/components/wallet/Wallets.tsx:63
+#: src/components/wallet/Wallets.tsx:61
 msgid "not synced"
 msgstr "未同步"
 
@@ -2663,17 +2713,17 @@ msgid "p2_singleton_puzzle_hash is not defined"
 msgstr "\"p2_singleton_puzzle_hash\"參數未定義"
 
 #: src/components/wallet/WalletStatusCard.tsx:27
-#: src/components/wallet/Wallets.tsx:57
+#: src/components/wallet/Wallets.tsx:55
 msgid "status:"
 msgstr "狀態："
 
 #: src/components/wallet/WalletStatusCard.tsx:29
-#: src/components/wallet/Wallets.tsx:62
+#: src/components/wallet/Wallets.tsx:60
 msgid "synced"
 msgstr "已同步"
 
 #: src/components/wallet/WalletStatusCard.tsx:29
-#: src/components/wallet/Wallets.tsx:61
+#: src/components/wallet/Wallets.tsx:59
 msgid "syncing"
 msgstr "同步中"
 
@@ -2701,6 +2751,6 @@ msgstr "{currencyCode} 已收耕 Chia"
 msgid "{currencyCode} User Transaction Fees"
 msgstr "{currencyCode} 使用者交易費用"
 
-#: src/components/core/components/Amount/Amount.tsx:80
+#: src/components/core/components/Amount/Amount.tsx:82
 msgid "{mojo, plural, one {mojo} other {mojos}}"
 msgstr "{mojo, plural, other {mojos}}"
