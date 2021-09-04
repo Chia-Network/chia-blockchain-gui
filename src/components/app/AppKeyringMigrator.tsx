@@ -117,7 +117,7 @@ export default function AppKeyringMigrator(): JSX.Element {
           <Typography variant="body1">{dialogMessage}</Typography>
           <Typography variant="body1" style={{ marginTop: '12px' }}>
             <Trans>
-              Enter a strong passphrase and click Migrate to secure your keys
+              Enter a strong passphrase and click Migrate Keys to secure your keys
             </Trans>
           </Typography>
           <TextField

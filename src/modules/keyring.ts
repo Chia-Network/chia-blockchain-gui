@@ -1,6 +1,7 @@
 export type KeyringState = {
   is_locked: boolean;
   passphrase_support_enabled: boolean;
+  can_save_passphrase: boolean;
   user_passphrase_set: boolean;
   needs_migration: boolean;
   migration_in_progress: boolean;
@@ -12,6 +13,7 @@ export type KeyringState = {
 const initialState: KeyringState = {
   is_locked: false,
   passphrase_support_enabled: false,
+  can_save_passphrase: false,
   user_passphrase_set: false,
   needs_migration: false,
   migration_in_progress: false,
@@ -38,6 +40,7 @@ export default function keyringReducer(
         if (data.success) {
           const { is_keyring_locked } = data;
           const { passphrase_support_enabled } = data;
+          const { can_save_passphrase } = data;
           const { user_passphrase_is_set } = data;
           const { needs_migration } = data;
           const { passphrase_requirements } = data;
@@ -47,6 +50,7 @@ export default function keyringReducer(
             ...state,
             is_locked: is_keyring_locked,
             passphrase_support_enabled: passphrase_support_enabled,
+            can_save_passphrase: can_save_passphrase,
             user_passphrase_set: user_passphrase_is_set,
             needs_migration: needs_migration,
             allow_empty_passphrase: allow_empty_passphrase,
