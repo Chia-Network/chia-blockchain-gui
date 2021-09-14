@@ -11,7 +11,12 @@ import {
 import { Typography } from '@material-ui/core';
 import useSelectDirectory from '../../../hooks/useSelectDirectory';
 
-export default function PlotAddSelectTemporaryDirectory() {
+type Props = {
+  step: number
+};
+
+export default function PlotAddSelectTemporaryDirectory(props: Props) {
+  const { step } = props;
   const selectDirectory = useSelectDirectory();
   const { setValue, watch } = useFormContext();
 
@@ -36,7 +41,7 @@ export default function PlotAddSelectTemporaryDirectory() {
   }
 
   return (
-    <CardStep step="3" title={<Trans>Select Temporary Directory</Trans>}>
+    <CardStep step={step} title={<Trans>Select Temporary Directory</Trans>}>
       <Typography variant="subtitle1">
         <Trans>
           Select the temporary destination for the folder where you would like

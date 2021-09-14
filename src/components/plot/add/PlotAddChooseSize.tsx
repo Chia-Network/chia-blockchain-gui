@@ -20,7 +20,12 @@ const StyledFormHelperText = styled(FormHelperText)`
   color: ${StateColor.WARNING};
 `;
 
-export default function PlotAddChooseSize() {
+type Props = {
+  step: number
+};
+
+export default function PlotAddChooseSize(props: Props) {
+  const { step } = props;
   const { watch, setValue } = useFormContext();
   const openDialog = useOpenDialog();
 
@@ -58,7 +63,7 @@ export default function PlotAddChooseSize() {
   }, [plotSize, overrideK]); // eslint-disable-line
 
   return (
-    <CardStep step="1" title={<Trans>Choose Plot Size</Trans>}>
+    <CardStep step={step} title={<Trans>Choose Plot Size</Trans>}>
       <Typography variant="subtitle1">
         <Trans>
           {

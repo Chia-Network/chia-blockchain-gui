@@ -5,6 +5,10 @@ export const plotControl = () => ({
   type: 'PLOTTER_CONTROL',
 });
 
+export const plotterConfiguration = () => ({
+  type: 'PLOTTER_CONFIGURATION',
+})
+
 export const stopPlotting = (id) => {
   const action = daemonMessage();
   action.message.command = 'stop_plotting';
@@ -111,3 +115,11 @@ export const addProgress = (progress) => {
   action.progress = progress;
   return action;
 };
+
+// Plotter Configuration Actions
+
+export const refreshPlotterConfigurations = () => {
+  const action = plotterConfiguration();
+  action.command = 'refresh_plotter_configurations';
+  return action
+}

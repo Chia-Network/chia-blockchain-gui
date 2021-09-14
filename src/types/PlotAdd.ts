@@ -1,6 +1,7 @@
 import Fingerprint from './Fingerprint';
 
 type PlotAdd = {
+  plotter: string;
   plotSize: number;
   plotCount: number;
   maxRam: number;

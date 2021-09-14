@@ -5,7 +5,12 @@ import { ButtonSelected, CardStep, Flex, TextField } from '@chia/core';
 import { Typography } from '@material-ui/core';
 import useSelectDirectory from '../../../hooks/useSelectDirectory';
 
-export default function PlotAddSelectFinalDirectory() {
+type Props = {
+  step: number
+};
+
+export default function PlotAddSelectFinalDirectory(props: Props) {
+  const { step } = props;
   const selectDirectory = useSelectDirectory();
   const { setValue, watch } = useFormContext();
 
@@ -20,7 +25,7 @@ export default function PlotAddSelectFinalDirectory() {
   }
 
   return (
-    <CardStep step="4" title={<Trans>Select Final Directory</Trans>}>
+    <CardStep step={step} title={<Trans>Select Final Directory</Trans>}>
       <Typography variant="subtitle1">
         <Trans>
           Select the final destination for the folder where you would like the

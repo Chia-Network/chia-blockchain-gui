@@ -28,12 +28,17 @@ for (let i = 1; i < 30; i += 1) {
   plotCountOptions.push(i);
 }
 
-export default function PlotAddNumberOfPlots() {
+type Props = {
+  step: number
+};
+
+export default function PlotAddNumberOfPlots(props: Props) {
+  const { step } = props;
   const { watch } = useFormContext();
   const parallel = watch('parallel');
 
   return (
-    <CardStep step="2" title={<Trans>Choose Number of Plots</Trans>}>
+    <CardStep step={step} title={<Trans>Choose Number of Plots</Trans>}>
       <Grid spacing={2} direction="column" container>
         <Grid xs={12} md={8} lg={6} item>
           <FormControl variant="filled" fullWidth>

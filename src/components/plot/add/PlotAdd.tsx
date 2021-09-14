@@ -7,6 +7,7 @@ import { ChevronRight as ChevronRightIcon } from '@material-ui/icons';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { ButtonLoading, Flex, Form, FormBackButton, Loading } from '@chia/core';
 import { PlotHeaderSource } from '../PlotHeader';
+import PlotAddChoosePlotter from './PlotAddChoosePlotter';
 import PlotAddChooseSize from './PlotAddChooseSize';
 import PlotAddNumberOfPlots from './PlotAddNumberOfPlots';
 import PlotAddSelectTemporaryDirectory from './PlotAddSelectTemporaryDirectory';
@@ -44,6 +45,7 @@ export default function PlotAdd() {
   const methods = useForm<FormData>({
     shouldUnregister: false,
     defaultValues: {
+      plotter: 'chiapos',
       plotSize: defaultPlotSize.value,
       plotCount: 1,
       maxRam: defaultPlotSize.defaultRam,
@@ -66,6 +68,8 @@ export default function PlotAdd() {
 
   const { watch, setValue } = methods;
   const plotSize = watch('plotSize');
+
+  let step: number = 1;
 
   useEffect(() => {
     const plotSizeConfig = plotSizes.find((item) => item.value === plotSize);
@@ -161,11 +165,12 @@ export default function PlotAdd() {
         </Flex>
       </PlotHeaderSource>
       <Flex flexDirection="column" gap={3}>
-        <PlotAddChooseSize />
-        <PlotAddNumberOfPlots />
-        <PlotAddSelectTemporaryDirectory />
-        <PlotAddSelectFinalDirectory />
-        <PlotAddNFT ref={addNFTref} />
+        <PlotAddChoosePlotter step={step++} />
+        <PlotAddChooseSize step={step++} />
+        <PlotAddNumberOfPlots step={step++} />
+        <PlotAddSelectTemporaryDirectory step={step++} />
+        <PlotAddSelectFinalDirectory step={step++} />
+        <PlotAddNFT ref={addNFTref} step={step++} />
         <Flex gap={1}>
           <FormBackButton variant="outlined" />
           <ButtonLoading
