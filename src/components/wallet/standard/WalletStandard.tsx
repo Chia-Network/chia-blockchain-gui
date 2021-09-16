@@ -260,8 +260,8 @@ function BalanceCard(props: BalanceCardProps) {
 
   const balance = wallet?.wallet_balance?.confirmed_wallet_balance;
   const balance_spendable = wallet?.wallet_balance?.spendable_balance;
-  const balance_pending = wallet?.wallet_balance?.balance_pending;
-  const pending_change = wallet?.wallet_balance?.balance_pending;
+  const balance_pending = wallet?.wallet_balance?.pending_balance;
+  const pending_change = wallet?.wallet_balance?.pending_change;
 
   const balance_ptotal = balance + balance_pending;
 
@@ -367,6 +367,7 @@ function SendCard(props: SendCardProps) {
   const { wallet_id } = props;
   const classes = useStyles();
   const dispatch = useDispatch();
+  const openDialog = useOpenDialog();
 
   const methods = useForm<SendTransactionData>({
     shouldUnregister: false,
@@ -403,16 +404,6 @@ function SendCard(props: SendCardProps) {
     ? classes.resultSuccess
     : classes.resultFailure;
 
-  const { user_passphrase_set: userPassphraseIsSet } = useSelector(
-    (state: RootState) => state.keyring_state
-  );
-
-  const [enterPassphraseOpen, setEnterPassphraseOpen] = React.useState(false);
-
-  async function closeEnterPassphrase() {
-    setEnterPassphraseOpen(false);
-  }
-
   function farm() {
     if (addressValue) {
       dispatch(farm_block(addressValue));
@@ -424,59 +415,53 @@ function SendCard(props: SendCardProps) {
       return;
     }
 
-    if (userPassphraseIsSet) {
-      console.log("submit pass set")
-      await setEnterPassphraseOpen(true)
+    const isPassphraseCorrect = await openDialog(
+      <EnterPassphrasePrompt />
+    );
+
+    if (!isPassphraseCorrect) {
+      // passphrase is incorrect
+      return;
     }
 
-    console.log("submit past pass")
-
     if (syncing) {
-      dispatch(
-        openDialog(
-          <AlertDialog>
-            <Trans>Please finish syncing before making a transaction</Trans>
-          </AlertDialog>,
-        ),
+      openDialog(
+        <AlertDialog>
+          <Trans>Please finish syncing before making a transaction</Trans>
+        </AlertDialog>,
       );
       return;
     }
 
     const amount = data.amount.trim();
     if (!isNumeric(amount)) {
-      dispatch(
-        openDialog(
-          <AlertDialog>
-            <Trans>Please enter a valid numeric amount</Trans>
-          </AlertDialog>,
-        ),
+      openDialog(
+        <AlertDialog>
+          <Trans>Please enter a valid numeric amount</Trans>
+        </AlertDialog>,
       );
       return;
     }
 
     const fee = data.fee.trim();
     if (!isNumeric(fee)) {
-      dispatch(
-        openDialog(
-          <AlertDialog>
-            <Trans>Please enter a valid numeric fee</Trans>
-          </AlertDialog>,
-        ),
+      openDialog(
+        <AlertDialog>
+          <Trans>Please enter a valid numeric fee</Trans>
+        </AlertDialog>,
       );
       return;
     }
 
     let address = data.address;
     if (address.includes('colour')) {
-      dispatch(
-        openDialog(
-          <AlertDialog>
-            <Trans>
-              Error: Cannot send chia to coloured address. Please enter a chia
-              address.
-            </Trans>
-          </AlertDialog>,
-        ),
+      openDialog(
+        <AlertDialog>
+          <Trans>
+            Error: Cannot send chia to coloured address. Please enter a chia
+            address.
+          </Trans>
+        </AlertDialog>,
       );
       return;
     }
@@ -491,7 +476,7 @@ function SendCard(props: SendCardProps) {
     const amountValue = Number.parseFloat(chia_to_mojo(amount));
     const feeValue = Number.parseFloat(chia_to_mojo(fee));
 
-    // dispatch(send_transaction(wallet_id, amountValue, feeValue, address));
+    dispatch(send_transaction(wallet_id, amountValue, feeValue, address));
 
     methods.reset();
   }
@@ -559,10 +544,6 @@ function SendCard(props: SendCardProps) {
               >
                 <Trans>Send</Trans>
               </Button>
-              {enterPassphraseOpen &&
-              <EnterPassphrasePrompt
-                onCancel={closeEnterPassphrase}
-              />}
             </Flex>
           </Grid>
         </Grid>

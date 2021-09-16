@@ -16,13 +16,13 @@ import { validate_keyring_passphrase_action } from '../../modules/message';
 
 
 type Props = {
-  onSuccess: () => void;
-  onCancel: () => void;
+  onClose?: (isSuccess: boolean) => void;
+  open?: boolean;
 };
 
 export default function EnterPassphrasePrompt(props: Props) {
   const dispatch = useDispatch();
-  const { onSuccess, onCancel } = props;
+  const { onClose, open } = props;
   const [actionInProgress, setActionInProgress] = React.useState(false);
   let passphraseInput: HTMLInputElement | null;
 
@@ -53,35 +53,34 @@ export default function EnterPassphrasePrompt(props: Props) {
         );
         setActionInProgress(false);
         setNeedsFocusAndSelect(true);
-      } else {
-        await dispatch(
-          validate_keyring_passphrase_action(
-            passphrase,
-            () => { onSuccess() }, // success
-            async (error: string) => { // failure
-              await dispatch(
-                openDialog(
-                  <AlertDialog>
-                    <Trans>
-                      Passphrase is incorrect
-                    </Trans>
-                  </AlertDialog>
-                ),
-              );
-              setActionInProgress(false);
-              setNeedsFocusAndSelect(true);
-            }
-          )
-        );
-      }
-    }
-    catch (e) {
+        return;
+      } 
+      await dispatch(
+        validate_keyring_passphrase_action(
+          passphrase,
+          () => { onClose(true) }, // success
+          async (error: string) => { // failure
+            await dispatch(
+              openDialog(
+                <AlertDialog>
+                  <Trans>
+                    Passphrase is incorrect
+                  </Trans>
+                </AlertDialog>
+              ),
+            );
+            setActionInProgress(false);
+            setNeedsFocusAndSelect(true);
+          }
+        )
+      );
+    } catch (e) {
       setActionInProgress(false);
     }
   }
 
   async function handleCancel() {
-    onCancel();
+    onClose(false);
   }
 
   async function handleKeyDown(e: React.KeyboardEvent) {
@@ -102,7 +101,7 @@ export default function EnterPassphrasePrompt(props: Props) {
 
   return (
     <Dialog
-      open={true}
+      open={open}
       aria-labelledby="form-dialog-title"
       fullWidth={true}
       maxWidth = {'xs'}
@@ -150,3 +149,8 @@ export default function EnterPassphrasePrompt(props: Props) {
     </Dialog>
   );
 }
+
+EnterPassphrasePrompt.defaultProps = {
+  open: false,
+  onClose: () => {},
+};
