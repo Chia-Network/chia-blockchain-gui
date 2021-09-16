@@ -120,12 +120,12 @@ msgstr "Добавить {currencyCode} из крана"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:561
 #: src/components/wallet/coloured/WalletColoured.tsx:657
-#: src/components/wallet/standard/WalletStandard.tsx:596
+#: src/components/wallet/standard/WalletStandard.tsx:611
 msgid "Address"
 msgstr "Адрес"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:701
-#: src/components/wallet/standard/WalletStandard.tsx:503
+#: src/components/wallet/standard/WalletStandard.tsx:518
 msgid "Address / Puzzle hash"
 msgstr "Адрес / Хэш-головоломка"
 
@@ -139,7 +139,7 @@ msgstr ""
 #: src/components/wallet/WalletHistory.tsx:62
 #: src/components/wallet/create/createNewColouredCoin.jsx:119
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:720
-#: src/components/wallet/standard/WalletStandard.tsx:513
+#: src/components/wallet/standard/WalletStandard.tsx:528
 msgid "Amount"
 msgstr "Количество"
 
@@ -161,7 +161,7 @@ msgid "Are you sure you want to delete the plot? The plot cannot be recovered."
 msgstr "Вы уверены, что хотите удалить участок? Участок не подлежит восстановлению."
 
 #: src/components/plotNFT/PlotNFTCard.tsx:125
-#: src/components/wallet/standard/WalletStandard.tsx:633
+#: src/components/wallet/standard/WalletStandard.tsx:648
 msgid "Are you sure you want to delete unconfirmed transactions?"
 msgstr "Вы действительно хотите удалить неподтвержденные транзакции?"
 
@@ -300,6 +300,7 @@ msgstr "может быть сохранен в качестве резервн�
 #: src/components/trading/CreateOffer.jsx:139
 #: src/components/trading/TradingOverview.jsx:400
 #: src/components/trading/ViewOffer.jsx:71
+#: src/components/wallet/EnterPassphrasePrompt.tsx:138
 msgid "Cancel"
 msgstr "Отмена"
 
@@ -518,7 +519,7 @@ msgstr ""
 "\n"
 "Приведенная выше команда создает одио поле (указывается -n 1), для параллельного построения вам нужно повторить команду (не закрывая первую). Увеличьте значение -n для последовательного построения, то есть после завершения первого участка запускается следующий."
 
-#: src/components/wallet/standard/WalletStandard.tsx:649
+#: src/components/wallet/standard/WalletStandard.tsx:664
 msgid "Chia Wallet"
 msgstr "Кошелек Chia"
 
@@ -598,7 +599,7 @@ msgid "Confirm Passphrase"
 msgstr ""
 
 #: src/components/plotNFT/PlotNFTCard.tsx:121
-#: src/components/wallet/standard/WalletStandard.tsx:629
+#: src/components/wallet/standard/WalletStandard.tsx:644
 msgid "Confirmation"
 msgstr "Подтверждение"
 
@@ -721,7 +722,7 @@ msgstr "Создать торговое предложение"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:543
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:684
-#: src/components/wallet/standard/WalletStandard.tsx:483
+#: src/components/wallet/standard/WalletStandard.tsx:498
 msgid "Create Transaction"
 msgstr "Создать транзакцию"
 
@@ -832,7 +833,7 @@ msgstr "Задержка"
 #: src/components/wallet/did/WalletDID.tsx:862
 #: src/components/wallet/did/WalletDIDCreate.tsx:194
 #: src/components/wallet/did/WalletDIDRecovery.tsx:101
-#: src/components/wallet/standard/WalletStandard.tsx:630
+#: src/components/wallet/standard/WalletStandard.tsx:645
 msgid "Delete"
 msgstr "Удалить"
 
@@ -846,7 +847,7 @@ msgid "Delete Plot"
 msgstr "Удалить участок"
 
 #: src/components/plotNFT/PlotNFTCard.tsx:315
-#: src/components/wallet/standard/WalletStandard.tsx:674
+#: src/components/wallet/standard/WalletStandard.tsx:689
 msgid "Delete Unconfirmed Transactions"
 msgstr "Удалить неподтвержденные транзакции"
 
@@ -956,6 +957,10 @@ msgstr "Правка"
 msgid "Edit Payout Instructions"
 msgstr "Редактировать инструкции выплат"
 
+#: src/components/wallet/EnterPassphrasePrompt.tsx:112
+msgid "Enter Passphrase"
+msgstr ""
+
 #: src/components/app/AppKeyringMigrator.tsx:119
 msgid "Enter a strong passphrase and click Migrate Keys to secure your keys"
 msgstr ""
@@ -969,6 +974,7 @@ msgid "Enter the 24 word mnemonic that you have saved in order to restore your C
 msgstr "Введите мнемонику из 24 слов, которую вы сохранили, чтобы восстановить свой кошелек Chia."
 
 #: src/components/settings/RemovePassphrasePrompt.tsx:115
+#: src/components/wallet/EnterPassphrasePrompt.tsx:116
 msgid "Enter your passphrase:"
 msgstr ""
 
@@ -982,7 +988,7 @@ msgstr ""
 msgid "Error"
 msgstr "Ошибка"
 
-#: src/components/wallet/standard/WalletStandard.tsx:456
+#: src/components/wallet/standard/WalletStandard.tsx:471
 msgid "Error: Cannot send chia to coloured address. Please enter a chia address."
 msgstr "Ошибка: не удается отправить чиа на цветной адрес. Пожалуйста, введите адрес chia."
 
@@ -1030,7 +1036,7 @@ msgstr ""
 
 #: src/components/dashboard/DashboardSideBar.tsx:58
 #: src/components/wallet/coloured/WalletColoured.tsx:610
-#: src/components/wallet/standard/WalletStandard.tsx:532
+#: src/components/wallet/standard/WalletStandard.tsx:547
 msgid "Farm"
 msgstr "Ферма"
 
@@ -1101,7 +1107,7 @@ msgstr "Статус фарминга"
 #: src/components/wallet/create/createRLAdmin.jsx:244
 #: src/components/wallet/create/createRLAdmin.jsx:272
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:733
-#: src/components/wallet/standard/WalletStandard.tsx:524
+#: src/components/wallet/standard/WalletStandard.tsx:539
 msgid "Fee"
 msgstr "Комиссия"
 
@@ -1183,7 +1189,7 @@ msgstr "Сгенерировать новый цвет"
 msgid "Grid view"
 msgstr "Вид \"сетка\""
 
-#: src/components/wallet/standard/WalletStandard.tsx:583
+#: src/components/wallet/standard/WalletStandard.tsx:598
 msgid "HD or Hierarchical Deterministic keys are a type of public key/private key scheme where one private key can have a nearly infinite number of different public keys (and therefor wallet receive addresses) that will all ultimately come back to and be spendable by a single private key."
 msgstr "HD или иерархические детерминированные ключи (Hierarchical Deterministic keys) - это схема открытого/закрытого ключей, в которой один закрытый ключ может иметь почти бесконечное количество различных открытых ключей (и, следовательно, адресов для получения кошелька), которые в конечном итоге будут возвращаться и использоваться одним закрытым ключом."
 
@@ -1499,7 +1505,7 @@ msgstr "Имя сети"
 #~ msgstr "Network not launched yet, waiting for genesis challenge!"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:685
-#: src/components/wallet/standard/WalletStandard.tsx:579
+#: src/components/wallet/standard/WalletStandard.tsx:594
 msgid "New Address"
 msgstr "Новый адрес"
 
@@ -1624,7 +1630,7 @@ msgstr "Предложение"
 msgid "Offers Created"
 msgstr "Предложение создано"
 
-#: src/components/wallet/standard/WalletStandard.tsx:485
+#: src/components/wallet/standard/WalletStandard.tsx:500
 msgid "On average there is one minute between each transaction block. Unless there is congestion you can expect your transaction to be included in less than a minute."
 msgstr "В среднем между каждым блоком транзакций проходит одна минута. Если нет перегрузки, вы можете ожидать что ваша транзакция будет включена менее чем за минуту."
 
@@ -1645,6 +1651,7 @@ msgstr "Исходящие"
 #: src/components/app/AppPassPrompt.tsx:221
 #: src/components/settings/RemovePassphrasePrompt.tsx:123
 #: src/components/settings/SetPassphrasePrompt.tsx:142
+#: src/components/wallet/EnterPassphrasePrompt.tsx:124
 msgid "Passphrase"
 msgstr ""
 
@@ -1654,6 +1661,7 @@ msgstr ""
 
 #: src/components/app/AppPassPrompt.tsx:149
 #: src/components/settings/RemovePassphrasePrompt.tsx:64
+#: src/components/wallet/EnterPassphrasePrompt.tsx:65
 msgid "Passphrase is incorrect"
 msgstr ""
 
@@ -1755,7 +1763,7 @@ msgstr ""
 
 #: src/components/wallet/create/createNewColouredCoin.jsx:69
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:639
-#: src/components/wallet/standard/WalletStandard.tsx:432
+#: src/components/wallet/standard/WalletStandard.tsx:447
 msgid "Please enter a valid numeric amount"
 msgstr "Пожалуйста, укажите корректное численное значение"
 
@@ -1767,7 +1775,7 @@ msgstr ""
 #: src/components/wallet/create/createNewColouredCoin.jsx:79
 #: src/components/wallet/create/createRLAdmin.jsx:150
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:649
-#: src/components/wallet/standard/WalletStandard.tsx:444
+#: src/components/wallet/standard/WalletStandard.tsx:459
 msgid "Please enter a valid numeric fee"
 msgstr "Пожалуйста, укажите корректное численное значение комиссии"
 
@@ -1790,6 +1798,7 @@ msgstr ""
 #: src/components/app/AppPassPrompt.tsx:182
 #: src/components/app/AppPassPrompt.tsx:198
 #: src/components/settings/RemovePassphrasePrompt.tsx:47
+#: src/components/wallet/EnterPassphrasePrompt.tsx:48
 msgid "Please enter your passphrase"
 msgstr ""
 
@@ -1798,7 +1807,7 @@ msgid "Please enter your passphrase to proceed"
 msgstr ""
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:623
-#: src/components/wallet/standard/WalletStandard.tsx:420
+#: src/components/wallet/standard/WalletStandard.tsx:435
 msgid "Please finish syncing before making a transaction"
 msgstr "Пожалуйста, завершите синхронизацию перед совершением транзакции"
 
@@ -2130,7 +2139,7 @@ msgid "Rate Limited User Wallet Setup"
 msgstr "Настройка кошелька пользователя с ограничением скорости"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:650
-#: src/components/wallet/standard/WalletStandard.tsx:576
+#: src/components/wallet/standard/WalletStandard.tsx:591
 msgid "Receive Address"
 msgstr "Адрес для получения платежа"
 
@@ -2309,7 +2318,7 @@ msgstr "Продажа"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:620
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:748
-#: src/components/wallet/standard/WalletStandard.tsx:542
+#: src/components/wallet/standard/WalletStandard.tsx:557
 msgid "Send"
 msgstr "Отправить"
 
@@ -2469,6 +2478,10 @@ msgstr "Статус:"
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:347
 msgid "Submit"
 msgstr "Подтвердить"
+
+#: src/components/wallet/EnterPassphrasePrompt.tsx:147
+msgid "Submit Passphrase"
+msgstr ""
 
 #: src/components/fullNode/card/FullNodeCardStatus.tsx:43
 #: src/components/wallet/WalletStatus.tsx:33
@@ -2879,7 +2892,7 @@ msgid "Waiting for the transaction to be confirmed"
 msgstr "Ожидание подтверждения транзакции"
 
 #: src/components/pool/PoolOverview.tsx:185
-#: src/components/wallet/standard/WalletStandard.tsx:656
+#: src/components/wallet/standard/WalletStandard.tsx:671
 msgid "Wallet Status:"
 msgstr "Статус кошелька:"
 
