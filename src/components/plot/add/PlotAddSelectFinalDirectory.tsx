@@ -4,13 +4,15 @@ import { useFormContext } from 'react-hook-form';
 import { ButtonSelected, CardStep, Flex, TextField } from '@chia/core';
 import { Typography } from '@material-ui/core';
 import useSelectDirectory from '../../../hooks/useSelectDirectory';
+import Plotter from '../../../types/Plotter';
 
 type Props = {
-  step: number
+  step: number;
+  plotter: Plotter
 };
 
 export default function PlotAddSelectFinalDirectory(props: Props) {
-  const { step } = props;
+  const { step, plotter } = props;
   const selectDirectory = useSelectDirectory();
   const { setValue, watch } = useFormContext();
 

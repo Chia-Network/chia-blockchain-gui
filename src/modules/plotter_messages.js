@@ -21,24 +21,24 @@ export const stopPlotting = (id) => {
 };
 
 export const startPlotting = (
-  k,
-  n,
-  t,
-  t2,
-  d,
-  b,
-  u,
-  r,
-  queue,
-  a,
-  parallel,
-  delay,
-  e,
-  x,
-  overrideK,
-  f,
-  p,
-  c,
+  k, // plotSize
+  n, // plotCount
+  t, // workspaceLocation
+  t2, // workspaceLocation2
+  d, // finalLocation
+  b, // maxRam
+  u, // numBuckets
+  r, // numThreads,
+  queue, // queue
+  a, // fingerprint
+  parallel, // parallel
+  delay, // delay
+  e, // disableBitfieldPlotting
+  x, // excludeFinalDir
+  overrideK, //overrideK
+  f, // farmerPublicKey
+  p, // poolPublicKey
+  c, // poolContractAddress
 ) => {
   const action = daemonMessage();
   action.message.command = 'start_plotting';

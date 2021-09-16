@@ -13,13 +13,15 @@ import { useFormContext } from 'react-hook-form';
 import usePlotNFTs from '../../../hooks/usePlotNFTs';
 import PlotNFTName from '../../plotNFT/PlotNFTName';
 import PlotNFTSelectPool from '../../plotNFT/select/PlotNFTSelectPool';
+import Plotter from '../../../types/Plotter';
 
 type Props = {
-  step: number
+  step: number;
+  plotter: Plotter;
 };
 
 const PlotAddNFT = forwardRef((props: Props, ref) => {
-  const { step } = props;
+  const { step, plotter } = props;
   const { nfts, external, loading } = usePlotNFTs();
   const [showCreatePlotNFT, setShowCreatePlotNFT] = useState<boolean>(false);
   const { setValue } = useFormContext();

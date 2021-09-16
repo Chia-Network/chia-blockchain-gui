@@ -2,34 +2,50 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { useFormContext } from 'react-hook-form';
 import { Trans } from '@lingui/macro';
-import { CardStep, Select } from '@chia/core';
+import { CardStep } from '@chia/core';
 import {
   FormControl,
   Grid,
   InputLabel,
   MenuItem,
+  Select,
   Typography,
 } from '@material-ui/core';
 import { RootState } from '../../../modules/rootReducer';
+import Plotters from '../../../constants/Plotters';
+import PlotterNames from '../../../constants/PlotterNames';
 
 type Props = {
-  step: number
+  step: number;
+  onChange: (plotter: PlotterNames) => void;
 };
 
 export default function PlotAddChoosePlotter(props: Props) {
-  const { step } = props;
-  const { watch, setValue } = useFormContext();
+  const { step, onChange } = props;
+  const { watch, reset, getValues, setValue } = useFormContext();
+  const plotterName: string = watch('plotterName');
   const availablePlotters = useSelector((state: RootState) => state.plotter_configuration.available_plotters);
-  const taggedPlotters = availablePlotters.map((plotter) => {
+  const displayedPlotters = availablePlotters.map((plotterName) => {
     return {
-      ...plotter,
-      tag: {
-        'Chia Proof of Space': 'chiapos',
-        'madMAx43v3r Chia Plotter': 'madmax',
-        'BladeBit Chia Plotter': 'bladebit',
-      }[plotter.plotter_display_name] }
+      ...Plotters[plotterName as PlotterNames],
+      _plotterName: plotterName,
+    };
   });
-  const plotter = watch('plotter');
+
+  // Sort chiapos to the front of the list as a default
+  displayedPlotters.sort((a, b) => a._plotterName == PlotterNames.CHIAPOS ? -1 : a._plotterName.localeCompare(b._plotterName));
+
+  const handleChange = (event: any) => {
+    console.log("handleChange called: " + event.target.value);
+    // const values = getValues();
+    // values.plotterName = event.target.value;
+    // values.numBuckets += 100;
+    // reset(values);
+    const plotterName: PlotterNames = event.target.value as PlotterNames;
+    onChange(plotterName);
+    // console.log(values);
+    // setValue('plotterName', event.target.value);
+  };
 
   return (
     <CardStep step={step} title={<Trans>Choose Plotter</Trans>}>
@@ -51,10 +67,14 @@ export default function PlotAddChoosePlotter(props: Props) {
             <InputLabel required focused>
               <Trans>Plotter</Trans>
             </InputLabel>
-            <Select name="plotter">
-              { taggedPlotters.map((plotter) => (
-                <MenuItem value={plotter.tag} key={plotter.tag}>
-                  {plotter.plotter_display_name + " " + plotter.plotter_version}
+            <Select
+              name="plotterName"
+              onChange={handleChange}
+              value={plotterName}
+            >
+              { displayedPlotters.map((plotter) => (
+                <MenuItem value={plotter._plotterName} key={plotter._plotterName}>
+                  {plotter.displayName + " " + plotter.version}
                 </MenuItem>
               ))}
             </Select>

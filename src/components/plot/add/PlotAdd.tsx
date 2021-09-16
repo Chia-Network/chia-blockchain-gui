@@ -18,6 +18,9 @@ import { createPlotNFT } from '../../../modules/plotNFT';
 import PlotAddConfig from '../../../types/PlotAdd';
 import plotSizes, { defaultPlotSize } from '../../../constants/plotSizes';
 import PlotNFTState from '../../../constants/PlotNFTState';
+import Plotter from '../../../types/Plotter';
+import Plotters from '../../../constants/Plotters';
+import PlotterNames from '../../../constants/PlotterNames';
 import useCurrencyCode from '../../../hooks/useCurrencyCode';
 import type { RootState } from '../../../modules/rootReducer';
 import toBech32m from '../../../util/toBech32m';
@@ -42,32 +45,45 @@ export default function PlotAdd() {
   const openDialog = useOpenDialog();
   const state = useSelector((state: RootState) => state.router.location.state);
 
+  const otherDefaults = {
+    plotCount: 1,  // Extra
+    queue: 'default', // Extra
+    finalLocation: '', // Extra
+    workspaceLocation: '', // Extra
+    workspaceLocation2: '', // Extra
+    farmerPublicKey: '', // Extra
+    poolPublicKey: '', // Extra
+    excludeFinalDir: false, // Extra
+    p2_singleton_puzzle_hash: state?.p2_singleton_puzzle_hash ?? '', // Extra
+    createNFT: false, // Extra
+  };
+
+  const defaultsForPlotter = (plotterName: PlotterNames) => {
+    const plotterDefaults = Plotters[plotterName].defaults;
+    const plotSize = plotterDefaults.plotSize;
+    const maxRam = plotSizes.find((element) => element.value === plotSize)?.defaultRam;
+    const defaults = {
+      ...plotterDefaults,
+      ...otherDefaults,
+      maxRam: maxRam,
+    };
+
+    return defaults;
+  }
+
   const methods = useForm<FormData>({
     shouldUnregister: false,
-    defaultValues: {
-      plotter: 'chiapos',
-      plotSize: defaultPlotSize.value,
-      plotCount: 1,
-      maxRam: defaultPlotSize.defaultRam,
-      numThreads: 2,
-      numBuckets: 128,
-      queue: 'default',
-      finalLocation: '',
-      workspaceLocation: '',
-      workspaceLocation2: '',
-      farmerPublicKey: '',
-      poolPublicKey: '',
-      delay: 0,
-      parallel: false,
-      disableBitfieldPlotting: false,
-      excludeFinalDir: false,
-      p2_singleton_puzzle_hash: state?.p2_singleton_puzzle_hash ?? '',
-      createNFT: false,
-    },
+    defaultValues: defaultsForPlotter(PlotterNames.CHIAPOS),
   });
 
-  const { watch, setValue } = methods;
+  const { watch, setValue, reset } = methods;
+  const plotterName: string = watch('plotterName');
   const plotSize = watch('plotSize');
+
+  console.log('selected plotter: ' + plotterName);
+  var plotter = Plotters[plotterName as PlotterNames];
+  console.log('plotter details: ' + plotter);
+  console.log(plotter);
 
   let step: number = 1;
 
@@ -77,6 +93,11 @@ export default function PlotAdd() {
       setValue('maxRam', plotSizeConfig.defaultRam);
     }
   }, [plotSize, setValue]);
+
+  const handlePlotterChanged = (newPlotterName: PlotterNames) => {
+    const defaults = defaultsForPlotter(newPlotterName);
+    reset(defaults);
+  };
 
   const handleSubmit: SubmitHandler<FormData> = async (data) => {
     try {
@@ -165,12 +186,14 @@ export default function PlotAdd() {
         </Flex>
       </PlotHeaderSource>
       <Flex flexDirection="column" gap={3}>
-        <PlotAddChoosePlotter step={step++} />
-        <PlotAddChooseSize step={step++} />
-        <PlotAddNumberOfPlots step={step++} />
-        <PlotAddSelectTemporaryDirectory step={step++} />
-        <PlotAddSelectFinalDirectory step={step++} />
-        <PlotAddNFT ref={addNFTref} step={step++} />
+        <PlotAddChoosePlotter step={step++} onChange={handlePlotterChanged} />
+        <PlotAddChooseSize step={step++} plotter={plotter} />
+        <PlotAddNumberOfPlots step={step++} plotter={plotter} />
+        {plotter.options.haveBladebitOutputDir === false && (
+          <PlotAddSelectTemporaryDirectory step={step++} plotter={plotter} />
+        )}
+        <PlotAddSelectFinalDirectory step={step++} plotter={plotter} />
+        <PlotAddNFT ref={addNFTref} step={step++} plotter={plotter} />
         <Flex gap={1}>
           <FormBackButton variant="outlined" />
           <ButtonLoading
