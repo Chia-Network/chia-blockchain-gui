@@ -120,12 +120,12 @@ msgstr "Tambah {currencyCode} dari sebuah Faucet"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:561
 #: src/components/wallet/coloured/WalletColoured.tsx:657
-#: src/components/wallet/standard/WalletStandard.tsx:596
+#: src/components/wallet/standard/WalletStandard.tsx:611
 msgid "Address"
 msgstr "Alamat"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:701
-#: src/components/wallet/standard/WalletStandard.tsx:503
+#: src/components/wallet/standard/WalletStandard.tsx:518
 msgid "Address / Puzzle hash"
 msgstr "Alamat / Hash teka-teki"
 
@@ -139,7 +139,7 @@ msgstr ""
 #: src/components/wallet/WalletHistory.tsx:62
 #: src/components/wallet/create/createNewColouredCoin.jsx:119
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:720
-#: src/components/wallet/standard/WalletStandard.tsx:513
+#: src/components/wallet/standard/WalletStandard.tsx:528
 msgid "Amount"
 msgstr "Jumlah"
 
@@ -161,7 +161,7 @@ msgid "Are you sure you want to delete the plot? The plot cannot be recovered."
 msgstr "Anda yakin ingin menghapus plot ini? Plot ini tidak akan dapat dipulihkan."
 
 #: src/components/plotNFT/PlotNFTCard.tsx:125
-#: src/components/wallet/standard/WalletStandard.tsx:633
+#: src/components/wallet/standard/WalletStandard.tsx:648
 msgid "Are you sure you want to delete unconfirmed transactions?"
 msgstr "Yakin ingin menghapus transaksi yang belum ter konfirmasi ini?"
 
@@ -300,6 +300,7 @@ msgstr "Dapat dibackup ke mnemonic seed"
 #: src/components/trading/CreateOffer.jsx:139
 #: src/components/trading/TradingOverview.jsx:400
 #: src/components/trading/ViewOffer.jsx:71
+#: src/components/wallet/EnterPassphrasePrompt.tsx:138
 msgid "Cancel"
 msgstr "Batal"
 
@@ -346,7 +347,7 @@ msgstr "Chia"
 msgid "Chia Blockchain Wiki"
 msgstr "Wiki Chia Blockchain"
 
-#: src/components/wallet/standard/WalletStandard.tsx:649
+#: src/components/wallet/standard/WalletStandard.tsx:664
 msgid "Chia Wallet"
 msgstr "Wallet Chia"
 
@@ -426,7 +427,7 @@ msgid "Confirm Passphrase"
 msgstr ""
 
 #: src/components/plotNFT/PlotNFTCard.tsx:121
-#: src/components/wallet/standard/WalletStandard.tsx:629
+#: src/components/wallet/standard/WalletStandard.tsx:644
 msgid "Confirmation"
 msgstr "Konfirmasi"
 
@@ -549,7 +550,7 @@ msgstr "Buat Tawaran Pertukaran"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:543
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:684
-#: src/components/wallet/standard/WalletStandard.tsx:483
+#: src/components/wallet/standard/WalletStandard.tsx:498
 msgid "Create Transaction"
 msgstr "Buat Transaksi"
 
@@ -660,7 +661,7 @@ msgstr "Tunda"
 #: src/components/wallet/did/WalletDID.tsx:862
 #: src/components/wallet/did/WalletDIDCreate.tsx:194
 #: src/components/wallet/did/WalletDIDRecovery.tsx:101
-#: src/components/wallet/standard/WalletStandard.tsx:630
+#: src/components/wallet/standard/WalletStandard.tsx:645
 msgid "Delete"
 msgstr "Hapus"
 
@@ -674,7 +675,7 @@ msgid "Delete Plot"
 msgstr "Hapus Plot"
 
 #: src/components/plotNFT/PlotNFTCard.tsx:315
-#: src/components/wallet/standard/WalletStandard.tsx:674
+#: src/components/wallet/standard/WalletStandard.tsx:689
 msgid "Delete Unconfirmed Transactions"
 msgstr "Hapus transaksi yang belum di konfirmasi"
 
@@ -784,6 +785,10 @@ msgstr "Ubah"
 msgid "Edit Payout Instructions"
 msgstr ""
 
+#: src/components/wallet/EnterPassphrasePrompt.tsx:112
+msgid "Enter Passphrase"
+msgstr ""
+
 #: src/components/app/AppKeyringMigrator.tsx:119
 msgid "Enter a strong passphrase and click Migrate Keys to secure your keys"
 msgstr ""
@@ -797,6 +802,7 @@ msgid "Enter the 24 word mnemonic that you have saved in order to restore your C
 msgstr "Masukkan 24 kata mnemonik yang telah anda simpan untuk mengembalikan dompet Chia anda."
 
 #: src/components/settings/RemovePassphrasePrompt.tsx:115
+#: src/components/wallet/EnterPassphrasePrompt.tsx:116
 msgid "Enter your passphrase:"
 msgstr ""
 
@@ -810,7 +816,7 @@ msgstr ""
 msgid "Error"
 msgstr "Error"
 
-#: src/components/wallet/standard/WalletStandard.tsx:456
+#: src/components/wallet/standard/WalletStandard.tsx:471
 msgid "Error: Cannot send chia to coloured address. Please enter a chia address."
 msgstr "Error: Tidak dapat mengirim Chia ke alamat berwarna. Mohon masukkan sebuah alamat Chia."
 
@@ -858,7 +864,7 @@ msgstr ""
 
 #: src/components/dashboard/DashboardSideBar.tsx:58
 #: src/components/wallet/coloured/WalletColoured.tsx:610
-#: src/components/wallet/standard/WalletStandard.tsx:532
+#: src/components/wallet/standard/WalletStandard.tsx:547
 msgid "Farm"
 msgstr "Farm"
 
@@ -929,7 +935,7 @@ msgstr "Status Farming"
 #: src/components/wallet/create/createRLAdmin.jsx:244
 #: src/components/wallet/create/createRLAdmin.jsx:272
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:733
-#: src/components/wallet/standard/WalletStandard.tsx:524
+#: src/components/wallet/standard/WalletStandard.tsx:539
 msgid "Fee"
 msgstr "Biaya"
 
@@ -1011,7 +1017,7 @@ msgstr "Hasilkan Warna Baru"
 msgid "Grid view"
 msgstr "Tampilan grid"
 
-#: src/components/wallet/standard/WalletStandard.tsx:583
+#: src/components/wallet/standard/WalletStandard.tsx:598
 msgid "HD or Hierarchical Deterministic keys are a type of public key/private key scheme where one private key can have a nearly infinite number of different public keys (and therefor wallet receive addresses) that will all ultimately come back to and be spendable by a single private key."
 msgstr "HD atau kunci Hierarchical Deterministic adalah salah satu skema kunci publik/privat dimana satu kunci privat dapat memiliki kunci publik nyaris tak terbatas (dan juga alamat penerimaan dompet) yang ujungnya akan kembali ke dan dapat digunakan oleh satu kunci privat."
 
@@ -1327,7 +1333,7 @@ msgstr "Nama jaringan"
 #~ msgstr "Network not launched yet, waiting for genesis challenge!"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:685
-#: src/components/wallet/standard/WalletStandard.tsx:579
+#: src/components/wallet/standard/WalletStandard.tsx:594
 msgid "New Address"
 msgstr "Alamat Baru"
 
@@ -1452,7 +1458,7 @@ msgstr "Tawaran"
 msgid "Offers Created"
 msgstr "Tawaran dicipta"
 
-#: src/components/wallet/standard/WalletStandard.tsx:485
+#: src/components/wallet/standard/WalletStandard.tsx:500
 msgid "On average there is one minute between each transaction block. Unless there is congestion you can expect your transaction to be included in less than a minute."
 msgstr "Rata rata ada jarak 1 menit antara masing masing blok transaksi. Kecuali ada kebanyakan transaksi, transaksi biasanya akan di ikutkan dalam waktu kurang dari 1 menit."
 
@@ -1473,6 +1479,7 @@ msgstr "Keluar"
 #: src/components/app/AppPassPrompt.tsx:221
 #: src/components/settings/RemovePassphrasePrompt.tsx:123
 #: src/components/settings/SetPassphrasePrompt.tsx:142
+#: src/components/wallet/EnterPassphrasePrompt.tsx:124
 msgid "Passphrase"
 msgstr ""
 
@@ -1482,6 +1489,7 @@ msgstr ""
 
 #: src/components/app/AppPassPrompt.tsx:149
 #: src/components/settings/RemovePassphrasePrompt.tsx:64
+#: src/components/wallet/EnterPassphrasePrompt.tsx:65
 msgid "Passphrase is incorrect"
 msgstr ""
 
@@ -1583,7 +1591,7 @@ msgstr ""
 
 #: src/components/wallet/create/createNewColouredCoin.jsx:69
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:639
-#: src/components/wallet/standard/WalletStandard.tsx:432
+#: src/components/wallet/standard/WalletStandard.tsx:447
 msgid "Please enter a valid numeric amount"
 msgstr "Sila masukkan nombor yang valid"
 
@@ -1595,7 +1603,7 @@ msgstr ""
 #: src/components/wallet/create/createNewColouredCoin.jsx:79
 #: src/components/wallet/create/createRLAdmin.jsx:150
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:649
-#: src/components/wallet/standard/WalletStandard.tsx:444
+#: src/components/wallet/standard/WalletStandard.tsx:459
 msgid "Please enter a valid numeric fee"
 msgstr "Silahkan memasukkan angka biaya yang sah"
 
@@ -1618,6 +1626,7 @@ msgstr ""
 #: src/components/app/AppPassPrompt.tsx:182
 #: src/components/app/AppPassPrompt.tsx:198
 #: src/components/settings/RemovePassphrasePrompt.tsx:47
+#: src/components/wallet/EnterPassphrasePrompt.tsx:48
 msgid "Please enter your passphrase"
 msgstr ""
 
@@ -1626,7 +1635,7 @@ msgid "Please enter your passphrase to proceed"
 msgstr ""
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:623
-#: src/components/wallet/standard/WalletStandard.tsx:420
+#: src/components/wallet/standard/WalletStandard.tsx:435
 msgid "Please finish syncing before making a transaction"
 msgstr "Silahkan menyelesaikan sinkronisasi sebelum melakukan sebuah transaksi"
 
@@ -1960,7 +1969,7 @@ msgid "Rate Limited User Wallet Setup"
 msgstr "Dompet Pengguna Hak Terbatas Setup"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:650
-#: src/components/wallet/standard/WalletStandard.tsx:576
+#: src/components/wallet/standard/WalletStandard.tsx:591
 msgid "Receive Address"
 msgstr "Alamat Penerima"
 
@@ -2139,7 +2148,7 @@ msgstr "Jual"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:620
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:748
-#: src/components/wallet/standard/WalletStandard.tsx:542
+#: src/components/wallet/standard/WalletStandard.tsx:557
 msgid "Send"
 msgstr "Kirim"
 
@@ -2299,6 +2308,10 @@ msgstr "Status:"
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:347
 msgid "Submit"
 msgstr "Kirim"
+
+#: src/components/wallet/EnterPassphrasePrompt.tsx:147
+msgid "Submit Passphrase"
+msgstr ""
 
 #: src/components/fullNode/card/FullNodeCardStatus.tsx:43
 #: src/components/wallet/WalletStatus.tsx:33
@@ -2709,7 +2722,7 @@ msgid "Waiting for the transaction to be confirmed"
 msgstr "Menunggu transaksi untuk di konfirmasi"
 
 #: src/components/pool/PoolOverview.tsx:185
-#: src/components/wallet/standard/WalletStandard.tsx:656
+#: src/components/wallet/standard/WalletStandard.tsx:671
 msgid "Wallet Status:"
 msgstr "Status Dompet:"
 

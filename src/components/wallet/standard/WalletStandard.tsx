@@ -54,6 +54,7 @@ import { deleteUnconfirmedTransactions } from '../../../modules/incoming';
 import WalletCards from './WalletCards';
 import WalletStatus from '../WalletStatus';
 import useOpenDialog from '../../../hooks/useOpenDialog';
+import EnterPassphrasePrompt from '../EnterPassphrasePrompt';
 
 const drawerWidth = 240;
 
@@ -402,16 +403,33 @@ function SendCard(props: SendCardProps) {
     ? classes.resultSuccess
     : classes.resultFailure;
 
+  const { user_passphrase_set: userPassphraseIsSet } = useSelector(
+    (state: RootState) => state.keyring_state
+  );
+
+  const [enterPassphraseOpen, setEnterPassphraseOpen] = React.useState(false);
+
+  async function closeEnterPassphrase() {
+    setEnterPassphraseOpen(false);
+  }
+
   function farm() {
     if (addressValue) {
       dispatch(farm_block(addressValue));
     }
   }
 
-  function handleSubmit(data: SendTransactionData) {
+  async function handleSubmit(data: SendTransactionData) {
     if (sending_transaction) {
       return;
     }
+
+    if (userPassphraseIsSet) {
+      console.log("submit pass set")
+      await setEnterPassphraseOpen(true)
+    }
+
+    console.log("submit past pass")
 
     if (syncing) {
       dispatch(
@@ -473,7 +491,7 @@ function SendCard(props: SendCardProps) {
     const amountValue = Number.parseFloat(chia_to_mojo(amount));
     const feeValue = Number.parseFloat(chia_to_mojo(fee));
 
-    dispatch(send_transaction(wallet_id, amountValue, feeValue, address));
+    // dispatch(send_transaction(wallet_id, amountValue, feeValue, address));
 
     methods.reset();
   }
@@ -541,6 +559,10 @@ function SendCard(props: SendCardProps) {
               >
                 <Trans>Send</Trans>
               </Button>
+              {enterPassphraseOpen &&
+              <EnterPassphrasePrompt
+                onCancel={closeEnterPassphrase}
+              />}
             </Flex>
           </Grid>
         </Grid>
