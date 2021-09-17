@@ -8,7 +8,7 @@ msgstr ""
 "Language: fa_IR\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-09-17 17:39\n"
+"PO-Revision-Date: 2021-09-17 23:46\n"
 "Last-Translator: \n"
 "Language-Team: Persian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -44,8 +44,7 @@ msgstr "128 باکت پیشنهاد می شود"
 
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:98
 msgid "A harvester is a service running on a machine where plot(s) are actually stored. A farmer and harvester talk to a full node to see the state of the chain. View your network of connected harvesters below Learn more"
-msgstr ""
-"دروگر (Harvester) یک سرویس در حال اجرا بر روی ماشینی است که پلات (ها) در عمل آنجا ذخیره شده اند. مزرعه دار (Farmer) و دروگر برای دیدن وضعیت رشته (Chain) با گره کامل در تعامل هستند. شبکه دروگر های متصل خود را در زیر ببینید. \n"
+msgstr "دروگر (Harvester) یک سرویس در حال اجرا بر روی ماشینی است که پلات (ها) در عمل آنجا ذخیره شده اند. مزرعه دار (Farmer) و دروگر برای دیدن وضعیت رشته (Chain) با گره کامل در تعامل هستند. شبکه دروگر های متصل خود را در زیر ببینید. \n"
 "بیشتر فرار بگیرید"
 
 #: src/electron/main.tsx:422
@@ -206,8 +205,7 @@ msgstr "مقدار پایه جایزه‌ِ مزرعه دار"
 #: src/components/farm/FarmLatestBlockChallenges.tsx:39
 #: src/components/farm/FarmLatestBlockChallenges.tsx:49
 msgid "Below are the current block challenges. You may or may not have a proof of space for these challenges. These blocks do not currently contain a proof of time."
-msgstr ""
-"در پایین چالش های بلوک کنونی را می‌بینید. ممکن است شما گواهی حجمی برای این چالش ها داشته باشید یا نداشته باشید.\n"
+msgstr "در پایین چالش های بلوک کنونی را می‌بینید. ممکن است شما گواهی حجمی برای این چالش ها داشته باشید یا نداشته باشید.\n"
 " این بلاک ها در حال حاضر گواه زمانی ندارند."
 
 #: src/components/farm/card/FarmCardTotalNetworkSpace.tsx:17
@@ -665,8 +663,7 @@ msgstr "حذف کلید {fingerprint}"
 
 #: src/components/selectKey/SelectKey.tsx:113
 msgid "Deleting all keys will permanently remove the keys from your computer, make sure you have backups. Are you sure you want to continue?"
-msgstr ""
-"حذف همه کلیدها، آنها را برای همیشه از روی کامپیوتر شما حذف میکند، مطمئن شوید که نسخه پشتیبان دارید.\n"
+msgstr "حذف همه کلیدها، آنها را برای همیشه از روی کامپیوتر شما حذف میکند، مطمئن شوید که نسخه پشتیبان دارید.\n"
 " آیا مطمئنید که می‌خواهید ادامه دهید؟"
 
 #: src/components/selectKey/SelectKey.tsx:92
@@ -2308,8 +2305,7 @@ msgstr "This plot NFT is not connected to pool"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:49
 msgid "This table shows you the last time your farm attempted to win a block challenge. <0>Learn more</0>"
-msgstr ""
-"این جدول آخرین زمانی را به شما نشان میدهد که مزرعه شما تلاشی برای برنده شدن در چالش و پردازش یک بلوک کرده است.\n"
+msgstr "این جدول آخرین زمانی را به شما نشان میدهد که مزرعه شما تلاشی برای برنده شدن در چالش و پردازش یک بلوک کرده است.\n"
 "<0>بیشتر بدانید</0>"
 
 #: src/components/trading/TradingOverview.jsx:189
@@ -2593,8 +2589,7 @@ msgstr "به چیـا خوش آمدید. لطفا با کلیدی که از قب
 
 #: src/components/wallet/WalletAdd.tsx:66
 msgid "Welcome! The following words are used for your wallet backup. Without them, you will lose access to your wallet, keep them safe! Write down each word along with the order number next to them. (Order is important)"
-msgstr ""
-"خوش آمدید! واژه هایی که در ادامه می‌بینید برای پشتیبانی از کیف پول شما هستند. بدون آنها شما دسترسی به کیف پولتان را از دست می‌دهید، آنها را امن و مطمئن نگه دارید.\n"
+msgstr "خوش آمدید! واژه هایی که در ادامه می‌بینید برای پشتیبانی از کیف پول شما هستند. بدون آنها شما دسترسی به کیف پولتان را از دست می‌دهید، آنها را امن و مطمئن نگه دارید.\n"
 "هر واژه را به ترتیب اعداد کنارش بنویسید(ترتیب واژه ها مهم است)"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:316
@@ -2638,7 +2633,7 @@ msgstr ""
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:63
 #~ msgid "You do not need to be synched or connected to plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
-#~ msgstr "نیازی به همگام سازی یا اتصال به پلات نیست. پرونده های موقتی در طی مراحل پلات سازی ایجاد می شوند که از اندازه پرونده های پلات نهایی بیشتر است. اطمینان حاصل کنید که فضای کافی دارید. <0> بیشتر بیاموزید</0>"
+#~ msgstr "You do not need to be synced or connected to plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
 
 #: src/components/core/components/FormBackButton/FormBackButton.tsx:29
 msgid "You have made changes. Do you want to discard them?"
@@ -2650,8 +2645,7 @@ msgstr "You have made changes. Do you want to discard them?"
 
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:56
 msgid "You have {0}% of the space on the network, so farming a block will take {expectedTimeToWin} in expectation. Actual results may take 3 to 4 times longer than this estimate."
-msgstr ""
-"شما {0} درصد فضا در شبکه دارید، بر این اساس برای مزرعه داری (ساختن) یک بلوک مدت زمان {expectedTimeToWin} تخمین زده میشود.\n"
+msgstr "شما {0} درصد فضا در شبکه دارید، بر این اساس برای مزرعه داری (ساختن) یک بلوک مدت زمان {expectedTimeToWin} تخمین زده میشود.\n"
 "در عمل رسیدن به نتیجه اصلی ۳ تا ۴ برابر تخمین بالا به طول می انجامد."
 
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:34
@@ -2770,3 +2764,4 @@ msgstr "{currencyCode} کارمزد تراکنش های کاربر"
 #: src/components/core/components/Amount/Amount.tsx:82
 msgid "{mojo, plural, one {mojo} other {mojos}}"
 msgstr "{mojo, plural, one {mojo} other {mojos}}"
+
