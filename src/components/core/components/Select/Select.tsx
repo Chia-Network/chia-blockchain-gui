@@ -9,22 +9,34 @@ type Props = SelectProps & {
 };
 
 export default function Select(props: Props) {
-  const { name, onChange, ...rest } = props;
+  const { name: controllerName, value: controllerValue, children, ...rest } = props;
   const { control, errors } = useFormContext();
-  const errorMessage = get(errors, name);
-
-  const handleChange = () => {
-    console.log("handle change called in Select.tsx");
-  };
+  const errorMessage = get(errors, controllerName);
 
   return (
     // @ts-ignore
     <Controller
-      onChange={handleChange}
-      as={MaterialSelect}
-      name={name}
+      name={controllerName}
+      value={controllerValue}
       control={control}
-      render={({ field }) => (<MaterialSelect {...field} error={!!errorMessage}  {...rest} /> )}
+      render={({ onChange, onBlur, value, name, ref }) => (
+        <MaterialSelect
+          onChange={(event, ...args) => {
+            onChange(event, ...args);
+            if (props.onChange) {
+              props.onChange(event, ...args);
+            }
+          }}
+          onBlur={onBlur}
+          value={value}
+          name={name}
+          ref={ref}
+          error={!!errorMessage}
+          {...rest}
+        >
+          {children}
+        </MaterialSelect>
+      )}
     />
   );
 }

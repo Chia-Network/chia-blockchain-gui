@@ -2,13 +2,12 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { useFormContext } from 'react-hook-form';
 import { Trans } from '@lingui/macro';
-import { CardStep } from '@chia/core';
+import { CardStep, Select } from '@chia/core';
 import {
   FormControl,
   Grid,
   InputLabel,
   MenuItem,
-  Select,
   Typography,
 } from '@material-ui/core';
 import { RootState } from '../../../modules/rootReducer';
