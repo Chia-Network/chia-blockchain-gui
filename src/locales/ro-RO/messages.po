@@ -8,7 +8,7 @@ msgstr ""
 "Language: ro_RO\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-09-17 17:40\n"
+"PO-Revision-Date: 2021-09-17 23:47\n"
 "Last-Translator: \n"
 "Language-Team: Romanian\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100>0 && n%100<20)) ? 1 : 2);\n"
@@ -2628,7 +2628,7 @@ msgstr ""
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:63
 #~ msgid "You do not need to be synched or connected to plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
-#~ msgstr "Nu este necesar să fii sincronizat sau conectat la o Parcelă. Atenție: fișierele temporare create în timpul procesului de parcelare depășesc dimensiunea fișierelor parcelă finale. Asigură-te că ai suficient spațiu liber pe disc. <0>Află mai multe</0>"
+#~ msgstr "You do not need to be synced or connected to plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
 
 #: src/components/core/components/FormBackButton/FormBackButton.tsx:29
 msgid "You have made changes. Do you want to discard them?"
@@ -2758,3 +2758,4 @@ msgstr "{currencyCode} Comisioane de tranzacție"
 #: src/components/core/components/Amount/Amount.tsx:82
 msgid "{mojo, plural, one {mojo} other {mojos}}"
 msgstr ""
+
