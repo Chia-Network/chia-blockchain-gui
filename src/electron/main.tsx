@@ -49,13 +49,9 @@ function openAbout() {
   });
   aboutWindow.loadURL(`data:text/html;charset=utf-8,${about}`);
 
-  aboutWindow.webContents.on('will-navigate', (e, url) => {
-    e.preventDefault();
-    shell.openExternal(url);
-  });
-  aboutWindow.webContents.on('new-window', (e, url) => {
-    e.preventDefault();
-    shell.openExternal(url);
+  aboutWindow.webContents.setWindowOpenHandler((details) => {
+    shell.openExternal(details.url);
+    return { action: 'deny' }
   });
 
   aboutWindow.once('closed', () => {
@@ -135,6 +131,7 @@ if (!handleSquirrelEvent()) {
         webPreferences: {
           preload: `${__dirname}/preload.js`,
           nodeIntegration: true,
+          contextIsolation: false,
           enableRemoteModule: true,
         },
       });
@@ -214,7 +211,21 @@ if (!handleSquirrelEvent()) {
           });
         }
       });
+      mainWindow.on('showMessageBox' , async (e, a) => {
+        await dialog.showMessageBox(mainWindow,a)
+      })
+
+      mainWindow.on('showSaveDialog' , async (e, a) => {
+        e.reply(await dialog.showSaveDialog(a))
+      })
+
+      mainWindow.on('showOpenDialog' , async (e, a) => {
+        e.reply(await dialog.showOpenDialog(a))
+      })
+
     };
+
+
 
     const createMenu = () => Menu.buildFromTemplate(getMenuTemplate());
 
