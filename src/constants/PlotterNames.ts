@@ -1,7 +1,7 @@
-enum PlotterNames {
+enum PlotterName {
   BLADEBIT = 'bladebit',
   CHIAPOS = 'chiapos',
   MADMAX = 'madmax',
 }
 
-export default PlotterNames;
+export default PlotterName;

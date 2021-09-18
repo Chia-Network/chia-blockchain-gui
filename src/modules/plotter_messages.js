@@ -5,9 +5,13 @@ export const plotControl = () => ({
   type: 'PLOTTER_CONTROL',
 });
 
-export const plotterConfiguration = () => ({
-  type: 'PLOTTER_CONFIGURATION',
-})
+export const getPlotters = () => {
+  const action = daemonMessage();
+  action.message.command = 'get_plotters';
+  action.message.data = {}
+
+  return action;
+};
 
 export const stopPlotting = (id) => {
   const action = daemonMessage();
@@ -115,11 +119,3 @@ export const addProgress = (progress) => {
   action.progress = progress;
   return action;
 };
-
-// Plotter Configuration Actions
-
-export const refreshPlotterConfigurations = () => {
-  const action = plotterConfiguration();
-  action.command = 'refresh_plotter_configurations';
-  return action
-}

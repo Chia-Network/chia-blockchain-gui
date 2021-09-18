@@ -16,11 +16,10 @@ import PlotAddNFT from './PlotAddNFT';
 import { plotQueueAdd } from '../../../modules/plotQueue';
 import { createPlotNFT } from '../../../modules/plotNFT';
 import PlotAddConfig from '../../../types/PlotAdd';
-import plotSizes, { defaultPlotSize } from '../../../constants/plotSizes';
+import plotSizes from '../../../constants/plotSizes';
 import PlotNFTState from '../../../constants/PlotNFTState';
-import Plotter from '../../../types/Plotter';
-import Plotters from '../../../constants/Plotters';
-import PlotterNames from '../../../constants/PlotterNames';
+import PlotterName from '../../../constants/PlotterNames';
+import { defaultPlotter } from '../../../modules/plotterConfiguration';
 import useCurrencyCode from '../../../hooks/useCurrencyCode';
 import type { RootState } from '../../../modules/rootReducer';
 import toBech32m from '../../../util/toBech32m';
@@ -44,6 +43,7 @@ export default function PlotAdd() {
   const unconfirmedNFTs = useUnconfirmedPlotNFTs();
   const openDialog = useOpenDialog();
   const state = useSelector((state: RootState) => state.router.location.state);
+  const { availablePlotters } = useSelector((state: RootState) => state.plotter_configuration);
 
   const otherDefaults = {
     plotCount: 1,  // Extra
@@ -58,8 +58,8 @@ export default function PlotAdd() {
     createNFT: false, // Extra
   };
 
-  const defaultsForPlotter = (plotterName: PlotterNames) => {
-    const plotterDefaults = Plotters[plotterName].defaults;
+  const defaultsForPlotter = (plotterName: PlotterName) => {
+    const plotterDefaults = availablePlotters[plotterName]?.defaults ?? defaultPlotter().defaults;
     const plotSize = plotterDefaults.plotSize;
     const maxRam = plotSizes.find((element) => element.value === plotSize)?.defaultRam;
     const defaults = {
@@ -73,15 +73,15 @@ export default function PlotAdd() {
 
   const methods = useForm<FormData>({
     shouldUnregister: false,
-    defaultValues: defaultsForPlotter(PlotterNames.CHIAPOS),
+    defaultValues: defaultsForPlotter(PlotterName.CHIAPOS),
   });
 
   const { watch, setValue, reset } = methods;
-  const plotterName: string = watch('plotterName');
+  const plotterName = watch('plotterName') as PlotterName;
   const plotSize = watch('plotSize');
 
   console.log('selected plotter: ' + plotterName);
-  var plotter = Plotters[plotterName as PlotterNames];
+  let plotter = availablePlotters[plotterName] ?? defaultPlotter();
   console.log('plotter details: ' + plotter);
   console.log(plotter);
 
@@ -94,7 +94,7 @@ export default function PlotAdd() {
     }
   }, [plotSize, setValue]);
 
-  const handlePlotterChanged = (newPlotterName: PlotterNames) => {
+  const handlePlotterChanged = (newPlotterName: PlotterName) => {
     const defaults = defaultsForPlotter(newPlotterName);
     reset(defaults);
   };
