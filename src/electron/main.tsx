@@ -161,6 +161,7 @@ if (!handleSquirrelEvent()) {
       console.log('startUrl', startUrl);
 
       mainWindow.loadURL(startUrl);
+      require("@electron/remote/main").enable(mainWindow.webContents)
 
       mainWindow.once('ready-to-show', () => {
         mainWindow.show();
