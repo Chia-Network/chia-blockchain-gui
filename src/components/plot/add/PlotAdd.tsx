@@ -25,6 +25,7 @@ import type { RootState } from '../../../modules/rootReducer';
 import toBech32m from '../../../util/toBech32m';
 import useUnconfirmedPlotNFTs from '../../../hooks/useUnconfirmedPlotNFTs';
 import useOpenDialog from '../../../hooks/useOpenDialog';
+import { getPlotters } from '../../../modules/plotter_messages';
 
 type FormData = PlotAddConfig & {
   p2_singleton_puzzle_hash?: string;
@@ -35,6 +36,7 @@ export default function PlotAdd() {
   const history = useHistory();
   const dispatch = useDispatch();
   const [loading, setLoading] = useState<boolean>(false);
+  const [fetchedPlotters, setFetchedPlotters] = useState<boolean>(false);
   const currencyCode = useCurrencyCode();
   const fingerprint = useSelector(
     (state: RootState) => state.wallet_state.selected_fingerprint,
@@ -80,11 +82,12 @@ export default function PlotAdd() {
   const plotterName = watch('plotterName') as PlotterName;
   const plotSize = watch('plotSize');
 
-  console.log('selected plotter: ' + plotterName);
-  let plotter = availablePlotters[plotterName] ?? defaultPlotter();
-  console.log('plotter details: ' + plotter);
-  console.log(plotter);
+  if (!fetchedPlotters) {
+    dispatch(getPlotters());
+    setFetchedPlotters(true);
+  }
 
+  let plotter = availablePlotters[plotterName] ?? defaultPlotter();
   let step: number = 1;
 
   useEffect(() => {
