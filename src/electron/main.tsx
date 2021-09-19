@@ -1,4 +1,5 @@
 import { app, dialog, shell, ipcMain, BrowserWindow, Menu, session } from 'electron';
+require('@electron/remote/main').initialize()
 import path from 'path';
 import React from 'react';
 import url from 'url';
