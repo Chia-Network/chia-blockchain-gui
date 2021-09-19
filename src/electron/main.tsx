@@ -133,7 +133,7 @@ if (!handleSquirrelEvent()) {
           preload: `${__dirname}/preload.js`,
           nodeIntegration: true,
           contextIsolation: false,
-          enableRemoteModule: true,
+          nativeWindowOpen: true
         },
       });
 
