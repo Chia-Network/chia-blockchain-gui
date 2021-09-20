@@ -8,7 +8,7 @@ msgstr ""
 "Language: ja_JP\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-09-17 23:47\n"
+"PO-Revision-Date: 2021-09-20 08:08\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -79,7 +79,7 @@ msgstr "追加"
 #: src/components/wallet/did/WalletDID.tsx:874
 #: src/components/wallet/did/WalletDIDCreate.tsx:205
 msgid "Add Backup ID"
-msgstr ""
+msgstr "バックアップ ID を追加"
 
 #: src/components/plot/PlotHeader.tsx:91
 msgid "Add Plot Directory"
@@ -149,7 +149,7 @@ msgstr "最初にコインに充てる金額"
 
 #: src/components/wallet/did/WalletDIDCreate.tsx:62
 msgid "Amount must be an even amount."
-msgstr ""
+msgstr "金額には偶数を入力してください。"
 
 #: src/components/plot/PlotAction.tsx:30
 #: src/components/plot/queue/PlotQueueActions.tsx:46
@@ -347,7 +347,7 @@ msgstr "耕地容量を選択"
 #: src/components/plotNFT/PlotNFTCard.tsx:384
 #: src/components/pool/PoolOverview.tsx:92
 msgid "Claim Rewards"
-msgstr ""
+msgstr "報酬を受け取る"
 
 #: src/components/plot/PlotAddDirectoryDialog.tsx:118
 #: src/components/plot/queue/PlotQueueLogDialog.tsx:89
@@ -360,7 +360,7 @@ msgstr "ノードとサーバーを停止中"
 
 #: src/components/wallet/did/WalletDID.tsx:984
 msgid "Coin Name"
-msgstr ""
+msgstr "コイン名"
 
 #: src/components/trading/TradingOverview.jsx:366
 msgid "Coins:"
@@ -404,7 +404,7 @@ msgstr "接続解除の確認"
 #: src/components/plotNFT/PlotNFTCard.tsx:121
 #: src/components/wallet/standard/WalletStandard.tsx:629
 msgid "Confirmation"
-msgstr ""
+msgstr "承認状況"
 
 #: src/components/trading/TradingOverview.jsx:201
 msgid "Confirmed at block:"
@@ -425,7 +425,7 @@ msgstr "手動で接続"
 
 #: src/components/plotNFT/select/PlotNFTSelectBase.tsx:116
 msgid "Connect to pool"
-msgstr ""
+msgstr "プールに接続"
 
 #: src/components/core/components/FormatConnectionStatus/FormatConnectionStatus.tsx:51
 #: src/components/fullNode/card/FullNodeCardConnectionStatus.tsx:17
@@ -485,7 +485,7 @@ msgstr "作成"
 
 #: src/components/wallet/did/WalletDID.tsx:967
 msgid "Create An Attestation Packet"
-msgstr ""
+msgstr "認証パケットを作成"
 
 #: src/components/wallet/create/WalletCreate.jsx:290
 #~ msgid "Create DID wallet"
@@ -493,11 +493,11 @@ msgstr ""
 
 #: src/components/wallet/did/WalletDIDCreate.tsx:110
 msgid "Create Distributed Identity Wallet"
-msgstr ""
+msgstr "分散型アイデンティティウォレットを作成"
 
 #: src/components/wallet/did/WalletDIDSelect.tsx:32
 msgid "Create New Wallet"
-msgstr ""
+msgstr "新規ウォレット作成"
 
 #: src/components/trading/TradeManager.tsx:45
 msgid "Create Offer"
@@ -535,7 +535,7 @@ msgstr "バックアップを作成"
 
 #: src/components/plot/add/PlotAddNFT.tsx:42
 msgid "Create a Plot NFT"
-msgstr ""
+msgstr "プロット NFT を作成"
 
 #: src/components/selectKey/SelectKey.tsx:211
 msgid "Create a new private key"
@@ -575,25 +575,25 @@ msgstr "こちらが作成:"
 
 #: src/components/plotNFT/PlotNFTUnconfirmedCard.tsx:51
 msgid "Creating Plot NFT and Joining the Pool"
-msgstr ""
+msgstr "耕地 NFT 作成中、及びプールの参加手続き中"
 
 #: src/components/plotNFT/PlotNFTUnconfirmedCard.tsx:49
 msgid "Creating Plot NFT for Self Pooling"
-msgstr ""
+msgstr "単独プールの耕地 NFT を作成中"
 
 #: src/components/plot/add/PlotAdd.tsx:86
 msgid "Currency code is not defined"
-msgstr ""
+msgstr "通貨コードが不明です"
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:139
 #: src/components/plotNFT/PlotNFTCard.tsx:181
 msgid "Current Difficulty"
-msgstr ""
+msgstr "現在の難易度"
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:156
 #: src/components/plotNFT/PlotNFTCard.tsx:198
 msgid "Current Points Balance"
-msgstr ""
+msgstr "現在のポイント残高"
 
 #: src/components/trading/TradingOverview.jsx:182
 msgid "Current trade status"
@@ -644,7 +644,7 @@ msgstr "耕地を削除"
 #: src/components/plotNFT/PlotNFTCard.tsx:315
 #: src/components/wallet/standard/WalletStandard.tsx:674
 msgid "Delete Unconfirmed Transactions"
-msgstr ""
+msgstr "未確認の取引を削除"
 
 #: src/components/selectKey/SelectKey.tsx:108
 #: src/components/selectKey/SelectKey.tsx:229
@@ -690,7 +690,7 @@ msgstr "ビットフィールドを使わずに耕す"
 
 #: src/components/core/components/FormBackButton/FormBackButton.tsx:26
 msgid "Discard"
-msgstr ""
+msgstr "変更を破棄する"
 
 #: src/components/fullNode/FullNodeCloseConnection.tsx:22
 msgid "Disconnect"
@@ -699,7 +699,7 @@ msgstr "解除"
 #: src/components/wallet/create/WalletCreateList.tsx:28
 #: src/components/wallet/did/WalletDIDSelect.tsx:25
 msgid "Distributed Identity"
-msgstr ""
+msgstr "分散型アイデンティティ"
 
 #: src/components/wallet/create/WalletCreate.jsx:280
 #~ msgid "Distributed Identity Options"
@@ -716,7 +716,7 @@ msgstr "お使いのデバイスは並列で耕せますか？"
 
 #: src/components/wallet/did/WalletDID.tsx:428
 msgid "Drag and drop attestation packet(s)"
-msgstr ""
+msgstr "認証パケットをドラッグ&ドロップする"
 
 #: src/components/trading/ViewOffer.jsx:39
 msgid "Drag and drop offer file"
@@ -728,7 +728,7 @@ msgstr "バックアップファイルをここにドラッグ&ドロップ"
 
 #: src/components/wallet/did/WalletDIDRecovery.tsx:109
 msgid "Drag and drop your recovery backup file"
-msgstr ""
+msgstr "バックアップファイルをここにドラッグ&ドロップ"
 
 #: src/electron/main.tsx:263
 msgid "Edit"
@@ -760,7 +760,7 @@ msgstr "エラー: チアは色付きのアドレスには送れません。チ�
 
 #: src/components/fullNode/card/FullNodeEstimatedNetworkSpace.tsx:20
 msgid "Estimated Network Space"
-msgstr ""
+msgstr "推定ネットワーク容量"
 
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:45
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:53
@@ -808,7 +808,7 @@ msgstr "農家報酬アドレス"
 
 #: src/components/farm/FarmManageFarmingRewards.tsx:141
 msgid "Farmer Reward Address is not properly formatted."
-msgstr ""
+msgstr "農民の報酬アドレスが正しくフォーマットされていません。"
 
 #: src/components/farm/FarmManageFarmingRewards.tsx:133
 #~ msgid "Farmer Reward Address is not properly formatted. Using 'paste' is recommended."
@@ -816,7 +816,7 @@ msgstr ""
 
 #: src/components/farm/FarmManageFarmingRewards.tsx:135
 msgid "Farmer Reward Address must not be empty."
-msgstr ""
+msgstr "農家の報酬アドレスを記入してください。"
 
 #: src/components/farm/card/FarmCardStatus.tsx:38
 #: src/components/plot/PlotStatus.tsx:28
@@ -830,7 +830,7 @@ msgstr "農家が未実行"
 
 #: src/middleware/middleware_api.jsx:237
 msgid "Farmer public key:"
-msgstr ""
+msgstr "農家公開鍵:"
 
 #: src/components/farm/overview/FarmOverviewHero.tsx:33
 msgid "Farmers earn block rewards and transaction fees by committing spare space to the network to help secure transactions. This is where your farm will be once you add a plot. <0>Learn more</0>"
@@ -921,7 +921,7 @@ msgstr "フルノード"
 
 #: src/components/fullNode/FullNode.jsx:326
 msgid "Full Node Overview"
-msgstr ""
+msgstr "フルノード概要"
 
 #: src/components/fullNode/FullNode.jsx:267
 #~ msgid "Full Node Status"
@@ -941,7 +941,7 @@ msgstr "新しい色を生成"
 
 #: src/components/pool/PoolOverview.tsx:176
 msgid "Grid view"
-msgstr ""
+msgstr "グリッド表示"
 
 #: src/components/wallet/standard/WalletStandard.tsx:583
 msgid "HD or Hierarchical Deterministic keys are a type of public key/private key scheme where one private key can have a nearly infinite number of different public keys (and therefor wallet receive addresses) that will all ultimately come back to and be spendable by a single private key."
@@ -1020,7 +1020,7 @@ msgstr "入金"
 
 #: src/components/core/components/Fee/Fee.tsx:36
 msgid "Incorrect value"
-msgstr ""
+msgstr "不正な値"
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:18
 msgid "Index"
@@ -1053,7 +1053,7 @@ msgstr "インターバル"
 
 #: src/components/plotNFT/PlotNFTState.tsx:26
 msgid "Invalid state"
-msgstr ""
+msgstr "無効な状態"
 
 #: src/components/plotNFT/PlotNFTGetPoolLoginLinkDialog.tsx:90
 msgid "It is a one-time login link that can be used to log in to a pool's website. It contains a signature using the farmer's key from the plot NFT. Not all pools support this feature."
