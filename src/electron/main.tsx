@@ -214,7 +214,7 @@ if (!handleSquirrelEvent()) {
         }
       });
       mainWindow.on('showMessageBox' , async (e, a) => {
-        await dialog.showMessageBox(mainWindow,a)
+        e.reply(await dialog.showMessageBox(mainWindow,a))
       })
 
       mainWindow.on('showSaveDialog' , async (e, a) => {
