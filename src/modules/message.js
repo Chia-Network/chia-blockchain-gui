@@ -1055,3 +1055,26 @@ export const remove_keyring_passphrase_action = (current_passphrase, onSuccess, 
     }
   );
 }
+
+export const validate_keyring_passphrase = (key) => {
+  const action = daemonMessage();
+  action.message.command = 'validate_keyring_passphrase';
+  action.message.data = { key: key };
+  return action;
+}
+
+export const validate_keyring_passphrase_action = (key, onSuccess, onFailure) => (dispatch) => {
+  return async_api(dispatch, validate_keyring_passphrase(key)).then(
+    (response) => {
+      if (response.data.success) {
+        if (onSuccess) {
+          onSuccess();
+        }
+      }
+      else if (onFailure) {
+        const { error } = response.data;
+        onFailure(error);
+      }
+    }
+  );
+}
