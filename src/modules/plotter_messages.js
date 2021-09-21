@@ -25,6 +25,7 @@ export const stopPlotting = (id) => {
 };
 
 export const startPlotting = (
+  plotterName, // plotterName
   k, // plotSize
   n, // plotCount
   t, // workspaceLocation
@@ -49,6 +50,7 @@ export const startPlotting = (
 
   const data = {
     service: service_plotter,
+    plotter: plotterName,
     k,
     n,
     t,

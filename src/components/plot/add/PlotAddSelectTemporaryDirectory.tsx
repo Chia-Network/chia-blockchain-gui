@@ -1,6 +1,7 @@
 import React from 'react';
 import { Trans } from '@lingui/macro';
 import { useFormContext } from 'react-hook-form';
+import { useLocalStorage, writeStorage } from '@rehooks/local-storage';
 import {
   AdvancedOptions,
   ButtonSelected,
@@ -11,6 +12,7 @@ import {
 import { Typography } from '@material-ui/core';
 import useSelectDirectory from '../../../hooks/useSelectDirectory';
 import Plotter from '../../../types/Plotter';
+import PlotLocalStorageKeys from '../../../constants/plotLocalStorage';
 
 type Props = {
   step: number;
@@ -24,21 +26,25 @@ export default function PlotAddSelectTemporaryDirectory(props: Props) {
 
   const workspaceLocation = watch('workspaceLocation');
   const hasWorkspaceLocation = !!workspaceLocation;
+  const [defaultTmpDirPath] = useLocalStorage<string>(PlotLocalStorageKeys.TMPDIR);
+  const [defaultTmp2DirPath] = useLocalStorage<string>(PlotLocalStorageKeys.TMP2DIR);
 
   const workspaceLocation2 = watch('workspaceLocation2');
   const hasWorkspaceLocation2 = !!workspaceLocation2;
 
   async function handleSelect() {
-    const location = await selectDirectory();
+    const location = await selectDirectory({ defaultPath: defaultTmpDirPath || undefined });
     if (location) {
       setValue('workspaceLocation', location, { shouldValidate: true });
+      writeStorage(PlotLocalStorageKeys.TMPDIR, location);
     }
   }
 
   async function handleSelect2() {
-    const location = await selectDirectory();
+    const location = await selectDirectory({ defaultPath: defaultTmp2DirPath || undefined });
     if (location) {
       setValue('workspaceLocation2', location, { shouldValidate: true });
+      writeStorage(PlotLocalStorageKeys.TMP2DIR, location);
     }
   }
 

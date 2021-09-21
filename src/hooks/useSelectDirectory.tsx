@@ -5,6 +5,7 @@ import { AlertDialog } from '@chia/core';
 import useOpenDialog from './useOpenDialog';
 
 type Options = {
+  defaultPath?: string;
   buttonLabel?: string;
 };
 

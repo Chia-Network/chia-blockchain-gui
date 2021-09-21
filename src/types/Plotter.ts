@@ -20,7 +20,7 @@ interface MadMaxOptions extends CommonOptions {
   haveMadmaxTempToggle: boolean;
 }
 
-export type PlotterOptions = CommonOptions | BladeBitOptions | MadMaxOptions;
+export type PlotterOptions = CommonOptions & BladeBitOptions & MadMaxOptions;
 
 interface CommonDefaults {
   plotterName: string,
@@ -45,7 +45,7 @@ interface MadMaxDefaults extends CommonDefaults {
   madmaxTempToggle?: boolean;
 }
 
-export type PlotterDefaults = CommonDefaults | BladeBitDefaults | MadMaxDefaults;
+export type PlotterDefaults = CommonDefaults & BladeBitDefaults & MadMaxDefaults;
 
 type PlotterInstallInfo = {
   version?: string;

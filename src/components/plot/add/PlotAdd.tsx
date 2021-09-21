@@ -48,16 +48,16 @@ export default function PlotAdd() {
   const { availablePlotters } = useSelector((state: RootState) => state.plotter_configuration);
 
   const otherDefaults = {
-    plotCount: 1,  // Extra
-    queue: 'default', // Extra
-    finalLocation: '', // Extra
-    workspaceLocation: '', // Extra
-    workspaceLocation2: '', // Extra
-    farmerPublicKey: '', // Extra
-    poolPublicKey: '', // Extra
-    excludeFinalDir: false, // Extra
-    p2_singleton_puzzle_hash: state?.p2_singleton_puzzle_hash ?? '', // Extra
-    createNFT: false, // Extra
+    plotCount: 1,
+    queue: 'default',
+    finalLocation: '',
+    workspaceLocation: '',
+    workspaceLocation2: '',
+    farmerPublicKey: '',
+    poolPublicKey: '',
+    excludeFinalDir: false,
+    p2_singleton_puzzle_hash: state?.p2_singleton_puzzle_hash ?? '',
+    createNFT: false,
   };
 
   const defaultsForPlotter = (plotterName: PlotterName) => {
