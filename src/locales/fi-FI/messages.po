@@ -8,7 +8,7 @@ msgstr ""
 "Language: fi_FI\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-09-17 23:47\n"
+"PO-Revision-Date: 2021-09-21 10:06\n"
 "Last-Translator: \n"
 "Language-Team: Finnish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -2620,7 +2620,7 @@ msgstr "Voit silti luoda plotteja tälle Plot-NFT:lle, mutta et voi tehdä muuto
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:63
 msgid "You do not need to be synced or connected to plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
-msgstr ""
+msgstr "Noodin ei tarvitse olla synkronissa tai yhteydessä plotataksesi. Plottausprosessin aikana luodaan väliaikaistiedostoja, joiden yhteiskoko ylittää lopullisen plottitiedoston koon. Varmista että levyllä on tarpeeksi tilaa. <0>Katso lisää</0>"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:56
 #~ msgid "You do not need to be synched or connected to Plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
