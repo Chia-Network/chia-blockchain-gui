@@ -104,6 +104,11 @@ export function plotQueueAdd(
         farmerPublicKey,
         poolPublicKey,
         c,
+        bladebitDisableNUMA,
+        bladebitWarmStart,
+        madmaxNumBucketsPhase3,
+        madmaxTempToggle,
+        madmaxThreadMultiplier,
       ),
     );
   };

@@ -44,6 +44,11 @@ export const startPlotting = (
   f, // farmerPublicKey
   p, // poolPublicKey
   c, // poolContractAddress
+  m, // bladebitDisableNUMA,
+  w, // bladebitWarmStart,
+  v, // madmaxNumBucketsPhase3,
+  G, // madmaxTempToggle,
+  K, // madmaxThreadMultiplier,
 ) => {
   const action = daemonMessage();
   action.message.command = 'start_plotting';
@@ -81,6 +86,26 @@ export const startPlotting = (
 
   if (c) {
     data.c = c;
+  }
+
+  if (m) { // bladebitDisableNUMA
+    data.m = m;
+  }
+
+  if (w) { // bladebitWarmStart
+    data.w = w;
+  }
+
+  if (v) { // madmaxNumBucketsPhase3
+    data.v = v;
+  }
+
+  if (G) { // madmaxTempToggle
+    data.G = G;
+  }
+
+  if (K) { // madmaxThreadMultiplier
+    data.K = K;
   }
 
   action.message.data = data;

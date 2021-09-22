@@ -228,7 +228,7 @@ export default function PlotAddNumberOfPlots(props: Props) {
               </FormControl>
             </Grid>
           )}
-          {plotter.options.haveMadmaxWaitForCopy && (
+          {/* {plotter.options.haveMadmaxWaitForCopy && (
             <Grid xs={12} item>
               <FormControl variant="filled" fullWidth>
                 <FormControlLabel
@@ -241,7 +241,7 @@ export default function PlotAddNumberOfPlots(props: Props) {
                 />
               </FormControl>
             </Grid>
-          )}
+          )} */}
           {plotter.options.haveMadmaxTempToggle && (
             <Grid xs={12} item>
               <FormControl variant="filled" fullWidth>
