@@ -6,7 +6,6 @@ export const bladebitOptions: PlotterOptions = {
   haveNumBuckets: false,
   haveMadmaxNumBucketsPhase3: false,
   haveMadmaxThreadMultiplier: false,
-  haveMadmaxWaitForCopy: false,
   haveMadmaxTempToggle: false,
   haveBladebitWarmStart: true,
   haveBladebitDisableNUMA: true,
@@ -30,8 +29,8 @@ export const bladebitDefaults: PlotterDefaults = {
   bladebitDisableNUMA: false,
   bladebitOutputDir: "",
   disableBitfieldPlotting: undefined,
-  parallel: undefined,
-  delay: undefined,
+  parallel: false,
+  delay: 0,
 };
 
 export const chiaposOptions: PlotterOptions = {
@@ -39,7 +38,6 @@ export const chiaposOptions: PlotterOptions = {
   haveNumBuckets: true,
   haveMadmaxNumBucketsPhase3: false,
   haveMadmaxThreadMultiplier: false,
-  haveMadmaxWaitForCopy: false,
   haveMadmaxTempToggle: false,
   haveBladebitWarmStart: false,
   haveBladebitDisableNUMA: false,
@@ -72,7 +70,6 @@ export const madmaxOptions: PlotterOptions = {
   haveNumBuckets: true,
   haveMadmaxNumBucketsPhase3: true,
   haveMadmaxThreadMultiplier: true,
-  haveMadmaxWaitForCopy: true,
   haveMadmaxTempToggle: true,
   haveBladebitWarmStart: false,
   haveBladebitDisableNUMA: false,
@@ -96,8 +93,8 @@ export const madmaxDefaults: PlotterDefaults = {
   bladebitDisableNUMA: undefined,
   bladebitOutputDir: undefined,
   disableBitfieldPlotting: undefined,
-  parallel: undefined,
-  delay: undefined,
+  parallel: false,
+  delay: 0,
 };
 
 export const optionsForPlotter = (plotterName: PlotterName): PlotterOptions => {

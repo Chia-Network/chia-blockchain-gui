@@ -42,6 +42,11 @@ export default function PlotAddChoosePlotter(props: Props) {
     onChange(selectedPlotterName);
   };
 
+  const isPlotterInstalled = (plotterName: PlotterName): boolean => {
+    const installed = availablePlotters[plotterName]?.installInfo?.installed ?? false;
+    return installed;
+  }
+
   const isPlotterSupported = (plotterName: PlotterName): boolean => {
     const installed = availablePlotters[plotterName]?.installInfo?.installed ?? false;
     const supported = installed || (availablePlotters[plotterName]?.installInfo?.canInstall ?? false);
@@ -51,7 +56,7 @@ export default function PlotAddChoosePlotter(props: Props) {
   const plotterDisplayName = (plotterName: PlotterName): string => {
     const plotter = availablePlotters[plotterName] ?? defaultPlotter();
     const { version } = plotter;
-    const installed = plotter.installInfo?.installed;
+    const installed = plotter.installInfo?.installed ?? false;
     let displayName = plotter.displayName;
 
     if (version) {
@@ -103,16 +108,11 @@ export default function PlotAddChoosePlotter(props: Props) {
               value={plotterName}
             >
               { displayedPlotters.map((plotter) => (
-                <MenuItem value={plotter} key={plotter} disabled={!isPlotterSupported(plotter)}>
+                <MenuItem value={plotter} key={plotter} disabled={!isPlotterInstalled(plotter) || !isPlotterSupported(plotter)}>
                   {plotterDisplayName(plotter)}
                 </MenuItem>
               ))}
             </Select>
-            {!installed && (
-              <StyledFormHelperText>
-                <Trans>The selected plotter will be installed when plot creation begins</Trans>
-              </StyledFormHelperText>
-            )}
             {warning && (
               <StyledFormHelperText>
                 <Trans>{warning}</Trans>

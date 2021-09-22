@@ -68,7 +68,6 @@ export function plotQueueAdd(
       madmaxNumBucketsPhase3,
       madmaxTempToggle,
       madmaxThreadMultiplier,
-      madmaxWaitForCopy,
       maxRam,
       numBuckets,
       numThreads,

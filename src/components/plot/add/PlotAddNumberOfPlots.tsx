@@ -228,20 +228,6 @@ export default function PlotAddNumberOfPlots(props: Props) {
               </FormControl>
             </Grid>
           )}
-          {/* {plotter.options.haveMadmaxWaitForCopy && (
-            <Grid xs={12} item>
-              <FormControl variant="filled" fullWidth>
-                <FormControlLabel
-                  control={<Checkbox name="madmaxWaitForCopy" />}
-                  label={
-                    <>
-                      <Trans>Wait for copy to start next plot</Trans>{' '}
-                    </>
-                  }
-                />
-              </FormControl>
-            </Grid>
-          )} */}
           {plotter.options.haveMadmaxTempToggle && (
             <Grid xs={12} item>
               <FormControl variant="filled" fullWidth>

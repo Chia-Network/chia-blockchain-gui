@@ -16,7 +16,6 @@ interface BladeBitOptions extends CommonOptions {
 interface MadMaxOptions extends CommonOptions {
   haveMadmaxNumBucketsPhase3: boolean;
   haveMadmaxThreadMultiplier: boolean;
-  haveMadmaxWaitForCopy: boolean;
   haveMadmaxTempToggle: boolean;
 }
 
