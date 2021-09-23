@@ -81,7 +81,7 @@ const startChiaDaemon = () => {
     try {
       console.log('Running python executable: ');
       const Process = child_process.spawn;
-      pyProc = new Process(script, [], processOptions);
+      pyProc = new Process(script, ["--wait-for-unlock"], processOptions);
     } catch (e) {
       console.log('Running python executable: Error: ');
       console.log('Script ' + script);
@@ -91,7 +91,7 @@ const startChiaDaemon = () => {
     console.log('Script ' + script);
 
     const Process = child_process.spawn;
-    pyProc = new Process('python', [script], processOptions);
+    pyProc = new Process('python', [script, "--wait-for-unlock"], processOptions);
   }
   if (pyProc != null) {
     pyProc.stdout.setEncoding('utf8');

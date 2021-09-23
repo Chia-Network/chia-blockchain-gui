@@ -18,7 +18,7 @@ import {
   presentBackupInfo,
   selectFilePath,
 } from './backup';
-import { exitDaemon } from './daemon_messages';
+import { daemonMessage, exitDaemon, keyringStatus } from './daemon_messages';
 import { wsDisconnect } from './websocket';
 import config from '../config/config';
 
@@ -60,6 +60,11 @@ export const selectMnemonic = (mnemonic) => ({
 export const showCreateBackup = (show) => ({
   type: 'SHOW_CREATE_BACKUP',
   show,
+});
+
+export const skipKeyringMigration = (skip) => ({
+  type: 'SKIP_KEYRING_MIGRATION',
+  skip,
 });
 
 export const async_api = (dispatch, action, openSpinner, usePromiseReject) => {
@@ -962,3 +967,114 @@ export const did_get_recovery_info = (wallet_id) => {
   action.message.data = { wallet_id: wallet_id };
   return action;
 };
+
+export const unlock_keyring = (key) => {
+  const action = daemonMessage();
+  action.message.command = 'unlock_keyring';
+  action.message.data = { key: key };
+  return action;
+}
+
+export const unlock_keyring_action = (key, onFailure) => (dispatch) => {
+  return async_api(dispatch, unlock_keyring(key), false, true).then(
+    (response) => {
+      if (response.data.success) {
+        dispatch(refreshAllState());
+      } else if (onFailure) {
+        const { error } = response.data;
+        onFailure(error);
+      }
+    }
+  );
+};
+
+export const migrate_keyring = (passphrase, cleanup_legacy_keyring) => {
+  const action = daemonMessage();
+  action.message.command = 'migrate_keyring';
+  action.message.data = { passphrase: passphrase, cleanup_legacy_keyring: cleanup_legacy_keyring };
+  return action;
+}
+
+export const migrate_keyring_action = (passphrase, cleanup_legacy_keyring, onFailure) => (dispatch) => {
+  return async_api(dispatch, migrate_keyring(passphrase, cleanup_legacy_keyring), false, true).then(
+    (response) => {
+      if (response.data.success) {
+        dispatch(keyringStatus());
+      } else if (onFailure) {
+        const { error } = response.data;
+        onFailure(error);
+      }
+    }
+  );
+}
+
+export const change_keyring_passphrase = (current_passphrase, new_passphrase) => {
+  const action = daemonMessage();
+  action.message.command = 'set_keyring_passphrase';
+  action.message.data = { current_passphrase: current_passphrase, new_passphrase: new_passphrase };
+  return action;
+}
+
+export const change_keyring_passphrase_action = (current_passphrase, new_passphrase, onSuccess, onFailure) => (dispatch) => {
+  return async_api(dispatch, change_keyring_passphrase(current_passphrase, new_passphrase), false, true).then(
+    (response) => {
+      if (response.data.success) {
+        dispatch(keyringStatus());
+        if (onSuccess) {
+          onSuccess();
+        }
+      }
+      else if (onFailure) {
+        const { error } = response.data;
+        onFailure(error);
+      }
+    }
+  );
+}
+
+export const remove_keyring_passphrase = (current_passphrase) => {
+  const action = daemonMessage();
+  action.message.command = 'remove_keyring_passphrase';
+  action.message.data = { current_passphrase: current_passphrase };
+  return action;
+}
+
+export const remove_keyring_passphrase_action = (current_passphrase, onSuccess, onFailure) => (dispatch) => {
+  return async_api(dispatch, remove_keyring_passphrase(current_passphrase), false, true).then(
+    (response) => {
+      if (response.data.success) {
+        dispatch(keyringStatus());
+        if (onSuccess) {
+          onSuccess();
+        }
+      }
+      else if (onFailure) {
+        const { error } = response.data;
+        onFailure(error);
+      }
+    }
+  );
+}
+
+export const validate_keyring_passphrase = (key) => {
+  const action = daemonMessage();
+  action.message.command = 'validate_keyring_passphrase';
+  action.message.data = { key: key };
+  return action;
+}
+
+export const validate_keyring_passphrase_action = (key, onSuccess, onFailure) => (dispatch) => {
+  return async_api(dispatch, validate_keyring_passphrase(key)).then(
+    (response) => {
+      if (response.data.success) {
+        if (onSuccess) {
+          onSuccess();
+        }
+      }
+      else if (onFailure) {
+        const { error } = response.data;
+        onFailure(error);
+      }
+    }
+  );
+}
