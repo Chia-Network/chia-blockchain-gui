@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh_TW\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-09-23 04:27\n"
+"PO-Revision-Date: 2021-09-23 10:39\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -131,7 +131,7 @@ msgstr "位址 / 拼圖雜湊值"
 
 #: src/components/app/AppKeyringMigrator.tsx:158
 msgid "After your keys are successfully migrated to the new keyring, you may choose to have your keys removed from the old keyring."
-msgstr ""
+msgstr "當您的密鑰遷移到新的鑰匙圈後, 您可以把舊的刪除"
 
 #: src/components/core/components/Amount/Amount.tsx:99
 #: src/components/trading/CreateOffer.jsx:196
@@ -153,7 +153,7 @@ msgstr "初始代幣數量"
 
 #: src/components/wallet/did/WalletDIDCreate.tsx:62
 msgid "Amount must be an even amount."
-msgstr ""
+msgstr "金額總數必須是偶數"
 
 #: src/components/plot/PlotAction.tsx:30
 #: src/components/plot/queue/PlotQueueActions.tsx:46
@@ -327,7 +327,7 @@ msgstr "變更"
 #: src/components/settings/ChangePassphrasePrompt.tsx:207
 #: src/components/settings/Settings.tsx:158
 msgid "Change Passphrase"
-msgstr ""
+msgstr "更改密碼"
 
 #: src/components/plotNFT/PlotNFTCard.tsx:408
 #: src/components/plotNFT/PlotNFTChangePool.tsx:110
@@ -418,13 +418,13 @@ msgstr "確認斷線"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:185
 msgid "Confirm New Passphrase"
-msgstr ""
+msgstr "確認密碼"
 
 #: src/components/app/AppKeyringMigrator.tsx:140
 #: src/components/app/AppKeyringMigrator.tsx:141
 #: src/components/settings/SetPassphrasePrompt.tsx:153
 msgid "Confirm Passphrase"
-msgstr ""
+msgstr "確認密碼"
 
 #: src/components/plotNFT/PlotNFTCard.tsx:121
 #: src/components/wallet/standard/WalletStandard.tsx:632
@@ -617,7 +617,7 @@ msgstr "目前難度"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:165
 msgid "Current Passphrase"
-msgstr ""
+msgstr "現有密碼"
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:156
 #: src/components/plotNFT/PlotNFTCard.tsx:198
@@ -667,7 +667,7 @@ msgstr "刪除"
 
 #: src/components/app/AppPassPrompt.tsx:195
 msgid "Delete Key"
-msgstr ""
+msgstr "刪除金鑰"
 
 #: src/components/plot/PlotAction.tsx:26
 #: src/components/plot/queue/PlotQueueActions.tsx:42
@@ -698,7 +698,7 @@ msgstr "刪除帳號指紋：{fingerprint}"
 
 #: src/components/app/AppPassPrompt.tsx:191
 msgid "Deleting key"
-msgstr ""
+msgstr "刪除金鑰中"
 
 #: src/components/selectKey/SelectKey.tsx:101
 #~ msgid "Deleting the key will permanently remove the key from your computer, make sure you have backups. Are you sure you want to continue?"
@@ -719,11 +719,11 @@ msgstr "難度"
 
 #: src/components/app/AppPassPrompt.tsx:78
 msgid "Disable"
-msgstr ""
+msgstr "禁用"
 
 #: src/components/app/AppPassPrompt.tsx:77
 msgid "Disable Passphrase Protection"
-msgstr ""
+msgstr "禁用密碼保護"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:114
 #~ msgid "Disable bifield plotting when your temporary directory is on fast storage like SSD or you need lower per process RAM requirements. Plotting with bitfield enabled has about 20% less overall writes."
@@ -787,15 +787,15 @@ msgstr "編輯支付說明"
 
 #: src/components/wallet/EnterPassphrasePrompt.tsx:111
 msgid "Enter Passphrase"
-msgstr ""
+msgstr "輸入密碼"
 
 #: src/components/app/AppKeyringMigrator.tsx:119
 msgid "Enter a strong passphrase and click Migrate Keys to secure your keys"
-msgstr ""
+msgstr "輸入高強度密碼並點擊合併密鑰以便保護您的金鑰"
 
 #: src/components/settings/SetPassphrasePrompt.tsx:132
 msgid "Enter a strong passphrase to secure your keys:"
-msgstr ""
+msgstr "輸入高強度密碼保護您的金鑰"
 
 #: src/components/wallet/WalletImport.tsx:146
 msgid "Enter the 24 word mnemonic that you have saved in order to restore your Chia wallet."
@@ -804,7 +804,7 @@ msgstr "輸入你已存的 24 字助記符號以復原您的 Chia 錢包。"
 #: src/components/settings/RemovePassphrasePrompt.tsx:115
 #: src/components/wallet/EnterPassphrasePrompt.tsx:115
 msgid "Enter your passphrase:"
-msgstr ""
+msgstr "輸入您的密碼"
 
 #: src/components/farm/FarmerStatus.tsx:21
 #: src/components/farm/FarmerStatus.tsx:22
@@ -852,15 +852,15 @@ msgstr "開啟失敗（無效耕地）"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:86
 msgid "Failed to remove passphrase: {error}"
-msgstr ""
+msgstr "移除密碼失敗: {error}"
 
 #: src/components/settings/SetPassphrasePrompt.tsx:79
 msgid "Failed to set passphrase: {error}"
-msgstr ""
+msgstr "設定密碼失敗: {error}"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:107
 msgid "Failed to update passphrase: {error}"
-msgstr ""
+msgstr "更新密碼失敗: {error}"
 
 #: src/components/dashboard/DashboardSideBar.tsx:58
 #: src/components/wallet/coloured/WalletColoured.tsx:610
@@ -1162,7 +1162,7 @@ msgstr "K-大小"
 
 #: src/components/app/AppKeyringMigrator.tsx:80
 msgid "Keyring migration failed: {error}"
-msgstr ""
+msgstr "遷移鑰匙圈失敗: {error}"
 
 #: src/components/dashboard/DashboardSideBar.tsx:69
 msgid "Keys"
@@ -1281,24 +1281,24 @@ msgstr "MiB 上傳/下傳"
 
 #: src/components/selectKey/SelectKey.tsx:137
 msgid "Migrate"
-msgstr ""
+msgstr "遷移"
 
 #: src/components/settings/Settings.tsx:182
 msgid "Migrate Keyring"
-msgstr ""
+msgstr "遷移鑰匙圈"
 
 #: src/components/app/AppKeyringMigrator.tsx:188
 msgid "Migrate Keys"
-msgstr ""
+msgstr "遷移鑰匙"
 
 #: src/components/app/AppKeyringMigrator.tsx:115
 #: src/components/selectKey/SelectKey.tsx:136
 msgid "Migration required"
-msgstr ""
+msgstr "需要遷移"
 
 #: src/components/settings/Settings.tsx:121
 msgid "Migration required to support passphrase protection"
-msgstr ""
+msgstr "遷移需要有密碼保護"
 
 #: src/components/pool/PoolInfo.tsx:27
 msgid "Minimum Difficulty"
@@ -1339,7 +1339,7 @@ msgstr "新位址"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:175
 msgid "New Passphrase"
-msgstr ""
+msgstr "新密碼"
 
 #: src/components/wallet/WalletAdd.tsx:63
 msgid "New Wallet"
@@ -1347,7 +1347,7 @@ msgstr "新錢包"
 
 #: src/components/app/AppPassPrompt.tsx:60
 msgid "New passphrase is the same as your current passphrase"
-msgstr ""
+msgstr "新密碼與您現在的密碼相同"
 
 #: src/components/block/Block.jsx:351
 #: src/components/wallet/WalletAdd.tsx:95
@@ -1481,33 +1481,33 @@ msgstr "匯出"
 #: src/components/settings/SetPassphrasePrompt.tsx:142
 #: src/components/wallet/EnterPassphrasePrompt.tsx:123
 msgid "Passphrase"
-msgstr ""
+msgstr "密碼"
 
 #: src/components/settings/Settings.tsx:213
 msgid "Passphrase Settings"
-msgstr ""
+msgstr "密碼設定"
 
 #: src/components/app/AppPassPrompt.tsx:149
 #: src/components/settings/RemovePassphrasePrompt.tsx:64
 #: src/components/wallet/EnterPassphrasePrompt.tsx:66
 msgid "Passphrase is incorrect"
-msgstr ""
+msgstr "密碼不正確"
 
 #: src/components/settings/Settings.tsx:93
 msgid "Passphrase protection has been disabled"
-msgstr ""
+msgstr "已禁用密碼保護"
 
 #: src/components/settings/Settings.tsx:131
 msgid "Passphrase protection is disabled"
-msgstr ""
+msgstr "已禁用密碼保護"
 
 #: src/components/settings/Settings.tsx:128
 msgid "Passphrase protection is enabled"
-msgstr ""
+msgstr "已開啟密碼保護"
 
 #: src/components/settings/Settings.tsx:122
 msgid "Passphrase support requires migrating your keys to a new keyring"
-msgstr ""
+msgstr "啟用密碼支援需要將您的密鑰遷移到新的鑰匙圈"
 
 #: src/components/plotNFT/PlotNFTCard.tsx:361
 msgid "Payout Address"
@@ -1570,7 +1570,7 @@ msgstr "請輸入檔案名稱"
 #: src/components/app/AppPassPrompt.tsx:133
 #: src/components/settings/SetPassphrasePrompt.tsx:48
 msgid "Please enter a passphrase"
-msgstr ""
+msgstr "請輸入密碼"
 
 #: src/components/wallet/did/WalletDID.tsx:934
 msgid "Please enter a pubkey"
@@ -1587,7 +1587,7 @@ msgstr "請輸入有效的初始金額"
 #: src/components/wallet/did/WalletDID.tsx:777
 #: src/components/wallet/did/WalletDIDCreate.tsx:76
 msgid "Please enter a valid integer of 0 or greater for the number of Backup IDs needed for recovery."
-msgstr ""
+msgstr "請為需要恢復的備份 ID輸入一個 0 或更大的整數。"
 
 #: src/components/wallet/create/createNewColouredCoin.jsx:69
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:639
@@ -1621,18 +1621,18 @@ msgstr "請輸入有效的公鑰"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:54
 msgid "Please enter your current passphrase, and a new passphrase"
-msgstr ""
+msgstr "請輸入您的舊密碼以及新密碼"
 
 #: src/components/app/AppPassPrompt.tsx:182
 #: src/components/app/AppPassPrompt.tsx:198
 #: src/components/settings/RemovePassphrasePrompt.tsx:47
 #: src/components/wallet/EnterPassphrasePrompt.tsx:48
 msgid "Please enter your passphrase"
-msgstr ""
+msgstr "請輸入您的密碼"
 
 #: src/components/app/AppPassPrompt.tsx:192
 msgid "Please enter your passphrase to proceed"
-msgstr ""
+msgstr "請輸入密碼以便繼續"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:623
 #: src/components/wallet/standard/WalletStandard.tsx:430
@@ -2010,11 +2010,11 @@ msgstr "發行說明"
 #: src/components/settings/RemovePassphrasePrompt.tsx:146
 #: src/components/settings/Settings.tsx:194
 msgid "Remove Passphrase"
-msgstr ""
+msgstr "移除密碼"
 
 #: src/components/app/AppKeyringMigrator.tsx:155
 msgid "Remove keys from old keyring upon successful migration"
-msgstr ""
+msgstr "遷移成功後請將舊鑰匙圈中的舊密碼刪除"
 
 #: src/components/plot/queue/PlotQueueIndicator.tsx:36
 msgid "Removing"
@@ -2065,7 +2065,7 @@ msgstr "第二暫存資料夾位置"
 
 #: src/components/settings/Settings.tsx:124
 msgid "Secure your keychain using a strong passphrase"
-msgstr ""
+msgstr "請用高強度密碼保護您的鑰匙圈"
 
 #: src/components/selectKey/SelectKey.tsx:216
 msgid "See private key"
@@ -2162,16 +2162,16 @@ msgstr "發送你的公鑰到你的速率限制錢包管理員："
 #: src/components/settings/SetPassphrasePrompt.tsx:177
 #: src/components/settings/Settings.tsx:205
 msgid "Set Passphrase"
-msgstr ""
+msgstr "設定密碼"
 
 #: src/components/app/AppPassPrompt.tsx:75
 msgid "Setting a passphrase is strongly recommended to protect your keys. Are you sure you want to skip setting a passphrase?"
-msgstr ""
+msgstr "強烈建議設置密碼來保護您的密鑰。您確定要跳過設置密碼嗎？"
 
 #: src/components/dashboard/DashboardSideBar.tsx:76
 #: src/components/settings/Settings.tsx:239
 msgid "Settings"
-msgstr ""
+msgstr "設定"
 
 #: src/components/core/components/AdvancedOptions/AdvancedOptions.tsx:74
 msgid "Show Advanced Options"
@@ -2194,15 +2194,15 @@ msgstr "登入"
 #: src/components/app/AppKeyringMigrator.tsx:177
 #: src/components/app/AppPassPrompt.tsx:74
 msgid "Skip"
-msgstr ""
+msgstr "略過"
 
 #: src/components/app/AppKeyringMigrator.tsx:46
 msgid "Skip Keyring Migration"
-msgstr ""
+msgstr "略過密鑰遷移"
 
 #: src/components/app/AppPassPrompt.tsx:73
 msgid "Skip Passphrase Protection"
-msgstr ""
+msgstr "略過密碼保護"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:129
 #~ msgid "Skips adding [final dir] to harvester for farming"
@@ -2309,7 +2309,7 @@ msgstr "確認"
 
 #: src/components/wallet/EnterPassphrasePrompt.tsx:146
 msgid "Submit Passphrase"
-msgstr ""
+msgstr "確認密碼"
 
 #: src/components/fullNode/card/FullNodeCardStatus.tsx:43
 #: src/components/wallet/WalletStatus.tsx:33
@@ -2387,7 +2387,7 @@ msgstr "節點同步中，這代表正從其他節點中下載區塊，直到到
 #: src/components/wallet/did/WalletDID.tsx:790
 #: src/components/wallet/did/WalletDIDCreate.tsx:89
 msgid "The number of Backup IDs needed for recovery cannot exceed the number of Backup IDs added."
-msgstr ""
+msgstr "恢復備份 ID的數量不能超過添加的ID 數量。"
 
 #: src/hooks/usePoolInfo.ts:57
 msgid "The pool URL \"{normalizedUrl}\" is not working. Is it pool? Error: {0}"
@@ -2415,7 +2415,7 @@ msgstr "切換農會操作已被取消，請重試切換農會或自己的農會
 
 #: src/components/app/AppPassPrompt.tsx:37
 msgid "The provided passphrase and confirmation do not match"
-msgstr ""
+msgstr "密碼與再次確認密碼不相符"
 
 #: src/components/block/Block.jsx:303
 msgid "The seed used to create the plot. This depends on the pool pk and plot pk."
@@ -2639,7 +2639,7 @@ msgstr "未知"
 
 #: src/components/app/AppPassPrompt.tsx:185
 msgid "Unlock Keyring"
-msgstr ""
+msgstr "解開鑰匙圈"
 
 #: src/components/core/components/FormBackButton/FormBackButton.tsx:25
 msgid "Unsaved Changes"
@@ -2652,7 +2652,7 @@ msgstr "使用者公鑰"
 
 #: src/components/app/AppPassPrompt.tsx:79
 msgid "Using a passphrase is strongly recommended to protect your keys. Are you sure you want to disable passphrase protection?"
-msgstr ""
+msgstr "強烈建議設置密碼來保護您的密鑰。您確定要跳過設置密碼嗎？"
 
 #: src/components/fullNode/card/FullNodeCardVDFSubSlotIterations.tsx:20
 msgid "VDF Sub Slot Iterations"
@@ -2839,7 +2839,7 @@ msgstr "您仍然可以為此農場創建耕地，但在同步完成之前您不
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:63
 msgid "You do not need to be synced or connected to plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
-msgstr ""
+msgstr "你不需要同步或連線後才能規劃耕地。規劃耕地時所產生的暫存檔將大於最終的耕地大小。確保你有足夠的空間。<0>了解更多</0>"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:56
 #~ msgid "You do not need to be synched or connected to Plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
@@ -2891,7 +2891,7 @@ msgstr "你將會收到 <0/> 到 {address}"
 
 #: src/components/wallet/did/WalletDID.tsx:328
 msgid "Your DID requires at least {dids_num_req} attestation file{0} for recovery. Please upload additional files."
-msgstr ""
+msgstr "您的 DID 需要最少 {dids_num_req} 個證明檔案{0} 來恢復. 請上傳附加檔案."
 
 #: src/components/farm/overview/FarmOverview.tsx:37
 msgid "Your Farm Overview"
@@ -2911,31 +2911,31 @@ msgstr "您的農場概觀"
 
 #: src/components/app/AppPassPrompt.tsx:181
 msgid "Your keyring is locked"
-msgstr ""
+msgstr "您的鑰匙圈已經鎖定"
 
 #: src/components/app/AppKeyringMigrator.tsx:52
 msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Are you sure you want to skip migrating your keys?"
-msgstr ""
+msgstr "您的密鑰尚未遷移到新的鑰匙圈。在遷移完成之前，您將無法創建新密鑰或刪除現有密鑰。您想現在遷移您的密鑰嗎？"
 
 #: src/components/selectKey/SelectKey.tsx:141
 msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Would you like to migrate your keys now?"
-msgstr ""
+msgstr "您的密鑰尚未遷移到新的鑰匙圈。在遷移完成之前，您將無法創建新密鑰或刪除現有密鑰。您想現在遷移您的密鑰嗎？"
 
 #: src/components/app/AppKeyringMigrator.tsx:95
 msgid "Your keys need to be migrated to a new keyring that is optionally secured by a master passphrase."
-msgstr ""
+msgstr "您的密鑰需要遷移到由主密碼保護的新鑰匙圈。"
 
 #: src/components/app/AppKeyringMigrator.tsx:101
 msgid "Your keys need to be migrated to a new keyring that is secured by a master passphrase."
-msgstr ""
+msgstr "您的密鑰需要遷移到由主密碼保護的新鑰匙圈。"
 
 #: src/components/settings/Settings.tsx:80
 msgid "Your passphrase has been set"
-msgstr ""
+msgstr "您的密碼已經設定完畢"
 
 #: src/components/settings/Settings.tsx:67
 msgid "Your passphrase has been updated"
-msgstr ""
+msgstr "你的密碼已更新"
 
 #: src/util/getDescriptiveError.ts:5
 msgid "[Error 13] Permission denied. You are trying to access a file/directory without having the necessary permissions. Most likely one of the plot folders in your config.yaml has an issue."
@@ -2980,7 +2980,7 @@ msgstr "同步中"
 
 #: src/components/app/AppPassPrompt.tsx:48
 msgid "{0, plural, one {Passphrases must be at least # character in length} other {Passphrases must be at least # characters in length}}"
-msgstr ""
+msgstr "{0, plural, one {密碼必須要t # character in length 位數} other {密碼必須要t # character in length 位數}}"
 
 #: src/components/farm/card/FarmCardBlockRewards.tsx:16
 #~ msgid "{0} Block Rewards"
