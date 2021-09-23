@@ -187,7 +187,7 @@ msgstr "Nama di ciptakan otomatis dari buku alamat Pool"
 
 #: src/components/core/components/FormBackButton/FormBackButton.tsx:46
 #: src/components/selectKey/SelectKey.tsx:77
-#: src/components/selectKey/SelectKey.tsx:123
+#: src/components/selectKey/SelectKey.tsx:116
 msgid "Back"
 msgstr "Kembali"
 
@@ -281,7 +281,7 @@ msgstr "Beli"
 #~ msgid "CCListItems.title"
 #~ msgstr ""
 
-#: src/components/selectKey/SelectKey.tsx:220
+#: src/components/selectKey/SelectKey.tsx:212
 msgid "Can be backed up to mnemonic seed"
 msgstr "Dapat dibackup ke mnemonic seed"
 
@@ -293,7 +293,7 @@ msgstr "Dapat dibackup ke mnemonic seed"
 #: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:123
 #: src/components/plotNFT/select/PlotNFTSelectBase.tsx:87
 #: src/components/plotNFT/select/PlotNFTSelectFaucet.tsx:30
-#: src/components/selectKey/SelectKey.tsx:146
+#: src/components/selectKey/SelectKey.tsx:138
 #: src/components/settings/ChangePassphrasePrompt.tsx:198
 #: src/components/settings/RemovePassphrasePrompt.tsx:137
 #: src/components/settings/SetPassphrasePrompt.tsx:168
@@ -562,7 +562,7 @@ msgstr "Buat sebuah Backup"
 msgid "Create a Plot NFT"
 msgstr "Buat sebuah Plot NFT"
 
-#: src/components/selectKey/SelectKey.tsx:262
+#: src/components/selectKey/SelectKey.tsx:254
 msgid "Create a new private key"
 msgstr "Buat sebuah private key baru"
 
@@ -628,7 +628,7 @@ msgstr "Saldo point saat ini"
 msgid "Current trade status"
 msgstr "Status pertukaran saat ini"
 
-#: src/components/selectKey/SelectKey.tsx:235
+#: src/components/selectKey/SelectKey.tsx:227
 msgid "DANGER: permanently delete private key"
 msgstr "BAHAYA: menghapus permanen private key"
 
@@ -656,7 +656,7 @@ msgstr "Tunda"
 #: src/components/plot/queue/PlotQueueActions.tsx:97
 #: src/components/plotNFT/PlotNFTCard.tsx:122
 #: src/components/selectKey/SelectKey.tsx:76
-#: src/components/selectKey/SelectKey.tsx:122
+#: src/components/selectKey/SelectKey.tsx:115
 #: src/components/wallet/did/WalletDID.tsx:449
 #: src/components/wallet/did/WalletDID.tsx:862
 #: src/components/wallet/did/WalletDIDCreate.tsx:194
@@ -679,8 +679,8 @@ msgstr "Hapus Plot"
 msgid "Delete Unconfirmed Transactions"
 msgstr "Hapus transaksi yang belum di konfirmasi"
 
-#: src/components/selectKey/SelectKey.tsx:121
-#: src/components/selectKey/SelectKey.tsx:281
+#: src/components/selectKey/SelectKey.tsx:114
+#: src/components/selectKey/SelectKey.tsx:273
 msgid "Delete all keys"
 msgstr "Hapus semua key"
 
@@ -693,16 +693,16 @@ msgid "Delete key {fingerprint}"
 msgstr ""
 
 #: src/components/selectKey/SelectKey.tsx:126
-msgid "Deleting all keys will permanently remove the keys from your computer, make sure you have backups. Are you sure you want to continue?"
-msgstr "Menghapus semua kunci akan menghilangkan kunci-kunci tersebut dari komputer anda, pastikan anda telah memiliki cadangan. Apa anda yakin ingin melanjutkan?"
+#~ msgid "Deleting all keys will permanently remove the keys from your computer, make sure you have backups. Are you sure you want to continue?"
+#~ msgstr "Menghapus semua kunci akan menghilangkan kunci-kunci tersebut dari komputer anda, pastikan anda telah memiliki cadangan. Apa anda yakin ingin melanjutkan?"
 
 #: src/components/app/AppPassPrompt.tsx:191
 msgid "Deleting key"
 msgstr ""
 
 #: src/components/selectKey/SelectKey.tsx:101
-msgid "Deleting the key will permanently remove the key from your computer, make sure you have backups. Are you sure you want to continue?"
-msgstr "Menghapus semua kunci akan menghilangkan kunci-kunci tersebut dari komputer anda, pastikan anda telah memiliki cadangan. Apa anda yakin ingin melanjutkan?"
+#~ msgid "Deleting the key will permanently remove the key from your computer, make sure you have backups. Are you sure you want to continue?"
+#~ msgstr "Menghapus semua kunci akan menghilangkan kunci-kunci tersebut dari komputer anda, pastikan anda telah memiliki cadangan. Apa anda yakin ingin melanjutkan?"
 
 #: src/electron/main.tsx:304
 msgid "Developer"
@@ -783,6 +783,18 @@ msgstr "Ubah"
 #: src/components/plotNFT/PlotNFTCard.tsx:301
 #: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:76
 msgid "Edit Payout Instructions"
+msgstr ""
+
+#: src/components/wallet/EnterPassphrasePrompt.tsx:111
+msgid "Enter Passphrase"
+msgstr ""
+
+#: src/components/app/AppKeyringMigrator.tsx:119
+msgid "Enter a strong passphrase and click Migrate Keys to secure your keys"
+msgstr ""
+
+#: src/components/settings/SetPassphrasePrompt.tsx:132
+msgid "Enter a strong passphrase to secure your keys:"
 msgstr ""
 
 #: src/components/wallet/WalletImport.tsx:146
@@ -890,7 +902,7 @@ msgstr "Farmer tidak terhubung"
 msgid "Farmer is not running"
 msgstr "Farmer sedang tidak berjalan"
 
-#: src/middleware/middleware_api.jsx:245
+#: src/middleware/middleware_api.jsx:247
 msgid "Farmer public key:"
 msgstr "Kunci Publik Farmer:"
 
@@ -1068,7 +1080,7 @@ msgstr "Jika tidak ada yang dipilih, maka akan default ke direktori sementara."
 msgid "Import Wallet from Mnemonics"
 msgstr "Impor Dompet elektronik dari Mnemonik"
 
-#: src/components/selectKey/SelectKey.tsx:272
+#: src/components/selectKey/SelectKey.tsx:264
 msgid "Import from Mnemonics (24 words)"
 msgstr "Impor dari Mnemonic (24 kata)"
 
@@ -1267,7 +1279,7 @@ msgstr "Kelola Alamat Tujuan Upah Farming Anda"
 msgid "MiB Up/Down"
 msgstr "MiB Naik/Turun"
 
-#: src/components/selectKey/SelectKey.tsx:145
+#: src/components/selectKey/SelectKey.tsx:137
 msgid "Migrate"
 msgstr ""
 
@@ -1280,7 +1292,7 @@ msgid "Migrate Keys"
 msgstr ""
 
 #: src/components/app/AppKeyringMigrator.tsx:115
-#: src/components/selectKey/SelectKey.tsx:144
+#: src/components/selectKey/SelectKey.tsx:136
 msgid "Migration required"
 msgstr ""
 
@@ -1352,7 +1364,7 @@ msgstr "Nama Panggilan"
 msgid "No"
 msgstr "Tidak"
 
-#: src/middleware/middleware_api.jsx:271
+#: src/middleware/middleware_api.jsx:273
 msgid "No 24 word seed, since this key is imported."
 msgstr "Tidak ada benih 24 kata, sejak kunci ini di impor."
 
@@ -1827,7 +1839,7 @@ msgstr ""
 msgid "Pool does not provide target_puzzle_hash."
 msgstr ""
 
-#: src/middleware/middleware_api.jsx:253
+#: src/middleware/middleware_api.jsx:255
 msgid "Pool public key:"
 msgstr ""
 
@@ -1874,15 +1886,15 @@ msgstr "Header Hash Sebelumnya"
 #~ msgid "Previous Sub Block Hash"
 #~ msgstr "Previous Sub Block Hash"
 
-#: src/components/selectKey/SelectKey.tsx:215
+#: src/components/selectKey/SelectKey.tsx:207
 msgid "Private key with public fingerprint {fingerprint}"
 msgstr "Kunci privat dengan sidik jari publik {fingerprint}"
 
-#: src/middleware/middleware_api.jsx:219
+#: src/middleware/middleware_api.jsx:221
 msgid "Private key {0}"
 msgstr "Kunci privat {0}"
 
-#: src/middleware/middleware_api.jsx:229
+#: src/middleware/middleware_api.jsx:231
 msgid "Private key:"
 msgstr "Kunci privat:"
 
@@ -1903,7 +1915,7 @@ msgstr ""
 msgid "Pubkey"
 msgstr "Pubkey"
 
-#: src/middleware/middleware_api.jsx:237
+#: src/middleware/middleware_api.jsx:239
 msgid "Public key:"
 msgstr "Kunci publik:"
 
@@ -2057,11 +2069,11 @@ msgstr "Folder sementara dua"
 msgid "Secure your keychain using a strong passphrase"
 msgstr ""
 
-#: src/components/selectKey/SelectKey.tsx:224
+#: src/components/selectKey/SelectKey.tsx:216
 msgid "See private key"
 msgstr "Lihat kata kunci pribadi"
 
-#: src/middleware/middleware_api.jsx:263
+#: src/middleware/middleware_api.jsx:265
 msgid "Seed:"
 msgstr "Benih:"
 
@@ -2073,7 +2085,7 @@ msgstr "Pilih Direktori Sementara kedua"
 msgid "Select Final Directory"
 msgstr "Pilih Direktori Akhir"
 
-#: src/components/selectKey/SelectKey.tsx:183
+#: src/components/selectKey/SelectKey.tsx:175
 msgid "Select Key"
 msgstr "Pilih kunci"
 
@@ -2176,7 +2188,7 @@ msgstr "Lihat opsi lanjutan"
 msgid "Side"
 msgstr "Sisi"
 
-#: src/components/selectKey/SelectKey.tsx:188
+#: src/components/selectKey/SelectKey.tsx:180
 msgid "Sign In"
 msgstr "Log Masuk"
 
@@ -2767,7 +2779,8 @@ msgstr "Ingin mendapatkan lebih banyak Chia? Tambahkan lebih banyak plot ke farm
 msgid "Want to have a delay before the next plot starts?"
 msgstr "Anda hendak lebih masa sebelum plot seterusnya mula?"
 
-#: src/components/selectKey/SelectKey.tsx:95
+#: src/components/selectKey/SelectKey.tsx:88
+#: src/components/selectKey/SelectKey.tsx:119
 msgid "Warning: This key is used for a wallet that may have a non-zero balance. By deleting this key you may lose access to this wallet"
 msgstr ""
 
@@ -2775,7 +2788,7 @@ msgstr ""
 msgid "Warning: This key is used for your farming rewards address. By deleting this key you may lose access to any future farming rewards"
 msgstr ""
 
-#: src/components/selectKey/SelectKey.tsx:88
+#: src/components/selectKey/SelectKey.tsx:94
 msgid "Warning: This key is used for your pool rewards address. By deleting this key you may lose access to any future pool rewards"
 msgstr ""
 
@@ -2787,7 +2800,7 @@ msgstr "Berat"
 msgid "Weight is the total added difficulty of all sub blocks up to and including this one"
 msgstr "Beban adalah jumlah total ke rumitan semua sub blok sampai dengan blok ini"
 
-#: src/components/selectKey/SelectKey.tsx:191
+#: src/components/selectKey/SelectKey.tsx:183
 msgid "Welcome to Chia. Please log in with an existing key, or create a new key."
 msgstr "Selamat datang di Chia. Silahkan masuk dengan key eksisting atau dengan membuat key baru."
 
@@ -2906,7 +2919,7 @@ msgstr ""
 msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Are you sure you want to skip migrating your keys?"
 msgstr ""
 
-#: src/components/selectKey/SelectKey.tsx:149
+#: src/components/selectKey/SelectKey.tsx:141
 msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Would you like to migrate your keys now?"
 msgstr ""
 

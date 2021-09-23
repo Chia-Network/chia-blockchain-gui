@@ -187,7 +187,7 @@ msgstr "اسم تم إنشاؤه تلقائياً من عنوان عقد الم�
 
 #: src/components/core/components/FormBackButton/FormBackButton.tsx:46
 #: src/components/selectKey/SelectKey.tsx:77
-#: src/components/selectKey/SelectKey.tsx:123
+#: src/components/selectKey/SelectKey.tsx:116
 msgid "Back"
 msgstr "رجوع"
 
@@ -281,7 +281,7 @@ msgstr "شراء"
 #~ msgid "CCListItems.title"
 #~ msgstr ""
 
-#: src/components/selectKey/SelectKey.tsx:220
+#: src/components/selectKey/SelectKey.tsx:212
 msgid "Can be backed up to mnemonic seed"
 msgstr "يمكن الإسترجاع من النسخة الاحتياطية للكلمات السرية"
 
@@ -293,7 +293,7 @@ msgstr "يمكن الإسترجاع من النسخة الاحتياطية لل�
 #: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:123
 #: src/components/plotNFT/select/PlotNFTSelectBase.tsx:87
 #: src/components/plotNFT/select/PlotNFTSelectFaucet.tsx:30
-#: src/components/selectKey/SelectKey.tsx:146
+#: src/components/selectKey/SelectKey.tsx:138
 #: src/components/settings/ChangePassphrasePrompt.tsx:198
 #: src/components/settings/RemovePassphrasePrompt.tsx:137
 #: src/components/settings/SetPassphrasePrompt.tsx:168
@@ -562,7 +562,7 @@ msgstr "إنشاء نسخة احتياطية"
 msgid "Create a Plot NFT"
 msgstr "إنشاء قطعة NFT"
 
-#: src/components/selectKey/SelectKey.tsx:262
+#: src/components/selectKey/SelectKey.tsx:254
 msgid "Create a new private key"
 msgstr "إنشاء مفتاح خاص جديد"
 
@@ -628,7 +628,7 @@ msgstr ""
 msgid "Current trade status"
 msgstr "الوضع التجاري الحالي"
 
-#: src/components/selectKey/SelectKey.tsx:235
+#: src/components/selectKey/SelectKey.tsx:227
 msgid "DANGER: permanently delete private key"
 msgstr "تحذير: حذف المفتاح الخاص بشكل دائم"
 
@@ -656,7 +656,7 @@ msgstr "تأخير"
 #: src/components/plot/queue/PlotQueueActions.tsx:97
 #: src/components/plotNFT/PlotNFTCard.tsx:122
 #: src/components/selectKey/SelectKey.tsx:76
-#: src/components/selectKey/SelectKey.tsx:122
+#: src/components/selectKey/SelectKey.tsx:115
 #: src/components/wallet/did/WalletDID.tsx:449
 #: src/components/wallet/did/WalletDID.tsx:862
 #: src/components/wallet/did/WalletDIDCreate.tsx:194
@@ -679,8 +679,8 @@ msgstr "حذف قطعة"
 msgid "Delete Unconfirmed Transactions"
 msgstr ""
 
-#: src/components/selectKey/SelectKey.tsx:121
-#: src/components/selectKey/SelectKey.tsx:281
+#: src/components/selectKey/SelectKey.tsx:114
+#: src/components/selectKey/SelectKey.tsx:273
 msgid "Delete all keys"
 msgstr "حذف جميع المفاتيح"
 
@@ -693,16 +693,16 @@ msgid "Delete key {fingerprint}"
 msgstr ""
 
 #: src/components/selectKey/SelectKey.tsx:126
-msgid "Deleting all keys will permanently remove the keys from your computer, make sure you have backups. Are you sure you want to continue?"
-msgstr "سيؤدي حذف جميع المفاتيح إلى إزالة المفاتيح بشكل دائم من جهاز الكمبيوتر الخاص بك، تأكد من أن لديك نسخ احتياطية. هل أنت متأكد من أنك تريد المتابعة؟"
+#~ msgid "Deleting all keys will permanently remove the keys from your computer, make sure you have backups. Are you sure you want to continue?"
+#~ msgstr "سيؤدي حذف جميع المفاتيح إلى إزالة المفاتيح بشكل دائم من جهاز الكمبيوتر الخاص بك، تأكد من أن لديك نسخ احتياطية. هل أنت متأكد من أنك تريد المتابعة؟"
 
 #: src/components/app/AppPassPrompt.tsx:191
 msgid "Deleting key"
 msgstr ""
 
 #: src/components/selectKey/SelectKey.tsx:101
-msgid "Deleting the key will permanently remove the key from your computer, make sure you have backups. Are you sure you want to continue?"
-msgstr "سيؤدي حذف المفتاح إلى إزالة المفتاح بشكل دائم من جهاز الكمبيوتر الخاص بك، تأكد من أن لديك نسخ احتياطية. هل أنت متأكد من أنك تريد المتابعة؟"
+#~ msgid "Deleting the key will permanently remove the key from your computer, make sure you have backups. Are you sure you want to continue?"
+#~ msgstr "سيؤدي حذف المفتاح إلى إزالة المفتاح بشكل دائم من جهاز الكمبيوتر الخاص بك، تأكد من أن لديك نسخ احتياطية. هل أنت متأكد من أنك تريد المتابعة؟"
 
 #: src/electron/main.tsx:304
 msgid "Developer"
@@ -783,6 +783,18 @@ msgstr "تعديل"
 #: src/components/plotNFT/PlotNFTCard.tsx:301
 #: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:76
 msgid "Edit Payout Instructions"
+msgstr ""
+
+#: src/components/wallet/EnterPassphrasePrompt.tsx:111
+msgid "Enter Passphrase"
+msgstr ""
+
+#: src/components/app/AppKeyringMigrator.tsx:119
+msgid "Enter a strong passphrase and click Migrate Keys to secure your keys"
+msgstr ""
+
+#: src/components/settings/SetPassphrasePrompt.tsx:132
+msgid "Enter a strong passphrase to secure your keys:"
 msgstr ""
 
 #: src/components/wallet/WalletImport.tsx:146
@@ -890,7 +902,7 @@ msgstr "المزرعة غير متصلة"
 msgid "Farmer is not running"
 msgstr "المزارع لا يعمل"
 
-#: src/middleware/middleware_api.jsx:245
+#: src/middleware/middleware_api.jsx:247
 msgid "Farmer public key:"
 msgstr ""
 
@@ -1068,7 +1080,7 @@ msgstr "إذا لم يتم اختيار أي منها, فسيكون هو الد�
 msgid "Import Wallet from Mnemonics"
 msgstr "إستيراد المحفظة من Mnemonics"
 
-#: src/components/selectKey/SelectKey.tsx:272
+#: src/components/selectKey/SelectKey.tsx:264
 msgid "Import from Mnemonics (24 words)"
 msgstr "إستيراد من Mnemonics (24 كلمة)"
 
@@ -1267,7 +1279,7 @@ msgstr "إدارة عناوين جوائز الزراعة"
 msgid "MiB Up/Down"
 msgstr "ميجابيت تنزيل\\رفع"
 
-#: src/components/selectKey/SelectKey.tsx:145
+#: src/components/selectKey/SelectKey.tsx:137
 msgid "Migrate"
 msgstr ""
 
@@ -1280,7 +1292,7 @@ msgid "Migrate Keys"
 msgstr ""
 
 #: src/components/app/AppKeyringMigrator.tsx:115
-#: src/components/selectKey/SelectKey.tsx:144
+#: src/components/selectKey/SelectKey.tsx:136
 msgid "Migration required"
 msgstr ""
 
@@ -1352,7 +1364,7 @@ msgstr "الإسم المستعار"
 msgid "No"
 msgstr "لايوجد"
 
-#: src/middleware/middleware_api.jsx:271
+#: src/middleware/middleware_api.jsx:273
 msgid "No 24 word seed, since this key is imported."
 msgstr "لا يوجد بذور 24 كلمة، لأن هذا المفتاح مستورد."
 
@@ -1825,7 +1837,7 @@ msgstr ""
 msgid "Pool does not provide target_puzzle_hash."
 msgstr ""
 
-#: src/middleware/middleware_api.jsx:253
+#: src/middleware/middleware_api.jsx:255
 msgid "Pool public key:"
 msgstr ""
 
@@ -1872,15 +1884,15 @@ msgstr "تجزئة العنوان السابق"
 #~ msgid "Previous Sub Block Hash"
 #~ msgstr "Previous Sub Block Hash"
 
-#: src/components/selectKey/SelectKey.tsx:215
+#: src/components/selectKey/SelectKey.tsx:207
 msgid "Private key with public fingerprint {fingerprint}"
 msgstr "مفتاح خاص ببصمة إصبع عامة {fingerprint}"
 
-#: src/middleware/middleware_api.jsx:219
+#: src/middleware/middleware_api.jsx:221
 msgid "Private key {0}"
 msgstr "المفتاح الخاص {0}"
 
-#: src/middleware/middleware_api.jsx:229
+#: src/middleware/middleware_api.jsx:231
 msgid "Private key:"
 msgstr "المفتاح الخاص:"
 
@@ -1901,7 +1913,7 @@ msgstr ""
 msgid "Pubkey"
 msgstr "المفتاح العمومي"
 
-#: src/middleware/middleware_api.jsx:237
+#: src/middleware/middleware_api.jsx:239
 msgid "Public key:"
 msgstr "المفتاح العمومي"
 
@@ -2055,11 +2067,11 @@ msgstr "موقع المجلد المؤقت الثاني"
 msgid "Secure your keychain using a strong passphrase"
 msgstr ""
 
-#: src/components/selectKey/SelectKey.tsx:224
+#: src/components/selectKey/SelectKey.tsx:216
 msgid "See private key"
 msgstr "عرض المفتاح الخاص"
 
-#: src/middleware/middleware_api.jsx:263
+#: src/middleware/middleware_api.jsx:265
 msgid "Seed:"
 msgstr "توزيع الجدول:"
 
@@ -2071,7 +2083,7 @@ msgstr "حدد المجلد المؤقت الثاني"
 msgid "Select Final Directory"
 msgstr "حدد المجلد النهائي"
 
-#: src/components/selectKey/SelectKey.tsx:183
+#: src/components/selectKey/SelectKey.tsx:175
 msgid "Select Key"
 msgstr "اختر المفتاح"
 
@@ -2174,7 +2186,7 @@ msgstr "إظهار الخيارات المتقدمة"
 msgid "Side"
 msgstr "الجهة"
 
-#: src/components/selectKey/SelectKey.tsx:188
+#: src/components/selectKey/SelectKey.tsx:180
 msgid "Sign In"
 msgstr "تسجيل الدخول"
 
@@ -2765,7 +2777,8 @@ msgstr "هل تريد كسب المزيد من شيا؟ أضف المزيد من
 msgid "Want to have a delay before the next plot starts?"
 msgstr "هل ترغب في الحصول على تأخير قبل أن تبدأ الحزمة التالية؟"
 
-#: src/components/selectKey/SelectKey.tsx:95
+#: src/components/selectKey/SelectKey.tsx:88
+#: src/components/selectKey/SelectKey.tsx:119
 msgid "Warning: This key is used for a wallet that may have a non-zero balance. By deleting this key you may lose access to this wallet"
 msgstr ""
 
@@ -2773,7 +2786,7 @@ msgstr ""
 msgid "Warning: This key is used for your farming rewards address. By deleting this key you may lose access to any future farming rewards"
 msgstr ""
 
-#: src/components/selectKey/SelectKey.tsx:88
+#: src/components/selectKey/SelectKey.tsx:94
 msgid "Warning: This key is used for your pool rewards address. By deleting this key you may lose access to any future pool rewards"
 msgstr ""
 
@@ -2785,7 +2798,7 @@ msgstr "الوزن/الأهمية"
 msgid "Weight is the total added difficulty of all sub blocks up to and including this one"
 msgstr "الوزن هو الصعوبة المضافة الكلية لجميع الكتل الفرعية حتى و بما في ذلك هذه"
 
-#: src/components/selectKey/SelectKey.tsx:191
+#: src/components/selectKey/SelectKey.tsx:183
 msgid "Welcome to Chia. Please log in with an existing key, or create a new key."
 msgstr "مرحبا بكم في تشيا. الرجاء تسجيل الدخول باستخدام مفتاح موجود, أو إنشاء مفتاح جديد."
 
@@ -2904,7 +2917,7 @@ msgstr ""
 msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Are you sure you want to skip migrating your keys?"
 msgstr ""
 
-#: src/components/selectKey/SelectKey.tsx:149
+#: src/components/selectKey/SelectKey.tsx:141
 msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Would you like to migrate your keys now?"
 msgstr ""
 

@@ -187,7 +187,7 @@ msgstr "Autogenererat namn från poolkontraktsadress"
 
 #: src/components/core/components/FormBackButton/FormBackButton.tsx:46
 #: src/components/selectKey/SelectKey.tsx:77
-#: src/components/selectKey/SelectKey.tsx:123
+#: src/components/selectKey/SelectKey.tsx:116
 msgid "Back"
 msgstr "Tillbaka"
 
@@ -281,7 +281,7 @@ msgstr "Köp"
 #~ msgid "CCListItems.title"
 #~ msgstr ""
 
-#: src/components/selectKey/SelectKey.tsx:220
+#: src/components/selectKey/SelectKey.tsx:212
 msgid "Can be backed up to mnemonic seed"
 msgstr "Kan säkerhetskopieras till minnesfras"
 
@@ -293,7 +293,7 @@ msgstr "Kan säkerhetskopieras till minnesfras"
 #: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:123
 #: src/components/plotNFT/select/PlotNFTSelectBase.tsx:87
 #: src/components/plotNFT/select/PlotNFTSelectFaucet.tsx:30
-#: src/components/selectKey/SelectKey.tsx:146
+#: src/components/selectKey/SelectKey.tsx:138
 #: src/components/settings/ChangePassphrasePrompt.tsx:198
 #: src/components/settings/RemovePassphrasePrompt.tsx:137
 #: src/components/settings/SetPassphrasePrompt.tsx:168
@@ -562,7 +562,7 @@ msgstr "Skapa en säkerhetskopia"
 msgid "Create a Plot NFT"
 msgstr "Skapa en plott-NFT"
 
-#: src/components/selectKey/SelectKey.tsx:262
+#: src/components/selectKey/SelectKey.tsx:254
 msgid "Create a new private key"
 msgstr "Skapa ny privat nyckel"
 
@@ -628,7 +628,7 @@ msgstr "Aktuellt poängsaldo"
 msgid "Current trade status"
 msgstr "Aktuell handelsstatus"
 
-#: src/components/selectKey/SelectKey.tsx:235
+#: src/components/selectKey/SelectKey.tsx:227
 msgid "DANGER: permanently delete private key"
 msgstr "VARNING: permanent ta bort privat nyckel"
 
@@ -656,7 +656,7 @@ msgstr "Fördröjning"
 #: src/components/plot/queue/PlotQueueActions.tsx:97
 #: src/components/plotNFT/PlotNFTCard.tsx:122
 #: src/components/selectKey/SelectKey.tsx:76
-#: src/components/selectKey/SelectKey.tsx:122
+#: src/components/selectKey/SelectKey.tsx:115
 #: src/components/wallet/did/WalletDID.tsx:449
 #: src/components/wallet/did/WalletDID.tsx:862
 #: src/components/wallet/did/WalletDIDCreate.tsx:194
@@ -679,8 +679,8 @@ msgstr "Ta bort plott"
 msgid "Delete Unconfirmed Transactions"
 msgstr "Ta bort obekräftade transaktioner"
 
-#: src/components/selectKey/SelectKey.tsx:121
-#: src/components/selectKey/SelectKey.tsx:281
+#: src/components/selectKey/SelectKey.tsx:114
+#: src/components/selectKey/SelectKey.tsx:273
 msgid "Delete all keys"
 msgstr "Ta bort alla nycklar"
 
@@ -693,16 +693,16 @@ msgid "Delete key {fingerprint}"
 msgstr "Ta bort nyckel {fingerprint}"
 
 #: src/components/selectKey/SelectKey.tsx:126
-msgid "Deleting all keys will permanently remove the keys from your computer, make sure you have backups. Are you sure you want to continue?"
-msgstr "Om du tar bort alla nycklar kommer de att permanent tas bort från datorn. Se till att du har säkerhetskopierat dem. Är det säkert att du vill fortsätta?"
+#~ msgid "Deleting all keys will permanently remove the keys from your computer, make sure you have backups. Are you sure you want to continue?"
+#~ msgstr "Om du tar bort alla nycklar kommer de att permanent tas bort från datorn. Se till att du har säkerhetskopierat dem. Är det säkert att du vill fortsätta?"
 
 #: src/components/app/AppPassPrompt.tsx:191
 msgid "Deleting key"
 msgstr ""
 
 #: src/components/selectKey/SelectKey.tsx:101
-msgid "Deleting the key will permanently remove the key from your computer, make sure you have backups. Are you sure you want to continue?"
-msgstr "Om du tar bort nyckeln kommer den att permanent tas bort från datorn. Se till att du har säkerhetskopierat den. Är det säkert att du vill fortsätta?"
+#~ msgid "Deleting the key will permanently remove the key from your computer, make sure you have backups. Are you sure you want to continue?"
+#~ msgstr "Om du tar bort nyckeln kommer den att permanent tas bort från datorn. Se till att du har säkerhetskopierat den. Är det säkert att du vill fortsätta?"
 
 #: src/electron/main.tsx:304
 msgid "Developer"
@@ -784,6 +784,18 @@ msgstr "Redigera"
 #: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:76
 msgid "Edit Payout Instructions"
 msgstr "Redigera utbetalningsinstruktioner"
+
+#: src/components/wallet/EnterPassphrasePrompt.tsx:111
+msgid "Enter Passphrase"
+msgstr ""
+
+#: src/components/app/AppKeyringMigrator.tsx:119
+msgid "Enter a strong passphrase and click Migrate Keys to secure your keys"
+msgstr ""
+
+#: src/components/settings/SetPassphrasePrompt.tsx:132
+msgid "Enter a strong passphrase to secure your keys:"
+msgstr ""
 
 #: src/components/wallet/WalletImport.tsx:146
 msgid "Enter the 24 word mnemonic that you have saved in order to restore your Chia wallet."
@@ -890,7 +902,7 @@ msgstr "Odlaren är inte ansluten"
 msgid "Farmer is not running"
 msgstr "Odlaren körs inte"
 
-#: src/middleware/middleware_api.jsx:245
+#: src/middleware/middleware_api.jsx:247
 msgid "Farmer public key:"
 msgstr "Publik nyckel för odlare:"
 
@@ -1068,7 +1080,7 @@ msgstr "Om ingen anges kommer den tillfälliga mappen att användas."
 msgid "Import Wallet from Mnemonics"
 msgstr "Importera plånbok från minnesfras"
 
-#: src/components/selectKey/SelectKey.tsx:272
+#: src/components/selectKey/SelectKey.tsx:264
 msgid "Import from Mnemonics (24 words)"
 msgstr "Importera från minnesfras (24 ord)"
 
@@ -1267,7 +1279,7 @@ msgstr "Hantera dina måladresser för odlarbelöningar"
 msgid "MiB Up/Down"
 msgstr "MiB upp/ner"
 
-#: src/components/selectKey/SelectKey.tsx:145
+#: src/components/selectKey/SelectKey.tsx:137
 msgid "Migrate"
 msgstr ""
 
@@ -1280,7 +1292,7 @@ msgid "Migrate Keys"
 msgstr ""
 
 #: src/components/app/AppKeyringMigrator.tsx:115
-#: src/components/selectKey/SelectKey.tsx:144
+#: src/components/selectKey/SelectKey.tsx:136
 msgid "Migration required"
 msgstr ""
 
@@ -1352,7 +1364,7 @@ msgstr "Smeknamn"
 msgid "No"
 msgstr "Nej"
 
-#: src/middleware/middleware_api.jsx:271
+#: src/middleware/middleware_api.jsx:273
 msgid "No 24 word seed, since this key is imported."
 msgstr "Ingen 24 ords minnesfras eftersom denna nyckel har importerats."
 
@@ -1825,7 +1837,7 @@ msgstr "Poolen tillhandahåller inte relative_lock_height."
 msgid "Pool does not provide target_puzzle_hash."
 msgstr "Poolen tillhandahåller inte target_puzzle_hash."
 
-#: src/middleware/middleware_api.jsx:253
+#: src/middleware/middleware_api.jsx:255
 msgid "Pool public key:"
 msgstr "Publik nyckel för pool:"
 
@@ -1872,15 +1884,15 @@ msgstr "Föregående huvudhash"
 #~ msgid "Previous Sub Block Hash"
 #~ msgstr "Previous Sub Block Hash"
 
-#: src/components/selectKey/SelectKey.tsx:215
+#: src/components/selectKey/SelectKey.tsx:207
 msgid "Private key with public fingerprint {fingerprint}"
 msgstr "Privat nyckel med publikt fingeravtryck {fingerprint}"
 
-#: src/middleware/middleware_api.jsx:219
+#: src/middleware/middleware_api.jsx:221
 msgid "Private key {0}"
 msgstr "Privat nyckel {0}"
 
-#: src/middleware/middleware_api.jsx:229
+#: src/middleware/middleware_api.jsx:231
 msgid "Private key:"
 msgstr "Privat nyckel:"
 
@@ -1901,7 +1913,7 @@ msgstr "Protokollversion"
 msgid "Pubkey"
 msgstr "Publik nyckel"
 
-#: src/middleware/middleware_api.jsx:237
+#: src/middleware/middleware_api.jsx:239
 msgid "Public key:"
 msgstr "Publik nyckel:"
 
@@ -2055,11 +2067,11 @@ msgstr "Andra tillfällig mapp"
 msgid "Secure your keychain using a strong passphrase"
 msgstr ""
 
-#: src/components/selectKey/SelectKey.tsx:224
+#: src/components/selectKey/SelectKey.tsx:216
 msgid "See private key"
 msgstr "Visa privat nyckel"
 
-#: src/middleware/middleware_api.jsx:263
+#: src/middleware/middleware_api.jsx:265
 msgid "Seed:"
 msgstr "Minnesfras:"
 
@@ -2071,7 +2083,7 @@ msgstr "Välj en andra tillfällig mapp"
 msgid "Select Final Directory"
 msgstr "Välj slutlig mapp"
 
-#: src/components/selectKey/SelectKey.tsx:183
+#: src/components/selectKey/SelectKey.tsx:175
 msgid "Select Key"
 msgstr "Välj nyckel"
 
@@ -2174,7 +2186,7 @@ msgstr "Visa avancerade alternativ"
 msgid "Side"
 msgstr "Sida"
 
-#: src/components/selectKey/SelectKey.tsx:188
+#: src/components/selectKey/SelectKey.tsx:180
 msgid "Sign In"
 msgstr "Logga in"
 
@@ -2765,7 +2777,8 @@ msgstr "Vill du tjäna mer Chia? Lägg till fler plottar till din odling."
 msgid "Want to have a delay before the next plot starts?"
 msgstr "Vill du ha en fördröjning innan nästa plott startar?"
 
-#: src/components/selectKey/SelectKey.tsx:95
+#: src/components/selectKey/SelectKey.tsx:88
+#: src/components/selectKey/SelectKey.tsx:119
 msgid "Warning: This key is used for a wallet that may have a non-zero balance. By deleting this key you may lose access to this wallet"
 msgstr "Varning: Denna nyckel används för en plånbok som kan ha ett saldo som inte är noll. Genom att ta bort denna nyckel kan du förlora åtkomst till denna plånbok"
 
@@ -2773,7 +2786,7 @@ msgstr "Varning: Denna nyckel används för en plånbok som kan ha ett saldo som
 msgid "Warning: This key is used for your farming rewards address. By deleting this key you may lose access to any future farming rewards"
 msgstr "Varning: Denna nyckel används av din farmer. Genom att ta bort denna nyckel kan du förlora tillgång till framtida vinster"
 
-#: src/components/selectKey/SelectKey.tsx:88
+#: src/components/selectKey/SelectKey.tsx:94
 msgid "Warning: This key is used for your pool rewards address. By deleting this key you may lose access to any future pool rewards"
 msgstr "Varning: Denna nyckel används av din pool. Genom att ta bort denna nyckel kan du förlora tillgång till framtida vinster från poolen"
 
@@ -2785,7 +2798,7 @@ msgstr "Vikt"
 msgid "Weight is the total added difficulty of all sub blocks up to and including this one"
 msgstr "Vikt är den sammanlagda svårighetsgraden för alla underblock upp till och inklusive detta"
 
-#: src/components/selectKey/SelectKey.tsx:191
+#: src/components/selectKey/SelectKey.tsx:183
 msgid "Welcome to Chia. Please log in with an existing key, or create a new key."
 msgstr "Välkommen till Chia. Logga in med en existerande nyckel, eller skapa en ny nyckel."
 
@@ -2906,7 +2919,7 @@ msgstr ""
 msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Are you sure you want to skip migrating your keys?"
 msgstr ""
 
-#: src/components/selectKey/SelectKey.tsx:149
+#: src/components/selectKey/SelectKey.tsx:141
 msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Would you like to migrate your keys now?"
 msgstr ""
 

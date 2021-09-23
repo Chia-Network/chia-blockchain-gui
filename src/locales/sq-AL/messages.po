@@ -187,7 +187,7 @@ msgstr "Emri i gjeneruar automatikisht nga adresa e kontratës së pollit"
 
 #: src/components/core/components/FormBackButton/FormBackButton.tsx:46
 #: src/components/selectKey/SelectKey.tsx:77
-#: src/components/selectKey/SelectKey.tsx:123
+#: src/components/selectKey/SelectKey.tsx:116
 msgid "Back"
 msgstr "Kthe"
 
@@ -281,7 +281,7 @@ msgstr "Bli"
 #~ msgid "CCListItems.title"
 #~ msgstr ""
 
-#: src/components/selectKey/SelectKey.tsx:220
+#: src/components/selectKey/SelectKey.tsx:212
 msgid "Can be backed up to mnemonic seed"
 msgstr "Mund të ruhet ne bërthamen mnemonic"
 
@@ -293,7 +293,7 @@ msgstr "Mund të ruhet ne bërthamen mnemonic"
 #: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:123
 #: src/components/plotNFT/select/PlotNFTSelectBase.tsx:87
 #: src/components/plotNFT/select/PlotNFTSelectFaucet.tsx:30
-#: src/components/selectKey/SelectKey.tsx:146
+#: src/components/selectKey/SelectKey.tsx:138
 #: src/components/settings/ChangePassphrasePrompt.tsx:198
 #: src/components/settings/RemovePassphrasePrompt.tsx:137
 #: src/components/settings/SetPassphrasePrompt.tsx:168
@@ -562,7 +562,7 @@ msgstr "Krijo kopje rezervë"
 msgid "Create a Plot NFT"
 msgstr "Krijoni një plot NFT"
 
-#: src/components/selectKey/SelectKey.tsx:262
+#: src/components/selectKey/SelectKey.tsx:254
 msgid "Create a new private key"
 msgstr "Krijo një çelës privat"
 
@@ -628,7 +628,7 @@ msgstr "Bilanci aktual i pikëve"
 msgid "Current trade status"
 msgstr "Statusi aktual i burses"
 
-#: src/components/selectKey/SelectKey.tsx:235
+#: src/components/selectKey/SelectKey.tsx:227
 msgid "DANGER: permanently delete private key"
 msgstr "KUJDES: Fshije përgjithmonë çelësin privat"
 
@@ -656,7 +656,7 @@ msgstr "Vonesa"
 #: src/components/plot/queue/PlotQueueActions.tsx:97
 #: src/components/plotNFT/PlotNFTCard.tsx:122
 #: src/components/selectKey/SelectKey.tsx:76
-#: src/components/selectKey/SelectKey.tsx:122
+#: src/components/selectKey/SelectKey.tsx:115
 #: src/components/wallet/did/WalletDID.tsx:449
 #: src/components/wallet/did/WalletDID.tsx:862
 #: src/components/wallet/did/WalletDIDCreate.tsx:194
@@ -679,8 +679,8 @@ msgstr "Fshij plotin"
 msgid "Delete Unconfirmed Transactions"
 msgstr "Fshi transaksionet e pakonfirmuara"
 
-#: src/components/selectKey/SelectKey.tsx:121
-#: src/components/selectKey/SelectKey.tsx:281
+#: src/components/selectKey/SelectKey.tsx:114
+#: src/components/selectKey/SelectKey.tsx:273
 msgid "Delete all keys"
 msgstr "Fshij të gjithë Celsat"
 
@@ -693,16 +693,16 @@ msgid "Delete key {fingerprint}"
 msgstr "Fshij çelësin {fingerprint}"
 
 #: src/components/selectKey/SelectKey.tsx:126
-msgid "Deleting all keys will permanently remove the keys from your computer, make sure you have backups. Are you sure you want to continue?"
-msgstr "Fshirja e të gjithë celsave do të fshij përgjithëmon Celsat nga kompjuteri jotë, sigurohuni që keni një kopje të ruajtur. Jeni i sigurt që doni të vashdoni?"
+#~ msgid "Deleting all keys will permanently remove the keys from your computer, make sure you have backups. Are you sure you want to continue?"
+#~ msgstr "Fshirja e të gjithë celsave do të fshij përgjithëmon Celsat nga kompjuteri jotë, sigurohuni që keni një kopje të ruajtur. Jeni i sigurt që doni të vashdoni?"
 
 #: src/components/app/AppPassPrompt.tsx:191
 msgid "Deleting key"
 msgstr ""
 
 #: src/components/selectKey/SelectKey.tsx:101
-msgid "Deleting the key will permanently remove the key from your computer, make sure you have backups. Are you sure you want to continue?"
-msgstr "Fshirja e të gjithë celsave do të fshij përgjithëmon Celsat nga kompjuteri jotë, sigurohuni që keni një kopje të ruajtur. Jeni i sigurt që doni të vashdoni?"
+#~ msgid "Deleting the key will permanently remove the key from your computer, make sure you have backups. Are you sure you want to continue?"
+#~ msgstr "Fshirja e të gjithë celsave do të fshij përgjithëmon Celsat nga kompjuteri jotë, sigurohuni që keni një kopje të ruajtur. Jeni i sigurt që doni të vashdoni?"
 
 #: src/electron/main.tsx:304
 msgid "Developer"
@@ -784,6 +784,18 @@ msgstr "Modifiko"
 #: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:76
 msgid "Edit Payout Instructions"
 msgstr "Ndryshoni udhëzimet e pagesës"
+
+#: src/components/wallet/EnterPassphrasePrompt.tsx:111
+msgid "Enter Passphrase"
+msgstr ""
+
+#: src/components/app/AppKeyringMigrator.tsx:119
+msgid "Enter a strong passphrase and click Migrate Keys to secure your keys"
+msgstr ""
+
+#: src/components/settings/SetPassphrasePrompt.tsx:132
+msgid "Enter a strong passphrase to secure your keys:"
+msgstr ""
 
 #: src/components/wallet/WalletImport.tsx:146
 msgid "Enter the 24 word mnemonic that you have saved in order to restore your Chia wallet."
@@ -890,7 +902,7 @@ msgstr "Fermeri nuk është i lidhur"
 msgid "Farmer is not running"
 msgstr "Ferma nuk është në gjendje pune"
 
-#: src/middleware/middleware_api.jsx:245
+#: src/middleware/middleware_api.jsx:247
 msgid "Farmer public key:"
 msgstr "Çelësi publik i fermerit:"
 
@@ -1068,7 +1080,7 @@ msgstr "Nëse asnjë nuk është zgjedhur, atëherë do të vendoset në direkto
 msgid "Import Wallet from Mnemonics"
 msgstr "Importo Portofolin nga Mnemonics"
 
-#: src/components/selectKey/SelectKey.tsx:272
+#: src/components/selectKey/SelectKey.tsx:264
 msgid "Import from Mnemonics (24 words)"
 msgstr "Import nga Mnemonics (24 fjalë)"
 
@@ -1267,7 +1279,7 @@ msgstr "Menaxhoni adresat tuaja të synuara për shpërblimet tuaja të fermerit
 msgid "MiB Up/Down"
 msgstr "MiB Lart / Poshtë"
 
-#: src/components/selectKey/SelectKey.tsx:145
+#: src/components/selectKey/SelectKey.tsx:137
 msgid "Migrate"
 msgstr ""
 
@@ -1280,7 +1292,7 @@ msgid "Migrate Keys"
 msgstr ""
 
 #: src/components/app/AppKeyringMigrator.tsx:115
-#: src/components/selectKey/SelectKey.tsx:144
+#: src/components/selectKey/SelectKey.tsx:136
 msgid "Migration required"
 msgstr ""
 
@@ -1352,7 +1364,7 @@ msgstr "Pseudonimi"
 msgid "No"
 msgstr "Jo"
 
-#: src/middleware/middleware_api.jsx:271
+#: src/middleware/middleware_api.jsx:273
 msgid "No 24 word seed, since this key is imported."
 msgstr "Nuk ka farë 24 fjalësh, pasi që ky çelës importohet."
 
@@ -1825,7 +1837,7 @@ msgstr "Polli nuk ofron relative_lock_height."
 msgid "Pool does not provide target_puzzle_hash."
 msgstr "Polli nuk ofron target_puzzle_hash."
 
-#: src/middleware/middleware_api.jsx:253
+#: src/middleware/middleware_api.jsx:255
 msgid "Pool public key:"
 msgstr "Çelësi publik i pollit:"
 
@@ -1872,15 +1884,15 @@ msgstr "Headeri i mëparshëm Hash"
 #~ msgid "Previous Sub Block Hash"
 #~ msgstr "Previous Sub Block Hash"
 
-#: src/components/selectKey/SelectKey.tsx:215
+#: src/components/selectKey/SelectKey.tsx:207
 msgid "Private key with public fingerprint {fingerprint}"
 msgstr "Çelës privat me gjurmë gishtash publike {fingerprint}"
 
-#: src/middleware/middleware_api.jsx:219
+#: src/middleware/middleware_api.jsx:221
 msgid "Private key {0}"
 msgstr "Çelësi privat {0}"
 
-#: src/middleware/middleware_api.jsx:229
+#: src/middleware/middleware_api.jsx:231
 msgid "Private key:"
 msgstr "Çelësi privat:"
 
@@ -1901,7 +1913,7 @@ msgstr "Versioni i Protokollit"
 msgid "Pubkey"
 msgstr "Pubkey"
 
-#: src/middleware/middleware_api.jsx:237
+#: src/middleware/middleware_api.jsx:239
 msgid "Public key:"
 msgstr "Çelësi publik:"
 
@@ -2055,11 +2067,11 @@ msgstr "Vendndodhja e përkohshme e dosjes së dytë"
 msgid "Secure your keychain using a strong passphrase"
 msgstr ""
 
-#: src/components/selectKey/SelectKey.tsx:224
+#: src/components/selectKey/SelectKey.tsx:216
 msgid "See private key"
 msgstr "Shiko çelësin privat"
 
-#: src/middleware/middleware_api.jsx:263
+#: src/middleware/middleware_api.jsx:265
 msgid "Seed:"
 msgstr "Fara:"
 
@@ -2071,7 +2083,7 @@ msgstr "Zgjidhni Direktorinë e 2-të të Përkohshme"
 msgid "Select Final Directory"
 msgstr "Zgjidhni Drejtorinë Finale"
 
-#: src/components/selectKey/SelectKey.tsx:183
+#: src/components/selectKey/SelectKey.tsx:175
 msgid "Select Key"
 msgstr "Zgjidhni çelësin"
 
@@ -2174,7 +2186,7 @@ msgstr "Shfaq opsionet e avancuara"
 msgid "Side"
 msgstr "Ana"
 
-#: src/components/selectKey/SelectKey.tsx:188
+#: src/components/selectKey/SelectKey.tsx:180
 msgid "Sign In"
 msgstr "Identifikohu"
 
@@ -2765,7 +2777,8 @@ msgstr "Dëshironi të fitoni më shumë Chia? Shtoni më shumë plote në ferm�
 msgid "Want to have a delay before the next plot starts?"
 msgstr "Dëshironi të keni një vonesë para se të fillojë ploti tjetër?"
 
-#: src/components/selectKey/SelectKey.tsx:95
+#: src/components/selectKey/SelectKey.tsx:88
+#: src/components/selectKey/SelectKey.tsx:119
 msgid "Warning: This key is used for a wallet that may have a non-zero balance. By deleting this key you may lose access to this wallet"
 msgstr "Paralajmërim: Ky çelës përdoret për një portofol që mund të ketë një bilanc jo-zero. Duke fshirë këtë çelës mund të humbni qasjen në këtë portofol"
 
@@ -2773,7 +2786,7 @@ msgstr "Paralajmërim: Ky çelës përdoret për një portofol që mund të ket�
 msgid "Warning: This key is used for your farming rewards address. By deleting this key you may lose access to any future farming rewards"
 msgstr "Paralajmërim: Ky çelës përdoret për adresën tuaj të shpërblimeve. Duke fshirë këtë çelës, ju mund të humbni qasjen në çdo shpërblim të ardhshëm"
 
-#: src/components/selectKey/SelectKey.tsx:88
+#: src/components/selectKey/SelectKey.tsx:94
 msgid "Warning: This key is used for your pool rewards address. By deleting this key you may lose access to any future pool rewards"
 msgstr "Paralajmërim: Ky çelës përdoret për adresën tuaj të shpërblimeve në poll. Duke fshirë këtë çelës, mund të humbni qasjen në çdo shpërblim të ardhshëm të pollit"
 
@@ -2785,7 +2798,7 @@ msgstr "Pesha"
 msgid "Weight is the total added difficulty of all sub blocks up to and including this one"
 msgstr "Pesha është vështirësia totale e shtuar e të gjitha nën blloqeve deri dhe duke përfshirë këtë"
 
-#: src/components/selectKey/SelectKey.tsx:191
+#: src/components/selectKey/SelectKey.tsx:183
 msgid "Welcome to Chia. Please log in with an existing key, or create a new key."
 msgstr "Mirësevini në Chia. Ju lutemi identifikohuni me një çelës ekzistues, ose krijoni një çelës të ri."
 
@@ -2904,7 +2917,7 @@ msgstr ""
 msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Are you sure you want to skip migrating your keys?"
 msgstr ""
 
-#: src/components/selectKey/SelectKey.tsx:149
+#: src/components/selectKey/SelectKey.tsx:141
 msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Would you like to migrate your keys now?"
 msgstr ""
 

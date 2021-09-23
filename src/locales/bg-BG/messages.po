@@ -187,7 +187,7 @@ msgstr ""
 
 #: src/components/core/components/FormBackButton/FormBackButton.tsx:46
 #: src/components/selectKey/SelectKey.tsx:77
-#: src/components/selectKey/SelectKey.tsx:123
+#: src/components/selectKey/SelectKey.tsx:116
 msgid "Back"
 msgstr "Назад"
 
@@ -281,7 +281,7 @@ msgstr "Купи"
 #~ msgid "CCListItems.title"
 #~ msgstr ""
 
-#: src/components/selectKey/SelectKey.tsx:220
+#: src/components/selectKey/SelectKey.tsx:212
 msgid "Can be backed up to mnemonic seed"
 msgstr "Може да бъде създадена точка за възстановяване в мнемонично семе"
 
@@ -293,7 +293,7 @@ msgstr "Може да бъде създадена точка за възстан
 #: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:123
 #: src/components/plotNFT/select/PlotNFTSelectBase.tsx:87
 #: src/components/plotNFT/select/PlotNFTSelectFaucet.tsx:30
-#: src/components/selectKey/SelectKey.tsx:146
+#: src/components/selectKey/SelectKey.tsx:138
 #: src/components/settings/ChangePassphrasePrompt.tsx:198
 #: src/components/settings/RemovePassphrasePrompt.tsx:137
 #: src/components/settings/SetPassphrasePrompt.tsx:168
@@ -562,7 +562,7 @@ msgstr "Създай точка за възстановяване"
 msgid "Create a Plot NFT"
 msgstr ""
 
-#: src/components/selectKey/SelectKey.tsx:262
+#: src/components/selectKey/SelectKey.tsx:254
 msgid "Create a new private key"
 msgstr "Създай нов таен ключ"
 
@@ -628,7 +628,7 @@ msgstr ""
 msgid "Current trade status"
 msgstr "Статус на търга"
 
-#: src/components/selectKey/SelectKey.tsx:235
+#: src/components/selectKey/SelectKey.tsx:227
 msgid "DANGER: permanently delete private key"
 msgstr "ОПАСНОСТ: Необратимо изтриване на личен ключ"
 
@@ -656,7 +656,7 @@ msgstr "Закъснение"
 #: src/components/plot/queue/PlotQueueActions.tsx:97
 #: src/components/plotNFT/PlotNFTCard.tsx:122
 #: src/components/selectKey/SelectKey.tsx:76
-#: src/components/selectKey/SelectKey.tsx:122
+#: src/components/selectKey/SelectKey.tsx:115
 #: src/components/wallet/did/WalletDID.tsx:449
 #: src/components/wallet/did/WalletDID.tsx:862
 #: src/components/wallet/did/WalletDIDCreate.tsx:194
@@ -679,8 +679,8 @@ msgstr "Изтрий поле"
 msgid "Delete Unconfirmed Transactions"
 msgstr ""
 
-#: src/components/selectKey/SelectKey.tsx:121
-#: src/components/selectKey/SelectKey.tsx:281
+#: src/components/selectKey/SelectKey.tsx:114
+#: src/components/selectKey/SelectKey.tsx:273
 msgid "Delete all keys"
 msgstr "Изтриване на всички ключове"
 
@@ -693,16 +693,16 @@ msgid "Delete key {fingerprint}"
 msgstr ""
 
 #: src/components/selectKey/SelectKey.tsx:126
-msgid "Deleting all keys will permanently remove the keys from your computer, make sure you have backups. Are you sure you want to continue?"
-msgstr "Изтриването на всички ключове необратимо ще премахме всички ключове от компютъра, подсигури се че имаш точка за възстановяване! Сигурен ли си че искаш да продължиш?"
+#~ msgid "Deleting all keys will permanently remove the keys from your computer, make sure you have backups. Are you sure you want to continue?"
+#~ msgstr "Изтриването на всички ключове необратимо ще премахме всички ключове от компютъра, подсигури се че имаш точка за възстановяване! Сигурен ли си че искаш да продължиш?"
 
 #: src/components/app/AppPassPrompt.tsx:191
 msgid "Deleting key"
 msgstr ""
 
 #: src/components/selectKey/SelectKey.tsx:101
-msgid "Deleting the key will permanently remove the key from your computer, make sure you have backups. Are you sure you want to continue?"
-msgstr "Изтриването на ключа необратимо ще премахне всички ключа от компютъра, подсигури се че имаш точка за възстановяване! Сигурен ли си че искаш да продължиш?"
+#~ msgid "Deleting the key will permanently remove the key from your computer, make sure you have backups. Are you sure you want to continue?"
+#~ msgstr "Изтриването на ключа необратимо ще премахне всички ключа от компютъра, подсигури се че имаш точка за възстановяване! Сигурен ли си че искаш да продължиш?"
 
 #: src/electron/main.tsx:304
 msgid "Developer"
@@ -783,6 +783,18 @@ msgstr "Редактиране"
 #: src/components/plotNFT/PlotNFTCard.tsx:301
 #: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:76
 msgid "Edit Payout Instructions"
+msgstr ""
+
+#: src/components/wallet/EnterPassphrasePrompt.tsx:111
+msgid "Enter Passphrase"
+msgstr ""
+
+#: src/components/app/AppKeyringMigrator.tsx:119
+msgid "Enter a strong passphrase and click Migrate Keys to secure your keys"
+msgstr ""
+
+#: src/components/settings/SetPassphrasePrompt.tsx:132
+msgid "Enter a strong passphrase to secure your keys:"
 msgstr ""
 
 #: src/components/wallet/WalletImport.tsx:146
@@ -890,7 +902,7 @@ msgstr "Фермера не е свързан"
 msgid "Farmer is not running"
 msgstr "Фермера не работи"
 
-#: src/middleware/middleware_api.jsx:245
+#: src/middleware/middleware_api.jsx:247
 msgid "Farmer public key:"
 msgstr ""
 
@@ -1068,7 +1080,7 @@ msgstr "Ако не бъде избрано ще бъде по подразби�
 msgid "Import Wallet from Mnemonics"
 msgstr "Внеси портфейл от мнемоники"
 
-#: src/components/selectKey/SelectKey.tsx:272
+#: src/components/selectKey/SelectKey.tsx:264
 msgid "Import from Mnemonics (24 words)"
 msgstr "Внеси от мнемоники (24 думи)"
 
@@ -1267,7 +1279,7 @@ msgstr "Управление на адрес за получаване на въ
 msgid "MiB Up/Down"
 msgstr "MiB Up/Down"
 
-#: src/components/selectKey/SelectKey.tsx:145
+#: src/components/selectKey/SelectKey.tsx:137
 msgid "Migrate"
 msgstr ""
 
@@ -1280,7 +1292,7 @@ msgid "Migrate Keys"
 msgstr ""
 
 #: src/components/app/AppKeyringMigrator.tsx:115
-#: src/components/selectKey/SelectKey.tsx:144
+#: src/components/selectKey/SelectKey.tsx:136
 msgid "Migration required"
 msgstr ""
 
@@ -1352,7 +1364,7 @@ msgstr "Псевдоним"
 msgid "No"
 msgstr "Не"
 
-#: src/middleware/middleware_api.jsx:271
+#: src/middleware/middleware_api.jsx:273
 msgid "No 24 word seed, since this key is imported."
 msgstr "Няма ключ от 24 думи, тъй като този частен ключ е бил импортиран."
 
@@ -1827,7 +1839,7 @@ msgstr ""
 msgid "Pool does not provide target_puzzle_hash."
 msgstr ""
 
-#: src/middleware/middleware_api.jsx:253
+#: src/middleware/middleware_api.jsx:255
 msgid "Pool public key:"
 msgstr ""
 
@@ -1874,15 +1886,15 @@ msgstr "Минал хедър хеш"
 #~ msgid "Previous Sub Block Hash"
 #~ msgstr "Previous Sub Block Hash"
 
-#: src/components/selectKey/SelectKey.tsx:215
+#: src/components/selectKey/SelectKey.tsx:207
 msgid "Private key with public fingerprint {fingerprint}"
 msgstr "Личен ключ със публичен отпечатък {fingerprint}"
 
-#: src/middleware/middleware_api.jsx:219
+#: src/middleware/middleware_api.jsx:221
 msgid "Private key {0}"
 msgstr "Личен ключ {0}"
 
-#: src/middleware/middleware_api.jsx:229
+#: src/middleware/middleware_api.jsx:231
 msgid "Private key:"
 msgstr "Частен ключ:"
 
@@ -1903,7 +1915,7 @@ msgstr ""
 msgid "Pubkey"
 msgstr "Публичен ключ"
 
-#: src/middleware/middleware_api.jsx:237
+#: src/middleware/middleware_api.jsx:239
 msgid "Public key:"
 msgstr "Публичен ключ:"
 
@@ -2057,11 +2069,11 @@ msgstr "Вторична локация на временна папка"
 msgid "Secure your keychain using a strong passphrase"
 msgstr ""
 
-#: src/components/selectKey/SelectKey.tsx:224
+#: src/components/selectKey/SelectKey.tsx:216
 msgid "See private key"
 msgstr "Виж частен ключ"
 
-#: src/middleware/middleware_api.jsx:263
+#: src/middleware/middleware_api.jsx:265
 msgid "Seed:"
 msgstr "Семе:"
 
@@ -2073,7 +2085,7 @@ msgstr "Избери втора временна директория"
 msgid "Select Final Directory"
 msgstr "Избери крайна директория"
 
-#: src/components/selectKey/SelectKey.tsx:183
+#: src/components/selectKey/SelectKey.tsx:175
 msgid "Select Key"
 msgstr "Избери ключ"
 
@@ -2176,7 +2188,7 @@ msgstr "Показване на разширени опции"
 msgid "Side"
 msgstr "Страна"
 
-#: src/components/selectKey/SelectKey.tsx:188
+#: src/components/selectKey/SelectKey.tsx:180
 msgid "Sign In"
 msgstr "Вход"
 
@@ -2767,7 +2779,8 @@ msgstr "Искате да получавате повече Chia? Добавет
 msgid "Want to have a delay before the next plot starts?"
 msgstr "Искате да има време преди да започне следващото поле?"
 
-#: src/components/selectKey/SelectKey.tsx:95
+#: src/components/selectKey/SelectKey.tsx:88
+#: src/components/selectKey/SelectKey.tsx:119
 msgid "Warning: This key is used for a wallet that may have a non-zero balance. By deleting this key you may lose access to this wallet"
 msgstr ""
 
@@ -2775,7 +2788,7 @@ msgstr ""
 msgid "Warning: This key is used for your farming rewards address. By deleting this key you may lose access to any future farming rewards"
 msgstr ""
 
-#: src/components/selectKey/SelectKey.tsx:88
+#: src/components/selectKey/SelectKey.tsx:94
 msgid "Warning: This key is used for your pool rewards address. By deleting this key you may lose access to any future pool rewards"
 msgstr ""
 
@@ -2787,7 +2800,7 @@ msgstr "Тегло"
 msgid "Weight is the total added difficulty of all sub blocks up to and including this one"
 msgstr ""
 
-#: src/components/selectKey/SelectKey.tsx:191
+#: src/components/selectKey/SelectKey.tsx:183
 msgid "Welcome to Chia. Please log in with an existing key, or create a new key."
 msgstr "Добре дошли в Chia. Моля влезте със съществуващ ключ или създайте нов."
 
@@ -2906,7 +2919,7 @@ msgstr ""
 msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Are you sure you want to skip migrating your keys?"
 msgstr ""
 
-#: src/components/selectKey/SelectKey.tsx:149
+#: src/components/selectKey/SelectKey.tsx:141
 msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Would you like to migrate your keys now?"
 msgstr ""
 
