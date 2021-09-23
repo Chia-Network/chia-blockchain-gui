@@ -54,6 +54,7 @@ import { deleteUnconfirmedTransactions } from '../../../modules/incoming';
 import WalletCards from './WalletCards';
 import WalletStatus from '../WalletStatus';
 import useOpenDialog from '../../../hooks/useOpenDialog';
+import EnterPassphrasePrompt from '../EnterPassphrasePrompt';
 
 const drawerWidth = 240;
 
@@ -259,8 +260,8 @@ function BalanceCard(props: BalanceCardProps) {
 
   const balance = wallet?.wallet_balance?.confirmed_wallet_balance;
   const balance_spendable = wallet?.wallet_balance?.spendable_balance;
-  const balance_pending = wallet?.wallet_balance?.balance_pending;
-  const pending_change = wallet?.wallet_balance?.balance_pending;
+  const balance_pending = wallet?.wallet_balance?.pending_balance;
+  const pending_change = wallet?.wallet_balance?.pending_change;
 
   const balance_ptotal = balance + balance_pending;
 
@@ -366,6 +367,7 @@ function SendCard(props: SendCardProps) {
   const { wallet_id } = props;
   const classes = useStyles();
   const dispatch = useDispatch();
+  const openDialog = useOpenDialog();
 
   const methods = useForm<SendTransactionData>({
     shouldUnregister: false,
@@ -408,57 +410,58 @@ function SendCard(props: SendCardProps) {
     }
   }
 
-  function handleSubmit(data: SendTransactionData) {
+  async function handleSubmit(data: SendTransactionData) {
     if (sending_transaction) {
       return;
     }
 
+    const isPassphraseCorrect = await openDialog(
+      <EnterPassphrasePrompt />
+    );
+
+    if (!isPassphraseCorrect) {
+      // passphrase is incorrect
+      return;
+    }
+
     if (syncing) {
-      dispatch(
-        openDialog(
-          <AlertDialog>
-            <Trans>Please finish syncing before making a transaction</Trans>
-          </AlertDialog>,
-        ),
+      openDialog(
+        <AlertDialog>
+          <Trans>Please finish syncing before making a transaction</Trans>
+        </AlertDialog>,
       );
       return;
     }
 
     const amount = data.amount.trim();
     if (!isNumeric(amount)) {
-      dispatch(
-        openDialog(
-          <AlertDialog>
-            <Trans>Please enter a valid numeric amount</Trans>
-          </AlertDialog>,
-        ),
+      openDialog(
+        <AlertDialog>
+          <Trans>Please enter a valid numeric amount</Trans>
+        </AlertDialog>,
       );
       return;
     }
 
     const fee = data.fee.trim();
     if (!isNumeric(fee)) {
-      dispatch(
-        openDialog(
-          <AlertDialog>
-            <Trans>Please enter a valid numeric fee</Trans>
-          </AlertDialog>,
-        ),
+      openDialog(
+        <AlertDialog>
+          <Trans>Please enter a valid numeric fee</Trans>
+        </AlertDialog>,
       );
       return;
     }
 
     let address = data.address;
     if (address.includes('colour')) {
-      dispatch(
-        openDialog(
-          <AlertDialog>
-            <Trans>
-              Error: Cannot send chia to coloured address. Please enter a chia
-              address.
-            </Trans>
-          </AlertDialog>,
-        ),
+      openDialog(
+        <AlertDialog>
+          <Trans>
+            Error: Cannot send chia to coloured address. Please enter a chia
+            address.
+          </Trans>
+        </AlertDialog>,
       );
       return;
     }
