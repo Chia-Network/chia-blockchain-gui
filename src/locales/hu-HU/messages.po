@@ -8,7 +8,7 @@ msgstr ""
 "Language: hu_HU\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-09-23 04:27\n"
+"PO-Revision-Date: 2021-09-23 16:38\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -327,7 +327,7 @@ msgstr "Módosítás"
 #: src/components/settings/ChangePassphrasePrompt.tsx:207
 #: src/components/settings/Settings.tsx:158
 msgid "Change Passphrase"
-msgstr ""
+msgstr "Jelszó megváltoztatása"
 
 #: src/components/plotNFT/PlotNFTCard.tsx:408
 #: src/components/plotNFT/PlotNFTChangePool.tsx:110
@@ -418,13 +418,13 @@ msgstr "Megerősítés Lecsatlakozás"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:185
 msgid "Confirm New Passphrase"
-msgstr ""
+msgstr "Új jelszó megerősítése"
 
 #: src/components/app/AppKeyringMigrator.tsx:140
 #: src/components/app/AppKeyringMigrator.tsx:141
 #: src/components/settings/SetPassphrasePrompt.tsx:153
 msgid "Confirm Passphrase"
-msgstr ""
+msgstr "Jelszó megerősítése"
 
 #: src/components/plotNFT/PlotNFTCard.tsx:121
 #: src/components/wallet/standard/WalletStandard.tsx:632
@@ -617,7 +617,7 @@ msgstr "Jelenlegi nehézség"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:165
 msgid "Current Passphrase"
-msgstr ""
+msgstr "Jelenlegi jelszó"
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:156
 #: src/components/plotNFT/PlotNFTCard.tsx:198
@@ -667,7 +667,7 @@ msgstr "Törlés"
 
 #: src/components/app/AppPassPrompt.tsx:195
 msgid "Delete Key"
-msgstr ""
+msgstr "Kulcs törlése"
 
 #: src/components/plot/PlotAction.tsx:26
 #: src/components/plot/queue/PlotQueueActions.tsx:42
@@ -698,7 +698,7 @@ msgstr "Kulcs törlése {fingerprint}"
 
 #: src/components/app/AppPassPrompt.tsx:191
 msgid "Deleting key"
-msgstr ""
+msgstr "Kulcs törlése folyamatban"
 
 #: src/components/selectKey/SelectKey.tsx:101
 #~ msgid "Deleting the key will permanently remove the key from your computer, make sure you have backups. Are you sure you want to continue?"
@@ -719,11 +719,11 @@ msgstr "Bonyolultság"
 
 #: src/components/app/AppPassPrompt.tsx:78
 msgid "Disable"
-msgstr ""
+msgstr "Letiltás"
 
 #: src/components/app/AppPassPrompt.tsx:77
 msgid "Disable Passphrase Protection"
-msgstr ""
+msgstr "Jelszavas védelem kikapcsolása"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:114
 #~ msgid "Disable bifield plotting when your temporary directory is on fast storage like SSD or you need lower per process RAM requirements. Plotting with bitfield enabled has about 20% less overall writes."
@@ -787,7 +787,7 @@ msgstr "Kifizetési utasítások módosítása"
 
 #: src/components/wallet/EnterPassphrasePrompt.tsx:111
 msgid "Enter Passphrase"
-msgstr ""
+msgstr "Adja meg a jelszavát"
 
 #: src/components/app/AppKeyringMigrator.tsx:119
 msgid "Enter a strong passphrase and click Migrate Keys to secure your keys"
@@ -804,7 +804,7 @@ msgstr "A Chia pénztárca visszaállításához írja be az elmentett 24 szób�
 #: src/components/settings/RemovePassphrasePrompt.tsx:115
 #: src/components/wallet/EnterPassphrasePrompt.tsx:115
 msgid "Enter your passphrase:"
-msgstr ""
+msgstr "Adja meg a jelszavát:"
 
 #: src/components/farm/FarmerStatus.tsx:21
 #: src/components/farm/FarmerStatus.tsx:22
@@ -1281,7 +1281,7 @@ msgstr "MiB Feltöltés/Letöltés"
 
 #: src/components/selectKey/SelectKey.tsx:137
 msgid "Migrate"
-msgstr ""
+msgstr "Áttelepítés"
 
 #: src/components/settings/Settings.tsx:182
 msgid "Migrate Keyring"
@@ -1289,12 +1289,12 @@ msgstr ""
 
 #: src/components/app/AppKeyringMigrator.tsx:188
 msgid "Migrate Keys"
-msgstr ""
+msgstr "Kulcsok áttelepítése"
 
 #: src/components/app/AppKeyringMigrator.tsx:115
 #: src/components/selectKey/SelectKey.tsx:136
 msgid "Migration required"
-msgstr ""
+msgstr "Áttelepítés szükséges"
 
 #: src/components/settings/Settings.tsx:121
 msgid "Migration required to support passphrase protection"
@@ -1339,7 +1339,7 @@ msgstr "Új cím"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:175
 msgid "New Passphrase"
-msgstr ""
+msgstr "Új jelszó"
 
 #: src/components/wallet/WalletAdd.tsx:63
 msgid "New Wallet"
@@ -1347,7 +1347,7 @@ msgstr "Új tárca hozzáadása"
 
 #: src/components/app/AppPassPrompt.tsx:60
 msgid "New passphrase is the same as your current passphrase"
-msgstr ""
+msgstr "Az új jelszó megegyezik a jelenlegi jelszóval"
 
 #: src/components/block/Block.jsx:351
 #: src/components/wallet/WalletAdd.tsx:95
@@ -1481,29 +1481,29 @@ msgstr "Kimenő"
 #: src/components/settings/SetPassphrasePrompt.tsx:142
 #: src/components/wallet/EnterPassphrasePrompt.tsx:123
 msgid "Passphrase"
-msgstr ""
+msgstr "Jelszó"
 
 #: src/components/settings/Settings.tsx:213
 msgid "Passphrase Settings"
-msgstr ""
+msgstr "Jelszó beállítások"
 
 #: src/components/app/AppPassPrompt.tsx:149
 #: src/components/settings/RemovePassphrasePrompt.tsx:64
 #: src/components/wallet/EnterPassphrasePrompt.tsx:66
 msgid "Passphrase is incorrect"
-msgstr ""
+msgstr "A jelszó hibás"
 
 #: src/components/settings/Settings.tsx:93
 msgid "Passphrase protection has been disabled"
-msgstr ""
+msgstr "A jelszavas védelem le lett tiltva"
 
 #: src/components/settings/Settings.tsx:131
 msgid "Passphrase protection is disabled"
-msgstr ""
+msgstr "A jelszavas védelem le van tiltva"
 
 #: src/components/settings/Settings.tsx:128
 msgid "Passphrase protection is enabled"
-msgstr ""
+msgstr "A jelszavas védelem engedélyezve van"
 
 #: src/components/settings/Settings.tsx:122
 msgid "Passphrase support requires migrating your keys to a new keyring"
@@ -1570,7 +1570,7 @@ msgstr "Adjon meg egy fájlnevet"
 #: src/components/app/AppPassPrompt.tsx:133
 #: src/components/settings/SetPassphrasePrompt.tsx:48
 msgid "Please enter a passphrase"
-msgstr ""
+msgstr "Adja meg a jelszavát"
 
 #: src/components/wallet/did/WalletDID.tsx:934
 msgid "Please enter a pubkey"
@@ -2010,7 +2010,7 @@ msgstr "Kiadási megjegyzések"
 #: src/components/settings/RemovePassphrasePrompt.tsx:146
 #: src/components/settings/Settings.tsx:194
 msgid "Remove Passphrase"
-msgstr ""
+msgstr "Jelszó eltávolítása"
 
 #: src/components/app/AppKeyringMigrator.tsx:155
 msgid "Remove keys from old keyring upon successful migration"
@@ -2162,7 +2162,7 @@ msgstr "Küldje el a publikus címét a Rate Limited Wallet rendszergazdájának
 #: src/components/settings/SetPassphrasePrompt.tsx:177
 #: src/components/settings/Settings.tsx:205
 msgid "Set Passphrase"
-msgstr ""
+msgstr "Jelszó beállítása"
 
 #: src/components/app/AppPassPrompt.tsx:75
 msgid "Setting a passphrase is strongly recommended to protect your keys. Are you sure you want to skip setting a passphrase?"
@@ -2171,7 +2171,7 @@ msgstr ""
 #: src/components/dashboard/DashboardSideBar.tsx:76
 #: src/components/settings/Settings.tsx:239
 msgid "Settings"
-msgstr ""
+msgstr "Beállítások"
 
 #: src/components/core/components/AdvancedOptions/AdvancedOptions.tsx:74
 msgid "Show Advanced Options"
@@ -2194,7 +2194,7 @@ msgstr "Bejelentkezés"
 #: src/components/app/AppKeyringMigrator.tsx:177
 #: src/components/app/AppPassPrompt.tsx:74
 msgid "Skip"
-msgstr ""
+msgstr "Kihagyás"
 
 #: src/components/app/AppKeyringMigrator.tsx:46
 msgid "Skip Keyring Migration"
