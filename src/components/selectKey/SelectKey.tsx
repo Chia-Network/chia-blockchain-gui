@@ -53,9 +53,9 @@ export default function SelectKey() {
     (state: RootState) => state.keyring_state.migration_skipped
   );
 
-  async function handleClick(fingerprint: Fingerprint) {
-    await dispatch(resetMnemonic());
-    await dispatch(login_action(fingerprint));
+  function handleClick(fingerprint: Fingerprint) {
+    dispatch(resetMnemonic());
+    dispatch(login_action(fingerprint));
   }
 
   function handleShowKey(fingerprint: Fingerprint) {
@@ -70,24 +70,17 @@ export default function SelectKey() {
       const response: any = await dispatch(check_delete_key_action(fingerprint));
       dispatch(closeProgress());
 
-      const deletePrivateKey = await openDialog(
-        <ConfirmDialog
-          title={<Trans>Delete key {fingerprint}</Trans>}
-          confirmTitle={<Trans>Delete</Trans>}
-          cancelTitle={<Trans>Back</Trans>}
-          confirmColor="danger"
-        >
-          {response.used_for_farmer_rewards && (<Alert severity="warning">
-            <Trans>
-              Warning: This key is used for your farming rewards address. 
-              By deleting this key you may lose access to any future farming rewards
-              </Trans>
-          </Alert>)}
-
-          {response.used_for_pool_rewards && (<Alert severity="warning">
-            <Trans>
-              Warning: This key is used for your pool rewards address. 
-              By deleting this key you may lose access to any future pool rewards
+    const deletePrivateKey = await openDialog(
+      <ConfirmDialog
+        title={<Trans>Delete key {fingerprint}</Trans>}
+        confirmTitle={<Trans>Delete</Trans>}
+        cancelTitle={<Trans>Back</Trans>}
+        confirmColor="danger"
+      >
+        {response.used_for_farmer_rewards && (<Alert severity="warning">
+          <Trans>
+            Warning: This key is used for your farming rewards address.
+            By deleting this key you may lose access to any future farming rewards
             </Trans>
           </Alert>)}
 
@@ -99,8 +92,8 @@ export default function SelectKey() {
           </Alert>)}
 
           <Trans>
-            Deleting the key will permanently remove the key from your computer,
-            make sure you have backups. Are you sure you want to continue?
+            Warning: This key is used for your pool rewards address.
+            By deleting this key you may lose access to any future pool rewards
           </Trans>
         </ConfirmDialog>,
       );
@@ -124,9 +117,8 @@ export default function SelectKey() {
           confirmColor="default"
         >
           <Trans>
-            Deleting all keys will permanently remove the keys from your
-            computer, make sure you have backups. Are you sure you want to
-            continue?
+            Warning: This key is used for a wallet that may have a non-zero balance.
+            By deleting this key you may lose access to this wallet
           </Trans>
         </ConfirmDialog>
       ));

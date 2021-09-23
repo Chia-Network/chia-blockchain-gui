@@ -8,7 +8,7 @@ msgstr ""
 "Language: hu_HU\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-07-26 15:12\n"
+"PO-Revision-Date: 2021-09-17 17:40\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -32,7 +32,7 @@ msgstr "+ Új Plot NFT Hozzáadása"
 
 #: src/components/wallet/Wallets.tsx:132
 msgid "+ Add Wallet"
-msgstr ""
+msgstr "+ Tárca hozzáadása"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:94
 #~ msgid "0 automatically chooses bucket count"
@@ -106,11 +106,11 @@ msgstr "Plot hozzáadása"
 msgid "Add a Plot NFT"
 msgstr "Plot NFT Hozzáadása"
 
-#: src/components/plot/PlotAddDirectoryDialog.tsx:68
+#: src/components/plot/PlotAddDirectoryDialog.tsx:72
 msgid "Add a plot"
 msgstr "Plot hozzáadása"
 
-#: src/components/plot/PlotAddDirectoryDialog.tsx:107
+#: src/components/plot/PlotAddDirectoryDialog.tsx:111
 msgid "Add plot directory"
 msgstr "Parcella könyvtár hozzáadása"
 
@@ -288,7 +288,7 @@ msgstr "Biztonsági mentés elérhető a mnemonic maggal"
 #: src/components/app/AppPassPrompt.tsx:239
 #: src/components/backup/BackupCreate.tsx:50
 #: src/components/core/components/ConfirmDialog/ConfirmDialog.tsx:86
-#: src/components/farm/FarmManageFarmingRewards.tsx:196
+#: src/components/farm/FarmManageFarmingRewards.tsx:200
 #: src/components/fullNode/FullNodeAddConnection.tsx:89
 #: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:123
 #: src/components/plotNFT/select/PlotNFTSelectBase.tsx:87
@@ -364,7 +364,7 @@ msgstr "Válassz parcella méretet"
 msgid "Claim Rewards"
 msgstr "Kérjen jutalmakat"
 
-#: src/components/plot/PlotAddDirectoryDialog.tsx:114
+#: src/components/plot/PlotAddDirectoryDialog.tsx:118
 #: src/components/plot/queue/PlotQueueLogDialog.tsx:89
 msgid "Close"
 msgstr "Bezárás"
@@ -514,7 +514,7 @@ msgstr ""
 
 #: src/components/wallet/create/WalletCreate.jsx:290
 #~ msgid "Create DID wallet"
-#~ msgstr "DID tárca létrehozása"
+#~ msgstr "Create DID wallet"
 
 #: src/components/wallet/did/WalletDIDCreate.tsx:110
 msgid "Create Distributed Identity Wallet"
@@ -522,7 +522,7 @@ msgstr ""
 
 #: src/components/wallet/did/WalletDIDSelect.tsx:32
 msgid "Create New Wallet"
-msgstr ""
+msgstr "Új tárca létrehozása"
 
 #: src/components/trading/TradeManager.tsx:45
 msgid "Create Offer"
@@ -744,11 +744,11 @@ msgstr "Kapcsolat bontása"
 #: src/components/wallet/create/WalletCreateList.tsx:28
 #: src/components/wallet/did/WalletDIDSelect.tsx:25
 msgid "Distributed Identity"
-msgstr ""
+msgstr "Elosztott identitás"
 
 #: src/components/wallet/create/WalletCreate.jsx:280
 #~ msgid "Distributed Identity Options"
-#~ msgstr "Elosztott azonosítási lehetőségek"
+#~ msgstr "Distributed Identity Options"
 
 #: src/components/farm/overview/FarmOverviewHero.tsx:52
 #: src/components/plot/overview/PlotOverviewHero.tsx:69
@@ -773,7 +773,7 @@ msgstr "Húzza ide a mentett fájlt"
 
 #: src/components/wallet/did/WalletDIDRecovery.tsx:109
 msgid "Drag and drop your recovery backup file"
-msgstr ""
+msgstr "Húzza ide a biztonsági mentés fájlt"
 
 #: src/electron/main.tsx:263
 msgid "Edit"
@@ -785,19 +785,7 @@ msgstr "Módosítás"
 msgid "Edit Payout Instructions"
 msgstr "Kifizetési utasítások módosítása"
 
-#: src/components/wallet/EnterPassphrasePrompt.tsx:111
-msgid "Enter Passphrase"
-msgstr ""
-
-#: src/components/app/AppKeyringMigrator.tsx:119
-msgid "Enter a strong passphrase and click Migrate Keys to secure your keys"
-msgstr ""
-
-#: src/components/settings/SetPassphrasePrompt.tsx:132
-msgid "Enter a strong passphrase to secure your keys:"
-msgstr ""
-
-#: src/components/wallet/WalletImport.tsx:147
+#: src/components/wallet/WalletImport.tsx:146
 msgid "Enter the 24 word mnemonic that you have saved in order to restore your Chia wallet."
 msgstr "A Chia pénztárca visszaállításához írja be az elmentett 24 szóból álló mnemonikát."
 
@@ -876,11 +864,11 @@ msgstr "Farmer nyilvános kulcsa"
 msgid "Farmer Puzzle Hash"
 msgstr "Farmer Kirakós Részlet"
 
-#: src/components/farm/FarmManageFarmingRewards.tsx:163
+#: src/components/farm/FarmManageFarmingRewards.tsx:167
 msgid "Farmer Reward Address"
 msgstr "Farmer jutalom címe"
 
-#: src/components/farm/FarmManageFarmingRewards.tsx:137
+#: src/components/farm/FarmManageFarmingRewards.tsx:141
 msgid "Farmer Reward Address is not properly formatted."
 msgstr "A farmoláshoz használt cím nincs megfelelően formázva."
 
@@ -888,7 +876,7 @@ msgstr "A farmoláshoz használt cím nincs megfelelően formázva."
 #~ msgid "Farmer Reward Address is not properly formatted. Using 'paste' is recommended."
 #~ msgstr "Farmer Reward Address is not properly formatted. Using 'paste' is recommended."
 
-#: src/components/farm/FarmManageFarmingRewards.tsx:131
+#: src/components/farm/FarmManageFarmingRewards.tsx:135
 msgid "Farmer Reward Address must not be empty."
 msgstr "A farmoláshoz használt cím nem lehet üres."
 
@@ -1076,7 +1064,7 @@ msgstr "IP cím / kiszolgáló"
 msgid "If none selected, then it will default to the temporary directory."
 msgstr "Ha egyik sincs kiválasztva, akkor az alapértelmezés szerint az ideiglenes könyvtár lesz"
 
-#: src/components/wallet/WalletImport.tsx:144
+#: src/components/wallet/WalletImport.tsx:143
 msgid "Import Wallet from Mnemonics"
 msgstr "A Wallet importálása a Mnemonicsból"
 
@@ -1271,7 +1259,7 @@ msgstr "A gazdálkodási jutalmak kezelése"
 msgid "Manage Recovery DIDs"
 msgstr ""
 
-#: src/components/farm/FarmManageFarmingRewards.tsx:119
+#: src/components/farm/FarmManageFarmingRewards.tsx:123
 msgid "Manage Your Farming Rewards Target Addresses"
 msgstr "Kezelje a gazdálkodási jutalmak célcímeit"
 
@@ -1351,7 +1339,7 @@ msgstr ""
 
 #: src/components/block/Block.jsx:351
 #: src/components/wallet/WalletAdd.tsx:95
-#: src/components/wallet/WalletImport.tsx:163
+#: src/components/wallet/WalletImport.tsx:162
 msgid "Next"
 msgstr "Következő"
 
@@ -1376,7 +1364,7 @@ msgstr "Nincs kitermelt blokk"
 msgid "No previous transactions"
 msgstr "Nincs korábbi tranzakció"
 
-#: src/components/farm/FarmManageFarmingRewards.tsx:156
+#: src/components/farm/FarmManageFarmingRewards.tsx:160
 msgid "No private keys for one or both addresses. Safe only if you are sending rewards to another wallet."
 msgstr "Hiányoz(nak) a cím(ek)hez tartozó privát kulcs(ok). Csak akkor biztonságos, ha egy másik tárcába küldöd a jutalmakat."
 
@@ -1428,7 +1416,7 @@ msgstr "Nincs csatlakozva"
 msgid "Not found Plots"
 msgstr "Nem talált Parcellát"
 
-#: src/components/farm/FarmManageFarmingRewards.tsx:184
+#: src/components/farm/FarmManageFarmingRewards.tsx:188
 msgid "Note that this does not change your pooling payout addresses. This only affects old format plots, and the 0.25XCH reward for pooling plots."
 msgstr ""
 
@@ -1468,7 +1456,7 @@ msgstr ""
 
 #: src/components/wallet/create/recoverDIDWallet.js:156
 #~ msgid "Only one backup file is allowed. To add a new backup file, please delete any previously uploaded files and try again."
-#~ msgstr ""
+#~ msgstr "Only one backup file is allowed. To add a new backup file, please delete any previously uploaded files and try again."
 
 #: src/components/wallet/WalletHistory.tsx:23
 msgid "Outgoing"
@@ -1565,7 +1553,7 @@ msgstr ""
 #: src/components/wallet/did/WalletDID.tsx:526
 #: src/components/wallet/did/WalletDID.tsx:914
 msgid "Please enter a filename"
-msgstr ""
+msgstr "Adjon meg egy fájlnevet"
 
 #: src/components/app/AppPassPrompt.tsx:133
 #: src/components/settings/SetPassphrasePrompt.tsx:48
@@ -1574,7 +1562,7 @@ msgstr ""
 
 #: src/components/wallet/did/WalletDID.tsx:934
 msgid "Please enter a pubkey"
-msgstr ""
+msgstr "Adjon meg egy publikus kulcsot"
 
 #: src/components/wallet/did/WalletDID.tsx:944
 msgid "Please enter a puzzlehash"
@@ -1809,11 +1797,11 @@ msgstr "Parcella nyilvános kulcs"
 msgid "Pool Puzzle Hash"
 msgstr "Véletlenszerű Pool Hash"
 
-#: src/components/farm/FarmManageFarmingRewards.tsx:173
+#: src/components/farm/FarmManageFarmingRewards.tsx:177
 msgid "Pool Reward Address"
 msgstr "Farmer jutalom címe"
 
-#: src/components/farm/FarmManageFarmingRewards.tsx:149
+#: src/components/farm/FarmManageFarmingRewards.tsx:153
 msgid "Pool Reward Address is not properly formatted."
 msgstr "A pool-hoz használt cím nincs megfelelően formázva."
 
@@ -1821,7 +1809,7 @@ msgstr "A pool-hoz használt cím nincs megfelelően formázva."
 #~ msgid "Pool Reward Address is not properly formatted. Using 'paste' is recommended."
 #~ msgstr "Pool Reward Address is not properly formatted. Using 'paste' is recommended."
 
-#: src/components/farm/FarmManageFarmingRewards.tsx:144
+#: src/components/farm/FarmManageFarmingRewards.tsx:148
 msgid "Pool Reward Address must not be empty."
 msgstr "A pool-hoz használt cím nem lehet üres."
 
@@ -1974,16 +1962,16 @@ msgstr "Fogadó cím"
 #: src/components/wallet/did/WalletDID.tsx:464
 #: src/components/wallet/did/WalletDIDRecovery.tsx:124
 msgid "Recover"
-msgstr ""
+msgstr "Visszaállítás"
 
 #: src/components/wallet/did/WalletDID.tsx:340
 #: src/components/wallet/did/WalletDID.tsx:480
 msgid "Recover DID Wallet"
-msgstr ""
+msgstr "DID pénztárca visszaállítása"
 
 #: src/components/wallet/create/WalletCreate.jsx:296
 #~ msgid "Recover DID wallet"
-#~ msgstr "DID pénztárca visszaállítása"
+#~ msgstr "Recover DID wallet"
 
 #: src/components/wallet/did/WalletDIDRecovery.tsx:84
 msgid "Recover Distributed Identity Wallet"
@@ -1991,7 +1979,7 @@ msgstr ""
 
 #: src/components/wallet/did/WalletDIDSelect.tsx:39
 msgid "Recover Wallet"
-msgstr ""
+msgstr "Pénztárca visszaállítása"
 
 #: src/components/plot/PlotHeader.tsx:78
 #: src/components/plot/overview/PlotOverviewHero.tsx:62
@@ -2045,7 +2033,7 @@ msgstr "Állítsa vissza a színes érmék és más intelligens pénztárcák me
 msgid "Safe To Skip"
 msgstr "Biztonságosan átugorható"
 
-#: src/components/farm/FarmManageFarmingRewards.tsx:199
+#: src/components/farm/FarmManageFarmingRewards.tsx:203
 #: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:126
 #: src/components/trading/CreateOffer.jsx:142
 msgid "Save"
@@ -2127,7 +2115,7 @@ msgstr "Kiválasztva"
 
 #: src/components/wallet/did/WalletDIDRecovery.tsx:91
 msgid "Selected recovery file:"
-msgstr ""
+msgstr "Válassza ki a visszaállítási fájlt:"
 
 #: src/components/plotNFT/PlotNFTExternalState.tsx:23
 #: src/components/plotNFT/PlotNFTState.tsx:57
@@ -2441,7 +2429,7 @@ msgstr ""
 msgid "These plots are invalid, you might want to delete them."
 msgstr "Ezek a plotok érvénytelenek, lehet, hogy törölni kellene ôket."
 
-#: src/components/plot/PlotAddDirectoryDialog.tsx:72
+#: src/components/plot/PlotAddDirectoryDialog.tsx:76
 msgid "This allows you to add a directory that has plots in it. If you have not created any plots, go to the plotting screen."
 msgstr "Ez lehetôvé teszi, hogy hozzáadj egy könyvtárat, amiben parcellák vannak. Ha nem hoztál létre parcellákat, akkor menj a mûvelés képernyôre."
 
@@ -2728,7 +2716,7 @@ msgstr ""
 
 #: src/components/wallet/did/WalletDID.tsx:1118
 msgid "Wallet does not exists"
-msgstr ""
+msgstr "A tárca nem létezik"
 
 #: src/components/wallet/Wallets.tsx:34
 #~ msgid "WalletItem.ccWallet"
@@ -2838,13 +2826,17 @@ msgstr ""
 msgid "You can still create plots for this plot NFT, but you can not make changes until sync is complete."
 msgstr ""
 
+#: src/components/plot/add/PlotAddChooseSize.tsx:63
+msgid "You do not need to be synced or connected to plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
+msgstr ""
+
 #: src/components/plot/add/PlotAddChooseSize.tsx:56
 #~ msgid "You do not need to be synched or connected to Plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
 #~ msgstr "You do not need to be synched or connected to Plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:63
-msgid "You do not need to be synched or connected to plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
-msgstr "Parcella készítéshez nem szükséges hálózati kapcsolat vagy, hogy a kliens szinkronban legyen. A folyamat közben létrejövő átmeneti fájlok mérete meghaladja az elkészített plot fájl méretét. Figyelj oda rá, hogy elegendő üres háttértárral rendelkezz. <0>További információ</0>"
+#~ msgid "You do not need to be synched or connected to plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
+#~ msgstr "Parcella készítéshez nem szükséges hálózati kapcsolat vagy, hogy a kliens szinkronban legyen. A folyamat közben létrejövő átmeneti fájlok mérete meghaladja az elkészített plot fájl méretét. Figyelj oda rá, hogy elegendő üres háttértárral rendelkezz. <0>További információ</0>"
 
 #: src/components/core/components/FormBackButton/FormBackButton.tsx:29
 msgid "You have made changes. Do you want to discard them?"

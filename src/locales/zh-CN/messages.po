@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh_CN\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-07-26 15:12\n"
+"PO-Revision-Date: 2021-09-17 17:39\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -32,7 +32,7 @@ msgstr "+ 添加新的农田NFT"
 
 #: src/components/wallet/Wallets.tsx:132
 msgid "+ Add Wallet"
-msgstr ""
+msgstr "+ 添加钱包"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:94
 #~ msgid "0 automatically chooses bucket count"
@@ -79,7 +79,7 @@ msgstr "添加"
 #: src/components/wallet/did/WalletDID.tsx:874
 #: src/components/wallet/did/WalletDIDCreate.tsx:205
 msgid "Add Backup ID"
-msgstr ""
+msgstr "添加备份 ID"
 
 #: src/components/plot/PlotHeader.tsx:91
 msgid "Add Plot Directory"
@@ -106,11 +106,11 @@ msgstr "开垦农田"
 msgid "Add a Plot NFT"
 msgstr "开垦农田NTF"
 
-#: src/components/plot/PlotAddDirectoryDialog.tsx:68
+#: src/components/plot/PlotAddDirectoryDialog.tsx:72
 msgid "Add a plot"
 msgstr "开垦农田"
 
-#: src/components/plot/PlotAddDirectoryDialog.tsx:107
+#: src/components/plot/PlotAddDirectoryDialog.tsx:111
 msgid "Add plot directory"
 msgstr "添加农田文件夹"
 
@@ -288,7 +288,7 @@ msgstr "可备份为助记词"
 #: src/components/app/AppPassPrompt.tsx:239
 #: src/components/backup/BackupCreate.tsx:50
 #: src/components/core/components/ConfirmDialog/ConfirmDialog.tsx:86
-#: src/components/farm/FarmManageFarmingRewards.tsx:196
+#: src/components/farm/FarmManageFarmingRewards.tsx:200
 #: src/components/fullNode/FullNodeAddConnection.tsx:89
 #: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:123
 #: src/components/plotNFT/select/PlotNFTSelectBase.tsx:87
@@ -364,7 +364,7 @@ msgstr "选择农田文件大小"
 msgid "Claim Rewards"
 msgstr "申领奖励"
 
-#: src/components/plot/PlotAddDirectoryDialog.tsx:114
+#: src/components/plot/PlotAddDirectoryDialog.tsx:118
 #: src/components/plot/queue/PlotQueueLogDialog.tsx:89
 msgid "Close"
 msgstr "关闭"
@@ -375,7 +375,7 @@ msgstr "正在关闭节点与服务"
 
 #: src/components/wallet/did/WalletDID.tsx:984
 msgid "Coin Name"
-msgstr ""
+msgstr "代币名称"
 
 #: src/components/trading/TradingOverview.jsx:366
 msgid "Coins:"
@@ -514,15 +514,15 @@ msgstr ""
 
 #: src/components/wallet/create/WalletCreate.jsx:290
 #~ msgid "Create DID wallet"
-#~ msgstr "创建去中心化标识钱包"
+#~ msgstr "Create DID wallet"
 
 #: src/components/wallet/did/WalletDIDCreate.tsx:110
 msgid "Create Distributed Identity Wallet"
-msgstr ""
+msgstr "创建分布式身份钱包"
 
 #: src/components/wallet/did/WalletDIDSelect.tsx:32
 msgid "Create New Wallet"
-msgstr ""
+msgstr "新建钱包"
 
 #: src/components/trading/TradeManager.tsx:45
 msgid "Create Offer"
@@ -744,11 +744,11 @@ msgstr "断开连接"
 #: src/components/wallet/create/WalletCreateList.tsx:28
 #: src/components/wallet/did/WalletDIDSelect.tsx:25
 msgid "Distributed Identity"
-msgstr ""
+msgstr "分布式身份认证"
 
 #: src/components/wallet/create/WalletCreate.jsx:280
 #~ msgid "Distributed Identity Options"
-#~ msgstr "分布式身份认证选项"
+#~ msgstr "Distributed Identity Options"
 
 #: src/components/farm/overview/FarmOverviewHero.tsx:52
 #: src/components/plot/overview/PlotOverviewHero.tsx:69
@@ -785,19 +785,7 @@ msgstr "编辑"
 msgid "Edit Payout Instructions"
 msgstr "编辑支付指令"
 
-#: src/components/wallet/EnterPassphrasePrompt.tsx:111
-msgid "Enter Passphrase"
-msgstr ""
-
-#: src/components/app/AppKeyringMigrator.tsx:119
-msgid "Enter a strong passphrase and click Migrate Keys to secure your keys"
-msgstr ""
-
-#: src/components/settings/SetPassphrasePrompt.tsx:132
-msgid "Enter a strong passphrase to secure your keys:"
-msgstr ""
-
-#: src/components/wallet/WalletImport.tsx:147
+#: src/components/wallet/WalletImport.tsx:146
 msgid "Enter the 24 word mnemonic that you have saved in order to restore your Chia wallet."
 msgstr "请输入你保存的24个助记词来恢复奇亚钱包"
 
@@ -876,11 +864,11 @@ msgstr "农民公钥"
 msgid "Farmer Puzzle Hash"
 msgstr "农民解谜哈希"
 
-#: src/components/farm/FarmManageFarmingRewards.tsx:163
+#: src/components/farm/FarmManageFarmingRewards.tsx:167
 msgid "Farmer Reward Address"
 msgstr "农民奖励地址"
 
-#: src/components/farm/FarmManageFarmingRewards.tsx:137
+#: src/components/farm/FarmManageFarmingRewards.tsx:141
 msgid "Farmer Reward Address is not properly formatted."
 msgstr "农民奖励地址格式不正确。"
 
@@ -888,7 +876,7 @@ msgstr "农民奖励地址格式不正确。"
 #~ msgid "Farmer Reward Address is not properly formatted. Using 'paste' is recommended."
 #~ msgstr "Farmer Reward Address is not properly formatted. Using 'paste' is recommended."
 
-#: src/components/farm/FarmManageFarmingRewards.tsx:131
+#: src/components/farm/FarmManageFarmingRewards.tsx:135
 msgid "Farmer Reward Address must not be empty."
 msgstr "农民奖励地址不能为空。"
 
@@ -1076,7 +1064,7 @@ msgstr "IP地址 / 主机"
 msgid "If none selected, then it will default to the temporary directory."
 msgstr "如果未指定，将会使用上述临时目录。"
 
-#: src/components/wallet/WalletImport.tsx:144
+#: src/components/wallet/WalletImport.tsx:143
 msgid "Import Wallet from Mnemonics"
 msgstr "使用助记词导入钱包"
 
@@ -1179,7 +1167,7 @@ msgstr "最近尝试过的证明"
 
 #: src/components/farm/card/FarmCardLastHeightFarmed.tsx:19
 msgid "Last Height Farmed"
-msgstr "最新的收割区块高度"
+msgstr "最新收割的区块高度"
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:36
 msgid "Latest Block Challenges"
@@ -1269,9 +1257,9 @@ msgstr "管理耕种奖励"
 
 #: src/components/wallet/did/WalletDID.tsx:806
 msgid "Manage Recovery DIDs"
-msgstr ""
+msgstr "管理恢复去中心化标识"
 
-#: src/components/farm/FarmManageFarmingRewards.tsx:119
+#: src/components/farm/FarmManageFarmingRewards.tsx:123
 msgid "Manage Your Farming Rewards Target Addresses"
 msgstr "管理耕种奖励发放地址"
 
@@ -1314,7 +1302,7 @@ msgstr "增加内存可以略微提高速度"
 
 #: src/components/wallet/did/WalletDID.tsx:537
 msgid "My DID Wallet"
-msgstr ""
+msgstr "我的去中心化标识钱包"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:415
 msgid "My Pubkey"
@@ -1351,7 +1339,7 @@ msgstr ""
 
 #: src/components/block/Block.jsx:351
 #: src/components/wallet/WalletAdd.tsx:95
-#: src/components/wallet/WalletImport.tsx:163
+#: src/components/wallet/WalletImport.tsx:162
 msgid "Next"
 msgstr "下一步"
 
@@ -1376,7 +1364,7 @@ msgstr "尚未有区块有收获"
 msgid "No previous transactions"
 msgstr "无过往交易"
 
-#: src/components/farm/FarmManageFarmingRewards.tsx:156
+#: src/components/farm/FarmManageFarmingRewards.tsx:160
 msgid "No private keys for one or both addresses. Safe only if you are sending rewards to another wallet."
 msgstr "本机没有所输入地址对应的私钥。请确认是否要将奖励发送至非本机钱包。"
 
@@ -1428,7 +1416,7 @@ msgstr "未连接"
 msgid "Not found Plots"
 msgstr "未找到农田"
 
-#: src/components/farm/FarmManageFarmingRewards.tsx:184
+#: src/components/farm/FarmManageFarmingRewards.tsx:188
 msgid "Note that this does not change your pooling payout addresses. This only affects old format plots, and the 0.25XCH reward for pooling plots."
 msgstr "请注意，这将不会改变你的合作社耕作支付地址。这只会影响旧农田文件，以及0.25XCH的合作社耕作奖励。"
 
@@ -1464,11 +1452,11 @@ msgstr "每个交易区块平均打包时间为一分钟。通常您的交易将
 
 #: src/components/wallet/did/WalletDIDRecovery.tsx:34
 msgid "Only one backup file is allowed."
-msgstr ""
+msgstr "只允许一个备份文件。"
 
 #: src/components/wallet/create/recoverDIDWallet.js:156
 #~ msgid "Only one backup file is allowed. To add a new backup file, please delete any previously uploaded files and try again."
-#~ msgstr ""
+#~ msgstr "Only one backup file is allowed. To add a new backup file, please delete any previously uploaded files and try again."
 
 #: src/components/wallet/WalletHistory.tsx:23
 msgid "Outgoing"
@@ -1565,7 +1553,7 @@ msgstr ""
 #: src/components/wallet/did/WalletDID.tsx:526
 #: src/components/wallet/did/WalletDID.tsx:914
 msgid "Please enter a filename"
-msgstr ""
+msgstr "请输入文件名"
 
 #: src/components/app/AppPassPrompt.tsx:133
 #: src/components/settings/SetPassphrasePrompt.tsx:48
@@ -1574,11 +1562,11 @@ msgstr ""
 
 #: src/components/wallet/did/WalletDID.tsx:934
 msgid "Please enter a pubkey"
-msgstr ""
+msgstr "请输入公钥"
 
 #: src/components/wallet/did/WalletDID.tsx:944
 msgid "Please enter a puzzlehash"
-msgstr ""
+msgstr "请输入谜题哈希"
 
 #: src/components/wallet/create/createRLAdmin.jsx:140
 msgid "Please enter a valid initial coin amount"
@@ -1587,7 +1575,7 @@ msgstr "请输入一个有效的初始币数量"
 #: src/components/wallet/did/WalletDID.tsx:777
 #: src/components/wallet/did/WalletDIDCreate.tsx:76
 msgid "Please enter a valid integer of 0 or greater for the number of Backup IDs needed for recovery."
-msgstr ""
+msgstr "请输入一个大于或者等于 0 的整数，用于恢复所需的备份ID。"
 
 #: src/components/wallet/create/createNewColouredCoin.jsx:69
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:639
@@ -1597,7 +1585,7 @@ msgstr "请输入一个正确的数目"
 
 #: src/components/wallet/did/WalletDIDCreate.tsx:50
 msgid "Please enter a valid numeric amount."
-msgstr ""
+msgstr "请输入有效的数字金额。"
 
 #: src/components/wallet/create/createExistingColouredCoin.jsx:70
 #: src/components/wallet/create/createNewColouredCoin.jsx:79
@@ -1645,7 +1633,7 @@ msgstr "请选择金额"
 
 #: src/components/wallet/did/WalletDIDRecovery.tsx:55
 msgid "Please select backup file first"
-msgstr ""
+msgstr "请先选择备份文件"
 
 #: src/components/trading/CreateOffer.jsx:76
 msgid "Please select buy or sell"
@@ -1809,11 +1797,11 @@ msgstr "池公钥"
 msgid "Pool Puzzle Hash"
 msgstr "池谜语哈希"
 
-#: src/components/farm/FarmManageFarmingRewards.tsx:173
+#: src/components/farm/FarmManageFarmingRewards.tsx:177
 msgid "Pool Reward Address"
 msgstr "池奖励地址"
 
-#: src/components/farm/FarmManageFarmingRewards.tsx:149
+#: src/components/farm/FarmManageFarmingRewards.tsx:153
 msgid "Pool Reward Address is not properly formatted."
 msgstr "池奖励地址格式不正确。"
 
@@ -1821,7 +1809,7 @@ msgstr "池奖励地址格式不正确。"
 #~ msgid "Pool Reward Address is not properly formatted. Using 'paste' is recommended."
 #~ msgstr "Pool Reward Address is not properly formatted. Using 'paste' is recommended."
 
-#: src/components/farm/FarmManageFarmingRewards.tsx:144
+#: src/components/farm/FarmManageFarmingRewards.tsx:148
 msgid "Pool Reward Address must not be empty."
 msgstr "池奖励地址不能为空。"
 
@@ -1919,7 +1907,7 @@ msgstr "公钥："
 
 #: src/components/wallet/did/WalletDID.tsx:1002
 msgid "Puzzlehash"
-msgstr ""
+msgstr "谜题哈希"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:162
 msgid "Queue Name"
@@ -1974,24 +1962,24 @@ msgstr "接收地址"
 #: src/components/wallet/did/WalletDID.tsx:464
 #: src/components/wallet/did/WalletDIDRecovery.tsx:124
 msgid "Recover"
-msgstr ""
+msgstr "恢复"
 
 #: src/components/wallet/did/WalletDID.tsx:340
 #: src/components/wallet/did/WalletDID.tsx:480
 msgid "Recover DID Wallet"
-msgstr ""
+msgstr "恢复去中心化标识钱包"
 
 #: src/components/wallet/create/WalletCreate.jsx:296
 #~ msgid "Recover DID wallet"
-#~ msgstr "恢复DID钱包"
+#~ msgstr "Recover DID wallet"
 
 #: src/components/wallet/did/WalletDIDRecovery.tsx:84
 msgid "Recover Distributed Identity Wallet"
-msgstr ""
+msgstr "恢复分布式身份钱包"
 
 #: src/components/wallet/did/WalletDIDSelect.tsx:39
 msgid "Recover Wallet"
-msgstr ""
+msgstr "恢复钱包"
 
 #: src/components/plot/PlotHeader.tsx:78
 #: src/components/plot/overview/PlotOverviewHero.tsx:62
@@ -2045,7 +2033,7 @@ msgstr "从备份中恢复染色币与智能钱包的元信息"
 msgid "Safe To Skip"
 msgstr "可安全跳过此步骤"
 
-#: src/components/farm/FarmManageFarmingRewards.tsx:199
+#: src/components/farm/FarmManageFarmingRewards.tsx:203
 #: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:126
 #: src/components/trading/CreateOffer.jsx:142
 msgid "Save"
@@ -2127,7 +2115,7 @@ msgstr "已选择"
 
 #: src/components/wallet/did/WalletDIDRecovery.tsx:91
 msgid "Selected recovery file:"
-msgstr ""
+msgstr "选择恢复文件："
 
 #: src/components/plotNFT/PlotNFTExternalState.tsx:23
 #: src/components/plotNFT/PlotNFTState.tsx:57
@@ -2441,7 +2429,7 @@ msgstr "这是农民耕种奖励的支付方式。默认情况下，这将是一
 msgid "These plots are invalid, you might want to delete them."
 msgstr "这些农田无效，你可能想要删除它们。"
 
-#: src/components/plot/PlotAddDirectoryDialog.tsx:72
+#: src/components/plot/PlotAddDirectoryDialog.tsx:76
 msgid "This allows you to add a directory that has plots in it. If you have not created any plots, go to the plotting screen."
 msgstr "在这里可以把事先准备好的农田文件添加进来。如果还没有的话，就去开垦几块农田吧。"
 
@@ -2726,7 +2714,7 @@ msgstr "钱包状态："
 
 #: src/components/wallet/did/WalletDID.tsx:1118
 msgid "Wallet does not exists"
-msgstr ""
+msgstr "钱包不存在"
 
 #: src/components/wallet/Wallets.tsx:34
 #~ msgid "WalletItem.ccWallet"
@@ -2836,13 +2824,17 @@ msgstr "你目前没有自耕种"
 msgid "You can still create plots for this plot NFT, but you can not make changes until sync is complete."
 msgstr "你现在可以使用这个农田NFT开垦新农田，但是在同步完成前，你不能进行任何更改。"
 
+#: src/components/plot/add/PlotAddChooseSize.tsx:63
+msgid "You do not need to be synced or connected to plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
+msgstr ""
+
 #: src/components/plot/add/PlotAddChooseSize.tsx:56
 #~ msgid "You do not need to be synched or connected to Plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
 #~ msgstr "You do not need to be synched or connected to Plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:63
-msgid "You do not need to be synched or connected to plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
-msgstr "不需要同步或者连接到网络节点就可以开垦农田。在开垦过程中产生的临时文件尺寸会大于最终的农田大小。请确认你有足够的存储空间。<0>了解更多</0>"
+#~ msgid "You do not need to be synched or connected to plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
+#~ msgstr "不需要同步或者连接到网络节点就可以开垦农田。在开垦过程中产生的临时文件尺寸会大于最终的农田大小。请确认你有足够的存储空间。<0>了解更多</0>"
 
 #: src/components/core/components/FormBackButton/FormBackButton.tsx:29
 msgid "You have made changes. Do you want to discard them?"

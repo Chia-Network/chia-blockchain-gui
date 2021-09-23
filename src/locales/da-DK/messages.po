@@ -8,7 +8,7 @@ msgstr ""
 "Language: da_DK\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-07-26 15:12\n"
+"PO-Revision-Date: 2021-09-17 17:40\n"
 "Last-Translator: \n"
 "Language-Team: Danish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -32,7 +32,7 @@ msgstr "+ Tilføj Ny Plot NFT"
 
 #: src/components/wallet/Wallets.tsx:132
 msgid "+ Add Wallet"
-msgstr ""
+msgstr "+ Tilføj Pung"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:94
 #~ msgid "0 automatically chooses bucket count"
@@ -79,7 +79,7 @@ msgstr "Tilføj"
 #: src/components/wallet/did/WalletDID.tsx:874
 #: src/components/wallet/did/WalletDIDCreate.tsx:205
 msgid "Add Backup ID"
-msgstr ""
+msgstr "Tilføj Backup ID"
 
 #: src/components/plot/PlotHeader.tsx:91
 msgid "Add Plot Directory"
@@ -106,11 +106,11 @@ msgstr "Tilføj et plot"
 msgid "Add a Plot NFT"
 msgstr "Tilføj en Plot NFT"
 
-#: src/components/plot/PlotAddDirectoryDialog.tsx:68
+#: src/components/plot/PlotAddDirectoryDialog.tsx:72
 msgid "Add a plot"
 msgstr "Tilføj plotfil"
 
-#: src/components/plot/PlotAddDirectoryDialog.tsx:107
+#: src/components/plot/PlotAddDirectoryDialog.tsx:111
 msgid "Add plot directory"
 msgstr "Tilføj plot folder"
 
@@ -153,7 +153,7 @@ msgstr "Beløb for Start Coin"
 
 #: src/components/wallet/did/WalletDIDCreate.tsx:62
 msgid "Amount must be an even amount."
-msgstr ""
+msgstr "Beløbet skal være et lige beløb."
 
 #: src/components/plot/PlotAction.tsx:30
 #: src/components/plot/queue/PlotQueueActions.tsx:46
@@ -288,7 +288,7 @@ msgstr "Kan sikkerhedskopieres af et mnemonisk seed"
 #: src/components/app/AppPassPrompt.tsx:239
 #: src/components/backup/BackupCreate.tsx:50
 #: src/components/core/components/ConfirmDialog/ConfirmDialog.tsx:86
-#: src/components/farm/FarmManageFarmingRewards.tsx:196
+#: src/components/farm/FarmManageFarmingRewards.tsx:200
 #: src/components/fullNode/FullNodeAddConnection.tsx:89
 #: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:123
 #: src/components/plotNFT/select/PlotNFTSelectBase.tsx:87
@@ -364,7 +364,7 @@ msgstr "Vælg plotfil størrelse"
 msgid "Claim Rewards"
 msgstr "Indløs Belønning"
 
-#: src/components/plot/PlotAddDirectoryDialog.tsx:114
+#: src/components/plot/PlotAddDirectoryDialog.tsx:118
 #: src/components/plot/queue/PlotQueueLogDialog.tsx:89
 msgid "Close"
 msgstr "Luk"
@@ -375,7 +375,7 @@ msgstr "Nedluking af node og server"
 
 #: src/components/wallet/did/WalletDID.tsx:984
 msgid "Coin Name"
-msgstr ""
+msgstr "Mønt Navn"
 
 #: src/components/trading/TradingOverview.jsx:366
 msgid "Coins:"
@@ -510,19 +510,19 @@ msgstr "Opret"
 
 #: src/components/wallet/did/WalletDID.tsx:967
 msgid "Create An Attestation Packet"
-msgstr ""
+msgstr "Opret En Attestation Pakke"
 
 #: src/components/wallet/create/WalletCreate.jsx:290
 #~ msgid "Create DID wallet"
-#~ msgstr "Opret DID pung"
+#~ msgstr "Create DID wallet"
 
 #: src/components/wallet/did/WalletDIDCreate.tsx:110
 msgid "Create Distributed Identity Wallet"
-msgstr ""
+msgstr "Opret Distribueret Identitetspung"
 
 #: src/components/wallet/did/WalletDIDSelect.tsx:32
 msgid "Create New Wallet"
-msgstr ""
+msgstr "Opret Ny Pung"
 
 #: src/components/trading/TradeManager.tsx:45
 msgid "Create Offer"
@@ -744,11 +744,11 @@ msgstr "Afbryd forbindelse"
 #: src/components/wallet/create/WalletCreateList.tsx:28
 #: src/components/wallet/did/WalletDIDSelect.tsx:25
 msgid "Distributed Identity"
-msgstr ""
+msgstr "Distribueret Identitet"
 
 #: src/components/wallet/create/WalletCreate.jsx:280
 #~ msgid "Distributed Identity Options"
-#~ msgstr "Distribueret Identifikation Indstillinger"
+#~ msgstr "Distributed Identity Options"
 
 #: src/components/farm/overview/FarmOverviewHero.tsx:52
 #: src/components/plot/overview/PlotOverviewHero.tsx:69
@@ -761,7 +761,7 @@ msgstr "Understøtter din maskine parallel plotning?"
 
 #: src/components/wallet/did/WalletDID.tsx:428
 msgid "Drag and drop attestation packet(s)"
-msgstr ""
+msgstr "Træk og slip attesteringspakke(r)"
 
 #: src/components/trading/ViewOffer.jsx:39
 msgid "Drag and drop offer file"
@@ -773,7 +773,7 @@ msgstr "Træk og slip din backup fil"
 
 #: src/components/wallet/did/WalletDIDRecovery.tsx:109
 msgid "Drag and drop your recovery backup file"
-msgstr ""
+msgstr "Træk og slip din genoprettelsesbackup fil"
 
 #: src/electron/main.tsx:263
 msgid "Edit"
@@ -783,21 +783,9 @@ msgstr "Rediger"
 #: src/components/plotNFT/PlotNFTCard.tsx:301
 #: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:76
 msgid "Edit Payout Instructions"
-msgstr ""
+msgstr "Rediger Udbetalingsinstruktioner"
 
-#: src/components/wallet/EnterPassphrasePrompt.tsx:111
-msgid "Enter Passphrase"
-msgstr ""
-
-#: src/components/app/AppKeyringMigrator.tsx:119
-msgid "Enter a strong passphrase and click Migrate Keys to secure your keys"
-msgstr ""
-
-#: src/components/settings/SetPassphrasePrompt.tsx:132
-msgid "Enter a strong passphrase to secure your keys:"
-msgstr ""
-
-#: src/components/wallet/WalletImport.tsx:147
+#: src/components/wallet/WalletImport.tsx:146
 msgid "Enter the 24 word mnemonic that you have saved in order to restore your Chia wallet."
 msgstr "Indtast dine 24 mnemoniske ord fra din backup for at gendanne din Chia pung."
 
@@ -876,11 +864,11 @@ msgstr "Farmer Offentlig Nøgle"
 msgid "Farmer Puzzle Hash"
 msgstr "Farmer Puzzle Hash"
 
-#: src/components/farm/FarmManageFarmingRewards.tsx:163
+#: src/components/farm/FarmManageFarmingRewards.tsx:167
 msgid "Farmer Reward Address"
 msgstr "Farmer Gevinst Addresse"
 
-#: src/components/farm/FarmManageFarmingRewards.tsx:137
+#: src/components/farm/FarmManageFarmingRewards.tsx:141
 msgid "Farmer Reward Address is not properly formatted."
 msgstr "Farmer Belønningsadresse er ikke korrekt formateret."
 
@@ -888,7 +876,7 @@ msgstr "Farmer Belønningsadresse er ikke korrekt formateret."
 #~ msgid "Farmer Reward Address is not properly formatted. Using 'paste' is recommended."
 #~ msgstr "Farmer Reward Address is not properly formatted. Using 'paste' is recommended."
 
-#: src/components/farm/FarmManageFarmingRewards.tsx:131
+#: src/components/farm/FarmManageFarmingRewards.tsx:135
 msgid "Farmer Reward Address must not be empty."
 msgstr "Farmer Belønningsadresse må ikke være tom."
 
@@ -1076,7 +1064,7 @@ msgstr "IP addresse / host"
 msgid "If none selected, then it will default to the temporary directory."
 msgstr "Hvis ikke valgt, vil som standard vælge den midlertidlige folder."
 
-#: src/components/wallet/WalletImport.tsx:144
+#: src/components/wallet/WalletImport.tsx:143
 msgid "Import Wallet from Mnemonics"
 msgstr "Importer Pung fra mnemonik"
 
@@ -1269,9 +1257,9 @@ msgstr "Administrer Farmer Gevinster"
 
 #: src/components/wallet/did/WalletDID.tsx:806
 msgid "Manage Recovery DIDs"
-msgstr ""
+msgstr "Administrer Gendannelses-DID'er"
 
-#: src/components/farm/FarmManageFarmingRewards.tsx:119
+#: src/components/farm/FarmManageFarmingRewards.tsx:123
 msgid "Manage Your Farming Rewards Target Addresses"
 msgstr "Administrer Din Farmer Gevinst Addresse"
 
@@ -1314,7 +1302,7 @@ msgstr "Mere hukommelse øger hastighed en smule"
 
 #: src/components/wallet/did/WalletDID.tsx:537
 msgid "My DID Wallet"
-msgstr ""
+msgstr "Min DID pung"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:415
 msgid "My Pubkey"
@@ -1351,7 +1339,7 @@ msgstr ""
 
 #: src/components/block/Block.jsx:351
 #: src/components/wallet/WalletAdd.tsx:95
-#: src/components/wallet/WalletImport.tsx:163
+#: src/components/wallet/WalletImport.tsx:162
 msgid "Next"
 msgstr "Næste"
 
@@ -1376,7 +1364,7 @@ msgstr "Ingen blokke farmet endnu"
 msgid "No previous transactions"
 msgstr "Ingen tidligere transaktioner"
 
-#: src/components/farm/FarmManageFarmingRewards.tsx:156
+#: src/components/farm/FarmManageFarmingRewards.tsx:160
 msgid "No private keys for one or both addresses. Safe only if you are sending rewards to another wallet."
 msgstr "Ingen private nøgler for en eller flere adresser. Kun sikker hvis du sender gevinster til en anden pung."
 
@@ -1428,7 +1416,7 @@ msgstr "Ikke forbundet"
 msgid "Not found Plots"
 msgstr "Ikke fundet Plotfiler"
 
-#: src/components/farm/FarmManageFarmingRewards.tsx:184
+#: src/components/farm/FarmManageFarmingRewards.tsx:188
 msgid "Note that this does not change your pooling payout addresses. This only affects old format plots, and the 0.25XCH reward for pooling plots."
 msgstr "Bemærk, at dette ikke ændrer din pulje udbetalingsadresser. Dette påvirker kun gamle plot filer af gammelt format, og 0,25XCH belønning for pulje plots."
 
@@ -1464,11 +1452,11 @@ msgstr "I gennemsnit er der et minut mellem hver transaktionsblok. Medmindre der
 
 #: src/components/wallet/did/WalletDIDRecovery.tsx:34
 msgid "Only one backup file is allowed."
-msgstr ""
+msgstr "Kun én backup fil er tilladt."
 
 #: src/components/wallet/create/recoverDIDWallet.js:156
 #~ msgid "Only one backup file is allowed. To add a new backup file, please delete any previously uploaded files and try again."
-#~ msgstr ""
+#~ msgstr "Only one backup file is allowed. To add a new backup file, please delete any previously uploaded files and try again."
 
 #: src/components/wallet/WalletHistory.tsx:23
 msgid "Outgoing"
@@ -1560,12 +1548,12 @@ msgstr "Venligst indtast 0 gebyr. Positive gebyr ikke understøttet endnu for RL
 
 #: src/components/wallet/did/WalletDID.tsx:924
 msgid "Please enter a coin"
-msgstr ""
+msgstr "Angiv en mønt"
 
 #: src/components/wallet/did/WalletDID.tsx:526
 #: src/components/wallet/did/WalletDID.tsx:914
 msgid "Please enter a filename"
-msgstr ""
+msgstr "Angiv et filnavn"
 
 #: src/components/app/AppPassPrompt.tsx:133
 #: src/components/settings/SetPassphrasePrompt.tsx:48
@@ -1574,11 +1562,11 @@ msgstr ""
 
 #: src/components/wallet/did/WalletDID.tsx:934
 msgid "Please enter a pubkey"
-msgstr ""
+msgstr "Angiv en pubkey"
 
 #: src/components/wallet/did/WalletDID.tsx:944
 msgid "Please enter a puzzlehash"
-msgstr ""
+msgstr "Angiv et puslehash"
 
 #: src/components/wallet/create/createRLAdmin.jsx:140
 msgid "Please enter a valid initial coin amount"
@@ -1587,7 +1575,7 @@ msgstr "Indtast venligst et gyldigt indledende mønt beløb"
 #: src/components/wallet/did/WalletDID.tsx:777
 #: src/components/wallet/did/WalletDIDCreate.tsx:76
 msgid "Please enter a valid integer of 0 or greater for the number of Backup IDs needed for recovery."
-msgstr ""
+msgstr "Angiv et gyldigt antal af 0 eller højrer for antallet af Backup ID nødvendig for gendannelse."
 
 #: src/components/wallet/create/createNewColouredCoin.jsx:69
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:639
@@ -1597,7 +1585,7 @@ msgstr "Venligst indtast et gyldigt numerisk beløb"
 
 #: src/components/wallet/did/WalletDIDCreate.tsx:50
 msgid "Please enter a valid numeric amount."
-msgstr ""
+msgstr "Angiv et gyldigt numerisk beløb."
 
 #: src/components/wallet/create/createExistingColouredCoin.jsx:70
 #: src/components/wallet/create/createNewColouredCoin.jsx:79
@@ -1645,7 +1633,7 @@ msgstr "Vælg beløb"
 
 #: src/components/wallet/did/WalletDIDRecovery.tsx:55
 msgid "Please select backup file first"
-msgstr ""
+msgstr "Vælg først backupfil"
 
 #: src/components/trading/CreateOffer.jsx:76
 msgid "Please select buy or sell"
@@ -1809,11 +1797,11 @@ msgstr "Pool Public Nøgle"
 msgid "Pool Puzzle Hash"
 msgstr "Pool Puzzle Hash"
 
-#: src/components/farm/FarmManageFarmingRewards.tsx:173
+#: src/components/farm/FarmManageFarmingRewards.tsx:177
 msgid "Pool Reward Address"
 msgstr "Pool Gevinst Addresse"
 
-#: src/components/farm/FarmManageFarmingRewards.tsx:149
+#: src/components/farm/FarmManageFarmingRewards.tsx:153
 msgid "Pool Reward Address is not properly formatted."
 msgstr "Pool Belønningsadresse er ikke korrekt formateret."
 
@@ -1821,7 +1809,7 @@ msgstr "Pool Belønningsadresse er ikke korrekt formateret."
 #~ msgid "Pool Reward Address is not properly formatted. Using 'paste' is recommended."
 #~ msgstr "Pool Reward Address is not properly formatted. Using 'paste' is recommended."
 
-#: src/components/farm/FarmManageFarmingRewards.tsx:144
+#: src/components/farm/FarmManageFarmingRewards.tsx:148
 msgid "Pool Reward Address must not be empty."
 msgstr "Pool Belønningsadresse må ikke være tom."
 
@@ -1919,7 +1907,7 @@ msgstr "Offentlig nøgle:"
 
 #: src/components/wallet/did/WalletDID.tsx:1002
 msgid "Puzzlehash"
-msgstr ""
+msgstr "Puslehash"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:162
 msgid "Queue Name"
@@ -1974,24 +1962,24 @@ msgstr "Modtager Addresse"
 #: src/components/wallet/did/WalletDID.tsx:464
 #: src/components/wallet/did/WalletDIDRecovery.tsx:124
 msgid "Recover"
-msgstr ""
+msgstr "Gendan"
 
 #: src/components/wallet/did/WalletDID.tsx:340
 #: src/components/wallet/did/WalletDID.tsx:480
 msgid "Recover DID Wallet"
-msgstr ""
+msgstr "Gendan DID Pung"
 
 #: src/components/wallet/create/WalletCreate.jsx:296
 #~ msgid "Recover DID wallet"
-#~ msgstr "Gendan DID pung"
+#~ msgstr "Recover DID wallet"
 
 #: src/components/wallet/did/WalletDIDRecovery.tsx:84
 msgid "Recover Distributed Identity Wallet"
-msgstr ""
+msgstr "Gendan Distribuerede Identitetspung"
 
 #: src/components/wallet/did/WalletDIDSelect.tsx:39
 msgid "Recover Wallet"
-msgstr ""
+msgstr "Gendan Pung"
 
 #: src/components/plot/PlotHeader.tsx:78
 #: src/components/plot/overview/PlotOverviewHero.tsx:62
@@ -2045,7 +2033,7 @@ msgstr "Gendan Metadata for Farvede Mønter og andrer Smart Punge fra Backup"
 msgid "Safe To Skip"
 msgstr "Sikke At Skippe"
 
-#: src/components/farm/FarmManageFarmingRewards.tsx:199
+#: src/components/farm/FarmManageFarmingRewards.tsx:203
 #: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:126
 #: src/components/trading/CreateOffer.jsx:142
 msgid "Save"
@@ -2127,7 +2115,7 @@ msgstr "Valgt"
 
 #: src/components/wallet/did/WalletDIDRecovery.tsx:91
 msgid "Selected recovery file:"
-msgstr ""
+msgstr "Valgt gendannelsesfil:"
 
 #: src/components/plotNFT/PlotNFTExternalState.tsx:23
 #: src/components/plotNFT/PlotNFTState.tsx:57
@@ -2387,7 +2375,7 @@ msgstr "Noden Synkroniserer, hvilket betyder at den er ved at hente blokke fra a
 #: src/components/wallet/did/WalletDID.tsx:790
 #: src/components/wallet/did/WalletDIDCreate.tsx:89
 msgid "The number of Backup IDs needed for recovery cannot exceed the number of Backup IDs added."
-msgstr ""
+msgstr "Antallet af Backup ID'er, der er nødvendige for genoprettelse, kan ikke overstige antallet af Backup ID'er tilføjet."
 
 #: src/hooks/usePoolInfo.ts:57
 msgid "The pool URL \"{normalizedUrl}\" is not working. Is it pool? Error: {0}"
@@ -2441,7 +2429,7 @@ msgstr "Dette er instruktionerne for hvordan farmeren ønsker at blive betalt. S
 msgid "These plots are invalid, you might want to delete them."
 msgstr "Disse plotfiler er invalide, måske vil du fjerne dem."
 
-#: src/components/plot/PlotAddDirectoryDialog.tsx:72
+#: src/components/plot/PlotAddDirectoryDialog.tsx:76
 msgid "This allows you to add a directory that has plots in it. If you have not created any plots, go to the plotting screen."
 msgstr "Dette lader dig tilføje en folder med plotfiler i. Hvis du ikke har genereret nogle plotfiler, gå til plot skærmen."
 
@@ -2726,7 +2714,7 @@ msgstr "Tegnebog Status:"
 
 #: src/components/wallet/did/WalletDID.tsx:1118
 msgid "Wallet does not exists"
-msgstr ""
+msgstr "Pung findes ikke"
 
 #: src/components/wallet/Wallets.tsx:34
 #~ msgid "WalletItem.ccWallet"
@@ -2836,13 +2824,17 @@ msgstr "Du er ikke selv pulje"
 msgid "You can still create plots for this plot NFT, but you can not make changes until sync is complete."
 msgstr "Du kan stadig oprette plot filer til denne plot NFT, men du kan ikke foretage ændringer, før synkroniseringen er gennemført."
 
+#: src/components/plot/add/PlotAddChooseSize.tsx:63
+msgid "You do not need to be synced or connected to plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
+msgstr ""
+
 #: src/components/plot/add/PlotAddChooseSize.tsx:56
 #~ msgid "You do not need to be synched or connected to Plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
 #~ msgstr "You do not need to be synched or connected to Plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:63
-msgid "You do not need to be synched or connected to plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
-msgstr "Du behøver ikke at være i synk eller forbundet for at plotte. Midletidige filer er oprettet under plotningsprocessen som overstiger størrelsen på den endelige plot fil. Vær sikker på du har nok plads. <0>Lær mere</0>"
+#~ msgid "You do not need to be synched or connected to plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
+#~ msgstr "Du behøver ikke at være i synk eller forbundet for at plotte. Midletidige filer er oprettet under plotningsprocessen som overstiger størrelsen på den endelige plot fil. Vær sikker på du har nok plads. <0>Lær mere</0>"
 
 #: src/components/core/components/FormBackButton/FormBackButton.tsx:29
 msgid "You have made changes. Do you want to discard them?"
@@ -2886,7 +2878,7 @@ msgstr "Du vil modtage <0/> til {address}"
 
 #: src/components/wallet/did/WalletDID.tsx:328
 msgid "Your DID requires at least {dids_num_req} attestation file{0} for recovery. Please upload additional files."
-msgstr ""
+msgstr "Din DID kræver mindst {dids_num_req} attesteringsfil{0} for gendannelse. Upload venligst yderligere filer."
 
 #: src/components/farm/overview/FarmOverview.tsx:37
 msgid "Your Farm Overview"

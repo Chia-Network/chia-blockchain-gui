@@ -8,7 +8,7 @@ msgstr ""
 "Language: it_IT\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-07-31 21:01\n"
+"PO-Revision-Date: 2021-09-17 17:40\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -106,11 +106,11 @@ msgstr "Aggiungi un Plot"
 msgid "Add a Plot NFT"
 msgstr "Aggiungi un Plot NFT"
 
-#: src/components/plot/PlotAddDirectoryDialog.tsx:68
+#: src/components/plot/PlotAddDirectoryDialog.tsx:72
 msgid "Add a plot"
 msgstr "Aggiungi un plot"
 
-#: src/components/plot/PlotAddDirectoryDialog.tsx:107
+#: src/components/plot/PlotAddDirectoryDialog.tsx:111
 msgid "Add plot directory"
 msgstr "Aggiungi una cartella per i plot (in farm)"
 
@@ -288,7 +288,7 @@ msgstr "Può essere eseguito il backup su seed mnemonico"
 #: src/components/app/AppPassPrompt.tsx:239
 #: src/components/backup/BackupCreate.tsx:50
 #: src/components/core/components/ConfirmDialog/ConfirmDialog.tsx:86
-#: src/components/farm/FarmManageFarmingRewards.tsx:196
+#: src/components/farm/FarmManageFarmingRewards.tsx:200
 #: src/components/fullNode/FullNodeAddConnection.tsx:89
 #: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:123
 #: src/components/plotNFT/select/PlotNFTSelectBase.tsx:87
@@ -364,7 +364,7 @@ msgstr "Scegli la Dimensione del Plot"
 msgid "Claim Rewards"
 msgstr "Reclama Ricompense"
 
-#: src/components/plot/PlotAddDirectoryDialog.tsx:114
+#: src/components/plot/PlotAddDirectoryDialog.tsx:118
 #: src/components/plot/queue/PlotQueueLogDialog.tsx:89
 msgid "Close"
 msgstr "Chiudi"
@@ -514,7 +514,7 @@ msgstr ""
 
 #: src/components/wallet/create/WalletCreate.jsx:290
 #~ msgid "Create DID wallet"
-#~ msgstr "Crea portafoglio DID"
+#~ msgstr "Create DID wallet"
 
 #: src/components/wallet/did/WalletDIDCreate.tsx:110
 msgid "Create Distributed Identity Wallet"
@@ -748,7 +748,7 @@ msgstr ""
 
 #: src/components/wallet/create/WalletCreate.jsx:280
 #~ msgid "Distributed Identity Options"
-#~ msgstr "Opzioni Identità Distribuita"
+#~ msgstr "Distributed Identity Options"
 
 #: src/components/farm/overview/FarmOverviewHero.tsx:52
 #: src/components/plot/overview/PlotOverviewHero.tsx:69
@@ -785,19 +785,7 @@ msgstr "Modifica"
 msgid "Edit Payout Instructions"
 msgstr "Modifica Istruzioni Di Pagamento"
 
-#: src/components/wallet/EnterPassphrasePrompt.tsx:111
-msgid "Enter Passphrase"
-msgstr ""
-
-#: src/components/app/AppKeyringMigrator.tsx:119
-msgid "Enter a strong passphrase and click Migrate Keys to secure your keys"
-msgstr ""
-
-#: src/components/settings/SetPassphrasePrompt.tsx:132
-msgid "Enter a strong passphrase to secure your keys:"
-msgstr ""
-
-#: src/components/wallet/WalletImport.tsx:147
+#: src/components/wallet/WalletImport.tsx:146
 msgid "Enter the 24 word mnemonic that you have saved in order to restore your Chia wallet."
 msgstr "Inserisci le 24 parole mnemoniche che hai salvato per poter ripristinare il tuo wallet Chia."
 
@@ -876,11 +864,11 @@ msgstr "Chiave pubblica del farmer"
 msgid "Farmer Puzzle Hash"
 msgstr "Puzzle Hash Farmer"
 
-#: src/components/farm/FarmManageFarmingRewards.tsx:163
+#: src/components/farm/FarmManageFarmingRewards.tsx:167
 msgid "Farmer Reward Address"
 msgstr "Indirizzo Ricompensa del Farmer"
 
-#: src/components/farm/FarmManageFarmingRewards.tsx:137
+#: src/components/farm/FarmManageFarmingRewards.tsx:141
 msgid "Farmer Reward Address is not properly formatted."
 msgstr "L'indirizzo della ricompensa del farmer non è formattato correttamente."
 
@@ -888,7 +876,7 @@ msgstr "L'indirizzo della ricompensa del farmer non è formattato correttamente.
 #~ msgid "Farmer Reward Address is not properly formatted. Using 'paste' is recommended."
 #~ msgstr "Farmer Reward Address is not properly formatted. Using 'paste' is recommended."
 
-#: src/components/farm/FarmManageFarmingRewards.tsx:131
+#: src/components/farm/FarmManageFarmingRewards.tsx:135
 msgid "Farmer Reward Address must not be empty."
 msgstr "L'indirizzo per la ricompensa del farmer non deve essere vuoto."
 
@@ -1076,7 +1064,7 @@ msgstr "Indirizzo IP / host"
 msgid "If none selected, then it will default to the temporary directory."
 msgstr "Se non è selezionato nulla, allora sarà impostata di default la cartella temporanea."
 
-#: src/components/wallet/WalletImport.tsx:144
+#: src/components/wallet/WalletImport.tsx:143
 msgid "Import Wallet from Mnemonics"
 msgstr "Importa Wallet dalle Mnemonic"
 
@@ -1271,7 +1259,7 @@ msgstr "Gestisci Ricompense Farming"
 msgid "Manage Recovery DIDs"
 msgstr ""
 
-#: src/components/farm/FarmManageFarmingRewards.tsx:119
+#: src/components/farm/FarmManageFarmingRewards.tsx:123
 msgid "Manage Your Farming Rewards Target Addresses"
 msgstr "Gestisci gli Indirizzi di Destinazione delle Tue Ricompense da Farming"
 
@@ -1351,7 +1339,7 @@ msgstr ""
 
 #: src/components/block/Block.jsx:351
 #: src/components/wallet/WalletAdd.tsx:95
-#: src/components/wallet/WalletImport.tsx:163
+#: src/components/wallet/WalletImport.tsx:162
 msgid "Next"
 msgstr "Prossimo"
 
@@ -1376,7 +1364,7 @@ msgstr "Ancora nessun blocco coltivato"
 msgid "No previous transactions"
 msgstr "Nessuna transazione precedente"
 
-#: src/components/farm/FarmManageFarmingRewards.tsx:156
+#: src/components/farm/FarmManageFarmingRewards.tsx:160
 msgid "No private keys for one or both addresses. Safe only if you are sending rewards to another wallet."
 msgstr "Nessuna chiave privata per uno o entrambi gli indirizzi. Sicuro solo se stai inviando ricompense ad un altro wallet."
 
@@ -1428,7 +1416,7 @@ msgstr "Non connesso"
 msgid "Not found Plots"
 msgstr "Plot non trovati"
 
-#: src/components/farm/FarmManageFarmingRewards.tsx:184
+#: src/components/farm/FarmManageFarmingRewards.tsx:188
 msgid "Note that this does not change your pooling payout addresses. This only affects old format plots, and the 0.25XCH reward for pooling plots."
 msgstr "Nota che questo non cambia gli indirizzi di pagamento del pooling. Questo influenza solo i vecchi plot col vecchio formato, e la ricompensa di 0.25XCH per il pooling dei plot."
 
@@ -1468,7 +1456,7 @@ msgstr ""
 
 #: src/components/wallet/create/recoverDIDWallet.js:156
 #~ msgid "Only one backup file is allowed. To add a new backup file, please delete any previously uploaded files and try again."
-#~ msgstr ""
+#~ msgstr "Only one backup file is allowed. To add a new backup file, please delete any previously uploaded files and try again."
 
 #: src/components/wallet/WalletHistory.tsx:23
 msgid "Outgoing"
@@ -1809,11 +1797,11 @@ msgstr "Chiave Pubblica Pool"
 msgid "Pool Puzzle Hash"
 msgstr "Hash Puzzle della Pool"
 
-#: src/components/farm/FarmManageFarmingRewards.tsx:173
+#: src/components/farm/FarmManageFarmingRewards.tsx:177
 msgid "Pool Reward Address"
 msgstr "Indirizzo Ricompensa della Pool"
 
-#: src/components/farm/FarmManageFarmingRewards.tsx:149
+#: src/components/farm/FarmManageFarmingRewards.tsx:153
 msgid "Pool Reward Address is not properly formatted."
 msgstr "L'indirizzo della ricompensa della pool non è formattato correttamente."
 
@@ -1821,7 +1809,7 @@ msgstr "L'indirizzo della ricompensa della pool non è formattato correttamente.
 #~ msgid "Pool Reward Address is not properly formatted. Using 'paste' is recommended."
 #~ msgstr "Pool Reward Address is not properly formatted. Using 'paste' is recommended."
 
-#: src/components/farm/FarmManageFarmingRewards.tsx:144
+#: src/components/farm/FarmManageFarmingRewards.tsx:148
 msgid "Pool Reward Address must not be empty."
 msgstr "L'indirizzo per la ricompensa della pool non deve essere vuoto."
 
@@ -1983,7 +1971,7 @@ msgstr ""
 
 #: src/components/wallet/create/WalletCreate.jsx:296
 #~ msgid "Recover DID wallet"
-#~ msgstr "Recupera wallet DID"
+#~ msgstr "Recover DID wallet"
 
 #: src/components/wallet/did/WalletDIDRecovery.tsx:84
 msgid "Recover Distributed Identity Wallet"
@@ -2045,7 +2033,7 @@ msgstr "Ripristinare i Metadati per le Monete Colorate e altri Wallet Intelligen
 msgid "Safe To Skip"
 msgstr "Sicuro da Saltare"
 
-#: src/components/farm/FarmManageFarmingRewards.tsx:199
+#: src/components/farm/FarmManageFarmingRewards.tsx:203
 #: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:126
 #: src/components/trading/CreateOffer.jsx:142
 msgid "Save"
@@ -2441,7 +2429,7 @@ msgstr "Queste sono le istruzioni per il modo in cui il farmer vuole farsi pagar
 msgid "These plots are invalid, you might want to delete them."
 msgstr "Questi plot non sono validi, dovresti eliminarli."
 
-#: src/components/plot/PlotAddDirectoryDialog.tsx:72
+#: src/components/plot/PlotAddDirectoryDialog.tsx:76
 msgid "This allows you to add a directory that has plots in it. If you have not created any plots, go to the plotting screen."
 msgstr "Questo permette di aggiungere una cartella che contiene plot. Se non hai creato nessun plot, vai alla schermata di plotting."
 
@@ -2836,13 +2824,17 @@ msgstr "Non sei in auto-pooling"
 msgid "You can still create plots for this plot NFT, but you can not make changes until sync is complete."
 msgstr "È ancora possibile creare plot per questo plot NFT, ma non sarà possibile apportare modifiche fino a quando la sincronizzazione sarà completa."
 
+#: src/components/plot/add/PlotAddChooseSize.tsx:63
+msgid "You do not need to be synced or connected to plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
+msgstr ""
+
 #: src/components/plot/add/PlotAddChooseSize.tsx:56
 #~ msgid "You do not need to be synched or connected to Plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
 #~ msgstr "You do not need to be synched or connected to Plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:63
-msgid "You do not need to be synched or connected to plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
-msgstr "Non è necessario essere sincronizzati o connessi per plottare. Durante il processo di plotting vengono creati dei file temporanei che superano la dimensione dei file finali di plot. Assicurati di avere abbastanza spazio. <0>Per saperne di più</0>"
+#~ msgid "You do not need to be synched or connected to plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
+#~ msgstr "Non è necessario essere sincronizzati o connessi per plottare. Durante il processo di plotting vengono creati dei file temporanei che superano la dimensione dei file finali di plot. Assicurati di avere abbastanza spazio. <0>Per saperne di più</0>"
 
 #: src/components/core/components/FormBackButton/FormBackButton.tsx:29
 msgid "You have made changes. Do you want to discard them?"

@@ -62,7 +62,7 @@ export default function PlotAddChooseSize() {
       <Typography variant="subtitle1">
         <Trans>
           {
-            'You do not need to be synched or connected to plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. '
+            'You do not need to be synced or connected to plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. '
           }
           <Link
             target="_blank"

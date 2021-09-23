@@ -41,7 +41,7 @@ export default function PoolInfo(props: Props) {
 
   return (
     <Flex flexDirection="column" gap={2}>
-      {/* 
+      {/*
       <Box>
         <StyledLogo src={poolInfo.logo_url} alt={t`Pool logo`} />
       </Box>
