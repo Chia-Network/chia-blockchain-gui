@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh_CN\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-09-23 04:27\n"
+"PO-Revision-Date: 2021-09-23 16:38\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -327,7 +327,7 @@ msgstr "变更"
 #: src/components/settings/ChangePassphrasePrompt.tsx:207
 #: src/components/settings/Settings.tsx:158
 msgid "Change Passphrase"
-msgstr ""
+msgstr "修改密码"
 
 #: src/components/plotNFT/PlotNFTCard.tsx:408
 #: src/components/plotNFT/PlotNFTChangePool.tsx:110
@@ -418,13 +418,13 @@ msgstr "确认断开连接"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:185
 msgid "Confirm New Passphrase"
-msgstr ""
+msgstr "确认密码"
 
 #: src/components/app/AppKeyringMigrator.tsx:140
 #: src/components/app/AppKeyringMigrator.tsx:141
 #: src/components/settings/SetPassphrasePrompt.tsx:153
 msgid "Confirm Passphrase"
-msgstr ""
+msgstr "确认密码"
 
 #: src/components/plotNFT/PlotNFTCard.tsx:121
 #: src/components/wallet/standard/WalletStandard.tsx:632
@@ -617,7 +617,7 @@ msgstr "当前难度"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:165
 msgid "Current Passphrase"
-msgstr ""
+msgstr "当前密码"
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:156
 #: src/components/plotNFT/PlotNFTCard.tsx:198
@@ -667,7 +667,7 @@ msgstr "删除"
 
 #: src/components/app/AppPassPrompt.tsx:195
 msgid "Delete Key"
-msgstr ""
+msgstr "删除密钥"
 
 #: src/components/plot/PlotAction.tsx:26
 #: src/components/plot/queue/PlotQueueActions.tsx:42
@@ -698,7 +698,7 @@ msgstr "删除密钥 {fingerprint}"
 
 #: src/components/app/AppPassPrompt.tsx:191
 msgid "Deleting key"
-msgstr ""
+msgstr "正在删除密钥"
 
 #: src/components/selectKey/SelectKey.tsx:101
 #~ msgid "Deleting the key will permanently remove the key from your computer, make sure you have backups. Are you sure you want to continue?"
@@ -719,11 +719,11 @@ msgstr "难度"
 
 #: src/components/app/AppPassPrompt.tsx:78
 msgid "Disable"
-msgstr ""
+msgstr "停用"
 
 #: src/components/app/AppPassPrompt.tsx:77
 msgid "Disable Passphrase Protection"
-msgstr ""
+msgstr "关闭密码保护"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:114
 #~ msgid "Disable bifield plotting when your temporary directory is on fast storage like SSD or you need lower per process RAM requirements. Plotting with bitfield enabled has about 20% less overall writes."
@@ -787,7 +787,7 @@ msgstr "编辑支付指令"
 
 #: src/components/wallet/EnterPassphrasePrompt.tsx:111
 msgid "Enter Passphrase"
-msgstr ""
+msgstr "输入密码"
 
 #: src/components/app/AppKeyringMigrator.tsx:119
 msgid "Enter a strong passphrase and click Migrate Keys to secure your keys"
@@ -804,7 +804,7 @@ msgstr "请输入你保存的24个助记词来恢复奇亚钱包"
 #: src/components/settings/RemovePassphrasePrompt.tsx:115
 #: src/components/wallet/EnterPassphrasePrompt.tsx:115
 msgid "Enter your passphrase:"
-msgstr ""
+msgstr "输入你的密码："
 
 #: src/components/farm/FarmerStatus.tsx:21
 #: src/components/farm/FarmerStatus.tsx:22
@@ -852,11 +852,11 @@ msgstr "打开失败（农田无效）"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:86
 msgid "Failed to remove passphrase: {error}"
-msgstr ""
+msgstr "移除密码失败： {error}"
 
 #: src/components/settings/SetPassphrasePrompt.tsx:79
 msgid "Failed to set passphrase: {error}"
-msgstr ""
+msgstr "设置密码失败: {error}"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:107
 msgid "Failed to update passphrase: {error}"
