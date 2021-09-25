@@ -940,7 +940,7 @@ msgid "Fee"
 msgstr "الرسوم"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:420
-#~ msgid "Fee (TXCH)"
+#~ msgid "Fee (TCSR)"
 #~ msgstr ""
 
 #: src/components/wallet/coloured/WalletColoured.tsx:420

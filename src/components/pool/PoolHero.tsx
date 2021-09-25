@@ -24,7 +24,7 @@ export default function PoolHero() {
           <StyledPoolIcon color="primary" />
           <Typography variant="body1">
             <Trans>
-              Smooth out your XCH farming rewards by joining a pool.
+              Smooth out your CSR farming rewards by joining a pool.
             </Trans>
           </Typography>
           <Button onClick={handleJoinPool} variant="contained" color="primary">

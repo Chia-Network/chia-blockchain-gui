@@ -112,14 +112,14 @@ describe('units', () => {
     });
     it('updates an existing display', () => {
       units.setDisplay('chia', {
-        format: '{amount} TXCH',
+        format: '{amount} TCSR',
         fractionDigits: 0,
       });
 
       const result = units.getDisplay('chia');
 
       expect(result).toEqual({
-        format: '{amount} TXCH',
+        format: '{amount} TCSR',
         fractionDigits: 0,
       });
     });
