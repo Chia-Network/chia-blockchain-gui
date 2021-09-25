@@ -56,7 +56,6 @@ export function plotQueueAdd(
   return (dispatch) => {
     const {
       bladebitDisableNUMA,
-      bladebitOutputDir,
       bladebitWarmStart,
       c,
       delay,

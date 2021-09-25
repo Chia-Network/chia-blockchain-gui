@@ -34,7 +34,6 @@ interface CommonDefaults {
 interface BladeBitDefaults extends CommonDefaults {
   bladebitWarmStart?: boolean;
   bladebitDisableNUMA?: boolean;
-  bladebitOutputDir?: string;
 }
 
 interface MadMaxDefaults extends CommonDefaults {
