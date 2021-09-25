@@ -1145,16 +1145,28 @@ msgid "Join a Pool"
 msgstr "Gå med i en pool"
 
 #: src/components/plot/add/PlotAddNFT.tsx:44
-msgid "Join a pool and get consistent XCH farming rewards. The average returns are the same, but it is much less volatile."
-msgstr "Gå med i en pool och få konsekventa XCH-odlingsbelöningar. Genomsnittlig avkastning är densamma, men den är mycket mindre variabel."
+msgid "Join a pool and get consistent CSR farming rewards. The average returns are the same, but it is much less volatile."
+msgstr ""
 
 #: src/components/plotNFT/PlotNFTAdd.tsx:59
-msgid "Join a pool and get consistent XCH farming rewards. The average returns are the same, but it is much less volatile. Assign plots to a plot NFT. You can easily switch pools without having to re-plot."
-msgstr "Gå med i en pool och få konsekventa XCH-odlingsbelöningar. Genomsnittlig avkastning är densamma, men den är mycket mindre variabel. Tilldela plottar till en plott-NFT. Du kan enkelt byta pool utan att behöva plotta om."
+msgid "Join a pool and get consistent CSR farming rewards. The average returns are the same, but it is much less volatile. Assign plots to a plot NFT. You can easily switch pools without having to re-plot."
+msgstr ""
+
+#: src/components/plot/add/PlotAddNFT.tsx:44
+#~ msgid "Join a pool and get consistent XCH farming rewards. The average returns are the same, but it is much less volatile."
+#~ msgstr "Gå med i en pool och få konsekventa XCH-odlingsbelöningar. Genomsnittlig avkastning är densamma, men den är mycket mindre variabel."
+
+#: src/components/plotNFT/PlotNFTAdd.tsx:59
+#~ msgid "Join a pool and get consistent XCH farming rewards. The average returns are the same, but it is much less volatile. Assign plots to a plot NFT. You can easily switch pools without having to re-plot."
+#~ msgstr "Gå med i en pool och få konsekventa XCH-odlingsbelöningar. Genomsnittlig avkastning är densamma, men den är mycket mindre variabel. Tilldela plottar till en plott-NFT. Du kan enkelt byta pool utan att behöva plotta om."
 
 #: src/components/plot/add/PlotAddNFT.tsx:133
-msgid "Join a pool and get more consistent XCH farming rewards. Create a plot NFT and assign your new plots to a group."
-msgstr "Gå med i en pool och få mer konsekventa XCH-odlingsbelöningar. Skapa en plott-NFT och tilldela dina nya plottar till en grupp."
+msgid "Join a pool and get more consistent CSR farming rewards. Create a plot NFT and assign your new plots to a group."
+msgstr ""
+
+#: src/components/plot/add/PlotAddNFT.tsx:133
+#~ msgid "Join a pool and get more consistent XCH farming rewards. Create a plot NFT and assign your new plots to a group."
+#~ msgstr "Gå med i en pool och få mer konsekventa XCH-odlingsbelöningar. Skapa en plott-NFT och tilldela dina nya plottar till en grupp."
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:63
 msgid "K-Size"
@@ -1429,8 +1441,12 @@ msgid "Not found Plots"
 msgstr "Ej hittade plottar"
 
 #: src/components/farm/FarmManageFarmingRewards.tsx:188
-msgid "Note that this does not change your pooling payout addresses. This only affects old format plots, and the 0.25XCH reward for pooling plots."
-msgstr "Observera att detta inte ändrar dina poolutbetalningsadresser. Detta påverkar endast plottar med det gamla formatet och belöningen 0,25XCH för poolplotter."
+msgid "Note that this does not change your pooling payout addresses. This only affects old format plots, and the 0.25CSR reward for pooling plots."
+msgstr ""
+
+#: src/components/farm/FarmManageFarmingRewards.tsx:188
+#~ msgid "Note that this does not change your pooling payout addresses. This only affects old format plots, and the 0.25XCH reward for pooling plots."
+#~ msgstr "Observera att detta inte ändrar dina poolutbetalningsadresser. Detta påverkar endast plottar med det gamla formatet och belöningen 0,25XCH för poolplotter."
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:118
 #: src/components/plotNFT/PlotNFTCard.tsx:160
@@ -2135,8 +2151,12 @@ msgid "Self Pooling"
 msgstr "Självpoolning"
 
 #: src/components/plotNFT/select/PlotNFTSelectBase.tsx:105
-msgid "Self pool. When you win a block you will earn XCH rewards."
-msgstr "Självpoolning. När du vinner ett block tjänar du XCH-belöningar."
+msgid "Self pool. When you win a block you will earn CSR rewards."
+msgstr ""
+
+#: src/components/plotNFT/select/PlotNFTSelectBase.tsx:105
+#~ msgid "Self pool. When you win a block you will earn XCH rewards."
+#~ msgstr "Självpoolning. När du vinner ett block tjänar du XCH-belöningar."
 
 #: src/components/trading/CreateOffer.jsx:164
 #: src/components/trading/TradesTable.tsx:47
@@ -2213,8 +2233,12 @@ msgid "Skips adding a final directory to harvester for farming"
 msgstr "Hoppar över steget att lägga till en slutlig mapp till skördaren för odling"
 
 #: src/components/pool/PoolHero.tsx:26
-msgid "Smooth out your XCH farming rewards by joining a pool."
-msgstr "Jämna ut dina XCH-odlarbelöningar genom att gå med i en pool."
+msgid "Smooth out your CSR farming rewards by joining a pool."
+msgstr ""
+
+#: src/components/pool/PoolHero.tsx:26
+#~ msgid "Smooth out your XCH farming rewards by joining a pool."
+#~ msgstr "Jämna ut dina XCH-odlarbelöningar genom att gå med i en pool."
 
 #: src/components/plotNFT/PlotNFTGetPoolLoginLinkDialog.tsx:60
 msgid "Something went wrong"
@@ -2434,8 +2458,12 @@ msgid "The total transactions fees in this block. Rewarded to the farmer."
 msgstr "Summan av transaktionsavgifterna i detta block. Utbetalda till odlaren."
 
 #: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:102
-msgid "These are the instructions for how the farmer wants to get paid. By default this will be an XCH address, but it can be set to any string with a size of less than 1024 characters, so it can represent another blockchain or payment system identifier."
-msgstr "Det här är instruktionerna för hur odlaren vill få betalt. Som standard är det en XCH-adress, men det kan ställas in till vilken sträng som helst med en storlek på färrre än 1024 tecken, så det kan representera en identifierare för en annan blockkedja eller betalningssystem."
+msgid "These are the instructions for how the farmer wants to get paid. By default this will be an CSR address, but it can be set to any string with a size of less than 1024 characters, so it can represent another blockchain or payment system identifier."
+msgstr ""
+
+#: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:102
+#~ msgid "These are the instructions for how the farmer wants to get paid. By default this will be an XCH address, but it can be set to any string with a size of less than 1024 characters, so it can represent another blockchain or payment system identifier."
+#~ msgstr "Det här är instruktionerna för hur odlaren vill få betalt. Som standard är det en XCH-adress, men det kan ställas in till vilken sträng som helst med en storlek på färrre än 1024 tecken, så det kan representera en identifierare för en annan blockkedja eller betalningssystem."
 
 #: src/components/plot/PlotsFailed.tsx:40
 msgid "These plots are invalid, you might want to delete them."

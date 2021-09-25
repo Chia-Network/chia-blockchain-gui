@@ -1,5 +1,5 @@
 {
   "dest": "dist/installers/",
-  "icon": "src/assets/img/chia.ico",
+  "icon": "src/assets/img/csr.ico",
   "tags": ["Blockchain"]
 }

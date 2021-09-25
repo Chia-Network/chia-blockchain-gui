@@ -1145,16 +1145,28 @@ msgid "Join a Pool"
 msgstr "Bashkohu me një poll"
 
 #: src/components/plot/add/PlotAddNFT.tsx:44
-msgid "Join a pool and get consistent XCH farming rewards. The average returns are the same, but it is much less volatile."
-msgstr "Anëtarësohuni në një pishinë dhe merrni shpërblime të qëndrueshme XCH. Kthimi mesatar është i njëjtë, por është shumë më pak i paqëndrueshëm."
+msgid "Join a pool and get consistent CSR farming rewards. The average returns are the same, but it is much less volatile."
+msgstr ""
 
 #: src/components/plotNFT/PlotNFTAdd.tsx:59
-msgid "Join a pool and get consistent XCH farming rewards. The average returns are the same, but it is much less volatile. Assign plots to a plot NFT. You can easily switch pools without having to re-plot."
-msgstr "Anëtarësohuni në një poll dhe merrni shpërblime të qëndrueshme në XCH. Kthimi mesatar është i njëjtë, por është shumë më pak i paqëndrueshëm. Caktoni një komplot NFT. Ju lehtë mund të ndërroni pollet pa pasur nevojë të ri-plotoni."
+msgid "Join a pool and get consistent CSR farming rewards. The average returns are the same, but it is much less volatile. Assign plots to a plot NFT. You can easily switch pools without having to re-plot."
+msgstr ""
+
+#: src/components/plot/add/PlotAddNFT.tsx:44
+#~ msgid "Join a pool and get consistent XCH farming rewards. The average returns are the same, but it is much less volatile."
+#~ msgstr "Anëtarësohuni në një pishinë dhe merrni shpërblime të qëndrueshme XCH. Kthimi mesatar është i njëjtë, por është shumë më pak i paqëndrueshëm."
+
+#: src/components/plotNFT/PlotNFTAdd.tsx:59
+#~ msgid "Join a pool and get consistent XCH farming rewards. The average returns are the same, but it is much less volatile. Assign plots to a plot NFT. You can easily switch pools without having to re-plot."
+#~ msgstr "Anëtarësohuni në një poll dhe merrni shpërblime të qëndrueshme në XCH. Kthimi mesatar është i njëjtë, por është shumë më pak i paqëndrueshëm. Caktoni një komplot NFT. Ju lehtë mund të ndërroni pollet pa pasur nevojë të ri-plotoni."
 
 #: src/components/plot/add/PlotAddNFT.tsx:133
-msgid "Join a pool and get more consistent XCH farming rewards. Create a plot NFT and assign your new plots to a group."
-msgstr "Bashkohuni me një poll dhe merrni shpërblime më të qëndrueshme XCH. Krijoni një plot NFT dhe caktoni plotet tuaja të reja në një grup."
+msgid "Join a pool and get more consistent CSR farming rewards. Create a plot NFT and assign your new plots to a group."
+msgstr ""
+
+#: src/components/plot/add/PlotAddNFT.tsx:133
+#~ msgid "Join a pool and get more consistent XCH farming rewards. Create a plot NFT and assign your new plots to a group."
+#~ msgstr "Bashkohuni me një poll dhe merrni shpërblime më të qëndrueshme XCH. Krijoni një plot NFT dhe caktoni plotet tuaja të reja në një grup."
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:63
 msgid "K-Size"
@@ -1429,8 +1441,12 @@ msgid "Not found Plots"
 msgstr "Nuk gjenden Plotet"
 
 #: src/components/farm/FarmManageFarmingRewards.tsx:188
-msgid "Note that this does not change your pooling payout addresses. This only affects old format plots, and the 0.25XCH reward for pooling plots."
-msgstr "Vini re se kjo nuk ndryshon adresat tuaja të grumbullimit të pagesave. Kjo ndikon vetëm në komplotet e formatit të vjetër dhe në shpërblimin 0.25XCH për komplotet e bashkimit."
+msgid "Note that this does not change your pooling payout addresses. This only affects old format plots, and the 0.25CSR reward for pooling plots."
+msgstr ""
+
+#: src/components/farm/FarmManageFarmingRewards.tsx:188
+#~ msgid "Note that this does not change your pooling payout addresses. This only affects old format plots, and the 0.25XCH reward for pooling plots."
+#~ msgstr "Vini re se kjo nuk ndryshon adresat tuaja të grumbullimit të pagesave. Kjo ndikon vetëm në komplotet e formatit të vjetër dhe në shpërblimin 0.25XCH për komplotet e bashkimit."
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:118
 #: src/components/plotNFT/PlotNFTCard.tsx:160
@@ -2135,8 +2151,12 @@ msgid "Self Pooling"
 msgstr "Vetë grumbullimi"
 
 #: src/components/plotNFT/select/PlotNFTSelectBase.tsx:105
-msgid "Self pool. When you win a block you will earn XCH rewards."
-msgstr "Vetë grumbullimi. Kur të fitoni një bllok, do të fitoni shpërblime XCH."
+msgid "Self pool. When you win a block you will earn CSR rewards."
+msgstr ""
+
+#: src/components/plotNFT/select/PlotNFTSelectBase.tsx:105
+#~ msgid "Self pool. When you win a block you will earn XCH rewards."
+#~ msgstr "Vetë grumbullimi. Kur të fitoni një bllok, do të fitoni shpërblime XCH."
 
 #: src/components/trading/CreateOffer.jsx:164
 #: src/components/trading/TradesTable.tsx:47
@@ -2213,8 +2233,12 @@ msgid "Skips adding a final directory to harvester for farming"
 msgstr "Kalon duke shtuar një direktori përfundimtare"
 
 #: src/components/pool/PoolHero.tsx:26
-msgid "Smooth out your XCH farming rewards by joining a pool."
-msgstr "Z'busni shpërblimet tuaja XCH duke u bashkuar me një poll."
+msgid "Smooth out your CSR farming rewards by joining a pool."
+msgstr ""
+
+#: src/components/pool/PoolHero.tsx:26
+#~ msgid "Smooth out your XCH farming rewards by joining a pool."
+#~ msgstr "Z'busni shpërblimet tuaja XCH duke u bashkuar me një poll."
 
 #: src/components/plotNFT/PlotNFTGetPoolLoginLinkDialog.tsx:60
 msgid "Something went wrong"
@@ -2434,8 +2458,12 @@ msgid "The total transactions fees in this block. Rewarded to the farmer."
 msgstr "Tarifat totale të transaksioneve në këtë bllok. Shpërblyer për fermerin."
 
 #: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:102
-msgid "These are the instructions for how the farmer wants to get paid. By default this will be an XCH address, but it can be set to any string with a size of less than 1024 characters, so it can represent another blockchain or payment system identifier."
-msgstr "Këto janë udhëzimet se si fermeri dëshiron të paguhet. Si parazgjedhje kjo do të jetë një adresë XCH, por mund të vendoset në çdo varg me madhësi më të vogël se 1024 karaktere, kështu që mund të përfaqësojë një tjetër identifikues të bllokut ose sistemit të pagesave."
+msgid "These are the instructions for how the farmer wants to get paid. By default this will be an CSR address, but it can be set to any string with a size of less than 1024 characters, so it can represent another blockchain or payment system identifier."
+msgstr ""
+
+#: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:102
+#~ msgid "These are the instructions for how the farmer wants to get paid. By default this will be an XCH address, but it can be set to any string with a size of less than 1024 characters, so it can represent another blockchain or payment system identifier."
+#~ msgstr "Këto janë udhëzimet se si fermeri dëshiron të paguhet. Si parazgjedhje kjo do të jetë një adresë XCH, por mund të vendoset në çdo varg me madhësi më të vogël se 1024 karaktere, kështu që mund të përfaqësojë një tjetër identifikues të bllokut ose sistemit të pagesave."
 
 #: src/components/plot/PlotsFailed.tsx:40
 msgid "These plots are invalid, you might want to delete them."
