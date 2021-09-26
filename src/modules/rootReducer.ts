@@ -9,6 +9,7 @@ import createWallet from './createWallet';
 import tradeReducer from './trade';
 import dialogReducer from './dialog';
 import daemonReducer from './daemon';
+import keyringReducer from './keyring';
 import { entranceReducer } from './entranceMenu';
 import fullNodeReducer from './fullNode';
 import farmingReducer from './farming';
@@ -21,6 +22,7 @@ import localStorageReducer from './localStorage';
 
 const reducers = {
   daemon_state: daemonReducer,
+  keyring_state: keyringReducer,
   websocket: websocketReducer,
   wallet_state: incomingReducer,
   mnemonic_state: mnemonicReducer,
