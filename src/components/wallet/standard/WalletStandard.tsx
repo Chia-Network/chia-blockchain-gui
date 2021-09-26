@@ -54,7 +54,6 @@ import { deleteUnconfirmedTransactions } from '../../../modules/incoming';
 import WalletCards from './WalletCards';
 import WalletStatus from '../WalletStatus';
 import useOpenDialog from '../../../hooks/useOpenDialog';
-import EnterPassphrasePrompt from '../EnterPassphrasePrompt';
 
 const drawerWidth = 240;
 
@@ -410,17 +409,8 @@ function SendCard(props: SendCardProps) {
     }
   }
 
-  async function handleSubmit(data: SendTransactionData) {
+  function handleSubmit(data: SendTransactionData) {
     if (sending_transaction) {
-      return;
-    }
-
-    const isPassphraseCorrect = await openDialog(
-      <EnterPassphrasePrompt />
-    );
-
-    if (!isPassphraseCorrect) {
-      // passphrase is incorrect
       return;
     }
 
