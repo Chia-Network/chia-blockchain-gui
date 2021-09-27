@@ -34,8 +34,6 @@ export default function plotterConfigurationReducer(
       const { data } = message;
       const { command } = message;
       if (command === 'get_plotters') {
-        console.log('received get_plotters response');
-        console.log(data);
         if (data.success && data.plotters) {
           const { plotters } = data;
           const plotterNames = Object.keys(plotters) as PlotterName[];

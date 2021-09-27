@@ -89,6 +89,7 @@ export default function PlotAdd() {
 
   let plotter = availablePlotters[plotterName] ?? defaultPlotter();
   let step: number = 1;
+  const allowTempDirectorySelection: boolean = plotter.options.haveBladebitOutputDir === false;
 
   useEffect(() => {
     const plotSizeConfig = plotSizes.find((item) => item.value === plotSize);
@@ -192,7 +193,7 @@ export default function PlotAdd() {
         <PlotAddChoosePlotter step={step++} onChange={handlePlotterChanged} />
         <PlotAddChooseSize step={step++} plotter={plotter} />
         <PlotAddNumberOfPlots step={step++} plotter={plotter} />
-        {plotter.options.haveBladebitOutputDir === false && (
+        {allowTempDirectorySelection && (
           <PlotAddSelectTemporaryDirectory step={step++} plotter={plotter} />
         )}
         <PlotAddSelectFinalDirectory step={step++} plotter={plotter} />
