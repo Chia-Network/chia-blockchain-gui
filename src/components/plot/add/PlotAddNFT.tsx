@@ -21,7 +21,7 @@ type Props = {
 };
 
 const PlotAddNFT = forwardRef((props: Props, ref) => {
-  const { step, plotter } = props;
+  const { step } = props;
   const { nfts, external, loading } = usePlotNFTs();
   const [showCreatePlotNFT, setShowCreatePlotNFT] = useState<boolean>(false);
   const { setValue } = useFormContext();

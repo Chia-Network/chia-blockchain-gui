@@ -1,4 +1,3 @@
-import { defaults } from 'lodash';
 import PlotterName from '../constants/PlotterNames';
 import { optionsForPlotter, defaultsForPlotter } from '../constants/Plotters';
 import Plotter, { PlotterMap } from '../types/Plotter';

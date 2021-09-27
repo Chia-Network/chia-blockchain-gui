@@ -32,7 +32,6 @@ export default function PlotAddChoosePlotter(props: Props) {
   const plotterName: PlotterName = watch('plotterName');
   const { availablePlotters } = useSelector((state: RootState) => state.plotter_configuration);
   const displayedPlotters = Object.keys(availablePlotters) as PlotterName[]
-  const installed = availablePlotters[plotterName]?.installInfo?.installed ?? false;
   
   // Sort chiapos to the top of the list
   displayedPlotters.sort((a, b) => a == PlotterName.CHIAPOS ? -1 : a.localeCompare(b));

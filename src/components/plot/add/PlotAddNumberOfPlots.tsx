@@ -3,7 +3,6 @@ import { Trans } from '@lingui/macro';
 import {
   AdvancedOptions,
   CardStep,
-  Select,
   TextField,
   RadioGroup,
   Flex,
@@ -13,8 +12,6 @@ import {
 import {
   Grid,
   FormControl,
-  InputLabel,
-  MenuItem,
   InputAdornment,
   Typography,
   FormControlLabel,
