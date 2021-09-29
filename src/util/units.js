@@ -1,7 +1,7 @@
 const units = {
   chia: 1,
-  mojo: 1 / 1e12,
-  colouredcoin: 1 / 1e9,
+  mojo: 1 / 1e6,
+  colouredcoin: 1 / 1e3,
 };
 
 const aliases = {
