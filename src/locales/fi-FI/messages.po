@@ -8,7 +8,7 @@ msgstr ""
 "Language: fi_FI\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-09-29 14:18\n"
+"PO-Revision-Date: 2021-09-29 20:14\n"
 "Last-Translator: \n"
 "Language-Team: Finnish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -131,7 +131,7 @@ msgstr "Osoite / Puzzle-tiiviste"
 
 #: src/components/app/AppKeyringMigrator.tsx:158
 msgid "After your keys are successfully migrated to the new keyring, you may choose to have your keys removed from the old keyring."
-msgstr "Kun avaimet ovat onnistuneesti siirretty uuteen avainketjuun, voit halutessasi poistaa avaimet vanhasta avainketjusta."
+msgstr "Kun avaimet ovat onnistuneesti siirretty uuteen avainlenkkiin, voit halutessasi poistaa avaimet vanhasta avainketjusta."
 
 #: src/components/core/components/Amount/Amount.tsx:99
 #: src/components/trading/CreateOffer.jsx:196
@@ -795,7 +795,7 @@ msgstr "Syötä vahva salasana ja napsauta Siirrä avaimet turvataksesi avaimet"
 
 #: src/components/settings/SetPassphrasePrompt.tsx:132
 msgid "Enter a strong passphrase to secure your keys:"
-msgstr ""
+msgstr "Anna vahva salasana avaimien suojaamiseksi:"
 
 #: src/components/wallet/WalletImport.tsx:146
 msgid "Enter the 24 word mnemonic that you have saved in order to restore your Chia wallet."
@@ -804,7 +804,7 @@ msgstr "Anna tallentamasi 24 muistisanaa palauttaaksesi Chia-lompakon."
 #: src/components/settings/RemovePassphrasePrompt.tsx:115
 #: src/components/wallet/EnterPassphrasePrompt.tsx:115
 msgid "Enter your passphrase:"
-msgstr ""
+msgstr "Syötä Salasana:"
 
 #: src/components/farm/FarmerStatus.tsx:21
 #: src/components/farm/FarmerStatus.tsx:22
@@ -852,15 +852,15 @@ msgstr "Ei voi avata (epäkelpo plotti)"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:86
 msgid "Failed to remove passphrase: {error}"
-msgstr ""
+msgstr "Salasanan poisto epäonnistui: {error}"
 
 #: src/components/settings/SetPassphrasePrompt.tsx:79
 msgid "Failed to set passphrase: {error}"
-msgstr ""
+msgstr "Salasanan asettaminen epäonnistui: {error}"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:107
 msgid "Failed to update passphrase: {error}"
-msgstr ""
+msgstr "Salasanan päivitys epäonnistui: {error}"
 
 #: src/components/dashboard/DashboardSideBar.tsx:58
 #: src/components/wallet/coloured/WalletColoured.tsx:610
@@ -1162,7 +1162,7 @@ msgstr "K-Arvo"
 
 #: src/components/app/AppKeyringMigrator.tsx:80
 msgid "Keyring migration failed: {error}"
-msgstr ""
+msgstr "Avainten siirto epäonnistui: {error}"
 
 #: src/components/dashboard/DashboardSideBar.tsx:69
 msgid "Keys"
@@ -1281,24 +1281,24 @@ msgstr "MiB Lähetys/Lataus"
 
 #: src/components/selectKey/SelectKey.tsx:137
 msgid "Migrate"
-msgstr ""
+msgstr "Siirrä"
 
 #: src/components/settings/Settings.tsx:182
 msgid "Migrate Keyring"
-msgstr ""
+msgstr "Luo Avainrengas"
 
 #: src/components/app/AppKeyringMigrator.tsx:188
 msgid "Migrate Keys"
-msgstr ""
+msgstr "Siirrä Avaimet"
 
 #: src/components/app/AppKeyringMigrator.tsx:115
 #: src/components/selectKey/SelectKey.tsx:136
 msgid "Migration required"
-msgstr ""
+msgstr "Siirto vaaditaan"
 
 #: src/components/settings/Settings.tsx:121
 msgid "Migration required to support passphrase protection"
-msgstr ""
+msgstr "Siirto vaaditaan salasanasuojaukseen"
 
 #: src/components/pool/PoolInfo.tsx:27
 msgid "Minimum Difficulty"
@@ -1339,7 +1339,7 @@ msgstr "Uusi Osoite"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:175
 msgid "New Passphrase"
-msgstr ""
+msgstr "Uusi Salasana"
 
 #: src/components/wallet/WalletAdd.tsx:63
 msgid "New Wallet"
@@ -1347,7 +1347,7 @@ msgstr "Uusi Lompakko"
 
 #: src/components/app/AppPassPrompt.tsx:60
 msgid "New passphrase is the same as your current passphrase"
-msgstr ""
+msgstr "Uusi salasana on sama kuin nykyinen salasana"
 
 #: src/components/block/Block.jsx:351
 #: src/components/wallet/WalletAdd.tsx:95
@@ -1481,33 +1481,33 @@ msgstr "Lähtevä"
 #: src/components/settings/SetPassphrasePrompt.tsx:142
 #: src/components/wallet/EnterPassphrasePrompt.tsx:123
 msgid "Passphrase"
-msgstr ""
+msgstr "Salasana"
 
 #: src/components/settings/Settings.tsx:213
 msgid "Passphrase Settings"
-msgstr ""
+msgstr "Salasanan Asetukset"
 
 #: src/components/app/AppPassPrompt.tsx:149
 #: src/components/settings/RemovePassphrasePrompt.tsx:64
 #: src/components/wallet/EnterPassphrasePrompt.tsx:66
 msgid "Passphrase is incorrect"
-msgstr ""
+msgstr "Salasana on virheellinen"
 
 #: src/components/settings/Settings.tsx:93
 msgid "Passphrase protection has been disabled"
-msgstr ""
+msgstr "Salasanasuojaus on pois käytöstä"
 
 #: src/components/settings/Settings.tsx:131
 msgid "Passphrase protection is disabled"
-msgstr ""
+msgstr "Salasanasuojaus on pois käytöstä"
 
 #: src/components/settings/Settings.tsx:128
 msgid "Passphrase protection is enabled"
-msgstr ""
+msgstr "Salasanasuojaus on käytössä"
 
 #: src/components/settings/Settings.tsx:122
 msgid "Passphrase support requires migrating your keys to a new keyring"
-msgstr ""
+msgstr "Salasanatuki vaatii avainten siirtämistä uuteen avainrenkaaseen"
 
 #: src/components/plotNFT/PlotNFTCard.tsx:361
 msgid "Payout Address"
@@ -1570,7 +1570,7 @@ msgstr "Anna tiedostonimi"
 #: src/components/app/AppPassPrompt.tsx:133
 #: src/components/settings/SetPassphrasePrompt.tsx:48
 msgid "Please enter a passphrase"
-msgstr ""
+msgstr "Ole hyvä ja syötä salasana"
 
 #: src/components/wallet/did/WalletDID.tsx:934
 msgid "Please enter a pubkey"
@@ -1621,18 +1621,18 @@ msgstr "Anna käypä julkinen avain"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:54
 msgid "Please enter your current passphrase, and a new passphrase"
-msgstr ""
+msgstr "Ole hyvä ja syötä nykyinen salasana ja uusi salasana"
 
 #: src/components/app/AppPassPrompt.tsx:182
 #: src/components/app/AppPassPrompt.tsx:198
 #: src/components/settings/RemovePassphrasePrompt.tsx:47
 #: src/components/wallet/EnterPassphrasePrompt.tsx:48
 msgid "Please enter your passphrase"
-msgstr ""
+msgstr "Ole hyvä ja syötä salasana"
 
 #: src/components/app/AppPassPrompt.tsx:192
 msgid "Please enter your passphrase to proceed"
-msgstr ""
+msgstr "Ole hyvä ja syötä salasanasi jatkaaksesi"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:623
 #: src/components/wallet/standard/WalletStandard.tsx:430
@@ -2010,11 +2010,11 @@ msgstr "Version Muutokset"
 #: src/components/settings/RemovePassphrasePrompt.tsx:146
 #: src/components/settings/Settings.tsx:194
 msgid "Remove Passphrase"
-msgstr ""
+msgstr "Poista Salasana"
 
 #: src/components/app/AppKeyringMigrator.tsx:155
 msgid "Remove keys from old keyring upon successful migration"
-msgstr ""
+msgstr "Poista avaimet vanhasta avainrenkaasta onnistuneen siiron jälkeen"
 
 #: src/components/plot/queue/PlotQueueIndicator.tsx:36
 msgid "Removing"
@@ -2065,7 +2065,7 @@ msgstr "Toinen väliaikaishakemistosijainti"
 
 #: src/components/settings/Settings.tsx:124
 msgid "Secure your keychain using a strong passphrase"
-msgstr ""
+msgstr "Suojaa avainrengas vahvalla salasanalla"
 
 #: src/components/selectKey/SelectKey.tsx:216
 msgid "See private key"
@@ -2162,16 +2162,16 @@ msgstr "Lähetä julkinen avaimesi Siirtorajoitetun Lompakon pääkäyttäjälle
 #: src/components/settings/SetPassphrasePrompt.tsx:177
 #: src/components/settings/Settings.tsx:205
 msgid "Set Passphrase"
-msgstr ""
+msgstr "Aseta Salasana"
 
 #: src/components/app/AppPassPrompt.tsx:75
 msgid "Setting a passphrase is strongly recommended to protect your keys. Are you sure you want to skip setting a passphrase?"
-msgstr ""
+msgstr "Salasanan asettaminen on erittäin suositeltavaa avaimien suojaamiseksi. Oletko varma, että haluat ohittaa salasanan asettamisen?"
 
 #: src/components/dashboard/DashboardSideBar.tsx:76
 #: src/components/settings/Settings.tsx:239
 msgid "Settings"
-msgstr ""
+msgstr "Asetukset"
 
 #: src/components/core/components/AdvancedOptions/AdvancedOptions.tsx:74
 msgid "Show Advanced Options"
@@ -2194,15 +2194,15 @@ msgstr "Kirjaudu"
 #: src/components/app/AppKeyringMigrator.tsx:177
 #: src/components/app/AppPassPrompt.tsx:74
 msgid "Skip"
-msgstr ""
+msgstr "Ohita"
 
 #: src/components/app/AppKeyringMigrator.tsx:46
 msgid "Skip Keyring Migration"
-msgstr ""
+msgstr "Ohita Avainten Siirto"
 
 #: src/components/app/AppPassPrompt.tsx:73
 msgid "Skip Passphrase Protection"
-msgstr ""
+msgstr "Ohita Salasanasuojaus"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:129
 #~ msgid "Skips adding [final dir] to harvester for farming"
@@ -2309,7 +2309,7 @@ msgstr "Lähetä"
 
 #: src/components/wallet/EnterPassphrasePrompt.tsx:146
 msgid "Submit Passphrase"
-msgstr ""
+msgstr "Aseta Salasana"
 
 #: src/components/fullNode/card/FullNodeCardStatus.tsx:43
 #: src/components/wallet/WalletStatus.tsx:33
@@ -2415,7 +2415,7 @@ msgstr "Poolin vaihtaminen peruttiin, yritä uudelleen vaihtamalla poolia, tai i
 
 #: src/components/app/AppPassPrompt.tsx:37
 msgid "The provided passphrase and confirmation do not match"
-msgstr ""
+msgstr "Annettu salasana ja vahvistus eivät täsmää"
 
 #: src/components/block/Block.jsx:303
 msgid "The seed used to create the plot. This depends on the pool pk and plot pk."
@@ -2639,7 +2639,7 @@ msgstr "Tuntematon"
 
 #: src/components/app/AppPassPrompt.tsx:185
 msgid "Unlock Keyring"
-msgstr ""
+msgstr "Avaa Avainrengas"
 
 #: src/components/core/components/FormBackButton/FormBackButton.tsx:25
 msgid "Unsaved Changes"
@@ -2652,7 +2652,7 @@ msgstr "Käyttäjän julkinen avain"
 
 #: src/components/app/AppPassPrompt.tsx:79
 msgid "Using a passphrase is strongly recommended to protect your keys. Are you sure you want to disable passphrase protection?"
-msgstr ""
+msgstr "Salasanan asettaminen on erittäin suositeltavaa avaimien suojaamiseksi. Oletko varma, että haluat ohittaa salasanan asettamisen?"
 
 #: src/components/fullNode/card/FullNodeCardVDFSubSlotIterations.tsx:20
 msgid "VDF Sub Slot Iterations"
@@ -2911,11 +2911,11 @@ msgstr "Poolin Yleiskatsaus"
 
 #: src/components/app/AppPassPrompt.tsx:181
 msgid "Your keyring is locked"
-msgstr ""
+msgstr "Avainrenkaasi on lukittu"
 
 #: src/components/app/AppKeyringMigrator.tsx:52
 msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Are you sure you want to skip migrating your keys?"
-msgstr ""
+msgstr "Avaimia ei ole siirretty uuteen avainrenkaaseen. Et voi luoda uusia avaimia tai poistaa olemassa olevia avaimia ennen kuin siirto on tehty. Oletko varma, että haluat ohittaa avaimiesi siirron?"
 
 #: src/components/selectKey/SelectKey.tsx:141
 msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Would you like to migrate your keys now?"
