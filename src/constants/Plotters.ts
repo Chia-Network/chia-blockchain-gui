@@ -19,7 +19,7 @@ export const bladebitOptions: PlotterOptions = {
 export const bladebitDefaults: PlotterDefaults = {
   plotterName: PlotterName.BLADEBIT,
   plotSize: 32,
-  numThreads: 4,
+  numThreads: 0,
   numBuckets: undefined,
   madmaxNumBucketsPhase3: undefined,
   madmaxThreadMultiplier: undefined,
