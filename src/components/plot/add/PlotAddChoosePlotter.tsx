@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { useFormContext } from 'react-hook-form';
+import { useWatch } from 'react-hook-form';
 import { t, Trans } from '@lingui/macro';
 import { CardStep, Select } from '@chia/core';
 import {
@@ -28,8 +28,7 @@ const StyledFormHelperText = styled(FormHelperText)`
 
 export default function PlotAddChoosePlotter(props: Props) {
   const { step, onChange } = props;
-  const { watch } = useFormContext();
-  const plotterName: PlotterName = watch('plotterName');
+  const plotterName: PlotterName | undefined = useWatch<PlotterName>({name: 'plotterName'});
   const { availablePlotters } = useSelector((state: RootState) => state.plotter_configuration);
   const displayedPlotters = Object.keys(availablePlotters) as PlotterName[]
   
@@ -52,7 +51,7 @@ export default function PlotAddChoosePlotter(props: Props) {
     return supported;
   }
 
-  const plotterDisplayName = (plotterName: PlotterName): string => {
+  function plotterDisplayName(plotterName: PlotterName): string {
     const plotter = availablePlotters[plotterName] ?? defaultPlotter();
     const { version } = plotter;
     const installed = plotter.installInfo?.installed ?? false;
@@ -72,7 +71,7 @@ export default function PlotAddChoosePlotter(props: Props) {
     return displayName;
   };
 
-  const plotterWarningString = (plotterName: PlotterName): string | undefined => {
+  const plotterWarningString = (plotterName: PlotterName | undefined): string | undefined => {
     if (plotterName === PlotterName.BLADEBIT) {
       return availablePlotters[PlotterName.BLADEBIT]?.installInfo?.bladebitMemoryWarning;
     }
@@ -85,13 +84,9 @@ export default function PlotAddChoosePlotter(props: Props) {
     <CardStep step={step} title={<Trans>Choose Plotter</Trans>}>
       <Typography variant="subtitle1">
         <Trans>
-          {
-            `
             Depending on your system configuration, you may find that an alternative plotter
             produces plots faster than the default Chia Proof of Space plotter. If unsure,
             use the default Chia Proof of Space plotter.
-            `
-          }
         </Trans>
       </Typography>
 

@@ -82,10 +82,12 @@ export default function PlotAdd() {
   const plotterName = watch('plotterName') as PlotterName;
   const plotSize = watch('plotSize');
 
-  if (!fetchedPlotters) {
-    dispatch(getPlotters());
-    setFetchedPlotters(true);
-  }
+  useEffect(() => {
+    if (!fetchedPlotters) {
+      dispatch(getPlotters());
+      setFetchedPlotters(true);
+    }
+  }, [fetchedPlotters]);
 
   let plotter = availablePlotters[plotterName] ?? defaultPlotter();
   let step: number = 1;
