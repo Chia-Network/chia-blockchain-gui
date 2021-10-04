@@ -13,8 +13,8 @@ const crypto = require('crypto');
 
 const callback_map = {};
 if (isElectron()) {
-  var { remote } = window.require('electron');
-  var fs = remote.require('fs');
+  var {getGlobal} = window.require('@electron/remote');
+  var fs = window.require('fs');
   var WS = window.require('ws');
 }
 
@@ -78,8 +78,8 @@ const socketMiddleware = () => {
           }
           // connect to the remote host
           try {
-            const key_path = remote.getGlobal('key_path');
-            const cert_path = remote.getGlobal('cert_path');
+            const key_path = getGlobal('key_path');
+            const cert_path = getGlobal('cert_path');
 
             const options = {
               cert: fs.readFileSync(cert_path),

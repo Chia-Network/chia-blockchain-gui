@@ -16,7 +16,7 @@ export default function useSelectDirectory(
   async function handleSelect(options?: Options): Promise<string | undefined> {
     if (isElectron()) {
       // @ts-ignore
-      const result = await window.remote.dialog.showOpenDialog({
+      const result = await window.ipcRenderer?.send('showOpenDialog',{
         properties: ['openDirectory', 'showHiddenFiles'],
         ...defaultOptions,
         ...options,
