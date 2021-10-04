@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Trans } from '@lingui/macro';
 import { useFormContext } from 'react-hook-form';
@@ -31,15 +31,16 @@ export default function PlotAddChooseSize(props: Props) {
   const { watch, setValue } = useFormContext();
   const openDialog = useOpenDialog();
 
+  const plotterName = watch('plotterName');
   const plotSize = watch('plotSize');
   const overrideK = watch('overrideK');
   const isKLow = plotSize < MIN_MAINNET_K_SIZE;
 
-  const allowedPlotSizes = plotSizeOptions.filter((option) => plotter.options.kSizes.includes(option.value));
+  const [allowedPlotSizes, setAllowedPlotSizes] = React.useState(plotSizeOptions.filter((option) => plotter.options.kSizes.includes(option.value)));
 
-  if (plotter.options.kSizes.includes(plotSize) === false) {
-    setValue('plotSize', 32);
-  }
+  useEffect(() => {
+    setAllowedPlotSizes(plotSizeOptions.filter((option) => plotter.options.kSizes.includes(option.value)));
+  }, [plotterName]);
 
   async function getConfirmation() {
     const canUse = await openDialog(
