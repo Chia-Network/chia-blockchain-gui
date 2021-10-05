@@ -221,10 +221,6 @@ if (!handleSquirrelEvent()) {
         e.reply(await dialog.showSaveDialog(a))
       })
 
-      mainWindow.on('showOpenDialog' , async (e, a) => {
-        e.reply(await dialog.showOpenDialog(a))
-      })
-
     };
 
 
