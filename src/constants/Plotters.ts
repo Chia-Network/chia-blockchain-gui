@@ -1,4 +1,4 @@
-import PlotterName from './PlotterNames';
+import PlotterName from './PlotterName';
 import { PlotterOptions, PlotterDefaults } from 'types/Plotter';
 
 export const bladebitOptions: PlotterOptions = {

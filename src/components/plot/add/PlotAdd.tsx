@@ -18,7 +18,7 @@ import { createPlotNFT } from '../../../modules/plotNFT';
 import PlotAddConfig from '../../../types/PlotAdd';
 import plotSizes from '../../../constants/plotSizes';
 import PlotNFTState from '../../../constants/PlotNFTState';
-import PlotterName from '../../../constants/PlotterNames';
+import PlotterName from '../../../constants/PlotterName';
 import { defaultPlotter } from '../../../modules/plotterConfiguration';
 import useCurrencyCode from '../../../hooks/useCurrencyCode';
 import type { RootState } from '../../../modules/rootReducer';

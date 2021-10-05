@@ -12,7 +12,7 @@ import {
   Typography,
 } from '@material-ui/core';
 import { RootState } from '../../../modules/rootReducer';
-import PlotterName from '../../../constants/PlotterNames';
+import PlotterName from '../../../constants/PlotterName';
 import StateColor from '../../core/constants/StateColor';
 import styled from 'styled-components';
 import { defaultPlotter } from '../../../modules/plotterConfiguration';

@@ -1,4 +1,4 @@
-import PlotterName from '../constants/PlotterNames';
+import PlotterName from '../constants/PlotterName';
 import { optionsForPlotter, defaultsForPlotter } from '../constants/Plotters';
 import Plotter, { PlotterMap } from '../types/Plotter';
 
