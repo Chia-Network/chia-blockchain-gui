@@ -17,9 +17,8 @@ export default function Select(props: Props) {
     // @ts-ignore
     <Controller
       name={controllerName}
-      value={controllerValue}
       control={control}
-      render={({ onChange, onBlur, value, name, ref }) => (
+      render={({ field: { onChange, onBlur, value, name, ref } }) => (
         <MaterialSelect
           onChange={(event, ...args) => {
             onChange(event, ...args);

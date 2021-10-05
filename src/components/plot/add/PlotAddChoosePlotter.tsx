@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useWatch } from 'react-hook-form';
 import { t, Trans } from '@lingui/macro';
@@ -13,6 +13,7 @@ import {
 } from '@material-ui/core';
 import { RootState } from '../../../modules/rootReducer';
 import PlotterName from '../../../constants/PlotterName';
+import Plotter, { PlotterMap } from '../../../types/Plotter';
 import StateColor from '../../core/constants/StateColor';
 import styled from 'styled-components';
 import { defaultPlotter } from '../../../modules/plotterConfiguration';
@@ -30,10 +31,19 @@ export default function PlotAddChoosePlotter(props: Props) {
   const { step, onChange } = props;
   const plotterName: PlotterName | undefined = useWatch<PlotterName>({name: 'plotterName'});
   const { availablePlotters } = useSelector((state: RootState) => state.plotter_configuration);
-  const displayedPlotters = Object.keys(availablePlotters) as PlotterName[]
-  
-  // Sort chiapos to the top of the list
-  displayedPlotters.sort((a, b) => a == PlotterName.CHIAPOS ? -1 : a.localeCompare(b));
+
+  function displayablePlotters(plotters: PlotterMap<PlotterName, Plotter>): PlotterName[] {
+    const displayablePlotters = Object.keys(plotters) as PlotterName[];
+    // Sort chiapos to the top of the list
+    displayablePlotters.sort((a, b) => a == PlotterName.CHIAPOS ? -1 : a.localeCompare(b));
+    return displayablePlotters;
+  }
+
+  const [displayedPlotters, setDisplayedPlotters] = useState(displayablePlotters(availablePlotters));
+
+  useEffect(() => {
+    setDisplayedPlotters(displayablePlotters(availablePlotters));
+  }, [availablePlotters]);
 
   const handleChange = async (event: any) => {
     const selectedPlotterName: PlotterName = event.target.value as PlotterName;
@@ -80,6 +90,11 @@ export default function PlotAddChoosePlotter(props: Props) {
 
   const warning = plotterWarningString(plotterName);
 
+  console.log("displayedPlotters");
+  console.log(displayedPlotters);
+
+  console.log("plotterName");
+  console.log(plotterName);
   return (
     <CardStep step={step} title={<Trans>Choose Plotter</Trans>}>
       <Typography variant="subtitle1">

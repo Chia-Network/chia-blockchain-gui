@@ -36,7 +36,7 @@ export default function PlotAddChooseSize(props: Props) {
   const overrideK = watch('overrideK');
   const isKLow = plotSize < MIN_MAINNET_K_SIZE;
 
-  const [allowedPlotSizes, setAllowedPlotSizes] = React.useState(plotSizeOptions.filter((option) => plotter.options.kSizes.includes(option.value)));
+  const [allowedPlotSizes, setAllowedPlotSizes] = useState(plotSizeOptions.filter((option) => plotter.options.kSizes.includes(option.value)));
 
   useEffect(() => {
     setAllowedPlotSizes(plotSizeOptions.filter((option) => plotter.options.kSizes.includes(option.value)));
