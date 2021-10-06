@@ -8,7 +8,7 @@ msgstr ""
 "Language: th_TH\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-09-23 04:28\n"
+"PO-Revision-Date: 2021-10-06 17:56\n"
 "Last-Translator: \n"
 "Language-Team: Thai\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -327,7 +327,7 @@ msgstr "เปลี่ยน"
 #: src/components/settings/ChangePassphrasePrompt.tsx:207
 #: src/components/settings/Settings.tsx:158
 msgid "Change Passphrase"
-msgstr ""
+msgstr "เปลี่ยนวลีรหัสผ่าน"
 
 #: src/components/plotNFT/PlotNFTCard.tsx:408
 #: src/components/plotNFT/PlotNFTChangePool.tsx:110
@@ -418,13 +418,13 @@ msgstr "ยืนยันการตัดการเชื่อมต่อ
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:185
 msgid "Confirm New Passphrase"
-msgstr ""
+msgstr "ยืนยันวรีรหัสผ่านใหม่"
 
 #: src/components/app/AppKeyringMigrator.tsx:140
 #: src/components/app/AppKeyringMigrator.tsx:141
 #: src/components/settings/SetPassphrasePrompt.tsx:153
 msgid "Confirm Passphrase"
-msgstr ""
+msgstr "ยืนยันวรีรหัสผ่าน"
 
 #: src/components/plotNFT/PlotNFTCard.tsx:121
 #: src/components/wallet/standard/WalletStandard.tsx:632
@@ -667,7 +667,7 @@ msgstr "ลบ"
 
 #: src/components/app/AppPassPrompt.tsx:195
 msgid "Delete Key"
-msgstr ""
+msgstr "ลบคีย์"
 
 #: src/components/plot/PlotAction.tsx:26
 #: src/components/plot/queue/PlotQueueActions.tsx:42
@@ -698,7 +698,7 @@ msgstr "ลบคีย์ {fingerprint}"
 
 #: src/components/app/AppPassPrompt.tsx:191
 msgid "Deleting key"
-msgstr ""
+msgstr "ลบคีย์"
 
 #: src/components/selectKey/SelectKey.tsx:101
 #~ msgid "Deleting the key will permanently remove the key from your computer, make sure you have backups. Are you sure you want to continue?"
@@ -719,7 +719,7 @@ msgstr "ระดับความยาก"
 
 #: src/components/app/AppPassPrompt.tsx:78
 msgid "Disable"
-msgstr ""
+msgstr "ปิดการใช้งาน"
 
 #: src/components/app/AppPassPrompt.tsx:77
 msgid "Disable Passphrase Protection"
