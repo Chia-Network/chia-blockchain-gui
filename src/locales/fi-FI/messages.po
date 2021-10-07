@@ -8,7 +8,7 @@ msgstr ""
 "Language: fi_FI\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-09-29 20:14\n"
+"PO-Revision-Date: 2021-10-07 16:22\n"
 "Last-Translator: \n"
 "Language-Team: Finnish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -2919,23 +2919,23 @@ msgstr "Avaimia ei ole siirretty uuteen avainrenkaaseen. Et voi luoda uusia avai
 
 #: src/components/selectKey/SelectKey.tsx:141
 msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Would you like to migrate your keys now?"
-msgstr ""
+msgstr "Avaimiasi ei ole siirretty uuteen avainrenkaaseen. Et voi luoda uusia avaimia tai poistaa olemassa olevia avaimia ennen kuin siirto on tehty. Haluatko siirtää avaimesi nyt?"
 
 #: src/components/app/AppKeyringMigrator.tsx:95
 msgid "Your keys need to be migrated to a new keyring that is optionally secured by a master passphrase."
-msgstr ""
+msgstr "Avaimesi täytyy siirtää uuteen avainrenkaaseen, joka voidaan suojata pääsalasanalla."
 
 #: src/components/app/AppKeyringMigrator.tsx:101
 msgid "Your keys need to be migrated to a new keyring that is secured by a master passphrase."
-msgstr ""
+msgstr "Avaimesi täytyy siirtää uuteen avainrenkaaseen, joka on suojattu pääsalasanalla."
 
 #: src/components/settings/Settings.tsx:80
 msgid "Your passphrase has been set"
-msgstr ""
+msgstr "Salasanasi on asetettu"
 
 #: src/components/settings/Settings.tsx:67
 msgid "Your passphrase has been updated"
-msgstr ""
+msgstr "Salasanasi on päivitetty"
 
 #: src/util/getDescriptiveError.ts:5
 msgid "[Error 13] Permission denied. You are trying to access a file/directory without having the necessary permissions. Most likely one of the plot folders in your config.yaml has an issue."
@@ -2980,7 +2980,7 @@ msgstr "synkronoi"
 
 #: src/components/app/AppPassPrompt.tsx:48
 msgid "{0, plural, one {Passphrases must be at least # character in length} other {Passphrases must be at least # characters in length}}"
-msgstr ""
+msgstr "{0, plural, one {Salasanojen on oltava vähintään # merkki pituudeltaan} other {Salasanojen on oltava vähintään # merkkiä pituudeltaan}}"
 
 #: src/components/farm/card/FarmCardBlockRewards.tsx:16
 #~ msgid "{0} Block Rewards"
