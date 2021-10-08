@@ -4,6 +4,7 @@ export type KeyringState = {
   can_save_passphrase: boolean;
   user_passphrase_set: boolean;
   needs_migration: boolean;
+  can_remove_legacy_keys: boolean;
   migration_in_progress: boolean;
   migration_skipped: boolean;
   allow_empty_passphrase: boolean;
@@ -16,6 +17,7 @@ const initialState: KeyringState = {
   can_save_passphrase: false,
   user_passphrase_set: false,
   needs_migration: false,
+  can_remove_legacy_keys: false,
   migration_in_progress: false,
   migration_skipped: false,
   allow_empty_passphrase: false,
@@ -43,6 +45,7 @@ export default function keyringReducer(
           const { can_save_passphrase } = data;
           const { user_passphrase_is_set } = data;
           const { needs_migration } = data;
+          const { can_remove_legacy_keys } = data;
           const { passphrase_requirements } = data;
           const allow_empty_passphrase = passphrase_requirements?.is_optional || false;
           const min_passphrase_length = passphrase_requirements?.min_length || 10;
@@ -53,6 +56,7 @@ export default function keyringReducer(
             can_save_passphrase: can_save_passphrase,
             user_passphrase_set: user_passphrase_is_set,
             needs_migration: needs_migration,
+            can_remove_legacy_keys: can_remove_legacy_keys,
             allow_empty_passphrase: allow_empty_passphrase,
             min_passphrase_length: min_passphrase_length,
           };

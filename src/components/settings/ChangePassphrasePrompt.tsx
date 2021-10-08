@@ -1,15 +1,22 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
+  Box,
   Button,
+  Checkbox,
   Dialog,
   DialogActions,
   DialogContent,
   DialogContentText,
   DialogTitle,
-  TextField
+  FormControlLabel,
+  TextField,
+  Tooltip,
 } from '@material-ui/core';
-import { Trans } from '@lingui/macro';
+import {
+  Help as HelpIcon,
+} from '@material-ui/icons';
+import { t, Trans } from '@lingui/macro';
 import { AlertDialog } from '@chia/core';
 import { openDialog } from '../../modules/dialog';
 import { change_keyring_passphrase_action, remove_keyring_passphrase_action } from '../../modules/message';
@@ -29,6 +36,7 @@ export default function ChangePassphrasePrompt(props: Props) {
   let currentPassphraseInput: HTMLInputElement | null;
   let passphraseInput: HTMLInputElement | null;
   let confirmationInput: HTMLInputElement | null;
+  let savePassphraseCheckbox: HTMLInputElement | null = null;
 
   const [needsFocusAndSelect, setNeedsFocusAndSelect] = React.useState(false);
   useEffect(() => {
@@ -68,6 +76,7 @@ export default function ChangePassphrasePrompt(props: Props) {
     const currentPassphrase: string = currentPassphraseInput?.value ?? "";
     const newPassphrase: string = passphraseInput?.value ?? "";
     const confirmation: string = confirmationInput?.value ?? "";
+    const savePassphrase: boolean = savePassphraseCheckbox?.checked ?? false;
     const isValid = await validateDialog(currentPassphrase, newPassphrase, confirmation);
 
     if (isValid) {
@@ -99,6 +108,7 @@ export default function ChangePassphrasePrompt(props: Props) {
             change_keyring_passphrase_action(
               currentPassphrase,
               newPassphrase,
+              savePassphrase,
               () => { onSuccess() }, // success
               async (error: string) => { // failure
                 await dispatch(
@@ -150,7 +160,7 @@ export default function ChangePassphrasePrompt(props: Props) {
       open={true}
       aria-labelledby="form-dialog-title"
       fullWidth={true}
-      maxWidth = {'xs'}
+      maxWidth = {'sm'}
       onKeyDown={handleKeyDown}
     >
       <DialogTitle id="form-dialog-title">Change Passphrase</DialogTitle>
@@ -186,27 +196,45 @@ export default function ChangePassphrasePrompt(props: Props) {
           type="password"
           fullWidth
         />
+        {keyring_state.can_save_passphrase && (
+          <Box display="flex" alignItems="center">
+            <FormControlLabel
+              control={(
+                <Checkbox
+                  disabled={actionInProgress}
+                  name="cleanupKeyringPostMigration"
+                  inputRef={(input) => savePassphraseCheckbox = input}
+                />
+              )}
+              label={t`Save passphrase`}
+              style={{ marginRight: '8px' }}
+            />
+            <Tooltip title={t`Your passphrase can be stored in your system's secure credential store. Chia will be able to access your keys without prompting for your passphrase.`}>
+              <HelpIcon style={{ color: '#c8c8c8', fontSize: 12 }} />
+            </Tooltip>
+          </Box>
+        )}
+        <DialogActions>
+          <Button
+            disabled={actionInProgress}
+            onClick={handleCancel}
+            color="secondary"
+            variant="contained"
+            style={{ marginBottom: '8px', marginRight: '8px' }}
+          >
+            <Trans>Cancel</Trans>
+          </Button>
+          <Button
+            disabled={actionInProgress}
+            onClick={handleSubmit}
+            color="primary"
+            variant="contained"
+            style={{ marginBottom: '8px', marginRight: '8px' }}
+          >
+            <Trans>Change Passphrase</Trans>
+          </Button>
+        </DialogActions>
       </DialogContent>
-      <DialogActions>
-        <Button
-          disabled={actionInProgress}
-          onClick={handleCancel}
-          color="secondary"
-          variant="contained"
-          style={{ marginBottom: '8px', marginRight: '8px' }}
-        >
-          <Trans>Cancel</Trans>
-        </Button>
-        <Button
-          disabled={actionInProgress}
-          onClick={handleSubmit}
-          color="primary"
-          variant="contained"
-          style={{ marginBottom: '8px', marginRight: '8px' }}
-        >
-          <Trans>Change Passphrase</Trans>
-        </Button>
-      </DialogActions>
     </Dialog>
   );
 }
