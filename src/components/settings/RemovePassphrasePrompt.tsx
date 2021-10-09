@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   Button,
   Dialog,
@@ -7,11 +7,14 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
-  TextField
+  TextField,
+  Typography,
 } from '@material-ui/core';
 import { Trans } from '@lingui/macro';
-import { AlertDialog } from '@chia/core';
+import { AlertDialog, Flex } from '@chia/core';
 import { openDialog } from '../../modules/dialog';
+import TooltipIcon from '../core/components/TooltipIcon';
+import { RootState } from 'modules/rootReducer';
 import { remove_keyring_passphrase_action } from '../../modules/message';
 
 type Props = {
@@ -22,6 +25,7 @@ type Props = {
 export default function RemovePassphrasePrompt(props: Props) {
   const dispatch = useDispatch();
   const { onSuccess, onCancel } = props;
+  const { passphrase_hint: passphraseHint } = useSelector((state: RootState) => state.keyring_state);
   const [actionInProgress, setActionInProgress] = React.useState(false);
   let passphraseInput: HTMLInputElement | null;
 
@@ -125,6 +129,18 @@ export default function RemovePassphrasePrompt(props: Props) {
           type="password"
           fullWidth
         />
+        {passphraseHint && passphraseHint.length > 0 && (
+          <Flex gap={1} alignItems="center" style={{ marginTop: '8px' }}>
+            <Typography variant="body2" color="textSecondary">
+              <Trans>Hint</Trans>
+            </Typography>
+            <TooltipIcon>
+              <Typography variant="inherit">
+                {passphraseHint}
+              </Typography>
+            </TooltipIcon>
+          </Flex>
+        )}
       </DialogContent>
       <DialogActions>
         <Button

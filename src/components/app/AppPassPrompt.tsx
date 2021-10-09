@@ -10,8 +10,9 @@ import {
   Button,
 } from '@material-ui/core';
 import { Plural, Trans } from '@lingui/macro';
-import { AlertDialog, ConfirmDialog } from '@chia/core';
+import { AlertDialog, ConfirmDialog, Flex } from '@chia/core';
 import { openDialog } from '../../modules/dialog';
+import TooltipIcon from '../core/components/TooltipIcon';
 import { unlock_keyring_action } from '../../modules/message';
 import { RootState } from 'modules/rootReducer';
 import { KeyringState } from 'modules/keyring';
@@ -107,7 +108,10 @@ export async function validateChangePassphraseParams(
 export default function AppPassPrompt(props: Props): JSX.Element | null {
   const dispatch = useDispatch();
   const { reason } = props;
-  const { user_passphrase_set: userPassphraseIsSet } = useSelector((state: RootState) => state.keyring_state);
+  const {
+    user_passphrase_set: userPassphraseIsSet,
+    passphrase_hint: passphraseHint,
+  } = useSelector((state: RootState) => state.keyring_state);
   const [actionInProgress, setActionInProgress] = React.useState(false);
   let passphraseInput: HTMLInputElement | null = null;
 
@@ -223,6 +227,18 @@ export default function AppPassPrompt(props: Props): JSX.Element | null {
               type="password"
               fullWidth
             />
+            {passphraseHint && passphraseHint.length > 0 && (
+              <Flex gap={1} alignItems="center" style={{ marginTop: '8px' }}>
+                <Typography variant="body2" color="textSecondary">
+                  <Trans>Hint</Trans>
+                </Typography>
+                <TooltipIcon>
+                  <Typography variant="inherit">
+                    {passphraseHint}
+                  </Typography>
+                </TooltipIcon>
+              </Flex>
+            )}
           </DialogContent>
           <DialogActions>
             <Button

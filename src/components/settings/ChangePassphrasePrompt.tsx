@@ -36,6 +36,7 @@ export default function ChangePassphrasePrompt(props: Props) {
   let currentPassphraseInput: HTMLInputElement | null;
   let passphraseInput: HTMLInputElement | null;
   let confirmationInput: HTMLInputElement | null;
+  let passphraseHintInput: HTMLInputElement | null;
   let savePassphraseCheckbox: HTMLInputElement | null = null;
 
   const [needsFocusAndSelect, setNeedsFocusAndSelect] = React.useState(false);
@@ -77,6 +78,7 @@ export default function ChangePassphrasePrompt(props: Props) {
     const newPassphrase: string = passphraseInput?.value ?? "";
     const confirmation: string = confirmationInput?.value ?? "";
     const savePassphrase: boolean = savePassphraseCheckbox?.checked ?? false;
+    const passphraseHint: string = passphraseHintInput?.value ?? "";
     const isValid = await validateDialog(currentPassphrase, newPassphrase, confirmation);
 
     if (isValid) {
@@ -108,6 +110,7 @@ export default function ChangePassphrasePrompt(props: Props) {
             change_keyring_passphrase_action(
               currentPassphrase,
               newPassphrase,
+              passphraseHint,
               savePassphrase,
               () => { onSuccess() }, // success
               async (error: string) => { // failure
@@ -196,6 +199,18 @@ export default function ChangePassphrasePrompt(props: Props) {
           type="password"
           fullWidth
         />
+        {keyring_state.can_set_passphrase_hint && (
+          <TextField
+            disabled={actionInProgress}
+            color="secondary"
+            margin="dense"
+            id="passphraseHintInput"
+            label={<Trans>Passphrase Hint (Optional)</Trans>}
+            placeholder={t`Passphrase Hint`}
+            inputRef={(input) => passphraseHintInput = input}
+            fullWidth
+          />
+        )}
         {keyring_state.can_save_passphrase && (
           <Box display="flex" alignItems="center">
             <FormControlLabel
