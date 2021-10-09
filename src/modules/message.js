@@ -988,15 +988,15 @@ export const unlock_keyring_action = (key, onFailure) => (dispatch) => {
   );
 };
 
-export const migrate_keyring = (passphrase, save_passphrase, cleanup_legacy_keyring) => {
+export const migrate_keyring = (passphrase, passphrase_hint, save_passphrase, cleanup_legacy_keyring) => {
   const action = daemonMessage();
   action.message.command = 'migrate_keyring';
-  action.message.data = { passphrase: passphrase, save_passphrase: save_passphrase, cleanup_legacy_keyring: cleanup_legacy_keyring };
+  action.message.data = { passphrase: passphrase, passphrase_hint: passphrase_hint, save_passphrase: save_passphrase, cleanup_legacy_keyring: cleanup_legacy_keyring };
   return action;
 }
 
-export const migrate_keyring_action = (passphrase, savePassphrase, cleanup_legacy_keyring, onFailure) => (dispatch) => {
-  return async_api(dispatch, migrate_keyring(passphrase, savePassphrase, cleanup_legacy_keyring), false, true).then(
+export const migrate_keyring_action = (passphrase, passphraseHint, savePassphrase, cleanup_legacy_keyring, onFailure) => (dispatch) => {
+  return async_api(dispatch, migrate_keyring(passphrase, passphraseHint, savePassphrase, cleanup_legacy_keyring), false, true).then(
     (response) => {
       if (response.data.success) {
         dispatch(keyringStatus());
@@ -1008,15 +1008,15 @@ export const migrate_keyring_action = (passphrase, savePassphrase, cleanup_legac
   );
 }
 
-export const change_keyring_passphrase = (current_passphrase, new_passphrase, save_passphrase) => {
+export const change_keyring_passphrase = (current_passphrase, new_passphrase, passphrase_hint, save_passphrase) => {
   const action = daemonMessage();
   action.message.command = 'set_keyring_passphrase';
-  action.message.data = { current_passphrase: current_passphrase, new_passphrase: new_passphrase, save_passphrase: save_passphrase };
+  action.message.data = { current_passphrase: current_passphrase, new_passphrase: new_passphrase, passphrase_hint: passphrase_hint, save_passphrase: save_passphrase };
   return action;
 }
 
-export const change_keyring_passphrase_action = (current_passphrase, new_passphrase, savePassphrase, onSuccess, onFailure) => (dispatch) => {
-  return async_api(dispatch, change_keyring_passphrase(current_passphrase, new_passphrase, savePassphrase), false, true).then(
+export const change_keyring_passphrase_action = (current_passphrase, new_passphrase, passphraseHint, savePassphrase, onSuccess, onFailure) => (dispatch) => {
+  return async_api(dispatch, change_keyring_passphrase(current_passphrase, new_passphrase, passphraseHint, savePassphrase), false, true).then(
     (response) => {
       if (response.data.success) {
         dispatch(keyringStatus());

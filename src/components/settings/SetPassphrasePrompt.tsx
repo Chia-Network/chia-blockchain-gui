@@ -1,16 +1,23 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
+  Box,
   Button,
+  Checkbox,
   Dialog,
   DialogActions,
   DialogContent,
   DialogContentText,
   DialogTitle,
-  TextField
+  FormControlLabel,
+  TextField,
+  Tooltip,
 } from '@material-ui/core';
-import { Trans } from '@lingui/macro';
-import { AlertDialog } from '@chia/core';
+import {
+  Help as HelpIcon,
+} from '@material-ui/icons';
+import { t, Trans } from '@lingui/macro';
+import { AlertDialog, Flex } from '@chia/core';
 import { openDialog } from '../../modules/dialog';
 import { change_keyring_passphrase_action } from '../../modules/message';
 import { validateChangePassphraseParams } from '../app/AppPassPrompt';
@@ -28,6 +35,8 @@ export default function SetPassphrasePrompt(props: Props) {
   const [actionInProgress, setActionInProgress] = React.useState(false);
   let passphraseInput: HTMLInputElement | null;
   let confirmationInput: HTMLInputElement | null;
+  let passphraseHintInput: HTMLInputElement | null;
+  let savePassphraseCheckbox: HTMLInputElement | null = null;
 
   const [needsFocusAndSelect, setNeedsFocusAndSelect] = React.useState(false);
   useEffect(() => {
@@ -61,6 +70,8 @@ export default function SetPassphrasePrompt(props: Props) {
   async function handleSubmit() {
     const passphrase: string = passphraseInput?.value ?? "";
     const confirmation: string = confirmationInput?.value ?? "";
+    const passphraseHint: string = passphraseHintInput?.value ?? "";
+    const savePassphrase: boolean = savePassphraseCheckbox?.checked ?? false;
     const isValid = await validateDialog(passphrase, confirmation);
 
     if (isValid) {
@@ -71,6 +82,8 @@ export default function SetPassphrasePrompt(props: Props) {
           change_keyring_passphrase_action(
             null,
             passphrase,
+            passphraseHint,
+            savePassphrase,
             () => { onSuccess() }, // success
             async (error: string) => { // failure
               await dispatch(
@@ -155,7 +168,37 @@ export default function SetPassphrasePrompt(props: Props) {
           inputRef={(input) => confirmationInput = input}
           type="password"
           fullWidth
+        />
+        {keyring_state.can_set_passphrase_hint && (
+          <TextField
+            disabled={actionInProgress}
+            color="secondary"
+            margin="dense"
+            id="passphraseHintInput"
+            label={<Trans>Passphrase Hint (Optional)</Trans>}
+            placeholder={t`Passphrase Hint`}
+            inputRef={(input) => passphraseHintInput = input}
+            fullWidth
           />
+        )}
+        {keyring_state.can_save_passphrase && (
+          <Box display="flex" alignItems="center">
+            <FormControlLabel
+              control={(
+                <Checkbox
+                  disabled={actionInProgress}
+                  name="cleanupKeyringPostMigration"
+                  inputRef={(input) => savePassphraseCheckbox = input}
+                />
+              )}
+              label={t`Save passphrase`}
+              style={{ marginRight: '8px' }}
+            />
+            <Tooltip title={t`Your passphrase can be stored in your system's secure credential store. Chia will be able to access your keys without prompting for your passphrase.`}>
+              <HelpIcon style={{ color: '#c8c8c8', fontSize: 12 }} />
+            </Tooltip>
+          </Box>
+        )}
       </DialogContent>
       <DialogActions>
         <Button

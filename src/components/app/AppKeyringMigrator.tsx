@@ -19,7 +19,7 @@ import {
 import {
   Help as HelpIcon,
 } from '@material-ui/icons';
-import { AlertDialog, ConfirmDialog } from '@chia/core';
+import { AlertDialog, ConfirmDialog, Flex } from '@chia/core';
 import { openDialog } from '../../modules/dialog';
 import { RootState } from '../../modules/rootReducer';
 import { migrate_keyring_action, skipKeyringMigration } from '../../modules/message';
@@ -33,6 +33,7 @@ export default function AppKeyringMigrator(): JSX.Element {
   const migrationInProgress = keyring_state.migration_in_progress;
   let passphraseInput: HTMLInputElement | null = null;
   let confirmationInput: HTMLInputElement | null = null;
+  let passphraseHintInput: HTMLInputElement | null;
   let savePassphraseCheckbox: HTMLInputElement | null = null;
   let cleanupKeyringCheckbox: HTMLInputElement | null = null;
 
@@ -66,6 +67,7 @@ export default function AppKeyringMigrator(): JSX.Element {
   async function handleMigrate(): Promise<void> {
     const passphrase: string = passphraseInput?.value ?? "";
     const confirmation: string = confirmationInput?.value ?? "";
+    const passphraseHint: string = passphraseHintInput?.value ?? "";
     const savePassphrase: boolean = savePassphraseCheckbox?.checked ?? false;
     const cleanup: boolean = cleanupKeyringCheckbox?.checked ?? false;
     const isValid: boolean = await validateDialog(passphrase, confirmation);
@@ -74,6 +76,7 @@ export default function AppKeyringMigrator(): JSX.Element {
       dispatch(
         migrate_keyring_action(
           passphrase,
+          passphraseHint,
           savePassphrase,
           cleanup,
           (error: string) => {
@@ -146,6 +149,18 @@ export default function AppKeyringMigrator(): JSX.Element {
             type="password"
             fullWidth
             />
+          {keyring_state.can_set_passphrase_hint && (
+            <TextField
+              disabled={migrationInProgress}
+              color="secondary"
+              margin="dense"
+              id="passphraseHintInput"
+              label={<Trans>Passphrase Hint (Optional)</Trans>}
+              placeholder={t`Passphrase Hint`}
+              inputRef={(input) => passphraseHintInput = input}
+              fullWidth
+            />
+          )}
           {keyring_state.can_save_passphrase && (
             <Box display="flex" alignItems="center">
               <FormControlLabel
