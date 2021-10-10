@@ -85,6 +85,12 @@ export default function PlotAddChoosePlotter(props: Props) {
     if (plotterName === PlotterName.BLADEBIT) {
       return availablePlotters[PlotterName.BLADEBIT]?.installInfo?.bladebitMemoryWarning;
     }
+    else if (plotterName === PlotterName.MADMAX) {
+      return t({
+        id: "thirdparty.plotter.disclaimer",
+        message: "Chia Network is not responsible for this third-party plotter"
+      });
+    }
     return undefined;
   };
 
