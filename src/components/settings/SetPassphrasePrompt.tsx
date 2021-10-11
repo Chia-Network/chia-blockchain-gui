@@ -17,7 +17,7 @@ import {
   Help as HelpIcon,
 } from '@material-ui/icons';
 import { t, Trans } from '@lingui/macro';
-import { AlertDialog, Flex } from '@chia/core';
+import { AlertDialog } from '@chia/core';
 import { openDialog } from '../../modules/dialog';
 import { change_keyring_passphrase_action } from '../../modules/message';
 import { validateChangePassphraseParams } from '../app/AppPassPrompt';
