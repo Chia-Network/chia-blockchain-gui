@@ -311,27 +311,27 @@ type BalanceCardProps = {
 };
 
 function BalanceCard(props: BalanceCardProps) {
-  const id = props.wallet_id;
-  let name = useSelector(
-    (state: RootState) => state.wallet_state.wallets[id].name,
+  const { wallet_id } = props;
+
+  const wallet = useSelector((state: RootState) =>
+    state.wallet_state.wallets?.find((item) => item.id === wallet_id),
   );
-  if (!name) {
-    name = '';
+
+  if (!wallet) {
+    return null;
   }
+  const name = wallet.name || '';
+
+
   const cc_unit = get_cc_unit(name);
 
-  const balance = useSelector(
-    (state: RootState) => state.wallet_state.wallets[id].balance_total,
-  );
-  const balance_spendable = useSelector(
-    (state: RootState) => state.wallet_state.wallets[id].balance_spendable,
-  );
-  const balance_pending = useSelector(
-    (state: RootState) => state.wallet_state.wallets[id].balance_pending,
-  );
-  const balance_change = useSelector(
-    (state: RootState) => state.wallet_state.wallets[id].balance_change,
-  );
+  const balance = wallet.balance_total
+  const balance_spendable = wallet.balance_spendable
+
+  const balance_pending = wallet.balance_pending
+
+  const balance_change = wallet.balance_change
+
   const balance_ptotal = balance + balance_pending;
 
   const balancebox_1 = "<table width='100%'>";
@@ -408,33 +408,39 @@ type SendCardProps = {
 };
 
 function SendCard(props: SendCardProps) {
-  const id = props.wallet_id;
+
   const classes = useStyles();
   let address_input: HTMLInputElement;
   let amount_input: HTMLInputElement;
   let fee_input: HTMLInputElement;
   const dispatch = useDispatch();
-  let name = useSelector(
-    (state: RootState) => state.wallet_state.wallets[id].name,
+
+
+  const { wallet_id } = props;
+
+
+
+  const wallet = useSelector((state: RootState) =>
+    state.wallet_state.wallets?.find((item) => item.id === wallet_id),
   );
-  if (!name) {
-    name = '';
+
+  if (!wallet) {
+    return null;
   }
+  const name = wallet.name || '';
+
+
   const cc_unit = get_cc_unit(name);
   const currencyCode = useCurrencyCode();
 
-  const sending_transaction = useSelector(
-    (state: RootState) => state.wallet_state.wallets[id].sending_transaction,
-  );
+  const sending_transaction = wallet.sending_transaction
 
-  const send_transaction_result = useSelector(
-    (state: RootState) =>
-      state.wallet_state.wallets[id].send_transaction_result,
-  );
 
-  const colour = useSelector(
-    (state: RootState) => state.wallet_state.wallets[id].colour,
-  );
+  const send_transaction_result = wallet.send_transaction_result
+
+
+  const colour = wallet.colour
+
   const syncing = useSelector(
     (state: RootState) => state.wallet_state.status.syncing,
   );
@@ -534,7 +540,7 @@ function SendCard(props: SendCardProps) {
       return;
     }
 
-    dispatch(cc_spend(id, address, amount_value, fee_value));
+    dispatch(cc_spend(wallet_id, address, amount_value, fee_value));
     address_input.value = '';
     amount_input.value = '';
   }
@@ -631,10 +637,18 @@ type AddressCardProps = {
 };
 
 function AddressCard(props: AddressCardProps) {
-  const id = props.wallet_id;
-  const address = useSelector(
-    (state: RootState) => state.wallet_state.wallets[id].address,
+  const { wallet_id } = props;
+
+
+
+  const wallet = useSelector((state: RootState) =>
+    state.wallet_state.wallets?.find((item) => item.id === wallet_id),
   );
+
+  if (!wallet) {
+    return null;
+  }
+  const address = wallet.address
   const classes = useStyles();
   const dispatch = useDispatch();
 
@@ -696,22 +710,15 @@ type ColouredWalletProps = {
 };
 
 export default function ColouredWallet(props: ColouredWalletProps) {
-  const id = useSelector((state: RootState) => state.wallet_menu.id);
-  const wallets = useSelector(
-    (state: RootState) => state.wallet_state.wallets ?? [],
+  let { wallet_id: id } = props;//useSelector((state: RootState) => state.wallet_menu.id);
+  
+  return (
+    <Flex flexDirection="column" gap={3}>
+      <ColourCard wallet_id={id} />
+      <BalanceCard wallet_id={id} />
+      <SendCard wallet_id={id} />
+      <AddressCard wallet_id={id} />
+      <WalletHistory walletId={id} />
+    </Flex>
   );
-
-  if (wallets.length > props.wallet_id) {
-    return (
-      <Flex flexDirection="column" gap={3}>
-        <ColourCard wallet_id={id} />
-        <BalanceCard wallet_id={id} />
-        <SendCard wallet_id={id} />
-        <AddressCard wallet_id={id} />
-        <WalletHistory walletId={id} />
-      </Flex>
-    );
-  }
-
-  return null;
 }
