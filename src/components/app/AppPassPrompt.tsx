@@ -10,9 +10,8 @@ import {
   Button,
 } from '@material-ui/core';
 import { Plural, Trans } from '@lingui/macro';
-import { AlertDialog, ConfirmDialog, Flex } from '@chia/core';
+import { AlertDialog, ConfirmDialog, Flex, TooltipIcon } from '@chia/core';
 import { openDialog } from '../../modules/dialog';
-import TooltipIcon from '../core/components/TooltipIcon';
 import { unlock_keyring_action } from '../../modules/message';
 import { RootState } from 'modules/rootReducer';
 import { KeyringState } from 'modules/keyring';
@@ -216,29 +215,31 @@ export default function AppPassPrompt(props: Props): JSX.Element | null {
         >
           <DialogTitle id="form-dialog-title">{dialogTitle}</DialogTitle>
           <DialogContent>
-            <TextField
-              autoFocus
-              color="secondary"
-              disabled={actionInProgress}
-              margin="dense"
-              id="passphraseInput"
-              label={<Trans>Passphrase</Trans>}
-              inputRef={(input: HTMLInputElement) => passphraseInput = input}
-              type="password"
-              fullWidth
-            />
-            {passphraseHint && passphraseHint.length > 0 && (
-              <Flex gap={1} alignItems="center" style={{ marginTop: '8px' }}>
-                <Typography variant="body2" color="textSecondary">
-                  <Trans>Hint</Trans>
-                </Typography>
-                <TooltipIcon>
-                  <Typography variant="inherit">
-                    {passphraseHint}
+            <Flex flexDirection="column" gap={1}>
+              <TextField
+                autoFocus
+                color="secondary"
+                disabled={actionInProgress}
+                margin="dense"
+                id="passphraseInput"
+                label={<Trans>Passphrase</Trans>}
+                inputRef={(input: HTMLInputElement) => passphraseInput = input}
+                type="password"
+                fullWidth
+              />
+              {passphraseHint && passphraseHint.length > 0 && (
+                <Flex gap={1} alignItems="center">
+                  <Typography variant="body2" color="textSecondary">
+                    <Trans>Hint</Trans>
                   </Typography>
-                </TooltipIcon>
-              </Flex>
-            )}
+                  <TooltipIcon>
+                    <Typography variant="inherit">
+                      {passphraseHint}
+                    </Typography>
+                  </TooltipIcon>
+                </Flex>
+              )}
+            </Flex>
           </DialogContent>
           <DialogActions>
             <Button

@@ -17,7 +17,7 @@ import {
   Help as HelpIcon,
 } from '@material-ui/icons';
 import { t, Trans } from '@lingui/macro';
-import { AlertDialog } from '@chia/core';
+import { AlertDialog, Flex } from '@chia/core';
 import { openDialog } from '../../modules/dialog';
 import { change_keyring_passphrase_action, remove_keyring_passphrase_action } from '../../modules/message';
 import { validateChangePassphraseParams } from '../app/AppPassPrompt';
@@ -163,7 +163,7 @@ export default function ChangePassphrasePrompt(props: Props) {
       open={true}
       aria-labelledby="form-dialog-title"
       fullWidth={true}
-      maxWidth = {'sm'}
+      maxWidth="sm"
       onKeyDown={handleKeyDown}
     >
       <DialogTitle id="form-dialog-title">Change Passphrase</DialogTitle>
@@ -230,24 +230,24 @@ export default function ChangePassphrasePrompt(props: Props) {
           </Box>
         )}
         <DialogActions>
-          <Button
-            disabled={actionInProgress}
-            onClick={handleCancel}
-            color="secondary"
-            variant="contained"
-            style={{ marginBottom: '8px', marginRight: '8px' }}
-          >
-            <Trans>Cancel</Trans>
-          </Button>
-          <Button
-            disabled={actionInProgress}
-            onClick={handleSubmit}
-            color="primary"
-            variant="contained"
-            style={{ marginBottom: '8px', marginRight: '8px' }}
-          >
-            <Trans>Change Passphrase</Trans>
-          </Button>
+          <Flex gap={2}>
+            <Button
+              disabled={actionInProgress}
+              onClick={handleCancel}
+              color="secondary"
+              variant="contained"
+            >
+              <Trans>Cancel</Trans>
+            </Button>
+            <Button
+              disabled={actionInProgress}
+              onClick={handleSubmit}
+              color="primary"
+              variant="contained"
+            >
+              <Trans>Change Passphrase</Trans>
+            </Button>
+          </Flex>
         </DialogActions>
       </DialogContent>
     </Dialog>
