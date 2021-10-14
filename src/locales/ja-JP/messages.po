@@ -8,7 +8,7 @@ msgstr ""
 "Language: ja_JP\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-10-14 08:03\n"
+"PO-Revision-Date: 2021-10-14 14:30\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -418,13 +418,13 @@ msgstr "接続解除の確認"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:185
 msgid "Confirm New Passphrase"
-msgstr ""
+msgstr "新しいパスワードの確認"
 
 #: src/components/app/AppKeyringMigrator.tsx:140
 #: src/components/app/AppKeyringMigrator.tsx:141
 #: src/components/settings/SetPassphrasePrompt.tsx:153
 msgid "Confirm Passphrase"
-msgstr ""
+msgstr "パスフレーズの確認"
 
 #: src/components/plotNFT/PlotNFTCard.tsx:121
 #: src/components/wallet/standard/WalletStandard.tsx:632
@@ -617,7 +617,7 @@ msgstr "現在の難易度"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:165
 msgid "Current Passphrase"
-msgstr ""
+msgstr "現在のパスフレーズ"
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:156
 #: src/components/plotNFT/PlotNFTCard.tsx:198
@@ -667,7 +667,7 @@ msgstr "削除"
 
 #: src/components/app/AppPassPrompt.tsx:195
 msgid "Delete Key"
-msgstr ""
+msgstr "キーの削除"
 
 #: src/components/plot/PlotAction.tsx:26
 #: src/components/plot/queue/PlotQueueActions.tsx:42
@@ -852,7 +852,7 @@ msgstr "開けませんでした (耕地に問題あり)"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:86
 msgid "Failed to remove passphrase: {error}"
-msgstr ""
+msgstr "パスフレーズの削除に失敗しました: {error}"
 
 #: src/components/settings/SetPassphrasePrompt.tsx:79
 msgid "Failed to set passphrase: {error}"
@@ -860,7 +860,7 @@ msgstr ""
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:107
 msgid "Failed to update passphrase: {error}"
-msgstr ""
+msgstr "パスフレーズの更新に失敗しました： {error}"
 
 #: src/components/dashboard/DashboardSideBar.tsx:58
 #: src/components/wallet/coloured/WalletColoured.tsx:610
@@ -1136,17 +1136,19 @@ msgstr ""
 #: src/components/plotNFT/PlotNFTCard.tsx:406
 #: src/components/pool/PoolOverview.tsx:113
 msgid "Join Pool"
-msgstr ""
+msgstr "プールに参加する"
 
 #: src/components/plot/add/PlotAddNFT.tsx:59
 #: src/components/plot/add/PlotAddNFT.tsx:141
 #: src/components/pool/PoolHero.tsx:31
 msgid "Join a Pool"
-msgstr ""
+msgstr "プールに参加する"
 
 #: src/components/plot/add/PlotAddNFT.tsx:44
 msgid "Join a pool and get consistent XCH farming rewards. The average returns are the same, but it is much less volatile."
-msgstr ""
+msgstr "参加したプールが当選するとXCHを獲得できます。\n"
+"プールでは定期的にXCHを獲得できますが引き換えに毎度の払い出しは少なくなります。\n"
+"長期的のリターンはソロファーミングで得られる報酬と変わりません。"
 
 #: src/components/plotNFT/PlotNFTAdd.tsx:59
 msgid "Join a pool and get consistent XCH farming rewards. The average returns are the same, but it is much less volatile. Assign plots to a plot NFT. You can easily switch pools without having to re-plot."
@@ -1188,7 +1190,7 @@ msgstr "最近のブロックチャレンジ"
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:295
 #: src/components/plotNFT/PlotNFTCard.tsx:350
 msgid "Launcher Id"
-msgstr ""
+msgstr "ランチャーID"
 
 #: src/components/plotNFT/PlotNFTGetPoolLoginLinkDialog.tsx:100
 #: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:114
