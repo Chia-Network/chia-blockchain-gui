@@ -96,11 +96,6 @@ export default function PlotAddChoosePlotter(props: Props) {
 
   const warning = plotterWarningString(plotterName);
 
-  console.log("displayedPlotters");
-  console.log(displayedPlotters);
-
-  console.log("plotterName");
-  console.log(plotterName);
   return (
     <CardStep step={step} title={<Trans>Choose Plotter</Trans>}>
       <Typography variant="subtitle1">
