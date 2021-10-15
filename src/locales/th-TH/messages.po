@@ -8,7 +8,7 @@ msgstr ""
 "Language: th_TH\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-10-15 11:04\n"
+"PO-Revision-Date: 2021-10-15 17:04\n"
 "Last-Translator: \n"
 "Language-Team: Thai\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -852,15 +852,15 @@ msgstr "ไม่สามารถเปิดได้ (พล็อตไม�
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:86
 msgid "Failed to remove passphrase: {error}"
-msgstr ""
+msgstr "การลบวลีรหัสผ่านล้มเหลว: {error}"
 
 #: src/components/settings/SetPassphrasePrompt.tsx:79
 msgid "Failed to set passphrase: {error}"
-msgstr ""
+msgstr "การตั้งวลีรหัสผ่านล้มเหลว: {error}"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:107
 msgid "Failed to update passphrase: {error}"
-msgstr ""
+msgstr "การอัปเดตวลีรหัสผ่านล้มเหลว: {error}"
 
 #: src/components/dashboard/DashboardSideBar.tsx:58
 #: src/components/wallet/coloured/WalletColoured.tsx:610
@@ -1162,7 +1162,7 @@ msgstr "ขนาด K"
 
 #: src/components/app/AppKeyringMigrator.tsx:80
 msgid "Keyring migration failed: {error}"
-msgstr ""
+msgstr "การโอนย้ายคีย์ริงล้มเหลว: {error}"
 
 #: src/components/dashboard/DashboardSideBar.tsx:69
 msgid "Keys"
@@ -1269,7 +1269,7 @@ msgstr "จัดการรางวัลการฟาร์ม"
 
 #: src/components/wallet/did/WalletDID.tsx:806
 msgid "Manage Recovery DIDs"
-msgstr ""
+msgstr "จัดการการกู้คืน DID"
 
 #: src/components/farm/FarmManageFarmingRewards.tsx:123
 msgid "Manage Your Farming Rewards Target Addresses"
@@ -1281,24 +1281,24 @@ msgstr "MiB Up/Down"
 
 #: src/components/selectKey/SelectKey.tsx:137
 msgid "Migrate"
-msgstr ""
+msgstr "โอนย้าย"
 
 #: src/components/settings/Settings.tsx:182
 msgid "Migrate Keyring"
-msgstr ""
+msgstr "โอนย้ายคีย์ริง"
 
 #: src/components/app/AppKeyringMigrator.tsx:188
 msgid "Migrate Keys"
-msgstr ""
+msgstr "โอนย้ายคีย์"
 
 #: src/components/app/AppKeyringMigrator.tsx:115
 #: src/components/selectKey/SelectKey.tsx:136
 msgid "Migration required"
-msgstr ""
+msgstr "จำเป็นต้องมีการโอนย้าย"
 
 #: src/components/settings/Settings.tsx:121
 msgid "Migration required to support passphrase protection"
-msgstr ""
+msgstr "จำเป็นต้องมีการโอนย้ายเพื่อให้รองรับการป้องกันด้วยวลีรหัสผ่าน"
 
 #: src/components/pool/PoolInfo.tsx:27
 msgid "Minimum Difficulty"
@@ -1314,7 +1314,7 @@ msgstr "หน่วยความจำที่มากขึ้นสาม
 
 #: src/components/wallet/did/WalletDID.tsx:537
 msgid "My DID Wallet"
-msgstr ""
+msgstr "วอลเล็ต DID ของฉัน"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:415
 msgid "My Pubkey"
@@ -1339,7 +1339,7 @@ msgstr "เพิ่มที่อยู่ใหม่"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:175
 msgid "New Passphrase"
-msgstr ""
+msgstr "วลีรหัสผ่านใหม่"
 
 #: src/components/wallet/WalletAdd.tsx:63
 msgid "New Wallet"
@@ -1347,7 +1347,7 @@ msgstr "สร้างวอลเล็ตใหม่"
 
 #: src/components/app/AppPassPrompt.tsx:60
 msgid "New passphrase is the same as your current passphrase"
-msgstr ""
+msgstr "วลีรหัสผ่านใหม่เหมือนกับวลีรหัสผ่านปัจจุบันของคุณ"
 
 #: src/components/block/Block.jsx:351
 #: src/components/wallet/WalletAdd.tsx:95
@@ -1481,29 +1481,29 @@ msgstr "เงินออก"
 #: src/components/settings/SetPassphrasePrompt.tsx:142
 #: src/components/wallet/EnterPassphrasePrompt.tsx:123
 msgid "Passphrase"
-msgstr ""
+msgstr "วลีรหัสผ่าน"
 
 #: src/components/settings/Settings.tsx:213
 msgid "Passphrase Settings"
-msgstr ""
+msgstr "การตั้งค่าวลีรหัสผ่าน"
 
 #: src/components/app/AppPassPrompt.tsx:149
 #: src/components/settings/RemovePassphrasePrompt.tsx:64
 #: src/components/wallet/EnterPassphrasePrompt.tsx:66
 msgid "Passphrase is incorrect"
-msgstr ""
+msgstr "วลีรหัสผ่านไม่ถูกต้อง"
 
 #: src/components/settings/Settings.tsx:93
 msgid "Passphrase protection has been disabled"
-msgstr ""
+msgstr "การป้องกันด้วยวลีรหัสผ่านถูกปิดใช้งานแล้ว"
 
 #: src/components/settings/Settings.tsx:131
 msgid "Passphrase protection is disabled"
-msgstr ""
+msgstr "การป้องกันด้วยวลีรหัสผ่านปิดใช้งาน"
 
 #: src/components/settings/Settings.tsx:128
 msgid "Passphrase protection is enabled"
-msgstr ""
+msgstr "การป้องกันด้วยวลีรหัสผ่านเปิดใช้งาน"
 
 #: src/components/settings/Settings.tsx:122
 msgid "Passphrase support requires migrating your keys to a new keyring"
@@ -2010,7 +2010,7 @@ msgstr "บันทึกประจำรุ่น"
 #: src/components/settings/RemovePassphrasePrompt.tsx:146
 #: src/components/settings/Settings.tsx:194
 msgid "Remove Passphrase"
-msgstr ""
+msgstr "ลบวลีรหัสผ่าน"
 
 #: src/components/app/AppKeyringMigrator.tsx:155
 msgid "Remove keys from old keyring upon successful migration"
@@ -2162,7 +2162,7 @@ msgstr "ส่งคีย์สาธารณะไปยัง Rate Limited W
 #: src/components/settings/SetPassphrasePrompt.tsx:177
 #: src/components/settings/Settings.tsx:205
 msgid "Set Passphrase"
-msgstr ""
+msgstr "ตั้งวลีรหัสผ่าน"
 
 #: src/components/app/AppPassPrompt.tsx:75
 msgid "Setting a passphrase is strongly recommended to protect your keys. Are you sure you want to skip setting a passphrase?"
@@ -2171,7 +2171,7 @@ msgstr ""
 #: src/components/dashboard/DashboardSideBar.tsx:76
 #: src/components/settings/Settings.tsx:239
 msgid "Settings"
-msgstr ""
+msgstr "การตั้งค่า"
 
 #: src/components/core/components/AdvancedOptions/AdvancedOptions.tsx:74
 msgid "Show Advanced Options"
@@ -2194,7 +2194,7 @@ msgstr "เข้าสู่ระบบ"
 #: src/components/app/AppKeyringMigrator.tsx:177
 #: src/components/app/AppPassPrompt.tsx:74
 msgid "Skip"
-msgstr ""
+msgstr "ข้าม"
 
 #: src/components/app/AppKeyringMigrator.tsx:46
 msgid "Skip Keyring Migration"
@@ -2309,7 +2309,7 @@ msgstr "ส่ง"
 
 #: src/components/wallet/EnterPassphrasePrompt.tsx:146
 msgid "Submit Passphrase"
-msgstr ""
+msgstr "ส่งวลีรหัสผ่าน"
 
 #: src/components/fullNode/card/FullNodeCardStatus.tsx:43
 #: src/components/wallet/WalletStatus.tsx:33
@@ -2639,7 +2639,7 @@ msgstr "ไม่ทราบ"
 
 #: src/components/app/AppPassPrompt.tsx:185
 msgid "Unlock Keyring"
-msgstr ""
+msgstr "ปลดล็อกคีย์ริง"
 
 #: src/components/core/components/FormBackButton/FormBackButton.tsx:25
 msgid "Unsaved Changes"
