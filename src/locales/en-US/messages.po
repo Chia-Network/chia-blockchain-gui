@@ -8,7 +8,7 @@ msgstr ""
 "Language: en_US\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-10-16 09:04\n"
+"PO-Revision-Date: 2021-10-16 15:03\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -2639,7 +2639,7 @@ msgstr "Unknown"
 
 #: src/components/app/AppPassPrompt.tsx:185
 msgid "Unlock Keyring"
-msgstr ""
+msgstr "Unlock Keyring"
 
 #: src/components/core/components/FormBackButton/FormBackButton.tsx:25
 msgid "Unsaved Changes"
@@ -2652,7 +2652,7 @@ msgstr "User Pubkey"
 
 #: src/components/app/AppPassPrompt.tsx:79
 msgid "Using a passphrase is strongly recommended to protect your keys. Are you sure you want to disable passphrase protection?"
-msgstr ""
+msgstr "Using a passphrase is strongly recommended to protect your keys. Are you sure you want to disable passphrase protection?"
 
 #: src/components/fullNode/card/FullNodeCardVDFSubSlotIterations.tsx:20
 msgid "VDF Sub Slot Iterations"
@@ -2911,31 +2911,31 @@ msgstr "Your Pool Overview"
 
 #: src/components/app/AppPassPrompt.tsx:181
 msgid "Your keyring is locked"
-msgstr ""
+msgstr "Your keyring is locked"
 
 #: src/components/app/AppKeyringMigrator.tsx:52
 msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Are you sure you want to skip migrating your keys?"
-msgstr ""
+msgstr "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Are you sure you want to skip migrating your keys?"
 
 #: src/components/selectKey/SelectKey.tsx:141
 msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Would you like to migrate your keys now?"
-msgstr ""
+msgstr "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Would you like to migrate your keys now?"
 
 #: src/components/app/AppKeyringMigrator.tsx:95
 msgid "Your keys need to be migrated to a new keyring that is optionally secured by a master passphrase."
-msgstr ""
+msgstr "Your keys need to be migrated to a new keyring that is optionally secured by a master passphrase."
 
 #: src/components/app/AppKeyringMigrator.tsx:101
 msgid "Your keys need to be migrated to a new keyring that is secured by a master passphrase."
-msgstr ""
+msgstr "Your keys need to be migrated to a new keyring that is secured by a master passphrase."
 
 #: src/components/settings/Settings.tsx:80
 msgid "Your passphrase has been set"
-msgstr ""
+msgstr "Your passphrase has been set"
 
 #: src/components/settings/Settings.tsx:67
 msgid "Your passphrase has been updated"
-msgstr ""
+msgstr "Your passphrase has been updated"
 
 #: src/util/getDescriptiveError.ts:5
 msgid "[Error 13] Permission denied. You are trying to access a file/directory without having the necessary permissions. Most likely one of the plot folders in your config.yaml has an issue."
@@ -2980,7 +2980,7 @@ msgstr "syncing"
 
 #: src/components/app/AppPassPrompt.tsx:48
 msgid "{0, plural, one {Passphrases must be at least # character in length} other {Passphrases must be at least # characters in length}}"
-msgstr ""
+msgstr "{0, plural, one {Passphrases must be at least # character in length} other {Passphrases must be at least # characters in length}}"
 
 #: src/components/farm/card/FarmCardBlockRewards.tsx:16
 #~ msgid "{0} Block Rewards"
