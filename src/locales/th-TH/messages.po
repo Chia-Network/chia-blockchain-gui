@@ -8,7 +8,7 @@ msgstr ""
 "Language: th_TH\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-10-15 17:04\n"
+"PO-Revision-Date: 2021-10-16 21:17\n"
 "Last-Translator: \n"
 "Language-Team: Thai\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -761,7 +761,7 @@ msgstr "เครื่องของคุณรองรับการพล
 
 #: src/components/wallet/did/WalletDID.tsx:428
 msgid "Drag and drop attestation packet(s)"
-msgstr ""
+msgstr "ลากและวางแพ็กเกจการพิสูจน์"
 
 #: src/components/trading/ViewOffer.jsx:39
 msgid "Drag and drop offer file"
@@ -1570,7 +1570,7 @@ msgstr "โปรดระบุชื่อไฟล์"
 #: src/components/app/AppPassPrompt.tsx:133
 #: src/components/settings/SetPassphrasePrompt.tsx:48
 msgid "Please enter a passphrase"
-msgstr ""
+msgstr "กรุณาใส่วลีรหัสผ่าน"
 
 #: src/components/wallet/did/WalletDID.tsx:934
 msgid "Please enter a pubkey"
@@ -1621,18 +1621,18 @@ msgstr "กรุณาใส่คีย์สาธารณะให้ถู
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:54
 msgid "Please enter your current passphrase, and a new passphrase"
-msgstr ""
+msgstr "กรุณาใส่วลีรหัสผ่านปัจจุบันของคุณ และวลีรหัสผ่านใหม่"
 
 #: src/components/app/AppPassPrompt.tsx:182
 #: src/components/app/AppPassPrompt.tsx:198
 #: src/components/settings/RemovePassphrasePrompt.tsx:47
 #: src/components/wallet/EnterPassphrasePrompt.tsx:48
 msgid "Please enter your passphrase"
-msgstr ""
+msgstr "กรุณาใส่วลีรหัสผ่านของคุณ"
 
 #: src/components/app/AppPassPrompt.tsx:192
 msgid "Please enter your passphrase to proceed"
-msgstr ""
+msgstr "กรุณาใส่วลีรหัสผ่านของคุณเพื่อดำเนินการต่อ"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:623
 #: src/components/wallet/standard/WalletStandard.tsx:430
@@ -1979,7 +1979,7 @@ msgstr "กู้คืน"
 #: src/components/wallet/did/WalletDID.tsx:340
 #: src/components/wallet/did/WalletDID.tsx:480
 msgid "Recover DID Wallet"
-msgstr ""
+msgstr "กู้คืนวอลเล็ต DID"
 
 #: src/components/wallet/create/WalletCreate.jsx:296
 #~ msgid "Recover DID wallet"
@@ -2198,11 +2198,11 @@ msgstr "ข้าม"
 
 #: src/components/app/AppKeyringMigrator.tsx:46
 msgid "Skip Keyring Migration"
-msgstr ""
+msgstr "ข้ามการโอนย้ายคีย์ริง"
 
 #: src/components/app/AppPassPrompt.tsx:73
 msgid "Skip Passphrase Protection"
-msgstr ""
+msgstr "ข้ามการป้องกันด้วยวลีรหัสผ่าน"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:129
 #~ msgid "Skips adding [final dir] to harvester for farming"
@@ -2911,7 +2911,7 @@ msgstr "ภาพรวม Pool"
 
 #: src/components/app/AppPassPrompt.tsx:181
 msgid "Your keyring is locked"
-msgstr ""
+msgstr "คีย์ริงของคุณถูกล็อก"
 
 #: src/components/app/AppKeyringMigrator.tsx:52
 msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Are you sure you want to skip migrating your keys?"
@@ -2931,11 +2931,11 @@ msgstr ""
 
 #: src/components/settings/Settings.tsx:80
 msgid "Your passphrase has been set"
-msgstr ""
+msgstr "วลีรหัสผ่านของคุณถูกตั้งแล้ว"
 
 #: src/components/settings/Settings.tsx:67
 msgid "Your passphrase has been updated"
-msgstr ""
+msgstr "วลีรหัสผ่านของคุณถูกอัปเดตแล้ว"
 
 #: src/util/getDescriptiveError.ts:5
 msgid "[Error 13] Permission denied. You are trying to access a file/directory without having the necessary permissions. Most likely one of the plot folders in your config.yaml has an issue."
@@ -2980,7 +2980,7 @@ msgstr "กำลังซิงค์"
 
 #: src/components/app/AppPassPrompt.tsx:48
 msgid "{0, plural, one {Passphrases must be at least # character in length} other {Passphrases must be at least # characters in length}}"
-msgstr ""
+msgstr "{0, plural, one {วลีรหัสผ่านต้องมีความยาวอย่างน้อย # ตัวอักษร} other {วลีรหัสผ่านต้องมีความยาวอย่างน้อย # ตัวอักษร}}"
 
 #: src/components/farm/card/FarmCardBlockRewards.tsx:16
 #~ msgid "{0} Block Rewards"
