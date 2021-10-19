@@ -88,7 +88,7 @@ export default function PlotAddChoosePlotter(props: Props) {
     else if (plotterName === PlotterName.MADMAX) {
       return t({
         id: "thirdparty.plotter.disclaimer",
-        message: "Chia Network is not responsible for this third-party plotter"
+        message: "Issues with the madMAx plotter should be directed to madMAx43v3r and not Chia Network"
       });
     }
     return undefined;
