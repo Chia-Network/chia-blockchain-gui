@@ -8,7 +8,7 @@ msgstr ""
 "Language: th_TH\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-10-16 21:17\n"
+"PO-Revision-Date: 2021-10-19 19:51\n"
 "Last-Translator: \n"
 "Language-Team: Thai\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -2415,7 +2415,7 @@ msgstr "การดำเนินการเปลี่ยน Pool ถูก
 
 #: src/components/app/AppPassPrompt.tsx:37
 msgid "The provided passphrase and confirmation do not match"
-msgstr ""
+msgstr "รหัสผ่าน และการยืนยัน ไม่ถูกต้อง"
 
 #: src/components/block/Block.jsx:303
 msgid "The seed used to create the plot. This depends on the pool pk and plot pk."
@@ -2652,7 +2652,7 @@ msgstr "คีย์สาธารณะของผู้ใช้"
 
 #: src/components/app/AppPassPrompt.tsx:79
 msgid "Using a passphrase is strongly recommended to protect your keys. Are you sure you want to disable passphrase protection?"
-msgstr ""
+msgstr "การใช้รหัสผ่าน เป็นวิธีที่ดีในการปกป้องคีย์ของคุณ. คุณแน่ใจหรือไม่ที่จะปิดการป้องกันด้วยรหัสผ่าน?"
 
 #: src/components/fullNode/card/FullNodeCardVDFSubSlotIterations.tsx:20
 msgid "VDF Sub Slot Iterations"
@@ -2927,7 +2927,7 @@ msgstr ""
 
 #: src/components/app/AppKeyringMigrator.tsx:101
 msgid "Your keys need to be migrated to a new keyring that is secured by a master passphrase."
-msgstr ""
+msgstr "คุณจะต้องเปลี่ยนไปใช้กุญแจใหม่ที่ใช้รหัสผ่านยืนยัน"
 
 #: src/components/settings/Settings.tsx:80
 msgid "Your passphrase has been set"
