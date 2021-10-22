@@ -46,8 +46,8 @@ msgstr "建議使用 128 個桶"
 msgid "A harvester is a service running on a machine where plot(s) are actually stored. A farmer and harvester talk to a full node to see the state of the chain. View your network of connected harvesters below Learn more"
 msgstr "收割機是在實際存放耕地的機器上運作的服務。塊農和收割機會與一個完整節點溝通以取得區塊鍵狀態。以下是你的收割機與塊農網路 學習更多"
 
-#: src/electron/main.tsx:422
-#: src/electron/main.tsx:509
+#: src/electron/main.tsx:431
+#: src/electron/main.tsx:518
 msgid "About Chia Blockchain"
 msgstr "關於 Chia 區塊鏈"
 
@@ -76,8 +76,8 @@ msgstr "動作"
 msgid "Add"
 msgstr "新增"
 
-#: src/components/wallet/did/WalletDID.tsx:874
-#: src/components/wallet/did/WalletDIDCreate.tsx:205
+#: src/components/wallet/did/WalletDID.tsx:877
+#: src/components/wallet/did/WalletDIDCreate.tsx:208
 msgid "Add Backup ID"
 msgstr "增加備份 ID"
 
@@ -120,16 +120,16 @@ msgstr "從水龍頭新增{currencyCode}."
 
 #: src/components/wallet/coloured/WalletColoured.tsx:561
 #: src/components/wallet/coloured/WalletColoured.tsx:657
-#: src/components/wallet/standard/WalletStandard.tsx:599
+#: src/components/wallet/standard/WalletStandard.tsx:589
 msgid "Address"
 msgstr "位址"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:701
-#: src/components/wallet/standard/WalletStandard.tsx:506
+#: src/components/wallet/standard/WalletStandard.tsx:496
 msgid "Address / Puzzle hash"
 msgstr "位址 / 拼圖雜湊值"
 
-#: src/components/app/AppKeyringMigrator.tsx:158
+#: src/components/app/AppKeyringMigrator.tsx:195
 msgid "After your keys are successfully migrated to the new keyring, you may choose to have your keys removed from the old keyring."
 msgstr ""
 
@@ -139,7 +139,7 @@ msgstr ""
 #: src/components/wallet/WalletHistory.tsx:62
 #: src/components/wallet/create/createNewColouredCoin.jsx:119
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:720
-#: src/components/wallet/standard/WalletStandard.tsx:516
+#: src/components/wallet/standard/WalletStandard.tsx:506
 msgid "Amount"
 msgstr "數量"
 
@@ -161,7 +161,7 @@ msgid "Are you sure you want to delete the plot? The plot cannot be recovered."
 msgstr "你確要刪除這個耕地嗎？此耕地將無法尋回。"
 
 #: src/components/plotNFT/PlotNFTCard.tsx:125
-#: src/components/wallet/standard/WalletStandard.tsx:636
+#: src/components/wallet/standard/WalletStandard.tsx:626
 msgid "Are you sure you want to delete unconfirmed transactions?"
 msgstr "你確認要刪除未確認的交易?"
 
@@ -169,7 +169,7 @@ msgstr "你確認要刪除未確認的交易?"
 msgid "Are you sure you want to disconnect?"
 msgstr "您確定要斷線嗎？"
 
-#: src/electron/main.tsx:197
+#: src/electron/main.tsx:196
 msgid "Are you sure you want to quit? GUI Plotting and farming will stop."
 msgstr "你確定要退出？耕地規劃和耕種將會停止。"
 
@@ -285,22 +285,21 @@ msgstr "購買"
 msgid "Can be backed up to mnemonic seed"
 msgstr "可以備份到助記符號種子"
 
-#: src/components/app/AppPassPrompt.tsx:239
+#: src/components/app/AppPassPrompt.tsx:256
 #: src/components/backup/BackupCreate.tsx:50
 #: src/components/core/components/ConfirmDialog/ConfirmDialog.tsx:86
 #: src/components/farm/FarmManageFarmingRewards.tsx:200
 #: src/components/fullNode/FullNodeAddConnection.tsx:89
-#: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:123
+#: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:128
 #: src/components/plotNFT/select/PlotNFTSelectBase.tsx:87
 #: src/components/plotNFT/select/PlotNFTSelectFaucet.tsx:30
 #: src/components/selectKey/SelectKey.tsx:138
-#: src/components/settings/ChangePassphrasePrompt.tsx:198
-#: src/components/settings/RemovePassphrasePrompt.tsx:137
-#: src/components/settings/SetPassphrasePrompt.tsx:168
+#: src/components/settings/ChangePassphrasePrompt.tsx:240
+#: src/components/settings/RemovePassphrasePrompt.tsx:152
+#: src/components/settings/SetPassphrasePrompt.tsx:211
 #: src/components/trading/CreateOffer.jsx:139
 #: src/components/trading/TradingOverview.jsx:400
 #: src/components/trading/ViewOffer.jsx:71
-#: src/components/wallet/EnterPassphrasePrompt.tsx:137
 msgid "Cancel"
 msgstr "取消"
 
@@ -324,7 +323,7 @@ msgstr "挑戰雜湊值"
 msgid "Change"
 msgstr "變更"
 
-#: src/components/settings/ChangePassphrasePrompt.tsx:207
+#: src/components/settings/ChangePassphrasePrompt.tsx:248
 #: src/components/settings/Settings.tsx:158
 msgid "Change Passphrase"
 msgstr ""
@@ -335,19 +334,19 @@ msgstr ""
 msgid "Change Pool"
 msgstr "變更農會"
 
-#: src/electron/main.tsx:401
+#: src/electron/main.tsx:410
 msgid "Chat on KeyBase"
 msgstr "在 KeyBase 上閒聊"
 
-#: src/electron/main.tsx:419
+#: src/electron/main.tsx:428
 msgid "Chia"
 msgstr "Chia"
 
-#: src/electron/main.tsx:358
+#: src/electron/main.tsx:367
 msgid "Chia Blockchain Wiki"
 msgstr "Chia 區塊鏈維基"
 
-#: src/components/wallet/standard/WalletStandard.tsx:652
+#: src/components/wallet/standard/WalletStandard.tsx:642
 msgid "Chia Wallet"
 msgstr "Chia 錢包"
 
@@ -365,7 +364,7 @@ msgid "Claim Rewards"
 msgstr "領取獎勵"
 
 #: src/components/plot/PlotAddDirectoryDialog.tsx:118
-#: src/components/plot/queue/PlotQueueLogDialog.tsx:89
+#: src/components/plot/queue/PlotQueueLogDialog.tsx:88
 msgid "Close"
 msgstr "關閉"
 
@@ -373,7 +372,7 @@ msgstr "關閉"
 msgid "Closing down node and server"
 msgstr "關閉節點和伺服器"
 
-#: src/components/wallet/did/WalletDID.tsx:984
+#: src/components/wallet/did/WalletDID.tsx:987
 msgid "Coin Name"
 msgstr "幣種名稱"
 
@@ -407,7 +406,7 @@ msgid "Coloured Coin Options"
 msgstr "有色代幣選項"
 
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:168
-#: src/electron/main.tsx:195
+#: src/electron/main.tsx:194
 #: src/hooks/useAbsorbRewards.tsx:46
 msgid "Confirm"
 msgstr "確認"
@@ -416,18 +415,18 @@ msgstr "確認"
 msgid "Confirm Disconnect"
 msgstr "確認斷線"
 
-#: src/components/settings/ChangePassphrasePrompt.tsx:185
+#: src/components/settings/ChangePassphrasePrompt.tsx:198
 msgid "Confirm New Passphrase"
 msgstr ""
 
-#: src/components/app/AppKeyringMigrator.tsx:140
-#: src/components/app/AppKeyringMigrator.tsx:141
-#: src/components/settings/SetPassphrasePrompt.tsx:153
+#: src/components/app/AppKeyringMigrator.tsx:146
+#: src/components/app/AppKeyringMigrator.tsx:147
+#: src/components/settings/SetPassphrasePrompt.tsx:166
 msgid "Confirm Passphrase"
 msgstr ""
 
 #: src/components/plotNFT/PlotNFTCard.tsx:121
-#: src/components/wallet/standard/WalletStandard.tsx:632
+#: src/components/wallet/standard/WalletStandard.tsx:622
 msgid "Confirmation"
 msgstr "確認"
 
@@ -478,7 +477,7 @@ msgstr "連線類型"
 msgid "Connections"
 msgstr "連線"
 
-#: src/electron/main.tsx:382
+#: src/electron/main.tsx:391
 msgid "Contribute on GitHub"
 msgstr "在 GitHub 上貢獻"
 
@@ -504,11 +503,11 @@ msgstr "複製到剪貼板"
 #: src/components/wallet/create/createNewColouredCoin.jsx:142
 #: src/components/wallet/create/createRLAdmin.jsx:307
 #: src/components/wallet/create/createRLUser.jsx:99
-#: src/components/wallet/did/WalletDIDCreate.tsx:218
+#: src/components/wallet/did/WalletDIDCreate.tsx:221
 msgid "Create"
 msgstr "建立"
 
-#: src/components/wallet/did/WalletDID.tsx:967
+#: src/components/wallet/did/WalletDID.tsx:970
 msgid "Create An Attestation Packet"
 msgstr "建立一個證明封包"
 
@@ -550,7 +549,7 @@ msgstr "建立貿易提案"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:543
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:684
-#: src/components/wallet/standard/WalletStandard.tsx:486
+#: src/components/wallet/standard/WalletStandard.tsx:476
 msgid "Create Transaction"
 msgstr "建立交易"
 
@@ -615,7 +614,7 @@ msgstr "未定義貨幣代碼"
 msgid "Current Difficulty"
 msgstr "目前難度"
 
-#: src/components/settings/ChangePassphrasePrompt.tsx:165
+#: src/components/settings/ChangePassphrasePrompt.tsx:178
 msgid "Current Passphrase"
 msgstr ""
 
@@ -658,14 +657,14 @@ msgstr "延遲"
 #: src/components/selectKey/SelectKey.tsx:76
 #: src/components/selectKey/SelectKey.tsx:115
 #: src/components/wallet/did/WalletDID.tsx:449
-#: src/components/wallet/did/WalletDID.tsx:862
-#: src/components/wallet/did/WalletDIDCreate.tsx:194
+#: src/components/wallet/did/WalletDID.tsx:865
+#: src/components/wallet/did/WalletDIDCreate.tsx:197
 #: src/components/wallet/did/WalletDIDRecovery.tsx:101
-#: src/components/wallet/standard/WalletStandard.tsx:633
+#: src/components/wallet/standard/WalletStandard.tsx:623
 msgid "Delete"
 msgstr "刪除"
 
-#: src/components/app/AppPassPrompt.tsx:195
+#: src/components/app/AppPassPrompt.tsx:198
 msgid "Delete Key"
 msgstr ""
 
@@ -675,7 +674,7 @@ msgid "Delete Plot"
 msgstr "刪除耕地"
 
 #: src/components/plotNFT/PlotNFTCard.tsx:315
-#: src/components/wallet/standard/WalletStandard.tsx:677
+#: src/components/wallet/standard/WalletStandard.tsx:667
 msgid "Delete Unconfirmed Transactions"
 msgstr "刪除未確認的交易"
 
@@ -696,7 +695,7 @@ msgstr "刪除帳號指紋：{fingerprint}"
 #~ msgid "Deleting all keys will permanently remove the keys from your computer, make sure you have backups. Are you sure you want to continue?"
 #~ msgstr "刪除全部金鑰將會永久從你的電腦中移除，請確保你有備份。你確定要繼續？"
 
-#: src/components/app/AppPassPrompt.tsx:191
+#: src/components/app/AppPassPrompt.tsx:194
 msgid "Deleting key"
 msgstr ""
 
@@ -704,11 +703,11 @@ msgstr ""
 #~ msgid "Deleting the key will permanently remove the key from your computer, make sure you have backups. Are you sure you want to continue?"
 #~ msgstr "刪除此金鑰將會永久從你的電腦中移除，請確保你有備份。你確定要繼續？"
 
-#: src/electron/main.tsx:304
+#: src/electron/main.tsx:313
 msgid "Developer"
 msgstr "開發者"
 
-#: src/electron/main.tsx:307
+#: src/electron/main.tsx:316
 msgid "Developer Tools"
 msgstr "開發者工具"
 
@@ -775,25 +774,25 @@ msgstr "拖放你的備份檔案"
 msgid "Drag and drop your recovery backup file"
 msgstr "拖放您的備份檔案"
 
-#: src/electron/main.tsx:263
+#: src/electron/main.tsx:272
 msgid "Edit"
 msgstr "編輯"
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:259
 #: src/components/plotNFT/PlotNFTCard.tsx:301
-#: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:76
+#: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:81
 msgid "Edit Payout Instructions"
 msgstr "編輯支付說明"
 
 #: src/components/wallet/EnterPassphrasePrompt.tsx:111
-msgid "Enter Passphrase"
-msgstr ""
+#~ msgid "Enter Passphrase"
+#~ msgstr ""
 
-#: src/components/app/AppKeyringMigrator.tsx:119
+#: src/components/app/AppKeyringMigrator.tsx:125
 msgid "Enter a strong passphrase and click Migrate Keys to secure your keys"
 msgstr ""
 
-#: src/components/settings/SetPassphrasePrompt.tsx:132
+#: src/components/settings/SetPassphrasePrompt.tsx:145
 msgid "Enter a strong passphrase to secure your keys:"
 msgstr ""
 
@@ -801,8 +800,7 @@ msgstr ""
 msgid "Enter the 24 word mnemonic that you have saved in order to restore your Chia wallet."
 msgstr "輸入你已存的 24 字助記符號以復原您的 Chia 錢包。"
 
-#: src/components/settings/RemovePassphrasePrompt.tsx:115
-#: src/components/wallet/EnterPassphrasePrompt.tsx:115
+#: src/components/settings/RemovePassphrasePrompt.tsx:118
 msgid "Enter your passphrase:"
 msgstr ""
 
@@ -816,7 +814,7 @@ msgstr ""
 msgid "Error"
 msgstr "錯誤"
 
-#: src/components/wallet/standard/WalletStandard.tsx:460
+#: src/components/wallet/standard/WalletStandard.tsx:450
 msgid "Error: Cannot send chia to coloured address. Please enter a chia address."
 msgstr "錯誤：不能發送 Chia 到有色地址。請輸入 Chia 地址。"
 
@@ -850,21 +848,21 @@ msgstr "排除最終資料夾"
 msgid "Failed to open (invalid plots)"
 msgstr "開啟失敗（無效耕地）"
 
-#: src/components/settings/ChangePassphrasePrompt.tsx:86
+#: src/components/settings/ChangePassphrasePrompt.tsx:97
 msgid "Failed to remove passphrase: {error}"
 msgstr ""
 
-#: src/components/settings/SetPassphrasePrompt.tsx:79
+#: src/components/settings/SetPassphrasePrompt.tsx:92
 msgid "Failed to set passphrase: {error}"
 msgstr ""
 
-#: src/components/settings/ChangePassphrasePrompt.tsx:107
+#: src/components/settings/ChangePassphrasePrompt.tsx:120
 msgid "Failed to update passphrase: {error}"
 msgstr ""
 
 #: src/components/dashboard/DashboardSideBar.tsx:58
 #: src/components/wallet/coloured/WalletColoured.tsx:610
-#: src/components/wallet/standard/WalletStandard.tsx:535
+#: src/components/wallet/standard/WalletStandard.tsx:525
 msgid "Farm"
 msgstr "耕種"
 
@@ -935,7 +933,7 @@ msgstr "耕種狀態"
 #: src/components/wallet/create/createRLAdmin.jsx:244
 #: src/components/wallet/create/createRLAdmin.jsx:272
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:733
-#: src/components/wallet/standard/WalletStandard.tsx:527
+#: src/components/wallet/standard/WalletStandard.tsx:517
 msgid "Fee"
 msgstr "費用"
 
@@ -959,15 +957,15 @@ msgstr "費用數量"
 #~ msgid "Fees Puzzle Hash"
 #~ msgstr ""
 
-#: src/electron/main.tsx:255
-#: src/electron/main.tsx:456
+#: src/electron/main.tsx:264
+#: src/electron/main.tsx:465
 msgid "File"
 msgstr "檔案"
 
 #: src/components/plot/PlotsFailed.tsx:14
 #: src/components/plot/PlotsNotFound.tsx:14
 #: src/components/plot/overview/PlotOverviewPlots.tsx:106
-#: src/components/wallet/did/WalletDID.tsx:975
+#: src/components/wallet/did/WalletDID.tsx:978
 msgid "Filename"
 msgstr "檔案名稱"
 
@@ -980,11 +978,11 @@ msgstr "最終資料夾位置"
 msgid "Finished"
 msgstr "已完成"
 
-#: src/electron/main.tsx:407
+#: src/electron/main.tsx:416
 msgid "Follow on Twitter"
 msgstr "Twitter 上追隨"
 
-#: src/electron/main.tsx:366
+#: src/electron/main.tsx:375
 msgid "Frequently Asked Questions"
 msgstr "常見問題"
 
@@ -1001,7 +999,7 @@ msgstr "完整節點概觀"
 #~ msgid "Full Node Status"
 #~ msgstr "Full Node Status"
 
-#: src/electron/main.tsx:332
+#: src/electron/main.tsx:341
 msgid "Full Screen"
 msgstr "全畫面"
 
@@ -1017,7 +1015,7 @@ msgstr "生成新顏色"
 msgid "Grid view"
 msgstr "網格檢視"
 
-#: src/components/wallet/standard/WalletStandard.tsx:586
+#: src/components/wallet/standard/WalletStandard.tsx:576
 msgid "HD or Hierarchical Deterministic keys are a type of public key/private key scheme where one private key can have a nearly infinite number of different public keys (and therefor wallet receive addresses) that will all ultimately come back to and be spendable by a single private key."
 msgstr "層及式確定性金鑰是一種公鑰/私鑰格式，一個私鑰可以具有幾乎無限數量的不同公鑰（以此類推，同錢包接收地址），最終所有這些公鑰都將回朔於一個私鑰使用／花用。"
 
@@ -1043,7 +1041,7 @@ msgstr "表頭雜湊值"
 msgid "Height"
 msgstr "高度"
 
-#: src/electron/main.tsx:354
+#: src/electron/main.tsx:363
 msgid "Help"
 msgstr "幫助"
 
@@ -1054,6 +1052,11 @@ msgstr "協助翻譯"
 #: src/components/core/components/AdvancedOptions/AdvancedOptions.tsx:75
 msgid "Hide Advanced Options"
 msgstr "隱藏進階選項"
+
+#: src/components/app/AppPassPrompt.tsx:233
+#: src/components/settings/RemovePassphrasePrompt.tsx:134
+msgid "Hint"
+msgstr ""
 
 #: src/components/wallet/WalletHistory.tsx:91
 msgid "History"
@@ -1129,7 +1132,7 @@ msgstr "間隔"
 msgid "Invalid state"
 msgstr "無效狀態"
 
-#: src/components/plotNFT/PlotNFTGetPoolLoginLinkDialog.tsx:90
+#: src/components/plotNFT/PlotNFTGetPoolLoginLinkDialog.tsx:94
 msgid "It is a one-time login link that can be used to log in to a pool's website. It contains a signature using the farmer's key from the plot NFT. Not all pools support this feature."
 msgstr "這是一個一次性登錄連結, 可用於登記在農會的網站. 它來自農場, 其包含農民公鑰的簽名. 並非所有農會都支援此功能."
 
@@ -1160,7 +1163,7 @@ msgstr "加入農會以獲得更多持續性的 XCH 耕種獎勵。建立農場�
 msgid "K-Size"
 msgstr "K-大小"
 
-#: src/components/app/AppKeyringMigrator.tsx:80
+#: src/components/app/AppKeyringMigrator.tsx:86
 msgid "Keyring migration failed: {error}"
 msgstr ""
 
@@ -1190,8 +1193,8 @@ msgstr "最新區塊挑戰"
 msgid "Launcher Id"
 msgstr "啟動器 ID"
 
-#: src/components/plotNFT/PlotNFTGetPoolLoginLinkDialog.tsx:100
-#: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:114
+#: src/components/plotNFT/PlotNFTGetPoolLoginLinkDialog.tsx:104
+#: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:119
 msgid "Learn More"
 msgstr "了解更多"
 
@@ -1287,11 +1290,11 @@ msgstr ""
 msgid "Migrate Keyring"
 msgstr ""
 
-#: src/components/app/AppKeyringMigrator.tsx:188
+#: src/components/app/AppKeyringMigrator.tsx:226
 msgid "Migrate Keys"
 msgstr ""
 
-#: src/components/app/AppKeyringMigrator.tsx:115
+#: src/components/app/AppKeyringMigrator.tsx:121
 #: src/components/selectKey/SelectKey.tsx:136
 msgid "Migration required"
 msgstr ""
@@ -1333,11 +1336,11 @@ msgstr "網路名稱"
 #~ msgstr "Network not launched yet, waiting for genesis challenge!"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:685
-#: src/components/wallet/standard/WalletStandard.tsx:582
+#: src/components/wallet/standard/WalletStandard.tsx:572
 msgid "New Address"
 msgstr "新位址"
 
-#: src/components/settings/ChangePassphrasePrompt.tsx:175
+#: src/components/settings/ChangePassphrasePrompt.tsx:188
 msgid "New Passphrase"
 msgstr ""
 
@@ -1360,7 +1363,7 @@ msgid "Nickname"
 msgstr "暱稱"
 
 #: src/components/trading/TradingOverview.jsx:209
-#: src/electron/main.tsx:192
+#: src/electron/main.tsx:191
 msgid "No"
 msgstr "否"
 
@@ -1446,7 +1449,7 @@ msgid "Number of threads"
 msgstr "執行緒數："
 
 #: src/components/core/components/ConfirmDialog/ConfirmDialog.tsx:87
-#: src/components/plotNFT/PlotNFTGetPoolLoginLinkDialog.tsx:111
+#: src/components/plotNFT/PlotNFTGetPoolLoginLinkDialog.tsx:115
 msgid "OK"
 msgstr "好"
 
@@ -1458,7 +1461,7 @@ msgstr "提案"
 msgid "Offers Created"
 msgstr "已建立提案"
 
-#: src/components/wallet/standard/WalletStandard.tsx:488
+#: src/components/wallet/standard/WalletStandard.tsx:478
 msgid "On average there is one minute between each transaction block. Unless there is congestion you can expect your transaction to be included in less than a minute."
 msgstr "平均每個交易區塊之間有 1 分鐘的時間。除非出現擁塞，否則你可以在不到 1 分鐘的時間內完成交易。"
 
@@ -1474,22 +1477,32 @@ msgstr "只允許一個備份檔案。"
 msgid "Outgoing"
 msgstr "匯出"
 
-#: src/components/app/AppKeyringMigrator.tsx:129
-#: src/components/app/AppKeyringMigrator.tsx:130
-#: src/components/app/AppPassPrompt.tsx:221
-#: src/components/settings/RemovePassphrasePrompt.tsx:123
-#: src/components/settings/SetPassphrasePrompt.tsx:142
-#: src/components/wallet/EnterPassphrasePrompt.tsx:123
+#: src/components/app/AppKeyringMigrator.tsx:135
+#: src/components/app/AppKeyringMigrator.tsx:136
+#: src/components/app/AppPassPrompt.tsx:225
+#: src/components/settings/RemovePassphrasePrompt.tsx:126
+#: src/components/settings/SetPassphrasePrompt.tsx:155
 msgid "Passphrase"
+msgstr ""
+
+#: src/components/app/AppKeyringMigrator.tsx:159
+#: src/components/settings/ChangePassphrasePrompt.tsx:209
+#: src/components/settings/SetPassphrasePrompt.tsx:179
+msgid "Passphrase Hint"
+msgstr ""
+
+#: src/components/app/AppKeyringMigrator.tsx:158
+#: src/components/settings/ChangePassphrasePrompt.tsx:208
+#: src/components/settings/SetPassphrasePrompt.tsx:178
+msgid "Passphrase Hint (Optional)"
 msgstr ""
 
 #: src/components/settings/Settings.tsx:213
 msgid "Passphrase Settings"
 msgstr ""
 
-#: src/components/app/AppPassPrompt.tsx:149
-#: src/components/settings/RemovePassphrasePrompt.tsx:64
-#: src/components/wallet/EnterPassphrasePrompt.tsx:66
+#: src/components/app/AppPassPrompt.tsx:152
+#: src/components/settings/RemovePassphrasePrompt.tsx:67
 msgid "Passphrase is incorrect"
 msgstr ""
 
@@ -1558,25 +1571,25 @@ msgstr "請增加一對貿易方"
 msgid "Please enter 0 fee. Positive fees not supported yet for RL."
 msgstr "請輸入 0 費用。 RL 尚未支援正向費用。"
 
-#: src/components/wallet/did/WalletDID.tsx:924
+#: src/components/wallet/did/WalletDID.tsx:927
 msgid "Please enter a coin"
 msgstr "請輸入幣種"
 
 #: src/components/wallet/did/WalletDID.tsx:526
-#: src/components/wallet/did/WalletDID.tsx:914
+#: src/components/wallet/did/WalletDID.tsx:917
 msgid "Please enter a filename"
 msgstr "請輸入檔案名稱"
 
-#: src/components/app/AppPassPrompt.tsx:133
-#: src/components/settings/SetPassphrasePrompt.tsx:48
+#: src/components/app/AppPassPrompt.tsx:136
+#: src/components/settings/SetPassphrasePrompt.tsx:57
 msgid "Please enter a passphrase"
 msgstr ""
 
-#: src/components/wallet/did/WalletDID.tsx:934
+#: src/components/wallet/did/WalletDID.tsx:937
 msgid "Please enter a pubkey"
 msgstr "請輸入公鑰"
 
-#: src/components/wallet/did/WalletDID.tsx:944
+#: src/components/wallet/did/WalletDID.tsx:947
 msgid "Please enter a puzzlehash"
 msgstr "請輸入一個 PuzzleHash"
 
@@ -1591,7 +1604,7 @@ msgstr ""
 
 #: src/components/wallet/create/createNewColouredCoin.jsx:69
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:639
-#: src/components/wallet/standard/WalletStandard.tsx:440
+#: src/components/wallet/standard/WalletStandard.tsx:430
 msgid "Please enter a valid numeric amount"
 msgstr "請輸入有效的數字值"
 
@@ -1603,7 +1616,7 @@ msgstr "請輸入有效的數值。"
 #: src/components/wallet/create/createNewColouredCoin.jsx:79
 #: src/components/wallet/create/createRLAdmin.jsx:150
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:649
-#: src/components/wallet/standard/WalletStandard.tsx:450
+#: src/components/wallet/standard/WalletStandard.tsx:440
 msgid "Please enter a valid numeric fee"
 msgstr "請輸入有效的數字費用值"
 
@@ -1619,23 +1632,22 @@ msgstr "請輸入有效的可花用數字量值"
 msgid "Please enter a valid pubkey"
 msgstr "請輸入有效的公鑰"
 
-#: src/components/settings/ChangePassphrasePrompt.tsx:54
+#: src/components/settings/ChangePassphrasePrompt.tsx:63
 msgid "Please enter your current passphrase, and a new passphrase"
 msgstr ""
 
-#: src/components/app/AppPassPrompt.tsx:182
-#: src/components/app/AppPassPrompt.tsx:198
-#: src/components/settings/RemovePassphrasePrompt.tsx:47
-#: src/components/wallet/EnterPassphrasePrompt.tsx:48
+#: src/components/app/AppPassPrompt.tsx:185
+#: src/components/app/AppPassPrompt.tsx:201
+#: src/components/settings/RemovePassphrasePrompt.tsx:50
 msgid "Please enter your passphrase"
 msgstr ""
 
-#: src/components/app/AppPassPrompt.tsx:192
+#: src/components/app/AppPassPrompt.tsx:195
 msgid "Please enter your passphrase to proceed"
 msgstr ""
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:623
-#: src/components/wallet/standard/WalletStandard.tsx:430
+#: src/components/wallet/standard/WalletStandard.tsx:420
 msgid "Please finish syncing before making a transaction"
 msgstr "請在交易前先完成同步"
 
@@ -1792,11 +1804,11 @@ msgstr "農會合約地址"
 msgid "Pool Key"
 msgstr "池金鑰"
 
-#: src/components/plotNFT/PlotNFTGetPoolLoginLinkDialog.tsx:77
+#: src/components/plotNFT/PlotNFTGetPoolLoginLinkDialog.tsx:81
 msgid "Pool Login Link"
 msgstr "農會登入連結"
 
-#: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:87
+#: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:92
 msgid "Pool Payout Instructions"
 msgstr "查看農會支付說明"
 
@@ -1909,7 +1921,7 @@ msgid "Protocol Version"
 msgstr "協議版本"
 
 #: src/components/wallet/create/createRLAdmin.jsx:297
-#: src/components/wallet/did/WalletDID.tsx:993
+#: src/components/wallet/did/WalletDID.tsx:996
 msgid "Pubkey"
 msgstr "公鑰"
 
@@ -1917,7 +1929,7 @@ msgstr "公鑰"
 msgid "Public key:"
 msgstr "公鑰："
 
-#: src/components/wallet/did/WalletDID.tsx:1002
+#: src/components/wallet/did/WalletDID.tsx:1005
 msgid "Puzzlehash"
 msgstr "拼圖哈希值"
 
@@ -1967,7 +1979,7 @@ msgid "Rate Limited User Wallet Setup"
 msgstr "速率限制使用者錢包設定"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:650
-#: src/components/wallet/standard/WalletStandard.tsx:579
+#: src/components/wallet/standard/WalletStandard.tsx:569
 msgid "Receive Address"
 msgstr "接收位址"
 
@@ -2002,17 +2014,17 @@ msgstr "刷新耕地"
 msgid "Relative Lock Height"
 msgstr "相對鎖定高度"
 
-#: src/electron/main.tsx:374
+#: src/electron/main.tsx:383
 msgid "Release Notes"
 msgstr "發行說明"
 
-#: src/components/settings/RemovePassphrasePrompt.tsx:111
-#: src/components/settings/RemovePassphrasePrompt.tsx:146
+#: src/components/settings/RemovePassphrasePrompt.tsx:114
+#: src/components/settings/RemovePassphrasePrompt.tsx:161
 #: src/components/settings/Settings.tsx:194
 msgid "Remove Passphrase"
 msgstr ""
 
-#: src/components/app/AppKeyringMigrator.tsx:155
+#: src/components/app/AppKeyringMigrator.tsx:192
 msgid "Remove keys from old keyring upon successful migration"
 msgstr ""
 
@@ -2024,7 +2036,7 @@ msgstr "移除中"
 msgid "Rename"
 msgstr "更改名稱"
 
-#: src/electron/main.tsx:393
+#: src/electron/main.tsx:402
 msgid "Report an Issue..."
 msgstr "回報問題..."
 
@@ -2046,10 +2058,16 @@ msgid "Safe To Skip"
 msgstr "可安全跳過"
 
 #: src/components/farm/FarmManageFarmingRewards.tsx:203
-#: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:126
+#: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:131
 #: src/components/trading/CreateOffer.jsx:142
 msgid "Save"
 msgstr "儲存"
+
+#: src/components/app/AppKeyringMigrator.tsx:174
+#: src/components/settings/ChangePassphrasePrompt.tsx:224
+#: src/components/settings/SetPassphrasePrompt.tsx:194
+msgid "Save passphrase"
+msgstr ""
 
 #: src/components/fullNode/FullNode.jsx:338
 #~ msgid "Search"
@@ -2146,7 +2164,7 @@ msgstr "賣出"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:620
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:748
-#: src/components/wallet/standard/WalletStandard.tsx:545
+#: src/components/wallet/standard/WalletStandard.tsx:535
 msgid "Send"
 msgstr "發送"
 
@@ -2158,8 +2176,8 @@ msgstr "發送這個資訊封包給你必須需要完成設定他們錢包的速
 msgid "Send your pubkey to your Rate Limited Wallet admin:"
 msgstr "發送你的公鑰到你的速率限制錢包管理員："
 
-#: src/components/settings/SetPassphrasePrompt.tsx:128
-#: src/components/settings/SetPassphrasePrompt.tsx:177
+#: src/components/settings/SetPassphrasePrompt.tsx:141
+#: src/components/settings/SetPassphrasePrompt.tsx:220
 #: src/components/settings/Settings.tsx:205
 msgid "Set Passphrase"
 msgstr ""
@@ -2190,13 +2208,13 @@ msgstr "方向"
 msgid "Sign In"
 msgstr "登入"
 
-#: src/components/app/AppKeyringMigrator.tsx:47
-#: src/components/app/AppKeyringMigrator.tsx:177
+#: src/components/app/AppKeyringMigrator.tsx:49
+#: src/components/app/AppKeyringMigrator.tsx:215
 #: src/components/app/AppPassPrompt.tsx:74
 msgid "Skip"
 msgstr ""
 
-#: src/components/app/AppKeyringMigrator.tsx:46
+#: src/components/app/AppKeyringMigrator.tsx:48
 msgid "Skip Keyring Migration"
 msgstr ""
 
@@ -2220,7 +2238,7 @@ msgstr "加入農會來獲得穩定的XCH獎勵。"
 msgid "Something went wrong"
 msgstr "某個地方出錯了"
 
-#: src/electron/main.tsx:470
+#: src/electron/main.tsx:479
 msgid "Speech"
 msgstr "語音"
 
@@ -2301,15 +2319,15 @@ msgstr "狀態："
 #~ msgid "Sub Block at height {0} in the Chia blockchain"
 #~ msgstr "Sub Block at height {0} in the Chia blockchain"
 
-#: src/components/app/AppPassPrompt.tsx:199
-#: src/components/wallet/did/WalletDID.tsx:886
+#: src/components/app/AppPassPrompt.tsx:202
+#: src/components/wallet/did/WalletDID.tsx:889
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:347
 msgid "Submit"
 msgstr "確認"
 
 #: src/components/wallet/EnterPassphrasePrompt.tsx:146
-msgid "Submit Passphrase"
-msgstr ""
+#~ msgid "Submit Passphrase"
+#~ msgstr ""
 
 #: src/components/fullNode/card/FullNodeCardStatus.tsx:43
 #: src/components/wallet/WalletStatus.tsx:33
@@ -2363,7 +2381,7 @@ msgstr "目標拼圖雜湊值"
 msgid "Temporary folder location"
 msgstr "暫存資料夾位置"
 
-#: src/components/app/AppTimeBomb.tsx:30
+#: src/components/app/AppTimeBomb.tsx:28
 msgid "The application will stop working at block height 193536."
 msgstr "這個應用程式會在區塊高度 193536 時停止運作。"
 
@@ -2433,7 +2451,7 @@ msgstr "VDF（可驗證的延遲函數）數量或此區塊上的時間疊代證
 msgid "The total transactions fees in this block. Rewarded to the farmer."
 msgstr "在這個區塊的總交易費用。是獎勵給塊農的。"
 
-#: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:102
+#: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:107
 msgid "These are the instructions for how the farmer wants to get paid. By default this will be an XCH address, but it can be set to any string with a size of less than 1024 characters, so it can represent another blockchain or payment system identifier."
 msgstr "這些是關於農夫如何獲得報酬的說明. 正常的狀況下, 這將是一個 XCH 地址, 但它可以設置為小於 1024 個字符的任何字符串，因此它可以代表另一個區塊鏈或支付系統識別碼."
 
@@ -2451,7 +2469,7 @@ msgid "This difficulty is an artifically lower difficulty than on the real netwo
 msgstr "為了在耕種時找到更多證明以傳送至網路，此處難度與實際網路相比已人工降低過。你擁有的耕地越多，你的難度就越高。 但是，難度不影響獎勵。"
 
 #: src/components/trading/CreateOffer.jsx:123
-#: src/hooks/useSelectDirectory.tsx:31
+#: src/hooks/useSelectDirectory.tsx:32
 #: src/hooks/useSelectFile.tsx:21
 msgid "This feature is available only from the GUI."
 msgstr "這個功能只能在 GUI 中提供。"
@@ -2637,7 +2655,7 @@ msgstr "唯一識別碼"
 msgid "Unknown"
 msgstr "未知"
 
-#: src/components/app/AppPassPrompt.tsx:185
+#: src/components/app/AppPassPrompt.tsx:188
 msgid "Unlock Keyring"
 msgstr ""
 
@@ -2670,12 +2688,12 @@ msgstr "數值有點高"
 msgid "Verify Pool Details"
 msgstr "驗證農會細節"
 
-#: src/electron/main.tsx:295
+#: src/electron/main.tsx:304
 msgid "View"
 msgstr "檢視"
 
 #: src/components/plot/queue/PlotQueueActions.tsx:79
-#: src/components/plot/queue/PlotQueueLogDialog.tsx:63
+#: src/components/plot/queue/PlotQueueLogDialog.tsx:62
 msgid "View Log"
 msgstr "檢視日誌"
 
@@ -2720,11 +2738,11 @@ msgid "Waiting for the transaction to be confirmed"
 msgstr "正在等待交易結算"
 
 #: src/components/pool/PoolOverview.tsx:185
-#: src/components/wallet/standard/WalletStandard.tsx:659
+#: src/components/wallet/standard/WalletStandard.tsx:649
 msgid "Wallet Status:"
 msgstr "錢包狀態："
 
-#: src/components/wallet/did/WalletDID.tsx:1118
+#: src/components/wallet/did/WalletDID.tsx:1121
 msgid "Wallet does not exists"
 msgstr "錢包不存在"
 
@@ -2810,7 +2828,7 @@ msgstr "歡迎！以下的字是用來為你的錢包備份。沒有這些你將
 msgid "When you receive the setup info packet from your admin, enter it below to complete your Rate Limited Wallet setup:"
 msgstr "當你從你的管理員收到設定資訊封包時，在下面輸入以完成你的速率限制錢包設定："
 
-#: src/electron/main.tsx:340
+#: src/electron/main.tsx:349
 msgid "Window"
 msgstr "視窗"
 
@@ -2820,7 +2838,7 @@ msgstr "未計雜費"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:35
 #: src/components/trading/TradingOverview.jsx:209
-#: src/electron/main.tsx:193
+#: src/electron/main.tsx:192
 msgid "Yes"
 msgstr "是"
 
@@ -2909,11 +2927,11 @@ msgstr "你的收割機網路"
 msgid "Your Pool Overview"
 msgstr "您的農場概觀"
 
-#: src/components/app/AppPassPrompt.tsx:181
+#: src/components/app/AppPassPrompt.tsx:184
 msgid "Your keyring is locked"
 msgstr ""
 
-#: src/components/app/AppKeyringMigrator.tsx:52
+#: src/components/app/AppKeyringMigrator.tsx:54
 msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Are you sure you want to skip migrating your keys?"
 msgstr ""
 
@@ -2921,12 +2939,18 @@ msgstr ""
 msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Would you like to migrate your keys now?"
 msgstr ""
 
-#: src/components/app/AppKeyringMigrator.tsx:95
+#: src/components/app/AppKeyringMigrator.tsx:101
 msgid "Your keys need to be migrated to a new keyring that is optionally secured by a master passphrase."
 msgstr ""
 
-#: src/components/app/AppKeyringMigrator.tsx:101
+#: src/components/app/AppKeyringMigrator.tsx:107
 msgid "Your keys need to be migrated to a new keyring that is secured by a master passphrase."
+msgstr ""
+
+#: src/components/app/AppKeyringMigrator.tsx:177
+#: src/components/settings/ChangePassphrasePrompt.tsx:227
+#: src/components/settings/SetPassphrasePrompt.tsx:197
+msgid "Your passphrase can be stored in your system's secure credential store. Chia will be able to access your keys without prompting for your passphrase."
 msgstr ""
 
 #: src/components/settings/Settings.tsx:80
