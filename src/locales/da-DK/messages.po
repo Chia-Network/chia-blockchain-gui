@@ -8,7 +8,7 @@ msgstr ""
 "Language: da_DK\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-09-23 22:33\n"
+"PO-Revision-Date: 2021-10-22 18:53\n"
 "Last-Translator: \n"
 "Language-Team: Danish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -46,8 +46,8 @@ msgstr "128 buckets er anbefalet"
 msgid "A harvester is a service running on a machine where plot(s) are actually stored. A farmer and harvester talk to a full node to see the state of the chain. View your network of connected harvesters below Learn more"
 msgstr "En harvester er en service der kører på en maskine hvor plot filen(filerne) er opbevaret. En farmer og harvester snakker med en fuld node for at følge kædens nuværende form. Se dit netværk af tilsluttede harvesters her under Lær mere"
 
-#: src/electron/main.tsx:422
-#: src/electron/main.tsx:509
+#: src/electron/main.tsx:431
+#: src/electron/main.tsx:518
 msgid "About Chia Blockchain"
 msgstr "Om Chia Blockchain"
 
@@ -76,8 +76,8 @@ msgstr "Fjern"
 msgid "Add"
 msgstr "Tilføj"
 
-#: src/components/wallet/did/WalletDID.tsx:874
-#: src/components/wallet/did/WalletDIDCreate.tsx:205
+#: src/components/wallet/did/WalletDID.tsx:877
+#: src/components/wallet/did/WalletDIDCreate.tsx:208
 msgid "Add Backup ID"
 msgstr "Tilføj Backup ID"
 
@@ -120,16 +120,16 @@ msgstr "Tilføj {currencyCode} fra Mojohanen"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:561
 #: src/components/wallet/coloured/WalletColoured.tsx:657
-#: src/components/wallet/standard/WalletStandard.tsx:599
+#: src/components/wallet/standard/WalletStandard.tsx:589
 msgid "Address"
 msgstr "Addresse"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:701
-#: src/components/wallet/standard/WalletStandard.tsx:506
+#: src/components/wallet/standard/WalletStandard.tsx:496
 msgid "Address / Puzzle hash"
 msgstr "Addresse / Puzzle hash"
 
-#: src/components/app/AppKeyringMigrator.tsx:158
+#: src/components/app/AppKeyringMigrator.tsx:195
 msgid "After your keys are successfully migrated to the new keyring, you may choose to have your keys removed from the old keyring."
 msgstr "Når dine nøgler er migreret helt til den nye nøglering, kan du vælge at fjerne dine nøgler fra den gamle nøglering."
 
@@ -139,7 +139,7 @@ msgstr "Når dine nøgler er migreret helt til den nye nøglering, kan du vælge
 #: src/components/wallet/WalletHistory.tsx:62
 #: src/components/wallet/create/createNewColouredCoin.jsx:119
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:720
-#: src/components/wallet/standard/WalletStandard.tsx:516
+#: src/components/wallet/standard/WalletStandard.tsx:506
 msgid "Amount"
 msgstr "Beløb"
 
@@ -161,7 +161,7 @@ msgid "Are you sure you want to delete the plot? The plot cannot be recovered."
 msgstr "Er du sikker du vil slette plotfilen? Plotfilen kan ikke gendannes."
 
 #: src/components/plotNFT/PlotNFTCard.tsx:125
-#: src/components/wallet/standard/WalletStandard.tsx:636
+#: src/components/wallet/standard/WalletStandard.tsx:626
 msgid "Are you sure you want to delete unconfirmed transactions?"
 msgstr "Er du sikker på, at du vil slette ubekræftede transaktioner?"
 
@@ -169,7 +169,7 @@ msgstr "Er du sikker på, at du vil slette ubekræftede transaktioner?"
 msgid "Are you sure you want to disconnect?"
 msgstr "Er du sikker du vil afbryde forbindelsen?"
 
-#: src/electron/main.tsx:197
+#: src/electron/main.tsx:196
 msgid "Are you sure you want to quit? GUI Plotting and farming will stop."
 msgstr "Er du sikker du vil afslutte? GUI Plotning og farmning vil stoppe."
 
@@ -285,22 +285,21 @@ msgstr "Køb"
 msgid "Can be backed up to mnemonic seed"
 msgstr "Kan sikkerhedskopieres af et mnemonisk seed"
 
-#: src/components/app/AppPassPrompt.tsx:239
+#: src/components/app/AppPassPrompt.tsx:256
 #: src/components/backup/BackupCreate.tsx:50
 #: src/components/core/components/ConfirmDialog/ConfirmDialog.tsx:86
 #: src/components/farm/FarmManageFarmingRewards.tsx:200
 #: src/components/fullNode/FullNodeAddConnection.tsx:89
-#: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:123
+#: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:128
 #: src/components/plotNFT/select/PlotNFTSelectBase.tsx:87
 #: src/components/plotNFT/select/PlotNFTSelectFaucet.tsx:30
 #: src/components/selectKey/SelectKey.tsx:138
-#: src/components/settings/ChangePassphrasePrompt.tsx:198
-#: src/components/settings/RemovePassphrasePrompt.tsx:137
-#: src/components/settings/SetPassphrasePrompt.tsx:168
+#: src/components/settings/ChangePassphrasePrompt.tsx:240
+#: src/components/settings/RemovePassphrasePrompt.tsx:152
+#: src/components/settings/SetPassphrasePrompt.tsx:211
 #: src/components/trading/CreateOffer.jsx:139
 #: src/components/trading/TradingOverview.jsx:400
 #: src/components/trading/ViewOffer.jsx:71
-#: src/components/wallet/EnterPassphrasePrompt.tsx:137
 msgid "Cancel"
 msgstr "Annuller"
 
@@ -324,7 +323,7 @@ msgstr "Udfordringshash"
 msgid "Change"
 msgstr "Ændre"
 
-#: src/components/settings/ChangePassphrasePrompt.tsx:207
+#: src/components/settings/ChangePassphrasePrompt.tsx:248
 #: src/components/settings/Settings.tsx:158
 msgid "Change Passphrase"
 msgstr "Skift Adgangskode"
@@ -335,19 +334,19 @@ msgstr "Skift Adgangskode"
 msgid "Change Pool"
 msgstr "Ændre Pool"
 
-#: src/electron/main.tsx:401
+#: src/electron/main.tsx:410
 msgid "Chat on KeyBase"
 msgstr "Chat på KeyBase"
 
-#: src/electron/main.tsx:419
+#: src/electron/main.tsx:428
 msgid "Chia"
 msgstr "Chia"
 
-#: src/electron/main.tsx:358
+#: src/electron/main.tsx:367
 msgid "Chia Blockchain Wiki"
 msgstr "Chia Blockchain Wiki"
 
-#: src/components/wallet/standard/WalletStandard.tsx:652
+#: src/components/wallet/standard/WalletStandard.tsx:642
 msgid "Chia Wallet"
 msgstr "Chia Pung"
 
@@ -365,7 +364,7 @@ msgid "Claim Rewards"
 msgstr "Indløs Belønning"
 
 #: src/components/plot/PlotAddDirectoryDialog.tsx:118
-#: src/components/plot/queue/PlotQueueLogDialog.tsx:89
+#: src/components/plot/queue/PlotQueueLogDialog.tsx:88
 msgid "Close"
 msgstr "Luk"
 
@@ -373,7 +372,7 @@ msgstr "Luk"
 msgid "Closing down node and server"
 msgstr "Nedluking af node og server"
 
-#: src/components/wallet/did/WalletDID.tsx:984
+#: src/components/wallet/did/WalletDID.tsx:987
 msgid "Coin Name"
 msgstr "Mønt Navn"
 
@@ -407,7 +406,7 @@ msgid "Coloured Coin Options"
 msgstr "Farvet Mønt Indstillinger"
 
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:168
-#: src/electron/main.tsx:195
+#: src/electron/main.tsx:194
 #: src/hooks/useAbsorbRewards.tsx:46
 msgid "Confirm"
 msgstr "Bekræft"
@@ -416,18 +415,18 @@ msgstr "Bekræft"
 msgid "Confirm Disconnect"
 msgstr "Bekræft Afkobling"
 
-#: src/components/settings/ChangePassphrasePrompt.tsx:185
+#: src/components/settings/ChangePassphrasePrompt.tsx:198
 msgid "Confirm New Passphrase"
 msgstr "Bekræft Nyt Kodeord"
 
-#: src/components/app/AppKeyringMigrator.tsx:140
-#: src/components/app/AppKeyringMigrator.tsx:141
-#: src/components/settings/SetPassphrasePrompt.tsx:153
+#: src/components/app/AppKeyringMigrator.tsx:146
+#: src/components/app/AppKeyringMigrator.tsx:147
+#: src/components/settings/SetPassphrasePrompt.tsx:166
 msgid "Confirm Passphrase"
 msgstr "Bekræft Adgangskode"
 
 #: src/components/plotNFT/PlotNFTCard.tsx:121
-#: src/components/wallet/standard/WalletStandard.tsx:632
+#: src/components/wallet/standard/WalletStandard.tsx:622
 msgid "Confirmation"
 msgstr "Bekræftelse"
 
@@ -478,7 +477,7 @@ msgstr "Forbindelses Type"
 msgid "Connections"
 msgstr "Forbindelser"
 
-#: src/electron/main.tsx:382
+#: src/electron/main.tsx:391
 msgid "Contribute on GitHub"
 msgstr "Bidrag på GitHub"
 
@@ -504,11 +503,11 @@ msgstr "Kopier til Udklipsholder"
 #: src/components/wallet/create/createNewColouredCoin.jsx:142
 #: src/components/wallet/create/createRLAdmin.jsx:307
 #: src/components/wallet/create/createRLUser.jsx:99
-#: src/components/wallet/did/WalletDIDCreate.tsx:218
+#: src/components/wallet/did/WalletDIDCreate.tsx:221
 msgid "Create"
 msgstr "Opret"
 
-#: src/components/wallet/did/WalletDID.tsx:967
+#: src/components/wallet/did/WalletDID.tsx:970
 msgid "Create An Attestation Packet"
 msgstr "Opret En Attestation Pakke"
 
@@ -550,7 +549,7 @@ msgstr "Opret Bytte Bud"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:543
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:684
-#: src/components/wallet/standard/WalletStandard.tsx:486
+#: src/components/wallet/standard/WalletStandard.tsx:476
 msgid "Create Transaction"
 msgstr "Opret Transaktion"
 
@@ -615,7 +614,7 @@ msgstr "Valuta kode er ikke defineret"
 msgid "Current Difficulty"
 msgstr "Nuværende Sværhed"
 
-#: src/components/settings/ChangePassphrasePrompt.tsx:165
+#: src/components/settings/ChangePassphrasePrompt.tsx:178
 msgid "Current Passphrase"
 msgstr "Nuværende Kodeord"
 
@@ -658,14 +657,14 @@ msgstr "Forsinkelse"
 #: src/components/selectKey/SelectKey.tsx:76
 #: src/components/selectKey/SelectKey.tsx:115
 #: src/components/wallet/did/WalletDID.tsx:449
-#: src/components/wallet/did/WalletDID.tsx:862
-#: src/components/wallet/did/WalletDIDCreate.tsx:194
+#: src/components/wallet/did/WalletDID.tsx:865
+#: src/components/wallet/did/WalletDIDCreate.tsx:197
 #: src/components/wallet/did/WalletDIDRecovery.tsx:101
-#: src/components/wallet/standard/WalletStandard.tsx:633
+#: src/components/wallet/standard/WalletStandard.tsx:623
 msgid "Delete"
 msgstr "Slet"
 
-#: src/components/app/AppPassPrompt.tsx:195
+#: src/components/app/AppPassPrompt.tsx:198
 msgid "Delete Key"
 msgstr "Slet Nøgle"
 
@@ -675,7 +674,7 @@ msgid "Delete Plot"
 msgstr "Slet Plotfil"
 
 #: src/components/plotNFT/PlotNFTCard.tsx:315
-#: src/components/wallet/standard/WalletStandard.tsx:677
+#: src/components/wallet/standard/WalletStandard.tsx:667
 msgid "Delete Unconfirmed Transactions"
 msgstr "Slet Ubekræftede Transaktioner"
 
@@ -696,7 +695,7 @@ msgstr "Slet nøgle {fingerprint}"
 #~ msgid "Deleting all keys will permanently remove the keys from your computer, make sure you have backups. Are you sure you want to continue?"
 #~ msgstr "Deleting all keys will permanently remove the keys from your computer, make sure you have backups. Are you sure you want to continue?"
 
-#: src/components/app/AppPassPrompt.tsx:191
+#: src/components/app/AppPassPrompt.tsx:194
 msgid "Deleting key"
 msgstr "Sletter nøgle"
 
@@ -704,11 +703,11 @@ msgstr "Sletter nøgle"
 #~ msgid "Deleting the key will permanently remove the key from your computer, make sure you have backups. Are you sure you want to continue?"
 #~ msgstr "Deleting the key will permanently remove the key from your computer, make sure you have backups. Are you sure you want to continue?"
 
-#: src/electron/main.tsx:304
+#: src/electron/main.tsx:313
 msgid "Developer"
 msgstr "Udvikler"
 
-#: src/electron/main.tsx:307
+#: src/electron/main.tsx:316
 msgid "Developer Tools"
 msgstr "Udvikler Værktøjer"
 
@@ -775,25 +774,25 @@ msgstr "Træk og slip din backup fil"
 msgid "Drag and drop your recovery backup file"
 msgstr "Træk og slip din genoprettelsesbackup fil"
 
-#: src/electron/main.tsx:263
+#: src/electron/main.tsx:272
 msgid "Edit"
 msgstr "Rediger"
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:259
 #: src/components/plotNFT/PlotNFTCard.tsx:301
-#: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:76
+#: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:81
 msgid "Edit Payout Instructions"
 msgstr "Rediger Udbetalingsinstruktioner"
 
 #: src/components/wallet/EnterPassphrasePrompt.tsx:111
-msgid "Enter Passphrase"
-msgstr "Indtast kodeord"
+#~ msgid "Enter Passphrase"
+#~ msgstr "Enter Passphrase"
 
-#: src/components/app/AppKeyringMigrator.tsx:119
+#: src/components/app/AppKeyringMigrator.tsx:125
 msgid "Enter a strong passphrase and click Migrate Keys to secure your keys"
 msgstr "Indtast et stærkt kodeord og klik på Migrér Nøgler for at sikre dine nøgler"
 
-#: src/components/settings/SetPassphrasePrompt.tsx:132
+#: src/components/settings/SetPassphrasePrompt.tsx:145
 msgid "Enter a strong passphrase to secure your keys:"
 msgstr "Indtast et stærkt kodeord for at sikre dine nøgler:"
 
@@ -801,8 +800,7 @@ msgstr "Indtast et stærkt kodeord for at sikre dine nøgler:"
 msgid "Enter the 24 word mnemonic that you have saved in order to restore your Chia wallet."
 msgstr "Indtast dine 24 mnemoniske ord fra din backup for at gendanne din Chia pung."
 
-#: src/components/settings/RemovePassphrasePrompt.tsx:115
-#: src/components/wallet/EnterPassphrasePrompt.tsx:115
+#: src/components/settings/RemovePassphrasePrompt.tsx:118
 msgid "Enter your passphrase:"
 msgstr "Indtast dit kodeord:"
 
@@ -816,7 +814,7 @@ msgstr "Indtast dit kodeord:"
 msgid "Error"
 msgstr "Fejl"
 
-#: src/components/wallet/standard/WalletStandard.tsx:460
+#: src/components/wallet/standard/WalletStandard.tsx:450
 msgid "Error: Cannot send chia to coloured address. Please enter a chia address."
 msgstr "Fejl: Kan ikke sende chia til en farvet addresse. Venligst indtast en chia addresse."
 
@@ -850,21 +848,21 @@ msgstr "Eksludér endelig mappe"
 msgid "Failed to open (invalid plots)"
 msgstr "Kan ikke åbne (invalid plotfil)"
 
-#: src/components/settings/ChangePassphrasePrompt.tsx:86
+#: src/components/settings/ChangePassphrasePrompt.tsx:97
 msgid "Failed to remove passphrase: {error}"
 msgstr "Kunne ikke fjerne kodeord: {error}"
 
-#: src/components/settings/SetPassphrasePrompt.tsx:79
+#: src/components/settings/SetPassphrasePrompt.tsx:92
 msgid "Failed to set passphrase: {error}"
 msgstr "Fejl ved opsætning af kodeord: {error}"
 
-#: src/components/settings/ChangePassphrasePrompt.tsx:107
+#: src/components/settings/ChangePassphrasePrompt.tsx:120
 msgid "Failed to update passphrase: {error}"
 msgstr "Kunne ikke opdatere kodeord: {error}"
 
 #: src/components/dashboard/DashboardSideBar.tsx:58
 #: src/components/wallet/coloured/WalletColoured.tsx:610
-#: src/components/wallet/standard/WalletStandard.tsx:535
+#: src/components/wallet/standard/WalletStandard.tsx:525
 msgid "Farm"
 msgstr "Farm"
 
@@ -935,7 +933,7 @@ msgstr "Farmer Status"
 #: src/components/wallet/create/createRLAdmin.jsx:244
 #: src/components/wallet/create/createRLAdmin.jsx:272
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:733
-#: src/components/wallet/standard/WalletStandard.tsx:527
+#: src/components/wallet/standard/WalletStandard.tsx:517
 msgid "Fee"
 msgstr "Gebyr"
 
@@ -959,15 +957,15 @@ msgstr "Gebyr Beløb"
 #~ msgid "Fees Puzzle Hash"
 #~ msgstr ""
 
-#: src/electron/main.tsx:255
-#: src/electron/main.tsx:456
+#: src/electron/main.tsx:264
+#: src/electron/main.tsx:465
 msgid "File"
 msgstr "Fil"
 
 #: src/components/plot/PlotsFailed.tsx:14
 #: src/components/plot/PlotsNotFound.tsx:14
 #: src/components/plot/overview/PlotOverviewPlots.tsx:106
-#: src/components/wallet/did/WalletDID.tsx:975
+#: src/components/wallet/did/WalletDID.tsx:978
 msgid "Filename"
 msgstr "Filnavn"
 
@@ -980,11 +978,11 @@ msgstr "Endelig folder placering"
 msgid "Finished"
 msgstr "Færdig"
 
-#: src/electron/main.tsx:407
+#: src/electron/main.tsx:416
 msgid "Follow on Twitter"
 msgstr "Følg på Twitter"
 
-#: src/electron/main.tsx:366
+#: src/electron/main.tsx:375
 msgid "Frequently Asked Questions"
 msgstr "Ofte Stillet Spørgsmål"
 
@@ -1001,7 +999,7 @@ msgstr "Fuld Node Oversigt"
 #~ msgid "Full Node Status"
 #~ msgstr "Full Node Status"
 
-#: src/electron/main.tsx:332
+#: src/electron/main.tsx:341
 msgid "Full Screen"
 msgstr "Fuld Skærm"
 
@@ -1017,7 +1015,7 @@ msgstr "Generer Ny Farve"
 msgid "Grid view"
 msgstr "Gittervisning"
 
-#: src/components/wallet/standard/WalletStandard.tsx:586
+#: src/components/wallet/standard/WalletStandard.tsx:576
 msgid "HD or Hierarchical Deterministic keys are a type of public key/private key scheme where one private key can have a nearly infinite number of different public keys (and therefor wallet receive addresses) that will all ultimately come back to and be spendable by a single private key."
 msgstr "HD eller Hierarkisk Deterministiske nøgler er en type a offentlig nøgle/privat nøgle skema hvor en privat nøgle kan have næsten uendeligt antal af forskellige offentlige nøgler (og derfor pung modtage addresser) som vil alle komme tilbage til og være brugbare af en enkelt privat nøgle."
 
@@ -1043,7 +1041,7 @@ msgstr "Header hash"
 msgid "Height"
 msgstr "Højde"
 
-#: src/electron/main.tsx:354
+#: src/electron/main.tsx:363
 msgid "Help"
 msgstr "Hjælp"
 
@@ -1054,6 +1052,11 @@ msgstr "Hjælp med oversættelse"
 #: src/components/core/components/AdvancedOptions/AdvancedOptions.tsx:75
 msgid "Hide Advanced Options"
 msgstr "Gem Avanceret Indstillinger"
+
+#: src/components/app/AppPassPrompt.tsx:233
+#: src/components/settings/RemovePassphrasePrompt.tsx:134
+msgid "Hint"
+msgstr ""
 
 #: src/components/wallet/WalletHistory.tsx:91
 msgid "History"
@@ -1129,7 +1132,7 @@ msgstr "Interval"
 msgid "Invalid state"
 msgstr "Ugyldig tilstand"
 
-#: src/components/plotNFT/PlotNFTGetPoolLoginLinkDialog.tsx:90
+#: src/components/plotNFT/PlotNFTGetPoolLoginLinkDialog.tsx:94
 msgid "It is a one-time login link that can be used to log in to a pool's website. It contains a signature using the farmer's key from the plot NFT. Not all pools support this feature."
 msgstr "Det er et engangs-login link, der kan bruges til at logge ind på en puljes hjemmeside. Den indeholder en underskrift ved hjælp af farmerens nøgle fra plot NFT. Ikke alle puljer understøtter denne funktion."
 
@@ -1160,7 +1163,7 @@ msgstr "Tilslut en pulje og få stabil XCH farm belønninger. Opret en plot NFT 
 msgid "K-Size"
 msgstr "K-Størrelse"
 
-#: src/components/app/AppKeyringMigrator.tsx:80
+#: src/components/app/AppKeyringMigrator.tsx:86
 msgid "Keyring migration failed: {error}"
 msgstr "Overførsel af nøglering mislykkedes: {error}"
 
@@ -1190,8 +1193,8 @@ msgstr "Sidste Blok Udfordring"
 msgid "Launcher Id"
 msgstr "Starter Id"
 
-#: src/components/plotNFT/PlotNFTGetPoolLoginLinkDialog.tsx:100
-#: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:114
+#: src/components/plotNFT/PlotNFTGetPoolLoginLinkDialog.tsx:104
+#: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:119
 msgid "Learn More"
 msgstr "Lær mere"
 
@@ -1287,11 +1290,11 @@ msgstr "Migrér"
 msgid "Migrate Keyring"
 msgstr "Migrér Nøglering"
 
-#: src/components/app/AppKeyringMigrator.tsx:188
+#: src/components/app/AppKeyringMigrator.tsx:226
 msgid "Migrate Keys"
 msgstr "Migrér Nøgler"
 
-#: src/components/app/AppKeyringMigrator.tsx:115
+#: src/components/app/AppKeyringMigrator.tsx:121
 #: src/components/selectKey/SelectKey.tsx:136
 msgid "Migration required"
 msgstr "Migration påkrævet"
@@ -1333,11 +1336,11 @@ msgstr "Netværksnavn"
 #~ msgstr "Network not launched yet, waiting for genesis challenge!"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:685
-#: src/components/wallet/standard/WalletStandard.tsx:582
+#: src/components/wallet/standard/WalletStandard.tsx:572
 msgid "New Address"
 msgstr "Ny Addresse"
 
-#: src/components/settings/ChangePassphrasePrompt.tsx:175
+#: src/components/settings/ChangePassphrasePrompt.tsx:188
 msgid "New Passphrase"
 msgstr "Nyt kodeord"
 
@@ -1360,7 +1363,7 @@ msgid "Nickname"
 msgstr "Øgenavn"
 
 #: src/components/trading/TradingOverview.jsx:209
-#: src/electron/main.tsx:192
+#: src/electron/main.tsx:191
 msgid "No"
 msgstr "Nej"
 
@@ -1446,7 +1449,7 @@ msgid "Number of threads"
 msgstr "Nummer af tråde"
 
 #: src/components/core/components/ConfirmDialog/ConfirmDialog.tsx:87
-#: src/components/plotNFT/PlotNFTGetPoolLoginLinkDialog.tsx:111
+#: src/components/plotNFT/PlotNFTGetPoolLoginLinkDialog.tsx:115
 msgid "OK"
 msgstr "OK"
 
@@ -1458,7 +1461,7 @@ msgstr "Bud"
 msgid "Offers Created"
 msgstr "Bud Oprettet"
 
-#: src/components/wallet/standard/WalletStandard.tsx:488
+#: src/components/wallet/standard/WalletStandard.tsx:478
 msgid "On average there is one minute between each transaction block. Unless there is congestion you can expect your transaction to be included in less than a minute."
 msgstr "I gennemsnit er der et minut mellem hver transaktionsblok. Medmindre der er overbelastning, kan du forvente, at din transaktion bliver inkluderet på mindre end et minut."
 
@@ -1474,22 +1477,32 @@ msgstr "Kun én backup fil er tilladt."
 msgid "Outgoing"
 msgstr "Udgående"
 
-#: src/components/app/AppKeyringMigrator.tsx:129
-#: src/components/app/AppKeyringMigrator.tsx:130
-#: src/components/app/AppPassPrompt.tsx:221
-#: src/components/settings/RemovePassphrasePrompt.tsx:123
-#: src/components/settings/SetPassphrasePrompt.tsx:142
-#: src/components/wallet/EnterPassphrasePrompt.tsx:123
+#: src/components/app/AppKeyringMigrator.tsx:135
+#: src/components/app/AppKeyringMigrator.tsx:136
+#: src/components/app/AppPassPrompt.tsx:225
+#: src/components/settings/RemovePassphrasePrompt.tsx:126
+#: src/components/settings/SetPassphrasePrompt.tsx:155
 msgid "Passphrase"
 msgstr "Kodeord"
+
+#: src/components/app/AppKeyringMigrator.tsx:159
+#: src/components/settings/ChangePassphrasePrompt.tsx:209
+#: src/components/settings/SetPassphrasePrompt.tsx:179
+msgid "Passphrase Hint"
+msgstr ""
+
+#: src/components/app/AppKeyringMigrator.tsx:158
+#: src/components/settings/ChangePassphrasePrompt.tsx:208
+#: src/components/settings/SetPassphrasePrompt.tsx:178
+msgid "Passphrase Hint (Optional)"
+msgstr ""
 
 #: src/components/settings/Settings.tsx:213
 msgid "Passphrase Settings"
 msgstr "Kodeordsindstillinger"
 
-#: src/components/app/AppPassPrompt.tsx:149
-#: src/components/settings/RemovePassphrasePrompt.tsx:64
-#: src/components/wallet/EnterPassphrasePrompt.tsx:66
+#: src/components/app/AppPassPrompt.tsx:152
+#: src/components/settings/RemovePassphrasePrompt.tsx:67
 msgid "Passphrase is incorrect"
 msgstr "Kodeord er forkert"
 
@@ -1558,25 +1571,25 @@ msgstr "Venligst tilføj et handelspar"
 msgid "Please enter 0 fee. Positive fees not supported yet for RL."
 msgstr "Venligst indtast 0 gebyr. Positive gebyr ikke understøttet endnu for RL."
 
-#: src/components/wallet/did/WalletDID.tsx:924
+#: src/components/wallet/did/WalletDID.tsx:927
 msgid "Please enter a coin"
 msgstr "Angiv en mønt"
 
 #: src/components/wallet/did/WalletDID.tsx:526
-#: src/components/wallet/did/WalletDID.tsx:914
+#: src/components/wallet/did/WalletDID.tsx:917
 msgid "Please enter a filename"
 msgstr "Angiv et filnavn"
 
-#: src/components/app/AppPassPrompt.tsx:133
-#: src/components/settings/SetPassphrasePrompt.tsx:48
+#: src/components/app/AppPassPrompt.tsx:136
+#: src/components/settings/SetPassphrasePrompt.tsx:57
 msgid "Please enter a passphrase"
 msgstr "Indtast et kodeord"
 
-#: src/components/wallet/did/WalletDID.tsx:934
+#: src/components/wallet/did/WalletDID.tsx:937
 msgid "Please enter a pubkey"
 msgstr "Angiv en pubkey"
 
-#: src/components/wallet/did/WalletDID.tsx:944
+#: src/components/wallet/did/WalletDID.tsx:947
 msgid "Please enter a puzzlehash"
 msgstr "Angiv et puslehash"
 
@@ -1591,7 +1604,7 @@ msgstr "Angiv et gyldigt antal af 0 eller højrer for antallet af Backup ID nød
 
 #: src/components/wallet/create/createNewColouredCoin.jsx:69
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:639
-#: src/components/wallet/standard/WalletStandard.tsx:440
+#: src/components/wallet/standard/WalletStandard.tsx:430
 msgid "Please enter a valid numeric amount"
 msgstr "Venligst indtast et gyldigt numerisk beløb"
 
@@ -1603,7 +1616,7 @@ msgstr "Angiv et gyldigt numerisk beløb."
 #: src/components/wallet/create/createNewColouredCoin.jsx:79
 #: src/components/wallet/create/createRLAdmin.jsx:150
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:649
-#: src/components/wallet/standard/WalletStandard.tsx:450
+#: src/components/wallet/standard/WalletStandard.tsx:440
 msgid "Please enter a valid numeric fee"
 msgstr "Venligst indtast et gyldigt numerisk gebyr"
 
@@ -1619,23 +1632,22 @@ msgstr "Venligst indtast et gyldigt brugbart beløb"
 msgid "Please enter a valid pubkey"
 msgstr "Venligst indtast en gyldig pubkey"
 
-#: src/components/settings/ChangePassphrasePrompt.tsx:54
+#: src/components/settings/ChangePassphrasePrompt.tsx:63
 msgid "Please enter your current passphrase, and a new passphrase"
 msgstr "Indtast dit nuværende kodeord og et ny kodeord"
 
-#: src/components/app/AppPassPrompt.tsx:182
-#: src/components/app/AppPassPrompt.tsx:198
-#: src/components/settings/RemovePassphrasePrompt.tsx:47
-#: src/components/wallet/EnterPassphrasePrompt.tsx:48
+#: src/components/app/AppPassPrompt.tsx:185
+#: src/components/app/AppPassPrompt.tsx:201
+#: src/components/settings/RemovePassphrasePrompt.tsx:50
 msgid "Please enter your passphrase"
 msgstr "Indtast dit kodeord"
 
-#: src/components/app/AppPassPrompt.tsx:192
+#: src/components/app/AppPassPrompt.tsx:195
 msgid "Please enter your passphrase to proceed"
 msgstr "Indtast dit kodeord for at fortsætte"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:623
-#: src/components/wallet/standard/WalletStandard.tsx:430
+#: src/components/wallet/standard/WalletStandard.tsx:420
 msgid "Please finish syncing before making a transaction"
 msgstr "Venligst udfør synkronisering før du opretter en transaktion"
 
@@ -1792,11 +1804,11 @@ msgstr "Pulje Kontrakt Addresse"
 msgid "Pool Key"
 msgstr "Pool Nøgle"
 
-#: src/components/plotNFT/PlotNFTGetPoolLoginLinkDialog.tsx:77
+#: src/components/plotNFT/PlotNFTGetPoolLoginLinkDialog.tsx:81
 msgid "Pool Login Link"
 msgstr "Pulje Login Link"
 
-#: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:87
+#: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:92
 msgid "Pool Payout Instructions"
 msgstr "Pulje Udbetalingsvejledning"
 
@@ -1909,7 +1921,7 @@ msgid "Protocol Version"
 msgstr "Protokol Version"
 
 #: src/components/wallet/create/createRLAdmin.jsx:297
-#: src/components/wallet/did/WalletDID.tsx:993
+#: src/components/wallet/did/WalletDID.tsx:996
 msgid "Pubkey"
 msgstr "Pubnøgle"
 
@@ -1917,7 +1929,7 @@ msgstr "Pubnøgle"
 msgid "Public key:"
 msgstr "Offentlig nøgle:"
 
-#: src/components/wallet/did/WalletDID.tsx:1002
+#: src/components/wallet/did/WalletDID.tsx:1005
 msgid "Puzzlehash"
 msgstr "Puslehash"
 
@@ -1967,7 +1979,7 @@ msgid "Rate Limited User Wallet Setup"
 msgstr "Takst Begrænset Bruger Pung Opsætning"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:650
-#: src/components/wallet/standard/WalletStandard.tsx:579
+#: src/components/wallet/standard/WalletStandard.tsx:569
 msgid "Receive Address"
 msgstr "Modtager Addresse"
 
@@ -2002,17 +2014,17 @@ msgstr "Opdater Plotfiler"
 msgid "Relative Lock Height"
 msgstr "Relativ Låsehøjde"
 
-#: src/electron/main.tsx:374
+#: src/electron/main.tsx:383
 msgid "Release Notes"
 msgstr "Udgivelses Noter"
 
-#: src/components/settings/RemovePassphrasePrompt.tsx:111
-#: src/components/settings/RemovePassphrasePrompt.tsx:146
+#: src/components/settings/RemovePassphrasePrompt.tsx:114
+#: src/components/settings/RemovePassphrasePrompt.tsx:161
 #: src/components/settings/Settings.tsx:194
 msgid "Remove Passphrase"
 msgstr "Fjern Kodeord"
 
-#: src/components/app/AppKeyringMigrator.tsx:155
+#: src/components/app/AppKeyringMigrator.tsx:192
 msgid "Remove keys from old keyring upon successful migration"
 msgstr "Fjern nøgler fra den gamle nøglering ved gennemført migration"
 
@@ -2024,7 +2036,7 @@ msgstr "Fjerner"
 msgid "Rename"
 msgstr "Omdøb"
 
-#: src/electron/main.tsx:393
+#: src/electron/main.tsx:402
 msgid "Report an Issue..."
 msgstr "Raportér et Problem..."
 
@@ -2046,10 +2058,16 @@ msgid "Safe To Skip"
 msgstr "Sikke At Skippe"
 
 #: src/components/farm/FarmManageFarmingRewards.tsx:203
-#: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:126
+#: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:131
 #: src/components/trading/CreateOffer.jsx:142
 msgid "Save"
 msgstr "Gem"
+
+#: src/components/app/AppKeyringMigrator.tsx:174
+#: src/components/settings/ChangePassphrasePrompt.tsx:224
+#: src/components/settings/SetPassphrasePrompt.tsx:194
+msgid "Save passphrase"
+msgstr ""
 
 #: src/components/fullNode/FullNode.jsx:338
 #~ msgid "Search"
@@ -2146,7 +2164,7 @@ msgstr "Sælg"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:620
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:748
-#: src/components/wallet/standard/WalletStandard.tsx:545
+#: src/components/wallet/standard/WalletStandard.tsx:535
 msgid "Send"
 msgstr "Send"
 
@@ -2158,8 +2176,8 @@ msgstr "Send denne info pakke til din Takst Begrænset Pung bruger som skal brug
 msgid "Send your pubkey to your Rate Limited Wallet admin:"
 msgstr "Send din pubnøgle til din Takst Begrænset Pund adminstrator:"
 
-#: src/components/settings/SetPassphrasePrompt.tsx:128
-#: src/components/settings/SetPassphrasePrompt.tsx:177
+#: src/components/settings/SetPassphrasePrompt.tsx:141
+#: src/components/settings/SetPassphrasePrompt.tsx:220
 #: src/components/settings/Settings.tsx:205
 msgid "Set Passphrase"
 msgstr "Sæt Kodeord"
@@ -2190,13 +2208,13 @@ msgstr "Side"
 msgid "Sign In"
 msgstr "Log Ind"
 
-#: src/components/app/AppKeyringMigrator.tsx:47
-#: src/components/app/AppKeyringMigrator.tsx:177
+#: src/components/app/AppKeyringMigrator.tsx:49
+#: src/components/app/AppKeyringMigrator.tsx:215
 #: src/components/app/AppPassPrompt.tsx:74
 msgid "Skip"
 msgstr "Spring Over"
 
-#: src/components/app/AppKeyringMigrator.tsx:46
+#: src/components/app/AppKeyringMigrator.tsx:48
 msgid "Skip Keyring Migration"
 msgstr "Spring Over Migrering"
 
@@ -2220,7 +2238,7 @@ msgstr "Glat dine XCH belønninger ud ved at deltage i en pulje."
 msgid "Something went wrong"
 msgstr "Noget gik galt"
 
-#: src/electron/main.tsx:470
+#: src/electron/main.tsx:479
 msgid "Speech"
 msgstr "Tale"
 
@@ -2301,15 +2319,15 @@ msgstr "Status:"
 #~ msgid "Sub Block at height {0} in the Chia blockchain"
 #~ msgstr "Sub Block at height {0} in the Chia blockchain"
 
-#: src/components/app/AppPassPrompt.tsx:199
-#: src/components/wallet/did/WalletDID.tsx:886
+#: src/components/app/AppPassPrompt.tsx:202
+#: src/components/wallet/did/WalletDID.tsx:889
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:347
 msgid "Submit"
 msgstr "Indsend"
 
 #: src/components/wallet/EnterPassphrasePrompt.tsx:146
-msgid "Submit Passphrase"
-msgstr "Indsæt kodeord"
+#~ msgid "Submit Passphrase"
+#~ msgstr "Submit Passphrase"
 
 #: src/components/fullNode/card/FullNodeCardStatus.tsx:43
 #: src/components/wallet/WalletStatus.tsx:33
@@ -2363,7 +2381,7 @@ msgstr "Mål Puzzle Hash"
 msgid "Temporary folder location"
 msgstr "Midlertidig folder placering"
 
-#: src/components/app/AppTimeBomb.tsx:30
+#: src/components/app/AppTimeBomb.tsx:28
 msgid "The application will stop working at block height 193536."
 msgstr "Programmet vil stoppe med at virke fra blok højde 193536."
 
@@ -2433,7 +2451,7 @@ msgstr "Det samlede nummer af VDF (verifiable delay function) eller bevis af tid
 msgid "The total transactions fees in this block. Rewarded to the farmer."
 msgstr "Det samlede transaktionsgebyr i denne blok. Belønnet til farmeren."
 
-#: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:102
+#: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:107
 msgid "These are the instructions for how the farmer wants to get paid. By default this will be an XCH address, but it can be set to any string with a size of less than 1024 characters, so it can represent another blockchain or payment system identifier."
 msgstr "Dette er instruktionerne for hvordan farmeren ønsker at blive betalt. Som standard vil dette være en XCH-adresse, men det kan indstilles til en vilkårlig streng med en størrelse på mindre end 1024 tegn, så det kan repræsentere en anden blockchain eller betalingssystem-id."
 
@@ -2451,7 +2469,7 @@ msgid "This difficulty is an artifically lower difficulty than on the real netwo
 msgstr "Denne vanskelighed er kunstigt lavere end på det reelle netværk og bruges når du farmer, for at finde flere beviser og sende dem til puljen. Jo flere plot filer du har, jo højere sværhedsgrad vil du have. Men, vanskeligheden påvirker ikke belønninger."
 
 #: src/components/trading/CreateOffer.jsx:123
-#: src/hooks/useSelectDirectory.tsx:31
+#: src/hooks/useSelectDirectory.tsx:32
 #: src/hooks/useSelectFile.tsx:21
 msgid "This feature is available only from the GUI."
 msgstr "Denne funktion er kun tilgængelig fra GUI."
@@ -2637,7 +2655,7 @@ msgstr "Unik identifikator"
 msgid "Unknown"
 msgstr "Ukendt"
 
-#: src/components/app/AppPassPrompt.tsx:185
+#: src/components/app/AppPassPrompt.tsx:188
 msgid "Unlock Keyring"
 msgstr "Lås Nøglering Op"
 
@@ -2670,12 +2688,12 @@ msgstr "Værdi virker høj"
 msgid "Verify Pool Details"
 msgstr "Verificér Pulje Detaljer"
 
-#: src/electron/main.tsx:295
+#: src/electron/main.tsx:304
 msgid "View"
 msgstr "Se"
 
 #: src/components/plot/queue/PlotQueueActions.tsx:79
-#: src/components/plot/queue/PlotQueueLogDialog.tsx:63
+#: src/components/plot/queue/PlotQueueLogDialog.tsx:62
 msgid "View Log"
 msgstr "Vis Log"
 
@@ -2720,11 +2738,11 @@ msgid "Waiting for the transaction to be confirmed"
 msgstr "Afventer at transaktionen bekræftes"
 
 #: src/components/pool/PoolOverview.tsx:185
-#: src/components/wallet/standard/WalletStandard.tsx:659
+#: src/components/wallet/standard/WalletStandard.tsx:649
 msgid "Wallet Status:"
 msgstr "Tegnebog Status:"
 
-#: src/components/wallet/did/WalletDID.tsx:1118
+#: src/components/wallet/did/WalletDID.tsx:1121
 msgid "Wallet does not exists"
 msgstr "Pung findes ikke"
 
@@ -2810,7 +2828,7 @@ msgstr "Velkommen! De følgende ord bruges som backup til din pung. Uden disse, 
 msgid "When you receive the setup info packet from your admin, enter it below to complete your Rate Limited Wallet setup:"
 msgstr "Når du modtager din opsætningspakke fra din admin, indtast den herunder for at gennemfører din Rate Begrænset Pung opsætning:"
 
-#: src/electron/main.tsx:340
+#: src/electron/main.tsx:349
 msgid "Window"
 msgstr "Vindue"
 
@@ -2820,7 +2838,7 @@ msgstr "Uden gebyr"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:35
 #: src/components/trading/TradingOverview.jsx:209
-#: src/electron/main.tsx:193
+#: src/electron/main.tsx:192
 msgid "Yes"
 msgstr "Ja"
 
@@ -2909,11 +2927,11 @@ msgstr "Dit Harvester netværk"
 msgid "Your Pool Overview"
 msgstr "Din Pulje Oversigt"
 
-#: src/components/app/AppPassPrompt.tsx:181
+#: src/components/app/AppPassPrompt.tsx:184
 msgid "Your keyring is locked"
 msgstr "Din nøglering er låst"
 
-#: src/components/app/AppKeyringMigrator.tsx:52
+#: src/components/app/AppKeyringMigrator.tsx:54
 msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Are you sure you want to skip migrating your keys?"
 msgstr "Dine nøgler er ikke blevet migreret til en ny nøglering. Du vil ikke kunne oprette nye nøgler eller slette eksisterende nøgler før migreringen er færdig. Er du sikker på, at du vil springe over migrering af dine nøgler?"
 
@@ -2921,13 +2939,19 @@ msgstr "Dine nøgler er ikke blevet migreret til en ny nøglering. Du vil ikke k
 msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Would you like to migrate your keys now?"
 msgstr "Dine nøgler er ikke blevet migreret til en ny nøglering. Du vil ikke kunne oprette nye nøgler eller slette eksisterende nøgler før migreringen er færdig. Er du sikker på, at du vil springe over migrering af dine nøgler?"
 
-#: src/components/app/AppKeyringMigrator.tsx:95
+#: src/components/app/AppKeyringMigrator.tsx:101
 msgid "Your keys need to be migrated to a new keyring that is optionally secured by a master passphrase."
 msgstr "Dine nøgler skal migreres til en ny nøglering der er valgfrit sikret af et hoved kodeord."
 
-#: src/components/app/AppKeyringMigrator.tsx:101
+#: src/components/app/AppKeyringMigrator.tsx:107
 msgid "Your keys need to be migrated to a new keyring that is secured by a master passphrase."
 msgstr "Dine nøgler skal migreres til en ny nøglering der er valgfrit sikret af et hoved kodeord."
+
+#: src/components/app/AppKeyringMigrator.tsx:177
+#: src/components/settings/ChangePassphrasePrompt.tsx:227
+#: src/components/settings/SetPassphrasePrompt.tsx:197
+msgid "Your passphrase can be stored in your system's secure credential store. Chia will be able to access your keys without prompting for your passphrase."
+msgstr ""
 
 #: src/components/settings/Settings.tsx:80
 msgid "Your passphrase has been set"
