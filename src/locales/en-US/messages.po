@@ -8,7 +8,7 @@ msgstr ""
 "Language: en_US\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-10-22 18:53\n"
+"PO-Revision-Date: 2021-10-23 06:50\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -1056,7 +1056,7 @@ msgstr "Hide Advanced Options"
 #: src/components/app/AppPassPrompt.tsx:233
 #: src/components/settings/RemovePassphrasePrompt.tsx:134
 msgid "Hint"
-msgstr ""
+msgstr "Hint"
 
 #: src/components/wallet/WalletHistory.tsx:91
 msgid "History"
@@ -1489,13 +1489,13 @@ msgstr "Passphrase"
 #: src/components/settings/ChangePassphrasePrompt.tsx:209
 #: src/components/settings/SetPassphrasePrompt.tsx:179
 msgid "Passphrase Hint"
-msgstr ""
+msgstr "Passphrase Hint"
 
 #: src/components/app/AppKeyringMigrator.tsx:158
 #: src/components/settings/ChangePassphrasePrompt.tsx:208
 #: src/components/settings/SetPassphrasePrompt.tsx:178
 msgid "Passphrase Hint (Optional)"
-msgstr ""
+msgstr "Passphrase Hint (Optional)"
 
 #: src/components/settings/Settings.tsx:213
 msgid "Passphrase Settings"
