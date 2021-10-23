@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh_TW\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-10-22 18:52\n"
+"PO-Revision-Date: 2021-10-23 00:55\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -1056,7 +1056,7 @@ msgstr "隱藏進階選項"
 #: src/components/app/AppPassPrompt.tsx:233
 #: src/components/settings/RemovePassphrasePrompt.tsx:134
 msgid "Hint"
-msgstr ""
+msgstr "提示"
 
 #: src/components/wallet/WalletHistory.tsx:91
 msgid "History"
@@ -1489,13 +1489,13 @@ msgstr "密碼"
 #: src/components/settings/ChangePassphrasePrompt.tsx:209
 #: src/components/settings/SetPassphrasePrompt.tsx:179
 msgid "Passphrase Hint"
-msgstr ""
+msgstr "通行短語提示"
 
 #: src/components/app/AppKeyringMigrator.tsx:158
 #: src/components/settings/ChangePassphrasePrompt.tsx:208
 #: src/components/settings/SetPassphrasePrompt.tsx:178
 msgid "Passphrase Hint (Optional)"
-msgstr ""
+msgstr "通行短語提示 (選用)"
 
 #: src/components/settings/Settings.tsx:213
 msgid "Passphrase Settings"
@@ -2067,7 +2067,7 @@ msgstr "儲存"
 #: src/components/settings/ChangePassphrasePrompt.tsx:224
 #: src/components/settings/SetPassphrasePrompt.tsx:194
 msgid "Save passphrase"
-msgstr ""
+msgstr "保存通行短語"
 
 #: src/components/fullNode/FullNode.jsx:338
 #~ msgid "Search"
