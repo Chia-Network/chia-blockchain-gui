@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh_CN\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-10-22 18:52\n"
+"PO-Revision-Date: 2021-10-23 06:50\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -1056,7 +1056,7 @@ msgstr "隐藏高级选项"
 #: src/components/app/AppPassPrompt.tsx:233
 #: src/components/settings/RemovePassphrasePrompt.tsx:134
 msgid "Hint"
-msgstr ""
+msgstr "提示"
 
 #: src/components/wallet/WalletHistory.tsx:91
 msgid "History"
@@ -1165,7 +1165,7 @@ msgstr "K值大小"
 
 #: src/components/app/AppKeyringMigrator.tsx:86
 msgid "Keyring migration failed: {error}"
-msgstr ""
+msgstr "钥匙串迁移失败： {error}"
 
 #: src/components/dashboard/DashboardSideBar.tsx:69
 msgid "Keys"
@@ -1284,20 +1284,20 @@ msgstr "MiB 上传/下载"
 
 #: src/components/selectKey/SelectKey.tsx:137
 msgid "Migrate"
-msgstr ""
+msgstr "迁移"
 
 #: src/components/settings/Settings.tsx:182
 msgid "Migrate Keyring"
-msgstr ""
+msgstr "迁移钥匙串"
 
 #: src/components/app/AppKeyringMigrator.tsx:226
 msgid "Migrate Keys"
-msgstr ""
+msgstr "迁移密钥"
 
 #: src/components/app/AppKeyringMigrator.tsx:121
 #: src/components/selectKey/SelectKey.tsx:136
 msgid "Migration required"
-msgstr ""
+msgstr "需要迁移"
 
 #: src/components/settings/Settings.tsx:121
 msgid "Migration required to support passphrase protection"
@@ -2189,7 +2189,7 @@ msgstr ""
 #: src/components/dashboard/DashboardSideBar.tsx:76
 #: src/components/settings/Settings.tsx:239
 msgid "Settings"
-msgstr ""
+msgstr "设置"
 
 #: src/components/core/components/AdvancedOptions/AdvancedOptions.tsx:74
 msgid "Show Advanced Options"
@@ -2212,7 +2212,7 @@ msgstr "登录"
 #: src/components/app/AppKeyringMigrator.tsx:215
 #: src/components/app/AppPassPrompt.tsx:74
 msgid "Skip"
-msgstr ""
+msgstr "跳过"
 
 #: src/components/app/AppKeyringMigrator.tsx:48
 msgid "Skip Keyring Migration"
@@ -2657,7 +2657,7 @@ msgstr "未知"
 
 #: src/components/app/AppPassPrompt.tsx:188
 msgid "Unlock Keyring"
-msgstr ""
+msgstr "解锁钥匙串"
 
 #: src/components/core/components/FormBackButton/FormBackButton.tsx:25
 msgid "Unsaved Changes"
@@ -2929,7 +2929,7 @@ msgstr "你的农业合作社概览"
 
 #: src/components/app/AppPassPrompt.tsx:184
 msgid "Your keyring is locked"
-msgstr ""
+msgstr "您的钥匙串已锁定"
 
 #: src/components/app/AppKeyringMigrator.tsx:54
 msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Are you sure you want to skip migrating your keys?"
