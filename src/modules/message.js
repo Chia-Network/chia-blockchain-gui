@@ -76,7 +76,9 @@ export const async_api = (dispatch, action, openSpinner, usePromiseReject) => {
     action.resolve = resolve;
     action.reject = reject;
   }).finally(() => {
-    dispatch(closeProgress());
+    if (openSpinner) {
+      dispatch(closeProgress());
+    }
   });
 
   action.usePromiseReject = usePromiseReject;
