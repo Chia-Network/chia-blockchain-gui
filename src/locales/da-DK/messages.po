@@ -8,7 +8,7 @@ msgstr ""
 "Language: da_DK\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-10-22 18:53\n"
+"PO-Revision-Date: 2021-10-25 14:58\n"
 "Last-Translator: \n"
 "Language-Team: Danish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -1056,7 +1056,7 @@ msgstr "Gem Avanceret Indstillinger"
 #: src/components/app/AppPassPrompt.tsx:233
 #: src/components/settings/RemovePassphrasePrompt.tsx:134
 msgid "Hint"
-msgstr ""
+msgstr "Tip"
 
 #: src/components/wallet/WalletHistory.tsx:91
 msgid "History"
@@ -1489,13 +1489,13 @@ msgstr "Kodeord"
 #: src/components/settings/ChangePassphrasePrompt.tsx:209
 #: src/components/settings/SetPassphrasePrompt.tsx:179
 msgid "Passphrase Hint"
-msgstr ""
+msgstr "Adganskode Tip"
 
 #: src/components/app/AppKeyringMigrator.tsx:158
 #: src/components/settings/ChangePassphrasePrompt.tsx:208
 #: src/components/settings/SetPassphrasePrompt.tsx:178
 msgid "Passphrase Hint (Optional)"
-msgstr ""
+msgstr "Adgangskode Tip (Valgfri)"
 
 #: src/components/settings/Settings.tsx:213
 msgid "Passphrase Settings"
@@ -2067,7 +2067,7 @@ msgstr "Gem"
 #: src/components/settings/ChangePassphrasePrompt.tsx:224
 #: src/components/settings/SetPassphrasePrompt.tsx:194
 msgid "Save passphrase"
-msgstr ""
+msgstr "Gem adgangskode"
 
 #: src/components/fullNode/FullNode.jsx:338
 #~ msgid "Search"
@@ -2951,7 +2951,7 @@ msgstr "Dine nøgler skal migreres til en ny nøglering der er valgfrit sikret a
 #: src/components/settings/ChangePassphrasePrompt.tsx:227
 #: src/components/settings/SetPassphrasePrompt.tsx:197
 msgid "Your passphrase can be stored in your system's secure credential store. Chia will be able to access your keys without prompting for your passphrase."
-msgstr ""
+msgstr "Dit kodeord kan gemmes i dit systems sikre lager med logins. Chia vil kunne få adgang til dine nøgler uden at spørge om dit kodeord."
 
 #: src/components/settings/Settings.tsx:80
 msgid "Your passphrase has been set"
