@@ -8,7 +8,7 @@ msgstr ""
 "Language: es_AR\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-10-22 18:52\n"
+"PO-Revision-Date: 2021-10-25 02:44\n"
 "Last-Translator: \n"
 "Language-Team: Spanish, Argentina\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -1056,7 +1056,7 @@ msgstr "Ocultar Opciones Avanzadas"
 #: src/components/app/AppPassPrompt.tsx:233
 #: src/components/settings/RemovePassphrasePrompt.tsx:134
 msgid "Hint"
-msgstr ""
+msgstr "Sugerencia"
 
 #: src/components/wallet/WalletHistory.tsx:91
 msgid "History"
@@ -1489,13 +1489,13 @@ msgstr ""
 #: src/components/settings/ChangePassphrasePrompt.tsx:209
 #: src/components/settings/SetPassphrasePrompt.tsx:179
 msgid "Passphrase Hint"
-msgstr ""
+msgstr "Sugerencia de frase de acceso"
 
 #: src/components/app/AppKeyringMigrator.tsx:158
 #: src/components/settings/ChangePassphrasePrompt.tsx:208
 #: src/components/settings/SetPassphrasePrompt.tsx:178
 msgid "Passphrase Hint (Optional)"
-msgstr ""
+msgstr "Sugerencia de frase de acceso (Opcional)"
 
 #: src/components/settings/Settings.tsx:213
 msgid "Passphrase Settings"
@@ -2067,7 +2067,7 @@ msgstr "Guardar"
 #: src/components/settings/ChangePassphrasePrompt.tsx:224
 #: src/components/settings/SetPassphrasePrompt.tsx:194
 msgid "Save passphrase"
-msgstr ""
+msgstr "Guardar la frase de acceso"
 
 #: src/components/fullNode/FullNode.jsx:338
 #~ msgid "Search"
@@ -2951,7 +2951,7 @@ msgstr ""
 #: src/components/settings/ChangePassphrasePrompt.tsx:227
 #: src/components/settings/SetPassphrasePrompt.tsx:197
 msgid "Your passphrase can be stored in your system's secure credential store. Chia will be able to access your keys without prompting for your passphrase."
-msgstr ""
+msgstr "Su frase de acceso puede almacenarse en el almacén de credenciales seguro de su sistema. Chia podrá acceder a sus claves sin pedirle su frase de acceso."
 
 #: src/components/settings/Settings.tsx:80
 msgid "Your passphrase has been set"
