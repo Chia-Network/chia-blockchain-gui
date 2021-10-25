@@ -8,7 +8,7 @@ msgstr ""
 "Language: sv_SE\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-10-22 18:52\n"
+"PO-Revision-Date: 2021-10-25 21:27\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -1056,7 +1056,7 @@ msgstr "Dölj avancerade alternativ"
 #: src/components/app/AppPassPrompt.tsx:233
 #: src/components/settings/RemovePassphrasePrompt.tsx:134
 msgid "Hint"
-msgstr ""
+msgstr "Ledtråd"
 
 #: src/components/wallet/WalletHistory.tsx:91
 msgid "History"
@@ -1489,13 +1489,13 @@ msgstr "Lösenordsfras"
 #: src/components/settings/ChangePassphrasePrompt.tsx:209
 #: src/components/settings/SetPassphrasePrompt.tsx:179
 msgid "Passphrase Hint"
-msgstr ""
+msgstr "Ledtråd för lösenfras"
 
 #: src/components/app/AppKeyringMigrator.tsx:158
 #: src/components/settings/ChangePassphrasePrompt.tsx:208
 #: src/components/settings/SetPassphrasePrompt.tsx:178
 msgid "Passphrase Hint (Optional)"
-msgstr ""
+msgstr "Ledtråd för lösenfras (valfritt)"
 
 #: src/components/settings/Settings.tsx:213
 msgid "Passphrase Settings"
@@ -2067,7 +2067,7 @@ msgstr "Spara"
 #: src/components/settings/ChangePassphrasePrompt.tsx:224
 #: src/components/settings/SetPassphrasePrompt.tsx:194
 msgid "Save passphrase"
-msgstr ""
+msgstr "Spara lösenfras"
 
 #: src/components/fullNode/FullNode.jsx:338
 #~ msgid "Search"
@@ -2952,7 +2952,7 @@ msgstr "Dina nycklar måste migreras till en ny nyckelring som tillval säkras a
 #: src/components/settings/ChangePassphrasePrompt.tsx:227
 #: src/components/settings/SetPassphrasePrompt.tsx:197
 msgid "Your passphrase can be stored in your system's secure credential store. Chia will be able to access your keys without prompting for your passphrase."
-msgstr ""
+msgstr "Din lösenfras kan sparas i systemets arkiv för autentiseringsuppgifter. Chia kommer att ha åtkomst till dina nycklar utan att fråga efter din lösenfras."
 
 #: src/components/settings/Settings.tsx:80
 msgid "Your passphrase has been set"
