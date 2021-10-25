@@ -8,7 +8,7 @@ msgstr ""
 "Language: pt_PT\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-10-24 20:48\n"
+"PO-Revision-Date: 2021-10-25 02:44\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -131,7 +131,7 @@ msgstr "Endereço/Puzzle hash"
 
 #: src/components/app/AppKeyringMigrator.tsx:195
 msgid "After your keys are successfully migrated to the new keyring, you may choose to have your keys removed from the old keyring."
-msgstr ""
+msgstr "Depois das suas chaves serem migradas com sucesso para o novo porta-chaves, você pode optar por remover suas chaves do antigo porta-chaves."
 
 #: src/components/core/components/Amount/Amount.tsx:99
 #: src/components/trading/CreateOffer.jsx:196
@@ -326,7 +326,7 @@ msgstr "Mudar"
 #: src/components/settings/ChangePassphrasePrompt.tsx:248
 #: src/components/settings/Settings.tsx:158
 msgid "Change Passphrase"
-msgstr ""
+msgstr "Mudar Senha"
 
 #: src/components/plotNFT/PlotNFTCard.tsx:408
 #: src/components/plotNFT/PlotNFTChangePool.tsx:110
@@ -417,13 +417,13 @@ msgstr "Confirmar desconexão"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:198
 msgid "Confirm New Passphrase"
-msgstr ""
+msgstr "Confirmar Nova Senha"
 
 #: src/components/app/AppKeyringMigrator.tsx:146
 #: src/components/app/AppKeyringMigrator.tsx:147
 #: src/components/settings/SetPassphrasePrompt.tsx:166
 msgid "Confirm Passphrase"
-msgstr ""
+msgstr "Confirmar senha"
 
 #: src/components/plotNFT/PlotNFTCard.tsx:121
 #: src/components/wallet/standard/WalletStandard.tsx:622
@@ -616,7 +616,7 @@ msgstr "Dificuldade atual"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:178
 msgid "Current Passphrase"
-msgstr ""
+msgstr "Senha atual"
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:156
 #: src/components/plotNFT/PlotNFTCard.tsx:198
@@ -666,7 +666,7 @@ msgstr "Eliminar"
 
 #: src/components/app/AppPassPrompt.tsx:198
 msgid "Delete Key"
-msgstr ""
+msgstr "Apagar chave"
 
 #: src/components/plot/PlotAction.tsx:26
 #: src/components/plot/queue/PlotQueueActions.tsx:42
@@ -697,7 +697,7 @@ msgstr "Apagar chave {fingerprint}"
 
 #: src/components/app/AppPassPrompt.tsx:194
 msgid "Deleting key"
-msgstr ""
+msgstr "Excluindo a chave"
 
 #: src/components/selectKey/SelectKey.tsx:101
 #~ msgid "Deleting the key will permanently remove the key from your computer, make sure you have backups. Are you sure you want to continue?"
@@ -718,11 +718,11 @@ msgstr "Dificuldade"
 
 #: src/components/app/AppPassPrompt.tsx:78
 msgid "Disable"
-msgstr ""
+msgstr "Desativar"
 
 #: src/components/app/AppPassPrompt.tsx:77
 msgid "Disable Passphrase Protection"
-msgstr ""
+msgstr "Desativar a proteção por senha"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:114
 #~ msgid "Disable bifield plotting when your temporary directory is on fast storage like SSD or you need lower per process RAM requirements. Plotting with bitfield enabled has about 20% less overall writes."
@@ -790,11 +790,11 @@ msgstr "Editar Instruções de pagamento"
 
 #: src/components/app/AppKeyringMigrator.tsx:125
 msgid "Enter a strong passphrase and click Migrate Keys to secure your keys"
-msgstr ""
+msgstr "Insira uma senha forte e clique em Migrar Chaves para proteger suas chaves"
 
 #: src/components/settings/SetPassphrasePrompt.tsx:145
 msgid "Enter a strong passphrase to secure your keys:"
-msgstr ""
+msgstr "Digite uma senha forte para proteger as suas chaves:"
 
 #: src/components/wallet/WalletImport.tsx:146
 msgid "Enter the 24 word mnemonic that you have saved in order to restore your Chia wallet."
@@ -802,7 +802,7 @@ msgstr "Digite o mnemônico de 24 palavras que você salvou para restaurar sua c
 
 #: src/components/settings/RemovePassphrasePrompt.tsx:118
 msgid "Enter your passphrase:"
-msgstr ""
+msgstr "Insira a sua senha:"
 
 #: src/components/farm/FarmerStatus.tsx:21
 #: src/components/farm/FarmerStatus.tsx:22
@@ -850,15 +850,15 @@ msgstr "Falha ao abrir (plots inválidos)"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:97
 msgid "Failed to remove passphrase: {error}"
-msgstr ""
+msgstr "Falha ao remover a senha: {error}"
 
 #: src/components/settings/SetPassphrasePrompt.tsx:92
 msgid "Failed to set passphrase: {error}"
-msgstr ""
+msgstr "Falha ao definir a senha: {error}"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:120
 msgid "Failed to update passphrase: {error}"
-msgstr ""
+msgstr "Falha ao atualizar a senha: {error}"
 
 #: src/components/dashboard/DashboardSideBar.tsx:58
 #: src/components/wallet/coloured/WalletColoured.tsx:610
@@ -1165,7 +1165,7 @@ msgstr "Tamanho-K"
 
 #: src/components/app/AppKeyringMigrator.tsx:86
 msgid "Keyring migration failed: {error}"
-msgstr ""
+msgstr "Migração de chaves falhou: {error}"
 
 #: src/components/dashboard/DashboardSideBar.tsx:69
 msgid "Keys"
@@ -1284,24 +1284,24 @@ msgstr "MiB Enviados/Recebidos"
 
 #: src/components/selectKey/SelectKey.tsx:137
 msgid "Migrate"
-msgstr ""
+msgstr "Migrar"
 
 #: src/components/settings/Settings.tsx:182
 msgid "Migrate Keyring"
-msgstr ""
+msgstr "Migrar Chaves"
 
 #: src/components/app/AppKeyringMigrator.tsx:226
 msgid "Migrate Keys"
-msgstr ""
+msgstr "Migrar Chaves"
 
 #: src/components/app/AppKeyringMigrator.tsx:121
 #: src/components/selectKey/SelectKey.tsx:136
 msgid "Migration required"
-msgstr ""
+msgstr "Migração necessária"
 
 #: src/components/settings/Settings.tsx:121
 msgid "Migration required to support passphrase protection"
-msgstr ""
+msgstr "Migração necessária para suportar a proteção de senha"
 
 #: src/components/pool/PoolInfo.tsx:27
 msgid "Minimum Difficulty"
@@ -1342,7 +1342,7 @@ msgstr "Novo endereço"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:188
 msgid "New Passphrase"
-msgstr ""
+msgstr "Nova senha"
 
 #: src/components/wallet/WalletAdd.tsx:63
 msgid "New Wallet"
@@ -1350,7 +1350,7 @@ msgstr "Nova Carteira"
 
 #: src/components/app/AppPassPrompt.tsx:60
 msgid "New passphrase is the same as your current passphrase"
-msgstr ""
+msgstr "A nova senha é a mesma que a sua senha atual"
 
 #: src/components/block/Block.jsx:351
 #: src/components/wallet/WalletAdd.tsx:95
@@ -1483,7 +1483,7 @@ msgstr "Enviado"
 #: src/components/settings/RemovePassphrasePrompt.tsx:126
 #: src/components/settings/SetPassphrasePrompt.tsx:155
 msgid "Passphrase"
-msgstr ""
+msgstr "Senha"
 
 #: src/components/app/AppKeyringMigrator.tsx:159
 #: src/components/settings/ChangePassphrasePrompt.tsx:209
@@ -1499,28 +1499,28 @@ msgstr "Dica da Senha (Opcional)"
 
 #: src/components/settings/Settings.tsx:213
 msgid "Passphrase Settings"
-msgstr ""
+msgstr "Configurações de senha"
 
 #: src/components/app/AppPassPrompt.tsx:152
 #: src/components/settings/RemovePassphrasePrompt.tsx:67
 msgid "Passphrase is incorrect"
-msgstr ""
+msgstr "A senha está incorreta"
 
 #: src/components/settings/Settings.tsx:93
 msgid "Passphrase protection has been disabled"
-msgstr ""
+msgstr "A proteção por senha foi desativada"
 
 #: src/components/settings/Settings.tsx:131
 msgid "Passphrase protection is disabled"
-msgstr ""
+msgstr "A proteção por senha foi desativada"
 
 #: src/components/settings/Settings.tsx:128
 msgid "Passphrase protection is enabled"
-msgstr ""
+msgstr "Proteção por senha está ativada"
 
 #: src/components/settings/Settings.tsx:122
 msgid "Passphrase support requires migrating your keys to a new keyring"
-msgstr ""
+msgstr "Suporte a senha requer a migração das suas chaves para um novo porta-chaves"
 
 #: src/components/plotNFT/PlotNFTCard.tsx:361
 msgid "Payout Address"
@@ -1583,7 +1583,7 @@ msgstr "Por favor, insira um nome de arquivo"
 #: src/components/app/AppPassPrompt.tsx:136
 #: src/components/settings/SetPassphrasePrompt.tsx:57
 msgid "Please enter a passphrase"
-msgstr ""
+msgstr "Por favor, insira uma senha"
 
 #: src/components/wallet/did/WalletDID.tsx:937
 msgid "Please enter a pubkey"
@@ -1634,17 +1634,17 @@ msgstr "Por favor, insira um pubkey válido"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:63
 msgid "Please enter your current passphrase, and a new passphrase"
-msgstr ""
+msgstr "Por favor, digite sua senha atual e uma nova senha"
 
 #: src/components/app/AppPassPrompt.tsx:185
 #: src/components/app/AppPassPrompt.tsx:201
 #: src/components/settings/RemovePassphrasePrompt.tsx:50
 msgid "Please enter your passphrase"
-msgstr ""
+msgstr "Por favor, insira a sua senha"
 
 #: src/components/app/AppPassPrompt.tsx:195
 msgid "Please enter your passphrase to proceed"
-msgstr ""
+msgstr "Por favor, digite a sua senha para continuar"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:623
 #: src/components/wallet/standard/WalletStandard.tsx:420
@@ -2022,11 +2022,11 @@ msgstr "Notas de Lançamento"
 #: src/components/settings/RemovePassphrasePrompt.tsx:161
 #: src/components/settings/Settings.tsx:194
 msgid "Remove Passphrase"
-msgstr ""
+msgstr "Remover Senha"
 
 #: src/components/app/AppKeyringMigrator.tsx:192
 msgid "Remove keys from old keyring upon successful migration"
-msgstr ""
+msgstr "Remover chaves de chaves antigas após a migração bem sucedida"
 
 #: src/components/plot/queue/PlotQueueIndicator.tsx:36
 msgid "Removing"
@@ -2083,7 +2083,7 @@ msgstr "Localização da segunda pasta temporária"
 
 #: src/components/settings/Settings.tsx:124
 msgid "Secure your keychain using a strong passphrase"
-msgstr ""
+msgstr "Proteja seu keychain usando uma senha forte"
 
 #: src/components/selectKey/SelectKey.tsx:216
 msgid "See private key"
@@ -2180,16 +2180,16 @@ msgstr "Envie sua pubkey para o administrador da Carteira de Taxa Limitada:"
 #: src/components/settings/SetPassphrasePrompt.tsx:220
 #: src/components/settings/Settings.tsx:205
 msgid "Set Passphrase"
-msgstr ""
+msgstr "Definir Senha"
 
 #: src/components/app/AppPassPrompt.tsx:75
 msgid "Setting a passphrase is strongly recommended to protect your keys. Are you sure you want to skip setting a passphrase?"
-msgstr ""
+msgstr "Definir uma frase-senha é fortemente recomendado para proteger suas chaves. Tem certeza que deseja pular a configuração de uma frase-senha?"
 
 #: src/components/dashboard/DashboardSideBar.tsx:76
 #: src/components/settings/Settings.tsx:239
 msgid "Settings"
-msgstr ""
+msgstr "Configurações"
 
 #: src/components/core/components/AdvancedOptions/AdvancedOptions.tsx:74
 msgid "Show Advanced Options"
@@ -2212,15 +2212,15 @@ msgstr "Iniciar Sessão"
 #: src/components/app/AppKeyringMigrator.tsx:215
 #: src/components/app/AppPassPrompt.tsx:74
 msgid "Skip"
-msgstr ""
+msgstr "Ignorar"
 
 #: src/components/app/AppKeyringMigrator.tsx:48
 msgid "Skip Keyring Migration"
-msgstr ""
+msgstr "Pular Migração de Chaves"
 
 #: src/components/app/AppPassPrompt.tsx:73
 msgid "Skip Passphrase Protection"
-msgstr ""
+msgstr "Desativar a proteção por senha"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:129
 #~ msgid "Skips adding [final dir] to harvester for farming"
@@ -2433,7 +2433,7 @@ msgstr "A operação de troca de pool foi cancelada. Por favor, tente novamente 
 
 #: src/components/app/AppPassPrompt.tsx:37
 msgid "The provided passphrase and confirmation do not match"
-msgstr ""
+msgstr "A senha fornecida e a confirmação não coincidem"
 
 #: src/components/block/Block.jsx:303
 msgid "The seed used to create the plot. This depends on the pool pk and plot pk."
@@ -2657,7 +2657,7 @@ msgstr "Desconhecido"
 
 #: src/components/app/AppPassPrompt.tsx:188
 msgid "Unlock Keyring"
-msgstr ""
+msgstr "Desbloquear Chaves"
 
 #: src/components/core/components/FormBackButton/FormBackButton.tsx:25
 msgid "Unsaved Changes"
@@ -2670,7 +2670,7 @@ msgstr "Pubkey do Utilizador"
 
 #: src/components/app/AppPassPrompt.tsx:79
 msgid "Using a passphrase is strongly recommended to protect your keys. Are you sure you want to disable passphrase protection?"
-msgstr ""
+msgstr "Definir uma frase-senha é fortemente recomendado para proteger suas chaves. Tem certeza que deseja pular a configuração de uma frase-senha?"
 
 #: src/components/fullNode/card/FullNodeCardVDFSubSlotIterations.tsx:20
 msgid "VDF Sub Slot Iterations"
@@ -2929,37 +2929,37 @@ msgstr "Visão geral do seu Farm"
 
 #: src/components/app/AppPassPrompt.tsx:184
 msgid "Your keyring is locked"
-msgstr ""
+msgstr "O seu porta-chaves está bloqueado"
 
 #: src/components/app/AppKeyringMigrator.tsx:54
 msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Are you sure you want to skip migrating your keys?"
-msgstr ""
+msgstr "As suas chaves não foram migradas para um novo porta-chaves. Você não será capaz de criar novas chaves ou excluir chaves existentes até que a migração seja concluída. Tem certeza de que deseja pular a migração das chaves?"
 
 #: src/components/selectKey/SelectKey.tsx:141
 msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Would you like to migrate your keys now?"
-msgstr ""
+msgstr "Suas chaves não foram migradas para um novo porta-chaves. Não será possível criar novas chaves ou excluir chaves existentes até que a migração seja concluída. Gostaria de migrar as chaves agora?"
 
 #: src/components/app/AppKeyringMigrator.tsx:101
 msgid "Your keys need to be migrated to a new keyring that is optionally secured by a master passphrase."
-msgstr ""
+msgstr "As suas chaves precisam ser migradas para um novo porta-chaves que é opcionalmente protegido por uma senha mestra."
 
 #: src/components/app/AppKeyringMigrator.tsx:107
 msgid "Your keys need to be migrated to a new keyring that is secured by a master passphrase."
-msgstr ""
+msgstr "As suas chaves precisam ser migradas para um novo porta-chaves que é opcionalmente protegido por uma senha mestra."
 
 #: src/components/app/AppKeyringMigrator.tsx:177
 #: src/components/settings/ChangePassphrasePrompt.tsx:227
 #: src/components/settings/SetPassphrasePrompt.tsx:197
 msgid "Your passphrase can be stored in your system's secure credential store. Chia will be able to access your keys without prompting for your passphrase."
-msgstr ""
+msgstr "A sua senha pode ser armazenada na base de dados de credenciais seguras do seu sistema. A aplicação Chia será capaz de acessar as suas chaves sem pedir a sua senha."
 
 #: src/components/settings/Settings.tsx:80
 msgid "Your passphrase has been set"
-msgstr ""
+msgstr "A sua senha foi definida"
 
 #: src/components/settings/Settings.tsx:67
 msgid "Your passphrase has been updated"
-msgstr ""
+msgstr "A sua senha foi atualizada"
 
 #: src/util/getDescriptiveError.ts:5
 msgid "[Error 13] Permission denied. You are trying to access a file/directory without having the necessary permissions. Most likely one of the plot folders in your config.yaml has an issue."
@@ -3004,7 +3004,7 @@ msgstr "sincronizando"
 
 #: src/components/app/AppPassPrompt.tsx:48
 msgid "{0, plural, one {Passphrases must be at least # character in length} other {Passphrases must be at least # characters in length}}"
-msgstr ""
+msgstr "{0, plural, one {As senhas devem ter pelo menos # caracteres de comprimento} other {As senhas devem ter pelo menos # caracteres de comprimento}}"
 
 #: src/components/farm/card/FarmCardBlockRewards.tsx:16
 #~ msgid "{0} Block Rewards"
