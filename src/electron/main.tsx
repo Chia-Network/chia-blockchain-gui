@@ -129,6 +129,7 @@ if (!handleSquirrelEvent()) {
         minHeight: 500,
         backgroundColor: '#ffffff',
         show: false,
+        icon: require('path').join(require('path').resolve(__dirname, '..'), 'assets/img/chia64x64.png')),
         webPreferences: {
           preload: `${__dirname}/preload.js`,
           nodeIntegration: true,
