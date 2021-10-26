@@ -40,16 +40,16 @@ type Props = {
 export default function PlotNFTSelectBase(props: Props) {
   const { step, onCancel, title, description, hideFee } = props;
   // const { nfts } = usePlotNFTs();
-  const { control, setValue } = useFormContext();
+  const { setValue } = useFormContext();
   const self = useWatch<boolean>({
-    control,
     name: 'self',
   });
 
   const poolUrl = useWatch<string>({
-    control,
     name: 'poolUrl',
   });
+
+  console.log('poolurl', poolUrl);
 
   const poolInfo = usePoolInfo(poolUrl);
 
