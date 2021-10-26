@@ -3050,10 +3050,6 @@ msgstr "synced"
 msgid "syncing"
 msgstr "syncing"
 
-#: src/components/plot/add/PlotAddChoosePlotter.tsx:89
-msgid "thirdparty.plotter.disclaimer"
-msgstr "Chia Network is not responsible for this third-party plotter"
-
 #: src/components/app/AppPassPrompt.tsx:48
 msgid "{0, plural, one {Passphrases must be at least # character in length} other {Passphrases must be at least # characters in length}}"
 msgstr "{0, plural, one {Passphrases must be at least # character in length} other {Passphrases must be at least # characters in length}}"

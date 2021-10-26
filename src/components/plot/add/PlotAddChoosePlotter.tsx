@@ -85,12 +85,6 @@ export default function PlotAddChoosePlotter(props: Props) {
     if (plotterName === PlotterName.BLADEBIT) {
       return availablePlotters[PlotterName.BLADEBIT]?.installInfo?.bladebitMemoryWarning;
     }
-    else if (plotterName === PlotterName.MADMAX) {
-      return t({
-        id: "thirdparty.plotter.disclaimer",
-        message: "Issues with the madMAx plotter should be directed to madMAx43v3r and not Chia Network"
-      });
-    }
     return undefined;
   };
 

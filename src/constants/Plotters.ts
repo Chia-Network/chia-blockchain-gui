@@ -64,7 +64,7 @@ export const chiaposDefaults: PlotterDefaults = {
 };
 
 export const madmaxOptions: PlotterOptions = {
-  kSizes: [25, 32],
+  kSizes: [25, 32, 33, 34],
   haveNumBuckets: true,
   haveMadmaxNumBucketsPhase3: true,
   haveMadmaxThreadMultiplier: true,
