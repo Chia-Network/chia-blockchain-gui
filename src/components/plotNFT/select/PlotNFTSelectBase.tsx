@@ -49,8 +49,6 @@ export default function PlotNFTSelectBase(props: Props) {
     name: 'poolUrl',
   });
 
-  console.log('poolurl', poolUrl);
-
   const poolInfo = usePoolInfo(poolUrl);
 
   /*
