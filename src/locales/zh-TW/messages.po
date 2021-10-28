@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh_TW\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-10-23 00:55\n"
+"PO-Revision-Date: 2021-10-28 22:46\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -18,7 +18,15 @@ msgstr ""
 "X-Crowdin-File: /[Chia-Network.chia-blockchain-gui] main/src/locales/en-US/messages.po\n"
 "X-Crowdin-File-ID: 118\n"
 
-#: src/components/plot/add/PlotAddNFT.tsx:62
+#: src/components/plot/add/PlotAddChoosePlotter.tsx:78
+msgid "(Not Installed)"
+msgstr ""
+
+#: src/components/plot/add/PlotAddChoosePlotter.tsx:75
+msgid "(Not Supported)"
+msgstr ""
+
+#: src/components/plot/add/PlotAddNFT.tsx:67
 msgid "(Optional)"
 msgstr "(選用)"
 
@@ -26,7 +34,7 @@ msgstr "(選用)"
 msgid "*Want to explore Chia’s blocks further? Check out <0>Chia Explorer</0> built by an open source developer."
 msgstr "＊想更進一步探索 Chia 區塊鍵？看看開源開發者打造的 <0>Chia Explorer</0>"
 
-#: src/components/plot/add/PlotAddNFT.tsx:123
+#: src/components/plot/add/PlotAddNFT.tsx:128
 msgid "+ Add New Plot NFT"
 msgstr "+ 新增新的農場"
 
@@ -39,12 +47,16 @@ msgstr "+ 新增錢包"
 #~ msgstr ""
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:148
-msgid "128 buckets is recommended"
-msgstr "建議使用 128 個桶"
+#~ msgid "128 buckets is recommended"
+#~ msgstr "128 buckets is recommended"
 
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:98
 msgid "A harvester is a service running on a machine where plot(s) are actually stored. A farmer and harvester talk to a full node to see the state of the chain. View your network of connected harvesters below Learn more"
 msgstr "收割機是在實際存放耕地的機器上運作的服務。塊農和收割機會與一個完整節點溝通以取得區塊鍵狀態。以下是你的收割機與塊農網路 學習更多"
+
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:155
+msgid "A value of {0} is recommended"
+msgstr ""
 
 #: src/electron/main.tsx:431
 #: src/electron/main.tsx:518
@@ -95,7 +107,7 @@ msgstr "新增耕地至隊列"
 
 #: src/components/farm/overview/FarmOverviewHero.tsx:46
 #: src/components/plot/PlotHeader.tsx:63
-#: src/components/plot/add/PlotAdd.tsx:160
+#: src/components/plot/add/PlotAdd.tsx:191
 #: src/components/plot/overview/PlotOverviewHero.tsx:54
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:230
 #: src/components/plotNFT/PlotNFTCard.tsx:272
@@ -132,6 +144,10 @@ msgstr "位址 / 拼圖雜湊值"
 #: src/components/app/AppKeyringMigrator.tsx:195
 msgid "After your keys are successfully migrated to the new keyring, you may choose to have your keys removed from the old keyring."
 msgstr "當您的密鑰遷移到新的鑰匙圈後, 您可以把舊的刪除"
+
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:238
+msgid "Alternate tmpdir/tmpdir2"
+msgstr ""
 
 #: src/components/core/components/Amount/Amount.tsx:99
 #: src/components/trading/CreateOffer.jsx:196
@@ -177,7 +193,7 @@ msgstr "你確定要退出？耕地規劃和耕種將會停止。"
 #~ msgid "Are you sure you want to use k={plotSize}"
 #~ msgstr "Are you sure you want to use k={plotSize}"
 
-#: src/components/plot/add/PlotAddChooseSize.tsx:38
+#: src/components/plot/add/PlotAddChooseSize.tsx:52
 msgid "Are you sure you want to use k={plotSize}?"
 msgstr "你確定 k 的大小為 {plotSize}?"
 
@@ -257,9 +273,9 @@ msgstr "區塊"
 #~ msgid "Both values are empty. This is ok if you are, for example, sending your rewards to an offline wallet."
 #~ msgstr "Both values are empty. This is ok if you are, for example, sending your rewards to an offline wallet."
 
-#: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:61
-#: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:79
-#: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:110
+#: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:72
+#: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:92
+#: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:123
 msgid "Browse"
 msgstr "瀏覽"
 
@@ -350,13 +366,17 @@ msgstr "Chia 區塊鏈維基"
 msgid "Chia Wallet"
 msgstr "Chia 錢包"
 
-#: src/components/plot/add/PlotAddNumberOfPlots.tsx:36
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:34
 msgid "Choose Number of Plots"
 msgstr "選擇耕地數量"
 
-#: src/components/plot/add/PlotAddChooseSize.tsx:61
+#: src/components/plot/add/PlotAddChooseSize.tsx:75
 msgid "Choose Plot Size"
 msgstr "選擇耕地大小"
+
+#: src/components/plot/add/PlotAddChoosePlotter.tsx:105
+msgid "Choose Plotter"
+msgstr ""
 
 #: src/components/plotNFT/PlotNFTCard.tsx:384
 #: src/components/pool/PoolOverview.tsx:92
@@ -497,7 +517,7 @@ msgid "Copy to Clipboard"
 msgstr "複製到剪貼板"
 
 #: src/components/backup/BackupCreate.tsx:58
-#: src/components/plot/add/PlotAdd.tsx:177
+#: src/components/plot/add/PlotAdd.tsx:211
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:175
 #: src/components/wallet/create/createExistingColouredCoin.jsx:133
 #: src/components/wallet/create/createNewColouredCoin.jsx:142
@@ -557,7 +577,7 @@ msgstr "建立交易"
 msgid "Create a Backup"
 msgstr "建立備份"
 
-#: src/components/plot/add/PlotAddNFT.tsx:42
+#: src/components/plot/add/PlotAddNFT.tsx:47
 msgid "Create a Plot NFT"
 msgstr "建立一塊農場"
 
@@ -605,7 +625,7 @@ msgstr "建立一塊農場並加入農會"
 msgid "Creating Plot NFT for Self Pooling"
 msgstr "正在為自己的農會建立農場"
 
-#: src/components/plot/add/PlotAdd.tsx:86
+#: src/components/plot/add/PlotAdd.tsx:117
 msgid "Currency code is not defined"
 msgstr "未定義貨幣代碼"
 
@@ -645,7 +665,7 @@ msgstr "危險：將永久刪除私鑰"
 msgid "Date"
 msgstr "日期"
 
-#: src/components/plot/add/PlotAddNumberOfPlots.tsx:92
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:93
 msgid "Delay"
 msgstr "延遲"
 
@@ -703,6 +723,10 @@ msgstr "刪除金鑰中"
 #~ msgid "Deleting the key will permanently remove the key from your computer, make sure you have backups. Are you sure you want to continue?"
 #~ msgstr "Deleting the key will permanently remove the key from your computer, make sure you have backups. Are you sure you want to continue?"
 
+#: src/components/plot/add/PlotAddChoosePlotter.tsx:107
+msgid "Depending on your system configuration, you may find that an alternative plotter produces plots faster than the default Chia Proof of Space plotter. If unsure, use the default Chia Proof of Space plotter."
+msgstr ""
+
 #: src/electron/main.tsx:313
 msgid "Developer"
 msgstr "開發者"
@@ -720,6 +744,10 @@ msgstr "難度"
 msgid "Disable"
 msgstr "禁用"
 
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:266
+msgid "Disable NUMA"
+msgstr ""
+
 #: src/components/app/AppPassPrompt.tsx:77
 msgid "Disable Passphrase Protection"
 msgstr "禁用密碼保護"
@@ -728,7 +756,7 @@ msgstr "禁用密碼保護"
 #~ msgid "Disable bifield plotting when your temporary directory is on fast storage like SSD or you need lower per process RAM requirements. Plotting with bitfield enabled has about 20% less overall writes."
 #~ msgstr ""
 
-#: src/components/plot/add/PlotAddNumberOfPlots.tsx:172
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:215
 msgid "Disable bitfield plotting"
 msgstr "禁用 bitfield 耕地"
 
@@ -800,7 +828,7 @@ msgstr "輸入高強度密碼保護您的金鑰"
 msgid "Enter the 24 word mnemonic that you have saved in order to restore your Chia wallet."
 msgstr "輸入你已存的 24 字助記符號以復原您的 Chia 錢包。"
 
-#: src/components/settings/RemovePassphrasePrompt.tsx:118
+#: src/components/settings/RemovePassphrasePrompt.tsx:115
 msgid "Enter your passphrase:"
 msgstr "輸入您的密碼"
 
@@ -835,7 +863,7 @@ msgstr "預計贏取時間"
 msgid "Estimated sum of all the plotted disk space of all farmers in the network"
 msgstr "網路中所有農夫的所有耕地磁盤空間估計總和"
 
-#: src/components/plot/add/PlotAddNumberOfPlots.tsx:193
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:279
 msgid "Exclude final directory"
 msgstr "排除最終資料夾"
 
@@ -866,7 +894,7 @@ msgstr "更新密碼失敗: {error}"
 msgid "Farm"
 msgstr "耕種"
 
-#: src/components/plot/add/PlotAddNumberOfPlots.tsx:211
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:297
 msgid "Farmer Public Key"
 msgstr "農夫公鑰"
 
@@ -969,7 +997,7 @@ msgstr "檔案"
 msgid "Filename"
 msgstr "檔案名稱"
 
-#: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:36
+#: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:47
 msgid "Final folder location"
 msgstr "最終資料夾位置"
 
@@ -1075,7 +1103,7 @@ msgstr "IP位址"
 msgid "IP address / host"
 msgstr "IP 位址 / 主機"
 
-#: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:115
+#: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:128
 msgid "If none selected, then it will default to the temporary directory."
 msgstr "如無選擇，將會預設至臨時資料夾。"
 
@@ -1141,13 +1169,13 @@ msgstr "這是一個一次性登錄連結, 可用於登記在農會的網站. �
 msgid "Join Pool"
 msgstr "加入礦池"
 
-#: src/components/plot/add/PlotAddNFT.tsx:59
-#: src/components/plot/add/PlotAddNFT.tsx:141
+#: src/components/plot/add/PlotAddNFT.tsx:64
+#: src/components/plot/add/PlotAddNFT.tsx:146
 #: src/components/pool/PoolHero.tsx:31
 msgid "Join a Pool"
 msgstr "加入一個農場"
 
-#: src/components/plot/add/PlotAddNFT.tsx:44
+#: src/components/plot/add/PlotAddNFT.tsx:49
 msgid "Join a pool and get consistent XCH farming rewards. The average returns are the same, but it is much less volatile."
 msgstr "加入農會並獲得持續的 XCH 耕種獎勵。雖然平均報酬一樣但波動較小相對穩定。"
 
@@ -1155,7 +1183,7 @@ msgstr "加入農會並獲得持續的 XCH 耕種獎勵。雖然平均報酬一�
 msgid "Join a pool and get consistent XCH farming rewards. The average returns are the same, but it is much less volatile. Assign plots to a plot NFT. You can easily switch pools without having to re-plot."
 msgstr "加入農會並獲得持續的XCH 耕種獎勵。雖然平均報酬一樣但波動較小相對穩定。分配耕地到農場。你可以更輕鬆的轉換農會而不用重新進行耕地。"
 
-#: src/components/plot/add/PlotAddNFT.tsx:133
+#: src/components/plot/add/PlotAddNFT.tsx:138
 msgid "Join a pool and get more consistent XCH farming rewards. Create a plot NFT and assign your new plots to a group."
 msgstr "加入農會以獲得更多持續性的 XCH 耕種獎勵。建立農場並分配您的新耕地到群組。"
 
@@ -1307,11 +1335,11 @@ msgstr "遷移需要有密碼保護"
 msgid "Minimum Difficulty"
 msgstr "最小難度"
 
-#: src/components/plot/add/PlotAddNumberOfPlots.tsx:97
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:98
 msgid "Minutes"
 msgstr "分鐘"
 
-#: src/components/plot/add/PlotAddNumberOfPlots.tsx:116
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:118
 msgid "More memory slightly increases speed"
 msgstr "更多記憶體可略微提高速度"
 
@@ -1393,7 +1421,7 @@ msgstr "節點 ID"
 msgid "Node Id"
 msgstr "節點 ID"
 
-#: src/components/plot/add/PlotAddNFT.tsx:86
+#: src/components/plot/add/PlotAddNFT.tsx:91
 msgid "None"
 msgstr "無"
 
@@ -1440,11 +1468,15 @@ msgstr "請注意，這不會變更您的農會支付位址。這只會影響舊
 msgid "Number of Plots"
 msgstr "耕地數量"
 
-#: src/components/plot/add/PlotAddNumberOfPlots.tsx:147
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:171
 msgid "Number of buckets"
 msgstr "桶數量"
 
-#: src/components/plot/add/PlotAddNumberOfPlots.tsx:133
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:188
+msgid "Number of buckets for phase 3 & 4"
+msgstr ""
+
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:136
 msgid "Number of threads"
 msgstr "執行緒數："
 
@@ -1477,11 +1509,11 @@ msgstr "只允許一個備份檔案。"
 msgid "Outgoing"
 msgstr "匯出"
 
-#: src/components/app/AppKeyringMigrator.tsx:135
-#: src/components/app/AppKeyringMigrator.tsx:136
-#: src/components/app/AppPassPrompt.tsx:225
-#: src/components/settings/RemovePassphrasePrompt.tsx:126
-#: src/components/settings/SetPassphrasePrompt.tsx:155
+#: src/components/app/AppKeyringMigrator.tsx:129
+#: src/components/app/AppKeyringMigrator.tsx:130
+#: src/components/app/AppPassPrompt.tsx:221
+#: src/components/settings/RemovePassphrasePrompt.tsx:123
+#: src/components/settings/SetPassphrasePrompt.tsx:142
 msgid "Passphrase"
 msgstr "密碼"
 
@@ -1501,8 +1533,8 @@ msgstr "通行短語提示 (選用)"
 msgid "Passphrase Settings"
 msgstr "密碼設定"
 
-#: src/components/app/AppPassPrompt.tsx:152
-#: src/components/settings/RemovePassphrasePrompt.tsx:67
+#: src/components/app/AppPassPrompt.tsx:149
+#: src/components/settings/RemovePassphrasePrompt.tsx:64
 msgid "Passphrase is incorrect"
 msgstr "密碼不正確"
 
@@ -1636,9 +1668,9 @@ msgstr "請輸入有效的公鑰"
 msgid "Please enter your current passphrase, and a new passphrase"
 msgstr "請輸入您的舊密碼以及新密碼"
 
-#: src/components/app/AppPassPrompt.tsx:185
-#: src/components/app/AppPassPrompt.tsx:201
-#: src/components/settings/RemovePassphrasePrompt.tsx:50
+#: src/components/app/AppPassPrompt.tsx:182
+#: src/components/app/AppPassPrompt.tsx:198
+#: src/components/settings/RemovePassphrasePrompt.tsx:47
 msgid "Please enter your passphrase"
 msgstr "請輸入您的密碼"
 
@@ -1671,13 +1703,13 @@ msgstr "請選擇代幣顏色"
 #~ msgid "Please select coin type"
 #~ msgstr ""
 
-#: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:45
-#: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:49
+#: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:56
+#: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:60
 msgid "Please specify final directory"
 msgstr "請指定最終資料夾"
 
-#: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:60
-#: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:64
+#: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:73
+#: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:77
 msgid "Please specify temporary directory"
 msgstr "請指定暫存目錄"
 
@@ -1690,12 +1722,12 @@ msgstr "請等候同步"
 msgid "Please wait for wallet synchronization"
 msgstr "請等候錢包同步"
 
-#: src/components/plot/Plot.tsx:18
+#: src/components/plot/Plot.tsx:28
 msgid "Plot"
 msgstr "耕地"
 
 #: src/components/farm/card/FarmCardPlotCount.tsx:12
-#: src/components/plot/add/PlotAddNumberOfPlots.tsx:41
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:44
 msgid "Plot Count"
 msgstr "耕地數量"
 
@@ -1728,7 +1760,7 @@ msgstr "耕地公鑰"
 #~ msgid "Plot Seed"
 #~ msgstr ""
 
-#: src/components/plot/add/PlotAddChooseSize.tsx:80
+#: src/components/plot/add/PlotAddChooseSize.tsx:94
 msgid "Plot Size"
 msgstr "耕地大小"
 
@@ -1760,6 +1792,10 @@ msgstr "已通過篩選耕地"
 msgid "Plots are allocated space on your hard drive used to farm and earn Chia. <0>Learn more</0>"
 msgstr "耕地是在你硬碟上劃出的空間，用於耕種來賺取 Chia 。 <0>了解更多</0>"
 
+#: src/components/plot/add/PlotAddChoosePlotter.tsx:118
+msgid "Plotter"
+msgstr ""
+
 #: src/components/plot/queue/PlotQueueIndicator.tsx:34
 msgid "Plotting"
 msgstr "規劃耕地中"
@@ -1768,7 +1804,7 @@ msgstr "規劃耕地中"
 msgid "Plotting in parallel can save time. Otherwise, add plot(s) to the queue."
 msgstr "平行規劃耕地可節省時間。若不，新增耕地至隊列。"
 
-#: src/components/plot/add/PlotAddNumberOfPlots.tsx:174
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:217
 msgid "Plotting with bitfield enabled has about 30% less overall writes and is now almost always faster. You may see reduced memory requirements with bitfield plotting disabled. If your CPU design is from before 2010 you may have to disable bitfield plotting."
 msgstr "以 bitfield 規劃耕地可減少約 30％ 的總寫入量且如今也幾乎較快。 關閉 Bitfield 規劃耕地有可能降低記憶體需求。如果你的 CPU 是 2010 年以前的設計很有可能需要關閉 bitfield 規劃耕地。"
 
@@ -1813,7 +1849,7 @@ msgid "Pool Payout Instructions"
 msgstr "查看農會支付說明"
 
 #: src/components/block/Block.jsx:264
-#: src/components/plot/add/PlotAddNumberOfPlots.tsx:222
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:308
 msgid "Pool Public Key"
 msgstr "礦池公鑰"
 
@@ -1933,7 +1969,7 @@ msgstr "公鑰："
 msgid "Puzzlehash"
 msgstr "拼圖哈希值"
 
-#: src/components/plot/add/PlotAddNumberOfPlots.tsx:162
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:204
 msgid "Queue Name"
 msgstr "隊列名稱"
 
@@ -1949,7 +1985,7 @@ msgstr "已隊列"
 #~ msgid "Quit"
 #~ msgstr "Quit"
 
-#: src/components/plot/add/PlotAddNumberOfPlots.tsx:115
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:117
 msgid "RAM max usage"
 msgstr "最大記憶體使用量"
 
@@ -2077,7 +2113,7 @@ msgstr "保存通行短語"
 msgid "Search block by header hash"
 msgstr "以表頭雜湊值搜尋區塊"
 
-#: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:93
+#: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:106
 msgid "Second temporary folder location"
 msgstr "第二暫存資料夾位置"
 
@@ -2093,11 +2129,11 @@ msgstr "看私鑰"
 msgid "Seed:"
 msgstr "種子："
 
-#: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:87
+#: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:100
 msgid "Select 2nd Temporary Directory"
 msgstr "選擇第二暫存資料夾"
 
-#: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:23
+#: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:34
 msgid "Select Final Directory"
 msgstr "選擇最終資料夾"
 
@@ -2109,7 +2145,7 @@ msgstr "選擇金鑰"
 msgid "Select Offer"
 msgstr "選擇提案"
 
-#: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:39
+#: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:52
 msgid "Select Temporary Directory"
 msgstr "選擇暫存資料夾"
 
@@ -2117,7 +2153,7 @@ msgstr "選擇暫存資料夾"
 msgid "Select Wallet Type"
 msgstr "選擇錢包類型"
 
-#: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:25
+#: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:36
 msgid "Select the final destination for the folder where you would like the plot to be stored. We recommend you use a large slow hard drive (like external HDD)."
 msgstr "選擇你想要儲存耕地的最終資料夾。我們建議你使用較大的慢速硬碟（像是外接硬碟）。"
 
@@ -2125,21 +2161,21 @@ msgstr "選擇你想要儲存耕地的最終資料夾。我們建議你使用較
 #~ msgid "Select the temporary destination for the folder where you would like the plot to be stored. We recommend you use a fast SSD."
 #~ msgstr "Select the temporary destination for the folder where you would like the plot to be stored. We recommend you use a fast SSD."
 
-#: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:41
+#: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:54
 msgid "Select the temporary destination for the folder where you would like the plot to be stored. We recommend you use a fast drive."
 msgstr "選擇你想要儲存耕地的暫存資料夾。我們建議你使用快速硬碟。"
 
-#: src/components/plot/add/PlotAddNFT.tsx:81
+#: src/components/plot/add/PlotAddNFT.tsx:86
 msgid "Select your Plot NFT"
 msgstr "選擇您的農場"
 
-#: src/components/plot/add/PlotAddNFT.tsx:72
+#: src/components/plot/add/PlotAddNFT.tsx:77
 msgid "Select your Plot NFT from the dropdown or create a new one."
 msgstr "在下拉式選單中選擇你的農場或是創建一個新的。"
 
-#: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:61
-#: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:77
-#: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:108
+#: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:72
+#: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:90
+#: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:121
 msgid "Selected"
 msgstr "已選擇"
 
@@ -2226,7 +2262,7 @@ msgstr "略過密碼保護"
 #~ msgid "Skips adding [final dir] to harvester for farming"
 #~ msgstr "Skips adding [final dir] to harvester for farming"
 
-#: src/components/plot/add/PlotAddNumberOfPlots.tsx:195
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:281
 msgid "Skips adding a final directory to harvester for farming"
 msgstr "跳過新增最終資料夾到收割機進行耕種"
 
@@ -2237,6 +2273,10 @@ msgstr "加入農會來獲得穩定的XCH獎勵。"
 #: src/components/plotNFT/PlotNFTGetPoolLoginLinkDialog.tsx:60
 msgid "Something went wrong"
 msgstr "某個地方出錯了"
+
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:138
+msgid "Specify a value of 0 to use all available threads"
+msgstr ""
 
 #: src/electron/main.tsx:479
 msgid "Speech"
@@ -2319,7 +2359,7 @@ msgstr "狀態："
 #~ msgid "Sub Block at height {0} in the Chia blockchain"
 #~ msgstr "Sub Block at height {0} in the Chia blockchain"
 
-#: src/components/app/AppPassPrompt.tsx:202
+#: src/components/app/AppPassPrompt.tsx:199
 #: src/components/wallet/did/WalletDID.tsx:889
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:347
 msgid "Submit"
@@ -2377,7 +2417,7 @@ msgstr "目標拼圖雜湊值"
 #~ msgid "Temporary files are created during the plotting process which exceeds the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
 #~ msgstr ""
 
-#: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:51
+#: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:64
 msgid "Temporary folder location"
 msgstr "暫存資料夾位置"
 
@@ -2389,8 +2429,8 @@ msgstr "這個應用程式會在區塊高度 193536 時停止運作。"
 msgid "The full node that your farmer is connected to is below. <0>Learn more</0>"
 msgstr "你的塊農連接上的完整節點列在下方。<0>了解更多</0>"
 
-#: src/components/plot/add/PlotAddChooseSize.tsx:34
-#: src/components/plot/add/PlotAddChooseSize.tsx:91
+#: src/components/plot/add/PlotAddChooseSize.tsx:48
+#: src/components/plot/add/PlotAddChooseSize.tsx:105
 msgid "The minimum required size for mainnet is k=32"
 msgstr "主網最小要求的大小是 k=32"
 
@@ -2469,7 +2509,7 @@ msgid "This difficulty is an artifically lower difficulty than on the real netwo
 msgstr "為了在耕種時找到更多證明以傳送至網路，此處難度與實際網路相比已人工降低過。你擁有的耕地越多，你的難度就越高。 但是，難度不影響獎勵。"
 
 #: src/components/trading/CreateOffer.jsx:123
-#: src/hooks/useSelectDirectory.tsx:32
+#: src/hooks/useSelectDirectory.tsx:33
 #: src/hooks/useSelectFile.tsx:21
 msgid "This feature is available only from the GUI."
 msgstr "這個功能只能在 GUI 中提供。"
@@ -2543,6 +2583,10 @@ msgstr "此貿易已包含在區塊鏈中的這個區塊高度"
 #: src/components/app/AppTimeBombAlert.tsx:19
 msgid "This version of Chia is no longer compatible with the blockchain and can not safely farm."
 msgstr "此版本的 Chia 不再與區塊鏈相容，因此無法安全地進行耕種。"
+
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:154
+msgid "Thread Multiplier for Phase 2"
+msgstr ""
 
 #: src/components/fullNode/FullNode.jsx:92
 msgid "Time Created"
@@ -2634,7 +2678,7 @@ msgstr "交易過濾雜湊值"
 msgid "Type"
 msgstr "類型"
 
-#: src/components/plot/add/PlotAdd.tsx:101
+#: src/components/plot/add/PlotAdd.tsx:132
 msgid "Unable to create plot NFT"
 msgstr "無法建立農場"
 
@@ -2791,9 +2835,13 @@ msgstr "想加入農會？建立一個農場"
 msgid "Want to earn more Chia? Add more plots to your farm."
 msgstr "想要獲得更多 Chia？增加更多耕地到你的農場。"
 
-#: src/components/plot/add/PlotAddNumberOfPlots.tsx:86
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:87
 msgid "Want to have a delay before the next plot starts?"
 msgstr "想要在下次規劃耕地開始前有一段延遲？"
+
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:252
+msgid "Warm start"
+msgstr ""
 
 #: src/components/selectKey/SelectKey.tsx:88
 #: src/components/selectKey/SelectKey.tsx:119
@@ -2836,7 +2884,7 @@ msgstr "視窗"
 msgid "Without fees"
 msgstr "未計雜費"
 
-#: src/components/plot/add/PlotAddChooseSize.tsx:35
+#: src/components/plot/add/PlotAddChooseSize.tsx:49
 #: src/components/trading/TradingOverview.jsx:209
 #: src/electron/main.tsx:192
 msgid "Yes"
@@ -2855,7 +2903,7 @@ msgstr "你目前不在自己的農會。"
 msgid "You can still create plots for this plot NFT, but you can not make changes until sync is complete."
 msgstr "您仍然可以為此農場創建耕地，但在同步完成之前您不能進行更改。"
 
-#: src/components/plot/add/PlotAddChooseSize.tsx:63
+#: src/components/plot/add/PlotAddChooseSize.tsx:77
 msgid "You do not need to be synced or connected to plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
 msgstr "你不需要同步或連線後才能規劃耕地。規劃耕地時所產生的暫存檔將大於最終的耕地大小。確保你有足夠的空間。<0>了解更多</0>"
 
@@ -2983,7 +3031,7 @@ msgstr "高度："
 msgid "not synced"
 msgstr "未同步"
 
-#: src/components/plot/add/PlotAdd.tsx:105
+#: src/components/plot/add/PlotAdd.tsx:136
 msgid "p2_singleton_puzzle_hash is not defined"
 msgstr "\"p2_singleton_puzzle_hash\"參數未定義"
 
@@ -3014,6 +3062,11 @@ msgstr "{0, plural, one {密碼必須要t # character in length 位數} other {�
 #~ msgid "{0} User Transaction Fees"
 #~ msgstr "{0} User Transaction Fees"
 
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:172
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:189
+msgid "{0} buckets is recommended"
+msgstr ""
+
 #: src/components/plotNFT/PlotNFTGraph.tsx:111
 msgid "{0} points {1} - {2} hours ago"
 msgstr "{0} 積分 {1} - {2} 小時前"
@@ -3033,4 +3086,8 @@ msgstr "{currencyCode} 使用者交易費用"
 #: src/components/core/components/Amount/Amount.tsx:82
 msgid "{mojo, plural, one {mojo} other {mojos}}"
 msgstr "{mojo, plural, other {mojos}}"
+
+#: src/components/plot/add/PlotAddChoosePlotter.tsx:133
+msgid "{warning}"
+msgstr ""
 
