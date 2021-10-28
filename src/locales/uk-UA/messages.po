@@ -8,7 +8,7 @@ msgstr ""
 "Language: uk_UA\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-10-22 18:52\n"
+"PO-Revision-Date: 2021-10-28 22:46\n"
 "Last-Translator: \n"
 "Language-Team: Ukrainian\n"
 "Plural-Forms: nplurals=4; plural=((n%10==1 && n%100!=11) ? 0 : ((n%10 >= 2 && n%10 <=4 && (n%100 < 12 || n%100 > 14)) ? 1 : ((n%10 == 0 || (n%10 >= 5 && n%10 <=9)) || (n%100 >= 11 && n%100 <= 14)) ? 2 : 3));\n"
@@ -18,7 +18,15 @@ msgstr ""
 "X-Crowdin-File: /[Chia-Network.chia-blockchain-gui] main/src/locales/en-US/messages.po\n"
 "X-Crowdin-File-ID: 118\n"
 
-#: src/components/plot/add/PlotAddNFT.tsx:62
+#: src/components/plot/add/PlotAddChoosePlotter.tsx:78
+msgid "(Not Installed)"
+msgstr ""
+
+#: src/components/plot/add/PlotAddChoosePlotter.tsx:75
+msgid "(Not Supported)"
+msgstr ""
+
+#: src/components/plot/add/PlotAddNFT.tsx:67
 msgid "(Optional)"
 msgstr ""
 
@@ -26,7 +34,7 @@ msgstr ""
 msgid "*Want to explore Chia’s blocks further? Check out <0>Chia Explorer</0> built by an open source developer."
 msgstr "Бажаєте подивитися більше інформації про блоки Chia? Загляньте в оглядач блоків <0>Chia Explorer</0>, створений на основі відкритого вихідного коду."
 
-#: src/components/plot/add/PlotAddNFT.tsx:123
+#: src/components/plot/add/PlotAddNFT.tsx:128
 msgid "+ Add New Plot NFT"
 msgstr ""
 
@@ -39,12 +47,16 @@ msgstr ""
 #~ msgstr ""
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:148
-msgid "128 buckets is recommended"
-msgstr "128 кошиків рекомендовано"
+#~ msgid "128 buckets is recommended"
+#~ msgstr "128 buckets is recommended"
 
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:98
 msgid "A harvester is a service running on a machine where plot(s) are actually stored. A farmer and harvester talk to a full node to see the state of the chain. View your network of connected harvesters below Learn more"
 msgstr "Комбайн - це служба, що працює на пристрої, де фактично зберігаються ділянки. Фермер та комбайн розмовляють із повним вузлом, щоб побачити стан ланцюга. Перегляньте свою мережу підключених комбайнів нижче. Докладніше"
+
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:155
+msgid "A value of {0} is recommended"
+msgstr ""
 
 #: src/electron/main.tsx:431
 #: src/electron/main.tsx:518
@@ -95,7 +107,7 @@ msgstr "Додати ділянку до черги"
 
 #: src/components/farm/overview/FarmOverviewHero.tsx:46
 #: src/components/plot/PlotHeader.tsx:63
-#: src/components/plot/add/PlotAdd.tsx:160
+#: src/components/plot/add/PlotAdd.tsx:191
 #: src/components/plot/overview/PlotOverviewHero.tsx:54
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:230
 #: src/components/plotNFT/PlotNFTCard.tsx:272
@@ -131,6 +143,10 @@ msgstr "Адреса / Хеш-головоломка"
 
 #: src/components/app/AppKeyringMigrator.tsx:195
 msgid "After your keys are successfully migrated to the new keyring, you may choose to have your keys removed from the old keyring."
+msgstr ""
+
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:238
+msgid "Alternate tmpdir/tmpdir2"
 msgstr ""
 
 #: src/components/core/components/Amount/Amount.tsx:99
@@ -177,7 +193,7 @@ msgstr "Ви впевнені, що хочете вийти? Засівання 
 #~ msgid "Are you sure you want to use k={plotSize}"
 #~ msgstr "Are you sure you want to use k={plotSize}"
 
-#: src/components/plot/add/PlotAddChooseSize.tsx:38
+#: src/components/plot/add/PlotAddChooseSize.tsx:52
 msgid "Are you sure you want to use k={plotSize}?"
 msgstr "Ви впевнені, що бажаєте використовувати k={plotSize}?"
 
@@ -257,9 +273,9 @@ msgstr "Блоки"
 #~ msgid "Both values are empty. This is ok if you are, for example, sending your rewards to an offline wallet."
 #~ msgstr "Both values are empty. This is ok if you are, for example, sending your rewards to an offline wallet."
 
-#: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:61
-#: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:79
-#: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:110
+#: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:72
+#: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:92
+#: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:123
 msgid "Browse"
 msgstr "Огляд"
 
@@ -350,13 +366,17 @@ msgstr "Chia Blockchain Wiki"
 msgid "Chia Wallet"
 msgstr "Гаманець Chia"
 
-#: src/components/plot/add/PlotAddNumberOfPlots.tsx:36
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:34
 msgid "Choose Number of Plots"
 msgstr "Виберіть кількість ділянок"
 
-#: src/components/plot/add/PlotAddChooseSize.tsx:61
+#: src/components/plot/add/PlotAddChooseSize.tsx:75
 msgid "Choose Plot Size"
 msgstr "Виберіть розмір ділянки"
+
+#: src/components/plot/add/PlotAddChoosePlotter.tsx:105
+msgid "Choose Plotter"
+msgstr ""
 
 #: src/components/plotNFT/PlotNFTCard.tsx:384
 #: src/components/pool/PoolOverview.tsx:92
@@ -497,7 +517,7 @@ msgid "Copy to Clipboard"
 msgstr "Скопіювати до буферу обміну"
 
 #: src/components/backup/BackupCreate.tsx:58
-#: src/components/plot/add/PlotAdd.tsx:177
+#: src/components/plot/add/PlotAdd.tsx:211
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:175
 #: src/components/wallet/create/createExistingColouredCoin.jsx:133
 #: src/components/wallet/create/createNewColouredCoin.jsx:142
@@ -557,7 +577,7 @@ msgstr "Створити транзакцію"
 msgid "Create a Backup"
 msgstr "Створити резервну копію"
 
-#: src/components/plot/add/PlotAddNFT.tsx:42
+#: src/components/plot/add/PlotAddNFT.tsx:47
 msgid "Create a Plot NFT"
 msgstr ""
 
@@ -605,7 +625,7 @@ msgstr ""
 msgid "Creating Plot NFT for Self Pooling"
 msgstr ""
 
-#: src/components/plot/add/PlotAdd.tsx:86
+#: src/components/plot/add/PlotAdd.tsx:117
 msgid "Currency code is not defined"
 msgstr ""
 
@@ -645,7 +665,7 @@ msgstr "НЕБЕЗПЕКА: видалити приватний ключ наз�
 msgid "Date"
 msgstr "Дата"
 
-#: src/components/plot/add/PlotAddNumberOfPlots.tsx:92
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:93
 msgid "Delay"
 msgstr "Затримка"
 
@@ -703,6 +723,10 @@ msgstr ""
 #~ msgid "Deleting the key will permanently remove the key from your computer, make sure you have backups. Are you sure you want to continue?"
 #~ msgstr "Deleting the key will permanently remove the key from your computer, make sure you have backups. Are you sure you want to continue?"
 
+#: src/components/plot/add/PlotAddChoosePlotter.tsx:107
+msgid "Depending on your system configuration, you may find that an alternative plotter produces plots faster than the default Chia Proof of Space plotter. If unsure, use the default Chia Proof of Space plotter."
+msgstr ""
+
 #: src/electron/main.tsx:313
 msgid "Developer"
 msgstr "Розробник"
@@ -720,6 +744,10 @@ msgstr "Складність"
 msgid "Disable"
 msgstr ""
 
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:266
+msgid "Disable NUMA"
+msgstr ""
+
 #: src/components/app/AppPassPrompt.tsx:77
 msgid "Disable Passphrase Protection"
 msgstr ""
@@ -728,7 +756,7 @@ msgstr ""
 #~ msgid "Disable bifield plotting when your temporary directory is on fast storage like SSD or you need lower per process RAM requirements. Plotting with bitfield enabled has about 20% less overall writes."
 #~ msgstr ""
 
-#: src/components/plot/add/PlotAddNumberOfPlots.tsx:172
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:215
 msgid "Disable bitfield plotting"
 msgstr "Вимкнути використання бітового поля"
 
@@ -800,7 +828,7 @@ msgstr ""
 msgid "Enter the 24 word mnemonic that you have saved in order to restore your Chia wallet."
 msgstr "Введіть мнемоніку з 24 слів, яку ви зберегли, для відновлення гаманця Chia."
 
-#: src/components/settings/RemovePassphrasePrompt.tsx:118
+#: src/components/settings/RemovePassphrasePrompt.tsx:115
 msgid "Enter your passphrase:"
 msgstr ""
 
@@ -835,7 +863,7 @@ msgstr "Очікуваний час до виграшу"
 msgid "Estimated sum of all the plotted disk space of all farmers in the network"
 msgstr "Орієнтовна сума обсягу всіх ділянок на дисковому просторі всіх фермерів у мережі"
 
-#: src/components/plot/add/PlotAddNumberOfPlots.tsx:193
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:279
 msgid "Exclude final directory"
 msgstr "Виключити кінцеву теку"
 
@@ -866,7 +894,7 @@ msgstr ""
 msgid "Farm"
 msgstr "Ферма"
 
-#: src/components/plot/add/PlotAddNumberOfPlots.tsx:211
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:297
 msgid "Farmer Public Key"
 msgstr "Відкритий ключ фермера"
 
@@ -969,7 +997,7 @@ msgstr "Файл"
 msgid "Filename"
 msgstr "Ім'я файлу"
 
-#: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:36
+#: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:47
 msgid "Final folder location"
 msgstr "Розташування кінцевої теки"
 
@@ -1075,7 +1103,7 @@ msgstr "ІР-адреса"
 msgid "IP address / host"
 msgstr "IP-адреса / хост"
 
-#: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:115
+#: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:128
 msgid "If none selected, then it will default to the temporary directory."
 msgstr "Якщо нічого не вибрано, за замовчуванням буде використовуватися тимчасова тека."
 
@@ -1141,13 +1169,13 @@ msgstr ""
 msgid "Join Pool"
 msgstr ""
 
-#: src/components/plot/add/PlotAddNFT.tsx:59
-#: src/components/plot/add/PlotAddNFT.tsx:141
+#: src/components/plot/add/PlotAddNFT.tsx:64
+#: src/components/plot/add/PlotAddNFT.tsx:146
 #: src/components/pool/PoolHero.tsx:31
 msgid "Join a Pool"
 msgstr ""
 
-#: src/components/plot/add/PlotAddNFT.tsx:44
+#: src/components/plot/add/PlotAddNFT.tsx:49
 msgid "Join a pool and get consistent XCH farming rewards. The average returns are the same, but it is much less volatile."
 msgstr ""
 
@@ -1155,7 +1183,7 @@ msgstr ""
 msgid "Join a pool and get consistent XCH farming rewards. The average returns are the same, but it is much less volatile. Assign plots to a plot NFT. You can easily switch pools without having to re-plot."
 msgstr ""
 
-#: src/components/plot/add/PlotAddNFT.tsx:133
+#: src/components/plot/add/PlotAddNFT.tsx:138
 msgid "Join a pool and get more consistent XCH farming rewards. Create a plot NFT and assign your new plots to a group."
 msgstr ""
 
@@ -1307,11 +1335,11 @@ msgstr ""
 msgid "Minimum Difficulty"
 msgstr ""
 
-#: src/components/plot/add/PlotAddNumberOfPlots.tsx:97
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:98
 msgid "Minutes"
 msgstr "Хвилин"
 
-#: src/components/plot/add/PlotAddNumberOfPlots.tsx:116
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:118
 msgid "More memory slightly increases speed"
 msgstr "Більший обсяг пам'яті трохи збільшує швидкість"
 
@@ -1393,7 +1421,7 @@ msgstr "ID вузла"
 msgid "Node Id"
 msgstr ""
 
-#: src/components/plot/add/PlotAddNFT.tsx:86
+#: src/components/plot/add/PlotAddNFT.tsx:91
 msgid "None"
 msgstr ""
 
@@ -1440,11 +1468,15 @@ msgstr ""
 msgid "Number of Plots"
 msgstr ""
 
-#: src/components/plot/add/PlotAddNumberOfPlots.tsx:147
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:171
 msgid "Number of buckets"
 msgstr "Кількість корзин"
 
-#: src/components/plot/add/PlotAddNumberOfPlots.tsx:133
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:188
+msgid "Number of buckets for phase 3 & 4"
+msgstr ""
+
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:136
 msgid "Number of threads"
 msgstr "Число потоків"
 
@@ -1477,11 +1509,11 @@ msgstr ""
 msgid "Outgoing"
 msgstr "Вихідні"
 
-#: src/components/app/AppKeyringMigrator.tsx:135
-#: src/components/app/AppKeyringMigrator.tsx:136
-#: src/components/app/AppPassPrompt.tsx:225
-#: src/components/settings/RemovePassphrasePrompt.tsx:126
-#: src/components/settings/SetPassphrasePrompt.tsx:155
+#: src/components/app/AppKeyringMigrator.tsx:129
+#: src/components/app/AppKeyringMigrator.tsx:130
+#: src/components/app/AppPassPrompt.tsx:221
+#: src/components/settings/RemovePassphrasePrompt.tsx:123
+#: src/components/settings/SetPassphrasePrompt.tsx:142
 msgid "Passphrase"
 msgstr ""
 
@@ -1501,8 +1533,8 @@ msgstr ""
 msgid "Passphrase Settings"
 msgstr ""
 
-#: src/components/app/AppPassPrompt.tsx:152
-#: src/components/settings/RemovePassphrasePrompt.tsx:67
+#: src/components/app/AppPassPrompt.tsx:149
+#: src/components/settings/RemovePassphrasePrompt.tsx:64
 msgid "Passphrase is incorrect"
 msgstr ""
 
@@ -1636,9 +1668,9 @@ msgstr "Будь ласка, введіть коректний публічни�
 msgid "Please enter your current passphrase, and a new passphrase"
 msgstr ""
 
-#: src/components/app/AppPassPrompt.tsx:185
-#: src/components/app/AppPassPrompt.tsx:201
-#: src/components/settings/RemovePassphrasePrompt.tsx:50
+#: src/components/app/AppPassPrompt.tsx:182
+#: src/components/app/AppPassPrompt.tsx:198
+#: src/components/settings/RemovePassphrasePrompt.tsx:47
 msgid "Please enter your passphrase"
 msgstr ""
 
@@ -1671,13 +1703,13 @@ msgstr "Будь ласка, оберіть колір монети"
 #~ msgid "Please select coin type"
 #~ msgstr ""
 
-#: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:45
-#: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:49
+#: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:56
+#: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:60
 msgid "Please specify final directory"
 msgstr "Будь ласка, вкажіть фінальну теку"
 
-#: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:60
-#: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:64
+#: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:73
+#: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:77
 msgid "Please specify temporary directory"
 msgstr "Будь ласка, вкажіть тимчасову теку"
 
@@ -1690,12 +1722,12 @@ msgstr ""
 msgid "Please wait for wallet synchronization"
 msgstr ""
 
-#: src/components/plot/Plot.tsx:18
+#: src/components/plot/Plot.tsx:28
 msgid "Plot"
 msgstr "Ділянка"
 
 #: src/components/farm/card/FarmCardPlotCount.tsx:12
-#: src/components/plot/add/PlotAddNumberOfPlots.tsx:41
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:44
 msgid "Plot Count"
 msgstr "Кількість ділянок"
 
@@ -1728,7 +1760,7 @@ msgstr "Публічний ключ ділянки"
 #~ msgid "Plot Seed"
 #~ msgstr ""
 
-#: src/components/plot/add/PlotAddChooseSize.tsx:80
+#: src/components/plot/add/PlotAddChooseSize.tsx:94
 msgid "Plot Size"
 msgstr "Розмір ділянки"
 
@@ -1760,6 +1792,10 @@ msgstr "Ділянки, що пройшли фільтр"
 msgid "Plots are allocated space on your hard drive used to farm and earn Chia. <0>Learn more</0>"
 msgstr "Ділянки - виділений обсяг на вашому диску, який використовується для фермерства, щоб заробити Сhia. <0>Дізнатися більше</0>"
 
+#: src/components/plot/add/PlotAddChoosePlotter.tsx:118
+msgid "Plotter"
+msgstr ""
+
 #: src/components/plot/queue/PlotQueueIndicator.tsx:34
 msgid "Plotting"
 msgstr "Створення ділянок"
@@ -1768,7 +1804,7 @@ msgstr "Створення ділянок"
 msgid "Plotting in parallel can save time. Otherwise, add plot(s) to the queue."
 msgstr "Паралельне (одночасне) засіювання декількох ділянок заощаджує час. В іншому випадку, засіювання додається в чергу."
 
-#: src/components/plot/add/PlotAddNumberOfPlots.tsx:174
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:217
 msgid "Plotting with bitfield enabled has about 30% less overall writes and is now almost always faster. You may see reduced memory requirements with bitfield plotting disabled. If your CPU design is from before 2010 you may have to disable bitfield plotting."
 msgstr "Засіювання із увімкненим бітовим полем зменшує кількість загальних операцій запису приблизно на 30% і майже завжди працює швидше. Вимкнення бітового поля може зменшити вимоги до об'єму пам'яті. Якщо Ваш процесор випущений раніше 2010 року, можливо Вам слід вимкнути бітове поле."
 
@@ -1813,7 +1849,7 @@ msgid "Pool Payout Instructions"
 msgstr ""
 
 #: src/components/block/Block.jsx:264
-#: src/components/plot/add/PlotAddNumberOfPlots.tsx:222
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:308
 msgid "Pool Public Key"
 msgstr "Публічний ключ пулу"
 
@@ -1933,7 +1969,7 @@ msgstr "Публічний ключ:"
 msgid "Puzzlehash"
 msgstr ""
 
-#: src/components/plot/add/PlotAddNumberOfPlots.tsx:162
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:204
 msgid "Queue Name"
 msgstr "Назва черги"
 
@@ -1949,7 +1985,7 @@ msgstr "У черзі"
 #~ msgid "Quit"
 #~ msgstr "Quit"
 
-#: src/components/plot/add/PlotAddNumberOfPlots.tsx:115
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:117
 msgid "RAM max usage"
 msgstr "Максимальне використання RAM"
 
@@ -2077,7 +2113,7 @@ msgstr ""
 msgid "Search block by header hash"
 msgstr "Пошук блоку за хешем заголовку"
 
-#: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:93
+#: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:106
 msgid "Second temporary folder location"
 msgstr "Розташування другої тимчасової теки"
 
@@ -2093,11 +2129,11 @@ msgstr "Переглянути приватний ключ"
 msgid "Seed:"
 msgstr "Фраза:"
 
-#: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:87
+#: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:100
 msgid "Select 2nd Temporary Directory"
 msgstr "Виберіть 2-й тимчасовий каталог"
 
-#: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:23
+#: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:34
 msgid "Select Final Directory"
 msgstr "Оберіть кінцеву теку"
 
@@ -2109,7 +2145,7 @@ msgstr "Вибрати ключ"
 msgid "Select Offer"
 msgstr "Вибрати пропозицію"
 
-#: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:39
+#: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:52
 msgid "Select Temporary Directory"
 msgstr "Виберіть тимчасовий каталог"
 
@@ -2117,7 +2153,7 @@ msgstr "Виберіть тимчасовий каталог"
 msgid "Select Wallet Type"
 msgstr "Оберіть тип гаманця"
 
-#: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:25
+#: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:36
 msgid "Select the final destination for the folder where you would like the plot to be stored. We recommend you use a large slow hard drive (like external HDD)."
 msgstr "Виберіть кінцеве розташування теки, де ви бажаєте зберегти ділянку. Ми рекомендуємо використовувати великий повільний жорсткий диск (наприклад, зовнішній HDD)."
 
@@ -2125,21 +2161,21 @@ msgstr "Виберіть кінцеве розташування теки, де 
 #~ msgid "Select the temporary destination for the folder where you would like the plot to be stored. We recommend you use a fast SSD."
 #~ msgstr "Select the temporary destination for the folder where you would like the plot to be stored. We recommend you use a fast SSD."
 
-#: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:41
+#: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:54
 msgid "Select the temporary destination for the folder where you would like the plot to be stored. We recommend you use a fast drive."
 msgstr "Виберіть розташування тимчасової теки, де ви хочете зберегти ділянку. Ми рекомендуємо використовувати швидкий диск."
 
-#: src/components/plot/add/PlotAddNFT.tsx:81
+#: src/components/plot/add/PlotAddNFT.tsx:86
 msgid "Select your Plot NFT"
 msgstr ""
 
-#: src/components/plot/add/PlotAddNFT.tsx:72
+#: src/components/plot/add/PlotAddNFT.tsx:77
 msgid "Select your Plot NFT from the dropdown or create a new one."
 msgstr ""
 
-#: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:61
-#: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:77
-#: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:108
+#: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:72
+#: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:90
+#: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:121
 msgid "Selected"
 msgstr "Вибрано"
 
@@ -2226,7 +2262,7 @@ msgstr ""
 #~ msgid "Skips adding [final dir] to harvester for farming"
 #~ msgstr "Skips adding [final dir] to harvester for farming"
 
-#: src/components/plot/add/PlotAddNumberOfPlots.tsx:195
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:281
 msgid "Skips adding a final directory to harvester for farming"
 msgstr "Пропустити додавання фінальної директорії у комбайн для землеробства"
 
@@ -2236,6 +2272,10 @@ msgstr ""
 
 #: src/components/plotNFT/PlotNFTGetPoolLoginLinkDialog.tsx:60
 msgid "Something went wrong"
+msgstr ""
+
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:138
+msgid "Specify a value of 0 to use all available threads"
 msgstr ""
 
 #: src/electron/main.tsx:479
@@ -2319,7 +2359,7 @@ msgstr "Стан:"
 #~ msgid "Sub Block at height {0} in the Chia blockchain"
 #~ msgstr "Sub Block at height {0} in the Chia blockchain"
 
-#: src/components/app/AppPassPrompt.tsx:202
+#: src/components/app/AppPassPrompt.tsx:199
 #: src/components/wallet/did/WalletDID.tsx:889
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:347
 msgid "Submit"
@@ -2377,7 +2417,7 @@ msgstr ""
 #~ msgid "Temporary files are created during the plotting process which exceeds the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
 #~ msgstr ""
 
-#: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:51
+#: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:64
 msgid "Temporary folder location"
 msgstr "Тимчасова тека"
 
@@ -2389,8 +2429,8 @@ msgstr "Програма перестане працювати при висот
 msgid "The full node that your farmer is connected to is below. <0>Learn more</0>"
 msgstr "Повний вузол, до якого підключено вашого фермера, вказано нижче. <0>Дізнатися більше</0>"
 
-#: src/components/plot/add/PlotAddChooseSize.tsx:34
-#: src/components/plot/add/PlotAddChooseSize.tsx:91
+#: src/components/plot/add/PlotAddChooseSize.tsx:48
+#: src/components/plot/add/PlotAddChooseSize.tsx:105
 msgid "The minimum required size for mainnet is k=32"
 msgstr "Мінімальний необхідний розмір для головної мережі (mainnet) – k=32"
 
@@ -2469,7 +2509,7 @@ msgid "This difficulty is an artifically lower difficulty than on the real netwo
 msgstr ""
 
 #: src/components/trading/CreateOffer.jsx:123
-#: src/hooks/useSelectDirectory.tsx:32
+#: src/hooks/useSelectDirectory.tsx:33
 #: src/hooks/useSelectFile.tsx:21
 msgid "This feature is available only from the GUI."
 msgstr "Ця функція доступна лише з графічного інтерфейсу."
@@ -2543,6 +2583,10 @@ msgstr "Ця угода включена в blockchain на вказаній в�
 #: src/components/app/AppTimeBombAlert.tsx:19
 msgid "This version of Chia is no longer compatible with the blockchain and can not safely farm."
 msgstr "Ця версія Chia більше не сумісна з blockchain і не може безпечно фармити."
+
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:154
+msgid "Thread Multiplier for Phase 2"
+msgstr ""
 
 #: src/components/fullNode/FullNode.jsx:92
 msgid "Time Created"
@@ -2634,7 +2678,7 @@ msgstr "Хеш фільтру транзакцій"
 msgid "Type"
 msgstr "Тип"
 
-#: src/components/plot/add/PlotAdd.tsx:101
+#: src/components/plot/add/PlotAdd.tsx:132
 msgid "Unable to create plot NFT"
 msgstr ""
 
@@ -2791,9 +2835,13 @@ msgstr ""
 msgid "Want to earn more Chia? Add more plots to your farm."
 msgstr "Хочете заробити більше Chia? Додайте більше ділянок у свою ферму."
 
-#: src/components/plot/add/PlotAddNumberOfPlots.tsx:86
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:87
 msgid "Want to have a delay before the next plot starts?"
 msgstr "Хочете встановити затримку перед початком побудови наступної ділянки?"
+
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:252
+msgid "Warm start"
+msgstr ""
 
 #: src/components/selectKey/SelectKey.tsx:88
 #: src/components/selectKey/SelectKey.tsx:119
@@ -2836,7 +2884,7 @@ msgstr "Вікно"
 msgid "Without fees"
 msgstr "Без комісії"
 
-#: src/components/plot/add/PlotAddChooseSize.tsx:35
+#: src/components/plot/add/PlotAddChooseSize.tsx:49
 #: src/components/trading/TradingOverview.jsx:209
 #: src/electron/main.tsx:192
 msgid "Yes"
@@ -2855,7 +2903,7 @@ msgstr ""
 msgid "You can still create plots for this plot NFT, but you can not make changes until sync is complete."
 msgstr ""
 
-#: src/components/plot/add/PlotAddChooseSize.tsx:63
+#: src/components/plot/add/PlotAddChooseSize.tsx:77
 msgid "You do not need to be synced or connected to plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
 msgstr ""
 
@@ -2983,7 +3031,7 @@ msgstr "висота:"
 msgid "not synced"
 msgstr "не синхронізовано"
 
-#: src/components/plot/add/PlotAdd.tsx:105
+#: src/components/plot/add/PlotAdd.tsx:136
 msgid "p2_singleton_puzzle_hash is not defined"
 msgstr ""
 
@@ -3014,6 +3062,11 @@ msgstr ""
 #~ msgid "{0} User Transaction Fees"
 #~ msgstr "{0} User Transaction Fees"
 
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:172
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:189
+msgid "{0} buckets is recommended"
+msgstr ""
+
 #: src/components/plotNFT/PlotNFTGraph.tsx:111
 msgid "{0} points {1} - {2} hours ago"
 msgstr ""
@@ -3032,5 +3085,9 @@ msgstr "{currencyCode} Комісії за транзакціями корист
 
 #: src/components/core/components/Amount/Amount.tsx:82
 msgid "{mojo, plural, one {mojo} other {mojos}}"
+msgstr ""
+
+#: src/components/plot/add/PlotAddChoosePlotter.tsx:133
+msgid "{warning}"
 msgstr ""
 
