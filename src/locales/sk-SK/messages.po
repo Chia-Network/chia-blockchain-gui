@@ -8,7 +8,7 @@ msgstr ""
 "Language: sk_SK\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-10-22 18:53\n"
+"PO-Revision-Date: 2021-10-28 22:46\n"
 "Last-Translator: \n"
 "Language-Team: Slovak\n"
 "Plural-Forms: nplurals=4; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 3;\n"
@@ -18,7 +18,15 @@ msgstr ""
 "X-Crowdin-File: /[Chia-Network.chia-blockchain-gui] main/src/locales/en-US/messages.po\n"
 "X-Crowdin-File-ID: 118\n"
 
-#: src/components/plot/add/PlotAddNFT.tsx:62
+#: src/components/plot/add/PlotAddChoosePlotter.tsx:78
+msgid "(Not Installed)"
+msgstr ""
+
+#: src/components/plot/add/PlotAddChoosePlotter.tsx:75
+msgid "(Not Supported)"
+msgstr ""
+
+#: src/components/plot/add/PlotAddNFT.tsx:67
 msgid "(Optional)"
 msgstr "(voliteľné)"
 
@@ -26,7 +34,7 @@ msgstr "(voliteľné)"
 msgid "*Want to explore Chia’s blocks further? Check out <0>Chia Explorer</0> built by an open source developer."
 msgstr "* Chcete viac preskúmať Chia bloky? Vyskúšajte aplikáciu <0>Chia Explorer</0> vytvorenú open source vývojárom."
 
-#: src/components/plot/add/PlotAddNFT.tsx:123
+#: src/components/plot/add/PlotAddNFT.tsx:128
 msgid "+ Add New Plot NFT"
 msgstr "+ Pridať nové NFT poľa"
 
@@ -39,12 +47,16 @@ msgstr "+ Pridať peňaženku"
 #~ msgstr ""
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:148
-msgid "128 buckets is recommended"
-msgstr "Odporúčame 128 sektorov"
+#~ msgid "128 buckets is recommended"
+#~ msgstr "128 buckets is recommended"
 
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:98
 msgid "A harvester is a service running on a machine where plot(s) are actually stored. A farmer and harvester talk to a full node to see the state of the chain. View your network of connected harvesters below Learn more"
 msgstr "Kombajn je služba bežiaca na stroji, kde sú uložené polia. Farmár a kombajn komunikujú s plným uzlom, aby zistili stav reťaze. Nižšie si pozrite svoju sieť prepojených kombajnov. Viac informácií"
+
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:155
+msgid "A value of {0} is recommended"
+msgstr ""
 
 #: src/electron/main.tsx:431
 #: src/electron/main.tsx:518
@@ -95,7 +107,7 @@ msgstr "Pridať pole do fronty"
 
 #: src/components/farm/overview/FarmOverviewHero.tsx:46
 #: src/components/plot/PlotHeader.tsx:63
-#: src/components/plot/add/PlotAdd.tsx:160
+#: src/components/plot/add/PlotAdd.tsx:191
 #: src/components/plot/overview/PlotOverviewHero.tsx:54
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:230
 #: src/components/plotNFT/PlotNFTCard.tsx:272
@@ -132,6 +144,10 @@ msgstr "Adresa"
 #: src/components/app/AppKeyringMigrator.tsx:195
 msgid "After your keys are successfully migrated to the new keyring, you may choose to have your keys removed from the old keyring."
 msgstr "Keď budú vaše kľúče úspešne migrované do nového zväzku kľúčov, môžete sa rozhodnúť, že ich necháte odstrániť zo starého zväzku kľúčov."
+
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:238
+msgid "Alternate tmpdir/tmpdir2"
+msgstr ""
 
 #: src/components/core/components/Amount/Amount.tsx:99
 #: src/components/trading/CreateOffer.jsx:196
@@ -177,7 +193,7 @@ msgstr "Naozaj chcete skončiť? GUI pre vykresľovanie polí a farmárčenie bu
 #~ msgid "Are you sure you want to use k={plotSize}"
 #~ msgstr "Are you sure you want to use k={plotSize}"
 
-#: src/components/plot/add/PlotAddChooseSize.tsx:38
+#: src/components/plot/add/PlotAddChooseSize.tsx:52
 msgid "Are you sure you want to use k={plotSize}?"
 msgstr "Naozaj chcete použiť k={plotSize}?"
 
@@ -257,9 +273,9 @@ msgstr "Bloky"
 #~ msgid "Both values are empty. This is ok if you are, for example, sending your rewards to an offline wallet."
 #~ msgstr "Both values are empty. This is ok if you are, for example, sending your rewards to an offline wallet."
 
-#: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:61
-#: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:79
-#: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:110
+#: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:72
+#: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:92
+#: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:123
 msgid "Browse"
 msgstr "Vybrať"
 
@@ -350,13 +366,17 @@ msgstr "Chia Blockchain Wiki"
 msgid "Chia Wallet"
 msgstr "Chia peňaženka"
 
-#: src/components/plot/add/PlotAddNumberOfPlots.tsx:36
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:34
 msgid "Choose Number of Plots"
 msgstr "Vyberte počet polí"
 
-#: src/components/plot/add/PlotAddChooseSize.tsx:61
+#: src/components/plot/add/PlotAddChooseSize.tsx:75
 msgid "Choose Plot Size"
 msgstr "Vyberte veľkosť poľa"
+
+#: src/components/plot/add/PlotAddChoosePlotter.tsx:105
+msgid "Choose Plotter"
+msgstr ""
 
 #: src/components/plotNFT/PlotNFTCard.tsx:384
 #: src/components/pool/PoolOverview.tsx:92
@@ -497,7 +517,7 @@ msgid "Copy to Clipboard"
 msgstr "Skopírovať do schránky"
 
 #: src/components/backup/BackupCreate.tsx:58
-#: src/components/plot/add/PlotAdd.tsx:177
+#: src/components/plot/add/PlotAdd.tsx:211
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:175
 #: src/components/wallet/create/createExistingColouredCoin.jsx:133
 #: src/components/wallet/create/createNewColouredCoin.jsx:142
@@ -557,7 +577,7 @@ msgstr "Vytvoriť transakciu"
 msgid "Create a Backup"
 msgstr "Vytvoriť zálohu"
 
-#: src/components/plot/add/PlotAddNFT.tsx:42
+#: src/components/plot/add/PlotAddNFT.tsx:47
 msgid "Create a Plot NFT"
 msgstr "Vytvoriť NFT poľa"
 
@@ -605,7 +625,7 @@ msgstr "Vytváranie NFT poľa a pripájanie k združeniu"
 msgid "Creating Plot NFT for Self Pooling"
 msgstr "Vytváranie NFT poľa osobného združenia"
 
-#: src/components/plot/add/PlotAdd.tsx:86
+#: src/components/plot/add/PlotAdd.tsx:117
 msgid "Currency code is not defined"
 msgstr "Kód meny nie je definovaný"
 
@@ -645,7 +665,7 @@ msgstr "POZOR: natrvalo odstrániť súkromný klúč"
 msgid "Date"
 msgstr "Dátum"
 
-#: src/components/plot/add/PlotAddNumberOfPlots.tsx:92
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:93
 msgid "Delay"
 msgstr "Oneskorenie"
 
@@ -703,6 +723,10 @@ msgstr "Odstraňovanie kľúča"
 #~ msgid "Deleting the key will permanently remove the key from your computer, make sure you have backups. Are you sure you want to continue?"
 #~ msgstr "Deleting the key will permanently remove the key from your computer, make sure you have backups. Are you sure you want to continue?"
 
+#: src/components/plot/add/PlotAddChoosePlotter.tsx:107
+msgid "Depending on your system configuration, you may find that an alternative plotter produces plots faster than the default Chia Proof of Space plotter. If unsure, use the default Chia Proof of Space plotter."
+msgstr ""
+
 #: src/electron/main.tsx:313
 msgid "Developer"
 msgstr "Vývojár"
@@ -720,6 +744,10 @@ msgstr "Zložitosť"
 msgid "Disable"
 msgstr "Deaktivovať"
 
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:266
+msgid "Disable NUMA"
+msgstr ""
+
 #: src/components/app/AppPassPrompt.tsx:77
 msgid "Disable Passphrase Protection"
 msgstr "Deaktivovať ochranu prístupovou frázou"
@@ -728,7 +756,7 @@ msgstr "Deaktivovať ochranu prístupovou frázou"
 #~ msgid "Disable bifield plotting when your temporary directory is on fast storage like SSD or you need lower per process RAM requirements. Plotting with bitfield enabled has about 20% less overall writes."
 #~ msgstr ""
 
-#: src/components/plot/add/PlotAddNumberOfPlots.tsx:172
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:215
 msgid "Disable bitfield plotting"
 msgstr "Zakázať vykresľovanie s bitovým poľom"
 
@@ -800,7 +828,7 @@ msgstr "Zadajte silnú prístupovú frázu pre zabezpečenie svojich kľúčov:"
 msgid "Enter the 24 word mnemonic that you have saved in order to restore your Chia wallet."
 msgstr "Zadajte 24 slov, ktoré ste si uložili pre účely obnovenia vašej peňaženky Chia."
 
-#: src/components/settings/RemovePassphrasePrompt.tsx:118
+#: src/components/settings/RemovePassphrasePrompt.tsx:115
 msgid "Enter your passphrase:"
 msgstr "Zadajte svoju prístupovú frázu:"
 
@@ -835,7 +863,7 @@ msgstr "Očakávaný čas na výhru"
 msgid "Estimated sum of all the plotted disk space of all farmers in the network"
 msgstr "Odhadovaný súčet všetkého obsadeného miesta na disku všetkých ťažiarov v sieti"
 
-#: src/components/plot/add/PlotAddNumberOfPlots.tsx:193
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:279
 msgid "Exclude final directory"
 msgstr "Vylúčiť cieľový adresár"
 
@@ -866,7 +894,7 @@ msgstr "Nepodarilo sa aktualizovať prístupovú frázu: {error}"
 msgid "Farm"
 msgstr "Farma"
 
-#: src/components/plot/add/PlotAddNumberOfPlots.tsx:211
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:297
 msgid "Farmer Public Key"
 msgstr "Verejný kľúč farmára"
 
@@ -969,7 +997,7 @@ msgstr "Súbor"
 msgid "Filename"
 msgstr "Meno súboru"
 
-#: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:36
+#: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:47
 msgid "Final folder location"
 msgstr "Cieľový adresár"
 
@@ -1075,7 +1103,7 @@ msgstr "IP Adresa"
 msgid "IP address / host"
 msgstr "IP Adresa / host"
 
-#: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:115
+#: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:128
 msgid "If none selected, then it will default to the temporary directory."
 msgstr "Ak nie je vybraný žiadny adresár, použije sa ako predvolený, dočasný adresár."
 
@@ -1141,13 +1169,13 @@ msgstr "Jednorazový odkaz, ktorým sa môžete prihlásiť na webovú stránku 
 msgid "Join Pool"
 msgstr "Pripojiť sa k združeniu"
 
-#: src/components/plot/add/PlotAddNFT.tsx:59
-#: src/components/plot/add/PlotAddNFT.tsx:141
+#: src/components/plot/add/PlotAddNFT.tsx:64
+#: src/components/plot/add/PlotAddNFT.tsx:146
 #: src/components/pool/PoolHero.tsx:31
 msgid "Join a Pool"
 msgstr "Pripojiť sa k združeniu"
 
-#: src/components/plot/add/PlotAddNFT.tsx:44
+#: src/components/plot/add/PlotAddNFT.tsx:49
 msgid "Join a pool and get consistent XCH farming rewards. The average returns are the same, but it is much less volatile."
 msgstr "Pripojte sa k združeniu a získajte konzistentné farmárske XCH odmeny. Priemerný výnos je rovnaký, je však oveľa menej volatilný."
 
@@ -1155,7 +1183,7 @@ msgstr "Pripojte sa k združeniu a získajte konzistentné farmárske XCH odmeny
 msgid "Join a pool and get consistent XCH farming rewards. The average returns are the same, but it is much less volatile. Assign plots to a plot NFT. You can easily switch pools without having to re-plot."
 msgstr "Pripojte sa k združeniu a získajte konzistentné farmárske XCH odmeny. Priemerný výnos je rovnaký, je však oveľa menej volatilný. Priraďte polia k NFT poľa. Môžete ľahko prepínať združenia bez nutnosti opakovaného vytvárania polí."
 
-#: src/components/plot/add/PlotAddNFT.tsx:133
+#: src/components/plot/add/PlotAddNFT.tsx:138
 msgid "Join a pool and get more consistent XCH farming rewards. Create a plot NFT and assign your new plots to a group."
 msgstr "Pripojte sa k združeniu a získajte konzistentnejšie farmárske XCH odmeny. Vytvorte NFT poľa a priraďte svoje nové polia do skupiny."
 
@@ -1307,11 +1335,11 @@ msgstr "Ochrana prístupovou frázou vyžaduje migráciu"
 msgid "Minimum Difficulty"
 msgstr "Minimálna zložitosť"
 
-#: src/components/plot/add/PlotAddNumberOfPlots.tsx:97
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:98
 msgid "Minutes"
 msgstr "Minút"
 
-#: src/components/plot/add/PlotAddNumberOfPlots.tsx:116
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:118
 msgid "More memory slightly increases speed"
 msgstr "Viac pamäte mierne zvyšuje rýchlosť"
 
@@ -1393,7 +1421,7 @@ msgstr "ID uzla"
 msgid "Node Id"
 msgstr "Id uzla"
 
-#: src/components/plot/add/PlotAddNFT.tsx:86
+#: src/components/plot/add/PlotAddNFT.tsx:91
 msgid "None"
 msgstr "Žiadny"
 
@@ -1440,11 +1468,15 @@ msgstr "Toto však nezmení vaše platobné adresy združovania. Ovplyvňuje to 
 msgid "Number of Plots"
 msgstr "Počet polí"
 
-#: src/components/plot/add/PlotAddNumberOfPlots.tsx:147
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:171
 msgid "Number of buckets"
 msgstr "Počet sektorov"
 
-#: src/components/plot/add/PlotAddNumberOfPlots.tsx:133
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:188
+msgid "Number of buckets for phase 3 & 4"
+msgstr ""
+
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:136
 msgid "Number of threads"
 msgstr "Počet vlákien"
 
@@ -1477,11 +1509,11 @@ msgstr "Je povolený iba jeden záložný súbor."
 msgid "Outgoing"
 msgstr "Odchádzajúce"
 
-#: src/components/app/AppKeyringMigrator.tsx:135
-#: src/components/app/AppKeyringMigrator.tsx:136
-#: src/components/app/AppPassPrompt.tsx:225
-#: src/components/settings/RemovePassphrasePrompt.tsx:126
-#: src/components/settings/SetPassphrasePrompt.tsx:155
+#: src/components/app/AppKeyringMigrator.tsx:129
+#: src/components/app/AppKeyringMigrator.tsx:130
+#: src/components/app/AppPassPrompt.tsx:221
+#: src/components/settings/RemovePassphrasePrompt.tsx:123
+#: src/components/settings/SetPassphrasePrompt.tsx:142
 msgid "Passphrase"
 msgstr "Prístupová fráza"
 
@@ -1501,8 +1533,8 @@ msgstr "Nápoveda prístupovej frázy (nepovinná)"
 msgid "Passphrase Settings"
 msgstr "Nastavenia prístupovej frázy"
 
-#: src/components/app/AppPassPrompt.tsx:152
-#: src/components/settings/RemovePassphrasePrompt.tsx:67
+#: src/components/app/AppPassPrompt.tsx:149
+#: src/components/settings/RemovePassphrasePrompt.tsx:64
 msgid "Passphrase is incorrect"
 msgstr "Prístupová fráza je nesprávna"
 
@@ -1636,9 +1668,9 @@ msgstr "Prosím zadajte platný verejný kľúč"
 msgid "Please enter your current passphrase, and a new passphrase"
 msgstr "Prosím, zadajte svoju aktuálnu prístupovú frázu, a novú prístupovú frázu"
 
-#: src/components/app/AppPassPrompt.tsx:185
-#: src/components/app/AppPassPrompt.tsx:201
-#: src/components/settings/RemovePassphrasePrompt.tsx:50
+#: src/components/app/AppPassPrompt.tsx:182
+#: src/components/app/AppPassPrompt.tsx:198
+#: src/components/settings/RemovePassphrasePrompt.tsx:47
 msgid "Please enter your passphrase"
 msgstr "Prosím, zadajte svoju prístupovú frázu"
 
@@ -1671,13 +1703,13 @@ msgstr "Prosím vyberte farbu mince"
 #~ msgid "Please select coin type"
 #~ msgstr ""
 
-#: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:45
-#: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:49
+#: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:56
+#: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:60
 msgid "Please specify final directory"
 msgstr "Prosím, vyberte cieľový adresár"
 
-#: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:60
-#: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:64
+#: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:73
+#: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:77
 msgid "Please specify temporary directory"
 msgstr "Prosím, vyberte dočasný adresár"
 
@@ -1690,12 +1722,12 @@ msgstr "Počkajte prosím na synchronizáciu"
 msgid "Please wait for wallet synchronization"
 msgstr "Počkajte prosím na synchronizáciu peňaženky"
 
-#: src/components/plot/Plot.tsx:18
+#: src/components/plot/Plot.tsx:28
 msgid "Plot"
 msgstr "Pole"
 
 #: src/components/farm/card/FarmCardPlotCount.tsx:12
-#: src/components/plot/add/PlotAddNumberOfPlots.tsx:41
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:44
 msgid "Plot Count"
 msgstr "Počet plotov"
 
@@ -1728,7 +1760,7 @@ msgstr "Verejný kľúč poľa"
 #~ msgid "Plot Seed"
 #~ msgstr ""
 
-#: src/components/plot/add/PlotAddChooseSize.tsx:80
+#: src/components/plot/add/PlotAddChooseSize.tsx:94
 msgid "Plot Size"
 msgstr "Veľkosť poľa"
 
@@ -1760,6 +1792,10 @@ msgstr "Polia, ktoré prešli filtrom"
 msgid "Plots are allocated space on your hard drive used to farm and earn Chia. <0>Learn more</0>"
 msgstr "Polia sú pridelené priestory na vašom pevnom disku používanom na ťažbu a zarábanie Chia. <0>Ďalšie informácie</0>"
 
+#: src/components/plot/add/PlotAddChoosePlotter.tsx:118
+msgid "Plotter"
+msgstr ""
+
 #: src/components/plot/queue/PlotQueueIndicator.tsx:34
 msgid "Plotting"
 msgstr "Vytváranie poľa"
@@ -1768,7 +1804,7 @@ msgstr "Vytváranie poľa"
 msgid "Plotting in parallel can save time. Otherwise, add plot(s) to the queue."
 msgstr "Paralelné vytváranie polí môže ušetriť čas. V opačnom prípade sa pridá do frontu."
 
-#: src/components/plot/add/PlotAddNumberOfPlots.tsx:174
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:217
 msgid "Plotting with bitfield enabled has about 30% less overall writes and is now almost always faster. You may see reduced memory requirements with bitfield plotting disabled. If your CPU design is from before 2010 you may have to disable bitfield plotting."
 msgstr "Vykresľovanie s bitovým poľom umožňuje okolo 30% menej zápisov a je teraz takmer vždy rýchlejšie. Vypnutím bitového poľa môžete znížiť požiadavky na pamäť. Ak je vaše CPU z pred roku 2010, možno budete musieť vykresľovanie s bitovým poľom deaktivovať."
 
@@ -1813,7 +1849,7 @@ msgid "Pool Payout Instructions"
 msgstr "Pokyny združenia na výplatu"
 
 #: src/components/block/Block.jsx:264
-#: src/components/plot/add/PlotAddNumberOfPlots.tsx:222
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:308
 msgid "Pool Public Key"
 msgstr "Verejný kľúč združenia"
 
@@ -1933,7 +1969,7 @@ msgstr "Verejný kľúč:"
 msgid "Puzzlehash"
 msgstr "Hash hádaniek"
 
-#: src/components/plot/add/PlotAddNumberOfPlots.tsx:162
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:204
 msgid "Queue Name"
 msgstr "Názov frontu"
 
@@ -1949,7 +1985,7 @@ msgstr "V poradí"
 #~ msgid "Quit"
 #~ msgstr "Quit"
 
-#: src/components/plot/add/PlotAddNumberOfPlots.tsx:115
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:117
 msgid "RAM max usage"
 msgstr "Maximálna spotreba RAM"
 
@@ -2077,7 +2113,7 @@ msgstr "Uložiť prístupovú frázu"
 msgid "Search block by header hash"
 msgstr "Hľadanie bloku podľa hashu záhlavia"
 
-#: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:93
+#: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:106
 msgid "Second temporary folder location"
 msgstr "Druhý dočasný adresár"
 
@@ -2093,11 +2129,11 @@ msgstr "Zobraziť privátny kľúč"
 msgid "Seed:"
 msgstr "Zrnko:"
 
-#: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:87
+#: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:100
 msgid "Select 2nd Temporary Directory"
 msgstr "Vyberte druhý dočasný adresár"
 
-#: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:23
+#: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:34
 msgid "Select Final Directory"
 msgstr "Vyberte cieľový adresár"
 
@@ -2109,7 +2145,7 @@ msgstr "Vyberte kľúč"
 msgid "Select Offer"
 msgstr "Vyberte ponuku"
 
-#: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:39
+#: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:52
 msgid "Select Temporary Directory"
 msgstr "Vyberte dočasný adresár"
 
@@ -2117,7 +2153,7 @@ msgstr "Vyberte dočasný adresár"
 msgid "Select Wallet Type"
 msgstr "Vyberte typ peňaženky"
 
-#: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:25
+#: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:36
 msgid "Select the final destination for the folder where you would like the plot to be stored. We recommend you use a large slow hard drive (like external HDD)."
 msgstr "Vyberte cieľový adresár, do ktorého chcete uložiť pole. Odporúčame vám používať veľký pomalý pevný disk (napríklad externý pevný disk)."
 
@@ -2125,21 +2161,21 @@ msgstr "Vyberte cieľový adresár, do ktorého chcete uložiť pole. Odporúča
 #~ msgid "Select the temporary destination for the folder where you would like the plot to be stored. We recommend you use a fast SSD."
 #~ msgstr "Select the temporary destination for the folder where you would like the plot to be stored. We recommend you use a fast SSD."
 
-#: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:41
+#: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:54
 msgid "Select the temporary destination for the folder where you would like the plot to be stored. We recommend you use a fast drive."
 msgstr "Vyberte dočasný adresár, do ktorého chcete uložiť pole. Odporúčame vám použiť rýchle úložisko dát."
 
-#: src/components/plot/add/PlotAddNFT.tsx:81
+#: src/components/plot/add/PlotAddNFT.tsx:86
 msgid "Select your Plot NFT"
 msgstr "Vyberte NFT vášho poľa"
 
-#: src/components/plot/add/PlotAddNFT.tsx:72
+#: src/components/plot/add/PlotAddNFT.tsx:77
 msgid "Select your Plot NFT from the dropdown or create a new one."
 msgstr "Vyberte svoje NFT poľa z rozbaľovacej ponuky alebo vytvorte nové."
 
-#: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:61
-#: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:77
-#: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:108
+#: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:72
+#: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:90
+#: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:121
 msgid "Selected"
 msgstr "Vybrané"
 
@@ -2226,7 +2262,7 @@ msgstr "Preskočiť ochranu prístupovou frázou"
 #~ msgid "Skips adding [final dir] to harvester for farming"
 #~ msgstr "Skips adding [final dir] to harvester for farming"
 
-#: src/components/plot/add/PlotAddNumberOfPlots.tsx:195
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:281
 msgid "Skips adding a final directory to harvester for farming"
 msgstr "Preskočiť pridanie cieľového adresára do zberača pre farmárčenie"
 
@@ -2237,6 +2273,10 @@ msgstr "Zjemnite si svoje farmárske XCH odmeny pripojením sa k združeniu."
 #: src/components/plotNFT/PlotNFTGetPoolLoginLinkDialog.tsx:60
 msgid "Something went wrong"
 msgstr "Niečo sa pokazilo"
+
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:138
+msgid "Specify a value of 0 to use all available threads"
+msgstr ""
 
 #: src/electron/main.tsx:479
 msgid "Speech"
@@ -2319,7 +2359,7 @@ msgstr "Stav:"
 #~ msgid "Sub Block at height {0} in the Chia blockchain"
 #~ msgstr "Sub Block at height {0} in the Chia blockchain"
 
-#: src/components/app/AppPassPrompt.tsx:202
+#: src/components/app/AppPassPrompt.tsx:199
 #: src/components/wallet/did/WalletDID.tsx:889
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:347
 msgid "Submit"
@@ -2377,7 +2417,7 @@ msgstr "Hash hádaniek cieľa"
 #~ msgid "Temporary files are created during the plotting process which exceeds the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
 #~ msgstr ""
 
-#: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:51
+#: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:64
 msgid "Temporary folder location"
 msgstr "Dočasný adresár"
 
@@ -2389,8 +2429,8 @@ msgstr "Aplikácia prestane pracovať pri výške bloku 193536."
 msgid "The full node that your farmer is connected to is below. <0>Learn more</0>"
 msgstr "Celý uzol, ku ktorému je váš farmár pripojený, je uvedený nižšie. <0> Ďalšie informácie </0>"
 
-#: src/components/plot/add/PlotAddChooseSize.tsx:34
-#: src/components/plot/add/PlotAddChooseSize.tsx:91
+#: src/components/plot/add/PlotAddChooseSize.tsx:48
+#: src/components/plot/add/PlotAddChooseSize.tsx:105
 msgid "The minimum required size for mainnet is k=32"
 msgstr "Minimálna požadovaná veľkosť pre sieť mainnet je k = 32"
 
@@ -2469,7 +2509,7 @@ msgid "This difficulty is an artifically lower difficulty than on the real netwo
 msgstr "Táto zložitosť je umelo nižšou zložitosťou ako v skutočnej sieti a používa sa pri farmárčení na vyhľadanie ďalších dôkazov a ich odoslanie do združenia. Čím viac polí máte, tým vyššia zložitosť. Zložitosť však nemá vplyv na odmeny."
 
 #: src/components/trading/CreateOffer.jsx:123
-#: src/hooks/useSelectDirectory.tsx:32
+#: src/hooks/useSelectDirectory.tsx:33
 #: src/hooks/useSelectFile.tsx:21
 msgid "This feature is available only from the GUI."
 msgstr "Táto možnosť je dostupná iba z Electron aplikácie."
@@ -2543,6 +2583,10 @@ msgstr "Tento obchod bol zahrnutý v blockchaine na tejto pozícii"
 #: src/components/app/AppTimeBombAlert.tsx:19
 msgid "This version of Chia is no longer compatible with the blockchain and can not safely farm."
 msgstr "Táto verzia Chii nie je kompatibilná s blockchainom a farmenie na nej nie je bezpečné."
+
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:154
+msgid "Thread Multiplier for Phase 2"
+msgstr ""
 
 #: src/components/fullNode/FullNode.jsx:92
 msgid "Time Created"
@@ -2634,7 +2678,7 @@ msgstr "Hash filtra transakcií"
 msgid "Type"
 msgstr "Typ"
 
-#: src/components/plot/add/PlotAdd.tsx:101
+#: src/components/plot/add/PlotAdd.tsx:132
 msgid "Unable to create plot NFT"
 msgstr "Nepodarilo sa vytvoriť NFT poľa"
 
@@ -2791,9 +2835,13 @@ msgstr "Chcete sa pripojiť k združeniu? Vytvorte NFT poľa"
 msgid "Want to earn more Chia? Add more plots to your farm."
 msgstr "Chcete zarobiť viac Chia? Pridajte na svoju farmu ďalšie polia."
 
-#: src/components/plot/add/PlotAddNumberOfPlots.tsx:86
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:87
 msgid "Want to have a delay before the next plot starts?"
 msgstr "Chcete oneskoriť začiatok vykresľovania ďalšieho poľa?"
+
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:252
+msgid "Warm start"
+msgstr ""
 
 #: src/components/selectKey/SelectKey.tsx:88
 #: src/components/selectKey/SelectKey.tsx:119
@@ -2836,7 +2884,7 @@ msgstr "Okno"
 msgid "Without fees"
 msgstr "Bez poplatkov"
 
-#: src/components/plot/add/PlotAddChooseSize.tsx:35
+#: src/components/plot/add/PlotAddChooseSize.tsx:49
 #: src/components/trading/TradingOverview.jsx:209
 #: src/electron/main.tsx:192
 msgid "Yes"
@@ -2855,7 +2903,7 @@ msgstr "Nemáte osobné združenie"
 msgid "You can still create plots for this plot NFT, but you can not make changes until sync is complete."
 msgstr "Stále môžete vytvárať polia pre tento NFT, ale nemôžete robiť zmeny, kým nie je dokončená synchronizácia."
 
-#: src/components/plot/add/PlotAddChooseSize.tsx:63
+#: src/components/plot/add/PlotAddChooseSize.tsx:77
 msgid "You do not need to be synced or connected to plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
 msgstr "Na vykreslenie poľa nemusí byť počítač synchronizovaný ani pripojený. Počas procesu vykresľovania sa vytvárajú dočasné súbory, ktoré presahujú veľkosť konečných súborov poľa. Uistite sa, že máte dostatok miesta. <0> Ďalšie informácie </0>"
 
@@ -2983,7 +3031,7 @@ msgstr "pozícia:"
 msgid "not synced"
 msgstr "nesynchronizované"
 
-#: src/components/plot/add/PlotAdd.tsx:105
+#: src/components/plot/add/PlotAdd.tsx:136
 msgid "p2_singleton_puzzle_hash is not defined"
 msgstr "p2_singleton_puzzle_hash nie je definovaný"
 
@@ -3014,6 +3062,11 @@ msgstr "{0, plural, one {Prístupové frázy musia mať aspoň # znak} few {Prí
 #~ msgid "{0} User Transaction Fees"
 #~ msgstr "{0} User Transaction Fees"
 
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:172
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:189
+msgid "{0} buckets is recommended"
+msgstr ""
+
 #: src/components/plotNFT/PlotNFTGraph.tsx:111
 msgid "{0} points {1} - {2} hours ago"
 msgstr "{0} bodov pred {1} - {2} hodinami"
@@ -3033,4 +3086,8 @@ msgstr "{currencyCode} Užívateľské poplatky za transakcie"
 #: src/components/core/components/Amount/Amount.tsx:82
 msgid "{mojo, plural, one {mojo} other {mojos}}"
 msgstr "{mojo, plural, one {mojo} few {mojos} many {mojos} other {mojos}}"
+
+#: src/components/plot/add/PlotAddChoosePlotter.tsx:133
+msgid "{warning}"
+msgstr ""
 
