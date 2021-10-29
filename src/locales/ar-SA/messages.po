@@ -307,7 +307,7 @@ msgstr "يمكن الإسترجاع من النسخة الاحتياطية لل�
 #: src/components/farm/FarmManageFarmingRewards.tsx:200
 #: src/components/fullNode/FullNodeAddConnection.tsx:89
 #: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:128
-#: src/components/plotNFT/select/PlotNFTSelectBase.tsx:87
+#: src/components/plotNFT/select/PlotNFTSelectBase.tsx:85
 #: src/components/plotNFT/select/PlotNFTSelectFaucet.tsx:30
 #: src/components/selectKey/SelectKey.tsx:138
 #: src/components/settings/ChangePassphrasePrompt.tsx:240
@@ -374,7 +374,7 @@ msgstr "إختر عدد القطع"
 msgid "Choose Plot Size"
 msgstr "إختر حجم القطعة"
 
-#: src/components/plot/add/PlotAddChoosePlotter.tsx:105
+#: src/components/plot/add/PlotAddChoosePlotter.tsx:94
 msgid "Choose Plotter"
 msgstr ""
 
@@ -467,7 +467,7 @@ msgstr "إتصال"
 msgid "Connect to other peers"
 msgstr "الاتصال بنقاط شبكة اخري"
 
-#: src/components/plotNFT/select/PlotNFTSelectBase.tsx:116
+#: src/components/plotNFT/select/PlotNFTSelectBase.tsx:114
 msgid "Connect to pool"
 msgstr "الاتصال بالمجمع"
 
@@ -723,7 +723,7 @@ msgstr ""
 #~ msgid "Deleting the key will permanently remove the key from your computer, make sure you have backups. Are you sure you want to continue?"
 #~ msgstr "سيؤدي حذف المفتاح إلى إزالة المفتاح بشكل دائم من جهاز الكمبيوتر الخاص بك، تأكد من أن لديك نسخ احتياطية. هل أنت متأكد من أنك تريد المتابعة؟"
 
-#: src/components/plot/add/PlotAddChoosePlotter.tsx:107
+#: src/components/plot/add/PlotAddChoosePlotter.tsx:96
 msgid "Depending on your system configuration, you may find that an alternative plotter produces plots faster than the default Chia Proof of Space plotter. If unsure, use the default Chia Proof of Space plotter."
 msgstr ""
 
@@ -828,7 +828,7 @@ msgstr ""
 msgid "Enter the 24 word mnemonic that you have saved in order to restore your Chia wallet."
 msgstr "أدخل الـ 24 كلمة التي قمت بحفظها من أجل استعادة محفظة Chia الخاصة بك."
 
-#: src/components/settings/RemovePassphrasePrompt.tsx:115
+#: src/components/settings/RemovePassphrasePrompt.tsx:118
 msgid "Enter your passphrase:"
 msgstr ""
 
@@ -953,7 +953,7 @@ msgstr "حالة المزرعة"
 
 #: src/components/core/components/Fee/Fee.tsx:48
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:154
-#: src/components/plotNFT/select/PlotNFTSelectBase.tsx:147
+#: src/components/plotNFT/select/PlotNFTSelectBase.tsx:145
 #: src/components/pool/PoolInfo.tsx:17
 #: src/components/wallet/WalletHistory.tsx:66
 #: src/components/wallet/create/createExistingColouredCoin.jsx:123
@@ -1509,11 +1509,11 @@ msgstr ""
 msgid "Outgoing"
 msgstr "الصادرة"
 
-#: src/components/app/AppKeyringMigrator.tsx:129
-#: src/components/app/AppKeyringMigrator.tsx:130
-#: src/components/app/AppPassPrompt.tsx:221
-#: src/components/settings/RemovePassphrasePrompt.tsx:123
-#: src/components/settings/SetPassphrasePrompt.tsx:142
+#: src/components/app/AppKeyringMigrator.tsx:135
+#: src/components/app/AppKeyringMigrator.tsx:136
+#: src/components/app/AppPassPrompt.tsx:225
+#: src/components/settings/RemovePassphrasePrompt.tsx:126
+#: src/components/settings/SetPassphrasePrompt.tsx:155
 msgid "Passphrase"
 msgstr ""
 
@@ -1533,8 +1533,8 @@ msgstr ""
 msgid "Passphrase Settings"
 msgstr ""
 
-#: src/components/app/AppPassPrompt.tsx:149
-#: src/components/settings/RemovePassphrasePrompt.tsx:64
+#: src/components/app/AppPassPrompt.tsx:152
+#: src/components/settings/RemovePassphrasePrompt.tsx:67
 msgid "Passphrase is incorrect"
 msgstr ""
 
@@ -1668,9 +1668,9 @@ msgstr "الرجاء إدخال المفتاح العام الصحيح"
 msgid "Please enter your current passphrase, and a new passphrase"
 msgstr ""
 
-#: src/components/app/AppPassPrompt.tsx:182
-#: src/components/app/AppPassPrompt.tsx:198
-#: src/components/settings/RemovePassphrasePrompt.tsx:47
+#: src/components/app/AppPassPrompt.tsx:185
+#: src/components/app/AppPassPrompt.tsx:201
+#: src/components/settings/RemovePassphrasePrompt.tsx:50
 msgid "Please enter your passphrase"
 msgstr ""
 
@@ -1792,7 +1792,7 @@ msgstr "اجتاز تصفية المؤامرات"
 msgid "Plots are allocated space on your hard drive used to farm and earn Chia. <0>Learn more</0>"
 msgstr "يتم تخصيص مساحة قطع الأراضي على محرك الأقراص الثابتة الخاص بك لاستخدامها في الزراعة وكسب Chia. <0> معرفة المزيد </0>"
 
-#: src/components/plot/add/PlotAddChoosePlotter.tsx:118
+#: src/components/plot/add/PlotAddChoosePlotter.tsx:107
 msgid "Plotter"
 msgstr ""
 
@@ -2188,7 +2188,7 @@ msgstr ""
 msgid "Self Pooling"
 msgstr ""
 
-#: src/components/plotNFT/select/PlotNFTSelectBase.tsx:105
+#: src/components/plotNFT/select/PlotNFTSelectBase.tsx:103
 msgid "Self pool. When you win a block you will earn XCH rewards."
 msgstr ""
 
@@ -2359,7 +2359,7 @@ msgstr "الحالة:"
 #~ msgid "Sub Block at height {0} in the Chia blockchain"
 #~ msgstr "Sub Block at height {0} in the Chia blockchain"
 
-#: src/components/app/AppPassPrompt.tsx:199
+#: src/components/app/AppPassPrompt.tsx:202
 #: src/components/wallet/did/WalletDID.tsx:889
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:347
 msgid "Submit"
@@ -2728,7 +2728,7 @@ msgstr "تعديلات فتحة VDF الفرعية"
 msgid "Value seems high"
 msgstr ""
 
-#: src/components/plotNFT/select/PlotNFTSelectBase.tsx:156
+#: src/components/plotNFT/select/PlotNFTSelectBase.tsx:154
 msgid "Verify Pool Details"
 msgstr ""
 
@@ -3050,10 +3050,6 @@ msgstr "تمت المزامنة"
 msgid "syncing"
 msgstr "جاري المزامنة"
 
-#: src/components/plot/add/PlotAddChoosePlotter.tsx:89
-msgid "thirdparty.plotter.disclaimer"
-msgstr ""
-
 #: src/components/app/AppPassPrompt.tsx:48
 msgid "{0, plural, one {Passphrases must be at least # character in length} other {Passphrases must be at least # characters in length}}"
 msgstr ""
@@ -3091,6 +3087,6 @@ msgstr "{currencyCode} رسوم المعاملات للمستخدم"
 msgid "{mojo, plural, one {mojo} other {mojos}}"
 msgstr ""
 
-#: src/components/plot/add/PlotAddChoosePlotter.tsx:133
+#: src/components/plot/add/PlotAddChoosePlotter.tsx:122
 msgid "{warning}"
 msgstr ""
