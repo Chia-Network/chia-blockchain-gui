@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh_CN\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-10-29 04:41\n"
+"PO-Revision-Date: 2021-10-29 10:42\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -342,7 +342,7 @@ msgstr "变更"
 #: src/components/settings/ChangePassphrasePrompt.tsx:248
 #: src/components/settings/Settings.tsx:158
 msgid "Change Passphrase"
-msgstr "修改密码"
+msgstr "修改私钥密码"
 
 #: src/components/plotNFT/PlotNFTCard.tsx:408
 #: src/components/plotNFT/PlotNFTChangePool.tsx:110
@@ -437,13 +437,13 @@ msgstr "确认断开连接"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:198
 msgid "Confirm New Passphrase"
-msgstr "确认密码"
+msgstr "确认新私钥密码"
 
 #: src/components/app/AppKeyringMigrator.tsx:146
 #: src/components/app/AppKeyringMigrator.tsx:147
 #: src/components/settings/SetPassphrasePrompt.tsx:166
 msgid "Confirm Passphrase"
-msgstr "确认密码"
+msgstr "确认私钥密码"
 
 #: src/components/plotNFT/PlotNFTCard.tsx:121
 #: src/components/wallet/standard/WalletStandard.tsx:622
@@ -636,7 +636,7 @@ msgstr "当前难度"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:178
 msgid "Current Passphrase"
-msgstr "当前密码"
+msgstr "设置私钥密码"
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:156
 #: src/components/plotNFT/PlotNFTCard.tsx:198
@@ -725,7 +725,7 @@ msgstr "正在删除密钥"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:107
 msgid "Depending on your system configuration, you may find that an alternative plotter produces plots faster than the default Chia Proof of Space plotter. If unsure, use the default Chia Proof of Space plotter."
-msgstr ""
+msgstr "您可能会发现备用开垦机生产力比默认开垦机快，这取决于您的系统配置，如果您不确定，请使用默认的开垦机开垦机奇亚证明。"
 
 #: src/electron/main.tsx:313
 msgid "Developer"
@@ -878,11 +878,11 @@ msgstr "打开失败（农田无效）"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:97
 msgid "Failed to remove passphrase: {error}"
-msgstr "移除密码失败： {error}"
+msgstr "移除私钥密码失败：{error}"
 
 #: src/components/settings/SetPassphrasePrompt.tsx:92
 msgid "Failed to set passphrase: {error}"
-msgstr "设置密码失败: {error}"
+msgstr "设置私钥密码失败: {error}"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:120
 msgid "Failed to update passphrase: {error}"
@@ -2220,7 +2220,7 @@ msgstr "设置私钥密码"
 
 #: src/components/app/AppPassPrompt.tsx:75
 msgid "Setting a passphrase is strongly recommended to protect your keys. Are you sure you want to skip setting a passphrase?"
-msgstr ""
+msgstr "强烈建议设置私钥密码以保护您的密钥。是否要跳过设置私钥密码？"
 
 #: src/components/dashboard/DashboardSideBar.tsx:76
 #: src/components/settings/Settings.tsx:239
@@ -2252,11 +2252,11 @@ msgstr "跳过"
 
 #: src/components/app/AppKeyringMigrator.tsx:48
 msgid "Skip Keyring Migration"
-msgstr ""
+msgstr "跳过密钥串迁移"
 
 #: src/components/app/AppPassPrompt.tsx:73
 msgid "Skip Passphrase Protection"
-msgstr ""
+msgstr "跳过私钥密码保护"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:129
 #~ msgid "Skips adding [final dir] to harvester for farming"
@@ -2276,7 +2276,7 @@ msgstr "出错了"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:138
 msgid "Specify a value of 0 to use all available threads"
-msgstr ""
+msgstr "输 0 即使用所有可用线程"
 
 #: src/electron/main.tsx:479
 msgid "Speech"
@@ -2445,7 +2445,7 @@ msgstr "节点正在同步中, 也就是说它正在从其他节点下载区块,
 #: src/components/wallet/did/WalletDID.tsx:790
 #: src/components/wallet/did/WalletDIDCreate.tsx:89
 msgid "The number of Backup IDs needed for recovery cannot exceed the number of Backup IDs added."
-msgstr ""
+msgstr "恢复所需的备份 ID 的数量不能超过添加的备份ID数量。"
 
 #: src/hooks/usePoolInfo.ts:57
 msgid "The pool URL \"{normalizedUrl}\" is not working. Is it pool? Error: {0}"
@@ -2473,7 +2473,7 @@ msgstr "切换农业合作社操作已被取消。请重新尝试切换农业合
 
 #: src/components/app/AppPassPrompt.tsx:37
 msgid "The provided passphrase and confirmation do not match"
-msgstr ""
+msgstr "提供的私钥密码跟确认的不匹配"
 
 #: src/components/block/Block.jsx:303
 msgid "The seed used to create the plot. This depends on the pool pk and plot pk."
@@ -2586,7 +2586,7 @@ msgstr "此版本的奇亚客户端与区块链已经不再兼容，无法安全
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:154
 msgid "Thread Multiplier for Phase 2"
-msgstr ""
+msgstr "第2阶段线程乘数"
 
 #: src/components/fullNode/FullNode.jsx:92
 msgid "Time Created"
@@ -2714,7 +2714,7 @@ msgstr "用户公钥"
 
 #: src/components/app/AppPassPrompt.tsx:79
 msgid "Using a passphrase is strongly recommended to protect your keys. Are you sure you want to disable passphrase protection?"
-msgstr ""
+msgstr "强烈建议设置私钥密码以保护您的密钥。是否要跳过禁用私钥密码？"
 
 #: src/components/fullNode/card/FullNodeCardVDFSubSlotIterations.tsx:20
 msgid "VDF Sub Slot Iterations"
@@ -2841,7 +2841,7 @@ msgstr "想要在开垦下一块农田前等待一会？"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:252
 msgid "Warm start"
-msgstr ""
+msgstr "热启动"
 
 #: src/components/selectKey/SelectKey.tsx:88
 #: src/components/selectKey/SelectKey.tsx:119
@@ -2905,7 +2905,7 @@ msgstr "你现在可以使用这个农田NFT开垦新农田，但是在同步完
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:77
 msgid "You do not need to be synced or connected to plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
-msgstr ""
+msgstr "不需要同步或者连接到网络节点就可以开垦农田。在开垦过程中产生的临时文件尺寸会大于最终的农田大小。请确认你有足够的存储空间。<0>了解更多</0>"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:56
 #~ msgid "You do not need to be synched or connected to Plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
@@ -2957,7 +2957,7 @@ msgstr "你将会收到 <0/> 至 {address}"
 
 #: src/components/wallet/did/WalletDID.tsx:328
 msgid "Your DID requires at least {dids_num_req} attestation file{0} for recovery. Please upload additional files."
-msgstr ""
+msgstr "您的DID需要至少 {dids_num_req} 认证文件{0} 才能恢复。请上传其他文件。"
 
 #: src/components/farm/overview/FarmOverview.tsx:37
 msgid "Your Farm Overview"
@@ -2981,33 +2981,33 @@ msgstr "您的钥匙串已锁定"
 
 #: src/components/app/AppKeyringMigrator.tsx:54
 msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Are you sure you want to skip migrating your keys?"
-msgstr ""
+msgstr "您的密钥尚未迁移到新的密钥串中。在迁移完成之前，您将无法创建新密钥或删除现有密钥。 您确定要跳过密钥迁移吗？"
 
 #: src/components/selectKey/SelectKey.tsx:141
 msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Would you like to migrate your keys now?"
-msgstr ""
+msgstr "您的密钥尚未迁移到新的密钥串。在迁移完成之前，您将无法创建新密钥或删除现有密钥。您想要现在迁移密钥吗？"
 
 #: src/components/app/AppKeyringMigrator.tsx:101
 msgid "Your keys need to be migrated to a new keyring that is optionally secured by a master passphrase."
-msgstr ""
+msgstr "您的密钥需要迁移到一个新的密钥串，该密钥串可以选择由主私钥密码进行保护。"
 
 #: src/components/app/AppKeyringMigrator.tsx:107
 msgid "Your keys need to be migrated to a new keyring that is secured by a master passphrase."
-msgstr ""
+msgstr "您的密钥需要迁移到由私钥密码保护的新密钥串中。"
 
 #: src/components/app/AppKeyringMigrator.tsx:177
 #: src/components/settings/ChangePassphrasePrompt.tsx:227
 #: src/components/settings/SetPassphrasePrompt.tsx:197
 msgid "Your passphrase can be stored in your system's secure credential store. Chia will be able to access your keys without prompting for your passphrase."
-msgstr ""
+msgstr "您的私钥密码可以存储在系统的安全凭据中。Chia将能够访问您的密钥，而无需提示输入您的私钥密码。"
 
 #: src/components/settings/Settings.tsx:80
 msgid "Your passphrase has been set"
-msgstr ""
+msgstr "您的私钥密码已经设置"
 
 #: src/components/settings/Settings.tsx:67
 msgid "Your passphrase has been updated"
-msgstr ""
+msgstr "已更新您的私钥密码。"
 
 #: src/util/getDescriptiveError.ts:5
 msgid "[Error 13] Permission denied. You are trying to access a file/directory without having the necessary permissions. Most likely one of the plot folders in your config.yaml has an issue."
@@ -3052,7 +3052,7 @@ msgstr "同步中"
 
 #: src/components/app/AppPassPrompt.tsx:48
 msgid "{0, plural, one {Passphrases must be at least # character in length} other {Passphrases must be at least # characters in length}}"
-msgstr ""
+msgstr "{0, plural, other {密码长度必须至少为 # 个字符}}"
 
 #: src/components/farm/card/FarmCardBlockRewards.tsx:16
 #~ msgid "{0} Block Rewards"
@@ -3065,7 +3065,7 @@ msgstr ""
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:172
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:189
 msgid "{0} buckets is recommended"
-msgstr ""
+msgstr "推荐{0} 个bucket"
 
 #: src/components/plotNFT/PlotNFTGraph.tsx:111
 msgid "{0} points {1} - {2} hours ago"
@@ -3089,5 +3089,5 @@ msgstr "{mojo, plural, one {mojo} other {mojos}}"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:133
 msgid "{warning}"
-msgstr ""
+msgstr "{warning}"
 
