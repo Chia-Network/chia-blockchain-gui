@@ -8,7 +8,7 @@ msgstr ""
 "Language: fi_FI\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-10-28 22:46\n"
+"PO-Revision-Date: 2021-10-29 22:44\n"
 "Last-Translator: \n"
 "Language-Team: Finnish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -20,11 +20,11 @@ msgstr ""
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:78
 msgid "(Not Installed)"
-msgstr ""
+msgstr "(Ei asennettu)"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:75
 msgid "(Not Supported)"
-msgstr ""
+msgstr "(Ei tuettu)"
 
 #: src/components/plot/add/PlotAddNFT.tsx:67
 msgid "(Optional)"
@@ -56,7 +56,7 @@ msgstr "Harvesteri on palvelu koneella, jolle plot-tiedostot on tallennettu. Far
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:155
 msgid "A value of {0} is recommended"
-msgstr ""
+msgstr "Arvo {0} on suositeltu"
 
 #: src/electron/main.tsx:431
 #: src/electron/main.tsx:518
@@ -147,7 +147,7 @@ msgstr "Kun avaimet ovat onnistuneesti siirretty uuteen avainlenkkiin, voit halu
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:238
 msgid "Alternate tmpdir/tmpdir2"
-msgstr ""
+msgstr "Vaihtoehtoinen tmpdir/tmpdir2"
 
 #: src/components/core/components/Amount/Amount.tsx:99
 #: src/components/trading/CreateOffer.jsx:196
@@ -376,7 +376,7 @@ msgstr "Anna Tiedoston Koko"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:105
 msgid "Choose Plotter"
-msgstr ""
+msgstr "Valitse Plotteri"
 
 #: src/components/plotNFT/PlotNFTCard.tsx:384
 #: src/components/pool/PoolOverview.tsx:92
@@ -725,7 +725,7 @@ msgstr "Poistetaan avainta"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:107
 msgid "Depending on your system configuration, you may find that an alternative plotter produces plots faster than the default Chia Proof of Space plotter. If unsure, use the default Chia Proof of Space plotter."
-msgstr ""
+msgstr "Riippuen järjestelmän kokoonpanosta, saatat huomata, että vaihtoehtoinen plotteri tuottaa plottitiedostoja nopeammin kuin Chia Proof of Space -plotteri. Jos olet epävarma, käytä oletusarvoista Chia Proof Space -plotteria."
 
 #: src/electron/main.tsx:313
 msgid "Developer"
@@ -746,7 +746,7 @@ msgstr "Poista Käytöstä"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:266
 msgid "Disable NUMA"
-msgstr ""
+msgstr "Poista NUMA Käytöstä"
 
 #: src/components/app/AppPassPrompt.tsx:77
 msgid "Disable Passphrase Protection"
@@ -1474,7 +1474,7 @@ msgstr "Muistilohkojen määrä"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:188
 msgid "Number of buckets for phase 3 & 4"
-msgstr ""
+msgstr "Vaiheen 3 ja 4 muistilohkojen (bucket) määrä"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:136
 msgid "Number of threads"
@@ -1794,7 +1794,7 @@ msgstr "Plotit ovat levyn tilavarauksia, joilla tuotetaan ja ansaitaan Chioja. <
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:118
 msgid "Plotter"
-msgstr ""
+msgstr "Plotteri"
 
 #: src/components/plot/queue/PlotQueueIndicator.tsx:34
 msgid "Plotting"
@@ -2276,7 +2276,7 @@ msgstr "Jotain meni pieleen"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:138
 msgid "Specify a value of 0 to use all available threads"
-msgstr ""
+msgstr "Määritä arvo 0 käyttääksesi kaikkia käytettävissä olevia säikeitä"
 
 #: src/electron/main.tsx:479
 msgid "Speech"
@@ -2586,7 +2586,7 @@ msgstr "Tämä Chian versio ei ole enää yhteensopiva lohkoketjun kanssa."
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:154
 msgid "Thread Multiplier for Phase 2"
-msgstr ""
+msgstr "Säikeiden kerroin vaiheeseen 2"
 
 #: src/components/fullNode/FullNode.jsx:92
 msgid "Time Created"
@@ -2841,7 +2841,7 @@ msgstr "Haluatko asettaa tauon ennen seuraavaa plottausta?"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:252
 msgid "Warm start"
-msgstr ""
+msgstr "Lämmin käynnistys"
 
 #: src/components/selectKey/SelectKey.tsx:88
 #: src/components/selectKey/SelectKey.tsx:119
@@ -3065,7 +3065,7 @@ msgstr "{0, plural, one {Salasanojen on oltava vähintään # merkki pituudeltaa
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:172
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:189
 msgid "{0} buckets is recommended"
-msgstr ""
+msgstr "{0} muistilohkoa on suositusmäärä"
 
 #: src/components/plotNFT/PlotNFTGraph.tsx:111
 msgid "{0} points {1} - {2} hours ago"
@@ -3089,5 +3089,5 @@ msgstr "{mojo, plural, one {mojo} other {mojoa}}"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:133
 msgid "{warning}"
-msgstr ""
+msgstr "{warning}"
 
