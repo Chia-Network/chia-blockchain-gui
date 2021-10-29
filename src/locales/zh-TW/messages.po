@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh_TW\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-10-28 22:46\n"
+"PO-Revision-Date: 2021-10-29 04:41\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -20,11 +20,11 @@ msgstr ""
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:78
 msgid "(Not Installed)"
-msgstr ""
+msgstr "(尚未安裝)"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:75
 msgid "(Not Supported)"
-msgstr ""
+msgstr "(不支援)"
 
 #: src/components/plot/add/PlotAddNFT.tsx:67
 msgid "(Optional)"
@@ -56,7 +56,7 @@ msgstr "收割機是在實際存放耕地的機器上運作的服務。塊農和
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:155
 msgid "A value of {0} is recommended"
-msgstr ""
+msgstr "建議數值為 {0}"
 
 #: src/electron/main.tsx:431
 #: src/electron/main.tsx:518
@@ -3089,5 +3089,5 @@ msgstr "{mojo, plural, other {mojos}}"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:133
 msgid "{warning}"
-msgstr ""
+msgstr "{warning}"
 
