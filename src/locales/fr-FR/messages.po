@@ -8,7 +8,7 @@ msgstr ""
 "Language: fr_FR\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-10-28 22:46\n"
+"PO-Revision-Date: 2021-10-29 10:42\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
@@ -20,11 +20,11 @@ msgstr ""
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:78
 msgid "(Not Installed)"
-msgstr ""
+msgstr "(Non installé)"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:75
 msgid "(Not Supported)"
-msgstr ""
+msgstr "(Non supporté)"
 
 #: src/components/plot/add/PlotAddNFT.tsx:67
 msgid "(Optional)"
@@ -56,7 +56,7 @@ msgstr "Le moissonneur est un service qui tourne sur une machine qui stocke des 
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:155
 msgid "A value of {0} is recommended"
-msgstr ""
+msgstr "Une valeur de {0} est recommandée"
 
 #: src/electron/main.tsx:431
 #: src/electron/main.tsx:518
@@ -147,7 +147,7 @@ msgstr "Une fois que vos clé ont été migrées avec succès au nouveau trousse
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:238
 msgid "Alternate tmpdir/tmpdir2"
-msgstr ""
+msgstr "Tmpdir/tmpdir2 alternatifs"
 
 #: src/components/core/components/Amount/Amount.tsx:99
 #: src/components/trading/CreateOffer.jsx:196
@@ -376,7 +376,7 @@ msgstr "Choisir la taille de la parcelle"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:105
 msgid "Choose Plotter"
-msgstr ""
+msgstr "Choisir un traceur"
 
 #: src/components/plotNFT/PlotNFTCard.tsx:384
 #: src/components/pool/PoolOverview.tsx:92
@@ -746,7 +746,7 @@ msgstr "Désactiver"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:266
 msgid "Disable NUMA"
-msgstr ""
+msgstr "Désactiver le NUMA"
 
 #: src/components/app/AppPassPrompt.tsx:77
 msgid "Disable Passphrase Protection"
@@ -1474,7 +1474,7 @@ msgstr "Nombre de buckets"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:188
 msgid "Number of buckets for phase 3 & 4"
-msgstr ""
+msgstr "Nombre de buckets pour les phases 3 et 4"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:136
 msgid "Number of threads"
@@ -1794,7 +1794,7 @@ msgstr "Les parcelles constituent l'espace alloué sur votre disque dur pour cul
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:118
 msgid "Plotter"
-msgstr ""
+msgstr "Traceur"
 
 #: src/components/plot/queue/PlotQueueIndicator.tsx:34
 msgid "Plotting"
@@ -2276,7 +2276,7 @@ msgstr "Un problème est survenu"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:138
 msgid "Specify a value of 0 to use all available threads"
-msgstr ""
+msgstr "Spécifiez une valeur de 0 pour utiliser tous les threads disponibles"
 
 #: src/electron/main.tsx:479
 msgid "Speech"
@@ -2586,7 +2586,7 @@ msgstr "Cette version de Chia n'est plus compatible avec la blockchain et ne peu
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:154
 msgid "Thread Multiplier for Phase 2"
-msgstr ""
+msgstr "Multiplicateur de thread pour la phase 2"
 
 #: src/components/fullNode/FullNode.jsx:92
 msgid "Time Created"
@@ -2841,7 +2841,7 @@ msgstr "Voulez-vous un délai d'attente avant que la prochaine parcelle démarre
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:252
 msgid "Warm start"
-msgstr ""
+msgstr "Phase préparatoire"
 
 #: src/components/selectKey/SelectKey.tsx:88
 #: src/components/selectKey/SelectKey.tsx:119
@@ -3065,7 +3065,7 @@ msgstr "{0, plural, one {La phrase secrète doit comporter au moins # caractère
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:172
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:189
 msgid "{0} buckets is recommended"
-msgstr ""
+msgstr "{0} bucket est recommandé"
 
 #: src/components/plotNFT/PlotNFTGraph.tsx:111
 msgid "{0} points {1} - {2} hours ago"
@@ -3089,5 +3089,5 @@ msgstr "{mojo, plural, one {mojo} other {mojos}}"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:133
 msgid "{warning}"
-msgstr ""
+msgstr "{warning}"
 
