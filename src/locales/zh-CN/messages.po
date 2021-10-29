@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh_CN\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-10-28 22:46\n"
+"PO-Revision-Date: 2021-10-29 04:41\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -20,11 +20,11 @@ msgstr ""
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:78
 msgid "(Not Installed)"
-msgstr ""
+msgstr "(未安装)"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:75
 msgid "(Not Supported)"
-msgstr ""
+msgstr "(不支持)"
 
 #: src/components/plot/add/PlotAddNFT.tsx:67
 msgid "(Optional)"
@@ -56,7 +56,7 @@ msgstr "收割机是一个在存有农田文件的机器上运行的服务。农
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:155
 msgid "A value of {0} is recommended"
-msgstr ""
+msgstr "建议值 {0}"
 
 #: src/electron/main.tsx:431
 #: src/electron/main.tsx:518
@@ -143,11 +143,11 @@ msgstr "地址 / 谜语哈希"
 
 #: src/components/app/AppKeyringMigrator.tsx:195
 msgid "After your keys are successfully migrated to the new keyring, you may choose to have your keys removed from the old keyring."
-msgstr ""
+msgstr "当您的密钥成功迁移到新密钥串后，您可以选择从旧密钥串中移除您的密钥。"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:238
 msgid "Alternate tmpdir/tmpdir2"
-msgstr ""
+msgstr "备用的 tmpdir/tmpdir2"
 
 #: src/components/core/components/Amount/Amount.tsx:99
 #: src/components/trading/CreateOffer.jsx:196
@@ -169,7 +169,7 @@ msgstr "初始币数量"
 
 #: src/components/wallet/did/WalletDIDCreate.tsx:62
 msgid "Amount must be an even amount."
-msgstr ""
+msgstr "金额必须相同"
 
 #: src/components/plot/PlotAction.tsx:30
 #: src/components/plot/queue/PlotQueueActions.tsx:46
@@ -376,7 +376,7 @@ msgstr "选择农田文件大小"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:105
 msgid "Choose Plotter"
-msgstr ""
+msgstr "选择开垦机"
 
 #: src/components/plotNFT/PlotNFTCard.tsx:384
 #: src/components/pool/PoolOverview.tsx:92
@@ -529,7 +529,7 @@ msgstr "创建"
 
 #: src/components/wallet/did/WalletDID.tsx:970
 msgid "Create An Attestation Packet"
-msgstr ""
+msgstr "创建认证包"
 
 #: src/components/wallet/create/WalletCreate.jsx:290
 #~ msgid "Create DID wallet"
@@ -746,7 +746,7 @@ msgstr "停用"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:266
 msgid "Disable NUMA"
-msgstr ""
+msgstr "禁用 NUMA"
 
 #: src/components/app/AppPassPrompt.tsx:77
 msgid "Disable Passphrase Protection"
@@ -788,7 +788,7 @@ msgstr "您的机器是否支持并行开垦？"
 
 #: src/components/wallet/did/WalletDID.tsx:428
 msgid "Drag and drop attestation packet(s)"
-msgstr ""
+msgstr "拖放认证数据包"
 
 #: src/components/trading/ViewOffer.jsx:39
 msgid "Drag and drop offer file"
@@ -800,7 +800,7 @@ msgstr "拖放你的备份文件"
 
 #: src/components/wallet/did/WalletDIDRecovery.tsx:109
 msgid "Drag and drop your recovery backup file"
-msgstr ""
+msgstr "拖放您的恢复备份文件"
 
 #: src/electron/main.tsx:272
 msgid "Edit"
@@ -818,11 +818,11 @@ msgstr "编辑支付指令"
 
 #: src/components/app/AppKeyringMigrator.tsx:125
 msgid "Enter a strong passphrase and click Migrate Keys to secure your keys"
-msgstr ""
+msgstr "请输入较强的私钥密码，然后点击“迁移密钥”以保护您的密钥串"
 
 #: src/components/settings/SetPassphrasePrompt.tsx:145
 msgid "Enter a strong passphrase to secure your keys:"
-msgstr ""
+msgstr "请输入较强的私钥密码以保护您的密钥串"
 
 #: src/components/wallet/WalletImport.tsx:146
 msgid "Enter the 24 word mnemonic that you have saved in order to restore your Chia wallet."
@@ -886,7 +886,7 @@ msgstr "设置密码失败: {error}"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:120
 msgid "Failed to update passphrase: {error}"
-msgstr ""
+msgstr "更新私钥密码失败：{error}"
 
 #: src/components/dashboard/DashboardSideBar.tsx:58
 #: src/components/wallet/coloured/WalletColoured.tsx:610
@@ -1329,7 +1329,7 @@ msgstr "需要迁移"
 
 #: src/components/settings/Settings.tsx:121
 msgid "Migration required to support passphrase protection"
-msgstr ""
+msgstr "迁移支持私钥密码保护"
 
 #: src/components/pool/PoolInfo.tsx:27
 msgid "Minimum Difficulty"
@@ -1370,7 +1370,7 @@ msgstr "新地址"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:188
 msgid "New Passphrase"
-msgstr ""
+msgstr "新建私钥密码"
 
 #: src/components/wallet/WalletAdd.tsx:63
 msgid "New Wallet"
@@ -1378,7 +1378,7 @@ msgstr "新钱包"
 
 #: src/components/app/AppPassPrompt.tsx:60
 msgid "New passphrase is the same as your current passphrase"
-msgstr ""
+msgstr "新私钥密码与当前私钥密码相同"
 
 #: src/components/block/Block.jsx:351
 #: src/components/wallet/WalletAdd.tsx:95
@@ -1474,7 +1474,7 @@ msgstr "桶数量"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:188
 msgid "Number of buckets for phase 3 & 4"
-msgstr ""
+msgstr "第三和第四阶段的桶数量"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:136
 msgid "Number of threads"
@@ -1515,44 +1515,44 @@ msgstr "支出"
 #: src/components/settings/RemovePassphrasePrompt.tsx:123
 #: src/components/settings/SetPassphrasePrompt.tsx:142
 msgid "Passphrase"
-msgstr ""
+msgstr "私钥密码"
 
 #: src/components/app/AppKeyringMigrator.tsx:159
 #: src/components/settings/ChangePassphrasePrompt.tsx:209
 #: src/components/settings/SetPassphrasePrompt.tsx:179
 msgid "Passphrase Hint"
-msgstr ""
+msgstr "私钥密码提示"
 
 #: src/components/app/AppKeyringMigrator.tsx:158
 #: src/components/settings/ChangePassphrasePrompt.tsx:208
 #: src/components/settings/SetPassphrasePrompt.tsx:178
 msgid "Passphrase Hint (Optional)"
-msgstr ""
+msgstr "私钥密码提示（可选）"
 
 #: src/components/settings/Settings.tsx:213
 msgid "Passphrase Settings"
-msgstr ""
+msgstr "私钥密码设置"
 
 #: src/components/app/AppPassPrompt.tsx:149
 #: src/components/settings/RemovePassphrasePrompt.tsx:64
 msgid "Passphrase is incorrect"
-msgstr ""
+msgstr "私钥密码不正确"
 
 #: src/components/settings/Settings.tsx:93
 msgid "Passphrase protection has been disabled"
-msgstr ""
+msgstr "私钥密码保护已禁用"
 
 #: src/components/settings/Settings.tsx:131
 msgid "Passphrase protection is disabled"
-msgstr ""
+msgstr "私钥密码保护已禁用"
 
 #: src/components/settings/Settings.tsx:128
 msgid "Passphrase protection is enabled"
-msgstr ""
+msgstr "私钥密码保护已启用"
 
 #: src/components/settings/Settings.tsx:122
 msgid "Passphrase support requires migrating your keys to a new keyring"
-msgstr ""
+msgstr "私钥密码要求将密钥迁移到新的密钥串中"
 
 #: src/components/plotNFT/PlotNFTCard.tsx:361
 msgid "Payout Address"
@@ -1605,7 +1605,7 @@ msgstr "请输入费用数字0。正费用目前在RL上还不支持。"
 
 #: src/components/wallet/did/WalletDID.tsx:927
 msgid "Please enter a coin"
-msgstr ""
+msgstr "请输入一个币"
 
 #: src/components/wallet/did/WalletDID.tsx:526
 #: src/components/wallet/did/WalletDID.tsx:917
@@ -1615,7 +1615,7 @@ msgstr "请输入文件名"
 #: src/components/app/AppPassPrompt.tsx:136
 #: src/components/settings/SetPassphrasePrompt.tsx:57
 msgid "Please enter a passphrase"
-msgstr ""
+msgstr "请输入密钥密码"
 
 #: src/components/wallet/did/WalletDID.tsx:937
 msgid "Please enter a pubkey"
@@ -1666,17 +1666,17 @@ msgstr "请输入一个正确的公钥"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:63
 msgid "Please enter your current passphrase, and a new passphrase"
-msgstr ""
+msgstr "请输入您的当前私钥密码和新建私钥密码"
 
 #: src/components/app/AppPassPrompt.tsx:182
 #: src/components/app/AppPassPrompt.tsx:198
 #: src/components/settings/RemovePassphrasePrompt.tsx:47
 msgid "Please enter your passphrase"
-msgstr ""
+msgstr "请输入您的密钥密码"
 
 #: src/components/app/AppPassPrompt.tsx:195
 msgid "Please enter your passphrase to proceed"
-msgstr ""
+msgstr "请输入您的私钥密码"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:623
 #: src/components/wallet/standard/WalletStandard.tsx:420
@@ -1794,7 +1794,7 @@ msgstr "农田就是在你的硬盘上分配的一块空间，用来收获奇亚
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:118
 msgid "Plotter"
-msgstr ""
+msgstr "开垦机"
 
 #: src/components/plot/queue/PlotQueueIndicator.tsx:34
 msgid "Plotting"
@@ -2058,11 +2058,11 @@ msgstr "版本发布说明"
 #: src/components/settings/RemovePassphrasePrompt.tsx:161
 #: src/components/settings/Settings.tsx:194
 msgid "Remove Passphrase"
-msgstr ""
+msgstr "删除密钥密码"
 
 #: src/components/app/AppKeyringMigrator.tsx:192
 msgid "Remove keys from old keyring upon successful migration"
-msgstr ""
+msgstr "成功迁移后从旧密钥串中删除密钥"
 
 #: src/components/plot/queue/PlotQueueIndicator.tsx:36
 msgid "Removing"
@@ -2103,7 +2103,7 @@ msgstr "保存"
 #: src/components/settings/ChangePassphrasePrompt.tsx:224
 #: src/components/settings/SetPassphrasePrompt.tsx:194
 msgid "Save passphrase"
-msgstr ""
+msgstr "保存私钥密码"
 
 #: src/components/fullNode/FullNode.jsx:338
 #~ msgid "Search"
@@ -2119,7 +2119,7 @@ msgstr "第二临时文件夹位置"
 
 #: src/components/settings/Settings.tsx:124
 msgid "Secure your keychain using a strong passphrase"
-msgstr ""
+msgstr "使用加强私钥密码保护您的钥匙链"
 
 #: src/components/selectKey/SelectKey.tsx:216
 msgid "See private key"
@@ -2216,7 +2216,7 @@ msgstr "将你的公钥发送到你的费用限定型管理者钱包:"
 #: src/components/settings/SetPassphrasePrompt.tsx:220
 #: src/components/settings/Settings.tsx:205
 msgid "Set Passphrase"
-msgstr ""
+msgstr "设置私钥密码"
 
 #: src/components/app/AppPassPrompt.tsx:75
 msgid "Setting a passphrase is strongly recommended to protect your keys. Are you sure you want to skip setting a passphrase?"
