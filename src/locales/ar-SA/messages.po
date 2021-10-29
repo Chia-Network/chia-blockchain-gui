@@ -8,7 +8,7 @@ msgstr ""
 "Language: ar_SA\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-10-28 22:46\n"
+"PO-Revision-Date: 2021-10-29 22:44\n"
 "Last-Translator: \n"
 "Language-Team: Arabic\n"
 "Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5);\n"
@@ -20,11 +20,11 @@ msgstr ""
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:78
 msgid "(Not Installed)"
-msgstr ""
+msgstr "غير مثبت"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:75
 msgid "(Not Supported)"
-msgstr ""
+msgstr "غير مدعوم"
 
 #: src/components/plot/add/PlotAddNFT.tsx:67
 msgid "(Optional)"
@@ -40,7 +40,7 @@ msgstr "+ إضافة قطعة جديدة NFT"
 
 #: src/components/wallet/Wallets.tsx:132
 msgid "+ Add Wallet"
-msgstr ""
+msgstr "+ إضافة محفظة"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:94
 #~ msgid "0 automatically chooses bucket count"
@@ -56,7 +56,7 @@ msgstr "الحصاد هو خدمة تعمل على الحاسوب حيث يتم 
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:155
 msgid "A value of {0} is recommended"
-msgstr ""
+msgstr "قيمة {0} مستحسن"
 
 #: src/electron/main.tsx:431
 #: src/electron/main.tsx:518
@@ -91,7 +91,7 @@ msgstr "إضافة"
 #: src/components/wallet/did/WalletDID.tsx:877
 #: src/components/wallet/did/WalletDIDCreate.tsx:208
 msgid "Add Backup ID"
-msgstr ""
+msgstr "إضافة معرف النسخة الاحتياطية"
 
 #: src/components/plot/PlotHeader.tsx:91
 msgid "Add Plot Directory"
@@ -128,7 +128,7 @@ msgstr "إضافة مجلد"
 
 #: src/components/plotNFT/select/PlotNFTSelectFaucet.tsx:42
 msgid "Add {currencyCode} from the Faucet"
-msgstr ""
+msgstr "أضف {currencyCode} من المجمع"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:561
 #: src/components/wallet/coloured/WalletColoured.tsx:657
@@ -143,11 +143,11 @@ msgstr "العنوان / العنوان المشفر"
 
 #: src/components/app/AppKeyringMigrator.tsx:195
 msgid "After your keys are successfully migrated to the new keyring, you may choose to have your keys removed from the old keyring."
-msgstr ""
+msgstr "بعد أن يتم نقل مفاتيحك بنجاح إلى المفتاح الجديد، قد تختار إزالة مفاتيحك من المفتاح القديم ."
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:238
 msgid "Alternate tmpdir/tmpdir2"
-msgstr ""
+msgstr "بديل tmpdir/tmpdir2"
 
 #: src/components/core/components/Amount/Amount.tsx:99
 #: src/components/trading/CreateOffer.jsx:196
@@ -169,7 +169,7 @@ msgstr "مبلغ العملات الأولية"
 
 #: src/components/wallet/did/WalletDIDCreate.tsx:62
 msgid "Amount must be an even amount."
-msgstr ""
+msgstr "يجب أن يكون المبلغ مساوياً."
 
 #: src/components/plot/PlotAction.tsx:30
 #: src/components/plot/queue/PlotQueueActions.tsx:46
@@ -179,7 +179,7 @@ msgstr "هل أنت متأكد أنك تريد حذف الملف؟ لا يمكن
 #: src/components/plotNFT/PlotNFTCard.tsx:125
 #: src/components/wallet/standard/WalletStandard.tsx:626
 msgid "Are you sure you want to delete unconfirmed transactions?"
-msgstr ""
+msgstr "هل أنت متأكد من حذف المُعاملات %d المختارة؟"
 
 #: src/components/fullNode/FullNodeCloseConnection.tsx:25
 msgid "Are you sure you want to disconnect?"
@@ -342,7 +342,7 @@ msgstr "تغيير"
 #: src/components/settings/ChangePassphrasePrompt.tsx:248
 #: src/components/settings/Settings.tsx:158
 msgid "Change Passphrase"
-msgstr ""
+msgstr "تغيير كلمة المرور"
 
 #: src/components/plotNFT/PlotNFTCard.tsx:408
 #: src/components/plotNFT/PlotNFTChangePool.tsx:110
@@ -376,7 +376,7 @@ msgstr "إختر حجم القطعة"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:105
 msgid "Choose Plotter"
-msgstr ""
+msgstr "إختر Plotter"
 
 #: src/components/plotNFT/PlotNFTCard.tsx:384
 #: src/components/pool/PoolOverview.tsx:92
@@ -394,7 +394,7 @@ msgstr "إغلاق نقطة إتصال الشبكة والخادم"
 
 #: src/components/wallet/did/WalletDID.tsx:987
 msgid "Coin Name"
-msgstr ""
+msgstr "اسم العملة"
 
 #: src/components/trading/TradingOverview.jsx:366
 msgid "Coins:"
@@ -437,18 +437,18 @@ msgstr "تأكيد قطع الاتصال"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:198
 msgid "Confirm New Passphrase"
-msgstr ""
+msgstr "تأكيد عبارة المرور:"
 
 #: src/components/app/AppKeyringMigrator.tsx:146
 #: src/components/app/AppKeyringMigrator.tsx:147
 #: src/components/settings/SetPassphrasePrompt.tsx:166
 msgid "Confirm Passphrase"
-msgstr ""
+msgstr "تأكيد عبارة المرور:"
 
 #: src/components/plotNFT/PlotNFTCard.tsx:121
 #: src/components/wallet/standard/WalletStandard.tsx:622
 msgid "Confirmation"
-msgstr ""
+msgstr "تأكيد"
 
 #: src/components/trading/TradingOverview.jsx:201
 msgid "Confirmed at block:"
@@ -529,7 +529,7 @@ msgstr "إنشاء"
 
 #: src/components/wallet/did/WalletDID.tsx:970
 msgid "Create An Attestation Packet"
-msgstr ""
+msgstr "إنشاء حزمة شهادة"
 
 #: src/components/wallet/create/WalletCreate.jsx:290
 #~ msgid "Create DID wallet"
@@ -537,11 +537,11 @@ msgstr ""
 
 #: src/components/wallet/did/WalletDIDCreate.tsx:110
 msgid "Create Distributed Identity Wallet"
-msgstr ""
+msgstr "إنشاء محفظة هوية موزعة"
 
 #: src/components/wallet/did/WalletDIDSelect.tsx:32
 msgid "Create New Wallet"
-msgstr ""
+msgstr "انشاء محفظة جديدة"
 
 #: src/components/trading/TradeManager.tsx:45
 msgid "Create Offer"
@@ -632,16 +632,16 @@ msgstr "رمز العملة غير معرف"
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:139
 #: src/components/plotNFT/PlotNFTCard.tsx:181
 msgid "Current Difficulty"
-msgstr ""
+msgstr "الصعوبة الحالية"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:178
 msgid "Current Passphrase"
-msgstr ""
+msgstr "عبارة المرور الحالية"
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:156
 #: src/components/plotNFT/PlotNFTCard.tsx:198
 msgid "Current Points Balance"
-msgstr ""
+msgstr "رصيد النقاط الحالي"
 
 #: src/components/trading/TradingOverview.jsx:182
 msgid "Current trade status"
@@ -686,7 +686,7 @@ msgstr "حذف"
 
 #: src/components/app/AppPassPrompt.tsx:198
 msgid "Delete Key"
-msgstr ""
+msgstr "حذف المفتاح"
 
 #: src/components/plot/PlotAction.tsx:26
 #: src/components/plot/queue/PlotQueueActions.tsx:42
@@ -696,7 +696,7 @@ msgstr "حذف قطعة"
 #: src/components/plotNFT/PlotNFTCard.tsx:315
 #: src/components/wallet/standard/WalletStandard.tsx:667
 msgid "Delete Unconfirmed Transactions"
-msgstr ""
+msgstr "حذف المعاملات غير المؤكدة"
 
 #: src/components/selectKey/SelectKey.tsx:114
 #: src/components/selectKey/SelectKey.tsx:273
@@ -709,7 +709,7 @@ msgstr "حذف جميع المفاتيح"
 
 #: src/components/selectKey/SelectKey.tsx:75
 msgid "Delete key {fingerprint}"
-msgstr ""
+msgstr "حذف المفتاح {fingerprint}"
 
 #: src/components/selectKey/SelectKey.tsx:126
 #~ msgid "Deleting all keys will permanently remove the keys from your computer, make sure you have backups. Are you sure you want to continue?"
@@ -717,7 +717,7 @@ msgstr ""
 
 #: src/components/app/AppPassPrompt.tsx:194
 msgid "Deleting key"
-msgstr ""
+msgstr "حذف المفتاح"
 
 #: src/components/selectKey/SelectKey.tsx:101
 #~ msgid "Deleting the key will permanently remove the key from your computer, make sure you have backups. Are you sure you want to continue?"
@@ -742,15 +742,15 @@ msgstr "مستوى الصعوبة"
 
 #: src/components/app/AppPassPrompt.tsx:78
 msgid "Disable"
-msgstr ""
+msgstr "معطَّل"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:266
 msgid "Disable NUMA"
-msgstr ""
+msgstr "تعطيل NUMA"
 
 #: src/components/app/AppPassPrompt.tsx:77
 msgid "Disable Passphrase Protection"
-msgstr ""
+msgstr "تعطيل حماية العبارة السرية"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:114
 #~ msgid "Disable bifield plotting when your temporary directory is on fast storage like SSD or you need lower per process RAM requirements. Plotting with bitfield enabled has about 20% less overall writes."
@@ -1794,7 +1794,7 @@ msgstr "يتم تخصيص مساحة قطع الأراضي على محرك ال�
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:118
 msgid "Plotter"
-msgstr ""
+msgstr "Plotter"
 
 #: src/components/plot/queue/PlotQueueIndicator.tsx:34
 msgid "Plotting"
@@ -2276,7 +2276,7 @@ msgstr ""
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:138
 msgid "Specify a value of 0 to use all available threads"
-msgstr ""
+msgstr "حدد قيمة 0 لاستخدام كافة المواضيع المتاحة"
 
 #: src/electron/main.tsx:479
 msgid "Speech"
@@ -2841,7 +2841,7 @@ msgstr "هل ترغب في الحصول على تأخير قبل أن تبدأ �
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:252
 msgid "Warm start"
-msgstr ""
+msgstr "بداية دافئة"
 
 #: src/components/selectKey/SelectKey.tsx:88
 #: src/components/selectKey/SelectKey.tsx:119
@@ -3065,7 +3065,7 @@ msgstr ""
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:172
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:189
 msgid "{0} buckets is recommended"
-msgstr ""
+msgstr "128 قسم موصى بها"
 
 #: src/components/plotNFT/PlotNFTGraph.tsx:111
 msgid "{0} points {1} - {2} hours ago"
@@ -3089,5 +3089,5 @@ msgstr ""
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:133
 msgid "{warning}"
-msgstr ""
+msgstr "تحذير"
 
