@@ -8,7 +8,7 @@ msgstr ""
 "Language: sr_SP\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-10-28 22:46\n"
+"PO-Revision-Date: 2021-10-29 10:42\n"
 "Last-Translator: \n"
 "Language-Team: Serbian (Cyrillic)\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
@@ -20,11 +20,11 @@ msgstr ""
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:78
 msgid "(Not Installed)"
-msgstr ""
+msgstr "(Није инсталирано)"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:75
 msgid "(Not Supported)"
-msgstr ""
+msgstr "(Није подржано)"
 
 #: src/components/plot/add/PlotAddNFT.tsx:67
 msgid "(Optional)"
@@ -56,7 +56,7 @@ msgstr "Сакупљач је услуга која ради на машини �
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:155
 msgid "A value of {0} is recommended"
-msgstr ""
+msgstr "Вредност {0} је обавезна"
 
 #: src/electron/main.tsx:431
 #: src/electron/main.tsx:518
@@ -147,7 +147,7 @@ msgstr ""
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:238
 msgid "Alternate tmpdir/tmpdir2"
-msgstr ""
+msgstr "Наизменично tmpdir/tmpdir2"
 
 #: src/components/core/components/Amount/Amount.tsx:99
 #: src/components/trading/CreateOffer.jsx:196
@@ -376,7 +376,7 @@ msgstr "Изабери величину плота"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:105
 msgid "Choose Plotter"
-msgstr ""
+msgstr "Изабери плотер"
 
 #: src/components/plotNFT/PlotNFTCard.tsx:384
 #: src/components/pool/PoolOverview.tsx:92
@@ -725,7 +725,7 @@ msgstr ""
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:107
 msgid "Depending on your system configuration, you may find that an alternative plotter produces plots faster than the default Chia Proof of Space plotter. If unsure, use the default Chia Proof of Space plotter."
-msgstr ""
+msgstr "У зависности од конфигурације система, можда ћеш открити да наизменични плотер производи плотове брже од подразумеваног плотера Chia. Ако ниси сигуран, користи подразумевани плотер Chia."
 
 #: src/electron/main.tsx:313
 msgid "Developer"
@@ -746,7 +746,7 @@ msgstr ""
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:266
 msgid "Disable NUMA"
-msgstr ""
+msgstr "Онемогући NUMA"
 
 #: src/components/app/AppPassPrompt.tsx:77
 msgid "Disable Passphrase Protection"
@@ -896,7 +896,7 @@ msgstr "Фарма"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:297
 msgid "Farmer Public Key"
-msgstr ""
+msgstr "Јавни кључ фармера"
 
 #: src/components/block/Block.jsx:268
 msgid "Farmer Puzzle Hash"
@@ -1474,7 +1474,7 @@ msgstr "Број кофа"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:188
 msgid "Number of buckets for phase 3 & 4"
-msgstr ""
+msgstr "Број кофица за фазе 3 и 4"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:136
 msgid "Number of threads"
@@ -1794,7 +1794,7 @@ msgstr "Плотовима је додељен простор на твом ха
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:118
 msgid "Plotter"
-msgstr ""
+msgstr "Плотер"
 
 #: src/components/plot/queue/PlotQueueIndicator.tsx:34
 msgid "Plotting"
@@ -2276,7 +2276,7 @@ msgstr ""
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:138
 msgid "Specify a value of 0 to use all available threads"
-msgstr ""
+msgstr "Одреди вредност 0 да користиш све доступне нити"
 
 #: src/electron/main.tsx:479
 msgid "Speech"
@@ -2586,7 +2586,7 @@ msgstr "Ова верзија Chia није компатибилна са бло
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:154
 msgid "Thread Multiplier for Phase 2"
-msgstr ""
+msgstr "Мултипликатор нити за фазу 2"
 
 #: src/components/fullNode/FullNode.jsx:92
 msgid "Time Created"
@@ -2841,7 +2841,7 @@ msgstr "Да ли желиш паузу пре почетка следећег �
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:252
 msgid "Warm start"
-msgstr ""
+msgstr "Топли почетак"
 
 #: src/components/selectKey/SelectKey.tsx:88
 #: src/components/selectKey/SelectKey.tsx:119
@@ -3065,7 +3065,7 @@ msgstr ""
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:172
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:189
 msgid "{0} buckets is recommended"
-msgstr ""
+msgstr "{0} кантица је препоручено"
 
 #: src/components/plotNFT/PlotNFTGraph.tsx:111
 msgid "{0} points {1} - {2} hours ago"
@@ -3089,5 +3089,5 @@ msgstr ""
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:133
 msgid "{warning}"
-msgstr ""
+msgstr "{warning}"
 
