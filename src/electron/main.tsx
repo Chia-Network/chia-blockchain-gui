@@ -17,7 +17,7 @@ import { i18n } from '../config/locales';
 import About from '../components/about/About';
 import packageJson from '../../package.json';
 
-const icon = nativeImage.createFromPath(path.join(path.resolve(__dirname, '..'), 'assets/img/chia.png'));
+const icon = nativeImage.createFromPath(path.join(path.resolve(__dirname, '..'), 'assets/img/chia64x64.png'));
 
 function renderAbout(): string {
   const sheet = new ServerStyleSheet();
