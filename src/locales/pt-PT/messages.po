@@ -8,7 +8,7 @@ msgstr ""
 "Language: pt_PT\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-10-28 22:46\n"
+"PO-Revision-Date: 2021-10-29 16:45\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -20,11 +20,11 @@ msgstr ""
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:78
 msgid "(Not Installed)"
-msgstr ""
+msgstr "(Não instalado)"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:75
 msgid "(Not Supported)"
-msgstr ""
+msgstr "(Não Suportado)"
 
 #: src/components/plot/add/PlotAddNFT.tsx:67
 msgid "(Optional)"
@@ -56,7 +56,7 @@ msgstr "Um harvester é um serviço executado numa máquina onde os plot(s) est�
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:155
 msgid "A value of {0} is recommended"
-msgstr ""
+msgstr "Um valor de {0} é recomendado"
 
 #: src/electron/main.tsx:431
 #: src/electron/main.tsx:518
@@ -147,7 +147,7 @@ msgstr "Depois das suas chaves serem migradas com sucesso para o novo porta-chav
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:238
 msgid "Alternate tmpdir/tmpdir2"
-msgstr ""
+msgstr "Alternativa tmpdir/tmpdir2"
 
 #: src/components/core/components/Amount/Amount.tsx:99
 #: src/components/trading/CreateOffer.jsx:196
@@ -376,7 +376,7 @@ msgstr "Escolha o tamanho do Plot"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:105
 msgid "Choose Plotter"
-msgstr ""
+msgstr "Escolha um Plotter"
 
 #: src/components/plotNFT/PlotNFTCard.tsx:384
 #: src/components/pool/PoolOverview.tsx:92
@@ -725,7 +725,7 @@ msgstr "Excluindo a chave"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:107
 msgid "Depending on your system configuration, you may find that an alternative plotter produces plots faster than the default Chia Proof of Space plotter. If unsure, use the default Chia Proof of Space plotter."
-msgstr ""
+msgstr "Dependendo da configuração do seu sistema, você pode achar que um plotter alternativo produz plots mais rapidamente que o plotter padrão da Chia. Se não tiver certeza, use o plotter padrão da Chia."
 
 #: src/electron/main.tsx:313
 msgid "Developer"
@@ -746,7 +746,7 @@ msgstr "Desativar"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:266
 msgid "Disable NUMA"
-msgstr ""
+msgstr "Desativar NUMA"
 
 #: src/components/app/AppPassPrompt.tsx:77
 msgid "Disable Passphrase Protection"
@@ -1474,7 +1474,7 @@ msgstr "Número de buckets"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:188
 msgid "Number of buckets for phase 3 & 4"
-msgstr ""
+msgstr "Número de buckets para as fases 3 e 4"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:136
 msgid "Number of threads"
@@ -1794,7 +1794,7 @@ msgstr "Os plots são alocados no espaço do seu disco rígido, usado para culti
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:118
 msgid "Plotter"
-msgstr ""
+msgstr "Plotter"
 
 #: src/components/plot/queue/PlotQueueIndicator.tsx:34
 msgid "Plotting"
@@ -2276,7 +2276,7 @@ msgstr "Algo correu mal"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:138
 msgid "Specify a value of 0 to use all available threads"
-msgstr ""
+msgstr "Especifique um valor de 0 para usar todos os threads disponíveis"
 
 #: src/electron/main.tsx:479
 msgid "Speech"
@@ -2586,7 +2586,7 @@ msgstr "Esta versão do Chia já não é mais compatível com a blockchain e nã
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:154
 msgid "Thread Multiplier for Phase 2"
-msgstr ""
+msgstr "Multiplicador Thread para fase 2"
 
 #: src/components/fullNode/FullNode.jsx:92
 msgid "Time Created"
@@ -2841,7 +2841,7 @@ msgstr "Você quer ter um atraso antes que a próximo plot comece?"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:252
 msgid "Warm start"
-msgstr ""
+msgstr "Início quente"
 
 #: src/components/selectKey/SelectKey.tsx:88
 #: src/components/selectKey/SelectKey.tsx:119
@@ -3065,7 +3065,7 @@ msgstr "{0, plural, one {As senhas devem ter pelo menos # caracteres de comprime
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:172
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:189
 msgid "{0} buckets is recommended"
-msgstr ""
+msgstr "É recomendado {0} buckets"
 
 #: src/components/plotNFT/PlotNFTGraph.tsx:111
 msgid "{0} points {1} - {2} hours ago"
@@ -3089,5 +3089,5 @@ msgstr "{mojo, plural, one {mojo} other {mojos}}"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:133
 msgid "{warning}"
-msgstr ""
+msgstr "{warning}"
 
