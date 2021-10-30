@@ -8,7 +8,7 @@ msgstr ""
 "Language: he_IL\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-10-28 22:46\n"
+"PO-Revision-Date: 2021-10-30 16:33\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3;\n"
@@ -20,11 +20,11 @@ msgstr ""
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:78
 msgid "(Not Installed)"
-msgstr ""
+msgstr "(לא מותקן)"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:75
 msgid "(Not Supported)"
-msgstr ""
+msgstr "(לא נתמך)"
 
 #: src/components/plot/add/PlotAddNFT.tsx:67
 msgid "(Optional)"
