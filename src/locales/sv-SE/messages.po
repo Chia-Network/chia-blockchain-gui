@@ -8,7 +8,7 @@ msgstr ""
 "Language: sv_SE\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-11-02 04:30\n"
+"PO-Revision-Date: 2021-11-02 10:28\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -20,11 +20,11 @@ msgstr ""
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:78
 msgid "(Not Installed)"
-msgstr ""
+msgstr "(Inte installerad)"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:75
 msgid "(Not Supported)"
-msgstr ""
+msgstr "(Stöds inte)"
 
 #: src/components/plot/add/PlotAddNFT.tsx:67
 msgid "(Optional)"
@@ -56,7 +56,7 @@ msgstr "En skördare är en tjänst som körs på en maskin där plottar lagras.
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:155
 msgid "A value of {0} is recommended"
-msgstr ""
+msgstr "Ett värde på {0} rekommenderas"
 
 #: src/electron/main.tsx:431
 #: src/electron/main.tsx:518
@@ -143,11 +143,11 @@ msgstr "Adress/pusselhash"
 
 #: src/components/app/AppKeyringMigrator.tsx:195
 msgid "After your keys are successfully migrated to the new keyring, you may choose to have your keys removed from the old keyring."
-msgstr "Efter att dina nycklar har flyttats till den nya nyckelringen kan du välja att få dina nycklar borttagna från den gamla nyckelringen."
+msgstr "När dina nycklar har migrerats till den nya nyckelringen kan du välja att få dina nycklar borttagna från den gamla nyckelringen."
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:238
 msgid "Alternate tmpdir/tmpdir2"
-msgstr ""
+msgstr "Alternativt tmpdir/tmpdir2"
 
 #: src/components/core/components/Amount/Amount.tsx:99
 #: src/components/trading/CreateOffer.jsx:196
@@ -376,7 +376,7 @@ msgstr "Välj plottstorlek"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:105
 msgid "Choose Plotter"
-msgstr ""
+msgstr "Välj plotter"
 
 #: src/components/plotNFT/PlotNFTCard.tsx:384
 #: src/components/pool/PoolOverview.tsx:92
@@ -437,7 +437,7 @@ msgstr "Bekräfta frånkoppling"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:198
 msgid "Confirm New Passphrase"
-msgstr "Bekräfta lösenfras"
+msgstr "Bekräfta ny lösenfras"
 
 #: src/components/app/AppKeyringMigrator.tsx:146
 #: src/components/app/AppKeyringMigrator.tsx:147
@@ -725,7 +725,7 @@ msgstr "Tar bort nyckel"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:107
 msgid "Depending on your system configuration, you may find that an alternative plotter produces plots faster than the default Chia Proof of Space plotter. If unsure, use the default Chia Proof of Space plotter."
-msgstr ""
+msgstr "Beroende på din systemkonfiguration, kan det visa sig att en alternativ plotter skapar plottar snabbare än Chias standard-Proof-of-Space-plotter. Om du är osäker, använd Chias standard-Proof-of-Space-plotter."
 
 #: src/electron/main.tsx:313
 msgid "Developer"
@@ -746,11 +746,11 @@ msgstr "Inaktivera"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:266
 msgid "Disable NUMA"
-msgstr ""
+msgstr "Inaktivera NUMA"
 
 #: src/components/app/AppPassPrompt.tsx:77
 msgid "Disable Passphrase Protection"
-msgstr "Inaktivera lösenordsskydd"
+msgstr "Inaktivera lösenfrasskydd"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:114
 #~ msgid "Disable bifield plotting when your temporary directory is on fast storage like SSD or you need lower per process RAM requirements. Plotting with bitfield enabled has about 20% less overall writes."
@@ -822,7 +822,7 @@ msgstr "Ange en stark lösenfras och klicka på migrera nycklar för att säkra 
 
 #: src/components/settings/SetPassphrasePrompt.tsx:145
 msgid "Enter a strong passphrase to secure your keys:"
-msgstr "Ange ett starkt lösenord för att säkra dina nycklar:"
+msgstr "Ange en stark lösenfras för att säkra dina nycklar:"
 
 #: src/components/wallet/WalletImport.tsx:146
 msgid "Enter the 24 word mnemonic that you have saved in order to restore your Chia wallet."
@@ -830,7 +830,7 @@ msgstr "Skriv in din sparade minnesfras på 24 ord för att återställa din Chi
 
 #: src/components/settings/RemovePassphrasePrompt.tsx:115
 msgid "Enter your passphrase:"
-msgstr "Ange lösenordsfras:"
+msgstr "Ange lösenfras:"
 
 #: src/components/farm/FarmerStatus.tsx:21
 #: src/components/farm/FarmerStatus.tsx:22
@@ -886,7 +886,7 @@ msgstr "Misslyckades att ange lösenfras: {error}"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:120
 msgid "Failed to update passphrase: {error}"
-msgstr "Misslyckades att ange lösenfras: {error}"
+msgstr "Misslyckades att uppdatera lösenfras: {error}"
 
 #: src/components/dashboard/DashboardSideBar.tsx:58
 #: src/components/wallet/coloured/WalletColoured.tsx:610
@@ -1193,7 +1193,7 @@ msgstr "K-storlek"
 
 #: src/components/app/AppKeyringMigrator.tsx:86
 msgid "Keyring migration failed: {error}"
-msgstr "Nyckelringsmigration misslyckades: {error}"
+msgstr "Nyckelringsmigrering misslyckades: {error}"
 
 #: src/components/dashboard/DashboardSideBar.tsx:69
 msgid "Keys"
@@ -1329,7 +1329,7 @@ msgstr "Migrering krävs"
 
 #: src/components/settings/Settings.tsx:121
 msgid "Migration required to support passphrase protection"
-msgstr "Migrering krävs för att stödja lösenordsskydd"
+msgstr "Migrering krävs för att stödja lösenfrasskydd"
 
 #: src/components/pool/PoolInfo.tsx:27
 msgid "Minimum Difficulty"
@@ -1378,7 +1378,7 @@ msgstr "Ny plånbok"
 
 #: src/components/app/AppPassPrompt.tsx:60
 msgid "New passphrase is the same as your current passphrase"
-msgstr "Nytt lösenord är samma som ditt nuvarande lösenord"
+msgstr "Ny lösenfras är densamma som din nuvarande lösenfras"
 
 #: src/components/block/Block.jsx:351
 #: src/components/wallet/WalletAdd.tsx:95
@@ -1474,7 +1474,7 @@ msgstr "Antal buckets"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:188
 msgid "Number of buckets for phase 3 & 4"
-msgstr ""
+msgstr "Antal buckets för fas 3 & 4"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:136
 msgid "Number of threads"
@@ -1515,7 +1515,7 @@ msgstr "Utgående"
 #: src/components/settings/RemovePassphrasePrompt.tsx:123
 #: src/components/settings/SetPassphrasePrompt.tsx:142
 msgid "Passphrase"
-msgstr "Lösenordsfras"
+msgstr "Lösenfras"
 
 #: src/components/app/AppKeyringMigrator.tsx:159
 #: src/components/settings/ChangePassphrasePrompt.tsx:209
@@ -1552,7 +1552,7 @@ msgstr "Lösenfrasskydd är aktiverat"
 
 #: src/components/settings/Settings.tsx:122
 msgid "Passphrase support requires migrating your keys to a new keyring"
-msgstr "Lösenfrasstöd kräver migrering av nycklarna till en ny nyckelring"
+msgstr "Lösenfrasstöd kräver migrering av dina nycklar till en ny nyckelring"
 
 #: src/components/plotNFT/PlotNFTCard.tsx:361
 msgid "Payout Address"
@@ -1615,7 +1615,7 @@ msgstr "Vänligen ange ett filnamn"
 #: src/components/app/AppPassPrompt.tsx:136
 #: src/components/settings/SetPassphrasePrompt.tsx:57
 msgid "Please enter a passphrase"
-msgstr "Vänligen ange ett lösenord"
+msgstr "Vänligen ange en lösenfras"
 
 #: src/components/wallet/did/WalletDID.tsx:937
 msgid "Please enter a pubkey"
@@ -1666,7 +1666,7 @@ msgstr "Ange en giltig publik nyckel"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:63
 msgid "Please enter your current passphrase, and a new passphrase"
-msgstr "Ange ditt nuvarande lösenord, och en ny lösenfras"
+msgstr "Ange din nuvarande lösenfras, och en ny lösenfras"
 
 #: src/components/app/AppPassPrompt.tsx:182
 #: src/components/app/AppPassPrompt.tsx:198
@@ -1676,7 +1676,7 @@ msgstr "Ange lösenordsfras"
 
 #: src/components/app/AppPassPrompt.tsx:195
 msgid "Please enter your passphrase to proceed"
-msgstr "Ange ditt lösenord för att fortsätta"
+msgstr "Ange din lösenfras för att fortsätta"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:623
 #: src/components/wallet/standard/WalletStandard.tsx:420
@@ -1794,7 +1794,7 @@ msgstr "Plottar är reserverat utrymme på din hårddisk som används för att o
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:118
 msgid "Plotter"
-msgstr ""
+msgstr "Plotter"
 
 #: src/components/plot/queue/PlotQueueIndicator.tsx:34
 msgid "Plotting"
@@ -2058,11 +2058,11 @@ msgstr "Viktig information"
 #: src/components/settings/RemovePassphrasePrompt.tsx:161
 #: src/components/settings/Settings.tsx:194
 msgid "Remove Passphrase"
-msgstr "Byt lösenfras"
+msgstr "Ta bort lösenfras"
 
 #: src/components/app/AppKeyringMigrator.tsx:192
 msgid "Remove keys from old keyring upon successful migration"
-msgstr "Ta bort nycklar från gamla nyckelringar vid lyckad migration"
+msgstr "Ta bort nycklar från föregående nyckelring vid lyckad migrering"
 
 #: src/components/plot/queue/PlotQueueIndicator.tsx:36
 msgid "Removing"
@@ -2216,11 +2216,11 @@ msgstr "Skicka din publika nyckel till admin för din spenderbegränsade plånbo
 #: src/components/settings/SetPassphrasePrompt.tsx:220
 #: src/components/settings/Settings.tsx:205
 msgid "Set Passphrase"
-msgstr "Ny lösenfras"
+msgstr "Ange lösenfras"
 
 #: src/components/app/AppPassPrompt.tsx:75
 msgid "Setting a passphrase is strongly recommended to protect your keys. Are you sure you want to skip setting a passphrase?"
-msgstr "Att sätta ett lösenord rekommenderas starkt för att skydda dina nycklar. Är du säker på att du vill hoppa över inställningen av ett lösenfras?"
+msgstr "Att ange en lösenfras rekommenderas starkt för att skydda dina nycklar. Är du säker på att du inte vill ange en lösenfras?"
 
 #: src/components/dashboard/DashboardSideBar.tsx:76
 #: src/components/settings/Settings.tsx:239
@@ -2252,11 +2252,11 @@ msgstr "Hoppa över"
 
 #: src/components/app/AppKeyringMigrator.tsx:48
 msgid "Skip Keyring Migration"
-msgstr "Hoppa över Nyckelring Migration"
+msgstr "Hoppa över nyckelringsmigrering"
 
 #: src/components/app/AppPassPrompt.tsx:73
 msgid "Skip Passphrase Protection"
-msgstr "Hoppa över lösenordsskydd"
+msgstr "Hoppa över lösenfrasskydd"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:129
 #~ msgid "Skips adding [final dir] to harvester for farming"
@@ -2276,7 +2276,7 @@ msgstr "Något gick fel"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:138
 msgid "Specify a value of 0 to use all available threads"
-msgstr ""
+msgstr "Ange värdet 0 för att använda alla tillgängliga trådar"
 
 #: src/electron/main.tsx:479
 msgid "Speech"
@@ -2473,7 +2473,7 @@ msgstr "Poolbytet avbröts. Försök igen genom att byta pool eller använda sj�
 
 #: src/components/app/AppPassPrompt.tsx:37
 msgid "The provided passphrase and confirmation do not match"
-msgstr "Lösenord och bekräfelsen matchar inte"
+msgstr "Lösenfras och bekräftelse matchar inte"
 
 #: src/components/block/Block.jsx:303
 msgid "The seed used to create the plot. This depends on the pool pk and plot pk."
@@ -2586,7 +2586,7 @@ msgstr "Denna version av Chia är inte längre kompatibel med blockkedjan och ka
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:154
 msgid "Thread Multiplier for Phase 2"
-msgstr ""
+msgstr "Trådmultiplikator för fas 2"
 
 #: src/components/fullNode/FullNode.jsx:92
 msgid "Time Created"
@@ -2714,7 +2714,7 @@ msgstr "Publik nyckel för användare"
 
 #: src/components/app/AppPassPrompt.tsx:79
 msgid "Using a passphrase is strongly recommended to protect your keys. Are you sure you want to disable passphrase protection?"
-msgstr "Att sätta ett lösenord rekommenderas starkt för att skydda dina nycklar. Är du säker på att du vill hoppa över inställningen av ett lösenfras?"
+msgstr "Att använda en lösenfras rekommenderas starkt för att skydda dina nycklar. Är det säkert att du vill ta bort lösenfrasskyddet?"
 
 #: src/components/fullNode/card/FullNodeCardVDFSubSlotIterations.tsx:20
 msgid "VDF Sub Slot Iterations"
@@ -2841,7 +2841,7 @@ msgstr "Vill du ha en fördröjning innan nästa plott startar?"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:252
 msgid "Warm start"
-msgstr ""
+msgstr "Varmstart"
 
 #: src/components/selectKey/SelectKey.tsx:88
 #: src/components/selectKey/SelectKey.tsx:119
@@ -2982,19 +2982,19 @@ msgstr "Din nyckelring är låst"
 
 #: src/components/app/AppKeyringMigrator.tsx:54
 msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Are you sure you want to skip migrating your keys?"
-msgstr "Dina nycklar har inte migrerats till en ny nyckelring. Du kommer inte att kunna skapa nya nycklar eller ta bort befintliga nycklar tills migreringen är klar. Är du säker på att du vill hoppa över migrera dina nycklar?"
+msgstr "Dina nycklar har inte migrerats till en ny nyckelring. Du kommer inte att kunna skapa nya nycklar eller ta bort befintliga nycklar tills migreringen är klar. Är det säkert att du vill hoppa över migrering av nycklarna?"
 
 #: src/components/selectKey/SelectKey.tsx:141
 msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Would you like to migrate your keys now?"
-msgstr "Dina nycklar har inte migrerats till en ny nyckelring. Du kommer inte att kunna skapa nya nycklar eller ta bort befintliga nycklar tills migreringen är klar. Är du säker på att du vill hoppa över migrera dina nycklar?"
+msgstr "Dina nycklar har inte migrerats till en ny nyckelring. Du kommer inte att kunna skapa nya nycklar eller ta bort befintliga nycklar tills migreringen är klar. Vill du migrera nycklarna nu?"
 
 #: src/components/app/AppKeyringMigrator.tsx:101
 msgid "Your keys need to be migrated to a new keyring that is optionally secured by a master passphrase."
-msgstr "Dina nycklar måste migreras till en ny nyckelring som tillval säkras av en huvudlösenfras."
+msgstr "Dina nycklar måste migreras till en ny nyckelring som valfritt säkras av en huvudlösenfras."
 
 #: src/components/app/AppKeyringMigrator.tsx:107
 msgid "Your keys need to be migrated to a new keyring that is secured by a master passphrase."
-msgstr "Dina nycklar måste migreras till en ny nyckelring som tillval säkras av en huvudlösenfras."
+msgstr "Dina nycklar måste migreras till en ny nyckelring som säkras av en huvudlösenfras."
 
 #: src/components/app/AppKeyringMigrator.tsx:177
 #: src/components/settings/ChangePassphrasePrompt.tsx:227
@@ -3004,11 +3004,11 @@ msgstr "Din lösenfras kan sparas i systemets arkiv för autentiseringsuppgifter
 
 #: src/components/settings/Settings.tsx:80
 msgid "Your passphrase has been set"
-msgstr "Ditt lösenord har ändrats"
+msgstr "Din lösenfras har sparats"
 
 #: src/components/settings/Settings.tsx:67
 msgid "Your passphrase has been updated"
-msgstr "Ditt lösenord har ändrats"
+msgstr "Din lösenfras har ändrats"
 
 #: src/util/getDescriptiveError.ts:5
 msgid "[Error 13] Permission denied. You are trying to access a file/directory without having the necessary permissions. Most likely one of the plot folders in your config.yaml has an issue."
@@ -3053,7 +3053,7 @@ msgstr "synkar"
 
 #: src/components/app/AppPassPrompt.tsx:48
 msgid "{0, plural, one {Passphrases must be at least # character in length} other {Passphrases must be at least # characters in length}}"
-msgstr "{0, plural, one {Lösenord måste vara minst # tecken i längd} other {Lösenord måste vara minst # tecken i längd}}"
+msgstr "{0, plural, one {Lösenfras måste vara minst # tecken lång} other {Lösenfras måste vara minst # tecken lång}}"
 
 #: src/components/farm/card/FarmCardBlockRewards.tsx:16
 #~ msgid "{0} Block Rewards"
@@ -3066,7 +3066,7 @@ msgstr "{0, plural, one {Lösenord måste vara minst # tecken i längd} other {L
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:172
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:189
 msgid "{0} buckets is recommended"
-msgstr ""
+msgstr "{0} buckets rekommenderas"
 
 #: src/components/plotNFT/PlotNFTGraph.tsx:111
 msgid "{0} points {1} - {2} hours ago"
@@ -3090,5 +3090,5 @@ msgstr "{mojo, plural, one {mojo} other {mojo}}"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:133
 msgid "{warning}"
-msgstr ""
+msgstr "{warning}"
 
