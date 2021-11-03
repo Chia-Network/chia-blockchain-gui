@@ -8,7 +8,7 @@ msgstr ""
 "Language: sl_SI\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-10-28 22:46\n"
+"PO-Revision-Date: 2021-11-03 06:25\n"
 "Last-Translator: \n"
 "Language-Team: Slovenian\n"
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n%100==4 ? 3 : 0);\n"
@@ -591,7 +591,7 @@ msgstr "Ustvari novo admin denarnico"
 
 #: src/components/wallet/create/WalletCreate.jsx:132
 msgid "Create new coloured coin"
-msgstr ""
+msgstr "Ustvari nov barvni kovanec"
 
 #: src/components/wallet/create/WalletCreate.jsx:192
 msgid "Create user wallet"
@@ -599,7 +599,7 @@ msgstr "Ustvari novo denarnico"
 
 #: src/components/wallet/create/createExistingColouredCoin.jsx:93
 msgid "Create wallet for colour"
-msgstr ""
+msgstr "Ustvari denarnico za barvo"
 
 #: src/components/wallet/create/WalletCreate.jsx:139
 msgid "Create wallet for existing colour"
