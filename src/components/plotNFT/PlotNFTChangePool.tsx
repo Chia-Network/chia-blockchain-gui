@@ -2,13 +2,14 @@ import React, { useMemo, ReactNode } from 'react';
 import { Trans } from '@lingui/macro';
 import { useHistory } from 'react-router';
 import { useDispatch } from 'react-redux';
-import { Flex, Loading } from '@chia/core';
+import { Flex, State, Loading, StateTypography } from '@chia/core';
 import { ChevronRight as ChevronRightIcon } from '@material-ui/icons';
 import { useParams } from 'react-router';
 import usePlotNFTs from '../../hooks/usePlotNFTs';
 import { pwSelfPool, pwJoinPool } from '../../modules/plotNFT';
 import PlotNFTSelectPool, { SubmitData } from './select/PlotNFTSelectPool';
 import PlotNFTName from './PlotNFTName';
+import PlotNFTStateEnum from '../../constants/PlotNFTState';
 
 type Props = {
   headerTag?: ReactNode;
@@ -28,6 +29,10 @@ export default function PlotNFTChangePool(props: Props) {
       (nft) => nft.pool_state.p2_singleton_puzzle_hash === plotNFTId,
     );
   }, [nfts, plotNFTId]);
+
+
+  const state = nft?.pool_wallet_status?.current?.state;
+  const isDoubleFee = state === PlotNFTStateEnum.FARMING_TO_POOL;
 
   async function handleSubmit(data: SubmitData) {
     const walletId = nft?.pool_wallet_status.wallet_id;
@@ -112,6 +117,11 @@ export default function PlotNFTChangePool(props: Props) {
         title={<Trans>Change Pool</Trans>}
         submitTitle={<Trans>Change</Trans>}
         defaultValues={defaultValues}
+        feeDescription={isDoubleFee && (
+          <StateTypography variant="body2" state={State.WARNING}>
+            <Trans>Fee is used TWICE: once to leave pool, once to join.</Trans>
+          </StateTypography>
+        )}
       />
     </>
   );

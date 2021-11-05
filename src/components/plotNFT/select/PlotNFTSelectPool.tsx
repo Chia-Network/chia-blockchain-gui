@@ -70,6 +70,7 @@ type Props = {
     self?: boolean;
     poolUrl?: string;
   };
+  feeDescription?: ReactNode;
 };
 
 const PlotNFTSelectPool = forwardRef((props: Props, ref) => {
@@ -82,6 +83,7 @@ const PlotNFTSelectPool = forwardRef((props: Props, ref) => {
     description,
     submitTitle,
     hideFee,
+    feeDescription,
   } = props;
   const [loading, setLoading] = useState<boolean>(false);
   const { balance, loading: walletLoading } = useStandardWallet();
@@ -146,6 +148,7 @@ const PlotNFTSelectPool = forwardRef((props: Props, ref) => {
           title={title}
           description={description}
           hideFee={hideFee}
+          feeDescription={feeDescription}
         />
         {!onCancel && (
           <Flex gap={1}>
