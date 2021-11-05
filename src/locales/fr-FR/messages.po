@@ -8,7 +8,7 @@ msgstr ""
 "Language: fr_FR\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-10-29 10:42\n"
+"PO-Revision-Date: 2021-11-05 15:28\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
@@ -725,7 +725,7 @@ msgstr "Suppression de la clé"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:107
 msgid "Depending on your system configuration, you may find that an alternative plotter produces plots faster than the default Chia Proof of Space plotter. If unsure, use the default Chia Proof of Space plotter."
-msgstr ""
+msgstr "Selon la configuration de votre système, il se peut qu'un autre traceur puisse produire des parcelles plus vite que le traceur par défaut \"Chia Proof of Space\". En cas de doute, utilisez le traceur par défaut \"Chia Proof of Space\"."
 
 #: src/electron/main.tsx:313
 msgid "Developer"
