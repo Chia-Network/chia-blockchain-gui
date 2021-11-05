@@ -123,11 +123,13 @@ export function pwJoinPoolMessage(
   poolUrl,
   relativeLockHeight,
   targetPuzzlehash,
+  fee,
 ) {
   const data = {
     wallet_id: walletId,
     pool_url: poolUrl,
     relative_lock_height: relativeLockHeight,
+    fee,
   };
 
   if (targetPuzzlehash) {
@@ -137,9 +139,10 @@ export function pwJoinPoolMessage(
   return format_message('pw_join_pool', data);
 }
 
-export function pwSelfPoolMessage(walletId) {
+export function pwSelfPoolMessage(walletId, fee) {
   return format_message('pw_self_pool', {
     wallet_id: walletId,
+    fee,
   });
 }
 
