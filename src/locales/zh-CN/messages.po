@@ -307,7 +307,7 @@ msgstr "可备份为助记词"
 #: src/components/farm/FarmManageFarmingRewards.tsx:200
 #: src/components/fullNode/FullNodeAddConnection.tsx:89
 #: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:128
-#: src/components/plotNFT/select/PlotNFTSelectBase.tsx:87
+#: src/components/plotNFT/select/PlotNFTSelectBase.tsx:86
 #: src/components/plotNFT/select/PlotNFTSelectFaucet.tsx:30
 #: src/components/selectKey/SelectKey.tsx:138
 #: src/components/settings/ChangePassphrasePrompt.tsx:240
@@ -335,7 +335,7 @@ msgstr "挑战"
 msgid "Challenge Hash"
 msgstr "挑战哈希"
 
-#: src/components/plotNFT/PlotNFTChangePool.tsx:111
+#: src/components/plotNFT/PlotNFTChangePool.tsx:118
 msgid "Change"
 msgstr "变更"
 
@@ -345,7 +345,7 @@ msgid "Change Passphrase"
 msgstr ""
 
 #: src/components/plotNFT/PlotNFTCard.tsx:408
-#: src/components/plotNFT/PlotNFTChangePool.tsx:110
+#: src/components/plotNFT/PlotNFTChangePool.tsx:117
 #: src/components/pool/PoolOverview.tsx:115
 msgid "Change Pool"
 msgstr "更换农业合作社"
@@ -374,7 +374,7 @@ msgstr "选择要开垦的数量"
 msgid "Choose Plot Size"
 msgstr "选择农田文件大小"
 
-#: src/components/plot/add/PlotAddChoosePlotter.tsx:105
+#: src/components/plot/add/PlotAddChoosePlotter.tsx:94
 msgid "Choose Plotter"
 msgstr ""
 
@@ -467,7 +467,7 @@ msgstr "连接"
 msgid "Connect to other peers"
 msgstr "连接到其它节点"
 
-#: src/components/plotNFT/select/PlotNFTSelectBase.tsx:116
+#: src/components/plotNFT/select/PlotNFTSelectBase.tsx:115
 msgid "Connect to pool"
 msgstr "连接到农业合作社"
 
@@ -518,7 +518,7 @@ msgstr "复制到剪贴板"
 
 #: src/components/backup/BackupCreate.tsx:58
 #: src/components/plot/add/PlotAdd.tsx:211
-#: src/components/plotNFT/select/PlotNFTSelectPool.tsx:175
+#: src/components/plotNFT/select/PlotNFTSelectPool.tsx:178
 #: src/components/wallet/create/createExistingColouredCoin.jsx:133
 #: src/components/wallet/create/createNewColouredCoin.jsx:142
 #: src/components/wallet/create/createRLAdmin.jsx:307
@@ -723,7 +723,7 @@ msgstr ""
 #~ msgid "Deleting the key will permanently remove the key from your computer, make sure you have backups. Are you sure you want to continue?"
 #~ msgstr "删除此密钥将会把密钥从你的计算机中永久移除，请确保你已经将其备份。确定继续？"
 
-#: src/components/plot/add/PlotAddChoosePlotter.tsx:107
+#: src/components/plot/add/PlotAddChoosePlotter.tsx:96
 msgid "Depending on your system configuration, you may find that an alternative plotter produces plots faster than the default Chia Proof of Space plotter. If unsure, use the default Chia Proof of Space plotter."
 msgstr ""
 
@@ -828,7 +828,7 @@ msgstr ""
 msgid "Enter the 24 word mnemonic that you have saved in order to restore your Chia wallet."
 msgstr "请输入你保存的24个助记词来恢复奇亚钱包"
 
-#: src/components/settings/RemovePassphrasePrompt.tsx:115
+#: src/components/settings/RemovePassphrasePrompt.tsx:118
 msgid "Enter your passphrase:"
 msgstr ""
 
@@ -953,7 +953,7 @@ msgstr "耕种状态"
 
 #: src/components/core/components/Fee/Fee.tsx:48
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:154
-#: src/components/plotNFT/select/PlotNFTSelectBase.tsx:147
+#: src/components/plotNFT/select/PlotNFTSelectBase.tsx:146
 #: src/components/pool/PoolInfo.tsx:17
 #: src/components/wallet/WalletHistory.tsx:66
 #: src/components/wallet/create/createExistingColouredCoin.jsx:123
@@ -976,6 +976,10 @@ msgstr "费用"
 #: src/components/wallet/coloured/WalletColoured.tsx:595
 msgid "Fee ({currencyCode})"
 msgstr "交易费 ({currencyCode})"
+
+#: src/components/plotNFT/PlotNFTChangePool.tsx:122
+msgid "Fee is used TWICE: once to leave pool, once to join."
+msgstr ""
 
 #: src/components/block/Block.jsx:322
 msgid "Fees Amount"
@@ -1509,11 +1513,11 @@ msgstr "只允许一个备份文件。"
 msgid "Outgoing"
 msgstr "支出"
 
-#: src/components/app/AppKeyringMigrator.tsx:129
-#: src/components/app/AppKeyringMigrator.tsx:130
-#: src/components/app/AppPassPrompt.tsx:221
-#: src/components/settings/RemovePassphrasePrompt.tsx:123
-#: src/components/settings/SetPassphrasePrompt.tsx:142
+#: src/components/app/AppKeyringMigrator.tsx:135
+#: src/components/app/AppKeyringMigrator.tsx:136
+#: src/components/app/AppPassPrompt.tsx:225
+#: src/components/settings/RemovePassphrasePrompt.tsx:126
+#: src/components/settings/SetPassphrasePrompt.tsx:155
 msgid "Passphrase"
 msgstr ""
 
@@ -1533,8 +1537,8 @@ msgstr ""
 msgid "Passphrase Settings"
 msgstr ""
 
-#: src/components/app/AppPassPrompt.tsx:149
-#: src/components/settings/RemovePassphrasePrompt.tsx:64
+#: src/components/app/AppPassPrompt.tsx:152
+#: src/components/settings/RemovePassphrasePrompt.tsx:67
 msgid "Passphrase is incorrect"
 msgstr ""
 
@@ -1668,9 +1672,9 @@ msgstr "请输入一个正确的公钥"
 msgid "Please enter your current passphrase, and a new passphrase"
 msgstr ""
 
-#: src/components/app/AppPassPrompt.tsx:182
-#: src/components/app/AppPassPrompt.tsx:198
-#: src/components/settings/RemovePassphrasePrompt.tsx:47
+#: src/components/app/AppPassPrompt.tsx:185
+#: src/components/app/AppPassPrompt.tsx:201
+#: src/components/settings/RemovePassphrasePrompt.tsx:50
 msgid "Please enter your passphrase"
 msgstr ""
 
@@ -1718,7 +1722,7 @@ msgid "Please wait for synchronization"
 msgstr "请等待同步"
 
 #: src/components/wallet/did/WalletDIDRecovery.tsx:64
-#: src/hooks/useJoinPool.tsx:27
+#: src/hooks/useJoinPool.tsx:28
 msgid "Please wait for wallet synchronization"
 msgstr "请等待钱包同步"
 
@@ -1744,7 +1748,7 @@ msgid "Plot NFT"
 msgstr "农田NFT"
 
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:103
-#: src/components/plotNFT/PlotNFTChangePool.tsx:81
+#: src/components/plotNFT/PlotNFTChangePool.tsx:88
 msgid "Plot NFT with p2_singleton_puzzle_hash {plotNFTId} does not exists"
 msgstr "p2_singleton_puzzle_hash为 {plotNFTId} 的农田NTF不存在。"
 
@@ -1792,7 +1796,7 @@ msgstr "通过初筛的农田"
 msgid "Plots are allocated space on your hard drive used to farm and earn Chia. <0>Learn more</0>"
 msgstr "农田就是在你的硬盘上分配的一块空间，用来收获奇亚币。<0>了解更多</0>"
 
-#: src/components/plot/add/PlotAddChoosePlotter.tsx:118
+#: src/components/plot/add/PlotAddChoosePlotter.tsx:107
 msgid "Plotter"
 msgstr ""
 
@@ -1908,7 +1912,7 @@ msgid "Port"
 msgstr "端口"
 
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:88
-#: src/components/plotNFT/PlotNFTChangePool.tsx:74
+#: src/components/plotNFT/PlotNFTChangePool.tsx:81
 msgid "Preparing Plot NFT"
 msgstr "正在准备农田NFT"
 
@@ -2188,7 +2192,7 @@ msgstr "选择恢复文件："
 msgid "Self Pooling"
 msgstr "自耕种"
 
-#: src/components/plotNFT/select/PlotNFTSelectBase.tsx:105
+#: src/components/plotNFT/select/PlotNFTSelectBase.tsx:104
 msgid "Self pool. When you win a block you will earn XCH rewards."
 msgstr "自耕种。一旦发现新区块，你将得到全部XCH区块奖励。"
 
@@ -2359,7 +2363,7 @@ msgstr "状态："
 #~ msgid "Sub Block at height {0} in the Chia blockchain"
 #~ msgstr "Sub Block at height {0} in the Chia blockchain"
 
-#: src/components/app/AppPassPrompt.tsx:199
+#: src/components/app/AppPassPrompt.tsx:202
 #: src/components/wallet/did/WalletDID.tsx:889
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:347
 msgid "Submit"
@@ -2891,7 +2895,7 @@ msgid "Yes"
 msgstr "是"
 
 #: src/hooks/useAbsorbRewards.tsx:29
-#: src/hooks/useJoinPool.tsx:35
+#: src/hooks/useJoinPool.tsx:36
 msgid "You are in pending state. Please wait for confirmation"
 msgstr "你当前处于待处理状态，请等待区块链确认。"
 
@@ -3051,8 +3055,8 @@ msgid "syncing"
 msgstr "同步中"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:89
-msgid "thirdparty.plotter.disclaimer"
-msgstr ""
+#~ msgid "thirdparty.plotter.disclaimer"
+#~ msgstr ""
 
 #: src/components/app/AppPassPrompt.tsx:48
 msgid "{0, plural, one {Passphrases must be at least # character in length} other {Passphrases must be at least # characters in length}}"
@@ -3091,6 +3095,6 @@ msgstr "{currencyCode} 用户交易费用"
 msgid "{mojo, plural, one {mojo} other {mojos}}"
 msgstr "{mojo, plural, one {mojo} other {mojos}}"
 
-#: src/components/plot/add/PlotAddChoosePlotter.tsx:133
+#: src/components/plot/add/PlotAddChoosePlotter.tsx:122
 msgid "{warning}"
 msgstr ""
