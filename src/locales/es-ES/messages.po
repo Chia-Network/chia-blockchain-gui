@@ -307,7 +307,7 @@ msgstr "Puede respaldarse en una semilla mnemotécnica"
 #: src/components/farm/FarmManageFarmingRewards.tsx:200
 #: src/components/fullNode/FullNodeAddConnection.tsx:89
 #: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:128
-#: src/components/plotNFT/select/PlotNFTSelectBase.tsx:87
+#: src/components/plotNFT/select/PlotNFTSelectBase.tsx:86
 #: src/components/plotNFT/select/PlotNFTSelectFaucet.tsx:30
 #: src/components/selectKey/SelectKey.tsx:138
 #: src/components/settings/ChangePassphrasePrompt.tsx:240
@@ -335,7 +335,7 @@ msgstr "Desafío"
 msgid "Challenge Hash"
 msgstr "Desafío Hash"
 
-#: src/components/plotNFT/PlotNFTChangePool.tsx:111
+#: src/components/plotNFT/PlotNFTChangePool.tsx:118
 msgid "Change"
 msgstr "Cambiar"
 
@@ -345,7 +345,7 @@ msgid "Change Passphrase"
 msgstr ""
 
 #: src/components/plotNFT/PlotNFTCard.tsx:408
-#: src/components/plotNFT/PlotNFTChangePool.tsx:110
+#: src/components/plotNFT/PlotNFTChangePool.tsx:117
 #: src/components/pool/PoolOverview.tsx:115
 msgid "Change Pool"
 msgstr "Cambiar Fondo"
@@ -374,7 +374,7 @@ msgstr "Elegir la cantidad de Parcelas"
 msgid "Choose Plot Size"
 msgstr "Elegir el Tamaño de la Parcela"
 
-#: src/components/plot/add/PlotAddChoosePlotter.tsx:105
+#: src/components/plot/add/PlotAddChoosePlotter.tsx:94
 msgid "Choose Plotter"
 msgstr ""
 
@@ -467,7 +467,7 @@ msgstr "Conectar"
 msgid "Connect to other peers"
 msgstr "Conectar a otros pares"
 
-#: src/components/plotNFT/select/PlotNFTSelectBase.tsx:116
+#: src/components/plotNFT/select/PlotNFTSelectBase.tsx:115
 msgid "Connect to pool"
 msgstr "Conectar al fondo"
 
@@ -518,7 +518,7 @@ msgstr "Copiar al porta-papeles"
 
 #: src/components/backup/BackupCreate.tsx:58
 #: src/components/plot/add/PlotAdd.tsx:211
-#: src/components/plotNFT/select/PlotNFTSelectPool.tsx:175
+#: src/components/plotNFT/select/PlotNFTSelectPool.tsx:178
 #: src/components/wallet/create/createExistingColouredCoin.jsx:133
 #: src/components/wallet/create/createNewColouredCoin.jsx:142
 #: src/components/wallet/create/createRLAdmin.jsx:307
@@ -723,7 +723,7 @@ msgstr ""
 #~ msgid "Deleting the key will permanently remove the key from your computer, make sure you have backups. Are you sure you want to continue?"
 #~ msgstr "Borrar la llave eliminará permanentemente la llave de su ordenador, asegurase de tener una copia de seguridad. ¿Está seguro de que quiere continuar?"
 
-#: src/components/plot/add/PlotAddChoosePlotter.tsx:107
+#: src/components/plot/add/PlotAddChoosePlotter.tsx:96
 msgid "Depending on your system configuration, you may find that an alternative plotter produces plots faster than the default Chia Proof of Space plotter. If unsure, use the default Chia Proof of Space plotter."
 msgstr ""
 
@@ -828,7 +828,7 @@ msgstr ""
 msgid "Enter the 24 word mnemonic that you have saved in order to restore your Chia wallet."
 msgstr "Introduzca las 24 palabras mnemotécnicas que has guardado en orden para restaurar su cartera Chia."
 
-#: src/components/settings/RemovePassphrasePrompt.tsx:115
+#: src/components/settings/RemovePassphrasePrompt.tsx:118
 msgid "Enter your passphrase:"
 msgstr ""
 
@@ -953,7 +953,7 @@ msgstr "Estado de Cultivo"
 
 #: src/components/core/components/Fee/Fee.tsx:48
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:154
-#: src/components/plotNFT/select/PlotNFTSelectBase.tsx:147
+#: src/components/plotNFT/select/PlotNFTSelectBase.tsx:146
 #: src/components/pool/PoolInfo.tsx:17
 #: src/components/wallet/WalletHistory.tsx:66
 #: src/components/wallet/create/createExistingColouredCoin.jsx:123
@@ -976,6 +976,10 @@ msgstr "Tarifa"
 #: src/components/wallet/coloured/WalletColoured.tsx:595
 msgid "Fee ({currencyCode})"
 msgstr "Tarifa ({currencyCode})"
+
+#: src/components/plotNFT/PlotNFTChangePool.tsx:122
+msgid "Fee is used TWICE: once to leave pool, once to join."
+msgstr ""
 
 #: src/components/block/Block.jsx:322
 msgid "Fees Amount"
@@ -1509,11 +1513,11 @@ msgstr ""
 msgid "Outgoing"
 msgstr "Enviado"
 
-#: src/components/app/AppKeyringMigrator.tsx:129
-#: src/components/app/AppKeyringMigrator.tsx:130
-#: src/components/app/AppPassPrompt.tsx:221
-#: src/components/settings/RemovePassphrasePrompt.tsx:123
-#: src/components/settings/SetPassphrasePrompt.tsx:142
+#: src/components/app/AppKeyringMigrator.tsx:135
+#: src/components/app/AppKeyringMigrator.tsx:136
+#: src/components/app/AppPassPrompt.tsx:225
+#: src/components/settings/RemovePassphrasePrompt.tsx:126
+#: src/components/settings/SetPassphrasePrompt.tsx:155
 msgid "Passphrase"
 msgstr ""
 
@@ -1533,8 +1537,8 @@ msgstr ""
 msgid "Passphrase Settings"
 msgstr ""
 
-#: src/components/app/AppPassPrompt.tsx:149
-#: src/components/settings/RemovePassphrasePrompt.tsx:64
+#: src/components/app/AppPassPrompt.tsx:152
+#: src/components/settings/RemovePassphrasePrompt.tsx:67
 msgid "Passphrase is incorrect"
 msgstr ""
 
@@ -1668,9 +1672,9 @@ msgstr "Por favor, introduzca una llave pública válida"
 msgid "Please enter your current passphrase, and a new passphrase"
 msgstr ""
 
-#: src/components/app/AppPassPrompt.tsx:182
-#: src/components/app/AppPassPrompt.tsx:198
-#: src/components/settings/RemovePassphrasePrompt.tsx:47
+#: src/components/app/AppPassPrompt.tsx:185
+#: src/components/app/AppPassPrompt.tsx:201
+#: src/components/settings/RemovePassphrasePrompt.tsx:50
 msgid "Please enter your passphrase"
 msgstr ""
 
@@ -1718,7 +1722,7 @@ msgid "Please wait for synchronization"
 msgstr "Por favor espere a sincronización"
 
 #: src/components/wallet/did/WalletDIDRecovery.tsx:64
-#: src/hooks/useJoinPool.tsx:27
+#: src/hooks/useJoinPool.tsx:28
 msgid "Please wait for wallet synchronization"
 msgstr "Por favor espere a sincronización de cartera"
 
@@ -1744,7 +1748,7 @@ msgid "Plot NFT"
 msgstr "Parcela NFT"
 
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:103
-#: src/components/plotNFT/PlotNFTChangePool.tsx:81
+#: src/components/plotNFT/PlotNFTChangePool.tsx:88
 msgid "Plot NFT with p2_singleton_puzzle_hash {plotNFTId} does not exists"
 msgstr "La parcela NFT con p2_singleton_puzzle_hash {plotNFTId} no existe"
 
@@ -1792,7 +1796,7 @@ msgstr "Parcelas Pasaron el Filtro"
 msgid "Plots are allocated space on your hard drive used to farm and earn Chia. <0>Learn more</0>"
 msgstr "A las parcelas se les asigna espacio en tu disco duro que se usa para cultivar y ganar Chia. <0> Más información </0>"
 
-#: src/components/plot/add/PlotAddChoosePlotter.tsx:118
+#: src/components/plot/add/PlotAddChoosePlotter.tsx:107
 msgid "Plotter"
 msgstr ""
 
@@ -1908,7 +1912,7 @@ msgid "Port"
 msgstr "Puerto"
 
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:88
-#: src/components/plotNFT/PlotNFTChangePool.tsx:74
+#: src/components/plotNFT/PlotNFTChangePool.tsx:81
 msgid "Preparing Plot NFT"
 msgstr "Preparando Parcela NFT"
 
@@ -2188,7 +2192,7 @@ msgstr ""
 msgid "Self Pooling"
 msgstr "Auto-Fondo"
 
-#: src/components/plotNFT/select/PlotNFTSelectBase.tsx:105
+#: src/components/plotNFT/select/PlotNFTSelectBase.tsx:104
 msgid "Self pool. When you win a block you will earn XCH rewards."
 msgstr "Auto - Fondo. Cuando ganes un bloqueo, ganarás recompensas XCH."
 
@@ -2359,7 +2363,7 @@ msgstr "Estado:"
 #~ msgid "Sub Block at height {0} in the Chia blockchain"
 #~ msgstr "Sub Block at height {0} in the Chia blockchain"
 
-#: src/components/app/AppPassPrompt.tsx:199
+#: src/components/app/AppPassPrompt.tsx:202
 #: src/components/wallet/did/WalletDID.tsx:889
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:347
 msgid "Submit"
@@ -2891,7 +2895,7 @@ msgid "Yes"
 msgstr "Sí"
 
 #: src/hooks/useAbsorbRewards.tsx:29
-#: src/hooks/useJoinPool.tsx:35
+#: src/hooks/useJoinPool.tsx:36
 msgid "You are in pending state. Please wait for confirmation"
 msgstr "Estás en estado pendiente. Por favor, espera la confirmación"
 
@@ -3051,8 +3055,8 @@ msgid "syncing"
 msgstr "sincronizando"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:89
-msgid "thirdparty.plotter.disclaimer"
-msgstr ""
+#~ msgid "thirdparty.plotter.disclaimer"
+#~ msgstr ""
 
 #: src/components/app/AppPassPrompt.tsx:48
 msgid "{0, plural, one {Passphrases must be at least # character in length} other {Passphrases must be at least # characters in length}}"
@@ -3091,6 +3095,6 @@ msgstr "{currencyCode} Tarifas de Transacción del Usuario"
 msgid "{mojo, plural, one {mojo} other {mojos}}"
 msgstr "{mojo, plural, one {mojo} other {mojos}}"
 
-#: src/components/plot/add/PlotAddChoosePlotter.tsx:133
+#: src/components/plot/add/PlotAddChoosePlotter.tsx:122
 msgid "{warning}"
 msgstr ""
