@@ -39,6 +39,7 @@ export default function PlotNFTChangePool(props: Props) {
         relative_lock_height,
         target_puzzle_hash,
       },
+      fee,
     } = data;
 
     if (
@@ -49,7 +50,7 @@ export default function PlotNFTChangePool(props: Props) {
     }
 
     if (state === 'SELF_POOLING') {
-      await dispatch(pwSelfPool(walletId));
+      await dispatch(pwSelfPool(walletId, fee));
     } else {
       await dispatch(
         pwJoinPool(
@@ -57,6 +58,7 @@ export default function PlotNFTChangePool(props: Props) {
           pool_url,
           relative_lock_height,
           target_puzzle_hash,
+          fee,
         ),
       );
     }
@@ -110,7 +112,6 @@ export default function PlotNFTChangePool(props: Props) {
         title={<Trans>Change Pool</Trans>}
         submitTitle={<Trans>Change</Trans>}
         defaultValues={defaultValues}
-        hideFee
       />
     </>
   );
