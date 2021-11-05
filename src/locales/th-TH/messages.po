@@ -8,7 +8,7 @@ msgstr ""
 "Language: th_TH\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-10-28 22:46\n"
+"PO-Revision-Date: 2021-11-05 09:28\n"
 "Last-Translator: \n"
 "Language-Team: Thai\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -20,11 +20,11 @@ msgstr ""
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:78
 msgid "(Not Installed)"
-msgstr ""
+msgstr "(ยังไม่ติดตั้ง)"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:75
 msgid "(Not Supported)"
-msgstr ""
+msgstr "(ไม่สนับสนุน)"
 
 #: src/components/plot/add/PlotAddNFT.tsx:67
 msgid "(Optional)"
@@ -746,7 +746,7 @@ msgstr "ปิดการใช้งาน"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:266
 msgid "Disable NUMA"
-msgstr ""
+msgstr "ปิดใช้งาน NUMA"
 
 #: src/components/app/AppPassPrompt.tsx:77
 msgid "Disable Passphrase Protection"
@@ -1084,7 +1084,7 @@ msgstr "ซ่อนตัวเลือกขั้นสูง"
 #: src/components/app/AppPassPrompt.tsx:233
 #: src/components/settings/RemovePassphrasePrompt.tsx:134
 msgid "Hint"
-msgstr ""
+msgstr "ตัวช่วย"
 
 #: src/components/wallet/WalletHistory.tsx:91
 msgid "History"
@@ -2103,7 +2103,7 @@ msgstr "บันทึก"
 #: src/components/settings/ChangePassphrasePrompt.tsx:224
 #: src/components/settings/SetPassphrasePrompt.tsx:194
 msgid "Save passphrase"
-msgstr ""
+msgstr "บันทึกวลีรหัสผ่าน"
 
 #: src/components/fullNode/FullNode.jsx:338
 #~ msgid "Search"
@@ -3065,7 +3065,7 @@ msgstr "{0, plural, one {วลีรหัสผ่านต้องมีค�
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:172
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:189
 msgid "{0} buckets is recommended"
-msgstr ""
+msgstr "จำนวนบักเก็ตที่แนะนำคือ {0}"
 
 #: src/components/plotNFT/PlotNFTGraph.tsx:111
 msgid "{0} points {1} - {2} hours ago"
@@ -3089,5 +3089,5 @@ msgstr "{mojo, plural, one {mojo} other {mojos}}"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:133
 msgid "{warning}"
-msgstr ""
+msgstr "{warning}"
 
