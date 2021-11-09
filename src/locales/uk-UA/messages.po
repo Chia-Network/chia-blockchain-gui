@@ -8,7 +8,7 @@ msgstr ""
 "Language: uk_UA\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-10-28 22:46\n"
+"PO-Revision-Date: 2021-11-09 14:40\n"
 "Last-Translator: \n"
 "Language-Team: Ukrainian\n"
 "Plural-Forms: nplurals=4; plural=((n%10==1 && n%100!=11) ? 0 : ((n%10 >= 2 && n%10 <=4 && (n%100 < 12 || n%100 > 14)) ? 1 : ((n%10 == 0 || (n%10 >= 5 && n%10 <=9)) || (n%100 >= 11 && n%100 <= 14)) ? 2 : 3));\n"
@@ -20,15 +20,15 @@ msgstr ""
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:78
 msgid "(Not Installed)"
-msgstr ""
+msgstr "(Не встановлено)"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:75
 msgid "(Not Supported)"
-msgstr ""
+msgstr "(Не підтримується)"
 
 #: src/components/plot/add/PlotAddNFT.tsx:67
 msgid "(Optional)"
-msgstr ""
+msgstr "(Не обов'язково)"
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:64
 msgid "*Want to explore Chia’s blocks further? Check out <0>Chia Explorer</0> built by an open source developer."
@@ -36,11 +36,11 @@ msgstr "Бажаєте подивитися більше інформації п
 
 #: src/components/plot/add/PlotAddNFT.tsx:128
 msgid "+ Add New Plot NFT"
-msgstr ""
+msgstr "+ Додати нові ділянки NFT"
 
 #: src/components/wallet/Wallets.tsx:132
 msgid "+ Add Wallet"
-msgstr ""
+msgstr "+ Додати гаманець"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:94
 #~ msgid "0 automatically chooses bucket count"
@@ -56,7 +56,7 @@ msgstr "Комбайн - це служба, що працює на пристр�
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:155
 msgid "A value of {0} is recommended"
-msgstr ""
+msgstr "Рекомендуємо значення {0}"
 
 #: src/electron/main.tsx:431
 #: src/electron/main.tsx:518
@@ -91,7 +91,7 @@ msgstr "Додати"
 #: src/components/wallet/did/WalletDID.tsx:877
 #: src/components/wallet/did/WalletDIDCreate.tsx:208
 msgid "Add Backup ID"
-msgstr ""
+msgstr "Додати ID резервної копії"
 
 #: src/components/plot/PlotHeader.tsx:91
 msgid "Add Plot Directory"
@@ -116,7 +116,7 @@ msgstr "Додати ділянку"
 
 #: src/components/plotNFT/PlotNFTAdd.tsx:51
 msgid "Add a Plot NFT"
-msgstr ""
+msgstr "Додати ділянку NFT"
 
 #: src/components/plot/PlotAddDirectoryDialog.tsx:72
 msgid "Add a plot"
@@ -337,18 +337,18 @@ msgstr "Хеш випробування"
 
 #: src/components/plotNFT/PlotNFTChangePool.tsx:111
 msgid "Change"
-msgstr ""
+msgstr "Змінити"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:248
 #: src/components/settings/Settings.tsx:158
 msgid "Change Passphrase"
-msgstr ""
+msgstr "Змінити парольну фразу"
 
 #: src/components/plotNFT/PlotNFTCard.tsx:408
 #: src/components/plotNFT/PlotNFTChangePool.tsx:110
 #: src/components/pool/PoolOverview.tsx:115
 msgid "Change Pool"
-msgstr ""
+msgstr "Змінити пул"
 
 #: src/electron/main.tsx:410
 msgid "Chat on KeyBase"
@@ -381,7 +381,7 @@ msgstr ""
 #: src/components/plotNFT/PlotNFTCard.tsx:384
 #: src/components/pool/PoolOverview.tsx:92
 msgid "Claim Rewards"
-msgstr ""
+msgstr "Забрати нагороду"
 
 #: src/components/plot/PlotAddDirectoryDialog.tsx:118
 #: src/components/plot/queue/PlotQueueLogDialog.tsx:88
@@ -394,7 +394,7 @@ msgstr "Закриття вузла і сервера"
 
 #: src/components/wallet/did/WalletDID.tsx:987
 msgid "Coin Name"
-msgstr ""
+msgstr "Назва токена"
 
 #: src/components/trading/TradingOverview.jsx:366
 msgid "Coins:"
@@ -448,7 +448,7 @@ msgstr ""
 #: src/components/plotNFT/PlotNFTCard.tsx:121
 #: src/components/wallet/standard/WalletStandard.tsx:622
 msgid "Confirmation"
-msgstr ""
+msgstr "Підтвердження"
 
 #: src/components/trading/TradingOverview.jsx:201
 msgid "Confirmed at block:"
@@ -469,7 +469,7 @@ msgstr "Підключитися до інших вузлів"
 
 #: src/components/plotNFT/select/PlotNFTSelectBase.tsx:116
 msgid "Connect to pool"
-msgstr ""
+msgstr "Підключитися до пулу"
 
 #: src/components/core/components/FormatConnectionStatus/FormatConnectionStatus.tsx:51
 #: src/components/fullNode/card/FullNodeCardConnectionStatus.tsx:17
@@ -541,7 +541,7 @@ msgstr ""
 
 #: src/components/wallet/did/WalletDIDSelect.tsx:32
 msgid "Create New Wallet"
-msgstr ""
+msgstr "Створити новий гаманець"
 
 #: src/components/trading/TradeManager.tsx:45
 msgid "Create Offer"
@@ -579,7 +579,7 @@ msgstr "Створити резервну копію"
 
 #: src/components/plot/add/PlotAddNFT.tsx:47
 msgid "Create a Plot NFT"
-msgstr ""
+msgstr "Створити ділянку NFT"
 
 #: src/components/selectKey/SelectKey.tsx:254
 msgid "Create a new private key"
@@ -619,11 +619,11 @@ msgstr "Створено нами:"
 
 #: src/components/plotNFT/PlotNFTUnconfirmedCard.tsx:51
 msgid "Creating Plot NFT and Joining the Pool"
-msgstr ""
+msgstr "Створення ділянки NFT та приєднання до пулу"
 
 #: src/components/plotNFT/PlotNFTUnconfirmedCard.tsx:49
 msgid "Creating Plot NFT for Self Pooling"
-msgstr ""
+msgstr "Створення ділянки NFT для самостійного видобутку"
 
 #: src/components/plot/add/PlotAdd.tsx:117
 msgid "Currency code is not defined"
@@ -1741,12 +1741,12 @@ msgstr "Ключ ділянки"
 
 #: src/components/pool/PoolOverview.tsx:40
 msgid "Plot NFT"
-msgstr ""
+msgstr "Ділянка NFT"
 
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:103
 #: src/components/plotNFT/PlotNFTChangePool.tsx:81
 msgid "Plot NFT with p2_singleton_puzzle_hash {plotNFTId} does not exists"
-msgstr ""
+msgstr "Ділянка NFT з p2_singleton_puzzle_hash {plotNFTId} не існує"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:43
 #~ msgid "Plot Name"
@@ -1778,7 +1778,7 @@ msgstr "Ділянка є дублікатом {0}"
 
 #: src/components/plotNFT/PlotNFTState.tsx:46
 msgid "PlotNFT is transitioning to (target state). This can take a while. Please do not close the application until this is finalized."
-msgstr ""
+msgstr "Ділянка NFT перетворюється на (цільовий стан). Це може тривати деякий час. Будь ласка, не закривайте програму, поки процес не завершено."
 
 #: src/components/dashboard/DashboardSideBar.tsx:53
 msgid "Plots"
@@ -1830,7 +1830,7 @@ msgstr ""
 #: src/components/dashboard/DashboardSideBar.tsx:63
 #: src/components/pool/Pool.tsx:25
 msgid "Pool"
-msgstr ""
+msgstr "Пул"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:100
 msgid "Pool Contract Address"
@@ -1893,12 +1893,12 @@ msgstr ""
 #: src/components/plotNFT/PlotNFTCard.tsx:327
 #: src/components/plotNFT/PlotNFTUnconfirmedCard.tsx:57
 msgid "Pool:"
-msgstr ""
+msgstr "Пул:"
 
 #: src/components/plotNFT/PlotNFTExternalState.tsx:24
 #: src/components/plotNFT/PlotNFTState.tsx:59
 msgid "Pooling"
-msgstr ""
+msgstr "Добувається"
 
 #: src/components/farm/FarmFullNodeConnections.tsx:42
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:42
@@ -1910,7 +1910,7 @@ msgstr "Порт"
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:88
 #: src/components/plotNFT/PlotNFTChangePool.tsx:74
 msgid "Preparing Plot NFT"
-msgstr ""
+msgstr "Підготовка ділянки NFT"
 
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:96
 msgid "Preparing standard wallet"
@@ -1954,7 +1954,7 @@ msgstr "Доказів знайдено"
 
 #: src/components/pool/PoolInfo.tsx:22
 msgid "Protocol Version"
-msgstr ""
+msgstr "Версія Протоколу"
 
 #: src/components/wallet/create/createRLAdmin.jsx:297
 #: src/components/wallet/did/WalletDID.tsx:996
@@ -2225,7 +2225,7 @@ msgstr ""
 #: src/components/dashboard/DashboardSideBar.tsx:76
 #: src/components/settings/Settings.tsx:239
 msgid "Settings"
-msgstr ""
+msgstr "Налаштування"
 
 #: src/components/core/components/AdvancedOptions/AdvancedOptions.tsx:74
 msgid "Show Advanced Options"
@@ -2248,7 +2248,7 @@ msgstr "Увійти"
 #: src/components/app/AppKeyringMigrator.tsx:215
 #: src/components/app/AppPassPrompt.tsx:74
 msgid "Skip"
-msgstr ""
+msgstr "Пропустити"
 
 #: src/components/app/AppKeyringMigrator.tsx:48
 msgid "Skip Keyring Migration"
@@ -2685,7 +2685,7 @@ msgstr ""
 #: src/components/plotNFT/PlotNFTCard.tsx:150
 #: src/components/pool/PoolOverview.tsx:66
 msgid "Unclaimed Rewards"
-msgstr ""
+msgstr "Не забрані нагороди \"{name}\" "
 
 #: src/components/fullNode/FullNode.jsx:98
 msgid "Unfinished"
@@ -3069,7 +3069,7 @@ msgstr ""
 
 #: src/components/plotNFT/PlotNFTGraph.tsx:111
 msgid "{0} points {1} - {2} hours ago"
-msgstr ""
+msgstr "{0} очок {1} - {2} годин тому"
 
 #: src/components/farm/card/FarmCardBlockRewards.tsx:35
 msgid "{currencyCode} Block Rewards"
@@ -3089,5 +3089,5 @@ msgstr ""
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:133
 msgid "{warning}"
-msgstr ""
+msgstr "{warning}"
 
