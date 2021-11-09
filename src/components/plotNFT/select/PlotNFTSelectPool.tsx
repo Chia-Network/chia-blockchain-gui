@@ -43,7 +43,7 @@ async function prepareSubmitData(data: FormData): SubmitData {
     initialTargetState.relative_lock_height = relative_lock_height;
   }
 
-  const feeMojos = chia_to_mojo(fee);
+  const feeMojos = chia_to_mojo(fee || '0');
 
   return {
     fee: feeMojos,
