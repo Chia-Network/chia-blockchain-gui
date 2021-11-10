@@ -8,7 +8,7 @@ msgstr ""
 "Language: fi_FI\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-11-10 15:39\n"
+"PO-Revision-Date: 2021-11-10 21:39\n"
 "Last-Translator: \n"
 "Language-Team: Finnish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -979,7 +979,7 @@ msgstr "Veloitus ({currencyCode})"
 
 #: src/components/plotNFT/PlotNFTChangePool.tsx:122
 msgid "Fee is used TWICE: once to leave pool, once to join."
-msgstr " tarvitaan kahdesti: kerran poolin jättämiseen, kerran liittyäksesi."
+msgstr "Siirtomaksua tarvitaan kahdesti: kerran poolin jättämiseen, kerran liittyäksesi."
 
 #: src/components/block/Block.jsx:322
 msgid "Fees Amount"
@@ -1654,7 +1654,7 @@ msgstr "Anna kelvollinen numeerinen summa."
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:649
 #: src/components/wallet/standard/WalletStandard.tsx:440
 msgid "Please enter a valid numeric fee"
-msgstr "Anna käypä numeerinen veloitus"
+msgstr "Anna käypä numeerinen siirtomaksu"
 
 #: src/components/wallet/create/createRLAdmin.jsx:100
 msgid "Please enter a valid numeric interval length"
@@ -2493,7 +2493,7 @@ msgstr "Tähän lohkoon asti iteroitujen VDF-aikatodisteiden lukumäärä."
 
 #: src/components/block/Block.jsx:325
 msgid "The total transactions fees in this block. Rewarded to the farmer."
-msgstr "Kokonaistransaktioveloitukset tässä lohkossa. Suoritetaan farmarille."
+msgstr "Kokonaissiirtomaksut tässä lohkossa. Suoritetaan farmarille."
 
 #: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:107
 msgid "These are the instructions for how the farmer wants to get paid. By default this will be an XCH address, but it can be set to any string with a size of less than 1024 characters, so it can represent another blockchain or payment system identifier."
@@ -2886,7 +2886,7 @@ msgstr "Ikkuna"
 
 #: src/components/farm/card/FarmCardBlockRewards.tsx:36
 msgid "Without fees"
-msgstr "Ilman veloituksia"
+msgstr "Ilman siirtomaksuja"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:49
 #: src/components/trading/TradingOverview.jsx:209
