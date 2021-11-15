@@ -8,7 +8,7 @@ msgstr ""
 "Language: bg_BG\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-11-14 22:48\n"
+"PO-Revision-Date: 2021-11-15 04:46\n"
 "Last-Translator: \n"
 "Language-Team: Bulgarian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -20,15 +20,15 @@ msgstr ""
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:78
 msgid "(Not Installed)"
-msgstr ""
+msgstr "(Не е инсталирано)"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:75
 msgid "(Not Supported)"
-msgstr ""
+msgstr "(Не се поддържа)"
 
 #: src/components/plot/add/PlotAddNFT.tsx:67
 msgid "(Optional)"
-msgstr ""
+msgstr "(По избор)"
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:64
 msgid "*Want to explore Chia’s blocks further? Check out <0>Chia Explorer</0> built by an open source developer."
@@ -40,7 +40,7 @@ msgstr ""
 
 #: src/components/wallet/Wallets.tsx:132
 msgid "+ Add Wallet"
-msgstr ""
+msgstr "+ Добави портфейл"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:94
 #~ msgid "0 automatically chooses bucket count"
@@ -56,7 +56,7 @@ msgstr "Комбайнът е услуга, работеща на машина, 
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:155
 msgid "A value of {0} is recommended"
-msgstr ""
+msgstr "Препоръчаната стойност е {0}"
 
 #: src/electron/main.tsx:431
 #: src/electron/main.tsx:518
@@ -91,7 +91,7 @@ msgstr "Добави"
 #: src/components/wallet/did/WalletDID.tsx:877
 #: src/components/wallet/did/WalletDIDCreate.tsx:208
 msgid "Add Backup ID"
-msgstr ""
+msgstr "Добавете резервно ID"
 
 #: src/components/plot/PlotHeader.tsx:91
 msgid "Add Plot Directory"
@@ -179,7 +179,7 @@ msgstr "Сигурни ли сте, че желаете да изтриете т
 #: src/components/plotNFT/PlotNFTCard.tsx:125
 #: src/components/wallet/standard/WalletStandard.tsx:626
 msgid "Are you sure you want to delete unconfirmed transactions?"
-msgstr ""
+msgstr "Наистина ли искате да изтриете непотвърдени транзакции?"
 
 #: src/components/fullNode/FullNodeCloseConnection.tsx:25
 msgid "Are you sure you want to disconnect?"
@@ -337,12 +337,12 @@ msgstr "Предизвикателен хеш"
 
 #: src/components/plotNFT/PlotNFTChangePool.tsx:118
 msgid "Change"
-msgstr ""
+msgstr "Промени"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:248
 #: src/components/settings/Settings.tsx:158
 msgid "Change Passphrase"
-msgstr ""
+msgstr "Сменете Парола"
 
 #: src/components/plotNFT/PlotNFTCard.tsx:408
 #: src/components/plotNFT/PlotNFTChangePool.tsx:117
@@ -448,7 +448,7 @@ msgstr ""
 #: src/components/plotNFT/PlotNFTCard.tsx:121
 #: src/components/wallet/standard/WalletStandard.tsx:622
 msgid "Confirmation"
-msgstr ""
+msgstr "Потвърждение"
 
 #: src/components/trading/TradingOverview.jsx:201
 msgid "Confirmed at block:"
@@ -541,7 +541,7 @@ msgstr ""
 
 #: src/components/wallet/did/WalletDIDSelect.tsx:32
 msgid "Create New Wallet"
-msgstr ""
+msgstr "Създаване на Нов Портфейл"
 
 #: src/components/trading/TradeManager.tsx:45
 msgid "Create Offer"
@@ -632,7 +632,7 @@ msgstr ""
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:139
 #: src/components/plotNFT/PlotNFTCard.tsx:181
 msgid "Current Difficulty"
-msgstr ""
+msgstr "Текуща Трудност"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:178
 msgid "Current Passphrase"
@@ -686,7 +686,7 @@ msgstr "Изтриване"
 
 #: src/components/app/AppPassPrompt.tsx:198
 msgid "Delete Key"
-msgstr ""
+msgstr "Изтриване на Ключ"
 
 #: src/components/plot/PlotAction.tsx:26
 #: src/components/plot/queue/PlotQueueActions.tsx:42
@@ -696,7 +696,7 @@ msgstr "Изтрий поле"
 #: src/components/plotNFT/PlotNFTCard.tsx:315
 #: src/components/wallet/standard/WalletStandard.tsx:667
 msgid "Delete Unconfirmed Transactions"
-msgstr ""
+msgstr "Изтриване на Непотвърдени Трансакции"
 
 #: src/components/selectKey/SelectKey.tsx:114
 #: src/components/selectKey/SelectKey.tsx:273
@@ -742,7 +742,7 @@ msgstr "Трудност"
 
 #: src/components/app/AppPassPrompt.tsx:78
 msgid "Disable"
-msgstr ""
+msgstr "Деактивиране"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:266
 msgid "Disable NUMA"
@@ -762,7 +762,7 @@ msgstr "Деактивирайте начертаването на битово 
 
 #: src/components/core/components/FormBackButton/FormBackButton.tsx:26
 msgid "Discard"
-msgstr ""
+msgstr "Отхвърляне"
 
 #: src/components/fullNode/FullNodeCloseConnection.tsx:22
 msgid "Disconnect"
@@ -800,7 +800,7 @@ msgstr "Плъзнете и пуснете вашият вайл за възст
 
 #: src/components/wallet/did/WalletDIDRecovery.tsx:109
 msgid "Drag and drop your recovery backup file"
-msgstr ""
+msgstr "Плъзнете и пуснете вашият вайл за възстановяване"
 
 #: src/electron/main.tsx:272
 msgid "Edit"
@@ -822,7 +822,7 @@ msgstr ""
 
 #: src/components/settings/SetPassphrasePrompt.tsx:145
 msgid "Enter a strong passphrase to secure your keys:"
-msgstr ""
+msgstr "Въведете сложна фраза за да защитите вашите ключове:"
 
 #: src/components/wallet/WalletImport.tsx:146
 msgid "Enter the 24 word mnemonic that you have saved in order to restore your Chia wallet."
@@ -830,7 +830,7 @@ msgstr "Въведи 24 думения ключ който сте запазил
 
 #: src/components/settings/RemovePassphrasePrompt.tsx:118
 msgid "Enter your passphrase:"
-msgstr ""
+msgstr "Въведете вашата фраза:"
 
 #: src/components/farm/FarmerStatus.tsx:21
 #: src/components/farm/FarmerStatus.tsx:22
@@ -848,7 +848,7 @@ msgstr "Грешка: Неуспешно изпращане на Chia до из�
 
 #: src/components/fullNode/card/FullNodeEstimatedNetworkSpace.tsx:20
 msgid "Estimated Network Space"
-msgstr ""
+msgstr "Приблизително Мрежово Пространство"
 
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:45
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:53
@@ -882,11 +882,11 @@ msgstr ""
 
 #: src/components/settings/SetPassphrasePrompt.tsx:92
 msgid "Failed to set passphrase: {error}"
-msgstr ""
+msgstr "Грешка при запазването на фразата: {error}"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:120
 msgid "Failed to update passphrase: {error}"
-msgstr ""
+msgstr "Грешка при обновяването на фразата: {error}"
 
 #: src/components/dashboard/DashboardSideBar.tsx:58
 #: src/components/wallet/coloured/WalletColoured.tsx:610
@@ -1088,7 +1088,7 @@ msgstr "Скриване на разширените опции"
 #: src/components/app/AppPassPrompt.tsx:233
 #: src/components/settings/RemovePassphrasePrompt.tsx:134
 msgid "Hint"
-msgstr ""
+msgstr "Подсказка"
 
 #: src/components/wallet/WalletHistory.tsx:91
 msgid "History"
@@ -1129,7 +1129,7 @@ msgstr "Входящи"
 
 #: src/components/core/components/Fee/Fee.tsx:36
 msgid "Incorrect value"
-msgstr ""
+msgstr "Невалидна стойност"
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:18
 msgid "Index"
@@ -1244,7 +1244,7 @@ msgstr ""
 
 #: src/components/wallet/Wallets.tsx:117
 msgid "Loading list of wallets"
-msgstr ""
+msgstr "Зареждане на списък с портмонета"
 
 #: src/components/plot/queue/PlotQueueLogDialog.tsx:41
 msgid "Loading..."
@@ -1374,7 +1374,7 @@ msgstr "Нов адрес"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:188
 msgid "New Passphrase"
-msgstr ""
+msgstr "Нова Фраза"
 
 #: src/components/wallet/WalletAdd.tsx:63
 msgid "New Wallet"
@@ -1382,7 +1382,7 @@ msgstr "Добави портфейл"
 
 #: src/components/app/AppPassPrompt.tsx:60
 msgid "New passphrase is the same as your current passphrase"
-msgstr ""
+msgstr "Новата фраза е същата като текущата"
 
 #: src/components/block/Block.jsx:351
 #: src/components/wallet/WalletAdd.tsx:95
@@ -1519,7 +1519,7 @@ msgstr "Изходящи"
 #: src/components/settings/RemovePassphrasePrompt.tsx:126
 #: src/components/settings/SetPassphrasePrompt.tsx:155
 msgid "Passphrase"
-msgstr ""
+msgstr "Фраза"
 
 #: src/components/app/AppKeyringMigrator.tsx:159
 #: src/components/settings/ChangePassphrasePrompt.tsx:209
@@ -1535,12 +1535,12 @@ msgstr ""
 
 #: src/components/settings/Settings.tsx:213
 msgid "Passphrase Settings"
-msgstr ""
+msgstr "Настройки за Фразата"
 
 #: src/components/app/AppPassPrompt.tsx:152
 #: src/components/settings/RemovePassphrasePrompt.tsx:67
 msgid "Passphrase is incorrect"
-msgstr ""
+msgstr "Фразата не е правилна"
 
 #: src/components/settings/Settings.tsx:93
 msgid "Passphrase protection has been disabled"
@@ -1597,7 +1597,7 @@ msgstr "Изчакващ общ баланс"
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:131
 #: src/hooks/useAbsorbRewards.tsx:45
 msgid "Please Confirm"
-msgstr ""
+msgstr "Моля Потвърдете"
 
 #: src/components/trading/CreateOffer.jsx:100
 msgid "Please add a trade pair"
@@ -1614,12 +1614,12 @@ msgstr ""
 #: src/components/wallet/did/WalletDID.tsx:526
 #: src/components/wallet/did/WalletDID.tsx:917
 msgid "Please enter a filename"
-msgstr ""
+msgstr "Моля въведете име на файла"
 
 #: src/components/app/AppPassPrompt.tsx:136
 #: src/components/settings/SetPassphrasePrompt.tsx:57
 msgid "Please enter a passphrase"
-msgstr ""
+msgstr "Моля въведете фраза"
 
 #: src/components/wallet/did/WalletDID.tsx:937
 msgid "Please enter a pubkey"
@@ -1677,11 +1677,11 @@ msgstr ""
 #: src/components/app/AppPassPrompt.tsx:201
 #: src/components/settings/RemovePassphrasePrompt.tsx:50
 msgid "Please enter your passphrase"
-msgstr ""
+msgstr "Моля въведете вашата фраза"
 
 #: src/components/app/AppPassPrompt.tsx:195
 msgid "Please enter your passphrase to proceed"
-msgstr ""
+msgstr "Моля въведете вашата фраза за да продължите"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:623
 #: src/components/wallet/standard/WalletStandard.tsx:420
@@ -1720,7 +1720,7 @@ msgstr "Моля задайте временна директория"
 
 #: src/hooks/useAbsorbRewards.tsx:21
 msgid "Please wait for synchronization"
-msgstr ""
+msgstr "Моля изчакайте за синхронизация"
 
 #: src/components/wallet/did/WalletDIDRecovery.tsx:64
 #: src/hooks/useJoinPool.tsx:28
@@ -1959,7 +1959,7 @@ msgstr "Намерени доказателства"
 
 #: src/components/pool/PoolInfo.tsx:22
 msgid "Protocol Version"
-msgstr ""
+msgstr "Версия на Протокол"
 
 #: src/components/wallet/create/createRLAdmin.jsx:297
 #: src/components/wallet/did/WalletDID.tsx:996
@@ -2027,7 +2027,7 @@ msgstr "Адрес за получаване"
 #: src/components/wallet/did/WalletDID.tsx:464
 #: src/components/wallet/did/WalletDIDRecovery.tsx:124
 msgid "Recover"
-msgstr ""
+msgstr "Възстановяване"
 
 #: src/components/wallet/did/WalletDID.tsx:340
 #: src/components/wallet/did/WalletDID.tsx:480
@@ -2230,7 +2230,7 @@ msgstr ""
 #: src/components/dashboard/DashboardSideBar.tsx:76
 #: src/components/settings/Settings.tsx:239
 msgid "Settings"
-msgstr ""
+msgstr "Настройки"
 
 #: src/components/core/components/AdvancedOptions/AdvancedOptions.tsx:74
 msgid "Show Advanced Options"
@@ -2253,7 +2253,7 @@ msgstr "Вход"
 #: src/components/app/AppKeyringMigrator.tsx:215
 #: src/components/app/AppPassPrompt.tsx:74
 msgid "Skip"
-msgstr ""
+msgstr "Пропусни"
 
 #: src/components/app/AppKeyringMigrator.tsx:48
 msgid "Skip Keyring Migration"
@@ -3008,11 +3008,11 @@ msgstr ""
 
 #: src/components/settings/Settings.tsx:80
 msgid "Your passphrase has been set"
-msgstr ""
+msgstr "Фразата ви е зададена"
 
 #: src/components/settings/Settings.tsx:67
 msgid "Your passphrase has been updated"
-msgstr ""
+msgstr "Фразата ви бе обновена"
 
 #: src/util/getDescriptiveError.ts:5
 msgid "[Error 13] Permission denied. You are trying to access a file/directory without having the necessary permissions. Most likely one of the plot folders in your config.yaml has an issue."
