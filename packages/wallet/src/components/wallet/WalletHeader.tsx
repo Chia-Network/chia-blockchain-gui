@@ -50,6 +50,14 @@ export default function WalletHeader(props: StandardWalletProps) {
     history.push('/dashboard/wallets/create/simple');
   }
 
+  function handleCreateOffer() {
+    history.push('/dashboard/wallets/offers/create');
+  }
+
+  function handleViewOffer() {
+    history.push('/dashboard/wallets/offers/view');
+  }
+
   return (
     <Flex gap={1} alignItems="center">
       <Flex flexGrow={1} gap={1}>
@@ -59,6 +67,18 @@ export default function WalletHeader(props: StandardWalletProps) {
           onClick={handleAddToken}
         >
           <Trans>+ Add Token</Trans>
+        </Button>
+        <Button
+          color="primary"
+          onClick={handleCreateOffer}
+        >
+          <Trans>Create an Offer</Trans>
+        </Button>
+        <Button
+          color="primary"
+          onClick={handleViewOffer}
+        >
+          <Trans>View an Offer</Trans>
         </Button>
       </Flex>
       <Flex gap={1} alignItems="center">

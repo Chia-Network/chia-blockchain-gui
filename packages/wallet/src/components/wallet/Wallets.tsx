@@ -3,6 +3,8 @@ import { Trans } from '@lingui/macro';
 import { useGetWalletsQuery } from '@chia/api-react';
 import StandardWallet from './standard/WalletStandard';
 import { CreateWalletView } from './create/WalletCreate';
+import { CreateWalletOfferView } from './offers/WalletOfferCreate';
+import { DisplayWalletOfferView } from './offers/WalletOfferView';
 import WalletCAT from './cat/WalletCAT';
 // import RateLimitedWallet from './rateLimited/WalletRateLimited';
 // import DistributedWallet from './did/WalletDID';
@@ -46,6 +48,12 @@ export default function Wallets() {
         ))}
         <Route path={`/dashboard/wallets/create`}>
           <CreateWalletView />
+        </Route>
+        <Route path={`/dashboard/wallets/offers/create`}>
+          <CreateWalletOfferView />
+        </Route>
+        <Route path={`/dashboard/wallets/offers/view`}>
+          <DisplayWalletOfferView />
         </Route>
       </Switch>
     </LayoutMain>
