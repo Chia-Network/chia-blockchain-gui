@@ -39,7 +39,7 @@ export default function FarmLastAttemptedProof() {
   const lastAttemptedProof = useSelector(
     (state: RootState) => state.farming_state.farmer.last_farming_info ?? [],
   );
-  const reducedLastAttemptedProof = lastAttemptedProof.slice(0, 5).sort((a,b) => a.timestamp-b.timestamp);
+  const reducedLastAttemptedProof = lastAttemptedProof.slice(0, 5).sort((a,b) => a.timestamp+b.timestamp);
   const isEmpty = !reducedLastAttemptedProof.length;
 
   return (
