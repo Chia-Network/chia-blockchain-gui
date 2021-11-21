@@ -8,7 +8,7 @@ msgstr ""
 "Language: es_MX\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-11-10 03:30\n"
+"PO-Revision-Date: 2021-11-21 22:48\n"
 "Last-Translator: \n"
 "Language-Team: Spanish, Mexico\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -20,11 +20,11 @@ msgstr ""
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:78
 msgid "(Not Installed)"
-msgstr ""
+msgstr "(No instalado)"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:75
 msgid "(Not Supported)"
-msgstr ""
+msgstr "(No soportado)"
 
 #: src/components/plot/add/PlotAddNFT.tsx:67
 msgid "(Optional)"
@@ -56,7 +56,7 @@ msgstr "Un cosechador es un servicio que se ejecuta en una máquina en donde act
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:155
 msgid "A value of {0} is recommended"
-msgstr ""
+msgstr "Es recomentado el valor {0}"
 
 #: src/electron/main.tsx:431
 #: src/electron/main.tsx:518
@@ -143,11 +143,11 @@ msgstr "Dirección / Enigma hash"
 
 #: src/components/app/AppKeyringMigrator.tsx:195
 msgid "After your keys are successfully migrated to the new keyring, you may choose to have your keys removed from the old keyring."
-msgstr ""
+msgstr "Una vez que sus claves se hayan migrado correctamente al nuevo llavero, puede optar por que se eliminen las claves del antiguo."
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:238
 msgid "Alternate tmpdir/tmpdir2"
-msgstr ""
+msgstr "Intercambiar tmpdir/tmpdir2"
 
 #: src/components/core/components/Amount/Amount.tsx:99
 #: src/components/trading/CreateOffer.jsx:196
@@ -342,7 +342,7 @@ msgstr "Cambiar"
 #: src/components/settings/ChangePassphrasePrompt.tsx:248
 #: src/components/settings/Settings.tsx:158
 msgid "Change Passphrase"
-msgstr ""
+msgstr "Cambiar frase de contraseña"
 
 #: src/components/plotNFT/PlotNFTCard.tsx:408
 #: src/components/plotNFT/PlotNFTChangePool.tsx:117
@@ -376,7 +376,7 @@ msgstr "Elegir el Tamaño de la Parcela"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:94
 msgid "Choose Plotter"
-msgstr ""
+msgstr "Seleccionar Plotter"
 
 #: src/components/plotNFT/PlotNFTCard.tsx:384
 #: src/components/pool/PoolOverview.tsx:92
@@ -437,13 +437,13 @@ msgstr "Confirmar Desconexión"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:198
 msgid "Confirm New Passphrase"
-msgstr ""
+msgstr "Confirmar nueva frase de contraseña"
 
 #: src/components/app/AppKeyringMigrator.tsx:146
 #: src/components/app/AppKeyringMigrator.tsx:147
 #: src/components/settings/SetPassphrasePrompt.tsx:166
 msgid "Confirm Passphrase"
-msgstr ""
+msgstr "Confirmar frase de contraseña"
 
 #: src/components/plotNFT/PlotNFTCard.tsx:121
 #: src/components/wallet/standard/WalletStandard.tsx:622
@@ -623,7 +623,7 @@ msgstr "Creando Parcela NFT y Uniendo a Conjunto"
 
 #: src/components/plotNFT/PlotNFTUnconfirmedCard.tsx:49
 msgid "Creating Plot NFT for Self Pooling"
-msgstr "Creando Parcela NFT para Auto Conjunto"
+msgstr "Creando Parcela NFT para farmear en solitario"
 
 #: src/components/plot/add/PlotAdd.tsx:117
 msgid "Currency code is not defined"
@@ -636,7 +636,7 @@ msgstr "Dificultad Actual"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:178
 msgid "Current Passphrase"
-msgstr ""
+msgstr "Frase de contraseña"
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:156
 #: src/components/plotNFT/PlotNFTCard.tsx:198
@@ -686,7 +686,7 @@ msgstr "Eliminar"
 
 #: src/components/app/AppPassPrompt.tsx:198
 msgid "Delete Key"
-msgstr ""
+msgstr "Eliminar clave"
 
 #: src/components/plot/PlotAction.tsx:26
 #: src/components/plot/queue/PlotQueueActions.tsx:42
@@ -717,7 +717,7 @@ msgstr "Borrar clave {fingerprint}"
 
 #: src/components/app/AppPassPrompt.tsx:194
 msgid "Deleting key"
-msgstr ""
+msgstr "Eliminar Clave"
 
 #: src/components/selectKey/SelectKey.tsx:101
 #~ msgid "Deleting the key will permanently remove the key from your computer, make sure you have backups. Are you sure you want to continue?"
@@ -725,7 +725,7 @@ msgstr ""
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:96
 msgid "Depending on your system configuration, you may find that an alternative plotter produces plots faster than the default Chia Proof of Space plotter. If unsure, use the default Chia Proof of Space plotter."
-msgstr ""
+msgstr "Dependiendo de la configuración de su sistema, puede que encuentre que un plotter alternativo produce parcelas más rápido que el plotter por defecto de Chia. Si no está seguro, utilice el plotter por defecto de Chia."
 
 #: src/electron/main.tsx:313
 msgid "Developer"
@@ -742,7 +742,7 @@ msgstr "Dificultad"
 
 #: src/components/app/AppPassPrompt.tsx:78
 msgid "Disable"
-msgstr ""
+msgstr "Desactivar"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:266
 msgid "Disable NUMA"
@@ -750,7 +750,7 @@ msgstr ""
 
 #: src/components/app/AppPassPrompt.tsx:77
 msgid "Disable Passphrase Protection"
-msgstr ""
+msgstr "Desactivar la Protección de Contraseña"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:114
 #~ msgid "Disable bifield plotting when your temporary directory is on fast storage like SSD or you need lower per process RAM requirements. Plotting with bitfield enabled has about 20% less overall writes."
@@ -810,7 +810,7 @@ msgstr "Editar"
 #: src/components/plotNFT/PlotNFTCard.tsx:301
 #: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:81
 msgid "Edit Payout Instructions"
-msgstr ""
+msgstr "Editar instrucciones de pago"
 
 #: src/components/wallet/EnterPassphrasePrompt.tsx:111
 #~ msgid "Enter Passphrase"
@@ -818,7 +818,7 @@ msgstr ""
 
 #: src/components/app/AppKeyringMigrator.tsx:125
 msgid "Enter a strong passphrase and click Migrate Keys to secure your keys"
-msgstr ""
+msgstr "Introduzca una contraseña fuerte y haga clic en Migrar claves para asegurar sus claves"
 
 #: src/components/settings/SetPassphrasePrompt.tsx:145
 msgid "Enter a strong passphrase to secure your keys:"
@@ -1324,7 +1324,7 @@ msgstr ""
 
 #: src/components/app/AppKeyringMigrator.tsx:226
 msgid "Migrate Keys"
-msgstr ""
+msgstr "Migrar claves"
 
 #: src/components/app/AppKeyringMigrator.tsx:121
 #: src/components/selectKey/SelectKey.tsx:136
@@ -1465,7 +1465,7 @@ msgstr "No se encontraron parcelas"
 
 #: src/components/farm/FarmManageFarmingRewards.tsx:188
 msgid "Note that this does not change your pooling payout addresses. This only affects old format plots, and the 0.25XCH reward for pooling plots."
-msgstr "Tenga en cuenta que esto no cambia sus direcciones de pago de conjunto. Esto sólo afecta a los antiguos formatos de parcelas, y la recompensa de 0.25XCH por parcelas de conjunto."
+msgstr "Tenga en cuenta que esto no cambia sus direcciones de pago de pool. Esto sólo afecta a los antiguos formatos de parcelas, y la recompensa de 0.25XCH por parcelas del pool."
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:118
 #: src/components/plotNFT/PlotNFTCard.tsx:160
@@ -1902,7 +1902,7 @@ msgstr "Conjunto:"
 #: src/components/plotNFT/PlotNFTExternalState.tsx:24
 #: src/components/plotNFT/PlotNFTState.tsx:59
 msgid "Pooling"
-msgstr "Entrando a Conjunto"
+msgstr "Conectado"
 
 #: src/components/farm/FarmFullNodeConnections.tsx:42
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:42
@@ -2190,7 +2190,7 @@ msgstr "Archivo de recuperación seleccionado:"
 #: src/components/plotNFT/PlotNFTExternalState.tsx:23
 #: src/components/plotNFT/PlotNFTState.tsx:57
 msgid "Self Pooling"
-msgstr "Auto Conjunto"
+msgstr "Farmeando en solitario"
 
 #: src/components/plotNFT/select/PlotNFTSelectBase.tsx:104
 msgid "Self pool. When you win a block you will earn XCH rewards."
@@ -2473,7 +2473,7 @@ msgstr "La URL del Pool necesita usar el protocolo https. {normalizedUrl}"
 
 #: src/components/plotNFT/PlotNFTState.tsx:29
 msgid "The pool switching operation was cancelled, please try again by changing pool, or self pooling"
-msgstr "La operación de cambio de conjunto fue cancelada, por favor inténtalo de nuevo cambiando el conjunto o auto-conjunto"
+msgstr "La operación de cambio de pool fue cancelada, por favor inténtalo de nuevo cambiando la pool o farmear en solitario"
 
 #: src/components/app/AppPassPrompt.tsx:37
 msgid "The provided passphrase and confirmation do not match"
@@ -2901,7 +2901,7 @@ msgstr "Estás en estado pendiente. Por favor, espera la confirmación"
 
 #: src/hooks/useAbsorbRewards.tsx:37
 msgid "You are not self pooling"
-msgstr "No estás en auto-fondo"
+msgstr "No estás farmeando en solitario"
 
 #: src/components/plotNFT/PlotNFTCard.tsx:424
 msgid "You can still create plots for this plot NFT, but you can not make changes until sync is complete."
