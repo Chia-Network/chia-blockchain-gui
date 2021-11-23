@@ -1,15 +1,15 @@
 import React from 'react';
 import { Trans } from '@lingui/macro';
+import { useGetAllTradesQuery } from '@chia/api-react';
 import { Back, Card, Dropzone, Flex } from '@chia/core';
 import { Grid } from '@material-ui/core';
 
-export function DropView() {
+function DropView() {
   // const dispatch = useDispatch();
   // const parsing_state = useSelector((state) => state.trade_state.parsing_state);
   // const isParsing = parsing_state === parsingStatePending;
 
   function handleDrop(acceptedFiles: [File]) {
-    debugger;
     const offerFilePath: string = acceptedFiles[0].path;
     const offerName: string = offerFilePath.replace(/^.*[/\\]/, '');
 
@@ -29,6 +29,8 @@ export function DropView() {
 };
 
 export function DisplayWalletOfferView() {
+  const { data, isLoading } = useGetAllTradesQuery();
+
   return (
     <Grid container>
       <Flex flexDirection="column" flexGrow={1} gap={3}>

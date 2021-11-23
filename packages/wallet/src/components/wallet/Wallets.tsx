@@ -50,7 +50,7 @@ export default function Wallets() {
           <CreateWalletView />
         </Route>
         <Route path={`/dashboard/wallets/offers/create`}>
-          <CreateWalletOfferView />
+          <CreateWalletOfferView initialAssetType="marmot"/>
         </Route>
         <Route path={`/dashboard/wallets/offers/view`}>
           <DisplayWalletOfferView />

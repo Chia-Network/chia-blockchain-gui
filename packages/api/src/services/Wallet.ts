@@ -238,6 +238,10 @@ export default class Wallet extends Service {
     });
   }
 
+  async getAllTrades() {
+    return this.command('get_all_trades');
+  }
+
   onSyncChanged(callback: (data: any, message: Message) => void) {
     return this.onStateChanged('sync_changed', callback);
   }
