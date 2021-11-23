@@ -123,7 +123,7 @@
         "cross-env": "^7.0.3",
         "css-loader": "^6.3.0",
         "electron": "^14.0.1",
-        "electron-osx-sign": "github:electron/electron-osx-sign#master",
+        "electron-osx-sign": "github:electron/electron-osx-sign#main",
         "electron-winstaller": "^5.0.0",
         "eslint": "^7.32.0",
         "eslint-config-airbnb": "^18.2.1",
