@@ -1396,7 +1396,7 @@ msgstr ""
 msgid "Loading list of the keys"
 msgstr ""
 
-#: src/components/wallet/Wallets.tsx:21
+#: src/components/wallet/Wallets.tsx:23
 msgid "Loading list of wallets"
 msgstr "Загрузка списка кошельков"
 
@@ -2927,7 +2927,7 @@ msgstr ""
 #~ msgid "WalletStatusCard.syncing"
 #~ msgstr ""
 
-#: src/components/wallet/Wallets.tsx:22
+#: src/components/wallet/Wallets.tsx:24
 msgid "Wallets"
 msgstr "Кошельки"
 
