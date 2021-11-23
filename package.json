@@ -154,7 +154,7 @@
         "webpack": "^5.52.1",
         "webpack-cli": "^4.8.0",
         "webpack-dev-server": "^4.2.1",
-        "xmldom": "github:xmldom/xmldom#0.7.0"
+        "xmldom": "github:xmldom/xmldom#v0.7.0"
     },
     "browserslist": {
         "production": [
