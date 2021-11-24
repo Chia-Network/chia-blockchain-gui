@@ -213,6 +213,7 @@ msgstr ""
 #~ msgid "Are you sure you want to use k={plotSize}?"
 #~ msgstr "Bist du sicher, dass du k={plotSize} nutzen möchtest?"
 
+#: src/components/wallet/cat/WalletCATCreateExistingSimple.tsx:81
 #: src/components/wallet/cat/WalletCATTAILDialog.tsx:44
 #: src/components/wallet/cat/WalletCATTAILDialog.tsx:57
 msgid "Asset Id"
@@ -1230,7 +1231,7 @@ msgstr ""
 msgid "Loading list of the keys"
 msgstr ""
 
-#: src/components/wallet/Wallets.tsx:23
+#: src/components/wallet/Wallets.tsx:21
 msgid "Loading list of wallets"
 msgstr "Liste der Wallets wird geladen"
 
@@ -1549,7 +1550,11 @@ msgid "Please enter a valid CAT name"
 msgstr ""
 
 #: src/components/wallet/cat/WalletCATCreateExistingSimple.tsx:42
-msgid "Please enter a valid TAIL"
+#~ msgid "Please enter a valid TAIL"
+#~ msgstr ""
+
+#: src/components/wallet/cat/WalletCATCreateExistingSimple.tsx:42
+msgid "Please enter a valid asset id"
 msgstr ""
 
 #: src/components/wallet/create/createRLAdmin.jsx:140
@@ -2516,8 +2521,11 @@ msgid "To"
 msgstr "Nach"
 
 #: src/components/wallet/cat/WalletCATCreateExisting.tsx:86
-#: src/components/wallet/cat/WalletCATCreateExistingSimple.tsx:81
 msgid "Token and Asset Issuance Limitations"
+msgstr ""
+
+#: src/components/wallet/cat/WalletCATCreateSimple.tsx:46
+msgid "Token has empty asset id"
 msgstr ""
 
 #: src/components/wallet/cat/WalletCATCreateSimple.tsx:42
@@ -2525,8 +2533,8 @@ msgid "Token has empty name"
 msgstr ""
 
 #: src/components/wallet/cat/WalletCATCreateSimple.tsx:46
-msgid "Token has empty tail"
-msgstr ""
+#~ msgid "Token has empty tail"
+#~ msgstr ""
 
 #: src/components/wallet/card/WalletCardTotalBalance.tsx:46
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:543
@@ -2763,7 +2771,7 @@ msgstr ""
 #~ msgid "WalletStatusCard.syncing"
 #~ msgstr ""
 
-#: src/components/wallet/Wallets.tsx:24
+#: src/components/wallet/Wallets.tsx:22
 msgid "Wallets"
 msgstr "Wallets"
 

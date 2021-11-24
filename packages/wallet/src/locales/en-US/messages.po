@@ -213,6 +213,7 @@ msgstr "Are you sure you want to quit?"
 #~ msgid "Are you sure you want to use k={plotSize}?"
 #~ msgstr "Are you sure you want to use k={plotSize}?"
 
+#: src/components/wallet/cat/WalletCATCreateExistingSimple.tsx:81
 #: src/components/wallet/cat/WalletCATTAILDialog.tsx:44
 #: src/components/wallet/cat/WalletCATTAILDialog.tsx:57
 msgid "Asset Id"
@@ -1224,7 +1225,7 @@ msgstr "Loading configuration"
 msgid "Loading list of the keys"
 msgstr "Loading list of the keys"
 
-#: src/components/wallet/Wallets.tsx:23
+#: src/components/wallet/Wallets.tsx:21
 msgid "Loading list of wallets"
 msgstr "Loading list of wallets"
 
@@ -1543,8 +1544,12 @@ msgid "Please enter a valid CAT name"
 msgstr "Please enter a valid CAT name"
 
 #: src/components/wallet/cat/WalletCATCreateExistingSimple.tsx:42
-msgid "Please enter a valid TAIL"
-msgstr "Please enter a valid TAIL"
+#~ msgid "Please enter a valid TAIL"
+#~ msgstr "Please enter a valid TAIL"
+
+#: src/components/wallet/cat/WalletCATCreateExistingSimple.tsx:42
+msgid "Please enter a valid asset id"
+msgstr "Please enter a valid asset id"
 
 #: src/components/wallet/create/createRLAdmin.jsx:140
 msgid "Please enter a valid initial coin amount"
@@ -2508,17 +2513,20 @@ msgid "To"
 msgstr "To"
 
 #: src/components/wallet/cat/WalletCATCreateExisting.tsx:86
-#: src/components/wallet/cat/WalletCATCreateExistingSimple.tsx:81
 msgid "Token and Asset Issuance Limitations"
 msgstr "Token and Asset Issuance Limitations"
+
+#: src/components/wallet/cat/WalletCATCreateSimple.tsx:46
+msgid "Token has empty asset id"
+msgstr "Token has empty asset id"
 
 #: src/components/wallet/cat/WalletCATCreateSimple.tsx:42
 msgid "Token has empty name"
 msgstr "Token has empty name"
 
 #: src/components/wallet/cat/WalletCATCreateSimple.tsx:46
-msgid "Token has empty tail"
-msgstr "Token has empty tail"
+#~ msgid "Token has empty tail"
+#~ msgstr "Token has empty tail"
 
 #: src/components/wallet/card/WalletCardTotalBalance.tsx:46
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:543
@@ -2755,7 +2763,7 @@ msgstr "Wallet does not exist"
 #~ msgid "WalletStatusCard.syncing"
 #~ msgstr ""
 
-#: src/components/wallet/Wallets.tsx:24
+#: src/components/wallet/Wallets.tsx:22
 msgid "Wallets"
 msgstr "Wallets"
 
