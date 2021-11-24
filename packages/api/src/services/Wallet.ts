@@ -238,44 +238,62 @@ export default class Wallet extends Service {
     });
   }
 
-  onSyncChanged(callback: (data: any, message: Message) => void) {
-    return this.onStateChanged('sync_changed', callback);
+  onSyncChanged(
+    callback: (data: any, message: Message) => void,
+    processData?: (data: any) => any,
+  ) {
+    return this.onStateChanged('sync_changed', callback, processData);
   }
 
-  onNewBlock(callback: (data: any, message: Message) => void) {
-    return this.onStateChanged('new_block', callback);
+  onNewBlock(
+    callback: (data: any, message: Message) => void,
+    processData?: (data: any) => any,
+  ) {
+    return this.onStateChanged('new_block', callback, processData);
   }
 
-  onNewPeak(callback: (data: any, message: Message) => void) {
-    return this.onStateChanged('new_peak', callback);
+  onNewPeak(
+    callback: (data: any, message: Message) => void,
+    processData?: (data: any) => any,
+  ) {
+    return this.onStateChanged('new_peak', callback, processData);
   }
 
-  onCoinAdded(callback: (
-    data: {
-      additionalData: Object;
-      state: 'coin_added';
-      success: boolean;
-      walletId: number;
-    }, 
-    message: Message,
-  ) => void) {
-    return this.onStateChanged('coin_added', callback);
+  onCoinAdded(
+    callback: (
+      data: {
+        additionalData: Object;
+        state: 'coin_added';
+        success: boolean;
+        walletId: number;
+      }, 
+      message: Message,
+    ) => void,
+    processData?: (data: any) => any,
+  ) {
+    return this.onStateChanged('coin_added', callback, processData);
   }
 
-  onCoinRemoved(callback: (
-    data: {
-      additionalData: Object;
-      state: "coin_removed"
-      success: boolean;
-      walletId: number;
-    }, 
-    message: Message,
-  ) => void) {
-    return this.onStateChanged('coin_removed', callback);
+  onCoinRemoved(
+    callback: (
+      data: {
+        additionalData: Object;
+        state: "coin_removed"
+        success: boolean;
+        walletId: number;
+      }, 
+      message: Message,
+    ) => void,
+    processData?: (data: any) => any,
+  ) {
+    return this.onStateChanged('coin_removed', callback, processData);
   }
 
-  onWalletCreated(callback: (data: any, message: Message) => void) {
-    return this.onStateChanged('wallet_created', callback);
+  onWalletCreated(
+    callback: (data: any, message: Message) => void,
+    processData?: (data: any) => any,
+  ) {
+    return this.onStateChanged('wallet_created', callback, processData);
   }
 
   onConnections(
@@ -285,11 +303,17 @@ export default class Wallet extends Service {
     return this.onCommand('get_connections', callback, processData);
   }
 
-  onTransactionUpdate(callback: (data: any, message: Message) => void) {
-    return this.onStateChanged('tx_update', callback);
+  onTransactionUpdate(
+    callback: (data: any, message: Message) => void,
+    processData?: (data: any) => any,
+  ) {
+    return this.onStateChanged('tx_update', callback, processData);
   }
 
-  onPendingTransaction(callback: (data: any, message: Message) => void) {
-    return this.onStateChanged('pending_transaction', callback);
+  onPendingTransaction(
+    callback: (data: any, message: Message) => void,
+    processData?: (data: any) => any,
+  ) {
+    return this.onStateChanged('pending_transaction', callback, processData);
   }
 }
