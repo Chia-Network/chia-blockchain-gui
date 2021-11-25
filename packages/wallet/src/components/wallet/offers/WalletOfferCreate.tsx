@@ -1,19 +1,35 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useForm, useFormContext, useFieldArray } from 'react-hook-form';
 import { useToggle } from 'react-use';
 import { Trans } from '@lingui/macro';
-import { Amount, Back, Card, Flex, Form, Select } from '@chia/core';
+import {
+  Amount,
+  Back,
+  Card,
+  Flex,
+  Form,
+  Loading,
+  More,
+  Select
+} from '@chia/core';
 import {
   Box,
   Button,
   Divider,
   FormControl,
   Grid,
+  IconButton,
   InputLabel,
+  ListItemIcon,
   MenuItem,
   Tab,
-  Tabs
+  Tabs,
+  Typography,
 } from '@material-ui/core';
+import { Add, Remove } from '@material-ui/icons';
+import { Wallet, WalletType } from '@chia/api';
+import { useGetCatListQuery, useGetWalletsQuery } from '@chia/api-react';
+import type CATToken from '../../../types/CATToken';
 import styled from 'styled-components';
 import fs from 'fs';
 
@@ -45,14 +61,19 @@ function TabPanelContainer(props: TabPanelContainerProps) {
   );
 }
 
+function addCondition(tradeSide: string) {
+}
+
 type NewOfferConditionsRowProps = {
   namePrefix: string;
   item: OfferRowData;
+  tradeSide: 'buy' | 'sell';
+  addRow: () => void;
+  removeRow: (() => void) | undefined;
 };
 
 function NewOfferConditionRow(props: NewOfferConditionsRowProps) {
-  const { namePrefix, item, ...rest } = props;
-  const { register } = useFormContext();
+  const { namePrefix, item, tradeSide, addRow, removeRow, ...rest } = props;
 
   return (
     <Flex flexDirection="row" gap={3} {...rest}>
@@ -68,8 +89,50 @@ function NewOfferConditionRow(props: NewOfferConditionsRowProps) {
         />
       </Grid>
       <Grid xs={6} item>
-        <AssetSelector name={`${namePrefix}.assetType`}
+        <AssetSelector
+          name={`${namePrefix}.assetWalletId`}
+          id={`${namePrefix}.assetWalletId`}
+          tradeSide={tradeSide}
+          defaultValue={undefined}
         />
+      </Grid>
+      <Grid item style={{paddingTop: '1em'}}>
+        <More style={{}}>
+          {({ onClose }) => (
+            <Box>
+              {addRow && (
+                <MenuItem
+                  onClick={() => {
+                    onClose();
+                    addRow();
+                  }}
+                >
+                  <ListItemIcon>
+                    <Add fontSize="small" />
+                  </ListItemIcon>
+                  <Typography variant="inherit" noWrap>
+                    <Trans>Add Offer Condition</Trans>
+                  </Typography>
+                </MenuItem>
+              )}
+              {removeRow && (
+                <MenuItem
+                  onClick={() => {
+                    onClose();
+                    removeRow();
+                  }}
+                >
+                  <ListItemIcon>
+                    <Remove fontSize="small" />
+                  </ListItemIcon>
+                  <Typography variant="inherit" noWrap>
+                    <Trans>Remove Offer Condition</Trans>
+                  </Typography>
+                </MenuItem>
+              )}
+            </Box>
+          )}
+        </More>
       </Grid>
     </Flex>
   );
@@ -93,25 +156,41 @@ function NewOfferConditionsPanel(props: NewOfferConditionsPanelProps) {
 
   console.log(makerFields);
 
-  const sections = [
-    { fields: takerFields, namePrefix: 'takerRows' },
-    { fields: makerFields, namePrefix: 'makerRows' },
+  type Section = {
+    side: string;
+    fields: any[];
+    namePrefix: string;
+    headerTitle?: React.ReactElement;
+  };
+  const sections: Section[] = [
+    { side: 'buy', fields: takerFields, namePrefix: 'takerRows' },
+    { side: 'sell', fields: makerFields, namePrefix: 'makerRows' },
   ];
 
   if (makerSide === 'sell') {
-    // reverse sections
     sections.reverse();
   }
+
+  sections[0].headerTitle = sections[0].side === 'buy' ? <Trans>You will buy</Trans> : <Trans>You will sell</Trans>;
+  sections[1].headerTitle = <Trans>In exchange for</Trans>
 
   return (
     <Flex flexDirection="column" gap={3}>
       {sections.map((section, sectionIndex) => (
         <>
+          <Typography variant="h6">{section.headerTitle}</Typography>
           {section.fields.map((field, fieldIndex) => (
             <NewOfferConditionRow
               key={field.id}
               namePrefix={`${section.namePrefix}[${fieldIndex}]`}
-              item={{ amount: field.amount, assetType: field.assetType }}
+              item={{ amount: field.amount, assetWalletId: field.assetWalletId }}
+              tradeSide={section.side}
+              addRow={() => { section.side === 'buy' ? takerAppend({ amount: '', assetWalletId: '' }) : makerAppend({ amount: '', assetWalletId: '' }) }}
+              removeRow={
+                section.fields.length > 1 ?
+                  () => { section.side === 'buy' ? takerRemove(fieldIndex) : makerRemove(fieldIndex) } :
+                  undefined
+              }
             />
           ))}
           {sectionIndex !== (sections.length - 1) && (
@@ -125,23 +204,78 @@ function NewOfferConditionsPanel(props: NewOfferConditionsPanelProps) {
 
 type AssetSelectorProps = {
   name: string;
+  id: string;
+  tradeSide: 'buy' | 'sell';
+  defaultValue: any;
+}
+
+type AssetSelection = {
+  walletId: number;
+  name: string;
+  symbol: string;
+  displayName: string;
+  tail?: string;
+}
+
+function buildAssetSelectorList(wallets: Wallet[], catList: CATToken[], rows: OfferRowData[], selectedWalletId: number): AssetSelection[] {
+  const list: AssetSelection[] = [];
+  const usedWalletIds: Set<number> = new Set();
+
+  rows.map(row => {
+    if (row.assetWalletId !== undefined && row.assetWalletId !== selectedWalletId) {
+      usedWalletIds.add(row.assetWalletId);
+    }
+  });
+
+  wallets.map(wallet => {
+    const walletId: number = wallet.id;
+    let name: string | undefined;
+    let symbol: string | undefined;
+    let tail: string | undefined;
+
+    if (usedWalletIds.has(walletId)) {
+      return;
+    }
+
+    if (wallet.type === WalletType.STANDARD_WALLET) {
+      name = 'Chia';
+      symbol = 'XCH';
+    }
+    else if (wallet.type === WalletType.CAT) {
+      name = wallet.name;
+      tail = wallet.meta.tail;
+      const cat = catList.find(cat => cat.assetId === tail);
+
+      if (cat) {
+        symbol = cat.symbol;
+      }
+    }
+
+    if (name && symbol) {
+      const displayName = `${name} (${symbol})`;
+      list.push({ walletId, name, symbol, displayName, tail });
+    }
+  });
+  return list;
 }
 
 function AssetSelector(props: AssetSelectorProps): JSX.Element {
-  const { name, ...rest } = props;
-  const [open, toggleOpen] = useToggle(false);
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const { name, id, tradeSide, defaultValue, ...rest } = props;
+  const { data: wallets, isLoading } = useGetWalletsQuery();
+  const { data: catList = [], isLoading: isCatListLoading } = useGetCatListQuery();
+  const { getValues, watch } = useFormContext();
+  const rows = watch(tradeSide === 'buy' ? 'takerRows' : 'makerRows');
+  const selectedWalletId = getValues(id);
+  const options: AssetSelection[] = useMemo(() => {
+    if (isLoading || isCatListLoading) {
+      return [];
+    }
+    return buildAssetSelectorList(wallets, catList, rows, selectedWalletId);
+  }, [wallets, catList, rows]);
 
-  function handleClick(event: React.MouseEvent<HTMLButtonElement>) {
-    console.log("handleClick");
-    setAnchorEl(event.currentTarget);
-    toggleOpen();
+  async function handleSelection(selectedWalletId: number) {
+    console.log("handleSelection: " + selectedWalletId);
   }
-
-  function handleClose() {
-    setAnchorEl(null);
-    toggleOpen();
-  };
 
   return (
     // Form control with popup selection of assets
@@ -149,28 +283,27 @@ function AssetSelector(props: AssetSelectorProps): JSX.Element {
       <InputLabel required focused>
         <Trans>Asset Type</Trans>
       </InputLabel>
-      <Select name={name} {...rest}>
-        <MenuItem value="spacebucks" key="spacebucks">
-          <Trans>Spacebucks</Trans>
-        </MenuItem>
-        <MenuItem value="marmot" key="marmot">
-          <Trans>Marmot</Trans>
-        </MenuItem>
-        <MenuItem value="chia" key="chia">
-          <Trans>Chia</Trans>
-        </MenuItem>
+      <Select name={name} id={id} defaultValue={defaultValue || ''}>
+        {options.map((option) => (
+          <MenuItem
+            value={option.walletId}
+            key={option.walletId}
+            onClick={() => handleSelection(option.walletId)}
+          >
+            <Trans>{option.displayName}</Trans>
+          </MenuItem>
+        ))}
       </Select>
     </FormControl>
   );
 }
 
 type NewOfferViewProps = {
-  initialAssetType: string;
 };
 
 type OfferRowData = {
   amount: number
-  assetType: string;
+  assetWalletId: number | undefined; // undefined if no selection made
 }
 
 type FormData = {
@@ -179,16 +312,14 @@ type FormData = {
 };
 
 function NewOfferView(props: NewOfferViewProps): JSX.Element {
-  const { initialAssetType } = props;
   const defaultValues = {
-    makerRows: [{ amount: 111, assetType: initialAssetType || 'chia' }, { amount: 345, assetType: initialAssetType || 'spacebucks' }],
-    takerRows: [{ amount: 0, assetType: 'marmot' }],
+    makerRows: [{ amount: 0, assetWalletId: undefined }],
+    takerRows: [{ amount: 0, assetWalletId: undefined }],
   };
   const methods = useForm<FormData>({
     shouldUnregister: false,
     defaultValues,
   });
-  const { control } = methods;
   const [selectedTab, setSelectedTab] = React.useState(0);
 
   function handleTabChange(event: React.ChangeEvent<{}>, newValue: number) {
