@@ -8,7 +8,7 @@ msgstr ""
 "Language: ja_JP\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-11-09 21:30\n"
+"PO-Revision-Date: 2021-11-25 23:00\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -979,7 +979,7 @@ msgstr "手数料 ({currencyCode})"
 
 #: src/components/plotNFT/PlotNFTChangePool.tsx:122
 msgid "Fee is used TWICE: once to leave pool, once to join."
-msgstr ""
+msgstr "手数料は2回発生します: プールへの参加時とプールからの退出時です。"
 
 #: src/components/block/Block.jsx:322
 msgid "Fees Amount"
