@@ -61,14 +61,11 @@ function TabPanelContainer(props: TabPanelContainerProps) {
   );
 }
 
-function addCondition(tradeSide: string) {
-}
-
 type NewOfferConditionsRowProps = {
   namePrefix: string;
   item: OfferRowData;
   tradeSide: 'buy' | 'sell';
-  addRow: () => void;
+  addRow: (() => void) | undefined;
   removeRow: (() => void) | undefined;
 };
 
@@ -144,7 +141,7 @@ type NewOfferConditionsPanelProps = {
 
 function NewOfferConditionsPanel(props: NewOfferConditionsPanelProps) {
   const { makerSide } = props;
-  const { control, register } = useFormContext();
+  const { control } = useFormContext();
   const { fields: makerFields, append: makerAppend, remove: makerRemove } = useFieldArray({
     control,
     name: 'makerRows',
@@ -153,18 +150,48 @@ function NewOfferConditionsPanel(props: NewOfferConditionsPanelProps) {
     control,
     name: 'takerRows',
   });
+  const { data: wallets, isLoading }: { data: Wallet[], isLoading: boolean} = useGetWalletsQuery();
+  const { watch } = useFormContext();
+  const makerRows: OfferRowData[] = watch('makerRows');
+  const takerRows: OfferRowData[] = watch('takerRows');
+  const { canAddMakerRow, canAddTakerRow } = useMemo(() => {
+    console.log("running memo to calculate canAddMakerRow, canAddTakerRow");
+    let canAddMakerRow = false;
+    let canAddTakerRow = false;
+    if (!isLoading) {
+      let makerWalletIds: Set<number> = new Set();
+      let takerWalletIds: Set<number> = new Set();
+      makerRows.forEach((makerRow) => {
+        if (makerRow.assetWalletId) {
+          makerWalletIds.add(makerRow.assetWalletId);
+        }
+      });
+      takerRows.forEach((takerRow) => {
+        if (takerRow.assetWalletId) {
+          takerWalletIds.add(takerRow.assetWalletId);
+        }
+      });
+      canAddMakerRow = makerWalletIds.size < wallets.length && makerRows.length < wallets.length;
+      canAddTakerRow = takerWalletIds.size < wallets.length && takerRows.length < wallets.length;
+    }
+
+    return { canAddMakerRow, canAddTakerRow };
+  }, [wallets, isLoading, makerRows, takerRows]);
 
   console.log(makerFields);
+  console.log('canAddMakerRow, canAddTakerRow:');
+  console.log(canAddMakerRow, canAddTakerRow);
 
   type Section = {
     side: string;
     fields: any[];
+    canAddRow: boolean;
     namePrefix: string;
     headerTitle?: React.ReactElement;
   };
   const sections: Section[] = [
-    { side: 'buy', fields: takerFields, namePrefix: 'takerRows' },
-    { side: 'sell', fields: makerFields, namePrefix: 'makerRows' },
+    { side: 'buy', fields: takerFields, namePrefix: 'takerRows', canAddRow: canAddTakerRow },
+    { side: 'sell', fields: makerFields, namePrefix: 'makerRows', canAddRow: canAddMakerRow },
   ];
 
   if (makerSide === 'sell') {
@@ -185,7 +212,7 @@ function NewOfferConditionsPanel(props: NewOfferConditionsPanelProps) {
               namePrefix={`${section.namePrefix}[${fieldIndex}]`}
               item={{ amount: field.amount, assetWalletId: field.assetWalletId }}
               tradeSide={section.side}
-              addRow={() => { section.side === 'buy' ? takerAppend({ amount: '', assetWalletId: '' }) : makerAppend({ amount: '', assetWalletId: '' }) }}
+              addRow={section.canAddRow ? (() => { section.side === 'buy' ? takerAppend({ amount: '', assetWalletId: '' }) : makerAppend({ amount: '', assetWalletId: '' }) }) : undefined }
               removeRow={
                 section.fields.length > 1 ?
                   () => { section.side === 'buy' ? takerRemove(fieldIndex) : makerRemove(fieldIndex) } :
