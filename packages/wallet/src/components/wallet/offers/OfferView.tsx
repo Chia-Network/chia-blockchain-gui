@@ -28,7 +28,7 @@ function DropView() {
   );
 };
 
-export function DisplayWalletOfferView() {
+export function DisplayOfferView() {
   const { data, isLoading } = useGetAllTradesQuery();
 
   return (
