@@ -50,12 +50,8 @@ export default function WalletHeader(props: StandardWalletProps) {
     history.push('/dashboard/wallets/create/simple');
   }
 
-  function handleCreateOffer() {
-    history.push('/dashboard/wallets/offers/create');
-  }
-
-  function handleViewOffer() {
-    history.push('/dashboard/wallets/offers/view');
+  function handleManageOffers() {
+    history.push('/dashboard/wallets/offers/manage');
   }
 
   return (
@@ -70,15 +66,10 @@ export default function WalletHeader(props: StandardWalletProps) {
         </Button>
         <Button
           color="primary"
-          onClick={handleCreateOffer}
+          variant="outlined"
+          onClick={handleManageOffers}
         >
-          <Trans>Create an Offer</Trans>
-        </Button>
-        <Button
-          color="primary"
-          onClick={handleViewOffer}
-        >
-          <Trans>View an Offer</Trans>
+          <Trans>Manage Offers</Trans>
         </Button>
       </Flex>
       <Flex gap={1} alignItems="center">

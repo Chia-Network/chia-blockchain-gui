@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { Trans } from '@lingui/macro';
 import {
   Back,
-  Card,
+  CardStep,
   Flex,
   Form
 } from '@chia/core';
@@ -100,7 +100,7 @@ function OfferEditorView(): JSX.Element {
 
   return (
     <Form methods={methods} onSubmit={onSubmit}>
-      <Card title={<Trans>New Offer</Trans>}>
+      <CardStep step={1} title={<Trans>Choose the Type of Offer to Create</Trans>}>
         <Flex flexDirection="column" flexGrow={1}>
           <Box>
             <Tabs
@@ -136,7 +136,7 @@ function OfferEditorView(): JSX.Element {
             <Trans>Save Offer</Trans>
           </Button>
         </Flex>
-      </Card>
+      </CardStep>
     </Form>
   );
 }
@@ -146,7 +146,7 @@ export function CreateOfferEditorView() {
     <Grid container>
       <Flex flexDirection="column" flexGrow={1} gap={3}>
         <Flex>
-          <Back variant="h5" to="/dashboard/wallets">
+          <Back variant="h5" to="/dashboard/wallets/offers/manage">
             <Trans>Create an Offer</Trans>
           </Back>
         </Flex>
