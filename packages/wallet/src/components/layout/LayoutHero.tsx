@@ -2,7 +2,6 @@ import React, { ReactNode } from 'react';
 import { AppBar, Toolbar, Box } from '@material-ui/core';
 import styled from 'styled-components';
 import { Flex, DarkModeToggle, LocaleToggle } from '@chia/core';
-import { defaultLocale, locales } from '../../config/locales';
 
 const StyledWrapper = styled(Box)`
   padding-top: ${({ theme }) => `${theme.spacing(3)}px`};
@@ -37,7 +36,7 @@ export default function LayoutHero(props: Props) {
         <Toolbar>
           {header}
           <Flex flexGrow={1} />
-          <LocaleToggle locales={locales} defaultLocale={defaultLocale} />
+          <LocaleToggle />
           <DarkModeToggle />
         </Toolbar>
       </AppBar>
