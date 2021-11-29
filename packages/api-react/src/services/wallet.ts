@@ -50,7 +50,7 @@ export const walletApi = createApi({
                   throw tailError;
                 }
 
-                meta.tail = tailData.colour;
+                meta.tail = tailData.assetId;
 
                 // get CAT name
                 const { data: nameData, error: nameError } = await fetchWithBQ({
@@ -159,7 +159,7 @@ export const walletApi = createApi({
     }),
 
     createNewWallet: build.mutation<any, { 
-      walletType: 'pool_wallet' | 'rl_wallet' | 'did_wallet' | 'cc_wallet';
+      walletType: 'pool_wallet' | 'rl_wallet' | 'did_wallet' | 'cat_wallet';
       options?: Object;
     }>({
       query: ({ walletType, options }) => ({
@@ -724,7 +724,7 @@ export const walletApi = createApi({
         service: CAT,
         args: [walletId],
       }),
-      transformResponse: (response: any) => response?.colour,
+      transformResponse: (response: any) => response?.assetId,
     }),
 
     getCatList: build.query<{
