@@ -42,42 +42,44 @@ function OfferEditorConditionRow(props: OfferEditorConditionsRowProps) {
         />
       </Grid>
       <Grid item style={{paddingTop: '1em'}}>
-        <More style={{}}>
-          {({ onClose }: { onClose: () => void }) => (
-            <Box>
-              {addRow && (
-                <MenuItem
-                  onClick={() => {
-                    onClose();
-                    addRow();
-                  }}
-                >
-                  <ListItemIcon>
-                    <Add fontSize="small" />
-                  </ListItemIcon>
-                  <Typography variant="inherit" noWrap>
-                    <Trans>Add Offer Condition</Trans>
-                  </Typography>
-                </MenuItem>
-              )}
-              {removeRow && (
-                <MenuItem
-                  onClick={() => {
-                    onClose();
-                    removeRow();
-                  }}
-                >
-                  <ListItemIcon>
-                    <Remove fontSize="small" />
-                  </ListItemIcon>
-                  <Typography variant="inherit" noWrap>
-                    <Trans>Remove Offer Condition</Trans>
-                  </Typography>
-                </MenuItem>
-              )}
-            </Box>
-          )}
-        </More>
+        {(addRow || removeRow) && (
+          <More>
+            {({ onClose }: { onClose: () => void }) => (
+              <Box>
+                {addRow && (
+                  <MenuItem
+                    onClick={() => {
+                      onClose();
+                      addRow();
+                    }}
+                  >
+                    <ListItemIcon>
+                      <Add fontSize="small" />
+                    </ListItemIcon>
+                    <Typography variant="inherit" noWrap>
+                      <Trans>Add Offer Condition</Trans>
+                    </Typography>
+                  </MenuItem>
+                )}
+                {removeRow && (
+                  <MenuItem
+                    onClick={() => {
+                      onClose();
+                      removeRow();
+                    }}
+                  >
+                    <ListItemIcon>
+                      <Remove fontSize="small" />
+                    </ListItemIcon>
+                    <Typography variant="inherit" noWrap>
+                      <Trans>Remove Offer Condition</Trans>
+                    </Typography>
+                  </MenuItem>
+                )}
+              </Box>
+            )}
+          </More>
+        )}
       </Grid>
     </Flex>
   );
