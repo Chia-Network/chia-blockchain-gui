@@ -28,14 +28,14 @@ function DropView() {
   );
 };
 
-export function DisplayOfferView() {
+export function OfferImportView() {
   const { data, isLoading } = useGetAllTradesQuery();
 
   return (
     <Grid container>
       <Flex flexDirection="column" flexGrow={1} gap={3}>
         <Flex>
-          <Back variant="h5" to="/dashboard/wallets">
+          <Back variant="h5" to="/dashboard/wallets/offers/manage">
             <Trans>View an Offer</Trans>
           </Back>
         </Flex>

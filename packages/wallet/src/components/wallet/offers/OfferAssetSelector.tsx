@@ -11,7 +11,7 @@ import type CATToken from '../../../types/CATToken';
 type WalletOfferAssetSelection = {
   walletId: number;
   name: string;
-  symbol: string;
+  symbol?: string;
   displayName: string;
   tail?: string;
 };
@@ -55,8 +55,8 @@ function buildAssetSelectorList(
       }
     }
 
-    if (name && symbol) {
-      const displayName = `${name} (${symbol})`;
+    if (name) {
+      const displayName = name + (symbol ? `(${symbol})` : '');
       list.push({ walletId, name, symbol, displayName, tail });
     }
   });

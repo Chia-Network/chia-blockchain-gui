@@ -6,7 +6,7 @@ import { Back, CardHero, Flex } from '@chia/core';
 import { Button, Grid, Typography } from '@material-ui/core';
 import { Trade as TradeIcon } from '@chia/icons';
 import { CreateOfferEditorView } from './OfferEditor';
-import { DisplayOfferView } from './OfferImportView';
+import { OfferImportView } from './OfferImportView';
 
 const StyledTradeIcon = styled(TradeIcon)`
   font-size: 4rem;
@@ -36,14 +36,14 @@ export function OfferManagerView() {
           <StyledTradeIcon color="primary" />
           <Typography variant="body1">
             <Trans>
-              Create an offer to exchange XCH or other tokens. Import an offer to inspect and accept an offer made by another party.
+              Create an offer to exchange XCH or other tokens. View an offer to inspect and accept an offer made by another party.
             </Trans>
           </Typography>
           <Button onClick={handleCreateOffer} variant="contained" color="primary">
             <Trans>Create an Offer</Trans>
           </Button>
           <Button onClick={handleImportOffer} variant="contained" color="primary">
-            <Trans>Import an Offer</Trans>
+            <Trans>View an Offer</Trans>
           </Button>
         </CardHero>
       </Grid>
@@ -60,7 +60,7 @@ export function CreateOfferView() {
         <CreateOfferEditorView />
       </Route>
       <Route path={`${path}/import`}>
-        <DisplayOfferView />
+        <OfferImportView />
       </Route>
       <Route path={`${path}/manage`}>
         <OfferManagerView />

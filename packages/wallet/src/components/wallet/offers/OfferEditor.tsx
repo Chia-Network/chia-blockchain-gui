@@ -3,17 +3,18 @@ import { useForm } from 'react-hook-form';
 import { Trans } from '@lingui/macro';
 import {
   Back,
-  CardStep,
   Flex,
   Form
 } from '@chia/core';
 import {
   Box,
   Button,
+  CardHeader,
   Divider,
   Grid,
   Tab,
-  Tabs
+  Tabs,
+  Typography
 } from '@material-ui/core';
 import type OfferRowData from './OfferRowData';
 import OfferEditorConditionsPanel from './OfferEditorConditionsPanel';
@@ -21,7 +22,7 @@ import styled from 'styled-components';
 import fs from 'fs';
 
 const StyledTabPanel = styled.div`
-  padding: ${({ theme }) => `${theme.spacing(3)}px`};
+  padding: ${({ theme }) => `${theme.spacing(4)}px`};
 `;
 
 type TabPanelContainerProps = {
@@ -100,26 +101,34 @@ function OfferEditorView(): JSX.Element {
 
   return (
     <Form methods={methods} onSubmit={onSubmit}>
-      <CardStep step={1} title={<Trans>Choose the Type of Offer to Create</Trans>}>
-        <Flex flexDirection="column" flexGrow={1}>
-          <Box>
-            <Tabs
-              value={selectedTab}
-              onChange={handleTabChange}
-            >
-              <Tab label={<Trans>Buy</Trans>} />
-              <Tab label={<Trans>Sell</Trans>} />
-            </Tabs>
-            <Divider />
-          </Box>
-          <TabPanelContainer value={selectedTab} index={0}>
-            <OfferEditorConditionsPanel makerSide="buy" />
-          </TabPanelContainer>
-          <TabPanelContainer value={selectedTab} index={1}>
-            <OfferEditorConditionsPanel makerSide="sell" />
-          </TabPanelContainer>
+      <Flex flexDirection="column">
+        <CardHeader
+          title={<Typography variant="h6"><Trans>Choose the Type of Offer to Create</Trans></Typography>}
+        />
+        <Divider />
+        <Flex flexDirection="column" gap={3}>
+          <Flex flexDirection="column" flexGrow={1}>
+            <Box>
+              <Tabs
+                value={selectedTab}
+                onChange={handleTabChange}
+                textColor="primary"
+                indicatorColor="primary"
+              >
+                <Tab label={<Trans>Buy</Trans>} />
+                <Tab label={<Trans>Sell</Trans>} />
+              </Tabs>
+              <Divider />
+            </Box>
+            <TabPanelContainer value={selectedTab} index={0}>
+              <OfferEditorConditionsPanel makerSide="buy" />
+            </TabPanelContainer>
+            <TabPanelContainer value={selectedTab} index={1}>
+              <OfferEditorConditionsPanel makerSide="sell" />
+            </TabPanelContainer>
+          </Flex>
         </Flex>
-        <Flex justifyContent='flex-end' gap={3}>
+        <Flex gap={3}>
           <Button
             variant="contained"
             color="secondary"
@@ -136,7 +145,7 @@ function OfferEditorView(): JSX.Element {
             <Trans>Save Offer</Trans>
           </Button>
         </Flex>
-      </CardStep>
+      </Flex>
     </Form>
   );
 }
