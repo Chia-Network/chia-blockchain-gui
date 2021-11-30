@@ -10,6 +10,7 @@ import type CATToken from '../../../types/CATToken';
 
 type WalletOfferAssetSelection = {
   walletId: number;
+  walletType: WalletType;
   name: string;
   symbol?: string;
   displayName: string;
@@ -33,6 +34,7 @@ function buildAssetSelectorList(
 
   wallets.map(wallet => {
     const walletId: number = wallet.id;
+    const walletType: WalletType = wallet.type;
     let name: string | undefined;
     let symbol: string | undefined;
     let tail: string | undefined;
@@ -56,8 +58,8 @@ function buildAssetSelectorList(
     }
 
     if (name) {
-      const displayName = name + (symbol ? `(${symbol})` : '');
-      list.push({ walletId, name, symbol, displayName, tail });
+      const displayName = name + (symbol ? ` (${symbol})` : '');
+      list.push({ walletId, walletType, name, symbol, displayName, tail });
     }
   });
   return list;
@@ -68,10 +70,11 @@ type OfferAssetSelectorProps = {
   id: string;
   tradeSide: 'buy' | 'sell';
   defaultValue: any;
+  onChange?: (selectedWalletId: number, selectedWalletType: WalletType) => void;
 };
 
 function OfferAssetSelector(props: OfferAssetSelectorProps): JSX.Element {
-  const { name, id, tradeSide, defaultValue, ...rest } = props;
+  const { name, id, tradeSide, defaultValue, onChange, ...rest } = props;
   const { data: wallets, isLoading } = useGetWalletsQuery();
   const { data: catList = [], isLoading: isCatListLoading } = useGetCatListQuery();
   const { getValues, watch } = useFormContext();
@@ -84,8 +87,11 @@ function OfferAssetSelector(props: OfferAssetSelectorProps): JSX.Element {
     return buildAssetSelectorList(wallets, catList, rows, selectedWalletId);
   }, [wallets, catList, rows]);
 
-  async function handleSelection(selectedWalletId: number) {
-    console.log("handleSelection: " + selectedWalletId);
+  function handleSelection(selectedWalletId: number, selectedWalletType: WalletType) {
+    console.log("handleSelection: " + selectedWalletId + " " + selectedWalletType);
+    if (onChange) {
+      onChange(selectedWalletId, selectedWalletType);
+    }
   }
 
   return (
@@ -99,7 +105,7 @@ function OfferAssetSelector(props: OfferAssetSelectorProps): JSX.Element {
           <MenuItem
             value={option.walletId}
             key={option.walletId}
-            onClick={() => handleSelection(option.walletId)}
+            onClick={() => handleSelection(option.walletId, option.walletType)}
           >
             <Trans>{option.displayName}</Trans>
           </MenuItem>

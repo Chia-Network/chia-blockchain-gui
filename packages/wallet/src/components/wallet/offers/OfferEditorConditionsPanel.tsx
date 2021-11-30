@@ -1,12 +1,13 @@
 import React, { useMemo } from 'react';
 import { useFormContext, useFieldArray } from 'react-hook-form';
 import { Trans } from '@lingui/macro';
-import { Amount, Flex, More } from '@chia/core';
+import { Amount, Flex, More, TextFieldNumber } from '@chia/core';
 import { Box, Divider, Grid, ListItemIcon, MenuItem, Typography } from '@material-ui/core';
 import { Add, Remove } from '@material-ui/icons';
 import { useGetWalletsQuery } from '@chia/api-react';
 import { Wallet } from '@chia/api';
 import type OfferRowData from './OfferRowData';
+import WalletType from '../../../constants/WalletType';
 import OfferAssetSelector from './OfferAssetSelector';
 
 type OfferEditorConditionsRowProps = {
@@ -19,19 +20,43 @@ type OfferEditorConditionsRowProps = {
 
 function OfferEditorConditionRow(props: OfferEditorConditionsRowProps) {
   const { namePrefix, item, tradeSide, addRow, removeRow, ...rest } = props;
+  const { setValue } = useFormContext();
+
+  function handleAssetChange(namePrefix: string, selectedWalletId: number, selectedWalletType: WalletType) {
+    console.log('handleAssetChange');
+    console.log(selectedWalletId);
+    console.log(selectedWalletType);
+    item.walletType = selectedWalletType;
+    setValue(`${namePrefix}.walletType`, selectedWalletType);
+  }
 
   return (
     <Flex flexDirection="row" gap={3} {...rest}>
       <Grid xs={6} item>
-        <Amount
-          variant="filled"
-          color="secondary"
-          label={<Trans>Amount</Trans>}
-          defaultValue={item.amount}
-          name={`${namePrefix}.amount`}
-          required
-          fullWidth
-        />
+        {item.walletType === WalletType.STANDARD_WALLET && (
+          <Amount
+            variant="filled"
+            color="secondary"
+            label={<Trans>Amount</Trans>}
+            defaultValue={item.amount}
+            id={`${namePrefix}.amount`}
+            name={`${namePrefix}.amount`}
+            required
+            fullWidth
+          />
+        )}
+        {item.walletType === WalletType.CAT && (
+          <TextFieldNumber
+            variant="filled"
+            color="secondary"
+            label={<Trans>Amount</Trans>}
+            defaultValue={item.amount}
+            id={`${namePrefix}.amount`}
+            name={`${namePrefix}.amount`}
+            required
+            fullWidth
+          />
+        )}
       </Grid>
       <Grid xs={6} item>
         <OfferAssetSelector
@@ -39,6 +64,7 @@ function OfferEditorConditionRow(props: OfferEditorConditionsRowProps) {
           id={`${namePrefix}.assetWalletId`}
           tradeSide={tradeSide}
           defaultValue={undefined}
+          onChange={(walletId: number, walletType: WalletType) => handleAssetChange(namePrefix, walletId, walletType)}
         />
       </Grid>
       <Grid item style={{paddingTop: '1em'}}>
@@ -104,8 +130,8 @@ function OfferEditorConditionsPanel(props: OfferEditorConditionsPanelProps) {
   const { watch } = useFormContext();
   const makerRows: OfferRowData[] = watch('makerRows');
   const takerRows: OfferRowData[] = watch('takerRows');
+
   const { canAddMakerRow, canAddTakerRow } = useMemo(() => {
-    console.log("running memo to calculate canAddMakerRow, canAddTakerRow");
     let canAddMakerRow = false;
     let canAddTakerRow = false;
     if (!isLoading) {
@@ -127,10 +153,6 @@ function OfferEditorConditionsPanel(props: OfferEditorConditionsPanelProps) {
 
     return { canAddMakerRow, canAddTakerRow };
   }, [wallets, isLoading, makerRows, takerRows]);
-
-  console.log(makerFields);
-  console.log('canAddMakerRow, canAddTakerRow:');
-  console.log(canAddMakerRow, canAddTakerRow);
 
   type Section = {
     side: 'buy' | 'sell';
@@ -160,7 +182,7 @@ function OfferEditorConditionsPanel(props: OfferEditorConditionsPanelProps) {
             <OfferEditorConditionRow
               key={field.id}
               namePrefix={`${section.namePrefix}[${fieldIndex}]`}
-              item={{ amount: field.amount, assetWalletId: field.assetWalletId }}
+              item={field}
               tradeSide={section.side}
               addRow={section.canAddRow ? (() => { section.side === 'buy' ? takerAppend({ amount: '', assetWalletId: '' }) : makerAppend({ amount: '', assetWalletId: '' }) }) : undefined }
               removeRow={

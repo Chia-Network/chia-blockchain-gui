@@ -18,8 +18,10 @@ import {
   Typography
 } from '@material-ui/core';
 import type OfferRowData from './OfferRowData';
+import WalletType from '../../../constants/WalletType';
 import OfferEditorConditionsPanel from './OfferEditorConditionsPanel';
 import styled from 'styled-components';
+import { chia_to_mojo, colouredcoin_to_mojo } from '../../../util/chia';
 import fs from 'fs';
 
 const StyledTabPanel = styled.div`
@@ -59,8 +61,8 @@ type FormData = {
 function OfferEditorView(): JSX.Element {
   const defaultValues: FormData = {
     selectedTab: 0,
-    makerRows: [{ amount: 0, assetWalletId: undefined }],
-    takerRows: [{ amount: 0, assetWalletId: undefined }],
+    makerRows: [{ amount: 0, assetWalletId: undefined, walletType: WalletType.STANDARD_WALLET }],
+    takerRows: [{ amount: 0, assetWalletId: undefined, walletType: WalletType.STANDARD_WALLET }],
   };
   const methods = useForm<FormData>({
     shouldUnregister: false,
@@ -74,37 +76,51 @@ function OfferEditorView(): JSX.Element {
     setValue('selectedTab', newValue);
   };
 
+  function updateOffer(offer: { [key: string]: number | string }, row: OfferRowData, debit: boolean) {
+    const { amount, assetWalletId, walletType } = row;
+    if (assetWalletId) {
+      let mojoAmount = 0;
+      if (walletType === WalletType.STANDARD_WALLET) {
+        mojoAmount = Number.parseFloat(chia_to_mojo(amount));
+      }
+      else if (walletType === WalletType.CAT) {
+        mojoAmount = Number.parseFloat(colouredcoin_to_mojo(amount));
+      }
+      offer[assetWalletId] = debit ? -mojoAmount : mojoAmount;
+    }
+    else {
+      console.log('missing asset wallet id');
+    }
+  }
+
   async function onSubmit(formData: FormData) {
     console.log('submit');
     console.log(formData);
     const offer: { [key: string]: number | string } = {};
     formData.makerRows.forEach((row: OfferRowData) => {
-      const { amount, assetWalletId } = row;
-      if (assetWalletId) {
-        offer[assetWalletId] = parseInt(-amount);
-      }
+      updateOffer(offer, row, true);
     });
     formData.takerRows.forEach((row: OfferRowData) => {
-      const { amount, assetWalletId } = row;
-      if (assetWalletId) {
-        offer[assetWalletId] = parseInt(amount);
-      }
+      updateOffer(offer, row, false);
     });
     console.log("offer:");
     console.log({ walletIdsAndAmounts: offer });
-    // const response = await createOfferForIds({ walletIdsAndAmounts: offer }).unwrap();
-    // console.log("response:");
-    // console.log(response);
-    // const dialogOptions = {};
-    // const result = await window.remote.dialog.showSaveDialog(dialogOptions);
-    // const { filePath } = result;
-    // console.log('filePath: ', filePath);
-    // try {
-    //   fs.writeFileSync(filePath, 'Hello World!');
-    // }
-    // catch (err) {
-    //   console.error(err);
-    // }
+    const response = await createOfferForIds({ walletIdsAndAmounts: offer }).unwrap();
+    console.log("response:");
+    console.log(response);
+    if (response.success === true) {
+      const { offer: offerData } = response;
+      const dialogOptions = {};
+      const result = await window.remote.dialog.showSaveDialog(dialogOptions);
+      const { filePath } = result;
+      console.log('filePath: ', filePath);
+      try {
+        fs.writeFileSync(filePath, offerData);
+      }
+      catch (err) {
+        console.error(err);
+      }
+    }
     // const offer = {};
     // for (const trade of trades) {
     //   if (trade.side === 'buy') {
