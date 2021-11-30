@@ -679,6 +679,17 @@ export const walletApi = createApi({
       }),
     }),
 
+    createOfferForIds: build.mutation<any, {
+      walletIdsAndAmounts: { [key: string]: number };
+    }>({
+      query: ({
+        walletIdsAndAmounts,
+      }) => ({
+        command: 'createOfferForIds',
+        args: [walletIdsAndAmounts],
+      }),
+    }),
+
     // CAT
     createNewCATWallet: build.mutation<any, {
       amount: string;
@@ -1056,6 +1067,7 @@ export const {
   useGetConnectionsQuery,
   useCreateBackupMutation,
   useGetAllTradesQuery,
+  useCreateOfferForIdsMutation,
 
   // CAT
   useCreateNewCATWalletMutation,

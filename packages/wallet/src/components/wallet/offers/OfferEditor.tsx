@@ -6,6 +6,7 @@ import {
   Flex,
   Form
 } from '@chia/core';
+import { useCreateOfferForIdsMutation } from '@chia/api-react';
 import {
   Box,
   Button,
@@ -67,6 +68,7 @@ function OfferEditorView(): JSX.Element {
   });
   const { watch, setValue } = methods;
   const selectedTab = watch('selectedTab');
+  const [createOfferForIds] = useCreateOfferForIdsMutation();
 
   function handleTabChange(event: React.ChangeEvent<{}>, newValue: number) {
     setValue('selectedTab', newValue);
@@ -75,6 +77,24 @@ function OfferEditorView(): JSX.Element {
   async function onSubmit(formData: FormData) {
     console.log('submit');
     console.log(formData);
+    const offer: { [key: string]: number | string } = {};
+    formData.makerRows.forEach((row: OfferRowData) => {
+      const { amount, assetWalletId } = row;
+      if (assetWalletId) {
+        offer[assetWalletId] = parseInt(-amount);
+      }
+    });
+    formData.takerRows.forEach((row: OfferRowData) => {
+      const { amount, assetWalletId } = row;
+      if (assetWalletId) {
+        offer[assetWalletId] = parseInt(amount);
+      }
+    });
+    console.log("offer:");
+    console.log({ walletIdsAndAmounts: offer });
+    // const response = await createOfferForIds({ walletIdsAndAmounts: offer }).unwrap();
+    // console.log("response:");
+    // console.log(response);
     // const dialogOptions = {};
     // const result = await window.remote.dialog.showSaveDialog(dialogOptions);
     // const { filePath } = result;

@@ -242,6 +242,12 @@ export default class Wallet extends Service {
     return this.command('get_all_trades');
   }
 
+  async createOfferForIds(walletIdsAndAmounts: { [key: string]: number }) {
+    return this.command('create_offer_for_ids', {
+      offer: walletIdsAndAmounts,
+    });
+  }
+
   onSyncChanged(callback: (data: any, message: Message) => void) {
     return this.onStateChanged('sync_changed', callback);
   }

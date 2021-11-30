@@ -60,6 +60,7 @@ export const {
   useGetConnectionsQuery: useGetWalletConnectionsQuery,
   useCreateBackupMutation,
   useGetAllTradesQuery,
+  useCreateOfferForIdsMutation,
 
   // CAT
   useCreateNewCATWalletMutation,
