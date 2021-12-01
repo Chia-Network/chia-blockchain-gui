@@ -112,23 +112,17 @@ function OfferEditorView(): JSX.Element {
       const { offer: offerData } = response;
       const dialogOptions = {};
       const result = await window.remote.dialog.showSaveDialog(dialogOptions);
-      const { filePath } = result;
-      console.log('filePath: ', filePath);
-      try {
-        fs.writeFileSync(filePath, offerData);
-      }
-      catch (err) {
-        console.error(err);
+      const { filePath, canceled } = result;
+
+      if (!canceled && filePath) {
+        try {
+          fs.writeFileSync(filePath, offerData);
+        }
+        catch (err) {
+          console.error(err);
+        }
       }
     }
-    // const offer = {};
-    // for (const trade of trades) {
-    //   if (trade.side === 'buy') {
-    //     offer[trade.wallet_id] = trade.amount;
-    //   } else {
-    //     offer[trade.wallet_id] = -trade.amount;
-    //   }
-    // }
   }
 
   function handleReset() {

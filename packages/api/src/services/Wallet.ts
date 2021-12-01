@@ -238,13 +238,20 @@ export default class Wallet extends Service {
     });
   }
 
-  async getAllTrades() {
-    return this.command('get_all_trades');
+  async getAllOffers() {
+    return this.command('get_all_offers');
   }
 
   async createOfferForIds(walletIdsAndAmounts: { [key: string]: number }) {
     return this.command('create_offer_for_ids', {
       offer: walletIdsAndAmounts,
+    });
+  }
+
+  async getOfferData(offerId: string) {
+    return this.command('get_offer', {
+      trade_id: offerId,
+      file_contents: true,
     });
   }
 

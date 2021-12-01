@@ -673,9 +673,9 @@ export const walletApi = createApi({
     }),
 
     // Offers
-    getAllTrades: build.query<any, undefined>({
+    getAllOffers: build.query<any, undefined>({
       query: () => ({
-        command: 'getAllTrades',
+        command: 'getAllOffers',
       }),
     }),
 
@@ -687,6 +687,13 @@ export const walletApi = createApi({
       }) => ({
         command: 'createOfferForIds',
         args: [walletIdsAndAmounts],
+      }),
+    }),
+
+    getOfferData: build.mutation<any, string>({
+      query: (offerId: string) => ({
+        command: 'getOfferData',
+        args: [offerId],
       }),
     }),
 
@@ -1066,8 +1073,9 @@ export const {
   useGetSyncStatusQuery,
   useGetConnectionsQuery,
   useCreateBackupMutation,
-  useGetAllTradesQuery,
+  useGetAllOffersQuery,
   useCreateOfferForIdsMutation,
+  useGetOfferDataMutation,
 
   // CAT
   useCreateNewCATWalletMutation,

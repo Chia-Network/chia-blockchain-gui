@@ -59,8 +59,9 @@ export const {
   useGetSyncStatusQuery,
   useGetConnectionsQuery: useGetWalletConnectionsQuery,
   useCreateBackupMutation,
-  useGetAllTradesQuery,
+  useGetAllOffersQuery,
   useCreateOfferForIdsMutation,
+  useGetOfferDataMutation,
 
   // CAT
   useCreateNewCATWalletMutation,

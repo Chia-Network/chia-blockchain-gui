@@ -1,6 +1,6 @@
 import React from 'react';
 import { Trans } from '@lingui/macro';
-import { useGetAllTradesQuery } from '@chia/api-react';
+import { useGetAllOffersQuery } from '@chia/api-react';
 import { Back, Card, Dropzone, Flex } from '@chia/core';
 import { Grid } from '@material-ui/core';
 
@@ -29,7 +29,7 @@ function DropView() {
 };
 
 export function OfferImportView() {
-  const { data, isLoading } = useGetAllTradesQuery();
+  const { data, isLoading } = useGetAllOffersQuery();
 
   return (
     <Grid container>
