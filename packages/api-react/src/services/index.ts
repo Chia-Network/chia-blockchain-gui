@@ -13,7 +13,6 @@ export const {
   useStartServiceMutation: useClientStartServiceMutation,
 } = client;
 
-
 // daemon hooks
 export const {
   daemonApi,
@@ -27,6 +26,10 @@ export const {
   useRemoveKeyringPassphraseMutation,
   useMigrateKeyringMutation,
   useUnlockKeyringMutation,
+
+  useGetPlottersQuery,
+  useStopPlottingMutation,
+  useStartPlottingMutation,
 } = daemon;
 
 // farmer hooks
@@ -66,6 +69,7 @@ export const {
   walletApi,
 
   usePingQuery: useWalletPingQuery,
+  useGetFingerprintQuery,
   useGetWalletsQuery,
   useGetTransactionQuery,
   useGetPwStatusQuery,
@@ -103,6 +107,9 @@ export const {
   useCloseConnectionMutation: useCloseWalletConnectionMutation,
   useCreateBackupMutation,
 
+  // Pool
+  useCreateNewPoolWalletMutation,
+
   // CAT wallet hooks
   useCreateNewCATWalletMutation,
   useCreateCATWalletForExistingMutation,
@@ -112,6 +119,9 @@ export const {
   useSetCATNameMutation,
   useSpendCATMutation,
   useAddCATTokenMutation,
+
+  // NFTs
+  useGetPlotNFTsQuery,
 } = wallet;
 
 // harvester hooks
