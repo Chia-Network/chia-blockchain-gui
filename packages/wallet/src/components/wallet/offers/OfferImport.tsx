@@ -28,7 +28,7 @@ function DropView() {
   );
 };
 
-export function OfferImportView() {
+export function OfferImport() {
   const { data, isLoading } = useGetAllOffersQuery();
 
   return (

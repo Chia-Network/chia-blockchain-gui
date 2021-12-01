@@ -8,8 +8,8 @@ import { Box, Button, Divider, Grid, ListItemIcon, MenuItem, Typography } from '
 import { Cancel, GetApp as Download } from '@material-ui/icons';
 import { Trade as TradeIcon } from '@chia/icons';
 import { useGetAllOffersQuery, useGetOfferDataMutation } from '@chia/api-react';
-import { CreateOfferEditorView } from './OfferEditor';
-import { OfferImportView } from './OfferImport';
+import { CreateOfferEditor } from './OfferEditor';
+import { OfferImport } from './OfferImport';
 import fs from 'fs';
 
 const StyledTradeIcon = styled(TradeIcon)`
@@ -20,7 +20,7 @@ function cancelOffer(tradeId: string) {
   console.log("cancelOffer: ", tradeId);
 }
 
-function OfferListView() {
+function OfferList() {
   const { data, loading, error } = useGetAllOffersQuery();
   const [getOfferData] = useGetOfferDataMutation();
 
@@ -160,7 +160,7 @@ function OfferListView() {
   );
 }
 
-export function OfferManagerView() {
+export function OfferManager() {
   const { data, isLoading } = useGetAllOffersQuery();
   const history = useHistory();
 
@@ -204,23 +204,23 @@ export function OfferManagerView() {
         </Grid>
       </Grid>
       <Divider />
-      <OfferListView />
+      <OfferList />
     </Flex>
   );
 }
 
-export function CreateOfferView() {
+export function CreateOffer() {
   const { path } = useRouteMatch();
   return (
     <Switch>
       <Route path={`${path}/create`}>
-        <CreateOfferEditorView />
+        <CreateOfferEditor />
       </Route>
       <Route path={`${path}/import`}>
-        <OfferImportView />
+        <OfferImport />
       </Route>
       <Route path={`${path}/manage`}>
-        <OfferManagerView />
+        <OfferManager />
       </Route>
     </Switch>
   );

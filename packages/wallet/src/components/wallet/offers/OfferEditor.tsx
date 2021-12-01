@@ -58,7 +58,7 @@ type FormData = {
   takerRows: OfferRowData[];
 };
 
-function OfferEditorView(): JSX.Element {
+function OfferEditor(): JSX.Element {
   const defaultValues: FormData = {
     selectedTab: 0,
     makerRows: [{ amount: 0, assetWalletId: undefined, walletType: WalletType.STANDARD_WALLET }],
@@ -180,7 +180,7 @@ function OfferEditorView(): JSX.Element {
   );
 }
 
-export function CreateOfferEditorView() {
+export function CreateOfferEditor() {
   return (
     <Grid container>
       <Flex flexDirection="column" flexGrow={1} gap={3}>
@@ -189,7 +189,7 @@ export function CreateOfferEditorView() {
             <Trans>Create an Offer</Trans>
           </Back>
         </Flex>
-        <OfferEditorView />
+        <OfferEditor />
       </Flex>
     </Grid>
   );
