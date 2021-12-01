@@ -4,7 +4,7 @@ import { useGetWalletsQuery } from '@chia/api-react';
 import StandardWallet from './standard/WalletStandard';
 import { CreateWalletView } from './create/WalletCreate';
 import WalletCAT from './cat/WalletCAT';
-import { CreateOfferView } from './offers/OfferManagerView';
+import { CreateOfferView } from './offers/OfferManager';
 // import RateLimitedWallet from './rateLimited/WalletRateLimited';
 // import DistributedWallet from './did/WalletDID';
 import WalletType from '../../constants/WalletType';

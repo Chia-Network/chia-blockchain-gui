@@ -9,7 +9,7 @@ import { Cancel, GetApp as Download } from '@material-ui/icons';
 import { Trade as TradeIcon } from '@chia/icons';
 import { useGetAllOffersQuery, useGetOfferDataMutation } from '@chia/api-react';
 import { CreateOfferEditorView } from './OfferEditor';
-import { OfferImportView } from './OfferImportView';
+import { OfferImportView } from './OfferImport';
 import fs from 'fs';
 
 const StyledTradeIcon = styled(TradeIcon)`
