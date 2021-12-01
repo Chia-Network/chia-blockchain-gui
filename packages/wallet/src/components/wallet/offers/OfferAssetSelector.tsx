@@ -14,6 +14,7 @@ type WalletOfferAssetSelection = {
   name: string;
   symbol?: string;
   displayName: string;
+  disabled: boolean;
   tail?: string;
 };
 
@@ -21,14 +22,22 @@ function buildAssetSelectorList(
   wallets: Wallet[],
   catList: CATToken[],
   rows: OfferRowData[],
+  otherRows: OfferRowData[],
   selectedWalletId: number): WalletOfferAssetSelection[]
 {
   const list: WalletOfferAssetSelection[] = [];
   const usedWalletIds: Set<number> = new Set();
+  const otherUsedWalletIds: Set<number> = new Set();
 
   rows.map(row => {
     if (row.assetWalletId !== undefined && row.assetWalletId !== selectedWalletId) {
       usedWalletIds.add(row.assetWalletId);
+    }
+  });
+
+  otherRows.map(row => {
+    if (row.assetWalletId !== undefined) {
+      otherUsedWalletIds.add(row.assetWalletId);
     }
   });
 
@@ -38,9 +47,15 @@ function buildAssetSelectorList(
     let name: string | undefined;
     let symbol: string | undefined;
     let tail: string | undefined;
+    let disabled: boolean = false;
 
     if (usedWalletIds.has(walletId)) {
       return;
+    }
+
+    // Disable the selection of wallets that are used by the other side of the trade
+    if (otherUsedWalletIds.has(walletId)) {
+      disabled = true;
     }
 
     if (wallet.type === WalletType.STANDARD_WALLET) {
@@ -59,7 +74,7 @@ function buildAssetSelectorList(
 
     if (name) {
       const displayName = name + (symbol ? ` (${symbol})` : '');
-      list.push({ walletId, walletType, name, symbol, displayName, tail });
+      list.push({ walletId, walletType, name, symbol, displayName, disabled, tail });
     }
   });
   return list;
@@ -79,13 +94,14 @@ function OfferAssetSelector(props: OfferAssetSelectorProps): JSX.Element {
   const { data: catList = [], isLoading: isCatListLoading } = useGetCatListQuery();
   const { getValues, watch } = useFormContext();
   const rows = watch(tradeSide === 'buy' ? 'takerRows' : 'makerRows');
+  const otherRows = watch(tradeSide === 'buy' ? 'makerRows' : 'takerRows');
   const selectedWalletId = getValues(id);
   const options: WalletOfferAssetSelection[] = useMemo(() => {
     if (isLoading || isCatListLoading) {
       return [];
     }
-    return buildAssetSelectorList(wallets, catList, rows, selectedWalletId);
-  }, [wallets, catList, rows]);
+    return buildAssetSelectorList(wallets, catList, rows, otherRows, selectedWalletId);
+  }, [wallets, catList, rows, otherRows]);
 
   function handleSelection(selectedWalletId: number, selectedWalletType: WalletType) {
     console.log("handleSelection: " + selectedWalletId + " " + selectedWalletType);
@@ -103,6 +119,7 @@ function OfferAssetSelector(props: OfferAssetSelectorProps): JSX.Element {
       <Select name={name} id={id} defaultValue={defaultValue || ''}>
         {options.map((option) => (
           <MenuItem
+            disabled={option.disabled}
             value={option.walletId}
             key={option.walletId}
             onClick={() => handleSelection(option.walletId, option.walletType)}

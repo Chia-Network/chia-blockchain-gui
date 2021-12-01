@@ -13,8 +13,6 @@ import {
   CardHeader,
   Divider,
   Grid,
-  Tab,
-  Tabs,
   Typography
 } from '@material-ui/core';
 import type OfferRowData from './OfferRowData';
@@ -24,33 +22,9 @@ import styled from 'styled-components';
 import { chia_to_mojo, colouredcoin_to_mojo } from '../../../util/chia';
 import fs from 'fs';
 
-const StyledTabPanel = styled.div`
+const StyledEditorBox = styled.div`
   padding: ${({ theme }) => `${theme.spacing(4)}px`};
 `;
-
-type TabPanelContainerProps = {
-  children: React.ReactNode;
-  index: number;
-  value: number;
-};
-
-function TabPanelContainer(props: TabPanelContainerProps) {
-  const { children, value, index } = props;
-  return (
-    <StyledTabPanel
-      role="tabpanel"
-      hidden={value !== index}
-      id={`tabpanel-${index}`}
-      aria-labelledby={`tab-${index}`}
-    >
-      {value === index && (
-        <Box>
-          {children}
-        </Box>
-      )}
-    </StyledTabPanel>
-  );
-}
 
 type FormData = {
   selectedTab: number;
@@ -61,8 +35,8 @@ type FormData = {
 function OfferEditor(): JSX.Element {
   const defaultValues: FormData = {
     selectedTab: 0,
-    makerRows: [{ amount: 0, assetWalletId: undefined, walletType: WalletType.STANDARD_WALLET }],
-    takerRows: [{ amount: 0, assetWalletId: undefined, walletType: WalletType.STANDARD_WALLET }],
+    makerRows: [{ amount: '', assetWalletId: undefined, walletType: WalletType.STANDARD_WALLET }],
+    takerRows: [{ amount: '', assetWalletId: undefined, walletType: WalletType.STANDARD_WALLET }],
   };
   const methods = useForm<FormData>({
     shouldUnregister: false,
@@ -132,30 +106,12 @@ function OfferEditor(): JSX.Element {
   return (
     <Form methods={methods} onSubmit={onSubmit}>
       <Flex flexDirection="column">
-        <CardHeader
-          title={<Typography variant="h6"><Trans>Choose the Type of Offer to Create</Trans></Typography>}
-        />
         <Divider />
         <Flex flexDirection="column" gap={3}>
           <Flex flexDirection="column" flexGrow={1}>
-            <Box>
-              <Tabs
-                value={selectedTab}
-                onChange={handleTabChange}
-                textColor="primary"
-                indicatorColor="primary"
-              >
-                <Tab label={<Trans>Buy</Trans>} />
-                <Tab label={<Trans>Sell</Trans>} />
-              </Tabs>
-              <Divider />
-            </Box>
-            <TabPanelContainer value={selectedTab} index={0}>
+            <StyledEditorBox>
               <OfferEditorConditionsPanel makerSide="buy" />
-            </TabPanelContainer>
-            <TabPanelContainer value={selectedTab} index={1}>
-              <OfferEditorConditionsPanel makerSide="sell" />
-            </TabPanelContainer>
+            </StyledEditorBox>
           </Flex>
         </Flex>
         <Flex gap={3}>

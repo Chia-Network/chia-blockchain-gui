@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { useFormContext, useFieldArray } from 'react-hook-form';
 import { Trans } from '@lingui/macro';
 import { Amount, Flex, More, TextFieldNumber } from '@chia/core';
@@ -20,13 +20,11 @@ type OfferEditorConditionsRowProps = {
 
 function OfferEditorConditionRow(props: OfferEditorConditionsRowProps) {
   const { namePrefix, item, tradeSide, addRow, removeRow, ...rest } = props;
-  const { setValue } = useFormContext();
+  const { getValues, setValue } = useFormContext();
 
   function handleAssetChange(namePrefix: string, selectedWalletId: number, selectedWalletType: WalletType) {
-    console.log('handleAssetChange');
-    console.log(selectedWalletId);
-    console.log(selectedWalletType);
     item.walletType = selectedWalletType;
+    item.amount = getValues(`${namePrefix}.amount`);  // Stash the amount so that we can set the defaultValue when rendering the amount field
     setValue(`${namePrefix}.walletType`, selectedWalletType);
   }
 
@@ -170,7 +168,8 @@ function OfferEditorConditionsPanel(props: OfferEditorConditionsPanelProps) {
     sections.reverse();
   }
 
-  sections[0].headerTitle = sections[0].side === 'buy' ? <Trans>You will buy</Trans> : <Trans>You will sell</Trans>;
+  // sections[0].headerTitle = sections[0].side === 'buy' ? <Trans>You will buy</Trans> : <Trans>You will sell</Trans>;
+  sections[0].headerTitle = <Trans>You will offer</Trans>;
   sections[1].headerTitle = <Trans>In exchange for</Trans>
 
   return (
@@ -184,7 +183,7 @@ function OfferEditorConditionsPanel(props: OfferEditorConditionsPanelProps) {
               namePrefix={`${section.namePrefix}[${fieldIndex}]`}
               item={field}
               tradeSide={section.side}
-              addRow={section.canAddRow ? (() => { section.side === 'buy' ? takerAppend({ amount: '', assetWalletId: '' }) : makerAppend({ amount: '', assetWalletId: '' }) }) : undefined }
+              addRow={section.canAddRow ? (() => { section.side === 'buy' ? takerAppend({ amount: '', assetWalletId: '', walletType: WalletType.STANDARD_WALLET }) : makerAppend({ amount: '', assetWalletId: '', walletType: WalletType.STANDARD_WALLET }) }) : undefined }
               removeRow={
                 section.fields.length > 1 ?
                   () => { section.side === 'buy' ? takerRemove(fieldIndex) : makerRemove(fieldIndex) } :
