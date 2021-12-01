@@ -105,33 +105,29 @@ function OfferEditor(): JSX.Element {
 
   return (
     <Form methods={methods} onSubmit={onSubmit}>
-      <Flex flexDirection="column">
-        <Divider />
-        <Flex flexDirection="column" gap={3}>
-          <Flex flexDirection="column" flexGrow={1}>
-            <StyledEditorBox>
-              <OfferEditorConditionsPanel makerSide="buy" />
-            </StyledEditorBox>
+      <Divider />
+      <StyledEditorBox>
+        <Flex flexDirection="column" rowGap={3} flexGrow={1}>
+          <OfferEditorConditionsPanel makerSide="buy" />
+          <Flex gap={3}>
+            <Button
+              variant="contained"
+              color="secondary"
+              type="reset"
+              onClick={handleReset}
+            >
+              <Trans>Reset</Trans>
+            </Button>
+            <Button
+              variant="contained"
+              color="primary"
+              type="submit"
+            >
+              <Trans>Save Offer</Trans>
+            </Button>
           </Flex>
         </Flex>
-        <Flex gap={3}>
-          <Button
-            variant="contained"
-            color="secondary"
-            type="reset"
-            onClick={handleReset}
-          >
-            <Trans>Reset</Trans>
-          </Button>
-          <Button
-            variant="contained"
-            color="primary"
-            type="submit"
-          >
-            <Trans>Save Offer</Trans>
-          </Button>
-        </Flex>
-      </Flex>
+      </StyledEditorBox>
     </Form>
   );
 }
