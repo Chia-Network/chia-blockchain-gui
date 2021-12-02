@@ -690,6 +690,13 @@ export const walletApi = createApi({
       }),
     }),
 
+    getOfferSummary: build.mutation<any, string>({
+      query: (offerData: string) => ({
+        command: 'getOfferSummary',
+        args: [offerData],
+      }),
+    }),
+
     getOfferData: build.mutation<any, string>({
       query: (offerId: string) => ({
         command: 'getOfferData',
@@ -1075,6 +1082,7 @@ export const {
   useCreateBackupMutation,
   useGetAllOffersQuery,
   useCreateOfferForIdsMutation,
+  useGetOfferSummaryMutation,
   useGetOfferDataMutation,
 
   // CAT

@@ -1,10 +1,33 @@
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
+import { useForm } from 'react-hook-form';
 import styled from 'styled-components';
 import { Trans } from '@lingui/macro';
 import moment from 'moment';
 import { Switch, Route, useHistory, useRouteMatch } from 'react-router-dom';
-import { Back, Card, CardHero, Flex, More, TableControlled } from '@chia/core';
-import { Box, Button, Divider, Grid, ListItemIcon, MenuItem, Typography } from '@material-ui/core';
+import {
+  Back,
+  Card,
+  CardHero,
+  ConfirmDialog,
+  Fee,
+  Flex,
+  Form,
+  More,
+  TableControlled,
+  TooltipIcon,
+  useOpenDialog,
+} from '@chia/core';
+import {
+  Box,
+  Button,
+  Checkbox,
+  Divider,
+  FormControlLabel,
+  Grid,
+  ListItemIcon,
+  MenuItem,
+  Typography
+} from '@material-ui/core';
 import { Cancel, GetApp as Download } from '@material-ui/icons';
 import { Trade as TradeIcon } from '@chia/icons';
 import { useGetAllOffersQuery, useGetOfferDataMutation } from '@chia/api-react';
@@ -16,13 +39,89 @@ const StyledTradeIcon = styled(TradeIcon)`
   font-size: 4rem;
 `;
 
-function cancelOffer(tradeId: string) {
-  console.log("cancelOffer: ", tradeId);
+type OfferCancellationOptions = {
+  cancelWithTransaction: boolean;
+  cancellationFee: number;
+};
+
+type ConfirmOfferCancellationProps = {
+  onUpdateValues: (values: OfferCancellationOptions) => void;
+};
+
+function ConfirmOfferCancellation(props: ConfirmOfferCancellationProps) {
+  const { onUpdateValues } = props;
+  const methods = useForm({
+    defaultValues: {
+      cancelWithTransaction: false,
+      fee: '',
+    }
+  });
+  const { watch } = methods;
+  const fee = watch('fee');
+  const [cancelWithTransaction, setCancelWithTransaction] = useState<boolean>(false);
+
+  // Communicate value updates to the parent component
+  useEffect(() => {
+    onUpdateValues({ cancelWithTransaction, cancellationFee: (fee ? parseFloat(fee) : 0) });
+  }, [cancelWithTransaction, fee]);
+
+  return (
+    <Form methods={methods}>
+      <Flex flexDirection="column" gap={3}>
+        <Typography variant="body1">
+          <Trans>
+            Are you sure you want to cancel your offer?
+          </Trans>
+        </Typography>
+        <Typography variant="body1">
+          <Trans>
+            If you have already shared your offer file,
+            you may need to submit a transaction to cancel
+            the pending offer. Click "Cancel on blockchain"
+            to submit a cancellation transaction.
+          </Trans>
+        </Typography>
+        <Flex flexDirection="row" gap={3}>
+          <Grid container>
+            <Grid xs={6} item>
+              <FormControlLabel
+                control={<Checkbox name="cancelWithTransaction" onChange={(event) => setCancelWithTransaction(event.target.checked)} />}
+                label={
+                  <>
+                    <Trans>Cancel on blockchain</Trans>{' '}
+                    <TooltipIcon>
+                      <Trans>
+                        Creates and submits a transaction on the blockchain that cancels the offer
+                      </Trans>
+                    </TooltipIcon>
+                  </>
+                  }
+              />
+            </Grid>
+            { cancelWithTransaction && (
+              // <Typography>Test</Typography>
+              <Grid xs={6} item>
+                <Fee
+                  id="filled-secondary"
+                  variant="filled"
+                  name="fee"
+                  color="secondary"
+                  label={<Trans>Fee</Trans>}
+                  fullWidth
+                />
+              </Grid>
+            )}
+          </Grid>
+        </Flex>
+      </Flex>
+    </Form>
+  );
 }
 
 function OfferList() {
   const { data, loading, error } = useGetAllOffersQuery();
   const [getOfferData] = useGetOfferDataMutation();
+  const openDialog = useOpenDialog();
 
   async function exportOffer(tradeId: string) {
     const { data: response } = await getOfferData(tradeId);
@@ -43,6 +142,29 @@ function OfferList() {
         }
       }
     }
+  }
+
+  async function cancelOffer(tradeId: string) {
+    let options: OfferCancellationOptions = {
+      cancelWithTransaction: false,
+      cancellationFee: 0,
+    };
+    const cancelConfirmed = await openDialog(
+      <ConfirmDialog
+        title={<Trans>Cancel Offer</Trans>}
+        confirmTitle={<Trans>Cancel Offer</Trans>}
+        confirmColor="danger"
+        cancelTitle={<Trans>Close</Trans>}
+      >
+        <ConfirmOfferCancellation
+          onUpdateValues={(values) => options = values}
+        />
+      </ConfirmDialog>
+    );
+    console.log("cancelConfirmed:");
+    console.log(cancelConfirmed);
+    console.log("options");
+    console.log(options);
   }
 
   const tradeRecords: any[] = useMemo(() => {

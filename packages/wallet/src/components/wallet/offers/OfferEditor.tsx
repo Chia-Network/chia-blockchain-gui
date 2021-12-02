@@ -16,6 +16,7 @@ import {
   Typography
 } from '@material-ui/core';
 import type OfferRowData from './OfferRowData';
+import { suggestedFilenameForOffer } from './utils';
 import WalletType from '../../../constants/WalletType';
 import OfferEditorConditionsPanel from './OfferEditorConditionsPanel';
 import styled from 'styled-components';
@@ -83,8 +84,8 @@ function OfferEditor(): JSX.Element {
     console.log("response:");
     console.log(response);
     if (response.success === true) {
-      const { offer: offerData } = response;
-      const dialogOptions = {};
+      const { offer: offerData, tradeRecord } = response;
+      const dialogOptions = { defaultPath: suggestedFilenameForOffer(tradeRecord.summary) };
       const result = await window.remote.dialog.showSaveDialog(dialogOptions);
       const { filePath, canceled } = result;
 

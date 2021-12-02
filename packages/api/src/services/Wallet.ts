@@ -248,6 +248,12 @@ export default class Wallet extends Service {
     });
   }
 
+  async getOfferSummary(offerData: string) {
+    return this.command('get_offer_summary', {
+      offer: offerData,
+    });
+  }
+
   async getOfferData(offerId: string) {
     return this.command('get_offer', {
       trade_id: offerId,

@@ -1,26 +1,54 @@
 import React from 'react';
 import { Trans } from '@lingui/macro';
 import { useGetAllOffersQuery } from '@chia/api-react';
-import { Back, Card, Dropzone, Flex } from '@chia/core';
-import { Grid } from '@material-ui/core';
+import { AlertDialog, Back, Card, Dropzone, Flex, useShowError } from '@chia/core';
+import { Button, Grid, Typography } from '@material-ui/core';
+import { useGetOfferSummaryMutation } from '@chia/api-react';
+import fs from 'fs';
 
-function DropView() {
+function SelectOfferFile() {
   // const dispatch = useDispatch();
   // const parsing_state = useSelector((state) => state.trade_state.parsing_state);
   // const isParsing = parsing_state === parsingStatePending;
-
-  function handleDrop(acceptedFiles: [File]) {
-    const offerFilePath: string = acceptedFiles[0].path;
-    const offerName: string = offerFilePath.replace(/^.*[/\\]/, '');
-
-    // dispatch(offerParsingName(offer_name, offer_file_path));
-    // dispatch(parse_trade_action(offer_file_path));
-    // dispatch(parsingStarted());
-  }
+  const [getOfferSummary] = useGetOfferSummaryMutation();
+  const errorDialog = useShowError();
   const isParsing = false;
 
+  async function handleOpen(offerFilePath: string) {
+    errorDialog(new Error('Testing one two three'));
+    // console.log('handleOpen', offerFilePath);
+    // const offerData = fs.readFileSync(offerFilePath, 'utf8');
+    // console.log("offerData: ");
+    // console.log(offerData);
+
+    // const summary = await getOfferSummary(offerData);
+    // console.log("summary: ");
+    // console.log(summary);
+  }
+
+  async function handleDrop(acceptedFiles: [File]) {
+    handleOpen(acceptedFiles[0].path);
+  }
+
+  async function handleSelectOfferFile() {
+    const { canceled, filePaths } = await window.remote.dialog.showOpenDialog({});
+    if (!canceled && filePaths?.length) {
+      handleOpen(filePaths[0]);
+    }
+  }
+
   return (
-    <Card title={<Trans>Select Offer</Trans>}>
+    <Card>
+      <Flex justifyContent="space-between">
+        <Typography variant="subtitle1"><Trans>Drag & drop an offer file below to view its details</Trans></Typography>
+        <Button
+              variant="outlined"
+              color="primary"
+              onClick={handleSelectOfferFile}
+            >
+              <Trans>Select Offer File</Trans>
+            </Button>
+      </Flex>
       <Dropzone onDrop={handleDrop} processing={isParsing}>
         <Trans>Drag and drop offer file</Trans>
       </Dropzone>
@@ -39,7 +67,7 @@ export function OfferImport() {
             <Trans>View an Offer</Trans>
           </Back>
         </Flex>
-          <DropView />
+          <SelectOfferFile />
       </Flex>
     </Grid>
   );
