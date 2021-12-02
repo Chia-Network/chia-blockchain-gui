@@ -248,6 +248,14 @@ export default class Wallet extends Service {
     });
   }
 
+  async cancelOffer(tradeId: string, secure: boolean, fee: number | string) {
+    return this.command('cancel_offer', {
+      trade_id: tradeId,
+      secure,
+      fee,
+    });
+  }
+
   async getOfferSummary(offerData: string) {
     return this.command('get_offer_summary', {
       offer: offerData,

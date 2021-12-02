@@ -1,5 +1,5 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
-import { Wallet, CAT, WalletType } from '@chia/api';
+import { CAT, OfferTradeRecord, Wallet, WalletType } from '@chia/api';
 import chiaLazyBaseQuery from '../chiaLazyBaseQuery';
 import type Transaction from '../@types/Transaction';
 import onCacheEntryAddedInvalidate from '../utils/onCacheEntryAddedInvalidate';
@@ -11,7 +11,7 @@ const baseQuery = chiaLazyBaseQuery({
 export const walletApi = createApi({
   reducerPath: 'walletApi',
   baseQuery,
-  tagTypes: ['Keys', 'Wallets', 'WalletBalance', 'Address', 'Transactions'],
+  tagTypes: ['Keys', 'Wallets', 'WalletBalance', 'Address', 'Transactions', 'OfferTradeRecord'],
   endpoints: (build) => ({
     getWallets: build.query<Wallet[], undefined>({
       /*
@@ -673,10 +673,17 @@ export const walletApi = createApi({
     }),
 
     // Offers
-    getAllOffers: build.query<any, undefined>({
+    getAllOffers: build.query<OfferTradeRecord[], undefined>({
       query: () => ({
         command: 'getAllOffers',
       }),
+      transformResponse: (response: any) => response?.tradeRecords,
+      providesTags(result) {
+        return result ? [
+          ...result.map(({ tradeId }) => ({ type: 'OfferTradeRecord', id: tradeId } as const)),
+          { type: 'OfferTradeRecord', id: 'LIST' },
+        ] :  [{ type: 'OfferTradeRecord', id: 'LIST' }];
+      },
     }),
 
     createOfferForIds: build.mutation<any, {
@@ -688,6 +695,23 @@ export const walletApi = createApi({
         command: 'createOfferForIds',
         args: [walletIdsAndAmounts],
       }),
+      invalidatesTags: [{ type: 'OfferTradeRecord', id: 'LIST' }],
+    }),
+
+    cancelOffer: build.mutation<any, {
+      tradeId: string;
+      secure: boolean;
+      fee: number | string;
+    }>({
+      query: ({
+        tradeId,
+        secure,
+        fee,
+      }) => ({
+        command: 'cancelOffer',
+        args: [tradeId, secure, fee],
+      }),
+      invalidatesTags: (result, error, { tradeId }) => [{ type: 'OfferTradeRecord', id: tradeId }],
     }),
 
     getOfferSummary: build.mutation<any, string>({
@@ -1082,6 +1106,7 @@ export const {
   useCreateBackupMutation,
   useGetAllOffersQuery,
   useCreateOfferForIdsMutation,
+  useCancelOfferMutation,
   useGetOfferSummaryMutation,
   useGetOfferDataMutation,
 

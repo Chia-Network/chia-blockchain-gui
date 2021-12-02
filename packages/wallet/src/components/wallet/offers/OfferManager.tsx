@@ -17,6 +17,11 @@ import {
   TooltipIcon,
   useOpenDialog,
 } from '@chia/core';
+import { OfferSummary, OfferTradeRecord } from '@chia/api';
+import {
+  mojo_to_chia_string,
+  mojo_to_colouredcoin_string,
+} from '../../../util/chia';
 import {
   Box,
   Button,
@@ -30,7 +35,8 @@ import {
 } from '@material-ui/core';
 import { Cancel, GetApp as Download } from '@material-ui/icons';
 import { Trade as TradeIcon } from '@chia/icons';
-import { useGetAllOffersQuery, useGetOfferDataMutation } from '@chia/api-react';
+import { suggestedFilenameForOffer } from './utils';
+import { useCancelOfferMutation, useGetAllOffersQuery, useGetOfferDataMutation } from '@chia/api-react';
 import { CreateOfferEditor } from './OfferEditor';
 import { OfferImport } from './OfferImport';
 import fs from 'fs';
@@ -118,17 +124,36 @@ function ConfirmOfferCancellation(props: ConfirmOfferCancellationProps) {
   );
 }
 
+function formatOfferEntry(assetId: string, amount: string | number): string {
+  let amountString = '';
+  if (assetId === 'xch') {
+    amountString = `${mojo_to_chia_string(amount)} XCH`;
+  }
+  else {
+    amountString = `${mojo_to_colouredcoin_string(amount)} CC`;
+  }
+  return amountString;
+}
+
+function formatOfferSummary(summary: OfferSummary): string {
+  const offers: string[] = Object.entries(summary.offered).map(([assetId, amount]) => formatOfferEntry(assetId, amount));
+  const requests: string[] = Object.entries(summary.requested).map(([assetId, amount]) => formatOfferEntry(assetId, amount));
+  const summaryString = `${offers.join(', ')} <-> ${requests.join(', ')}`;
+  return summaryString;
+}
+
 function OfferList() {
   const { data, loading, error } = useGetAllOffersQuery();
   const [getOfferData] = useGetOfferDataMutation();
+  const [cancelOffer] = useCancelOfferMutation();
   const openDialog = useOpenDialog();
 
-  async function exportOffer(tradeId: string) {
+  async function handleExportOffer(tradeId: string) {
     const { data: response } = await getOfferData(tradeId);
-    const { offer: offerData, success } = response;
+    const { offer: offerData, tradeRecord, success } = response;
     if (success === true) {
       const dialogOptions = {
-        defaultPath: `offer-${tradeId}.offer`,
+        defaultPath: suggestedFilenameForOffer(tradeRecord),
       }
       const result = await window.remote.dialog.showSaveDialog(dialogOptions);
       const { filePath, canceled } = result;
@@ -144,7 +169,7 @@ function OfferList() {
     }
   }
 
-  async function cancelOffer(tradeId: string) {
+  async function handleCancelOffer(tradeId: string) {
     let options: OfferCancellationOptions = {
       cancelWithTransaction: false,
       cancellationFee: 0,
@@ -161,17 +186,24 @@ function OfferList() {
         />
       </ConfirmDialog>
     );
+
     console.log("cancelConfirmed:");
     console.log(cancelConfirmed);
     console.log("options");
     console.log(options);
+
+    if (cancelConfirmed === true) {
+      const response = await cancelOffer({ tradeId, secure: options.cancelWithTransaction, fee: options.cancellationFee });
+      console.log("response");
+      console.log(response);
+    }
   }
 
   const tradeRecords: any[] = useMemo(() => {
     if (loading || !data) {
       return [];
     }
-    return data.tradeRecords;
+    return data;
   }, [data, loading]);
 
   const cols = useMemo(() => {
@@ -190,17 +222,7 @@ function OfferList() {
       },
       {
         field: (row: Row) => {
-          let offers: string[] = []
-          let requests: string[] = []
-
-          for (const [assetId, amount] of Object.entries(row.summary.offered)) {
-            offers.push(`${amount} ${assetId}`)
-          }
-          for (const [assetId, amount] of Object.entries(row.summary.requested)) {
-            requests.push(`${amount} ${assetId}`)
-          }
-
-          const summary = `${offers.join(', ')} --> ${requests.join(', ')}`;
+          const summary = formatOfferSummary(row.summary);
 
           return  (
             <Typography color="textSecondary" variant="body2">
@@ -233,7 +255,7 @@ function OfferList() {
                   <MenuItem
                     onClick={() => {
                       onClose();
-                      exportOffer(tradeId);
+                      handleExportOffer(tradeId);
                     }}
                   >
                     <ListItemIcon>
@@ -246,7 +268,7 @@ function OfferList() {
                   <MenuItem
                     onClick={() => {
                       onClose();
-                      cancelOffer(tradeId);
+                      handleCancelOffer(tradeId);
                     }}
                   >
                     <ListItemIcon>

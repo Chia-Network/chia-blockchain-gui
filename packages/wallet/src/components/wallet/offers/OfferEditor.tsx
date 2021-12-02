@@ -109,7 +109,7 @@ function OfferEditor(): JSX.Element {
       <Divider />
       <StyledEditorBox>
         <Flex flexDirection="column" rowGap={3} flexGrow={1}>
-          <OfferEditorConditionsPanel makerSide="buy" />
+          <OfferEditorConditionsPanel makerSide="sell" />
           <Flex gap={3}>
             <Button
               variant="contained"

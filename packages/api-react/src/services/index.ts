@@ -61,6 +61,7 @@ export const {
   useCreateBackupMutation,
   useGetAllOffersQuery,
   useCreateOfferForIdsMutation,
+  useCancelOfferMutation,
   useGetOfferSummaryMutation,
   useGetOfferDataMutation,
 

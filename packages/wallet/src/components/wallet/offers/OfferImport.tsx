@@ -4,34 +4,59 @@ import { useGetAllOffersQuery } from '@chia/api-react';
 import { AlertDialog, Back, Card, Dropzone, Flex, useShowError } from '@chia/core';
 import { Button, Grid, Typography } from '@material-ui/core';
 import { useGetOfferSummaryMutation } from '@chia/api-react';
-import fs from 'fs';
+import fs, { fstatSync } from 'fs';
 
 function SelectOfferFile() {
-  // const dispatch = useDispatch();
-  // const parsing_state = useSelector((state) => state.trade_state.parsing_state);
-  // const isParsing = parsing_state === parsingStatePending;
   const [getOfferSummary] = useGetOfferSummaryMutation();
   const errorDialog = useShowError();
-  const isParsing = false;
+  const [isParsing, setIsParsing] = React.useState<boolean>(false);
 
   async function handleOpen(offerFilePath: string) {
-    errorDialog(new Error('Testing one two three'));
-    // console.log('handleOpen', offerFilePath);
-    // const offerData = fs.readFileSync(offerFilePath, 'utf8');
-    // console.log("offerData: ");
-    // console.log(offerData);
+    async function continueOpen(stats) {
+      try {
+        console.log(stats);
+        if (stats.size > 1024 * 1024) {
+          errorDialog(new Error("Offer file is too large (> 1MB)"));
+        }
+        else {
+          const offerData = fs.readFileSync(offerFilePath, 'utf8');
+          console.log("offerData:", offerData);
+          const summary = await getOfferSummary(offerData);
+          console.log("summary: ");
+          console.log(summary);
+        }
+      }
+      catch (e) {
+        errorDialog(e);
+      }
+      finally {
+        setIsParsing(false);
+      }
+    }
 
-    // const summary = await getOfferSummary(offerData);
-    // console.log("summary: ");
-    // console.log(summary);
+    setIsParsing(true);
+
+    fs.stat(offerFilePath, (err, stats) => {
+      if (err) {
+        errorDialog(err);
+      } else {
+        continueOpen(stats);
+      }
+    });
   }
 
   async function handleDrop(acceptedFiles: [File]) {
-    handleOpen(acceptedFiles[0].path);
+    if (acceptedFiles.length !== 1) {
+      errorDialog(new Error("Please drop one offer file at a time"));
+    }
+    else {
+      handleOpen(acceptedFiles[0].path);
+    }
   }
 
   async function handleSelectOfferFile() {
-    const { canceled, filePaths } = await window.remote.dialog.showOpenDialog({});
+    const dialogOptions = { filters: [{ name: 'Offer Files', extensions: ['offer'] }] } as Electron.OpenDialogOptions;
+    const { canceled, filePaths } = await window.remote.dialog.showOpenDialog(dialogOptions);
     if (!canceled && filePaths?.length) {
       handleOpen(filePaths[0]);
     }
@@ -49,7 +74,7 @@ function SelectOfferFile() {
               <Trans>Select Offer File</Trans>
             </Button>
       </Flex>
-      <Dropzone onDrop={handleDrop} processing={isParsing}>
+      <Dropzone maxFiles={1} onDrop={handleDrop} processing={isParsing}>
         <Trans>Drag and drop offer file</Trans>
       </Dropzone>
     </Card>
