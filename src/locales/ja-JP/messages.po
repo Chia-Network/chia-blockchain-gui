@@ -8,7 +8,7 @@ msgstr ""
 "Language: ja_JP\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-12-02 05:13\n"
+"PO-Revision-Date: 2021-12-02 11:31\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -143,11 +143,11 @@ msgstr "アドレス・パズルハッシュ値"
 
 #: src/components/app/AppKeyringMigrator.tsx:195
 msgid "After your keys are successfully migrated to the new keyring, you may choose to have your keys removed from the old keyring."
-msgstr ""
+msgstr "鍵を新しいキーリングに移行しましたら、古いキーリングから鍵を削除することも選択できます。"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:238
 msgid "Alternate tmpdir/tmpdir2"
-msgstr ""
+msgstr "代替の一時ディレクトリ・一時ディレクトリ2"
 
 #: src/components/core/components/Amount/Amount.tsx:99
 #: src/components/trading/CreateOffer.jsx:196
@@ -376,7 +376,7 @@ msgstr "耕地容量を選択"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:94
 msgid "Choose Plotter"
-msgstr ""
+msgstr "耕運機を選択"
 
 #: src/components/plotNFT/PlotNFTCard.tsx:384
 #: src/components/pool/PoolOverview.tsx:92
@@ -717,7 +717,7 @@ msgstr "鍵 {fingerprint} を削除"
 
 #: src/components/app/AppPassPrompt.tsx:194
 msgid "Deleting key"
-msgstr ""
+msgstr "鍵を削除"
 
 #: src/components/selectKey/SelectKey.tsx:101
 #~ msgid "Deleting the key will permanently remove the key from your computer, make sure you have backups. Are you sure you want to continue?"
@@ -725,7 +725,7 @@ msgstr ""
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:96
 msgid "Depending on your system configuration, you may find that an alternative plotter produces plots faster than the default Chia Proof of Space plotter. If unsure, use the default Chia Proof of Space plotter."
-msgstr ""
+msgstr "システム構成によっては、代替耕運機が既定のチア容量証明耕運機よりも高速に耕地を作成できることがあります。 よくわからない場合は、既定のチア容量証明耕運機をご使用ください。"
 
 #: src/electron/main.tsx:313
 msgid "Developer"
@@ -746,7 +746,7 @@ msgstr "無効"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:266
 msgid "Disable NUMA"
-msgstr ""
+msgstr "NUMA を無効化"
 
 #: src/components/app/AppPassPrompt.tsx:77
 msgid "Disable Passphrase Protection"
@@ -818,11 +818,11 @@ msgstr "支払い指示を編集"
 
 #: src/components/app/AppKeyringMigrator.tsx:125
 msgid "Enter a strong passphrase and click Migrate Keys to secure your keys"
-msgstr ""
+msgstr "鍵を保護するために、強力なパスフレーズを入力し、「鍵を移行」をクリックしてください"
 
 #: src/components/settings/SetPassphrasePrompt.tsx:145
 msgid "Enter a strong passphrase to secure your keys:"
-msgstr ""
+msgstr "鍵を保護するため、強力なパスフレーズを入力してください:"
 
 #: src/components/wallet/WalletImport.tsx:146
 msgid "Enter the 24 word mnemonic that you have saved in order to restore your Chia wallet."
@@ -830,7 +830,7 @@ msgstr "チアウォレットを復元するには、24語の合言葉を入力�
 
 #: src/components/settings/RemovePassphrasePrompt.tsx:118
 msgid "Enter your passphrase:"
-msgstr ""
+msgstr "パスフレーズを入力してください:"
 
 #: src/components/farm/FarmerStatus.tsx:21
 #: src/components/farm/FarmerStatus.tsx:22
@@ -882,7 +882,7 @@ msgstr "パスフレーズの削除に失敗しました: {error}"
 
 #: src/components/settings/SetPassphrasePrompt.tsx:92
 msgid "Failed to set passphrase: {error}"
-msgstr ""
+msgstr "パスフレーズの設定に失敗しました: {error}"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:120
 msgid "Failed to update passphrase: {error}"
@@ -1088,7 +1088,7 @@ msgstr "詳細設定を隠す"
 #: src/components/app/AppPassPrompt.tsx:233
 #: src/components/settings/RemovePassphrasePrompt.tsx:134
 msgid "Hint"
-msgstr ""
+msgstr "ヒント"
 
 #: src/components/wallet/WalletHistory.tsx:91
 msgid "History"
@@ -1166,7 +1166,7 @@ msgstr "無効な状態"
 
 #: src/components/plotNFT/PlotNFTGetPoolLoginLinkDialog.tsx:94
 msgid "It is a one-time login link that can be used to log in to a pool's website. It contains a signature using the farmer's key from the plot NFT. Not all pools support this feature."
-msgstr ""
+msgstr "プールのウェブサイトに一回だけログインできるワンタイムログインリンクです。耕地 NFT 内の農家の鍵による署名が含まれています。全てのプールがこの機能をサポートしているわけではありません。"
 
 #: src/components/plotNFT/PlotNFTCard.tsx:406
 #: src/components/pool/PoolOverview.tsx:113
@@ -1187,11 +1187,11 @@ msgstr "参加したプールが当選するとXCHを獲得できます。\n"
 
 #: src/components/plotNFT/PlotNFTAdd.tsx:59
 msgid "Join a pool and get consistent XCH farming rewards. The average returns are the same, but it is much less volatile. Assign plots to a plot NFT. You can easily switch pools without having to re-plot."
-msgstr ""
+msgstr "プールに参加して一貫した XCH 耕作報酬を得ましょう。平均的な報酬額は同じですが、ボラティリティは遥かに低くなります。耕地 NFT に耕地を割り当てましょう。参加プールを変えたい場合も耕地を再作成する必要はありません。"
 
 #: src/components/plot/add/PlotAddNFT.tsx:138
 msgid "Join a pool and get more consistent XCH farming rewards. Create a plot NFT and assign your new plots to a group."
-msgstr ""
+msgstr "プールに参加して一貫した XCH 耕作報酬を得ましょう。耕地 NFT を作成し、新しい耕地をグループに割り当てましょう。"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:63
 msgid "K-Size"
@@ -1199,7 +1199,7 @@ msgstr "K 値"
 
 #: src/components/app/AppKeyringMigrator.tsx:86
 msgid "Keyring migration failed: {error}"
-msgstr ""
+msgstr "キーリングの移行に失敗しました: {error}"
 
 #: src/components/dashboard/DashboardSideBar.tsx:69
 msgid "Keys"
@@ -1246,7 +1246,7 @@ msgstr "NFTプロットを読み込み中"
 
 #: src/components/wallet/Wallets.tsx:117
 msgid "Loading list of wallets"
-msgstr ""
+msgstr "ウォレット一覧を読み込み中"
 
 #: src/components/plot/queue/PlotQueueLogDialog.tsx:41
 msgid "Loading..."
@@ -1306,7 +1306,7 @@ msgstr "耕作報酬の管理"
 
 #: src/components/wallet/did/WalletDID.tsx:806
 msgid "Manage Recovery DIDs"
-msgstr ""
+msgstr "リカバリ DID を管理"
 
 #: src/components/farm/FarmManageFarmingRewards.tsx:123
 msgid "Manage Your Farming Rewards Target Addresses"
@@ -1318,11 +1318,11 @@ msgstr "アップロード・ダウンロード [MiB]"
 
 #: src/components/selectKey/SelectKey.tsx:137
 msgid "Migrate"
-msgstr ""
+msgstr "移行"
 
 #: src/components/settings/Settings.tsx:182
 msgid "Migrate Keyring"
-msgstr ""
+msgstr "キーリングを移行"
 
 #: src/components/app/AppKeyringMigrator.tsx:226
 msgid "Migrate Keys"
@@ -1331,15 +1331,15 @@ msgstr "キーの移行"
 #: src/components/app/AppKeyringMigrator.tsx:121
 #: src/components/selectKey/SelectKey.tsx:136
 msgid "Migration required"
-msgstr ""
+msgstr "移行必須"
 
 #: src/components/settings/Settings.tsx:121
 msgid "Migration required to support passphrase protection"
-msgstr ""
+msgstr "パスフレーズ保護を有効化するには移行が必要です"
 
 #: src/components/pool/PoolInfo.tsx:27
 msgid "Minimum Difficulty"
-msgstr ""
+msgstr "最小難易度"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:98
 msgid "Minutes"
@@ -1351,7 +1351,7 @@ msgstr "メモリ使用量を増やすと速度が微上昇します"
 
 #: src/components/wallet/did/WalletDID.tsx:537
 msgid "My DID Wallet"
-msgstr ""
+msgstr "あなたの DID ウォレット"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:415
 msgid "My Pubkey"
@@ -1376,7 +1376,7 @@ msgstr "新規アドレス"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:188
 msgid "New Passphrase"
-msgstr ""
+msgstr "新しいパスフレーズ"
 
 #: src/components/wallet/WalletAdd.tsx:63
 msgid "New Wallet"
@@ -1384,7 +1384,7 @@ msgstr "新規ウォレット作成"
 
 #: src/components/app/AppPassPrompt.tsx:60
 msgid "New passphrase is the same as your current passphrase"
-msgstr ""
+msgstr "新しいパスフレーズが現在のパスフレーズと同じです"
 
 #: src/components/block/Block.jsx:351
 #: src/components/wallet/WalletAdd.tsx:95
@@ -1467,7 +1467,7 @@ msgstr "見つからない耕地"
 
 #: src/components/farm/FarmManageFarmingRewards.tsx:188
 msgid "Note that this does not change your pooling payout addresses. This only affects old format plots, and the 0.25XCH reward for pooling plots."
-msgstr ""
+msgstr "これはプール報酬支払い先アドレスを変更しないことに注意してください。これは古いフォーマットの耕地と、プール耕地の 0.25 XCH の報酬にのみ影響します。"
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:118
 #: src/components/plotNFT/PlotNFTCard.tsx:160
@@ -1480,7 +1480,7 @@ msgstr "バケツ数"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:188
 msgid "Number of buckets for phase 3 & 4"
-msgstr ""
+msgstr "第3段階、第4段階のバケツ数"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:136
 msgid "Number of threads"
@@ -1505,7 +1505,7 @@ msgstr "取引ブロックは約1分間隔で作成されます。混雑時を�
 
 #: src/components/wallet/did/WalletDIDRecovery.tsx:34
 msgid "Only one backup file is allowed."
-msgstr ""
+msgstr "バックアップファイルは1つしか取れません。"
 
 #: src/components/wallet/create/recoverDIDWallet.js:156
 #~ msgid "Only one backup file is allowed. To add a new backup file, please delete any previously uploaded files and try again."
@@ -1527,13 +1527,13 @@ msgstr "パスフレーズ"
 #: src/components/settings/ChangePassphrasePrompt.tsx:209
 #: src/components/settings/SetPassphrasePrompt.tsx:179
 msgid "Passphrase Hint"
-msgstr ""
+msgstr "パスフレーズのヒント"
 
 #: src/components/app/AppKeyringMigrator.tsx:158
 #: src/components/settings/ChangePassphrasePrompt.tsx:208
 #: src/components/settings/SetPassphrasePrompt.tsx:178
 msgid "Passphrase Hint (Optional)"
-msgstr ""
+msgstr "パスフレーズのヒント (任意)"
 
 #: src/components/settings/Settings.tsx:213
 msgid "Passphrase Settings"
@@ -1558,7 +1558,7 @@ msgstr "パスフレーズの保護を有効にする"
 
 #: src/components/settings/Settings.tsx:122
 msgid "Passphrase support requires migrating your keys to a new keyring"
-msgstr ""
+msgstr "パスフレーズ保護を有効化するには鍵を新しいキーリングに移行する必要があります"
 
 #: src/components/plotNFT/PlotNFTCard.tsx:361
 msgid "Payout Address"
@@ -1599,7 +1599,7 @@ msgstr "保留中の全残高"
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:131
 #: src/hooks/useAbsorbRewards.tsx:45
 msgid "Please Confirm"
-msgstr ""
+msgstr "ご確認ください"
 
 #: src/components/trading/CreateOffer.jsx:100
 msgid "Please add a trade pair"
@@ -1611,7 +1611,7 @@ msgstr "手数料は 0 を入力してください。 RL ではまだ正の手�
 
 #: src/components/wallet/did/WalletDID.tsx:927
 msgid "Please enter a coin"
-msgstr ""
+msgstr "コインを入力してください"
 
 #: src/components/wallet/did/WalletDID.tsx:526
 #: src/components/wallet/did/WalletDID.tsx:917
@@ -1638,7 +1638,7 @@ msgstr "有効な初期金額を入力してください"
 #: src/components/wallet/did/WalletDID.tsx:777
 #: src/components/wallet/did/WalletDIDCreate.tsx:76
 msgid "Please enter a valid integer of 0 or greater for the number of Backup IDs needed for recovery."
-msgstr ""
+msgstr "復元に必要なバックアップ ID の数には 0 以上の有効な整数を入力してください。"
 
 #: src/components/wallet/create/createNewColouredCoin.jsx:69
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:639
@@ -1648,7 +1648,7 @@ msgstr "数字を入力してください"
 
 #: src/components/wallet/did/WalletDIDCreate.tsx:50
 msgid "Please enter a valid numeric amount."
-msgstr ""
+msgstr "有効な数値を入力してください。"
 
 #: src/components/wallet/create/createExistingColouredCoin.jsx:70
 #: src/components/wallet/create/createNewColouredCoin.jsx:79
@@ -1672,17 +1672,17 @@ msgstr "有効な公開鍵を入力してください"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:63
 msgid "Please enter your current passphrase, and a new passphrase"
-msgstr ""
+msgstr "現在のパスフレーズと新しいパスフレーズを入力してください"
 
 #: src/components/app/AppPassPrompt.tsx:185
 #: src/components/app/AppPassPrompt.tsx:201
 #: src/components/settings/RemovePassphrasePrompt.tsx:50
 msgid "Please enter your passphrase"
-msgstr ""
+msgstr "パスフレーズを入力してください"
 
 #: src/components/app/AppPassPrompt.tsx:195
 msgid "Please enter your passphrase to proceed"
-msgstr ""
+msgstr "続行するにはパスフレーズを入力してください"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:623
 #: src/components/wallet/standard/WalletStandard.tsx:420
@@ -1695,7 +1695,7 @@ msgstr "額を選択してください"
 
 #: src/components/wallet/did/WalletDIDRecovery.tsx:55
 msgid "Please select backup file first"
-msgstr ""
+msgstr "先にバックアップファイルを選択してください"
 
 #: src/components/trading/CreateOffer.jsx:76
 msgid "Please select buy or sell"
@@ -1721,12 +1721,12 @@ msgstr "一時ディレクトリを指定してください"
 
 #: src/hooks/useAbsorbRewards.tsx:21
 msgid "Please wait for synchronization"
-msgstr ""
+msgstr "同期が完了するまでお待ちください"
 
 #: src/components/wallet/did/WalletDIDRecovery.tsx:64
 #: src/hooks/useJoinPool.tsx:28
 msgid "Please wait for wallet synchronization"
-msgstr ""
+msgstr "ウォレットの同期が完了するまでお待ちください"
 
 #: src/components/plot/Plot.tsx:28
 msgid "Plot"
@@ -1747,12 +1747,12 @@ msgstr "耕地鍵"
 
 #: src/components/pool/PoolOverview.tsx:40
 msgid "Plot NFT"
-msgstr ""
+msgstr "耕地 NFT"
 
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:103
 #: src/components/plotNFT/PlotNFTChangePool.tsx:88
 msgid "Plot NFT with p2_singleton_puzzle_hash {plotNFTId} does not exists"
-msgstr ""
+msgstr "p2_singleton_puzzle_hash が {plotNFTId} の耕地 NFTは存在しません"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:43
 #~ msgid "Plot Name"
@@ -1784,7 +1784,7 @@ msgstr "この耕地は {0} と重複しています"
 
 #: src/components/plotNFT/PlotNFTState.tsx:46
 msgid "PlotNFT is transitioning to (target state). This can take a while. Please do not close the application until this is finalized."
-msgstr ""
+msgstr "耕地 NFT は (目標状態) に遷移中です。しばらく時間がかかる場合があります。完了までアプリを閉じないでください。"
 
 #: src/components/dashboard/DashboardSideBar.tsx:53
 msgid "Plots"
@@ -1800,7 +1800,7 @@ msgstr "耕地とは、チアを収穫し、得るためにハードドライブ
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:107
 msgid "Plotter"
-msgstr ""
+msgstr "耕運機"
 
 #: src/components/plot/queue/PlotQueueIndicator.tsx:34
 msgid "Plotting"
@@ -1821,26 +1821,26 @@ msgstr "ビットフィールドを有効にして耕すと、書き込み量が
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:174
 #: src/components/plotNFT/PlotNFTCard.tsx:216
 msgid "Points Found Since Start"
-msgstr ""
+msgstr "開始時より発見した点数"
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:185
 #: src/components/plotNFT/PlotNFTCard.tsx:227
 msgid "Points Found in Last 24 Hours"
-msgstr ""
+msgstr "過去24時間以内に発見した点数"
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:194
 #: src/components/plotNFT/PlotNFTCard.tsx:236
 msgid "Points Successful in Last 24 Hours"
-msgstr ""
+msgstr "過去24時間内に獲得した点数"
 
 #: src/components/dashboard/DashboardSideBar.tsx:63
 #: src/components/pool/Pool.tsx:25
 msgid "Pool"
-msgstr ""
+msgstr "プール"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:100
 msgid "Pool Contract Address"
-msgstr ""
+msgstr "プール契約アドレス"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:81
 msgid "Pool Key"
@@ -1848,11 +1848,11 @@ msgstr "プール鍵"
 
 #: src/components/plotNFT/PlotNFTGetPoolLoginLinkDialog.tsx:81
 msgid "Pool Login Link"
-msgstr ""
+msgstr "プールログインリンク"
 
 #: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:92
 msgid "Pool Payout Instructions"
-msgstr ""
+msgstr "プール報酬支払い指示"
 
 #: src/components/block/Block.jsx:264
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:308
@@ -1869,7 +1869,7 @@ msgstr "プール報酬アドレス"
 
 #: src/components/farm/FarmManageFarmingRewards.tsx:153
 msgid "Pool Reward Address is not properly formatted."
-msgstr ""
+msgstr "プールの報酬アドレスが正しくフォーマットされていません。"
 
 #: src/components/farm/FarmManageFarmingRewards.tsx:148
 #~ msgid "Pool Reward Address is not properly formatted. Using 'paste' is recommended."
@@ -1877,7 +1877,7 @@ msgstr ""
 
 #: src/components/farm/FarmManageFarmingRewards.tsx:148
 msgid "Pool Reward Address must not be empty."
-msgstr ""
+msgstr "プール報酬アドレスは空欄にできません。"
 
 #: src/components/block/Block.jsx:314
 msgid "Pool Reward Amount"
@@ -1885,21 +1885,21 @@ msgstr "プール報酬額"
 
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:38
 msgid "Pool does not provide relative_lock_height."
-msgstr ""
+msgstr "このプールは relative_lock_height を提供しません。"
 
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:35
 msgid "Pool does not provide target_puzzle_hash."
-msgstr ""
+msgstr "このプールは target_puzzle_hash を提供しません。"
 
 #: src/middleware/middleware_api.jsx:255
 msgid "Pool public key:"
-msgstr ""
+msgstr "プール公開鍵:"
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:272
 #: src/components/plotNFT/PlotNFTCard.tsx:327
 #: src/components/plotNFT/PlotNFTUnconfirmedCard.tsx:57
 msgid "Pool:"
-msgstr ""
+msgstr "プール:"
 
 #: src/components/plotNFT/PlotNFTExternalState.tsx:24
 #: src/components/plotNFT/PlotNFTState.tsx:59
@@ -1916,11 +1916,11 @@ msgstr "ポート"
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:88
 #: src/components/plotNFT/PlotNFTChangePool.tsx:81
 msgid "Preparing Plot NFT"
-msgstr ""
+msgstr "プロット NFT を準備中"
 
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:96
 msgid "Preparing standard wallet"
-msgstr ""
+msgstr "標準ウォレットを準備中"
 
 #: src/components/block/Block.jsx:348
 msgid "Previous"
@@ -2033,7 +2033,7 @@ msgstr "復元"
 #: src/components/wallet/did/WalletDID.tsx:340
 #: src/components/wallet/did/WalletDID.tsx:480
 msgid "Recover DID Wallet"
-msgstr ""
+msgstr "DID ウォレットを復元"
 
 #: src/components/wallet/create/WalletCreate.jsx:296
 #~ msgid "Recover DID wallet"
@@ -2041,7 +2041,7 @@ msgstr ""
 
 #: src/components/wallet/did/WalletDIDRecovery.tsx:84
 msgid "Recover Distributed Identity Wallet"
-msgstr ""
+msgstr "分散型アイデンティティウォレットを復元"
 
 #: src/components/wallet/did/WalletDIDSelect.tsx:39
 msgid "Recover Wallet"
@@ -2054,7 +2054,7 @@ msgstr "耕地一覧を更新"
 
 #: src/components/pool/PoolInfo.tsx:32
 msgid "Relative Lock Height"
-msgstr ""
+msgstr "相対的ロック高"
 
 #: src/electron/main.tsx:383
 msgid "Release Notes"
@@ -2064,11 +2064,11 @@ msgstr "リリースノート"
 #: src/components/settings/RemovePassphrasePrompt.tsx:161
 #: src/components/settings/Settings.tsx:194
 msgid "Remove Passphrase"
-msgstr ""
+msgstr "パスフレーズを削除"
 
 #: src/components/app/AppKeyringMigrator.tsx:192
 msgid "Remove keys from old keyring upon successful migration"
-msgstr ""
+msgstr "移行が成功した場合、古いキーリングから鍵を削除する"
 
 #: src/components/plot/queue/PlotQueueIndicator.tsx:36
 msgid "Removing"
@@ -2109,7 +2109,7 @@ msgstr "保存"
 #: src/components/settings/ChangePassphrasePrompt.tsx:224
 #: src/components/settings/SetPassphrasePrompt.tsx:194
 msgid "Save passphrase"
-msgstr ""
+msgstr "パスフレーズを保存"
 
 #: src/components/fullNode/FullNode.jsx:338
 #~ msgid "Search"
@@ -2125,7 +2125,7 @@ msgstr "2つ目の一時フォルダの場所"
 
 #: src/components/settings/Settings.tsx:124
 msgid "Secure your keychain using a strong passphrase"
-msgstr ""
+msgstr "強力なパスフレーズを使用してキーチェーンを保護しましょう"
 
 #: src/components/selectKey/SelectKey.tsx:216
 msgid "See private key"
@@ -2177,7 +2177,7 @@ msgstr "NFTプロットを選択"
 
 #: src/components/plot/add/PlotAddNFT.tsx:77
 msgid "Select your Plot NFT from the dropdown or create a new one."
-msgstr ""
+msgstr "一覧から耕地 NFT を選択するか、新しく作成してください。"
 
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:72
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:90
@@ -2187,7 +2187,7 @@ msgstr "選択済"
 
 #: src/components/wallet/did/WalletDIDRecovery.tsx:91
 msgid "Selected recovery file:"
-msgstr ""
+msgstr "選択した復元ファイル:"
 
 #: src/components/plotNFT/PlotNFTExternalState.tsx:23
 #: src/components/plotNFT/PlotNFTState.tsx:57
@@ -2196,7 +2196,7 @@ msgstr "セルフプーリング"
 
 #: src/components/plotNFT/select/PlotNFTSelectBase.tsx:104
 msgid "Self pool. When you win a block you will earn XCH rewards."
-msgstr ""
+msgstr "自己プールする。ブロックを獲得したら XCH 報酬を得られます。"
 
 #: src/components/trading/CreateOffer.jsx:164
 #: src/components/trading/TradesTable.tsx:47
@@ -2222,11 +2222,11 @@ msgstr "レート制限付きウォレットの管理者にあなたの公開鍵
 #: src/components/settings/SetPassphrasePrompt.tsx:220
 #: src/components/settings/Settings.tsx:205
 msgid "Set Passphrase"
-msgstr ""
+msgstr "パスフレーズを設定"
 
 #: src/components/app/AppPassPrompt.tsx:75
 msgid "Setting a passphrase is strongly recommended to protect your keys. Are you sure you want to skip setting a passphrase?"
-msgstr ""
+msgstr "鍵を保護するため、パスフレーズを設定することを強く推奨します。本当にパスフレーズ設定をスキップしますか？"
 
 #: src/components/dashboard/DashboardSideBar.tsx:76
 #: src/components/settings/Settings.tsx:239
@@ -2258,11 +2258,11 @@ msgstr "スキップ"
 
 #: src/components/app/AppKeyringMigrator.tsx:48
 msgid "Skip Keyring Migration"
-msgstr ""
+msgstr "キーリングの移行をスキップ"
 
 #: src/components/app/AppPassPrompt.tsx:73
 msgid "Skip Passphrase Protection"
-msgstr ""
+msgstr "パスフレーズ保護をスキップする"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:129
 #~ msgid "Skips adding [final dir] to harvester for farming"
@@ -2847,7 +2847,7 @@ msgstr "次の耕地を耕しはじめる前に遅延時間を挟みますか？
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:252
 msgid "Warm start"
-msgstr ""
+msgstr "ウォームスタート"
 
 #: src/components/selectKey/SelectKey.tsx:88
 #: src/components/selectKey/SelectKey.tsx:119
@@ -2899,19 +2899,19 @@ msgstr "はい"
 #: src/hooks/useAbsorbRewards.tsx:29
 #: src/hooks/useJoinPool.tsx:36
 msgid "You are in pending state. Please wait for confirmation"
-msgstr ""
+msgstr "現在保留状態です。承認をお待ちください。"
 
 #: src/hooks/useAbsorbRewards.tsx:37
 msgid "You are not self pooling"
-msgstr ""
+msgstr "現在自己プールしていません"
 
 #: src/components/plotNFT/PlotNFTCard.tsx:424
 msgid "You can still create plots for this plot NFT, but you can not make changes until sync is complete."
-msgstr ""
+msgstr "現在この耕地 NFT に宛てた耕地を作成できますが、同期が完了するまで変更は行えません。"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:77
 msgid "You do not need to be synced or connected to plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
-msgstr ""
+msgstr "耕地作成には同期も接続も不要です。耕し中に作成される一時ファイル群は、最終的な耕地ファイルより多くの容量を消費します。容量が足りるか今一度ご確認ください。<0>詳しく</0>"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:56
 #~ msgid "You do not need to be synched or connected to Plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
@@ -2923,7 +2923,7 @@ msgstr ""
 
 #: src/components/core/components/FormBackButton/FormBackButton.tsx:29
 msgid "You have made changes. Do you want to discard them?"
-msgstr ""
+msgstr "未保存の変更があります。破棄しますか？"
 
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:34
 #~ msgid "You have {0}% of the space on the network, so farming a block will take {expectedTimeToWin} in expectation."
@@ -2943,7 +2943,7 @@ msgstr "あなたはネットワークの {0}% の容量を所有しているた
 
 #: src/components/pool/PoolJoin.tsx:37
 msgid "You need to claim your rewards first"
-msgstr ""
+msgstr "先に報酬を受け取る必要があります"
 
 #: src/components/app/AppTimeBomb.tsx:28
 #~ msgid "You need to upgrade the Chia application as this version will stop working soon!"
@@ -2951,19 +2951,19 @@ msgstr ""
 
 #: src/components/plotNFT/select/PlotNFTSelectFaucet.tsx:37
 msgid "You need {currencyCode} to join a pool."
-msgstr ""
+msgstr "プールに参加するには {currencyCode} が必要です。"
 
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:137
 msgid "You will recieve <0/> to {0}"
-msgstr ""
+msgstr "{0} で <0/> を受け取ります"
 
 #: src/hooks/useAbsorbRewards.tsx:49
 msgid "You will recieve <0/> to {address}"
-msgstr ""
+msgstr "{address} で <0/> を受け取ります"
 
 #: src/components/wallet/did/WalletDID.tsx:328
 msgid "Your DID requires at least {dids_num_req} attestation file{0} for recovery. Please upload additional files."
-msgstr ""
+msgstr "あなたの DID は復元のために少なくとも {dids_num_req} の認証ファイル {0} が必要です。追加のファイルをアップロードしてください。"
 
 #: src/components/farm/overview/FarmOverview.tsx:37
 msgid "Your Farm Overview"
@@ -2983,37 +2983,37 @@ msgstr "あなたのプール一覧"
 
 #: src/components/app/AppPassPrompt.tsx:184
 msgid "Your keyring is locked"
-msgstr ""
+msgstr "キーリングは施錠されています"
 
 #: src/components/app/AppKeyringMigrator.tsx:54
 msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Are you sure you want to skip migrating your keys?"
-msgstr ""
+msgstr "あなたの鍵は新しいキーリングに移行されていません。移行が完了するまで、鍵の新規作成、及び既存の鍵の削除が行えません。本当に鍵の移行をスキップしてもよろしいですか？"
 
 #: src/components/selectKey/SelectKey.tsx:141
 msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Would you like to migrate your keys now?"
-msgstr ""
+msgstr "あなたの鍵は新しいキーリングに移行されていません。移行が完了するまで、鍵の新規作成、及び既存の鍵の削除が行えません。今すぐ鍵を移行しますか？"
 
 #: src/components/app/AppKeyringMigrator.tsx:101
 msgid "Your keys need to be migrated to a new keyring that is optionally secured by a master passphrase."
-msgstr ""
+msgstr "マスターパスフレーズで保護できる新しいキーリングに鍵を移行する必要があります。"
 
 #: src/components/app/AppKeyringMigrator.tsx:107
 msgid "Your keys need to be migrated to a new keyring that is secured by a master passphrase."
-msgstr ""
+msgstr "マスターパスフレーズで保護されている新しいキーリングに鍵を移行する必要があります。"
 
 #: src/components/app/AppKeyringMigrator.tsx:177
 #: src/components/settings/ChangePassphrasePrompt.tsx:227
 #: src/components/settings/SetPassphrasePrompt.tsx:197
 msgid "Your passphrase can be stored in your system's secure credential store. Chia will be able to access your keys without prompting for your passphrase."
-msgstr ""
+msgstr "パスフレーズはシステム内の認証情報保管庫に保存することができます。チアはパスフレーズを尋ねることなくあなたの鍵にアクセスできるようになります。"
 
 #: src/components/settings/Settings.tsx:80
 msgid "Your passphrase has been set"
-msgstr ""
+msgstr "パスフレーズを設定しました"
 
 #: src/components/settings/Settings.tsx:67
 msgid "Your passphrase has been updated"
-msgstr ""
+msgstr "パスフレーズを更新しました"
 
 #: src/util/getDescriptiveError.ts:5
 msgid "[Error 13] Permission denied. You are trying to access a file/directory without having the necessary permissions. Most likely one of the plot folders in your config.yaml has an issue."
@@ -3039,7 +3039,7 @@ msgstr "同期されていません"
 
 #: src/components/plot/add/PlotAdd.tsx:136
 msgid "p2_singleton_puzzle_hash is not defined"
-msgstr ""
+msgstr "p2_singleton_puzzle_hash が未定義です"
 
 #: src/components/wallet/WalletStatusCard.tsx:27
 #: src/components/wallet/Wallets.tsx:55
@@ -3058,7 +3058,7 @@ msgstr "同期中"
 
 #: src/components/app/AppPassPrompt.tsx:48
 msgid "{0, plural, one {Passphrases must be at least # character in length} other {Passphrases must be at least # characters in length}}"
-msgstr ""
+msgstr "{0, plural, other {パスフレーズは少なくとも # 文字の長さでなければなりません}}"
 
 #: src/components/farm/card/FarmCardBlockRewards.tsx:16
 #~ msgid "{0} Block Rewards"
@@ -3071,11 +3071,11 @@ msgstr ""
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:172
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:189
 msgid "{0} buckets is recommended"
-msgstr ""
+msgstr "バケツ数は {0} を推奨します"
 
 #: src/components/plotNFT/PlotNFTGraph.tsx:111
 msgid "{0} points {1} - {2} hours ago"
-msgstr ""
+msgstr "{1} - {2} 時間前に {0} 点"
 
 #: src/components/farm/card/FarmCardBlockRewards.tsx:35
 msgid "{currencyCode} Block Rewards"
@@ -3091,9 +3091,9 @@ msgstr "{currencyCode} ユーザー取引手数料"
 
 #: src/components/core/components/Amount/Amount.tsx:82
 msgid "{mojo, plural, one {mojo} other {mojos}}"
-msgstr ""
+msgstr "{mojo, plural, one {mojo} other {mojos}}"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:122
 msgid "{warning}"
-msgstr ""
+msgstr "{warning}"
 
