@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import styled from 'styled-components';
 import { Trans } from '@lingui/macro';
 import moment from 'moment';
-import { Switch, Route, useHistory, useRouteMatch } from 'react-router-dom';
+import { Switch, Route, useHistory, useRouteMatch, useLocation } from 'react-router-dom';
 import {
   Back,
   Card,
@@ -19,13 +19,10 @@ import {
 } from '@chia/core';
 import { OfferSummary, OfferTradeRecord } from '@chia/api';
 import {
-  mojo_to_chia_string,
-  mojo_to_colouredcoin_string,
-} from '../../../util/chia';
-import {
   Box,
   Button,
   Checkbox,
+  Chip,
   Divider,
   FormControlLabel,
   Grid,
@@ -37,8 +34,10 @@ import { Cancel, GetApp as Download } from '@material-ui/icons';
 import { Trade as TradeIcon } from '@chia/icons';
 import { suggestedFilenameForOffer } from './utils';
 import { useCancelOfferMutation, useGetAllOffersQuery, useGetOfferDataMutation } from '@chia/api-react';
+import { formatOfferEntry } from './utils';
 import { CreateOfferEditor } from './OfferEditor';
 import { OfferImport } from './OfferImport';
+import { OfferViewer } from './OfferViewer';
 import fs from 'fs';
 
 const StyledTradeIcon = styled(TradeIcon)`
@@ -124,17 +123,6 @@ function ConfirmOfferCancellation(props: ConfirmOfferCancellationProps) {
   );
 }
 
-function formatOfferEntry(assetId: string, amount: string | number): string {
-  let amountString = '';
-  if (assetId === 'xch') {
-    amountString = `${mojo_to_chia_string(amount)} XCH`;
-  }
-  else {
-    amountString = `${mojo_to_colouredcoin_string(amount)} CC`;
-  }
-  return amountString;
-}
-
 function formatOfferSummary(summary: OfferSummary): string {
   const offers: string[] = Object.entries(summary.offered).map(([assetId, amount]) => formatOfferEntry(assetId, amount));
   const requests: string[] = Object.entries(summary.requested).map(([assetId, amount]) => formatOfferEntry(assetId, amount));
@@ -147,6 +135,7 @@ function OfferList() {
   const [getOfferData] = useGetOfferDataMutation();
   const [cancelOffer] = useCancelOfferMutation();
   const openDialog = useOpenDialog();
+  const history = useHistory();
 
   async function handleExportOffer(tradeId: string) {
     const { data: response } = await getOfferData(tradeId);
@@ -199,53 +188,72 @@ function OfferList() {
     }
   }
 
-  const tradeRecords: any[] = useMemo(() => {
+  function handleRowClick(event, row) {
+    console.log("handleRowClick:");
+    console.log(row);
+    history.push('/dashboard/wallets/offers/view', { tradeRecord: row });
+  }
+
+  const tradeRecords: OfferTradeRecord[] = useMemo(() => {
     if (loading || !data) {
       return [];
     }
-    return data;
+    // Show newest offers first
+    return [...data].sort((a: OfferTradeRecord, b: OfferTradeRecord) => b.createdAtTime - a.createdAtTime);
   }, [data, loading]);
 
   const cols = useMemo(() => {
     return [
       {
-        field: (row: Row) => {
+        field: (row: OfferTradeRecord) => {
           const { status } = row;
 
           return (
-            <Typography color="textSecondary" variant="body2">
-              {status}
-            </Typography>
+            <Box onClick={(event) => handleRowClick(event, row)}>
+              <Typography color="textSecondary" variant="body2">
+                {status}
+              </Typography>
+            </Box>
           );
         },
         title: <Trans>Status</Trans>
       },
       {
-        field: (row: Row) => {
+        field: (row: OfferTradeRecord) => {
           const summary = formatOfferSummary(row.summary);
 
-          return  (
-            <Typography color="textSecondary" variant="body2">
-              {summary}
-            </Typography>
+          return (
+            <Box onClick={(event) => handleRowClick(event, row)}>
+              <Flex flexDirection="column" gap={0.5}>
+                  <Typography color="textSecondary" variant="body2">
+                    {summary}
+                  </Typography>
+                <Flex flexDirection="row" gap={1}>
+                  <Chip size="small" variant="outlined" label={<Trans>Offered</Trans>} />
+                  <Chip size="small" variant="outlined" label={<Trans>Requested</Trans>} />
+                </Flex>
+              </Flex>
+            </Box>
           );
         },
         title: <Trans>Summary</Trans>
       },
       {
-        field: (row: Row) => {
+        field: (row: OfferTradeRecord) => {
           const { createdAtTime } = row;
 
           return (
-            <Typography color="textSecondary" variant="body2">
-              {moment(createdAtTime * 1000).format('LLL')}
-            </Typography>
+            <Box onClick={(event) => handleRowClick(event, row)}>
+              <Typography color="textSecondary" variant="body2">
+                {moment(createdAtTime * 1000).format('LLL')}
+              </Typography>
+            </Box>
           );
         },
         title: <Trans>Creation Date</Trans>,
       },
       {
-        field: (row: Row) => {
+        field: (row: OfferTradeRecord) => {
           const { tradeId } = row;
 
           return (
@@ -355,6 +363,8 @@ export function OfferManager() {
 
 export function CreateOffer() {
   const { path } = useRouteMatch();
+  const location: any = useLocation();
+
   return (
     <Switch>
       <Route path={`${path}/create`}>
@@ -362,6 +372,9 @@ export function CreateOffer() {
       </Route>
       <Route path={`${path}/import`}>
         <OfferImport />
+      </Route>
+      <Route path={`${path}/view`}>
+        <OfferViewer tradeRecord={location?.state?.tradeRecord} offerSummary={location?.state?.offerSummary} offerFilePath={location?.state?.offerFilePath} />
       </Route>
       <Route path={`${path}/manage`}>
         <OfferManager />

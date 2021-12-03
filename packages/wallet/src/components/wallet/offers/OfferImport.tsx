@@ -1,12 +1,15 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import { Trans } from '@lingui/macro';
 import { useGetAllOffersQuery } from '@chia/api-react';
 import { AlertDialog, Back, Card, Dropzone, Flex, useShowError } from '@chia/core';
 import { Button, Grid, Typography } from '@material-ui/core';
 import { useGetOfferSummaryMutation } from '@chia/api-react';
-import fs, { fstatSync } from 'fs';
+import { OfferTradeRecord } from '@chia/api';
+import fs from 'fs';
 
 function SelectOfferFile() {
+  const history = useHistory();
   const [getOfferSummary] = useGetOfferSummaryMutation();
   const errorDialog = useShowError();
   const [isParsing, setIsParsing] = React.useState<boolean>(false);
@@ -21,9 +24,16 @@ function SelectOfferFile() {
         else {
           const offerData = fs.readFileSync(offerFilePath, 'utf8');
           console.log("offerData:", offerData);
-          const summary = await getOfferSummary(offerData);
-          console.log("summary: ");
-          console.log(summary);
+          const { data: response } = await getOfferSummary(offerData);
+          console.log("response: ");
+          console.log(response);
+          const { summary: offerSummary, success } = response;
+          if (!success) {
+            errorDialog(new Error("Could not parse offer file"));
+          }
+          else {
+            history.push('/dashboard/wallets/offers/view', { offerSummary, offerFilePath });
+          }
         }
       }
       catch (e) {
@@ -92,7 +102,7 @@ export function OfferImport() {
             <Trans>View an Offer</Trans>
           </Back>
         </Flex>
-          <SelectOfferFile />
+        <SelectOfferFile />
       </Flex>
     </Grid>
   );

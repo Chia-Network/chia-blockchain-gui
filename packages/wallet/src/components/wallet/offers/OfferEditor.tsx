@@ -1,5 +1,6 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { useHistory } from 'react-router-dom';
 import { Trans } from '@lingui/macro';
 import {
   Back,
@@ -34,6 +35,7 @@ type FormData = {
 };
 
 function OfferEditor(): JSX.Element {
+  const history = useHistory();
   const defaultValues: FormData = {
     selectedTab: 0,
     makerRows: [{ amount: '', assetWalletId: undefined, walletType: WalletType.STANDARD_WALLET }],
@@ -92,6 +94,7 @@ function OfferEditor(): JSX.Element {
       if (!canceled && filePath) {
         try {
           fs.writeFileSync(filePath, offerData);
+          history.replace('/dashboard/wallets/offers/manage');
         }
         catch (err) {
           console.error(err);
