@@ -12,7 +12,7 @@ const baseQuery = chiaLazyBaseQuery({
 export const walletApi = createApi({
   reducerPath: 'walletApi',
   baseQuery,
-  tagTypes: ['Keys', 'Wallets', 'WalletBalance', 'Address', 'Transactions', 'WalletConnections'],
+  tagTypes: ['Keys', 'Wallets', 'WalletBalance', 'Address', 'Transactions', 'WalletConnections', 'LoggedInFingerprint'],
   endpoints: (build) => ({
     ping: build.query<boolean, {
     }>({
@@ -22,13 +22,14 @@ export const walletApi = createApi({
       transformResponse: (response: any) => response?.success,
     }),
 
-    getFingerprint: build.query<string | undefined, {
+    getLoggedInFingerprint: build.query<string | undefined, {
     }>({
       query: () => ({
-        command: 'getFingerprint',
+        command: 'getLoggedInFingerprint',
         mockResponse: '3125625846',
       }),
       transformResponse: (response: any) => response?.fingerprint,
+      providesTags: [{ type: 'LoggedInFingerprint' }],
     }),
 
     getWallets: build.query<Wallet[], undefined>({
@@ -116,10 +117,7 @@ export const walletApi = createApi({
         command: 'getTransaction',
         args: [transactionId],
       }),
-      transformResponse: (response: any) => {
-        console.log('TODO transformResponse getTransaction return transaction object', response);
-        return response.transaction;
-      },
+      transformResponse: (response: any) => response?.transaction,
       onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, [{
         command: 'onTransactionUpdate',
         onUpdate: (draft, data, { transactionId }) => {
@@ -230,8 +228,8 @@ export const walletApi = createApi({
           },
         } = response;
 
-        const pendingBalance = unconfirmedWalletBalance - confirmedWalletBalance;
-        const pendingTotalBalance = confirmedWalletBalance + pendingBalance;
+        const pendingBalance = BigInt(unconfirmedWalletBalance) - BigInt(confirmedWalletBalance);
+        const pendingTotalBalance = BigInt(confirmedWalletBalance) + BigInt(pendingBalance);
 
         return {
           ...walletBalance,
@@ -433,6 +431,7 @@ export const walletApi = createApi({
         command: 'logIn',
         args: [fingerprint, type, filePath, host],
       }),
+      invalidatesTags: [{ type: 'LoggedInFingerprint' }],
     }),
 
     logInAndSkipImport: build.mutation<any, {
@@ -1069,7 +1068,7 @@ export const walletApi = createApi({
       async queryFn(_args, { signal }, _extraOptions, fetchWithBQ) {
         try {
           const [wallets, poolStates] = await Promise.all<Wallet[], PoolState[]>([
-            async () => {
+            (async () => {
               const { data, error } = await fetchWithBQ({
                 command: 'getWallets',
               });
@@ -1084,8 +1083,8 @@ export const walletApi = createApi({
               }
 
               return wallets;
-            },
-            async () => {
+            })(),
+            (async () => {
               const { data, error } = await fetchWithBQ({
                 command: 'getPoolState',
                 service: Farmer,
@@ -1101,7 +1100,7 @@ export const walletApi = createApi({
               }
 
               return poolState;
-            },
+            })(),
           ]);
 
           if (signal.aborted) {
@@ -1125,9 +1124,10 @@ export const walletApi = createApi({
                 throw error;
               }
 
-              console.log('pw state', wallet.id, data);
-
-              return data?.state;
+              return {
+                ...data?.state,
+                walletId: wallet.id,
+              };
             })),
             await Promise.all<WalletBalance>(poolWallets.map(async (wallet) => {
                 const { data, error } = await fetchWithBQ({
@@ -1138,8 +1138,6 @@ export const walletApi = createApi({
                 if (error) {
                   throw error;
                 }
-
-                console.log('wallet balance', wallet.id, data);
 
                 return data?.walletBalance;
               })),
@@ -1159,7 +1157,7 @@ export const walletApi = createApi({
             );
             if (!poolWalletStatus) {
               external.push({
-                pool_state: normalizePoolState(poolStateItem),
+                poolState: normalizePoolState(poolStateItem),
               });
               return;
             }
@@ -1200,7 +1198,7 @@ export const walletApi = createApi({
 
 export const {
   usePingQuery,
-  useGetFingerprintQuery,
+  useGetLoggedInFingerprintQuery,
   useGetWalletsQuery,
   useGetTransactionQuery,
   useGetPwStatusQuery,
