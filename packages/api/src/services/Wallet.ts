@@ -239,7 +239,9 @@ export default class Wallet extends Service {
   }
 
   async getAllOffers() {
-    return this.command('get_all_offers');
+    return this.command('get_all_offers', {
+      file_contents: true,
+    });
   }
 
   async createOfferForIds(walletIdsAndAmounts: { [key: string]: number }) {

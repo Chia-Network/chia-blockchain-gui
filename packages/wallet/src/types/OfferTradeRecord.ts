@@ -11,6 +11,7 @@ type OfferTradeRecord = {
   status: string;
   sent_to: any[];
   summary: OfferSummary;
+  offer_data?: string;
 };
 
 export default OfferTradeRecord;

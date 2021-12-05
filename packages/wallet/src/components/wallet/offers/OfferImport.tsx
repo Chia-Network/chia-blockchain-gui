@@ -1,7 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { Trans } from '@lingui/macro';
-import { useGetAllOffersQuery } from '@chia/api-react';
 import { AlertDialog, Back, Card, Dropzone, Flex, useShowError } from '@chia/core';
 import { Button, Grid, Typography } from '@material-ui/core';
 import { useGetOfferSummaryMutation } from '@chia/api-react';
@@ -92,8 +91,6 @@ function SelectOfferFile() {
 };
 
 export function OfferImport() {
-  const { data, isLoading } = useGetAllOffersQuery();
-
   return (
     <Grid container>
       <Flex flexDirection="column" flexGrow={1} gap={3}>

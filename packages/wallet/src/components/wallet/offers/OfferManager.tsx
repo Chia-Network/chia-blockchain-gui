@@ -30,15 +30,17 @@ import {
   MenuItem,
   Typography
 } from '@material-ui/core';
-import { Cancel, GetApp as Download } from '@material-ui/icons';
+import { Cancel, GetApp as Download, Visibility } from '@material-ui/icons';
 import { Trade as TradeIcon } from '@chia/icons';
-import { suggestedFilenameForOffer } from './utils';
 import { useCancelOfferMutation, useGetAllOffersQuery, useGetOfferDataMutation } from '@chia/api-react';
-import { formatOfferEntry } from './utils';
+import { colorForOfferState, displayStringForOfferState, formatAmountForWalletType, formatOfferEntry, suggestedFilenameForOffer } from './utils';
+import useAssetIdName from '../../../hooks/useAssetIdName';
 import { CreateOfferEditor } from './OfferEditor';
 import { OfferImport } from './OfferImport';
 import { OfferViewer } from './OfferViewer';
+import OfferDataDialog from './OfferDataDialog';
 import fs from 'fs';
+import OfferState from './OfferState';
 
 const StyledTradeIcon = styled(TradeIcon)`
   font-size: 4rem;
@@ -57,13 +59,13 @@ function ConfirmOfferCancellation(props: ConfirmOfferCancellationProps) {
   const { onUpdateValues } = props;
   const methods = useForm({
     defaultValues: {
-      cancelWithTransaction: false,
+      cancelWithTransaction: true,
       fee: '',
     }
   });
   const { watch } = methods;
   const fee = watch('fee');
-  const [cancelWithTransaction, setCancelWithTransaction] = useState<boolean>(false);
+  const [cancelWithTransaction, setCancelWithTransaction] = useState<boolean>(true);
 
   // Communicate value updates to the parent component
   useEffect(() => {
@@ -90,7 +92,7 @@ function ConfirmOfferCancellation(props: ConfirmOfferCancellationProps) {
           <Grid container>
             <Grid xs={6} item>
               <FormControlLabel
-                control={<Checkbox name="cancelWithTransaction" onChange={(event) => setCancelWithTransaction(event.target.checked)} />}
+                control={<Checkbox name="cancelWithTransaction" checked={cancelWithTransaction} onChange={(event) => setCancelWithTransaction(event.target.checked)} />}
                 label={
                   <>
                     <Trans>Cancel on blockchain</Trans>{' '}
@@ -100,7 +102,7 @@ function ConfirmOfferCancellation(props: ConfirmOfferCancellationProps) {
                       </Trans>
                     </TooltipIcon>
                   </>
-                  }
+                }
               />
             </Grid>
             { cancelWithTransaction && (
@@ -123,19 +125,19 @@ function ConfirmOfferCancellation(props: ConfirmOfferCancellationProps) {
   );
 }
 
-function formatOfferSummary(summary: OfferSummary): string {
-  const offers: string[] = Object.entries(summary.offered).map(([assetId, amount]) => formatOfferEntry(assetId, amount));
-  const requests: string[] = Object.entries(summary.requested).map(([assetId, amount]) => formatOfferEntry(assetId, amount));
-  const summaryString = `${offers.join(', ')} <-> ${requests.join(', ')}`;
-  return summaryString;
-}
-
 function OfferList() {
   const { data, loading, error } = useGetAllOffersQuery();
   const [getOfferData] = useGetOfferDataMutation();
   const [cancelOffer] = useCancelOfferMutation();
+  const lookupAssetId = useAssetIdName();
   const openDialog = useOpenDialog();
   const history = useHistory();
+
+  async function handleShowOfferData(offerData: string) {
+    openDialog((
+      <OfferDataDialog offerData={offerData} />
+    ));
+  }
 
   async function handleExportOffer(tradeId: string) {
     const { data: response } = await getOfferData(tradeId);
@@ -194,7 +196,7 @@ function OfferList() {
     history.push('/dashboard/wallets/offers/view', { tradeRecord: row });
   }
 
-  const tradeRecords: OfferTradeRecord[] = useMemo(() => {
+  const sortedTradeRecords: OfferTradeRecord[] = useMemo(() => {
     if (loading || !data) {
       return [];
     }
@@ -210,33 +212,56 @@ function OfferList() {
 
           return (
             <Box onClick={(event) => handleRowClick(event, row)}>
-              <Typography color="textSecondary" variant="body2">
-                {status}
-              </Typography>
+              <Chip label={displayStringForOfferState(status)} variant="outlined" color={colorForOfferState(status)} />
             </Box>
           );
         },
+        minWidth: '170px',
+        maxWidth: '170px',
         title: <Trans>Status</Trans>
       },
       {
         field: (row: OfferTradeRecord) => {
-          const summary = formatOfferSummary(row.summary);
-
+          const resolvedOfferInfo = Object.entries(row.summary.offered).map(([assetId, amount]) => {
+            const assetIdInfo = lookupAssetId(assetId);
+            return {
+              displayAmount: (assetIdInfo ? formatAmountForWalletType(amount as number, assetIdInfo.walletType) : `${amount}`),
+              displayName: (assetIdInfo ? assetIdInfo.displayName : 'unknown'),
+            };
+          });
           return (
-            <Box onClick={(event) => handleRowClick(event, row)}>
-              <Flex flexDirection="column" gap={0.5}>
-                  <Typography color="textSecondary" variant="body2">
-                    {summary}
-                  </Typography>
-                <Flex flexDirection="row" gap={1}>
-                  <Chip size="small" variant="outlined" label={<Trans>Offered</Trans>} />
-                  <Chip size="small" variant="outlined" label={<Trans>Requested</Trans>} />
-                </Flex>
+            resolvedOfferInfo.map((info) => (
+              <Flex flexDirection="row" gap={1}>
+                <Typography variant="body2">{info.displayAmount}</Typography>
+                <Typography noWrap variant="body2">{info.displayName}</Typography>
               </Flex>
-            </Box>
+            ))
           );
         },
-        title: <Trans>Summary</Trans>
+        minWidth: '160px',
+        title: <Trans>Offered</Trans>
+      },
+      {
+        field: (row: OfferTradeRecord) => {
+          const resolvedOfferInfo = Object.entries(row.summary.requested).map(([assetId, amount]) => {
+            const assetIdInfo = lookupAssetId(assetId);
+
+            return {
+              displayAmount: (assetIdInfo ? formatAmountForWalletType(amount as number, assetIdInfo.walletType) : `${amount}`),
+              displayName: (assetIdInfo ? assetIdInfo.displayName : 'unknown'),
+            };
+          });
+          return (
+            resolvedOfferInfo.map((info) => (
+              <Flex flexDirection="row" gap={1}>
+                <Typography variant="body2">{info.displayAmount}</Typography>
+                <Typography noWrap variant="body2">{info.displayName}</Typography>
+              </Flex>
+            ))
+          );
+        },
+        minWidth: '160px',
+        title: <Trans>Requested</Trans>
       },
       {
         field: (row: OfferTradeRecord) => {
@@ -250,6 +275,8 @@ function OfferList() {
             </Box>
           );
         },
+        minWidth: '220px',
+        maxWidth: '220px',
         title: <Trans>Creation Date</Trans>,
       },
       {
@@ -260,6 +287,19 @@ function OfferList() {
             <More>
               {({ onClose }: { onClose: () => void }) => (
                 <Box>
+                  <MenuItem
+                    onClick={() => {
+                      onClose();
+                      handleShowOfferData(row._offerData);
+                    }}
+                  >
+                    <ListItemIcon>
+                      <Visibility fontSize="small" />
+                    </ListItemIcon>
+                    <Typography variant="inherit" noWrap>
+                      <Trans>Show Offer Data</Trans>
+                    </Typography>
+                  </MenuItem>
                   <MenuItem
                     onClick={() => {
                       onClose();
@@ -291,6 +331,8 @@ function OfferList() {
             </More>
           );
         },
+        minWidth: '100px',
+        maxWidth: '100px',
         title: <Trans>Actions</Trans>
       },
     ];
@@ -298,9 +340,9 @@ function OfferList() {
 
   return (
     <Card title={<Trans>Offers</Trans>}>
-      {tradeRecords?.length ? (
+      {sortedTradeRecords?.length ? (
         <TableControlled
-          rows={tradeRecords}
+          rows={sortedTradeRecords}
           cols={cols}
         />
       ) : (

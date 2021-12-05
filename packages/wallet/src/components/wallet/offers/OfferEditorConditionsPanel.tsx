@@ -31,6 +31,15 @@ function OfferEditorConditionRow(props: OfferEditorConditionsRowProps) {
   return (
     <Flex flexDirection="row" gap={3} {...rest}>
       <Grid xs={6} item>
+        <OfferAssetSelector
+          name={`${namePrefix}.assetWalletId`}
+          id={`${namePrefix}.assetWalletId`}
+          tradeSide={tradeSide}
+          defaultValue={undefined}
+          onChange={(walletId: number, walletType: WalletType) => handleAssetChange(namePrefix, walletId, walletType)}
+        />
+      </Grid>
+      <Grid xs={6} item>
         {item.walletType === WalletType.STANDARD_WALLET && (
           <Amount
             variant="filled"
@@ -55,15 +64,6 @@ function OfferEditorConditionRow(props: OfferEditorConditionsRowProps) {
             fullWidth
           />
         )}
-      </Grid>
-      <Grid xs={6} item>
-        <OfferAssetSelector
-          name={`${namePrefix}.assetWalletId`}
-          id={`${namePrefix}.assetWalletId`}
-          tradeSide={tradeSide}
-          defaultValue={undefined}
-          onChange={(walletId: number, walletType: WalletType) => handleAssetChange(namePrefix, walletId, walletType)}
-        />
       </Grid>
       <Grid item style={{paddingTop: '1em'}}>
         {(addRow || removeRow) && (

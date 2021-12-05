@@ -677,7 +677,14 @@ export const walletApi = createApi({
       query: () => ({
         command: 'getAllOffers',
       }),
-      transformResponse: (response: any) => response?.tradeRecords,
+      transformResponse: (response: any) => {
+        if (!response?.offers) {
+          return response?.tradeRecords;
+        }
+        return response?.tradeRecords.map((tradeRecord: OfferTradeRecord, index: number) => ({
+          ...tradeRecord, _offerData: response?.offers?.[index]
+        }));
+      },
       providesTags(result) {
         return result ? [
           ...result.map(({ tradeId }) => ({ type: 'OfferTradeRecord', id: tradeId } as const)),
