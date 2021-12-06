@@ -30,7 +30,7 @@ import {
   MenuItem,
   Typography
 } from '@material-ui/core';
-import { Cancel, GetApp as Download, Visibility } from '@material-ui/icons';
+import { Cancel, GetApp as Download, Info, Visibility } from '@material-ui/icons';
 import { Trade as TradeIcon } from '@chia/icons';
 import { useCancelOfferMutation, useGetAllOffersQuery, useGetOfferDataMutation } from '@chia/api-react';
 import { colorForOfferState, displayStringForOfferState, formatAmountForWalletType, formatOfferEntry, suggestedFilenameForOffer } from './utils';
@@ -190,9 +190,7 @@ function OfferList() {
     }
   }
 
-  function handleRowClick(event, row) {
-    console.log("handleRowClick:");
-    console.log(row);
+  function handleRowClick(event: any, row: OfferTradeRecord) {
     history.push('/dashboard/wallets/offers/view', { tradeRecord: row });
   }
 
@@ -290,6 +288,19 @@ function OfferList() {
                   <MenuItem
                     onClick={() => {
                       onClose();
+                      handleRowClick(undefined, row);
+                    }}
+                  >
+                    <ListItemIcon>
+                      <Info fontSize="small" />
+                    </ListItemIcon>
+                    <Typography variant="inherit" noWrap>
+                      <Trans>Show Details</Trans>
+                    </Typography>
+                  </MenuItem>
+                  <MenuItem
+                    onClick={() => {
+                      onClose();
                       handleShowOfferData(row._offerData);
                     }}
                   >
@@ -297,7 +308,7 @@ function OfferList() {
                       <Visibility fontSize="small" />
                     </ListItemIcon>
                     <Typography variant="inherit" noWrap>
-                      <Trans>Show Offer Data</Trans>
+                      <Trans>Display Offer Data</Trans>
                     </Typography>
                   </MenuItem>
                   <MenuItem
@@ -313,19 +324,21 @@ function OfferList() {
                       <Trans>Export Offer File</Trans>
                     </Typography>
                   </MenuItem>
-                  <MenuItem
-                    onClick={() => {
-                      onClose();
-                      handleCancelOffer(tradeId);
-                    }}
-                  >
-                    <ListItemIcon>
-                      <Cancel fontSize="small" />
-                    </ListItemIcon>
-                    <Typography variant="inherit" noWrap>
-                      <Trans>Cancel Offer</Trans>
-                    </Typography>
-                  </MenuItem>
+                  { row.status !== OfferState.PENDING_CANCEL && row.status !== OfferState.CANCELLED && row.status !== OfferState.FAILED && (
+                    <MenuItem
+                      onClick={() => {
+                        onClose();
+                        handleCancelOffer(tradeId);
+                      }}
+                    >
+                      <ListItemIcon>
+                        <Cancel fontSize="small" />
+                      </ListItemIcon>
+                      <Typography variant="inherit" noWrap>
+                        <Trans>Cancel Offer</Trans>
+                      </Typography>
+                    </MenuItem>
+                  )}
                 </Box>
               )}
             </More>
@@ -339,7 +352,7 @@ function OfferList() {
   }, [loading]);
 
   return (
-    <Card title={<Trans>Offers</Trans>}>
+    <Card title={<Trans>Offers You've Created</Trans>}>
       {sortedTradeRecords?.length ? (
         <TableControlled
           rows={sortedTradeRecords}

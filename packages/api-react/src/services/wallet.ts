@@ -695,12 +695,14 @@ export const walletApi = createApi({
 
     createOfferForIds: build.mutation<any, {
       walletIdsAndAmounts: { [key: string]: number };
+      validateOnly?: boolean;
     }>({
       query: ({
         walletIdsAndAmounts,
+        validateOnly,
       }) => ({
         command: 'createOfferForIds',
-        args: [walletIdsAndAmounts],
+        args: [walletIdsAndAmounts, validateOnly],
       }),
       invalidatesTags: [{ type: 'OfferTradeRecord', id: 'LIST' }],
     }),

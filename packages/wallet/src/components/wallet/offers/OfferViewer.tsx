@@ -36,6 +36,7 @@ import {
 } from './utils';
 import useAssetIdName from '../../../hooks/useAssetIdName';
 import WalletType from '../../../constants/WalletType';
+import OfferCoinOfInterest from 'types/OfferCoinOfInterest';
 import styled from 'styled-components';
 
 const StyledViewerBox = styled.div`
@@ -56,7 +57,12 @@ const StyledHeaderBox = styled.div`
   background-color: ${({ theme }) => theme.palette.background.paper};
 `;
 
-function OfferMojoAmount(props): React.ReactElement{
+type OfferMojoAmountProps = {
+  mojos: number;
+  mojoThreshold?: number
+};
+
+function OfferMojoAmount(props: OfferMojoAmountProps): React.ReactElement{
   const { mojos, mojoThreshold } = props;
 
   return (
@@ -77,7 +83,7 @@ function OfferMojoAmount(props): React.ReactElement{
 
 OfferMojoAmount.defaultProps = {
   mojos: 0,
-  mojoThreshold: 1000000000,
+  mojoThreshold: 1000000000,  // 1 billion
 };
 
 type OfferDetailsProps = {
@@ -85,47 +91,57 @@ type OfferDetailsProps = {
   offerSummary?: OfferSummary;
 };
 
+type OfferDetailsRow = {
+  name: React.ReactElement;
+  value: any;
+  color?: string;
+  tooltip?: React.ReactElement;
+};
+
 function OfferDetails(props: OfferDetailsProps) {
   const { tradeRecord, offerSummary } = props;
   const summary = tradeRecord?.summary || offerSummary;
   const lookupAssetId = useAssetIdName();
+  let detailRows: OfferDetailsRow[] = [];
 
-  const detailRows = [
-    {
-      name: <Trans>Status</Trans>,
-      value: displayStringForOfferState(tradeRecord.status),
-      color: colorForOfferState(tradeRecord.status),
-    },
-    {
-      name: <Trans>Offer Identifier</Trans>,
-      value: tradeRecord.tradeId,
-    },
-    {
-      name: <Trans>Confirmed at Height</Trans>,
-      value: tradeRecord.confirmedAtIndex || <Trans>Not confirmed</Trans>,
-    },
-    {
-      name: <Trans>Accepted on Date</Trans>,
-      value: tradeRecord.acceptedAtTime ? (
-        moment(tradeRecord.acceptedAtTime * 1000).format('LLL')
-      ) : (
-        <Trans>Not accepted</Trans>
-      ),
-    },
-    {
-      name: <Trans>Creation Date</Trans>,
-      value: moment(tradeRecord.createdAtTime * 1000).format('LLL'),
-    },
-    {
-      name: <Trans>Node Count</Trans>,
-      tooltip: <Trans>This number reflects the number of nodes that the accepted SpendBundle has been sent to</Trans>,
-      value: tradeRecord.sent,
-    },
-  ];
+  if (tradeRecord) {
+    detailRows = [
+      {
+        name: <Trans>Status</Trans>,
+        value: displayStringForOfferState(tradeRecord.status),
+        color: colorForOfferState(tradeRecord.status),
+      },
+      {
+        name: <Trans>Offer Identifier</Trans>,
+        value: tradeRecord.tradeId,
+      },
+      {
+        name: <Trans>Confirmed at Height</Trans>,
+        value: tradeRecord.confirmedAtIndex || <Trans>Not confirmed</Trans>,
+      },
+      {
+        name: <Trans>Accepted on Date</Trans>,
+        value: tradeRecord.acceptedAtTime ? (
+          moment(tradeRecord.acceptedAtTime * 1000).format('LLL')
+        ) : (
+          <Trans>Not accepted</Trans>
+        ),
+      },
+      {
+        name: <Trans>Creation Date</Trans>,
+        value: moment(tradeRecord.createdAtTime * 1000).format('LLL'),
+      },
+      {
+        name: <Trans>Node Count</Trans>,
+        tooltip: <Trans>This number reflects the number of nodes that the accepted SpendBundle has been sent to</Trans>,
+        value: tradeRecord.sent,
+      },
+    ];
+  }
 
   const coinCols = [
     {
-      field: (coin) => {
+      field: (coin: OfferCoinOfInterest) => {
         return (
           <Typography variant="body2">
             <Flex flexDirection="row" flexGrow={1} gap={1}>
@@ -140,7 +156,7 @@ function OfferDetails(props: OfferDetailsProps) {
       title: <Trans>Amount</Trans>
     },
     {
-      field: (coin) => {
+      field: (coin: OfferCoinOfInterest) => {
         return (
           <Tooltip
             title={
@@ -159,7 +175,7 @@ function OfferDetails(props: OfferDetailsProps) {
       title: <Trans>Parent Coin</Trans>
     },
     {
-      field: (coin) => {
+      field: (coin: OfferCoinOfInterest) => {
         return (
           <Tooltip
             title={
@@ -256,29 +272,6 @@ function OfferDetails(props: OfferDetailsProps) {
             />
           </Card>
         )}
-        {/* {tradeRecord && coinRows.length > 0 && (
-          <Card title={<Trans>Coins</Trans>}>
-            <TableContainer>
-              <Table>
-                <TableBody>
-                  {coinRows.map((row, index) => (
-                    <TableRow key={index}>
-                      <TableCell component="th" scope="row">
-                      {row.name}{' '}
-                        {row.tooltip && <TooltipIcon>{row.tooltip}</TooltipIcon>}
-                      </TableCell>
-                      <TableCell onClick={row.onClick} align="right">
-                        <Typography variant="body2" color={row.color}>
-                          {row.value}
-                        </Typography>
-                      </TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </TableContainer>
-          </Card>
-        )} */}
       </Flex>
     </StyledViewerBox>
   );
@@ -291,7 +284,7 @@ type OfferViewerProps = {
 };
 
 export function OfferViewer(props: OfferViewerProps) {
-  const { offerFilePath, tradeRecord, ...rest } = props;
+  const { offerFilePath, offerSummary, tradeRecord, ...rest } = props;
   const history = useHistory();
 
   return (
@@ -306,7 +299,7 @@ export function OfferViewer(props: OfferViewerProps) {
             )}
           </Back>
         </Flex>
-        <OfferDetails tradeRecord={tradeRecord} {...rest} />
+        <OfferDetails tradeRecord={tradeRecord} offerSummary={offerSummary} {...rest} />
       </Flex>
     </Grid>
   );

@@ -112,7 +112,7 @@ function OfferAssetSelector(props: OfferAssetSelectorProps): JSX.Element {
 
   return (
     // Form control with popup selection of assets
-    <FormControl variant="filled" fullWidth>
+    <FormControl variant="filled" fullWidth {...rest}>
       <InputLabel required focused>
         <Trans>Asset Type</Trans>
       </InputLabel>

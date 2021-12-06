@@ -244,9 +244,10 @@ export default class Wallet extends Service {
     });
   }
 
-  async createOfferForIds(walletIdsAndAmounts: { [key: string]: number }) {
+  async createOfferForIds(walletIdsAndAmounts: { [key: string]: number }, validateOnly?: boolean) {
     return this.command('create_offer_for_ids', {
       offer: walletIdsAndAmounts,
+      validate_only: validateOnly || false,
     });
   }
 

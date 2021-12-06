@@ -1,24 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
 import { Trans } from '@lingui/macro';
 import {
   Back,
+  ButtonLoading,
   Flex,
-  Form
+  Form,
+  useShowError,
 } from '@chia/core';
 import { useCreateOfferForIdsMutation } from '@chia/api-react';
 import {
-  Box,
   Button,
-  CardHeader,
   Divider,
   Grid,
-  Typography
 } from '@material-ui/core';
 import type OfferRowData from './OfferRowData';
 import { suggestedFilenameForOffer } from './utils';
 import WalletType from '../../../constants/WalletType';
+import OfferSummaryAssetAndAmount from '../../../types/OfferSummary';
 import OfferEditorConditionsPanel from './OfferEditorConditionsPanel';
 import styled from 'styled-components';
 import { chia_to_mojo, colouredcoin_to_mojo } from '../../../util/chia';
@@ -46,12 +46,14 @@ function OfferEditor(): JSX.Element {
     defaultValues,
   });
   const { watch, setValue } = methods;
-  const selectedTab = watch('selectedTab');
+  // const selectedTab = watch('selectedTab');
+  const errorDialog = useShowError();
   const [createOfferForIds] = useCreateOfferForIdsMutation();
+  const [processing, setIsProcessing] = useState<boolean>(false);
 
-  function handleTabChange(event: React.ChangeEvent<{}>, newValue: number) {
-    setValue('selectedTab', newValue);
-  };
+  // function handleTabChange(event: React.ChangeEvent<{}>, newValue: number) {
+  //   setValue('selectedTab', newValue);
+  // };
 
   function updateOffer(offer: { [key: string]: number | string }, row: OfferRowData, debit: boolean) {
     const { amount, assetWalletId, walletType } = row;
@@ -71,8 +73,6 @@ function OfferEditor(): JSX.Element {
   }
 
   async function onSubmit(formData: FormData) {
-    console.log('submit');
-    console.log(formData);
     const offer: { [key: string]: number | string } = {};
     formData.makerRows.forEach((row: OfferRowData) => {
       updateOffer(offer, row, true);
@@ -80,26 +80,47 @@ function OfferEditor(): JSX.Element {
     formData.takerRows.forEach((row: OfferRowData) => {
       updateOffer(offer, row, false);
     });
-    console.log("offer:");
-    console.log({ walletIdsAndAmounts: offer });
-    const response = await createOfferForIds({ walletIdsAndAmounts: offer }).unwrap();
-    console.log("response:");
-    console.log(response);
-    if (response.success === true) {
-      const { offer: offerData, tradeRecord } = response;
-      const dialogOptions = { defaultPath: suggestedFilenameForOffer(tradeRecord.summary) };
-      const result = await window.remote.dialog.showSaveDialog(dialogOptions);
-      const { filePath, canceled } = result;
 
-      if (!canceled && filePath) {
-        try {
-          fs.writeFileSync(filePath, offerData);
-          history.replace('/dashboard/wallets/offers/manage');
-        }
-        catch (err) {
-          console.error(err);
+    setIsProcessing(true);
+
+    try {
+      // preflight offer creation to check validity
+      const response = await createOfferForIds({ walletIdsAndAmounts: offer, validateOnly: true }).unwrap();
+
+      if (response.success === false) {
+        const error = response.error || new Error("Encountered an unknown error while validating offer");
+        errorDialog(error);
+      }
+      else {
+        const dialogOptions = { defaultPath: suggestedFilenameForOffer(response.tradeRecord.summary) };
+        const result = await window.remote.dialog.showSaveDialog(dialogOptions);
+        const { filePath, canceled } = result;
+
+        if (!canceled && filePath) {
+          const response = await createOfferForIds({ walletIdsAndAmounts: offer, validateOnly: false }).unwrap();
+          if (response.success === false) {
+            const error = response.error || new Error("Encountered an unknown error while creating offer");
+            errorDialog(error);
+          }
+          else {
+            const { offer: offerData, tradeRecord } = response;
+
+            try {
+              fs.writeFileSync(filePath, offerData);
+              history.replace('/dashboard/wallets/offers/manage');
+            }
+            catch (err) {
+              console.error(err);
+            }
+          }
         }
       }
+    }
+    catch (e) {
+      errorDialog(e);
+    }
+    finally {
+      setIsProcessing(false);
     }
   }
 
@@ -112,23 +133,25 @@ function OfferEditor(): JSX.Element {
       <Divider />
       <StyledEditorBox>
         <Flex flexDirection="column" rowGap={3} flexGrow={1}>
-          <OfferEditorConditionsPanel makerSide="sell" />
+          <OfferEditorConditionsPanel makerSide="sell" disabled={processing} />
           <Flex gap={3}>
             <Button
               variant="contained"
               color="secondary"
               type="reset"
               onClick={handleReset}
+              disabled={processing}
             >
               <Trans>Reset</Trans>
             </Button>
-            <Button
+            <ButtonLoading
               variant="contained"
               color="primary"
               type="submit"
+              loading={processing}
             >
               <Trans>Save Offer</Trans>
-            </Button>
+            </ButtonLoading>
           </Flex>
         </Flex>
       </StyledEditorBox>

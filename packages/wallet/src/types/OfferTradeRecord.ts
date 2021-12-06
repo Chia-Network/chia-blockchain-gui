@@ -1,3 +1,4 @@
+import type OfferCoinOfInterest from './OfferCoinOfInterest';
 import type OfferSummary from './OfferSummary';
 
 type OfferTradeRecord = {
@@ -6,7 +7,7 @@ type OfferTradeRecord = {
   created_at_time: number;
   is_my_offer: boolean;
   sent: number;
-  coins_of_interest: any[];
+  coins_of_interest: OfferCoinOfInterest[];
   trade_id: string;
   status: string;
   sent_to: any[];

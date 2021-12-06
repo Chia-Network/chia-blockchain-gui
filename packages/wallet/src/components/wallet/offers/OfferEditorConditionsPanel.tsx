@@ -16,10 +16,11 @@ type OfferEditorConditionsRowProps = {
   tradeSide: 'buy' | 'sell';  // section that the row belongs to
   addRow: (() => void) | undefined;  // undefined if adding is not allowed
   removeRow: (() => void) | undefined;  // undefined if removing is not allowed
+  disabled?: boolean;
 };
 
 function OfferEditorConditionRow(props: OfferEditorConditionsRowProps) {
-  const { namePrefix, item, tradeSide, addRow, removeRow, ...rest } = props;
+  const { namePrefix, item, tradeSide, addRow, removeRow, disabled, ...rest } = props;
   const { getValues, setValue } = useFormContext();
 
   function handleAssetChange(namePrefix: string, selectedWalletId: number, selectedWalletType: WalletType) {
@@ -37,6 +38,7 @@ function OfferEditorConditionRow(props: OfferEditorConditionsRowProps) {
           tradeSide={tradeSide}
           defaultValue={undefined}
           onChange={(walletId: number, walletType: WalletType) => handleAssetChange(namePrefix, walletId, walletType)}
+          disabled={disabled}
         />
       </Grid>
       <Grid xs={6} item>
@@ -48,6 +50,7 @@ function OfferEditorConditionRow(props: OfferEditorConditionsRowProps) {
             defaultValue={item.amount}
             id={`${namePrefix}.amount`}
             name={`${namePrefix}.amount`}
+            disabled={disabled}
             required
             fullWidth
           />
@@ -60,6 +63,7 @@ function OfferEditorConditionRow(props: OfferEditorConditionsRowProps) {
             defaultValue={item.amount}
             id={`${namePrefix}.amount`}
             name={`${namePrefix}.amount`}
+            disabled={disabled}
             required
             fullWidth
           />
@@ -67,7 +71,7 @@ function OfferEditorConditionRow(props: OfferEditorConditionsRowProps) {
       </Grid>
       <Grid item style={{paddingTop: '1em'}}>
         {(addRow || removeRow) && (
-          <More>
+          <More disabled={disabled}>
             {({ onClose }: { onClose: () => void }) => (
               <Box>
                 {addRow && (
@@ -109,12 +113,17 @@ function OfferEditorConditionRow(props: OfferEditorConditionsRowProps) {
   );
 }
 
+OfferEditorConditionRow.defaultProps = {
+  disabled: false,
+};
+
 type OfferEditorConditionsPanelProps = {
   makerSide: 'buy' | 'sell';
+  disabled?: boolean;
 };
 
 function OfferEditorConditionsPanel(props: OfferEditorConditionsPanelProps) {
-  const { makerSide } = props;
+  const { makerSide, disabled } = props;
   const { control } = useFormContext();
   const { fields: makerFields, append: makerAppend, remove: makerRemove } = useFieldArray({
     control,
@@ -189,6 +198,7 @@ function OfferEditorConditionsPanel(props: OfferEditorConditionsPanelProps) {
                   () => { section.side === 'buy' ? takerRemove(fieldIndex) : makerRemove(fieldIndex) } :
                   undefined
               }
+              disabled={disabled}
             />
           ))}
           {sectionIndex !== (sections.length - 1) && (
@@ -199,5 +209,9 @@ function OfferEditorConditionsPanel(props: OfferEditorConditionsPanelProps) {
     </Flex>
   );
 }
+
+OfferEditorConditionsPanel.defaultProps = {
+  disabled: false,
+};
 
 export default OfferEditorConditionsPanel;
