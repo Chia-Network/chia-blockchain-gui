@@ -689,8 +689,18 @@ export const walletApi = createApi({
         return result ? [
           ...result.map(({ tradeId }) => ({ type: 'OfferTradeRecord', id: tradeId } as const)),
           { type: 'OfferTradeRecord', id: 'LIST' },
-        ] :  [{ type: 'OfferTradeRecord', id: 'LIST' }];
+        ] : [{ type: 'OfferTradeRecord', id: 'LIST' }];
       },
+      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, [{
+        command: 'onCoinAdded',
+        endpoint: () => walletApi.endpoints.getAllOffers,
+      }, {
+        command: 'onCoinRemoved',
+        endpoint: () => walletApi.endpoints.getAllOffers,
+      }, {
+        command: 'onPendingTransaction',
+        endpoint: () => walletApi.endpoints.getAllOffers,
+      }]),
     }),
 
     createOfferForIds: build.mutation<any, {

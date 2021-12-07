@@ -46,15 +46,15 @@ export function displayStringForOfferState(state: OfferState): string {
 export function colorForOfferState(state: OfferState): string {
   switch (state) {
     case OfferState.PENDING_ACCEPT:
-      return 'secondary';
+      return 'primary';
     case OfferState.PENDING_CONFIRM:
-      return 'secondary';
+      return 'primary';
     case OfferState.PENDING_CANCEL:
-      return 'secondary';
+      return 'primary';
     case OfferState.CANCELLED:
       return 'default';
     case OfferState.CONFIRMED:
-      return 'primary';
+      return 'secondary';
     case OfferState.FAILED:
       return 'error';
     default:
