@@ -723,6 +723,27 @@ export const walletApi = createApi({
       invalidatesTags: (result, error, { tradeId }) => [{ type: 'OfferTradeRecord', id: tradeId }],
     }),
 
+    checkOfferValidity: build.mutation<any, string>({
+      query: (offerData: string) => ({
+        command: 'checkOfferValidity',
+        args: [offerData],
+      }),
+    }),
+
+    takeOffer: build.mutation<any, {
+      offer: string;
+      fee: number | string;
+    }>({
+      query: ({
+        offer,
+        fee,
+      }) => ({
+        command: 'takeOffer',
+        args: [offer, fee],
+      }),
+      invalidatesTags: [{ type: 'OfferTradeRecord', id: 'LIST' }],
+    }),
+
     getOfferSummary: build.mutation<any, string>({
       query: (offerData: string) => ({
         command: 'getOfferSummary',
@@ -1116,6 +1137,8 @@ export const {
   useGetAllOffersQuery,
   useCreateOfferForIdsMutation,
   useCancelOfferMutation,
+  useCheckOfferValidityMutation,
+  useTakeOfferMutation,
   useGetOfferSummaryMutation,
   useGetOfferDataMutation,
 

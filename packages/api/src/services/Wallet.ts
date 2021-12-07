@@ -259,6 +259,19 @@ export default class Wallet extends Service {
     });
   }
 
+  async checkOfferValidity(offer: string) {
+    return this.command('check_offer_validity', {
+      offer,
+    });
+  }
+
+  async takeOffer(offer: string, fee: number | string) {
+    return this.command('take_offer', {
+      offer,
+      fee,
+    });
+  }
+
   async getOfferSummary(offerData: string) {
     return this.command('get_offer_summary', {
       offer: offerData,

@@ -62,6 +62,8 @@ export const {
   useGetAllOffersQuery,
   useCreateOfferForIdsMutation,
   useCancelOfferMutation,
+  useCheckOfferValidityMutation,
+  useTakeOfferMutation,
   useGetOfferSummaryMutation,
   useGetOfferDataMutation,
 

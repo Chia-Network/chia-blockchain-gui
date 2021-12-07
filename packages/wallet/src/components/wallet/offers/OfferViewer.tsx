@@ -1,15 +1,19 @@
-import React, { useMemo } from 'react';
-import moment from 'moment';
+import React, { useMemo, useState } from 'react';
+import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
+import moment from 'moment';
 import { Trans, Plural } from '@lingui/macro';
 import {
   AlertDialog,
   Back,
+  ButtonLoading,
   Card,
-  CardHeader,
   CopyToClipboard,
+  Fee,
   Flex,
+  Form,
   FormatLargeNumber,
+  Link,
   TableControlled,
   TooltipIcon,
   useShowError
@@ -29,14 +33,18 @@ import {
   Typography
 } from '@material-ui/core';
 import { OfferSummary, OfferTradeRecord } from '@chia/api';
+import { useCheckOfferValidityMutation, useTakeOfferMutation } from '@chia/api-react';
 import {
   colorForOfferState,
   displayStringForOfferState,
   formatAmountForWalletType
 } from './utils';
 import useAssetIdName from '../../../hooks/useAssetIdName';
+import useOpenExternal from '../../../hooks/useOpenExternal';
 import WalletType from '../../../constants/WalletType';
+import { chia_to_mojo, mojo_to_chia_string } from '../../../util/chia';
 import OfferCoinOfInterest from 'types/OfferCoinOfInterest';
+import OfferState from './OfferState';
 import styled from 'styled-components';
 
 const StyledViewerBox = styled.div`
@@ -88,7 +96,9 @@ OfferMojoAmount.defaultProps = {
 
 type OfferDetailsProps = {
   tradeRecord?: OfferTradeRecord;
+  offerData?: string;
   offerSummary?: OfferSummary;
+  imported?: boolean;
 };
 
 type OfferDetailsRow = {
@@ -99,44 +109,91 @@ type OfferDetailsRow = {
 };
 
 function OfferDetails(props: OfferDetailsProps) {
-  const { tradeRecord, offerSummary } = props;
+  const { tradeRecord, offerData, offerSummary, imported } = props;
   const summary = tradeRecord?.summary || offerSummary;
   const lookupAssetId = useAssetIdName();
+  const openExternal = useOpenExternal();
+  const history = useHistory();
+  const showError = useShowError();
+  const methods = useForm({ defaultValues: { fee: '' } });
+  const [isAccepting, setIsAccepting] = useState<boolean>(false);
+  const [isValidating, setIsValidating] = useState<boolean>(false);
+  const [isValid, setIsValid] = useState<boolean>(tradeRecord !== undefined);
+  const [checkOfferValidity] = useCheckOfferValidityMutation();
+  const [takeOffer] = useTakeOfferMutation();
   let detailRows: OfferDetailsRow[] = [];
 
+  useMemo(async () => {
+    if (!offerData) {
+      return false;
+    }
+
+    let valid = false;
+
+    try {
+      setIsValidating(true);
+
+      const response = await checkOfferValidity(offerData);
+
+      if (response.data?.success === true) {
+        if (response.data?.valid === true) {
+          valid = true;
+        }
+        else {
+
+        }
+      }
+      else {
+        showError(response.data?.error ?? new Error("Encountered an unknown error while checking offer validity"));
+      }
+    }
+    catch (e) {
+      showError(e);
+    }
+    finally {
+      setIsValid(valid);
+      setIsValidating(false);
+    }
+  }, [offerData]);
+
   if (tradeRecord) {
-    detailRows = [
-      {
-        name: <Trans>Status</Trans>,
-        value: displayStringForOfferState(tradeRecord.status),
-        color: colorForOfferState(tradeRecord.status),
-      },
-      {
-        name: <Trans>Offer Identifier</Trans>,
-        value: tradeRecord.tradeId,
-      },
-      {
-        name: <Trans>Confirmed at Height</Trans>,
-        value: tradeRecord.confirmedAtIndex || <Trans>Not confirmed</Trans>,
-      },
-      {
+    detailRows.push({
+      name: <Trans>Status</Trans>,
+      value: displayStringForOfferState(tradeRecord.status),
+      color: colorForOfferState(tradeRecord.status),
+    });
+
+    detailRows.push({
+      name: <Trans>Offer Identifier</Trans>,
+      value: tradeRecord.tradeId,
+    });
+
+    detailRows.push({
+      name: <Trans>Confirmed at Height</Trans>,
+      value: tradeRecord.confirmedAtIndex || <Trans>Not confirmed</Trans>,
+    });
+
+    if (!tradeRecord.isMyOffer) {
+      detailRows.push({
         name: <Trans>Accepted on Date</Trans>,
         value: tradeRecord.acceptedAtTime ? (
           moment(tradeRecord.acceptedAtTime * 1000).format('LLL')
         ) : (
           <Trans>Not accepted</Trans>
         ),
-      },
-      {
-        name: <Trans>Creation Date</Trans>,
-        value: moment(tradeRecord.createdAtTime * 1000).format('LLL'),
-      },
-      {
-        name: <Trans>Node Count</Trans>,
-        tooltip: <Trans>This number reflects the number of nodes that the accepted SpendBundle has been sent to</Trans>,
-        value: tradeRecord.sent,
-      },
-    ];
+      });
+    }
+
+    detailRows.push({
+      name: <Trans>Creation Date</Trans>,
+      value: moment(tradeRecord.createdAtTime * 1000).format('LLL'),
+    });
+
+    detailRows.push({
+      name: <Trans>Node Count</Trans>,
+      tooltip: <Trans>This number reflects the number of nodes that the accepted SpendBundle has been sent to</Trans>,
+      value: tradeRecord.sent,
+    });
   }
 
   const coinCols = [
@@ -145,10 +202,7 @@ function OfferDetails(props: OfferDetailsProps) {
         return (
           <Typography variant="body2">
             <Flex flexDirection="row" flexGrow={1} gap={1}>
-              <FormatLargeNumber value={coin.amount} />
-              <Box>
-                <Plural value={coin.amount} one="mojo" other="mojos" />
-              </Box>
+              {mojo_to_chia_string(coin.amount)}
             </Flex>
           </Typography>
         )
@@ -167,7 +221,11 @@ function OfferDetails(props: OfferDetailsProps) {
             }
             interactive
           >
-            <span>{coin.parentCoinInfo}</span>
+            <Link
+              onClick={(event) => handleLinkClicked(event, `https://www.chiaexplorer.com/blockchain/coin/${coin.parentCoinInfo}`)}
+            >
+              {coin.parentCoinInfo}
+            </Link>
           </Tooltip>
         )
       },
@@ -186,7 +244,11 @@ function OfferDetails(props: OfferDetailsProps) {
             }
             interactive
           >
-            <span>{coin.puzzleHash}</span>
+            <Link
+              onClick={(event) => handleLinkClicked(event, `https://www.chiaexplorer.com/blockchain/puzzlehash/${coin.puzzleHash}`)}
+            >
+              {coin.puzzleHash}
+            </Link>
           </Tooltip>
         )
       },
@@ -194,6 +256,73 @@ function OfferDetails(props: OfferDetailsProps) {
       title: <Trans>Puzzle Hash</Trans>
     }
   ];
+
+  function handleLinkClicked(event, url: string) {
+    event.preventDefault();
+    event.stopPropagation();
+    openExternal(url);
+  }
+
+  async function handleAcceptOffer(formData: any) {
+    const { fee } = formData;
+    const feeInMojos = fee ? Number.parseFloat(chia_to_mojo(fee)) : 0;
+
+    try {
+      setIsAccepting(true);
+
+      const response = await takeOffer({ offer: offerData, fee: feeInMojos });
+
+      console.log("response: ");
+      console.log(response);
+
+      history.replace('/dashboard/wallets/offers/manage');
+    }
+    catch (e) {
+      showError(e);
+    }
+    finally {
+      setIsAccepting(false);
+    }
+  }
+
+  type OfferHeaderProps = {
+    isMyOffer: boolean;
+    isInvalid: boolean;
+    isComplete: boolean;
+  };
+
+  function OfferHeader(props: OfferHeaderProps) {
+    const { isMyOffer, isInvalid, isComplete, ...rest } = props;
+    let headerElement: React.ReactElement | undefined = undefined;
+
+    if (!headerElement && isMyOffer) {
+      headerElement = <Typography variant="subtitle1" color="primary"><Trans>You created this offer</Trans></Typography>
+    }
+
+    if (!headerElement && isInvalid) {
+      headerElement = <Typography variant="subtitle1" color="error"><Trans>This offer is no longer valid</Trans></Typography>
+    }
+
+    if (!headerElement && isComplete) {
+      headerElement = <Typography variant="subtitle1" color="primary"><Trans>This offer has completed successfully</Trans></Typography>
+    }
+
+    return headerElement ? (
+      <StyledHeaderBox>
+        <Flex flexDirection="column" flexGrow={1} gap={3}>
+          {headerElement}
+        </Flex>
+      </StyledHeaderBox>
+    ) : (
+      <></>
+    );
+  }
+
+  OfferHeader.defaultProps = {
+    isMyOffer: false,
+    isInvalid: false,
+    isComplete: false,
+  };
 
   function OfferSummaryEntry({ assetId, amount, ...rest}) {
     const assetIdInfo = lookupAssetId(assetId);
@@ -217,13 +346,11 @@ function OfferDetails(props: OfferDetailsProps) {
   return (
     <StyledViewerBox>
       <Flex flexDirection="column" gap={3}>
-        {tradeRecord?.isMyOffer && (
-          <StyledHeaderBox>
-            <Flex flexDirection="column" flexGrow={1} gap={3}>
-              <Typography variant="subtitle1" color="primary">You created this offer</Typography>
-            </Flex>
-          </StyledHeaderBox>
-        )}
+        <OfferHeader
+          isMyOffer={tradeRecord?.isMyOffer}
+          isInvalid={!isValidating && !isValid}
+          isComplete={tradeRecord?.status === OfferState.CONFIRMED}
+        />
         {summary && (
           <Card title={<Trans>Summary</Trans>}>
             <StyledSummaryBox>
@@ -237,6 +364,45 @@ function OfferDetails(props: OfferDetailsProps) {
                 {Object.entries(summary.offered).map(([assetId, amount]) => (
                   <OfferSummaryEntry assetId={assetId} amount={amount} />
                 ))}
+                {imported && (
+                  <Form methods={methods} onSubmit={handleAcceptOffer}>
+                    <Flex flexDirection="column" gap={3}>
+                      <Divider />
+                      {isValid && (
+                        <Grid direction="column" md={6} container>
+                          <Fee
+                            id="filled-secondary"
+                            variant="filled"
+                            name="fee"
+                            color="secondary"
+                            label={<Trans>Fee</Trans>}
+                            disabled={isAccepting}
+                            fullwidth
+                          />
+                        </Grid>
+                      )}
+                      <Flex flexDirection="row" gap={3}>
+                        <Button
+                          variant="contained"
+                          color="secondary"
+                          onClick={() => history.goBack()}
+                          disabled={isAccepting}
+                        >
+                          <Trans>Back</Trans>
+                        </Button>
+                        <ButtonLoading
+                          variant="contained"
+                          color="primary"
+                          type="submit"
+                          disabled={!isValid}
+                          loading={isAccepting}
+                        >
+                          <Trans>Accept Offer</Trans>
+                        </ButtonLoading>
+                      </Flex>
+                    </Flex>
+                  </Form>
+                )}
               </Flex>
             </StyledSummaryBox>
           </Card>
@@ -279,13 +445,14 @@ function OfferDetails(props: OfferDetailsProps) {
 
 type OfferViewerProps = {
   tradeRecord?: OfferTradeRecord;
+  offerData?: string;
   offerSummary?: OfferSummary;
   offerFilePath?: string;
+  imported?: boolean;
 };
 
 export function OfferViewer(props: OfferViewerProps) {
-  const { offerFilePath, offerSummary, tradeRecord, ...rest } = props;
-  const history = useHistory();
+  const { offerData, offerFilePath, offerSummary, tradeRecord, imported, ...rest } = props;
 
   return (
     <Grid container>
@@ -299,7 +466,13 @@ export function OfferViewer(props: OfferViewerProps) {
             )}
           </Back>
         </Flex>
-        <OfferDetails tradeRecord={tradeRecord} offerSummary={offerSummary} {...rest} />
+        <OfferDetails
+          tradeRecord={tradeRecord}
+          offerData={offerData}
+          offerSummary={offerSummary}
+          imported={imported}
+          {...rest}
+        />
       </Flex>
     </Grid>
   );

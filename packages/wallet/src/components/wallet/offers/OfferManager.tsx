@@ -35,6 +35,7 @@ import { Trade as TradeIcon } from '@chia/icons';
 import { useCancelOfferMutation, useGetAllOffersQuery, useGetOfferDataMutation } from '@chia/api-react';
 import { colorForOfferState, displayStringForOfferState, formatAmountForWalletType, formatOfferEntry, suggestedFilenameForOffer } from './utils';
 import useAssetIdName from '../../../hooks/useAssetIdName';
+import { chia_to_mojo } from '../../../util/chia';
 import { CreateOfferEditor } from './OfferEditor';
 import { OfferImport } from './OfferImport';
 import { OfferViewer } from './OfferViewer';
@@ -69,7 +70,8 @@ function ConfirmOfferCancellation(props: ConfirmOfferCancellationProps) {
 
   // Communicate value updates to the parent component
   useEffect(() => {
-    onUpdateValues({ cancelWithTransaction, cancellationFee: (fee ? parseFloat(fee) : 0) });
+    const feeInMojos = fee ? Number.parseFloat(chia_to_mojo(fee)) : 0;
+    onUpdateValues({ cancelWithTransaction, cancellationFee: feeInMojos });
   }, [cancelWithTransaction, fee]);
 
   return (
@@ -106,7 +108,6 @@ function ConfirmOfferCancellation(props: ConfirmOfferCancellationProps) {
               />
             </Grid>
             { cancelWithTransaction && (
-              // <Typography>Test</Typography>
               <Grid xs={6} item>
                 <Fee
                   id="filled-secondary"
@@ -125,8 +126,13 @@ function ConfirmOfferCancellation(props: ConfirmOfferCancellationProps) {
   );
 }
 
-function OfferList() {
-  const { data, loading, error } = useGetAllOffersQuery();
+type OfferListProps = {
+  title: string | React.ReactElement;
+  offers: OfferTradeRecord[];
+};
+
+function OfferList(props: OfferListProps) {
+  const { title, offers } = props;
   const [getOfferData] = useGetOfferDataMutation();
   const [cancelOffer] = useCancelOfferMutation();
   const lookupAssetId = useAssetIdName();
@@ -178,29 +184,14 @@ function OfferList() {
       </ConfirmDialog>
     );
 
-    console.log("cancelConfirmed:");
-    console.log(cancelConfirmed);
-    console.log("options");
-    console.log(options);
-
     if (cancelConfirmed === true) {
       const response = await cancelOffer({ tradeId, secure: options.cancelWithTransaction, fee: options.cancellationFee });
-      console.log("response");
-      console.log(response);
     }
   }
 
   function handleRowClick(event: any, row: OfferTradeRecord) {
     history.push('/dashboard/wallets/offers/view', { tradeRecord: row });
   }
-
-  const sortedTradeRecords: OfferTradeRecord[] = useMemo(() => {
-    if (loading || !data) {
-      return [];
-    }
-    // Show newest offers first
-    return [...data].sort((a: OfferTradeRecord, b: OfferTradeRecord) => b.createdAtTime - a.createdAtTime);
-  }, [data, loading]);
 
   const cols = useMemo(() => {
     return [
@@ -324,7 +315,7 @@ function OfferList() {
                       <Trans>Export Offer File</Trans>
                     </Typography>
                   </MenuItem>
-                  { row.status !== OfferState.PENDING_CANCEL && row.status !== OfferState.CANCELLED && row.status !== OfferState.FAILED && (
+                  { row.status === OfferState.PENDING_ACCEPT && (
                     <MenuItem
                       onClick={() => {
                         onClose();
@@ -349,13 +340,13 @@ function OfferList() {
         title: <Trans>Actions</Trans>
       },
     ];
-  }, [loading]);
+  }, []);
 
   return (
-    <Card title={<Trans>Offers You've Created</Trans>}>
-      {sortedTradeRecords?.length ? (
+    <Card title={title}>
+      {offers.length ? (
         <TableControlled
-          rows={sortedTradeRecords}
+          rows={offers}
           cols={cols}
         />
       ) : (
@@ -371,6 +362,28 @@ export function OfferManager() {
   const { data, isLoading } = useGetAllOffersQuery();
   const history = useHistory();
 
+  const [myOffers, acceptedOffers]: OfferTradeRecord[] = useMemo(() => {
+    if (isLoading || !data) {
+      return [[], []];
+    }
+
+    // Show newest offers first
+    const sortedOffers = [...data].sort((a: OfferTradeRecord, b: OfferTradeRecord) => b.createdAtTime - a.createdAtTime);
+    const myOffers: OfferTradeRecord[] = [];
+    const acceptedOffers: OfferTradeRecord[] = [];
+
+    sortedOffers.forEach((offer) => {
+      if (offer.isMyOffer) {
+        myOffers.push(offer);
+      }
+      else {
+        acceptedOffers.push(offer);
+      }
+    });
+
+    return [myOffers, acceptedOffers];
+  }, [data, isLoading]);
+
   function handleCreateOffer() {
     history.push('/dashboard/wallets/offers/create');
   }
@@ -379,10 +392,11 @@ export function OfferManager() {
     history.push('/dashboard/wallets/offers/import');
   }
 
-  console.log('isLoading: ', isLoading);
   if (!isLoading) {
-    console.log("offers: ");
-    console.log(data);
+    console.log("myOffers");
+    console.log(myOffers);
+    console.log("acceptedOffers");
+    console.log(acceptedOffers);
   }
 
   return (
@@ -411,7 +425,8 @@ export function OfferManager() {
         </Grid>
       </Grid>
       <Divider />
-      <OfferList />
+      <OfferList title={<Trans>Your Offers</Trans>} offers={myOffers} />
+      <OfferList title={<Trans>Accepted Offers</Trans>} offers={acceptedOffers} />
     </Flex>
   );
 }
@@ -429,7 +444,13 @@ export function CreateOffer() {
         <OfferImport />
       </Route>
       <Route path={`${path}/view`}>
-        <OfferViewer tradeRecord={location?.state?.tradeRecord} offerSummary={location?.state?.offerSummary} offerFilePath={location?.state?.offerFilePath} />
+        <OfferViewer
+          tradeRecord={location?.state?.tradeRecord}
+          offerData={location?.state?.offerData}
+          offerSummary={location?.state?.offerSummary}
+          offerFilePath={location?.state?.offerFilePath}
+          imported={location?.state?.imported}
+        />
       </Route>
       <Route path={`${path}/manage`}>
         <OfferManager />

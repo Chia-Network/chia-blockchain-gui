@@ -16,22 +16,18 @@ function SelectOfferFile() {
   async function handleOpen(offerFilePath: string) {
     async function continueOpen(stats) {
       try {
-        console.log(stats);
         if (stats.size > 1024 * 1024) {
           errorDialog(new Error("Offer file is too large (> 1MB)"));
         }
         else {
           const offerData = fs.readFileSync(offerFilePath, 'utf8');
-          console.log("offerData:", offerData);
           const { data: response } = await getOfferSummary(offerData);
-          console.log("response: ");
-          console.log(response);
           const { summary: offerSummary, success } = response;
           if (!success) {
             errorDialog(new Error("Could not parse offer file"));
           }
           else {
-            history.push('/dashboard/wallets/offers/view', { offerSummary, offerFilePath });
+            history.push('/dashboard/wallets/offers/view', { offerData, offerSummary, offerFilePath, imported: true });
           }
         }
       }
