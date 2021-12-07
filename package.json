@@ -16,7 +16,8 @@
     "start:wallet": "lerna run start --scope @chia/wallet",
     "dev:gui": "lerna run dev --scope @chia/gui --stream",
     "dev:wallet": "lerna run dev --scope @chia/wallet --stream",
-    "electron": "npm run start:wallet",
+    "wallet": "npm run start:wallet",
+    "electron": "npm run start:gui",
     "locale:extract": "lerna run locale:extract",
     "audit": "lerna-audit --no-fix",
     "audit:fix": "lerna-audit"

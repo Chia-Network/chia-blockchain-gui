@@ -27,24 +27,24 @@ msgstr ""
 #~ msgstr "＊想更進一步探索 Chia 區塊鍵？看看開源開發者打造的 <0>Chia Explorer</0>"
 
 #: src/components/wallet/WalletHistory.tsx:111
-msgid "+"
-msgstr ""
+#~ msgid "+"
+#~ msgstr ""
 
 #: src/components/plot/add/PlotAddNFT.tsx:123
 #~ msgid "+ Add New Plot NFT"
 #~ msgstr "+ 新增新的農場"
 
 #: src/components/wallet/WalletHeader.tsx:61
-msgid "+ Add Token"
-msgstr ""
+#~ msgid "+ Add Token"
+#~ msgstr ""
 
 #: src/components/wallet/Wallets.tsx:132
 #~ msgid "+ Add Wallet"
 #~ msgstr "+ 新增錢包"
 
 #: src/components/wallet/WalletHistory.tsx:110
-msgid "-"
-msgstr ""
+#~ msgid "-"
+#~ msgstr ""
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:94
 #~ msgid "0 automatically chooses bucket count"
@@ -90,17 +90,17 @@ msgstr ""
 #~ msgstr "動作"
 
 #: src/components/wallet/cat/WalletCATCreateExistingSimple.tsx:97
-msgid "Add"
-msgstr "新增"
+#~ msgid "Add"
+#~ msgstr "新增"
 
 #: src/components/wallet/did/WalletDID.tsx:874
 #: src/components/wallet/did/WalletDIDCreate.tsx:205
-msgid "Add Backup ID"
-msgstr "增加備份 ID"
+#~ msgid "Add Backup ID"
+#~ msgstr "增加備份 ID"
 
 #: src/components/wallet/hero/WalletHeroAdd.tsx:99
-msgid "Add Custom Token"
-msgstr ""
+#~ msgid "Add Custom Token"
+#~ msgstr ""
 
 #: src/components/plot/PlotHeader.tsx:91
 #~ msgid "Add Plot Directory"
@@ -115,8 +115,8 @@ msgstr ""
 #: src/components/wallet/cat/WalletCATCreateSimple.tsx:71
 #: src/components/wallet/hero/WalletHeroAdd.tsx:64
 #: src/components/wallet/hero/WalletHeroWallets.tsx:100
-msgid "Add Token"
-msgstr ""
+#~ msgid "Add Token"
+#~ msgstr ""
 
 #: src/components/wallet/Wallets.tsx:88
 #~ msgid "Add Wallet"
@@ -148,41 +148,45 @@ msgstr ""
 #~ msgstr "從水龍頭新增{currencyCode}."
 
 #: src/components/wallet/cat/WalletCATCreateSimple.tsx:95
-msgid "Adding {0} token"
-msgstr ""
+#~ msgid "Adding {0} token"
+#~ msgstr ""
 
 #: src/components/wallet/WalletReceiveAddress.tsx:56
-msgid "Address"
-msgstr "位址"
+#~ msgid "Address"
+#~ msgstr "位址"
 
 #: src/components/wallet/WalletSend.tsx:150
 #: src/components/wallet/cat/WalletCATSend.tsx:192
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:701
-msgid "Address / Puzzle hash"
-msgstr "位址 / 拼圖雜湊值"
+#~ msgid "Address / Puzzle hash"
+#~ msgstr "位址 / 拼圖雜湊值"
+
+#: src/components/app/AppKeyringMigrator.tsx:199
+msgid "After your keys are successfully migrated to the new keyring, you may choose to have your keys removed from the old keyring."
+msgstr ""
 
 #: src/components/wallet/WalletHistory.tsx:196
-msgid "All"
-msgstr ""
+#~ msgid "All"
+#~ msgstr ""
 
 #: src/components/wallet/WalletHistory.tsx:124
 #: src/components/wallet/WalletSend.tsx:160
 #: src/components/wallet/cat/WalletCATSend.tsx:203
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:720
-msgid "Amount"
-msgstr "數量"
+#~ msgid "Amount"
+#~ msgstr "數量"
 
 #: src/components/wallet/cat/WalletCAT.tsx:581
 #~ msgid "Amount ({cc_unit})"
 #~ msgstr "數量 ({cc_unit})"
 
 #: src/components/wallet/create/createRLAdmin.jsx:239
-msgid "Amount For Initial Coin"
-msgstr "初始代幣數量"
+#~ msgid "Amount For Initial Coin"
+#~ msgstr "初始代幣數量"
 
 #: src/components/wallet/did/WalletDIDCreate.tsx:62
-msgid "Amount must be an even amount."
-msgstr ""
+#~ msgid "Amount must be an even amount."
+#~ msgstr ""
 
 #: src/components/plot/PlotAction.tsx:30
 #: src/components/plot/queue/PlotQueueActions.tsx:46
@@ -190,8 +194,8 @@ msgstr ""
 #~ msgstr "你確要刪除這個耕地嗎？此耕地將無法尋回。"
 
 #: src/components/wallet/WalletHeader.tsx:44
-msgid "Are you sure you want to delete unconfirmed transactions?"
-msgstr "你確認要刪除未確認的交易?"
+#~ msgid "Are you sure you want to delete unconfirmed transactions?"
+#~ msgstr "你確認要刪除未確認的交易?"
 
 #: src/components/fullNode/FullNodeCloseConnection.tsx:25
 #~ msgid "Are you sure you want to disconnect?"
@@ -216,14 +220,14 @@ msgstr ""
 #: src/components/wallet/cat/WalletCATCreateExistingSimple.tsx:81
 #: src/components/wallet/cat/WalletCATTAILDialog.tsx:44
 #: src/components/wallet/cat/WalletCATTAILDialog.tsx:57
-msgid "Asset Id"
-msgstr ""
+#~ msgid "Asset Id"
+#~ msgstr ""
 
 #: src/constants/WalletName.ts:11
 msgid "Atomic Swap Wallet"
 msgstr ""
 
-#: src/components/app/AppState.tsx:68
+#: src/components/app/AppState.tsx:139
 msgid "Attempt {attempt}"
 msgstr ""
 
@@ -237,8 +241,8 @@ msgstr ""
 
 #: src/components/selectKey/SelectKey.tsx:35
 #: src/components/selectKey/SelectKeyItem.tsx:82
-msgid "Back"
-msgstr "返回"
+#~ msgid "Back"
+#~ msgstr "返回"
 
 #: src/components/backup/BackupCreate.tsx:45
 msgid "Backup file is used to restore smart wallets."
@@ -246,8 +250,8 @@ msgstr "備份檔案可用於復原智慧錢包。"
 
 #: src/components/wallet/did/WalletDID.tsx:647
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:541
-msgid "Balance"
-msgstr "餘額"
+#~ msgid "Balance"
+#~ msgstr "餘額"
 
 #: src/components/block/Block.jsx:318
 #~ msgid "Base Farmer Reward Amount"
@@ -334,11 +338,11 @@ msgstr ""
 #~ msgstr ""
 
 #: src/components/selectKey/SelectKeyItem.tsx:135
-msgid "Can be backed up to mnemonic seed"
-msgstr "可以備份到助記符號種子"
+#~ msgid "Can be backed up to mnemonic seed"
+#~ msgstr "可以備份到助記符號種子"
 
+#: src/components/app/AppPassPrompt.tsx:151
 #: src/components/backup/BackupCreate.tsx:50
-#: src/components/wallet/WalletRenameDialog.tsx:91
 msgid "Cancel"
 msgstr "取消"
 
@@ -348,8 +352,8 @@ msgstr "取消"
 
 #: src/components/wallet/WalletSend.tsx:99
 #: src/components/wallet/cat/WalletCATSend.tsx:117
-msgid "Cannot send chia to coloured address. Please enter a chia address."
-msgstr ""
+#~ msgid "Cannot send chia to coloured address. Please enter a chia address."
+#~ msgstr ""
 
 #: src/components/plot/PlotsNotFound.tsx:39
 #~ msgid "Caution, deleting these plots will delete them forever. Check that the storage devices are properly connected."
@@ -383,16 +387,16 @@ msgstr "Chia"
 
 #: src/components/wallet/cat/WalletCATSelect.tsx:25
 #: src/components/wallet/create/WalletCreateList.tsx:32
-msgid "Chia Asset Token"
-msgstr ""
+#~ msgid "Chia Asset Token"
+#~ msgstr ""
 
 #: src/electron/main.tsx:358
 msgid "Chia Blockchain Wiki"
 msgstr "Chia 區塊鏈維基"
 
 #: src/components/wallet/standard/WalletStandard.tsx:23
-msgid "Chia Wallet"
-msgstr "Chia 錢包"
+#~ msgid "Chia Wallet"
+#~ msgstr "Chia 錢包"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:36
 #~ msgid "Choose Number of Plots"
@@ -412,13 +416,13 @@ msgstr "Chia 錢包"
 #~ msgid "Close"
 #~ msgstr "關閉"
 
-#: src/components/app/AppState.tsx:46
+#: src/components/app/AppState.tsx:97
 msgid "Closing down node and server"
 msgstr "關閉節點和伺服器"
 
 #: src/components/wallet/did/WalletDID.tsx:984
-msgid "Coin Name"
-msgstr "幣種名稱"
+#~ msgid "Coin Name"
+#~ msgstr "幣種名稱"
 
 #: src/components/trading/TradingOverview.jsx:366
 #~ msgid "Coins:"
@@ -458,17 +462,22 @@ msgstr "確認"
 #~ msgid "Confirm Disconnect"
 #~ msgstr "確認斷線"
 
+#: src/components/app/AppKeyringMigrator.tsx:150
+#: src/components/app/AppKeyringMigrator.tsx:151
+msgid "Confirm Passphrase"
+msgstr ""
+
 #: src/components/wallet/WalletHeader.tsx:39
-msgid "Confirmation"
-msgstr "確認"
+#~ msgid "Confirmation"
+#~ msgstr "確認"
 
 #: src/components/wallet/WalletHistory.tsx:75
-msgid "Confirmed"
-msgstr ""
+#~ msgid "Confirmed"
+#~ msgstr ""
 
 #: src/components/wallet/WalletHistory.tsx:238
-msgid "Confirmed at Height"
-msgstr ""
+#~ msgid "Confirmed at Height"
+#~ msgstr ""
 
 #: src/components/trading/TradingOverview.jsx:201
 #~ msgid "Confirmed at block:"
@@ -500,8 +509,8 @@ msgstr ""
 #~ msgid "Connecting do daemon"
 #~ msgstr ""
 
-#: src/components/app/AppState.tsx:61
-#: src/components/app/AppState.tsx:65
+#: src/components/app/AppState.tsx:132
+#: src/components/app/AppState.tsx:136
 msgid "Connecting to daemon"
 msgstr ""
 
@@ -519,12 +528,12 @@ msgstr ""
 #~ msgstr "連線狀態："
 
 #: src/components/wallet/WalletConnections.tsx:63
-msgid "Connection type"
-msgstr "連線類型"
+#~ msgid "Connection type"
+#~ msgstr "連線類型"
 
 #: src/components/wallet/WalletConnections.tsx:79
-msgid "Connections"
-msgstr "連線"
+#~ msgid "Connections"
+#~ msgstr "連線"
 
 #: src/electron/main.tsx:382
 msgid "Contribute on GitHub"
@@ -537,49 +546,45 @@ msgstr "在 GitHub 上貢獻"
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:306
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:428
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:485
-msgid "Copy"
-msgstr "複製"
+#~ msgid "Copy"
+#~ msgstr "複製"
 
 #: src/components/core/components/CopyToClipboard/CopyToClipboard.tsx:33
 #~ msgid "Copy to Clipboard"
 #~ msgstr "複製到剪貼板"
 
 #: src/components/backup/BackupCreate.tsx:58
-#: src/components/wallet/cat/WalletCATCreateNew.tsx:103
-#: src/components/wallet/create/createRLAdmin.jsx:307
-#: src/components/wallet/create/createRLUser.jsx:99
-#: src/components/wallet/did/WalletDIDCreate.tsx:218
 msgid "Create"
 msgstr "建立"
 
 #: src/components/wallet/did/WalletDID.tsx:967
-msgid "Create An Attestation Packet"
-msgstr "建立一個證明封包"
+#~ msgid "Create An Attestation Packet"
+#~ msgstr "建立一個證明封包"
 
 #: src/components/wallet/cat/WalletCATCreateExisting.tsx:65
 #~ msgid "Create Chia Asset Token Wallet"
 #~ msgstr ""
 
 #: src/components/wallet/cat/WalletCATCreateExisting.tsx:77
-msgid "Create Chia Asset Token Wallet from Existing TAIL"
-msgstr ""
+#~ msgid "Create Chia Asset Token Wallet from Existing TAIL"
+#~ msgstr ""
 
 #: src/components/wallet/create/WalletCreate.jsx:290
 #~ msgid "Create DID wallet"
 #~ msgstr "Create DID wallet"
 
 #: src/components/wallet/did/WalletDIDCreate.tsx:110
-msgid "Create Distributed Identity Wallet"
-msgstr "建立分散式識別的錢包"
+#~ msgid "Create Distributed Identity Wallet"
+#~ msgstr "建立分散式識別的錢包"
 
 #: src/components/wallet/cat/WalletCATCreateNew.tsx:77
-msgid "Create New Chia Asset Token Wallet"
-msgstr ""
+#~ msgid "Create New Chia Asset Token Wallet"
+#~ msgstr ""
 
 #: src/components/wallet/cat/WalletCATSelect.tsx:32
 #: src/components/wallet/did/WalletDIDSelect.tsx:32
-msgid "Create New Wallet"
-msgstr "建立新錢包"
+#~ msgid "Create New Wallet"
+#~ msgstr "建立新錢包"
 
 #: src/components/trading/TradeManager.tsx:45
 #~ msgid "Create Offer"
@@ -590,12 +595,12 @@ msgstr "建立新錢包"
 #~ msgstr "Create Plot"
 
 #: src/components/wallet/create/createRLAdmin.jsx:188
-msgid "Create Rate Limited Admin Wallet"
-msgstr "建立速率限制管理員錢包"
+#~ msgid "Create Rate Limited Admin Wallet"
+#~ msgstr "建立速率限制管理員錢包"
 
 #: src/components/wallet/create/createRLUser.jsx:78
-msgid "Create Rate Limited User Wallet"
-msgstr "建立速率限制使用者錢包"
+#~ msgid "Create Rate Limited User Wallet"
+#~ msgstr "建立速率限制使用者錢包"
 
 #: src/components/wallet/cat/WalletCATCreateExistingSimple.tsx:79
 #~ msgid "Create Token"
@@ -612,8 +617,8 @@ msgstr "建立速率限制使用者錢包"
 #: src/components/wallet/WalletSend.tsx:133
 #: src/components/wallet/cat/WalletCATSend.tsx:174
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:684
-msgid "Create Transaction"
-msgstr "建立交易"
+#~ msgid "Create Transaction"
+#~ msgstr "建立交易"
 
 #: src/components/backup/BackupCreate.tsx:41
 msgid "Create a Backup"
@@ -624,16 +629,16 @@ msgstr "建立備份"
 #~ msgstr "建立一塊農場"
 
 #: src/components/selectKey/SelectKey.tsx:113
-msgid "Create a new private key"
-msgstr "建立一個新的私鑰"
+#~ msgid "Create a new private key"
+#~ msgstr "建立一個新的私鑰"
 
 #: src/components/wallet/create/WalletCreate.jsx:186
 #~ msgid "Create admin wallet"
 #~ msgstr "建立管理員錢包"
 
 #: src/components/wallet/cat/WalletCATCreateExisting.tsx:76
-msgid "Create custom CAT Wallet"
-msgstr ""
+#~ msgid "Create custom CAT Wallet"
+#~ msgstr ""
 
 #: src/components/wallet/cat/WalletCATSelect.tsx:39
 #~ msgid "Create from Existing"
@@ -698,12 +703,12 @@ msgid "Custody Wallet"
 msgstr ""
 
 #: src/components/wallet/cat/WalletCATCreateSimple.tsx:103
-msgid "Custom"
-msgstr ""
+#~ msgid "Custom"
+#~ msgstr ""
 
 #: src/components/selectKey/SelectKeyItem.tsx:150
-msgid "DANGER: permanently delete private key"
-msgstr "危險：將永久刪除私鑰"
+#~ msgid "DANGER: permanently delete private key"
+#~ msgstr "危險：將永久刪除私鑰"
 
 #: src/constants/WalletName.ts:29
 msgid "DID Wallet"
@@ -714,8 +719,8 @@ msgstr "DID Wallet"
 #~ msgstr ""
 
 #: src/components/wallet/WalletHistory.tsx:97
-msgid "Date"
-msgstr "日期"
+#~ msgid "Date"
+#~ msgstr "日期"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:92
 #~ msgid "Delay"
@@ -728,8 +733,12 @@ msgstr "日期"
 #: src/components/wallet/did/WalletDID.tsx:862
 #: src/components/wallet/did/WalletDIDCreate.tsx:194
 #: src/components/wallet/did/WalletDIDRecovery.tsx:100
-msgid "Delete"
-msgstr "刪除"
+#~ msgid "Delete"
+#~ msgstr "刪除"
+
+#: src/components/app/AppPassPrompt.tsx:93
+msgid "Delete Key"
+msgstr ""
 
 #: src/components/plot/PlotAction.tsx:26
 #: src/components/plot/queue/PlotQueueActions.tsx:42
@@ -737,29 +746,33 @@ msgstr "刪除"
 #~ msgstr "刪除耕地"
 
 #: src/components/wallet/WalletHeader.tsx:85
-msgid "Delete Unconfirmed Transactions"
-msgstr "刪除未確認的交易"
+#~ msgid "Delete Unconfirmed Transactions"
+#~ msgstr "刪除未確認的交易"
 
 #: src/components/selectKey/SelectKey.tsx:33
 #: src/components/selectKey/SelectKey.tsx:131
-msgid "Delete all keys"
-msgstr "刪除全部金鑰"
+#~ msgid "Delete all keys"
+#~ msgstr "刪除全部金鑰"
 
 #: src/components/selectKey/SelectKey.tsx:58
 #~ msgid "Delete key"
 #~ msgstr "Delete key"
 
 #: src/components/selectKey/SelectKeyItem.tsx:80
-msgid "Delete key {fingerprint}"
-msgstr "刪除帳號指紋：{fingerprint}"
+#~ msgid "Delete key {fingerprint}"
+#~ msgstr "刪除帳號指紋：{fingerprint}"
 
 #: src/components/selectKey/SelectKey.tsx:39
-msgid "Deleting all keys will permanently remove the keys from your computer, make sure you have backups. Are you sure you want to continue?"
-msgstr "刪除全部金鑰將會永久從你的電腦中移除，請確保你有備份。你確定要繼續？"
+#~ msgid "Deleting all keys will permanently remove the keys from your computer, make sure you have backups. Are you sure you want to continue?"
+#~ msgstr "刪除全部金鑰將會永久從你的電腦中移除，請確保你有備份。你確定要繼續？"
+
+#: src/components/app/AppPassPrompt.tsx:89
+msgid "Deleting key"
+msgstr ""
 
 #: src/components/selectKey/SelectKeyItem.tsx:113
-msgid "Deleting the key will permanently remove the key from your computer, make sure you have backups. Are you sure you want to continue?"
-msgstr "刪除此金鑰將會永久從你的電腦中移除，請確保你有備份。你確定要繼續？"
+#~ msgid "Deleting the key will permanently remove the key from your computer, make sure you have backups. Are you sure you want to continue?"
+#~ msgstr "刪除此金鑰將會永久從你的電腦中移除，請確保你有備份。你確定要繼續？"
 
 #: src/electron/main.tsx:304
 msgid "Developer"
@@ -792,8 +805,8 @@ msgstr "開發者工具"
 
 #: src/components/wallet/create/WalletCreateList.tsx:39
 #: src/components/wallet/did/WalletDIDSelect.tsx:25
-msgid "Distributed Identity"
-msgstr "分散式識別"
+#~ msgid "Distributed Identity"
+#~ msgstr "分散式識別"
 
 #: src/components/wallet/create/WalletCreate.jsx:280
 #~ msgid "Distributed Identity Options"
@@ -809,8 +822,8 @@ msgstr "分散式識別"
 #~ msgstr "你的機器支援平行耕地嗎？"
 
 #: src/components/wallet/did/WalletDID.tsx:428
-msgid "Drag and drop attestation packet(s)"
-msgstr "拖放證明封包"
+#~ msgid "Drag and drop attestation packet(s)"
+#~ msgstr "拖放證明封包"
 
 #: src/components/trading/ViewOffer.jsx:39
 #~ msgid "Drag and drop offer file"
@@ -821,8 +834,8 @@ msgid "Drag and drop your backup file"
 msgstr "拖放你的備份檔案"
 
 #: src/components/wallet/did/WalletDIDRecovery.tsx:108
-msgid "Drag and drop your recovery backup file"
-msgstr "拖放您的備份檔案"
+#~ msgid "Drag and drop your recovery backup file"
+#~ msgstr "拖放您的備份檔案"
 
 #: src/electron/main.tsx:263
 msgid "Edit"
@@ -834,17 +847,21 @@ msgstr "編輯"
 #~ msgid "Edit Payout Instructions"
 #~ msgstr "編輯支付說明"
 
+#: src/components/app/AppKeyringMigrator.tsx:129
+msgid "Enter a strong passphrase and click Migrate Keys to secure your keys"
+msgstr ""
+
 #: src/components/wallet/WalletImport.tsx:94
-msgid "Enter the 24 word mnemonic that you have saved in order to restore your Chia wallet."
-msgstr "輸入你已存的 24 字助記符號以復原您的 Chia 錢包。"
+#~ msgid "Enter the 24 word mnemonic that you have saved in order to restore your Chia wallet."
+#~ msgstr "輸入你已存的 24 字助記符號以復原您的 Chia 錢包。"
 
 #: src/components/farm/card/FarmCard.tsx:57
-msgid "Error"
-msgstr "錯誤"
+#~ msgid "Error"
+#~ msgstr "錯誤"
 
 #: src/components/wallet/cat/WalletCATSend.tsx:127
-msgid "Error the entered address appears to be for a different colour."
-msgstr ""
+#~ msgid "Error the entered address appears to be for a different colour."
+#~ msgstr ""
 
 #: src/components/wallet/WalletSend.tsx:289
 #~ msgid "Error: Cannot send chia to coloured address. Please enter a chia address."
@@ -882,8 +899,8 @@ msgstr ""
 
 #: src/components/wallet/WalletSend.tsx:179
 #: src/components/wallet/cat/WalletCATSend.tsx:236
-msgid "Farm"
-msgstr "耕種"
+#~ msgid "Farm"
+#~ msgstr "耕種"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:211
 #~ msgid "Farmer Public Key"
@@ -921,8 +938,8 @@ msgstr "耕種"
 
 #: src/components/selectKey/SelectKeyDeleteKeyDialog.tsx:66
 #: src/components/selectKey/SelectKeyDetailDialog.tsx:66
-msgid "Farmer public key:"
-msgstr "農夫公鑰:"
+#~ msgid "Farmer public key:"
+#~ msgstr "農夫公鑰:"
 
 #: src/components/farm/overview/FarmOverviewHero.tsx:33
 #~ msgid "Farmers earn block rewards and transaction fees by committing spare space to the network to help secure transactions. This is where your farm will be once you add a plot. <0>Learn more</0>"
@@ -949,8 +966,8 @@ msgstr "農夫公鑰:"
 #: src/components/wallet/create/createRLAdmin.jsx:244
 #: src/components/wallet/create/createRLAdmin.jsx:272
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:733
-msgid "Fee"
-msgstr "費用"
+#~ msgid "Fee"
+#~ msgstr "費用"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:420
 #~ msgid "Fee (TXCH)"
@@ -978,8 +995,8 @@ msgid "File"
 msgstr "檔案"
 
 #: src/components/wallet/did/WalletDID.tsx:975
-msgid "Filename"
-msgstr "檔案名稱"
+#~ msgid "Filename"
+#~ msgstr "檔案名稱"
 
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:36
 #~ msgid "Final folder location"
@@ -1028,8 +1045,8 @@ msgstr "全畫面"
 #~ msgstr "網格檢視"
 
 #: src/components/wallet/WalletReceiveAddress.tsx:40
-msgid "HD or Hierarchical Deterministic keys are a type of public key/private key scheme where one private key can have a nearly infinite number of different public keys (and therefor wallet receive addresses) that will all ultimately come back to and be spendable by a single private key."
-msgstr "層及式確定性金鑰是一種公鑰/私鑰格式，一個私鑰可以具有幾乎無限數量的不同公鑰（以此類推，同錢包接收地址），最終所有這些公鑰都將回朔於一個私鑰使用／花用。"
+#~ msgid "HD or Hierarchical Deterministic keys are a type of public key/private key scheme where one private key can have a nearly infinite number of different public keys (and therefor wallet receive addresses) that will all ultimately come back to and be spendable by a single private key."
+#~ msgstr "層及式確定性金鑰是一種公鑰/私鑰格式，一個私鑰可以具有幾乎無限數量的不同公鑰（以此類推，同錢包接收地址），最終所有這些公鑰都將回朔於一個私鑰使用／花用。"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:49
 #~ msgid "Harvester ID"
@@ -1065,6 +1082,10 @@ msgstr "幫助"
 #~ msgid "Hide Advanced Options"
 #~ msgstr "隱藏進階選項"
 
+#: src/components/app/AppPassPrompt.tsx:128
+msgid "Hint"
+msgstr ""
+
 #: src/components/wallet/WalletHistory.tsx:93
 #~ msgid "History"
 #~ msgstr "歷史"
@@ -1075,8 +1096,8 @@ msgstr "幫助"
 #~ msgstr "主機名稱"
 
 #: src/components/wallet/WalletConnections.tsx:28
-msgid "IP address"
-msgstr "IP位址"
+#~ msgid "IP address"
+#~ msgstr "IP位址"
 
 #: src/components/fullNode/FullNodeAddConnection.tsx:75
 #~ msgid "IP address / host"
@@ -1087,20 +1108,20 @@ msgstr "IP位址"
 #~ msgstr "如無選擇，將會預設至臨時資料夾。"
 
 #: src/components/wallet/WalletImport.tsx:91
-msgid "Import Wallet from Mnemonics"
-msgstr "以助記符號匯入錢包"
+#~ msgid "Import Wallet from Mnemonics"
+#~ msgstr "以助記符號匯入錢包"
 
 #: src/components/selectKey/SelectKey.tsx:122
-msgid "Import from Mnemonics (24 words)"
-msgstr "從助記詞(24 字) 匯入"
+#~ msgid "Import from Mnemonics (24 words)"
+#~ msgstr "從助記詞(24 字) 匯入"
 
 #: src/components/fullNode/FullNode.jsx:45
 #~ msgid "In Progress"
 #~ msgstr "進行中"
 
 #: src/components/wallet/WalletHistory.tsx:43
-msgid "Incoming"
-msgstr "轉入"
+#~ msgid "Incoming"
+#~ msgstr "轉入"
 
 #: src/components/core/components/Fee/Fee.tsx:36
 #~ msgid "Incorrect value"
@@ -1120,20 +1141,20 @@ msgstr "轉入"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:333
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:472
-msgid "Info Packet"
-msgstr "資訊封包"
+#~ msgid "Info Packet"
+#~ msgstr "資訊封包"
 
 #: src/components/wallet/create/createRLAdmin.jsx:260
-msgid "Initial Amount"
-msgstr "初始數量"
+#~ msgid "Initial Amount"
+#~ msgstr "初始數量"
 
 #: src/components/wallet/create/createRLUser.jsx:87
-msgid "Initialize a Rate Limited User Wallet:"
-msgstr "初始化速率限制使用者錢包："
+#~ msgid "Initialize a Rate Limited User Wallet:"
+#~ msgstr "初始化速率限制使用者錢包："
 
 #: src/components/wallet/create/createRLAdmin.jsx:218
-msgid "Interval"
-msgstr "間隔"
+#~ msgid "Interval"
+#~ msgstr "間隔"
 
 #: src/components/plotNFT/PlotNFTState.tsx:26
 #~ msgid "Invalid state"
@@ -1169,6 +1190,10 @@ msgstr "間隔"
 #: src/components/plot/overview/PlotOverviewPlots.tsx:63
 #~ msgid "K-Size"
 #~ msgstr "K-大小"
+
+#: src/components/app/AppKeyringMigrator.tsx:94
+msgid "Keyring migration failed: {0}"
+msgstr ""
 
 #: src/components/dashboard/DashboardSideBar.tsx:66
 #~ msgid "Keys"
@@ -1206,8 +1231,8 @@ msgstr "間隔"
 #~ msgstr "離開農會"
 
 #: src/components/wallet/WalletConnections.tsx:84
-msgid "List of connections is empty"
-msgstr ""
+#~ msgid "List of connections is empty"
+#~ msgstr ""
 
 #: src/components/pool/PoolOverview.tsx:176
 #~ msgid "List view"
@@ -1217,17 +1242,21 @@ msgstr ""
 #~ msgid "Loading Plot NFTs"
 #~ msgstr "正在讀取農場"
 
-#: src/components/app/App.tsx:122
+#: src/components/app/App.tsx:66
 msgid "Loading configuration"
 msgstr ""
 
-#: src/components/selectKey/SelectKey.tsx:54
-msgid "Loading list of the keys"
+#: src/components/app/AppState.tsx:105
+msgid "Loading keyring status"
 msgstr ""
 
+#: src/components/selectKey/SelectKey.tsx:54
+#~ msgid "Loading list of the keys"
+#~ msgstr ""
+
 #: src/components/wallet/Wallets.tsx:21
-msgid "Loading list of wallets"
-msgstr "正在讀取錢包列表"
+#~ msgid "Loading list of wallets"
+#~ msgstr "正在讀取錢包列表"
 
 #: src/components/plot/queue/PlotQueueLogDialog.tsx:41
 #~ msgid "Loading..."
@@ -1238,8 +1267,8 @@ msgstr "正在讀取錢包列表"
 #~ msgstr "Local Harvester Plots"
 
 #: src/components/dashboard/Dashboard.tsx:64
-msgid "Log Out"
-msgstr ""
+#~ msgid "Log Out"
+#~ msgstr ""
 
 #: src/components/app/AppRouter.tsx:47
 #~ msgid "Logging in"
@@ -1290,8 +1319,8 @@ msgstr ""
 #~ msgstr "管理耕種獎勵"
 
 #: src/components/wallet/did/WalletDID.tsx:806
-msgid "Manage Recovery DIDs"
-msgstr "管理還原的 DID"
+#~ msgid "Manage Recovery DIDs"
+#~ msgstr "管理還原的 DID"
 
 #: src/components/farm/FarmManageFarmingRewards.tsx:123
 #~ msgid "Manage Your Farming Rewards Target Addresses"
@@ -1299,16 +1328,24 @@ msgstr "管理還原的 DID"
 
 #: src/components/wallet/WalletHistory.tsx:80
 #: src/components/wallet/cat/WalletCATSend.tsx:228
-msgid "Memo"
-msgstr ""
+#~ msgid "Memo"
+#~ msgstr ""
 
 #: src/components/wallet/WalletHistory.tsx:242
-msgid "Memos"
-msgstr ""
+#~ msgid "Memos"
+#~ msgstr ""
 
 #: src/components/wallet/WalletConnections.tsx:56
-msgid "MiB Up/Down"
-msgstr "MiB 上傳/下傳"
+#~ msgid "MiB Up/Down"
+#~ msgstr "MiB 上傳/下傳"
+
+#: src/components/app/AppKeyringMigrator.tsx:230
+msgid "Migrate Keys"
+msgstr ""
+
+#: src/components/app/AppKeyringMigrator.tsx:125
+msgid "Migration required"
+msgstr ""
 
 #: src/components/pool/PoolInfo.tsx:27
 #~ msgid "Minimum Difficulty"
@@ -1327,16 +1364,16 @@ msgid "Multi Sig Wallet"
 msgstr ""
 
 #: src/components/wallet/did/WalletDID.tsx:537
-msgid "My DID Wallet"
-msgstr "我的 DID 錢包"
+#~ msgid "My DID Wallet"
+#~ msgstr "我的 DID 錢包"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:415
-msgid "My Pubkey"
-msgstr "我的公鑰"
+#~ msgid "My Pubkey"
+#~ msgstr "我的公鑰"
 
 #: src/components/wallet/cat/WalletCATCreateExistingSimple.tsx:72
-msgid "Name"
-msgstr ""
+#~ msgid "Name"
+#~ msgstr ""
 
 #: src/components/fullNode/card/FullNodeCardNetworkName.tsx:19
 #~ msgid "Network Name"
@@ -1351,21 +1388,21 @@ msgstr ""
 #~ msgstr "Network not launched yet, waiting for genesis challenge!"
 
 #: src/components/wallet/WalletReceiveAddress.tsx:36
-msgid "New Address"
-msgstr "新位址"
+#~ msgid "New Address"
+#~ msgstr "新位址"
 
 #: src/components/wallet/WalletAdd.tsx:82
-msgid "New Wallet"
-msgstr "新錢包"
+#~ msgid "New Wallet"
+#~ msgstr "新錢包"
 
 #: src/components/wallet/WalletAdd.tsx:116
 #: src/components/wallet/WalletImport.tsx:121
-msgid "Next"
-msgstr "下一步"
+#~ msgid "Next"
+#~ msgstr "下一步"
 
 #: src/components/wallet/WalletRenameDialog.tsx:79
-msgid "Nickname"
-msgstr "暱稱"
+#~ msgid "Nickname"
+#~ msgstr "暱稱"
 
 #: src/electron/main.tsx:196
 msgid "No"
@@ -1373,24 +1410,24 @@ msgstr "否"
 
 #: src/components/selectKey/SelectKeyDeleteKeyDialog.tsx:92
 #: src/components/selectKey/SelectKeyDetailDialog.tsx:92
-msgid "No 24 word seed, since this key is imported."
-msgstr "由這個鑰匙是匯入的，沒有 24 個字種子。"
+#~ msgid "No 24 word seed, since this key is imported."
+#~ msgstr "由這個鑰匙是匯入的，沒有 24 個字種子。"
 
 #: src/components/farm/card/FarmCardLastHeightFarmed.tsx:21
 #~ msgid "No blocks farmed yet"
 #~ msgstr "還沒有耕種收穫到的區塊"
 
 #: src/components/wallet/WalletHistory.tsx:273
-msgid "No previous transactions"
-msgstr "沒有上一個交易"
+#~ msgid "No previous transactions"
+#~ msgstr "沒有上一個交易"
 
 #: src/components/farm/FarmManageFarmingRewards.tsx:160
 #~ msgid "No private keys for one or both addresses. Safe only if you are sending rewards to another wallet."
 #~ msgstr "一邊或雙邊地址沒有私鑰。只有你發送獎勵到另一個錢包時才算安全。"
 
 #: src/components/wallet/WalletConnections.tsx:24
-msgid "Node ID"
-msgstr "節點 ID"
+#~ msgid "Node ID"
+#~ msgstr "節點 ID"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:87
 #~ msgid "Node Id"
@@ -1406,12 +1443,12 @@ msgstr "節點 ID"
 
 #: src/components/wallet/WalletHistory.tsx:234
 #: src/components/wallet/WalletHistory.tsx:239
-msgid "Not Available"
-msgstr "尚無"
+#~ msgid "Not Available"
+#~ msgstr "尚無"
 
 #: src/components/wallet/WalletStatus.tsx:34
-msgid "Not Synced"
-msgstr "未同步"
+#~ msgid "Not Synced"
+#~ msgstr "未同步"
 
 #: src/components/trading/TradingOverview.jsx:222
 #~ msgid "Not accepted yet"
@@ -1447,8 +1484,8 @@ msgstr "未同步"
 #~ msgstr "執行緒數："
 
 #: src/components/wallet/cat/WalletCATTAILDialog.tsx:82
-msgid "OK"
-msgstr "好"
+#~ msgid "OK"
+#~ msgstr "好"
 
 #: src/components/trading/ViewOffer.jsx:67
 #~ msgid "Offer"
@@ -1460,20 +1497,34 @@ msgstr "好"
 
 #: src/components/wallet/WalletSend.tsx:135
 #: src/components/wallet/cat/WalletCATSend.tsx:176
-msgid "On average there is one minute between each transaction block. Unless there is congestion you can expect your transaction to be included in less than a minute."
-msgstr "平均每個交易區塊之間有 1 分鐘的時間。除非出現擁塞，否則你可以在不到 1 分鐘的時間內完成交易。"
+#~ msgid "On average there is one minute between each transaction block. Unless there is congestion you can expect your transaction to be included in less than a minute."
+#~ msgstr "平均每個交易區塊之間有 1 分鐘的時間。除非出現擁塞，否則你可以在不到 1 分鐘的時間內完成交易。"
 
 #: src/components/wallet/did/WalletDIDRecovery.tsx:33
-msgid "Only one backup file is allowed."
-msgstr "只允許一個備份檔案。"
+#~ msgid "Only one backup file is allowed."
+#~ msgstr "只允許一個備份檔案。"
 
 #: src/components/wallet/create/recoverDIDWallet.js:156
 #~ msgid "Only one backup file is allowed. To add a new backup file, please delete any previously uploaded files and try again."
 #~ msgstr "Only one backup file is allowed. To add a new backup file, please delete any previously uploaded files and try again."
 
 #: src/components/wallet/WalletHistory.tsx:43
-msgid "Outgoing"
-msgstr "匯出"
+#~ msgid "Outgoing"
+#~ msgstr "匯出"
+
+#: src/components/app/AppKeyringMigrator.tsx:139
+#: src/components/app/AppKeyringMigrator.tsx:140
+#: src/components/app/AppPassPrompt.tsx:120
+msgid "Passphrase"
+msgstr ""
+
+#: src/components/app/AppKeyringMigrator.tsx:163
+msgid "Passphrase Hint"
+msgstr ""
+
+#: src/components/app/AppKeyringMigrator.tsx:162
+msgid "Passphrase Hint (Optional)"
+msgstr ""
 
 #: src/components/plotNFT/PlotNFTCard.tsx:361
 #~ msgid "Payout Address"
@@ -1492,23 +1543,23 @@ msgstr "匯出"
 #~ msgstr "峰值時間"
 
 #: src/components/wallet/WalletHistory.tsx:77
-msgid "Pending"
-msgstr "待確認中"
+#~ msgid "Pending"
+#~ msgstr "待確認中"
 
 #: src/components/wallet/card/WalletCardPendingBalance.tsx:37
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:573
-msgid "Pending Balance"
-msgstr "未結餘額"
+#~ msgid "Pending Balance"
+#~ msgstr "未結餘額"
 
 #: src/components/wallet/card/WalletCardPendingChange.tsx:38
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:578
-msgid "Pending Change"
-msgstr "未結更動"
+#~ msgid "Pending Change"
+#~ msgstr "未結更動"
 
 #: src/components/wallet/card/WalletCardPendingTotalBalance.tsx:38
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:568
-msgid "Pending Total Balance"
-msgstr "未結總餘額"
+#~ msgid "Pending Total Balance"
+#~ msgstr "未結總餘額"
 
 #: src/hooks/useAbsorbRewards.tsx:45
 msgid "Please Confirm"
@@ -1519,97 +1570,110 @@ msgstr "請確認"
 #~ msgstr "請增加一對貿易方"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:668
-msgid "Please enter 0 fee. Positive fees not supported yet for RL."
-msgstr "請輸入 0 費用。 RL 尚未支援正向費用。"
+#~ msgid "Please enter 0 fee. Positive fees not supported yet for RL."
+#~ msgstr "請輸入 0 費用。 RL 尚未支援正向費用。"
 
 #: src/components/wallet/did/WalletDID.tsx:924
-msgid "Please enter a coin"
-msgstr "請輸入幣種"
+#~ msgid "Please enter a coin"
+#~ msgstr "請輸入幣種"
 
 #: src/components/wallet/did/WalletDID.tsx:526
 #: src/components/wallet/did/WalletDID.tsx:914
-msgid "Please enter a filename"
-msgstr "請輸入檔案名稱"
+#~ msgid "Please enter a filename"
+#~ msgstr "請輸入檔案名稱"
+
+#: src/components/app/AppPassPrompt.tsx:53
+msgid "Please enter a passphrase"
+msgstr ""
 
 #: src/components/wallet/did/WalletDID.tsx:934
-msgid "Please enter a pubkey"
-msgstr "請輸入公鑰"
+#~ msgid "Please enter a pubkey"
+#~ msgstr "請輸入公鑰"
 
 #: src/components/wallet/did/WalletDID.tsx:944
-msgid "Please enter a puzzlehash"
-msgstr "請輸入一個 PuzzleHash"
+#~ msgid "Please enter a puzzlehash"
+#~ msgstr "請輸入一個 PuzzleHash"
 
 #: src/components/wallet/cat/WalletCATCreateExisting.tsx:41
-msgid "Please enter a valid CAT name"
-msgstr ""
+#~ msgid "Please enter a valid CAT name"
+#~ msgstr ""
 
 #: src/components/wallet/cat/WalletCATCreateExistingSimple.tsx:42
 #~ msgid "Please enter a valid TAIL"
 #~ msgstr ""
 
 #: src/components/wallet/cat/WalletCATCreateExistingSimple.tsx:42
-msgid "Please enter a valid asset id"
-msgstr ""
+#~ msgid "Please enter a valid asset id"
+#~ msgstr ""
 
 #: src/components/wallet/create/createRLAdmin.jsx:140
-msgid "Please enter a valid initial coin amount"
-msgstr "請輸入有效的初始金額"
+#~ msgid "Please enter a valid initial coin amount"
+#~ msgstr "請輸入有效的初始金額"
 
 #: src/components/wallet/did/WalletDID.tsx:777
 #: src/components/wallet/did/WalletDIDCreate.tsx:76
-msgid "Please enter a valid integer of 0 or greater for the number of Backup IDs needed for recovery."
-msgstr ""
+#~ msgid "Please enter a valid integer of 0 or greater for the number of Backup IDs needed for recovery."
+#~ msgstr ""
 
 #: src/components/wallet/WalletSend.tsx:89
 #: src/components/wallet/cat/WalletCATSend.tsx:103
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:639
-msgid "Please enter a valid numeric amount"
-msgstr "請輸入有效的數字值"
+#~ msgid "Please enter a valid numeric amount"
+#~ msgstr "請輸入有效的數字值"
 
 #: src/components/wallet/did/WalletDIDCreate.tsx:50
-msgid "Please enter a valid numeric amount."
-msgstr "請輸入有效的數值。"
+#~ msgid "Please enter a valid numeric amount."
+#~ msgstr "請輸入有效的數值。"
 
 #: src/components/wallet/WalletSend.tsx:94
 #: src/components/wallet/cat/WalletCATSend.tsx:108
 #: src/components/wallet/create/createRLAdmin.jsx:150
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:649
-msgid "Please enter a valid numeric fee"
-msgstr "請輸入有效的數字費用值"
+#~ msgid "Please enter a valid numeric fee"
+#~ msgstr "請輸入有效的數字費用值"
 
 #: src/components/wallet/create/createRLAdmin.jsx:100
-msgid "Please enter a valid numeric interval length"
-msgstr "請輸入有效的數字間隔長度值"
+#~ msgid "Please enter a valid numeric interval length"
+#~ msgstr "請輸入有效的數字間隔長度值"
 
 #: src/components/wallet/create/createRLAdmin.jsx:115
-msgid "Please enter a valid numeric spendable amount"
-msgstr "請輸入有效的可花用數字量值"
+#~ msgid "Please enter a valid numeric spendable amount"
+#~ msgstr "請輸入有效的可花用數字量值"
 
 #: src/components/wallet/create/createRLAdmin.jsx:125
-msgid "Please enter a valid pubkey"
-msgstr "請輸入有效的公鑰"
+#~ msgid "Please enter a valid pubkey"
+#~ msgstr "請輸入有效的公鑰"
 
 #: src/components/wallet/cat/WalletCATCreateExistingSimple.tsx:46
-msgid "Please enter a valid token name"
-msgstr ""
+#~ msgid "Please enter a valid token name"
+#~ msgstr ""
 
 #: src/components/wallet/WalletRenameDialog.tsx:50
-msgid "Please enter valid wallet name"
+#~ msgid "Please enter valid wallet name"
+#~ msgstr ""
+
+#: src/components/app/AppPassPrompt.tsx:80
+#: src/components/app/AppPassPrompt.tsx:96
+msgid "Please enter your passphrase"
+msgstr ""
+
+#: src/components/app/AppPassPrompt.tsx:90
+msgid "Please enter your passphrase to proceed"
 msgstr ""
 
 #: src/components/wallet/WalletSend.tsx:84
 #: src/components/wallet/cat/WalletCATSend.tsx:94
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:623
-msgid "Please finish syncing before making a transaction"
-msgstr "請在交易前先完成同步"
+#~ msgid "Please finish syncing before making a transaction"
+#~ msgstr "請在交易前先完成同步"
 
 #: src/components/trading/CreateOffer.jsx:66
 #~ msgid "Please select amount"
 #~ msgstr "請選擇數量"
 
 #: src/components/wallet/did/WalletDIDRecovery.tsx:54
-msgid "Please select backup file first"
-msgstr "請先選擇一個備份檔"
+#~ msgid "Please select backup file first"
+#~ msgstr "請先選擇一個備份檔"
 
 #: src/components/trading/CreateOffer.jsx:76
 #~ msgid "Please select buy or sell"
@@ -1637,9 +1701,6 @@ msgstr "請先選擇一個備份檔"
 msgid "Please wait for synchronization"
 msgstr "請等候同步"
 
-#: src/components/wallet/cat/WalletCATCreateExistingSimple.tsx:38
-#: src/components/wallet/cat/WalletCATCreateSimple.tsx:38
-#: src/components/wallet/did/WalletDIDRecovery.tsx:63
 #: src/hooks/useJoinPool.tsx:27
 msgid "Please wait for wallet synchronization"
 msgstr "請等候錢包同步"
@@ -1805,8 +1866,8 @@ msgstr "請等候錢包同步"
 
 #: src/components/selectKey/SelectKeyDeleteKeyDialog.tsx:74
 #: src/components/selectKey/SelectKeyDetailDialog.tsx:74
-msgid "Pool public key:"
-msgstr "礦池公鑰 (PPK):"
+#~ msgid "Pool public key:"
+#~ msgstr "礦池公鑰 (PPK):"
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:272
 #: src/components/plotNFT/PlotNFTCard.tsx:327
@@ -1824,8 +1885,8 @@ msgid "Pooling Wallet"
 msgstr ""
 
 #: src/components/wallet/WalletConnections.tsx:34
-msgid "Port"
-msgstr "通訊埠"
+#~ msgid "Port"
+#~ msgstr "通訊埠"
 
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:88
 #: src/components/plotNFT/PlotNFTChangePool.tsx:74
@@ -1853,8 +1914,8 @@ msgstr "通訊埠"
 #~ msgstr "Previous Sub Block Hash"
 
 #: src/components/selectKey/SelectKeyItem.tsx:130
-msgid "Private key with public fingerprint {fingerprint}"
-msgstr "帶有公有指紋 {fingerprint} 的私鑰"
+#~ msgid "Private key with public fingerprint {fingerprint}"
+#~ msgstr "帶有公有指紋 {fingerprint} 的私鑰"
 
 #: src/middleware/middleware_api.jsx:213
 #~ msgid "Private key {0}"
@@ -1864,13 +1925,13 @@ msgstr "帶有公有指紋 {fingerprint} 的私鑰"
 #: src/components/selectKey/SelectKeyDeleteKeyDialog.tsx:39
 #: src/components/selectKey/SelectKeyDetailDialog.tsx:27
 #: src/components/selectKey/SelectKeyDetailDialog.tsx:39
-msgid "Private key {fingerprint}"
-msgstr ""
+#~ msgid "Private key {fingerprint}"
+#~ msgstr ""
 
 #: src/components/selectKey/SelectKeyDeleteKeyDialog.tsx:50
 #: src/components/selectKey/SelectKeyDetailDialog.tsx:50
-msgid "Private key:"
-msgstr "私鑰："
+#~ msgid "Private key:"
+#~ msgstr "私鑰："
 
 #: src/components/block/Block.jsx:252
 #~ msgid "Proof of Space Size"
@@ -1886,17 +1947,17 @@ msgstr "私鑰："
 
 #: src/components/wallet/create/createRLAdmin.jsx:297
 #: src/components/wallet/did/WalletDID.tsx:993
-msgid "Pubkey"
-msgstr "公鑰"
+#~ msgid "Pubkey"
+#~ msgstr "公鑰"
 
 #: src/components/selectKey/SelectKeyDeleteKeyDialog.tsx:58
 #: src/components/selectKey/SelectKeyDetailDialog.tsx:58
-msgid "Public key:"
-msgstr "公鑰："
+#~ msgid "Public key:"
+#~ msgstr "公鑰："
 
 #: src/components/wallet/did/WalletDID.tsx:1002
-msgid "Puzzlehash"
-msgstr "拼圖哈希值"
+#~ msgid "Puzzlehash"
+#~ msgstr "拼圖哈希值"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:162
 #~ msgid "Queue Name"
@@ -1927,60 +1988,60 @@ msgstr "RL Wallet"
 #~ msgstr ""
 
 #: src/components/wallet/create/WalletCreateList.tsx:45
-msgid "Rate Limited"
-msgstr "已限速"
+#~ msgid "Rate Limited"
+#~ msgstr "已限速"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:391
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:438
-msgid "Rate Limited Info"
-msgstr "速率限制資訊"
+#~ msgid "Rate Limited Info"
+#~ msgstr "速率限制資訊"
 
 #: src/components/wallet/create/WalletCreate.jsx:176
 #~ msgid "Rate Limited Options"
 #~ msgstr "速率限制選項"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:273
-msgid "Rate Limited User Wallet Setup"
-msgstr "速率限制使用者錢包設定"
+#~ msgid "Rate Limited User Wallet Setup"
+#~ msgstr "速率限制使用者錢包設定"
 
 #: src/components/wallet/WalletReceiveAddress.tsx:33
-msgid "Receive Address"
-msgstr "接收位址"
+#~ msgid "Receive Address"
+#~ msgstr "接收位址"
 
 #: src/components/wallet/cat/WalletCATSend.tsx:121
-msgid "Recipient address is not a coloured wallet address. Please enter a coloured wallet address"
-msgstr ""
+#~ msgid "Recipient address is not a coloured wallet address. Please enter a coloured wallet address"
+#~ msgstr ""
 
 #: src/components/wallet/cat/WalletCATCreateExisting.tsx:105
 #: src/components/wallet/did/WalletDID.tsx:464
 #: src/components/wallet/did/WalletDIDRecovery.tsx:123
-msgid "Recover"
-msgstr "恢復"
+#~ msgid "Recover"
+#~ msgstr "恢復"
 
 #: src/components/wallet/did/WalletDID.tsx:340
 #: src/components/wallet/did/WalletDID.tsx:480
-msgid "Recover DID Wallet"
-msgstr "恢復 DID 錢包"
+#~ msgid "Recover DID Wallet"
+#~ msgstr "恢復 DID 錢包"
 
 #: src/components/wallet/create/WalletCreate.jsx:296
 #~ msgid "Recover DID wallet"
 #~ msgstr "Recover DID wallet"
 
 #: src/components/wallet/did/WalletDIDRecovery.tsx:83
-msgid "Recover Distributed Identity Wallet"
-msgstr "還原分散式識別的錢包"
+#~ msgid "Recover Distributed Identity Wallet"
+#~ msgstr "還原分散式識別的錢包"
 
 #: src/components/wallet/did/WalletDIDSelect.tsx:39
-msgid "Recover Wallet"
-msgstr "恢復錢包"
+#~ msgid "Recover Wallet"
+#~ msgstr "恢復錢包"
 
 #: src/constants/WalletName.ts:26
 msgid "Recoverable Wallet"
 msgstr ""
 
 #: src/components/wallet/cat/WalletCATSelect.tsx:39
-msgid "Recovery Wallet"
-msgstr ""
+#~ msgid "Recovery Wallet"
+#~ msgstr ""
 
 #: src/components/plot/PlotHeader.tsx:78
 #: src/components/plot/overview/PlotOverviewHero.tsx:62
@@ -1995,6 +2056,10 @@ msgstr ""
 msgid "Release Notes"
 msgstr "發行說明"
 
+#: src/components/app/AppKeyringMigrator.tsx:196
+msgid "Remove keys from old keyring upon successful migration"
+msgstr ""
+
 #: src/components/plot/queue/PlotQueueIndicator.tsx:36
 #~ msgid "Removing"
 #~ msgstr "移除中"
@@ -2005,8 +2070,8 @@ msgstr "發行說明"
 
 #: src/components/wallet/WalletRenameDialog.tsx:70
 #: src/components/wallet/cat/WalletCAT.tsx:89
-msgid "Rename Wallet"
-msgstr ""
+#~ msgid "Rename Wallet"
+#~ msgstr ""
 
 #: src/electron/main.tsx:393
 msgid "Report an Issue..."
@@ -2021,8 +2086,8 @@ msgstr "從備份還原有色代幣和其他智慧錢包的元數據"
 #~ msgstr ""
 
 #: src/components/wallet/WalletHistory.tsx:83
-msgid "Retire"
-msgstr ""
+#~ msgid "Retire"
+#~ msgstr ""
 
 #: src/components/fullNode/FullNode.jsx:57
 #: src/components/fullNode/FullNodeConnections.jsx:107
@@ -2034,8 +2099,12 @@ msgid "Safe To Skip"
 msgstr "可安全跳過"
 
 #: src/components/wallet/WalletRenameDialog.tsx:99
-msgid "Save"
-msgstr "儲存"
+#~ msgid "Save"
+#~ msgstr "儲存"
+
+#: src/components/app/AppKeyringMigrator.tsx:178
+msgid "Save passphrase"
+msgstr ""
 
 #: src/components/fullNode/FullNode.jsx:338
 #~ msgid "Search"
@@ -2050,13 +2119,13 @@ msgstr "儲存"
 #~ msgstr "第二暫存資料夾位置"
 
 #: src/components/selectKey/SelectKeyItem.tsx:139
-msgid "See private key"
-msgstr "看私鑰"
+#~ msgid "See private key"
+#~ msgstr "看私鑰"
 
 #: src/components/selectKey/SelectKeyDeleteKeyDialog.tsx:84
 #: src/components/selectKey/SelectKeyDetailDialog.tsx:84
-msgid "Seed:"
-msgstr "種子："
+#~ msgid "Seed:"
+#~ msgstr "種子："
 
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:87
 #~ msgid "Select 2nd Temporary Directory"
@@ -2067,8 +2136,8 @@ msgstr "種子："
 #~ msgstr "選擇最終資料夾"
 
 #: src/components/selectKey/SelectKey.tsx:73
-msgid "Select Key"
-msgstr "選擇金鑰"
+#~ msgid "Select Key"
+#~ msgstr "選擇金鑰"
 
 #: src/components/trading/ViewOffer.jsx:37
 #~ msgid "Select Offer"
@@ -2080,12 +2149,12 @@ msgstr "選擇金鑰"
 
 #: src/components/wallet/WalletsList.tsx:32
 #: src/components/wallet/hero/WalletHeroWallets.tsx:64
-msgid "Select Wallet"
-msgstr ""
+#~ msgid "Select Wallet"
+#~ msgstr ""
 
 #: src/components/wallet/create/WalletCreateList.tsx:25
-msgid "Select Wallet Type"
-msgstr "選擇錢包類型"
+#~ msgid "Select Wallet Type"
+#~ msgstr "選擇錢包類型"
 
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:25
 #~ msgid "Select the final destination for the folder where you would like the plot to be stored. We recommend you use a large slow hard drive (like external HDD)."
@@ -2114,8 +2183,8 @@ msgstr "選擇錢包類型"
 #~ msgstr "已選擇"
 
 #: src/components/wallet/did/WalletDIDRecovery.tsx:90
-msgid "Selected recovery file:"
-msgstr "選擇的還原檔案："
+#~ msgid "Selected recovery file:"
+#~ msgstr "選擇的還原檔案："
 
 #: src/components/plotNFT/PlotNFTExternalState.tsx:23
 #: src/components/plotNFT/PlotNFTState.tsx:57
@@ -2135,24 +2204,24 @@ msgstr "選擇的還原檔案："
 #: src/components/wallet/WalletSend.tsx:189
 #: src/components/wallet/cat/WalletCATSend.tsx:246
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:748
-msgid "Send"
-msgstr "發送"
+#~ msgid "Send"
+#~ msgstr "發送"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:460
-msgid "Send this info packet to your Rate Limited Wallet user who must use it to complete setup of their wallet:"
-msgstr "發送這個資訊封包給你必須需要完成設定他們錢包的速率限制錢包使用者："
+#~ msgid "Send this info packet to your Rate Limited Wallet user who must use it to complete setup of their wallet:"
+#~ msgstr "發送這個資訊封包給你必須需要完成設定他們錢包的速率限制錢包使用者："
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:279
-msgid "Send your pubkey to your Rate Limited Wallet admin:"
-msgstr "發送你的公鑰到你的速率限制錢包管理員："
+#~ msgid "Send your pubkey to your Rate Limited Wallet admin:"
+#~ msgstr "發送你的公鑰到你的速率限制錢包管理員："
 
 #: src/components/core/components/AdvancedOptions/AdvancedOptions.tsx:74
 #~ msgid "Show Advanced Options"
 #~ msgstr "顯示進階選項"
 
 #: src/components/wallet/cat/WalletCAT.tsx:103
-msgid "Show Asset Id"
-msgstr ""
+#~ msgid "Show Asset Id"
+#~ msgstr ""
 
 #: src/components/wallet/cat/WalletCAT.tsx:103
 #~ msgid "Show Token and Asset Issuance Limitations"
@@ -2168,12 +2237,17 @@ msgstr ""
 #~ msgstr "方向"
 
 #: src/components/selectKey/SelectKey.tsx:78
-msgid "Sign In"
-msgstr "登入"
+#~ msgid "Sign In"
+#~ msgstr "登入"
 
-#: src/components/backup/BackupRestore.tsx:122
-#~ msgid "Skip"
-#~ msgstr ""
+#: src/components/app/AppKeyringMigrator.tsx:58
+#: src/components/app/AppKeyringMigrator.tsx:219
+msgid "Skip"
+msgstr ""
+
+#: src/components/app/AppKeyringMigrator.tsx:57
+msgid "Skip Keyring Migration"
+msgstr ""
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:129
 #~ msgid "Skips adding [final dir] to harvester for farming"
@@ -2198,51 +2272,59 @@ msgid "Speech"
 msgstr "語音"
 
 #: src/components/wallet/create/createRLAdmin.jsx:230
-msgid "Spendable Amount"
-msgstr "可花用數量"
+#~ msgid "Spendable Amount"
+#~ msgstr "可花用數量"
 
 #: src/components/wallet/create/createRLAdmin.jsx:202
-msgid "Spendable Amount Per Interval"
-msgstr "每間隔可花用數量"
+#~ msgid "Spendable Amount Per Interval"
+#~ msgstr "每間隔可花用數量"
 
 #: src/components/wallet/card/WalletCardSpendableBalance.tsx:38
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:548
-msgid "Spendable Balance"
-msgstr "可花用餘額"
+#~ msgid "Spendable Balance"
+#~ msgstr "可花用餘額"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:396
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:443
-msgid "Spending Interval (number of blocks): {interval}"
-msgstr "花用間隔 (區塊數量)：{interval}"
+#~ msgid "Spending Interval (number of blocks): {interval}"
+#~ msgstr "花用間隔 (區塊數量)：{interval}"
 
 #: src/components/wallet/create/createRLAdmin.jsx:197
-msgid "Spending Interval Length (number of blocks)"
-msgstr "花費間隔長度 (區塊數量)"
+#~ msgid "Spending Interval Length (number of blocks)"
+#~ msgstr "花費間隔長度 (區塊數量)"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:401
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:448
-msgid "Spending Limit (chia per interval): {0}"
-msgstr "花用限制（每間隔可用 Chia）：{0}"
+#~ msgid "Spending Limit (chia per interval): {0}"
+#~ msgstr "花用限制（每間隔可用 Chia）：{0}"
 
 #: src/constants/WalletName.ts:5
 msgid "Standard Wallet"
 msgstr ""
 
-#: src/components/app/AppState.tsx:59
-msgid "Starting service {0}"
+#: src/components/app/AppState.tsx:152
+msgid "Starting Wallet"
 msgstr ""
+
+#: src/components/app/AppState.tsx:59
+#~ msgid "Starting service {0}"
+#~ msgstr ""
+
+#: src/components/app/AppState.tsx:58
+#~ msgid "Starting {0}"
+#~ msgstr ""
 
 #: src/components/fullNode/FullNode.jsx:100
 #~ msgid "State"
 #~ msgstr "狀態"
 
 #: src/components/wallet/WalletStatusCard.tsx:22
-msgid "Status"
-msgstr "狀態"
+#~ msgid "Status"
+#~ msgstr "狀態"
 
 #: src/components/wallet/WalletHeader.tsx:67
-msgid "Status:"
-msgstr "狀態："
+#~ msgid "Status:"
+#~ msgstr "狀態："
 
 #: src/components/wallet/Wallets.tsx:119
 #~ msgid "StatusCard.connections"
@@ -2272,23 +2354,22 @@ msgstr "狀態："
 #~ msgid "Sub Block at height {0} in the Chia blockchain"
 #~ msgstr "Sub Block at height {0} in the Chia blockchain"
 
-#: src/components/wallet/did/WalletDID.tsx:886
-#: src/components/wallet/rateLimited/WalletRateLimited.jsx:347
+#: src/components/app/AppPassPrompt.tsx:97
 msgid "Submit"
 msgstr "確認"
 
 #: src/components/wallet/WalletSend.tsx:120
 #: src/components/wallet/cat/WalletCATSend.tsx:161
-msgid "Success"
-msgstr ""
+#~ msgid "Success"
+#~ msgstr ""
 
 #: src/components/wallet/WalletStatus.tsx:39
-msgid "Synced"
-msgstr "已同步"
+#~ msgid "Synced"
+#~ msgstr "已同步"
 
 #: src/components/wallet/WalletStatus.tsx:44
-msgid "Syncing"
-msgstr "同步中"
+#~ msgid "Syncing"
+#~ msgstr "同步中"
 
 #: src/components/fullNode/card/FullNodeCardStatus.tsx:21
 #~ msgid "Syncing <0/>/<1/>"
@@ -2353,8 +2434,8 @@ msgstr "同步中"
 
 #: src/components/wallet/did/WalletDID.tsx:790
 #: src/components/wallet/did/WalletDIDCreate.tsx:89
-msgid "The number of Backup IDs needed for recovery cannot exceed the number of Backup IDs added."
-msgstr ""
+#~ msgid "The number of Backup IDs needed for recovery cannot exceed the number of Backup IDs added."
+#~ msgstr ""
 
 #: src/hooks/usePoolInfo.ts:57
 msgid "The pool URL \"{normalizedUrl}\" is not working. Is it pool? Error: {0}"
@@ -2405,8 +2486,8 @@ msgstr "農會網址需要使用https協議. {normalizedUrl}"
 #~ msgstr "這些耕地是無效的，你可能想要刪除他們。"
 
 #: src/components/wallet/WalletBadge.tsx:26
-msgid "This access token is verified"
-msgstr ""
+#~ msgid "This access token is verified"
+#~ msgstr ""
 
 #: src/components/wallet/WalletBadge.tsx:26
 #~ msgid "This access token is whitelisted"
@@ -2427,16 +2508,16 @@ msgid "This feature is available only from the GUI."
 msgstr "這個功能只能在 GUI 中提供。"
 
 #: src/components/wallet/standard/WalletStandardCards.tsx:23
-msgid "This is the amount of Chia that you can currently use to make transactions. It does not include pending farming rewards, pending incoming transactions, and Chia that you have just spent but is not yet in the blockchain."
-msgstr "這是你目前可用來交易的 Chia 數量。他不包括未結的耕種獎勵，未結的匯入交易和你剛花用，但還沒在區塊鏈內的 Chia 。"
+#~ msgid "This is the amount of Chia that you can currently use to make transactions. It does not include pending farming rewards, pending incoming transactions, and Chia that you have just spent but is not yet in the blockchain."
+#~ msgstr "這是你目前可用來交易的 Chia 數量。他不包括未結的耕種獎勵，未結的匯入交易和你剛花用，但還沒在區塊鏈內的 Chia 。"
 
 #: src/components/wallet/standard/WalletStandardCards.tsx:44
-msgid "This is the pending change, which are change coins which you have sent to yourself, but have not been confirmed yet."
-msgstr "這是待處理的改變，是你發送給自己的但還沒確認的改變。"
+#~ msgid "This is the pending change, which are change coins which you have sent to yourself, but have not been confirmed yet."
+#~ msgstr "這是待處理的改變，是你發送給自己的但還沒確認的改變。"
 
 #: src/components/wallet/standard/WalletStandardCards.tsx:37
-msgid "This is the sum of the incoming and outgoing pending transactions (not yet included into the blockchain). This does not include farming rewards."
-msgstr "這是匯入和匯出的未結交易的總和（還沒包含在區塊鏈中）。這不包括耕種獎勵。"
+#~ msgid "This is the sum of the incoming and outgoing pending transactions (not yet included into the blockchain). This does not include farming rewards."
+#~ msgstr "這是匯入和匯出的未結交易的總和（還沒包含在區塊鏈中）。這不包括耕種獎勵。"
 
 #: src/components/fullNode/card/FullNodeCardPeakTime.tsx:24
 #~ msgid "This is the time of the latest peak sub block."
@@ -2447,12 +2528,12 @@ msgstr "這是匯入和匯出的未結交易的總和（還沒包含在區塊鏈
 #~ msgstr "這是塊農建立區塊的時間，這是在用時間證明最終確定之前的時間"
 
 #: src/components/wallet/standard/WalletStandardCards.tsx:16
-msgid "This is the total amount of chia in the blockchain at the current peak sub block that is controlled by your private keys. It includes frozen farming rewards, but not pending incoming and outgoing transactions."
-msgstr "這是由你的私鑰控制的目前峰值子區塊中區塊鏈中 Chia 的總量。他包括凍結耕種獎勵，但不包括未結的匯入和匯出交易。"
+#~ msgid "This is the total amount of chia in the blockchain at the current peak sub block that is controlled by your private keys. It includes frozen farming rewards, but not pending incoming and outgoing transactions."
+#~ msgstr "這是由你的私鑰控制的目前峰值子區塊中區塊鏈中 Chia 的總量。他包括凍結耕種獎勵，但不包括未結的匯入和匯出交易。"
 
 #: src/components/wallet/standard/WalletStandardCards.tsx:31
-msgid "This is the total balance + pending balance: it is what your balance will be after all pending transactions are confirmed."
-msgstr "這是總餘額 + 未結餘額：這是在全部未結交易結清後你的餘額。"
+#~ msgid "This is the total balance + pending balance: it is what your balance will be after all pending transactions are confirmed."
+#~ msgstr "這是總餘額 + 未結餘額：這是在全部未結交易結清後你的餘額。"
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:149
 #: src/components/plotNFT/PlotNFTCard.tsx:191
@@ -2509,20 +2590,20 @@ msgstr "這是總餘額 + 未結餘額：這是在全部未結交易結清後你
 #~ msgstr "時間戳記"
 
 #: src/components/wallet/WalletHistory.tsx:89
-msgid "To"
-msgstr "到"
+#~ msgid "To"
+#~ msgstr "到"
 
 #: src/components/wallet/cat/WalletCATCreateExisting.tsx:86
-msgid "Token and Asset Issuance Limitations"
-msgstr ""
+#~ msgid "Token and Asset Issuance Limitations"
+#~ msgstr ""
 
 #: src/components/wallet/cat/WalletCATCreateSimple.tsx:46
-msgid "Token has empty asset id"
-msgstr ""
+#~ msgid "Token has empty asset id"
+#~ msgstr ""
 
 #: src/components/wallet/cat/WalletCATCreateSimple.tsx:42
-msgid "Token has empty name"
-msgstr ""
+#~ msgid "Token has empty name"
+#~ msgstr ""
 
 #: src/components/wallet/cat/WalletCATCreateSimple.tsx:46
 #~ msgid "Token has empty tail"
@@ -2530,8 +2611,8 @@ msgstr ""
 
 #: src/components/wallet/card/WalletCardTotalBalance.tsx:46
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:543
-msgid "Total Balance"
-msgstr "總餘額"
+#~ msgid "Total Balance"
+#~ msgstr "總餘額"
 
 #: src/components/farm/card/FarmCardTotalChiaFarmed.tsx:15
 #~ msgid "Total Chia Farmed"
@@ -2601,23 +2682,21 @@ msgstr ""
 msgid "Transaction has sent to a full node and is pending inclusion into the mempool. {0}"
 msgstr ""
 
-#: src/components/wallet/WalletSend.tsx:121
-#: src/components/wallet/cat/WalletCATSend.tsx:162
 #: src/util/getTransactionResult.ts:24
 msgid "Transaction has successfully been sent to a full node and included in the mempool."
 msgstr ""
 
 #: src/components/wallet/WalletHistory.tsx:191
-msgid "Transactions"
-msgstr ""
+#~ msgid "Transactions"
+#~ msgstr ""
 
 #: src/components/block/Block.jsx:310
 #~ msgid "Transactions Filter Hash"
 #~ msgstr "交易過濾雜湊值"
 
 #: src/components/selectKey/SelectKey.tsx:61
-msgid "Try Again"
-msgstr ""
+#~ msgid "Try Again"
+#~ msgstr ""
 
 #: src/components/wallet/WalletHistory.tsx:26
 #~ msgid "Type"
@@ -2628,8 +2707,8 @@ msgstr ""
 #~ msgstr "無法建立農場"
 
 #: src/components/selectKey/SelectKey.tsx:65
-msgid "Unable to load the list of the keys"
-msgstr ""
+#~ msgid "Unable to load the list of the keys"
+#~ msgstr ""
 
 #: src/components/plotNFT/PlotNFTCard.tsx:150
 #: src/components/pool/PoolOverview.tsx:66
@@ -2648,14 +2727,18 @@ msgstr ""
 #~ msgid "Unknown"
 #~ msgstr "未知"
 
+#: src/components/app/AppPassPrompt.tsx:83
+msgid "Unlock Keyring"
+msgstr ""
+
 #: src/components/core/components/FormBackButton/FormBackButton.tsx:25
 #~ msgid "Unsaved Changes"
 #~ msgstr "尚未儲存變更"
 
 #: src/components/wallet/create/createRLAdmin.jsx:281
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:293
-msgid "User Pubkey"
-msgstr "使用者公鑰"
+#~ msgid "User Pubkey"
+#~ msgstr "使用者公鑰"
 
 #: src/components/fullNode/card/FullNodeCardVDFSubSlotIterations.tsx:20
 #~ msgid "VDF Sub Slot Iterations"
@@ -2696,8 +2779,8 @@ msgstr "檢視"
 #~ msgstr "顯示農會登入連結"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:562
-msgid "View pending balances"
-msgstr "檢視未結餘額"
+#~ msgid "View pending balances"
+#~ msgstr "檢視未結餘額"
 
 #: src/components/wallet/cat/WalletCAT.tsx:393
 #~ msgid "View pending balances..."
@@ -2728,8 +2811,8 @@ msgstr "檢視未結餘額"
 
 #: src/components/wallet/cat/WalletCAT.tsx:64
 #: src/components/wallet/did/WalletDID.tsx:1118
-msgid "Wallet does not exists"
-msgstr "錢包不存在"
+#~ msgid "Wallet does not exists"
+#~ msgstr "錢包不存在"
 
 #: src/modules/message.js:664
 #~ msgid "Wallet id is not defined"
@@ -2764,8 +2847,8 @@ msgstr "錢包不存在"
 #~ msgstr ""
 
 #: src/components/wallet/Wallets.tsx:22
-msgid "Wallets"
-msgstr "錢包"
+#~ msgid "Wallets"
+#~ msgstr "錢包"
 
 #: src/components/wallet/Wallets.tsx:131
 #~ msgid "Wallets.title"
@@ -2784,16 +2867,16 @@ msgstr "錢包"
 #~ msgstr "想要在下次規劃耕地開始前有一段延遲？"
 
 #: src/components/selectKey/SelectKeyItem.tsx:106
-msgid "Warning: This key is used for a wallet that may have a non-zero balance. By deleting this key you may lose access to this wallet"
-msgstr "警告：這個金鑰的錢包還有餘額，如果刪除金鑰可能會導致你遺失這個錢包"
+#~ msgid "Warning: This key is used for a wallet that may have a non-zero balance. By deleting this key you may lose access to this wallet"
+#~ msgstr "警告：這個金鑰的錢包還有餘額，如果刪除金鑰可能會導致你遺失這個錢包"
 
 #: src/components/selectKey/SelectKeyItem.tsx:88
-msgid "Warning: This key is used for your farming rewards address. By deleting this key you may lose access to any future farming rewards"
-msgstr "警告：這個金鑰用於你的耕種獎勵地址。刪除金鑰後可能會無法領取之後的耕種獎勵。"
+#~ msgid "Warning: This key is used for your farming rewards address. By deleting this key you may lose access to any future farming rewards"
+#~ msgstr "警告：這個金鑰用於你的耕種獎勵地址。刪除金鑰後可能會無法領取之後的耕種獎勵。"
 
 #: src/components/selectKey/SelectKeyItem.tsx:97
-msgid "Warning: This key is used for your pool rewards address. By deleting this key you may lose access to any future pool rewards"
-msgstr "警告：這個金鑰用於你的農會獎勵地址。刪除金鑰後可能會無法領取之後的農會獎勵。"
+#~ msgid "Warning: This key is used for your pool rewards address. By deleting this key you may lose access to any future pool rewards"
+#~ msgstr "警告：這個金鑰用於你的農會獎勵地址。刪除金鑰後可能會無法領取之後的農會獎勵。"
 
 #: src/components/block/Block.jsx:206
 #~ msgid "Weight"
@@ -2804,16 +2887,16 @@ msgstr "警告：這個金鑰用於你的農會獎勵地址。刪除金鑰後可
 #~ msgstr "權重是所有包括這個的子區塊的總增加難度"
 
 #: src/components/selectKey/SelectKey.tsx:81
-msgid "Welcome to Chia. Please log in with an existing key, or create a new key."
-msgstr "歡迎來到 Chia。請用已有的金鑰登入，或建立新的金鑰。"
+#~ msgid "Welcome to Chia. Please log in with an existing key, or create a new key."
+#~ msgstr "歡迎來到 Chia。請用已有的金鑰登入，或建立新的金鑰。"
 
 #: src/components/wallet/WalletAdd.tsx:85
-msgid "Welcome! The following words are used for your wallet backup. Without them, you will lose access to your wallet, keep them safe! Write down each word along with the order number next to them. (Order is important)"
-msgstr "歡迎！以下的字是用來為你的錢包備份。沒有這些你將會無法進入你的錢包。將這些安全保存好！寫下每個字，包括他們旁邊的順序數字。（順序很重要）"
+#~ msgid "Welcome! The following words are used for your wallet backup. Without them, you will lose access to your wallet, keep them safe! Write down each word along with the order number next to them. (Order is important)"
+#~ msgstr "歡迎！以下的字是用來為你的錢包備份。沒有這些你將會無法進入你的錢包。將這些安全保存好！寫下每個字，包括他們旁邊的順序數字。（順序很重要）"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:316
-msgid "When you receive the setup info packet from your admin, enter it below to complete your Rate Limited Wallet setup:"
-msgstr "當你從你的管理員收到設定資訊封包時，在下面輸入以完成你的速率限制錢包設定："
+#~ msgid "When you receive the setup info packet from your admin, enter it below to complete your Rate Limited Wallet setup:"
+#~ msgstr "當你從你的管理員收到設定資訊封包時，在下面輸入以完成你的速率限制錢包設定："
 
 #: src/electron/main.tsx:340
 msgid "Window"
@@ -2893,8 +2976,8 @@ msgid "You will recieve <0/> to {address}"
 msgstr "你將會收到 <0/> 到 {address}"
 
 #: src/components/wallet/did/WalletDID.tsx:328
-msgid "Your DID requires at least {dids_num_req} attestation file{0} for recovery. Please upload additional files."
-msgstr ""
+#~ msgid "Your DID requires at least {dids_num_req} attestation file{0} for recovery. Please upload additional files."
+#~ msgstr ""
 
 #: src/components/farm/overview/FarmOverview.tsx:37
 #~ msgid "Your Farm Overview"
@@ -2912,6 +2995,26 @@ msgstr ""
 #~ msgid "Your Pool Overview"
 #~ msgstr "您的農場概觀"
 
+#: src/components/app/AppPassPrompt.tsx:79
+msgid "Your keyring is locked"
+msgstr ""
+
+#: src/components/app/AppKeyringMigrator.tsx:63
+msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Are you sure you want to skip migrating your keys?"
+msgstr ""
+
+#: src/components/app/AppKeyringMigrator.tsx:106
+msgid "Your keys need to be migrated to a new keyring that is optionally secured by a master passphrase."
+msgstr ""
+
+#: src/components/app/AppKeyringMigrator.tsx:112
+msgid "Your keys need to be migrated to a new keyring that is secured by a master passphrase."
+msgstr ""
+
+#: src/components/app/AppKeyringMigrator.tsx:181
+msgid "Your passphrase can be stored in your system's secure credential store. Chia will be able to access your keys without prompting for your passphrase."
+msgstr ""
+
 #: src/util/getDescriptiveError.ts:5
 msgid "[Error 13] Permission denied. You are trying to access a file/directory without having the necessary permissions. Most likely one of the plot folders in your config.yaml has an issue."
 msgstr "［錯誤 13］權限被拒。你想存取一個檔案／目錄但沒有所需的權限。很有可能你 config.yaml 裡其中一個耕地資料夾有問題。"
@@ -2921,12 +3024,12 @@ msgid "[Error 22] File not found. Most likely one of the plot folders in your co
 msgstr "［錯誤 22］找不到檔案。很有可能你 config.yaml 裡其中一個耕地資料夾有問題。"
 
 #: src/components/wallet/WalletStatusCard.tsx:41
-msgid "connections:"
-msgstr "連線："
+#~ msgid "connections:"
+#~ msgstr "連線："
 
 #: src/components/wallet/WalletStatusCard.tsx:33
-msgid "height:"
-msgstr "高度："
+#~ msgid "height:"
+#~ msgstr "高度："
 
 #: src/components/wallet/Wallets.tsx:61
 #~ msgid "not synced"
@@ -2937,16 +3040,16 @@ msgstr "高度："
 #~ msgstr "\"p2_singleton_puzzle_hash\"參數未定義"
 
 #: src/components/wallet/WalletStatusCard.tsx:27
-msgid "status:"
-msgstr "狀態："
+#~ msgid "status:"
+#~ msgstr "狀態："
 
 #: src/components/wallet/WalletStatusCard.tsx:29
-msgid "synced"
-msgstr "已同步"
+#~ msgid "synced"
+#~ msgstr "已同步"
 
 #: src/components/wallet/WalletStatusCard.tsx:29
-msgid "syncing"
-msgstr "同步中"
+#~ msgid "syncing"
+#~ msgstr "同步中"
 
 #: src/components/farm/card/FarmCardBlockRewards.tsx:16
 #~ msgid "{0} Block Rewards"
