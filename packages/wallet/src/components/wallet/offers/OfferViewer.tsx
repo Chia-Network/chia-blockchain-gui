@@ -312,10 +312,10 @@ function OfferDetails(props: OfferDetailsProps) {
   };
 
   function OfferHeader(props: OfferHeaderProps) {
-    const { isMyOffer, isInvalid, isComplete, ...rest } = props;
+    const { isMyOffer, isInvalid, isComplete } = props;
     let headerElement: React.ReactElement | undefined = undefined;
 
-    if (!headerElement && isMyOffer) {
+    if (isMyOffer) {
       headerElement = <Typography variant="subtitle1" color="primary"><Trans>You created this offer</Trans></Typography>
     }
 
