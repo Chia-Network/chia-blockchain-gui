@@ -482,7 +482,11 @@ export function OfferViewer(props: OfferViewerProps) {
             {offerFilePath ? (
               <Trans>Viewing offer: {offerFilePath}</Trans>
             ) : (
-              <Trans>Viewing offer created at {moment(tradeRecord.createdAtTime * 1000).format('LLL')}</Trans>
+              tradeRecord ? (
+                <Trans>Viewing offer created at {moment(tradeRecord.createdAtTime * 1000).format('LLL')}</Trans>
+              ) : (
+                <Trans>Viewing offer</Trans>
+              )
             )}
           </Back>
         </Flex>
