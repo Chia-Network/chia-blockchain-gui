@@ -16,7 +16,6 @@ export default function useAssetIdName() {
   const { data: catList = [], isLoading: isCatListLoading } = useGetCatListQuery();
 
   const assetIdNameMapping = useMemo(() => {
-    console.log("Running memo in useAssetIdName");
     const mapping = new Map<string, AssetIdMapEntry>();
 
     if (isLoading || isCatListLoading) {

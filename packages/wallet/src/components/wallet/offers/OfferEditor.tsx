@@ -18,7 +18,6 @@ import {
 import type OfferRowData from './OfferRowData';
 import { suggestedFilenameForOffer } from './utils';
 import WalletType from '../../../constants/WalletType';
-import OfferSummaryAssetAndAmount from '../../../types/OfferSummary';
 import OfferEditorConditionsPanel from './OfferEditorConditionsPanel';
 import styled from 'styled-components';
 import { chia_to_mojo, colouredcoin_to_mojo } from '../../../util/chia';
@@ -45,15 +44,9 @@ function OfferEditor(): JSX.Element {
     shouldUnregister: false,
     defaultValues,
   });
-  const { watch, setValue } = methods;
-  // const selectedTab = watch('selectedTab');
   const errorDialog = useShowError();
   const [createOfferForIds] = useCreateOfferForIdsMutation();
   const [processing, setIsProcessing] = useState<boolean>(false);
-
-  // function handleTabChange(event: React.ChangeEvent<{}>, newValue: number) {
-  //   setValue('selectedTab', newValue);
-  // };
 
   function updateOffer(offer: { [key: string]: number | string }, row: OfferRowData, debit: boolean) {
     const { amount, assetWalletId, walletType } = row;
@@ -117,9 +110,9 @@ function OfferEditor(): JSX.Element {
       }
     }
     catch (e) {
-      let error = e;
+      let error = e as Error;
 
-      if (e.message.startsWith('insufficient funds')) {
+      if (error.message.startsWith('insufficient funds')) {
         error = new Error(t`
           Insufficient funds available to create offer. Ensure that your
           spendable balance is sufficient to cover the offer amount.

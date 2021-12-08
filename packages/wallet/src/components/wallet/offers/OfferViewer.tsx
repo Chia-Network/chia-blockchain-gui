@@ -76,7 +76,7 @@ function OfferMojoAmount(props: OfferMojoAmountProps): React.ReactElement{
 
   return (
     <>
-      { mojos < mojoThreshold && (
+      { mojoThreshold && mojos < mojoThreshold && (
         <Flex flexDirection="row" flexGrow={1} gap={1}>
           (
           <FormatLargeNumber value={mojos} />
@@ -105,7 +105,14 @@ type OfferDetailsProps = {
 type OfferDetailsRow = {
   name: React.ReactElement;
   value: any;
-  color?: string;
+  color?:
+      | 'initial'
+      | 'inherit'
+      | 'primary'
+      | 'secondary'
+      | 'textPrimary'
+      | 'textSecondary'
+      | 'error';
   tooltip?: React.ReactElement;
 };
 
@@ -219,7 +226,7 @@ function OfferDetails(props: OfferDetailsProps) {
             interactive
           >
             <Link
-              onClick={(event) => handleLinkClicked(event, `https://www.chiaexplorer.com/blockchain/coin/${coin.parentCoinInfo}`)}
+              onClick={(event: React.SyntheticEvent) => handleLinkClicked(event, `https://www.chiaexplorer.com/blockchain/coin/${coin.parentCoinInfo}`)}
             >
               {coin.parentCoinInfo}
             </Link>
@@ -242,7 +249,7 @@ function OfferDetails(props: OfferDetailsProps) {
             interactive
           >
             <Link
-              onClick={(event) => handleLinkClicked(event, `https://www.chiaexplorer.com/blockchain/puzzlehash/${coin.puzzleHash}`)}
+              onClick={(event: React.SyntheticEvent) => handleLinkClicked(event, `https://www.chiaexplorer.com/blockchain/puzzlehash/${coin.puzzleHash}`)}
             >
               {coin.puzzleHash}
             </Link>
@@ -254,7 +261,7 @@ function OfferDetails(props: OfferDetailsProps) {
     }
   ];
 
-  function handleLinkClicked(event, url: string) {
+  function handleLinkClicked(event: React.SyntheticEvent, url: string) {
     event.preventDefault();
     event.stopPropagation();
     openExternal(url);
@@ -283,9 +290,9 @@ function OfferDetails(props: OfferDetailsProps) {
       history.replace('/dashboard/wallets/offers/manage');
     }
     catch (e) {
-      let error = e;
+      let error = e as Error;
 
-      if (e.message.startsWith('insufficient funds')) {
+      if (error.message.startsWith('insufficient funds')) {
         error = new Error(t`
           Insufficient funds available to accept offer. Ensure that your
           spendable balance is sufficient to cover the offer amount.
@@ -337,7 +344,7 @@ function OfferDetails(props: OfferDetailsProps) {
     isComplete: false,
   };
 
-  function OfferSummaryEntry({ assetId, amount, ...rest}) {
+  function OfferSummaryEntry({ assetId, amount, ...rest}: { assetId: string, amount: number }) {
     const assetIdInfo = lookupAssetId(assetId);
     const displayAmount = assetIdInfo ? formatAmountForWalletType(amount as number, assetIdInfo.walletType) : `${amount}`;
     const displayName = assetIdInfo?.displayName ?? 'unknown';
@@ -370,12 +377,12 @@ function OfferDetails(props: OfferDetailsProps) {
               <Flex flexDirection="column" flexGrow={1} gap={3}>
                 <Typography variant="h6">In exchange for</Typography>
                 {Object.entries(summary.requested).map(([assetId, amount]) => (
-                  <OfferSummaryEntry assetId={assetId} amount={amount} />
+                  <OfferSummaryEntry assetId={assetId} amount={amount as number} />
                 ))}
                 <Divider />
                 <Typography variant="h6">You will receive</Typography>
                 {Object.entries(summary.offered).map(([assetId, amount]) => (
-                  <OfferSummaryEntry assetId={assetId} amount={amount} />
+                  <OfferSummaryEntry assetId={assetId} amount={amount as number} />
                 ))}
                 {imported && (
                   <Form methods={methods} onSubmit={handleAcceptOffer}>
@@ -431,7 +438,7 @@ function OfferDetails(props: OfferDetailsProps) {
                         {row.name}{' '}
                         {row.tooltip && <TooltipIcon>{row.tooltip}</TooltipIcon>}
                       </TableCell>
-                      <TableCell onClick={row.onClick} align="right">
+                      <TableCell align="right">
                         <Typography variant="body2" color={row.color}>
                           {row.value}
                         </Typography>

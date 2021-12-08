@@ -18,7 +18,7 @@ import {
   TooltipIcon,
   useOpenDialog,
 } from '@chia/core';
-import { OfferSummary, OfferTradeRecord } from '@chia/api';
+import { OfferTradeRecord } from '@chia/api';
 import {
   Box,
   Button,
@@ -34,7 +34,7 @@ import {
 import { Cancel, GetApp as Download, Info, Visibility } from '@material-ui/icons';
 import { Trade as TradeIcon } from '@chia/icons';
 import { useCancelOfferMutation, useGetAllOffersQuery, useGetOfferDataMutation } from '@chia/api-react';
-import { colorForOfferState, displayStringForOfferState, formatAmountForWalletType, formatOfferEntry, suggestedFilenameForOffer } from './utils';
+import { colorForOfferState, displayStringForOfferState, formatAmountForWalletType, suggestedFilenameForOffer } from './utils';
 import useAssetIdName from '../../../hooks/useAssetIdName';
 import { chia_to_mojo } from '../../../util/chia';
 import { CreateOfferEditor } from './OfferEditor';

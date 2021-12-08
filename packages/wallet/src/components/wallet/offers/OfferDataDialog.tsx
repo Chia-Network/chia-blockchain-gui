@@ -10,7 +10,7 @@ import {
   InputAdornment,
   TextField,
 } from '@material-ui/core';
-import { CopyToClipboard, DialogActions, Loading } from '@chia/core';
+import { CopyToClipboard, DialogActions } from '@chia/core';
 
 type Props = {
   offerData: string;

@@ -1,8 +1,8 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { useFormContext, useFieldArray } from 'react-hook-form';
 import { Trans } from '@lingui/macro';
-import { Amount, Flex, More, TextFieldNumber } from '@chia/core';
-import { Box, Divider, Grid, IconButton, ListItemIcon, MenuItem, Typography } from '@material-ui/core';
+import { Amount, Flex, TextFieldNumber } from '@chia/core';
+import { Divider, Grid, IconButton, Typography } from '@material-ui/core';
 import { Add, Remove } from '@material-ui/icons';
 import { useGetWalletsQuery } from '@chia/api-react';
 import { Wallet } from '@chia/api';

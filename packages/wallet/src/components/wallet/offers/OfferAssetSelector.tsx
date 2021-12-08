@@ -86,6 +86,7 @@ type OfferAssetSelectorProps = {
   tradeSide: 'buy' | 'sell';
   defaultValue: any;
   onChange?: (selectedWalletId: number, selectedWalletType: WalletType) => void;
+  disabled?: boolean;
 };
 
 function OfferAssetSelector(props: OfferAssetSelectorProps): JSX.Element {
@@ -104,7 +105,6 @@ function OfferAssetSelector(props: OfferAssetSelectorProps): JSX.Element {
   }, [wallets, catList, rows, otherRows]);
 
   function handleSelection(selectedWalletId: number, selectedWalletType: WalletType) {
-    console.log("handleSelection: " + selectedWalletId + " " + selectedWalletType);
     if (onChange) {
       onChange(selectedWalletId, selectedWalletType);
     }
@@ -130,6 +130,10 @@ function OfferAssetSelector(props: OfferAssetSelectorProps): JSX.Element {
       </Select>
     </FormControl>
   );
+}
+
+OfferAssetSelector.defaultProps = {
+  disabled: false,
 }
 
 export default OfferAssetSelector;

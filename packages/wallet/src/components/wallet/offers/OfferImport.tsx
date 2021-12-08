@@ -1,11 +1,10 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { Trans } from '@lingui/macro';
-import { AlertDialog, Back, Card, Dropzone, Flex, useShowError } from '@chia/core';
+import { Back, Card, Dropzone, Flex, useShowError } from '@chia/core';
 import { Button, Grid, Typography } from '@material-ui/core';
 import { useGetOfferSummaryMutation } from '@chia/api-react';
-import { OfferTradeRecord } from '@chia/api';
-import fs from 'fs';
+import fs, { Stats } from 'fs';
 
 function SelectOfferFile() {
   const history = useHistory();
@@ -14,7 +13,7 @@ function SelectOfferFile() {
   const [isParsing, setIsParsing] = React.useState<boolean>(false);
 
   async function handleOpen(offerFilePath: string) {
-    async function continueOpen(stats) {
+    async function continueOpen(stats: Stats) {
       try {
         if (stats.size > 1024 * 1024) {
           errorDialog(new Error("Offer file is too large (> 1MB)"));
