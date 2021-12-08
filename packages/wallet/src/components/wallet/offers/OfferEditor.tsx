@@ -109,7 +109,7 @@ function OfferEditor(): JSX.Element {
             errorDialog(error);
           }
           else {
-            const { offer: offerData, tradeRecord } = response;
+            const { offer: offerData } = response;
 
             try {
               fs.writeFileSync(filePath, offerData);

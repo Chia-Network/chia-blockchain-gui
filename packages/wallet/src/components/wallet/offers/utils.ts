@@ -1,7 +1,5 @@
-import FormatLargeNumber from '@chia/core';
 import WalletType from '../../../constants/WalletType';
 import {
-  chia_formatter,
   mojo_to_chia_string,
   mojo_to_colouredcoin_string,
 } from '../../../util/chia';

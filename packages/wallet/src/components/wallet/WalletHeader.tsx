@@ -53,7 +53,7 @@ export default function WalletHeader(props: StandardWalletProps) {
   }
 
   async function handleManageOffers() {
-    if (walletState.syncing) {
+    if (isWalletSyncLoading || walletState.syncing) {
       await openDialog(
         <AlertDialog>
           <Trans>Please finish syncing before managing offers</Trans>

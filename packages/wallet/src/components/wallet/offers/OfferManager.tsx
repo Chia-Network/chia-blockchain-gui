@@ -194,7 +194,7 @@ function OfferList(props: OfferListProps) {
     );
 
     if (cancelConfirmed === true) {
-      const response = await cancelOffer({ tradeId, secure: options.cancelWithTransaction, fee: options.cancellationFee });
+      await cancelOffer({ tradeId, secure: options.cancelWithTransaction, fee: options.cancellationFee });
     }
   }
 
