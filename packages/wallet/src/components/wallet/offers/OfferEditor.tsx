@@ -67,12 +67,25 @@ function OfferEditor(): JSX.Element {
 
   async function onSubmit(formData: FormData) {
     const offer: { [key: string]: number | string } = {};
+    let missingAssetSelection = false;
+
     formData.makerRows.forEach((row: OfferRowData) => {
       updateOffer(offer, row, true);
+      if (!row.assetWalletId) {
+        missingAssetSelection = true;
+      }
     });
     formData.takerRows.forEach((row: OfferRowData) => {
       updateOffer(offer, row, false);
+      if (!row.assetWalletId) {
+        missingAssetSelection = true;
+      }
     });
+
+    if (missingAssetSelection) {
+      errorDialog(new Error("Please select an asset for each row"));
+      return;
+    }
 
     setIsProcessing(true);
 
