@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
-import { Trans } from '@lingui/macro';
+import { Trans, t } from '@lingui/macro';
 import {
   Back,
   ButtonLoading,
@@ -117,7 +117,15 @@ function OfferEditor(): JSX.Element {
       }
     }
     catch (e) {
-      errorDialog(e);
+      let error = e;
+
+      if (e.message.startsWith('insufficient funds')) {
+        error = new Error(t`
+          Insufficient funds available to create offer. Ensure that your
+          spendable balance is sufficient to cover the offer amount.
+        `);
+      }
+      errorDialog(error);
     }
     finally {
       setIsProcessing(false);

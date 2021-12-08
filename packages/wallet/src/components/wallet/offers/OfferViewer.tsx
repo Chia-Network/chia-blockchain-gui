@@ -2,7 +2,7 @@ import React, { useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
 import moment from 'moment';
-import { Trans, Plural } from '@lingui/macro';
+import { Trans, Plural, t } from '@lingui/macro';
 import {
   AlertDialog,
   Back,
@@ -16,6 +16,7 @@ import {
   Link,
   TableControlled,
   TooltipIcon,
+  useOpenDialog,
   useShowError
 } from '@chia/core';
 import {
@@ -114,6 +115,7 @@ function OfferDetails(props: OfferDetailsProps) {
   const lookupAssetId = useAssetIdName();
   const openExternal = useOpenExternal();
   const history = useHistory();
+  const openDialog = useOpenDialog();
   const showError = useShowError();
   const methods = useForm({ defaultValues: { fee: '' } });
   const [isAccepting, setIsAccepting] = useState<boolean>(false);
@@ -136,12 +138,7 @@ function OfferDetails(props: OfferDetailsProps) {
       const response = await checkOfferValidity(offerData);
 
       if (response.data?.success === true) {
-        if (response.data?.valid === true) {
-          valid = true;
-        }
-        else {
-
-        }
+        valid = response.data?.valid === true;
       }
       else {
         showError(response.data?.error ?? new Error("Encountered an unknown error while checking offer validity"));
@@ -272,13 +269,29 @@ function OfferDetails(props: OfferDetailsProps) {
 
       const response = await takeOffer({ offer: offerData, fee: feeInMojos });
 
-      console.log("response: ");
-      console.log(response);
+      if (response.data?.success === true) {
+        await openDialog(
+          <AlertDialog title={<Trans>Success</Trans>}>
+            {response.message ?? <Trans>Offer has been accepted and is awaiting confirmation.</Trans>}
+          </AlertDialog>,
+        );
+      }
+      else {
+        throw new Error(response.error?.message ?? 'Something went wrong');
+      }
 
       history.replace('/dashboard/wallets/offers/manage');
     }
     catch (e) {
-      showError(e);
+      let error = e;
+
+      if (e.message.startsWith('insufficient funds')) {
+        error = new Error(t`
+          Insufficient funds available to accept offer. Ensure that your
+          spendable balance is sufficient to cover the offer amount.
+        `);
+      }
+      showError(error);
     }
     finally {
       setIsAccepting(false);

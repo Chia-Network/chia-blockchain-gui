@@ -12,6 +12,7 @@ import {
   Fee,
   Flex,
   Form,
+  LoadingOverlay,
   More,
   TableControlled,
   TooltipIcon,
@@ -129,15 +130,23 @@ function ConfirmOfferCancellation(props: ConfirmOfferCancellationProps) {
 type OfferListProps = {
   title: string | React.ReactElement;
   offers: OfferTradeRecord[];
+  loading: boolean;
 };
 
 function OfferList(props: OfferListProps) {
-  const { title, offers } = props;
+  const { title, offers, loading } = props;
   const [getOfferData] = useGetOfferDataMutation();
   const [cancelOffer] = useCancelOfferMutation();
   const lookupAssetId = useAssetIdName();
   const openDialog = useOpenDialog();
   const history = useHistory();
+  const [page, setPage] = useState<number>(0);
+  const [rowsPerPage, setRowsPerPage] = useState<number>(5);
+
+  function handlePageChange(rowsPerPage: number, page: number) {
+    setRowsPerPage(rowsPerPage);
+    setPage(page);
+  }
 
   async function handleShowOfferData(offerData: string) {
     openDialog((
@@ -302,20 +311,22 @@ function OfferList(props: OfferListProps) {
                       <Trans>Display Offer Data</Trans>
                     </Typography>
                   </MenuItem>
-                  <MenuItem
-                    onClick={() => {
-                      onClose();
-                      handleExportOffer(tradeId);
-                    }}
-                  >
-                    <ListItemIcon>
-                      <Download fontSize="small" />
-                    </ListItemIcon>
-                    <Typography variant="inherit" noWrap>
-                      <Trans>Export Offer File</Trans>
-                    </Typography>
-                  </MenuItem>
-                  { row.status === OfferState.PENDING_ACCEPT && (
+                  {row.isMyOffer && (
+                    <MenuItem
+                      onClick={() => {
+                        onClose();
+                        handleExportOffer(tradeId);
+                      }}
+                    >
+                      <ListItemIcon>
+                        <Download fontSize="small" />
+                      </ListItemIcon>
+                      <Typography variant="inherit" noWrap>
+                        <Trans>Export Offer File</Trans>
+                      </Typography>
+                    </MenuItem>
+                  )}
+                  {row.status === OfferState.PENDING_ACCEPT && (
                     <MenuItem
                       onClick={() => {
                         onClose();
@@ -344,16 +355,26 @@ function OfferList(props: OfferListProps) {
 
   return (
     <Card title={title}>
-      {offers.length ? (
-        <TableControlled
-          rows={offers}
-          cols={cols}
-        />
-      ) : (
-        <Typography variant="body2">
-          <Trans>No current offers</Trans>
-        </Typography>
-      )}
+      <LoadingOverlay loading={loading}>
+        {offers.length ? (
+          <TableControlled
+            rows={offers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)}
+            cols={cols}
+            rowsPerPageOptions={[5, 25, 100]}
+            count={offers.length}
+            rowsPerPage={rowsPerPage}
+            pages={true}
+            page={page}
+            onPageChange={handlePageChange}
+          />
+        ) : (
+          !loading && (
+            <Typography variant="body2">
+              <Trans>No current offers</Trans>
+            </Typography>
+          )
+        )}
+      </LoadingOverlay>
     </Card>
   );
 }
@@ -392,13 +413,6 @@ export function OfferManager() {
     history.push('/dashboard/wallets/offers/import');
   }
 
-  if (!isLoading) {
-    console.log("myOffers");
-    console.log(myOffers);
-    console.log("acceptedOffers");
-    console.log(acceptedOffers);
-  }
-
   return (
     <Flex flexDirection="column" gap={3}>
       <Flex flexGrow={1}>
@@ -418,15 +432,15 @@ export function OfferManager() {
             <Button onClick={handleCreateOffer} variant="contained" color="primary">
               <Trans>Create an Offer</Trans>
             </Button>
-            <Button onClick={handleImportOffer} variant="contained" color="primary">
+            <Button onClick={handleImportOffer} variant="contained" color="secondary">
               <Trans>View an Offer</Trans>
             </Button>
           </CardHero>
         </Grid>
       </Grid>
       <Divider />
-      <OfferList title={<Trans>Your Offers</Trans>} offers={myOffers} />
-      <OfferList title={<Trans>Accepted Offers</Trans>} offers={acceptedOffers} />
+      <OfferList title={<Trans>Your Offers</Trans>} offers={myOffers} loading={isLoading} />
+      <OfferList title={<Trans>Accepted Offers</Trans>} offers={acceptedOffers} loading={isLoading} />
     </Flex>
   );
 }

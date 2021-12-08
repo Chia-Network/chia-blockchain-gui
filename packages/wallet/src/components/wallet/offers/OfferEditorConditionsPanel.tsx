@@ -2,7 +2,7 @@ import React, { useEffect, useMemo } from 'react';
 import { useFormContext, useFieldArray } from 'react-hook-form';
 import { Trans } from '@lingui/macro';
 import { Amount, Flex, More, TextFieldNumber } from '@chia/core';
-import { Box, Divider, Grid, ListItemIcon, MenuItem, Typography } from '@material-ui/core';
+import { Box, Divider, Grid, IconButton, ListItemIcon, MenuItem, Typography } from '@material-ui/core';
 import { Add, Remove } from '@material-ui/icons';
 import { useGetWalletsQuery } from '@chia/api-react';
 import { Wallet } from '@chia/api';
@@ -69,46 +69,14 @@ function OfferEditorConditionRow(props: OfferEditorConditionsRowProps) {
           />
         )}
       </Grid>
-      <Grid item style={{paddingTop: '1em'}}>
-        {(addRow || removeRow) && (
-          <More disabled={disabled}>
-            {({ onClose }: { onClose: () => void }) => (
-              <Box>
-                {addRow && (
-                  <MenuItem
-                    onClick={() => {
-                      onClose();
-                      addRow();
-                    }}
-                  >
-                    <ListItemIcon>
-                      <Add fontSize="small" />
-                    </ListItemIcon>
-                    <Typography variant="inherit" noWrap>
-                      <Trans>Add Offer Condition</Trans>
-                    </Typography>
-                  </MenuItem>
-                )}
-                {removeRow && (
-                  <MenuItem
-                    onClick={() => {
-                      onClose();
-                      removeRow();
-                    }}
-                  >
-                    <ListItemIcon>
-                      <Remove fontSize="small" />
-                    </ListItemIcon>
-                    <Typography variant="inherit" noWrap>
-                      <Trans>Remove Offer Condition</Trans>
-                    </Typography>
-                  </MenuItem>
-                )}
-              </Box>
-            )}
-          </More>
-        )}
-      </Grid>
+      <Flex flexDirection="row" justifyContent="top" alignItems="flex-start" gap={0.5} style={{paddingTop: '0.25em'}}>
+        <IconButton aria-label="remove" onClick={removeRow} disabled={disabled || !removeRow}>
+          <Remove />
+        </IconButton>
+        <IconButton aria-label="add" onClick={addRow} disabled={disabled || !addRow}>
+          <Add />
+        </IconButton>
+      </Flex>
     </Flex>
   );
 }
@@ -141,6 +109,7 @@ function OfferEditorConditionsPanel(props: OfferEditorConditionsPanelProps) {
   const { canAddMakerRow, canAddTakerRow } = useMemo(() => {
     let canAddMakerRow = false;
     let canAddTakerRow = false;
+
     if (!isLoading) {
       let makerWalletIds: Set<number> = new Set();
       let takerWalletIds: Set<number> = new Set();
@@ -154,8 +123,8 @@ function OfferEditorConditionsPanel(props: OfferEditorConditionsPanelProps) {
           takerWalletIds.add(takerRow.assetWalletId);
         }
       });
-      canAddMakerRow = makerWalletIds.size < wallets.length && makerRows.length < wallets.length;
-      canAddTakerRow = takerWalletIds.size < wallets.length && takerRows.length < wallets.length;
+      canAddMakerRow = makerWalletIds.size < wallets.length && makerRows.length < wallets.length && (makerRows.length + takerRows.length) < wallets.length;
+      canAddTakerRow = takerWalletIds.size < wallets.length && takerRows.length < wallets.length && (makerRows.length + takerRows.length) < wallets.length;
     }
 
     return { canAddMakerRow, canAddTakerRow };

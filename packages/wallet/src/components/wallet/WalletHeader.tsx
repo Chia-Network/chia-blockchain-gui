@@ -1,6 +1,7 @@
 import React, { ReactNode } from 'react';
 import { Trans } from '@lingui/macro';
 import {
+  AlertDialog,
   More,
   Flex,
   ConfirmDialog,
@@ -17,7 +18,7 @@ import {
 import {
   Delete as DeleteIcon,
 } from '@material-ui/icons';
-import { useDeleteUnconfirmedTransactionsMutation } from '@chia/api-react';
+import { useDeleteUnconfirmedTransactionsMutation, useGetSyncStatusQuery } from '@chia/api-react';
 import WalletStatus from './WalletStatus';
 import WalletsDropdodown from './WalletsDropdown';
 import isDebug from '../../util/isDebug';
@@ -29,6 +30,7 @@ type StandardWalletProps = {
 
 export default function WalletHeader(props: StandardWalletProps) {
   const { walletId, actions } = props;
+  const { data: walletState, isLoading: isWalletSyncLoading } = useGetSyncStatusQuery();
   const openDialog = useOpenDialog();
   const [deleteUnconfirmedTransactions] = useDeleteUnconfirmedTransactionsMutation();
   const history = useHistory();
@@ -50,8 +52,18 @@ export default function WalletHeader(props: StandardWalletProps) {
     history.push('/dashboard/wallets/create/simple');
   }
 
-  function handleManageOffers() {
-    history.push('/dashboard/wallets/offers/manage');
+  async function handleManageOffers() {
+    if (walletState.syncing) {
+      await openDialog(
+        <AlertDialog>
+          <Trans>Please finish syncing before managing offers</Trans>
+        </AlertDialog>,
+      );
+      return;
+    }
+    else {
+      history.push('/dashboard/wallets/offers/manage');
+    }
   }
 
   return (

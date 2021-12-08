@@ -72,12 +72,12 @@ function SelectOfferFile() {
       <Flex justifyContent="space-between">
         <Typography variant="subtitle1"><Trans>Drag & drop an offer file below to view its details</Trans></Typography>
         <Button
-              variant="outlined"
-              color="primary"
-              onClick={handleSelectOfferFile}
-            >
-              <Trans>Select Offer File</Trans>
-            </Button>
+          variant="outlined"
+          color="primary"
+          onClick={handleSelectOfferFile}
+        >
+          <Trans>Select Offer File</Trans>
+        </Button>
       </Flex>
       <Dropzone maxFiles={1} onDrop={handleDrop} processing={isParsing}>
         <Trans>Drag and drop offer file</Trans>
