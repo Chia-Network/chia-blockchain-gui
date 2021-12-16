@@ -331,7 +331,7 @@ function OfferList(props: OfferListProps) {
                         <Download fontSize="small" />
                       </ListItemIcon>
                       <Typography variant="inherit" noWrap>
-                        <Trans>Export Offer File</Trans>
+                        <Trans>Save Offer File</Trans>
                       </Typography>
                     </MenuItem>
                   )}
@@ -448,8 +448,8 @@ export function OfferManager() {
         </Grid>
       </Grid>
       <Divider />
-      <OfferList title={<Trans>Your Offers</Trans>} offers={myOffers} loading={isLoading} />
-      <OfferList title={<Trans>Accepted Offers</Trans>} offers={acceptedOffers} loading={isLoading} />
+      <OfferList title={<Trans>Offers you created</Trans>} offers={myOffers} loading={isLoading} />
+      <OfferList title={<Trans>Offers you accepted</Trans>} offers={acceptedOffers} loading={isLoading} />
     </Flex>
   );
 }
