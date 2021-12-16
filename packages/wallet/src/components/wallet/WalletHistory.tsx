@@ -195,7 +195,7 @@ export default function WalletHistory(props: Props) {
     );
 
     const offerTakerAddress = feeUnit && toBech32m(
-      '1111111111111111111111111111111111111111111111111111111111111111',
+      '0101010101010101010101010101010101010101010101010101010101010101',
       feeUnit,
     );
 
