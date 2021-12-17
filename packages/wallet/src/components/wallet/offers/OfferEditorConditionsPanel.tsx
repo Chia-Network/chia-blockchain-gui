@@ -4,11 +4,12 @@ import { Trans } from '@lingui/macro';
 import { Amount, Flex } from '@chia/core';
 import { Divider, Grid, IconButton, Typography } from '@material-ui/core';
 import { Add, Remove } from '@material-ui/icons';
-import { useGetWalletsQuery } from '@chia/api-react';
+import { useGetWalletBalanceQuery, useGetWalletsQuery } from '@chia/api-react';
 import { Wallet } from '@chia/api';
 import type OfferRowData from './OfferRowData';
 import WalletType from '../../../constants/WalletType';
 import OfferAssetSelector from './OfferAssetSelector';
+import { mojo_to_chia_string, mojo_to_colouredcoin_string } from '../../../util/chia';
 
 type OfferEditorConditionsRowProps = {
   namePrefix: string;
@@ -22,12 +23,32 @@ type OfferEditorConditionsRowProps = {
 function OfferEditorConditionRow(props: OfferEditorConditionsRowProps) {
   const { namePrefix, item, tradeSide, addRow, removeRow, disabled, ...rest } = props;
   const { getValues, setValue } = useFormContext();
+  const [walletId, setWalletId] = React.useState<number | undefined>(undefined);
+  const { data: walletBalance, isLoading } = useGetWalletBalanceQuery({ walletId });
 
   function handleAssetChange(namePrefix: string, selectedWalletId: number, selectedWalletType: WalletType) {
     item.walletType = selectedWalletType;
     item.amount = getValues(`${namePrefix}.amount`);  // Stash the amount so that we can set the defaultValue when rendering the amount field
     setValue(`${namePrefix}.walletType`, selectedWalletType);
+    setWalletId(selectedWalletId);
   }
+  const spendableBalanceString: string | undefined = useMemo(() => {
+    let balance = undefined;
+
+    if (!isLoading && tradeSide === 'sell' && walletBalance && walletBalance.walletId == walletId) {
+      switch (item.walletType) {
+        case WalletType.STANDARD_WALLET:
+          balance = mojo_to_chia_string(walletBalance.spendableBalance);
+          break;
+        case WalletType.CAT:
+          balance = mojo_to_colouredcoin_string(walletBalance.spendableBalance);
+          break;
+        default:
+          break;
+      }
+    }
+    return balance;
+  }, [walletId, walletBalance, isLoading, item]);
 
   return (
     <Flex flexDirection="row" gap={3} {...rest}>
@@ -42,19 +63,31 @@ function OfferEditorConditionRow(props: OfferEditorConditionsRowProps) {
         />
       </Grid>
       <Grid xs={6} item>
-        <Amount
-          variant="filled"
-          color="secondary"
-          label={<Trans>Amount</Trans>}
-          defaultValue={item.amount}
-          id={`${namePrefix}.amount`}
-          name={`${namePrefix}.amount`}
-          disabled={disabled}
-          symbol={item.walletType === WalletType.STANDARD_WALLET ? undefined : ""}
-          showAmountInMojos={item.walletType === WalletType.STANDARD_WALLET}
-          required
-          fullWidth
-        />
+        <Flex flexDirection="column" gap={1}>
+          <Amount
+            variant="filled"
+            color="secondary"
+            label={<Trans>Amount</Trans>}
+            defaultValue={item.amount}
+            id={`${namePrefix}.amount`}
+            name={`${namePrefix}.amount`}
+            disabled={disabled}
+            symbol={item.walletType === WalletType.STANDARD_WALLET ? undefined : ""}
+            showAmountInMojos={item.walletType === WalletType.STANDARD_WALLET}
+            required
+            fullWidth
+          />
+          {tradeSide === 'sell' && walletId && (
+            <Flex flexDirection="row" alignItems="center" gap={1}>
+              <Typography variant="body1">Spendable balance: </Typography>
+              {(spendableBalanceString === undefined) ? (
+                <Typography variant="body1">Loading...</Typography>
+              ) : (
+                <Typography variant="body1">{spendableBalanceString}</Typography>
+              )}
+            </Flex>
+          )}
+        </Flex>
       </Grid>
       <Flex flexDirection="row" justifyContent="top" alignItems="flex-start" gap={0.5} style={{paddingTop: '0.25em'}}>
         <IconButton aria-label="remove" onClick={removeRow} disabled={disabled || !removeRow}>
