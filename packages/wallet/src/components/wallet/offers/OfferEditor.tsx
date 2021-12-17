@@ -15,7 +15,7 @@ import {
   Divider,
   Grid,
 } from '@material-ui/core';
-import type OfferRowData from './OfferRowData';
+import type OfferEditorRowData from './OfferEditorRowData';
 import { suggestedFilenameForOffer } from './utils';
 import WalletType from '../../../constants/WalletType';
 import OfferEditorConditionsPanel from './OfferEditorConditionsPanel';
@@ -29,8 +29,8 @@ const StyledEditorBox = styled.div`
 
 type FormData = {
   selectedTab: number;
-  makerRows: OfferRowData[];
-  takerRows: OfferRowData[];
+  makerRows: OfferEditorRowData[];
+  takerRows: OfferEditorRowData[];
 };
 
 function OfferEditor(): JSX.Element {
@@ -48,7 +48,7 @@ function OfferEditor(): JSX.Element {
   const [createOfferForIds] = useCreateOfferForIdsMutation();
   const [processing, setIsProcessing] = useState<boolean>(false);
 
-  function updateOffer(offer: { [key: string]: number | string }, row: OfferRowData, debit: boolean) {
+  function updateOffer(offer: { [key: string]: number | string }, row: OfferEditorRowData, debit: boolean) {
     const { amount, assetWalletId, walletType } = row;
     if (assetWalletId) {
       let mojoAmount = 0;
@@ -68,22 +68,39 @@ function OfferEditor(): JSX.Element {
   async function onSubmit(formData: FormData) {
     const offer: { [key: string]: number | string } = {};
     let missingAssetSelection = false;
+    let missingAmount = false;
+    let amountExceedsSpendableBalance = false;
 
-    formData.makerRows.forEach((row: OfferRowData) => {
+    formData.makerRows.forEach((row: OfferEditorRowData) => {
       updateOffer(offer, row, true);
       if (!row.assetWalletId) {
         missingAssetSelection = true;
       }
+      else if (!row.amount) {
+        missingAmount = true;
+      }
+      else if (Number.parseFloat(row.amount as string) > Number.parseFloat(row.spendableBalance as string)) {
+        amountExceedsSpendableBalance = true;
+      }
     });
-    formData.takerRows.forEach((row: OfferRowData) => {
+    formData.takerRows.forEach((row: OfferEditorRowData) => {
       updateOffer(offer, row, false);
       if (!row.assetWalletId) {
         missingAssetSelection = true;
       }
     });
 
-    if (missingAssetSelection) {
-      errorDialog(new Error("Please select an asset for each row"));
+    if (missingAssetSelection || missingAmount || amountExceedsSpendableBalance) {
+      if (missingAssetSelection) {
+        errorDialog(new Error(t`Please select an asset for each row`));
+      }
+      else if (missingAmount) {
+        errorDialog(new Error(t`Please enter an amount for each row`));
+      }
+      else if (amountExceedsSpendableBalance) {
+        errorDialog(new Error(t`Amount exceeds spendable balance`));
+      }
+
       return;
     }
 

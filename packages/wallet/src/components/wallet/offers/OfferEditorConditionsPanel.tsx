@@ -6,14 +6,14 @@ import { Divider, Grid, IconButton, Typography } from '@material-ui/core';
 import { Add, Remove } from '@material-ui/icons';
 import { useGetWalletBalanceQuery, useGetWalletsQuery } from '@chia/api-react';
 import { Wallet } from '@chia/api';
-import type OfferRowData from './OfferRowData';
+import type OfferEditorRowData from './OfferEditorRowData';
 import WalletType from '../../../constants/WalletType';
 import OfferAssetSelector from './OfferAssetSelector';
 import { mojo_to_chia_string, mojo_to_colouredcoin_string } from '../../../util/chia';
 
 type OfferEditorConditionsRowProps = {
   namePrefix: string;
-  item: OfferRowData;
+  item: OfferEditorRowData;
   tradeSide: 'buy' | 'sell';  // section that the row belongs to
   addRow: (() => void) | undefined;  // undefined if adding is not allowed
   removeRow: (() => void) | undefined;  // undefined if removing is not allowed
@@ -47,8 +47,11 @@ function OfferEditorConditionRow(props: OfferEditorConditionsRowProps) {
           break;
       }
     }
+
+    setValue(`${namePrefix}.spendableBalance`, balance);
+
     return balance;
-  }, [walletId, walletBalance, isLoading, item]);
+  }, [walletId, walletBalance, isLoading]);
 
   return (
     <Flex flexDirection="row" gap={3} {...rest}>
@@ -123,8 +126,8 @@ function OfferEditorConditionsPanel(props: OfferEditorConditionsPanelProps) {
   });
   const { data: wallets, isLoading }: { data: Wallet[], isLoading: boolean} = useGetWalletsQuery();
   const { watch } = useFormContext();
-  const makerRows: OfferRowData[] = watch('makerRows');
-  const takerRows: OfferRowData[] = watch('takerRows');
+  const makerRows: OfferEditorRowData[] = watch('makerRows');
+  const takerRows: OfferEditorRowData[] = watch('takerRows');
 
   const { canAddMakerRow, canAddTakerRow } = useMemo(() => {
     let canAddMakerRow = false;
