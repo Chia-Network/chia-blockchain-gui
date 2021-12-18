@@ -3037,7 +3037,7 @@ msgstr "не синхронізовано"
 
 #: src/components/plot/add/PlotAdd.tsx:136
 msgid "p2_singleton_puzzle_hash is not defined"
-msgstr ""
+msgstr "p2_singleton_puzzle_hash не визначен"
 
 #: src/components/wallet/WalletStatusCard.tsx:27
 #: src/components/wallet/Wallets.tsx:55
