@@ -2,13 +2,14 @@ import React, { useMemo } from 'react';
 import { useFormContext, useFieldArray } from 'react-hook-form';
 import { Trans } from '@lingui/macro';
 import { Amount, Flex } from '@chia/core';
-import { Divider, Grid, IconButton, Typography } from '@material-ui/core';
-import { Add, Remove } from '@material-ui/icons';
+import { Divider, Grid, IconButton, TextField, Typography } from '@material-ui/core';
+import { Add, ImportExport, Remove } from '@material-ui/icons';
 import { useGetWalletBalanceQuery, useGetWalletsQuery } from '@chia/api-react';
 import { Wallet } from '@chia/api';
 import type OfferEditorRowData from './OfferEditorRowData';
 import WalletType from '../../../constants/WalletType';
 import OfferAssetSelector from './OfferAssetSelector';
+import useAssetIdName, { AssetIdMapEntry } from '../../../hooks/useAssetIdName';
 import { mojo_to_chia_string, mojo_to_colouredcoin_string } from '../../../util/chia';
 
 type OfferEditorConditionsRowProps = {
@@ -55,51 +56,57 @@ function OfferEditorConditionRow(props: OfferEditorConditionsRowProps) {
 
   return (
     <Flex flexDirection="row" gap={3} {...rest}>
-      <Grid xs={6} item>
-        <OfferAssetSelector
-          name={`${namePrefix}.assetWalletId`}
-          id={`${namePrefix}.assetWalletId`}
-          tradeSide={tradeSide}
-          defaultValue={undefined}
-          onChange={(walletId: number, walletType: WalletType) => handleAssetChange(namePrefix, walletId, walletType)}
-          disabled={disabled}
-        />
-      </Grid>
-      <Grid xs={6} item>
-        <Flex flexDirection="column" gap={1}>
-          <Amount
-            variant="filled"
-            color="secondary"
-            label={<Trans>Amount</Trans>}
-            defaultValue={item.amount}
-            id={`${namePrefix}.amount`}
-            name={`${namePrefix}.amount`}
+      <Grid container spacing={3}>
+        <Grid xs={5} item>
+          <OfferAssetSelector
+            name={`${namePrefix}.assetWalletId`}
+            id={`${namePrefix}.assetWalletId`}
+            tradeSide={tradeSide}
+            defaultValue={undefined}
+            onChange={(walletId: number, walletType: WalletType) => handleAssetChange(namePrefix, walletId, walletType)}
             disabled={disabled}
-            symbol={item.walletType === WalletType.STANDARD_WALLET ? undefined : ""}
-            showAmountInMojos={item.walletType === WalletType.STANDARD_WALLET}
-            required
-            fullWidth
           />
-          {tradeSide === 'sell' && walletId && (
-            <Flex flexDirection="row" alignItems="center" gap={1}>
-              <Typography variant="body1">Spendable balance: </Typography>
-              {(spendableBalanceString === undefined) ? (
-                <Typography variant="body1">Loading...</Typography>
-              ) : (
-                <Typography variant="body1">{spendableBalanceString}</Typography>
-              )}
-            </Flex>
-          )}
+        </Grid>
+        <Flex style={{width: '3em'}}>
         </Flex>
+        <Grid xs={5} item>
+          <Flex flexDirection="column" gap={1}>
+            <Amount
+              variant="filled"
+              color="secondary"
+              label={<Trans>Amount</Trans>}
+              defaultValue={item.amount}
+              id={`${namePrefix}.amount`}
+              name={`${namePrefix}.amount`}
+              disabled={disabled}
+              symbol={item.walletType === WalletType.STANDARD_WALLET ? undefined : ""}
+              showAmountInMojos={item.walletType === WalletType.STANDARD_WALLET}
+              required
+              fullWidth
+            />
+            {tradeSide === 'sell' && walletId && (
+              <Flex flexDirection="row" alignItems="center" gap={1}>
+                <Typography variant="body2">Spendable balance: </Typography>
+                {(spendableBalanceString === undefined) ? (
+                  <Typography variant="body2">Loading...</Typography>
+                ) : (
+                  <Typography variant="body2">{spendableBalanceString}</Typography>
+                )}
+              </Flex>
+            )}
+          </Flex>
+        </Grid>
+        <Grid xs={1} item>
+          <Flex flexDirection="row" justifyContent="top" alignItems="flex-start" gap={0.5} style={{paddingTop: '0.25em'}}>
+            <IconButton aria-label="remove" onClick={removeRow} disabled={disabled || !removeRow}>
+              <Remove />
+            </IconButton>
+            <IconButton aria-label="add" onClick={addRow} disabled={disabled || !addRow}>
+              <Add />
+            </IconButton>
+          </Flex>
+        </Grid>
       </Grid>
-      <Flex flexDirection="row" justifyContent="top" alignItems="flex-start" gap={0.5} style={{paddingTop: '0.25em'}}>
-        <IconButton aria-label="remove" onClick={removeRow} disabled={disabled || !removeRow}>
-          <Remove />
-        </IconButton>
-        <IconButton aria-label="add" onClick={addRow} disabled={disabled || !addRow}>
-          <Add />
-        </IconButton>
-      </Flex>
     </Flex>
   );
 }
@@ -126,6 +133,7 @@ function OfferEditorConditionsPanel(props: OfferEditorConditionsPanelProps) {
   });
   const { data: wallets, isLoading }: { data: Wallet[], isLoading: boolean} = useGetWalletsQuery();
   const { watch } = useFormContext();
+  const { lookupByWalletId } = useAssetIdName();
   const makerRows: OfferEditorRowData[] = watch('makerRows');
   const takerRows: OfferEditorRowData[] = watch('takerRows');
 
@@ -153,6 +161,27 @@ function OfferEditorConditionsPanel(props: OfferEditorConditionsPanelProps) {
     return { canAddMakerRow, canAddTakerRow };
   }, [wallets, isLoading, makerRows, takerRows]);
 
+  const { makerAssetInfo, makerExchangeRate, takerAssetInfo, takerExchangeRate } = useMemo(() => {
+    let makerAssetInfo: AssetIdMapEntry | undefined = undefined;
+    let takerAssetInfo: AssetIdMapEntry | undefined = undefined;
+    let makerExchangeRate: number | undefined = undefined;
+    let takerExchangeRate: number | undefined = undefined;
+
+    if (!isLoading && makerRows.length === 1 && takerRows.length === 1) {
+      const makerWalletId: string | undefined = makerRows[0].assetWalletId?.toString();
+      const takerWalletId: string | undefined = takerRows[0].assetWalletId?.toString();
+
+      if (makerWalletId && takerWalletId) {
+        makerAssetInfo = lookupByWalletId(makerWalletId);
+        takerAssetInfo = lookupByWalletId(takerWalletId);
+        makerExchangeRate = Number(takerRows[0].amount) / Number(makerRows[0].amount);
+        takerExchangeRate = Number(makerRows[0].amount) / Number(takerRows[0].amount);
+      }
+    }
+
+    return { makerAssetInfo, makerExchangeRate, takerAssetInfo, takerExchangeRate };
+  }, [isLoading, makerRows, takerRows]);
+
   type Section = {
     side: 'buy' | 'sell';
     fields: any[];
@@ -174,10 +203,10 @@ function OfferEditorConditionsPanel(props: OfferEditorConditionsPanelProps) {
   sections[1].headerTitle = <Trans>In exchange for</Trans>
 
   return (
-    <Flex flexDirection="column" gap={3}>
+    <Flex flexDirection="column" gap={2}>
       {sections.map((section, sectionIndex) => (
         <>
-          <Typography variant="h6">{section.headerTitle}</Typography>
+          <Typography variant="subtitle1">{section.headerTitle}</Typography>
           {section.fields.map((field, fieldIndex) => (
             <OfferEditorConditionRow
               key={field.id}
@@ -198,6 +227,49 @@ function OfferEditorConditionsPanel(props: OfferEditorConditionsPanelProps) {
           )}
         </>
       ))}
+      {makerAssetInfo && makerExchangeRate && takerAssetInfo && takerExchangeRate && (
+        <>
+          <Divider />
+          <Flex flexDirection="row" alignContent="center" gap={3}>
+            <Grid container spacing={3}>
+              <Grid xs={5} item>
+                <Flex flexDirection="row" justifyContent="flex-end" grow={1} gap={3}>
+                  <Flex alignItems="baseline" gap={1}>
+                    <Typography variant="subtitle1">1 {makerAssetInfo.displayName} =</Typography>
+                    <TextField
+                      key={`${makerExchangeRate}-${takerAssetInfo.displayName}`}
+                      variant="outlined"
+                      defaultValue={`${Number.isInteger(makerExchangeRate) ? makerExchangeRate : makerExchangeRate.toFixed(9)} ${takerAssetInfo.displayName}`}
+                      InputProps={{
+                        readOnly: true,
+                      }}
+                    />
+                  </Flex>
+                </Flex>
+              </Grid>
+              <Flex flexDirection="column" alignItems="center" justifyContent="center" style={{width: '3em'}}>
+                <ImportExport style={{transform: 'rotate(90deg)'}} />
+              </Flex>
+              <Grid xs={5} item>
+                <Flex flexDirection="row" grow={1} gap={3}>
+                  <Flex alignItems="baseline" gap={1}>
+                    <TextField
+                      key={`${takerExchangeRate}-${makerAssetInfo.displayName}`}
+                      variant="outlined"
+                      defaultValue={`${Number.isInteger(takerExchangeRate) ? takerExchangeRate : takerExchangeRate.toFixed(9)} ${makerAssetInfo.displayName}`}
+                      InputProps={{
+                        readOnly: true,
+                      }}
+                    />
+                    <Typography variant="subtitle1">= 1 {takerAssetInfo.displayName}</Typography>
+                  </Flex>
+                </Flex>
+              </Grid>
+            </Grid>
+          </Flex>
+          <Divider />
+        </>
+      )}
     </Flex>
   );
 }

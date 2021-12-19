@@ -3,7 +3,7 @@ import { useGetCatListQuery, useGetWalletsQuery } from '@chia/api-react';
 import { CATToken, Wallet } from '@chia/core';
 import WalletType from '../constants/WalletType';
 
-type AssetIdMapEntry = {
+export type AssetIdMapEntry = {
   walletId: number;
   walletType: WalletType;
   name: string;
@@ -15,11 +15,12 @@ export default function useAssetIdName() {
   const { data: wallets, isLoading } = useGetWalletsQuery();
   const { data: catList = [], isLoading: isCatListLoading } = useGetCatListQuery();
 
-  const assetIdNameMapping = useMemo(() => {
-    const mapping = new Map<string, AssetIdMapEntry>();
+  const { assetIdNameMapping, walletIdNameMapping } = useMemo(() => {
+    const assetIdNameMapping = new Map<string, AssetIdMapEntry>();
+    const walletIdNameMapping = new Map<number, AssetIdMapEntry>();
 
     if (isLoading || isCatListLoading) {
-      return mapping;
+      return { assetIdNameMapping, walletIdNameMapping };
     }
 
     wallets.map((wallet: Wallet) => {
@@ -48,16 +49,22 @@ export default function useAssetIdName() {
 
       if (assetId && name) {
         const displayName = symbol ? symbol : name;
-        mapping.set(assetId, { walletId, walletType, name, symbol, displayName });
+        const entry: AssetIdMapEntry = { walletId, walletType, name, symbol, displayName };
+        assetIdNameMapping.set(assetId, entry);
+        walletIdNameMapping.set(walletId, entry);
       }
     });
 
-    return mapping;
+    return { assetIdNameMapping, walletIdNameMapping } ;
   }, [catList, wallets, isCatListLoading, isLoading]);
 
-  function lookupAssetId(assetId: string): AssetIdMapEntry | undefined {
+  function lookupByAssetId(assetId: string): AssetIdMapEntry | undefined {
     return assetIdNameMapping.get(assetId.toLowerCase());
   }
 
-  return lookupAssetId;
+  function lookupByWalletId(walletId: number | string): AssetIdMapEntry | undefined {
+    return walletIdNameMapping.get(Number(walletId));
+  }
+
+  return { lookupByAssetId, lookupByWalletId };
 }

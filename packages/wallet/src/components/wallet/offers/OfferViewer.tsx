@@ -128,7 +128,7 @@ type OfferDetailsRow = {
 function OfferDetails(props: OfferDetailsProps) {
   const { tradeRecord, offerData, offerSummary, imported } = props;
   const summary = tradeRecord?.summary || offerSummary;
-  const lookupAssetId = useAssetIdName();
+  const { lookupByAssetId } = useAssetIdName();
   const openExternal = useOpenExternal();
   const history = useHistory();
   const openDialog = useOpenDialog();
@@ -354,7 +354,7 @@ function OfferDetails(props: OfferDetailsProps) {
   };
 
   function OfferSummaryEntry({ assetId, amount, ...rest}: { assetId: string, amount: number }) {
-    const assetIdInfo = lookupAssetId(assetId);
+    const assetIdInfo = lookupByAssetId(assetId);
     const displayAmount = assetIdInfo ? formatAmountForWalletType(amount as number, assetIdInfo.walletType) : mojo_to_colouredcoin_string(amount);
     const displayName = assetIdInfo?.displayName ?? t`Unknown CAT`;
 

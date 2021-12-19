@@ -138,7 +138,7 @@ function OfferList(props: OfferListProps) {
   const [getOfferData] = useGetOfferDataMutation();
   const [cancelOffer] = useCancelOfferMutation();
   const { data: wallets, isLoading: isLoadingWallets } = useGetWalletsQuery();
-  const lookupAssetId = useAssetIdName();
+  const { lookupByAssetId } = useAssetIdName();
   const openDialog = useOpenDialog();
   const history = useHistory();
   const [page, setPage] = useState<number>(0);
@@ -222,7 +222,7 @@ function OfferList(props: OfferListProps) {
       {
         field: (row: OfferTradeRecord) => {
           const resolvedOfferInfo = Object.entries(row.summary.offered).map(([assetId, amount]) => {
-            const assetIdInfo = lookupAssetId(assetId);
+            const assetIdInfo = lookupByAssetId(assetId);
             const displayAmount = assetIdInfo ? formatAmountForWalletType(amount as number, assetIdInfo.walletType) : mojo_to_colouredcoin_string(amount);
             const displayName = assetIdInfo?.displayName ?? t`Unknown CAT`;
             return {
@@ -245,7 +245,7 @@ function OfferList(props: OfferListProps) {
       {
         field: (row: OfferTradeRecord) => {
           const resolvedOfferInfo = Object.entries(row.summary.requested).map(([assetId, amount]) => {
-            const assetIdInfo = lookupAssetId(assetId);
+            const assetIdInfo = lookupByAssetId(assetId);
             const displayAmount = assetIdInfo ? formatAmountForWalletType(amount as number, assetIdInfo.walletType) : mojo_to_colouredcoin_string(amount);
             const displayName = assetIdInfo?.displayName ?? t`Unknown CAT`;
             return {
