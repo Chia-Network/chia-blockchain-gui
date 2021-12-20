@@ -227,7 +227,7 @@ function OfferEditorConditionsPanel(props: OfferEditorConditionsPanelProps) {
           )}
         </>
       ))}
-      {makerAssetInfo && makerExchangeRate && takerAssetInfo && takerExchangeRate && (
+      {!!makerAssetInfo && !!makerExchangeRate && !!takerAssetInfo && !!takerExchangeRate && (
         <>
           <Divider />
           <Flex flexDirection="row" alignContent="center" gap={3}>
