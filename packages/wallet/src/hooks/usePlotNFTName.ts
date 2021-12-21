@@ -2,7 +2,6 @@ import { useMemo } from 'react';
 import seedrandom from 'seedrandom';
 import {
   uniqueNamesGenerator,
-  adjectives,
   colors,
   animals,
 } from 'unique-names-generator';
@@ -22,7 +21,7 @@ function getUniqueName(seed: string, iteration: number = 0): string {
   const generator = seedrandom(iteration ? `${seed}-${iteration}` : seed);
 
   const uniqueName = uniqueNamesGenerator({
-    dictionaries: [colors, animals, adjectives],
+    dictionaries: [colors, animals],
     length: 2,
     seed: generator.int32(),
     separator: ' ',
@@ -41,7 +40,7 @@ function getUniqueName(seed: string, iteration: number = 0): string {
 export default function usePlotNFTName(nft: PlotNFT | PlotNFTExternal): string {
   const p2_singleton_puzzle_hash = nft?.pool_state?.p2_singleton_puzzle_hash;
   const name = useMemo(
-    () => getUniqueName(p2_singleton_puzzle_hash), 
+    () => getUniqueName(p2_singleton_puzzle_hash),
     [p2_singleton_puzzle_hash],
   );
 
