@@ -12,6 +12,7 @@ import {
   Fee,
   Flex,
   Form,
+  IconButton,
   LoadingOverlay,
   More,
   TableControlled,
@@ -31,7 +32,7 @@ import {
   MenuItem,
   Typography
 } from '@material-ui/core';
-import { Cancel, GetApp as Download, Info, Visibility } from '@material-ui/icons';
+import { Cancel, GetApp as Download, Info, Reply as Share, Visibility } from '@material-ui/icons';
 import { Trade as TradeIcon } from '@chia/icons';
 import { useCancelOfferMutation, useGetAllOffersQuery, useGetOfferDataMutation, useGetWalletsQuery } from '@chia/api-react';
 import { colorForOfferState, displayStringForOfferState, formatAmountForWalletType, suggestedFilenameForOffer } from './utils';
@@ -41,6 +42,7 @@ import { CreateOfferEditor } from './OfferEditor';
 import { OfferImport } from './OfferImport';
 import { OfferViewer } from './OfferViewer';
 import OfferDataDialog from './OfferDataDialog';
+import OfferShareDialog from './OfferShareDialog';
 import fs from 'fs';
 import OfferState from './OfferState';
 
@@ -203,6 +205,12 @@ function OfferList(props: OfferListProps) {
     history.push('/dashboard/wallets/offers/view', { tradeRecord: row });
   }
 
+  async function handleShare(event: any, row: OfferTradeRecord) {
+    openDialog((
+      <OfferShareDialog offerRecord={row} offerData={row._offerData} />
+    ));
+  }
+
   const cols = useMemo(() => {
     return [
       {
@@ -289,70 +297,75 @@ function OfferList(props: OfferListProps) {
           const canCancel = status === OfferState.PENDING_ACCEPT;
 
           return (
-            <More>
-              {({ onClose }: { onClose: () => void }) => (
-                <Box>
-                  <MenuItem
-                    onClick={() => {
-                      onClose();
-                      handleRowClick(undefined, row);
-                    }}
-                  >
-                    <ListItemIcon>
-                      <Info fontSize="small" />
-                    </ListItemIcon>
-                    <Typography variant="inherit" noWrap>
-                      <Trans>Show Details</Trans>
-                    </Typography>
-                  </MenuItem>
-                  {canDisplayData && (
+            <>
+              <IconButton size="small" onClick={() => handleShare(undefined, row)}>
+                <Share style={{transform: 'scaleX(-1)'}} />
+              </IconButton>
+              <More>
+                {({ onClose }: { onClose: () => void }) => (
+                  <Box>
                     <MenuItem
                       onClick={() => {
                         onClose();
-                        handleShowOfferData(row._offerData);
+                        handleRowClick(undefined, row);
                       }}
                     >
                       <ListItemIcon>
-                        <Visibility fontSize="small" />
+                        <Info fontSize="small" />
                       </ListItemIcon>
                       <Typography variant="inherit" noWrap>
-                        <Trans>Display Offer Data</Trans>
+                        <Trans>Show Details</Trans>
                       </Typography>
                     </MenuItem>
-                  )}
-                  {canExport && (
-                    <MenuItem
-                      onClick={() => {
-                        onClose();
-                        handleExportOffer(tradeId);
-                      }}
-                    >
-                      <ListItemIcon>
-                        <Download fontSize="small" />
-                      </ListItemIcon>
-                      <Typography variant="inherit" noWrap>
-                        <Trans>Save Offer File</Trans>
-                      </Typography>
-                    </MenuItem>
-                  )}
-                  {canCancel && (
-                    <MenuItem
-                      onClick={() => {
-                        onClose();
-                        handleCancelOffer(tradeId);
-                      }}
-                    >
-                      <ListItemIcon>
-                        <Cancel fontSize="small" />
-                      </ListItemIcon>
-                      <Typography variant="inherit" noWrap>
-                        <Trans>Cancel Offer</Trans>
-                      </Typography>
-                    </MenuItem>
-                  )}
-                </Box>
-              )}
-            </More>
+                    {canDisplayData && (
+                      <MenuItem
+                        onClick={() => {
+                          onClose();
+                          handleShowOfferData(row._offerData);
+                        }}
+                      >
+                        <ListItemIcon>
+                          <Visibility fontSize="small" />
+                        </ListItemIcon>
+                        <Typography variant="inherit" noWrap>
+                          <Trans>Display Offer Data</Trans>
+                        </Typography>
+                      </MenuItem>
+                    )}
+                    {canExport && (
+                      <MenuItem
+                        onClick={() => {
+                          onClose();
+                          handleExportOffer(tradeId);
+                        }}
+                      >
+                        <ListItemIcon>
+                          <Download fontSize="small" />
+                        </ListItemIcon>
+                        <Typography variant="inherit" noWrap>
+                          <Trans>Save Offer File</Trans>
+                        </Typography>
+                      </MenuItem>
+                    )}
+                    {canCancel && (
+                      <MenuItem
+                        onClick={() => {
+                          onClose();
+                          handleCancelOffer(tradeId);
+                        }}
+                      >
+                        <ListItemIcon>
+                          <Cancel fontSize="small" />
+                        </ListItemIcon>
+                        <Typography variant="inherit" noWrap>
+                          <Trans>Cancel Offer</Trans>
+                        </Typography>
+                      </MenuItem>
+                    )}
+                  </Box>
+                )}
+              </More>
+            </>
           );
         },
         minWidth: '100px',
