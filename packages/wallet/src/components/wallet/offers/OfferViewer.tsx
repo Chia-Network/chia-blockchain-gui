@@ -8,6 +8,7 @@ import {
   Back,
   ButtonLoading,
   Card,
+  ConfirmDialog,
   CopyToClipboard,
   Fee,
   Flex,
@@ -279,6 +280,56 @@ function OfferDetails(props: OfferDetailsProps) {
   async function handleAcceptOffer(formData: any) {
     const { fee } = formData;
     const feeInMojos = fee ? Number.parseFloat(chia_to_mojo(fee)) : 0;
+    const offeredUnknownCATs: string[] = Object.entries(summary.offered).filter(([assetId]) => lookupByAssetId(assetId) === undefined).map(([assetId]) => assetId);
+
+    const confirmedAccept = await openDialog(
+      <ConfirmDialog
+        title={<Trans>Accept Offer</Trans>}
+        confirmTitle={<Trans>Accept Offer</Trans>}
+        confirmColor="secondary"
+        cancelTitle={<Trans>Cancel</Trans>}
+      >
+        <Flex flexDirection="column" gap={3}>
+          {offeredUnknownCATs.length > 0 && (
+            <>
+            <Flex flexDirection="column" gap={1}>
+              <Typography variant="h6"><Trans>Warning</Trans></Typography>
+              <Typography variant="body1">
+                <Trans>
+                  One or more unknown tokens are being offered. Please verify that the asset IDs of the tokens listed below match the asset IDs of the tokens you expect to receive.
+                </Trans>
+              </Typography>
+              <Typography variant="subtitle1">
+                Unknown CATs:
+              </Typography>
+              <StyledSummaryBox>
+                <Flex flexDirection="column">
+                  {offeredUnknownCATs.map((assetId) => (
+                    <Flex alignItems="center" justifyContent="space-between" gap={1}>
+                      <Typography variant="caption">{assetId.toLowerCase()}</Typography>
+                      <CopyToClipboard value={assetId.toLowerCase()} fontSize="small" />
+                    </Flex>
+                  ))}
+                </Flex>
+              </StyledSummaryBox>
+
+            </Flex>
+            <Divider />
+            </>
+          )}
+          <Typography>
+          <Trans>
+            Once you accept this offer, you will not be able to cancel the transaction.
+            Are you sure you want to accept this offer?
+          </Trans>
+          </Typography>
+        </Flex>
+      </ConfirmDialog>
+    );
+
+    if (!confirmedAccept) {
+      return;
+    }
 
     try {
       setIsAccepting(true);
