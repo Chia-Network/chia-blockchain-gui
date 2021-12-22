@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import { Plural, Trans, t } from '@lingui/macro';
+import { useLocalStorage } from '@rehooks/local-storage';
 import {
   ButtonLoading,
   CopyToClipboard,
   DialogActions,
   Flex,
   FormatLargeNumber,
-  Link,
   TooltipIcon,
   useOpenDialog,
   useShowError,
@@ -15,25 +15,25 @@ import { OfferTradeRecord } from '@chia/api';
 import {
   Box,
   Button,
+  Checkbox,
   Dialog,
   DialogTitle,
   DialogContent,
+  FormControlLabel,
   InputAdornment,
   TextField,
   Typography,
 } from '@material-ui/core';
 import styled from 'styled-components';
 import {
-  colorForOfferState,
-  displayStringForOfferState,
   formatAmountForWalletType
 } from './utils';
-import { chia_to_mojo, mojo_to_chia_string, mojo_to_colouredcoin_string } from '../../../util/chia';
+import { mojo_to_colouredcoin_string } from '../../../util/chia';
 import WalletType from '../../../constants/WalletType';
 import useAssetIdName from '../../../hooks/useAssetIdName';
 import useOpenExternal from "../../../hooks/useOpenExternal";
-import { IncomingMessage } from "http";
-import { Shell, Remote } from 'electron';
+import { IncomingMessage, Shell, Remote } from 'electron';
+import OfferLocalStorageKeys from './OfferLocalStorage';
 
 const StyledEditorBox = styled.div`
   padding-left: ${({ theme }) => `${theme.spacing(4)}px`};
@@ -109,10 +109,18 @@ async function postToOfferBin(offerData: string): Promise<string> {
         if (response.statusCode === 200) {
           console.log('OfferBin upload completed');
 
-          const body = response.read().toString('utf8');
-          const { hash } = JSON.parse(body);
+          response.on('error', (e: string) => {
+            const error = new Error(`Failed to receive response from OfferBin: ${e}`);
+            console.error(error);
+            reject(error.message);
+          });
 
-          resolve(`https://www.offerbin.io/offer/${hash}`);
+          response.on('data', (chunk: Buffer) => {
+            const body = chunk.toString('utf8');
+            const { hash } = JSON.parse(body);
+
+            resolve(`https://www.offerbin.io/offer/${hash}`);
+          });
         }
         else {
           const error = new Error(`OfferBin upload failed, statusCode=${response.statusCode}, statusMessage=${response.statusMessage}`);
@@ -311,13 +319,15 @@ OfferShareOfferBinDialog.defaultProps = {
   onClose: () => {},
 };
 
-type OfferShareDialogProps = CommonOfferProps & CommonDialogProps;
+type OfferShareDialogProps = CommonOfferProps & CommonDialogProps & {
+  showSuppressionCheckbox: boolean;
+};
 
 export default function OfferShareDialog(props: OfferShareDialogProps) {
-  const { offerRecord, offerData, onClose, open } = props;
+  const { offerRecord, offerData, showSuppressionCheckbox, onClose, open } = props;
   const openDialog = useOpenDialog();
-  const openExternal = useOpenExternal();
   const showError = useShowError();
+  const [suppressShareOnCreate, setSuppressShareOnCreate] = useLocalStorage<boolean>(OfferLocalStorageKeys.SUPPRESS_SHARE_ON_CREATE);
 
   function handleClose() {
     onClose(false);
@@ -332,11 +342,15 @@ export default function OfferShareDialog(props: OfferShareDialogProps) {
   async function handleKeybase() {
     try {
       const shell: Shell = (window as any).shell;
-      await shell.openExternal('keybase://chat/chia_offers#general');
+      await shell.openExternal('keybase://chat/chia_offers#offers-trading');
     }
     catch (e) {
       showError(new Error(t`Unable to open Keybase. Install Keybase from https://keybase.io`));
     }
+  }
+
+  function toggleSuppression(value: boolean) {
+    setSuppressShareOnCreate(value);
   }
 
   return (
@@ -352,8 +366,9 @@ export default function OfferShareDialog(props: OfferShareDialogProps) {
       </DialogTitle>
 
       <DialogContent dividers>
-        <Flex flexDirection="column" gap={3}>
-          <Typography variant="subtitle1">Where would you like to share your offer?</Typography>
+        <Flex flexDirection="column" gap={2}>
+          <Flex flexDirection="column" gap={2}>
+            <Typography variant="subtitle1">Where would you like to share your offer?</Typography>
             <Flex flexDirection="row" gap={3}>
               <Button variant="contained" color="default" onClick={handleOfferBin}>
                 OfferBin
@@ -373,7 +388,16 @@ export default function OfferShareDialog(props: OfferShareDialogProps) {
                   <Typography variant="caption"><Trans>(Coming Soon)</Trans></Typography>
                 </Flex>
               </Button>
+            </Flex>
           </Flex>
+          {showSuppressionCheckbox && (
+            <>
+              <FormControlLabel
+                control={<Checkbox name="cancelWithTransaction" checked={!!suppressShareOnCreate} onChange={(event) => toggleSuppression(event.target.checked)} />}
+                label={<Trans>Do not show this dialog again</Trans>}
+              />
+            </>
+          )}
         </Flex>
       </DialogContent>
       <DialogActions>
@@ -392,4 +416,5 @@ export default function OfferShareDialog(props: OfferShareDialogProps) {
 OfferShareDialog.defaultProps = {
   open: false,
   onClose: () => {},
+  showSuppressionCheckbox: false,
 };

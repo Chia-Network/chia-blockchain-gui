@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
+import { useLocalStorage } from '@rehooks/local-storage';
 import { Trans, t } from '@lingui/macro';
 import {
   Back,
   ButtonLoading,
   Flex,
   Form,
+  useOpenDialog,
   useShowError,
 } from '@chia/core';
 import { useCreateOfferForIdsMutation } from '@chia/api-react';
@@ -19,9 +21,12 @@ import type OfferEditorRowData from './OfferEditorRowData';
 import { suggestedFilenameForOffer } from './utils';
 import WalletType from '../../../constants/WalletType';
 import OfferEditorConditionsPanel from './OfferEditorConditionsPanel';
+import OfferShareDialog from './OfferShareDialog';
+import OfferLocalStorageKeys from './OfferLocalStorage';
 import styled from 'styled-components';
 import { chia_to_mojo, colouredcoin_to_mojo } from '../../../util/chia';
 import fs from 'fs';
+import { Remote } from 'electron';
 
 const StyledEditorBox = styled.div`
   padding: ${({ theme }) => `${theme.spacing(4)}px`};
@@ -44,7 +49,9 @@ function OfferEditor(): JSX.Element {
     shouldUnregister: false,
     defaultValues,
   });
+  const openDialog = useOpenDialog();
   const errorDialog = useShowError();
+  const [suppressShareOnCreate] = useLocalStorage<boolean>(OfferLocalStorageKeys.SUPPRESS_SHARE_ON_CREATE);
   const [createOfferForIds] = useCreateOfferForIdsMutation();
   const [processing, setIsProcessing] = useState<boolean>(false);
 
@@ -116,7 +123,8 @@ function OfferEditor(): JSX.Element {
       }
       else {
         const dialogOptions = { defaultPath: suggestedFilenameForOffer(response.tradeRecord.summary) };
-        const result = await window.remote.dialog.showSaveDialog(dialogOptions);
+        const remote: Remote = (window as any).remote;
+        const result = await remote.dialog.showSaveDialog(dialogOptions);
         const { filePath, canceled } = result;
 
         if (!canceled && filePath) {
@@ -126,11 +134,21 @@ function OfferEditor(): JSX.Element {
             errorDialog(error);
           }
           else {
-            const { offer: offerData } = response;
+            const { offer: offerData, tradeRecord: offerRecord } = response;
 
             try {
               fs.writeFileSync(filePath, offerData);
               history.goBack();
+
+              if (!suppressShareOnCreate) {
+                openDialog((
+                  <OfferShareDialog
+                    offerRecord={offerRecord}
+                    offerData={offerData}
+                    showSuppressionCheckbox={true}
+                  />
+                ));
+              }
             }
             catch (err) {
               console.error(err);

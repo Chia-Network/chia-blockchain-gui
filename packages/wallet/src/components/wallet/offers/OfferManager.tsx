@@ -45,6 +45,7 @@ import OfferDataDialog from './OfferDataDialog';
 import OfferShareDialog from './OfferShareDialog';
 import fs from 'fs';
 import OfferState from './OfferState';
+import { Remote } from 'electron';
 
 const StyledTradeIcon = styled(TradeIcon)`
   font-size: 4rem;
@@ -164,7 +165,8 @@ function OfferList(props: OfferListProps) {
       const dialogOptions = {
         defaultPath: suggestedFilenameForOffer(tradeRecord),
       }
-      const result = await window.remote.dialog.showSaveDialog(dialogOptions);
+      const remote: Remote = (window as any).remote;
+      const result = await remote.dialog.showSaveDialog(dialogOptions);
       const { filePath, canceled } = result;
 
       if (!canceled && filePath) {
@@ -207,7 +209,10 @@ function OfferList(props: OfferListProps) {
 
   async function handleShare(event: any, row: OfferTradeRecord) {
     openDialog((
-      <OfferShareDialog offerRecord={row} offerData={row._offerData} />
+      <OfferShareDialog
+        offerRecord={row}
+        offerData={row._offerData}
+      />
     ));
   }
 
@@ -295,82 +300,93 @@ function OfferList(props: OfferListProps) {
           const canExport = status === OfferState.PENDING_ACCEPT; // implies isMyOffer === true
           const canDisplayData = status === OfferState.PENDING_ACCEPT;
           const canCancel = status === OfferState.PENDING_ACCEPT;
+          const canShare = status === OfferState.PENDING_ACCEPT;
 
           return (
-            <>
-              <IconButton size="small" onClick={() => handleShare(undefined, row)}>
-                <Share style={{transform: 'scaleX(-1)'}} />
-              </IconButton>
-              <More>
-                {({ onClose }: { onClose: () => void }) => (
-                  <Box>
-                    <MenuItem
-                      onClick={() => {
-                        onClose();
-                        handleRowClick(undefined, row);
-                      }}
-                    >
-                      <ListItemIcon>
-                        <Info fontSize="small" />
-                      </ListItemIcon>
-                      <Typography variant="inherit" noWrap>
-                        <Trans>Show Details</Trans>
-                      </Typography>
-                    </MenuItem>
-                    {canDisplayData && (
-                      <MenuItem
-                        onClick={() => {
-                          onClose();
-                          handleShowOfferData(row._offerData);
-                        }}
-                      >
-                        <ListItemIcon>
-                          <Visibility fontSize="small" />
-                        </ListItemIcon>
-                        <Typography variant="inherit" noWrap>
-                          <Trans>Display Offer Data</Trans>
-                        </Typography>
-                      </MenuItem>
-                    )}
-                    {canExport && (
-                      <MenuItem
-                        onClick={() => {
-                          onClose();
-                          handleExportOffer(tradeId);
-                        }}
-                      >
-                        <ListItemIcon>
-                          <Download fontSize="small" />
-                        </ListItemIcon>
-                        <Typography variant="inherit" noWrap>
-                          <Trans>Save Offer File</Trans>
-                        </Typography>
-                      </MenuItem>
-                    )}
-                    {canCancel && (
-                      <MenuItem
-                        onClick={() => {
-                          onClose();
-                          handleCancelOffer(tradeId);
-                        }}
-                      >
-                        <ListItemIcon>
-                          <Cancel fontSize="small" />
-                        </ListItemIcon>
-                        <Typography variant="inherit" noWrap>
-                          <Trans>Cancel Offer</Trans>
-                        </Typography>
-                      </MenuItem>
-                    )}
-                  </Box>
+            <Flex flexDirection="row" justifyContent="center" gap={0}>
+              <Flex style={{width: '32px'}}>
+                {canShare && (
+                  <IconButton
+                    size="small"
+                    disabled={!canShare}
+                    onClick={() => handleShare(undefined, row)}
+                  >
+                    <Share style={{transform: 'scaleX(-1)'}} />
+                  </IconButton>
                 )}
-              </More>
-            </>
+              </Flex>
+              <Flex style={{width: '32px'}}>
+                <More>
+                  {({ onClose }: { onClose: () => void }) => (
+                    <Box>
+                      <MenuItem
+                        onClick={() => {
+                          onClose();
+                          handleRowClick(undefined, row);
+                        }}
+                      >
+                        <ListItemIcon>
+                          <Info fontSize="small" />
+                        </ListItemIcon>
+                        <Typography variant="inherit" noWrap>
+                          <Trans>Show Details</Trans>
+                        </Typography>
+                      </MenuItem>
+                      {canDisplayData && (
+                        <MenuItem
+                          onClick={() => {
+                            onClose();
+                            handleShowOfferData(row._offerData);
+                          }}
+                        >
+                          <ListItemIcon>
+                            <Visibility fontSize="small" />
+                          </ListItemIcon>
+                          <Typography variant="inherit" noWrap>
+                            <Trans>Display Offer Data</Trans>
+                          </Typography>
+                        </MenuItem>
+                      )}
+                      {canExport && (
+                        <MenuItem
+                          onClick={() => {
+                            onClose();
+                            handleExportOffer(tradeId);
+                          }}
+                        >
+                          <ListItemIcon>
+                            <Download fontSize="small" />
+                          </ListItemIcon>
+                          <Typography variant="inherit" noWrap>
+                            <Trans>Save Offer File</Trans>
+                          </Typography>
+                        </MenuItem>
+                      )}
+                      {canCancel && (
+                        <MenuItem
+                          onClick={() => {
+                            onClose();
+                            handleCancelOffer(tradeId);
+                          }}
+                        >
+                          <ListItemIcon>
+                            <Cancel fontSize="small" />
+                          </ListItemIcon>
+                          <Typography variant="inherit" noWrap>
+                            <Trans>Cancel Offer</Trans>
+                          </Typography>
+                        </MenuItem>
+                      )}
+                    </Box>
+                  )}
+                </More>
+              </Flex>
+            </Flex>
           );
         },
         minWidth: '100px',
         maxWidth: '100px',
-        title: <Trans>Actions</Trans>
+        title: <Flex justifyContent="center">Actions</Flex>
       },
     ];
   }, []);
