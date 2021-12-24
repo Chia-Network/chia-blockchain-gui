@@ -1,4 +1,4 @@
-import { app, dialog, shell, ipcMain, BrowserWindow, Menu, session } from 'electron';
+import { app, dialog, shell, ipcMain, BrowserWindow, Menu, session, nativeImage } from 'electron';
 require('@electron/remote/main').initialize()
 import path from 'path';
 import React from 'react';
@@ -16,6 +16,9 @@ import chiaConfig from '../util/config';
 import { i18n } from '../config/locales';
 import About from '../components/about/About';
 import packageJson from '../../package.json';
+import AppIcon from '../assets/img/chia64x64.png'
+
+const appIcon = nativeImage.createFromPath(__dirname + '/' + AppIcon);
 
 function renderAbout(): string {
   const sheet = new ServerStyleSheet();
@@ -136,6 +139,10 @@ if (!handleSquirrelEvent()) {
           nativeWindowOpen: true
         },
       });
+
+      if(process.platform === 'linux'){
+        mainWindow.setIcon(appIcon);
+      }
 
       if (dev_config.redux_tool) {
         const reduxDevToolsPath = path.join(os.homedir(), dev_config.react_tool)
