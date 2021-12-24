@@ -1,19 +1,16 @@
 import React from "react";
-import { Plural, Trans, t } from '@lingui/macro';
+import { Trans, t } from '@lingui/macro';
 import { useLocalStorage } from '@rehooks/local-storage';
 import {
   ButtonLoading,
   CopyToClipboard,
   DialogActions,
   Flex,
-  FormatLargeNumber,
-  TooltipIcon,
   useOpenDialog,
   useShowError,
 } from '@chia/core';
 import { OfferTradeRecord } from '@chia/api';
 import {
-  Box,
   Button,
   Checkbox,
   Dialog,
@@ -24,59 +21,11 @@ import {
   TextField,
   Typography,
 } from '@material-ui/core';
-import styled from 'styled-components';
-import {
-  formatAmountForWalletType
-} from './utils';
-import { mojo_to_colouredcoin_string } from '../../../util/chia';
-import WalletType from '../../../constants/WalletType';
 import useAssetIdName from '../../../hooks/useAssetIdName';
 import useOpenExternal from "../../../hooks/useOpenExternal";
 import { IncomingMessage, Shell, Remote } from 'electron';
 import OfferLocalStorageKeys from './OfferLocalStorage';
-
-const StyledEditorBox = styled.div`
-  padding-left: ${({ theme }) => `${theme.spacing(4)}px`};
-  padding-right: ${({ theme }) => `${theme.spacing(4)}px`};
-`;
-
-const StyledTitle = styled(Box)`
-  font-size: 0.625rem;
-  color: rgba(255, 255, 255, 0.7);
-`;
-
-const StyledValue = styled(Box)`
-  word-break: break-all;
-`;
-
-type OfferMojoAmountProps = {
-  mojos: number;
-  mojoThreshold?: number
-};
-
-function OfferMojoAmount(props: OfferMojoAmountProps): React.ReactElement{
-  const { mojos, mojoThreshold } = props;
-
-  return (
-    <>
-      { mojoThreshold && mojos < mojoThreshold && (
-        <Flex flexDirection="row" flexGrow={1} gap={1}>
-          (
-          <FormatLargeNumber value={mojos} />
-          <Box>
-            <Plural value={mojos} one="mojo" other="mojos" />
-          </Box>
-          )
-        </Flex>
-      )}
-    </>
-  );
-}
-
-OfferMojoAmount.defaultProps = {
-  mojos: 0,
-  mojoThreshold: 1000000000,  // 1 billion
-};
+import OfferSummary from './OfferSummary';
 
 type CommonOfferProps = {
   offerRecord: OfferTradeRecord;
@@ -174,39 +123,6 @@ function OfferShareOfferBinDialog(props: OfferShareOfferBinDialogProps) {
     }
   }
 
-  function OfferSummaryEntry({ assetId, amount, ...rest}: { assetId: string, amount: number }) {
-    const assetIdInfo = lookupByAssetId(assetId);
-    const displayAmount = assetIdInfo ? formatAmountForWalletType(amount as number, assetIdInfo.walletType) : mojo_to_colouredcoin_string(amount);
-    const displayName = assetIdInfo?.displayName ?? t`Unknown CAT`;
-
-    return (
-      <Flex flexDirections="row" gap={1}>
-        <Typography variant="body1" {...rest}>
-          <Flex flexDirection="row" alignItems="center" gap={1}>
-            <Typography>{displayAmount} {displayName}</Typography>
-            {!(assetIdInfo?.displayName) && (
-              <TooltipIcon interactive>
-                <Flex flexDirection="column" gap={1}>
-                  <StyledTitle>TAIL</StyledTitle>
-                  <Flex alignItems="center" gap={1}>
-                    <StyledValue>{assetId.toLowerCase()}</StyledValue>
-                    <CopyToClipboard value={assetId.toLowerCase()} fontSize="small" />
-                  </Flex>
-                </Flex>
-              </TooltipIcon>
-            )}
-          </Flex>
-
-        </Typography>
-        {assetIdInfo?.walletType === WalletType.STANDARD_WALLET && (
-          <Typography variant="body1" color="textSecondary">
-            <OfferMojoAmount mojos={amount} />
-          </Typography>
-        )}
-      </Flex>
-    );
-  }
-
   if (sharedURL) {
     return (
       <Dialog
@@ -273,24 +189,13 @@ function OfferShareOfferBinDialog(props: OfferShareOfferBinDialogProps) {
         <Trans>Share on OfferBin</Trans>
       </DialogTitle>
       <DialogContent dividers>
-        <Flex flexDirection="column" gap={3}>
-          <Typography variant="subtitle1">Your offer:</Typography>
-          <StyledEditorBox>
-            <Flex flexDirection="column" gap={1}>
-              {Object.entries(offerRecord.summary.requested).map(([assetId, amount]) => (
-                <OfferSummaryEntry assetId={assetId} amount={amount as number} />
-              ))}
-            </Flex>
-          </StyledEditorBox>
-          <Typography variant="subtitle1">In exchange for:</Typography>
-          <StyledEditorBox>
-            <Flex flexDirection="column" gap={1}>
-              {Object.entries(offerRecord.summary.offered).map(([assetId, amount]) => (
-                <OfferSummaryEntry assetId={assetId} amount={amount as number} />
-              ))}
-            </Flex>
-          </StyledEditorBox>
-        </Flex>
+        <OfferSummary
+          isMyOffer={true}
+          summary={offerRecord.summary}
+          makerTitle={<Typography variant="subtitle1"><Trans>Your offer:</Trans></Typography>}
+          takerTitle={<Typography variant="subtitle1"><Trans>In exchange for:</Trans></Typography>}
+          rowIndentation={4}
+        />
       </DialogContent>
       <DialogActions>
         <Button

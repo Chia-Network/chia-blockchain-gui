@@ -6,6 +6,7 @@ import WalletType from '../constants/WalletType';
 export type AssetIdMapEntry = {
   walletId: number;
   walletType: WalletType;
+  isVerified: boolean;
   name: string;
   symbol?: string;
   displayName: string;
@@ -29,11 +30,13 @@ export default function useAssetIdName() {
       let assetId: string | undefined;
       let name: string | undefined;
       let symbol: string | undefined;
+      let isVerified: boolean = false;
 
       if (walletType === WalletType.STANDARD_WALLET) {
         assetId = 'xch';
         name = 'Chia';
         symbol = 'XCH';
+        isVerified = true;
       }
       else if (walletType === WalletType.CAT) {
         const lowercaseTail = wallet.meta.tail.toLowerCase();
@@ -44,15 +47,29 @@ export default function useAssetIdName() {
 
         if (cat) {
           symbol = cat.symbol;
+          isVerified = true;
         }
       }
 
       if (assetId && name) {
         const displayName = symbol ? symbol : name;
-        const entry: AssetIdMapEntry = { walletId, walletType, name, symbol, displayName };
+        const entry: AssetIdMapEntry = { walletId, walletType, name, symbol, displayName, isVerified };
         assetIdNameMapping.set(assetId, entry);
         walletIdNameMapping.set(walletId, entry);
       }
+    });
+
+    catList.map((cat: CATToken) => {
+      if (assetIdNameMapping.has(cat.assetId)) {
+        return;
+      }
+
+      const assetId = cat.assetId;
+      const name = cat.name;
+      const symbol = cat.symbol;
+      const displayName = symbol ? symbol : name;
+      const entry: AssetIdMapEntry = { walletId: 0, walletType: WalletType.CAT, name, symbol, displayName, isVerified: true };
+      assetIdNameMapping.set(assetId, entry);
     });
 
     return { assetIdNameMapping, walletIdNameMapping } ;

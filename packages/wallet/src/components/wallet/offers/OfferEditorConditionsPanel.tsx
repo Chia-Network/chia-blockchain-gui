@@ -2,13 +2,14 @@ import React, { useMemo } from 'react';
 import { useFormContext, useFieldArray } from 'react-hook-form';
 import { Trans } from '@lingui/macro';
 import { Amount, Flex } from '@chia/core';
-import { Divider, Grid, IconButton, TextField, Typography } from '@material-ui/core';
-import { Add, ImportExport, Remove } from '@material-ui/icons';
+import { Divider, IconButton, Typography } from '@material-ui/core';
+import { Add, Remove } from '@material-ui/icons';
 import { useGetWalletBalanceQuery, useGetWalletsQuery } from '@chia/api-react';
 import { Wallet } from '@chia/api';
 import type OfferEditorRowData from './OfferEditorRowData';
 import WalletType from '../../../constants/WalletType';
 import OfferAssetSelector from './OfferAssetSelector';
+import OfferExchangeRate from './OfferExchangeRate';
 import useAssetIdName, { AssetIdMapEntry } from '../../../hooks/useAssetIdName';
 import { mojo_to_chia_string, mojo_to_colouredcoin_string } from '../../../util/chia';
 
@@ -55,9 +56,9 @@ function OfferEditorConditionRow(props: OfferEditorConditionsRowProps) {
   }, [walletId, walletBalance, isLoading]);
 
   return (
-    <Flex flexDirection="row" gap={3} {...rest}>
-      <Grid container spacing={3}>
-        <Grid xs={5} item>
+    <Flex flexDirection="row" gap={0} {...rest}>
+      <Flex flexDirection="row" gap={0} style={{width: '90%'}}>
+        <Flex flexDirection="column" flexGrow={1} style={{width: '45%'}}>
           <OfferAssetSelector
             name={`${namePrefix}.assetWalletId`}
             id={`${namePrefix}.assetWalletId`}
@@ -66,10 +67,11 @@ function OfferEditorConditionRow(props: OfferEditorConditionsRowProps) {
             onChange={(walletId: number, walletType: WalletType) => handleAssetChange(namePrefix, walletId, walletType)}
             disabled={disabled}
           />
-        </Grid>
-        <Flex style={{width: '3em'}}>
         </Flex>
-        <Grid xs={5} item>
+        <Flex style={{width: '2em'}}>
+          {/* Spacing to accommodate center alignment of the OfferExchangeRate component rendered externally */}
+        </Flex>
+        <Flex flexDirection="column" flexGrow={1} style={{width: '45%'}}>
           <Flex flexDirection="column" gap={1}>
             <Amount
               variant="filled"
@@ -95,18 +97,18 @@ function OfferEditorConditionRow(props: OfferEditorConditionsRowProps) {
               </Flex>
             )}
           </Flex>
-        </Grid>
-        <Grid xs={1} item>
-          <Flex flexDirection="row" justifyContent="top" alignItems="flex-start" gap={0.5} style={{paddingTop: '0.25em'}}>
-            <IconButton aria-label="remove" onClick={removeRow} disabled={disabled || !removeRow}>
-              <Remove />
-            </IconButton>
-            <IconButton aria-label="add" onClick={addRow} disabled={disabled || !addRow}>
-              <Add />
-            </IconButton>
-          </Flex>
-        </Grid>
-      </Grid>
+        </Flex>
+      </Flex>
+      <Flex flexDirection="column" flexGrow={1} style={{width: '10%'}}>
+        <Flex flexDirection="row" justifyContent="top" alignItems="flex-start" gap={0.5} style={{paddingTop: '0.25em'}}>
+          <IconButton aria-label="remove" onClick={removeRow} disabled={disabled || !removeRow}>
+            <Remove />
+          </IconButton>
+          <IconButton aria-label="add" onClick={addRow} disabled={disabled || !addRow}>
+            <Add />
+          </IconButton>
+        </Flex>
+      </Flex>
     </Flex>
   );
 }
@@ -230,42 +232,13 @@ function OfferEditorConditionsPanel(props: OfferEditorConditionsPanelProps) {
       {!!makerAssetInfo && !!makerExchangeRate && !!takerAssetInfo && !!takerExchangeRate && (
         <>
           <Divider />
-          <Flex flexDirection="row" alignContent="center" gap={3}>
-            <Grid container spacing={3}>
-              <Grid xs={5} item>
-                <Flex flexDirection="row" justifyContent="flex-end" grow={1} gap={3}>
-                  <Flex alignItems="baseline" gap={1}>
-                    <Typography variant="subtitle1">1 {makerAssetInfo.displayName} =</Typography>
-                    <TextField
-                      key={`${makerExchangeRate}-${takerAssetInfo.displayName}`}
-                      variant="outlined"
-                      defaultValue={`${Number.isInteger(makerExchangeRate) ? makerExchangeRate : makerExchangeRate.toFixed(9)} ${takerAssetInfo.displayName}`}
-                      InputProps={{
-                        readOnly: true,
-                      }}
-                    />
-                  </Flex>
-                </Flex>
-              </Grid>
-              <Flex flexDirection="column" alignItems="center" justifyContent="center" style={{width: '3em'}}>
-                <ImportExport style={{transform: 'rotate(90deg)'}} />
-              </Flex>
-              <Grid xs={5} item>
-                <Flex flexDirection="row" grow={1} gap={3}>
-                  <Flex alignItems="baseline" gap={1}>
-                    <TextField
-                      key={`${takerExchangeRate}-${makerAssetInfo.displayName}`}
-                      variant="outlined"
-                      defaultValue={`${Number.isInteger(takerExchangeRate) ? takerExchangeRate : takerExchangeRate.toFixed(9)} ${makerAssetInfo.displayName}`}
-                      InputProps={{
-                        readOnly: true,
-                      }}
-                    />
-                    <Typography variant="subtitle1">= 1 {takerAssetInfo.displayName}</Typography>
-                  </Flex>
-                </Flex>
-              </Grid>
-            </Grid>
+          <Flex flexDirection="row" gap={0}>
+            <Flex flexDirection="column" style={{width: '90%'}}>
+              <OfferExchangeRate makerAssetInfo={makerAssetInfo} makerExchangeRate={makerExchangeRate} takerAssetInfo={takerAssetInfo} takerExchangeRate={takerExchangeRate} />
+            </Flex>
+            {/* 10% reserved for the end to align with the - + buttons in OfferEditorConditionRow */}
+            <Flex flexDirection="column" alignItems="center" style={{width: '10%'}}>
+            </Flex>
           </Flex>
           <Divider />
         </>
