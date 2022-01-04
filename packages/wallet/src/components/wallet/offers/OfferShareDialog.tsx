@@ -6,6 +6,7 @@ import {
   CopyToClipboard,
   DialogActions,
   Flex,
+  TooltipIcon,
   useOpenDialog,
   useShowError,
 } from '@chia/core';
@@ -40,16 +41,16 @@ type CommonDialogProps = {
 type OfferShareOfferBinDialogProps = CommonOfferProps & CommonDialogProps;
 
 // Posts the offer data to OfferBin and returns a URL to the offer.
-async function postToOfferBin(offerData: string): Promise<string> {
+async function postToOfferBin(offerData: string, sharePrivately: boolean): Promise<string> {
   return new Promise((resolve, reject) => {
     try {
       const remote: Remote = (window as any).remote;
       const request = remote.net.request({
         method: 'POST',
         protocol: 'https:',
-        hostname: 'www.offerbin.io',
+        hostname: 'api.offerbin.io',
         port: 443,
-        path: '/api/upload',
+        path: '/upload' + (sharePrivately ? '?private=true' : ''),
       });
 
       request.setHeader('Content-Type', 'application/text');
@@ -65,10 +66,15 @@ async function postToOfferBin(offerData: string): Promise<string> {
           });
 
           response.on('data', (chunk: Buffer) => {
-            const body = chunk.toString('utf8');
-            const { hash } = JSON.parse(body);
+            try {
+              const body = chunk.toString('utf8');
+              const { hash } = JSON.parse(body);
 
-            resolve(`https://www.offerbin.io/offer/${hash}`);
+              resolve(`https://offerbin.io/offer/${hash}`);
+            }
+            catch (e) {
+              reject(e);
+            }
           });
         }
         else {
@@ -100,6 +106,7 @@ function OfferShareOfferBinDialog(props: OfferShareOfferBinDialogProps) {
   const openExternal = useOpenExternal();
   const showError = useShowError();
   const [isSubmitting, setIsSubmitting] = React.useState(false);
+  const [sharePrivately, setSharePrivately] = React.useState(false);
   const [sharedURL, setSharedURL] = React.useState('');
 
   function handleClose() {
@@ -110,9 +117,9 @@ function OfferShareOfferBinDialog(props: OfferShareOfferBinDialogProps) {
     try {
       setIsSubmitting(true);
 
-      const url = await postToOfferBin(offerData);
+      const url = await postToOfferBin(offerData, sharePrivately);
 
-      console.log("OfferBin URL: " + url);
+      console.log(`OfferBin URL (private=${sharePrivately}): ${url}`);
       setSharedURL(url);
     }
     catch (e) {
@@ -198,6 +205,20 @@ function OfferShareOfferBinDialog(props: OfferShareOfferBinDialogProps) {
         />
       </DialogContent>
       <DialogActions>
+        <FormControlLabel
+          control={<Checkbox name="sharePrivately" checked={sharePrivately} onChange={(event) => setSharePrivately(event.target.checked)} />}
+          label={
+            <>
+              <Trans>Share Privately</Trans>{' '}
+              <TooltipIcon>
+                <Trans>
+                  If selected, your offer will be not be shared publicly.
+                </Trans>
+              </TooltipIcon>
+            </>
+          }
+        />
+        <Flex flexGrow={1}></Flex>
         <Button
           onClick={handleClose}
           color="primary"
