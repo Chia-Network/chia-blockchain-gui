@@ -17,16 +17,19 @@ import {
   Dialog,
   DialogTitle,
   DialogContent,
+  Divider,
   FormControlLabel,
   InputAdornment,
   TextField,
   Typography,
 } from '@material-ui/core';
+import { suggestedFilenameForOffer } from './utils';
 import useAssetIdName from '../../../hooks/useAssetIdName';
 import useOpenExternal from "../../../hooks/useOpenExternal";
 import { IncomingMessage, Shell, Remote } from 'electron';
 import OfferLocalStorageKeys from './OfferLocalStorage';
 import OfferSummary from './OfferSummary';
+import fs from 'fs';
 
 type CommonOfferProps = {
   offerRecord: OfferTradeRecord;
@@ -39,6 +42,7 @@ type CommonDialogProps = {
 }
 
 type OfferShareOfferBinDialogProps = CommonOfferProps & CommonDialogProps;
+type OfferShareKeybaseDialogProps = CommonOfferProps & CommonDialogProps;
 
 // Posts the offer data to OfferBin and returns a URL to the offer.
 async function postToOfferBin(offerData: string, sharePrivately: boolean): Promise<string> {
@@ -102,7 +106,6 @@ async function postToOfferBin(offerData: string, sharePrivately: boolean): Promi
 
 function OfferShareOfferBinDialog(props: OfferShareOfferBinDialogProps) {
   const { offerRecord, offerData, onClose, open } = props;
-  const { lookupByAssetId } = useAssetIdName();
   const openExternal = useOpenExternal();
   const showError = useShowError();
   const [isSubmitting, setIsSubmitting] = React.useState(false);
@@ -245,6 +248,152 @@ OfferShareOfferBinDialog.defaultProps = {
   onClose: () => {},
 };
 
+function OfferShareKeybaseDialog(props: OfferShareKeybaseDialogProps) {
+  const { offerRecord, offerData, onClose, open } = props;
+  const { lookupByAssetId } = useAssetIdName();
+  const showError = useShowError();
+
+  function handleClose() {
+    onClose(false);
+  }
+
+  async function handleKeybaseInstall() {
+    try {
+      const shell: Shell = (window as any).shell;
+      await shell.openExternal('https://keybase.io/download');
+    }
+    catch (e) {
+      showError(new Error(t`Unable to open browser. Install Keybase from https://keybase.io`));
+    }
+  }
+
+  async function handleKeybaseJoinTeam() {
+    try {
+      const shell: Shell = (window as any).shell;
+      await shell.openExternal('keybase://team-page/chia_offers/join');
+    }
+    catch (e) {
+      showError(new Error(t`Unable to open Keybase. Install Keybase from https://keybase.io`));
+    }
+  }
+
+  async function handleKeybaseGoToChannel() {
+    try {
+      const shell: Shell = (window as any).shell;
+      await shell.openExternal('keybase://chat/chia_offers#offers-trading');
+    }
+    catch (e) {
+      showError(new Error(t`Unable to open Keybase. Install Keybase from https://keybase.io`));
+    }
+  }
+
+  async function handleSaveOffer() {
+    const dialogOptions = {
+      defaultPath: suggestedFilenameForOffer(offerRecord.summary, lookupByAssetId),
+    }
+    const remote: Remote = (window as any).remote;
+    const result = await remote.dialog.showSaveDialog(dialogOptions);
+    const { filePath, canceled } = result;
+
+    if (!canceled && filePath) {
+      try {
+        fs.writeFileSync(filePath, offerData);
+      }
+      catch (err) {
+        console.error(err);
+      }
+    }
+  }
+
+  return (
+    <Dialog
+      onClose={handleClose}
+      aria-labelledby="alert-dialog-title"
+      aria-describedby="alert-dialog-description"
+      maxWidth="sm"
+      open={open}
+      fullWidth
+    >
+      <DialogTitle id="alert-dialog-title">
+        <Trans>Share on Keybase</Trans>
+      </DialogTitle>
+      <DialogContent dividers>
+        <Flex flexDirection="column" gap={2}>
+          <Typography variant="body2">
+            <Trans>
+              Keybase is a secure messaging and file sharing application. To share an offer
+              in the Keybase chia_offers team, you must first have Keybase installed.
+            </Trans>
+          </Typography>
+          <Flex justifyContent="center" flexGrow={0} >
+            <Button
+              onClick={handleKeybaseInstall}
+              color="secondary"
+              variant="contained"
+            >
+              <Trans>Install Keybase</Trans>
+            </Button>
+          </Flex>
+          <Divider />
+          <Typography variant="body2">
+            <Trans>
+              Before posting an offer in Keybase to the #offers-trading channel, you must
+              first join the chia_offers team.
+            </Trans>
+          </Typography>
+          <Flex justifyContent="center" flexGrow={0}>
+            <Button
+              onClick={handleKeybaseJoinTeam}
+              color="secondary"
+              variant="contained"
+            >
+              <Trans>Join chia_offers</Trans>
+            </Button>
+          </Flex>
+          <Divider />
+          <Typography variant="body2">
+            <Trans>
+              If you have already joined the chia_offers team, you can post your offer file to the
+              #offers-trading channel. When sharing an offer file, be sure to include a description
+              of which assets are being offered and requested.
+            </Trans>
+          </Typography>
+          <Flex justifyContent="center" flexGrow={0}>
+            <Button
+              onClick={handleKeybaseGoToChannel}
+              color="primary"
+              variant="contained"
+            >
+              <Trans>Go to #offers-trading</Trans>
+            </Button>
+          </Flex>
+        </Flex>
+      </DialogContent>
+      <DialogActions>
+        <Button
+          onClick={handleSaveOffer}
+          color="secondary"
+          variant="contained"
+        >
+          <Trans>Save Offer File</Trans>
+        </Button>
+        <Button
+          onClick={handleClose}
+          color="primary"
+          variant="contained"
+        >
+          <Trans>Close</Trans>
+        </Button>
+      </DialogActions>
+    </Dialog>
+  );
+}
+
+OfferShareKeybaseDialog.defaultProps = {
+  open: false,
+  onClose: () => {},
+};
+
 type OfferShareDialogProps = CommonOfferProps & CommonDialogProps & {
   showSuppressionCheckbox: boolean;
 };
@@ -266,13 +415,9 @@ export default function OfferShareDialog(props: OfferShareDialogProps) {
   }
 
   async function handleKeybase() {
-    try {
-      const shell: Shell = (window as any).shell;
-      await shell.openExternal('keybase://chat/chia_offers#offers-trading');
-    }
-    catch (e) {
-      showError(new Error(t`Unable to open Keybase. Install Keybase from https://keybase.io`));
-    }
+    await openDialog(
+      <OfferShareKeybaseDialog offerRecord={offerRecord} offerData={offerData} />
+    );
   }
 
   function toggleSuppression(value: boolean) {
