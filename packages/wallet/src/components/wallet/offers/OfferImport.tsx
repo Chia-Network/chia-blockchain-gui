@@ -22,7 +22,7 @@ function SelectOfferFile() {
   }
 
   async function parseOfferSummary(rawOfferData: string, offerFilePath: string | undefined) {
-    const [offerData, leadingText, trailingText] = parseOfferData(rawOfferData);
+    const [offerData /*, leadingText, trailingText*/] = parseOfferData(rawOfferData);
     let offerSummary: OfferSummaryRecord | undefined;
 
     if (offerData) {

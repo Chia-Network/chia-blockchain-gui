@@ -29,9 +29,7 @@ export function suggestedFilenameForOffer(summary: OfferSummaryRecord, lookupByA
     }
 
     if (assetInfo && amount !== undefined) {
-      filename += assetInfo ?
-        (formatAmountForWalletType(amount, assetInfo.walletType) + assetInfo.displayName.replace(/\s/g, '').substring(0, 9)) :
-        (amount + 'unknown');
+      filename += formatAmountForWalletType(amount, assetInfo.walletType) + assetInfo.displayName.replace(/\s/g, '').substring(0, 9);
     }
 
     return filename;

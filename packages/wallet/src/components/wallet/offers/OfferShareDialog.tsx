@@ -401,7 +401,6 @@ type OfferShareDialogProps = CommonOfferProps & CommonDialogProps & {
 export default function OfferShareDialog(props: OfferShareDialogProps) {
   const { offerRecord, offerData, showSuppressionCheckbox, onClose, open } = props;
   const openDialog = useOpenDialog();
-  const showError = useShowError();
   const [suppressShareOnCreate, setSuppressShareOnCreate] = useLocalStorage<boolean>(OfferLocalStorageKeys.SUPPRESS_SHARE_ON_CREATE);
 
   function handleClose() {
