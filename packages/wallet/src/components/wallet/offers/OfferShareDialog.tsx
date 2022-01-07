@@ -238,8 +238,21 @@ async function postToKeybase(
 
   try {
     success = await new Promise((resolve, reject) => {
+      let options: any = {};
+
+      if (process.platform === 'darwin') {
+        const env = Object.assign({}, process.env);
+
+        // Add /usr/local/bin and a direct path to the keybase binary on macOS.
+        // Without these additions, the keybase binary may not be found.
+        env.PATH = `${env.PATH}:/usr/local/bin:/Applications/Keybase.app/Contents/SharedSupport/bin`;
+
+        options['env'] = env;
+      }
+
       child_process.exec(
         `keybase chat upload "${team}" --channel "${channel}" --title "${summary}" "${filePath}"`,
+        options,
         (error, _/*stdout*/, stderr) => {
           if (error) {
             console.error(`Keybase error: ${error}`);
