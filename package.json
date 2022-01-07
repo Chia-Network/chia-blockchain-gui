@@ -8,6 +8,7 @@
     "version:minor": "lerna version minor",
     "version:patch": "lerna version patch",
     "lint": "eslint . --ext .ts,.tsx,.js,.jsx",
+    "lint:fix": "eslint . --ext .ts,.tsx,.js,.jsx --fix",
     "publish": "lerna publish",
     "postinstall": "npm run bootstrap",
     "build": "lerna run build",
