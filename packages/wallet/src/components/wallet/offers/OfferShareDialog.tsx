@@ -420,7 +420,6 @@ function OfferShareHashgreenDialog(props: OfferShareHashgreenDialogProps) {
   const openExternal = useOpenExternal();
   const showError = useShowError();
   const [isSubmitting, setIsSubmitting] = React.useState(false);
-  const [sharePrivately, setSharePrivately] = React.useState(false);
   const [sharedURL, setSharedURL] = React.useState('');
 
   function handleClose() {

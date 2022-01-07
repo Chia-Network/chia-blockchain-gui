@@ -27,7 +27,7 @@ type Props = {
   makerTitle: React.ReactElement | string;
   takerTitle: React.ReactElement | string;
   rowIndentation: number;
-  setIsMissingRequestedAsset: (isMissing: boolean) => void;
+  setIsMissingRequestedAsset?: (isMissing: boolean) => void;
 };
 
 export default function OfferSummary(props: Props) {
@@ -61,9 +61,11 @@ export default function OfferSummary(props: Props) {
     {tradeSide: isMyOffer ? 'buy' : 'sell', title: takerTitle, entries: isMyOffer ? takerEntries : makerEntries, unknownCATs: isMyOffer ? undefined : takerUnknownCATs},
   ];
 
-  const isMissingRequestedAsset = isMyOffer ? false : makerUnknownCATs?.length !== 0 ?? false;
+  if (setIsMissingRequestedAsset) {
+    const isMissingRequestedAsset = isMyOffer ? false : makerUnknownCATs?.length !== 0 ?? false;
 
-  setIsMissingRequestedAsset(isMissingRequestedAsset);
+    setIsMissingRequestedAsset(isMissingRequestedAsset);
+  }
 
   if (!isMyOffer) {
     sections.reverse();
