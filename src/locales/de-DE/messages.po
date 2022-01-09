@@ -8,7 +8,7 @@ msgstr ""
 "Language: de_DE\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-01-09 12:31\n"
+"PO-Revision-Date: 2022-01-09 18:26\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -1304,7 +1304,7 @@ msgstr "Farming Belohnungen verwalten"
 
 #: src/components/wallet/did/WalletDID.tsx:806
 msgid "Manage Recovery DIDs"
-msgstr ""
+msgstr "Wiederherstellungs-DIDs verwalten"
 
 #: src/components/farm/FarmManageFarmingRewards.tsx:123
 msgid "Manage Your Farming Rewards Target Addresses"
@@ -1349,7 +1349,7 @@ msgstr "Mehr Speicher erhöht etwas die Geschwindigkeit"
 
 #: src/components/wallet/did/WalletDID.tsx:537
 msgid "My DID Wallet"
-msgstr ""
+msgstr "DID Brieftasche"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:415
 msgid "My Pubkey"
@@ -1614,7 +1614,7 @@ msgstr ""
 #: src/components/wallet/did/WalletDID.tsx:526
 #: src/components/wallet/did/WalletDID.tsx:917
 msgid "Please enter a filename"
-msgstr ""
+msgstr "Bitte gebe einen Dateinamen an"
 
 #: src/components/app/AppPassPrompt.tsx:136
 #: src/components/settings/SetPassphrasePrompt.tsx:57
@@ -1798,7 +1798,7 @@ msgstr "Plots werden Speicherplatz auf der Festplatte zugewiesen um Chia zu farm
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:107
 msgid "Plotter"
-msgstr ""
+msgstr "Plotter"
 
 #: src/components/plot/queue/PlotQueueIndicator.tsx:34
 msgid "Plotting"
@@ -2230,7 +2230,7 @@ msgstr ""
 #: src/components/dashboard/DashboardSideBar.tsx:76
 #: src/components/settings/Settings.tsx:239
 msgid "Settings"
-msgstr ""
+msgstr "Einstellungen"
 
 #: src/components/core/components/AdvancedOptions/AdvancedOptions.tsx:74
 msgid "Show Advanced Options"
@@ -2253,11 +2253,11 @@ msgstr "Anmelden"
 #: src/components/app/AppKeyringMigrator.tsx:215
 #: src/components/app/AppPassPrompt.tsx:74
 msgid "Skip"
-msgstr ""
+msgstr "Überspringen"
 
 #: src/components/app/AppKeyringMigrator.tsx:48
 msgid "Skip Keyring Migration"
-msgstr ""
+msgstr "Schlüssel-Migration überspringen"
 
 #: src/components/app/AppPassPrompt.tsx:73
 msgid "Skip Passphrase Protection"
