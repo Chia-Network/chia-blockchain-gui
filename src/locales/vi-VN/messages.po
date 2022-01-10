@@ -8,7 +8,7 @@ msgstr ""
 "Language: vi_VN\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-01-10 04:58\n"
+"PO-Revision-Date: 2022-01-10 10:57\n"
 "Last-Translator: \n"
 "Language-Team: Vietnamese\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -40,7 +40,7 @@ msgstr ""
 
 #: src/components/wallet/Wallets.tsx:132
 msgid "+ Add Wallet"
-msgstr ""
+msgstr "+ Thêm Ví"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:94
 #~ msgid "0 automatically chooses bucket count"
@@ -91,7 +91,7 @@ msgstr "Thêm"
 #: src/components/wallet/did/WalletDID.tsx:877
 #: src/components/wallet/did/WalletDIDCreate.tsx:208
 msgid "Add Backup ID"
-msgstr ""
+msgstr "Tạo ID dự phòng"
 
 #: src/components/plot/PlotHeader.tsx:91
 msgid "Add Plot Directory"
@@ -128,7 +128,7 @@ msgstr "Thêm thư mục plot"
 
 #: src/components/plotNFT/select/PlotNFTSelectFaucet.tsx:42
 msgid "Add {currencyCode} from the Faucet"
-msgstr ""
+msgstr "Thêm {currencyCode} từ Faucet"
 
 #: src/components/wallet/coloured/WalletColoured.tsx:561
 #: src/components/wallet/coloured/WalletColoured.tsx:657
@@ -179,7 +179,7 @@ msgstr "Bạn có muốn xoá plot? Plot này sẽ không thể khôi phục."
 #: src/components/plotNFT/PlotNFTCard.tsx:125
 #: src/components/wallet/standard/WalletStandard.tsx:626
 msgid "Are you sure you want to delete unconfirmed transactions?"
-msgstr ""
+msgstr "Bạn có chắc chắn muốn xóa các giao dịch chưa được xác nhận không?"
 
 #: src/components/fullNode/FullNodeCloseConnection.tsx:25
 msgid "Are you sure you want to disconnect?"
@@ -337,12 +337,12 @@ msgstr "Challenge Hash"
 
 #: src/components/plotNFT/PlotNFTChangePool.tsx:118
 msgid "Change"
-msgstr ""
+msgstr "Thay đổi"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:248
 #: src/components/settings/Settings.tsx:158
 msgid "Change Passphrase"
-msgstr ""
+msgstr "Đổi cụm từ mật khẩu"
 
 #: src/components/plotNFT/PlotNFTCard.tsx:408
 #: src/components/plotNFT/PlotNFTChangePool.tsx:117
@@ -437,18 +437,18 @@ msgstr "Xác Nhận Ngắt Kết Nối"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:198
 msgid "Confirm New Passphrase"
-msgstr ""
+msgstr "Xác nhận mật khẩu mới"
 
 #: src/components/app/AppKeyringMigrator.tsx:146
 #: src/components/app/AppKeyringMigrator.tsx:147
 #: src/components/settings/SetPassphrasePrompt.tsx:166
 msgid "Confirm Passphrase"
-msgstr ""
+msgstr "Xác nhận mật khẩu"
 
 #: src/components/plotNFT/PlotNFTCard.tsx:121
 #: src/components/wallet/standard/WalletStandard.tsx:622
 msgid "Confirmation"
-msgstr ""
+msgstr "Xác nhận"
 
 #: src/components/trading/TradingOverview.jsx:201
 msgid "Confirmed at block:"
@@ -541,7 +541,7 @@ msgstr ""
 
 #: src/components/wallet/did/WalletDIDSelect.tsx:32
 msgid "Create New Wallet"
-msgstr ""
+msgstr "Tạo ví mới"
 
 #: src/components/trading/TradeManager.tsx:45
 msgid "Create Offer"
@@ -1614,16 +1614,16 @@ msgstr ""
 #: src/components/wallet/did/WalletDID.tsx:526
 #: src/components/wallet/did/WalletDID.tsx:917
 msgid "Please enter a filename"
-msgstr ""
+msgstr "Vui lòng nhập tên tệp"
 
 #: src/components/app/AppPassPrompt.tsx:136
 #: src/components/settings/SetPassphrasePrompt.tsx:57
 msgid "Please enter a passphrase"
-msgstr ""
+msgstr "Vui lòng nhập mật mã"
 
 #: src/components/wallet/did/WalletDID.tsx:937
 msgid "Please enter a pubkey"
-msgstr ""
+msgstr "Vui lòng nhập mã khoá công khai"
 
 #: src/components/wallet/did/WalletDID.tsx:947
 msgid "Please enter a puzzlehash"
@@ -1636,7 +1636,7 @@ msgstr "Vui lòng nhập số tiền hợp lệ ban đầu"
 #: src/components/wallet/did/WalletDID.tsx:777
 #: src/components/wallet/did/WalletDIDCreate.tsx:76
 msgid "Please enter a valid integer of 0 or greater for the number of Backup IDs needed for recovery."
-msgstr ""
+msgstr "Vui lòng nhập số nguyên lớn hơn hoặc bằng 0 cho số lượng mã ID dự phòng cần đề khôi phục."
 
 #: src/components/wallet/create/createNewColouredCoin.jsx:69
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:639
@@ -1646,7 +1646,7 @@ msgstr "Vui lòng nhập số lượng hợp lệ"
 
 #: src/components/wallet/did/WalletDIDCreate.tsx:50
 msgid "Please enter a valid numeric amount."
-msgstr ""
+msgstr "Vui lòng nhập số lượng bằng số hợp lệ."
 
 #: src/components/wallet/create/createExistingColouredCoin.jsx:70
 #: src/components/wallet/create/createNewColouredCoin.jsx:79
@@ -1670,17 +1670,17 @@ msgstr "Vui lòng nhập một mã  khoá công khai hợp lệ"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:63
 msgid "Please enter your current passphrase, and a new passphrase"
-msgstr ""
+msgstr "Vui lòng nhâp mật mã hiện tại, và mật mã mới"
 
 #: src/components/app/AppPassPrompt.tsx:185
 #: src/components/app/AppPassPrompt.tsx:201
 #: src/components/settings/RemovePassphrasePrompt.tsx:50
 msgid "Please enter your passphrase"
-msgstr ""
+msgstr "Vui lòng nhập mật mã của bạn"
 
 #: src/components/app/AppPassPrompt.tsx:195
 msgid "Please enter your passphrase to proceed"
-msgstr ""
+msgstr "Vui lòng nhập mật mã của bạn để tiếp tục"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:623
 #: src/components/wallet/standard/WalletStandard.tsx:420
@@ -2043,7 +2043,7 @@ msgstr ""
 
 #: src/components/wallet/did/WalletDIDSelect.tsx:39
 msgid "Recover Wallet"
-msgstr ""
+msgstr "Khôi phục Ví"
 
 #: src/components/plot/PlotHeader.tsx:78
 #: src/components/plot/overview/PlotOverviewHero.tsx:62
@@ -2107,7 +2107,7 @@ msgstr "Lưu"
 #: src/components/settings/ChangePassphrasePrompt.tsx:224
 #: src/components/settings/SetPassphrasePrompt.tsx:194
 msgid "Save passphrase"
-msgstr ""
+msgstr "Lưu mật mã"
 
 #: src/components/fullNode/FullNode.jsx:338
 #~ msgid "Search"
@@ -2220,7 +2220,7 @@ msgstr "Gửi khoá công khai của bạn cho quản trị viên ví có phí g
 #: src/components/settings/SetPassphrasePrompt.tsx:220
 #: src/components/settings/Settings.tsx:205
 msgid "Set Passphrase"
-msgstr ""
+msgstr "Đặt mật mã"
 
 #: src/components/app/AppPassPrompt.tsx:75
 msgid "Setting a passphrase is strongly recommended to protect your keys. Are you sure you want to skip setting a passphrase?"
@@ -2229,7 +2229,7 @@ msgstr ""
 #: src/components/dashboard/DashboardSideBar.tsx:76
 #: src/components/settings/Settings.tsx:239
 msgid "Settings"
-msgstr ""
+msgstr "Cài đặt"
 
 #: src/components/core/components/AdvancedOptions/AdvancedOptions.tsx:74
 msgid "Show Advanced Options"
@@ -2252,7 +2252,7 @@ msgstr "Đăng nhập"
 #: src/components/app/AppKeyringMigrator.tsx:215
 #: src/components/app/AppPassPrompt.tsx:74
 msgid "Skip"
-msgstr ""
+msgstr "Bỏ qua"
 
 #: src/components/app/AppKeyringMigrator.tsx:48
 msgid "Skip Keyring Migration"
@@ -2689,7 +2689,7 @@ msgstr ""
 #: src/components/plotNFT/PlotNFTCard.tsx:150
 #: src/components/pool/PoolOverview.tsx:66
 msgid "Unclaimed Rewards"
-msgstr ""
+msgstr "Tiền thưởng chưa được nhận"
 
 #: src/components/fullNode/FullNode.jsx:98
 msgid "Unfinished"
@@ -2709,7 +2709,7 @@ msgstr ""
 
 #: src/components/core/components/FormBackButton/FormBackButton.tsx:25
 msgid "Unsaved Changes"
-msgstr ""
+msgstr "Các thay đổi chưa được lưu"
 
 #: src/components/wallet/create/createRLAdmin.jsx:281
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:293
@@ -2718,7 +2718,7 @@ msgstr "Khoá công khai"
 
 #: src/components/app/AppPassPrompt.tsx:79
 msgid "Using a passphrase is strongly recommended to protect your keys. Are you sure you want to disable passphrase protection?"
-msgstr ""
+msgstr "Sử dụng cụm mật mã rất được khuyến nghị để bảo vệ khóa của bạn. Bạn có chắc muốn tắt bảo vệ bằng mật mã không?"
 
 #: src/components/fullNode/card/FullNodeCardVDFSubSlotIterations.tsx:20
 msgid "VDF Sub Slot Iterations"
@@ -2730,7 +2730,7 @@ msgstr "Lặp lại vùng phụ VDF"
 
 #: src/components/core/components/Fee/Fee.tsx:28
 msgid "Value seems high"
-msgstr ""
+msgstr "Giá trị có vẻ cao"
 
 #: src/components/plotNFT/select/PlotNFTSelectBase.tsx:156
 msgid "Verify Pool Details"
@@ -2788,11 +2788,11 @@ msgstr ""
 #: src/components/pool/PoolOverview.tsx:185
 #: src/components/wallet/standard/WalletStandard.tsx:649
 msgid "Wallet Status:"
-msgstr ""
+msgstr "Trạng thái ví:"
 
 #: src/components/wallet/did/WalletDID.tsx:1121
 msgid "Wallet does not exists"
-msgstr ""
+msgstr "Ví không tồn tại"
 
 #: src/components/wallet/Wallets.tsx:34
 #~ msgid "WalletItem.ccWallet"
