@@ -8,7 +8,7 @@ msgstr ""
 "Language: vi_VN\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-01-09 18:27\n"
+"PO-Revision-Date: 2022-01-10 04:58\n"
 "Last-Translator: \n"
 "Language-Team: Vietnamese\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -20,15 +20,15 @@ msgstr ""
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:78
 msgid "(Not Installed)"
-msgstr ""
+msgstr "(Chưa được cài đặt)"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:75
 msgid "(Not Supported)"
-msgstr ""
+msgstr "(Không được hỗ trợ)"
 
 #: src/components/plot/add/PlotAddNFT.tsx:67
 msgid "(Optional)"
-msgstr ""
+msgstr "(Không bắt buộc)"
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:64
 msgid "*Want to explore Chia’s blocks further? Check out <0>Chia Explorer</0> built by an open source developer."
@@ -830,7 +830,7 @@ msgstr "Nhập 24 từ ghi nhớ mà bạn đã lưu để khôi phục ví Chia
 
 #: src/components/settings/RemovePassphrasePrompt.tsx:118
 msgid "Enter your passphrase:"
-msgstr ""
+msgstr "Điền cụm từ mật khẩu của bạn:"
 
 #: src/components/farm/FarmerStatus.tsx:21
 #: src/components/farm/FarmerStatus.tsx:22
