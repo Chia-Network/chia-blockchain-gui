@@ -16,9 +16,9 @@ import chiaConfig from '../util/config';
 import { i18n } from '../config/locales';
 import About from '../components/about/About';
 import packageJson from '../../package.json';
-import AppIcon from '../assets/img/chia64x64.png'
+import AppIcon from '../assets/img/chia64x64.png';
 
-const appIcon = nativeImage.createFromPath(__dirname + '/' + AppIcon);
+const appIcon = nativeImage.createFromPath(path.join(__dirname, AppIcon));
 
 function renderAbout(): string {
   const sheet = new ServerStyleSheet();
@@ -140,7 +140,7 @@ if (!handleSquirrelEvent()) {
         },
       });
 
-      if(process.platform === 'linux'){
+      if(process.platform === 'linux') {
         mainWindow.setIcon(appIcon);
       }
 
