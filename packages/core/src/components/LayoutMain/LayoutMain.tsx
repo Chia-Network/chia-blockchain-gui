@@ -1,7 +1,7 @@
 import React, { ReactElement, ReactNode } from 'react';
 import { Container } from '@material-ui/core';
 import styled from 'styled-components';
-import { Flex, Loading } from '@chia/core';
+import { Flex } from '@chia/core';
 import { Outlet } from 'react-router-dom';
 import DashboardTitle from '../DashboardTitle';
 
@@ -24,14 +24,12 @@ const StyledBody = styled(Flex)`
 type Props = {
   children?: ReactElement<any>;
   title?: ReactNode;
-  loading?: boolean;
-  loadingTitle?: ReactNode;
   bodyHeader?: ReactNode;
   outlet?: boolean;
 };
 
 export default function LayoutMain(props: Props) {
-  const { children, title, loading, loadingTitle, bodyHeader, outlet } = props;
+  const { children, title, bodyHeader, outlet } = props;
 
   return (
     <>
@@ -41,16 +39,7 @@ export default function LayoutMain(props: Props) {
         {bodyHeader}
         <StyledContainer maxWidth="lg">
           <StyledBody flexDirection="column" gap={2} flexGrow="1">
-            {loading ? (
-              <Flex
-                flexDirection="column"
-                flexGrow={1}
-                alignItems="center"
-                justifyContent="center"
-              >
-                <Loading>{loadingTitle}</Loading>
-              </Flex>
-            ) : outlet ? <Outlet /> : children}
+            {outlet ? <Outlet /> : children}
           </StyledBody>
         </StyledContainer>
       </StyledInnerContainer>
