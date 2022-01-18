@@ -3,6 +3,7 @@ import { Trans } from '@lingui/macro';
 import { useToggle } from 'react-use';
 import { Flex, UnitFormat, More, Table } from '@chia/core';
 import { useHistory } from 'react-router';
+import { Alert } from '@material-ui/lab';
 import {
   ViewList as ViewListIcon,
   ViewModule as ViewModuleIcon,
@@ -135,6 +136,8 @@ export default function PoolOverview() {
   const hasNFTs =
     (!!nfts && !!nfts?.length) || !!external?.length || unconfirmed.length;
 
+  const passedNFTLimit = !(hasNFTs && nfts?.length >= 20);
+
   function handleAddPool() {
     history.push('/dashboard/pool/add');
   }
@@ -163,9 +166,10 @@ export default function PoolOverview() {
         </Flex>
         <Flex flexDirection="column" gap={1}>
           <Flex alignItems="center" justifyContent="flex-end" gap={1}>
-            <Button variant="outlined" color="primary" onClick={handleAddPool}>
+            <Button variant="outlined" color="primary"  disabled={passedNFTLimit} onClick={handleAddPool}>
               + Add a Plot NFT
             </Button>
+            {passedNFTLimit && <Alert severity="error">You Already Have 20 Plot NFT's.</Alert>}
           </Flex>
         </Flex>
       </Flex>
