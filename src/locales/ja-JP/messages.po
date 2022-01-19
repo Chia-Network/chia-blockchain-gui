@@ -8,7 +8,7 @@ msgstr ""
 "Language: ja_JP\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-12-02 11:31\n"
+"PO-Revision-Date: 2022-01-19 11:00\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -1594,7 +1594,7 @@ msgstr "保留中の増減"
 #: src/components/wallet/card/WalletCardPendingTotalBalance.tsx:27
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:568
 msgid "Pending Total Balance"
-msgstr "保留中の全残高"
+msgstr "保留中含む全残高"
 
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:131
 #: src/hooks/useAbsorbRewards.tsx:45
@@ -2274,7 +2274,7 @@ msgstr "最終ディレクトリを収穫機に追加せず、ディレクトリ
 
 #: src/components/pool/PoolHero.tsx:26
 msgid "Smooth out your XCH farming rewards by joining a pool."
-msgstr ""
+msgstr "プールに参加することで、XCH報酬をよりスムーズに得ることができます。"
 
 #: src/components/plotNFT/PlotNFTGetPoolLoginLinkDialog.tsx:60
 msgid "Something went wrong"
@@ -2282,7 +2282,7 @@ msgstr ""
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:138
 msgid "Specify a value of 0 to use all available threads"
-msgstr ""
+msgstr "利用可能なすべてのスレッドを使用する場合は0を指定する"
 
 #: src/electron/main.tsx:479
 msgid "Speech"
@@ -2463,7 +2463,7 @@ msgstr "プールの URL が無効です。 {normalizedUrl}"
 
 #: src/hooks/usePoolInfo.ts:39
 msgid "The pool URL needs to use protocol https. {normalizedUrl}"
-msgstr ""
+msgstr "プールのURLは、httpsプロトコルを使用する必要があります。{normalizedUrl}"
 
 #: src/hooks/usePoolInfo.ts:44
 #~ msgid "The pool URL speciefied is not valid. {normalizedUrl}"
@@ -2475,11 +2475,11 @@ msgstr ""
 
 #: src/components/plotNFT/PlotNFTState.tsx:29
 msgid "The pool switching operation was cancelled, please try again by changing pool, or self pooling"
-msgstr ""
+msgstr "プール切り替え操作はキャンセルされました。プールを変更するかセルフプールに切り替えてから再試行してください。"
 
 #: src/components/app/AppPassPrompt.tsx:37
 msgid "The provided passphrase and confirmation do not match"
-msgstr ""
+msgstr "入力されたパスフレーズと一致しない"
 
 #: src/components/block/Block.jsx:303
 msgid "The seed used to create the plot. This depends on the pool pk and plot pk."
@@ -2499,7 +2499,7 @@ msgstr "このブロック内の取引手数料の合計。農家への報酬と
 
 #: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:107
 msgid "These are the instructions for how the farmer wants to get paid. By default this will be an XCH address, but it can be set to any string with a size of less than 1024 characters, so it can represent another blockchain or payment system identifier."
-msgstr ""
+msgstr "農家がどのように支払いを受けたいかを指定するものです。デフォルトではXCHアドレスになりますが、1024文字以下の任意の文字列を設定できるため、他のブロックチェーンや決済システムの識別子を表すことができます。"
 
 #: src/components/plot/PlotsFailed.tsx:40
 msgid "These plots are invalid, you might want to delete them."
@@ -2512,7 +2512,8 @@ msgstr "ここから既にお持ちの耕地ディレクトリを追加できま
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:130
 #: src/components/plotNFT/PlotNFTCard.tsx:172
 msgid "This difficulty is an artifically lower difficulty than on the real network, and is used when farming, in order to find more proofs and send them to the pool. The more plots you have, the higher difficulty you will have. However, the difficulty does not affect rewards."
-msgstr ""
+msgstr "この難易度は実際のネットワークよりも人工的に低くしたもので、より多くの証明を見つけてプールに送る際に使用されます。プロットが多いほど難易度は高くなります。\n"
+"ただし難易度が報酬に影響することはありません。"
 
 #: src/components/trading/CreateOffer.jsx:123
 #: src/hooks/useSelectDirectory.tsx:33
@@ -2551,7 +2552,8 @@ msgstr "これが全残高 + 保留中残高です: 全ての保留中の取引�
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:149
 #: src/components/plotNFT/PlotNFTCard.tsx:191
 msgid "This is the total number of points this plotNFT has with this pool, since the last payout. The pool will reset the points after making a payout."
-msgstr ""
+msgstr "これは、このNFTプロットがこのプールで持っている最後のペイアウトからの合計ポイント数です。\n"
+"ペイアウトが行われるとプールポイントはリセットされます。"
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:166
 #: src/components/plotNFT/PlotNFTCard.tsx:208
