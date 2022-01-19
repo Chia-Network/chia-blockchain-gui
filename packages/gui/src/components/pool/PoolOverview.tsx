@@ -136,7 +136,7 @@ export default function PoolOverview() {
   const hasNFTs =
     (!!nfts && !!nfts?.length) || !!external?.length || unconfirmed.length;
 
-  const passedNFTLimit = !(hasNFTs && nfts?.length >= 20);
+  const passedNFTLimit = !(hasNFTs && nfts?.length >= 18);
 
   function handleAddPool() {
     history.push('/dashboard/pool/add');
@@ -169,7 +169,7 @@ export default function PoolOverview() {
             <Button variant="outlined" color="primary"  disabled={passedNFTLimit} onClick={handleAddPool}>
               + Add a Plot NFT
             </Button>
-            {passedNFTLimit && <Alert severity="error">You Already Have 20 Plot NFT's.</Alert>}
+            {passedNFTLimit && <Alert severity="error">You Already Have 18 or more Plot NFT's.</Alert>}
           </Flex>
         </Flex>
       </Flex>
