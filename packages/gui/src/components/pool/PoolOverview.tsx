@@ -169,7 +169,9 @@ export default function PoolOverview() {
             <Button variant="outlined" color="primary"  disabled={passedNFTLimit} onClick={handleAddPool}>
               + Add a Plot NFT
             </Button>
-            {passedNFTLimit && <Alert severity="error">You Already Have 18 or more Plot NFT's.</Alert>}
+            {passedNFTLimit && <Alert severity="error">
+              <Trans> You Already Have 18 or more Plot NFT's. </Trans>
+            </Alert>}
           </Flex>
         </Flex>
       </Flex>
