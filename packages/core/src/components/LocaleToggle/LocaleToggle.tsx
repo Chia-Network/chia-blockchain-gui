@@ -1,24 +1,16 @@
-import React, { useMemo } from 'react';
+import React, { useContext, useMemo } from 'react';
 import { Trans, t } from '@lingui/macro';
 import { useToggle } from 'react-use';
 import { Button, Divider, Menu, MenuItem } from '@material-ui/core';
 import { Translate, ExpandMore } from '@material-ui/icons';
 import useLocale from '../../hooks/useLocale';
 import useOpenExternal from '../../hooks/useOpenExternal';
+import { LocaleContext } from '../LocaleProvider';
 
-type Props = {
-  defaultLocale: string;
-  locales: [
-    {
-      locale: string;
-      label: string;
-    },
-  ];
-};
-
-export default function LocaleToggle(props: Props) {
-  const { defaultLocale, locales } = props;
-  const [currentLocale, setLocale] = useLocale(defaultLocale);
+export default function LocaleToggle(props) {
+  const { ...rest } = props;
+  const { locales } = useContext(LocaleContext);
+  const [currentLocale, setLocale] = useLocale();
   const [open, toggleOpen] = useToggle(false);
   const openExternal = useOpenExternal();
 
@@ -62,6 +54,7 @@ export default function LocaleToggle(props: Props) {
         onClick={handleClick}
         startIcon={<Translate />}
         endIcon={<ExpandMore />}
+        {...rest}
       >
         {currentLocaleLabel}
       </Button>

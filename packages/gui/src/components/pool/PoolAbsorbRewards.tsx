@@ -1,4 +1,4 @@
-import { useHistory } from 'react-router';
+import { useNavigate } from 'react-router';
 import type PlotNFT from '../../types/PlotNFT';
 import usePlotNFTDetails from '../../hooks/usePlotNFTDetails';
 
@@ -15,18 +15,18 @@ export default function PoolAbsorbRewards(props: Props) {
     children,
     nft,
     nft: {
-      pool_state: { p2_singleton_puzzle_hash },
+      poolState: { p2SingletonPuzzleHash },
     },
   } = props;
   const { canEdit } = usePlotNFTDetails(nft);
-  const history = useHistory();
+  const navigate = useNavigate();
 
   async function handleAbsorbRewards() {
     if (!canEdit) {
       return;
     }
 
-    history.push(`/dashboard/pool/${p2_singleton_puzzle_hash}/absorb-rewards`);
+    navigate(`/dashboard/pool/${p2SingletonPuzzleHash}/absorb-rewards`);
   }
 
   return children({

@@ -1,7 +1,6 @@
 import React, { useMemo, useState, ReactNode } from 'react';
-import { Trans } from '@lingui/macro';
-import { useHistory } from 'react-router';
-import { useDispatch } from 'react-redux';
+import { Trans, t } from '@lingui/macro';
+import { useNavigate } from 'react-router';
 import {
   UnitFormat,
   CardStep,
@@ -12,16 +11,16 @@ import {
   Form,
   FormBackButton,
   State,
+  mojoToChiaLocaleString,
+  chiaToMojo,
 } from '@chia/core';
 import { useForm } from 'react-hook-form';
+import { usePwAbsorbRewardsMutation, useGetPlotNFTsQuery } from '@chia/api-react'
 import { ChevronRight as ChevronRightIcon } from '@material-ui/icons';
 import { Grid, Typography } from '@material-ui/core';
 import { useParams } from 'react-router';
-import usePlotNFTs from '../../hooks/usePlotNFTs';
-import { pwAbsorbRewards } from '../../modules/plotNFT';
 import { SubmitData } from './select/PlotNFTSelectPool';
 import PlotNFTName from './PlotNFTName';
-import { mojo_to_chia, chia_to_mojo } from '../../util/chia';
 import useStandardWallet from '../../hooks/useStandardWallet';
 
 type FormData = {
@@ -38,16 +37,18 @@ export default function PlotNFTAbsorbRewards(props: Props) {
   const { plotNFTId } = useParams<{
     plotNFTId: string;
   }>();
+
+  const { data, isLoading } = useGetPlotNFTsQuery();
+
   const [working, setWorking] = useState<boolean>(false);
-  const { nfts, loading } = usePlotNFTs();
   const { wallet, loading: loadingWallet } = useStandardWallet();
-  const dispatch = useDispatch();
-  const history = useHistory();
+  const [pwAbsorbRewards] = usePwAbsorbRewardsMutation();
+  const navigate = useNavigate();
   const nft = useMemo(() => {
-    return nfts?.find(
-      (nft) => nft.pool_state.p2_singleton_puzzle_hash === plotNFTId,
+    return data?.nfts?.find(
+      (nft) => nft.poolState.p2SingletonPuzzleHash === plotNFTId,
     );
-  }, [nfts, plotNFTId]);
+  }, [data?.nfts, plotNFTId]);
 
   const methods = useForm<FormData>({
     shouldUnregister: false,
@@ -59,30 +60,35 @@ export default function PlotNFTAbsorbRewards(props: Props) {
   async function handleSubmit(data: SubmitData) {
     try {
       setWorking(true);
-      const walletId = nft?.pool_wallet_status.wallet_id;
-      const address = wallet?.address;
+      const walletId = nft?.poolWalletStatus.walletId;
 
       const { fee } = data;
+      const feeMojos = chiaToMojo(fee);
 
-      const feeMojos = chia_to_mojo(fee);
 
-      if (walletId === undefined || !address) {
-        return;
+      if (walletId === undefined) { 
+        throw new Error(t`Wallet is not defined`);
       }
 
-      await dispatch(pwAbsorbRewards(walletId, feeMojos));
+      await pwAbsorbRewards({
+        walletId, 
+        fee: feeMojos,
+      }).unwrap();
 
+      navigate(-1);
+      /*
       if (history.length) {
-        history.goBack();
+        navigate(-1);
       } else {
-        history.push('/dashboard/pool');
+        navigate('/dashboard/pool');
       }
+      */
     } finally {
       setWorking(false);
     }
   }
 
-  if (loading) {
+  if (isLoading) {
     return (
       <Loading>
         <Trans>Preparing Plot NFT</Trans>
@@ -107,7 +113,7 @@ export default function PlotNFTAbsorbRewards(props: Props) {
   }
 
   const {
-    wallet_balance: { confirmed_wallet_balance: balance },
+    walletBalance: { confirmedWalletBalance: balance },
   } = nft;
 
   return (
@@ -137,7 +143,7 @@ export default function PlotNFTAbsorbRewards(props: Props) {
               <Trans>
                 You will recieve{' '}
                 <UnitFormat
-                  value={mojo_to_chia(BigInt(balance))}
+                  value={mojoToChiaLocaleString(balance)}
                   display="inline"
                   state={State.SUCCESS}
                 />{' '}

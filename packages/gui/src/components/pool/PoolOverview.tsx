@@ -1,8 +1,8 @@
 import React from 'react';
 import { Trans } from '@lingui/macro';
 import { useToggle } from 'react-use';
-import { Flex, UnitFormat, More, Table } from '@chia/core';
-import { useHistory } from 'react-router';
+import { Flex, UnitFormat, More, Table, mojoToChiaLocaleString, Suspender } from '@chia/core';
+import { useNavigate } from 'react-router';
 import { Alert } from '@material-ui/lab';
 import {
   ViewList as ViewListIcon,
@@ -32,8 +32,7 @@ import PlotNFTStateEnum from '../../constants/PlotNFTState';
 import PlotNFTUnconfirmedCard from '../plotNFT/PlotNFTUnconfirmedCard';
 import PlotNFTState from '../plotNFT/PlotNFTState';
 import useUnconfirmedPlotNFTs from '../../hooks/useUnconfirmedPlotNFTs';
-import { mojo_to_chia } from '../../util/chia';
-import WalletStatus from '../wallet/WalletStatus';
+import { WalletStatus } from '@chia/wallets';
 
 const groupsCols = [
   {
@@ -47,7 +46,7 @@ const groupsCols = [
   {
     field: (nft: PlotNFT) => {
       const {
-        pool_wallet_status: {
+        poolWalletStatus: {
           current: { state },
         },
       } = nft;
@@ -55,9 +54,7 @@ const groupsCols = [
       if (state === PlotNFTStateEnum.SELF_POOLING) {
         return (
           <UnitFormat
-            value={mojo_to_chia(
-              BigInt(nft.wallet_balance.confirmed_wallet_balance ?? 0),
-            )}
+            value={mojoToChiaLocaleString(nft.walletBalance.confirmedWalletBalance ?? 0)}
           />
         );
       }
@@ -70,7 +67,7 @@ const groupsCols = [
     title: <Trans>Actions</Trans>,
     field(nft: PlotNFT) {
       const isSelfPooling =
-        nft.pool_wallet_status.current.state === PlotNFTStateEnum.SELF_POOLING;
+        nft.poolWalletStatus.current.state === PlotNFTStateEnum.SELF_POOLING;
 
       return (
         <More>
@@ -128,7 +125,7 @@ const groupsCols = [
 ];
 
 export default function PoolOverview() {
-  const history = useHistory();
+  const navigate = useNavigate();
   const [showTable, toggleShowTable] = useToggle(false);
   const { nfts, external, loading } = usePlotNFTs();
   const { unconfirmed } = useUnconfirmedPlotNFTs();
@@ -139,7 +136,7 @@ export default function PoolOverview() {
   const passedNFTLimit = !(hasNFTs && nfts?.length >= 18);
 
   function handleAddPool() {
-    history.push('/dashboard/pool/add');
+    navigate('/dashboard/pool/add');
   }
 
   function handleToggleView() {
@@ -147,7 +144,7 @@ export default function PoolOverview() {
   }
 
   if (loading) {
-    return null;
+    return <Suspender />;
   }
 
   if (!hasNFTs) {
@@ -195,7 +192,7 @@ export default function PoolOverview() {
         </Flex>
         {showTable ? (
           <Table
-            uniqueField="p2_singleton_puzzle_hash"
+            uniqueField="poolState.p2SingletonPuzzleHash"
             rows={nfts}
             cols={groupsCols}
           />
@@ -208,9 +205,9 @@ export default function PoolOverview() {
                 />
               </Grid>
             ))}
-            {nfts.map((item) => (
+            {nfts?.map((item) => (
               <Grid
-                key={item.pool_state.p2_singleton_puzzle_hash}
+                key={item.poolState.p2SingletonPuzzleHash}
                 xs={12}
                 md={6}
                 item
@@ -218,9 +215,9 @@ export default function PoolOverview() {
                 <PlotNFTCard nft={item} />
               </Grid>
             ))}
-            {external.map((item) => (
+            {external?.map((item) => (
               <Grid
-                key={item.pool_state.p2_singleton_puzzle_hash}
+                key={item.poolState.p2SingletonPuzzleHash}
                 xs={12}
                 md={6}
                 item

@@ -128,7 +128,7 @@ async function startMain() {
           chiaEnvironment.startChiaDaemon();
         }
 
-        await chiaConfig.loadConfig('standalone_wallet');
+        ipcMain.handle('getConfig', () => chiaConfig.loadConfig('standalone_wallet'));
 
         decidedToClose = false;
         mainWindow = new BrowserWindow({
@@ -242,8 +242,8 @@ async function startMain() {
           }) + arg.query,
         );
       });
-  
-      ipcMain.on('set-locale', (_, locale = 'en-US') => {
+
+      ipcMain.handle('setLocale', (_event, locale: string) => {
         i18n.activate(locale);
         app.applicationMenu = createMenu();
       });

@@ -9,9 +9,7 @@ export default class FullNode extends Service {
     super(ServiceName.FULL_NODE, client, options);
   }
 
-  async getBlockRecords(end: number, count: number = 10) {
-    const start = Math.max(0, end - count);
-
+  async getBlockRecords(start?: number, end?: number) {
     return this.command('get_block_records', {
       start,
       end,
@@ -37,7 +35,7 @@ export default class FullNode extends Service {
     });
   }
 
-  async closeConnection(nodeId: number) {
+  async closeConnection(nodeId: string) {
     return this.command('close_connection', {
       nodeId,
     });
@@ -69,11 +67,17 @@ export default class FullNode extends Service {
     return this.onCommand('get_connections', callback, processData);
   }
 
-  onNewBlock(callback: (data: any, message: Message) => void) {
-    return this.onStateChanged('new_block', callback);
+  onNewBlock(
+    callback: (data: any, message: Message) => void,
+    processData?: (data: any) => any,
+  ) {
+    return this.onStateChanged('new_block', callback, processData);
   }
 
-  onNewPeak(callback: (data: any, message: Message) => void) {
-    return this.onStateChanged('new_peak', callback);
+  onNewPeak(
+    callback: (data: any, message: Message) => void,
+    processData?: (data: any) => any,
+  ) {
+    return this.onStateChanged('new_peak', callback, processData);
   }
 }

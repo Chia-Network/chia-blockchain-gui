@@ -1,13 +1,14 @@
 import React, { ReactNode } from 'react';
 import styled from 'styled-components';
-import { Loading } from '@chia/core';
+import { Box } from '@material-ui/core';
+import Loading from '../Loading';
 
-const StyledRoot = styled.div`
+const StyledRoot = styled(Box)`
   position: relative;
   width: 100%;
 `;
 
-const StyledLoadingContainer = styled.div`
+const StyledLoadingContainer = styled(Box)`
   position: absolute;
   left: 0;
   right: 0;
@@ -21,20 +22,29 @@ const StyledLoadingContainer = styled.div`
 
 type Props = {
   children?: ReactNode;
-  loading: boolean;
+  loading?: boolean;
+  disabled?: boolean;
 };
 
 export default function LoadingOverlay(props: Props) {
-  const { children, loading } = props;
+  const { children, loading, disabled } = props;
 
   return (
     <StyledRoot>
       {children}
-      {loading && (
+      {(loading || disabled) && (
         <StyledLoadingContainer>
-          <Loading center />
+          {!disabled && (
+            <Loading center />
+          )}
         </StyledLoadingContainer>
       )}
     </StyledRoot>
   );
 }
+
+LoadingOverlay.defaultProps = {
+  children: undefined,
+  loading: false,
+  disabled: false,
+};

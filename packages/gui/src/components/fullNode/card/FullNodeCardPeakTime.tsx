@@ -1,24 +1,19 @@
 import React from 'react';
 import { Trans } from '@lingui/macro';
-import { useSelector } from 'react-redux';
-import FarmCard from '../../farm/card/FarmCard';
+import { CardSimple } from '@chia/core';
+import { useGetLatestPeakTimestampQuery } from '@chia/api-react';
 import { unix_to_short_date } from '../../../util/utils';
-import type { RootState } from '../../../modules/rootReducer';
 
 export default function FullNodeCardPeakTime() {
-  const latestPeakTimestamp = useSelector(
-    (state: RootState) => state.full_node_state?.latest_peak_timestamp,
-  );
+  const { data: timestamp, isLoading } = useGetLatestPeakTimestampQuery();
 
-  const value = latestPeakTimestamp
-    ? unix_to_short_date(latestPeakTimestamp)
+  const value = timestamp
+    ? unix_to_short_date(timestamp)
     : '';
 
-  const loading = latestPeakTimestamp === undefined;
-
   return (
-    <FarmCard
-      loading={loading}
+    <CardSimple
+      loading={isLoading}
       valueColor="textPrimary"
       title={<Trans>Peak Time</Trans>}
       tooltip={<Trans>This is the time of the latest peak sub block.</Trans>}

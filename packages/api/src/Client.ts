@@ -26,7 +26,7 @@ export default class Client extends EventEmitter {
   private options: Required<Options>;
   private ws: any;
 
-  private connected: boolean = false;
+  private connected = false;
   private requests: Map<string, {
     resolve: (value: Response) => void;
     reject: (reason: Error) => void;
@@ -38,10 +38,9 @@ export default class Client extends EventEmitter {
 
   private daemon: Daemon;
 
-  private startingServices: boolean = false;
-  private closed: boolean = false;
+  private closed = false;
   private state: ConnectionState = ConnectionState.DISCONNECTED;
-  private reconnectAttempt: number = 0;
+  private reconnectAttempt = 0;
   private startingService?: ServiceName;
 
   constructor(options: Options) {
@@ -128,8 +127,6 @@ export default class Client extends EventEmitter {
   addService(service: Service) {
     if (!this.services.has(service.name)) {
       this.services.add(service.name);
-
-      this.startServices();
     }
   }
 
@@ -193,79 +190,52 @@ export default class Client extends EventEmitter {
     return this.connectedPromise;
   }
 
-  private async startServices() {
-    if (!this.connected || this.startingServices) {
+  async startService(serviceName: ServiceName, disableWait?: boolean) {
+    if (this.started.has(serviceName)) {
       return;
     }
 
-    this.startingServices = true;
+    const response = await this.daemon.isRunning(serviceName);
+    if (!response.isRunning) {
+      log(`Starting service: ${serviceName}`);
+      await this.daemon.startService(serviceName);
+    }
+
+    // wait for service initialisation
+    log(`Waiting for ping from service: ${serviceName}`);
+    if (!disableWait) {
+      while(true) {
+        try {
+          const { data: pingResponse } = await this.send(new Message({
+            command: 'ping',
+            origin: this.origin,
+            destination: serviceName,
+          }), 1000);
+          
+          if (pingResponse.success) {
+            break;
+          }
+        } catch (error) {
+          await sleep(1000);
+        }
+      }
+
+      log(`Service: ${serviceName} started`);
+    }
+
+    this.started.add(serviceName);
+  }
+
+  private async startServices() {
+    if (!this.connected) {
+      return;
+    }
 
     const services = Array.from(this.services);
 
-    for (const serviceName of services) {
-      if (!this.started.has(serviceName)) {
-        this.startingService = serviceName;
-        this.emit('state', this.getState());
-
-        const response = await this.daemon.isRunning(serviceName);
-        if (!response.isRunning) {
-          log(`Starting service: ${serviceName}`);
-          await this.daemon.startService(serviceName);
-        }
-
-        // wait for service initialisation
-        log(`Waiting for ping from service: ${serviceName}`);
-        while(true) {
-          try {
-            const { data: pingResponse } = await this.send(new Message({
-              command: 'ping',
-              origin: this.origin,
-              destination: serviceName,
-            }), 1000);
-            
-            if (pingResponse.success) {
-              break;
-            }
-          } catch (error) {
-            await sleep(1000);
-          }
-        }
-
-        log(`Service: ${serviceName} started`);
-        this.started.add(serviceName);
-      }
-    }
-
-    /*
-    await Promise.all(Array.from(this.services).map(async (serviceName) => {
-      if (!this.started.has(serviceName)) {
-        const response = await this.daemon.isRunning(serviceName);
-        if (!response.isRunning) {
-          await this.daemon.startService(serviceName);
-        }
-
-        // wait for service initialisation
-        while(true) {
-          try {
-            const { data: pingResponse } = await this.send(new Message({
-              command: 'ping',
-              origin: this.origin,
-              destination: serviceName,
-            }), 1000);
-            
-            if (pingResponse.success) {
-              break;
-            }
-          } catch (error) {
-            await sleep(1000);
-          }
-        }
-
-        this.started.add(serviceName);
-      }
+    await Promise.all(services.map(async (serviceName) => {
+      return this.startService(serviceName);
     }));
-    */
-    this.startingServices = false;
   }
 
   private handleOpen = async () => {
@@ -273,18 +243,19 @@ export default class Client extends EventEmitter {
 
     this.started.clear();
 
-    this.startingServices = true;
-    await this.daemon.registerService(ServiceName.EVENTS);
-    this.startingServices = false;
-
-    await this.startServices();
-
     this.changeState(ConnectionState.CONNECTED);
+
+    await this.registerService(ServiceName.EVENTS);
+    await this.startServices();
 
     if (this.connectedPromiseResponse) {
       this.connectedPromiseResponse.resolve();
       this.connectedPromiseResponse = null;
     }
+  }
+
+  registerService(service: ServiceName) {
+    return this.daemon.registerService(service);
   }
 
   private handleClose = () => {
@@ -319,24 +290,35 @@ export default class Client extends EventEmitter {
       this.requests.delete(requestId);
 
       if (message.data?.error) {
-        reject(new ErrorData(message.data?.error, message.data));
+        let errorMessage = message.data.error;
+
+        if (errorMessage == '13') {
+          errorMessage = '[Error 13] Permission denied. You are trying to access a file/directory without having the necessary permissions. Most likely one of the plot folders in your config.yaml has an issue.';
+        } else if (errorMessage == '22') {
+          errorMessage = '[Error 22] File not found. Most likely one of the plot folders in your config.yaml has an issue.';
+        }
+
+        log(`Request ${requestId} rejected`, errorMessage);
+
+        reject(new ErrorData(errorMessage, message.data));
         return;
       }
 
       if (message.data?.success === false) {
+        log(`Request ${requestId} rejected`, 'Unknown error message');
         reject(new ErrorData(`Request ${requestId} failed: ${JSON.stringify(message.data)}`, message.data));
         return;
       }
 
       resolve(message);
+    } else {
+      // other messages can be events like get_harvesters
+      this.emit('message', message);
     }
-
-    this.emit('message', message);
   }
 
-  async send(message: Message, timeout?: number): Promise<Response> {
+  async send(message: Message, timeout?: number, disableFormat?: boolean): Promise<Response> {
     const { 
-      startingServices,
       connected,
       options: {
         timeout: defaultTimeout,
@@ -351,15 +333,11 @@ export default class Client extends EventEmitter {
       await this.connect();
     }
 
-    if (!startingServices) {
-      await this.startServices();
-    }
-
     return new Promise((resolve, reject) => {
       const { requestId } = message;
 
       this.requests.set(requestId, { resolve, reject });
-      const value = message.toJSON(camelCase);
+      const value = message.toJSON(camelCase && !disableFormat);
       log('Sending message', value);
 
       this.ws.send(value);
@@ -385,15 +363,11 @@ export default class Client extends EventEmitter {
       return;
     }
 
-    this.startingServices = true;
-
     await Promise.all(Array.from(this.started).map(async (serviceName) => {
       return await this.daemon.stopService(serviceName);
     }));
 
     await this.daemon.exit();
-
-    this.startingServices = false;
 
     this.ws.close();
     // this.changeState(ConnectionState.DISCONNECTED);

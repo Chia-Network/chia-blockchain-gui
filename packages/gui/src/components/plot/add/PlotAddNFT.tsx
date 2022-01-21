@@ -13,10 +13,15 @@ import { useFormContext } from 'react-hook-form';
 import usePlotNFTs from '../../../hooks/usePlotNFTs';
 import PlotNFTName from '../../plotNFT/PlotNFTName';
 import PlotNFTSelectPool from '../../plotNFT/select/PlotNFTSelectPool';
+import Plotter from '../../../types/Plotter';
 
-type Props = {};
+type Props = {
+  step: number;
+  plotter: Plotter;
+};
 
 const PlotAddNFT = forwardRef((props: Props, ref) => {
+  const { step } = props;
   const { nfts, external, loading } = usePlotNFTs();
   const [showCreatePlotNFT, setShowCreatePlotNFT] = useState<boolean>(false);
   const { setValue } = useFormContext();
@@ -36,7 +41,7 @@ const PlotAddNFT = forwardRef((props: Props, ref) => {
   if (showCreatePlotNFT) {
     return (
       <PlotNFTSelectPool
-        step={5}
+        step={step}
         onCancel={handleCancelPlotNFT}
         ref={ref}
         title={<Trans>Create a Plot NFT</Trans>}
@@ -52,7 +57,7 @@ const PlotAddNFT = forwardRef((props: Props, ref) => {
 
   return (
     <CardStep
-      step="5"
+      step={step}
       title={
         <Flex gap={1} alignItems="baseline">
           <Box>
@@ -80,7 +85,7 @@ const PlotAddNFT = forwardRef((props: Props, ref) => {
                 <InputLabel required>
                   <Trans>Select your Plot NFT</Trans>
                 </InputLabel>
-                <Select name="p2_singleton_puzzle_hash">
+                <Select name="p2SingletonPuzzleHash">
                   <MenuItem value="">
                     <em>
                       <Trans>None</Trans>
@@ -88,13 +93,13 @@ const PlotAddNFT = forwardRef((props: Props, ref) => {
                   </MenuItem>
                   {nfts?.map((nft) => {
                     const {
-                      pool_state: { p2_singleton_puzzle_hash },
+                      poolState: { p2SingletonPuzzleHash },
                     } = nft;
 
                     return (
                       <MenuItem
-                        value={p2_singleton_puzzle_hash}
-                        key={p2_singleton_puzzle_hash}
+                        value={p2SingletonPuzzleHash}
+                        key={p2SingletonPuzzleHash}
                       >
                         <PlotNFTName nft={nft} />
                       </MenuItem>
@@ -102,13 +107,13 @@ const PlotAddNFT = forwardRef((props: Props, ref) => {
                   })}
                   {external?.map((nft) => {
                     const {
-                      pool_state: { p2_singleton_puzzle_hash },
+                      poolState: { p2SingletonPuzzleHash },
                     } = nft;
 
                     return (
                       <MenuItem
-                        value={p2_singleton_puzzle_hash}
-                        key={p2_singleton_puzzle_hash}
+                        value={p2SingletonPuzzleHash}
+                        key={p2SingletonPuzzleHash}
                       >
                         <PlotNFTName nft={nft} />
                       </MenuItem>

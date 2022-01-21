@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import React, { useMemo } from 'react';
-import { Trans } from '@lingui/macro';
-import { useHistory } from 'react-router';
+import {Trans} from '@lingui/macro';
+import { useNavigate } from 'react-router';
 import {
   Box,
   Grid,
@@ -15,7 +15,7 @@ import {
 import { AlertDialog, Card, Flex } from '@chia/core';
 import isElectron from 'is-electron';
 import { newBuy, newSell, addTrade, resetTrades } from '../../modules/trade';
-import { chia_to_mojo, colouredcoin_to_mojo } from '../../util/chia';
+import { colouredcoin_to_mojo } from '../../util/chia';
 import { openDialog } from '../../modules/dialog';
 import { create_trade_action } from '../../modules/trade_messages';
 import { COLOURED_COIN } from '../../util/wallet_types';
@@ -42,7 +42,7 @@ const TradeList = () => {
 export default function CreateOffer() {
   const wallets = useSelector((state) => state.wallet_state.wallets);
   const dispatch = useDispatch();
-  const history = useHistory();
+  const navigate = useNavigate();
   let amount_input = null;
   let buy_or_sell = null;
   let wallet_id = null;
@@ -82,7 +82,7 @@ export default function CreateOffer() {
     const mojo =
       wallets[wallet_id.value].type === COLOURED_COIN
         ? colouredcoin_to_mojo(amount_input.value)
-        : chia_to_mojo(amount_input.value);
+        : chiaToMojo(amount_input.value);
 
     const trade =
       buy_or_sell.value === 1
@@ -105,7 +105,7 @@ export default function CreateOffer() {
     }
     if (isElectron()) {
       const dialogOptions = {};
-      const result = await window.remote.dialog.showSaveDialog(dialogOptions);
+      const result = await window.ipcRenderer?.send('showSaveDialog', dialogOptions);
       const { filePath } = result;
       const offer = {};
       for (const trade of trades) {

@@ -11,10 +11,8 @@ import {
   DialogContent,
   Typography,
 } from '@material-ui/core';
-import { useDispatch } from 'react-redux';
-import { getPoolLoginLink } from '../../modules/farmerMessages';
-import PlotNFT from '../../types/PlotNFT';
-import PlotNFTExternal from '../../types/PlotNFTExternal';
+import { useGetPoolLoginLinkQuery } from '@chia/api-react';
+import type { PlotNFT, PlotNFTExternal } from '@chia/api';
 
 const StyledLoginLink = styled(Typography)`
   word-break: break-all;
@@ -28,57 +26,36 @@ type Props = {
 
 export default function PlotNFTGetPoolLoginLinkDialog(props: Props) {
   const { onClose, open, nft } = props;
-  const dispatch = useDispatch();
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<Error | undefined>(undefined);
-  const [loginLink, setLoginLink] = useState<string | undefined>(undefined);
-
   const {
-    pool_state: {
-      pool_config: { pool_url, launcher_id },
+    poolState: {
+      poolConfig: { poolUrl, launcherId },
     },
   } = nft;
+
+  const { data: loginLink, isLoading, error } = useGetPoolLoginLinkQuery({
+    launcherId,
+  }, {
+    skip: !poolUrl,
+  });
 
   function handleClose() {
     onClose();
   }
 
-  async function updatePoolLoginLink() {
-    setError(undefined);
-    setLoginLink(undefined);
-
-    if (!pool_url) {
-      setLoading(false);
-      setError(new Error(t`This plot NFT is not connected to pool`));
-      return;
-    }
-
-    try {
-      setLoading(true);
-      const response = await dispatch(getPoolLoginLink(launcher_id));
-      if (response.success !== true) {
-        throw new Error(response.message ?? t`Something went wrong`);
-      }
-      setLoginLink(response?.login_link);
-    } catch (error) {
-      setError(error);
-    } finally {
-      setLoading(false);
+  function handleDialogClose(event: any, reason: any) {
+    if (reason !== 'backdropClick' || reason !== 'EscapeKeyDown') {
+      onClose();
     }
   }
 
-  useEffect(() => {
-    updatePoolLoginLink();
-  }, [pool_url]); // eslint-disable-line
-
   return (
-    <Dialog disableBackdropClick disableEscapeKeyDown maxWidth="md" open={open}>
+    <Dialog onClose={handleDialogClose} maxWidth="md" open={open}>
       <DialogTitle>
         <Trans>Pool Login Link</Trans>
       </DialogTitle>
       <DialogContent dividers>
         <Flex gap={2} flexDirection="column">
-          {loading ? (
+          {isLoading ? (
             <Loading center />
           ) : (
             <Flex flexDirection="column" gap={2}>

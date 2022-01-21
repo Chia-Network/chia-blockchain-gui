@@ -1,33 +1,32 @@
 import React, { useMemo } from 'react';
 import { Trans } from '@lingui/macro';
-import { useSelector } from 'react-redux';
-import type { RootState } from '../../../modules/rootReducer';
+import { useCurrencyCode, mojoToChiaLocaleString } from '@chia/core';
+import { useGetFarmedAmountQuery } from '@chia/api-react';
 import FarmCard from './FarmCard';
-import { mojo_to_chia } from '../../../util/chia';
-import useCurrencyCode from '../../../hooks/useCurrencyCode';
 
 export default function FarmCardUserFees() {
   const currencyCode = useCurrencyCode();
-  const loading = useSelector(
-    (state: RootState) => !state.wallet_state.farmed_amount,
-  );
+  const { data, isLoading } = useGetFarmedAmountQuery();
 
-  const feeAmount = useSelector(
-    (state: RootState) => state.wallet_state.farmed_amount?.fee_amount,
-  );
+  const feeAmount = data?.feeAmount;
 
   const userTransactionFees = useMemo(() => {
     if (feeAmount !== undefined) {
-      const val = BigInt(feeAmount.toString());
-      return mojo_to_chia(val);
+      return (
+        <>
+          {mojoToChiaLocaleString(feeAmount)}
+          &nbsp;
+          {currencyCode}
+        </>
+      );
     }
   }, [feeAmount]);
 
   return (
     <FarmCard
-      title={<Trans>{currencyCode} User Transaction Fees</Trans>}
+      title={<Trans>User Transaction Fees</Trans>}
       value={userTransactionFees}
-      loading={loading}
+      loading={isLoading}
     />
   );
 }

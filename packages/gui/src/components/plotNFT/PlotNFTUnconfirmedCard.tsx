@@ -2,9 +2,9 @@ import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { Trans } from '@lingui/macro';
 import { Flex, Link, Loading } from '@chia/core';
+import { useGetTransactionQuery } from '@chia/api-react';
 import { Box, Card, CardContent, Typography } from '@material-ui/core';
-import type UnconfirmedPlotNFT from '../../types/UnconfirmedPlotNFT';
-import useTransaction from '../../hooks/useTransaction';
+import type { UnconfirmedPlotNFT } from '@chia/api';
 import PlotNFTState from '../../constants/PlotNFTState';
 import useUnconfirmedPlotNFTs from '../../hooks/useUnconfirmedPlotNFTs';
 
@@ -31,13 +31,23 @@ export default function PlotNFTUnconfirmedCard(props: Props) {
   } = props;
 
   const { remove } = useUnconfirmedPlotNFTs();
-  const [transaction] = useTransaction(transactionId);
+  const { data: transaction, isLoading } = useGetTransactionQuery({
+    transactionId,
+  }, {
+    pollingInterval: 5000,
+  }); 
+
+  console.log('transaction', transaction);
 
   useEffect(() => {
     if (transaction?.confirmed) {
       remove(transaction.name);
     }
   }, [transaction?.confirmed]);
+
+  if (isLoading || transaction?.confirmed) {
+    return null;
+  }
 
   return (
     <StyledCard>

@@ -2,6 +2,7 @@ import React, { ReactNode, useMemo, useState, SyntheticEvent, Fragment } from 'r
 import styled from 'styled-components';
 import { get } from 'lodash';
 import {
+  Box,
   TableContainer,
   TableHead,
   Table as TableBase,
@@ -22,7 +23,7 @@ const StyledTableHead = styled(TableHead)`
   font-weight: 500;
 `;
 
-export const StyledTableRow = styled(TableRow)`
+export const StyledTableRow = styled(({ odd, ...rest }) => <TableRow {...rest} />)`
   ${({ odd, theme }) => odd 
     ? `background-color: ${theme.palette.type === 'dark' ? '#515151' : '#FAFAFA'};` 
     : undefined
@@ -32,6 +33,7 @@ export const StyledTableRow = styled(TableRow)`
 const StyledExpandedTableRow = styled(TableRow)`
   background-color: ${({ theme }) =>
     theme.palette.type === 'dark' ? '#1E1E1E' : '#EEEEEE'};
+  ${({ isExpanded }) => !isExpanded ? 'display: none;' : undefined}
 `;
 
 const StyledTableCell = styled(({ width, minWidth, maxWidth, ...rest }) => (
@@ -41,19 +43,20 @@ const StyledTableCell = styled(({ width, minWidth, maxWidth, ...rest }) => (
     (maxWidth || width || minWidth) ?? 'none'};
   min-width: ${({ minWidth }) => minWidth || '0'};
   width: ${({ width, minWidth }) => (width || minWidth ? width : 'auto')}};
+  border-bottom: 1px solid ${({ theme }) =>
+    theme.palette.type === 'dark' ? '#353535' : '#e0e0e0'};
 `;
 
-const StyledTableCellContent = styled.div`
+const StyledTableCellContent = styled(Box)`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 `;
 
 const StyledExpandedTableCell = styled(({ isExpanded, ...rest}) => <TableCell {...rest} />)`
-  ${({ isExpanded }) => !isExpanded ? 'border: 0;' : undefined}
 `;
 
-const StyledExpandedTableCellContent = styled.div`
+const StyledExpandedTableCellContent = styled(Box)`
   padding: 1rem 0;
 `;
 
@@ -260,9 +263,9 @@ export default function TableControlled(props: TableControlledProps) {
                       );
                     })}
                   </StyledTableRow>
-                  <StyledExpandedTableRow>
+                  <StyledExpandedTableRow isExpanded={isExpanded}>
                     {expandableCells}
-                    <StyledExpandedTableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={cols.length - expandedCellShift} isExpanded={isExpanded}>
+                    <StyledExpandedTableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={cols.length - expandedCellShift}>
                       <Collapse in={isExpanded} timeout="auto" unmountOnExit>
                         <StyledExpandedTableCellContent>
                           {expandedField && expandedField(row)}

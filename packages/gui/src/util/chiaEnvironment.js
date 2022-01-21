@@ -6,8 +6,8 @@ const fs = require('fs');
  * py process
  *************************************************************/
 
-const PY_MAC_DIST_FOLDER = '../../../../../app.asar.unpacked/daemon';
-const PY_WIN_DIST_FOLDER = '../../../../../app.asar.unpacked/daemon';
+const PY_MAC_DIST_FOLDER = '../../../app.asar.unpacked/daemon';
+const PY_WIN_DIST_FOLDER = '../../../app.asar.unpacked/daemon';
 const PY_DIST_FILE = 'daemon';
 const PY_FOLDER = '../../../chia/daemon';
 const PY_MODULE = 'server'; // without .py suffix
@@ -20,14 +20,10 @@ const guessPackaged = () => {
   if (process.platform === 'win32') {
     const fullPath = path.join(__dirname, PY_WIN_DIST_FOLDER);
     packed = fs.existsSync(fullPath);
-    console.log(fullPath);
-    console.log(packed);
     return packed;
   }
   const fullPath = path.join(__dirname, PY_MAC_DIST_FOLDER);
   packed = fs.existsSync(fullPath);
-  console.log(fullPath);
-  console.log(packed);
   return packed;
 };
 
@@ -81,7 +77,7 @@ const startChiaDaemon = () => {
     try {
       console.log('Running python executable: ');
       const Process = child_process.spawn;
-      pyProc = new Process(script, [], processOptions);
+      pyProc = new Process(script, ["--wait-for-unlock"], processOptions);
     } catch (e) {
       console.log('Running python executable: Error: ');
       console.log('Script ' + script);
@@ -91,7 +87,7 @@ const startChiaDaemon = () => {
     console.log('Script ' + script);
 
     const Process = child_process.spawn;
-    pyProc = new Process('python', [script], processOptions);
+    pyProc = new Process('python', [script, "--wait-for-unlock"], processOptions);
   }
   if (pyProc != null) {
     pyProc.stdout.setEncoding('utf8');

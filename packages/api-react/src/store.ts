@@ -1,25 +1,19 @@
 import { configureStore, ConfigureStoreOptions } from '@reduxjs/toolkit';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
-import { clientApi } from './services/client';
-import { fullNodeApi } from './services/fullNode';
-import { walletApi } from './services/wallet';
 import apiReducer from './slices/api';
+import api from './api';
 
 export function createStore(options?: ConfigureStoreOptions['preloadedState']) {
   return configureStore({
     reducer: {
-      [clientApi.reducerPath]: clientApi.reducer,
-      [fullNodeApi.reducerPath]: fullNodeApi.reducer,
-      [walletApi.reducerPath]: walletApi.reducer,
+      [api.reducerPath]: api.reducer,
       api: apiReducer,
     },
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware({
         serializableCheck: false,
       }).concat(
-        clientApi.middleware,
-        fullNodeApi.middleware,
-        walletApi.middleware,
+        api.middleware,
       ),
     ...options,
   });

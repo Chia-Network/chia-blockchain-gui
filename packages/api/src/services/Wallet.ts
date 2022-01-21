@@ -9,6 +9,10 @@ export default class Wallet extends Service {
     super(ServiceName.WALLET, client, options);
   }
 
+  async getLoggedInFingerprint() {
+    return this.command('get_logged_in_fingerprint');
+  }
+
   async getWallets() {
     return this.command('get_wallets');
   }
@@ -25,7 +29,7 @@ export default class Wallet extends Service {
     });
   }
 
-  async pwAbsorbRewards(walletId: number, fee: string) {
+  async pwAbsorbRewards(walletId: number, fee?: string) {
     return this.command('pw_absorb_rewards', {
       walletId,
       fee,
@@ -37,18 +41,21 @@ export default class Wallet extends Service {
     poolUrl: string,
     relativeLockHeight: number,
     targetPuzzlehash?: string,
+    fee?: string,
   ) {
     return this.command('pw_join_pool', {
       walletId,
       poolUrl,
       relativeLockHeight,
       targetPuzzlehash,
+      fee,
     });
   }
 
-  async pwSelfPool(walletId: number) {
+  async pwSelfPool(walletId: number, fee?: string) {
     return this.command('pw_self_pool', {
       walletId,
+      fee,
     });
   }
 
@@ -328,8 +335,11 @@ export default class Wallet extends Service {
     return this.onStateChanged('coin_removed', callback);
   }
 
-  onWalletCreated(callback: (data: any, message: Message) => void) {
-    return this.onStateChanged('wallet_created', callback);
+  onWalletCreated(
+    callback: (data: any, message: Message) => void,
+    processData?: (data: any) => any,
+  ) {
+    return this.onStateChanged('wallet_created', callback, processData);
   }
 
   onConnections(
@@ -339,11 +349,17 @@ export default class Wallet extends Service {
     return this.onCommand('get_connections', callback, processData);
   }
 
-  onTransactionUpdate(callback: (data: any, message: Message) => void) {
-    return this.onStateChanged('tx_update', callback);
+  onTransactionUpdate(
+    callback: (data: any, message: Message) => void,
+    processData?: (data: any) => any,
+  ) {
+    return this.onStateChanged('tx_update', callback, processData);
   }
 
-  onPendingTransaction(callback: (data: any, message: Message) => void) {
-    return this.onStateChanged('pending_transaction', callback);
+  onPendingTransaction(
+    callback: (data: any, message: Message) => void,
+    processData?: (data: any) => any,
+  ) {
+    return this.onStateChanged('pending_transaction', callback, processData);
   }
 }

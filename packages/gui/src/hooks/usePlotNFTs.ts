@@ -1,32 +1,42 @@
 import { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { useInterval } from 'react-use';
-import type { RootState } from '../modules/rootReducer';
-import type PlotNFT from '../types/PlotNFT';
-import { getPlotNFTs } from '../modules/plotNFT';
+import type { PlotNFT } from '@chia/api';
+import { useGetPlotNFTsQuery } from '@chia/api-react';
+import useUnconfirmedPlotNFTs from './useUnconfirmedPlotNFTs';
 import PlotNFTExternal from 'types/PlotNFTExternal';
 
 export default function usePlotNFTs(): {
   loading: boolean;
   nfts?: PlotNFT[];
   external?: PlotNFTExternal[];
+  error?: Error;
 } {
-  const dispatch = useDispatch();
-  const nfts = useSelector((state: RootState) => state.plot_nft.items);
-  const external = useSelector((state: RootState) => state.plot_nft.external);
-  const loading = !nfts || !external;
+  const { data, isLoading: isLoadingGetPlotNFTs, error } = useGetPlotNFTsQuery(undefined, {
+    pollingInterval: 10000,
+  });
 
-  useInterval(() => {
-    dispatch(getPlotNFTs());
-  }, 10000);
+  const { unconfirmed, isLoading: isLoadingUnconfirmedPlotNFTs } = useUnconfirmedPlotNFTs();
+  const isLoading = isLoadingGetPlotNFTs || isLoadingUnconfirmedPlotNFTs;
+
+  /*
+  function removeConfirmed() {
+    if (isLoading) {
+      return;
+    }
+
+
+  }
+
+  console.log('nfts', data?.nfts);
 
   useEffect(() => {
-    dispatch(getPlotNFTs());
-  }, []);
+    removeConfirmed();
+  }, [data?.nfts, unconfirmed, isLoading]);
+  */
 
   return {
-    loading,
-    nfts,
-    external,
+    loading: isLoading,
+    nfts: data?.nfts,
+    external: data?.external,
+    error,
   };
 }

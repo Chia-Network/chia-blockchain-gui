@@ -1,14 +1,13 @@
 import React, { useMemo, ReactNode } from 'react';
 import { Trans } from '@lingui/macro';
-import { useHistory } from 'react-router';
-import { useDispatch } from 'react-redux';
-import { Flex, Loading } from '@chia/core';
+import { useNavigate } from 'react-router';
+import { useGetPlotNFTsQuery, usePwSelfPoolMutation, usePwJoinPoolMutation } from '@chia/api-react';
+import { Flex, State, Loading, StateTypography } from '@chia/core';
 import { ChevronRight as ChevronRightIcon } from '@material-ui/icons';
 import { useParams } from 'react-router';
-import usePlotNFTs from '../../hooks/usePlotNFTs';
-import { pwSelfPool, pwJoinPool } from '../../modules/plotNFT';
 import PlotNFTSelectPool, { SubmitData } from './select/PlotNFTSelectPool';
 import PlotNFTName from './PlotNFTName';
+import PlotNFTStateEnum from '../../constants/PlotNFTState';
 
 type Props = {
   headerTag?: ReactNode;
@@ -16,59 +15,71 @@ type Props = {
 
 export default function PlotNFTChangePool(props: Props) {
   const { headerTag: HeaderTag } = props;
+  const { data, isLoading } = useGetPlotNFTsQuery();
+  const [pwSelfPool] = usePwSelfPoolMutation();
+  const [pwJoinPool] = usePwJoinPoolMutation();
 
   const { plotNFTId } = useParams<{
     plotNFTId: string;
   }>();
-  const { nfts, loading } = usePlotNFTs();
-  const dispatch = useDispatch();
-  const history = useHistory();
+
+  const navigate = useNavigate();
   const nft = useMemo(() => {
-    return nfts?.find(
-      (nft) => nft.pool_state.p2_singleton_puzzle_hash === plotNFTId,
+    return data?.nfts?.find(
+      (nft) => nft.poolState.p2SingletonPuzzleHash === plotNFTId,
     );
-  }, [nfts, plotNFTId]);
+  }, [data?.nfts, plotNFTId]);
+
+
+  const state = nft?.poolWalletStatus?.current?.state;
+  const isDoubleFee = state === PlotNFTStateEnum.FARMING_TO_POOL;
 
   async function handleSubmit(data: SubmitData) {
-    const walletId = nft?.pool_wallet_status.wallet_id;
+    const walletId = nft?.poolWalletStatus.walletId;
 
     const {
       initialTargetState: {
         state,
-        pool_url,
-        relative_lock_height,
-        target_puzzle_hash,
+        poolUrl,
+        relativeLockHeight,
+        targetPuzzleHash,
       },
+      fee,
     } = data;
 
     if (
       walletId === undefined ||
-      pool_url === nft?.pool_state.pool_config.pool_url
+      poolUrl === nft?.poolState.poolConfig.poolUrl
     ) {
       return;
     }
 
     if (state === 'SELF_POOLING') {
-      await dispatch(pwSelfPool(walletId));
+      await pwSelfPool({
+        walletId, 
+        fee,
+      }).unwrap();
     } else {
-      await dispatch(
-        pwJoinPool(
-          walletId,
-          pool_url,
-          relative_lock_height,
-          target_puzzle_hash,
-        ),
-      );
+      await pwJoinPool({
+        walletId,
+        poolUrl,
+        relativeLockHeight,
+        targetPuzzleHash,
+        fee,
+      }).unwrap();
     }
 
+    navigate(-1);
+    /*
     if (history.length) {
       history.goBack();
     } else {
-      history.push('/dashboard/pool');
+      navigate('/dashboard/pool');
     }
+    */
   }
 
-  if (loading) {
+  if (isLoading) {
     return (
       <Loading>
         <Trans>Preparing Plot NFT</Trans>
@@ -85,14 +96,14 @@ export default function PlotNFTChangePool(props: Props) {
   }
 
   const {
-    pool_state: {
-      pool_config: { pool_url },
+    poolState: {
+      poolConfig: { poolUrl },
     },
   } = nft;
 
   const defaultValues = {
-    self: !pool_url,
-    poolUrl: pool_url,
+    self: !poolUrl,
+    poolUrl: poolUrl,
   };
 
   return (
@@ -110,7 +121,11 @@ export default function PlotNFTChangePool(props: Props) {
         title={<Trans>Change Pool</Trans>}
         submitTitle={<Trans>Change</Trans>}
         defaultValues={defaultValues}
-        hideFee
+        feeDescription={isDoubleFee && (
+          <StateTypography variant="body2" state={State.WARNING}>
+            <Trans>Fee is used TWICE: once to leave pool, once to join.</Trans>
+          </StateTypography>
+        )}
       />
     </>
   );

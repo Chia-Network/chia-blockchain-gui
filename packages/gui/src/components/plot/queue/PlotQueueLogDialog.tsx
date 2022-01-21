@@ -10,9 +10,8 @@ import {
   Typography,
 } from '@material-ui/core';
 import { Flex, Log } from '@chia/core';
+import { useGetPlotQueueQuery, useThrottleQuery } from '@chia/api-react';
 import styled from 'styled-components';
-import type { RootState } from '../../../modules/rootReducer';
-import useThrottleSelector from '../../../hooks/useThrottleSelector';
 
 const StyledLinearProgress = styled(LinearProgress)`
   height: 10px;
@@ -28,16 +27,11 @@ type Props = {
 
 export default function PlotQueueLogDialog(props: Props) {
   const { id, open, onClose } = props;
-  const queueItem = useThrottleSelector(
-    (state: RootState) => state.plot_queue.queue.find((item) => item.id === id),
-    {
-      wait: 2000,
-      force(_data, _dataBefore, state) {
-        const event = state.plot_queue?.event;
-        return event === 'state_changed';
-      },
-    },
-  );
+  const { data: queue } = useThrottleQuery(useGetPlotQueueQuery, undefined, undefined, {
+    wait: 5000,
+  });
+
+  const queueItem = queue?.find((item) => item.id === id);
   const [log, setLog] = useState<ReactNode>(<Trans>Loading...</Trans>);
 
   useEffect(() => {
@@ -46,14 +40,13 @@ export default function PlotQueueLogDialog(props: Props) {
     }
   }, [queueItem]);
 
-  function handleClose() {
-    onClose();
-  }
+  function handleClose(event: any, reason: any) {
+    if (reason !== 'backdropClick' || reason !== 'EscapeKeyDown') {
+      onClose();
+    }}
 
   return (
     <Dialog
-      disableBackdropClick
-      disableEscapeKeyDown
       maxWidth="md"
       aria-labelledby="confirmation-dialog-title"
       onClose={handleClose}

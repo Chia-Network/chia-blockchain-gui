@@ -70,26 +70,26 @@ const cols = [
   },
   {
     minWidth: '100px',
-    field: 'plot_public_key',
-    tooltip: 'plot_public_key',
+    field: 'plotPublicKey',
+    tooltip: 'plotPublicKey',
     title: <Trans>Plot Key</Trans>,
   },
   {
     minWidth: '100px',
-    field: 'pool_public_key',
-    tooltip: 'pool_public_key',
+    field: 'poolPublicKey',
+    tooltip: 'poolPublicKey',
     title: <Trans>Pool Key</Trans>,
   },
   {
     minWidth: '100px',
-    field: 'harvester.node_id',
-    tooltip: 'harvester.node_id',
+    field: 'harvester.nodeId',
+    tooltip: 'harvester.nodeId',
     title: <Trans>Node Id</Trans>,
   },
   {
     minWidth: '100px',
-    field: ({ pool_contract_puzzle_hash }: Plot) => (
-      <Address value={pool_contract_puzzle_hash} tooltip copyToClipboard>
+    field: ({ poolContractPuzzleHash }: Plot) => (
+      <Address value={poolContractPuzzleHash} tooltip copyToClipboard>
         {(address) => (
           <Typography variant="body2" noWrap>
             {address}
@@ -150,7 +150,11 @@ export default function PlotOverviewPlots() {
           </Typography>
         </Flex>
 
-        <Table cols={cols} rows={plots} pages>
+        <Table 
+          cols={cols} 
+          rows={plots} 
+          pages
+        >
           {queuePlots
             ? queuePlots.map((item) => {
                 const { id } = item;

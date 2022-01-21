@@ -1,58 +1,74 @@
-import { createApi } from '@reduxjs/toolkit/query/react';
 import { FullNode } from '@chia/api';
-import chiaLazyBaseQuery from '../chiaLazyBaseQuery';
+import type { Block, BlockRecord, BlockHeader, BlockchainState, FullNodeConnection } from '@chia/api';
 import onCacheEntryAddedInvalidate from '../utils/onCacheEntryAddedInvalidate';
-import type Block from '../@types/Block';
-import type BlockRecord from '../@types/BlockRecord';
-import type BlockHeader from '../@types/BlockHeader';
-import type BlockchainState from '../@types/BlockchainState';
-import type BlockchainConnection from '../@types/BlockchainConnection';
+import api, { baseQuery } from '../api';
 
-const baseQuery = chiaLazyBaseQuery({
-  service: FullNode,
-});
+const apiWithTag = api.enhanceEndpoints({addTagTypes: ['BlockchainState', 'FullNodeConnections']})
 
-export const fullNodeApi = createApi({
-  reducerPath: 'fullNodeApi',
-  baseQuery,
-  tagTypes: ['BlockchainState', 'FullNodeConnections'],
+export const fullNodeApi = apiWithTag.injectEndpoints({
   endpoints: (build) => ({
-    getBlockRecords: build.query<BlockRecord[], { 
-      end: number; 
-      count?: number;
+    fullNodePing: build.query<boolean, {
     }>({
-      query: ({ end, count }) => ({
-        command: 'getBlockRecords',
-        args: [end, count],
+      query: () => ({
+        command: 'ping',
+        service: FullNode,
       }),
-      // transformResponse: (response: PostResponse) => response.data.post,
+      transformResponse: (response: any) => response?.success,
+    }),
+
+    getBlockRecords: build.query<BlockRecord[], { 
+      start?: number;
+      end?: number;
+    }>({
+      query: ({ start, end }) => ({
+        command: 'getBlockRecords',
+        service: FullNode,
+        args: [start, end],
+      }),
+      transformResponse: (response: any) => response?.blockRecords,
     }),
     getUnfinishedBlockHeaders: build.query<BlockHeader[], undefined>({
       query: () => ({
         command: 'getUnfinishedBlockHeaders',
+        service: FullNode,
       }),
-      // transformResponse: (response: PostResponse) => response.data.post,
+      transformResponse: (response: any) => response?.headers,
+      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, [{
+        command: 'onBlockchainState',
+        service: FullNode,
+        endpoint: () => fullNodeApi.endpoints.getUnfinishedBlockHeaders,
+      }]),
     }),
     getBlockchainState: build.query<BlockchainState, undefined>({
       query: () => ({
         command: 'getBlockchainState',
+        service: FullNode,
       }),
       providesTags: ['BlockchainState'],
       transformResponse: (response: any) => response?.blockchainState,
       onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, [{
         command: 'onBlockchainState',
+        service: FullNode,
         onUpdate: (draft, data) => Object.assign(draft, {
           ...data.blockchainState,
         }),
       }]),
     }),
-    getConnections: build.query<BlockchainConnection[], undefined>({
+    getFullNodeConnections: build.query<FullNodeConnection[], undefined>({
       query: () => ({
         command: 'getConnections',
+        service: FullNode,
       }),
       transformResponse: (response: any) => response?.connections,
+      providesTags: (connections) => connections
+      ? [
+        ...connections.map(({ nodeId }) => ({ type: 'FullNodeConnections', id: nodeId } as const)),
+        { type: 'FullNodeConnections', id: 'LIST' },
+      ] 
+      :  [{ type: 'FullNodeConnections', id: 'LIST' }],
       onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, [{
         command: 'onConnections',
+        service: FullNode,
         onUpdate: (draft, data) => {
           // empty base array
           draft.splice(0);
@@ -62,53 +78,58 @@ export const fullNodeApi = createApi({
         },
       }]),
     }),
+    openFullNodeConnection: build.mutation<FullNodeConnection, { 
+      host: string;
+      port: number;
+    }>({
+      query: ({ host, port }) => ({
+        command: 'openConnection',
+        service: FullNode,
+        args: [host, port],
+      }),
+      invalidatesTags: [{ type: 'FullNodeConnections', id: 'LIST' }],
+    }),
+    closeFullNodeConnection: build.mutation<FullNodeConnection, { 
+      nodeId: string;
+    }>({
+      query: ({ nodeId }) => ({
+        command: 'closeConnection',
+        service: FullNode,
+        args: [nodeId],
+      }),
+      invalidatesTags: (_result, _error, { nodeId }) => [{ type: 'FullNodeConnections', id: 'LIST' }, { type: 'FullNodeConnections', id: nodeId }],
+    }),
     getBlock: build.query<Block, { 
       headerHash: string;
     }>({
       query: ({ headerHash }) => ({
         command: 'getBlock',
+        service: FullNode,
         args: [headerHash],
       }),
-      // transformResponse: (response: PostResponse) => response.data.post,
+      transformResponse: (response: any) => response?.block,
     }),
     getBlockRecord: build.query<BlockRecord, { 
       headerHash: string;
     }>({
       query: ({ headerHash }) => ({
         command: 'getBlockRecord',
+        service: FullNode,
         args: [headerHash],
       }),
-      // transformResponse: (response: PostResponse) => response.data.post,
-    }),
-    openConnection: build.mutation<BlockchainConnection, { 
-      host: string;
-      port: number;
-    }>({
-      query: ({ host, port }) => ({
-        command: 'openConnection',
-        args: [host, port],
-      }),
-      invalidatesTags: ['FullNodeConnection'],
-    }),
-    closeConnection: build.mutation<BlockchainConnection, { 
-      nodeId: number;
-    }>({
-      query: ({ nodeId }) => ({
-        command: 'closeConnection',
-        args: [nodeId],
-      }),
-      invalidatesTags: ['FullNodeConnection'],
+      transformResponse: (response: any) => response?.blockRecord,
     }),
   }),
 });
 
 export const { 
+  useFullNodePingQuery,
   useGetBlockRecordsQuery,
   useGetUnfinishedBlockHeadersQuery,
   useGetBlockchainStateQuery,
-  useGetConnectionsQuery,
+  useGetFullNodeConnectionsQuery,
+  useOpenFullNodeConnectionMutation,
+  useCloseFullNodeConnectionMutation,
   useGetBlockQuery,
   useGetBlockRecordQuery,
-  useOpenConnectionMutation,
-  useCloseConnectionMutation,
 } = fullNodeApi;

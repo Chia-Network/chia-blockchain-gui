@@ -10,8 +10,8 @@ import {
 } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
 import { Trans } from '@lingui/macro';
-import { useParams, useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useGetBlockQuery, useGetBlockRecordQuery  } from '@chia/api-react'
+import { useParams, useNavigate } from 'react-router-dom';
 import {
   Back,
   Card,
@@ -20,6 +20,12 @@ import {
   Loading,
   TooltipIcon,
   Flex,
+  calculatePoolReward,
+  calculateBaseFarmerReward,
+  useCurrencyCode,
+  mojoToChia,
+  DashboardTitle,
+  Suspender,
 } from '@chia/core';
 import {
   unix_to_short_date,
@@ -27,92 +33,71 @@ import {
   arr_to_hex,
   sha256,
 } from '../../util/utils';
-import { getBlockRecord, getBlock } from '../../modules/fullnodeMessages';
-import { mojo_to_chia } from '../../util/chia';
-import {
-  calculatePoolReward,
-  calculateBaseFarmerReward,
-} from '../../util/blockRewards';
-import LayoutMain from '../layout/LayoutMain';
 import toBech32m from '../../util/toBech32m';
 import BlockTitle from './BlockTitle';
-import useCurrencyCode from '../../hooks/useCurrencyCode';
 
 /* global BigInt */
 
 async function computeNewPlotId(block) {
-  const { pool_public_key, plot_public_key } =
-    block.reward_chain_block.proof_of_space;
-  if (!pool_public_key) {
+  const { poolPublicKey, plotPublicKey } =
+    block.rewardChainBlock.proofOfSpace;
+  if (!poolPublicKey) {
     return undefined;
   }
-  let buf = hex_to_array(pool_public_key);
-  buf = buf.concat(hex_to_array(plot_public_key));
+  let buf = hex_to_array(poolPublicKey);
+  buf = buf.concat(hex_to_array(plotPublicKey));
   const bufHash = await sha256(buf);
   return arr_to_hex(bufHash);
 }
 
 export default function Block() {
   const { headerHash } = useParams();
-  const history = useHistory();
-  const dispatch = useDispatch();
-  const [block, setBlock] = useState();
-  const [blockRecord, setBlockRecord] = useState();
-  const [prevBlockRecord, setPrevBlockRecord] = useState();
+  const navigate = useNavigate();
   const [newPlotId, setNewPlotId] = useState();
   const [nextSubBlocks, setNextSubBlocks] = useState([]);
   const currencyCode = useCurrencyCode();
 
-  const [error, setError] = useState();
-  const [loading, setLoading] = useState(true);
+  const { data: block, isLoading: isLoadingBlock, error: errorBlock } = useGetBlockQuery({
+    headerHash,
+  });
 
-  const hasPreviousBlock = !!blockRecord?.prev_hash && !!blockRecord?.height;
-  const hasNextBlock = !!nextSubBlocks.length;
+  const { data: blockRecord, isLoading: isLoadingBlockRecord, error: errorBlockRecord } = useGetBlockRecordQuery({
+    headerHash,
+  });
 
-  async function prepareData(headerHash) {
-    setLoading(true);
+  const { data: prevBlockRecord, isLoading: isLoadingPrevBlockRecord, error: errorPrevBlockRecord } = useGetBlockRecordQuery({
+    headerHash: blockRecord?.prevHash,
+  }, {
+    skip: !blockRecord?.prevHash || !blockRecord?.height,
+  });
 
-    try {
-      setBlock();
-      setBlockRecord();
-      setPrevBlockRecord();
-      setNewPlotId();
 
-      const block = await dispatch(getBlock(headerHash));
-      setBlock(block);
-
-      if (block) {
-        setNewPlotId(await computeNewPlotId(block));
-      }
-
-      const blockRecord = await dispatch(getBlockRecord(headerHash));
-      setBlockRecord(blockRecord);
-
-      if (blockRecord?.prev_hash && !!blockRecord?.height) {
-        const prevBlockRecord = await dispatch(
-          getBlockRecord(blockRecord?.prev_hash),
-        );
-        setPrevBlockRecord(prevBlockRecord);
-      }
-    } catch (e) {
-      console.log('e', e);
-      setError(e);
-    } finally {
-      setLoading(false);
+  async function updateNewPlotId(block) {
+    if (block) {
+      setNewPlotId(await computeNewPlotId(block));
+    } else {
+      setNewPlotId(undefined);
     }
   }
 
   useEffect(() => {
-    prepareData(headerHash);
-  }, [headerHash]);
+    updateNewPlotId(block);
+  }, [block]);
+
+  const isLoading = isLoadingBlock || isLoadingBlockRecord || isLoadingPrevBlockRecord;
+  const error = errorBlock || errorBlockRecord || errorPrevBlockRecord;
+
+
+  const hasPreviousBlock = !!blockRecord?.prevHash && !!blockRecord?.height;
+  const hasNextBlock = !!nextSubBlocks.length;
 
   function handleShowPreviousBlock() {
-    const prevHash = blockRecord?.prev_hash;
+    const prevHash = blockRecord?.prevHash;
     if (prevHash && blockRecord?.height) {
       // save current hash
       setNextSubBlocks([headerHash, ...nextSubBlocks]);
 
-      history.push(`/dashboard/block/${prevHash}`);
+      navigate(`/dashboard/block/${prevHash}`);
     }
   }
 
@@ -121,21 +106,23 @@ export default function Block() {
     if (nextSubBlock) {
       setNextSubBlocks(rest);
 
-      history.push(`/dashboard/block/${nextSubBlock}`);
+      navigate(`/dashboard/block/${nextSubBlock}`);
     }
   }
 
-  if (loading) {
+  if (isLoading) {
     return (
-      <LayoutMain title={<Trans>Block</Trans>}>
-        <Loading center />
-      </LayoutMain>
+      <>
+        <DashboardTitle><Trans>Block</Trans></DashboardTitle>
+        <Suspender />
+      </>
     );
   }
 
   if (error) {
     return (
-      <LayoutMain title={<Trans>Block Test</Trans>}>
+      <>
+        <DashboardTitle><Trans>Block</Trans></DashboardTitle>
         <Card
           title={
             <BlockTitle>
@@ -145,13 +132,14 @@ export default function Block() {
         >
           <Alert severity="error">{error.message}</Alert>
         </Card>
-      </LayoutMain>
+      </>
     );
   }
 
   if (!block) {
     return (
-      <LayoutMain title={<Trans>Block</Trans>}>
+      <>
+        <DashboardTitle><Trans>Block</Trans></DashboardTitle>
         <Card
           title={
             <BlockTitle>
@@ -163,7 +151,7 @@ export default function Block() {
             <Trans>Block with hash {headerHash} does not exist.</Trans>
           </Alert>
         </Card>
-      </LayoutMain>
+      </>
     );
   }
 
@@ -172,19 +160,19 @@ export default function Block() {
       ? blockRecord.weight - prevBlockRecord.weight
       : blockRecord?.weight ?? 0;
 
-  const poolReward = mojo_to_chia(calculatePoolReward(blockRecord.height));
-  const baseFarmerReward = mojo_to_chia(
+  const poolReward = mojoToChia(calculatePoolReward(blockRecord.height));
+  const baseFarmerReward = mojoToChia(
     calculateBaseFarmerReward(blockRecord.height),
   );
 
-  const chiaFees = blockRecord.fees
-    ? mojo_to_chia(BigInt(blockRecord.fees))
+  const chiaFees = blockRecord.fees !== undefined
+    ? mojoToChia(blockRecord.fees)
     : '';
 
   const rows = [
     {
       name: <Trans>Header hash</Trans>,
-      value: blockRecord.header_hash,
+      value: blockRecord.headerHash,
     },
     {
       name: <Trans>Timestamp</Trans>,
@@ -215,7 +203,7 @@ export default function Block() {
     {
       name: <Trans>Previous Header Hash</Trans>,
       value: (
-        <Link onClick={handleShowPreviousBlock}>{blockRecord.prev_hash}</Link>
+        <Link onClick={handleShowPreviousBlock}>{blockRecord.prevHash}</Link>
       ),
     },
     {
@@ -224,7 +212,7 @@ export default function Block() {
     },
     {
       name: <Trans>Total VDF Iterations</Trans>,
-      value: <FormatLargeNumber value={blockRecord.total_iters} />,
+      value: <FormatLargeNumber value={blockRecord.totalIters} />,
       tooltip: (
         <Trans>
           The total number of VDF (verifiable delay function) or proof of time
@@ -237,7 +225,7 @@ export default function Block() {
       value: (
         <FormatLargeNumber
           value={
-            block.reward_chain_block.challenge_chain_ip_vdf.number_of_iterations
+            block.rewardChainBlock.challengeChainIpVdf.numberOfIterations
           }
         />
       ),
@@ -252,28 +240,28 @@ export default function Block() {
       name: <Trans>Proof of Space Size</Trans>,
       value: (
         <FormatLargeNumber
-          value={block.reward_chain_block.proof_of_space.size}
+          value={block.rewardChainBlock.proofOfSpace.size}
         />
       ),
     },
     {
       name: <Trans>Plot Public Key</Trans>,
-      value: block.reward_chain_block.proof_of_space.plot_public_key,
+      value: block.rewardChainBlock.proofOfSpace.plotPublicKey,
     },
     {
       name: <Trans>Pool Public Key</Trans>,
-      value: block.reward_chain_block.proof_of_space.pool_public_key,
+      value: block.rewardChainBlock.proofOfSpace.poolPublicKey,
     },
     {
       name: <Trans>Farmer Puzzle Hash</Trans>,
       value: (
         <Link
           target="_blank"
-          href={`https://www.chiaexplorer.com/blockchain/puzzlehash/${blockRecord.farmer_puzzle_hash}`}
+          href={`https://www.chiaexplorer.com/blockchain/puzzlehash/${blockRecord.farmerPuzzleHash}`}
         >
           {currencyCode
             ? toBech32m(
-                blockRecord.farmer_puzzle_hash,
+                blockRecord.farmerPuzzleHash,
                 currencyCode.toLowerCase(),
               )
             : ''}
@@ -285,11 +273,11 @@ export default function Block() {
       value: (
         <Link
           target="_blank"
-          href={`https://www.chiaexplorer.com/blockchain/puzzlehash/${blockRecord.pool_puzzle_hash}`}
+          href={`https://www.chiaexplorer.com/blockchain/puzzlehash/${blockRecord.poolPuzzleHash}`}
         >
           {currencyCode
             ? toBech32m(
-                blockRecord.pool_puzzle_hash,
+                blockRecord.poolPuzzleHash,
                 currencyCode.toLowerCase(),
               )
             : ''}
@@ -308,7 +296,7 @@ export default function Block() {
     },
     {
       name: <Trans>Transactions Filter Hash</Trans>,
-      value: block.foliage_transaction_block?.filter_hash,
+      value: block.foliageTransactionBlock?.filterHash,
     },
     {
       name: <Trans>Pool Reward Amount</Trans>,
@@ -330,7 +318,8 @@ export default function Block() {
   ];
 
   return (
-    <LayoutMain title={<Trans>Block</Trans>}>
+    <>
+      <DashboardTitle><Trans>Block</Trans></DashboardTitle>
       <Card
         title={
           <Back variant="h5">
@@ -371,6 +360,6 @@ export default function Block() {
           </Table>
         </TableContainer>
       </Card>
-    </LayoutMain>
+    </>
   );
 }

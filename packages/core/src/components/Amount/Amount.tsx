@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { Trans, Plural, plural } from '@lingui/macro';
+import { Trans, Plural } from '@lingui/macro';
 import NumberFormat from 'react-number-format';
 import {
   Box,
@@ -9,7 +9,8 @@ import {
 } from '@material-ui/core';
 import { useWatch, useFormContext } from 'react-hook-form';
 import TextField, { TextFieldProps } from '../TextField';
-import { chia_to_mojo, colouredcoin_to_mojo } from '../../utils/chia';
+import chiaToMojo from '../../utils/chiaToMojo';
+import catToMojo from '../../utils/catToMojo';
 import useCurrencyCode from '../../hooks/useCurrencyCode';
 import FormatLargeNumber from '../FormatLargeNumber';
 import Flex from '../Flex';
@@ -58,7 +59,8 @@ export default function Amount(props: AmountProps) {
   });
 
   const currencyCode = symbol === undefined ? defaultCurrencyCode : symbol;
-  const mojo = currencyCode === 'XCH' ? chia_to_mojo(value) : colouredcoin_to_mojo(value);
+  const isChiaCurrency = ['XCH', 'TXCH'].includes(currencyCode);
+  const mojo = isChiaCurrency ? chiaToMojo(value) : catToMojo(value);
 
   return (
     <FormControl variant={variant} fullWidth={fullWidth}>
@@ -70,7 +72,7 @@ export default function Amount(props: AmountProps) {
           spellCheck: false,
           inputComponent: NumberFormatCustom as any,
           inputProps: {
-            decimalScale: currencyCode === 'XCH' ? 12 : 3,
+            decimalScale: isChiaCurrency ? 12 : 3,
           },
           endAdornment: (
             <InputAdornment position="end">{currencyCode}</InputAdornment>

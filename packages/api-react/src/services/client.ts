@@ -1,12 +1,9 @@
-import { createApi } from '@reduxjs/toolkit/query/react';
-import chiaLazyBaseQuery from '../chiaLazyBaseQuery';
 import { ConnectionState, ServiceName } from '@chia/api';
+import api, { baseQuery } from '../api';
 
-const baseQuery = chiaLazyBaseQuery();
+const apiWithTag = api.enhanceEndpoints({addTagTypes: []});
 
-export const clientApi = createApi({
-  reducerPath: 'clientApi',
-  baseQuery,
+export const clientApi = apiWithTag.injectEndpoints({
   endpoints: (build) => ({
     close: build.mutation<boolean, {
       force?: boolean;
@@ -17,6 +14,7 @@ export const clientApi = createApi({
         args: [force]
       }),
     }),
+
     getState: build.query<{
       state: ConnectionState;
       attempt: number;
@@ -53,10 +51,23 @@ export const clientApi = createApi({
         }
       },
     }),
+
+
+    clientStartService: build.mutation<boolean, {
+      service?: ServiceName;
+      disableWait?: boolean;
+    }>({
+      query: ({ service, disableWait }) => ({
+        command: 'startService',
+        args: [service, disableWait],
+        client: true,
+      }),
+    }),
   }),
 });
 
 export const { 
   useCloseMutation,
   useGetStateQuery,
+  useClientStartServiceMutation,
 } = clientApi;

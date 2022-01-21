@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { Trans } from '@lingui/macro';
 import { useForm } from 'react-hook-form';
 import { Alert } from '@material-ui/lab';
 import styled from 'styled-components';
 import { Flex, Form, TextField, Loading } from '@chia/core';
+import { useSetRewardTargetsMutation, useGetRewardTargetsQuery } from '@chia/api-react';
 import {
   Button,
   Dialog,
@@ -12,20 +13,15 @@ import {
   DialogContent,
   Typography,
 } from '@material-ui/core';
-import { useDispatch } from 'react-redux';
 import { bech32m } from 'bech32';
-import {
-  getRewardTargets,
-  setRewardTargets,
-} from '../../modules/farmerMessages';
 
 const StyledTextField = styled(TextField)`
   min-width: 640px;
 `;
 
 type FormData = {
-  farmer_target: string;
-  pool_target: string;
+  farmerTarget: string;
+  poolTarget: string;
 };
 
 type Props = {
@@ -35,18 +31,22 @@ type Props = {
 
 export default function FarmManageFarmingRewards(props: Props) {
   const { onClose, open } = props;
-  const dispatch = useDispatch();
-  const [showWarning, setShowWarning] = useState<boolean>(false);
-  const [loading, setLoading] = useState<boolean>(true);
+  const [setRewardTargets] = useSetRewardTargetsMutation();
+  const { data, isLoading } = useGetRewardTargetsQuery();
+  
   const [error, setError] = useState<Error | null>(null);
   const methods = useForm<FormData>({
     mode: 'onChange',
     shouldUnregister: false,
     defaultValues: {
-      farmer_target: '',
-      pool_target: '',
+      farmerTarget: data?.farmerTarget ?? '',
+      poolTarget: data?.poolTarget ?? '',
     },
   });
+
+  const showWarning = useMemo(() => {
+    return !data?.haveFarmerSk || !data?.havePoolSk;
+  }, [data?.haveFarmerSk, data?.havePoolSk]);
 
   const {
     register,
@@ -71,40 +71,16 @@ export default function FarmManageFarmingRewards(props: Props) {
     }
   }
 
-  async function getCurrentValues() {
-    const { setValue } = methods;
-    setLoading(true);
-    setShowWarning(false);
-    setError(null);
-
-    try {
-      const response = await dispatch(getRewardTargets(true));
-      // @ts-ignore
-      setValue('farmer_target', response.farmer_target || '');
-      // @ts-ignore
-      setValue('pool_target', response.pool_target || '');
-
-      // @ts-ignore
-      if (!response.have_farmer_sk || !response.have_pool_sk) {
-        setShowWarning(true);
-      }
-    } catch (error) {
-      setError(error);
-    } finally {
-      setLoading(false);
-    }
-  }
-
-  useEffect(() => {
-    getCurrentValues();
-  }, []); // eslint-disable-line
 
   async function handleSubmit(values: FormData) {
-    const { farmer_target, pool_target } = values;
+    const { farmerTarget, poolTarget } = values;
     setError(null);
 
     try {
-      await dispatch(setRewardTargets(farmer_target, pool_target));
+      await setRewardTargets({
+        farmerTarget, 
+        poolTarget,
+      }).unwrap();
       handleClose();
     } catch (error) {
       setError(error);
@@ -124,31 +100,31 @@ export default function FarmManageFarmingRewards(props: Props) {
         </DialogTitle>
         <DialogContent dividers>
           <Flex gap={2} flexDirection="column">
-            {loading ? (
+            {isLoading ? (
               <Loading center />
             ) : (
               <>
                 {error && <Alert severity="error">{error.message}</Alert>}
-                {errors.farmer_target &&
-                  errors.farmer_target.type === 'required' && (
+                {errors.farmerTarget &&
+                  errors.farmerTarget.type === 'required' && (
                     <Alert severity="error">
                       <Trans>Farmer Reward Address must not be empty.</Trans>
                     </Alert>
                   )}
-                {errors.farmer_target &&
-                  errors.farmer_target.type === 'validate' && (
+                {errors.farmerTarget &&
+                  errors.farmerTarget.type === 'validate' && (
                     <Alert severity="error">
                       <Trans>
                         Farmer Reward Address is not properly formatted.
                       </Trans>
                     </Alert>
                   )}
-                {errors.pool_target && errors.pool_target.type === 'required' && (
+                {errors.poolTarget && errors.poolTarget.type === 'required' && (
                   <Alert severity="error">
                     <Trans>Pool Reward Address must not be empty.</Trans>
                   </Alert>
                 )}
-                {errors.pool_target && errors.pool_target.type === 'validate' && (
+                {errors.poolTarget && errors.poolTarget.type === 'validate' && (
                   <Alert severity="error">
                     <Trans>
                       Pool Reward Address is not properly formatted.
@@ -165,20 +141,20 @@ export default function FarmManageFarmingRewards(props: Props) {
                 )}
                 <StyledTextField
                   label={<Trans>Farmer Reward Address</Trans>}
-                  name="farmer_target"
+                  name="farmerTarget"
                   variant="filled"
                   inputProps={{ spellCheck: false }}
-                  {...register('farmer_target', {
+                  {...register('farmerTarget', {
                     required: true,
                     validate: checkAddress,
                   })}
                 />
                 <StyledTextField
                   label={<Trans>Pool Reward Address</Trans>}
-                  name="pool_target"
+                  name="poolTarget"
                   variant="filled"
                   inputProps={{ spellCheck: false }}
-                  {...register('pool_target', {
+                  {...register('poolTarget', {
                     required: true,
                     validate: checkAddress,
                   })}

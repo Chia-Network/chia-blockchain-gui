@@ -36,9 +36,14 @@ type Options = {
 export default function chiaLazyBaseQuery(options: Options = {}): BaseQueryFn<
   {
     command: string;
-    service?: Service;
-    client?: boolean;
-    args?: any[],
+    service: Service;
+    args?: any[];
+    mockResponse?: any;
+  } | {
+    command: string;
+    client: boolean;
+    args?: any[];
+    mockResponse?: any;
   },
   unknown,
   unknown,
@@ -54,7 +59,7 @@ export default function chiaLazyBaseQuery(options: Options = {}): BaseQueryFn<
     service: DefaultService,
   } = options;
 
-  return async ({ command, service: ServiceClass, client = false, args = [] }, api) => {
+  return async ({ command, service: ServiceClass, client = false, args = [], mockResponse }, api) => {
     const instance = client 
       ? await getClientInstance(api)
       : await getServiceInstance(api, ServiceClass || DefaultService);
@@ -68,7 +73,9 @@ export default function chiaLazyBaseQuery(options: Options = {}): BaseQueryFn<
 
     try {
       return { 
-        data: await instance[command](...args),
+        data: mockResponse 
+          ? mockResponse 
+          : await instance[command](...args),
         meta,
       };
     } catch(error) {

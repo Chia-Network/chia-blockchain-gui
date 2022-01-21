@@ -1,8 +1,7 @@
 import React from 'react';
 import isElectron from 'is-electron';
 import { Trans } from '@lingui/macro';
-import { AlertDialog } from '@chia/core';
-import useOpenDialog from './useOpenDialog';
+import { AlertDialog, useOpenDialog } from '@chia/core';
 
 export default function useSelectFile(): () => Promise<string | undefined> {
   const openDialog = useOpenDialog();
@@ -10,7 +9,7 @@ export default function useSelectFile(): () => Promise<string | undefined> {
   async function handleSelect(): Promise<string | undefined> {
     if (isElectron()) {
       // @ts-ignore
-      const result = await window.remote.dialog.showSaveDialog({});
+      const result = await window.ipcRenderer?.send('showSaveDialog',{});
       const { filePath } = result;
 
       return filePath;
