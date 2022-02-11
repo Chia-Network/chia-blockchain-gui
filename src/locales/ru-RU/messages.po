@@ -3020,7 +3020,6 @@ msgid "Warm start"
 msgstr ""
 
 #: src/components/selectKey/SelectKey.tsx:88
-#: src/components/selectKey/SelectKey.tsx:119
 msgid "Warning: This key is used for a wallet that may have a non-zero balance. By deleting this key you may lose access to this wallet"
 msgstr "Предупреждение: Этот ключ используется для кошелька, который может иметь ненулевой баланс. Удаляя этот ключ, вы можете потерять доступ к этому кошельку"
 
@@ -3028,7 +3027,7 @@ msgstr "Предупреждение: Этот ключ используется
 msgid "Warning: This key is used for your farming rewards address. By deleting this key you may lose access to any future farming rewards"
 msgstr "Предупреждение: Этот ключ используется для вашего адреса фермерских вознаграждений. Удаляя этот ключ, вы можете потерять доступ к будущим фермерским вознаграждениям"
 
-#: src/components/selectKey/SelectKey.tsx:94
+#: src/components/selectKey/SelectKey.tsx:95
 msgid "Warning: This key is used for your pool rewards address. By deleting this key you may lose access to any future pool rewards"
 msgstr "Предупреждение: Этот ключ используется для вашего адреса фермерских вознаграждений. Удаляя этот ключ, вы можете потерять доступ к будущим фермерским вознаграждениям"
 

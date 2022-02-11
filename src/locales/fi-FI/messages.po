@@ -2848,7 +2848,6 @@ msgid "Warm start"
 msgstr ""
 
 #: src/components/selectKey/SelectKey.tsx:88
-#: src/components/selectKey/SelectKey.tsx:119
 msgid "Warning: This key is used for a wallet that may have a non-zero balance. By deleting this key you may lose access to this wallet"
 msgstr "Varoitus: Tätä avainta käytetään lompakossa, jolla voi olla saldoa. Poistamalla tämän avaimen voit menettää pääsyn tähän lompakkoon"
 
@@ -2856,7 +2855,7 @@ msgstr "Varoitus: Tätä avainta käytetään lompakossa, jolla voi olla saldoa.
 msgid "Warning: This key is used for your farming rewards address. By deleting this key you may lose access to any future farming rewards"
 msgstr "Varoitus: tätä avainta käytetään farmarin palkinto-osoitteeseen. Poistamalla tämän avaimen voit menettää pääsyn tuleviin farmaripalkkioihin"
 
-#: src/components/selectKey/SelectKey.tsx:94
+#: src/components/selectKey/SelectKey.tsx:95
 msgid "Warning: This key is used for your pool rewards address. By deleting this key you may lose access to any future pool rewards"
 msgstr "Varoitus: tätä avainta käytetään poolin palkinto-osoitteeseen. Poistamalla tämän avaimen voit menettää pääsyn tuleviin poolipalkkioihin"
 

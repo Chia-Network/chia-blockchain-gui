@@ -91,9 +91,16 @@ export default function SelectKey() {
             </Trans>
           </Alert>)}
 
+          {response.used_for_pool_rewards && (<Alert severity="warning">
+            <Trans>
+              Warning: This key is used for your pool rewards address.
+              By deleting this key you may lose access to any future pool rewards
+            </Trans>
+          </Alert>)}
+
           <Trans>
-            Warning: This key is used for your pool rewards address.
-            By deleting this key you may lose access to any future pool rewards
+            Deleting the key will permanently remove the key from your computer,
+            make sure you have backups. Are you sure you want to continue?
           </Trans>
         </ConfirmDialog>,
       );
@@ -117,8 +124,9 @@ export default function SelectKey() {
           confirmColor="default"
         >
           <Trans>
-            Warning: This key is used for a wallet that may have a non-zero balance.
-            By deleting this key you may lose access to this wallet
+            Deleting all keys will permanently remove the keys from your
+            computer, make sure you have backups. Are you sure you want to
+            continue?
           </Trans>
         </ConfirmDialog>
       ));

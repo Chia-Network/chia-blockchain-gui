@@ -2850,7 +2850,6 @@ msgid "Warm start"
 msgstr ""
 
 #: src/components/selectKey/SelectKey.tsx:88
-#: src/components/selectKey/SelectKey.tsx:119
 msgid "Warning: This key is used for a wallet that may have a non-zero balance. By deleting this key you may lose access to this wallet"
 msgstr "Figyelem: Ezt a kulcsot egy olyan tárcához használják, amihez pozitív egyenleg tartozhat. Ennek a kulcsnak a törlésével elveszhet a hozzáférése a tárcához"
 
@@ -2858,7 +2857,7 @@ msgstr "Figyelem: Ezt a kulcsot egy olyan tárcához használják, amihez pozit�
 msgid "Warning: This key is used for your farming rewards address. By deleting this key you may lose access to any future farming rewards"
 msgstr ""
 
-#: src/components/selectKey/SelectKey.tsx:94
+#: src/components/selectKey/SelectKey.tsx:95
 msgid "Warning: This key is used for your pool rewards address. By deleting this key you may lose access to any future pool rewards"
 msgstr ""
 

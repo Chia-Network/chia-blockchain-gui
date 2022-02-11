@@ -2848,7 +2848,6 @@ msgid "Warm start"
 msgstr ""
 
 #: src/components/selectKey/SelectKey.tsx:88
-#: src/components/selectKey/SelectKey.tsx:119
 msgid "Warning: This key is used for a wallet that may have a non-zero balance. By deleting this key you may lose access to this wallet"
 msgstr "Paralajmërim: Ky çelës përdoret për një portofol që mund të ketë një bilanc jo-zero. Duke fshirë këtë çelës mund të humbni qasjen në këtë portofol"
 
@@ -2856,7 +2855,7 @@ msgstr "Paralajmërim: Ky çelës përdoret për një portofol që mund të ket�
 msgid "Warning: This key is used for your farming rewards address. By deleting this key you may lose access to any future farming rewards"
 msgstr "Paralajmërim: Ky çelës përdoret për adresën tuaj të shpërblimeve. Duke fshirë këtë çelës, ju mund të humbni qasjen në çdo shpërblim të ardhshëm"
 
-#: src/components/selectKey/SelectKey.tsx:94
+#: src/components/selectKey/SelectKey.tsx:95
 msgid "Warning: This key is used for your pool rewards address. By deleting this key you may lose access to any future pool rewards"
 msgstr "Paralajmërim: Ky çelës përdoret për adresën tuaj të shpërblimeve në poll. Duke fshirë këtë çelës, mund të humbni qasjen në çdo shpërblim të ardhshëm të pollit"
 

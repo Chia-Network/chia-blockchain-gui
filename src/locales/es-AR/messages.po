@@ -2848,7 +2848,6 @@ msgid "Warm start"
 msgstr ""
 
 #: src/components/selectKey/SelectKey.tsx:88
-#: src/components/selectKey/SelectKey.tsx:119
 msgid "Warning: This key is used for a wallet that may have a non-zero balance. By deleting this key you may lose access to this wallet"
 msgstr "Advertencia: esta clave se utilizó para una billetera que puede tener un saldo distinto de cero. Al eliminar esta clave, es posible que pierda el acceso a esta billetera"
 
@@ -2856,7 +2855,7 @@ msgstr "Advertencia: esta clave se utilizó para una billetera que puede tener u
 msgid "Warning: This key is used for your farming rewards address. By deleting this key you may lose access to any future farming rewards"
 msgstr "Advertencia: esta clave se utiliza para su dirección de recompensas de recolección. Al eliminar esta clave, es posible que pierda el acceso a futuras recompensas de recolección"
 
-#: src/components/selectKey/SelectKey.tsx:94
+#: src/components/selectKey/SelectKey.tsx:95
 msgid "Warning: This key is used for your pool rewards address. By deleting this key you may lose access to any future pool rewards"
 msgstr "Advertencia: esta clave se utiliza para la dirección de recompensas de la piscina. Al eliminar esta clave, puede perder el acceso a futuras recompensas de la piscina"
 

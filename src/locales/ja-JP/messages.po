@@ -2848,7 +2848,6 @@ msgid "Warm start"
 msgstr ""
 
 #: src/components/selectKey/SelectKey.tsx:88
-#: src/components/selectKey/SelectKey.tsx:119
 msgid "Warning: This key is used for a wallet that may have a non-zero balance. By deleting this key you may lose access to this wallet"
 msgstr "注意: この鍵を使用するウォレットは残高がゼロでない可能性があります。この鍵を削除するとウォレットを失くすかもしれません。"
 
@@ -2856,7 +2855,7 @@ msgstr "注意: この鍵を使用するウォレットは残高がゼロでな�
 msgid "Warning: This key is used for your farming rewards address. By deleting this key you may lose access to any future farming rewards"
 msgstr "注意: この鍵は耕作報酬アドレスに使われています。この鍵を削除すると、今後の耕作報酬を失くすかもしれません。"
 
-#: src/components/selectKey/SelectKey.tsx:94
+#: src/components/selectKey/SelectKey.tsx:95
 msgid "Warning: This key is used for your pool rewards address. By deleting this key you may lose access to any future pool rewards"
 msgstr "注意: この鍵はプール報酬アドレスに使われています。この鍵を削除すると、今後のプール報酬を失くすかもしれません。"
 
