@@ -109,7 +109,7 @@ if (!handleSquirrelEvent()) {
     return true;
   };
 
-  let mainWindow = null;
+  let mainWindow: BrowserWindow | null = null;
 
   const createMenu = () => Menu.buildFromTemplate(getMenuTemplate());
 
@@ -136,6 +136,7 @@ if (!handleSquirrelEvent()) {
      ************************************************************ */
     let decidedToClose = false;
     let isClosing = false;
+    let mainWindowLaunchTasks: ((window: BrowserWindow) => void)[] = [];
 
     const createWindow = async () => {
       if (manageDaemonLifetime(NET)) {
@@ -203,6 +204,14 @@ if (!handleSquirrelEvent()) {
 
       ipcMain.handle('showSaveDialog', async (_event, options) => {
         return await dialog.showSaveDialog(options);
+      });
+
+      ipcMain.handle('processLaunchTasks', async(_event) => {
+        const tasks = [...mainWindowLaunchTasks];
+
+        mainWindowLaunchTasks = [];
+
+        tasks.forEach((task) => task(mainWindow!));
       });
 
       decidedToClose = false;
@@ -300,7 +309,6 @@ if (!handleSquirrelEvent()) {
 
       mainWindow.loadURL(startUrl);
       require("@electron/remote/main").enable(mainWindow.webContents)
-
     };
 
     const appReady = async () => {
@@ -312,6 +320,36 @@ if (!handleSquirrelEvent()) {
 
     app.on('window-all-closed', () => {
       app.quit();
+    });
+
+    app.on('open-file', (event, path) => {
+      event.preventDefault();
+
+      // App may have been launched with a file to open. Make sure we have a
+      // main window before trying to open a file.
+      if (!mainWindow) {
+        mainWindowLaunchTasks.push((window: BrowserWindow) => {
+          window.webContents.send('open-file', path);
+        });
+      }
+      else {
+        mainWindow?.webContents.send('open-file', path);
+      }
+    });
+
+    app.on('open-url', (event, url) => {
+      event.preventDefault();
+
+      // App may have been launched with a URL to open. Make sure we have a
+      // main window before trying to open a URL.
+      if (!mainWindow) {
+        mainWindowLaunchTasks.push((window: BrowserWindow) => {
+          window.webContents.send('open-url', url);
+        });
+      }
+      else {
+        mainWindow?.webContents.send('open-url', url);
+      }
     });
 
     ipcMain.on('load-page', (_, arg: { file: string; query: string }) => {
