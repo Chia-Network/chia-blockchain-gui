@@ -8,7 +8,7 @@ msgstr ""
 "Language: ja_JP\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-02-14 00:16\n"
+"PO-Revision-Date: 2022-02-14 06:21\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -2455,7 +2455,7 @@ msgstr "復旧に必要なバックアップIDの数は、追加されたバッ�
 
 #: src/hooks/usePoolInfo.ts:57
 msgid "The pool URL \"{normalizedUrl}\" is not working. Is it pool? Error: {0}"
-msgstr ""
+msgstr "プールURL「{normalizedUrl}」が動作しません。プールのURLですか？エラー:{0}"
 
 #: src/hooks/usePoolInfo.ts:43
 msgid "The pool URL is not valid. {normalizedUrl}"
@@ -2558,7 +2558,7 @@ msgstr "これは、このNFTプロットがこのプールで持っている最
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:166
 #: src/components/plotNFT/PlotNFTCard.tsx:208
 msgid "This is the total number of points your farmer has found for this plot NFT. Each k32 plot will get around 10 points per day, so if you have 10TiB, should should expect around 1000 points per day, or 41 points per hour."
-msgstr ""
+msgstr "これは、あなたの農家がこのプロットNFTで見つけたポイントの合計数です。各k32プロットは1日あたり約10ポイントを取得するので、10TiBあれば1日あたり約1000ポイント、1時間あたり41ポイントの取得が見込まれます。"
 
 #: src/components/fullNode/card/FullNodeCardStatus.tsx:46
 msgid "This node is fully caught up and validating the network"
@@ -2566,7 +2566,7 @@ msgstr "このノードは先端に辿り着いて、ネットワークの検証
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:308
 msgid "This plot NFT is assigned to a different key. You can still create plots for this plot NFT, but you can not make changes."
-msgstr ""
+msgstr "このプロットNFTは、別のキーに割り当てられています。このプロットNFTに対してプロットを作成することは可能ですが、変更を加えることはできません。"
 
 #: src/components/plotNFT/PlotNFTGetPoolLoginLinkDialog.tsx:52
 msgid "This plot NFT is not connected to pool"
@@ -2594,7 +2594,7 @@ msgstr "ご使用のバージョンのチアアプリはブロックチェーン
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:154
 msgid "Thread Multiplier for Phase 2"
-msgstr ""
+msgstr "フェーズ2用スレッド倍率"
 
 #: src/components/fullNode/FullNode.jsx:92
 msgid "Time Created"
@@ -2688,12 +2688,12 @@ msgstr "種類"
 
 #: src/components/plot/add/PlotAdd.tsx:132
 msgid "Unable to create plot NFT"
-msgstr ""
+msgstr "プロットNFTを作成できません"
 
 #: src/components/plotNFT/PlotNFTCard.tsx:150
 #: src/components/pool/PoolOverview.tsx:66
 msgid "Unclaimed Rewards"
-msgstr ""
+msgstr "未請求の報酬"
 
 #: src/components/fullNode/FullNode.jsx:98
 msgid "Unfinished"
@@ -2709,11 +2709,11 @@ msgstr "不明"
 
 #: src/components/app/AppPassPrompt.tsx:188
 msgid "Unlock Keyring"
-msgstr ""
+msgstr "ロック解除"
 
 #: src/components/core/components/FormBackButton/FormBackButton.tsx:25
 msgid "Unsaved Changes"
-msgstr ""
+msgstr "変更が保存されていません"
 
 #: src/components/wallet/create/createRLAdmin.jsx:281
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:293
@@ -2722,7 +2722,7 @@ msgstr "ユーザー公開鍵"
 
 #: src/components/app/AppPassPrompt.tsx:79
 msgid "Using a passphrase is strongly recommended to protect your keys. Are you sure you want to disable passphrase protection?"
-msgstr ""
+msgstr "鍵の保護には、パスフレーズの使用を強く推奨します。本当にパスフレーズ保護機能を無効にしてよいですか？"
 
 #: src/components/fullNode/card/FullNodeCardVDFSubSlotIterations.tsx:20
 msgid "VDF Sub Slot Iterations"
@@ -2734,11 +2734,11 @@ msgstr "VDF サブスロット評価回数"
 
 #: src/components/core/components/Fee/Fee.tsx:28
 msgid "Value seems high"
-msgstr ""
+msgstr "値が高いようです"
 
 #: src/components/plotNFT/select/PlotNFTSelectBase.tsx:156
 msgid "Verify Pool Details"
-msgstr ""
+msgstr "プールの詳細を確認する"
 
 #: src/electron/main.tsx:304
 msgid "View"
@@ -2760,7 +2760,7 @@ msgstr "注文を表示"
 
 #: src/components/plotNFT/PlotNFTCard.tsx:286
 msgid "View Pool Login Link"
-msgstr ""
+msgstr "プールのログインリンクを表示"
 
 #: src/components/wallet/rateLimited/WalletRateLimited.jsx:562
 msgid "View pending balances"
@@ -2787,7 +2787,7 @@ msgstr "同期待ち"
 
 #: src/components/plotNFT/PlotNFTUnconfirmedCard.tsx:74
 msgid "Waiting for the transaction to be confirmed"
-msgstr ""
+msgstr "トランザクションが確認されるのを待っています"
 
 #: src/components/pool/PoolOverview.tsx:185
 #: src/components/wallet/standard/WalletStandard.tsx:649
@@ -2796,7 +2796,7 @@ msgstr "ウォレットのステータス"
 
 #: src/components/wallet/did/WalletDID.tsx:1121
 msgid "Wallet does not exists"
-msgstr ""
+msgstr "ウォレットは存在しません"
 
 #: src/components/wallet/Wallets.tsx:34
 #~ msgid "WalletItem.ccWallet"
@@ -2837,7 +2837,7 @@ msgstr "ウォレット"
 
 #: src/components/plotNFT/PlotNFTAdd.tsx:57
 msgid "Want to Join a Pool? Create a Plot NFT"
-msgstr ""
+msgstr "プールに参加したいですか？プロットNFTを作成します"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:139
 msgid "Want to earn more Chia? Add more plots to your farm."
