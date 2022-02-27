@@ -14,11 +14,14 @@ import catToMojo from '../../utils/catToMojo';
 import useCurrencyCode from '../../hooks/useCurrencyCode';
 import FormatLargeNumber from '../FormatLargeNumber';
 import Flex from '../Flex';
+import Unit from '../../constants/Unit';
+import chiaFormatter from '../../utils/chiaFormatter';
 
 interface NumberFormatCustomProps {
   inputRef: (instance: HTMLInputElement | null) => void;
   onChange: (event: { target: { name: string; value: string } }) => void;
   name: string;
+  isAllowed: (values: NumberFormatValuesType) => boolean;
 }
 
 type NumberFormatValuesType = {
@@ -27,61 +30,65 @@ type NumberFormatValuesType = {
   floatValue: number|undefined;
 };
 
-function isValueAllowed(values: NumberFormatValuesType){
-  // Absolute value of Amount/Fee must be less than MAX_SAFE_INTEGER
-  const canBigIntBeConstructed = /^[0-9]+$/.test(values.value);
-  if(canBigIntBeConstructed){
-    const N = BigInt(values.value);
-    if(N > BigInt(Number.MAX_SAFE_INTEGER) || N < 0){
-      return false;
-    }
-    if(/^00/.test(values.value)){
-      return false;
-    }
+function checkFloatingPrecision(numStr: string, isChiaCurrency: boolean){
+  try{
+    const mojo = isChiaCurrency ?
+      chiaFormatter(numStr, Unit.CHIA).to(Unit.MOJO)
+      : chiaFormatter(numStr, Unit.CAT).to(Unit.MOJO)
+    ;
+    mojo.toNumber();
+    return true;
   }
-
-  // Do not allow non-numeric string. But strings like below are OK.
-  //   .  =>  This leads to decimal like .123456
-  const cannotConstructNumberAnyMore = (
-    isNaN(+values.value)
-    && !(/^\.[0-9]*$/.test(values.value))
-  );
-  if(cannotConstructNumberAnyMore){
+  catch(e){
+    console.warn(e);
     return false;
   }
+}
 
-  // Negative number is not allowed
-  const isNegative = values.value.charAt(0) === "-";
-  if(isNegative){
-    return false;
-  }
+function generateFilter(isChiaCurrency: boolean){
+  return function isValueAllowed(values: NumberFormatValuesType){
+    let value = values.value
+      // .123 => 0.123
+      .replace(/^\./, "0.")
+      // 0. => 0 ; 0.00 => 0, 14.0 => 14
+      .replace(/^([0-9]*)\.0*$/, "$1")
+      // 12. => 12
+      .replace(/([0-9])\.$/, "$1")
+    ;
 
-  // Check fraction part of double precision floating point
-  // e.g. The fraction part of 90071992.54740991 is 53 bit,
-  // which is beyond the specification(52 bit) so it should be an error.
-  const normalizedValue = values.value
-    // .123 => 0.123
-    .replace(/^\./, "0.")
-    // 0. => 0 ; 0.00 => 0
-    .replace(/^0\.0*$/, "0")
-    // 12. => 12
-    .replace(/([0-9])\.$/, "$1")
-    // 0.123000 => 0.123
-    .replace(/([1-9]+)0+$/, "$1")
-    // 0.000000123 => 123
-    // Because for example (0.0000001).toString() will be '1e-7' (not "0.0000001")
-    // and this exponential style stringification makes validation below not working
-    .replace(/^0\.0{6,}/, "")
-  ;
-  const fractionOverflow =
-    !canBigIntBeConstructed
-    && values.value !== ""
-    && (+normalizedValue).toString() !== normalizedValue;
-  return !fractionOverflow;
+    // Do not allow non-numeric string. But strings like below are OK.
+    //   .  =>  This leads to decimal like .123456
+    const cannotConstructNumberAnyMore = (
+      isNaN(+value)
+      && !(/^\.[0-9]*$/.test(value))
+    );
+    if(cannotConstructNumberAnyMore){
+      return false;
+    }
+
+    // Negative number is not allowed
+    const isNegative = value.charAt(0) === "-";
+    if(isNegative){
+      return false;
+    }
+
+    // Number like 0011232 is not allowed
+    if(/^0[0-9]/.test(value)){
+      return false;
+    }
+
+    // Check fraction part of double precision floating point
+    // e.g. The fraction part of 90071992.54740991 is 53 bit,
+    // which is beyond the specification(52 bit) so it should be an error.
+    const fractionOverflow =
+      value !== ""
+      && !checkFloatingPrecision(value, isChiaCurrency);
+    return !fractionOverflow;
+  };
 }
 
 function NumberFormatCustom(props: NumberFormatCustomProps) {
-  const { inputRef, onChange, ...other } = props;
+  const { inputRef, onChange, isAllowed, ...other } = props;
 
   function handleChange(values: NumberFormatValuesType) {
     onChange({target: {name: props.name, value: values.value}});
@@ -95,7 +102,7 @@ function NumberFormatCustom(props: NumberFormatCustomProps) {
       thousandSeparator
       allowNegative={false}
       isNumericString
-      isAllowed={isValueAllowed}
+      isAllowed={isAllowed}
     />
   );
 }
@@ -113,7 +120,7 @@ export default function Amount(props: AmountProps) {
   const { control } = useFormContext();
   const defaultCurrencyCode = useCurrencyCode();
 
-  const value = useWatch<string>({
+  const value = useWatch({
     control,
     name,
   });
@@ -121,7 +128,7 @@ export default function Amount(props: AmountProps) {
   const correctedValue = value[0] === '.' ? `0${value}` : value;
 
   const currencyCode = symbol === undefined ? defaultCurrencyCode : symbol;
-  const isChiaCurrency = ['XCH', 'TXCH'].includes(currencyCode);
+  const isChiaCurrency = ['XCH', 'TXCH'].includes(currencyCode || "");
   const mojo = isChiaCurrency
     ? chiaToMojo(correctedValue)
     : catToMojo(correctedValue);
@@ -137,6 +144,7 @@ export default function Amount(props: AmountProps) {
           inputComponent: NumberFormatCustom as any,
           inputProps: {
             decimalScale: isChiaCurrency ? 12 : 3,
+            isAllowed: generateFilter(isChiaCurrency),
           },
           endAdornment: (
             <InputAdornment position="end">{currencyCode}</InputAdornment>
