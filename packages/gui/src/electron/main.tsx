@@ -1,23 +1,32 @@
-import { app, dialog, shell, ipcMain, BrowserWindow, Menu, session } from 'electron';
-require('@electron/remote/main').initialize()
+import { app, dialog, net, shell, ipcMain, BrowserWindow, IncomingMessage, Menu, session, nativeImage } from 'electron';
+import { initialize } from '@electron/remote/main';
 import path from 'path';
 import React from 'react';
 import url from 'url';
-import os from 'os';
+// import os from 'os';
+// import installExtension, { REDUX_DEVTOOLS, REACT_DEVELOPER_TOOLS } from 'electron-devtools-installer';
 import ReactDOMServer from 'react-dom/server';
 import { ServerStyleSheet, StyleSheetManager } from 'styled-components';
 // handle setupevents as quickly as possible
 import '../config/env';
 import handleSquirrelEvent from './handleSquirrelEvent';
-import config from '../config/config';
-import dev_config from '../dev_config';
+import loadConfig from '../util/loadConfig';
+import manageDaemonLifetime from '../util/manageDaemonLifetime';
 import chiaEnvironment from '../util/chiaEnvironment';
-import chiaConfig from '../util/config';
 import { i18n } from '../config/locales';
 import About from '../components/about/About';
 import packageJson from '../../package.json';
+import AppIcon from '../assets/img/chia64x64.png';
 
+const NET = 'mainnet';
+
+app.disableHardwareAcceleration();
+
+initialize();
+
+const appIcon = nativeImage.createFromPath(path.join(__dirname, AppIcon));
 let isSimulator = process.env.LOCAL_TEST === 'true';
+const isDev = process.env.NODE_ENV === 'development';
 
 function renderAbout(): string {
   const sheet = new ServerStyleSheet();
@@ -68,15 +77,12 @@ function openAbout() {
   // aboutWindow.webContents.openDevTools({ mode: 'detach' });
 }
 
-const { local_test } = config;
-
 if (!handleSquirrelEvent()) {
   // squirrel event handled and app will exit in 1000ms, so don't do anything else
   const ensureSingleInstance = () => {
     const gotTheLock = app.requestSingleInstanceLock();
 
     if (!gotTheLock) {
-      console.log('Second instance. Quitting.');
       app.quit();
       return false;
     }
@@ -96,7 +102,6 @@ if (!handleSquirrelEvent()) {
   const ensureCorrectEnvironment = () => {
     // check that the app is either packaged or running in the python venv
     if (!chiaEnvironment.guessPackaged() && !('VIRTUAL_ENV' in process.env)) {
-      console.log('App must be installed or in venv');
       app.quit();
       return false;
     }
@@ -122,9 +127,6 @@ if (!handleSquirrelEvent()) {
 
   // if any of these checks return false, don't do any other initialization since the app is quitting
   if (ensureSingleInstance() && ensureCorrectEnvironment()) {
-    // this needs to happen early in startup so all processes share the same global config
-    global.sharedObj = { local_test };
-
     const exitPyProc = (e) => {};
 
     app.on('will-quit', exitPyProc);
@@ -136,13 +138,72 @@ if (!handleSquirrelEvent()) {
     let isClosing = false;
 
     const createWindow = async () => {
-      if (chiaConfig.manageDaemonLifetime()) {
+      if (manageDaemonLifetime(NET)) {
         chiaEnvironment.startChiaDaemon();
       }
 
-      ipcMain.handle('getConfig', () => chiaConfig.loadConfig('mainnet'));
+      ipcMain.handle('getConfig', () => loadConfig(NET));
+
+      ipcMain.handle('getTempDir', () => app.getPath('temp'));
 
       ipcMain.handle('getVersion', () => app.getVersion());
+
+      ipcMain.handle('fetchTextResponse', async (_event, requestOptions, requestHeaders, requestData) => {
+        const request = net.request(requestOptions as any);
+
+        Object.entries(requestHeaders || {}).forEach(([header, value]) => {
+          request.setHeader(header, value as any);
+        });
+
+        let err: any | undefined = undefined;
+        let statusCode: number | undefined = undefined;
+        let statusMessage: string | undefined = undefined;
+        let responseBody: string | undefined = undefined;
+
+        try {
+          responseBody = await new Promise((resolve, reject) => {
+            request.on('response', (response: IncomingMessage) => {
+              statusCode = response.statusCode;
+              statusMessage = response.statusMessage;
+
+              response.on('data', (chunk) => {
+                const body = chunk.toString('utf8');
+
+                resolve(body);
+              });
+
+              response.on('error', (e: string) => {
+                reject(new Error(e));
+              });
+            });
+
+            request.on('error', (error: any) => {
+              reject(error);
+            })
+
+            request.write(requestData);
+            request.end();
+          });
+        }
+        catch (e) {
+          console.error(e);
+          err = e;
+        }
+
+        return { err, statusCode, statusMessage, responseBody };
+      });
+
+      ipcMain.handle('showMessageBox', async (_event, options) => {
+        return await dialog.showMessageBox(mainWindow, options);
+      });
+
+      ipcMain.handle('showOpenDialog', async (_event, options) => {
+        return await dialog.showOpenDialog(options);
+      });
+
+      ipcMain.handle('showSaveDialog', async (_event, options) => {
+        return await dialog.showSaveDialog(options);
+      });
 
       decidedToClose = false;
       mainWindow = new BrowserWindow({
@@ -160,26 +221,28 @@ if (!handleSquirrelEvent()) {
         },
       });
 
-      if (dev_config.redux_tool) {
-        const reduxDevToolsPath = path.join(os.homedir(), dev_config.react_tool)
-        await app.whenReady();
-        await session.defaultSession.loadExtension(reduxDevToolsPath)
+      if(process.platform === 'linux') {
+        mainWindow.setIcon(appIcon);
       }
 
-      if (dev_config.react_tool) {
-        const reactDevToolsPath = path.join(os.homedir(), dev_config.redux_tool);
+      /*
+      if (isSimulator || isDev) {
         await app.whenReady();
-        await session.defaultSession.loadExtension(reactDevToolsPath)
-      }
+        installExtension(REDUX_DEVTOOLS);
+        installExtension(REACT_DEVELOPER_TOOLS);
+      }*/
 
       mainWindow.once('ready-to-show', () => {
         mainWindow.show();
       });
 
       // don't show remote daeomn detials in the title bar
-      if (!chiaConfig.manageDaemonLifetime()) {
-        mainWindow.webContents.on('did-finish-load', () => {
-          mainWindow.setTitle(`${app.getName()} [${global.daemon_rpc_ws}]`);
+      if (!manageDaemonLifetime(NET)) {
+        mainWindow.webContents.on('did-finish-load', async () => {
+          const { url } = await loadConfig(NET);
+          if (mainWindow) {
+            mainWindow.setTitle(`${app.getName()} [${url}]`);
+          }
         });
       }
       // Uncomment this to open devtools by default
@@ -188,7 +251,7 @@ if (!handleSquirrelEvent()) {
       // }
       mainWindow.on('close', (e) => {
         // if the daemon isn't local we aren't going to try to start/stop it
-        if (decidedToClose || !chiaConfig.manageDaemonLifetime()) {
+        if (decidedToClose || !manageDaemonLifetime(NET)) {
           return;
         }
         e.preventDefault();
@@ -203,7 +266,7 @@ if (!handleSquirrelEvent()) {
             title: i18n._(/* i18n */ {id: 'Confirm'}),
             message: i18n._(
               /* i18n */ {
-                id: 'Are you sure you want to quit? GUI Plotting and farming will stop.',
+                id: 'Are you sure you want to quit?',
               },
             ),
           });
@@ -224,13 +287,7 @@ if (!handleSquirrelEvent()) {
         }
       });
 
-      mainWindow.on('showMessageBox', async (event, options) => {
-        event.reply(await dialog.showMessageBox(mainWindow, options));
-      });
 
-      mainWindow.on('showSaveDialog', async (event, options) => {
-        event.reply(await dialog.showSaveDialog(options));
-      });
 
       const startUrl =
       process.env.NODE_ENV === 'development'
@@ -273,7 +330,6 @@ if (!handleSquirrelEvent()) {
     });
 
     ipcMain.on('isSimulator', (event) => {
-      console.log('isSimulator', isSimulator);
       event.returnValue = isSimulator;
     });
   }
@@ -417,7 +473,7 @@ if (!handleSquirrelEvent()) {
             label: i18n._(/* i18n */ { id: 'Contribute on GitHub' }),
             click: () => {
               openExternal(
-                'https://github.com/Chia-Network/chia-blockchain/blob/master/CONTRIBUTING.md',
+                'https://github.com/Chia-Network/chia-blockchain/blob/main/CONTRIBUTING.md',
               );
             },
           },

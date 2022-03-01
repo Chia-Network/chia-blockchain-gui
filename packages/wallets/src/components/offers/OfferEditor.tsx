@@ -8,7 +8,6 @@ import {
   ButtonLoading,
   Flex,
   Form,
-  useOpenDialog,
   useShowError,
   useShowSaveDialog,
 } from '@chia/core';
@@ -23,12 +22,10 @@ import { suggestedFilenameForOffer } from './utils';
 import useAssetIdName from '../../hooks/useAssetIdName';
 import { WalletType } from '@chia/api';
 import OfferEditorConditionsPanel from './OfferEditorConditionsPanel';
-import OfferShareDialog from './OfferShareDialog';
 import OfferLocalStorageKeys from './OfferLocalStorage';
 import styled from 'styled-components';
 import { chiaToMojo, catToMojo } from '@chia/core';
 import fs from 'fs';
-import { Remote } from 'electron';
 
 const StyledEditorBox = styled.div`
   padding: ${({ theme }) => `${theme.spacing(4)}px`};
@@ -40,19 +37,23 @@ type FormData = {
   takerRows: OfferEditorRowData[];
 };
 
-function OfferEditor() {
+type OfferEditorProps = {
+  onOfferCreated: (obj: { offerRecord: any, offerData: any }) => void;
+};
+
+function OfferEditor(props: OfferEditorProps) {
+  const { onOfferCreated } = props;
   const showSaveDialog = useShowSaveDialog();
   const navigate = useNavigate();
   const defaultValues: FormData = {
     selectedTab: 0,
-    makerRows: [{ amount: '', assetWalletId: undefined, walletType: WalletType.STANDARD_WALLET }],
-    takerRows: [{ amount: '', assetWalletId: undefined, walletType: WalletType.STANDARD_WALLET }],
+    makerRows: [{ amount: '', assetWalletId: 0, walletType: WalletType.STANDARD_WALLET, spendableBalance: 0 }],
+    takerRows: [{ amount: '', assetWalletId: 0, walletType: WalletType.STANDARD_WALLET, spendableBalance: 0 }],
   };
   const methods = useForm<FormData>({
     shouldUnregister: false,
     defaultValues,
   });
-  const openDialog = useOpenDialog();
   const errorDialog = useShowError();
   const { lookupByAssetId } = useAssetIdName();
   const [suppressShareOnCreate] = useLocalStorage<boolean>(OfferLocalStorageKeys.SUPPRESS_SHARE_ON_CREATE);
@@ -61,7 +62,7 @@ function OfferEditor() {
 
   function updateOffer(offer: { [key: string]: number | string }, row: OfferEditorRowData, debit: boolean) {
     const { amount, assetWalletId, walletType } = row;
-    if (assetWalletId) {
+    if (assetWalletId > 0) {
       let mojoAmount = 0;
       if (walletType === WalletType.STANDARD_WALLET) {
         mojoAmount = Number.parseFloat(chiaToMojo(amount));
@@ -84,7 +85,7 @@ function OfferEditor() {
 
     formData.makerRows.forEach((row: OfferEditorRowData) => {
       updateOffer(offer, row, true);
-      if (!row.assetWalletId) {
+      if (row.assetWalletId === 0) {
         missingAssetSelection = true;
       }
       else if (!row.amount) {
@@ -96,7 +97,7 @@ function OfferEditor() {
     });
     formData.takerRows.forEach((row: OfferEditorRowData) => {
       updateOffer(offer, row, false);
-      if (!row.assetWalletId) {
+      if (row.assetWalletId === 0) {
         missingAssetSelection = true;
       }
     });
@@ -127,8 +128,9 @@ function OfferEditor() {
       }
       else {
         const dialogOptions = { defaultPath: suggestedFilenameForOffer(response.tradeRecord.summary, lookupByAssetId) };
-        const remote: Remote = (window as any).remote;
+
         const result = await showSaveDialog(dialogOptions);
+        console.log('result', result, dialogOptions);
         const { filePath, canceled } = result;
 
         if (!canceled && filePath) {
@@ -145,13 +147,7 @@ function OfferEditor() {
               navigate(-1);
 
               if (!suppressShareOnCreate) {
-                openDialog((
-                  <OfferShareDialog
-                    offerRecord={offerRecord}
-                    offerData={offerData}
-                    showSuppressionCheckbox={true}
-                  />
-                ));
+                onOfferCreated({ offerRecord, offerData });
               }
             }
             catch (err) {
@@ -178,7 +174,7 @@ function OfferEditor() {
   }
 
   function handleReset() {
-    methods.reset();
+    methods.reset(defaultValues);
   }
 
   return (
@@ -212,7 +208,17 @@ function OfferEditor() {
   );
 }
 
-export function CreateOfferEditor() {
+OfferEditor.defaultProps = {
+  onOfferCreated: () => {},
+};
+
+type CreateOfferEditorProps = {
+  onOfferCreated: (obj: { offerRecord: any, offerData: any }) => void;
+};
+
+export function CreateOfferEditor(props: CreateOfferEditorProps) {
+  const { onOfferCreated } = props;
+
   return (
     <Grid container>
       <Flex flexDirection="column" flexGrow={1} gap={3}>
@@ -221,8 +227,12 @@ export function CreateOfferEditor() {
             <Trans>Create an Offer</Trans>
           </Back>
         </Flex>
-        <OfferEditor />
+        <OfferEditor onOfferCreated={onOfferCreated}/>
       </Flex>
     </Grid>
   );
 }
+
+CreateOfferEditor.defaultProps = {
+  onOfferCreated: () => {},
+};

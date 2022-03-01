@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Trans } from '@lingui/macro';
 import styled from 'styled-components';
-import { ConfirmDialog, useOpenDialog, LoadingOverlay } from '@chia/core';
 import { Alert } from '@material-ui/lab';
 import {
   Tooltip,
@@ -17,8 +16,14 @@ import {
 import {
   useCheckDeleteKeyMutation,
   useDeleteKeyMutation,
+  useGetKeyringStatusQuery,
 } from '@chia/api-react';
 import SelectKeyDetailDialog from './SelectKeyDetailDialog';
+import ConfirmDialog from '../../components/ConfirmDialog';
+import LoadingOverlay from '../../components/LoadingOverlay';
+import useOpenDialog from '../../hooks/useOpenDialog';
+import useSkipMigration from '../../hooks/useSkipMigration';
+import useKeyringMigrationPrompt from '../../hooks/useKeyringMigrationPrompt';
 
 const StyledFingerprintListItem = styled(ListItem)`
   padding-right: ${({ theme }) => `${theme.spacing(11)}px`};
@@ -33,9 +38,12 @@ type Props = {
 
 export default function SelectKeyItem(props: Props) {
   const { fingerprint, onSelect, disabled, loading } = props;
+  const { data: keyringState, isLoading: isLoadingKeyringStatus } = useGetKeyringStatusQuery();
   const openDialog = useOpenDialog();
   const [deleteKey] = useDeleteKeyMutation();
   const [checkDeleteKey] = useCheckDeleteKeyMutation();
+  const [skippedMigration, _] = useSkipMigration();
+  const [promptForKeyringMigration] = useKeyringMigrationPrompt();
 
   async function handleLogin() {
     onSelect(fingerprint);
@@ -50,16 +58,33 @@ export default function SelectKeyItem(props: Props) {
   }
 
   async function handleDeletePrivateKey(event) {
+    const canModifyKeyring = await handleKeyringMutator();
+
+    if (!canModifyKeyring) {
+      return;
+    }
+
     event.stopPropagation();
 
-    const { 
-      data: { 
+    const {
+      data: {
         usedForFarmerRewards,
         usedForPoolRewards,
         walletBalance,
     } } = await checkDeleteKey({
       fingerprint,
     });
+
+    async function handleKeyringMutator(): Promise<boolean> {
+      // If the keyring requires migration and the user previously skipped migration, prompt again
+      if (isLoadingKeyringStatus || (keyringState?.needsMigration && skippedMigration)) {
+        await promptForKeyringMigration();
+
+        return false;
+      }
+
+      return true;
+    }
 
     await openDialog(
       <ConfirmDialog

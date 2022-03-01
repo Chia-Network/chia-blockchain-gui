@@ -18,12 +18,11 @@ export default {
       },
     }, {
       test: /\.svg$/,
+      issuer: /\.[jt]sx?$/,
       use: ['@svgr/webpack', 'url-loader'],
     }, {
-      test: /\.(gif|png|jpe?g)$/i,
-      use: [{
-        loader: 'file-loader',
-      }],
+      test: /\.(gif|png|jpe?g|ico|icns)$/i,
+      type: 'asset/resource',
     }],
   },
   output: {

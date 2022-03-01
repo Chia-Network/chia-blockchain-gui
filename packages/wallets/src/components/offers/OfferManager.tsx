@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import styled from 'styled-components';
 import { Trans, t } from '@lingui/macro';
@@ -6,9 +6,9 @@ import moment from 'moment';
 import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import {
   Back,
+  ButtonLoading,
   Card,
   CardHero,
-  ConfirmDialog,
   Fee,
   Flex,
   Form,
@@ -18,9 +18,10 @@ import {
   TableControlled,
   TooltipIcon,
   useOpenDialog,
-  chiaToMojo, 
+  chiaToMojo,
   mojoToCATLocaleString,
   useShowSaveDialog,
+  Tooltip,
 } from '@chia/core';
 import { OfferTradeRecord } from '@chia/api';
 import fs from 'fs';
@@ -30,7 +31,11 @@ import {
   Button,
   Checkbox,
   Chip,
-  Divider,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
   FormControlLabel,
   Grid,
   ListItemIcon,
@@ -39,9 +44,10 @@ import {
 } from '@material-ui/core';
 import { Cancel, GetApp as Download, Info, Reply as Share, Visibility } from '@material-ui/icons';
 import { Trade as TradeIcon } from '@chia/icons';
-import { useCancelOfferMutation, useGetAllOffersQuery, useGetOfferDataMutation, useGetWalletsQuery } from '@chia/api-react';
+import { useCancelOfferMutation, useGetOfferDataMutation, useGetWalletsQuery } from '@chia/api-react';
 import { colorForOfferState, displayStringForOfferState, formatAmountForWalletType, suggestedFilenameForOffer } from './utils';
 import useAssetIdName from '../../hooks/useAssetIdName';
+import useWalletOffers from '../../hooks/useWalletOffers';
 import { CreateOfferEditor } from './OfferEditor';
 import { OfferImport } from './OfferImport';
 import { OfferViewer } from './OfferViewer';
@@ -59,87 +65,135 @@ type OfferCancellationOptions = {
 };
 
 type ConfirmOfferCancellationProps = {
-  onUpdateValues: (values: OfferCancellationOptions) => void;
+  canCancelWithTransaction: boolean;
+  onClose: (value: any) => void;
+  open: boolean;
 };
 
 function ConfirmOfferCancellation(props: ConfirmOfferCancellationProps) {
-  const { onUpdateValues } = props;
+  const { canCancelWithTransaction, onClose, open } = props;
   const methods = useForm({
     defaultValues: {
-      cancelWithTransaction: true,
       fee: '',
     }
   });
-  const { watch } = methods;
-  const fee = watch('fee');
-  const [cancelWithTransaction, setCancelWithTransaction] = useState<boolean>(true);
+  const [cancelWithTransaction, setCancelWithTransaction] = useState<boolean>(canCancelWithTransaction);
 
-  // Communicate value updates to the parent component
-  useEffect(() => {
-    const feeInMojos = fee ? Number.parseFloat(chiaToMojo(fee)) : 0;
-    onUpdateValues({ cancelWithTransaction, cancellationFee: feeInMojos });
-  }, [cancelWithTransaction, fee]);
+  function handleCancel() {
+    onClose([false]);
+  }
+
+  async function handleConfirm() {
+    const { fee: xchFee } = methods.getValues();
+    var fee = 0;
+
+    if (cancelWithTransaction) {
+      fee = Number.parseFloat(chiaToMojo(xchFee));
+    }
+    onClose([true, { cancelWithTransaction, cancellationFee: fee }]);
+  }
 
   return (
-    <Form methods={methods}>
-      <Flex flexDirection="column" gap={3}>
-        <Typography variant="body1">
-          <Trans>
-            Are you sure you want to cancel your offer?
-          </Trans>
-        </Typography>
-        <Typography variant="body1">
-          <Trans>
-            If you have already shared your offer file,
-            you may need to submit a transaction to cancel
-            the pending offer. Click "Cancel on blockchain"
-            to submit a cancellation transaction.
-          </Trans>
-        </Typography>
-        <Flex flexDirection="row" gap={3}>
-          <Grid container>
-            <Grid xs={6} item>
-              <FormControlLabel
-                control={<Checkbox name="cancelWithTransaction" checked={cancelWithTransaction} onChange={(event) => setCancelWithTransaction(event.target.checked)} />}
-                label={
-                  <>
-                    <Trans>Cancel on blockchain</Trans>{' '}
-                    <TooltipIcon>
-                      <Trans>
-                        Creates and submits a transaction on the blockchain that cancels the offer
-                      </Trans>
-                    </TooltipIcon>
-                  </>
-                }
-              />
-            </Grid>
-            {cancelWithTransaction && (
-              <Grid xs={6} item>
-                <Fee
-                  id="filled-secondary"
-                  variant="filled"
-                  name="fee"
-                  color="secondary"
-                  label={<Trans>Fee</Trans>}
-                  fullWidth
-                />
-              </Grid>
-            )}
-          </Grid>
+    <Dialog
+      onClose={handleCancel}
+      open={open}
+      aria-labelledby="alert-dialog-title"
+      aria-describedby="alert-dialog-description"
+    >
+      <DialogTitle id="alert-dialog-title"><Trans>Cancel Offer</Trans></DialogTitle>
+      <DialogContent>
+        <DialogContentText id="alert-dialog-description">
+          <Form methods={methods} onSubmit={handleConfirm}>
+            <Flex flexDirection="column" gap={3}>
+              <Typography variant="body1">
+                <Trans>
+                  Are you sure you want to cancel your offer?
+                </Trans>
+              </Typography>
+              {canCancelWithTransaction && (
+                <>
+                  <Typography variant="body1">
+                    <Trans>
+                      If you have already shared your offer file,
+                      you may need to submit a transaction to cancel
+                      the pending offer. Click "Cancel on blockchain"
+                      to submit a cancellation transaction.
+                    </Trans>
+                  </Typography>
+                  <Flex flexDirection="row" gap={3}>
+                    <Grid container>
+                      <Grid xs={6} item>
+                        <FormControlLabel
+                          control={<Checkbox name="cancelWithTransaction" checked={cancelWithTransaction} onChange={(event) => setCancelWithTransaction(event.target.checked)} />}
+                          label={
+                            <>
+                              <Trans>Cancel on blockchain</Trans>{' '}
+                              <TooltipIcon>
+                                <Trans>
+                                  Creates and submits a transaction on the blockchain that cancels the offer
+                                </Trans>
+                              </TooltipIcon>
+                            </>
+                          }
+                        />
+                      </Grid>
+                      {cancelWithTransaction && (
+                        <Grid xs={6} item>
+                          <Fee
+                            id="filled-secondary"
+                            variant="filled"
+                            name="fee"
+                            color="secondary"
+                            label={<Trans>Fee</Trans>}
+                            fullWidth
+                          />
+                        </Grid>
+                      )}
+                    </Grid>
+                  </Flex>
+                </>
+              )}
+            </Flex>
+          </Form>
+        </DialogContentText>
+      </DialogContent>
+      <DialogActions>
+        <Flex flexDirection="row" gap={3} style={{paddingBottom: '8px', paddingRight: '16px'}}>
+          <Button
+            onClick={handleCancel}
+            color="secondary"
+            variant="outlined"
+            autoFocus
+          >
+            <Trans>Close</Trans>
+          </Button>
+          <ButtonLoading
+            onClick={handleConfirm}
+            color="danger"
+            variant="contained"
+          >
+            <Trans>Cancel Offer</Trans>
+          </ButtonLoading>
         </Flex>
-      </Flex>
-    </Form>
+      </DialogActions>
+    </Dialog>
   );
 }
 
+ConfirmOfferCancellation.defaultProps = {
+  canCancelWithTransaction: true,
+  onClose: () => {},
+  open: true,
+};
+
 type OfferListProps = {
   title: string | React.ReactElement;
-  offers: OfferTradeRecord[];
-  loading: boolean;
+  includeMyOffers: boolean;
+  includeTakenOffers: boolean;
 };
 
 function OfferList(props: OfferListProps) {
-  const { title, offers, loading } = props;
+  const { title, includeMyOffers, includeTakenOffers } = props;
   const showSaveDialog = useShowSaveDialog();
   const [getOfferData] = useGetOfferDataMutation();
   const [cancelOffer] = useCancelOfferMutation();
@@ -147,13 +201,14 @@ function OfferList(props: OfferListProps) {
   const { lookupByAssetId } = useAssetIdName();
   const openDialog = useOpenDialog();
   const navigate = useNavigate();
-  const [page, setPage] = useState<number>(0);
-  const [rowsPerPage, setRowsPerPage] = useState<number>(5);
-
-  function handlePageChange(rowsPerPage: number, page: number) {
-    setRowsPerPage(rowsPerPage);
-    setPage(page);
-  }
+  const {
+    offers,
+    isLoading: isWalletOffersLoading,
+    page,
+    rowsPerPage,
+    count,
+    pageChange,
+  } = useWalletOffers(5, 0, includeMyOffers, includeTakenOffers, 'RELEVANCE', false);
 
   async function handleShowOfferData(offerData: string) {
     openDialog((
@@ -183,39 +238,30 @@ function OfferList(props: OfferListProps) {
     }
   }
 
-  async function handleCancelOffer(tradeId: string) {
-    let options: OfferCancellationOptions = {
-      cancelWithTransaction: false,
-      cancellationFee: 0,
-    };
-    const cancelConfirmed = await openDialog(
-      <ConfirmDialog
-        title={<Trans>Cancel Offer</Trans>}
-        confirmTitle={<Trans>Cancel Offer</Trans>}
-        confirmColor="danger"
-        cancelTitle={<Trans>Close</Trans>}
-      >
-        <ConfirmOfferCancellation
-          onUpdateValues={(values) => options = values}
-        />
-      </ConfirmDialog>
+  async function handleCancelOffer(tradeId: string, canCancelWithTransaction: boolean) {
+    const [cancelConfirmed, cancellationOptions] = await openDialog(
+      <ConfirmOfferCancellation
+        canCancelWithTransaction={canCancelWithTransaction}
+      />
     );
 
     if (cancelConfirmed === true) {
-      await cancelOffer({ tradeId, secure: options.cancelWithTransaction, fee: options.cancellationFee });
+      const secure = canCancelWithTransaction ? cancellationOptions.cancelWithTransaction : false;
+      const fee = canCancelWithTransaction ? cancellationOptions.cancellationFee : 0;
+      await cancelOffer({ tradeId, secure: secure, fee: fee });
     }
   }
 
   function handleRowClick(event: any, row: OfferTradeRecord) {
-    navigate('/dashboard/wallets/offers/view', { 
+    navigate('/dashboard/wallets/offers/view', {
       state: {
-        tradeRecord: row 
+        tradeRecord: row
       },
     });
   }
 
   async function handleShare(event: any, row: OfferTradeRecord) {
-    openDialog((
+    await openDialog((
       <OfferShareDialog
         offerRecord={row}
         offerData={row._offerData}
@@ -306,20 +352,23 @@ function OfferList(props: OfferListProps) {
           const { tradeId, status } = row;
           const canExport = status === OfferState.PENDING_ACCEPT; // implies isMyOffer === true
           const canDisplayData = status === OfferState.PENDING_ACCEPT;
-          const canCancel = status === OfferState.PENDING_ACCEPT;
+          const canCancel = status === OfferState.PENDING_ACCEPT || status === OfferState.PENDING_CONFIRM;
           const canShare = status === OfferState.PENDING_ACCEPT;
+          const canCancelWithTransaction = canCancel && status === OfferState.PENDING_ACCEPT;
 
           return (
             <Flex flexDirection="row" justifyContent="center" gap={0}>
               <Flex style={{width: '32px'}}>
                 {canShare && (
-                  <IconButton
-                    size="small"
-                    disabled={!canShare}
-                    onClick={() => handleShare(undefined, row)}
-                  >
-                    <Share style={{transform: 'scaleX(-1)'}} />
-                  </IconButton>
+                  <Tooltip title={<Trans>Share</Trans>}>
+                    <IconButton
+                      size="small"
+                      disabled={!canShare}
+                      onClick={() => handleShare(undefined, row)}
+                    >
+                      <Share style={{transform: 'scaleX(-1)'}} />
+                    </IconButton>
+                  </Tooltip>
                 )}
               </Flex>
               <Flex style={{width: '32px'}}>
@@ -373,7 +422,7 @@ function OfferList(props: OfferListProps) {
                         <MenuItem
                           onClick={() => {
                             onClose();
-                            handleCancelOffer(tradeId);
+                            handleCancelOffer(tradeId, canCancelWithTransaction);
                           }}
                         >
                           <ListItemIcon>
@@ -400,20 +449,21 @@ function OfferList(props: OfferListProps) {
 
   return (
     <Card title={title}>
-      <LoadingOverlay loading={loading || isLoadingWallets}>
-        {offers.length ? (
+      <LoadingOverlay loading={isWalletOffersLoading || isLoadingWallets}>
+        {offers?.length ? (
           <TableControlled
-            rows={offers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)}
+            rows={offers}
             cols={cols}
             rowsPerPageOptions={[5, 25, 100]}
-            count={offers.length}
+            count={count}
             rowsPerPage={rowsPerPage}
             pages={true}
             page={page}
-            onPageChange={handlePageChange}
+            onPageChange={pageChange}
+            isLoading={isWalletOffersLoading}
           />
         ) : (
-          !loading && !isLoadingWallets && (
+          !isWalletOffersLoading && !isLoadingWallets && (
             <Typography variant="body2">
               <Trans>No current offers</Trans>
             </Typography>
@@ -425,30 +475,30 @@ function OfferList(props: OfferListProps) {
 }
 
 export function OfferManager() {
-  const { data, isLoading } = useGetAllOffersQuery();
+  // const { data, isLoading } = useGetAllOffersQuery();
   const navigate = useNavigate();
 
-  const [myOffers, acceptedOffers]: OfferTradeRecord[] = useMemo(() => {
-    if (isLoading || !data) {
-      return [[], []];
-    }
+  // const [myOffers, acceptedOffers]: OfferTradeRecord[] = useMemo(() => {
+  //   if (isLoading || !data) {
+  //     return [[], []];
+  //   }
 
-    // Show newest offers first
-    const sortedOffers = [...data].sort((a: OfferTradeRecord, b: OfferTradeRecord) => b.createdAtTime - a.createdAtTime);
-    const myOffers: OfferTradeRecord[] = [];
-    const acceptedOffers: OfferTradeRecord[] = [];
+  //   // Show newest offers first
+  //   const sortedOffers = [...data].sort((a: OfferTradeRecord, b: OfferTradeRecord) => b.createdAtTime - a.createdAtTime);
+  //   const myOffers: OfferTradeRecord[] = [];
+  //   const acceptedOffers: OfferTradeRecord[] = [];
 
-    sortedOffers.forEach((offer) => {
-      if (offer.isMyOffer) {
-        myOffers.push(offer);
-      }
-      else {
-        acceptedOffers.push(offer);
-      }
-    });
+  //   sortedOffers.forEach((offer) => {
+  //     if (offer.isMyOffer) {
+  //       myOffers.push(offer);
+  //     }
+  //     else {
+  //       acceptedOffers.push(offer);
+  //     }
+  //   });
 
-    return [myOffers, acceptedOffers];
-  }, [data, isLoading]);
+  //   return [myOffers, acceptedOffers];
+  // }, [data, isLoading]);
 
   function handleCreateOffer() {
     navigate('/dashboard/wallets/offers/create');
@@ -483,19 +533,42 @@ export function OfferManager() {
           </CardHero>
         </Grid>
       </Grid>
-      <Divider />
-      <OfferList title={<Trans>Offers you created</Trans>} offers={myOffers} loading={isLoading} />
-      <OfferList title={<Trans>Offers you accepted</Trans>} offers={acceptedOffers} loading={isLoading} />
+      <OfferList
+        title={<Trans>Offers you created</Trans>}
+        includeMyOffers={true}
+        includeTakenOffers={false}
+      />
+      <OfferList
+        title={<Trans>Offers you accepted</Trans>}
+        includeMyOffers={false}
+        includeTakenOffers={true}
+      />
     </Flex>
   );
 }
 
 export function CreateOffer() {
   const location: any = useLocation();
+  const openDialog = useOpenDialog();
+
+  async function handleOfferCreated(obj: { offerRecord: any, offerData: any }) {
+    const { offerRecord, offerData } = obj;
+
+    await openDialog(
+      <OfferShareDialog
+        offerRecord={offerRecord}
+        offerData={offerData as string}
+        showSuppressionCheckbox={true}
+      />
+    );
+  }
 
   return (
     <Routes>
-      <Route path="create" element={<CreateOfferEditor />} />
+      <Route
+        path="create"
+        element={<CreateOfferEditor onOfferCreated={handleOfferCreated} />}
+      />
       <Route path="import" element={<OfferImport />} />
 
       <Route path="view" element={(

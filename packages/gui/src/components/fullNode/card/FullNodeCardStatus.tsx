@@ -1,14 +1,22 @@
 import React from 'react';
 import { Trans } from '@lingui/macro';
-import { FormatLargeNumber, CardSimple } from '@chia/core';
+import { FormatLargeNumber, CardSimple, StateColor } from '@chia/core';
 import { useGetBlockchainStateQuery } from '@chia/api-react';
 import styled from 'styled-components';
 
 const StyledWarning = styled.span`
-  color: #f7ca3e;
+  color: ${StateColor.WARNING};
 `;
 
 function getData(sync) {
+  if (!sync) {
+    return {
+      value: <Trans>Not Synced</Trans>,
+      color: 'error',
+      tooltip: <Trans>The node is not synced</Trans>,
+    };
+  }
+
   if (sync.syncMode) {
     const progress = sync.syncProgressHeight;
     const tip = sync.syncTipHeight;
@@ -48,13 +56,13 @@ function getData(sync) {
 }
 
 export default function FullNodeCardStatus() {
-  const { data: state, isLoading } = useGetBlockchainStateQuery();
+  const { data: state, isLoading, error } = useGetBlockchainStateQuery();
 
   if (isLoading) {
     return <CardSimple loading title={<Trans>Status</Trans>} />;
   }
 
-  const { value, tooltip, color } = getData(state.sync);
+  const { value, tooltip, color } = getData(state?.sync);
 
   return (
     <CardSimple
@@ -62,6 +70,7 @@ export default function FullNodeCardStatus() {
       title={<Trans>Status</Trans>}
       tooltip={tooltip}
       value={value}
+      error={error}
     />
   );
 }

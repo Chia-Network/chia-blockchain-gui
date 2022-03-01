@@ -34,6 +34,7 @@ const StyledLink = styled.a`
 
 const StyledLogoContainer = styled.div`
   width: 200px;
+  margin: 0 auto;
 
   img {
     height: 200px;
@@ -90,6 +91,8 @@ export default function About(props: Props) {
     versions,
   } = props;
 
+  const currentYear = (new Date).getFullYear();
+
   return (
     <html>
       <head>
@@ -103,7 +106,7 @@ export default function About(props: Props) {
       </head>
       <body>
         <GlobalStyle />
-        <StyledLink href={url}>
+        <StyledLink href={url} target="_blank">
           <StyledLogoContainer>
             <img src={icon} />
           </StyledLogoContainer>
@@ -114,7 +117,7 @@ export default function About(props: Props) {
         </StyledLink>
         <StyledSubTitle>{description}</StyledSubTitle>
         <Spacer />
-        <div className="copyright">Copyright (c) 2021 Chia Network</div>
+        <div className="copyright">Copyright (c) {currentYear} Chia Network</div>
         <Spacer />
         <VersionsTable>
           {versions?.electron && (

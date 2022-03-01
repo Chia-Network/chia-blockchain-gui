@@ -35,16 +35,16 @@ msgid "*Want to explore Chia’s blocks further? Check out <0>Chia Explorer</0> 
 msgstr "Dëshiron të mësosh më shumë rreth Chia's? Kliko në <0> Chia Explorer</0> e ndërtuar nga një programues open source."
 
 #: src/components/app/AppSelectMode.tsx:120
-msgid "+"
-msgstr ""
+#~ msgid "+"
+#~ msgstr ""
 
 #: src/components/plot/add/PlotAddNFT.tsx:128
 msgid "+ Add New Plot NFT"
 msgstr "+ Shto një plot të ri NFT"
 
 #: src/components/_wallet_old/Wallets.tsx:132
-msgid "+ Add Wallet"
-msgstr "+ Shto Kuletë"
+#~ msgid "+ Add Wallet"
+#~ msgstr "+ Shto Kuletë"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:94
 #~ msgid "0 automatically chooses bucket count"
@@ -62,8 +62,8 @@ msgstr "Korrësi eshte nje shërbim i cili është i integruar në pajisjen ku P
 msgid "A value of {0} is recommended"
 msgstr ""
 
-#: src/electron/main.tsx:435
-#: src/electron/main.tsx:522
+#: src/electron/main.tsx:507
+#: src/electron/main.tsx:594
 msgid "About Chia Blockchain"
 msgstr "Rreth zinxhirit Chia"
 
@@ -88,14 +88,14 @@ msgstr "Veprim"
 msgid "Actions"
 msgstr "Veprimet"
 
-#: src/components/trading/CreateOffer.jsx:201
+#: src/components/trading/CreateOffer.jsx:202
 msgid "Add"
 msgstr "Shto"
 
 #: src/components/_wallet_old/did/WalletDID.tsx:877
 #: src/components/_wallet_old/did/WalletDIDCreate.tsx:208
-msgid "Add Backup ID"
-msgstr ""
+#~ msgid "Add Backup ID"
+#~ msgstr ""
 
 #: src/components/plot/PlotHeader.tsx:89
 msgid "Add Plot Directory"
@@ -111,7 +111,7 @@ msgstr "Shto Plote ne radhë"
 
 #: src/components/farm/overview/FarmOverviewHero.tsx:45
 #: src/components/plot/PlotHeader.tsx:61
-#: src/components/plot/add/PlotAddForm.tsx:177
+#: src/components/plot/add/PlotAddForm.tsx:175
 #: src/components/plot/overview/PlotOverviewHero.tsx:52
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:229
 #: src/components/plotNFT/PlotNFTCard.tsx:269
@@ -137,13 +137,13 @@ msgstr "Shtoni {currencyCode} nga Rubineti"
 #: src/components/_wallet_old/coloured/WalletColoured.tsx:561
 #: src/components/_wallet_old/coloured/WalletColoured.tsx:657
 #: src/components/_wallet_old/standard/WalletStandard.tsx:589
-msgid "Address"
-msgstr "Adresa"
+#~ msgid "Address"
+#~ msgstr "Adresa"
 
 #: src/components/_wallet_old/rateLimited/WalletRateLimited.jsx:701
 #: src/components/_wallet_old/standard/WalletStandard.tsx:496
-msgid "Address / Puzzle hash"
-msgstr "Adresa / Kodimi numerik"
+#~ msgid "Address / Puzzle hash"
+#~ msgstr "Adresa / Kodimi numerik"
 
 #: src/components/app/AppKeyringMigrator.tsx:199
 msgid "After your keys are successfully migrated to the new keyring, you may choose to have your keys removed from the old keyring."
@@ -153,33 +153,28 @@ msgstr ""
 msgid "Alternate tmpdir/tmpdir2"
 msgstr ""
 
-#: src/components/_wallet_old/WalletHistory.tsx:62
-#: src/components/_wallet_old/create/createNewColouredCoin.jsx:119
-#: src/components/_wallet_old/rateLimited/WalletRateLimited.jsx:720
-#: src/components/_wallet_old/standard/WalletStandard.tsx:506
-#: src/components/trading/CreateOffer.jsx:196
+#: src/components/trading/CreateOffer.jsx:197
 #: src/components/trading/TradesTable.tsx:19
 msgid "Amount"
 msgstr "Sasia"
 
 #: src/components/_wallet_old/coloured/WalletColoured.tsx:581
-msgid "Amount ({cc_unit})"
-msgstr "Sasia ({cc_unit})"
+#~ msgid "Amount ({cc_unit})"
+#~ msgstr "Sasia ({cc_unit})"
 
 #: src/components/_wallet_old/create/createRLAdmin.jsx:239
-msgid "Amount For Initial Coin"
-msgstr "Sasia për monedhën fillestare"
+#~ msgid "Amount For Initial Coin"
+#~ msgstr "Sasia për monedhën fillestare"
 
 #: src/components/_wallet_old/did/WalletDIDCreate.tsx:62
-msgid "Amount must be an even amount."
-msgstr ""
+#~ msgid "Amount must be an even amount."
+#~ msgstr ""
 
 #: src/components/plot/PlotAction.tsx:29
 #: src/components/plot/queue/PlotQueueActions.tsx:47
 msgid "Are you sure you want to delete the plot? The plot cannot be recovered."
 msgstr "Je i sigurt që do ta fshish këtë Plot? Pasi nuk mund ta riktheni."
 
-#: src/components/_wallet_old/standard/WalletStandard.tsx:626
 #: src/components/plotNFT/PlotNFTCard.tsx:126
 msgid "Are you sure you want to delete unconfirmed transactions?"
 msgstr "Je i sigurt që dëshiron të fshish transaksione të pakonfirmuara?"
@@ -188,7 +183,7 @@ msgstr "Je i sigurt që dëshiron të fshish transaksione të pakonfirmuara?"
 msgid "Are you sure you want to disconnect?"
 msgstr "Je i sigurt që deshiron të shkëputesh?"
 
-#: src/electron/main.tsx:203
+#: src/electron/main.tsx:262
 msgid "Are you sure you want to quit? GUI Plotting and farming will stop."
 msgstr "Je i sigurt që dëshiron të dalësh? Ndërfaqja për Plotting dhe Fermerin do të ndërpritet."
 
@@ -200,7 +195,7 @@ msgstr "Je i sigurt që dëshiron të dalësh? Ndërfaqja për Plotting dhe Ferm
 msgid "Are you sure you want to use k={plotSize}?"
 msgstr "Je i sigurt që dëshiron të përdoresh k={plotSize}?"
 
-#: src/components/app/AppState.tsx:140
+#: src/components/app/AppState.tsx:151
 msgid "Attempt {attempt}"
 msgstr ""
 
@@ -210,8 +205,8 @@ msgstr "Emri i gjeneruar automatikisht nga adresa e kontratës së pollit"
 
 #: src/components/_selectKey_old/SelectKey.tsx:77
 #: src/components/_selectKey_old/SelectKey.tsx:116
-msgid "Back"
-msgstr "Kthe"
+#~ msgid "Back"
+#~ msgstr "Kthe"
 
 #: src/components/backup/BackupCreate.tsx:45
 msgid "Backup file is used to restore smart wallets."
@@ -220,8 +215,8 @@ msgstr "Skedari Reservë shërben për të rikthyer kuletat smart."
 #: src/components/_wallet_old/coloured/WalletColoured.tsx:377
 #: src/components/_wallet_old/did/WalletDID.tsx:647
 #: src/components/_wallet_old/rateLimited/WalletRateLimited.jsx:541
-msgid "Balance"
-msgstr "Shuma"
+#~ msgid "Balance"
+#~ msgstr "Shuma"
 
 #: src/components/block/Block.jsx:306
 msgid "Base Farmer Reward Amount"
@@ -294,7 +289,7 @@ msgstr "Shfleto"
 msgid "But you are currently farming <0/>"
 msgstr "Ju jeni duke vjelë<0/>"
 
-#: src/components/trading/CreateOffer.jsx:161
+#: src/components/trading/CreateOffer.jsx:162
 #: src/components/trading/TradesTable.tsx:46
 #: src/components/trading/TradingOverview.jsx:287
 msgid "Buy"
@@ -309,11 +304,10 @@ msgstr "Bli"
 #~ msgstr ""
 
 #: src/components/_selectKey_old/SelectKey.tsx:212
-msgid "Can be backed up to mnemonic seed"
-msgstr "Mund të ruhet ne bërthamen mnemonic"
+#~ msgid "Can be backed up to mnemonic seed"
+#~ msgstr "Mund të ruhet ne bërthamen mnemonic"
 
-#: src/components/_selectKey_old/SelectKey.tsx:138
-#: src/components/app/AppPassPrompt.tsx:151
+#: src/components/app/AppPassPrompt.tsx:152
 #: src/components/backup/BackupCreate.tsx:50
 #: src/components/farm/FarmManageFarmingRewards.tsx:176
 #: src/components/fullNode/FullNodeAddConnection.tsx:86
@@ -323,7 +317,7 @@ msgstr "Mund të ruhet ne bërthamen mnemonic"
 #: src/components/settings/ChangePassphrasePrompt.tsx:224
 #: src/components/settings/RemovePassphrasePrompt.tsx:138
 #: src/components/settings/SetPassphrasePrompt.tsx:207
-#: src/components/trading/CreateOffer.jsx:139
+#: src/components/trading/CreateOffer.jsx:140
 #: src/components/trading/TradingOverview.jsx:399
 #: src/components/trading/ViewOffer.jsx:71
 msgid "Cancel"
@@ -361,23 +355,23 @@ msgstr ""
 msgid "Change Pool"
 msgstr "Ndrysho Pollin"
 
-#: src/electron/main.tsx:414
+#: src/electron/main.tsx:486
 msgid "Chat on KeyBase"
 msgstr "Shkruaj në KeyBase"
 
-#: src/electron/main.tsx:432
+#: src/electron/main.tsx:504
 msgid "Chia"
 msgstr "Chia"
 
-#: src/electron/main.tsx:371
+#: src/electron/main.tsx:443
 msgid "Chia Blockchain Wiki"
 msgstr "Zinxhiri Chia Wiki"
 
 #: src/components/_wallet_old/standard/WalletStandard.tsx:642
-msgid "Chia Wallet"
-msgstr "Kuleta Chia"
+#~ msgid "Chia Wallet"
+#~ msgstr "Kuleta Chia"
 
-#: src/components/app/AppSelectMode.tsx:137
+#: src/components/app/AppSelectMode.tsx:163
 msgid "Choose Farming Mode"
 msgstr ""
 
@@ -393,7 +387,7 @@ msgstr "Zgjill madhesinë e plotit"
 msgid "Choose Plotter"
 msgstr ""
 
-#: src/components/app/AppSelectMode.tsx:93
+#: src/components/app/AppSelectMode.tsx:112
 msgid "Choose Wallet Mode"
 msgstr ""
 
@@ -408,44 +402,52 @@ msgid "Close"
 msgstr "Mbyll"
 
 #: src/components/app/AppState.tsx:98
-msgid "Closing down node and server"
-msgstr "Po mbyllim nodën dhe serverin"
+#~ msgid "Closing down node and server"
+#~ msgstr "Po mbyllim nodën dhe serverin"
+
+#: src/components/app/AppState.tsx:98
+msgid "Closing down services"
+msgstr ""
+
+#: src/components/app/AppState.tsx:98
+#~ msgid "Closing services"
+#~ msgstr ""
 
 #: src/components/_wallet_old/did/WalletDID.tsx:987
-msgid "Coin Name"
-msgstr ""
+#~ msgid "Coin Name"
+#~ msgstr ""
 
 #: src/components/trading/TradingOverview.jsx:365
 msgid "Coins:"
 msgstr "Monedha:"
 
-#: src/components/trading/CreateOffer.jsx:172
+#: src/components/trading/CreateOffer.jsx:173
 #: src/components/trading/TradesTable.tsx:23
 msgid "Colour"
 msgstr "Ngjyra"
 
 #: src/components/_wallet_old/coloured/WalletColoured.tsx:223
-msgid "Colour Info"
-msgstr "Inofo e ngjyrave"
+#~ msgid "Colour Info"
+#~ msgstr "Inofo e ngjyrave"
 
 #: src/components/_wallet_old/create/createExistingColouredCoin.jsx:110
-msgid "Colour String"
-msgstr "Vargu i ngjyrave"
+#~ msgid "Colour String"
+#~ msgstr "Vargu i ngjyrave"
 
 #: src/components/_wallet_old/coloured/WalletColoured.tsx:228
-msgid "Colour:"
-msgstr "Ngjyra:"
+#~ msgid "Colour:"
+#~ msgstr "Ngjyra:"
 
 #: src/components/_wallet_old/create/WalletCreateList.tsx:34
-msgid "Coloured Coin"
-msgstr "Monella me ngjyre"
+#~ msgid "Coloured Coin"
+#~ msgstr "Monella me ngjyre"
 
 #: src/components/_wallet_old/create/WalletCreate.jsx:122
-msgid "Coloured Coin Options"
-msgstr "Opsioni i ngjyrave te monedhes"
+#~ msgid "Coloured Coin Options"
+#~ msgstr "Opsioni i ngjyrave te monedhes"
 
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:174
-#: src/electron/main.tsx:201
+#: src/electron/main.tsx:260
 #: src/hooks/useAbsorbRewards.tsx:44
 msgid "Confirm"
 msgstr "Konfirmo"
@@ -464,7 +466,6 @@ msgstr ""
 msgid "Confirm Passphrase"
 msgstr ""
 
-#: src/components/_wallet_old/standard/WalletStandard.tsx:622
 #: src/components/plotNFT/PlotNFTCard.tsx:119
 msgid "Confirmation"
 msgstr "Konfirmimi"
@@ -474,8 +475,8 @@ msgid "Confirmed at block:"
 msgstr "Konfirmuar ne bllokun:"
 
 #: src/components/_wallet_old/WalletHistory.tsx:51
-msgid "Confirmed at height {0}"
-msgstr "Konfirmuar në lartesinë {0}"
+#~ msgid "Confirmed at height {0}"
+#~ msgstr "Konfirmuar në lartesinë {0}"
 
 #: src/components/fullNode/FullNodeAddConnection.tsx:89
 msgid "Connect"
@@ -494,8 +495,8 @@ msgstr "Lidhu me pollin"
 msgid "Connected"
 msgstr "Lidhur"
 
-#: src/components/app/AppState.tsx:133
-#: src/components/app/AppState.tsx:137
+#: src/components/app/AppState.tsx:144
+#: src/components/app/AppState.tsx:148
 msgid "Connecting to daemon"
 msgstr ""
 
@@ -520,7 +521,7 @@ msgstr "Tipi i Lidhjes"
 msgid "Connections"
 msgstr "Lidhjet"
 
-#: src/electron/main.tsx:395
+#: src/electron/main.tsx:467
 msgid "Contribute on GitHub"
 msgstr "Kontribo në GitHub"
 
@@ -532,43 +533,38 @@ msgstr "Kontribo në GitHub"
 #: src/components/_wallet_old/rateLimited/WalletRateLimited.jsx:306
 #: src/components/_wallet_old/rateLimited/WalletRateLimited.jsx:428
 #: src/components/_wallet_old/rateLimited/WalletRateLimited.jsx:485
-msgid "Copy"
-msgstr "Kopjo"
+#~ msgid "Copy"
+#~ msgstr "Kopjo"
 
 #: src/components/core/components/CopyToClipboard/CopyToClipboard.tsx:33
 #~ msgid "Copy to Clipboard"
 #~ msgstr "Kopjo në klipbord"
 
-#: src/components/_wallet_old/create/createExistingColouredCoin.jsx:133
-#: src/components/_wallet_old/create/createNewColouredCoin.jsx:142
-#: src/components/_wallet_old/create/createRLAdmin.jsx:307
-#: src/components/_wallet_old/create/createRLUser.jsx:99
-#: src/components/_wallet_old/did/WalletDIDCreate.tsx:221
 #: src/components/backup/BackupCreate.tsx:58
-#: src/components/plot/add/PlotAddForm.tsx:197
+#: src/components/plot/add/PlotAddForm.tsx:195
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:177
 msgid "Create"
 msgstr "Krijo"
 
-#: src/components/app/AppSelectMode.tsx:125
+#: src/components/app/AppSelectMode.tsx:145
 msgid "Create & Manage plots"
 msgstr ""
 
 #: src/components/_wallet_old/did/WalletDID.tsx:970
-msgid "Create An Attestation Packet"
-msgstr ""
+#~ msgid "Create An Attestation Packet"
+#~ msgstr ""
 
 #: src/components/wallet/create/WalletCreate.jsx:290
 #~ msgid "Create DID wallet"
 #~ msgstr "Create DID wallet"
 
 #: src/components/_wallet_old/did/WalletDIDCreate.tsx:110
-msgid "Create Distributed Identity Wallet"
-msgstr ""
+#~ msgid "Create Distributed Identity Wallet"
+#~ msgstr ""
 
 #: src/components/_wallet_old/did/WalletDIDSelect.tsx:32
-msgid "Create New Wallet"
-msgstr ""
+#~ msgid "Create New Wallet"
+#~ msgstr ""
 
 #: src/components/trading/TradeManager.tsx:45
 msgid "Create Offer"
@@ -579,26 +575,26 @@ msgstr "Krijo oferte"
 #~ msgstr "Create Plot"
 
 #: src/components/_wallet_old/create/createRLAdmin.jsx:188
-msgid "Create Rate Limited Admin Wallet"
-msgstr "Krijo vlerso portofolin e adminit"
+#~ msgid "Create Rate Limited Admin Wallet"
+#~ msgstr "Krijo vlerso portofolin e adminit"
 
 #: src/components/_wallet_old/create/createRLUser.jsx:78
-msgid "Create Rate Limited User Wallet"
-msgstr "Krijo vlerso portofolin e perdoruesit"
+#~ msgid "Create Rate Limited User Wallet"
+#~ msgstr "Krijo vlerso portofolin e perdoruesit"
 
 #: src/components/trading/TradeManager.tsx:22
 #~ msgid "Create Trade"
 #~ msgstr ""
 
-#: src/components/trading/CreateOffer.jsx:135
+#: src/components/trading/CreateOffer.jsx:136
 msgid "Create Trade Offer"
 msgstr "Krijo oferte burse"
 
 #: src/components/_wallet_old/coloured/WalletColoured.tsx:543
 #: src/components/_wallet_old/rateLimited/WalletRateLimited.jsx:684
 #: src/components/_wallet_old/standard/WalletStandard.tsx:476
-msgid "Create Transaction"
-msgstr "Të krijohet transaksion"
+#~ msgid "Create Transaction"
+#~ msgstr "Të krijohet transaksion"
 
 #: src/components/backup/BackupCreate.tsx:41
 msgid "Create a Backup"
@@ -609,28 +605,28 @@ msgid "Create a Plot NFT"
 msgstr "Krijoni një plot NFT"
 
 #: src/components/_selectKey_old/SelectKey.tsx:254
-msgid "Create a new private key"
-msgstr "Krijo një çelës privat"
+#~ msgid "Create a new private key"
+#~ msgstr "Krijo një çelës privat"
 
 #: src/components/_wallet_old/create/WalletCreate.jsx:186
-msgid "Create admin wallet"
-msgstr "Krijo portofol të ri"
+#~ msgid "Create admin wallet"
+#~ msgstr "Krijo portofol të ri"
 
 #: src/components/_wallet_old/create/WalletCreate.jsx:132
-msgid "Create new coloured coin"
-msgstr "Krijo një monedhë me ngjyrë"
+#~ msgid "Create new coloured coin"
+#~ msgstr "Krijo një monedhë me ngjyrë"
 
 #: src/components/_wallet_old/create/WalletCreate.jsx:192
-msgid "Create user wallet"
-msgstr "Krijo portofol të ri"
+#~ msgid "Create user wallet"
+#~ msgstr "Krijo portofol të ri"
 
 #: src/components/_wallet_old/create/createExistingColouredCoin.jsx:93
-msgid "Create wallet for colour"
-msgstr "Krijo portofol për ngjyrat"
+#~ msgid "Create wallet for colour"
+#~ msgstr "Krijo portofol për ngjyrat"
 
 #: src/components/_wallet_old/create/WalletCreate.jsx:139
-msgid "Create wallet for existing colour"
-msgstr "Krijo portofol për ngjyrat egzistuese"
+#~ msgid "Create wallet for existing colour"
+#~ msgstr "Krijo portofol për ngjyrat egzistuese"
 
 #: src/components/wallet/Wallets.tsx:81
 #~ msgid "CreateWallet.addWallet"
@@ -644,11 +640,11 @@ msgstr "Krijuar në:"
 msgid "Created by us:"
 msgstr "Krijuar nga ne:"
 
-#: src/components/plotNFT/PlotNFTUnconfirmedCard.tsx:61
+#: src/components/plotNFT/PlotNFTUnconfirmedCard.tsx:59
 msgid "Creating Plot NFT and Joining the Pool"
 msgstr "Krijimi i Plotit NFT dhe Lidhja me Pollet"
 
-#: src/components/plotNFT/PlotNFTUnconfirmedCard.tsx:59
+#: src/components/plotNFT/PlotNFTUnconfirmedCard.tsx:57
 msgid "Creating Plot NFT for Self Pooling"
 msgstr "Krijimi i plotit NFT për Vetë-Grumbullim"
 
@@ -675,8 +671,8 @@ msgid "Current trade status"
 msgstr "Statusi aktual i burses"
 
 #: src/components/_selectKey_old/SelectKey.tsx:227
-msgid "DANGER: permanently delete private key"
-msgstr "KUJDES: Fshije përgjithmonë çelësin privat"
+#~ msgid "DANGER: permanently delete private key"
+#~ msgstr "KUJDES: Fshije përgjithmonë çelësin privat"
 
 #: src/components/wallet/Wallets.tsx:53
 #~ msgid "DID Wallet"
@@ -686,7 +682,6 @@ msgstr "KUJDES: Fshije përgjithmonë çelësin privat"
 #~ msgid "DIDListItems.title"
 #~ msgstr ""
 
-#: src/components/_wallet_old/WalletHistory.tsx:46
 #: src/components/farm/FarmLastAttemptedProof.tsx:31
 #: src/components/trading/TradingOverview.jsx:136
 msgid "Date"
@@ -696,13 +691,6 @@ msgstr "Datë"
 msgid "Delay"
 msgstr "Vonesa"
 
-#: src/components/_selectKey_old/SelectKey.tsx:76
-#: src/components/_selectKey_old/SelectKey.tsx:115
-#: src/components/_wallet_old/did/WalletDID.tsx:449
-#: src/components/_wallet_old/did/WalletDID.tsx:865
-#: src/components/_wallet_old/did/WalletDIDCreate.tsx:197
-#: src/components/_wallet_old/did/WalletDIDRecovery.tsx:101
-#: src/components/_wallet_old/standard/WalletStandard.tsx:623
 #: src/components/plot/PlotAction.tsx:25
 #: src/components/plot/PlotAction.tsx:51
 #: src/components/plot/queue/PlotQueueActions.tsx:41
@@ -720,23 +708,22 @@ msgstr ""
 msgid "Delete Plot"
 msgstr "Fshij plotin"
 
-#: src/components/_wallet_old/standard/WalletStandard.tsx:667
 #: src/components/plotNFT/PlotNFTCard.tsx:312
 msgid "Delete Unconfirmed Transactions"
 msgstr "Fshi transaksionet e pakonfirmuara"
 
 #: src/components/_selectKey_old/SelectKey.tsx:114
 #: src/components/_selectKey_old/SelectKey.tsx:273
-msgid "Delete all keys"
-msgstr "Fshij të gjithë Celsat"
+#~ msgid "Delete all keys"
+#~ msgstr "Fshij të gjithë Celsat"
 
 #: src/components/selectKey/SelectKey.tsx:58
 #~ msgid "Delete key"
 #~ msgstr "Delete key"
 
 #: src/components/_selectKey_old/SelectKey.tsx:75
-msgid "Delete key {fingerprint}"
-msgstr "Fshij çelësin {fingerprint}"
+#~ msgid "Delete key {fingerprint}"
+#~ msgstr "Fshij çelësin {fingerprint}"
 
 #: src/components/selectKey/SelectKey.tsx:126
 #~ msgid "Deleting all keys will permanently remove the keys from your computer, make sure you have backups. Are you sure you want to continue?"
@@ -754,11 +741,11 @@ msgstr ""
 msgid "Depending on your system configuration, you may find that an alternative plotter produces plots faster than the default Chia Proof of Space plotter. If unsure, use the default Chia Proof of Space plotter."
 msgstr ""
 
-#: src/electron/main.tsx:317
+#: src/electron/main.tsx:383
 msgid "Developer"
 msgstr "Programuesi"
 
-#: src/electron/main.tsx:320
+#: src/electron/main.tsx:386
 msgid "Developer Tools"
 msgstr "Veglat e Programuesit"
 
@@ -779,6 +766,10 @@ msgstr ""
 #~ msgid "Disable Passphrase Protection"
 #~ msgstr ""
 
+#: src/electron/main.tsx:395
+msgid "Disable Simulator"
+msgstr ""
+
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:114
 #~ msgid "Disable bifield plotting when your temporary directory is on fast storage like SSD or you need lower per process RAM requirements. Plotting with bitfield enabled has about 20% less overall writes."
 #~ msgstr ""
@@ -797,8 +788,8 @@ msgstr "Shkëput Lidhjen"
 
 #: src/components/_wallet_old/create/WalletCreateList.tsx:28
 #: src/components/_wallet_old/did/WalletDIDSelect.tsx:25
-msgid "Distributed Identity"
-msgstr ""
+#~ msgid "Distributed Identity"
+#~ msgstr ""
 
 #: src/components/wallet/create/WalletCreate.jsx:280
 #~ msgid "Distributed Identity Options"
@@ -814,8 +805,8 @@ msgid "Does your machine support parallel plotting?"
 msgstr "A përballon pajisja juaj Ploting paralel?"
 
 #: src/components/_wallet_old/did/WalletDID.tsx:428
-msgid "Drag and drop attestation packet(s)"
-msgstr ""
+#~ msgid "Drag and drop attestation packet(s)"
+#~ msgstr ""
 
 #: src/components/trading/ViewOffer.jsx:39
 msgid "Drag and drop offer file"
@@ -826,10 +817,10 @@ msgid "Drag and drop your backup file"
 msgstr "Terhiq dhe zgjidh skedarin e ruajtur"
 
 #: src/components/_wallet_old/did/WalletDIDRecovery.tsx:109
-msgid "Drag and drop your recovery backup file"
-msgstr ""
+#~ msgid "Drag and drop your recovery backup file"
+#~ msgstr ""
 
-#: src/electron/main.tsx:276
+#: src/electron/main.tsx:342
 msgid "Edit"
 msgstr "Modifiko"
 
@@ -838,6 +829,10 @@ msgstr "Modifiko"
 #: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:81
 msgid "Edit Payout Instructions"
 msgstr "Ndryshoni udhëzimet e pagesës"
+
+#: src/electron/main.tsx:396
+msgid "Enable Simulator"
+msgstr ""
 
 #: src/components/wallet/EnterPassphrasePrompt.tsx:111
 #~ msgid "Enter Passphrase"
@@ -852,8 +847,8 @@ msgid "Enter a strong passphrase to secure your keys:"
 msgstr ""
 
 #: src/components/_wallet_old/WalletImport.tsx:146
-msgid "Enter the 24 word mnemonic that you have saved in order to restore your Chia wallet."
-msgstr "Shkruaj 24 fjalët mnemonic që ke ruajtur pëer të rikthyer Kuletën tende Chia."
+#~ msgid "Enter the 24 word mnemonic that you have saved in order to restore your Chia wallet."
+#~ msgstr "Shkruaj 24 fjalët mnemonic që ke ruajtur pëer të rikthyer Kuletën tende Chia."
 
 #: src/components/settings/RemovePassphrasePrompt.tsx:104
 msgid "Enter your passphrase:"
@@ -870,8 +865,8 @@ msgid "Error"
 msgstr "Gabim"
 
 #: src/components/_wallet_old/standard/WalletStandard.tsx:450
-msgid "Error: Cannot send chia to coloured address. Please enter a chia address."
-msgstr "Gabim: Nuk mund te dergojmë Chia në Adresën e dhënë. Ju lutemi vendosni një adresë Chia."
+#~ msgid "Error: Cannot send chia to coloured address. Please enter a chia address."
+#~ msgstr "Gabim: Nuk mund te dergojmë Chia në Adresën e dhënë. Ju lutemi vendosni një adresë Chia."
 
 #: src/components/fullNode/card/FullNodeEstimatedNetworkSpace.tsx:14
 msgid "Estimated Network Space"
@@ -923,9 +918,7 @@ msgstr ""
 #~ msgid "Failed to update passphrase: {error}"
 #~ msgstr ""
 
-#: src/components/_wallet_old/coloured/WalletColoured.tsx:610
-#: src/components/_wallet_old/standard/WalletStandard.tsx:525
-#: src/components/dashboard/DashboardSideBar.tsx:70
+#: src/components/dashboard/DashboardSideBar.tsx:46
 msgid "Farm"
 msgstr "Ferma"
 
@@ -978,7 +971,7 @@ msgstr "Fermerët fitojnë shpërblime blloku dhe tarifa transaksionesh duke ofr
 msgid "Farming"
 msgstr "Farming"
 
-#: src/components/app/AppSelectMode.tsx:107
+#: src/components/app/AppSelectMode.tsx:130
 msgid "Farming Mode"
 msgstr ""
 
@@ -990,13 +983,6 @@ msgstr ""
 msgid "Farming Status"
 msgstr "Statusi i Farming"
 
-#: src/components/_wallet_old/WalletHistory.tsx:66
-#: src/components/_wallet_old/create/createExistingColouredCoin.jsx:123
-#: src/components/_wallet_old/create/createNewColouredCoin.jsx:132
-#: src/components/_wallet_old/create/createRLAdmin.jsx:244
-#: src/components/_wallet_old/create/createRLAdmin.jsx:272
-#: src/components/_wallet_old/rateLimited/WalletRateLimited.jsx:733
-#: src/components/_wallet_old/standard/WalletStandard.tsx:517
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:160
 #: src/components/plotNFT/select/PlotNFTSelectBase.tsx:146
 #: src/components/pool/PoolInfo.tsx:17
@@ -1012,8 +998,8 @@ msgstr "Tarifa"
 #~ msgstr "Fee ({0})"
 
 #: src/components/_wallet_old/coloured/WalletColoured.tsx:595
-msgid "Fee ({currencyCode})"
-msgstr "Tarifa({currencyCode})"
+#~ msgid "Fee ({currencyCode})"
+#~ msgstr "Tarifa({currencyCode})"
 
 #: src/components/plotNFT/PlotNFTChangePool.tsx:126
 msgid "Fee is used TWICE: once to leave pool, once to join."
@@ -1027,12 +1013,11 @@ msgstr "Shuma e tarifës"
 #~ msgid "Fees Puzzle Hash"
 #~ msgstr ""
 
-#: src/electron/main.tsx:268
-#: src/electron/main.tsx:469
+#: src/electron/main.tsx:334
+#: src/electron/main.tsx:541
 msgid "File"
 msgstr "Skedari"
 
-#: src/components/_wallet_old/did/WalletDID.tsx:978
 #: src/components/plot/PlotsFailed.tsx:13
 #: src/components/plot/PlotsNotFound.tsx:13
 #: src/components/plot/overview/PlotOverviewPlots.tsx:106
@@ -1048,15 +1033,15 @@ msgstr "Vëndi i vendosjes së Skedarit"
 msgid "Finished"
 msgstr "Përfundoi"
 
-#: src/electron/main.tsx:420
+#: src/electron/main.tsx:492
 msgid "Follow on Twitter"
 msgstr "Na ndiqni në Twitter"
 
-#: src/electron/main.tsx:379
+#: src/electron/main.tsx:451
 msgid "Frequently Asked Questions"
 msgstr "Pyetjet më të shpeshta"
 
-#: src/components/dashboard/DashboardSideBar.tsx:54
+#: src/components/dashboard/DashboardSideBar.tsx:30
 #: src/components/fullNode/FullNode.jsx:137
 msgid "Full Node"
 msgstr "Nyja e plotë"
@@ -1069,13 +1054,13 @@ msgstr "Pasqyrë e plotë e nyjes"
 #~ msgid "Full Node Status"
 #~ msgstr "Full Node Status"
 
-#: src/electron/main.tsx:345
+#: src/electron/main.tsx:417
 msgid "Full Screen"
 msgstr "Ekran i plotë"
 
 #: src/components/_wallet_old/create/createNewColouredCoin.jsx:102
-msgid "Generate New Colour"
-msgstr "Gjenero një ngjyrë tjetër"
+#~ msgid "Generate New Colour"
+#~ msgstr "Gjenero një ngjyrë tjetër"
 
 #: src/components/plotNFT/PlotNFTCard.tsx:251
 #~ msgid "Get Pool Login Link"
@@ -1086,8 +1071,8 @@ msgid "Grid view"
 msgstr "Pamje si tabelë"
 
 #: src/components/_wallet_old/standard/WalletStandard.tsx:576
-msgid "HD or Hierarchical Deterministic keys are a type of public key/private key scheme where one private key can have a nearly infinite number of different public keys (and therefor wallet receive addresses) that will all ultimately come back to and be spendable by a single private key."
-msgstr "Çelësat HD ose celsat Hierarchical Deterministic janë një lloj skeme çelësi publik / çelës privat ku një çelës privat mund të ketë një numër gati të pafund të çelësave të ndryshëm publik (dhe për këtë portofoli  mer adresa të shumëta) që të gjithë do të kthehen përsëri dhe do të shpenzohen nga një Celës  privat i vetëm."
+#~ msgid "HD or Hierarchical Deterministic keys are a type of public key/private key scheme where one private key can have a nearly infinite number of different public keys (and therefor wallet receive addresses) that will all ultimately come back to and be spendable by a single private key."
+#~ msgstr "Çelësat HD ose celsat Hierarchical Deterministic janë një lloj skeme çelësi publik / çelës privat ku një çelës privat mund të ketë një numër gati të pafund të çelësave të ndryshëm publik (dhe për këtë portofoli  mer adresa të shumëta) që të gjithë do të kthehen përsëri dhe do të shpenzohen nga një Celës  privat i vetëm."
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:49
 #~ msgid "Harvester ID"
@@ -1111,7 +1096,7 @@ msgstr "Koka e kodit"
 msgid "Height"
 msgstr "Lartësia"
 
-#: src/electron/main.tsx:367
+#: src/electron/main.tsx:439
 msgid "Help"
 msgstr "Ndihmë"
 
@@ -1129,8 +1114,8 @@ msgid "Hint"
 msgstr ""
 
 #: src/components/_wallet_old/WalletHistory.tsx:91
-msgid "History"
-msgstr "Historia"
+#~ msgid "History"
+#~ msgstr "Historia"
 
 #: src/components/farm/FarmFullNodeConnections.tsx:37
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:36
@@ -1150,20 +1135,20 @@ msgid "If none selected, then it will default to the temporary directory."
 msgstr "Nëse asnjë nuk është zgjedhur, atëherë do të vendoset në direktorinë e përkohshme."
 
 #: src/components/_wallet_old/WalletImport.tsx:143
-msgid "Import Wallet from Mnemonics"
-msgstr "Importo Portofolin nga Mnemonics"
+#~ msgid "Import Wallet from Mnemonics"
+#~ msgstr "Importo Portofolin nga Mnemonics"
 
 #: src/components/_selectKey_old/SelectKey.tsx:264
-msgid "Import from Mnemonics (24 words)"
-msgstr "Import nga Mnemonics (24 fjalë)"
+#~ msgid "Import from Mnemonics (24 words)"
+#~ msgstr "Import nga Mnemonics (24 fjalë)"
 
 #: src/components/fullNode/FullNode.jsx:44
 msgid "In Progress"
 msgstr "Në progres"
 
 #: src/components/_wallet_old/WalletHistory.tsx:23
-msgid "Incoming"
-msgstr "Hyrës"
+#~ msgid "Incoming"
+#~ msgstr "Hyrës"
 
 #: src/components/core/components/Fee/Fee.tsx:36
 #~ msgid "Incorrect value"
@@ -1183,20 +1168,20 @@ msgstr "Treguar në cilën orë është pranuar kjo ofertë"
 
 #: src/components/_wallet_old/rateLimited/WalletRateLimited.jsx:333
 #: src/components/_wallet_old/rateLimited/WalletRateLimited.jsx:472
-msgid "Info Packet"
-msgstr "Paketa e informacionit"
+#~ msgid "Info Packet"
+#~ msgstr "Paketa e informacionit"
 
 #: src/components/_wallet_old/create/createRLAdmin.jsx:260
-msgid "Initial Amount"
-msgstr "Shuma fillestare"
+#~ msgid "Initial Amount"
+#~ msgstr "Shuma fillestare"
 
 #: src/components/_wallet_old/create/createRLUser.jsx:87
-msgid "Initialize a Rate Limited User Wallet:"
-msgstr "Inicializoni një Portofol me Përdorues të Kufizuar të Vlerësimit:"
+#~ msgid "Initialize a Rate Limited User Wallet:"
+#~ msgstr "Inicializoni një Portofol me Përdorues të Kufizuar të Vlerësimit:"
 
 #: src/components/_wallet_old/create/createRLAdmin.jsx:218
-msgid "Interval"
-msgstr "Intervali"
+#~ msgid "Interval"
+#~ msgstr "Intervali"
 
 #: src/components/plotNFT/PlotNFTState.tsx:26
 msgid "Invalid state"
@@ -1229,7 +1214,7 @@ msgstr "Anëtarësohuni në një poll dhe merrni shpërblime të qëndrueshme n�
 msgid "Join a pool and get more consistent XCH farming rewards. Create a plot NFT and assign your new plots to a group."
 msgstr "Bashkohuni me një poll dhe merrni shpërblime më të qëndrueshme XCH. Krijoni një plot NFT dhe caktoni plotet tuaja të reja në një grup."
 
-#: src/components/app/AppSelectMode.tsx:131
+#: src/components/app/AppSelectMode.tsx:151
 msgid "Join farming pools"
 msgstr ""
 
@@ -1292,13 +1277,13 @@ msgstr "Pamje si listë"
 msgid "Loading configuration"
 msgstr ""
 
-#: src/components/app/AppState.tsx:106
+#: src/components/app/AppState.tsx:117
 msgid "Loading keyring status"
 msgstr ""
 
 #: src/components/_wallet_old/Wallets.tsx:117
-msgid "Loading list of wallets"
-msgstr "Lista në ngarkim e kuletave"
+#~ msgid "Loading list of wallets"
+#~ msgstr "Lista në ngarkim e kuletave"
 
 #: src/components/plot/queue/PlotQueueLogDialog.tsx:35
 msgid "Loading..."
@@ -1352,7 +1337,7 @@ msgstr "Po ngarkohet..."
 #~ msgid "MainWalletList.title"
 #~ msgstr ""
 
-#: src/components/app/AppSelectMode.tsx:81
+#: src/components/app/AppSelectMode.tsx:100
 msgid "Manage CAT tokens"
 msgstr ""
 
@@ -1361,8 +1346,8 @@ msgid "Manage Farming Rewards"
 msgstr "Menaxhoni shpërblimet e fermerit"
 
 #: src/components/_wallet_old/did/WalletDID.tsx:806
-msgid "Manage Recovery DIDs"
-msgstr ""
+#~ msgid "Manage Recovery DIDs"
+#~ msgstr ""
 
 #: src/components/farm/FarmManageFarmingRewards.tsx:99
 msgid "Manage Your Farming Rewards Target Addresses"
@@ -1373,8 +1358,8 @@ msgid "MiB Up/Down"
 msgstr "MiB Lart / Poshtë"
 
 #: src/components/_selectKey_old/SelectKey.tsx:137
-msgid "Migrate"
-msgstr ""
+#~ msgid "Migrate"
+#~ msgstr ""
 
 #: src/components/settings/Settings.tsx:182
 #: src/components/settings/SettingsPanel.tsx:187
@@ -1385,7 +1370,6 @@ msgstr ""
 msgid "Migrate Keys"
 msgstr ""
 
-#: src/components/_selectKey_old/SelectKey.tsx:136
 #: src/components/app/AppKeyringMigrator.tsx:125
 msgid "Migration required"
 msgstr ""
@@ -1408,12 +1392,12 @@ msgid "More memory slightly increases speed"
 msgstr "Më shumë memorie rrit pak shpejtësinë"
 
 #: src/components/_wallet_old/did/WalletDID.tsx:537
-msgid "My DID Wallet"
-msgstr ""
+#~ msgid "My DID Wallet"
+#~ msgstr ""
 
 #: src/components/_wallet_old/rateLimited/WalletRateLimited.jsx:415
-msgid "My Pubkey"
-msgstr "Pubkey im"
+#~ msgid "My Pubkey"
+#~ msgstr "Pubkey im"
 
 #: src/components/fullNode/card/FullNodeCardNetworkName.tsx:14
 msgid "Network Name"
@@ -1429,33 +1413,31 @@ msgstr "Emër Rrjeti"
 
 #: src/components/_wallet_old/coloured/WalletColoured.tsx:685
 #: src/components/_wallet_old/standard/WalletStandard.tsx:572
-msgid "New Address"
-msgstr "Adresë e re"
+#~ msgid "New Address"
+#~ msgstr "Adresë e re"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:172
 msgid "New Passphrase"
 msgstr ""
 
 #: src/components/_wallet_old/WalletAdd.tsx:63
-msgid "New Wallet"
-msgstr "Kuletë e re"
+#~ msgid "New Wallet"
+#~ msgstr "Kuletë e re"
 
 #: src/components/app/AppPassPrompt.tsx:60
 #~ msgid "New passphrase is the same as your current passphrase"
 #~ msgstr ""
 
-#: src/components/_wallet_old/WalletAdd.tsx:95
-#: src/components/_wallet_old/WalletImport.tsx:162
 #: src/components/block/Block.jsx:340
 msgid "Next"
 msgstr "Tjetër"
 
 #: src/components/_wallet_old/coloured/WalletColoured.tsx:249
-msgid "Nickname"
-msgstr "Pseudonimi"
+#~ msgid "Nickname"
+#~ msgstr "Pseudonimi"
 
 #: src/components/trading/TradingOverview.jsx:208
-#: src/electron/main.tsx:198
+#: src/electron/main.tsx:257
 msgid "No"
 msgstr "Jo"
 
@@ -1468,8 +1450,8 @@ msgid "No blocks farmed yet"
 msgstr "Ende nuk ka blloqe të kultivuara"
 
 #: src/components/_wallet_old/WalletHistory.tsx:102
-msgid "No previous transactions"
-msgstr "Nuk ka transaksione të mëparshme"
+#~ msgid "No previous transactions"
+#~ msgstr "Nuk ka transaksione të mëparshme"
 
 #: src/components/farm/FarmManageFarmingRewards.tsx:136
 msgid "No private keys for one or both addresses. Safe only if you are sending rewards to another wallet."
@@ -1501,7 +1483,6 @@ msgstr "Asnjë nga plotet tuaja nuk e ka kaluar filtrin akoma."
 msgid "Not Available"
 msgstr "Jo i disponueshëm"
 
-#: src/components/_wallet_old/WalletStatus.tsx:28
 #: src/components/fullNode/card/FullNodeCardStatus.tsx:35
 msgid "Not Synced"
 msgstr "Jo i sinkronizuar"
@@ -1556,20 +1537,20 @@ msgid "Offers Created"
 msgstr "Oferta e krijuar"
 
 #: src/components/_wallet_old/standard/WalletStandard.tsx:478
-msgid "On average there is one minute between each transaction block. Unless there is congestion you can expect your transaction to be included in less than a minute."
-msgstr "Mesatarisht ka një minutë midis çdo transaksion blloku. Nëse nuk ka bllokim, ju mund të prisni që transaksioni juaj të përfshihet në më pak se një minutë."
+#~ msgid "On average there is one minute between each transaction block. Unless there is congestion you can expect your transaction to be included in less than a minute."
+#~ msgstr "Mesatarisht ka një minutë midis çdo transaksion blloku. Nëse nuk ka bllokim, ju mund të prisni që transaksioni juaj të përfshihet në më pak se një minutë."
 
 #: src/components/_wallet_old/did/WalletDIDRecovery.tsx:34
-msgid "Only one backup file is allowed."
-msgstr ""
+#~ msgid "Only one backup file is allowed."
+#~ msgstr ""
 
 #: src/components/wallet/create/recoverDIDWallet.js:156
 #~ msgid "Only one backup file is allowed. To add a new backup file, please delete any previously uploaded files and try again."
 #~ msgstr "Only one backup file is allowed. To add a new backup file, please delete any previously uploaded files and try again."
 
 #: src/components/_wallet_old/WalletHistory.tsx:23
-msgid "Outgoing"
-msgstr "Dalëse"
+#~ msgid "Outgoing"
+#~ msgstr "Dalëse"
 
 #: src/components/app/AppKeyringMigrator.tsx:139
 #: src/components/app/AppKeyringMigrator.tsx:140
@@ -1637,47 +1618,46 @@ msgstr "Lartësia e majës"
 msgid "Peak Time"
 msgstr "Koha e pikut"
 
-#: src/components/_wallet_old/WalletHistory.tsx:53
 #: src/components/plotNFT/PlotNFTState.tsx:43
 msgid "Pending"
 msgstr "Në pritje"
 
 #: src/components/_wallet_old/card/WalletCardPendingBalance.tsx:24
 #: src/components/_wallet_old/rateLimited/WalletRateLimited.jsx:573
-msgid "Pending Balance"
-msgstr "Bilanci në pritje"
+#~ msgid "Pending Balance"
+#~ msgstr "Bilanci në pritje"
 
 #: src/components/_wallet_old/card/WalletCardPendingChange.tsx:24
 #: src/components/_wallet_old/rateLimited/WalletRateLimited.jsx:578
-msgid "Pending Change"
-msgstr "Bilanci në pritje të ndryshimit"
+#~ msgid "Pending Change"
+#~ msgstr "Bilanci në pritje të ndryshimit"
 
 #: src/components/_wallet_old/card/WalletCardPendingTotalBalance.tsx:27
 #: src/components/_wallet_old/rateLimited/WalletRateLimited.jsx:568
-msgid "Pending Total Balance"
-msgstr "Në pritje të balancit total"
+#~ msgid "Pending Total Balance"
+#~ msgstr "Në pritje të balancit total"
 
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:137
 #: src/hooks/useAbsorbRewards.tsx:43
 msgid "Please Confirm"
 msgstr "Të lutem konfirmo"
 
-#: src/components/trading/CreateOffer.jsx:100
+#: src/components/trading/CreateOffer.jsx:101
 msgid "Please add a trade pair"
 msgstr "Ju lutemi shtoni një palë tregtare"
 
 #: src/components/_wallet_old/rateLimited/WalletRateLimited.jsx:668
-msgid "Please enter 0 fee. Positive fees not supported yet for RL."
-msgstr "Ju lutemi vendosni 0 tarifë. Tarifat pozitive nuk mbështeten ende për RL."
+#~ msgid "Please enter 0 fee. Positive fees not supported yet for RL."
+#~ msgstr "Ju lutemi vendosni 0 tarifë. Tarifat pozitive nuk mbështeten ende për RL."
 
 #: src/components/_wallet_old/did/WalletDID.tsx:927
-msgid "Please enter a coin"
-msgstr ""
+#~ msgid "Please enter a coin"
+#~ msgstr ""
 
 #: src/components/_wallet_old/did/WalletDID.tsx:526
 #: src/components/_wallet_old/did/WalletDID.tsx:917
-msgid "Please enter a filename"
-msgstr ""
+#~ msgid "Please enter a filename"
+#~ msgstr ""
 
 #: src/components/app/AppPassPrompt.tsx:53
 #: src/components/settings/SetPassphrasePrompt.tsx:53
@@ -1685,51 +1665,51 @@ msgid "Please enter a passphrase"
 msgstr ""
 
 #: src/components/_wallet_old/did/WalletDID.tsx:937
-msgid "Please enter a pubkey"
-msgstr ""
+#~ msgid "Please enter a pubkey"
+#~ msgstr ""
 
 #: src/components/_wallet_old/did/WalletDID.tsx:947
-msgid "Please enter a puzzlehash"
-msgstr ""
+#~ msgid "Please enter a puzzlehash"
+#~ msgstr ""
 
 #: src/components/_wallet_old/create/createRLAdmin.jsx:140
-msgid "Please enter a valid initial coin amount"
-msgstr "Ju lutemi shkruani një shumë fillestare të vlefshme"
+#~ msgid "Please enter a valid initial coin amount"
+#~ msgstr "Ju lutemi shkruani një shumë fillestare të vlefshme"
 
 #: src/components/_wallet_old/did/WalletDID.tsx:777
 #: src/components/_wallet_old/did/WalletDIDCreate.tsx:76
-msgid "Please enter a valid integer of 0 or greater for the number of Backup IDs needed for recovery."
-msgstr ""
+#~ msgid "Please enter a valid integer of 0 or greater for the number of Backup IDs needed for recovery."
+#~ msgstr ""
 
 #: src/components/_wallet_old/create/createNewColouredCoin.jsx:69
 #: src/components/_wallet_old/rateLimited/WalletRateLimited.jsx:639
 #: src/components/_wallet_old/standard/WalletStandard.tsx:430
-msgid "Please enter a valid numeric amount"
-msgstr "Ju lutemi shkruani një numer të vlefshem"
+#~ msgid "Please enter a valid numeric amount"
+#~ msgstr "Ju lutemi shkruani një numer të vlefshem"
 
 #: src/components/_wallet_old/did/WalletDIDCreate.tsx:50
-msgid "Please enter a valid numeric amount."
-msgstr ""
+#~ msgid "Please enter a valid numeric amount."
+#~ msgstr ""
 
 #: src/components/_wallet_old/create/createExistingColouredCoin.jsx:70
 #: src/components/_wallet_old/create/createNewColouredCoin.jsx:79
 #: src/components/_wallet_old/create/createRLAdmin.jsx:150
 #: src/components/_wallet_old/rateLimited/WalletRateLimited.jsx:649
 #: src/components/_wallet_old/standard/WalletStandard.tsx:440
-msgid "Please enter a valid numeric fee"
-msgstr "Ju lutemi vendosni një tarifë të vlefshme numerike"
+#~ msgid "Please enter a valid numeric fee"
+#~ msgstr "Ju lutemi vendosni një tarifë të vlefshme numerike"
 
 #: src/components/_wallet_old/create/createRLAdmin.jsx:100
-msgid "Please enter a valid numeric interval length"
-msgstr "Ju lutemi shkruani një gjatësi të vlefshme të intervalit numerik"
+#~ msgid "Please enter a valid numeric interval length"
+#~ msgstr "Ju lutemi shkruani një gjatësi të vlefshme të intervalit numerik"
 
 #: src/components/_wallet_old/create/createRLAdmin.jsx:115
-msgid "Please enter a valid numeric spendable amount"
-msgstr "Ju lutemi shkruani një shumë të vlefshme të harxhueshme numerike"
+#~ msgid "Please enter a valid numeric spendable amount"
+#~ msgstr "Ju lutemi shkruani një shumë të vlefshme të harxhueshme numerike"
 
 #: src/components/_wallet_old/create/createRLAdmin.jsx:125
-msgid "Please enter a valid pubkey"
-msgstr "Ju lutemi shkruani një pubkey të vlefshëm"
+#~ msgid "Please enter a valid pubkey"
+#~ msgstr "Ju lutemi shkruani një pubkey të vlefshëm"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:75
 msgid "Please enter your current passphrase, and a new passphrase"
@@ -1747,22 +1727,22 @@ msgstr ""
 
 #: src/components/_wallet_old/rateLimited/WalletRateLimited.jsx:623
 #: src/components/_wallet_old/standard/WalletStandard.tsx:420
-msgid "Please finish syncing before making a transaction"
-msgstr "Ju lutemi mbaroni sinkronizimin përpara se të bëni një transaksion"
+#~ msgid "Please finish syncing before making a transaction"
+#~ msgstr "Ju lutemi mbaroni sinkronizimin përpara se të bëni një transaksion"
 
-#: src/components/trading/CreateOffer.jsx:66
+#: src/components/trading/CreateOffer.jsx:67
 msgid "Please select amount"
 msgstr "Ju lutemi zgjidhni shumën"
 
 #: src/components/_wallet_old/did/WalletDIDRecovery.tsx:55
-msgid "Please select backup file first"
-msgstr ""
+#~ msgid "Please select backup file first"
+#~ msgstr ""
 
-#: src/components/trading/CreateOffer.jsx:76
+#: src/components/trading/CreateOffer.jsx:77
 msgid "Please select buy or sell"
 msgstr "Ju lutemi zgjidhni bleni ose shisni"
 
-#: src/components/trading/CreateOffer.jsx:56
+#: src/components/trading/CreateOffer.jsx:57
 msgid "Please select coin colour"
 msgstr "Ju lutemi zgjidhni ngjyrën e monedhës"
 
@@ -1784,7 +1764,6 @@ msgstr "Ju lutemi specifikoni një direktori të përkohshme"
 msgid "Please wait for synchronization"
 msgstr "Ju lutemi të prisni për sinkronizimin"
 
-#: src/components/_wallet_old/did/WalletDIDRecovery.tsx:64
 #: src/hooks/useJoinPool.tsx:28
 msgid "Please wait for wallet synchronization"
 msgstr "Ju lutemi të prisni për sinkronizimin e portofolit"
@@ -1847,7 +1826,7 @@ msgstr "Ploti është dublikatë e {0}"
 msgid "PlotNFT is transitioning to (target state). This can take a while. Please do not close the application until this is finalized."
 msgstr "Ploti Nft po kalon në (gjendjen e synuar). Kjo mund të zgjasë pak. Ju lutemi mos e mbyllni aplikacionin derisa të finalizohet kjo."
 
-#: src/components/dashboard/DashboardSideBar.tsx:65
+#: src/components/dashboard/DashboardSideBar.tsx:41
 #: src/components/plot/Plot.tsx:14
 msgid "Plots"
 msgstr "Plotet"
@@ -1895,7 +1874,7 @@ msgstr "Pikët që gjenden në 24 orët e fundit"
 msgid "Points Successful in Last 24 Hours"
 msgstr "Pikët e Suksesshme në 24 Orët e Fundit"
 
-#: src/components/dashboard/DashboardSideBar.tsx:75
+#: src/components/dashboard/DashboardSideBar.tsx:51
 #: src/components/pool/Pool.tsx:17
 msgid "Pool"
 msgstr "Polli"
@@ -1967,7 +1946,7 @@ msgstr ""
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:271
 #: src/components/plotNFT/PlotNFTCard.tsx:324
-#: src/components/plotNFT/PlotNFTUnconfirmedCard.tsx:67
+#: src/components/plotNFT/PlotNFTUnconfirmedCard.tsx:65
 msgid "Pool:"
 msgstr "Polli:"
 
@@ -2009,8 +1988,8 @@ msgstr "Headeri i mëparshëm Hash"
 #~ msgstr "Previous Sub Block Hash"
 
 #: src/components/_selectKey_old/SelectKey.tsx:207
-msgid "Private key with public fingerprint {fingerprint}"
-msgstr "Çelës privat me gjurmë gishtash publike {fingerprint}"
+#~ msgid "Private key with public fingerprint {fingerprint}"
+#~ msgstr "Çelës privat me gjurmë gishtash publike {fingerprint}"
 
 #: src/_middleware_old/middleware_api.jsx:221
 #~ msgid "Private key {0}"
@@ -2034,16 +2013,16 @@ msgstr "Versioni i Protokollit"
 
 #: src/components/_wallet_old/create/createRLAdmin.jsx:297
 #: src/components/_wallet_old/did/WalletDID.tsx:996
-msgid "Pubkey"
-msgstr "Pubkey"
+#~ msgid "Pubkey"
+#~ msgstr "Pubkey"
 
 #: src/_middleware_old/middleware_api.jsx:239
 #~ msgid "Public key:"
 #~ msgstr "Çelësi publik:"
 
 #: src/components/_wallet_old/did/WalletDID.tsx:1005
-msgid "Puzzlehash"
-msgstr ""
+#~ msgid "Puzzlehash"
+#~ msgstr ""
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:204
 msgid "Queue Name"
@@ -2074,48 +2053,52 @@ msgstr "Përdorimi maksimal i RAM-it"
 #~ msgstr ""
 
 #: src/components/_wallet_old/create/WalletCreateList.tsx:42
-msgid "Rate Limited"
-msgstr "Shpejtësi e kufizuar"
+#~ msgid "Rate Limited"
+#~ msgstr "Shpejtësi e kufizuar"
 
 #: src/components/_wallet_old/rateLimited/WalletRateLimited.jsx:391
 #: src/components/_wallet_old/rateLimited/WalletRateLimited.jsx:438
-msgid "Rate Limited Info"
-msgstr "Vlerësoni informacionin e kufizuar"
+#~ msgid "Rate Limited Info"
+#~ msgstr "Vlerësoni informacionin e kufizuar"
 
 #: src/components/_wallet_old/create/WalletCreate.jsx:176
-msgid "Rate Limited Options"
-msgstr "Vlerësoni informacionin opsional"
+#~ msgid "Rate Limited Options"
+#~ msgstr "Vlerësoni informacionin opsional"
 
 #: src/components/_wallet_old/rateLimited/WalletRateLimited.jsx:273
-msgid "Rate Limited User Wallet Setup"
-msgstr "Vlerësoni Konfigurimin e Kuletë të Përdoruesit të Kufizuar"
+#~ msgid "Rate Limited User Wallet Setup"
+#~ msgstr "Vlerësoni Konfigurimin e Kuletë të Përdoruesit të Kufizuar"
 
 #: src/components/_wallet_old/coloured/WalletColoured.tsx:650
 #: src/components/_wallet_old/standard/WalletStandard.tsx:569
-msgid "Receive Address"
-msgstr "Adresë për Marrje"
+#~ msgid "Receive Address"
+#~ msgstr "Adresë për Marrje"
+
+#: src/components/app/AppSelectMode.tsx:121
+msgid "Recommended"
+msgstr ""
 
 #: src/components/_wallet_old/did/WalletDID.tsx:464
 #: src/components/_wallet_old/did/WalletDIDRecovery.tsx:124
-msgid "Recover"
-msgstr ""
+#~ msgid "Recover"
+#~ msgstr ""
 
 #: src/components/_wallet_old/did/WalletDID.tsx:340
 #: src/components/_wallet_old/did/WalletDID.tsx:480
-msgid "Recover DID Wallet"
-msgstr ""
+#~ msgid "Recover DID Wallet"
+#~ msgstr ""
 
 #: src/components/wallet/create/WalletCreate.jsx:296
 #~ msgid "Recover DID wallet"
 #~ msgstr "Recover DID wallet"
 
 #: src/components/_wallet_old/did/WalletDIDRecovery.tsx:84
-msgid "Recover Distributed Identity Wallet"
-msgstr ""
+#~ msgid "Recover Distributed Identity Wallet"
+#~ msgstr ""
 
 #: src/components/_wallet_old/did/WalletDIDSelect.tsx:39
-msgid "Recover Wallet"
-msgstr ""
+#~ msgid "Recover Wallet"
+#~ msgstr ""
 
 #: src/components/plot/PlotHeader.tsx:76
 #: src/components/plot/overview/PlotOverviewHero.tsx:60
@@ -2126,7 +2109,7 @@ msgstr "Rifresko plotet"
 msgid "Relative Lock Height"
 msgstr "Lartësia relative e bllokimit"
 
-#: src/electron/main.tsx:387
+#: src/electron/main.tsx:459
 msgid "Release Notes"
 msgstr "Shënimet e Lirimit"
 
@@ -2146,10 +2129,10 @@ msgid "Removing"
 msgstr "Po hiqet"
 
 #: src/components/_wallet_old/coloured/WalletColoured.tsx:265
-msgid "Rename"
-msgstr "Riemërto"
+#~ msgid "Rename"
+#~ msgstr "Riemërto"
 
-#: src/electron/main.tsx:406
+#: src/electron/main.tsx:478
 msgid "Report an Issue..."
 msgstr "Raportoni një çështje..."
 
@@ -2160,6 +2143,10 @@ msgstr "Rivendosni të dhënat meta për monedhat me ngjyrë dhe kuletat e tjera
 #: src/components/backup/BackupRestore.tsx:107
 #~ msgid "Restore Smart Wallets From Backup"
 #~ msgstr ""
+
+#: src/components/app/AppSelectMode.tsx:157
+msgid "Runs the full node"
+msgstr ""
 
 #: src/components/fullNode/FullNode.jsx:57
 #: src/components/fullNode/FullNodeConnections.jsx:107
@@ -2172,7 +2159,7 @@ msgstr "I sigurt për të kapërcyer"
 
 #: src/components/farm/FarmManageFarmingRewards.tsx:179
 #: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:131
-#: src/components/trading/CreateOffer.jsx:142
+#: src/components/trading/CreateOffer.jsx:143
 msgid "Save"
 msgstr "Ruaj"
 
@@ -2200,8 +2187,8 @@ msgid "Secure your keychain using a strong passphrase"
 msgstr ""
 
 #: src/components/_selectKey_old/SelectKey.tsx:216
-msgid "See private key"
-msgstr "Shiko çelësin privat"
+#~ msgid "See private key"
+#~ msgstr "Shiko çelësin privat"
 
 #: src/_middleware_old/middleware_api.jsx:265
 #~ msgid "Seed:"
@@ -2216,8 +2203,8 @@ msgid "Select Final Directory"
 msgstr "Zgjidhni Drejtorinë Finale"
 
 #: src/components/_selectKey_old/SelectKey.tsx:175
-msgid "Select Key"
-msgstr "Zgjidhni çelësin"
+#~ msgid "Select Key"
+#~ msgstr "Zgjidhni çelësin"
 
 #: src/components/trading/ViewOffer.jsx:37
 msgid "Select Offer"
@@ -2228,10 +2215,10 @@ msgid "Select Temporary Directory"
 msgstr "Zgjidhni Direktorinë e Përkohshme"
 
 #: src/components/_wallet_old/create/WalletCreateList.tsx:21
-msgid "Select Wallet Type"
-msgstr "Zgjidhni Llojin e Portofolit"
+#~ msgid "Select Wallet Type"
+#~ msgstr "Zgjidhni Llojin e Portofolit"
 
-#: src/components/app/AppSelectMode.tsx:55
+#: src/components/app/AppSelectMode.tsx:70
 msgid "Select Your Client Mode"
 msgstr ""
 
@@ -2262,8 +2249,8 @@ msgid "Selected"
 msgstr "Zgjidhur"
 
 #: src/components/_wallet_old/did/WalletDIDRecovery.tsx:91
-msgid "Selected recovery file:"
-msgstr ""
+#~ msgid "Selected recovery file:"
+#~ msgstr ""
 
 #: src/components/plotNFT/PlotNFTExternalState.tsx:23
 #: src/components/plotNFT/PlotNFTState.tsx:57
@@ -2274,7 +2261,7 @@ msgstr "Vetë grumbullimi"
 msgid "Self pool. When you win a block you will earn XCH rewards."
 msgstr "Vetë grumbullimi. Kur të fitoni një bllok, do të fitoni shpërblime XCH."
 
-#: src/components/trading/CreateOffer.jsx:164
+#: src/components/trading/CreateOffer.jsx:165
 #: src/components/trading/TradesTable.tsx:46
 #: src/components/trading/TradingOverview.jsx:287
 msgid "Sell"
@@ -2283,16 +2270,16 @@ msgstr "Shes"
 #: src/components/_wallet_old/coloured/WalletColoured.tsx:620
 #: src/components/_wallet_old/rateLimited/WalletRateLimited.jsx:748
 #: src/components/_wallet_old/standard/WalletStandard.tsx:535
-msgid "Send"
-msgstr "Dërgo"
+#~ msgid "Send"
+#~ msgstr "Dërgo"
 
 #: src/components/_wallet_old/rateLimited/WalletRateLimited.jsx:460
-msgid "Send this info packet to your Rate Limited Wallet user who must use it to complete setup of their wallet:"
-msgstr "Dërgoni këtë paketë informacioni përdoruesit tuaj të Vlerësimit të Kufizuar të Portofolit, i cili duhet ta përdorë atë për të përfunduar konfigurimin e portofolit të tyre:"
+#~ msgid "Send this info packet to your Rate Limited Wallet user who must use it to complete setup of their wallet:"
+#~ msgstr "Dërgoni këtë paketë informacioni përdoruesit tuaj të Vlerësimit të Kufizuar të Portofolit, i cili duhet ta përdorë atë për të përfunduar konfigurimin e portofolit të tyre:"
 
 #: src/components/_wallet_old/rateLimited/WalletRateLimited.jsx:279
-msgid "Send your pubkey to your Rate Limited Wallet admin:"
-msgstr "Dërgoni pubkey-in tuaj tek administratori juaj qe te vlerësojë Kuletën e Kufizuar:"
+#~ msgid "Send your pubkey to your Rate Limited Wallet admin:"
+#~ msgstr "Dërgoni pubkey-in tuaj tek administratori juaj qe te vlerësojë Kuletën e Kufizuar:"
 
 #: src/components/settings/SetPassphrasePrompt.tsx:137
 #: src/components/settings/SetPassphrasePrompt.tsx:216
@@ -2309,7 +2296,7 @@ msgstr ""
 msgid "Settings"
 msgstr ""
 
-#: src/components/app/AppSelectMode.tsx:145
+#: src/components/app/AppSelectMode.tsx:171
 msgid "Settings are located at the upper right corner"
 msgstr ""
 
@@ -2321,14 +2308,14 @@ msgstr ""
 #~ msgid "Show app"
 #~ msgstr "Show app"
 
-#: src/components/trading/CreateOffer.jsx:153
+#: src/components/trading/CreateOffer.jsx:154
 #: src/components/trading/TradesTable.tsx:15
 msgid "Side"
 msgstr "Ana"
 
 #: src/components/_selectKey_old/SelectKey.tsx:180
-msgid "Sign In"
-msgstr "Identifikohu"
+#~ msgid "Sign In"
+#~ msgstr "Identifikohu"
 
 #: src/components/app/AppKeyringMigrator.tsx:58
 #: src/components/app/AppKeyringMigrator.tsx:219
@@ -2363,39 +2350,39 @@ msgstr "Z'busni shpërblimet tuaja XCH duke u bashkuar me një poll."
 msgid "Specify a value of 0 to use all available threads"
 msgstr ""
 
-#: src/electron/main.tsx:483
+#: src/electron/main.tsx:555
 msgid "Speech"
 msgstr "Të folurit"
 
 #: src/components/_wallet_old/create/createRLAdmin.jsx:230
-msgid "Spendable Amount"
-msgstr "Shuma e shpenzueshme"
+#~ msgid "Spendable Amount"
+#~ msgstr "Shuma e shpenzueshme"
 
 #: src/components/_wallet_old/create/createRLAdmin.jsx:202
-msgid "Spendable Amount Per Interval"
-msgstr "Shuma e shpenzueshme për interval"
+#~ msgid "Spendable Amount Per Interval"
+#~ msgstr "Shuma e shpenzueshme për interval"
 
 #: src/components/_wallet_old/card/WalletCardSpendableBalance.tsx:24
 #: src/components/_wallet_old/coloured/WalletColoured.tsx:384
 #: src/components/_wallet_old/rateLimited/WalletRateLimited.jsx:548
-msgid "Spendable Balance"
-msgstr "Bilanci i harxhueshëm"
+#~ msgid "Spendable Balance"
+#~ msgstr "Bilanci i harxhueshëm"
 
 #: src/components/_wallet_old/rateLimited/WalletRateLimited.jsx:396
 #: src/components/_wallet_old/rateLimited/WalletRateLimited.jsx:443
-msgid "Spending Interval (number of blocks): {interval}"
-msgstr "Intervali i shpenzimeve (numri i blloqeve): {interval}"
+#~ msgid "Spending Interval (number of blocks): {interval}"
+#~ msgstr "Intervali i shpenzimeve (numri i blloqeve): {interval}"
 
 #: src/components/_wallet_old/create/createRLAdmin.jsx:197
-msgid "Spending Interval Length (number of blocks)"
-msgstr "Gjatësia e intervalit të shpenzimeve (numri i blloqeve)"
+#~ msgid "Spending Interval Length (number of blocks)"
+#~ msgstr "Gjatësia e intervalit të shpenzimeve (numri i blloqeve)"
 
 #: src/components/_wallet_old/rateLimited/WalletRateLimited.jsx:401
 #: src/components/_wallet_old/rateLimited/WalletRateLimited.jsx:448
-msgid "Spending Limit (chia per interval): {0}"
-msgstr "Kufiri i shpenzimeve (chia për interval): {0}"
+#~ msgid "Spending Limit (chia per interval): {0}"
+#~ msgstr "Kufiri i shpenzimeve (chia për interval): {0}"
 
-#: src/components/app/AppState.tsx:161
+#: src/components/app/AppState.tsx:172
 msgid "Starting services"
 msgstr ""
 
@@ -2403,9 +2390,6 @@ msgstr ""
 msgid "State"
 msgstr "Krahina"
 
-#: src/components/_wallet_old/WalletHistory.tsx:55
-#: src/components/_wallet_old/WalletStatusCard.tsx:22
-#: src/components/_wallet_old/Wallets.tsx:50
 #: src/components/fullNode/card/FullNodeCardStatus.tsx:54
 #: src/components/fullNode/card/FullNodeCardStatus.tsx:62
 #: src/components/plot/overview/PlotOverviewPlots.tsx:110
@@ -2436,7 +2420,7 @@ msgstr "Statusi:"
 #~ msgid "StatusCard.title"
 #~ msgstr ""
 
-#: src/components/app/AppSelectMode.tsx:75
+#: src/components/app/AppSelectMode.tsx:94
 msgid "Store and Send XCH"
 msgstr ""
 
@@ -2452,8 +2436,6 @@ msgstr ""
 #~ msgid "Sub Block at height {0} in the Chia blockchain"
 #~ msgstr "Sub Block at height {0} in the Chia blockchain"
 
-#: src/components/_wallet_old/did/WalletDID.tsx:889
-#: src/components/_wallet_old/rateLimited/WalletRateLimited.jsx:347
 #: src/components/app/AppPassPrompt.tsx:97
 msgid "Submit"
 msgstr "Paraqit"
@@ -2462,12 +2444,10 @@ msgstr "Paraqit"
 #~ msgid "Submit Passphrase"
 #~ msgstr ""
 
-#: src/components/_wallet_old/WalletStatus.tsx:33
 #: src/components/fullNode/card/FullNodeCardStatus.tsx:41
 msgid "Synced"
 msgstr "Sinkronizuar"
 
-#: src/components/_wallet_old/WalletStatus.tsx:38
 #: src/components/farm/FarmerStatus.tsx:19
 #: src/components/farm/card/FarmCardStatus.tsx:18
 #: src/components/plot/PlotStatus.tsx:18
@@ -2537,10 +2517,10 @@ msgstr "Nyja po sinkronizohet, që do të thotë se po shkarkon blloqe nga nyjet
 
 #: src/components/_wallet_old/did/WalletDID.tsx:790
 #: src/components/_wallet_old/did/WalletDIDCreate.tsx:89
-msgid "The number of Backup IDs needed for recovery cannot exceed the number of Backup IDs added."
-msgstr ""
+#~ msgid "The number of Backup IDs needed for recovery cannot exceed the number of Backup IDs added."
+#~ msgstr ""
 
-#: src/hooks/usePoolInfo.ts:59
+#: src/hooks/usePoolInfo.ts:56
 msgid "The pool URL \"{normalizedUrl}\" is not working. Is it pool? Error: {0}"
 msgstr "URL-ja e pollit \"{normalizedUrl}\" nuk po punon. Është poll? Gabim: {0}"
 
@@ -2601,23 +2581,22 @@ msgstr "Kjo ju lejon të shtoni një direktori që ka plote në të. Nëse nuk k
 msgid "This difficulty is an artifically lower difficulty than on the real network, and is used when farming, in order to find more proofs and send them to the pool. The more plots you have, the higher difficulty you will have. However, the difficulty does not affect rewards."
 msgstr "Kjo vështirësi është një vështirësi artificialisht më e ulët sesa në rrjetin real, dhe përdoret gjatë bujqësisë, në mënyrë që të gjeni më shumë prova dhe t'i dërgoni ato në poll. Sa më shumë plote të keni, aq më e vështirë do të keni. Sidoqoftë, vështirësia nuk ndikon në shpërblimet."
 
-#: src/components/trading/CreateOffer.jsx:123
+#: src/components/trading/CreateOffer.jsx:124
 #: src/hooks/useSelectDirectory.tsx:32
-#: src/hooks/useSelectFile.tsx:20
 msgid "This feature is available only from the GUI."
 msgstr "Kjo veçori është në dispozicion vetëm nga GUI."
 
 #: src/components/_wallet_old/card/WalletCardSpendableBalance.tsx:26
-msgid "This is the amount of Chia that you can currently use to make transactions. It does not include pending farming rewards, pending incoming transactions, and Chia that you have just spent but is not yet in the blockchain."
-msgstr "Kjo është shuma e Chia që mund të përdorni aktualisht për të bërë transaksione. Nuk përfshin shpërblime në pritje të, transaksione në hyrje dhe Chia që sapo keni shpenzuar, por që nuk është ende në blockchain."
+#~ msgid "This is the amount of Chia that you can currently use to make transactions. It does not include pending farming rewards, pending incoming transactions, and Chia that you have just spent but is not yet in the blockchain."
+#~ msgstr "Kjo është shuma e Chia që mund të përdorni aktualisht për të bërë transaksione. Nuk përfshin shpërblime në pritje të, transaksione në hyrje dhe Chia që sapo keni shpenzuar, por që nuk është ende në blockchain."
 
 #: src/components/_wallet_old/card/WalletCardPendingChange.tsx:26
-msgid "This is the pending change, which are change coins which you have sent to yourself, but have not been confirmed yet."
-msgstr "Ky është ndryshimi në pritje, të cilat janë monedha ndryshimi që i keni dërguar vetes, por nuk janë konfirmuar ende."
+#~ msgid "This is the pending change, which are change coins which you have sent to yourself, but have not been confirmed yet."
+#~ msgstr "Ky është ndryshimi në pritje, të cilat janë monedha ndryshimi që i keni dërguar vetes, por nuk janë konfirmuar ende."
 
 #: src/components/_wallet_old/card/WalletCardPendingBalance.tsx:26
-msgid "This is the sum of the incoming and outgoing pending transactions (not yet included into the blockchain). This does not include farming rewards."
-msgstr "Kjo është shuma e transaksioneve hyrëse dhe dalëse në pritje (nuk janë përfshirë ende në blockchain). Kjo nuk përfshin shpërblimet fermerit."
+#~ msgid "This is the sum of the incoming and outgoing pending transactions (not yet included into the blockchain). This does not include farming rewards."
+#~ msgstr "Kjo është shuma e transaksioneve hyrëse dhe dalëse në pritje (nuk janë përfshirë ende në blockchain). Kjo nuk përfshin shpërblimet fermerit."
 
 #: src/components/fullNode/card/FullNodeCardPeakTime.tsx:19
 msgid "This is the time of the latest peak sub block."
@@ -2628,12 +2607,12 @@ msgid "This is the time the block was created by the farmer, which is before it 
 msgstr "Kjo është koha kur blloku është krijuar nga fermeri, e cila është para se të finalizohet me një provë të kohës"
 
 #: src/components/_wallet_old/card/WalletCardTotalBalance.tsx:34
-msgid "This is the total amount of chia in the blockchain at the current peak sub block that is controlled by your private keys. It includes frozen farming rewards, but not pending incoming and outgoing transactions."
-msgstr "Kjo është sasia totale e chia në blockchain në nën bllok bllokun aktual që kontrollohet nga çelësat tuaj privatë. Ai përfshin shpërblime të ngrira, por jo në pritje të transaksioneve hyrëse dhe dalëse."
+#~ msgid "This is the total amount of chia in the blockchain at the current peak sub block that is controlled by your private keys. It includes frozen farming rewards, but not pending incoming and outgoing transactions."
+#~ msgstr "Kjo është sasia totale e chia në blockchain në nën bllok bllokun aktual që kontrollohet nga çelësat tuaj privatë. Ai përfshin shpërblime të ngrira, por jo në pritje të transaksioneve hyrëse dhe dalëse."
 
 #: src/components/_wallet_old/card/WalletCardPendingTotalBalance.tsx:29
-msgid "This is the total balance + pending balance: it is what your balance will be after all pending transactions are confirmed."
-msgstr "Ky është bilanci i përgjithshëm + bilanci në pritje: është ai që do të jetë bilanci juaj pasi të jenë konfirmuar të gjitha transaksionet në pritje."
+#~ msgid "This is the total balance + pending balance: it is what your balance will be after all pending transactions are confirmed."
+#~ msgstr "Ky është bilanci i përgjithshëm + bilanci në pritje: është ai që do të jetë bilanci juaj pasi të jenë konfirmuar të gjitha transaksionet në pritje."
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:148
 #: src/components/plotNFT/PlotNFTCard.tsx:188
@@ -2694,14 +2673,14 @@ msgid "Timestamp"
 msgstr "Vula kohore"
 
 #: src/components/_wallet_old/WalletHistory.tsx:42
-msgid "To"
-msgstr "Për"
+#~ msgid "To"
+#~ msgstr "Për"
 
 #: src/components/_wallet_old/card/WalletCardTotalBalance.tsx:32
 #: src/components/_wallet_old/coloured/WalletColoured.tsx:379
 #: src/components/_wallet_old/rateLimited/WalletRateLimited.jsx:543
-msgid "Total Balance"
-msgstr "Totali i balances"
+#~ msgid "Total Balance"
+#~ msgstr "Totali i balances"
 
 #: src/components/farm/card/FarmCardTotalChiaFarmed.tsx:27
 msgid "Total Chia Farmed"
@@ -2751,7 +2730,7 @@ msgstr "ID e tregtisë:"
 msgid "Trade Overview"
 msgstr "Pasqyrë e Tregtisë"
 
-#: src/components/app/AppSelectMode.tsx:87
+#: src/components/app/AppSelectMode.tsx:106
 msgid "Trade tokens"
 msgstr ""
 
@@ -2772,8 +2751,8 @@ msgid "Transactions Filter Hash"
 msgstr "Filteri I Transaksioneve"
 
 #: src/components/_wallet_old/WalletHistory.tsx:25
-msgid "Type"
-msgstr "Tipi"
+#~ msgid "Type"
+#~ msgstr "Tipi"
 
 #: src/components/plot/add/PlotAdd.tsx:132
 #~ msgid "Unable to create plot NFT"
@@ -2806,8 +2785,8 @@ msgstr ""
 
 #: src/components/_wallet_old/create/createRLAdmin.jsx:281
 #: src/components/_wallet_old/rateLimited/WalletRateLimited.jsx:293
-msgid "User Pubkey"
-msgstr "Përdoruesi Pubkey"
+#~ msgid "User Pubkey"
+#~ msgstr "Përdoruesi Pubkey"
 
 #: src/components/farm/card/FarmCardUserFees.tsx:27
 msgid "User Transaction Fees"
@@ -2833,7 +2812,7 @@ msgstr "Përsëritjet e VDF Nën Slot"
 msgid "Verify Pool Details"
 msgstr "Verifikoni detajet e pollit"
 
-#: src/electron/main.tsx:308
+#: src/electron/main.tsx:374
 msgid "View"
 msgstr "Shiko"
 
@@ -2856,12 +2835,12 @@ msgid "View Pool Login Link"
 msgstr "Shikoni lidhjen e hyrjes në poll"
 
 #: src/components/_wallet_old/rateLimited/WalletRateLimited.jsx:562
-msgid "View pending balances"
-msgstr "Shikoni bilancet në pritje"
+#~ msgid "View pending balances"
+#~ msgstr "Shikoni bilancet në pritje"
 
 #: src/components/_wallet_old/coloured/WalletColoured.tsx:393
-msgid "View pending balances..."
-msgstr "Shikoni bilancet në pritje..."
+#~ msgid "View pending balances..."
+#~ msgstr "Shikoni bilancet në pritje..."
 
 #: src/components/farm/card/FarmCardNotAvailable.tsx:26
 #: src/components/plot/PlotStatus.tsx:26
@@ -2878,23 +2857,22 @@ msgstr "Prisni për sinkronizim"
 #~ msgid "Waiting for network to launch"
 #~ msgstr "Waiting for network to launch"
 
-#: src/components/plotNFT/PlotNFTUnconfirmedCard.tsx:84
+#: src/components/plotNFT/PlotNFTUnconfirmedCard.tsx:82
 msgid "Waiting for the transaction to be confirmed"
 msgstr "Në pritje të konfirmimit të transaksionit"
 
-#: src/components/app/AppSelectMode.tsx:67
-#: src/components/app/AppSelectMode.tsx:115
+#: src/components/app/AppSelectMode.tsx:86
+#: src/components/app/AppSelectMode.tsx:138
 msgid "Wallet Mode"
 msgstr ""
 
-#: src/components/_wallet_old/standard/WalletStandard.tsx:649
 #: src/components/pool/PoolOverview.tsx:182
 msgid "Wallet Status:"
 msgstr "Statusi i Portofolit:"
 
 #: src/components/_wallet_old/did/WalletDID.tsx:1121
-msgid "Wallet does not exists"
-msgstr ""
+#~ msgid "Wallet does not exists"
+#~ msgstr ""
 
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:70
 msgid "Wallet is not defined"
@@ -2928,8 +2906,7 @@ msgstr ""
 #~ msgid "WalletStatusCard.syncing"
 #~ msgstr ""
 
-#: src/components/_wallet_old/Wallets.tsx:118
-#: src/components/dashboard/DashboardSideBar.tsx:60
+#: src/components/dashboard/DashboardSideBar.tsx:36
 msgid "Wallets"
 msgstr "Kuletat"
 
@@ -2955,16 +2932,16 @@ msgstr ""
 
 #: src/components/_selectKey_old/SelectKey.tsx:88
 #: src/components/_selectKey_old/SelectKey.tsx:119
-msgid "Warning: This key is used for a wallet that may have a non-zero balance. By deleting this key you may lose access to this wallet"
-msgstr "Paralajmërim: Ky çelës përdoret për një portofol që mund të ketë një bilanc jo-zero. Duke fshirë këtë çelës mund të humbni qasjen në këtë portofol"
+#~ msgid "Warning: This key is used for a wallet that may have a non-zero balance. By deleting this key you may lose access to this wallet"
+#~ msgstr "Paralajmërim: Ky çelës përdoret për një portofol që mund të ketë një bilanc jo-zero. Duke fshirë këtë çelës mund të humbni qasjen në këtë portofol"
 
 #: src/components/_selectKey_old/SelectKey.tsx:81
-msgid "Warning: This key is used for your farming rewards address. By deleting this key you may lose access to any future farming rewards"
-msgstr "Paralajmërim: Ky çelës përdoret për adresën tuaj të shpërblimeve. Duke fshirë këtë çelës, ju mund të humbni qasjen në çdo shpërblim të ardhshëm"
+#~ msgid "Warning: This key is used for your farming rewards address. By deleting this key you may lose access to any future farming rewards"
+#~ msgstr "Paralajmërim: Ky çelës përdoret për adresën tuaj të shpërblimeve. Duke fshirë këtë çelës, ju mund të humbni qasjen në çdo shpërblim të ardhshëm"
 
 #: src/components/_selectKey_old/SelectKey.tsx:94
-msgid "Warning: This key is used for your pool rewards address. By deleting this key you may lose access to any future pool rewards"
-msgstr "Paralajmërim: Ky çelës përdoret për adresën tuaj të shpërblimeve në poll. Duke fshirë këtë çelës, mund të humbni qasjen në çdo shpërblim të ardhshëm të pollit"
+#~ msgid "Warning: This key is used for your pool rewards address. By deleting this key you may lose access to any future pool rewards"
+#~ msgstr "Paralajmërim: Ky çelës përdoret për adresën tuaj të shpërblimeve në poll. Duke fshirë këtë çelës, mund të humbni qasjen në çdo shpërblim të ardhshëm të pollit"
 
 #: src/components/block/Block.jsx:194
 msgid "Weight"
@@ -2975,18 +2952,18 @@ msgid "Weight is the total added difficulty of all sub blocks up to and includin
 msgstr "Pesha është vështirësia totale e shtuar e të gjitha nën blloqeve deri dhe duke përfshirë këtë"
 
 #: src/components/_selectKey_old/SelectKey.tsx:183
-msgid "Welcome to Chia. Please log in with an existing key, or create a new key."
-msgstr "Mirësevini në Chia. Ju lutemi identifikohuni me një çelës ekzistues, ose krijoni një çelës të ri."
+#~ msgid "Welcome to Chia. Please log in with an existing key, or create a new key."
+#~ msgstr "Mirësevini në Chia. Ju lutemi identifikohuni me një çelës ekzistues, ose krijoni një çelës të ri."
 
 #: src/components/_wallet_old/WalletAdd.tsx:66
-msgid "Welcome! The following words are used for your wallet backup. Without them, you will lose access to your wallet, keep them safe! Write down each word along with the order number next to them. (Order is important)"
-msgstr "Mirëseardhje! Fjalët e mëposhtme përdoren për rezervimin e portofolit tuaj. Pa to, ju do të humbni hyrjen në portofolin tuaj, mbajini të sigurta! Shkruani secilën fjalë së bashku me numrin e rendit pranë tyre. (Renditja është e rëndësishme)"
+#~ msgid "Welcome! The following words are used for your wallet backup. Without them, you will lose access to your wallet, keep them safe! Write down each word along with the order number next to them. (Order is important)"
+#~ msgstr "Mirëseardhje! Fjalët e mëposhtme përdoren për rezervimin e portofolit tuaj. Pa to, ju do të humbni hyrjen në portofolin tuaj, mbajini të sigurta! Shkruani secilën fjalë së bashku me numrin e rendit pranë tyre. (Renditja është e rëndësishme)"
 
 #: src/components/_wallet_old/rateLimited/WalletRateLimited.jsx:316
-msgid "When you receive the setup info packet from your admin, enter it below to complete your Rate Limited Wallet setup:"
-msgstr "Kur të merrni paketën e informacionit të konfigurimit nga administratori juaj, futeni atë më poshtë për të përfunduar konfigurimin e Portofolit të Kufizuar të Vlerësimit:"
+#~ msgid "When you receive the setup info packet from your admin, enter it below to complete your Rate Limited Wallet setup:"
+#~ msgstr "Kur të merrni paketën e informacionit të konfigurimit nga administratori juaj, futeni atë më poshtë për të përfunduar konfigurimin e Portofolit të Kufizuar të Vlerësimit:"
 
-#: src/electron/main.tsx:353
+#: src/electron/main.tsx:425
 msgid "Window"
 msgstr "Dritare"
 
@@ -2996,7 +2973,7 @@ msgstr "Pa tarifa"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:48
 #: src/components/trading/TradingOverview.jsx:208
-#: src/electron/main.tsx:199
+#: src/electron/main.tsx:258
 msgid "Yes"
 msgstr "Po"
 
@@ -3009,7 +2986,7 @@ msgstr "Ju jeni në gjendje pritje. Ju lutemi të prisni për konfirmim"
 msgid "You are not self pooling"
 msgstr "Ju nuk po beni poll vetëm"
 
-#: src/components/app/AppSelectMode.tsx:147
+#: src/components/app/AppSelectMode.tsx:173
 msgid "You can always change your mode later in the settings"
 msgstr ""
 
@@ -3070,8 +3047,8 @@ msgid "You will recieve <0/> to {address}"
 msgstr "Ju do të merrni <0/> te {address}"
 
 #: src/components/_wallet_old/did/WalletDID.tsx:328
-msgid "Your DID requires at least {dids_num_req} attestation file{0} for recovery. Please upload additional files."
-msgstr ""
+#~ msgid "Your DID requires at least {dids_num_req} attestation file{0} for recovery. Please upload additional files."
+#~ msgstr ""
 
 #: src/components/farm/overview/FarmOverview.tsx:33
 msgid "Your Farm Overview"
@@ -3098,8 +3075,8 @@ msgid "Your keys have not been migrated to a new keyring. You will be unable to 
 msgstr ""
 
 #: src/components/_selectKey_old/SelectKey.tsx:141
-msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Would you like to migrate your keys now?"
-msgstr ""
+#~ msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Would you like to migrate your keys now?"
+#~ msgstr ""
 
 #: src/components/app/AppKeyringMigrator.tsx:106
 msgid "Your keys need to be migrated to a new keyring that is optionally secured by a master passphrase."
@@ -3135,17 +3112,17 @@ msgstr "[Gabimi 22] Skedari nuk u gjet. Ka shumë të ngjarë që një nga dosje
 
 #: src/components/_wallet_old/WalletStatusCard.tsx:41
 #: src/components/_wallet_old/Wallets.tsx:75
-msgid "connections:"
-msgstr "lidhje:"
+#~ msgid "connections:"
+#~ msgstr "lidhje:"
 
 #: src/components/_wallet_old/WalletStatusCard.tsx:33
 #: src/components/_wallet_old/Wallets.tsx:67
-msgid "height:"
-msgstr "lartësia:"
+#~ msgid "height:"
+#~ msgstr "lartësia:"
 
 #: src/components/_wallet_old/Wallets.tsx:61
-msgid "not synced"
-msgstr "i pa sinkronizuar"
+#~ msgid "not synced"
+#~ msgstr "i pa sinkronizuar"
 
 #: src/components/plot/add/PlotAddForm.tsx:124
 msgid "p2SingletonPuzzleHash is not defined"
@@ -3157,18 +3134,18 @@ msgstr ""
 
 #: src/components/_wallet_old/WalletStatusCard.tsx:27
 #: src/components/_wallet_old/Wallets.tsx:55
-msgid "status:"
-msgstr "statusi:"
+#~ msgid "status:"
+#~ msgstr "statusi:"
 
 #: src/components/_wallet_old/WalletStatusCard.tsx:29
 #: src/components/_wallet_old/Wallets.tsx:60
-msgid "synced"
-msgstr "sinkronizuar"
+#~ msgid "synced"
+#~ msgstr "sinkronizuar"
 
 #: src/components/_wallet_old/WalletStatusCard.tsx:29
 #: src/components/_wallet_old/Wallets.tsx:59
-msgid "syncing"
-msgstr "po sinkronizohet"
+#~ msgid "syncing"
+#~ msgstr "po sinkronizohet"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:89
 #~ msgid "thirdparty.plotter.disclaimer"
