@@ -47,6 +47,7 @@ type OfferShareOfferBinDialogProps = CommonOfferProps & CommonDialogProps;
 type OfferShareHashgreenDialogProps = CommonOfferProps & CommonDialogProps;
 type OfferShareKeybaseDialogProps = CommonOfferProps & CommonDialogProps;
 type OfferShareOfferpoolDialogProps = CommonOfferProps & CommonDialogProps;
+type OfferShareDexieDialogProps = CommonOfferProps & CommonDialogProps;
 
 async function writeTempOfferFile(offerData: string, filename: string): Promise<string> {
   const ipcRenderer = (window as any).ipcRenderer;
@@ -300,6 +301,34 @@ async function postToOfferpool(offerData: string): Promise<PostToOfferpoolRespon
 
   console.log('offerpool upload completed');
   return JSON.parse(responseBody);
+}
+
+// Posts the offer data to dexie and returns offer url
+async function postToDexie(offerData: string): Promise<string> {
+  const ipcRenderer = (window as any).ipcRenderer;
+  const requestOptions = {
+    method: 'POST',
+    protocol: 'https:',
+    hostname: 'dexie.space',
+    port: 443,
+    path: '/v1/offers',
+  };
+  const requestHeaders = {
+    'Content-Type': 'application/json',
+  }
+  const requestData = JSON.stringify({ offer: offerData });
+  const { err, statusCode, statusMessage, responseBody } = await ipcRenderer.invoke('fetchTextResponse', requestOptions, requestHeaders, requestData);
+
+  if (err || statusCode !== 200) {
+    const error = new Error(`dexie upload failed: ${err}, statusCode=${statusCode}, statusMessage=${statusMessage}, response=${responseBody}`);
+    throw error;
+  }
+
+  console.log('dexie upload completed');
+  const { id } = JSON.parse(responseBody);
+
+  return `https://dexie.space/offers/${id}`;
+
 }
 
 function OfferShareOfferBinDialog(props: OfferShareOfferBinDialogProps) {
@@ -930,6 +959,135 @@ OfferShareOfferpoolDialog.defaultProps = {
   onClose: () => {},
 };
 
+function OfferShareDexieDialog(props: OfferShareDexieDialogProps) {
+  const { offerRecord, offerData, onClose, open } = props;
+  const openExternal = useOpenExternal();
+  const showError = useShowError();
+  const [isSubmitting, setIsSubmitting] = React.useState(false);
+  const [sharedURL, setSharedURL] = React.useState('');
+
+  function handleClose() {
+    onClose(false);
+  }
+
+  async function handleConfirm() {
+    try {
+      setIsSubmitting(true);
+
+      const url = await postToDexie(offerData);
+
+      console.log(`dexie link: ${url}`);
+      setSharedURL(url);
+    }
+    catch (e) {
+      showError(e);
+    }
+    finally {
+      setIsSubmitting(false);
+    }
+  }
+
+  if (sharedURL) {
+    return (
+      <Dialog
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+        maxWidth="xs"
+        open={open}
+        onClose={handleClose}
+        fullWidth
+      >
+        <DialogTitle>
+          <Trans>Offer Shared</Trans>
+        </DialogTitle>
+        <DialogContent dividers>
+          <Flex flexDirection="column" gap={3}>
+            <TextField
+              label={<Trans>dexie link</Trans>}
+              value={sharedURL}
+              variant="filled"
+              InputProps={{
+                readOnly: true,
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <CopyToClipboard value={sharedURL} />
+                  </InputAdornment>
+                ),
+              }}
+              fullWidth
+            />
+            <Flex>
+            <Button
+              color="secondary"
+              variant="contained"
+              onClick={() => openExternal(sharedURL)}
+            >
+              <Trans>View on dexie</Trans>
+            </Button>
+            </Flex>
+          </Flex>
+        </DialogContent>
+        <DialogActions>
+          <Button
+            onClick={handleClose}
+            color="primary"
+            variant="contained"
+          >
+            <Trans>Close</Trans>
+          </Button>
+        </DialogActions>
+      </Dialog>
+    );
+  }
+  return (
+    <Dialog
+      onClose={handleClose}
+      aria-labelledby="alert-dialog-title"
+      aria-describedby="alert-dialog-description"
+      maxWidth="sm"
+      open={open}
+      fullWidth
+    >
+      <DialogTitle id="alert-dialog-title">
+        <Trans>Share on dexie</Trans>
+      </DialogTitle>
+      <DialogContent dividers>
+        <OfferSummary
+          isMyOffer={true}
+          summary={offerRecord.summary}
+          makerTitle={<Typography variant="subtitle1"><Trans>Your offer:</Trans></Typography>}
+          takerTitle={<Typography variant="subtitle1"><Trans>In exchange for:</Trans></Typography>}
+          rowIndentation={4}
+        />
+      </DialogContent>
+      <DialogActions>
+        <Flex flexGrow={1}></Flex>
+        <Button
+          onClick={handleClose}
+          color="primary"
+          variant="contained"
+          disabled={isSubmitting}
+        >
+          <Trans>Cancel</Trans>
+        </Button>
+        <ButtonLoading
+          onClick={handleConfirm}
+          color="secondary"
+          variant="contained"
+          loading={isSubmitting}
+        >
+          <Trans>Share</Trans>
+        </ButtonLoading>
+      </DialogActions>
+    </Dialog>
+  );
+}
+
+OfferShareDexieDialog.defaultProps = {
+  open: false,
+  onClose: () => { },
+};
+
 type OfferShareDialogProps = CommonOfferProps & CommonDialogProps & {
   showSuppressionCheckbox: boolean;
 };
@@ -964,6 +1122,12 @@ export default function OfferShareDialog(props: OfferShareDialogProps) {
   async function handleOfferpool() {
     await openDialog(
       <OfferShareOfferpoolDialog offerRecord={offerRecord} offerData={offerData} />
+    );
+  }
+
+  async function handleDexie() {
+    await openDialog(
+      <OfferShareDexieDialog offerRecord={offerRecord} offerData={offerData} />
     );
   }
 
@@ -1009,6 +1173,15 @@ export default function OfferShareDialog(props: OfferShareDialogProps) {
               >
                 <Flex flexDirection="column">
                   offerpool
+                </Flex>
+              </Button>
+              <Button
+                variant="contained"
+                color="default"
+                onClick={handleDexie}
+              >
+                <Flex flexDirection="column">
+                  dexie
                 </Flex>
               </Button>
               <Button
