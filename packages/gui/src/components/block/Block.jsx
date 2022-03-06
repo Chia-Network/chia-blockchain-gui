@@ -36,8 +36,6 @@ import {
 import toBech32m from '../../util/toBech32m';
 import BlockTitle from './BlockTitle';
 
-/* global BigInt */
-
 async function computeNewPlotId(block) {
   const { poolPublicKey, plotPublicKey } =
     block.rewardChainBlock.proofOfSpace;
