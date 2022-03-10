@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import BigNumber from 'bignumber.js';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { useLocalStorage } from '@rehooks/local-storage';
@@ -47,8 +48,8 @@ function OfferEditor(props: OfferEditorProps) {
   const navigate = useNavigate();
   const defaultValues: FormData = {
     selectedTab: 0,
-    makerRows: [{ amount: '', assetWalletId: 0, walletType: WalletType.STANDARD_WALLET, spendableBalance: 0 }],
-    takerRows: [{ amount: '', assetWalletId: 0, walletType: WalletType.STANDARD_WALLET, spendableBalance: 0 }],
+    makerRows: [{ amount: '', assetWalletId: 0, walletType: WalletType.STANDARD_WALLET, spendableBalance: new BigNumber(0) }],
+    takerRows: [{ amount: '', assetWalletId: 0, walletType: WalletType.STANDARD_WALLET, spendableBalance: new BigNumber(0) }],
   };
   const methods = useForm<FormData>({
     shouldUnregister: false,
@@ -60,17 +61,20 @@ function OfferEditor(props: OfferEditorProps) {
   const [createOfferForIds] = useCreateOfferForIdsMutation();
   const [processing, setIsProcessing] = useState<boolean>(false);
 
-  function updateOffer(offer: { [key: string]: number | string }, row: OfferEditorRowData, debit: boolean) {
+  function updateOffer(offer: { [key: string]: BigNumber }, row: OfferEditorRowData, debit: boolean) {
     const { amount, assetWalletId, walletType } = row;
     if (assetWalletId > 0) {
-      let mojoAmount = 0;
+      let mojoAmount = new BigNumber(0);
       if (walletType === WalletType.STANDARD_WALLET) {
-        mojoAmount = Number.parseFloat(chiaToMojo(amount));
+        mojoAmount = chiaToMojo(amount);
       }
       else if (walletType === WalletType.CAT) {
-        mojoAmount = Number.parseFloat(catToMojo(amount));
+        mojoAmount = catToMojo(amount);
       }
-      offer[assetWalletId] = debit ? -mojoAmount : mojoAmount;
+
+      offer[assetWalletId] = debit 
+        ? mojoAmount.negated() 
+        : mojoAmount;
     }
     else {
       console.log('missing asset wallet id');
@@ -78,7 +82,7 @@ function OfferEditor(props: OfferEditorProps) {
   }
 
   async function onSubmit(formData: FormData) {
-    const offer: { [key: string]: number | string } = {};
+    const offer: { [key: string]: BigNumber } = {};
     let missingAssetSelection = false;
     let missingAmount = false;
     let amountExceedsSpendableBalance = false;
@@ -91,7 +95,7 @@ function OfferEditor(props: OfferEditorProps) {
       else if (!row.amount) {
         missingAmount = true;
       }
-      else if (Number.parseFloat(row.amount as string) > row.spendableBalance) {
+      else if (new BigNumber(row.amount).isGreaterThan(row.spendableBalance)) {
         amountExceedsSpendableBalance = true;
       }
     });
