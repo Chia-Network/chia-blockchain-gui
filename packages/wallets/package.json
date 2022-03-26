@@ -10,7 +10,7 @@
   "main": "dist/index.js",
   "module": "dist/esm.js",
   "scripts": {
-    "build": "npm run locale && npm run build:js && npm run build:types",
+    "build": "npm run locale && npm run build:js",
     "build:js": "rollup -c",
     "build:watch": "rollup -c -w",
     "build:types": "tsc --emitDeclarationOnly",
