@@ -32,6 +32,9 @@ const WalletName = {
   [WalletType.POOLING_WALLET]: defineMessage({
     message: 'Pooling Wallet',
   }),
+  [WalletType.DATA_LAYER]: defineMessage({
+    message: 'Datalayer Wallet',
+  }),
 }
 
 export default WalletName;
