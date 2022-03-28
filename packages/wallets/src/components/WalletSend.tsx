@@ -24,7 +24,7 @@ import { useForm, useWatch } from 'react-hook-form';
 import {
   Button,
   Grid,
-} from '@material-ui/core';
+} from '@mui/material';
 import useWallet from '../hooks/useWallet';
 
 type SendCardProps = {
