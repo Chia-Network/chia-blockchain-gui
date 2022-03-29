@@ -43,7 +43,7 @@ export default function useMonitorServices(
   running: ServiceName[];
 } {
   const walletState = useService(
-    ServiceName.WALLET, 
+    ServiceName.WALLET,
     getServiceOptions(ServiceName.WALLET, services, options),
   );
 
@@ -63,7 +63,7 @@ export default function useMonitorServices(
   );
 
   const simulatorState = useService(
-    ServiceName.SIMULATOR, 
+    ServiceName.SIMULATOR,
     getServiceOptions(ServiceName.SIMULATOR, services, options),
   );
 
@@ -82,6 +82,11 @@ export default function useMonitorServices(
     getServiceOptions(ServiceName.INTRODUCER, services, options),
   );
 
+  const datalayerState = useService(
+    ServiceName.DATALAYER,
+    getServiceOptions(ServiceName.DATALAYER, services, options),
+  );
+
   const states = [
     walletState,
     fullNodeState,
@@ -91,11 +96,12 @@ export default function useMonitorServices(
     plotterState,
     timelordState,
     introducerState,
+    datalayerState,
   ];
 
   const isLoading = !!states.find((state) => state.isLoading);
   const error = states.find((state) => state.error)?.error;
-  
+
   const starting = states.filter(state => state.state === 'starting');
   const stopping = states.filter(state => state.state === 'stopping');
   const running = states.filter(state => state.state === 'running');

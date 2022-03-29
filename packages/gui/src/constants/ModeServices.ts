@@ -6,10 +6,11 @@ export default {
     ServiceName.WALLET,
   ],
   [Mode.FARMING]: [
-    ServiceName.WALLET, 
+    ServiceName.WALLET,
     ServiceName.FULL_NODE,
     ServiceName.FARMER,
     ServiceName.HARVESTER,
+    ServiceName.DATALAYER,
   ],
 };
 
