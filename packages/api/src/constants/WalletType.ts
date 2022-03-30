@@ -10,6 +10,8 @@ enum WalletType {
   RECOVERABLE = 7,
   DISTRIBUTED_ID = 8,
   POOLING_WALLET = 9,
+  DATA_LAYER = 10,
+  DATA_LAYER_OFFER = 11,
 };
 
 export default WalletType;

@@ -33,7 +33,7 @@ export default function WalletsDropdown(props: Props) {
     }
 
     return wallets
-      .filter(wallet => ![WalletType.POOLING_WALLET].includes(wallet.type))
+      .filter(wallet => ![WalletType.POOLING_WALLET, WalletType.DATA_LAYER].includes(wallet.type))
       .map((wallet) => {
         const primaryTitle = getPrimaryTitle(wallet);
         const secondaryTitle = trans(WalletName[wallet.type]);
@@ -54,7 +54,7 @@ export default function WalletsDropdown(props: Props) {
                     <WalletBadge wallet={wallet} fontSize="small" tooltip />
                   </Flex>
                 )}
-                secondary={!hasSameTitle ? secondaryTitle: undefined}
+                secondary={!hasSameTitle ? secondaryTitle : undefined}
                 secondaryTypographyProps={{
                   variant: 'caption',
                 }}
@@ -76,7 +76,7 @@ export default function WalletsDropdown(props: Props) {
   }
 
   return (
-    <Dropdown 
+    <Dropdown
       options={options}
       selected={walletId}
       onSelect={handleSelectWallet}
