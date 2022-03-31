@@ -11,11 +11,12 @@ import AppSelectMode from './AppSelectMode';
 import ModeServices, { SimulatorServices } from '../../constants/ModeServices';
 
 const ALL_SERVICES = [
-  ServiceName.WALLET, 
+  ServiceName.WALLET,
   ServiceName.FULL_NODE,
   ServiceName.FARMER,
   ServiceName.HARVESTER,
   ServiceName.SIMULATOR,
+  ServiceName.DATALAYER,
 ];
 
 type Props = {
@@ -93,14 +94,14 @@ export default function AppState(props: Props) {
   if (closing) {
     return (
       <LayoutLoading hideSettings>
-        <Flex flexDirection="column" gap={2}> 
+        <Flex flexDirection="column" gap={2}>
           <Typography variant="body1" align="center">
             <Trans>Closing down services</Trans>
           </Typography>
           <Flex flexDirection="column" gap={0.5}>
             {!!ALL_SERVICES && ALL_SERVICES.map((service) => (
               <Collapse key={service} in={!!clienState?.startedServices.includes(service)} timeout={{ enter: 0, exit: 1000 }}>
-                <Typography variant="body1" color="textSecondary"  align="center">
+                <Typography variant="body1" color="textSecondary" align="center">
                   {ServiceHumanName[service]}
                 </Typography>
               </Collapse>
@@ -167,14 +168,14 @@ export default function AppState(props: Props) {
   if (!allServicesRunning) {
     return (
       <LayoutLoading>
-        <Flex flexDirection="column" gap={2}> 
+        <Flex flexDirection="column" gap={2}>
           <Typography variant="body1" align="center">
             <Trans>Starting services</Trans>
           </Typography>
           <Flex flexDirection="column" gap={0.5}>
             {!!runServices && runServices.map((service) => (
               <Collapse key={service} in={!servicesState.running.find(state => state.service === service)} timeout={{ enter: 0, exit: 1000 }}>
-                <Typography variant="body1" color="textSecondary"  align="center">
+                <Typography variant="body1" color="textSecondary" align="center">
                   {ServiceHumanName[service]}
                 </Typography>
               </Collapse>
