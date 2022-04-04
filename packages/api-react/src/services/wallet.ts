@@ -50,7 +50,7 @@ export const walletApi = apiWithTag.injectEndpoints({
           if (error) {
             throw error;
           }
-          
+
           const wallets = data?.wallets;
           if (!wallets) {
             throw new Error('List of the wallets is not defined');
@@ -114,7 +114,7 @@ export const walletApi = apiWithTag.injectEndpoints({
       }]),
     }),
 
-    getTransaction: build.query<Transaction, { 
+    getTransaction: build.query<Transaction, {
       transactionId: string;
     }>({
       query: ({ transactionId }) => ({
@@ -136,7 +136,7 @@ export const walletApi = apiWithTag.injectEndpoints({
       }]),
     }),
 
-    getPwStatus: build.query<any, { 
+    getPwStatus: build.query<any, {
       walletId: number;
     }>({
       query: ({ walletId }) => ({
@@ -151,13 +151,13 @@ export const walletApi = apiWithTag.injectEndpoints({
       }),
       */
       providesTags(result, _error, { walletId }) {
-        return result 
-          ? [{ type: 'PoolWalletStatus', id: walletId }] 
+        return result
+          ? [{ type: 'PoolWalletStatus', id: walletId }]
           : [];
       },
     }),
 
-    pwAbsorbRewards: build.mutation<any, { 
+    pwAbsorbRewards: build.mutation<any, {
       walletId: number;
       fee: string;
     }>({
@@ -167,12 +167,12 @@ export const walletApi = apiWithTag.injectEndpoints({
         args: [walletId, fee],
       }),
       invalidatesTags: [
-        { type: 'Transactions', id: 'LIST' }, 
-        { type: 'NFTs', id: 'LIST' }, 
+        { type: 'Transactions', id: 'LIST' },
+        { type: 'NFTs', id: 'LIST' },
       ],
     }),
 
-    pwJoinPool: build.mutation<any, { 
+    pwJoinPool: build.mutation<any, {
       walletId: number;
       poolUrl: string;
       relativeLockHeight: number;
@@ -191,12 +191,12 @@ export const walletApi = apiWithTag.injectEndpoints({
         ],
       }),
       invalidatesTags: [
-        { type: 'Transactions', id: 'LIST' }, 
-        { type: 'NFTs', id: 'LIST' }, 
+        { type: 'Transactions', id: 'LIST' },
+        { type: 'NFTs', id: 'LIST' },
       ],
     }),
 
-    pwSelfPool: build.mutation<any, { 
+    pwSelfPool: build.mutation<any, {
       walletId: number;
       fee?: string;
     }>({
@@ -206,12 +206,12 @@ export const walletApi = apiWithTag.injectEndpoints({
         args: [walletId, fee],
       }),
       invalidatesTags: [
-        { type: 'Transactions', id: 'LIST' }, 
-        { type: 'NFTs', id: 'LIST' }, 
-      ], 
+        { type: 'Transactions', id: 'LIST' },
+        { type: 'NFTs', id: 'LIST' },
+      ],
     }),
 
-    createNewWallet: build.mutation<any, { 
+    createNewWallet: build.mutation<any, {
       walletType: 'pool_wallet' | 'rl_wallet' | 'did_wallet' | 'cat_wallet';
       options?: Object;
     }>({
@@ -223,7 +223,7 @@ export const walletApi = apiWithTag.injectEndpoints({
       invalidatesTags: [{ type: 'Wallets', id: 'LIST' }],
     }),
 
-    deleteUnconfirmedTransactions: build.mutation<any, { 
+    deleteUnconfirmedTransactions: build.mutation<any, {
       walletId: number;
     }>({
       query: ({ walletId }) => ({
@@ -232,7 +232,7 @@ export const walletApi = apiWithTag.injectEndpoints({
         args: [walletId],
       }),
     }),
-  
+
     getWalletBalance: build.query<{
       confirmedWalletBalance: number;
       maxSendAmount: number;
@@ -244,7 +244,7 @@ export const walletApi = apiWithTag.injectEndpoints({
       walletId: number;
       pendingBalance: BigNumber;
       pendingTotalBalance: BigNumber;
-    }, { 
+    }, {
       walletId: number;
     }>({
       query: ({ walletId }) => ({
@@ -253,7 +253,7 @@ export const walletApi = apiWithTag.injectEndpoints({
         args: [walletId],
       }),
       transformResponse: (response) => {
-        const { 
+        const {
           walletBalance,
           walletBalance: {
             confirmedWalletBalance,
@@ -299,11 +299,11 @@ export const walletApi = apiWithTag.injectEndpoints({
         service: Wallet,
       }),
     }),
-  
-    sendTransaction: build.mutation<any, { 
+
+    sendTransaction: build.mutation<any, {
       walletId: number;
       amount: string;
-      fee: string; 
+      fee: string;
       address: string;
       waitForConfirmation?: boolean;
     }>({
@@ -321,7 +321,7 @@ export const walletApi = apiWithTag.injectEndpoints({
 
         try {
           const { walletId, amount, fee, address, waitForConfirmation } = args;
-          
+
           return {
             data: await new Promise(async (resolve, reject) => {
               const updatedTransactions: Transaction[] = [];
@@ -352,7 +352,7 @@ export const walletApi = apiWithTag.injectEndpoints({
                   service: Wallet,
                   args: [(data: any) => {
                     const { additionalData: { transaction } } = data;
-  
+
                     updatedTransactions.push(transaction);
                     processUpdates();
                   }],
@@ -416,7 +416,7 @@ export const walletApi = apiWithTag.injectEndpoints({
         ? [
           ...keys.map((key) => ({ type: 'Keys', id: key } as const)),
           { type: 'Keys', id: 'LIST' },
-        ] 
+        ]
         :  [{ type: 'Keys', id: 'LIST' }],
     }),
 
@@ -433,7 +433,7 @@ export const walletApi = apiWithTag.injectEndpoints({
       transformResponse: (response: any) => response?.fingerprint,
       invalidatesTags: [{ type: 'Keys', id: 'LIST' }],
     }),
-  
+
     deleteKey: build.mutation<any, {
       fingerprint: number;
     }>({
@@ -657,7 +657,7 @@ export const walletApi = apiWithTag.injectEndpoints({
         args: [walletId, false],
       }),
       transformResponse: (response: any) => response?.address,
-      providesTags: (result, _error, { walletId }) => result 
+      providesTags: (result, _error, { walletId }) => result
         ? [{ type: 'Address', id: walletId }]
         : [],
     }),
@@ -742,7 +742,7 @@ export const walletApi = apiWithTag.injectEndpoints({
       ? [
         ...connections.map(({ nodeId }) => ({ type: 'WalletConnections', id: nodeId } as const)),
         { type: 'WalletConnections', id: 'LIST' },
-      ] 
+      ]
       :  [{ type: 'WalletConnections', id: 'LIST' }],
       onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, [{
         command: 'onConnections',
@@ -756,7 +756,7 @@ export const walletApi = apiWithTag.injectEndpoints({
         },
       }]),
     }),
-    openWalletConnection: build.mutation<WalletConnections, { 
+    openWalletConnection: build.mutation<WalletConnections, {
       host: string;
       port: number;
     }>({
@@ -767,7 +767,7 @@ export const walletApi = apiWithTag.injectEndpoints({
       }),
       invalidatesTags: [{ type: 'WalletConnections', id: 'LIST' }],
     }),
-    closeWalletConnection: build.mutation<WalletConnections, { 
+    closeWalletConnection: build.mutation<WalletConnections, {
       nodeId: string;
     }>({
       query: ({ nodeId }) => ({
@@ -981,7 +981,7 @@ export const walletApi = apiWithTag.injectEndpoints({
       }),
       invalidatesTags: [{ type: 'Wallets', id: 'LIST' }, { type: 'Transactions', id: 'LIST' }],
     }),
-  
+
     getCATAssetId: build.query<string, {
       walletId: number;
     }>({
@@ -1006,7 +1006,7 @@ export const walletApi = apiWithTag.injectEndpoints({
       }),
       transformResponse: (response: any) => response?.catList,
     }),
-  
+
     getCATName: build.query<string, {
       walletId: number;
     }>({
@@ -1019,7 +1019,7 @@ export const walletApi = apiWithTag.injectEndpoints({
       }),
       transformResponse: (response: any) => response?.name,
     }),
-  
+
     setCATName: build.mutation<any, {
       walletId: number;
       name: string;
@@ -1034,7 +1034,41 @@ export const walletApi = apiWithTag.injectEndpoints({
       }),
       invalidatesTags: [{ type: 'Wallets', id: 'LIST' }],
     }),
-  
+
+    getStrayCats: build.query<{
+      assetId: string;
+      name: string;
+      firstSeenHeight: number;
+      senderPuzzleHash: string;
+      inTransaction: boolean;
+    }[], undefined>({
+      query: () => ({
+        command: 'getStrayCats',
+        service: CAT,
+        mockResponse: { strayCats: [{
+          assetId: '0000000000000000000000000000000000000001',
+          name: 'Unknown CAT 1',
+          firstSeenHeight: 0,
+          senderPuzzleHash: '0x0000000000000000000000000000000000000001',
+          inTransaction: false,
+        }, {
+          assetId: '0000000000000000000000000000000000000002',
+          name: 'Unknown CAT 2',
+          firstSeenHeight: 1,
+          senderPuzzleHash: '0x0000000000000000000000000000000000000002',
+          inTransaction: true,
+        }, {
+          assetId: '0000000000000000000000000000000000000003',
+          name: undefined,
+          firstSeenHeight: 2,
+          senderPuzzleHash: '0x0000000000000000000000000000000000000003',
+          inTransaction: false,
+        }]},
+      }),
+      transformResponse: (response: any) => response?.strayCats,
+    }),
+
+
     spendCAT: build.mutation<any, {
       walletId: number;
       address: string;
@@ -1057,15 +1091,15 @@ export const walletApi = apiWithTag.injectEndpoints({
         }
 
         try {
-          const { 
+          const {
             walletId,
             address,
             amount,
             fee,
-            memos, 
+            memos,
             waitForConfirmation,
            } = args;
-          
+
           return {
             data: await new Promise(async (resolve, reject) => {
               const updatedTransactions: Transaction[] = [];
@@ -1102,7 +1136,7 @@ export const walletApi = apiWithTag.injectEndpoints({
                     const { additionalData: { transaction } } = data;
 
                     // console.log('update received');
-  
+
                     updatedTransactions.push(transaction);
                     processUpdates();
                   }],
@@ -1168,10 +1202,10 @@ export const walletApi = apiWithTag.injectEndpoints({
             address,
             amount,
             fee,
-            memos, 
+            memos,
             waitForConfirmation,
           } = args;
-          
+
           return {
             data: new Promise(async (resolve, reject) => {
               const updatedTransactions: Transaction[] = [];
@@ -1200,7 +1234,7 @@ export const walletApi = apiWithTag.injectEndpoints({
                   command: 'onTransactionUpdate',
                   args: [(data: any) => {
                     const { additionalData: { transaction } } = data;
-  
+
                     updatedTransactions.push(transaction);
                     processUpdates();
                   }],
@@ -1263,7 +1297,7 @@ export const walletApi = apiWithTag.injectEndpoints({
           if (error) {
             throw error;
           }
-          
+
           const walletId = data?.walletId;
           if (!walletId) {
             throw new Error('Wallet id is not defined');
@@ -1297,11 +1331,11 @@ export const walletApi = apiWithTag.injectEndpoints({
                 command: 'getWallets',
                 service: Wallet,
               });
-    
+
               if (error) {
                 throw error;
               }
-              
+
               const wallets = data?.wallets;
               if (!wallets) {
                 throw new Error('List of the wallets is not defined');
@@ -1314,11 +1348,11 @@ export const walletApi = apiWithTag.injectEndpoints({
                 command: 'getPoolState',
                 service: Farmer,
               });
-    
+
               if (error) {
                 throw error;
               }
-              
+
               const poolState = data?.poolState;
               if (!poolState) {
                 throw new Error('Pool state is not defined');
@@ -1331,13 +1365,13 @@ export const walletApi = apiWithTag.injectEndpoints({
           if (signal.aborted) {
             throw new Error('Query was aborted');
           }
-    
+
           // filter pool wallets
           const poolWallets =
             wallets?.filter(
               (wallet) => wallet.type === WalletType.POOLING_WALLET,
             ) ?? [];
-    
+
           const [poolWalletStates, walletBalances] = await Promise.all([
             await Promise.all<PoolWalletStatus>(poolWallets.map(async (wallet) => {
               const { data, error } = await fetchWithBQ({
@@ -1345,7 +1379,7 @@ export const walletApi = apiWithTag.injectEndpoints({
                 service: Wallet,
                 args: [wallet.id],
               });
-    
+
               if (error) {
                 throw error;
               }
@@ -1361,7 +1395,7 @@ export const walletApi = apiWithTag.injectEndpoints({
                   service: Wallet,
                   args: [wallet.id],
                 });
-      
+
                 if (error) {
                   throw error;
                 }
@@ -1373,11 +1407,11 @@ export const walletApi = apiWithTag.injectEndpoints({
           if (signal.aborted) {
             throw new Error('Query was aborted');
           }
-    
+
           // combine poolState and poolWalletState
           const nfts: PlotNFT[] = [];
           const external: PlotNFTExternal[] = [];
-    
+
           poolStates.forEach((poolStateItem) => {
             const poolWalletStatus = poolWalletStates.find(
               (item) => item.launcherId === poolStateItem.poolConfig.launcherId,
@@ -1388,18 +1422,18 @@ export const walletApi = apiWithTag.injectEndpoints({
               });
               return;
             }
-    
+
             const walletBalance = walletBalances.find(
               (item) => item?.walletId === poolWalletStatus.walletId,
             );
-    
+
             if (!walletBalance) {
               external.push({
                 poolState: normalizePoolState(poolStateItem),
               });
               return;
             }
-    
+
             nfts.push({
               poolState: normalizePoolState(poolStateItem),
               poolWalletStatus,
@@ -1419,7 +1453,7 @@ export const walletApi = apiWithTag.injectEndpoints({
           };
         }
       },
-      providesTags: [{ type: 'NFTs', id: 'LIST' }], 
+      providesTags: [{ type: 'NFTs', id: 'LIST' }],
     }),
   }),
 });
@@ -1485,6 +1519,7 @@ export const {
   useSetCATNameMutation,
   useSpendCATMutation,
   useAddCATTokenMutation,
+  useGetStrayCatsQuery,
 
   // NFTS
   useGetPlotNFTsQuery,
