@@ -1,38 +1,49 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Trans } from '@lingui/macro';
-import { Box } from '@mui/material';
+import { List, Box } from '@mui/material';
 import {
   Farming as FarmingIcon,
   FullNode as FullNodeIcon,
   Plots as PlotsIcon,
   Pooling as PoolingIcon,
-  // NFTs as NFTsIcon,
+  NFTs as NFTsIcon,
   Offers as OffersIcon,
   Tokens as TokensIcon,
   Settings as SettingsIcon,
 } from '@chia/icons';
 import { Flex, SideBarItem } from '@chia/core';
 
-const StyledItemsContainer = styled(Flex)`
-  flex-direction: column;
-  flex-grow: 1;
-  overflow: auto;
+const StyledRoot = styled(Flex)`
+  height: 100%;
+  overflow-y: auto;
   padding-top: ${({ theme }) => `${theme.spacing(5)}`};
 `;
 
-const StyledRoot = styled(Flex)`
-  height: 100%;
-  flex-direction: column;
+const StyledList = styled(List)`
+  width: 100%;
 `;
 
 const StyledSideBarDivider = styled(Box)`
   height: 1px;
-  background: radial-gradient(36.59% 100.8% at 50% 50%, rgba(0, 0, 0, 0.18) 99.54%, rgba(255, 255, 255, 0) 100%);
+  background: radial-gradient(
+    36.59% 100.8% at 50% 50%,
+    rgba(0, 0, 0, 0.18) 99.54%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  margin: ${({ theme }) => `${theme.spacing(2)} 0 ${theme.spacing(2)} 0`};
 `;
 
 const StyledSettingsContainer = styled(Box)`
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
   background-color: ${({ theme }) => theme.palette.background.paper};
+`;
+
+const StyledInvisible = styled(Box)`
+  visibility: hidden;
 `;
 
 export type DashboardSideBarProps = {
@@ -44,19 +55,17 @@ export default function DashboardSideBar(props: DashboardSideBarProps) {
 
   return (
     <StyledRoot>
-      <StyledItemsContainer>
+      <StyledList disablePadding>
         <SideBarItem
           to="/dashboard/wallets"
           icon={TokensIcon}
           title={<Trans>Tokens</Trans>}
         />
-        {/*
         <SideBarItem
           to="/dashboard/nfts"
           icon={NFTsIcon}
           title={<Trans>NFTs</Trans>}
         />
-        */}
         <SideBarItem
           to="/dashboard/offers"
           icon={OffersIcon}
@@ -65,9 +74,7 @@ export default function DashboardSideBar(props: DashboardSideBarProps) {
 
         {!simple && (
           <>
-            <Box my={1}>
-              <StyledSideBarDivider />
-            </Box>
+            <StyledSideBarDivider />
 
             <SideBarItem
               to="/dashboard"
@@ -100,7 +107,15 @@ export default function DashboardSideBar(props: DashboardSideBarProps) {
             />
           </>
         )}
-      </StyledItemsContainer>
+
+        <StyledInvisible>
+          <SideBarItem
+            to="/dashboard/settings"
+            icon={SettingsIcon}
+            title={<Trans>Settings</Trans>}
+          />
+        </StyledInvisible>
+      </StyledList>
       <StyledSettingsContainer>
         <SideBarItem
           to="/dashboard/settings"
