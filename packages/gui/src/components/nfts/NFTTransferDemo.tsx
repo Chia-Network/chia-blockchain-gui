@@ -1,9 +1,9 @@
 import React from 'react';
 import { Trans } from '@lingui/macro';
-import { Flex, Form, TextField, useOpenDialog } from '@chia/core';
+import { AlertDialog, Flex, Form, TextField, useOpenDialog } from '@chia/core';
 import { Button, Grid } from '@mui/material';
 import { useForm } from 'react-hook-form';
-import { NFTTransferDialog } from './NFTTransferAction';
+import { NFTTransferDialog, NFTTransferResult } from './NFTTransferAction';
 
 type NFTTransferDemoFormData = {
   nftAssetId: string;
@@ -20,16 +20,30 @@ export default function NFTTransferDemo() {
     },
   });
 
-  async function handleClose() {
-    console.log('handleClose called in NFTs');
+  function handleComplete(result?: NFTTransferResult) {
+    console.log('handleComplete called in NFTTransferDemo');
+    console.log(result);
+
+    if (result) {
+      if (result.success) {
+        openDialog(
+          <AlertDialog title={<Trans>NFT Transfer Complete</Trans>}>
+            <Trans>
+              The NFT transfer transaction has been successfully submitted to
+              the blockchain.
+            </Trans>
+          </AlertDialog>,
+        );
+      } else {
+        const error = result.error || 'Unknown error';
+        openDialog(
+          <AlertDialog title={<Trans>NFT Transfer Failed</Trans>}>
+            <Trans>The NFT transfer failed: {error}</Trans>
+          </AlertDialog>,
+        );
+      }
+    }
   }
-
-  // async function handleTransferNFT() {
-  //   const result = await openDialog(<NFTTransferDialog />);
-
-  //   console.log('handleTransferNFT result:');
-  //   console.log(result);
-  // }
 
   async function handleInitiateTransfer(formData: NFTTransferDemoFormData) {
     const { nftAssetId, destinationDID } = formData;
@@ -40,11 +54,9 @@ export default function NFTTransferDemo() {
       <NFTTransferDialog
         nftAssetId={nftAssetId}
         destinationDID={destinationDID}
-      />
+        onComplete={handleComplete}
+      />,
     );
-
-    console.log('handleInitiateTransfer result:');
-    console.log(result);
   }
 
   return (
