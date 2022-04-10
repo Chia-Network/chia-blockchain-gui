@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Trans } from '@lingui/macro';
 import { AlertDialog, Fee, Back, ButtonLoading, Card, Flex, Form, TextField } from '@chia/core';
-import { Box, Grid } from '@material-ui/core';
+import { Box, Grid } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router';
@@ -19,7 +19,6 @@ type CreateExistingCATWalletData = {
 
 export default function WalletCATCreateExisting() {
   const methods = useForm<CreateExistingCATWalletData>({
-    shouldUnregister: false,
     defaultValues: {
       name: '',
       fee: '',

@@ -1,30 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Trans } from '@lingui/macro';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@mui/styles';
 import {
   AlertDialog,
-  DashboardTitle,
+  Button,
   Card,
+  Flex,
   Suspender,
   useOpenDialog,
   useSkipMigration,
+  LayoutDashboardSub,
 } from '@chia/core';
 import { useGetKeyringStatusQuery } from '@chia/api-react';
 import {
   Grid,
   Typography,
   Box,
-  Button,
   Tooltip,
-} from '@material-ui/core';
+  Tab,
+  Tabs,
+} from '@mui/material';
 import {
   Help as HelpIcon,
   Lock as LockIcon,
   NoEncryption as NoEncryptionIcon,
-} from '@material-ui/icons';
+} from '@mui/icons-material';
 import ChangePassphrasePrompt from './ChangePassphrasePrompt';
 import RemovePassphrasePrompt from './RemovePassphrasePrompt';
 import SetPassphrasePrompt from './SetPassphrasePrompt';
+import SettingsGeneral from './SettingsGeneral';
 
 const useStyles = makeStyles((theme) => ({
   passToggleBox: {
@@ -124,7 +128,7 @@ const SecurityCard = () => {
       tooltipTitle = (<Trans>Passphrase support requires migrating your keys to a new keyring</Trans>);
     } else {
       tooltipTitle = (<Trans>Secure your keychain using a strong passphrase</Trans>);
-      
+
       if (userPassphraseIsSet) {
         icon = (<LockIcon style={{ color: '#3AAC59',  marginRight: 6 }} />);
         statusMessage = (<Trans>Passphrase protection is enabled</Trans>);
@@ -235,12 +239,30 @@ const SecurityCard = () => {
 };
 
 export default function Settings() {
+  const [activeTab, setActiveTab] = useState<'GENERAL' | 'IDENTITIES'>('GENERAL');
+
   return (
-    <>
-      <DashboardTitle>
-        <Trans>Settings</Trans>
-      </DashboardTitle>
-      <SecurityCard />
-    </>
+    <LayoutDashboardSub>
+      <Flex flexDirection="column" gap={3}>
+        <Typography variant="h5">
+          <Trans>Settings</Trans>
+        </Typography>
+        <Flex gap={3} flexDirection="column">
+          <Tabs
+            value={activeTab}
+            onChange={(_event, newValue) => setActiveTab(newValue)}
+            textColor="primary"
+            indicatorColor="primary"
+          >
+            <Tab value="GENERAL" label={<Trans>General</Trans>} />
+            <Tab value="IDENTITIES" label={<Trans>Identities</Trans>} />
+          </Tabs>
+
+          {activeTab === 'GENERAL' && (
+            <SettingsGeneral />
+          )}
+        </Flex>
+      </Flex>
+    </LayoutDashboardSub>
   );
 }

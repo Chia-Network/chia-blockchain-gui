@@ -2,9 +2,9 @@ import React, { useMemo } from 'react';
 import { Trans, t } from '@lingui/macro';
 import {
   AdvancedOptions,
+  Button, 
   Fee,
   Form,
-  AlertDialog,
   Flex,
   Card,
   ButtonLoading,
@@ -26,9 +26,10 @@ import {
 import { SyncingStatus } from '@chia/api';
 import isNumeric from 'validator/es/lib/isNumeric';
 import { useForm, useWatch } from 'react-hook-form';
-import { Button, Grid } from '@material-ui/core';
+import { Grid } from '@mui/material';
 import useWallet from '../../hooks/useWallet';
 import useWalletState from '../../hooks/useWalletState';
+import CreateWalletSendTransactionResultDialog from '../WalletSendTransactionResultDialog';
 
 type Props = {
   walletId: number;
@@ -61,7 +62,6 @@ export default function WalletCATSend(props: Props) {
   }, [currencyCode]);
 
   const methods = useForm<SendTransactionData>({
-    shouldUnregister: false,
     defaultValues: {
       address: '',
       amount: '',
@@ -158,13 +158,12 @@ export default function WalletCATSend(props: Props) {
     const response = await spendCAT(queryData).unwrap();
 
     const result = getTransactionResult(response.transaction);
-    if (result.success) {
-        openDialog(
-          <AlertDialog title={<Trans>Success</Trans>}>
-            {result.message ?? <Trans>Transaction has successfully been sent to a full node and included in the mempool.</Trans>}
-          </AlertDialog>,
-        );
-    } else {
+    const resultDialog = CreateWalletSendTransactionResultDialog({success: result.success, message: result.message});
+
+    if (resultDialog) {
+      await openDialog(resultDialog);
+    }
+    else {
       throw new Error(result.message ?? 'Something went wrong');
     }
 

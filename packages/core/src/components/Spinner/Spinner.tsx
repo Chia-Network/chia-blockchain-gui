@@ -1,5 +1,5 @@
 import React from 'react';
-import { Backdrop, CircularProgress } from '@material-ui/core';
+import { Backdrop, CircularProgress } from '@mui/material';
 import styled from 'styled-components';
 
 const StyledBackdrop = styled(Backdrop)`
@@ -15,7 +15,7 @@ export default function Spinner(props: Props) {
 
   return (
     <StyledBackdrop open={show}>
-      <CircularProgress color="inherit" />
+      <CircularProgress color="inherit" disableShrink />
     </StyledBackdrop>
   );
 }

@@ -6,7 +6,7 @@ import {
   Dialog,
   DialogTitle,
   DialogContent,
-} from '@material-ui/core';
+} from '@mui/material';
 import { AlertDialog, ButtonLoading, DialogActions, Flex, Form, TextField, useOpenDialog } from '@chia/core';
 
 type WalletRenameDialogFormData = {
@@ -30,7 +30,6 @@ export default function WalletRenameDialog(props: Props) {
 
   const openDialog = useOpenDialog();
   const methods = useForm<WalletRenameDialogFormData>({
-    shouldUnregister: false,
     defaultValues: {
       name,
     },

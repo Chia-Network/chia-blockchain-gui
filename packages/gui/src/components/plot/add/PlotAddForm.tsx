@@ -3,9 +3,9 @@ import { useNavigate, useLocation } from 'react-router';
 import { t, Trans } from '@lingui/macro';
 import { defaultPlotter } from '@chia/api';
 import { useStartPlottingMutation, useCreateNewPoolWalletMutation } from '@chia/api-react';
-import { ChevronRight as ChevronRightIcon } from '@material-ui/icons';
+import { ChevronRight as ChevronRightIcon } from '@mui/icons-material';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { useShowError, ButtonLoading, Flex, Form, FormBackButton } from '@chia/core';
+import { useShowError, ButtonLoading, Flex, Form, FormBackButton, toBech32m } from '@chia/core';
 import { PlotHeaderSource } from '../PlotHeader';
 import PlotAddChoosePlotter from './PlotAddChoosePlotter';
 import PlotAddChooseSize from './PlotAddChooseSize';
@@ -17,7 +17,6 @@ import PlotAddConfig from '../../../types/PlotAdd';
 import plotSizes from '../../../constants/plotSizes';
 import PlotNFTState from '../../../constants/PlotNFTState';
 import PlotterName from '../../../constants/PlotterName';
-import toBech32m from '../../../util/toBech32m';
 import useUnconfirmedPlotNFTs from '../../../hooks/useUnconfirmedPlotNFTs';
 
 type FormData = PlotAddConfig & {
@@ -72,7 +71,6 @@ export default function PlotAddForm(props: Props) {
   }
 
   const methods = useForm<FormData>({
-    shouldUnregister: false,
     defaultValues: defaultsForPlotter(PlotterName.CHIAPOS),
   });
 

@@ -1,6 +1,5 @@
 import React from 'react';
-import { Trans } from '@lingui/macro';
-import { AdvancedOptions, Flex, DashboardTitle } from '@chia/core';
+import { AdvancedOptions, Flex, LayoutDashboardSub } from '@chia/core';
 import { useGetHarvesterConnectionsQuery } from '@chia/api-react';
 import FarmOverview from './overview/FarmOverview';
 import FarmLatestBlockChallenges from './FarmLatestBlockChallenges';
@@ -11,14 +10,11 @@ import usePlots from '../../hooks/usePlots';
 
 export default function Farm() {
   const { hasPlots } = usePlots();
-  const { data: connections, isLoading } = useGetHarvesterConnectionsQuery();
+  const { data: connections } = useGetHarvesterConnectionsQuery();
 
   return (
-    <> 
-      <DashboardTitle>
-        <Trans>Farming</Trans>
-      </DashboardTitle>
-      <Flex flexDirection="column" gap={3}>
+    <LayoutDashboardSub>
+      <Flex flexDirection="column" gap={4}>
         <FarmOverview />
 
         {hasPlots ? (
@@ -45,6 +41,6 @@ export default function Farm() {
           </>
         )}
       </Flex>
-    </>
+    </LayoutDashboardSub>
   );
 }

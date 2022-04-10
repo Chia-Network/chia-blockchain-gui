@@ -1,10 +1,11 @@
 import React from 'react';
-import { TextField, TextFieldProps } from '@material-ui/core';
-import { get } from 'lodash';
-import {
+import { 
+  TextField, 
+  TextFieldProps, 
   Autocomplete as MaterialAutocomplete,
   AutocompleteProps,
-} from '@material-ui/lab';
+} from '@mui/material';
+import { get } from 'lodash';
 import { matchSorter } from 'match-sorter';
 import { useController, useFormContext } from 'react-hook-form';
 import type { ReactRules } from '../TextField/TextField';
@@ -77,6 +78,9 @@ export default function Autocomplete(props: Props) {
 
   return (
     <MaterialAutocomplete
+      autoComplete
+      autoHighlight
+      autoSelect
       options={options}
       filterOptions={filterOptions}
       onChange={(_e, newValue) => handleChange(newValue)}

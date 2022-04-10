@@ -149,7 +149,7 @@ msgstr ""
 #~ msgid "Alternate tmpdir/tmpdir2"
 #~ msgstr ""
 
-#: src/components/Amount/Amount.tsx:113
+#: src/components/Amount/Amount.tsx:114
 msgid "Amount"
 msgstr "Количество"
 
@@ -204,8 +204,8 @@ msgstr ""
 #~ msgstr "Автоматически сгенерированное имя из контрактного адреса пула"
 
 #: src/components/FormBackButton/FormBackButton.tsx:47
-#: src/screens/SelectKey/SelectKey.tsx:60
-#: src/screens/SelectKey/SelectKeyItem.tsx:68
+#: src/screens/SelectKey/SelectKey.tsx:79
+#: src/screens/SelectKey/SelectKeyItem.tsx:93
 msgid "Back"
 msgstr "Назад"
 
@@ -304,11 +304,12 @@ msgstr "Назад"
 #~ msgid "CCListItems.title"
 #~ msgstr ""
 
-#: src/screens/SelectKey/SelectKeyItem.tsx:121
+#: src/screens/SelectKey/SelectKeyItem.tsx:146
 msgid "Can be backed up to mnemonic seed"
 msgstr "может быть сохранен в качестве резервной копии при помощи мнемонического зерна"
 
 #: src/components/ConfirmDialog/ConfirmDialog.tsx:105
+#: src/hooks/useKeyringMigrationPrompt.tsx:17
 msgid "Cancel"
 msgstr "Отмена"
 
@@ -670,7 +671,7 @@ msgstr "Подключен"
 #~ msgid "Contribute on GitHub"
 #~ msgstr "Сотрудничать на GitHub"
 
-#: src/components/CopyToClipboard/CopyToClipboard.tsx:31
+#: src/components/CopyToClipboard/CopyToClipboard.tsx:37
 msgid "Copied"
 msgstr "Скопировано"
 
@@ -681,7 +682,7 @@ msgstr "Скопировано"
 #~ msgid "Copy"
 #~ msgstr "Копировать"
 
-#: src/components/CopyToClipboard/CopyToClipboard.tsx:33
+#: src/components/CopyToClipboard/CopyToClipboard.tsx:39
 msgid "Copy to Clipboard"
 msgstr "Скопировать в буфер обмена"
 
@@ -750,7 +751,7 @@ msgstr "Скопировать в буфер обмена"
 #~ msgid "Create a Plot NFT"
 #~ msgstr "Создать участок NFT"
 
-#: src/screens/SelectKey/SelectKey.tsx:141
+#: src/screens/SelectKey/SelectKey.tsx:179
 msgid "Create a new private key"
 msgstr "Создать новый приватный ключ"
 
@@ -816,7 +817,7 @@ msgstr "Создать новый приватный ключ"
 #~ msgid "Current trade status"
 #~ msgstr "Текущий торговый статус"
 
-#: src/screens/SelectKey/SelectKeyItem.tsx:136
+#: src/screens/SelectKey/SelectKeyItem.tsx:161
 msgid "DANGER: permanently delete private key"
 msgstr "ОПАСНО: удалить закрытый ключ навсегда"
 
@@ -842,8 +843,8 @@ msgstr ""
 #~ msgid "Delay"
 #~ msgstr "Задержка"
 
-#: src/screens/SelectKey/SelectKey.tsx:59
-#: src/screens/SelectKey/SelectKeyItem.tsx:67
+#: src/screens/SelectKey/SelectKey.tsx:78
+#: src/screens/SelectKey/SelectKeyItem.tsx:92
 msgid "Delete"
 msgstr "Удалить"
 
@@ -861,8 +862,8 @@ msgstr "Удалить"
 #~ msgid "Delete Unconfirmed Transactions"
 #~ msgstr "Удалить неподтвержденные транзакции"
 
-#: src/screens/SelectKey/SelectKey.tsx:161
-#: src/screens/SelectKey/SelectKey.tsx:58
+#: src/screens/SelectKey/SelectKey.tsx:199
+#: src/screens/SelectKey/SelectKey.tsx:77
 msgid "Delete all keys"
 msgstr "Удалить все ключи"
 
@@ -870,11 +871,11 @@ msgstr "Удалить все ключи"
 #~ msgid "Delete key"
 #~ msgstr "Delete key"
 
-#: src/screens/SelectKey/SelectKeyItem.tsx:66
+#: src/screens/SelectKey/SelectKeyItem.tsx:91
 msgid "Delete key {fingerprint}"
 msgstr "Удалить ключ {fingerprint}"
 
-#: src/screens/SelectKey/SelectKey.tsx:64
+#: src/screens/SelectKey/SelectKey.tsx:83
 msgid "Deleting all keys will permanently remove the keys from your computer, make sure you have backups. Are you sure you want to continue?"
 msgstr "Удаление всех ключей приведет к безвозвратному удалению ключей с вашего компьютера, убедитесь, что у вас есть резервные копии. Вы уверены что хотите продолжить?"
 
@@ -882,7 +883,7 @@ msgstr "Удаление всех ключей приведет к безвоз�
 #~ msgid "Deleting key"
 #~ msgstr ""
 
-#: src/screens/SelectKey/SelectKeyItem.tsx:99
+#: src/screens/SelectKey/SelectKeyItem.tsx:124
 msgid "Deleting the key will permanently remove the key from your computer, make sure you have backups. Are you sure you want to continue?"
 msgstr "Удаление ключа приведет к безвозвратному удалению ключа с вашего компьютера, убедитесь, что у вас есть резервные копии. Вы уверены что хотите продолжить?"
 
@@ -1098,8 +1099,8 @@ msgstr ""
 #~ msgid "Farmer is not running"
 #~ msgstr "Фермер не запущен"
 
-#: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:66
-#: src/screens/SelectKey/SelectKeyDetailDialog.tsx:66
+#: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:67
+#: src/screens/SelectKey/SelectKeyDetailDialog.tsx:67
 msgid "Farmer public key:"
 msgstr "Открытый ключ фермера:"
 
@@ -1119,7 +1120,7 @@ msgstr "Фарминг"
 #~ msgid "Farming Status"
 #~ msgstr "Статус фарминга"
 
-#: src/components/Fee/Fee.tsx:54
+#: src/components/Fee/Fee.tsx:53
 msgid "Fee"
 msgstr "Комиссия"
 
@@ -1235,7 +1236,7 @@ msgstr "Часто задаваемые вопросы"
 msgid "Help"
 msgstr "Помощь"
 
-#: src/components/LocaleToggle/LocaleToggle.tsx:69
+#: src/components/LocaleToggle/LocaleToggle.tsx:70
 msgid "Help translate"
 msgstr "Помогите с переводом"
 
@@ -1273,7 +1274,7 @@ msgstr "Скрыть дополнительные опции"
 #~ msgid "Import Wallet from Mnemonics"
 #~ msgstr "Импортировать кошелек из мнемоники"
 
-#: src/screens/SelectKey/SelectKey.tsx:151
+#: src/screens/SelectKey/SelectKey.tsx:189
 msgid "Import from Mnemonics (24 words)"
 msgstr "Импорт мнемоники (24 слова)"
 
@@ -1285,7 +1286,7 @@ msgstr "Импорт мнемоники (24 слова)"
 #~ msgid "Incoming"
 #~ msgstr "Входящие"
 
-#: src/components/Fee/Fee.tsx:42
+#: src/components/Fee/Fee.tsx:41
 msgid "Incorrect value"
 msgstr "Некорректное значение"
 
@@ -1420,7 +1421,7 @@ msgstr ""
 #~ msgid "Loading keyring status"
 #~ msgstr ""
 
-#: src/screens/SelectKey/SelectKey.tsx:78
+#: src/screens/SelectKey/SelectKey.tsx:116
 msgid "Loading list of the keys"
 msgstr ""
 
@@ -1436,8 +1437,8 @@ msgstr ""
 #~ msgid "Local Harvester Plots"
 #~ msgstr "Local Harvester Plots"
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:96
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:123
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:125
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:144
 msgid "Log Out"
 msgstr ""
 
@@ -1445,8 +1446,8 @@ msgstr ""
 #~ msgid "Logging in"
 #~ msgstr "Вход в систему"
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:95
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:122
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:124
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:143
 msgid "Logout"
 msgstr ""
 
@@ -1506,9 +1507,9 @@ msgstr ""
 #~ msgid "MiB Up/Down"
 #~ msgstr "МиБ Исх./Вх."
 
-#: src/components/_selectKey_old/SelectKey.tsx:137
-#~ msgid "Migrate"
-#~ msgstr ""
+#: src/hooks/useKeyringMigrationPrompt.tsx:16
+msgid "Migrate"
+msgstr ""
 
 #: src/components/settings/Settings.tsx:182
 #~ msgid "Migrate Keyring"
@@ -1518,10 +1519,9 @@ msgstr ""
 #~ msgid "Migrate Keys"
 #~ msgstr ""
 
-#: src/components/_selectKey_old/SelectKey.tsx:136
-#: src/components/app/AppKeyringMigrator.tsx:125
-#~ msgid "Migration required"
-#~ msgstr ""
+#: src/hooks/useKeyringMigrationPrompt.tsx:15
+msgid "Migration required"
+msgstr ""
 
 #: src/components/settings/Settings.tsx:123
 #~ msgid "Migration required to support passphrase protection"
@@ -1595,8 +1595,8 @@ msgstr ""
 #~ msgid "No"
 #~ msgstr "Нет"
 
-#: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:92
-#: src/screens/SelectKey/SelectKeyDetailDialog.tsx:92
+#: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:93
+#: src/screens/SelectKey/SelectKeyDetailDialog.tsx:93
 msgid "No 24 word seed, since this key is imported."
 msgstr "Нет 24 слов семя, так как этот ключ импортируется."
 
@@ -1662,6 +1662,10 @@ msgstr "Нет подключения"
 #: src/components/farm/FarmManageFarmingRewards.tsx:164
 #~ msgid "Note that this does not change your pooling payout addresses. This only affects old format plots, and the 0.25XCH reward for pooling plots."
 #~ msgstr "Обратите внимание, что это не меняет адреса выплат пула. Это влияет только на старый формат участков и на вознаграждение 0.25XCH за участки в пуле."
+
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:115
+msgid "Notifications"
+msgstr ""
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:117
 #: src/components/plotNFT/PlotNFTCard.tsx:157
@@ -2093,8 +2097,8 @@ msgstr "OK"
 #~ msgid "Pool does not provide target_puzzle_hash."
 #~ msgstr "Пул не предоставляет target_puzzle_hash."
 
-#: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:74
-#: src/screens/SelectKey/SelectKeyDetailDialog.tsx:74
+#: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:75
+#: src/screens/SelectKey/SelectKeyDetailDialog.tsx:75
 msgid "Pool public key:"
 msgstr "Публичный ключ пула:"
 
@@ -2141,7 +2145,7 @@ msgstr "Публичный ключ пула:"
 #~ msgid "Previous Sub Block Hash"
 #~ msgstr "Previous Sub Block Hash"
 
-#: src/screens/SelectKey/SelectKeyItem.tsx:116
+#: src/screens/SelectKey/SelectKeyItem.tsx:141
 msgid "Private key with public fingerprint {fingerprint}"
 msgstr "Приватный ключ с публичным отпечатком {fingerprint}"
 
@@ -2149,15 +2153,15 @@ msgstr "Приватный ключ с публичным отпечатком {
 #~ msgid "Private key {0}"
 #~ msgstr "Закрытый ключ {0}"
 
-#: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:27
-#: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:39
-#: src/screens/SelectKey/SelectKeyDetailDialog.tsx:27
-#: src/screens/SelectKey/SelectKeyDetailDialog.tsx:39
+#: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:28
+#: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:40
+#: src/screens/SelectKey/SelectKeyDetailDialog.tsx:28
+#: src/screens/SelectKey/SelectKeyDetailDialog.tsx:40
 msgid "Private key {fingerprint}"
 msgstr ""
 
-#: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:50
-#: src/screens/SelectKey/SelectKeyDetailDialog.tsx:50
+#: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:51
+#: src/screens/SelectKey/SelectKeyDetailDialog.tsx:51
 msgid "Private key:"
 msgstr "Закрытый ключ:"
 
@@ -2178,8 +2182,8 @@ msgstr "Закрытый ключ:"
 #~ msgid "Pubkey"
 #~ msgstr "Публичный ключ"
 
-#: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:58
-#: src/screens/SelectKey/SelectKeyDetailDialog.tsx:58
+#: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:59
+#: src/screens/SelectKey/SelectKeyDetailDialog.tsx:59
 msgid "Public key:"
 msgstr "Открытый ключ:"
 
@@ -2339,12 +2343,12 @@ msgstr "Открытый ключ:"
 #~ msgid "Secure your keychain using a strong passphrase"
 #~ msgstr ""
 
-#: src/screens/SelectKey/SelectKeyItem.tsx:125
+#: src/screens/SelectKey/SelectKeyItem.tsx:150
 msgid "See private key"
 msgstr "Посмотреть закрытый ключ"
 
-#: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:84
-#: src/screens/SelectKey/SelectKeyDetailDialog.tsx:84
+#: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:85
+#: src/screens/SelectKey/SelectKeyDetailDialog.tsx:85
 msgid "Seed:"
 msgstr "Семя:"
 
@@ -2356,7 +2360,7 @@ msgstr "Семя:"
 #~ msgid "Select Final Directory"
 #~ msgstr "Выберите окончательный каталог"
 
-#: src/screens/SelectKey/SelectKey.tsx:97
+#: src/screens/SelectKey/SelectKey.tsx:135
 msgid "Select Key"
 msgstr "Выбор ключа"
 
@@ -2468,7 +2472,7 @@ msgstr "Показать дополнительные опции"
 #~ msgid "Side"
 #~ msgstr "Направление"
 
-#: src/screens/SelectKey/SelectKey.tsx:102
+#: src/screens/SelectKey/SelectKey.tsx:140
 msgid "Sign In"
 msgstr "Войти в систему"
 
@@ -2916,7 +2920,7 @@ msgstr ""
 #~ msgid "Transactions Filter Hash"
 #~ msgstr "Хэш фильтра транзакций"
 
-#: src/screens/SelectKey/SelectKey.tsx:85
+#: src/screens/SelectKey/SelectKey.tsx:123
 msgid "Try Again"
 msgstr ""
 
@@ -2928,7 +2932,7 @@ msgstr ""
 #~ msgid "Unable to create plot NFT"
 #~ msgstr "Невозможно создать участок NFT"
 
-#: src/screens/SelectKey/SelectKey.tsx:89
+#: src/screens/SelectKey/SelectKey.tsx:127
 msgid "Unable to load the list of the keys"
 msgstr ""
 
@@ -2945,7 +2949,7 @@ msgstr ""
 #~ msgid "Unique identifier"
 #~ msgstr "Уникальный идентификатор"
 
-#: src/components/LocaleToggle/LocaleToggle.tsx:47
+#: src/components/LocaleToggle/LocaleToggle.tsx:48
 msgid "Unknown"
 msgstr "Неизвестный"
 
@@ -2978,7 +2982,7 @@ msgstr ""
 #~ msgid "Value is too high"
 #~ msgstr "Value is too high"
 
-#: src/components/Fee/Fee.tsx:34
+#: src/components/Fee/Fee.tsx:33
 msgid "Value seems high"
 msgstr "Значение вероятно завышено"
 
@@ -3035,6 +3039,7 @@ msgstr "Значение вероятно завышено"
 #~ msgid "Waiting for the transaction to be confirmed"
 #~ msgstr "Ожидание подтверждения транзакции"
 
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:102
 #: src/components/Settings/SettingsApp.tsx:69
 msgid "Wallet"
 msgstr ""
@@ -3105,15 +3110,15 @@ msgstr ""
 #~ msgid "Warm start"
 #~ msgstr ""
 
-#: src/screens/SelectKey/SelectKeyItem.tsx:92
+#: src/screens/SelectKey/SelectKeyItem.tsx:117
 msgid "Warning: This key is used for a wallet that may have a non-zero balance. By deleting this key you may lose access to this wallet"
 msgstr "Предупреждение: Этот ключ используется для кошелька, который может иметь ненулевой баланс. Удаляя этот ключ, вы можете потерять доступ к этому кошельку"
 
-#: src/screens/SelectKey/SelectKeyItem.tsx:74
+#: src/screens/SelectKey/SelectKeyItem.tsx:99
 msgid "Warning: This key is used for your farming rewards address. By deleting this key you may lose access to any future farming rewards"
 msgstr "Предупреждение: Этот ключ используется для вашего адреса фермерских вознаграждений. Удаляя этот ключ, вы можете потерять доступ к будущим фермерским вознаграждениям"
 
-#: src/screens/SelectKey/SelectKeyItem.tsx:83
+#: src/screens/SelectKey/SelectKeyItem.tsx:108
 msgid "Warning: This key is used for your pool rewards address. By deleting this key you may lose access to any future pool rewards"
 msgstr "Предупреждение: Этот ключ используется для вашего адреса фермерских вознаграждений. Удаляя этот ключ, вы можете потерять доступ к будущим фермерским вознаграждениям"
 
@@ -3125,7 +3130,7 @@ msgstr "Предупреждение: Этот ключ используется
 #~ msgid "Weight is the total added difficulty of all sub blocks up to and including this one"
 #~ msgstr "Вес - это общая добавленная сложность всех подблоков, включая этот"
 
-#: src/screens/SelectKey/SelectKey.tsx:105
+#: src/screens/SelectKey/SelectKey.tsx:143
 msgid "Welcome to Chia. Please log in with an existing key, or create a new key."
 msgstr "Добро пожаловать в Чиа. Пожалуйста, войдите в систему с существующим ключом или создайте новый ключ."
 
@@ -3244,9 +3249,9 @@ msgstr "У вас есть несохраненные изменения. Хот
 #~ msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Are you sure you want to skip migrating your keys?"
 #~ msgstr ""
 
-#: src/components/_selectKey_old/SelectKey.tsx:141
-#~ msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Would you like to migrate your keys now?"
-#~ msgstr ""
+#: src/hooks/useKeyringMigrationPrompt.tsx:20
+msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Would you like to migrate your keys now?"
+msgstr ""
 
 #: src/components/app/AppKeyringMigrator.tsx:106
 #~ msgid "Your keys need to be migrated to a new keyring that is optionally secured by a master passphrase."
@@ -3323,6 +3328,10 @@ msgstr "У вас есть несохраненные изменения. Хот
 #~ msgid "{0, plural, one {Passphrases must be at least # character in length} other {Passphrases must be at least # characters in length}}"
 #~ msgstr ""
 
+#: src/components/Amount/Amount.tsx:96
+msgid "{0, plural, one {mojo} other {mojos}}"
+msgstr ""
+
 #: src/components/farm/card/FarmCardBlockRewards.tsx:16
 #~ msgid "{0} Block Rewards"
 #~ msgstr "{0} Block Rewards"
@@ -3357,8 +3366,8 @@ msgid "{minPassphraseLength, plural, one {Passphrases must be at least # charact
 msgstr ""
 
 #: src/components/Amount/Amount.tsx:95
-msgid "{mojo, plural, one {mojo} other {mojos}}"
-msgstr ""
+#~ msgid "{mojo, plural, one {mojo} other {mojos}}"
+#~ msgstr ""
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:118
 #~ msgid "{warning}"

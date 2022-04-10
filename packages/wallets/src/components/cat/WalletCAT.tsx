@@ -1,15 +1,14 @@
-import React from 'react';
-import { Alert } from '@material-ui/lab';
+import React, { useState } from 'react';
 import { Trans } from '@lingui/macro';
 import { Card, CopyToClipboard, Flex, Loading, useOpenDialog } from '@chia/core';
-import { InputAdornment, Typography } from '@material-ui/core';
-import { Edit as RenameIcon, Fingerprint as FingerprintIcon } from '@material-ui/icons';
+import { Alert, InputAdornment, Typography } from '@mui/material';
+import { Edit as RenameIcon, Fingerprint as FingerprintIcon } from '@mui/icons-material';
 import {
   Box,
   TextField,
   ListItemIcon,
   MenuItem,
-} from '@material-ui/core';
+} from '@mui/material';
 import { useSetCATNameMutation, useGetCatListQuery } from '@chia/api-react';
 import WalletHistory from '../WalletHistory';
 import useWallet from '../../hooks/useWallet';
@@ -30,6 +29,7 @@ export default function WalletCAT(props: Props) {
   const { data: catList = [], isLoading: isCatListLoading } = useGetCatListQuery();
   const openDialog = useOpenDialog();
   const [setCATName] = useSetCATNameMutation();
+  const [selectedTab, setSelectedTab] = useState<'summary' | 'send' | 'receive'>('summary');
 
   function handleRename() {
     if (!wallet) {
@@ -71,8 +71,10 @@ export default function WalletCAT(props: Props) {
 
   return (
     <Flex flexDirection="column" gap={2}>
-      <WalletHeader 
+      <WalletHeader
         walletId={walletId}
+        tab={selectedTab}
+        onTabChange={setSelectedTab}
         actions={({ onClose }) => (
           <>
             {canRename && (
@@ -106,12 +108,18 @@ export default function WalletCAT(props: Props) {
           </>
         )}
       />
-      <Flex flexDirection="column" gap={3}>
-        <WalletCards walletId={walletId} />
-        <WalletReceiveAddress walletId={walletId} />
+      {selectedTab === 'summary' && (
+        <Flex flexDirection="column" gap={4}>
+          <WalletCards walletId={walletId} />
+          <WalletHistory walletId={walletId} />
+        </Flex>
+      )}
+      {selectedTab === 'send' && (
         <WalletCATSend walletId={walletId} />
-        <WalletHistory walletId={walletId} />
-      </Flex>
+      )}
+      {selectedTab === 'receive' && (
+        <WalletReceiveAddress walletId={walletId} />
+      )}
     </Flex>
   );
 }

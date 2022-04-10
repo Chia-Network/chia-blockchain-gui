@@ -253,8 +253,8 @@ export default class Wallet extends Service {
     includeMyOffers?: boolean,
     includeTakenOffers?: boolean) {
     return this.command('get_all_offers', {
-      include_completed: true,
-      file_contents: true,
+      includeCompleted: true,
+      fileContents: true,
       start,
       end,
       sortKey,
@@ -269,16 +269,17 @@ export default class Wallet extends Service {
     });
   }
 
-  async createOfferForIds(walletIdsAndAmounts: { [key: string]: number }, validateOnly?: boolean) {
+  async createOfferForIds(offer: { [key: string]: number }, fee: number, validateOnly?: boolean) {
     return this.command('create_offer_for_ids', {
-      offer: walletIdsAndAmounts,
-      validate_only: validateOnly || false,
+      offer,
+      fee,
+      validateOnly: !!validateOnly,
     });
   }
 
   async cancelOffer(tradeId: string, secure: boolean, fee: number | string) {
     return this.command('cancel_offer', {
-      trade_id: tradeId,
+      tradeId: tradeId,
       secure,
       fee,
     });
@@ -305,15 +306,15 @@ export default class Wallet extends Service {
 
   async getOfferData(offerId: string) {
     return this.command('get_offer', {
-      trade_id: offerId,
-      file_contents: true,
+      tradeId: offerId,
+      fileContents: true,
     });
   }
 
   async getOfferRecord(offerId: string) {
     return this.command('get_offer', {
-      trade_id: offerId,
-      file_contents: false,
+      tradeId: offerId,
+      fileContents: false,
     });
   }
 
