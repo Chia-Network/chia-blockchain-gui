@@ -97,16 +97,60 @@ function NFTTransferConfirmationDialog(
         <Divider />
         <Flex flexDirection="column" gap={1}>
           <Flex flexDirection="row" gap={1}>
-            <Typography variant="body1">
-              <Trans>Destination:</Trans>
-            </Typography>
-            <Typography variant="body1">{destinationDID}</Typography>
+            <Flex flexShrink={0}>
+              <Typography variant="body1">
+                <Trans>Destination:</Trans>
+              </Typography>
+            </Flex>
+            <Flex
+              flexDirection="row"
+              alignItems="center"
+              gap={1}
+              sx={{ overflow: 'hidden' }}
+            >
+              <Typography noWrap variant="body1">
+                {destinationDID}
+              </Typography>
+              <TooltipIcon interactive>
+                <Flex flexDirection="column" gap={1}>
+                  <StyledTitle>
+                    <Trans>Destination</Trans>
+                  </StyledTitle>
+                  <StyledValue>
+                    <Typography variant="caption">{destinationDID}</Typography>
+                  </StyledValue>
+                </Flex>
+              </TooltipIcon>
+            </Flex>
           </Flex>
           <Flex flexDirection="row" gap={1}>
-            <Typography variant="body1">
-              <Trans>Destination Inner Puzzle Hash:</Trans>
-            </Typography>
-            <Typography variant="body1">{destinationInnerPH}</Typography>
+            <Flex flexShrink={0}>
+              <Typography variant="body1">
+                <Trans>Destination Inner Puzzle Hash:</Trans>
+              </Typography>
+            </Flex>
+            <Flex
+              flexDirection="row"
+              alignItems="center"
+              gap={1}
+              sx={{ overflow: 'hidden' }}
+            >
+              <Typography noWrap variant="body1">
+                {destinationInnerPH}
+              </Typography>
+              <TooltipIcon interactive>
+                <Flex flexDirection="column" gap={1}>
+                  <StyledTitle>
+                    <Trans>Destination Inner Puzzle Hash</Trans>
+                  </StyledTitle>
+                  <StyledValue>
+                    <Typography variant="caption">
+                      {destinationInnerPH}
+                    </Typography>
+                  </StyledValue>
+                </Flex>
+              </TooltipIcon>
+            </Flex>
           </Flex>
           <Flex flexDirection="row" gap={1}>
             <Typography variant="body1">Fee:</Typography>
