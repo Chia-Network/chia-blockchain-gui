@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { Plural, Trans } from '@lingui/macro';
+import styled from 'styled-components';
 import {
   Button,
   ButtonLoading,
@@ -9,6 +10,7 @@ import {
   FormatLargeNumber,
   Flex,
   TextField,
+  TooltipIcon,
   chiaToMojo,
   useCurrencyCode,
   useOpenDialog,
@@ -33,6 +35,19 @@ import {
   colors,
   animals,
 } from 'unique-names-generator';
+
+/* ========================================================================== */
+/*                                   Styles                                   */
+/* ========================================================================== */
+
+const StyledTitle = styled(Box)`
+  font-size: 0.625rem;
+  color: rgba(255, 255, 255, 0.7);
+`;
+
+const StyledValue = styled(Box)`
+  word-break: break-all;
+`;
 
 /* ========================================================================== */
 /*                              NFTTransferResult                             */
@@ -135,13 +150,20 @@ type NFTTransferFormData = {
 
 type NFTTransferActionProps = {
   nftAssetId: string;
+  nftName: string;
   destinationDID?: string;
   destinationInnerPH?: string;
   onComplete?: (result?: NFTTransferResult) => void;
 };
 
 export default function NFTTransferAction(props: NFTTransferActionProps) {
-  const { nftAssetId, destinationDID, destinationInnerPH, onComplete } = props;
+  const {
+    nftAssetId,
+    nftName,
+    destinationDID,
+    destinationInnerPH,
+    onComplete,
+  } = props;
   const [isLoading, setIsLoading] = useState(false);
   const openDialog = useOpenDialog();
   const methods = useForm<NFTTransferFormData>({
@@ -206,11 +228,61 @@ export default function NFTTransferAction(props: NFTTransferActionProps) {
   return (
     <Form methods={methods} onSubmit={handleSubmit}>
       <Flex flexDirection="column" gap={3}>
-        <Flex flexDirection="row" gap={1}>
-          <Typography variant="body1">
-            <Trans>Asset ID:</Trans>
-          </Typography>
-          <Typography variant="body1">{nftAssetId}</Typography>
+        <Flex flexDirection="column" gap={1}>
+          <Flex flexDirection="row" gap={1}>
+            <Flex flexShrink={0}>
+              <Typography variant="body1">
+                <Trans>NFT Name:</Trans>
+              </Typography>
+            </Flex>
+            <Flex
+              flexDirection="row"
+              alignItems="center"
+              gap={1}
+              sx={{ overflow: 'hidden' }}
+            >
+              <Typography noWrap variant="body1">
+                {nftName}
+              </Typography>
+              <TooltipIcon interactive>
+                <Flex flexDirection="column" gap={1}>
+                  <StyledTitle>
+                    <Trans>NFT Name</Trans>
+                  </StyledTitle>
+                  <StyledValue>
+                    <Typography variant="caption">{nftName}</Typography>
+                  </StyledValue>
+                </Flex>
+              </TooltipIcon>
+            </Flex>
+          </Flex>
+          <Flex flexDirection="row" gap={1}>
+            <Flex flexShrink={0}>
+              <Typography variant="body1">
+                <Trans>Asset ID:</Trans>
+              </Typography>
+            </Flex>
+            <Flex
+              flexDirection="row"
+              alignItems="center"
+              gap={1}
+              sx={{ overflow: 'hidden' }}
+            >
+              <Typography noWrap variant="body1">
+                {nftAssetId}
+              </Typography>
+              <TooltipIcon interactive>
+                <Flex flexDirection="column" gap={1}>
+                  <StyledTitle>
+                    <Trans>NFT Asset ID</Trans>
+                  </StyledTitle>
+                  <StyledValue>
+                    <Typography variant="caption">{nftAssetId}</Typography>
+                  </StyledValue>
+                </Flex>
+              </TooltipIcon>
+            </Flex>
+          </Flex>
         </Flex>
         <TextField
           name="destinationDID"
@@ -310,9 +382,8 @@ export function NFTTransferDialog(props: NFTTransferDialogProps) {
       <DialogTitle id="nft-transfer-dialog-title">
         <Flex flexDirection="row" gap={1}>
           <Typography variant="h6">
-            <Trans>Transfer NFT: </Trans>
+            <Trans>Transfer NFT</Trans>
           </Typography>
-          <Typography variant="h6">{nftFakeName}</Typography>
         </Flex>
       </DialogTitle>
       <DialogContent>
@@ -326,6 +397,7 @@ export function NFTTransferDialog(props: NFTTransferDialogProps) {
           </DialogContentText>
           <NFTTransferAction
             nftAssetId={nftAssetId}
+            nftName={nftFakeName}
             destinationDID={destinationDID}
             onComplete={handleCompletion}
           />

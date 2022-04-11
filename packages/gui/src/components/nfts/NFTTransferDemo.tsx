@@ -1,7 +1,7 @@
 import React from 'react';
 import { Trans } from '@lingui/macro';
 import { AlertDialog, Flex, Form, TextField, useOpenDialog } from '@chia/core';
-import { Button, Grid } from '@mui/material';
+import { Button } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { NFTTransferDialog, NFTTransferResult } from './NFTTransferAction';
 
@@ -60,27 +60,31 @@ export default function NFTTransferDemo() {
   }
 
   return (
-    <Form methods={methods} onSubmit={handleInitiateTransfer}>
-      <Grid container>
-        <Grid lg={3} item>
+    <Flex flexDirection="row" flexGrow={1} gap={3} style={{ padding: '1rem' }}>
+      <Flex flexDirection="column" flexGrow={1} gap={3}>
+        <Form methods={methods} onSubmit={handleInitiateTransfer}>
           <Flex flexDirection="column" gap={3}>
-            <Button type="submit" variant="contained" color="primary">
-              <Trans>Transfer NFT</Trans>
-            </Button>
             <TextField
               name="nftAssetId"
               variant="outlined"
               label="NFT Coin Info"
               required
+              fullWidth
             />
             <TextField
               name="destinationDID"
               variant="outlined"
               label="Destination DID Address (optional)"
+              fullWidth
             />
+            <Flex justifyContent="flex-end">
+              <Button type="submit" variant="contained" color="primary">
+                <Trans>Transfer NFT</Trans>
+              </Button>
+            </Flex>
           </Flex>
-        </Grid>
-      </Grid>
-    </Form>
+        </Form>
+      </Flex>
+    </Flex>
   );
 }
