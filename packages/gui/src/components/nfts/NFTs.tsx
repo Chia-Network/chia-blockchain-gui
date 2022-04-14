@@ -3,9 +3,7 @@ import { Trans } from '@lingui/macro';
 import { Flex, DropdownActions, useOpenDialog } from '@chia/core';
 import {
   Dialog,
-  DialogActions,
   DialogContent,
-  DialogContentText,
   DialogTitle,
   ListItemIcon,
   MenuItem,
@@ -15,12 +13,10 @@ import { ArrowForward as TransferIcon } from '@mui/icons-material';
 import NFTTransferDemo from './NFTTransferDemo';
 
 export default function NFTs() {
-  const actions = undefined;
   const openDialog = useOpenDialog();
 
   function handleTransferNFT() {
     const open = true;
-    console.log('handleTransferNFT called in NFTs');
 
     openDialog(
       <Dialog

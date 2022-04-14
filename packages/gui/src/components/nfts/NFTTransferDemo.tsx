@@ -21,9 +21,6 @@ export default function NFTTransferDemo() {
   });
 
   function handleComplete(result?: NFTTransferResult) {
-    console.log('handleComplete called in NFTTransferDemo');
-    console.log(result);
-
     if (result) {
       if (result.success) {
         openDialog(
@@ -47,10 +44,8 @@ export default function NFTTransferDemo() {
 
   async function handleInitiateTransfer(formData: NFTTransferDemoFormData) {
     const { nftAssetId, destinationDID } = formData;
-    console.log('handleInitiateTransfer called in NFTs');
-    console.log(formData);
 
-    const result = await openDialog(
+    await openDialog(
       <NFTTransferDialog
         nftAssetId={nftAssetId}
         destinationDID={destinationDID}

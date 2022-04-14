@@ -58,7 +58,6 @@ export type NFTTransferResult = {
   transferInfo?: {
     nftAssetId: string;
     destinationDID: string;
-    destinationInnerPH: string;
     fee: string;
   };
   error?: string;
@@ -75,7 +74,7 @@ type NFTTransferConfirmationDialogProps = NFTTransferFormData & {
 function NFTTransferConfirmationDialog(
   props: NFTTransferConfirmationDialogProps,
 ) {
-  const { destinationDID, destinationInnerPH, fee, ...rest } = props;
+  const { destinationDID, fee, ...rest } = props;
   const feeInMojos = chiaToMojo(fee || 0);
   const currencyCode = useCurrencyCode();
 
@@ -124,35 +123,6 @@ function NFTTransferConfirmationDialog(
             </Flex>
           </Flex>
           <Flex flexDirection="row" gap={1}>
-            <Flex flexShrink={0}>
-              <Typography variant="body1">
-                <Trans>Destination Inner Puzzle Hash:</Trans>
-              </Typography>
-            </Flex>
-            <Flex
-              flexDirection="row"
-              alignItems="center"
-              gap={1}
-              sx={{ overflow: 'hidden' }}
-            >
-              <Typography noWrap variant="body1">
-                {destinationInnerPH}
-              </Typography>
-              <TooltipIcon interactive>
-                <Flex flexDirection="column" gap={1}>
-                  <StyledTitle>
-                    <Trans>Destination Inner Puzzle Hash</Trans>
-                  </StyledTitle>
-                  <StyledValue>
-                    <Typography variant="caption">
-                      {destinationInnerPH}
-                    </Typography>
-                  </StyledValue>
-                </Flex>
-              </TooltipIcon>
-            </Flex>
-          </Flex>
-          <Flex flexDirection="row" gap={1}>
             <Typography variant="body1">Fee:</Typography>
             <Typography variant="body1">
               {fee || '0'} {currencyCode}
@@ -188,7 +158,6 @@ NFTTransferConfirmationDialog.defaultProps = {
 
 type NFTTransferFormData = {
   destinationDID: string;
-  destinationInnerPH: string;
   fee: string;
 };
 
@@ -196,25 +165,17 @@ type NFTTransferActionProps = {
   nftAssetId: string;
   nftName: string;
   destinationDID?: string;
-  destinationInnerPH?: string;
   onComplete?: (result?: NFTTransferResult) => void;
 };
 
 export default function NFTTransferAction(props: NFTTransferActionProps) {
-  const {
-    nftAssetId,
-    nftName,
-    destinationDID,
-    destinationInnerPH,
-    onComplete,
-  } = props;
+  const { nftAssetId, nftName, destinationDID, onComplete } = props;
   const [isLoading, setIsLoading] = useState(false);
   const openDialog = useOpenDialog();
   const methods = useForm<NFTTransferFormData>({
     shouldUnregister: false,
     defaultValues: {
       destinationDID: destinationDID || '',
-      destinationInnerPH: destinationInnerPH || '',
       fee: '',
     },
   });
@@ -226,17 +187,14 @@ export default function NFTTransferAction(props: NFTTransferActionProps) {
   }
 
   async function handleSubmit(formData: NFTTransferFormData) {
-    const { destinationDID, destinationInnerPH, fee } = formData;
+    const { destinationDID, fee } = formData;
     let isValid = true;
     let confirmation = false;
-    console.log('handleSubmit called in NFTTransferAction');
-    console.log(formData);
 
     if (isValid) {
       confirmation = await openDialog(
         <NFTTransferConfirmationDialog
           destinationDID={destinationDID}
-          destinationInnerPH={destinationInnerPH}
           fee={fee}
         />,
       );
@@ -260,7 +218,6 @@ export default function NFTTransferAction(props: NFTTransferActionProps) {
           transferInfo: {
             nftAssetId,
             destinationDID,
-            destinationInnerPH,
             fee,
           },
           error: success ? undefined : errorMessage,
@@ -337,15 +294,6 @@ export default function NFTTransferAction(props: NFTTransferActionProps) {
           disabled={isLoading}
           required
         />
-        <TextField
-          name="destinationInnerPH"
-          variant="filled"
-          color="secondary"
-          fullWidth
-          label={<Trans>Destination DID Inner Puzzle Hash</Trans>}
-          disabled={isLoading}
-          required
-        />
         <Fee
           id="filled-secondary"
           variant="filled"
@@ -401,12 +349,10 @@ export function NFTTransferDialog(props: NFTTransferDialogProps) {
   }, [nftAssetId]);
 
   function handleClose() {
-    console.log('handleClose called in NFTTransferDialog');
     onClose(false);
   }
 
   function handleCompletion(result?: NFTTransferResult) {
-    console.log('handleCompletion called in NFTTransferDialog');
     onClose(true);
     if (onComplete) {
       onComplete(result);
