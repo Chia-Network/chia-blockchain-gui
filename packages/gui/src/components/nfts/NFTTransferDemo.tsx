@@ -6,6 +6,7 @@ import { useForm } from 'react-hook-form';
 import { NFTTransferDialog, NFTTransferResult } from './NFTTransferAction';
 
 type NFTTransferDemoFormData = {
+  walletId: number;
   nftAssetId: string;
   destinationDID?: string;
 };
@@ -15,6 +16,7 @@ export default function NFTTransferDemo() {
   const methods = useForm<NFTTransferDemoFormData>({
     shouldUnregister: false,
     defaultValues: {
+      walletId: 0,
       nftAssetId: '',
       destinationDID: '',
     },
@@ -43,10 +45,11 @@ export default function NFTTransferDemo() {
   }
 
   async function handleInitiateTransfer(formData: NFTTransferDemoFormData) {
-    const { nftAssetId, destinationDID } = formData;
+    const { walletId, nftAssetId, destinationDID } = formData;
 
     await openDialog(
       <NFTTransferDialog
+        walletId={walletId}
         nftAssetId={nftAssetId}
         destinationDID={destinationDID}
         onComplete={handleComplete}
@@ -59,6 +62,13 @@ export default function NFTTransferDemo() {
       <Flex flexDirection="column" flexGrow={1} gap={3}>
         <Form methods={methods} onSubmit={handleInitiateTransfer}>
           <Flex flexDirection="column" gap={3}>
+            <TextField
+              name="walletId"
+              variant="outlined"
+              label="Wallet ID"
+              required
+              fullWidth
+            />
             <TextField
               name="nftAssetId"
               variant="outlined"
