@@ -267,8 +267,8 @@ export default function Settings() {
             textColor="primary"
             indicatorColor="primary"
           >
-            <Tab value="GENERAL" label={<Trans>General</Trans>} />
-            <Tab value="PROFILES" label={<Trans>Identities</Trans>} />
+            <Tab value="GENERAL" label={<Trans>General</Trans>} style={{width:"175px"}}/>
+            <Tab value="PROFILES" label={<Trans>Profiles</Trans>} style={{width:"175px"}}/>
           </Tabs>
 
           <Routes>

@@ -1,21 +1,75 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { Trans } from '@lingui/macro';
-import { Typography } from "@mui/material";
-import { useNavigate } from 'react-router-dom';
+import {
+  IconButton,
+  Typography,
+} from "@mui/material";
+import {
+  Flex,
+} from '@chia/core';
+import {
+  Route,
+  Routes,
+  useNavigate,
+} from 'react-router-dom';
+import IdentitiesPanel from './IdentitiesPanel';
+import { LayoutDashboardSub } from '@chia/core';
+import ProfileView from './ProfileView';
+import ProfileAdd from './ProfileAdd';
+import { Add } from '@mui/icons-material';
+import { useGetWalletsQuery } from '@chia/api-react';
+import { WalletType, type Wallet } from '@chia/api';
 
 export default function SettingsProfiles() {
   const navigate = useNavigate();
-  const [didWallets] = useState([]);
+  const { data: wallets, isLoading } = useGetWalletsQuery();
+
+  const didList = useMemo(() => {
+    let dids = [];
+    if (wallets) {
+      wallets.forEach((wallet) => {
+        if (wallet.type === WalletType.DISTRIBUTED_ID) {
+          dids.push(wallet.id);
+        }
+      });
+    }
+    return dids;
+  }, [wallets]);
+
+  console.log(didList);
 
   useEffect(() => {
-    if (didWallets.length) {
-      navigate(`/dashboard/settings/profiles/${didWallets[0].id}`);
+    if (didList.length) {
+      navigate(`/dashboard/settings/profiles/${didList[0]}`);
+    } else {
+      navigate(`/dashboard/settings/profiles/add`);
     }
-  }, [didWallets]);
+  }, [didList]);
+
+  function navAdd() {
+    navigate(`/dashboard/settings/profiles/add`);
+  }
 
   return (
-    <Typography>
-      <Trans>Settings Profile</Trans>
-    </Typography>
+    <div>
+      <Flex flexDirection="row" style={{width:"350px"}}>
+        <Flex flexGrow={1}>
+          <Typography variant="h4">
+            <Trans>Profiles</Trans>
+          </Typography>
+        </Flex>
+        <Flex alignSelf="end">
+          <IconButton onClick={navAdd}>
+            <Add />
+          </IconButton>
+        </Flex>
+      </Flex>
+      <Routes>
+        <Route element={<LayoutDashboardSub sidebar={<IdentitiesPanel />} outlet />}>
+          <Route path=":walletId" element={<ProfileView />} />
+          <Route path="add" element={<ProfileAdd />} />
+        </Route>
+      </Routes>
+    </div>
   );
 }
