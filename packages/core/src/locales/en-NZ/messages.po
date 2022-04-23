@@ -8,7 +8,7 @@ msgstr ""
 "Language: en_NZ\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-04-23 10:22\n"
+"PO-Revision-Date: 2022-04-23 11:18\n"
 "Last-Translator: \n"
 "Language-Team: English, New Zealand\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -3079,7 +3079,7 @@ msgstr "You have made changes. Do you want to discard them?"
 
 #: src/hooks/useKeyringMigrationPrompt.tsx:20
 msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Would you like to migrate your keys now?"
-msgstr ""
+msgstr "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Would you like to migrate your keys now?"
 
 #: src/components/app/AppKeyringMigrator.tsx:106
 #~ msgid "Your keys need to be migrated to a new keyring that is optionally secured by a master passphrase."
@@ -3158,7 +3158,7 @@ msgstr ""
 
 #: src/components/Amount/Amount.tsx:96
 msgid "{0, plural, one {mojo} other {mojos}}"
-msgstr ""
+msgstr "{0, plural, one {mojo} other {mojos}}"
 
 #: src/components/farm/card/FarmCardBlockRewards.tsx:16
 #~ msgid "{0} Block Rewards"
@@ -3191,7 +3191,7 @@ msgstr ""
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:33
 msgid "{minPassphraseLength, plural, one {Passphrases must be at least # character in length} other {Passphrases must be at least # characters in length}}"
-msgstr ""
+msgstr "{minPassphraseLength, plural, one {Passphrases must be at least # character in length} other {Passphrases must be at least # characters in length}}"
 
 #: src/components/Amount/Amount.tsx:95
 #~ msgid "{mojo, plural, one {mojo} other {mojos}}"
