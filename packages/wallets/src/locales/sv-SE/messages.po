@@ -8,7 +8,7 @@ msgstr ""
 "Language: sv_SE\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-04-20 18:15\n"
+"PO-Revision-Date: 2022-04-24 18:53\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -36,7 +36,7 @@ msgstr ""
 
 #: src/components/WalletHistory.tsx:150
 msgid "+"
-msgstr ""
+msgstr "+"
 
 #: src/components/plot/add/PlotAddNFT.tsx:128
 #~ msgid "+ Add New Plot NFT"
@@ -52,7 +52,7 @@ msgstr ""
 
 #: src/components/WalletHistory.tsx:149
 msgid "-"
-msgstr ""
+msgstr "-"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:94
 #~ msgid "0 automatically chooses bucket count"
@@ -1646,7 +1646,7 @@ msgstr "Min publika nyckel"
 
 #: src/components/cat/WalletCATCreateExistingSimple.tsx:71
 msgid "Name"
-msgstr ""
+msgstr "Namn"
 
 #: src/components/fullNode/card/FullNodeCardNetworkName.tsx:14
 #~ msgid "Network Name"
@@ -1700,7 +1700,7 @@ msgstr "Smeknamn"
 
 #: src/components/offers/OfferManager.tsx:458
 msgid "No current offers"
-msgstr ""
+msgstr "Inga aktuella erbjudanden"
 
 #: src/components/WalletHistory.tsx:323
 msgid "No previous transactions"
