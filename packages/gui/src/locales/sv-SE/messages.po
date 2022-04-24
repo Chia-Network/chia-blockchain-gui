@@ -8,7 +8,7 @@ msgstr ""
 "Language: sv_SE\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-04-20 18:13\n"
+"PO-Revision-Date: 2022-04-24 18:53\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -1553,7 +1553,7 @@ msgstr ""
 
 #: src/components/dashboard/DashboardSideBar.tsx:70
 msgid "Offers"
-msgstr ""
+msgstr "Erbjudanden"
 
 #: src/components/trading/TradingOverview.jsx:412
 #~ msgid "Offers Created"
