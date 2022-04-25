@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import type { PlotNFT, Plot } from '@chia/api';
 import { useIsWalletSynced } from '@chia/wallets';
 import PlotNFTState from '../constants/PlotNFTState';
-import usePlots from './usePlots';
+// import usePlots from './usePlots';
 import usePlotNFTName from './usePlotNFTName';
 
 export default function usePlotNFTDetails(nft: PlotNFT): {
@@ -18,7 +18,7 @@ export default function usePlotNFTDetails(nft: PlotNFT): {
 } {
   const isWalletSynced = useIsWalletSynced();
 
-  const { plots } = usePlots();
+  // const { plots } = usePlots();
   const humanName = usePlotNFTName(nft);
 
   const details = useMemo(() => {
@@ -46,13 +46,15 @@ export default function usePlotNFTDetails(nft: PlotNFT): {
       canEdit: isWalletSynced && (!isPending || isLeavingPool),
       humanName,
       isSelfPooling,
+      /*
       plots:
         plots &&
         plots.filter(
           (plot) => plot.poolContractPuzzleHash === poolContractPuzzleHash,
         ),
+        */
     };
-  }, [nft, isWalletSynced, plots, humanName]);
+  }, [nft, isWalletSynced, /*plots,*/ humanName]);
 
   return details;
 }

@@ -81,6 +81,42 @@ export default class Farmer extends Service {
     return this.command('get_harvesters');
   }
 
+  async getHarvesterPlots(peerId: string, page = 0, pageSize = 10) {
+    return this.command('get_harvester_plots', {
+      peerId,
+      page,
+      pageSize,
+    });
+  }
+
+  async getHarvesterPlotsInvalid(peerId: string, page = 0, pageSize = 10) {
+    return this.command('get_harvester_plots_invalid', {
+      peerId,
+      page,
+      pageSize,
+    });
+  }
+
+  async getHarvesterPlotsKeysMissing(peerId: string, page = 0, pageSize = 10) {
+    return this.command('get_harvester_plots_keys_missing', {
+      peerId,
+      page,
+      pageSize,
+    });
+  }
+
+  async getHarvesterPlotsDuplicates(peerId: string, page = 0, pageSize = 10) {
+    return this.command('get_harvester_plots_duplicates', {
+      peerId,
+      page,
+      pageSize,
+    });
+  }
+
+  async getHarvestersSummary() {
+    return this.command('get_harvesters_summary');
+  }
+
   async getPoolLoginLink(launcherId: string) {
     return this.command('get_pool_login_link', {
       launcherId,

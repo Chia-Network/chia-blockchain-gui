@@ -4,7 +4,7 @@ import { Link, Table, Card, FormatBytes } from '@chia/core';
 import { useGetFarmingInfoQuery } from '@chia/api-react';
 import moment from 'moment';
 import type { Row } from '../core/components/Table/Table';
-import usePlots from '../../hooks/usePlots';
+// import usePlots from '../../hooks/usePlots';
 
 const cols = [
   {
@@ -32,7 +32,7 @@ const cols = [
 ];
 
 export default function FarmLastAttemptedProof() {
-  const { size } = usePlots();
+  // const { size } = usePlots();
 
   const { data: lastAttemptedProof, isLoading } = useGetFarmingInfoQuery();
 
@@ -66,7 +66,7 @@ export default function FarmLastAttemptedProof() {
             <>
               <Trans>None of your plots have passed the plot filter yet.</Trans>
 
-              {!!size && (
+              {/* !!size && (
                 <>
                   {' '}
                   <Trans>
@@ -74,7 +74,7 @@ export default function FarmLastAttemptedProof() {
                     <FormatBytes value={size} precision={3} />
                   </Trans>
                 </>
-              )}
+              ) */}
             </>
           )
         }

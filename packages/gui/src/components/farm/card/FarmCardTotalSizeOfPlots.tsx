@@ -1,10 +1,11 @@
 import React from 'react';
 import { Trans } from '@lingui/macro';
 import { FormatBytes, CardSimple } from '@chia/core';
-import usePlots from '../../../hooks/usePlots';
+// import usePlots from '../../../hooks/usePlots';
 
 export default function FarmCardTotalSizeOfPlots() {
-  const { size } = usePlots();
+  // const { size } = 'N/A'; // usePlots();
+  const size = 'N/A';
 
   return (
     <CardSimple

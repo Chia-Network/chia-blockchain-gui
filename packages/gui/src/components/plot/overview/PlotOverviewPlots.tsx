@@ -3,6 +3,7 @@ import { Trans } from '@lingui/macro';
 import styled from 'styled-components';
 import { Warning as WarningIcon } from '@mui/icons-material';
 import {
+  Button,
   Card,
   Flex,
   Table,
@@ -25,7 +26,10 @@ import PlotHeader from '../PlotHeader';
 import PlotQueueSize from '../queue/PlotQueueSize';
 import PlotQueueActions from '../queue/PlotQueueActions';
 import PlotQueueIndicator from '../queue/PlotQueueIndicator';
-import usePlots from '../../../hooks/usePlots';
+import PlotOverviewCards from './PlotOverviewCards';
+import PlotHarvesters from '../PlotHarvesters';
+import { useNavigate } from 'react-router';
+// import usePlots from '../../../hooks/usePlots';
 
 const StyledTableRowQueue = styled(TableRow)`
   background-color: ${({ theme }) =>
@@ -61,12 +65,6 @@ const cols = [
       );
     },
     title: <Trans>K-Size</Trans>,
-  },
-  {
-    minWidth: '100px',
-    field: 'queue-name',
-    tooltip: 'queue-name',
-    title: <Trans>Queue name</Trans>,
   },
   {
     minWidth: '100px',
@@ -116,6 +114,33 @@ const cols = [
 ];
 
 export default function PlotOverviewPlots() {
+  const navigate = useNavigate();
+
+  function handleAddPlot() {
+    navigate('/dashboard/plot/add');
+  }
+
+  return (
+    <Flex flexDirection="column" gap={4}>
+      <Flex flexDirection="column" gap={2}>
+        <Flex flexGrow={1} justifyContent="space-between">
+          <Typography variant="h5">
+            <Trans>Plotting</Trans>
+          </Typography>
+          <Button variant="outlined" color="primary" onClick={handleAddPlot}>
+            <Trans>+ Add a Plot</Trans>
+          </Button>
+        </Flex>
+
+        <PlotOverviewCards />
+
+
+      </Flex>
+      <PlotHarvesters />
+    </Flex>
+  );
+
+  /*
   const { plots, size, queue, loading } = usePlots();
   if (!plots) {
     return null;
@@ -184,4 +209,5 @@ export default function PlotOverviewPlots() {
       </Card>
     </>
   );
+  */
 }

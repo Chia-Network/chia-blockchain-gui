@@ -1,15 +1,14 @@
 import React from 'react';
-import { AdvancedOptions, Flex, LayoutDashboardSub } from '@chia/core';
-import { useGetHarvesterConnectionsQuery } from '@chia/api-react';
+import { AdvancedOptions, Flex, LayoutDashboardSub, Loading } from '@chia/core';
+import { useGetHarvesterConnectionsQuery, useGetTotalHarvestersSummaryQuery } from '@chia/api-react';
 import FarmOverview from './overview/FarmOverview';
 import FarmLatestBlockChallenges from './FarmLatestBlockChallenges';
 import FarmFullNodeConnections from './FarmFullNodeConnections';
 import FarmYourHarvesterNetwork from './FarmYourHarvesterNetwork';
 import FarmLastAttemptedProof from './FarmLastAttemptedProof';
-import usePlots from '../../hooks/usePlots';
 
 export default function Farm() {
-  const { hasPlots } = usePlots();
+  const { hasPlots, isLoading } = useGetTotalHarvestersSummaryQuery();
   const { data: connections } = useGetHarvesterConnectionsQuery();
 
   return (
@@ -17,7 +16,9 @@ export default function Farm() {
       <Flex flexDirection="column" gap={4}>
         <FarmOverview />
 
-        {hasPlots ? (
+        {isLoading ? (
+          <Loading center />
+        ) : hasPlots ? (
           <>
             <FarmLastAttemptedProof />
             <FarmLatestBlockChallenges />
