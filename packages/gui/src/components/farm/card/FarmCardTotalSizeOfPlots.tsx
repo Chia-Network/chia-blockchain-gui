@@ -10,7 +10,7 @@ export default function FarmCardTotalSizeOfPlots() {
   return (
     <CardSimple
       title={<Trans>Total Size of Plots</Trans>}
-      value={<FormatBytes value={size} precision={3} />}
+      value={'N/A'/*<FormatBytes value={size} precision={3} />*/}
     />
   );
 }

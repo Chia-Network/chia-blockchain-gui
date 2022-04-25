@@ -9,7 +9,7 @@ export default function FarmCardPlotCount() {
   return (
     <CardSimple
       title={<Trans>Plot Count</Trans>}
-      value={<FormatLargeNumber value={uniquePlots?.length} />}
+      value={'N/A'/*<FormatLargeNumber value={uniquePlots?.length} />*/}
       loading={isLoading}
     />
   );
