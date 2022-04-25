@@ -18,10 +18,10 @@ export default function PlotOverviewCards() {
           <PlotCardTotalPlots />
         </Grid>
         <Grid xs={12} sm={6} md={4} item>
-          <PlotCardNotFound />
+          <PlotCardPlotsProcessed />
         </Grid>
         <Grid xs={12} sm={6} md={4} item>
-          <PlotCardPlotsProcessed />
+          <PlotCardNotFound />
         </Grid>
         <Grid xs={12} sm={6} md={4} item>
           <PlotCardPlotsFailedToOpen />
