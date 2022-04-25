@@ -42,6 +42,7 @@ export default function FarmLastAttemptedProof() {
   return (
     <Card
       title={<Trans>Last Attempted Proof</Trans>}
+      titleVariant="h6"
       tooltip={
         <Trans>
           This table shows you the last time your farm attempted to win a block

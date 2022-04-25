@@ -5,7 +5,7 @@ import { FormatBytes, CardSimple } from '@chia/core';
 
 export default function FarmCardTotalSizeOfPlots() {
   // const { size } = 'N/A'; // usePlots();
-  const size = 'N/A';
+  const size = 0;
 
   return (
     <CardSimple

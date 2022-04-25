@@ -30,6 +30,7 @@ export default function FarmLatestBlockChallenges() {
     <Card
       gap={1}
       title={<Trans>Latest Block Challenges</Trans>}
+      titleVariant="h6"
       tooltip={
         hasPlots ? (
           <Trans>
