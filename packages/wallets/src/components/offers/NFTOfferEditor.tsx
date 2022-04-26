@@ -195,7 +195,7 @@ function NFTOfferConditionalsPanel(props: NFTOfferConditionalsPanelProps) {
             type="submit"
             loading={isProcessing}
           >
-            <Trans>Save Offer</Trans>
+            <Trans>Create Offer</Trans>
           </ButtonLoading>
         </Flex>
       </Flex>
