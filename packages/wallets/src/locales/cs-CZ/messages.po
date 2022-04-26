@@ -8,7 +8,7 @@ msgstr ""
 "Language: cs_CZ\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-04-21 10:41\n"
+"PO-Revision-Date: 2022-04-26 23:17\n"
 "Last-Translator: \n"
 "Language-Team: Czech\n"
 "Plural-Forms: nplurals=4; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 3;\n"
@@ -3492,7 +3492,7 @@ msgstr "Upozornění"
 
 #: src/components/offers/OfferSummary.tsx:97
 msgid "Warning: Verify that the offered CAT asset IDs match the asset IDs of the tokens you expect to receive."
-msgstr "Varování: Ověřte, že nabízená ID CAT aktiva odpovídají ID aktiva tokenů, které očekáváte, že obdržíte."
+msgstr "Varování: Ověřte, že ID nabízených CAT aktiv odpovídají ID aktiv tokenů, které očekáváte, že obdržíte."
 
 #: src/components/block/Block.jsx:194
 #~ msgid "Weight"
