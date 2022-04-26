@@ -8,7 +8,7 @@ msgstr ""
 "Language: cs_CZ\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-04-21 07:34\n"
+"PO-Revision-Date: 2022-04-26 23:17\n"
 "Last-Translator: \n"
 "Language-Team: Czech\n"
 "Plural-Forms: nplurals=4; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 3;\n"
@@ -1951,7 +1951,7 @@ msgstr "Částka odměny sdružení"
 
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:37
 msgid "Pool does not provide relativeLockHeight."
-msgstr "Pool neposkytuje provide relativeLockHeight."
+msgstr "Pool neposkytuje relativeLockHeight."
 
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:38
 #~ msgid "Pool does not provide relative_lock_height."
