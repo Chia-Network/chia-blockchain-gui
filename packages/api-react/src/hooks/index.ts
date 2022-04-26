@@ -5,6 +5,7 @@ export { default as useGetHarvesterConnectionsQuery } from './useGetHarvesterCon
 export { default as useGetHarvesterQuery } from './useGetHarvesterQuery';
 export { default as useGetHarvesterStats } from './useGetHarvesterStats';
 export { default as useLogout } from './useLogout';
+export { default as useNFTMetadata } from './useNFTMetadata';
 export { default as useService } from './useService';
 export { default as useGetThrottlePlotQueueQuery } from './useGetThrottlePlotQueueQuery';
 export { default as useServices } from './useServices';
