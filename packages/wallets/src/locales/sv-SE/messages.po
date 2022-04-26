@@ -8,7 +8,7 @@ msgstr ""
 "Language: sv_SE\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-04-24 18:53\n"
+"PO-Revision-Date: 2022-04-26 05:17\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -83,7 +83,7 @@ msgstr "-"
 #: src/components/offers/OfferViewer.tsx:289
 #: src/components/offers/OfferViewer.tsx:290
 msgid "Accept Offer"
-msgstr ""
+msgstr "Acceptera erbjudandet"
 
 #: src/components/trading/TradingOverview.jsx:227
 #~ msgid "Accepted at time:"
@@ -91,7 +91,7 @@ msgstr ""
 
 #: src/components/offers/OfferViewer.tsx:194
 msgid "Accepted on Date"
-msgstr ""
+msgstr "Accepterades den"
 
 #: src/components/plot/PlotsFailed.tsx:18
 #: src/components/plot/PlotsNotFound.tsx:18
@@ -717,7 +717,7 @@ msgstr ""
 
 #: src/components/offers/OfferManager.tsx:512
 msgid "Create an offer to exchange XCH or other tokens. View an offer to inspect and accept an offer made by another party."
-msgstr ""
+msgstr "Skapa ett erbjudande för att växla XCH eller andra token. Visa ett erbjudande för att granska och acceptera ett erbjudande från annan part."
 
 #: src/components/cat/WalletCATCreateExisting.tsx:75
 msgid "Create custom CAT Wallet"
@@ -943,7 +943,7 @@ msgstr ""
 
 #: src/components/offers/OfferImport.tsx:122
 msgid "Drag & drop an offer file below to view its details"
-msgstr ""
+msgstr "Dra & släpp en erbjudandefil nedan för att visa dess detaljer"
 
 #: src/components/cat/WalletDID.tsx:426
 #: src/components/did/WalletDID.tsx:426
@@ -3347,7 +3347,7 @@ msgstr "Publik nyckel för användare"
 #: src/components/offers/OfferImport.tsx:153
 #: src/components/offers/OfferManager.tsx:520
 msgid "View an Offer"
-msgstr ""
+msgstr "Visa erbjudande"
 
 #: src/components/offers/OfferShareDialog.tsx:509
 msgid "View on Hashgreen DEX"
@@ -3367,15 +3367,15 @@ msgstr "Visa väntande saldon"
 
 #: src/components/offers/OfferViewer.tsx:552
 msgid "Viewing offer"
-msgstr ""
+msgstr "Visar erbjudande"
 
 #: src/components/offers/OfferViewer.tsx:550
 msgid "Viewing offer created at {0}"
-msgstr ""
+msgstr "Visar erbjudande som skapades {0}"
 
 #: src/components/offers/OfferViewer.tsx:548
 msgid "Viewing offer: {offerFilePath}"
-msgstr ""
+msgstr "Visar erbjudande: {offerFilePath}"
 
 #: src/components/farm/card/FarmCardNotAvailable.tsx:26
 #: src/components/plot/PlotStatus.tsx:26
