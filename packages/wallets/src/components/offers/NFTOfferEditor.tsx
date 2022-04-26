@@ -1,16 +1,24 @@
 import React, { useMemo, useState } from 'react';
+import { useForm, useFormContext } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
+import BigNumber from 'bignumber.js';
 import { Trans, t } from '@lingui/macro';
+import { useLocalStorage } from '@rehooks/local-storage';
 import type { NFT } from '@chia/api';
+import { useCreateOfferForIdsMutation } from '@chia/api-react';
 import {
   Amount,
   Back,
   Button,
   ButtonLoading,
+  ConfirmDialog,
   Fee,
   Flex,
   Form,
   TextField,
-  fromBech32m,
+  chiaToMojo,
+  useOpenDialog,
+  useShowError,
 } from '@chia/core';
 import {
   Box,
@@ -21,7 +29,8 @@ import {
   Tab,
   Typography,
 } from '@mui/material';
-import { useForm, useFormContext } from 'react-hook-form';
+import OfferLocalStorageKeys from './OfferLocalStorage';
+import { isValidNFTId, launcherIdFromNFTId } from './utils';
 
 /* ========================================================================== */
 /*              Temporary home for the NFT-specific Offer Editor              */
@@ -30,24 +39,25 @@ import { useForm, useFormContext } from 'react-hook-form';
 
 /* ========================================================================== */
 
-enum NFTOfferEditorTab {
-  NFTForXCH = 1,
-  XCHForNFT = 2,
+enum NFTOfferEditorExchangeType {
+  NFTForXCH = 'nft_for_xch',
+  XCHForNFT = 'xch_for_nft',
 }
 
 /* ========================================================================== */
 
 type NFTOfferConditionalsPanelProps = {
   defaultValues: NFTOfferEditorFormData;
+  isProcessing: boolean;
 };
 
 function NFTOfferConditionalsPanel(props: NFTOfferConditionalsPanelProps) {
-  const { defaultValues } = props;
+  const { defaultValues, isProcessing } = props;
+  const disabled = isProcessing;
   const methods = useFormContext();
-  const [tab, setTab] = useState<'nft_for_xch' | 'xch_for_nft'>('nft_for_xch');
   const [amountFocused, setAmountFocused] = useState<boolean>(false);
-  const [processing, setIsProcessing] = useState<boolean>(false);
 
+  const tab = methods.watch('exchangeType');
   const amount = methods.watch('xchAmount');
   // HACK: manually determine the value for the amount field's shrink input prop.
   // Without this, toggling between the two tabs with an amount specified will cause
@@ -67,7 +77,7 @@ function NFTOfferConditionalsPanel(props: NFTOfferConditionalsPanelProps) {
         variant="filled"
         name="nftId"
         color="secondary"
-        // disabled={disabled}
+        disabled={disabled}
         label={<Trans>NFT</Trans>}
         defaultValue={defaultValues.nftId}
         placeholder={t`NFT Identifier`}
@@ -84,7 +94,7 @@ function NFTOfferConditionalsPanel(props: NFTOfferConditionalsPanelProps) {
         variant="filled"
         name="xchAmount"
         color="secondary"
-        // disabled={disabled}
+        disabled={disabled}
         label={<Trans>Amount</Trans>}
         defaultValue={amount}
         onChange={handleAmountChange}
@@ -96,8 +106,10 @@ function NFTOfferConditionalsPanel(props: NFTOfferConditionalsPanelProps) {
       />
     </Grid>
   );
-  const offerElem = tab === 'nft_for_xch' ? nftElem : amountElem;
-  const takerElem = tab === 'nft_for_xch' ? amountElem : nftElem;
+  const offerElem =
+    tab === NFTOfferEditorExchangeType.NFTForXCH ? nftElem : amountElem;
+  const takerElem =
+    tab === NFTOfferEditorExchangeType.NFTForXCH ? amountElem : nftElem;
 
   function handleAmountChange(amount: string) {
     methods.setValue('xchAmount', amount);
@@ -120,20 +132,25 @@ function NFTOfferConditionalsPanel(props: NFTOfferConditionalsPanelProps) {
     >
       <Tabs
         value={tab}
-        onChange={(_event, newValue) => setTab(newValue)}
+        onChange={(_event, newValue) =>
+          methods.setValue('exchangeType', newValue)
+        }
         textColor="primary"
         indicatorColor="primary"
       >
-        <Tab value="nft_for_xch" label={<Trans>NFT for XCH</Trans>} />
-        <Tab value="xch_for_nft" label={<Trans>XCH for NFT</Trans>} />
+        <Tab
+          value={NFTOfferEditorExchangeType.NFTForXCH}
+          label={<Trans>NFT for XCH</Trans>}
+          disabled={disabled}
+        />
+        <Tab
+          value={NFTOfferEditorExchangeType.XCHForNFT}
+          label={<Trans>XCH for NFT</Trans>}
+          disabled={disabled}
+        />
       </Tabs>
       <Grid container>
-        <Flex
-          flexDirection="column"
-          flexGrow={1}
-          gap={3}
-          // style={{ backgroundColor: 'purple' }}
-        >
+        <Flex flexDirection="column" flexGrow={1} gap={3}>
           <Flex flexDirection="column" gap={1}>
             <Typography variant="subtitle1">You will offer</Typography>
             {offerElem}
@@ -149,7 +166,7 @@ function NFTOfferConditionalsPanel(props: NFTOfferConditionalsPanelProps) {
               variant="filled"
               name="fee"
               color="secondary"
-              // disabled={disabled}
+              disabled={disabled}
               onChange={handleFeeChange}
               defaultValue={defaultValues.fee}
               label={<Trans>Fee</Trans>}
@@ -168,7 +185,7 @@ function NFTOfferConditionalsPanel(props: NFTOfferConditionalsPanelProps) {
             variant="outlined"
             type="reset"
             onClick={handleReset}
-            disabled={processing}
+            disabled={isProcessing}
           >
             <Trans>Reset</Trans>
           </Button>
@@ -176,7 +193,7 @@ function NFTOfferConditionalsPanel(props: NFTOfferConditionalsPanelProps) {
             variant="contained"
             color="primary"
             type="submit"
-            loading={processing}
+            loading={isProcessing}
           >
             <Trans>Save Offer</Trans>
           </ButtonLoading>
@@ -185,6 +202,10 @@ function NFTOfferConditionalsPanel(props: NFTOfferConditionalsPanelProps) {
     </Flex>
   );
 }
+
+NFTOfferConditionalsPanel.defaultProps = {
+  isProcessing: false,
+};
 
 /* ========================================================================== */
 
@@ -196,19 +217,11 @@ function NFTOfferPreview(props: NFTOfferPreviewProps) {
   const nftId = methods.watch('nftId');
 
   const isValidNFT = useMemo(() => {
-    if (nftId === undefined || nftId.length === 0) {
+    if (nftId === undefined) {
       return false;
     }
-    try {
-      fromBech32m(nftId);
-      return true;
-    } catch (e) {
-      return false;
-    }
+    return isValidNFTId(nftId);
   }, [nftId]);
-
-  console.log('isValidNFT: ', nftId);
-  console.log(isValidNFT);
 
   const borderStyle = isValidNFT ? '2px solid #E0E0E0' : '2px dashed #E0E0E0';
 
@@ -241,35 +254,23 @@ function NFTOfferPreview(props: NFTOfferPreviewProps) {
             border: `${borderStyle}`,
             borderRadius: '24px',
             display: 'flex',
-            // overflow: 'hidden',
-            // alignItems: 'center',
-            // justifyContent: 'center',
           }}
         >
-          {/* <Flex
-            flexDirection="column"
-            alignItems="center"
-            flexGrow={1}
-            gap={1}
-            style={{
-              wordBreak: 'break-all',
-              // padding: '0.5rem',
-            }}
-          > */}
           {isValidNFT ? (
+            // TODO: The following is a placeholder for the NFT preview component
             <Flex flexDirection="column" flexGrow={1} gap={0}>
               <Flex
                 flexDirection="column"
                 alignItems="center"
                 style={{
                   width: '100%',
-                  padding: '0.5rem 0.5rem 3px 0.5rem',
+                  padding: '0.5rem 0.5rem 5px 0.5rem',
                 }}
               >
                 <Skeleton
                   variant="rectangular"
                   width="100%"
-                  height="61px"
+                  height="59px"
                   style={{ borderRadius: '18px 18px 0px 0px' }}
                 />
               </Flex>
@@ -283,18 +284,21 @@ function NFTOfferPreview(props: NFTOfferPreviewProps) {
               <Flex
                 flexDirection="column"
                 alignItems="center"
-                style={{ width: '100%', padding: '3px 0.5rem 0px 0.5rem' }}
+                style={{ width: '100%', padding: '5px 0.5rem 0px 0.5rem' }}
               >
-                <Skeleton variant="rectangular" width="100%" height="69px" />
+                <Skeleton variant="rectangular" width="100%" height="67px" />
               </Flex>
               <Flex
                 flexDirection="column"
-                style={{ width: '100%', padding: '3px 0.5rem 0.5rem 0.5rem' }}
+                style={{
+                  width: '100%',
+                  padding: '5px 0.5rem 0.5rem 0.5rem',
+                }}
               >
                 <Skeleton
                   variant="rectangular"
                   width="100%"
-                  height="33px"
+                  height="31px"
                   style={{ borderRadius: '0px 0px 18px 18px' }}
                 />
               </Flex>
@@ -308,7 +312,6 @@ function NFTOfferPreview(props: NFTOfferPreviewProps) {
               gap={1}
               style={{
                 wordBreak: 'break-all',
-                // padding: '0.5rem',
               }}
             >
               <Typography variant="h6">
@@ -316,9 +319,22 @@ function NFTOfferPreview(props: NFTOfferPreviewProps) {
               </Typography>
             </Flex>
           )}
-          {/* </Flex> */}
         </Box>
       </Flex>
+    </Flex>
+  );
+}
+
+/* ========================================================================== */
+/*                        NFT Offer Editor Confirmation                       */
+/* ========================================================================== */
+
+function NFTOfferEditorConfirmation() {
+  return (
+    <Flex flexDirection="column" gap={3}>
+      <Typography>
+        <Trans>Are you sure you want to create this offer?</Trans>
+      </Typography>
     </Flex>
   );
 }
@@ -329,19 +345,65 @@ function NFTOfferPreview(props: NFTOfferPreviewProps) {
 /* ========================================================================== */
 
 type NFTOfferEditorFormData = {
+  exchangeType: NFTOfferEditorExchangeType;
   nftId?: string;
+  xchAmount: string;
+  fee: string;
+};
+
+type NFTOfferEditorValidatedFormData = {
+  exchangeType: NFTOfferEditorExchangeType;
+  nftLauncherId: string;
   xchAmount: string;
   fee: string;
 };
 
 type NFTOfferEditorProps = {
   nft?: NFT;
-  onOfferCreated?: (obj: { offerRecord: any; offerData: any }) => void;
+  onOfferCreated: (obj: { offerRecord: any; offerData: any }) => void;
 };
+
+function buildOfferRequest(
+  exchangeType: NFTOfferEditorExchangeType,
+  nftLauncherId: string,
+  xchAmount: string
+) {
+  const baseMojoAmount: BigNumber = chiaToMojo(xchAmount);
+  const mojoAmount =
+    exchangeType === NFTOfferEditorExchangeType.NFTForXCH
+      ? baseMojoAmount
+      : baseMojoAmount.negated();
+  const nftAmount =
+    exchangeType === NFTOfferEditorExchangeType.NFTForXCH ? -1 : 1;
+  const xchWalletId = 1;
+  const driverDict = {
+    [nftLauncherId]: {
+      launcher_id: `0x${nftLauncherId}`,
+      also: {
+        metadata: '',
+      },
+    },
+  };
+
+  return {
+    [nftLauncherId]: nftAmount,
+    [xchWalletId]: mojoAmount,
+    driver_dict: driverDict,
+  };
+}
 
 export default function NFTOfferEditor(props: NFTOfferEditorProps) {
   const { nft, onOfferCreated } = props;
+  const [createOfferForIds] = useCreateOfferForIdsMutation();
+  const [isProcessing, setIsProcessing] = useState(false);
+  const openDialog = useOpenDialog();
+  const errorDialog = useShowError();
+  const navigate = useNavigate();
+  const [suppressShareOnCreate] = useLocalStorage<boolean>(
+    OfferLocalStorageKeys.SUPPRESS_SHARE_ON_CREATE
+  );
   const defaultValues: NFTOfferEditorFormData = {
+    exchangeType: NFTOfferEditorExchangeType.NFTForXCH,
     nftId: nft?.id ?? '',
     xchAmount: '',
     fee: '',
@@ -351,8 +413,101 @@ export default function NFTOfferEditor(props: NFTOfferEditorProps) {
     defaultValues,
   });
 
-  async function handleSubmit(formData: NFTOfferEditorFormData) {
-    console.log('handleSubmit', formData);
+  function validateFormData(
+    unvalidatedFormData: NFTOfferEditorFormData
+  ): NFTOfferEditorValidatedFormData | undefined {
+    const { exchangeType, nftId, xchAmount, fee } = unvalidatedFormData;
+    const nftLauncherId = nftId ? launcherIdFromNFTId(nftId) : undefined;
+    let result: NFTOfferEditorValidatedFormData | undefined = undefined;
+
+    console.log('validateFormData:');
+    console.log(unvalidatedFormData);
+
+    if (!nftId) {
+      errorDialog(new Error(t`Please enter an NFT identifier`));
+    } else if (!isValidNFTId(nftId)) {
+      errorDialog(new Error(t`Invalid NFT identifier`));
+    } else if (!nftLauncherId) {
+      errorDialog(new Error(t`Failed to decode NFT identifier`));
+    } else if (!xchAmount || xchAmount === '0') {
+      errorDialog(new Error(t`Please enter an amount`));
+    } else {
+      result = {
+        exchangeType,
+        nftLauncherId,
+        xchAmount,
+        fee,
+      };
+    }
+
+    return result;
+  }
+
+  async function handleSubmit(unvalidatedFormData: NFTOfferEditorFormData) {
+    const formData = validateFormData(unvalidatedFormData);
+
+    if (!formData) {
+      console.log('Invalid NFT offer:');
+      console.log(unvalidatedFormData);
+      return;
+    }
+
+    const { exchangeType, nftLauncherId, xchAmount, fee } = formData;
+    const offer = buildOfferRequest(exchangeType, nftLauncherId, xchAmount);
+
+    console.log('offer:');
+    console.log(offer);
+
+    const confirmedCreation = await openDialog(
+      <ConfirmDialog
+        title={<Trans>Create Offer</Trans>}
+        confirmTitle={<Trans>Create Offer</Trans>}
+        confirmColor="primary"
+        cancelTitle={<Trans>Cancel</Trans>}
+      >
+        <NFTOfferEditorConfirmation />
+      </ConfirmDialog>
+    );
+
+    if (!confirmedCreation) {
+      return;
+    }
+
+    setIsProcessing(true);
+
+    try {
+      await new Promise(resolve => setTimeout(resolve, 5000));
+      // const response = await createOfferForIds({
+      //   walletIdsAndAmounts: offer,
+      //   feeInMojos: fee,
+      //   validateOnly: false,
+      // }).unwrap();
+      const response = {
+        success: true,
+        error: '',
+        offer: '',
+        tradeRecord: {},
+      };
+
+      if (response.success === false) {
+        const error =
+          response.error ||
+          new Error('Encountered an unknown error while creating offer');
+        errorDialog(error);
+      } else {
+        const { offer: offerData, tradeRecord: offerRecord } = response;
+
+        navigate(-1);
+
+        if (!suppressShareOnCreate) {
+          onOfferCreated({ offerRecord, offerData });
+        }
+      }
+    } catch (err) {
+      errorDialog(err);
+    } finally {
+      setIsProcessing(false);
+    }
   }
 
   return (
@@ -368,7 +523,10 @@ export default function NFTOfferEditor(props: NFTOfferEditorProps) {
         }}
       >
         <Flex flexDirection="row">
-          <NFTOfferConditionalsPanel defaultValues={defaultValues} />
+          <NFTOfferConditionalsPanel
+            defaultValues={defaultValues}
+            isProcessing={isProcessing}
+          />
           <NFTOfferPreview />
         </Flex>
       </Flex>
@@ -383,7 +541,7 @@ export default function NFTOfferEditor(props: NFTOfferEditorProps) {
 type CreateNFTOfferEditorProps = {
   nft?: NFT;
   referrerPath?: string;
-  onOfferCreated?: (obj: { offerRecord: any; offerData: any }) => void;
+  onOfferCreated: (obj: { offerRecord: any; offerData: any }) => void;
 };
 
 export function CreateNFTOfferEditor(props: CreateNFTOfferEditorProps) {
@@ -407,7 +565,3 @@ export function CreateNFTOfferEditor(props: CreateNFTOfferEditorProps) {
     </Grid>
   );
 }
-
-CreateNFTOfferEditor.defaultProps = {
-  onOfferCreated: () => {},
-};
