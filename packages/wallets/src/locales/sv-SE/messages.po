@@ -8,7 +8,7 @@ msgstr ""
 "Language: sv_SE\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-04-26 05:17\n"
+"PO-Revision-Date: 2022-04-26 06:31\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -135,7 +135,7 @@ msgstr ""
 #: src/components/hero/WalletHeroAdd.tsx:64
 #: src/components/hero/WalletHeroWallets.tsx:83
 msgid "Add Token"
-msgstr ""
+msgstr "Lägg till token"
 
 #: src/components/wallet/Wallets.tsx:88
 #~ msgid "Add Wallet"
@@ -168,7 +168,7 @@ msgstr ""
 
 #: src/components/cat/WalletCATCreateSimple.tsx:94
 msgid "Adding {0} token"
-msgstr ""
+msgstr "Lägger till token {0}"
 
 #: src/components/WalletReceiveAddress.tsx:55
 msgid "Address"
@@ -451,7 +451,7 @@ msgstr ""
 #: src/components/create/WalletCreateList.tsx:32
 #: src/constants/WalletName.ts:23
 msgid "Chia Asset Token"
-msgstr ""
+msgstr "Chia Asset Token"
 
 #: src/electron/main.tsx:369
 #~ msgid "Chia Blockchain Wiki"
@@ -498,7 +498,7 @@ msgstr "Namn på mynt"
 
 #: src/components/offers/OfferViewer.tsx:522
 msgid "Coins"
-msgstr ""
+msgstr "Mynt"
 
 #: src/components/trading/TradingOverview.jsx:365
 #~ msgid "Coins:"
@@ -1246,7 +1246,7 @@ msgstr "HD eller Hierarkiska Deterministiska nycklar är en typ av schema med pu
 
 #: src/components/offers/OfferShareDialog.tsx:491
 msgid "Hashgreen DEX URL"
-msgstr ""
+msgstr "Hashgreen DEX URL"
 
 #: src/components/fullNode/FullNode.jsx:60
 #~ msgid "Header Hash"
@@ -1435,7 +1435,7 @@ msgstr ""
 
 #: src/components/offers/OfferShareDialog.tsx:656
 msgid "Keybase command failed {e}. If you haven't installed Keybase, you can download from https://keybase.io"
-msgstr ""
+msgstr "Keybase-kommandot misslyckades {e}. Om du inte har installerat Keybase, kan du ladda ner från https://keybase.io"
 
 #: src/components/offers/OfferShareDialog.tsx:744
 msgid "Keybase is a secure messaging and file sharing application. To share an offer in the Keybase {KeybaseTeamName} team, you must first have Keybase installed."
@@ -1819,7 +1819,7 @@ msgstr ""
 
 #: src/components/offers/OfferShareDialog.tsx:350
 msgid "OfferBin URL"
-msgstr ""
+msgstr "OfferBin URL"
 
 #: src/components/offers/OfferManager.tsx:300
 msgid "Offered"
@@ -1864,7 +1864,7 @@ msgstr "Utgående"
 
 #: src/components/offers/OfferViewer.tsx:249
 msgid "Parent Coin"
-msgstr ""
+msgstr "Överordnat mynt"
 
 #: src/components/app/AppKeyringMigrator.tsx:139
 #: src/components/app/AppKeyringMigrator.tsx:140
@@ -2040,7 +2040,7 @@ msgstr "Ange en giltig publik nyckel"
 
 #: src/components/cat/WalletCATCreateExistingSimple.tsx:45
 msgid "Please enter a valid token name"
-msgstr ""
+msgstr "Ange ett giltigt tokennamn"
 
 #: src/components/offers/OfferEditor.tsx:115
 msgid "Please enter an amount for each row"
@@ -2571,7 +2571,7 @@ msgstr ""
 #: src/components/cat/WalletCATTAILDialog.tsx:71
 #: src/components/offers/OfferSummaryRow.tsx:94
 msgid "Search on Tail Database"
-msgstr ""
+msgstr "Sök i Tail-databasen"
 
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:106
 #~ msgid "Second temporary folder location"
@@ -2715,7 +2715,7 @@ msgstr ""
 
 #: src/components/offers/OfferShareDialog.tsx:537
 msgid "Share on Hashgreen DEX"
-msgstr ""
+msgstr "Dela på Hashgreen DEX"
 
 #: src/components/offers/OfferShareDialog.tsx:739
 msgid "Share on Keybase"
@@ -2723,7 +2723,7 @@ msgstr ""
 
 #: src/components/offers/OfferShareDialog.tsx:396
 msgid "Share on OfferBin"
-msgstr ""
+msgstr "Dela på OfferBin"
 
 #: src/components/offers/OfferShareDialog.tsx:885
 msgid "Share on offerpool"
@@ -3162,11 +3162,11 @@ msgstr ""
 
 #: src/components/cat/WalletCATCreateSimple.tsx:41
 msgid "Token has empty name"
-msgstr ""
+msgstr "Token har ett tomt namn"
 
 #: src/components/WalletsSidebar.tsx:86
 msgid "Tokens"
-msgstr ""
+msgstr "Token"
 
 #: src/components/card/WalletCardTotalBalance.tsx:45
 #: src/components/rateLimited/WalletRateLimited.jsx:542
@@ -3255,11 +3255,11 @@ msgstr ""
 
 #: src/components/offers/OfferShareDialog.tsx:669
 msgid "Unable to open Keybase. Install Keybase from https://keybase.io"
-msgstr ""
+msgstr "Det gick inte att öppna Keybase. Installera Keybase från https://keybase.io"
 
 #: src/components/offers/OfferShareDialog.tsx:592
 msgid "Unable to open browser. Install Keybase from https://keybase.io"
-msgstr ""
+msgstr "Det gick inte att öppna bläddraren. Installera Keybase från https://keybase.io"
 
 #: src/components/plotNFT/PlotNFTCard.tsx:147
 #: src/components/pool/PoolOverview.tsx:63
@@ -3351,11 +3351,11 @@ msgstr "Visa erbjudande"
 
 #: src/components/offers/OfferShareDialog.tsx:509
 msgid "View on Hashgreen DEX"
-msgstr ""
+msgstr "Visa på Hashgreen DEX"
 
 #: src/components/offers/OfferShareDialog.tsx:368
 msgid "View on OfferBin"
-msgstr ""
+msgstr "Visa på OfferBin"
 
 #: src/components/rateLimited/WalletRateLimited.jsx:561
 msgid "View pending balances"
