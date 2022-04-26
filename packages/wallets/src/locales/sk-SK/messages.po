@@ -8,7 +8,7 @@ msgstr ""
 "Language: sk_SK\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-04-26 22:06\n"
+"PO-Revision-Date: 2022-04-26 23:17\n"
 "Last-Translator: \n"
 "Language-Team: Slovak\n"
 "Plural-Forms: nplurals=4; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 3;\n"
@@ -292,7 +292,7 @@ msgstr "Zostatok"
 
 #: src/components/offers/OfferShareDialog.tsx:759
 msgid "Before posting an offer in Keybase to the #{KeybaseChannelName} channel, you must first join the {KeybaseTeamName} team. Please note that it might take a few moments to join the channel."
-msgstr ""
+msgstr "Pred odoslaním ponuky na Keybase kanál #{KeybaseChannelName} sa musíte najskôr pripojiť k tímu {KeybaseTeamName}. Upozorňujeme, že pripojenie ku kanálu môže chvíľu trvať."
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:33
 #: src/components/farm/FarmLatestBlockChallenges.tsx:43
@@ -397,7 +397,7 @@ msgstr "Zrušiť"
 #: src/components/offers/OfferManager.tsx:166
 #: src/components/offers/OfferManager.tsx:423
 msgid "Cancel Offer"
-msgstr ""
+msgstr "Zrušiť ponuku"
 
 #: src/components/trading/TradingOverview.jsx:388
 #~ msgid "Cancel and Spend"
@@ -405,12 +405,12 @@ msgstr ""
 
 #: src/components/offers/OfferManager.tsx:121
 msgid "Cancel on blockchain"
-msgstr ""
+msgstr "Zrušiť na blockchaine"
 
 #: src/components/WalletSend.tsx:99
 #: src/components/cat/WalletCATSend.tsx:119
 msgid "Cannot send chia to coloured address. Please enter a chia address."
-msgstr ""
+msgstr "Chia nie je možné odoslať na farebnú adresu. Zadajte prosím Chia adresu."
 
 #: src/components/plot/PlotsNotFound.tsx:36
 #~ msgid "Caution, deleting these plots will delete them forever. Check that the storage devices are properly connected."
@@ -451,7 +451,7 @@ msgstr ""
 #: src/components/create/WalletCreateList.tsx:32
 #: src/constants/WalletName.ts:23
 msgid "Chia Asset Token"
-msgstr ""
+msgstr "Chia Asset Token"
 
 #: src/electron/main.tsx:369
 #~ msgid "Chia Blockchain Wiki"
@@ -498,7 +498,7 @@ msgstr "Názov mince"
 
 #: src/components/offers/OfferViewer.tsx:522
 msgid "Coins"
-msgstr ""
+msgstr "Mince"
 
 #: src/components/trading/TradingOverview.jsx:365
 #~ msgid "Coins:"
@@ -555,12 +555,12 @@ msgstr "Potvrdenie"
 
 #: src/components/WalletHistory.tsx:111
 msgid "Confirmed"
-msgstr ""
+msgstr "Potvrdené"
 
 #: src/components/WalletHistory.tsx:290
 #: src/components/offers/OfferViewer.tsx:188
 msgid "Confirmed at Height"
-msgstr ""
+msgstr "Potvrdené na pozícii"
 
 #: src/components/trading/TradingOverview.jsx:200
 #~ msgid "Confirmed at block:"
@@ -645,7 +645,7 @@ msgstr "Vytvoriť atestačný paket"
 
 #: src/components/cat/WalletCATCreateExisting.tsx:76
 msgid "Create Chia Asset Token Wallet from Existing TAIL"
-msgstr ""
+msgstr "Vytvorte peňaženku Chia Asset Token z existujúcej TAIL"
 
 #: src/components/wallet/create/WalletCreate.jsx:290
 #~ msgid "Create DID wallet"
@@ -657,7 +657,7 @@ msgstr "Vytvoriť peňaženku s distribuovanou identitou"
 
 #: src/components/cat/WalletCATCreateNew.tsx:75
 msgid "Create New Chia Asset Token Wallet"
-msgstr ""
+msgstr "Vytvoriť novú Chia Asset Token peňaženku"
 
 #: src/components/cat/WalletCATSelect.tsx:32
 #: src/components/did/WalletDIDSelect.tsx:32
@@ -713,15 +713,15 @@ msgstr "Vytvoriť transakciu"
 #: src/components/offers/OfferEditor.tsx:232
 #: src/components/offers/OfferManager.tsx:517
 msgid "Create an Offer"
-msgstr ""
+msgstr "Vytvoriť ponuku"
 
 #: src/components/offers/OfferManager.tsx:512
 msgid "Create an offer to exchange XCH or other tokens. View an offer to inspect and accept an offer made by another party."
-msgstr ""
+msgstr "Vytvoriť ponuku na výmenu XCH alebo iných tokenov. Pozrite si ponuku pre preskúmanie a prijatie ponuky vytvorenej inou stranou."
 
 #: src/components/cat/WalletCATCreateExisting.tsx:75
 msgid "Create custom CAT Wallet"
-msgstr ""
+msgstr "Vytvoriť vlastnú CAT peňaženku"
 
 #: src/components/_wallet_old/create/WalletCreate.jsx:132
 #~ msgid "Create new coloured coin"
@@ -753,7 +753,7 @@ msgstr ""
 
 #: src/components/offers/OfferManager.tsx:123
 msgid "Creates and submits a transaction on the blockchain that cancels the offer"
-msgstr ""
+msgstr "Vytvorí a odošle transakciu, ktorá zruší ponuku, do blockchainu"
 
 #: src/components/plotNFT/PlotNFTUnconfirmedCard.tsx:61
 #~ msgid "Creating Plot NFT and Joining the Pool"
@@ -766,7 +766,7 @@ msgstr ""
 #: src/components/offers/OfferManager.tsx:339
 #: src/components/offers/OfferViewer.tsx:204
 msgid "Creation Date"
-msgstr ""
+msgstr "Dátum vytvorenia"
 
 #: src/components/plot/add/PlotAddForm.tsx:109
 #~ msgid "Currency code is not defined"
@@ -792,11 +792,11 @@ msgstr ""
 
 #: src/constants/WalletName.ts:20
 msgid "Custody Wallet"
-msgstr ""
+msgstr "Peňaženka Custody"
 
 #: src/components/cat/WalletCATCreateSimple.tsx:102
 msgid "Custom"
-msgstr ""
+msgstr "Vlastný"
 
 #: src/components/_selectKey_old/SelectKey.tsx:227
 #~ msgid "DANGER: permanently delete private key"
@@ -804,7 +804,7 @@ msgstr ""
 
 #: src/constants/WalletName.ts:29
 msgid "DID Wallet"
-msgstr ""
+msgstr "DID peňaženka"
 
 #: src/components/wallet/create/WalletCreate.jsx:310
 #~ msgid "DIDListItems.title"
@@ -2820,7 +2820,7 @@ msgstr "Limit výdavkov (chia na interval): {0}"
 
 #: src/constants/WalletName.ts:5
 msgid "Standard Wallet"
-msgstr ""
+msgstr "Štandardná peňaženka"
 
 #: src/components/app/AppState.tsx:161
 #~ msgid "Starting services"
@@ -2881,12 +2881,12 @@ msgstr "Odoslať"
 #: src/components/WalletSendTransactionResultDialog.tsx:15
 #: src/components/offers/OfferViewer.tsx:343
 msgid "Success"
-msgstr ""
+msgstr "Úspech"
 
 #: src/components/WalletHeader.tsx:58
 #: src/components/offers/OfferViewer.tsx:450
 msgid "Summary"
-msgstr ""
+msgstr "Zhrnutie"
 
 #: src/components/WalletStatus.tsx:39
 msgid "Synced"
@@ -3009,7 +3009,7 @@ msgstr "Počet zálohovacích ID potrebných na obnovu nemôže prekročiť poč
 
 #: src/components/WalletSendTransactionResultDialog.tsx:34
 msgid "The transaction could not be immediately included in the mempool because the specified fee is too low. The transaction will be retried periodically, and may be included in the mempool once fees are lower, or if space becomes available."
-msgstr ""
+msgstr "Transakcia nemohla byť okamžite zahrnutá do pamäťového fondu, pretože zadaný poplatok je príliš nízky. Transakcia sa zopakuje v pravidelných intervaloch, a môže byť zahrnutá do pamäťového fondu, keď budú poplatky nižšie, alebo ak sa uvoľní miesto."
 
 #: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:107
 #~ msgid "These are the instructions for how the farmer wants to get paid. By default this will be an XCH address, but it can be set to any string with a size of less than 1024 characters, so it can represent another blockchain or payment system identifier."
@@ -3021,7 +3021,7 @@ msgstr ""
 
 #: src/components/WalletBadge.tsx:26
 msgid "This access token is verified"
-msgstr ""
+msgstr "Tento prístupový token je overený"
 
 #: src/components/plot/PlotAddDirectoryDialog.tsx:89
 #~ msgid "This allows you to add a directory that has plots in it. If you have not created any plots, go to the plotting screen."
@@ -3040,7 +3040,7 @@ msgstr ""
 
 #: src/components/WalletHistory.tsx:90
 msgid "This is not a valid address for sending funds to"
-msgstr ""
+msgstr "Toto nie je platná adresa na posielanie prostriedkov"
 
 #: src/components/standard/WalletStandardCards.tsx:23
 msgid "This is the amount of Chia that you can currently use to make transactions. It does not include pending farming rewards, pending incoming transactions, and Chia that you have just spent but is not yet in the blockchain."
@@ -3086,23 +3086,23 @@ msgstr "Toto je celkový zostatok + nespracovaný zostatok alebo to, aký bude v
 
 #: src/components/offers/OfferViewer.tsx:210
 msgid "This number reflects the number of nodes that the accepted SpendBundle has been sent to"
-msgstr ""
+msgstr "Toto číslo vyjadruje počet uzlov, na ktoré bol odoslaný predtým prijatý balík SpendBundle"
 
 #: src/components/offers/OfferSummary.tsx:132
 msgid "This offer has a fee included to help expedite the transaction when the offer is accepted."
-msgstr ""
+msgstr "Táto ponuka zahŕňa poplatok, ktorý pomáha urýchliť transakciu po prijatí ponuky."
 
 #: src/components/offers/OfferSummary.tsx:128
 msgid "This offer has a fee included to help expedite the transaction when the offer is accepted. You may specify an additional fee if you feel that the included fee is too small."
-msgstr ""
+msgstr "Táto ponuka zahŕňa poplatok, ktorý pomáha urýchliť transakciu po prijatí ponuky. Ak máte pocit, že zahrnutý poplatok je príliš nízky, môžete zadať dodatočný poplatok."
 
 #: src/components/offers/OfferViewer.tsx:389
 msgid "This offer has completed successfully"
-msgstr ""
+msgstr "Táto ponuka bola úspešne dokončená"
 
 #: src/components/offers/OfferViewer.tsx:385
 msgid "This offer is no longer valid"
-msgstr ""
+msgstr "Táto ponuka už nie je platná"
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:307
 #~ msgid "This plot NFT is assigned to a different key. You can still create plots for this plot NFT, but you can not make changes."
@@ -3154,19 +3154,19 @@ msgstr "Príjemca"
 
 #: src/components/cat/WalletCATCreateExisting.tsx:85
 msgid "Token and Asset Issuance Limitations"
-msgstr ""
+msgstr "Obmedzenia vydávania tokenov a aktív"
 
 #: src/components/cat/WalletCATCreateSimple.tsx:45
 msgid "Token has empty asset id"
-msgstr ""
+msgstr "Token má prázdne ID aktíva"
 
 #: src/components/cat/WalletCATCreateSimple.tsx:41
 msgid "Token has empty name"
-msgstr ""
+msgstr "Token má prázdny názov"
 
 #: src/components/WalletsSidebar.tsx:86
 msgid "Tokens"
-msgstr ""
+msgstr "Tokeny"
 
 #: src/components/card/WalletCardTotalBalance.tsx:45
 #: src/components/rateLimited/WalletRateLimited.jsx:542
@@ -3235,11 +3235,11 @@ msgstr "Celkový zostatok"
 
 #: src/components/WalletSendTransactionResultDialog.tsx:27
 msgid "Transaction has successfully been sent to a full node and included in the mempool."
-msgstr ""
+msgstr "Transakcia bola úspešne odoslaná úplnému uzlu a zahrnutá do pamäťového fondu."
 
 #: src/components/WalletHistory.tsx:244
 msgid "Transactions"
-msgstr ""
+msgstr "Transakcie"
 
 #: src/components/block/Block.jsx:298
 #~ msgid "Transactions Filter Hash"
@@ -3255,11 +3255,11 @@ msgstr ""
 
 #: src/components/offers/OfferShareDialog.tsx:669
 msgid "Unable to open Keybase. Install Keybase from https://keybase.io"
-msgstr ""
+msgstr "Nie je možné otvoriť Keybase. Nainštalujte Keybase z https://keybase.io"
 
 #: src/components/offers/OfferShareDialog.tsx:592
 msgid "Unable to open browser. Install Keybase from https://keybase.io"
-msgstr ""
+msgstr "Nie je možné otvoriť prehliadač. Nainštalujte Keybase z https://keybase.io"
 
 #: src/components/plotNFT/PlotNFTCard.tsx:147
 #: src/components/pool/PoolOverview.tsx:63
@@ -3283,7 +3283,7 @@ msgstr ""
 #: src/components/offers/OfferSummaryRow.tsx:67
 #: src/components/offers/OfferViewer.tsx:412
 msgid "Unknown CAT"
-msgstr ""
+msgstr "Neznámy CAT"
 
 #: src/components/app/AppPassPrompt.tsx:83
 #~ msgid "Unlock Keyring"
@@ -3347,15 +3347,15 @@ msgstr "Používateľov verejný kľúč"
 #: src/components/offers/OfferImport.tsx:153
 #: src/components/offers/OfferManager.tsx:520
 msgid "View an Offer"
-msgstr ""
+msgstr "Zobraziť ponuku"
 
 #: src/components/offers/OfferShareDialog.tsx:509
 msgid "View on Hashgreen DEX"
-msgstr ""
+msgstr "Zobraziť na Hashgreen DEX"
 
 #: src/components/offers/OfferShareDialog.tsx:368
 msgid "View on OfferBin"
-msgstr ""
+msgstr "Zobraziť na OfferBin"
 
 #: src/components/rateLimited/WalletRateLimited.jsx:561
 msgid "View pending balances"
@@ -3367,15 +3367,15 @@ msgstr "Zobraziť nespracované zostatky"
 
 #: src/components/offers/OfferViewer.tsx:552
 msgid "Viewing offer"
-msgstr ""
+msgstr "Zobrazenie ponuky"
 
 #: src/components/offers/OfferViewer.tsx:550
 msgid "Viewing offer created at {0}"
-msgstr ""
+msgstr "Zobrazenie ponuky vytvorenej {0}"
 
 #: src/components/offers/OfferViewer.tsx:548
 msgid "Viewing offer: {offerFilePath}"
-msgstr ""
+msgstr "Zobrazenie ponuky: {offerFilePath}"
 
 #: src/components/farm/card/FarmCardNotAvailable.tsx:26
 #: src/components/plot/PlotStatus.tsx:26
@@ -3413,11 +3413,11 @@ msgstr "Peňaženka neexistuje"
 
 #: src/components/Wallet.tsx:50
 msgid "Wallet with type {0} not supported"
-msgstr ""
+msgstr "Peňaženka typu {0} nie je podporovaná"
 
 #: src/components/Wallet.tsx:23
 msgid "Wallet {walletId} not found"
-msgstr ""
+msgstr "Peňaženka {walletId} nebola nájdená"
 
 #: src/components/wallet/Wallets.tsx:34
 #~ msgid "WalletItem.ccWallet"
@@ -3473,7 +3473,7 @@ msgstr ""
 
 #: src/components/offers/OfferViewer.tsx:298
 msgid "Warning"
-msgstr ""
+msgstr "Upozornenie"
 
 #: src/components/_selectKey_old/SelectKey.tsx:88
 #: src/components/_selectKey_old/SelectKey.tsx:119
@@ -3490,7 +3490,7 @@ msgstr ""
 
 #: src/components/offers/OfferSummary.tsx:97
 msgid "Warning: Verify that the offered CAT asset IDs match the asset IDs of the tokens you expect to receive."
-msgstr ""
+msgstr "Upozornenie: Overte, či sa ID ponúkaných CAT aktív zhodujú s ID aktív tokenov, ktoré očakávate, že dostanete."
 
 #: src/components/block/Block.jsx:194
 #~ msgid "Weight"
@@ -3541,7 +3541,7 @@ msgstr "Keď obdržíte informačný paket od svojho administrátora, vložte ho
 
 #: src/components/offers/OfferViewer.tsx:381
 msgid "You created this offer"
-msgstr ""
+msgstr "Túto ponuku ste vytvorili vy"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:76
 #~ msgid "You do not need to be synced or connected to plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
@@ -3589,11 +3589,11 @@ msgstr ""
 
 #: src/components/offers/OfferEditorConditionsPanel.tsx:248
 msgid "You will offer"
-msgstr ""
+msgstr "Ponúknete"
 
 #: src/components/offers/OfferViewer.tsx:456
 msgid "You will receive"
-msgstr ""
+msgstr "Dostanete"
 
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:143
 #~ msgid "You will recieve <0/> to {0}"
@@ -3646,13 +3646,13 @@ msgstr "Vaše DID vyžaduje na obnovu aspoň {dids_num_req} atestačný súbor {
 
 #: src/components/offers/OfferShareDialog.tsx:707
 msgid "Your offer has been successfully posted to Keybase."
-msgstr ""
+msgstr "Vaša ponuka bola úspešne odoslaná na Keybase."
 
 #: src/components/offers/OfferShareDialog.tsx:402
 #: src/components/offers/OfferShareDialog.tsx:543
 #: src/components/offers/OfferShareDialog.tsx:891
 msgid "Your offer:"
-msgstr ""
+msgstr "Vaša ponuka:"
 
 #: src/components/app/AppKeyringMigrator.tsx:181
 #: src/components/settings/ChangePassphrasePrompt.tsx:211
@@ -3718,7 +3718,7 @@ msgstr "synchronizácia"
 
 #: src/components/offers/OfferShareDialog.tsx:853
 msgid "{0}"
-msgstr ""
+msgstr "{0}"
 
 #: src/components/farm/card/FarmCardBlockRewards.tsx:16
 #~ msgid "{0} Block Rewards"
@@ -3751,7 +3751,7 @@ msgstr ""
 
 #: src/components/offers/OfferSummary.tsx:125
 msgid "{makerFee, plural, one {mojo} other {mojos}}"
-msgstr ""
+msgstr "{makerFee, plural, one {mojo} few {mojos} many {mojos} other {mojos}}"
 
 #: src/components/core/components/Amount/Amount.tsx:82
 #~ msgid "{mojo, plural, one {mojo} other {mojos}}"
@@ -3760,7 +3760,7 @@ msgstr ""
 #: src/components/offers/OfferSummaryRow.tsx:41
 #: src/components/offers/OfferViewer.tsx:95
 msgid "{mojos, plural, one {mojo} other {mojos}}"
-msgstr ""
+msgstr "{mojos, plural, one {mojo} few {mojos} many {mojos} other {mojos}}"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:118
 #~ msgid "{warning}"
