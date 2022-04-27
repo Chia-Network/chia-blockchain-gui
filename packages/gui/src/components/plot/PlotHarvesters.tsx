@@ -13,13 +13,14 @@ export default function PlotHarvesters() {
   }
 
   return (
-    <Flex flexDirecton="column" gap={3}>
+    <Flex flexDirection="column" gap={3}>
       {data?.map((harvester) => (
         <PlotHarvester
           peerId={harvester.connection.nodeId}
           key={harvester.connection.nodeId}
           host={harvester.connection.host}
           port={harvester.connection.port}
+          expanded={data?.length === 1}
         />
       ))}
     </Flex>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { Trans } from '@lingui/macro';
 import { TableControlled } from '@chia/core';
 import { type Plot } from '@chia/api';
@@ -37,6 +37,10 @@ export default function PlotHarvesterPlotsFailed(props: PlotHarvesterPlotsFailed
     pageSize,
   });
 
+  const rows = useMemo(() => {
+    return data?.map((filename) => ({ filename }));
+  }, [data]);
+
   const isLoading = isLoadingHarvester || isLoadingHarvesterPlots;
   const count = noKeyFilenames ?? 0;
 
@@ -48,7 +52,7 @@ export default function PlotHarvesterPlotsFailed(props: PlotHarvesterPlotsFailed
   return (
     <TableControlled
       cols={cols}
-      rows={data}
+      rows={rows}
       rowsPerPageOptions={[5, 10, 25, 50, 100]}
       page={page}
       rowsPerPage={pageSize}

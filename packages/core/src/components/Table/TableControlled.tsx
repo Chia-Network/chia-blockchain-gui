@@ -204,7 +204,7 @@ export default function TableControlled(props: TableControlledProps) {
           <TableBody>
             {children}
             {preparedRows.map((row, rowIndex) => {
-              const id = row.$uniqueId.toString();
+              const id = row.$uniqueId?.toString();
               const isExpanded = !!expanded[id];
               const expandableCells = [];
 
