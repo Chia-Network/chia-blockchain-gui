@@ -11,7 +11,6 @@ import {
   Back,
   Button,
   ButtonLoading,
-  ConfirmDialog,
   Fee,
   Flex,
   Form,
@@ -30,6 +29,7 @@ import {
   Typography,
 } from '@mui/material';
 import OfferLocalStorageKeys from './OfferLocalStorage';
+import OfferEditorConfirmationDialog from './OfferEditorConfirmationDialog';
 import { isValidNFTId, launcherIdFromNFTId } from './utils';
 
 /* ========================================================================== */
@@ -326,20 +326,6 @@ function NFTOfferPreview(props: NFTOfferPreviewProps) {
 }
 
 /* ========================================================================== */
-/*                        NFT Offer Editor Confirmation                       */
-/* ========================================================================== */
-
-function NFTOfferEditorConfirmation() {
-  return (
-    <Flex flexDirection="column" gap={3}>
-      <Typography>
-        <Trans>Are you sure you want to create this offer?</Trans>
-      </Typography>
-    </Flex>
-  );
-}
-
-/* ========================================================================== */
 /*                              NFT Offer Editor                              */
 /*             Currently only supports a single NFT <--> XCH offer            */
 /* ========================================================================== */
@@ -459,14 +445,7 @@ export default function NFTOfferEditor(props: NFTOfferEditorProps) {
     console.log(offer);
 
     const confirmedCreation = await openDialog(
-      <ConfirmDialog
-        title={<Trans>Create Offer</Trans>}
-        confirmTitle={<Trans>Create Offer</Trans>}
-        confirmColor="primary"
-        cancelTitle={<Trans>Cancel</Trans>}
-      >
-        <NFTOfferEditorConfirmation />
-      </ConfirmDialog>
+      <OfferEditorConfirmationDialog />
     );
 
     if (!confirmedCreation) {

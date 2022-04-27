@@ -11,25 +11,27 @@ import {
   ButtonLoading,
   Flex,
   Form,
+  useOpenDialog,
   useShowError,
-  useShowSaveDialog,
 } from '@chia/core';
 import { useCreateOfferForIdsMutation } from '@chia/api-react';
 import { Grid } from '@mui/material';
 import type OfferEditorRowData from './OfferEditorRowData';
-import { suggestedFilenameForOffer } from './utils';
-import useAssetIdName from '../../hooks/useAssetIdName';
 import { WalletType } from '@chia/api';
 import OfferEditorConditionsPanel from './OfferEditorConditionsPanel';
+import OfferEditorConfirmationDialog from './OfferEditorConfirmationDialog';
 import OfferLocalStorageKeys from './OfferLocalStorage';
 import { chiaToMojo, catToMojo } from '@chia/core';
-import fs from 'fs';
+
+/* ========================================================================== */
+/*                                Offer Editor                                */
+/* ========================================================================== */
 
 type FormData = {
   selectedTab: number;
   makerRows: OfferEditorRowData[];
   takerRows: OfferEditorRowData[];
-  fee: number;
+  fee: string;
 };
 
 type OfferEditorProps = {
@@ -38,7 +40,6 @@ type OfferEditorProps = {
 
 function OfferEditor(props: OfferEditorProps) {
   const { onOfferCreated } = props;
-  const showSaveDialog = useShowSaveDialog();
   const navigate = useNavigate();
   const defaultValues: FormData = {
     selectedTab: 0,
@@ -58,12 +59,13 @@ function OfferEditor(props: OfferEditorProps) {
         spendableBalance: new BigNumber(0),
       },
     ],
+    fee: '',
   };
   const methods = useForm<FormData>({
     defaultValues,
   });
+  const openDialog = useOpenDialog();
   const errorDialog = useShowError();
-  const { lookupByAssetId } = useAssetIdName();
   const [suppressShareOnCreate] = useLocalStorage<boolean>(
     OfferLocalStorageKeys.SUPPRESS_SHARE_ON_CREATE
   );
@@ -132,58 +134,38 @@ function OfferEditor(props: OfferEditorProps) {
       return;
     }
 
+    const confirmedCreation = await openDialog(
+      <OfferEditorConfirmationDialog />
+    );
+
+    if (!confirmedCreation) {
+      return;
+    }
+
     setIsProcessing(true);
 
     try {
-      // preflight offer creation to check validity
       const response = await createOfferForIds({
         walletIdsAndAmounts: offer,
         feeInMojos,
-        validateOnly: true,
+        validateOnly: false,
       }).unwrap();
-
       if (response.success === false) {
         const error =
           response.error ||
-          new Error('Encountered an unknown error while validating offer');
+          new Error('Encountered an unknown error while creating offer');
         errorDialog(error);
       } else {
-        const dialogOptions = {
-          defaultPath: suggestedFilenameForOffer(
-            response.tradeRecord.summary,
-            lookupByAssetId
-          ),
-        };
+        const { offer: offerData, tradeRecord: offerRecord } = response;
 
-        const result = await showSaveDialog(dialogOptions);
-        console.log('result', result, dialogOptions);
-        const { filePath, canceled } = result;
+        try {
+          navigate(-1);
 
-        if (!canceled && filePath) {
-          const response = await createOfferForIds({
-            walletIdsAndAmounts: offer,
-            feeInMojos,
-            validateOnly: false,
-          }).unwrap();
-          if (response.success === false) {
-            const error =
-              response.error ||
-              new Error('Encountered an unknown error while creating offer');
-            errorDialog(error);
-          } else {
-            const { offer: offerData, tradeRecord: offerRecord } = response;
-
-            try {
-              fs.writeFileSync(filePath, offerData);
-              navigate(-1);
-
-              if (!suppressShareOnCreate) {
-                onOfferCreated({ offerRecord, offerData });
-              }
-            } catch (err) {
-              console.error(err);
-            }
+          if (!suppressShareOnCreate) {
+            onOfferCreated({ offerRecord, offerData });
           }
+        } catch (err) {
+          console.error(err);
         }
       }
     } catch (e) {
@@ -226,7 +208,7 @@ function OfferEditor(props: OfferEditorProps) {
             type="submit"
             loading={processing}
           >
-            <Trans>Save Offer</Trans>
+            <Trans>Create Offer</Trans>
           </ButtonLoading>
         </Flex>
       </Flex>
