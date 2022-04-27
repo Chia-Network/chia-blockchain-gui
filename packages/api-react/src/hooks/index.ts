@@ -5,8 +5,9 @@ export { default as useGetLatestPeakTimestampQuery } from './useGetLatestPeakTim
 export { default as useGetCombinedNotFoundFilenamesQuery } from './useGetCombinedNotFoundFilenamesQuery';
 export { default as useGetCombinedPlotsQuery } from './useGetCombinedPlotsQuery';
 export { default as useGetFarmerFullNodeConnectionsQuery } from './useGetFarmerFullNodeConnectionsQuery';
-export { default as useGetHarvesterConnectionsQuery} from './useGetHarvesterConnectionsQuery';
-export { default as useGetHarvesterQuery} from './useGetHarvesterQuery';
+export { default as useGetHarvesterConnectionsQuery } from './useGetHarvesterConnectionsQuery';
+export { default as useGetHarvesterQuery } from './useGetHarvesterQuery';
+export { default as useGetHarvesterStats } from './useGetHarvesterStats';
 export { default as useLogout } from './useLogout';
 export { default as useService } from './useService';
 export { default as useGetThrottlePlotQueueQuery } from './useGetThrottlePlotQueueQuery';

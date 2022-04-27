@@ -9,6 +9,7 @@ import { Box, Tab, Tabs } from '@mui/material';
 import PlotHarvesterPlots from './PlotHarvesterPlots';
 import PlotHarvesterPlotsNotFound from './PlotHarvesterPlotsNotFound';
 import PlotHarvesterPlotsFailed from './PlotHarvesterPlotsFailed';
+import PlotHarvesterState from './PlotHarvesterState';
 
 export type PlotHarvesterProps = {
   peerId: string;
@@ -31,21 +32,27 @@ export default function PlotHarvester(props: PlotHarvesterProps) {
   return (
     <Flex flexDirection="column" width="100%">
       <Flex justifyContent="space-between" width="100%" alignItems="center">
-        <Flex flexDirection="column">
-          <Flex alignItems="baseline">
-            <Typography variant="h6">
-              <Trans>Harvester</Trans>
-            </Typography>
-            &nbsp;
-            <Tooltip title={peerId}>
-              <Typography variant="body2" color="textSecondary">
-                {simplePeerId}
+        <Flex flexDirection="row" alignItems="center" gap={2}>
+          <Flex flexDirection="column">
+            <Flex alignItems="baseline">
+              <Typography variant="h6">
+                <Trans>Harvester</Trans>
               </Typography>
-            </Tooltip>
+              &nbsp;
+              <Tooltip title={peerId}>
+                <Typography variant="body2" color="textSecondary">
+                  {simplePeerId}
+                </Typography>
+              </Tooltip>
+            </Flex>
+            <Flex alignItems="center" gap={2}>
+              <Typography variant="body2" color="textSecondary">
+                {host}:{port}
+              </Typography>
+              <PlotHarvesterState peerId={peerId} />
+            </Flex>
           </Flex>
-          <Typography variant="body2" color="textSecondary">
-            {host}:{port}
-          </Typography>
+
         </Flex>
         <Flex alignItems="center">
           <Tabs

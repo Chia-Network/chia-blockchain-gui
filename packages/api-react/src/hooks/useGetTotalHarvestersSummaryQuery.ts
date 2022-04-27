@@ -17,8 +17,6 @@ export default function useGetTotalHarvestersSummaryQuery(): {
 } {
   const { data, isLoading, error } = useGetHarvestersSummaryQuery();
 
-  console.log('data', data);
-
   const { plots, duplicates, noKeyFilenames, failedToOpenFilenames, harvesters, plotsProcessed, totalPlotSize, plotsTotal } = useMemo(() => {
     let duplicates = 0;
     let failedToOpenFilenames = 0;
