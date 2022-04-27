@@ -158,6 +158,11 @@ export default class Farmer extends Service {
     return this.onCommand('get_harvesters', callback, processData);
   }
 
+  onHarvesterUpdated(
+    callback: (data: any, message: Message) => void) {
+    return this.onStateChanged('harvester_update', callback);
+  }
+
   onRefreshPlots(
     callback: (data: any, message: Message) => void,
     processData?: (data: any) => any,

@@ -50,7 +50,7 @@ export const farmerApi = apiWithTag.injectEndpoints({
         ]
         :  [{ type: 'HarvestersSummary', id: 'LIST' }],
       onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, [{
-        command: 'onHarvesterChanged',
+        command: 'onHarvesterUpdated',
         service: Farmer,
         endpoint: () => farmerApi.endpoints.getHarvestersSummary,
       }]),
@@ -74,7 +74,7 @@ export const farmerApi = apiWithTag.injectEndpoints({
         ]
         :  [{ type: 'HarvesterPlots', id: 'LIST' }],
       onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, [{
-        command: 'onHarvesterChanged',
+        command: 'onHarvesterUpdated',
         service: Farmer,
         endpoint: () => farmerApi.endpoints.getHarvesterPlots,
       }]),
@@ -98,7 +98,7 @@ export const farmerApi = apiWithTag.injectEndpoints({
         ]
         :  [{ type: 'HarvesterPlotsInvalid', id: 'LIST' }],
       onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, [{
-        command: 'onHarvesterChanged',
+        command: 'onHarvesterUpdated',
         service: Farmer,
         endpoint: () => farmerApi.endpoints.getHarvesterPlotsInvalid,
       }]),
@@ -122,7 +122,7 @@ export const farmerApi = apiWithTag.injectEndpoints({
         ]
         :  [{ type: 'HarvesterPlotsKeysMissing', id: 'LIST' }],
       onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, [{
-        command: 'onHarvesterChanged',
+        command: 'onHarvesterUpdated',
         service: Farmer,
         endpoint: () => farmerApi.endpoints.getHarvesterPlotsKeysMissing,
       }]),
