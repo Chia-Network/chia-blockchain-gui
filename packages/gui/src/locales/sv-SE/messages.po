@@ -8,7 +8,7 @@ msgstr ""
 "Language: sv_SE\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-04-27 06:15\n"
+"PO-Revision-Date: 2022-04-27 07:10\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -185,7 +185,7 @@ msgstr "Är det säkert att du vill koppla ifrån?"
 
 #: src/electron/main.tsx:268
 msgid "Are you sure you want to quit?"
-msgstr ""
+msgstr "Är du säker på att du vill avsluta?"
 
 #: src/electron/main.tsx:262
 #~ msgid "Are you sure you want to quit? GUI Plotting and farming will stop."
