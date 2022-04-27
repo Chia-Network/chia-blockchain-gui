@@ -8,7 +8,7 @@ msgstr ""
 "Language: sv_SE\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-04-26 06:31\n"
+"PO-Revision-Date: 2022-04-27 06:15\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -410,7 +410,7 @@ msgstr ""
 #: src/components/WalletSend.tsx:99
 #: src/components/cat/WalletCATSend.tsx:119
 msgid "Cannot send chia to coloured address. Please enter a chia address."
-msgstr ""
+msgstr "Det går inte att skicka chia till färgad adress. Ange en chia-adress."
 
 #: src/components/plot/PlotsNotFound.tsx:36
 #~ msgid "Caution, deleting these plots will delete them forever. Check that the storage devices are properly connected."
