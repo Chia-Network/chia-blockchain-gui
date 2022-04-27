@@ -8,7 +8,7 @@ msgstr ""
 "Language: fi_FI\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-04-23 13:31\n"
+"PO-Revision-Date: 2022-04-27 17:56\n"
 "Last-Translator: \n"
 "Language-Team: Finnish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -2309,7 +2309,7 @@ msgstr "Ole hyvä ja odota lompakon synkronointia"
 
 #: src/constants/WalletName.ts:32
 msgid "Pooling Wallet"
-msgstr "Poolauslompakko"
+msgstr "Poolilompakko"
 
 #: src/components/WalletConnections.tsx:33
 msgid "Port"
