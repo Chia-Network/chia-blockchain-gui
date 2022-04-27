@@ -10,7 +10,7 @@ export default function PlotCardPlotsFailedToOpen() {
 
   return (
     <CardSimple
-      title={<Trans>Plots Failed To Open (invalid plots)</Trans>}
+      title={<Trans>Plots Failed To Open</Trans>}
       value={<FormatLargeNumber value={failedToOpenFilenames} />}
       tooltip={<Trans>These plots are invalid, you might want to delete them.</Trans>}
       loading={isLoading}

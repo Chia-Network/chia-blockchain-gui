@@ -106,8 +106,6 @@ export default function PlotHarvesterPlots(props: PlotHarvesterPlotsProps) {
     setPage(page);
   }
 
-  console.log('data', data);
-
   return (
     <TableControlled
       cols={cols}

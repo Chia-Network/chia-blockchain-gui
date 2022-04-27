@@ -3,12 +3,12 @@ import { Trans } from '@lingui/macro';
 import { FormatBytes, CardSimple } from '@chia/core';
 import { useGetTotalHarvestersSummaryQuery } from '@chia/api-react';
 
-export default function FarmCardTotalSizeOfPlots() {
+export default function PlotCardTotalPlotsSize() {
   const { totalPlotSize, isLoading } = useGetTotalHarvestersSummaryQuery();
 
   return (
     <CardSimple
-      title={<Trans>Total Size of Plots</Trans>}
+      title={<Trans>Total Plots Size</Trans>}
       value={<FormatBytes value={totalPlotSize} precision={3} />}
       loading={isLoading}
     />

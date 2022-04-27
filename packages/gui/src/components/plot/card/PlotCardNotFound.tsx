@@ -8,7 +8,7 @@ export default function PlotCardNotFound() {
 
   return (
     <CardSimple
-      title={<Trans>Plots Not Found</Trans>}
+      title={<Trans>Plots With Missing Keys</Trans>}
       value={<FormatLargeNumber value={noKeyFilenames} />}
       loading={isLoading}
     />
