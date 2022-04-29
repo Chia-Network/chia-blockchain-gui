@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Trans, t } from '@lingui/macro';
 import {
   Button,
   ButtonLoading,
   Flex,
   Form,
+  mojoToChiaLocaleString,
 } from '@chia/core';
 import {
   Card,
@@ -17,11 +18,16 @@ import { Add } from '@mui/icons-material';
 import { useParams } from 'react-router-dom';
 import {
   useCreateNewWalletMutation,
+  useGetWalletBalanceQuery,
 } from '@chia/api-react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router';
-import useWalletState from '../../hooks/useWalletState';
-import { SyncingStatus } from '@chia/api';
+import {
+  SyncingStatus,
+  WalletType,
+  type Wallet,
+ } from '@chia/api';
+import useOpenExternal from '../../hooks/useOpenExternal';
 
 const StyledCard = styled(Card)(({ theme }) => `
   width: 100%;
@@ -57,8 +63,15 @@ export default function ProfileAdd() {
   });
 
   const [createProfile, { isLoading: isCreateProfileLoading }] = useCreateNewWalletMutation();
+  const { data: balance, isLoading: isLoadingWalletBalance } = useGetWalletBalanceQuery({
+    walletId: 1,
+  });
   const navigate = useNavigate();
-  // const { state } = useWalletState();
+  const openExternal = useOpenExternal();
+
+  function handleClick() {
+    openExternal('https://faucet.chia.net/');
+  }
 
   async function handleSubmit(values: CreateProfileData) {
     const { amount, fee } = values;
@@ -75,6 +88,8 @@ export default function ProfileAdd() {
     navigate(`/dashboard/settings/profiles/${walletId}`);
   }
 
+  const standardBalance = mojoToChiaLocaleString(balance?.confirmedWalletBalance);
+
   return (
     <div style={{width:"70%"}}>
       <Form methods={methods} onSubmit={handleSubmit}>
@@ -86,20 +101,18 @@ export default function ProfileAdd() {
         <Flex flexDirection="column" gap={2.5} paddingBottom={1}>
           <Trans><strong>Get some XCH</strong></Trans>
         </Flex>
-        <Flex paddingBottom={3}>
-          <StyledCard variant="outlined">
-            <StyledCardContent>
-              <Flex flexDirection="column" height="100%" width="100%">
-                <IconButton>
-                  <Add />
-                  <Typography paddingLeft={1}>get some Mojos from the Chia Faucet</Typography>
-                </IconButton>
-              </Flex>
-            </StyledCardContent>
-          </StyledCard>
-        </Flex>
+        <div style={{cursor: "pointer"}}>
+          <Flex paddingBottom={3}>
+            <Typography onClick={handleClick} paddingLeft={1} sx={{ textDecoration: "underline" }}>Get Mojos from the Chia Faucet</Typography>
+          </Flex>
+        </div>
         <Flex flexDirection="column" gap={2.5} paddingBottom={1}>
           <Trans><strong>Use one (1) mojo to create a Profile.</strong></Trans>
+        </Flex>
+        <Flex flexDirection="column" gap={2.5} paddingBottom={1}>
+          <Typography variant="caption">
+            <Trans>Balance: {standardBalance} XCH</Trans>
+          </Typography>
         </Flex>
         <Flex justifyContent="flex-end">
           <ButtonLoading

@@ -110,8 +110,8 @@ export default class Wallet extends Service {
   }
 
   async addKey(
-    mnemonic: string[], 
-    type: 'new_wallet' | 'skip' | 'restore_backup', 
+    mnemonic: string[],
+    type: 'new_wallet' | 'skip' | 'restore_backup',
     filePath?: string,
   ) {
     return this.command('add_key', {
@@ -138,7 +138,7 @@ export default class Wallet extends Service {
   }
 
   async logIn(
-    fingerprint: string, 
+    fingerprint: string,
     type: 'normal' | 'skip' | 'restore_backup' = 'normal', // skip is used to skip import
     host: string = this.client.backupHost,
     filePath?: string,
@@ -167,7 +167,7 @@ export default class Wallet extends Service {
   }
 
   async getBackupInfo(
-    filePath: string, 
+    filePath: string,
     options: { fingerprint: string } | { words: string },
   ) {
     return this.command('get_backup_info', {
@@ -336,7 +336,7 @@ export default class Wallet extends Service {
       state: 'coin_added';
       success: boolean;
       walletId: number;
-    }, 
+    },
     message: Message,
   ) => void) {
     return this.onStateChanged('coin_added', callback);

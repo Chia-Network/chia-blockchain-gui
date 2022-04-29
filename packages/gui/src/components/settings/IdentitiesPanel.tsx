@@ -18,7 +18,10 @@ import {
 import styled from 'styled-components';
 import { orderBy } from 'lodash';
 
-import { useGetWalletsQuery } from '@chia/api-react';
+import {
+  useGetDIDQuery,
+  useGetWalletsQuery,
+} from '@chia/api-react';
 import { WalletType, type Wallet } from '@chia/api';
 
 const StyledRoot = styled(Box)`
@@ -61,6 +64,26 @@ const StyledCardContent = styled(CardContent)(({ theme }) => `
   padding-bottom: ${theme.spacing(2)} !important;
 `);
 
+function DisplayDid(wallet) {
+  const id = wallet.wallet.id;
+  const { data: did, isLoading } = useGetDIDQuery({ walletId: id });
+
+  if (did) {
+    const myDidText = did.myDid;
+
+    return (
+      <div>
+        {myDidText}
+      </div>
+    )
+  } else {
+    return (
+      null
+    )
+  }
+
+}
+
 export default function IdentitiesPanel() {
   const navigate = useNavigate();
   const { walletId } = useParams();
@@ -70,25 +93,30 @@ export default function IdentitiesPanel() {
     navigate(`/dashboard/settings/profiles/${walletId}`);
   }
 
-  const didList = useMemo(() => {
-    let dids = [];
-    if (wallets) {
-      wallets.forEach((wallet) => {
-        if (wallet.type === WalletType.DISTRIBUTED_ID) {
-          console.log(wallet.data);
-          dids.push(wallet.id);
-        }
-      });
+  const dids = [];
+  if (wallets) {
+    wallets.forEach((wallet) => {
+      if (wallet.type === WalletType.DISTRIBUTED_ID) {
+        dids.push(wallet.id);
+      }
+    });
+  }
+
+  let didLength = dids.length
+
+  if (didLength != 0) {
+    for (const id in dids) {
+      // getDidInfo(id);
+      // console.log(did);
     }
-    return dids;
-  }, [wallets]);
+  }
 
   const items = useMemo(() => {
     if (isLoading) {
       return [];
     }
 
-    let didLength = didList.length
+    let didLength = dids.length
 
     if (didLength == 0) {
       return (
@@ -115,8 +143,8 @@ export default function IdentitiesPanel() {
           return (
             <CardListItem onSelect={handleSelect} key={wallet.id} selected={wallet.id === Number(walletId)}>
               <Flex flexDirection="column" height="100%" width="100%">
-                <Typography><strong>[*Wallet Name* / {primaryTitle}]</strong></Typography>
-                <Typography>[*DID ID*]</Typography>
+                <Typography><strong>[*Wallet Name*]</strong></Typography>
+                <DisplayDid wallet={wallet} />
               </Flex>
             </CardListItem>
           );
