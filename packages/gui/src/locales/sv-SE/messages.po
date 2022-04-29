@@ -8,7 +8,7 @@ msgstr ""
 "Language: sv_SE\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-04-27 07:10\n"
+"PO-Revision-Date: 2022-04-29 05:13\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -346,7 +346,7 @@ msgstr "Byt"
 #: src/components/settings/Settings.tsx:164
 #: src/components/settings/SettingsPanel.tsx:165
 msgid "Change Passphrase"
-msgstr ""
+msgstr "Byt lösenfras"
 
 #: src/components/plotNFT/PlotNFTCard.tsx:405
 #: src/components/plotNFT/PlotNFTChangePool.tsx:121
@@ -457,13 +457,13 @@ msgstr "Bekräfta frånkoppling"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:180
 msgid "Confirm New Passphrase"
-msgstr ""
+msgstr "Bekräfta ny lösenfras"
 
 #: src/components/app/AppKeyringMigrator.tsx:149
 #: src/components/app/AppKeyringMigrator.tsx:150
 #: src/components/settings/SetPassphrasePrompt.tsx:160
 msgid "Confirm Passphrase"
-msgstr ""
+msgstr "Bekräfta lösenfras"
 
 #: src/components/plotNFT/PlotNFTCard.tsx:119
 msgid "Confirmation"
