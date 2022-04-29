@@ -73,7 +73,7 @@ export default function AppRouter() {
               <Route path="dashboard" element={<FullNode />} />
               <Route path="dashboard/block/:headerHash" element={<Block />} />
               <Route path="dashboard/wallets/*" element={<Wallets />} />
-              <Route path="dashboard/offers/*" element={<Offers />} />
+              <Route path="dashboard/offers/*" element={<CreateOffer />} />
               <Route path="dashboard/nfts/*" element={<NFTs />} />
               <Route path="dashboard/settings/*" element={<Settings />} />
               <Route path="dashboard/plot/*" element={<Plot />} />
