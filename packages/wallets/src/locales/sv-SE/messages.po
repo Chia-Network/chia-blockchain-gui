@@ -8,7 +8,7 @@ msgstr ""
 "Language: sv_SE\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-04-27 07:10\n"
+"PO-Revision-Date: 2022-04-29 06:28\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -211,7 +211,7 @@ msgstr "Belopp för ursprungligt mynt"
 
 #: src/components/offers/OfferEditor.tsx:118
 msgid "Amount exceeds spendable balance"
-msgstr ""
+msgstr "Beloppet överstiger spenderbart saldo"
 
 #: src/components/did/WalletDIDCreate.tsx:61
 msgid "Amount must be an even amount."
@@ -219,7 +219,7 @@ msgstr "Beloppet måste vara ett jämnt belopp."
 
 #: src/components/offers/OfferManager.tsx:100
 msgid "Are you sure you want to cancel your offer?"
-msgstr ""
+msgstr "Är det säkert att du vill avbryta ditt erbjudande?"
 
 #: src/components/plot/PlotAction.tsx:29
 #: src/components/plot/queue/PlotQueueActions.tsx:47
@@ -292,7 +292,7 @@ msgstr "Saldo"
 
 #: src/components/offers/OfferShareDialog.tsx:759
 msgid "Before posting an offer in Keybase to the #{KeybaseChannelName} channel, you must first join the {KeybaseTeamName} team. Please note that it might take a few moments to join the channel."
-msgstr ""
+msgstr "Innan du lägger upp ett erbjudande i Keybase på #{KeybaseChannelName}-kanalen måste du först gå med i {KeybaseTeamName} -teamet. Observera att det kan ta en stund att gå med i kanalen."
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:33
 #: src/components/farm/FarmLatestBlockChallenges.tsx:43
@@ -397,7 +397,7 @@ msgstr "Avbryt"
 #: src/components/offers/OfferManager.tsx:166
 #: src/components/offers/OfferManager.tsx:423
 msgid "Cancel Offer"
-msgstr ""
+msgstr "Avbryt erbjudande"
 
 #: src/components/trading/TradingOverview.jsx:388
 #~ msgid "Cancel and Spend"
@@ -405,7 +405,7 @@ msgstr ""
 
 #: src/components/offers/OfferManager.tsx:121
 msgid "Cancel on blockchain"
-msgstr ""
+msgstr "Avbryt på blockkedjan"
 
 #: src/components/WalletSend.tsx:99
 #: src/components/cat/WalletCATSend.tsx:119
@@ -555,12 +555,12 @@ msgstr "Bekräfta"
 
 #: src/components/WalletHistory.tsx:111
 msgid "Confirmed"
-msgstr ""
+msgstr "Bekräftad"
 
 #: src/components/WalletHistory.tsx:290
 #: src/components/offers/OfferViewer.tsx:188
 msgid "Confirmed at Height"
-msgstr ""
+msgstr "Bekräftad vid höjd"
 
 #: src/components/trading/TradingOverview.jsx:200
 #~ msgid "Confirmed at block:"
@@ -713,7 +713,7 @@ msgstr "Skapa transaktion"
 #: src/components/offers/OfferEditor.tsx:232
 #: src/components/offers/OfferManager.tsx:517
 msgid "Create an Offer"
-msgstr ""
+msgstr "Skapa ett erbjudande"
 
 #: src/components/offers/OfferManager.tsx:512
 msgid "Create an offer to exchange XCH or other tokens. View an offer to inspect and accept an offer made by another party."
@@ -753,7 +753,7 @@ msgstr ""
 
 #: src/components/offers/OfferManager.tsx:123
 msgid "Creates and submits a transaction on the blockchain that cancels the offer"
-msgstr ""
+msgstr "Skapar och skickar en transaktion till blockkedjan som avbryter erbjudandet"
 
 #: src/components/plotNFT/PlotNFTUnconfirmedCard.tsx:61
 #~ msgid "Creating Plot NFT and Joining the Pool"
@@ -872,7 +872,7 @@ msgstr "Ta bort obekräftade transaktioner"
 
 #: src/components/offers/OfferViewer.tsx:499
 msgid "Details"
-msgstr ""
+msgstr "Detaljer"
 
 #: src/electron/main.tsx:315
 #~ msgid "Developer"
@@ -917,7 +917,7 @@ msgstr ""
 
 #: src/components/offers/OfferManager.tsx:393
 msgid "Display Offer Data"
-msgstr ""
+msgstr "Visa erbjudandedata"
 
 #: src/components/create/WalletCreateList.tsx:39
 #: src/components/did/WalletDIDSelect.tsx:25
@@ -930,7 +930,7 @@ msgstr "Distribuerad identitet"
 
 #: src/components/offers/OfferShareDialog.tsx:1014
 msgid "Do not show this dialog again"
-msgstr ""
+msgstr "Visa inte denna dialog igen"
 
 #: src/components/farm/overview/FarmOverviewHero.tsx:51
 #: src/components/plot/overview/PlotOverviewHero.tsx:67
@@ -1004,7 +1004,7 @@ msgstr "Skriv in din sparade minnesfras på 24 ord för att återställa din Chi
 
 #: src/components/cat/WalletCATSend.tsx:129
 msgid "Error the entered address appears to be for a different colour."
-msgstr ""
+msgstr "Fel den angivna adressen verkar vara för en annan färg."
 
 #: src/components/_wallet_old/standard/WalletStandard.tsx:450
 #~ msgid "Error: Cannot send chia to coloured address. Please enter a chia address."
@@ -1039,7 +1039,7 @@ msgstr ""
 #: src/components/offers/OfferShareDialog.tsx:232
 #: src/components/offers/OfferShareDialog.tsx:232
 msgid "Failed to execute Keybase command: {stderr}"
-msgstr ""
+msgstr "Det gick inte att köra Keybase-kommandot: {stderr}"
 
 #: src/components/plot/PlotsFailed.tsx:34
 #~ msgid "Failed to open (invalid plots)"
@@ -1165,7 +1165,7 @@ msgstr "Avgift"
 
 #: src/components/offers/OfferSummary.tsx:122
 msgid "Fees included in offer:"
-msgstr ""
+msgstr "Avgifter som ingår i erbjudandet:"
 
 #: src/electron/main.tsx:266
 #: src/electron/main.tsx:467
@@ -1222,11 +1222,11 @@ msgstr "Filnamn"
 #: src/components/offers/OfferShareDialog.tsx:715
 #: src/components/offers/OfferShareDialog.tsx:782
 msgid "Go to #{KeybaseChannelName}"
-msgstr ""
+msgstr "Gå till #{KeybaseChannelName}"
 
 #: src/components/offers/OfferShareDialog.tsx:865
 msgid "Go to Offerpool"
-msgstr ""
+msgstr "Gå till erbjudandepool"
 
 #: src/components/pool/PoolOverview.tsx:173
 #~ msgid "Grid view"
@@ -1306,7 +1306,7 @@ msgstr ""
 
 #: src/components/offers/OfferManager.tsx:107
 msgid "If you have already shared your offer file, you may need to submit a transaction to cancel the pending offer. Click \"Cancel on blockchain\" to submit a cancellation transaction."
-msgstr ""
+msgstr "Om du redan har delat din erbjudandefil kan du behöva skicka en transaktion för att avbryta det väntande erbjudandet. Klicka på \"Avbryt på blockkedjan\" för att skicka en sådan transaktion."
 
 #: src/components/WalletSendTransactionResultDialog.tsx:41
 msgid "If you would like to speed up the transaction, please delete unconfirmed transactions and retry with a higher fee."
@@ -1314,7 +1314,7 @@ msgstr ""
 
 #: src/components/offers/OfferDataEntryDialog.tsx:74
 msgid "Import"
-msgstr ""
+msgstr "Importera"
 
 #: src/components/WalletImport.tsx:81
 msgid "Import Wallet from Mnemonics"
@@ -1331,13 +1331,13 @@ msgstr "Importera plånbok från minnesfras"
 #: src/components/offers/OfferEditorConditionsPanel.tsx:249
 #: src/components/offers/OfferViewer.tsx:455
 msgid "In exchange for"
-msgstr ""
+msgstr "I utbyte mot"
 
 #: src/components/offers/OfferShareDialog.tsx:403
 #: src/components/offers/OfferShareDialog.tsx:544
 #: src/components/offers/OfferShareDialog.tsx:892
 msgid "In exchange for:"
-msgstr ""
+msgstr "I utbyte mot:"
 
 #: src/components/offers/OfferEditorConditionsPanel.tsx:339
 msgid "Including a fee in the offer can help expedite the transaction when the offer is accepted."
@@ -1378,7 +1378,7 @@ msgstr "Initiera spenderbegränsad användarplånbok:"
 
 #: src/components/offers/OfferShareDialog.tsx:754
 msgid "Install Keybase"
-msgstr ""
+msgstr "Installera Keybase"
 
 #: src/components/offers/OfferViewer.tsx:358
 msgid "Insufficient funds available to accept offer. Ensure that your\n"
@@ -1427,7 +1427,7 @@ msgstr "Intervall"
 
 #: src/components/offers/OfferShareDialog.tsx:771
 msgid "Join {KeybaseTeamName}"
-msgstr ""
+msgstr "Gå med i {KeybaseTeamName}"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:63
 #~ msgid "K-Size"
@@ -1439,7 +1439,7 @@ msgstr "Keybase-kommandot misslyckades {e}. Om du inte har installerat Keybase, 
 
 #: src/components/offers/OfferShareDialog.tsx:744
 msgid "Keybase is a secure messaging and file sharing application. To share an offer in the Keybase {KeybaseTeamName} team, you must first have Keybase installed."
-msgstr ""
+msgstr "Keybase är ett säkert meddelande- och fildelningsprogram. För att dela ett erbjudande i Keybase {KeybaseTeamName}-teamet måste du först installera Keybase."
 
 #: src/components/app/AppKeyringMigrator.tsx:94
 #~ msgid "Keyring migration failed: {0}"
@@ -1566,7 +1566,7 @@ msgstr ""
 
 #: src/components/offers/OfferManager.tsx:505
 msgid "Manage Offers"
-msgstr ""
+msgstr "Hantera erbjudanden"
 
 #: src/components/cat/WalletDID.tsx:805
 #: src/components/did/WalletDID.tsx:805
@@ -1579,16 +1579,16 @@ msgstr "Hantera återställnings-DID"
 
 #: src/components/WalletsManageTokens.tsx:81
 msgid "Manage token list"
-msgstr ""
+msgstr "Hantera tokenlista"
 
 #: src/components/WalletHistory.tsx:116
 #: src/components/cat/WalletCATSend.tsx:229
 msgid "Memo"
-msgstr ""
+msgstr "Anteckning"
 
 #: src/components/WalletHistory.tsx:294
 msgid "Memos"
-msgstr ""
+msgstr "Anteckningar"
 
 #: src/components/WalletSendTransactionResultDialog.tsx:19
 msgid "Mempool Full"
@@ -1712,7 +1712,7 @@ msgstr "Inga tidigare transaktioner"
 
 #: src/components/offers/OfferViewer.tsx:209
 msgid "Node Count"
-msgstr ""
+msgstr "Nodantal"
 
 #: src/components/WalletConnections.tsx:23
 msgid "Node ID"
@@ -1749,7 +1749,7 @@ msgstr ""
 
 #: src/components/offers/OfferViewer.tsx:189
 msgid "Not confirmed"
-msgstr ""
+msgstr "Inte bekräftat"
 
 #: src/components/trading/TradingOverview.jsx:194
 #~ msgid "Not confirmed yet"
@@ -1787,7 +1787,7 @@ msgstr ""
 #: src/components/cat/WalletCATTAILDialog.tsx:82
 #: src/components/offers/OfferDataDialog.tsx:75
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: src/components/trading/ViewOffer.jsx:67
 #~ msgid "Offer"
@@ -1795,12 +1795,12 @@ msgstr ""
 
 #: src/components/WalletHistory.tsx:122
 msgid "Offer Accepted"
-msgstr ""
+msgstr "Erbjudandet accepterat"
 
 #: src/components/offers/OfferDataDialog.tsx:42
 #: src/components/offers/OfferDataDialog.tsx:50
 msgid "Offer Data"
-msgstr ""
+msgstr "Erbjudandedata"
 
 #: src/components/offers/OfferViewer.tsx:183
 msgid "Offer Identifier"
@@ -1815,7 +1815,7 @@ msgstr ""
 
 #: src/components/offers/OfferViewer.tsx:344
 msgid "Offer has been accepted and is awaiting confirmation."
-msgstr ""
+msgstr "Erbjudandet har accepterats och väntar på bekräftelse."
 
 #: src/components/offers/OfferShareDialog.tsx:350
 msgid "OfferBin URL"
@@ -1831,11 +1831,11 @@ msgstr ""
 
 #: src/components/offers/OfferManager.tsx:532
 msgid "Offers you accepted"
-msgstr ""
+msgstr "Erbjudanden som du har accepterat"
 
 #: src/components/offers/OfferManager.tsx:527
 msgid "Offers you created"
-msgstr ""
+msgstr "Erbjudanden som du har skapat"
 
 #: src/components/WalletSend.tsx:134
 #: src/components/cat/WalletCATSend.tsx:177
@@ -1844,7 +1844,7 @@ msgstr "Vanligtvis är det en minut mellan varje transaktionsblock. Om det inte 
 
 #: src/components/offers/OfferViewer.tsx:323
 msgid "Once you accept this offer, you will not be able to cancel the transaction. Are you sure you want to accept this offer?"
-msgstr ""
+msgstr "När du accepterar detta erbjudande kommer du inte att kunna avbryta transaktionen. Är det säkert att du vill acceptera detta erbjudande?"
 
 #: src/components/offers/OfferViewer.tsx:300
 msgid "One or more unknown tokens are being offered. Please verify that the asset IDs of the tokens listed below match the asset IDs of the tokens you expect to receive."
@@ -1914,7 +1914,7 @@ msgstr "Överordnat mynt"
 #: src/components/offers/OfferDataEntryDialog.tsx:40
 #: src/components/offers/OfferImport.tsx:129
 msgid "Paste Offer Data"
-msgstr ""
+msgstr "Klistra in erbjudandedata"
 
 #: src/components/plotNFT/PlotNFTCard.tsx:358
 #~ msgid "Payout Address"
@@ -2044,7 +2044,7 @@ msgstr "Ange ett giltigt tokennamn"
 
 #: src/components/offers/OfferEditor.tsx:115
 msgid "Please enter an amount for each row"
-msgstr ""
+msgstr "Ange ett belopp för varje rad"
 
 #: src/components/WalletRenameDialog.tsx:49
 msgid "Please enter valid wallet name"
@@ -2311,7 +2311,7 @@ msgstr ""
 
 #: src/components/WalletConnections.tsx:33
 msgid "Port"
-msgstr ""
+msgstr "Port"
 
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:94
 #: src/components/plotNFT/PlotNFTChangePool.tsx:85
@@ -2428,7 +2428,7 @@ msgstr "Konfiguration av spenderbegränsad användarplånbok"
 
 #: src/components/WalletHeader.tsx:60
 msgid "Receive"
-msgstr ""
+msgstr "Ta emot"
 
 #: src/components/WalletReceiveAddress.tsx:32
 msgid "Receive Address"
@@ -2518,7 +2518,7 @@ msgstr ""
 
 #: src/components/offers/OfferEditor.tsx:199
 msgid "Reset"
-msgstr ""
+msgstr "Återställ"
 
 #: src/components/backup/BackupRestore.tsx:160
 #~ msgid "Restore Metadata for Coloured Coins and other Smart Wallets from Backup"
@@ -2547,11 +2547,11 @@ msgstr "Spara"
 
 #: src/components/offers/OfferEditor.tsx:207
 msgid "Save Offer"
-msgstr ""
+msgstr "Spara erbjudandet"
 
 #: src/components/offers/OfferManager.tsx:408
 msgid "Save Offer File"
-msgstr ""
+msgstr "Spara erbjudandefil"
 
 #: src/components/app/AppKeyringMigrator.tsx:178
 #: src/components/settings/ChangePassphrasePrompt.tsx:208
@@ -2607,7 +2607,7 @@ msgstr "Sök i Tail-databasen"
 
 #: src/components/offers/OfferImport.tsx:136
 msgid "Select Offer File"
-msgstr ""
+msgstr "Välj erbjudandefil"
 
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:52
 #~ msgid "Select Temporary Directory"
@@ -2703,15 +2703,15 @@ msgstr "Skicka din publika nyckel till admin för din spenderbegränsade plånbo
 #: src/components/offers/OfferShareDialog.tsx:798
 #: src/components/offers/OfferShareDialog.tsx:911
 msgid "Share"
-msgstr ""
+msgstr "Dela"
 
 #: src/components/offers/OfferShareDialog.tsx:973
 msgid "Share Offer"
-msgstr ""
+msgstr "Dela erbjudande"
 
 #: src/components/offers/OfferShareDialog.tsx:412
 msgid "Share Privately"
-msgstr ""
+msgstr "Delat privat"
 
 #: src/components/offers/OfferShareDialog.tsx:537
 msgid "Share on Hashgreen DEX"
@@ -2719,7 +2719,7 @@ msgstr "Dela på Hashgreen DEX"
 
 #: src/components/offers/OfferShareDialog.tsx:739
 msgid "Share on Keybase"
-msgstr ""
+msgstr "Dela på Keybase"
 
 #: src/components/offers/OfferShareDialog.tsx:396
 msgid "Share on OfferBin"
@@ -2727,7 +2727,7 @@ msgstr "Dela på OfferBin"
 
 #: src/components/offers/OfferShareDialog.tsx:885
 msgid "Share on offerpool"
-msgstr ""
+msgstr "Dela på erbjudandepool"
 
 #: src/components/core/components/AdvancedOptions/AdvancedOptions.tsx:74
 #~ msgid "Show Advanced Options"
@@ -2739,7 +2739,7 @@ msgstr ""
 
 #: src/components/offers/OfferManager.tsx:379
 msgid "Show Details"
-msgstr ""
+msgstr "Visa detaljer"
 
 #: src/electron-starter.js:79
 #~ msgid "Show app"
@@ -2834,7 +2834,7 @@ msgstr ""
 #: src/components/offers/OfferManager.tsx:277
 #: src/components/offers/OfferViewer.tsx:177
 msgid "Status"
-msgstr ""
+msgstr "Status"
 
 #: src/components/WalletHeader.tsx:91
 #~ msgid "Status:"
@@ -2886,7 +2886,7 @@ msgstr ""
 #: src/components/WalletHeader.tsx:58
 #: src/components/offers/OfferViewer.tsx:450
 msgid "Summary"
-msgstr ""
+msgstr "Sammanfattning"
 
 #: src/components/WalletStatus.tsx:39
 msgid "Synced"
@@ -3102,7 +3102,7 @@ msgstr ""
 
 #: src/components/offers/OfferViewer.tsx:385
 msgid "This offer is no longer valid"
-msgstr ""
+msgstr "Detta erbjudande är inte längre giltigt"
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:307
 #~ msgid "This plot NFT is assigned to a different key. You can still create plots for this plot NFT, but you can not make changes."
@@ -3283,7 +3283,7 @@ msgstr "Det gick inte att öppna bläddraren. Installera Keybase från https://k
 #: src/components/offers/OfferSummaryRow.tsx:67
 #: src/components/offers/OfferViewer.tsx:412
 msgid "Unknown CAT"
-msgstr ""
+msgstr "Okänd CAT"
 
 #: src/components/app/AppPassPrompt.tsx:83
 #~ msgid "Unlock Keyring"
@@ -3413,11 +3413,11 @@ msgstr "Plånboken finns inte"
 
 #: src/components/Wallet.tsx:50
 msgid "Wallet with type {0} not supported"
-msgstr ""
+msgstr "Plånbok av typ {0} stöds inte"
 
 #: src/components/Wallet.tsx:23
 msgid "Wallet {walletId} not found"
-msgstr ""
+msgstr "Plånbok {walletId} kunde inte hittas"
 
 #: src/components/wallet/Wallets.tsx:34
 #~ msgid "WalletItem.ccWallet"
@@ -3473,7 +3473,7 @@ msgstr ""
 
 #: src/components/offers/OfferViewer.tsx:298
 msgid "Warning"
-msgstr ""
+msgstr "Varning"
 
 #: src/components/_selectKey_old/SelectKey.tsx:88
 #: src/components/_selectKey_old/SelectKey.tsx:119
@@ -3593,7 +3593,7 @@ msgstr ""
 
 #: src/components/offers/OfferViewer.tsx:456
 msgid "You will receive"
-msgstr ""
+msgstr "Du får"
 
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:143
 #~ msgid "You will recieve <0/> to {0}"
@@ -3646,13 +3646,13 @@ msgstr "Ditt DID kräver minst {dids_num_req} attesteringsfil{0} för återstäl
 
 #: src/components/offers/OfferShareDialog.tsx:707
 msgid "Your offer has been successfully posted to Keybase."
-msgstr ""
+msgstr "Ditt erbjudande har skickats till Keybase."
 
 #: src/components/offers/OfferShareDialog.tsx:402
 #: src/components/offers/OfferShareDialog.tsx:543
 #: src/components/offers/OfferShareDialog.tsx:891
 msgid "Your offer:"
-msgstr ""
+msgstr "Ditt erbjudande:"
 
 #: src/components/app/AppKeyringMigrator.tsx:181
 #: src/components/settings/ChangePassphrasePrompt.tsx:211
@@ -3718,7 +3718,7 @@ msgstr "synkar"
 
 #: src/components/offers/OfferShareDialog.tsx:853
 msgid "{0}"
-msgstr ""
+msgstr "{0}"
 
 #: src/components/farm/card/FarmCardBlockRewards.tsx:16
 #~ msgid "{0} Block Rewards"
@@ -3751,7 +3751,7 @@ msgstr ""
 
 #: src/components/offers/OfferSummary.tsx:125
 msgid "{makerFee, plural, one {mojo} other {mojos}}"
-msgstr ""
+msgstr "{makerFee, plural, one {mojo} other {mojo}}"
 
 #: src/components/core/components/Amount/Amount.tsx:82
 #~ msgid "{mojo, plural, one {mojo} other {mojos}}"
@@ -3760,7 +3760,7 @@ msgstr ""
 #: src/components/offers/OfferSummaryRow.tsx:41
 #: src/components/offers/OfferViewer.tsx:95
 msgid "{mojos, plural, one {mojo} other {mojos}}"
-msgstr ""
+msgstr "{mojos, plural, one {mojo} other {mojo}}"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:118
 #~ msgid "{warning}"
