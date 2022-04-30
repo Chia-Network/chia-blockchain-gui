@@ -8,7 +8,7 @@ msgstr ""
 "Language: sv_SE\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-04-29 06:28\n"
+"PO-Revision-Date: 2022-04-30 06:14\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -1486,7 +1486,7 @@ msgstr "Keybase är ett säkert meddelande- och fildelningsprogram. För att del
 
 #: src/components/WalletConnections.tsx:83
 msgid "List of connections is empty"
-msgstr ""
+msgstr "Lista över anslutningar är tom"
 
 #: src/components/pool/PoolOverview.tsx:173
 #~ msgid "List view"
@@ -2506,7 +2506,7 @@ msgstr ""
 #: src/components/WalletRenameDialog.tsx:69
 #: src/components/cat/WalletCAT.tsx:91
 msgid "Rename Wallet"
-msgstr ""
+msgstr "Byt namn på plånboken"
 
 #: src/electron/main.tsx:404
 #~ msgid "Report an Issue..."
@@ -2616,7 +2616,7 @@ msgstr "Välj erbjudandefil"
 #: src/components/WalletsList.tsx:32
 #: src/components/hero/WalletHeroWallets.tsx:47
 msgid "Select Wallet"
-msgstr ""
+msgstr "Välj plånbok"
 
 #: src/components/create/WalletCreateList.tsx:25
 msgid "Select Wallet Type"
@@ -2820,7 +2820,7 @@ msgstr "Spenderbegränsning (chia per intervall): {0}"
 
 #: src/constants/WalletName.ts:5
 msgid "Standard Wallet"
-msgstr ""
+msgstr "Standardplånbok"
 
 #: src/components/app/AppState.tsx:161
 #~ msgid "Starting services"
@@ -3239,7 +3239,7 @@ msgstr "Transaktionen har skickats till en fullständig nod och inkluderats i me
 
 #: src/components/WalletHistory.tsx:244
 msgid "Transactions"
-msgstr ""
+msgstr "Transaktioner"
 
 #: src/components/block/Block.jsx:298
 #~ msgid "Transactions Filter Hash"
@@ -3541,7 +3541,7 @@ msgstr "När du fått konfigurationsinfopaketet av din administratör anger du d
 
 #: src/components/offers/OfferViewer.tsx:381
 msgid "You created this offer"
-msgstr ""
+msgstr "Du skapade detta erbjudande"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:76
 #~ msgid "You do not need to be synced or connected to plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
@@ -3589,7 +3589,7 @@ msgstr ""
 
 #: src/components/offers/OfferEditorConditionsPanel.tsx:248
 msgid "You will offer"
-msgstr ""
+msgstr "Du kommer att erbjuda"
 
 #: src/components/offers/OfferViewer.tsx:456
 msgid "You will receive"
@@ -3698,7 +3698,7 @@ msgstr "höjd:"
 
 #: src/components/WalletStatusCard.tsx:27
 msgid "status:"
-msgstr ""
+msgstr "status:"
 
 #: src/components/WalletStatusCard.tsx:29
 msgid "synced"
