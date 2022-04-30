@@ -8,7 +8,7 @@ msgstr ""
 "Language: sv_SE\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-04-29 05:13\n"
+"PO-Revision-Date: 2022-04-30 06:14\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -3079,7 +3079,7 @@ msgstr "Du har gjort ändringar. Vill du kasta dem?"
 
 #: src/hooks/useKeyringMigrationPrompt.tsx:20
 msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Would you like to migrate your keys now?"
-msgstr ""
+msgstr "Dina nycklar har inte migrerats till en ny nyckelring. Du kommer inte att kunna skapa nya nycklar eller ta bort befintliga nycklar tills migreringen är klar. Vill du migrera nycklarna nu?"
 
 #: src/components/app/AppKeyringMigrator.tsx:106
 #~ msgid "Your keys need to be migrated to a new keyring that is optionally secured by a master passphrase."
