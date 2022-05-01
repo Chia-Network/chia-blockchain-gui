@@ -94,7 +94,7 @@ export default function PlotHarvesterPlots(props: PlotHarvesterPlotsProps) {
   });
   const { isLoading: isLoadingHarvesterPlots, data = [] } = useGetHarvesterPlotsQuery({
     peerId: subPeerId,
-    page: page + 1,
+    page,
     pageSize,
   });
 

@@ -1,42 +1,42 @@
+import BigNumber from 'bignumber.js';
 import { useMemo } from 'react';
 import { useGetHarvestersSummaryQuery } from '../services/farmer';
 
 export default function useGetTotalHarvestersSummaryQuery(): {
   isLoading: boolean;
   error?: Error;
-  hasPlots: boolean;
-  plots: number;
-  uniquePlots: number;
-  noKeyFilenames: number;
-  failedToOpenFilenames: number;
-  duplicates: number;
   harvesters: number;
-  plotsProcessed: number;
-  totalPlotSize: number;
-  plotsTotal: number;
+  hasPlots: boolean;
+  plots: BigNumber; // number of used plots without the plots that are not used (duplicate, failed, no keys)
+  noKeyFilenames: BigNumber;
+  failedToOpenFilenames: BigNumber;
+  duplicates: BigNumber;
+  plotsProcessed: BigNumber;
+  totalPlotSize: BigNumber;
+  plotsTotal: BigNumber;
 } {
   const { data, isLoading, error } = useGetHarvestersSummaryQuery();
 
   const { plots, duplicates, noKeyFilenames, failedToOpenFilenames, harvesters, plotsProcessed, totalPlotSize, plotsTotal } = useMemo(() => {
-    let duplicates = 0;
-    let failedToOpenFilenames = 0;
-    let noKeyFilenames = 0;
-    let plots = 0;
-    let plotsProcessed = 0;
-    let totalPlotSize = 0;
-    let plotsTotal = 0;
+    let duplicates = new BigNumber(0);
+    let failedToOpenFilenames = new BigNumber(0);
+    let noKeyFilenames = new BigNumber(0);
+    let plots = new BigNumber(0);
+    let plotsProcessed = new BigNumber(0);
+    let totalPlotSize = new BigNumber(0);
+    let plotsTotal = new BigNumber(0);
 
     if (data) {
       data.forEach((harvester) => {
-        duplicates += harvester.duplicates;
-        failedToOpenFilenames += harvester.failedToOpenFilenames;
-        noKeyFilenames += harvester.noKeyFilenames;
-        totalPlotSize += harvester.totalPlotSize;
-        plots += harvester.plots;
+        duplicates = duplicates.plus(harvester.duplicates);
+        failedToOpenFilenames = failedToOpenFilenames.plus(harvester.failedToOpenFilenames);
+        noKeyFilenames = noKeyFilenames.plus(harvester.noKeyFilenames);
+        totalPlotSize = totalPlotSize.plus(harvester.totalPlotSize);
+        plots = plots.plus(harvester.plots);
 
         if (harvester.syncing?.initial) {
-          plotsProcessed += harvester.syncing.plotFilesProcessed;
-          plotsTotal += harvester.syncing.plotsTotal;
+          plotsProcessed = plotsProcessed.plus(harvester.syncing.plotFilesProcessed);
+          plotsTotal = plotsTotal.plus(harvester.syncing.plotsTotal);
         }
       });
     }
@@ -54,15 +54,11 @@ export default function useGetTotalHarvestersSummaryQuery(): {
 
   }, [data]);
 
-  const hasPlots = plots > 0;
-  const uniquePlots = plots - duplicates;
-
   return {
     isLoading,
     error,
-    hasPlots,
+    hasPlots: plots.gt(0),
     plots,
-    uniquePlots,
     noKeyFilenames,
     failedToOpenFilenames,
     duplicates,
@@ -72,25 +68,3 @@ export default function useGetTotalHarvestersSummaryQuery(): {
     plotsTotal,
   };
 }
-
-
-/*
-            "connection": {
-                "node_id": self._connection.peer_node_id,
-                "host": self._connection.peer_host,
-                "port": self._connection.peer_port,
-            },
-            "plots": get_list_or_len(list(self._plots.values()), counts_only),
-            "failed_to_open_filenames": get_list_or_len(self._invalid, counts_only),
-            "no_key_filenames": get_list_or_len(self._keys_missing, counts_only),
-            "duplicates": get_list_or_len(self._duplicates, counts_only),
-            "total_plot_size": self._total_plot_size,
-            "syncing": {
-                "initial": self.initial_sync(),
-                "plot_files_processed": self.current_sync().plots_processed,
-                "plot_files_total": self.current_sync().plots_total,
-            }
-            if self._current_sync.in_progress()
-            else None,
-            "last_sync_time": self._last_sync.time_done,
-*/

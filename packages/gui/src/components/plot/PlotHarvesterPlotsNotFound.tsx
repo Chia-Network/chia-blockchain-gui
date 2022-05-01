@@ -33,7 +33,7 @@ export default function PlotHarvesterPlotsNotFound(props: PlotHarvesterPlotsNotF
   });
   const { isLoading: isLoadingHarvesterPlots, data = [] } = useGetHarvesterPlotsKeysMissingQuery({
     peerId: subPeerId,
-    page: page + 1,
+    page,
     pageSize,
   });
 

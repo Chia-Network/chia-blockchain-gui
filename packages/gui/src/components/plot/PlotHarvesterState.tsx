@@ -23,12 +23,19 @@ export type PlotHarvesterStateProps = {
 
 export default function PlotHarvesterState(props: PlotHarvesterStateProps) {
   const { peerId } = props;
+  /*
   const { harvester } = useGetHarvesterStats(peerId);
 
   if (!harvester?.syncing?.initial) {
     return null;
   }
-
+*/
+const harvester = {
+  syncing: {
+    plotFilesProcessed: 100,
+    plotsTotal: 120,
+  },
+};
   const progress = Math.floor(harvester.syncing.plotFilesProcessed / harvester.syncing.plotsTotal * 100);
 
   return (

@@ -28,6 +28,7 @@ export default function PlotHarvester(props: PlotHarvesterProps) {
   const [activeTab, setActiveTab] = useState<'PLOTS' | 'NOT_FOUND' | 'FAILED'>('PLOTS');
   const [expanded, toggleExpand] = useToggle(expandedDefault);
   const simplePeerId = `${peerId.substr(0, 6)}...${peerId.substr(peerId.length - 6)}`;
+  const isLocal = host === '127.0.0.1';
 
   return (
     <Flex flexDirection="column" width="100%">
@@ -35,8 +36,8 @@ export default function PlotHarvester(props: PlotHarvesterProps) {
         <Flex flexDirection="row" alignItems="center" gap={2}>
           <Flex flexDirection="column">
             <Flex alignItems="baseline">
-              <Typography variant="h6">
-                <Trans>Harvester</Trans>
+              <Typography>
+                <Trans>{isLocal ? 'Local' : 'Remote'}</Trans>
               </Typography>
               &nbsp;
               <Tooltip title={peerId}>
@@ -47,7 +48,7 @@ export default function PlotHarvester(props: PlotHarvesterProps) {
             </Flex>
             <Flex alignItems="center" gap={2}>
               <Typography variant="body2" color="textSecondary">
-                {host}:{port}
+                {host}
               </Typography>
               <PlotHarvesterState peerId={peerId} />
             </Flex>

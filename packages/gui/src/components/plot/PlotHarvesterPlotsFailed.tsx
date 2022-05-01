@@ -33,7 +33,7 @@ export default function PlotHarvesterPlotsFailed(props: PlotHarvesterPlotsFailed
   });
   const { isLoading: isLoadingHarvesterPlots, data = [] } = useGetHarvesterPlotsInvalidQuery({
     peerId: subPeerId,
-    page: page + 1,
+    page,
     pageSize,
   });
 
