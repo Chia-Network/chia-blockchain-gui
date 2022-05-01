@@ -8,7 +8,7 @@ msgstr ""
 "Language: sv_SE\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-04-30 06:14\n"
+"PO-Revision-Date: 2022-05-01 05:26\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -119,7 +119,7 @@ msgstr ""
 
 #: src/components/hero/WalletHeroAdd.tsx:99
 msgid "Add Custom Token"
-msgstr ""
+msgstr "Lägg till anpassat token"
 
 #: src/components/plot/PlotHeader.tsx:89
 #~ msgid "Add Plot Directory"
