@@ -52,14 +52,14 @@ export const farmerApi = apiWithTag.injectEndpoints({
       onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, [{
         command: 'onHarvesterUpdated',
         service: Farmer,
-        endpoint: () => farmerApi.endpoints.getHarvestersSummary,
-        /*
-        skip: (data: any, args: any) => {
-          console.log('skip getHarvestersSummary', data, args);
-          return false;
-         // data.harvesterId !== args.harvesterId
-        },
-        */
+        onUpdate(draft, data) {
+          const { connection: { nodeId } } = data;
+
+          const index = draft.findIndex((harvester) => harvester.connection.nodeId === nodeId);
+          if (index !== -1) {
+            draft[index] = data;
+          }
+        }
       }]),
     }),
 
@@ -84,13 +84,11 @@ export const farmerApi = apiWithTag.injectEndpoints({
         command: 'onHarvesterUpdated',
         service: Farmer,
         endpoint: () => farmerApi.endpoints.getHarvesterPlotsValid,
-        /*
-        skip: (data: any, args: any) => {
-          console.log('skip getHarvesterPlots', data, args);
-          return false;
-         // data.harvesterId !== args.harvesterId
+        skip(_draft, data, args) {
+          const nodeId = `0x${args.peerId}`;
+
+          return nodeId !== data?.connection?.nodeId;
         },
-        */
       }]),
     }),
 
@@ -115,6 +113,11 @@ export const farmerApi = apiWithTag.injectEndpoints({
         command: 'onHarvesterUpdated',
         service: Farmer,
         endpoint: () => farmerApi.endpoints.getHarvesterPlotsInvalid,
+        skip(_draft, data, args) {
+          const nodeId = `0x${args.peerId}`;
+
+          return nodeId !== data?.connection?.nodeId;
+        },
       }]),
     }),
 
@@ -139,6 +142,11 @@ export const farmerApi = apiWithTag.injectEndpoints({
         command: 'onHarvesterUpdated',
         service: Farmer,
         endpoint: () => farmerApi.endpoints.getHarvesterPlotsKeysMissing,
+        skip(_draft, data, args) {
+          const nodeId = `0x${args.peerId}`;
+
+          return nodeId !== data?.connection?.nodeId;
+        },
       }]),
     }),
 
@@ -160,9 +168,14 @@ export const farmerApi = apiWithTag.injectEndpoints({
         ]
         :  [{ type: 'HarvesterPlotsDuplicates', id: 'LIST' }],
       onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, [{
-        command: 'onHarvesterChanged',
+        command: 'onHarvesterUpdated',
         service: Farmer,
         endpoint: () => farmerApi.endpoints.getHarvesterPlotsDuplicates,
+        skip(_draft, data, args) {
+          const nodeId = `0x${args.peerId}`;
+
+          return nodeId !== data?.connection?.nodeId;
+        },
       }]),
     }),
 

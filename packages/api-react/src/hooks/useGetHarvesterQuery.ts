@@ -25,8 +25,6 @@ export default function useGetHarvesterQuery({
     return data?.find((harvester) => harvester.connection.nodeId === peerId);
   }, [data, peerId]);
 
-  console.log('harvester', harvester);
-
   const isLoading = isLoadingHarvesterSummary;
 
   return {
