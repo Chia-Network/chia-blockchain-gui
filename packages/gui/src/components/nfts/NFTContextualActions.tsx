@@ -1,4 +1,5 @@
 import React, { useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Trans } from '@lingui/macro';
 import type { NFTInfo } from '@chia/api';
 import { AlertDialog, DropdownActions, useOpenDialog } from '@chia/core';
@@ -17,6 +18,8 @@ import NFTSelection from '../../types/NFTSelection';
 enum NFTContextualActionTypes {
   CreateOffer = 1 << 0, // 1
   Transfer = 1 << 1, // 2
+  // TODO: Remove this when we have a way to view offers
+  DemoViewOffer = 1 << 2, // 4
 }
 
 type NFTContextualActionProps = {
@@ -128,6 +131,44 @@ function NFTTransferContextualAction(props: NFTTransferContextualActionProps) {
 }
 
 /* ========================================================================== */
+/*                          Demo Action - View Offer                          */
+/* ========================================================================== */
+
+type NFTDemoViewOfferContextualActionProps = NFTContextualActionProps;
+
+function NFTDemoViewOfferContxtualAction(
+  props: NFTDemoViewOfferContextualActionProps,
+) {
+  const { onClose, selection } = props;
+  const navigate = useNavigate();
+  const selectedNft: NFT | undefined = selection?.items[0];
+  const disabled = (selection?.items.length ?? 0) !== 1;
+
+  function handleViewOffer() {
+    navigate('/dashboard/offers/view-nft', {
+      state: { /*offerData, offerSummary, offerFilePath,*/ imported: true },
+    });
+  }
+
+  return (
+    <MenuItem
+      onClick={() => {
+        onClose();
+        handleViewOffer();
+      }}
+      disabled={disabled}
+    >
+      <ListItemIcon>
+        <OffersIcon />
+      </ListItemIcon>
+      <Typography variant="inherit" noWrap>
+        <Trans>Demo - View Offer</Trans>
+      </Typography>
+    </MenuItem>
+  );
+}
+
+/* ========================================================================== */
 /*                             Contextual Actions                             */
 /* ========================================================================== */
 
@@ -139,10 +180,15 @@ type NFTContextualActionsProps = {
 export default function NFTContextualActions(props: NFTContextualActionsProps) {
   const { selection, availableActions } = props;
 
+  console.log('availableActions:');
+  console.log(availableActions);
+
   const actions = useMemo(() => {
     const actionComponents = {
       [NFTContextualActionTypes.CreateOffer]: NFTCreateOfferContextualAction,
       [NFTContextualActionTypes.Transfer]: NFTTransferContextualAction,
+      // TODO: Remove this demo action
+      [NFTContextualActionTypes.DemoViewOffer]: NFTDemoViewOfferContxtualAction,
     };
 
     return Object.keys(NFTContextualActionTypes)
@@ -169,5 +215,7 @@ export default function NFTContextualActions(props: NFTContextualActionsProps) {
 NFTContextualActions.defaultProps = {
   selection: undefined,
   availableActions:
-    NFTContextualActionTypes.CreateOffer | NFTContextualActionTypes.Transfer,
+    NFTContextualActionTypes.CreateOffer |
+    NFTContextualActionTypes.Transfer |
+    NFTContextualActionTypes.DemoViewOffer, // TODO: Remove
 };
