@@ -40,7 +40,7 @@ export default function useGetTotalHarvestersSummaryQuery(): {
         plotsProcessed = plotsProcessed.plus(harvester.syncing.plotFilesProcessed);
         plotFilesTotal = plotFilesTotal.plus(harvester.syncing.plotFilesTotal);
 
-        if (harvester.syncing.initial) {
+        if (harvester.syncing?.initial === true) {
           initialized = false;
         }
       }

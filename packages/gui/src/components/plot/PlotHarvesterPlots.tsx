@@ -89,7 +89,7 @@ export default function PlotHarvesterPlots(props: PlotHarvesterPlotsProps) {
   const [page, setPage] = useState(0);
   const [pageSize, setPageSize] = useState(5);
   const subPeerId = peerId.substring(2);
-  const { plots, isLoading: isLoadingHarvester } = useGetHarvesterQuery({
+  const { plots, initialized, isLoading: isLoadingHarvester } = useGetHarvesterQuery({
     peerId,
   });
   const { isLoading: isLoadingHarvesterPlots, data = [] } = useGetHarvesterPlotsQuery({
@@ -120,7 +120,11 @@ export default function PlotHarvesterPlots(props: PlotHarvesterPlotsProps) {
       uniqueField="plotId"
       caption={!plots && (
         <Typography variant="body2" align="center">
-          <Trans>No plots yet</Trans>
+          {initialized ? (
+            <Trans>No plots yet</Trans>
+          ) : (
+            <Trans>Initializing...</Trans>
+          )}
         </Typography>
       )}
       pages={!!plots}
