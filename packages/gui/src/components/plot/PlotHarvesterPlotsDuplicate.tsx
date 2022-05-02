@@ -2,7 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { Trans } from '@lingui/macro';
 import { TableControlled } from '@chia/core';
 import { type Plot } from '@chia/api';
-import { useGetHarvesterPlotsInvalidQuery, useGetHarvesterQuery } from '@chia/api-react';
+import { useGetHarvesterPlotsDuplicatesQuery, useGetHarvesterQuery } from '@chia/api-react';
 import { Typography } from '@mui/material';
 import PlotAction from './PlotAction';
 
@@ -19,19 +19,19 @@ const cols = [
   },
 ];
 
-export type PlotHarvesterPlotsFailedProps = {
+export type PlotHarvesterPlotsDuplicateProps = {
   peerId: string;
 };
 
-export default function PlotHarvesterPlotsFailed(props: PlotHarvesterPlotsFailedProps) {
+export default function PlotHarvesterPlotsDuplicate(props: PlotHarvesterPlotsDuplicateProps) {
   const { peerId } = props;
   const [page, setPage] = useState(0);
   const [pageSize, setPageSize] = useState(5);
   const subPeerId = peerId.substring(2);
-  const { failedToOpenFilenames, isLoading: isLoadingHarvester } = useGetHarvesterQuery({
+  const { duplicates, isLoading: isLoadingHarvester } = useGetHarvesterQuery({
     peerId,
   });
-  const { isLoading: isLoadingHarvesterPlots, data = [] } = useGetHarvesterPlotsInvalidQuery({
+  const { isLoading: isLoadingHarvesterPlots, data = [] } = useGetHarvesterPlotsDuplicatesQuery({
     peerId: subPeerId,
     page,
     pageSize,
@@ -42,7 +42,7 @@ export default function PlotHarvesterPlotsFailed(props: PlotHarvesterPlotsFailed
   }, [data]);
 
   const isLoading = isLoadingHarvester || isLoadingHarvesterPlots;
-  const count = failedToOpenFilenames ?? 0;
+  const count = duplicates ?? 0;
 
   function handlePageChange(rowsPerPage: number, page: number) {
     setPageSize(rowsPerPage);
@@ -61,12 +61,12 @@ export default function PlotHarvesterPlotsFailed(props: PlotHarvesterPlotsFailed
       isLoading={isLoading}
       expandedCellShift={1}
       uniqueField="filename"
-      caption={!failedToOpenFilenames && (
+      caption={!duplicates && (
         <Typography variant="body2" align="center">
           <Trans>Hooray, no files here!</Trans>
         </Typography>
       )}
-      pages={!!failedToOpenFilenames}
+      pages={!!duplicates}
     />
   );
 }

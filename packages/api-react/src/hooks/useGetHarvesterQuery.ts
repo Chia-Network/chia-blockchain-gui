@@ -11,6 +11,7 @@ export default function useGetHarvesterQuery({
   plots?: number;
   noKeyFilenames?: number;
   failedToOpenFilenames?: number;
+  duplicates?: number;
   connection?: {
     nodeId: string;
     host: string;
@@ -23,6 +24,8 @@ export default function useGetHarvesterQuery({
     return data?.find((harvester) => harvester.connection.nodeId === peerId);
   }, [data, peerId]);
 
+  console.log('harvester', harvester);
+
   const isLoading = isLoadingHarvesterSummary;
 
   return {
@@ -32,6 +35,7 @@ export default function useGetHarvesterQuery({
     plots: harvester?.plots,
     noKeyFilenames: harvester?.noKeyFilenames,
     failedToOpenFilenames: harvester?.failedToOpenFilenames,
+    duplicates: harvester?.duplicates,
   };
 }
 

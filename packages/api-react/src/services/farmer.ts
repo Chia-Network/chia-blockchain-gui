@@ -53,6 +53,11 @@ export const farmerApi = apiWithTag.injectEndpoints({
         command: 'onHarvesterUpdated',
         service: Farmer,
         endpoint: () => farmerApi.endpoints.getHarvestersSummary,
+        skip: (data: any, args: any) => {
+          console.log('skip getHarvestersSummary', data, args);
+          return false;
+         // data.harvesterId !== args.harvesterId
+        },
       }]),
     }),
 
@@ -77,6 +82,11 @@ export const farmerApi = apiWithTag.injectEndpoints({
         command: 'onHarvesterUpdated',
         service: Farmer,
         endpoint: () => farmerApi.endpoints.getHarvesterPlots,
+        skip: (data: any, args: any) => {
+          console.log('skip getHarvesterPlots', data, args);
+          return false;
+         // data.harvesterId !== args.harvesterId
+        },
       }]),
     }),
 

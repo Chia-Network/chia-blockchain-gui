@@ -2,7 +2,7 @@ import React from 'react';
 import { Trans } from '@lingui/macro';
 import { Typography } from '@mui/material';
 import { Link, Table, Card } from '@chia/core';
-import { useGetSignagePointsQuery, useGetCombinedPlotsQuery } from '@chia/api-react';
+import { useGetSignagePointsQuery, useGetTotalHarvestersSummaryQuery } from '@chia/api-react';
 import type { Row } from '../core/components/Table/Table';
 
 const cols = [
@@ -20,10 +20,9 @@ const cols = [
 
 export default function FarmLatestBlockChallenges() {
   const { data: signagePoints = [], isLoading: isLoadingSignagePoints } = useGetSignagePointsQuery();
-  const { data: plots, isLoading: isLoadingPlots } = useGetCombinedPlotsQuery();
+  const { hasPlots, isLoading: isLoadingTotalHarvestersSummary } = useGetTotalHarvestersSummaryQuery();
 
-  const isLoading = isLoadingSignagePoints || isLoadingPlots;
-  const hasPlots = plots?.length > 0;
+  const isLoading = isLoadingSignagePoints || isLoadingTotalHarvestersSummary;
   const reducedSignagePoints = signagePoints;
 
   return (

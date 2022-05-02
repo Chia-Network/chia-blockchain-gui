@@ -33,17 +33,3 @@ export default function PlotOverviewCards() {
     </div>
   );
 }
-
-/*
-isLoading: boolean;
-error?: Error;
-hasPlots: boolean;
-plots: number;
-uniquePlots: number;
-noKeyFilenames: number;
-failedToOpenFilenames: number;
-duplicates: number;
-harvesters: number;
-plotsProcessed: number;
-plotsLoaded: number;
-*/

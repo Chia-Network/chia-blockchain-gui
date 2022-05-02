@@ -30,15 +30,6 @@ export default function PlotHarvesters() {
             expanded={data?.length === 1}
           />
         ))}
-        {data?.map((harvester) => (
-          <PlotHarvester
-            peerId={harvester.connection.nodeId}
-            key={harvester.connection.nodeId}
-            host={'23.5.6.8'}
-            port={harvester.connection.port}
-            expanded={data?.length === 1}
-          />
-        ))}
       </Flex>
     </Flex>
   );

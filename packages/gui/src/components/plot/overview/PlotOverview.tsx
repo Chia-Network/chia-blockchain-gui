@@ -7,15 +7,16 @@ import PlotOverviewPlots from './PlotOverviewPlots';
 
 export default function PlotOverview() {
   const { isLoading: isLoadingQueue, hasQueue } = useGetThrottlePlotQueueQuery();
-  const { isLoading: isLoadingTotalHarvestrSummary, hasPlots } = useGetTotalHarvestersSummaryQuery();
+  const { isLoading: isLoadingTotalHarvestrSummary, harvesters } = useGetTotalHarvestersSummaryQuery();
 
   const isLoading = isLoadingQueue || isLoadingTotalHarvestrSummary;
+  const hasData = hasQueue || !!harvesters;
 
   return (
     <Flex flexDirection="column" gap={3}>
       {isLoading ? (
         <Loading center />
-      ) : (hasPlots || hasQueue) ? (
+      ) : hasData ? (
         <PlotOverviewPlots />
       ) : (
         <Grid container spacing={3}>

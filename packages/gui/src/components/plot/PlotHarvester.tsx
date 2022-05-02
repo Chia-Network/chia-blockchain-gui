@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Trans } from '@lingui/macro';
 import { useToggle } from 'react-use';
 import { Accordion, Flex, Tooltip } from '@chia/core';
@@ -9,6 +9,7 @@ import { Box, Tab, Tabs } from '@mui/material';
 import PlotHarvesterPlots from './PlotHarvesterPlots';
 import PlotHarvesterPlotsNotFound from './PlotHarvesterPlotsNotFound';
 import PlotHarvesterPlotsFailed from './PlotHarvesterPlotsFailed';
+import PlotHarvesterPlotsDuplicate from './PlotHarvesterPlotsDuplicate';
 import PlotHarvesterState from './PlotHarvesterState';
 
 export type PlotHarvesterProps = {
@@ -19,16 +20,30 @@ export type PlotHarvesterProps = {
 };
 
 export default function PlotHarvester(props: PlotHarvesterProps) {
-  const { peerId, host, port, expanded: expandedDefault = false } = props;
+  const { peerId, host, expanded: expandedDefault = false } = props;
 
-  const { plots, noKeyFilenames, failedToOpenFilenames } = useGetHarvesterQuery({
+  const { plots, noKeyFilenames, failedToOpenFilenames, duplicates } = useGetHarvesterQuery({
     peerId,
   });
 
-  const [activeTab, setActiveTab] = useState<'PLOTS' | 'NOT_FOUND' | 'FAILED'>('PLOTS');
+  const [activeTab, setActiveTab] = useState<'PLOTS' | 'NOT_FOUND' | 'FAILED' | 'DUPLICATE'>('FAILED');
   const [expanded, toggleExpand] = useToggle(expandedDefault);
   const simplePeerId = `${peerId.substr(0, 6)}...${peerId.substr(peerId.length - 6)}`;
   const isLocal = host === '127.0.0.1';
+
+  useEffect(() => {
+    if ((activeTab === 'NOT_FOUND' && !noKeyFilenames) || (activeTab === 'FAILED' && !failedToOpenFilenames) || (activeTab === 'DUPLICATE' && !duplicates)) {
+      setActiveTab('PLOTS');
+    }
+  }, [activeTab, plots, noKeyFilenames, failedToOpenFilenames, duplicates]);
+
+  function hadneChangeActiveTab(newActiveTab) {
+    setActiveTab(newActiveTab);
+
+    if (!expanded) {
+      toggleExpand();
+    }
+  }
 
   return (
     <Flex flexDirection="column" width="100%">
@@ -37,7 +52,7 @@ export default function PlotHarvester(props: PlotHarvesterProps) {
           <Flex flexDirection="column">
             <Flex alignItems="baseline">
               <Typography>
-                <Trans>{isLocal ? 'Local' : 'Remote'}</Trans>
+                {isLocal ? <Trans>Local</Trans> : <Trans>Remote</Trans>}
               </Typography>
               &nbsp;
               <Tooltip title={peerId}>
@@ -58,13 +73,20 @@ export default function PlotHarvester(props: PlotHarvesterProps) {
         <Flex alignItems="center">
           <Tabs
             value={activeTab}
-            onChange={(_event, newValue) => setActiveTab(newValue)}
+            onChange={(_event, newValue) => hadneChangeActiveTab(newValue)}
             textColor="primary"
             indicatorColor="primary"
           >
             <Tab value="PLOTS" label={<Trans>Plots ({plots})</Trans>} />
-            <Tab value="NOT_FOUND" label={<Trans>Missing Keys ({noKeyFilenames})</Trans>} />
-            <Tab value="FAILED" label={<Trans>Failed ({failedToOpenFilenames})</Trans>} />
+            {!!noKeyFilenames && (
+              <Tab value="NOT_FOUND" label={<Trans>Missing Keys ({noKeyFilenames})</Trans>} />
+            )}
+            {!!failedToOpenFilenames && (
+              <Tab value="FAILED" label={<Trans>Failed ({failedToOpenFilenames})</Trans>} />
+            )}
+            {!!duplicates && (
+              <Tab value="DUPLICATE" label={<Trans>Duplicate ({duplicates})</Trans>} />
+            )}
           </Tabs>
           &nbsp;
           {expanded ? <ExpandLess onClick={toggleExpand} /> : <ExpandMore onClick={toggleExpand} />}
@@ -81,6 +103,9 @@ export default function PlotHarvester(props: PlotHarvesterProps) {
         </Box>
         <Box display={activeTab=== 'FAILED' ? 'block' : 'none'}>
           <PlotHarvesterPlotsFailed peerId={peerId} />
+        </Box>
+        <Box display={activeTab=== 'DUPLICATE' ? 'block' : 'none'}>
+          <PlotHarvesterPlotsDuplicate peerId={peerId} />
         </Box>
       </Accordion>
     </Flex>
