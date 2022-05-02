@@ -1,6 +1,6 @@
 import React from 'react';
 import { Trans } from '@lingui/macro';
-import { Link, Table, Card, FormatBytes } from '@chia/core';
+import { Link, Table, Card } from '@chia/core';
 import { useGetFarmingInfoQuery } from '@chia/api-react';
 import moment from 'moment';
 import type { Row } from '../core/components/Table/Table';
