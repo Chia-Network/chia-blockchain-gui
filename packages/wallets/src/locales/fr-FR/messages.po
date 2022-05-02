@@ -8,7 +8,7 @@ msgstr ""
 "Language: fr_FR\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-04-20 18:14\n"
+"PO-Revision-Date: 2022-05-02 20:23\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
@@ -36,7 +36,7 @@ msgstr ""
 
 #: src/components/WalletHistory.tsx:150
 msgid "+"
-msgstr ""
+msgstr "+"
 
 #: src/components/plot/add/PlotAddNFT.tsx:128
 #~ msgid "+ Add New Plot NFT"
@@ -52,7 +52,7 @@ msgstr ""
 
 #: src/components/WalletHistory.tsx:149
 msgid "-"
-msgstr ""
+msgstr "-"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:94
 #~ msgid "0 automatically chooses bucket count"
@@ -83,7 +83,7 @@ msgstr ""
 #: src/components/offers/OfferViewer.tsx:289
 #: src/components/offers/OfferViewer.tsx:290
 msgid "Accept Offer"
-msgstr ""
+msgstr "Accepter l'Offre"
 
 #: src/components/trading/TradingOverview.jsx:227
 #~ msgid "Accepted at time:"
@@ -91,7 +91,7 @@ msgstr ""
 
 #: src/components/offers/OfferViewer.tsx:194
 msgid "Accepted on Date"
-msgstr ""
+msgstr "Accepté le"
 
 #: src/components/plot/PlotsFailed.tsx:18
 #: src/components/plot/PlotsNotFound.tsx:18
@@ -101,7 +101,7 @@ msgstr ""
 
 #: src/components/WalletHeader.tsx:74
 msgid "Actions"
-msgstr ""
+msgstr "Actions"
 
 #: src/components/cat/WalletCATCreateExistingSimple.tsx:96
 msgid "Add"
@@ -115,11 +115,11 @@ msgstr "Ajouter un identifiant de sauvegarde"
 
 #: src/components/offers/OfferAssetSelector.tsx:127
 msgid "Add CAT wallets to have more options"
-msgstr ""
+msgstr "Ajouter les portefeuilles CAT pour avoir plus d'options"
 
 #: src/components/hero/WalletHeroAdd.tsx:99
 msgid "Add Custom Token"
-msgstr ""
+msgstr "Ajouter un Token personnalisé"
 
 #: src/components/plot/PlotHeader.tsx:89
 #~ msgid "Add Plot Directory"
@@ -135,7 +135,7 @@ msgstr ""
 #: src/components/hero/WalletHeroAdd.tsx:64
 #: src/components/hero/WalletHeroWallets.tsx:83
 msgid "Add Token"
-msgstr ""
+msgstr "Ajouter un Token"
 
 #: src/components/wallet/Wallets.tsx:88
 #~ msgid "Add Wallet"
@@ -168,7 +168,7 @@ msgstr ""
 
 #: src/components/cat/WalletCATCreateSimple.tsx:94
 msgid "Adding {0} token"
-msgstr ""
+msgstr "Ajout de {0} token"
 
 #: src/components/WalletReceiveAddress.tsx:55
 msgid "Address"
