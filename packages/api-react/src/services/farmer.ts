@@ -58,6 +58,8 @@ export const farmerApi = apiWithTag.injectEndpoints({
           const index = draft.findIndex((harvester) => harvester.connection.nodeId === nodeId);
           if (index !== -1) {
             draft[index] = data;
+          } else {
+            draft.push(data);
           }
         }
       }]),
