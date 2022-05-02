@@ -12,6 +12,7 @@ export default function useGetHarvesterQuery({
   noKeyFilenames?: number;
   failedToOpenFilenames?: number;
   duplicates?: number;
+  totalPlotSize?: number;
   connection?: {
     nodeId: string;
     host: string;
@@ -35,6 +36,7 @@ export default function useGetHarvesterQuery({
     noKeyFilenames: harvester?.noKeyFilenames,
     failedToOpenFilenames: harvester?.failedToOpenFilenames,
     duplicates: harvester?.duplicates,
+    totalPlotSize: harvester?.totalPlotSize,
     initialized: harvester?.syncing?.initial !== true,
   };
 }

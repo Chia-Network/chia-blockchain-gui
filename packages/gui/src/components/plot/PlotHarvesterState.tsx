@@ -1,6 +1,7 @@
 import React from 'react';
 import { Box, Typography, LinearProgress, type LinearProgressProps } from '@mui/material';
 import { useGetHarvesterStats } from '@chia/api-react';
+import { FormatBytes } from '@chia/core';
 
 function LinearProgressWithLabel(props: LinearProgressProps & { value: number }) {
   return (
@@ -9,7 +10,7 @@ function LinearProgressWithLabel(props: LinearProgressProps & { value: number })
         <LinearProgress variant="determinate" {...props} />
       </Box>
       <Box sx={{ minWidth: 35 }}>
-        <Typography variant="caption" color="text.secondary">{`${Math.round(
+        <Typography variant="caption" color="textSecondary">{`${Math.round(
           props.value,
         )}%`}</Typography>
       </Box>
@@ -25,7 +26,7 @@ export default function PlotHarvesterState(props: PlotHarvesterStateProps) {
   const { peerId } = props;
   const { harvester } = useGetHarvesterStats(peerId);
 
-  if (!harvester?.syncing?.initial) {
+  if (harvester?.syncing?.initial !== true) {
     return null;
   }
 

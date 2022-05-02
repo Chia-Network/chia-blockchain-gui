@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Trans } from '@lingui/macro';
 import { useToggle } from 'react-use';
-import { Accordion, Flex, Tooltip } from '@chia/core';
+import { Accordion, Flex, FormatBytes, Tooltip } from '@chia/core';
 import { useGetHarvesterQuery } from '@chia/api-react';
 import { Typography } from '@mui/material';
 import { ExpandMore, ExpandLess } from '@mui/icons-material';
@@ -22,7 +22,7 @@ export type PlotHarvesterProps = {
 export default function PlotHarvester(props: PlotHarvesterProps) {
   const { peerId, host, expanded: expandedDefault = false } = props;
 
-  const { plots, noKeyFilenames, failedToOpenFilenames, duplicates } = useGetHarvesterQuery({
+  const { plots, noKeyFilenames, failedToOpenFilenames, duplicates, totalPlotSize, initialized } = useGetHarvesterQuery({
     peerId,
   });
 
@@ -64,6 +64,12 @@ export default function PlotHarvester(props: PlotHarvesterProps) {
             <Flex alignItems="center" gap={2}>
               <Typography variant="body2" color="textSecondary">
                 {host}
+                {initialized && (
+                  <>
+                    ,&nbsp;
+                    <FormatBytes value={totalPlotSize} precision={3} />
+                  </>
+                )}
               </Typography>
               <PlotHarvesterState peerId={peerId} />
             </Flex>
