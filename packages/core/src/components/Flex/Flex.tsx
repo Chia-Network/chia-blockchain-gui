@@ -1,13 +1,13 @@
 import React from 'react';
-import { Box, BoxProps } from '@material-ui/core';
-import { useTheme } from '@material-ui/core/styles';
+import { Box, BoxProps } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 import styled from 'styled-components';
 
 type GAP_SIZE = number | string | 'small' | 'normal' | 'large';
 
 function getGap(gap: GAP_SIZE, theme: any): string {
   if (typeof gap === 'number') {
-    return `${theme.spacing(gap)}px`;
+    return `${theme.spacing(gap)}`;
   }
 
   switch (gap) {
@@ -26,34 +26,37 @@ const StyledGapBox = styled(({ rowGap, columnGap, ...rest }) => (
   <Box {...rest} />
 ))`
   > *:not(:last-child) {
-    ${({ rowGap }) => rowGap && `margin-bottom: ${rowGap}`};
-    ${({ columnGap }) => columnGap && `margin-right: ${columnGap}`};
+    ${({ rowGap, flexDirection }) => rowGap && `margin-${flexDirection === 'column-reverse' ? 'top' : 'bottom'}: ${rowGap}`};
+    ${({ columnGap, flexDirection }) => columnGap && `margin-${flexDirection === 'row-reverse' ? 'left' : 'right'}: ${columnGap}`};
   }
 `;
 
-type Props = BoxProps & {
+export type FlexProps = BoxProps & {
   gap?: GAP_SIZE;
   rowGap?: GAP_SIZE;
   columnGap?: GAP_SIZE;
   inline?: boolean;
 };
 
-export default function Flex(props: Props) {
+export default function Flex(props: FlexProps) {
   const {
     gap = '0',
     flexDirection,
     rowGap = gap,
     columnGap = gap,
-    inline,
+    inline = false,
     ...rest
   } = props;
 
   const theme = useTheme();
 
-  const rowGapValue = flexDirection === 'column' ? getGap(rowGap, theme) : 0;
+  const rowGapValue = ['column', 'column-reverse'].includes(flexDirection)
+    ? getGap(rowGap, theme)
+    : 0;
 
-  const columnGapValue =
-    flexDirection !== 'column' ? getGap(columnGap, theme) : 0;
+  const columnGapValue = !['column', 'column-reverse'].includes(flexDirection)
+    ? getGap(columnGap, theme)
+    : 0;
 
   return (
     <StyledGapBox
@@ -65,7 +68,3 @@ export default function Flex(props: Props) {
     />
   );
 }
-
-Flex.defaultProps = {
-  inline: false,
-};

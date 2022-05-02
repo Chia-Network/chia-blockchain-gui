@@ -1,22 +1,20 @@
 import React, { useEffect } from 'react';
 import {
   Box,
-  Button,
   Checkbox,
   Dialog,
-  DialogActions,
   DialogContent,
   DialogContentText,
   DialogTitle,
   FormControlLabel,
   TextField,
   Tooltip,
-} from '@material-ui/core';
+} from '@mui/material';
 import {
   Help as HelpIcon,
-} from '@material-ui/icons';
+} from '@mui/icons-material';
 import { t, Trans } from '@lingui/macro';
-import { AlertDialog, Flex, useOpenDialog, Suspender, useValidateChangePassphraseParams } from '@chia/core';
+import { AlertDialog, Button, DialogActions, useOpenDialog, Suspender, useValidateChangePassphraseParams } from '@chia/core';
 import { useGetKeyringStatusQuery, useRemoveKeyringPassphraseMutation, useSetKeyringPassphraseMutation } from '@chia/api-react';
 
 type Props = {
@@ -30,9 +28,9 @@ export default function ChangePassphrasePrompt(props: Props) {
   const [validateChangePassphraseParams] = useValidateChangePassphraseParams();
   const [removeKeyringPassphrase, { isLoading: isLoadingRemoveKeyringPassphrase }] = useRemoveKeyringPassphraseMutation();
   const [setKeyringPassphrase, { isLoading: isLoadingSetKeyringPassphrase }] = useSetKeyringPassphraseMutation();
-  
+
   const isProcessing = isLoadingRemoveKeyringPassphrase || isLoadingSetKeyringPassphrase;
-  
+
   let currentPassphraseInput: HTMLInputElement | null;
   let passphraseInput: HTMLInputElement | null;
   let confirmationInput: HTMLInputElement | null;
@@ -132,12 +130,12 @@ export default function ChangePassphrasePrompt(props: Props) {
       'Escape' : handleCancel,
     };
     const handler: () => Promise<void> | undefined = keyHandlerMapping[e.key];
-  
+
     if (handler) {
       // Disable default event handling to avoid navigation updates
       e.preventDefault();
       e.stopPropagation();
-  
+
       await handler();
     }
   }
@@ -214,24 +212,22 @@ export default function ChangePassphrasePrompt(props: Props) {
           </Box>
         )}
         <DialogActions>
-          <Flex gap={2}>
-            <Button
-              disabled={isProcessing}
-              onClick={handleCancel}
-              color="secondary"
-              variant="contained"
-            >
-              <Trans>Cancel</Trans>
-            </Button>
-            <Button
-              disabled={isProcessing}
-              onClick={handleSubmit}
-              color="primary"
-              variant="contained"
-            >
-              <Trans>Change Passphrase</Trans>
-            </Button>
-          </Flex>
+          <Button
+            disabled={isProcessing}
+            onClick={handleCancel}
+            color="secondary"
+            variant="outlined"
+          >
+            <Trans>Cancel</Trans>
+          </Button>
+          <Button
+            disabled={isProcessing}
+            onClick={handleSubmit}
+            color="primary"
+            variant="contained"
+          >
+            <Trans>Change Passphrase</Trans>
+          </Button>
         </DialogActions>
       </DialogContent>
     </Dialog>

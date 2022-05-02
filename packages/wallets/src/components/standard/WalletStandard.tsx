@@ -1,12 +1,10 @@
-import React from 'react';
-import { Trans } from '@lingui/macro';
-import { useShowDebugInformation, Flex } from '@chia/core';
+import React, { useState } from 'react';
+import { Flex } from '@chia/core';
 import WalletHistory from '../WalletHistory';
 import WalletStandardCards from './WalletStandardCards';
 import WalletReceiveAddress from '../WalletReceiveAddress';
 import WalletSend from '../WalletSend';
 import WalletHeader from '../WalletHeader';
-import WalletConnections from '../WalletConnections';
 
 type StandardWalletProps = {
   walletId: number;
@@ -14,24 +12,35 @@ type StandardWalletProps = {
 
 export default function StandardWallet(props: StandardWalletProps) {
   const { walletId } = props;
-  const showDebugInformation = useShowDebugInformation();
+  // const showDebugInformation = useShowDebugInformation();
+  const [selectedTab, setSelectedTab] = useState<'summary' | 'send' | 'receive'>('summary');
 
   return (
-    <Flex flexDirection="column" gap={2}>
+    <Flex flexDirection="column" gap={2.5}>
       <WalletHeader
         walletId={walletId}
-        title={<Trans>Chia Wallet</Trans>}
+        tab={selectedTab}
+        onTabChange={setSelectedTab}
       />
 
-      <Flex flexDirection="column" gap={3}>
-        <WalletStandardCards walletId={walletId} />
-        <WalletReceiveAddress walletId={walletId} />
+      {selectedTab === 'summary' && (
+        <Flex flexDirection="column" gap={4}>
+          <WalletStandardCards walletId={walletId} />
+          <WalletHistory walletId={walletId} />
+        </Flex>
+      )}
+      {selectedTab === 'send' && (
         <WalletSend walletId={walletId} />
-        <WalletHistory walletId={walletId} />
-        {showDebugInformation && (
-          <WalletConnections walletId={walletId} />
-        )}
-      </Flex>
+      )}
+      {selectedTab === 'receive' && (
+        <WalletReceiveAddress walletId={walletId} />
+      )}
+
+      {/*
+      {showDebugInformation && (
+        <WalletConnections walletId={walletId} />
+      )}
+      */}
     </Flex>
   );
 }

@@ -1,18 +1,17 @@
 import React, { useMemo, useState, useEffect } from 'react';
 import { Trans } from '@lingui/macro';
 import { useForm } from 'react-hook-form';
-import { Alert } from '@material-ui/lab';
 import styled from 'styled-components';
-import { Flex, Form, TextField, Loading, fromBech32m } from '@chia/core';
+import { Button, Flex, Form, TextField, Loading, fromBech32m } from '@chia/core';
 import { useSetRewardTargetsMutation, useGetRewardTargetsQuery } from '@chia/api-react';
 import {
-  Button,
+  Alert,
   Dialog,
   DialogActions,
   DialogTitle,
   DialogContent,
   Typography,
-} from '@material-ui/core';
+} from '@mui/material';
 
 const StyledTextField = styled(TextField)`
   min-width: 640px;
@@ -34,7 +33,7 @@ export default function FarmManageFarmingRewards(props: Props) {
   const { data, isLoading } = useGetRewardTargetsQuery({
     searchForPrivateKey: true,
   });
-  
+
   const [error, setError] = useState<Error | null>(null);
   const methods = useForm<FormData>({
     mode: 'onChange',
@@ -89,7 +88,7 @@ export default function FarmManageFarmingRewards(props: Props) {
 
     try {
       await setRewardTargets({
-        farmerTarget, 
+        farmerTarget,
         poolTarget,
       }).unwrap();
       handleClose();

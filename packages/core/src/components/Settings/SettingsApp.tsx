@@ -1,16 +1,16 @@
 import React, { type ReactNode } from 'react';
 import { Trans } from '@lingui/macro';
-import useDarkMode from 'use-dark-mode';
 import { type Shell } from 'electron';
+import useDarkMode from '../../hooks/useDarkMode';
 import Button from '../Button';
 import Link from '../Link';
-import { ButtonGroup } from '@material-ui/core';
-import { 
-  WbSunny as WbSunnyIcon, 
+import { ButtonGroup } from '@mui/material';
+import { Farming } from '@chia/icons';
+import {
+  WbSunny as WbSunnyIcon,
   NightsStay as NightsStayIcon,
   AccountBalanceWallet as AccountBalanceWalletIcon,
-  Eco as EcoIcon,
-} from '@material-ui/icons';
+} from '@mui/icons-material';
 import useMode from '../../hooks/useMode';
 import SettingsLabel from './SettingsLabel';
 import Flex from '../Flex';
@@ -27,7 +27,7 @@ export default function SettingsApp(props: SettingsAppProps) {
 
   const [mode, setMode] = useMode();
   const showError = useShowError();
-  const { enable, disable, value: darkMode } = useDarkMode();
+  const { enable, disable, isDarkMode } = useDarkMode();
 
   function handleSetFarmingMode() {
     setMode(Mode.FARMING);
@@ -45,7 +45,7 @@ export default function SettingsApp(props: SettingsAppProps) {
       showError(error);
     }
   }
-  
+
   async function handleOpenSendFeedbackURL(): Promise<void> {
     try {
       const shell: Shell = (window as any).shell;
@@ -62,7 +62,7 @@ export default function SettingsApp(props: SettingsAppProps) {
           <Trans>Mode</Trans>
         </SettingsLabel>
         <ButtonGroup fullWidth>
-          <Button startIcon={<EcoIcon />} selected={mode === Mode.FARMING} onClick={handleSetFarmingMode}>
+          <Button startIcon={<Farming />} selected={mode === Mode.FARMING} onClick={handleSetFarmingMode}>
             <Trans>Farming</Trans>
           </Button>
           <Button startIcon={<AccountBalanceWalletIcon />} selected={mode === Mode.WALLET} onClick={handleSetWalletMode}>
@@ -76,10 +76,10 @@ export default function SettingsApp(props: SettingsAppProps) {
           <Trans>Appearance</Trans>
         </SettingsLabel>
         <ButtonGroup fullWidth>
-          <Button startIcon={<WbSunnyIcon />} selected={!darkMode} onClick={() => disable()}>
+          <Button startIcon={<WbSunnyIcon />} selected={!isDarkMode} onClick={() => disable()}>
             <Trans>Light</Trans>
           </Button>
-          <Button startIcon={<NightsStayIcon />} selected={darkMode} onClick={() => enable()}>
+          <Button startIcon={<NightsStayIcon />} selected={isDarkMode} onClick={() => enable()}>
             <Trans>Dark</Trans>
           </Button>
         </ButtonGroup>
@@ -89,7 +89,7 @@ export default function SettingsApp(props: SettingsAppProps) {
         <SettingsLabel>
           <Trans>Language</Trans>
         </SettingsLabel>
-        <LocaleToggle 
+        <LocaleToggle
           variant="outlined"
         />
       </Flex>

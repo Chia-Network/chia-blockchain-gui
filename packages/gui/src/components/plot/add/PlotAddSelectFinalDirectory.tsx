@@ -3,7 +3,7 @@ import { Trans } from '@lingui/macro';
 import { useFormContext } from 'react-hook-form';
 import { useLocalStorage, writeStorage } from '@rehooks/local-storage';
 import { ButtonSelected, CardStep, Flex, TextField } from '@chia/core';
-import { Typography } from '@material-ui/core';
+import { Typography } from '@mui/material';
 import useSelectDirectory from '../../../hooks/useSelectDirectory';
 import Plotter from '../../../types/Plotter';
 import PlotLocalStorageKeys from '../../../constants/plotLocalStorage';
@@ -66,6 +66,7 @@ export default function PlotAddSelectFinalDirectory(props: Props) {
           onClick={handleSelect}
           size="large"
           variant="outlined"
+          color="secondary"
           selected={hasFinalLocation}
           nowrap
         >

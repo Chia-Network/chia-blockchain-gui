@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid } from '@material-ui/core';
+import { Grid } from '@mui/material';
 import FarmCardStatus from '../card/FarmCardStatus';
 import FarmCardTotalChiaFarmed from '../card/FarmCardTotalChiaFarmed';
 import FarmCardBlockRewards from '../card/FarmCardBlockRewards';
@@ -13,7 +13,7 @@ import FarmCardExpectedTimeToWin from '../card/FarmCardExpectedTimeToWin';
 export default function FarmOverviewCards() {
   return (
     <div>
-      <Grid spacing={3} alignItems="stretch" container>
+      <Grid spacing={2} alignItems="stretch" container>
         <Grid xs={12} sm={6} md={4} item>
           <FarmCardStatus />
         </Grid>
