@@ -48,7 +48,7 @@ export default function PlotHarvester(props: PlotHarvesterProps) {
   return (
     <Flex flexDirection="column" width="100%">
       <Flex justifyContent="space-between" width="100%" alignItems="center">
-        <Flex flexDirection="row" alignItems="center" gap={2}>
+        <Flex flexDirection="row" alignItems="center" gap={2} onClick={toggleExpand}>
           <Flex flexDirection="column">
             <Flex alignItems="baseline">
               <Typography>
@@ -68,7 +68,6 @@ export default function PlotHarvester(props: PlotHarvesterProps) {
               <PlotHarvesterState peerId={peerId} />
             </Flex>
           </Flex>
-
         </Flex>
         <Flex alignItems="center">
           <Tabs
