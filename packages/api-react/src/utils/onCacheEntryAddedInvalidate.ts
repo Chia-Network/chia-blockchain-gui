@@ -26,7 +26,7 @@ export default function onCacheEntryAddedInvalidate(rtkQuery, invalidates: Inval
           command,
           service,
           args: [(data) => {
-            if (skip && !skip(data, args)) {
+            if (skip?.(data, args)) {
               return;
             }
 
@@ -38,7 +38,7 @@ export default function onCacheEntryAddedInvalidate(rtkQuery, invalidates: Inval
 
             if (endpoint) {
               const currentEndpoint = endpoint();
-              dispatch(currentEndpoint.initiate(args, { 
+              dispatch(currentEndpoint.initiate(args, {
                 subscribe: false,
                 forceRefetch: true,
               }));

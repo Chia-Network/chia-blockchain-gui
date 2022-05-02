@@ -40,7 +40,7 @@ export const {
   useFarmerPingQuery,
   useGetHarvestersQuery,
   useGetHarvestersSummaryQuery,
-  useGetHarvesterPlotsQuery,
+  useGetHarvesterPlotsValidQuery,
   useGetHarvesterPlotsDuplicatesQuery,
   useGetHarvesterPlotsInvalidQuery,
   useGetHarvesterPlotsKeysMissingQuery,

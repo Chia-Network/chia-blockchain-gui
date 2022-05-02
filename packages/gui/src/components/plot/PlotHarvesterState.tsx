@@ -25,8 +25,6 @@ export default function PlotHarvesterState(props: PlotHarvesterStateProps) {
   const { peerId } = props;
   const { harvester } = useGetHarvesterStats(peerId);
 
-  console.log('harvester updated stats', harvester);
-
   if (!harvester?.syncing?.initial) {
     return null;
   }

@@ -28,7 +28,7 @@ export default function PlotHarvesterPlotsNotFound(props: PlotHarvesterPlotsNotF
   const [page, setPage] = useState(0);
   const [pageSize, setPageSize] = useState(5);
   const subPeerId = peerId.substring(2);
-  const { noKeyFilenames, isLoading: isLoadingHarvester } = useGetHarvesterQuery({
+  const { noKeyFilenames, initialized, isLoading: isLoadingHarvester } = useGetHarvesterQuery({
     peerId,
   });
   const { isLoading: isLoadingHarvesterPlots, data = [] } = useGetHarvesterPlotsKeysMissingQuery({
@@ -58,7 +58,7 @@ export default function PlotHarvesterPlotsNotFound(props: PlotHarvesterPlotsNotF
       rowsPerPage={pageSize}
       count={count}
       onPageChange={handlePageChange}
-      isLoading={isLoading}
+      isLoading={isLoading || !initialized}
       expandedCellShift={1}
       uniqueField="filename"
       caption={!noKeyFilenames && (

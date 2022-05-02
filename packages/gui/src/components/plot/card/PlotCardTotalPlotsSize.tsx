@@ -4,13 +4,13 @@ import { FormatBytes, CardSimple } from '@chia/core';
 import { useGetTotalHarvestersSummaryQuery } from '@chia/api-react';
 
 export default function PlotCardTotalPlotsSize() {
-  const { totalPlotSize, isLoading } = useGetTotalHarvestersSummaryQuery();
+  const { totalPlotSize, initializedHarvesters, isLoading } = useGetTotalHarvestersSummaryQuery();
 
   return (
     <CardSimple
       title={<Trans>Total Plots Size</Trans>}
       value={<FormatBytes value={totalPlotSize} precision={3} />}
-      loading={isLoading}
+      loading={isLoading || !initializedHarvesters}
     />
   );
 }

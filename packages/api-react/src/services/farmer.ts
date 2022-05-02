@@ -53,40 +53,44 @@ export const farmerApi = apiWithTag.injectEndpoints({
         command: 'onHarvesterUpdated',
         service: Farmer,
         endpoint: () => farmerApi.endpoints.getHarvestersSummary,
+        /*
         skip: (data: any, args: any) => {
           console.log('skip getHarvestersSummary', data, args);
           return false;
          // data.harvesterId !== args.harvesterId
         },
+        */
       }]),
     }),
 
-    getHarvesterPlots: build.query<Plot[], {
+    getHarvesterPlotsValid: build.query<Plot[], {
       peerId: string;
       page?: number;
       pageSize?: number;
     }>({
       query: ({ peerId, page, pageSize }) => ({
-        command: 'getHarvesterPlots',
+        command: 'getHarvesterPlotsValid',
         service: Farmer,
         args: [peerId, page, pageSize],
       }),
       transformResponse: (response: any) => response?.plots,
       providesTags: (plots) => plots
         ? [
-          ...plots.map(({ id }) => ({ type: 'HarvesterPlots', id } as const)),
+          ...plots.map(({ plotId }) => ({ type: 'HarvesterPlots', plotId } as const)),
           { type: 'HarvesterPlots', id: 'LIST' },
         ]
         :  [{ type: 'HarvesterPlots', id: 'LIST' }],
       onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, [{
         command: 'onHarvesterUpdated',
         service: Farmer,
-        endpoint: () => farmerApi.endpoints.getHarvesterPlots,
+        endpoint: () => farmerApi.endpoints.getHarvesterPlotsValid,
+        /*
         skip: (data: any, args: any) => {
           console.log('skip getHarvesterPlots', data, args);
           return false;
          // data.harvesterId !== args.harvesterId
         },
+        */
       }]),
     }),
 
@@ -103,7 +107,7 @@ export const farmerApi = apiWithTag.injectEndpoints({
       transformResponse: (response: any) => response?.plots,
       providesTags: (plots) => plots
         ? [
-          ...plots.map(({ filename }) => ({ type: 'HarvesterPlotsInvalid', filename } as const)),
+          ...plots.map((filename) => ({ type: 'HarvesterPlotsInvalid', filename } as const)),
           { type: 'HarvesterPlotsInvalid', id: 'LIST' },
         ]
         :  [{ type: 'HarvesterPlotsInvalid', id: 'LIST' }],
@@ -127,7 +131,7 @@ export const farmerApi = apiWithTag.injectEndpoints({
       transformResponse: (response: any) => response?.plots,
       providesTags: (plots) => plots
         ? [
-          ...plots.map(({ filename }) => ({ type: 'HarvesterPlotsKeysMissing', filename } as const)),
+          ...plots.map((filename) => ({ type: 'HarvesterPlotsKeysMissing', filename } as const)),
           { type: 'HarvesterPlotsKeysMissing', id: 'LIST' },
         ]
         :  [{ type: 'HarvesterPlotsKeysMissing', id: 'LIST' }],
@@ -151,7 +155,7 @@ export const farmerApi = apiWithTag.injectEndpoints({
       transformResponse: (response: any) => response?.plots,
       providesTags: (plots) => plots
         ? [
-          ...plots.map(({ filename }) => ({ type: 'HarvesterPlotsDuplicates', filename } as const)),
+          ...plots.map((filename) => ({ type: 'HarvesterPlotsDuplicates', filename } as const)),
           { type: 'HarvesterPlotsDuplicates', id: 'LIST' },
         ]
         :  [{ type: 'HarvesterPlotsDuplicates', id: 'LIST' }],
@@ -314,7 +318,7 @@ export const {
   useFarmerPingQuery,
   useGetHarvestersQuery,
   useGetHarvestersSummaryQuery,
-  useGetHarvesterPlotsQuery,
+  useGetHarvesterPlotsValidQuery,
   useGetHarvesterPlotsDuplicatesQuery,
   useGetHarvesterPlotsInvalidQuery,
   useGetHarvesterPlotsKeysMissingQuery,

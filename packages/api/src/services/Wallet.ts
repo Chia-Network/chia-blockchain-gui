@@ -318,16 +318,25 @@ export default class Wallet extends Service {
     });
   }
 
-  onSyncChanged(callback: (data: any, message: Message) => void) {
-    return this.onStateChanged('sync_changed', callback);
+  onSyncChanged(
+    callback: (data: any, message: Message) => void,
+    processData?: (data: any) => any,
+  ) {
+    return this.onStateChanged('sync_changed', callback, processData);
   }
 
-  onNewBlock(callback: (data: any, message: Message) => void) {
-    return this.onStateChanged('new_block', callback);
+  onNewBlock(
+    callback: (data: any, message: Message) => void,
+    processData?: (data: any) => any,
+  ) {
+    return this.onStateChanged('new_block', callback, processData);
   }
 
-  onNewPeak(callback: (data: any, message: Message) => void) {
-    return this.onStateChanged('new_peak', callback);
+  onNewPeak(
+    callback: (data: any, message: Message) => void,
+    processData?: (data: any) => any,
+  ) {
+    return this.onStateChanged('new_peak', callback, processData);
   }
 
   onCoinAdded(callback: (
@@ -383,12 +392,16 @@ export default class Wallet extends Service {
   }
 
   onOfferAdded(
-    callback: (data: any, message: Message) => void) {
-    return this.onStateChanged('offer_added', callback);
+    callback: (data: any, message: Message) => void,
+    processData?: (data: any) => any,
+  ) {
+    return this.onStateChanged('offer_added', callback, processData);
   }
 
   onOfferUpdated(
-    callback: (data: any, message: Message) => void) {
-    return this.onStateChanged('offer_cancelled', callback);
+    callback: (data: any, message: Message) => void,
+    processData?: (data: any) => any,
+  ) {
+    return this.onStateChanged('offer_cancelled', callback, processData);
   }
 }

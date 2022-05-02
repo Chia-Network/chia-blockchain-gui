@@ -81,8 +81,8 @@ export default class Farmer extends Service {
     return this.command('get_harvesters');
   }
 
-  async getHarvesterPlots(peerId: string, page = 0, pageSize = 10) {
-    return this.command('get_harvester_plots', {
+  async getHarvesterPlotsValid(peerId: string, page = 0, pageSize = 10) {
+    return this.command('get_harvester_plots_valid', {
       peerId,
       page,
       pageSize,
@@ -159,8 +159,10 @@ export default class Farmer extends Service {
   }
 
   onHarvesterUpdated(
-    callback: (data: any, message: Message) => void) {
-    return this.onStateChanged('harvester_update', callback);
+    callback: (data: any, message: Message) => void,
+    processData?: (data: any) => any,
+  ) {
+    return this.onCommand('harvester_update', callback, processData);
   }
 
   onRefreshPlots(

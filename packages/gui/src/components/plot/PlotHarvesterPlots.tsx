@@ -3,7 +3,7 @@ import { Trans } from '@lingui/macro';
 import { Address, TableControlled, Flex, FormatBytes, Tooltip, StateColor } from '@chia/core';
 import { Warning as WarningIcon } from '@mui/icons-material';
 import { type Plot } from '@chia/api';
-import { useGetHarvesterPlotsQuery, useGetHarvesterQuery } from '@chia/api-react';
+import { useGetHarvesterPlotsValidQuery, useGetHarvesterQuery } from '@chia/api-react';
 import styled from 'styled-components';
 import { Box, Typography } from '@mui/material';
 import PlotStatus from './PlotStatus';
@@ -92,7 +92,7 @@ export default function PlotHarvesterPlots(props: PlotHarvesterPlotsProps) {
   const { plots, initialized, isLoading: isLoadingHarvester } = useGetHarvesterQuery({
     peerId,
   });
-  const { isLoading: isLoadingHarvesterPlots, data = [] } = useGetHarvesterPlotsQuery({
+  const { isLoading: isLoadingHarvesterPlots, data = [] } = useGetHarvesterPlotsValidQuery({
     peerId: subPeerId,
     page,
     pageSize,
@@ -115,7 +115,7 @@ export default function PlotHarvesterPlots(props: PlotHarvesterPlotsProps) {
       rowsPerPage={pageSize}
       count={count}
       onPageChange={handlePageChange}
-      isLoading={isLoading}
+      isLoading={isLoading || !initialized}
       expandedCellShift={1}
       uniqueField="plotId"
       caption={!plots && (

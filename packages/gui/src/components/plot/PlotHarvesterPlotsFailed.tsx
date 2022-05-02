@@ -28,7 +28,7 @@ export default function PlotHarvesterPlotsFailed(props: PlotHarvesterPlotsFailed
   const [page, setPage] = useState(0);
   const [pageSize, setPageSize] = useState(5);
   const subPeerId = peerId.substring(2);
-  const { failedToOpenFilenames, isLoading: isLoadingHarvester } = useGetHarvesterQuery({
+  const { failedToOpenFilenames, initialized, isLoading: isLoadingHarvester } = useGetHarvesterQuery({
     peerId,
   });
   const { isLoading: isLoadingHarvesterPlots, data = [] } = useGetHarvesterPlotsInvalidQuery({
@@ -58,7 +58,7 @@ export default function PlotHarvesterPlotsFailed(props: PlotHarvesterPlotsFailed
       rowsPerPage={pageSize}
       count={count}
       onPageChange={handlePageChange}
-      isLoading={isLoading}
+      isLoading={isLoading || !initialized}
       expandedCellShift={1}
       uniqueField="filename"
       caption={!failedToOpenFilenames && (

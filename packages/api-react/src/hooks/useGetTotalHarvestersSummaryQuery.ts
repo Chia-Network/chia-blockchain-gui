@@ -15,10 +15,11 @@ export default function useGetTotalHarvestersSummaryQuery(): {
   plotsProcessed: BigNumber;
   totalPlotSize: BigNumber;
   plotFilesTotal: BigNumber;
+  initializedHarvesters: number;
 } {
   const { data, isLoading, error } = useGetHarvestersSummaryQuery();
 
-  const { plots, duplicates, noKeyFilenames, failedToOpenFilenames, plotsProcessed, totalPlotSize, plotFilesTotal, initialized } = useMemo(() => {
+  const { plots, duplicates, noKeyFilenames, failedToOpenFilenames, plotsProcessed, totalPlotSize, plotFilesTotal, initialized, initializedHarvesters } = useMemo(() => {
     let duplicates = new BigNumber(0);
     let failedToOpenFilenames = new BigNumber(0);
     let noKeyFilenames = new BigNumber(0);
@@ -27,9 +28,9 @@ export default function useGetTotalHarvestersSummaryQuery(): {
     let totalPlotSize = new BigNumber(0);
     let plotFilesTotal = new BigNumber(0);
     let initialized = !!data?.length;
+    let initializedHarvesters = 0;
 
     data?.forEach((harvester) => {
-      console.log('harvester', harvester);
       duplicates = duplicates.plus(harvester.duplicates);
       failedToOpenFilenames = failedToOpenFilenames.plus(harvester.failedToOpenFilenames);
       noKeyFilenames = noKeyFilenames.plus(harvester.noKeyFilenames);
@@ -44,6 +45,10 @@ export default function useGetTotalHarvestersSummaryQuery(): {
           initialized = false;
         }
       }
+
+      if (harvester?.syncing?.initial !== true) {
+        initializedHarvesters +=1;
+      }
     });
 
     return {
@@ -55,11 +60,10 @@ export default function useGetTotalHarvestersSummaryQuery(): {
       totalPlotSize,
       plotFilesTotal,
       initialized,
+      initializedHarvesters,
     };
 
   }, [data]);
-
-  console.log('isLoading plots', isLoading, initialized, plots.gt(0));
 
   return {
     isLoading,
@@ -74,5 +78,6 @@ export default function useGetTotalHarvestersSummaryQuery(): {
     plotsProcessed,
     totalPlotSize,
     plotFilesTotal,
+    initializedHarvesters,
   };
 }
