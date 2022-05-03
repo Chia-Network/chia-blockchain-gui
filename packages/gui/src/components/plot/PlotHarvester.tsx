@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Trans } from '@lingui/macro';
 import { useToggle } from 'react-use';
-import { Accordion, Flex, FormatBytes, Tooltip } from '@chia/core';
+import { Accordion, Flex, FormatBytes, Tooltip, FormatLargeNumber } from '@chia/core';
 import { useGetHarvesterQuery } from '@chia/api-react';
-import { Typography } from '@mui/material';
+import { Badge, Typography, Chip } from '@mui/material';
 import { ExpandMore, ExpandLess } from '@mui/icons-material';
 import { Box, Tab, Tabs } from '@mui/material';
 import PlotHarvesterPlots from './PlotHarvesterPlots';
@@ -82,15 +82,55 @@ export default function PlotHarvester(props: PlotHarvesterProps) {
             textColor="primary"
             indicatorColor="primary"
           >
-            <Tab value="PLOTS" label={<Trans>Plots ({plots})</Trans>} />
+            <Tab
+              value="PLOTS"
+              label={(
+                <Flex alignItems="center" gap={1}>
+                  <Box>
+                    <Trans>Plots</Trans>
+                  </Box>
+                  {initialized && <Chip label={<FormatLargeNumber value={plots} />} variant="outlined" size="small" />}
+                </Flex>
+              )}
+            />
             {!!noKeyFilenames && (
-              <Tab value="NOT_FOUND" label={<Trans>Missing Keys ({noKeyFilenames})</Trans>} />
+              <Tab
+                value="NOT_FOUND"
+                label={(
+                  <Flex alignItems="center" gap={1}>
+                    <Box>
+                      <Trans>Missing Keys</Trans>
+                    </Box>
+                    {initialized && <Chip label={<FormatLargeNumber value={noKeyFilenames} />} variant="outlined" size="small" />}
+                  </Flex>
+                )}
+              />
             )}
             {!!failedToOpenFilenames && (
-              <Tab value="FAILED" label={<Trans>Failed ({failedToOpenFilenames})</Trans>} />
+              <Tab
+                value="FAILED"
+                label={(
+                  <Flex alignItems="center" gap={1}>
+                    <Box>
+                      <Trans>Failed</Trans>
+                    </Box>
+                    {initialized && <Chip label={<FormatLargeNumber value={failedToOpenFilenames} />} variant="outlined" size="small" />}
+                  </Flex>
+                )}
+              />
             )}
             {!!duplicates && (
-              <Tab value="DUPLICATE" label={<Trans>Duplicate ({duplicates})</Trans>} />
+              <Tab
+                value="DUPLICATE"
+                label={(
+                  <Flex alignItems="center" gap={1}>
+                    <Box>
+                      <Trans>Duplicate</Trans>
+                    </Box>
+                    {initialized && <Chip label={<FormatLargeNumber value={duplicates} />} variant="outlined" size="small" />}
+                  </Flex>
+                )}
+              />
             )}
           </Tabs>
           &nbsp;
