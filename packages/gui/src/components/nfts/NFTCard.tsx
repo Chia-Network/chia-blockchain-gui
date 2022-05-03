@@ -2,21 +2,33 @@ import React from 'react';
 import { useNFTMetadata } from '@chia/api-react';
 import { Trans } from '@lingui/macro';
 import { useNavigate } from 'react-router-dom';
-import { Box, Card, CardActionArea, CardMedia, CardContent, Typography, Radio } from '@mui/material';
-import { CopyToClipboard, Flex, Loading, mojoToChiaLocaleString, useCurrencyCode } from '@chia/core';
-import type NFT from '../../types/NFT';
+import {
+  Box,
+  Card,
+  CardActionArea,
+  CardMedia,
+  CardContent,
+  Typography,
+  Radio,
+} from '@mui/material';
+import {
+  CopyToClipboard,
+  Flex,
+  Loading,
+  mojoToChiaLocaleString,
+  useCurrencyCode,
+} from '@chia/core';
+import type NFTInfo from '@chia/api';
 
 export type NFTCardProps = {
-  nft: NFT;
+  nft: NFTInfo;
   onSelect?: (selected: boolean) => void;
   selected?: boolean;
 };
 
 export default function NFTCard(props: NFTCardProps) {
   const {
-    nft: {
-      id,
-    },
+    nft: { launcherId: id },
     onSelect,
     selected,
   } = props;
@@ -42,7 +54,6 @@ export default function NFTCard(props: NFTCardProps) {
     if (selected && onSelect) {
       onSelect(false);
     }
-
   }
 
   return (
@@ -81,18 +92,23 @@ export default function NFTCard(props: NFTCardProps) {
             <Flex flexDirection="column" gap={2}>
               <Flex flexDirection="column" gap={1}>
                 <Flex justifyContent="space-between" alignItems="center">
-                  <Typography variant="h6" noWrap>{metadata.name}</Typography>
+                  <Typography variant="h6" noWrap>
+                    {metadata.name}
+                  </Typography>
                   <Typography>1/{metadata.total}</Typography>
                 </Flex>
 
                 <Typography color="textSecondary">
-                  <Trans>Sold for {mojoToChiaLocaleString(metadata.price)} {currencyCode}</Trans>
+                  <Trans>
+                    Sold for {mojoToChiaLocaleString(metadata.price)}{' '}
+                    {currencyCode}
+                  </Trans>
                 </Typography>
               </Flex>
 
               <Flex justifyContent="space-between" alignItems="center">
                 <Typography noWrap>
-                  <Trans>nft:chia:{shortId}</Trans>
+                  <Trans>{shortId}</Trans>
                 </Typography>
                 <CopyToClipboard value={id} />
               </Flex>

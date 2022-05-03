@@ -31,7 +31,7 @@ const apiWithTag = api.enhanceEndpoints({
     'DIDRecoveryList',
     'Keys',
     'LoggedInFingerprint',
-    'NFT',
+    'NFTInfo',
     'OfferCounts',
     'OfferTradeRecord',
     'PlotNFT',
@@ -222,7 +222,7 @@ export const walletApi = apiWithTag.injectEndpoints({
       }),
       invalidatesTags: [
         { type: 'Transactions', id: 'LIST' },
-        { type: 'NFTs', id: 'LIST' },
+        { type: 'PlotNFT', id: 'LIST' },
       ],
     }),
 
@@ -1772,14 +1772,16 @@ export const walletApi = apiWithTag.injectEndpoints({
             walletId: walletId ?? Math.floor(Math.random() * 100), // TODO remove when mock is fixed
             id: randomBytes(32).toString('hex'),
           })),
-        }
+        },
       }),
       transformResponse: (response: any) => response.nfts,
       providesTags: (nfts, _error) =>
-        nfts ? [
-          ...nfts.map(({ id }) => ({ type: 'NFT', id: id } as const)),
-          { type: 'NFT', id: 'LIST' },
-        ] : [{ type: 'NFT', id: 'LIST' }],
+        nfts
+          ? [
+              ...nfts.map(({ id }) => ({ type: 'NFTInfo', id: id } as const)),
+              { type: 'NFTInfo', id: 'LIST' },
+            ]
+          : [{ type: 'NFTInfo', id: 'LIST' }],
     }),
 
     transferNFT: build.mutation<
@@ -1804,7 +1806,7 @@ export const walletApi = apiWithTag.injectEndpoints({
         args: [walletId, nftCoinInfo, newDid, newDidInnerHash, tradePrice],
       }),
       invalidatesTags: (result, _error, { walletId }) =>
-        result ? [{ type: 'NFT', id: walletId }] : [],
+        result ? [{ type: 'NFTInfo', id: walletId }] : [],
     }),
 
     receiveNFT: build.mutation<
@@ -1821,7 +1823,7 @@ export const walletApi = apiWithTag.injectEndpoints({
         args: [walletId, spendBundle, fee],
       }),
       invalidatesTags: (result, _error, { walletId }) =>
-        result ? [{ type: 'NFT', id: 'LIST' }] : [],
+        result ? [{ type: 'NFTInfo', id: 'LIST' }] : [],
     }),
   }),
 });
