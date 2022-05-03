@@ -1,7 +1,7 @@
 import React from 'react';
 import { Trans } from '@lingui/macro';
 import { Back, Flex } from '@chia/core';
-import { Grid } from '@mui/material';
+import { Divider, Grid, Typography } from '@mui/material';
 import OfferHeader from './OfferHeader';
 
 /* ========================================================================== */
@@ -27,7 +27,31 @@ function NFTOfferDetails(props: NFTOfferDetailsProps) {
           borderRadius: '8px',
         }}
       >
-        <div>test</div>
+        <Flex flexDirection="column" gap={3} style={{ padding: '1em' }}>
+          <Typography variant="h6" style={{ fontWeight: 'bold' }}>
+            <Trans>Purchase Summary</Trans>
+          </Typography>
+          <Flex flexDirection="column" gap={2}>
+            <Typography variant="body1">
+              <Trans>You will receive</Trans>
+            </Typography>
+            <Flex flexDirection="column" gap={1}>
+              <Typography variant="h5">NFT Title</Typography>
+              <Typography variant="body2">By NFT Creator Title</Typography>
+              <Typography variant="caption" color="textSecondary">
+                nft17aadeznq3hwxtwhwq6xpj0pxy7dakdxzwmqgqsrydeszgvsdke9qcyu0c7
+              </Typography>
+            </Flex>
+          </Flex>
+          <Divider />
+          <Flex flexDirection="column" gap={2}>
+            <Typography variant="body1">
+              <Trans>In exchange for</Trans>
+            </Typography>
+            <Typography variant="h5">300 XCH</Typography>
+          </Flex>
+          <Divider />
+        </Flex>
       </Flex>
     </Flex>
   );
