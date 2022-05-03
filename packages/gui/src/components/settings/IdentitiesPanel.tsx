@@ -20,6 +20,7 @@ import { orderBy } from 'lodash';
 
 import {
   useGetDIDQuery,
+  useGetDIDNameQuery,
   useGetWalletsQuery,
 } from '@chia/api-react';
 import { WalletType, type Wallet } from '@chia/api';
@@ -81,7 +82,6 @@ function DisplayDid(wallet) {
       null
     )
   }
-
 }
 
 export default function IdentitiesPanel() {
@@ -98,6 +98,7 @@ export default function IdentitiesPanel() {
     wallets.forEach((wallet) => {
       if (wallet.type === WalletType.DISTRIBUTED_ID) {
         dids.push(wallet.id);
+        console.log(wallet.name);
       }
     });
   }
@@ -142,9 +143,13 @@ export default function IdentitiesPanel() {
 
           return (
             <CardListItem onSelect={handleSelect} key={wallet.id} selected={wallet.id === Number(walletId)}>
-              <Flex flexDirection="column" height="100%" width="100%">
-                <Typography><strong>[*Wallet Name*]</strong></Typography>
-                <DisplayDid wallet={wallet} />
+              <Flex gap={0.5} flexDirection="column" height="100%" width="100%">
+                <Flex>
+                  <Typography><strong>{primaryTitle}</strong></Typography>
+                </Flex>
+                <Flex>
+                  <DisplayDid wallet={wallet} />
+                </Flex>
               </Flex>
             </CardListItem>
           );

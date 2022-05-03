@@ -3,13 +3,15 @@ import { Trans, t } from '@lingui/macro';
 import {
   Button,
   ButtonLoading,
+  chiaToMojo,
+  Fee,
   Flex,
   Form,
   mojoToChiaLocaleString,
 } from '@chia/core';
 import {
   Card,
-  CardContent,
+  Grid,
   IconButton,
   Typography,
 } from '@mui/material';
@@ -28,22 +30,16 @@ import {
   type Wallet,
  } from '@chia/api';
 import useOpenExternal from '../../hooks/useOpenExternal';
+import isNumeric from 'validator/es/lib/isNumeric';
 
 const StyledCard = styled(Card)(({ theme }) => `
   width: 100%;
+  padding: ${theme.spacing(3)};
   border-radius: ${theme.spacing(1)};
-  border: 1px solid ${theme.palette.divider};
   background-color: ${theme.palette.background.paper};
-  margin-bottom: ${theme.spacing(1)};
-`);
-
-const StyledCardContent = styled(CardContent)(({ theme }) => `
-  padding-bottom: ${theme.spacing(2)} !important;
 `);
 
 type CreateProfileData = {
-  walletType: string;
-  did_type: 'new',
   backup_dids: [],
   num_of_backup_ids_needed: '0',
   amount: int;
@@ -53,8 +49,6 @@ type CreateProfileData = {
 export default function ProfileAdd() {
   const methods = useForm<CreateProfileData>({
     defaultValues: {
-      walletType: 'did_wallet',
-      did_type: 'new',
       backup_dids: [],
       num_of_backup_ids_needed: '0',
       amount: 1,
@@ -73,8 +67,12 @@ export default function ProfileAdd() {
     openExternal('https://faucet.chia.net/');
   }
 
-  async function handleSubmit(values: CreateProfileData) {
-    const { amount, fee } = values;
+  async function handleSubmit(data: CreateProfileData) {
+
+    const fee = data.fee.trim() || '0';
+    if (!isNumeric(fee)) {
+      throw new Error(t`Please enter a valid numeric fee`);
+    }
 
     if (isCreateProfileLoading) {
       return;
@@ -82,7 +80,7 @@ export default function ProfileAdd() {
 
     const walletId = await createProfile({
       walletType: 'did_wallet',
-      options: {did_type: 'new', backup_dids: [], num_of_backup_ids_needed: '0', amount: 1, fee: '0'},
+      options: {did_type: 'new', backup_dids: [], num_of_backup_ids_needed: '0', amount: 1, fee: chiaToMojo(fee)},
     }).unwrap();
 
     navigate(`/dashboard/settings/profiles/${walletId}`);
@@ -98,32 +96,49 @@ export default function ProfileAdd() {
             <Trans>Create a new profile</Trans>
           </Typography>
         </Flex>
-        <Flex flexDirection="column" gap={2.5} paddingBottom={1}>
-          <Trans><strong>Get some XCH</strong></Trans>
-        </Flex>
-        <div style={{cursor: "pointer"}}>
-          <Flex paddingBottom={3}>
-            <Typography onClick={handleClick} paddingLeft={1} sx={{ textDecoration: "underline" }}>Get Mojos from the Chia Faucet</Typography>
+        <StyledCard>
+          <Flex flexDirection="column" gap={2.5} paddingBottom={1}>
+            <Trans><strong>Need some XCH?</strong></Trans>
           </Flex>
-        </div>
-        <Flex flexDirection="column" gap={2.5} paddingBottom={1}>
-          <Trans><strong>Use one (1) mojo to create a Profile.</strong></Trans>
-        </Flex>
-        <Flex flexDirection="column" gap={2.5} paddingBottom={1}>
-          <Typography variant="caption">
-            <Trans>Balance: {standardBalance} XCH</Trans>
-          </Typography>
-        </Flex>
-        <Flex justifyContent="flex-end">
-          <ButtonLoading
-            type="submit"
-            variant="contained"
-            color="primary"
-            loading={isCreateProfileLoading}
-          >
-            <Trans>Create</Trans>
-          </ButtonLoading>
-        </Flex>
+          <div style={{cursor: "pointer"}}>
+            <Flex paddingBottom={5}>
+              <Typography onClick={handleClick} sx={{ textDecoration: "underline" }}>Get Mojos from the Chia Faucet</Typography>
+            </Flex>
+          </div>
+          <Flex flexDirection="column" gap={2.5} paddingBottom={1}>
+            <Trans><strong>Use one (1) mojo to create a Profile.</strong></Trans>
+          </Flex>
+          <Flex flexDirection="column" gap={2.5} paddingBottom={3}>
+            <Typography variant="caption">
+              <Trans>Balance: {standardBalance} XCH</Trans>
+            </Typography>
+          </Flex>
+          <Flex flexDirection="column" gap={2.5} paddingBottom={1}>
+            <Fee
+              id="filled-secondary"
+              variant="filled"
+              name="fee"
+              color="secondary"
+              label={<Trans>Fee</Trans>}
+              fullWidth
+            />
+          </Flex>
+          <Flex flexDirection="column" gap={2.5} paddingBottom={3}>
+            <Typography variant="caption">
+              <Trans>Recommended: 0.000005 XCH</Trans>
+            </Typography>
+          </Flex>
+          <Flex justifyContent="flex-end">
+            <ButtonLoading
+              type="submit"
+              variant="contained"
+              color="primary"
+              loading={isCreateProfileLoading}
+            >
+              <Trans>Create</Trans>
+            </ButtonLoading>
+          </Flex>
+        </StyledCard>
       </Form>
     </div>
   );
