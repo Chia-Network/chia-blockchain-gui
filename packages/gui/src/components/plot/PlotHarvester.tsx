@@ -13,22 +13,22 @@ import PlotHarvesterPlotsDuplicate from './PlotHarvesterPlotsDuplicate';
 import PlotHarvesterState from './PlotHarvesterState';
 
 export type PlotHarvesterProps = {
-  peerId: string;
+  nodeId: string;
   host: string;
   port: string;
   expanded?: boolean;
 };
 
 export default function PlotHarvester(props: PlotHarvesterProps) {
-  const { peerId, host, expanded: expandedDefault = false } = props;
+  const { nodeId, host, expanded: expandedDefault = false } = props;
 
   const { plots, noKeyFilenames, failedToOpenFilenames, duplicates, totalPlotSize, initialized } = useGetHarvesterQuery({
-    peerId,
+    nodeId,
   });
 
   const [activeTab, setActiveTab] = useState<'PLOTS' | 'NOT_FOUND' | 'FAILED' | 'DUPLICATE'>('FAILED');
   const [expanded, toggleExpand] = useToggle(expandedDefault);
-  const simplePeerId = `${peerId.substr(0, 6)}...${peerId.substr(peerId.length - 6)}`;
+  const simpleNodeId = `${nodeId.substr(0, 6)}...${nodeId.substr(nodeId.length - 6)}`;
   const isLocal = host === '127.0.0.1';
 
   useEffect(() => {
@@ -55,9 +55,9 @@ export default function PlotHarvester(props: PlotHarvesterProps) {
                 {isLocal ? <Trans>Local</Trans> : <Trans>Remote</Trans>}
               </Typography>
               &nbsp;
-              <Tooltip title={peerId}>
+              <Tooltip title={nodeId}>
                 <Typography variant="body2" color="textSecondary">
-                  {simplePeerId}
+                  {simpleNodeId}
                 </Typography>
               </Tooltip>
             </Flex>
@@ -71,7 +71,7 @@ export default function PlotHarvester(props: PlotHarvesterProps) {
                   </>
                 )}
               </Typography>
-              <PlotHarvesterState peerId={peerId} />
+              <PlotHarvesterState nodeId={nodeId} />
             </Flex>
           </Flex>
         </Flex>
@@ -101,16 +101,16 @@ export default function PlotHarvester(props: PlotHarvesterProps) {
       <Accordion expanded={expanded}>
         <Box height={16} />
         <Box display={activeTab=== 'PLOTS' ? 'block' : 'none'}>
-          <PlotHarvesterPlots peerId={peerId} />
+          <PlotHarvesterPlots nodeId={nodeId} />
         </Box>
         <Box display={activeTab=== 'NOT_FOUND' ? 'block' : 'none'}>
-          <PlotHarvesterPlotsNotFound peerId={peerId} />
+          <PlotHarvesterPlotsNotFound nodeId={nodeId} />
         </Box>
         <Box display={activeTab=== 'FAILED' ? 'block' : 'none'}>
-          <PlotHarvesterPlotsFailed peerId={peerId} />
+          <PlotHarvesterPlotsFailed nodeId={nodeId} />
         </Box>
         <Box display={activeTab=== 'DUPLICATE' ? 'block' : 'none'}>
-          <PlotHarvesterPlotsDuplicate peerId={peerId} />
+          <PlotHarvesterPlotsDuplicate nodeId={nodeId} />
         </Box>
       </Accordion>
     </Flex>

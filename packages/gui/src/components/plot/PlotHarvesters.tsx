@@ -40,7 +40,7 @@ export default function PlotHarvesters() {
       <Flex flexDirection="column" gap={3}>
         {sortedData?.map((harvester) => (
           <PlotHarvester
-            peerId={harvester.connection.nodeId}
+            nodeId={harvester.connection.nodeId}
             key={harvester.connection.nodeId}
             host={harvester.connection.host}
             port={harvester.connection.port}

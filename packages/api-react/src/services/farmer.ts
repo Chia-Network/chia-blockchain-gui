@@ -66,14 +66,14 @@ export const farmerApi = apiWithTag.injectEndpoints({
     }),
 
     getHarvesterPlotsValid: build.query<Plot[], {
-      peerId: string;
+      nodeId: string;
       page?: number;
       pageSize?: number;
     }>({
-      query: ({ peerId, page, pageSize }) => ({
+      query: ({ nodeId, page, pageSize }) => ({
         command: 'getHarvesterPlotsValid',
         service: Farmer,
-        args: [peerId, page, pageSize],
+        args: [nodeId, page, pageSize],
       }),
       transformResponse: (response: any) => response?.plots,
       providesTags: (plots) => plots
@@ -86,23 +86,19 @@ export const farmerApi = apiWithTag.injectEndpoints({
         command: 'onHarvesterUpdated',
         service: Farmer,
         endpoint: () => farmerApi.endpoints.getHarvesterPlotsValid,
-        skip(_draft, data, args) {
-          const nodeId = `0x${args.peerId}`;
-
-          return nodeId !== data?.connection?.nodeId;
-        },
+        skip: (_draft, data, args) => args.nodeId !== data?.connection?.nodeId,
       }]),
     }),
 
     getHarvesterPlotsInvalid: build.query<Plot[], {
-      peerId: string;
+      nodeId: string;
       page?: number;
       pageSize?: number;
     }>({
-      query: ({ peerId, page, pageSize }) => ({
+      query: ({ nodeId, page, pageSize }) => ({
         command: 'getHarvesterPlotsInvalid',
         service: Farmer,
-        args: [peerId, page, pageSize],
+        args: [nodeId, page, pageSize],
       }),
       transformResponse: (response: any) => response?.plots,
       providesTags: (plots) => plots
@@ -115,23 +111,19 @@ export const farmerApi = apiWithTag.injectEndpoints({
         command: 'onHarvesterUpdated',
         service: Farmer,
         endpoint: () => farmerApi.endpoints.getHarvesterPlotsInvalid,
-        skip(_draft, data, args) {
-          const nodeId = `0x${args.peerId}`;
-
-          return nodeId !== data?.connection?.nodeId;
-        },
+        skip: (_draft, data, args) => args.nodeId !== data?.connection?.nodeId,
       }]),
     }),
 
     getHarvesterPlotsKeysMissing: build.query<Plot[], {
-      peerId: string;
+      nodeId: string;
       page?: number;
       pageSize?: number;
     }>({
-      query: ({ peerId, page, pageSize }) => ({
+      query: ({ nodeId, page, pageSize }) => ({
         command: 'getHarvesterPlotsKeysMissing',
         service: Farmer,
-        args: [peerId, page, pageSize],
+        args: [nodeId, page, pageSize],
       }),
       transformResponse: (response: any) => response?.plots,
       providesTags: (plots) => plots
@@ -144,23 +136,19 @@ export const farmerApi = apiWithTag.injectEndpoints({
         command: 'onHarvesterUpdated',
         service: Farmer,
         endpoint: () => farmerApi.endpoints.getHarvesterPlotsKeysMissing,
-        skip(_draft, data, args) {
-          const nodeId = `0x${args.peerId}`;
-
-          return nodeId !== data?.connection?.nodeId;
-        },
+        skip: (_draft, data, args) => args.nodeId !== data?.connection?.nodeId,
       }]),
     }),
 
     getHarvesterPlotsDuplicates: build.query<Plot[], {
-      peerId: string;
+      nodeId: string;
       page?: number;
       pageSize?: number;
     }>({
-      query: ({ peerId, page, pageSize }) => ({
+      query: ({ nodeId, page, pageSize }) => ({
         command: 'getHarvesterPlotsDuplicates',
         service: Farmer,
-        args: [peerId, page, pageSize],
+        args: [nodeId, page, pageSize],
       }),
       transformResponse: (response: any) => response?.plots,
       providesTags: (plots) => plots
@@ -173,11 +161,7 @@ export const farmerApi = apiWithTag.injectEndpoints({
         command: 'onHarvesterUpdated',
         service: Farmer,
         endpoint: () => farmerApi.endpoints.getHarvesterPlotsDuplicates,
-        skip(_draft, data, args) {
-          const nodeId = `0x${args.peerId}`;
-
-          return nodeId !== data?.connection?.nodeId;
-        },
+        skip: (_draft, data, args) => args.nodeId !== data?.connection?.nodeId,
       }]),
     }),
 

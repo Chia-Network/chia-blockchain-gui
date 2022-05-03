@@ -81,33 +81,33 @@ export default class Farmer extends Service {
     return this.command('get_harvesters');
   }
 
-  async getHarvesterPlotsValid(peerId: string, page = 0, pageSize = 10) {
+  async getHarvesterPlotsValid(nodeId: string, page = 0, pageSize = 10) {
     return this.command('get_harvester_plots_valid', {
-      peerId,
+      nodeId,
       page,
       pageSize,
     });
   }
 
-  async getHarvesterPlotsInvalid(peerId: string, page = 0, pageSize = 10) {
+  async getHarvesterPlotsInvalid(nodeId: string, page = 0, pageSize = 10) {
     return this.command('get_harvester_plots_invalid', {
-      peerId,
+      nodeId,
       page,
       pageSize,
     });
   }
 
-  async getHarvesterPlotsKeysMissing(peerId: string, page = 0, pageSize = 10) {
+  async getHarvesterPlotsKeysMissing(nodeId: string, page = 0, pageSize = 10) {
     return this.command('get_harvester_plots_keys_missing', {
-      peerId,
+      nodeId,
       page,
       pageSize,
     });
   }
 
-  async getHarvesterPlotsDuplicates(peerId: string, page = 0, pageSize = 10) {
+  async getHarvesterPlotsDuplicates(nodeId: string, page = 0, pageSize = 10) {
     return this.command('get_harvester_plots_duplicates', {
-      peerId,
+      nodeId,
       page,
       pageSize,
     });

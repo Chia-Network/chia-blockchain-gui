@@ -19,12 +19,12 @@ function LinearProgressWithLabel(props: LinearProgressProps & { value: number })
 }
 
 export type PlotHarvesterStateProps = {
-  peerId: string;
+  nodeId: string;
 };
 
 export default function PlotHarvesterState(props: PlotHarvesterStateProps) {
-  const { peerId } = props;
-  const { harvester } = useGetHarvesterStats(peerId);
+  const { nodeId } = props;
+  const { harvester } = useGetHarvesterStats(nodeId);
 
   if (harvester?.syncing?.initial !== true) {
     return null;

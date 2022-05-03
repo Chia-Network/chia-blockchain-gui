@@ -2,9 +2,9 @@ import { useMemo } from 'react';
 import { useGetHarvestersSummaryQuery } from '../services/farmer';
 
 export default function useGetHarvesterQuery({
-  peerId,
+  nodeId,
 }: {
-  peerId: string
+  nodeId: string
 }): {
   isLoading: boolean;
   error?: Error;
@@ -23,8 +23,8 @@ export default function useGetHarvesterQuery({
   const { data, isLoading: isLoadingHarvesterSummary, error } = useGetHarvestersSummaryQuery();
 
   const harvester = useMemo(() => {
-    return data?.find((harvester) => harvester.connection.nodeId === peerId);
-  }, [data, peerId]);
+    return data?.find((harvester) => harvester.connection.nodeId === nodeId);
+  }, [data, nodeId]);
 
   const isLoading = isLoadingHarvesterSummary;
 

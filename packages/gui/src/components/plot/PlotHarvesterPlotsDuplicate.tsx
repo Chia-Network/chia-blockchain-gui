@@ -20,19 +20,18 @@ const cols = [
 ];
 
 export type PlotHarvesterPlotsDuplicateProps = {
-  peerId: string;
+  nodeId: string;
 };
 
 export default function PlotHarvesterPlotsDuplicate(props: PlotHarvesterPlotsDuplicateProps) {
-  const { peerId } = props;
+  const { nodeId } = props;
   const [page, setPage] = useState(0);
   const [pageSize, setPageSize] = useState(5);
-  const subPeerId = peerId.substring(2);
   const { duplicates, initialized, isLoading: isLoadingHarvester } = useGetHarvesterQuery({
-    peerId,
+    nodeId,
   });
   const { isLoading: isLoadingHarvesterPlots, data = [] } = useGetHarvesterPlotsDuplicatesQuery({
-    peerId: subPeerId,
+    nodeId,
     page,
     pageSize,
   });

@@ -20,19 +20,18 @@ const cols = [
 ];
 
 export type PlotHarvesterPlotsFailedProps = {
-  peerId: string;
+  nodeId: string;
 };
 
 export default function PlotHarvesterPlotsFailed(props: PlotHarvesterPlotsFailedProps) {
-  const { peerId } = props;
+  const { nodeId } = props;
   const [page, setPage] = useState(0);
   const [pageSize, setPageSize] = useState(5);
-  const subPeerId = peerId.substring(2);
   const { failedToOpenFilenames, initialized, isLoading: isLoadingHarvester } = useGetHarvesterQuery({
-    peerId,
+    nodeId,
   });
   const { isLoading: isLoadingHarvesterPlots, data = [] } = useGetHarvesterPlotsInvalidQuery({
-    peerId: subPeerId,
+    nodeId,
     page,
     pageSize,
   });

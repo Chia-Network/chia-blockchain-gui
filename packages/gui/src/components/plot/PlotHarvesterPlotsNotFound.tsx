@@ -20,19 +20,18 @@ const cols = [
 ];
 
 export type PlotHarvesterPlotsNotFoundProps = {
-  peerId: string;
+  nodeId: string;
 };
 
 export default function PlotHarvesterPlotsNotFound(props: PlotHarvesterPlotsNotFoundProps) {
-  const { peerId } = props;
+  const { nodeId } = props;
   const [page, setPage] = useState(0);
   const [pageSize, setPageSize] = useState(5);
-  const subPeerId = peerId.substring(2);
   const { noKeyFilenames, initialized, isLoading: isLoadingHarvester } = useGetHarvesterQuery({
-    peerId,
+    nodeId,
   });
   const { isLoading: isLoadingHarvesterPlots, data = [] } = useGetHarvesterPlotsKeysMissingQuery({
-    peerId: subPeerId,
+    nodeId,
     page,
     pageSize,
   });
