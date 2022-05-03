@@ -2,16 +2,15 @@ import React, { ReactNode, Suspense, useMemo } from 'react';
 import styled from 'styled-components';
 import { useNavigate, Outlet } from 'react-router-dom';
 import { t, Trans } from '@lingui/macro';
-import { Box, AppBar, Toolbar, Drawer, Container, IconButton, MenuItem, Typography } from '@mui/material';
+import { Box, AppBar, Toolbar, Drawer, Container, IconButton, Typography } from '@mui/material';
 import Flex from '../Flex';
 import Logo from '../Logo';
 import ToolbarSpacing from '../ToolbarSpacing';
 import Loading from '../Loading';
 import { useLogout, useGetLoggedInFingerprintQuery } from '@chia/api-react';
-import { ExitToApp as ExitToAppIcon, Notifications } from '@mui/icons-material';
+import { ExitToApp as ExitToAppIcon } from '@mui/icons-material';
 import Settings from '../Settings';
 import Tooltip from '../Tooltip';
-import { DropdownIconButton } from '../Dropdown';
 // import LayoutFooter from '../LayoutMain/LayoutFooter';
 
 const StyledRoot = styled(Flex)`
