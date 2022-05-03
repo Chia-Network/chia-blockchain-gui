@@ -66,7 +66,7 @@ export const farmerApi = apiWithTag.injectEndpoints({
         command: 'onHarvesterRemoved',
         service: Farmer,
         onUpdate(draft, data) {
-          const { connection: { nodeId } } = data;
+          const { nodeId } = data;
 
           const index = draft.findIndex((harvester) => harvester.connection.nodeId === nodeId);
           if (index !== -1) {
