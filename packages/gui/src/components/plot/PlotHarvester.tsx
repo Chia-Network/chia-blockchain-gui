@@ -11,6 +11,7 @@ import PlotHarvesterPlotsNotFound from './PlotHarvesterPlotsNotFound';
 import PlotHarvesterPlotsFailed from './PlotHarvesterPlotsFailed';
 import PlotHarvesterPlotsDuplicate from './PlotHarvesterPlotsDuplicate';
 import PlotHarvesterState from './PlotHarvesterState';
+import isLocalhost from '../../util/isLocalhost';
 
 export type PlotHarvesterProps = {
   nodeId: string;
@@ -29,7 +30,7 @@ export default function PlotHarvester(props: PlotHarvesterProps) {
   const [activeTab, setActiveTab] = useState<'PLOTS' | 'NOT_FOUND' | 'FAILED' | 'DUPLICATE'>('FAILED');
   const [expanded, toggleExpand] = useToggle(expandedDefault);
   const simpleNodeId = `${nodeId.substr(0, 6)}...${nodeId.substr(nodeId.length - 6)}`;
-  const isLocal = host === '127.0.0.1';
+  const isLocal = isLocalhost(host);
 
   useEffect(() => {
     if ((activeTab === 'NOT_FOUND' && !noKeyFilenames) || (activeTab === 'FAILED' && !failedToOpenFilenames) || (activeTab === 'DUPLICATE' && !duplicates)) {

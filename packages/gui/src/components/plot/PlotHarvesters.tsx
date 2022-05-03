@@ -5,9 +5,10 @@ import { Trans } from '@lingui/macro';
 import { Loading, Flex } from '@chia/core';
 import { Typography } from '@mui/material';
 import PlotHarvester from './PlotHarvester';
+import isLocalhost from '../../util/isLocalhost';
 
 function getIpAddress(harvester) {
-  if (harvester.connection.host === '127.0.0.1') {
+  if (isLocalhost(harvester.connection.host)) {
     return '';
   }
 
