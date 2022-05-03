@@ -65,14 +65,6 @@ export default function LayoutDashboard(props: LayoutDashboardProps) {
   const navigate = useNavigate();
   const logout = useLogout();
   const { data: fingerprint } = useGetLoggedInFingerprintQuery();
-  const partial = useMemo(() => {
-    if (fingerprint) {
-      // return last 6 digits of fingerprint
-      return `(...${fingerprint.toString().slice(-6)})`;
-    }
-
-    return null;
-  }, [fingerprint]);
 
   async function handleLogout() {
     await logout();
@@ -94,12 +86,10 @@ export default function LayoutDashboard(props: LayoutDashboardProps) {
                           Wallet
                         </Trans>
                         &nbsp;
-                        {partial && (
-                          <Tooltip title={fingerprint ?? 'Loading...'}>
-                            <StyledInlineTypography color="textSecondary" variant="h5">
-                              {partial}
-                            </StyledInlineTypography>
-                          </Tooltip>
+                        {fingerprint && (
+                          <StyledInlineTypography color="textSecondary" variant="h5">
+                            {fingerprint}
+                          </StyledInlineTypography>
                         )}
                       </Typography>
                     </Box>
