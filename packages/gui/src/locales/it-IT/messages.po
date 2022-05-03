@@ -8,7 +8,7 @@ msgstr ""
 "Language: it_IT\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-05-03 20:09\n"
+"PO-Revision-Date: 2022-05-03 20:14\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -2450,7 +2450,7 @@ msgstr "Stato"
 
 #: src/components/app/AppSelectMode.tsx:89
 msgid "Store and Send XCH"
-msgstr ""
+msgstr "Salva e invia XCH"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:103
 #~ msgid "Stripe Size"
@@ -2512,7 +2512,7 @@ msgstr "Sincronizzazione <0/>/<1/>"
 
 #: src/components/pool/PoolInfo.tsx:37
 msgid "Target Puzzle Hash"
-msgstr ""
+msgstr "Target Puzzle Hash"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:18
 #~ msgid "Temporary files are created during the plotting process which exceeds the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
@@ -2636,7 +2636,7 @@ msgstr "Questo è il tempo in cui il blocco è stato creato dal coltivatore, che
 
 #: src/components/fullNode/card/FullNodeCardPeakTime.tsx:19
 msgid "This is the timestamp of the most recent transaction block."
-msgstr ""
+msgstr "Questo è il timestamp del blocco di transazione più recente."
 
 #: src/components/_wallet_old/card/WalletCardTotalBalance.tsx:34
 #~ msgid "This is the total amount of chia in the blockchain at the current peak sub block that is controlled by your private keys. It includes frozen farming rewards, but not pending incoming and outgoing transactions."
@@ -2690,7 +2690,7 @@ msgstr "Questa tabella ti mostra l'ultima volta che la tua fattoria ha tentato d
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:154
 msgid "Thread Multiplier for Phase 2"
-msgstr ""
+msgstr "Moltiplicatore di Thread per la fase 2"
 
 #: src/components/fullNode/FullNode.jsx:88
 msgid "Time Created"
@@ -2710,7 +2710,7 @@ msgstr "Marca temporale"
 
 #: src/components/dashboard/DashboardSideBar.tsx:58
 msgid "Tokens"
-msgstr ""
+msgstr "Tokens"
 
 #: src/components/_wallet_old/card/WalletCardTotalBalance.tsx:32
 #: src/components/_wallet_old/coloured/WalletColoured.tsx:379
@@ -2720,7 +2720,7 @@ msgstr ""
 
 #: src/components/farm/card/FarmCardTotalChiaFarmed.tsx:27
 msgid "Total Chia Farmed"
-msgstr ""
+msgstr "Totale Chia guadagnati"
 
 #: src/components/fullNode/card/FullNodeCardTotalIterations.tsx:14
 msgid "Total Iterations"
@@ -2768,7 +2768,7 @@ msgstr "Totale iterazioni dall'inizio della blockchain"
 
 #: src/components/app/AppSelectMode.tsx:101
 msgid "Trade tokens"
-msgstr ""
+msgstr "Scambia token"
 
 #: src/components/trading/TradingOverview.jsx:152
 #~ msgid "Trades will show up here"
@@ -2813,7 +2813,7 @@ msgstr "Non completato"
 
 #: src/components/app/AppPassPrompt.tsx:82
 msgid "Unlock Keyring"
-msgstr ""
+msgstr "Sblocca Keyring"
 
 #: src/components/core/components/FormBackButton/FormBackButton.tsx:25
 #~ msgid "Unsaved Changes"
@@ -2826,7 +2826,7 @@ msgstr ""
 
 #: src/components/farm/card/FarmCardUserFees.tsx:27
 msgid "User Transaction Fees"
-msgstr ""
+msgstr "Commissioni Di Transazione"
 
 #: src/components/app/AppPassPrompt.tsx:79
 #~ msgid "Using a passphrase is strongly recommended to protect your keys. Are you sure you want to disable passphrase protection?"
@@ -2900,7 +2900,7 @@ msgstr "In attesa che la transazione venga confermata"
 #: src/components/app/AppSelectMode.tsx:81
 #: src/components/app/AppSelectMode.tsx:133
 msgid "Wallet Mode"
-msgstr ""
+msgstr "Wallet Mode"
 
 #: src/components/pool/PoolOverview.tsx:181
 msgid "Wallet Status:"
@@ -2912,7 +2912,7 @@ msgstr "Stato Wallet:"
 
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:69
 msgid "Wallet is not defined"
-msgstr ""
+msgstr "Il Wallet non è stato definito"
 
 #: src/components/wallet/Wallets.tsx:34
 #~ msgid "WalletItem.ccWallet"
@@ -3023,7 +3023,7 @@ msgstr "Non sei in auto-pooling"
 
 #: src/components/app/AppSelectMode.tsx:167
 msgid "You can always change your mode later in the settings"
-msgstr ""
+msgstr "Puoi sempre cambiare la modalità nelle impostazioni."
 
 #: src/components/plotNFT/PlotNFTCard.tsx:421
 msgid "You can still create plots for this plot NFT, but you can not make changes until sync is complete."
