@@ -1,4 +1,4 @@
-import React, { ReactNode, Suspense, useMemo } from 'react';
+import React, { ReactNode, Suspense } from 'react';
 import styled from 'styled-components';
 import { useNavigate, Outlet } from 'react-router-dom';
 import { t, Trans } from '@lingui/macro';
