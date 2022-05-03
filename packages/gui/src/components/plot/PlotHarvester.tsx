@@ -38,7 +38,7 @@ export default function PlotHarvester(props: PlotHarvesterProps) {
     }
   }, [activeTab, plots, noKeyFilenames, failedToOpenFilenames, duplicates]);
 
-  function hadneChangeActiveTab(newActiveTab) {
+  function handleChangeActiveTab(newActiveTab) {
     setActiveTab(newActiveTab);
 
     if (!expanded) {
@@ -79,9 +79,11 @@ export default function PlotHarvester(props: PlotHarvesterProps) {
         <Flex alignItems="center">
           <Tabs
             value={activeTab}
-            onChange={(_event, newValue) => hadneChangeActiveTab(newValue)}
+            onChange={(_event, newValue) => handleChangeActiveTab(newValue)}
             textColor="primary"
             indicatorColor="primary"
+            variant="scrollable"
+            scrollButtons="auto"
           >
             <Tab
               value="PLOTS"
@@ -90,7 +92,7 @@ export default function PlotHarvester(props: PlotHarvesterProps) {
                   <Box>
                     <Trans>Plots</Trans>
                   </Box>
-                  {initialized && <Chip label={<FormatLargeNumber value={plots} />} variant="outlined" size="small" />}
+                  {initialized && <Chip label={<FormatLargeNumber value={plots} />} size="extraSmall" />}
                 </Flex>
               )}
             />
@@ -102,7 +104,7 @@ export default function PlotHarvester(props: PlotHarvesterProps) {
                     <Box>
                       <Trans>Missing Keys</Trans>
                     </Box>
-                    {initialized && <Chip label={<FormatLargeNumber value={noKeyFilenames} />} variant="outlined" size="small" />}
+                    {initialized && <Chip label={<FormatLargeNumber value={noKeyFilenames} />} size="extraSmall" />}
                   </Flex>
                 )}
               />
@@ -115,7 +117,7 @@ export default function PlotHarvester(props: PlotHarvesterProps) {
                     <Box>
                       <Trans>Failed</Trans>
                     </Box>
-                    {initialized && <Chip label={<FormatLargeNumber value={failedToOpenFilenames} />} variant="outlined" size="small" />}
+                    {initialized && <Chip label={<FormatLargeNumber value={failedToOpenFilenames} />} size="extraSmall" />}
                   </Flex>
                 )}
               />
@@ -128,7 +130,7 @@ export default function PlotHarvester(props: PlotHarvesterProps) {
                     <Box>
                       <Trans>Duplicate</Trans>
                     </Box>
-                    {initialized && <Chip label={<FormatLargeNumber value={duplicates} />} variant="outlined" size="small" />}
+                    {initialized && <Chip label={<FormatLargeNumber value={duplicates} />} size="extraSmall" />}
                   </Flex>
                 )}
               />
