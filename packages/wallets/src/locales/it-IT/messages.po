@@ -8,7 +8,7 @@ msgstr ""
 "Language: it_IT\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-05-04 18:42\n"
+"PO-Revision-Date: 2022-05-04 19:37\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -797,7 +797,7 @@ msgstr "Data di creazione"
 
 #: src/constants/WalletName.ts:20
 msgid "Custody Wallet"
-msgstr ""
+msgstr "Portafoglio di custodia"
 
 #: src/components/cat/WalletCATCreateSimple.tsx:102
 msgid "Custom"
@@ -1834,11 +1834,11 @@ msgstr "L'offerta è stata accettata ed è in attesa di conferma."
 
 #: src/components/offers/OfferShareDialog.tsx:350
 msgid "OfferBin URL"
-msgstr ""
+msgstr "OfferBin URL"
 
 #: src/components/offers/OfferManager.tsx:300
 msgid "Offered"
-msgstr ""
+msgstr "Offerto"
 
 #: src/components/trading/TradingOverview.jsx:412
 #~ msgid "Offers Created"
@@ -1867,7 +1867,7 @@ msgstr "Uno o più token sconosciuti sono stati offerti. Si prega di verificare 
 
 #: src/components/did/WalletDIDRecovery.tsx:33
 msgid "Only one backup file is allowed."
-msgstr ""
+msgstr "È consentito un solo file di backup."
 
 #: src/components/wallet/create/recoverDIDWallet.js:156
 #~ msgid "Only one backup file is allowed. To add a new backup file, please delete any previously uploaded files and try again."
@@ -1929,7 +1929,7 @@ msgstr ""
 #: src/components/offers/OfferDataEntryDialog.tsx:40
 #: src/components/offers/OfferImport.tsx:129
 msgid "Paste Offer Data"
-msgstr ""
+msgstr "Incolla Dati Offerta"
 
 #: src/components/plotNFT/PlotNFTCard.tsx:358
 #~ msgid "Payout Address"
@@ -1982,14 +1982,14 @@ msgstr "Per favore inserisci tasse 0. Le tasse positive non sono ancora supporta
 #: src/components/cat/WalletDID.tsx:924
 #: src/components/did/WalletDID.tsx:924
 msgid "Please enter a coin"
-msgstr ""
+msgstr "Per favore inserisci una moneta"
 
 #: src/components/cat/WalletDID.tsx:525
 #: src/components/cat/WalletDID.tsx:914
 #: src/components/did/WalletDID.tsx:525
 #: src/components/did/WalletDID.tsx:914
 msgid "Please enter a filename"
-msgstr ""
+msgstr "Inserire il Nome File"
 
 #: src/components/app/AppPassPrompt.tsx:53
 #: src/components/settings/SetPassphrasePrompt.tsx:53
@@ -1999,20 +1999,20 @@ msgstr ""
 #: src/components/cat/WalletDID.tsx:934
 #: src/components/did/WalletDID.tsx:934
 msgid "Please enter a pubkey"
-msgstr ""
+msgstr "Si prega di inserire una chiave pubblica"
 
 #: src/components/cat/WalletDID.tsx:944
 #: src/components/did/WalletDID.tsx:944
 msgid "Please enter a puzzlehash"
-msgstr ""
+msgstr "Per favore, inserisci un Puzzlehash"
 
 #: src/components/cat/WalletCATCreateExisting.tsx:40
 msgid "Please enter a valid CAT name"
-msgstr ""
+msgstr "Si prega di inserire il nome di un CAT valido"
 
 #: src/components/cat/WalletCATCreateExistingSimple.tsx:41
 msgid "Please enter a valid asset id"
-msgstr ""
+msgstr "Inserisci un Asset ID valido."
 
 #: src/components/create/createRLAdmin.jsx:139
 msgid "Please enter a valid initial coin amount"
@@ -2032,7 +2032,7 @@ msgstr "Per favore inserisci una ammontare numerico valido"
 
 #: src/components/did/WalletDIDCreate.tsx:49
 msgid "Please enter a valid numeric amount."
-msgstr ""
+msgstr "Per favore inserisci una ammontare numerico valido."
 
 #: src/components/WalletSend.tsx:96
 #: src/components/cat/WalletCATSend.tsx:110
@@ -2055,15 +2055,15 @@ msgstr "Per favore inserisci una pubkey valida"
 
 #: src/components/cat/WalletCATCreateExistingSimple.tsx:45
 msgid "Please enter a valid token name"
-msgstr ""
+msgstr "Per favore inserisci un nome del Token valido"
 
 #: src/components/offers/OfferEditor.tsx:112
 msgid "Please enter an amount for each row"
-msgstr ""
+msgstr "Inserisci un importo per ogni riga"
 
 #: src/components/WalletRenameDialog.tsx:49
 msgid "Please enter valid wallet name"
-msgstr ""
+msgstr "Per favore inserisci un nome valido per il portafoglio"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:75
 #~ msgid "Please enter your current passphrase, and a new passphrase"
@@ -2095,7 +2095,7 @@ msgstr "Per favore completa la sincronizzazione prima di fare una transazione"
 
 #: src/components/offers/OfferEditor.tsx:109
 msgid "Please select an asset for each row"
-msgstr ""
+msgstr "Seleziona un asset per ogni riga"
 
 #: src/components/did/WalletDIDRecovery.tsx:54
 msgid "Please select backup file first"
