@@ -8,7 +8,7 @@ import {
 } from '@chia/core';
 import { defineMessage } from '@lingui/macro';
 import type { NFTInfo } from '@chia/api';
-import { useGetCurrentNFTsQuery } from '@chia/api-react';
+import { useGetNFTsQuery } from '@chia/api-react';
 import { Grid } from '@mui/material';
 import NFTGallerySidebar from './NFTGallerySidebar';
 import NFTCard from '../NFTCard';
@@ -17,7 +17,7 @@ import NFTContextualActions from '../NFTContextualActions';
 import type NFTSelection from '../../../types/NFTSelection';
 
 export default function NFTGallery() {
-  const { isLoading, data } = useGetCurrentNFTsQuery();
+  const { isLoading, data } = useGetNFTsQuery({ walletId: 5 });
   const [search, setSearch] = useState('');
   const t = useTrans();
   const [selection, setSelection] = useState<NFTSelection>({
@@ -30,7 +30,7 @@ export default function NFTGallery() {
     }
 
     return data.map((nft: NFTInfo) => {
-      return { ...nft, launcherId: toBech32m(nft.launcherId, 'nft') };
+      return { ...nft, id: toBech32m(nft.launcherId, 'nft') };
     });
   }, [data]);
 
@@ -52,7 +52,7 @@ export default function NFTGallery() {
       return {
         items: selected
           ? [...items, nft]
-          : items.filter((item) => item.id !== nft.launcherId),
+          : items.filter((item) => item.id !== nft.id),
       };
     });
   }
@@ -74,14 +74,12 @@ export default function NFTGallery() {
         </Flex>
 
         <Grid spacing={2} alignItems="stretch" container>
-          {filteredData?.map((nft) => (
-            <Grid xs={12} md={6} lg={4} xl={3} key={nft.launcherId} item>
+          {filteredData?.map((nft: NFTInfo) => (
+            <Grid xs={12} md={6} lg={4} xl={3} key={nft.id} item>
               <NFTCard
                 nft={nft}
                 onSelect={(selected) => handleSelect(nft, selected)}
-                selected={selection.items.some(
-                  (item) => item.id === nft.launcherId,
-                )}
+                selected={selection.items.some((item) => item.id === nft.id)}
               />
             </Grid>
           ))}

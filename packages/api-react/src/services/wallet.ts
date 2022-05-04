@@ -1762,19 +1762,19 @@ export const walletApi = apiWithTag.injectEndpoints({
     // createDIDBackup: did_create_backup_file needs an RPC change (remove filename param, return file contents)
 
     // NFTs
-    getCurrentNFTs: build.query<any, { walletId?: number }>({
+    getNFTs: build.query<any, { walletId?: number }>({
       query: ({ walletId } = {}) => ({
-        command: 'getCurrentNfts',
+        command: 'getNfts',
         service: NFT,
         args: [walletId],
-        mockResponse: {
-          nfts: [...Array(11)].map(() => ({
-            walletId: walletId ?? Math.floor(Math.random() * 100), // TODO remove when mock is fixed
-            id: randomBytes(32).toString('hex'),
-          })),
-        },
+        // mockResponse: {
+        //   nfts: [...Array(11)].map(() => ({
+        //     walletId: walletId ?? Math.floor(Math.random() * 100), // TODO remove when mock is fixed
+        //     id: randomBytes(32).toString('hex'),
+        //   })),
+        // },
       }),
-      transformResponse: (response: any) => response.nfts,
+      transformResponse: (response: any) => response.nftList,
       providesTags: (nfts, _error) =>
         nfts
           ? [
@@ -1904,7 +1904,7 @@ export const {
   useGetDIDCurrentCoinInfoQuery,
 
   // NFTs
-  useGetCurrentNFTsQuery,
+  useGetNFTsQuery,
   useTransferNFTMutation,
   useReceiveNFTMutation,
 } = walletApi;
