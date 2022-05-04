@@ -8,7 +8,7 @@ msgstr ""
 "Language: sv_SE\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-05-03 22:07\n"
+"PO-Revision-Date: 2022-05-04 06:19\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -1746,7 +1746,7 @@ msgstr "Inte tillgänglig"
 
 #: src/components/WalletStatusHeader.tsx:31
 msgid "Not Connected"
-msgstr ""
+msgstr "Inte ansluten"
 
 #: src/components/WalletStatus.tsx:39
 msgid "Not Synced"
@@ -3111,7 +3111,7 @@ msgstr ""
 
 #: src/components/offers/OfferViewer.tsx:389
 msgid "This offer has completed successfully"
-msgstr ""
+msgstr "Erbjudandet har slutförts"
 
 #: src/components/offers/OfferViewer.tsx:385
 msgid "This offer is no longer valid"
