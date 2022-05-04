@@ -46,8 +46,10 @@ const cols = [
 
 export default function NFTDetail() {
   const { nftId: launcherId } = useParams();
-  const { isLoading, data } = useGetNFTsQuery({ walletId: 5 });
-  // const { metadata, isLoading } = useNFTMetadata({ id: nftId });
+  const { data } = useGetNFTsQuery({ walletId: 5 });
+  const { metadata: fakeMetadata, isLoading } = useNFTMetadata({
+    id: launcherId,
+  });
 
   const nft = useMemo(() => {
     if (!data) {
@@ -56,7 +58,7 @@ export default function NFTDetail() {
     return data.find((nft: NFTInfo) => nft.launcherId === launcherId);
   }, [data]);
 
-  const metadata = { ...nft };
+  const metadata = { ...fakeMetadata, ...nft };
 
   if (isLoading) {
     return <Loading center />;

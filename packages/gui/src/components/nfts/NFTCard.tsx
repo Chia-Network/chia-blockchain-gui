@@ -31,10 +31,11 @@ export default function NFTCard(props: NFTCardProps) {
 
   const navigate = useNavigate();
   const currencyCode = useCurrencyCode();
-  // const { metadata, isLoading } = useNFTMetadata({ id });
+  const { metadata: fakeMetadata, isLoading } = useNFTMetadata({
+    id: nft.launcherId,
+  });
   const id = nft.id;
-  const isLoading = false;
-  const metadata = { ...nft };
+  const metadata = { ...fakeMetadata, ...nft };
   const shortId = `${id.substr(0, 6)}...${id.substr(id.length - 6)}`;
 
   function handleClick() {
