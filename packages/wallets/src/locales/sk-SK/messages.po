@@ -8,7 +8,7 @@ msgstr ""
 "Language: sk_SK\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-05-03 22:06\n"
+"PO-Revision-Date: 2022-05-04 00:17\n"
 "Last-Translator: \n"
 "Language-Team: Slovak\n"
 "Plural-Forms: nplurals=4; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 3;\n"
@@ -590,7 +590,7 @@ msgstr "Potvrdené na pozícii"
 
 #: src/components/WalletStatusHeader.tsx:33
 msgid "Connected ({0})"
-msgstr ""
+msgstr "Pripojené ({0})"
 
 #: src/components/app/AppState.tsx:141
 #: src/components/app/AppState.tsx:145
