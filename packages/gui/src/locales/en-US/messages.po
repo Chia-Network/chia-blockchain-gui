@@ -8,7 +8,7 @@ msgstr ""
 "Language: en_US\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-05-04 01:14\n"
+"PO-Revision-Date: 2022-05-04 03:15\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -20,19 +20,19 @@ msgstr ""
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:74
 msgid "(Not Installed)"
-msgstr ""
+msgstr "(Not Installed)"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:71
 msgid "(Not Supported)"
-msgstr ""
+msgstr "(Not Supported)"
 
 #: src/components/plot/add/PlotAddNFT.tsx:67
 msgid "(Optional)"
-msgstr ""
+msgstr "(Optional)"
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:60
 msgid "*Want to explore Chia’s blocks further? Check out <0>Chia Explorer</0> built by an open source developer."
-msgstr ""
+msgstr "*Want to explore Chia’s blocks further? Check out <0>Chia Explorer</0> built by an open source developer."
 
 #: src/components/app/AppSelectMode.tsx:120
 #~ msgid "+"
@@ -40,7 +40,7 @@ msgstr ""
 
 #: src/components/plot/add/PlotAddNFT.tsx:128
 msgid "+ Add New Plot NFT"
-msgstr ""
+msgstr "+ Add New Plot NFT"
 
 #: src/components/_wallet_old/Wallets.tsx:132
 #~ msgid "+ Add Wallet"
@@ -48,7 +48,7 @@ msgstr ""
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:49
 msgid "+ Add a Plot"
-msgstr ""
+msgstr "+ Add a Plot"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:94
 #~ msgid "0 automatically chooses bucket count"
@@ -64,12 +64,12 @@ msgstr "A harvester is a service running on a machine where plot(s) are actually
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:155
 msgid "A value of {0} is recommended"
-msgstr ""
+msgstr "A value of {0} is recommended"
 
 #: src/electron/main.tsx:513
 #: src/electron/main.tsx:600
 msgid "About Chia Blockchain"
-msgstr ""
+msgstr "About Chia Blockchain"
 
 #: src/components/trading/ViewOffer.jsx:74
 #~ msgid "Accept"
@@ -85,13 +85,13 @@ msgstr ""
 #: src/components/plot/PlotHarvesterPlotsNotFound.tsx:18
 #: src/components/plot/PlotPlotting.tsx:29
 msgid "Action"
-msgstr ""
+msgstr "Action"
 
 #: src/components/farm/FarmFullNodeConnections.tsx:66
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:66
 #: src/components/fullNode/FullNodeConnections.tsx:81
 msgid "Actions"
-msgstr ""
+msgstr "Actions"
 
 #: src/components/trading/CreateOffer.jsx:202
 #~ msgid "Add"
@@ -105,11 +105,11 @@ msgstr ""
 #: src/components/plot/PlotHeader.tsx:88
 #: src/components/plot/overview/PlotOverviewPlots.tsx:65
 msgid "Add Plot Directory"
-msgstr ""
+msgstr "Add Plot Directory"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:70
 msgid "Add Plot to Queue"
-msgstr ""
+msgstr "Add Plot to Queue"
 
 #: src/components/wallet/Wallets.tsx:88
 #~ msgid "Add Wallet"
@@ -122,23 +122,23 @@ msgstr ""
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:229
 #: src/components/plotNFT/PlotNFTCard.tsx:268
 msgid "Add a Plot"
-msgstr ""
+msgstr "Add a Plot"
 
 #: src/components/plotNFT/PlotNFTAdd.tsx:55
 msgid "Add a Plot NFT"
-msgstr ""
+msgstr "Add a Plot NFT"
 
 #: src/components/plot/PlotAddDirectoryDialog.tsx:84
 msgid "Add a plot"
-msgstr ""
+msgstr "Add a plot"
 
 #: src/components/plot/PlotAddDirectoryDialog.tsx:123
 msgid "Add plot directory"
-msgstr ""
+msgstr "Add plot directory"
 
 #: src/components/plotNFT/select/PlotNFTSelectFaucet.tsx:41
 msgid "Add {currencyCode} from the Faucet"
-msgstr ""
+msgstr "Add {currencyCode} from the Faucet"
 
 #: src/components/_wallet_old/coloured/WalletColoured.tsx:561
 #: src/components/_wallet_old/coloured/WalletColoured.tsx:657
@@ -153,11 +153,11 @@ msgstr ""
 
 #: src/components/app/AppKeyringMigrator.tsx:198
 msgid "After your keys are successfully migrated to the new keyring, you may choose to have your keys removed from the old keyring."
-msgstr ""
+msgstr "After your keys are successfully migrated to the new keyring, you may choose to have your keys removed from the old keyring."
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:238
 msgid "Alternate tmpdir/tmpdir2"
-msgstr ""
+msgstr "Alternate tmpdir/tmpdir2"
 
 #: src/components/trading/CreateOffer.jsx:197
 #: src/components/trading/TradesTable.tsx:19
@@ -179,19 +179,19 @@ msgstr ""
 #: src/components/plot/PlotAction.tsx:29
 #: src/components/plot/queue/PlotQueueActions.tsx:47
 msgid "Are you sure you want to delete the plot? The plot cannot be recovered."
-msgstr ""
+msgstr "Are you sure you want to delete the plot? The plot cannot be recovered."
 
 #: src/components/plotNFT/PlotNFTCard.tsx:127
 msgid "Are you sure you want to delete unconfirmed transactions?"
-msgstr ""
+msgstr "Are you sure you want to delete unconfirmed transactions?"
 
 #: src/components/fullNode/FullNodeCloseConnection.tsx:26
 msgid "Are you sure you want to disconnect?"
-msgstr ""
+msgstr "Are you sure you want to disconnect?"
 
 #: src/electron/main.tsx:268
 msgid "Are you sure you want to quit?"
-msgstr ""
+msgstr "Are you sure you want to quit?"
 
 #: src/electron/main.tsx:262
 #~ msgid "Are you sure you want to quit? GUI Plotting and farming will stop."
@@ -203,15 +203,15 @@ msgstr ""
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:51
 msgid "Are you sure you want to use k={plotSize}?"
-msgstr ""
+msgstr "Are you sure you want to use k={plotSize}?"
 
 #: src/components/app/AppState.tsx:151
 msgid "Attempt {attempt}"
-msgstr ""
+msgstr "Attempt {attempt}"
 
 #: src/components/plotNFT/PlotNFTName.tsx:39
 msgid "Autogenerated name from pool contract address"
-msgstr ""
+msgstr "Autogenerated name from pool contract address"
 
 #: src/components/_selectKey_old/SelectKey.tsx:77
 #: src/components/_selectKey_old/SelectKey.tsx:116
@@ -220,7 +220,7 @@ msgstr ""
 
 #: src/components/backup/BackupCreate.tsx:46
 msgid "Backup file is used to restore smart wallets."
-msgstr ""
+msgstr "Backup file is used to restore smart wallets."
 
 #: src/components/_wallet_old/coloured/WalletColoured.tsx:377
 #: src/components/_wallet_old/did/WalletDID.tsx:647
