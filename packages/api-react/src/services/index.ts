@@ -150,7 +150,7 @@ export const {
   useGetDIDCurrentCoinInfoQuery,
 
   // NFTs
-  useGetCurrentNFTsQuery,
+  useGetNFTsQuery,
   useTransferNFTMutation,
   useReceiveNFTMutation,
 } = wallet;
