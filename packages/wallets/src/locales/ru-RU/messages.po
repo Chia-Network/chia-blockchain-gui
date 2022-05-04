@@ -8,7 +8,7 @@ msgstr ""
 "Language: ru_RU\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-05-03 22:06\n"
+"PO-Revision-Date: 2022-05-04 01:14\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "Plural-Forms: nplurals=4; plural=((n%10==1 && n%100!=11) ? 0 : ((n%10 >= 2 && n%10 <=4 && (n%100 < 12 || n%100 > 14)) ? 1 : ((n%10 == 0 || (n%10 >= 5 && n%10 <=9)) || (n%100 >= 11 && n%100 <= 14)) ? 2 : 3));\n"
@@ -590,7 +590,7 @@ msgstr ""
 
 #: src/components/WalletStatusHeader.tsx:33
 msgid "Connected ({0})"
-msgstr ""
+msgstr "Подключено ({0})"
 
 #: src/components/app/AppState.tsx:141
 #: src/components/app/AppState.tsx:145
@@ -1243,7 +1243,7 @@ msgstr ""
 
 #: src/components/WalletReceiveAddress.tsx:38
 msgid "HD or Hierarchical Deterministic keys are a type of public key/private key scheme where one private key can have a nearly infinite number of different public keys (and therefore wallet receive addresses) that will all ultimately come back to and be spendable by a single private key."
-msgstr ""
+msgstr "HD или иерархические детерминированные ключи - это тип открытой схемы ключ/закрытого ключа, в которой один закрытый ключ может иметь почти бесконечное количество различных открытых ключей (и поэтому прием адресов), которые в конечном итоге будут возвращаться и расходоваться одним приватным ключом."
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:49
 #~ msgid "Harvester ID"
@@ -1746,7 +1746,7 @@ msgstr "Не определено"
 
 #: src/components/WalletStatusHeader.tsx:31
 msgid "Not Connected"
-msgstr ""
+msgstr "Нет Соединения"
 
 #: src/components/WalletStatus.tsx:39
 msgid "Not Synced"
