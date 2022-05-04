@@ -8,7 +8,7 @@ msgstr ""
 "Language: it_IT\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-05-04 17:03\n"
+"PO-Revision-Date: 2022-05-04 18:42\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -1315,15 +1315,15 @@ msgstr "Se selezionata, la tua offerta non sarà condivisa pubblicamente."
 
 #: src/components/offers/OfferManager.tsx:107
 msgid "If you have already shared your offer file, you may need to submit a transaction to cancel the pending offer. Click \"Cancel on blockchain\" to submit a cancellation transaction."
-msgstr ""
+msgstr "Se hai già condiviso il tuo file di offerta, devi inviare una transazione per annullare l'offerta in sospeso. Fare clic su \"Annulla su blockchain\" per inviare una transazione di cancellazione."
 
 #: src/components/WalletSendTransactionResultDialog.tsx:41
 msgid "If you would like to speed up the transaction, please delete unconfirmed transactions and retry with a higher fee."
-msgstr ""
+msgstr "Se si desidera accelerare la transazione, si prega di eliminare le transazioni non confermate e riprovare con una commissione più alta."
 
 #: src/components/offers/OfferDataEntryDialog.tsx:74
 msgid "Import"
-msgstr ""
+msgstr "Importa"
 
 #: src/components/WalletImport.tsx:81
 msgid "Import Wallet from Mnemonics"
@@ -1340,17 +1340,17 @@ msgstr "Importa Wallet dalle Mnemonic"
 #: src/components/offers/OfferEditorConditionsPanel.tsx:249
 #: src/components/offers/OfferViewer.tsx:459
 msgid "In exchange for"
-msgstr ""
+msgstr "In cambio di"
 
 #: src/components/offers/OfferShareDialog.tsx:403
 #: src/components/offers/OfferShareDialog.tsx:544
 #: src/components/offers/OfferShareDialog.tsx:892
 msgid "In exchange for:"
-msgstr ""
+msgstr "In cambio di:"
 
 #: src/components/offers/OfferEditorConditionsPanel.tsx:339
 msgid "Including a fee in the offer can help expedite the transaction when the offer is accepted."
-msgstr ""
+msgstr "Includere una fee nell'offerta può aiutare ad accelerare la transazione quando l'offerta è accettata."
 
 #: src/components/WalletHistory.tsx:60
 msgid "Incoming"
@@ -1387,17 +1387,19 @@ msgstr "Inizializza un Wallet Utente a tariffa Limitata:"
 
 #: src/components/offers/OfferShareDialog.tsx:754
 msgid "Install Keybase"
-msgstr ""
+msgstr "Installa Keybase"
 
 #: src/components/offers/OfferViewer.tsx:358
 msgid "Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
+msgstr "Fondi insufficienti per accettare l'offerta. Assicurati che il tuo saldo spendibile\n"
+"sia sufficiente a coprire l'importo dell'offerta."
 
 #: src/components/offers/OfferEditor.tsx:166
 msgid "Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
+msgstr "Fondi insufficienti per creare l'offerta. Assicurati che il tuo saldo spendibile\n"
+"sia sufficiente a coprire l'importo dell'offerta."
 
 #: src/components/create/createRLAdmin.jsx:217
 msgid "Interval"
@@ -1436,7 +1438,7 @@ msgstr "Intervallo"
 
 #: src/components/offers/OfferShareDialog.tsx:771
 msgid "Join {KeybaseTeamName}"
-msgstr ""
+msgstr "Unisciti a {KeybaseTeamName}"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:63
 #~ msgid "K-Size"
@@ -1444,11 +1446,11 @@ msgstr ""
 
 #: src/components/offers/OfferShareDialog.tsx:656
 msgid "Keybase command failed {e}. If you haven't installed Keybase, you can download from https://keybase.io"
-msgstr ""
+msgstr "Comando Keybase fallito {e}. Se non hai installato Keybase, lo puoi scaricare da https://keybase.io"
 
 #: src/components/offers/OfferShareDialog.tsx:744
 msgid "Keybase is a secure messaging and file sharing application. To share an offer in the Keybase {KeybaseTeamName} team, you must first have Keybase installed."
-msgstr ""
+msgstr "Keybase è un'applicazione sicura per la messaggistica e la condivisione di file. Per condividere un'offerta nel team Keybase {KeybaseTeamName} , devi prima aver installato Keybase."
 
 #: src/components/app/AppKeyringMigrator.tsx:94
 #~ msgid "Keyring migration failed: {0}"
@@ -1495,7 +1497,7 @@ msgstr ""
 
 #: src/components/WalletConnections.tsx:83
 msgid "List of connections is empty"
-msgstr ""
+msgstr "La lista delle connessioni è vuoto"
 
 #: src/components/pool/PoolOverview.tsx:173
 #~ msgid "List view"
@@ -1575,12 +1577,12 @@ msgstr ""
 
 #: src/components/offers/OfferManager.tsx:505
 msgid "Manage Offers"
-msgstr ""
+msgstr "Gestisci Offerte"
 
 #: src/components/cat/WalletDID.tsx:805
 #: src/components/did/WalletDID.tsx:805
 msgid "Manage Recovery DIDs"
-msgstr ""
+msgstr "Gestisci DID di Recupero"
 
 #: src/components/farm/FarmManageFarmingRewards.tsx:99
 #~ msgid "Manage Your Farming Rewards Target Addresses"
@@ -1588,24 +1590,24 @@ msgstr ""
 
 #: src/components/WalletsManageTokens.tsx:135
 msgid "Manage token list"
-msgstr ""
+msgstr "Gestisci l'elenco dei token"
 
 #: src/components/WalletHistory.tsx:116
 #: src/components/cat/WalletCATSend.tsx:232
 msgid "Memo"
-msgstr ""
+msgstr "Memo"
 
 #: src/components/WalletHistory.tsx:294
 msgid "Memos"
-msgstr ""
+msgstr "Memo"
 
 #: src/components/WalletSendTransactionResultDialog.tsx:19
 msgid "Mempool Full"
-msgstr ""
+msgstr "Mempool Completa"
 
 #: src/components/WalletConnections.tsx:55
 msgid "MiB Up/Down"
-msgstr ""
+msgstr "MiB Up/Down"
 
 #: src/components/_selectKey_old/SelectKey.tsx:137
 #~ msgid "Migrate"
@@ -1647,7 +1649,7 @@ msgstr ""
 #: src/components/cat/WalletDID.tsx:536
 #: src/components/did/WalletDID.tsx:536
 msgid "My DID Wallet"
-msgstr ""
+msgstr "Il mio Portafoglio DID"
 
 #: src/components/rateLimited/WalletRateLimited.jsx:414
 msgid "My Pubkey"
@@ -1655,7 +1657,7 @@ msgstr "La mia Pubkey"
 
 #: src/components/cat/WalletCATCreateExistingSimple.tsx:71
 msgid "Name"
-msgstr ""
+msgstr "Nome"
 
 #: src/components/fullNode/card/FullNodeCardNetworkName.tsx:14
 #~ msgid "Network Name"
@@ -1692,7 +1694,7 @@ msgstr "Prossimo"
 
 #: src/components/WalletRenameDialog.tsx:78
 msgid "Nickname"
-msgstr ""
+msgstr "Nickname"
 
 #: src/components/trading/TradingOverview.jsx:208
 #: src/electron/main.tsx:196
@@ -1709,7 +1711,7 @@ msgstr ""
 
 #: src/components/offers/OfferManager.tsx:458
 msgid "No current offers"
-msgstr ""
+msgstr "Nessuna offerta attiva"
 
 #: src/components/WalletHistory.tsx:323
 msgid "No previous transactions"
@@ -1721,7 +1723,7 @@ msgstr "Nessuna transazione precedente"
 
 #: src/components/offers/OfferViewer.tsx:209
 msgid "Node Count"
-msgstr ""
+msgstr "Numero di nodi: "
 
 #: src/components/WalletConnections.tsx:23
 msgid "Node ID"
@@ -1746,7 +1748,7 @@ msgstr "Non Disponibile"
 
 #: src/components/WalletStatusHeader.tsx:31
 msgid "Not Connected"
-msgstr ""
+msgstr "Disconnesso"
 
 #: src/components/WalletStatus.tsx:39
 msgid "Not Synced"
@@ -1754,7 +1756,7 @@ msgstr "Non Sincronizzato"
 
 #: src/components/offers/OfferViewer.tsx:198
 msgid "Not accepted"
-msgstr ""
+msgstr "Non accettato"
 
 #: src/components/trading/TradingOverview.jsx:221
 #~ msgid "Not accepted yet"
@@ -1762,7 +1764,7 @@ msgstr ""
 
 #: src/components/offers/OfferViewer.tsx:189
 msgid "Not confirmed"
-msgstr ""
+msgstr "Non confermato"
 
 #: src/components/trading/TradingOverview.jsx:194
 #~ msgid "Not confirmed yet"
@@ -1800,7 +1802,7 @@ msgstr ""
 #: src/components/cat/WalletCATTAILDialog.tsx:82
 #: src/components/offers/OfferDataDialog.tsx:75
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: src/components/trading/ViewOffer.jsx:67
 #~ msgid "Offer"
@@ -1808,12 +1810,12 @@ msgstr ""
 
 #: src/components/WalletHistory.tsx:122
 msgid "Offer Accepted"
-msgstr ""
+msgstr "Offerta accettata"
 
 #: src/components/offers/OfferDataDialog.tsx:42
 #: src/components/offers/OfferDataDialog.tsx:50
 msgid "Offer Data"
-msgstr ""
+msgstr "Dati dell'offerta"
 
 #: src/components/offers/OfferViewer.tsx:183
 msgid "Offer Identifier"
@@ -1824,11 +1826,11 @@ msgstr ""
 #: src/components/offers/OfferShareDialog.tsx:703
 #: src/components/offers/OfferShareDialog.tsx:849
 msgid "Offer Shared"
-msgstr ""
+msgstr "Offerta condivisa"
 
 #: src/components/offers/OfferViewer.tsx:344
 msgid "Offer has been accepted and is awaiting confirmation."
-msgstr ""
+msgstr "L'offerta è stata accettata ed è in attesa di conferma."
 
 #: src/components/offers/OfferShareDialog.tsx:350
 msgid "OfferBin URL"
@@ -1844,11 +1846,11 @@ msgstr ""
 
 #: src/components/offers/OfferManager.tsx:534
 msgid "Offers you accepted"
-msgstr ""
+msgstr "Offerte che hai accettato"
 
 #: src/components/offers/OfferManager.tsx:529
 msgid "Offers you created"
-msgstr ""
+msgstr "Offerte che hai creato"
 
 #: src/components/WalletSend.tsx:139
 #: src/components/cat/WalletCATSend.tsx:180
@@ -1857,11 +1859,11 @@ msgstr "Il tempo medio che passa tra un blocco di transazioni e l'altro è di un
 
 #: src/components/offers/OfferViewer.tsx:323
 msgid "Once you accept this offer, you will not be able to cancel the transaction. Are you sure you want to accept this offer?"
-msgstr ""
+msgstr "Una volta accettata questa offerta, non sarai in grado di annullare la transazione. Sei sicuro di volerla accettare?"
 
 #: src/components/offers/OfferViewer.tsx:300
 msgid "One or more unknown tokens are being offered. Please verify that the asset IDs of the tokens listed below match the asset IDs of the tokens you expect to receive."
-msgstr ""
+msgstr "Uno o più token sconosciuti sono stati offerti. Si prega di verificare che gli ID asset dei token elencati di seguito corrispondono agli ID asset dei token che ci si aspetta di ricevere."
 
 #: src/components/did/WalletDIDRecovery.tsx:33
 msgid "Only one backup file is allowed."
@@ -2736,11 +2738,11 @@ msgstr ""
 
 #: src/components/offers/OfferShareDialog.tsx:396
 msgid "Share on OfferBin"
-msgstr ""
+msgstr "Condividi su OfferBin"
 
 #: src/components/offers/OfferShareDialog.tsx:885
 msgid "Share on offerpool"
-msgstr ""
+msgstr "Condividi su Offerpool"
 
 #: src/components/core/components/AdvancedOptions/AdvancedOptions.tsx:74
 #~ msgid "Show Advanced Options"
@@ -2748,11 +2750,11 @@ msgstr ""
 
 #: src/components/cat/WalletCAT.tsx:105
 msgid "Show Asset Id"
-msgstr ""
+msgstr "Mostra Asset Id"
 
 #: src/components/offers/OfferManager.tsx:379
 msgid "Show Details"
-msgstr ""
+msgstr "Mostra dettagli"
 
 #: src/electron-starter.js:79
 #~ msgid "Show app"
@@ -2833,7 +2835,7 @@ msgstr "Limite di Spesa (chia per intervallo): {0}"
 
 #: src/constants/WalletName.ts:5
 msgid "Standard Wallet"
-msgstr ""
+msgstr "Portafoglio Standard"
 
 #: src/components/app/AppState.tsx:161
 #~ msgid "Starting services"
@@ -2894,12 +2896,12 @@ msgstr "Invia"
 #: src/components/WalletSendTransactionResultDialog.tsx:15
 #: src/components/offers/OfferViewer.tsx:343
 msgid "Success"
-msgstr ""
+msgstr "Operazione riuscita"
 
 #: src/components/WalletHeader.tsx:58
 #: src/components/offers/OfferViewer.tsx:452
 msgid "Summary"
-msgstr ""
+msgstr "Sommario"
 
 #: src/components/WalletStatus.tsx:44
 msgid "Synced"
@@ -2974,7 +2976,7 @@ msgstr "Sincronizzando"
 #: src/components/did/WalletDID.tsx:789
 #: src/components/did/WalletDIDCreate.tsx:88
 msgid "The number of Backup IDs needed for recovery cannot exceed the number of Backup IDs added."
-msgstr ""
+msgstr "Il numero degli ID di backup necessari per il ripristino non può superare il numero degli ID di backup aggiunti."
 
 #: src/hooks/usePoolInfo.ts:59
 #~ msgid "The pool URL \"{normalizedUrl}\" is not working. Is it pool? Error: {0}"
@@ -3022,7 +3024,7 @@ msgstr ""
 
 #: src/components/WalletSendTransactionResultDialog.tsx:34
 msgid "The transaction could not be immediately included in the mempool because the specified fee is too low. The transaction will be retried periodically, and may be included in the mempool once fees are lower, or if space becomes available."
-msgstr ""
+msgstr "La transazione non può essere immediatamente inclusa nella mempool perché la fee specificata è troppo bassa. La transazione verrà riprovata periodicamente, e potrà essere inclusa nella mempool una volta che le commissioni diverranno più basse o se ci sarà spazio per l'ingresso."
 
 #: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:107
 #~ msgid "These are the instructions for how the farmer wants to get paid. By default this will be an XCH address, but it can be set to any string with a size of less than 1024 characters, so it can represent another blockchain or payment system identifier."
@@ -3034,7 +3036,7 @@ msgstr ""
 
 #: src/components/WalletBadge.tsx:26
 msgid "This access token is verified"
-msgstr ""
+msgstr "Questo token di accesso è stato verificato"
 
 #: src/components/plot/PlotAddDirectoryDialog.tsx:89
 #~ msgid "This allows you to add a directory that has plots in it. If you have not created any plots, go to the plotting screen."
@@ -3053,7 +3055,7 @@ msgstr ""
 
 #: src/components/WalletHistory.tsx:90
 msgid "This is not a valid address for sending funds to"
-msgstr ""
+msgstr "Questo indirizzo non è valido per l'invio di fondi"
 
 #: src/components/standard/WalletStandardCards.tsx:23
 msgid "This is the amount of Chia that you can currently use to make transactions. It does not include pending farming rewards, pending incoming transactions, and Chia that you have just spent but is not yet in the blockchain."
