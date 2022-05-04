@@ -8,7 +8,7 @@ msgstr ""
 "Language: it_IT\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-05-04 14:37\n"
+"PO-Revision-Date: 2022-05-04 17:03\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -646,7 +646,7 @@ msgstr "Crea"
 #: src/components/cat/WalletDID.tsx:967
 #: src/components/did/WalletDID.tsx:967
 msgid "Create An Attestation Packet"
-msgstr ""
+msgstr "Crea un Attestation Packet"
 
 #: src/components/cat/WalletCATCreateExisting.tsx:76
 msgid "Create Chia Asset Token Wallet from Existing TAIL"
@@ -809,7 +809,7 @@ msgstr "Personalizzato"
 
 #: src/constants/WalletName.ts:29
 msgid "DID Wallet"
-msgstr ""
+msgstr "Portafoglio DID"
 
 #: src/components/wallet/create/WalletCreate.jsx:310
 #~ msgid "DIDListItems.title"
@@ -953,7 +953,7 @@ msgstr "Trascina e rilascia un offer file qui sotto per visualizzare i suoi dett
 #: src/components/cat/WalletDID.tsx:426
 #: src/components/did/WalletDID.tsx:426
 msgid "Drag and drop attestation packet(s)"
-msgstr ""
+msgstr "Trascina e rilascia Attestation Packet"
 
 #: src/components/offers/OfferImport.tsx:141
 msgid "Drag and drop offer file"
@@ -1009,7 +1009,7 @@ msgstr "Inserisci le 24 parole mnemoniche che hai salvato per poter ripristinare
 
 #: src/components/cat/WalletCATSend.tsx:129
 msgid "Error the entered address appears to be for a different colour."
-msgstr ""
+msgstr "Errore l'indirizzo inserito sembra essere di un colore diverso."
 
 #: src/components/_wallet_old/standard/WalletStandard.tsx:450
 #~ msgid "Error: Cannot send chia to coloured address. Please enter a chia address."
@@ -1243,7 +1243,7 @@ msgstr "Vai ad Offerpool"
 
 #: src/components/WalletReceiveAddress.tsx:38
 msgid "HD or Hierarchical Deterministic keys are a type of public key/private key scheme where one private key can have a nearly infinite number of different public keys (and therefore wallet receive addresses) that will all ultimately come back to and be spendable by a single private key."
-msgstr ""
+msgstr "Le chiavi HD (Hierarchical Deterministic) sono un tipo di schema a chiave pubblica/privata dove una chiave privata può avere un numero quasi infinito di chiavi pubbliche diverse (e quindi indirizzi di ricezione del wallet) che sono utilizzabili da una singola chiave privata."
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:49
 #~ msgid "Harvester ID"
@@ -1255,7 +1255,7 @@ msgstr ""
 
 #: src/components/offers/OfferShareDialog.tsx:491
 msgid "Hashgreen DEX URL"
-msgstr ""
+msgstr "Hashgreen DEX URL"
 
 #: src/components/fullNode/FullNode.jsx:60
 #~ msgid "Header Hash"
@@ -1311,7 +1311,7 @@ msgstr "Indirizzo IP"
 
 #: src/components/offers/OfferShareDialog.tsx:414
 msgid "If selected, your offer will be not be shared publicly."
-msgstr ""
+msgstr "Se selezionata, la tua offerta non sarà condivisa pubblicamente."
 
 #: src/components/offers/OfferManager.tsx:107
 msgid "If you have already shared your offer file, you may need to submit a transaction to cancel the pending offer. Click \"Cancel on blockchain\" to submit a cancellation transaction."
