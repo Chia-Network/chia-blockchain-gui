@@ -8,7 +8,7 @@ msgstr ""
 "Language: sv_SE\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-05-03 22:04\n"
+"PO-Revision-Date: 2022-05-04 06:19\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -832,7 +832,7 @@ msgstr "Fel"
 
 #: src/components/ErrorBoundary/ErrorBoundary.tsx:78
 msgid "Error:"
-msgstr ""
+msgstr "Fel:"
 
 #: src/components/_wallet_old/standard/WalletStandard.tsx:450
 #~ msgid "Error: Cannot send chia to coloured address. Please enter a chia address."
@@ -2111,7 +2111,7 @@ msgstr "Publik nyckel:"
 
 #: src/components/ErrorBoundary/ErrorBoundary.tsx:91
 msgid "Reload Application"
-msgstr ""
+msgstr "Läs in applikationen på nytt"
 
 #: src/components/settings/RemovePassphrasePrompt.tsx:100
 #: src/components/settings/RemovePassphrasePrompt.tsx:147
@@ -2133,7 +2133,7 @@ msgstr ""
 
 #: src/components/ErrorBoundary/ErrorBoundary.tsx:87
 msgid "Report an Issue"
-msgstr ""
+msgstr "Rapportera ett problem"
 
 #: src/electron/main.tsx:404
 #~ msgid "Report an Issue..."
@@ -2343,7 +2343,7 @@ msgstr "Hoppa över lösenfrasskydd"
 
 #: src/components/ErrorBoundary/ErrorBoundary.tsx:73
 msgid "Something went wrong"
-msgstr ""
+msgstr "Något gick fel"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:138
 #~ msgid "Specify a value of 0 to use all available threads"
