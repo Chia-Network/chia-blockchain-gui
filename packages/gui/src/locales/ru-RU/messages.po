@@ -8,7 +8,7 @@ msgstr ""
 "Language: ru_RU\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-05-03 22:05\n"
+"PO-Revision-Date: 2022-05-04 01:14\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "Plural-Forms: nplurals=4; plural=((n%10==1 && n%100!=11) ? 0 : ((n%10 >= 2 && n%10 <=4 && (n%100 < 12 || n%100 > 14)) ? 1 : ((n%10 == 0 || (n%10 >= 5 && n%10 <=9)) || (n%100 >= 11 && n%100 <= 14)) ? 2 : 3));\n"
@@ -48,7 +48,7 @@ msgstr "+ Добавить новые участки NFT"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:49
 msgid "+ Add a Plot"
-msgstr ""
+msgstr "+ Добавить участок"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:94
 #~ msgid "0 automatically chooses bucket count"
@@ -946,11 +946,11 @@ msgstr "Перетащите файл резервной копии"
 
 #: src/components/plot/PlotHarvester.tsx:131
 msgid "Duplicate"
-msgstr ""
+msgstr "Дублировать"
 
 #: src/components/plot/card/PlotCardPlotsDuplicate.tsx:11
 msgid "Duplicate Plots"
-msgstr ""
+msgstr "Повторяющиеся участки"
 
 #: src/electron/main.tsx:348
 msgid "Edit"
@@ -1028,7 +1028,7 @@ msgstr "Исключить окончательную директорию"
 
 #: src/components/plot/PlotHarvester.tsx:118
 msgid "Failed"
-msgstr ""
+msgstr "Неудачно"
 
 #: src/components/plot/PlotsFailed.tsx:34
 #~ msgid "Failed to open (invalid plots)"
@@ -1228,7 +1228,7 @@ msgstr ""
 
 #: src/components/plot/PlotHarvesters.tsx:39
 msgid "Harvesters"
-msgstr ""
+msgstr "Комбайны"
 
 #: src/components/fullNode/FullNode.jsx:57
 msgid "Header Hash"
@@ -1254,7 +1254,7 @@ msgstr "Помощь"
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:51
 msgid "Here are the current block challenges. You may or may not have a proof of space for these challenges. These blocks do not currently contain a proof of time."
-msgstr ""
+msgstr "Ниже приведены значения испытаний для блоков. У вас может быть или не быть доказательств наличия места (proof of space) для этих испытаний. Эти блоки еще не содержат подтверждений времени (proof of time)."
 
 #: src/components/core/components/AdvancedOptions/AdvancedOptions.tsx:75
 #~ msgid "Hide Advanced Options"
@@ -1273,7 +1273,7 @@ msgstr ""
 #: src/components/plot/PlotHarvesterPlotsFailed.tsx:65
 #: src/components/plot/PlotHarvesterPlotsNotFound.tsx:65
 msgid "Hooray, no files here!"
-msgstr ""
+msgstr "Ура! Нет файлов здесь!"
 
 #: src/components/farm/FarmFullNodeConnections.tsx:35
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:35
@@ -1344,7 +1344,7 @@ msgstr "Индекс"
 
 #: src/components/plot/PlotHarvesterPlots.tsx:125
 msgid "Initializing..."
-msgstr ""
+msgstr "Инициализация..."
 
 #: src/components/_wallet_old/create/createRLAdmin.jsx:218
 #~ msgid "Interval"
@@ -1468,7 +1468,7 @@ msgstr "Загрузка..."
 
 #: src/components/plot/PlotHarvester.tsx:56
 msgid "Local"
-msgstr ""
+msgstr "Локальный"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:126
 #~ msgid "Local Harvester Plots"
@@ -1571,7 +1571,7 @@ msgstr "Минут"
 
 #: src/components/plot/PlotHarvester.tsx:105
 msgid "Missing Keys"
-msgstr ""
+msgstr "Отсутствуют ключи"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:118
 msgid "More memory slightly increases speed"
@@ -1636,7 +1636,7 @@ msgstr "Выращенных блоков пока нет"
 
 #: src/components/plot/PlotHarvesterPlots.tsx:123
 msgid "No plots yet"
-msgstr ""
+msgstr "Пока нет участков"
 
 #: src/components/_wallet_old/WalletHistory.tsx:102
 #~ msgid "No previous transactions"
@@ -2029,7 +2029,7 @@ msgstr "Участки"
 
 #: src/components/plot/card/PlotCardPlotsFailedToOpen.tsx:13
 msgid "Plots Failed To Open"
-msgstr ""
+msgstr "Не удалось открыть участки"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:20
 msgid "Plots Passed Filter"
@@ -2037,7 +2037,7 @@ msgstr "Участки, прошедшие фильтр"
 
 #: src/components/plot/card/PlotCardNotFound.tsx:11
 msgid "Plots With Missing Keys"
-msgstr ""
+msgstr "Участки с отсутствующими ключами"
 
 #: src/components/plot/overview/PlotOverviewHero.tsx:33
 #~ msgid "Plots are allocated space on your hard drive used to farm and earn Chia. <0>Learn more</0>"
@@ -2045,7 +2045,7 @@ msgstr ""
 
 #: src/components/plot/overview/PlotOverviewHero.tsx:33
 msgid "Plots are allocated space on your hard drive used to farm and earn Chia.<0>Learn more</0>"
-msgstr ""
+msgstr "Участки - это выделенное пространство на вашем жестком диске. Участки используются для фарминга и приносят доход в чиа. <0>Подробности</0>"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:103
 msgid "Plotter"
@@ -2335,7 +2335,7 @@ msgstr "Примечания к релизу"
 
 #: src/components/plot/PlotHarvester.tsx:56
 msgid "Remote"
-msgstr ""
+msgstr "Удаленный"
 
 #: src/components/settings/RemovePassphrasePrompt.tsx:98
 #: src/components/settings/RemovePassphrasePrompt.tsx:143
@@ -2936,11 +2936,11 @@ msgstr "Суммарное пространство сети"
 
 #: src/components/plot/card/PlotCardTotalPlots.tsx:11
 msgid "Total Plots"
-msgstr ""
+msgstr "Всего участков"
 
 #: src/components/plot/card/PlotCardTotalPlotsSize.tsx:11
 msgid "Total Plots Size"
-msgstr ""
+msgstr "Общий объем участков"
 
 #: src/components/farm/card/FarmCardTotalSizeOfPlots.tsx:11
 msgid "Total Size of Plots"
