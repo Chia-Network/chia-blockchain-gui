@@ -8,7 +8,7 @@ msgstr ""
 "Language: it_IT\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-05-04 19:37\n"
+"PO-Revision-Date: 2022-05-05 05:03\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -1819,7 +1819,7 @@ msgstr "Dati dell'offerta"
 
 #: src/components/offers/OfferViewer.tsx:183
 msgid "Offer Identifier"
-msgstr ""
+msgstr "Identificatore dell'offerta"
 
 #: src/components/offers/OfferShareDialog.tsx:345
 #: src/components/offers/OfferShareDialog.tsx:486
@@ -2022,7 +2022,7 @@ msgstr "Per favore inserisci un ammontare di moneta iniziale valido"
 #: src/components/did/WalletDID.tsx:776
 #: src/components/did/WalletDIDCreate.tsx:75
 msgid "Please enter a valid integer of 0 or greater for the number of Backup IDs needed for recovery."
-msgstr ""
+msgstr "Inserisci un numero intero valido pari o superiore a 0 per il numero di Backup ID che intendi recuperare."
 
 #: src/components/WalletSend.tsx:91
 #: src/components/cat/WalletCATSend.tsx:105
@@ -2099,7 +2099,7 @@ msgstr "Seleziona un asset per ogni riga"
 
 #: src/components/did/WalletDIDRecovery.tsx:54
 msgid "Please select backup file first"
-msgstr ""
+msgstr "Cortesemente seleziona il file di backup prima di procedere"
 
 #: src/components/trading/CreateOffer.jsx:76
 #~ msgid "Please select buy or sell"
@@ -2322,7 +2322,7 @@ msgstr "Attendi la fine della sincronizzazione del wallet"
 
 #: src/constants/WalletName.ts:32
 msgid "Pooling Wallet"
-msgstr ""
+msgstr "Pooling Wallet"
 
 #: src/components/WalletConnections.tsx:33
 msgid "Port"
@@ -2381,7 +2381,7 @@ msgstr "Porta"
 #: src/components/create/createRLAdmin.jsx:296
 #: src/components/did/WalletDID.tsx:993
 msgid "Pubkey"
-msgstr ""
+msgstr "Chiave pubblica"
 
 #: src/_middleware_old/middleware_api.jsx:239
 #~ msgid "Public key:"
@@ -2389,12 +2389,12 @@ msgstr ""
 
 #: src/components/offers/OfferViewer.tsx:272
 msgid "Puzzle Hash"
-msgstr ""
+msgstr "Puzzle Hash"
 
 #: src/components/cat/WalletDID.tsx:1002
 #: src/components/did/WalletDID.tsx:1002
 msgid "Puzzlehash"
-msgstr ""
+msgstr "Puzzlehash"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:204
 #~ msgid "Queue Name"
@@ -2418,7 +2418,7 @@ msgstr ""
 
 #: src/constants/WalletName.ts:8
 msgid "RL Wallet"
-msgstr ""
+msgstr "Wallet RL"
 
 #: src/components/wallet/create/WalletCreate.jsx:246
 #~ msgid "RLListItems.title"
@@ -2443,7 +2443,7 @@ msgstr "Setup Utente Wallet a Velocità Limitata"
 
 #: src/components/WalletHeader.tsx:60
 msgid "Receive"
-msgstr ""
+msgstr "Ricevi"
 
 #: src/components/WalletReceiveAddress.tsx:35
 msgid "Receive Address"
@@ -2458,14 +2458,14 @@ msgstr ""
 #: src/components/did/WalletDID.tsx:463
 #: src/components/did/WalletDIDRecovery.tsx:124
 msgid "Recover"
-msgstr ""
+msgstr "Recupera"
 
 #: src/components/cat/WalletDID.tsx:338
 #: src/components/cat/WalletDID.tsx:479
 #: src/components/did/WalletDID.tsx:338
 #: src/components/did/WalletDID.tsx:479
 msgid "Recover DID Wallet"
-msgstr ""
+msgstr "Recupera wallet DID"
 
 #: src/components/wallet/create/WalletCreate.jsx:296
 #~ msgid "Recover DID wallet"
@@ -2477,11 +2477,11 @@ msgstr ""
 
 #: src/components/did/WalletDIDSelect.tsx:39
 msgid "Recover Wallet"
-msgstr ""
+msgstr "Ripristina Wallet"
 
 #: src/constants/WalletName.ts:26
 msgid "Recoverable Wallet"
-msgstr ""
+msgstr "Wallet ripristinabile"
 
 #: src/components/cat/WalletCATSelect.tsx:39
 msgid "Recovery Wallet"
