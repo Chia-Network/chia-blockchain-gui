@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 import type { NFTInfo } from '@chia/api';
 import { useGetNFTsQuery } from '@chia/api-react';
 import { toBech32m } from '@chia/core';
