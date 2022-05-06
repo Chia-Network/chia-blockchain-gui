@@ -8,7 +8,7 @@ msgstr ""
 "Language: it_IT\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-05-05 19:09\n"
+"PO-Revision-Date: 2022-05-06 09:29\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -216,7 +216,7 @@ msgstr "Importo superiore al saldo spendibile"
 
 #: src/components/did/WalletDIDCreate.tsx:61
 msgid "Amount must be an even amount."
-msgstr ""
+msgstr "L'importo deve essere coerente"
 
 #: src/components/offers/OfferManager.tsx:100
 msgid "Are you sure you want to cancel your offer?"
@@ -3101,7 +3101,7 @@ msgstr "Questo è il bilancio totale + il bilancio in attesa: questo è il bilan
 
 #: src/components/offers/OfferViewer.tsx:210
 msgid "This number reflects the number of nodes that the accepted SpendBundle has been sent to"
-msgstr ""
+msgstr "Questo numero riflette il numero di nodi che a cui è stato inviata la SpendBundle accettata"
 
 #: src/components/offers/OfferSummary.tsx:132
 msgid "This offer has a fee included to help expedite the transaction when the offer is accepted."
@@ -3109,15 +3109,15 @@ msgstr "Questa offerta ha una fee inclusa per aiutare ad accelerare la transazio
 
 #: src/components/offers/OfferSummary.tsx:128
 msgid "This offer has a fee included to help expedite the transaction when the offer is accepted. You may specify an additional fee if you feel that the included fee is too small."
-msgstr ""
+msgstr "Questa offerta ha una commissione inclusa per aiutare ad accelerare la transazione quando l'offerta è accettata. È possibile specificare una commissione aggiuntiva se si ritiene che la commissione inclusa sia troppo piccola."
 
 #: src/components/offers/OfferViewer.tsx:389
 msgid "This offer has completed successfully"
-msgstr ""
+msgstr "Questa offerta è stata completata con successo"
 
 #: src/components/offers/OfferViewer.tsx:385
 msgid "This offer is no longer valid"
-msgstr ""
+msgstr "Questa offerta non è più valida"
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:307
 #~ msgid "This plot NFT is assigned to a different key. You can still create plots for this plot NFT, but you can not make changes."
@@ -3169,19 +3169,19 @@ msgstr "A"
 
 #: src/components/cat/WalletCATCreateExisting.tsx:85
 msgid "Token and Asset Issuance Limitations"
-msgstr ""
+msgstr "Token e Limitazioni nell'emissioni di beni"
 
 #: src/components/cat/WalletCATCreateSimple.tsx:45
 msgid "Token has empty asset id"
-msgstr ""
+msgstr "Il token ha un id asset vuoto"
 
 #: src/components/cat/WalletCATCreateSimple.tsx:41
 msgid "Token has empty name"
-msgstr ""
+msgstr "Il token ha un nome vuoto"
 
 #: src/components/WalletsSidebar.tsx:88
 msgid "Tokens"
-msgstr ""
+msgstr "Tokens"
 
 #: src/components/card/WalletCardTotalBalance.tsx:45
 #: src/components/rateLimited/WalletRateLimited.jsx:542
@@ -3250,11 +3250,11 @@ msgstr "Bilancio Totale"
 
 #: src/components/WalletSendTransactionResultDialog.tsx:27
 msgid "Transaction has successfully been sent to a full node and included in the mempool."
-msgstr ""
+msgstr "La transazione é stata inviata con successo ad un nodo completo ed inclusa nella mempol."
 
 #: src/components/WalletHistory.tsx:244
 msgid "Transactions"
-msgstr ""
+msgstr "Transazioni"
 
 #: src/components/block/Block.jsx:298
 #~ msgid "Transactions Filter Hash"
@@ -3270,11 +3270,11 @@ msgstr ""
 
 #: src/components/offers/OfferShareDialog.tsx:669
 msgid "Unable to open Keybase. Install Keybase from https://keybase.io"
-msgstr ""
+msgstr "Impossibile aprire Keybase. Installa Keybase da https://keybase.io"
 
 #: src/components/offers/OfferShareDialog.tsx:592
 msgid "Unable to open browser. Install Keybase from https://keybase.io"
-msgstr ""
+msgstr "Impossibile aprire il browser. Installa Keybase da https://keybase.io"
 
 #: src/components/plotNFT/PlotNFTCard.tsx:147
 #: src/components/pool/PoolOverview.tsx:63
@@ -3299,7 +3299,7 @@ msgstr ""
 #: src/components/offers/OfferSummaryRow.tsx:68
 #: src/components/offers/OfferViewer.tsx:412
 msgid "Unknown CAT"
-msgstr ""
+msgstr "CAT Sconosciuto"
 
 #: src/components/app/AppPassPrompt.tsx:83
 #~ msgid "Unlock Keyring"
@@ -3363,15 +3363,15 @@ msgstr "Pubkey utente"
 #: src/components/offers/OfferImport.tsx:153
 #: src/components/offers/OfferManager.tsx:521
 msgid "View an Offer"
-msgstr ""
+msgstr "Vedi Offerta"
 
 #: src/components/offers/OfferShareDialog.tsx:509
 msgid "View on Hashgreen DEX"
-msgstr ""
+msgstr "Visualizza su Hashgreen DEX"
 
 #: src/components/offers/OfferShareDialog.tsx:368
 msgid "View on OfferBin"
-msgstr ""
+msgstr "Visualizza su OfferBin"
 
 #: src/components/rateLimited/WalletRateLimited.jsx:561
 msgid "View pending balances"
@@ -3383,15 +3383,15 @@ msgstr "Vedi bilanci in attesa"
 
 #: src/components/offers/OfferViewer.tsx:557
 msgid "Viewing offer"
-msgstr ""
+msgstr "Visualizzazione dell'Offerta"
 
 #: src/components/offers/OfferViewer.tsx:555
 msgid "Viewing offer created at {0}"
-msgstr ""
+msgstr "Visualizzazione dell'offerta creata a {0}"
 
 #: src/components/offers/OfferViewer.tsx:553
 msgid "Viewing offer: {offerFilePath}"
-msgstr ""
+msgstr "Visualizzazione dell'offerta: {offerFilePath}"
 
 #: src/components/farm/card/FarmCardNotAvailable.tsx:26
 #: src/components/plot/PlotStatus.tsx:26
@@ -3421,7 +3421,7 @@ msgstr ""
 #: src/components/cat/WalletDID.tsx:1118
 #: src/components/did/WalletDID.tsx:1118
 msgid "Wallet does not exists"
-msgstr ""
+msgstr "Il portafoglio non esiste."
 
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:70
 #~ msgid "Wallet is not defined"
@@ -3429,11 +3429,11 @@ msgstr ""
 
 #: src/components/Wallet.tsx:50
 msgid "Wallet with type {0} not supported"
-msgstr ""
+msgstr "Portafoglio con tipo {0} non supportato"
 
 #: src/components/Wallet.tsx:23
 msgid "Wallet {walletId} not found"
-msgstr ""
+msgstr "Portafoglio {walletId} non trovato"
 
 #: src/components/wallet/Wallets.tsx:34
 #~ msgid "WalletItem.ccWallet"
@@ -3489,7 +3489,7 @@ msgstr ""
 
 #: src/components/offers/OfferViewer.tsx:298
 msgid "Warning"
-msgstr ""
+msgstr "Avviso"
 
 #: src/components/_selectKey_old/SelectKey.tsx:88
 #: src/components/_selectKey_old/SelectKey.tsx:119
@@ -3506,7 +3506,7 @@ msgstr ""
 
 #: src/components/offers/OfferSummary.tsx:97
 msgid "Warning: Verify that the offered CAT asset IDs match the asset IDs of the tokens you expect to receive."
-msgstr ""
+msgstr "Attenzione: Verificare che gli ID degli asset CAT offerti corrispondano agli ID degli asset dei token che si prevede di ricevere."
 
 #: src/components/block/Block.jsx:194
 #~ msgid "Weight"
@@ -3557,7 +3557,7 @@ msgstr "Quando ricevi il tuo pacchetto di informazioni di setup dal tuo amminist
 
 #: src/components/offers/OfferViewer.tsx:381
 msgid "You created this offer"
-msgstr ""
+msgstr "Hai creato questa offerta"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:76
 #~ msgid "You do not need to be synced or connected to plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
@@ -3605,11 +3605,11 @@ msgstr ""
 
 #: src/components/offers/OfferEditorConditionsPanel.tsx:248
 msgid "You will offer"
-msgstr ""
+msgstr "Offrirai"
 
 #: src/components/offers/OfferViewer.tsx:460
 msgid "You will receive"
-msgstr ""
+msgstr "Riceverai"
 
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:143
 #~ msgid "You will recieve <0/> to {0}"
@@ -3622,7 +3622,7 @@ msgstr ""
 #: src/components/cat/WalletDID.tsx:326
 #: src/components/did/WalletDID.tsx:326
 msgid "Your DID requires at least {dids_num_req} attestation file{0} for recovery. Please upload additional files."
-msgstr ""
+msgstr "Il tuo DID richiede almeno {dids_num_req} file di attestazione{0} per il recupero. Carica file aggiuntivi."
 
 #: src/components/farm/overview/FarmOverview.tsx:33
 #~ msgid "Your Farm Overview"
@@ -3662,13 +3662,13 @@ msgstr ""
 
 #: src/components/offers/OfferShareDialog.tsx:707
 msgid "Your offer has been successfully posted to Keybase."
-msgstr ""
+msgstr "La tua offerta è stata inviata con successo su Keybase"
 
 #: src/components/offers/OfferShareDialog.tsx:402
 #: src/components/offers/OfferShareDialog.tsx:543
 #: src/components/offers/OfferShareDialog.tsx:891
 msgid "Your offer:"
-msgstr ""
+msgstr "La tua offerta:"
 
 #: src/components/app/AppKeyringMigrator.tsx:181
 #: src/components/settings/ChangePassphrasePrompt.tsx:211
@@ -3734,7 +3734,7 @@ msgstr "sincronizzando"
 
 #: src/components/offers/OfferShareDialog.tsx:853
 msgid "{0}"
-msgstr ""
+msgstr "{0}"
 
 #: src/components/farm/card/FarmCardBlockRewards.tsx:16
 #~ msgid "{0} Block Rewards"
@@ -3767,7 +3767,7 @@ msgstr ""
 
 #: src/components/offers/OfferSummary.tsx:125
 msgid "{makerFee, plural, one {mojo} other {mojos}}"
-msgstr ""
+msgstr "{makerFee, plural, one {mojo} other {mojos}}"
 
 #: src/components/core/components/Amount/Amount.tsx:82
 #~ msgid "{mojo, plural, one {mojo} other {mojos}}"
@@ -3776,7 +3776,7 @@ msgstr ""
 #: src/components/offers/OfferSummaryRow.tsx:41
 #: src/components/offers/OfferViewer.tsx:95
 msgid "{mojos, plural, one {mojo} other {mojos}}"
-msgstr ""
+msgstr "{mojos, plural, one {mojo} other {mojos}}"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:118
 #~ msgid "{warning}"
