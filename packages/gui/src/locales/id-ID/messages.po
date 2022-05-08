@@ -8,7 +8,7 @@ msgstr ""
 "Language: id_ID\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-05-03 22:06\n"
+"PO-Revision-Date: 2022-05-08 14:16\n"
 "Last-Translator: \n"
 "Language-Team: Indonesian\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -48,7 +48,7 @@ msgstr "+ Tambah Plot NFT baru"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:49
 msgid "+ Add a Plot"
-msgstr ""
+msgstr "+ Tambah sebuah Plot"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:94
 #~ msgid "0 automatically chooses bucket count"
@@ -826,11 +826,11 @@ msgstr "Seret dan lepas berkas cadangan anda"
 
 #: src/components/plot/PlotHarvester.tsx:131
 msgid "Duplicate"
-msgstr ""
+msgstr "Duplikat"
 
 #: src/components/plot/card/PlotCardPlotsDuplicate.tsx:11
 msgid "Duplicate Plots"
-msgstr ""
+msgstr "Duplikat plot plot"
 
 #: src/electron/main.tsx:348
 msgid "Edit"
@@ -908,7 +908,7 @@ msgstr "Kecualikan direktori akhir"
 
 #: src/components/plot/PlotHarvester.tsx:118
 msgid "Failed"
-msgstr ""
+msgstr "Gagal"
 
 #: src/components/plot/PlotsFailed.tsx:34
 #~ msgid "Failed to open (invalid plots)"
@@ -1108,7 +1108,7 @@ msgstr "Umum"
 
 #: src/components/plot/PlotHarvesters.tsx:39
 msgid "Harvesters"
-msgstr ""
+msgstr "Pemanen"
 
 #: src/components/fullNode/FullNode.jsx:57
 msgid "Header Hash"
@@ -1134,7 +1134,7 @@ msgstr "Bantuan"
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:51
 msgid "Here are the current block challenges. You may or may not have a proof of space for these challenges. These blocks do not currently contain a proof of time."
-msgstr ""
+msgstr "Dibawah ini adalah tantangan blok saat ini. Anda mungkin atau mungkin memiliki sebuah bukti ruang untuk tantangan ini. Untuk saat ini blok-blok berikut tidak memiliki bukti waktu."
 
 #: src/components/core/components/AdvancedOptions/AdvancedOptions.tsx:75
 #~ msgid "Hide Advanced Options"
@@ -1153,7 +1153,7 @@ msgstr "Petunjuk"
 #: src/components/plot/PlotHarvesterPlotsFailed.tsx:65
 #: src/components/plot/PlotHarvesterPlotsNotFound.tsx:65
 msgid "Hooray, no files here!"
-msgstr ""
+msgstr "Hore, tidak ada file disini!"
 
 #: src/components/farm/FarmFullNodeConnections.tsx:35
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:35
@@ -1224,7 +1224,7 @@ msgstr "Index"
 
 #: src/components/plot/PlotHarvesterPlots.tsx:125
 msgid "Initializing..."
-msgstr ""
+msgstr "Menginialisasi..."
 
 #: src/components/_wallet_old/create/createRLAdmin.jsx:218
 #~ msgid "Interval"
@@ -1332,7 +1332,7 @@ msgstr "Memuat konfigurasi"
 
 #: src/components/farm/Farm.tsx:24
 msgid "Loading farming data"
-msgstr ""
+msgstr "Memuat data farming"
 
 #: src/components/app/AppState.tsx:117
 msgid "Loading keyring status"
@@ -1348,7 +1348,7 @@ msgstr "Memuat..."
 
 #: src/components/plot/PlotHarvester.tsx:56
 msgid "Local"
-msgstr ""
+msgstr "Lokal"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:126
 #~ msgid "Local Harvester Plots"
@@ -1451,7 +1451,7 @@ msgstr "Menit"
 
 #: src/components/plot/PlotHarvester.tsx:105
 msgid "Missing Keys"
-msgstr ""
+msgstr "Kunci yang Hilang"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:118
 msgid "More memory slightly increases speed"
@@ -1516,7 +1516,7 @@ msgstr "Belum ada blok yang dibudidayakan"
 
 #: src/components/plot/PlotHarvesterPlots.tsx:123
 msgid "No plots yet"
-msgstr ""
+msgstr "Belum ada plot"
 
 #: src/components/_wallet_old/WalletHistory.tsx:102
 #~ msgid "No previous transactions"
@@ -1909,7 +1909,7 @@ msgstr "Plot-Plot"
 
 #: src/components/plot/card/PlotCardPlotsFailedToOpen.tsx:13
 msgid "Plots Failed To Open"
-msgstr ""
+msgstr "Plot gagal di buka"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:20
 msgid "Plots Passed Filter"
@@ -1917,7 +1917,7 @@ msgstr "Plot Diterima Seleksi"
 
 #: src/components/plot/card/PlotCardNotFound.tsx:11
 msgid "Plots With Missing Keys"
-msgstr ""
+msgstr "Plot dengan kunci yang hilang"
 
 #: src/components/plot/overview/PlotOverviewHero.tsx:33
 #~ msgid "Plots are allocated space on your hard drive used to farm and earn Chia. <0>Learn more</0>"
@@ -1925,7 +1925,8 @@ msgstr ""
 
 #: src/components/plot/overview/PlotOverviewHero.tsx:33
 msgid "Plots are allocated space on your hard drive used to farm and earn Chia.<0>Learn more</0>"
-msgstr ""
+msgstr "Plot adalah penempatan ruang dalam hard drive yang digunakan untuk disewakan dan memperoleh Chia\n"
+"<0>Pelajari lebih lanjut</0>"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:103
 msgid "Plotter"
@@ -1938,7 +1939,7 @@ msgstr "Plotkan"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:45
 msgid "Plotting Manager"
-msgstr ""
+msgstr "Manager membuat plot"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:58
 msgid "Plotting in parallel can save time. Otherwise, add plot(s) to the queue."
@@ -2107,7 +2108,7 @@ msgstr "Bukti Ditemukan"
 
 #: src/components/pool/PoolInfo.tsx:22
 msgid "Protocol Version"
-msgstr ""
+msgstr "Versi Protokol"
 
 #: src/components/_wallet_old/create/createRLAdmin.jsx:297
 #: src/components/_wallet_old/did/WalletDID.tsx:996
@@ -2207,7 +2208,7 @@ msgstr "Segarkan data Plot-Plot"
 
 #: src/components/pool/PoolInfo.tsx:32
 msgid "Relative Lock Height"
-msgstr ""
+msgstr "Tinggi Kunci Relatif"
 
 #: src/electron/main.tsx:465
 msgid "Release Notes"
@@ -2215,7 +2216,7 @@ msgstr "Catatan Rilis"
 
 #: src/components/plot/PlotHarvester.tsx:56
 msgid "Remote"
-msgstr ""
+msgstr "Remote/jauh"
 
 #: src/components/settings/RemovePassphrasePrompt.tsx:98
 #: src/components/settings/RemovePassphrasePrompt.tsx:143
@@ -2800,7 +2801,7 @@ msgstr "Total Chia yang sudah di farm"
 
 #: src/components/plot/card/PlotCardTotalHarvesters.tsx:11
 msgid "Total Harvesters"
-msgstr ""
+msgstr "Jumlah total Harvester"
 
 #: src/components/fullNode/card/FullNodeCardTotalIterations.tsx:14
 msgid "Total Iterations"
@@ -2816,11 +2817,11 @@ msgstr "Jumlah Jarak Rangkaian"
 
 #: src/components/plot/card/PlotCardTotalPlots.tsx:11
 msgid "Total Plots"
-msgstr ""
+msgstr "Jumblah total Plot"
 
 #: src/components/plot/card/PlotCardTotalPlotsSize.tsx:11
 msgid "Total Plots Size"
-msgstr ""
+msgstr "Jumlah Ukuran Plot"
 
 #: src/components/farm/card/FarmCardTotalSizeOfPlots.tsx:11
 msgid "Total Size of Plots"
