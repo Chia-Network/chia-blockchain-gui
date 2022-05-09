@@ -145,9 +145,18 @@ function NFTDemoViewOfferContxtualAction(
   const disabled = (selection?.items.length ?? 0) !== 1;
 
   function handleViewOffer() {
+    const tradeRecord = undefined;
+    const offerData = undefined;
+    const offerSummary = {
+      offered: { [selectedNft.launcherId]: -1 },
+      requested: { 1: 6750000000000 },
+      fees: 5000000000,
+    };
+    const offerFilePath = undefined;
+    const imported = true;
+
     navigate('/dashboard/offers/view-nft', {
-      // state: { /*offerData, offerSummary, offerFilePath,*/ imported: true },
-      state: { nft: selectedNft, imported: true }, // TODO: remove selectedNft
+      state: { tradeRecord, offerData, offerSummary, offerFilePath, imported },
     });
   }
 

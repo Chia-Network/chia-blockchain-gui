@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Trans } from '@lingui/macro';
 import type { NFTInfo } from '@chia/api';
 import { Back, Flex } from '@chia/core';
 import { Divider, Grid, Typography } from '@mui/material';
 import OfferHeader from './OfferHeader';
+import OfferState from './OfferState';
 import NFTOfferPreview from './NFTOfferPreview';
 
 /* ========================================================================== */
@@ -58,20 +59,12 @@ type NFTOfferSummaryProps = {
   isMyOffer: boolean;
   imported: boolean;
   summary: any;
+  makerTitle: React.ReactElement | string;
+  takerTitle: React.ReactElement | string;
 };
 
 function NFTOfferSummary(props: NFTOfferSummaryProps) {
-  const { isMyOffer, imported, summary } = props;
-  const makerTitle: React.ReactElement = (
-    <Typography variant="body1">
-      <Trans>You will receive</Trans>
-    </Typography>
-  );
-  const takerTitle: React.ReactElement = (
-    <Typography variant="body1">
-      <Trans>In exchange for</Trans>
-    </Typography>
-  );
+  const { isMyOffer, imported, summary, makerTitle, takerTitle } = props;
   const makerSummary: React.ReactElement = (
     <NFTOfferMakerSummary title={makerTitle} />
   );
@@ -90,10 +83,10 @@ function NFTOfferSummary(props: NFTOfferSummaryProps) {
         <Trans>Purchase Summary</Trans>
       </Typography>
       {summaries.map((summary, index) => (
-        <>
+        <div key={index}>
           {summary}
           {index !== summaries.length - 1 && <Divider />}
-        </>
+        </div>
       ))}
     </>
   );
@@ -104,15 +97,33 @@ function NFTOfferSummary(props: NFTOfferSummaryProps) {
 /* ========================================================================== */
 
 type NFTOfferDetailsProps = {
-  nft: NFTInfo; // temporary until offer parsing is supported
+  // tradeRecord?: OfferTradeRecord;
+  // offerData?: string;
+  // offerSummary?: OfferSummaryRecord;
+  // offerFilePath?: string;
+  // imported?: boolean;
+  tradeRecord?: any;
+  offerData?: any;
+  offerSummary?: any;
+  offerFilePath?: string;
+  imported?: boolean;
 };
 
 function NFTOfferDetails(props: NFTOfferDetailsProps) {
-  const { nft } = props;
+  const { tradeRecord, offerData, offerSummary, offerFilePath, imported } =
+    props;
+  const summary = tradeRecord?.summary || offerSummary;
+  const isMyOffer = !!tradeRecord?.isMyOffer;
+  const [isValidating, setIsValidating] = useState<boolean>(false);
+  const [isValid, setIsValid] = useState<boolean>(tradeRecord !== undefined);
 
   return (
     <Flex flexDirection="column" flexGrow={1} gap={4}>
-      <OfferHeader isMyOffer={true} isInvalid={false} isComplete={false} />
+      <OfferHeader
+        isMyOffer={isMyOffer}
+        isInvalid={!isValidating && !isValid}
+        isComplete={tradeRecord?.status === OfferState.CONFIRMED}
+      />
 
       <Flex
         flexDirection="column"
@@ -131,7 +142,21 @@ function NFTOfferDetails(props: NFTOfferDetailsProps) {
             gap={3}
             style={{ padding: '1em' }}
           >
-            <NFTOfferSummary isMyOffer={true} imported={false} summary={nft} />
+            <NFTOfferSummary
+              isMyOffer={isMyOffer}
+              imported={!!imported}
+              summary={summary}
+              makerTitle={
+                <Typography variant="body1">
+                  <Trans>You will receive</Trans>
+                </Typography>
+              }
+              takerTitle={
+                <Typography variant="body1">
+                  <Trans>In exchange for</Trans>
+                </Typography>
+              }
+            />
             <Divider />
           </Flex>
           <NFTOfferPreview nft={nft} />
@@ -146,11 +171,21 @@ function NFTOfferDetails(props: NFTOfferDetailsProps) {
 /* ========================================================================== */
 
 type NFTOfferViewerProps = {
-  nft: NFTInfo; // temporary until offer parsing is supported
+  // tradeRecord?: OfferTradeRecord;
+  // offerData?: string;
+  // offerSummary?: OfferSummaryRecord;
+  // offerFilePath?: string;
+  // imported?: boolean;
+  tradeRecord?: any;
+  offerData?: any;
+  offerSummary?: any;
+  offerFilePath?: string;
+  imported?: boolean;
 };
 
 export default function NFTOfferViewer(props: NFTOfferViewerProps) {
-  const { nft } = props;
+  const { tradeRecord, offerData, offerSummary, offerFilePath, imported } =
+    props;
 
   return (
     <Grid container>
@@ -160,7 +195,7 @@ export default function NFTOfferViewer(props: NFTOfferViewerProps) {
             <Trans>Viewing Offer</Trans>
           </Back>
         </Flex>
-        <NFTOfferDetails nft={nft} />
+        <NFTOfferDetails />
       </Flex>
     </Grid>
   );

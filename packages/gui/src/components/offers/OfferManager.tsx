@@ -704,7 +704,15 @@ export function CreateOffer() {
 
         <Route
           path="view-nft"
-          element={<NFTOfferViewer nft={location?.state?.nft} />}
+          element={
+            <NFTOfferViewer
+              tradeRecord={location?.state?.tradeRecord}
+              offerData={location?.state?.offerData}
+              offerSummary={location?.state?.offerSummary}
+              offerFilePath={location?.state?.offerFilePath}
+              imported={location?.state?.imported}
+            />
+          }
         />
         <Route
           path="view"
