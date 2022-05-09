@@ -1,17 +1,114 @@
 import React from 'react';
 import { Trans } from '@lingui/macro';
+import type { NFTInfo } from '@chia/api';
 import { Back, Flex } from '@chia/core';
 import { Divider, Grid, Typography } from '@mui/material';
 import OfferHeader from './OfferHeader';
+import NFTOfferPreview from './NFTOfferPreview';
+
+/* ========================================================================== */
+/*                           NFT Offer Maker Summary                          */
+/* ========================================================================== */
+
+type NFTOfferMakerSummaryProps = {
+  title: React.ReactElement | string;
+};
+
+function NFTOfferMakerSummary(props: NFTOfferMakerSummaryProps) {
+  const { title } = props;
+
+  return (
+    <Flex flexDirection="column" gap={2}>
+      {title}
+      <Flex flexDirection="column" gap={1}>
+        <Typography variant="h5">NFT Title</Typography>
+        <Typography variant="body2">By NFT Creator Title</Typography>
+        <Typography variant="caption" color="textSecondary">
+          nft17aadeznq3hwxtwhwq6xpj0pxy7dakdxzwmqgqsrydeszgvsdke9qcyu0c7
+        </Typography>
+      </Flex>
+    </Flex>
+  );
+}
+
+/* ========================================================================== */
+/*                           NFT Offer Taker Summary                          */
+/* ========================================================================== */
+
+type NFTOfferTakerSummaryProps = {
+  title: React.ReactElement | string;
+};
+
+function NFTOfferTakerSummary(props: NFTOfferTakerSummaryProps) {
+  const { title } = props;
+
+  return (
+    <Flex flexDirection="column" gap={2}>
+      {title}
+      <Typography variant="h5">300 XCH</Typography>
+    </Flex>
+  );
+}
+
+/* ========================================================================== */
+/*                           NFT Offer Maker Details                          */
+/* ========================================================================== */
+
+type NFTOfferSummaryProps = {
+  isMyOffer: boolean;
+  imported: boolean;
+  summary: any;
+};
+
+function NFTOfferSummary(props: NFTOfferSummaryProps) {
+  const { isMyOffer, imported, summary } = props;
+  const makerTitle: React.ReactElement = (
+    <Typography variant="body1">
+      <Trans>You will receive</Trans>
+    </Typography>
+  );
+  const takerTitle: React.ReactElement = (
+    <Typography variant="body1">
+      <Trans>In exchange for</Trans>
+    </Typography>
+  );
+  const makerSummary: React.ReactElement = (
+    <NFTOfferMakerSummary title={makerTitle} />
+  );
+  const takerSummary: React.ReactElement = (
+    <NFTOfferTakerSummary title={takerTitle} />
+  );
+  const summaries: React.ReactElement[] = [makerSummary, takerSummary];
+
+  if (isMyOffer) {
+    summaries.reverse();
+  }
+
+  return (
+    <>
+      <Typography variant="h6" style={{ fontWeight: 'bold' }}>
+        <Trans>Purchase Summary</Trans>
+      </Typography>
+      {summaries.map((summary, index) => (
+        <>
+          {summary}
+          {index !== summaries.length - 1 && <Divider />}
+        </>
+      ))}
+    </>
+  );
+}
 
 /* ========================================================================== */
 /*                          NFT Offer Viewer Content                          */
 /* ========================================================================== */
 
-type NFTOfferDetailsProps = {};
+type NFTOfferDetailsProps = {
+  nft: NFTInfo; // temporary until offer parsing is supported
+};
 
 function NFTOfferDetails(props: NFTOfferDetailsProps) {
-  const {} = props;
+  const { nft } = props;
 
   return (
     <Flex flexDirection="column" flexGrow={1} gap={4}>
@@ -27,30 +124,17 @@ function NFTOfferDetails(props: NFTOfferDetailsProps) {
           borderRadius: '8px',
         }}
       >
-        <Flex flexDirection="column" gap={3} style={{ padding: '1em' }}>
-          <Typography variant="h6" style={{ fontWeight: 'bold' }}>
-            <Trans>Purchase Summary</Trans>
-          </Typography>
-          <Flex flexDirection="column" gap={2}>
-            <Typography variant="body1">
-              <Trans>You will receive</Trans>
-            </Typography>
-            <Flex flexDirection="column" gap={1}>
-              <Typography variant="h5">NFT Title</Typography>
-              <Typography variant="body2">By NFT Creator Title</Typography>
-              <Typography variant="caption" color="textSecondary">
-                nft17aadeznq3hwxtwhwq6xpj0pxy7dakdxzwmqgqsrydeszgvsdke9qcyu0c7
-              </Typography>
-            </Flex>
+        <Flex direction="row">
+          <Flex
+            flexDirection="column"
+            flexGrow={1}
+            gap={3}
+            style={{ padding: '1em' }}
+          >
+            <NFTOfferSummary isMyOffer={true} imported={false} summary={nft} />
+            <Divider />
           </Flex>
-          <Divider />
-          <Flex flexDirection="column" gap={2}>
-            <Typography variant="body1">
-              <Trans>In exchange for</Trans>
-            </Typography>
-            <Typography variant="h5">300 XCH</Typography>
-          </Flex>
-          <Divider />
+          <NFTOfferPreview nft={nft} />
         </Flex>
       </Flex>
     </Flex>
@@ -61,10 +145,12 @@ function NFTOfferDetails(props: NFTOfferDetailsProps) {
 /*                              NFT Offer Viewer                              */
 /* ========================================================================== */
 
-type NFTOfferViewerProps = {};
+type NFTOfferViewerProps = {
+  nft: NFTInfo; // temporary until offer parsing is supported
+};
 
 export default function NFTOfferViewer(props: NFTOfferViewerProps) {
-  const {} = props;
+  const { nft } = props;
 
   return (
     <Grid container>
@@ -74,7 +160,7 @@ export default function NFTOfferViewer(props: NFTOfferViewerProps) {
             <Trans>Viewing Offer</Trans>
           </Back>
         </Flex>
-        <NFTOfferDetails />
+        <NFTOfferDetails nft={nft} />
       </Flex>
     </Grid>
   );

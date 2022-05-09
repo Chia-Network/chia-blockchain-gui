@@ -146,7 +146,8 @@ function NFTDemoViewOfferContxtualAction(
 
   function handleViewOffer() {
     navigate('/dashboard/offers/view-nft', {
-      state: { /*offerData, offerSummary, offerFilePath,*/ imported: true },
+      // state: { /*offerData, offerSummary, offerFilePath,*/ imported: true },
+      state: { nft: selectedNft, imported: true }, // TODO: remove selectedNft
     });
   }
 
