@@ -112,7 +112,7 @@ export default class Wallet extends Service {
   async addKey(
     mnemonic: string[],
     type: 'new_wallet' | 'skip' | 'restore_backup',
-    filePath?: string,
+    filePath?: string
   ) {
     return this.command('add_key', {
       mnemonic,
@@ -168,7 +168,7 @@ export default class Wallet extends Service {
 
   async getBackupInfo(
     filePath: string,
-    options: { fingerprint: string } | { words: string },
+    options: { fingerprint: string } | { words: string }
   ) {
     return this.command('get_backup_info', {
       filePath,
@@ -337,7 +337,7 @@ export default class Wallet extends Service {
       success: boolean;
       walletId: number;
     },
-    message: Message,
+    message: Message
   ) => void) {
     return this.onStateChanged('coin_added', callback);
   }
