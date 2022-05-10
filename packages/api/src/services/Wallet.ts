@@ -330,15 +330,17 @@ export default class Wallet extends Service {
     return this.onStateChanged('new_peak', callback);
   }
 
-  onCoinAdded(callback: (
-    data: {
-      additionalData: Object;
-      state: 'coin_added';
-      success: boolean;
-      walletId: number;
-    },
-    message: Message
-  ) => void) {
+  onCoinAdded(
+    callback: (
+      data: {
+        additionalData: Object;
+        state: 'coin_added';
+        success: boolean;
+        walletId: number;
+      },
+      message: Message
+    ) => void
+  ) {
     return this.onStateChanged('coin_added', callback);
   }
 
