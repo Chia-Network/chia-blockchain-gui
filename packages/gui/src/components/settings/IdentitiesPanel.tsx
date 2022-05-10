@@ -3,16 +3,13 @@ import { Trans } from '@lingui/macro';
 import { type Shell } from 'electron';
 import { useNavigate, useParams } from 'react-router';
 import {
-  Button,
   CardListItem,
   Flex,
-  Link,
 } from '@chia/core';
 import {
   Box,
   Card,
   CardContent,
-  Grid,
   Typography,
 } from '@mui/material';
 import styled from 'styled-components';
@@ -98,18 +95,8 @@ export default function IdentitiesPanel() {
     wallets.forEach((wallet) => {
       if (wallet.type === WalletType.DISTRIBUTED_ID) {
         dids.push(wallet.id);
-        console.log(wallet.name);
       }
     });
-  }
-
-  let didLength = dids.length
-
-  if (didLength != 0) {
-    for (const id in dids) {
-      // getDidInfo(id);
-      // console.log(did);
-    }
   }
 
   const items = useMemo(() => {

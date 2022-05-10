@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import { Trans, t } from '@lingui/macro';
 import {
   Button,
@@ -11,13 +11,9 @@ import {
 } from '@chia/core';
 import {
   Card,
-  Grid,
-  IconButton,
   Typography,
 } from '@mui/material';
 import styled from 'styled-components';
-import { Add } from '@mui/icons-material';
-import { useParams } from 'react-router-dom';
 import {
   useCreateNewWalletMutation,
   useGetWalletBalanceQuery,
@@ -25,7 +21,6 @@ import {
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router';
 import {
-  SyncingStatus,
   WalletType,
   type Wallet,
  } from '@chia/api';

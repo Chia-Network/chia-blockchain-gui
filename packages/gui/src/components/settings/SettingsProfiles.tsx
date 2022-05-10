@@ -36,8 +36,6 @@ export default function SettingsProfiles() {
     return dids;
   }, [wallets]);
 
-  console.log(didList);
-
   useEffect(() => {
     if (didList.length) {
       navigate(`/dashboard/settings/profiles/${didList[0]}`);
