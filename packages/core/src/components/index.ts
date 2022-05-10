@@ -69,4 +69,5 @@ export { default as ToolbarSpacing } from './ToolbarSpacing';
 export { default as Tooltip } from './Tooltip';
 export { default as TooltipIcon } from './TooltipIcon';
 export { default as TooltipTypography } from './TooltipTypography';
+export { default as Truncate } from './Truncate';
 export { default as UnitFormat } from './UnitFormat';
