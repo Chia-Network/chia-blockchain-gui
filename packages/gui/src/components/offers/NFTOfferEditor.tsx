@@ -22,7 +22,7 @@ import {
 import { Divider, Grid, Tabs, Tab, Typography } from '@mui/material';
 import OfferLocalStorageKeys from './OfferLocalStorage';
 import OfferEditorConfirmationDialog from './OfferEditorConfirmationDialog';
-import { isValidNFTId, launcherIdFromNFTId } from './utils';
+import { isValidNFTId, launcherIdFromNFTId } from '../../util/nfts';
 import NFTOfferPreview from './NFTOfferPreview';
 
 /* ========================================================================== */

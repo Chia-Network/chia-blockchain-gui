@@ -141,7 +141,7 @@ function NFTDemoViewOfferContxtualAction(
 ) {
   const { onClose, selection } = props;
   const navigate = useNavigate();
-  const selectedNft: NFT | undefined = selection?.items[0];
+  const selectedNft: NFTInfo | undefined = selection?.items[0];
   const disabled = (selection?.items.length ?? 0) !== 1;
 
   function handleViewOffer() {
@@ -150,6 +150,12 @@ function NFTDemoViewOfferContxtualAction(
     const offerSummary = {
       offered: { [selectedNft.launcherId]: -1 },
       requested: { 1: 6750000000000 },
+      infos: {
+        [selectedNft.launcherId]: {
+          launcherId: selectedNft.launcherId,
+          also: { metadata: '' },
+        },
+      },
       fees: 5000000000,
     };
     const offerFilePath = undefined;
