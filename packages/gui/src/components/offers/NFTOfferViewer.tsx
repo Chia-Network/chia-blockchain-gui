@@ -5,8 +5,10 @@ import type { NFTInfo, Wallet } from '@chia/api';
 import { Back, Flex } from '@chia/core';
 import { Divider, Grid, Typography } from '@mui/material';
 import useFetchNFTs from '../../hooks/useFetchNFTs';
+import OfferAsset from './OfferAsset';
 import OfferHeader from './OfferHeader';
 import OfferState from './OfferState';
+import { OfferSummaryChiaRow, OfferSummaryTokenRow } from './OfferSummaryRow';
 import NFTOfferPreview from './NFTOfferPreview';
 
 /* ========================================================================== */
@@ -24,8 +26,8 @@ function NFTOfferMakerSummary(props: NFTOfferMakerSummaryProps) {
     <Flex flexDirection="column" gap={2}>
       {title}
       <Flex flexDirection="column" gap={1}>
-        <Typography variant="h5">NFT Title</Typography>
-        <Typography variant="body2">By NFT Creator Title</Typography>
+        {/* <Typography variant="h5">NFT Title</Typography>
+        <Typography variant="body2">By NFT Creator Title</Typography> */}
         <Typography variant="caption" color="textSecondary">
           nft17aadeznq3hwxtwhwq6xpj0pxy7dakdxzwmqgqsrydeszgvsdke9qcyu0c7
         </Typography>
@@ -54,6 +56,105 @@ function NFTOfferTakerSummary(props: NFTOfferTakerSummaryProps) {
 }
 
 /* ========================================================================== */
+
+type NFTOfferSummaryRowProps = {
+  title: React.ReactElement | string;
+  summaryKey: string;
+  summary: any;
+};
+
+function NFTOfferSummaryRow(props: NFTOfferSummaryRowProps) {
+  const { title, summaryKey, summary } = props;
+  const summaryData: { [key: string]: number } = summary[summaryKey];
+  const summaryInfo = summary.infos;
+  const assetIdsToTypes: { [key: string]: OfferAsset | undefined }[] =
+    useMemo(() => {
+      return Object.keys(summaryData).map((key) => {
+        const infoDict = summaryInfo[key];
+        let assetType: OfferAsset | undefined;
+
+        if (['xch', 'txch'].includes(key.toLowerCase())) {
+          assetType = OfferAsset.CHIA;
+        } else if (!!infoDict?.type) {
+          switch (infoDict.type.toLowerCase()) {
+            case 'nft':
+              assetType = OfferAsset.NFT;
+              break;
+            case 'cat':
+              assetType = OfferAsset.TOKEN;
+              break;
+            default:
+              console.log(`Unknown asset type: ${infoDict.type}`);
+              break;
+          }
+        } else {
+          console.log(`Unknown asset: ${key}`);
+        }
+
+        return { [key]: assetType };
+      });
+    }, [summaryData, summaryInfo]);
+
+  console.log('summaryData:');
+  console.log(summaryData);
+
+  console.log('summaryInfo:');
+  console.log(summaryInfo);
+
+  const rows: (React.ReactElement | null)[] = assetIdsToTypes.map((entry) => {
+    const [assetId, assetType]: [string, OfferAsset | undefined] =
+      Object.entries(entry)[0];
+
+    console.log('assetId and amount:');
+    console.log(assetId);
+    console.log(summaryData[assetId]);
+    switch (assetType) {
+      case undefined:
+        return null;
+      case OfferAsset.CHIA:
+        // return <OfferSummaryChiaRow amount={summaryData[assetId]} />;
+        return (
+          <OfferSummaryTokenRow
+            assetId={assetId}
+            amount={summaryData[assetId]}
+          />
+        );
+      case OfferAsset.TOKEN:
+        return (
+          <OfferSummaryTokenRow
+            assetId={assetId}
+            amount={summaryData[assetId]}
+          />
+        );
+      case OfferAsset.NFT:
+        return (
+          <div>
+            <Typography variant="h5">{summaryData.nft} NFT</Typography>
+          </div>
+        );
+      default:
+        console.log(`Unhandled OfferAsset type: ${assetType}`);
+        return (
+          <div>
+            <Typography variant="h5">
+              <Trans>Unrecognized asset</Trans>
+            </Typography>
+          </div>
+        );
+    }
+  });
+
+  return (
+    <Flex flexDirection="column" gap={2}>
+      {title}
+      {rows.map((row, index) => (
+        <div key={index}>{row}</div>
+      ))}
+    </Flex>
+  );
+}
+
+/* ========================================================================== */
 /*                              NFT Offer Summary                             */
 /* ========================================================================== */
 
@@ -68,10 +169,18 @@ type NFTOfferSummaryProps = {
 function NFTOfferSummary(props: NFTOfferSummaryProps) {
   const { isMyOffer, imported, summary, makerTitle, takerTitle } = props;
   const makerSummary: React.ReactElement = (
-    <NFTOfferMakerSummary title={makerTitle} />
+    <NFTOfferSummaryRow
+      title={makerTitle}
+      summaryKey="offered"
+      summary={summary}
+    />
   );
   const takerSummary: React.ReactElement = (
-    <NFTOfferTakerSummary title={takerTitle} />
+    <NFTOfferSummaryRow
+      title={takerTitle}
+      summaryKey="requested"
+      summary={summary}
+    />
   );
   const summaries: React.ReactElement[] = [makerSummary, takerSummary];
 

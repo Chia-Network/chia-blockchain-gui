@@ -9,10 +9,6 @@ export function launcherIdToNFTId(launcherId: string): string {
 }
 
 export function launcherIdFromNFTId(nftId: string): string | undefined {
-  if (nftId.length !== 62) {
-    return undefined;
-  }
-
   let decoded: string | undefined = undefined;
 
   try {

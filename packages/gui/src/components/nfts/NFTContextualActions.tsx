@@ -149,10 +149,11 @@ function NFTDemoViewOfferContxtualAction(
     const offerData = undefined;
     const offerSummary = {
       offered: { [selectedNft.launcherId]: -1 },
-      requested: { 1: 6750000000000 },
+      requested: { xch: 6750000000000 },
       infos: {
         [selectedNft.launcherId]: {
           launcherId: selectedNft.launcherId,
+          type: 'NFT',
           also: { metadata: '' },
         },
       },
