@@ -1,12 +1,13 @@
 import { WalletType } from '@chia/api';
 import type { ChipProps } from '@mui/material';
-import type { OfferSummaryRecord } from '@chia/api';
-import {
-  fromBech32m,
-  mojoToChiaLocaleString,
-  mojoToCATLocaleString,
-} from '@chia/core';
+import type {
+  OfferSummaryAssetInfo,
+  OfferSummaryInfos,
+  OfferSummaryRecord,
+} from '@chia/api';
+import { mojoToChiaLocaleString, mojoToCATLocaleString } from '@chia/core';
 import OfferState from './OfferState';
+import OfferAsset from './OfferAsset';
 import { AssetIdMapEntry } from '../../hooks/useAssetIdName';
 
 let filenameCounter = 0;
@@ -160,4 +161,24 @@ export function formatAmountForWalletType(
   }
 
   return amount.toString();
+}
+
+export function offerContainsAssetOfType(
+  offerSummary: OfferSummaryRecord,
+  assetType: OfferAsset,
+): boolean {
+  const infos: OfferSummaryInfos = offerSummary.infos;
+  const matchingAssetId: string | undefined = Object.keys(infos).find(
+    (assetId) => {
+      const info: OfferSummaryAssetInfo = infos[assetId];
+      return info.type === assetType;
+    },
+  );
+
+  return (
+    matchingAssetId &&
+    // Sanity check that the assetId is actually being offered/requested
+    (offerSummary.offered.hasOwnProperty(matchingAssetId) ||
+      offerSummary.requested.hasOwnProperty(matchingAssetId))
+  );
 }

@@ -1,59 +1,18 @@
 import React, { useMemo, useState } from 'react';
-import { t, Trans } from '@lingui/macro';
-import { useGetNFTWallets } from '@chia/api-react';
+import { Trans } from '@lingui/macro';
+import {
+  useCheckOfferValidityMutation,
+  useGetNFTWallets,
+} from '@chia/api-react';
 import type { NFTInfo, Wallet } from '@chia/api';
-import { Back, Flex } from '@chia/core';
+import { Back, ButtonLoading, Flex, useShowError } from '@chia/core';
 import { Divider, Grid, Typography } from '@mui/material';
 import useFetchNFTs from '../../hooks/useFetchNFTs';
 import OfferAsset from './OfferAsset';
 import OfferHeader from './OfferHeader';
 import OfferState from './OfferState';
-import { OfferSummaryChiaRow, OfferSummaryTokenRow } from './OfferSummaryRow';
+import { OfferSummaryNFTRow, OfferSummaryTokenRow } from './OfferSummaryRow';
 import NFTOfferPreview from './NFTOfferPreview';
-
-/* ========================================================================== */
-/*                           NFT Offer Maker Summary                          */
-/* ========================================================================== */
-
-type NFTOfferMakerSummaryProps = {
-  title: React.ReactElement | string;
-};
-
-function NFTOfferMakerSummary(props: NFTOfferMakerSummaryProps) {
-  const { title } = props;
-
-  return (
-    <Flex flexDirection="column" gap={2}>
-      {title}
-      <Flex flexDirection="column" gap={1}>
-        {/* <Typography variant="h5">NFT Title</Typography>
-        <Typography variant="body2">By NFT Creator Title</Typography> */}
-        <Typography variant="caption" color="textSecondary">
-          nft17aadeznq3hwxtwhwq6xpj0pxy7dakdxzwmqgqsrydeszgvsdke9qcyu0c7
-        </Typography>
-      </Flex>
-    </Flex>
-  );
-}
-
-/* ========================================================================== */
-/*                           NFT Offer Taker Summary                          */
-/* ========================================================================== */
-
-type NFTOfferTakerSummaryProps = {
-  title: React.ReactElement | string;
-};
-
-function NFTOfferTakerSummary(props: NFTOfferTakerSummaryProps) {
-  const { title } = props;
-
-  return (
-    <Flex flexDirection="column" gap={2}>
-      {title}
-      <Typography variant="h5">300 XCH</Typography>
-    </Flex>
-  );
-}
 
 /* ========================================================================== */
 
@@ -111,14 +70,7 @@ function NFTOfferSummaryRow(props: NFTOfferSummaryRowProps) {
     switch (assetType) {
       case undefined:
         return null;
-      case OfferAsset.CHIA:
-        // return <OfferSummaryChiaRow amount={summaryData[assetId]} />;
-        return (
-          <OfferSummaryTokenRow
-            assetId={assetId}
-            amount={summaryData[assetId]}
-          />
-        );
+      case OfferAsset.CHIA: // fall-through
       case OfferAsset.TOKEN:
         return (
           <OfferSummaryTokenRow
@@ -128,9 +80,10 @@ function NFTOfferSummaryRow(props: NFTOfferSummaryRowProps) {
         );
       case OfferAsset.NFT:
         return (
-          <div>
-            <Typography variant="h5">{summaryData.nft} NFT</Typography>
-          </div>
+          <OfferSummaryNFTRow
+            launcherId={assetId}
+            amount={summaryData[assetId]}
+          />
         );
       default:
         console.log(`Unhandled OfferAsset type: ${assetType}`);
@@ -194,10 +147,10 @@ function NFTOfferSummary(props: NFTOfferSummaryProps) {
         <Trans>Purchase Summary</Trans>
       </Typography>
       {summaries.map((summary, index) => (
-        <div key={index}>
+        <Flex flexDirection="column" key={index} gap={3}>
           {summary}
           {index !== summaries.length - 1 && <Divider />}
-        </div>
+        </Flex>
       ))}
     </>
   );
@@ -220,8 +173,10 @@ function NFTOfferDetails(props: NFTOfferDetailsProps) {
     props;
   const summary = tradeRecord?.summary || offerSummary;
   const isMyOffer = !!tradeRecord?.isMyOffer;
+  const showError = useShowError();
   const [isValidating, setIsValidating] = useState<boolean>(false);
   const [isValid, setIsValid] = useState<boolean>(tradeRecord !== undefined);
+  const [checkOfferValidity] = useCheckOfferValidityMutation();
   const { wallets: nftWallets, isLoading: isLoadingWallets } =
     useGetNFTWallets();
   const { nfts, isLoading: isLoadingNFTs } = useFetchNFTs(
@@ -237,6 +192,36 @@ function NFTOfferDetails(props: NFTOfferDetailsProps) {
       return nfts.find((nft: NFTInfo) => nft.launcherId === launcherId);
     }
   }, [offerSummary, nfts]);
+
+  useMemo(async () => {
+    if (!offerData) {
+      return;
+    }
+
+    let valid = false;
+
+    try {
+      setIsValidating(true);
+
+      const response = await checkOfferValidity(offerData);
+
+      if (response.data?.success === true) {
+        valid = response.data?.valid === true;
+      } else {
+        showError(
+          response.data?.error ??
+            new Error(
+              'Encountered an unknown error while checking offer validity',
+            ),
+        );
+      }
+    } catch (e) {
+      showError(e);
+    } finally {
+      setIsValid(valid);
+      setIsValidating(false);
+    }
+  }, [offerData]);
 
   return (
     <Flex flexDirection="column" flexGrow={1} gap={4}>
@@ -279,6 +264,23 @@ function NFTOfferDetails(props: NFTOfferDetailsProps) {
               }
             />
             <Divider />
+            <Flex
+              flexDirection="column"
+              flexGrow={1}
+              alignItems="flex-end"
+              justifyContent="flex-end"
+            >
+              <Flex justifyContent="flex-end" gap={2}>
+                <ButtonLoading
+                  variant="contained"
+                  color="primary"
+                  type="submit"
+                  // loading={isProcessing}
+                >
+                  <Trans>Accept Offer</Trans>
+                </ButtonLoading>
+              </Flex>
+            </Flex>
           </Flex>
           <NFTOfferPreview nft={nft} />
         </Flex>

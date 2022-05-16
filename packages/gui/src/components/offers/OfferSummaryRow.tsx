@@ -7,14 +7,13 @@ import {
   FormatLargeNumber,
   TooltipIcon,
   mojoToCATLocaleString,
-  mojoToChiaLocaleString,
-  useCurrencyCode,
 } from '@chia/core';
 import { Box, Typography } from '@mui/material';
 import useAssetIdName from '../../hooks/useAssetIdName';
 
 import { WalletType } from '@chia/api';
 import { formatAmountForWalletType } from './utils';
+import { launcherIdFromNFTId, launcherIdToNFTId } from '../../util/nfts';
 import styled from 'styled-components';
 
 const StyledTitle = styled(Box)`
@@ -60,18 +59,17 @@ function shouldShowMojoAmount(
 
 /* ========================================================================== */
 
-type OfferSummaryChiaRowProps = {
+type OfferSummaryNFTRowProps = {
+  launcherId: string;
   amount: number;
   rowNumber?: number;
 };
 
-export function OfferSummaryChiaRow(
-  props: OfferSummaryChiaRowProps,
+export function OfferSummaryNFTRow(
+  props: OfferSummaryNFTRowProps,
 ): React.ReactElement {
-  const { amount, rowNumber } = props;
-  const currencyCode = useCurrencyCode();
-  const displayAmount = mojoToChiaLocaleString(amount);
-  const showMojoAmount = shouldShowMojoAmount(amount);
+  const { launcherId, _amount, rowNumber } = props;
+  const nftId = launcherIdToNFTId(launcherId);
 
   return (
     <Flex flexDirections="row" alignItems="center" gap={1}>
@@ -84,28 +82,32 @@ export function OfferSummaryChiaRow(
               style={{ fontWeight: 'bold' }}
             >{`${rowNumber})`}</Typography>
           )}
-          <Typography>
-            {displayAmount} {currencyCode}
-          </Typography>
+          <Typography>{nftId}</Typography>
         </Flex>
       </Typography>
-      {showMojoAmount && (
-        <Typography variant="body1" color="textSecondary">
-          <OfferMojoAmount mojos={amount} />
-        </Typography>
-      )}
-      <TooltipIcon interactive>
-        <Flex flexDirection="column" gap={1}>
-          <Flex flexDirection="column" gap={0}>
-            <Flex>
-              <Box flexGrow={1}>
-                <StyledTitle>Name</StyledTitle>
-              </Box>
+      {launcherId !== undefined && (
+        <TooltipIcon interactive>
+          <Flex flexDirection="column" gap={1}>
+            <Flex flexDirection="column" gap={0}>
+              <Flex>
+                <Box flexGrow={1}>
+                  <StyledTitle>Launcher ID</StyledTitle>
+                </Box>
+                {/* <Link
+                  href={`https://testnet.mintgarden.io/nfts/${launcherId.toLowerCase()}`}
+                  target="_blank"
+                >
+                  <Trans>Show on MintGarden</Trans>
+                </Link> */}
+              </Flex>
+              <Flex alignItems="center" gap={1}>
+                <StyledValue>{launcherId}</StyledValue>
+                <CopyToClipboard value={launcherId} fontSize="small" />
+              </Flex>
             </Flex>
-            <StyledValue>Chia</StyledValue>
           </Flex>
-        </Flex>
-      </TooltipIcon>
+        </TooltipIcon>
+      )}
     </Flex>
   );
 }
@@ -115,12 +117,13 @@ export function OfferSummaryChiaRow(
 type OfferSummaryTokenRowProps = {
   assetId: string;
   amount: number;
+  rowNumber?: number;
 };
 
 export function OfferSummaryTokenRow(
   props: OfferSummaryTokenRowProps,
 ): React.ReactElement {
-  const { assetId, amount } = props;
+  const { assetId, amount, rowNumber } = props;
   const { lookupByAssetId } = useAssetIdName();
   const assetIdInfo = lookupByAssetId(assetId);
   const displayAmount = assetIdInfo
@@ -130,7 +133,6 @@ export function OfferSummaryTokenRow(
   const showMojoAmount =
     assetIdInfo?.walletType === WalletType.STANDARD_WALLET &&
     shouldShowMojoAmount(amount);
-  const rowNumber = undefined;
 
   return (
     <Flex flexDirections="row" alignItems="center" gap={1}>
