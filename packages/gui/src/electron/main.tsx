@@ -180,6 +180,65 @@ if (!handleSquirrelEvent()) {
         return { err, statusCode, statusMessage, responseBody };
       });
 
+      ipcMain.handle('fetchBinaryContent', async (_event, requestOptions = {}, requestHeaders = {}, requestData?: any) => {
+        const { maxSize = Infinity , ...rest } = requestOptions;
+        const request = net.request(rest);
+
+        Object.entries(requestHeaders).forEach(([header, value]: [string, any]) => {
+          request.setHeader(header, value);
+        });
+
+        let error: Error | undefined;
+        let statusCode: number | undefined;
+        let statusMessage: string | undefined;
+        let data: string;
+
+        const buffers: Buffer[] = [];
+        let totalLength = 0;
+
+        try {
+          data = await new Promise((resolve, reject) => {
+            request.on('response', (response: IncomingMessage) => {
+              statusCode = response.statusCode;
+              statusMessage = response.statusMessage;
+
+              response.on('data', (chunk) => {
+                buffers.push(chunk);
+
+                totalLength += chunk.byteLength;
+
+                if (totalLength > maxSize) {
+                  reject(new Error(i18n._(/* i18n */ { id: 'Response too large' })));
+                  request.abort();
+                }
+              });
+
+              response.on('end', () => {
+                resolve(Buffer.concat(buffers).toString('latin1'));
+              });
+
+              response.on('error', (e: string) => {
+                reject(new Error(e));
+              });
+            });
+
+            request.on('error', (error: any) => {
+              reject(error);
+            })
+
+            if (requestData) {
+              request.write(requestData);
+            }
+
+            request.end();
+          });
+        } catch (e: any) {
+          error = e;
+        }
+
+        return { error, statusCode, statusMessage, data };
+      });
+
       ipcMain.handle('showMessageBox', async (_event, options) => {
         return await dialog.showMessageBox(mainWindow, options);
       });
