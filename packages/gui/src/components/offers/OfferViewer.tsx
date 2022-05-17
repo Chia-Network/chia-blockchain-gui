@@ -4,11 +4,9 @@ import { useNavigate } from 'react-router-dom';
 import moment from 'moment';
 import { Trans, Plural, t } from '@lingui/macro';
 import {
-  AlertDialog,
   Back,
   ButtonLoading,
   Card,
-  ConfirmDialog,
   CopyToClipboard,
   Fee,
   Flex,
@@ -17,12 +15,9 @@ import {
   Link,
   TableControlled,
   TooltipIcon,
-  useOpenDialog,
   useShowError,
   useOpenExternal,
-  chiaToMojo,
   mojoToChiaLocaleString,
-  mojoToCATLocaleString,
 } from '@chia/core';
 import {
   Box,
@@ -44,38 +39,13 @@ import {
   OfferCoinOfInterest,
   WalletType,
 } from '@chia/api';
-import {
-  useCheckOfferValidityMutation,
-  useTakeOfferMutation,
-} from '@chia/api-react';
-import {
-  colorForOfferState,
-  displayStringForOfferState,
-  formatAmountForWalletType,
-} from './utils';
-import useAssetIdName from '../../hooks/useAssetIdName';
+import { useCheckOfferValidityMutation } from '@chia/api-react';
+import { colorForOfferState, displayStringForOfferState } from './utils';
+import useAcceptOfferHook from '../../hooks/useAcceptOfferHook';
 import OfferHeader from './OfferHeader';
 import OfferState from './OfferState';
 import OfferSummary from './OfferSummary';
-import styled from 'styled-components';
-
-const StyledViewerBox = styled.div`
-  padding: ${({ theme }) => `${theme.spacing(4)}`};
-`;
-
-const StyledSummaryBox = styled.div`
-  padding-left: ${({ theme }) => `${theme.spacing(2)}`};
-  padding-right: ${({ theme }) => `${theme.spacing(2)}`};
-`;
-
-const StyledTitle = styled(Box)`
-  font-size: 0.625rem;
-  color: rgba(255, 255, 255, 0.7);
-`;
-
-const StyledValue = styled(Box)`
-  word-break: break-all;
-`;
+import OfferViewerTitle from './OfferViewerTitle';
 
 type OfferMojoAmountProps = {
   mojos: number;
@@ -130,10 +100,9 @@ type OfferDetailsRow = {
 function OfferDetails(props: OfferDetailsProps) {
   const { tradeRecord, offerData, offerSummary, imported } = props;
   const summary = tradeRecord?.summary || offerSummary;
-  const { lookupByAssetId } = useAssetIdName();
+  const [acceptOffer] = useAcceptOfferHook();
   const openExternal = useOpenExternal();
   const navigate = useNavigate();
-  const openDialog = useOpenDialog();
   const showError = useShowError();
   const methods = useForm({ defaultValues: { fee: '' } });
   const [isAccepting, setIsAccepting] = useState<boolean>(false);
@@ -142,7 +111,6 @@ function OfferDetails(props: OfferDetailsProps) {
   const [isMissingRequestedAsset, setIsMissingRequestedAsset] =
     useState<boolean>(false);
   const [checkOfferValidity] = useCheckOfferValidityMutation();
-  const [takeOffer] = useTakeOfferMutation();
   const detailRows: OfferDetailsRow[] = [];
 
   useMemo(async () => {
@@ -299,148 +267,18 @@ function OfferDetails(props: OfferDetailsProps) {
 
   async function handleAcceptOffer(formData: any) {
     const { fee } = formData;
-    const feeInMojos = fee ? Number.parseFloat(chiaToMojo(fee)) : 0;
-    const offeredUnknownCATs: string[] = Object.entries(summary.offered)
-      .filter(([assetId]) => lookupByAssetId(assetId) === undefined)
-      .map(([assetId]) => assetId);
 
-    const confirmedAccept = await openDialog(
-      <ConfirmDialog
-        title={<Trans>Accept Offer</Trans>}
-        confirmTitle={<Trans>Accept Offer</Trans>}
-        confirmColor="primary"
-        cancelTitle={<Trans>Cancel</Trans>}
-      >
-        <Flex flexDirection="column" gap={3}>
-          {offeredUnknownCATs.length > 0 && (
-            <>
-              <Flex flexDirection="column" gap={1}>
-                <Typography variant="h6">
-                  <Trans>Warning</Trans>
-                </Typography>
-                <Typography variant="body1">
-                  <Trans>
-                    One or more unknown tokens are being offered. Please verify
-                    that the asset IDs of the tokens listed below match the
-                    asset IDs of the tokens you expect to receive.
-                  </Trans>
-                </Typography>
-                <Typography variant="subtitle1">Unknown CATs:</Typography>
-                <StyledSummaryBox>
-                  <Flex flexDirection="column">
-                    {offeredUnknownCATs.map((assetId) => (
-                      <Flex
-                        alignItems="center"
-                        justifyContent="space-between"
-                        gap={1}
-                      >
-                        <Typography variant="caption">
-                          {assetId.toLowerCase()}
-                        </Typography>
-                        <CopyToClipboard
-                          value={assetId.toLowerCase()}
-                          fontSize="small"
-                        />
-                      </Flex>
-                    ))}
-                  </Flex>
-                </StyledSummaryBox>
-              </Flex>
-              <Divider />
-            </>
-          )}
-          <Typography>
-            <Trans>
-              Once you accept this offer, you will not be able to cancel the
-              transaction. Are you sure you want to accept this offer?
-            </Trans>
-          </Typography>
-        </Flex>
-      </ConfirmDialog>,
-    );
-
-    if (!confirmedAccept) {
+    if (!offerData) {
+      console.log('No offer data to accept');
       return;
     }
 
-    try {
-      setIsAccepting(true);
-
-      const response = await takeOffer({ offer: offerData, fee: feeInMojos });
-
-      if (response.data?.success === true) {
-        await openDialog(
-          <AlertDialog title={<Trans>Success</Trans>}>
-            {response.message ?? (
-              <Trans>
-                Offer has been accepted and is awaiting confirmation.
-              </Trans>
-            )}
-          </AlertDialog>,
-        );
-      } else {
-        throw new Error(response.error?.message ?? 'Something went wrong');
-      }
-
-      navigate(-2);
-    } catch (e) {
-      let error = e as Error;
-
-      if (error.message.startsWith('insufficient funds')) {
-        error = new Error(t`
-          Insufficient funds available to accept offer. Ensure that your
-          spendable balance is sufficient to cover the offer amount.
-        `);
-      }
-      showError(error);
-    } finally {
-      setIsAccepting(false);
-    }
-  }
-
-  function OfferSummaryEntry({
-    assetId,
-    amount,
-    ...rest
-  }: {
-    assetId: string;
-    amount: number;
-  }) {
-    const assetIdInfo = lookupByAssetId(assetId);
-    const displayAmount = assetIdInfo
-      ? formatAmountForWalletType(amount as number, assetIdInfo.walletType)
-      : mojoToCATLocaleString(amount);
-    const displayName = assetIdInfo?.displayName ?? t`Unknown CAT`;
-
-    return (
-      <Flex flexDirections="row" gap={1}>
-        <Typography variant="body1" {...rest}>
-          <Flex flexDirection="row" alignItems="center" gap={1}>
-            <Typography>
-              {displayAmount} {displayName}
-            </Typography>
-            {!assetIdInfo?.displayName && (
-              <TooltipIcon interactive>
-                <Flex flexDirection="column" gap={1}>
-                  <StyledTitle>TAIL</StyledTitle>
-                  <Flex alignItems="center" gap={1}>
-                    <StyledValue>{assetId.toLowerCase()}</StyledValue>
-                    <CopyToClipboard
-                      value={assetId.toLowerCase()}
-                      fontSize="small"
-                    />
-                  </Flex>
-                </Flex>
-              </TooltipIcon>
-            )}
-          </Flex>
-        </Typography>
-        {assetIdInfo?.walletType === WalletType.STANDARD_WALLET && (
-          <Typography variant="body1" color="textSecondary">
-            <OfferMojoAmount mojos={amount} />
-          </Typography>
-        )}
-      </Flex>
+    await acceptOffer(
+      offerData,
+      summary,
+      fee,
+      (accepting: boolean) => setIsAccepting(accepting),
+      () => navigate(-2),
     );
   }
 
@@ -568,16 +406,10 @@ export function OfferViewer(props: OfferViewerProps) {
   return (
     <Flex flexDirection="column" gap={3}>
       <Back variant="h5">
-        {offerFilePath ? (
-          <Trans>Viewing offer: {offerFilePath}</Trans>
-        ) : tradeRecord ? (
-          <Trans>
-            Viewing offer created at{' '}
-            {moment(tradeRecord.createdAtTime * 1000).format('LLL')}
-          </Trans>
-        ) : (
-          <Trans>Viewing offer</Trans>
-        )}
+        <OfferViewerTitle
+          offerFilePath={offerFilePath}
+          tradeRecord={tradeRecord}
+        />
       </Back>
 
       <OfferDetails
