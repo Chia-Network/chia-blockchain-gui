@@ -165,7 +165,7 @@ export function formatAmountForWalletType(
 
 export function offerContainsAssetOfType(
   offerSummary: OfferSummaryRecord,
-  assetType: OfferAsset,
+  assetType: string,
 ): boolean {
   const infos: OfferSummaryInfos = offerSummary.infos;
   const matchingAssetId: string | undefined = Object.keys(infos).find(

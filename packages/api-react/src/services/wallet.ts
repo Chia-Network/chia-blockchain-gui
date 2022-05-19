@@ -1855,6 +1855,17 @@ export const walletApi = apiWithTag.injectEndpoints({
       ]),
     }),
 
+    getNFTInfo: build.query<any, { coinId: string }>({
+      query: ({ coinId }) => ({
+        command: 'getNftInfo',
+        service: NFT,
+        args: [coinId],
+      }),
+      transformResponse: (response: any) => response.nftInfo,
+      providesTags: (result, _error) =>
+        result ? [{ type: 'NFTInfo', id: result.launcherId }] : [],
+    }),
+
     transferNFT: build.mutation<
       any,
       {
@@ -1970,6 +1981,7 @@ export const {
 
   // NFTs
   useGetNFTsQuery,
+  useGetNFTInfoQuery,
   useTransferNFTMutation,
   useReceiveNFTMutation,
 } = walletApi;

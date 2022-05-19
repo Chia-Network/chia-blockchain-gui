@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { Trans } from '@lingui/macro';
 import {
   useCheckOfferValidityMutation,
-  useGetNFTWallets,
+  // useGetNFTWallets,
 } from '@chia/api-react';
 import type { NFTInfo, Wallet } from '@chia/api';
 import { OfferSummaryRecord, OfferTradeRecord } from '@chia/api';
@@ -19,7 +19,8 @@ import {
 } from '@chia/core';
 import { Divider, Grid, Typography } from '@mui/material';
 import useAcceptOfferHook from '../../hooks/useAcceptOfferHook';
-import useFetchNFTs from '../../hooks/useFetchNFTs';
+// import useFetchNFTs from '../../hooks/useFetchNFTs';
+import { launcherIdToNFTId } from '../../util/nfts';
 import OfferAsset from './OfferAsset';
 import OfferHeader from './OfferHeader';
 import OfferState from './OfferState';
@@ -49,7 +50,7 @@ function NFTOfferSummaryRow(props: NFTOfferSummaryRowProps) {
           assetType = OfferAsset.CHIA;
         } else if (!!infoDict?.type) {
           switch (infoDict.type.toLowerCase()) {
-            case 'nft':
+            case 'singleton':
               assetType = OfferAsset.NFT;
               break;
             case 'cat':
@@ -198,21 +199,29 @@ function NFTOfferDetails(props: NFTOfferDetailsProps) {
   const [isMissingRequestedAsset, setIsMissingRequestedAsset] =
     useState<boolean>(false);
   const [checkOfferValidity] = useCheckOfferValidityMutation();
-  const { wallets: nftWallets, isLoading: isLoadingWallets } =
-    useGetNFTWallets();
-  const { nfts, isLoading: isLoadingNFTs } = useFetchNFTs(
-    nftWallets.map((wallet: Wallet) => wallet.id),
+  // const { wallets: nftWallets, isLoading: isLoadingWallets } =
+  //   useGetNFTWallets();
+  // const { nfts, isLoading: isLoadingNFTs } = useFetchNFTs(
+  //   nftWallets.map((wallet: Wallet) => wallet.id),
+  // );
+  const driverDict: { [key: string]: any } = summary?.infos ?? {};
+  const launcherId: string | undefined = Object.keys(driverDict).find(
+    (id: string) => driverDict[id].launcherId?.length > 0,
   );
-  const nft: NFTInfo | undefined = useMemo(() => {
-    const driverDict: { [key: string]: any } = summary?.infos;
-    const launcherId = Object.keys(driverDict ?? {}).find((id: string) => {
-      return driverDict[id].launcherId?.length > 0;
-    });
+  const nftId: string | undefined = launcherId
+    ? launcherIdToNFTId(launcherId)
+    : undefined;
 
-    if (launcherId && nfts.length > 0) {
-      return nfts.find((nft: NFTInfo) => nft.launcherId === launcherId);
-    }
-  }, [summary, nfts]);
+  // const nft: NFTInfo | undefined = useMemo(() => {
+  //   const driverDict: { [key: string]: any } = summary?.infos;
+  //   const launcherId = Object.keys(driverDict ?? {}).find((id: string) => {
+  //     return driverDict[id].launcherId?.length > 0;
+  //   });
+
+  //   if (launcherId && nfts.length > 0) {
+  //     return nfts.find((nft: NFTInfo) => nft.launcherId === launcherId);
+  //   }
+  // }, [summary, nfts]);
 
   useMemo(async () => {
     // TODO: Remove this
@@ -363,7 +372,7 @@ function NFTOfferDetails(props: NFTOfferDetailsProps) {
                 </Flex>
               )}
             </Flex>
-            <NFTOfferPreview nft={nft} />
+            <NFTOfferPreview nftId={nftId} />
           </Flex>
         </Flex>
       </Flex>
