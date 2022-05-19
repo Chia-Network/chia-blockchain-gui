@@ -7,6 +7,7 @@ import {
   Pool,
   Wallet,
   WalletType,
+  toBech32m,
 } from '@chia/api';
 import type {
   NFTInfo,
@@ -1810,8 +1811,13 @@ export const walletApi = apiWithTag.injectEndpoints({
                   throw nftsError;
                 }
 
+                // Add bech32m-encoded NFT identifier
+                const updatedNFTs = nftsData.nftList.map(nft => {
+                  return { ...nft, $nftId: toBech32m(nft.launcherId, 'nft') };
+                });
+
                 return {
-                  [walletId]: nftsData.nftList,
+                  [walletId]: updatedNFTs,
                 };
               })
             );
@@ -1856,12 +1862,31 @@ export const walletApi = apiWithTag.injectEndpoints({
     }),
 
     getNFTInfo: build.query<any, { coinId: string }>({
-      query: ({ coinId }) => ({
-        command: 'getNftInfo',
-        service: NFT,
-        args: [coinId],
-      }),
-      transformResponse: (response: any) => response.nftInfo,
+      async queryFn(args, _queryApi, _extraOptions, fetchWithBQ) {
+        try {
+          const { data: nftData, error: nftError } = await fetchWithBQ({
+            command: 'getNftInfo',
+            service: NFT,
+            args: [args.coinId],
+          });
+
+          if (nftError) {
+            throw nftError;
+          }
+
+          // Add bech32m-encoded NFT identifier
+          const updatedNFT = {
+            ...nftData.nftInfo,
+            $nftId: toBech32m(nftData.nftInfo.launcherId, 'nft'),
+          };
+
+          return { data: updatedNFT };
+        } catch (error: any) {
+          return {
+            error,
+          };
+        }
+      },
       providesTags: (result, _error) =>
         result ? [{ type: 'NFTInfo', id: result.launcherId }] : [],
     }),
