@@ -1,7 +1,6 @@
 import { useMemo } from 'react';
-import type { NFTInfo } from '@chia/api';
+import type { NFTInfo, toBech32m } from '@chia/api';
 import { useGetNFTsQuery } from '@chia/api-react';
-import { toBech32m } from '@chia/core';
 
 type UseFetchNFTsResult = {
   nfts: NFTInfo[];

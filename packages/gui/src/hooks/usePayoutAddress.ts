@@ -1,6 +1,5 @@
-import type { PlotNFT } from '@chia/api';
+import type { PlotNFT, toBech32m, fromBech32m } from '@chia/api';
 import { useSetPayoutInstructionsMutation, useGetNetworkInfoQuery } from '@chia/api-react';
-import { toBech32m, fromBech32m } from '@chia/core';
 
 export default function usePayoutAddress(nft: PlotNFT): {
   loading: boolean;
