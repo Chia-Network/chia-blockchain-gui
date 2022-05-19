@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router';
 import { t, Trans } from '@lingui/macro';
-import { defaultPlotter } from '@chia/api';
+import { defaultPlotter, toBech32m } from '@chia/api';
 import { useStartPlottingMutation, useCreateNewPoolWalletMutation } from '@chia/api-react';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { Back, useShowError, ButtonLoading, Flex, Form, toBech32m, fromBech32m } from '@chia/core';
+import { Back, useShowError, ButtonLoading, Flex, Form } from '@chia/core';
 import PlotAddChoosePlotter from './PlotAddChoosePlotter';
 import PlotAddChooseSize from './PlotAddChooseSize';
 import PlotAddNumberOfPlots from './PlotAddNumberOfPlots';
@@ -20,7 +20,6 @@ import useUnconfirmedPlotNFTs from '../../../hooks/useUnconfirmedPlotNFTs';
 type FormData = PlotAddConfig & {
   p2SingletonPuzzleHash?: string;
   createNFT?: boolean;
-  plotNFTContractAddr?: string;
 };
 
 type Props = {
@@ -51,7 +50,6 @@ export default function PlotAddForm(props: Props) {
     workspaceLocation2: '',
     farmerPublicKey: '',
     poolPublicKey: '',
-    plotNFTContractAddr: '',
     excludeFinalDir: false,
     p2SingletonPuzzleHash: state?.p2SingletonPuzzleHash ?? '',
     createNFT: false,
@@ -99,7 +97,7 @@ export default function PlotAddForm(props: Props) {
     try {
       setLoading(true);
       const { p2SingletonPuzzleHash, delay, createNFT, ...rest } = data;
-      const { farmerPublicKey, poolPublicKey, plotNFTContractAddr } = rest;
+      const { farmerPublicKey, poolPublicKey } = rest;
 
       let selectedP2SingletonPuzzleHash = p2SingletonPuzzleHash;
 
@@ -141,10 +139,6 @@ export default function PlotAddForm(props: Props) {
         ...rest,
         delay: delay * 60,
       };
-
-      if (!selectedP2SingletonPuzzleHash && plotNFTContractAddr) {
-        selectedP2SingletonPuzzleHash = fromBech32m(plotNFTContractAddr);
-      }
 
       if (selectedP2SingletonPuzzleHash) {
         plotAddConfig.c = toBech32m(
