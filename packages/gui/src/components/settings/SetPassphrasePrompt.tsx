@@ -34,8 +34,8 @@ export default function SetPassphrasePrompt(props: Props) {
   let confirmationInput: HTMLInputElement | null;
   let passphraseHintInput: HTMLInputElement | null;
   let savePassphraseCheckbox: HTMLInputElement | null = null;
-  const [showPassword1, setShowPassword1] = useState(false);
-  const [showPassword2, setShowPassword2] = useState(false);
+  const [showPassphraseText1, setShowPassphraseText1] = useState(false);
+  const [showPassphraseText2, setShowPassphraseText2] = useState(false);
 
   const [needsFocusAndSelect, setNeedsFocusAndSelect] = React.useState(false);
   useEffect(() => {
@@ -154,10 +154,10 @@ export default function SetPassphrasePrompt(props: Props) {
             label={<Trans>Passphrase</Trans>}
             placeholder="Passphrase"
             inputRef={(input) => passphraseInput = input}
-            type={showPassword1 ? "text" : "password"}
+            type={showPassphraseText1 ? "text" : "password"}
             fullWidth
           />
-          <IconButton onClick={() => setShowPassword1(s => !s)}>
+          <IconButton onClick={() => setShowPassphraseText1(s => !s)}>
             <VisibilityIcon />
           </IconButton>
         </Flex>
@@ -170,10 +170,10 @@ export default function SetPassphrasePrompt(props: Props) {
             label={<Trans>Confirm Passphrase</Trans>}
             placeholder="Confirm Passphrase"
             inputRef={(input) => confirmationInput = input}
-            type={showPassword2 ? "text" : "password"}
+            type={showPassphraseText2 ? "text" : "password"}
             fullWidth
           />
-          <IconButton onClick={() => setShowPassword2(s => !s)}>
+          <IconButton onClick={() => setShowPassphraseText2(s => !s)}>
             <VisibilityIcon />
           </IconButton>
         </Flex>

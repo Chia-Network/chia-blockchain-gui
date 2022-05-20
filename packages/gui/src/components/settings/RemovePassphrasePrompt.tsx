@@ -24,7 +24,7 @@ export default function RemovePassphrasePrompt(props: Props) {
   const { data: keyringState, isLoading } = useGetKeyringStatusQuery();
   const [removeKeyringPassphrase, { isLoading: isLoadingRemoveKeyringPassphrase}] = useRemoveKeyringPassphraseMutation();
   let passphraseInput: HTMLInputElement | null;
-  const [showPassword, setShowPassword] = useState(false);
+  const [showPassphraseText, setShowPassphraseText] = useState(false);
 
   const [needsFocusAndSelect, setNeedsFocusAndSelect] = React.useState(false);
   useEffect(() => {
@@ -113,10 +113,10 @@ export default function RemovePassphrasePrompt(props: Props) {
             id="passphraseInput"
             label={<Trans>Passphrase</Trans>}
             inputRef={(input) => passphraseInput = input}
-            type={showPassword ? "text" : "password"}
+            type={showPassphraseText ? "text" : "password"}
             fullWidth
           />
-          <IconButton onClick={() => setShowPassword(s => !s)}>
+          <IconButton onClick={() => setShowPassphraseText(s => !s)}>
             <VisibilityIcon />
           </IconButton>
         </Flex>

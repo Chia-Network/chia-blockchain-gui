@@ -30,9 +30,9 @@ export default function ChangePassphrasePrompt(props: Props) {
   const [validateChangePassphraseParams] = useValidateChangePassphraseParams();
   const [removeKeyringPassphrase, { isLoading: isLoadingRemoveKeyringPassphrase }] = useRemoveKeyringPassphraseMutation();
   const [setKeyringPassphrase, { isLoading: isLoadingSetKeyringPassphrase }] = useSetKeyringPassphraseMutation();
-  const [showPassword1, setShowPassword1] = useState(false);
-  const [showPassword2, setShowPassword2] = useState(false);
-  const [showPassword3, setShowPassword3] = useState(false);
+  const [showPassphraseText1, setShowPassphraseText1] = useState(false);
+  const [showPassphraseText2, setShowPassphraseText2] = useState(false);
+  const [showPassphraseText3, setShowPassphraseText3] = useState(false);
 
   const isProcessing = isLoadingRemoveKeyringPassphrase || isLoadingSetKeyringPassphrase;
 
@@ -164,10 +164,10 @@ export default function ChangePassphrasePrompt(props: Props) {
             id="currentPassphraseInput"
             inputRef={(input) => currentPassphraseInput = input}
             label={<Trans>Current Passphrase</Trans>}
-            type={showPassword1 ? "text" : "password"}
+            type={showPassphraseText1 ? "text" : "password"}
             fullWidth
           />
-          <IconButton onClick={() => setShowPassword1(s => !s)}>
+          <IconButton onClick={() => setShowPassphraseText1(s => !s)}>
             <VisibilityIcon />
           </IconButton>
         </Flex>
@@ -179,10 +179,10 @@ export default function ChangePassphrasePrompt(props: Props) {
             id="passphraseInput"
             inputRef={(input) => passphraseInput = input}
             label={<Trans>New Passphrase</Trans>}
-            type={showPassword2 ? "text" : "password"}
+            type={showPassphraseText2 ? "text" : "password"}
             fullWidth
           />
-          <IconButton onClick={() => setShowPassword2(s => !s)}>
+          <IconButton onClick={() => setShowPassphraseText2(s => !s)}>
             <VisibilityIcon />
           </IconButton>
         </Flex>
@@ -194,10 +194,10 @@ export default function ChangePassphrasePrompt(props: Props) {
             id="confirmationInput"
             inputRef={(input) => confirmationInput = input}
             label={<Trans>Confirm New Passphrase</Trans>}
-            type={showPassword3 ? "text" : "password"}
+            type={showPassphraseText3 ? "text" : "password"}
             fullWidth
           />
-          <IconButton onClick={() => setShowPassword3(s => !s)}>
+          <IconButton onClick={() => setShowPassphraseText3(s => !s)}>
             <VisibilityIcon />
           </IconButton>
         </Flex>
