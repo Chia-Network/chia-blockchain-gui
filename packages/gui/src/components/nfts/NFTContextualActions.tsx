@@ -39,7 +39,7 @@ function NFTCreateOfferContextualAction(
   props: NFTCreateOfferContextualActionProps,
 ) {
   const { onClose, selection } = props;
-  const openDialog = useOpenDialog();
+  const navigate = useNavigate();
   const selectedNft: NFTInfo | undefined = selection?.items[0];
   const disabled = (selection?.items.length ?? 0) !== 1;
 
@@ -48,12 +48,12 @@ function NFTCreateOfferContextualAction(
       throw new Error('No NFT selected');
     }
 
-    openDialog(
-      <NFTCreateOfferDemoDialog
-        nft={selectedNft}
-        referrerPath={location.hash.split('#').slice(-1)[0]}
-      />,
-    );
+    navigate('/dashboard/offers/create-with-nft', {
+      state: {
+        nft: selectedNft,
+        referrerPath: location.hash.split('#').slice(-1)[0],
+      },
+    });
   }
 
   return (

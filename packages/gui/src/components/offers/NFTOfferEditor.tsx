@@ -252,7 +252,7 @@ function buildOfferRequest(
         type: 'metadata',
         metadata: `((117 ${nft.dataUris
           .map((u: string) => '"' + u + '"')
-          .join(' ')}) (104 . "${nft.dataHash}"))`,
+          .join(' ')}) (104 . 0x${nft.dataHash.toLowerCase()}))`,
         updater_hash:
           '0x81970d352e6a39a241eaf8ca510a0e669e40d778ba612621c60a50ef6cf29c7b',
       },
