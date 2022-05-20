@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Box,
   Checkbox,
@@ -7,14 +7,16 @@ import {
   DialogContentText,
   DialogTitle,
   FormControlLabel,
+  IconButton,
   TextField,
   Tooltip,
 } from '@mui/material';
 import {
   Help as HelpIcon,
+  Visibility as VisibilityIcon,
 } from '@mui/icons-material';
 import { t, Trans } from '@lingui/macro';
-import { AlertDialog, Button, DialogActions, useOpenDialog, Suspender, useValidateChangePassphraseParams } from '@chia/core';
+import { AlertDialog, Button, DialogActions, Flex, useOpenDialog, Suspender, useValidateChangePassphraseParams } from '@chia/core';
 import { useGetKeyringStatusQuery, useRemoveKeyringPassphraseMutation, useSetKeyringPassphraseMutation } from '@chia/api-react';
 
 type Props = {
@@ -28,6 +30,9 @@ export default function ChangePassphrasePrompt(props: Props) {
   const [validateChangePassphraseParams] = useValidateChangePassphraseParams();
   const [removeKeyringPassphrase, { isLoading: isLoadingRemoveKeyringPassphrase }] = useRemoveKeyringPassphraseMutation();
   const [setKeyringPassphrase, { isLoading: isLoadingSetKeyringPassphrase }] = useSetKeyringPassphraseMutation();
+  const [showPassword1, setShowPassword1] = useState(false);
+  const [showPassword2, setShowPassword2] = useState(false);
+  const [showPassword3, setShowPassword3] = useState(false);
 
   const isProcessing = isLoadingRemoveKeyringPassphrase || isLoadingSetKeyringPassphrase;
 
@@ -151,36 +156,51 @@ export default function ChangePassphrasePrompt(props: Props) {
       <DialogTitle id="form-dialog-title">Change Passphrase</DialogTitle>
       <DialogContent>
         <DialogContentText>Enter your current passphrase and a new passphrase:</DialogContentText>
-        <TextField
-          autoFocus
-          disabled={isProcessing}
-          color="secondary"
-          id="currentPassphraseInput"
-          inputRef={(input) => currentPassphraseInput = input}
-          label={<Trans>Current Passphrase</Trans>}
-          type="password"
-          fullWidth
-        />
-        <TextField
-          disabled={isProcessing}
-          color="secondary"
-          margin="dense"
-          id="passphraseInput"
-          inputRef={(input) => passphraseInput = input}
-          label={<Trans>New Passphrase</Trans>}
-          type="password"
-          fullWidth
-        />
-        <TextField
-          disabled={isProcessing}
-          color="secondary"
-          margin="dense"
-          id="confirmationInput"
-          inputRef={(input) => confirmationInput = input}
-          label={<Trans>Confirm New Passphrase</Trans>}
-          type="password"
-          fullWidth
-        />
+        <Flex flexDirection="row" gap={1.5} alignItems="center">
+          <TextField
+            autoFocus
+            disabled={isProcessing}
+            color="secondary"
+            id="currentPassphraseInput"
+            inputRef={(input) => currentPassphraseInput = input}
+            label={<Trans>Current Passphrase</Trans>}
+            type={showPassword1 ? "text" : "password"}
+            fullWidth
+          />
+          <IconButton onClick={() => setShowPassword1(s => !s)}>
+            <VisibilityIcon />
+          </IconButton>
+        </Flex>
+        <Flex flexDirection="row" gap={1.5} alignItems="center">
+          <TextField
+            disabled={isProcessing}
+            color="secondary"
+            margin="dense"
+            id="passphraseInput"
+            inputRef={(input) => passphraseInput = input}
+            label={<Trans>New Passphrase</Trans>}
+            type={showPassword2 ? "text" : "password"}
+            fullWidth
+          />
+          <IconButton onClick={() => setShowPassword2(s => !s)}>
+            <VisibilityIcon />
+          </IconButton>
+        </Flex>
+        <Flex flexDirection="row" gap={1.5} alignItems="center">
+          <TextField
+            disabled={isProcessing}
+            color="secondary"
+            margin="dense"
+            id="confirmationInput"
+            inputRef={(input) => confirmationInput = input}
+            label={<Trans>Confirm New Passphrase</Trans>}
+            type={showPassword3 ? "text" : "password"}
+            fullWidth
+          />
+          <IconButton onClick={() => setShowPassword3(s => !s)}>
+            <VisibilityIcon />
+          </IconButton>
+        </Flex>
         {!!canSetPassphraseHint && (
           <TextField
             disabled={isProcessing}

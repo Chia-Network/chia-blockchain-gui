@@ -1,13 +1,15 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Dialog,
   DialogContent,
   DialogContentText,
   DialogTitle,
+  IconButton,
   TextField,
   Typography,
 } from '@mui/material';
 import { Trans, t } from '@lingui/macro';
+import { Visibility as VisibilityIcon } from '@mui/icons-material';
 import { AlertDialog, Button, DialogActions, Flex, TooltipIcon, useOpenDialog, Suspender } from '@chia/core';
 import { useRemoveKeyringPassphraseMutation, useGetKeyringStatusQuery } from '@chia/api-react';
 
@@ -22,6 +24,7 @@ export default function RemovePassphrasePrompt(props: Props) {
   const { data: keyringState, isLoading } = useGetKeyringStatusQuery();
   const [removeKeyringPassphrase, { isLoading: isLoadingRemoveKeyringPassphrase}] = useRemoveKeyringPassphraseMutation();
   let passphraseInput: HTMLInputElement | null;
+  const [showPassword, setShowPassword] = useState(false);
 
   const [needsFocusAndSelect, setNeedsFocusAndSelect] = React.useState(false);
   useEffect(() => {
@@ -65,7 +68,7 @@ export default function RemovePassphrasePrompt(props: Props) {
       setNeedsFocusAndSelect(true);
     }
   }
-  
+
   function handleCancel() {
     onCancel();
   }
@@ -76,12 +79,12 @@ export default function RemovePassphrasePrompt(props: Props) {
       'Escape' : handleCancel,
     };
     const handler: () => Promise<void> | undefined = keyHandlerMapping[e.key];
-  
+
     if (handler) {
       // Disable default event handling to avoid navigation updates
       e.preventDefault();
       e.stopPropagation();
-  
+
       await handler();
     }
   }
@@ -101,17 +104,22 @@ export default function RemovePassphrasePrompt(props: Props) {
         <DialogContentText>
           <Trans>Enter your passphrase:</Trans>
         </DialogContentText>
-        <TextField
-          autoFocus
-          disabled={isLoadingRemoveKeyringPassphrase}
-          color="secondary"
-          margin="dense"
-          id="passphraseInput"
-          label={<Trans>Passphrase</Trans>}
-          inputRef={(input) => passphraseInput = input}
-          type="password"
-          fullWidth
-        />
+        <Flex flexDirection="row" gap={1.5} alignItems="center">
+          <TextField
+            autoFocus
+            disabled={isLoadingRemoveKeyringPassphrase}
+            color="secondary"
+            margin="dense"
+            id="passphraseInput"
+            label={<Trans>Passphrase</Trans>}
+            inputRef={(input) => passphraseInput = input}
+            type={showPassword ? "text" : "password"}
+            fullWidth
+          />
+          <IconButton onClick={() => setShowPassword(s => !s)}>
+            <VisibilityIcon />
+          </IconButton>
+        </Flex>
         {!!passphraseHint && (
           <Flex gap={1} alignItems="center" style={{ marginTop: '8px' }}>
             <Typography variant="body2" color="textSecondary">
