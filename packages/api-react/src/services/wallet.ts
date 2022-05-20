@@ -1029,13 +1029,27 @@ export const walletApi = apiWithTag.injectEndpoints({
       {
         walletIdsAndAmounts: { [key: string]: number };
         feeInMojos: number;
+        driverDict: any;
         validateOnly?: boolean;
+        disableJSONFormatting?: boolean;
       }
     >({
-      query: ({ walletIdsAndAmounts, feeInMojos, validateOnly }) => ({
+      query: ({
+        walletIdsAndAmounts,
+        feeInMojos,
+        driverDict,
+        validateOnly,
+        disableJSONFormatting,
+      }) => ({
         command: 'createOfferForIds',
         service: Wallet,
-        args: [walletIdsAndAmounts, feeInMojos, validateOnly],
+        args: [
+          walletIdsAndAmounts,
+          feeInMojos,
+          driverDict,
+          validateOnly,
+          disableJSONFormatting,
+        ],
       }),
       invalidatesTags: [
         { type: 'OfferTradeRecord', id: 'LIST' },
@@ -1864,6 +1878,10 @@ export const walletApi = apiWithTag.injectEndpoints({
     getNFTInfo: build.query<any, { coinId: string }>({
       async queryFn(args, _queryApi, _extraOptions, fetchWithBQ) {
         try {
+          if (args.coinId.length !== 64) {
+            throw new Error('Invalid coinId');
+          }
+
           const { data: nftData, error: nftError } = await fetchWithBQ({
             command: 'getNftInfo',
             service: NFT,

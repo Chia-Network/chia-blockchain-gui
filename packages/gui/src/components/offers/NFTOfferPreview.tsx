@@ -22,8 +22,12 @@ export default function NFTOfferPreview(props: NFTOfferPreviewProps) {
     : '2px dashed #E0E0E0';
   // TODO: Load NFT info
   const launcherId = launcherIdFromNFTId(nftId ?? '');
-  const { data, isLoading, error } = useGetNFTInfoQuery({ coinId: launcherId });
-  const nft = data ? { ...data, id: nftId } : undefined;
+  const {
+    data: nft,
+    isLoading,
+    error,
+  } = useGetNFTInfoQuery({ coinId: launcherId });
+  // const nft = data ? { ...data, id: nftId } : undefined;
   // const nft = useGetNFTInfoById(nftId);
 
   return (
