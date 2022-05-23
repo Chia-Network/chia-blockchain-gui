@@ -233,12 +233,14 @@ function buildOfferRequest(
   nft: NFTInfo, // TODO: determine if backend can load this
   nftLauncherId: string,
   xchAmount: string,
+  fee: string,
 ) {
   const baseMojoAmount: BigNumber = chiaToMojo(xchAmount);
   const mojoAmount =
     exchangeType === NFTOfferEditorExchangeType.NFTForXCH
       ? baseMojoAmount
       : baseMojoAmount.negated();
+  const feeMojoAmount = chiaToMojo(fee);
   const nftAmount =
     exchangeType === NFTOfferEditorExchangeType.NFTForXCH ? -1 : 1;
   const xchWalletId = 1;
@@ -265,6 +267,7 @@ function buildOfferRequest(
       [xchWalletId]: mojoAmount,
     },
     driverDict,
+    feeMojoAmount,
   ];
 }
 
@@ -346,11 +349,12 @@ export default function NFTOfferEditor(props: NFTOfferEditorProps) {
     console.log(offerNFT);
 
     const { exchangeType, launcherId, xchAmount, fee } = formData;
-    const [offer, driverDict] = buildOfferRequest(
+    const [offer, driverDict, feeInMojos] = buildOfferRequest(
       exchangeType,
       offerNFT,
       launcherId,
       xchAmount,
+      fee,
     );
 
     console.log('offer:');
@@ -369,17 +373,11 @@ export default function NFTOfferEditor(props: NFTOfferEditorProps) {
     try {
       const response = await createOfferForIds({
         walletIdsAndAmounts: offer,
-        feeInMojos: 0, // TODO: Fix
+        feeInMojos,
         driverDict,
         validateOnly: false,
         disableJSONFormatting: true,
       }).unwrap();
-      // const response = {
-      //   success: true,
-      //   error: '',
-      //   offer: '',
-      //   tradeRecord: {},
-      // };
 
       if (response.success === false) {
         const error =

@@ -7,7 +7,6 @@ import type { DropdownActionsChildProps } from '@chia/core';
 import { Offers as OffersIcon } from '@chia/icons';
 import { ListItemIcon, MenuItem, Typography } from '@mui/material';
 import { ArrowForward as TransferIcon } from '@mui/icons-material';
-import NFTCreateOfferDemoDialog from './NFTCreateOfferDemo';
 import { NFTTransferDialog, NFTTransferResult } from './NFTTransferAction';
 import NFTSelection from '../../types/NFTSelection';
 
