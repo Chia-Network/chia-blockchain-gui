@@ -269,12 +269,25 @@ export default class Wallet extends Service {
     });
   }
 
-  async createOfferForIds(offer: { [key: string]: number }, fee: number, validateOnly?: boolean) {
-    return this.command('create_offer_for_ids', {
-      offer,
-      fee,
-      validateOnly: !!validateOnly,
-    });
+  async createOfferForIds(
+    offer: { [key: string]: number },
+    fee: number,
+    driverDict: any,
+    validateOnly?: boolean,
+    disableJSONFormatting?: boolean
+  ) {
+    return this.command(
+      'create_offer_for_ids',
+      {
+        offer,
+        fee,
+        driver_dict: driverDict,
+        validate_only: !!validateOnly,
+      },
+      false,
+      undefined,
+      disableJSONFormatting
+    );
   }
 
   async cancelOffer(tradeId: string, secure: boolean, fee: number | string) {

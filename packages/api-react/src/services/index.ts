@@ -153,6 +153,7 @@ export const {
 
   // NFTs
   useGetNFTsQuery,
+  useGetNFTInfoQuery,
   useTransferNFTMutation,
   useReceiveNFTMutation,
 } = wallet;
