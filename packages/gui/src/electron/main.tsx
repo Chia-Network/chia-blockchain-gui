@@ -17,6 +17,7 @@ import { i18n } from '../config/locales';
 import About from '../components/about/About';
 import packageJson from '../../package.json';
 import AppIcon from '../assets/img/chia64x64.png';
+import windowStateKeeper  from 'electron-window-state';
 
 const NET = 'mainnet';
 
@@ -206,9 +207,15 @@ if (!handleSquirrelEvent()) {
       });
 
       decidedToClose = false;
+      const mainWindowState = windowStateKeeper({
+        defaultWidth: 1200,
+        defaultHeight: 1200
+      });
       mainWindow = new BrowserWindow({
-        width: 1200,
-        height: 1200,
+        x: mainWindowState.x,
+        y: mainWindowState.y,
+        width: mainWindowState.width,
+        height: mainWindowState.height,
         minWidth: 500,
         minHeight: 500,
         backgroundColor: '#ffffff',
@@ -220,6 +227,8 @@ if (!handleSquirrelEvent()) {
           nativeWindowOpen: true
         },
       });
+
+      mainWindowState.manage(mainWindow);
 
       if(process.platform === 'linux') {
         mainWindow.setIcon(appIcon);
@@ -277,6 +286,9 @@ if (!handleSquirrelEvent()) {
           isClosing = false;
           decidedToClose = true;
           mainWindow.webContents.send('exit-daemon');
+          // save the window state and unmange so we don't restore the mini exiting state
+          mainWindowState.saveState(mainWindow);
+          mainWindowState.unmanage(mainWindow);
           mainWindow.setBounds({height: 500, width: 500});
           mainWindow.center();
           ipcMain.on('daemon-exited', (event, args) => {
@@ -397,7 +409,7 @@ if (!handleSquirrelEvent()) {
                 click: () => mainWindow.toggleDevTools(),
               },
               {
-                label: isSimulator 
+                label: isSimulator
                   ? i18n._(/* i18n */ { id: 'Disable Simulator' })
                   : i18n._(/* i18n */ { id: 'Enable Simulator' }),
                 click: () => toggleSimulatorMode(),
