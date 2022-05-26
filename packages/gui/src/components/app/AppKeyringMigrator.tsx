@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useState } from 'react';
 import { t, Trans } from '@lingui/macro';
 import {
   Box,
@@ -10,15 +10,17 @@ import {
   DialogTitle,
   Fade,
   FormControlLabel,
+  IconButton,
   TextField,
   Tooltip,
   Typography,
 } from '@mui/material';
 import {
   Help as HelpIcon,
+  Visibility as VisibilityIcon,
 } from '@mui/icons-material';
 import { useGetKeyringStatusQuery, useMigrateKeyringMutation } from '@chia/api-react';
-import { Button, AlertDialog, ConfirmDialog, useOpenDialog, useValidateChangePassphraseParams, Suspender, useSkipMigration } from '@chia/core';
+import { Button, AlertDialog, ConfirmDialog, Flex, useOpenDialog, useValidateChangePassphraseParams, Suspender, useSkipMigration } from '@chia/core';
 
 export default function AppKeyringMigrator() {
   const [validateChangePassphraseParams] = useValidateChangePassphraseParams();
@@ -26,6 +28,8 @@ export default function AppKeyringMigrator() {
   const { data: keyringState, isLoading } = useGetKeyringStatusQuery();
   const [migrateKeyring, { isLoading: isLoadingMigrateKeyring}] = useMigrateKeyringMutation();
   const [_skipMigration, setSkipMigration] = useSkipMigration();
+  const [showPassphraseText1, setShowPassphraseText1] = useState(false);
+  const [showPassphraseText2, setShowPassphraseText2] = useState(false);
 
   if (isLoading) {
     return (
@@ -33,7 +37,7 @@ export default function AppKeyringMigrator() {
     );
   }
 
-  const { 
+  const {
     allowEmptyPassphrase,
     canSetPassphraseHint,
     canSavePassphrase,
@@ -129,29 +133,39 @@ export default function AppKeyringMigrator() {
             Enter a strong passphrase and click Migrate Keys to secure your keys
           </Trans>
         </Typography>
-        <TextField
-          autoFocus
-          color="secondary"
-          disabled={isLoadingMigrateKeyring}
-          margin="dense"
-          id="passphrase_input"
-          label={<Trans>Passphrase</Trans>}
-          placeholder={t`Passphrase`}
-          inputRef={(input: HTMLInputElement) => passphraseInput = input}
-          type="password"
-          fullWidth
+        <Flex flexDirection="row" gap={1.5} alignItems="center">
+          <TextField
+            autoFocus
+            color="secondary"
+            disabled={isLoadingMigrateKeyring}
+            margin="dense"
+            id="passphrase_input"
+            label={<Trans>Passphrase</Trans>}
+            placeholder={t`Passphrase`}
+            inputRef={(input: HTMLInputElement) => passphraseInput = input}
+            type={showPassphraseText1 ? "text" : "password"}
+            fullWidth
           />
-        <TextField
-          color="secondary"
-          disabled={isLoadingMigrateKeyring}
-          margin="dense"
-          id="confirmation_input"
-          label={<Trans>Confirm Passphrase</Trans>}
-          placeholder={t`Confirm Passphrase`}
-          inputRef={(input: HTMLInputElement) => confirmationInput = input}
-          type="password"
-          fullWidth
+          <IconButton onClick={() => setShowPassphraseText1(s => !s)}>
+            <VisibilityIcon />
+          </IconButton>
+        </Flex>
+        <Flex flexDirection="row" gap={1.5} alignItems="center">
+          <TextField
+            color="secondary"
+            disabled={isLoadingMigrateKeyring}
+            margin="dense"
+            id="confirmation_input"
+            label={<Trans>Confirm Passphrase</Trans>}
+            placeholder={t`Confirm Passphrase`}
+            inputRef={(input: HTMLInputElement) => confirmationInput = input}
+            type={showPassphraseText2 ? "text" : "password"}
+            fullWidth
           />
+          <IconButton onClick={() => setShowPassphraseText2(s => !s)}>
+            <VisibilityIcon />
+          </IconButton>
+        </Flex>
         {canSetPassphraseHint && (
           <TextField
             disabled={isLoadingMigrateKeyring}

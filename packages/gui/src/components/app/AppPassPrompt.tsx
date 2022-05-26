@@ -1,13 +1,15 @@
-import React, { useEffect, KeyboardEvent } from 'react';
+import React, { useEffect, useState, KeyboardEvent } from 'react';
 import {
   Dialog,
   DialogTitle,
   DialogContent,
   DialogActions,
+  IconButton,
   TextField,
   Typography,
 } from '@mui/material';
 import { Trans, t } from '@lingui/macro';
+import { Visibility as VisibilityIcon } from '@mui/icons-material';
 import { PassphrasePromptReason } from '@chia/api';
 import { useUnlockKeyringMutation, useGetKeyringStatusQuery } from '@chia/api-react';
 import { Button, Flex, TooltipIcon, useShowError, Suspender, ButtonLoading } from '@chia/core';
@@ -21,6 +23,7 @@ export default function AppPassPrompt(props: Props) {
   const showError = useShowError();
   const { data: keyringState, isLoading } = useGetKeyringStatusQuery();
   const [unlockKeyring, { isLoading: isLoadingUnlockKeyring }] = useUnlockKeyringMutation();
+  const [showPassphraseText, setShowPassphraseText] = useState(false);
 
   let passphraseInput: HTMLInputElement | null = null;
 
@@ -110,17 +113,22 @@ export default function AppPassPrompt(props: Props) {
           <DialogTitle id="form-dialog-title">{dialogTitle}</DialogTitle>
           <DialogContent>
             <Flex flexDirection="column" gap={1}>
-              <TextField
-                autoFocus
-                color="secondary"
-                disabled={isLoadingUnlockKeyring}
-                margin="dense"
-                id="passphraseInput"
-                label={<Trans>Passphrase</Trans>}
-                inputRef={(input: HTMLInputElement) => passphraseInput = input}
-                type="password"
-                fullWidth
-              />
+              <Flex flexDirection="row" gap={1.5} alignItems="center">
+                <TextField
+                  autoFocus
+                  color="secondary"
+                  disabled={isLoadingUnlockKeyring}
+                  margin="dense"
+                  id="passphraseInput"
+                  label={<Trans>Passphrase</Trans>}
+                  inputRef={(input: HTMLInputElement) => passphraseInput = input}
+                  type={showPassphraseText ? "text" : "password"}
+                  fullWidth
+                />
+                <IconButton onClick={() => setShowPassphraseText(s => !s)}>
+                  <VisibilityIcon />
+                </IconButton>
+              </Flex>
               {passphraseHint && passphraseHint.length > 0 && (
                 <Flex gap={1} alignItems="center">
                   <Typography variant="body2" color="textSecondary">
