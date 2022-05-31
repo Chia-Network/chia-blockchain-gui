@@ -5,11 +5,15 @@ import {
   DialogContentText,
   DialogTitle,
   IconButton,
+  InputAdornment,
   TextField,
   Typography,
 } from '@mui/material';
 import { Trans, t } from '@lingui/macro';
-import { Visibility as VisibilityIcon } from '@mui/icons-material';
+import {
+  KeyboardCapslock as KeyboardCapslockIcon,
+  Visibility as VisibilityIcon,
+} from '@mui/icons-material';
 import { AlertDialog, Button, DialogActions, Flex, TooltipIcon, useOpenDialog, Suspender } from '@chia/core';
 import { useRemoveKeyringPassphraseMutation, useGetKeyringStatusQuery } from '@chia/api-react';
 
@@ -25,6 +29,7 @@ export default function RemovePassphrasePrompt(props: Props) {
   const [removeKeyringPassphrase, { isLoading: isLoadingRemoveKeyringPassphrase}] = useRemoveKeyringPassphraseMutation();
   let passphraseInput: HTMLInputElement | null;
   const [showPassphraseText, setShowPassphraseText] = useState(false);
+  const [showCapsLock, setShowCapsLock] = useState(false);
 
   const [needsFocusAndSelect, setNeedsFocusAndSelect] = React.useState(false);
   useEffect(() => {
@@ -74,6 +79,10 @@ export default function RemovePassphrasePrompt(props: Props) {
   }
 
   async function handleKeyDown(e: React.KeyboardEvent) {
+    if (e.getModifierState("CapsLock")) {
+      setShowCapsLock(true);
+    }
+
     const keyHandlerMapping: { [key: string]: () => Promise<void> } = {
       'Enter' : handleSubmit,
       'Escape' : handleCancel,
@@ -89,6 +98,12 @@ export default function RemovePassphrasePrompt(props: Props) {
     }
   }
 
+  const handleKeyUp = (event) => {
+    if (event.key === "CapsLock") {
+      setShowCapsLock(false);
+    }
+  }
+
   return (
     <Dialog
       open={true}
@@ -96,6 +111,7 @@ export default function RemovePassphrasePrompt(props: Props) {
       fullWidth={true}
       maxWidth = {'xs'}
       onKeyDown={handleKeyDown}
+      onKeyUp={handleKeyUp}
     >
       <DialogTitle id="form-dialog-title">
         <Trans>Remove Passphrase</Trans>
@@ -106,7 +122,6 @@ export default function RemovePassphrasePrompt(props: Props) {
         </DialogContentText>
         <Flex flexDirection="row" gap={1.5} alignItems="center">
           <TextField
-            autoFocus
             disabled={isLoadingRemoveKeyringPassphrase}
             color="secondary"
             margin="dense"
@@ -114,11 +129,18 @@ export default function RemovePassphrasePrompt(props: Props) {
             label={<Trans>Passphrase</Trans>}
             inputRef={(input) => passphraseInput = input}
             type={showPassphraseText ? "text" : "password"}
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  {showCapsLock && <div><KeyboardCapslockIcon /></div>}
+                  <IconButton onClick={() => setShowPassphraseText(s => !s)}>
+                    <VisibilityIcon />
+                  </IconButton>
+                </InputAdornment>
+              )
+            }}
             fullWidth
           />
-          <IconButton onClick={() => setShowPassphraseText(s => !s)}>
-            <VisibilityIcon />
-          </IconButton>
         </Flex>
         {!!passphraseHint && (
           <Flex gap={1} alignItems="center" style={{ marginTop: '8px' }}>

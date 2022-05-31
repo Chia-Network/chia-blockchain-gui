@@ -8,11 +8,13 @@ import {
   DialogTitle,
   FormControlLabel,
   IconButton,
+  InputAdornment,
   TextField,
   Tooltip,
 } from '@mui/material';
 import {
   Help as HelpIcon,
+  KeyboardCapslock as KeyboardCapslockIcon,
   Visibility as VisibilityIcon,
 } from '@mui/icons-material';
 import { t, Trans } from '@lingui/macro';
@@ -33,6 +35,7 @@ export default function ChangePassphrasePrompt(props: Props) {
   const [showPassphraseText1, setShowPassphraseText1] = useState(false);
   const [showPassphraseText2, setShowPassphraseText2] = useState(false);
   const [showPassphraseText3, setShowPassphraseText3] = useState(false);
+  const [showCapsLock, setShowCapsLock] = useState(false);
 
   const isProcessing = isLoadingRemoveKeyringPassphrase || isLoadingSetKeyringPassphrase;
 
@@ -134,6 +137,11 @@ export default function ChangePassphrasePrompt(props: Props) {
       'Enter' : handleSubmit,
       'Escape' : handleCancel,
     };
+
+    if (e.getModifierState("CapsLock")) {
+      setShowCapsLock(true);
+    }
+
     const handler: () => Promise<void> | undefined = keyHandlerMapping[e.key];
 
     if (handler) {
@@ -145,12 +153,19 @@ export default function ChangePassphrasePrompt(props: Props) {
     }
   }
 
+  const handleKeyUp = (event) => {
+    if (event.key === "CapsLock") {
+      setShowCapsLock(false);
+    }
+  }
+
   return (
     <Dialog
       open
       aria-labelledby="form-dialog-title"
       fullWidth={true}
       maxWidth="sm"
+      onKeyUp={handleKeyUp}
       onKeyDown={handleKeyDown}
     >
       <DialogTitle id="form-dialog-title">Change Passphrase</DialogTitle>
@@ -165,11 +180,18 @@ export default function ChangePassphrasePrompt(props: Props) {
             inputRef={(input) => currentPassphraseInput = input}
             label={<Trans>Current Passphrase</Trans>}
             type={showPassphraseText1 ? "text" : "password"}
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  {showCapsLock && <div><KeyboardCapslockIcon /></div>}
+                  <IconButton onClick={() => setShowPassphraseText1(s => !s)}>
+                    <VisibilityIcon />
+                  </IconButton>
+                </InputAdornment>
+              )
+            }}
             fullWidth
           />
-          <IconButton onClick={() => setShowPassphraseText1(s => !s)}>
-            <VisibilityIcon />
-          </IconButton>
         </Flex>
         <Flex flexDirection="row" gap={1.5} alignItems="center">
           <TextField
@@ -180,11 +202,18 @@ export default function ChangePassphrasePrompt(props: Props) {
             inputRef={(input) => passphraseInput = input}
             label={<Trans>New Passphrase</Trans>}
             type={showPassphraseText2 ? "text" : "password"}
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  {showCapsLock && <div><KeyboardCapslockIcon /></div>}
+                  <IconButton onClick={() => setShowPassphraseText2(s => !s)}>
+                    <VisibilityIcon />
+                  </IconButton>
+                </InputAdornment>
+              )
+            }}
             fullWidth
           />
-          <IconButton onClick={() => setShowPassphraseText2(s => !s)}>
-            <VisibilityIcon />
-          </IconButton>
         </Flex>
         <Flex flexDirection="row" gap={1.5} alignItems="center">
           <TextField
@@ -195,11 +224,18 @@ export default function ChangePassphrasePrompt(props: Props) {
             inputRef={(input) => confirmationInput = input}
             label={<Trans>Confirm New Passphrase</Trans>}
             type={showPassphraseText3 ? "text" : "password"}
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  {showCapsLock && <div><KeyboardCapslockIcon /></div>}
+                  <IconButton onClick={() => setShowPassphraseText3(s => !s)}>
+                    <VisibilityIcon />
+                  </IconButton>
+                </InputAdornment>
+              )
+            }}
             fullWidth
           />
-          <IconButton onClick={() => setShowPassphraseText3(s => !s)}>
-            <VisibilityIcon />
-          </IconButton>
         </Flex>
         {!!canSetPassphraseHint && (
           <TextField

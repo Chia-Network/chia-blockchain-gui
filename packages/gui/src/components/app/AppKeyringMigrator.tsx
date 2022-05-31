@@ -11,12 +11,14 @@ import {
   Fade,
   FormControlLabel,
   IconButton,
+  InputAdornment,
   TextField,
   Tooltip,
   Typography,
 } from '@mui/material';
 import {
   Help as HelpIcon,
+  KeyboardCapslock as KeyboardCapslockIcon,
   Visibility as VisibilityIcon,
 } from '@mui/icons-material';
 import { useGetKeyringStatusQuery, useMigrateKeyringMutation } from '@chia/api-react';
@@ -30,6 +32,7 @@ export default function AppKeyringMigrator() {
   const [_skipMigration, setSkipMigration] = useSkipMigration();
   const [showPassphraseText1, setShowPassphraseText1] = useState(false);
   const [showPassphraseText2, setShowPassphraseText2] = useState(false);
+  const [showCapsLock, setShowCapsLock] = useState(false);
 
   if (isLoading) {
     return (
@@ -118,12 +121,26 @@ export default function AppKeyringMigrator() {
     );
   }
 
+  function handleKeyDown(e: KeyboardEvent): void {
+    if (e.getModifierState("CapsLock")) {
+      setShowCapsLock(true);
+    }
+  }
+
+  const handleKeyUp = (event) => {
+    if (event.key === "CapsLock") {
+      setShowCapsLock(false);
+    }
+  }
+
   return (
     <Dialog
       aria-labelledby="keyring-migration-dialog-title"
       fullWidth={true}
       maxWidth={'sm'}
       open
+      onKeyDown={handleKeyDown}
+      onKeyUp={handleKeyUp}
       >
       <DialogTitle id="keyring-migration-dialog-title"><Trans>Migration required</Trans></DialogTitle>
       <DialogContent>
@@ -144,11 +161,18 @@ export default function AppKeyringMigrator() {
             placeholder={t`Passphrase`}
             inputRef={(input: HTMLInputElement) => passphraseInput = input}
             type={showPassphraseText1 ? "text" : "password"}
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  {showCapsLock && <div><KeyboardCapslockIcon /></div>}
+                  <IconButton onClick={() => setShowPassphraseText1(s => !s)}>
+                    <VisibilityIcon />
+                  </IconButton>
+                </InputAdornment>
+              )
+            }}
             fullWidth
           />
-          <IconButton onClick={() => setShowPassphraseText1(s => !s)}>
-            <VisibilityIcon />
-          </IconButton>
         </Flex>
         <Flex flexDirection="row" gap={1.5} alignItems="center">
           <TextField
@@ -160,11 +184,18 @@ export default function AppKeyringMigrator() {
             placeholder={t`Confirm Passphrase`}
             inputRef={(input: HTMLInputElement) => confirmationInput = input}
             type={showPassphraseText2 ? "text" : "password"}
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  {showCapsLock && <div><KeyboardCapslockIcon /></div>}
+                  <IconButton onClick={() => setShowPassphraseText2(s => !s)}>
+                    <VisibilityIcon />
+                  </IconButton>
+                </InputAdornment>
+              )
+            }}
             fullWidth
           />
-          <IconButton onClick={() => setShowPassphraseText2(s => !s)}>
-            <VisibilityIcon />
-          </IconButton>
         </Flex>
         {canSetPassphraseHint && (
           <TextField

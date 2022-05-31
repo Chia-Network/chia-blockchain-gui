@@ -5,11 +5,15 @@ import {
   DialogContent,
   DialogActions,
   IconButton,
+  InputAdornment,
   TextField,
   Typography,
 } from '@mui/material';
 import { Trans, t } from '@lingui/macro';
-import { Visibility as VisibilityIcon } from '@mui/icons-material';
+import {
+  KeyboardCapslock as KeyboardCapslockIcon,
+  Visibility as VisibilityIcon,
+} from '@mui/icons-material';
 import { PassphrasePromptReason } from '@chia/api';
 import { useUnlockKeyringMutation, useGetKeyringStatusQuery } from '@chia/api-react';
 import { Button, Flex, TooltipIcon, useShowError, Suspender, ButtonLoading } from '@chia/core';
@@ -24,6 +28,7 @@ export default function AppPassPrompt(props: Props) {
   const { data: keyringState, isLoading } = useGetKeyringStatusQuery();
   const [unlockKeyring, { isLoading: isLoadingUnlockKeyring }] = useUnlockKeyringMutation();
   const [showPassphraseText, setShowPassphraseText] = useState(false);
+  const [showCapsLock, setShowCapsLock] = useState(false);
 
   let passphraseInput: HTMLInputElement | null = null;
 
@@ -68,6 +73,16 @@ export default function AppPassPrompt(props: Props) {
     if (e.key === 'Enter') {
       handleSubmit();
     }
+
+    if (e.getModifierState("CapsLock")) {
+      setShowCapsLock(true);
+    }
+  }
+
+  const handleKeyUp = (event) => {
+    if (event.key === "CapsLock") {
+      setShowCapsLock(false);
+    }
   }
 
   let dialogTitle: React.ReactElement;
@@ -105,6 +120,7 @@ export default function AppPassPrompt(props: Props) {
       <div>
         <Dialog
           onKeyDown={handleKeyDown}
+          onKeyUp={handleKeyUp}
           open={true}
           aria-labelledby="form-dialog-title"
           fullWidth={true}
@@ -123,11 +139,18 @@ export default function AppPassPrompt(props: Props) {
                   label={<Trans>Passphrase</Trans>}
                   inputRef={(input: HTMLInputElement) => passphraseInput = input}
                   type={showPassphraseText ? "text" : "password"}
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        {showCapsLock && <div><KeyboardCapslockIcon /></div>}
+                        <IconButton onClick={() => setShowPassphraseText(s => !s)}>
+                          <VisibilityIcon />
+                        </IconButton>
+                      </InputAdornment>
+                    )
+                  }}
                   fullWidth
                 />
-                <IconButton onClick={() => setShowPassphraseText(s => !s)}>
-                  <VisibilityIcon />
-                </IconButton>
               </Flex>
               {passphraseHint && passphraseHint.length > 0 && (
                 <Flex gap={1} alignItems="center">
