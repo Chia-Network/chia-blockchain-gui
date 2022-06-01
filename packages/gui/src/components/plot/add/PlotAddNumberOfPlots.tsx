@@ -77,7 +77,7 @@ export default function PlotAddNumberOfPlots(props: Props) {
                 </Flex>
               </RadioGroup>
             </FormControl>
-          </Grid>        
+          </Grid>
         )}
 
         {parallel && (
@@ -306,6 +306,17 @@ export default function PlotAddNumberOfPlots(props: Props) {
                 variant="filled"
                 placeholder="Hex public key of pool"
                 label={<Trans>Pool Public Key</Trans>}
+              />
+            </FormControl>
+          </Grid>
+          <Grid xs={12} item>
+            <FormControl variant="filled" fullWidth>
+              <TextField
+                name="plotNFTContractAddr"
+                type="text"
+                variant="filled"
+                placeholder="Plot NFT Plot Target Address, This will be used if a PlotNFT is not selected."
+                label={<Trans>Plot NFT Pool Contract Address</Trans>}
               />
             </FormControl>
           </Grid>
