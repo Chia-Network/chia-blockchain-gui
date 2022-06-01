@@ -117,7 +117,7 @@ msgstr "Tambahkan Plot ke Antrian"
 
 #: src/components/farm/FarmHero.tsx:40
 #: src/components/plot/PlotHeader.tsx:60
-#: src/components/plot/add/PlotAddForm.tsx:173
+#: src/components/plot/add/PlotAddForm.tsx:179
 #: src/components/plot/overview/PlotOverviewHero.tsx:51
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:229
 #: src/components/plotNFT/PlotNFTCard.tsx:268
@@ -546,7 +546,7 @@ msgstr "Berkontribusi di GitHub"
 #~ msgstr "Copy to Clipboard"
 
 #: src/components/backup/BackupCreate.tsx:59
-#: src/components/plot/add/PlotAddForm.tsx:190
+#: src/components/plot/add/PlotAddForm.tsx:196
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:181
 msgid "Create"
 msgstr "Buat"
@@ -653,7 +653,7 @@ msgstr "Buat sebuah Plot NFT dan gabung ke Pool"
 msgid "Creating Plot NFT for Self Pooling"
 msgstr "Buat sebuah Plot NFT untuk Pool Sendiri"
 
-#: src/components/plot/add/PlotAddForm.tsx:105
+#: src/components/plot/add/PlotAddForm.tsx:107
 msgid "Currency code is not defined"
 msgstr "Kode mata uang diperlukan"
 
@@ -1865,6 +1865,10 @@ msgstr "Key Plot"
 #~ msgid "Plot NFT"
 #~ msgstr ""
 
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:319
+msgid "Plot NFT Pool Contract Address"
+msgstr ""
+
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:111
 #: src/components/plotNFT/PlotNFTChangePool.tsx:92
 msgid "Plot NFT with p2_singleton_puzzle_hash {plotNFTId} does not exists"
@@ -1925,7 +1929,8 @@ msgstr "Plot dengan kunci yang hilang"
 
 #: src/components/plot/overview/PlotOverviewHero.tsx:33
 msgid "Plots are allocated space on your hard drive used to farm and earn Chia.<0>Learn more</0>"
-msgstr "Plot adalah penempatan ruang dalam hard drive yang digunakan untuk disewakan dan memperoleh Chia\n"
+msgstr ""
+"Plot adalah penempatan ruang dalam hard drive yang digunakan untuk disewakan dan memperoleh Chia\n"
 "<0>Pelajari lebih lanjut</0>"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:103
@@ -3256,7 +3261,7 @@ msgstr "[Error 22] File tidak di temukan. Kemungkinan besar salah satu folder pl
 #~ msgid "not synced"
 #~ msgstr "not synced"
 
-#: src/components/plot/add/PlotAddForm.tsx:123
+#: src/components/plot/add/PlotAddForm.tsx:125
 msgid "p2SingletonPuzzleHash is not defined"
 msgstr "p2_singleton_puzzle_hash belum ter definisi"
 
@@ -3323,4 +3328,3 @@ msgstr "{0} poin {1} - {2} jam yang lalu"
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:118
 msgid "{warning}"
 msgstr "{warning}"
-
