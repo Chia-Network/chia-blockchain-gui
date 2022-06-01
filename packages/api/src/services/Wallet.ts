@@ -417,4 +417,18 @@ export default class Wallet extends Service {
   ) {
     return this.onStateChanged('offer_cancelled', callback, processData);
   }
+
+  onNFTCoinTransferred(
+    callback: (
+      data: {
+        additionalData: Object;
+        state: 'nft_coin_transferred';
+        success: boolean;
+        walletId: number;
+      },
+      message: Message
+    ) => void
+  ) {
+    return this.onStateChanged('nft_coin_transferred', callback);
+  }
 }
