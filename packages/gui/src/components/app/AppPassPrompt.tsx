@@ -141,12 +141,14 @@ export default function AppPassPrompt(props: Props) {
                   type={showPassphraseText ? "text" : "password"}
                   InputProps={{
                     endAdornment: (
-                      <InputAdornment position="end">
-                        {showCapsLock && <div><KeyboardCapslockIcon /></div>}
-                        <IconButton onClick={() => setShowPassphraseText(s => !s)}>
-                          <VisibilityIcon />
-                        </IconButton>
-                      </InputAdornment>
+                      <Flex alignItems="center">
+                        <InputAdornment position="end">
+                          {showCapsLock && <Flex><KeyboardCapslockIcon /></Flex>}
+                          <IconButton onClick={() => setShowPassphraseText(s => !s)}>
+                            <VisibilityIcon />
+                          </IconButton>
+                        </InputAdornment>
+                      </Flex>
                     )
                   }}
                   fullWidth
