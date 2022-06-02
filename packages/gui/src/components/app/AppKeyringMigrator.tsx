@@ -163,12 +163,14 @@ export default function AppKeyringMigrator() {
             type={showPassphraseText1 ? "text" : "password"}
             InputProps={{
               endAdornment: (
-                <InputAdornment position="end">
-                  {showCapsLock && <div><KeyboardCapslockIcon /></div>}
-                  <IconButton onClick={() => setShowPassphraseText1(s => !s)}>
-                    <VisibilityIcon />
-                  </IconButton>
-                </InputAdornment>
+                <Flex alignItems="center">
+                  <InputAdornment position="end">
+                    {showCapsLock && <Flex><KeyboardCapslockIcon /></Flex>}
+                    <IconButton onClick={() => setShowPassphraseText1(s => !s)}>
+                      <VisibilityIcon />
+                    </IconButton>
+                  </InputAdornment>
+                </Flex>
               )
             }}
             fullWidth
@@ -186,12 +188,14 @@ export default function AppKeyringMigrator() {
             type={showPassphraseText2 ? "text" : "password"}
             InputProps={{
               endAdornment: (
-                <InputAdornment position="end">
-                  {showCapsLock && <div><KeyboardCapslockIcon /></div>}
-                  <IconButton onClick={() => setShowPassphraseText2(s => !s)}>
-                    <VisibilityIcon />
-                  </IconButton>
-                </InputAdornment>
+                <Flex alignItems="center">
+                  <InputAdornment position="end">
+                    {showCapsLock && <Flex><KeyboardCapslockIcon /></Flex>}
+                    <IconButton onClick={() => setShowPassphraseText2(s => !s)}>
+                      <VisibilityIcon />
+                    </IconButton>
+                  </InputAdornment>
+                </Flex>
               )
             }}
             fullWidth
