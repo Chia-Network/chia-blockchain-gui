@@ -129,13 +129,15 @@ export default function WalletTokenCard(props: WalletTokenCardProps) {
             </Link>
           )}
         </Flex>
-        <Box width="60px" textAlign="center">
-          {isLoading ? (
-            <CircularProgress size={32} />
-          ) : (
-            <Switch checked={!hidden} onChange={handleVisibleChange} />
-          )}
-        </Box>
+        {walletType !== WalletType.STANDARD_WALLET && (
+          <Box width="60px" textAlign="center">
+            {isLoading ? (
+              <CircularProgress size={32} />
+            ) : (
+              <Switch checked={!hidden} onChange={handleVisibleChange} />
+            )}
+          </Box>
+        )}
       </Flex>
     </CardListItem>
   );

@@ -38,7 +38,10 @@ function getTypeOrder(item: ListItem) {
   }
 }
 
-export default function useWalletsList(search?: string): {
+export default function useWalletsList(
+  search?: string,
+  walletTypes: WalletType[]
+): {
   list?: ListItem[];
   isLoading: boolean;
   hide: (walletId: number) => void;
@@ -161,6 +164,11 @@ export default function useWalletsList(search?: string): {
         name: getCATName(strayCat.assetId),
       })),
     ];
+
+    // Filter by requested wallet types
+    tokens = tokens.filter(token =>
+      walletTypes.includes(token.walletType as WalletType)
+    );
 
     if (search) {
       tokens = tokens.filter((token) => token.name.toLowerCase().includes(search.toLowerCase()));
