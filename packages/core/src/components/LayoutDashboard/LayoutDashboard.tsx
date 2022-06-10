@@ -76,44 +76,54 @@ export default function LayoutDashboard(props: LayoutDashboardProps) {
       <Suspense fallback={<Loading center />}>
         {sidebar ? (
           <>
-            <StyledAppBar position="fixed" color="transparent" elevation={0} drawer>
+            <StyledAppBar
+              position="fixed"
+              color="transparent"
+              elevation={0}
+              drawer
+            >
               <StyledToolbar>
-                  <Flex alignItems="center" width="100%">
-                    <Box flexGrow={1}>
+                <Flex width="100%" alignItems="center" justifyContent="space-between" gap={3}>
+                  <Flex alignItems="center" flexGrow={1} justifyContent="space-between" flexWrap="wrap" gap={1}>
+                    <Box>
                       <Typography variant="h4">
-                        <Trans>
-                          Wallet
-                        </Trans>
+                        <Trans>Wallet</Trans>
                         &nbsp;
                         {fingerprint && (
-                          <StyledInlineTypography color="textSecondary" variant="h5">
+                          <StyledInlineTypography
+                            color="textSecondary"
+                            variant="h5"
+                          >
                             {fingerprint}
                           </StyledInlineTypography>
                         )}
                       </Typography>
                     </Box>
-                    <Flex gap={4}>
+                    <Flex alignItems="center" gap={1}>
                       {actions}
-                      {/*
-                      <DropdownIconButton
-                        icon={<Notifications />}
-                        title={t`Notifications`}
-                      >
-                        {({ onClose }) => (
-                          <MenuItem onClick={onClose}>
-                            CAT Wallet TEST is now available
-                          </MenuItem>
-                        )}
-                      </DropdownIconButton>
-                      &nbsp;
-                      */}
+                    </Flex>
+                  </Flex>
+                  <Box>
+                                        {/*
+                        <DropdownIconButton
+                          icon={<Notifications />}
+                          title={t`Notifications`}
+                        >
+                          {({ onClose }) => (
+                            <MenuItem onClick={onClose}>
+                              CAT Wallet TEST is now available
+                            </MenuItem>
+                          )}
+                        </DropdownIconButton>
+                        &nbsp;
+                        */}
                       <Tooltip title={<Trans>Log Out</Trans>}>
                         <IconButton onClick={handleLogout}>
                           <ExitToAppIcon />
                         </IconButton>
                       </Tooltip>
-                    </Flex>
-                  </Flex>
+                  </Box>
+                </Flex>
               </StyledToolbar>
             </StyledAppBar>
             <StyledDrawer variant="permanent">
