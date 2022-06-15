@@ -26,7 +26,7 @@ msgstr "(Não instalado)"
 msgid "(Not Supported)"
 msgstr "(Não Suportado)"
 
-#: src/components/plot/add/PlotAddNFT.tsx:71
+#: src/components/plot/add/PlotAddNFT.tsx:67
 msgid "(Optional)"
 msgstr "(Opcional)"
 
@@ -38,7 +38,7 @@ msgstr "*Quer explorar mais os blocos de Chia? Confira o <0> Chia Explorer </0> 
 #~ msgid "+"
 #~ msgstr "+"
 
-#: src/components/plot/add/PlotAddNFT.tsx:132
+#: src/components/plot/add/PlotAddNFT.tsx:128
 msgid "+ Add New Plot NFT"
 msgstr "+ Adicionar Nova Plot NFT"
 
@@ -547,7 +547,7 @@ msgstr "Contribua no GitHub"
 
 #: src/components/backup/BackupCreate.tsx:59
 #: src/components/plot/add/PlotAddForm.tsx:190
-#: src/components/plotNFT/select/PlotNFTSelectPool.tsx:181
+#: src/components/plotNFT/select/PlotNFTSelectPool.tsx:198
 msgid "Create"
 msgstr "Criar"
 
@@ -605,7 +605,7 @@ msgstr ""
 msgid "Create a Backup"
 msgstr "Crie um backup"
 
-#: src/components/plot/add/PlotAddNFT.tsx:50
+#: src/components/plot/add/PlotAddNFT.tsx:47
 msgid "Create a Plot NFT"
 msgstr "Criar um Plot NFT"
 
@@ -1242,29 +1242,29 @@ msgstr "É um link de login único que pode ser usado para fazer login no site d
 msgid "Join Pool"
 msgstr "Juntar-se à Pool"
 
-#: src/components/plot/add/PlotAddNFT.tsx:68
-#: src/components/plot/add/PlotAddNFT.tsx:150
-#: src/components/plotNFT/select/PlotNFTSelectPool.tsx:131
-#: src/components/plotNFT/select/PlotNFTSelectPool.tsx:145
+#: src/components/plot/add/PlotAddNFT.tsx:64
+#: src/components/plot/add/PlotAddNFT.tsx:146
+#: src/components/plotNFT/select/PlotNFTSelectPool.tsx:148
+#: src/components/plotNFT/select/PlotNFTSelectPool.tsx:162
 #: src/components/pool/PoolHero.tsx:26
 msgid "Join a Pool"
 msgstr "Junte-se a uma Pool"
 
-#: src/components/plot/add/PlotAddNFT.tsx:68
-#~ msgid "Join a pool and get consistent XCH farming rewards. The average returns are the same, but it is much less volatile."
-#~ msgstr "Junte-se a um Pool e obtenha recompensas consistentes de XCH. Os retornos médios são iguais, mas são muito menos voláteis."
+#: src/components/plot/add/PlotAddNFT.tsx:49
+msgid "Join a pool and get consistent XCH farming rewards. The average returns are the same, but it is much less volatile."
+msgstr "Junte-se a um Pool e obtenha recompensas consistentes de XCH. Os retornos médios são iguais, mas são muito menos voláteis."
 
 #: src/components/plotNFT/PlotNFTAdd.tsx:63
 msgid "Join a pool and get consistent XCH farming rewards. The average returns are the same, but it is much less volatile. Assign plots to a plot NFT. You can easily switch pools without having to re-plot."
 msgstr "Junte-se a um Pool e obtenha recompensas consistentes de XCH. Os retornos médios são iguais, mas são muito menos voláteis. Atribua parcelas a um lote de NFT. Você pode facilmente trocar de pool sem precisar reescrever o plot."
 
-#: src/components/plot/add/PlotAddNFT.tsx:142
+#: src/components/plot/add/PlotAddNFT.tsx:138
 msgid "Join a pool and get more consistent XCH farming rewards. Create a plot NFT and assign your new plots to a group."
 msgstr "Junte-se a um Pool e obtenha recompensas consistentes de XCH. Crie um plot NFT e atribua os seus novos plots a um grupo."
 
 #: src/components/plot/add/PlotAddNFT.tsx:52
-msgid "Join apool and get consistent XCH farming rewards. The average returns are the same, but it is much less volatile."
-msgstr ""
+#~ msgid "Join apool and get consistent XCH farming rewards. The average returns are the same, but it is much less volatile."
+#~ msgstr ""
 
 #: src/components/app/AppSelectMode.tsx:146
 msgid "Join farming pools"
@@ -1541,7 +1541,7 @@ msgstr "ID do Nó"
 #~ msgid "Node Id"
 #~ msgstr ""
 
-#: src/components/plot/add/PlotAddNFT.tsx:95
+#: src/components/plot/add/PlotAddNFT.tsx:91
 msgid "None"
 msgstr "Nenhum"
 
@@ -2024,7 +2024,7 @@ msgstr "O Endereço de Recompensa do Farmer não pode estar vazio."
 msgid "Pool Reward Amount"
 msgstr "Valor da recompensa da Pool"
 
-#: src/components/plotNFT/select/PlotNFTSelectPool.tsx:37
+#: src/components/plotNFT/select/PlotNFTSelectPool.tsx:38
 msgid "Pool does not provide relativeLockHeight."
 msgstr ""
 
@@ -2032,7 +2032,7 @@ msgstr ""
 #~ msgid "Pool does not provide relative_lock_height."
 #~ msgstr "Pool does not provide relative_lock_height."
 
-#: src/components/plotNFT/select/PlotNFTSelectPool.tsx:34
+#: src/components/plotNFT/select/PlotNFTSelectPool.tsx:35
 msgid "Pool does not provide targetPuzzleHash."
 msgstr ""
 
@@ -2342,11 +2342,11 @@ msgstr "Selecione o destino final para a pasta onde deseja que o plot seja armaz
 msgid "Select the temporary destination for the folder where you would like the plot to be stored. We recommend you use a fast drive."
 msgstr "Selecione o destino temporário para a pasta onde deseja que o plot seja armazenado. Recomendamos que use um SSD rápido."
 
-#: src/components/plot/add/PlotAddNFT.tsx:90
+#: src/components/plot/add/PlotAddNFT.tsx:86
 msgid "Select your Plot NFT"
 msgstr "Selecione seu Plot NFT"
 
-#: src/components/plot/add/PlotAddNFT.tsx:81
+#: src/components/plot/add/PlotAddNFT.tsx:77
 msgid "Select your Plot NFT from the dropdown or create a new one."
 msgstr "Selecione seu NFT no menu ou crie um novo."
 
@@ -3110,6 +3110,10 @@ msgstr "Sem taxas"
 #: src/electron/main.tsx:264
 msgid "Yes"
 msgstr "Sim"
+
+#: src/components/plotNFT/select/PlotNFTSelectPool.tsx:120
+msgid "You already have more then 10 PlotNFT's, you really shouldn't make more."
+msgstr ""
 
 #: src/hooks/useAbsorbRewards.tsx:27
 #: src/hooks/useJoinPool.tsx:36

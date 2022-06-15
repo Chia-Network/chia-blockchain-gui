@@ -26,7 +26,7 @@ msgstr "(未安装)"
 msgid "(Not Supported)"
 msgstr "(不支持)"
 
-#: src/components/plot/add/PlotAddNFT.tsx:71
+#: src/components/plot/add/PlotAddNFT.tsx:67
 msgid "(Optional)"
 msgstr "（可选）"
 
@@ -38,7 +38,7 @@ msgstr "* 想要进一步了解奇亚？来看看一位开源开发者创建的 
 #~ msgid "+"
 #~ msgstr "+"
 
-#: src/components/plot/add/PlotAddNFT.tsx:132
+#: src/components/plot/add/PlotAddNFT.tsx:128
 msgid "+ Add New Plot NFT"
 msgstr "+ 添加新的农田NFT"
 
@@ -547,7 +547,7 @@ msgstr "在 GitHub 上贡献"
 
 #: src/components/backup/BackupCreate.tsx:59
 #: src/components/plot/add/PlotAddForm.tsx:190
-#: src/components/plotNFT/select/PlotNFTSelectPool.tsx:181
+#: src/components/plotNFT/select/PlotNFTSelectPool.tsx:198
 msgid "Create"
 msgstr "创建"
 
@@ -605,7 +605,7 @@ msgstr "创建和管理农田"
 msgid "Create a Backup"
 msgstr "创建备份"
 
-#: src/components/plot/add/PlotAddNFT.tsx:50
+#: src/components/plot/add/PlotAddNFT.tsx:47
 msgid "Create a Plot NFT"
 msgstr "创建农田NFT"
 
@@ -1242,29 +1242,29 @@ msgstr "这是一个用于登录农业合作社网站的一次性链接。此链
 msgid "Join Pool"
 msgstr "加入农业合作社"
 
-#: src/components/plot/add/PlotAddNFT.tsx:68
-#: src/components/plot/add/PlotAddNFT.tsx:150
-#: src/components/plotNFT/select/PlotNFTSelectPool.tsx:131
-#: src/components/plotNFT/select/PlotNFTSelectPool.tsx:145
+#: src/components/plot/add/PlotAddNFT.tsx:64
+#: src/components/plot/add/PlotAddNFT.tsx:146
+#: src/components/plotNFT/select/PlotNFTSelectPool.tsx:148
+#: src/components/plotNFT/select/PlotNFTSelectPool.tsx:162
 #: src/components/pool/PoolHero.tsx:26
 msgid "Join a Pool"
 msgstr "加入农业合作社"
 
-#: src/components/plot/add/PlotAddNFT.tsx:68
-#~ msgid "Join a pool and get consistent XCH farming rewards. The average returns are the same, but it is much less volatile."
-#~ msgstr "加入农业合作社来获得持续的XCH耕种收益。平均回报是相同的，但是收益会更加稳定。"
+#: src/components/plot/add/PlotAddNFT.tsx:49
+msgid "Join a pool and get consistent XCH farming rewards. The average returns are the same, but it is much less volatile."
+msgstr "加入农业合作社来获得持续的XCH耕种收益。平均回报是相同的，但是收益会更加稳定。"
 
 #: src/components/plotNFT/PlotNFTAdd.tsx:63
 msgid "Join a pool and get consistent XCH farming rewards. The average returns are the same, but it is much less volatile. Assign plots to a plot NFT. You can easily switch pools without having to re-plot."
 msgstr "加入农业合作社来获得持续的XCH耕种收益。平均回报是相同的，但是收益会更加稳定。为已开垦的农田分配农田NFT。你可以轻松切换耕种池，而不比重新开垦现有农田。"
 
-#: src/components/plot/add/PlotAddNFT.tsx:142
+#: src/components/plot/add/PlotAddNFT.tsx:138
 msgid "Join a pool and get more consistent XCH farming rewards. Create a plot NFT and assign your new plots to a group."
 msgstr "加入农业合作社来获得持续的XCH耕种收益。创建一个农田NFT，然后将新农田分配到组。"
 
 #: src/components/plot/add/PlotAddNFT.tsx:52
-msgid "Join apool and get consistent XCH farming rewards. The average returns are the same, but it is much less volatile."
-msgstr ""
+#~ msgid "Join apool and get consistent XCH farming rewards. The average returns are the same, but it is much less volatile."
+#~ msgstr ""
 
 #: src/components/app/AppSelectMode.tsx:146
 msgid "Join farming pools"
@@ -1541,7 +1541,7 @@ msgstr "节点ID"
 #~ msgid "Node Id"
 #~ msgstr ""
 
-#: src/components/plot/add/PlotAddNFT.tsx:95
+#: src/components/plot/add/PlotAddNFT.tsx:91
 msgid "None"
 msgstr "无"
 
@@ -2024,7 +2024,7 @@ msgstr "池奖励地址不能为空。"
 msgid "Pool Reward Amount"
 msgstr "池奖励金额"
 
-#: src/components/plotNFT/select/PlotNFTSelectPool.tsx:37
+#: src/components/plotNFT/select/PlotNFTSelectPool.tsx:38
 msgid "Pool does not provide relativeLockHeight."
 msgstr "耕作池未提供 relativeLockHeight。"
 
@@ -2032,7 +2032,7 @@ msgstr "耕作池未提供 relativeLockHeight。"
 #~ msgid "Pool does not provide relative_lock_height."
 #~ msgstr "Pool does not provide relative_lock_height."
 
-#: src/components/plotNFT/select/PlotNFTSelectPool.tsx:34
+#: src/components/plotNFT/select/PlotNFTSelectPool.tsx:35
 msgid "Pool does not provide targetPuzzleHash."
 msgstr "耕作池未提供 targetPuzzleHash。"
 
@@ -2342,11 +2342,11 @@ msgstr "选择您希望保存农田文件的最终输出文件夹。我们建议
 msgid "Select the temporary destination for the folder where you would like the plot to be stored. We recommend you use a fast drive."
 msgstr "选择您希望保存农田文件的临时输出文件夹。我们建议您使用速度快的驱动器。"
 
-#: src/components/plot/add/PlotAddNFT.tsx:90
+#: src/components/plot/add/PlotAddNFT.tsx:86
 msgid "Select your Plot NFT"
 msgstr "选择你的农田NFT"
 
-#: src/components/plot/add/PlotAddNFT.tsx:81
+#: src/components/plot/add/PlotAddNFT.tsx:77
 msgid "Select your Plot NFT from the dropdown or create a new one."
 msgstr "从下拉菜单中选择现有农田NFT，或者新建。"
 
@@ -3110,6 +3110,10 @@ msgstr "不含交易费"
 #: src/electron/main.tsx:264
 msgid "Yes"
 msgstr "是"
+
+#: src/components/plotNFT/select/PlotNFTSelectPool.tsx:120
+msgid "You already have more then 10 PlotNFT's, you really shouldn't make more."
+msgstr ""
 
 #: src/hooks/useAbsorbRewards.tsx:27
 #: src/hooks/useJoinPool.tsx:36

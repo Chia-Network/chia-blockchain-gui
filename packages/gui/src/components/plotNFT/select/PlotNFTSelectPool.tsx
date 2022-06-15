@@ -123,7 +123,7 @@ const PlotNFTSelectPool = forwardRef((props: Props, ref) => {
         </ConfirmDialog>
       );
     }
-    if (createNFT) {
+    if (createNFT || createNFT == undefined) {
     try {
       setLoading(true);
 
