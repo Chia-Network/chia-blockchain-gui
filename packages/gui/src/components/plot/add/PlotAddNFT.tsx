@@ -1,6 +1,6 @@
 import React, { useState, forwardRef } from 'react';
 import { Trans } from '@lingui/macro';
-import { Button, CardStep, Select, Flex, Loading} from '@chia/core';
+import { Button, CardStep, Select, Flex, Loading } from '@chia/core';
 import {
   Box,
   Grid,
@@ -37,8 +37,7 @@ const PlotAddNFT = forwardRef((props: Props, ref) => {
     setShowCreatePlotNFT(false);
     setValue('createNFT', false);
   }
-
-
+  
   if (showCreatePlotNFT) {
     return (
       <PlotNFTSelectPool
