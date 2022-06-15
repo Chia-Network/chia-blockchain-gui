@@ -26,7 +26,7 @@ msgstr "(Nincs telepítve)"
 msgid "(Not Supported)"
 msgstr "(Nem támogatott)"
 
-#: src/components/plot/add/PlotAddNFT.tsx:67
+#: src/components/plot/add/PlotAddNFT.tsx:87
 msgid "(Optional)"
 msgstr "(nem kötelező)"
 
@@ -38,7 +38,7 @@ msgstr "Fel szeretnéd fedezni a Chia rendszerét bővebben? Nézd meg a <0> Chi
 #~ msgid "+"
 #~ msgstr "+"
 
-#: src/components/plot/add/PlotAddNFT.tsx:128
+#: src/components/plot/add/PlotAddNFT.tsx:148
 msgid "+ Add New Plot NFT"
 msgstr "+ Új Plot NFT Hozzáadása"
 
@@ -605,7 +605,7 @@ msgstr "Parcellák létrehozása és kezelése"
 msgid "Create a Backup"
 msgstr "Mentés létrehozása"
 
-#: src/components/plot/add/PlotAddNFT.tsx:47
+#: src/components/plot/add/PlotAddNFT.tsx:66
 msgid "Create a Plot NFT"
 msgstr "Hozzon létre egy Plot NFT-t"
 
@@ -782,9 +782,9 @@ msgstr "Szimulátor kikapcsolása"
 msgid "Disable bitfield plotting"
 msgstr "Bitmező ábrázolás kikapcsolása"
 
-#: src/components/core/components/FormBackButton/FormBackButton.tsx:26
-#~ msgid "Discard"
-#~ msgstr "Discard"
+#: src/components/plot/add/PlotAddNFT.tsx:46
+msgid "Discard"
+msgstr "Discard"
 
 #: src/components/fullNode/FullNodeCloseConnection.tsx:20
 msgid "Disconnect"
@@ -1242,15 +1242,15 @@ msgstr "Ez egy egyszeri bejelentkezési link, amely a pool weboldalára való be
 msgid "Join Pool"
 msgstr "Csatlakozás a Pool-hoz"
 
-#: src/components/plot/add/PlotAddNFT.tsx:64
-#: src/components/plot/add/PlotAddNFT.tsx:146
+#: src/components/plot/add/PlotAddNFT.tsx:84
+#: src/components/plot/add/PlotAddNFT.tsx:166
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:131
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:145
 #: src/components/pool/PoolHero.tsx:26
 msgid "Join a Pool"
 msgstr "Csatlakozás a Pool-hoz"
 
-#: src/components/plot/add/PlotAddNFT.tsx:49
+#: src/components/plot/add/PlotAddNFT.tsx:68
 msgid "Join a pool and get consistent XCH farming rewards. The average returns are the same, but it is much less volatile."
 msgstr "Csatlakozz egy poolhoz, és kapj következetes XCH-farming jutalmakat. Az átlagos hozam ugyanolyan, de sokkal kevésbé ingadozó."
 
@@ -1258,7 +1258,7 @@ msgstr "Csatlakozz egy poolhoz, és kapj következetes XCH-farming jutalmakat. A
 msgid "Join a pool and get consistent XCH farming rewards. The average returns are the same, but it is much less volatile. Assign plots to a plot NFT. You can easily switch pools without having to re-plot."
 msgstr "Csatlakozz egy poolhoz, és kapj következetes XCH-farming jutalmakat. Az átlagos hozam ugyanolyan, de sokkal kevésbé ingadozó. Rendelj hozzá parcellákat egy parcella NFT-hez. Könnyen válthatsz poolt anélkül, hogy újra kellene parcelláznod."
 
-#: src/components/plot/add/PlotAddNFT.tsx:138
+#: src/components/plot/add/PlotAddNFT.tsx:158
 msgid "Join a pool and get more consistent XCH farming rewards. Create a plot NFT and assign your new plots to a group."
 msgstr "Csatlakozz egy poolhoz, és kapj következetesebb XCH-farming jutalmakat. Hozzon létre egy parcellás NFT-t, és rendelje az új parcelláit egy csoporthoz."
 
@@ -1537,7 +1537,7 @@ msgstr "Node azonosító"
 #~ msgid "Node Id"
 #~ msgstr ""
 
-#: src/components/plot/add/PlotAddNFT.tsx:91
+#: src/components/plot/add/PlotAddNFT.tsx:111
 msgid "None"
 msgstr "Nincs"
 
@@ -2338,11 +2338,11 @@ msgstr "Válassza ki a mappát, ahol a cserepek végső tárolóhelye lesz. Java
 msgid "Select the temporary destination for the folder where you would like the plot to be stored. We recommend you use a fast drive."
 msgstr "Válaszd ki a mappát, ahol a plotok átmeneti tárolóhelye lesz. Javasoljuk gyors SSD használatát."
 
-#: src/components/plot/add/PlotAddNFT.tsx:86
+#: src/components/plot/add/PlotAddNFT.tsx:106
 msgid "Select your Plot NFT"
 msgstr ""
 
-#: src/components/plot/add/PlotAddNFT.tsx:77
+#: src/components/plot/add/PlotAddNFT.tsx:97
 msgid "Select your Plot NFT from the dropdown or create a new one."
 msgstr ""
 
@@ -2906,9 +2906,9 @@ msgstr "Befejezetlen"
 msgid "Unlock Keyring"
 msgstr ""
 
-#: src/components/core/components/FormBackButton/FormBackButton.tsx:25
-#~ msgid "Unsaved Changes"
-#~ msgstr "Unsaved Changes"
+#: src/components/plot/add/PlotAddNFT.tsx:45
+msgid "Unsaved Changes"
+msgstr "Unsaved Changes"
 
 #: src/components/_wallet_old/create/createRLAdmin.jsx:281
 #: src/components/_wallet_old/rateLimited/WalletRateLimited.jsx:293
@@ -3136,9 +3136,9 @@ msgstr "Nem kell, hogy szinkronizálva legyen, vagy csatlakoztatva legyen a tele
 #~ msgid "You do not need to be synched or connected to plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
 #~ msgstr "You do not need to be synced or connected to plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
 
-#: src/components/core/components/FormBackButton/FormBackButton.tsx:29
-#~ msgid "You have made changes. Do you want to discard them?"
-#~ msgstr "You have made changes. Do you want to discard them?"
+#: src/components/plot/add/PlotAddNFT.tsx:49
+msgid "You have made changes. Do you want to discard them?"
+msgstr "You have made changes. Do you want to discard them?"
 
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:34
 #~ msgid "You have {0}% of the space on the network, so farming a block will take {expectedTimeToWin} in expectation."
@@ -3322,4 +3322,3 @@ msgstr "{0} pont {1} - {2} órával ezelőtt"
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:118
 msgid "{warning}"
 msgstr "{warning}"
-

@@ -26,7 +26,7 @@ msgstr "(Belum Terpasang)"
 msgid "(Not Supported)"
 msgstr "(Tidak Didukung)"
 
-#: src/components/plot/add/PlotAddNFT.tsx:67
+#: src/components/plot/add/PlotAddNFT.tsx:87
 msgid "(Optional)"
 msgstr "(Pilihan)"
 
@@ -38,7 +38,7 @@ msgstr "*Ingin tahu soal blok Chia lebih jauh? Periksa laman <0>Chia Explorer</0
 #~ msgid "+"
 #~ msgstr "+"
 
-#: src/components/plot/add/PlotAddNFT.tsx:128
+#: src/components/plot/add/PlotAddNFT.tsx:148
 msgid "+ Add New Plot NFT"
 msgstr "+ Tambah Plot NFT baru"
 
@@ -605,7 +605,7 @@ msgstr "Buat & Kelola plot"
 msgid "Create a Backup"
 msgstr "Buat sebuah Backup"
 
-#: src/components/plot/add/PlotAddNFT.tsx:47
+#: src/components/plot/add/PlotAddNFT.tsx:66
 msgid "Create a Plot NFT"
 msgstr "Buat sebuah Plot NFT"
 
@@ -782,9 +782,9 @@ msgstr "Non-aktifkan Simulasi"
 msgid "Disable bitfield plotting"
 msgstr "Nonaktifkan mengeplot dengan bitfield"
 
-#: src/components/core/components/FormBackButton/FormBackButton.tsx:26
-#~ msgid "Discard"
-#~ msgstr "Discard"
+#: src/components/plot/add/PlotAddNFT.tsx:46
+msgid "Discard"
+msgstr "Discard"
 
 #: src/components/fullNode/FullNodeCloseConnection.tsx:20
 msgid "Disconnect"
@@ -1242,15 +1242,15 @@ msgstr "Adalah sebuah alamat web untuk masuk satu kali ke halaman web milik pool
 msgid "Join Pool"
 msgstr "Gabung ke Pool"
 
-#: src/components/plot/add/PlotAddNFT.tsx:64
-#: src/components/plot/add/PlotAddNFT.tsx:146
+#: src/components/plot/add/PlotAddNFT.tsx:84
+#: src/components/plot/add/PlotAddNFT.tsx:166
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:131
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:145
 #: src/components/pool/PoolHero.tsx:26
 msgid "Join a Pool"
 msgstr "Gabung ke Pool"
 
-#: src/components/plot/add/PlotAddNFT.tsx:49
+#: src/components/plot/add/PlotAddNFT.tsx:68
 msgid "Join a pool and get consistent XCH farming rewards. The average returns are the same, but it is much less volatile."
 msgstr "Gabung ke pool untuk mendapatkan hasil XCH parming yang konsisten. Rata rata penghasilan menyerupai, tapi lebih terduga."
 
@@ -1258,7 +1258,7 @@ msgstr "Gabung ke pool untuk mendapatkan hasil XCH parming yang konsisten. Rata 
 msgid "Join a pool and get consistent XCH farming rewards. The average returns are the same, but it is much less volatile. Assign plots to a plot NFT. You can easily switch pools without having to re-plot."
 msgstr "Gabung ke pool untuk mendapatkan hasil XCH parming yang konsisten. Rata rata penghasilan menyerupai, tapi lebih terduga. Tunjuk plot ke plot NFT. Anda dapat dengan mudah berpindah pool tanpa harus membuat ulang plot."
 
-#: src/components/plot/add/PlotAddNFT.tsx:138
+#: src/components/plot/add/PlotAddNFT.tsx:158
 msgid "Join a pool and get more consistent XCH farming rewards. Create a plot NFT and assign your new plots to a group."
 msgstr "Gabung ke pool untuk mendapatkan hasil XCH parming yang konsisten. Buat sebuah plot NFT dan tempatkan plot anda ke sebuah group."
 
@@ -1537,7 +1537,7 @@ msgstr "Nod ID"
 #~ msgid "Node Id"
 #~ msgstr ""
 
-#: src/components/plot/add/PlotAddNFT.tsx:91
+#: src/components/plot/add/PlotAddNFT.tsx:111
 msgid "None"
 msgstr "Tidak Tersedia"
 
@@ -1925,7 +1925,8 @@ msgstr "Plot dengan kunci yang hilang"
 
 #: src/components/plot/overview/PlotOverviewHero.tsx:33
 msgid "Plots are allocated space on your hard drive used to farm and earn Chia.<0>Learn more</0>"
-msgstr "Plot adalah penempatan ruang dalam hard drive yang digunakan untuk disewakan dan memperoleh Chia\n"
+msgstr ""
+"Plot adalah penempatan ruang dalam hard drive yang digunakan untuk disewakan dan memperoleh Chia\n"
 "<0>Pelajari lebih lanjut</0>"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:103
@@ -2339,11 +2340,11 @@ msgstr "Pilih tujuan akhir untuk folder dimana plot akan di simpan. Kami saranka
 msgid "Select the temporary destination for the folder where you would like the plot to be stored. We recommend you use a fast drive."
 msgstr "Pilih tujuan sementara untuk folder dimana Anda ingin plot tersebut tersimpan. Kami menyarankan Anda menggunakan sebuah drive yang cepat."
 
-#: src/components/plot/add/PlotAddNFT.tsx:86
+#: src/components/plot/add/PlotAddNFT.tsx:106
 msgid "Select your Plot NFT"
 msgstr "Pilih Plot NFT anda"
 
-#: src/components/plot/add/PlotAddNFT.tsx:77
+#: src/components/plot/add/PlotAddNFT.tsx:97
 msgid "Select your Plot NFT from the dropdown or create a new one."
 msgstr "PIlih Plot NFT dari menu atau buat yang baru."
 
@@ -2907,9 +2908,9 @@ msgstr "Belum Selesai"
 msgid "Unlock Keyring"
 msgstr "Buka Penyimpan kunci"
 
-#: src/components/core/components/FormBackButton/FormBackButton.tsx:25
-#~ msgid "Unsaved Changes"
-#~ msgstr "Unsaved Changes"
+#: src/components/plot/add/PlotAddNFT.tsx:45
+msgid "Unsaved Changes"
+msgstr "Unsaved Changes"
 
 #: src/components/_wallet_old/create/createRLAdmin.jsx:281
 #: src/components/_wallet_old/rateLimited/WalletRateLimited.jsx:293
@@ -3137,9 +3138,9 @@ msgstr "Anda tidak terlu tersinkronisasi atau terhubung ke plot. File sementara 
 #~ msgid "You do not need to be synched or connected to plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
 #~ msgstr "You do not need to be synced or connected to plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
 
-#: src/components/core/components/FormBackButton/FormBackButton.tsx:29
-#~ msgid "You have made changes. Do you want to discard them?"
-#~ msgstr "You have made changes. Do you want to discard them?"
+#: src/components/plot/add/PlotAddNFT.tsx:49
+msgid "You have made changes. Do you want to discard them?"
+msgstr "You have made changes. Do you want to discard them?"
 
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:34
 #~ msgid "You have {0}% of the space on the network, so farming a block will take {expectedTimeToWin} in expectation."
@@ -3323,4 +3324,3 @@ msgstr "{0} poin {1} - {2} jam yang lalu"
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:118
 msgid "{warning}"
 msgstr "{warning}"
-
