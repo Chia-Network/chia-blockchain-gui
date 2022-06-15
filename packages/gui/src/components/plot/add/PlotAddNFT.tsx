@@ -37,7 +37,7 @@ const PlotAddNFT = forwardRef((props: Props, ref) => {
     setShowCreatePlotNFT(false);
     setValue('createNFT', false);
   }
-  
+
   if (showCreatePlotNFT) {
     return (
       <PlotNFTSelectPool
