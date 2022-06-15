@@ -368,6 +368,16 @@ type NFTOfferDetailsProps = {
 function NFTOfferDetails(props: NFTOfferDetailsProps) {
   const { tradeRecord, offerData, offerSummary, imported } = props;
   const summary = tradeRecord?.summary || offerSummary;
+  // // TODO: Remove -- just for testing
+  // const originalSummary = tradeRecord?.summary || offerSummary;
+  // const offered = originalSummary.offered;
+  // const requested = originalSummary.requested;
+  // const summary = {
+  //   ...originalSummary,
+  //   offered: requested,
+  //   requested: offered,
+  // };
+  // // TODO: end remove
   const exchangeType = determineNFTOfferExchangeType(summary);
   const makerFee: number = summary.fees;
   const isMyOffer = !!tradeRecord?.isMyOffer;
@@ -390,13 +400,10 @@ function NFTOfferDetails(props: NFTOfferDetailsProps) {
     ? launcherIdToNFTId(launcherId)
     : undefined;
   const {
-    // data: nft,
-    data, // TODO: Remove
+    data: nft,
     isLoading,
     error,
   } = useGetNFTInfoQuery({ coinId: launcherId });
-  // TODO: Remove
-  const nft = data ? { ...data, royaltyPercentage: 500 } : undefined;
   const amount = getNFTPriceWithoutRoyalties(summary);
 
   console.log('amount without royalties');
@@ -595,7 +602,7 @@ function NFTOfferDetails(props: NFTOfferDetailsProps) {
                 )}
                 <NFTOfferMakerFee makerFee={makerFee} imported={!!imported} />
               </Flex>
-              {imported && isValid && (
+              {/* {imported && isValid && (
                 <Flex flexDirection="column" gap={1}>
                   <Typography variant="body1" color="textSecondary">
                     <Trans>Network Fee (Optional)</Trans>
@@ -619,7 +626,7 @@ function NFTOfferDetails(props: NFTOfferDetailsProps) {
                     />
                   </Grid>
                 </Flex>
-              )}
+              )} */}
               {nftSaleInfo && (
                 <>
                   <Divider />
@@ -649,15 +656,13 @@ function NFTOfferDetails(props: NFTOfferDetailsProps) {
                             </Trans>
                           ) : (
                             <Trans>
-                              The total amount offered includes the price you're
-                              willing to pay for the NFT, plus the optional
-                              offer creation fee. One or more coins totalling at
-                              least the amount shown below will be deducted from
-                              your spendable balance upon offer creation.
+                              The total amount offered includes the offered
+                              purchase price, plus the optional offer creation
+                              fee.
                               <p />
                               If the NFT has royalty payments enabled, those
-                              creator fees will be paid by the party that
-                              accepts the offer.
+                              creator fees will be paid from the offered
+                              purchase price.
                             </Trans>
                           )}
                         </TooltipIcon>
@@ -672,7 +677,61 @@ function NFTOfferDetails(props: NFTOfferDetailsProps) {
                       {currencyCode}
                     </Typography>
                   </Flex>
+                  {exchangeType === NFTOfferExchangeType.XCHForNFT && (
+                    <Flex flexDirection="column" gap={0.5}>
+                      <Flex flexDirection="row" alignItems="center" gap={1}>
+                        <Typography variant="h6">
+                          <Trans>Net Proceeds</Trans>
+                        </Typography>
+                        <Flex justifyContent="center">
+                          <TooltipIcon>
+                            <Trans>
+                              The net proceeds include the asking price, minus
+                              any associated creator fees (if the NFT has
+                              royalty payments enabled).
+                            </Trans>
+                          </TooltipIcon>
+                        </Flex>
+                      </Flex>
+                      <Typography variant="h5" fontWeight="bold">
+                        <FormatLargeNumber
+                          value={
+                            new BigNumber(nftSaleInfo?.nftSellerNetAmount ?? 0)
+                          }
+                        />{' '}
+                        {currencyCode}
+                      </Typography>
+                    </Flex>
+                  )}
                 </>
+              )}
+              {imported && isValid && (
+                <Flex flexDirection="column" gap={2}>
+                  <Divider />
+                  <Flex flexDirection="column" gap={1}>
+                    <Typography variant="body1" color="textSecondary">
+                      <Trans>Network Fee (Optional)</Trans>
+                    </Typography>
+                    <Grid
+                      direction="column"
+                      xs={5}
+                      sm={5}
+                      md={5}
+                      lg={5}
+                      container
+                    >
+                      <Fee
+                        id="filled-secondary"
+                        variant="filled"
+                        name="fee"
+                        color="secondary"
+                        label={<Trans>Fee</Trans>}
+                        defaultValue={1}
+                        disabled={isAccepting}
+                      />
+                    </Grid>
+                  </Flex>
+                </Flex>
               )}
               {imported && (
                 <Flex
