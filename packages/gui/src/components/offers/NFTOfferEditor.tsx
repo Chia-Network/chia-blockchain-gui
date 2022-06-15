@@ -497,7 +497,8 @@ function buildOfferRequest(
       [nftLauncherId]: nftAmount,
       [xchWalletId]: mojoAmount,
     },
-    driverDict,
+    exchangeType === NFTOfferExchangeType.XCHForNFT ? driverDict : undefined,
+    // driverDict,
     feeMojoAmount,
   ];
 }

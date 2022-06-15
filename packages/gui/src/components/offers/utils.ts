@@ -6,7 +6,11 @@ import type {
   OfferSummaryInfos,
   OfferSummaryRecord,
 } from '@chia/api';
-import { mojoToChiaLocaleString, mojoToCATLocaleString } from '@chia/core';
+import {
+  mojoToChia,
+  mojoToChiaLocaleString,
+  mojoToCATLocaleString,
+} from '@chia/core';
 import NFTOfferExchangeType from './NFTOfferExchangeType';
 import OfferState from './OfferState';
 import OfferAsset from './OfferAsset';
@@ -309,16 +313,12 @@ export function determineNFTOfferExchangeType(
 export function getNFTPriceWithoutRoyalties(
   summary: OfferSummaryRecord,
 ): number | undefined {
-  const nftAssetId: string | undefined = offerAssetIdForAssetType(
-    OfferAsset.NFT,
-    summary,
-  );
-
-  if (!nftAssetId) {
+  // NFTs can only be exchanged for XCH currently
+  const amountInMojos = offerAssetAmountForAssetId('xch', summary);
+  if (amountInMojos === undefined) {
     return undefined;
   }
-
-  return offerAssetAmountForAssetId(nftAssetId, summary);
+  return mojoToChia(amountInMojos).toNumber();
 }
 
 /* ========================================================================== */

@@ -399,6 +399,8 @@ function NFTOfferDetails(props: NFTOfferDetailsProps) {
   const nft = data ? { ...data, royaltyPercentage: 500 } : undefined;
   const amount = getNFTPriceWithoutRoyalties(summary);
 
+  console.log('amount without royalties');
+  console.log(amount);
   const nftSaleInfo = useMemo(() => {
     console.log('royaltyPercentage:');
     console.log(nft?.royaltyPercentage);
