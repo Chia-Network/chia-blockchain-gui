@@ -26,7 +26,7 @@ msgstr ""
 msgid "(Not Supported)"
 msgstr ""
 
-#: src/components/plot/add/PlotAddNFT.tsx:87
+#: src/components/plot/add/PlotAddNFT.tsx:71
 msgid "(Optional)"
 msgstr ""
 
@@ -38,7 +38,7 @@ msgstr "*Möchtest du mehr über Chia's Blocks erfahren? Besuche <0>Chia Explore
 #~ msgid "+"
 #~ msgstr "+"
 
-#: src/components/plot/add/PlotAddNFT.tsx:148
+#: src/components/plot/add/PlotAddNFT.tsx:132
 msgid "+ Add New Plot NFT"
 msgstr "+ Neues Plot-NFT hinzufügen"
 
@@ -605,7 +605,7 @@ msgstr ""
 msgid "Create a Backup"
 msgstr "Erstelle Sicherungskopie"
 
-#: src/components/plot/add/PlotAddNFT.tsx:66
+#: src/components/plot/add/PlotAddNFT.tsx:50
 msgid "Create a Plot NFT"
 msgstr "Erstellen eines Plot-NFT"
 
@@ -783,8 +783,8 @@ msgid "Disable bitfield plotting"
 msgstr "Deaktiviere bitfield plotting"
 
 #: src/components/plot/add/PlotAddNFT.tsx:46
-msgid "Discard"
-msgstr "Discard"
+#~ msgid "Discard"
+#~ msgstr "Discard"
 
 #: src/components/fullNode/FullNodeCloseConnection.tsx:20
 msgid "Disconnect"
@@ -1242,8 +1242,8 @@ msgstr "Ein Einweg-Link der genutzt werden kann, um sich auf der Website eines P
 msgid "Join Pool"
 msgstr "Pool beitreten"
 
-#: src/components/plot/add/PlotAddNFT.tsx:84
-#: src/components/plot/add/PlotAddNFT.tsx:166
+#: src/components/plot/add/PlotAddNFT.tsx:68
+#: src/components/plot/add/PlotAddNFT.tsx:150
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:131
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:145
 #: src/components/pool/PoolHero.tsx:26
@@ -1251,16 +1251,20 @@ msgid "Join a Pool"
 msgstr "Einem Pool beitreten"
 
 #: src/components/plot/add/PlotAddNFT.tsx:68
-msgid "Join a pool and get consistent XCH farming rewards. The average returns are the same, but it is much less volatile."
-msgstr "Trete einem Pool bei und erhalte konsistente XCH Farming-Belohnungen. Der durchschnittliche Ertrag ist derselbe, aber er ist viel weniger volatil."
+#~ msgid "Join a pool and get consistent XCH farming rewards. The average returns are the same, but it is much less volatile."
+#~ msgstr "Trete einem Pool bei und erhalte konsistente XCH Farming-Belohnungen. Der durchschnittliche Ertrag ist derselbe, aber er ist viel weniger volatil."
 
 #: src/components/plotNFT/PlotNFTAdd.tsx:63
 msgid "Join a pool and get consistent XCH farming rewards. The average returns are the same, but it is much less volatile. Assign plots to a plot NFT. You can easily switch pools without having to re-plot."
 msgstr "Trete einem Pool bei und erhalte konsistente XCH Farming-Belohnungen. Der durchschnittliche Ertrag ist derselbe, aber er ist viel weniger volatil. Weise Plots einem Plot-NFT zu. Du kannst einfach zwischen Pools wechseln, ohne neu plotten zu müssen."
 
-#: src/components/plot/add/PlotAddNFT.tsx:158
+#: src/components/plot/add/PlotAddNFT.tsx:142
 msgid "Join a pool and get more consistent XCH farming rewards. Create a plot NFT and assign your new plots to a group."
 msgstr "Trete einem Pool bei und erhalte konsistente XCH Farming-Belohnungen. Erstelle ein Plot-NFT und weise deine neuen Plots einer Gruppe zu."
+
+#: src/components/plot/add/PlotAddNFT.tsx:52
+msgid "Join apool and get consistent XCH farming rewards. The average returns are the same, but it is much less volatile."
+msgstr ""
 
 #: src/components/app/AppSelectMode.tsx:146
 msgid "Join farming pools"
@@ -1537,7 +1541,7 @@ msgstr ""
 #~ msgid "Node Id"
 #~ msgstr ""
 
-#: src/components/plot/add/PlotAddNFT.tsx:111
+#: src/components/plot/add/PlotAddNFT.tsx:95
 msgid "None"
 msgstr "Kein(e)"
 
@@ -2340,11 +2344,11 @@ msgstr "Wähle das finale Ziel für den Ordner aus, wo der Plot gespeichert werd
 msgid "Select the temporary destination for the folder where you would like the plot to be stored. We recommend you use a fast drive."
 msgstr "Wähle das temporäre Ziel für den Ordner aus, wo der Plot gespeichert werden soll. Wir empfehlen eine schnelle SSD."
 
-#: src/components/plot/add/PlotAddNFT.tsx:106
+#: src/components/plot/add/PlotAddNFT.tsx:90
 msgid "Select your Plot NFT"
 msgstr "Wähle dein Plot-NFT"
 
-#: src/components/plot/add/PlotAddNFT.tsx:97
+#: src/components/plot/add/PlotAddNFT.tsx:81
 msgid "Select your Plot NFT from the dropdown or create a new one."
 msgstr "Wähle dein Plot-NFT aus der Dropdown-Liste aus oder erstelle ein Neues."
 
@@ -2909,8 +2913,8 @@ msgid "Unlock Keyring"
 msgstr ""
 
 #: src/components/plot/add/PlotAddNFT.tsx:45
-msgid "Unsaved Changes"
-msgstr "Unsaved Changes"
+#~ msgid "Unsaved Changes"
+#~ msgstr "Unsaved Changes"
 
 #: src/components/_wallet_old/create/createRLAdmin.jsx:281
 #: src/components/_wallet_old/rateLimited/WalletRateLimited.jsx:293
@@ -3139,8 +3143,8 @@ msgstr ""
 #~ msgstr "You do not need to be synced or connected to plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
 
 #: src/components/plot/add/PlotAddNFT.tsx:49
-msgid "You have made changes. Do you want to discard them?"
-msgstr "You have made changes. Do you want to discard them?"
+#~ msgid "You have made changes. Do you want to discard them?"
+#~ msgstr "You have made changes. Do you want to discard them?"
 
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:34
 #~ msgid "You have {0}% of the space on the network, so farming a block will take {expectedTimeToWin} in expectation."

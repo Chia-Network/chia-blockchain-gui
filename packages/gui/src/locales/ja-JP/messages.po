@@ -26,7 +26,7 @@ msgstr ""
 msgid "(Not Supported)"
 msgstr ""
 
-#: src/components/plot/add/PlotAddNFT.tsx:87
+#: src/components/plot/add/PlotAddNFT.tsx:71
 msgid "(Optional)"
 msgstr "(オプション)"
 
@@ -38,7 +38,7 @@ msgstr "*チアのブロックをさらに調べたいですか？オープン�
 #~ msgid "+"
 #~ msgstr "+"
 
-#: src/components/plot/add/PlotAddNFT.tsx:148
+#: src/components/plot/add/PlotAddNFT.tsx:132
 msgid "+ Add New Plot NFT"
 msgstr "+ 新規プロットNFT を追加"
 
@@ -605,7 +605,7 @@ msgstr ""
 msgid "Create a Backup"
 msgstr "バックアップを作成"
 
-#: src/components/plot/add/PlotAddNFT.tsx:66
+#: src/components/plot/add/PlotAddNFT.tsx:50
 msgid "Create a Plot NFT"
 msgstr ""
 
@@ -783,8 +783,8 @@ msgid "Disable bitfield plotting"
 msgstr "ビットフィールドを使わずに耕す"
 
 #: src/components/plot/add/PlotAddNFT.tsx:46
-msgid "Discard"
-msgstr "Discard"
+#~ msgid "Discard"
+#~ msgstr "Discard"
 
 #: src/components/fullNode/FullNodeCloseConnection.tsx:20
 msgid "Disconnect"
@@ -1242,8 +1242,8 @@ msgstr ""
 msgid "Join Pool"
 msgstr ""
 
-#: src/components/plot/add/PlotAddNFT.tsx:84
-#: src/components/plot/add/PlotAddNFT.tsx:166
+#: src/components/plot/add/PlotAddNFT.tsx:68
+#: src/components/plot/add/PlotAddNFT.tsx:150
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:131
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:145
 #: src/components/pool/PoolHero.tsx:26
@@ -1251,15 +1251,19 @@ msgid "Join a Pool"
 msgstr ""
 
 #: src/components/plot/add/PlotAddNFT.tsx:68
-msgid "Join a pool and get consistent XCH farming rewards. The average returns are the same, but it is much less volatile."
-msgstr ""
+#~ msgid "Join a pool and get consistent XCH farming rewards. The average returns are the same, but it is much less volatile."
+#~ msgstr ""
 
 #: src/components/plotNFT/PlotNFTAdd.tsx:63
 msgid "Join a pool and get consistent XCH farming rewards. The average returns are the same, but it is much less volatile. Assign plots to a plot NFT. You can easily switch pools without having to re-plot."
 msgstr ""
 
-#: src/components/plot/add/PlotAddNFT.tsx:158
+#: src/components/plot/add/PlotAddNFT.tsx:142
 msgid "Join a pool and get more consistent XCH farming rewards. Create a plot NFT and assign your new plots to a group."
+msgstr ""
+
+#: src/components/plot/add/PlotAddNFT.tsx:52
+msgid "Join apool and get consistent XCH farming rewards. The average returns are the same, but it is much less volatile."
 msgstr ""
 
 #: src/components/app/AppSelectMode.tsx:146
@@ -1537,7 +1541,7 @@ msgstr "ノード ID"
 #~ msgid "Node Id"
 #~ msgstr ""
 
-#: src/components/plot/add/PlotAddNFT.tsx:111
+#: src/components/plot/add/PlotAddNFT.tsx:95
 msgid "None"
 msgstr ""
 
@@ -2338,11 +2342,11 @@ msgstr "耕地の最終保存先となるフォルダを選択してください
 msgid "Select the temporary destination for the folder where you would like the plot to be stored. We recommend you use a fast drive."
 msgstr "耕地の一時保存先となるフォルダを選択してください。読み書きの速いドライブの使用をおすすめします。"
 
-#: src/components/plot/add/PlotAddNFT.tsx:106
+#: src/components/plot/add/PlotAddNFT.tsx:90
 msgid "Select your Plot NFT"
 msgstr ""
 
-#: src/components/plot/add/PlotAddNFT.tsx:97
+#: src/components/plot/add/PlotAddNFT.tsx:81
 msgid "Select your Plot NFT from the dropdown or create a new one."
 msgstr ""
 
@@ -2907,8 +2911,8 @@ msgid "Unlock Keyring"
 msgstr ""
 
 #: src/components/plot/add/PlotAddNFT.tsx:45
-msgid "Unsaved Changes"
-msgstr "Unsaved Changes"
+#~ msgid "Unsaved Changes"
+#~ msgstr "Unsaved Changes"
 
 #: src/components/_wallet_old/create/createRLAdmin.jsx:281
 #: src/components/_wallet_old/rateLimited/WalletRateLimited.jsx:293
@@ -3137,8 +3141,8 @@ msgstr ""
 #~ msgstr "You do not need to be synced or connected to plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
 
 #: src/components/plot/add/PlotAddNFT.tsx:49
-msgid "You have made changes. Do you want to discard them?"
-msgstr "You have made changes. Do you want to discard them?"
+#~ msgid "You have made changes. Do you want to discard them?"
+#~ msgstr "You have made changes. Do you want to discard them?"
 
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:34
 #~ msgid "You have {0}% of the space on the network, so farming a block will take {expectedTimeToWin} in expectation."

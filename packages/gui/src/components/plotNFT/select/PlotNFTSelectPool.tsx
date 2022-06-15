@@ -6,13 +6,14 @@ import React, {
 } from 'react';
 import { t, Trans } from '@lingui/macro';
 import { useForm } from 'react-hook-form';
-import { ButtonLoading, Loading, Flex, Form, Back, chiaToMojo } from '@chia/core';
+import { ButtonLoading, Loading, Flex, Form, Back, chiaToMojo, ConfirmDialog, useOpenDialog } from '@chia/core';
 import PlotNFTSelectBase from './PlotNFTSelectBase';
 import normalizeUrl from '../../../util/normalizeUrl';
 import getPoolInfo from '../../../util/getPoolInfo';
 import InitialTargetState from '../../../types/InitialTargetState';
 import useStandardWallet from '../../../hooks/useStandardWallet';
 import PlotNFTSelectFaucet from './PlotNFTSelectFaucet';
+import usePlotNFTs from '../../../hooks/usePlotNFTs';
 
 export type SubmitData = {
   initialTargetState: InitialTargetState;
@@ -86,6 +87,9 @@ const PlotNFTSelectPool = forwardRef((props: Props, ref) => {
   } = props;
   const [loading, setLoading] = useState<boolean>(false);
   const { balance, loading: walletLoading } = useStandardWallet();
+  const { nfts } = usePlotNFTs();
+  const openDialog = useOpenDialog();
+  let createNFT;
 
   const hasBalance = !!balance && balance > 0;
 
@@ -107,6 +111,19 @@ const PlotNFTSelectPool = forwardRef((props: Props, ref) => {
   }));
 
   async function handleSubmit(data: FormData) {
+    if (nfts?.length > 10) {
+       createNFT = await openDialog(
+        <ConfirmDialog
+          title="Too Many NFT's"
+          confirmColor="danger"
+        >
+          <Trans>
+            You already have more then 10 PlotNFT's, you really shouldn't make more.
+          </Trans>
+        </ConfirmDialog>
+      );
+    }
+    if (createNFT) {
     try {
       setLoading(true);
 
@@ -115,7 +132,7 @@ const PlotNFTSelectPool = forwardRef((props: Props, ref) => {
       await onSubmit(submitData);
     } finally {
       setLoading(false);
-    }
+    }}
   }
 
   if (walletLoading) {

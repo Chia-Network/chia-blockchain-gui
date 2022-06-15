@@ -1,6 +1,6 @@
 import React, { useState, forwardRef } from 'react';
 import { Trans } from '@lingui/macro';
-import { Button, CardStep, Select, Flex, Loading, useOpenDialog, ConfirmDialog } from '@chia/core';
+import { Button, CardStep, Select, Flex, Loading} from '@chia/core';
 import {
   Box,
   Grid,
@@ -37,28 +37,10 @@ const PlotAddNFT = forwardRef((props: Props, ref) => {
     setShowCreatePlotNFT(false);
     setValue('createNFT', false);
   }
-  async function ConfirmMorePlotNFTs() {
-    const openDialog = useOpenDialog();
-    const Dialog =
-      (await openDialog<boolean>(
-        <ConfirmDialog
-          title={<Trans>Unsaved Changes</Trans>}
-          confirmTitle={<Trans>Discard</Trans>}
-          confirmColor="danger"
-        >
-          <Trans>You have made changes. Do you want to discard them?</Trans>
-        </ConfirmDialog>,
-      ));
-    return (
-      <Button onClick={Dialog}/>
-    );
-  }
 
 
   if (showCreatePlotNFT) {
     return (
-      <>
-        {nfts?.length >= 10 && <ConfirmMorePlotNFTs/>}
       <PlotNFTSelectPool
         step={step}
         onCancel={handleCancelPlotNFT}
@@ -71,7 +53,6 @@ const PlotAddNFT = forwardRef((props: Props, ref) => {
           </Trans>
         }
       />
-      </>
     );
   }
 
