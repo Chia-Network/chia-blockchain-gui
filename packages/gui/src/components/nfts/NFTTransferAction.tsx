@@ -199,6 +199,7 @@ export default function NFTTransferAction(props: NFTTransferActionProps) {
         nftCoinId: nft.nftCoinId,
         launcherId: nft.launcherId,
         targetAddress: destination,
+        fee: fee,
       });
       const success = response?.success ?? false;
       const errorMessage = error ?? undefined;
