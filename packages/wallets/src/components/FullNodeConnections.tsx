@@ -3,12 +3,14 @@ import { Trans } from '@lingui/macro';
 import {
   Card,
   FormatBytes,
+  FormatLargeNumber,
   Loading,
   Table,
 } from '@chia/core';
+import { useGetFullNodeConnectionsQuery } from '@chia/api-react';
+import { Connection } from '@chia/api';
 import { Tooltip } from '@mui/material';
-import { Connection, ServiceConnectionName } from '@chia/api';
-import { useGetWalletConnectionsQuery } from '@chia/api-react';
+import { service_connection_types } from '../../utils/service_names';
 
 const cols = [
   {
@@ -57,27 +59,22 @@ const cols = [
   {
     field(row: Connection) {
       // @ts-ignore
-      return ServiceConnectionName[row.type];
+      return service_connection_types[row.type];
     },
     title: <Trans>Connection type</Trans>,
   },
+  {
+    field: (row: Connection) => <FormatLargeNumber value={row.peakHeight} />,
+    title: <Trans>Height</Trans>,
+  },
 ];
 
-export type WalletConnectionsProps = {
-  walletId: number;
-};
-
-export default function WalletConnections(props: WalletConnectionsProps) {
-  const { walletId } = props;
-  const { data: connections, isLoading } = useGetWalletConnectionsQuery({
-    walletId,
-  }, {
-    pollingInterval: 10000,
-  });
+export default function Connections() {
+  const { data: connections, isLoading } = useGetFullNodeConnectionsQuery();
 
   return (
     <Card
-      title={<Trans>Wallet Connections</Trans>}
+      title={<Trans>Full Node Connections</Trans>}
     >
       {isLoading ? (
         <Loading center />

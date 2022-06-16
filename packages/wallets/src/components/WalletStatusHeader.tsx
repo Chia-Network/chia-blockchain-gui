@@ -1,47 +1,116 @@
 import React from 'react';
 import { Trans } from '@lingui/macro';
-import { Flex, Loading, StateColor, StateIndicatorDot } from '@chia/core';
-import { useGetWalletConnectionsQuery } from '@chia/api-react';
-import { Box, ButtonGroup, Button } from '@mui/material';
-import WalletStatus from './WalletStatus';
+import { Flex, StateColor, StateIndicatorDot } from '@chia/core';
+import {
+  useGetFullNodeConnectionsQuery,
+  useGetWalletConnectionsQuery,
+} from '@chia/api-react';
+import { ButtonGroup, Button, Popover } from '@mui/material';
 import { useTheme } from '@mui/styles';
+import WalletConnections from './WalletConnections';
+import Connections from './fullNode/FullNodeConnections';
 
 export default function WalletStatusHeader() {
   const theme = useTheme();
-  const { data: connections, isLoading } = useGetWalletConnectionsQuery({}, {
-    pollingInterval: 10000,
-  });
+  const { data: connectionsFN } = useGetFullNodeConnectionsQuery(
+    {},
+    { pollingInterval: 10000 }
+  );
+  const { data: connectionsW } = useGetWalletConnectionsQuery(
+    {},
+    { pollingInterval: 10000 }
+  );
+  const [anchorElFN, setAnchorElFN] = React.useState<HTMLButtonElement | null>(
+    null
+  );
+  const [anchorElW, setAnchorElW] = React.useState<HTMLButtonElement | null>(
+    null
+  );
 
-  const color = isLoading
-    ? theme.palette.text.secondary
-    : !connections?.length
-    ? StateColor.WARNING
-    : StateColor.SUCCESS;
+  const handleClickFN = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorElFN(event.currentTarget);
+  };
+
+  const handleCloseFN = () => {
+    setAnchorElFN(null);
+  };
+
+  const openFN = Boolean(anchorElFN);
+
+  const handleClickW = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorElW(event.currentTarget);
+  };
+
+  const handleCloseW = () => {
+    setAnchorElW(null);
+  };
+
+  const openW = Boolean(anchorElW);
+
+  const colorFN =
+    connectionsFN?.length >= 1
+      ? StateColor.SUCCESS
+      : theme.palette.text.secondary;
+
+  const colorW =
+    connectionsW?.length >= 1
+      ? StateColor.SUCCESS
+      : theme.palette.text.secondary;
 
   return (
     <ButtonGroup variant="outlined" color="secondary" size="small">
-      <Button>
-        <WalletStatus
-          color={theme.palette.text.primary}
-          indicator
-          reversed
-          justChildren
-        />
-      </Button>
-      <Button>
+      <Button onClick={handleClickFN}>
         <Flex gap={1} alignItems="center">
-          <StateIndicatorDot color={color} />
-          <Box>
-            {isLoading ? (
-              <Loading size={32} />
-            ) : !connections?.length ? (
-              <Trans>Not Connected</Trans>
-            ) : (
-              <Trans>Connected ({connections?.length})</Trans>
-            )}
-          </Box>
+          <Flex>
+            <StateIndicatorDot color={colorFN} />
+          </Flex>
+          <Flex>
+            <Trans>Full Node</Trans>
+          </Flex>
         </Flex>
       </Button>
+      <Popover
+        id={openFN ? 'simple-popover' : undefined}
+        open={openFN}
+        anchorEl={anchorElFN}
+        onClose={handleCloseFN}
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'right',
+        }}
+        transformOrigin={{
+          horizontal: 'right',
+        }}
+      >
+        <Connections />
+      </Popover>
+      <Button onClick={handleClickW}>
+        <Flex gap={1} alignItems="center">
+          <Flex>
+            <StateIndicatorDot color={colorW} />
+          </Flex>
+          <Flex>
+            <Trans>Wallet</Trans>
+          </Flex>
+        </Flex>
+      </Button>
+      <Popover
+        id={openW ? 'simple-popover' : undefined}
+        open={openW}
+        anchorEl={anchorElW}
+        onClose={handleCloseW}
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'right',
+        }}
+        transformOrigin={{
+          horizontal: 'right',
+        }}
+      >
+        <div style={{ minWidth: '800px' }}>
+          <WalletConnections walletId={1} />
+        </div>
+      </Popover>
     </ButtonGroup>
   );
 }
