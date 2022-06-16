@@ -21,6 +21,7 @@ import BigNumber from 'bignumber.js';
 import onCacheEntryAddedInvalidate from '../utils/onCacheEntryAddedInvalidate';
 import normalizePoolState from '../utils/normalizePoolState';
 import api, { baseQuery } from '../api';
+import { freeze } from 'core-js/core/object';
 
 const apiWithTag = api.enhanceEndpoints({
   addTagTypes: [
@@ -31,6 +32,7 @@ const apiWithTag = api.enhanceEndpoints({
     'DIDPubKey',
     'DIDRecoveryInfo',
     'DIDRecoveryList',
+    // 'DIDWallet',
     'Keys',
     'LoggedInFingerprint',
     'NFTInfo',
@@ -1770,6 +1772,65 @@ export const walletApi = apiWithTag.injectEndpoints({
         result ? [{ type: 'DID', id: walletId }] : [],
     }),
 
+    // getDIDs: build.query<Wallet[], undefined>({
+    //   async queryFn(args, _queryApi, _extraOptions, fetchWithBQ) {
+    //     try {
+    //       const { data, error } = await fetchWithBQ({
+    //         command: 'getWallets',
+    //         service: Wallet,
+    //       });
+
+    //       if (error) {
+    //         throw error;
+    //       }
+
+    //       const wallets = data?.wallets;
+    //       if (!wallets) {
+    //         throw new Error('Wallets are not defined');
+    //       }
+
+    //       const didWallets = wallets.filter(
+    //         wallet => wallet.type === WalletType.DISTRIBUTED_ID
+    //       );
+
+    //       return {
+    //         data: await Promise.all(
+    //           didWallets.map(async (wallet: Wallet) => {
+    //             const { data, error } = await fetchWithBQ({
+    //               command: 'getDid',
+    //               service: DID,
+    //               args: [wallet.id],
+    //             });
+
+    //             if (error) {
+    //               throw error;
+    //             }
+
+    //             const { myDid } = data;
+
+    //             return {
+    //               ...wallet,
+    //               myDid,
+    //             };
+    //           })
+    //         ),
+    //       };
+    //     } catch (error: any) {
+    //       return {
+    //         error,
+    //       };
+    //     }
+    //   },
+    //   providesTags(result) {
+    //     return result
+    //       ? [
+    //           ...result.map(({ id }) => ({ type: 'DIDWallet', id } as const)),
+    //           { type: 'DIDWallet', id: 'LIST' },
+    //         ]
+    //       : [{ type: 'DIDWallet', id: 'LIST' }];
+    //   },
+    // }),
+
     // spendDIDRecovery: did_recovery_spend needs an RPC change (attest_filenames -> attest_file_contents)
 
     getDIDRecoveryList: build.query<any, { walletId: number }>({
@@ -1949,16 +2010,36 @@ export const walletApi = apiWithTag.injectEndpoints({
         nftCoinId: string;
         launcherId: string;
         targetAddress: string;
+        fee: string;
       }
     >({
-      query: ({ walletId, nftCoinId, targetAddress }) => ({
+      query: ({ walletId, nftCoinId, targetAddress, fee }) => ({
         command: 'transferNft',
         service: NFT,
-        args: [walletId, nftCoinId, targetAddress],
+        args: [walletId, nftCoinId, targetAddress, fee],
       }),
       invalidatesTags: (result, _error, { launcherId }) =>
         result ? [{ type: 'NFTInfo', id: launcherId }] : [],
     }),
+
+    // setNFTDID: build.mutation<
+    //   any,
+    //   {
+    //     walletId: number;
+    //     nftLauncherId: string;
+    //     nftCoinId: string;
+    //     did: string;
+    //     fee: string;
+    //   }
+    // >({
+    //   query: ({ walletId, nftLauncherId, nftCoinId, did, fee }) => ({
+    //     command: 'setNftDid',
+    //     service: NFT,
+    //     args: [walletId, nftCoinId, did, freeze],
+    //   }),
+    //   invalidatesTags: (result, _error, { nftLauncherId }) =>
+    //     result ? [{ type: 'NFTInfo', id: nftLauncherId }] : [],
+    // }),
 
     receiveNFT: build.mutation<
       any,
@@ -2050,6 +2131,7 @@ export const {
   useUpdateDIDRecoveryIdsQuery,
   useGetDIDPubKeyQuery,
   useGetDIDQuery,
+  // useGetDIDsQuery,
   useGetDIDNameQuery,
   useSetDIDNameMutation,
   useGetDIDRecoveryListQuery,
@@ -2061,5 +2143,6 @@ export const {
   useGetNFTWalletsWithDIDsQuery,
   useGetNFTInfoQuery,
   useTransferNFTMutation,
+  // useSetNFTDIDMutation,
   useReceiveNFTMutation,
 } = walletApi;
