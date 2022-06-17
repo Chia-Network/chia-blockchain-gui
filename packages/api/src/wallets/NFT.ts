@@ -38,7 +38,7 @@ export default class NFTWallet extends Wallet {
     did: string,
     fee: string
   ) {
-    return this.command('nft_set_did', {
+    return this.command('nft_set_nft_did', {
       walletId,
       nftCoinId,
       did,

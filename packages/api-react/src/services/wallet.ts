@@ -287,7 +287,10 @@ export const walletApi = apiWithTag.injectEndpoints({
         service: Wallet,
         args: [walletType, options],
       }),
-      invalidatesTags: [{ type: 'Wallets', id: 'LIST' }],
+      invalidatesTags: [
+        { type: 'Wallets', id: 'LIST' },
+        { type: 'DIDWallet', id: 'LIST' },
+      ],
     }),
 
     deleteUnconfirmedTransactions: build.mutation<
@@ -1700,6 +1703,7 @@ export const walletApi = apiWithTag.injectEndpoints({
       }),
       invalidatesTags: [
         { type: 'Wallets', id: 'LIST' },
+        { type: 'DIDWallet', id: 'LIST' },
         { type: 'Transactions', id: 'LIST' },
       ],
     }),
@@ -1728,6 +1732,7 @@ export const walletApi = apiWithTag.injectEndpoints({
       }),
       invalidatesTags: (_result, _error, { walletId }) => [
         { type: 'Wallets', id: walletId },
+        { type: 'DIDWallet', id: walletId },
         { type: 'DIDName', id: walletId },
       ],
     }),

@@ -161,7 +161,7 @@ function NFTTransferContextualAction(props: NFTTransferContextualActionProps) {
     if (result) {
       if (result.success) {
         openDialog(
-          <AlertDialog title={<Trans>NFT Transfer Complete</Trans>}>
+          <AlertDialog title={<Trans>NFT Transfer Pending</Trans>}>
             <Trans>
               The NFT transfer transaction has been successfully submitted to
               the blockchain.
