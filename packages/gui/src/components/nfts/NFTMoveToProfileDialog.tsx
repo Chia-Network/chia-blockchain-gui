@@ -110,9 +110,6 @@ export function DIDProfileDropdown(props: DIDProfileDropdownProps) {
     );
   }, [allDIDWallets, excludeDIDs]);
 
-  console.log('didWallets:');
-  console.log(didWallets);
-
   const label = useMemo(() => {
     if (isLoading) {
       return t`Loading...`;
@@ -121,7 +118,7 @@ export function DIDProfileDropdown(props: DIDProfileDropdownProps) {
     const wallet = didWallets?.find((wallet: Wallet) => wallet.id === walletId);
 
     return wallet?.name || defaultTitle;
-  }, [didWallets, walletId]);
+  }, [defaultTitle, didWallets, isLoading, walletId]);
 
   function handleWalletChange(newWalletId?: number) {
     onChange?.(newWalletId);
@@ -238,18 +235,9 @@ export function NFTMoveToProfileAction(props: NFTMoveToProfileActionProps) {
     return didWallets.find((wallet: Wallet) => wallet.myDid === currentDIDId);
   }, [didWallets, currentDIDId]);
 
-  console.log('destination:');
-  console.log(destination);
-
   const newDID = destination
     ? didWallets.find((wallet: Wallet) => wallet.myDid === destination)
     : undefined;
-
-  console.log('newDID:');
-  console.log(newDID);
-
-  console.log('inbox');
-  console.log(inbox);
 
   let newProfileName = undefined;
   if (newDID) {
@@ -258,6 +246,8 @@ export function NFTMoveToProfileAction(props: NFTMoveToProfileActionProps) {
     if (!newProfileName) {
       newProfileName = truncateValue(newDID.myDid, {});
     }
+  } else if (destination === '<none>') {
+    newProfileName = t`None`;
   }
 
   function handleProfileSelected(walletId?: number) {
@@ -282,9 +272,6 @@ export function NFTMoveToProfileAction(props: NFTMoveToProfileActionProps) {
     const feeInMojos = chiaToMojo(fee || 0);
     let isValid = true;
     let confirmation = false;
-
-    console.log('destination:');
-    console.log(destination);
 
     if (!destination || destination === currentDIDId) {
       errorDialog(new Error(t`Please select a profile to move the NFT to.`));
@@ -420,12 +407,14 @@ export function NFTMoveToProfileAction(props: NFTMoveToProfileActionProps) {
                   {newProfileName}
                 </Typography>
               </Flex>
-              <TooltipIcon interactive>
-                <Flex alignItems="center" gap={1}>
-                  <StyledValue>{newDID.myDid}</StyledValue>
-                  <CopyToClipboard value={newDID.myDid} fontSize="small" />
-                </Flex>
-              </TooltipIcon>
+              {newDID && (
+                <TooltipIcon interactive>
+                  <Flex alignItems="center" gap={1}>
+                    <StyledValue>{newDID.myDid}</StyledValue>
+                    <CopyToClipboard value={newDID.myDid} fontSize="small" />
+                  </Flex>
+                </TooltipIcon>
+              )}
             </Flex>
           )}
         </Flex>

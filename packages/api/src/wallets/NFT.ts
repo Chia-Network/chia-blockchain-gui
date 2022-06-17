@@ -1,4 +1,3 @@
-import { features } from 'process';
 import Wallet from '../services/Wallet';
 
 export default class NFTWallet extends Wallet {
@@ -41,7 +40,7 @@ export default class NFTWallet extends Wallet {
     return this.command('nft_set_nft_did', {
       walletId,
       nftCoinId,
-      did,
+      didId: did,
       fee,
     });
   }

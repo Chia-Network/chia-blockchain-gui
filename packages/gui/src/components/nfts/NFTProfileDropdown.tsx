@@ -59,22 +59,15 @@ export default function NFTProfileDropdown(props: NFTGallerySidebarProps) {
   const { wallets: nftWallets, isLoading: isLoadingNFTWallets } =
     useGetNFTWallets();
 
-  console.log('profiles:');
-  console.log(profiles);
-
   const inbox: Wallet | undefined = useMemo(() => {
     if (isLoadingProfiles || isLoadingNFTWallets) {
       return undefined;
     }
 
     const nftWalletIds = nftWallets.map((nftWallet) => nftWallet.id);
-    console.log('nftWalletIds');
-    console.log(nftWalletIds);
     const profileWalletIds = new Set(
       profiles.map((profile) => profile.nftWalletId),
     );
-    console.log('profileWalletIds');
-    console.log(profileWalletIds);
     const inboxWalletId = nftWalletIds.find(
       (nftWalletId) => !profileWalletIds.has(nftWalletId),
     );
@@ -97,15 +90,7 @@ export default function NFTProfileDropdown(props: NFTGallerySidebarProps) {
     return profile?.name || <Trans>All Profiles</Trans>;
   }, [profiles, isLoadingProfiles, isLoadingNFTWallets, walletId, inbox]);
 
-  console.log('inbox');
-  console.log(inbox);
-
-  console.log('selected walletId');
-  console.log(walletId);
-
   function handleWalletChange(newWalletId?: number) {
-    console.log('handleWalletChange:');
-    console.log(newWalletId);
     onChange?.(newWalletId);
   }
 
