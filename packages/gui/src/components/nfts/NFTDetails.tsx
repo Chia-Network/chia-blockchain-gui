@@ -78,7 +78,11 @@ export default function NFTDetails(props: NFTDetailsProps) {
                   </Flex>
                   <Flex alignItems="center" gap={1}>
                     <StyledValue>{didId}</StyledValue>
-                    <CopyToClipboard value={didId} fontSize="small" />
+                    <CopyToClipboard
+                      value={didId}
+                      fontSize="small"
+                      invertColor
+                    />
                   </Flex>
                 </Flex>
                 <Flex flexDirection="column" gap={0}>
@@ -89,7 +93,11 @@ export default function NFTDetails(props: NFTDetailsProps) {
                   </Flex>
                   <Flex alignItems="center" gap={1}>
                     <StyledValue>{hexDIDId}</StyledValue>
-                    <CopyToClipboard value={hexDIDId} fontSize="small" />
+                    <CopyToClipboard
+                      value={hexDIDId}
+                      fontSize="small"
+                      invertColor
+                    />
                   </Flex>
                 </Flex>
               </Flex>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Trans } from '@lingui/macro';
-import { Flex } from '@chia/core';
+import { Flex, useColorModeValue } from '@chia/core';
 import { Typography } from '@mui/material';
 import styled from 'styled-components';
 
@@ -14,9 +14,8 @@ const StyledHeaderBox = styled.div`
   padding-left: ${({ theme }) => `${theme.spacing(2)}`};
   padding-right: ${({ theme }) => `${theme.spacing(2)}`};
   border-radius: 4px;
+  border: ${({ theme }) => `1px solid ${useColorModeValue(theme, 'border')}`};
   background-color: ${({ theme }) => theme.palette.background.paper};
-  box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%),
-    0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
 `;
 
 /* ========================================================================== */
