@@ -29,7 +29,15 @@ import {
   useOpenDialog,
   useShowError,
 } from '@chia/core';
-import { Divider, Grid, Tabs, Tab, Typography, useTheme } from '@mui/material';
+import {
+  Box,
+  Divider,
+  Grid,
+  Tabs,
+  Tab,
+  Typography,
+  useTheme,
+} from '@mui/material';
 import { Warning as WarningIcon } from '@mui/icons-material';
 import OfferLocalStorageKeys from './OfferLocalStorage';
 import OfferEditorConfirmationDialog from './OfferEditorConfirmationDialog';
@@ -65,18 +73,6 @@ function NFTOfferCreationFee(props: NFTOfferCreationFeeProps) {
 
   return (
     <Flex flexDirection="column" gap={1}>
-      <Flex flexDirection="row" alignItems="center" gap={1}>
-        <Typography variant="body1" color="textSecondary">
-          <Trans>Offer Creation Fee (Optional)</Trans>
-        </Typography>
-        <TooltipIcon>
-          <Trans>
-            Including a fee in the offer can help expedite the transaction when
-            the offer is accepted. The recommended minimum fee is 0.000005 XCH
-            (5,000,000 mojos)
-          </Trans>
-        </TooltipIcon>
-      </Flex>
       <Grid item>
         <Flex flexDirection="row" gap={1}>
           <Fee
@@ -87,9 +83,18 @@ function NFTOfferCreationFee(props: NFTOfferCreationFeeProps) {
             disabled={disabled}
             onChange={onChange}
             defaultValue={defaultValue}
-            label={<Trans>Fee</Trans>}
+            label={<Trans>Fee (Optional)</Trans>}
             {...rest}
           />
+          <Box style={{ position: 'relative', top: '20px' }}>
+            <TooltipIcon>
+              <Trans>
+                Including a fee in the offer can help expedite the transaction
+                when the offer is accepted. The recommended minimum fee is
+                0.000005 XCH (5,000,000 mojos)
+              </Trans>
+            </TooltipIcon>
+          </Box>
         </Flex>
       </Grid>
     </Flex>
