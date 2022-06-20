@@ -37,7 +37,6 @@ test('Interact with Send Page Elements', async () => {
   await page.locator('text=FeeXCH >> input[type="text"]').click();
 
   const text = await page.$eval('h6', (el) => el.textContent);
-  //expect(text).toEqual('Create Transaction');
   expect(text).toContain('Create Transaction');
   
   // Click button:has-text("ChiaXCH")
@@ -52,7 +51,7 @@ test('Interact with Send Page Elements', async () => {
 
 });
 
-test.only('Interact with the Send Page Elements for 1651231316 ID', async () => {
+test('Confirm fields Provide Tooltips on Send Page for 1651231316 ID', async () => {
   
   // Click div[role="button"]:has-text("Private key with public fingerprint 1651231316Can be backed up to mnemonic seed")
   await Promise.all([
@@ -82,11 +81,21 @@ test.only('Interact with the Send Page Elements for 1651231316 ID', async () => 
   // Click #mui-30
   await page.locator('#mui-30').click();
 
-  const pageAlert = await page.$('.tooltip');
- await expect(pageAlert).toEqual('Success message');
+   // Click button:has-text("Manage token list")
+   await page.locator('button:has-text("Manage token list")').click();
+
+   // Click text=Actions
+   await page.locator('text=Actions').click();
+
+  
+ //await expect(page.locator('div[role="tooltip"]')).toHaveText('ErrorWallet needs to be fully synced before sending transactionsOK');
+ //await expect(page.locator('div[role="alert"]')).toHaveText('ErrorWallet needs to be fully synced before sending transactionsOK')
 
   /*let toolTip = document.querySelector('.tooltip');
   expect(toolTip).not.toBe(null);*/
+
+  /*const pageAlert = await page.$('.tooltip');
+ await expect(pageAlert).toEqual('Success message');*/
 
   //await page.locator('text=Please fill out this Jahis field').isVisible
 
@@ -102,16 +111,74 @@ test.only('Interact with the Send Page Elements for 1651231316 ID', async () => 
  //const pageAlert = await page.$('.alert');
  //await expect(pageAlert).toEqual('Success message');
 
-  // Click button:has-text("Manage token list")
-  await page.locator('button:has-text("Manage token list")').click();
 
-  // Click text=Actions
-  await page.locator('text=Actions').click();
+});
+
+test.only('Confirm Error Dialog when wrong data is entered on Send Page for 1651231316 ID', async () => {
+  
+  // Click div[role="button"]:has-text("Private key with public fingerprint 1651231316Can be backed up to mnemonic seed")
+  await Promise.all([
+    page.waitForNavigation(/*{ url: 'file:///Users/jahifaw/Documents/Code/Chia-testnet-playwright/chia-blockchain/chia-blockchain-gui/packages/gui/build/renderer/index.html#/dashboard/wallets/1' }*/),
+    page.locator('div[role="button"]:has-text("Private key with public fingerprint 1651231316Can be backed up to mnemonic seed")').click()
+  ]);
+
+  // Click text=Send
+  await page.locator('text=Send').click();
+
+  // Fill #mui-29
+  await page.locator('#mui-29').fill('1');
+
+  // Fill text=Amount *TXCH >> input[type="text"]
+  await page.locator('text=Amount *TXCH >> input[type="text"]').fill('34');
+
+
+   // Fill text=FeeTXCH >> input[type="text"]
+   await page.locator('text=FeeTXCH >> input[type="text"]').fill('0.8');
+
+  // Click #mui-30
+  await page.locator('#mui-30').click();
+
+  // Click div[role="dialog"] >> text=OK
+  await expect(page.locator('div[role="dialog"]')).toHaveText('ErrorWallet needs to be fully synced before sending transactionsOK');
+  await page.locator('div[role="dialog"] >> text=OK').click();
+  
 
 });
 
 
 /*
+
+
+  // Click #mui-29
+  await page.locator('#mui-29').click();
+
+  // Fill #mui-29
+  await page.locator('#mui-29').fill('1');
+
+  // Click #mui-30
+  await page.locator('#mui-30').click();
+
+  // Click text=Amount *TXCH >> input[type="text"]
+  await page.locator('text=Amount *TXCH >> input[type="text"]').click();
+
+  // Fill text=Amount *TXCH >> input[type="text"]
+  await page.locator('text=Amount *TXCH >> input[type="text"]').fill('2');
+
+  // Click text=FeeTXCH >> input[type="text"]
+  await page.locator('text=FeeTXCH >> input[type="text"]').click();
+
+  // Fill text=FeeTXCH >> input[type="text"]
+  await page.locator('text=FeeTXCH >> input[type="text"]').fill('1');
+
+  // Click #mui-30
+  await page.locator('#mui-30').click();
+
+  // Click div[role="dialog"] >> text=OK
+  await page.locator('div[role="dialog"] >> text=OK').click();
+
+  // Click text=Wallet 1651231316Synced Connected (2) >> button >> nth=2
+  await page.locator('text=Wallet 1651231316Synced Connected (2) >> button').nth(2).click();
+  // assert.equal(page.url(), 'file:///Users/jahifaw/Documents/Code/Chia-testnet-playwright/chia-blockchain/chia-blockchain-gui/packages/gui/build/renderer/index.html#/');
 
 
   // Click [placeholder="Search\.\.\."]
