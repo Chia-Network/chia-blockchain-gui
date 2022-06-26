@@ -174,7 +174,7 @@ const PlotNFTSelectPool = forwardRef((props: Props, ref) => {
           feeDescription={feeDescription}
         />
         {exceededNFTLimit && <Alert severity="error">
-          <Trans> You Already Have 50 or more Plot NFT's. </Trans>
+          <Trans>You already have 50 or more Plot NFTs.</Trans>
         </Alert>}
         {!onCancel && (
           <Flex gap={1} justifyContent="right">
