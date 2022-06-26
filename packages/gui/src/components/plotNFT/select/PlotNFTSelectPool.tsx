@@ -132,7 +132,8 @@ const PlotNFTSelectPool = forwardRef((props: Props, ref) => {
       await onSubmit(submitData);
     } finally {
       setLoading(false);
-    }}
+    }
+    }
   }
 
   if (walletLoading) {
