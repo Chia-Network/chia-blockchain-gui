@@ -8,7 +8,7 @@ msgstr ""
 "Language: it_IT\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-06-26 18:24\n"
+"PO-Revision-Date: 2022-06-26 19:41\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -2663,7 +2663,7 @@ msgstr "Il seed usato per creare il plot. Questo dipende dalla pk della pool e d
 
 #: src/components/block/Block.jsx:206
 msgid "The total number of VDF (verifiable delay function) or proof of time iterations on the whole chain up to this block."
-msgstr ""
+msgstr "Il numero totale di VDF (verifiable delay function) o iterazioni di prove di tempo sull'intera catena fino a questo blocco."
 
 #: src/components/block/Block.jsx:206
 #~ msgid "The total number of VDF (verifiable delay function) or proof of time iterations on the whole chain up to this sub block."
@@ -2798,7 +2798,7 @@ msgstr "Tokens"
 
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:117
 msgid "Too Many Plot NFTs"
-msgstr ""
+msgstr "Troppi Plot NFT"
 
 #: src/components/_wallet_old/card/WalletCardTotalBalance.tsx:32
 #: src/components/_wallet_old/coloured/WalletColoured.tsx:379
@@ -3084,7 +3084,7 @@ msgstr "Peso"
 
 #: src/components/block/Block.jsx:186
 msgid "Weight is the total added difficulty of all blocks up to and including this one"
-msgstr ""
+msgstr "Il peso è la somma totale della difficoltà di tutti i blocchi fino a e includendo questo"
 
 #: src/components/block/Block.jsx:186
 #~ msgid "Weight is the total added difficulty of all sub blocks up to and including this one"
@@ -3117,7 +3117,7 @@ msgstr "Sì"
 
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:120
 msgid "You already have more than 10 Plot NFTs. Click OK if you're sure you want to create a new one."
-msgstr ""
+msgstr "Hai già più di 10 Plot NFT. Clicca OK se sei certo che vuoi crearne uno nuovo."
 
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:120
 #~ msgid "You already have more then 10 PlotNFT's, you really shouldn't make more."
