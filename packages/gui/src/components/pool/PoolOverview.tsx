@@ -2,10 +2,10 @@ import React from 'react';
 import { Trans } from '@lingui/macro';
 import { Button, Flex, Suspender } from '@chia/core';
 import { useNavigate } from 'react-router';
-import { Alert } from '@material-ui/lab';
 import {
   Grid,
   Typography,
+  Alert,
 } from '@mui/material';
 import PlotNFTCard from '../plotNFT/PlotNFTCard';
 import PlotExternalNFTCard from '../plotNFT/PlotExternalNFTCard';
@@ -22,7 +22,7 @@ export default function PoolOverview() {
   const hasNFTs =
     (!!nfts && !!nfts?.length) || !!external?.length || unconfirmed.length;
 
-  const passedNFTLimit = !(hasNFTs && nfts?.length >= 50);
+  const exceededNFTLimit = nfts?.length >= 50;
 
   function handleAddPool() {
     navigate('/dashboard/pool/add');
@@ -48,10 +48,10 @@ export default function PoolOverview() {
         </Flex>
         <Flex flexDirection="column" gap={1}>
           <Flex alignItems="center" justifyContent="flex-end" gap={1}>
-            <Button variant="outlined" color="primary"  disabled={passedNFTLimit} onClick={handleAddPool}>
+            <Button variant="outlined" color="primary"  disabled={exceededNFTLimit} onClick={handleAddPool}>
               + Add a Plot NFT
             </Button>
-            {passedNFTLimit && <Alert severity="error">
+            {exceededNFTLimit && <Alert severity="error">
               <Trans> You Already Have 50 or more Plot NFT's. </Trans>
             </Alert>}
           </Flex>
