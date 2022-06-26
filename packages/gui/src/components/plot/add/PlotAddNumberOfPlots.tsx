@@ -315,7 +315,7 @@ export default function PlotAddNumberOfPlots(props: Props) {
                 name="plotNFTContractAddr"
                 type="text"
                 variant="filled"
-                placeholder="Plot NFT Plot Target Address, This will be used if a PlotNFT is not selected."
+                placeholder="Plot NFT Plot Target Address"
                 label={<Trans>Plot NFT Pool Contract Address</Trans>}
               />
             </FormControl>
