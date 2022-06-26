@@ -954,7 +954,7 @@ msgstr "Отключить симулятор"
 msgid "Disable bitfield plotting"
 msgstr "Отключить битовое поле"
 
-#: src/components/core/components/FormBackButton/FormBackButton.tsx:26
+#: src/components/plot/add/PlotAddNFT.tsx:46
 #~ msgid "Discard"
 #~ msgstr "Discard"
 
@@ -1416,8 +1416,8 @@ msgstr "Присоединиться к пулу"
 
 #: src/components/plot/add/PlotAddNFT.tsx:64
 #: src/components/plot/add/PlotAddNFT.tsx:146
-#: src/components/plotNFT/select/PlotNFTSelectPool.tsx:131
-#: src/components/plotNFT/select/PlotNFTSelectPool.tsx:145
+#: src/components/plotNFT/select/PlotNFTSelectPool.tsx:150
+#: src/components/plotNFT/select/PlotNFTSelectPool.tsx:164
 #: src/components/pool/PoolHero.tsx:26
 msgid "Join a Pool"
 msgstr "Присоединиться к пулу"
@@ -1433,6 +1433,10 @@ msgstr "Присоединяйтесь к пулу и получайте пос�
 #: src/components/plot/add/PlotAddNFT.tsx:138
 msgid "Join a pool and get more consistent XCH farming rewards. Create a plot NFT and assign your new plots to a group."
 msgstr "Присоединяйтесь к пулу и получите более последовательные награды за фермерство в XCH. Создайте участки NFT и назначьте свои новые участки в группу."
+
+#: src/components/plot/add/PlotAddNFT.tsx:52
+#~ msgid "Join apool and get consistent XCH farming rewards. The average returns are the same, but it is much less volatile."
+#~ msgstr ""
 
 #: src/components/app/AppSelectMode.tsx:146
 msgid "Join farming pools"
@@ -2196,7 +2200,7 @@ msgstr "Адрес наград фермера не должен быть пус
 msgid "Pool Reward Amount"
 msgstr "Сумма вознаграждения пула"
 
-#: src/components/plotNFT/select/PlotNFTSelectPool.tsx:37
+#: src/components/plotNFT/select/PlotNFTSelectPool.tsx:39
 msgid "Pool does not provide relativeLockHeight."
 msgstr "Пул не предоставляет relativeLockHeight."
 
@@ -2204,7 +2208,7 @@ msgstr "Пул не предоставляет relativeLockHeight."
 #~ msgid "Pool does not provide relative_lock_height."
 #~ msgstr "Pool does not provide relative_lock_height."
 
-#: src/components/plotNFT/select/PlotNFTSelectPool.tsx:34
+#: src/components/plotNFT/select/PlotNFTSelectPool.tsx:36
 msgid "Pool does not provide targetPuzzleHash."
 msgstr "Пул не предоставляет targetPuzzleHash."
 
@@ -2968,6 +2972,10 @@ msgstr "Временная метка"
 msgid "Tokens"
 msgstr "Токены"
 
+#: src/components/plotNFT/select/PlotNFTSelectPool.tsx:118
+msgid "Too Many Plot NFTs"
+msgstr ""
+
 #: src/components/_wallet_old/card/WalletCardTotalBalance.tsx:32
 #: src/components/_wallet_old/coloured/WalletColoured.tsx:379
 #: src/components/_wallet_old/rateLimited/WalletRateLimited.jsx:543
@@ -3082,7 +3090,7 @@ msgstr "Незаконченный"
 msgid "Unlock Keyring"
 msgstr "Разблокировать связку ключей"
 
-#: src/components/core/components/FormBackButton/FormBackButton.tsx:25
+#: src/components/plot/add/PlotAddNFT.tsx:45
 #~ msgid "Unsaved Changes"
 #~ msgstr "Unsaved Changes"
 
@@ -3283,6 +3291,22 @@ msgstr "Без комиссии"
 msgid "Yes"
 msgstr "Да"
 
+#: src/components/plotNFT/select/PlotNFTSelectPool.tsx:177
+#~ msgid "You Already Have 50 or more Plot NFT's."
+#~ msgstr ""
+
+#: src/components/plotNFT/select/PlotNFTSelectPool.tsx:177
+msgid "You already have 50 or more Plot NFTs."
+msgstr ""
+
+#: src/components/plotNFT/select/PlotNFTSelectPool.tsx:121
+msgid "You already have more than 10 Plot NFTs. Click OK if you're sure you want to create a new one."
+msgstr ""
+
+#: src/components/plotNFT/select/PlotNFTSelectPool.tsx:120
+#~ msgid "You already have more then 10 PlotNFT's, you really shouldn't make more."
+#~ msgstr ""
+
 #: src/hooks/useAbsorbRewards.tsx:27
 #: src/hooks/useJoinPool.tsx:36
 msgid "You are in pending state. Please wait for confirmation"
@@ -3312,7 +3336,7 @@ msgstr "Вам не нужно синхронизироваться или по�
 #~ msgid "You do not need to be synched or connected to plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
 #~ msgstr "You do not need to be synced or connected to plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
 
-#: src/components/core/components/FormBackButton/FormBackButton.tsx:29
+#: src/components/plot/add/PlotAddNFT.tsx:49
 #~ msgid "You have made changes. Do you want to discard them?"
 #~ msgstr "You have made changes. Do you want to discard them?"
 
