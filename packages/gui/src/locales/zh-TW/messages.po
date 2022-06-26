@@ -2796,6 +2796,10 @@ msgstr "時間戳記"
 msgid "Tokens"
 msgstr ""
 
+#: src/components/plotNFT/select/PlotNFTSelectPool.tsx:117
+msgid "Too Many Plot NFTs"
+msgstr ""
+
 #: src/components/_wallet_old/card/WalletCardTotalBalance.tsx:32
 #: src/components/_wallet_old/coloured/WalletColoured.tsx:379
 #: src/components/_wallet_old/rateLimited/WalletRateLimited.jsx:543
@@ -3112,8 +3116,12 @@ msgid "Yes"
 msgstr "是"
 
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:120
-msgid "You already have more then 10 PlotNFT's, you really shouldn't make more."
+msgid "You already have more than 10 Plot NFTs. Click OK if you're sure you want to create a new one."
 msgstr ""
+
+#: src/components/plotNFT/select/PlotNFTSelectPool.tsx:120
+#~ msgid "You already have more then 10 PlotNFT's, you really shouldn't make more."
+#~ msgstr ""
 
 #: src/hooks/useAbsorbRewards.tsx:27
 #: src/hooks/useJoinPool.tsx:36
