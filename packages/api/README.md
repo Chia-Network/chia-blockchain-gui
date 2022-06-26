@@ -47,7 +47,6 @@ import sleep from 'sleep-promise';
     // wait 5 minutes
     await sleep(1000 * 60 * 5);
 
-
     // close client and stop all services
     await client.close();
   } catch (error: any) {
