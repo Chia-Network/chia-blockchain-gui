@@ -1,10 +1,9 @@
 import React from 'react';
 import { Trans } from '@lingui/macro';
-import { Folder as FolderIcon, Delete as DeleteIcon } from '@material-ui/icons';
+import { Folder as FolderIcon, Delete as DeleteIcon } from '@mui/icons-material';
 import {
   Avatar,
   Box,
-  Button,
   Dialog,
   DialogActions,
   DialogTitle,
@@ -16,8 +15,8 @@ import {
   ListItemSecondaryAction,
   ListItemText,
   Typography,
-} from '@material-ui/core';
-import { useShowError, Suspender } from '@chia/core';
+} from '@mui/material';
+import { useShowError, Button, Suspender } from '@chia/core';
 import { useAddPlotDirectoryMutation, useRemovePlotDirectoryMutation, useGetPlotDirectoriesQuery } from '@chia/api-react';
 import useSelectDirectory from '../../hooks/useSelectDirectory';
 
@@ -93,7 +92,7 @@ export default function PlotAddDirectoryDialog(props: Props) {
         </Typography>
         <Box display="flex">
           <List dense>
-            {directories.map((dir: string) => (
+            {directories?.map((dir: string) => (
               <ListItem key={dir}>
                 <ListItemAvatar>
                   <Avatar>

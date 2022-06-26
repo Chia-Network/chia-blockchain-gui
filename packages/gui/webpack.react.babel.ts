@@ -78,6 +78,7 @@ export default {
       'node_modules',
     ],
     alias: {
+      '@mui/styled-engine': '@mui/styled-engine-sc',
       crypto: 'crypto-browserify',
       stream: 'stream-browserify',
     },
@@ -132,6 +133,12 @@ export default {
   ].filter(Boolean),
   module: {
     rules: [{
+      test: function(path){
+        return DEV ? /\.js$/.test(path) : false;
+      },
+      enforce: "pre",
+      use: ["source-map-loader"],
+    }, {
       test: /node_modules[\/\\](iconv-lite)[\/\\].+/,
       resolve: {
         aliasFields: ['main'],

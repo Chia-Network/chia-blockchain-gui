@@ -1,9 +1,11 @@
 import React, { useMemo } from 'react';
-import { Trans } from '@lingui/macro';
+import { Plural, Trans } from '@lingui/macro';
 import { type OfferSummaryRecord  } from '@chia/api';
 import {
   Flex,
+  FormatLargeNumber,
   StateColor,
+  TooltipIcon,
   mojoToChia,
   mojoToCAT,
 } from '@chia/core';
@@ -11,8 +13,8 @@ import {
   Box,
   Divider,
   Typography,
-} from '@material-ui/core';
-import { useTheme } from '@material-ui/core/styles';
+} from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 import styled from 'styled-components';
 import useAssetIdName from '../../hooks/useAssetIdName';
 import OfferExchangeRate from './OfferExchangeRate';
@@ -24,6 +26,7 @@ const StyledWarningText = styled(Typography)`
 
 type Props = {
   isMyOffer: boolean;
+  imported: boolean;
   summary: OfferSummaryRecord;
   makerTitle: React.ReactElement | string;
   takerTitle: React.ReactElement | string;
@@ -32,18 +35,22 @@ type Props = {
 };
 
 export default function OfferSummary(props: Props) {
-  const { isMyOffer, summary, makerTitle, takerTitle, rowIndentation, setIsMissingRequestedAsset } = props;
+  const { isMyOffer, imported, summary, makerTitle, takerTitle, rowIndentation, setIsMissingRequestedAsset } = props;
   const theme = useTheme();
   const { lookupByAssetId } = useAssetIdName();
   const horizontalPadding = `${theme.spacing(rowIndentation)}px`; // logic borrowed from Flex's gap computation
   const makerEntries: [string, number][] = Object.entries(summary.offered);
   const takerEntries: [string, number][] = Object.entries(summary.requested);
+  const makerFee: number = summary.fees;
   const makerAssetInfo = makerEntries.length === 1 ? lookupByAssetId(makerEntries[0][0]) : undefined;
   const takerAssetInfo = takerEntries.length === 1 ? lookupByAssetId(takerEntries[0][0]) : undefined;
-  const makerAmount = makerEntries[0][0].toLowerCase() === 'xch' ? Number(mojoToChia(makerEntries[0][1])) : Number(mojoToCAT(makerEntries[0][1]));
-  const takerAmount = takerEntries[0][0].toLowerCase() === 'xch' ? Number(mojoToChia(takerEntries[0][1])) : Number(mojoToCAT(takerEntries[0][1]));
-  const makerExchangeRate = makerAssetInfo && takerAssetInfo ? takerAmount / makerAmount : undefined;
-  const takerExchangeRate = makerAssetInfo && takerAssetInfo ? makerAmount / takerAmount : undefined;
+  const makerAmount = makerEntries.length > 0 ? (['xch', 'txch'].includes(makerEntries[0][0].toLowerCase()) ? mojoToChia(makerEntries[0][1]) : mojoToCAT(makerEntries[0][1])) : undefined;
+  const takerAmount = takerEntries.length > 0 ? (['xch', 'txch'].includes(takerEntries[0][0].toLowerCase()) ? mojoToChia(takerEntries[0][1]) : mojoToCAT(takerEntries[0][1])) : undefined;
+  const canSetExchangeRate = makerAssetInfo && takerAssetInfo && makerAmount && takerAmount;
+  const makerExchangeRate = canSetExchangeRate ? takerAmount / makerAmount : undefined;
+  const takerExchangeRate = canSetExchangeRate ? makerAmount / takerAmount : undefined;
+
+
 
   const [takerUnknownCATs, makerUnknownCATs] = useMemo(() => {
     if (isMyOffer) {
@@ -107,11 +114,35 @@ export default function OfferSummary(props: Props) {
           <OfferExchangeRate makerAssetInfo={makerAssetInfo} takerAssetInfo={takerAssetInfo} makerExchangeRate={makerExchangeRate} takerExchangeRate={takerExchangeRate} />
         </Flex>
       )}
+      {makerFee > 0 && (
+        <Flex flexDirection="column" gap={2}>
+          <Divider />
+          <Flex flexDirection="row" alignItems="center" gap={1}>
+            <Typography variant="body1" color="secondary" style={{fontWeight: 'bold'}}>
+              <Trans>Fees included in offer:</Trans>
+            </Typography>
+            <Typography color="primary"><FormatLargeNumber value={makerFee} /></Typography>
+            <Typography><Plural value={makerFee} one="mojo" other="mojos" /></Typography>
+            <TooltipIcon>
+              {imported ? (
+                <Trans>
+                  This offer has a fee included to help expedite the transaction when the offer is accepted. You may specify an additional fee if you feel that the included fee is too small.
+                </Trans>
+              ) : (
+                <Trans>
+                  This offer has a fee included to help expedite the transaction when the offer is accepted.
+                </Trans>
+              )}
+            </TooltipIcon>
+          </Flex>
+        </Flex>
+      )}
     </Flex>
   );
 }
 
 OfferSummary.defaultProps = {
   isMyOffer: false,
+  imported: false,
   rowIndentation: 3,
 };

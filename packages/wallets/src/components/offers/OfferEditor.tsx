@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
+import BigNumber from 'bignumber.js';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { useLocalStorage } from '@rehooks/local-storage';
 import { Trans, t } from '@lingui/macro';
 import {
   Back,
+  Button,
+  Card,
   ButtonLoading,
   Flex,
   Form,
@@ -13,28 +16,23 @@ import {
 } from '@chia/core';
 import { useCreateOfferForIdsMutation } from '@chia/api-react';
 import {
-  Button,
-  Divider,
   Grid,
-} from '@material-ui/core';
+} from '@mui/material';
 import type OfferEditorRowData from './OfferEditorRowData';
 import { suggestedFilenameForOffer } from './utils';
 import useAssetIdName from '../../hooks/useAssetIdName';
 import { WalletType } from '@chia/api';
 import OfferEditorConditionsPanel from './OfferEditorConditionsPanel';
 import OfferLocalStorageKeys from './OfferLocalStorage';
-import styled from 'styled-components';
 import { chiaToMojo, catToMojo } from '@chia/core';
 import fs from 'fs';
 
-const StyledEditorBox = styled.div`
-  padding: ${({ theme }) => `${theme.spacing(4)}px`};
-`;
 
 type FormData = {
   selectedTab: number;
   makerRows: OfferEditorRowData[];
   takerRows: OfferEditorRowData[];
+  fee: string;
 };
 
 type OfferEditorProps = {
@@ -47,11 +45,11 @@ function OfferEditor(props: OfferEditorProps) {
   const navigate = useNavigate();
   const defaultValues: FormData = {
     selectedTab: 0,
-    makerRows: [{ amount: '', assetWalletId: 0, walletType: WalletType.STANDARD_WALLET, spendableBalance: 0 }],
-    takerRows: [{ amount: '', assetWalletId: 0, walletType: WalletType.STANDARD_WALLET, spendableBalance: 0 }],
+    makerRows: [{ amount: '', assetWalletId: 0, walletType: WalletType.STANDARD_WALLET, spendableBalance: new BigNumber(0) }],
+    takerRows: [{ amount: '', assetWalletId: 0, walletType: WalletType.STANDARD_WALLET, spendableBalance: new BigNumber(0) }],
+    fee: '',
   };
   const methods = useForm<FormData>({
-    shouldUnregister: false,
     defaultValues,
   });
   const errorDialog = useShowError();
@@ -60,17 +58,20 @@ function OfferEditor(props: OfferEditorProps) {
   const [createOfferForIds] = useCreateOfferForIdsMutation();
   const [processing, setIsProcessing] = useState<boolean>(false);
 
-  function updateOffer(offer: { [key: string]: number | string }, row: OfferEditorRowData, debit: boolean) {
+  function updateOffer(offer: { [key: string]: BigNumber }, row: OfferEditorRowData, debit: boolean) {
     const { amount, assetWalletId, walletType } = row;
     if (assetWalletId > 0) {
-      let mojoAmount = 0;
+      let mojoAmount = new BigNumber(0);
       if (walletType === WalletType.STANDARD_WALLET) {
-        mojoAmount = Number.parseFloat(chiaToMojo(amount));
+        mojoAmount = chiaToMojo(amount);
       }
       else if (walletType === WalletType.CAT) {
-        mojoAmount = Number.parseFloat(catToMojo(amount));
+        mojoAmount = catToMojo(amount);
       }
-      offer[assetWalletId] = debit ? -mojoAmount : mojoAmount;
+
+      offer[assetWalletId] = debit
+        ? mojoAmount.negated()
+        : mojoAmount;
     }
     else {
       console.log('missing asset wallet id');
@@ -78,10 +79,11 @@ function OfferEditor(props: OfferEditorProps) {
   }
 
   async function onSubmit(formData: FormData) {
-    const offer: { [key: string]: number | string } = {};
+    const offer: { [key: string]: BigNumber } = {};
     let missingAssetSelection = false;
     let missingAmount = false;
     let amountExceedsSpendableBalance = false;
+    let feeInMojos = chiaToMojo(formData.fee ?? 0);
 
     formData.makerRows.forEach((row: OfferEditorRowData) => {
       updateOffer(offer, row, true);
@@ -91,7 +93,7 @@ function OfferEditor(props: OfferEditorProps) {
       else if (!row.amount) {
         missingAmount = true;
       }
-      else if (Number.parseFloat(row.amount as string) > row.spendableBalance) {
+      else if (new BigNumber(row.amount).isGreaterThan(row.spendableBalance)) {
         amountExceedsSpendableBalance = true;
       }
     });
@@ -120,7 +122,7 @@ function OfferEditor(props: OfferEditorProps) {
 
     try {
       // preflight offer creation to check validity
-      const response = await createOfferForIds({ walletIdsAndAmounts: offer, validateOnly: true }).unwrap();
+      const response = await createOfferForIds({ walletIdsAndAmounts: offer, feeInMojos, validateOnly: true }).unwrap();
 
       if (response.success === false) {
         const error = response.error || new Error("Encountered an unknown error while validating offer");
@@ -134,7 +136,7 @@ function OfferEditor(props: OfferEditorProps) {
         const { filePath, canceled } = result;
 
         if (!canceled && filePath) {
-          const response = await createOfferForIds({ walletIdsAndAmounts: offer, validateOnly: false }).unwrap();
+          const response = await createOfferForIds({ walletIdsAndAmounts: offer, feeInMojos, validateOnly: false }).unwrap();
           if (response.success === false) {
             const error = response.error || new Error("Encountered an unknown error while creating offer");
             errorDialog(error);
@@ -179,31 +181,29 @@ function OfferEditor(props: OfferEditorProps) {
 
   return (
     <Form methods={methods} onSubmit={onSubmit}>
-      <Divider />
-      <StyledEditorBox>
-        <Flex flexDirection="column" rowGap={3} flexGrow={1}>
+      <Flex flexDirection="column" rowGap={3} flexGrow={1}>
+        <Card>
           <OfferEditorConditionsPanel makerSide="sell" disabled={processing} />
-          <Flex gap={3}>
-            <Button
-              variant="contained"
-              color="secondary"
-              type="reset"
-              onClick={handleReset}
-              disabled={processing}
-            >
-              <Trans>Reset</Trans>
-            </Button>
-            <ButtonLoading
-              variant="contained"
-              color="primary"
-              type="submit"
-              loading={processing}
-            >
-              <Trans>Save Offer</Trans>
-            </ButtonLoading>
-          </Flex>
+        </Card>
+        <Flex justifyContent="flex-end" gap={2}>
+          <Button
+            variant="outlined"
+            type="reset"
+            onClick={handleReset}
+            disabled={processing}
+          >
+            <Trans>Reset</Trans>
+          </Button>
+          <ButtonLoading
+            variant="contained"
+            color="primary"
+            type="submit"
+            loading={processing}
+          >
+            <Trans>Save Offer</Trans>
+          </ButtonLoading>
         </Flex>
-      </StyledEditorBox>
+      </Flex>
     </Form>
   );
 }
@@ -223,7 +223,7 @@ export function CreateOfferEditor(props: CreateOfferEditorProps) {
     <Grid container>
       <Flex flexDirection="column" flexGrow={1} gap={3}>
         <Flex>
-          <Back variant="h5" to="/dashboard/wallets/offers/manage">
+          <Back variant="h5" to="/dashboard/offers/manage">
             <Trans>Create an Offer</Trans>
           </Back>
         </Flex>

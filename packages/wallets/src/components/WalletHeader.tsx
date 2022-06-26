@@ -1,40 +1,35 @@
-import React, { ReactNode } from 'react';
+import React, { type ReactNode } from 'react';
 import { Trans } from '@lingui/macro';
 import {
-  More,
   Flex,
   ConfirmDialog,
   useOpenDialog,
-  useShowDebugInformation,
-  AlertDialog,
+  DropdownActions,
 } from '@chia/core';
-import { useNavigate } from 'react-router';
 import {
-  Box,
   Typography,
   ListItemIcon,
   MenuItem,
-  Button,
-} from '@material-ui/core';
+  Tab,
+  Tabs,
+} from '@mui/material';
 import {
   Delete as DeleteIcon,
-} from '@material-ui/icons';
-import { useDeleteUnconfirmedTransactionsMutation, useGetSyncStatusQuery } from '@chia/api-react';
-import WalletStatus from './WalletStatus';
-import WalletsDropdodown from './WalletsDropdown';
+} from '@mui/icons-material';
+import { useDeleteUnconfirmedTransactionsMutation } from '@chia/api-react';
+import WalletName from './WalletName';
 
 type StandardWalletProps = {
   walletId: number;
   actions?: ({ onClose } : { onClose: () => void } ) => ReactNode;
+  tab: 'summary' | 'send' | 'receive';
+  onTabChange: (tab: 'summary' | 'send' | 'receive') => void;
 };
 
 export default function WalletHeader(props: StandardWalletProps) {
-  const { walletId, actions } = props;
+  const { walletId, actions, tab, onTabChange } = props;
   const openDialog = useOpenDialog();
-  const { data: walletState, isLoading: isWalletSyncLoading } = useGetSyncStatusQuery();
-  const showDebugInformation = useShowDebugInformation();
   const [deleteUnconfirmedTransactions] = useDeleteUnconfirmedTransactionsMutation();
-  const navigate = useNavigate();
 
   async function handleDeleteUnconfirmedTransactions() {
     await openDialog(
@@ -49,70 +44,54 @@ export default function WalletHeader(props: StandardWalletProps) {
     );
   }
 
-  function handleAddToken() {
-    navigate('/dashboard/wallets/create/simple');
-  }
-
-  async function handleManageOffers() {
-    if (isWalletSyncLoading || walletState.syncing) {
-      await openDialog(
-        <AlertDialog>
-          <Trans>Please finish syncing before managing offers</Trans>
-        </AlertDialog>,
-      );
-      return;
-    }
-    else {
-      navigate('/dashboard/wallets/offers/manage');
-    }
-  }
-
   return (
-    <Flex gap={1} alignItems="center">
-      <Flex flexGrow={1} gap={1}>
-        <WalletsDropdodown walletId={walletId} />
-        <Button
-          color="primary"
-          onClick={handleAddToken}
-        >
-          <Trans>+ Add Token</Trans>
-        </Button>
-        <Button
-          color="primary"
-          variant="outlined"
-          onClick={handleManageOffers}
-        >
-          <Trans>Manage Offers</Trans>
-        </Button>
-      </Flex>
+    <Flex flexDirection="column" gap={2}>
+      <WalletName walletId={walletId} variant="h5" />
       <Flex gap={1} alignItems="center">
-        <Flex alignItems="center">
-          <Typography variant="body1" color="textSecondary">
-            <Trans>Status:</Trans>
-          </Typography>
-          &nbsp;
-          <WalletStatus height={showDebugInformation} />
+        <Flex flexGrow={1} gap={1}>
+          <Tabs
+            value={tab}
+            onChange={(_event, newValue) => onTabChange(newValue)}
+            textColor="primary"
+            indicatorColor="primary"
+          >
+            <Tab value="summary" label={<Trans>Summary</Trans>} />
+            <Tab value="send" label={<Trans>Send</Trans>} />
+            <Tab value="receive" label={<Trans>Receive</Trans>} />
+          </Tabs>
         </Flex>
-        <More>
-          {({ onClose }) => (
-            <Box>
-              <MenuItem
-                onClick={() => {
-                  onClose();
-                  handleDeleteUnconfirmedTransactions();
-                }}
-              >
-                <ListItemIcon>
-                  <DeleteIcon />
-                </ListItemIcon>
-                <Typography variant="inherit" noWrap>
-                  <Trans>Delete Unconfirmed Transactions</Trans>
-                </Typography>
-              </MenuItem>
-              {actions && actions({ onClose })}
-            </Box>
-          )}
-        </More>
+        <Flex gap={1} alignItems="center">
+          {/*
+          <Flex alignItems="center">
+            <Typography variant="body1" color="textSecondary">
+              <Trans>Status:</Trans>
+            </Typography>
+            &nbsp;
+            <WalletStatus height={showDebugInformation} />
+          </Flex>
+          */}
+
+          <DropdownActions label={<Trans>Actions</Trans>} variant="outlined">
+            {({ onClose }) => (
+              <>
+                <MenuItem
+                  onClick={() => {
+                    onClose();
+                    handleDeleteUnconfirmedTransactions();
+                  }}
+                >
+                  <ListItemIcon>
+                    <DeleteIcon />
+                  </ListItemIcon>
+                  <Typography variant="inherit" noWrap>
+                    <Trans>Delete Unconfirmed Transactions</Trans>
+                  </Typography>
+                </MenuItem>
+                {actions?.({ onClose })}
+              </>
+            )}
+          </DropdownActions>
+        </Flex>
       </Flex>
     </Flex>
   );

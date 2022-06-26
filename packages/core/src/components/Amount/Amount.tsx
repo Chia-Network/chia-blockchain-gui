@@ -1,12 +1,13 @@
 import React, { ReactNode } from 'react';
 import { Trans, Plural } from '@lingui/macro';
+import BigNumber from 'bignumber.js';
 import NumberFormat from 'react-number-format';
 import {
   Box,
   InputAdornment,
   FormControl,
   FormHelperText,
-} from '@material-ui/core';
+} from '@mui/material';
 import { useWatch, useFormContext } from 'react-hook-form';
 import TextField, { TextFieldProps } from '../TextField';
 import chiaToMojo from '../../utils/chiaToMojo';
@@ -41,7 +42,7 @@ function NumberFormatCustom(props: NumberFormatCustomProps) {
 }
 
 export type AmountProps = TextFieldProps & {
-  children?: (props: { mojo: number; value: string | undefined }) => ReactNode;
+  children?: (props: { mojo: BigNumber; value: string | undefined }) => ReactNode;
   name?: string;
   symbol?: string; // if set, overrides the currencyCode. empty string is allowed
   showAmountInMojos?: boolean; // if true, shows the mojo amount below the input field
@@ -58,12 +59,12 @@ export default function Amount(props: AmountProps) {
     name,
   });
 
-  const correctedValue = value[0] === '.' ? `0${value}` : value;
+  const correctedValue = value && value[0] === '.' ? `0${value}` : value;
 
   const currencyCode = symbol === undefined ? defaultCurrencyCode : symbol;
   const isChiaCurrency = ['XCH', 'TXCH'].includes(currencyCode);
-  const mojo = isChiaCurrency 
-    ? chiaToMojo(correctedValue) 
+  const mojo = isChiaCurrency
+    ? chiaToMojo(correctedValue)
     : catToMojo(correctedValue);
 
   return (
@@ -88,11 +89,11 @@ export default function Amount(props: AmountProps) {
           <Flex alignItems="center" gap={2}>
             {showAmountInMojos && (
               <Flex flexGrow={1} gap={1}>
-                {!!mojo && (
+                {!mojo.isZero() && (
                   <>
                     <FormatLargeNumber value={mojo} />
                     <Box>
-                      <Plural value={mojo} one="mojo" other="mojos" />
+                      <Plural value={mojo.toNumber()} one="mojo" other="mojos" />
                     </Box>
                   </>
                 )}

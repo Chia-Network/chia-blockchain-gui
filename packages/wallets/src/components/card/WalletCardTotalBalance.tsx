@@ -1,11 +1,11 @@
-import React, { useMemo, ReactElement } from 'react';
+import React, { ReactElement } from 'react';
 import { Trans } from '@lingui/macro';
 import { useGetWalletBalanceQuery } from '@chia/api-react';
 import styled from 'styled-components';
 import WalletGraph from '../WalletGraph';
 import { CardSimple } from '@chia/core';
 import useWallet from '../../hooks/useWallet';
-import getWalletHumanValue from '../../utils/getWalletHumanValue';
+import useWalletHumanValue from '../../hooks/useWalletHumanValue';
 
 const StyledGraphContainer = styled.div`
   margin-left: -1rem;
@@ -22,8 +22,8 @@ type Props = {
 export default function WalletCardTotalBalance(props: Props) {
   const { walletId, tooltip } = props;
 
-  const { 
-    data: walletBalance, 
+  const {
+    data: walletBalance,
     isLoading: isLoadingWalletBalance,
     error,
   } = useGetWalletBalanceQuery({
@@ -37,10 +37,7 @@ export default function WalletCardTotalBalance(props: Props) {
   const isLoading = loading || isLoadingWalletBalance;
   const value = walletBalance?.confirmedWalletBalance;
 
-  const humanValue = useMemo(() => wallet && value !== undefined
-      ? `${getWalletHumanValue(wallet, value)} ${unit}`
-      : ''
-  ,[value, wallet, unit]);
+  const humanValue = useWalletHumanValue(wallet, value, unit);
 
   return (
     <CardSimple
@@ -51,7 +48,7 @@ export default function WalletCardTotalBalance(props: Props) {
       error={error}
       description={
         <StyledGraphContainer>
-          <WalletGraph walletId={walletId} height={114} />
+          <WalletGraph walletId={walletId} height={106} />
         </StyledGraphContainer>
       }
     />

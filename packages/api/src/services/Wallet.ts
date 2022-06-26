@@ -110,8 +110,8 @@ export default class Wallet extends Service {
   }
 
   async addKey(
-    mnemonic: string[], 
-    type: 'new_wallet' | 'skip' | 'restore_backup', 
+    mnemonic: string[],
+    type: 'new_wallet' | 'skip' | 'restore_backup',
     filePath?: string,
   ) {
     return this.command('add_key', {
@@ -138,7 +138,7 @@ export default class Wallet extends Service {
   }
 
   async logIn(
-    fingerprint: string, 
+    fingerprint: string,
     type: 'normal' | 'skip' | 'restore_backup' = 'normal', // skip is used to skip import
     host: string = this.client.backupHost,
     filePath?: string,
@@ -167,7 +167,7 @@ export default class Wallet extends Service {
   }
 
   async getBackupInfo(
-    filePath: string, 
+    filePath: string,
     options: { fingerprint: string } | { words: string },
   ) {
     return this.command('get_backup_info', {
@@ -253,8 +253,8 @@ export default class Wallet extends Service {
     includeMyOffers?: boolean,
     includeTakenOffers?: boolean) {
     return this.command('get_all_offers', {
-      include_completed: true,
-      file_contents: true,
+      includeCompleted: true,
+      fileContents: true,
       start,
       end,
       sortKey,
@@ -269,16 +269,17 @@ export default class Wallet extends Service {
     });
   }
 
-  async createOfferForIds(walletIdsAndAmounts: { [key: string]: number }, validateOnly?: boolean) {
+  async createOfferForIds(offer: { [key: string]: number }, fee: number, validateOnly?: boolean) {
     return this.command('create_offer_for_ids', {
-      offer: walletIdsAndAmounts,
-      validate_only: validateOnly || false,
+      offer,
+      fee,
+      validateOnly: !!validateOnly,
     });
   }
 
   async cancelOffer(tradeId: string, secure: boolean, fee: number | string) {
     return this.command('cancel_offer', {
-      trade_id: tradeId,
+      tradeId: tradeId,
       secure,
       fee,
     });
@@ -305,28 +306,37 @@ export default class Wallet extends Service {
 
   async getOfferData(offerId: string) {
     return this.command('get_offer', {
-      trade_id: offerId,
-      file_contents: true,
+      tradeId: offerId,
+      fileContents: true,
     });
   }
 
   async getOfferRecord(offerId: string) {
     return this.command('get_offer', {
-      trade_id: offerId,
-      file_contents: false,
+      tradeId: offerId,
+      fileContents: false,
     });
   }
 
-  onSyncChanged(callback: (data: any, message: Message) => void) {
-    return this.onStateChanged('sync_changed', callback);
+  onSyncChanged(
+    callback: (data: any, message: Message) => void,
+    processData?: (data: any) => any,
+  ) {
+    return this.onStateChanged('sync_changed', callback, processData);
   }
 
-  onNewBlock(callback: (data: any, message: Message) => void) {
-    return this.onStateChanged('new_block', callback);
+  onNewBlock(
+    callback: (data: any, message: Message) => void,
+    processData?: (data: any) => any,
+  ) {
+    return this.onStateChanged('new_block', callback, processData);
   }
 
-  onNewPeak(callback: (data: any, message: Message) => void) {
-    return this.onStateChanged('new_peak', callback);
+  onNewPeak(
+    callback: (data: any, message: Message) => void,
+    processData?: (data: any) => any,
+  ) {
+    return this.onStateChanged('new_peak', callback, processData);
   }
 
   onCoinAdded(callback: (
@@ -335,7 +345,7 @@ export default class Wallet extends Service {
       state: 'coin_added';
       success: boolean;
       walletId: number;
-    }, 
+    },
     message: Message,
   ) => void) {
     return this.onStateChanged('coin_added', callback);
@@ -347,7 +357,7 @@ export default class Wallet extends Service {
       state: "coin_removed"
       success: boolean;
       walletId: number;
-    }, 
+    },
     message: Message,
   ) => void) {
     return this.onStateChanged('coin_removed', callback);
@@ -382,12 +392,16 @@ export default class Wallet extends Service {
   }
 
   onOfferAdded(
-    callback: (data: any, message: Message) => void) {
-    return this.onStateChanged('offer_added', callback);
+    callback: (data: any, message: Message) => void,
+    processData?: (data: any) => any,
+  ) {
+    return this.onStateChanged('offer_added', callback, processData);
   }
 
   onOfferUpdated(
-    callback: (data: any, message: Message) => void) {
-    return this.onStateChanged('offer_cancelled', callback);
+    callback: (data: any, message: Message) => void,
+    processData?: (data: any) => any,
+  ) {
+    return this.onStateChanged('offer_cancelled', callback, processData);
   }
 }

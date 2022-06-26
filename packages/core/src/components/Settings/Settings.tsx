@@ -1,8 +1,8 @@
 import React, { type ReactNode, useState } from 'react';
 import { Trans } from '@lingui/macro';
 import styled from 'styled-components';
-import { Box, Drawer, Typography, IconButton, Divider } from '@material-ui/core';
-import { Settings as SettingsIcon, Close as CloseIcon } from '@material-ui/icons';
+import { Box, Drawer, Typography, IconButton, Divider } from '@mui/material';
+import { Settings as SettingsIcon, Close as CloseIcon } from '@mui/icons-material';
 import Flex from '../Flex';
 import Tooltip from '../Tooltip';
 import SettingsApp from './SettingsApp';
@@ -16,7 +16,7 @@ const StyledHeader = styled(Box)`
 const StyledBody = styled(Box)`
   padding: 1rem 1rem;
   flex-grow: 1;
-  overflow: auto;
+  overflow-y: overlay;
 `;
 
 export type SettingsProps = {
@@ -39,7 +39,7 @@ export default function Settings(props: SettingsProps) {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
     }
-    
+
     setOpen(false);
   }
 

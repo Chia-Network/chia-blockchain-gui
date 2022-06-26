@@ -1,10 +1,9 @@
 import React from 'react';
 import { Trans } from '@lingui/macro';
-import { Alert } from '@material-ui/lab';
-import { DialogActions, Flex, Form, TextField } from '@chia/core';
+import { Button, DialogActions, Flex, Form, TextField } from '@chia/core';
 import { useOpenFullNodeConnectionMutation } from '@chia/api-react';
 import { useForm } from 'react-hook-form';
-import { Button, Dialog, DialogTitle, DialogContent } from '@material-ui/core';
+import { Alert, Dialog, DialogTitle, DialogContent } from '@mui/material';
 
 type Props = {
   open: boolean;
@@ -21,7 +20,6 @@ export default function FullNodeAddConnection(props: Props) {
   const [openConnection, { error }] = useOpenFullNodeConnectionMutation();
 
   const methods = useForm<FormData>({
-    shouldUnregister: false,
     defaultValues: {
       host: '',
       port: '',

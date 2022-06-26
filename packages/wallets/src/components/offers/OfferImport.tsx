@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Trans } from '@lingui/macro';
 import { Back, Card, Dropzone, Flex, useOpenDialog, useShowError } from '@chia/core';
-import { Button, Grid, Typography } from '@material-ui/core';
+import { Button, Grid, Typography } from '@mui/material';
 import { useGetOfferSummaryMutation } from '@chia/api-react';
 import { type OfferSummaryRecord } from '@chia/api';
 import OfferDataEntryDialog from './OfferDataEntryDialog';
@@ -38,7 +38,7 @@ function SelectOfferFile() {
     }
 
     if (offerSummary) {
-      navigate('/dashboard/wallets/offers/view', {
+      navigate('/dashboard/offers/view', {
         state: { offerData, offerSummary, offerFilePath, imported: true },
       });
     }
@@ -149,7 +149,7 @@ export function OfferImport() {
     <Grid container>
       <Flex flexDirection="column" flexGrow={1} gap={3}>
         <Flex>
-          <Back variant="h5" to="/dashboard/wallets/offers/manage">
+          <Back variant="h5" to="/dashboard/offers/manage">
             <Trans>View an Offer</Trans>
           </Back>
         </Flex>

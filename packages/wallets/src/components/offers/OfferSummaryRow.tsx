@@ -1,8 +1,9 @@
 import React from 'react';
-import { Plural, t } from '@lingui/macro';
+import { Plural, t, Trans } from '@lingui/macro';
 import {
   CopyToClipboard,
   Flex,
+  Link,
   FormatLargeNumber,
   TooltipIcon,
   mojoToCATLocaleString,
@@ -10,7 +11,7 @@ import {
 import {
   Box,
   Typography,
-} from '@material-ui/core';
+} from '@mui/material';
 import useAssetIdName from '../../hooks/useAssetIdName';
 import { WalletType } from '@chia/api';
 import { formatAmountForWalletType } from './utils';
@@ -64,6 +65,7 @@ export default function OfferSummaryRow(props: Props) {
   const assetIdInfo = lookupByAssetId(assetId);
   const displayAmount = assetIdInfo ? formatAmountForWalletType(amount as number, assetIdInfo.walletType) : mojoToCATLocaleString(amount);
   const displayName = assetIdInfo?.displayName ?? t`Unknown CAT`;
+  const tooltipDisplayName = assetIdInfo?.name ?? t`Unknown CAT`;
   const showMojoAmount = assetIdInfo?.walletType === WalletType.STANDARD_WALLET && shouldShowMojoAmount(amount);
 
   return (
@@ -84,10 +86,20 @@ export default function OfferSummaryRow(props: Props) {
       <TooltipIcon interactive>
         <Flex flexDirection="column" gap={1}>
           <Flex flexDirection="column" gap={0}>
-            <StyledTitle>Name</StyledTitle>
-            <StyledValue>{assetIdInfo?.name}</StyledValue>
+            <Flex>
+              <Box flexGrow={1}>
+                <StyledTitle>Name</StyledTitle>
+              </Box>
+              {(!assetIdInfo || assetIdInfo?.walletType === WalletType.CAT) && (
+                <Link href={`https://www.taildatabase.com/tail/${assetId.toLowerCase()}`} target="_blank">
+                  <Trans>Search on Tail Database</Trans>
+                </Link>
+              )}
+            </Flex>
+
+            <StyledValue>{tooltipDisplayName}</StyledValue>
           </Flex>
-          {assetIdInfo?.walletType !== WalletType.STANDARD_WALLET && (
+          {(!assetIdInfo || assetIdInfo?.walletType === WalletType.CAT) && (
             <Flex flexDirection="column" gap={0}>
               <StyledTitle>Asset ID</StyledTitle>
               <Flex alignItems="center" gap={1}>

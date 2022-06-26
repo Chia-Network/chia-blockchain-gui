@@ -8,7 +8,7 @@ import {
   InputLabel,
   MenuItem,
   Typography,
-} from '@material-ui/core';
+} from '@mui/material';
 import { useFormContext } from 'react-hook-form';
 import usePlotNFTs from '../../../hooks/usePlotNFTs';
 import PlotNFTName from '../../plotNFT/PlotNFTName';
@@ -142,7 +142,7 @@ const PlotAddNFT = forwardRef((props: Props, ref) => {
           </Typography>
 
           <Box>
-            <Button onClick={handleJoinPool} variant="contained">
+            <Button onClick={handleJoinPool} variant="outlined" >
               <Trans>Join a Pool</Trans>
             </Button>
           </Box>

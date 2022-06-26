@@ -6,21 +6,18 @@ import {
   FormatLargeNumber,
   Flex,
   Card,
-  Loading,
   StateColor,
   Table,
-  DashboardTitle,
+  LayoutDashboardSub,
 } from '@chia/core';
 import { Status } from '@chia/icons';
 import { useGetLatestBlocksQuery, useGetUnfinishedBlockHeadersQuery } from '@chia/api-react';
 import { useNavigate } from 'react-router-dom';
-import { Box, Tooltip, Typography } from '@material-ui/core';
-// import HelpIcon from '@material-ui/icons/Help';
+import { Box, Tooltip, Typography } from '@mui/material';
+// import HelpIcon from '@mui/icons-material/Help';
 import FullNodeConnections from './FullNodeConnections';
 import FullNodeBlockSearch from './FullNodeBlockSearch';
 import FullNodeCards from './card/FullNodeCards';
-
-/* global BigInt */
 
 const cols = [
   {
@@ -81,7 +78,7 @@ const cols = [
     field(row) {
       const { isFinished } = row;
 
-      const timestamp = isFinished 
+      const timestamp = isFinished
         ? row.timestamp
         : get(row, 'foliageTransactionBlock.timestamp');
 
@@ -121,30 +118,25 @@ const BlocksCard = () => {
   }
 
   return (
-    <Card title={<Trans>Blocks</Trans>} action={<FullNodeBlockSearch />}>
-      {!isLoading ? (
-        <Table cols={cols} rows={rows} onRowClick={handleRowClick} />
-      ) : (
-        <Loading center />
-      )}
+    <Card title={<Trans>Blocks</Trans>} titleVariant="h6" action={<FullNodeBlockSearch />} transparent>
+      <Table cols={cols} rows={rows} onRowClick={handleRowClick} isLoading={isLoading}/>
     </Card>
   );
 };
 
 export default function FullNode() {
   return (
-    <>
-      <DashboardTitle><Trans>Full Node</Trans></DashboardTitle>
-      <Flex gap={1}>
+    <LayoutDashboardSub>
+      <Flex flexDirection="column" gap={2}>
         <Typography variant="h5" gutterBottom>
-          <Trans>Full Node Overview</Trans>
+          <Trans>Full Node</Trans>
         </Typography>
+        <Flex flexDirection="column" gap={4}>
+          <FullNodeCards />
+          <BlocksCard />
+          <FullNodeConnections />
+        </Flex>
       </Flex>
-      <Flex flexDirection="column" gap={3}>
-        <FullNodeCards />
-        <BlocksCard />
-        <FullNodeConnections />
-      </Flex>
-    </>
+    </LayoutDashboardSub>
   );
 }

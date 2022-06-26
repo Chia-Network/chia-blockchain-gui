@@ -1,23 +1,23 @@
-import React, { ReactNode } from 'react';
+import React, { type ReactNode } from 'react';
 import {
   CircularProgress,
   CircularProgressProps,
   Typography,
-} from '@material-ui/core';
+} from '@mui/material';
 import styled from 'styled-components';
 import Flex from '../Flex';
 
 const StyledCircularProgress = styled(CircularProgress)`
   color: ${({ theme }) =>
-    theme.palette.type === 'dark' ? 'white' : 'inherit'}; ;
+    theme.palette.mode === 'dark' ? 'white' : 'inherit'}; ;
 `;
 
-type Props = CircularProgressProps & {
+export type LoadingProps = CircularProgressProps & {
   children?: ReactNode;
   center?: boolean;
 };
 
-export default function Loading(props: Props) {
+export default function Loading(props: LoadingProps) {
   const { children, center, ...rest } = props;
 
   if (children) {

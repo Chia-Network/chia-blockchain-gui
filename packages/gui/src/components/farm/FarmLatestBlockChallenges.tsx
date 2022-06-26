@@ -1,8 +1,8 @@
 import React from 'react';
 import { Trans } from '@lingui/macro';
-import { Typography } from '@material-ui/core';
+import { Typography } from '@mui/material';
 import { Link, Table, Card } from '@chia/core';
-import { useGetSignagePointsQuery, useGetCombinedPlotsQuery } from '@chia/api-react';
+import { useGetSignagePointsQuery, useGetTotalHarvestersSummaryQuery } from '@chia/api-react';
 import type { Row } from '../core/components/Table/Table';
 
 const cols = [
@@ -19,15 +19,17 @@ const cols = [
 ];
 
 export default function FarmLatestBlockChallenges() {
-  const { data: signagePoints = [], isLoading } = useGetSignagePointsQuery();
-  const { data: plots, isLoading: isLoadingPlots } = useGetCombinedPlotsQuery();
+  const { data: signagePoints = [], isLoading: isLoadingSignagePoints } = useGetSignagePointsQuery();
+  const { hasPlots, isLoading: isLoadingTotalHarvestersSummary } = useGetTotalHarvestersSummaryQuery();
 
-  const hasPlots = plots?.length > 0;
+  const isLoading = isLoadingSignagePoints || isLoadingTotalHarvestersSummary;
   const reducedSignagePoints = signagePoints;
 
   return (
     <Card
+      gap={1}
       title={<Trans>Latest Block Challenges</Trans>}
+      titleVariant="h6"
       tooltip={
         hasPlots ? (
           <Trans>
@@ -37,21 +39,21 @@ export default function FarmLatestBlockChallenges() {
           </Trans>
         ) : undefined
       }
+      transparent
     >
-      {!hasPlots && (
-        <Typography variant="body2">
-          <Trans>
-            Below are the current block challenges. You may or may not have a
-            proof of space for these challenges. These blocks do not currently
-            contain a proof of time.
-          </Trans>
-        </Typography>
-      )}
       <Table
         cols={cols}
         rows={reducedSignagePoints}
         rowsPerPageOptions={[5, 10, 25, 100]}
         rowsPerPage={5}
+        isLoading={isLoading}
+        caption={!hasPlots && (
+          <Trans>
+            Here are the current block challenges. You may or may not have a
+            proof of space for these challenges. These blocks do not currently
+            contain a proof of time.
+          </Trans>
+        )}
         pages
       />
       <Typography variant="caption">

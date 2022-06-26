@@ -1,13 +1,17 @@
-import { createTheme } from '@material-ui/core/styles';
+import { createTheme } from '@mui/material/styles';
+import { deepmerge } from '@mui/utils';
 import theme from './default';
 
-export default createTheme({
-  ...theme,
+export default createTheme(deepmerge(theme, {
   palette: {
-    ...theme.palette,
+    background: {
+      default: '#212121',
+      paper: '#333333',
+    },
     secondary: {
       main: '#ffffff',
+      contrastText: '#000000',
     },
-    type: 'dark',
+    mode: 'dark',
   },
-});
+}));

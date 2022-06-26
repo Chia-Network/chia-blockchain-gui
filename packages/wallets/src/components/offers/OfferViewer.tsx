@@ -37,7 +37,7 @@ import {
   TableRow,
   Tooltip,
   Typography
-} from '@material-ui/core';
+} from '@mui/material';
 import { OfferSummaryRecord, OfferTradeRecord, OfferCoinOfInterest, WalletType } from '@chia/api';
 import { useCheckOfferValidityMutation, useTakeOfferMutation } from '@chia/api-react';
 import {
@@ -51,19 +51,19 @@ import OfferSummary from './OfferSummary';
 import styled from 'styled-components';
 
 const StyledViewerBox = styled.div`
-  padding: ${({ theme }) => `${theme.spacing(4)}px`};
+  padding: ${({ theme }) => `${theme.spacing(4)}`};
 `;
 
 const StyledSummaryBox = styled.div`
-  padding-left: ${({ theme }) => `${theme.spacing(2)}px`};
-  padding-right: ${({ theme }) => `${theme.spacing(2)}px`};
+  padding-left: ${({ theme }) => `${theme.spacing(2)}`};
+  padding-right: ${({ theme }) => `${theme.spacing(2)}`};
 `;
 
 const StyledHeaderBox = styled.div`
-  padding-top: ${({ theme }) => `${theme.spacing(1)}px`};
-  padding-bottom: ${({ theme }) => `${theme.spacing(1)}px`};
-  padding-left: ${({ theme }) => `${theme.spacing(2)}px`};
-  padding-right: ${({ theme }) => `${theme.spacing(2)}px`};
+  padding-top: ${({ theme }) => `${theme.spacing(1)}`};
+  padding-bottom: ${({ theme }) => `${theme.spacing(1)}`};
+  padding-left: ${({ theme }) => `${theme.spacing(2)}`};
+  padding-right: ${({ theme }) => `${theme.spacing(2)}`};
   border-radius: 4px;
   background-color: ${({ theme }) => theme.palette.background.paper};
 `;
@@ -288,7 +288,7 @@ function OfferDetails(props: OfferDetailsProps) {
       <ConfirmDialog
         title={<Trans>Accept Offer</Trans>}
         confirmTitle={<Trans>Accept Offer</Trans>}
-        confirmColor="secondary"
+        confirmColor="primary"
         cancelTitle={<Trans>Cancel</Trans>}
       >
         <Flex flexDirection="column" gap={3}>
@@ -440,63 +440,68 @@ function OfferDetails(props: OfferDetailsProps) {
   }
 
   return (
-    <Flex flexDirection="column" gap={3}>
+    <Flex flexDirection="column" gap={4}>
       <OfferHeader
         isMyOffer={tradeRecord?.isMyOffer}
         isInvalid={!isValidating && !isValid}
         isComplete={tradeRecord?.status === OfferState.CONFIRMED}
       />
       {summary && (
-        <Card title={<Trans>Summary</Trans>}>
-          <OfferSummary
-            isMyOffer={tradeRecord?.isMyOffer}
-            summary={summary}
-            makerTitle={<Typography variant="h6"><Trans>In exchange for</Trans></Typography>}
-            takerTitle={<Typography variant="h6"><Trans>You will receive</Trans></Typography>}
-            setIsMissingRequestedAsset={(isMissing: boolean) => setIsMissingRequestedAsset(isMissing)}
-          />
-          {imported && (
-            <Form methods={methods} onSubmit={handleAcceptOffer}>
-              <Flex flexDirection="column" gap={3}>
-                <Divider />
-                {isValid && (
-                  <Grid direction="column" xs={4} container>
-                    <Fee
-                      id="filled-secondary"
-                      variant="filled"
-                      name="fee"
-                      color="secondary"
-                      label={<Trans>Fee</Trans>}
+        <Flex flexDirection="column" gap={2}>
+          <Typography variant="h5">
+            <Trans>Summary</Trans>
+          </Typography>
+          <Card>
+            <OfferSummary
+              isMyOffer={tradeRecord?.isMyOffer}
+              imported={!!imported}
+              summary={summary}
+              makerTitle={<Typography variant="h6"><Trans>In exchange for</Trans></Typography>}
+              takerTitle={<Typography variant="h6"><Trans>You will receive</Trans></Typography>}
+              setIsMissingRequestedAsset={(isMissing: boolean) => setIsMissingRequestedAsset(isMissing)}
+            />
+            {imported && (
+              <Form methods={methods} onSubmit={handleAcceptOffer}>
+                <Flex flexDirection="column" gap={3}>
+                  <Divider />
+                  {isValid && (
+                    <Grid direction="column" xs={4} container>
+                      <Fee
+                        id="filled-secondary"
+                        variant="filled"
+                        name="fee"
+                        color="secondary"
+                        label={<Trans>Fee</Trans>}
+                        disabled={isAccepting}
+                      />
+                    </Grid>
+                  )}
+                  <Flex flexDirection="row" gap={3}>
+                    <Button
+                      variant="outlined"
+                      onClick={() => navigate(-1)}
                       disabled={isAccepting}
-                    />
-                  </Grid>
-                )}
-                <Flex flexDirection="row" gap={3}>
-                  <Button
-                    variant="contained"
-                    color="secondary"
-                    onClick={() => navigate(-1)}
-                    disabled={isAccepting}
-                  >
-                    <Trans>Back</Trans>
-                  </Button>
-                  <ButtonLoading
-                    variant="contained"
-                    color="primary"
-                    type="submit"
-                    disabled={!isValid || isMissingRequestedAsset}
-                    loading={isAccepting}
-                  >
-                    <Trans>Accept Offer</Trans>
-                  </ButtonLoading>
+                    >
+                      <Trans>Back</Trans>
+                    </Button>
+                    <ButtonLoading
+                      variant="contained"
+                      color="primary"
+                      type="submit"
+                      disabled={!isValid || isMissingRequestedAsset}
+                      loading={isAccepting}
+                    >
+                      <Trans>Accept Offer</Trans>
+                    </ButtonLoading>
+                  </Flex>
                 </Flex>
-              </Flex>
-            </Form>
-          )}
-        </Card>
+              </Form>
+            )}
+          </Card>
+        </Flex>
       )}
       {tradeRecord && (
-        <Card title={<Trans>Details</Trans>}>
+        <Card title={<Trans>Details</Trans>} transparent>
           <TableContainer component={Paper}>
             <Table>
               <TableBody>
@@ -519,7 +524,7 @@ function OfferDetails(props: OfferDetailsProps) {
         </Card>
       )}
       {tradeRecord && tradeRecord.coinsOfInterest?.length > 0 && (
-        <Card title={<Trans>Coins</Trans>}>
+        <Card title={<Trans>Coins</Trans>} transparent>
           <TableControlled
             rows={tradeRecord.coinsOfInterest}
             cols={coinCols}

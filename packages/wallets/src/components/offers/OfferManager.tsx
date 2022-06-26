@@ -1,11 +1,11 @@
 import React, { useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import styled from 'styled-components';
 import { Trans, t } from '@lingui/macro';
 import moment from 'moment';
-import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
+import BigNumber from 'bignumber.js';
+import { Routes, Route, Navigate, useNavigate, useLocation } from 'react-router-dom';
 import {
-  Back,
+  Button,
   ButtonLoading,
   Card,
   CardHero,
@@ -22,13 +22,13 @@ import {
   mojoToCATLocaleString,
   useShowSaveDialog,
   Tooltip,
+  LayoutDashboardSub,
 } from '@chia/core';
 import { OfferTradeRecord } from '@chia/api';
 import fs from 'fs';
 import { Remote } from 'electron';
 import {
   Box,
-  Button,
   Checkbox,
   Chip,
   Dialog,
@@ -41,9 +41,9 @@ import {
   ListItemIcon,
   MenuItem,
   Typography
-} from '@material-ui/core';
-import { Cancel, GetApp as Download, Info, Reply as Share, Visibility } from '@material-ui/icons';
-import { Trade as TradeIcon } from '@chia/icons';
+} from '@mui/material';
+import { Cancel, GetApp as Download, Info, Reply as Share, Visibility } from '@mui/icons-material';
+import { Offers } from '@chia/icons';
 import { useCancelOfferMutation, useGetOfferDataMutation, useGetWalletsQuery } from '@chia/api-react';
 import { colorForOfferState, displayStringForOfferState, formatAmountForWalletType, suggestedFilenameForOffer } from './utils';
 import useAssetIdName from '../../hooks/useAssetIdName';
@@ -54,15 +54,6 @@ import { OfferViewer } from './OfferViewer';
 import OfferDataDialog from './OfferDataDialog';
 import OfferShareDialog from './OfferShareDialog';
 import OfferState from './OfferState';
-
-const StyledTradeIcon = styled(TradeIcon)`
-  font-size: 4rem;
-`;
-
-type OfferCancellationOptions = {
-  cancelWithTransaction: boolean;
-  cancellationFee: number;
-};
 
 type ConfirmOfferCancellationProps = {
   canCancelWithTransaction: boolean;
@@ -75,7 +66,7 @@ function ConfirmOfferCancellation(props: ConfirmOfferCancellationProps) {
   const methods = useForm({
     defaultValues: {
       fee: '',
-    }
+    },
   });
   const [cancelWithTransaction, setCancelWithTransaction] = useState<boolean>(canCancelWithTransaction);
 
@@ -85,11 +76,11 @@ function ConfirmOfferCancellation(props: ConfirmOfferCancellationProps) {
 
   async function handleConfirm() {
     const { fee: xchFee } = methods.getValues();
-    var fee = 0;
 
-    if (cancelWithTransaction) {
-      fee = Number.parseFloat(chiaToMojo(xchFee));
-    }
+    const fee = cancelWithTransaction
+      ? chiaToMojo(xchFee)
+      : new BigNumber(0);
+
     onClose([true, { cancelWithTransaction, cancellationFee: fee }]);
   }
 
@@ -253,7 +244,7 @@ function OfferList(props: OfferListProps) {
   }
 
   function handleRowClick(event: any, row: OfferTradeRecord) {
-    navigate('/dashboard/wallets/offers/view', {
+    navigate('/dashboard/offers/view', {
       state: {
         tradeRecord: row
       },
@@ -447,28 +438,27 @@ function OfferList(props: OfferListProps) {
     ];
   }, []);
 
+  const hasOffers = !!offers?.length;
+
   return (
-    <Card title={title}>
+    <Card title={title} titleVariant="h6" transparent>
       <LoadingOverlay loading={isWalletOffersLoading || isLoadingWallets}>
-        {offers?.length ? (
-          <TableControlled
-            rows={offers}
-            cols={cols}
-            rowsPerPageOptions={[5, 25, 100]}
-            count={count}
-            rowsPerPage={rowsPerPage}
-            pages={true}
-            page={page}
-            onPageChange={pageChange}
-            isLoading={isWalletOffersLoading}
-          />
-        ) : (
-          !isWalletOffersLoading && !isLoadingWallets && (
-            <Typography variant="body2">
+        <TableControlled
+          rows={offers}
+          cols={cols}
+          rowsPerPageOptions={[5, 25, 100]}
+          count={count}
+          rowsPerPage={rowsPerPage}
+          pages={hasOffers}
+          page={page}
+          onPageChange={pageChange}
+          isLoading={isWalletOffersLoading}
+          caption={!hasOffers && !isWalletOffersLoading && !isLoadingWallets && (
+            <Typography variant="body2" align="center">
               <Trans>No current offers</Trans>
             </Typography>
-          )
-        )}
+          )}
+        />
       </LoadingOverlay>
     </Card>
   );
@@ -501,38 +491,40 @@ export function OfferManager() {
   // }, [data, isLoading]);
 
   function handleCreateOffer() {
-    navigate('/dashboard/wallets/offers/create');
+    navigate('/dashboard/offers/create');
   }
 
   function handleImportOffer() {
-    navigate('/dashboard/wallets/offers/import');
+    navigate('/dashboard/offers/import');
   }
 
   return (
-    <Flex flexDirection="column" gap={3}>
-      <Flex flexGrow={1}>
-        <Back variant="h5" to="/dashboard/wallets">
+    <Flex flexDirection="column" gap={4}>
+      <Flex gap={2} flexDirection="column">
+        <Typography variant="h5">
           <Trans>Manage Offers</Trans>
-        </Back>
-      </Flex>
-      <Grid container>
-        <Grid xs={12} md={6} lg={5} item>
-          <CardHero>
-            <StyledTradeIcon color="primary" />
-            <Typography variant="body1">
-              <Trans>
-                Create an offer to exchange XCH or other tokens. View an offer to inspect and accept an offer made by another party.
-              </Trans>
-            </Typography>
-            <Button onClick={handleCreateOffer} variant="contained" color="primary">
-              <Trans>Create an Offer</Trans>
-            </Button>
-            <Button onClick={handleImportOffer} variant="contained" color="secondary">
-              <Trans>View an Offer</Trans>
-            </Button>
-          </CardHero>
+        </Typography>
+        <Grid container>
+          <Grid xs={12} md={6} lg={5} item>
+            <CardHero>
+              <Offers color="primary" fontSize="extraLarge" />
+              <Typography variant="body1">
+                <Trans>
+                  Create an offer to exchange XCH or other tokens. View an offer to inspect and accept an offer made by another party.
+                </Trans>
+              </Typography>
+              <Flex gap={1}>
+                <Button onClick={handleCreateOffer} variant="contained" color="primary" fullWidth>
+                  <Trans>Create an Offer</Trans>
+                </Button>
+                <Button onClick={handleImportOffer} variant="outlined" fullWidth>
+                  <Trans>View an Offer</Trans>
+                </Button>
+              </Flex>
+            </CardHero>
+          </Grid>
         </Grid>
-      </Grid>
+      </Flex>
       <OfferList
         title={<Trans>Offers you created</Trans>}
         includeMyOffers={true}
@@ -564,23 +556,26 @@ export function CreateOffer() {
   }
 
   return (
-    <Routes>
-      <Route
-        path="create"
-        element={<CreateOfferEditor onOfferCreated={handleOfferCreated} />}
-      />
-      <Route path="import" element={<OfferImport />} />
-
-      <Route path="view" element={(
-        <OfferViewer
-          tradeRecord={location?.state?.tradeRecord}
-          offerData={location?.state?.offerData}
-          offerSummary={location?.state?.offerSummary}
-          offerFilePath={location?.state?.offerFilePath}
-          imported={location?.state?.imported}
+    <LayoutDashboardSub>
+      <Routes>
+        <Route
+          path="create"
+          element={<CreateOfferEditor onOfferCreated={handleOfferCreated} />}
         />
-      )} />
-      <Route path="manage" element={<OfferManager />} />
-    </Routes>
+        <Route path="import" element={<OfferImport />} />
+
+        <Route path="view" element={(
+          <OfferViewer
+            tradeRecord={location?.state?.tradeRecord}
+            offerData={location?.state?.offerData}
+            offerSummary={location?.state?.offerSummary}
+            offerFilePath={location?.state?.offerFilePath}
+            imported={location?.state?.imported}
+          />
+        )} />
+        <Route path="manage" element={<OfferManager />} />
+        <Route path="/" element={<Navigate to="manage" /> } />
+      </Routes>
+    </LayoutDashboardSub>
   );
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Tooltip as BaseTooltip, TooltipProps } from '@material-ui/core';
+import { Box, Tooltip as BaseTooltip, TooltipProps } from '@mui/material';
 import Flex from '../Flex';
 import CopyToClipboard from '../CopyToClipboard';
 
@@ -14,7 +14,7 @@ export default function Tooltip(props: Props) {
   const titleContent = copyToClipboard ? (
     <Flex alignItems="center" gap={1}>
       <Box maxWidth={maxWidth}>{title}</Box>
-      <CopyToClipboard value={title} fontSize="small" />
+      <CopyToClipboard value={title} fontSize="small" invertColor />
     </Flex>
   ) : (
     title

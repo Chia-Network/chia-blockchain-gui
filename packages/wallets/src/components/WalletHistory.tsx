@@ -2,9 +2,9 @@ import React, { useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Trans } from '@lingui/macro';
 import moment from 'moment';
-import { Box, IconButton, Table as TableBase, TableBody, TableCell, TableRow, Tooltip, Typography, Chip } from '@material-ui/core';
-import { CallReceived as CallReceivedIcon, CallMade as CallMadeIcon, ExpandLess as ExpandLessIcon, ExpandMore as ExpandMoreIcon } from '@material-ui/icons';
-import { Card, CardKeyValue, CopyToClipboard, Flex, Loading, StateColor, TableControlled, toBech32m, useCurrencyCode, mojoToChiaLocaleString, mojoToCATLocaleString } from '@chia/core';
+import { Box, IconButton, Table as TableBase, TableBody, TableCell, TableRow, Tooltip, Typography, Chip } from '@mui/material';
+import { CallReceived as CallReceivedIcon, CallMade as CallMadeIcon, ExpandLess as ExpandLessIcon, ExpandMore as ExpandMoreIcon } from '@mui/icons-material';
+import { Card, CardKeyValue, CopyToClipboard, Flex, Loading, StateColor, TableControlled, toBech32m, useCurrencyCode, mojoToChia, mojoToCAT, FormatLargeNumber } from '@chia/core';
 import { useGetOfferRecordMutation, useGetSyncStatusQuery } from '@chia/api-react';
 import styled from 'styled-components';
 import type { Row } from '@chia/core';
@@ -35,7 +35,7 @@ async function handleRowClick(event: React.MouseEvent<HTMLTableRowElement>, row:
       const { tradeRecord, success } = response;
 
       if (success === true && tradeRecord) {
-        navigate('/dashboard/wallets/offers/view', {
+        navigate('/dashboard/offers/view', {
           state: { tradeRecord: tradeRecord },
         });
       }
@@ -59,7 +59,7 @@ const getCols = (type: WalletType, isSyncing, getOfferRecord, navigate) => [
           <Tooltip
             title={isOutgoing ? <Trans>Outgoing</Trans> : <Trans>Incoming</Trans>}
           >
-            {isOutgoing 
+            {isOutgoing
               ? <CallMadeIcon color="secondary" />
               : <CallReceivedIcon color="primary" />}
           </Tooltip>
@@ -145,15 +145,17 @@ const getCols = (type: WalletType, isSyncing, getOfferRecord, navigate) => [
       return (
         <>
           <strong>
-            {isOutgoing 
-              ? <Trans>-</Trans> 
+            {isOutgoing
+              ? <Trans>-</Trans>
               : <Trans>+</Trans>}
           </strong>
           &nbsp;
           <strong>
-            {type === WalletType.CAT
-              ? mojoToCATLocaleString(row.amount)
-              : mojoToChiaLocaleString(row.amount)}
+            <FormatLargeNumber
+              value={type === WalletType.CAT
+                ? mojoToCAT(row.amount)
+                : mojoToChia(row.amount)}
+            />
           </strong>
           &nbsp;
           {metadata.unit}
@@ -165,7 +167,9 @@ const getCols = (type: WalletType, isSyncing, getOfferRecord, navigate) => [
   {
     field: (row: Row, metadata) => (
       <>
-        <strong>{mojoToChiaLocaleString(row.feeAmount)}</strong>
+        <strong>
+          <FormatLargeNumber value={mojoToChia(row.feeAmount)} />
+        </strong>
         &nbsp;
         {metadata.feeUnit}
       </>
@@ -207,7 +211,7 @@ export default function WalletHistory(props: Props) {
   const navigate = useNavigate();
 
   const isLoading = isWalletTransactionsLoading || isWalletLoading;
-  const isSyncing = isWalletSyncLoading || walletState.syncing;
+  const isSyncing = isWalletSyncLoading || !walletState || !!walletState?.syncing;
 
   const metadata = useMemo(() => {
     const retireAddress = feeUnit && toBech32m(
@@ -237,91 +241,90 @@ export default function WalletHistory(props: Props) {
   }, [wallet?.type]);
 
   return (
-    <Card title={<Trans>Transactions</Trans>}>
-      {transactions?.length ? (
-        <TableControlled
-          cols={cols}
-          rows={transactions}
-          rowsPerPageOptions={[5, 10, 25, 50, 100]}
-          page={page}
-          rowsPerPage={rowsPerPage}
-          count={count}
-          onPageChange={pageChange}
-          isLoading={isLoading}
-          metadata={metadata}
-          expandedCellShift={1}
-          uniqueField="name"
-          expandedField={(row) => {
-            const { confirmedAtHeight, memos } = row;
-            const memoValues = memos ? Object.values(memos) : [];
-            const memoValuesDecoded = memoValues.map((memoHex) => {
-              try {
-                const buf = new Buffer(memoHex, 'hex');
-                const decodedValue = buf.toString('utf8');
+    <Card title={<Trans>Transactions</Trans>} titleVariant="h6" transparent>
+      <TableControlled
+        cols={cols}
+        rows={transactions ?? []}
+        rowsPerPageOptions={[5, 10, 25, 50, 100]}
+        page={page}
+        rowsPerPage={rowsPerPage}
+        count={count}
+        onPageChange={pageChange}
+        isLoading={isLoading}
+        metadata={metadata}
+        expandedCellShift={1}
+        uniqueField="name"
+        expandedField={(row) => {
+          const { confirmedAtHeight, memos } = row;
+          const memoValues = memos ? Object.values(memos) : [];
+          const memoValuesDecoded = memoValues.map((memoHex) => {
+            try {
+              const buf = new Buffer(memoHex, 'hex');
+              const decodedValue = buf.toString('utf8');
 
-                const bufCheck = Buffer.from(decodedValue, 'utf8');
-                if (bufCheck.toString('hex') !== memoHex) {
-                  throw new Error('Memo is not valid utf8 string');
-                }
-
-                return decodedValue;
-              } catch(error: any) {
-                return memoHex;
+              const bufCheck = Buffer.from(decodedValue, 'utf8');
+              if (bufCheck.toString('hex') !== memoHex) {
+                throw new Error('Memo is not valid utf8 string');
               }
-            });
-            
-            const memosDescription = memoValuesDecoded && memoValuesDecoded.length 
-              ? (
-                <Flex flexDirection="column">
-                  {memoValuesDecoded.map((memo, index) => (
-                    <Typography variant="inherit" key={index}>
-                      {memo ?? ''}
-                    </Typography>
-                  ))}
-                </Flex>
-              )
-              : <Trans>Not Available</Trans>;
 
-            const rows = [confirmedAtHeight && {
-              key: 'confirmedAtHeight',
-              label: <Trans>Confirmed at Height</Trans>,
-              value: confirmedAtHeight ? confirmedAtHeight : <Trans>Not Available</Trans>,
-            }, {
-              key: 'memos',
-              label: <Trans>Memos</Trans>,
-              value: memosDescription,
-            }].filter((item) => !!item);
+              return decodedValue;
+            } catch(error: any) {
+              return memoHex;
+            }
+          });
 
-            return (
-              <TableBase size="small">
-                <TableBody>
-                  {rows.map((row) => (
-                    <TableRow key={row.key}>
-                      <StyledTableCellSmall>
-                        <Typography component='div' variant="body2" color="textSecondary" noWrap>
-                          {row.label}
+          const memosDescription = memoValuesDecoded && memoValuesDecoded.length
+            ? (
+              <Flex flexDirection="column">
+                {memoValuesDecoded.map((memo, index) => (
+                  <Typography variant="inherit" key={index}>
+                    {memo ?? ''}
+                  </Typography>
+                ))}
+              </Flex>
+            )
+            : <Trans>Not Available</Trans>;
+
+          const rows = [confirmedAtHeight && {
+            key: 'confirmedAtHeight',
+            label: <Trans>Confirmed at Height</Trans>,
+            value: confirmedAtHeight ? confirmedAtHeight : <Trans>Not Available</Trans>,
+          }, {
+            key: 'memos',
+            label: <Trans>Memos</Trans>,
+            value: memosDescription,
+          }].filter((item) => !!item);
+
+          return (
+            <TableBase size="small">
+              <TableBody>
+                {rows.map((row) => (
+                  <TableRow key={row.key}>
+                    <StyledTableCellSmall>
+                      <Typography component='div' variant="body2" color="textSecondary" noWrap>
+                        {row.label}
+                      </Typography>
+                    </StyledTableCellSmall>
+                    <StyledTableCellSmallRight>
+                      <Box maxWidth="100%">
+                        <Typography component='div' variant="body2" noWrap>
+                          {row.value}
                         </Typography>
-                      </StyledTableCellSmall>
-                      <StyledTableCellSmallRight>
-                        <Box maxWidth="100%">
-                          <Typography component='div' variant="body2" noWrap>
-                            {row.value}
-                          </Typography>
-                        </Box>
-                      </StyledTableCellSmallRight>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </TableBase>
-            );
-          }}
-          pages
-        />
-      ) : (
-        <Typography variant="body2">
-          <Trans>No previous transactions</Trans>
-        </Typography>
-      )}
+                      </Box>
+                    </StyledTableCellSmallRight>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </TableBase>
+          );
+        }}
+        caption={!transactions?.length && (
+          <Typography variant="body2" align="center">
+            <Trans>No previous transactions</Trans>
+          </Typography>
+        )}
+        pages={!!transactions?.length}
+      />
     </Card>
   );
 }

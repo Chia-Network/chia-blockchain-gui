@@ -1,7 +1,7 @@
 import React from 'react';
 import { Trans, t } from '@lingui/macro';
 import { Back, ButtonLoading, Card, Flex, Form, TextField } from '@chia/core';
-import { Box, Grid } from '@material-ui/core';
+import { Grid } from '@mui/material';
 import { useAddCATTokenMutation } from '@chia/api-react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router';
@@ -16,7 +16,6 @@ type CreateExistingCATWalletData = {
 
 export default function WalletCATCreateExisting() {
   const methods = useForm<CreateExistingCATWalletData>({
-    shouldUnregister: false,
     defaultValues: {
       assetId: '',
       name: '',
@@ -87,7 +86,7 @@ export default function WalletCATCreateExisting() {
             </Grid>
           </Grid>
         </Card>
-        <Box>
+        <Flex justifyContent="flex-end">
           <ButtonLoading
             type="submit"
             variant="contained"
@@ -96,7 +95,7 @@ export default function WalletCATCreateExisting() {
           >
             <Trans>Add</Trans>
           </ButtonLoading>
-        </Box>
+        </Flex>
       </Flex>
     </Form>
   );

@@ -1,16 +1,16 @@
 import React from 'react';
 import { Trans } from '@lingui/macro';
 import { ConfirmDialog, More, useOpenDialog } from '@chia/core';
-import { Box, ListItemIcon, MenuItem, Typography } from '@material-ui/core';
-import { DeleteForever as DeleteForeverIcon } from '@material-ui/icons';
+import { Box, ListItemIcon, MenuItem, Typography } from '@mui/material';
+import { DeleteForever as DeleteForeverIcon } from '@mui/icons-material';
 import { useDeletePlotMutation } from '@chia/api-react';
 import type { Plot } from '@chia/api';
 
-type Props = {
+export type PlotActionProps = {
   plot: Plot;
 };
 
-export default function PlotAction(props: Props) {
+export default function PlotAction(props: PlotActionProps) {
   const {
     plot: { filename },
   } = props;

@@ -1,9 +1,9 @@
-import React, { useMemo, ReactElement } from 'react';
+import React, { ReactElement } from 'react';
 import { Trans } from '@lingui/macro';
 import { useGetWalletBalanceQuery } from '@chia/api-react';
 import { CardSimple } from '@chia/core';
 import useWallet from '../../hooks/useWallet';
-import getWalletHumanValue from '../../utils/getWalletHumanValue';
+import useWalletHumanValue from '../../hooks/useWalletHumanValue';
 
 type Props = {
   walletId: number;
@@ -28,10 +28,7 @@ export default function WalletCardSpendableBalance(props: Props) {
   const isLoading = loading || isLoadingWalletBalance;
   const value = walletBalance?.spendableBalance;
 
-  const humanValue = useMemo(() => wallet && value !== undefined
-      ? `${getWalletHumanValue(wallet, value)} ${unit}`
-      : ''
-  ,[value, wallet, unit]);
+  const humanValue = useWalletHumanValue(wallet, value, unit);
 
   return (
     <CardSimple
