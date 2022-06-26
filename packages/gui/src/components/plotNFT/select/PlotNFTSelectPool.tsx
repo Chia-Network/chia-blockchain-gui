@@ -87,9 +87,6 @@ const PlotNFTSelectPool = forwardRef((props: Props, ref) => {
   } = props;
   const [loading, setLoading] = useState<boolean>(false);
   const { balance, loading: walletLoading } = useStandardWallet();
-  const { nfts } = usePlotNFTs();
-  const openDialog = useOpenDialog();
-  let createNFT;
 
   const hasBalance = !!balance && balance > 0;
 
@@ -110,7 +107,10 @@ const PlotNFTSelectPool = forwardRef((props: Props, ref) => {
     },
   }));
 
-  async function handleSubmit(data: FormData) {
+  async function HandleSubmit(data: FormData) {
+    const { nfts } = usePlotNFTs();
+    const openDialog = useOpenDialog();
+    let createNFT = true;
     if (nfts?.length > 10) {
        createNFT = await openDialog(
         <ConfirmDialog
@@ -123,7 +123,7 @@ const PlotNFTSelectPool = forwardRef((props: Props, ref) => {
         </ConfirmDialog>
       );
     }
-    if (createNFT || createNFT == undefined) {
+    if (createNFT) {
     try {
       setLoading(true);
 
@@ -143,7 +143,7 @@ const PlotNFTSelectPool = forwardRef((props: Props, ref) => {
     return (
       <Flex flexDirection="column" gap={3}>
         {!onCancel && (
-          <Form methods={methods} onSubmit={handleSubmit}>
+          <Form methods={methods} onSubmit={HandleSubmit}>
             <Back variant="h5" form>
               <Trans>Join a Pool</Trans>
             </Back>
@@ -155,7 +155,7 @@ const PlotNFTSelectPool = forwardRef((props: Props, ref) => {
   }
 
   return (
-    <Form methods={methods} onSubmit={handleSubmit}>
+    <Form methods={methods} onSubmit={HandleSubmit}>
       <Flex flexDirection="column" gap={3}>
         {!onCancel && (
           <Back variant="h5" form>
