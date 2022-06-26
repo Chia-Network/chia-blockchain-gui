@@ -90,7 +90,7 @@ const PlotNFTSelectPool = forwardRef((props: Props, ref) => {
   const { balance, loading: walletLoading } = useStandardWallet();
   const { nfts } = usePlotNFTs();
   const openDialog = useOpenDialog();
-  const exceededNFTLimit = nfts?.length >= 15;
+  const exceededNFTLimit = nfts?.length >= 50;
   const hasBalance = !!balance && balance > 0;
 
   const methods = useForm<FormData>({
