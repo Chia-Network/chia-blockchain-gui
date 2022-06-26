@@ -3116,7 +3116,11 @@ msgid "Yes"
 msgstr "Ano"
 
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:177
-msgid "You Already Have 50 or more Plot NFT's."
+#~ msgid "You Already Have 50 or more Plot NFT's."
+#~ msgstr ""
+
+#: src/components/plotNFT/select/PlotNFTSelectPool.tsx:177
+msgid "You already have 50 or more Plot NFTs."
 msgstr ""
 
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:121
