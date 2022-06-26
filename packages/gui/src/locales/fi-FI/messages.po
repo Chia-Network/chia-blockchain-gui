@@ -547,7 +547,7 @@ msgstr "Anna panoksesi GitHubissa"
 
 #: src/components/backup/BackupCreate.tsx:59
 #: src/components/plot/add/PlotAddForm.tsx:196
-#: src/components/plotNFT/select/PlotNFTSelectPool.tsx:181
+#: src/components/plotNFT/select/PlotNFTSelectPool.tsx:204
 msgid "Create"
 msgstr "Luo"
 
