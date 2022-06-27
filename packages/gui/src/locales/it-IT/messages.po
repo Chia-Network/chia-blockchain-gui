@@ -8,7 +8,7 @@ msgstr ""
 "Language: it_IT\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-06-26 23:36\n"
+"PO-Revision-Date: 2022-06-27 07:56\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -3121,7 +3121,7 @@ msgstr "Sì"
 
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:177
 msgid "You already have 50 or more Plot NFTs."
-msgstr ""
+msgstr "Hai già 50 o più Plot NFT."
 
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:121
 msgid "You already have more than 10 Plot NFTs. Click OK if you're sure you want to create a new one."
