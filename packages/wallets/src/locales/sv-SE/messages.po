@@ -8,7 +8,7 @@ msgstr ""
 "Language: sv_SE\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-05-28 08:31\n"
+"PO-Revision-Date: 2022-06-28 10:10\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -115,7 +115,7 @@ msgstr "Lägg till säkerhetskopierings-ID"
 
 #: src/components/offers/OfferAssetSelector.tsx:127
 msgid "Add CAT wallets to have more options"
-msgstr ""
+msgstr "Lägg till CAT-plånböcker för att få fler alternativ"
 
 #: src/components/hero/WalletHeroAdd.tsx:99
 msgid "Add Custom Token"
