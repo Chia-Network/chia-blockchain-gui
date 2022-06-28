@@ -8,7 +8,7 @@ msgstr ""
 "Language: sv_SE\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-06-27 21:42\n"
+"PO-Revision-Date: 2022-06-28 10:10\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -826,11 +826,11 @@ msgstr "Drag och släpp din säkerhetskopierade fil"
 
 #: src/components/plot/PlotHarvester.tsx:131
 msgid "Duplicate"
-msgstr "Dublett"
+msgstr "Dubblett"
 
 #: src/components/plot/card/PlotCardPlotsDuplicate.tsx:11
 msgid "Duplicate Plots"
-msgstr ""
+msgstr "Dubbletter av plotter"
 
 #: src/electron/main.tsx:348
 msgid "Edit"
@@ -2802,7 +2802,7 @@ msgstr "Token"
 
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:118
 msgid "Too Many Plot NFTs"
-msgstr ""
+msgstr "För många plott-NFT:er"
 
 #: src/components/_wallet_old/card/WalletCardTotalBalance.tsx:32
 #: src/components/_wallet_old/coloured/WalletColoured.tsx:379
@@ -2836,7 +2836,7 @@ msgstr "Totalt antal plottar"
 
 #: src/components/plot/card/PlotCardTotalPlotsSize.tsx:11
 msgid "Total Plots Size"
-msgstr ""
+msgstr "Sammanlagd plottstorlek"
 
 #: src/components/farm/card/FarmCardTotalSizeOfPlots.tsx:11
 msgid "Total Size of Plots"
@@ -3125,11 +3125,11 @@ msgstr "Ja"
 
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:177
 msgid "You already have 50 or more Plot NFTs."
-msgstr ""
+msgstr "Du har redan 50 eller fler plott-NFT:er."
 
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:121
 msgid "You already have more than 10 Plot NFTs. Click OK if you're sure you want to create a new one."
-msgstr ""
+msgstr "Du har redan fler än 10 plott-NFT:er. Klicka på OK om du är säker på att du vill skapa en ny."
 
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:120
 #~ msgid "You already have more then 10 PlotNFT's, you really shouldn't make more."
