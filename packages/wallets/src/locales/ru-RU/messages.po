@@ -8,7 +8,7 @@ msgstr ""
 "Language: ru_RU\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-05-27 00:42\n"
+"PO-Revision-Date: 2022-06-29 08:40\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "Plural-Forms: nplurals=4; plural=((n%10==1 && n%100!=11) ? 0 : ((n%10 >= 2 && n%10 <=4 && (n%100 < 12 || n%100 > 14)) ? 1 : ((n%10 == 0 || (n%10 >= 5 && n%10 <=9)) || (n%100 >= 11 && n%100 <= 14)) ? 2 : 3));\n"
@@ -1962,7 +1962,7 @@ msgstr "Ожидающие"
 #: src/components/card/WalletCardPendingBalance.tsx:36
 #: src/components/rateLimited/WalletRateLimited.jsx:572
 msgid "Pending Balance"
-msgstr "Баланс в ожидани"
+msgstr "Баланс в ожидании"
 
 #: src/components/card/WalletCardPendingChange.tsx:37
 #: src/components/rateLimited/WalletRateLimited.jsx:577
@@ -2825,7 +2825,7 @@ msgstr "Расходуемое количество монет за интерв
 #: src/components/card/WalletCardSpendableBalance.tsx:37
 #: src/components/rateLimited/WalletRateLimited.jsx:547
 msgid "Spendable Balance"
-msgstr "Расходуемый баланс"
+msgstr "Доступный баланс"
 
 #: src/components/rateLimited/WalletRateLimited.jsx:395
 #: src/components/rateLimited/WalletRateLimited.jsx:442
