@@ -8,7 +8,7 @@ msgstr ""
 "Language: sv_SE\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-06-28 10:10\n"
+"PO-Revision-Date: 2022-06-30 11:04\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -251,11 +251,11 @@ msgstr "Är du säker på att du vill radera obekräftade transaktioner?"
 #: src/components/cat/WalletCATTAILDialog.tsx:43
 #: src/components/cat/WalletCATTAILDialog.tsx:55
 msgid "Asset Id"
-msgstr ""
+msgstr "Tillgångs-ID"
 
 #: src/components/offers/OfferAssetSelector.tsx:117
 msgid "Asset Type"
-msgstr ""
+msgstr "Tillgångsslag"
 
 #: src/constants/WalletName.ts:11
 msgid "Atomic Swap Wallet"
@@ -591,7 +591,7 @@ msgstr "Bekräftad vid höjd"
 
 #: src/components/WalletStatusHeader.tsx:33
 msgid "Connected ({0})"
-msgstr ""
+msgstr "Anslutna ({0})"
 
 #: src/components/app/AppState.tsx:141
 #: src/components/app/AppState.tsx:145
@@ -2020,7 +2020,7 @@ msgstr ""
 
 #: src/components/cat/WalletCATCreateExistingSimple.tsx:41
 msgid "Please enter a valid asset id"
-msgstr ""
+msgstr "Ange ett giltigt tillgångs-ID"
 
 #: src/components/create/createRLAdmin.jsx:139
 msgid "Please enter a valid initial coin amount"
@@ -2103,7 +2103,7 @@ msgstr "Vänta på synkronisering innan du gör en transaktion"
 
 #: src/components/offers/OfferEditor.tsx:109
 msgid "Please select an asset for each row"
-msgstr ""
+msgstr "Ange en tillgång för varje rad"
 
 #: src/components/did/WalletDIDRecovery.tsx:54
 msgid "Please select backup file first"
@@ -2537,7 +2537,7 @@ msgstr "Byt namn på plånboken"
 
 #: src/components/offers/OfferManager.tsx:323
 msgid "Requested"
-msgstr ""
+msgstr "Begärda"
 
 #: src/components/offers/OfferEditor.tsx:195
 msgid "Reset"
@@ -2903,7 +2903,7 @@ msgstr "Skicka"
 #: src/components/WalletSendTransactionResultDialog.tsx:15
 #: src/components/offers/OfferViewer.tsx:343
 msgid "Success"
-msgstr ""
+msgstr "Lyckades"
 
 #: src/components/WalletHeader.tsx:58
 #: src/components/offers/OfferViewer.tsx:452
@@ -3086,7 +3086,7 @@ msgstr "Detta är summan av inkommande och utgående väntande transaktioner (so
 
 #: src/components/standard/WalletStandardCards.tsx:16
 msgid "This is the total amount of chia in the blockchain at the current peak block that is controlled by your private keys. It includes frozen farming rewards, but not pending incoming and outgoing transactions."
-msgstr ""
+msgstr "Detta är det sammanlagda antalet chia i blockkedjan vid det aktuella topp-blocket som kontrolleras av dina privata nycklar. Det innefattar frusna odlingsbelöningar, men inte väntande inkommande och utgående transaktioner."
 
 #: src/components/standard/WalletStandardCards.tsx:16
 #~ msgid "This is the total amount of chia in the blockchain at the current peak sub block that is controlled by your private keys. It includes frozen farming rewards, but not pending incoming and outgoing transactions."
@@ -3184,7 +3184,7 @@ msgstr ""
 
 #: src/components/cat/WalletCATCreateSimple.tsx:45
 msgid "Token has empty asset id"
-msgstr ""
+msgstr "Token har ett tillgångs-id"
 
 #: src/components/cat/WalletCATCreateSimple.tsx:41
 msgid "Token has empty name"
