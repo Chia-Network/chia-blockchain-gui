@@ -8,7 +8,7 @@ msgstr ""
 "Language: sv_SE\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-06-28 11:23\n"
+"PO-Revision-Date: 2022-06-30 11:04\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -1871,7 +1871,7 @@ msgstr "Plottnyckel"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:319
 msgid "Plot NFT Pool Contract Address"
-msgstr ""
+msgstr "Poolkontraktsadress för Plott-NFT"
 
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:111
 #: src/components/plotNFT/PlotNFTChangePool.tsx:92
@@ -1917,7 +1917,7 @@ msgstr "Plottar"
 
 #: src/components/plot/card/PlotCardPlotsFailedToOpen.tsx:13
 msgid "Plots Failed To Open"
-msgstr ""
+msgstr "Det gick inte att öppna plottar"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:20
 msgid "Plots Passed Filter"
@@ -1925,7 +1925,7 @@ msgstr "Plottar som passerat filtret"
 
 #: src/components/plot/card/PlotCardNotFound.tsx:11
 msgid "Plots With Missing Keys"
-msgstr ""
+msgstr "Plottar vars nycklar saknas"
 
 #: src/components/plot/overview/PlotOverviewHero.tsx:33
 #~ msgid "Plots are allocated space on your hard drive used to farm and earn Chia. <0>Learn more</0>"
@@ -2667,7 +2667,7 @@ msgstr "Den minnesfras som användes för att skapa plotten. Denna beror av den 
 
 #: src/components/block/Block.jsx:206
 msgid "The total number of VDF (verifiable delay function) or proof of time iterations on the whole chain up to this block."
-msgstr ""
+msgstr "Sammanlagt antal iterationer av VDF:er (verifiable delay function) eller bevis-på-tid i hela kedjan upp till detta block."
 
 #: src/components/block/Block.jsx:206
 #~ msgid "The total number of VDF (verifiable delay function) or proof of time iterations on the whole chain up to this sub block."
@@ -2929,7 +2929,7 @@ msgstr "Lås upp nyckelring"
 
 #: src/components/farm/card/FarmCardUserFees.tsx:27
 msgid "User Transaction Fees"
-msgstr ""
+msgstr "Användartransaktionsavgifter"
 
 #: src/components/app/AppPassPrompt.tsx:79
 #~ msgid "Using a passphrase is strongly recommended to protect your keys. Are you sure you want to disable passphrase protection?"
@@ -3254,7 +3254,7 @@ msgstr "Din lösenfras kan sparas i systemets arkiv för autentiseringsuppgifter
 #: src/components/settings/Settings.tsx:89
 #: src/components/settings/SettingsPanel.tsx:91
 msgid "Your passphrase has been set"
-msgstr ""
+msgstr "Din lösenfras har sparats"
 
 #: src/components/settings/Settings.tsx:78
 #: src/components/settings/SettingsPanel.tsx:80
