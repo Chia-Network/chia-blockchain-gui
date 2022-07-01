@@ -8,7 +8,7 @@ msgstr ""
 "Language: sv_SE\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-06-30 15:45\n"
+"PO-Revision-Date: 2022-07-01 22:19\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -810,7 +810,7 @@ msgstr "Anpassad"
 
 #: src/constants/WalletName.ts:29
 msgid "DID Wallet"
-msgstr ""
+msgstr "DID-plånbok"
 
 #: src/components/wallet/create/WalletCreate.jsx:310
 #~ msgid "DIDListItems.title"
@@ -1352,7 +1352,7 @@ msgstr "I utbyte mot:"
 
 #: src/components/offers/OfferEditorConditionsPanel.tsx:339
 msgid "Including a fee in the offer can help expedite the transaction when the offer is accepted."
-msgstr ""
+msgstr "Om en avgift inkluderas i erbjudandet kan transaktionen påskyndas när erbjudandet accepteras."
 
 #: src/components/WalletHistory.tsx:60
 msgid "Incoming"
@@ -1394,7 +1394,7 @@ msgstr "Installera Keybase"
 #: src/components/offers/OfferViewer.tsx:358
 msgid "Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
+msgstr "Det finns inte tillräckliga medel för att acceptera erbjudandet. Se till att ditt spenderbara saldo är tillräckligt högt för att täcka erbjudandets belopp."
 
 #: src/components/offers/OfferEditor.tsx:166
 msgid "Insufficient funds available to create offer. Ensure that your\n"
@@ -1756,7 +1756,7 @@ msgstr "Ej synkad"
 
 #: src/components/offers/OfferViewer.tsx:198
 msgid "Not accepted"
-msgstr ""
+msgstr "Ej accepterad"
 
 #: src/components/trading/TradingOverview.jsx:221
 #~ msgid "Not accepted yet"
@@ -3112,7 +3112,7 @@ msgstr "Detta är totalt saldo + väntande saldo: det är vad ditt saldo kommer 
 
 #: src/components/offers/OfferViewer.tsx:210
 msgid "This number reflects the number of nodes that the accepted SpendBundle has been sent to"
-msgstr ""
+msgstr "Denna siffra representerar antalet noder som den accepterade SpendBundle:n har skickats till"
 
 #: src/components/offers/OfferSummary.tsx:132
 msgid "This offer has a fee included to help expedite the transaction when the offer is accepted."
