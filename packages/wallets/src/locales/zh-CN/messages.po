@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh_CN\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-06-23 01:06\n"
+"PO-Revision-Date: 2022-07-01 05:59\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -663,7 +663,7 @@ msgstr "创建分布式身份钱包"
 
 #: src/components/cat/WalletCATCreateNew.tsx:75
 msgid "Create New Chia Asset Token Wallet"
-msgstr ""
+msgstr "创建新的Chia Asset Token 钱包"
 
 #: src/components/cat/WalletCATSelect.tsx:32
 #: src/components/did/WalletDIDSelect.tsx:32
