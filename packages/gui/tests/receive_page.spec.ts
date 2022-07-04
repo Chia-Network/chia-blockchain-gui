@@ -15,7 +15,7 @@ test.afterAll(async () => {
   await electronApp.close();
 });
 
-test('Interact with the Receive Page Elements', async () => {
+test.only('Interact with the Receive Page Elements', async () => {
   //const page = await electronApp.firstWindow();
   await page.locator('text=1054108904').click();
   expect(page).toHaveTitle('Chia Blockchain');

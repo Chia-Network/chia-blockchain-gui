@@ -8,6 +8,7 @@ let page: Page;
 
 test.beforeAll(async () => {
   electronApp = await electron.launch({ args: ['./build/electron/main.js'] });
+  //electronApp = await electron.launch({ headless: true });
   page = await electronApp.firstWindow();
   
 });
@@ -62,8 +63,15 @@ test('Confirm fields Provide Tooltips on Send Page for 1651231316 ID', async () 
   // Click text=Send
   await page.locator('text=Send').click();
 
-  // Click #mui-29
-  await page.locator('#mui-29').click();
+  // Click text=Actions
+  await page.locator('text=Actions').click();
+
+ // Click div[role="presentation"] div >> nth=0
+  await page.locator('div[role="presentation"] div').first().click();
+
+  // Click Address and Puzzle Hash field
+  await page.waitForNavigation();
+  await page.locator('#mui-35').click();
 
   // Fill text=Amount *TXCH >> input[type="text"]
   await page.locator('text=Amount *TXCH >> input[type="text"]').fill('34');
@@ -78,43 +86,15 @@ test('Confirm fields Provide Tooltips on Send Page for 1651231316 ID', async () 
    expect(visual).toEqual('Value seems high')
    //expect(visual).toEqual('Value Jahi seems high') Test that confirmed previous step actually verifies something
 
-  // Click #mui-30
+   //Click #mui-30
   await page.locator('#mui-30').click();
 
    // Click button:has-text("Manage token list")
    await page.locator('button:has-text("Manage token list")').click();
 
-   // Click text=Actions
-   await page.locator('text=Actions').click();
-
-  
- //await expect(page.locator('div[role="tooltip"]')).toHaveText('ErrorWallet needs to be fully synced before sending transactionsOK');
- //await expect(page.locator('div[role="alert"]')).toHaveText('ErrorWallet needs to be fully synced before sending transactionsOK')
-
-  /*let toolTip = document.querySelector('.tooltip');
-  expect(toolTip).not.toBe(null);*/
-
-  /*const pageAlert = await page.$('.tooltip');
- await expect(pageAlert).toEqual('Success message');*/
-
-  //await page.locator('text=Please fill out this Jahis field').isVisible
-
-  //assertion for Dialog
-  /*page.on('dialog', async (dialog) =>{
-    expect(dialog.message()).toEqual('Please fill out this field.')
-    expect(dialog.message()).toEqual('Please fill out Jahis field.')
-  })*/
-
- // page.on('dialog', dialog => expect(dialog.message()).toEqual('Please fill out Jahis field.'))
- // await expect(page.$('.alert')).toEqual('Success message');
-
- //const pageAlert = await page.$('.alert');
- //await expect(pageAlert).toEqual('Success message');
-
-
 });
 
-test.only('Confirm Error Dialog when wrong data is entered on Send Page for 1651231316 ID', async () => {
+test('Confirm Error Dialog when wrong data is entered on Send Page for 1651231316 ID', async () => {
   
   // Click div[role="button"]:has-text("Private key with public fingerprint 1651231316Can be backed up to mnemonic seed")
   await Promise.all([
@@ -145,61 +125,57 @@ test.only('Confirm Error Dialog when wrong data is entered on Send Page for 1651
 
 });
 
+test.only('Create new Wallet and logout', async () => {
 
-/*
+  // Click text=Create a new private key
+  await page.locator('text=Create a new private key').click();
+  // assert.equal(page.url(), 'file:///Users/jahifaw/Documents/Code/Chia-testnet-playwright/chia-blockchain/chia-blockchain-gui/packages/gui/build/renderer/index.html#/wallet/add');
+
+  // Click button:has-text("Next")
+  await Promise.all([
+    page.waitForNavigation(/*{ url: 'file:///Users/jahifaw/Documents/Code/Chia-testnet-playwright/chia-blockchain/chia-blockchain-gui/packages/gui/build/renderer/index.html#/dashboard/wallets/1' }*/),
+    page.locator('button:has-text("Next")').click()
+  ]);
+
+   //Grab the wallet id 
+   const wallet_new = await page.innerText('.sc-iqseJM.iAUiTX.MuiTypography-root.MuiTypography-h5.LayoutDashboard__StyledInlineTypography-sc-1nay716-5.jVcyEI')
+   
+   //console.log(wallet_new)
+   console.log(wallet_new)
+
+  // Click text=Receive page
+  await page.locator('text=Receive').click();
+
+  const wallet_new_address = await page.locator('text=Receive Address New AddressAddress >> input[type="text"]').inputValue() //.click();
+
+  console.log(wallet_new_address)
 
 
-  // Click #mui-29
-  await page.locator('#mui-29').click();
+  // Logout of the wallet_new
+  await page.locator('[data-testid="ExitToAppIcon"]').click();
 
-  // Fill #mui-29
-  await page.locator('#mui-29').fill('1');
 
-  // Click #mui-30
-  await page.locator('#mui-30').click();
+  /*/Log into wallet_test_funds
+  await page.locator('text=1651231316').click();
 
-  // Click text=Amount *TXCH >> input[type="text"]
-  await page.locator('text=Amount *TXCH >> input[type="text"]').click();
 
-  // Fill text=Amount *TXCH >> input[type="text"]
-  await page.locator('text=Amount *TXCH >> input[type="text"]').fill('2');
+  // Click text=Send page
+  await page.locator('text=Send').click();
 
-  // Click text=FeeTXCH >> input[type="text"]
-  await page.locator('text=FeeTXCH >> input[type="text"]').click();
+
+   // Fill Address/Puzzle has* field
+   await page.locator('.sc-iwjdpV.sc-giYglK.lmVqSL.bAAoFy.MuiFilledInput-input.MuiInputBase-input').fill(wallet_new_address);
+
+    // Fill text=Amount *TXCH >> input[type="text"]
+  await page.locator('text=Amount *TXCH >> input[type="text"]').fill('.00001');
+
 
   // Fill text=FeeTXCH >> input[type="text"]
-  await page.locator('text=FeeTXCH >> input[type="text"]').fill('1');
+  await page.locator('text=FeeTXCH >> input[type="text"]').fill('.00005');
 
-  // Click #mui-30
-  await page.locator('#mui-30').click();
+  await page.locator('button:has-text("Send")').hover */
 
-  // Click div[role="dialog"] >> text=OK
-  await page.locator('div[role="dialog"] >> text=OK').click();
-
-  // Click text=Wallet 1651231316Synced Connected (2) >> button >> nth=2
-  await page.locator('text=Wallet 1651231316Synced Connected (2) >> button').nth(2).click();
-  // assert.equal(page.url(), 'file:///Users/jahifaw/Documents/Code/Chia-testnet-playwright/chia-blockchain/chia-blockchain-gui/packages/gui/build/renderer/index.html#/');
+});
 
 
-  // Click [placeholder="Search\.\.\."]
-  await page.locator('[placeholder="Search\\.\\.\\."]').click();
 
-  // Uncheck input[type="checkbox"] >> nth=0
-  await page.locator('input[type="checkbox"]').first().uncheck();
-
-  // Check input[type="checkbox"] >> nth=0
-  await page.locator('input[type="checkbox"]').first().check();
-
-  // Click text=NameName509deafe3cd8bbfbb9ccce1d930e3d7b57b40c964fa33379b18d628175eb7a8fSearch o >> input[type="text"]
-  await page.locator('text=NameName509deafe3cd8bbfbb9ccce1d930e3d7b57b40c964fa33379b18d628175eb7a8fSearch o >> input[type="text"]').click();
-
-  // Click text=NameName8ebf855de6eb146db5602f0456d2f0cbe750d57f821b6f91a8592ee9f1d4cf31Search o >> input[type="text"]
-  await page.locator('text=NameName8ebf855de6eb146db5602f0456d2f0cbe750d57f821b6f91a8592ee9f1d4cf31Search o >> input[type="text"]').click();
-
-  // Click text=NameName78ad32a8c9ea70f27d73e9306fc467bab2a6b15b30289791e37ab6e8612212b1Search o >> input[type="text"]
-  await page.locator('text=NameName78ad32a8c9ea70f27d73e9306fc467bab2a6b15b30289791e37ab6e8612212b1Search o >> input[type="text"]').click();
-
-  // Click text=NameName6d95dae356e32a71db5ddcb42224754a02524c615c5fc35f568c2af04774e589Search o >> input[type="text"]
-  await page.locator('text=NameName6d95dae356e32a71db5ddcb42224754a02524c615c5fc35f568c2af04774e589Search o >> input[type="text"]').click();
-
-  */
