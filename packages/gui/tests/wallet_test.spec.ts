@@ -99,7 +99,68 @@ test('Open Funded Wallet assign funds to New Wallet', async () => {
 
 });
 
-test.only('Make Transactions Between Wallet if Funds are available partner 1', async () => {
+test.only('Verify that Funded wallet cannot send funds until fully synced', async () => {
+
+  const partner_wallet = 'txch1p8956yym9nvs6enfzpgs9spjf8wx435avemsq3k3fzgxnc9qvezqngy2a2'
+
+  //Login To Account 
+  await Promise.all([
+    page.waitForNavigation(/*{ url: 'file:///Users/jahifaw/Documents/Code/Chia-testnet-playwright/chia-blockchain/chia-blockchain-gui/packages/gui/build/renderer/index.html#/dashboard/wallets/1' }*/),
+    page.locator('div[role="button"]:has-text("Private key with public fingerprint 1651231316Can be backed up to mnemonic seed")').click()
+  ]);
+
+  await page.locator('text=Wallet 1651231316').click();
+
+  //Confirm Funds are not 0
+  const myFunds = await page.$eval('.sc-bTfYFJ.gLEfkc.MuiGrid-root.MuiGrid-item.MuiGrid-grid-xs-12.MuiGrid-grid-lg-4', (el) => el.textContent);
+  console.log(myFunds)
+  if(myFunds == 'Total Balance0 TXCH' ){
+    console.log('No Funds Available!')
+    //await electronApp.close();
+  }
+
+  else if (myFunds != 'Total Balance0 TXCH' ) {
+
+    // Navigate to Send page
+    await page.locator('text=Send').click();
+
+    // Fill Address/Puzzle has* field
+    //await page.locator('.sc-iwjdpV.sc-giYglK.lmVqSL.bAAoFy.MuiFilledInput-input.MuiInputBase-input').fill(partner_wallet);
+    await page.locator('.sc-iwjdpV.sc-giYglK.daydxT.JOlSo.MuiFilledInput-input.MuiInputBase-input').fill(partner_wallet);
+
+    // Fill text=Amount *TXCH >> input[type="text"]
+    await page.locator('text=Amount *TXCH >> input[type="text"]').fill('.0005');
+
+    // Fill text=FeeTXCH >> input[type="text"]
+    await page.locator('text=FeeTXCH >> input[type="text"]').fill('.000005');
+
+    const pageStatus = await page.$eval('.sc-hKwDye.dPcxQq.Flex__StyledGapBox-sc-1nzpt0b-0.crSgCj.StateIndicator__StyledFlexContainer-sc-3e28ts-0.bNWWRC.MuiBox-root', (el) => el.textContent);
+    console.log(pageStatus)
+
+    await page.locator('button:has-text("Send"):below(:text("FeeTXCH"))').click();
+
+    if (pageStatus == 'Not Synced'){
+      console.log('You are Not Synced')
+
+    }
+    else if(pageStatus == 'Syncing'){
+      // Click div[role="dialog"] >> text=OK
+      await expect(page.locator('div[role="dialog"]')).toHaveText('ErrorWallet needs to be fully synced before sending transactionsOK' || 'ErrorPlease finish syncing before making a transactionOK');
+      await page.locator('div[role="dialog"] >> text=OK').click();
+
+    }
+    else {
+      //await expect(page.locator('div[role="dialog"]')).toHaveText('ErrorWallet needs to be fully synced before sending transactionsOK' || 'ErrorPlease finish syncing before making a transactionOK');
+      await page.locator('div[role="dialog"] >> text=OK').click();
+
+    }
+    
+
+  }
+  
+});
+
+test('Make Transactions Between Wallet if Funds are available partner 1', async () => {
 
   const partner_wallet = 'txch1p8956yym9nvs6enfzpgs9spjf8wx435avemsq3k3fzgxnc9qvezqngy2a2'
 
@@ -139,7 +200,13 @@ test.only('Make Transactions Between Wallet if Funds are available partner 1', a
     // Fill text=FeeTXCH >> input[type="text"]
     await page.locator('text=FeeTXCH >> input[type="text"]').fill('.000005');
 
-    await page.locator('button:has-text("Send"):below(text("FeeTXCH"))').click();
+
+    const pageStatus = await page.$eval('.sc-hKwDye.dPcxQq.Flex__StyledGapBox-sc-1nzpt0b-0.crSgCj.StateIndicator__StyledFlexContainer-sc-3e28ts-0.bNWWRC.MuiBox-root', (el) => el.textContent);
+    console.log(pageStatus)
+
+    await expect(page.locator("text=Synced")).toBeVisible()
+
+    //await page.locator('button:has-text("Send"):below(:text("FeeTXCH"))').click();
 
   }
 

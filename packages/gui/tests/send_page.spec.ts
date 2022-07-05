@@ -94,6 +94,7 @@ test('Confirm fields Provide Tooltips on Send Page for 1651231316 ID', async () 
 
 });
 
+//Failures due to Elements changing attributes
 test('Confirm Error Dialog when wrong data is entered on Send Page for 1651231316 ID', async () => {
   
   // Click div[role="button"]:has-text("Private key with public fingerprint 1651231316Can be backed up to mnemonic seed")
