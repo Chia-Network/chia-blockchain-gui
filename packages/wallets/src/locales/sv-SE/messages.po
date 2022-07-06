@@ -8,7 +8,7 @@ msgstr ""
 "Language: sv_SE\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-07-06 20:54\n"
+"PO-Revision-Date: 2022-07-06 22:11\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -1399,7 +1399,7 @@ msgstr "Det finns inte tillräckliga medel för att acceptera erbjudandet. Se ti
 #: src/components/offers/OfferEditor.tsx:166
 msgid "Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
+msgstr "Det finns inte tillräckliga medel för att skapa erbjudandet. Se till att ditt spenderbara saldo är tillräckligt högt för att täcka erbjudandets belopp."
 
 #: src/components/create/createRLAdmin.jsx:217
 msgid "Interval"
@@ -3031,7 +3031,7 @@ msgstr "Antalet säkerhetskopierings-ID som behövs för återställning kan int
 
 #: src/components/WalletSendTransactionResultDialog.tsx:34
 msgid "The transaction could not be immediately included in the mempool because the specified fee is too low. The transaction will be retried periodically, and may be included in the mempool once fees are lower, or if space becomes available."
-msgstr ""
+msgstr "Transaktionen kunde inte omedelbart inkluderas i mempoolen eftersom den angivna avgiften är för låg. Transaktionen kommer att återställas med jämna mellanrum, och kan komma att inkluderas i mempoolen när avgifterna är lägre, eller om utrymme blir tillgängligt."
 
 #: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:107
 #~ msgid "These are the instructions for how the farmer wants to get paid. By default this will be an XCH address, but it can be set to any string with a size of less than 1024 characters, so it can represent another blockchain or payment system identifier."
@@ -3062,7 +3062,7 @@ msgstr ""
 
 #: src/components/WalletHistory.tsx:90
 msgid "This is not a valid address for sending funds to"
-msgstr "Detta är inte en giltig adress för att skicka pengar till"
+msgstr "Detta är inte en giltig adress för att skicka betalning till"
 
 #: src/components/standard/WalletStandardCards.tsx:23
 msgid "This is the amount of Chia that you can currently use to make transactions. It does not include pending farming rewards, pending incoming transactions, and Chia that you have just spent but is not yet in the blockchain."
