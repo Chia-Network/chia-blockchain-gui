@@ -215,8 +215,6 @@ export function OfferSummaryTokenRow(
   );
 }
 
-}
-
 type Props = {
   assetId: string;
   amount: number;
