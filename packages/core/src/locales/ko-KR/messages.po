@@ -8,7 +8,7 @@ msgstr ""
 "Language: ko_KR\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-07-08 18:52\n"
+"PO-Revision-Date: 2022-07-08 19:59\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -1410,7 +1410,7 @@ msgstr "모드"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:38
 msgid "New passphrase is the same as your current passphrase"
-msgstr ""
+msgstr "새 암호가 현재 암호와 동일합니다."
 
 #: src/components/_wallet_old/WalletAdd.tsx:95
 #: src/components/_wallet_old/WalletImport.tsx:162
@@ -2292,7 +2292,7 @@ msgstr "피드백 전송"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:48
 msgid "Setting a passphrase is strongly recommended to protect your keys. Are you sure you want to skip setting a passphrase?"
-msgstr ""
+msgstr "키를 보호하려면 암호를 설정하는 것이 좋습니다. 암호 설정을 건너뛰시겠습니까?"
 
 #: src/components/Settings/Settings.tsx:48
 #: src/components/Settings/Settings.tsx:58
@@ -2326,7 +2326,7 @@ msgstr "건너뛰기"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:46
 msgid "Skip Passphrase Protection"
-msgstr ""
+msgstr "암호 보호 건너뛰기"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:129
 #~ msgid "Skips adding [final dir] to harvester for farming"
@@ -2754,7 +2754,7 @@ msgstr "거래가 전체 노드로 전송되었으며 mempool에 포함되도록
 
 #: src/utils/getTransactionResult.ts:24
 msgid "Transaction has successfully been sent to a full node and included in the mempool."
-msgstr ""
+msgstr "거래가 전체 노드로 성공적으로 전송되었고 mempool에 포함되었습니다."
 
 #: src/components/block/Block.jsx:298
 #~ msgid "Transactions Filter Hash"
@@ -2813,7 +2813,7 @@ msgstr "변경 내용이 저장되지 않음"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:52
 msgid "Using a passphrase is strongly recommended to protect your keys. Are you sure you want to disable passphrase protection?"
-msgstr ""
+msgstr "키를 보호하려면 암호를 사용하는 것이 좋습니다. 암호 보호를 비활성화하시겠습니까?"
 
 #: src/components/fullNode/card/FullNodeCardVDFSubSlotIterations.tsx:14
 #~ msgid "VDF Sub Slot Iterations"
@@ -2957,11 +2957,11 @@ msgstr "경고: 이 키는 잔액이 있을수도 있는 지갑에 사용됩니�
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:99
 msgid "Warning: This key is used for your farming rewards address. By deleting this key you may lose access to any future farming rewards"
-msgstr ""
+msgstr "경고: 이 키는 파밍 보상 주소에 사용됩니다. 이 키를 삭제하면 향후 파밍 보상에 액세스하지 못할 수 있습니다."
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:108
 msgid "Warning: This key is used for your pool rewards address. By deleting this key you may lose access to any future pool rewards"
-msgstr ""
+msgstr "경고: 이 키는 풀 보상 주소에 사용됩니다. 이 키를 삭제하면 향후 풀 보상에 접근하지 못할 수 있습니다."
 
 #: src/components/block/Block.jsx:194
 #~ msgid "Weight"
@@ -3025,7 +3025,7 @@ msgstr "Chia에 오신 것을 환영합니다. 사용하고 계신 키로 로그
 #: src/components/Back/Back.tsx:43
 #: src/components/FormBackButton/FormBackButton.tsx:30
 msgid "You have made changes. Do you want to discard them?"
-msgstr ""
+msgstr "변경했습니다. 삭제하시겠습니까?"
 
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:34
 #~ msgid "You have {0}% of the space on the network, so farming a block will take {expectedTimeToWin} in expectation."
@@ -3093,7 +3093,7 @@ msgstr ""
 
 #: src/hooks/useKeyringMigrationPrompt.tsx:20
 msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Would you like to migrate your keys now?"
-msgstr ""
+msgstr "키가 새 키링으로 마이그레이션되지 않았습니다. 마이그레이션이 완료될 때까지 새 키를 생성하거나 기존 키를 삭제할 수 없습니다. 지금 키를 마이그레이션하시겠습니까?"
 
 #: src/components/app/AppKeyringMigrator.tsx:106
 #~ msgid "Your keys need to be migrated to a new keyring that is optionally secured by a master passphrase."
@@ -3172,7 +3172,7 @@ msgstr ""
 
 #: src/components/Amount/Amount.tsx:96
 msgid "{0, plural, one {mojo} other {mojos}}"
-msgstr ""
+msgstr "{0, plural, one {mojo} other {mojos}}"
 
 #: src/components/farm/card/FarmCardBlockRewards.tsx:16
 #~ msgid "{0} Block Rewards"
@@ -3205,7 +3205,7 @@ msgstr ""
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:33
 msgid "{minPassphraseLength, plural, one {Passphrases must be at least # character in length} other {Passphrases must be at least # characters in length}}"
-msgstr ""
+msgstr "{minPassphraseLength, plural, one {Passphrases must be at least # character in length} other {Passphrases must be at least # characters in length}}"
 
 #: src/components/Amount/Amount.tsx:95
 #~ msgid "{mojo, plural, one {mojo} other {mojos}}"
