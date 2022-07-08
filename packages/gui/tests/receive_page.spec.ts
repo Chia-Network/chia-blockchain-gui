@@ -15,7 +15,7 @@ test.afterAll(async () => {
   await electronApp.close();
 });
 
-test.only('Interact with the Receive Page Elements', async () => {
+test.only('Verify that new address creates new address', async () => {
   //const page = await electronApp.firstWindow();
   await page.locator('text=1054108904').click();
   expect(page).toHaveTitle('Chia Blockchain');
@@ -24,14 +24,23 @@ test.only('Interact with the Receive Page Elements', async () => {
   await page.locator('text=Receive').click();
   // Click text=Receive Address
   await page.locator('text=Receive Address').click();
-  // Click text=New Address
+  
+  //Grab the wallet id 
+  const wallet_address = await page.locator('text=Receive Address New AddressAddress >> input[type="text"]').inputValue()
+  console.log(wallet_address)
+
+  //Click text=New Address
   await page.locator('text=New Address').click();
-  // Click text=Wallet 1054108904Syncing Connected (3) >> button >> nth=2
-  await page.locator('text=Wallet 1054108904Syncing Connected (3) >> button').nth(2).click();
-  // assert.equal(page.url(), 'file:///Users/jahifaw/Documents/Code/Chia-App/chia-blockchain/chia-blockchain-gui/packages/gui/build/renderer/index.html#/');
+
+  //Grab the wallet id 
+  const wallet_new = await page.locator('text=Receive Address New AddressAddress >> input[type="text"]').inputValue()
+  console.log(wallet_new)
+
+  expect(wallet_address == wallet_new)
+
 });
 
-test.only('Interact with the Receive Page of 1651231316 ID', async() => {
+test('Interact with the Receive Page of 1651231316 ID', async() => {
 
   // Click div[role="button"]:has-text("Private key with public fingerprint 1651231316Can be backed up to mnemonic seed")
   await Promise.all([

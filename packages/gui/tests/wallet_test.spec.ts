@@ -48,7 +48,6 @@ test('Create new Wallet and logout', async () => {
 
 });
 
-
 //****This feature does not work because it can't handle multi pages
 test('Open Funded Wallet assign funds to New Wallet', async () => {
 
@@ -99,7 +98,7 @@ test('Open Funded Wallet assign funds to New Wallet', async () => {
 
 });
 
-test.only('Verify that Funded wallet cannot send funds until fully synced', async () => {
+test('Verify that Funded wallet cannot send funds until fully synced', async () => {
 
   const partner_wallet = 'txch1p8956yym9nvs6enfzpgs9spjf8wx435avemsq3k3fzgxnc9qvezqngy2a2'
 
@@ -160,7 +159,7 @@ test.only('Verify that Funded wallet cannot send funds until fully synced', asyn
   
 });
 
-test('Make Transactions Between Wallet if Funds are available partner 1', async () => {
+test.only('Make Transactions Between Wallet if Funds are available part 1', async () => {
 
   const partner_wallet = 'txch1p8956yym9nvs6enfzpgs9spjf8wx435avemsq3k3fzgxnc9qvezqngy2a2'
 
@@ -175,8 +174,6 @@ test('Make Transactions Between Wallet if Funds are available partner 1', async 
   await page.locator('text=Wallet 1651231316').click();
 
   /*/Confirm Funds are not 0
-  //const myFunds = await page.innerText('sc-iqseJM gAWTxT MuiTypography-root MuiTypography-h5 CardSimple__StyledValue-sc-7rjyv2-2 lOFkF');
-  //const myFunds = await page.$eval('.sc-iqseJM.gAWTxT.MuiTypography-root.MuiTypography-h5.CardSimple__StyledValue-sc-7rjyv2-2.lOFkF', (el) => el.textContent);
   Note that the element had grab the topmost class which why the two above did not work. */
   const myFunds = await page.$eval('.sc-bTfYFJ.gLEfkc.MuiGrid-root.MuiGrid-item.MuiGrid-grid-xs-12.MuiGrid-grid-lg-4', (el) => el.textContent);
   console.log(myFunds)
@@ -191,7 +188,6 @@ test('Make Transactions Between Wallet if Funds are available partner 1', async 
     await page.locator('text=Send').click();
 
     // Fill Address/Puzzle has* field
-    //await page.locator('.sc-iwjdpV.sc-giYglK.lmVqSL.bAAoFy.MuiFilledInput-input.MuiInputBase-input').fill(partner_wallet);
     await page.locator('.sc-iwjdpV.sc-giYglK.daydxT.JOlSo.MuiFilledInput-input.MuiInputBase-input').fill(partner_wallet);
 
     // Fill text=Amount *TXCH >> input[type="text"]
@@ -200,17 +196,18 @@ test('Make Transactions Between Wallet if Funds are available partner 1', async 
     // Fill text=FeeTXCH >> input[type="text"]
     await page.locator('text=FeeTXCH >> input[type="text"]').fill('.000005');
 
-
     const pageStatus = await page.$eval('.sc-hKwDye.dPcxQq.Flex__StyledGapBox-sc-1nzpt0b-0.crSgCj.StateIndicator__StyledFlexContainer-sc-3e28ts-0.bNWWRC.MuiBox-root', (el) => el.textContent);
     console.log(pageStatus)
 
+    await page.waitForSelector("text=Synced")
+
     await expect(page.locator("text=Synced")).toBeVisible()
 
-    //await page.locator('button:has-text("Send"):below(:text("FeeTXCH"))').click();
+    await page.locator('button:has-text("Send"):below(:text("FeeTXCH"))').click();
 
   }
 
-await page.waitForTimeout(500000);
+//await page.waitForTimeout(500000);
   
 });
 
