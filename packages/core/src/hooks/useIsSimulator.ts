@@ -1,9 +1,7 @@
 import { useEffect, useState, useCallback } from 'react';
 import isElectron from 'is-electron';
 
-let defaultValue = isElectron() 
-  ? window.ipcRenderer?.sendSync('isSimulator')
-  : false
+let defaultValue = false
 
 export default function useIsSimulator(): boolean {
   const [isSimulator, setIsSimulator] = useState(defaultValue);
