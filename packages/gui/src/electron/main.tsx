@@ -1,4 +1,15 @@
-import { app, dialog, net, shell, ipcMain, BrowserWindow, IncomingMessage, Menu, session, nativeImage } from 'electron';
+import {
+  app,
+  dialog,
+  net,
+  shell,
+  ipcMain,
+  BrowserWindow,
+  IncomingMessage,
+  Menu,
+  session,
+  nativeImage,
+} from 'electron';
 import { initialize } from '@electron/remote/main';
 import path from 'path';
 import React from 'react';
@@ -10,7 +21,7 @@ import { ServerStyleSheet, StyleSheetManager } from 'styled-components';
 // handle setupevents as quickly as possible
 import '../config/env';
 import handleSquirrelEvent from './handleSquirrelEvent';
-import loadConfig from '../util/loadConfig';
+import loadConfig, { getConfigRootDir } from '../util/loadConfig';
 import manageDaemonLifetime from '../util/manageDaemonLifetime';
 import chiaEnvironment from '../util/chiaEnvironment';
 import { i18n } from '../config/locales';
@@ -18,16 +29,20 @@ import About from '../components/about/About';
 import packageJson from '../../package.json';
 import AppIcon from '../assets/img/chia64x64.png';
 
-
 const NET = 'mainnet';
 
 app.disableHardwareAcceleration();
 
 initialize();
 
+const defaultUserDataPath = app.getPath('userData');
+const userDataPathRoot = getConfigRootDir();
+const userDataPath = path.join(userDataPathRoot, 'gui');
 const appIcon = nativeImage.createFromPath(path.join(__dirname, AppIcon));
 let isSimulator = process.env.LOCAL_TEST === 'true';
 const isDev = process.env.NODE_ENV === 'development';
+
+app.setPath('userData', userDataPath);
 
 function renderAbout(): string {
   const sheet = new ServerStyleSheet();
@@ -64,7 +79,7 @@ function openAbout() {
 
   aboutWindow.webContents.setWindowOpenHandler((details) => {
     shell.openExternal(details.url);
-    return { action: 'deny' }
+    return { action: 'deny' };
   });
 
   aboutWindow.once('closed', () => {
@@ -149,129 +164,142 @@ if (!handleSquirrelEvent()) {
 
       ipcMain.handle('getVersion', () => app.getVersion());
 
-      ipcMain.handle('fetchTextResponse', async (_event, requestOptions, requestHeaders, requestData) => {
-        const request = net.request(requestOptions as any);
+      ipcMain.handle(
+        'fetchTextResponse',
+        async (_event, requestOptions, requestHeaders, requestData) => {
+          const request = net.request(requestOptions as any);
 
-        Object.entries(requestHeaders || {}).forEach(([header, value]) => {
-          request.setHeader(header, value as any);
-        });
-
-        let err: any | undefined = undefined;
-        let statusCode: number | undefined = undefined;
-        let statusMessage: string | undefined = undefined;
-        let responseBody: string | undefined = undefined;
-
-        try {
-          responseBody = await new Promise((resolve, reject) => {
-            request.on('response', (response: IncomingMessage) => {
-              statusCode = response.statusCode;
-              statusMessage = response.statusMessage;
-
-              response.on('data', (chunk) => {
-                const body = chunk.toString('utf8');
-
-                resolve(body);
-              });
-
-              response.on('error', (e: string) => {
-                reject(new Error(e));
-              });
-            });
-
-            request.on('error', (error: any) => {
-              reject(error);
-            })
-
-            request.write(requestData);
-            request.end();
+          Object.entries(requestHeaders || {}).forEach(([header, value]) => {
+            request.setHeader(header, value as any);
           });
-        }
-        catch (e) {
-          console.error(e);
-          err = e;
-        }
 
-        return { err, statusCode, statusMessage, responseBody };
-      });
+          let err: any | undefined = undefined;
+          let statusCode: number | undefined = undefined;
+          let statusMessage: string | undefined = undefined;
+          let responseBody: string | undefined = undefined;
 
-      ipcMain.handle('fetchBinaryContent', async (_event, requestOptions = {}, requestHeaders = {}, requestData?: any) => {
-        const { maxSize = Infinity , ...rest } = requestOptions;
-        const request = net.request(rest);
+          try {
+            responseBody = await new Promise((resolve, reject) => {
+              request.on('response', (response: IncomingMessage) => {
+                statusCode = response.statusCode;
+                statusMessage = response.statusMessage;
 
-        Object.entries(requestHeaders).forEach(([header, value]: [string, any]) => {
-          request.setHeader(header, value);
-        });
+                response.on('data', (chunk) => {
+                  const body = chunk.toString('utf8');
 
-        let error: Error | undefined;
-        let statusCode: number | undefined;
-        let statusMessage: string | undefined;
-        let contentType: string | undefined;
-        let encoding = 'binary';
-        let data: string | undefined;
+                  resolve(body);
+                });
 
-        const buffers: Buffer[] = [];
-        let totalLength = 0;
+                response.on('error', (e: string) => {
+                  reject(new Error(e));
+                });
+              });
 
-        try {
-          data = await new Promise((resolve, reject) => {
-            request.on('response', (response: IncomingMessage) => {
-              statusCode = response.statusCode;
-              statusMessage = response.statusMessage;
+              request.on('error', (error: any) => {
+                reject(error);
+              });
 
-              const rawContentType = response.headers['content-type'];
-              if (rawContentType) {
-                if (Array.isArray(rawContentType)) {
-                  contentType = rawContentType[0];
-                }
-                else {
-                  contentType = rawContentType;
-                }
+              request.write(requestData);
+              request.end();
+            });
+          } catch (e) {
+            console.error(e);
+            err = e;
+          }
 
-                if (contentType) {
-                  // extract charset from contentType
-                  const charsetMatch = contentType.match(/charset=([^;]+)/);
-                  if (charsetMatch) {
-                    encoding = charsetMatch[1];
+          return { err, statusCode, statusMessage, responseBody };
+        },
+      );
+
+      ipcMain.handle(
+        'fetchBinaryContent',
+        async (
+          _event,
+          requestOptions = {},
+          requestHeaders = {},
+          requestData?: any,
+        ) => {
+          const { maxSize = Infinity, ...rest } = requestOptions;
+          const request = net.request(rest);
+
+          Object.entries(requestHeaders).forEach(
+            ([header, value]: [string, any]) => {
+              request.setHeader(header, value);
+            },
+          );
+
+          let error: Error | undefined;
+          let statusCode: number | undefined;
+          let statusMessage: string | undefined;
+          let contentType: string | undefined;
+          let encoding = 'binary';
+          let data: string | undefined;
+
+          const buffers: Buffer[] = [];
+          let totalLength = 0;
+
+          try {
+            data = await new Promise((resolve, reject) => {
+              request.on('response', (response: IncomingMessage) => {
+                statusCode = response.statusCode;
+                statusMessage = response.statusMessage;
+
+                const rawContentType = response.headers['content-type'];
+                if (rawContentType) {
+                  if (Array.isArray(rawContentType)) {
+                    contentType = rawContentType[0];
+                  } else {
+                    contentType = rawContentType;
+                  }
+
+                  if (contentType) {
+                    // extract charset from contentType
+                    const charsetMatch = contentType.match(/charset=([^;]+)/);
+                    if (charsetMatch) {
+                      encoding = charsetMatch[1];
+                    }
                   }
                 }
+
+                response.on('data', (chunk) => {
+                  buffers.push(chunk);
+
+                  totalLength += chunk.byteLength;
+
+                  if (totalLength > maxSize) {
+                    reject(new Error('Response too large'));
+                    request.abort();
+                  }
+                });
+
+                response.on('end', () => {
+                  resolve(
+                    Buffer.concat(buffers).toString(encoding as BufferEncoding),
+                  );
+                });
+
+                response.on('error', (e: string) => {
+                  reject(new Error(e));
+                });
+              });
+
+              request.on('error', (error: any) => {
+                reject(error);
+              });
+
+              if (requestData) {
+                request.write(requestData);
               }
 
-              response.on('data', (chunk) => {
-                buffers.push(chunk);
-
-                totalLength += chunk.byteLength;
-
-                if (totalLength > maxSize) {
-                  reject(new Error('Response too large'));
-                  request.abort();
-                }
-              });
-
-              response.on('end', () => {
-                resolve(Buffer.concat(buffers).toString(encoding as BufferEncoding));
-              });
-
-              response.on('error', (e: string) => {
-                reject(new Error(e));
-              });
+              request.end();
             });
+          } catch (e: any) {
+            error = e;
+          }
 
-            request.on('error', (error: any) => {
-              reject(error);
-            })
-
-            if (requestData) {
-              request.write(requestData);
-            }
-
-            request.end();
-          });
-        } catch (e: any) {
-          error = e;
-        }
-
-        return { error, statusCode, statusMessage, encoding, data };
-      });
+          return { error, statusCode, statusMessage, encoding, data };
+        },
+      );
 
       ipcMain.handle('showMessageBox', async (_event, options) => {
         return await dialog.showMessageBox(mainWindow, options);
@@ -301,11 +329,11 @@ if (!handleSquirrelEvent()) {
           preload: `${__dirname}/preload.js`,
           nodeIntegration: true,
           contextIsolation: false,
-          nativeWindowOpen: true
+          nativeWindowOpen: true,
         },
       });
 
-      if(process.platform === 'linux') {
+      if (process.platform === 'linux') {
         mainWindow.setIcon(appIcon);
       }
 
@@ -344,10 +372,10 @@ if (!handleSquirrelEvent()) {
           const choice = dialog.showMessageBoxSync({
             type: 'question',
             buttons: [
-              i18n._(/* i18n */ {id: 'No'}),
-              i18n._(/* i18n */ {id: 'Yes'}),
+              i18n._(/* i18n */ { id: 'No' }),
+              i18n._(/* i18n */ { id: 'Yes' }),
             ],
-            title: i18n._(/* i18n */ {id: 'Confirm'}),
+            title: i18n._(/* i18n */ { id: 'Confirm' }),
             message: i18n._(
               /* i18n */ {
                 id: 'Are you sure you want to quit?',
@@ -361,7 +389,7 @@ if (!handleSquirrelEvent()) {
           isClosing = false;
           decidedToClose = true;
           mainWindow.webContents.send('exit-daemon');
-          mainWindow.setBounds({height: 500, width: 500});
+          mainWindow.setBounds({ height: 500, width: 500 });
           mainWindow.center();
           ipcMain.on('daemon-exited', (event, args) => {
             mainWindow.close();
@@ -371,20 +399,17 @@ if (!handleSquirrelEvent()) {
         }
       });
 
-
-
       const startUrl =
-      process.env.NODE_ENV === 'development'
-        ? 'http://localhost:3000'
-        : url.format({
-          pathname: path.join(__dirname, '/../renderer/index.html'),
-          protocol: 'file:',
-          slashes: true,
-        });
+        process.env.NODE_ENV === 'development'
+          ? 'http://localhost:3000'
+          : url.format({
+              pathname: path.join(__dirname, '/../renderer/index.html'),
+              protocol: 'file:',
+              slashes: true,
+            });
 
       mainWindow.loadURL(startUrl);
-      require("@electron/remote/main").enable(mainWindow.webContents)
-
+      require('@electron/remote/main').enable(mainWindow.webContents);
     };
 
     const appReady = async () => {
