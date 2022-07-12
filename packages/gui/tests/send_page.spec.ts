@@ -17,6 +17,7 @@ test.afterAll(async () => {
   await electronApp.close();
 });
 
+//Incomplete broke do to Element changing
 test('Interact with Send Page Elements', async () => {
   //const page = await electronApp.firstWindow();
   await page.locator('text=1054108904').click();
@@ -52,6 +53,7 @@ test('Interact with Send Page Elements', async () => {
 
 });
 
+//Incomplete broke do to Element changing
 test('Confirm fields Provide Tooltips on Send Page for 1651231316 ID', async () => {
   
   // Click div[role="button"]:has-text("Private key with public fingerprint 1651231316Can be backed up to mnemonic seed")
@@ -126,6 +128,7 @@ test('Confirm Error Dialog when wrong data is entered on Send Page for 165123131
 
 });
 
+//Works
 test.only('Create new Wallet and logout', async () => {
 
   // Click text=Create a new private key

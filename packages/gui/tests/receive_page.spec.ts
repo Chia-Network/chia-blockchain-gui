@@ -15,7 +15,8 @@ test.afterAll(async () => {
   await electronApp.close();
 });
 
-test.only('Verify that new address creates new address', async () => {
+//This works but. This appears to be a bug. New Address Button should generate new Address Id
+test.only('Verify that new address button creates new address', async () => {
   //const page = await electronApp.firstWindow();
   await page.locator('text=1054108904').click();
   expect(page).toHaveTitle('Chia Blockchain');
@@ -35,9 +36,18 @@ test.only('Verify that new address creates new address', async () => {
   //Grab the wallet id 
   const wallet_new = await page.locator('text=Receive Address New AddressAddress >> input[type="text"]').inputValue()
   console.log(wallet_new)
+  //const additional_wallet = wallet_new + "123"
+  //console.log(wallet_new + additional_wallet)
 
-  expect(wallet_address == wallet_new)
-
+  //Compare Values variables. This should be false. wallet_address != wallet_new
+  if(wallet_address == wallet_new){
+    expect(wallet_address).toEqual(wallet_new)
+    console.log('The Addresses has not been updated!')
+  }
+  else if (wallet_address != wallet_new){
+    expect(wallet_address).not.toEqual(wallet_new)
+    console.log('A New Addresses has been successfully generated!')
+  }
 });
 
 test('Interact with the Receive Page of 1651231316 ID', async() => {

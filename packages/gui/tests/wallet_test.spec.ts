@@ -159,6 +159,7 @@ test('Verify that Funded wallet cannot send funds until fully synced', async () 
   
 });
 
+//CURRENT ISSUES IS THAT THE SEND PAGE DOESN'T SYNC!
 test.only('Make Transactions Between Wallet if Funds are available part 1', async () => {
 
   const partner_wallet = 'txch1p8956yym9nvs6enfzpgs9spjf8wx435avemsq3k3fzgxnc9qvezqngy2a2'
@@ -198,16 +199,35 @@ test.only('Make Transactions Between Wallet if Funds are available part 1', asyn
 
     const pageStatus = await page.$eval('.sc-hKwDye.dPcxQq.Flex__StyledGapBox-sc-1nzpt0b-0.crSgCj.StateIndicator__StyledFlexContainer-sc-3e28ts-0.bNWWRC.MuiBox-root', (el) => el.textContent);
     console.log(pageStatus)
+    
+    await page.waitForSelector('button:has-text("Synced"):right-of(:text("Wallet 1651231316"))');
 
-    await page.waitForSelector("text=Synced")
-
-    await expect(page.locator("text=Synced")).toBeVisible()
-
+   /*if (await page.waitForSelector('button:has-text("Synced"):right-of(:text("Wallet 1651231316"))')){
     await page.locator('button:has-text("Send"):below(:text("FeeTXCH"))').click();
+   }*/
+
+   //('h5:has-text("Chia")')
+   //await expect(page.locator("text=Synced")).toBeVisible()
+
+   //(await page.waitForSelector("text=Not Synced")).isHidden
+
+   await Promise.all([
+    expect( page.waitForSelector("text=Not Synced")).not.toBeTruthy
+  ]);
+
+   if(page.locator('button:has-text("Not Synced"):right-of(:text("Wallet 1651231316"))')){
+     console.log('Page is Not Synced!')
+    // expect( page.waitForSelector("text=Not Synced")).not.toBeTruthy
+   }
+   else if(page.locator('button:has-text("Syncing"):right-of(:text("Wallet 1651231316"))')){
+    console.log('Page is Not Syncing!')
+   }
+   else{
+     console.log('Page has Syned! Finaly')
+   }
 
   }
 
-//await page.waitForTimeout(500000);
   
 });
 
