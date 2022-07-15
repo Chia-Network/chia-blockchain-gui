@@ -5,20 +5,24 @@ let electronApp: ElectronApplication;
 let page: Page;
 let wallet_new, wallet_new_address;
 
-
-test.beforeAll(async () => {
+/*
+test.beforeEach(async () => {
   electronApp = await electron.launch({ args: ['./build/electron/main.js'] });
   //electronApp = await electron.launch({ headless: true });
   page = await electronApp.firstWindow();
   
 });
 
-test.afterAll(async () => {
+test.afterEach(async () => {
   await electronApp.close();
-});
+});*/
 
 //Works and Passes
 test('Create new Wallet and logout', async () => {
+
+  electronApp = await electron.launch({ args: ['./build/electron/main.js'] });
+  //electronApp = await electron.launch({ headless: true });
+  page = await electronApp.firstWindow();
 
   // Click text=Create a new private key
   await page.locator('text=Create a new private key').click();
@@ -46,59 +50,65 @@ test('Create new Wallet and logout', async () => {
   // Logout of the wallet_new
   await page.locator('[data-testid="ExitToAppIcon"]').click();
 
+  await electronApp.close();
+
 });
 
 //****This feature does not work because it can't handle multi pages
-test('Open Funded Wallet assign funds to New Wallet', async () => {
+// test('Open Funded Wallet assign funds to New Wallet', async () => {
 
-  // Click text=Create a new private key
-  await page.locator('text=Create a new private key').click();
-  // assert.equal(page.url(), 'file:///Users/jahifaw/Documents/Code/Chia-testnet-playwright/chia-blockchain/chia-blockchain-gui/packages/gui/build/renderer/index.html#/wallet/add');
+//   // Click text=Create a new private key
+//   await page.locator('text=Create a new private key').click();
+//   // assert.equal(page.url(), 'file:///Users/jahifaw/Documents/Code/Chia-testnet-playwright/chia-blockchain/chia-blockchain-gui/packages/gui/build/renderer/index.html#/wallet/add');
 
-  // Click button:has-text("Next")
-  await Promise.all([
-    page.waitForNavigation(/*{ url: 'file:///Users/jahifaw/Documents/Code/Chia-testnet-playwright/chia-blockchain/chia-blockchain-gui/packages/gui/build/renderer/index.html#/dashboard/wallets/1' }*/),
-    page.locator('button:has-text("Next")').click()
-  ]);
+//   // Click button:has-text("Next")
+//   await Promise.all([
+//     page.waitForNavigation(/*{ url: 'file:///Users/jahifaw/Documents/Code/Chia-testnet-playwright/chia-blockchain/chia-blockchain-gui/packages/gui/build/renderer/index.html#/dashboard/wallets/1' }*/),
+//     page.locator('button:has-text("Next")').click()
+//   ]);
 
-  // Click text=Receive page
-  await page.locator('text=Receive').click();
+//   // Click text=Receive page
+//   await page.locator('text=Receive').click();
 
-  wallet_new_address= await page.locator('text=Receive Address New AddressAddress >> input[type="text"]').inputValue() //.click();
+//   wallet_new_address= await page.locator('text=Receive Address New AddressAddress >> input[type="text"]').inputValue() //.click();
 
-  console.log(wallet_new_address)
+//   console.log(wallet_new_address)
 
-  // Logout of the wallet_new
-  await page.locator('[data-testid="ExitToAppIcon"]').click();
+//   // Logout of the wallet_new
+//   await page.locator('[data-testid="ExitToAppIcon"]').click();
 
- // await electronApp.close();
+//  // await electronApp.close();
+
+//   electronApp = await electron.launch({ args: ['./build/electron/main.js'] });
+//   //electronApp = await electron.launch({ headless: true });
+//   page2 = await electronApp.firstWindow();
+
+//    //Log into wallet_test_funds
+//    await page2.locator('text=1651231316').click();
+
+
+//   // Click text=Send page
+//   await page2.locator('text=Send').click();
+
+
+//    // Fill Address/Puzzle has* field
+//    await page2.locator('.sc-iwjdpV.sc-giYglK.lmVqSL.bAAoFy.MuiFilledInput-input.MuiInputBase-input').fill(wallet_new_address);
+
+//     // Fill text=Amount *TXCH >> input[type="text"]
+//   await page2.locator('text=Amount *TXCH >> input[type="text"]').fill('.00001');
+
+//   // Fill text=FeeTXCH >> input[type="text"]
+//   await page2.locator('text=FeeTXCH >> input[type="text"]').fill('.00005');
+
+//   await page2.locator('button:has-text("Send")').hover
+
+// });
+
+test.only('Verify that Funded wallet cannot send funds until fully synced', async () => {
 
   electronApp = await electron.launch({ args: ['./build/electron/main.js'] });
   //electronApp = await electron.launch({ headless: true });
-  page2 = await electronApp.firstWindow();
-
-   //Log into wallet_test_funds
-   await page2.locator('text=1651231316').click();
-
-
-  // Click text=Send page
-  await page2.locator('text=Send').click();
-
-
-   // Fill Address/Puzzle has* field
-   await page2.locator('.sc-iwjdpV.sc-giYglK.lmVqSL.bAAoFy.MuiFilledInput-input.MuiInputBase-input').fill(wallet_new_address);
-
-    // Fill text=Amount *TXCH >> input[type="text"]
-  await page2.locator('text=Amount *TXCH >> input[type="text"]').fill('.00001');
-
-  // Fill text=FeeTXCH >> input[type="text"]
-  await page2.locator('text=FeeTXCH >> input[type="text"]').fill('.00005');
-
-  await page2.locator('button:has-text("Send")').hover
-
-});
-
-test('Verify that Funded wallet cannot send funds until fully synced', async () => {
+  page = await electronApp.firstWindow();
 
   const partner_wallet = 'txch1p8956yym9nvs6enfzpgs9spjf8wx435avemsq3k3fzgxnc9qvezqngy2a2'
 
@@ -136,8 +146,6 @@ test('Verify that Funded wallet cannot send funds until fully synced', async () 
     const pageStatus = await page.$eval('.sc-hKwDye.dPcxQq.Flex__StyledGapBox-sc-1nzpt0b-0.crSgCj.StateIndicator__StyledFlexContainer-sc-3e28ts-0.bNWWRC.MuiBox-root', (el) => el.textContent);
     console.log(pageStatus)
 
-    await page.locator('button:has-text("Send"):below(:text("FeeTXCH"))').click();
-
     if (pageStatus == 'Not Synced'){
       console.log('You are Not Synced')
 
@@ -156,11 +164,17 @@ test('Verify that Funded wallet cannot send funds until fully synced', async () 
     
 
   }
+
+  await electronApp.close();
   
 });
 
 //CURRENT ISSUES IS THAT THE SEND PAGE DOESN'T SYNC!
-test.only('Make Transactions Between Wallet if Funds are available part 1', async () => {
+test('Make Transactions Between Wallet if Funds are available part 1', async () => {
+
+  electronApp = await electron.launch({ args: ['./build/electron/main.js'] });
+  //electronApp = await electron.launch({ headless: true });
+  page = await electronApp.firstWindow();
 
   const partner_wallet = 'txch1p8956yym9nvs6enfzpgs9spjf8wx435avemsq3k3fzgxnc9qvezqngy2a2'
 
@@ -223,11 +237,11 @@ test.only('Make Transactions Between Wallet if Funds are available part 1', asyn
     console.log('Page is Not Syncing!')
    }
    else{
-     console.log('Page has Syned! Finaly')
+     console.log('Page has Synced! Finally')
    }
 
   }
-
+  await electronApp.close();
   
 });
 
