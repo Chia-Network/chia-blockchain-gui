@@ -8,7 +8,7 @@ msgstr ""
 "Language: sv_SE\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-07-06 22:11\n"
+"PO-Revision-Date: 2022-07-15 06:49\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -119,7 +119,7 @@ msgstr "Lägg till CAT-plånböcker för att få fler alternativ"
 
 #: src/components/hero/WalletHeroAdd.tsx:99
 msgid "Add Custom Token"
-msgstr "Lägg till anpassat token"
+msgstr "Lägg till eget token"
 
 #: src/components/plot/PlotHeader.tsx:89
 #~ msgid "Add Plot Directory"
@@ -727,7 +727,7 @@ msgstr "Skapa ett erbjudande för att växla XCH eller andra token. Visa ett erb
 
 #: src/components/cat/WalletCATCreateExisting.tsx:75
 msgid "Create custom CAT Wallet"
-msgstr "Skapa anpassad CAT-plånbok"
+msgstr "Skapa plånbok för eget CAT"
 
 #: src/components/_wallet_old/create/WalletCreate.jsx:132
 #~ msgid "Create new coloured coin"
@@ -772,7 +772,7 @@ msgstr "Skapar och skickar en transaktion till blockkedjan som avbryter erbjudan
 #: src/components/offers/OfferManager.tsx:339
 #: src/components/offers/OfferViewer.tsx:204
 msgid "Creation Date"
-msgstr ""
+msgstr "Skapat (datum)"
 
 #: src/components/plot/add/PlotAddForm.tsx:109
 #~ msgid "Currency code is not defined"
@@ -802,7 +802,7 @@ msgstr ""
 
 #: src/components/cat/WalletCATCreateSimple.tsx:102
 msgid "Custom"
-msgstr "Anpassad"
+msgstr "Eget"
 
 #: src/components/_selectKey_old/SelectKey.tsx:227
 #~ msgid "DANGER: permanently delete private key"
@@ -1320,7 +1320,7 @@ msgstr "Om du redan har delat din erbjudandefil kan du behöva skicka en transak
 
 #: src/components/WalletSendTransactionResultDialog.tsx:41
 msgid "If you would like to speed up the transaction, please delete unconfirmed transactions and retry with a higher fee."
-msgstr ""
+msgstr "Om du vill påskynda transaktionen, ta bort obekräftade transaktioner och försök igen med en högre avgift."
 
 #: src/components/PasteMnemonic.tsx:86
 #: src/components/offers/OfferDataEntryDialog.tsx:74
@@ -1826,7 +1826,7 @@ msgstr "Erbjudande-identifierare"
 #: src/components/offers/OfferShareDialog.tsx:703
 #: src/components/offers/OfferShareDialog.tsx:849
 msgid "Offer Shared"
-msgstr ""
+msgstr "Erbjudandet delat"
 
 #: src/components/offers/OfferViewer.tsx:344
 msgid "Offer has been accepted and is awaiting confirmation."
@@ -1838,7 +1838,7 @@ msgstr "OfferBin URL"
 
 #: src/components/offers/OfferManager.tsx:300
 msgid "Offered"
-msgstr ""
+msgstr "Erbjudet"
 
 #: src/components/trading/TradingOverview.jsx:412
 #~ msgid "Offers Created"
@@ -1855,7 +1855,7 @@ msgstr "Erbjudanden som du har skapat"
 #: src/components/WalletSend.tsx:139
 #: src/components/cat/WalletCATSend.tsx:180
 msgid "On average there is one minute between each transaction block. Unless there is congestion you can expect your transaction to be included in less than a minute."
-msgstr "Vanligtvis är det en minut mellan varje transaktionsblock. Om det inte är någon form av köbildning kan du räkna med att en transaktion inkluderas i blockkedjan på under en minut."
+msgstr "I genomsnitt är det en minut mellan varje transaktionsblock. Om det inte är någon form av köbildning kan du räkna med att en transaktion inkluderas i blockkedjan på under en minut."
 
 #: src/components/offers/OfferViewer.tsx:323
 msgid "Once you accept this offer, you will not be able to cancel the transaction. Are you sure you want to accept this offer?"
@@ -2016,7 +2016,7 @@ msgstr "Ange en pusselhash"
 
 #: src/components/cat/WalletCATCreateExisting.tsx:40
 msgid "Please enter a valid CAT name"
-msgstr ""
+msgstr "Skriv in ett giltigt CAT-namn"
 
 #: src/components/cat/WalletCATCreateExistingSimple.tsx:41
 msgid "Please enter a valid asset id"
@@ -2071,7 +2071,7 @@ msgstr "Ange ett belopp för varje rad"
 
 #: src/components/WalletRenameDialog.tsx:49
 msgid "Please enter valid wallet name"
-msgstr ""
+msgstr "Ange ett giltigt plånboksnamn"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:75
 #~ msgid "Please enter your current passphrase, and a new passphrase"
@@ -2553,7 +2553,7 @@ msgstr "Återställ"
 
 #: src/components/WalletHistory.tsx:119
 msgid "Retire"
-msgstr ""
+msgstr "Dra tillbaka"
 
 #: src/components/fullNode/FullNode.jsx:57
 #: src/components/fullNode/FullNodeConnections.jsx:107
@@ -3031,7 +3031,7 @@ msgstr "Antalet säkerhetskopierings-ID som behövs för återställning kan int
 
 #: src/components/WalletSendTransactionResultDialog.tsx:34
 msgid "The transaction could not be immediately included in the mempool because the specified fee is too low. The transaction will be retried periodically, and may be included in the mempool once fees are lower, or if space becomes available."
-msgstr "Transaktionen kunde inte omedelbart inkluderas i mempoolen eftersom den angivna avgiften är för låg. Transaktionen kommer att återställas med jämna mellanrum, och kan komma att inkluderas i mempoolen när avgifterna är lägre, eller om utrymme blir tillgängligt."
+msgstr "Transaktionen kunde inte omedelbart läggas till i mempoolen eftersom den angivna avgiften är för låg. Transaktionen kommer att återställas med jämna mellanrum, och kan komma att inkluderas i mempoolen när avgifterna är lägre, eller om utrymme blir tillgängligt."
 
 #: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:107
 #~ msgid "These are the instructions for how the farmer wants to get paid. By default this will be an XCH address, but it can be set to any string with a size of less than 1024 characters, so it can represent another blockchain or payment system identifier."
@@ -3086,7 +3086,7 @@ msgstr "Detta är summan av inkommande och utgående väntande transaktioner (so
 
 #: src/components/standard/WalletStandardCards.tsx:16
 msgid "This is the total amount of chia in the blockchain at the current peak block that is controlled by your private keys. It includes frozen farming rewards, but not pending incoming and outgoing transactions."
-msgstr "Detta är det sammanlagda antalet chia i blockkedjan vid det aktuella topp-blocket som kontrolleras av dina privata nycklar. Det innefattar frusna odlingsbelöningar, men inte väntande inkommande och utgående transaktioner."
+msgstr "Detta är den sammanlagda mängden chia i blockkedjan vid det aktuella topp-blocket som kontrolleras av dina privata nycklar. Det innefattar frusna odlingsbelöningar, men inte väntande inkommande och utgående transaktioner."
 
 #: src/components/standard/WalletStandardCards.tsx:16
 #~ msgid "This is the total amount of chia in the blockchain at the current peak sub block that is controlled by your private keys. It includes frozen farming rewards, but not pending incoming and outgoing transactions."
@@ -3116,11 +3116,11 @@ msgstr "Denna siffra representerar antalet noder som den accepterade SpendBundle
 
 #: src/components/offers/OfferSummary.tsx:132
 msgid "This offer has a fee included to help expedite the transaction when the offer is accepted."
-msgstr ""
+msgstr "Detta erbjudande innehåller en avgift för att skynda på transaktionen när erbjudandet accepteras."
 
 #: src/components/offers/OfferSummary.tsx:128
 msgid "This offer has a fee included to help expedite the transaction when the offer is accepted. You may specify an additional fee if you feel that the included fee is too small."
-msgstr ""
+msgstr "Detta erbjudande innehåller en avgift för att skynda på transaktionen när erbjudandet accepteras. Du kan ange en extra avgift om du anser att den avgift som redan ingår är för liten."
 
 #: src/components/offers/OfferViewer.tsx:389
 msgid "This offer has completed successfully"
