@@ -8,14 +8,9 @@ import {
   CardListItem,
   useOpenDialog,
   Link,
-  useColorModeValue,
   useOpenExternal,
 } from '@chia/core';
-import {
-  useGetLoggedInFingerprintQuery,
-  useGetPrivateKeyQuery,
-  useGetWalletsQuery,
-} from '@chia/api-react';
+import { useGetWalletsQuery } from '@chia/api-react';
 import { WalletType } from '@chia/api';
 import styled from 'styled-components';
 import WalletIcon from './WalletIcon';
@@ -46,7 +41,7 @@ const StyledBody = styled(Box)`
 
 const TokensInfo = styled.div`
   float: right;
-  border: ${({ theme }) => `1px solid ${useColorModeValue(theme, 'border')}`};
+  border: 1px solid #ccc;
   height: 30px;
   padding: 0px 5px;
   border-radius: 5px;
@@ -114,30 +109,22 @@ export default function WalletsSidebar() {
 
   const openExternal = useOpenExternal();
 
-  const { data: fingerprint, isLoading: isLoadingFingerprint } =
-    useGetLoggedInFingerprintQuery();
-
-  const { data: privateKey, isLoading: isLoadingPrivateKey } =
-    useGetPrivateKeyQuery({
-      fingerprint,
-    });
-
   function openTokensInfoDialog() {
     openDialog(
       <WalletEmptyDialog>
         <ContentStyled>
+          <CatTwoIconStyled>
+            <div />
+            <div />
+          </CatTwoIconStyled>
           <Typography variant="h5" textAlign="center" color="grey">
-            <Trans>Your CAT tokens have been upgraded!</Trans>
+            Your tokens have been upgraded to CAT2
           </Typography>
           <br />
           <Typography textAlign="center" color="grey">
-            <Trans>
-              We've made an upgrade to the CAT standard which requires all CATs
-              to be reissued. You will be airdropped your new tokens as they are
-              re-issued by the original issuers. The airdropped tokens will be
-              based on the balance as of block height: 2288723 (Approximate
-              time: July 21st, 2022 @ 17:00 UTC){' '}
-            </Trans>
+            Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
+            dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta
+            ac consectetur ac, vestibulum at eros.
           </Typography>
           <ActionsStyled>
             <Flex gap={3} flexDirection="column" width="100%">
@@ -146,25 +133,25 @@ export default function WalletsSidebar() {
                 size="large"
                 onClick={() =>
                   openExternal(
-                    'https://cat1.chia.net/#publicKey=' +
-                      privateKey.pk +
-                      '&fingerprint=' +
-                      fingerprint
+                    'https://github.com/Chia-Network/chia-blockchain/wiki/FAQ'
                   )
                 }
-                disabled={isLoadingFingerprint || isLoadingPrivateKey}
               >
-                <Trans>Check my snapshot balance</Trans>
+                Check my snapshot balance
               </Button>
               <Button variant="outlined" size="large">
-                <Trans>Read the blog post for details</Trans>
+                See the airdrop status
+              </Button>
+              <Button variant="outlined" size="large">
+                Read the blog post for details
               </Button>
             </Flex>
           </ActionsStyled>
-          <p>
-            <Trans>Want to see your old balance for yourself?</Trans>
-          </p>
-          <Link target="_blank" href="https://www.chia.net/download/">
+          <p>Want to see your old balance for yourself?</p>
+          <Link
+            target="_blank"
+            href="https://github.com/Chia-Network/chia-blockchain/wiki/FAQ"
+          >
             <Trans>Click here to download an older version of the wallet</Trans>
           </Link>
         </ContentStyled>
@@ -230,9 +217,8 @@ export default function WalletsSidebar() {
               >
                 <path
                   d="M9 5h2v2H9V5Zm0 4h2v6H9V9Zm1-9C4.48 0 0 4.48 0 10s4.48 10 10 10 10-4.48 10-10S15.52 0 10 0Zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8Z"
-                  fill="currentColor"
-                  fillOpacity={0.54}
-                  stroke="transparent"
+                  fill="#000"
+                  fill-opacity=".54"
                 />
               </svg>
             </TokensInfo>

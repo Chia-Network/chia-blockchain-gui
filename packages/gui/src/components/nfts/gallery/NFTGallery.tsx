@@ -1,5 +1,11 @@
 import React, { useState, useMemo } from 'react';
-import { Flex, LayoutDashboardSub, Loading, useTrans, usePersistState } from '@chia/core';
+import {
+  Flex,
+  LayoutDashboardSub,
+  Loading,
+  useTrans,
+  usePersistState,
+} from '@chia/core';
 import { defineMessage } from '@lingui/macro';
 import { WalletReceiveAddressField } from '@chia/wallets';
 import type { NFTInfo, Wallet } from '@chia/api';
@@ -29,9 +35,10 @@ export default function NFTGallery() {
   const isLoading = isLoadingWallets || isLoadingNFTs;
   const [search, setSearch] = useState<string>('');
 
-  const [walletId, setWalletId] = usePersistState<
-    number | undefined
-  >(undefined, 'nft-profile-dropdown');
+  const [walletId, setWalletId] = usePersistState<number | undefined>(
+    undefined,
+    'nft-profile-dropdown',
+  );
 
   const t = useTrans();
   const [selection, setSelection] = useState<NFTSelection>({
@@ -77,12 +84,14 @@ export default function NFTGallery() {
     <LayoutDashboardSub
       // sidebar={<NFTGallerySidebar onWalletChange={setWalletId} />}
       header={
-        <Flex gap={2} alignItems="center" flexWrap="wrap" justifyContent="space-between">
+        <Flex
+          gap={2}
+          alignItems="center"
+          flexWrap="wrap"
+          justifyContent="space-between"
+        >
           <NFTProfileDropdown onChange={setWalletId} walletId={walletId} />
-          <Flex
-            justifyContent="flex-end"
-            alignItems="center"
-          >
+          <Flex justifyContent="flex-end" alignItems="center">
             {/*
             <Search
               onChange={setSearch}
@@ -94,7 +103,11 @@ export default function NFTGallery() {
             <NFTContextualActions selection={selection} />
             */}
             <Box width={{ xs: 300, sm: 330, md: 550, lg: 630 }}>
-              <WalletReceiveAddressField variant="outlined" size="small" fullWidth />
+              <WalletReceiveAddressField
+                variant="outlined"
+                size="small"
+                fullWidth
+              />
             </Box>
           </Flex>
         </Flex>
@@ -119,7 +132,6 @@ export default function NFTGallery() {
           ))}
         </Grid>
       )}
-
     </LayoutDashboardSub>
   );
 }

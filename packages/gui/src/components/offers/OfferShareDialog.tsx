@@ -96,7 +96,7 @@ const OfferSharingProviders: {
   [OfferSharingService.OfferBin]: {
     service: OfferSharingService.OfferBin,
     name: 'OfferBin',
-    capabilities: [OfferSharingCapability.Token],
+    capabilities: [OfferSharingCapability.Token, OfferSharingCapability.NFT],
   },
   [OfferSharingService.Offerpool]: {
     service: OfferSharingService.Offerpool,

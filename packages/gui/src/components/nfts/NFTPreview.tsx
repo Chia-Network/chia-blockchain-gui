@@ -20,6 +20,7 @@ import styled from 'styled-components';
 import { type NFTInfo } from '@chia/api';
 import isURL from 'validator/lib/isURL';
 import useNFTHash from '../../hooks/useNFTHash';
+import mime from 'mime-types';
 
 function prepareErrorMessage(error: Error): ReactNode {
   if (error.message === 'Response too large') {
@@ -61,7 +62,9 @@ export default function NFTPreview(props: NFTPreviewProps) {
   } = props;
 
   const [loaded, setLoaded] = useState(false);
+  const [videoThumbnailReady, setVideoThumbnailReady] = useState(false);
   const { isValid, isLoading, error } = useNFTHash(nft);
+
   const hasFile = dataUris?.length > 0;
   const file = dataUris?.[0];
   const [ignoreError, setIgnoreError] = usePersistState<boolean>(
@@ -69,9 +72,37 @@ export default function NFTPreview(props: NFTPreviewProps) {
     `nft-preview-ignore-error-${nft.$nftId}-${file}`,
   );
 
+  const [thumb, setThumb] = useState('');
+
   useEffect(() => {
     setLoaded(false);
+    console.log('Send file...', file);
+    const mimeType = mime.lookup(file);
+    if (file && mimeType && mimeType.match(/^video/)) {
+      (window as any).ipcRenderer.invoke('get-thumbnail', { file });
+    }
   }, [file]);
+
+  interface Thumbnail {
+    uri: string;
+    filePath: string;
+  }
+
+  function handleThumbnail(_event: any, thumbnail: Thumbnail) {
+    // const fileName = new URL(thumbnail.uri).pathname.split('/').slice(-1)[0];
+    // console.log('FIULENAME:____________________', fileName);
+    if (thumbnail.uri === file) {
+      console.log('SET THUMB !!!!!!!!!!!!!!!!!!', file);
+      setThumb(thumbnail.filePath);
+    }
+  }
+
+  useEffect(() => {
+    (window as any).ipcRenderer.on('thumbnail', handleThumbnail);
+    return () => {
+      (window as any).ipcRenderer.off('thumbnail', handleThumbnail);
+    };
+  }, []);
 
   const isUrlValid = useMemo(() => {
     if (!file) {
@@ -140,13 +171,39 @@ export default function NFTPreview(props: NFTPreviewProps) {
       }
     `;
 
+    let mediaElement = null;
+    try {
+      console.log('File', '=================>', file);
+      const pathName: string = new URL(file).pathname;
+      const mimeType = mime.lookup(pathName);
+      console.log('Pathname?', pathName);
+      console.log('MIME============================>', mimeType);
+      if (mimeType.match(/^audio/)) {
+        mediaElement = (
+          <audio controls>
+            <source src={file} type={mimeType} />
+          </audio>
+        );
+      } else if (mimeType.match(/^video/)) {
+        mediaElement = (
+          <video autoPlay>
+            <source src={`file://${thumb}.mp4`} type="video/mp4" />
+          </video>
+        );
+      } else {
+        mediaElement = (
+          <img src={file} alt={t`Preview`} width="100%" height="100%" />
+        );
+      }
+    } catch (e) {}
+
     return renderToString(
       <html>
         <head>
           <style dangerouslySetInnerHTML={{ __html: style }} />
         </head>
         <body>
-          <img src={file} alt={t`Preview`} width="100%" height="100%" />
+          {mediaElement}
           {statusText && !hideStatusBar && (
             <div id="status-container">
               <div id="status-pill">
@@ -157,7 +214,7 @@ export default function NFTPreview(props: NFTPreviewProps) {
         </body>
       </html>,
     );
-  }, [file, statusText, isStatusError]);
+  }, [file, statusText, isStatusError, thumb]);
 
   function handleLoadedChange(loadedValue) {
     setLoaded(loadedValue);
@@ -167,6 +224,24 @@ export default function NFTPreview(props: NFTPreviewProps) {
     event.stopPropagation();
 
     setIgnoreError(true);
+  }
+
+  function renderMediaElementInsideIframe() {
+    if (thumb !== '') {
+      return (
+        <video autoPlay width="100%" height="100%" loop>
+          <source src={`file://${thumb}.mp4`} type="video/mp4" />
+        </video>
+      );
+    }
+    return (
+      <SandboxedIframe
+        srcDoc={srcDoc}
+        height={height}
+        onLoadedChange={handleLoadedChange}
+        hideUntilLoaded
+      />
+    );
   }
 
   return (
@@ -183,7 +258,7 @@ export default function NFTPreview(props: NFTPreviewProps) {
             <Trans>Preview URL is not valid</Trans>
           </IconMessage>
         </Background>
-      ) : isLoading ? (
+      ) : isLoading && thumb === '' ? (
         <Background>
           <Loading center>
             <Trans>Loading preview...</Trans>
@@ -207,7 +282,7 @@ export default function NFTPreview(props: NFTPreviewProps) {
         </Background>
       ) : (
         <>
-          {!loaded && (
+          {!loaded && thumb === '' && (
             <Flex
               position="absolute"
               left="0"
@@ -222,12 +297,7 @@ export default function NFTPreview(props: NFTPreviewProps) {
               </Loading>
             </Flex>
           )}
-          <SandboxedIframe
-            srcDoc={srcDoc}
-            height={height}
-            onLoadedChange={handleLoadedChange}
-            hideUntilLoaded
-          />
+          {renderMediaElementInsideIframe()}
         </>
       )}
     </StyledCardPreview>
