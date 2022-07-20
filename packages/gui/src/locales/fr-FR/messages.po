@@ -8,7 +8,7 @@ msgstr ""
 "Language: fr_FR\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-07-20 12:03\n"
+"PO-Revision-Date: 2022-07-20 13:03\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
@@ -388,7 +388,7 @@ msgstr "Choisir la taille de la parcelle"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:90
 msgid "Choose Plotter"
-msgstr "Choisissez le Plotter"
+msgstr "Choisissez le traceur"
 
 #: src/components/app/AppSelectMode.tsx:107
 msgid "Choose Wallet Mode"
@@ -1340,7 +1340,7 @@ msgstr "Chargement des données de culture"
 
 #: src/components/app/AppState.tsx:117
 msgid "Loading keyring status"
-msgstr ""
+msgstr "Chargement du statut du trousseau de clés"
 
 #: src/components/_wallet_old/Wallets.tsx:117
 #~ msgid "Loading list of wallets"
@@ -1352,7 +1352,7 @@ msgstr "Chargement..."
 
 #: src/components/plot/PlotHarvester.tsx:56
 msgid "Local"
-msgstr ""
+msgstr "Local"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:126
 #~ msgid "Local Harvester Plots"
@@ -1404,7 +1404,7 @@ msgstr ""
 
 #: src/components/app/AppSelectMode.tsx:95
 msgid "Manage CAT tokens"
-msgstr ""
+msgstr "Gestion des jetons CAT"
 
 #: src/components/farm/FarmHeader.tsx:41
 msgid "Manage Farming Rewards"
@@ -1430,20 +1430,20 @@ msgstr "Mio envoyés/reçus"
 #: src/components/settings/Settings.tsx:186
 #: src/components/settings/SettingsPanel.tsx:186
 msgid "Migrate Keyring"
-msgstr ""
+msgstr "Migrer le trousseau de clés"
 
 #: src/components/app/AppKeyringMigrator.tsx:229
 msgid "Migrate Keys"
-msgstr ""
+msgstr "Migrer les clés"
 
 #: src/components/app/AppKeyringMigrator.tsx:124
 msgid "Migration required"
-msgstr ""
+msgstr "Migration nécessaire"
 
 #: src/components/settings/Settings.tsx:127
 #: src/components/settings/SettingsPanel.tsx:131
 msgid "Migration required to support passphrase protection"
-msgstr ""
+msgstr "Migration requise pour la protection de la phrase secrète"
 
 #: src/components/pool/PoolInfo.tsx:27
 msgid "Minimum Difficulty"
@@ -1451,11 +1451,11 @@ msgstr "Difficulté minimale"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:98
 msgid "Minutes"
-msgstr ""
+msgstr "Minutes"
 
 #: src/components/plot/PlotHarvester.tsx:105
 msgid "Missing Keys"
-msgstr ""
+msgstr "Clés manquantes"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:118
 msgid "More memory slightly increases speed"
@@ -1488,7 +1488,7 @@ msgstr "Nom du réseau"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:170
 msgid "New Passphrase"
-msgstr ""
+msgstr "Nouvelle phrase secrète"
 
 #: src/components/_wallet_old/WalletAdd.tsx:63
 #~ msgid "New Wallet"
@@ -1520,7 +1520,7 @@ msgstr "Aucun bloc cultivé pour l'instant"
 
 #: src/components/plot/PlotHarvesterPlots.tsx:123
 msgid "No plots yet"
-msgstr ""
+msgstr "Pas encore de parcelles"
 
 #: src/components/_wallet_old/WalletHistory.tsx:102
 #~ msgid "No previous transactions"
@@ -1594,7 +1594,7 @@ msgstr "Nombre de buckets"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:188
 msgid "Number of buckets for phase 3 & 4"
-msgstr ""
+msgstr "Nombre de buckets pour les phases 3 et 4"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:136
 msgid "Number of threads"
@@ -1602,7 +1602,7 @@ msgstr "Nombre de threads"
 
 #: src/components/plotNFT/PlotNFTGetPoolLoginLinkDialog.tsx:87
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: src/components/trading/ViewOffer.jsx:67
 #~ msgid "Offer"
@@ -1610,7 +1610,7 @@ msgstr ""
 
 #: src/components/dashboard/DashboardSideBar.tsx:63
 msgid "Offers"
-msgstr ""
+msgstr "Offres"
 
 #: src/components/trading/TradingOverview.jsx:412
 #~ msgid "Offers Created"
@@ -1639,23 +1639,23 @@ msgstr ""
 #: src/components/settings/SetPassphrasePrompt.tsx:149
 #: src/components/settings/SettingsPanel.tsx:217
 msgid "Passphrase"
-msgstr ""
+msgstr "Phrase secrète"
 
 #: src/components/app/AppKeyringMigrator.tsx:162
 #: src/components/settings/ChangePassphrasePrompt.tsx:191
 #: src/components/settings/SetPassphrasePrompt.tsx:173
 msgid "Passphrase Hint"
-msgstr ""
+msgstr "Indice de la phrase secrète"
 
 #: src/components/app/AppKeyringMigrator.tsx:161
 #: src/components/settings/ChangePassphrasePrompt.tsx:190
 #: src/components/settings/SetPassphrasePrompt.tsx:172
 msgid "Passphrase Hint (Optional)"
-msgstr ""
+msgstr "Indice de la phrase secrète (Facultatif)"
 
 #: src/components/settings/Settings.tsx:217
 msgid "Passphrase Settings"
-msgstr ""
+msgstr "Paramètres de la phrase secrète"
 
 #: src/components/app/AppPassPrompt.tsx:152
 #: src/components/settings/RemovePassphrasePrompt.tsx:67
@@ -1665,22 +1665,22 @@ msgstr ""
 #: src/components/settings/Settings.tsx:100
 #: src/components/settings/SettingsPanel.tsx:102
 msgid "Passphrase protection has been disabled"
-msgstr ""
+msgstr "La protection par phrase secrète a été désactivée"
 
 #: src/components/settings/Settings.tsx:137
 #: src/components/settings/SettingsPanel.tsx:142
 msgid "Passphrase protection is disabled"
-msgstr ""
+msgstr "La protection par phrase secrète est désactivée"
 
 #: src/components/settings/Settings.tsx:134
 #: src/components/settings/SettingsPanel.tsx:138
 msgid "Passphrase protection is enabled"
-msgstr ""
+msgstr "La protection par phrase secrète est activée"
 
 #: src/components/settings/Settings.tsx:128
 #: src/components/settings/SettingsPanel.tsx:132
 msgid "Passphrase support requires migrating your keys to a new keyring"
-msgstr ""
+msgstr "Il est nécessaire de migrer vos clés vers un nouveau trousseau avant de pouvoir définir une phrase secrète"
 
 #: src/components/plotNFT/PlotNFTCard.tsx:357
 msgid "Payout Address"
@@ -1742,7 +1742,7 @@ msgstr "Veuillez confirmer"
 #: src/components/app/AppPassPrompt.tsx:52
 #: src/components/settings/SetPassphrasePrompt.tsx:51
 msgid "Please enter a passphrase"
-msgstr ""
+msgstr "Veuillez entrer une phrase secrète"
 
 #: src/components/_wallet_old/did/WalletDID.tsx:937
 #~ msgid "Please enter a pubkey"
@@ -1793,17 +1793,17 @@ msgstr ""
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:73
 msgid "Please enter your current passphrase, and a new passphrase"
-msgstr ""
+msgstr "Veuillez saisir votre phrase secrète actuelle puis une nouvelle phrase secrète"
 
 #: src/components/app/AppPassPrompt.tsx:79
 #: src/components/app/AppPassPrompt.tsx:95
 #: src/components/settings/RemovePassphrasePrompt.tsx:50
 msgid "Please enter your passphrase"
-msgstr ""
+msgstr "Veuillez saisir votre phrase secrète"
 
 #: src/components/app/AppPassPrompt.tsx:89
 msgid "Please enter your passphrase to proceed"
-msgstr ""
+msgstr "Veuillez saisir votre phrase secrète pour continuer"
 
 #: src/components/_wallet_old/rateLimited/WalletRateLimited.jsx:623
 #: src/components/_wallet_old/standard/WalletStandard.tsx:420
@@ -1871,7 +1871,7 @@ msgstr "Clé de la parcelle"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:319
 msgid "Plot NFT Pool Contract Address"
-msgstr ""
+msgstr "Adresse du contrat de la parcelle de pool"
 
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:111
 #: src/components/plotNFT/PlotNFTChangePool.tsx:92
@@ -1917,7 +1917,7 @@ msgstr "Parcelles"
 
 #: src/components/plot/card/PlotCardPlotsFailedToOpen.tsx:13
 msgid "Plots Failed To Open"
-msgstr ""
+msgstr "Échec de l'ouverture des parcelles"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:20
 msgid "Plots Passed Filter"
@@ -1925,7 +1925,7 @@ msgstr "Parcelles passées par le filtre"
 
 #: src/components/plot/card/PlotCardNotFound.tsx:11
 msgid "Plots With Missing Keys"
-msgstr ""
+msgstr "Parcelles sans clés correspondantes"
 
 #: src/components/plot/overview/PlotOverviewHero.tsx:33
 #~ msgid "Plots are allocated space on your hard drive used to farm and earn Chia. <0>Learn more</0>"
@@ -1933,11 +1933,11 @@ msgstr ""
 
 #: src/components/plot/overview/PlotOverviewHero.tsx:33
 msgid "Plots are allocated space on your hard drive used to farm and earn Chia.<0>Learn more</0>"
-msgstr ""
+msgstr "Les parcelles représentent de l'espace alloué pour la culture de Chia. <0>En savoir plus</0>"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:103
 msgid "Plotter"
-msgstr ""
+msgstr "Traceur"
 
 #: src/components/plot/PlotPlotting.tsx:49
 #: src/components/plot/queue/PlotQueueIndicator.tsx:34
@@ -1946,7 +1946,7 @@ msgstr "Traçage"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:45
 msgid "Plotting Manager"
-msgstr ""
+msgstr "Gestionnaire de parcelles"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:58
 msgid "Plotting in parallel can save time. Otherwise, add plot(s) to the queue."
@@ -2030,7 +2030,7 @@ msgstr "Montant des récompenses du pool"
 
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:39
 msgid "Pool does not provide relativeLockHeight."
-msgstr ""
+msgstr "La pool ne fournit pas le relativeLockHeight."
 
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:38
 #~ msgid "Pool does not provide relative_lock_height."
@@ -2038,7 +2038,7 @@ msgstr ""
 
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:36
 msgid "Pool does not provide targetPuzzleHash."
-msgstr ""
+msgstr "La pool ne fournit pas le targetPuzzleHash."
 
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:35
 #~ msgid "Pool does not provide target_puzzle_hash."
@@ -2058,7 +2058,7 @@ msgstr "Pool :"
 #: src/components/plotNFT/PlotNFTExternalState.tsx:24
 #: src/components/plotNFT/PlotNFTState.tsx:59
 msgid "Pooling"
-msgstr ""
+msgstr "Pooling"
 
 #: src/components/block/FullNodeAddConnection.tsx:76
 #: src/components/farm/FarmFullNodeConnections.tsx:41
@@ -2066,7 +2066,7 @@ msgstr ""
 #: src/components/fullNode/FullNodeAddConnection.tsx:75
 #: src/components/fullNode/FullNodeConnections.tsx:45
 msgid "Port"
-msgstr ""
+msgstr "Port"
 
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:96
 #: src/components/plotNFT/PlotNFTChangePool.tsx:85
@@ -2183,7 +2183,7 @@ msgstr "Max RAM utilisée"
 
 #: src/components/app/AppSelectMode.tsx:116
 msgid "Recommended"
-msgstr ""
+msgstr "Recommandé"
 
 #: src/components/_wallet_old/did/WalletDID.tsx:464
 #: src/components/_wallet_old/did/WalletDIDRecovery.tsx:124
@@ -2219,22 +2219,22 @@ msgstr "Hauteur relative de verrouillage"
 
 #: src/electron/main.tsx:465
 msgid "Release Notes"
-msgstr ""
+msgstr "Notes de version"
 
 #: src/components/plot/PlotHarvester.tsx:56
 msgid "Remote"
-msgstr ""
+msgstr "Distant"
 
 #: src/components/settings/RemovePassphrasePrompt.tsx:98
 #: src/components/settings/RemovePassphrasePrompt.tsx:143
 #: src/components/settings/Settings.tsx:198
 #: src/components/settings/SettingsPanel.tsx:196
 msgid "Remove Passphrase"
-msgstr ""
+msgstr "Supprimer la phrase secrète"
 
 #: src/components/app/AppKeyringMigrator.tsx:195
 msgid "Remove keys from old keyring upon successful migration"
-msgstr ""
+msgstr "Retirer les clés de l'ancien trousseau en cas de migration réussie"
 
 #: src/components/plot/queue/PlotQueueIndicator.tsx:36
 msgid "Removing"
@@ -2258,7 +2258,7 @@ msgstr "Restaurer les metadatas pour les coloured coins et autres smart wallets 
 
 #: src/components/app/AppSelectMode.tsx:152
 msgid "Runs the full node"
-msgstr ""
+msgstr "Exécute le nœud complet"
 
 #: src/components/fullNode/FullNode.jsx:57
 #: src/components/fullNode/FullNodeConnections.jsx:107
@@ -2279,7 +2279,7 @@ msgstr "Enregistrer"
 #: src/components/settings/ChangePassphrasePrompt.tsx:206
 #: src/components/settings/SetPassphrasePrompt.tsx:188
 msgid "Save passphrase"
-msgstr ""
+msgstr "Sauvegarder la phrase secrète"
 
 #: src/components/fullNode/FullNode.jsx:338
 #~ msgid "Search"
@@ -2296,7 +2296,7 @@ msgstr "Emplacement du second dossier temporaire"
 #: src/components/settings/Settings.tsx:130
 #: src/components/settings/SettingsPanel.tsx:134
 msgid "Secure your keychain using a strong passphrase"
-msgstr ""
+msgstr "Sécurise votre trousseau en utilisant une phrase secrète"
 
 #: src/components/_selectKey_old/SelectKey.tsx:216
 #~ msgid "See private key"
@@ -2332,7 +2332,7 @@ msgstr "Sélectionner un Répertoire Temporaire"
 
 #: src/components/app/AppSelectMode.tsx:65
 msgid "Select Your Client Mode"
-msgstr ""
+msgstr "Sélectionnez votre mode d'utilisation"
 
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:36
 msgid "Select the final destination for the folder where you would like the plot to be stored. We recommend you use a large slow hard drive (like external HDD)."
@@ -2398,7 +2398,7 @@ msgstr "Pool solitaire. Vous gagnerez des récompenses XCH lorsque vous gagnez u
 #: src/components/settings/Settings.tsx:209
 #: src/components/settings/SettingsPanel.tsx:205
 msgid "Set Passphrase"
-msgstr ""
+msgstr "Définir la phrase secrète"
 
 #: src/components/app/AppPassPrompt.tsx:75
 #~ msgid "Setting a passphrase is strongly recommended to protect your keys. Are you sure you want to skip setting a passphrase?"
@@ -2407,7 +2407,7 @@ msgstr ""
 #: src/components/dashboard/DashboardSideBar.tsx:108
 #: src/components/settings/Settings.tsx:248
 msgid "Settings"
-msgstr ""
+msgstr "Paramètres"
 
 #: src/components/app/AppSelectMode.tsx:171
 #~ msgid "Settings are located at the upper right corner"
@@ -2433,11 +2433,11 @@ msgstr ""
 #: src/components/app/AppKeyringMigrator.tsx:57
 #: src/components/app/AppKeyringMigrator.tsx:218
 msgid "Skip"
-msgstr ""
+msgstr "Ignorer"
 
 #: src/components/app/AppKeyringMigrator.tsx:56
 msgid "Skip Keyring Migration"
-msgstr ""
+msgstr "Ignorer la migration du trousseau de clés"
 
 #: src/components/app/AppPassPrompt.tsx:73
 #~ msgid "Skip Passphrase Protection"
@@ -2461,7 +2461,7 @@ msgstr "Aplanissez le rythme de vos récoltes XCH en rejoignant un pool."
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:138
 msgid "Specify a value of 0 to use all available threads"
-msgstr ""
+msgstr "Spécifiez une valeur de 0 pour utiliser tous les threads disponibles"
 
 #: src/electron/main.tsx:561
 msgid "Speech"
@@ -2497,7 +2497,7 @@ msgstr "Dicter"
 
 #: src/components/app/AppState.tsx:172
 msgid "Starting services"
-msgstr ""
+msgstr "Démarrage des services"
 
 #: src/components/fullNode/FullNode.jsx:95
 msgid "State"
@@ -2534,7 +2534,7 @@ msgstr "Statut"
 
 #: src/components/app/AppSelectMode.tsx:89
 msgid "Store and Send XCH"
-msgstr ""
+msgstr "Stocker et envoyer des XCH"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:103
 #~ msgid "Stripe Size"
@@ -2667,7 +2667,7 @@ msgstr "La graine utilisée pour créer le plot. Cela dépend du pk du pool et d
 
 #: src/components/block/Block.jsx:206
 msgid "The total number of VDF (verifiable delay function) or proof of time iterations on the whole chain up to this block."
-msgstr ""
+msgstr "Le nombre total de VDF (fonction de délai vérifiable) ou d'itérations de preuve de temps sur toute la chaîne jusqu'à ce bloc."
 
 #: src/components/block/Block.jsx:206
 #~ msgid "The total number of VDF (verifiable delay function) or proof of time iterations on the whole chain up to this sub block."
@@ -2724,7 +2724,7 @@ msgstr "C'est le moment où le bloc a été créé par le fermier, ce qui se pro
 
 #: src/components/fullNode/card/FullNodeCardPeakTime.tsx:19
 msgid "This is the timestamp of the most recent transaction block."
-msgstr ""
+msgstr "Ceci est la date du bloc de transaction le plus récent."
 
 #: src/components/_wallet_old/card/WalletCardTotalBalance.tsx:34
 #~ msgid "This is the total amount of chia in the blockchain at the current peak sub block that is controlled by your private keys. It includes frozen farming rewards, but not pending incoming and outgoing transactions."
@@ -2778,7 +2778,7 @@ msgstr "Ce tableau vous montre la dernière fois que votre ferme a tenté de gag
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:154
 msgid "Thread Multiplier for Phase 2"
-msgstr ""
+msgstr "Multiplicateur de thread pour la phase 2"
 
 #: src/components/fullNode/FullNode.jsx:87
 msgid "Time Created"
@@ -2798,11 +2798,11 @@ msgstr "Horodatage"
 
 #: src/components/dashboard/DashboardSideBar.tsx:51
 msgid "Tokens"
-msgstr ""
+msgstr "Jetons"
 
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:118
 msgid "Too Many Plot NFTs"
-msgstr ""
+msgstr "Trop de parcelles de pool"
 
 #: src/components/_wallet_old/card/WalletCardTotalBalance.tsx:32
 #: src/components/_wallet_old/coloured/WalletColoured.tsx:379
@@ -2812,11 +2812,11 @@ msgstr ""
 
 #: src/components/farm/card/FarmCardTotalChiaFarmed.tsx:27
 msgid "Total Chia Farmed"
-msgstr ""
+msgstr "Nombre de chias cultivés"
 
 #: src/components/plot/card/PlotCardTotalHarvesters.tsx:11
 msgid "Total Harvesters"
-msgstr ""
+msgstr "Nombre de moissonneurs"
 
 #: src/components/fullNode/card/FullNodeCardTotalIterations.tsx:14
 msgid "Total Iterations"
@@ -2832,11 +2832,11 @@ msgstr "Espace total sur le réseau"
 
 #: src/components/plot/card/PlotCardTotalPlots.tsx:11
 msgid "Total Plots"
-msgstr ""
+msgstr "Nombre de parcelles"
 
 #: src/components/plot/card/PlotCardTotalPlotsSize.tsx:11
 msgid "Total Plots Size"
-msgstr ""
+msgstr "Taille totale des parcelles"
 
 #: src/components/farm/card/FarmCardTotalSizeOfPlots.tsx:11
 msgid "Total Size of Plots"
@@ -2872,7 +2872,7 @@ msgstr "Total d'itérations depuis le début de la blockchain"
 
 #: src/components/app/AppSelectMode.tsx:101
 msgid "Trade tokens"
-msgstr ""
+msgstr "Échanger des jetons"
 
 #: src/components/trading/TradingOverview.jsx:152
 #~ msgid "Trades will show up here"
@@ -2916,7 +2916,7 @@ msgstr "Non terminé"
 
 #: src/components/app/AppPassPrompt.tsx:82
 msgid "Unlock Keyring"
-msgstr ""
+msgstr "Déverrouiller le trousseau"
 
 #: src/components/plot/add/PlotAddNFT.tsx:45
 #~ msgid "Unsaved Changes"
@@ -2929,7 +2929,7 @@ msgstr ""
 
 #: src/components/farm/card/FarmCardUserFees.tsx:27
 msgid "User Transaction Fees"
-msgstr ""
+msgstr "Frais de Transaction Utilisateur"
 
 #: src/components/app/AppPassPrompt.tsx:79
 #~ msgid "Using a passphrase is strongly recommended to protect your keys. Are you sure you want to disable passphrase protection?"
@@ -3003,7 +3003,7 @@ msgstr "En attente de confirmation de la transaction"
 #: src/components/app/AppSelectMode.tsx:81
 #: src/components/app/AppSelectMode.tsx:133
 msgid "Wallet Mode"
-msgstr ""
+msgstr "Mode portefeuille"
 
 #: src/components/pool/PoolOverview.tsx:181
 #~ msgid "Wallet Status:"
@@ -3015,7 +3015,7 @@ msgstr ""
 
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:72
 msgid "Wallet is not defined"
-msgstr ""
+msgstr "Le portefeuille n'est pas défini"
 
 #: src/components/wallet/Wallets.tsx:34
 #~ msgid "WalletItem.ccWallet"
@@ -3067,7 +3067,7 @@ msgstr "Voulez-vous un délai d'attente avant que la prochaine parcelle démarre
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:252
 msgid "Warm start"
-msgstr ""
+msgstr "Démarrage à chaud"
 
 #: src/components/_selectKey_old/SelectKey.tsx:88
 #: src/components/_selectKey_old/SelectKey.tsx:119
@@ -3088,7 +3088,7 @@ msgstr "Poids"
 
 #: src/components/block/Block.jsx:186
 msgid "Weight is the total added difficulty of all blocks up to and including this one"
-msgstr ""
+msgstr "Le poids est la difficulté totale de tous les blocs, celui-ci inclus"
 
 #: src/components/block/Block.jsx:186
 #~ msgid "Weight is the total added difficulty of all sub blocks up to and including this one"
@@ -3125,11 +3125,11 @@ msgstr "Oui"
 
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:177
 msgid "You already have 50 or more Plot NFTs."
-msgstr ""
+msgstr "Vous avez déjà 50 parcelles de pool."
 
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:121
 msgid "You already have more than 10 Plot NFTs. Click OK if you're sure you want to create a new one."
-msgstr ""
+msgstr "Vous avez déjà plus de 10 parcelles de pool. Cliquez sur OK si vous êtes sûr de vouloir en créer une nouvelle."
 
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:120
 #~ msgid "You already have more then 10 PlotNFT's, you really shouldn't make more."
@@ -3146,7 +3146,7 @@ msgstr "Vous n'êtes pas en pooling solitaire"
 
 #: src/components/app/AppSelectMode.tsx:167
 msgid "You can always change your mode later in the settings"
-msgstr ""
+msgstr "Vous pourrez toujours changer le mode plus tard dans les Paramètres"
 
 #: src/components/plotNFT/PlotNFTCard.tsx:420
 msgid "You can still create plots for this plot NFT, but you can not make changes until sync is complete."
@@ -3154,7 +3154,7 @@ msgstr "Vous pouvez toujours ajouter des parcelles à ce NFT de parcelle, mais v
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:76
 msgid "You do not need to be synced or connected to plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
-msgstr ""
+msgstr "Vous n'avez pas besoin d'être connectés pour tracer une parcelle. Les fichiers temporaires sont créés durant le traçage, ils excèdent la taille de la parcelle finale. Soyez assurés d'avoir suffisamment de place. <0>En savoir plus</0>"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:56
 #~ msgid "You do not need to be synched or connected to Plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
@@ -3227,11 +3227,11 @@ msgstr "Aperçu de votre pool"
 
 #: src/components/app/AppPassPrompt.tsx:78
 msgid "Your keyring is locked"
-msgstr ""
+msgstr "Votre trousseau de clés est verrouillé"
 
 #: src/components/app/AppKeyringMigrator.tsx:62
 msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Are you sure you want to skip migrating your keys?"
-msgstr ""
+msgstr "Vos clés n'ont pas été migrées vers le nouveau trousseau. Vous ne pourrez pas créer de nouvelles clés ou supprimer les clés existantes tant que la migration n'est pas terminée. Êtes-vous sûr de vouloir passer la migration de vos clés ?"
 
 #: src/components/_selectKey_old/SelectKey.tsx:141
 #~ msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Would you like to migrate your keys now?"
@@ -3239,27 +3239,27 @@ msgstr ""
 
 #: src/components/app/AppKeyringMigrator.tsx:105
 msgid "Your keys need to be migrated to a new keyring that is optionally secured by a master passphrase."
-msgstr ""
+msgstr "Vos clés doivent être migrées vers un nouveau trousseau qui peut également être sécurisé par une phrase secrète."
 
 #: src/components/app/AppKeyringMigrator.tsx:111
 msgid "Your keys need to be migrated to a new keyring that is secured by a master passphrase."
-msgstr ""
+msgstr "Vos clés doivent être migrées vers un nouveau trousseau de clés sécurisé par une phrase secrète."
 
 #: src/components/app/AppKeyringMigrator.tsx:180
 #: src/components/settings/ChangePassphrasePrompt.tsx:209
 #: src/components/settings/SetPassphrasePrompt.tsx:191
 msgid "Your passphrase can be stored in your system's secure credential store. Chia will be able to access your keys without prompting for your passphrase."
-msgstr ""
+msgstr "Votre phrase secrète peut être stockée dans le gestionnaire d'informations d'identification de votre système. L'application Chia pourrait ainsi accéder à vos clés sans demander votre phrase secrète."
 
 #: src/components/settings/Settings.tsx:89
 #: src/components/settings/SettingsPanel.tsx:91
 msgid "Your passphrase has been set"
-msgstr ""
+msgstr "Votre phrase secrète a été définie"
 
 #: src/components/settings/Settings.tsx:78
 #: src/components/settings/SettingsPanel.tsx:80
 msgid "Your passphrase has been updated"
-msgstr ""
+msgstr "Votre phrase secrète a été mise à jour"
 
 #: src/util/getDescriptiveError.ts:5
 msgid "[Error 13] Permission denied. You are trying to access a file/directory without having the necessary permissions. Most likely one of the plot folders in your config.yaml has an issue."
@@ -3285,7 +3285,7 @@ msgstr "[Erreur 22] Fichier introuvable. Le plus probable est qu'un de vos répe
 
 #: src/components/plot/add/PlotAddForm.tsx:125
 msgid "p2SingletonPuzzleHash is not defined"
-msgstr ""
+msgstr "p2SingletonPuzzleHash n'est pas défini"
 
 #: src/components/plot/add/PlotAdd.tsx:136
 #~ msgid "p2_singleton_puzzle_hash is not defined"
@@ -3325,7 +3325,7 @@ msgstr ""
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:172
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:189
 msgid "{0} buckets is recommended"
-msgstr ""
+msgstr "{0} buckets sont recommandés"
 
 #: src/components/plotNFT/PlotNFTGraph.tsx:111
 msgid "{0} points {1} - {2} hours ago"
@@ -3349,5 +3349,5 @@ msgstr "{0} points {1} - il y a {2} heures"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:118
 msgid "{warning}"
-msgstr ""
+msgstr "{warning}"
 
