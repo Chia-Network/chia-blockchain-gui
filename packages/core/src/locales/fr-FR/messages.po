@@ -8,7 +8,7 @@ msgstr ""
 "Language: fr_FR\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-07-20 10:08\n"
+"PO-Revision-Date: 2022-07-20 13:59\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
@@ -705,7 +705,7 @@ msgstr "Supprimer la clé {fingerprint}"
 
 #: src/screens/SelectKey/SelectKey.tsx:83
 msgid "Deleting all keys will permanently remove the keys from your computer, make sure you have backups. Are you sure you want to continue?"
-msgstr "Supprimer toutes les clés va supprimer définitivement toutes les clés de votre ordinateur, assurez vous d'avoir une sauvegarde. Êtes-vous sur de vouloir continuer?"
+msgstr "Supprimer toutes les clés va définitivement les enlever de votre ordinateur, assurez-vous d'avoir une sauvegarde. Êtes-vous sûr de vouloir continuer ?"
 
 #: src/components/app/AppPassPrompt.tsx:89
 #~ msgid "Deleting key"
@@ -713,7 +713,7 @@ msgstr "Supprimer toutes les clés va supprimer définitivement toutes les clés
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:124
 msgid "Deleting the key will permanently remove the key from your computer, make sure you have backups. Are you sure you want to continue?"
-msgstr "Supprimer la clé va supprimer définitivement la clé de votre ordinateur, assurez vous d'avoir une sauvegarde. Êtes-vous sur de vouloir continuer?"
+msgstr "Supprimer la clé va définitivement l'enlever de votre ordinateur, assurez-vous d'avoir une sauvegarde. Êtes-vous sûr de vouloir continuer ?"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:92
 #~ msgid "Depending on your system configuration, you may find that an alternative plotter produces plots faster than the default Chia Proof of Space plotter. If unsure, use the default Chia Proof of Space plotter."
@@ -1109,7 +1109,7 @@ msgstr "Masquer les options avancées"
 
 #: src/screens/SelectKey/SelectKey.tsx:189
 msgid "Import from Mnemonics (24 words)"
-msgstr "Importer depuis les Mnémoniques (24 mots)"
+msgstr "Importer depuis la phrase mnémonique (24 mots)"
 
 #: src/components/fullNode/FullNode.jsx:44
 #~ msgid "In Progress"
@@ -1430,7 +1430,7 @@ msgstr "La nouvelle phrase secrète est identique à votre phrase secrète actue
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:93
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:93
 msgid "No 24 word seed, since this key is imported."
-msgstr "Pas de phrase de chiffrement (24 mots) étant donné que la clé est importée."
+msgstr "Pas de phrase mnémonique (24 mots), car cette clé est importée."
 
 #: src/components/farm/card/FarmCardLastHeightFarmed.tsx:16
 #~ msgid "No blocks farmed yet"
@@ -1995,7 +1995,7 @@ msgstr "Clé privée {fingerprint}"
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:51
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:51
 msgid "Private key:"
-msgstr "Clé privée:"
+msgstr "Clé privée :"
 
 #: src/components/block/Block.jsx:240
 #~ msgid "Proof of Space Size"
@@ -2017,7 +2017,7 @@ msgstr "Clé privée:"
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:59
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:59
 msgid "Public key:"
-msgstr "Clé publique:"
+msgstr "Clé publique :"
 
 #: src/components/_wallet_old/did/WalletDID.tsx:1005
 #~ msgid "Puzzlehash"
@@ -2190,7 +2190,7 @@ msgstr "Voir la clé privée"
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:85
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:85
 msgid "Seed:"
-msgstr "Valeur d'initialisation:"
+msgstr "Graine :"
 
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:100
 #~ msgid "Select 2nd Temporary Directory"
@@ -2202,7 +2202,7 @@ msgstr "Valeur d'initialisation:"
 
 #: src/screens/SelectKey/SelectKey.tsx:135
 msgid "Select Key"
-msgstr "Selectionner Clé"
+msgstr "Selectionnez la Clé"
 
 #: src/components/trading/ViewOffer.jsx:37
 #~ msgid "Select Offer"
