@@ -8,7 +8,7 @@ msgstr ""
 "Language: fr_FR\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-07-20 10:16\n"
+"PO-Revision-Date: 2022-07-20 12:03\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
@@ -376,7 +376,7 @@ msgstr "Wiki de la Chia Blockchain"
 
 #: src/components/app/AppSelectMode.tsx:158
 msgid "Choose Farming Mode"
-msgstr ""
+msgstr "Choisir le mode Culture"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:34
 msgid "Choose Number of Plots"
@@ -388,11 +388,11 @@ msgstr "Choisir la taille de la parcelle"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:90
 msgid "Choose Plotter"
-msgstr ""
+msgstr "Choisissez le Plotter"
 
 #: src/components/app/AppSelectMode.tsx:107
 msgid "Choose Wallet Mode"
-msgstr ""
+msgstr "Choisir le mode Portefeuille"
 
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:136
 #: src/components/plotNFT/PlotNFTCard.tsx:380
@@ -410,7 +410,7 @@ msgstr "Fermer"
 
 #: src/components/app/AppState.tsx:98
 msgid "Closing down services"
-msgstr ""
+msgstr "Fermeture des services"
 
 #: src/components/app/AppState.tsx:98
 #~ msgid "Closing services"
@@ -461,17 +461,17 @@ msgstr "Confirmer la déconnexion"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:180
 msgid "Confirm New Passphrase"
-msgstr ""
+msgstr "Confirmer la nouvelle phrase secrète"
 
 #: src/components/app/AppKeyringMigrator.tsx:149
 #: src/components/app/AppKeyringMigrator.tsx:150
 #: src/components/settings/SetPassphrasePrompt.tsx:160
 msgid "Confirm Passphrase"
-msgstr ""
+msgstr "Confirmer la phrase secrète"
 
 #: src/components/plotNFT/PlotNFTCard.tsx:120
 msgid "Confirmation"
-msgstr ""
+msgstr "Confirmation"
 
 #: src/components/trading/TradingOverview.jsx:200
 #~ msgid "Confirmed at block:"
@@ -503,7 +503,7 @@ msgstr "Connecté"
 #: src/components/app/AppState.tsx:144
 #: src/components/app/AppState.tsx:148
 msgid "Connecting to daemon"
-msgstr ""
+msgstr "Connexion au service"
 
 #: src/components/app/AppRouter.tsx:61
 #~ msgid "Connecting to wallet"
@@ -553,7 +553,7 @@ msgstr "Créer"
 
 #: src/components/app/AppSelectMode.tsx:140
 msgid "Create & Manage plots"
-msgstr ""
+msgstr "Créer et gérer les parcelles"
 
 #: src/components/_wallet_old/did/WalletDID.tsx:970
 #~ msgid "Create An Attestation Packet"
@@ -664,7 +664,7 @@ msgstr "Difficulté actuelle"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:160
 msgid "Current Passphrase"
-msgstr ""
+msgstr "Phrase secrète actuelle"
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:155
 #: src/components/plotNFT/PlotNFTCard.tsx:194
@@ -743,7 +743,7 @@ msgstr "Suppression de la clé"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:92
 msgid "Depending on your system configuration, you may find that an alternative plotter produces plots faster than the default Chia Proof of Space plotter. If unsure, use the default Chia Proof of Space plotter."
-msgstr ""
+msgstr "Selon la configuration de votre système, il se peut qu'un autre Plotter produise des parcelles plus rapidement que celui par défaut. En cas de doute, utilisez le Plotter \"Chia Proof of Space\"."
 
 #: src/electron/main.tsx:389
 msgid "Developer"
@@ -764,7 +764,7 @@ msgstr "Difficulté"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:266
 msgid "Disable NUMA"
-msgstr ""
+msgstr "Désactiver NUMA"
 
 #: src/components/app/AppPassPrompt.tsx:77
 #~ msgid "Disable Passphrase Protection"
@@ -772,7 +772,7 @@ msgstr ""
 
 #: src/electron/main.tsx:401
 msgid "Disable Simulator"
-msgstr ""
+msgstr "Désactiver le simulateur"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:114
 #~ msgid "Disable bifield plotting when your temporary directory is on fast storage like SSD or you need lower per process RAM requirements. Plotting with bitfield enabled has about 20% less overall writes."
@@ -830,7 +830,7 @@ msgstr "Dupliquer"
 
 #: src/components/plot/card/PlotCardPlotsDuplicate.tsx:11
 msgid "Duplicate Plots"
-msgstr ""
+msgstr "Parcelles en doublons"
 
 #: src/electron/main.tsx:348
 msgid "Edit"
@@ -844,7 +844,7 @@ msgstr "Modifier les instructions de paiement"
 
 #: src/electron/main.tsx:402
 msgid "Enable Simulator"
-msgstr ""
+msgstr "Activer le simulateur"
 
 #: src/components/wallet/EnterPassphrasePrompt.tsx:111
 #~ msgid "Enter Passphrase"
@@ -852,11 +852,11 @@ msgstr ""
 
 #: src/components/app/AppKeyringMigrator.tsx:128
 msgid "Enter a strong passphrase and click Migrate Keys to secure your keys"
-msgstr ""
+msgstr "Saisissez une phrase secrète forte et cliquez sur \"Migrer les clés\" pour sécuriser vos clés"
 
 #: src/components/settings/SetPassphrasePrompt.tsx:139
 msgid "Enter a strong passphrase to secure your keys:"
-msgstr ""
+msgstr "Saisissez une phrase secrète forte pour sécuriser vos clés :"
 
 #: src/components/_wallet_old/WalletImport.tsx:146
 #~ msgid "Enter the 24 word mnemonic that you have saved in order to restore your Chia wallet."
@@ -864,7 +864,7 @@ msgstr ""
 
 #: src/components/settings/RemovePassphrasePrompt.tsx:102
 msgid "Enter your passphrase:"
-msgstr ""
+msgstr "Entrez votre phrase secrète :"
 
 #: src/components/farm/FarmerStatus.tsx:21
 #: src/components/farm/FarmerStatus.tsx:22
@@ -1022,7 +1022,7 @@ msgstr "Frais"
 
 #: src/components/plotNFT/PlotNFTChangePool.tsx:126
 msgid "Fee is used TWICE: once to leave pool, once to join."
-msgstr ""
+msgstr "Ces frais sont répétés deux fois : une fois pour quitter la pool et une seconde fois pour la rejoindre."
 
 #: src/components/block/Block.jsx:299
 msgid "Fees Amount"
@@ -1064,7 +1064,7 @@ msgstr "Question fréquentes"
 #: src/components/dashboard/DashboardSideBar.tsx:75
 #: src/components/fullNode/FullNode.jsx:132
 msgid "Full Node"
-msgstr ""
+msgstr "Full Node"
 
 #: src/components/fullNode/FullNode.jsx:138
 #~ msgid "Full Node Overview"
@@ -1108,7 +1108,7 @@ msgstr "Général"
 
 #: src/components/plot/PlotHarvesters.tsx:39
 msgid "Harvesters"
-msgstr ""
+msgstr "Moissonneurs"
 
 #: src/components/fullNode/FullNode.jsx:57
 msgid "Header Hash"
@@ -1134,7 +1134,7 @@ msgstr "Aide"
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:51
 msgid "Here are the current block challenges. You may or may not have a proof of space for these challenges. These blocks do not currently contain a proof of time."
-msgstr ""
+msgstr "Ci-dessous les challenges des blocs actuels. Vous pouvez ou non avoir des preuves d'espace pour ces challenges. Ces blocs ne contiennent pas encore les preuves de temps."
 
 #: src/components/core/components/AdvancedOptions/AdvancedOptions.tsx:75
 #~ msgid "Hide Advanced Options"
@@ -1143,7 +1143,7 @@ msgstr ""
 #: src/components/app/AppPassPrompt.tsx:127
 #: src/components/settings/RemovePassphrasePrompt.tsx:118
 msgid "Hint"
-msgstr ""
+msgstr "Indice"
 
 #: src/components/_wallet_old/WalletHistory.tsx:91
 #~ msgid "History"
@@ -1153,7 +1153,7 @@ msgstr ""
 #: src/components/plot/PlotHarvesterPlotsFailed.tsx:65
 #: src/components/plot/PlotHarvesterPlotsNotFound.tsx:65
 msgid "Hooray, no files here!"
-msgstr ""
+msgstr "Hourra, aucun fichier ici !"
 
 #: src/components/farm/FarmFullNodeConnections.tsx:35
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:35
@@ -1199,7 +1199,7 @@ msgstr "En cours"
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:17
 msgid "Index"
-msgstr ""
+msgstr "Indice"
 
 #: src/components/trading/TradingOverview.jsx:213
 #~ msgid "Indicated if this offer was created by us"
@@ -1268,7 +1268,7 @@ msgstr "Rejoignez un pool et obtenez des récompenses de culture XCH substantiel
 
 #: src/components/app/AppSelectMode.tsx:146
 msgid "Join farming pools"
-msgstr ""
+msgstr "Rejoindre des pools de farming"
 
 #: src/components/plot/PlotHarvesterPlots.tsx:40
 #: src/components/plot/PlotPlotting.tsx:20
@@ -1277,7 +1277,7 @@ msgstr "Taille-K"
 
 #: src/components/app/AppKeyringMigrator.tsx:93
 msgid "Keyring migration failed: {0}"
-msgstr ""
+msgstr "La migration du trousseau a échoué : {0}"
 
 #: src/components/app/AppKeyringMigrator.tsx:86
 #~ msgid "Keyring migration failed: {error}"
@@ -1302,7 +1302,7 @@ msgstr "Dernière hauteur cultivée"
 
 #: src/components/fullNode/card/FullNodeCardPeakTime.tsx:18
 msgid "Last Transaction Block Time"
-msgstr ""
+msgstr "Date du dernier bloc de transaction"
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:31
 msgid "Latest Block Challenges"
@@ -1332,11 +1332,11 @@ msgstr "Quitter le pool"
 
 #: src/components/app/AppProviders.tsx:66
 msgid "Loading configuration"
-msgstr ""
+msgstr "Chargement de la configuration"
 
 #: src/components/farm/Farm.tsx:24
 msgid "Loading farming data"
-msgstr ""
+msgstr "Chargement des données de culture"
 
 #: src/components/app/AppState.tsx:117
 msgid "Loading keyring status"
