@@ -8,7 +8,7 @@ msgstr ""
 "Language: fr_FR\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-07-20 13:03\n"
+"PO-Revision-Date: 2022-07-20 13:59\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
@@ -230,7 +230,7 @@ msgstr "Le fichier de sauvegarde est utilisé pour restaurer des portefeuilles i
 
 #: src/components/block/Block.jsx:295
 msgid "Base Farmer Reward Amount"
-msgstr "Montant de récompense de base du farmer"
+msgstr "Montant de récompense de base du fermier"
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:35
 msgid "Below are the current block challenges. You may or may not have a proof of space for these challenges. These blocks do not currently contain a proof of time."
@@ -258,7 +258,7 @@ msgstr "Récompenses des blocs"
 
 #: src/components/block/Block.jsx:213
 msgid "Block VDF Iterations"
-msgstr "Itération du bloc VDF"
+msgstr "Itérations VDF du bloc"
 
 #: src/components/block/Block.jsx:314
 msgid "Block at height {0} in the Chia blockchain"
@@ -360,7 +360,7 @@ msgstr "Changer de pool"
 
 #: src/electron/main.tsx:492
 msgid "Chat on KeyBase"
-msgstr "Chat sur KeyBase"
+msgstr "Chatter sur KeyBase"
 
 #: src/electron/main.tsx:510
 msgid "Chia"
@@ -368,7 +368,7 @@ msgstr "Chia"
 
 #: src/electron/main.tsx:449
 msgid "Chia Blockchain Wiki"
-msgstr "Wiki de la Chia Blockchain"
+msgstr "Wiki de la Blockchain Chia"
 
 #: src/components/_wallet_old/standard/WalletStandard.tsx:642
 #~ msgid "Chia Wallet"
@@ -710,7 +710,7 @@ msgstr "Supprimer la clé"
 #: src/components/plot/PlotAction.tsx:24
 #: src/components/plot/queue/PlotQueueActions.tsx:40
 msgid "Delete Plot"
-msgstr "Supprimer parcelle"
+msgstr "Supprimer la parcelle"
 
 #: src/components/plotNFT/PlotNFTCard.tsx:311
 msgid "Delete Unconfirmed Transactions"
@@ -743,7 +743,7 @@ msgstr "Suppression de la clé"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:92
 msgid "Depending on your system configuration, you may find that an alternative plotter produces plots faster than the default Chia Proof of Space plotter. If unsure, use the default Chia Proof of Space plotter."
-msgstr "Selon la configuration de votre système, il se peut qu'un autre Plotter produise des parcelles plus rapidement que celui par défaut. En cas de doute, utilisez le Plotter \"Chia Proof of Space\"."
+msgstr "Selon la configuration de votre système, il se peut qu'un autre traceur produise des parcelles plus rapidement que celui par défaut. En cas de doute, utilisez le traceur \"Chia Proof of Space\"."
 
 #: src/electron/main.tsx:389
 msgid "Developer"
@@ -802,7 +802,7 @@ msgstr "Se déconnecter"
 #: src/components/farm/FarmHero.tsx:46
 #: src/components/plot/overview/PlotOverviewHero.tsx:66
 msgid "Do you have existing plots on this machine? <0>Add Plot Directory</0>"
-msgstr "Avez-vous des parcelles existantes sur cette machine ? <0>Ajouter répertoire parcelle</0>"
+msgstr "Avez-vous des parcelles existantes sur cette machine ? <0>Ajouter un répertoire de parcelles</0>"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:55
 msgid "Does your machine support parallel plotting?"
@@ -830,7 +830,7 @@ msgstr "Dupliquer"
 
 #: src/components/plot/card/PlotCardPlotsDuplicate.tsx:11
 msgid "Duplicate Plots"
-msgstr "Parcelles en doublons"
+msgstr "Parcelles en doublon"
 
 #: src/electron/main.tsx:348
 msgid "Edit"
