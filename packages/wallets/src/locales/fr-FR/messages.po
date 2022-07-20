@@ -8,7 +8,7 @@ msgstr ""
 "Language: fr_FR\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-05-26 15:57\n"
+"PO-Revision-Date: 2022-07-20 14:00\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
@@ -293,7 +293,7 @@ msgstr "Solde"
 
 #: src/components/offers/OfferShareDialog.tsx:759
 msgid "Before posting an offer in Keybase to the #{KeybaseChannelName} channel, you must first join the {KeybaseTeamName} team. Please note that it might take a few moments to join the channel."
-msgstr ""
+msgstr "Avant de poster une offre dans Keybase sur le canal #{KeybaseChannelName}, vous devez d'abord rejoindre l'équipe {KeybaseTeamName}. Veuillez noter que cela peut prendre quelques instants pour rejoindre le canal."
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:33
 #: src/components/farm/FarmLatestBlockChallenges.tsx:43
@@ -412,7 +412,7 @@ msgstr "Annuler sur la blockchain"
 #: src/components/WalletSend.tsx:101
 #: src/components/cat/WalletCATSend.tsx:119
 msgid "Cannot send chia to coloured address. Please enter a chia address."
-msgstr ""
+msgstr "Impossible d'envoyer des chias à une adresse colorée. Merci d'entrer une adresse chia valide."
 
 #: src/components/plot/PlotsNotFound.tsx:36
 #~ msgid "Caution, deleting these plots will delete them forever. Check that the storage devices are properly connected."
@@ -591,7 +591,7 @@ msgstr "Confirmé à la Hauteur"
 
 #: src/components/WalletStatusHeader.tsx:33
 msgid "Connected ({0})"
-msgstr ""
+msgstr "Connectés ({0})"
 
 #: src/components/app/AppState.tsx:141
 #: src/components/app/AppState.tsx:145
@@ -651,7 +651,7 @@ msgstr "Créer un Paquet d’Attestation"
 
 #: src/components/cat/WalletCATCreateExisting.tsx:76
 msgid "Create Chia Asset Token Wallet from Existing TAIL"
-msgstr ""
+msgstr "Créer un portefeuille de jetons CAT à partir d'une TAIL existante"
 
 #: src/components/wallet/create/WalletCreate.jsx:290
 #~ msgid "Create DID wallet"
@@ -663,7 +663,7 @@ msgstr "Créer un portefeuille d'Identité Décentralisée"
 
 #: src/components/cat/WalletCATCreateNew.tsx:75
 msgid "Create New Chia Asset Token Wallet"
-msgstr ""
+msgstr "Créer un Nouveau Portefeuille de Jetons CAT"
 
 #: src/components/cat/WalletCATSelect.tsx:32
 #: src/components/did/WalletDIDSelect.tsx:32
@@ -798,7 +798,7 @@ msgstr "Date de création"
 
 #: src/constants/WalletName.ts:20
 msgid "Custody Wallet"
-msgstr ""
+msgstr "Portefeuille coffre-fort"
 
 #: src/components/cat/WalletCATCreateSimple.tsx:102
 msgid "Custom"
@@ -1010,7 +1010,7 @@ msgstr "Entrez les 24 mots mnémotechniques que vous avez sauvegardé afin de re
 
 #: src/components/cat/WalletCATSend.tsx:129
 msgid "Error the entered address appears to be for a different colour."
-msgstr ""
+msgstr "Erreur : l'adresse saisie semble avoir une couleur différente."
 
 #: src/components/_wallet_old/standard/WalletStandard.tsx:450
 #~ msgid "Error: Cannot send chia to coloured address. Please enter a chia address."
@@ -1232,7 +1232,7 @@ msgstr "Aller à #{KeybaseChannelName}"
 
 #: src/components/offers/OfferShareDialog.tsx:865
 msgid "Go to Offerpool"
-msgstr ""
+msgstr "Aller à Offerpool"
 
 #: src/components/pool/PoolOverview.tsx:173
 #~ msgid "Grid view"
@@ -1244,7 +1244,7 @@ msgstr ""
 
 #: src/components/WalletReceiveAddress.tsx:38
 msgid "HD or Hierarchical Deterministic keys are a type of public key/private key scheme where one private key can have a nearly infinite number of different public keys (and therefore wallet receive addresses) that will all ultimately come back to and be spendable by a single private key."
-msgstr ""
+msgstr "HD ou clés déterministes hiérachiques sont un type de schéma de clé publique/clé privée dans lequel une clé privée peut avoir un nombre presque infini de clés publiques différentes (et donc autant d'adresses de réception de portefeuille), toutes liées et dépensables par une seule clé privée."
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:49
 #~ msgid "Harvester ID"
@@ -1256,7 +1256,7 @@ msgstr ""
 
 #: src/components/offers/OfferShareDialog.tsx:491
 msgid "Hashgreen DEX URL"
-msgstr ""
+msgstr "URL du DEX Hashgreen"
 
 #: src/components/fullNode/FullNode.jsx:60
 #~ msgid "Header Hash"
@@ -1312,20 +1312,20 @@ msgstr "Adresse IP"
 
 #: src/components/offers/OfferShareDialog.tsx:414
 msgid "If selected, your offer will be not be shared publicly."
-msgstr ""
+msgstr "Si cette option est sélectionnée, votre offre ne sera pas partagée publiquement."
 
 #: src/components/offers/OfferManager.tsx:107
 msgid "If you have already shared your offer file, you may need to submit a transaction to cancel the pending offer. Click \"Cancel on blockchain\" to submit a cancellation transaction."
-msgstr ""
+msgstr "Si vous avez déjà partagé votre fichier d'offre, vous devrez soumettre une transaction pour annuler l'offre en attente. Cliquez sur \"Annuler sur la blockchain\" pour soumettre une transaction d'annulation."
 
 #: src/components/WalletSendTransactionResultDialog.tsx:41
 msgid "If you would like to speed up the transaction, please delete unconfirmed transactions and retry with a higher fee."
-msgstr ""
+msgstr "Si vous souhaitez accélérer la transaction, veuillez supprimer les transactions non confirmées et réessayer avec des frais plus élevés."
 
 #: src/components/PasteMnemonic.tsx:86
 #: src/components/offers/OfferDataEntryDialog.tsx:74
 msgid "Import"
-msgstr ""
+msgstr "Importer"
 
 #: src/components/WalletImport.tsx:130
 msgid "Import Wallet from Mnemonics"
@@ -1342,17 +1342,17 @@ msgstr "Importer le Wallet depuis les Mnémoniques"
 #: src/components/offers/OfferEditorConditionsPanel.tsx:249
 #: src/components/offers/OfferViewer.tsx:459
 msgid "In exchange for"
-msgstr ""
+msgstr "En échange de"
 
 #: src/components/offers/OfferShareDialog.tsx:403
 #: src/components/offers/OfferShareDialog.tsx:544
 #: src/components/offers/OfferShareDialog.tsx:892
 msgid "In exchange for:"
-msgstr ""
+msgstr "En échange de :"
 
 #: src/components/offers/OfferEditorConditionsPanel.tsx:339
 msgid "Including a fee in the offer can help expedite the transaction when the offer is accepted."
-msgstr ""
+msgstr "Inclure des frais dans l'offre peut aider à accélérer la transaction lorsque celle-ci est acceptée."
 
 #: src/components/WalletHistory.tsx:60
 msgid "Incoming"
@@ -1389,7 +1389,7 @@ msgstr "Initialiser un portefeuille utilisateur à débit limité :"
 
 #: src/components/offers/OfferShareDialog.tsx:754
 msgid "Install Keybase"
-msgstr ""
+msgstr "Installer Keybase"
 
 #: src/components/offers/OfferViewer.tsx:358
 msgid "Insufficient funds available to accept offer. Ensure that your\n"
