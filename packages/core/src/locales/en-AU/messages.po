@@ -8,7 +8,7 @@ msgstr ""
 "Language: en_AU\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-06-20 11:41\n"
+"PO-Revision-Date: 2022-07-23 04:28\n"
 "Last-Translator: \n"
 "Language-Team: English, Australia\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -659,7 +659,7 @@ msgstr "DANGER: this permanently deletes private key"
 
 #: src/components/Settings/SettingsApp.tsx:83
 msgid "Dark"
-msgstr "Dark"
+msgstr "Night time"
 
 #: src/components/_wallet_old/WalletHistory.tsx:46
 #: src/components/farm/FarmLastAttemptedProof.tsx:31
@@ -832,7 +832,7 @@ msgstr "Error, she's knackered"
 
 #: src/components/ErrorBoundary/ErrorBoundary.tsx:78
 msgid "Error:"
-msgstr "Error:"
+msgstr "Error, she's knackered:"
 
 #: src/components/_wallet_old/standard/WalletStandard.tsx:450
 #~ msgid "Error: Cannot send chia to coloured address. Please enter a chia address."
