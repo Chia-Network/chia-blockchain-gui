@@ -8,7 +8,7 @@ msgstr ""
 "Language: en_AU\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-06-27 21:42\n"
+"PO-Revision-Date: 2022-07-23 05:31\n"
 "Last-Translator: \n"
 "Language-Team: English, Australia\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -20,15 +20,15 @@ msgstr ""
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:74
 msgid "(Not Installed)"
-msgstr ""
+msgstr "(Not Installed)"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:71
 msgid "(Not Supported)"
-msgstr ""
+msgstr "(Not Supported)"
 
 #: src/components/plot/add/PlotAddNFT.tsx:67
 msgid "(Optional)"
-msgstr ""
+msgstr "(Optional)"
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:60
 msgid "*Want to explore Chia’s blocks further? Check out <0>Chia Explorer</0> built by an open source developer."
@@ -40,7 +40,7 @@ msgstr "*Want to explore Chia’s blocks further? Check out <0>Chia Explorer</0>
 
 #: src/components/plot/add/PlotAddNFT.tsx:128
 msgid "+ Add New Plot NFT"
-msgstr ""
+msgstr "+ Add New Plot NFT"
 
 #: src/components/_wallet_old/Wallets.tsx:132
 #~ msgid "+ Add Wallet"
@@ -48,7 +48,7 @@ msgstr ""
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:49
 msgid "+ Add a Plot"
-msgstr ""
+msgstr "+ Add a Plot to get more beer money"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:94
 #~ msgid "0 automatically chooses bucket count"
@@ -60,11 +60,11 @@ msgstr ""
 
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:96
 msgid "A harvester is a service running on a machine where plot(s) are actually stored. A farmer and harvester talk to a full node to see the state of the chain. View your network of connected harvesters below Learn more"
-msgstr ""
+msgstr "A harvester is a service running on a machine where plot(s) are actually stored. A farmer and harvester talk to a full node to see the state of the chain. View your network of connected harvesters below Learn more"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:155
 msgid "A value of {0} is recommended"
-msgstr ""
+msgstr "A value of {0} is recommended"
 
 #: src/electron/main.tsx:513
 #: src/electron/main.tsx:600
@@ -85,13 +85,13 @@ msgstr "Some stuff about Chia"
 #: src/components/plot/PlotHarvesterPlotsNotFound.tsx:18
 #: src/components/plot/PlotPlotting.tsx:32
 msgid "Action"
-msgstr ""
+msgstr "Action"
 
 #: src/components/farm/FarmFullNodeConnections.tsx:66
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:66
 #: src/components/fullNode/FullNodeConnections.tsx:81
 msgid "Actions"
-msgstr ""
+msgstr "Actions"
 
 #: src/components/trading/CreateOffer.jsx:202
 #~ msgid "Add"
@@ -126,7 +126,7 @@ msgstr "Add a Plot to get more beer money"
 
 #: src/components/plotNFT/PlotNFTAdd.tsx:55
 msgid "Add a Plot NFT"
-msgstr ""
+msgstr "Add New Plot NFT"
 
 #: src/components/plot/PlotAddDirectoryDialog.tsx:84
 msgid "Add a plot"
@@ -134,11 +134,11 @@ msgstr "Add a Plot to get more beer money"
 
 #: src/components/plot/PlotAddDirectoryDialog.tsx:123
 msgid "Add plot directory"
-msgstr ""
+msgstr "Add plot directory"
 
 #: src/components/plotNFT/select/PlotNFTSelectFaucet.tsx:41
 msgid "Add {currencyCode} from the Faucet"
-msgstr ""
+msgstr "Add {currencyCode} from the Faucet"
 
 #: src/components/_wallet_old/coloured/WalletColoured.tsx:561
 #: src/components/_wallet_old/coloured/WalletColoured.tsx:657
@@ -153,11 +153,11 @@ msgstr ""
 
 #: src/components/app/AppKeyringMigrator.tsx:198
 msgid "After your keys are successfully migrated to the new keyring, you may choose to have your keys removed from the old keyring."
-msgstr ""
+msgstr "After your keys are successfully migrated to the new keyring, you may choose to have your keys removed from the old keyring."
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:238
 msgid "Alternate tmpdir/tmpdir2"
-msgstr ""
+msgstr "Alternate tmpdir/tmpdir2"
 
 #: src/components/trading/CreateOffer.jsx:197
 #: src/components/trading/TradesTable.tsx:19
@@ -183,7 +183,7 @@ msgstr "Are you sure you want to delete the plot? The plot cannot be recovered, 
 
 #: src/components/plotNFT/PlotNFTCard.tsx:127
 msgid "Are you sure you want to delete unconfirmed transactions?"
-msgstr ""
+msgstr "Are you sure you want to delete unconfirmed transactions?"
 
 #: src/components/fullNode/FullNodeCloseConnection.tsx:26
 msgid "Are you sure you want to disconnect?"
@@ -191,7 +191,7 @@ msgstr "Are you sure you want to remove this peer?"
 
 #: src/electron/main.tsx:268
 msgid "Are you sure you want to quit?"
-msgstr ""
+msgstr "Are you sure you want to be a quitter?"
 
 #: src/electron/main.tsx:262
 #~ msgid "Are you sure you want to quit? GUI Plotting and farming will stop."
@@ -203,15 +203,15 @@ msgstr ""
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:51
 msgid "Are you sure you want to use k={plotSize}?"
-msgstr ""
+msgstr "Are you sure you want to use k={plotSize}?"
 
 #: src/components/app/AppState.tsx:151
 msgid "Attempt {attempt}"
-msgstr ""
+msgstr "Attempt {attempt}"
 
 #: src/components/plotNFT/PlotNFTName.tsx:39
 msgid "Autogenerated name from pool contract address"
-msgstr ""
+msgstr "Autogenerated name from pool contract address"
 
 #: src/components/_selectKey_old/SelectKey.tsx:77
 #: src/components/_selectKey_old/SelectKey.tsx:116
@@ -220,7 +220,7 @@ msgstr ""
 
 #: src/components/backup/BackupCreate.tsx:46
 msgid "Backup file is used to restore smart wallets."
-msgstr ""
+msgstr "Backup file is used to restore smart wallets."
 
 #: src/components/_wallet_old/coloured/WalletColoured.tsx:377
 #: src/components/_wallet_old/did/WalletDID.tsx:647
@@ -230,11 +230,11 @@ msgstr ""
 
 #: src/components/block/Block.jsx:295
 msgid "Base Farmer Reward Amount"
-msgstr ""
+msgstr "Base Farmer Reward Amount"
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:35
 msgid "Below are the current block challenges. You may or may not have a proof of space for these challenges. These blocks do not currently contain a proof of time."
-msgstr ""
+msgstr "Below are the current block challenges. You may or may not have a proof of space for these challenges. These blocks do not currently contain a proof of time."
 
 #: src/components/farm/card/FarmCardTotalNetworkSpace.tsx:14
 msgid "Best estimate over last 24 hours"
@@ -246,11 +246,11 @@ msgstr "Best guesstimate over last 24 hours"
 
 #: src/components/block/Block.jsx:136
 msgid "Block"
-msgstr ""
+msgstr "Block"
 
 #: src/components/farm/card/FarmCardBlockRewards.tsx:31
 msgid "Block Rewards"
-msgstr ""
+msgstr "Block Rewards"
 
 #: src/components/block/Block.jsx:138
 #~ msgid "Block Test"
@@ -258,11 +258,11 @@ msgstr ""
 
 #: src/components/block/Block.jsx:213
 msgid "Block VDF Iterations"
-msgstr ""
+msgstr "Block VDF Iterations"
 
 #: src/components/block/Block.jsx:314
 msgid "Block at height {0} in the Chia blockchain"
-msgstr ""
+msgstr "Block at height {0} in the Chia blockchain"
 
 #: src/components/fullNode/FullNode.jsx:331
 #~ msgid "Block hash"
@@ -270,15 +270,15 @@ msgstr ""
 
 #: src/components/block/Block.jsx:122
 msgid "Block with hash {headerHash}"
-msgstr ""
+msgstr "Block with hash {headerHash}"
 
 #: src/components/block/Block.jsx:141
 msgid "Block with hash {headerHash} does not exist."
-msgstr ""
+msgstr "Block with hash {headerHash} does not exist."
 
 #: src/components/fullNode/FullNode.jsx:121
 msgid "Blocks"
-msgstr ""
+msgstr "Blocks"
 
 #: src/components/farm/FarmManageFarmingRewards.tsx:91
 #~ msgid "Both values are empty. This is ok if you are, for example, sending your rewards to an offline wallet."
@@ -288,7 +288,7 @@ msgstr ""
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:92
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:124
 msgid "Browse"
-msgstr ""
+msgstr "Browse"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:74
 #~ msgid "But you are currently farming <0/>"
@@ -337,7 +337,7 @@ msgstr "Yeh Nah"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:14
 msgid "Challenge"
-msgstr ""
+msgstr "Challenge"
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:13
 msgid "Challenge Hash"
@@ -388,7 +388,7 @@ msgstr "Choose Plot Size"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:90
 msgid "Choose Plotter"
-msgstr "Choose Plotter"
+msgstr "Choose a Plotter you would like to use"
 
 #: src/components/app/AppSelectMode.tsx:107
 msgid "Choose Wallet Mode"
@@ -780,7 +780,7 @@ msgstr "Disable Simulator"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:215
 msgid "Disable bitfield plotting"
-msgstr ""
+msgstr "Disable bitfield plotting"
 
 #: src/components/plot/add/PlotAddNFT.tsx:46
 #~ msgid "Discard"
@@ -788,7 +788,7 @@ msgstr ""
 
 #: src/components/fullNode/FullNodeCloseConnection.tsx:20
 msgid "Disconnect"
-msgstr ""
+msgstr "Disconnect"
 
 #: src/components/_wallet_old/create/WalletCreateList.tsx:28
 #: src/components/_wallet_old/did/WalletDIDSelect.tsx:25
@@ -802,11 +802,11 @@ msgstr ""
 #: src/components/farm/FarmHero.tsx:46
 #: src/components/plot/overview/PlotOverviewHero.tsx:66
 msgid "Do you have existing plots on this machine? <0>Add Plot Directory</0>"
-msgstr ""
+msgstr "Do you have existing plots on this machine? <0>Add Plot Directory</0>"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:55
 msgid "Does your machine support parallel plotting?"
-msgstr ""
+msgstr "Does your machine support parallel plotting?"
 
 #: src/components/_wallet_old/did/WalletDID.tsx:428
 #~ msgid "Drag and drop attestation packet(s)"
@@ -818,7 +818,7 @@ msgstr ""
 
 #: src/components/backup/BackupRestore.tsx:172
 msgid "Drag and drop your backup file"
-msgstr ""
+msgstr "Drag and drop your backup file"
 
 #: src/components/_wallet_old/did/WalletDIDRecovery.tsx:109
 #~ msgid "Drag and drop your recovery backup file"
@@ -826,7 +826,7 @@ msgstr ""
 
 #: src/components/plot/PlotHarvester.tsx:131
 msgid "Duplicate"
-msgstr ""
+msgstr "Duplicate"
 
 #: src/components/plot/card/PlotCardPlotsDuplicate.tsx:11
 msgid "Duplicate Plots"
