@@ -11,7 +11,6 @@ import { ServerStyleSheet, StyleSheetManager } from 'styled-components';
 import '../config/env';
 import handleSquirrelEvent from './handleSquirrelEvent';
 import loadConfig from '../util/loadConfig';
-import { getConfigRootDir } from '../util/loadConfig';
 import manageDaemonLifetime from '../util/manageDaemonLifetime';
 import chiaEnvironment from '../util/chiaEnvironment';
 import { i18n } from '../config/locales';
@@ -210,10 +209,8 @@ if (!handleSquirrelEvent()) {
       decidedToClose = false;
       const mainWindowState = windowStateKeeper({
         defaultWidth: 1200,
-        defaultHeight: 1200,
-        path: getConfigRootDir(NET),
+        defaultHeight: 1200
       });
-
       mainWindow = new BrowserWindow({
         x: mainWindowState.x,
         y: mainWindowState.y,
