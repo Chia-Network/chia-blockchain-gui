@@ -8,7 +8,7 @@ msgstr ""
 "Language: fi_FI\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-04-22 12:32\n"
+"PO-Revision-Date: 2022-06-17 17:33\n"
 "Last-Translator: \n"
 "Language-Team: Finnish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -384,6 +384,7 @@ msgstr "Ennen tarjouksen lähettämistä Keybase #{KeybaseChannelName} kanavalle
 #~ msgid "Can be backed up to mnemonic seed"
 #~ msgstr "Can be backed up to mnemonic seed"
 
+#: src/components/PasteMnemonic.tsx:78
 #: src/components/WalletRenameDialog.tsx:90
 #: src/components/offers/OfferDataEntryDialog.tsx:67
 #: src/components/offers/OfferShareDialog.tsx:428
@@ -590,7 +591,7 @@ msgstr "Vahvistettu korkeudessa"
 
 #: src/components/WalletStatusHeader.tsx:33
 msgid "Connected ({0})"
-msgstr ""
+msgstr "Yhdistetty ({0})"
 
 #: src/components/app/AppState.tsx:141
 #: src/components/app/AppState.tsx:145
@@ -989,7 +990,7 @@ msgstr "Raahaa ja pudota palautuksen varmuuskopiotiedosto"
 #~ msgid "Enter a strong passphrase to secure your keys:"
 #~ msgstr "Enter a strong passphrase to secure your keys:"
 
-#: src/components/WalletImport.tsx:84
+#: src/components/WalletImport.tsx:133
 msgid "Enter the 24 word mnemonic that you have saved in order to restore your Chia wallet."
 msgstr "Anna tallentamasi 24 muistisanaa palauttaaksesi Chia-lompakon."
 
@@ -1239,11 +1240,11 @@ msgstr "Siirry Offerpooliin"
 
 #: src/components/WalletReceiveAddress.tsx:39
 #~ msgid "HD or Hierarchical Deterministic keys are a type of public key/private key scheme where one private key can have a nearly infinite number of different public keys (and therefor wallet receive addresses) that will all ultimately come back to and be spendable by a single private key."
-#~ msgstr "HD- eli hierarkis-deterministiset avaimet ovat julkisen ja salaisen avaimen toteutus, jossa yhtä salaista avainta kohti voi olla lähes loputon määrä julkisia avaimia (ja lompakon osoitteita). Kaikki nämä osoitteet/avaimet osoittavat samaan salaiseen avaimeen."
+#~ msgstr ""
 
 #: src/components/WalletReceiveAddress.tsx:38
 msgid "HD or Hierarchical Deterministic keys are a type of public key/private key scheme where one private key can have a nearly infinite number of different public keys (and therefore wallet receive addresses) that will all ultimately come back to and be spendable by a single private key."
-msgstr ""
+msgstr "HD- eli hierarkis-deterministiset avaimet ovat julkisen ja salaisen avaimen toteutus, jossa yhtä salaista avainta kohti voi olla lähes loputon määrä julkisia avaimia (ja lompakon osoitteita). Kaikki nämä osoitteet/avaimet osoittavat samaan salaiseen avaimeen."
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:49
 #~ msgid "Harvester ID"
@@ -1321,11 +1322,12 @@ msgstr "Jos olet jo jakanut tarjouksesi tiedoston, saatat joutua lähettämään
 msgid "If you would like to speed up the transaction, please delete unconfirmed transactions and retry with a higher fee."
 msgstr "Jos haluat nopeuttaa transaktiota, poista vahvistamattomat transaktiot ja yritä uudelleen korkeammalla maksulla."
 
+#: src/components/PasteMnemonic.tsx:86
 #: src/components/offers/OfferDataEntryDialog.tsx:74
 msgid "Import"
 msgstr "Tuo"
 
-#: src/components/WalletImport.tsx:81
+#: src/components/WalletImport.tsx:130
 msgid "Import Wallet from Mnemonics"
 msgstr "Tuo Lompakko Muistisanoista"
 
@@ -1692,7 +1694,7 @@ msgstr "Uusi Lompakko"
 #~ msgstr "New passphrase is the same as your current passphrase"
 
 #: src/components/WalletAdd.tsx:107
-#: src/components/WalletImport.tsx:111
+#: src/components/WalletImport.tsx:164
 msgid "Next"
 msgstr "Seuraava"
 
@@ -1752,7 +1754,7 @@ msgstr "Ei Saatavilla"
 
 #: src/components/WalletStatusHeader.tsx:31
 msgid "Not Connected"
-msgstr ""
+msgstr "Ei yhdistetty"
 
 #: src/components/WalletStatus.tsx:39
 msgid "Not Synced"
@@ -1929,6 +1931,14 @@ msgstr "Edeltävä kolikko"
 #: src/components/settings/Settings.tsx:124
 #~ msgid "Passphrase support requires migrating your keys to a new keyring"
 #~ msgstr "Passphrase support requires migrating your keys to a new keyring"
+
+#: src/components/WalletImport.tsx:95
+msgid "Paste Mnemonic"
+msgstr "Liitä Muistisanat"
+
+#: src/components/PasteMnemonic.tsx:55
+msgid "Paste Mnemonic (24 words)"
+msgstr "Liitä Muistisanat (24)"
 
 #: src/components/offers/OfferDataEntryDialog.tsx:40
 #: src/components/offers/OfferImport.tsx:129
@@ -2326,7 +2336,7 @@ msgstr "Ole hyvä ja odota lompakon synkronointia"
 
 #: src/constants/WalletName.ts:32
 msgid "Pooling Wallet"
-msgstr "Poolauslompakko"
+msgstr "Poolilompakko"
 
 #: src/components/WalletConnections.tsx:33
 msgid "Port"
@@ -2849,7 +2859,6 @@ msgstr "Vakiolompakko"
 #~ msgid "State"
 #~ msgstr "State"
 
-#: src/components/WalletStatusCard.tsx:22
 #: src/components/offers/OfferManager.tsx:277
 #: src/components/offers/OfferViewer.tsx:177
 msgid "Status"
@@ -2909,11 +2918,11 @@ msgstr "Yhteenveto"
 
 #: src/components/WalletStatus.tsx:44
 msgid "Synced"
-msgstr "Synkrononissa"
+msgstr "Synkronissa"
 
 #: src/components/WalletStatus.tsx:49
 msgid "Syncing"
-msgstr "Synkronoi...."
+msgstr "Synkronoi"
 
 #: src/components/fullNode/card/FullNodeCardStatus.tsx:19
 #~ msgid "Syncing <0/>/<1/>"
@@ -3028,7 +3037,7 @@ msgstr "Varmuuskopiotunnusten määrä ei voi ylittää lisättyjen varmuuskopio
 
 #: src/components/WalletSendTransactionResultDialog.tsx:34
 msgid "The transaction could not be immediately included in the mempool because the specified fee is too low. The transaction will be retried periodically, and may be included in the mempool once fees are lower, or if space becomes available."
-msgstr ""
+msgstr "Tapahtumaa ei voitu välittömästi sisällyttää mempooliin, koska määritetty maksu on liian alhainen. Transaktiota yritetään uudelleen säännöllisesti, ja se voidaan sisällyttää mempooliin sen jälkeen, kun maksut ovat pienemmät tai kun tilaa tulee saataville."
 
 #: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:107
 #~ msgid "These are the instructions for how the farmer wants to get paid. By default this will be an XCH address, but it can be set to any string with a size of less than 1024 characters, so it can represent another blockchain or payment system identifier."
@@ -3059,7 +3068,7 @@ msgstr "Tämä käyttöoikeustoken on vahvistettu"
 
 #: src/components/WalletHistory.tsx:90
 msgid "This is not a valid address for sending funds to"
-msgstr ""
+msgstr "Tämä ei ole kelvollinen osoite varojen lähettämiseen"
 
 #: src/components/standard/WalletStandardCards.tsx:23
 msgid "This is the amount of Chia that you can currently use to make transactions. It does not include pending farming rewards, pending incoming transactions, and Chia that you have just spent but is not yet in the blockchain."
@@ -3082,8 +3091,12 @@ msgstr "Lähtevien ja saapuvien avointen transaktioiden summa (ei vielä lohkoke
 #~ msgstr "This is the time the block was created by the farmer, which is before it is finalized with a proof of time"
 
 #: src/components/standard/WalletStandardCards.tsx:16
-msgid "This is the total amount of chia in the blockchain at the current peak sub block that is controlled by your private keys. It includes frozen farming rewards, but not pending incoming and outgoing transactions."
-msgstr "Yksityisten avaimiesi hallinoimien Chiojen kokonaissumma lohkoketjussa. Sisälytää jäädytetyt palkkiot, mutta ei tulevia tai lähteviä transaktioita."
+msgid "This is the total amount of chia in the blockchain at the current peak block that is controlled by your private keys. It includes frozen farming rewards, but not pending incoming and outgoing transactions."
+msgstr "Yksityisten avaimiesi hallinoimien Chiojen kokonaissumma lohkoketjussa. Sisälytää jäädytetyt palkkiot, mutta ei keskeneräisiä tulevia tai lähteviä transaktioita."
+
+#: src/components/standard/WalletStandardCards.tsx:16
+#~ msgid "This is the total amount of chia in the blockchain at the current peak sub block that is controlled by your private keys. It includes frozen farming rewards, but not pending incoming and outgoing transactions."
+#~ msgstr "This is the total amount of chia in the blockchain at the current peak sub block that is controlled by your private keys. It includes frozen farming rewards, but not pending incoming and outgoing transactions."
 
 #: src/components/standard/WalletStandardCards.tsx:31
 msgid "This is the total balance + pending balance: it is what your balance will be after all pending transactions are confirmed."
@@ -3105,19 +3118,19 @@ msgstr "Nykyinen saldo + avoin saldo, eli tuleva saldo avointen transaktioiden j
 
 #: src/components/offers/OfferViewer.tsx:210
 msgid "This number reflects the number of nodes that the accepted SpendBundle has been sent to"
-msgstr ""
+msgstr "Tämä luku ilmaisee niiden solmujen määrän, joihin hyväksytty SpendBundle on lähetetty"
 
 #: src/components/offers/OfferSummary.tsx:132
 msgid "This offer has a fee included to help expedite the transaction when the offer is accepted."
-msgstr ""
+msgstr "Tarjoukseen sisälletty sisällytetty maksu auttaa nopeuttamaan tapahtumaa kun tarjous on hyväksytty."
 
 #: src/components/offers/OfferSummary.tsx:128
 msgid "This offer has a fee included to help expedite the transaction when the offer is accepted. You may specify an additional fee if you feel that the included fee is too small."
-msgstr ""
+msgstr "Tarjoukseen sisällytetty maksu auttaa nopeuttamaan transktiota, kun tarjous on hyväksytty. Voit määrittää lisämaksun, jos sinusta tuntuu, että kyseinen maksu on liian pieni."
 
 #: src/components/offers/OfferViewer.tsx:389
 msgid "This offer has completed successfully"
-msgstr ""
+msgstr "Tarjous on suoritettu onnistuneesti"
 
 #: src/components/offers/OfferViewer.tsx:385
 msgid "This offer is no longer valid"
@@ -3173,7 +3186,7 @@ msgstr "Osoitteeseen"
 
 #: src/components/cat/WalletCATCreateExisting.tsx:85
 msgid "Token and Asset Issuance Limitations"
-msgstr ""
+msgstr "Tokenin ja assettien liikkeeseenlaskun rajoitukset"
 
 #: src/components/cat/WalletCATCreateSimple.tsx:45
 msgid "Token has empty asset id"
@@ -3254,7 +3267,7 @@ msgstr "Kokonaissaldo"
 
 #: src/components/WalletSendTransactionResultDialog.tsx:27
 msgid "Transaction has successfully been sent to a full node and included in the mempool."
-msgstr ""
+msgstr "Transaktio on onnistuneesti lähetetty noodille ja sisällytetty mempooliin."
 
 #: src/components/WalletHistory.tsx:244
 msgid "Transactions"
@@ -3274,11 +3287,11 @@ msgstr "Transaktiot"
 
 #: src/components/offers/OfferShareDialog.tsx:669
 msgid "Unable to open Keybase. Install Keybase from https://keybase.io"
-msgstr ""
+msgstr "Ei voitu avata Keybase. Asenna Keybase osoitteesta https://keybase.io"
 
 #: src/components/offers/OfferShareDialog.tsx:592
 msgid "Unable to open browser. Install Keybase from https://keybase.io"
-msgstr ""
+msgstr "Selainta ei voi avata. Asenna Keybase osoitteesta https://keybase.io"
 
 #: src/components/plotNFT/PlotNFTCard.tsx:147
 #: src/components/pool/PoolOverview.tsx:63
@@ -3688,6 +3701,10 @@ msgstr "Tarjouksesi :"
 #~ msgid "Your passphrase has been updated"
 #~ msgstr "Your passphrase has been updated"
 
+#: src/components/WalletImport.tsx:71
+msgid "Your pasted list does not include 24 valid mnemonic words."
+msgstr "Liittämäsi lista ei sisällä 24 kelvollista muistisanaa."
+
 #: src/util/getDescriptiveError.ts:5
 #~ msgid "[Error 13] Permission denied. You are trying to access a file/directory without having the necessary permissions. Most likely one of the plot folders in your config.yaml has an issue."
 #~ msgstr "[Error 13] Permission denied. You are trying to access a file/directory without having the necessary permissions. Most likely one of the plot folders in your config.yaml has an issue."
@@ -3697,12 +3714,12 @@ msgstr "Tarjouksesi :"
 #~ msgstr "[Error 22] File not found. Most likely one of the plot folders in your config.yaml has an issue."
 
 #: src/components/WalletStatusCard.tsx:41
-msgid "connections:"
-msgstr "yhteydet:"
+#~ msgid "connections:"
+#~ msgstr "connections:"
 
 #: src/components/WalletStatusCard.tsx:33
-msgid "height:"
-msgstr "korkeus:"
+#~ msgid "height:"
+#~ msgstr "height:"
 
 #: src/components/_wallet_old/Wallets.tsx:61
 #~ msgid "not synced"
@@ -3717,16 +3734,16 @@ msgstr "korkeus:"
 #~ msgstr "p2_singleton_puzzle_hash is not defined"
 
 #: src/components/WalletStatusCard.tsx:27
-msgid "status:"
-msgstr "tila:"
+#~ msgid "status:"
+#~ msgstr "status:"
 
 #: src/components/WalletStatusCard.tsx:29
-msgid "synced"
-msgstr "synkronoitu"
+#~ msgid "synced"
+#~ msgstr "synced"
 
 #: src/components/WalletStatusCard.tsx:29
-msgid "syncing"
-msgstr "synkronoi"
+#~ msgid "syncing"
+#~ msgstr "syncing"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:89
 #~ msgid "thirdparty.plotter.disclaimer"

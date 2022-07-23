@@ -8,7 +8,7 @@ msgstr ""
 "Language: be_BY\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-04-20 18:13\n"
+"PO-Revision-Date: 2022-05-26 15:57\n"
 "Last-Translator: \n"
 "Language-Team: Belarusian\n"
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || n%10>=5 && n%10<=9 || n%100>=11 && n%100<=14 ? 2 : 3);\n"
@@ -83,7 +83,7 @@ msgstr "Аб праграме Chia Blockchain"
 #: src/components/plot/PlotHarvesterPlotsDuplicate.tsx:18
 #: src/components/plot/PlotHarvesterPlotsFailed.tsx:18
 #: src/components/plot/PlotHarvesterPlotsNotFound.tsx:18
-#: src/components/plot/PlotPlotting.tsx:29
+#: src/components/plot/PlotPlotting.tsx:32
 msgid "Action"
 msgstr "Дзеянне"
 
@@ -117,7 +117,7 @@ msgstr "Дадаць дзялянку ў чаргу"
 
 #: src/components/farm/FarmHero.tsx:40
 #: src/components/plot/PlotHeader.tsx:60
-#: src/components/plot/add/PlotAddForm.tsx:173
+#: src/components/plot/add/PlotAddForm.tsx:179
 #: src/components/plot/overview/PlotOverviewHero.tsx:51
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:229
 #: src/components/plotNFT/PlotNFTCard.tsx:268
@@ -292,7 +292,7 @@ msgstr "Агляд"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:74
 #~ msgid "But you are currently farming <0/>"
-#~ msgstr "Але зараз ідзе фермерства на <0/>"
+#~ msgstr ""
 
 #: src/components/trading/CreateOffer.jsx:162
 #: src/components/trading/TradesTable.tsx:46
@@ -333,7 +333,7 @@ msgstr "Скасаваць"
 
 #: src/components/plot/PlotsNotFound.tsx:36
 #~ msgid "Caution, deleting these plots will delete them forever. Check that the storage devices are properly connected."
-#~ msgstr "Увага! Выдаленне гэтых дзялянак выдаліць іх назаўсёды. Праверце, што вашы дыскі падключаны належным чынам."
+#~ msgstr ""
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:14
 msgid "Challenge"
@@ -546,8 +546,8 @@ msgstr "Дапамагчы ў распрацоўцы на GitHub"
 #~ msgstr "Copy to Clipboard"
 
 #: src/components/backup/BackupCreate.tsx:59
-#: src/components/plot/add/PlotAddForm.tsx:190
-#: src/components/plotNFT/select/PlotNFTSelectPool.tsx:181
+#: src/components/plot/add/PlotAddForm.tsx:196
+#: src/components/plotNFT/select/PlotNFTSelectPool.tsx:204
 msgid "Create"
 msgstr "Стварыць"
 
@@ -653,7 +653,7 @@ msgstr ""
 msgid "Creating Plot NFT for Self Pooling"
 msgstr ""
 
-#: src/components/plot/add/PlotAddForm.tsx:105
+#: src/components/plot/add/PlotAddForm.tsx:107
 msgid "Currency code is not defined"
 msgstr ""
 
@@ -782,7 +782,7 @@ msgstr ""
 msgid "Disable bitfield plotting"
 msgstr "Адключыць бітавае поле засявання"
 
-#: src/components/core/components/FormBackButton/FormBackButton.tsx:26
+#: src/components/plot/add/PlotAddNFT.tsx:46
 #~ msgid "Discard"
 #~ msgstr "Discard"
 
@@ -912,7 +912,7 @@ msgstr ""
 
 #: src/components/plot/PlotsFailed.tsx:34
 #~ msgid "Failed to open (invalid plots)"
-#~ msgstr "Не ўдалося адкрыць (дзялянкі з памылкамі)"
+#~ msgstr ""
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:97
 #~ msgid "Failed to remove passphrase: {error}"
@@ -1244,8 +1244,8 @@ msgstr ""
 
 #: src/components/plot/add/PlotAddNFT.tsx:64
 #: src/components/plot/add/PlotAddNFT.tsx:146
-#: src/components/plotNFT/select/PlotNFTSelectPool.tsx:131
-#: src/components/plotNFT/select/PlotNFTSelectPool.tsx:145
+#: src/components/plotNFT/select/PlotNFTSelectPool.tsx:150
+#: src/components/plotNFT/select/PlotNFTSelectPool.tsx:164
 #: src/components/pool/PoolHero.tsx:26
 msgid "Join a Pool"
 msgstr ""
@@ -1261,6 +1261,10 @@ msgstr ""
 #: src/components/plot/add/PlotAddNFT.tsx:138
 msgid "Join a pool and get more consistent XCH farming rewards. Create a plot NFT and assign your new plots to a group."
 msgstr ""
+
+#: src/components/plot/add/PlotAddNFT.tsx:52
+#~ msgid "Join apool and get consistent XCH farming rewards. The average returns are the same, but it is much less volatile."
+#~ msgstr ""
 
 #: src/components/app/AppSelectMode.tsx:146
 msgid "Join farming pools"
@@ -1572,7 +1576,7 @@ msgstr "Падлучэння няма"
 
 #: src/components/plot/PlotsNotFound.tsx:34
 #~ msgid "Not found Plots"
-#~ msgstr "Дзялянак не знойдзена"
+#~ msgstr ""
 
 #: src/components/block/FarmManageFarmingRewards.tsx:163
 #: src/components/farm/FarmManageFarmingRewards.tsx:174
@@ -1865,6 +1869,10 @@ msgstr "Ключ дзялянкі"
 #~ msgid "Plot NFT"
 #~ msgstr ""
 
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:319
+msgid "Plot NFT Pool Contract Address"
+msgstr ""
+
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:111
 #: src/components/plotNFT/PlotNFTChangePool.tsx:92
 msgid "Plot NFT with p2_singleton_puzzle_hash {plotNFTId} does not exists"
@@ -1921,7 +1929,7 @@ msgstr ""
 
 #: src/components/plot/overview/PlotOverviewHero.tsx:33
 #~ msgid "Plots are allocated space on your hard drive used to farm and earn Chia. <0>Learn more</0>"
-#~ msgstr "Дзялянкі — гэта вылучаная прастора на вашым жорсткім дыску, якая выкарыстоўваецца для фермерства і прыносіць даход у Chia. <0>Даведацца больш</0>"
+#~ msgstr ""
 
 #: src/components/plot/overview/PlotOverviewHero.tsx:33
 msgid "Plots are allocated space on your hard drive used to farm and earn Chia.<0>Learn more</0>"
@@ -1931,7 +1939,7 @@ msgstr ""
 msgid "Plotter"
 msgstr ""
 
-#: src/components/plot/PlotPlotting.tsx:45
+#: src/components/plot/PlotPlotting.tsx:49
 #: src/components/plot/queue/PlotQueueIndicator.tsx:34
 msgid "Plotting"
 msgstr "Засяванне"
@@ -2020,7 +2028,7 @@ msgstr ""
 msgid "Pool Reward Amount"
 msgstr "Сума ўзнагароды пула"
 
-#: src/components/plotNFT/select/PlotNFTSelectPool.tsx:37
+#: src/components/plotNFT/select/PlotNFTSelectPool.tsx:39
 msgid "Pool does not provide relativeLockHeight."
 msgstr ""
 
@@ -2028,7 +2036,7 @@ msgstr ""
 #~ msgid "Pool does not provide relative_lock_height."
 #~ msgstr "Pool does not provide relative_lock_height."
 
-#: src/components/plotNFT/select/PlotNFTSelectPool.tsx:34
+#: src/components/plotNFT/select/PlotNFTSelectPool.tsx:36
 msgid "Pool does not provide targetPuzzleHash."
 msgstr ""
 
@@ -2122,14 +2130,14 @@ msgstr ""
 #~ msgid "Puzzlehash"
 #~ msgstr "Puzzlehash"
 
-#: src/components/plot/PlotPlotting.tsx:23
+#: src/components/plot/PlotPlotting.tsx:24
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:204
 msgid "Queue Name"
 msgstr "Назва чаргі"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:69
 #~ msgid "Queue name"
-#~ msgstr "Назва чаргі"
+#~ msgstr "Queue Name"
 
 #: src/components/plot/queue/PlotQueueIndicator.tsx:35
 msgid "Queued"
@@ -2498,7 +2506,7 @@ msgstr "Стан"
 #: src/components/fullNode/card/FullNodeCardStatus.tsx:62
 #: src/components/fullNode/card/FullNodeCardStatus.tsx:70
 #: src/components/plot/PlotHarvesterPlots.tsx:75
-#: src/components/plot/PlotPlotting.tsx:26
+#: src/components/plot/PlotPlotting.tsx:28
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:112
 #: src/components/plotNFT/PlotNFTCard.tsx:143
 msgid "Status"
@@ -2658,8 +2666,12 @@ msgid "The seed used to create the plot. This depends on the pool pk and plot pk
 msgstr "Зерне, выкарыстанае для стварэння дзялянкі. Залежыць ад адкрытага ключа пула і адкрытага ключа дзялянкі."
 
 #: src/components/block/Block.jsx:206
-msgid "The total number of VDF (verifiable delay function) or proof of time iterations on the whole chain up to this sub block."
-msgstr "Агульная колькасць VDF (ад англ. Verifiable Delay Function — спраўджальная функцыя затрымкі) або ітэрацый пацвярджэння часам (proof of time) па ўсім блокчэйне да гэтага падблока."
+msgid "The total number of VDF (verifiable delay function) or proof of time iterations on the whole chain up to this block."
+msgstr ""
+
+#: src/components/block/Block.jsx:206
+#~ msgid "The total number of VDF (verifiable delay function) or proof of time iterations on the whole chain up to this sub block."
+#~ msgstr "The total number of VDF (verifiable delay function) or proof of time iterations on the whole chain up to this sub block."
 
 #: src/components/block/Block.jsx:222
 msgid "The total number of VDF (verifiable delay function) or proof of time iterations on this block."
@@ -2788,6 +2800,10 @@ msgstr "Метка часу"
 msgid "Tokens"
 msgstr ""
 
+#: src/components/plotNFT/select/PlotNFTSelectPool.tsx:118
+msgid "Too Many Plot NFTs"
+msgstr ""
+
 #: src/components/_wallet_old/card/WalletCardTotalBalance.tsx:32
 #: src/components/_wallet_old/coloured/WalletColoured.tsx:379
 #: src/components/_wallet_old/rateLimited/WalletRateLimited.jsx:543
@@ -2812,7 +2828,7 @@ msgstr "Агульны аб'ём сеткі"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:146
 #~ msgid "Total Plot Size:"
-#~ msgstr "Агульны памер дзялянак:"
+#~ msgstr ""
 
 #: src/components/plot/card/PlotCardTotalPlots.tsx:11
 msgid "Total Plots"
@@ -2902,7 +2918,7 @@ msgstr "Незавершаны"
 msgid "Unlock Keyring"
 msgstr ""
 
-#: src/components/core/components/FormBackButton/FormBackButton.tsx:25
+#: src/components/plot/add/PlotAddNFT.tsx:45
 #~ msgid "Unsaved Changes"
 #~ msgstr "Unsaved Changes"
 
@@ -3043,7 +3059,7 @@ msgstr ""
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:139
 #~ msgid "Want to earn more Chia? Add more plots to your farm."
-#~ msgstr "Хочацца атрымліваць большы даход у Chia? Дадайце больш дзялянак на сваю ферму."
+#~ msgstr ""
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:87
 msgid "Want to have a delay before the next plot starts?"
@@ -3071,8 +3087,12 @@ msgid "Weight"
 msgstr "Вага"
 
 #: src/components/block/Block.jsx:186
-msgid "Weight is the total added difficulty of all sub blocks up to and including this one"
-msgstr "Вага — гэта агульная дабаўленая складанасць усіх падблокаў, у тым ліку гэтага"
+msgid "Weight is the total added difficulty of all blocks up to and including this one"
+msgstr ""
+
+#: src/components/block/Block.jsx:186
+#~ msgid "Weight is the total added difficulty of all sub blocks up to and including this one"
+#~ msgstr "Weight is the total added difficulty of all sub blocks up to and including this one"
 
 #: src/components/_selectKey_old/SelectKey.tsx:183
 #~ msgid "Welcome to Chia. Please log in with an existing key, or create a new key."
@@ -3098,6 +3118,22 @@ msgstr "Без камісійных"
 #: src/electron/main.tsx:264
 msgid "Yes"
 msgstr "Так"
+
+#: src/components/plotNFT/select/PlotNFTSelectPool.tsx:177
+#~ msgid "You Already Have 50 or more Plot NFT's."
+#~ msgstr ""
+
+#: src/components/plotNFT/select/PlotNFTSelectPool.tsx:177
+msgid "You already have 50 or more Plot NFTs."
+msgstr ""
+
+#: src/components/plotNFT/select/PlotNFTSelectPool.tsx:121
+msgid "You already have more than 10 Plot NFTs. Click OK if you're sure you want to create a new one."
+msgstr ""
+
+#: src/components/plotNFT/select/PlotNFTSelectPool.tsx:120
+#~ msgid "You already have more then 10 PlotNFT's, you really shouldn't make more."
+#~ msgstr ""
 
 #: src/hooks/useAbsorbRewards.tsx:27
 #: src/hooks/useJoinPool.tsx:36
@@ -3128,7 +3164,7 @@ msgstr ""
 #~ msgid "You do not need to be synched or connected to plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
 #~ msgstr "You do not need to be synced or connected to plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
 
-#: src/components/core/components/FormBackButton/FormBackButton.tsx:29
+#: src/components/plot/add/PlotAddNFT.tsx:49
 #~ msgid "You have made changes. Do you want to discard them?"
 #~ msgstr "You have made changes. Do you want to discard them?"
 
@@ -3162,7 +3198,7 @@ msgstr ""
 
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:142
 #~ msgid "You will recieve <0/> to {0}"
-#~ msgstr ""
+#~ msgstr "You will receive <0/> to {0}"
 
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:150
 #: src/hooks/useAbsorbRewards.tsx:51
@@ -3247,7 +3283,7 @@ msgstr "[Памылка 22] Файл не знойдзены. Хутчэй за 
 #~ msgid "not synced"
 #~ msgstr "not synced"
 
-#: src/components/plot/add/PlotAddForm.tsx:123
+#: src/components/plot/add/PlotAddForm.tsx:125
 msgid "p2SingletonPuzzleHash is not defined"
 msgstr ""
 
