@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh_CN\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-07-01 05:59\n"
+"PO-Revision-Date: 2022-07-25 18:34\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -412,7 +412,7 @@ msgstr "在区块链上取消"
 #: src/components/WalletSend.tsx:101
 #: src/components/cat/WalletCATSend.tsx:119
 msgid "Cannot send chia to coloured address. Please enter a chia address."
-msgstr ""
+msgstr "错误: 无法发送奇亚到上色的地址. 请输入一个奇亚钱包地址."
 
 #: src/components/plot/PlotsNotFound.tsx:36
 #~ msgid "Caution, deleting these plots will delete them forever. Check that the storage devices are properly connected."
