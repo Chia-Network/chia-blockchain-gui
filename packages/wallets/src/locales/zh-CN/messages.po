@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh_CN\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-07-25 18:34\n"
+"PO-Revision-Date: 2022-07-25 20:02\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -453,7 +453,7 @@ msgstr "错误: 无法发送奇亚到上色的地址. 请输入一个奇亚钱�
 #: src/components/create/WalletCreateList.tsx:32
 #: src/constants/WalletName.ts:23
 msgid "Chia Asset Token"
-msgstr ""
+msgstr "奇亚资产代币"
 
 #: src/electron/main.tsx:369
 #~ msgid "Chia Blockchain Wiki"
@@ -723,7 +723,7 @@ msgstr "创建报价"
 
 #: src/components/offers/OfferManager.tsx:512
 msgid "Create an offer to exchange XCH or other tokens. View an offer to inspect and accept an offer made by another party."
-msgstr ""
+msgstr "创建一个交换XCH 或其他代币的报价。通过查看一个报价来检查和接受另一方的报价。"
 
 #: src/components/cat/WalletCATCreateExisting.tsx:75
 msgid "Create custom CAT Wallet"
@@ -1010,7 +1010,7 @@ msgstr "请输入你保存的24个助记词来恢复奇亚钱包"
 
 #: src/components/cat/WalletCATSend.tsx:129
 msgid "Error the entered address appears to be for a different colour."
-msgstr ""
+msgstr "错误，输入的地址似乎有不同的颜色。"
 
 #: src/components/_wallet_old/standard/WalletStandard.tsx:450
 #~ msgid "Error: Cannot send chia to coloured address. Please enter a chia address."
@@ -1852,7 +1852,7 @@ msgstr "您已接受的报价"
 
 #: src/components/offers/OfferManager.tsx:529
 msgid "Offers you created"
-msgstr ""
+msgstr "您创建的报价"
 
 #: src/components/WalletSend.tsx:139
 #: src/components/cat/WalletCATSend.tsx:180
@@ -1861,11 +1861,11 @@ msgstr "每个交易区块平均打包时间为一分钟。通常您的交易将
 
 #: src/components/offers/OfferViewer.tsx:323
 msgid "Once you accept this offer, you will not be able to cancel the transaction. Are you sure you want to accept this offer?"
-msgstr ""
+msgstr "一旦您接受此报价，您将无法取消交易。您确定要接受此报价吗？"
 
 #: src/components/offers/OfferViewer.tsx:300
 msgid "One or more unknown tokens are being offered. Please verify that the asset IDs of the tokens listed below match the asset IDs of the tokens you expect to receive."
-msgstr ""
+msgstr "一个或多个未知的代币正被报价。 请验证下面列出的代币的资产ID与您预期收到的代币的资产ID相匹配。"
 
 #: src/components/did/WalletDIDRecovery.tsx:33
 msgid "Only one backup file is allowed."
@@ -1939,7 +1939,7 @@ msgstr "粘贴助记符（24个词）"
 #: src/components/offers/OfferDataEntryDialog.tsx:40
 #: src/components/offers/OfferImport.tsx:129
 msgid "Paste Offer Data"
-msgstr ""
+msgstr "粘贴报价数据"
 
 #: src/components/plotNFT/PlotNFTCard.tsx:358
 #~ msgid "Payout Address"
@@ -2022,7 +2022,7 @@ msgstr "请输入有效的 CAT 名称"
 
 #: src/components/cat/WalletCATCreateExistingSimple.tsx:41
 msgid "Please enter a valid asset id"
-msgstr ""
+msgstr "请输入一个有效的资产ID。"
 
 #: src/components/create/createRLAdmin.jsx:139
 msgid "Please enter a valid initial coin amount"
@@ -2105,7 +2105,7 @@ msgstr "同步完成后才能发起交易。"
 
 #: src/components/offers/OfferEditor.tsx:109
 msgid "Please select an asset for each row"
-msgstr ""
+msgstr "请为每行选择一个资产。"
 
 #: src/components/did/WalletDIDRecovery.tsx:54
 msgid "Please select backup file first"
@@ -2399,7 +2399,7 @@ msgstr "公钥"
 
 #: src/components/offers/OfferViewer.tsx:272
 msgid "Puzzle Hash"
-msgstr ""
+msgstr "谜题哈希"
 
 #: src/components/cat/WalletDID.tsx:1002
 #: src/components/did/WalletDID.tsx:1002
@@ -2461,7 +2461,7 @@ msgstr "接收地址"
 
 #: src/components/cat/WalletCATSend.tsx:123
 msgid "Recipient address is not a coloured wallet address. Please enter a coloured wallet address"
-msgstr ""
+msgstr "收件人地址不是彩色钱包地址。请输入一个彩色钱包地址"
 
 #: src/components/cat/WalletCATCreateExisting.tsx:104
 #: src/components/cat/WalletDID.tsx:463
@@ -2491,7 +2491,7 @@ msgstr "恢复钱包"
 
 #: src/constants/WalletName.ts:26
 msgid "Recoverable Wallet"
-msgstr ""
+msgstr "可恢复的钱包"
 
 #: src/components/cat/WalletCATSelect.tsx:39
 msgid "Recovery Wallet"
@@ -2555,7 +2555,7 @@ msgstr "重置"
 
 #: src/components/WalletHistory.tsx:119
 msgid "Retire"
-msgstr ""
+msgstr "废弃"
 
 #: src/components/fullNode/FullNode.jsx:57
 #: src/components/fullNode/FullNodeConnections.jsx:107
@@ -2748,11 +2748,11 @@ msgstr "在  Keybase 分享"
 
 #: src/components/offers/OfferShareDialog.tsx:396
 msgid "Share on OfferBin"
-msgstr ""
+msgstr "分享到OfferBin"
 
 #: src/components/offers/OfferShareDialog.tsx:885
 msgid "Share on offerpool"
-msgstr ""
+msgstr "分享到Offerpool"
 
 #: src/components/core/components/AdvancedOptions/AdvancedOptions.tsx:74
 #~ msgid "Show Advanced Options"
@@ -2760,7 +2760,7 @@ msgstr ""
 
 #: src/components/cat/WalletCAT.tsx:105
 msgid "Show Asset Id"
-msgstr ""
+msgstr "显示资产ID"
 
 #: src/components/offers/OfferManager.tsx:379
 msgid "Show Details"
@@ -3033,7 +3033,7 @@ msgstr "恢复所需的备份 ID 的数量不能超过添加的备份ID数量。
 
 #: src/components/WalletSendTransactionResultDialog.tsx:34
 msgid "The transaction could not be immediately included in the mempool because the specified fee is too low. The transaction will be retried periodically, and may be included in the mempool once fees are lower, or if space becomes available."
-msgstr ""
+msgstr "由于指定的费用太低，无法立即将交易记录入内存池。 交易将定期重试，一旦费用降低，或有空位，交易将被纳入内存池。"
 
 #: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:107
 #~ msgid "These are the instructions for how the farmer wants to get paid. By default this will be an XCH address, but it can be set to any string with a size of less than 1024 characters, so it can represent another blockchain or payment system identifier."
@@ -3045,7 +3045,7 @@ msgstr ""
 
 #: src/components/WalletBadge.tsx:26
 msgid "This access token is verified"
-msgstr ""
+msgstr "通行币已被验证"
 
 #: src/components/plot/PlotAddDirectoryDialog.tsx:89
 #~ msgid "This allows you to add a directory that has plots in it. If you have not created any plots, go to the plotting screen."
@@ -3064,7 +3064,7 @@ msgstr ""
 
 #: src/components/WalletHistory.tsx:90
 msgid "This is not a valid address for sending funds to"
-msgstr ""
+msgstr "这不是一个有效的可发送资金进入的地址"
 
 #: src/components/standard/WalletStandardCards.tsx:23
 msgid "This is the amount of Chia that you can currently use to make transactions. It does not include pending farming rewards, pending incoming transactions, and Chia that you have just spent but is not yet in the blockchain."
@@ -3114,23 +3114,23 @@ msgstr "目前结余+待处理的结余: 在链上确认完成后就是你的最
 
 #: src/components/offers/OfferViewer.tsx:210
 msgid "This number reflects the number of nodes that the accepted SpendBundle has been sent to"
-msgstr ""
+msgstr "此数字展示，已发送到的接受 SpendBundle的节点数量"
 
 #: src/components/offers/OfferSummary.tsx:132
 msgid "This offer has a fee included to help expedite the transaction when the offer is accepted."
-msgstr ""
+msgstr "该报价包括一笔帮助在接受报价时加快交易速度的费用"
 
 #: src/components/offers/OfferSummary.tsx:128
 msgid "This offer has a fee included to help expedite the transaction when the offer is accepted. You may specify an additional fee if you feel that the included fee is too small."
-msgstr ""
+msgstr "该报价包括一笔帮助在接受报价时加快交易速度的费用。 如果您觉得包含的费用太少，您可以指定额外的费用。"
 
 #: src/components/offers/OfferViewer.tsx:389
 msgid "This offer has completed successfully"
-msgstr ""
+msgstr "此报价已成功完成"
 
 #: src/components/offers/OfferViewer.tsx:385
 msgid "This offer is no longer valid"
-msgstr ""
+msgstr "此报价不再有效"
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:307
 #~ msgid "This plot NFT is assigned to a different key. You can still create plots for this plot NFT, but you can not make changes."
@@ -3182,7 +3182,7 @@ msgstr "目标地址"
 
 #: src/components/cat/WalletCATCreateExisting.tsx:85
 msgid "Token and Asset Issuance Limitations"
-msgstr ""
+msgstr "代币和资产发行限制"
 
 #: src/components/cat/WalletCATCreateSimple.tsx:45
 msgid "Token has empty asset id"
