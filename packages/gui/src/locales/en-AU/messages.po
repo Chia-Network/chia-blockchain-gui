@@ -8,7 +8,7 @@ msgstr ""
 "Language: en_AU\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-07-23 05:31\n"
+"PO-Revision-Date: 2022-07-26 10:21\n"
 "Last-Translator: \n"
 "Language-Team: English, Australia\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -830,21 +830,21 @@ msgstr "Duplicate"
 
 #: src/components/plot/card/PlotCardPlotsDuplicate.tsx:11
 msgid "Duplicate Plots"
-msgstr ""
+msgstr "Duplicate Plots"
 
 #: src/electron/main.tsx:348
 msgid "Edit"
-msgstr ""
+msgstr "Edit"
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:258
 #: src/components/plotNFT/PlotNFTCard.tsx:297
 #: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:80
 msgid "Edit Payout Instructions"
-msgstr ""
+msgstr "Edit Payout Instructions"
 
 #: src/electron/main.tsx:402
 msgid "Enable Simulator"
-msgstr ""
+msgstr "Enable Simulator"
 
 #: src/components/wallet/EnterPassphrasePrompt.tsx:111
 #~ msgid "Enter Passphrase"
@@ -852,11 +852,11 @@ msgstr ""
 
 #: src/components/app/AppKeyringMigrator.tsx:128
 msgid "Enter a strong passphrase and click Migrate Keys to secure your keys"
-msgstr ""
+msgstr "Enter a strong passphrase and click Migrate Keys to secure your keys"
 
 #: src/components/settings/SetPassphrasePrompt.tsx:139
 msgid "Enter a strong passphrase to secure your keys:"
-msgstr ""
+msgstr "Enter a strong passphrase to secure your keys:"
 
 #: src/components/_wallet_old/WalletImport.tsx:146
 #~ msgid "Enter the 24 word mnemonic that you have saved in order to restore your Chia wallet."
@@ -864,7 +864,7 @@ msgstr ""
 
 #: src/components/settings/RemovePassphrasePrompt.tsx:102
 msgid "Enter your passphrase:"
-msgstr ""
+msgstr "Enter your passphrase:"
 
 #: src/components/farm/FarmerStatus.tsx:21
 #: src/components/farm/FarmerStatus.tsx:22
@@ -882,7 +882,7 @@ msgstr "Error, she's knacked"
 
 #: src/components/fullNode/card/FullNodeEstimatedNetworkSpace.tsx:14
 msgid "Estimated Network Space"
-msgstr ""
+msgstr "Estimated Network Space"
 
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:47
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:55
@@ -895,11 +895,11 @@ msgstr "You COULD win a block in this time"
 
 #: src/components/fullNode/card/FullNodeEstimatedNetworkSpace.tsx:16
 msgid "Estimated sum of all the plotted disk space of all farmers in the network"
-msgstr ""
+msgstr "Estimated sum of all the plotted disk space of all farmers in the network"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:279
 msgid "Exclude final directory"
-msgstr ""
+msgstr "Exclude final directory"
 
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:32
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:34
