@@ -21,9 +21,10 @@ import { ServerStyleSheet, StyleSheetManager } from 'styled-components';
 // handle setupevents as quickly as possible
 import '../config/env';
 import handleSquirrelEvent from './handleSquirrelEvent';
-import loadConfig, { getConfigRootDir } from '../util/loadConfig';
+import loadConfig from '../util/loadConfig';
 import manageDaemonLifetime from '../util/manageDaemonLifetime';
 import chiaEnvironment from '../util/chiaEnvironment';
+import { setUserDataDir } from '../util/userData';
 import { i18n } from '../config/locales';
 import About from '../components/about/About';
 import packageJson from '../../package.json';
@@ -35,14 +36,12 @@ app.disableHardwareAcceleration();
 
 initialize();
 
-const defaultUserDataPath = app.getPath('userData');
-const userDataPathRoot = getConfigRootDir();
-const userDataPath = path.join(userDataPathRoot, 'gui');
 const appIcon = nativeImage.createFromPath(path.join(__dirname, AppIcon));
 let isSimulator = process.env.LOCAL_TEST === 'true';
 const isDev = process.env.NODE_ENV === 'development';
 
-app.setPath('userData', userDataPath);
+// Set the userData directory to its location within CHIA_ROOT/gui
+setUserDataDir();
 
 function renderAbout(): string {
   const sheet = new ServerStyleSheet();
