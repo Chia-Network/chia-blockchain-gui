@@ -9,7 +9,14 @@ import {
 } from '@chia/core';
 import type { NFTInfo } from '@chia/api';
 import { useGetNFTWallets } from '@chia/api-react';
-import { Box, Grid, Typography, IconButton, Dialog, Paper } from '@mui/material';
+import {
+  Box,
+  Grid,
+  Typography,
+  IconButton,
+  Dialog,
+  Paper,
+} from '@mui/material';
 import { MoreVert } from '@mui/icons-material';
 import { useParams } from 'react-router-dom';
 import NFTPreview from '../NFTPreview';
@@ -18,12 +25,15 @@ import NFTRankings from '../NFTRankings';
 import NFTDetails from '../NFTDetails';
 import useFetchNFTs from '../../../hooks/useFetchNFTs';
 import useNFTMetadata from '../../../hooks/useNFTMetadata';
-import NFTContextualActions, { NFTContextualActionTypes } from '../NFTContextualActions';
+import NFTContextualActions, {
+  NFTContextualActionTypes,
+} from '../NFTContextualActions';
 import NFTPreviewDialog from '../NFTPreviewDialog';
 
 export default function NFTDetail() {
   const { nftId } = useParams();
-  const { wallets: nftWallets, isLoading: isLoadingWallets } = useGetNFTWallets();
+  const { wallets: nftWallets, isLoading: isLoadingWallets } =
+    useGetNFTWallets();
   const openDialog = useOpenDialog();
   const { nfts, isLoading: isLoadingNFTs } = useFetchNFTs(
     nftWallets.map((wallet: Wallet) => wallet.id),
@@ -50,8 +60,18 @@ export default function NFTDetail() {
 
   return (
     <Flex flexDirection="column" gap={2}>
-      <Flex sx={{ bgcolor: 'background.paper' }} justifyContent="center" py={{ xs: 2, sm: 3, md: 7 }} px={3}>
-        <Flex position="relative" maxWidth="1200px" width="100%" justifyContent="center">
+      <Flex
+        sx={{ bgcolor: 'background.paper' }}
+        justifyContent="center"
+        py={{ xs: 2, sm: 3, md: 7 }}
+        px={3}
+      >
+        <Flex
+          position="relative"
+          maxWidth="1200px"
+          width="100%"
+          justifyContent="center"
+        >
           <Box
             overflow="hidden"
             alignItems="center"
@@ -62,8 +82,13 @@ export default function NFTDetail() {
             position="relative"
           >
             {nft && (
-              <Box onClick={handleShowFullScreen} sx={{ cursor: "pointer" }}>
-                <NFTPreview nft={nft} width="100%" height="412px" fit="contain" />
+              <Box onClick={handleShowFullScreen} sx={{ cursor: 'pointer' }}>
+                <NFTPreview
+                  nft={nft}
+                  width="100%"
+                  height="412px"
+                  fit="contain"
+                />
               </Box>
             )}
           </Box>
@@ -73,7 +98,14 @@ export default function NFTDetail() {
         </Flex>
       </Flex>
       <LayoutDashboardSub>
-        <Flex flexDirection="column" gap={2} maxWidth="1200px" width="100%" alignSelf="center" mb={3}>
+        <Flex
+          flexDirection="column"
+          gap={2}
+          maxWidth="1200px"
+          width="100%"
+          alignSelf="center"
+          mb={3}
+        >
           <Flex alignItems="center" justifyContent="space-between">
             <Typography variant="h4" overflow="hidden">
               {metadata?.name ?? <Trans>Title Not Available</Trans>}
@@ -81,11 +113,11 @@ export default function NFTDetail() {
             <NFTContextualActions
               selection={{ items: [nft] }}
               availableActions={NFTContextualActionTypes.All}
-              toggle={(
+              toggle={
                 <IconButton>
                   <MoreVert />
                 </IconButton>
-              )}
+              }
             />
           </Flex>
 
@@ -108,7 +140,9 @@ export default function NFTDetail() {
                     </Typography>
 
                     <Typography overflow="hidden">
-                      {metadata?.collection?.name ?? <Trans>Not Available</Trans>}
+                      {metadata?.collection?.name ?? (
+                        <Trans>Not Available</Trans>
+                      )}
                     </Typography>
                   </Flex>
                 )}
