@@ -8,7 +8,7 @@ msgstr ""
 "Language: tr_TR\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-05-26 15:58\n"
+"PO-Revision-Date: 2022-07-27 16:20\n"
 "Last-Translator: \n"
 "Language-Team: Turkish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -659,7 +659,7 @@ msgstr "TEHLİKE: Özel anahtarı geri döndürülemeyecek şekilde sil"
 
 #: src/components/Settings/SettingsApp.tsx:83
 msgid "Dark"
-msgstr ""
+msgstr "Koyu"
 
 #: src/components/_wallet_old/WalletHistory.tsx:46
 #: src/components/farm/FarmLastAttemptedProof.tsx:31
@@ -832,7 +832,7 @@ msgstr "Hata"
 
 #: src/components/ErrorBoundary/ErrorBoundary.tsx:78
 msgid "Error:"
-msgstr ""
+msgstr "Hata:"
 
 #: src/components/_wallet_old/standard/WalletStandard.tsx:450
 #~ msgid "Error: Cannot send chia to coloured address. Please enter a chia address."
@@ -866,7 +866,7 @@ msgstr ""
 
 #: src/components/LayoutMain/LayoutFooter.tsx:50
 msgid "FAQ"
-msgstr ""
+msgstr "SSS"
 
 #: src/components/plot/PlotsFailed.tsx:34
 #~ msgid "Failed to open (invalid plots)"
@@ -1206,7 +1206,7 @@ msgstr "Yanlış değer"
 
 #: src/components/Settings/SettingsApp.tsx:90
 msgid "Language"
-msgstr ""
+msgstr "Dil"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:45
 #~ msgid "Last Attempted Proof"
@@ -1369,7 +1369,7 @@ msgstr ""
 
 #: src/components/Settings/SettingsApp.tsx:62
 msgid "Mode"
-msgstr ""
+msgstr "Mod"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:118
 #~ msgid "More memory slightly increases speed"
@@ -1518,7 +1518,7 @@ msgstr "Bağlantı Yok"
 
 #: src/components/ConfirmDialog/ConfirmDialog.tsx:106
 msgid "OK"
-msgstr ""
+msgstr "Tamam"
 
 #: src/components/trading/ViewOffer.jsx:67
 #~ msgid "Offer"
@@ -2238,7 +2238,7 @@ msgstr "Anahtar Seç"
 
 #: src/components/Dropdown/Dropdown.tsx:85
 msgid "Select..."
-msgstr ""
+msgstr "Seç..."
 
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:72
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:90
@@ -2297,7 +2297,7 @@ msgstr ""
 #: src/components/Settings/Settings.tsx:48
 #: src/components/Settings/Settings.tsx:58
 msgid "Settings"
-msgstr ""
+msgstr "Ayarlar"
 
 #: src/components/AdvancedOptions/AdvancedOptions.tsx:74
 msgid "Show Advanced Options"
@@ -2762,7 +2762,7 @@ msgstr ""
 
 #: src/screens/SelectKey/SelectKey.tsx:123
 msgid "Try Again"
-msgstr ""
+msgstr "Tekrar Dene"
 
 #: src/components/_wallet_old/WalletHistory.tsx:25
 #~ msgid "Type"
@@ -2883,7 +2883,7 @@ msgstr ""
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:98
 #: src/components/Settings/SettingsApp.tsx:69
 msgid "Wallet"
-msgstr ""
+msgstr "Cüzdan"
 
 #: src/components/_wallet_old/standard/WalletStandard.tsx:649
 #: src/components/pool/PoolOverview.tsx:182
@@ -3214,3 +3214,4 @@ msgstr ""
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:118
 #~ msgid "{warning}"
 #~ msgstr "{warning}"
+
