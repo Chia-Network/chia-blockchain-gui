@@ -62,10 +62,26 @@ export function migrateUserDataIfNecessary() {
 
 function createIntermediateDirectories(pathToCreate: string) {
   console.info(`Creating intermediate directories for ${pathToCreate}`);
-  const pathParts = pathToCreate.split(path.sep);
-  let currentPath = path.sep;
-  for (let i = 0; i < pathParts.length; i++) {
-    currentPath = path.join(currentPath, pathParts[i]);
+  const pathParts: string[] = pathToCreate.split(path.sep);
+
+  let currentPath = '';
+  while (pathParts.length > 0) {
+    let pathPart: string | undefined = pathParts.shift();
+
+    if (pathPart === undefined) {
+      continue;
+    }
+
+    if (pathPart === '') {
+      pathPart = path.sep;
+    }
+
+    if (currentPath) {
+      currentPath = path.join(currentPath, pathPart);
+    } else {
+      currentPath = pathPart;
+    }
+
     if (!fs.existsSync(currentPath)) {
       fs.mkdirSync(currentPath);
     }
