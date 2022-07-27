@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh_TW\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-06-18 14:21\n"
+"PO-Revision-Date: 2022-07-27 16:21\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -83,7 +83,7 @@ msgstr "-"
 #: src/components/offers/OfferViewer.tsx:289
 #: src/components/offers/OfferViewer.tsx:290
 #~ msgid "Accept Offer"
-#~ msgstr "接受報價"
+#~ msgstr "Accept Offer"
 
 #: src/components/trading/TradingOverview.jsx:227
 #~ msgid "Accepted at time:"
@@ -91,7 +91,7 @@ msgstr "-"
 
 #: src/components/offers/OfferViewer.tsx:194
 #~ msgid "Accepted on Date"
-#~ msgstr "接受日期"
+#~ msgstr "Accepted on Date"
 
 #: src/components/plot/PlotsFailed.tsx:18
 #: src/components/plot/PlotsNotFound.tsx:18
@@ -115,7 +115,7 @@ msgstr "增加備份 ID"
 
 #: src/components/offers/OfferAssetSelector.tsx:127
 #~ msgid "Add CAT wallets to have more options"
-#~ msgstr "添加 CAT 錢包以獲得更多選項"
+#~ msgstr "Add CAT wallets to have more options"
 
 #: src/components/hero/WalletHeroAdd.tsx:99
 msgid "Add Custom Token"
@@ -210,7 +210,7 @@ msgstr "初始代幣數量"
 
 #: src/components/offers/OfferEditor.tsx:115
 #~ msgid "Amount exceeds spendable balance"
-#~ msgstr "超出可使用的餘額"
+#~ msgstr "Amount exceeds spendable balance"
 
 #: src/components/did/WalletDIDCreate.tsx:61
 msgid "Amount must be an even amount."
@@ -218,7 +218,7 @@ msgstr "金額必須是偶數"
 
 #: src/components/offers/OfferManager.tsx:100
 #~ msgid "Are you sure you want to cancel your offer?"
-#~ msgstr "你確定想要取消你的報價單?"
+#~ msgstr "Are you sure you want to cancel your offer?"
 
 #: src/components/plot/PlotAction.tsx:29
 #: src/components/plot/queue/PlotQueueActions.tsx:47
@@ -253,7 +253,7 @@ msgstr "資產 ID"
 
 #: src/components/offers/OfferAssetSelector.tsx:117
 #~ msgid "Asset Type"
-#~ msgstr "資產類型"
+#~ msgstr "Asset Type"
 
 #: src/constants/WalletName.ts:11
 msgid "Atomic Swap Wallet"
@@ -273,7 +273,7 @@ msgstr "授權收款人錢包"
 
 #: src/components/offers/OfferViewer.tsx:485
 #~ msgid "Back"
-#~ msgstr "返回"
+#~ msgstr "Back"
 
 #: src/components/backup/BackupCreate.tsx:45
 #~ msgid "Backup file is used to restore smart wallets."
@@ -291,7 +291,7 @@ msgstr "餘額"
 
 #: src/components/offers/OfferShareDialog.tsx:759
 #~ msgid "Before posting an offer in Keybase to the #{KeybaseChannelName} channel, you must first join the {KeybaseTeamName} team. Please note that it might take a few moments to join the channel."
-#~ msgstr "在將 Keybase 中的報價發佈到 #{KeybaseChannelName} 頻道之前，您必須先加入 {KeybaseTeamName} 團隊。 請注意，加入頻道可能需要一些時間。"
+#~ msgstr "Before posting an offer in Keybase to the #{KeybaseChannelName} channel, you must first join the {KeybaseTeamName} team. Please note that it might take a few moments to join the channel."
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:33
 #: src/components/farm/FarmLatestBlockChallenges.tsx:43
@@ -391,7 +391,7 @@ msgstr "取消"
 #: src/components/offers/OfferManager.tsx:166
 #: src/components/offers/OfferManager.tsx:423
 #~ msgid "Cancel Offer"
-#~ msgstr "取消報價單"
+#~ msgstr "Cancel Offer"
 
 #: src/components/trading/TradingOverview.jsx:388
 #~ msgid "Cancel and Spend"
@@ -399,7 +399,7 @@ msgstr "取消"
 
 #: src/components/offers/OfferManager.tsx:121
 #~ msgid "Cancel on blockchain"
-#~ msgstr "在區塊鏈取消"
+#~ msgstr "Cancel on blockchain"
 
 #: src/components/WalletSend.tsx:103
 #: src/components/cat/WalletCATSend.tsx:118
@@ -487,7 +487,7 @@ msgstr ""
 #: src/components/offers/OfferShareDialog.tsx:868
 #: src/components/offers/OfferShareDialog.tsx:1025
 #~ msgid "Close"
-#~ msgstr "關閉"
+#~ msgstr "Close"
 
 #: src/components/app/AppState.tsx:106
 #~ msgid "Closing down node and server"
@@ -500,7 +500,7 @@ msgstr "幣種名稱"
 
 #: src/components/offers/OfferViewer.tsx:527
 #~ msgid "Coins"
-#~ msgstr "硬幣"
+#~ msgstr "Coins"
 
 #: src/components/trading/TradingOverview.jsx:365
 #~ msgid "Coins:"
@@ -672,7 +672,7 @@ msgstr "建立新錢包"
 #: src/components/cat/WalletCAT.tsx:129
 #: src/components/standard/WalletStandard.tsx:54
 msgid "Create Offer"
-msgstr "Create Offer"
+msgstr ""
 
 #: src/components/plot/add/PlotAdd.tsx:92
 #~ msgid "Create Plot"
@@ -719,11 +719,11 @@ msgstr "建立交易"
 #: src/components/offers/OfferEditor.tsx:227
 #: src/components/offers/OfferManager.tsx:518
 #~ msgid "Create an Offer"
-#~ msgstr "建立一個報價單"
+#~ msgstr "Create an Offer"
 
 #: src/components/offers/OfferManager.tsx:512
 #~ msgid "Create an offer to exchange XCH or other tokens. View an offer to inspect and accept an offer made by another party."
-#~ msgstr "建立一個報價單以交換XCH或是其他代幣。查看報價單以檢查並接受另一方的報價單。"
+#~ msgstr "Create an offer to exchange XCH or other tokens. View an offer to inspect and accept an offer made by another party."
 
 #: src/components/cat/WalletCATCreateExisting.tsx:75
 msgid "Create custom CAT Wallet"
@@ -759,7 +759,7 @@ msgstr "建立顧客CAT錢包"
 
 #: src/components/offers/OfferManager.tsx:123
 #~ msgid "Creates and submits a transaction on the blockchain that cancels the offer"
-#~ msgstr "在區塊鏈上建立並送出一個取消報價的交易"
+#~ msgstr "Creates and submits a transaction on the blockchain that cancels the offer"
 
 #: src/components/plotNFT/PlotNFTUnconfirmedCard.tsx:61
 #~ msgid "Creating Plot NFT and Joining the Pool"
@@ -772,7 +772,7 @@ msgstr "建立顧客CAT錢包"
 #: src/components/offers/OfferManager.tsx:339
 #: src/components/offers/OfferViewer.tsx:204
 #~ msgid "Creation Date"
-#~ msgstr "創建一個約會"
+#~ msgstr "Creation Date"
 
 #: src/components/plot/add/PlotAddForm.tsx:109
 #~ msgid "Currency code is not defined"
@@ -882,7 +882,7 @@ msgstr ""
 
 #: src/components/offers/OfferViewer.tsx:504
 #~ msgid "Details"
-#~ msgstr "詳細資料"
+#~ msgstr "Details"
 
 #: src/electron/main.tsx:315
 #~ msgid "Developer"
@@ -927,7 +927,7 @@ msgstr ""
 
 #: src/components/offers/OfferManager.tsx:393
 #~ msgid "Display Offer Data"
-#~ msgstr "顯示報價單資料"
+#~ msgstr "Display Offer Data"
 
 #: src/components/create/WalletCreateList.tsx:39
 #: src/components/did/WalletDIDSelect.tsx:25
@@ -940,7 +940,7 @@ msgstr "分散式識別"
 
 #: src/components/offers/OfferShareDialog.tsx:1014
 #~ msgid "Do not show this dialog again"
-#~ msgstr "不要再顯示這個對話窗"
+#~ msgstr "Do not show this dialog again"
 
 #: src/components/farm/overview/FarmOverviewHero.tsx:51
 #: src/components/plot/overview/PlotOverviewHero.tsx:67
@@ -953,7 +953,7 @@ msgstr "分散式識別"
 
 #: src/components/offers/OfferImport.tsx:122
 #~ msgid "Drag & drop an offer file below to view its details"
-#~ msgstr "拖拉&放下一個報價檔案在這邊以觀看這個的詳細資料"
+#~ msgstr "Drag & drop an offer file below to view its details"
 
 #: src/components/cat/WalletDID.tsx:426
 #: src/components/did/WalletDID.tsx:426
@@ -962,7 +962,7 @@ msgstr "拖放證明封包"
 
 #: src/components/offers/OfferImport.tsx:141
 #~ msgid "Drag and drop offer file"
-#~ msgstr "拖放提案檔案"
+#~ msgstr "Drag and drop offer file"
 
 #: src/components/backup/BackupRestore.tsx:173
 #~ msgid "Drag and drop your backup file"
@@ -1049,7 +1049,7 @@ msgstr ""
 #: src/components/offers/OfferShareDialog.tsx:232
 #: src/components/offers/OfferShareDialog.tsx:232
 #~ msgid "Failed to execute Keybase command: {stderr}"
-#~ msgstr ""
+#~ msgstr "Failed to execute Keybase command: {stderr}"
 
 #: src/components/plot/PlotsFailed.tsx:34
 #~ msgid "Failed to open (invalid plots)"
@@ -1172,7 +1172,7 @@ msgstr "費用"
 
 #: src/components/offers/OfferSummary.tsx:122
 #~ msgid "Fees included in offer:"
-#~ msgstr "報價包含手續費:"
+#~ msgstr "Fees included in offer:"
 
 #: src/electron/main.tsx:266
 #: src/electron/main.tsx:467
@@ -1229,11 +1229,11 @@ msgstr "檔案名稱"
 #: src/components/offers/OfferShareDialog.tsx:715
 #: src/components/offers/OfferShareDialog.tsx:782
 #~ msgid "Go to #{KeybaseChannelName}"
-#~ msgstr "去到 #{KeybaseChannelName}"
+#~ msgstr "Go to #{KeybaseChannelName}"
 
 #: src/components/offers/OfferShareDialog.tsx:865
 #~ msgid "Go to Offerpool"
-#~ msgstr ""
+#~ msgstr "Go to Offerpool"
 
 #: src/components/pool/PoolOverview.tsx:173
 #~ msgid "Grid view"
@@ -1245,8 +1245,7 @@ msgstr "檔案名稱"
 
 #: src/components/WalletReceiveAddress.tsx:38
 msgid "HD or Hierarchical Deterministic keys are a type of public key/private key scheme where one private key can have a nearly infinite number of different public keys (and therefore wallet receive addresses) that will all ultimately come back to and be spendable by a single private key."
-msgstr ""
-"HD or Hierarchical Deterministic keys are a type of public key/private key scheme where one private key can have a nearly infinite number of different public keys (and therefore wallet receive addresses) that will all ultimately come back to and be spendable by a single private key.\n"
+msgstr "HD or Hierarchical Deterministic keys are a type of public key/private key scheme where one private key can have a nearly infinite number of different public keys (and therefore wallet receive addresses) that will all ultimately come back to and be spendable by a single private key.\n"
 "一個私鑰可以分成幾乎無限數量的不同公鑰(指錢包地址)，這些不同的公鑰(指錢包地址)都將回歸到同一個私鑰。"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:49
@@ -1259,7 +1258,7 @@ msgstr ""
 
 #: src/components/offers/OfferShareDialog.tsx:491
 #~ msgid "Hashgreen DEX URL"
-#~ msgstr ""
+#~ msgstr "Hashgreen DEX URL"
 
 #: src/components/fullNode/FullNode.jsx:60
 #~ msgid "Header Hash"
@@ -1315,11 +1314,11 @@ msgstr "IP位址"
 
 #: src/components/offers/OfferShareDialog.tsx:414
 #~ msgid "If selected, your offer will be not be shared publicly."
-#~ msgstr "如果選擇這個選項，你的報價單將不會公開分享。"
+#~ msgstr "If selected, your offer will be not be shared publicly."
 
 #: src/components/offers/OfferManager.tsx:107
 #~ msgid "If you have already shared your offer file, you may need to submit a transaction to cancel the pending offer. Click \"Cancel on blockchain\" to submit a cancellation transaction."
-#~ msgstr ""
+#~ msgstr "If you have already shared your offer file, you may need to submit a transaction to cancel the pending offer. Click \"Cancel on blockchain\" to submit a cancellation transaction."
 
 #: src/components/WalletSendTransactionResultDialog.tsx:41
 msgid "If you would like to speed up the transaction, please delete unconfirmed transactions and retry with a higher fee."
@@ -1344,17 +1343,17 @@ msgstr "以助記符號匯入錢包"
 #: src/components/offers/OfferEditorConditionsPanel.tsx:249
 #: src/components/offers/OfferViewer.tsx:459
 #~ msgid "In exchange for"
-#~ msgstr "以換取"
+#~ msgstr "In exchange for"
 
 #: src/components/offers/OfferShareDialog.tsx:403
 #: src/components/offers/OfferShareDialog.tsx:544
 #: src/components/offers/OfferShareDialog.tsx:892
 #~ msgid "In exchange for:"
-#~ msgstr "以換取:"
+#~ msgstr "In exchange for:"
 
 #: src/components/offers/OfferEditorConditionsPanel.tsx:339
 #~ msgid "Including a fee in the offer can help expedite the transaction when the offer is accepted."
-#~ msgstr "在報價單中包含手續費有助於加速報價單被交易。"
+#~ msgstr "Including a fee in the offer can help expedite the transaction when the offer is accepted."
 
 #: src/components/WalletHistory.tsx:93
 msgid "Incoming"
@@ -1391,19 +1390,23 @@ msgstr "初始化速率限制使用者錢包："
 
 #: src/components/offers/OfferShareDialog.tsx:754
 #~ msgid "Install Keybase"
-#~ msgstr "安裝Keybase"
+#~ msgstr "Install Keybase"
 
 #: src/components/offers/OfferViewer.tsx:358
 #~ msgid ""
 #~ "Insufficient funds available to accept offer. Ensure that your\n"
 #~ "spendable balance is sufficient to cover the offer amount."
 #~ msgstr ""
+#~ "Insufficient funds available to accept offer. Ensure that your \n"
+#~ "spendable balance is sufficient to cover the offer amount."
 
 #: src/components/offers/OfferEditor.tsx:166
 #~ msgid ""
 #~ "Insufficient funds available to create offer. Ensure that your\n"
 #~ "spendable balance is sufficient to cover the offer amount."
 #~ msgstr ""
+#~ "Insufficient funds available to create offer. Ensure that your\n"
+#~ "spendable balance is sufficient to cover the offer amount."
 
 #: src/components/create/createRLAdmin.jsx:217
 msgid "Interval"
@@ -1442,7 +1445,7 @@ msgstr "間隔"
 
 #: src/components/offers/OfferShareDialog.tsx:771
 #~ msgid "Join {KeybaseTeamName}"
-#~ msgstr "加入{KeybaseTeamName}"
+#~ msgstr "Join {KeybaseTeamName}"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:63
 #~ msgid "K-Size"
@@ -1450,11 +1453,11 @@ msgstr "間隔"
 
 #: src/components/offers/OfferShareDialog.tsx:656
 #~ msgid "Keybase command failed {e}. If you haven't installed Keybase, you can download from https://keybase.io"
-#~ msgstr "Keybase指令失敗 {e} 。如果你想安裝Keybase，你可以從 https://keybase.io 這邊下載"
+#~ msgstr "Keybase command failed {e}. If you haven't installed Keybase, you can download from https://keybase.io"
 
 #: src/components/offers/OfferShareDialog.tsx:744
 #~ msgid "Keybase is a secure messaging and file sharing application. To share an offer in the Keybase {KeybaseTeamName} team, you must first have Keybase installed."
-#~ msgstr ""
+#~ msgstr "Keybase is a secure messaging and file sharing application. To share an offer in the Keybase {KeybaseTeamName} team, you must first have Keybase installed."
 
 #: src/components/app/AppKeyringMigrator.tsx:94
 #~ msgid "Keyring migration failed: {0}"
@@ -1525,7 +1528,7 @@ msgstr "連接列表是空的"
 
 #: src/components/WalletReceiveAddressField.tsx:40
 msgid "Loading..."
-msgstr "Loading..."
+msgstr ""
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:126
 #~ msgid "Local Harvester Plots"
@@ -1581,7 +1584,7 @@ msgstr "Loading..."
 
 #: src/components/offers/OfferManager.tsx:505
 #~ msgid "Manage Offers"
-#~ msgstr "管理報價單"
+#~ msgstr "Manage Offers"
 
 #: src/components/cat/WalletDID.tsx:805
 #: src/components/did/WalletDID.tsx:805
@@ -1719,7 +1722,7 @@ msgstr "暱稱"
 
 #: src/components/offers/OfferManager.tsx:458
 #~ msgid "No current offers"
-#~ msgstr "沒有 報價單"
+#~ msgstr "No current offers"
 
 #: src/components/WalletHistory.tsx:401
 msgid "No previous transactions"
@@ -1731,7 +1734,7 @@ msgstr "沒有上一個交易"
 
 #: src/components/offers/OfferViewer.tsx:209
 #~ msgid "Node Count"
-#~ msgstr "節點數量："
+#~ msgstr "Node Count"
 
 #: src/components/WalletConnections.tsx:23
 msgid "Node ID"
@@ -1764,7 +1767,7 @@ msgstr "未同步"
 
 #: src/components/offers/OfferViewer.tsx:198
 #~ msgid "Not accepted"
-#~ msgstr "未接受"
+#~ msgstr "Not accepted"
 
 #: src/components/trading/TradingOverview.jsx:221
 #~ msgid "Not accepted yet"
@@ -1772,7 +1775,7 @@ msgstr "未同步"
 
 #: src/components/offers/OfferViewer.tsx:189
 #~ msgid "Not confirmed"
-#~ msgstr ""
+#~ msgstr "Not confirmed"
 
 #: src/components/trading/TradingOverview.jsx:194
 #~ msgid "Not confirmed yet"
@@ -1822,30 +1825,30 @@ msgstr ""
 #: src/components/offers/OfferDataDialog.tsx:42
 #: src/components/offers/OfferDataDialog.tsx:50
 #~ msgid "Offer Data"
-#~ msgstr ""
+#~ msgstr "Offer Data"
 
 #: src/components/offers/OfferViewer.tsx:183
 #~ msgid "Offer Identifier"
-#~ msgstr ""
+#~ msgstr "Offer Identifier"
 
 #: src/components/offers/OfferShareDialog.tsx:345
 #: src/components/offers/OfferShareDialog.tsx:486
 #: src/components/offers/OfferShareDialog.tsx:703
 #: src/components/offers/OfferShareDialog.tsx:849
 #~ msgid "Offer Shared"
-#~ msgstr ""
+#~ msgstr "Offer Shared"
 
 #: src/components/offers/OfferViewer.tsx:344
 #~ msgid "Offer has been accepted and is awaiting confirmation."
-#~ msgstr ""
+#~ msgstr "Offer has been accepted and is awaiting confirmation."
 
 #: src/components/offers/OfferShareDialog.tsx:350
 #~ msgid "OfferBin URL"
-#~ msgstr ""
+#~ msgstr "OfferBin URL"
 
 #: src/components/offers/OfferManager.tsx:300
 #~ msgid "Offered"
-#~ msgstr ""
+#~ msgstr "Offered"
 
 #: src/components/trading/TradingOverview.jsx:412
 #~ msgid "Offers Created"
@@ -1853,11 +1856,11 @@ msgstr ""
 
 #: src/components/offers/OfferManager.tsx:534
 #~ msgid "Offers you accepted"
-#~ msgstr ""
+#~ msgstr "Offers you accepted"
 
 #: src/components/offers/OfferManager.tsx:529
 #~ msgid "Offers you created"
-#~ msgstr ""
+#~ msgstr "Offers you created"
 
 #: src/components/WalletSend.tsx:141
 #: src/components/cat/WalletCATSend.tsx:179
@@ -1866,11 +1869,11 @@ msgstr "平均每個交易區塊之間有 1 分鐘的時間。除非出現擁塞
 
 #: src/components/offers/OfferViewer.tsx:323
 #~ msgid "Once you accept this offer, you will not be able to cancel the transaction. Are you sure you want to accept this offer?"
-#~ msgstr ""
+#~ msgstr "Once you accept this offer, you will not be able to cancel the transaction. Are you sure you want to accept this offer?"
 
 #: src/components/offers/OfferViewer.tsx:300
 #~ msgid "One or more unknown tokens are being offered. Please verify that the asset IDs of the tokens listed below match the asset IDs of the tokens you expect to receive."
-#~ msgstr ""
+#~ msgstr "One or more unknown tokens are being offered. Please verify that the asset IDs of the tokens listed below match the asset IDs of the tokens you expect to receive."
 
 #: src/components/did/WalletDIDRecovery.tsx:33
 msgid "Only one backup file is allowed."
@@ -1886,7 +1889,7 @@ msgstr "匯出"
 
 #: src/components/offers/OfferViewer.tsx:249
 #~ msgid "Parent Coin"
-#~ msgstr ""
+#~ msgstr "Parent Coin"
 
 #: src/components/app/AppKeyringMigrator.tsx:139
 #: src/components/app/AppKeyringMigrator.tsx:140
@@ -1944,7 +1947,7 @@ msgstr ""
 #: src/components/offers/OfferDataEntryDialog.tsx:40
 #: src/components/offers/OfferImport.tsx:129
 #~ msgid "Paste Offer Data"
-#~ msgstr ""
+#~ msgstr "Paste Offer Data"
 
 #: src/components/plotNFT/PlotNFTCard.tsx:358
 #~ msgid "Payout Address"
@@ -2074,7 +2077,7 @@ msgstr ""
 
 #: src/components/offers/OfferEditor.tsx:112
 #~ msgid "Please enter an amount for each row"
-#~ msgstr ""
+#~ msgstr "Please enter an amount for each row"
 
 #: src/components/WalletRenameDialog.tsx:49
 msgid "Please enter valid wallet name"
@@ -2110,7 +2113,7 @@ msgstr "請在交易前先完成同步"
 
 #: src/components/offers/OfferEditor.tsx:109
 #~ msgid "Please select an asset for each row"
-#~ msgstr ""
+#~ msgstr "Please select an asset for each row"
 
 #: src/components/did/WalletDIDRecovery.tsx:54
 msgid "Please select backup file first"
@@ -2404,7 +2407,7 @@ msgstr "公鑰"
 
 #: src/components/offers/OfferViewer.tsx:272
 #~ msgid "Puzzle Hash"
-#~ msgstr ""
+#~ msgstr "Puzzle Hash"
 
 #: src/components/cat/WalletDID.tsx:1002
 #: src/components/did/WalletDID.tsx:1002
@@ -2549,11 +2552,11 @@ msgstr ""
 
 #: src/components/offers/OfferManager.tsx:323
 #~ msgid "Requested"
-#~ msgstr ""
+#~ msgstr "Requested"
 
 #: src/components/offers/OfferEditor.tsx:195
 #~ msgid "Reset"
-#~ msgstr ""
+#~ msgstr "Reset"
 
 #: src/components/backup/BackupRestore.tsx:160
 #~ msgid "Restore Metadata for Coloured Coins and other Smart Wallets from Backup"
@@ -2582,11 +2585,11 @@ msgstr "儲存"
 
 #: src/components/offers/OfferEditor.tsx:203
 #~ msgid "Save Offer"
-#~ msgstr ""
+#~ msgstr "Save Offer"
 
 #: src/components/offers/OfferManager.tsx:408
 #~ msgid "Save Offer File"
-#~ msgstr ""
+#~ msgstr "Save Offer File"
 
 #: src/components/app/AppKeyringMigrator.tsx:178
 #: src/components/settings/ChangePassphrasePrompt.tsx:208
@@ -2641,7 +2644,7 @@ msgstr ""
 
 #: src/components/offers/OfferImport.tsx:136
 #~ msgid "Select Offer File"
-#~ msgstr ""
+#~ msgstr "Select Offer File"
 
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:52
 #~ msgid "Select Temporary Directory"
@@ -2737,31 +2740,31 @@ msgstr "發送你的公鑰到你的速率限制錢包管理員："
 #: src/components/offers/OfferShareDialog.tsx:798
 #: src/components/offers/OfferShareDialog.tsx:911
 #~ msgid "Share"
-#~ msgstr ""
+#~ msgstr "Share"
 
 #: src/components/offers/OfferShareDialog.tsx:973
 #~ msgid "Share Offer"
-#~ msgstr "分享報價單"
+#~ msgstr "Share Offer"
 
 #: src/components/offers/OfferShareDialog.tsx:412
 #~ msgid "Share Privately"
-#~ msgstr ""
+#~ msgstr "Share Privately"
 
 #: src/components/offers/OfferShareDialog.tsx:537
 #~ msgid "Share on Hashgreen DEX"
-#~ msgstr ""
+#~ msgstr "Share on Hashgreen DEX"
 
 #: src/components/offers/OfferShareDialog.tsx:739
 #~ msgid "Share on Keybase"
-#~ msgstr "分享在Keybase"
+#~ msgstr "Share on Keybase"
 
 #: src/components/offers/OfferShareDialog.tsx:396
 #~ msgid "Share on OfferBin"
-#~ msgstr "分享在OfferBin"
+#~ msgstr "Share on OfferBin"
 
 #: src/components/offers/OfferShareDialog.tsx:885
 #~ msgid "Share on offerpool"
-#~ msgstr "分享在offerpool"
+#~ msgstr "Share on offerpool"
 
 #: src/components/core/components/AdvancedOptions/AdvancedOptions.tsx:74
 #~ msgid "Show Advanced Options"
@@ -2773,7 +2776,7 @@ msgstr "顯示資產 ID"
 
 #: src/components/offers/OfferManager.tsx:379
 #~ msgid "Show Details"
-#~ msgstr "顯示詳細資料"
+#~ msgstr "Show Details"
 
 #: src/electron-starter.js:79
 #~ msgid "Show app"
@@ -2867,7 +2870,7 @@ msgstr "標準錢包"
 #: src/components/offers/OfferManager.tsx:277
 #: src/components/offers/OfferViewer.tsx:177
 #~ msgid "Status"
-#~ msgstr "狀態"
+#~ msgstr "Status"
 
 #: src/components/WalletHeader.tsx:91
 #~ msgid "Status:"
@@ -3125,23 +3128,23 @@ msgstr "這是總餘額 + 未結餘額：這是在全部未結交易結清後你
 
 #: src/components/offers/OfferViewer.tsx:210
 #~ msgid "This number reflects the number of nodes that the accepted SpendBundle has been sent to"
-#~ msgstr ""
+#~ msgstr "This number reflects the number of nodes that the accepted SpendBundle has been sent to"
 
 #: src/components/offers/OfferSummary.tsx:132
 #~ msgid "This offer has a fee included to help expedite the transaction when the offer is accepted."
-#~ msgstr ""
+#~ msgstr "This offer has a fee included to help expedite the transaction when the offer is accepted."
 
 #: src/components/offers/OfferSummary.tsx:128
 #~ msgid "This offer has a fee included to help expedite the transaction when the offer is accepted. You may specify an additional fee if you feel that the included fee is too small."
-#~ msgstr ""
+#~ msgstr "This offer has a fee included to help expedite the transaction when the offer is accepted. You may specify an additional fee if you feel that the included fee is too small."
 
 #: src/components/offers/OfferViewer.tsx:389
 #~ msgid "This offer has completed successfully"
-#~ msgstr ""
+#~ msgstr "This offer has completed successfully"
 
 #: src/components/offers/OfferViewer.tsx:385
 #~ msgid "This offer is no longer valid"
-#~ msgstr "這個報價單不再有效"
+#~ msgstr "This offer is no longer valid"
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:307
 #~ msgid "This plot NFT is assigned to a different key. You can still create plots for this plot NFT, but you can not make changes."
@@ -3294,11 +3297,11 @@ msgstr "交易"
 
 #: src/components/offers/OfferShareDialog.tsx:669
 #~ msgid "Unable to open Keybase. Install Keybase from https://keybase.io"
-#~ msgstr ""
+#~ msgstr "Unable to open Keybase. Install Keybase from https://keybase.io"
 
 #: src/components/offers/OfferShareDialog.tsx:592
 #~ msgid "Unable to open browser. Install Keybase from https://keybase.io"
-#~ msgstr ""
+#~ msgstr "Unable to open browser. Install Keybase from https://keybase.io"
 
 #: src/components/plotNFT/PlotNFTCard.tsx:147
 #: src/components/pool/PoolOverview.tsx:63
@@ -3323,7 +3326,7 @@ msgstr "交易"
 #: src/components/offers/OfferSummaryRow.tsx:68
 #: src/components/offers/OfferViewer.tsx:412
 #~ msgid "Unknown CAT"
-#~ msgstr "不明CAT"
+#~ msgstr "Unknown CAT"
 
 #: src/components/app/AppPassPrompt.tsx:83
 #~ msgid "Unlock Keyring"
@@ -3387,15 +3390,15 @@ msgstr "使用者公鑰"
 #: src/components/offers/OfferImport.tsx:153
 #: src/components/offers/OfferManager.tsx:521
 #~ msgid "View an Offer"
-#~ msgstr ""
+#~ msgstr "View an Offer"
 
 #: src/components/offers/OfferShareDialog.tsx:509
 #~ msgid "View on Hashgreen DEX"
-#~ msgstr "在Hashgreen DEX查看"
+#~ msgstr "View on Hashgreen DEX"
 
 #: src/components/offers/OfferShareDialog.tsx:368
 #~ msgid "View on OfferBin"
-#~ msgstr "在OfferBin查看"
+#~ msgstr "View on OfferBin"
 
 #: src/components/rateLimited/WalletRateLimited.jsx:561
 msgid "View pending balances"
@@ -3407,15 +3410,15 @@ msgstr "檢視未結餘額"
 
 #: src/components/offers/OfferViewer.tsx:557
 #~ msgid "Viewing offer"
-#~ msgstr ""
+#~ msgstr "Viewing offer"
 
 #: src/components/offers/OfferViewer.tsx:555
 #~ msgid "Viewing offer created at {0}"
-#~ msgstr ""
+#~ msgstr "Viewing offer created at {0}"
 
 #: src/components/offers/OfferViewer.tsx:553
 #~ msgid "Viewing offer: {offerFilePath}"
-#~ msgstr ""
+#~ msgstr "Viewing offer: {offerFilePath}"
 
 #: src/components/farm/card/FarmCardNotAvailable.tsx:26
 #: src/components/plot/PlotStatus.tsx:26
@@ -3517,7 +3520,7 @@ msgstr ""
 
 #: src/components/offers/OfferViewer.tsx:298
 #~ msgid "Warning"
-#~ msgstr "警告"
+#~ msgstr "Warning"
 
 #: src/components/_selectKey_old/SelectKey.tsx:88
 #: src/components/_selectKey_old/SelectKey.tsx:119
@@ -3534,7 +3537,7 @@ msgstr ""
 
 #: src/components/offers/OfferSummary.tsx:97
 #~ msgid "Warning: Verify that the offered CAT asset IDs match the asset IDs of the tokens you expect to receive."
-#~ msgstr ""
+#~ msgstr "Warning: Verify that the offered CAT asset IDs match the asset IDs of the tokens you expect to receive."
 
 #: src/components/WalletsSidebar.tsx:114
 msgid "We've made an upgrade to the CAT standard which requires all CATs to be re-issued. You will be airdropped your new tokens as they are re-issued by the original issuers. The airdropped tokens will be based on the balance as of block height:<0/><1/><2/>(Approximate time: July 26th, 2022 @ 17:00 UTC)"
@@ -3558,11 +3561,11 @@ msgstr "歡迎！以下的字是用來為你的錢包備份。沒有這些你將
 
 #: src/components/WalletsSidebar.tsx:134
 #~ msgid "We’ve made an upgrade to the CAT standard which requires all CATs to be reissued. You will be airdropped your new tokens as they are re-issued by the original issuers. The airdropped tokens will be based on the balance as of block height: 12345678"
-#~ msgstr ""
+#~ msgstr "We’ve made an upgrade to the CAT standard which requires all CATs to be reissued. You will be airdropped your new tokens as they are re-issued by the original issuers. The airdropped tokens will be based on the balance as of block height: 12345678"
 
 #: src/components/WalletsSidebar.tsx:135
 #~ msgid "We’ve made an upgrade to the CAT standard which requires all CATs to be reissued. You will be airdropped your new tokens as they are re-issued by the original issuers. The airdropped tokens will be based on the balance as of block height: <0/>"
-#~ msgstr ""
+#~ msgstr "We’ve made an upgrade to the CAT standard which requires all CATs to be reissued. You will be airdropped your new tokens as they are re-issued by the original issuers. The airdropped tokens will be based on the balance as of block height: <0/>"
 
 #: src/components/rateLimited/WalletRateLimited.jsx:315
 msgid "When you receive the setup info packet from your admin, enter it below to complete your Rate Limited Wallet setup:"
@@ -3597,7 +3600,7 @@ msgstr "當你從你的管理員收到設定資訊封包時，在下面輸入以
 
 #: src/components/offers/OfferViewer.tsx:381
 #~ msgid "You created this offer"
-#~ msgstr "你建立這個報價單"
+#~ msgstr "You created this offer"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:76
 #~ msgid "You do not need to be synced or connected to plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
@@ -3645,11 +3648,11 @@ msgstr "當你從你的管理員收到設定資訊封包時，在下面輸入以
 
 #: src/components/offers/OfferEditorConditionsPanel.tsx:248
 #~ msgid "You will offer"
-#~ msgstr ""
+#~ msgstr "You will offer"
 
 #: src/components/offers/OfferViewer.tsx:460
 #~ msgid "You will receive"
-#~ msgstr ""
+#~ msgstr "You will receive"
 
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:143
 #~ msgid "You will recieve <0/> to {0}"
@@ -3706,13 +3709,13 @@ msgstr ""
 
 #: src/components/offers/OfferShareDialog.tsx:707
 #~ msgid "Your offer has been successfully posted to Keybase."
-#~ msgstr ""
+#~ msgstr "Your offer has been successfully posted to Keybase."
 
 #: src/components/offers/OfferShareDialog.tsx:402
 #: src/components/offers/OfferShareDialog.tsx:543
 #: src/components/offers/OfferShareDialog.tsx:891
 #~ msgid "Your offer:"
-#~ msgstr "你的報價單:"
+#~ msgstr "Your offer:"
 
 #: src/components/app/AppKeyringMigrator.tsx:181
 #: src/components/settings/ChangePassphrasePrompt.tsx:211
@@ -3815,7 +3818,7 @@ msgstr ""
 
 #: src/components/offers/OfferSummary.tsx:125
 #~ msgid "{makerFee, plural, one {mojo} other {mojos}}"
-#~ msgstr "{makerFee, plural,one {mojo}other {mojos}}"
+#~ msgstr "{makerFee, plural, one {mojo} other {mojos}}"
 
 #: src/components/core/components/Amount/Amount.tsx:82
 #~ msgid "{mojo, plural, one {mojo} other {mojos}}"
@@ -3824,8 +3827,9 @@ msgstr ""
 #: src/components/offers/OfferSummaryRow.tsx:41
 #: src/components/offers/OfferViewer.tsx:95
 #~ msgid "{mojos, plural, one {mojo} other {mojos}}"
-#~ msgstr "{mojos, plural,one {mojo}other {mojos}}"
+#~ msgstr "{mojos, plural, one {mojo} other {mojos}}"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:118
 #~ msgid "{warning}"
 #~ msgstr "{warning}"
+
