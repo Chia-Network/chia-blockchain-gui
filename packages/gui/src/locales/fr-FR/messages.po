@@ -8,7 +8,7 @@ msgstr ""
 "Language: fr_FR\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-07-27 10:17\n"
+"PO-Revision-Date: 2022-07-27 12:10\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
@@ -2408,7 +2408,7 @@ msgstr "Veuillez entrer une phrase secrète"
 
 #: src/components/settings/ProfileAdd.tsx:64
 msgid "Please enter a valid numeric fee"
-msgstr ""
+msgstr "Veuillez saisir un montant de frais valide"
 
 #: src/components/_wallet_old/create/createRLAdmin.jsx:100
 #~ msgid "Please enter a valid numeric interval length"
@@ -2424,15 +2424,15 @@ msgstr ""
 
 #: src/components/offers/NFTOfferEditor.tsx:549
 msgid "Please enter an NFT identifier"
-msgstr ""
+msgstr "Veuillez saisir un identifiant NFT"
 
 #: src/components/offers/NFTOfferEditor.tsx:555
 msgid "Please enter an amount"
-msgstr ""
+msgstr "Veuillez saisir un montant"
 
 #: src/components/offers/OfferEditor.tsx:136
 msgid "Please enter an amount for each row"
-msgstr ""
+msgstr "Veuillez saisir un montant pour chaque ligne"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:81
 msgid "Please enter your current passphrase, and a new passphrase"
@@ -2455,7 +2455,7 @@ msgstr "Veuillez saisir votre phrase secrète pour continuer"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:276
 msgid "Please select a profile to move the NFT to."
-msgstr ""
+msgstr "Veuillez sélectionner un profil vers lequel déplacer le NFT."
 
 #: src/components/trading/CreateOffer.jsx:67
 #~ msgid "Please select amount"
