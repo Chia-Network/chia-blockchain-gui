@@ -8,7 +8,7 @@ msgstr ""
 "Language: fi_FI\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-06-17 17:33\n"
+"PO-Revision-Date: 2022-07-27 16:19\n"
 "Last-Translator: \n"
 "Language-Team: Finnish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -83,7 +83,7 @@ msgstr "-"
 #: src/components/offers/OfferViewer.tsx:289
 #: src/components/offers/OfferViewer.tsx:290
 #~ msgid "Accept Offer"
-#~ msgstr "Hyväksy tarjous"
+#~ msgstr "Accept Offer"
 
 #: src/components/trading/TradingOverview.jsx:227
 #~ msgid "Accepted at time:"
@@ -91,7 +91,7 @@ msgstr "-"
 
 #: src/components/offers/OfferViewer.tsx:194
 #~ msgid "Accepted on Date"
-#~ msgstr "Hyväksyntäpäivä"
+#~ msgstr "Accepted on Date"
 
 #: src/components/plot/PlotsFailed.tsx:18
 #: src/components/plot/PlotsNotFound.tsx:18
@@ -115,7 +115,7 @@ msgstr "Lisää Varmuuskopion ID"
 
 #: src/components/offers/OfferAssetSelector.tsx:127
 #~ msgid "Add CAT wallets to have more options"
-#~ msgstr "Lisää CAT-lompakkoja saadaksesi lisää vaihtoehtoja"
+#~ msgstr "Add CAT wallets to have more options"
 
 #: src/components/hero/WalletHeroAdd.tsx:99
 msgid "Add Custom Token"
@@ -210,7 +210,7 @@ msgstr "Alkumäärä"
 
 #: src/components/offers/OfferEditor.tsx:115
 #~ msgid "Amount exceeds spendable balance"
-#~ msgstr "Määrä ylittää käytettävissä olevan saldon"
+#~ msgstr "Amount exceeds spendable balance"
 
 #: src/components/did/WalletDIDCreate.tsx:61
 msgid "Amount must be an even amount."
@@ -218,7 +218,7 @@ msgstr "Anna tasamäärä."
 
 #: src/components/offers/OfferManager.tsx:100
 #~ msgid "Are you sure you want to cancel your offer?"
-#~ msgstr "Haluatko varmasti peruuttaa tarjouksen?"
+#~ msgstr "Are you sure you want to cancel your offer?"
 
 #: src/components/plot/PlotAction.tsx:29
 #: src/components/plot/queue/PlotQueueActions.tsx:47
@@ -253,7 +253,7 @@ msgstr "Assetin Tunniste"
 
 #: src/components/offers/OfferAssetSelector.tsx:117
 #~ msgid "Asset Type"
-#~ msgstr "Assetin Tyyppi"
+#~ msgstr "Asset Type"
 
 #: src/constants/WalletName.ts:11
 msgid "Atomic Swap Wallet"
@@ -273,7 +273,7 @@ msgstr "Valtuutettu Lompakko"
 
 #: src/components/offers/OfferViewer.tsx:485
 #~ msgid "Back"
-#~ msgstr "Palaa"
+#~ msgstr "Back"
 
 #: src/components/backup/BackupCreate.tsx:45
 #~ msgid "Backup file is used to restore smart wallets."
@@ -291,7 +291,7 @@ msgstr "Saldo"
 
 #: src/components/offers/OfferShareDialog.tsx:759
 #~ msgid "Before posting an offer in Keybase to the #{KeybaseChannelName} channel, you must first join the {KeybaseTeamName} team. Please note that it might take a few moments to join the channel."
-#~ msgstr "Ennen tarjouksen lähettämistä Keybase #{KeybaseChannelName} kanavalle, sinun täytyy ensin liittyä {KeybaseTeamName} tiimiin. Huomioithan, että voi kestää muutaman hetken liittyä kanavalle."
+#~ msgstr "Before posting an offer in Keybase to the #{KeybaseChannelName} channel, you must first join the {KeybaseTeamName} team. Please note that it might take a few moments to join the channel."
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:33
 #: src/components/farm/FarmLatestBlockChallenges.tsx:43
@@ -391,7 +391,7 @@ msgstr "Peru"
 #: src/components/offers/OfferManager.tsx:166
 #: src/components/offers/OfferManager.tsx:423
 #~ msgid "Cancel Offer"
-#~ msgstr "Peru Tarjous"
+#~ msgstr "Cancel Offer"
 
 #: src/components/trading/TradingOverview.jsx:388
 #~ msgid "Cancel and Spend"
@@ -399,7 +399,7 @@ msgstr "Peru"
 
 #: src/components/offers/OfferManager.tsx:121
 #~ msgid "Cancel on blockchain"
-#~ msgstr "Peru lohkoketjussa"
+#~ msgstr "Cancel on blockchain"
 
 #: src/components/WalletSend.tsx:103
 #: src/components/cat/WalletCATSend.tsx:118
@@ -487,7 +487,7 @@ msgstr ""
 #: src/components/offers/OfferShareDialog.tsx:868
 #: src/components/offers/OfferShareDialog.tsx:1025
 #~ msgid "Close"
-#~ msgstr "Sulje"
+#~ msgstr "Close"
 
 #: src/components/app/AppState.tsx:106
 #~ msgid "Closing down node and server"
@@ -500,7 +500,7 @@ msgstr "Kolikon Nimi"
 
 #: src/components/offers/OfferViewer.tsx:527
 #~ msgid "Coins"
-#~ msgstr "Kolikot"
+#~ msgstr "Coins"
 
 #: src/components/trading/TradingOverview.jsx:365
 #~ msgid "Coins:"
@@ -672,7 +672,7 @@ msgstr "Luo uusi lompakko"
 #: src/components/cat/WalletCAT.tsx:129
 #: src/components/standard/WalletStandard.tsx:54
 msgid "Create Offer"
-msgstr "Create Offer"
+msgstr ""
 
 #: src/components/plot/add/PlotAdd.tsx:92
 #~ msgid "Create Plot"
@@ -719,11 +719,11 @@ msgstr "Luo Transaktio"
 #: src/components/offers/OfferEditor.tsx:227
 #: src/components/offers/OfferManager.tsx:518
 #~ msgid "Create an Offer"
-#~ msgstr "Luo Tarjous"
+#~ msgstr "Create an Offer"
 
 #: src/components/offers/OfferManager.tsx:512
 #~ msgid "Create an offer to exchange XCH or other tokens. View an offer to inspect and accept an offer made by another party."
-#~ msgstr "Luo tarjous XCH- tai muiden tokeneiden vaihtamiseksi. Katso ja hyväksy toisen osapuolen tekemän tarjous."
+#~ msgstr "Create an offer to exchange XCH or other tokens. View an offer to inspect and accept an offer made by another party."
 
 #: src/components/cat/WalletCATCreateExisting.tsx:75
 msgid "Create custom CAT Wallet"
@@ -759,7 +759,7 @@ msgstr "Luo kustomi CAT-lompakko"
 
 #: src/components/offers/OfferManager.tsx:123
 #~ msgid "Creates and submits a transaction on the blockchain that cancels the offer"
-#~ msgstr "Luo ja lähettää transaktion lohkoketjuun, joka peruuttaa tarjouksen"
+#~ msgstr "Creates and submits a transaction on the blockchain that cancels the offer"
 
 #: src/components/plotNFT/PlotNFTUnconfirmedCard.tsx:61
 #~ msgid "Creating Plot NFT and Joining the Pool"
@@ -772,7 +772,7 @@ msgstr "Luo kustomi CAT-lompakko"
 #: src/components/offers/OfferManager.tsx:339
 #: src/components/offers/OfferViewer.tsx:204
 #~ msgid "Creation Date"
-#~ msgstr "Luontipäivämäärä"
+#~ msgstr "Creation Date"
 
 #: src/components/plot/add/PlotAddForm.tsx:109
 #~ msgid "Currency code is not defined"
@@ -882,7 +882,7 @@ msgstr ""
 
 #: src/components/offers/OfferViewer.tsx:504
 #~ msgid "Details"
-#~ msgstr "Lisätiedot"
+#~ msgstr "Details"
 
 #: src/electron/main.tsx:315
 #~ msgid "Developer"
@@ -927,7 +927,7 @@ msgstr ""
 
 #: src/components/offers/OfferManager.tsx:393
 #~ msgid "Display Offer Data"
-#~ msgstr "Näytä Tarjouksen Tiedot"
+#~ msgstr "Display Offer Data"
 
 #: src/components/create/WalletCreateList.tsx:39
 #: src/components/did/WalletDIDSelect.tsx:25
@@ -940,7 +940,7 @@ msgstr "Hajautettu Identiteetti"
 
 #: src/components/offers/OfferShareDialog.tsx:1014
 #~ msgid "Do not show this dialog again"
-#~ msgstr "Älä näytä tätä valintaikkunaa uudelleen."
+#~ msgstr "Do not show this dialog again"
 
 #: src/components/farm/overview/FarmOverviewHero.tsx:51
 #: src/components/plot/overview/PlotOverviewHero.tsx:67
@@ -953,7 +953,7 @@ msgstr "Hajautettu Identiteetti"
 
 #: src/components/offers/OfferImport.tsx:122
 #~ msgid "Drag & drop an offer file below to view its details"
-#~ msgstr "Vedä ja pudota tarjous alle nähdäksesi sen tiedot"
+#~ msgstr "Drag & drop an offer file below to view its details"
 
 #: src/components/cat/WalletDID.tsx:426
 #: src/components/did/WalletDID.tsx:426
@@ -962,7 +962,7 @@ msgstr "Raahaa ja pudota todistuspaketti"
 
 #: src/components/offers/OfferImport.tsx:141
 #~ msgid "Drag and drop offer file"
-#~ msgstr "Raahaa ja pudota tarjoustiedosto"
+#~ msgstr "Drag and drop offer file"
 
 #: src/components/backup/BackupRestore.tsx:173
 #~ msgid "Drag and drop your backup file"
@@ -1049,7 +1049,7 @@ msgstr "Virhe, annettu osoite näyttää olevan eri tokenille."
 #: src/components/offers/OfferShareDialog.tsx:232
 #: src/components/offers/OfferShareDialog.tsx:232
 #~ msgid "Failed to execute Keybase command: {stderr}"
-#~ msgstr "Komennon suorittaminen Keybaseen epäonnistui: {stderr}"
+#~ msgstr "Failed to execute Keybase command: {stderr}"
 
 #: src/components/plot/PlotsFailed.tsx:34
 #~ msgid "Failed to open (invalid plots)"
@@ -1172,7 +1172,7 @@ msgstr "Veloitus"
 
 #: src/components/offers/OfferSummary.tsx:122
 #~ msgid "Fees included in offer:"
-#~ msgstr "Tarjoukseen sisältyvät transaktiomaksut:"
+#~ msgstr "Fees included in offer:"
 
 #: src/electron/main.tsx:266
 #: src/electron/main.tsx:467
@@ -1229,11 +1229,11 @@ msgstr "Tiedoston nimi"
 #: src/components/offers/OfferShareDialog.tsx:715
 #: src/components/offers/OfferShareDialog.tsx:782
 #~ msgid "Go to #{KeybaseChannelName}"
-#~ msgstr "Siirry kohteeseen #{KeybaseChannelName}"
+#~ msgstr "Go to #{KeybaseChannelName}"
 
 #: src/components/offers/OfferShareDialog.tsx:865
 #~ msgid "Go to Offerpool"
-#~ msgstr "Siirry Offerpooliin"
+#~ msgstr "Go to Offerpool"
 
 #: src/components/pool/PoolOverview.tsx:173
 #~ msgid "Grid view"
@@ -1313,11 +1313,11 @@ msgstr "IP-osoite"
 
 #: src/components/offers/OfferShareDialog.tsx:414
 #~ msgid "If selected, your offer will be not be shared publicly."
-#~ msgstr "Jos valittuna, tarjoustasi ei jaeta julkisesti."
+#~ msgstr "If selected, your offer will be not be shared publicly."
 
 #: src/components/offers/OfferManager.tsx:107
 #~ msgid "If you have already shared your offer file, you may need to submit a transaction to cancel the pending offer. Click \"Cancel on blockchain\" to submit a cancellation transaction."
-#~ msgstr "Jos olet jo jakanut tarjouksesi tiedoston, saatat joutua lähettämään transaktion odottavan tarjouksen peruuttamiseksi. Valitse \"Peru lohkoketjussa\" lähettääksesi peruutustransaktion."
+#~ msgstr "If you have already shared your offer file, you may need to submit a transaction to cancel the pending offer. Click \"Cancel on blockchain\" to submit a cancellation transaction."
 
 #: src/components/WalletSendTransactionResultDialog.tsx:41
 msgid "If you would like to speed up the transaction, please delete unconfirmed transactions and retry with a higher fee."
@@ -1342,17 +1342,17 @@ msgstr "Tuo Lompakko Muistisanoista"
 #: src/components/offers/OfferEditorConditionsPanel.tsx:249
 #: src/components/offers/OfferViewer.tsx:459
 #~ msgid "In exchange for"
-#~ msgstr "Vaihtaaksesi kohteeseen"
+#~ msgstr "In exchange for"
 
 #: src/components/offers/OfferShareDialog.tsx:403
 #: src/components/offers/OfferShareDialog.tsx:544
 #: src/components/offers/OfferShareDialog.tsx:892
 #~ msgid "In exchange for:"
-#~ msgstr "Vaihtaaksesi kohteeseen:"
+#~ msgstr "In exchange for:"
 
 #: src/components/offers/OfferEditorConditionsPanel.tsx:339
 #~ msgid "Including a fee in the offer can help expedite the transaction when the offer is accepted."
-#~ msgstr "Maksun sisällyttäminen tarjoukseen voi auttaa nopeuttamaan kauppaa, kun tarjous on hyväksytty."
+#~ msgstr "Including a fee in the offer can help expedite the transaction when the offer is accepted."
 
 #: src/components/WalletHistory.tsx:93
 msgid "Incoming"
@@ -1389,23 +1389,23 @@ msgstr "Alusta Rajoitetun Käytön Käyttäjälompakko:"
 
 #: src/components/offers/OfferShareDialog.tsx:754
 #~ msgid "Install Keybase"
-#~ msgstr "Asenna Keybase"
+#~ msgstr "Install Keybase"
 
 #: src/components/offers/OfferViewer.tsx:358
 #~ msgid ""
 #~ "Insufficient funds available to accept offer. Ensure that your\n"
 #~ "spendable balance is sufficient to cover the offer amount."
 #~ msgstr ""
-#~ "Riittämätön määrä varoja tarjouksen hyväksymiseen. Varmista, että\n"
-#~ "käytettävissä oleva saldo riittää tarjouksen määrän kattamiseen."
+#~ "Insufficient funds available to accept offer. Ensure that your \n"
+#~ "spendable balance is sufficient to cover the offer amount."
 
 #: src/components/offers/OfferEditor.tsx:166
 #~ msgid ""
 #~ "Insufficient funds available to create offer. Ensure that your\n"
 #~ "spendable balance is sufficient to cover the offer amount."
 #~ msgstr ""
-#~ "Riittämätön määrä varoja tarjouksen luomiseen. Varmista, että\n"
-#~ "käytettävissä oleva saldo riittää tarjouksen määrän kattamiseen."
+#~ "Insufficient funds available to create offer. Ensure that your\n"
+#~ "spendable balance is sufficient to cover the offer amount."
 
 #: src/components/create/createRLAdmin.jsx:217
 msgid "Interval"
@@ -1444,7 +1444,7 @@ msgstr "Aikaväli"
 
 #: src/components/offers/OfferShareDialog.tsx:771
 #~ msgid "Join {KeybaseTeamName}"
-#~ msgstr "Liity {KeybaseTeamName}"
+#~ msgstr "Join {KeybaseTeamName}"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:63
 #~ msgid "K-Size"
@@ -1452,11 +1452,11 @@ msgstr "Aikaväli"
 
 #: src/components/offers/OfferShareDialog.tsx:656
 #~ msgid "Keybase command failed {e}. If you haven't installed Keybase, you can download from https://keybase.io"
-#~ msgstr "Keybase komento {e} epäonnistui. Jos et ole asentanut Keybasea, voit ladata sen osoitteesta https://keybase.io"
+#~ msgstr "Keybase command failed {e}. If you haven't installed Keybase, you can download from https://keybase.io"
 
 #: src/components/offers/OfferShareDialog.tsx:744
 #~ msgid "Keybase is a secure messaging and file sharing application. To share an offer in the Keybase {KeybaseTeamName} team, you must first have Keybase installed."
-#~ msgstr "Keybase on turvallinen viesti- ja tiedostonjakosovellus. Jakaaksesi tarjouksen Keybase {KeybaseTeamName} -tiimissä, sinun täytyy ensin asentaa Keybase."
+#~ msgstr "Keybase is a secure messaging and file sharing application. To share an offer in the Keybase {KeybaseTeamName} team, you must first have Keybase installed."
 
 #: src/components/app/AppKeyringMigrator.tsx:94
 #~ msgid "Keyring migration failed: {0}"
@@ -1527,7 +1527,7 @@ msgstr "Yhteyksien luettelo on tyhjä"
 
 #: src/components/WalletReceiveAddressField.tsx:40
 msgid "Loading..."
-msgstr "Loading..."
+msgstr ""
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:126
 #~ msgid "Local Harvester Plots"
@@ -1583,7 +1583,7 @@ msgstr "Loading..."
 
 #: src/components/offers/OfferManager.tsx:505
 #~ msgid "Manage Offers"
-#~ msgstr "Hallinnoi Tarjouksia"
+#~ msgstr "Manage Offers"
 
 #: src/components/cat/WalletDID.tsx:805
 #: src/components/did/WalletDID.tsx:805
@@ -1721,7 +1721,7 @@ msgstr "Alias"
 
 #: src/components/offers/OfferManager.tsx:458
 #~ msgid "No current offers"
-#~ msgstr "Ei tarjouksia"
+#~ msgstr "No current offers"
 
 #: src/components/WalletHistory.tsx:401
 msgid "No previous transactions"
@@ -1733,7 +1733,7 @@ msgstr "Ei aiempia transaktioita"
 
 #: src/components/offers/OfferViewer.tsx:209
 #~ msgid "Node Count"
-#~ msgstr "Noodien Määrä"
+#~ msgstr "Node Count"
 
 #: src/components/WalletConnections.tsx:23
 msgid "Node ID"
@@ -1766,7 +1766,7 @@ msgstr "Ei Synkronoitu"
 
 #: src/components/offers/OfferViewer.tsx:198
 #~ msgid "Not accepted"
-#~ msgstr "Ei hyväksytty"
+#~ msgstr "Not accepted"
 
 #: src/components/trading/TradingOverview.jsx:221
 #~ msgid "Not accepted yet"
@@ -1774,7 +1774,7 @@ msgstr "Ei Synkronoitu"
 
 #: src/components/offers/OfferViewer.tsx:189
 #~ msgid "Not confirmed"
-#~ msgstr "Ei vahvistettu"
+#~ msgstr "Not confirmed"
 
 #: src/components/trading/TradingOverview.jsx:194
 #~ msgid "Not confirmed yet"
@@ -1824,22 +1824,22 @@ msgstr "Tarjous Hyväksytty"
 #: src/components/offers/OfferDataDialog.tsx:42
 #: src/components/offers/OfferDataDialog.tsx:50
 #~ msgid "Offer Data"
-#~ msgstr "Tarjouksen Tiedot"
+#~ msgstr "Offer Data"
 
 #: src/components/offers/OfferViewer.tsx:183
 #~ msgid "Offer Identifier"
-#~ msgstr "Tarjouksen Tunniste"
+#~ msgstr "Offer Identifier"
 
 #: src/components/offers/OfferShareDialog.tsx:345
 #: src/components/offers/OfferShareDialog.tsx:486
 #: src/components/offers/OfferShareDialog.tsx:703
 #: src/components/offers/OfferShareDialog.tsx:849
 #~ msgid "Offer Shared"
-#~ msgstr "Jaettu tarjous"
+#~ msgstr "Offer Shared"
 
 #: src/components/offers/OfferViewer.tsx:344
 #~ msgid "Offer has been accepted and is awaiting confirmation."
-#~ msgstr "Tarjous on hyväksytty ja odottaa vahvistusta."
+#~ msgstr "Offer has been accepted and is awaiting confirmation."
 
 #: src/components/offers/OfferShareDialog.tsx:350
 #~ msgid "OfferBin URL"
@@ -1847,7 +1847,7 @@ msgstr "Tarjous Hyväksytty"
 
 #: src/components/offers/OfferManager.tsx:300
 #~ msgid "Offered"
-#~ msgstr "Tarjottu"
+#~ msgstr "Offered"
 
 #: src/components/trading/TradingOverview.jsx:412
 #~ msgid "Offers Created"
@@ -1855,11 +1855,11 @@ msgstr "Tarjous Hyväksytty"
 
 #: src/components/offers/OfferManager.tsx:534
 #~ msgid "Offers you accepted"
-#~ msgstr "Hyväksymäsi tarjoukset"
+#~ msgstr "Offers you accepted"
 
 #: src/components/offers/OfferManager.tsx:529
 #~ msgid "Offers you created"
-#~ msgstr "Luomasi tarjoukset"
+#~ msgstr "Offers you created"
 
 #: src/components/WalletSend.tsx:141
 #: src/components/cat/WalletCATSend.tsx:179
@@ -1868,11 +1868,11 @@ msgstr "Transaktiolohkon väli on keskimäärin minuutti. Ruuhkattomana aikana t
 
 #: src/components/offers/OfferViewer.tsx:323
 #~ msgid "Once you accept this offer, you will not be able to cancel the transaction. Are you sure you want to accept this offer?"
-#~ msgstr "Kun hyväksyt tämän tarjouksen, et voi peruuttaa transaktiota. Oletko varma, että haluat hyväksyä tämän tarjouksen?"
+#~ msgstr "Once you accept this offer, you will not be able to cancel the transaction. Are you sure you want to accept this offer?"
 
 #: src/components/offers/OfferViewer.tsx:300
 #~ msgid "One or more unknown tokens are being offered. Please verify that the asset IDs of the tokens listed below match the asset IDs of the tokens you expect to receive."
-#~ msgstr "Yhtä tai useampaa tuntematonta tokenia tarjotaan. Varmista, että alla lueteltujen tokeneiden Asset ID:t täsmäävät tokeneihin, joita odotat vastaanottavasi."
+#~ msgstr "One or more unknown tokens are being offered. Please verify that the asset IDs of the tokens listed below match the asset IDs of the tokens you expect to receive."
 
 #: src/components/did/WalletDIDRecovery.tsx:33
 msgid "Only one backup file is allowed."
@@ -1888,7 +1888,7 @@ msgstr "Lähtevä"
 
 #: src/components/offers/OfferViewer.tsx:249
 #~ msgid "Parent Coin"
-#~ msgstr "Edeltävä kolikko"
+#~ msgstr "Parent Coin"
 
 #: src/components/app/AppKeyringMigrator.tsx:139
 #: src/components/app/AppKeyringMigrator.tsx:140
@@ -1946,7 +1946,7 @@ msgstr "Liitä Muistisanat (24)"
 #: src/components/offers/OfferDataEntryDialog.tsx:40
 #: src/components/offers/OfferImport.tsx:129
 #~ msgid "Paste Offer Data"
-#~ msgstr "Liitä Tarjoustiedot"
+#~ msgstr "Paste Offer Data"
 
 #: src/components/plotNFT/PlotNFTCard.tsx:358
 #~ msgid "Payout Address"
@@ -2076,7 +2076,7 @@ msgstr "Anna kelvollinen tokenin nimi"
 
 #: src/components/offers/OfferEditor.tsx:112
 #~ msgid "Please enter an amount for each row"
-#~ msgstr "Ole hyvä ja syötä summa jokaiselle riville"
+#~ msgstr "Please enter an amount for each row"
 
 #: src/components/WalletRenameDialog.tsx:49
 msgid "Please enter valid wallet name"
@@ -2112,7 +2112,7 @@ msgstr "Synkronoi loppuun ennen transaktion tekemistä"
 
 #: src/components/offers/OfferEditor.tsx:109
 #~ msgid "Please select an asset for each row"
-#~ msgstr "Ole hyvä ja valitse assetti jokaiselle riville"
+#~ msgstr "Please select an asset for each row"
 
 #: src/components/did/WalletDIDRecovery.tsx:54
 msgid "Please select backup file first"
@@ -2406,7 +2406,7 @@ msgstr "Julkinen avain"
 
 #: src/components/offers/OfferViewer.tsx:272
 #~ msgid "Puzzle Hash"
-#~ msgstr "Haasteen tiiviste"
+#~ msgstr "Puzzle Hash"
 
 #: src/components/cat/WalletDID.tsx:1002
 #: src/components/did/WalletDID.tsx:1002
@@ -2551,11 +2551,11 @@ msgstr "Uudelleennimeä Lompakko"
 
 #: src/components/offers/OfferManager.tsx:323
 #~ msgid "Requested"
-#~ msgstr "Pyydetty"
+#~ msgstr "Requested"
 
 #: src/components/offers/OfferEditor.tsx:195
 #~ msgid "Reset"
-#~ msgstr "Palauta"
+#~ msgstr "Reset"
 
 #: src/components/backup/BackupRestore.tsx:160
 #~ msgid "Restore Metadata for Coloured Coins and other Smart Wallets from Backup"
@@ -2584,11 +2584,11 @@ msgstr "Tallenna"
 
 #: src/components/offers/OfferEditor.tsx:203
 #~ msgid "Save Offer"
-#~ msgstr "Tallenna Tarjous"
+#~ msgstr "Save Offer"
 
 #: src/components/offers/OfferManager.tsx:408
 #~ msgid "Save Offer File"
-#~ msgstr "Tallenna Tarjoustiedosto"
+#~ msgstr "Save Offer File"
 
 #: src/components/app/AppKeyringMigrator.tsx:178
 #: src/components/settings/ChangePassphrasePrompt.tsx:208
@@ -2643,7 +2643,7 @@ msgstr "Etsi Tail-tietokannasta"
 
 #: src/components/offers/OfferImport.tsx:136
 #~ msgid "Select Offer File"
-#~ msgstr "Valitse Tarjoustiedosto"
+#~ msgstr "Select Offer File"
 
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:52
 #~ msgid "Select Temporary Directory"
@@ -2739,31 +2739,31 @@ msgstr "Lähetä julkinen avaimesi Siirtorajoitetun Lompakon pääkäyttäjälle
 #: src/components/offers/OfferShareDialog.tsx:798
 #: src/components/offers/OfferShareDialog.tsx:911
 #~ msgid "Share"
-#~ msgstr "Jaa"
+#~ msgstr "Share"
 
 #: src/components/offers/OfferShareDialog.tsx:973
 #~ msgid "Share Offer"
-#~ msgstr "Jaa Tarjous"
+#~ msgstr "Share Offer"
 
 #: src/components/offers/OfferShareDialog.tsx:412
 #~ msgid "Share Privately"
-#~ msgstr "Jaa Yksityisesti"
+#~ msgstr "Share Privately"
 
 #: src/components/offers/OfferShareDialog.tsx:537
 #~ msgid "Share on Hashgreen DEX"
-#~ msgstr "Jaa Hashgreen DEX:ssä"
+#~ msgstr "Share on Hashgreen DEX"
 
 #: src/components/offers/OfferShareDialog.tsx:739
 #~ msgid "Share on Keybase"
-#~ msgstr "Jaa KeyBasessa"
+#~ msgstr "Share on Keybase"
 
 #: src/components/offers/OfferShareDialog.tsx:396
 #~ msgid "Share on OfferBin"
-#~ msgstr "Jaa OfferBinissä"
+#~ msgstr "Share on OfferBin"
 
 #: src/components/offers/OfferShareDialog.tsx:885
 #~ msgid "Share on offerpool"
-#~ msgstr "Jaa Offerpoolissa"
+#~ msgstr "Share on offerpool"
 
 #: src/components/core/components/AdvancedOptions/AdvancedOptions.tsx:74
 #~ msgid "Show Advanced Options"
@@ -2775,7 +2775,7 @@ msgstr "Näytä Assetin tunniste"
 
 #: src/components/offers/OfferManager.tsx:379
 #~ msgid "Show Details"
-#~ msgstr "Näytä Tiedot"
+#~ msgstr "Show Details"
 
 #: src/electron-starter.js:79
 #~ msgid "Show app"
@@ -2869,7 +2869,7 @@ msgstr "Vakiolompakko"
 #: src/components/offers/OfferManager.tsx:277
 #: src/components/offers/OfferViewer.tsx:177
 #~ msgid "Status"
-#~ msgstr "Tila"
+#~ msgstr "Status"
 
 #: src/components/WalletHeader.tsx:91
 #~ msgid "Status:"
@@ -3127,23 +3127,23 @@ msgstr "Nykyinen saldo + avoin saldo, eli tuleva saldo avointen transaktioiden j
 
 #: src/components/offers/OfferViewer.tsx:210
 #~ msgid "This number reflects the number of nodes that the accepted SpendBundle has been sent to"
-#~ msgstr "Tämä luku ilmaisee niiden solmujen määrän, joihin hyväksytty SpendBundle on lähetetty"
+#~ msgstr "This number reflects the number of nodes that the accepted SpendBundle has been sent to"
 
 #: src/components/offers/OfferSummary.tsx:132
 #~ msgid "This offer has a fee included to help expedite the transaction when the offer is accepted."
-#~ msgstr "Tarjoukseen sisälletty sisällytetty maksu auttaa nopeuttamaan tapahtumaa kun tarjous on hyväksytty."
+#~ msgstr "This offer has a fee included to help expedite the transaction when the offer is accepted."
 
 #: src/components/offers/OfferSummary.tsx:128
 #~ msgid "This offer has a fee included to help expedite the transaction when the offer is accepted. You may specify an additional fee if you feel that the included fee is too small."
-#~ msgstr "Tarjoukseen sisällytetty maksu auttaa nopeuttamaan transktiota, kun tarjous on hyväksytty. Voit määrittää lisämaksun, jos sinusta tuntuu, että kyseinen maksu on liian pieni."
+#~ msgstr "This offer has a fee included to help expedite the transaction when the offer is accepted. You may specify an additional fee if you feel that the included fee is too small."
 
 #: src/components/offers/OfferViewer.tsx:389
 #~ msgid "This offer has completed successfully"
-#~ msgstr "Tarjous on suoritettu onnistuneesti"
+#~ msgstr "This offer has completed successfully"
 
 #: src/components/offers/OfferViewer.tsx:385
 #~ msgid "This offer is no longer valid"
-#~ msgstr "Tarjous ei ole enää voimassa"
+#~ msgstr "This offer is no longer valid"
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:307
 #~ msgid "This plot NFT is assigned to a different key. You can still create plots for this plot NFT, but you can not make changes."
@@ -3296,11 +3296,11 @@ msgstr "Transaktiot"
 
 #: src/components/offers/OfferShareDialog.tsx:669
 #~ msgid "Unable to open Keybase. Install Keybase from https://keybase.io"
-#~ msgstr "Ei voitu avata Keybase. Asenna Keybase osoitteesta https://keybase.io"
+#~ msgstr "Unable to open Keybase. Install Keybase from https://keybase.io"
 
 #: src/components/offers/OfferShareDialog.tsx:592
 #~ msgid "Unable to open browser. Install Keybase from https://keybase.io"
-#~ msgstr "Selainta ei voi avata. Asenna Keybase osoitteesta https://keybase.io"
+#~ msgstr "Unable to open browser. Install Keybase from https://keybase.io"
 
 #: src/components/plotNFT/PlotNFTCard.tsx:147
 #: src/components/pool/PoolOverview.tsx:63
@@ -3325,7 +3325,7 @@ msgstr "Transaktiot"
 #: src/components/offers/OfferSummaryRow.tsx:68
 #: src/components/offers/OfferViewer.tsx:412
 #~ msgid "Unknown CAT"
-#~ msgstr "Tuntematon CAT"
+#~ msgstr "Unknown CAT"
 
 #: src/components/app/AppPassPrompt.tsx:83
 #~ msgid "Unlock Keyring"
@@ -3389,15 +3389,15 @@ msgstr "Käyttäjän julkinen avain"
 #: src/components/offers/OfferImport.tsx:153
 #: src/components/offers/OfferManager.tsx:521
 #~ msgid "View an Offer"
-#~ msgstr "Näytä Tarjous"
+#~ msgstr "View an Offer"
 
 #: src/components/offers/OfferShareDialog.tsx:509
 #~ msgid "View on Hashgreen DEX"
-#~ msgstr "Näytä Hashgreen DEX:ssä"
+#~ msgstr "View on Hashgreen DEX"
 
 #: src/components/offers/OfferShareDialog.tsx:368
 #~ msgid "View on OfferBin"
-#~ msgstr "Näytä OfferBinissä"
+#~ msgstr "View on OfferBin"
 
 #: src/components/rateLimited/WalletRateLimited.jsx:561
 msgid "View pending balances"
@@ -3409,15 +3409,15 @@ msgstr "Näytä avoimet saldot"
 
 #: src/components/offers/OfferViewer.tsx:557
 #~ msgid "Viewing offer"
-#~ msgstr "Näytetään tarjous"
+#~ msgstr "Viewing offer"
 
 #: src/components/offers/OfferViewer.tsx:555
 #~ msgid "Viewing offer created at {0}"
-#~ msgstr "Näytetään tarjous joka on luotu {0}"
+#~ msgstr "Viewing offer created at {0}"
 
 #: src/components/offers/OfferViewer.tsx:553
 #~ msgid "Viewing offer: {offerFilePath}"
-#~ msgstr "Näytetään tarjous: {offerFilePath}"
+#~ msgstr "Viewing offer: {offerFilePath}"
 
 #: src/components/farm/card/FarmCardNotAvailable.tsx:26
 #: src/components/plot/PlotStatus.tsx:26
@@ -3519,7 +3519,7 @@ msgstr ""
 
 #: src/components/offers/OfferViewer.tsx:298
 #~ msgid "Warning"
-#~ msgstr "Varoitus"
+#~ msgstr "Warning"
 
 #: src/components/_selectKey_old/SelectKey.tsx:88
 #: src/components/_selectKey_old/SelectKey.tsx:119
@@ -3536,7 +3536,7 @@ msgstr ""
 
 #: src/components/offers/OfferSummary.tsx:97
 #~ msgid "Warning: Verify that the offered CAT asset IDs match the asset IDs of the tokens you expect to receive."
-#~ msgstr "Varoitus: Varmista, että tarjotut CAT asset ID:t vastaavat tokeneita, joita haluat vastaanottaa."
+#~ msgstr "Warning: Verify that the offered CAT asset IDs match the asset IDs of the tokens you expect to receive."
 
 #: src/components/WalletsSidebar.tsx:114
 msgid "We've made an upgrade to the CAT standard which requires all CATs to be re-issued. You will be airdropped your new tokens as they are re-issued by the original issuers. The airdropped tokens will be based on the balance as of block height:<0/><1/><2/>(Approximate time: July 26th, 2022 @ 17:00 UTC)"
@@ -3560,11 +3560,11 @@ msgstr "Tervetuloa! Seuraavia muistisanoja käytetään lompakon varmuuskopioint
 
 #: src/components/WalletsSidebar.tsx:134
 #~ msgid "We’ve made an upgrade to the CAT standard which requires all CATs to be reissued. You will be airdropped your new tokens as they are re-issued by the original issuers. The airdropped tokens will be based on the balance as of block height: 12345678"
-#~ msgstr ""
+#~ msgstr "We’ve made an upgrade to the CAT standard which requires all CATs to be reissued. You will be airdropped your new tokens as they are re-issued by the original issuers. The airdropped tokens will be based on the balance as of block height: 12345678"
 
 #: src/components/WalletsSidebar.tsx:135
 #~ msgid "We’ve made an upgrade to the CAT standard which requires all CATs to be reissued. You will be airdropped your new tokens as they are re-issued by the original issuers. The airdropped tokens will be based on the balance as of block height: <0/>"
-#~ msgstr ""
+#~ msgstr "We’ve made an upgrade to the CAT standard which requires all CATs to be reissued. You will be airdropped your new tokens as they are re-issued by the original issuers. The airdropped tokens will be based on the balance as of block height: <0/>"
 
 #: src/components/rateLimited/WalletRateLimited.jsx:315
 msgid "When you receive the setup info packet from your admin, enter it below to complete your Rate Limited Wallet setup:"
@@ -3599,7 +3599,7 @@ msgstr "Kun saat infopaketin pääkäyttäjältä, lisää se alle viimeistellä
 
 #: src/components/offers/OfferViewer.tsx:381
 #~ msgid "You created this offer"
-#~ msgstr "Loit tämän tarjouksen"
+#~ msgstr "You created this offer"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:76
 #~ msgid "You do not need to be synced or connected to plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
@@ -3647,11 +3647,11 @@ msgstr "Kun saat infopaketin pääkäyttäjältä, lisää se alle viimeistellä
 
 #: src/components/offers/OfferEditorConditionsPanel.tsx:248
 #~ msgid "You will offer"
-#~ msgstr "Sinä tarjoat"
+#~ msgstr "You will offer"
 
 #: src/components/offers/OfferViewer.tsx:460
 #~ msgid "You will receive"
-#~ msgstr "Vastaanotat"
+#~ msgstr "You will receive"
 
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:143
 #~ msgid "You will recieve <0/> to {0}"
@@ -3708,13 +3708,13 @@ msgstr "DID vaatii vähintään {dids_num_req} todistustiedosto{0} palautusta va
 
 #: src/components/offers/OfferShareDialog.tsx:707
 #~ msgid "Your offer has been successfully posted to Keybase."
-#~ msgstr "Tarjous on onnistuneesti lähetetty Keybaseen."
+#~ msgstr "Your offer has been successfully posted to Keybase."
 
 #: src/components/offers/OfferShareDialog.tsx:402
 #: src/components/offers/OfferShareDialog.tsx:543
 #: src/components/offers/OfferShareDialog.tsx:891
 #~ msgid "Your offer:"
-#~ msgstr "Tarjouksesi :"
+#~ msgstr "Your offer:"
 
 #: src/components/app/AppKeyringMigrator.tsx:181
 #: src/components/settings/ChangePassphrasePrompt.tsx:211
@@ -3817,7 +3817,7 @@ msgstr "Liittämäsi lista ei sisällä 24 kelvollista muistisanaa."
 
 #: src/components/offers/OfferSummary.tsx:125
 #~ msgid "{makerFee, plural, one {mojo} other {mojos}}"
-#~ msgstr "{makerFee, plural, one {mojo} other {mojoa}}"
+#~ msgstr "{makerFee, plural, one {mojo} other {mojos}}"
 
 #: src/components/core/components/Amount/Amount.tsx:82
 #~ msgid "{mojo, plural, one {mojo} other {mojos}}"
@@ -3826,8 +3826,9 @@ msgstr "Liittämäsi lista ei sisällä 24 kelvollista muistisanaa."
 #: src/components/offers/OfferSummaryRow.tsx:41
 #: src/components/offers/OfferViewer.tsx:95
 #~ msgid "{mojos, plural, one {mojo} other {mojos}}"
-#~ msgstr "{mojos, plural, one {mojo} other {mojoa}}"
+#~ msgstr "{mojos, plural, one {mojo} other {mojos}}"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:118
 #~ msgid "{warning}"
 #~ msgstr "{warning}"
+
