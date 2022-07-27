@@ -8,7 +8,7 @@ msgstr ""
 "Language: fr_FR\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-07-27 08:11\n"
+"PO-Revision-Date: 2022-07-27 09:11\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
@@ -187,11 +187,11 @@ msgstr "Tout"
 #: src/components/nfts/NFTProfileDropdown.tsx:90
 #: src/components/nfts/NFTProfileDropdown.tsx:118
 msgid "All NFTs"
-msgstr ""
+msgstr "Tous les NFT"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:96
 msgid "All Profiles"
-msgstr ""
+msgstr "Tous les profils"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:238
 msgid "Alternate tmpdir/tmpdir2"
@@ -201,7 +201,7 @@ msgstr "Répertoire tmpdir/tmpdir2 alternatif"
 #: src/components/offers/OfferEditorConditionsPanel.tsx:148
 #: src/components/offers/OfferViewer.tsx:198
 msgid "Amount"
-msgstr ""
+msgstr "Montant"
 
 #: src/components/_wallet_old/coloured/WalletColoured.tsx:581
 #~ msgid "Amount ({cc_unit})"
@@ -213,7 +213,7 @@ msgstr ""
 
 #: src/components/offers/OfferEditor.tsx:138
 msgid "Amount exceeds spendable balance"
-msgstr ""
+msgstr "Le montant dépasse le solde disponible"
 
 #: src/components/_wallet_old/did/WalletDIDCreate.tsx:62
 #~ msgid "Amount must be an even amount."
@@ -221,11 +221,11 @@ msgstr ""
 
 #: src/components/offers/NFTOfferPreview.tsx:162
 msgid "An NFT's provenance is a complete record of its ownership history. It provides a direct lineage that connects everyone who has owned the NFT, all the way back to the original artist. This helps to verify that the NFT is authentic."
-msgstr ""
+msgstr "La provenance d'un NFT est l'historique complet de ses détenteurs. C'est une lignée qui connecte tous ceux qui ont possédé le NFT, et qui remonte jusqu'a l'artiste originel. Cela aide à vérifier l'authenticité du NFT."
 
 #: src/components/offers/OfferManager.tsx:124
 msgid "Are you sure you want to cancel your offer?"
-msgstr ""
+msgstr "Êtes-vous sûr de vouloir annuler votre offre ?"
 
 #: src/components/plot/PlotAction.tsx:29
 #: src/components/plot/queue/PlotQueueActions.tsx:47
@@ -242,7 +242,7 @@ msgstr "Êtes-vous sûr de vouloir vous déconnecter ?"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:71
 msgid "Are you sure you want to move this NFT to the specified profile?"
-msgstr ""
+msgstr "Êtes-vous sûr de vouloir déplacer ce NFT vers ce profil ?"
 
 #: src/electron/main.tsx:341
 msgid "Are you sure you want to quit?"
@@ -262,7 +262,7 @@ msgstr "Êtes-vous sûr de vouloir utiliser k={plotSize} ?"
 
 #: src/components/offers/OfferAssetSelector.tsx:160
 msgid "Asset Type"
-msgstr ""
+msgstr "Type d'Actif"
 
 #: src/components/app/AppState.tsx:151
 msgid "Attempt {attempt}"
@@ -275,7 +275,7 @@ msgstr "Nom généré automatiquement à partir de l'adresse du contrat de pool"
 #: src/components/offers/NFTOfferViewer.tsx:733
 #: src/components/offers/OfferViewer.tsx:308
 msgid "Back"
-msgstr ""
+msgstr "Retour"
 
 #: src/components/backup/BackupCreate.tsx:46
 msgid "Backup file is used to restore smart wallets."
@@ -289,7 +289,7 @@ msgstr "Le fichier de sauvegarde est utilisé pour restaurer des portefeuilles i
 
 #: src/components/settings/ProfileAdd.tsx:103
 msgid "Balance: {standardBalance} XCH"
-msgstr ""
+msgstr "Solde : {standardBalance} XCH"
 
 #: src/components/block/Block.jsx:277
 msgid "Base Farmer Reward Amount"
@@ -297,7 +297,7 @@ msgstr "Montant de récompense de base du fermier"
 
 #: src/components/offers/OfferShareDialog.tsx:1066
 msgid "Before posting an offer in Keybase to the #{channelName} channel, you must first join the {teamName} team. Please note that it might take a few moments to join the channel."
-msgstr ""
+msgstr "Avant de poster une offre dans Keybase sur le canal #{channelName}, vous devez d'abord rejoindre l'équipe {teamName}. Veuillez noter que cela peut prendre quelques instants pour rejoindre le canal."
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:39
 msgid "Below are the current block challenges. You may or may not have a proof of space for these challenges. These blocks do not currently contain a proof of time."
@@ -406,11 +406,11 @@ msgstr "Annuler"
 #: src/components/offers/OfferManager.tsx:201
 #: src/components/offers/OfferManager.tsx:498
 msgid "Cancel Offer"
-msgstr ""
+msgstr "Annuler l'Offre"
 
 #: src/components/nfts/NFTContextualActions.tsx:335
 msgid "Cancel Unconfirmed Transaction"
-msgstr ""
+msgstr "Supprimer les Transactions non Confirmées"
 
 #: src/components/trading/TradingOverview.jsx:388
 #~ msgid "Cancel and Spend"
@@ -418,11 +418,11 @@ msgstr ""
 
 #: src/components/offers/OfferManager.tsx:151
 msgid "Cancel on blockchain"
-msgstr ""
+msgstr "Annuler sur la blockchain"
 
 #: src/components/offers/utils.ts:170
 msgid "Cancelled"
-msgstr ""
+msgstr "Annulée"
 
 #: src/components/plot/PlotsNotFound.tsx:36
 #~ msgid "Caution, deleting these plots will delete them forever. Check that the storage devices are properly connected."
@@ -456,15 +456,15 @@ msgstr "Chatter sur KeyBase"
 
 #: src/components/offers/NFTOfferPreview.tsx:177
 msgid "Check Provenance on MintGarden"
-msgstr ""
+msgstr "Vérifier la Provenance sur MintGarden"
 
 #: src/components/offers/NFTOfferPreview.tsx:187
 msgid "Check Provenance on SkyNFT"
-msgstr ""
+msgstr "Vérifier la provenance sur SkyNFT"
 
 #: src/components/offers/NFTOfferPreview.tsx:197
 msgid "Check Provenance on Spacescan.io"
-msgstr ""
+msgstr "Vérifier la provenance sur Spacescan.io"
 
 #: src/electron/main.tsx:583
 msgid "Chia"
@@ -536,7 +536,7 @@ msgstr "Fermeture des services"
 
 #: src/components/offers/OfferViewer.tsx:350
 msgid "Coins"
-msgstr ""
+msgstr "Coins"
 
 #: src/components/trading/TradingOverview.jsx:365
 #~ msgid "Coins:"
@@ -546,12 +546,12 @@ msgstr ""
 #: src/components/nfts/detail/NFTDetail.tsx:83
 #: src/components/nfts/detail/NFTDetailV2.tsx:107
 msgid "Collection"
-msgstr ""
+msgstr "Collection"
 
 #: src/components/nfts/gallery/NFTGallerySidebar.tsx:81
 #: src/components/nfts/gallery/NFTGallerySidebar.tsx:83
 msgid "Collections"
-msgstr ""
+msgstr "Collections"
 
 #: src/components/trading/CreateOffer.jsx:173
 #: src/components/trading/TradesTable.tsx:23
@@ -590,11 +590,11 @@ msgstr "Confirmer la déconnexion"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:63
 msgid "Confirm Move"
-msgstr ""
+msgstr "Confirmer le déplacement"
 
 #: src/components/nfts/NFTTransferAction.tsx:79
 msgid "Confirm NFT Transfer"
-msgstr ""
+msgstr "Confirmer le transfert du NFT"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:229
 msgid "Confirm New Passphrase"
@@ -612,11 +612,11 @@ msgstr "Confirmation"
 
 #: src/components/offers/utils.ts:172
 msgid "Confirmed"
-msgstr ""
+msgstr "Confirmé"
 
 #: src/components/offers/OfferViewer.tsx:155
 msgid "Confirmed at Height"
-msgstr ""
+msgstr "Confirmé à la Hauteur"
 
 #: src/components/trading/TradingOverview.jsx:200
 #~ msgid "Confirmed at block:"
@@ -688,11 +688,11 @@ msgstr "Contribuer sur GitHub"
 
 #: src/components/nfts/NFTContextualActions.tsx:425
 msgid "Copy Media URL"
-msgstr ""
+msgstr "Copier l'URL du Média"
 
 #: src/components/nfts/NFTContextualActions.tsx:99
 msgid "Copy NFT ID"
-msgstr ""
+msgstr "Copier l'ID du NFT"
 
 #: src/components/core/components/CopyToClipboard/CopyToClipboard.tsx:33
 #~ msgid "Copy to Clipboard"
@@ -730,7 +730,7 @@ msgstr "Créer et gérer les parcelles"
 #: src/components/offers/OfferEditor.tsx:221
 #: src/components/offers/OfferEditorConfirmationDialog.tsx:15
 msgid "Create Offer"
-msgstr ""
+msgstr "Créer une offre"
 
 #: src/components/plot/add/PlotAdd.tsx:92
 #~ msgid "Create Plot"
@@ -772,7 +772,7 @@ msgstr "Créer une parcelle NFT"
 
 #: src/components/settings/ProfileAdd.tsx:86
 msgid "Create a new profile"
-msgstr ""
+msgstr "Créer un nouveau profil"
 
 #: src/components/_wallet_old/create/WalletCreate.jsx:186
 #~ msgid "Create admin wallet"
@@ -780,12 +780,12 @@ msgstr ""
 
 #: src/components/offers/NFTOfferEditor.tsx:702
 msgid "Create an NFT Offer"
-msgstr ""
+msgstr "Créer une offre de NFT"
 
 #: src/components/offers/OfferEditor.tsx:243
 #: src/components/offers/OfferManager.tsx:584
 msgid "Create an Offer"
-msgstr ""
+msgstr "Créer une offre"
 
 #: src/components/offers/OfferManager.tsx:576
 msgid "Create an offer to exchange assets including XCH, tokens, and NFTs. View an offer to inspect and accept an offer made by another party."
