@@ -8,7 +8,7 @@ msgstr ""
 "Language: fr_FR\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-07-27 16:19\n"
+"PO-Revision-Date: 2022-07-27 17:15\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
@@ -789,7 +789,7 @@ msgstr "Créer une offre"
 
 #: src/components/offers/OfferManager.tsx:576
 msgid "Create an offer to exchange assets including XCH, tokens, and NFTs. View an offer to inspect and accept an offer made by another party."
-msgstr ""
+msgstr "Créez une offre pour échanger des actifs tels que les XCH, jetons et NFT. Visualisez une offre créée par une personne tierce pour l'inspecter et l'accepter."
 
 #: src/components/_wallet_old/create/WalletCreate.jsx:132
 #~ msgid "Create new coloured coin"
@@ -821,7 +821,7 @@ msgstr ""
 
 #: src/components/offers/OfferManager.tsx:153
 msgid "Creates and submits a transaction on the blockchain that cancels the offer"
-msgstr ""
+msgstr "Crée et soumet une transaction d'annulation de l'offre sur la blockchain"
 
 #: src/components/plotNFT/PlotNFTUnconfirmedCard.tsx:59
 msgid "Creating Plot NFT and Joining the Pool"
@@ -1687,7 +1687,7 @@ msgstr "Derniers défis de bloc"
 
 #: src/components/nfts/NFTDetails.tsx:52
 msgid "Launcher ID"
-msgstr ""
+msgstr "Launcher ID"
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:294
 #: src/components/plotNFT/PlotNFTCard.tsx:346
@@ -1977,7 +1977,7 @@ msgstr "NFT"
 
 #: src/components/offers/NFTOfferViewer.tsx:667
 msgid "Net Proceeds"
-msgstr ""
+msgstr "Revenus nets"
 
 #: src/components/offers/NFTOfferViewer.tsx:696
 msgid "Network Fee (Optional)"
@@ -2361,7 +2361,7 @@ msgstr "Veuillez confirmer"
 
 #: src/hooks/useOpenUnsafeLink.tsx:50
 msgid "Please check the following link to verify the site you are going to visit. Proceed at your own risk."
-msgstr ""
+msgstr "Veuillez vérifier le lien suivant avant de le visiter. Continuez à vos propres risques."
 
 #: src/components/_wallet_old/rateLimited/WalletRateLimited.jsx:668
 #~ msgid "Please enter 0 fee. Positive fees not supported yet for RL."
@@ -2948,7 +2948,7 @@ msgstr "Remonter un problème..."
 
 #: src/components/offers/OfferManager.tsx:392
 msgid "Requested"
-msgstr ""
+msgstr "Requis"
 
 #: src/components/offers/NFTOfferEditor.tsx:416
 #: src/components/offers/OfferEditor.tsx:213
@@ -3453,7 +3453,7 @@ msgstr "La taille minimum requise pour le mainnet est k=32"
 
 #: src/components/offers/NFTOfferViewer.tsx:671
 msgid "The net proceeds include the asking price, minus any associated creator fees (if the NFT has royalty payments enabled)."
-msgstr ""
+msgstr "Le revenu net est le prix demandé moins les royalties associées (si le NFT en comprend)."
 
 #: src/components/fullNode/card/FullNodeCardStatus.tsx:16
 #: src/components/fullNode/card/FullNodeCardStatus.tsx:45
@@ -3503,7 +3503,7 @@ msgstr "La graine utilisée pour créer le plot. Cela dépend du pk du pool et d
 
 #: src/components/offers/NFTOfferViewer.tsx:630
 msgid "The total amount offered includes the offered purchase price, plus the optional offer creation fee.<0/>If the NFT has royalty payments enabled, those creator fees will be paid from the offered purchase price."
-msgstr ""
+msgstr "Le montant total offert comprend le prix d'achat offert, plus les frais de création de l'offre facultative. <0/>Si le NFT requiert le paiement de royalties, ces frais seront payés à partir du prix d'achat offert."
 
 #: src/components/offers/NFTOfferEditor.tsx:369
 msgid "The total amount offered includes the price you're willing to pay for the NFT, plus the optional offer creation fee. One or more coins totalling at least the amount shown below will be deducted from your spendable balance upon offer creation.<0/>If the NFT has royalty payments enabled, those creator fees will be paid by the party that accepts the offer."
@@ -3515,7 +3515,7 @@ msgstr ""
 
 #: src/components/offers/NFTOfferViewer.tsx:617
 msgid "The total amount requested includes the asking price, plus the associated creator fees (if the NFT has royalty payments enabled).{0}"
-msgstr ""
+msgstr "Le montant total demandé est la somme du prix demandé et des royalties (si le NFT en comprend).{0}"
 
 #: src/components/block/Block.jsx:206
 msgid "The total number of VDF (verifiable delay function) or proof of time iterations on the whole chain up to this block."
@@ -3543,7 +3543,7 @@ msgstr "Ces parcelles sont invalides, vous devriez les supprimer."
 
 #: src/components/offers/NFTOfferEditor.tsx:322
 msgid "They will receive"
-msgstr ""
+msgstr "Ils recevront"
 
 #: src/components/plot/PlotAddDirectoryDialog.tsx:88
 msgid "This allows you to add a directory that has plots in it. If you have not created any plots, go to the plotting screen."
@@ -3606,21 +3606,21 @@ msgstr "Ce nœud est complètement à jour et valide le réseau"
 
 #: src/components/offers/OfferViewer.tsx:178
 msgid "This number reflects the number of nodes that the accepted SpendBundle has been sent to"
-msgstr ""
+msgstr "Ceci est le nombre de nœuds auxquels un SpendBundle a été envoyé avec succès"
 
 #: src/components/offers/NFTOfferViewer.tsx:226
 #: src/components/offers/OfferSummary.tsx:206
 msgid "This offer has a fee included to help expedite the transaction when the offer is accepted."
-msgstr ""
+msgstr "Cette offre inclue des frais pour accélérer la transaction lorsque l'offre est acceptée."
 
 #: src/components/offers/NFTOfferViewer.tsx:220
 #: src/components/offers/OfferSummary.tsx:200
 msgid "This offer has a fee included to help expedite the transaction when the offer is accepted. You may specify an additional fee if you feel that the included fee is too small."
-msgstr ""
+msgstr "Cette offre inclue des frais pour accélérer la transaction lorsque l'offre est acceptée. Vous pouvez rajouter des frais supplémentaires si vous pensez que les frais inclus sont trop faibles."
 
 #: src/components/offers/OfferHeader.tsx:62
 msgid "This offer has completed successfully"
-msgstr ""
+msgstr "Cette offre s'est terminée avec succès"
 
 #: src/components/offers/OfferHeader.tsx:46
 #~ msgid "This offer is no longer valid"
@@ -3628,7 +3628,7 @@ msgstr ""
 
 #: src/components/offers/OfferHeader.tsx:46
 msgid "This offer is no longer valid. To understand why, click <0>here</0> to learn more."
-msgstr ""
+msgstr "Cette offre n'est plus valide. Pour en savoir plus, cliquez <0>ici</0>."
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:307
 msgid "This plot NFT is assigned to a different key. You can still create plots for this plot NFT, but you can not make changes."
