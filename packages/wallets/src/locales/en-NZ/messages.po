@@ -8,7 +8,7 @@ msgstr ""
 "Language: en_NZ\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-06-20 11:41\n"
+"PO-Revision-Date: 2022-07-27 16:22\n"
 "Last-Translator: \n"
 "Language-Team: English, New Zealand\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -672,7 +672,7 @@ msgstr "Create New Wallet"
 #: src/components/cat/WalletCAT.tsx:129
 #: src/components/standard/WalletStandard.tsx:54
 msgid "Create Offer"
-msgstr "Create Offer"
+msgstr ""
 
 #: src/components/plot/add/PlotAdd.tsx:92
 #~ msgid "Create Plot"
@@ -1313,7 +1313,7 @@ msgstr "IP address"
 
 #: src/components/offers/OfferShareDialog.tsx:414
 #~ msgid "If selected, your offer will be not be shared publicly."
-#~ msgstr "If selected, your offer will not be shared publicly."
+#~ msgstr "If selected, your offer will be not be shared publicly."
 
 #: src/components/offers/OfferManager.tsx:107
 #~ msgid "If you have already shared your offer file, you may need to submit a transaction to cancel the pending offer. Click \"Cancel on blockchain\" to submit a cancellation transaction."
@@ -1396,7 +1396,7 @@ msgstr "Initialise a Rate Limited User Wallet:"
 #~ "Insufficient funds available to accept offer. Ensure that your\n"
 #~ "spendable balance is sufficient to cover the offer amount."
 #~ msgstr ""
-#~ "Insufficient funds available to accept offer. Ensure that your\n"
+#~ "Insufficient funds available to accept offer. Ensure that your \n"
 #~ "spendable balance is sufficient to cover the offer amount."
 
 #: src/components/offers/OfferEditor.tsx:166
@@ -1527,7 +1527,7 @@ msgstr "List of connections is empty"
 
 #: src/components/WalletReceiveAddressField.tsx:40
 msgid "Loading..."
-msgstr "Loading..."
+msgstr ""
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:126
 #~ msgid "Local Harvester Plots"
@@ -3560,11 +3560,11 @@ msgstr "Welcome! The following words are used for your wallet backup. Without th
 
 #: src/components/WalletsSidebar.tsx:134
 #~ msgid "We’ve made an upgrade to the CAT standard which requires all CATs to be reissued. You will be airdropped your new tokens as they are re-issued by the original issuers. The airdropped tokens will be based on the balance as of block height: 12345678"
-#~ msgstr ""
+#~ msgstr "We’ve made an upgrade to the CAT standard which requires all CATs to be reissued. You will be airdropped your new tokens as they are re-issued by the original issuers. The airdropped tokens will be based on the balance as of block height: 12345678"
 
 #: src/components/WalletsSidebar.tsx:135
 #~ msgid "We’ve made an upgrade to the CAT standard which requires all CATs to be reissued. You will be airdropped your new tokens as they are re-issued by the original issuers. The airdropped tokens will be based on the balance as of block height: <0/>"
-#~ msgstr ""
+#~ msgstr "We’ve made an upgrade to the CAT standard which requires all CATs to be reissued. You will be airdropped your new tokens as they are re-issued by the original issuers. The airdropped tokens will be based on the balance as of block height: <0/>"
 
 #: src/components/rateLimited/WalletRateLimited.jsx:315
 msgid "When you receive the setup info packet from your admin, enter it below to complete your Rate Limited Wallet setup:"
@@ -3831,3 +3831,4 @@ msgstr "Your pasted list does not include 24 valid mnemonic words."
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:118
 #~ msgid "{warning}"
 #~ msgstr "{warning}"
+
