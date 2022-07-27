@@ -8,7 +8,7 @@ msgstr ""
 "Language: fa_IR\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-05-26 15:59\n"
+"PO-Revision-Date: 2022-07-27 16:21\n"
 "Last-Translator: \n"
 "Language-Team: Persian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -32,7 +32,7 @@ msgstr ""
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:67
 #~ msgid "*Want to explore Chia’s blocks further? Check out <0>Chia Explorer</0> built by an open source developer."
-#~ msgstr "آیا می خواهید که بلوک های چیـا را فراتر از این کاوش کنید؟ <0>Chia Explorer</0> را که توسط یک توسعه دهنده متن باز ساخته شده است را چک کنید."
+#~ msgstr "*Want to explore Chia’s blocks further? Check out <0>Chia Explorer</0> built by an open source developer."
 
 #: src/components/app/AppSelectMode.tsx:120
 #~ msgid "+"
@@ -68,8 +68,7 @@ msgstr ""
 
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:96
 msgid "A harvester is a service running on a machine where plot(s) are actually stored. A farmer and harvester talk to a full node to see the state of the chain. View your network of connected harvesters below Learn more"
-msgstr ""
-"دروگر (Harvester) یک سرویس در حال اجرا بر روی ماشینی است که پلات (ها) در عمل آنجا ذخیره شده اند. مزرعه دار (Farmer) و دروگر برای دیدن وضعیت رشته (Chain) با گره کامل در تعامل هستند. شبکه دروگر های متصل خود را در زیر ببینید. \n"
+msgstr "دروگر (Harvester) یک سرویس در حال اجرا بر روی ماشینی است که پلات (ها) در عمل آنجا ذخیره شده اند. مزرعه دار (Farmer) و دروگر برای دیدن وضعیت رشته (Chain) با گره کامل در تعامل هستند. شبکه دروگر های متصل خود را در زیر ببینید. \n"
 "بیشتر فرار بگیرید"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:155
@@ -203,7 +202,7 @@ msgstr ""
 #: src/components/offers/OfferEditorConditionsPanel.tsx:148
 #: src/components/offers/OfferViewer.tsx:198
 msgid "Amount"
-msgstr "Amount"
+msgstr ""
 
 #: src/components/_wallet_old/coloured/WalletColoured.tsx:581
 #~ msgid "Amount ({cc_unit})"
@@ -277,7 +276,7 @@ msgstr ""
 #: src/components/offers/NFTOfferViewer.tsx:733
 #: src/components/offers/OfferViewer.tsx:308
 msgid "Back"
-msgstr "Back"
+msgstr ""
 
 #: src/components/backup/BackupCreate.tsx:46
 msgid "Backup file is used to restore smart wallets."
@@ -303,8 +302,7 @@ msgstr ""
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:39
 msgid "Below are the current block challenges. You may or may not have a proof of space for these challenges. These blocks do not currently contain a proof of time."
-msgstr ""
-"در پایین چالش های بلوک کنونی را می‌بینید. ممکن است شما گواهی حجمی برای این چالش ها داشته باشید یا نداشته باشید.\n"
+msgstr "در پایین چالش های بلوک کنونی را می‌بینید. ممکن است شما گواهی حجمی برای این چالش ها داشته باشید یا نداشته باشید.\n"
 " این بلاک ها در حال حاضر گواه زمانی ندارند."
 
 #: src/components/farm/card/FarmCardTotalNetworkSpace.tsx:14
@@ -734,7 +732,7 @@ msgstr ""
 #: src/components/offers/OfferEditor.tsx:221
 #: src/components/offers/OfferEditorConfirmationDialog.tsx:15
 msgid "Create Offer"
-msgstr "Create Offer"
+msgstr ""
 
 #: src/components/plot/add/PlotAdd.tsx:92
 #~ msgid "Create Plot"
@@ -1010,7 +1008,7 @@ msgstr ""
 
 #: src/electron/main.tsx:401
 #~ msgid "Disable Simulator"
-#~ msgstr ""
+#~ msgstr "Disable Simulator"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:114
 #~ msgid "Disable bifield plotting when your temporary directory is on fast storage like SSD or you need lower per process RAM requirements. Plotting with bitfield enabled has about 20% less overall writes."
@@ -1069,7 +1067,7 @@ msgstr ""
 
 #: src/components/offers/OfferImport.tsx:166
 msgid "Drag and drop offer file"
-msgstr "Drag and drop offer file"
+msgstr ""
 
 #: src/components/backup/BackupRestore.tsx:172
 msgid "Drag and drop your backup file"
@@ -1108,7 +1106,7 @@ msgstr ""
 
 #: src/electron/main.tsx:402
 #~ msgid "Enable Simulator"
-#~ msgstr ""
+#~ msgstr "Enable Simulator"
 
 #: src/components/wallet/EnterPassphrasePrompt.tsx:111
 #~ msgid "Enter Passphrase"
@@ -1580,14 +1578,12 @@ msgid "Install Keybase"
 msgstr ""
 
 #: src/hooks/useAcceptOfferHook.tsx:78
-msgid ""
-"Insufficient funds available to accept offer. Ensure that your\n"
+msgid "Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
 msgstr ""
 
 #: src/components/offers/OfferEditor.tsx:182
-msgid ""
-"Insufficient funds available to create offer. Ensure that your\n"
+msgid "Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
 msgstr ""
 
@@ -1633,7 +1629,7 @@ msgstr ""
 
 #: src/components/plot/add/PlotAddNFT.tsx:52
 #~ msgid "Join apool and get consistent XCH farming rewards. The average returns are the same, but it is much less volatile."
-#~ msgstr ""
+#~ msgstr "Join apool and get consistent XCH farming rewards. The average returns are the same, but it is much less volatile."
 
 #: src/components/app/AppSelectMode.tsx:143
 msgid "Join farming pools"
@@ -2279,7 +2275,7 @@ msgstr ""
 
 #: src/components/settings/Settings.tsx:213
 #~ msgid "Passphrase Settings"
-#~ msgstr ""
+#~ msgstr "Passphrase Settings"
 
 #: src/components/app/AppPassPrompt.tsx:152
 #: src/components/settings/RemovePassphrasePrompt.tsx:67
@@ -2414,7 +2410,7 @@ msgstr ""
 
 #: src/components/settings/ProfileAdd.tsx:64
 msgid "Please enter a valid numeric fee"
-msgstr "Please enter a valid numeric fee"
+msgstr ""
 
 #: src/components/_wallet_old/create/createRLAdmin.jsx:100
 #~ msgid "Please enter a valid numeric interval length"
@@ -3131,12 +3127,12 @@ msgstr ""
 
 #: src/components/nfts/NFTSummary.tsx:69
 #~ msgid "Series #"
-#~ msgstr ""
+#~ msgstr "Series #"
 
 #: src/components/nfts/detail/NFTDetail.tsx:94
 #: src/components/nfts/detail/NFTDetailV2.tsx:118
 #~ msgid "Series Number"
-#~ msgstr ""
+#~ msgstr "Series Number"
 
 #: src/components/settings/SetPassphrasePrompt.tsx:154
 #: src/components/settings/SetPassphrasePrompt.tsx:258
@@ -3628,7 +3624,7 @@ msgstr ""
 
 #: src/components/offers/OfferHeader.tsx:46
 #~ msgid "This offer is no longer valid"
-#~ msgstr ""
+#~ msgstr "This offer is no longer valid"
 
 #: src/components/offers/OfferHeader.tsx:46
 msgid "This offer is no longer valid. To understand why, click <0>here</0> to learn more."
@@ -3648,8 +3644,7 @@ msgstr ""
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:47
 msgid "This table shows you the last time your farm attempted to win a block challenge. <0>Learn more</0>"
-msgstr ""
-"این جدول آخرین زمانی را به شما نشان میدهد که مزرعه شما تلاشی برای برنده شدن در چالش و پردازش یک بلوک کرده است.\n"
+msgstr "این جدول آخرین زمانی را به شما نشان میدهد که مزرعه شما تلاشی برای برنده شدن در چالش و پردازش یک بلوک کرده است.\n"
 "<0>بیشتر بدانید</0>"
 
 #: src/components/trading/TradingOverview.jsx:188
@@ -3871,7 +3866,7 @@ msgstr ""
 
 #: src/components/offers/utils.ts:176
 msgid "Unknown"
-msgstr "Unknown"
+msgstr ""
 
 #: src/components/offers/OfferManager.tsx:232
 #: src/components/offers/OfferSummaryRow.tsx:188
@@ -4165,7 +4160,7 @@ msgstr ""
 
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:177
 #~ msgid "You Already Have 50 or more Plot NFT's."
-#~ msgstr ""
+#~ msgstr "You Already Have 50 or more Plot NFT's."
 
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:177
 msgid "You already have 50 or more Plot NFTs."
@@ -4177,7 +4172,7 @@ msgstr ""
 
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:120
 #~ msgid "You already have more then 10 PlotNFT's, you really shouldn't make more."
-#~ msgstr ""
+#~ msgstr "You already have more then 10 PlotNFT's, you really shouldn't make more."
 
 #: src/hooks/useAbsorbRewards.tsx:27
 #: src/hooks/useJoinPool.tsx:36
@@ -4222,8 +4217,7 @@ msgstr ""
 
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:58
 msgid "You have {0}% of the space on the network, so farming a block will take {expectedTimeToWin} in expectation. Actual results may take 3 to 4 times longer than this estimate."
-msgstr ""
-"شما {0} درصد فضا در شبکه دارید، بر این اساس برای مزرعه داری (ساختن) یک بلوک مدت زمان {expectedTimeToWin} تخمین زده میشود.\n"
+msgstr "شما {0} درصد فضا در شبکه دارید، بر این اساس برای مزرعه داری (ساختن) یک بلوک مدت زمان {expectedTimeToWin} تخمین زده میشود.\n"
 "در عمل رسیدن به نتیجه اصلی ۳ تا ۴ برابر تخمین بالا به طول می انجامد."
 
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:34
@@ -4447,3 +4441,4 @@ msgstr ""
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:118
 msgid "{warning}"
 msgstr ""
+
