@@ -8,7 +8,7 @@ msgstr ""
 "Language: th_TH\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-07-27 02:36\n"
+"PO-Revision-Date: 2022-07-27 03:54\n"
 "Last-Translator: \n"
 "Language-Team: Thai\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -74,8 +74,8 @@ msgstr "Harvester Service กำลังทำงานอยู่บนเค
 msgid "A value of {0} is recommended"
 msgstr ""
 
-#: src/electron/main.tsx:574
-#: src/electron/main.tsx:661
+#: src/electron/main.tsx:586
+#: src/electron/main.tsx:673
 msgid "About Chia Blockchain"
 msgstr "เกี่ยวกับ Chia Blockchain"
 
@@ -244,7 +244,7 @@ msgstr "คุณแน่ใจที่จะตัดการเชื่อ
 msgid "Are you sure you want to move this NFT to the specified profile?"
 msgstr ""
 
-#: src/electron/main.tsx:332
+#: src/electron/main.tsx:341
 msgid "Are you sure you want to quit?"
 msgstr ""
 
@@ -450,7 +450,7 @@ msgstr ""
 msgid "Change Pool"
 msgstr "เปลี่ยน Pool"
 
-#: src/electron/main.tsx:553
+#: src/electron/main.tsx:565
 msgid "Chat on KeyBase"
 msgstr "แชทบน KeyBase"
 
@@ -466,11 +466,11 @@ msgstr ""
 msgid "Check Provenance on Spacescan.io"
 msgstr ""
 
-#: src/electron/main.tsx:571
+#: src/electron/main.tsx:583
 msgid "Chia"
 msgstr ""
 
-#: src/electron/main.tsx:510
+#: src/electron/main.tsx:522
 msgid "Chia Blockchain Wiki"
 msgstr ""
 
@@ -579,7 +579,7 @@ msgstr ""
 #~ msgstr "Colored Coin Options"
 
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:180
-#: src/electron/main.tsx:330
+#: src/electron/main.tsx:339
 #: src/hooks/useAbsorbRewards.tsx:44
 msgid "Confirm"
 msgstr "ยืน​ยัน"
@@ -671,7 +671,7 @@ msgstr "ประเภทการเชื่อมต่อ"
 msgid "Connections"
 msgstr "การเชื่อมต่อ"
 
-#: src/electron/main.tsx:534
+#: src/electron/main.tsx:546
 msgid "Contribute on GitHub"
 msgstr "มีส่วนร่วมใน GitHub"
 
@@ -975,11 +975,11 @@ msgstr ""
 msgid "Details"
 msgstr ""
 
-#: src/electron/main.tsx:450
+#: src/electron/main.tsx:462
 msgid "Developer"
 msgstr "นักพัฒนา"
 
-#: src/electron/main.tsx:453
+#: src/electron/main.tsx:465
 msgid "Developer Tools"
 msgstr "เครืองมือนักพัฒนา"
 
@@ -1083,7 +1083,7 @@ msgstr ""
 msgid "Duplicate Plots"
 msgstr ""
 
-#: src/electron/main.tsx:409
+#: src/electron/main.tsx:421
 msgid "Edit"
 msgstr "แก้ไข"
 
@@ -1321,8 +1321,8 @@ msgstr "จำนวนค่าธรรมเนียม"
 msgid "Fees included in offer:"
 msgstr ""
 
-#: src/electron/main.tsx:401
-#: src/electron/main.tsx:608
+#: src/electron/main.tsx:413
+#: src/electron/main.tsx:620
 msgid "File"
 msgstr "ไฟล์"
 
@@ -1346,11 +1346,11 @@ msgstr "ตำแหน่งโฟลเดอร์ของไฟล์พล
 msgid "Finished"
 msgstr "เสร็จสิ้น"
 
-#: src/electron/main.tsx:559
+#: src/electron/main.tsx:571
 msgid "Follow on Twitter"
 msgstr "ติดตามใน Twitter"
 
-#: src/electron/main.tsx:518
+#: src/electron/main.tsx:530
 msgid "Frequently Asked Questions"
 msgstr "คำถามที่พบบ่อย"
 
@@ -1367,7 +1367,7 @@ msgstr "ฟูลโหนด"
 #~ msgid "Full Node Status"
 #~ msgstr "Full Node Status"
 
-#: src/electron/main.tsx:484
+#: src/electron/main.tsx:496
 msgid "Full Screen"
 msgstr "เต็มหน้าจอ"
 
@@ -1434,7 +1434,7 @@ msgstr "แฮชส่วนหัว"
 msgid "Height"
 msgstr "ความสูง"
 
-#: src/electron/main.tsx:506
+#: src/electron/main.tsx:518
 msgid "Help"
 msgstr "ช่วยเหลือ"
 
@@ -2018,7 +2018,7 @@ msgstr "ถัดไป"
 #~ msgid "Nickname"
 #~ msgstr "Nickname"
 
-#: src/electron/main.tsx:327
+#: src/electron/main.tsx:336
 msgid "No"
 msgstr "ไม่"
 
@@ -2914,7 +2914,7 @@ msgstr "รีเฟรชรายการพล็อต"
 msgid "Relative Lock Height"
 msgstr "ความสูงของล็อคสัมพัทธ์"
 
-#: src/electron/main.tsx:526
+#: src/electron/main.tsx:538
 msgid "Release Notes"
 msgstr "บันทึกประจำรุ่น"
 
@@ -2940,7 +2940,7 @@ msgstr "กำลังลบ"
 #~ msgid "Rename"
 #~ msgstr "Rename"
 
-#: src/electron/main.tsx:545
+#: src/electron/main.tsx:557
 msgid "Report an Issue..."
 msgstr "รายงานปัญหา..."
 
@@ -3247,7 +3247,7 @@ msgstr "ให้รางวัลการทำฟาร์ม XCH ของ�
 msgid "Specify a value of 0 to use all available threads"
 msgstr ""
 
-#: src/electron/main.tsx:622
+#: src/electron/main.tsx:634
 msgid "Speech"
 msgstr "การพูด"
 
@@ -3917,7 +3917,7 @@ msgstr ""
 msgid "Verify Pool Details"
 msgstr "ยืนยันข้อมูลของพูล"
 
-#: src/electron/main.tsx:441
+#: src/electron/main.tsx:453
 msgid "View"
 msgstr "แสดง"
 
@@ -4122,7 +4122,7 @@ msgstr ""
 #~ msgid "When you receive the setup info packet from your admin, enter it below to complete your Rate Limited Wallet setup:"
 #~ msgstr "When you receive the setup info packet from your admin, enter it below to complete your Rate Limited Wallet setup:"
 
-#: src/electron/main.tsx:492
+#: src/electron/main.tsx:504
 msgid "Window"
 msgstr "หน้าต่าง"
 
@@ -4143,7 +4143,7 @@ msgid "XCH for NFT"
 msgstr ""
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:48
-#: src/electron/main.tsx:328
+#: src/electron/main.tsx:337
 msgid "Yes"
 msgstr "ใช่"
 
