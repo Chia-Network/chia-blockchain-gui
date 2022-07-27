@@ -8,7 +8,7 @@ msgstr ""
 "Language: fr_FR\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-07-27 13:09\n"
+"PO-Revision-Date: 2022-07-27 14:55\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
@@ -3414,25 +3414,25 @@ msgstr "Le déplacement du NFT a échoué : {error}"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:305
 msgid "The NFT move transaction has been successfully submitted to the blockchain."
-msgstr ""
+msgstr "La transaction de déplacement du NFT a été soumise avec succès à la blockchain."
 
 #: src/components/nfts/NFTContextualActions.tsx:306
 msgid "The NFT status has been updated. If the transaction was successfully sent to the mempool, it may still complete."
-msgstr ""
+msgstr "Le statut du NFT a été mis à jour. Si la transaction a été envoyée avec succès au mempool, elle pourra être acceptée."
 
 #: src/components/nfts/NFTContextualActions.tsx:316
 msgid "The NFT status update failed: {error}"
-msgstr ""
+msgstr "Échec de la mise à jour du statut du NFT : {error}"
 
 #: src/components/nfts/NFTContextualActions.tsx:180
 #: src/components/nfts/NFTContextualActions.tsx:244
 msgid "The NFT transfer failed: {error}"
-msgstr ""
+msgstr "Échec du transfert du NFT : {error}"
 
 #: src/components/nfts/NFTContextualActions.tsx:170
 #: src/components/nfts/NFTContextualActions.tsx:234
 msgid "The NFT transfer transaction has been successfully submitted to the blockchain."
-msgstr ""
+msgstr "La transaction de déplacement du NFT a été soumise avec succès à la blockchain."
 
 #: src/components/app/AppTimeBomb.tsx:28
 #~ msgid "The application will stop working at block height 193536."
