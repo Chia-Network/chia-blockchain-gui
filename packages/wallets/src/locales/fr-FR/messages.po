@@ -8,7 +8,7 @@ msgstr ""
 "Language: fr_FR\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-07-27 16:19\n"
+"PO-Revision-Date: 2022-07-27 17:15\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
@@ -439,7 +439,7 @@ msgstr "Impossible d'envoyer des chias à une adresse colorée. Merci d'entrer u
 
 #: src/components/WalletsSidebar.tsx:140
 msgid "Check my snapshot balance"
-msgstr ""
+msgstr "Vérifier le solde du snapshot"
 
 #: src/electron/main.tsx:430
 #~ msgid "Chia"
@@ -478,7 +478,7 @@ msgstr "Chia Asset Token"
 
 #: src/components/WalletsSidebar.tsx:151
 msgid "Click here to download an older version of the wallet"
-msgstr ""
+msgstr "Cliquez ici pour télécharger une ancienne version du portefeuille"
 
 #: src/components/offers/OfferManager.tsx:159
 #: src/components/offers/OfferShareDialog.tsx:379
@@ -672,7 +672,7 @@ msgstr "Créer un nouveau portefeuille"
 #: src/components/cat/WalletCAT.tsx:129
 #: src/components/standard/WalletStandard.tsx:54
 msgid "Create Offer"
-msgstr ""
+msgstr "Créer une offre"
 
 #: src/components/plot/add/PlotAdd.tsx:92
 #~ msgid "Create Plot"
@@ -878,7 +878,7 @@ msgstr "Supprimer les transactions non confirmées"
 
 #: src/components/card/WalletCardTotalBalance.tsx:63
 msgid "Derivation Index: {0}"
-msgstr ""
+msgstr "Indice de dérivation : {0}"
 
 #: src/components/offers/OfferViewer.tsx:504
 #~ msgid "Details"
@@ -1527,7 +1527,7 @@ msgstr "La liste des connexions est vide"
 
 #: src/components/WalletReceiveAddressField.tsx:40
 msgid "Loading..."
-msgstr ""
+msgstr "Chargement..."
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:126
 #~ msgid "Local Harvester Plots"
@@ -1663,7 +1663,7 @@ msgstr "Ma clé publique"
 
 #: src/constants/WalletName.ts:35
 msgid "NFT Wallet"
-msgstr ""
+msgstr "Portefeuille NFT"
 
 #: src/components/cat/WalletCATCreateExistingSimple.tsx:71
 msgid "Name"
@@ -2460,7 +2460,7 @@ msgstr "Configuration Portefeuille Utilisateur à Taux Limité"
 
 #: src/components/WalletsSidebar.tsx:143
 msgid "Read the blog post for details"
-msgstr ""
+msgstr "Lire le billet de blog pour plus de détails"
 
 #: src/components/WalletHeader.tsx:60
 msgid "Receive"
@@ -3511,7 +3511,7 @@ msgstr "Portefeuille {walletId} introuvable"
 
 #: src/components/WalletsSidebar.tsx:148
 msgid "Want to see your old balance for yourself?"
-msgstr ""
+msgstr "Vous voulez voir votre ancien solde par vous-même ?"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:252
 #~ msgid "Warm start"
@@ -3540,7 +3540,7 @@ msgstr ""
 
 #: src/components/WalletsSidebar.tsx:114
 msgid "We've made an upgrade to the CAT standard which requires all CATs to be re-issued. You will be airdropped your new tokens as they are re-issued by the original issuers. The airdropped tokens will be based on the balance as of block height:<0/><1/><2/>(Approximate time: July 26th, 2022 @ 17:00 UTC)"
-msgstr ""
+msgstr "Nous avons fait une mise à jour de la norme CAT qui exige que tous les CAT soient réémis. Vous recevrez vos nouveaux jetons une fois réémis par les créateurs initiaux. Le montant sera basé sur le solde au bloc :<0/><1/><2/>(Date approximative : 26 juillet 2022 @ 17:00 UTC)"
 
 #: src/components/block/Block.jsx:194
 #~ msgid "Weight"
@@ -3663,7 +3663,7 @@ msgstr "Lorsque vous recevez le paquet d'informations de configuration de votre 
 
 #: src/components/WalletsSidebar.tsx:110
 msgid "Your CAT tokens have been upgraded!"
-msgstr ""
+msgstr "Vos jetons CAT ont été mis à jour !"
 
 #: src/components/cat/WalletDID.tsx:326
 #: src/components/did/WalletDID.tsx:326
