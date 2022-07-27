@@ -8,7 +8,7 @@ msgstr ""
 "Language: pt_BR\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-05-26 15:59\n"
+"PO-Revision-Date: 2022-07-27 16:21\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -32,7 +32,7 @@ msgstr "(Opcional)"
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:67
 #~ msgid "*Want to explore Chia’s blocks further? Check out <0>Chia Explorer</0> built by an open source developer."
-#~ msgstr "Quer explorar os blocos de Chia mais à fundo? Dê uma olhada no <0>Chia Explorer</0> construído por um desenvolvedor de código aberto."
+#~ msgstr "*Want to explore Chia’s blocks further? Check out <0>Chia Explorer</0> built by an open source developer."
 
 #: src/components/app/AppSelectMode.tsx:120
 #~ msgid "+"
@@ -201,7 +201,7 @@ msgstr ""
 #: src/components/offers/OfferEditorConditionsPanel.tsx:148
 #: src/components/offers/OfferViewer.tsx:198
 msgid "Amount"
-msgstr "Amount"
+msgstr ""
 
 #: src/components/_wallet_old/coloured/WalletColoured.tsx:581
 #~ msgid "Amount ({cc_unit})"
@@ -275,7 +275,7 @@ msgstr "Nome gerado automaticamente a partir do endereço de contrato do bolão"
 #: src/components/offers/NFTOfferViewer.tsx:733
 #: src/components/offers/OfferViewer.tsx:308
 msgid "Back"
-msgstr "Back"
+msgstr ""
 
 #: src/components/backup/BackupCreate.tsx:46
 msgid "Backup file is used to restore smart wallets."
@@ -730,7 +730,7 @@ msgstr "Criar e Gerenciar lotes"
 #: src/components/offers/OfferEditor.tsx:221
 #: src/components/offers/OfferEditorConfirmationDialog.tsx:15
 msgid "Create Offer"
-msgstr "Create Offer"
+msgstr ""
 
 #: src/components/plot/add/PlotAdd.tsx:92
 #~ msgid "Create Plot"
@@ -1006,7 +1006,7 @@ msgstr ""
 
 #: src/electron/main.tsx:401
 #~ msgid "Disable Simulator"
-#~ msgstr "Desativar Simulador"
+#~ msgstr "Disable Simulator"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:114
 #~ msgid "Disable bifield plotting when your temporary directory is on fast storage like SSD or you need lower per process RAM requirements. Plotting with bitfield enabled has about 20% less overall writes."
@@ -1065,7 +1065,7 @@ msgstr ""
 
 #: src/components/offers/OfferImport.tsx:166
 msgid "Drag and drop offer file"
-msgstr "Drag and drop offer file"
+msgstr ""
 
 #: src/components/backup/BackupRestore.tsx:172
 msgid "Drag and drop your backup file"
@@ -1104,7 +1104,7 @@ msgstr ""
 
 #: src/electron/main.tsx:402
 #~ msgid "Enable Simulator"
-#~ msgstr "Ativar Simulador"
+#~ msgstr "Enable Simulator"
 
 #: src/components/wallet/EnterPassphrasePrompt.tsx:111
 #~ msgid "Enter Passphrase"
@@ -1576,14 +1576,12 @@ msgid "Install Keybase"
 msgstr ""
 
 #: src/hooks/useAcceptOfferHook.tsx:78
-msgid ""
-"Insufficient funds available to accept offer. Ensure that your\n"
+msgid "Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
 msgstr ""
 
 #: src/components/offers/OfferEditor.tsx:182
-msgid ""
-"Insufficient funds available to create offer. Ensure that your\n"
+msgid "Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
 msgstr ""
 
@@ -1629,7 +1627,7 @@ msgstr "Junte-se a um bolão e obtenha recompensas de cultivo XCH mais consisten
 
 #: src/components/plot/add/PlotAddNFT.tsx:52
 #~ msgid "Join apool and get consistent XCH farming rewards. The average returns are the same, but it is much less volatile."
-#~ msgstr ""
+#~ msgstr "Join apool and get consistent XCH farming rewards. The average returns are the same, but it is much less volatile."
 
 #: src/components/app/AppSelectMode.tsx:143
 msgid "Join farming pools"
@@ -2275,7 +2273,7 @@ msgstr ""
 
 #: src/components/settings/Settings.tsx:213
 #~ msgid "Passphrase Settings"
-#~ msgstr ""
+#~ msgstr "Passphrase Settings"
 
 #: src/components/app/AppPassPrompt.tsx:152
 #: src/components/settings/RemovePassphrasePrompt.tsx:67
@@ -2410,7 +2408,7 @@ msgstr ""
 
 #: src/components/settings/ProfileAdd.tsx:64
 msgid "Please enter a valid numeric fee"
-msgstr "Please enter a valid numeric fee"
+msgstr ""
 
 #: src/components/_wallet_old/create/createRLAdmin.jsx:100
 #~ msgid "Please enter a valid numeric interval length"
@@ -3127,12 +3125,12 @@ msgstr ""
 
 #: src/components/nfts/NFTSummary.tsx:69
 #~ msgid "Series #"
-#~ msgstr ""
+#~ msgstr "Series #"
 
 #: src/components/nfts/detail/NFTDetail.tsx:94
 #: src/components/nfts/detail/NFTDetailV2.tsx:118
 #~ msgid "Series Number"
-#~ msgstr ""
+#~ msgstr "Series Number"
 
 #: src/components/settings/SetPassphrasePrompt.tsx:154
 #: src/components/settings/SetPassphrasePrompt.tsx:258
@@ -3624,7 +3622,7 @@ msgstr ""
 
 #: src/components/offers/OfferHeader.tsx:46
 #~ msgid "This offer is no longer valid"
-#~ msgstr ""
+#~ msgstr "This offer is no longer valid"
 
 #: src/components/offers/OfferHeader.tsx:46
 msgid "This offer is no longer valid. To understand why, click <0>here</0> to learn more."
@@ -3701,7 +3699,7 @@ msgstr "Tokens"
 
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:118
 msgid "Too Many Plot NFTs"
-msgstr ""
+msgstr "Plote NFT demais"
 
 #: src/components/offers/NFTOfferEditor.tsx:352
 #: src/components/offers/NFTOfferViewer.tsx:611
@@ -3865,7 +3863,7 @@ msgstr "Inacabado"
 
 #: src/components/offers/utils.ts:176
 msgid "Unknown"
-msgstr "Unknown"
+msgstr ""
 
 #: src/components/offers/OfferManager.tsx:232
 #: src/components/offers/OfferSummaryRow.tsx:188
@@ -4159,7 +4157,7 @@ msgstr ""
 
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:177
 #~ msgid "You Already Have 50 or more Plot NFT's."
-#~ msgstr ""
+#~ msgstr "You Already Have 50 or more Plot NFT's."
 
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:177
 msgid "You already have 50 or more Plot NFTs."
@@ -4167,11 +4165,11 @@ msgstr ""
 
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:121
 msgid "You already have more than 10 Plot NFTs. Click OK if you're sure you want to create a new one."
-msgstr ""
+msgstr "Você já tem mais de 10 Plot NFTs. Clique em OK se você tem certeza que quer criar uma nova."
 
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:120
 #~ msgid "You already have more then 10 PlotNFT's, you really shouldn't make more."
-#~ msgstr ""
+#~ msgstr "You already have more then 10 PlotNFT's, you really shouldn't make more."
 
 #: src/hooks/useAbsorbRewards.tsx:27
 #: src/hooks/useJoinPool.tsx:36
@@ -4439,3 +4437,4 @@ msgstr ""
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:118
 msgid "{warning}"
 msgstr ""
+
