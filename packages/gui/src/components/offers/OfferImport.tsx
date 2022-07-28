@@ -15,6 +15,7 @@ import { type OfferSummaryRecord } from '@chia/api';
 import OfferDataEntryDialog from './OfferDataEntryDialog';
 import { offerContainsAssetOfType } from './utils';
 import fs, { Stats } from 'fs';
+import { IpcRenderer } from 'electron';
 import { useHotkeys } from 'react-hotkeys-hook';
 
 function SelectOfferFile() {
@@ -130,8 +131,8 @@ function SelectOfferFile() {
     const dialogOptions = {
       filters: [{ name: 'Offer Files', extensions: ['offer'] }],
     } as Electron.OpenDialogOptions;
-    const ipcRenderer = (window as any).ipcRenderer;
-    const { canceled, filePaths } = await ipcRenderer?.invoke(
+    const ipcRenderer: IpcRenderer = (window as any).ipcRenderer;
+    const { canceled, filePaths } = await ipcRenderer.invoke(
       'showOpenDialog',
       dialogOptions,
     );
@@ -140,43 +141,29 @@ function SelectOfferFile() {
     }
   }
 
-  async function pasteParse (text) {
+  async function pasteParse(text: string) {
     try {
       await parseOfferSummary(text, undefined);
-    }
-    catch (e) {
+    } catch (e) {
       errorDialog(e);
-    }
-    finally {
+    } finally {
       setIsParsing(false);
     }
   }
 
   const isMac = /(Mac|iPhone|iPod|iPad)/i.test(navigator.platform);
+  const hotKey = isMac ? 'cmd+v' : 'ctrl+v';
 
-  if (isMac) {
-    useHotkeys('cmd+v', () => {
-      navigator.clipboard.readText()
-        .then(text => {
-          pasteParse(text);
-        })
-        .catch(err => {
-          console.log('Error during paste from clipboard', err);
-        })
-    })
-  } else {
-    useHotkeys('ctrl+v', () => {
-      navigator.clipboard.readText()
-        .then(text => {
-          pasteParse(text);
-        })
-        .catch(err => {
-          console.log('Error during paste from clipboard', err);
-        })
-    })
-  }
-
-
+  useHotkeys(hotKey, () => {
+    navigator.clipboard
+      .readText()
+      .then((text) => {
+        pasteParse(text);
+      })
+      .catch((err) => {
+        console.log('Error during paste from clipboard', err);
+      });
+  });
 
   return (
     <Card>
@@ -187,7 +174,7 @@ function SelectOfferFile() {
             color="secondary"
             onClick={handlePasteOfferData}
           >
-            <Trans>Paste Offer Data (cmd+v / ctrl+v)</Trans>
+            <Trans>Paste Offer Data</Trans>
           </Button>
           <Button
             variant="outlined"
@@ -199,7 +186,18 @@ function SelectOfferFile() {
         </Flex>
       </Flex>
       <Dropzone maxFiles={1} onDrop={handleDrop} processing={isParsing}>
-        <Trans>Drag & drop Offer Files or paste (cmd+v / ctrl+v) a blob</Trans>
+        <Flex flexDirection="column" alignItems="center">
+          <Typography color="textSecondary" variant="h5">
+            <Trans>Drag & Drop an Offer File</Trans>
+          </Typography>
+          <Typography color="textSecondary" variant="h6">
+            {isMac ? (
+              <Trans>or Paste (⌘V) an Offer blob</Trans>
+            ) : (
+              <Trans>or Paste (Ctrl-V) an Offer blob</Trans>
+            )}
+          </Typography>
+        </Flex>
       </Dropzone>
     </Card>
   );
