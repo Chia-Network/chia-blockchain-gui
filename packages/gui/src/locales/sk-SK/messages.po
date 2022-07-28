@@ -8,7 +8,7 @@ msgstr ""
 "Language: sk_SK\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-07-28 21:24\n"
+"PO-Revision-Date: 2022-07-28 22:25\n"
 "Last-Translator: \n"
 "Language-Team: Slovak\n"
 "Plural-Forms: nplurals=4; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 3;\n"
@@ -1656,7 +1656,7 @@ msgstr "Prosím potvrďte"
 
 #: src/hooks/useOpenUnsafeLink.tsx:50
 msgid "Please check the following link to verify the site you are going to visit. Proceed at your own risk."
-msgstr ""
+msgstr "Skontrolujte prosím nasledujúci odkaz na overenie stránky, ktorú sa chystáte navštíviť. Pokračujte na vlastné riziko."
 
 #: src/components/app/AppPassPrompt.tsx:60
 #: src/components/settings/SetPassphrasePrompt.tsx:58
@@ -1665,19 +1665,19 @@ msgstr "Prosím, zadajte prístupovú frázu"
 
 #: src/components/settings/ProfileAdd.tsx:64
 msgid "Please enter a valid numeric fee"
-msgstr ""
+msgstr "Prosím zadajte platný číselný poplatok"
 
 #: src/components/offers/NFTOfferEditor.tsx:549
 msgid "Please enter an NFT identifier"
-msgstr ""
+msgstr "Prosím zadajte identifikátor NFT"
 
 #: src/components/offers/NFTOfferEditor.tsx:555
 msgid "Please enter an amount"
-msgstr ""
+msgstr "Prosím zadajte sumu"
 
 #: src/components/offers/OfferEditor.tsx:136
 msgid "Please enter an amount for each row"
-msgstr ""
+msgstr "Prosím zadajte sumu pre každý riadok"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:81
 msgid "Please enter your current passphrase, and a new passphrase"
