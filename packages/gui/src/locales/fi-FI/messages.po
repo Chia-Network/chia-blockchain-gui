@@ -8,7 +8,7 @@ msgstr ""
 "Language: fi_FI\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-07-27 18:38\n"
+"PO-Revision-Date: 2022-07-28 11:04\n"
 "Last-Translator: \n"
 "Language-Team: Finnish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -662,7 +662,7 @@ msgstr "Kohde:"
 #: src/components/nfts/NFTDetails.tsx:240
 #: src/components/offers/OfferViewer.tsx:327
 msgid "Details"
-msgstr ""
+msgstr "Lisätiedot"
 
 #: src/electron/main.tsx:462
 msgid "Developer"
@@ -674,7 +674,7 @@ msgstr "Kehitystyökalut"
 
 #: src/components/offers/OfferShareDialog.tsx:550
 msgid "Dexie URL"
-msgstr ""
+msgstr "Dexie URL"
 
 #: src/components/block/Block.jsx:199
 #: src/components/fullNode/card/FullNodeCardDifficulty.tsx:14
@@ -695,12 +695,12 @@ msgstr "Katkaise Yhteys"
 
 #: src/components/offers/OfferManager.tsx:465
 msgid "Display Offer Data"
-msgstr ""
+msgstr "Näytä Tarjouksen Tiedot"
 
 #: src/components/offers/OfferShareDialog.tsx:1446
 #: src/hooks/useOpenUnsafeLink.tsx:77
 msgid "Do not show this dialog again"
-msgstr ""
+msgstr "Älä näytä tätä valintaikkunaa uudelleen."
 
 #: src/components/farm/FarmHero.tsx:46
 #: src/components/plot/overview/PlotOverviewHero.tsx:66
@@ -713,15 +713,15 @@ msgstr "Tukeeko tietokoneesi rinnakkaisplottausta?"
 
 #: src/components/nfts/NFTContextualActions.tsx:511
 msgid "Download"
-msgstr ""
+msgstr "Lataa"
 
 #: src/components/offers/OfferImport.tsx:146
 msgid "Drag & drop an offer file below to view its details"
-msgstr ""
+msgstr "Vedä ja pudota tarjous alle nähdäksesi sen tiedot"
 
 #: src/components/offers/OfferImport.tsx:166
 msgid "Drag and drop offer file"
-msgstr ""
+msgstr "Raahaa ja pudota tarjoustiedosto"
 
 #: src/components/backup/BackupRestore.tsx:172
 msgid "Drag and drop your backup file"
@@ -747,12 +747,12 @@ msgstr "Muokkaa Maksuohjeita"
 
 #: src/components/nfts/NFTSummary.tsx:69
 msgid "Edition #"
-msgstr ""
+msgstr "Painos #"
 
 #: src/components/nfts/detail/NFTDetail.tsx:94
 #: src/components/nfts/detail/NFTDetailV2.tsx:118
 msgid "Edition Number"
-msgstr ""
+msgstr "Painoksen Nro"
 
 #: src/components/app/AppKeyringMigrator.tsx:149
 msgid "Enter a strong passphrase and click Migrate Keys to secure your keys"
@@ -795,7 +795,7 @@ msgstr "Jätä pois lopullinen hakemisto"
 
 #: src/components/nfts/gallery/NFTGalleryHero.tsx:17
 msgid "Explore the Chia ecosystem; discover and trade great NFTs"
-msgstr ""
+msgstr "Tarkastele Chian ekosysteemiä; löydä ja käy kauppaa NFT:illä"
 
 #: src/components/offers/utils.ts:174
 #: src/components/plot/PlotHarvester.tsx:118
