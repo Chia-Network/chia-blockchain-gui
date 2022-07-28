@@ -8,7 +8,7 @@ msgstr ""
 "Language: sk_SK\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-07-27 18:39\n"
+"PO-Revision-Date: 2022-07-28 19:52\n"
 "Last-Translator: \n"
 "Language-Team: Slovak\n"
 "Plural-Forms: nplurals=4; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 3;\n"
@@ -40,11 +40,11 @@ msgstr "+ Pridať pole"
 
 #: src/components/settings/ProfileAdd.tsx:91
 msgid "<0>Need some XCH?</0>"
-msgstr ""
+msgstr "<0>Potrebujete XCH?</0>"
 
 #: src/components/settings/ProfileAdd.tsx:99
 msgid "<0>Use one (1) mojo to create a Profile.</0>"
-msgstr ""
+msgstr "<0>Na vytvorenie profilu použite jedno (1) mojo.</0>"
 
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:96
 msgid "A harvester is a service running on a machine where plot(s) are actually stored. A farmer and harvester talk to a full node to see the state of the chain. View your network of connected harvesters below Learn more"
@@ -63,11 +63,11 @@ msgstr "O Chia blockchaine"
 #: src/components/offers/OfferAcceptConfirmationDialog.tsx:23
 #: src/components/offers/OfferViewer.tsx:317
 msgid "Accept Offer"
-msgstr ""
+msgstr "Prijať ponuku"
 
 #: src/components/offers/OfferViewer.tsx:161
 msgid "Accepted on Date"
-msgstr ""
+msgstr "Prijaté k dátumu"
 
 #: src/components/plot/PlotHarvesterPlots.tsx:79
 #: src/components/plot/PlotHarvesterPlotsDuplicate.tsx:18
@@ -86,7 +86,7 @@ msgstr "Akcie"
 
 #: src/components/offers/OfferAssetSelector.tsx:165
 msgid "Add CAT wallets to have more options"
-msgstr ""
+msgstr "Pridajte CAT peňaženky, aby ste mali viac možností"
 
 #: src/components/plot/PlotHeader.tsx:88
 #: src/components/plot/overview/PlotOverviewPlots.tsx:55
@@ -130,12 +130,12 @@ msgstr "Keď budú vaše kľúče úspešne migrované do nového zväzku kľú�
 #: src/components/nfts/gallery/NFTGallerySidebar.tsx:73
 #: src/components/nfts/gallery/NFTGallerySidebar.tsx:86
 msgid "All"
-msgstr ""
+msgstr "Všetky"
 
 #: src/components/nfts/NFTProfileDropdown.tsx:90
 #: src/components/nfts/NFTProfileDropdown.tsx:118
 msgid "All NFTs"
-msgstr ""
+msgstr "Všetky NFT"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:96
 msgid "All Profiles"
