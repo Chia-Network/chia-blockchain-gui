@@ -15,6 +15,7 @@ import { type OfferSummaryRecord } from '@chia/api';
 import OfferDataEntryDialog from './OfferDataEntryDialog';
 import { offerContainsAssetOfType } from './utils';
 import fs, { Stats } from 'fs';
+import { useHotkeys } from 'react-hotkeys-hook';
 
 function SelectOfferFile() {
   const { navigate } = useSerializedNavigationState();
@@ -139,19 +140,54 @@ function SelectOfferFile() {
     }
   }
 
+  async function pasteParse (text) {
+    try {
+      await parseOfferSummary(text, undefined);
+    }
+    catch (e) {
+      errorDialog(e);
+    }
+    finally {
+      setIsParsing(false);
+    }
+  }
+
+  const isMac = /(Mac|iPhone|iPod|iPad)/i.test(navigator.platform);
+
+  if (isMac) {
+    useHotkeys('cmd+v', () => {
+      navigator.clipboard.readText()
+        .then(text => {
+          pasteParse(text);
+        })
+        .catch(err => {
+          console.log('Error during paste from clipboard', err);
+        })
+    })
+  } else {
+    useHotkeys('ctrl+v', () => {
+      navigator.clipboard.readText()
+        .then(text => {
+          pasteParse(text);
+        })
+        .catch(err => {
+          console.log('Error during paste from clipboard', err);
+        })
+    })
+  }
+
+
+
   return (
     <Card>
-      <Flex justifyContent="space-between">
-        <Typography variant="subtitle1">
-          <Trans>Drag & drop an offer file below to view its details</Trans>
-        </Typography>
+      <Flex justifyContent="flex-end">
         <Flex flexDirection="row" gap={3}>
           <Button
             variant="outlined"
             color="secondary"
             onClick={handlePasteOfferData}
           >
-            <Trans>Paste Offer Data</Trans>
+            <Trans>Paste Offer Data (cmd+v / ctrl+v)</Trans>
           </Button>
           <Button
             variant="outlined"
@@ -163,7 +199,7 @@ function SelectOfferFile() {
         </Flex>
       </Flex>
       <Dropzone maxFiles={1} onDrop={handleDrop} processing={isParsing}>
-        <Trans>Drag and drop offer file</Trans>
+        <Trans>Drag & drop Offer Files or paste (cmd+v / ctrl+v) a blob</Trans>
       </Dropzone>
     </Card>
   );
