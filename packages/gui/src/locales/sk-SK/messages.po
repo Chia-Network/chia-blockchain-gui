@@ -8,7 +8,7 @@ msgstr ""
 "Language: sk_SK\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-07-29 02:10\n"
+"PO-Revision-Date: 2022-07-29 10:44\n"
 "Last-Translator: \n"
 "Language-Team: Slovak\n"
 "Plural-Forms: nplurals=4; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 3;\n"
@@ -795,7 +795,7 @@ msgstr "Vylúčiť cieľový adresár"
 
 #: src/components/nfts/gallery/NFTGalleryHero.tsx:17
 msgid "Explore the Chia ecosystem; discover and trade great NFTs"
-msgstr ""
+msgstr "Preskúmajte ekosystém Chia; objavte a obchodujte so skvelými NFT"
 
 #: src/components/offers/utils.ts:174
 #: src/components/plot/PlotHarvester.tsx:118
@@ -804,7 +804,7 @@ msgstr "Nepodarilo sa"
 
 #: src/components/offers/NFTOfferEditor.tsx:553
 msgid "Failed to decode NFT identifier"
-msgstr ""
+msgstr "Nepodarilo sa dekódovať NFT identifikátor"
 
 #: src/components/offers/OfferShareDialog.tsx:420
 msgid "Failed to execute Keybase command: {stderr}"
@@ -889,7 +889,7 @@ msgstr "Poplatok"
 #: src/components/offers/NFTOfferEditor.tsx:88
 #: src/components/offers/OfferEditorConditionsPanel.tsx:457
 msgid "Fee (Optional)"
-msgstr ""
+msgstr "Poplatok (nepovinné)"
 
 #: src/components/plotNFT/PlotNFTChangePool.tsx:126
 msgid "Fee is used TWICE: once to leave pool, once to join."
@@ -911,7 +911,7 @@ msgstr "Súbor"
 
 #: src/components/nfts/NFTPreview.tsx:26
 msgid "File is over 10MB"
-msgstr ""
+msgstr "Súbor má viac ako 10MB"
 
 #: src/components/plot/PlotHarvesterPlots.tsx:71
 #: src/components/plot/PlotHarvesterPlotsDuplicate.tsx:13
@@ -952,7 +952,7 @@ msgstr "Všeobecné"
 
 #: src/components/nfts/gallery/NFTGalleryHero.tsx:14
 msgid "Go collect some gems"
-msgstr ""
+msgstr "Choďte pozbierať nejaké drahokamy"
 
 #: src/components/offers/OfferShareDialog.tsx:1028
 #: src/components/offers/OfferShareDialog.tsx:1089
@@ -1011,7 +1011,7 @@ msgstr "Meno hostiteľa"
 
 #: src/components/offers/OfferEditorConfirmationDialog.tsx:16
 msgid "I Understand, Create Offer"
-msgstr ""
+msgstr "Rozumiem, vytvoriť ponuku"
 
 #: src/components/fullNode/FullNodeConnections.tsx:39
 msgid "IP address"
