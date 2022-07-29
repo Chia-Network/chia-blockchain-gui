@@ -8,7 +8,7 @@ msgstr ""
 "Language: fr_FR\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-07-29 12:37\n"
+"PO-Revision-Date: 2022-07-29 13:46\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
@@ -38,7 +38,7 @@ msgstr "Ajouter"
 #: src/components/did/WalletDID.tsx:874
 #: src/components/did/WalletDIDCreate.tsx:205
 msgid "Add Backup ID"
-msgstr "Ajouter un identifiant de sauvegarde"
+msgstr "Ajouter un identifiant de secours"
 
 #: src/components/hero/WalletHeroAdd.tsx:99
 msgid "Add Custom Token"
