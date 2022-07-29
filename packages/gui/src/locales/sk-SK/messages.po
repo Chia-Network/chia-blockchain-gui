@@ -8,7 +8,7 @@ msgstr ""
 "Language: sk_SK\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-07-29 10:44\n"
+"PO-Revision-Date: 2022-07-29 12:37\n"
 "Last-Translator: \n"
 "Language-Team: Slovak\n"
 "Plural-Forms: nplurals=4; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 3;\n"
@@ -1036,7 +1036,7 @@ msgstr "Ak ste súbor s ponukou už zdieľali, možno budete musieť odoslať tr
 
 #: src/components/nfts/NFTPreview.tsx:88
 msgid "Image Hash Mismatch"
-msgstr ""
+msgstr "Hash obrázku sa nezhoduje"
 
 #: src/components/offers/OfferDataEntryDialog.tsx:74
 msgid "Import"
@@ -1059,7 +1059,7 @@ msgstr "Výmenou za:"
 #: src/components/offers/NFTOfferEditor.tsx:93
 #: src/components/offers/OfferEditorConditionsPanel.tsx:463
 msgid "Including a fee in the offer can help expedite the transaction when the offer is accepted. The recommended minimum fee is 0.000005 XCH (5,000,000 mojos)"
-msgstr ""
+msgstr "Zahrnutie poplatku do ponuky môže pomôcť urýchliť transakciu, keď bude ponuka prijatá. Odporúčaný minimálny poplatok je 0,000005 XCH (5 000 000 mojos)"
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:19
 msgid "Index"
@@ -1087,7 +1087,7 @@ msgstr "Nedostatok finančných prostriedkov na vytvorenie ponuky. Uistite sa, �
 
 #: src/components/offers/NFTOfferEditor.tsx:551
 msgid "Invalid NFT identifier"
-msgstr ""
+msgstr "Neplatný NFT identifikátor"
 
 #: src/components/plotNFT/PlotNFTState.tsx:26
 msgid "Invalid state"
@@ -1187,19 +1187,19 @@ msgstr "Opúšťanie združenia"
 
 #: src/components/nfts/NFTDetails.tsx:225
 msgid "License Hash"
-msgstr ""
+msgstr "Hash licencie"
 
 #: src/components/nfts/NFTDetails.tsx:210
 msgid "License URL {0}"
-msgstr ""
+msgstr "URL adresa licencie {0}"
 
 #: src/components/nfts/NFTSummary.tsx:117
 msgid "Loading NFT"
-msgstr ""
+msgstr "Načítava sa NFT"
 
 #: src/components/offers/NFTOfferPreview.tsx:74
 msgid "Loading NFT Info..."
-msgstr ""
+msgstr "Načítavajú sa informácie o NFT..."
 
 #: src/components/app/AppProviders.tsx:66
 msgid "Loading configuration"
@@ -1246,11 +1246,11 @@ msgstr "Spravovať cieľové adresy farmárskych odmien"
 
 #: src/components/nfts/NFTDetails.tsx:195
 msgid "Metadata Hash"
-msgstr ""
+msgstr "Hash metadát"
 
 #: src/components/nfts/NFTDetails.tsx:180
 msgid "Metadata URL {0}"
-msgstr ""
+msgstr "URL adresa metadát {0}"
 
 #: src/components/fullNode/FullNodeConnections.tsx:67
 msgid "MiB Up/Down"
@@ -1278,11 +1278,11 @@ msgstr "Minimálna zložitosť"
 
 #: src/components/offers/OfferShareDialog.tsx:631
 msgid "MintGarden URL"
-msgstr ""
+msgstr "MintGarden URL"
 
 #: src/components/nfts/NFTDetails.tsx:143
 msgid "Minted at Block Height"
-msgstr ""
+msgstr "Vyrazené v bloku s výškou"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:98
 msgid "Minutes"
@@ -1302,11 +1302,11 @@ msgstr "Presunúť"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:498
 msgid "Move NFT to Profile"
-msgstr ""
+msgstr "Presúť NFT do profilu"
 
 #: src/components/nfts/NFTContextualActions.tsx:269
 msgid "Move to Profile"
-msgstr ""
+msgstr "Presúť do profilu"
 
 #: src/components/settings/ProfileView.tsx:99
 msgid "My DID"
@@ -1697,11 +1697,11 @@ msgstr "Pokračujte zadaním prístupovej frázy"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:276
 msgid "Please select a profile to move the NFT to."
-msgstr ""
+msgstr "Vyberte profil, do ktorého chcete presunúť NFT."
 
 #: src/components/offers/OfferEditor.tsx:134
 msgid "Please select an asset for each row"
-msgstr ""
+msgstr "Prosím vyberte aktívum pre každý riadok"
 
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:56
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:60
@@ -1736,7 +1736,7 @@ msgstr "Kľúč poľa"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:318
 msgid "Plot NFT Plot Target Address"
-msgstr ""
+msgstr "NFT poľa - Cieľová adresa poľa"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:319
 msgid "Plot NFT Pool Contract Address"
@@ -1911,7 +1911,7 @@ msgstr "Náhľad"
 
 #: src/components/nfts/NFTPreview.tsx:183
 msgid "Preview URL is not valid"
-msgstr ""
+msgstr "Webová adresa ukážky je neplatná"
 
 #: src/components/block/Block.jsx:307
 msgid "Previous"
@@ -1953,7 +1953,7 @@ msgstr "Verzia protokolu"
 
 #: src/components/offers/NFTOfferViewer.tsx:520
 msgid "Purchase Summary"
-msgstr ""
+msgstr "Súhrn nákupu"
 
 #: src/components/offers/OfferViewer.tsx:234
 msgid "Puzzle Hash"
@@ -1974,7 +1974,7 @@ msgstr "Maximálna spotreba RAM"
 
 #: src/components/nfts/NFTRankings.tsx:80
 msgid "Rankings"
-msgstr ""
+msgstr "Rebríček"
 
 #: src/components/app/AppSelectMode.tsx:111
 msgid "Recommended"
@@ -1982,7 +1982,7 @@ msgstr "Odporúčané"
 
 #: src/components/settings/ProfileAdd.tsx:118
 msgid "Recommended: 0.000005 XCH"
-msgstr ""
+msgstr "Odporúčané: 0,000005 XCH"
 
 #: src/components/plot/PlotHeader.tsx:75
 #: src/components/plot/overview/PlotOverviewHero.tsx:59
@@ -2035,7 +2035,7 @@ msgstr "Obnoviť metadáta pre Farebné Mince a iné Smart peňaženky zo záloh
 
 #: src/components/nfts/NFTDetails.tsx:128
 msgid "Royalty Percentage"
-msgstr ""
+msgstr "Percento autorského honoráru"
 
 #: src/components/app/AppSelectMode.tsx:149
 msgid "Runs the full node"
@@ -2177,15 +2177,15 @@ msgstr "Zdieľať na Keybase"
 
 #: src/components/offers/OfferShareDialog.tsx:668
 msgid "Share on MintGarden"
-msgstr ""
+msgstr "Zdieľať na MintGarden"
 
 #: src/components/offers/OfferShareDialog.tsx:750
 msgid "Share on OfferBin"
-msgstr ""
+msgstr "Zdieľať na OfferBin"
 
 #: src/components/offers/OfferShareDialog.tsx:1175
 msgid "Share on offerpool"
-msgstr ""
+msgstr "Zdieľať na offerpool"
 
 #: src/components/offers/OfferManager.tsx:451
 msgid "Show Details"
@@ -2255,7 +2255,7 @@ msgstr "Úspech"
 
 #: src/components/settings/SettingsDerivationIndex.tsx:66
 msgid "Successfully updated the derivation index. Your balances may take a while to update."
-msgstr ""
+msgstr "Derivačný index bol úspešne aktualizovaný. Aktualizácia vašich zostatkov môže chvíľu trvať."
 
 #: src/components/offers/OfferViewer.tsx:265
 msgid "Summary"
@@ -2285,33 +2285,33 @@ msgstr "Dočasný adresár"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:315
 msgid "The NFT move failed: {error}"
-msgstr ""
+msgstr "Presun NFT zlyhal: {error}"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:305
 msgid "The NFT move transaction has been successfully submitted to the blockchain."
-msgstr ""
+msgstr "Transakcia presunu NFT bola úspešne odoslaná do blockchainu."
 
 #: src/components/nfts/NFTContextualActions.tsx:306
 msgid "The NFT status has been updated. If the transaction was successfully sent to the mempool, it may still complete."
-msgstr ""
+msgstr "Stav NFT bol aktualizovaný. Ak bola transakcia úspešne odoslaná do mempoolu, môže sa dokončiť aj napriek pokusu o zrušenie."
 
 #: src/components/nfts/NFTContextualActions.tsx:316
 msgid "The NFT status update failed: {error}"
-msgstr ""
+msgstr "Aktualizácia stavu NFT zlyhala: {error}"
 
 #: src/components/nfts/NFTContextualActions.tsx:180
 #: src/components/nfts/NFTContextualActions.tsx:244
 msgid "The NFT transfer failed: {error}"
-msgstr ""
+msgstr "Prevod NFT zlyhal: {error}"
 
 #: src/components/nfts/NFTContextualActions.tsx:170
 #: src/components/nfts/NFTContextualActions.tsx:234
 msgid "The NFT transfer transaction has been successfully submitted to the blockchain."
-msgstr ""
+msgstr "Transakcia prevodu NFT bola úspešne odoslaná do blockchainu."
 
 #: src/components/settings/SettingsPanel.tsx:185
 msgid "The derivation index sets the range of wallet addresses that the wallet scans the blockchain for. This number is generally higher if you have a lot of transactions or canceled offers for XCH, CATs, or NFTs. If you believe your balance is incorrect because it’s missing coins, then increasing the derivation index could help the wallet include the missing coins in the balance total."
-msgstr ""
+msgstr "Derivačný index nastavuje rozsah adries peňaženky, ktoré peňaženka vyhľadáva v blockchaine. Toto číslo je vo všeobecnosti vyššie, ak máte veľa transakcií alebo zrušených ponúk pre XCH, CAT alebo NFT. Ak sa domnievate, že váš zostatok je nesprávny, pretože v ňom chýbajú mince, potom zvýšenie derivačného indexu môže pomôcť peňaženke zahrnúť chýbajúce mince do celkového zostatku."
 
 #: src/components/farm/FarmFullNodeConnections.tsx:95
 msgid "The full node that your farmer is connected to is below. <0>Learn more</0>"
@@ -2324,7 +2324,7 @@ msgstr "Minimálna požadovaná veľkosť pre sieť mainnet je k = 32"
 
 #: src/components/offers/NFTOfferViewer.tsx:671
 msgid "The net proceeds include the asking price, minus any associated creator fees (if the NFT has royalty payments enabled)."
-msgstr ""
+msgstr "Čistý výnos zahŕňa požadovanú cenu mínus všetky súvisiace autorské poplatky (ak má NFT povolené licenčné poplatky)."
 
 #: src/components/fullNode/card/FullNodeCardStatus.tsx:16
 #: src/components/fullNode/card/FullNodeCardStatus.tsx:45
@@ -2357,19 +2357,19 @@ msgstr "Seed použitý na vytvorenie poľa. Závisí od PK združenia a PK poľa
 
 #: src/components/offers/NFTOfferViewer.tsx:630
 msgid "The total amount offered includes the offered purchase price, plus the optional offer creation fee.<0/>If the NFT has royalty payments enabled, those creator fees will be paid from the offered purchase price."
-msgstr ""
+msgstr "Celková ponúkaná suma zahŕňa ponúkanú kúpnu cenu plus voliteľný poplatok za vytvorenie ponuky.<0/>Ak má NFT povolené licenčné poplatky, tieto autorské poplatky budú zaplatené z ponúkanej kúpnej ceny."
 
 #: src/components/offers/NFTOfferEditor.tsx:369
 msgid "The total amount offered includes the price you're willing to pay for the NFT, plus the optional offer creation fee. One or more coins totalling at least the amount shown below will be deducted from your spendable balance upon offer creation.<0/>If the NFT has royalty payments enabled, those creator fees will be paid by the party that accepts the offer."
-msgstr ""
+msgstr "Celková ponúkaná suma zahŕňa cenu, ktorú ste ochotní zaplatiť za NFT, plus voliteľný poplatok za vytvorenie ponuky. Jedna alebo viacero mincí v celkovej hodnote aspoň nižšie uvedenej sumy sa pri vytvorení ponuky odpočíta z vášho disponibilného zostatku.<0/>Ak má NFT povolené licenčné poplatky, tieto autorské poplatky zaplatí strana, ktorá ponuku prijme."
 
 #: src/components/offers/NFTOfferEditor.tsx:358
 msgid "The total amount requested includes the asking price, plus the associated creator fees (if the NFT has royalty payments enabled). Creator fees will be paid by the party that accepts the offer.<0/>The optional offer creation fee is not included in this total, and will be deducted from your spendable balance upon offer creation."
-msgstr ""
+msgstr "Celková požadovaná suma zahŕňa požadovanú cenu plus súvisiace autorské poplatky (ak má NFT povolené licenčné poplatky). Autorské poplatky zaplatí strana, ktorá ponuku prijme.<0/>Voliteľný poplatok za vytvorenie ponuky nie je zahrnutý v tejto sume a bude odpočítaný z vášho disponibilného zostatku pri vytvorení ponuky."
 
 #: src/components/offers/NFTOfferViewer.tsx:617
 msgid "The total amount requested includes the asking price, plus the associated creator fees (if the NFT has royalty payments enabled).{0}"
-msgstr ""
+msgstr "Celková požadovaná suma zahŕňa požadovanú cenu plus súvisiace autorské poplatky (ak má NFT povolené licenčné poplatky).{0}"
 
 #: src/components/block/Block.jsx:206
 msgid "The total number of VDF (verifiable delay function) or proof of time iterations on the whole chain up to this block."
@@ -2393,7 +2393,7 @@ msgstr "Tieto polia sú neplatné, asi ich budete chcieť vymazať."
 
 #: src/components/offers/NFTOfferEditor.tsx:322
 msgid "They will receive"
-msgstr ""
+msgstr "Dostanú"
 
 #: src/components/plot/PlotAddDirectoryDialog.tsx:88
 msgid "This allows you to add a directory that has plots in it. If you have not created any plots, go to the plotting screen."
@@ -2432,12 +2432,12 @@ msgstr "Tento uzol je plne aktualizovaný a overuje sieť"
 
 #: src/components/offers/OfferViewer.tsx:178
 msgid "This number reflects the number of nodes that the accepted SpendBundle has been sent to"
-msgstr ""
+msgstr "Toto číslo vyjadruje počet uzlov, na ktoré bol odoslaný predtým prijatý balík SpendBundle"
 
 #: src/components/offers/NFTOfferViewer.tsx:226
 #: src/components/offers/OfferSummary.tsx:206
 msgid "This offer has a fee included to help expedite the transaction when the offer is accepted."
-msgstr ""
+msgstr "Táto ponuka zahŕňa poplatok, ktorý pomáha urýchliť transakciu po prijatí ponuky."
 
 #: src/components/offers/NFTOfferViewer.tsx:220
 #: src/components/offers/OfferSummary.tsx:200
@@ -2937,7 +2937,7 @@ msgstr "{mojos, plural, one {mojo} few {mojos} many {mojos} other {mojos}}"
 
 #: src/components/nfts/NFTRankings.tsx:51
 msgid "{value} of {max_value}"
-msgstr ""
+msgstr "{value} z {max_value}"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:118
 msgid "{warning}"
