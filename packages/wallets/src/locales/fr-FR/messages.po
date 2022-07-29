@@ -8,7 +8,7 @@ msgstr ""
 "Language: fr_FR\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-07-28 13:23\n"
+"PO-Revision-Date: 2022-07-29 12:37\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
@@ -157,7 +157,7 @@ msgstr "Type de connexion"
 
 #: src/components/WalletConnections.tsx:80
 msgid "Connections"
-msgstr "Réseau"
+msgstr "Connexions"
 
 #: src/components/rateLimited/WalletRateLimited.jsx:305
 #: src/components/rateLimited/WalletRateLimited.jsx:427
@@ -310,7 +310,7 @@ msgstr "Importer"
 
 #: src/components/WalletImport.tsx:130
 msgid "Import Wallet from Mnemonics"
-msgstr "Importer le Wallet depuis les Mnémoniques"
+msgstr "Importer un portefeuille depuis une phrase mnémonique"
 
 #: src/components/WalletHistory.tsx:93
 msgid "Incoming"
