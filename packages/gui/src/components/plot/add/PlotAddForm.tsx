@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router';
 import { t, Trans } from '@lingui/macro';
-import { defaultPlotter, toBech32m } from '@chia/api';
+import { defaultPlotter, toBech32m, fromBech32m } from '@chia/api';
 import {
   useStartPlottingMutation,
   useCreateNewPoolWalletMutation,
@@ -23,6 +23,7 @@ import useUnconfirmedPlotNFTs from '../../../hooks/useUnconfirmedPlotNFTs';
 type FormData = PlotAddConfig & {
   p2SingletonPuzzleHash?: string;
   createNFT?: boolean;
+  plotNFTContractAddr?: string;
 };
 
 type Props = {
@@ -55,6 +56,7 @@ export default function PlotAddForm(props: Props) {
     workspaceLocation2: '',
     farmerPublicKey: '',
     poolPublicKey: '',
+    plotNFTContractAddr: '',
     excludeFinalDir: false,
     p2SingletonPuzzleHash: state?.p2SingletonPuzzleHash ?? '',
     createNFT: false,
@@ -105,7 +107,7 @@ export default function PlotAddForm(props: Props) {
     try {
       setLoading(true);
       const { p2SingletonPuzzleHash, delay, createNFT, ...rest } = data;
-      const { farmerPublicKey, poolPublicKey } = rest;
+      const { farmerPublicKey, poolPublicKey, plotNFTContractAddr } = rest;
 
       let selectedP2SingletonPuzzleHash = p2SingletonPuzzleHash;
 
@@ -148,6 +150,10 @@ export default function PlotAddForm(props: Props) {
         ...rest,
         delay: delay * 60,
       };
+
+      if (!selectedP2SingletonPuzzleHash && plotNFTContractAddr) {
+        selectedP2SingletonPuzzleHash = fromBech32m(plotNFTContractAddr);
+      }
 
       if (selectedP2SingletonPuzzleHash) {
         plotAddConfig.c = toBech32m(

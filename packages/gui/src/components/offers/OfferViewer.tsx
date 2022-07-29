@@ -2,7 +2,7 @@ import React, { useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import moment from 'moment';
-import { Trans, Plural, t } from '@lingui/macro';
+import { Trans, Plural } from '@lingui/macro';
 import {
   Back,
   ButtonLoading,
@@ -12,11 +12,9 @@ import {
   Flex,
   Form,
   FormatLargeNumber,
-  Link,
   TableControlled,
   TooltipIcon,
   useShowError,
-  useOpenExternal,
   mojoToChiaLocaleString,
 } from '@chia/core';
 import {
@@ -37,7 +35,6 @@ import {
   OfferSummaryRecord,
   OfferTradeRecord,
   OfferCoinOfInterest,
-  WalletType,
 } from '@chia/api';
 import { useCheckOfferValidityMutation } from '@chia/api-react';
 import { colorForOfferState, displayStringForOfferState } from './utils';
@@ -101,7 +98,6 @@ function OfferDetails(props: OfferDetailsProps) {
   const { tradeRecord, offerData, offerSummary, imported } = props;
   const summary = tradeRecord?.summary || offerSummary;
   const [acceptOffer] = useAcceptOfferHook();
-  const openExternal = useOpenExternal();
   const navigate = useNavigate();
   const showError = useShowError();
   const methods = useForm({ defaultValues: { fee: '' } });
@@ -211,18 +207,10 @@ function OfferDetails(props: OfferDetailsProps) {
                 <CopyToClipboard value={coin.parentCoinInfo} fontSize="small" />
               </Flex>
             }
-            interactive
           >
-            <Link
-              onClick={(event: React.SyntheticEvent) =>
-                handleLinkClicked(
-                  event,
-                  `https://www.chiaexplorer.com/blockchain/coin/${coin.parentCoinInfo}`,
-                )
-              }
-            >
+            <span>
               {coin.parentCoinInfo}
-            </Link>
+            </span>
           </Tooltip>
         );
       },
@@ -239,18 +227,10 @@ function OfferDetails(props: OfferDetailsProps) {
                 <CopyToClipboard value={coin.puzzleHash} fontSize="small" />
               </Flex>
             }
-            interactive
           >
-            <Link
-              onClick={(event: React.SyntheticEvent) =>
-                handleLinkClicked(
-                  event,
-                  `https://www.chiaexplorer.com/blockchain/puzzlehash/${coin.puzzleHash}`,
-                )
-              }
-            >
+            <span>
               {coin.puzzleHash}
-            </Link>
+            </span>
           </Tooltip>
         );
       },
@@ -258,12 +238,6 @@ function OfferDetails(props: OfferDetailsProps) {
       title: <Trans>Puzzle Hash</Trans>,
     },
   ];
-
-  function handleLinkClicked(event: React.SyntheticEvent, url: string) {
-    event.preventDefault();
-    event.stopPropagation();
-    openExternal(url);
-  }
 
   async function handleAcceptOffer(formData: any) {
     const { fee } = formData;

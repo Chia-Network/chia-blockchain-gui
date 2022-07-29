@@ -1,7 +1,6 @@
 import React from 'react';
 import { Trans } from '@lingui/macro';
-import { Typography } from '@mui/material';
-import { Link, Table, Card } from '@chia/core';
+import { Table, Card } from '@chia/core';
 import {
   useGetSignagePointsQuery,
   useGetTotalHarvestersSummaryQuery,
@@ -63,19 +62,6 @@ export default function FarmLatestBlockChallenges() {
         }
         pages
       />
-      <Typography variant="caption">
-        <Trans>
-          *Want to explore Chia’s blocks further? Check out{' '}
-          <Link
-            color="primary"
-            href="https://www.chiaexplorer.com/"
-            target="_blank"
-          >
-            Chia Explorer
-          </Link>{' '}
-          built by an open source developer.
-        </Trans>
-      </Typography>
     </Card>
   );
 }

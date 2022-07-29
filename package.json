@@ -17,12 +17,13 @@
         "dev:gui": "lerna run dev --scope @chia/gui --stream",
         "electron": "npm run start:gui",
         "locale:extract": "lerna run locale:extract",
+        "locale:clean": "lerna run locale:clean",
         "locale": "lerna run locale",
         "audit": "lerna exec -- npm audit",
         "audit:fix": "lerna exec -- npm audit fix"
     },
     "dependencies": {
-        "lerna": "^4.0.0"
+        "lerna": "^5.1.8"
     },
     "devDependencies": {
         "@typescript-eslint/eslint-plugin": "5.9.0",

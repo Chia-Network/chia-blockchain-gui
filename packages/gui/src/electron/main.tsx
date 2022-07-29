@@ -7,7 +7,6 @@ import {
   BrowserWindow,
   IncomingMessage,
   Menu,
-  session,
   nativeImage,
 } from 'electron';
 import { initialize } from '@electron/remote/main';
@@ -29,6 +28,7 @@ import { i18n } from '../config/locales';
 import About from '../components/about/About';
 import packageJson from '../../package.json';
 import AppIcon from '../assets/img/chia64x64.png';
+import windowStateKeeper from 'electron-window-state';
 
 const NET = 'mainnet';
 
@@ -37,8 +37,6 @@ app.disableHardwareAcceleration();
 initialize();
 
 const appIcon = nativeImage.createFromPath(path.join(__dirname, AppIcon));
-let isSimulator = process.env.LOCAL_TEST === 'true';
-const isDev = process.env.NODE_ENV === 'development';
 
 // Set the userData directory to its location within CHIA_ROOT/gui
 setUserDataDir();
@@ -127,18 +125,6 @@ if (!handleSquirrelEvent()) {
   let mainWindow = null;
 
   const createMenu = () => Menu.buildFromTemplate(getMenuTemplate());
-
-  function toggleSimulatorMode() {
-    isSimulator = !isSimulator;
-
-    if (mainWindow) {
-      mainWindow.webContents.send('simulator-mode', isSimulator);
-    }
-
-    if (app) {
-      app.applicationMenu = createMenu();
-    }
-  }
 
   // if any of these checks return false, don't do any other initialization since the app is quitting
   if (ensureSingleInstance() && ensureCorrectEnvironment()) {
@@ -317,9 +303,15 @@ if (!handleSquirrelEvent()) {
       });
 
       decidedToClose = false;
+      const mainWindowState = windowStateKeeper({
+        defaultWidth: 1200,
+        defaultHeight: 1200,
+      });
       mainWindow = new BrowserWindow({
-        width: 1200,
-        height: 1200,
+        x: mainWindowState.x,
+        y: mainWindowState.y,
+        width: mainWindowState.width,
+        height: mainWindowState.height,
         minWidth: 500,
         minHeight: 500,
         backgroundColor: '#ffffff',
@@ -332,16 +324,11 @@ if (!handleSquirrelEvent()) {
         },
       });
 
+      mainWindowState.manage(mainWindow);
+
       if (process.platform === 'linux') {
         mainWindow.setIcon(appIcon);
       }
-
-      /*
-      if (isSimulator || isDev) {
-        await app.whenReady();
-        installExtension(REDUX_DEVTOOLS);
-        installExtension(REACT_DEVELOPER_TOOLS);
-      }*/
 
       mainWindow.once('ready-to-show', () => {
         mainWindow.show();
@@ -388,6 +375,9 @@ if (!handleSquirrelEvent()) {
           isClosing = false;
           decidedToClose = true;
           mainWindow.webContents.send('exit-daemon');
+          // save the window state and unmange so we don't restore the mini exiting state
+          mainWindowState.saveState(mainWindow);
+          mainWindowState.unmanage(mainWindow);
           mainWindow.setBounds({ height: 500, width: 500 });
           mainWindow.center();
           ipcMain.on('daemon-exited', (event, args) => {
@@ -435,10 +425,6 @@ if (!handleSquirrelEvent()) {
     ipcMain.handle('setLocale', (_event, locale: string) => {
       i18n.activate(locale);
       app.applicationMenu = createMenu();
-    });
-
-    ipcMain.on('isSimulator', (event) => {
-      event.returnValue = isSimulator;
     });
   }
 
@@ -504,12 +490,12 @@ if (!handleSquirrelEvent()) {
                     : 'Ctrl+Shift+I',
                 click: () => mainWindow.toggleDevTools(),
               },
-              {
-                label: isSimulator
-                  ? i18n._(/* i18n */ { id: 'Disable Simulator' })
-                  : i18n._(/* i18n */ { id: 'Enable Simulator' }),
-                click: () => toggleSimulatorMode(),
-              },
+              //{
+              //label: isSimulator
+              //  ? i18n._(/* i18n */ { id: 'Disable Simulator' })
+              //   : i18n._(/* i18n */ { id: 'Enable Simulator' }),
+              // click: () => toggleSimulatorMode(),
+              //},
             ],
           },
           {
