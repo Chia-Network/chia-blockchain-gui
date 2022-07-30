@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh_CN\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-07-27 18:40\n"
+"PO-Revision-Date: 2022-07-30 06:44\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -2022,12 +2022,12 @@ msgstr "报告问题"
 
 #: src/components/offers/OfferManager.tsx:392
 msgid "Requested"
-msgstr ""
+msgstr "已请求"
 
 #: src/components/offers/NFTOfferEditor.tsx:416
 #: src/components/offers/OfferEditor.tsx:213
 msgid "Reset"
-msgstr ""
+msgstr "重置"
 
 #: src/components/backup/BackupRestore.tsx:159
 msgid "Restore Metadata for Coloured Coins and other Smart Wallets from Backup"
@@ -2153,7 +2153,7 @@ msgstr "设置"
 #: src/components/offers/OfferShareDialog.tsx:1105
 #: src/components/offers/OfferShareDialog.tsx:1278
 msgid "Share"
-msgstr ""
+msgstr "分享"
 
 #: src/components/offers/OfferShareDialog.tsx:1405
 msgid "Share Offer"
