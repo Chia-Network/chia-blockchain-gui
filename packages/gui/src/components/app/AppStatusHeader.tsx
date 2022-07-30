@@ -7,24 +7,24 @@ import {
 } from '@chia/api-react';
 import { ButtonGroup, Button, Popover } from '@mui/material';
 import { useTheme } from '@mui/styles';
-import WalletConnections from './WalletConnections';
-import Connections from './fullNode/FullNodeConnections';
+import { WalletConnections } from '@chia/wallets';
+import Connections from '../fullNode/FullNodeConnections';
 
-export default function WalletStatusHeader() {
+export default function AppStatusHeader() {
   const theme = useTheme();
   const { data: connectionsFN } = useGetFullNodeConnectionsQuery(
     {},
-    { pollingInterval: 10000 }
+    { pollingInterval: 10000 },
   );
   const { data: connectionsW } = useGetWalletConnectionsQuery(
     {},
-    { pollingInterval: 10000 }
+    { pollingInterval: 10000 },
   );
   const [anchorElFN, setAnchorElFN] = React.useState<HTMLButtonElement | null>(
-    null
+    null,
   );
   const [anchorElW, setAnchorElW] = React.useState<HTMLButtonElement | null>(
-    null
+    null,
   );
 
   const handleClickFN = (event: React.MouseEvent<HTMLButtonElement>) => {
