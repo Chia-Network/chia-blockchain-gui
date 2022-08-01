@@ -8,7 +8,7 @@ msgstr ""
 "Language: fi_FI\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-07-28 11:04\n"
+"PO-Revision-Date: 2022-08-01 13:12\n"
 "Last-Translator: \n"
 "Language-Team: Finnish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -769,7 +769,7 @@ msgstr "Varmuuskopiotunnusten määrä ei voi ylittää lisättyjen varmuuskopio
 
 #: src/components/WalletSendTransactionResultDialog.tsx:34
 msgid "The transaction could not be immediately included in the mempool because the specified fee is too low. The transaction will be retried periodically, and may be included in the mempool once fees are lower, or if space becomes available."
-msgstr "Tapahtumaa ei voitu välittömästi sisällyttää mempooliin, koska määritetty maksu on liian alhainen. Transaktiota yritetään uudelleen säännöllisesti, ja se voidaan sisällyttää mempooliin sen jälkeen, kun maksut ovat pienemmät tai kun tilaa tulee saataville."
+msgstr "Tapahtumaa ei voitu välittömästi sisällyttää mempooliin, koska määritetty transaktiomaksu on liian alhainen. Transaktiota yritetään uudelleen säännöllisesti, ja se voidaan sisällyttää mempooliin sen jälkeen, kun maksut ovat pienemmät tai kun tilaa tulee saataville."
 
 #: src/components/WalletBadge.tsx:26
 msgid "This access token is verified"
