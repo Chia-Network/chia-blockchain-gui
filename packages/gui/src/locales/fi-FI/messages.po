@@ -8,7 +8,7 @@ msgstr ""
 "Language: fi_FI\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-07-28 13:23\n"
+"PO-Revision-Date: 2022-08-01 13:12\n"
 "Last-Translator: \n"
 "Language-Team: Finnish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -1059,7 +1059,7 @@ msgstr "Vaihtaaksesi kohteeseen:"
 #: src/components/offers/NFTOfferEditor.tsx:93
 #: src/components/offers/OfferEditorConditionsPanel.tsx:463
 msgid "Including a fee in the offer can help expedite the transaction when the offer is accepted. The recommended minimum fee is 0.000005 XCH (5,000,000 mojos)"
-msgstr "Maksun sisällyttäminen tarjoukseen voi auttaa nopeuttamaan kauppaa, kun tarjous on hyväksytty. Suositeltu vähimmäismaksu on 0.0005 XCH (5.000,000 mojos)"
+msgstr "Maksun sisällyttäminen tarjoukseen voi auttaa nopeuttamaan kauppaa, kun tarjous on hyväksytty. Suositeltu vähimmäismaksu on 0.00005 XCH (5.000,000 mojos)"
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:19
 msgid "Index"
@@ -1667,7 +1667,7 @@ msgstr "Ole hyvä ja syötä salasana"
 
 #: src/components/settings/ProfileAdd.tsx:64
 msgid "Please enter a valid numeric fee"
-msgstr "Anna käypä numeerinen siirtomaksu"
+msgstr "Anna käypä numeerinen transaktiomaksu"
 
 #: src/components/offers/NFTOfferEditor.tsx:549
 msgid "Please enter an NFT identifier"
@@ -2746,7 +2746,7 @@ msgstr "Ikkuna"
 
 #: src/components/farm/card/FarmCardBlockRewards.tsx:32
 msgid "Without fees"
-msgstr "Ilman veloituksia"
+msgstr "Ilman maksuja"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:505
 msgid "Would you like to move the specified NFT to a profile?"
