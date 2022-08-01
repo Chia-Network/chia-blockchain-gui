@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh_CN\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-08-01 00:01\n"
+"PO-Revision-Date: 2022-08-01 01:22\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -2251,7 +2251,7 @@ msgstr "提交"
 
 #: src/hooks/useAcceptOfferHook.tsx:61
 msgid "Success"
-msgstr ""
+msgstr "成功"
 
 #: src/components/settings/SettingsDerivationIndex.tsx:66
 msgid "Successfully updated the derivation index. Your balances may take a while to update."
@@ -2259,7 +2259,7 @@ msgstr ""
 
 #: src/components/offers/OfferViewer.tsx:265
 msgid "Summary"
-msgstr ""
+msgstr "摘要"
 
 #: src/components/fullNode/card/FullNodeCardStatus.tsx:49
 msgid "Synced"
@@ -2605,14 +2605,14 @@ msgstr "未完成"
 
 #: src/components/offers/utils.ts:176
 msgid "Unknown"
-msgstr ""
+msgstr "未知"
 
 #: src/components/offers/OfferManager.tsx:232
 #: src/components/offers/OfferSummaryRow.tsx:188
 #: src/components/offers/OfferSummaryRow.tsx:189
 #: src/components/offers/OfferSummaryRow.tsx:267
 msgid "Unknown CAT"
-msgstr ""
+msgstr "未知的 CAT"
 
 #: src/components/app/AppPassPrompt.tsx:100
 msgid "Unlock Keyring"
