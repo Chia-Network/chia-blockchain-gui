@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh_CN\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-07-30 06:44\n"
+"PO-Revision-Date: 2022-08-01 00:01\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -2771,7 +2771,7 @@ msgstr ""
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:64
 msgid "Yes, move"
-msgstr ""
+msgstr "是的，移动"
 
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:177
 msgid "You already have 50 or more Plot NFTs."
@@ -2820,13 +2820,13 @@ msgstr "必须持有 {currencyCode} 才有加入农业合作社。"
 
 #: src/components/offers/OfferEditorConditionsPanel.tsx:340
 msgid "You will offer"
-msgstr ""
+msgstr "你将提供"
 
 #: src/components/offers/NFTOfferEditor.tsx:320
 #: src/components/offers/NFTOfferViewer.tsx:525
 #: src/components/offers/OfferViewer.tsx:279
 msgid "You will receive"
-msgstr ""
+msgstr "您将收到"
 
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:150
 #: src/hooks/useAbsorbRewards.tsx:51
@@ -2897,7 +2897,7 @@ msgstr "[错误 22] 文件未找到。农田文件夹中的 config.yaml 文件�
 
 #: src/components/offers/OfferViewerTitle.tsx:38
 msgid "created {0}"
-msgstr ""
+msgstr "已创建 {0}"
 
 #: src/components/plot/add/PlotAddForm.tsx:134
 msgid "p2SingletonPuzzleHash is not defined"
