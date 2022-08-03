@@ -4,7 +4,7 @@ import isContentHashValid from '../util/isContentHashValid';
 import getRemoteFileContent from '../util/getRemoteFileContent';
 
 const CACHE_SIZE = 1000;
-const MAX_FILE_SIZE = 100 * 1024 * 1024; // 10 MB
+export const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10 MB
 
 const cache = new Map<string, boolean>();
 
@@ -15,6 +15,7 @@ export default function useVerifyURIHash(
   isValid: boolean;
   isLoading: boolean;
   error?: Error;
+  thumbnail: any;
 } {
   const [isValid, setIsValid] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -57,7 +58,6 @@ export default function useVerifyURIHash(
         }
       }
     } catch (e: any) {
-      // console.log('CATCH........', e);
       setError(e);
     } finally {
       setIsLoading(false);
@@ -68,5 +68,5 @@ export default function useVerifyURIHash(
     validateHash(uri, hash);
   }, [uri, hash]);
 
-  return { isValid, isLoading, error };
+  return { isValid, isLoading, error, thumbnail: {} };
 }

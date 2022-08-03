@@ -1,9 +1,9 @@
 import fs from 'fs';
-import { app } from 'electron';
 import path from 'path';
 import ffmpegStatic from 'ffmpeg-static';
 import ffprobeStatic from 'ffprobe-static';
 import ffmpeg from 'fluent-ffmpeg';
+import { exec } from 'child_process';
 
 /* ffmpeg library should not be packed into app.asar in production! */
 let pathToFfmpeg = ffmpegStatic.replace('app.asar', 'app.asar.unpacked');
@@ -11,6 +11,8 @@ let pathToFfprobe = ffprobeStatic.path.replace('app.asar', 'app.asar.unpacked');
 
 const DEV = process.env.NODE_ENV !== 'production';
 /* ffmpeg binary remains in node_modules (development) */
+
+const numberOfSections = 6;
 
 pathToFfmpeg = DEV
   ? pathToFfmpeg.replace(
@@ -49,20 +51,18 @@ export default class VideoThumbnail {
   }
 
   async createAnimatedThumbnail() {
-    const metadata = await this.probeUri();
+    const metadata: any = await this.probeUri();
     const videoMetadata = metadata.streams.find(
       (stream: any) => stream.codec_type === 'video',
     );
     const { size, duration } = metadata.format;
-    console.log('Duration????????', metadata);
     const ratio = videoMetadata.width / videoMetadata.height;
-    if (duration > 50) {
-      for (let count = 0; count < 6; count++) {
+    if (duration > 10) {
+      for (let count = 1; count <= numberOfSections; count++) {
         await this.createPart(count, duration, ratio);
       }
+      await this.concatAndResample(ratio);
     }
-    // uri, duration, size, width, height
-    // console.log('ProbeObj........', videoMetadata);
   }
 
   probeUri() {
@@ -78,40 +78,66 @@ export default class VideoThumbnail {
   }
 
   async generateVideoPreviewFile() {
-    if (fs.existsSync(this.filePath)) {
-      return { uri: this.uri, filePath: this.filePath };
+    if (fs.existsSync(this.filePath + '.mp4')) {
+      return { uri: this.uri, filePath: this.filePath, type: 'video' };
     } else if (!fs.existsSync(this.filePath)) {
       await this.createAnimatedThumbnail();
       /* is this kind of stupid to emit the same uri and the same filePath we got?  */
-      return { uri: this.uri, filePath: this.filePath };
+      return { uri: this.uri, filePath: this.filePath, type: 'video' };
     }
   }
 
   createPart(count: number, duration: number, ratio: number) {
-    console.log(
-      'Creating...',
-      count,
-      parseInt((count * duration) / (count + 1)),
-      'Ratio:-------_>',
-      parseInt(320 / ratio).toString(),
-    );
     return new Promise((resolve, reject) => {
-      ffmpeg(this.uri)
-        .addOptions('-ss', parseInt((count * duration) / (count + 1)))
-        .addOptions('-t', 2)
-        .addOptions('-vf', 'scale=320:' + parseInt(320 / ratio) + 1)
-        // .addOptions('-filter:v scale=320:-1')
-        // .addOptions('-c:v libx264')
-        .addOptions('-an')
-        .output(this.filePath + '_' + count + '.mp4')
-        .on('error', function (err: any) {
-          console.log('An error occurred: ' + err.message);
-          reject(err);
+      const ss: number = Math.round((count * duration) / (count + 1));
+      const execString = `${pathToFfmpeg} -ss ${ss} -to ${ss + 2} -i ${
+        this.uri
+      } -vcodec copy -an "${this.filePath + '_' + count + '.mp4'}"`;
+      exec(execString, (error, stdout, stderr) => {
+        resolve(count);
+      });
+    });
+  }
+
+  resampleVideoOnly(ratio: number) {
+    return new Promise((resolve, reject) => {
+      const scale =
+        ratio > 2
+          ? '600:' + Math.ceil(600 / ratio / 2) * 2
+          : Math.ceil((300 * ratio) / 2) * 2 + ':300';
+
+      const execString = `${pathToFfmpeg} ${this.uri} -filter_complex -vf scale=${scale} "${this.filePath}.mp4"`;
+      exec(execString, (error, stdout, stderr) => {
+        resolve(true);
+      });
+    });
+  }
+
+  concatAndResample(ratio: number) {
+    /* let's find out if any of the files is less than 5% of normal size,
+       that means it has no content (is probably black) and we strip it from final thumbnail */
+    for (let count = 1; count <= 6; count++) {
+      const file = this.filePath + '_' + count + '.mp4';
+      const stats = fs.statSync(file);
+      const fileSizeInBytes = stats.size;
+    }
+
+    return new Promise((resolve, reject) => {
+      const inputFiles = Array.from(Array(numberOfSections).keys())
+        .map((count) => {
+          return '-i "' + this.filePath + '_' + (count + 1) + '.mp4"';
         })
-        .on('end', function () {
-          resolve(count);
-        })
-        .run();
+        .join(' ');
+
+      const scale =
+        ratio > 2
+          ? '600:' + Math.ceil(600 / ratio / 2) * 2
+          : Math.ceil((300 * ratio) / 2) * 2 + ':300';
+
+      const execString = `${pathToFfmpeg} ${inputFiles} -filter_complex "concat=n=${numberOfSections}:v=1 [v];[v]scale=${scale}[out]" -map [out] "${this.filePath}.mp4"`;
+      exec(execString, (error, stdout, stderr) => {
+        resolve(true);
+      });
     });
   }
 }

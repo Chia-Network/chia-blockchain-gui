@@ -1,5 +1,6 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useEffect } from 'react';
 import { Trans } from '@lingui/macro';
+import styled from 'styled-components';
 import {
   Back,
   Flex,
@@ -16,6 +17,7 @@ import {
   IconButton,
   Dialog,
   Paper,
+  Button,
 } from '@mui/material';
 import { MoreVert } from '@mui/icons-material';
 import { useParams } from 'react-router-dom';
@@ -30,6 +32,8 @@ import NFTContextualActions, {
 } from '../NFTContextualActions';
 import NFTPreviewDialog from '../NFTPreviewDialog';
 
+const ipcRenderer = (window as any).ipcRenderer;
+
 export default function NFTDetail() {
   const { nftId } = useParams();
   const { wallets: nftWallets, isLoading: isLoadingWallets } =
@@ -39,12 +43,52 @@ export default function NFTDetail() {
     nftWallets.map((wallet: Wallet) => wallet.id),
   );
 
+  const [progressBarWidth, setProgressBarWidth] = React.useState(-1);
+  const [validated, setValidated] = React.useState(0);
+
+  function fileContentLengthListener(_event, msg) {
+    console.log('File content length->', msg);
+  }
+
+  function progressListener(_event, progressObject: any) {
+    if (
+      nft.dataUris &&
+      Array.isArray(nft.dataUris) &&
+      nft.dataUris[0] === progressObject.uri
+    ) {
+      setProgressBarWidth(progressObject.progress);
+      if (progressObject.progress === 1) {
+        setProgressBarWidth(-1);
+      }
+    }
+  }
+
+  useEffect(() => {
+    validateSha256Remote(false); // false parameter means only validate files smaller than MAX_FILE_SIZE
+    ipcRenderer.on('sha256FileContentLength', fileContentLengthListener);
+    ipcRenderer.on('sha256DownloadProgress', progressListener);
+    ipcRenderer.on('sha256hash', gotHash);
+    return () => {
+      ipcRenderer.off('sha256FileContentLength', fileContentLengthListener);
+      ipcRenderer.off('sha256DownloadProgress', progressListener);
+      ipcRenderer.off('sha256hash', gotHash);
+    };
+  }, []);
+
   const nft: NFTInfo | undefined = useMemo(() => {
     if (!nfts) {
       return;
     }
     return nfts.find((nft: NFTInfo) => nft.$nftId === nftId);
   }, [nfts]);
+
+  function gotHash(_event, hash) {
+    if (`0x${hash}` === nft.dataHash) {
+      setValidated(1);
+    } else {
+      setValidated(-1);
+    }
+  }
 
   const { metadata, isLoading: isLoadingMetadata, error } = useNFTMetadata(nft);
 
@@ -56,6 +100,62 @@ export default function NFTDetail() {
 
   function handleShowFullScreen() {
     openDialog(<NFTPreviewDialog nft={nft} />);
+  }
+
+  const ValidateContainer = styled.div`
+    padding-top: 25px;
+    text-align: center;
+  `;
+
+  function validateSha256Remote(force: boolean) {
+    const ipcRenderer = (window as any).ipcRenderer;
+    if (nft && Array.isArray(nft.dataUris) && nft.dataUris[0]) {
+      ipcRenderer.invoke('validateSha256Remote', {
+        uri: nft.dataUris[0],
+        force,
+      });
+    }
+  }
+
+  const ProgressBar = styled.div`
+    width: 100%;
+    height: 12px;
+    border: 1px solid #abb0b2;
+    border-radius: 3px;
+    margin-top: 30px !important;
+    margin-left: 0 !important;
+    > div {
+      background: #b0debd;
+      height: 10px;
+      border-radius: 2px;
+    }
+  `;
+
+  function renderProgressBar() {
+    if (progressBarWidth === -1) return null;
+    return (
+      <ProgressBar>
+        <div style={{ width: `${progressBarWidth * 100}%` }}></div>
+      </ProgressBar>
+    );
+  }
+
+  function renderValidationState() {
+    if (progressBarWidth > 0 && progressBarWidth < 1) {
+      return <Trans>Validating hash...</Trans>;
+    } else if (validated) {
+      return <Trans>Hash is validated.</Trans>;
+    } else {
+      return (
+        <Button
+          onClick={() => validateSha256Remote(true)}
+          variant="outlined"
+          size="large"
+        >
+          <Trans>Validate SHA256 SUM</Trans>
+        </Button>
+      );
+    }
   }
 
   return (
@@ -82,13 +182,15 @@ export default function NFTDetail() {
             position="relative"
           >
             {nft && (
-              <Box onClick={handleShowFullScreen} sx={{ cursor: 'pointer' }}>
+              <Box sx={{ cursor: 'pointer' }}>
                 <NFTPreview
                   nft={nft}
                   width="100%"
                   height="412px"
                   fit="contain"
                 />
+                <ValidateContainer>{renderValidationState()}</ValidateContainer>
+                {renderProgressBar()}
               </Box>
             )}
           </Box>

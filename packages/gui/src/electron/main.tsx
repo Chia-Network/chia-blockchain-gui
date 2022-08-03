@@ -30,6 +30,8 @@ import About from '../components/about/About';
 import packageJson from '../../package.json';
 import AppIcon from '../assets/img/chia64x64.png';
 import VideoThumbnailClass from './VideoThumbnailClass';
+import AudioThumbnailClass from './AudioThumbnailClass';
+import validateSha256 from './validateSha256';
 
 const NET = 'mainnet';
 
@@ -303,6 +305,15 @@ if (!handleSquirrelEvent()) {
         },
       );
 
+      ipcMain.handle('validateSha256Remote', (_event, options) => {
+        validateSha256(
+          thumbCacheFolder,
+          mainWindow,
+          options.uri,
+          options.force,
+        );
+      });
+
       ipcMain.handle('showMessageBox', async (_event, options) => {
         return await dialog.showMessageBox(mainWindow, options);
       });
@@ -446,13 +457,24 @@ if (!handleSquirrelEvent()) {
     });
 
     ipcMain.handle('get-thumbnail', async (_event, options) => {
-      const VideoThumbnail = new VideoThumbnailClass(
-        options.file,
-        app.getPath('cache'),
-        app.getName(),
-      );
-      const emitObj = await VideoThumbnail.generateVideoPreviewFile();
-      mainWindow.webContents.send('thumbnail', emitObj);
+      if (options.mimeType.match(/^video/)) {
+        const VideoThumbnail = new VideoThumbnailClass(
+          options.file,
+          app.getPath('cache'),
+          app.getName(),
+        );
+        const emitObj = await VideoThumbnail.generateVideoPreviewFile();
+        mainWindow.webContents.send('thumbnail', emitObj);
+      }
+      if (options.mimeType.match(/^audio/)) {
+        const AudioThumbnail = new AudioThumbnailClass(
+          options.file,
+          app.getPath('cache'),
+          app.getName(),
+        );
+        const audioData = await AudioThumbnail.createAudioThumbnail();
+        mainWindow.webContents.send('thumbnail', audioData);
+      }
     });
   }
 

@@ -1,14 +1,11 @@
-import React, {
-  useEffect,
-  useMemo,
-  useState,
-  type ReactNode,
-  Fragment,
-} from 'react';
+import React, { useMemo, useState, type ReactNode, Fragment } from 'react';
 import { renderToString } from 'react-dom/server';
+import mime from 'mime-types';
+import moment from 'moment';
 import { t, Trans } from '@lingui/macro';
 import { Box, Button } from '@mui/material';
 import { NotInterested, Error as ErrorIcon } from '@mui/icons-material';
+
 import {
   IconMessage,
   Loading,
@@ -20,7 +17,6 @@ import styled from 'styled-components';
 import { type NFTInfo } from '@chia/api';
 import isURL from 'validator/lib/isURL';
 import useNFTHash from '../../hooks/useNFTHash';
-import mime from 'mime-types';
 
 function prepareErrorMessage(error: Error): ReactNode {
   if (error.message === 'Response too large') {
@@ -40,6 +36,33 @@ const StyledCardPreview = styled(Box)`
   overflow: hidden;
 `;
 
+const StyledAudioIcon = styled.div`
+  border: 2px solid #999;
+  border-radius: 5px;
+  height: 60px;
+  width: 60px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 800;
+  color: #666;
+  line-height: 60px;
+  box-shadow: 0 0 10px 0 #ccc;
+`;
+
+const StyledAudioTable = styled.table`
+  td {
+    line-height: 18px;
+  }
+  th {
+    line-height: 18px;
+    text-align: left;
+    color: #777;
+    padding: 0 10px 0 25px;
+  }
+  border-collapse: separate;
+  border-spacing: 0px 4px;
+`;
+
 export type NFTPreviewProps = {
   nft: NFTInfo;
   height?: number | string;
@@ -48,6 +71,7 @@ export type NFTPreviewProps = {
   elevate?: boolean;
   background?: any;
   hideStatusBar?: boolean;
+  isPreview?: boolean;
 };
 
 export default function NFTPreview(props: NFTPreviewProps) {
@@ -59,11 +83,11 @@ export default function NFTPreview(props: NFTPreviewProps) {
     fit = 'cover',
     background: Background = Fragment,
     hideStatusBar = false,
+    isPreview = false,
   } = props;
 
   const [loaded, setLoaded] = useState(false);
-  const [videoThumbnailReady, setVideoThumbnailReady] = useState(false);
-  const { isValid, isLoading, error } = useNFTHash(nft);
+  const { isValid, isLoading, error, thumbnail } = useNFTHash(nft, isPreview);
 
   const hasFile = dataUris?.length > 0;
   const file = dataUris?.[0];
@@ -71,38 +95,6 @@ export default function NFTPreview(props: NFTPreviewProps) {
     false,
     `nft-preview-ignore-error-${nft.$nftId}-${file}`,
   );
-
-  const [thumb, setThumb] = useState('');
-
-  useEffect(() => {
-    setLoaded(false);
-    console.log('Send file...', file);
-    const mimeType = mime.lookup(file);
-    if (file && mimeType && mimeType.match(/^video/)) {
-      (window as any).ipcRenderer.invoke('get-thumbnail', { file });
-    }
-  }, [file]);
-
-  interface Thumbnail {
-    uri: string;
-    filePath: string;
-  }
-
-  function handleThumbnail(_event: any, thumbnail: Thumbnail) {
-    // const fileName = new URL(thumbnail.uri).pathname.split('/').slice(-1)[0];
-    // console.log('FIULENAME:____________________', fileName);
-    if (thumbnail.uri === file) {
-      console.log('SET THUMB !!!!!!!!!!!!!!!!!!', file);
-      setThumb(thumbnail.filePath);
-    }
-  }
-
-  useEffect(() => {
-    (window as any).ipcRenderer.on('thumbnail', handleThumbnail);
-    return () => {
-      (window as any).ipcRenderer.off('thumbnail', handleThumbnail);
-    };
-  }, []);
 
   const isUrlValid = useMemo(() => {
     if (!file) {
@@ -133,6 +125,7 @@ export default function NFTPreview(props: NFTPreviewProps) {
         padding: 0px;
         height: 100%;
         width: 100%;
+        text-align: center;
       }
 
       img {
@@ -169,15 +162,15 @@ export default function NFTPreview(props: NFTPreviewProps) {
         font-size: 12px;
         line-height: 14px;
       }
+      audio {
+        margin-top: 140px;
+      }
     `;
 
     let mediaElement = null;
     try {
-      console.log('File', '=================>', file);
       const pathName: string = new URL(file).pathname;
       const mimeType = mime.lookup(pathName);
-      console.log('Pathname?', pathName);
-      console.log('MIME============================>', mimeType);
       if (mimeType.match(/^audio/)) {
         mediaElement = (
           <audio controls>
@@ -186,8 +179,8 @@ export default function NFTPreview(props: NFTPreviewProps) {
         );
       } else if (mimeType.match(/^video/)) {
         mediaElement = (
-          <video autoPlay>
-            <source src={`file://${thumb}.mp4`} type="video/mp4" />
+          <video controls width="100%" height="100%">
+            <source src={thumbnail.uri} type="video/mp4" />
           </video>
         );
       } else {
@@ -214,7 +207,7 @@ export default function NFTPreview(props: NFTPreviewProps) {
         </body>
       </html>,
     );
-  }, [file, statusText, isStatusError, thumb]);
+  }, [file, statusText, isStatusError, thumbnail]);
 
   function handleLoadedChange(loadedValue) {
     setLoaded(loadedValue);
@@ -226,13 +219,118 @@ export default function NFTPreview(props: NFTPreviewProps) {
     setIgnoreError(true);
   }
 
-  function renderMediaElementInsideIframe() {
-    if (thumb !== '') {
+  function renderDuration(duration: number) {
+    return duration >= 3600
+      ? moment
+          .utc(duration * 1000)
+          .format('H:mm.ss_')
+          .replace(':', 'h ')
+          .replace('.', 'm ')
+          .replace('_', 's')
+      : moment
+          .utc(thumbnail.duration * 1000)
+          .format('m:ss.')
+          .replace(':', 'm ')
+          .replace('.', 's ');
+  }
+
+  function formatBytes(bytes: number, decimals: number = 2) {
+    if (bytes === 0) return '0 Bytes';
+    const k = 1024;
+    const dm = decimals < 0 ? 0 : decimals;
+    const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+  }
+
+  function renderFileSize(size: number) {
+    return formatBytes(size, 2);
+  }
+
+  function renderAudioTitle(thumbnail: any) {
+    if (thumbnail.title) {
       return (
-        <video autoPlay width="100%" height="100%" loop>
-          <source src={`file://${thumb}.mp4`} type="video/mp4" />
-        </video>
+        <tr>
+          <th>
+            <Trans>Title</Trans>
+          </th>
+          <td>{thumbnail.title}</td>
+        </tr>
       );
+    }
+  }
+
+  function renderAudioAlbum(thumbnail: any) {
+    if (thumbnail.album) {
+      return (
+        <tr>
+          <th>
+            <Trans>Album</Trans>
+          </th>
+          <td>{thumbnail.album}</td>
+        </tr>
+      );
+    }
+  }
+
+  function renderMediaElementInsideIframe() {
+    if (Object.keys(thumbnail).length > 0) {
+      if (thumbnail.type === 'audio') {
+        const pathName: string = new URL(file).pathname;
+        const mimeType = mime.lookup(pathName);
+        return (
+          <>
+            <StyledAudioTable>
+              <tr>
+                <td>
+                  <StyledAudioIcon>{thumbnail.codec_name}</StyledAudioIcon>
+                </td>
+                <td>
+                  <table>
+                    {renderAudioTitle(thumbnail)}
+                    {renderAudioAlbum(thumbnail)}
+                    <tr>
+                      <th>
+                        <Trans>Bit rate</Trans>
+                      </th>
+                      <td>{thumbnail.bit_rate} kb/s</td>
+                    </tr>
+                    <tr>
+                      <th>
+                        <Trans>Duration</Trans>
+                      </th>
+                      <td>{renderDuration(thumbnail.duration)}</td>
+                    </tr>
+                    <tr>
+                      <th>
+                        <Trans>File size</Trans>
+                      </th>
+                      <td>{renderFileSize(thumbnail.size)}</td>
+                    </tr>
+                    <tr>
+                      <th>
+                        <Trans>Sample rate</Trans>
+                      </th>
+                      <td>{thumbnail.sample_rate} kHz</td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </StyledAudioTable>
+            <br />
+            <audio controls>
+              <source src={file} type={mimeType} />
+            </audio>
+          </>
+        );
+      }
+      if (thumbnail.type === 'video') {
+        return (
+          <video autoPlay width="100%" height="100%" loop>
+            <source src={`file://${thumbnail.filePath}.mp4`} type="video/mp4" />
+          </video>
+        );
+      }
     }
     return (
       <SandboxedIframe
@@ -258,7 +356,7 @@ export default function NFTPreview(props: NFTPreviewProps) {
             <Trans>Preview URL is not valid</Trans>
           </IconMessage>
         </Background>
-      ) : isLoading && thumb === '' ? (
+      ) : isLoading ? (
         <Background>
           <Loading center>
             <Trans>Loading preview...</Trans>
@@ -282,7 +380,7 @@ export default function NFTPreview(props: NFTPreviewProps) {
         </Background>
       ) : (
         <>
-          {!loaded && thumb === '' && (
+          {!loaded && Object.keys(thumbnail).length === 0 && (
             <Flex
               position="absolute"
               left="0"
