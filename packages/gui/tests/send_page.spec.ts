@@ -158,6 +158,12 @@ test.only('Create new Wallet and logout', async () => {
   // Logout of the wallet_new
   await page.locator('[data-testid="ExitToAppIcon"]').click();
 
+  // Click text=Wallet 1463910308Syncing Connected (3) >> button >> nth=2
+  await page.locator(`text=Wallet ${wallet_new}Syncing Connected (3) >> button`).nth(2).click();
+  // assert.equal(page.url(), 'file:///Users/jahifaw/Documents/Code/Chia-testnet-playwright/chia-blockchain/chia-blockchain-gui/packages/gui/build/renderer/index.html#/');
+  // Click [aria-label="delete"] >> nth=2
+  await page.locator('[aria-label="delete"]').nth(2).click();
+
 
   /*/Log into wallet_test_funds
   await page.locator('text=1651231316').click();

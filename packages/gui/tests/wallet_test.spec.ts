@@ -115,10 +115,10 @@ test.only('Verify that Funded wallet cannot send funds until fully synced', asyn
   //Login To Account 
   await Promise.all([
     page.waitForNavigation(/*{ url: 'file:///Users/jahifaw/Documents/Code/Chia-testnet-playwright/chia-blockchain/chia-blockchain-gui/packages/gui/build/renderer/index.html#/dashboard/wallets/1' }*/),
-    page.locator('div[role="button"]:has-text("Private key with public fingerprint 1651231316Can be backed up to mnemonic seed")').click()
+    page.locator('div[role="button"]:has-text("Private key with public fingerprint 1922132445Can be backed up to mnemonic seed")').click()
   ]);
 
-  await page.locator('text=Wallet 1651231316').click();
+  await page.locator('text=Wallet 1922132445').click();
 
   //Confirm Funds are not 0
   const myFunds = await page.$eval('.sc-bTfYFJ.gLEfkc.MuiGrid-root.MuiGrid-item.MuiGrid-grid-xs-12.MuiGrid-grid-lg-4', (el) => el.textContent);
@@ -158,7 +158,9 @@ test.only('Verify that Funded wallet cannot send funds until fully synced', asyn
     }
     else {
       //await expect(page.locator('div[role="dialog"]')).toHaveText('ErrorWallet needs to be fully synced before sending transactionsOK' || 'ErrorPlease finish syncing before making a transactionOK');
-      await page.locator('div[role="dialog"] >> text=OK').click();
+      console.log('Page is Synced!')
+      //Add action to click button = await page.locator('form div:has-text("Send")').nth(1).click();
+      //await page.locator('div[role="dialog"] >> text=OK').click();
 
     }
     
