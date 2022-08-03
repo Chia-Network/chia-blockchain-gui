@@ -52,10 +52,11 @@ import useFetchNFTs from '../../hooks/useFetchNFTs';
 import NFTOfferPreview from './NFTOfferPreview';
 import NFTOfferExchangeType from './NFTOfferExchangeType';
 import styled from 'styled-components';
+import NFTOfferTokenSelector from './NFTOfferTokenSelector';
 
 /* ========================================================================== */
 /*              Temporary home for the NFT-specific Offer Editor              */
-/*        An NFT offer consists of a single NFT being offered for XCH         */
+/*       An NFT offer consists of a single NFT being offered for XCH/CAT      */
 /* ========================================================================== */
 
 const StyledWarningIcon = styled(WarningIcon)`
@@ -184,24 +185,27 @@ function NFTOfferConditionalsPanel(props: NFTOfferConditionalsPanelProps) {
     </Grid>
   );
   const amountElem = (
-    <Grid item>
-      <Amount
-        id={`${tab}-amount}`}
-        key={`${tab}-amount}`}
-        variant="filled"
-        name="xchAmount"
-        color="secondary"
-        disabled={disabled}
-        label={<Trans>Amount</Trans>}
-        defaultValue={amount}
-        onChange={handleAmountChange}
-        onFocus={() => setAmountFocused(true)}
-        onBlur={() => setAmountFocused(false)}
-        showAmountInMojos={true}
-        InputLabelProps={{ shrink: shrinkAmount }}
-        required
-      />
-    </Grid>
+    <Flex flexDirection="row" gap={1}>
+      <NFTOfferTokenSelector />
+      <Grid item>
+        <Amount
+          id={`${tab}-amount}`}
+          key={`${tab}-amount}`}
+          variant="filled"
+          name="xchAmount"
+          color="secondary"
+          disabled={disabled}
+          label={<Trans>Amount</Trans>}
+          defaultValue={amount}
+          onChange={handleAmountChange}
+          onFocus={() => setAmountFocused(true)}
+          onBlur={() => setAmountFocused(false)}
+          showAmountInMojos={true}
+          InputLabelProps={{ shrink: shrinkAmount }}
+          required
+        />
+      </Grid>
+    </Flex>
   );
   const offerElem =
     tab === NFTOfferExchangeType.NFTForXCH ? nftElem : amountElem;
@@ -252,13 +256,13 @@ function NFTOfferConditionalsPanel(props: NFTOfferConditionalsPanelProps) {
         indicatorColor="primary"
       >
         <Tab
-          value={NFTOfferExchangeType.NFTForXCH}
-          label={<Trans>NFT for XCH</Trans>}
+          value={NFTOfferExchangeType.XCHForNFT}
+          label={<Trans>Buy an NFT</Trans>}
           disabled={disabled}
         />
         <Tab
-          value={NFTOfferExchangeType.XCHForNFT}
-          label={<Trans>XCH for NFT</Trans>}
+          value={NFTOfferExchangeType.NFTForXCH}
+          label={<Trans>Sell an NFT</Trans>}
           disabled={disabled}
         />
       </Tabs>
@@ -515,9 +519,7 @@ export default function NFTOfferEditor(props: NFTOfferEditorProps) {
   const [createOfferForIds] = useCreateOfferForIdsMutation();
   const [isProcessing, setIsProcessing] = useState(false);
   const { wallets: nftWallets } = useGetNFTWallets();
-  const { nfts } = useFetchNFTs(
-    nftWallets.map((wallet: Wallet) => wallet.id),
-  );
+  const { nfts } = useFetchNFTs(nftWallets.map((wallet: Wallet) => wallet.id));
   const openDialog = useOpenDialog();
   const errorDialog = useShowError();
   const navigate = useNavigate();
