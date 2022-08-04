@@ -37,6 +37,8 @@ const NET = 'mainnet';
 
 app.disableHardwareAcceleration();
 
+app.commandLine.appendSwitch('disable-http-cache');
+
 initialize();
 
 const thumbCacheFolder = app.getPath('cache') + path.sep + app.getName();
