@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh_CN\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-08-01 01:22\n"
+"PO-Revision-Date: 2022-08-04 02:07\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -1383,7 +1383,7 @@ msgstr "非同质化代币"
 
 #: src/components/offers/NFTOfferViewer.tsx:667
 msgid "Net Proceeds"
-msgstr ""
+msgstr "净收益"
 
 #: src/components/offers/NFTOfferViewer.tsx:696
 msgid "Network Fee (Optional)"
@@ -1523,7 +1523,7 @@ msgstr "已共享报价"
 
 #: src/components/offers/NFTOfferViewer.tsx:176
 msgid "Offer cannot be accepted because you don't possess the requested assets"
-msgstr ""
+msgstr "因为您没有被请求的资产，所以不能接受报价"
 
 #: src/hooks/useAcceptOfferHook.tsx:63
 msgid "Offer has been accepted and is awaiting confirmation."
@@ -1535,11 +1535,11 @@ msgstr "OfferBin 网址"
 
 #: src/components/offers/OfferManager.tsx:367
 msgid "Offered"
-msgstr ""
+msgstr "已报价"
 
 #: src/components/offers/utils.ts:158
 msgid "Offering: [{makerString}], Requesting: [{takerString}]"
-msgstr ""
+msgstr "提供： [{makerString}]，请求： [{takerString}]"
 
 #: src/components/dashboard/DashboardSideBar.tsx:65
 msgid "Offers"
@@ -1555,35 +1555,35 @@ msgstr "您创建的报价"
 
 #: src/components/offers/OfferAcceptConfirmationDialog.tsx:68
 msgid "Once you accept this offer, you will not be able to cancel the transaction. Are you sure you want to accept this offer?"
-msgstr ""
+msgstr "一旦您接受此报价，您将无法取消交易。您确定要接受此报价吗？"
 
 #: src/components/nfts/NFTTransferAction.tsx:87
 msgid "Once you initiate this transfer, you will not be able to cancel the transaction. Are you sure you want to transfer the NFT?"
-msgstr ""
+msgstr "一旦您启动此传输，您将无法取消交易。您确定要传输此NFT吗？"
 
 #: src/components/offers/OfferAcceptConfirmationDialog.tsx:37
 msgid "One or more unknown tokens are being offered. Please verify that the asset IDs of the tokens listed below match the asset IDs of the tokens you expect to receive."
-msgstr ""
+msgstr "一个或多个未知的代币正被报价。 请验证下面列出的代币的资产ID与您预期收到的代币的资产ID相匹配。"
 
 #: src/hooks/useOpenUnsafeLink.tsx:43
 msgid "Open Link"
-msgstr ""
+msgstr "打开链接"
 
 #: src/components/nfts/NFTContextualActions.tsx:384
 msgid "Open in Browser"
-msgstr ""
+msgstr "在浏览器中打开"
 
 #: src/components/nfts/NFTDetails.tsx:73
 msgid "Owner DID"
-msgstr ""
+msgstr "所有者DID"
 
 #: src/components/nfts/NFTDetails.tsx:117
 msgid "Owner Public Key"
-msgstr ""
+msgstr "所有者公钥"
 
 #: src/components/offers/OfferViewer.tsx:216
 msgid "Parent Coin"
-msgstr ""
+msgstr "父币"
 
 #: src/components/app/AppKeyringMigrator.tsx:160
 #: src/components/app/AppKeyringMigrator.tsx:161
@@ -1625,7 +1625,7 @@ msgstr "私钥密码要求将密钥迁移到新的密钥串中"
 #: src/components/offers/OfferDataEntryDialog.tsx:40
 #: src/components/offers/OfferImport.tsx:154
 msgid "Paste Offer Data"
-msgstr ""
+msgstr "粘贴报价数据"
 
 #: src/components/plotNFT/PlotNFTCard.tsx:357
 msgid "Payout Address"
@@ -1641,15 +1641,15 @@ msgstr "待处理"
 
 #: src/components/offers/utils.ts:164
 msgid "Pending Accept"
-msgstr ""
+msgstr "等待接受"
 
 #: src/components/offers/utils.ts:168
 msgid "Pending Cancel"
-msgstr ""
+msgstr "待取消"
 
 #: src/components/offers/utils.ts:166
 msgid "Pending Confirm"
-msgstr ""
+msgstr "待确认"
 
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:144
 #: src/hooks/useAbsorbRewards.tsx:43
@@ -1658,7 +1658,7 @@ msgstr "请确认"
 
 #: src/hooks/useOpenUnsafeLink.tsx:50
 msgid "Please check the following link to verify the site you are going to visit. Proceed at your own risk."
-msgstr ""
+msgstr "请检查以下链接以验证您要访问的站点。请自行承担操作风险。"
 
 #: src/components/app/AppPassPrompt.tsx:60
 #: src/components/settings/SetPassphrasePrompt.tsx:58
@@ -1667,19 +1667,19 @@ msgstr "请输入密钥密码"
 
 #: src/components/settings/ProfileAdd.tsx:64
 msgid "Please enter a valid numeric fee"
-msgstr ""
+msgstr "请输入有效的费用"
 
 #: src/components/offers/NFTOfferEditor.tsx:549
 msgid "Please enter an NFT identifier"
-msgstr ""
+msgstr "请输入一个NFT标识符。"
 
 #: src/components/offers/NFTOfferEditor.tsx:555
 msgid "Please enter an amount"
-msgstr ""
+msgstr "请输入金额"
 
 #: src/components/offers/OfferEditor.tsx:136
 msgid "Please enter an amount for each row"
-msgstr ""
+msgstr "请为每行输入一个金额"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:81
 msgid "Please enter your current passphrase, and a new passphrase"
@@ -1697,11 +1697,11 @@ msgstr "请输入您的私钥密码"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:276
 msgid "Please select a profile to move the NFT to."
-msgstr ""
+msgstr "请选择一个要移动NFT的个人资料为目的地。"
 
 #: src/components/offers/OfferEditor.tsx:134
 msgid "Please select an asset for each row"
-msgstr ""
+msgstr "请为每行选择一个资产。"
 
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:56
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:60
@@ -1736,7 +1736,7 @@ msgstr "农田密钥"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:318
 msgid "Plot NFT Plot Target Address"
-msgstr ""
+msgstr "绘制NFT 绘图目标地址"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:319
 msgid "Plot NFT Pool Contract Address"
@@ -1907,11 +1907,11 @@ msgstr "正在准备标准钱包"
 
 #: src/components/nfts/NFTPreview.tsx:149
 msgid "Preview"
-msgstr ""
+msgstr "预览"
 
 #: src/components/nfts/NFTPreview.tsx:183
 msgid "Preview URL is not valid"
-msgstr ""
+msgstr "预览URL无效"
 
 #: src/components/block/Block.jsx:307
 msgid "Previous"
@@ -1924,16 +1924,16 @@ msgstr "上个区块的头部哈希"
 #: src/components/nfts/gallery/NFTGallerySidebar.tsx:52
 #: src/components/nfts/gallery/NFTGallerySidebar.tsx:54
 msgid "Price"
-msgstr ""
+msgstr "价格"
 
 #: src/components/settings/ProfileView.tsx:66
 msgid "Profile Name"
-msgstr ""
+msgstr "档案名称"
 
 #: src/components/settings/Settings.tsx:44
 #: src/components/settings/SettingsProfiles.tsx:47
 msgid "Profiles"
-msgstr ""
+msgstr "资料"
 
 #: src/components/block/Block.jsx:229
 msgid "Proof of Space Size"
@@ -1945,7 +1945,7 @@ msgstr "已找到证明"
 
 #: src/components/nfts/NFTProperties.tsx:100
 msgid "Properties"
-msgstr ""
+msgstr "属性"
 
 #: src/components/pool/PoolInfo.tsx:22
 msgid "Protocol Version"
@@ -1953,11 +1953,11 @@ msgstr "协议版本"
 
 #: src/components/offers/NFTOfferViewer.tsx:520
 msgid "Purchase Summary"
-msgstr ""
+msgstr "购买概要"
 
 #: src/components/offers/OfferViewer.tsx:234
 msgid "Puzzle Hash"
-msgstr ""
+msgstr "拼图哈希"
 
 #: src/components/plot/PlotPlotting.tsx:24
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:204
@@ -1974,7 +1974,7 @@ msgstr "内存最大使用量"
 
 #: src/components/nfts/NFTRankings.tsx:80
 msgid "Rankings"
-msgstr ""
+msgstr "排名"
 
 #: src/components/app/AppSelectMode.tsx:111
 msgid "Recommended"
@@ -1982,7 +1982,7 @@ msgstr "推荐"
 
 #: src/components/settings/ProfileAdd.tsx:118
 msgid "Recommended: 0.000005 XCH"
-msgstr ""
+msgstr "推荐：0.000005 XCH"
 
 #: src/components/plot/PlotHeader.tsx:75
 #: src/components/plot/overview/PlotOverviewHero.tsx:59
@@ -2035,7 +2035,7 @@ msgstr "从备份中恢复染色币与智能钱包的元信息"
 
 #: src/components/nfts/NFTDetails.tsx:128
 msgid "Royalty Percentage"
-msgstr ""
+msgstr "版税百分比"
 
 #: src/components/app/AppSelectMode.tsx:149
 msgid "Runs the full node"
@@ -2054,7 +2054,7 @@ msgstr "保存"
 
 #: src/components/offers/OfferManager.tsx:480
 msgid "Save Offer File"
-msgstr ""
+msgstr "保存报价文件"
 
 #: src/components/app/AppKeyringMigrator.tsx:226
 #: src/components/settings/ChangePassphrasePrompt.tsx:268
@@ -2069,7 +2069,7 @@ msgstr "按头部哈希搜索区块"
 #: src/components/offers/OfferSummaryRow.tsx:227
 #: src/components/offers/OfferSummaryRow.tsx:305
 msgid "Search on Tail Database"
-msgstr ""
+msgstr "在 Tail 数据库中搜索"
 
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:106
 msgid "Second temporary folder location"
