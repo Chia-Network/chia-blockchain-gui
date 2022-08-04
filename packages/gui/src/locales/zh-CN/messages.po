@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh_CN\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-08-04 02:07\n"
+"PO-Revision-Date: 2022-08-04 03:10\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -2089,11 +2089,11 @@ msgstr "选择最终输出文件夹"
 
 #: src/components/offers/OfferImport.tsx:161
 msgid "Select Offer File"
-msgstr ""
+msgstr "选择报价文件"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:345
 msgid "Select Profile"
-msgstr ""
+msgstr "选择档案"
 
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:52
 msgid "Select Temporary Directory"
@@ -2136,7 +2136,7 @@ msgstr "自耕种。一旦发现新区块，你将得到全部XCH区块奖励。
 
 #: src/components/nfts/NFTTransferAction.tsx:245
 msgid "Send to Address"
-msgstr ""
+msgstr "发送至地址"
 
 #: src/components/settings/SetPassphrasePrompt.tsx:154
 #: src/components/settings/SetPassphrasePrompt.tsx:258
@@ -2157,43 +2157,43 @@ msgstr "分享"
 
 #: src/components/offers/OfferShareDialog.tsx:1405
 msgid "Share Offer"
-msgstr ""
+msgstr "分享报价"
 
 #: src/components/offers/OfferShareDialog.tsx:765
 msgid "Share Privately"
-msgstr ""
+msgstr "私下分享"
 
 #: src/components/offers/OfferShareDialog.tsx:587
 msgid "Share on Dexie"
-msgstr ""
+msgstr "分享到 Dexie"
 
 #: src/components/offers/OfferShareDialog.tsx:852
 msgid "Share on Hashgreen DEX"
-msgstr ""
+msgstr "分享到Hashgreen DEX"
 
 #: src/components/offers/OfferShareDialog.tsx:1048
 msgid "Share on Keybase"
-msgstr ""
+msgstr "分享到Keybase"
 
 #: src/components/offers/OfferShareDialog.tsx:668
 msgid "Share on MintGarden"
-msgstr ""
+msgstr "分享到MintGarden"
 
 #: src/components/offers/OfferShareDialog.tsx:750
 msgid "Share on OfferBin"
-msgstr ""
+msgstr "分享到OfferBin"
 
 #: src/components/offers/OfferShareDialog.tsx:1175
 msgid "Share on offerpool"
-msgstr ""
+msgstr "分享到Offerpool"
 
 #: src/components/offers/OfferManager.tsx:451
 msgid "Show Details"
-msgstr ""
+msgstr "显示详情"
 
 #: src/components/nfts/NFTPreview.tsx:204
 msgid "Show Preview"
-msgstr ""
+msgstr "显示预览"
 
 #: src/components/app/AppKeyringMigrator.tsx:64
 #: src/components/app/AppKeyringMigrator.tsx:267
@@ -2255,7 +2255,7 @@ msgstr "成功"
 
 #: src/components/settings/SettingsDerivationIndex.tsx:66
 msgid "Successfully updated the derivation index. Your balances may take a while to update."
-msgstr ""
+msgstr "成功更新派生索引。您的余额可能需要一段时间才能更新。"
 
 #: src/components/offers/OfferViewer.tsx:265
 msgid "Summary"
@@ -2285,33 +2285,33 @@ msgstr "临时文件夹位置"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:315
 msgid "The NFT move failed: {error}"
-msgstr ""
+msgstr "NFT 移动失败: {error}"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:305
 msgid "The NFT move transaction has been successfully submitted to the blockchain."
-msgstr ""
+msgstr "移动NFT的交易已成功提交到区块链。"
 
 #: src/components/nfts/NFTContextualActions.tsx:306
 msgid "The NFT status has been updated. If the transaction was successfully sent to the mempool, it may still complete."
-msgstr ""
+msgstr "NFT 状态已更新。如果交易已成功发送到内存池，它可能仍然会完成。"
 
 #: src/components/nfts/NFTContextualActions.tsx:316
 msgid "The NFT status update failed: {error}"
-msgstr ""
+msgstr "NFT 状态更新失败: {error}"
 
 #: src/components/nfts/NFTContextualActions.tsx:180
 #: src/components/nfts/NFTContextualActions.tsx:244
 msgid "The NFT transfer failed: {error}"
-msgstr ""
+msgstr "NFT 传输失败: {error}"
 
 #: src/components/nfts/NFTContextualActions.tsx:170
 #: src/components/nfts/NFTContextualActions.tsx:234
 msgid "The NFT transfer transaction has been successfully submitted to the blockchain."
-msgstr ""
+msgstr "NFT 传输交易已成功提交到区块链。"
 
 #: src/components/settings/SettingsPanel.tsx:185
 msgid "The derivation index sets the range of wallet addresses that the wallet scans the blockchain for. This number is generally higher if you have a lot of transactions or canceled offers for XCH, CATs, or NFTs. If you believe your balance is incorrect because it’s missing coins, then increasing the derivation index could help the wallet include the missing coins in the balance total."
-msgstr ""
+msgstr "衍生指数设置钱包链扫描钱包地址的范围。 如果您有大量交易或取消了 XCH、CATs 或 NFT 的报价，这个数字通常更高。 如果你认为你的余额是不正确的，因为它缺少硬币， 增加衍生指数可以帮助钱包在余额总额中包括缺失的硬币。"
 
 #: src/components/farm/FarmFullNodeConnections.tsx:95
 msgid "The full node that your farmer is connected to is below. <0>Learn more</0>"
@@ -2324,7 +2324,7 @@ msgstr "主网要求的最小农田大小为k=32"
 
 #: src/components/offers/NFTOfferViewer.tsx:671
 msgid "The net proceeds include the asking price, minus any associated creator fees (if the NFT has royalty payments enabled)."
-msgstr ""
+msgstr "净收益包括收取价格，减去任何相关创作者收费(如果已经启用了版税付款)。"
 
 #: src/components/fullNode/card/FullNodeCardStatus.tsx:16
 #: src/components/fullNode/card/FullNodeCardStatus.tsx:45
@@ -2357,19 +2357,19 @@ msgstr "密语用于创建农田。农田是与农场池的公钥与农田的公
 
 #: src/components/offers/NFTOfferViewer.tsx:630
 msgid "The total amount offered includes the offered purchase price, plus the optional offer creation fee.<0/>If the NFT has royalty payments enabled, those creator fees will be paid from the offered purchase price."
-msgstr ""
+msgstr "报价总额包括报价购买价，加上可选择的报价创收费<0/>。 如果启用了NFT版税，那么创建者的费用将从提供的购买价格中支付。"
 
 #: src/components/offers/NFTOfferEditor.tsx:369
 msgid "The total amount offered includes the price you're willing to pay for the NFT, plus the optional offer creation fee. One or more coins totalling at least the amount shown below will be deducted from your spendable balance upon offer creation.<0/>If the NFT has royalty payments enabled, those creator fees will be paid by the party that accepts the offer."
-msgstr ""
+msgstr "提供的总金额包括您愿意为NFT支付的价格，加上可选的报价创建费。 一个或多个硬币总额至少为下面显示的金额，将在创建报价时<0/>从您的可动用余额中扣除。 如果启用了NFT版税付款，那么创建者费用将由接受报价的一方支付。"
 
 #: src/components/offers/NFTOfferEditor.tsx:358
 msgid "The total amount requested includes the asking price, plus the associated creator fees (if the NFT has royalty payments enabled). Creator fees will be paid by the party that accepts the offer.<0/>The optional offer creation fee is not included in this total, and will be deducted from your spendable balance upon offer creation."
-msgstr ""
+msgstr "请求的总额包括询问价格，加上相关的创建者费用(如果启用了NFT使用了版税付款)。 接受报价的一方将支付创收费。 <0/>可选的报价创建费不包括在这个总额中，并将在您的报价创建时从您的可动用余额中扣除。"
 
 #: src/components/offers/NFTOfferViewer.tsx:617
 msgid "The total amount requested includes the asking price, plus the associated creator fees (if the NFT has royalty payments enabled).{0}"
-msgstr ""
+msgstr "请求的总金额包括询问价格，加上相关的创建者费用(如果启用了NFT使用了版税付款)。{0}"
 
 #: src/components/block/Block.jsx:206
 msgid "The total number of VDF (verifiable delay function) or proof of time iterations on the whole chain up to this block."
@@ -2393,7 +2393,7 @@ msgstr "这些农田无效，你可能想要删除它们。"
 
 #: src/components/offers/NFTOfferEditor.tsx:322
 msgid "They will receive"
-msgstr ""
+msgstr "他们将收到:"
 
 #: src/components/plot/PlotAddDirectoryDialog.tsx:88
 msgid "This allows you to add a directory that has plots in it. If you have not created any plots, go to the plotting screen."
@@ -2432,25 +2432,25 @@ msgstr "本节点已完成同步，并已开始参与网络验证"
 
 #: src/components/offers/OfferViewer.tsx:178
 msgid "This number reflects the number of nodes that the accepted SpendBundle has been sent to"
-msgstr ""
+msgstr "此数字展示，已发送到的接受 SpendBundle的节点数量"
 
 #: src/components/offers/NFTOfferViewer.tsx:226
 #: src/components/offers/OfferSummary.tsx:206
 msgid "This offer has a fee included to help expedite the transaction when the offer is accepted."
-msgstr ""
+msgstr "该报价包括一笔帮助在接受报价时加快交易速度的费用"
 
 #: src/components/offers/NFTOfferViewer.tsx:220
 #: src/components/offers/OfferSummary.tsx:200
 msgid "This offer has a fee included to help expedite the transaction when the offer is accepted. You may specify an additional fee if you feel that the included fee is too small."
-msgstr ""
+msgstr "该报价包括一笔帮助在接受报价时加快交易速度的费用。 如果您觉得包含的费用太少，您可以指定额外的费用。"
 
 #: src/components/offers/OfferHeader.tsx:62
 msgid "This offer has completed successfully"
-msgstr ""
+msgstr "此报价已成功完成"
 
 #: src/components/offers/OfferHeader.tsx:46
 msgid "This offer is no longer valid. To understand why, click <0>here</0> to learn more."
-msgstr ""
+msgstr "此报价不再有效。要了解原因，请点击 <0>这里</0> 了解更多信息。"
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:307
 msgid "This plot NFT is assigned to a different key. You can still create plots for this plot NFT, but you can not make changes."
@@ -2477,15 +2477,15 @@ msgstr "时间戳"
 #: src/components/nfts/detail/NFTDetail.tsx:42
 #: src/components/nfts/detail/NFTDetailV2.tsx:79
 msgid "Title Not Available"
-msgstr ""
+msgstr "标题不可用"
 
 #: src/components/offers/OfferManager.tsx:594
 msgid "Token Offer"
-msgstr ""
+msgstr "代币报价"
 
 #: src/components/settings/ProfileView.tsx:136
 msgid "Token Standard"
-msgstr ""
+msgstr "代币标准"
 
 #: src/components/dashboard/DashboardSideBar.tsx:55
 #: src/components/nfts/gallery/NFTGallerySidebar.tsx:68
@@ -2500,12 +2500,12 @@ msgstr "过多NFT农田"
 #: src/components/offers/NFTOfferEditor.tsx:352
 #: src/components/offers/NFTOfferViewer.tsx:611
 msgid "Total Amount Offered"
-msgstr ""
+msgstr "提供的总报价金额"
 
 #: src/components/offers/NFTOfferEditor.tsx:350
 #: src/components/offers/NFTOfferViewer.tsx:607
 msgid "Total Amount Requested"
-msgstr ""
+msgstr "要求的金额"
 
 #: src/components/farm/card/FarmCardTotalChiaFarmed.tsx:27
 msgid "Total Chia Farmed"
@@ -2554,46 +2554,46 @@ msgstr "交易过滤器哈希"
 #: src/components/nfts/NFTTransferAction.tsx:80
 #: src/components/nfts/NFTTransferAction.tsx:274
 msgid "Transfer"
-msgstr ""
+msgstr "转帐"
 
 #: src/components/nfts/NFTContextualActions.tsx:205
 #: src/components/nfts/NFTTransferAction.tsx:322
 msgid "Transfer NFT"
-msgstr ""
+msgstr "转移 NFT"
 
 #: src/hooks/useOpenUnsafeLink.tsx:56
 msgid "URL"
-msgstr ""
+msgstr "URL"
 
 #: src/components/offers/NFTOfferEditor.tsx:594
 msgid "Unable to create an offer for an NFT that you do not own."
-msgstr ""
+msgstr "无法为您不拥有的 NFT 创建报价。"
 
 #: src/components/offers/NFTOfferEditor.tsx:608
 msgid "Unable to create an offer for an NFT with a creator royalty percentage greater than 100%"
-msgstr ""
+msgstr "无法为创建者版税百分比大于100%的 NFT 创建报价"
 
 #: src/components/offers/NFTOfferEditor.tsx:338
 msgid "Unable to create an offer where the net amount is negative"
-msgstr ""
+msgstr "无法创建净额为负数的报价单"
 
 #: src/components/offers/OfferShareDialog.tsx:979
 msgid "Unable to open Keybase. Install Keybase from https://keybase.io"
-msgstr ""
+msgstr "无法打开 Keybase。请从 https://keybase.io 安装 Keybase"
 
 #: src/components/offers/OfferShareDialog.tsx:886
 msgid "Unable to open browser. Install Keybase from https://keybase.io"
-msgstr ""
+msgstr "无法打开浏览器。请从 https://keybase.io 安装 Keybase"
 
 #: src/components/nfts/NFTDetails.tsx:110
 #: src/components/nfts/NFTDetails.tsx:134
 msgid "Unassigned"
-msgstr ""
+msgstr "未分配的"
 
 #: src/components/nfts/NFTProfileDropdown.tsx:83
 #: src/components/nfts/NFTProfileDropdown.tsx:132
 msgid "Unassigned NFTs"
-msgstr ""
+msgstr "未分配的 NFT"
 
 #: src/components/plotNFT/PlotNFTCard.tsx:148
 msgid "Unclaimed Rewards"
@@ -2620,11 +2620,11 @@ msgstr "解锁钥匙串"
 
 #: src/components/offers/NFTOfferViewer.tsx:146
 msgid "Unrecognized asset"
-msgstr ""
+msgstr "无法识别的资产"
 
 #: src/components/nfts/NFTPreview.tsx:86
 msgid "Update Pending"
-msgstr ""
+msgstr "更新等待中"
 
 #: src/components/farm/card/FarmCardUserFees.tsx:27
 msgid "User Transaction Fees"
@@ -2654,36 +2654,36 @@ msgstr "查看农业合作社登录地址"
 #: src/components/offers/OfferImport.tsx:178
 #: src/components/offers/OfferManager.tsx:617
 msgid "View an Offer"
-msgstr ""
+msgstr "查看报价"
 
 #: src/components/offers/OfferShareDialog.tsx:568
 msgid "View on Dexie"
-msgstr ""
+msgstr "在 Dexie 上查看"
 
 #: src/components/offers/OfferShareDialog.tsx:833
 msgid "View on Hashgreen DEX"
-msgstr ""
+msgstr "在 Hashgreen DEX 上查看"
 
 #: src/components/nfts/NFTContextualActions.tsx:563
 #: src/components/offers/OfferShareDialog.tsx:649
 msgid "View on MintGarden"
-msgstr ""
+msgstr "在 MintGarden 上查看"
 
 #: src/components/offers/OfferShareDialog.tsx:731
 msgid "View on OfferBin"
-msgstr ""
+msgstr "在OfferBin上查看"
 
 #: src/components/nfts/NFTContextualActions.tsx:570
 msgid "View on SkyNFT"
-msgstr ""
+msgstr "在 SkyNFT 上查看"
 
 #: src/components/nfts/NFTContextualActions.tsx:577
 msgid "View on Spacescan.io"
-msgstr ""
+msgstr "在 Spacescan.io 上查看"
 
 #: src/components/offers/OfferViewerTitle.tsx:54
 msgid "Viewing offer"
-msgstr ""
+msgstr "查看报价"
 
 #: src/components/farm/card/FarmCardNotAvailable.tsx:25
 #: src/components/plot/PlotStatus.tsx:26
@@ -2718,15 +2718,15 @@ msgstr "热启动"
 
 #: src/components/offers/OfferAcceptConfirmationDialog.tsx:34
 msgid "Warning"
-msgstr ""
+msgstr "警告"
 
 #: src/components/offers/OfferSummary.tsx:148
 msgid "Warning: Verify that the offered CAT asset IDs match the asset IDs of the tokens you expect to receive."
-msgstr ""
+msgstr "警告：验证提供的 CAT 资产ID是否与您预期收到的代币的资产ID相匹配。"
 
 #: src/hooks/useOpenUnsafeLink.tsx:42
 msgid "Warning: You're about to visit a website"
-msgstr ""
+msgstr "警告：您即将访问一个网站"
 
 #: src/components/block/Block.jsx:183
 msgid "Weight"
@@ -2738,7 +2738,7 @@ msgstr "权重是施加给所有块包括目前这块的额外的困难度."
 
 #: src/components/offers/OfferEditorConfirmationDialog.tsx:22
 msgid "When creating an offer, any assets that are being offered will be locked and unavailable until the offer is accepted or cancelled, resulting in your spendable balance changing."
-msgstr ""
+msgstr "在创建报价时，在接受或取消报价之前，任何正在提供的资产都将被锁定并不可用。 导致您的可动用余额变化。"
 
 #: src/electron/main.tsx:504
 msgid "Window"
@@ -2750,15 +2750,15 @@ msgstr "不含交易费"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:505
 msgid "Would you like to move the specified NFT to a profile?"
-msgstr ""
+msgstr "您想要将指定的 NFT 移动到一个资料之下吗？"
 
 #: src/components/nfts/NFTTransferAction.tsx:329
 msgid "Would you like to transfer the specified NFT to a new owner?"
-msgstr ""
+msgstr "您想要将指定的 NFT 转移给一个新的所有者吗？"
 
 #: src/components/offers/NFTOfferEditor.tsx:261
 msgid "XCH for NFT"
-msgstr ""
+msgstr "XCH兑换NFT"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:48
 #: src/electron/main.tsx:337
@@ -2767,7 +2767,7 @@ msgstr "是"
 
 #: src/components/offers/OfferAcceptConfirmationDialog.tsx:24
 msgid "Yes, Accept Offer"
-msgstr ""
+msgstr "接受报价"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:64
 msgid "Yes, move"
@@ -2800,7 +2800,7 @@ msgstr "你现在可以使用这个农田NFT开垦新农田，但是在同步完
 
 #: src/components/offers/OfferHeader.tsx:38
 msgid "You created this offer"
-msgstr ""
+msgstr "您创建了此报价"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:76
 msgid "You do not need to be synced or connected to plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
@@ -2867,11 +2867,11 @@ msgstr "您的密钥需要迁移到由私钥密码保护的新密钥串中。"
 
 #: src/components/offers/OfferShareDialog.tsx:1023
 msgid "Your offer has been successfully posted to Keybase."
-msgstr ""
+msgstr "您的报价已成功发布到Keybase"
 
 #: src/components/offers/OfferShareDialog.tsx:1249
 msgid "Your offer:"
-msgstr ""
+msgstr "您的报价："
 
 #: src/components/app/AppKeyringMigrator.tsx:229
 #: src/components/settings/ChangePassphrasePrompt.tsx:271
@@ -2905,11 +2905,11 @@ msgstr "p2SingletonPuzzleHash 未定义"
 
 #: src/components/nfts/NFTTransferAction.tsx:131
 msgid "{0, plural, one {mojo} other {mojos}}"
-msgstr ""
+msgstr "{0, plural, one {mojo} other {mojos}}"
 
 #: src/components/offers/OfferShareDialog.tsx:1148
 msgid "{0}"
-msgstr ""
+msgstr "{0}"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:172
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:189
@@ -2919,7 +2919,7 @@ msgstr "推荐{0} 个bucket"
 #: src/components/nfts/detail/NFTDetail.tsx:98
 #: src/components/nfts/detail/NFTDetailV2.tsx:122
 msgid "{0} of {1}"
-msgstr ""
+msgstr "{0} / {1}"
 
 #: src/components/plotNFT/PlotNFTGraph.tsx:111
 msgid "{0} points {1} - {2} hours ago"
@@ -2928,16 +2928,16 @@ msgstr "{0} 积点 {1} - {2} 小时前"
 #: src/components/offers/NFTOfferViewer.tsx:216
 #: src/components/offers/OfferSummary.tsx:196
 msgid "{makerFee, plural, one {mojo} other {mojos}}"
-msgstr ""
+msgstr "{makerFee, plural, one {mojo} other {mojos}}"
 
 #: src/components/offers/OfferSummaryRow.tsx:49
 #: src/components/offers/OfferViewer.tsx:62
 msgid "{mojos, plural, one {mojo} other {mojos}}"
-msgstr ""
+msgstr "{mojos, plural, one {mojo} other {mojos}}"
 
 #: src/components/nfts/NFTRankings.tsx:51
 msgid "{value} of {max_value}"
-msgstr ""
+msgstr "{max_value}中的{value}"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:118
 msgid "{warning}"
