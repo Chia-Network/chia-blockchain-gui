@@ -10,7 +10,8 @@
         "lint": "eslint . --ext .ts,.tsx,.js,.jsx",
         "lint:fix": "eslint . --ext .ts,.tsx,.js,.jsx --fix",
         "publish": "lerna publish",
-        "postinstall": "npm run bootstrap",
+        "postinstall": "npm run bootstrap && cross-env prettier --write '**/package.json' '**/package-lock.json'",
+        "prettier:format": "cross-env prettier --config prettier.config.js --write '**/*.{ts,tsx,js,jsx}'",
         "build": "lerna run build",
         "build:watch": "lerna run build:watch",
         "start:gui": "lerna run start --scope @chia/gui",
@@ -23,6 +24,7 @@
         "audit:fix": "lerna exec -- npm audit fix"
     },
     "dependencies": {
+        "cross-env": "7.0.3",
         "lerna": "^5.1.8"
     },
     "devDependencies": {
@@ -32,8 +34,9 @@
         "eslint-config-prettier": "8.3.0",
         "eslint-plugin-react": "^7.28.0",
         "eslint-plugin-react-hooks": "^4.3.0",
+        "jshint": "2.13.5",
         "lerna-audit": "^1.3.3",
-        "prettier": "2.5.1",
+        "prettier": "2.7.1",
         "typescript": "^4.5.4"
     },
     "lint-staged": {
@@ -46,11 +49,6 @@
             "prettier --write",
             "git add"
         ]
-    },
-    "prettier": {
-        "trailingComma": "es5",
-        "singleQuote": true,
-        "arrowParens": "avoid"
     },
     "eslintConfig": {
         "root": true,
