@@ -1,4 +1,4 @@
-import React, { useMemo, useEffect } from 'react';
+import React, { useMemo, useEffect, useRef } from 'react';
 import { Trans } from '@lingui/macro';
 import styled from 'styled-components';
 import {
@@ -31,6 +31,7 @@ import NFTContextualActions, {
   NFTContextualActionTypes,
 } from '../NFTContextualActions';
 import NFTPreviewDialog from '../NFTPreviewDialog';
+import NFTProgressBar from '../NFTProgressBar';
 
 const ipcRenderer = (window as any).ipcRenderer;
 
@@ -45,31 +46,13 @@ export default function NFTDetail() {
 
   const [progressBarWidth, setProgressBarWidth] = React.useState(-1);
   const [validated, setValidated] = React.useState(0);
-
-  function fileContentLengthListener(_event, msg) {
-    console.log('File content length->', msg);
-  }
-
-  function progressListener(_event, progressObject: any) {
-    if (
-      nft.dataUris &&
-      Array.isArray(nft.dataUris) &&
-      nft.dataUris[0] === progressObject.uri
-    ) {
-      setProgressBarWidth(progressObject.progress);
-      if (progressObject.progress === 1) {
-        setProgressBarWidth(-1);
-      }
-    }
-  }
+  const nftRef = React.useRef(null);
 
   useEffect(() => {
     validateSha256Remote(false); // false parameter means only validate files smaller than MAX_FILE_SIZE
-    ipcRenderer.on('sha256FileContentLength', fileContentLengthListener);
     ipcRenderer.on('sha256DownloadProgress', progressListener);
     ipcRenderer.on('sha256hash', gotHash);
     return () => {
-      ipcRenderer.off('sha256FileContentLength', fileContentLengthListener);
       ipcRenderer.off('sha256DownloadProgress', progressListener);
       ipcRenderer.off('sha256hash', gotHash);
     };
@@ -82,11 +65,30 @@ export default function NFTDetail() {
     return nfts.find((nft: NFTInfo) => nft.$nftId === nftId);
   }, [nfts]);
 
+  nftRef.current = nft;
+
+  function progressListener(_event, progressObject: any) {
+    const nft = nftRef.current;
+    if (
+      nft &&
+      nft.dataUris &&
+      Array.isArray(nft.dataUris) &&
+      nft.dataUris[0] === progressObject.uri
+    ) {
+      setProgressBarWidth(progressObject.progress);
+      if (progressObject.progress === 1) {
+        setProgressBarWidth(-1);
+      }
+    }
+  }
+
   function gotHash(_event, hash) {
-    if (`0x${hash}` === nft.dataHash) {
-      setValidated(1);
-    } else {
-      setValidated(-1);
+    if (nftRef.current) {
+      if (`0x${hash}` === nftRef.current.dataHash) {
+        setValidated(1);
+      } else {
+        setValidated(-1);
+      }
     }
   }
 
@@ -107,6 +109,10 @@ export default function NFTDetail() {
     text-align: center;
   `;
 
+  const ErrorMessage = styled.div`
+    color: red;
+  `;
+
   function validateSha256Remote(force: boolean) {
     const ipcRenderer = (window as any).ipcRenderer;
     if (nft && Array.isArray(nft.dataUris) && nft.dataUris[0]) {
@@ -117,34 +123,17 @@ export default function NFTDetail() {
     }
   }
 
-  const ProgressBar = styled.div`
-    width: 100%;
-    height: 12px;
-    border: 1px solid #abb0b2;
-    border-radius: 3px;
-    margin-top: 30px !important;
-    margin-left: 0 !important;
-    > div {
-      background: #b0debd;
-      height: 10px;
-      border-radius: 2px;
-    }
-  `;
-
-  function renderProgressBar() {
-    if (progressBarWidth === -1) return null;
-    return (
-      <ProgressBar>
-        <div style={{ width: `${progressBarWidth * 100}%` }}></div>
-      </ProgressBar>
-    );
-  }
-
   function renderValidationState() {
     if (progressBarWidth > 0 && progressBarWidth < 1) {
       return <Trans>Validating hash...</Trans>;
-    } else if (validated) {
+    } else if (validated === 1) {
       return <Trans>Hash is validated.</Trans>;
+    } else if (validated === -1) {
+      return (
+        <ErrorMessage>
+          <Trans>Hash mismatch.</Trans>
+        </ErrorMessage>
+      );
     } else {
       return (
         <Button
@@ -190,7 +179,7 @@ export default function NFTDetail() {
                   fit="contain"
                 />
                 <ValidateContainer>{renderValidationState()}</ValidateContainer>
-                {renderProgressBar()}
+                <NFTProgressBar percentage={progressBarWidth} />
               </Box>
             )}
           </Box>

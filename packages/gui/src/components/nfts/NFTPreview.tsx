@@ -1,10 +1,20 @@
-import React, { useMemo, useState, type ReactNode, Fragment } from 'react';
+import React, {
+  useMemo,
+  useState,
+  type ReactNode,
+  Fragment,
+  useEffect,
+} from 'react';
 import { renderToString } from 'react-dom/server';
 import mime from 'mime-types';
 import moment from 'moment';
 import { t, Trans } from '@lingui/macro';
 import { Box, Button } from '@mui/material';
-import { NotInterested, Error as ErrorIcon } from '@mui/icons-material';
+import {
+  NotInterested,
+  Error as ErrorIcon,
+  ContentPasteSearch,
+} from '@mui/icons-material';
 
 import {
   IconMessage,
@@ -17,6 +27,7 @@ import styled from 'styled-components';
 import { type NFTInfo } from '@chia/api';
 import isURL from 'validator/lib/isURL';
 import useNFTHash from '../../hooks/useNFTHash';
+import NFTProgressBar from './NFTProgressBar';
 
 function prepareErrorMessage(error: Error): ReactNode {
   if (error.message === 'Response too large') {
@@ -63,6 +74,20 @@ const StyledAudioTable = styled.table`
   border-spacing: 0px 4px;
 `;
 
+const ProgressBarContainer = styled.div`
+  width: 80%;
+  padding: 15px;
+`;
+
+const ProgressBarText = styled.div`
+  text-align: center;
+`;
+
+const ThumbnailError = styled.div`
+  color: red;
+  text-align: center;
+`;
+
 export type NFTPreviewProps = {
   nft: NFTInfo;
   height?: number | string;
@@ -95,6 +120,41 @@ export default function NFTPreview(props: NFTPreviewProps) {
     false,
     `nft-preview-ignore-error-${nft.$nftId}-${file}`,
   );
+  const [thumbnailProgress, setThumbnailProgress] = useState(-1);
+  const [thumbnailError, setThumbnailError] = useState('');
+
+  function handleVideoThumbnailProgress(_event: any, obj: any) {
+    if (obj.uri === file) {
+      setThumbnailProgress(obj.progress === 1 ? -1 : obj.progress);
+    }
+  }
+
+  function handleVideoThumbnailError(_event, obj) {
+    if (obj.uri === file) {
+      setThumbnailError(obj.err);
+    }
+  }
+
+  useEffect(() => {
+    (window as any).ipcRenderer.on(
+      'videoThumbnailProgress',
+      handleVideoThumbnailProgress,
+    );
+    (window as any).ipcRenderer.on(
+      'videoThumbnailError',
+      handleVideoThumbnailError,
+    );
+    return () => {
+      (window as any).ipcRenderer.off(
+        'thumbnail',
+        handleVideoThumbnailProgress,
+      );
+      (window as any).ipcRenderer.off(
+        'videoThumbnailError',
+        handleVideoThumbnailError,
+      );
+    };
+  }, []);
 
   const isUrlValid = useMemo(() => {
     if (!file) {
@@ -356,6 +416,15 @@ export default function NFTPreview(props: NFTPreviewProps) {
             <Trans>Preview URL is not valid</Trans>
           </IconMessage>
         </Background>
+      ) : thumbnailError !== '' ? (
+        <ThumbnailError>{thumbnailError}</ThumbnailError>
+      ) : thumbnailProgress > -1 ? (
+        <ProgressBarContainer>
+          <ProgressBarText>
+            <Trans>Generating video preview</Trans>
+          </ProgressBarText>
+          <NFTProgressBar percentage={thumbnailProgress} />
+        </ProgressBarContainer>
       ) : isLoading ? (
         <Background>
           <Loading center>

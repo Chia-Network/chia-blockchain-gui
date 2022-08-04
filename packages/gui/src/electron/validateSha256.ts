@@ -25,10 +25,12 @@ export default function validateSha256(
   mainWindow: BrowserWindow,
   uri: string,
   force: boolean,
+  validatingInProgress: (uri: string, action: string) => void,
 ) {
   let tempSize = 0;
   const fileOnDisk = cacheFolder + path + Buffer.from(uri).toString('base64');
   const fileStream = fs.createWriteStream(fileOnDisk);
+  validatingInProgress(uri, 'start');
   (uri.match(/^https/) ? https : http).get(uri, (res) => {
     if (res.statusCode !== 200) {
       res.resume();
@@ -50,6 +52,7 @@ export default function validateSha256(
       });
 
       res.on('end', () => {
+        validatingInProgress(uri, 'stop');
         mainWindow.webContents.send('sha256FileFinishedDownloading');
         getChecksum(fileOnDisk)
           .then((checksum) => {
@@ -58,9 +61,8 @@ export default function validateSha256(
           .catch((err) => console.log(err));
       });
     } else {
-      res.on('end', () => {
-        console.log('Did not fetch binary...');
-      });
+      validatingInProgress(uri, 'stop');
+      res.on('end', () => {});
     }
   });
 }

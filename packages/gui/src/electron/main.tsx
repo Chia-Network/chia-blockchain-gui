@@ -48,6 +48,8 @@ const appIcon = nativeImage.createFromPath(path.join(__dirname, AppIcon));
 let isSimulator = process.env.LOCAL_TEST === 'true';
 const isDev = process.env.NODE_ENV === 'development';
 
+const validatingProgress = {};
+
 function renderAbout(): string {
   const sheet = new ServerStyleSheet();
   const about = ReactDOMServer.renderToStaticMarkup(
@@ -142,6 +144,18 @@ if (!handleSquirrelEvent()) {
 
     if (app) {
       app.applicationMenu = createMenu();
+    }
+  }
+
+  function emitVideoThumbnailProgress(uri: string, progress: number) {
+    if (mainWindow) {
+      mainWindow.webContents.send('videoThumbnailProgress', { uri, progress });
+    }
+  }
+
+  function sendThumbnailError(uri: string, err: string) {
+    if (mainWindow) {
+      mainWindow.webContents.send('videoThumbnailError', { uri, err });
     }
   }
 
@@ -305,13 +319,25 @@ if (!handleSquirrelEvent()) {
         },
       );
 
+      function validatingInProgress(uri: string, action: string) {
+        if (action === 'stop') {
+          delete validatingProgress[uri];
+        }
+        if (action === 'start') {
+          validatingProgress[uri] = true;
+        }
+      }
+
       ipcMain.handle('validateSha256Remote', (_event, options) => {
-        validateSha256(
-          thumbCacheFolder,
-          mainWindow,
-          options.uri,
-          options.force,
-        );
+        if (!validatingProgress[options.uri]) {
+          validateSha256(
+            thumbCacheFolder,
+            mainWindow,
+            options.uri,
+            options.force,
+            validatingInProgress,
+          );
+        }
       });
 
       ipcMain.handle('showMessageBox', async (_event, options) => {
@@ -462,6 +488,8 @@ if (!handleSquirrelEvent()) {
           options.file,
           app.getPath('cache'),
           app.getName(),
+          emitVideoThumbnailProgress,
+          sendThumbnailError,
         );
         const emitObj = await VideoThumbnail.generateVideoPreviewFile();
         mainWindow.webContents.send('thumbnail', emitObj);
