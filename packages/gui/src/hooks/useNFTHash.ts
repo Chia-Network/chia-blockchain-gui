@@ -1,6 +1,4 @@
 import { useEffect, useState } from 'react';
-import type NFTInfo from '@chia/api';
-import useVerifyURIHash from './useVerifyURIHash';
 import mime from 'mime-types';
 
 interface Thumbnail {
@@ -9,87 +7,82 @@ interface Thumbnail {
   type: string;
 }
 
-function mimeType(uri: string, regexp: RegExp) {
+function mimeTypeRegex(uri: string, regexp: RegExp) {
   const urlOnly = new URL(uri).origin + new URL(uri).pathname;
   const temp = mime.lookup(urlOnly);
-  return temp.match(regexp);
-}
-
-function isAudioOrVideo(uri: string) {
-  return mimeType(uri, /^video|^audio/);
+  return ((temp || '') as string).match(regexp);
 }
 
 function isAudio(uri: string) {
-  return mimeType(uri, /^audio/);
+  return mimeTypeRegex(uri, /^audio/);
 }
 
-export default function useNFTHash(nft: NFTInfo, isPreview: boolean) {
-  const { dataHash, dataUris } = nft;
-  const uri = dataUris?.[0];
-  const [thumbnail, setThumbnail] = useState({});
+function isVideo(uri: string) {
+  return mimeTypeRegex(uri, /^video/);
+}
 
-  function handleThumbnail(_event: any, thumbnail: Thumbnail) {
-    if (thumbnail.uri === uri) {
-      if (thumbnail.type === 'audio') {
-        setThumbnail(thumbnail);
-      } else if (thumbnail.type === 'video') {
-        setThumbnail({
-          filePath: thumbnail.filePath,
-          uri: thumbnail.uri,
-          type: thumbnail.type,
-        });
-      }
-    }
-  }
-
+/**
+ * Fetch json text from url
+ */
+function useLoadingPreview(nft: any) {
+  const [json, setJson] = useState({});
   useEffect(() => {
-    const mimeType = mime.lookup(uri);
-    if (isPreview || (uri && mimeType && mimeType.match(/^audio/))) {
-      (window as any).ipcRenderer.on('thumbnail', handleThumbnail);
-      if (uri && mimeType && mimeType.match(/^video|^audio/)) {
-        (window as any).ipcRenderer.invoke('get-thumbnail', {
-          file: uri,
-          mimeType,
+    if (nft && Array.isArray(nft.metadataUris) && nft.metadataUris.length) {
+      fetch(nft.metadataUris[0])
+        .then((response) => {
+          return response.text();
+        })
+        .then((data) => {
+          let json;
+          try {
+            json = JSON.parse(data);
+          } catch (e) {
+            setJson({
+              error: 'Error parsing json',
+            });
+          }
+          if (json) {
+            setJson(json);
+          }
         });
-      }
     }
-    return () => {
-      (window as any).ipcRenderer.off('thumbnail', handleThumbnail);
-    };
   }, []);
+  return json;
+}
 
-  if (uri) {
-    if (isPreview || isAudio(uri)) {
-      if (!isAudioOrVideo(uri)) {
-        return {
-          isValid: true,
-          isLoading: false,
-          error: null,
-          thumbnail: {},
-          uri,
-        };
-      } else {
-        return {
-          isValid: true,
-          isLoading: Object.keys(thumbnail).length === 0,
-          thumbnail,
-          error: null,
-        };
-      }
-    } else {
-      /* DETAIL!!! */
-      if (isAudioOrVideo(uri)) {
-        return {
-          isValid: true,
-          isLoading: false,
-          uri,
-          thumbnail: {
-            uri,
-          },
-        };
-      }
+export default function useNFTHash(nft: any, isPreview: boolean) {
+  const { dataUris } = nft;
+  let uri = dataUris?.[0];
+  const metadataJson = useLoadingPreview(nft);
+
+  const thumbnail: any = {
+    type: isVideo(uri) ? 'video' : isAudio(uri) ? 'audio' : 'unknown',
+  };
+  if (!isPreview) {
+    thumbnail.uri = uri;
+  }
+
+  if (isPreview) {
+    if (metadataJson['preview_image_uri']) {
+      thumbnail.image = metadataJson['preview_image_uri'];
+    }
+    if (metadataJson['preview_video_uri']) {
+      thumbnail.video = metadataJson['preview_video_uri'];
+    }
+    if (metadataJson['error']) {
+      thumbnail.error = true;
     }
   }
 
-  return useVerifyURIHash(uri, dataHash);
+  const isLoading =
+    isPreview &&
+    !!nft.metadataUris.length &&
+    Object.keys(metadataJson).length === 0;
+
+  return {
+    isValid: true,
+    isLoading,
+    thumbnail,
+    error: null,
+  };
 }
