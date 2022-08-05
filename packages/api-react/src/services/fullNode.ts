@@ -16,7 +16,7 @@ export const fullNodeApi = apiWithTag.injectEndpoints({
       transformResponse: (response: any) => response?.success,
     }),
 
-    getBlockRecords: build.query<BlockRecord[], { 
+    getBlockRecords: build.query<BlockRecord[], {
       start?: number;
       end?: number;
     }>({
@@ -64,7 +64,7 @@ export const fullNodeApi = apiWithTag.injectEndpoints({
       ? [
         ...connections.map(({ nodeId }) => ({ type: 'FullNodeConnections', id: nodeId } as const)),
         { type: 'FullNodeConnections', id: 'LIST' },
-      ] 
+      ]
       :  [{ type: 'FullNodeConnections', id: 'LIST' }],
       onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, [{
         command: 'onConnections',
@@ -78,7 +78,7 @@ export const fullNodeApi = apiWithTag.injectEndpoints({
         },
       }]),
     }),
-    openFullNodeConnection: build.mutation<FullNodeConnection, { 
+    openFullNodeConnection: build.mutation<FullNodeConnection, {
       host: string;
       port: number;
     }>({
@@ -89,7 +89,7 @@ export const fullNodeApi = apiWithTag.injectEndpoints({
       }),
       invalidatesTags: [{ type: 'FullNodeConnections', id: 'LIST' }],
     }),
-    closeFullNodeConnection: build.mutation<FullNodeConnection, { 
+    closeFullNodeConnection: build.mutation<FullNodeConnection, {
       nodeId: string;
     }>({
       query: ({ nodeId }) => ({
@@ -99,7 +99,7 @@ export const fullNodeApi = apiWithTag.injectEndpoints({
       }),
       invalidatesTags: (_result, _error, { nodeId }) => [{ type: 'FullNodeConnections', id: 'LIST' }, { type: 'FullNodeConnections', id: nodeId }],
     }),
-    getBlock: build.query<Block, { 
+    getBlock: build.query<Block, {
       headerHash: string;
     }>({
       query: ({ headerHash }) => ({
@@ -109,7 +109,7 @@ export const fullNodeApi = apiWithTag.injectEndpoints({
       }),
       transformResponse: (response: any) => response?.block,
     }),
-    getBlockRecord: build.query<BlockRecord, { 
+    getBlockRecord: build.query<BlockRecord, {
       headerHash: string;
     }>({
       query: ({ headerHash }) => ({
@@ -119,10 +119,23 @@ export const fullNodeApi = apiWithTag.injectEndpoints({
       }),
       transformResponse: (response: any) => response?.blockRecord,
     }),
+    getFeeEstimate: build.query<string, {
+      targetTimes: number[];
+      cost: number;
+    }>({
+      query: ({
+        targetTimes,
+        cost,
+      }) => ({
+        command: 'getFeeEstimate',
+        service: FullNode,
+        args: [targetTimes, cost],
+      }),
+    }),
   }),
 });
 
-export const { 
+export const {
   useFullNodePingQuery,
   useGetBlockRecordsQuery,
   useGetUnfinishedBlockHeadersQuery,
@@ -132,4 +145,5 @@ export const {
   useCloseFullNodeConnectionMutation,
   useGetBlockQuery,
   useGetBlockRecordQuery,
+  useGetFeeEstimateQuery,
 } = fullNodeApi;

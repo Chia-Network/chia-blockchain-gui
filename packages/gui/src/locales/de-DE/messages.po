@@ -1805,7 +1805,8 @@ msgstr "Paralleles plotten kann Zeit sparen. Andernfalls kannst du Plots der War
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:217
 msgid "Plotting with bitfield enabled has about 30% less overall writes and is now almost always faster. You may see reduced memory requirements with bitfield plotting disabled. If your CPU design is from before 2010 you may have to disable bitfield plotting."
-msgstr "Das Plotten mit aktiviertem Bitfeld benötigt etwa 30 % weniger Schreibvorgänge und ist jetzt fast immer schneller. Möglicherweise ist der Speicherbedarf reduziert, wenn das Bitfeld-Plotten deaktiviert ist. Es wird empfohlen das Bitfeld-Plotten zu deaktivieren, wenn ihre CPU-Architektur\n"
+msgstr ""
+"Das Plotten mit aktiviertem Bitfeld benötigt etwa 30 % weniger Schreibvorgänge und ist jetzt fast immer schneller. Möglicherweise ist der Speicherbedarf reduziert, wenn das Bitfeld-Plotten deaktiviert ist. Es wird empfohlen das Bitfeld-Plotten zu deaktivieren, wenn ihre CPU-Architektur\n"
 "vor 2010 entwickelt wurde."
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:173
@@ -2941,4 +2942,3 @@ msgstr ""
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:118
 msgid "{warning}"
 msgstr ""
-

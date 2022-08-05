@@ -2942,4 +2942,3 @@ msgstr "{max_value}中的{value}"
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:118
 msgid "{warning}"
 msgstr "{warning}"
-

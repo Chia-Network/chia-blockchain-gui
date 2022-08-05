@@ -1784,7 +1784,8 @@ msgstr "Plot dengan kunci yang hilang"
 
 #: src/components/plot/overview/PlotOverviewHero.tsx:33
 msgid "Plots are allocated space on your hard drive used to farm and earn Chia.<0>Learn more</0>"
-msgstr "Plot adalah penempatan ruang dalam hard drive yang digunakan untuk disewakan dan memperoleh Chia\n"
+msgstr ""
+"Plot adalah penempatan ruang dalam hard drive yang digunakan untuk disewakan dan memperoleh Chia\n"
 "<0>Pelajari lebih lanjut</0>"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:103
@@ -2941,4 +2942,3 @@ msgstr ""
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:118
 msgid "{warning}"
 msgstr "{warning}"
-

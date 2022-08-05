@@ -2940,4 +2940,3 @@ msgstr ""
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:118
 msgid "{warning}"
 msgstr ""
-
