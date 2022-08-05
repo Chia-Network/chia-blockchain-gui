@@ -94,16 +94,6 @@ export default function NFTDetail() {
 
   const { metadata, isLoading: isLoadingMetadata, error } = useNFTMetadata(nft);
 
-  const isLoading = isLoadingWallets || isLoadingNFTs || isLoadingMetadata;
-
-  if (isLoading) {
-    return <Loading center />;
-  }
-
-  function handleShowFullScreen() {
-    openDialog(<NFTPreviewDialog nft={nft} />);
-  }
-
   const ValidateContainer = styled.div`
     padding-top: 25px;
     text-align: center;
@@ -112,6 +102,12 @@ export default function NFTDetail() {
   const ErrorMessage = styled.div`
     color: red;
   `;
+
+  const isLoading = isLoadingWallets || isLoadingNFTs || isLoadingMetadata;
+
+  if (isLoading) {
+    return <Loading center />;
+  }
 
   function validateSha256Remote(force: boolean) {
     const ipcRenderer = (window as any).ipcRenderer;
