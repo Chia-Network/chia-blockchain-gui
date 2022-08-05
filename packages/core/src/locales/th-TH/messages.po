@@ -8,7 +8,7 @@ msgstr ""
 "Language: th_TH\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-07-27 18:40\n"
+"PO-Revision-Date: 2022-08-05 14:26\n"
 "Last-Translator: \n"
 "Language-Team: Thai\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -24,7 +24,7 @@ msgstr "จำนวน"
 
 #: src/components/Settings/SettingsApp.tsx:76
 msgid "Appearance"
-msgstr ""
+msgstr "ลักษณะ"
 
 #: src/components/FormBackButton/FormBackButton.tsx:47
 #: src/screens/SelectKey/SelectKey.tsx:79
@@ -63,7 +63,7 @@ msgstr "อันตราย: ลบคีย์ส่วนตัวถาว�
 
 #: src/components/Settings/SettingsApp.tsx:83
 msgid "Dark"
-msgstr ""
+msgstr "ตอนกลางคืน"
 
 #: src/screens/SelectKey/SelectKey.tsx:78
 #: src/screens/SelectKey/SelectKeyItem.tsx:92
@@ -89,11 +89,11 @@ msgstr "การลบคีย์จะลบคีย์ออกจากค
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:51
 msgid "Disable"
-msgstr ""
+msgstr "ปิดการใช้งาน"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:50
 msgid "Disable Passphrase Protection"
-msgstr ""
+msgstr "ปิดใช้งานการป้องกันด้วยวลีรหัสผ่าน"
 
 #: src/components/Back/Back.tsx:35
 #: src/components/FormBackButton/FormBackButton.tsx:27
@@ -107,7 +107,7 @@ msgstr "ข้อผิดพลาด"
 
 #: src/components/ErrorBoundary/ErrorBoundary.tsx:78
 msgid "Error:"
-msgstr ""
+msgstr "ข้อผิดพลาด:"
 
 #: src/components/LayoutMain/LayoutFooter.tsx:50
 msgid "FAQ"
@@ -160,7 +160,7 @@ msgstr ""
 
 #: src/screens/SelectKey/SelectKey.tsx:116
 msgid "Loading list of the keys"
-msgstr ""
+msgstr "กำลังโหลดรายการกระเป๋าเงิน"
 
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:128
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:150
@@ -169,7 +169,7 @@ msgstr ""
 
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:146
 msgid "Logout"
-msgstr ""
+msgstr "ออกจากระบบ"
 
 #: src/hooks/useKeyringMigrationPrompt.tsx:16
 msgid "Migrate"
@@ -254,11 +254,11 @@ msgstr ""
 #: src/components/LayoutMain/LayoutFooter.tsx:53
 #: src/components/Settings/SettingsApp.tsx:108
 msgid "Send Feedback"
-msgstr ""
+msgstr "ส่งความคิดเห็น"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:48
 msgid "Setting a passphrase is strongly recommended to protect your keys. Are you sure you want to skip setting a passphrase?"
-msgstr ""
+msgstr "การใช้รหัสผ่าน เป็นวิธีที่ดีในการปกป้องคีย์ของคุณ. คุณแน่ใจหรือไม่ที่จะปิดการป้องกันด้วยรหัสผ่าน?"
 
 #: src/components/Settings/Settings.tsx:48
 #: src/components/Settings/Settings.tsx:58
