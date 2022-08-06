@@ -8,7 +8,7 @@ msgstr ""
 "Language: fr_FR\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-08-06 11:59\n"
+"PO-Revision-Date: 2022-08-06 12:55\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
@@ -90,7 +90,7 @@ msgstr "Êtes-vous sûr de vouloir supprimer les transactions non confirmées ?"
 #: src/components/cat/WalletCATTAILDialog.tsx:43
 #: src/components/cat/WalletCATTAILDialog.tsx:55
 msgid "Asset Id"
-msgstr "Id de l'actif"
+msgstr "ID de l'actif"
 
 #: src/constants/WalletName.ts:11
 msgid "Atomic Swap Wallet"
