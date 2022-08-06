@@ -8,7 +8,7 @@ msgstr ""
 "Language: fr_FR\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-08-04 12:02\n"
+"PO-Revision-Date: 2022-08-06 12:55\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
@@ -1625,7 +1625,7 @@ msgstr "Il est nécessaire de migrer vos clés vers un nouveau trousseau avant d
 #: src/components/offers/OfferDataEntryDialog.tsx:40
 #: src/components/offers/OfferImport.tsx:154
 msgid "Paste Offer Data"
-msgstr "Coller les données de l'offre"
+msgstr "Coller les données d'une offre"
 
 #: src/components/plotNFT/PlotNFTCard.tsx:357
 msgid "Payout Address"
@@ -2654,7 +2654,7 @@ msgstr "Afficher le lien de connexion au pool"
 #: src/components/offers/OfferImport.tsx:178
 #: src/components/offers/OfferManager.tsx:617
 msgid "View an Offer"
-msgstr "Consulter une offre"
+msgstr "Voir une offre"
 
 #: src/components/offers/OfferShareDialog.tsx:568
 msgid "View on Dexie"
