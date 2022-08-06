@@ -8,7 +8,7 @@ msgstr ""
 "Language: fr_FR\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-08-04 10:12\n"
+"PO-Revision-Date: 2022-08-06 11:59\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
@@ -51,7 +51,7 @@ msgstr "Ajouter un Jeton Personnalisé"
 #: src/components/hero/WalletHeroAdd.tsx:64
 #: src/components/hero/WalletHeroWallets.tsx:83
 msgid "Add Token"
-msgstr "Ajouter un Type de Jetons"
+msgstr "Ajouter un Type de Jeton"
 
 #: src/components/cat/WalletCATCreateSimple.tsx:94
 msgid "Adding {0} token"
