@@ -98,7 +98,7 @@ export default function NFTDetail() {
                   </Typography>
 
                   <Typography overflow="hidden">
-                    {metadata?.description ?? <Trans>Not Available</Trans>}
+                    {metadata?.description?.split('\n').map((line,i) => <p key={i}>{line}</p>) ?? <Trans>Not Available</Trans>}
                   </Typography>
                 </Flex>
                 {metadata?.collection?.name && (
