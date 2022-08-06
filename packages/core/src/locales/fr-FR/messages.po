@@ -8,7 +8,7 @@ msgstr ""
 "Language: fr_FR\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-08-04 12:02\n"
+"PO-Revision-Date: 2022-08-06 11:59\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
@@ -34,7 +34,7 @@ msgstr "Retour"
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:146
 msgid "Can be backed up to mnemonic seed"
-msgstr "Peut être sauvegardé en seed mnémonique"
+msgstr "Peut être sauvegardé en phrase mnémonique"
 
 #: src/components/ConfirmDialog/ConfirmDialog.tsx:105
 #: src/hooks/useKeyringMigrationPrompt.tsx:17
