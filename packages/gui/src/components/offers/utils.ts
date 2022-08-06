@@ -304,8 +304,8 @@ export function determineNFTOfferExchangeType(
   }
 
   return nftOffered
-    ? NFTOfferExchangeType.NFTForXCH
-    : NFTOfferExchangeType.XCHForNFT;
+    ? NFTOfferExchangeType.NFTForToken
+    : NFTOfferExchangeType.TokenForNFT;
 }
 
 /* ========================================================================== */
@@ -346,7 +346,7 @@ export function calculateNFTRoyalties(
   //     (amount - parseFloat(royaltyAmountString) - makerFee).toFixed(12),
   //   );
   const totalAmount: number =
-    exchangeType === NFTOfferExchangeType.NFTForXCH
+    exchangeType === NFTOfferExchangeType.NFTForToken
       ? amount + royaltyAmount
       : amount + makerFee + royaltyAmount;
   const totalAmountString: string = formatAmount(totalAmount);

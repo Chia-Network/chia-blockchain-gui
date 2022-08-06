@@ -431,7 +431,7 @@ function NFTOfferDetails(props: NFTOfferDetailsProps) {
     ? StateColor.WARNING
     : 'textSecondary';
   const overrideNFTSellerAmount =
-    exchangeType === NFTOfferExchangeType.XCHForNFT
+    exchangeType === NFTOfferExchangeType.TokenForNFT
       ? chiaToMojo(nftSaleInfo?.nftSellerNetAmount ?? 0)
       : undefined;
 
@@ -551,7 +551,8 @@ function NFTOfferDetails(props: NFTOfferDetailsProps) {
                           <FormatLargeNumber
                             value={
                               new BigNumber(
-                                exchangeType === NFTOfferExchangeType.NFTForXCH
+                                exchangeType ===
+                                NFTOfferExchangeType.NFTForToken
                                   ? nftSaleInfo?.nftSellerNetAmount ?? 0
                                   : amount ?? 0,
                               )
@@ -602,7 +603,7 @@ function NFTOfferDetails(props: NFTOfferDetailsProps) {
                   <Divider />
                   <Flex flexDirection="column" gap={0.5}>
                     <Flex flexDirection="row" alignItems="center" gap={1}>
-                      {exchangeType === NFTOfferExchangeType.NFTForXCH ? (
+                      {exchangeType === NFTOfferExchangeType.NFTForToken ? (
                         <Typography variant="h6" color="textSecondary">
                           <Trans>Total Amount Requested</Trans>
                         </Typography>
@@ -613,7 +614,7 @@ function NFTOfferDetails(props: NFTOfferDetailsProps) {
                       )}
                       <Flex justifyContent="center">
                         <TooltipIcon>
-                          {exchangeType === NFTOfferExchangeType.NFTForXCH ? (
+                          {exchangeType === NFTOfferExchangeType.NFTForToken ? (
                             <Trans>
                               The total amount requested includes the asking
                               price, plus the associated creator fees (if the
@@ -642,12 +643,12 @@ function NFTOfferDetails(props: NFTOfferDetailsProps) {
                     </Flex>
                     <Typography
                       variant={
-                        exchangeType === NFTOfferExchangeType.NFTForXCH
+                        exchangeType === NFTOfferExchangeType.NFTForToken
                           ? 'h5'
                           : 'h6'
                       }
                       fontWeight={
-                        exchangeType === NFTOfferExchangeType.NFTForXCH
+                        exchangeType === NFTOfferExchangeType.NFTForToken
                           ? 'bold'
                           : 'regular'
                       }
@@ -660,7 +661,7 @@ function NFTOfferDetails(props: NFTOfferDetailsProps) {
                       {currencyCode}
                     </Typography>
                   </Flex>
-                  {exchangeType === NFTOfferExchangeType.XCHForNFT && (
+                  {exchangeType === NFTOfferExchangeType.TokenForNFT && (
                     <Flex flexDirection="column" gap={0.5}>
                       <Flex flexDirection="row" alignItems="center" gap={1}>
                         <Typography variant="h6" color="textSecondary">
