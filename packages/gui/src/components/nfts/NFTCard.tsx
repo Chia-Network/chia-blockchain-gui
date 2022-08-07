@@ -57,7 +57,15 @@ export default function NFTCard(props: NFTCardProps) {
             <CardActionArea onClick={() => canExpandDetails && handleClick()}>
               <StyledCardContent>
                 <Flex justifyContent="space-between" alignItems="center">
-                  <Flex gap={1} alignItems="center">
+                  <Flex
+                    gap={1}
+                    alignItems="center"
+                    sx={{
+                      overflow: 'hidden',
+                      wordBreak: 'break-all',
+                      textOverflow: 'ellipsis',
+                    }}
+                  >
                     <Typography noWrap>
                       {metadata?.name ?? <Trans>Title Not Available</Trans>}
                     </Typography>
