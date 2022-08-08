@@ -94,7 +94,7 @@ export default function EstimatedFee(props: FeeProps) {
     return (formatNum);
   }
 
-  if (!isFeeLoading && estList?.length == 0) {
+  if (!isFeeLoading && ests && estList?.length == 0) {
     const estimateList = ests.estimates;
     const targetTimes = ests.targetTimes;
     if (estimateList[0] == 0 && estimateList[1] == 0 && estimateList[2] == 0) {
