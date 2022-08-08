@@ -850,17 +850,17 @@ export default function NFTOfferEditor(props: NFTOfferEditorProps) {
 
 type CreateNFTOfferEditorProps = {
   nft?: NFTInfo;
+  exchangeType?: NFTOfferExchangeType;
   referrerPath?: string;
   onOfferCreated: (obj: { offerRecord: any; offerData: any }) => void;
-  exchangeType?: NFTOfferExchangeType;
 };
 
 export function CreateNFTOfferEditor(props: CreateNFTOfferEditorProps) {
   const {
     nft,
+    exchangeType = NFTOfferExchangeType.TokenForNFT,
     referrerPath,
     onOfferCreated,
-    exchangeType = NFTOfferExchangeType.TokenForNFT,
   } = props;
 
   const title = <Trans>Create an NFT Offer</Trans>;
