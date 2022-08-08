@@ -17,10 +17,6 @@ test.beforeAll(async () => {
 });*/
 
 test.afterAll(async () => {
-  //await appWindow.context().close();
-  //await appWindow.close();
-  //await electronApp.context().close();
-  //await electronApp.close();
   await page.close();
 
 });
@@ -44,11 +40,9 @@ test.afterAll(async () => {
     //Click text=New Address
     await page.locator('text=New Address').click();
 
-    //Grab the wallet id 
+    //Grab the new wallet id 
     const wallet_new = await page.locator('text=Receive Address New AddressAddress >> input[type="text"]').inputValue()
     console.log(wallet_new)
-    //const additional_wallet = wallet_new + "123"
-    //console.log(wallet_new + additional_wallet)
 
     //Compare Values variables. This should be false. wallet_address != wallet_new
     if(wallet_address == wallet_new){
