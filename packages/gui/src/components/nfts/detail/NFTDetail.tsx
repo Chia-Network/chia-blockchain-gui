@@ -73,8 +73,8 @@ export default function NFTDetail() {
                   <Trans>Description</Trans>
                 </Typography>
 
-                <Typography>
-                  {metadata?.description?.split('\n').map((line,i) => <p key={i}>{line}</p>) ?? <Trans>Not Available</Trans>}
+                <Typography sx={{ whiteSpace : 'pre-line'}}>
+                  {metadata?.description ?? <Trans>Not Available</Trans>}
                 </Typography>
               </Flex>
               {metadata?.collection?.name && (
