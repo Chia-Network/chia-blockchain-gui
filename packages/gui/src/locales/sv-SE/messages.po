@@ -8,7 +8,7 @@ msgstr ""
 "Language: sv_SE\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-08-04 12:02\n"
+"PO-Revision-Date: 2022-08-09 20:36\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -67,7 +67,7 @@ msgstr "Acceptera erbjudandet"
 
 #: src/components/offers/OfferViewer.tsx:161
 msgid "Accepted on Date"
-msgstr ""
+msgstr "Accepterades den"
 
 #: src/components/plot/PlotHarvesterPlots.tsx:79
 #: src/components/plot/PlotHarvesterPlotsDuplicate.tsx:18
@@ -178,7 +178,7 @@ msgstr "Är det säkert att du vill koppla ifrån?"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:71
 msgid "Are you sure you want to move this NFT to the specified profile?"
-msgstr ""
+msgstr "Är det säkert att du vill flytta denna NFT till den angivna profilen?"
 
 #: src/electron/main.tsx:341
 msgid "Are you sure you want to quit?"
@@ -219,7 +219,7 @@ msgstr "Grundbelopp för odlarbelöning"
 
 #: src/components/offers/OfferShareDialog.tsx:1066
 msgid "Before posting an offer in Keybase to the #{channelName} channel, you must first join the {teamName} team. Please note that it might take a few moments to join the channel."
-msgstr ""
+msgstr "Innan du lägger upp ett erbjudande i Keybase i kanalen #{channelName} måste du först gå med i teamet {teamName}. Observera att det kan ta en stund att gå med i kanalen."
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:39
 msgid "Below are the current block challenges. You may or may not have a proof of space for these challenges. These blocks do not currently contain a proof of time."
@@ -421,7 +421,7 @@ msgstr "Bekräfta frånkoppling"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:63
 msgid "Confirm Move"
-msgstr ""
+msgstr "Bekräfta flytt"
 
 #: src/components/nfts/NFTTransferAction.tsx:79
 msgid "Confirm NFT Transfer"
@@ -443,7 +443,7 @@ msgstr "Bekräfta"
 
 #: src/components/offers/utils.ts:172
 msgid "Confirmed"
-msgstr ""
+msgstr "Bekräftad"
 
 #: src/components/offers/OfferViewer.tsx:155
 msgid "Confirmed at Height"
@@ -496,11 +496,11 @@ msgstr "Delta på GitHub"
 
 #: src/components/nfts/NFTContextualActions.tsx:425
 msgid "Copy Media URL"
-msgstr ""
+msgstr "Kopiera media-URL"
 
 #: src/components/nfts/NFTContextualActions.tsx:99
 msgid "Copy NFT ID"
-msgstr ""
+msgstr "Kopiera NFT-ID"
 
 #: src/components/backup/BackupCreate.tsx:59
 #: src/components/plot/add/PlotAddForm.tsx:205
@@ -530,7 +530,7 @@ msgstr "Skapa en plott-NFT"
 
 #: src/components/settings/ProfileAdd.tsx:86
 msgid "Create a new profile"
-msgstr ""
+msgstr "Skapa ny profil"
 
 #: src/components/offers/NFTOfferEditor.tsx:702
 msgid "Create an NFT Offer"
@@ -543,7 +543,7 @@ msgstr "Skapa ett erbjudande"
 
 #: src/components/offers/OfferManager.tsx:576
 msgid "Create an offer to exchange assets including XCH, tokens, and NFTs. View an offer to inspect and accept an offer made by another party."
-msgstr ""
+msgstr "Skapa ett erbjudande för att växla tillgångar inklusive XCH, token och NFT:er. Visa ett erbjudande för att granska och acceptera ett erbjudande från annan part."
 
 #: src/components/offers/OfferManager.tsx:153
 msgid "Creates and submits a transaction on the blockchain that cancels the offer"
@@ -560,7 +560,7 @@ msgstr "Skapar plott-NFT för självpoolning"
 #: src/components/offers/OfferManager.tsx:408
 #: src/components/offers/OfferViewer.tsx:171
 msgid "Creation Date"
-msgstr ""
+msgstr "Skapat (datum)"
 
 #: src/components/offers/NFTOfferViewer.tsx:570
 msgid "Creator Fee ({0}%)"
@@ -599,7 +599,7 @@ msgstr ""
 
 #: src/components/nfts/NFTDetails.tsx:152
 msgid "Data URL {0}"
-msgstr ""
+msgstr "Data-URL {0}"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:30
 msgid "Date"
@@ -662,7 +662,7 @@ msgstr "Destination:"
 #: src/components/nfts/NFTDetails.tsx:240
 #: src/components/offers/OfferViewer.tsx:327
 msgid "Details"
-msgstr ""
+msgstr "Detaljer"
 
 #: src/electron/main.tsx:462
 msgid "Developer"
@@ -674,7 +674,7 @@ msgstr "Utvecklarverktyg"
 
 #: src/components/offers/OfferShareDialog.tsx:550
 msgid "Dexie URL"
-msgstr ""
+msgstr "URL till Dexie"
 
 #: src/components/block/Block.jsx:199
 #: src/components/fullNode/card/FullNodeCardDifficulty.tsx:14
@@ -695,7 +695,7 @@ msgstr "Koppla ifrån"
 
 #: src/components/offers/OfferManager.tsx:465
 msgid "Display Offer Data"
-msgstr ""
+msgstr "Visa erbjudandedata"
 
 #: src/components/offers/OfferShareDialog.tsx:1446
 #: src/hooks/useOpenUnsafeLink.tsx:77
@@ -717,11 +717,11 @@ msgstr "Ladda ner"
 
 #: src/components/offers/OfferImport.tsx:146
 msgid "Drag & drop an offer file below to view its details"
-msgstr ""
+msgstr "Dra & släpp en erbjudandefil nedan för att visa dess detaljer"
 
 #: src/components/offers/OfferImport.tsx:166
 msgid "Drag and drop offer file"
-msgstr ""
+msgstr "Dra och släpp erbjudandefil"
 
 #: src/components/backup/BackupRestore.tsx:172
 msgid "Drag and drop your backup file"
@@ -804,11 +804,11 @@ msgstr "Misslyckades"
 
 #: src/components/offers/NFTOfferEditor.tsx:553
 msgid "Failed to decode NFT identifier"
-msgstr ""
+msgstr "Det gick inte att avkoda NFT-identifierare"
 
 #: src/components/offers/OfferShareDialog.tsx:420
 msgid "Failed to execute Keybase command: {stderr}"
-msgstr ""
+msgstr "Det gick inte att köra Keybase-kommandot: {stderr}"
 
 #: src/components/settings/SetPassphrasePrompt.tsx:90
 msgid "Failed to set passphrase: {0}"
@@ -889,7 +889,7 @@ msgstr "Avgift"
 #: src/components/offers/NFTOfferEditor.tsx:88
 #: src/components/offers/OfferEditorConditionsPanel.tsx:457
 msgid "Fee (Optional)"
-msgstr ""
+msgstr "Avgift (valfritt)"
 
 #: src/components/plotNFT/PlotNFTChangePool.tsx:126
 msgid "Fee is used TWICE: once to leave pool, once to join."
@@ -902,7 +902,7 @@ msgstr "Avgiftsbelopp"
 #: src/components/offers/NFTOfferViewer.tsx:210
 #: src/components/offers/OfferSummary.tsx:190
 msgid "Fees included in offer:"
-msgstr ""
+msgstr "Avgifter som ingår i erbjudandet:"
 
 #: src/electron/main.tsx:413
 #: src/electron/main.tsx:620
@@ -911,7 +911,7 @@ msgstr "Fil"
 
 #: src/components/nfts/NFTPreview.tsx:26
 msgid "File is over 10MB"
-msgstr ""
+msgstr "Filen är större än 10MB"
 
 #: src/components/plot/PlotHarvesterPlots.tsx:71
 #: src/components/plot/PlotHarvesterPlotsDuplicate.tsx:13
@@ -957,11 +957,11 @@ msgstr ""
 #: src/components/offers/OfferShareDialog.tsx:1028
 #: src/components/offers/OfferShareDialog.tsx:1089
 msgid "Go to #{channelName}"
-msgstr ""
+msgstr "Gå till #{channelName}"
 
 #: src/components/offers/OfferShareDialog.tsx:1160
 msgid "Go to Offerpool"
-msgstr ""
+msgstr "Gå till Offerpool"
 
 #: src/components/plot/PlotHarvesters.tsx:39
 msgid "Harvesters"
@@ -969,7 +969,7 @@ msgstr "Skördare"
 
 #: src/components/offers/OfferShareDialog.tsx:815
 msgid "Hashgreen DEX URL"
-msgstr ""
+msgstr "URL till Hashgreen DEX"
 
 #: src/components/fullNode/FullNode.jsx:57
 msgid "Header Hash"
@@ -1028,11 +1028,11 @@ msgstr "Om ingen anges kommer den tillfälliga mappen att användas."
 
 #: src/components/offers/OfferShareDialog.tsx:767
 msgid "If selected, your offer will be not be shared publicly."
-msgstr ""
+msgstr "Om detta väljs kommer ditt erbjudande inte att delas offentligt."
 
 #: src/components/offers/OfferManager.tsx:129
 msgid "If you have already shared your offer file, you may need to submit a transaction to cancel the pending offer. Click \"Cancel on blockchain\" to submit a cancellation transaction."
-msgstr ""
+msgstr "Om du redan har delat din erbjudandefil kan du behöva skicka en transaktion för att avbryta det väntande erbjudandet. Klicka på \"Avbryt på blockkedjan\" för att skicka en sådan transaktion."
 
 #: src/components/nfts/NFTPreview.tsx:88
 msgid "Image Hash Mismatch"
@@ -1040,7 +1040,7 @@ msgstr ""
 
 #: src/components/offers/OfferDataEntryDialog.tsx:74
 msgid "Import"
-msgstr ""
+msgstr "Importera"
 
 #: src/components/fullNode/FullNode.jsx:41
 msgid "In Progress"
@@ -1050,11 +1050,11 @@ msgstr "Pågår"
 #: src/components/offers/OfferEditorConditionsPanel.tsx:341
 #: src/components/offers/OfferViewer.tsx:274
 msgid "In exchange for"
-msgstr ""
+msgstr "I utbyte mot"
 
 #: src/components/offers/OfferShareDialog.tsx:1254
 msgid "In exchange for:"
-msgstr ""
+msgstr "I utbyte mot:"
 
 #: src/components/offers/NFTOfferEditor.tsx:93
 #: src/components/offers/OfferEditorConditionsPanel.tsx:463
@@ -1071,21 +1071,21 @@ msgstr "Initierar..."
 
 #: src/components/offers/OfferShareDialog.tsx:1061
 msgid "Install Keybase"
-msgstr ""
+msgstr "Installera Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:78
 msgid "Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
+msgstr "Det finns inte tillräckliga medel för att acceptera erbjudandet. Se till att ditt spenderbara saldo är tillräckligt högt för att täcka erbjudandets belopp."
 
 #: src/components/offers/OfferEditor.tsx:182
 msgid "Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
+msgstr "Det finns inte tillräckliga medel för att skapa erbjudandet. Se till att ditt spenderbara saldo är tillräckligt högt för att täcka erbjudandets belopp."
 
 #: src/components/offers/NFTOfferEditor.tsx:551
 msgid "Invalid NFT identifier"
-msgstr ""
+msgstr "Ogiltigt NFT-ID"
 
 #: src/components/plotNFT/PlotNFTState.tsx:26
 msgid "Invalid state"
@@ -1125,7 +1125,7 @@ msgstr "Gå med i odlingspooler"
 
 #: src/components/offers/OfferShareDialog.tsx:1078
 msgid "Join {teamName}"
-msgstr ""
+msgstr "Gå med i {teamName}"
 
 #: src/components/plot/PlotHarvesterPlots.tsx:40
 #: src/components/plot/PlotPlotting.tsx:20
@@ -1134,11 +1134,11 @@ msgstr "K-storlek"
 
 #: src/components/offers/OfferShareDialog.tsx:964
 msgid "Keybase command failed {e}. If you haven't installed Keybase, you can download from https://keybase.io"
-msgstr ""
+msgstr "Keybase-kommandot misslyckades {e}. Om du inte har installerat Keybase, kan du ladda ner det från https://keybase.io"
 
 #: src/components/offers/OfferShareDialog.tsx:1053
 msgid "Keybase is a secure messaging and file sharing application. To share an offer in the Keybase {teamName} team, you must first have Keybase installed."
-msgstr ""
+msgstr "Keybase är ett säkert meddelande- och fildelningsprogram. För att dela ett erbjudande i Keybase {teamName}-teamet måste du först installera Keybase."
 
 #: src/components/app/AppKeyringMigrator.tsx:100
 msgid "Keyring migration failed: {0}"
@@ -1189,15 +1189,15 @@ msgstr ""
 
 #: src/components/nfts/NFTDetails.tsx:210
 msgid "License URL {0}"
-msgstr ""
+msgstr "Licens-URL: {0}"
 
 #: src/components/nfts/NFTSummary.tsx:117
 msgid "Loading NFT"
-msgstr ""
+msgstr "Läser in NFT"
 
 #: src/components/offers/NFTOfferPreview.tsx:74
 msgid "Loading NFT Info..."
-msgstr ""
+msgstr "Läser in NFT-information ..."
 
 #: src/components/app/AppProviders.tsx:66
 msgid "Loading configuration"
@@ -1214,7 +1214,7 @@ msgstr "Läser in nyckelringsstatus"
 #: src/components/nfts/NFTPreview.tsx:189
 #: src/components/nfts/NFTPreview.tsx:221
 msgid "Loading preview..."
-msgstr ""
+msgstr "Läser in förhandsgranskning ..."
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:115
 #: src/components/plot/queue/PlotQueueLogDialog.tsx:34
@@ -1235,7 +1235,7 @@ msgstr "Hantera odlingsbelöningar"
 
 #: src/components/offers/OfferManager.tsx:569
 msgid "Manage Offers"
-msgstr ""
+msgstr "Hantera erbjudanden"
 
 #: src/components/block/FarmManageFarmingRewards.tsx:98
 #: src/components/farm/FarmManageFarmingRewards.tsx:111
@@ -1248,7 +1248,7 @@ msgstr ""
 
 #: src/components/nfts/NFTDetails.tsx:180
 msgid "Metadata URL {0}"
-msgstr ""
+msgstr "Metadata-URL {0}"
 
 #: src/components/fullNode/FullNodeConnections.tsx:67
 msgid "MiB Up/Down"
@@ -1276,7 +1276,7 @@ msgstr "Minsta svårighetsgrad"
 
 #: src/components/offers/OfferShareDialog.tsx:631
 msgid "MintGarden URL"
-msgstr ""
+msgstr "URL till MintGarden"
 
 #: src/components/nfts/NFTDetails.tsx:143
 msgid "Minted at Block Height"
@@ -1296,31 +1296,31 @@ msgstr "Mer minne ökar hastigheten något"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:452
 msgid "Move"
-msgstr ""
+msgstr "Flytta"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:498
 msgid "Move NFT to Profile"
-msgstr ""
+msgstr "Flytta NFT till profil"
 
 #: src/components/nfts/NFTContextualActions.tsx:269
 msgid "Move to Profile"
-msgstr ""
+msgstr "Flytta till profil"
 
 #: src/components/settings/ProfileView.tsx:99
 msgid "My DID"
-msgstr ""
+msgstr "Mitt DID"
 
 #: src/components/offers/NFTOfferEditor.tsx:177
 msgid "NFT"
-msgstr ""
+msgstr "NFT"
 
 #: src/components/nfts/NFTDetails.tsx:43
 msgid "NFT ID"
-msgstr ""
+msgstr "NFT-ID"
 
 #: src/components/offers/NFTOfferEditor.tsx:179
 msgid "NFT Identifier"
-msgstr ""
+msgstr "NFT-identifierare"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:314
 msgid "NFT Move Failed"
@@ -1365,7 +1365,7 @@ msgstr ""
 
 #: src/components/offers/NFTOfferEditor.tsx:256
 msgid "NFT for XCH"
-msgstr ""
+msgstr "NFT mot XCH"
 
 #: src/components/offers/NFTOfferPreview.tsx:56
 msgid "NFT identifier does not reference a valid NFT coin."
@@ -1377,7 +1377,7 @@ msgstr ""
 
 #: src/components/dashboard/DashboardSideBar.tsx:60
 msgid "NFTs"
-msgstr ""
+msgstr "NFT:er"
 
 #: src/components/offers/NFTOfferViewer.tsx:667
 msgid "Net Proceeds"
@@ -1385,7 +1385,7 @@ msgstr ""
 
 #: src/components/offers/NFTOfferViewer.tsx:696
 msgid "Network Fee (Optional)"
-msgstr ""
+msgstr "Nätverksavgift (valfritt)"
 
 #: src/components/fullNode/card/FullNodeCardNetworkName.tsx:14
 msgid "Network Name"
@@ -1409,7 +1409,7 @@ msgstr "Inga block har odlats ännu"
 
 #: src/components/offers/OfferManager.tsx:536
 msgid "No current offers"
-msgstr ""
+msgstr "Inga aktuella erbjudanden"
 
 #: src/components/nfts/NFTPreview.tsx:177
 msgid "No file available"
@@ -1426,7 +1426,7 @@ msgstr "Inga privata nycklar för en eller båda adresser. Endast säkert om du 
 
 #: src/components/offers/OfferViewer.tsx:176
 msgid "Node Count"
-msgstr ""
+msgstr "Nodantal"
 
 #: src/components/farm/FarmFullNodeConnections.tsx:31
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:31
@@ -1464,7 +1464,7 @@ msgstr "Ej synkad"
 
 #: src/components/offers/OfferViewer.tsx:165
 msgid "Not accepted"
-msgstr ""
+msgstr "Ej accepterat"
 
 #: src/components/offers/OfferViewer.tsx:156
 msgid "Not confirmed"
@@ -1504,11 +1504,11 @@ msgstr "OK"
 #: src/components/offers/OfferDataDialog.tsx:42
 #: src/components/offers/OfferDataDialog.tsx:50
 msgid "Offer Data"
-msgstr ""
+msgstr "Erbjudandedata"
 
 #: src/components/offers/OfferViewer.tsx:150
 msgid "Offer Identifier"
-msgstr ""
+msgstr "Erbjudande-identifierare"
 
 #: src/components/offers/OfferShareDialog.tsx:545
 #: src/components/offers/OfferShareDialog.tsx:626
@@ -1517,7 +1517,7 @@ msgstr ""
 #: src/components/offers/OfferShareDialog.tsx:1019
 #: src/components/offers/OfferShareDialog.tsx:1144
 msgid "Offer Shared"
-msgstr ""
+msgstr "Erbjudandet delades"
 
 #: src/components/offers/NFTOfferViewer.tsx:176
 msgid "Offer cannot be accepted because you don't possess the requested assets"
@@ -1525,11 +1525,11 @@ msgstr ""
 
 #: src/hooks/useAcceptOfferHook.tsx:63
 msgid "Offer has been accepted and is awaiting confirmation."
-msgstr ""
+msgstr "Erbjudandet har accepterats och väntar på bekräftelse."
 
 #: src/components/offers/OfferShareDialog.tsx:713
 msgid "OfferBin URL"
-msgstr ""
+msgstr "URL till OfferBin"
 
 #: src/components/offers/OfferManager.tsx:367
 msgid "Offered"
@@ -1557,7 +1557,7 @@ msgstr ""
 
 #: src/components/nfts/NFTTransferAction.tsx:87
 msgid "Once you initiate this transfer, you will not be able to cancel the transaction. Are you sure you want to transfer the NFT?"
-msgstr ""
+msgstr "När du sätter igång denna överföring kommer du inte att kunna avbryta transaktionen. Är det säkert att du vill överföra denna NFT?"
 
 #: src/components/offers/OfferAcceptConfirmationDialog.tsx:37
 msgid "One or more unknown tokens are being offered. Please verify that the asset IDs of the tokens listed below match the asset IDs of the tokens you expect to receive."
@@ -1581,7 +1581,7 @@ msgstr ""
 
 #: src/components/offers/OfferViewer.tsx:216
 msgid "Parent Coin"
-msgstr ""
+msgstr "Överordnat mynt"
 
 #: src/components/app/AppKeyringMigrator.tsx:160
 #: src/components/app/AppKeyringMigrator.tsx:161
@@ -1905,11 +1905,11 @@ msgstr "Förbereder standardplånbok"
 
 #: src/components/nfts/NFTPreview.tsx:149
 msgid "Preview"
-msgstr ""
+msgstr "Förhandsgranska"
 
 #: src/components/nfts/NFTPreview.tsx:183
 msgid "Preview URL is not valid"
-msgstr ""
+msgstr "URL till förhandsgranskning är inte giltig"
 
 #: src/components/block/Block.jsx:307
 msgid "Previous"
@@ -1926,7 +1926,7 @@ msgstr ""
 
 #: src/components/settings/ProfileView.tsx:66
 msgid "Profile Name"
-msgstr ""
+msgstr "Profilnamn"
 
 #: src/components/settings/Settings.tsx:44
 #: src/components/settings/SettingsProfiles.tsx:47
@@ -1955,7 +1955,7 @@ msgstr ""
 
 #: src/components/offers/OfferViewer.tsx:234
 msgid "Puzzle Hash"
-msgstr ""
+msgstr "Pusselhash"
 
 #: src/components/plot/PlotPlotting.tsx:24
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:204
@@ -2171,11 +2171,11 @@ msgstr ""
 
 #: src/components/offers/OfferShareDialog.tsx:1048
 msgid "Share on Keybase"
-msgstr ""
+msgstr "Dela på Keybase"
 
 #: src/components/offers/OfferShareDialog.tsx:668
 msgid "Share on MintGarden"
-msgstr ""
+msgstr "Dela på MintGarden"
 
 #: src/components/offers/OfferShareDialog.tsx:750
 msgid "Share on OfferBin"
@@ -2191,7 +2191,7 @@ msgstr ""
 
 #: src/components/nfts/NFTPreview.tsx:204
 msgid "Show Preview"
-msgstr ""
+msgstr "Visa förhandsgranskning"
 
 #: src/components/app/AppKeyringMigrator.tsx:64
 #: src/components/app/AppKeyringMigrator.tsx:267
@@ -2257,7 +2257,7 @@ msgstr ""
 
 #: src/components/offers/OfferViewer.tsx:265
 msgid "Summary"
-msgstr ""
+msgstr "Sammanfattning"
 
 #: src/components/fullNode/card/FullNodeCardStatus.tsx:49
 msgid "Synced"
@@ -2339,7 +2339,7 @@ msgstr "Pool-URL:en \"{normalizedUrl}\" fungerar inte. Är det en pool? Fel: {0}
 
 #: src/hooks/usePoolInfo.ts:44
 msgid "The pool URL is not valid. {normalizedUrl}"
-msgstr "Den angivna pool URL är inte giltig. {normalizedUrl}"
+msgstr "Den angivna pool-URL:n är inte giltig. {normalizedUrl}"
 
 #: src/hooks/usePoolInfo.ts:40
 msgid "The pool URL needs to use protocol https. {normalizedUrl}"
@@ -2391,7 +2391,7 @@ msgstr "Dessa plottar är ogiltiga. Det kan vara lämpligt att ta bort dem."
 
 #: src/components/offers/NFTOfferEditor.tsx:322
 msgid "They will receive"
-msgstr ""
+msgstr "De kommer att få"
 
 #: src/components/plot/PlotAddDirectoryDialog.tsx:88
 msgid "This allows you to add a directory that has plots in it. If you have not created any plots, go to the plotting screen."
@@ -2561,7 +2561,7 @@ msgstr ""
 
 #: src/hooks/useOpenUnsafeLink.tsx:56
 msgid "URL"
-msgstr ""
+msgstr "URL"
 
 #: src/components/offers/NFTOfferEditor.tsx:594
 msgid "Unable to create an offer for an NFT that you do not own."
@@ -2577,16 +2577,16 @@ msgstr ""
 
 #: src/components/offers/OfferShareDialog.tsx:979
 msgid "Unable to open Keybase. Install Keybase from https://keybase.io"
-msgstr ""
+msgstr "Det gick inte att öppna Keybase. Installera Keybase från https://keybase.io"
 
 #: src/components/offers/OfferShareDialog.tsx:886
 msgid "Unable to open browser. Install Keybase from https://keybase.io"
-msgstr ""
+msgstr "Det gick inte att öppna webbläsaren. Installera Keybase från https://keybase.io"
 
 #: src/components/nfts/NFTDetails.tsx:110
 #: src/components/nfts/NFTDetails.tsx:134
 msgid "Unassigned"
-msgstr ""
+msgstr "Ej tilldelad"
 
 #: src/components/nfts/NFTProfileDropdown.tsx:83
 #: src/components/nfts/NFTProfileDropdown.tsx:132
@@ -2603,14 +2603,14 @@ msgstr "Ej färdigt"
 
 #: src/components/offers/utils.ts:176
 msgid "Unknown"
-msgstr ""
+msgstr "Okänd"
 
 #: src/components/offers/OfferManager.tsx:232
 #: src/components/offers/OfferSummaryRow.tsx:188
 #: src/components/offers/OfferSummaryRow.tsx:189
 #: src/components/offers/OfferSummaryRow.tsx:267
 msgid "Unknown CAT"
-msgstr ""
+msgstr "Okänd CAT"
 
 #: src/components/app/AppPassPrompt.tsx:100
 msgid "Unlock Keyring"
@@ -2622,7 +2622,7 @@ msgstr ""
 
 #: src/components/nfts/NFTPreview.tsx:86
 msgid "Update Pending"
-msgstr ""
+msgstr "Uppdatering väntar"
 
 #: src/components/farm/card/FarmCardUserFees.tsx:27
 msgid "User Transaction Fees"
@@ -2652,36 +2652,36 @@ msgstr "Inloggningslänk för pool"
 #: src/components/offers/OfferImport.tsx:178
 #: src/components/offers/OfferManager.tsx:617
 msgid "View an Offer"
-msgstr ""
+msgstr "Visa ett erbjudande"
 
 #: src/components/offers/OfferShareDialog.tsx:568
 msgid "View on Dexie"
-msgstr ""
+msgstr "Visa på Dexie"
 
 #: src/components/offers/OfferShareDialog.tsx:833
 msgid "View on Hashgreen DEX"
-msgstr ""
+msgstr "Visa på Hashgreen DEX"
 
 #: src/components/nfts/NFTContextualActions.tsx:563
 #: src/components/offers/OfferShareDialog.tsx:649
 msgid "View on MintGarden"
-msgstr ""
+msgstr "Visa på MintGarden"
 
 #: src/components/offers/OfferShareDialog.tsx:731
 msgid "View on OfferBin"
-msgstr ""
+msgstr "Visa på OfferBin"
 
 #: src/components/nfts/NFTContextualActions.tsx:570
 msgid "View on SkyNFT"
-msgstr ""
+msgstr "Visa på SkyNFT"
 
 #: src/components/nfts/NFTContextualActions.tsx:577
 msgid "View on Spacescan.io"
-msgstr ""
+msgstr "Visa på Spacescan.io"
 
 #: src/components/offers/OfferViewerTitle.tsx:54
 msgid "Viewing offer"
-msgstr ""
+msgstr "Visar erbjudande"
 
 #: src/components/farm/card/FarmCardNotAvailable.tsx:25
 #: src/components/plot/PlotStatus.tsx:26
@@ -2716,15 +2716,15 @@ msgstr "Varmstart"
 
 #: src/components/offers/OfferAcceptConfirmationDialog.tsx:34
 msgid "Warning"
-msgstr ""
+msgstr "Varning"
 
 #: src/components/offers/OfferSummary.tsx:148
 msgid "Warning: Verify that the offered CAT asset IDs match the asset IDs of the tokens you expect to receive."
-msgstr ""
+msgstr "Varning: Verifiera att tillgångs-ID för erbjudna CAT matchar tillgångs-ID för de token du förväntar dig att ta emot."
 
 #: src/hooks/useOpenUnsafeLink.tsx:42
 msgid "Warning: You're about to visit a website"
-msgstr ""
+msgstr "Varning: Du är på väg att besöka en webbplats"
 
 #: src/components/block/Block.jsx:183
 msgid "Weight"
@@ -2748,7 +2748,7 @@ msgstr "Utan avgifter"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:505
 msgid "Would you like to move the specified NFT to a profile?"
-msgstr ""
+msgstr "Vill du flytta den angivna NFT:n till en profil?"
 
 #: src/components/nfts/NFTTransferAction.tsx:329
 msgid "Would you like to transfer the specified NFT to a new owner?"
@@ -2769,7 +2769,7 @@ msgstr ""
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:64
 msgid "Yes, move"
-msgstr ""
+msgstr "Ja, flytta"
 
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:177
 msgid "You already have 50 or more Plot NFTs."
@@ -2798,7 +2798,7 @@ msgstr "Du kan fortfarande skapa plottar för denna plot-NFT, men du kan inte g�
 
 #: src/components/offers/OfferHeader.tsx:38
 msgid "You created this offer"
-msgstr ""
+msgstr "Du skapade detta erbjudande"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:76
 msgid "You do not need to be synced or connected to plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
@@ -2818,13 +2818,13 @@ msgstr "Du behöver {currencyCode} för att gå med i en pool."
 
 #: src/components/offers/OfferEditorConditionsPanel.tsx:340
 msgid "You will offer"
-msgstr ""
+msgstr "Du kommer att erbjuda"
 
 #: src/components/offers/NFTOfferEditor.tsx:320
 #: src/components/offers/NFTOfferViewer.tsx:525
 #: src/components/offers/OfferViewer.tsx:279
 msgid "You will receive"
-msgstr ""
+msgstr "Du kommer att få"
 
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:150
 #: src/hooks/useAbsorbRewards.tsx:51
@@ -2865,11 +2865,11 @@ msgstr "Dina nycklar måste migreras till en ny nyckelring som säkras av en huv
 
 #: src/components/offers/OfferShareDialog.tsx:1023
 msgid "Your offer has been successfully posted to Keybase."
-msgstr ""
+msgstr "Ditt erbjudande har skickats till Keybase."
 
 #: src/components/offers/OfferShareDialog.tsx:1249
 msgid "Your offer:"
-msgstr ""
+msgstr "Ditt erbjudande:"
 
 #: src/components/app/AppKeyringMigrator.tsx:229
 #: src/components/settings/ChangePassphrasePrompt.tsx:271
@@ -2907,7 +2907,7 @@ msgstr ""
 
 #: src/components/offers/OfferShareDialog.tsx:1148
 msgid "{0}"
-msgstr ""
+msgstr "{0}"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:172
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:189
@@ -2917,7 +2917,7 @@ msgstr "{0} buckets rekommenderas"
 #: src/components/nfts/detail/NFTDetail.tsx:98
 #: src/components/nfts/detail/NFTDetailV2.tsx:122
 msgid "{0} of {1}"
-msgstr ""
+msgstr "{0} av {1}"
 
 #: src/components/plotNFT/PlotNFTGraph.tsx:111
 msgid "{0} points {1} - {2} hours ago"
