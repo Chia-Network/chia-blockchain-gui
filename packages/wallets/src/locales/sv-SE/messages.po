@@ -8,7 +8,7 @@ msgstr ""
 "Language: sv_SE\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-08-09 20:36\n"
+"PO-Revision-Date: 2022-08-09 21:47\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -481,14 +481,14 @@ msgstr "Ange 0 som avgift. Positiv avgift stöds ännu inte för RL."
 #: src/components/cat/WalletDID.tsx:924
 #: src/components/did/WalletDID.tsx:924
 msgid "Please enter a coin"
-msgstr "Vänligen ange ett mynt"
+msgstr "Ange ett mynt"
 
 #: src/components/cat/WalletDID.tsx:525
 #: src/components/cat/WalletDID.tsx:914
 #: src/components/did/WalletDID.tsx:525
 #: src/components/did/WalletDID.tsx:914
 msgid "Please enter a filename"
-msgstr "Vänligen ange ett filnamn"
+msgstr "Ange ett filnamn"
 
 #: src/components/cat/WalletDID.tsx:934
 #: src/components/did/WalletDID.tsx:934
