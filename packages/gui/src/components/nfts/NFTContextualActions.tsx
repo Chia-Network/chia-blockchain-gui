@@ -3,8 +3,19 @@ import { useNavigate } from 'react-router-dom';
 import { useCopyToClipboard } from 'react-use';
 import { Trans } from '@lingui/macro';
 import type { NFTInfo } from '@chia/api';
-import { useSetNFTStatusMutation } from '@chia/api-react';
-import { AlertDialog, DropdownActions, useOpenDialog } from '@chia/core';
+import {
+  useSetNFTStatusMutation,
+  useTransferNFTMutation,
+} from '@chia/api-react';
+import {
+  AlertDialog,
+  DropdownActions,
+  useOpenDialog,
+  ConfirmDialog,
+  useShowError,
+  Tooltip,
+  chiaToMojo,
+} from '@chia/core';
 import type { DropdownActionsChildProps } from '@chia/core';
 import {
   LinkSmall as LinkSmallIcon,
@@ -18,17 +29,23 @@ import {
   Link as LinkIcon,
   Download as DownloadIcon,
   PermIdentity as PermIdentityIcon,
+  Visibility as VisibilityIcon,
+  VisibilityOff as VisibilityOffIcon,
+  DeleteForever as DeleteForeverIcon,
 } from '@mui/icons-material';
 import { NFTTransferDialog, NFTTransferResult } from './NFTTransferAction';
 import NFTMoveToProfileDialog from './NFTMoveToProfileDialog';
 import NFTSelection from '../../types/NFTSelection';
 import useOpenUnsafeLink from '../../hooks/useOpenUnsafeLink';
+import useHiddenNFTs from '../../hooks/useHiddenNFTs';
+import useBurnAddress from '../../hooks/useBurnAddress';
 import useViewNFTOnExplorer, {
   NFTExplorer,
 } from '../../hooks/useViewNFTOnExplorer';
 import isURL from 'validator/lib/isURL';
 import download from '../../util/download';
 import { stripHexPrefix } from '../../util/utils';
+import { Hmac } from 'crypto';
 
 /* ========================================================================== */
 /*                          Common Action Types/Enums                         */
@@ -40,11 +57,13 @@ export enum NFTContextualActionTypes {
   Transfer = 1 << 1, // 2
   MoveToProfile = 1 << 2, // 4
   CancelUnconfirmedTransaction = 1 << 3, // 8
-  CopyNFTId = 1 << 4, // 16
-  CopyURL = 1 << 5, // 32
-  ViewOnExplorer = 1 << 6, // 64
-  OpenInBrowser = 1 << 7, // 128
-  Download = 1 << 8, // 256
+  Hide = 1 << 4,
+  Burn = 1 << 5,
+  CopyNFTId = 1 << 6, // 16
+  CopyURL = 1 << 7, // 32
+  ViewOnExplorer = 1 << 8, // 64
+  OpenInBrowser = 1 << 9, // 128
+  Download = 1 << 10, // 256
 
   All = CreateOffer |
     Transfer |
@@ -54,7 +73,9 @@ export enum NFTContextualActionTypes {
     CopyURL |
     ViewOnExplorer |
     OpenInBrowser |
-    Download,
+    Download |
+    Hide |
+    Burn,
 }
 
 type NFTContextualActionProps = {
@@ -326,7 +347,7 @@ function NFTCancelUnconfirmedTransactionContextualAction(
         handleCancelUnconfirmedTransaction();
       }}
       disabled={disabled}
-      divider={true}
+      divider
     >
       <ListItemIcon>
         <CancelIcon />
@@ -416,7 +437,7 @@ function NFTCopyURLContextualAction(props: NFTCopyURLContextualActionProps) {
         handleCopy();
       }}
       disabled={disabled}
-      divider={true}
+      divider
     >
       <ListItemIcon>
         <LinkIcon />
@@ -515,6 +536,135 @@ function NFTDownloadContextualAction(props: NFTDownloadContextualActionProps) {
 }
 
 /* ========================================================================== */
+/*                          Hide NFT                                     */
+/* ========================================================================== */
+
+type NFTHideContextualActionProps = NFTContextualActionProps;
+
+function NFTHideContextualAction(props: NFTHideContextualActionProps) {
+  const { onClose, selection } = props;
+  const selectedNft: NFTInfo | undefined = selection?.items[0];
+  const disabled = !selectedNft;
+  const dataUrl = selectedNft?.dataUris?.[0];
+  const [isNFTHidden, setIsNFTHidden] = useHiddenNFTs();
+
+  const isHidden = isNFTHidden(selectedNft);
+
+  function handleToggle() {
+    if (!selectedNft) {
+      return;
+    }
+
+    setIsNFTHidden(selectedNft, !isHidden);
+  }
+
+  if (!dataUrl) {
+    return null;
+  }
+
+  return (
+    <MenuItem
+      onClick={() => {
+        onClose();
+        handleToggle();
+      }}
+      disabled={disabled}
+    >
+      <ListItemIcon>
+        {isHidden ? <VisibilityIcon /> : <VisibilityOffIcon />}
+      </ListItemIcon>
+      <Typography variant="inherit" noWrap>
+        {isHidden ? <Trans>Show</Trans> : <Trans>Hide</Trans>}
+      </Typography>
+    </MenuItem>
+  );
+}
+
+/* ========================================================================== */
+/*                          Burn NFT                                     */
+/* ========================================================================== */
+
+type NFTBurnContextualActionProps = NFTContextualActionProps;
+
+function NFTBurnContextualAction(props: NFTBurnContextualActionProps) {
+  const { onClose, selection } = props;
+
+  const openDialog = useOpenDialog();
+  const [transferNFT] = useTransferNFTMutation();
+  const showError = useShowError();
+  const burnAddress = useBurnAddress();
+
+  const selectedNft: NFTInfo | undefined = selection?.items[0];
+  const disabled =
+    !selectedNft || !burnAddress || selectedNft?.pendingTransaction;
+  const dataUrl = selectedNft?.dataUris?.[0];
+
+  async function handleBurnNFT() {
+    try {
+      await transferNFT({
+        walletId: selectedNft.walletId,
+        nftCoinId: selectedNft.nftCoinId,
+        launcherId: selectedNft.launcherId,
+        targetAddress: burnAddress,
+        fee: chiaToMojo(0),
+      }).unwrap();
+    } catch (error) {
+      showError(error);
+    }
+  }
+
+  async function handleConfirm() {
+    if (!selectedNft) {
+      return;
+    }
+
+    await openDialog(
+      <ConfirmDialog
+        title={<Trans>Do you want to burn this NFT?</Trans>}
+        confirmTitle={<Trans>Burn</Trans>}
+        confirmColor="danger"
+        onConfirm={handleBurnNFT}
+        // @ts-ignore
+        maxWidth="sm"
+      >
+        <Trans>
+          Burning a non-fungible token means destroying it. Burned NFTs are sent
+          to a verifiably un-spendable{' '}
+          <Tooltip title={burnAddress} copyToClipboard>
+            <b>
+              <Trans>address</Trans>
+            </b>
+          </Tooltip>
+          , eliminating your NFT from the blockchain. However, transactions
+          leading up to the burn will remain on the blockchain ledger.
+        </Trans>
+      </ConfirmDialog>,
+    );
+  }
+
+  if (!dataUrl) {
+    return null;
+  }
+
+  return (
+    <MenuItem
+      onClick={() => {
+        onClose();
+        handleConfirm();
+      }}
+      disabled={disabled}
+      divider
+    >
+      <ListItemIcon>
+        <DeleteForeverIcon />
+      </ListItemIcon>
+      <Typography variant="inherit" noWrap>
+        <Trans>Burn</Trans>
+      </Typography>
+    </MenuItem>
+  );
+}
+/* ========================================================================== */
 /*                             Contextual Actions                             */
 /* ========================================================================== */
 
@@ -556,6 +706,16 @@ export default function NFTContextualActions(props: NFTContextualActionsProps) {
         action: NFTCancelUnconfirmedTransactionContextualAction,
         props: {},
       },
+
+      [NFTContextualActionTypes.Hide]: {
+        action: NFTHideContextualAction,
+        props: {},
+      },
+      [NFTContextualActionTypes.Burn]: {
+        action: NFTBurnContextualAction,
+        props: {},
+      },
+
       [NFTContextualActionTypes.ViewOnExplorer]: [
         {
           action: NFTViewOnExplorerContextualAction,
