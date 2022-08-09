@@ -8,7 +8,7 @@ msgstr ""
 "Language: fr_FR\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-08-06 12:55\n"
+"PO-Revision-Date: 2022-08-09 19:40\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
@@ -139,7 +139,7 @@ msgstr "Tous les NFT"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:96
 msgid "All Profiles"
-msgstr "Tous les profils"
+msgstr "Tous les Profils"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:238
 msgid "Alternate tmpdir/tmpdir2"
@@ -178,7 +178,7 @@ msgstr "Êtes-vous sûr de vouloir vous déconnecter ?"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:71
 msgid "Are you sure you want to move this NFT to the specified profile?"
-msgstr "Êtes-vous sûr de vouloir déplacer ce NFT vers ce profil ?"
+msgstr "Êtes-vous sûr de vouloir transférer ce NFT vers ce profil ?"
 
 #: src/electron/main.tsx:341
 msgid "Are you sure you want to quit?"
@@ -421,7 +421,7 @@ msgstr "Confirmer la déconnexion"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:63
 msgid "Confirm Move"
-msgstr "Confirmer le déplacement"
+msgstr "Confirmer le transfert"
 
 #: src/components/nfts/NFTTransferAction.tsx:79
 msgid "Confirm NFT Transfer"
@@ -1298,15 +1298,15 @@ msgstr "Plus de mémoire augmente légèrement la vitesse"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:452
 msgid "Move"
-msgstr "Déplacer"
+msgstr "Transférer"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:498
 msgid "Move NFT to Profile"
-msgstr "Déplacer le NFT vers un Profil"
+msgstr "Transférer le NFT vers un Profil"
 
 #: src/components/nfts/NFTContextualActions.tsx:269
 msgid "Move to Profile"
-msgstr "Déplacer vers le profil"
+msgstr "Transférer vers le Profil"
 
 #: src/components/settings/ProfileView.tsx:99
 msgid "My DID"
@@ -1326,11 +1326,11 @@ msgstr "Identifiant du NFT"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:314
 msgid "NFT Move Failed"
-msgstr "Échec du déplacement du NFT"
+msgstr "Échec du transfert du NFT"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:304
 msgid "NFT Move Pending"
-msgstr "Déplacement du NFT en attente"
+msgstr "Transfert du NFT en attente"
 
 #: src/components/offers/OfferManager.tsx:604
 msgid "NFT Offer"
@@ -1697,7 +1697,7 @@ msgstr "Veuillez saisir votre phrase secrète pour continuer"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:276
 msgid "Please select a profile to move the NFT to."
-msgstr "Veuillez sélectionner un profil vers lequel déplacer le NFT."
+msgstr "Veuillez sélectionner un profil vers lequel transférer le NFT."
 
 #: src/components/offers/OfferEditor.tsx:134
 msgid "Please select an asset for each row"
@@ -2093,7 +2093,7 @@ msgstr "Ouvrir un fichier d'offre"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:345
 msgid "Select Profile"
-msgstr "Sélectionner un profil"
+msgstr "Sélectionner un Profil"
 
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:52
 msgid "Select Temporary Directory"
@@ -2285,11 +2285,11 @@ msgstr "Emplacement du dossier temporaire"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:315
 msgid "The NFT move failed: {error}"
-msgstr "Le déplacement du NFT a échoué : {error}"
+msgstr "Le transfert du NFT a échoué : {error}"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:305
 msgid "The NFT move transaction has been successfully submitted to the blockchain."
-msgstr "La transaction de déplacement du NFT a été soumise avec succès à la blockchain."
+msgstr "Le transfert du NFT a été soumis avec succès à la blockchain."
 
 #: src/components/nfts/NFTContextualActions.tsx:306
 msgid "The NFT status has been updated. If the transaction was successfully sent to the mempool, it may still complete."
@@ -2307,7 +2307,7 @@ msgstr "Échec du transfert du NFT : {error}"
 #: src/components/nfts/NFTContextualActions.tsx:170
 #: src/components/nfts/NFTContextualActions.tsx:234
 msgid "The NFT transfer transaction has been successfully submitted to the blockchain."
-msgstr "La transaction de déplacement du NFT a été soumise avec succès à la blockchain."
+msgstr "Le transfert du NFT a été soumis avec succès à la blockchain."
 
 #: src/components/settings/SettingsPanel.tsx:185
 msgid "The derivation index sets the range of wallet addresses that the wallet scans the blockchain for. This number is generally higher if you have a lot of transactions or canceled offers for XCH, CATs, or NFTs. If you believe your balance is incorrect because it’s missing coins, then increasing the derivation index could help the wallet include the missing coins in the balance total."
@@ -2750,7 +2750,7 @@ msgstr "Sans frais"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:505
 msgid "Would you like to move the specified NFT to a profile?"
-msgstr "Voulez-vous déplacer le NFT sélectionné vers un profil ?"
+msgstr "Voulez-vous transférer le NFT sélectionné vers un profil ?"
 
 #: src/components/nfts/NFTTransferAction.tsx:329
 msgid "Would you like to transfer the specified NFT to a new owner?"
@@ -2771,7 +2771,7 @@ msgstr "Oui, Accepter l'offre"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:64
 msgid "Yes, move"
-msgstr "Oui, déplacer"
+msgstr "Oui, transférer"
 
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:177
 msgid "You already have 50 or more Plot NFTs."
