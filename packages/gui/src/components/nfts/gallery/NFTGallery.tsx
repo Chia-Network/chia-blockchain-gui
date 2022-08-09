@@ -21,6 +21,7 @@ import { NFTContextualActionTypes } from '../NFTContextualActions';
 import type NFTSelection from '../../../types/NFTSelection';
 import useFetchNFTs from '../../../hooks/useFetchNFTs';
 import useHiddenNFTs from '../../../hooks/useHiddenNFTs';
+import useHideObjectionableContent from '../../../hooks/useHideObjectionableContent';
 import NFTProfileDropdown from '../NFTProfileDropdown';
 import NFTGalleryHero from './NFTGalleryHero';
 
@@ -40,6 +41,7 @@ export default function NFTGallery() {
   const isLoading = isLoadingWallets || isLoadingNFTs;
   const [search /*, setSearch*/] = useState<string>('');
   const [showHidden, setShowHidden] = usePersistState(false, 'showHiddenNFTs');
+  const [hideObjectionableContent] = useHideObjectionableContent();
 
   const [walletId, setWalletId] = usePersistState<number | undefined>(
     undefined,
@@ -72,7 +74,14 @@ export default function NFTGallery() {
 
       return true;
     });
-  }, [search, walletId, nfts, isNFTHidden, showHidden]);
+  }, [
+    search,
+    walletId,
+    nfts,
+    isNFTHidden,
+    showHidden,
+    hideObjectionableContent,
+  ]);
 
   function handleSelect(nft: NFTInfo, selected: boolean) {
     setSelection((currentSelection) => {
