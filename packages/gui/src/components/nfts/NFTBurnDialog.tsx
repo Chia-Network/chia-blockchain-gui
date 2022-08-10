@@ -70,7 +70,19 @@ export default function NFTBurnDialog(props: NFTPreviewDialogProps) {
     }
 
     const confirmation = await openDialog(
-      <NFTTransferConfirmationDialog destination={destination} fee={fee} />,
+      <NFTTransferConfirmationDialog
+        destination={destination}
+        fee={fee}
+        confirmColor="danger"
+        title={<Trans>Burn NFT confirmation</Trans>}
+        description={
+          <Trans>
+            If you proceed, this NFT will be permanently deleted. Are you sure
+            you want to continue?
+          </Trans>
+        }
+        confirmTitle={<Trans>Confirm</Trans>}
+      />,
     );
 
     if (!confirmation) {

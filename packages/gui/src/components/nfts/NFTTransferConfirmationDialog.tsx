@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { type ReactNode } from 'react';
 import { Trans, Plural } from '@lingui/macro';
 import styled from 'styled-components';
 import {
@@ -24,30 +24,42 @@ export type NFTTransferConfirmationDialogProps = {
   destination: string;
   fee: string;
   open?: boolean; // For use in openDialog()
+  title?: ReactNode;
+  description?: ReactNode;
+  confirmTitle?: ReactNode;
+  confirmColor?: string;
 };
 
 export default function NFTTransferConfirmationDialog(
   props: NFTTransferConfirmationDialogProps,
 ) {
-  const { destination, fee, ...rest } = props;
+  const {
+    destination,
+    fee,
+    title = <Trans>Confirm NFT Transfer</Trans>,
+    description = (
+      <Trans>
+        Once you initiate this transfer, you will not be able to cancel the
+        transaction. Are you sure you want to transfer the NFT?
+      </Trans>
+    ),
+    confirmTitle = <Trans>Transfer</Trans>,
+    confirmColor = 'secondary',
+    ...rest
+  } = props;
   const feeInMojos = chiaToMojo(fee || 0);
   const currencyCode = useCurrencyCode();
 
   return (
     <ConfirmDialog
-      title={<Trans>Confirm NFT Transfer</Trans>}
-      confirmTitle={<Trans>Transfer</Trans>}
-      confirmColor="secondary"
+      title={title}
+      confirmTitle={confirmTitle}
+      confirmColor={confirmColor}
       cancelTitle={<Trans>Cancel</Trans>}
       {...rest}
     >
       <Flex flexDirection="column" gap={3}>
-        <Typography variant="body1">
-          <Trans>
-            Once you initiate this transfer, you will not be able to cancel the
-            transaction. Are you sure you want to transfer the NFT?
-          </Trans>
-        </Typography>
+        <Typography variant="body1">{description}</Typography>
         <Divider />
         <Flex flexDirection="column" gap={1}>
           <Flex flexDirection="row" gap={1}>
