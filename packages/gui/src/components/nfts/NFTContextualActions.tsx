@@ -45,7 +45,7 @@ import useViewNFTOnExplorer, {
 import isURL from 'validator/lib/isURL';
 import download from '../../util/download';
 import { stripHexPrefix } from '../../util/utils';
-import { Hmac } from 'crypto';
+import NFTBurnDialog from './NFTBurnDialog';
 
 /* ========================================================================== */
 /*                          Common Action Types/Enums                         */
@@ -590,8 +590,6 @@ function NFTBurnContextualAction(props: NFTBurnContextualActionProps) {
   const { onClose, selection } = props;
 
   const openDialog = useOpenDialog();
-  const [transferNFT] = useTransferNFTMutation();
-  const showError = useShowError();
   const burnAddress = useBurnAddress();
 
   const selectedNft: NFTInfo | undefined = selection?.items[0];
@@ -599,47 +597,12 @@ function NFTBurnContextualAction(props: NFTBurnContextualActionProps) {
     !selectedNft || !burnAddress || selectedNft?.pendingTransaction;
   const dataUrl = selectedNft?.dataUris?.[0];
 
-  async function handleBurnNFT() {
-    try {
-      await transferNFT({
-        walletId: selectedNft.walletId,
-        nftCoinId: selectedNft.nftCoinId,
-        launcherId: selectedNft.launcherId,
-        targetAddress: burnAddress,
-        fee: chiaToMojo(0),
-      }).unwrap();
-    } catch (error) {
-      showError(error);
-    }
-  }
-
-  async function handleConfirm() {
+  async function handleBurn() {
     if (!selectedNft) {
       return;
     }
 
-    await openDialog(
-      <ConfirmDialog
-        title={<Trans>Do you want to burn this NFT?</Trans>}
-        confirmTitle={<Trans>Burn</Trans>}
-        confirmColor="danger"
-        onConfirm={handleBurnNFT}
-        // @ts-ignore
-        maxWidth="sm"
-      >
-        <Trans>
-          Burning a non-fungible token means destroying it. Burned NFTs are sent
-          to a verifiably un-spendable{' '}
-          <Tooltip title={burnAddress} copyToClipboard>
-            <b>
-              <Trans>address</Trans>
-            </b>
-          </Tooltip>
-          , eliminating your NFT from the blockchain. However, transactions
-          leading up to the burn will remain on the blockchain ledger.
-        </Trans>
-      </ConfirmDialog>,
-    );
+    await openDialog(<NFTBurnDialog nft={selectedNft} />);
   }
 
   if (!dataUrl) {
@@ -650,7 +613,7 @@ function NFTBurnContextualAction(props: NFTBurnContextualActionProps) {
     <MenuItem
       onClick={() => {
         onClose();
-        handleConfirm();
+        handleBurn();
       }}
       disabled={disabled}
       divider

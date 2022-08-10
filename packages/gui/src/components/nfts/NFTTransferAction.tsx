@@ -31,6 +31,7 @@ import {
 import { useForm } from 'react-hook-form';
 import { useTransferNFTMutation } from '@chia/api-react';
 import NFTSummary from './NFTSummary';
+import NFTTransferConfirmationDialog from './NFTTransferConfirmationDialog';
 
 /* ========================================================================== */
 /*                                   Styles                                   */
@@ -62,91 +63,6 @@ export type NFTTransferResult = {
 /* ========================================================================== */
 /*                      NFT Transfer Confirmation Dialog                      */
 /* ========================================================================== */
-
-type NFTTransferConfirmationDialogProps = NFTTransferFormData & {
-  open: boolean; // For use in openDialog()
-};
-
-function NFTTransferConfirmationDialog(
-  props: NFTTransferConfirmationDialogProps,
-) {
-  const { destination, fee, ...rest } = props;
-  const feeInMojos = chiaToMojo(fee || 0);
-  const currencyCode = useCurrencyCode();
-
-  return (
-    <ConfirmDialog
-      title={<Trans>Confirm NFT Transfer</Trans>}
-      confirmTitle={<Trans>Transfer</Trans>}
-      confirmColor="secondary"
-      cancelTitle={<Trans>Cancel</Trans>}
-      {...rest}
-    >
-      <Flex flexDirection="column" gap={3}>
-        <Typography variant="body1">
-          <Trans>
-            Once you initiate this transfer, you will not be able to cancel the
-            transaction. Are you sure you want to transfer the NFT?
-          </Trans>
-        </Typography>
-        <Divider />
-        <Flex flexDirection="column" gap={1}>
-          <Flex flexDirection="row" gap={1}>
-            <Flex flexShrink={0}>
-              <Typography variant="body1">
-                <Trans>Destination:</Trans>
-              </Typography>
-            </Flex>
-            <Flex
-              flexDirection="row"
-              alignItems="center"
-              gap={1}
-              sx={{ overflow: 'hidden' }}
-            >
-              <Typography noWrap variant="body1">
-                {destination}
-              </Typography>
-              <TooltipIcon interactive>
-                <Flex flexDirection="column" gap={1}>
-                  <StyledTitle>
-                    <Trans>Destination</Trans>
-                  </StyledTitle>
-                  <StyledValue>
-                    <Typography variant="caption">{destination}</Typography>
-                  </StyledValue>
-                </Flex>
-              </TooltipIcon>
-            </Flex>
-          </Flex>
-          <Flex flexDirection="row" gap={1}>
-            <Typography variant="body1">Fee:</Typography>
-            <Typography variant="body1">
-              {fee || '0'} {currencyCode}
-            </Typography>
-            {feeInMojos > 0 && (
-              <>
-                (
-                <FormatLargeNumber value={feeInMojos} />
-                <Box>
-                  <Plural
-                    value={feeInMojos.toNumber()}
-                    one="mojo"
-                    other="mojos"
-                  />
-                </Box>
-                )
-              </>
-            )}
-          </Flex>
-        </Flex>
-      </Flex>
-    </ConfirmDialog>
-  );
-}
-
-NFTTransferConfirmationDialog.defaultProps = {
-  open: false,
-};
 
 /* ========================================================================== */
 /*                         NFT Transfer Action (Form)                         */
