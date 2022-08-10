@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Trans } from '@lingui/macro';
-import styled from 'styled-components';
 import type { NFTInfo } from '@chia/api';
 import {
   Button,
@@ -28,19 +27,6 @@ import { useForm } from 'react-hook-form';
 import { useTransferNFTMutation } from '@chia/api-react';
 import NFTSummary from './NFTSummary';
 import NFTTransferConfirmationDialog from './NFTTransferConfirmationDialog';
-
-/* ========================================================================== */
-/*                                   Styles                                   */
-/* ========================================================================== */
-
-const StyledTitle = styled(Box)`
-  font-size: 0.625rem;
-  color: rgba(255, 255, 255, 0.7);
-`;
-
-const StyledValue = styled(Box)`
-  word-break: break-all;
-`;
 
 /* ========================================================================== */
 /*                              NFTTransferResult                             */
