@@ -15,7 +15,6 @@ import {
   useShowError,
 } from '@chia/core';
 import {
-  Box,
   Dialog,
   DialogActions,
   DialogContent,
