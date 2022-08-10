@@ -1,19 +1,13 @@
 import React from 'react';
 import { Trans } from '@lingui/macro';
-import { Flex, StateColor, StateIndicatorDot, useMode, Mode } from '@chia/core';
-import { useGetFullNodeConnectionsQuery } from '@chia/api-react';
-import { ButtonGroup, Button, Popover, Typography } from '@mui/material';
-import { useTheme } from '@mui/styles';
+import { Flex, useMode, Mode } from '@chia/core';
+import { Box, ButtonGroup, Button, Popover } from '@mui/material';
 import { WalletConnections, WalletStatus } from '@chia/wallets';
 import Connections from '../fullNode/FullNodeConnections';
+import FullNodeStateIndicator from '../fullNode/FullNodeStateIndicator';
 
 export default function AppStatusHeader() {
-  const theme = useTheme();
   const [mode] = useMode();
-  const { data: connectionsFN } = useGetFullNodeConnectionsQuery(
-    {},
-    { pollingInterval: 10000 },
-  );
 
   const [anchorElFN, setAnchorElFN] = React.useState<HTMLButtonElement | null>(
     null,
@@ -42,47 +36,39 @@ export default function AppStatusHeader() {
 
   const openW = Boolean(anchorElW);
 
-  const colorFN =
-    connectionsFN?.length >= 1
-      ? StateColor.SUCCESS
-      : theme.palette.text.secondary;
-
   return (
     <ButtonGroup variant="outlined" color="secondary" size="small">
-      <Button onClick={handleClickFN}>
-        <Flex gap={1} alignItems="center">
-          <Flex>
-            <StateIndicatorDot color={colorFN} />
-          </Flex>
-          <Flex>
-            <Trans>Full Node</Trans>
-          </Flex>
-        </Flex>
-      </Button>
-      <Popover
-        id={openFN ? 'simple-popover' : undefined}
-        open={openFN}
-        anchorEl={anchorElFN}
-        onClose={handleCloseFN}
-        anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'right',
-        }}
-        transformOrigin={{
-          horizontal: 'right',
-        }}
-      >
-        {mode === Mode.FARMING ? (
-          <Connections />
-        ) : (
-          <Typography>
-            <Trans>
-              Full node connections are not available because you are using
-              wallet mode. You can turn on the farming mode in settings.
-            </Trans>
-          </Typography>
-        )}
-      </Popover>
+      {mode === Mode.FARMING && (
+        <>
+          <Button
+            onClick={handleClickFN}
+            aria-describedby="fullnode-connections"
+          >
+            <Flex gap={1} alignItems="center">
+              <FullNodeStateIndicator />
+              <Trans>Full Node</Trans>
+            </Flex>
+          </Button>
+          <Popover
+            id="fullnode-connections"
+            open={openFN}
+            anchorEl={anchorElFN}
+            onClose={handleCloseFN}
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'right',
+            }}
+            transformOrigin={{
+              vertical: 'top',
+              horizontal: 'right',
+            }}
+          >
+            <Box sx={{ minWidth: 800 }}>
+              <Connections />
+            </Box>
+          </Popover>
+        </>
+      )}
       <Button onClick={handleClickW}>
         <Flex gap={1} alignItems="center">
           <WalletStatus indicator hideTitle />
@@ -99,12 +85,13 @@ export default function AppStatusHeader() {
           horizontal: 'right',
         }}
         transformOrigin={{
+          vertical: 'top',
           horizontal: 'right',
         }}
       >
-        <div style={{ minWidth: '800px' }}>
+        <Box sx={{ minWidth: 800 }}>
           <WalletConnections walletId={1} />
-        </div>
+        </Box>
       </Popover>
     </ButtonGroup>
   );
