@@ -8,7 +8,7 @@ msgstr ""
 "Language: it_IT\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-07-27 18:38\n"
+"PO-Revision-Date: 2022-08-10 06:34\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -40,11 +40,11 @@ msgstr "+ Aggiungi un Plot"
 
 #: src/components/settings/ProfileAdd.tsx:91
 msgid "<0>Need some XCH?</0>"
-msgstr ""
+msgstr "<0>Hai bisogno di XCH?</0>"
 
 #: src/components/settings/ProfileAdd.tsx:99
 msgid "<0>Use one (1) mojo to create a Profile.</0>"
-msgstr ""
+msgstr "<0>Usa un mojo per creare un profilo.</0>"
 
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:96
 msgid "A harvester is a service running on a machine where plot(s) are actually stored. A farmer and harvester talk to a full node to see the state of the chain. View your network of connected harvesters below Learn more"
@@ -63,11 +63,11 @@ msgstr "Informazioni sulla Blockchain di Chia"
 #: src/components/offers/OfferAcceptConfirmationDialog.tsx:23
 #: src/components/offers/OfferViewer.tsx:317
 msgid "Accept Offer"
-msgstr ""
+msgstr "Accetta l'offerta"
 
 #: src/components/offers/OfferViewer.tsx:161
 msgid "Accepted on Date"
-msgstr ""
+msgstr "Accettato il giorno"
 
 #: src/components/plot/PlotHarvesterPlots.tsx:79
 #: src/components/plot/PlotHarvesterPlotsDuplicate.tsx:18
@@ -86,7 +86,7 @@ msgstr "Azioni"
 
 #: src/components/offers/OfferAssetSelector.tsx:165
 msgid "Add CAT wallets to have more options"
-msgstr ""
+msgstr "Aggiungi portafogli CAT per avere più opzioni"
 
 #: src/components/plot/PlotHeader.tsx:88
 #: src/components/plot/overview/PlotOverviewPlots.tsx:55
@@ -130,16 +130,16 @@ msgstr "Dopo che le chiavi saranno migrate con successo al nuovo keyring, sarà 
 #: src/components/nfts/gallery/NFTGallerySidebar.tsx:73
 #: src/components/nfts/gallery/NFTGallerySidebar.tsx:86
 msgid "All"
-msgstr ""
+msgstr "Tutto"
 
 #: src/components/nfts/NFTProfileDropdown.tsx:90
 #: src/components/nfts/NFTProfileDropdown.tsx:118
 msgid "All NFTs"
-msgstr ""
+msgstr "Tutti gli NFT"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:96
 msgid "All Profiles"
-msgstr ""
+msgstr "Tutti i profili"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:238
 msgid "Alternate tmpdir/tmpdir2"
@@ -149,19 +149,19 @@ msgstr "tmpdir/tmpdir2 in modalità alternata"
 #: src/components/offers/OfferEditorConditionsPanel.tsx:148
 #: src/components/offers/OfferViewer.tsx:198
 msgid "Amount"
-msgstr ""
+msgstr "Totale"
 
 #: src/components/offers/OfferEditor.tsx:138
 msgid "Amount exceeds spendable balance"
-msgstr ""
+msgstr "Importo superiore al saldo spendibile"
 
 #: src/components/offers/NFTOfferPreview.tsx:162
 msgid "An NFT's provenance is a complete record of its ownership history. It provides a direct lineage that connects everyone who has owned the NFT, all the way back to the original artist. This helps to verify that the NFT is authentic."
-msgstr ""
+msgstr "La provenienza di un NFT è un record completo della sua storia. Fornisce un filone diretto che collega tutti coloro che hanno posseduto l'NFT, fino all'artista originale. Questo aiuta a verificare che l'NFT sia autentico."
 
 #: src/components/offers/OfferManager.tsx:124
 msgid "Are you sure you want to cancel your offer?"
-msgstr ""
+msgstr "Sei sicuro di voler cancellare questa offerta?"
 
 #: src/components/plot/PlotAction.tsx:29
 #: src/components/plot/queue/PlotQueueActions.tsx:47
@@ -178,7 +178,7 @@ msgstr "Sei sicuro di volerti disconnettere?"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:71
 msgid "Are you sure you want to move this NFT to the specified profile?"
-msgstr ""
+msgstr "Sei sicuro di voler spostare questo NFT a uno specifico profilo?"
 
 #: src/electron/main.tsx:341
 msgid "Are you sure you want to quit?"
@@ -190,7 +190,7 @@ msgstr "Sei sicuro di voler usare k={plotSize}?"
 
 #: src/components/offers/OfferAssetSelector.tsx:160
 msgid "Asset Type"
-msgstr ""
+msgstr "Tipo di Asset"
 
 #: src/components/app/AppState.tsx:151
 msgid "Attempt {attempt}"
@@ -203,7 +203,7 @@ msgstr "Nome generato automaticamente dall'indirizzo del contratto della pool"
 #: src/components/offers/NFTOfferViewer.tsx:733
 #: src/components/offers/OfferViewer.tsx:308
 msgid "Back"
-msgstr ""
+msgstr "Indietro"
 
 #: src/components/backup/BackupCreate.tsx:46
 msgid "Backup file is used to restore smart wallets."
@@ -211,7 +211,7 @@ msgstr "Il file di backup viene usato per ripristinare gli smart wallet."
 
 #: src/components/settings/ProfileAdd.tsx:103
 msgid "Balance: {standardBalance} XCH"
-msgstr ""
+msgstr "Saldo: {standardBalance} XCH"
 
 #: src/components/block/Block.jsx:277
 msgid "Base Farmer Reward Amount"
@@ -219,7 +219,7 @@ msgstr "Ricompensa minima per il farmer"
 
 #: src/components/offers/OfferShareDialog.tsx:1066
 msgid "Before posting an offer in Keybase to the #{channelName} channel, you must first join the {teamName} team. Please note that it might take a few moments to join the channel."
-msgstr ""
+msgstr "Prima di pubblicare un'offerta su Keybase sul canale #{channelName} , devi prima unirti al team {teamName} . Si prega di notare che potrebbe volerci qualche istante per entrare nello stesso."
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:39
 msgid "Below are the current block challenges. You may or may not have a proof of space for these challenges. These blocks do not currently contain a proof of time."
@@ -290,19 +290,19 @@ msgstr "Annulla"
 #: src/components/offers/OfferManager.tsx:201
 #: src/components/offers/OfferManager.tsx:498
 msgid "Cancel Offer"
-msgstr ""
+msgstr "Cancella offerta"
 
 #: src/components/nfts/NFTContextualActions.tsx:335
 msgid "Cancel Unconfirmed Transaction"
-msgstr ""
+msgstr "Elimina Transazioni non Confermate"
 
 #: src/components/offers/OfferManager.tsx:151
 msgid "Cancel on blockchain"
-msgstr ""
+msgstr "Annulla sulla blockchain"
 
 #: src/components/offers/utils.ts:170
 msgid "Cancelled"
-msgstr ""
+msgstr "Cancellato"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:14
 msgid "Challenge"
@@ -332,15 +332,15 @@ msgstr "Chatta su KeyBase"
 
 #: src/components/offers/NFTOfferPreview.tsx:177
 msgid "Check Provenance on MintGarden"
-msgstr ""
+msgstr "Controlla la provenienza su MintGarden"
 
 #: src/components/offers/NFTOfferPreview.tsx:187
 msgid "Check Provenance on SkyNFT"
-msgstr ""
+msgstr "Controlla la provenance su SkyNFT"
 
 #: src/components/offers/NFTOfferPreview.tsx:197
 msgid "Check Provenance on Spacescan.io"
-msgstr ""
+msgstr "Controlla la provenienza su Spacescan.io"
 
 #: src/electron/main.tsx:583
 msgid "Chia"
@@ -396,18 +396,18 @@ msgstr "Chiusura di tutti i servizi"
 
 #: src/components/offers/OfferViewer.tsx:350
 msgid "Coins"
-msgstr ""
+msgstr "Monete"
 
 #: src/components/nfts/NFTSummary.tsx:59
 #: src/components/nfts/detail/NFTDetail.tsx:83
 #: src/components/nfts/detail/NFTDetailV2.tsx:107
 msgid "Collection"
-msgstr ""
+msgstr "Collezione"
 
 #: src/components/nfts/gallery/NFTGallerySidebar.tsx:81
 #: src/components/nfts/gallery/NFTGallerySidebar.tsx:83
 msgid "Collections"
-msgstr ""
+msgstr "Collezioni"
 
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:180
 #: src/electron/main.tsx:339
@@ -421,11 +421,11 @@ msgstr "Conferma la Disconnessione"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:63
 msgid "Confirm Move"
-msgstr ""
+msgstr "Conferma spostamento"
 
 #: src/components/nfts/NFTTransferAction.tsx:79
 msgid "Confirm NFT Transfer"
-msgstr ""
+msgstr "Conferma il trasferimento del NFT"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:229
 msgid "Confirm New Passphrase"
@@ -443,11 +443,11 @@ msgstr "Conferma"
 
 #: src/components/offers/utils.ts:172
 msgid "Confirmed"
-msgstr ""
+msgstr "Confermato"
 
 #: src/components/offers/OfferViewer.tsx:155
 msgid "Confirmed at Height"
-msgstr ""
+msgstr "Confermato all'altezza"
 
 #: src/components/block/FullNodeAddConnection.tsx:88
 #: src/components/fullNode/FullNodeAddConnection.tsx:87
@@ -496,11 +496,11 @@ msgstr "Contribuisci su GitHub"
 
 #: src/components/nfts/NFTContextualActions.tsx:425
 msgid "Copy Media URL"
-msgstr ""
+msgstr "Copia Media Url"
 
 #: src/components/nfts/NFTContextualActions.tsx:99
 msgid "Copy NFT ID"
-msgstr ""
+msgstr "Copia ID NFT"
 
 #: src/components/backup/BackupCreate.tsx:59
 #: src/components/plot/add/PlotAddForm.tsx:205
@@ -518,7 +518,7 @@ msgstr "Crea & Gestisci plots"
 #: src/components/offers/OfferEditor.tsx:221
 #: src/components/offers/OfferEditorConfirmationDialog.tsx:15
 msgid "Create Offer"
-msgstr ""
+msgstr "Crea Offerta"
 
 #: src/components/backup/BackupCreate.tsx:42
 msgid "Create a Backup"
@@ -530,24 +530,24 @@ msgstr "Crea un Plot NFT"
 
 #: src/components/settings/ProfileAdd.tsx:86
 msgid "Create a new profile"
-msgstr ""
+msgstr "Crea nuovo profilo"
 
 #: src/components/offers/NFTOfferEditor.tsx:702
 msgid "Create an NFT Offer"
-msgstr ""
+msgstr "Crea un Offerta NFT"
 
 #: src/components/offers/OfferEditor.tsx:243
 #: src/components/offers/OfferManager.tsx:584
 msgid "Create an Offer"
-msgstr ""
+msgstr "Crea un Offerta"
 
 #: src/components/offers/OfferManager.tsx:576
 msgid "Create an offer to exchange assets including XCH, tokens, and NFTs. View an offer to inspect and accept an offer made by another party."
-msgstr ""
+msgstr "Crea un'offerta per scambiare XCH, altri token o NFT. Carica un offer file per ispezionare e accettare un'offerta fatta da un'altro utente."
 
 #: src/components/offers/OfferManager.tsx:153
 msgid "Creates and submits a transaction on the blockchain that cancels the offer"
-msgstr ""
+msgstr "Crea e invia una transazione sulla blockchain che annulla l'offerta"
 
 #: src/components/plotNFT/PlotNFTUnconfirmedCard.tsx:59
 msgid "Creating Plot NFT and Joining the Pool"
@@ -560,15 +560,15 @@ msgstr "Creazione di Plot NFT per l'auto-pooling"
 #: src/components/offers/OfferManager.tsx:408
 #: src/components/offers/OfferViewer.tsx:171
 msgid "Creation Date"
-msgstr ""
+msgstr "Data di creazione"
 
 #: src/components/offers/NFTOfferViewer.tsx:570
 msgid "Creator Fee ({0}%)"
-msgstr ""
+msgstr "Commissione Creatore ({0}%)"
 
 #: src/components/offers/NFTOfferEditor.tsx:284
 msgid "Creator Fee ({royaltyPercentage}%)"
-msgstr ""
+msgstr "Commissione Creatore ({royaltyPercentage}%)"
 
 #: src/components/offers/NFTOfferEditor.tsx:289
 #: src/components/offers/NFTOfferViewer.tsx:577
