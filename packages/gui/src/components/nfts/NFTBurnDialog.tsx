@@ -81,7 +81,7 @@ export default function NFTBurnDialog(props: NFTPreviewDialogProps) {
             you want to continue?
           </Trans>
         }
-        confirmTitle={<Trans>Confirm</Trans>}
+        confirmTitle={<Trans>Burn</Trans>}
       />,
     );
 
