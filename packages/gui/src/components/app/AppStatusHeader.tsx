@@ -1,25 +1,20 @@
 import React from 'react';
 import { Trans } from '@lingui/macro';
-import { Flex, StateColor, StateIndicatorDot } from '@chia/core';
-import {
-  useGetFullNodeConnectionsQuery,
-  useGetWalletConnectionsQuery,
-} from '@chia/api-react';
-import { ButtonGroup, Button, Popover } from '@mui/material';
+import { Flex, StateColor, StateIndicatorDot, useMode, Mode } from '@chia/core';
+import { useGetFullNodeConnectionsQuery } from '@chia/api-react';
+import { ButtonGroup, Button, Popover, Typography } from '@mui/material';
 import { useTheme } from '@mui/styles';
-import { WalletConnections } from '@chia/wallets';
+import { WalletConnections, WalletStatus } from '@chia/wallets';
 import Connections from '../fullNode/FullNodeConnections';
 
 export default function AppStatusHeader() {
   const theme = useTheme();
+  const [mode] = useMode();
   const { data: connectionsFN } = useGetFullNodeConnectionsQuery(
     {},
     { pollingInterval: 10000 },
   );
-  const { data: connectionsW } = useGetWalletConnectionsQuery(
-    {},
-    { pollingInterval: 10000 },
-  );
+
   const [anchorElFN, setAnchorElFN] = React.useState<HTMLButtonElement | null>(
     null,
   );
@@ -52,11 +47,6 @@ export default function AppStatusHeader() {
       ? StateColor.SUCCESS
       : theme.palette.text.secondary;
 
-  const colorW =
-    connectionsW?.length >= 1
-      ? StateColor.SUCCESS
-      : theme.palette.text.secondary;
-
   return (
     <ButtonGroup variant="outlined" color="secondary" size="small">
       <Button onClick={handleClickFN}>
@@ -82,16 +72,21 @@ export default function AppStatusHeader() {
           horizontal: 'right',
         }}
       >
-        <Connections />
+        {mode === Mode.FARMING ? (
+          <Connections />
+        ) : (
+          <Typography>
+            <Trans>
+              Full node connections are not available because you are using
+              wallet mode. You can turn on the farming mode in settings.
+            </Trans>
+          </Typography>
+        )}
       </Popover>
       <Button onClick={handleClickW}>
         <Flex gap={1} alignItems="center">
-          <Flex>
-            <StateIndicatorDot color={colorW} />
-          </Flex>
-          <Flex>
-            <Trans>Wallet</Trans>
-          </Flex>
+          <WalletStatus indicator hideTitle />
+          <Trans>Wallet</Trans>
         </Flex>
       </Button>
       <Popover
