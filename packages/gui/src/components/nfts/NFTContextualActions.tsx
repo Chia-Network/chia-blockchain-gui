@@ -3,19 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { useCopyToClipboard } from 'react-use';
 import { Trans } from '@lingui/macro';
 import type { NFTInfo } from '@chia/api';
-import {
-  useSetNFTStatusMutation,
-  useTransferNFTMutation,
-} from '@chia/api-react';
-import {
-  AlertDialog,
-  DropdownActions,
-  useOpenDialog,
-  ConfirmDialog,
-  useShowError,
-  Tooltip,
-  chiaToMojo,
-} from '@chia/core';
+import { useSetNFTStatusMutation } from '@chia/api-react';
+import { AlertDialog, DropdownActions, useOpenDialog } from '@chia/core';
 import type { DropdownActionsChildProps } from '@chia/core';
 import {
   LinkSmall as LinkSmallIcon,

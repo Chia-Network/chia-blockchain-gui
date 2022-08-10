@@ -1,17 +1,14 @@
 import React, { useState } from 'react';
-import { Plural, Trans } from '@lingui/macro';
+import { Trans } from '@lingui/macro';
 import styled from 'styled-components';
 import type { NFTInfo } from '@chia/api';
 import {
   Button,
   ButtonLoading,
-  ConfirmDialog,
   Fee,
   Form,
-  FormatLargeNumber,
   Flex,
   TextField,
-  TooltipIcon,
   chiaToMojo,
   useCurrencyCode,
   useOpenDialog,
@@ -25,7 +22,6 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
-  Divider,
   Typography,
 } from '@mui/material';
 import { useForm } from 'react-hook-form';

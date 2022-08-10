@@ -1,10 +1,5 @@
 import React from 'react';
-import {
-  Box,
-  Tooltip as BaseTooltip,
-  TooltipProps,
-  Typography,
-} from '@mui/material';
+import { Box, Tooltip as BaseTooltip, TooltipProps } from '@mui/material';
 import Flex from '../Flex';
 import CopyToClipboard from '../CopyToClipboard';
 
@@ -15,8 +10,14 @@ type Props = TooltipProps & {
 };
 
 export default function Tooltip(props: Props) {
-  const { copyToClipboard, title, maxWidth, interactive, children, ...rest } =
-    props;
+  const {
+    copyToClipboard = false,
+    title,
+    maxWidth = 200,
+    interactive,
+    children,
+    ...rest
+  } = props;
 
   const titleContent = copyToClipboard ? (
     <Flex alignItems="center" gap={1}>
@@ -39,8 +40,3 @@ export default function Tooltip(props: Props) {
     </BaseTooltip>
   );
 }
-
-Tooltip.defaultProps = {
-  copyToClipboard: false,
-  maxWidth: 200,
-};
