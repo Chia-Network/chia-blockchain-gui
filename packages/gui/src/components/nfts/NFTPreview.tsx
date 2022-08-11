@@ -84,7 +84,7 @@ export default function NFTPreview(props: NFTPreviewProps) {
   const [statusText, isStatusError] = useMemo(() => {
     if (nft.pendingTransaction) {
       return [t`Update Pending`, false];
-    } else if (error?.message === 'Hash mismatch') {
+    } else if (!isValid || error?.message === 'Hash mismatch') {
       return [t`Image Hash Mismatch`, true];
     }
     return [undefined, false];
