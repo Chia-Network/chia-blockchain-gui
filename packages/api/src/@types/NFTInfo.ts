@@ -17,8 +17,6 @@ type NFTInfo = {
   pendingTransaction: number;
   royaltyPercentage: number; // e.g. 1750 == 1.75%
   royaltyPuzzleHash: string;
-  seriesNumber: number; // deprecated: use editionNumber instead
-  seriesTotal: number; // deprecated: use editionTotal instead
   supportsDid: boolean;
   updaterPuzhash: string;
 
