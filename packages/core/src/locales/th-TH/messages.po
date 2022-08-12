@@ -8,7 +8,7 @@ msgstr ""
 "Language: th_TH\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-08-05 14:26\n"
+"PO-Revision-Date: 2022-08-12 18:15\n"
 "Last-Translator: \n"
 "Language-Team: Thai\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -18,7 +18,7 @@ msgstr ""
 "X-Crowdin-File: /main/packages/core/src/locales/en-US/messages.po\n"
 "X-Crowdin-File-ID: 1886\n"
 
-#: src/components/Amount/Amount.tsx:114
+#: src/components/Amount/Amount.tsx:116
 msgid "Amount"
 msgstr "จำนวน"
 
@@ -32,7 +32,7 @@ msgstr "ลักษณะ"
 msgid "Back"
 msgstr "ย้อนกลับ"
 
-#: src/screens/SelectKey/SelectKeyItem.tsx:146
+#: src/screens/SelectKey/SelectKeyItem.tsx:147
 msgid "Can be backed up to mnemonic seed"
 msgstr "สามารถสำรองข้อมูลเป็นรหัสนีโมนิคได้"
 
@@ -45,19 +45,19 @@ msgstr "ยกเลิก"
 msgid "Connected"
 msgstr "เชื่อมต่อแล้ว"
 
-#: src/components/CopyToClipboard/CopyToClipboard.tsx:41
+#: src/components/CopyToClipboard/CopyToClipboard.tsx:42
 msgid "Copied"
 msgstr "คัดลอกแล้ว"
 
-#: src/components/CopyToClipboard/CopyToClipboard.tsx:43
+#: src/components/CopyToClipboard/CopyToClipboard.tsx:44
 msgid "Copy to Clipboard"
 msgstr "คัดลอกไปยังคลิปบอร์ด"
 
-#: src/screens/SelectKey/SelectKey.tsx:179
+#: src/screens/SelectKey/SelectKey.tsx:180
 msgid "Create a new private key"
 msgstr "สร้างคีย์ส่วนตัวใหม่"
 
-#: src/screens/SelectKey/SelectKeyItem.tsx:161
+#: src/screens/SelectKey/SelectKeyItem.tsx:163
 msgid "DANGER: permanently delete private key"
 msgstr "อันตราย: ลบคีย์ส่วนตัวถาวร"
 
@@ -70,7 +70,7 @@ msgstr "ตอนกลางคืน"
 msgid "Delete"
 msgstr "ลบ"
 
-#: src/screens/SelectKey/SelectKey.tsx:199
+#: src/screens/SelectKey/SelectKey.tsx:202
 #: src/screens/SelectKey/SelectKey.tsx:77
 msgid "Delete all keys"
 msgstr "ลบคีย์ทั้งหมด"
@@ -87,11 +87,11 @@ msgstr "การลบคีย์ทั้งหมดจะลบคีย์
 msgid "Deleting the key will permanently remove the key from your computer, make sure you have backups. Are you sure you want to continue?"
 msgstr "การลบคีย์จะลบคีย์ออกจากคอมพิวเตอร์ของคุณโดยถาวร โปรดตรวจสอบให้แน่ใจว่าคุณได้สำรองข้อมูลไว้ คุณแน่ใจที่จะดำเนินการต่อหรือไม่?"
 
-#: src/hooks/useValidateChangePassphraseParams.tsx:51
+#: src/hooks/useValidateChangePassphraseParams.tsx:68
 msgid "Disable"
 msgstr "ปิดการใช้งาน"
 
-#: src/hooks/useValidateChangePassphraseParams.tsx:50
+#: src/hooks/useValidateChangePassphraseParams.tsx:67
 msgid "Disable Passphrase Protection"
 msgstr "ปิดใช้งานการป้องกันด้วยวลีรหัสผ่าน"
 
@@ -134,7 +134,7 @@ msgstr "คำถามที่พบบ่อย"
 msgid "Help"
 msgstr "ช่วยเหลือ"
 
-#: src/components/LocaleToggle/LocaleToggle.tsx:70
+#: src/components/LocaleToggle/LocaleToggle.tsx:71
 msgid "Help translate"
 msgstr "ช่วยแปลภาษา"
 
@@ -142,7 +142,7 @@ msgstr "ช่วยแปลภาษา"
 msgid "Hide Advanced Options"
 msgstr "ซ่อนตัวเลือกขั้นสูง"
 
-#: src/screens/SelectKey/SelectKey.tsx:189
+#: src/screens/SelectKey/SelectKey.tsx:191
 msgid "Import from Mnemonics (24 words)"
 msgstr "นำเข้าจากรหัสนีโมนิค (24 คำ)"
 
@@ -162,12 +162,12 @@ msgstr ""
 msgid "Loading list of the keys"
 msgstr "กำลังโหลดรายการกระเป๋าเงิน"
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:128
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:150
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:129
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:151
 msgid "Log Out"
 msgstr ""
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:146
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:147
 msgid "Logout"
 msgstr "ออกจากระบบ"
 
@@ -183,7 +183,7 @@ msgstr ""
 msgid "Mode"
 msgstr ""
 
-#: src/hooks/useValidateChangePassphraseParams.tsx:38
+#: src/hooks/useValidateChangePassphraseParams.tsx:49
 msgid "New passphrase is the same as your current passphrase"
 msgstr ""
 
@@ -205,7 +205,7 @@ msgstr "ตกลง"
 msgid "Pool public key:"
 msgstr "คีย์สาธารณะของพูล:"
 
-#: src/screens/SelectKey/SelectKeyItem.tsx:141
+#: src/screens/SelectKey/SelectKeyItem.tsx:142
 msgid "Private key with public fingerprint {fingerprint}"
 msgstr "คีย์ส่วนตัวพร้อมลายนิ้วมือสาธารณะ {fingerprint}"
 
@@ -234,7 +234,7 @@ msgstr ""
 msgid "Report an Issue"
 msgstr ""
 
-#: src/screens/SelectKey/SelectKeyItem.tsx:150
+#: src/screens/SelectKey/SelectKeyItem.tsx:151
 msgid "See private key"
 msgstr "ดูคีย์ส่วนตัว"
 
@@ -256,7 +256,7 @@ msgstr ""
 msgid "Send Feedback"
 msgstr "ส่งความคิดเห็น"
 
-#: src/hooks/useValidateChangePassphraseParams.tsx:48
+#: src/hooks/useValidateChangePassphraseParams.tsx:61
 msgid "Setting a passphrase is strongly recommended to protect your keys. Are you sure you want to skip setting a passphrase?"
 msgstr "การใช้รหัสผ่าน เป็นวิธีที่ดีในการปกป้องคีย์ของคุณ. คุณแน่ใจหรือไม่ที่จะปิดการป้องกันด้วยรหัสผ่าน?"
 
@@ -273,11 +273,11 @@ msgstr "แสดงตัวเลือกขั้นสูง"
 msgid "Sign In"
 msgstr "เข้าสู่ระบบ"
 
-#: src/hooks/useValidateChangePassphraseParams.tsx:47
+#: src/hooks/useValidateChangePassphraseParams.tsx:59
 msgid "Skip"
 msgstr ""
 
-#: src/hooks/useValidateChangePassphraseParams.tsx:46
+#: src/hooks/useValidateChangePassphraseParams.tsx:58
 msgid "Skip Passphrase Protection"
 msgstr ""
 
@@ -285,7 +285,7 @@ msgstr ""
 msgid "Something went wrong"
 msgstr ""
 
-#: src/hooks/useValidateChangePassphraseParams.tsx:30
+#: src/hooks/useValidateChangePassphraseParams.tsx:31
 msgid "The provided passphrase and confirmation do not match"
 msgstr ""
 
@@ -318,7 +318,7 @@ msgstr "ไม่ทราบ"
 msgid "Unsaved Changes"
 msgstr "ความเปลี่ยนแปลงที่ยังไม่ถูกบันทึก"
 
-#: src/hooks/useValidateChangePassphraseParams.tsx:52
+#: src/hooks/useValidateChangePassphraseParams.tsx:70
 msgid "Using a passphrase is strongly recommended to protect your keys. Are you sure you want to disable passphrase protection?"
 msgstr ""
 
@@ -356,11 +356,11 @@ msgstr "คุณได้ทำการเปลี่ยนแปลง ค�
 msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Would you like to migrate your keys now?"
 msgstr ""
 
-#: src/components/Amount/Amount.tsx:96
+#: src/components/Amount/Amount.tsx:98
 msgid "{0, plural, one {mojo} other {mojos}}"
 msgstr ""
 
-#: src/hooks/useValidateChangePassphraseParams.tsx:33
+#: src/hooks/useValidateChangePassphraseParams.tsx:39
 msgid "{minPassphraseLength, plural, one {Passphrases must be at least # character in length} other {Passphrases must be at least # characters in length}}"
 msgstr ""
 
