@@ -8,7 +8,7 @@ msgstr ""
 "Language: en_AU\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-08-12 18:16\n"
+"PO-Revision-Date: 2022-08-12 20:59\n"
 "Last-Translator: \n"
 "Language-Team: English, Australia\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -843,7 +843,7 @@ msgstr "View pending beer balances"
 
 #: src/components/WalletConnections.tsx:80
 msgid "Wallet Connections"
-msgstr ""
+msgstr "Wallet Connections"
 
 #: src/components/cat/WalletCAT.tsx:75
 #: src/components/cat/WalletDID.tsx:1118
