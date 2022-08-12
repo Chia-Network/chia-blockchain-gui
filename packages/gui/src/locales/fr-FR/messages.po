@@ -8,7 +8,7 @@ msgstr ""
 "Language: fr_FR\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-08-12 18:14\n"
+"PO-Revision-Date: 2022-08-12 19:59\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
@@ -268,11 +268,11 @@ msgstr "Parcourir"
 #: src/components/nfts/NFTBurnDialog.tsx:170
 #: src/components/nfts/NFTContextualActions.tsx:616
 msgid "Burn"
-msgstr ""
+msgstr "Brûler"
 
 #: src/components/nfts/NFTBurnDialog.tsx:77
 msgid "Burn NFT confirmation"
-msgstr ""
+msgstr "Confirmation de brûlure du NFT"
 
 #: src/components/nfts/NFTBurnDialog.tsx:122
 msgid "Burning a non-fungible token means destroying it. Burned NFTs are sent to a verifiably un-spendable address, eliminating your NFT from the blockchain. However, transactions leading up to the burn will remain on the blockchain ledger."
