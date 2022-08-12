@@ -8,7 +8,7 @@ msgstr ""
 "Language: ja_JP\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-08-12 18:14\n"
+"PO-Revision-Date: 2022-08-12 20:59\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -40,11 +40,11 @@ msgstr "+ 耕地を追加"
 
 #: src/components/settings/ProfileAdd.tsx:91
 msgid "<0>Need some XCH?</0>"
-msgstr ""
+msgstr "<0>XCHが必要ですか?</0>"
 
 #: src/components/settings/ProfileAdd.tsx:99
 msgid "<0>Use one (1) mojo to create a Profile.</0>"
-msgstr ""
+msgstr "<0>プロフィールを作成するには、1mojoを使用します。</0>"
 
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:96
 msgid "A harvester is a service running on a machine where plot(s) are actually stored. A farmer and harvester talk to a full node to see the state of the chain. View your network of connected harvesters below Learn more"
@@ -63,11 +63,11 @@ msgstr "チアブロックチェーンについて"
 #: src/components/offers/OfferAcceptConfirmationDialog.tsx:23
 #: src/components/offers/OfferViewer.tsx:321
 msgid "Accept Offer"
-msgstr ""
+msgstr "オファーを受ける"
 
 #: src/components/offers/OfferViewer.tsx:161
 msgid "Accepted on Date"
-msgstr ""
+msgstr "承認した日時"
 
 #: src/components/plot/PlotHarvesterPlots.tsx:79
 #: src/components/plot/PlotHarvesterPlotsDuplicate.tsx:18
@@ -268,19 +268,21 @@ msgstr "参照"
 #: src/components/nfts/NFTBurnDialog.tsx:170
 #: src/components/nfts/NFTContextualActions.tsx:616
 msgid "Burn"
-msgstr ""
+msgstr "焼却"
 
 #: src/components/nfts/NFTBurnDialog.tsx:77
 msgid "Burn NFT confirmation"
-msgstr ""
+msgstr "焼却するNFTの確認"
 
 #: src/components/nfts/NFTBurnDialog.tsx:122
 msgid "Burning a non-fungible token means destroying it. Burned NFTs are sent to a verifiably un-spendable address, eliminating your NFT from the blockchain. However, transactions leading up to the burn will remain on the blockchain ledger."
-msgstr ""
+msgstr "NFTを焼却(Burn, バーン)するとは、NFTを破壊し使用不可能にするという意味です。\n"
+"バーンされたNFTは検証が可能である今後使用をできなくするためのアドレスに送信され、NFTをブロックチェーンから消去します。\n"
+"ただし、バーンに至るまでの取引はブロックチェーンの台帳に残ります。"
 
 #: src/components/offers/NFTOfferEditor.tsx:362
 msgid "Buy an NFT"
-msgstr ""
+msgstr "NFTを購入する"
 
 #: src/components/app/AppPassPrompt.tsx:184
 #: src/components/backup/BackupCreate.tsx:51
@@ -728,7 +730,7 @@ msgstr "既にこのデバイス上に耕地をお持ちですか？<0>耕地デ
 
 #: src/components/nfts/NFTBurnDialog.tsx:114
 msgid "Do you want to burn this NFT?"
-msgstr ""
+msgstr "このNFTをバーンしますか？"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:55
 msgid "Does your machine support parallel plotting?"
@@ -740,7 +742,7 @@ msgstr ""
 
 #: src/components/offers/OfferImport.tsx:191
 msgid "Drag & Drop an Offer File"
-msgstr ""
+msgstr "オファーファイルをドラッグ＆ドロップ"
 
 #: src/components/offers/OfferImport.tsx:146
 #~ msgid "Drag & drop an offer file below to view its details"
@@ -950,7 +952,7 @@ msgstr "ファイル名"
 
 #: src/components/nfts/gallery/NFTGallery.tsx:136
 msgid "Filters"
-msgstr ""
+msgstr "フィルター"
 
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:47
 msgid "Final folder location"
@@ -977,7 +979,7 @@ msgstr "フルノード"
 
 #: src/components/fullNode/FullNodeConnections.tsx:76
 msgid "Full Node Connections"
-msgstr ""
+msgstr "フルノードコネクション"
 
 #: src/electron/main.tsx:517
 msgid "Full Screen"
@@ -985,7 +987,7 @@ msgstr "全画面表示"
 
 #: src/components/settings/SettingsNFT.tsx:23
 msgid "Gallery Management"
-msgstr ""
+msgstr "ギャラリーの管理"
 
 #: src/components/settings/Settings.tsx:44
 msgid "General"
@@ -1036,11 +1038,11 @@ msgstr ""
 
 #: src/components/nfts/NFTContextualActions.tsx:568
 msgid "Hide"
-msgstr ""
+msgstr "非表示"
 
 #: src/components/settings/SettingsNFT.tsx:34
 msgid "Hide objectionable content"
-msgstr ""
+msgstr "不適切なコンテンツを隠す"
 
 #: src/components/app/AppPassPrompt.tsx:160
 #: src/components/settings/RemovePassphrasePrompt.tsx:150
@@ -1085,7 +1087,7 @@ msgstr ""
 
 #: src/components/nfts/NFTBurnDialog.tsx:79
 msgid "If you proceed, this NFT will be permanently deleted. Are you sure you want to continue?"
-msgstr ""
+msgstr "続行すると、この NFT は完全に削除されます。本当に続行してもよろしいですか？"
 
 #: src/components/nfts/NFTPreview.tsx:92
 msgid "Image Hash Mismatch"
