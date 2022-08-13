@@ -8,7 +8,7 @@ msgstr ""
 "Language: ru_RU\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-08-12 18:14\n"
+"PO-Revision-Date: 2022-08-13 01:18\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "Plural-Forms: nplurals=4; plural=((n%10==1 && n%100!=11) ? 0 : ((n%10 >= 2 && n%10 <=4 && (n%100 < 12 || n%100 > 14)) ? 1 : ((n%10 == 0 || (n%10 >= 5 && n%10 <=9)) || (n%100 >= 11 && n%100 <= 14)) ? 2 : 3));\n"
@@ -268,7 +268,7 @@ msgstr "Обзор"
 #: src/components/nfts/NFTBurnDialog.tsx:170
 #: src/components/nfts/NFTContextualActions.tsx:616
 msgid "Burn"
-msgstr ""
+msgstr "Сжечь"
 
 #: src/components/nfts/NFTBurnDialog.tsx:77
 msgid "Burn NFT confirmation"
@@ -280,7 +280,7 @@ msgstr ""
 
 #: src/components/offers/NFTOfferEditor.tsx:362
 msgid "Buy an NFT"
-msgstr ""
+msgstr "Купить NFT"
 
 #: src/components/app/AppPassPrompt.tsx:184
 #: src/components/backup/BackupCreate.tsx:51
@@ -860,7 +860,7 @@ msgstr ""
 
 #: src/components/offers/OfferImport.tsx:191
 msgid "Drag & Drop an Offer File"
-msgstr ""
+msgstr "Перетащите файл предложения"
 
 #: src/components/offers/OfferImport.tsx:146
 #~ msgid "Drag & drop an offer file below to view its details"
@@ -1070,7 +1070,7 @@ msgstr "Имя файла"
 
 #: src/components/nfts/gallery/NFTGallery.tsx:136
 msgid "Filters"
-msgstr ""
+msgstr "Фильтры"
 
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:47
 msgid "Final folder location"
@@ -1105,7 +1105,7 @@ msgstr "Полный экран"
 
 #: src/components/settings/SettingsNFT.tsx:23
 msgid "Gallery Management"
-msgstr ""
+msgstr "Управление галереей"
 
 #: src/components/settings/Settings.tsx:44
 msgid "General"
@@ -1156,7 +1156,7 @@ msgstr "Ниже приведены значения испытаний для �
 
 #: src/components/nfts/NFTContextualActions.tsx:568
 msgid "Hide"
-msgstr ""
+msgstr "Скрыть"
 
 #: src/components/settings/SettingsNFT.tsx:34
 msgid "Hide objectionable content"
@@ -2324,7 +2324,7 @@ msgstr "Cвой пул. Когда вы выиграете блок, вы пол
 
 #: src/components/offers/NFTOfferEditor.tsx:367
 msgid "Sell an NFT"
-msgstr ""
+msgstr "Продать NFT"
 
 #: src/components/nfts/NFTBurnDialog.tsx:142
 #: src/components/nfts/NFTTransferAction.tsx:142
@@ -2382,7 +2382,7 @@ msgstr ""
 
 #: src/components/nfts/NFTContextualActions.tsx:568
 msgid "Show"
-msgstr ""
+msgstr "Показать"
 
 #: src/components/offers/OfferManager.tsx:451
 msgid "Show Details"
@@ -2390,7 +2390,7 @@ msgstr ""
 
 #: src/components/nfts/gallery/NFTGallery.tsx:149
 msgid "Show Hidden"
-msgstr ""
+msgstr "Показывать скрытые"
 
 #: src/components/nfts/NFTPreview.tsx:212
 msgid "Show Preview"
@@ -2899,7 +2899,7 @@ msgstr "Ожидание подтверждения транзакции"
 
 #: src/components/app/AppStatusHeader.tsx:75
 msgid "Wallet"
-msgstr ""
+msgstr "Кошелёк"
 
 #: src/components/app/AppSelectMode.tsx:76
 #: src/components/app/AppSelectMode.tsx:130
