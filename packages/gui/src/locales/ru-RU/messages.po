@@ -8,7 +8,7 @@ msgstr ""
 "Language: ru_RU\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-08-13 01:18\n"
+"PO-Revision-Date: 2022-08-14 09:46\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "Plural-Forms: nplurals=4; plural=((n%10==1 && n%100!=11) ? 0 : ((n%10 >= 2 && n%10 <=4 && (n%100 < 12 || n%100 > 14)) ? 1 : ((n%10 == 0 || (n%10 >= 5 && n%10 <=9)) || (n%100 >= 11 && n%100 <= 14)) ? 2 : 3));\n"
@@ -1097,7 +1097,7 @@ msgstr "Полный узел"
 
 #: src/components/fullNode/FullNodeConnections.tsx:76
 msgid "Full Node Connections"
-msgstr ""
+msgstr "Соединения с полным узлом"
 
 #: src/electron/main.tsx:517
 msgid "Full Screen"
@@ -1160,7 +1160,7 @@ msgstr "Скрыть"
 
 #: src/components/settings/SettingsNFT.tsx:34
 msgid "Hide objectionable content"
-msgstr ""
+msgstr "Скрыть нежелательный контент"
 
 #: src/components/app/AppPassPrompt.tsx:160
 #: src/components/settings/RemovePassphrasePrompt.tsx:150
@@ -1205,7 +1205,7 @@ msgstr ""
 
 #: src/components/nfts/NFTBurnDialog.tsx:79
 msgid "If you proceed, this NFT will be permanently deleted. Are you sure you want to continue?"
-msgstr ""
+msgstr "Если вы продолжите, этот NFT будет удален навсегда. Вы уверены, что хотите продолжить?"
 
 #: src/components/nfts/NFTPreview.tsx:92
 msgid "Image Hash Mismatch"
@@ -1374,7 +1374,7 @@ msgstr ""
 
 #: src/components/fullNode/FullNodeConnections.tsx:80
 msgid "List of connections is empty"
-msgstr ""
+msgstr "Список соединений пуст"
 
 #: src/components/nfts/NFTSummary.tsx:115
 msgid "Loading NFT"
