@@ -8,7 +8,7 @@ msgstr ""
 "Language: lv_LV\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-08-12 18:16\n"
+"PO-Revision-Date: 2022-08-14 09:46\n"
 "Last-Translator: \n"
 "Language-Team: Latvian\n"
 "Plural-Forms: nplurals=3; plural=(n==0 ? 0 : n%10==1 && n%100!=11 ? 1 : 2);\n"
@@ -843,7 +843,7 @@ msgstr ""
 
 #: src/components/WalletConnections.tsx:80
 msgid "Wallet Connections"
-msgstr ""
+msgstr "Maku Savienojumi"
 
 #: src/components/cat/WalletCAT.tsx:75
 #: src/components/cat/WalletDID.tsx:1118
