@@ -8,7 +8,7 @@ msgstr ""
 "Language: lv_LV\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-08-14 08:47\n"
+"PO-Revision-Date: 2022-08-14 09:46\n"
 "Last-Translator: \n"
 "Language-Team: Latvian\n"
 "Plural-Forms: nplurals=3; plural=(n==0 ? 0 : n%10==1 && n%100!=11 ? 1 : 2);\n"
@@ -740,7 +740,7 @@ msgstr ""
 
 #: src/components/offers/OfferImport.tsx:191
 msgid "Drag & Drop an Offer File"
-msgstr ""
+msgstr "Velciet un nometiet piedāvājuma failu"
 
 #: src/components/offers/OfferImport.tsx:146
 #~ msgid "Drag & drop an offer file below to view its details"
@@ -950,7 +950,7 @@ msgstr ""
 
 #: src/components/nfts/gallery/NFTGallery.tsx:136
 msgid "Filters"
-msgstr ""
+msgstr "Filtri"
 
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:47
 msgid "Final folder location"
@@ -977,7 +977,7 @@ msgstr ""
 
 #: src/components/fullNode/FullNodeConnections.tsx:76
 msgid "Full Node Connections"
-msgstr ""
+msgstr "Pilna Mezglojumu Savienojumi"
 
 #: src/electron/main.tsx:517
 msgid "Full Screen"
@@ -985,7 +985,7 @@ msgstr ""
 
 #: src/components/settings/SettingsNFT.tsx:23
 msgid "Gallery Management"
-msgstr ""
+msgstr "Galerijas Vadība"
 
 #: src/components/settings/Settings.tsx:44
 msgid "General"
@@ -1036,11 +1036,11 @@ msgstr ""
 
 #: src/components/nfts/NFTContextualActions.tsx:568
 msgid "Hide"
-msgstr ""
+msgstr "Slēpt"
 
 #: src/components/settings/SettingsNFT.tsx:34
 msgid "Hide objectionable content"
-msgstr ""
+msgstr "Slēpt nevēlamu saturu"
 
 #: src/components/app/AppPassPrompt.tsx:160
 #: src/components/settings/RemovePassphrasePrompt.tsx:150
@@ -2204,7 +2204,7 @@ msgstr ""
 
 #: src/components/offers/NFTOfferEditor.tsx:367
 msgid "Sell an NFT"
-msgstr ""
+msgstr "Pārdot NFT"
 
 #: src/components/nfts/NFTBurnDialog.tsx:142
 #: src/components/nfts/NFTTransferAction.tsx:142
@@ -2262,7 +2262,7 @@ msgstr ""
 
 #: src/components/nfts/NFTContextualActions.tsx:568
 msgid "Show"
-msgstr ""
+msgstr "Rādīt"
 
 #: src/components/offers/OfferManager.tsx:451
 msgid "Show Details"
@@ -2270,7 +2270,7 @@ msgstr ""
 
 #: src/components/nfts/gallery/NFTGallery.tsx:149
 msgid "Show Hidden"
-msgstr ""
+msgstr "Rādīt Slēptos"
 
 #: src/components/nfts/NFTPreview.tsx:212
 msgid "Show Preview"
@@ -2779,7 +2779,7 @@ msgstr ""
 
 #: src/components/app/AppStatusHeader.tsx:75
 msgid "Wallet"
-msgstr ""
+msgstr "Maka"
 
 #: src/components/app/AppSelectMode.tsx:76
 #: src/components/app/AppSelectMode.tsx:130
