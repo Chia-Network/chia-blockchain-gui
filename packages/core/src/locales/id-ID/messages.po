@@ -18,7 +18,7 @@ msgstr ""
 "X-Crowdin-File: /main/packages/core/src/locales/en-US/messages.po\n"
 "X-Crowdin-File-ID: 1886\n"
 
-#: src/components/Amount/Amount.tsx:114
+#: src/components/Amount/Amount.tsx:116
 msgid "Amount"
 msgstr "Jumlah"
 
@@ -32,7 +32,7 @@ msgstr "Tampilan"
 msgid "Back"
 msgstr "Kembali"
 
-#: src/screens/SelectKey/SelectKeyItem.tsx:146
+#: src/screens/SelectKey/SelectKeyItem.tsx:147
 msgid "Can be backed up to mnemonic seed"
 msgstr "Dapat dibackup ke mnemonic seed"
 
@@ -45,19 +45,19 @@ msgstr "Batal"
 msgid "Connected"
 msgstr "Tersambung"
 
-#: src/components/CopyToClipboard/CopyToClipboard.tsx:41
+#: src/components/CopyToClipboard/CopyToClipboard.tsx:42
 msgid "Copied"
 msgstr "Disalin"
 
-#: src/components/CopyToClipboard/CopyToClipboard.tsx:43
+#: src/components/CopyToClipboard/CopyToClipboard.tsx:44
 msgid "Copy to Clipboard"
 msgstr "Salin ke Clipboard"
 
-#: src/screens/SelectKey/SelectKey.tsx:179
+#: src/screens/SelectKey/SelectKey.tsx:180
 msgid "Create a new private key"
 msgstr "Buat sebuah private key baru"
 
-#: src/screens/SelectKey/SelectKeyItem.tsx:161
+#: src/screens/SelectKey/SelectKeyItem.tsx:163
 msgid "DANGER: permanently delete private key"
 msgstr "BAHAYA: menghapus permanen private key"
 
@@ -70,7 +70,7 @@ msgstr "Gelap"
 msgid "Delete"
 msgstr "Hapus"
 
-#: src/screens/SelectKey/SelectKey.tsx:199
+#: src/screens/SelectKey/SelectKey.tsx:202
 #: src/screens/SelectKey/SelectKey.tsx:77
 msgid "Delete all keys"
 msgstr "Hapus semua key"
@@ -134,7 +134,7 @@ msgstr "Pertanyaan Umum"
 msgid "Help"
 msgstr "Bantuan"
 
-#: src/components/LocaleToggle/LocaleToggle.tsx:70
+#: src/components/LocaleToggle/LocaleToggle.tsx:71
 msgid "Help translate"
 msgstr "Bantu menterjemahkan"
 
@@ -142,7 +142,7 @@ msgstr "Bantu menterjemahkan"
 msgid "Hide Advanced Options"
 msgstr "Sembunyikan Opsi Tingkat Lanjut"
 
-#: src/screens/SelectKey/SelectKey.tsx:189
+#: src/screens/SelectKey/SelectKey.tsx:191
 msgid "Import from Mnemonics (24 words)"
 msgstr "Impor dari Mnemonic (24 kata)"
 
@@ -162,12 +162,12 @@ msgstr "Terang"
 msgid "Loading list of the keys"
 msgstr "Memuat Daftar dompet"
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:128
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:150
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:129
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:151
 msgid "Log Out"
 msgstr "Keluar"
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:146
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:147
 msgid "Logout"
 msgstr "Keluar"
 
@@ -205,7 +205,7 @@ msgstr "OK"
 msgid "Pool public key:"
 msgstr "Kunci Publik Pool:"
 
-#: src/screens/SelectKey/SelectKeyItem.tsx:141
+#: src/screens/SelectKey/SelectKeyItem.tsx:142
 msgid "Private key with public fingerprint {fingerprint}"
 msgstr "Kunci privat dengan sidik jari publik {fingerprint}"
 
@@ -234,7 +234,7 @@ msgstr ""
 msgid "Report an Issue"
 msgstr ""
 
-#: src/screens/SelectKey/SelectKeyItem.tsx:150
+#: src/screens/SelectKey/SelectKeyItem.tsx:151
 msgid "See private key"
 msgstr "Lihat kata kunci pribadi"
 
@@ -356,11 +356,10 @@ msgstr "Ada perubahan yang belum disimpan. Apakah kamu ingin membuangnya?"
 msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Would you like to migrate your keys now?"
 msgstr "Kunci anda belum migrasi ke penyimpanan kunci baru. Anda tidak akan bisa membuat kunci baru atau menghapus kunci yang ada sampai dengan migrasi selesai. Apa anda mau migrasi kunci anda sekarang?"
 
-#: src/components/Amount/Amount.tsx:96
+#: src/components/Amount/Amount.tsx:98
 msgid "{0, plural, one {mojo} other {mojos}}"
 msgstr "{0, plural,one {mojo} other {mojos}}"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:33
 msgid "{minPassphraseLength, plural, one {Passphrases must be at least # character in length} other {Passphrases must be at least # characters in length}}"
 msgstr "{minPassphraseLength, plural, one {Kata kunci harus paling sedikit # karakter panjang nya} other {Kata kunci harus paling sedikit # karakter panjang nya}}"
-

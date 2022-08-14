@@ -18,7 +18,7 @@ msgstr ""
 "X-Crowdin-File: /main/packages/core/src/locales/en-US/messages.po\n"
 "X-Crowdin-File-ID: 1886\n"
 
-#: src/components/Amount/Amount.tsx:114
+#: src/components/Amount/Amount.tsx:116
 msgid "Amount"
 msgstr "Cantidad"
 
@@ -32,7 +32,7 @@ msgstr ""
 msgid "Back"
 msgstr "Volver"
 
-#: src/screens/SelectKey/SelectKeyItem.tsx:146
+#: src/screens/SelectKey/SelectKeyItem.tsx:147
 msgid "Can be backed up to mnemonic seed"
 msgstr "Puede respaldarse en una semilla mnemotécnica"
 
@@ -45,19 +45,19 @@ msgstr "Cancelar"
 msgid "Connected"
 msgstr "Conectado"
 
-#: src/components/CopyToClipboard/CopyToClipboard.tsx:41
+#: src/components/CopyToClipboard/CopyToClipboard.tsx:42
 msgid "Copied"
 msgstr "Copiado"
 
-#: src/components/CopyToClipboard/CopyToClipboard.tsx:43
+#: src/components/CopyToClipboard/CopyToClipboard.tsx:44
 msgid "Copy to Clipboard"
 msgstr "Copiar al porta-papeles"
 
-#: src/screens/SelectKey/SelectKey.tsx:179
+#: src/screens/SelectKey/SelectKey.tsx:180
 msgid "Create a new private key"
 msgstr "Crear una nueva llave privada"
 
-#: src/screens/SelectKey/SelectKeyItem.tsx:161
+#: src/screens/SelectKey/SelectKeyItem.tsx:163
 msgid "DANGER: permanently delete private key"
 msgstr "ADVERTENCIA: eliminar llave privada permanentemente"
 
@@ -70,7 +70,7 @@ msgstr ""
 msgid "Delete"
 msgstr "Eliminar"
 
-#: src/screens/SelectKey/SelectKey.tsx:199
+#: src/screens/SelectKey/SelectKey.tsx:202
 #: src/screens/SelectKey/SelectKey.tsx:77
 msgid "Delete all keys"
 msgstr "Borrar todas las llaves"
@@ -134,7 +134,7 @@ msgstr "Preguntas Frecuentes"
 msgid "Help"
 msgstr "Ayuda"
 
-#: src/components/LocaleToggle/LocaleToggle.tsx:70
+#: src/components/LocaleToggle/LocaleToggle.tsx:71
 msgid "Help translate"
 msgstr "Ayuda a traducir"
 
@@ -142,7 +142,7 @@ msgstr "Ayuda a traducir"
 msgid "Hide Advanced Options"
 msgstr "Ocultar Opciones Avanzadas"
 
-#: src/screens/SelectKey/SelectKey.tsx:189
+#: src/screens/SelectKey/SelectKey.tsx:191
 msgid "Import from Mnemonics (24 words)"
 msgstr "Importar de Mnemotécnia (24 palabras)"
 
@@ -162,12 +162,12 @@ msgstr ""
 msgid "Loading list of the keys"
 msgstr ""
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:128
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:150
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:129
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:151
 msgid "Log Out"
 msgstr ""
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:146
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:147
 msgid "Logout"
 msgstr ""
 
@@ -205,7 +205,7 @@ msgstr ""
 msgid "Pool public key:"
 msgstr "Llave Pública de Conjunto:"
 
-#: src/screens/SelectKey/SelectKeyItem.tsx:141
+#: src/screens/SelectKey/SelectKeyItem.tsx:142
 msgid "Private key with public fingerprint {fingerprint}"
 msgstr "Llave privada con huella pública {fingerprint}"
 
@@ -234,7 +234,7 @@ msgstr ""
 msgid "Report an Issue"
 msgstr ""
 
-#: src/screens/SelectKey/SelectKeyItem.tsx:150
+#: src/screens/SelectKey/SelectKeyItem.tsx:151
 msgid "See private key"
 msgstr "Ver llave privada"
 
@@ -356,11 +356,10 @@ msgstr "Ha hecho cambios, ¿quiere descartarlos?"
 msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Would you like to migrate your keys now?"
 msgstr ""
 
-#: src/components/Amount/Amount.tsx:96
+#: src/components/Amount/Amount.tsx:98
 msgid "{0, plural, one {mojo} other {mojos}}"
 msgstr ""
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:33
 msgid "{minPassphraseLength, plural, one {Passphrases must be at least # character in length} other {Passphrases must be at least # characters in length}}"
 msgstr ""
-

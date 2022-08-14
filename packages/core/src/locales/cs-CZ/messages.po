@@ -18,7 +18,7 @@ msgstr ""
 "X-Crowdin-File: /main/packages/core/src/locales/en-US/messages.po\n"
 "X-Crowdin-File-ID: 1886\n"
 
-#: src/components/Amount/Amount.tsx:114
+#: src/components/Amount/Amount.tsx:116
 msgid "Amount"
 msgstr "Částka"
 
@@ -32,7 +32,7 @@ msgstr "Vzhled"
 msgid "Back"
 msgstr "Zpět"
 
-#: src/screens/SelectKey/SelectKeyItem.tsx:146
+#: src/screens/SelectKey/SelectKeyItem.tsx:147
 msgid "Can be backed up to mnemonic seed"
 msgstr "Lze zálohovat do sledu 24 slov"
 
@@ -45,19 +45,19 @@ msgstr "Zrušit"
 msgid "Connected"
 msgstr "Připojeno"
 
-#: src/components/CopyToClipboard/CopyToClipboard.tsx:41
+#: src/components/CopyToClipboard/CopyToClipboard.tsx:42
 msgid "Copied"
 msgstr "Zkopírováno"
 
-#: src/components/CopyToClipboard/CopyToClipboard.tsx:43
+#: src/components/CopyToClipboard/CopyToClipboard.tsx:44
 msgid "Copy to Clipboard"
 msgstr "Zkopírovat do schránky"
 
-#: src/screens/SelectKey/SelectKey.tsx:179
+#: src/screens/SelectKey/SelectKey.tsx:180
 msgid "Create a new private key"
 msgstr "Vytvořit nový privátní klíč"
 
-#: src/screens/SelectKey/SelectKeyItem.tsx:161
+#: src/screens/SelectKey/SelectKeyItem.tsx:163
 msgid "DANGER: permanently delete private key"
 msgstr "POZOR: trvale odstraní privátní klíč"
 
@@ -70,7 +70,7 @@ msgstr "Tmavý"
 msgid "Delete"
 msgstr "Odstranit"
 
-#: src/screens/SelectKey/SelectKey.tsx:199
+#: src/screens/SelectKey/SelectKey.tsx:202
 #: src/screens/SelectKey/SelectKey.tsx:77
 msgid "Delete all keys"
 msgstr "Smazat všechny klíče"
@@ -134,7 +134,7 @@ msgstr "Často kladené otázky"
 msgid "Help"
 msgstr "Nápověda"
 
-#: src/components/LocaleToggle/LocaleToggle.tsx:70
+#: src/components/LocaleToggle/LocaleToggle.tsx:71
 msgid "Help translate"
 msgstr "Pomozte s překladem"
 
@@ -142,7 +142,7 @@ msgstr "Pomozte s překladem"
 msgid "Hide Advanced Options"
 msgstr "Skrýt Rozšířené Možnosti"
 
-#: src/screens/SelectKey/SelectKey.tsx:189
+#: src/screens/SelectKey/SelectKey.tsx:191
 msgid "Import from Mnemonics (24 words)"
 msgstr "Import pomocí 24 slov"
 
@@ -162,12 +162,12 @@ msgstr "Světlý"
 msgid "Loading list of the keys"
 msgstr "Načítání seznamu klíčů"
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:128
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:150
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:129
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:151
 msgid "Log Out"
 msgstr "Odhlásit"
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:146
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:147
 msgid "Logout"
 msgstr "Odhlásit"
 
@@ -205,7 +205,7 @@ msgstr "OK"
 msgid "Pool public key:"
 msgstr "Veřejný klíč poolu:"
 
-#: src/screens/SelectKey/SelectKeyItem.tsx:141
+#: src/screens/SelectKey/SelectKeyItem.tsx:142
 msgid "Private key with public fingerprint {fingerprint}"
 msgstr "Soukromý klíč s veřejným otiskem {fingerprint}"
 
@@ -234,7 +234,7 @@ msgstr "Znovu spustit aplikaci"
 msgid "Report an Issue"
 msgstr "Nahlásit problém"
 
-#: src/screens/SelectKey/SelectKeyItem.tsx:150
+#: src/screens/SelectKey/SelectKeyItem.tsx:151
 msgid "See private key"
 msgstr "Zobrazit soukromý klíč"
 
@@ -356,11 +356,10 @@ msgstr "Provedli jste změny. Chcete je zahodit?"
 msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Would you like to migrate your keys now?"
 msgstr "Vaše klíče nebyly migrovány do nové klíčenky. Nebudete schopni vytvářet nové klíče nebo odstraňovat staré, dokud nedokončíte migraci. Přejete si migrovat klíče nyní?"
 
-#: src/components/Amount/Amount.tsx:96
+#: src/components/Amount/Amount.tsx:98
 msgid "{0, plural, one {mojo} other {mojos}}"
 msgstr ""
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:33
 msgid "{minPassphraseLength, plural, one {Passphrases must be at least # character in length} other {Passphrases must be at least # characters in length}}"
 msgstr "{minPassphraseLength, plural, one {Heslo musí mít minimálně # znak} other {Heslo musí být minimálně # znaků dlouhé}}"
-

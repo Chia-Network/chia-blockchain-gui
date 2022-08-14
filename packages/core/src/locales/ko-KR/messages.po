@@ -18,7 +18,7 @@ msgstr ""
 "X-Crowdin-File: /main/packages/core/src/locales/en-US/messages.po\n"
 "X-Crowdin-File-ID: 1886\n"
 
-#: src/components/Amount/Amount.tsx:114
+#: src/components/Amount/Amount.tsx:116
 msgid "Amount"
 msgstr "총합계"
 
@@ -32,7 +32,7 @@ msgstr "외관"
 msgid "Back"
 msgstr "뒤로"
 
-#: src/screens/SelectKey/SelectKeyItem.tsx:146
+#: src/screens/SelectKey/SelectKeyItem.tsx:147
 msgid "Can be backed up to mnemonic seed"
 msgstr "니모닉 시드에 백업할 수 있습니다"
 
@@ -45,19 +45,19 @@ msgstr "취소"
 msgid "Connected"
 msgstr "연결됨"
 
-#: src/components/CopyToClipboard/CopyToClipboard.tsx:41
+#: src/components/CopyToClipboard/CopyToClipboard.tsx:42
 msgid "Copied"
 msgstr "복사됨"
 
-#: src/components/CopyToClipboard/CopyToClipboard.tsx:43
+#: src/components/CopyToClipboard/CopyToClipboard.tsx:44
 msgid "Copy to Clipboard"
 msgstr "클립보드에 복사"
 
-#: src/screens/SelectKey/SelectKey.tsx:179
+#: src/screens/SelectKey/SelectKey.tsx:180
 msgid "Create a new private key"
 msgstr "새로운 개인 키 만들기"
 
-#: src/screens/SelectKey/SelectKeyItem.tsx:161
+#: src/screens/SelectKey/SelectKeyItem.tsx:163
 msgid "DANGER: permanently delete private key"
 msgstr "경고: 영구적으로 개인 키를 삭제합니다."
 
@@ -70,7 +70,7 @@ msgstr "어두운 테마"
 msgid "Delete"
 msgstr "삭제"
 
-#: src/screens/SelectKey/SelectKey.tsx:199
+#: src/screens/SelectKey/SelectKey.tsx:202
 #: src/screens/SelectKey/SelectKey.tsx:77
 msgid "Delete all keys"
 msgstr "모든 키 삭제"
@@ -134,7 +134,7 @@ msgstr "자주 묻는 질문"
 msgid "Help"
 msgstr "도움말"
 
-#: src/components/LocaleToggle/LocaleToggle.tsx:70
+#: src/components/LocaleToggle/LocaleToggle.tsx:71
 msgid "Help translate"
 msgstr "번역 돕기"
 
@@ -142,7 +142,7 @@ msgstr "번역 돕기"
 msgid "Hide Advanced Options"
 msgstr "고급 옵션 숨기기"
 
-#: src/screens/SelectKey/SelectKey.tsx:189
+#: src/screens/SelectKey/SelectKey.tsx:191
 msgid "Import from Mnemonics (24 words)"
 msgstr "니모닉에서 불러오기 (24단어)"
 
@@ -162,12 +162,12 @@ msgstr "밝은 테마"
 msgid "Loading list of the keys"
 msgstr "키 목록 로드 중"
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:128
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:150
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:129
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:151
 msgid "Log Out"
 msgstr "로그아웃"
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:146
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:147
 msgid "Logout"
 msgstr "로그아웃"
 
@@ -205,7 +205,7 @@ msgstr "확인"
 msgid "Pool public key:"
 msgstr "풀 퍼블릭 키"
 
-#: src/screens/SelectKey/SelectKeyItem.tsx:141
+#: src/screens/SelectKey/SelectKeyItem.tsx:142
 msgid "Private key with public fingerprint {fingerprint}"
 msgstr "퍼블릭 핑거프린트 {fingerprint} 의 개인 키"
 
@@ -234,7 +234,7 @@ msgstr "애플리케이션 새로고침"
 msgid "Report an Issue"
 msgstr "문제 보고"
 
-#: src/screens/SelectKey/SelectKeyItem.tsx:150
+#: src/screens/SelectKey/SelectKeyItem.tsx:151
 msgid "See private key"
 msgstr "개인 키 보기"
 
@@ -356,11 +356,10 @@ msgstr "변경했습니다. 삭제하시겠습니까?"
 msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Would you like to migrate your keys now?"
 msgstr "키가 새 키링으로 마이그레이션되지 않았습니다. 마이그레이션이 완료될 때까지 새 키를 생성하거나 기존 키를 삭제할 수 없습니다. 지금 키를 마이그레이션하시겠습니까?"
 
-#: src/components/Amount/Amount.tsx:96
+#: src/components/Amount/Amount.tsx:98
 msgid "{0, plural, one {mojo} other {mojos}}"
 msgstr "{0, plural, one {mojo} other {mojos}}"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:33
 msgid "{minPassphraseLength, plural, one {Passphrases must be at least # character in length} other {Passphrases must be at least # characters in length}}"
 msgstr "{minPassphraseLength, plural, one {Passphrases must be at least # character in length} other {Passphrases must be at least # characters in length}}"
-

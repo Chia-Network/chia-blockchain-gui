@@ -97,3 +97,7 @@ win_code_sign_cert.p12
 
 .env
 dist
+/test-results/
+/playwright-report/
+/playwright/.cache/
+messages.js
