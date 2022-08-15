@@ -8,7 +8,7 @@ msgstr ""
 "Language: sv_SE\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-08-12 18:15\n"
+"PO-Revision-Date: 2022-08-15 15:06\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -280,7 +280,7 @@ msgstr ""
 
 #: src/components/offers/NFTOfferEditor.tsx:362
 msgid "Buy an NFT"
-msgstr ""
+msgstr "Köp en NFT"
 
 #: src/components/app/AppPassPrompt.tsx:184
 #: src/components/backup/BackupCreate.tsx:51
@@ -740,7 +740,7 @@ msgstr "Ladda ner"
 
 #: src/components/offers/OfferImport.tsx:191
 msgid "Drag & Drop an Offer File"
-msgstr ""
+msgstr "Dra och släpp en erbjudandefil"
 
 #: src/components/offers/OfferImport.tsx:146
 #~ msgid "Drag & drop an offer file below to view its details"
@@ -950,7 +950,7 @@ msgstr "Filnamn"
 
 #: src/components/nfts/gallery/NFTGallery.tsx:136
 msgid "Filters"
-msgstr ""
+msgstr "Filter"
 
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:47
 msgid "Final folder location"
@@ -977,7 +977,7 @@ msgstr "Fullständig nod"
 
 #: src/components/fullNode/FullNodeConnections.tsx:76
 msgid "Full Node Connections"
-msgstr ""
+msgstr "Din fullständiga nods anslutningar"
 
 #: src/electron/main.tsx:517
 msgid "Full Screen"
@@ -985,7 +985,7 @@ msgstr "Helskärm"
 
 #: src/components/settings/SettingsNFT.tsx:23
 msgid "Gallery Management"
-msgstr ""
+msgstr "Gallerihantering"
 
 #: src/components/settings/Settings.tsx:44
 msgid "General"
@@ -1036,7 +1036,7 @@ msgstr "Här är de aktuella blockverifieringarna. Eventuellt har du ett bevis-p
 
 #: src/components/nfts/NFTContextualActions.tsx:568
 msgid "Hide"
-msgstr ""
+msgstr "Dölj"
 
 #: src/components/settings/SettingsNFT.tsx:34
 msgid "Hide objectionable content"
@@ -2204,7 +2204,7 @@ msgstr "Självpoolning. När du vinner ett block tjänar du XCH-belöningar."
 
 #: src/components/offers/NFTOfferEditor.tsx:367
 msgid "Sell an NFT"
-msgstr ""
+msgstr "Sälj en NFT"
 
 #: src/components/nfts/NFTBurnDialog.tsx:142
 #: src/components/nfts/NFTTransferAction.tsx:142
@@ -2262,7 +2262,7 @@ msgstr "Dela på offerpool"
 
 #: src/components/nfts/NFTContextualActions.tsx:568
 msgid "Show"
-msgstr ""
+msgstr "Visa"
 
 #: src/components/offers/OfferManager.tsx:451
 msgid "Show Details"
@@ -2270,7 +2270,7 @@ msgstr ""
 
 #: src/components/nfts/gallery/NFTGallery.tsx:149
 msgid "Show Hidden"
-msgstr ""
+msgstr "Visa dolda"
 
 #: src/components/nfts/NFTPreview.tsx:212
 msgid "Show Preview"
@@ -2779,7 +2779,7 @@ msgstr "Väntar på att transaktionen ska bekräftas"
 
 #: src/components/app/AppStatusHeader.tsx:75
 msgid "Wallet"
-msgstr ""
+msgstr "Plånbok"
 
 #: src/components/app/AppSelectMode.tsx:76
 #: src/components/app/AppSelectMode.tsx:130
