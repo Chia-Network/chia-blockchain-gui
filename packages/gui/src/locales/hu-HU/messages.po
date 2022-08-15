@@ -8,7 +8,7 @@ msgstr ""
 "Language: hu_HU\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-08-12 18:14\n"
+"PO-Revision-Date: 2022-08-15 07:24\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -268,11 +268,11 @@ msgstr "Tallózás"
 #: src/components/nfts/NFTBurnDialog.tsx:170
 #: src/components/nfts/NFTContextualActions.tsx:616
 msgid "Burn"
-msgstr ""
+msgstr "Eléget"
 
 #: src/components/nfts/NFTBurnDialog.tsx:77
 msgid "Burn NFT confirmation"
-msgstr ""
+msgstr "NFT elégetésének megerősítése"
 
 #: src/components/nfts/NFTBurnDialog.tsx:122
 msgid "Burning a non-fungible token means destroying it. Burned NFTs are sent to a verifiably un-spendable address, eliminating your NFT from the blockchain. However, transactions leading up to the burn will remain on the blockchain ledger."
@@ -280,7 +280,7 @@ msgstr ""
 
 #: src/components/offers/NFTOfferEditor.tsx:362
 msgid "Buy an NFT"
-msgstr ""
+msgstr "NFT vásárlása"
 
 #: src/components/app/AppPassPrompt.tsx:184
 #: src/components/backup/BackupCreate.tsx:51
@@ -728,7 +728,7 @@ msgstr "Vannak meglévő parcellák ezen a gépen? <0>Parcella könyvtár Hozzá
 
 #: src/components/nfts/NFTBurnDialog.tsx:114
 msgid "Do you want to burn this NFT?"
-msgstr ""
+msgstr "El akarod égetni ezt az NFT-t?"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:55
 msgid "Does your machine support parallel plotting?"
@@ -950,7 +950,7 @@ msgstr "Fájlnév"
 
 #: src/components/nfts/gallery/NFTGallery.tsx:136
 msgid "Filters"
-msgstr ""
+msgstr "Szűrők"
 
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:47
 msgid "Final folder location"
@@ -1036,7 +1036,7 @@ msgstr ""
 
 #: src/components/nfts/NFTContextualActions.tsx:568
 msgid "Hide"
-msgstr ""
+msgstr "Elrejtés"
 
 #: src/components/settings/SettingsNFT.tsx:34
 msgid "Hide objectionable content"
@@ -2204,7 +2204,7 @@ msgstr ""
 
 #: src/components/offers/NFTOfferEditor.tsx:367
 msgid "Sell an NFT"
-msgstr ""
+msgstr "NFT eladása"
 
 #: src/components/nfts/NFTBurnDialog.tsx:142
 #: src/components/nfts/NFTTransferAction.tsx:142
@@ -2262,7 +2262,7 @@ msgstr ""
 
 #: src/components/nfts/NFTContextualActions.tsx:568
 msgid "Show"
-msgstr ""
+msgstr "Mutat"
 
 #: src/components/offers/OfferManager.tsx:451
 msgid "Show Details"
@@ -2270,7 +2270,7 @@ msgstr ""
 
 #: src/components/nfts/gallery/NFTGallery.tsx:149
 msgid "Show Hidden"
-msgstr ""
+msgstr "Elrejtett megjelenítése"
 
 #: src/components/nfts/NFTPreview.tsx:212
 msgid "Show Preview"
@@ -2779,7 +2779,7 @@ msgstr ""
 
 #: src/components/app/AppStatusHeader.tsx:75
 msgid "Wallet"
-msgstr ""
+msgstr "Tárca"
 
 #: src/components/app/AppSelectMode.tsx:76
 #: src/components/app/AppSelectMode.tsx:130
