@@ -34,7 +34,6 @@ function Select(props: Props) {
   const errorMessage = get(errors, controllerName);
 
   return (
-    // @ts-ignore
     <Controller
       name={controllerName}
       control={control}
@@ -67,7 +66,7 @@ function Select(props: Props) {
 }
 
 export default function EstimatedFee(props: FeeProps) {
-  const { name, txType, ...rest } = props;
+  const { name, txType, required, ...rest } = props;
   const { data: ests, isLoading: isFeeLoading } = useGetFeeEstimateQuery({"targetTimes": [60, 120, 300], "cost": 1});
   const [selectedEst, setSelectedEst] = React.useState('');
   const [estList, setEstList] = React.useState([]);
@@ -119,7 +118,7 @@ export default function EstimatedFee(props: FeeProps) {
   function showSelect() {
     return (
       <div>
-        <InputLabel required color="secondary">Fee</InputLabel>
+        <InputLabel required={required} color="secondary">Fee</InputLabel>
         <Select name={name} onTypeChange={setInputType} open={selectOpen} onOpen={handleSelectOpen} onClose={handleSelectClose} {...rest}>
           {estList.map((option) => (
             <MenuItem
@@ -130,7 +129,7 @@ export default function EstimatedFee(props: FeeProps) {
                 <Flex>
                   <Trans>{option.estimate} TXCH</Trans>
                 </Flex>
-                <Flex alignSelf="flex-end">
+                <Flex alignSelf="center">
                   <Trans><Typography color="textSecondary" fontSize="small">{option.time}</Typography></Trans>
                 </Flex>
               </Flex>
@@ -162,8 +161,9 @@ export default function EstimatedFee(props: FeeProps) {
             variant="filled"
             label={<Trans>Fee</Trans>}
             fullWidth
-            required
+            required={required}
             autoFocus
+            color="secondary"
           />
         </Flex>
         <Flex alignSelf="center">
@@ -193,7 +193,8 @@ export default function EstimatedFee(props: FeeProps) {
             variant="filled"
             label={<Trans>Fee</Trans>}
             fullWidth
-            required
+            required={required}
+            color="secondary"
           />
         </FormControl>
       </Flex>

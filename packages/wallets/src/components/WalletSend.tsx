@@ -179,6 +179,7 @@ export default function WalletSend(props: SendCardProps) {
                 label={<Trans>Fee</Trans>}
                 data-testid="WalletSend-fee"
                 fullWidth
+                required
                 txType="walletSendXCH"
               />
             </Grid>
