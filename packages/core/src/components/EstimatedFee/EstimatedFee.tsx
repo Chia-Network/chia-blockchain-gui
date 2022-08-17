@@ -67,7 +67,6 @@ function Select(props: Props) {
 export default function EstimatedFee(props: FeeProps) {
   const { name, txType, required, ...rest } = props;
   const { data: ests, isLoading: isFeeLoading } = useGetFeeEstimateQuery({"targetTimes": [60, 120, 300], "cost": 1});
-  const [selectedEst, setSelectedEst] = React.useState('');
   const [estList, setEstList] = React.useState([]);
   const [inputType, setInputType] = React.useState("dropdown");
   const mode = useMode();
