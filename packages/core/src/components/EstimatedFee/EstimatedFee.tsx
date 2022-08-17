@@ -6,7 +6,6 @@ import { useGetFeeEstimateQuery } from '@chia/api-react';
 import {
   Fee,
   Flex,
-  mojoToChia,
   mojoToChiaLocaleString,
   useLocale,
 } from '@chia/core';
