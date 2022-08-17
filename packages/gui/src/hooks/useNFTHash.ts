@@ -53,7 +53,7 @@ function useLoadingPreview(nft: any) {
 export default function useNFTHash(nft: any, isPreview: boolean) {
   const { dataUris } = nft;
   let uri = dataUris?.[0];
-  const metadataJson = useLoadingPreview(nft);
+  const metadataJson: any = useLoadingPreview(nft);
 
   const thumbnail: any = {
     type: isVideo(uri) ? 'video' : isAudio(uri) ? 'audio' : 'unknown',
@@ -66,8 +66,14 @@ export default function useNFTHash(nft: any, isPreview: boolean) {
     if (metadataJson['preview_image_uri']) {
       thumbnail.image = metadataJson['preview_image_uri'];
     }
+    if (metadataJson['preview_image_uris']) {
+      thumbnail.images = metadataJson['preview_image_uris'];
+    }
     if (metadataJson['preview_video_uri']) {
       thumbnail.video = metadataJson['preview_video_uri'];
+    }
+    if (metadataJson['preview_video_uris']) {
+      thumbnail.videos = metadataJson['preview_video_uris'];
     }
     if (metadataJson['error']) {
       thumbnail.error = true;

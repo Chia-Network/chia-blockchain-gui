@@ -1,4 +1,11 @@
-import React, { useMemo, useState, type ReactNode, Fragment } from 'react';
+import React, {
+  useMemo,
+  useState,
+  useRef,
+  type ReactNode,
+  Fragment,
+  useEffect,
+} from 'react';
 import { renderToString } from 'react-dom/server';
 import mime from 'mime-types';
 import { t, Trans } from '@lingui/macro';
@@ -60,6 +67,21 @@ const VideoIcon = styled(VideoSvg)`
   height: 100px;
 `;
 
+const IframeWrapper = styled.div`
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+  position: relative;
+`;
+
+const IframePreventEvents = styled.div`
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: 2;
+`;
+
 export type NFTPreviewProps = {
   nft: NFTInfo;
   height?: number | string;
@@ -70,6 +92,10 @@ export type NFTPreviewProps = {
   hideStatusBar?: boolean;
   isPreview?: boolean;
 };
+
+let loopVideoIndex: number = 0;
+let loopImageIndex: number = 0;
+let loopImageInterval: any;
 
 export default function NFTPreview(props: NFTPreviewProps) {
   const {
@@ -96,6 +122,8 @@ export default function NFTPreview(props: NFTPreviewProps) {
   const [thumbnailProgress, setThumbnailProgress] = useState(-1);
   const [thumbnailError, setThumbnailError] = useState('');
 
+  const iframeRef = useRef<any>(null);
+
   const isUrlValid = useMemo(() => {
     if (!file) {
       return false;
@@ -117,6 +145,14 @@ export default function NFTPreview(props: NFTPreviewProps) {
     if (!file) {
       return;
     }
+
+    const hideVideoCss = isPreview
+      ? `
+      video::-webkit-media-controls {
+        display: none !important;
+      }   
+    `
+      : '';
 
     const style = `
       html, body {
@@ -164,17 +200,34 @@ export default function NFTPreview(props: NFTPreviewProps) {
       }
       audio {
         margin-top: 140px;
-      }
+      }     
+      ${hideVideoCss}
     `;
 
     let mediaElement = null;
     const pathName: string = new URL(file).pathname;
     const mimeType = mime.lookup(pathName);
-    if (thumbnail.video) {
+
+    if (Array.isArray(thumbnail.videos) && thumbnail.videos.length) {
+      mediaElement = (
+        <video width="100%" height="100%">
+          <source src={thumbnail.videos[0]} type={mimeType} />
+        </video>
+      );
+    } else if (thumbnail.video) {
       mediaElement = (
         <video width="100%" height="100%">
           <source src={thumbnail.video} type={mimeType} />
         </video>
+      );
+    } else if (Array.isArray(thumbnail.images) && thumbnail.images.length) {
+      mediaElement = (
+        <img
+          src={thumbnail.images[0]}
+          alt={t`Preview`}
+          width="100%"
+          height="100%"
+        />
       );
     } else if (thumbnail.image) {
       mediaElement = (
@@ -193,8 +246,8 @@ export default function NFTPreview(props: NFTPreviewProps) {
       );
     } else if (mimeType.match(/^video/)) {
       mediaElement = (
-        <video controls width="100%" height="100%">
-          <source src={thumbnail.uri} type="video/mp4" />
+        <video width="100%" height="100%">
+          <source src={thumbnail.uri} />
         </video>
       );
     } else {
@@ -222,8 +275,60 @@ export default function NFTPreview(props: NFTPreviewProps) {
     );
   }, [file, statusText, isStatusError, thumbnail]);
 
+  function getVideoDOM() {
+    const iframe =
+      iframeRef.current && iframeRef.current.querySelector('iframe');
+    if (iframe) {
+      return iframe.contentWindow.document.querySelector('video');
+    }
+    return null;
+  }
+
+  function getImageDOM() {
+    const iframe =
+      iframeRef.current && iframeRef.current.querySelector('iframe');
+    if (iframe && iframe.contentWindow && iframe.contentWindow.document) {
+      return iframe.contentWindow.document.querySelector('img');
+    }
+    return null;
+  }
+
+  function playNextVideo() {
+    const video = getVideoDOM();
+    if (video) {
+      video.controls = false;
+      video.src = thumbnail.videos[loopVideoIndex % thumbnail.videos.length];
+      video.play();
+      video.onended = () => {
+        playNextVideo();
+      };
+    }
+    loopVideoIndex++;
+  }
+
+  function stopVideo() {
+    const video = getVideoDOM();
+    if (video) {
+      video.controls = false;
+      video.pause();
+    }
+  }
+
+  function hideVideoControls() {
+    const video = getVideoDOM();
+    if (video) {
+      video.controls = false;
+      video.removeAttribute('controls');
+      video.playsInline = true;
+    }
+  }
+
   function handleLoadedChange(loadedValue) {
     setLoaded(loadedValue);
+    if (thumbnail.video || thumbnail.videos) {
+      /* LOOP THUMBNAIL VIDEOS */
+      hideVideoControls();
+    }
   }
 
   function handleIgnoreError(event) {
@@ -248,7 +353,9 @@ export default function NFTPreview(props: NFTPreviewProps) {
       if (
         thumbnail.type === 'video' &&
         !thumbnail.image &&
+        !thumbnail.images &&
         !thumbnail.video &&
+        !thumbnail.videos &&
         !thumbnail.error
       ) {
         return <VideoIcon />;
@@ -262,13 +369,55 @@ export default function NFTPreview(props: NFTPreviewProps) {
       }
     }
 
+    function showNextImage() {
+      const image = getImageDOM();
+      if (image) {
+        image.src = thumbnail.images[loopImageIndex % thumbnail.images.length];
+        loopImageIndex++;
+        loopImageInterval = setTimeout(() => {
+          showNextImage();
+        }, 1000);
+      }
+    }
+
+    function iframeMouseEnter(e: any) {
+      e.stopPropagation();
+      e.preventDefault();
+      if (thumbnail.video || thumbnail.videos) {
+        if (loopVideoIndex === 0 && thumbnail.videos) {
+          playNextVideo();
+        } else {
+          getVideoDOM().play();
+        }
+      }
+      if (thumbnail.images) {
+        showNextImage();
+      }
+    }
+
+    function iframeMouseLeave() {
+      if (thumbnail.video || thumbnail.videos) {
+        stopVideo();
+      }
+      if (thumbnail.images) {
+        clearTimeout(loopImageInterval);
+      }
+    }
+
     return (
-      <SandboxedIframe
-        srcDoc={srcDoc}
-        height={height}
-        onLoadedChange={handleLoadedChange}
-        hideUntilLoaded
-      />
+      <IframeWrapper
+        ref={iframeRef}
+        onMouseEnter={iframeMouseEnter}
+        onMouseLeave={iframeMouseLeave}
+      >
+        {isPreview && <IframePreventEvents />}
+        <SandboxedIframe
+          srcDoc={srcDoc}
+          height={height}
+          onLoadedChange={handleLoadedChange}
+          hideUntilLoaded
+        />
+      </IframeWrapper>
     );
   }
 
