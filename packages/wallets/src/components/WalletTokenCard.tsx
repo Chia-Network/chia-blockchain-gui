@@ -1,31 +1,33 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { WalletType } from '@chia/api';
 import { useSetCATNameMutation } from '@chia/api-react';
 import { Trans } from '@lingui/macro';
+import { Box, Typography, Switch, CircularProgress } from '@mui/material';
 import {
-  Box,
-  Typography,
-  Switch,
-  CircularProgress,
+  Tooltip,
+  CardListItem,
+  Flex,
+  Link,
+  useShowError,
+  Form,
   TextField,
-} from '@mui/material';
-import { Tooltip, CardListItem, Flex, Link, useShowError } from '@chia/core';
+} from '@chia/core';
+import { type ListItem } from '../hooks/useWalletsList';
+import { useForm } from 'react-hook-form';
 
 export type WalletTokenCardProps = {
-  item: {
-    type: 'WALLET';
-    walletType: WalletType;
-    hidden: boolean;
-    name: string;
-    id: number | string;
-  };
+  item: ListItem;
   onHide: (id: number) => void;
   onShow: (id: number | string) => Promise<void>;
 };
 
+type FormData = {
+  name: string;
+};
+
 export default function WalletTokenCard(props: WalletTokenCardProps) {
   const {
-    item: { type, walletType, walletId, assetId, hidden, name },
+    item: { type, walletType, walletId, assetId, hidden, name = '' },
     onHide,
     onShow,
   } = props;
@@ -33,6 +35,19 @@ export default function WalletTokenCard(props: WalletTokenCardProps) {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [setCATName] = useSetCATNameMutation();
   const showError = useShowError();
+  const form = useForm<FormData>({
+    defaultValues: {
+      name,
+    },
+  });
+
+  useEffect(() => {
+    form.setValue('name', name);
+  }, [form, name]);
+
+  async function handleSubmit(values: FormData) {
+    return handleRename(values.name);
+  }
 
   async function handleRename(newName: string) {
     try {
@@ -53,7 +68,7 @@ export default function WalletTokenCard(props: WalletTokenCardProps) {
 
         // hide wallet
         if (hidden) {
-          onHide(currentWalletId);
+          await onHide(currentWalletId);
         }
       }
 
@@ -97,8 +112,6 @@ export default function WalletTokenCard(props: WalletTokenCardProps) {
     return assetId;
   }, [assetId, type, walletType]);
 
-  const currentName = walletType === WalletType.STANDARD_WALLET ? 'Chia' : name;
-
   return (
     <CardListItem>
       <Flex gap={1} alignItems="center" width="100%">
@@ -112,14 +125,16 @@ export default function WalletTokenCard(props: WalletTokenCardProps) {
           {walletType === WalletType.STANDARD_WALLET ? (
             <Typography noWrap>{name}</Typography>
           ) : (
-            <TextField
-              label="Name"
-              defaultValue={currentName}
-              onBlur={(event) => handleRename(event.target.value)}
-              size="small"
-              fullWidth
-              hiddenLabel
-            />
+            <Form methods={form} onSubmit={handleSubmit}>
+              <TextField
+                name="name"
+                label="Name"
+                onBlur={(event) => handleRename(event.target.value)}
+                size="small"
+                fullWidth
+                hiddenLabel
+              />
+            </Form>
           )}
           {(!!subTitle || assetId) && (
             <Flex
