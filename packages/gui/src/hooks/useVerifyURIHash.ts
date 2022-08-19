@@ -4,9 +4,7 @@ import isContentHashValid from '../util/isContentHashValid';
 import getRemoteFileContent from '../util/getRemoteFileContent';
 
 const CACHE_SIZE = 1000;
-export const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10 MB
-
-const cache = new Map<string, boolean>();
+export const MAX_FILE_SIZE = 100 * 1024 * 1024; // 100 MB
 
 export default function useVerifyURIHash(
   uri: string,
@@ -21,7 +19,10 @@ export default function useVerifyURIHash(
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState();
 
-  async function validateHash(uri: string, hash: string): Promise<void> {
+  async function validateHash(
+    uri: string | string[],
+    hash: string,
+  ): Promise<void> {
     try {
       setError(undefined);
       setIsLoading(true);

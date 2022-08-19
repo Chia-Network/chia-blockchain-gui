@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import mime from 'mime-types';
+import useVerifyThumbnailHash from './useVerifyThumbnailHash';
 
 interface Thumbnail {
   uri: string;
@@ -55,40 +56,24 @@ export default function useNFTHash(nft: any, isPreview: boolean) {
   let uri = dataUris?.[0];
   const metadataJson: any = useLoadingPreview(nft);
 
-  const thumbnail: any = {
-    type: isVideo(uri) ? 'video' : isAudio(uri) ? 'audio' : 'unknown',
-  };
+  let { isValid, isLoading, thumbnail, error } =
+    useVerifyThumbnailHash(metadataJson);
+
+  thumbnail.type = isVideo(uri) ? 'video' : isAudio(uri) ? 'audio' : 'unknown';
+
+  if (metadataJson.error) {
+    error = metadataJson.error;
+  }
+
   if (!isPreview) {
-    thumbnail.uri = uri;
+    error = undefined;
+    thumbnail.video = uri;
   }
-
-  if (isPreview) {
-    if (metadataJson['preview_image_uri']) {
-      thumbnail.image = metadataJson['preview_image_uri'];
-    }
-    if (metadataJson['preview_image_uris']) {
-      thumbnail.images = metadataJson['preview_image_uris'];
-    }
-    if (metadataJson['preview_video_uri']) {
-      thumbnail.video = metadataJson['preview_video_uri'];
-    }
-    if (metadataJson['preview_video_uris']) {
-      thumbnail.videos = metadataJson['preview_video_uris'];
-    }
-    if (metadataJson['error']) {
-      thumbnail.error = true;
-    }
-  }
-
-  const isLoading =
-    isPreview &&
-    !!nft.metadataUris.length &&
-    Object.keys(metadataJson).length === 0;
 
   return {
-    isValid: true,
+    isValid,
     isLoading,
     thumbnail,
-    error: null,
+    error,
   };
 }

@@ -10,11 +10,7 @@ import { renderToString } from 'react-dom/server';
 import mime from 'mime-types';
 import { t, Trans } from '@lingui/macro';
 import { Box, Button } from '@mui/material';
-import {
-  NotInterested,
-  Error as ErrorIcon,
-  ConstructionOutlined,
-} from '@mui/icons-material';
+import { NotInterested, Error as ErrorIcon } from '@mui/icons-material';
 
 import {
   IconMessage,
@@ -27,15 +23,14 @@ import styled from 'styled-components';
 import { type NFTInfo } from '@chia/api';
 import isURL from 'validator/lib/isURL';
 import useNFTHash from '../../hooks/useNFTHash';
-import NFTProgressBar from './NFTProgressBar';
 import VideoSvg from '../../assets/img/nft_video.svg';
 
-function prepareErrorMessage(error: Error): ReactNode {
-  if (error.message === 'Response too large') {
+function prepareErrorMessage(error: string | undefined): ReactNode {
+  if (error === 'Response too large') {
     return <Trans>File is over 10MB</Trans>;
   }
 
-  return error.message;
+  return error;
 }
 
 const StyledCardPreview = styled(Box)`
@@ -46,15 +41,6 @@ const StyledCardPreview = styled(Box)`
   justify-content: center;
   align-items: center;
   overflow: hidden;
-`;
-
-const ProgressBarContainer = styled.div`
-  width: 80%;
-  padding: 15px;
-`;
-
-const ProgressBarText = styled.div`
-  text-align: center;
 `;
 
 const ThumbnailError = styled.div`
@@ -93,8 +79,6 @@ export type NFTPreviewProps = {
   isPreview?: boolean;
 };
 
-let loopVideoIndex: number = 0;
-let loopImageIndex: number = 0;
 let loopImageInterval: any;
 
 export default function NFTPreview(props: NFTPreviewProps) {
@@ -119,8 +103,6 @@ export default function NFTPreview(props: NFTPreviewProps) {
     false,
     `nft-preview-ignore-error-${nft.$nftId}-${file}`,
   );
-  const [thumbnailProgress, setThumbnailProgress] = useState(-1);
-  const [thumbnailError, setThumbnailError] = useState('');
 
   const iframeRef = useRef<any>(null);
 
@@ -135,7 +117,7 @@ export default function NFTPreview(props: NFTPreviewProps) {
   const [statusText, isStatusError] = useMemo(() => {
     if (nft.pendingTransaction) {
       return [t`Update Pending`, false];
-    } else if (error?.message === 'Hash mismatch') {
+    } else if (error === 'Hash mismatch') {
       return [t`Image Hash Mismatch`, true];
     }
     return [undefined, false];
@@ -208,26 +190,11 @@ export default function NFTPreview(props: NFTPreviewProps) {
     const pathName: string = new URL(file).pathname;
     const mimeType = mime.lookup(pathName);
 
-    if (Array.isArray(thumbnail.videos) && thumbnail.videos.length) {
-      mediaElement = (
-        <video width="100%" height="100%">
-          <source src={thumbnail.videos[0]} type={mimeType} />
-        </video>
-      );
-    } else if (thumbnail.video) {
+    if (thumbnail.video) {
       mediaElement = (
         <video width="100%" height="100%">
           <source src={thumbnail.video} type={mimeType} />
         </video>
-      );
-    } else if (Array.isArray(thumbnail.images) && thumbnail.images.length) {
-      mediaElement = (
-        <img
-          src={thumbnail.images[0]}
-          alt={t`Preview`}
-          width="100%"
-          height="100%"
-        />
       );
     } else if (thumbnail.image) {
       mediaElement = (
@@ -273,7 +240,7 @@ export default function NFTPreview(props: NFTPreviewProps) {
         </body>
       </html>,
     );
-  }, [file, statusText, isStatusError, thumbnail]);
+  }, [file, statusText, isStatusError, thumbnail, error]);
 
   function getVideoDOM() {
     const iframe =
@@ -282,28 +249,6 @@ export default function NFTPreview(props: NFTPreviewProps) {
       return iframe.contentWindow.document.querySelector('video');
     }
     return null;
-  }
-
-  function getImageDOM() {
-    const iframe =
-      iframeRef.current && iframeRef.current.querySelector('iframe');
-    if (iframe && iframe.contentWindow && iframe.contentWindow.document) {
-      return iframe.contentWindow.document.querySelector('img');
-    }
-    return null;
-  }
-
-  function playNextVideo() {
-    const video = getVideoDOM();
-    if (video) {
-      video.controls = false;
-      video.src = thumbnail.videos[loopVideoIndex % thumbnail.videos.length];
-      video.play();
-      video.onended = () => {
-        playNextVideo();
-      };
-    }
-    loopVideoIndex++;
   }
 
   function stopVideo() {
@@ -323,21 +268,21 @@ export default function NFTPreview(props: NFTPreviewProps) {
     }
   }
 
-  function handleLoadedChange(loadedValue) {
+  function handleLoadedChange(loadedValue: any) {
     setLoaded(loadedValue);
-    if (thumbnail.video || thumbnail.videos) {
-      /* LOOP THUMBNAIL VIDEOS */
+    if (thumbnail.video) {
       hideVideoControls();
     }
   }
 
-  function handleIgnoreError(event) {
+  function handleIgnoreError(event: any) {
     event.stopPropagation();
 
     setIgnoreError(true);
   }
 
   function renderMediaElementInsideIframe() {
+    // console.log('Render......', isPreview, file, error);
     if (isPreview) {
       if (thumbnail.type === 'audio') {
         const pathName: string = new URL(file).pathname;
@@ -353,50 +298,24 @@ export default function NFTPreview(props: NFTPreviewProps) {
       if (
         thumbnail.type === 'video' &&
         !thumbnail.image &&
-        !thumbnail.images &&
         !thumbnail.video &&
-        !thumbnail.videos &&
         !thumbnail.error
       ) {
         return <VideoIcon />;
-      }
-      if (thumbnail.error) {
-        return (
-          <ThumbnailError>
-            <Trans>Error parsing json.</Trans>
-          </ThumbnailError>
-        );
-      }
-    }
-
-    function showNextImage() {
-      const image = getImageDOM();
-      if (image) {
-        image.src = thumbnail.images[loopImageIndex % thumbnail.images.length];
-        loopImageIndex++;
-        loopImageInterval = setTimeout(() => {
-          showNextImage();
-        }, 1000);
       }
     }
 
     function iframeMouseEnter(e: any) {
       e.stopPropagation();
       e.preventDefault();
-      if (thumbnail.video || thumbnail.videos) {
-        if (loopVideoIndex === 0 && thumbnail.videos) {
-          playNextVideo();
-        } else {
-          getVideoDOM().play();
-        }
-      }
-      if (thumbnail.images) {
-        showNextImage();
+      const videoDOM = getVideoDOM();
+      if (isPreview && thumbnail.video && videoDOM) {
+        videoDOM.play();
       }
     }
 
     function iframeMouseLeave() {
-      if (thumbnail.video || thumbnail.videos) {
+      if (isPreview && thumbnail.video) {
         stopVideo();
       }
       if (thumbnail.images) {
@@ -435,15 +354,26 @@ export default function NFTPreview(props: NFTPreviewProps) {
             <Trans>Preview URL is not valid</Trans>
           </IconMessage>
         </Background>
-      ) : thumbnailError !== '' ? (
-        <ThumbnailError>{thumbnailError}</ThumbnailError>
-      ) : thumbnailProgress > -1 ? (
-        <ProgressBarContainer>
-          <ProgressBarText>
-            <Trans>Generating video preview</Trans>
-          </ProgressBarText>
-          <NFTProgressBar percentage={thumbnailProgress} />
-        </ProgressBarContainer>
+      ) : error === 'missing preview_video_hash' ? (
+        <ThumbnailError>
+          <Trans>Missing preview_video_hash key</Trans>
+        </ThumbnailError>
+      ) : error === 'missing preview_image_hash' ? (
+        <ThumbnailError>
+          <Trans>Missing preview_image_hash key</Trans>
+        </ThumbnailError>
+      ) : error === 'failed fetch content' ? (
+        <ThumbnailError>
+          <Trans>Error fetching video preview</Trans>
+        </ThumbnailError>
+      ) : error === 'thumbnail hash mismatch' ? (
+        <ThumbnailError>
+          <Trans>Thumbnail hash mismatch</Trans>
+        </ThumbnailError>
+      ) : error === 'Error parsing json' ? (
+        <ThumbnailError>
+          <Trans>Error parsing json</Trans>
+        </ThumbnailError>
       ) : isLoading ? (
         <Background>
           <Loading center>
