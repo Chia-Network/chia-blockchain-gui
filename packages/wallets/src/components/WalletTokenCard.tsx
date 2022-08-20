@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState, useRef } from 'react';
 import { WalletType } from '@chia/api';
 import { useSetCATNameMutation } from '@chia/api-react';
 import { Trans } from '@lingui/macro';
@@ -32,7 +32,10 @@ export default function WalletTokenCard(props: WalletTokenCardProps) {
     onShow,
   } = props;
 
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isRenaming, setIsRenaming] = useState<boolean>(false);
+  const [isChangingVisibility, setIsChangingVisibility] =
+    useState<boolean>(false);
+  const isChangingVisibilityRef = useRef<boolean>(isChangingVisibility);
   const [setCATName] = useSetCATNameMutation();
   const showError = useShowError();
   const form = useForm<FormData>({
@@ -40,6 +43,10 @@ export default function WalletTokenCard(props: WalletTokenCardProps) {
       name,
     },
   });
+
+  isChangingVisibilityRef.current = isChangingVisibility;
+
+  const isLoading = isRenaming || isChangingVisibility;
 
   useEffect(() => {
     form.setValue('name', name);
@@ -50,12 +57,17 @@ export default function WalletTokenCard(props: WalletTokenCardProps) {
   }
 
   async function handleRename(newName: string) {
+    if (isLoading) {
+      return;
+    }
+
     try {
       if (!newName || newName === name) {
         return;
       }
 
-      setIsLoading(true);
+      setIsRenaming(true);
+      setIsChangingVisibility(false);
 
       let currentWalletId = walletId;
 
@@ -67,7 +79,7 @@ export default function WalletTokenCard(props: WalletTokenCardProps) {
         currentWalletId = await onShow(assetId);
 
         // hide wallet
-        if (hidden) {
+        if (hidden && !isChangingVisibilityRef.current) {
           await onHide(currentWalletId);
         }
       }
@@ -81,22 +93,35 @@ export default function WalletTokenCard(props: WalletTokenCardProps) {
     } catch (error) {
       showError(error);
     } finally {
-      setIsLoading(false);
+      setIsChangingVisibility(false);
+      setIsRenaming(false);
     }
   }
 
   async function handleVisibleChange(event) {
+    if (isChangingVisibility) {
+      return;
+    }
+
+    if (isRenaming) {
+      // process
+      setIsChangingVisibility(true);
+      return;
+    }
+
     try {
       const { checked } = event.target;
       const id = walletId ?? assetId;
-      if (checked) {
-        setIsLoading(true);
-        await onShow(id);
-      } else {
-        onHide(id);
+      if (id) {
+        if (checked) {
+          setIsChangingVisibility(true);
+          await onShow(id);
+        } else {
+          onHide(id);
+        }
       }
     } finally {
-      setIsLoading(false);
+      setIsChangingVisibility(false);
     }
   }
 
@@ -130,6 +155,7 @@ export default function WalletTokenCard(props: WalletTokenCardProps) {
                 name="name"
                 label="Name"
                 onBlur={(event) => handleRename(event.target.value)}
+                disabled={isLoading}
                 size="small"
                 fullWidth
                 hiddenLabel
@@ -176,12 +202,19 @@ export default function WalletTokenCard(props: WalletTokenCardProps) {
           )}
         </Flex>
         {walletType !== WalletType.STANDARD_WALLET && (
-          <Box width="60px" textAlign="center">
-            {isLoading ? (
-              <CircularProgress size={32} />
-            ) : (
-              <Switch checked={!hidden} onChange={handleVisibleChange} />
-            )}
+          <Box width="60px" textAlign="center" position="relative">
+            <Box position="absolute" top="0" left="25%">
+              <CircularProgress
+                size={34}
+                sx={{ zIndex: -1, opacity: isLoading ? 1 : 0 }}
+              />
+            </Box>
+            <Switch
+              checked={!hidden}
+              onChange={handleVisibleChange}
+              disabled={isChangingVisibility}
+              sx={{ opacity: isLoading ? 0 : 1 }}
+            />
           </Box>
         )}
       </Flex>
