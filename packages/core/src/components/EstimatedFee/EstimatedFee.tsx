@@ -66,7 +66,7 @@ function Select(props: Props) {
 
 export default function EstimatedFee(props: FeeProps) {
   const { name, txType, required, ...rest } = props;
-  const { data: ests, isLoading: isFeeLoading } = useGetFeeEstimateQuery({"targetTimes": [60, 120, 300], "cost": 1});
+  const { data: ests, isLoading: isFeeLoading, error } = useGetFeeEstimateQuery({"targetTimes": [60, 120, 300], "cost": 1});
   const [estList, setEstList] = React.useState([]);
   const [inputType, setInputType] = React.useState("dropdown");
   const mode = useMode();
@@ -173,7 +173,7 @@ export default function EstimatedFee(props: FeeProps) {
     )
   }
 
-  if ((mode[0] === Mode.FARMING) && (inputType !== "classic")) {
+  if (!error && (mode[0] === Mode.FARMING) && (inputType !== "classic")) {
     return (
       <Flex>
         <FormControl variant="filled" fullWidth>

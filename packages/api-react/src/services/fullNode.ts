@@ -3,7 +3,7 @@ import type { Block, BlockRecord, BlockHeader, BlockchainState, FullNodeConnecti
 import onCacheEntryAddedInvalidate from '../utils/onCacheEntryAddedInvalidate';
 import api, { baseQuery } from '../api';
 
-const apiWithTag = api.enhanceEndpoints({addTagTypes: ['BlockchainState', 'FullNodeConnections']})
+const apiWithTag = api.enhanceEndpoints({addTagTypes: ['BlockchainState', 'FeeEstimate', 'FullNodeConnections']})
 
 export const fullNodeApi = apiWithTag.injectEndpoints({
   endpoints: (build) => ({
@@ -131,6 +131,7 @@ export const fullNodeApi = apiWithTag.injectEndpoints({
         service: FullNode,
         args: [targetTimes, cost],
       }),
+      providesTags: [{ type: 'FeeEstimate' }],
     }),
   }),
 });
