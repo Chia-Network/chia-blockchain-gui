@@ -8,7 +8,7 @@ msgstr ""
 "Language: sv_SE\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-08-15 15:06\n"
+"PO-Revision-Date: 2022-08-22 20:02\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -2266,7 +2266,7 @@ msgstr "Visa"
 
 #: src/components/offers/OfferManager.tsx:451
 msgid "Show Details"
-msgstr ""
+msgstr "Visa detaljer"
 
 #: src/components/nfts/gallery/NFTGallery.tsx:149
 msgid "Show Hidden"
@@ -2702,7 +2702,7 @@ msgstr "Lås upp nyckelring"
 
 #: src/components/offers/NFTOfferViewer.tsx:146
 msgid "Unrecognized asset"
-msgstr ""
+msgstr "Okänd tillgång"
 
 #: src/components/nfts/NFTPreview.tsx:90
 msgid "Update Pending"
@@ -2999,7 +2999,7 @@ msgstr "p2SingletonPuzzleHash är inte definierad"
 
 #: src/components/nfts/NFTTransferConfirmationDialog.tsx:101
 msgid "{0, plural, one {mojo} other {mojos}}"
-msgstr ""
+msgstr "{0, plural, one {mojo} other {mojo}}"
 
 #: src/components/offers/OfferShareDialog.tsx:1148
 msgid "{0}"
