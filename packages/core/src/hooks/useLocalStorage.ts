@@ -8,15 +8,15 @@ function getValueFromLocalStorage<T>(key: string, defaultValue: T) {
     // Get from local storage by key
     const item = window.localStorage.getItem(key);
 
-    if (item !== undefined) {
-      try {
-        return JSON.parse(item);
-      } catch (error) {
-        return item;
-      }
+    if (item === undefined || item === null) {
+      return defaultValue;
     }
 
-    return defaultValue;
+    try {
+      return JSON.parse(item);
+    } catch (error) {
+      return item;
+    }
   } catch (error) {
     return defaultValue;
   }
