@@ -8,7 +8,7 @@ msgstr ""
 "Language: fi_FI\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-08-23 10:28\n"
+"PO-Revision-Date: 2022-08-23 11:55\n"
 "Last-Translator: \n"
 "Language-Team: Finnish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -276,7 +276,7 @@ msgstr "Polta NFT -vahvistus"
 
 #: src/components/nfts/NFTBurnDialog.tsx:122
 msgid "Burning a non-fungible token means destroying it. Burned NFTs are sent to a verifiably un-spendable address, eliminating your NFT from the blockchain. However, transactions leading up to the burn will remain on the blockchain ledger."
-msgstr ""
+msgstr "NFT:n polttaminen tuhoaa sen. Poltettavat NFT:t lähetetään osoitteeseen, jota ei voida käyttää ja joka poistaa NFT:n lohkoketjusta. NFT:n polttamiseen johtavat transaktiot säilyvät kuitenkin lohkoketjun kirjanpidossa."
 
 #: src/components/offers/NFTOfferEditor.tsx:362
 msgid "Buy an NFT"
@@ -1085,7 +1085,7 @@ msgstr "Jos olet jo jakanut tarjouksesi tiedoston, saatat joutua lähettämään
 
 #: src/components/nfts/NFTBurnDialog.tsx:79
 msgid "If you proceed, this NFT will be permanently deleted. Are you sure you want to continue?"
-msgstr ""
+msgstr "Jos jatkat, tämä NFT poistetaan pysyvästi. Oletko varma, että haluat jatkaa?"
 
 #: src/components/nfts/NFTPreview.tsx:92
 msgid "Image Hash Mismatch"
