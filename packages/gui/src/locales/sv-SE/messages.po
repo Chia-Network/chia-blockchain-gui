@@ -8,7 +8,7 @@ msgstr ""
 "Language: sv_SE\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-08-24 04:19\n"
+"PO-Revision-Date: 2022-08-24 05:40\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -161,24 +161,24 @@ msgstr "En NFT:s proveniens är ett fullständigt register över dess ägandehis
 
 #: src/components/offers/OfferManager.tsx:124
 msgid "Are you sure you want to cancel your offer?"
-msgstr "Är det säkert att du vill avbryta ditt erbjudande?"
+msgstr "Är du säker på att du vill avbryta ditt erbjudande?"
 
 #: src/components/plot/PlotAction.tsx:29
 #: src/components/plot/queue/PlotQueueActions.tsx:47
 msgid "Are you sure you want to delete the plot? The plot cannot be recovered."
-msgstr "Är det säkert att du vill ta bort plotten? Den kan inte återställas."
+msgstr "Är du säker på att du vill ta bort plotten? Den kan inte återställas."
 
 #: src/components/plotNFT/PlotNFTCard.tsx:127
 msgid "Are you sure you want to delete unconfirmed transactions?"
-msgstr "Är du säker på att du vill radera obekräftade transaktioner?"
+msgstr "Är du säker på att du vill ta bort obekräftade transaktioner?"
 
 #: src/components/fullNode/FullNodeCloseConnection.tsx:26
 msgid "Are you sure you want to disconnect?"
-msgstr "Är det säkert att du vill koppla ifrån?"
+msgstr "Är du säker på att du vill koppla ifrån?"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:72
 msgid "Are you sure you want to move this NFT to the specified profile?"
-msgstr "Är det säkert att du vill flytta denna NFT till den angivna profilen?"
+msgstr "Är du säker på att du vill flytta denna NFT till den angivna profilen?"
 
 #: src/electron/main.tsx:366
 msgid "Are you sure you want to quit?"
@@ -186,7 +186,7 @@ msgstr "Är du säker på att du vill avsluta?"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:51
 msgid "Are you sure you want to use k={plotSize}?"
-msgstr "Är det säkert att du vill använda k={plotSize}?"
+msgstr "Är du säker på att du vill använda k={plotSize}?"
 
 #: src/components/offers/NFTOfferTokenSelector.tsx:99
 #: src/components/offers/OfferAssetSelector.tsx:160
@@ -1085,7 +1085,7 @@ msgstr "Om du redan har delat din erbjudandefil kan du behöva skicka en transak
 
 #: src/components/nfts/NFTBurnDialog.tsx:79
 msgid "If you proceed, this NFT will be permanently deleted. Are you sure you want to continue?"
-msgstr "Om du fortsätter kommer denna NFT att tas bort permanent. Är det säkert att du vill fortsätta?"
+msgstr "Om du fortsätter kommer denna NFT att tas bort permanent. Är du säker på att du vill fortsätta?"
 
 #: src/components/nfts/NFTPreview.tsx:92
 msgid "Image Hash Mismatch"
@@ -1619,11 +1619,11 @@ msgstr "Erbjudanden som du har skapat"
 
 #: src/components/offers/OfferAcceptConfirmationDialog.tsx:68
 msgid "Once you accept this offer, you will not be able to cancel the transaction. Are you sure you want to accept this offer?"
-msgstr "När du accepterar detta erbjudande kommer du inte att kunna avbryta transaktionen. Är det säkert att du vill acceptera detta erbjudande?"
+msgstr "När du accepterar detta erbjudande kommer du inte att kunna avbryta transaktionen. Är du säker på att du vill acceptera detta erbjudande?"
 
 #: src/components/nfts/NFTTransferConfirmationDialog.tsx:41
 msgid "Once you initiate this transfer, you will not be able to cancel the transaction. Are you sure you want to transfer the NFT?"
-msgstr "När du sätter igång denna överföring kommer du inte att kunna avbryta transaktionen. Är det säkert att du vill överföra denna NFT?"
+msgstr "När du sätter igång denna överföring kommer du inte att kunna avbryta transaktionen. Är du säker på att du vill överföra denna NFT?"
 
 #: src/components/offers/OfferAcceptConfirmationDialog.tsx:37
 msgid "One or more unknown tokens are being offered. Please verify that the asset IDs of the tokens listed below match the asset IDs of the tokens you expect to receive."
