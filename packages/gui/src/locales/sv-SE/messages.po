@@ -8,7 +8,7 @@ msgstr ""
 "Language: sv_SE\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-08-22 20:02\n"
+"PO-Revision-Date: 2022-08-24 04:19\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -1040,7 +1040,7 @@ msgstr "Dölj"
 
 #: src/components/settings/SettingsNFT.tsx:34
 msgid "Hide objectionable content"
-msgstr ""
+msgstr "Dölj stötande innehåll"
 
 #: src/components/app/AppPassPrompt.tsx:160
 #: src/components/settings/RemovePassphrasePrompt.tsx:150
@@ -1085,7 +1085,7 @@ msgstr "Om du redan har delat din erbjudandefil kan du behöva skicka en transak
 
 #: src/components/nfts/NFTBurnDialog.tsx:79
 msgid "If you proceed, this NFT will be permanently deleted. Are you sure you want to continue?"
-msgstr ""
+msgstr "Om du fortsätter kommer denna NFT att tas bort permanent. Är det säkert att du vill fortsätta?"
 
 #: src/components/nfts/NFTPreview.tsx:92
 msgid "Image Hash Mismatch"
@@ -1254,7 +1254,7 @@ msgstr "Licens-URL: {0}"
 
 #: src/components/fullNode/FullNodeConnections.tsx:80
 msgid "List of connections is empty"
-msgstr ""
+msgstr "Lista över anslutningar är tom"
 
 #: src/components/nfts/NFTSummary.tsx:115
 msgid "Loading NFT"
@@ -1769,7 +1769,7 @@ msgstr "Välj en tillgång för varje rad"
 
 #: src/components/offers/NFTOfferEditor.tsx:703
 msgid "Please select an asset type"
-msgstr ""
+msgstr "Välj ett tillgångsslag"
 
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:56
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:60
@@ -2824,7 +2824,7 @@ msgstr "Vikt är den sammanlagda svårighetsgraden för alla block fram till och
 
 #: src/components/offers/OfferEditorConfirmationDialog.tsx:22
 msgid "When creating an offer, any assets that are being offered will be locked and unavailable until the offer is accepted or cancelled, resulting in your spendable balance changing."
-msgstr ""
+msgstr "När du skapar ett erbjudande kommer alla tillgångar som erbjuds att låsas och vara otillgängliga tills erbjudandet accepteras eller avbryts, vilket gör att ditt spenderbara saldo förändras."
 
 #: src/electron/main.tsx:525
 msgid "Window"
