@@ -159,7 +159,9 @@ export default function AppState(props: Props) {
   if (isLoadingKeyringStatus || !keyringStatus) {
     return (
       <LayoutLoading>
-        <Trans>Loading keyring status</Trans>
+        <Typography variant="body1">
+          <Trans>Loading keyring status</Trans>
+        </Typography>
       </LayoutLoading>
     );
   }
@@ -186,7 +188,9 @@ export default function AppState(props: Props) {
     return (
       <LayoutLoading>
         {!attempt ? (
-          <Trans>Connecting to daemon</Trans>
+          <Typography variant="body1" align="center">
+            <Trans>Connecting to daemon</Trans>
+          </Typography>
         ) : (
           <Flex flexDirection="column" gap={1}>
             <Typography variant="body1" align="center">
