@@ -24,12 +24,24 @@ import { type NFTInfo } from '@chia/api';
 import isURL from 'validator/lib/isURL';
 import useNFTHash from '../../hooks/useNFTHash';
 import VideoSvg from '../../assets/img/nft_video.svg';
+import AudioSvg from '../../assets/img/audio.svg';
+import AudioIconPng from '../../assets/img/audio.png';
+import ModelSvg from '../../assets/img/3dModel.svg';
+import UnknownSvg from '../../assets/img/unknown.svg';
+import DocumentSvg from '../../assets/img/document.svg';
+
+const supportedFileTypes: any = {
+  images: ['jpg', 'gif', 'svg', 'png'],
+  video: ['mp4', 'webm', 'mkv'],
+  audio: ['mp3', 'ogg', 'wav', 'flac', 'aac'],
+  '3d': ['gltf', 'glb', 'stl'],
+  documents: ['pdf', 'docx', 'doc', 'xls', 'xlsx', 'ppt', 'pptx', 'txt', 'rtf'],
+};
 
 function prepareErrorMessage(error: string | undefined): ReactNode {
   if (error === 'Response too large') {
     return <Trans>File is over 10MB</Trans>;
   }
-
   return error;
 }
 
@@ -53,6 +65,73 @@ const VideoIcon = styled(VideoSvg)`
   height: 100px;
 `;
 
+const ModelIcon = styled(ModelSvg)`
+  width: 100px;
+  height: 100px;
+`;
+
+const UnknownIcon = styled(UnknownSvg)`
+  width: 100px;
+  height: 100px;
+`;
+
+const DocumentIcon = styled(DocumentSvg)`
+  width: 100px;
+  height: 100px;
+`;
+
+const AudioWrapper = styled.div`
+  height: 100%;
+  width: 100%;
+  background-image: url('${AudioIconPng}');
+  background-size: 100% 100%;
+  text-align: center;
+  > audio + svg {
+    margin-top: 20px;
+  }
+  audio {
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    bottom: 20px;
+    text-align: center;
+    // box-shadow: 0 3px 15px #000;
+    border-radius: 30px;
+  }
+`;
+
+const AudioIconWrapper = styled.div`
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  background: #fff;
+  width: 54px;
+  height: 54px;
+  border-radius: 30px;
+  background: #f4f4f4;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  right: 247px;
+  line-height: 66px;
+  transition: right 0.25s linear, width 0.25s linear, opacity 0.25s;
+  visibility: visible;
+  &.transition {
+    width: 300px;
+    right: 0px;
+    transition: right 0.25s linear, width 0.25s linear;
+  }
+  &.hide {
+    visibility: hidden;
+  }
+`;
+
+const AudioIcon = styled(AudioSvg)`
+  // float:
+`;
+
 const IframeWrapper = styled.div`
   padding: 0;
   margin: 0;
@@ -68,6 +147,19 @@ const IframePreventEvents = styled.div`
   z-index: 2;
 `;
 
+const ModelExtension = styled.div`
+  text-transform: uppercase;
+  margin-top: 10px;
+  font-size: 16px;
+`;
+
+const AudioControls = styled.div`
+  visibility: hidden;
+  &.transition {
+    visibility: visible;
+  }
+`;
+
 export type NFTPreviewProps = {
   nft: NFTInfo;
   height?: number | string;
@@ -80,6 +172,7 @@ export type NFTPreviewProps = {
 };
 
 let loopImageInterval: any;
+let isPlaying: boolean = false;
 
 export default function NFTPreview(props: NFTPreviewProps) {
   const {
@@ -98,6 +191,7 @@ export default function NFTPreview(props: NFTPreviewProps) {
 
   const [loaded, setLoaded] = useState(false);
   const { isValid, isLoading, error, thumbnail } = useNFTHash(nft, isPreview);
+  const [showAudioTag, setShowAudioTag] = useState(false);
 
   const [ignoreError, setIgnoreError] = usePersistState<boolean>(
     false,
@@ -105,6 +199,8 @@ export default function NFTPreview(props: NFTPreviewProps) {
   );
 
   const iframeRef = useRef<any>(null);
+  const audioIconRef = useRef<any>(null);
+  const audioControlsRef = useRef<any>(null);
 
   const isUrlValid = useMemo(() => {
     if (!file) {
@@ -187,13 +283,10 @@ export default function NFTPreview(props: NFTPreviewProps) {
     `;
 
     let mediaElement = null;
-    const pathName: string = new URL(file).pathname;
-    const mimeType = mime.lookup(pathName);
-
     if (thumbnail.video) {
       mediaElement = (
         <video width="100%" height="100%">
-          <source src={thumbnail.video} type={mimeType} />
+          <source src={thumbnail.video} />
         </video>
       );
     } else if (thumbnail.image) {
@@ -205,13 +298,15 @@ export default function NFTPreview(props: NFTPreviewProps) {
           height="100%"
         />
       );
-    } else if (mimeType.match(/^audio/)) {
+    } else if (mimeType().match(/^audio/)) {
       mediaElement = (
-        <audio controls>
-          <source src={file} type={mimeType} />
-        </audio>
+        <>
+          <audio controls>
+            <source src={file} />
+          </audio>
+        </>
       );
-    } else if (mimeType.match(/^video/)) {
+    } else if (mimeType().match(/^video/)) {
       mediaElement = (
         <video width="100%" height="100%">
           <source src={thumbnail.uri} />
@@ -241,6 +336,11 @@ export default function NFTPreview(props: NFTPreviewProps) {
       </html>,
     );
   }, [file, statusText, isStatusError, thumbnail, error]);
+
+  function mimeType() {
+    const pathName: string = new URL(file).pathname;
+    return mime.lookup(pathName);
+  }
 
   function getVideoDOM() {
     const iframe =
@@ -281,45 +381,140 @@ export default function NFTPreview(props: NFTPreviewProps) {
     setIgnoreError(true);
   }
 
-  function renderMediaElementInsideIframe() {
-    // console.log('Render......', isPreview, file, error);
+  function renderAudioTag() {
+    return (
+      <AudioControls ref={audioControlsRef}>
+        <audio controls>
+          <source src={file} />
+        </audio>
+      </AudioControls>
+    );
+  }
+
+  function renderAudioIcon() {
+    return (
+      <AudioIconWrapper ref={audioIconRef}>
+        <AudioIcon />
+      </AudioIconWrapper>
+    );
+  }
+
+  function audioMouseEnter(e: any) {
+    if (!isPlaying) {
+      if (audioIconRef.current)
+        audioIconRef.current.classList.add('transition');
+      setTimeout(() => {
+        if (audioControlsRef.current)
+          audioControlsRef.current.classList.add('transition');
+        if (audioIconRef.current) audioIconRef.current.classList.add('hide');
+      }, 250);
+    }
+  }
+
+  function audioMouseLeave(e: any) {
+    if (!isPlaying) {
+      if (audioIconRef.current) {
+        audioIconRef.current.classList.remove('transition');
+        audioIconRef.current.classList.remove('hide');
+      }
+      if (audioControlsRef.current) {
+        audioControlsRef.current.classList.remove('transition');
+      }
+    }
+  }
+
+  function audioPlayEvent(e: any) {
+    isPlaying = true;
+  }
+
+  function audioPauseEvent(e: any) {
+    isPlaying = false;
+  }
+
+  function iframeMouseEnter(e: any) {
+    e.stopPropagation();
+    e.preventDefault();
+    const videoDOM = getVideoDOM();
+    if (isPreview && thumbnail.video && videoDOM) {
+      videoDOM.play();
+    }
+  }
+
+  function iframeMouseLeave() {
+    if (isPreview && thumbnail.video) {
+      stopVideo();
+    }
+    if (thumbnail.images) {
+      clearTimeout(loopImageInterval);
+    }
+  }
+
+  function renderElementPreview() {
+    const isThumbnail = thumbnail.video || thumbnail.image;
+    const extension: string = new URL(file).pathname.split('.').slice(-1)[0];
+    const allSupportedExtensionsArray: string[] = Object.keys(
+      supportedFileTypes,
+    ).reduce((p, c) => {
+      return p.concat(supportedFileTypes[c]);
+    }, []);
+    if (allSupportedExtensionsArray.indexOf(extension) === -1) {
+      return (
+        <>
+          <UnknownIcon />
+          <ModelExtension>{extension}</ModelExtension>
+        </>
+      );
+    }
+    if (mimeType().match(/^model/) && !isThumbnail) {
+      return (
+        <>
+          <ModelIcon />
+          <ModelExtension>{extension}</ModelExtension>
+        </>
+      );
+    } else if (
+      [
+        'pdf',
+        'docx',
+        'doc',
+        'xls',
+        'xlsx',
+        'ppt',
+        'pptx',
+        'txt',
+        'rtf',
+      ].indexOf(extension) > -1
+    ) {
+      return (
+        <>
+          <DocumentIcon />
+          <ModelExtension>{extension}</ModelExtension>
+        </>
+      );
+    }
+
     if (isPreview) {
       if (thumbnail.type === 'audio') {
-        const pathName: string = new URL(file).pathname;
-        const mimeType = mime.lookup(pathName);
+        // const pathName: string = new URL(file).pathname;
         return (
-          <>
-            <audio controls>
-              <source src={file} type={mimeType} />
-            </audio>
-          </>
+          <AudioWrapper
+            onMouseEnter={audioMouseEnter}
+            onMouseLeave={audioMouseLeave}
+            onPlay={audioPlayEvent}
+            onPause={audioPauseEvent}
+            isPlaying={isPlaying}
+          >
+            {renderAudioTag()}
+            {renderAudioIcon()}
+          </AudioWrapper>
         );
-      }
-      if (
+      } else if (
         thumbnail.type === 'video' &&
         !thumbnail.image &&
         !thumbnail.video &&
         !thumbnail.error
       ) {
         return <VideoIcon />;
-      }
-    }
-
-    function iframeMouseEnter(e: any) {
-      e.stopPropagation();
-      e.preventDefault();
-      const videoDOM = getVideoDOM();
-      if (isPreview && thumbnail.video && videoDOM) {
-        videoDOM.play();
-      }
-    }
-
-    function iframeMouseLeave() {
-      if (isPreview && thumbnail.video) {
-        stopVideo();
-      }
-      if (thumbnail.images) {
-        clearTimeout(loopImageInterval);
       }
     }
 
@@ -413,7 +608,7 @@ export default function NFTPreview(props: NFTPreviewProps) {
               </Loading>
             </Flex>
           )}
-          {renderMediaElementInsideIframe()}
+          {renderElementPreview()}
         </>
       )}
     </StyledCardPreview>

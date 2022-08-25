@@ -30,7 +30,6 @@ import useNFTMetadata from '../../../hooks/useNFTMetadata';
 import NFTContextualActions, {
   NFTContextualActionTypes,
 } from '../NFTContextualActions';
-import NFTPreviewDialog from '../NFTPreviewDialog';
 import NFTProgressBar from '../NFTProgressBar';
 
 const ipcRenderer = (window as any).ipcRenderer;
@@ -39,7 +38,6 @@ export default function NFTDetail() {
   const { nftId } = useParams();
   const { wallets: nftWallets, isLoading: isLoadingWallets } =
     useGetNFTWallets();
-  const openDialog = useOpenDialog();
   const { nfts, isLoading: isLoadingNFTs } = useFetchNFTs(
     nftWallets.map((wallet: Wallet) => wallet.id),
   );

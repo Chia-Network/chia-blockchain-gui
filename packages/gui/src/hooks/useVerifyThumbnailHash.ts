@@ -4,7 +4,10 @@ import isContentHashValid from '../util/isContentHashValid';
 import getRemoteFileContent from '../util/getRemoteFileContent';
 import { MAX_FILE_SIZE } from './useVerifyURIHash';
 
-export default function useVerifyThumbnailHash(metadataJson: any): {
+export default function useVerifyThumbnailHash(
+  metadataJson: any,
+  isPreview: boolean,
+): {
   isValid: boolean;
   isLoading: boolean;
   error: string | undefined;
@@ -111,7 +114,7 @@ export default function useVerifyThumbnailHash(metadataJson: any): {
   }
 
   useEffect(() => {
-    if (!metadataJson.error) {
+    if (!metadataJson.error && isPreview) {
       validateHash(metadataJson);
     } else {
       setIsLoading(false);

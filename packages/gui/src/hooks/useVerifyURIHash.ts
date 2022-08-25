@@ -6,6 +6,8 @@ import getRemoteFileContent from '../util/getRemoteFileContent';
 const CACHE_SIZE = 1000;
 export const MAX_FILE_SIZE = 100 * 1024 * 1024; // 100 MB
 
+const cache = new Map<string, boolean>();
+
 export default function useVerifyURIHash(
   uri: string,
   hash: string,
