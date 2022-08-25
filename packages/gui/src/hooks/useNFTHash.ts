@@ -59,6 +59,7 @@ export default function useNFTHash(nft: any, isPreview: boolean) {
   let { isValid, isLoading, thumbnail, error } = useVerifyThumbnailHash(
     metadataJson,
     isPreview,
+    isAudio(uri),
   );
 
   thumbnail.type = isVideo(uri) ? 'video' : isAudio(uri) ? 'audio' : 'unknown';
@@ -69,11 +70,6 @@ export default function useNFTHash(nft: any, isPreview: boolean) {
 
   if (!isPreview) {
     error = undefined;
-    delete thumbnail.video;
-    delete thumbnail.image;
-    // if (isVideo(uri)) {
-    //   thumbnail.video = uri;
-    // }
   }
 
   return {

@@ -18,25 +18,23 @@ import {
   Flex,
   SandboxedIframe,
   usePersistState,
+  useDarkMode,
 } from '@chia/core';
 import styled from 'styled-components';
 import { type NFTInfo } from '@chia/api';
 import isURL from 'validator/lib/isURL';
 import useNFTHash from '../../hooks/useNFTHash';
-import VideoSvg from '../../assets/img/nft_video.svg';
 import AudioSvg from '../../assets/img/audio.svg';
-import AudioIconPng from '../../assets/img/audio.png';
-import ModelSvg from '../../assets/img/3dModel.svg';
-import UnknownSvg from '../../assets/img/unknown.svg';
-import DocumentSvg from '../../assets/img/document.svg';
-
-const supportedFileTypes: any = {
-  images: ['jpg', 'gif', 'svg', 'png'],
-  video: ['mp4', 'webm', 'mkv'],
-  audio: ['mp3', 'ogg', 'wav', 'flac', 'aac'],
-  '3d': ['gltf', 'glb', 'stl'],
-  documents: ['pdf', 'docx', 'doc', 'xls', 'xlsx', 'ppt', 'pptx', 'txt', 'rtf'],
-};
+import AudioPngIcon from '../../assets/img/audio.png';
+import UnknownPngIcon from '../../assets/img/unknown.png';
+import DocumentPngIcon from '../../assets/img/document.png';
+import VideoPngIcon from '../../assets/img/video.png';
+import ModelPngIcon from '../../assets/img/model.png';
+import AudioPngDarkIcon from '../../assets/img/audio_dark.png';
+import UnknownPngDarkIcon from '../../assets/img/unknown_dark.png';
+import DocumentPngDarkIcon from '../../assets/img/document_dark.png';
+import VideoPngDarkIcon from '../../assets/img/video_dark.png';
+import ModelPngDarkIcon from '../../assets/img/model_dark.png';
 
 function prepareErrorMessage(error: string | undefined): ReactNode {
   if (error === 'Response too large') {
@@ -60,32 +58,15 @@ const ThumbnailError = styled.div`
   text-align: center;
 `;
 
-const VideoIcon = styled(VideoSvg)`
-  width: 100px;
-  height: 100px;
-`;
-
-const ModelIcon = styled(ModelSvg)`
-  width: 100px;
-  height: 100px;
-`;
-
-const UnknownIcon = styled(UnknownSvg)`
-  width: 100px;
-  height: 100px;
-`;
-
-const DocumentIcon = styled(DocumentSvg)`
-  width: 100px;
-  height: 100px;
-`;
-
 const AudioWrapper = styled.div`
-  height: 100%;
   width: 100%;
-  background-image: url('${AudioIconPng}');
-  background-size: 100% 100%;
-  text-align: center;
+  height: 100%;
+  background-image: url(${(props) =>
+    props.albumArt ? props.albumArt : 'none'});
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   > audio + svg {
     margin-top: 20px;
   }
@@ -99,6 +80,10 @@ const AudioWrapper = styled.div`
     text-align: center;
     // box-shadow: 0 3px 15px #000;
     border-radius: 30px;
+  }
+  img {
+    width: 144px;
+    height: 144px;
   }
 `;
 
@@ -118,6 +103,7 @@ const AudioIconWrapper = styled.div`
   line-height: 66px;
   transition: right 0.25s linear, width 0.25s linear, opacity 0.25s;
   visibility: visible;
+  display: ${(props) => (props.isPreview ? 'inline-block' : 'none')};
   &.transition {
     width: 300px;
     right: 0px;
@@ -128,9 +114,7 @@ const AudioIconWrapper = styled.div`
   }
 `;
 
-const AudioIcon = styled(AudioSvg)`
-  // float:
-`;
+const AudioIcon = styled(AudioSvg)``;
 
 const IframeWrapper = styled.div`
   padding: 0;
@@ -148,13 +132,19 @@ const IframePreventEvents = styled.div`
 `;
 
 const ModelExtension = styled.div`
-  text-transform: uppercase;
-  margin-top: 10px;
-  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 16px;
+  background: ${(props) => (props.isDarkMode ? '#333' : '#fff')};
+  box-shadow: 0px 0px 24px rgba(24, 162, 61, 0.5),
+    0px 4px 8px rgba(18, 99, 60, 0.32);
+  border-radius: 32px;
+  color: ${(props) => (props.isDarkMode ? '#fff' : '#333')};
 `;
 
 const AudioControls = styled.div`
-  visibility: hidden;
+  visibility: ${(props) => (props.isPreview ? 'hidden' : 'visible')};
   &.transition {
     visibility: visible;
   }
@@ -188,10 +178,10 @@ export default function NFTPreview(props: NFTPreviewProps) {
 
   const hasFile = dataUris?.length > 0;
   const file = dataUris?.[0];
+  const extension: string = new URL(file).pathname.split('.').slice(-1)[0];
 
   const [loaded, setLoaded] = useState(false);
   const { isValid, isLoading, error, thumbnail } = useNFTHash(nft, isPreview);
-  const [showAudioTag, setShowAudioTag] = useState(false);
 
   const [ignoreError, setIgnoreError] = usePersistState<boolean>(
     false,
@@ -218,6 +208,8 @@ export default function NFTPreview(props: NFTPreviewProps) {
     }
     return [undefined, false];
   }, [nft, isValid, error]);
+
+  const { isDarkMode } = useDarkMode();
 
   const srcDoc = useMemo(() => {
     if (!file) {
@@ -283,6 +275,7 @@ export default function NFTPreview(props: NFTPreviewProps) {
     `;
 
     let mediaElement = null;
+
     if (thumbnail.video) {
       mediaElement = (
         <video width="100%" height="100%">
@@ -309,7 +302,7 @@ export default function NFTPreview(props: NFTPreviewProps) {
     } else if (mimeType().match(/^video/)) {
       mediaElement = (
         <video width="100%" height="100%">
-          <source src={thumbnail.uri} />
+          <source src={file} />
         </video>
       );
     } else {
@@ -383,7 +376,7 @@ export default function NFTPreview(props: NFTPreviewProps) {
 
   function renderAudioTag() {
     return (
-      <AudioControls ref={audioControlsRef}>
+      <AudioControls ref={audioControlsRef} isPreview={isPreview}>
         <audio controls>
           <source src={file} />
         </audio>
@@ -393,13 +386,14 @@ export default function NFTPreview(props: NFTPreviewProps) {
 
   function renderAudioIcon() {
     return (
-      <AudioIconWrapper ref={audioIconRef}>
+      <AudioIconWrapper ref={audioIconRef} isPreview={isPreview}>
         <AudioIcon />
       </AudioIconWrapper>
     );
   }
 
   function audioMouseEnter(e: any) {
+    if (!isPreview) return;
     if (!isPlaying) {
       if (audioIconRef.current)
         audioIconRef.current.classList.add('transition');
@@ -412,6 +406,7 @@ export default function NFTPreview(props: NFTPreviewProps) {
   }
 
   function audioMouseLeave(e: any) {
+    if (!isPreview) return;
     if (!isPlaying) {
       if (audioIconRef.current) {
         audioIconRef.current.classList.remove('transition');
@@ -449,30 +444,8 @@ export default function NFTPreview(props: NFTPreviewProps) {
     }
   }
 
-  function renderElementPreview() {
-    const isThumbnail = thumbnail.video || thumbnail.image;
-    const extension: string = new URL(file).pathname.split('.').slice(-1)[0];
-    const allSupportedExtensionsArray: string[] = Object.keys(
-      supportedFileTypes,
-    ).reduce((p, c) => {
-      return p.concat(supportedFileTypes[c]);
-    }, []);
-    if (allSupportedExtensionsArray.indexOf(extension) === -1) {
-      return (
-        <>
-          <UnknownIcon />
-          <ModelExtension>{extension}</ModelExtension>
-        </>
-      );
-    }
-    if (mimeType().match(/^model/) && !isThumbnail) {
-      return (
-        <>
-          <ModelIcon />
-          <ModelExtension>{extension}</ModelExtension>
-        </>
-      );
-    } else if (
+  function isDocument() {
+    return (
       [
         'pdf',
         'docx',
@@ -484,38 +457,52 @@ export default function NFTPreview(props: NFTPreviewProps) {
         'txt',
         'rtf',
       ].indexOf(extension) > -1
+    );
+  }
+
+  function renderNftIcon() {
+    if (isDocument()) {
+      return <img src={isDarkMode ? DocumentPngDarkIcon : DocumentPngIcon} />;
+    } else if (mimeType().match(/^model/)) {
+      return <img src={isDarkMode ? ModelPngDarkIcon : ModelPngIcon} />;
+    } else if (mimeType().match(/^video/)) {
+      return <img src={isDarkMode ? VideoPngDarkIcon : VideoPngIcon} />;
+    } else {
+      return <img src={isDarkMode ? UnknownPngDarkIcon : UnknownPngIcon} />;
+    }
+  }
+
+  function renderElementPreview() {
+    if (
+      (!mimeType().match(/^image/) &&
+        !thumbnail.video &&
+        !thumbnail.image &&
+        !mimeType().match(/^audio/) &&
+        isPreview) ||
+      (!isPreview && (mimeType().match(/^model/) || isDocument()))
     ) {
       return (
         <>
-          <DocumentIcon />
-          <ModelExtension>{extension}</ModelExtension>
+          {renderNftIcon()}
+          <ModelExtension isDarkMode={isDarkMode}>.{extension}</ModelExtension>
         </>
       );
     }
 
-    if (isPreview) {
-      if (thumbnail.type === 'audio') {
-        // const pathName: string = new URL(file).pathname;
-        return (
-          <AudioWrapper
-            onMouseEnter={audioMouseEnter}
-            onMouseLeave={audioMouseLeave}
-            onPlay={audioPlayEvent}
-            onPause={audioPauseEvent}
-            isPlaying={isPlaying}
-          >
-            {renderAudioTag()}
-            {renderAudioIcon()}
-          </AudioWrapper>
-        );
-      } else if (
-        thumbnail.type === 'video' &&
-        !thumbnail.image &&
-        !thumbnail.video &&
-        !thumbnail.error
-      ) {
-        return <VideoIcon />;
-      }
+    if (mimeType().match(/^audio/)) {
+      return (
+        <AudioWrapper
+          onMouseEnter={audioMouseEnter}
+          onMouseLeave={audioMouseLeave}
+          onPlay={audioPlayEvent}
+          onPause={audioPauseEvent}
+          albumArt={thumbnail.image}
+        >
+          {!thumbnail.image && <img src={AudioPngIcon} />}
+          {renderAudioTag()}
+          {renderAudioIcon()}
+        </AudioWrapper>
+      );
     }
 
     return (

@@ -7,6 +7,7 @@ import { MAX_FILE_SIZE } from './useVerifyURIHash';
 export default function useVerifyThumbnailHash(
   metadataJson: any,
   isPreview: boolean,
+  isAudio: boolean,
 ): {
   isValid: boolean;
   isLoading: boolean;
@@ -114,7 +115,7 @@ export default function useVerifyThumbnailHash(
   }
 
   useEffect(() => {
-    if (!metadataJson.error && isPreview) {
+    if ((!metadataJson.error && isPreview) || isAudio) {
       validateHash(metadataJson);
     } else {
       setIsLoading(false);
