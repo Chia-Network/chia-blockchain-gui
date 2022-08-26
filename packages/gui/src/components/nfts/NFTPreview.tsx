@@ -36,6 +36,12 @@ import DocumentPngDarkIcon from '../../assets/img/document_dark.png';
 import VideoPngDarkIcon from '../../assets/img/video_dark.png';
 import ModelPngDarkIcon from '../../assets/img/model_dark.png';
 
+import VideoBlobIcon from '../../assets/img/video-blob.svg';
+import AudioBlobIcon from '../../assets/img/audio-blob.svg';
+import ModelBlobIcon from '../../assets/img/model-blob.svg';
+import UnknownBlobIcon from '../../assets/img/unknown-blob.svg';
+import DocumentBlobIcon from '../../assets/img/document-blob.svg';
+
 function prepareErrorMessage(error: string | undefined): ReactNode {
   if (error === 'Response too large') {
     return <Trans>File is over 10MB</Trans>;
@@ -53,18 +59,14 @@ const StyledCardPreview = styled(Box)`
   overflow: hidden;
 `;
 
-const ThumbnailError = styled.div`
-  color: red;
-  text-align: center;
-`;
-
 const AudioWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
   width: 100%;
   height: 100%;
   background-image: url(${(props) =>
     props.albumArt ? props.albumArt : 'none'});
   background-position: center;
-  display: flex;
   align-items: center;
   justify-content: center;
   > audio + svg {
@@ -104,6 +106,9 @@ const AudioIconWrapper = styled.div`
   transition: right 0.25s linear, width 0.25s linear, opacity 0.25s;
   visibility: visible;
   display: ${(props) => (props.isPreview ? 'inline-block' : 'none')};
+  box-shadow: 0px 0px 24px rgba(24, 162, 61, 0.5),
+    0px 4px 8px rgba(18, 99, 60, 0.32);
+  border-radius: 32px;
   &.transition {
     width: 300px;
     right: 0px;
@@ -112,9 +117,15 @@ const AudioIconWrapper = styled.div`
   &.hide {
     visibility: hidden;
   }
+  &.dark {
+    background: #333;
+  }
 `;
 
-const AudioIcon = styled(AudioSvg)``;
+const AudioIcon = styled(AudioSvg)`
+  position: relative;
+  top: 2px;
+`;
 
 const IframeWrapper = styled.div`
   padding: 0;
@@ -132,6 +143,8 @@ const IframePreventEvents = styled.div`
 `;
 
 const ModelExtension = styled.div`
+  position: relative;
+  top: -20px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -148,6 +161,85 @@ const AudioControls = styled.div`
   &.transition {
     visibility: visible;
   }
+  audio {
+    box-shadow: 0px 0px 24px rgba(24, 162, 61, 0.5),
+      0px 4px 8px rgba(18, 99, 60, 0.32);
+    border-radius: 32px;
+    &.dark {
+      ::-webkit-media-controls-enclosure {
+        background-color: #333;
+      }
+      ::-webkit-media-controls-play-button {
+        background-image: url('data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjZmZmIiBoZWlnaHQ9IjI0IiB3aWR0aD0iMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTggNXYxNGwxMS03eiIvPjxwYXRoIGQ9Ik0wIDBoMjR2MjRIMHoiIGZpbGw9Im5vbmUiLz48L3N2Zz4=');
+      }
+      ::-webkit-media-controls-current-time-display {
+        color: #fff;
+      }
+      ::-webkit-media-controls-time-remaining-display {
+        color: #fff;
+      }
+      ::-webkit-media-controls-mute-button {
+        background-image: url('data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjZmZmIiBoZWlnaHQ9IjI0IiB2aWV3Qm94PSIwIDAgMjQgMjQiIHdpZHRoPSIyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwYXRoIGQ9Ik0zIDl2Nmg0bDUgNVY0TDcgOUgzem0xMy41IDNjMC0xLjc3LTEuMDItMy4yOS0yLjUtNC4wM3Y4LjA1YzEuNDgtLjczIDIuNS0yLjI1IDIuNS00LjAyek0xNCAzLjIzdjIuMDZjMi44OS44NiA1IDMuNTQgNSA2Ljcxcy0yLjExIDUuODUtNSA2LjcxdjIuMDZjNC4wMS0uOTEgNy00LjQ5IDctOC43N3MtMi45OS03Ljg2LTctOC43N3oiLz4KICAgIDxwYXRoIGQ9Ik0wIDBoMjR2MjRIMHoiIGZpbGw9Im5vbmUiLz4KPC9zdmc+');
+      }
+      ::--webkit-media-controls-fullscreen-button {
+        background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMjQgMjQiIHhtbDpzcGFjZT0icHJlc2VydmUiIGZpbGw9IldpbmRvd1RleHQiPjxjaXJjbGUgY3g9IjEyIiBjeT0iNiIgcj0iMiIgZmlsbD0iI2ZmZiIvPjxjaXJjbGUgY3g9IjEyIiBjeT0iMTIiIHI9IiNmZmYiLz48Y2lyY2xlIGN4PSIxMiIgY3k9IjE4IiByPSIjZmZmIi8+PC9zdmc+');
+      }
+      ::-webkit-media-controls-toggle-closed-captions-button {
+        display: none;
+      }
+      ::-webkit-media-controls-timeline {
+        background: #444;
+        border-radius: 4px;
+        margin-left: 7px;
+      }
+    }
+  }
+`;
+
+const StatusContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+`;
+
+const StatusPill = styled.div`
+  background-color: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 16px;
+  box-sizing: border-box;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  display: flex;
+  height: 30px;
+  margin-top: 20px;
+  padding: 8px 20px;
+`;
+
+const StatusText = styled.div`
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+`;
+
+const BlobBg = styled.div`
+  > svg {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+  }
+  > img {
+    position: relative;
+  }
 `;
 
 export type NFTPreviewProps = {
@@ -163,7 +255,11 @@ export type NFTPreviewProps = {
 
 let loopImageInterval: any;
 let isPlaying: boolean = false;
+let audioAnimationInterval;
 
+//=========================================================================//
+// NFTPreview function
+//=========================================================================//
 export default function NFTPreview(props: NFTPreviewProps) {
   const {
     nft,
@@ -291,14 +387,6 @@ export default function NFTPreview(props: NFTPreviewProps) {
           height="100%"
         />
       );
-    } else if (mimeType().match(/^audio/)) {
-      mediaElement = (
-        <>
-          <audio controls>
-            <source src={file} />
-          </audio>
-        </>
-      );
     } else if (mimeType().match(/^video/)) {
       mediaElement = (
         <video width="100%" height="100%">
@@ -377,7 +465,7 @@ export default function NFTPreview(props: NFTPreviewProps) {
   function renderAudioTag() {
     return (
       <AudioControls ref={audioControlsRef} isPreview={isPreview}>
-        <audio controls>
+        <audio className={isDarkMode ? 'dark' : ''} controls>
           <source src={file} />
         </audio>
       </AudioControls>
@@ -386,7 +474,11 @@ export default function NFTPreview(props: NFTPreviewProps) {
 
   function renderAudioIcon() {
     return (
-      <AudioIconWrapper ref={audioIconRef} isPreview={isPreview}>
+      <AudioIconWrapper
+        ref={audioIconRef}
+        isPreview={isPreview}
+        className={isDarkMode ? 'dark' : ''}
+      >
         <AudioIcon />
       </AudioIconWrapper>
     );
@@ -397,7 +489,7 @@ export default function NFTPreview(props: NFTPreviewProps) {
     if (!isPlaying) {
       if (audioIconRef.current)
         audioIconRef.current.classList.add('transition');
-      setTimeout(() => {
+      audioAnimationInterval = setTimeout(() => {
         if (audioControlsRef.current)
           audioControlsRef.current.classList.add('transition');
         if (audioIconRef.current) audioIconRef.current.classList.add('hide');
@@ -406,6 +498,9 @@ export default function NFTPreview(props: NFTPreviewProps) {
   }
 
   function audioMouseLeave(e: any) {
+    if (audioAnimationInterval) {
+      clearTimeout(audioAnimationInterval);
+    }
     if (!isPreview) return;
     if (!isPlaying) {
       if (audioIconRef.current) {
@@ -462,14 +557,52 @@ export default function NFTPreview(props: NFTPreviewProps) {
 
   function renderNftIcon() {
     if (isDocument()) {
-      return <img src={isDarkMode ? DocumentPngDarkIcon : DocumentPngIcon} />;
+      return (
+        <>
+          <BlobBg>
+            <DocumentBlobIcon />
+            <img src={isDarkMode ? DocumentPngDarkIcon : DocumentPngIcon} />
+          </BlobBg>
+        </>
+      );
     } else if (mimeType().match(/^model/)) {
-      return <img src={isDarkMode ? ModelPngDarkIcon : ModelPngIcon} />;
+      return (
+        <>
+          <BlobBg>
+            <ModelBlobIcon />
+            <img src={isDarkMode ? ModelPngDarkIcon : ModelPngIcon} />
+          </BlobBg>
+        </>
+      );
     } else if (mimeType().match(/^video/)) {
-      return <img src={isDarkMode ? VideoPngDarkIcon : VideoPngIcon} />;
+      return (
+        <>
+          <BlobBg>
+            <VideoBlobIcon />
+            <img src={isDarkMode ? VideoPngDarkIcon : VideoPngIcon} />
+          </BlobBg>
+        </>
+      );
     } else {
-      return <img src={isDarkMode ? UnknownPngDarkIcon : UnknownPngIcon} />;
+      return (
+        <>
+          <BlobBg>
+            <UnknownBlobIcon />
+            <img src={isDarkMode ? UnknownPngDarkIcon : UnknownPngIcon} />;
+          </BlobBg>
+        </>
+      );
     }
+  }
+
+  function isUnknownType() {
+    return (
+      !isDocument() &&
+      !mimeType().match(/^audio/) &&
+      !mimeType().match(/^video/) &&
+      !mimeType().match(/^image/) &&
+      !mimeType().match(/^model/)
+    );
   }
 
   function renderElementPreview() {
@@ -479,7 +612,8 @@ export default function NFTPreview(props: NFTPreviewProps) {
         !thumbnail.image &&
         !mimeType().match(/^audio/) &&
         isPreview) ||
-      (!isPreview && (mimeType().match(/^model/) || isDocument()))
+      (!isPreview &&
+        (mimeType().match(/^model/) || isDocument() || isUnknownType()))
     ) {
       return (
         <>
@@ -498,9 +632,21 @@ export default function NFTPreview(props: NFTPreviewProps) {
           onPause={audioPauseEvent}
           albumArt={thumbnail.image}
         >
-          {!thumbnail.image && <img src={AudioPngIcon} />}
+          {!thumbnail.image && (
+            <>
+              <BlobBg>
+                <AudioBlobIcon />
+                <img src={isDarkMode ? AudioPngDarkIcon : AudioPngIcon} />
+              </BlobBg>
+            </>
+          )}
           {renderAudioTag()}
           {renderAudioIcon()}
+          {!thumbnail.image ? (
+            <ModelExtension isDarkMode={isDarkMode}>
+              .{extension}
+            </ModelExtension>
+          ) : null}
         </AudioWrapper>
       );
     }
@@ -519,6 +665,16 @@ export default function NFTPreview(props: NFTPreviewProps) {
           hideUntilLoaded
         />
       </IframeWrapper>
+    );
+  }
+
+  function ThumbnailError(props: any) {
+    return (
+      <StatusContainer>
+        <StatusPill>
+          <StatusText>{props.children}</StatusText>
+        </StatusPill>
+      </StatusContainer>
     );
   }
 
