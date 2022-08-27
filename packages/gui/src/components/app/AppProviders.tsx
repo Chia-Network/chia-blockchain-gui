@@ -18,6 +18,7 @@ import { Trans } from '@lingui/macro';
 import { i18n, defaultLocale, locales } from '../../config/locales';
 import AppState from './AppState';
 import WebSocket from 'ws';
+import isElectron from 'is-electron';
 
 async function waitForConfig() {
   while (true) {
@@ -41,6 +42,10 @@ export default function App(props: AppProps) {
   const { isDarkMode } = useDarkMode();
 
   const theme = isDarkMode ? dark : light;
+  if (isElectron()) {
+    const { nativeTheme } = window.require('@electron/remote');
+    nativeTheme.themeSource = isDarkMode ? 'dark' : 'light';
+  }
 
   async function init() {
     const config = await waitForConfig();
