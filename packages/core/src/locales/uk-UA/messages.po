@@ -8,7 +8,7 @@ msgstr ""
 "Language: uk_UA\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-08-29 21:36\n"
+"PO-Revision-Date: 2022-08-29 22:38\n"
 "Last-Translator: \n"
 "Language-Team: Ukrainian\n"
 "Plural-Forms: nplurals=4; plural=((n%10==1 && n%100!=11) ? 0 : ((n%10 >= 2 && n%10 <=4 && (n%100 < 12 || n%100 > 14)) ? 1 : ((n%10 == 0 || (n%10 >= 5 && n%10 <=9)) || (n%100 >= 11 && n%100 <= 14)) ? 2 : 3));\n"
@@ -77,7 +77,7 @@ msgstr "Видалити всі ключі"
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:91
 msgid "Delete key {fingerprint}"
-msgstr ""
+msgstr "Видалити ключ {fingerprint}"
 
 #: src/screens/SelectKey/SelectKey.tsx:83
 msgid "Deleting all keys will permanently remove the keys from your computer, make sure you have backups. Are you sure you want to continue?"
@@ -254,16 +254,16 @@ msgstr "Обрати..."
 #: src/components/LayoutMain/LayoutFooter.tsx:53
 #: src/components/Settings/SettingsApp.tsx:108
 msgid "Send Feedback"
-msgstr ""
+msgstr "Надіслати відгук"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:61
 msgid "Setting a passphrase is strongly recommended to protect your keys. Are you sure you want to skip setting a passphrase?"
-msgstr ""
+msgstr "Встановлення пароля рекомендується для захисту ваших ключів. Ви впевнені, що хочете вимкнути захист паролем?"
 
 #: src/components/Settings/Settings.tsx:48
 #: src/components/Settings/Settings.tsx:58
 msgid "Settings"
-msgstr ""
+msgstr "Налаштування"
 
 #: src/components/AdvancedOptions/AdvancedOptions.tsx:74
 msgid "Show Advanced Options"
@@ -275,39 +275,39 @@ msgstr "Увійти"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:59
 msgid "Skip"
-msgstr ""
+msgstr "Пропустити"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:58
 msgid "Skip Passphrase Protection"
-msgstr ""
+msgstr "Пропустити захист паролем"
 
 #: src/components/ErrorBoundary/ErrorBoundary.tsx:73
 msgid "Something went wrong"
-msgstr ""
+msgstr "Сталася помилка"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:31
 msgid "The provided passphrase and confirmation do not match"
-msgstr ""
+msgstr "Паролі не співпадають"
 
 #: src/utils/getTransactionResult.ts:15
 msgid "Transaction has not been sent to node yet"
-msgstr ""
+msgstr "Транзакція ще не була відправлена до вузла"
 
 #: src/utils/getTransactionResult.ts:33
 msgid "Transaction has sent to a full node and is pending inclusion into the mempool. {0}"
-msgstr ""
+msgstr "Транзакція була відправлена на повний вузол і очікує включення до mempool. {0}"
 
 #: src/utils/getTransactionResult.ts:24
 msgid "Transaction has successfully been sent to a full node and included in the mempool."
-msgstr ""
+msgstr "Транзакція успішно відправлена до повного вузла та була включена в mempool."
 
 #: src/screens/SelectKey/SelectKey.tsx:123
 msgid "Try Again"
-msgstr ""
+msgstr "Спробувати ще раз"
 
 #: src/screens/SelectKey/SelectKey.tsx:127
 msgid "Unable to load the list of the keys"
-msgstr ""
+msgstr "Не вдалося завантажити список ключів"
 
 #: src/components/LocaleToggle/LocaleToggle.tsx:48
 msgid "Unknown"
@@ -316,32 +316,32 @@ msgstr "Невідомо"
 #: src/components/Back/Back.tsx:34
 #: src/components/FormBackButton/FormBackButton.tsx:26
 msgid "Unsaved Changes"
-msgstr ""
+msgstr "Незбережені зміни"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:70
 msgid "Using a passphrase is strongly recommended to protect your keys. Are you sure you want to disable passphrase protection?"
-msgstr ""
+msgstr "Рекомендовано використовувати пароль для захисту ваших ключів. Ви впевнені, що хочете вимкнути захист паролем?"
 
 #: src/components/Fee/Fee.tsx:32
 msgid "Value seems high"
-msgstr ""
+msgstr "Значення здається високим"
 
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:98
 #: src/components/Settings/SettingsApp.tsx:69
 msgid "Wallet"
-msgstr ""
+msgstr "Гаманець"
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:117
 msgid "Warning: This key is used for a wallet that may have a non-zero balance. By deleting this key you may lose access to this wallet"
-msgstr ""
+msgstr "Увага: Цей ключ використовується для гаманця, який може мати ненульовий баланс. Видаливши цей ключ, ви можете втратити доступ до цього гаманця"
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:99
 msgid "Warning: This key is used for your farming rewards address. By deleting this key you may lose access to any future farming rewards"
-msgstr ""
+msgstr "Попередження: Цей ключ використовується для адреси фермерських винагород. Видаляючи цей ключ, ви можете втратити доступ до майбутніх фермерських винагород"
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:108
 msgid "Warning: This key is used for your pool rewards address. By deleting this key you may lose access to any future pool rewards"
-msgstr ""
+msgstr "Попередження: Цей ключ використовується для вашої адреси винагород пулу. Видаливши цей ключ, ви можете втратити доступ до майбутніх винагород пулу"
 
 #: src/screens/SelectKey/SelectKey.tsx:143
 msgid "Welcome to Chia. Please log in with an existing key, or create a new key."
@@ -350,17 +350,17 @@ msgstr "Ласкаво просимо в Chia. Будь ласка, увійді
 #: src/components/Back/Back.tsx:38
 #: src/components/FormBackButton/FormBackButton.tsx:30
 msgid "You have made changes. Do you want to discard them?"
-msgstr ""
+msgstr "У вас є незбережені зміни. Скасувати їх?"
 
 #: src/hooks/useKeyringMigrationPrompt.tsx:20
 msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Would you like to migrate your keys now?"
-msgstr ""
+msgstr "Ваші ключі не були перенесені до нової системи ключів. Ви не зможете створювати нові ключі або видаляти існуючі ключі, доки не завершиться міграція. Бажаєте перенести ваші ключі зараз?"
 
 #: src/components/Amount/Amount.tsx:98
 msgid "{0, plural, one {mojo} other {mojos}}"
-msgstr ""
+msgstr "{0, plural, one {mojo} other {mojos}}"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:39
 msgid "{minPassphraseLength, plural, one {Passphrases must be at least # character in length} other {Passphrases must be at least # characters in length}}"
-msgstr ""
+msgstr "{minPassphraseLength, plural, one {Пароль повинен містити щонайменше # символ} few {Пароль повинен містити щонайменше # символи} many {Пароль повинен містити щонайменше # символів} other {Пароль повинен містити щонайменше # символів}}"
 
