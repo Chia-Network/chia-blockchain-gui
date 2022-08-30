@@ -3,6 +3,7 @@ import { IconButton } from '@mui/material';
 import { Brightness4, Brightness7 } from '@mui/icons-material';
 import useDarkMode from '../../hooks/useDarkMode';
 import isElectron from 'is-electron';
+import { nativeTheme } from '@electron/remote';
 
 export default function DarkModeToggle() {
   const { toggle, isDarkMode } = useDarkMode();
@@ -10,7 +11,6 @@ export default function DarkModeToggle() {
   function handleClick() {
     toggle();
     if (isElectron()) {
-      const { nativeTheme } = window.require('@electron/remote');
       nativeTheme.themeSource = isDarkMode ? 'dark' : 'light';
     }
   }
