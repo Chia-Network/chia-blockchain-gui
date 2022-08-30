@@ -12,8 +12,6 @@ export default function Settings() {
   const isGeneral = !!useMatch({ path: '/dashboard/settings', end: true });
   const isProfiles = !!useMatch('/dashboard/settings/profiles/*');
 
-  console.log('isProfiles', isProfiles);
-
   const activeTab = isGeneral ? 'GENERAL' : isProfiles ? 'PROFILES' : 'NFT';
 
   function handleChangeTab(newTab: string) {
