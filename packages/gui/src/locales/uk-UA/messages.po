@@ -8,7 +8,7 @@ msgstr ""
 "Language: uk_UA\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-08-30 18:30\n"
+"PO-Revision-Date: 2022-08-30 19:26\n"
 "Last-Translator: \n"
 "Language-Team: Ukrainian\n"
 "Plural-Forms: nplurals=4; plural=((n%10==1 && n%100!=11) ? 0 : ((n%10 >= 2 && n%10 <=4 && (n%100 < 12 || n%100 > 14)) ? 1 : ((n%10 == 0 || (n%10 >= 5 && n%10 <=9)) || (n%100 >= 11 && n%100 <= 14)) ? 2 : 3));\n"
@@ -570,11 +570,11 @@ msgstr ""
 
 #: src/components/plotNFT/PlotNFTUnconfirmedCard.tsx:59
 msgid "Creating Plot NFT and Joining the Pool"
-msgstr ""
+msgstr "Створення NFT ділянки та приєднання до пулу"
 
 #: src/components/plotNFT/PlotNFTUnconfirmedCard.tsx:57
 msgid "Creating Plot NFT for Self Pooling"
-msgstr ""
+msgstr "Створення NFT ділянки для самостійного видобутку"
 
 #: src/components/offers/OfferManager.tsx:408
 #: src/components/offers/OfferViewer.tsx:171
@@ -583,20 +583,20 @@ msgstr "Дата Створення"
 
 #: src/components/offers/NFTOfferViewer.tsx:578
 msgid "Creator Fee ({0}%)"
-msgstr ""
+msgstr "Комісія творця ({0}%)"
 
 #: src/components/offers/NFTOfferEditor.tsx:390
 msgid "Creator Fee ({royaltyPercentage}%)"
-msgstr ""
+msgstr "Комісія творця ({royaltyPercentage}%)"
 
 #: src/components/offers/NFTOfferEditor.tsx:395
 #: src/components/offers/NFTOfferViewer.tsx:585
 msgid "Creator royalty percentage seems high"
-msgstr ""
+msgstr "Відсоток авторського гонорару здається високим"
 
 #: src/components/plot/add/PlotAddForm.tsx:115
 msgid "Currency code is not defined"
-msgstr ""
+msgstr "Код валюти не визначено"
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:138
 #: src/components/plotNFT/PlotNFTCard.tsx:177
@@ -647,7 +647,7 @@ msgstr "Видалити ділянку"
 
 #: src/components/plotNFT/PlotNFTCard.tsx:311
 msgid "Delete Unconfirmed Transactions"
-msgstr ""
+msgstr "Видалити непідтверджені транзакції"
 
 #: src/components/app/AppPassPrompt.tsx:106
 msgid "Deleting key"
@@ -663,16 +663,16 @@ msgstr "Індекс деривації"
 
 #: src/components/settings/SettingsDerivationIndex.tsx:57
 msgid "Derivation index must be greater than {index}"
-msgstr ""
+msgstr "Індекс деривації повинен бути більшим за {index}"
 
 #: src/components/nfts/detail/NFTDetail.tsx:73
 #: src/components/nfts/detail/NFTDetailV2.tsx:122
 msgid "Description"
-msgstr ""
+msgstr "Опис"
 
 #: src/components/nfts/NFTTransferConfirmationDialog.tsx:83
 msgid "Destination"
-msgstr ""
+msgstr "Призначення"
 
 #: src/components/nfts/NFTTransferConfirmationDialog.tsx:68
 msgid "Destination:"
@@ -681,7 +681,7 @@ msgstr "Призначення:"
 #: src/components/nfts/NFTDetails.tsx:240
 #: src/components/offers/OfferViewer.tsx:331
 msgid "Details"
-msgstr ""
+msgstr "Подробиці"
 
 #: src/electron/main.tsx:483
 msgid "Developer"
@@ -693,7 +693,7 @@ msgstr "Інструменти розробника"
 
 #: src/components/offers/OfferShareDialog.tsx:550
 msgid "Dexie URL"
-msgstr ""
+msgstr "Dexie URL"
 
 #: src/components/block/Block.jsx:199
 #: src/components/fullNode/card/FullNodeCardDifficulty.tsx:14
@@ -702,7 +702,7 @@ msgstr "Складність"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:266
 msgid "Disable NUMA"
-msgstr ""
+msgstr "Вимкнути NUMA"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:215
 msgid "Disable bitfield plotting"
@@ -719,7 +719,7 @@ msgstr ""
 #: src/components/offers/OfferShareDialog.tsx:1446
 #: src/hooks/useOpenUnsafeLink.tsx:77
 msgid "Do not show this dialog again"
-msgstr ""
+msgstr "Більше не показувати"
 
 #: src/components/farm/FarmHero.tsx:46
 #: src/components/plot/overview/PlotOverviewHero.tsx:66
@@ -728,7 +728,7 @@ msgstr "У Вас є існуючі ділянки на цьому пристр�
 
 #: src/components/nfts/NFTBurnDialog.tsx:114
 msgid "Do you want to burn this NFT?"
-msgstr ""
+msgstr "Ви дійсно хочете спалити цей NFT?"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:55
 msgid "Does your machine support parallel plotting?"
@@ -774,12 +774,12 @@ msgstr "Змінити інструкції для виплат"
 
 #: src/components/nfts/NFTSummary.tsx:69
 msgid "Edition #"
-msgstr ""
+msgstr "Edition #"
 
 #: src/components/nfts/detail/NFTDetail.tsx:94
 #: src/components/nfts/detail/NFTDetailV2.tsx:145
 msgid "Edition Number"
-msgstr ""
+msgstr "Edition Number"
 
 #: src/components/app/AppKeyringMigrator.tsx:143
 msgid "Enter a strong passphrase and click Migrate Keys to secure your keys"
@@ -787,7 +787,7 @@ msgstr "Введіть надійний пароль та натисніть М�
 
 #: src/components/settings/SetPassphrasePrompt.tsx:158
 msgid "Enter a strong passphrase to secure your keys:"
-msgstr ""
+msgstr "Введіть надійний пароль для захисту ваших ключів:"
 
 #: src/components/settings/RemovePassphrasePrompt.tsx:121
 msgid "Enter your passphrase:"
@@ -822,7 +822,7 @@ msgstr "Виключити кінцеву теку"
 
 #: src/components/nfts/gallery/NFTGalleryHero.tsx:17
 msgid "Explore the Chia ecosystem; discover and trade great NFTs"
-msgstr ""
+msgstr "Досліджуйте екосистему Chia; відкривайте для себе відмінні NFT і торгуйте ними"
 
 #: src/components/offers/utils.ts:175
 #: src/components/plot/PlotHarvester.tsx:118
@@ -1085,7 +1085,7 @@ msgstr ""
 
 #: src/components/nfts/NFTBurnDialog.tsx:79
 msgid "If you proceed, this NFT will be permanently deleted. Are you sure you want to continue?"
-msgstr ""
+msgstr "Якщо ви продовжите, цей NFT буде видалено назавжди. Ви впевнені, що хочете продовжити?"
 
 #: src/components/nfts/NFTPreview.tsx:92
 msgid "Image Hash Mismatch"
@@ -1138,7 +1138,7 @@ msgstr ""
 
 #: src/components/offers/NFTOfferEditor.tsx:699
 msgid "Invalid NFT identifier"
-msgstr ""
+msgstr "Неправильний NFT ідентифікатор"
 
 #: src/components/plotNFT/PlotNFTState.tsx:26
 msgid "Invalid state"
@@ -1146,7 +1146,7 @@ msgstr "Некоректний стан"
 
 #: src/components/plotNFT/PlotNFTGetPoolLoginLinkDialog.tsx:66
 msgid "It is a one-time login link that can be used to log in to a pool's website. It contains a signature using the farmer's key from the plot NFT. Not all pools support this feature."
-msgstr ""
+msgstr "Одноразове посилання для входу, яке може бути використане для входу на сайт пула. Містить підпис, використовуючи ключ фермера з дільниці NFT. Ця функція підтримується не всіма пулами."
 
 #: src/components/plotNFT/PlotNFTCard.tsx:402
 msgid "Join Pool"
@@ -1162,7 +1162,7 @@ msgstr "Приєднатися до пулу"
 
 #: src/components/plot/add/PlotAddNFT.tsx:49
 msgid "Join a pool and get consistent XCH farming rewards. The average returns are the same, but it is much less volatile."
-msgstr ""
+msgstr "Приєднуйтесь до пулу та отримуйте послідовні нагороди за фермерство у XCH. Середній дохід однаковий, але набагато менш волатильний."
 
 #: src/components/plotNFT/PlotNFTAdd.tsx:63
 msgid "Join a pool and get consistent XCH farming rewards. The average returns are the same, but it is much less volatile. Assign plots to a plot NFT. You can easily switch pools without having to re-plot."
@@ -1174,11 +1174,11 @@ msgstr "Приєднуйтесь до пулу та отримайте біль�
 
 #: src/components/app/AppSelectMode.tsx:143
 msgid "Join farming pools"
-msgstr ""
+msgstr "Приєднуйтеся до фермерських пулів"
 
 #: src/components/offers/OfferShareDialog.tsx:1078
 msgid "Join {teamName}"
-msgstr ""
+msgstr "Приєднатися до {teamName}"
 
 #: src/components/plot/PlotHarvesterPlots.tsx:40
 #: src/components/plot/PlotPlotting.tsx:20
@@ -1187,7 +1187,7 @@ msgstr "K-розмір"
 
 #: src/components/offers/OfferShareDialog.tsx:964
 msgid "Keybase command failed {e}. If you haven't installed Keybase, you can download from https://keybase.io"
-msgstr ""
+msgstr "Помилка команди Keybase {e}. Якщо ви не встановили Keybase, ви можете завантажити його з https://keybase.io"
 
 #: src/components/offers/OfferShareDialog.tsx:1053
 msgid "Keybase is a secure messaging and file sharing application. To share an offer in the Keybase {teamName} team, you must first have Keybase installed."
@@ -1195,7 +1195,7 @@ msgstr ""
 
 #: src/components/app/AppKeyringMigrator.tsx:90
 msgid "Keyring migration failed: {0}"
-msgstr ""
+msgstr "Помилка міграції системи ключів: {0}"
 
 #: src/components/farm/FarmFullNodeConnections.tsx:63
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:63
@@ -1212,7 +1212,7 @@ msgstr "Висота останнього створеного блоку"
 
 #: src/components/fullNode/card/FullNodeCardPeakTime.tsx:18
 msgid "Last Transaction Block Time"
-msgstr ""
+msgstr "Час блоку останньої транзакції"
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:35
 msgid "Latest Block Challenges"
@@ -1225,61 +1225,61 @@ msgstr "Лаунчер ID"
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:294
 #: src/components/plotNFT/PlotNFTCard.tsx:346
 msgid "Launcher Id"
-msgstr ""
+msgstr "Лаунчер Id"
 
 #: src/components/plotNFT/PlotNFTGetPoolLoginLinkDialog.tsx:76
 #: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:118
 msgid "Learn More"
-msgstr ""
+msgstr "Докладніше"
 
 #: src/components/plotNFT/PlotNFTState.tsx:58
 msgid "Leaving Pool"
-msgstr ""
+msgstr "Вихід із пулу"
 
 #: src/components/app/AppKeyringMigrator.tsx:100
 msgid "Legacy keyrings are no longer supported. Your keys need to be migrated to a new keyring that is optionally secured by a master passphrase."
-msgstr ""
+msgstr "Застарілі системи ключів більше не підтримуються. Ваші ключі потрібно перенести на нову систему ключів, яка додатково захищена майстер паролем."
 
 #: src/components/app/AppKeyringMigrator.tsx:107
 msgid "Legacy keyrings are no longer supported. Your keys need to be migrated to a new keyring that is secured by a master passphrase."
-msgstr ""
+msgstr "Застарілі системи ключів більше не підтримуються. Ваші ключі потрібно перенести на нову систему ключів, яка захищена майстер паролем."
 
 #: src/components/nfts/NFTDetails.tsx:225
 msgid "License Hash"
-msgstr ""
+msgstr "Хэш ліцензії"
 
 #: src/components/nfts/NFTDetails.tsx:210
 msgid "License URL {0}"
-msgstr ""
+msgstr "URL ліцензії {0}"
 
 #: src/components/fullNode/FullNodeConnections.tsx:80
 msgid "List of connections is empty"
-msgstr ""
+msgstr "Список з'єднань порожній"
 
 #: src/components/nfts/NFTSummary.tsx:115
 msgid "Loading NFT"
-msgstr ""
+msgstr "Завантаження NFT"
 
 #: src/components/offers/NFTOfferPreview.tsx:74
 msgid "Loading NFT Info..."
-msgstr ""
+msgstr "Завантаження даних NFT..."
 
 #: src/components/app/AppProviders.tsx:81
 msgid "Loading configuration"
-msgstr ""
+msgstr "Завантаження конфігурації"
 
 #: src/components/farm/Farm.tsx:24
 msgid "Loading farming data"
-msgstr ""
+msgstr "Завантаження даних про фармінг"
 
 #: src/components/app/AppState.tsx:144
 msgid "Loading keyring status"
-msgstr ""
+msgstr "Завантаження статусу системи ключів"
 
 #: src/components/nfts/NFTPreview.tsx:197
 #: src/components/nfts/NFTPreview.tsx:229
 msgid "Loading preview..."
-msgstr ""
+msgstr "Завантаження попереднього перегляду..."
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:124
 #: src/components/offers/NFTOfferTokenSelector.tsx:104
@@ -1289,11 +1289,11 @@ msgstr "Завантаження..."
 
 #: src/components/plot/PlotHarvester.tsx:56
 msgid "Local"
-msgstr ""
+msgstr "Локальний"
 
 #: src/components/app/AppSelectMode.tsx:90
 msgid "Manage CAT tokens"
-msgstr ""
+msgstr "Керування CAT токенами"
 
 #: src/components/farm/FarmHeader.tsx:41
 msgid "Manage Farming Rewards"
@@ -1310,11 +1310,11 @@ msgstr "Управління вашими адресами для отриман
 
 #: src/components/nfts/NFTDetails.tsx:195
 msgid "Metadata Hash"
-msgstr ""
+msgstr "Хеш метаданих"
 
 #: src/components/nfts/NFTDetails.tsx:180
 msgid "Metadata URL {0}"
-msgstr ""
+msgstr "URL метаданих {0}"
 
 #: src/components/fullNode/FullNodeConnections.tsx:57
 msgid "MiB Up/Down"
@@ -1322,7 +1322,7 @@ msgstr "MiB Вивантаження/Завантаження"
 
 #: src/components/settings/SettingsPanel.tsx:152
 msgid "Migrate Keyring"
-msgstr ""
+msgstr "Мігрувати систему ключів"
 
 #: src/components/app/AppKeyringMigrator.tsx:277
 msgid "Migrate Keys"
@@ -1330,23 +1330,23 @@ msgstr "Мігрувати Ключі"
 
 #: src/components/app/AppKeyringMigrator.tsx:136
 msgid "Migration required"
-msgstr ""
+msgstr "Необхідна міграція"
 
 #: src/components/settings/SettingsPanel.tsx:99
 msgid "Migration required to support passphrase protection"
-msgstr ""
+msgstr "Міграція необхідна для підтримки захисту паролем"
 
 #: src/components/pool/PoolInfo.tsx:27
 msgid "Minimum Difficulty"
-msgstr ""
+msgstr "Мінімальна складність"
 
 #: src/components/offers/OfferShareDialog.tsx:631
 msgid "MintGarden URL"
-msgstr ""
+msgstr "MintGarden URL"
 
 #: src/components/nfts/NFTDetails.tsx:143
 msgid "Minted at Block Height"
-msgstr ""
+msgstr "Видобуто на висоті блоку"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:98
 msgid "Minutes"
@@ -1354,7 +1354,7 @@ msgstr "Хвилин"
 
 #: src/components/plot/PlotHarvester.tsx:105
 msgid "Missing Keys"
-msgstr ""
+msgstr "Відсутні ключі"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:118
 msgid "More memory slightly increases speed"
@@ -1362,39 +1362,39 @@ msgstr "Більший обсяг пам'яті трохи збільшує шв
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:467
 msgid "Move"
-msgstr ""
+msgstr "Перемістити"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:513
 msgid "Move NFT to Profile"
-msgstr ""
+msgstr "Перемістити NFT до профілю"
 
 #: src/components/nfts/NFTContextualActions.tsx:281
 msgid "Move to Profile"
-msgstr ""
+msgstr "Перемістити до профілю"
 
 #: src/components/settings/ProfileView.tsx:99
 msgid "My DID"
-msgstr ""
+msgstr "Мій DID"
 
 #: src/components/offers/NFTOfferEditor.tsx:241
 msgid "NFT"
-msgstr ""
+msgstr "NFT"
 
 #: src/components/nfts/NFTDetails.tsx:43
 msgid "NFT ID"
-msgstr ""
+msgstr "NFT ID"
 
 #: src/components/offers/NFTOfferEditor.tsx:243
 msgid "NFT Identifier"
-msgstr ""
+msgstr "NFT ідентифікатор"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:325
 msgid "NFT Move Failed"
-msgstr ""
+msgstr "Помилка переміщення NFT"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:315
 msgid "NFT Move Pending"
-msgstr ""
+msgstr "Очікується переміщення NFT"
 
 #: src/components/offers/OfferManager.tsx:604
 msgid "NFT Offer"
@@ -1402,32 +1402,32 @@ msgstr ""
 
 #: src/components/offers/NFTOfferViewer.tsx:554
 msgid "NFT Purchase Price"
-msgstr ""
+msgstr "Ціна покупки NFT"
 
 #: src/components/nfts/NFTContextualActions.tsx:327
 msgid "NFT Status Update Failed"
-msgstr ""
+msgstr "Не вдалося оновити статус NFT"
 
 #: src/components/nfts/NFTContextualActions.tsx:317
 msgid "NFT Status Updated"
-msgstr ""
+msgstr "Стан NFT оновлено"
 
 #: src/components/nfts/NFTContextualActions.tsx:245
 msgid "NFT Transfer Complete"
-msgstr ""
+msgstr "Передачу NFT завершено"
 
 #: src/components/nfts/NFTContextualActions.tsx:191
 #: src/components/nfts/NFTContextualActions.tsx:255
 msgid "NFT Transfer Failed"
-msgstr ""
+msgstr "Помилка передавання NFT"
 
 #: src/components/nfts/NFTContextualActions.tsx:181
 msgid "NFT Transfer Pending"
-msgstr ""
+msgstr "Очікується передача NFT"
 
 #: src/components/offers/NFTOfferEditor.tsx:736
 msgid "NFT details not available"
-msgstr ""
+msgstr "Деталі NFT недоступні"
 
 #: src/components/offers/NFTOfferEditor.tsx:256
 #~ msgid "NFT for XCH"
@@ -1435,15 +1435,15 @@ msgstr ""
 
 #: src/components/offers/NFTOfferPreview.tsx:56
 msgid "NFT identifier does not reference a valid NFT coin."
-msgstr ""
+msgstr "Ідентифікатор NFT не посилається на дійсну NFT монету."
 
 #: src/components/offers/NFTOfferPreview.tsx:121
 msgid "NFT not specified"
-msgstr ""
+msgstr "NFT не вказано"
 
 #: src/components/dashboard/DashboardSideBar.tsx:61
 msgid "NFTs"
-msgstr ""
+msgstr "NFTs"
 
 #: src/components/offers/NFTOfferViewer.tsx:675
 msgid "Net Proceeds"
@@ -1451,7 +1451,7 @@ msgstr ""
 
 #: src/components/offers/NFTOfferViewer.tsx:704
 msgid "Network Fee (Optional)"
-msgstr ""
+msgstr "Комісія мережі (необов'язково)"
 
 #: src/components/fullNode/card/FullNodeCardNetworkName.tsx:14
 msgid "Network Name"
@@ -1459,7 +1459,7 @@ msgstr "Назва мережі"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:205
 msgid "New Passphrase"
-msgstr ""
+msgstr "Новий пароль"
 
 #: src/components/block/Block.jsx:310
 msgid "Next"
@@ -1479,11 +1479,11 @@ msgstr ""
 
 #: src/components/nfts/NFTPreview.tsx:185
 msgid "No file available"
-msgstr ""
+msgstr "Файл відсутній"
 
 #: src/components/plot/PlotHarvesterPlots.tsx:123
 msgid "No plots yet"
-msgstr ""
+msgstr "Поки що немає ділянок"
 
 #: src/components/block/FarmManageFarmingRewards.tsx:135
 #: src/components/farm/FarmManageFarmingRewards.tsx:148
@@ -1492,7 +1492,7 @@ msgstr "Немає приватних ключів для одного або о
 
 #: src/components/offers/OfferViewer.tsx:176
 msgid "Node Count"
-msgstr ""
+msgstr "Кількість вузлів"
 
 #: src/components/farm/FarmFullNodeConnections.tsx:31
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:31
@@ -1505,7 +1505,7 @@ msgstr "ID вузла"
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:391
 #: src/components/plot/add/PlotAddNFT.tsx:91
 msgid "None"
-msgstr ""
+msgstr "Пусто"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:68
 msgid "None of your plots have passed the plot filter yet."
@@ -1530,11 +1530,11 @@ msgstr "Не синхронізовано"
 
 #: src/components/offers/OfferViewer.tsx:165
 msgid "Not accepted"
-msgstr ""
+msgstr "Не прийнято"
 
 #: src/components/offers/OfferViewer.tsx:156
 msgid "Not confirmed"
-msgstr ""
+msgstr "Не підтверджено"
 
 #: src/components/fullNode/card/FullNodeCardConnectionStatus.tsx:20
 msgid "Not connected"
@@ -1543,12 +1543,12 @@ msgstr "Немає з'єднання"
 #: src/components/block/FarmManageFarmingRewards.tsx:163
 #: src/components/farm/FarmManageFarmingRewards.tsx:176
 msgid "Note that this does not change your pooling payout addresses. This only affects old format plots, and the 0.25XCH reward for pooling plots."
-msgstr ""
+msgstr "Зауважте, що це не змінює адреси виплат пула. Це впливає лише на старий формат ділянок та на винагороду 0.25XCH за ділянки у пулі."
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:117
 #: src/components/plotNFT/PlotNFTCard.tsx:158
 msgid "Number of Plots"
-msgstr ""
+msgstr "Кількість ділянок"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:171
 msgid "Number of buckets"
@@ -1556,7 +1556,7 @@ msgstr "Кількість корзин"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:188
 msgid "Number of buckets for phase 3 & 4"
-msgstr ""
+msgstr "Кількість кошиків на фазі 3 та 4"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:136
 msgid "Number of threads"
@@ -1595,11 +1595,11 @@ msgstr ""
 
 #: src/components/offers/OfferShareDialog.tsx:713
 msgid "OfferBin URL"
-msgstr ""
+msgstr "OfferBin URL"
 
 #: src/components/offers/OfferManager.tsx:367
 msgid "Offered"
-msgstr ""
+msgstr "Запропоновано"
 
 #: src/components/offers/utils.ts:159
 msgid "Offering: [{makerString}], Requesting: [{takerString}]"
@@ -1668,23 +1668,23 @@ msgstr ""
 #: src/components/settings/ChangePassphrasePrompt.tsx:252
 #: src/components/settings/SetPassphrasePrompt.tsx:221
 msgid "Passphrase Hint (Optional)"
-msgstr ""
+msgstr "Підказка до пароля (необов'язково)"
 
 #: src/components/settings/SettingsPanel.tsx:72
 msgid "Passphrase protection has been disabled"
-msgstr ""
+msgstr "Захист паролем було вимкнено"
 
 #: src/components/settings/SettingsPanel.tsx:108
 msgid "Passphrase protection is disabled"
-msgstr ""
+msgstr "Захист паролем вимкнено"
 
 #: src/components/settings/SettingsPanel.tsx:105
 msgid "Passphrase protection is enabled"
-msgstr ""
+msgstr "Захист паролем увімкнено"
 
 #: src/components/settings/SettingsPanel.tsx:100
 msgid "Passphrase support requires migrating your keys to a new keyring"
-msgstr ""
+msgstr "Підтримка захисту паролем вимагатиме міграції ваших ключів у нову зв'язку ключів"
 
 #: src/components/offers/OfferDataEntryDialog.tsx:40
 #: src/components/offers/OfferImport.tsx:177
@@ -1693,7 +1693,7 @@ msgstr ""
 
 #: src/components/plotNFT/PlotNFTCard.tsx:357
 msgid "Payout Address"
-msgstr ""
+msgstr "Адреса для виплати"
 
 #: src/components/fullNode/card/FullNodeCardPeakHeight.tsx:14
 msgid "Peak Height"
@@ -1705,71 +1705,71 @@ msgstr "В очікуванні"
 
 #: src/components/offers/utils.ts:165
 msgid "Pending Accept"
-msgstr ""
+msgstr "Очікує на прийняття"
 
 #: src/components/offers/utils.ts:169
 msgid "Pending Cancel"
-msgstr ""
+msgstr "Очікує на скасування"
 
 #: src/components/offers/utils.ts:167
 msgid "Pending Confirm"
-msgstr ""
+msgstr "Очікує підтвердження"
 
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:144
 #: src/hooks/useAbsorbRewards.tsx:43
 msgid "Please Confirm"
-msgstr ""
+msgstr "Підтвердіть, будь ласка"
 
 #: src/hooks/useOpenUnsafeLink.tsx:50
 msgid "Please check the following link to verify the site you are going to visit. Proceed at your own risk."
-msgstr ""
+msgstr "Перейдіть за наведеним нижче посиланням, щоб підтвердити сайт, який ви збираєтеся відвідати. Продовжуйте на свій страх і ризик."
 
 #: src/components/app/AppPassPrompt.tsx:60
 #: src/components/settings/SetPassphrasePrompt.tsx:58
 msgid "Please enter a passphrase"
-msgstr ""
+msgstr "Будь ласка, введіть пароль"
 
 #: src/components/settings/ProfileAdd.tsx:64
 msgid "Please enter a valid numeric fee"
-msgstr ""
+msgstr "Будь ласка, введіть дійсне числове значення комісії"
 
 #: src/components/offers/NFTOfferEditor.tsx:697
 msgid "Please enter an NFT identifier"
-msgstr ""
+msgstr "Введіть NFT ідентифікатор"
 
 #: src/components/offers/NFTOfferEditor.tsx:705
 msgid "Please enter an amount"
-msgstr ""
+msgstr "Будь ласка, введіть кількість"
 
 #: src/components/offers/OfferEditor.tsx:136
 msgid "Please enter an amount for each row"
-msgstr ""
+msgstr "Будь ласка, введіть кількість для кожного рядку"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:81
 msgid "Please enter your current passphrase, and a new passphrase"
-msgstr ""
+msgstr "Будь ласка, введіть свій поточний пароль та новий пароль"
 
 #: src/components/app/AppPassPrompt.tsx:97
 #: src/components/app/AppPassPrompt.tsx:113
 #: src/components/settings/RemovePassphrasePrompt.tsx:58
 msgid "Please enter your passphrase"
-msgstr ""
+msgstr "Будь ласка, введіть ваш пароль"
 
 #: src/components/app/AppPassPrompt.tsx:107
 msgid "Please enter your passphrase to proceed"
-msgstr ""
+msgstr "Будь ласка, введіть ваш пароль для продовження"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:285
 msgid "Please select a profile to move the NFT to."
-msgstr ""
+msgstr "Будь ласка, виберіть профіль для переміщення NFT."
 
 #: src/components/offers/OfferEditor.tsx:134
 msgid "Please select an asset for each row"
-msgstr ""
+msgstr "Будь ласка, виберіть актив для кожного рядка"
 
 #: src/components/offers/NFTOfferEditor.tsx:703
 msgid "Please select an asset type"
-msgstr ""
+msgstr "Будь ласка, виберіть тип активу"
 
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:56
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:60
@@ -1783,11 +1783,11 @@ msgstr "Будь ласка, вкажіть тимчасову теку"
 
 #: src/hooks/useAbsorbRewards.tsx:19
 msgid "Please wait for synchronization"
-msgstr ""
+msgstr "Дочекайтеся закінчення синхронізації"
 
 #: src/hooks/useJoinPool.tsx:28
 msgid "Please wait for wallet synchronization"
-msgstr ""
+msgstr "Дочекайтеся закінчення синхронізації гаманця"
 
 #: src/components/farm/card/FarmCardPlotCount.tsx:11
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:44
@@ -1804,7 +1804,7 @@ msgstr "Ключ ділянки"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:318
 msgid "Plot NFT Plot Target Address"
-msgstr ""
+msgstr "NFT ділянка цільової адреси"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:319
 msgid "Plot NFT Pool Contract Address"
@@ -1813,7 +1813,7 @@ msgstr ""
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:111
 #: src/components/plotNFT/PlotNFTChangePool.tsx:92
 msgid "Plot NFT with p2_singleton_puzzle_hash {plotNFTId} does not exists"
-msgstr ""
+msgstr "Ділянка NFT з p2_singleton_puzzle_hash {plotNFTId} не існує"
 
 #: src/components/block/Block.jsx:237
 msgid "Plot Public Key"
@@ -1833,7 +1833,7 @@ msgstr "Ділянка є дублікатом {0}"
 
 #: src/components/plotNFT/PlotNFTState.tsx:46
 msgid "PlotNFT is transitioning to (target state). This can take a while. Please do not close the application until this is finalized."
-msgstr ""
+msgstr "NFT ділянка переходить до (цільового стану). Це може тривати деякий час. Будь ласка, не закривайте програму, поки процес не завершено."
 
 #: src/components/dashboard/DashboardSideBar.tsx:87
 #: src/components/plot/PlotHarvester.tsx:93
@@ -1842,7 +1842,7 @@ msgstr "Ділянки"
 
 #: src/components/plot/card/PlotCardPlotsFailedToOpen.tsx:13
 msgid "Plots Failed To Open"
-msgstr ""
+msgstr "Не вдалося відкрити ділянки"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:20
 msgid "Plots Passed Filter"
@@ -1850,15 +1850,15 @@ msgstr "Ділянки, що пройшли фільтр"
 
 #: src/components/plot/card/PlotCardNotFound.tsx:11
 msgid "Plots With Missing Keys"
-msgstr ""
+msgstr "Ділянки з відсутніми ключами"
 
 #: src/components/plot/overview/PlotOverviewHero.tsx:33
 msgid "Plots are allocated space on your hard drive used to farm and earn Chia.<0>Learn more</0>"
-msgstr ""
+msgstr "Ділянки - це виділений простір на жорсткому диску. Ділянки використовуються для фармінгу і приносять прибуток у Chia. <0>Подробиці</0>"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:103
 msgid "Plotter"
-msgstr ""
+msgstr "Плотери"
 
 #: src/components/plot/PlotPlotting.tsx:49
 #: src/components/plot/queue/PlotQueueIndicator.tsx:34
@@ -1867,7 +1867,7 @@ msgstr "Створення ділянок"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:35
 msgid "Plotting Manager"
-msgstr ""
+msgstr "Управління плотерами"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:58
 msgid "Plotting in parallel can save time. Otherwise, add plot(s) to the queue."
@@ -1880,21 +1880,21 @@ msgstr "Засіювання із увімкненим бітовим полем
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:173
 #: src/components/plotNFT/PlotNFTCard.tsx:212
 msgid "Points Found Since Start"
-msgstr ""
+msgstr "Пункти з початку запуску"
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:184
 #: src/components/plotNFT/PlotNFTCard.tsx:223
 msgid "Points Found in Last 24 Hours"
-msgstr ""
+msgstr "Пункти за останні 24 години"
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:193
 #: src/components/plotNFT/PlotNFTCard.tsx:232
 msgid "Points Successful in Last 24 Hours"
-msgstr ""
+msgstr "Прийняті пункти за останні 24 години"
 
 #: src/components/plot/PlotHarvesterPlots.tsx:65
 msgid "Pool Contract Address"
-msgstr ""
+msgstr "Адреса контракту пула"
 
 #: src/components/plot/PlotHarvesterPlots.tsx:52
 msgid "Pool Key"
@@ -1902,11 +1902,11 @@ msgstr "Ключ пулу"
 
 #: src/components/plotNFT/PlotNFTGetPoolLoginLinkDialog.tsx:53
 msgid "Pool Login Link"
-msgstr ""
+msgstr "Посилання для входу на пул"
 
 #: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:91
 msgid "Pool Payout Instructions"
-msgstr ""
+msgstr "Інструкції з виплати пулу"
 
 #: src/components/block/Block.jsx:241
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:308
@@ -1925,12 +1925,12 @@ msgstr "Адреса винагороди пула"
 #: src/components/block/FarmManageFarmingRewards.tsx:128
 #: src/components/farm/FarmManageFarmingRewards.tsx:141
 msgid "Pool Reward Address is not properly formatted."
-msgstr ""
+msgstr "Невірний формат адреси винагороди фермера."
 
 #: src/components/block/FarmManageFarmingRewards.tsx:123
 #: src/components/farm/FarmManageFarmingRewards.tsx:136
 msgid "Pool Reward Address must not be empty."
-msgstr ""
+msgstr "Адреса нагород фермера не повинна бути порожньою."
 
 #: src/components/block/Block.jsx:273
 msgid "Pool Reward Amount"
@@ -1938,23 +1938,23 @@ msgstr "Кількість винагороди пула"
 
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:39
 msgid "Pool does not provide relativeLockHeight."
-msgstr ""
+msgstr "Пул не надає relativeLockHeight."
 
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:36
 msgid "Pool does not provide targetPuzzleHash."
-msgstr ""
+msgstr "Пул не надає targetPuzzleHash."
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:271
 #: src/components/plotNFT/PlotNFTCard.tsx:323
 #: src/components/plotNFT/PlotNFTUnconfirmedCard.tsx:65
 msgid "Pool:"
-msgstr ""
+msgstr "Пул:"
 
 #: src/components/dashboard/DashboardSideBar.tsx:107
 #: src/components/plotNFT/PlotNFTExternalState.tsx:24
 #: src/components/plotNFT/PlotNFTState.tsx:59
 msgid "Pooling"
-msgstr ""
+msgstr "Добувається"
 
 #: src/components/block/FullNodeAddConnection.tsx:76
 #: src/components/farm/FarmFullNodeConnections.tsx:41
@@ -1967,19 +1967,19 @@ msgstr "Порт"
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:96
 #: src/components/plotNFT/PlotNFTChangePool.tsx:85
 msgid "Preparing Plot NFT"
-msgstr ""
+msgstr "Підготовка NFT ділянки"
 
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:104
 msgid "Preparing standard wallet"
-msgstr ""
+msgstr "Підготовка стандартного гаманця"
 
 #: src/components/nfts/NFTPreview.tsx:153
 msgid "Preview"
-msgstr ""
+msgstr "Перегляд"
 
 #: src/components/nfts/NFTPreview.tsx:191
 msgid "Preview URL is not valid"
-msgstr ""
+msgstr "URL для попереднього перегляду недійсна"
 
 #: src/components/block/Block.jsx:307
 msgid "Previous"
@@ -1992,7 +1992,7 @@ msgstr "Хеш попереднього заголовка"
 #: src/components/nfts/gallery/NFTGallerySidebar.tsx:52
 #: src/components/nfts/gallery/NFTGallerySidebar.tsx:54
 msgid "Price"
-msgstr ""
+msgstr "Ціна"
 
 #: src/components/settings/ProfileView.tsx:66
 msgid "Profile Name"
@@ -2021,7 +2021,7 @@ msgstr "Версія Протоколу"
 
 #: src/components/offers/NFTOfferViewer.tsx:527
 msgid "Purchase Summary"
-msgstr ""
+msgstr "Загалом про покупку"
 
 #: src/components/offers/OfferViewer.tsx:238
 msgid "Puzzle Hash"
@@ -2046,7 +2046,7 @@ msgstr "Рейтинги"
 
 #: src/components/app/AppSelectMode.tsx:111
 msgid "Recommended"
-msgstr ""
+msgstr "Рекомендується"
 
 #: src/components/settings/ProfileAdd.tsx:118
 msgid "Recommended: 0.000005 XCH"
@@ -2060,7 +2060,7 @@ msgstr "Оновити ділянки"
 
 #: src/components/pool/PoolInfo.tsx:32
 msgid "Relative Lock Height"
-msgstr ""
+msgstr "Відносна висота блоку"
 
 #: src/electron/main.tsx:559
 msgid "Release Notes"
@@ -2078,7 +2078,7 @@ msgstr "Видалити пароль"
 
 #: src/components/app/AppKeyringMigrator.tsx:255
 msgid "Remove keys from old keyring upon successful migration"
-msgstr ""
+msgstr "Видалити ключі зі старого списку ключів після успішної міграції"
 
 #: src/components/plot/queue/PlotQueueIndicator.tsx:36
 msgid "Removing"
@@ -2095,7 +2095,7 @@ msgstr "Зроблено запит"
 #: src/components/offers/NFTOfferEditor.tsx:533
 #: src/components/offers/OfferEditor.tsx:213
 msgid "Reset"
-msgstr ""
+msgstr "Скинути"
 
 #: src/components/backup/BackupRestore.tsx:159
 msgid "Restore Metadata for Coloured Coins and other Smart Wallets from Backup"
@@ -2103,11 +2103,11 @@ msgstr "Відновити метадані для кольорових моне
 
 #: src/components/nfts/NFTDetails.tsx:128
 msgid "Royalty Percentage"
-msgstr ""
+msgstr "Відсоток роялті"
 
 #: src/components/app/AppSelectMode.tsx:149
 msgid "Runs the full node"
-msgstr ""
+msgstr "Запуск повного вузла"
 
 #: src/components/backup/BackupRestore.tsx:185
 msgid "Safe To Skip"
@@ -2137,7 +2137,7 @@ msgstr "Пошук блоку за хешем заголовку"
 #: src/components/offers/OfferSummaryRow.tsx:228
 #: src/components/offers/OfferSummaryRow.tsx:306
 msgid "Search on Tail Database"
-msgstr ""
+msgstr "Пошук в Tail Database"
 
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:106
 msgid "Second temporary folder location"
@@ -2145,7 +2145,7 @@ msgstr "Розташування другої тимчасової теки"
 
 #: src/components/settings/SettingsPanel.tsx:102
 msgid "Secure your keychain using a strong passphrase"
-msgstr ""
+msgstr "Захистіть вашу зв'язку ключів за допомогою надійного пароля"
 
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:100
 msgid "Select 2nd Temporary Directory"
@@ -2181,11 +2181,11 @@ msgstr "Виберіть розташування тимчасової теки,
 
 #: src/components/plot/add/PlotAddNFT.tsx:86
 msgid "Select your Plot NFT"
-msgstr ""
+msgstr "Виберіть вашу NFT ділянку"
 
 #: src/components/plot/add/PlotAddNFT.tsx:77
 msgid "Select your Plot NFT from the dropdown or create a new one."
-msgstr ""
+msgstr "Виберіть свою NFT ділянку зі списку або створіть нову."
 
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:73
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:90
@@ -2196,26 +2196,26 @@ msgstr "Вибрано"
 #: src/components/plotNFT/PlotNFTExternalState.tsx:23
 #: src/components/plotNFT/PlotNFTState.tsx:57
 msgid "Self Pooling"
-msgstr ""
+msgstr "Самостійне виставлення рахунків"
 
 #: src/components/plotNFT/select/PlotNFTSelectBase.tsx:104
 msgid "Self pool. When you win a block you will earn XCH rewards."
-msgstr ""
+msgstr "Свій пул. Коли ви виграєте блок, ви отримаєте нагороду XCH."
 
 #: src/components/offers/NFTOfferEditor.tsx:367
 msgid "Sell an NFT"
-msgstr ""
+msgstr "Продати NFT"
 
 #: src/components/nfts/NFTBurnDialog.tsx:142
 #: src/components/nfts/NFTTransferAction.tsx:142
 msgid "Send to Address"
-msgstr ""
+msgstr "Надіслати на адресу"
 
 #: src/components/settings/SetPassphrasePrompt.tsx:154
 #: src/components/settings/SetPassphrasePrompt.tsx:264
 #: src/components/settings/SettingsPanel.tsx:173
 msgid "Set Passphrase"
-msgstr ""
+msgstr "Встановити пароль"
 
 #: src/components/dashboard/DashboardSideBar.tsx:117
 #: src/components/settings/Settings.tsx:33
@@ -2226,7 +2226,7 @@ msgstr "Налаштування"
 #: src/components/offers/OfferShareDialog.tsx:1105
 #: src/components/offers/OfferShareDialog.tsx:1278
 msgid "Share"
-msgstr ""
+msgstr "Поділитись"
 
 #: src/components/offers/OfferShareDialog.tsx:1405
 msgid "Share Offer"
@@ -2234,27 +2234,27 @@ msgstr ""
 
 #: src/components/offers/OfferShareDialog.tsx:765
 msgid "Share Privately"
-msgstr ""
+msgstr "Поділитися приватно"
 
 #: src/components/offers/OfferShareDialog.tsx:587
 msgid "Share on Dexie"
-msgstr ""
+msgstr "Поділитися на Dexie"
 
 #: src/components/offers/OfferShareDialog.tsx:852
 msgid "Share on Hashgreen DEX"
-msgstr ""
+msgstr "Поділитися на Hashgreen DEX"
 
 #: src/components/offers/OfferShareDialog.tsx:1048
 msgid "Share on Keybase"
-msgstr ""
+msgstr "Поділитися на Keybase"
 
 #: src/components/offers/OfferShareDialog.tsx:668
 msgid "Share on MintGarden"
-msgstr ""
+msgstr "Поділитися на MintGarden"
 
 #: src/components/offers/OfferShareDialog.tsx:750
 msgid "Share on OfferBin"
-msgstr ""
+msgstr "Поділитися в OfferBin"
 
 #: src/components/offers/OfferShareDialog.tsx:1175
 msgid "Share on offerpool"
@@ -2262,19 +2262,19 @@ msgstr ""
 
 #: src/components/nfts/NFTContextualActions.tsx:568
 msgid "Show"
-msgstr ""
+msgstr "Показати"
 
 #: src/components/offers/OfferManager.tsx:451
 msgid "Show Details"
-msgstr ""
+msgstr "Детальніше"
 
 #: src/components/nfts/gallery/NFTGallery.tsx:149
 msgid "Show Hidden"
-msgstr ""
+msgstr "Показувати приховані"
 
 #: src/components/nfts/NFTPreview.tsx:212
 msgid "Show Preview"
-msgstr ""
+msgstr "Показувати прев'ю"
 
 #: src/components/app/AppKeyringMigrator.tsx:64
 #: src/components/app/AppKeyringMigrator.tsx:267
@@ -2291,11 +2291,11 @@ msgstr "Пропустити додавання фінальної директ�
 
 #: src/components/pool/PoolHero.tsx:21
 msgid "Smooth out your XCH farming rewards by joining a pool."
-msgstr ""
+msgstr "Отримайте свої нагороди за фарм XCH, приєднавшись до пулу."
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:138
 msgid "Specify a value of 0 to use all available threads"
-msgstr ""
+msgstr "Вкажіть значення 0 для використання всіх доступних потоків"
 
 #: src/electron/main.tsx:655
 msgid "Speech"
@@ -2303,7 +2303,7 @@ msgstr "Мовлення"
 
 #: src/components/app/AppState.tsx:199
 msgid "Starting services"
-msgstr ""
+msgstr "Запуск сервісів"
 
 #: src/components/fullNode/FullNode.jsx:95
 msgid "State"
@@ -2324,7 +2324,7 @@ msgstr "Стан"
 
 #: src/components/app/AppSelectMode.tsx:84
 msgid "Store and Send XCH"
-msgstr ""
+msgstr "Зберігати та відправляти XCH"
 
 #: src/components/app/AppPassPrompt.tsx:114
 msgid "Submit"
@@ -2332,15 +2332,15 @@ msgstr "Надіслати"
 
 #: src/hooks/useAcceptOfferHook.tsx:61
 msgid "Success"
-msgstr ""
+msgstr "Успіх"
 
 #: src/components/settings/SettingsDerivationIndex.tsx:66
 msgid "Successfully updated the derivation index. Your balances may take a while to update."
-msgstr ""
+msgstr "Індекс деривації успішно оновлено. Оновлення вашого балансу може зайняти деякий час."
 
 #: src/components/offers/OfferViewer.tsx:269
 msgid "Summary"
-msgstr ""
+msgstr "Звіт"
 
 #: src/components/fullNode/card/FullNodeCardStatus.tsx:49
 msgid "Synced"
@@ -2358,7 +2358,7 @@ msgstr "Синхронізація <0/>/<1/>"
 
 #: src/components/pool/PoolInfo.tsx:37
 msgid "Target Puzzle Hash"
-msgstr ""
+msgstr "Хеш-головоломка фермера"
 
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:64
 msgid "Temporary folder location"
@@ -2366,19 +2366,19 @@ msgstr "Тимчасова тека"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:326
 msgid "The NFT move failed: {error}"
-msgstr ""
+msgstr "Помилка при переміщенні NFT: {error}"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:316
 msgid "The NFT move transaction has been successfully submitted to the blockchain."
-msgstr ""
+msgstr "Транзакцію переміщення NFT успішно відправлено в блокчейн."
 
 #: src/components/nfts/NFTContextualActions.tsx:318
 msgid "The NFT status has been updated. If the transaction was successfully sent to the mempool, it may still complete."
-msgstr ""
+msgstr "Статус NFT оновлено. Якщо транзакцію було успішно надіслано до mempool, вона може завершитися."
 
 #: src/components/nfts/NFTContextualActions.tsx:328
 msgid "The NFT status update failed: {error}"
-msgstr ""
+msgstr "Не вдалося оновити статус NFT: {error}"
 
 #: src/components/nfts/NFTContextualActions.tsx:192
 #: src/components/nfts/NFTContextualActions.tsx:256
@@ -2558,7 +2558,7 @@ msgstr "Часова мітка"
 #: src/components/nfts/detail/NFTDetail.tsx:42
 #: src/components/nfts/detail/NFTDetailV2.tsx:104
 msgid "Title Not Available"
-msgstr ""
+msgstr "Назва недоступна"
 
 #: src/components/offers/OfferManager.tsx:594
 msgid "Token Offer"
@@ -2606,11 +2606,11 @@ msgstr "Загальний обсяг мережі"
 
 #: src/components/plot/card/PlotCardTotalPlots.tsx:11
 msgid "Total Plots"
-msgstr ""
+msgstr "Усього ділянок"
 
 #: src/components/plot/card/PlotCardTotalPlotsSize.tsx:11
 msgid "Total Plots Size"
-msgstr ""
+msgstr "Загальний обсяг ділянок"
 
 #: src/components/farm/card/FarmCardTotalSizeOfPlots.tsx:11
 msgid "Total Size of Plots"
@@ -2626,7 +2626,7 @@ msgstr "Загальна ітерація з початку блокчейн"
 
 #: src/components/app/AppSelectMode.tsx:96
 msgid "Trade tokens"
-msgstr ""
+msgstr "Торгівля токенами"
 
 #: src/components/block/Block.jsx:269
 msgid "Transactions Filter Hash"
@@ -2635,16 +2635,16 @@ msgstr "Хеш фільтру транзакцій"
 #: src/components/nfts/NFTTransferAction.tsx:171
 #: src/components/nfts/NFTTransferConfirmationDialog.tsx:46
 msgid "Transfer"
-msgstr ""
+msgstr "Переказ"
 
 #: src/components/nfts/NFTContextualActions.tsx:217
 #: src/components/nfts/NFTTransferAction.tsx:219
 msgid "Transfer NFT"
-msgstr ""
+msgstr "Переказ NFT"
 
 #: src/hooks/useOpenUnsafeLink.tsx:56
 msgid "URL"
-msgstr ""
+msgstr "URL"
 
 #: src/components/offers/NFTOfferEditor.tsx:751
 msgid "Unable to create an offer for an NFT that you do not own."
@@ -2669,16 +2669,16 @@ msgstr ""
 #: src/components/nfts/NFTDetails.tsx:110
 #: src/components/nfts/NFTDetails.tsx:134
 msgid "Unassigned"
-msgstr ""
+msgstr "Непризначено"
 
 #: src/components/nfts/NFTProfileDropdown.tsx:100
 #: src/components/nfts/NFTProfileDropdown.tsx:168
 msgid "Unassigned NFTs"
-msgstr ""
+msgstr "Непризначені NFTs"
 
 #: src/components/plotNFT/PlotNFTCard.tsx:148
 msgid "Unclaimed Rewards"
-msgstr ""
+msgstr "Не забрані нагороди"
 
 #: src/components/fullNode/FullNode.jsx:93
 msgid "Unfinished"
@@ -2686,7 +2686,7 @@ msgstr "Незавершений"
 
 #: src/components/offers/utils.ts:177
 msgid "Unknown"
-msgstr ""
+msgstr "Невідомо"
 
 #: src/components/offers/NFTOfferViewer.tsx:409
 #: src/components/offers/OfferManager.tsx:232
@@ -2694,11 +2694,11 @@ msgstr ""
 #: src/components/offers/OfferSummaryRow.tsx:190
 #: src/components/offers/OfferSummaryRow.tsx:268
 msgid "Unknown CAT"
-msgstr ""
+msgstr "Невідомий CAT"
 
 #: src/components/app/AppPassPrompt.tsx:100
 msgid "Unlock Keyring"
-msgstr ""
+msgstr "Розблокувати зв'язку ключів"
 
 #: src/components/offers/NFTOfferViewer.tsx:146
 msgid "Unrecognized asset"
@@ -2706,11 +2706,11 @@ msgstr ""
 
 #: src/components/nfts/NFTPreview.tsx:90
 msgid "Update Pending"
-msgstr ""
+msgstr "Очікується оновлення"
 
 #: src/components/farm/card/FarmCardUserFees.tsx:27
 msgid "User Transaction Fees"
-msgstr ""
+msgstr "Користувальницькі комісії"
 
 #: src/components/fullNode/card/FullNodeCardVDFSubSlotIterations.tsx:14
 msgid "VDF Sub Slot Iterations"
@@ -2718,7 +2718,7 @@ msgstr "Ітерації підслотів VDF"
 
 #: src/components/plotNFT/select/PlotNFTSelectBase.tsx:156
 msgid "Verify Pool Details"
-msgstr ""
+msgstr "Підтвердіть подробиці пулу"
 
 #: src/electron/main.tsx:474
 msgid "View"
@@ -2731,7 +2731,7 @@ msgstr "Переглянути журнал"
 
 #: src/components/plotNFT/PlotNFTCard.tsx:282
 msgid "View Pool Login Link"
-msgstr ""
+msgstr "Посилання для входу на пул"
 
 #: src/components/offers/OfferImport.tsx:212
 #: src/components/offers/OfferManager.tsx:617
@@ -2740,28 +2740,28 @@ msgstr ""
 
 #: src/components/offers/OfferShareDialog.tsx:568
 msgid "View on Dexie"
-msgstr ""
+msgstr "Переглянути на Dexie"
 
 #: src/components/offers/OfferShareDialog.tsx:833
 msgid "View on Hashgreen DEX"
-msgstr ""
+msgstr "Переглянути на Hashgreen DEX"
 
 #: src/components/nfts/NFTContextualActions.tsx:677
 #: src/components/offers/OfferShareDialog.tsx:649
 msgid "View on MintGarden"
-msgstr ""
+msgstr "Переглянути на MintGarden"
 
 #: src/components/offers/OfferShareDialog.tsx:731
 msgid "View on OfferBin"
-msgstr ""
+msgstr "Переглянути в OfferBin"
 
 #: src/components/nfts/NFTContextualActions.tsx:684
 msgid "View on SkyNFT"
-msgstr ""
+msgstr "Переглянути в SkyNFT"
 
 #: src/components/nfts/NFTContextualActions.tsx:691
 msgid "View on Spacescan.io"
-msgstr ""
+msgstr "Переглянути на Spacescan.io"
 
 #: src/components/offers/OfferViewerTitle.tsx:54
 msgid "Viewing offer"
@@ -2775,7 +2775,7 @@ msgstr "Зачекайте на синхронізацію"
 
 #: src/components/plotNFT/PlotNFTUnconfirmedCard.tsx:82
 msgid "Waiting for the transaction to be confirmed"
-msgstr ""
+msgstr "Очікування підтвердження транзакції"
 
 #: src/components/app/AppStatusHeader.tsx:75
 msgid "Wallet"
@@ -2967,11 +2967,11 @@ msgstr ""
 
 #: src/components/settings/SettingsPanel.tsx:61
 msgid "Your passphrase has been set"
-msgstr ""
+msgstr "Ваш пароль було встановлено"
 
 #: src/components/settings/SettingsPanel.tsx:50
 msgid "Your passphrase has been updated"
-msgstr ""
+msgstr "Ваш пароль було оновлено"
 
 #: src/util/getDescriptiveError.ts:5
 msgid "[Error 13] Permission denied. You are trying to access a file/directory without having the necessary permissions. Most likely one of the plot folders in your config.yaml has an issue."
@@ -2983,7 +2983,7 @@ msgstr "[Помилка 22] Файл не знайдено. Швидше за в
 
 #: src/components/offers/OfferViewerTitle.tsx:38
 msgid "created {0}"
-msgstr ""
+msgstr "створено {0}"
 
 #: src/components/offers/OfferImport.tsx:197
 msgid "or Paste (Ctrl-V) an Offer blob"
@@ -2995,45 +2995,45 @@ msgstr ""
 
 #: src/components/plot/add/PlotAddForm.tsx:134
 msgid "p2SingletonPuzzleHash is not defined"
-msgstr ""
+msgstr "p2SingletonPuzzleHash не визначено"
 
 #: src/components/nfts/NFTTransferConfirmationDialog.tsx:101
 msgid "{0, plural, one {mojo} other {mojos}}"
-msgstr ""
+msgstr "{0, plural, one {mojo} other {mojos}}"
 
 #: src/components/offers/OfferShareDialog.tsx:1148
 msgid "{0}"
-msgstr ""
+msgstr "{0}"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:172
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:189
 msgid "{0} buckets is recommended"
-msgstr ""
+msgstr "рекомендується {0} кошиків"
 
 #: src/components/nfts/detail/NFTDetail.tsx:98
 #: src/components/nfts/detail/NFTDetailV2.tsx:149
 msgid "{0} of {1}"
-msgstr ""
+msgstr "{0} з {1}"
 
 #: src/components/plotNFT/PlotNFTGraph.tsx:111
 msgid "{0} points {1} - {2} hours ago"
-msgstr ""
+msgstr "{0} очок {1} - {2} годин тому"
 
 #: src/components/offers/NFTOfferViewer.tsx:216
 #: src/components/offers/OfferSummary.tsx:196
 msgid "{makerFee, plural, one {mojo} other {mojos}}"
-msgstr ""
+msgstr "{makerFee, plural, one {mojo} other {mojos}}"
 
 #: src/components/offers/OfferSummaryRow.tsx:49
 #: src/components/offers/OfferViewer.tsx:62
 msgid "{mojos, plural, one {mojo} other {mojos}}"
-msgstr ""
+msgstr "{mojos, plural, one {mojo} other {mojos}}"
 
 #: src/components/nfts/NFTRankings.tsx:51
 msgid "{value} of {max_value}"
-msgstr ""
+msgstr "{value} з {max_value}"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:118
 msgid "{warning}"
-msgstr ""
+msgstr "{warning}"
 
