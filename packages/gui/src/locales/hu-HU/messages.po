@@ -54,8 +54,8 @@ msgstr "A betakarító egy szolgáltatás ahol a parcellák valójában tárolá
 msgid "A value of {0} is recommended"
 msgstr "Ajánlott érték: {0}"
 
-#: src/electron/main.tsx:607
-#: src/electron/main.tsx:694
+#: src/electron/main.tsx:651
+#: src/electron/main.tsx:738
 msgid "About Chia Blockchain"
 msgstr "A Chia Blockchain-ről"
 
@@ -133,8 +133,8 @@ msgstr "Mind"
 
 #: src/components/nfts/NFTProfileDropdown.tsx:119
 #: src/components/nfts/NFTProfileDropdown.tsx:154
-msgid "All NFTs"
-msgstr "Az összes NFT"
+#~ msgid "All NFTs"
+#~ msgstr "Az összes NFT"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:97
 msgid "All Profiles"
@@ -180,7 +180,7 @@ msgstr "Biztos megszakítod?"
 msgid "Are you sure you want to move this NFT to the specified profile?"
 msgstr ""
 
-#: src/electron/main.tsx:366
+#: src/electron/main.tsx:380
 msgid "Are you sure you want to quit?"
 msgstr "Biztosan ki akar lépni?"
 
@@ -193,7 +193,7 @@ msgstr "Biztos vagy benne, hogy használni szeretnéd a k={plotSize}-t?"
 msgid "Asset Type"
 msgstr ""
 
-#: src/components/app/AppState.tsx:178
+#: src/components/app/AppState.tsx:197
 msgid "Attempt {attempt}"
 msgstr "{attempt}. próbálkozás"
 
@@ -214,7 +214,7 @@ msgstr "A biztonsági mentés arra szolgál, hogy az okos pénztárca visszaáll
 msgid "Balance: {standardBalance} XCH"
 msgstr ""
 
-#: src/components/block/Block.jsx:277
+#: src/components/block/Block.jsx:276
 msgid "Base Farmer Reward Amount"
 msgstr "Központi Gazdász Jutalom Mennyiség"
 
@@ -230,7 +230,7 @@ msgstr "Az alábbiakban az aktuális blokk kihívások következnek. Ezekhez a k
 msgid "Best estimate over last 24 hours"
 msgstr "Becslés az elmúlt 24 óra alapján"
 
-#: src/components/block/Block.jsx:136
+#: src/components/block/Block.jsx:142
 msgid "Block"
 msgstr "Blokk"
 
@@ -238,19 +238,19 @@ msgstr "Blokk"
 msgid "Block Rewards"
 msgstr "Blokk jutalmak"
 
-#: src/components/block/Block.jsx:213
+#: src/components/block/Block.jsx:218
 msgid "Block VDF Iterations"
 msgstr "VDF-iterációk blokkja"
 
-#: src/components/block/Block.jsx:296
+#: src/components/block/Block.jsx:295
 msgid "Block at height {0} in the Chia blockchain"
 msgstr "{0} Magasságú blokk a Chia blokkláncban"
 
-#: src/components/block/Block.jsx:122
+#: src/components/block/Block.jsx:128
 msgid "Block with hash {headerHash}"
 msgstr "Blokk hash {headerHash}"
 
-#: src/components/block/Block.jsx:141
+#: src/components/block/Block.jsx:147
 msgid "Block with hash {headerHash} does not exist."
 msgstr "A {headerHash} hash-t tartalmazó blokk nem létezik."
 
@@ -264,18 +264,22 @@ msgstr "Blokkok"
 msgid "Browse"
 msgstr "Tallózás"
 
-#: src/components/nfts/NFTBurnDialog.tsx:84
-#: src/components/nfts/NFTBurnDialog.tsx:170
+#: src/components/nfts/NFTBurnDialog.tsx:87
+#: src/components/nfts/NFTBurnDialog.tsx:173
 #: src/components/nfts/NFTContextualActions.tsx:616
 msgid "Burn"
 msgstr ""
 
-#: src/components/nfts/NFTBurnDialog.tsx:77
+#: src/components/nfts/NFTBurnDialog.tsx:78
 msgid "Burn NFT confirmation"
 msgstr ""
 
 #: src/components/nfts/NFTBurnDialog.tsx:122
-msgid "Burning a non-fungible token means destroying it. Burned NFTs are sent to a verifiably un-spendable address, eliminating your NFT from the blockchain. However, transactions leading up to the burn will remain on the blockchain ledger."
+#~ msgid "Burning a non-fungible token means destroying it. Burned NFTs are sent to a verifiably un-spendable address, eliminating your NFT from the blockchain. However, transactions leading up to the burn will remain on the blockchain ledger."
+#~ msgstr ""
+
+#: src/components/nfts/NFTBurnDialog.tsx:125
+msgid "Burning a non-fungible token means removing it from circulation by sending it to a verifiably un-spendable address. However, transactions leading up to the burn will remain on the blockchain ledger."
 msgstr ""
 
 #: src/components/offers/NFTOfferEditor.tsx:362
@@ -288,7 +292,7 @@ msgstr ""
 #: src/components/block/FullNodeAddConnection.tsx:85
 #: src/components/farm/FarmManageFarmingRewards.tsx:188
 #: src/components/fullNode/FullNodeAddConnection.tsx:84
-#: src/components/nfts/NFTBurnDialog.tsx:160
+#: src/components/nfts/NFTBurnDialog.tsx:163
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:67
 #: src/components/nfts/NFTTransferConfirmationDialog.tsx:58
 #: src/components/offers/OfferAcceptConfirmationDialog.tsx:26
@@ -346,7 +350,7 @@ msgstr "Jelszó megváltoztatása"
 msgid "Change Pool"
 msgstr "Pool Váltás"
 
-#: src/electron/main.tsx:586
+#: src/electron/main.tsx:630
 msgid "Chat on KeyBase"
 msgstr "Csevegés a KeyBase-n"
 
@@ -362,11 +366,11 @@ msgstr ""
 msgid "Check Provenance on Spacescan.io"
 msgstr ""
 
-#: src/electron/main.tsx:604
+#: src/electron/main.tsx:648
 msgid "Chia"
 msgstr "Chia"
 
-#: src/electron/main.tsx:543
+#: src/electron/main.tsx:587
 msgid "Chia Blockchain Wiki"
 msgstr "Chia Blokklánc Wiki"
 
@@ -410,7 +414,7 @@ msgstr "Kérjen jutalmakat"
 msgid "Close"
 msgstr "Bezárás"
 
-#: src/components/app/AppState.tsx:116
+#: src/components/app/AppState.tsx:135
 msgid "Closing down services"
 msgstr "Szolgáltatások megszüntetése"
 
@@ -430,7 +434,7 @@ msgid "Collections"
 msgstr ""
 
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:180
-#: src/electron/main.tsx:364
+#: src/electron/main.tsx:378
 #: src/hooks/useAbsorbRewards.tsx:44
 msgid "Confirm"
 msgstr "Megerősítés"
@@ -487,8 +491,8 @@ msgstr "Csatlakozzon a pool-hoz"
 msgid "Connected"
 msgstr "Csatlakozva"
 
-#: src/components/app/AppState.tsx:171
-#: src/components/app/AppState.tsx:175
+#: src/components/app/AppState.tsx:190
+#: src/components/app/AppState.tsx:194
 msgid "Connecting to daemon"
 msgstr "Csatlakozás a daemonhoz"
 
@@ -509,7 +513,7 @@ msgstr "A kapcsolat típusa"
 #~ msgid "Connections"
 #~ msgstr "Kapcsolatok"
 
-#: src/electron/main.tsx:567
+#: src/electron/main.tsx:611
 msgid "Contribute on GitHub"
 msgstr "Közreműködés a GitHub-on"
 
@@ -683,11 +687,11 @@ msgstr ""
 msgid "Details"
 msgstr ""
 
-#: src/electron/main.tsx:483
+#: src/electron/main.tsx:527
 msgid "Developer"
 msgstr "Fejlesztő"
 
-#: src/electron/main.tsx:486
+#: src/electron/main.tsx:530
 msgid "Developer Tools"
 msgstr "Fejlesztői eszközök"
 
@@ -695,7 +699,7 @@ msgstr "Fejlesztői eszközök"
 msgid "Dexie URL"
 msgstr ""
 
-#: src/components/block/Block.jsx:199
+#: src/components/block/Block.jsx:204
 #: src/components/fullNode/card/FullNodeCardDifficulty.tsx:14
 msgid "Difficulty"
 msgstr "Bonyolultság"
@@ -726,7 +730,7 @@ msgstr ""
 msgid "Do you have existing plots on this machine? <0>Add Plot Directory</0>"
 msgstr "Vannak meglévő parcellák ezen a gépen? <0>Parcella könyvtár Hozzáadása </0>"
 
-#: src/components/nfts/NFTBurnDialog.tsx:114
+#: src/components/nfts/NFTBurnDialog.tsx:117
 msgid "Do you want to burn this NFT?"
 msgstr ""
 
@@ -762,7 +766,7 @@ msgstr "Másolat"
 msgid "Duplicate Plots"
 msgstr "Plotok duplikálása"
 
-#: src/electron/main.tsx:442
+#: src/electron/main.tsx:486
 msgid "Edit"
 msgstr "Módosítás"
 
@@ -849,7 +853,7 @@ msgstr "Nem sikerült frissíteni a jelszót: {0}"
 msgid "Farmer Public Key"
 msgstr "Farmer nyilvános kulcsa"
 
-#: src/components/block/Block.jsx:245
+#: src/components/block/Block.jsx:246
 msgid "Farmer Puzzle Hash"
 msgstr "Farmer Kirakós Részlet"
 
@@ -901,7 +905,7 @@ msgstr "Farming Mód"
 msgid "Farming Status"
 msgstr "Farmer státusz"
 
-#: src/components/nfts/NFTBurnDialog.tsx:149
+#: src/components/nfts/NFTBurnDialog.tsx:152
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:447
 #: src/components/nfts/NFTTransferAction.tsx:151
 #: src/components/offers/NFTOfferViewer.tsx:719
@@ -923,17 +927,17 @@ msgstr ""
 msgid "Fee is used TWICE: once to leave pool, once to join."
 msgstr "A költség kétszer kerül felhasználásra: egyszer a pool elhagyásakor és egyszer csatlakozáskor."
 
-#: src/components/block/Block.jsx:281
+#: src/components/block/Block.jsx:280
 msgid "Fees Amount"
 msgstr "Díjak összege"
 
 #: src/components/offers/NFTOfferViewer.tsx:210
-#: src/components/offers/OfferSummary.tsx:190
+#: src/components/offers/OfferSummary.tsx:191
 msgid "Fees included in offer:"
 msgstr ""
 
-#: src/electron/main.tsx:434
-#: src/electron/main.tsx:641
+#: src/electron/main.tsx:478
+#: src/electron/main.tsx:685
 msgid "File"
 msgstr "Fájl"
 
@@ -961,11 +965,11 @@ msgstr "Végleges mappa helye"
 msgid "Finished"
 msgstr "Befejezve"
 
-#: src/electron/main.tsx:592
+#: src/electron/main.tsx:636
 msgid "Follow on Twitter"
 msgstr "Kövess minket a Twitteren"
 
-#: src/electron/main.tsx:551
+#: src/electron/main.tsx:595
 msgid "Frequently Asked Questions"
 msgstr "Gyakran Ismételt Kérdések"
 
@@ -979,7 +983,7 @@ msgstr "Teljes csomópont"
 msgid "Full Node Connections"
 msgstr ""
 
-#: src/electron/main.tsx:517
+#: src/electron/main.tsx:561
 msgid "Full Screen"
 msgstr "Teljes képernyő"
 
@@ -1016,17 +1020,17 @@ msgstr ""
 msgid "Header Hash"
 msgstr "Fejléc Hash"
 
-#: src/components/block/Block.jsx:163
+#: src/components/block/Block.jsx:168
 msgid "Header hash"
 msgstr "Fejléc Hash"
 
-#: src/components/block/Block.jsx:179
+#: src/components/block/Block.jsx:184
 #: src/components/fullNode/FullNode.jsx:75
 #: src/components/fullNode/FullNodeConnections.tsx:68
 msgid "Height"
 msgstr "Magasság"
 
-#: src/electron/main.tsx:539
+#: src/electron/main.tsx:583
 msgid "Help"
 msgstr "Súgó"
 
@@ -1079,13 +1083,17 @@ msgstr "Ha egyik sincs kiválasztva, akkor az alapértelmezés szerint az ideigl
 msgid "If selected, your offer will be not be shared publicly."
 msgstr ""
 
+#: src/components/nfts/NFTBurnDialog.tsx:81
+msgid "If you burn this NFT, nobody (including you) will ever be able to access it again. Are you sure you want to continue?"
+msgstr ""
+
 #: src/components/offers/OfferManager.tsx:129
 msgid "If you have already shared your offer file, you may need to submit a transaction to cancel the pending offer. Click \"Cancel on blockchain\" to submit a cancellation transaction."
 msgstr ""
 
 #: src/components/nfts/NFTBurnDialog.tsx:79
-msgid "If you proceed, this NFT will be permanently deleted. Are you sure you want to continue?"
-msgstr ""
+#~ msgid "If you proceed, this NFT will be permanently deleted. Are you sure you want to continue?"
+#~ msgstr ""
 
 #: src/components/nfts/NFTPreview.tsx:92
 msgid "Image Hash Mismatch"
@@ -1274,12 +1282,12 @@ msgstr "Konfiguráció betöltése"
 msgid "Loading farming data"
 msgstr "Farmolás adatok betöltése"
 
-#: src/components/app/AppState.tsx:144
+#: src/components/app/AppState.tsx:163
 msgid "Loading keyring status"
 msgstr "Kulcskarika állapot betöltése"
 
-#: src/components/nfts/NFTPreview.tsx:197
-#: src/components/nfts/NFTPreview.tsx:229
+#: src/components/nfts/NFTPreview.tsx:198
+#: src/components/nfts/NFTPreview.tsx:230
 msgid "Loading preview..."
 msgstr ""
 
@@ -1463,11 +1471,11 @@ msgstr "Hálózat neve"
 msgid "New Passphrase"
 msgstr "Új jelszó"
 
-#: src/components/block/Block.jsx:310
+#: src/components/block/Block.jsx:309
 msgid "Next"
 msgstr "Következő"
 
-#: src/electron/main.tsx:361
+#: src/electron/main.tsx:375
 msgid "No"
 msgstr "Nem"
 
@@ -1479,7 +1487,7 @@ msgstr "Nincs kitermelt blokk"
 msgid "No current offers"
 msgstr ""
 
-#: src/components/nfts/NFTPreview.tsx:185
+#: src/components/nfts/NFTPreview.tsx:186
 msgid "No file available"
 msgstr ""
 
@@ -1796,7 +1804,7 @@ msgstr "Várjon, amíg a tárca szinkronizálása befejeződik"
 msgid "Plot Count"
 msgstr "Parcellák száma"
 
-#: src/components/block/Block.jsx:259
+#: src/components/block/Block.jsx:258
 msgid "Plot Id"
 msgstr "Parcella azonosító"
 
@@ -1817,7 +1825,7 @@ msgstr "Plot NFT pool szerződés cím"
 msgid "Plot NFT with p2_singleton_puzzle_hash {plotNFTId} does not exists"
 msgstr ""
 
-#: src/components/block/Block.jsx:237
+#: src/components/block/Block.jsx:238
 msgid "Plot Public Key"
 msgstr "Parcella nyilvános kulcs"
 
@@ -1910,7 +1918,7 @@ msgstr "Pool bejelentkező link"
 msgid "Pool Payout Instructions"
 msgstr "Pool kifizetési utasítások"
 
-#: src/components/block/Block.jsx:241
+#: src/components/block/Block.jsx:242
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:308
 msgid "Pool Public Key"
 msgstr "Parcella nyilvános kulcs"
@@ -1934,7 +1942,7 @@ msgstr "A pool-hoz használt cím nincs megfelelően formázva."
 msgid "Pool Reward Address must not be empty."
 msgstr "A pool-hoz használt cím nem lehet üres."
 
-#: src/components/block/Block.jsx:273
+#: src/components/block/Block.jsx:272
 msgid "Pool Reward Amount"
 msgstr "Pool jutalom"
 
@@ -1975,19 +1983,19 @@ msgstr "Plot NFT előkészítése"
 msgid "Preparing standard wallet"
 msgstr "Standard tárca előkészítése"
 
-#: src/components/nfts/NFTPreview.tsx:153
+#: src/components/nfts/NFTPreview.tsx:154
 msgid "Preview"
 msgstr ""
 
-#: src/components/nfts/NFTPreview.tsx:191
+#: src/components/nfts/NFTPreview.tsx:192
 msgid "Preview URL is not valid"
 msgstr ""
 
-#: src/components/block/Block.jsx:307
+#: src/components/block/Block.jsx:306
 msgid "Previous"
 msgstr "Előző"
 
-#: src/components/block/Block.jsx:193
+#: src/components/block/Block.jsx:198
 msgid "Previous Header Hash"
 msgstr "Előző fejléc hash"
 
@@ -2005,7 +2013,7 @@ msgstr ""
 msgid "Profiles"
 msgstr ""
 
-#: src/components/block/Block.jsx:229
+#: src/components/block/Block.jsx:232
 msgid "Proof of Space Size"
 msgstr "Proof of Space méret"
 
@@ -2064,7 +2072,7 @@ msgstr "Cserepek frissítése"
 msgid "Relative Lock Height"
 msgstr ""
 
-#: src/electron/main.tsx:559
+#: src/electron/main.tsx:603
 msgid "Release Notes"
 msgstr "Kiadási megjegyzések"
 
@@ -2086,7 +2094,7 @@ msgstr ""
 msgid "Removing"
 msgstr "Eltávolítás"
 
-#: src/electron/main.tsx:578
+#: src/electron/main.tsx:622
 msgid "Report an Issue..."
 msgstr "Hibabejelentés..."
 
@@ -2137,7 +2145,6 @@ msgid "Search block by header hash"
 msgstr "Blokk keresése fejléc hash alapján"
 
 #: src/components/offers/OfferSummaryRow.tsx:228
-#: src/components/offers/OfferSummaryRow.tsx:306
 msgid "Search on Tail Database"
 msgstr ""
 
@@ -2208,7 +2215,7 @@ msgstr ""
 msgid "Sell an NFT"
 msgstr ""
 
-#: src/components/nfts/NFTBurnDialog.tsx:142
+#: src/components/nfts/NFTBurnDialog.tsx:145
 #: src/components/nfts/NFTTransferAction.tsx:142
 msgid "Send to Address"
 msgstr ""
@@ -2274,7 +2281,7 @@ msgstr ""
 msgid "Show Hidden"
 msgstr ""
 
-#: src/components/nfts/NFTPreview.tsx:212
+#: src/components/nfts/NFTPreview.tsx:213
 msgid "Show Preview"
 msgstr ""
 
@@ -2299,11 +2306,11 @@ msgstr ""
 msgid "Specify a value of 0 to use all available threads"
 msgstr ""
 
-#: src/electron/main.tsx:655
+#: src/electron/main.tsx:699
 msgid "Speech"
 msgstr "Beszéd"
 
-#: src/components/app/AppState.tsx:199
+#: src/components/app/AppState.tsx:218
 msgid "Starting services"
 msgstr ""
 
@@ -2434,7 +2441,7 @@ msgstr "A pool URL-nek a https protokollt kell használnia. {normalizedUrl}"
 msgid "The pool switching operation was cancelled, please try again by changing pool, or self pooling"
 msgstr ""
 
-#: src/components/block/Block.jsx:262
+#: src/components/block/Block.jsx:261
 msgid "The seed used to create the plot. This depends on the pool pk and plot pk."
 msgstr "A plot létrehozásához használt kulcskód. Ez a \"pool\" pk-jától és a \"plot\" pk-jától függ."
 
@@ -2454,15 +2461,15 @@ msgstr ""
 msgid "The total amount requested includes the asking price, plus the associated creator fees (if the NFT has royalty payments enabled).{0}"
 msgstr ""
 
-#: src/components/block/Block.jsx:206
+#: src/components/block/Block.jsx:211
 msgid "The total number of VDF (verifiable delay function) or proof of time iterations on the whole chain up to this block."
 msgstr ""
 
-#: src/components/block/Block.jsx:222
+#: src/components/block/Block.jsx:225
 msgid "The total number of VDF (verifiable delay function) or proof of time iterations on this block."
 msgstr "A VDF (ellenőrizhető késleltetési függvény) teljes száma vagy az időbeli ismétlések igazolása ebben a blokkban."
 
-#: src/components/block/Block.jsx:284
+#: src/components/block/Block.jsx:283
 msgid "The total transactions fees in this block. Rewarded to the farmer."
 msgstr "A tranzakciós díjak összesítve ebben a blokkban, mely a farmer jutalma."
 
@@ -2491,7 +2498,7 @@ msgstr ""
 msgid "This feature is available only from the GUI."
 msgstr "Ez a funkció csak a grafikus felhasználói felületrôl érhetô el."
 
-#: src/components/block/Block.jsx:172
+#: src/components/block/Block.jsx:177
 msgid "This is the time the block was created by the farmer, which is before it is finalized with a proof of time"
 msgstr "Ekkor hozta létre a blokkot a gazdálkodó, ami még az idő igazolásával véglegesítés előtt van"
 
@@ -2518,12 +2525,12 @@ msgid "This number reflects the number of nodes that the accepted SpendBundle ha
 msgstr ""
 
 #: src/components/offers/NFTOfferViewer.tsx:226
-#: src/components/offers/OfferSummary.tsx:206
+#: src/components/offers/OfferSummary.tsx:207
 msgid "This offer has a fee included to help expedite the transaction when the offer is accepted."
 msgstr ""
 
 #: src/components/offers/NFTOfferViewer.tsx:220
-#: src/components/offers/OfferSummary.tsx:200
+#: src/components/offers/OfferSummary.tsx:201
 msgid "This offer has a fee included to help expedite the transaction when the offer is accepted. You may specify an additional fee if you feel that the included fee is too small."
 msgstr ""
 
@@ -2551,7 +2558,7 @@ msgstr ""
 msgid "Time Created"
 msgstr "Létrehozva"
 
-#: src/components/block/Block.jsx:167
+#: src/components/block/Block.jsx:172
 msgid "Timestamp"
 msgstr "Időbélyeg"
 
@@ -2618,7 +2625,7 @@ msgstr "Teljes plot méret"
 msgid "Total Size of Plots"
 msgstr "Parcella fájlok összes mérete"
 
-#: src/components/block/Block.jsx:203
+#: src/components/block/Block.jsx:208
 msgid "Total VDF Iterations"
 msgstr "Összes VDF ismétlések száma"
 
@@ -2630,7 +2637,7 @@ msgstr "Összes ismétlések száma a blokklánc indulása óta"
 msgid "Trade tokens"
 msgstr ""
 
-#: src/components/block/Block.jsx:269
+#: src/components/block/Block.jsx:268
 msgid "Transactions Filter Hash"
 msgstr "Tranzakciók Szűrési Hash-értéke"
 
@@ -2675,8 +2682,8 @@ msgstr ""
 
 #: src/components/nfts/NFTProfileDropdown.tsx:100
 #: src/components/nfts/NFTProfileDropdown.tsx:168
-msgid "Unassigned NFTs"
-msgstr ""
+#~ msgid "Unassigned NFTs"
+#~ msgstr ""
 
 #: src/components/plotNFT/PlotNFTCard.tsx:148
 msgid "Unclaimed Rewards"
@@ -2694,7 +2701,6 @@ msgstr ""
 #: src/components/offers/OfferManager.tsx:232
 #: src/components/offers/OfferSummaryRow.tsx:189
 #: src/components/offers/OfferSummaryRow.tsx:190
-#: src/components/offers/OfferSummaryRow.tsx:268
 msgid "Unknown CAT"
 msgstr ""
 
@@ -2722,7 +2728,7 @@ msgstr "VDF alhelyi ismétlések"
 msgid "Verify Pool Details"
 msgstr ""
 
-#: src/electron/main.tsx:474
+#: src/electron/main.tsx:518
 msgid "View"
 msgstr "Nézet"
 
@@ -2808,7 +2814,7 @@ msgstr ""
 msgid "Warning"
 msgstr ""
 
-#: src/components/offers/OfferSummary.tsx:148
+#: src/components/offers/OfferSummary.tsx:149
 msgid "Warning: Verify that the offered CAT asset IDs match the asset IDs of the tokens you expect to receive."
 msgstr ""
 
@@ -2816,11 +2822,11 @@ msgstr ""
 msgid "Warning: You're about to visit a website"
 msgstr ""
 
-#: src/components/block/Block.jsx:183
+#: src/components/block/Block.jsx:188
 msgid "Weight"
 msgstr "Súly"
 
-#: src/components/block/Block.jsx:186
+#: src/components/block/Block.jsx:191
 msgid "Weight is the total added difficulty of all blocks up to and including this one"
 msgstr ""
 
@@ -2828,7 +2834,7 @@ msgstr ""
 msgid "When creating an offer, any assets that are being offered will be locked and unavailable until the offer is accepted or cancelled, resulting in your spendable balance changing."
 msgstr ""
 
-#: src/electron/main.tsx:525
+#: src/electron/main.tsx:569
 msgid "Window"
 msgstr "Ablak"
 
@@ -2849,7 +2855,7 @@ msgstr ""
 #~ msgstr ""
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:48
-#: src/electron/main.tsx:362
+#: src/electron/main.tsx:376
 msgid "Yes"
 msgstr "Igen"
 
@@ -3022,7 +3028,7 @@ msgid "{0} points {1} - {2} hours ago"
 msgstr "{0} pont {1} - {2} órával ezelőtt"
 
 #: src/components/offers/NFTOfferViewer.tsx:216
-#: src/components/offers/OfferSummary.tsx:196
+#: src/components/offers/OfferSummary.tsx:197
 msgid "{makerFee, plural, one {mojo} other {mojos}}"
 msgstr ""
 

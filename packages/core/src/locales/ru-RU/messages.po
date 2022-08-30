@@ -18,6 +18,10 @@ msgstr ""
 "X-Crowdin-File: /main/packages/core/src/locales/en-US/messages.po\n"
 "X-Crowdin-File-ID: 1886\n"
 
+#: src/components/EstimatedFee/EstimatedFee.tsx:131
+msgid "<0>{0}</0>"
+msgstr ""
+
 #: src/components/Amount/Amount.tsx:116
 msgid "Amount"
 msgstr "Количество"
@@ -122,6 +126,8 @@ msgstr "Открытый ключ фермера:"
 msgid "Farming"
 msgstr "Фарминг"
 
+#: src/components/EstimatedFee/EstimatedFee.tsx:160
+#: src/components/EstimatedFee/EstimatedFee.tsx:192
 #: src/components/Fee/Fee.tsx:52
 msgid "Fee"
 msgstr "Комиссия"
@@ -359,6 +365,10 @@ msgstr "Ваши ключи не были перенесены в новую с�
 #: src/components/Amount/Amount.tsx:98
 msgid "{0, plural, one {mojo} other {mojos}}"
 msgstr "{0, plural, one {mojo} other {mojos}}"
+
+#: src/components/EstimatedFee/EstimatedFee.tsx:128
+msgid "{0} TXCH"
+msgstr ""
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:39
 msgid "{minPassphraseLength, plural, one {Passphrases must be at least # character in length} other {Passphrases must be at least # characters in length}}"
