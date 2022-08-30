@@ -8,7 +8,7 @@ msgstr ""
 "Language: uk_UA\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-08-12 18:16\n"
+"PO-Revision-Date: 2022-08-30 17:28\n"
 "Last-Translator: \n"
 "Language-Team: Ukrainian\n"
 "Plural-Forms: nplurals=4; plural=((n%10==1 && n%100!=11) ? 0 : ((n%10 >= 2 && n%10 <=4 && (n%100 < 12 || n%100 > 14)) ? 1 : ((n%10 == 0 || (n%10 >= 5 && n%10 <=9)) || (n%100 >= 11 && n%100 <= 14)) ? 2 : 3));\n"
@@ -20,11 +20,11 @@ msgstr ""
 
 #: src/components/WalletHistory.tsx:210
 msgid "+"
-msgstr ""
+msgstr "+"
 
 #: src/components/WalletHistory.tsx:210
 msgid "-"
-msgstr ""
+msgstr "-"
 
 #: src/components/WalletHeader.tsx:74
 msgid "Actions"
@@ -38,11 +38,11 @@ msgstr "Додати"
 #: src/components/did/WalletDID.tsx:874
 #: src/components/did/WalletDIDCreate.tsx:205
 msgid "Add Backup ID"
-msgstr ""
+msgstr "Додати ID резервної копії"
 
 #: src/components/hero/WalletHeroAdd.tsx:99
 msgid "Add Custom Token"
-msgstr ""
+msgstr "Додати токен користувача"
 
 #: src/components/WalletsList.tsx:54
 #: src/components/WalletsManageTokens.tsx:170
@@ -51,11 +51,11 @@ msgstr ""
 #: src/components/hero/WalletHeroAdd.tsx:64
 #: src/components/hero/WalletHeroWallets.tsx:83
 msgid "Add Token"
-msgstr ""
+msgstr "Додати токен"
 
 #: src/components/cat/WalletCATCreateSimple.tsx:94
 msgid "Adding {0} token"
-msgstr ""
+msgstr "Додавання {0} токенів"
 
 #: src/components/WalletReceiveAddress.tsx:76
 msgid "Address"
@@ -84,17 +84,17 @@ msgstr ""
 
 #: src/components/WalletHeader.tsx:42
 msgid "Are you sure you want to delete unconfirmed transactions?"
-msgstr ""
+msgstr "Ви дійсно бажаєте видалити непідтверджені транзакції?"
 
 #: src/components/cat/WalletCATCreateExistingSimple.tsx:80
 #: src/components/cat/WalletCATTAILDialog.tsx:43
 #: src/components/cat/WalletCATTAILDialog.tsx:55
 msgid "Asset Id"
-msgstr ""
+msgstr "Id Активу"
 
 #: src/constants/WalletName.ts:11
 msgid "Atomic Swap Wallet"
-msgstr ""
+msgstr "Гаманець для атомарного обміну"
 
 #: src/constants/WalletName.ts:14
 msgid "Authorized Payee Wallet"
@@ -114,38 +114,38 @@ msgstr "Відміна"
 #: src/components/WalletSend.tsx:103
 #: src/components/cat/WalletCATSend.tsx:118
 msgid "Cannot send chia to coloured address. Please enter a chia address."
-msgstr ""
+msgstr "Не вдалося відправити Chia за кольоровою адресою. Будь ласка, введіть звичайну адресу Chia."
 
 #: src/components/WalletsSidebar.tsx:145
 msgid "Check my snapshot balance"
-msgstr ""
+msgstr "Перевірте мій snapshot баланс"
 
 #: src/components/cat/WalletCATSelect.tsx:25
 #: src/components/create/WalletCreateList.tsx:32
 #: src/constants/WalletName.ts:23
 msgid "Chia Asset Token"
-msgstr ""
+msgstr "Chia Asset Token"
 
 #: src/components/WalletsSidebar.tsx:160
 msgid "Click here to download an older version of the wallet"
-msgstr ""
+msgstr "Натисніть тут, щоб завантажити старішу версію гаманця"
 
 #: src/components/cat/WalletDID.tsx:984
 #: src/components/did/WalletDID.tsx:984
 msgid "Coin Name"
-msgstr ""
+msgstr "Назва монети"
 
 #: src/components/WalletHeader.tsx:37
 msgid "Confirmation"
-msgstr ""
+msgstr "Підтвердження"
 
 #: src/components/WalletHistory.tsx:156
 msgid "Confirmed"
-msgstr ""
+msgstr "Підтверджено"
 
 #: src/components/WalletHistory.tsx:356
 msgid "Confirmed at Height"
-msgstr ""
+msgstr "Підтверджено на висоті блоку"
 
 #: src/components/WalletStatusHeader.tsx:40
 #~ msgid "Connected ({0})"
@@ -175,7 +175,7 @@ msgstr "Створити"
 #: src/components/cat/WalletDID.tsx:967
 #: src/components/did/WalletDID.tsx:967
 msgid "Create An Attestation Packet"
-msgstr ""
+msgstr "Створити пакет атестації"
 
 #: src/components/cat/WalletCATCreateExisting.tsx:76
 msgid "Create Chia Asset Token Wallet from Existing TAIL"
