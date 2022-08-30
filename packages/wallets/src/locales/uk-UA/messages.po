@@ -8,7 +8,7 @@ msgstr ""
 "Language: uk_UA\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-08-30 18:30\n"
+"PO-Revision-Date: 2022-08-30 20:28\n"
 "Last-Translator: \n"
 "Language-Team: Ukrainian\n"
 "Plural-Forms: nplurals=4; plural=((n%10==1 && n%100!=11) ? 0 : ((n%10 >= 2 && n%10 <=4 && (n%100 < 12 || n%100 > 14)) ? 1 : ((n%10 == 0 || (n%10 >= 5 && n%10 <=9)) || (n%100 >= 11 && n%100 <= 14)) ? 2 : 3));\n"
@@ -80,7 +80,7 @@ msgstr "Початкова кількість монет"
 
 #: src/components/did/WalletDIDCreate.tsx:61
 msgid "Amount must be an even amount."
-msgstr ""
+msgstr "Суми мають бути однаковими."
 
 #: src/components/WalletHeader.tsx:42
 msgid "Are you sure you want to delete unconfirmed transactions?"
@@ -179,7 +179,7 @@ msgstr "Створити пакет атестації"
 
 #: src/components/cat/WalletCATCreateExisting.tsx:76
 msgid "Create Chia Asset Token Wallet from Existing TAIL"
-msgstr ""
+msgstr "Створити гаманець активу Chia Token з існуючого TAIL"
 
 #: src/components/did/WalletDIDCreate.tsx:109
 msgid "Create Distributed Identity Wallet"
@@ -197,7 +197,7 @@ msgstr "Створити новий гаманець"
 #: src/components/cat/WalletCAT.tsx:129
 #: src/components/standard/WalletStandard.tsx:54
 msgid "Create Offer"
-msgstr ""
+msgstr "Створити пропозицію"
 
 #: src/components/create/createRLAdmin.jsx:187
 msgid "Create Rate Limited Admin Wallet"
@@ -294,7 +294,7 @@ msgstr "Ім'я файлу"
 
 #: src/components/WalletReceiveAddress.tsx:49
 msgid "HD or Hierarchical Deterministic keys are a type of public key/private key scheme where one private key can have a nearly infinite number of different public keys (and therefore wallet receive addresses) that will all ultimately come back to and be spendable by a single private key."
-msgstr ""
+msgstr "HD або ієрархічні детерміновані ключі - це тип відкритої схеми ключ/закритого ключа, в якій один закритий ключ може мати майже нескінченну кількість різних відкритих ключів (і адреси для прийому), які зрештою повертатимуться і витрачатимуться одним приватним ключем."
 
 #: src/components/WalletConnections.tsx:27
 msgid "IP address"
@@ -432,7 +432,7 @@ msgstr "ОК"
 
 #: src/components/WalletHistory.tsx:184
 msgid "Offer Accepted"
-msgstr ""
+msgstr "Пропозицію прийнято"
 
 #: src/components/WalletSend.tsx:141
 #: src/components/cat/WalletCATSend.tsx:179
@@ -498,7 +498,7 @@ msgstr "Будь ласка, введіть публічний ключ"
 #: src/components/cat/WalletDID.tsx:944
 #: src/components/did/WalletDID.tsx:944
 msgid "Please enter a puzzlehash"
-msgstr ""
+msgstr "Будь ласка, введіть puzzlehash"
 
 #: src/components/cat/WalletCATCreateExisting.tsx:40
 msgid "Please enter a valid CAT name"
@@ -506,7 +506,7 @@ msgstr "Будь ласка, введіть дійсну CAT назву"
 
 #: src/components/cat/WalletCATCreateExistingSimple.tsx:41
 msgid "Please enter a valid asset id"
-msgstr ""
+msgstr "Введіть дійсний ID активу"
 
 #: src/components/create/createRLAdmin.jsx:139
 msgid "Please enter a valid initial coin amount"
@@ -573,7 +573,7 @@ msgstr "Будь ласка, зачекайте завершення синхр�
 
 #: src/constants/WalletName.ts:32
 msgid "Pooling Wallet"
-msgstr ""
+msgstr "Пул гаманець"
 
 #: src/components/WalletConnections.tsx:33
 msgid "Port"
@@ -588,7 +588,7 @@ msgstr "Публічний ключ"
 #: src/components/cat/WalletDID.tsx:1002
 #: src/components/did/WalletDID.tsx:1002
 msgid "Puzzlehash"
-msgstr ""
+msgstr "Puzzlehash"
 
 #: src/constants/WalletName.ts:8
 msgid "RL Wallet"
@@ -661,7 +661,7 @@ msgstr "Перейменувати гаманець"
 
 #: src/components/WalletHistory.tsx:177
 msgid "Retire"
-msgstr ""
+msgstr "Відкликати"
 
 #: src/components/WalletRenameDialog.tsx:98
 msgid "Save"
@@ -759,7 +759,7 @@ msgstr "Синхронізація"
 
 #: src/components/card/WalletCardTotalBalance.tsx:65
 msgid "The derivation index sets the range of wallet addresses that the wallet scans the blockchain for. This number is generally higher if you have a lot of transactions or canceled offers for XCH, CATs, or NFTs. If you believe your balance is incorrect because it’s missing coins, then increasing the derivation index could help the wallet include the missing coins in the balance total."
-msgstr ""
+msgstr "Індекс деривації встановлює діапазон адрес гаманця, для яких гаманець відсканує блокчейн. Це число, в загальному, більше за використання багатьох транзакцій або скасованих пропозицій для XCH, CATS або NFTs. Якщо ви вважаєте, що ваш баланс неправильний тому що на ньому недостатньо транзакцій, тоді збільшення індексу деривації може допомогти для формування правильного балансу."
 
 #: src/components/cat/WalletDID.tsx:789
 #: src/components/did/WalletDID.tsx:789
@@ -773,7 +773,7 @@ msgstr "Транзакція не може бути одразу включен�
 
 #: src/components/WalletBadge.tsx:26
 msgid "This access token is verified"
-msgstr ""
+msgstr "Цей токен доступу перевірено"
 
 #: src/components/WalletHistory.tsx:130
 msgid "This is not a valid address for sending funds to"
