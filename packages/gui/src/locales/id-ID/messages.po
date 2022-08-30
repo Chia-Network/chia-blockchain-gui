@@ -54,8 +54,8 @@ msgstr "Harvester adalah layanan yang berjalan pada komputer dimana plot disimpa
 msgid "A value of {0} is recommended"
 msgstr "Nilai {0} di rekomendasi kan"
 
-#: src/electron/main.tsx:607
-#: src/electron/main.tsx:694
+#: src/electron/main.tsx:651
+#: src/electron/main.tsx:738
 msgid "About Chia Blockchain"
 msgstr "Tentang Chia Blockchain"
 
@@ -131,8 +131,20 @@ msgstr "Sesudah kunci anda sukses migrasi ke pemyimpanan kunci baru, anda bisa m
 msgid "All"
 msgstr ""
 
-#: src/components/nfts/NFTProfileDropdown.tsx:119
-#: src/components/nfts/NFTProfileDropdown.tsx:154
+#: src/components/nfts/NFTProfileDropdown.tsx:99
+#: src/components/nfts/NFTProfileDropdown.tsx:127
+#: src/components/nfts/NFTProfileDropdown_BASE_674608.tsx:90
+#: src/components/nfts/NFTProfileDropdown_BASE_674608.tsx:118
+#: src/components/nfts/NFTProfileDropdown_BASE_675094.tsx:90
+#: src/components/nfts/NFTProfileDropdown_BASE_675094.tsx:118
+#: src/components/nfts/NFTProfileDropdown_LOCAL_674608.tsx:111
+#: src/components/nfts/NFTProfileDropdown_LOCAL_674608.tsx:146
+#: src/components/nfts/NFTProfileDropdown_LOCAL_675094.tsx:111
+#: src/components/nfts/NFTProfileDropdown_LOCAL_675094.tsx:146
+#: src/components/nfts/NFTProfileDropdown_REMOTE_674608.tsx:111
+#: src/components/nfts/NFTProfileDropdown_REMOTE_674608.tsx:146
+#: src/components/nfts/NFTProfileDropdown_REMOTE_675094.tsx:111
+#: src/components/nfts/NFTProfileDropdown_REMOTE_675094.tsx:146
 msgid "All NFTs"
 msgstr ""
 
@@ -180,7 +192,7 @@ msgstr "Anda yakin ingin memutuskan koneksi?"
 msgid "Are you sure you want to move this NFT to the specified profile?"
 msgstr ""
 
-#: src/electron/main.tsx:366
+#: src/electron/main.tsx:380
 msgid "Are you sure you want to quit?"
 msgstr "Apakah Anda yakin Anda ingin keluar?"
 
@@ -193,7 +205,7 @@ msgstr "Anda yakin ingin menggunakan k={plotSize}?"
 msgid "Asset Type"
 msgstr ""
 
-#: src/components/app/AppState.tsx:178
+#: src/components/app/AppState.tsx:197
 msgid "Attempt {attempt}"
 msgstr "Percobaan {attempt}"
 
@@ -214,7 +226,7 @@ msgstr "Berkas cadangan digunakan untuk mengembalikan smart wallet."
 msgid "Balance: {standardBalance} XCH"
 msgstr ""
 
-#: src/components/block/Block.jsx:277
+#: src/components/block/Block.jsx:276
 msgid "Base Farmer Reward Amount"
 msgstr "Jumlah Upah Pokok Farmer"
 
@@ -230,7 +242,7 @@ msgstr "Dibawah ini adalah tantangan blok saat ini. Anda mungkin atau mungkin me
 msgid "Best estimate over last 24 hours"
 msgstr "Estimasi terbaik berdasarkan 24 jam lalu"
 
-#: src/components/block/Block.jsx:136
+#: src/components/block/Block.jsx:142
 msgid "Block"
 msgstr "Blok"
 
@@ -238,19 +250,19 @@ msgstr "Blok"
 msgid "Block Rewards"
 msgstr "Blok hadiah"
 
-#: src/components/block/Block.jsx:213
+#: src/components/block/Block.jsx:218
 msgid "Block VDF Iterations"
 msgstr "Perulangan blok VDF"
 
-#: src/components/block/Block.jsx:296
+#: src/components/block/Block.jsx:295
 msgid "Block at height {0} in the Chia blockchain"
 msgstr "Blok pada puncak {0} dalam rantai blok Chia"
 
-#: src/components/block/Block.jsx:122
+#: src/components/block/Block.jsx:128
 msgid "Block with hash {headerHash}"
 msgstr "Blok dengan hash {headerHash}"
 
-#: src/components/block/Block.jsx:141
+#: src/components/block/Block.jsx:147
 msgid "Block with hash {headerHash} does not exist."
 msgstr "Blok dengan hash {headerHash} tidak ada."
 
@@ -264,18 +276,22 @@ msgstr "Blok-blok"
 msgid "Browse"
 msgstr "Telusuri"
 
-#: src/components/nfts/NFTBurnDialog.tsx:84
-#: src/components/nfts/NFTBurnDialog.tsx:170
+#: src/components/nfts/NFTBurnDialog.tsx:87
+#: src/components/nfts/NFTBurnDialog.tsx:173
 #: src/components/nfts/NFTContextualActions.tsx:616
 msgid "Burn"
 msgstr ""
 
-#: src/components/nfts/NFTBurnDialog.tsx:77
+#: src/components/nfts/NFTBurnDialog.tsx:78
 msgid "Burn NFT confirmation"
 msgstr ""
 
 #: src/components/nfts/NFTBurnDialog.tsx:122
-msgid "Burning a non-fungible token means destroying it. Burned NFTs are sent to a verifiably un-spendable address, eliminating your NFT from the blockchain. However, transactions leading up to the burn will remain on the blockchain ledger."
+#~ msgid "Burning a non-fungible token means destroying it. Burned NFTs are sent to a verifiably un-spendable address, eliminating your NFT from the blockchain. However, transactions leading up to the burn will remain on the blockchain ledger."
+#~ msgstr ""
+
+#: src/components/nfts/NFTBurnDialog.tsx:125
+msgid "Burning a non-fungible token means removing it from circulation by sending it to a verifiably un-spendable address. However, transactions leading up to the burn will remain on the blockchain ledger."
 msgstr ""
 
 #: src/components/offers/NFTOfferEditor.tsx:362
@@ -288,7 +304,7 @@ msgstr ""
 #: src/components/block/FullNodeAddConnection.tsx:85
 #: src/components/farm/FarmManageFarmingRewards.tsx:188
 #: src/components/fullNode/FullNodeAddConnection.tsx:84
-#: src/components/nfts/NFTBurnDialog.tsx:160
+#: src/components/nfts/NFTBurnDialog.tsx:163
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:67
 #: src/components/nfts/NFTTransferConfirmationDialog.tsx:58
 #: src/components/offers/OfferAcceptConfirmationDialog.tsx:26
@@ -346,7 +362,7 @@ msgstr "Ubah Kata Sandi"
 msgid "Change Pool"
 msgstr "Ubah Pool"
 
-#: src/electron/main.tsx:586
+#: src/electron/main.tsx:630
 msgid "Chat on KeyBase"
 msgstr "Hubung Chat di KeyBase"
 
@@ -362,11 +378,11 @@ msgstr ""
 msgid "Check Provenance on Spacescan.io"
 msgstr ""
 
-#: src/electron/main.tsx:604
+#: src/electron/main.tsx:648
 msgid "Chia"
 msgstr "Chia"
 
-#: src/electron/main.tsx:543
+#: src/electron/main.tsx:587
 msgid "Chia Blockchain Wiki"
 msgstr "Wiki Chia Blockchain"
 
@@ -410,7 +426,7 @@ msgstr "Ambil Hadiah"
 msgid "Close"
 msgstr "Tutup"
 
-#: src/components/app/AppState.tsx:116
+#: src/components/app/AppState.tsx:135
 msgid "Closing down services"
 msgstr "Menutup layanan"
 
@@ -430,7 +446,7 @@ msgid "Collections"
 msgstr ""
 
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:180
-#: src/electron/main.tsx:364
+#: src/electron/main.tsx:378
 #: src/hooks/useAbsorbRewards.tsx:44
 msgid "Confirm"
 msgstr "Konfirmasi"
@@ -487,8 +503,8 @@ msgstr "Konek ke Pool"
 msgid "Connected"
 msgstr "Tersambung"
 
-#: src/components/app/AppState.tsx:171
-#: src/components/app/AppState.tsx:175
+#: src/components/app/AppState.tsx:190
+#: src/components/app/AppState.tsx:194
 msgid "Connecting to daemon"
 msgstr "Menyambungkan ke daemon"
 
@@ -509,7 +525,7 @@ msgstr "Jenis koneksi"
 #~ msgid "Connections"
 #~ msgstr "Koneksi"
 
-#: src/electron/main.tsx:567
+#: src/electron/main.tsx:611
 msgid "Contribute on GitHub"
 msgstr "Berkontribusi di GitHub"
 
@@ -683,11 +699,11 @@ msgstr ""
 msgid "Details"
 msgstr ""
 
-#: src/electron/main.tsx:483
+#: src/electron/main.tsx:527
 msgid "Developer"
 msgstr "Developer"
 
-#: src/electron/main.tsx:486
+#: src/electron/main.tsx:530
 msgid "Developer Tools"
 msgstr "Alat Pengembang"
 
@@ -695,7 +711,7 @@ msgstr "Alat Pengembang"
 msgid "Dexie URL"
 msgstr ""
 
-#: src/components/block/Block.jsx:199
+#: src/components/block/Block.jsx:204
 #: src/components/fullNode/card/FullNodeCardDifficulty.tsx:14
 msgid "Difficulty"
 msgstr "Tingkat kesulitan"
@@ -726,7 +742,7 @@ msgstr ""
 msgid "Do you have existing plots on this machine? <0>Add Plot Directory</0>"
 msgstr "Apakah sudah memiliki plot pada komputer ini? <0>Tambahkan Direktori Plot</0>"
 
-#: src/components/nfts/NFTBurnDialog.tsx:114
+#: src/components/nfts/NFTBurnDialog.tsx:117
 msgid "Do you want to burn this NFT?"
 msgstr ""
 
@@ -762,7 +778,7 @@ msgstr "Duplikat"
 msgid "Duplicate Plots"
 msgstr "Duplikat plot plot"
 
-#: src/electron/main.tsx:442
+#: src/electron/main.tsx:486
 msgid "Edit"
 msgstr "Ubah"
 
@@ -849,7 +865,7 @@ msgstr "Gagal mengubah kata kunci: {0}"
 msgid "Farmer Public Key"
 msgstr "Kunci Publik Farmer"
 
-#: src/components/block/Block.jsx:245
+#: src/components/block/Block.jsx:246
 msgid "Farmer Puzzle Hash"
 msgstr "Teka-teki Hash Farmer"
 
@@ -901,7 +917,7 @@ msgstr "Mode Farming"
 msgid "Farming Status"
 msgstr "Status Farming"
 
-#: src/components/nfts/NFTBurnDialog.tsx:149
+#: src/components/nfts/NFTBurnDialog.tsx:152
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:447
 #: src/components/nfts/NFTTransferAction.tsx:151
 #: src/components/offers/NFTOfferViewer.tsx:719
@@ -923,17 +939,17 @@ msgstr ""
 msgid "Fee is used TWICE: once to leave pool, once to join."
 msgstr "Biaya akan di gunakan dua kali: satu kali untuk meninggalkan pool, satu kali untuk bergbung."
 
-#: src/components/block/Block.jsx:281
+#: src/components/block/Block.jsx:280
 msgid "Fees Amount"
 msgstr "Jumlah Biaya"
 
 #: src/components/offers/NFTOfferViewer.tsx:210
-#: src/components/offers/OfferSummary.tsx:190
+#: src/components/offers/OfferSummary.tsx:191
 msgid "Fees included in offer:"
 msgstr ""
 
-#: src/electron/main.tsx:434
-#: src/electron/main.tsx:641
+#: src/electron/main.tsx:478
+#: src/electron/main.tsx:685
 msgid "File"
 msgstr "File"
 
@@ -961,11 +977,11 @@ msgstr "Lokasi folder akhir"
 msgid "Finished"
 msgstr "Selesai"
 
-#: src/electron/main.tsx:592
+#: src/electron/main.tsx:636
 msgid "Follow on Twitter"
 msgstr "Follow di Twitter"
 
-#: src/electron/main.tsx:551
+#: src/electron/main.tsx:595
 msgid "Frequently Asked Questions"
 msgstr "Pertanyaan Umum"
 
@@ -979,7 +995,7 @@ msgstr "Full Node"
 msgid "Full Node Connections"
 msgstr ""
 
-#: src/electron/main.tsx:517
+#: src/electron/main.tsx:561
 msgid "Full Screen"
 msgstr "Layar Penuh"
 
@@ -1016,17 +1032,17 @@ msgstr ""
 msgid "Header Hash"
 msgstr "Kepala hash"
 
-#: src/components/block/Block.jsx:163
+#: src/components/block/Block.jsx:168
 msgid "Header hash"
 msgstr "Kepala hash"
 
-#: src/components/block/Block.jsx:179
+#: src/components/block/Block.jsx:184
 #: src/components/fullNode/FullNode.jsx:75
 #: src/components/fullNode/FullNodeConnections.tsx:68
 msgid "Height"
 msgstr "Tinggi"
 
-#: src/electron/main.tsx:539
+#: src/electron/main.tsx:583
 msgid "Help"
 msgstr "Bantuan"
 
@@ -1079,13 +1095,17 @@ msgstr "Jika tidak ada yang dipilih, maka akan default ke direktori sementara."
 msgid "If selected, your offer will be not be shared publicly."
 msgstr ""
 
+#: src/components/nfts/NFTBurnDialog.tsx:81
+msgid "If you burn this NFT, nobody (including you) will ever be able to access it again. Are you sure you want to continue?"
+msgstr ""
+
 #: src/components/offers/OfferManager.tsx:129
 msgid "If you have already shared your offer file, you may need to submit a transaction to cancel the pending offer. Click \"Cancel on blockchain\" to submit a cancellation transaction."
 msgstr ""
 
 #: src/components/nfts/NFTBurnDialog.tsx:79
-msgid "If you proceed, this NFT will be permanently deleted. Are you sure you want to continue?"
-msgstr ""
+#~ msgid "If you proceed, this NFT will be permanently deleted. Are you sure you want to continue?"
+#~ msgstr ""
 
 #: src/components/nfts/NFTPreview.tsx:92
 msgid "Image Hash Mismatch"
@@ -1274,12 +1294,12 @@ msgstr "Memuat konfigurasi"
 msgid "Loading farming data"
 msgstr "Memuat data farming"
 
-#: src/components/app/AppState.tsx:144
+#: src/components/app/AppState.tsx:163
 msgid "Loading keyring status"
 msgstr "Memuat status penyimpan kunci"
 
-#: src/components/nfts/NFTPreview.tsx:197
-#: src/components/nfts/NFTPreview.tsx:229
+#: src/components/nfts/NFTPreview.tsx:198
+#: src/components/nfts/NFTPreview.tsx:230
 msgid "Loading preview..."
 msgstr ""
 
@@ -1463,11 +1483,11 @@ msgstr "Nama jaringan"
 msgid "New Passphrase"
 msgstr "Kata kunci Baru"
 
-#: src/components/block/Block.jsx:310
+#: src/components/block/Block.jsx:309
 msgid "Next"
 msgstr "Selanjutnya"
 
-#: src/electron/main.tsx:361
+#: src/electron/main.tsx:375
 msgid "No"
 msgstr "Tidak"
 
@@ -1479,7 +1499,7 @@ msgstr "Belum ada blok yang dibudidayakan"
 msgid "No current offers"
 msgstr ""
 
-#: src/components/nfts/NFTPreview.tsx:185
+#: src/components/nfts/NFTPreview.tsx:186
 msgid "No file available"
 msgstr ""
 
@@ -1796,7 +1816,7 @@ msgstr "Harap tunggu sampai sinkronisasi dompet selesai"
 msgid "Plot Count"
 msgstr "Jumlah Plot"
 
-#: src/components/block/Block.jsx:259
+#: src/components/block/Block.jsx:258
 msgid "Plot Id"
 msgstr "ID Plot"
 
@@ -1817,7 +1837,7 @@ msgstr ""
 msgid "Plot NFT with p2_singleton_puzzle_hash {plotNFTId} does not exists"
 msgstr "Plot NFT dengan p2_singleton_puzzle_hash {plotNFTId} tidak di temukan"
 
-#: src/components/block/Block.jsx:237
+#: src/components/block/Block.jsx:238
 msgid "Plot Public Key"
 msgstr "Public Key Plot"
 
@@ -1912,7 +1932,7 @@ msgstr "Alamat web Login Pool"
 msgid "Pool Payout Instructions"
 msgstr "Instruksi Pembayaran Pool"
 
-#: src/components/block/Block.jsx:241
+#: src/components/block/Block.jsx:242
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:308
 msgid "Pool Public Key"
 msgstr "Pool Kunci Publik"
@@ -1936,7 +1956,7 @@ msgstr "Alamat penghasilan Pool tidak sesuai format."
 msgid "Pool Reward Address must not be empty."
 msgstr "Alamat penghasilan Pool tidak seharus nya kosong."
 
-#: src/components/block/Block.jsx:273
+#: src/components/block/Block.jsx:272
 msgid "Pool Reward Amount"
 msgstr "Jumlah Upah Pool"
 
@@ -1977,19 +1997,19 @@ msgstr "Sedang menyiapkan Plot NFT"
 msgid "Preparing standard wallet"
 msgstr "Sedang menyiapkan dompet standar"
 
-#: src/components/nfts/NFTPreview.tsx:153
+#: src/components/nfts/NFTPreview.tsx:154
 msgid "Preview"
 msgstr ""
 
-#: src/components/nfts/NFTPreview.tsx:191
+#: src/components/nfts/NFTPreview.tsx:192
 msgid "Preview URL is not valid"
 msgstr ""
 
-#: src/components/block/Block.jsx:307
+#: src/components/block/Block.jsx:306
 msgid "Previous"
 msgstr "Sebelumnya"
 
-#: src/components/block/Block.jsx:193
+#: src/components/block/Block.jsx:198
 msgid "Previous Header Hash"
 msgstr "Header Hash Sebelumnya"
 
@@ -2007,7 +2027,7 @@ msgstr ""
 msgid "Profiles"
 msgstr ""
 
-#: src/components/block/Block.jsx:229
+#: src/components/block/Block.jsx:232
 msgid "Proof of Space Size"
 msgstr "Ukuran Bukti Dari Ruang"
 
@@ -2066,7 +2086,7 @@ msgstr "Segarkan data Plot-Plot"
 msgid "Relative Lock Height"
 msgstr "Tinggi Kunci Relatif"
 
-#: src/electron/main.tsx:559
+#: src/electron/main.tsx:603
 msgid "Release Notes"
 msgstr "Catatan Rilis"
 
@@ -2088,7 +2108,7 @@ msgstr "Lepaskan kunci dari penyimpan kunci yang lama sesudah sukses ber migrasi
 msgid "Removing"
 msgstr "Menghapus"
 
-#: src/electron/main.tsx:578
+#: src/electron/main.tsx:622
 msgid "Report an Issue..."
 msgstr "Melaporkan sebuah masalah..."
 
@@ -2139,7 +2159,6 @@ msgid "Search block by header hash"
 msgstr "Cari block dari hulu hash"
 
 #: src/components/offers/OfferSummaryRow.tsx:228
-#: src/components/offers/OfferSummaryRow.tsx:306
 msgid "Search on Tail Database"
 msgstr ""
 
@@ -2210,7 +2229,7 @@ msgstr "Pool sendiri. Bila memenangkan sebuah block anda akan mendapatkan hadiah
 msgid "Sell an NFT"
 msgstr ""
 
-#: src/components/nfts/NFTBurnDialog.tsx:142
+#: src/components/nfts/NFTBurnDialog.tsx:145
 #: src/components/nfts/NFTTransferAction.tsx:142
 msgid "Send to Address"
 msgstr ""
@@ -2276,7 +2295,7 @@ msgstr ""
 msgid "Show Hidden"
 msgstr ""
 
-#: src/components/nfts/NFTPreview.tsx:212
+#: src/components/nfts/NFTPreview.tsx:213
 msgid "Show Preview"
 msgstr ""
 
@@ -2301,11 +2320,11 @@ msgstr "Lancarkan penerimaan penghasilan farming XCH anda dengan bergabung ke se
 msgid "Specify a value of 0 to use all available threads"
 msgstr "Spesifikasi nilai 0 untuk menggunakan semua thread yang tersedia"
 
-#: src/electron/main.tsx:655
+#: src/electron/main.tsx:699
 msgid "Speech"
 msgstr "Pertuturan"
 
-#: src/components/app/AppState.tsx:199
+#: src/components/app/AppState.tsx:218
 msgid "Starting services"
 msgstr "Memulai layanan"
 
@@ -2436,7 +2455,7 @@ msgstr "Pool URL membutuhkan protocol https. {normalizedUrl}"
 msgid "The pool switching operation was cancelled, please try again by changing pool, or self pooling"
 msgstr "Oprasi perpindahan pool dibatalkan, coba lagi dengan berpindah pool, atau bekerja sendiri"
 
-#: src/components/block/Block.jsx:262
+#: src/components/block/Block.jsx:261
 msgid "The seed used to create the plot. This depends on the pool pk and plot pk."
 msgstr "Bulir yang digunakan untuk membuat plot. Ini tergantung oleh pool pk dan plot pk."
 
@@ -2456,15 +2475,15 @@ msgstr ""
 msgid "The total amount requested includes the asking price, plus the associated creator fees (if the NFT has royalty payments enabled).{0}"
 msgstr ""
 
-#: src/components/block/Block.jsx:206
+#: src/components/block/Block.jsx:211
 msgid "The total number of VDF (verifiable delay function) or proof of time iterations on the whole chain up to this block."
 msgstr ""
 
-#: src/components/block/Block.jsx:222
+#: src/components/block/Block.jsx:225
 msgid "The total number of VDF (verifiable delay function) or proof of time iterations on this block."
 msgstr "Jumlah total dari VDF (fungsi delay yang dapat diverfikasikan) atau bukti dari iterasi waktu pada blok ini."
 
-#: src/components/block/Block.jsx:284
+#: src/components/block/Block.jsx:283
 msgid "The total transactions fees in this block. Rewarded to the farmer."
 msgstr "Total dari biaya transaksi pada block ini. Diberikan kepada farmer."
 
@@ -2493,7 +2512,7 @@ msgstr "Kesulitan ini lebih rendah dari kesulitan sebenar nya di jaringan sebena
 msgid "This feature is available only from the GUI."
 msgstr "Fitur ini hanya tersedia di GUI."
 
-#: src/components/block/Block.jsx:172
+#: src/components/block/Block.jsx:177
 msgid "This is the time the block was created by the farmer, which is before it is finalized with a proof of time"
 msgstr "Ini adalah waktu dimana blok di hasilkan oleh farmer, sebelum di finalisasi dengan bukti dari waktu"
 
@@ -2520,12 +2539,12 @@ msgid "This number reflects the number of nodes that the accepted SpendBundle ha
 msgstr ""
 
 #: src/components/offers/NFTOfferViewer.tsx:226
-#: src/components/offers/OfferSummary.tsx:206
+#: src/components/offers/OfferSummary.tsx:207
 msgid "This offer has a fee included to help expedite the transaction when the offer is accepted."
 msgstr ""
 
 #: src/components/offers/NFTOfferViewer.tsx:220
-#: src/components/offers/OfferSummary.tsx:200
+#: src/components/offers/OfferSummary.tsx:201
 msgid "This offer has a fee included to help expedite the transaction when the offer is accepted. You may specify an additional fee if you feel that the included fee is too small."
 msgstr ""
 
@@ -2553,7 +2572,7 @@ msgstr "Perkalian Thread untuk fase 2"
 msgid "Time Created"
 msgstr "Waktu Dibuat"
 
-#: src/components/block/Block.jsx:167
+#: src/components/block/Block.jsx:172
 msgid "Timestamp"
 msgstr "Stempel waktu"
 
@@ -2620,7 +2639,7 @@ msgstr "Jumlah Ukuran Plot"
 msgid "Total Size of Plots"
 msgstr "Jumlah Ukuran Plot-Plot"
 
-#: src/components/block/Block.jsx:203
+#: src/components/block/Block.jsx:208
 msgid "Total VDF Iterations"
 msgstr "Jumlah iterasi VDF"
 
@@ -2632,7 +2651,7 @@ msgstr "Jumlah bilangan sejak mula blockchain"
 msgid "Trade tokens"
 msgstr "Tukarkan token"
 
-#: src/components/block/Block.jsx:269
+#: src/components/block/Block.jsx:268
 msgid "Transactions Filter Hash"
 msgstr "Seleksi Hash Transaksi"
 
@@ -2675,8 +2694,20 @@ msgstr ""
 msgid "Unassigned"
 msgstr ""
 
-#: src/components/nfts/NFTProfileDropdown.tsx:100
-#: src/components/nfts/NFTProfileDropdown.tsx:168
+#: src/components/nfts/NFTProfileDropdown.tsx:92
+#: src/components/nfts/NFTProfileDropdown.tsx:141
+#: src/components/nfts/NFTProfileDropdown_BASE_674608.tsx:83
+#: src/components/nfts/NFTProfileDropdown_BASE_674608.tsx:132
+#: src/components/nfts/NFTProfileDropdown_BASE_675094.tsx:83
+#: src/components/nfts/NFTProfileDropdown_BASE_675094.tsx:132
+#: src/components/nfts/NFTProfileDropdown_LOCAL_674608.tsx:92
+#: src/components/nfts/NFTProfileDropdown_LOCAL_674608.tsx:160
+#: src/components/nfts/NFTProfileDropdown_LOCAL_675094.tsx:92
+#: src/components/nfts/NFTProfileDropdown_LOCAL_675094.tsx:160
+#: src/components/nfts/NFTProfileDropdown_REMOTE_674608.tsx:92
+#: src/components/nfts/NFTProfileDropdown_REMOTE_674608.tsx:160
+#: src/components/nfts/NFTProfileDropdown_REMOTE_675094.tsx:92
+#: src/components/nfts/NFTProfileDropdown_REMOTE_675094.tsx:160
 msgid "Unassigned NFTs"
 msgstr ""
 
@@ -2696,7 +2727,6 @@ msgstr ""
 #: src/components/offers/OfferManager.tsx:232
 #: src/components/offers/OfferSummaryRow.tsx:189
 #: src/components/offers/OfferSummaryRow.tsx:190
-#: src/components/offers/OfferSummaryRow.tsx:268
 msgid "Unknown CAT"
 msgstr ""
 
@@ -2724,7 +2754,7 @@ msgstr "Iterasi VDF Sub Slot"
 msgid "Verify Pool Details"
 msgstr "Verifikasi Detil Pool"
 
-#: src/electron/main.tsx:474
+#: src/electron/main.tsx:518
 msgid "View"
 msgstr "Lihat"
 
@@ -2810,7 +2840,7 @@ msgstr "Mulai yang sudah berjalan"
 msgid "Warning"
 msgstr ""
 
-#: src/components/offers/OfferSummary.tsx:148
+#: src/components/offers/OfferSummary.tsx:149
 msgid "Warning: Verify that the offered CAT asset IDs match the asset IDs of the tokens you expect to receive."
 msgstr ""
 
@@ -2818,11 +2848,11 @@ msgstr ""
 msgid "Warning: You're about to visit a website"
 msgstr ""
 
-#: src/components/block/Block.jsx:183
+#: src/components/block/Block.jsx:188
 msgid "Weight"
 msgstr "Berat"
 
-#: src/components/block/Block.jsx:186
+#: src/components/block/Block.jsx:191
 msgid "Weight is the total added difficulty of all blocks up to and including this one"
 msgstr ""
 
@@ -2830,7 +2860,7 @@ msgstr ""
 msgid "When creating an offer, any assets that are being offered will be locked and unavailable until the offer is accepted or cancelled, resulting in your spendable balance changing."
 msgstr ""
 
-#: src/electron/main.tsx:525
+#: src/electron/main.tsx:569
 msgid "Window"
 msgstr "Jendela"
 
@@ -2851,7 +2881,7 @@ msgstr ""
 #~ msgstr ""
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:48
-#: src/electron/main.tsx:362
+#: src/electron/main.tsx:376
 msgid "Yes"
 msgstr "Ya"
 
@@ -3024,7 +3054,7 @@ msgid "{0} points {1} - {2} hours ago"
 msgstr "{0} poin {1} - {2} jam yang lalu"
 
 #: src/components/offers/NFTOfferViewer.tsx:216
-#: src/components/offers/OfferSummary.tsx:196
+#: src/components/offers/OfferSummary.tsx:197
 msgid "{makerFee, plural, one {mojo} other {mojos}}"
 msgstr ""
 

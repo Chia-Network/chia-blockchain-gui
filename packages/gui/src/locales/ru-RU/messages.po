@@ -54,8 +54,8 @@ msgstr "Комбайн - это служба, работающая на маши
 msgid "A value of {0} is recommended"
 msgstr "Рекомендуется значение {0}"
 
-#: src/electron/main.tsx:607
-#: src/electron/main.tsx:694
+#: src/electron/main.tsx:651
+#: src/electron/main.tsx:738
 msgid "About Chia Blockchain"
 msgstr "О программе Chia Blockchain"
 
@@ -131,8 +131,20 @@ msgstr "После того как ваши ключи будут успешно
 msgid "All"
 msgstr ""
 
-#: src/components/nfts/NFTProfileDropdown.tsx:119
-#: src/components/nfts/NFTProfileDropdown.tsx:154
+#: src/components/nfts/NFTProfileDropdown.tsx:99
+#: src/components/nfts/NFTProfileDropdown.tsx:127
+#: src/components/nfts/NFTProfileDropdown_BASE_674608.tsx:90
+#: src/components/nfts/NFTProfileDropdown_BASE_674608.tsx:118
+#: src/components/nfts/NFTProfileDropdown_BASE_675094.tsx:90
+#: src/components/nfts/NFTProfileDropdown_BASE_675094.tsx:118
+#: src/components/nfts/NFTProfileDropdown_LOCAL_674608.tsx:111
+#: src/components/nfts/NFTProfileDropdown_LOCAL_674608.tsx:146
+#: src/components/nfts/NFTProfileDropdown_LOCAL_675094.tsx:111
+#: src/components/nfts/NFTProfileDropdown_LOCAL_675094.tsx:146
+#: src/components/nfts/NFTProfileDropdown_REMOTE_674608.tsx:111
+#: src/components/nfts/NFTProfileDropdown_REMOTE_674608.tsx:146
+#: src/components/nfts/NFTProfileDropdown_REMOTE_675094.tsx:111
+#: src/components/nfts/NFTProfileDropdown_REMOTE_675094.tsx:146
 msgid "All NFTs"
 msgstr ""
 
@@ -180,7 +192,7 @@ msgstr "Вы уверены, что хотите отключиться?"
 msgid "Are you sure you want to move this NFT to the specified profile?"
 msgstr ""
 
-#: src/electron/main.tsx:366
+#: src/electron/main.tsx:380
 msgid "Are you sure you want to quit?"
 msgstr "Вы уверены, что хотите выйти?"
 
@@ -193,7 +205,7 @@ msgstr "Вы уверены, что хотите использовать k={plo
 msgid "Asset Type"
 msgstr ""
 
-#: src/components/app/AppState.tsx:178
+#: src/components/app/AppState.tsx:197
 msgid "Attempt {attempt}"
 msgstr "Попытка {attempt}"
 
@@ -214,7 +226,7 @@ msgstr "Файл резервной копии используется для �
 msgid "Balance: {standardBalance} XCH"
 msgstr ""
 
-#: src/components/block/Block.jsx:277
+#: src/components/block/Block.jsx:276
 msgid "Base Farmer Reward Amount"
 msgstr "Базовая сумма вознаграждения фермера"
 
@@ -230,7 +242,7 @@ msgstr "Ниже приведены значения испытаний для �
 msgid "Best estimate over last 24 hours"
 msgstr "Лучшая калькуляция за последние 24 часа"
 
-#: src/components/block/Block.jsx:136
+#: src/components/block/Block.jsx:142
 msgid "Block"
 msgstr "Блок"
 
@@ -238,19 +250,19 @@ msgstr "Блок"
 msgid "Block Rewards"
 msgstr "Вознаграждение за блок"
 
-#: src/components/block/Block.jsx:213
+#: src/components/block/Block.jsx:218
 msgid "Block VDF Iterations"
 msgstr "VDF итераций блока"
 
-#: src/components/block/Block.jsx:296
+#: src/components/block/Block.jsx:295
 msgid "Block at height {0} in the Chia blockchain"
 msgstr "Блок на высоте {0} в блокчейне Chia"
 
-#: src/components/block/Block.jsx:122
+#: src/components/block/Block.jsx:128
 msgid "Block with hash {headerHash}"
 msgstr "Блок с хэшем {headerHash}"
 
-#: src/components/block/Block.jsx:141
+#: src/components/block/Block.jsx:147
 msgid "Block with hash {headerHash} does not exist."
 msgstr "Блок с хешем {headerHash} не существует."
 
@@ -264,18 +276,22 @@ msgstr "Блоки"
 msgid "Browse"
 msgstr "Обзор"
 
-#: src/components/nfts/NFTBurnDialog.tsx:84
-#: src/components/nfts/NFTBurnDialog.tsx:170
+#: src/components/nfts/NFTBurnDialog.tsx:87
+#: src/components/nfts/NFTBurnDialog.tsx:173
 #: src/components/nfts/NFTContextualActions.tsx:616
 msgid "Burn"
 msgstr ""
 
-#: src/components/nfts/NFTBurnDialog.tsx:77
+#: src/components/nfts/NFTBurnDialog.tsx:78
 msgid "Burn NFT confirmation"
 msgstr ""
 
 #: src/components/nfts/NFTBurnDialog.tsx:122
-msgid "Burning a non-fungible token means destroying it. Burned NFTs are sent to a verifiably un-spendable address, eliminating your NFT from the blockchain. However, transactions leading up to the burn will remain on the blockchain ledger."
+#~ msgid "Burning a non-fungible token means destroying it. Burned NFTs are sent to a verifiably un-spendable address, eliminating your NFT from the blockchain. However, transactions leading up to the burn will remain on the blockchain ledger."
+#~ msgstr ""
+
+#: src/components/nfts/NFTBurnDialog.tsx:125
+msgid "Burning a non-fungible token means removing it from circulation by sending it to a verifiably un-spendable address. However, transactions leading up to the burn will remain on the blockchain ledger."
 msgstr ""
 
 #: src/components/offers/NFTOfferEditor.tsx:362
@@ -288,7 +304,7 @@ msgstr ""
 #: src/components/block/FullNodeAddConnection.tsx:85
 #: src/components/farm/FarmManageFarmingRewards.tsx:188
 #: src/components/fullNode/FullNodeAddConnection.tsx:84
-#: src/components/nfts/NFTBurnDialog.tsx:160
+#: src/components/nfts/NFTBurnDialog.tsx:163
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:67
 #: src/components/nfts/NFTTransferConfirmationDialog.tsx:58
 #: src/components/offers/OfferAcceptConfirmationDialog.tsx:26
@@ -346,7 +362,7 @@ msgstr "Сменить пароль"
 msgid "Change Pool"
 msgstr "Сменить пул"
 
-#: src/electron/main.tsx:586
+#: src/electron/main.tsx:630
 msgid "Chat on KeyBase"
 msgstr "Чат в KeyBase"
 
@@ -362,11 +378,11 @@ msgstr ""
 msgid "Check Provenance on Spacescan.io"
 msgstr ""
 
-#: src/electron/main.tsx:604
+#: src/electron/main.tsx:648
 msgid "Chia"
 msgstr "Чиа"
 
-#: src/electron/main.tsx:543
+#: src/electron/main.tsx:587
 msgid "Chia Blockchain Wiki"
 msgstr ""
 "Блокчейн Chia на Wiki                           Chia coin\n"
@@ -582,7 +598,7 @@ msgstr "Забрать награду"
 msgid "Close"
 msgstr "Закрыть"
 
-#: src/components/app/AppState.tsx:116
+#: src/components/app/AppState.tsx:135
 msgid "Closing down services"
 msgstr ""
 
@@ -602,7 +618,7 @@ msgid "Collections"
 msgstr ""
 
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:180
-#: src/electron/main.tsx:364
+#: src/electron/main.tsx:378
 #: src/hooks/useAbsorbRewards.tsx:44
 msgid "Confirm"
 msgstr "Подтвердить"
@@ -659,8 +675,8 @@ msgstr "Подключиться к пулу"
 msgid "Connected"
 msgstr "Подключен"
 
-#: src/components/app/AppState.tsx:171
-#: src/components/app/AppState.tsx:175
+#: src/components/app/AppState.tsx:190
+#: src/components/app/AppState.tsx:194
 msgid "Connecting to daemon"
 msgstr ""
 
@@ -681,7 +697,7 @@ msgstr "Тип подключения"
 #~ msgid "Connections"
 #~ msgstr "Подключения"
 
-#: src/electron/main.tsx:567
+#: src/electron/main.tsx:611
 msgid "Contribute on GitHub"
 msgstr "Сотрудничать на GitHub"
 
@@ -855,11 +871,11 @@ msgstr ""
 msgid "Details"
 msgstr ""
 
-#: src/electron/main.tsx:483
+#: src/electron/main.tsx:527
 msgid "Developer"
 msgstr "Разработчик"
 
-#: src/electron/main.tsx:486
+#: src/electron/main.tsx:530
 msgid "Developer Tools"
 msgstr "Инструменты разработчика"
 
@@ -867,7 +883,7 @@ msgstr "Инструменты разработчика"
 msgid "Dexie URL"
 msgstr ""
 
-#: src/components/block/Block.jsx:199
+#: src/components/block/Block.jsx:204
 #: src/components/fullNode/card/FullNodeCardDifficulty.tsx:14
 msgid "Difficulty"
 msgstr "Сложность"
@@ -898,7 +914,7 @@ msgstr ""
 msgid "Do you have existing plots on this machine? <0>Add Plot Directory</0>"
 msgstr "Есть ли у вас на этой машине участки? <0>Добавить каталог с участками</0>"
 
-#: src/components/nfts/NFTBurnDialog.tsx:114
+#: src/components/nfts/NFTBurnDialog.tsx:117
 msgid "Do you want to burn this NFT?"
 msgstr ""
 
@@ -934,7 +950,7 @@ msgstr "Дублировать"
 msgid "Duplicate Plots"
 msgstr "Повторяющиеся участки"
 
-#: src/electron/main.tsx:442
+#: src/electron/main.tsx:486
 msgid "Edit"
 msgstr "Правка"
 
@@ -1021,7 +1037,7 @@ msgstr "Не удалось обновить пароль: {0}"
 msgid "Farmer Public Key"
 msgstr "Открытый ключ фермера"
 
-#: src/components/block/Block.jsx:245
+#: src/components/block/Block.jsx:246
 msgid "Farmer Puzzle Hash"
 msgstr "Хеш-головоломка фермера"
 
@@ -1073,7 +1089,7 @@ msgstr ""
 msgid "Farming Status"
 msgstr "Статус фарминга"
 
-#: src/components/nfts/NFTBurnDialog.tsx:149
+#: src/components/nfts/NFTBurnDialog.tsx:152
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:447
 #: src/components/nfts/NFTTransferAction.tsx:151
 #: src/components/offers/NFTOfferViewer.tsx:719
@@ -1095,17 +1111,17 @@ msgstr ""
 msgid "Fee is used TWICE: once to leave pool, once to join."
 msgstr ""
 
-#: src/components/block/Block.jsx:281
+#: src/components/block/Block.jsx:280
 msgid "Fees Amount"
 msgstr "Объем коммисий"
 
 #: src/components/offers/NFTOfferViewer.tsx:210
-#: src/components/offers/OfferSummary.tsx:190
+#: src/components/offers/OfferSummary.tsx:191
 msgid "Fees included in offer:"
 msgstr ""
 
-#: src/electron/main.tsx:434
-#: src/electron/main.tsx:641
+#: src/electron/main.tsx:478
+#: src/electron/main.tsx:685
 msgid "File"
 msgstr "Файл"
 
@@ -1133,11 +1149,11 @@ msgstr "Путь к папке для окончательного хранен�
 msgid "Finished"
 msgstr "Завершен"
 
-#: src/electron/main.tsx:592
+#: src/electron/main.tsx:636
 msgid "Follow on Twitter"
 msgstr "Следить в Twitter"
 
-#: src/electron/main.tsx:551
+#: src/electron/main.tsx:595
 msgid "Frequently Asked Questions"
 msgstr "Часто задаваемые вопросы"
 
@@ -1151,7 +1167,7 @@ msgstr "Полный узел"
 msgid "Full Node Connections"
 msgstr ""
 
-#: src/electron/main.tsx:517
+#: src/electron/main.tsx:561
 msgid "Full Screen"
 msgstr "Полный экран"
 
@@ -1188,17 +1204,17 @@ msgstr ""
 msgid "Header Hash"
 msgstr "Хэш заголовка"
 
-#: src/components/block/Block.jsx:163
+#: src/components/block/Block.jsx:168
 msgid "Header hash"
 msgstr "Хэш заголовка"
 
-#: src/components/block/Block.jsx:179
+#: src/components/block/Block.jsx:184
 #: src/components/fullNode/FullNode.jsx:75
 #: src/components/fullNode/FullNodeConnections.tsx:68
 msgid "Height"
 msgstr "Высота"
 
-#: src/electron/main.tsx:539
+#: src/electron/main.tsx:583
 msgid "Help"
 msgstr "Помощь"
 
@@ -1251,13 +1267,17 @@ msgstr "Если ничего не выбрано, по умолчанию ис�
 msgid "If selected, your offer will be not be shared publicly."
 msgstr ""
 
+#: src/components/nfts/NFTBurnDialog.tsx:81
+msgid "If you burn this NFT, nobody (including you) will ever be able to access it again. Are you sure you want to continue?"
+msgstr ""
+
 #: src/components/offers/OfferManager.tsx:129
 msgid "If you have already shared your offer file, you may need to submit a transaction to cancel the pending offer. Click \"Cancel on blockchain\" to submit a cancellation transaction."
 msgstr ""
 
 #: src/components/nfts/NFTBurnDialog.tsx:79
-msgid "If you proceed, this NFT will be permanently deleted. Are you sure you want to continue?"
-msgstr ""
+#~ msgid "If you proceed, this NFT will be permanently deleted. Are you sure you want to continue?"
+#~ msgstr ""
 
 #: src/components/nfts/NFTPreview.tsx:92
 msgid "Image Hash Mismatch"
@@ -1446,12 +1466,12 @@ msgstr "Загрузка конфигурации"
 msgid "Loading farming data"
 msgstr "Загрузка данных о фарминге"
 
-#: src/components/app/AppState.tsx:144
+#: src/components/app/AppState.tsx:163
 msgid "Loading keyring status"
 msgstr "Загрузка статуса ключей"
 
-#: src/components/nfts/NFTPreview.tsx:197
-#: src/components/nfts/NFTPreview.tsx:229
+#: src/components/nfts/NFTPreview.tsx:198
+#: src/components/nfts/NFTPreview.tsx:230
 msgid "Loading preview..."
 msgstr ""
 
@@ -1635,11 +1655,11 @@ msgstr "Имя сети"
 msgid "New Passphrase"
 msgstr "Новый пароль"
 
-#: src/components/block/Block.jsx:310
+#: src/components/block/Block.jsx:309
 msgid "Next"
 msgstr "Далее"
 
-#: src/electron/main.tsx:361
+#: src/electron/main.tsx:375
 msgid "No"
 msgstr "Нет"
 
@@ -1651,7 +1671,7 @@ msgstr "Выращенных блоков пока нет"
 msgid "No current offers"
 msgstr ""
 
-#: src/components/nfts/NFTPreview.tsx:185
+#: src/components/nfts/NFTPreview.tsx:186
 msgid "No file available"
 msgstr ""
 
@@ -1968,7 +1988,7 @@ msgstr "Дождитесь окончания синхронизации кош�
 msgid "Plot Count"
 msgstr "Количество участков"
 
-#: src/components/block/Block.jsx:259
+#: src/components/block/Block.jsx:258
 msgid "Plot Id"
 msgstr "ID участка"
 
@@ -1989,7 +2009,7 @@ msgstr ""
 msgid "Plot NFT with p2_singleton_puzzle_hash {plotNFTId} does not exists"
 msgstr "Участок NFT с p2_singleton_puzzle_hash {plotNFTId} не существует"
 
-#: src/components/block/Block.jsx:237
+#: src/components/block/Block.jsx:238
 msgid "Plot Public Key"
 msgstr "Публичный ключ участка"
 
@@ -2082,7 +2102,7 @@ msgstr "Ссылка для входа на пул"
 msgid "Pool Payout Instructions"
 msgstr "Инструкции по выплате пула"
 
-#: src/components/block/Block.jsx:241
+#: src/components/block/Block.jsx:242
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:308
 msgid "Pool Public Key"
 msgstr "Публичный ключ пула"
@@ -2106,7 +2126,7 @@ msgstr "Неверный формат адреса вознаграждения 
 msgid "Pool Reward Address must not be empty."
 msgstr "Адрес наград фермера не должен быть пустым."
 
-#: src/components/block/Block.jsx:273
+#: src/components/block/Block.jsx:272
 msgid "Pool Reward Amount"
 msgstr "Сумма вознаграждения пула"
 
@@ -2147,19 +2167,19 @@ msgstr "Подготовка участка NFT"
 msgid "Preparing standard wallet"
 msgstr "Подготовка стандартного кошелька"
 
-#: src/components/nfts/NFTPreview.tsx:153
+#: src/components/nfts/NFTPreview.tsx:154
 msgid "Preview"
 msgstr ""
 
-#: src/components/nfts/NFTPreview.tsx:191
+#: src/components/nfts/NFTPreview.tsx:192
 msgid "Preview URL is not valid"
 msgstr ""
 
-#: src/components/block/Block.jsx:307
+#: src/components/block/Block.jsx:306
 msgid "Previous"
 msgstr "Предыдущий"
 
-#: src/components/block/Block.jsx:193
+#: src/components/block/Block.jsx:198
 msgid "Previous Header Hash"
 msgstr "Хэш предыдущего блока"
 
@@ -2177,7 +2197,7 @@ msgstr ""
 msgid "Profiles"
 msgstr ""
 
-#: src/components/block/Block.jsx:229
+#: src/components/block/Block.jsx:232
 msgid "Proof of Space Size"
 msgstr "Размер доказательства пространства (Proof of Space)"
 
@@ -2236,7 +2256,7 @@ msgstr "Обновить участки"
 msgid "Relative Lock Height"
 msgstr "Относительная высота строки"
 
-#: src/electron/main.tsx:559
+#: src/electron/main.tsx:603
 msgid "Release Notes"
 msgstr "Примечания к релизу"
 
@@ -2258,7 +2278,7 @@ msgstr "Удалить ключи из старого списка ключей 
 msgid "Removing"
 msgstr "Удаление"
 
-#: src/electron/main.tsx:578
+#: src/electron/main.tsx:622
 msgid "Report an Issue..."
 msgstr "Сообщить о проблеме..."
 
@@ -2309,7 +2329,6 @@ msgid "Search block by header hash"
 msgstr "Поиск блока по хешу заголовка"
 
 #: src/components/offers/OfferSummaryRow.tsx:228
-#: src/components/offers/OfferSummaryRow.tsx:306
 msgid "Search on Tail Database"
 msgstr ""
 
@@ -2380,7 +2399,7 @@ msgstr "Cвой пул. Когда вы выиграете блок, вы пол
 msgid "Sell an NFT"
 msgstr ""
 
-#: src/components/nfts/NFTBurnDialog.tsx:142
+#: src/components/nfts/NFTBurnDialog.tsx:145
 #: src/components/nfts/NFTTransferAction.tsx:142
 msgid "Send to Address"
 msgstr ""
@@ -2446,7 +2465,7 @@ msgstr ""
 msgid "Show Hidden"
 msgstr ""
 
-#: src/components/nfts/NFTPreview.tsx:212
+#: src/components/nfts/NFTPreview.tsx:213
 msgid "Show Preview"
 msgstr ""
 
@@ -2471,11 +2490,11 @@ msgstr "Получите свои награды за фарм XCH, присое
 msgid "Specify a value of 0 to use all available threads"
 msgstr "Укажите значение 0 для использования всех доступных потоков"
 
-#: src/electron/main.tsx:655
+#: src/electron/main.tsx:699
 msgid "Speech"
 msgstr "Речь"
 
-#: src/components/app/AppState.tsx:199
+#: src/components/app/AppState.tsx:218
 msgid "Starting services"
 msgstr "Запуск сервисов"
 
@@ -2606,7 +2625,7 @@ msgstr "URL-адрес пула должен использовать прото
 msgid "The pool switching operation was cancelled, please try again by changing pool, or self pooling"
 msgstr "Операция переключения пулов была отменена, попробуйте снова, изменив пул, или самопул"
 
-#: src/components/block/Block.jsx:262
+#: src/components/block/Block.jsx:261
 msgid "The seed used to create the plot. This depends on the pool pk and plot pk."
 msgstr "Зерно, которое использовалось для создания участка. Зерно зависит от публичного ключа пула и публичного ключа участка."
 
@@ -2626,15 +2645,15 @@ msgstr ""
 msgid "The total amount requested includes the asking price, plus the associated creator fees (if the NFT has royalty payments enabled).{0}"
 msgstr ""
 
-#: src/components/block/Block.jsx:206
+#: src/components/block/Block.jsx:211
 msgid "The total number of VDF (verifiable delay function) or proof of time iterations on the whole chain up to this block."
 msgstr "Общее количество итерации VDF (от англ. Verifiable Delay Function - проверяемая функция задержки) или доказательств временных итераций по всей цепочке до этого блока."
 
-#: src/components/block/Block.jsx:222
+#: src/components/block/Block.jsx:225
 msgid "The total number of VDF (verifiable delay function) or proof of time iterations on this block."
 msgstr "Общее количество итераций VDF (от англ. Verifiable Delay Function - проверяемая функция задержки), другими словами общее количество доказательств временных итераций (proof of time) в этом блоке."
 
-#: src/components/block/Block.jsx:284
+#: src/components/block/Block.jsx:283
 msgid "The total transactions fees in this block. Rewarded to the farmer."
 msgstr "Общая комиссия за транзакции в этом блоке, полученная в награду фермерами."
 
@@ -2663,7 +2682,7 @@ msgstr "Эта сложность является искусственно ме
 msgid "This feature is available only from the GUI."
 msgstr "Эта функция доступна только из графического интерфейса."
 
-#: src/components/block/Block.jsx:172
+#: src/components/block/Block.jsx:177
 msgid "This is the time the block was created by the farmer, which is before it is finalized with a proof of time"
 msgstr "Это момент времени, когда блок был создан фермером, то есть до того, как он был завершен с применением алгоритма подтверждения времени (proof of time)."
 
@@ -2690,12 +2709,12 @@ msgid "This number reflects the number of nodes that the accepted SpendBundle ha
 msgstr ""
 
 #: src/components/offers/NFTOfferViewer.tsx:226
-#: src/components/offers/OfferSummary.tsx:206
+#: src/components/offers/OfferSummary.tsx:207
 msgid "This offer has a fee included to help expedite the transaction when the offer is accepted."
 msgstr ""
 
 #: src/components/offers/NFTOfferViewer.tsx:220
-#: src/components/offers/OfferSummary.tsx:200
+#: src/components/offers/OfferSummary.tsx:201
 msgid "This offer has a fee included to help expedite the transaction when the offer is accepted. You may specify an additional fee if you feel that the included fee is too small."
 msgstr ""
 
@@ -2723,7 +2742,7 @@ msgstr "Множитель потоков для этапа 2"
 msgid "Time Created"
 msgstr "Время создания"
 
-#: src/components/block/Block.jsx:167
+#: src/components/block/Block.jsx:172
 msgid "Timestamp"
 msgstr "Временная метка"
 
@@ -2790,7 +2809,7 @@ msgstr "Общий объем участков"
 msgid "Total Size of Plots"
 msgstr "Общий объем участков"
 
-#: src/components/block/Block.jsx:203
+#: src/components/block/Block.jsx:208
 msgid "Total VDF Iterations"
 msgstr "Общее количество итерации VDF"
 
@@ -2802,7 +2821,7 @@ msgstr "Общее количество итераций с момента за�
 msgid "Trade tokens"
 msgstr "Торговля токенами"
 
-#: src/components/block/Block.jsx:269
+#: src/components/block/Block.jsx:268
 msgid "Transactions Filter Hash"
 msgstr "Хэш фильтра транзакций"
 
@@ -2845,8 +2864,20 @@ msgstr ""
 msgid "Unassigned"
 msgstr ""
 
-#: src/components/nfts/NFTProfileDropdown.tsx:100
-#: src/components/nfts/NFTProfileDropdown.tsx:168
+#: src/components/nfts/NFTProfileDropdown.tsx:92
+#: src/components/nfts/NFTProfileDropdown.tsx:141
+#: src/components/nfts/NFTProfileDropdown_BASE_674608.tsx:83
+#: src/components/nfts/NFTProfileDropdown_BASE_674608.tsx:132
+#: src/components/nfts/NFTProfileDropdown_BASE_675094.tsx:83
+#: src/components/nfts/NFTProfileDropdown_BASE_675094.tsx:132
+#: src/components/nfts/NFTProfileDropdown_LOCAL_674608.tsx:92
+#: src/components/nfts/NFTProfileDropdown_LOCAL_674608.tsx:160
+#: src/components/nfts/NFTProfileDropdown_LOCAL_675094.tsx:92
+#: src/components/nfts/NFTProfileDropdown_LOCAL_675094.tsx:160
+#: src/components/nfts/NFTProfileDropdown_REMOTE_674608.tsx:92
+#: src/components/nfts/NFTProfileDropdown_REMOTE_674608.tsx:160
+#: src/components/nfts/NFTProfileDropdown_REMOTE_675094.tsx:92
+#: src/components/nfts/NFTProfileDropdown_REMOTE_675094.tsx:160
 msgid "Unassigned NFTs"
 msgstr ""
 
@@ -2866,7 +2897,6 @@ msgstr ""
 #: src/components/offers/OfferManager.tsx:232
 #: src/components/offers/OfferSummaryRow.tsx:189
 #: src/components/offers/OfferSummaryRow.tsx:190
-#: src/components/offers/OfferSummaryRow.tsx:268
 msgid "Unknown CAT"
 msgstr ""
 
@@ -2894,7 +2924,7 @@ msgstr "Итерации VDF суб слота"
 msgid "Verify Pool Details"
 msgstr "Подтвердите подробности пула"
 
-#: src/electron/main.tsx:474
+#: src/electron/main.tsx:518
 msgid "View"
 msgstr "Вид"
 
@@ -2980,7 +3010,7 @@ msgstr "Горячий запуск"
 msgid "Warning"
 msgstr ""
 
-#: src/components/offers/OfferSummary.tsx:148
+#: src/components/offers/OfferSummary.tsx:149
 msgid "Warning: Verify that the offered CAT asset IDs match the asset IDs of the tokens you expect to receive."
 msgstr ""
 
@@ -2988,11 +3018,11 @@ msgstr ""
 msgid "Warning: You're about to visit a website"
 msgstr ""
 
-#: src/components/block/Block.jsx:183
+#: src/components/block/Block.jsx:188
 msgid "Weight"
 msgstr "Вес"
 
-#: src/components/block/Block.jsx:186
+#: src/components/block/Block.jsx:191
 msgid "Weight is the total added difficulty of all blocks up to and including this one"
 msgstr "Вес - общая сложность всех блоков до, включая этот"
 
@@ -3000,7 +3030,7 @@ msgstr "Вес - общая сложность всех блоков до, вк�
 msgid "When creating an offer, any assets that are being offered will be locked and unavailable until the offer is accepted or cancelled, resulting in your spendable balance changing."
 msgstr ""
 
-#: src/electron/main.tsx:525
+#: src/electron/main.tsx:569
 msgid "Window"
 msgstr "Окно"
 
@@ -3021,7 +3051,7 @@ msgstr ""
 #~ msgstr ""
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:48
-#: src/electron/main.tsx:362
+#: src/electron/main.tsx:376
 msgid "Yes"
 msgstr "Да"
 
@@ -3194,7 +3224,7 @@ msgid "{0} points {1} - {2} hours ago"
 msgstr "{0} очков {1} - {2} часов назад"
 
 #: src/components/offers/NFTOfferViewer.tsx:216
-#: src/components/offers/OfferSummary.tsx:196
+#: src/components/offers/OfferSummary.tsx:197
 msgid "{makerFee, plural, one {mojo} other {mojos}}"
 msgstr ""
 

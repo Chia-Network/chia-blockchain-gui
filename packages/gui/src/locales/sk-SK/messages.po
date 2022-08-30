@@ -54,8 +54,8 @@ msgstr "Kombajn je služba bežiaca na stroji, kde sú uložené polia. Farmár 
 msgid "A value of {0} is recommended"
 msgstr "Odporúča sa hodnota {0}"
 
-#: src/electron/main.tsx:607
-#: src/electron/main.tsx:694
+#: src/electron/main.tsx:651
+#: src/electron/main.tsx:738
 msgid "About Chia Blockchain"
 msgstr "O Chia blockchaine"
 
@@ -131,8 +131,20 @@ msgstr "Keď budú vaše kľúče úspešne migrované do nového zväzku kľú�
 msgid "All"
 msgstr "Všetky"
 
-#: src/components/nfts/NFTProfileDropdown.tsx:119
-#: src/components/nfts/NFTProfileDropdown.tsx:154
+#: src/components/nfts/NFTProfileDropdown.tsx:99
+#: src/components/nfts/NFTProfileDropdown.tsx:127
+#: src/components/nfts/NFTProfileDropdown_BASE_674608.tsx:90
+#: src/components/nfts/NFTProfileDropdown_BASE_674608.tsx:118
+#: src/components/nfts/NFTProfileDropdown_BASE_675094.tsx:90
+#: src/components/nfts/NFTProfileDropdown_BASE_675094.tsx:118
+#: src/components/nfts/NFTProfileDropdown_LOCAL_674608.tsx:111
+#: src/components/nfts/NFTProfileDropdown_LOCAL_674608.tsx:146
+#: src/components/nfts/NFTProfileDropdown_LOCAL_675094.tsx:111
+#: src/components/nfts/NFTProfileDropdown_LOCAL_675094.tsx:146
+#: src/components/nfts/NFTProfileDropdown_REMOTE_674608.tsx:111
+#: src/components/nfts/NFTProfileDropdown_REMOTE_674608.tsx:146
+#: src/components/nfts/NFTProfileDropdown_REMOTE_675094.tsx:111
+#: src/components/nfts/NFTProfileDropdown_REMOTE_675094.tsx:146
 msgid "All NFTs"
 msgstr "Všetky NFT"
 
@@ -180,7 +192,7 @@ msgstr "Naozaj sa chcete odpojiť?"
 msgid "Are you sure you want to move this NFT to the specified profile?"
 msgstr "Naozaj chcete presunúť tento NFT do určeného profilu?"
 
-#: src/electron/main.tsx:366
+#: src/electron/main.tsx:380
 msgid "Are you sure you want to quit?"
 msgstr "Naozaj chcete skončiť?"
 
@@ -193,7 +205,7 @@ msgstr "Naozaj chcete použiť k={plotSize}?"
 msgid "Asset Type"
 msgstr "Typ aktíva"
 
-#: src/components/app/AppState.tsx:178
+#: src/components/app/AppState.tsx:197
 msgid "Attempt {attempt}"
 msgstr "Pokus {attempt}"
 
@@ -214,7 +226,7 @@ msgstr "Súbor so zálohou inteligentných peňaženiek."
 msgid "Balance: {standardBalance} XCH"
 msgstr "Zostatok: {standardBalance} XCH"
 
-#: src/components/block/Block.jsx:277
+#: src/components/block/Block.jsx:276
 msgid "Base Farmer Reward Amount"
 msgstr "Základná výška odmeny farmára"
 
@@ -230,7 +242,7 @@ msgstr "Nižšie sú aktuálne výzvy bloku. Môžete alebo nemusíte mať dôka
 msgid "Best estimate over last 24 hours"
 msgstr "Najlepší odhad za posledných 24 hodín"
 
-#: src/components/block/Block.jsx:136
+#: src/components/block/Block.jsx:142
 msgid "Block"
 msgstr "Blok"
 
@@ -238,19 +250,19 @@ msgstr "Blok"
 msgid "Block Rewards"
 msgstr "Blokové odmeny"
 
-#: src/components/block/Block.jsx:213
+#: src/components/block/Block.jsx:218
 msgid "Block VDF Iterations"
 msgstr "Blok VDF iterácii"
 
-#: src/components/block/Block.jsx:296
+#: src/components/block/Block.jsx:295
 msgid "Block at height {0} in the Chia blockchain"
 msgstr "Blok s výškou {0} v Chia blockchaine"
 
-#: src/components/block/Block.jsx:122
+#: src/components/block/Block.jsx:128
 msgid "Block with hash {headerHash}"
 msgstr "Blok s hashom {headerHash}"
 
-#: src/components/block/Block.jsx:141
+#: src/components/block/Block.jsx:147
 msgid "Block with hash {headerHash} does not exist."
 msgstr "Block s hashom {headerHash} neexistuje."
 
@@ -264,18 +276,22 @@ msgstr "Bloky"
 msgid "Browse"
 msgstr "Vybrať"
 
-#: src/components/nfts/NFTBurnDialog.tsx:84
-#: src/components/nfts/NFTBurnDialog.tsx:170
+#: src/components/nfts/NFTBurnDialog.tsx:87
+#: src/components/nfts/NFTBurnDialog.tsx:173
 #: src/components/nfts/NFTContextualActions.tsx:616
 msgid "Burn"
 msgstr ""
 
-#: src/components/nfts/NFTBurnDialog.tsx:77
+#: src/components/nfts/NFTBurnDialog.tsx:78
 msgid "Burn NFT confirmation"
 msgstr ""
 
 #: src/components/nfts/NFTBurnDialog.tsx:122
-msgid "Burning a non-fungible token means destroying it. Burned NFTs are sent to a verifiably un-spendable address, eliminating your NFT from the blockchain. However, transactions leading up to the burn will remain on the blockchain ledger."
+#~ msgid "Burning a non-fungible token means destroying it. Burned NFTs are sent to a verifiably un-spendable address, eliminating your NFT from the blockchain. However, transactions leading up to the burn will remain on the blockchain ledger."
+#~ msgstr ""
+
+#: src/components/nfts/NFTBurnDialog.tsx:125
+msgid "Burning a non-fungible token means removing it from circulation by sending it to a verifiably un-spendable address. However, transactions leading up to the burn will remain on the blockchain ledger."
 msgstr ""
 
 #: src/components/offers/NFTOfferEditor.tsx:362
@@ -288,7 +304,7 @@ msgstr ""
 #: src/components/block/FullNodeAddConnection.tsx:85
 #: src/components/farm/FarmManageFarmingRewards.tsx:188
 #: src/components/fullNode/FullNodeAddConnection.tsx:84
-#: src/components/nfts/NFTBurnDialog.tsx:160
+#: src/components/nfts/NFTBurnDialog.tsx:163
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:67
 #: src/components/nfts/NFTTransferConfirmationDialog.tsx:58
 #: src/components/offers/OfferAcceptConfirmationDialog.tsx:26
@@ -346,7 +362,7 @@ msgstr "Zmeniť prístupovú frázu"
 msgid "Change Pool"
 msgstr "Zmeniť združenie"
 
-#: src/electron/main.tsx:586
+#: src/electron/main.tsx:630
 msgid "Chat on KeyBase"
 msgstr "Chatovať na KeyBase"
 
@@ -362,11 +378,11 @@ msgstr "Skontrolovať pôvod na SkyNFT"
 msgid "Check Provenance on Spacescan.io"
 msgstr "Skontrolovať pôvod na Spacescan.io"
 
-#: src/electron/main.tsx:604
+#: src/electron/main.tsx:648
 msgid "Chia"
 msgstr "Chia"
 
-#: src/electron/main.tsx:543
+#: src/electron/main.tsx:587
 msgid "Chia Blockchain Wiki"
 msgstr "Chia Blockchain Wiki"
 
@@ -410,7 +426,7 @@ msgstr "Vyzdvihnúť odmeny"
 msgid "Close"
 msgstr "Zavrieť"
 
-#: src/components/app/AppState.tsx:116
+#: src/components/app/AppState.tsx:135
 msgid "Closing down services"
 msgstr "Prebieha zatváranie služieb"
 
@@ -430,7 +446,7 @@ msgid "Collections"
 msgstr "Zbierky"
 
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:180
-#: src/electron/main.tsx:364
+#: src/electron/main.tsx:378
 #: src/hooks/useAbsorbRewards.tsx:44
 msgid "Confirm"
 msgstr "Potvrdiť"
@@ -487,8 +503,8 @@ msgstr "Pripojiť k združeniu"
 msgid "Connected"
 msgstr "Pripojené"
 
-#: src/components/app/AppState.tsx:171
-#: src/components/app/AppState.tsx:175
+#: src/components/app/AppState.tsx:190
+#: src/components/app/AppState.tsx:194
 msgid "Connecting to daemon"
 msgstr "Pripájanie k démonovi"
 
@@ -509,7 +525,7 @@ msgstr "Typ pripojenia"
 #~ msgid "Connections"
 #~ msgstr "Pripojenia"
 
-#: src/electron/main.tsx:567
+#: src/electron/main.tsx:611
 msgid "Contribute on GitHub"
 msgstr "Prispejte na GitHube"
 
@@ -683,11 +699,11 @@ msgstr "Cieľ:"
 msgid "Details"
 msgstr "Podrobnosti"
 
-#: src/electron/main.tsx:483
+#: src/electron/main.tsx:527
 msgid "Developer"
 msgstr "Vývojár"
 
-#: src/electron/main.tsx:486
+#: src/electron/main.tsx:530
 msgid "Developer Tools"
 msgstr "Nástroje pre vývojárov"
 
@@ -695,7 +711,7 @@ msgstr "Nástroje pre vývojárov"
 msgid "Dexie URL"
 msgstr "Dexie URL"
 
-#: src/components/block/Block.jsx:199
+#: src/components/block/Block.jsx:204
 #: src/components/fullNode/card/FullNodeCardDifficulty.tsx:14
 msgid "Difficulty"
 msgstr "Zložitosť"
@@ -726,7 +742,7 @@ msgstr "Toto dialógové okno už nezobrazovať"
 msgid "Do you have existing plots on this machine? <0>Add Plot Directory</0>"
 msgstr "Máte existujúce ploty na tomto stroji? <0>Pridaj Adresár s Plotmi</0>"
 
-#: src/components/nfts/NFTBurnDialog.tsx:114
+#: src/components/nfts/NFTBurnDialog.tsx:117
 msgid "Do you want to burn this NFT?"
 msgstr ""
 
@@ -762,7 +778,7 @@ msgstr "Duplikát"
 msgid "Duplicate Plots"
 msgstr "Duplicitné polia"
 
-#: src/electron/main.tsx:442
+#: src/electron/main.tsx:486
 msgid "Edit"
 msgstr "Upraviť"
 
@@ -849,7 +865,7 @@ msgstr "Nepodarilo sa aktualizovať prístupovú frázu: {0}"
 msgid "Farmer Public Key"
 msgstr "Verejný kľúč farmára"
 
-#: src/components/block/Block.jsx:245
+#: src/components/block/Block.jsx:246
 msgid "Farmer Puzzle Hash"
 msgstr "Hash hádaniek pre farmára"
 
@@ -901,7 +917,7 @@ msgstr "Farmársky režim"
 msgid "Farming Status"
 msgstr "Stav ťažby"
 
-#: src/components/nfts/NFTBurnDialog.tsx:149
+#: src/components/nfts/NFTBurnDialog.tsx:152
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:447
 #: src/components/nfts/NFTTransferAction.tsx:151
 #: src/components/offers/NFTOfferViewer.tsx:719
@@ -923,17 +939,17 @@ msgstr "Poplatok (nepovinné)"
 msgid "Fee is used TWICE: once to leave pool, once to join."
 msgstr "Poplatok sa použije DVAKRÁT: raz na vystúpenie zo združenia, raz na vstup."
 
-#: src/components/block/Block.jsx:281
+#: src/components/block/Block.jsx:280
 msgid "Fees Amount"
 msgstr "Výška poplatkov"
 
 #: src/components/offers/NFTOfferViewer.tsx:210
-#: src/components/offers/OfferSummary.tsx:190
+#: src/components/offers/OfferSummary.tsx:191
 msgid "Fees included in offer:"
 msgstr "Poplatky zahrnuté v ponuke:"
 
-#: src/electron/main.tsx:434
-#: src/electron/main.tsx:641
+#: src/electron/main.tsx:478
+#: src/electron/main.tsx:685
 msgid "File"
 msgstr "Súbor"
 
@@ -961,11 +977,11 @@ msgstr "Cieľový adresár"
 msgid "Finished"
 msgstr "Dokončené"
 
-#: src/electron/main.tsx:592
+#: src/electron/main.tsx:636
 msgid "Follow on Twitter"
 msgstr "Sledovať na Twitteri"
 
-#: src/electron/main.tsx:551
+#: src/electron/main.tsx:595
 msgid "Frequently Asked Questions"
 msgstr "Často kladené otázky (FAQ)"
 
@@ -979,7 +995,7 @@ msgstr "Celý uzol"
 msgid "Full Node Connections"
 msgstr ""
 
-#: src/electron/main.tsx:517
+#: src/electron/main.tsx:561
 msgid "Full Screen"
 msgstr "Celá obrazovka"
 
@@ -1016,17 +1032,17 @@ msgstr "Hashgreen DEX URL"
 msgid "Header Hash"
 msgstr "Hash hlavičky"
 
-#: src/components/block/Block.jsx:163
+#: src/components/block/Block.jsx:168
 msgid "Header hash"
 msgstr "Hash hlavičky"
 
-#: src/components/block/Block.jsx:179
+#: src/components/block/Block.jsx:184
 #: src/components/fullNode/FullNode.jsx:75
 #: src/components/fullNode/FullNodeConnections.tsx:68
 msgid "Height"
 msgstr "Poradie"
 
-#: src/electron/main.tsx:539
+#: src/electron/main.tsx:583
 msgid "Help"
 msgstr "Pomoc"
 
@@ -1079,13 +1095,17 @@ msgstr "Ak nie je vybraný žiadny adresár, použije sa ako predvolený, dočas
 msgid "If selected, your offer will be not be shared publicly."
 msgstr "Ak je táto možnosť zapnutá, vaša ponuka nebude zdieľaná verejne."
 
+#: src/components/nfts/NFTBurnDialog.tsx:81
+msgid "If you burn this NFT, nobody (including you) will ever be able to access it again. Are you sure you want to continue?"
+msgstr ""
+
 #: src/components/offers/OfferManager.tsx:129
 msgid "If you have already shared your offer file, you may need to submit a transaction to cancel the pending offer. Click \"Cancel on blockchain\" to submit a cancellation transaction."
 msgstr "Ak ste súbor s ponukou už zdieľali, možno budete musieť odoslať transakciu, ktorá zruší čakajúcu ponuku. Kliknite na „Zrušiť na blockchaine“ pre odoslanie storno transakcie."
 
 #: src/components/nfts/NFTBurnDialog.tsx:79
-msgid "If you proceed, this NFT will be permanently deleted. Are you sure you want to continue?"
-msgstr ""
+#~ msgid "If you proceed, this NFT will be permanently deleted. Are you sure you want to continue?"
+#~ msgstr ""
 
 #: src/components/nfts/NFTPreview.tsx:92
 msgid "Image Hash Mismatch"
@@ -1278,12 +1298,12 @@ msgstr "Načítavanie konfigurácie"
 msgid "Loading farming data"
 msgstr "Načítavajú sa údaje o farme"
 
-#: src/components/app/AppState.tsx:144
+#: src/components/app/AppState.tsx:163
 msgid "Loading keyring status"
 msgstr "Načítava sa stav zväzku kľúčov"
 
-#: src/components/nfts/NFTPreview.tsx:197
-#: src/components/nfts/NFTPreview.tsx:229
+#: src/components/nfts/NFTPreview.tsx:198
+#: src/components/nfts/NFTPreview.tsx:230
 msgid "Loading preview..."
 msgstr "Nahrávam ukážku..."
 
@@ -1467,11 +1487,11 @@ msgstr "Názov siete"
 msgid "New Passphrase"
 msgstr "Nová prístupová fráza"
 
-#: src/components/block/Block.jsx:310
+#: src/components/block/Block.jsx:309
 msgid "Next"
 msgstr "Ďalej"
 
-#: src/electron/main.tsx:361
+#: src/electron/main.tsx:375
 msgid "No"
 msgstr "Nie"
 
@@ -1483,7 +1503,7 @@ msgstr "Zatiaľ neboli vyťažené žiadne bloky"
 msgid "No current offers"
 msgstr "Žiadne aktuálne ponuky"
 
-#: src/components/nfts/NFTPreview.tsx:185
+#: src/components/nfts/NFTPreview.tsx:186
 msgid "No file available"
 msgstr "Nie je k dispozícii žiadny súbor"
 
@@ -1800,7 +1820,7 @@ msgstr "Počkajte prosím na synchronizáciu peňaženky"
 msgid "Plot Count"
 msgstr "Počet plotov"
 
-#: src/components/block/Block.jsx:259
+#: src/components/block/Block.jsx:258
 msgid "Plot Id"
 msgstr "Id poľa"
 
@@ -1821,7 +1841,7 @@ msgstr "NFT adresa zmluvy združenia"
 msgid "Plot NFT with p2_singleton_puzzle_hash {plotNFTId} does not exists"
 msgstr "NFT poľa s p2_singleton_puzzle_hash {plotNFTId} neexistuje"
 
-#: src/components/block/Block.jsx:237
+#: src/components/block/Block.jsx:238
 msgid "Plot Public Key"
 msgstr "Verejný kľúč poľa"
 
@@ -1914,7 +1934,7 @@ msgstr "Odkaz na prihlásenie do združenia"
 msgid "Pool Payout Instructions"
 msgstr "Pokyny združenia na výplatu"
 
-#: src/components/block/Block.jsx:241
+#: src/components/block/Block.jsx:242
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:308
 msgid "Pool Public Key"
 msgstr "Verejný kľúč združenia"
@@ -1938,7 +1958,7 @@ msgstr "Adresa odmeny združenia nemá správny formát."
 msgid "Pool Reward Address must not be empty."
 msgstr "Adresa odmeny združenia nesmie byť prázdna."
 
-#: src/components/block/Block.jsx:273
+#: src/components/block/Block.jsx:272
 msgid "Pool Reward Amount"
 msgstr "Čiastka odmeny združenia"
 
@@ -1979,19 +1999,19 @@ msgstr "Príprava NFT poľa"
 msgid "Preparing standard wallet"
 msgstr "Príprava štandardnej peňaženky"
 
-#: src/components/nfts/NFTPreview.tsx:153
+#: src/components/nfts/NFTPreview.tsx:154
 msgid "Preview"
 msgstr "Náhľad"
 
-#: src/components/nfts/NFTPreview.tsx:191
+#: src/components/nfts/NFTPreview.tsx:192
 msgid "Preview URL is not valid"
 msgstr "Webová adresa ukážky je neplatná"
 
-#: src/components/block/Block.jsx:307
+#: src/components/block/Block.jsx:306
 msgid "Previous"
 msgstr "Predchádzajúci"
 
-#: src/components/block/Block.jsx:193
+#: src/components/block/Block.jsx:198
 msgid "Previous Header Hash"
 msgstr "Hash predchádzajúceho záhlavia"
 
@@ -2009,7 +2029,7 @@ msgstr "Názov profilu"
 msgid "Profiles"
 msgstr "Profily"
 
-#: src/components/block/Block.jsx:229
+#: src/components/block/Block.jsx:232
 msgid "Proof of Space Size"
 msgstr "Dôkaz o veľkosti priestoru"
 
@@ -2068,7 +2088,7 @@ msgstr "Obnoviť polia"
 msgid "Relative Lock Height"
 msgstr "Relatívna výška zámku"
 
-#: src/electron/main.tsx:559
+#: src/electron/main.tsx:603
 msgid "Release Notes"
 msgstr "Poznámky k vydaniu"
 
@@ -2090,7 +2110,7 @@ msgstr "Po úspešnej migrácii odstrániť kľúče zo starého zväzku kľúč
 msgid "Removing"
 msgstr "Odstraňujem"
 
-#: src/electron/main.tsx:578
+#: src/electron/main.tsx:622
 msgid "Report an Issue..."
 msgstr "Nahlásiť Problém..."
 
@@ -2141,7 +2161,6 @@ msgid "Search block by header hash"
 msgstr "Hľadanie bloku podľa hashu záhlavia"
 
 #: src/components/offers/OfferSummaryRow.tsx:228
-#: src/components/offers/OfferSummaryRow.tsx:306
 msgid "Search on Tail Database"
 msgstr "Hľadať v Tail databáze"
 
@@ -2212,7 +2231,7 @@ msgstr "Osobné združenie. Keď vyhráte blok, získate XCH odmeny."
 msgid "Sell an NFT"
 msgstr ""
 
-#: src/components/nfts/NFTBurnDialog.tsx:142
+#: src/components/nfts/NFTBurnDialog.tsx:145
 #: src/components/nfts/NFTTransferAction.tsx:142
 msgid "Send to Address"
 msgstr "Odoslať na adresu"
@@ -2278,7 +2297,7 @@ msgstr "Zobraziť podrobnosti"
 msgid "Show Hidden"
 msgstr ""
 
-#: src/components/nfts/NFTPreview.tsx:212
+#: src/components/nfts/NFTPreview.tsx:213
 msgid "Show Preview"
 msgstr "Zobraziť náhľad"
 
@@ -2303,11 +2322,11 @@ msgstr "Zjemnite si svoje farmárske XCH odmeny pripojením sa k združeniu."
 msgid "Specify a value of 0 to use all available threads"
 msgstr "Zadajte hodnotu 0 pre použitie všetkých dostupných vlákien"
 
-#: src/electron/main.tsx:655
+#: src/electron/main.tsx:699
 msgid "Speech"
 msgstr "Reč"
 
-#: src/components/app/AppState.tsx:199
+#: src/components/app/AppState.tsx:218
 msgid "Starting services"
 msgstr "Spúšťajú sa služby"
 
@@ -2438,7 +2457,7 @@ msgstr "URL adresa združenia musí používať protokol https. {normalizedUrl}"
 msgid "The pool switching operation was cancelled, please try again by changing pool, or self pooling"
 msgstr "Operácia prepnutia združenia bola zrušená. Skúste to znova zmenou združenia alebo osobným združovaním"
 
-#: src/components/block/Block.jsx:262
+#: src/components/block/Block.jsx:261
 msgid "The seed used to create the plot. This depends on the pool pk and plot pk."
 msgstr "Seed použitý na vytvorenie poľa. Závisí od PK združenia a PK poľa."
 
@@ -2458,15 +2477,15 @@ msgstr "Celková požadovaná suma zahŕňa požadovanú cenu plus súvisiace au
 msgid "The total amount requested includes the asking price, plus the associated creator fees (if the NFT has royalty payments enabled).{0}"
 msgstr "Celková požadovaná suma zahŕňa požadovanú cenu plus súvisiace autorské poplatky (ak má NFT povolené licenčné poplatky).{0}"
 
-#: src/components/block/Block.jsx:206
+#: src/components/block/Block.jsx:211
 msgid "The total number of VDF (verifiable delay function) or proof of time iterations on the whole chain up to this block."
 msgstr "Celkový počet VDF (overiteľná funkcia oneskorenia) alebo iterácií dôkazov času v celom reťazci až po tento blok."
 
-#: src/components/block/Block.jsx:222
+#: src/components/block/Block.jsx:225
 msgid "The total number of VDF (verifiable delay function) or proof of time iterations on this block."
 msgstr "Celkový počet VDF (overiteľná funkcia oneskorenia) alebo dôkaz o časových iteráciách v tomto bloku."
 
-#: src/components/block/Block.jsx:284
+#: src/components/block/Block.jsx:283
 msgid "The total transactions fees in this block. Rewarded to the farmer."
 msgstr "Celkové poplatky v tomto bloku idú ťažiarovi."
 
@@ -2495,7 +2514,7 @@ msgstr "Táto zložitosť je umelo nižšou zložitosťou ako v skutočnej sieti
 msgid "This feature is available only from the GUI."
 msgstr "Táto možnosť je dostupná iba z Electron aplikácie."
 
-#: src/components/block/Block.jsx:172
+#: src/components/block/Block.jsx:177
 msgid "This is the time the block was created by the farmer, which is before it is finalized with a proof of time"
 msgstr "Toto je čas, kedy ťažiar vytvoril blok, a to ešte predtým, ako bol finalizovaný s dôkazom o čase"
 
@@ -2522,12 +2541,12 @@ msgid "This number reflects the number of nodes that the accepted SpendBundle ha
 msgstr "Toto číslo vyjadruje počet uzlov, na ktoré bol odoslaný predtým prijatý balík SpendBundle"
 
 #: src/components/offers/NFTOfferViewer.tsx:226
-#: src/components/offers/OfferSummary.tsx:206
+#: src/components/offers/OfferSummary.tsx:207
 msgid "This offer has a fee included to help expedite the transaction when the offer is accepted."
 msgstr "Táto ponuka zahŕňa poplatok, ktorý pomáha urýchliť transakciu po prijatí ponuky."
 
 #: src/components/offers/NFTOfferViewer.tsx:220
-#: src/components/offers/OfferSummary.tsx:200
+#: src/components/offers/OfferSummary.tsx:201
 msgid "This offer has a fee included to help expedite the transaction when the offer is accepted. You may specify an additional fee if you feel that the included fee is too small."
 msgstr "Táto ponuka zahŕňa poplatok, ktorý pomáha urýchliť transakciu po prijatí ponuky. Ak máte pocit, že zahrnutý poplatok je príliš nízky, môžete zadať dodatočný poplatok."
 
@@ -2555,7 +2574,7 @@ msgstr "Násobiteľ vlákien pre fázu 2"
 msgid "Time Created"
 msgstr "Čas vytvorenia"
 
-#: src/components/block/Block.jsx:167
+#: src/components/block/Block.jsx:172
 msgid "Timestamp"
 msgstr "Časová značka"
 
@@ -2622,7 +2641,7 @@ msgstr "Celková veľkosť polí"
 msgid "Total Size of Plots"
 msgstr "Celková veľkosť polí"
 
-#: src/components/block/Block.jsx:203
+#: src/components/block/Block.jsx:208
 msgid "Total VDF Iterations"
 msgstr "Celkový počet VDF iterácií"
 
@@ -2634,7 +2653,7 @@ msgstr "Celkový počet iterácií od začiatku blockchainu"
 msgid "Trade tokens"
 msgstr "Obchodovať s tokenmi"
 
-#: src/components/block/Block.jsx:269
+#: src/components/block/Block.jsx:268
 msgid "Transactions Filter Hash"
 msgstr "Hash filtra transakcií"
 
@@ -2677,8 +2696,20 @@ msgstr "Nie je možné otvoriť prehliadač. Nainštalujte Keybase z https://key
 msgid "Unassigned"
 msgstr "Nepriradený"
 
-#: src/components/nfts/NFTProfileDropdown.tsx:100
-#: src/components/nfts/NFTProfileDropdown.tsx:168
+#: src/components/nfts/NFTProfileDropdown.tsx:92
+#: src/components/nfts/NFTProfileDropdown.tsx:141
+#: src/components/nfts/NFTProfileDropdown_BASE_674608.tsx:83
+#: src/components/nfts/NFTProfileDropdown_BASE_674608.tsx:132
+#: src/components/nfts/NFTProfileDropdown_BASE_675094.tsx:83
+#: src/components/nfts/NFTProfileDropdown_BASE_675094.tsx:132
+#: src/components/nfts/NFTProfileDropdown_LOCAL_674608.tsx:92
+#: src/components/nfts/NFTProfileDropdown_LOCAL_674608.tsx:160
+#: src/components/nfts/NFTProfileDropdown_LOCAL_675094.tsx:92
+#: src/components/nfts/NFTProfileDropdown_LOCAL_675094.tsx:160
+#: src/components/nfts/NFTProfileDropdown_REMOTE_674608.tsx:92
+#: src/components/nfts/NFTProfileDropdown_REMOTE_674608.tsx:160
+#: src/components/nfts/NFTProfileDropdown_REMOTE_675094.tsx:92
+#: src/components/nfts/NFTProfileDropdown_REMOTE_675094.tsx:160
 msgid "Unassigned NFTs"
 msgstr "Nepriradené NFT tokeny"
 
@@ -2698,7 +2729,6 @@ msgstr "Neznámy"
 #: src/components/offers/OfferManager.tsx:232
 #: src/components/offers/OfferSummaryRow.tsx:189
 #: src/components/offers/OfferSummaryRow.tsx:190
-#: src/components/offers/OfferSummaryRow.tsx:268
 msgid "Unknown CAT"
 msgstr "Neznámy CAT"
 
@@ -2726,7 +2756,7 @@ msgstr "VDF dielčie iterácie slotu"
 msgid "Verify Pool Details"
 msgstr "Overte detaily združenia"
 
-#: src/electron/main.tsx:474
+#: src/electron/main.tsx:518
 msgid "View"
 msgstr "Zobrazenie"
 
@@ -2812,7 +2842,7 @@ msgstr "Teplý štart"
 msgid "Warning"
 msgstr "Upozornenie"
 
-#: src/components/offers/OfferSummary.tsx:148
+#: src/components/offers/OfferSummary.tsx:149
 msgid "Warning: Verify that the offered CAT asset IDs match the asset IDs of the tokens you expect to receive."
 msgstr "Upozornenie: Overte, či sa ID ponúkaných CAT aktív zhodujú s ID aktív tokenov, ktoré očakávate, že dostanete."
 
@@ -2820,11 +2850,11 @@ msgstr "Upozornenie: Overte, či sa ID ponúkaných CAT aktív zhodujú s ID akt
 msgid "Warning: You're about to visit a website"
 msgstr "Upozornenie: Chystáte sa navštíviť webovú stránku"
 
-#: src/components/block/Block.jsx:183
+#: src/components/block/Block.jsx:188
 msgid "Weight"
 msgstr "Váha"
 
-#: src/components/block/Block.jsx:186
+#: src/components/block/Block.jsx:191
 msgid "Weight is the total added difficulty of all blocks up to and including this one"
 msgstr "Váha je celková pridaná obtiažnosť všetkých blokov až po tento blok vrátane tohto bloku"
 
@@ -2832,7 +2862,7 @@ msgstr "Váha je celková pridaná obtiažnosť všetkých blokov až po tento b
 msgid "When creating an offer, any assets that are being offered will be locked and unavailable until the offer is accepted or cancelled, resulting in your spendable balance changing."
 msgstr "Pri vytváraní ponuky budú všetky ponúkané aktíva uzamknuté a nedostupné, kým ponuku neprijmete alebo nezrušíte, čo bude mať za následok zmenu disponibilného zostatku."
 
-#: src/electron/main.tsx:525
+#: src/electron/main.tsx:569
 msgid "Window"
 msgstr "Okno"
 
@@ -2853,7 +2883,7 @@ msgstr "Chcete previesť špecifikovaný NFT na nového vlastníka?"
 #~ msgstr "XCH ➜ NFT"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:48
-#: src/electron/main.tsx:362
+#: src/electron/main.tsx:376
 msgid "Yes"
 msgstr "Áno"
 
@@ -3026,7 +3056,7 @@ msgid "{0} points {1} - {2} hours ago"
 msgstr "{0} bodov pred {1} - {2} hodinami"
 
 #: src/components/offers/NFTOfferViewer.tsx:216
-#: src/components/offers/OfferSummary.tsx:196
+#: src/components/offers/OfferSummary.tsx:197
 msgid "{makerFee, plural, one {mojo} other {mojos}}"
 msgstr "{makerFee, plural, one {mojo} few {mojos} many {mojos} other {mojos}}"
 
