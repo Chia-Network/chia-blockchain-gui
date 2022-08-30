@@ -8,7 +8,7 @@ msgstr ""
 "Language: uk_UA\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-08-30 20:28\n"
+"PO-Revision-Date: 2022-08-30 21:25\n"
 "Last-Translator: \n"
 "Language-Team: Ukrainian\n"
 "Plural-Forms: nplurals=4; plural=((n%10==1 && n%100!=11) ? 0 : ((n%10 >= 2 && n%10 <=4 && (n%100 < 12 || n%100 > 14)) ? 1 : ((n%10 == 0 || (n%10 >= 5 && n%10 <=9)) || (n%100 >= 11 && n%100 <= 14)) ? 2 : 3));\n"
@@ -157,11 +157,11 @@ msgstr "Сума перевищує доступний баланс"
 
 #: src/components/offers/NFTOfferPreview.tsx:164
 msgid "An NFT's provenance is a complete record of its ownership history. It provides a direct lineage that connects everyone who has owned the NFT, all the way back to the original artist. This helps to verify that the NFT is authentic."
-msgstr ""
+msgstr "Походження NFT – це повний запис історії володіння ним. Він забезпечує пряме походження, яке пов’язує всіх, хто володів NFT, аж до оригінального творця. Це допомагає перевірити автентичність NFT."
 
 #: src/components/offers/OfferManager.tsx:124
 msgid "Are you sure you want to cancel your offer?"
-msgstr ""
+msgstr "Ви впевнені, що бажаєте скасувати пропозицію?"
 
 #: src/components/plot/PlotAction.tsx:29
 #: src/components/plot/queue/PlotQueueActions.tsx:47
@@ -220,7 +220,7 @@ msgstr "Базова сума винагороди фермера"
 
 #: src/components/offers/OfferShareDialog.tsx:1066
 msgid "Before posting an offer in Keybase to the #{channelName} channel, you must first join the {teamName} team. Please note that it might take a few moments to join the channel."
-msgstr ""
+msgstr "Перш ніж публікувати пропозицію в Keybase на каналі #{channelName}, ви повинні приєднатися до команди {teamName}. Зверніть увагу, що приєднання до каналу може зайняти кілька хвилин."
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:39
 msgid "Below are the current block challenges. You may or may not have a proof of space for these challenges. These blocks do not currently contain a proof of time."
@@ -276,7 +276,7 @@ msgstr "Підтвердження спалення NFT"
 
 #: src/components/nfts/NFTBurnDialog.tsx:122
 msgid "Burning a non-fungible token means destroying it. Burned NFTs are sent to a verifiably un-spendable address, eliminating your NFT from the blockchain. However, transactions leading up to the burn will remain on the blockchain ledger."
-msgstr ""
+msgstr "Спалити незамінний токен означає його знищення. Спалені NFT надсилаються на перевірену адресу, яка не підлягає використанню, виключаючи ваші NFT з блокчейну. Однак транзакції, що призвели до спалювання, залишаться в блокчейну."
 
 #: src/components/offers/NFTOfferEditor.tsx:362
 msgid "Buy an NFT"
@@ -352,15 +352,15 @@ msgstr "Чат у KeyBase"
 
 #: src/components/offers/NFTOfferPreview.tsx:179
 msgid "Check Provenance on MintGarden"
-msgstr ""
+msgstr "Перевірити походження на MintGarden"
 
 #: src/components/offers/NFTOfferPreview.tsx:189
 msgid "Check Provenance on SkyNFT"
-msgstr ""
+msgstr "Перевірити походження на SkyNFT"
 
 #: src/components/offers/NFTOfferPreview.tsx:199
 msgid "Check Provenance on Spacescan.io"
-msgstr ""
+msgstr "Перевірити походження на Spacescan.io"
 
 #: src/electron/main.tsx:604
 msgid "Chia"
@@ -1647,7 +1647,7 @@ msgstr "Публічний ключ власника"
 
 #: src/components/offers/OfferViewer.tsx:218
 msgid "Parent Coin"
-msgstr ""
+msgstr "Материнська монета"
 
 #: src/components/app/AppKeyringMigrator.tsx:156
 #: src/components/app/AppKeyringMigrator.tsx:157
@@ -1689,7 +1689,7 @@ msgstr "Підтримка захисту паролем вимагатиме м
 #: src/components/offers/OfferDataEntryDialog.tsx:40
 #: src/components/offers/OfferImport.tsx:177
 msgid "Paste Offer Data"
-msgstr ""
+msgstr "Вставити дані пропозиції"
 
 #: src/components/plotNFT/PlotNFTCard.tsx:357
 msgid "Payout Address"
@@ -1808,7 +1808,7 @@ msgstr "NFT ділянка цільової адреси"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:319
 msgid "Plot NFT Pool Contract Address"
-msgstr ""
+msgstr "Адреса NFT контракту пулу"
 
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:111
 #: src/components/plotNFT/PlotNFTChangePool.tsx:92
@@ -2122,7 +2122,7 @@ msgstr "Зберегти"
 
 #: src/components/offers/OfferManager.tsx:480
 msgid "Save Offer File"
-msgstr ""
+msgstr "Зберегти файл пропозиції"
 
 #: src/components/app/AppKeyringMigrator.tsx:235
 #: src/components/settings/ChangePassphrasePrompt.tsx:268
@@ -2157,7 +2157,7 @@ msgstr "Оберіть кінцеву теку"
 
 #: src/components/offers/OfferImport.tsx:184
 msgid "Select Offer File"
-msgstr ""
+msgstr "Виберіть файл з пропозицією"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:356
 msgid "Select Profile"
@@ -2230,7 +2230,7 @@ msgstr "Поділитись"
 
 #: src/components/offers/OfferShareDialog.tsx:1405
 msgid "Share Offer"
-msgstr ""
+msgstr "Поділитися пропозицією"
 
 #: src/components/offers/OfferShareDialog.tsx:765
 msgid "Share Privately"
@@ -2258,7 +2258,7 @@ msgstr "Поділитися в OfferBin"
 
 #: src/components/offers/OfferShareDialog.tsx:1175
 msgid "Share on offerpool"
-msgstr ""
+msgstr "Поділитися в offerpool"
 
 #: src/components/nfts/NFTContextualActions.tsx:568
 msgid "Show"
@@ -2405,7 +2405,7 @@ msgstr "Мінімальний необхідний розмір для голо
 
 #: src/components/offers/NFTOfferViewer.tsx:679
 msgid "The net proceeds include the asking price, minus any associated creator fees (if the NFT has royalty payments enabled)."
-msgstr ""
+msgstr "Чисті надходження включають ціну запиту за мінусом будь-яких пов’язаних комісій творця (якщо в NFT увімкнено виплати роялті)."
 
 #: src/components/fullNode/card/FullNodeCardStatus.tsx:16
 #: src/components/fullNode/card/FullNodeCardStatus.tsx:45
@@ -2438,11 +2438,11 @@ msgstr "Зерно, яке використовувалося для створ�
 
 #: src/components/offers/NFTOfferViewer.tsx:638
 msgid "The total amount offered includes the offered purchase price, plus the optional offer creation fee.<0/>If the NFT has royalty payments enabled, those creator fees will be paid from the offered purchase price."
-msgstr ""
+msgstr "Загальна запропонована сума включає запропоновану ціну покупки, а також необов’язкову комісію за створення пропозиції.<0/>Якщо в NFT увімкнено виплати роялті, ці комісії творця будуть сплачені із запропонованої ціни покупки."
 
 #: src/components/offers/NFTOfferEditor.tsx:475
 msgid "The total amount offered includes the price you're willing to pay for the NFT, plus the optional offer creation fee. One or more coins totalling at least the amount shown below will be deducted from your spendable balance upon offer creation.<0/>If the NFT has royalty payments enabled, those creator fees will be paid by the party that accepts the offer."
-msgstr ""
+msgstr "Загальна запропонована сума включає ціну, яку ви готові заплатити за NFT, плюс необов’язкову комісію за створення пропозиції. Одна або кілька монет на загальну суму принаймні таку, як указано нижче, буде вираховано з балансу, який можна витратити, після створення пропозиції.<0/>Якщо в NFT увімкнено виплати роялті, ці комісії творця сплачуватиме сторона, яка прийме пропозицію."
 
 #: src/components/offers/NFTOfferEditor.tsx:464
 msgid "The total amount requested includes the asking price, plus the associated creator fees (if the NFT has royalty payments enabled). Creator fees will be paid by the party that accepts the offer.<0/>The optional offer creation fee is not included in this total, and will be deducted from your spendable balance upon offer creation."
@@ -2518,20 +2518,20 @@ msgstr "Це число відображає кількість вузлів, н
 #: src/components/offers/NFTOfferViewer.tsx:226
 #: src/components/offers/OfferSummary.tsx:206
 msgid "This offer has a fee included to help expedite the transaction when the offer is accepted."
-msgstr ""
+msgstr "У цю пропозицію входить комісія, яка допомагає пришвидшити транзакцію, коли пропозицію прийнято."
 
 #: src/components/offers/NFTOfferViewer.tsx:220
 #: src/components/offers/OfferSummary.tsx:200
 msgid "This offer has a fee included to help expedite the transaction when the offer is accepted. You may specify an additional fee if you feel that the included fee is too small."
-msgstr ""
+msgstr "У цю пропозицію входить комісія, яка допомагає пришвидшити транзакцію, коли пропозицію прийнято. Ви можете вказати додаткову комісію, якщо вважаєте, що включена комісія замала."
 
 #: src/components/offers/OfferHeader.tsx:62
 msgid "This offer has completed successfully"
-msgstr ""
+msgstr "Дана пропозиція успішно завершена"
 
 #: src/components/offers/OfferHeader.tsx:46
 msgid "This offer is no longer valid. To understand why, click <0>here</0> to learn more."
-msgstr ""
+msgstr "Ця пропозиція більше не є дійсною. Щоб зрозуміти, чому, натисніть <0>тут</0> щоб дізнатися більше."
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:307
 msgid "This plot NFT is assigned to a different key. You can still create plots for this plot NFT, but you can not make changes."
@@ -2562,11 +2562,11 @@ msgstr "Назва недоступна"
 
 #: src/components/offers/OfferManager.tsx:594
 msgid "Token Offer"
-msgstr ""
+msgstr "Токен пропозиції"
 
 #: src/components/settings/ProfileView.tsx:136
 msgid "Token Standard"
-msgstr ""
+msgstr "Стандарт токена"
 
 #: src/components/dashboard/DashboardSideBar.tsx:55
 #: src/components/nfts/gallery/NFTGallerySidebar.tsx:68
@@ -2581,7 +2581,7 @@ msgstr "Занадто багато NFT ділянок"
 #: src/components/offers/NFTOfferEditor.tsx:458
 #: src/components/offers/NFTOfferViewer.tsx:619
 msgid "Total Amount Offered"
-msgstr ""
+msgstr "Загальна запропонована сума"
 
 #: src/components/offers/NFTOfferEditor.tsx:456
 #: src/components/offers/NFTOfferViewer.tsx:615
@@ -2648,15 +2648,15 @@ msgstr "URL"
 
 #: src/components/offers/NFTOfferEditor.tsx:751
 msgid "Unable to create an offer for an NFT that you do not own."
-msgstr ""
+msgstr "Неможливо створити пропозицію для NFT, який вам не належить."
 
 #: src/components/offers/NFTOfferEditor.tsx:765
 msgid "Unable to create an offer for an NFT with a creator royalty percentage greater than 100%"
-msgstr ""
+msgstr "Неможливо створити пропозицію для NFT із відсотком гонорару творця понад 100%"
 
 #: src/components/offers/NFTOfferEditor.tsx:444
 msgid "Unable to create an offer where the net amount is negative"
-msgstr ""
+msgstr "Неможливо створити пропозицію із негативною чистою сумою"
 
 #: src/components/offers/OfferShareDialog.tsx:979
 msgid "Unable to open Keybase. Install Keybase from https://keybase.io"
@@ -2702,7 +2702,7 @@ msgstr "Розблокувати зв'язку ключів"
 
 #: src/components/offers/NFTOfferViewer.tsx:146
 msgid "Unrecognized asset"
-msgstr ""
+msgstr "Нерозпізнаний актив"
 
 #: src/components/nfts/NFTPreview.tsx:90
 msgid "Update Pending"
@@ -2736,7 +2736,7 @@ msgstr "Посилання для входу на пул"
 #: src/components/offers/OfferImport.tsx:212
 #: src/components/offers/OfferManager.tsx:617
 msgid "View an Offer"
-msgstr ""
+msgstr "Переглянути пропозиції"
 
 #: src/components/offers/OfferShareDialog.tsx:568
 msgid "View on Dexie"
@@ -2765,7 +2765,7 @@ msgstr "Переглянути на Spacescan.io"
 
 #: src/components/offers/OfferViewerTitle.tsx:54
 msgid "Viewing offer"
-msgstr ""
+msgstr "Переглянути пропозицію"
 
 #: src/components/farm/card/FarmCardNotAvailable.tsx:25
 #: src/components/plot/PlotStatus.tsx:26
@@ -2808,7 +2808,7 @@ msgstr "Попередження"
 
 #: src/components/offers/OfferSummary.tsx:148
 msgid "Warning: Verify that the offered CAT asset IDs match the asset IDs of the tokens you expect to receive."
-msgstr ""
+msgstr "Попередження: Переконайтеся, що запропоновані ідентифікатори активів CAT відповідають ідентифікаторам активів токенів, які ви очікуєте отримати."
 
 #: src/hooks/useOpenUnsafeLink.tsx:42
 msgid "Warning: You're about to visit a website"
@@ -2824,7 +2824,7 @@ msgstr "Вага - загальна складність всіх блоків �
 
 #: src/components/offers/OfferEditorConfirmationDialog.tsx:22
 msgid "When creating an offer, any assets that are being offered will be locked and unavailable until the offer is accepted or cancelled, resulting in your spendable balance changing."
-msgstr ""
+msgstr "Під час створення пропозиції будь-які активи, які пропонуються, будуть заблоковані та недоступні, доки пропозицію не буде прийнято або скасовано, що призведе до зміни балансу витрат."
 
 #: src/electron/main.tsx:525
 msgid "Window"
@@ -2853,7 +2853,7 @@ msgstr "Так"
 
 #: src/components/offers/OfferAcceptConfirmationDialog.tsx:24
 msgid "Yes, Accept Offer"
-msgstr ""
+msgstr "Так, прийняти пропозицію"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:65
 msgid "Yes, move"
@@ -2886,7 +2886,7 @@ msgstr "Ви все ще можете створювати ділянки для
 
 #: src/components/offers/OfferHeader.tsx:38
 msgid "You created this offer"
-msgstr ""
+msgstr "Ви створили цю пропозицію"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:76
 msgid "You do not need to be synced or connected to plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
@@ -2906,7 +2906,7 @@ msgstr "Вам потрібно {currencyCode}, щоб приєднатися д
 
 #: src/components/offers/OfferEditorConditionsPanel.tsx:340
 msgid "You will offer"
-msgstr ""
+msgstr "Ви пропонуєте"
 
 #: src/components/offers/NFTOfferEditor.tsx:426
 #: src/components/offers/NFTOfferViewer.tsx:532
@@ -2953,11 +2953,11 @@ msgstr "Ваша зв'язка ключів заблокована"
 
 #: src/components/offers/OfferShareDialog.tsx:1023
 msgid "Your offer has been successfully posted to Keybase."
-msgstr ""
+msgstr "Ваша пропозиція успішно опублікована на Keybase."
 
 #: src/components/offers/OfferShareDialog.tsx:1249
 msgid "Your offer:"
-msgstr ""
+msgstr "Ваша пропозиція:"
 
 #: src/components/app/AppKeyringMigrator.tsx:239
 #: src/components/settings/ChangePassphrasePrompt.tsx:271
@@ -2987,11 +2987,11 @@ msgstr "створено {0}"
 
 #: src/components/offers/OfferImport.tsx:197
 msgid "or Paste (Ctrl-V) an Offer blob"
-msgstr ""
+msgstr "або вставте (Ctrl-V) через Offer блок"
 
 #: src/components/offers/OfferImport.tsx:195
 msgid "or Paste (⌘V) an Offer blob"
-msgstr ""
+msgstr "або вставте (⌘V) через Offer блок"
 
 #: src/components/plot/add/PlotAddForm.tsx:134
 msgid "p2SingletonPuzzleHash is not defined"
