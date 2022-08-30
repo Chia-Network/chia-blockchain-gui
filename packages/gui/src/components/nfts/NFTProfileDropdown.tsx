@@ -64,7 +64,24 @@ export default function NFTProfileDropdown(props: NFTGallerySidebarProps) {
       return undefined;
     }
     return nftWallets.find((nftWallet: Wallet) => !nftWallet.meta.did);
-  }, [nftWallets, isLoadingProfiles, isLoadingNFTWallets]);
+  }, [profiles, nftWallets, isLoadingProfiles, isLoadingNFTWallets]);
+
+  const remainingNFTWallets = useMemo(() => {
+    if (isLoadingProfiles || isLoadingNFTWallets || !inbox) {
+      return undefined;
+    }
+
+    const nftWalletsWithoutDIDs = nftWallets.filter((nftWallet: Wallet) => {
+      return (
+        nftWallet.id !== inbox.id &&
+        profiles.find(
+          (profile: Profile) => profile.nftWalletId === nftWallet.id,
+        ) === undefined
+      );
+    });
+
+    return nftWalletsWithoutDIDs;
+  }, [profiles, nftWallets, inbox, isLoadingProfiles, isLoadingNFTWallets]);
 
   const remainingNFTWallets = useMemo(() => {
     if (isLoadingProfiles || isLoadingNFTWallets || !inbox) {
