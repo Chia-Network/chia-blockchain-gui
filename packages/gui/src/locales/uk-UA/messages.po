@@ -8,7 +8,7 @@ msgstr ""
 "Language: uk_UA\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-08-29 22:38\n"
+"PO-Revision-Date: 2022-08-30 18:30\n"
 "Last-Translator: \n"
 "Language-Team: Ukrainian\n"
 "Plural-Forms: nplurals=4; plural=((n%10==1 && n%100!=11) ? 0 : ((n%10 >= 2 && n%10 <=4 && (n%100 < 12 || n%100 > 14)) ? 1 : ((n%10 == 0 || (n%10 >= 5 && n%10 <=9)) || (n%100 >= 11 && n%100 <= 14)) ? 2 : 3));\n"
@@ -783,7 +783,7 @@ msgstr ""
 
 #: src/components/app/AppKeyringMigrator.tsx:143
 msgid "Enter a strong passphrase and click Migrate Keys to secure your keys"
-msgstr ""
+msgstr "Введіть надійний пароль та натисніть Мігрувати Ключі, щоб захистити ваші ключі"
 
 #: src/components/settings/SetPassphrasePrompt.tsx:158
 msgid "Enter a strong passphrase to secure your keys:"
@@ -827,23 +827,23 @@ msgstr ""
 #: src/components/offers/utils.ts:175
 #: src/components/plot/PlotHarvester.tsx:118
 msgid "Failed"
-msgstr ""
+msgstr "Не вдалося"
 
 #: src/components/offers/NFTOfferEditor.tsx:701
 msgid "Failed to decode NFT identifier"
-msgstr ""
+msgstr "Не вдалося розшифрувати NFT ідентифікатор"
 
 #: src/components/offers/OfferShareDialog.tsx:420
 msgid "Failed to execute Keybase command: {stderr}"
-msgstr ""
+msgstr "Не вдалося виконати Keybase команду: {stderr}"
 
 #: src/components/settings/SetPassphrasePrompt.tsx:90
 msgid "Failed to set passphrase: {0}"
-msgstr ""
+msgstr "Не вдалося встановити пароль: {0}"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:119
 msgid "Failed to update passphrase: {0}"
-msgstr ""
+msgstr "Не вдалося оновити пароль: {0}"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:297
 msgid "Farmer Public Key"
@@ -861,7 +861,7 @@ msgstr "Адреса винагороди фермера"
 #: src/components/block/FarmManageFarmingRewards.tsx:116
 #: src/components/farm/FarmManageFarmingRewards.tsx:129
 msgid "Farmer Reward Address is not properly formatted."
-msgstr ""
+msgstr "Невірний формат адреси винагороди фермера."
 
 #: src/components/block/FarmManageFarmingRewards.tsx:110
 #: src/components/farm/FarmManageFarmingRewards.tsx:123
@@ -921,7 +921,7 @@ msgstr "Комісія (не обов'язково)"
 
 #: src/components/plotNFT/PlotNFTChangePool.tsx:126
 msgid "Fee is used TWICE: once to leave pool, once to join."
-msgstr ""
+msgstr "Комісія використовується ДВІЧІ: один раз для виходу з пулу, другий раз для приєднання до пулу."
 
 #: src/components/block/Block.jsx:281
 msgid "Fees Amount"
@@ -993,7 +993,7 @@ msgstr "Головне"
 
 #: src/components/nfts/gallery/NFTGalleryHero.tsx:14
 msgid "Go collect some gems"
-msgstr ""
+msgstr "Йди збери кілька самоцвітів"
 
 #: src/components/offers/OfferShareDialog.tsx:1028
 #: src/components/offers/OfferShareDialog.tsx:1089
@@ -1006,7 +1006,7 @@ msgstr "Перейти до Offerpool"
 
 #: src/components/plot/PlotHarvesters.tsx:39
 msgid "Harvesters"
-msgstr ""
+msgstr "Комбайни"
 
 #: src/components/offers/OfferShareDialog.tsx:815
 msgid "Hashgreen DEX URL"
@@ -1032,7 +1032,7 @@ msgstr "Допомога"
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:56
 msgid "Here are the current block challenges. You may or may not have a proof of space for these challenges. These blocks do not currently contain a proof of time."
-msgstr ""
+msgstr "Нижче наведені значення випробувань для блоків. У вас може бути чи не бути доказів наявності місця (proof of space) для цих випробувань. Ці блоки ще не містять підтверджень часу (proof of time)."
 
 #: src/components/nfts/NFTContextualActions.tsx:568
 msgid "Hide"
@@ -1166,11 +1166,11 @@ msgstr ""
 
 #: src/components/plotNFT/PlotNFTAdd.tsx:63
 msgid "Join a pool and get consistent XCH farming rewards. The average returns are the same, but it is much less volatile. Assign plots to a plot NFT. You can easily switch pools without having to re-plot."
-msgstr ""
+msgstr "Приєднуйтесь до пулу та отримуйте послідовні нагороди за фермерство у XCH. Середній дохід однаковий, але набагато менш волатильний. Призначити ділянки у NFT дільниці. Ви можете легко перемикатися на пули без повторного засіву."
 
 #: src/components/plot/add/PlotAddNFT.tsx:138
 msgid "Join a pool and get more consistent XCH farming rewards. Create a plot NFT and assign your new plots to a group."
-msgstr ""
+msgstr "Приєднуйтесь до пулу та отримайте більш послідовні нагороди за фермерство у XCH. Створіть ділянки NFT та призначте свої нові ділянки до групи."
 
 #: src/components/app/AppSelectMode.tsx:143
 msgid "Join farming pools"
@@ -1326,7 +1326,7 @@ msgstr ""
 
 #: src/components/app/AppKeyringMigrator.tsx:277
 msgid "Migrate Keys"
-msgstr ""
+msgstr "Мігрувати Ключі"
 
 #: src/components/app/AppKeyringMigrator.tsx:136
 msgid "Migration required"
