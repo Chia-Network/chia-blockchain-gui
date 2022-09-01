@@ -229,6 +229,10 @@ msgstr "Personnaliser"
 msgid "DID Wallet"
 msgstr "Portefeuille DID"
 
+#: src/constants/WalletName.ts:38
+msgid "Datalayer Wallet"
+msgstr ""
+
 #: src/components/WalletHistory.tsx:199
 msgid "Date"
 msgstr "Date"
@@ -247,7 +251,7 @@ msgstr "Supprimer"
 msgid "Delete Unconfirmed Transactions"
 msgstr "Supprimer les transactions non confirmées"
 
-#: src/components/card/WalletCardTotalBalance.tsx:63
+#: src/components/card/WalletCardTotalBalance.tsx:74
 msgid "Derivation Index: {0}"
 msgstr "Indice de dérivation : {0}"
 
@@ -667,7 +671,7 @@ msgstr "Enlever"
 msgid "Save"
 msgstr "Définir"
 
-#: src/components/WalletTokenCard.tsx:144
+#: src/components/WalletTokenCard.tsx:198
 #: src/components/cat/WalletCATTAILDialog.tsx:71
 msgid "Search on Tail Database"
 msgstr "Rechercher sur Tail Database"
@@ -757,7 +761,7 @@ msgstr "Synchronisé"
 msgid "Syncing"
 msgstr "Synchronisation"
 
-#: src/components/card/WalletCardTotalBalance.tsx:65
+#: src/components/card/WalletCardTotalBalance.tsx:76
 msgid "The derivation index sets the range of wallet addresses that the wallet scans the blockchain for. This number is generally higher if you have a lot of transactions or canceled offers for XCH, CATs, or NFTs. If you believe your balance is incorrect because it’s missing coins, then increasing the derivation index could help the wallet include the missing coins in the balance total."
 msgstr "L'indice de dérivation définit le nombre d'adresses que le portefeuille va scanner sur la blockchain. Ce nombre est généralement plus élevé si vous avez beaucoup de transactions ou d'offres annulées pour XCH, CATs ou NFTs. Si vous pensez que votre solde est incorrect car il manque des pièces, alors augmenter l'indice de dérivation pourrait aider le portefeuille à inclure les pièces manquantes dans le total du solde."
 
@@ -819,7 +823,7 @@ msgstr "Le nom du jeton est vide"
 msgid "Tokens"
 msgstr "Jetons"
 
-#: src/components/card/WalletCardTotalBalance.tsx:56
+#: src/components/card/WalletCardTotalBalance.tsx:62
 #: src/components/rateLimited/WalletRateLimited.jsx:542
 msgid "Total Balance"
 msgstr "Solde total"

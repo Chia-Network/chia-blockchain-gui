@@ -229,6 +229,10 @@ msgstr ""
 msgid "DID Wallet"
 msgstr ""
 
+#: src/constants/WalletName.ts:38
+msgid "Datalayer Wallet"
+msgstr ""
+
 #: src/components/WalletHistory.tsx:199
 msgid "Date"
 msgstr "التاريخ"
@@ -247,7 +251,7 @@ msgstr "حذف"
 msgid "Delete Unconfirmed Transactions"
 msgstr ""
 
-#: src/components/card/WalletCardTotalBalance.tsx:63
+#: src/components/card/WalletCardTotalBalance.tsx:74
 msgid "Derivation Index: {0}"
 msgstr ""
 
@@ -667,7 +671,7 @@ msgstr ""
 msgid "Save"
 msgstr "حفظ"
 
-#: src/components/WalletTokenCard.tsx:144
+#: src/components/WalletTokenCard.tsx:198
 #: src/components/cat/WalletCATTAILDialog.tsx:71
 msgid "Search on Tail Database"
 msgstr ""
@@ -757,7 +761,7 @@ msgstr "تمت المزامنة"
 msgid "Syncing"
 msgstr "جاري المزامنة"
 
-#: src/components/card/WalletCardTotalBalance.tsx:65
+#: src/components/card/WalletCardTotalBalance.tsx:76
 msgid "The derivation index sets the range of wallet addresses that the wallet scans the blockchain for. This number is generally higher if you have a lot of transactions or canceled offers for XCH, CATs, or NFTs. If you believe your balance is incorrect because it’s missing coins, then increasing the derivation index could help the wallet include the missing coins in the balance total."
 msgstr ""
 
@@ -819,7 +823,7 @@ msgstr ""
 msgid "Tokens"
 msgstr ""
 
-#: src/components/card/WalletCardTotalBalance.tsx:56
+#: src/components/card/WalletCardTotalBalance.tsx:62
 #: src/components/rateLimited/WalletRateLimited.jsx:542
 msgid "Total Balance"
 msgstr "الرصيد الإجمالي"
