@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { get } from 'lodash';
 import { Controller, useFormContext } from 'react-hook-form';
 import { Trans } from '@lingui/macro';
@@ -64,9 +64,62 @@ function Select(props: Props) {
   );
 }
 
+function CountdownBar(props: Props) {
+  const { start, refreshTime, ...rest } = props;
+  var [seconds, setSeconds] = useState(new Date().getSeconds());
+  const refreshSec = refreshTime * 10e-4;
+
+  useEffect(() => {
+    var timer = setInterval(() => setSeconds(new Date().getSeconds()), 500)
+    return function cleanup() {
+      clearInterval(timer)
+    }
+  });
+
+  // one or both of the following two lines need adjusting
+  var modSec = (((seconds - start) % refreshSec) + refreshSec) % refreshSec;
+  var currentProgress = modSec * Math.floor(100 / refreshSec);
+
+  console.log("refreshSec:", refreshSec, "/ seconds:", seconds, "/ modSec =", modSec, "/ currentProgress =", currentProgress);
+
+  const containerStyle = {
+    height: 20,
+    width: '100%',
+    backgroundColor: "#e0e0de",
+    borderRadius: 50,
+    margin: 5
+  }
+
+  const fillerStyle = {
+    height: '100%',
+    width: `${currentProgress}%`,
+    backgroundColor: "green",
+    borderRadius: 'inherit',
+    textAlign: 'right'
+  }
+
+  const labelStyle = {
+    padding: 5,
+    color: 'white',
+    fontWeight: 'bold'
+  }
+
+  return(
+    <div style={containerStyle}>
+      <div style={fillerStyle}>
+        <span style={labelStyle}>{`${currentProgress}%`}</span>
+      </div>
+    </div>
+  )
+}
+
 export default function EstimatedFee(props: FeeProps) {
   const { name, txType, required, ...rest } = props;
-  const { data: ests, isLoading: isFeeLoading, error } = useGetFeeEstimateQuery({"targetTimes": [60, 120, 300], "cost": 1});
+  const [startTime, setStartTime] = useState(new Date().getSeconds());
+  const refreshTime = 13000; // in milliseconds
+  const { data: ests, isLoading: isFeeLoading, error } = useGetFeeEstimateQuery({"targetTimes": [60, 120, 300], "cost": 1}, {
+    pollingInterval: refreshTime,
+  });
   const [estList, setEstList] = React.useState([]);
   const [inputType, setInputType] = React.useState("dropdown");
   const mode = useMode();
@@ -91,19 +144,22 @@ export default function EstimatedFee(props: FeeProps) {
     return (formatNum);
   }
 
-  if (!isFeeLoading && ests && estList?.length == 0) {
-    const estimateList = ests.estimates;
-    const targetTimes = ests.targetTimes;
-    if (estimateList[0] == 0 && estimateList[1] == 0 && estimateList[2] == 0) {
-      setInputType("classic");
+  useEffect(() => {
+    if (ests) {
+      const estimateList = ests.estimates;
+      const targetTimes = ests.targetTimes;
+      if (estimateList[0] == 0 && estimateList[1] == 0 && estimateList[2] == 0) {
+        setInputType("classic");
+      }
+      const est0 = formatEst(estimateList[0], multiplier, locale);
+      const est1 = formatEst(estimateList[1], multiplier, locale);
+      const est2 = formatEst(estimateList[2], multiplier, locale);
+      setEstList(current => []);
+      setEstList(current => [...current, { time: "Likely in " + targetTimes[0] + " seconds", estimate: est0 }]);
+      setEstList(current => [...current, { time: "Likely in " + (targetTimes[1] / 60) + " minutes", estimate: est1 }]);
+      setEstList(current => [...current, { time: "Likely over " + (targetTimes[2] / 60) + " minutes", estimate: est2 }]);
     }
-    const est0 = formatEst(estimateList[0], multiplier, locale);
-    const est1 = formatEst(estimateList[1], multiplier, locale);
-    const est2 = formatEst(estimateList[2], multiplier, locale);
-    setEstList(current => [...current, { time: "Likely in " + targetTimes[0] + " seconds", estimate: est0 }]);
-    setEstList(current => [...current, { time: "Likely in " + (targetTimes[1] / 60) + " minutes", estimate: est1 }]);
-    setEstList(current => [...current, { time: "Likely over " + (targetTimes[2] / 60) + " minutes", estimate: est2 }]);
-  }
+  }, [ests]);
 
   const handleSelectOpen = () => {
     setSelectOpen(true);
@@ -116,6 +172,7 @@ export default function EstimatedFee(props: FeeProps) {
   function showSelect() {
     return (
       <div>
+        <CountdownBar start={startTime} refreshTime={refreshTime} />
         <InputLabel required={required} color="secondary">Fee</InputLabel>
         <Select name={name} onTypeChange={setInputType} open={selectOpen} onOpen={handleSelectOpen} onClose={handleSelectClose} {...rest}>
           {estList.map((option) => (
