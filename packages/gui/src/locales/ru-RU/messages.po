@@ -8,7 +8,7 @@ msgstr ""
 "Language: ru_RU\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-09-05 16:03\n"
+"PO-Revision-Date: 2022-09-05 17:20\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "Plural-Forms: nplurals=4; plural=((n%10==1 && n%100!=11) ? 0 : ((n%10 >= 2 && n%10 <=4 && (n%100 < 12 || n%100 > 14)) ? 1 : ((n%10 == 0 || (n%10 >= 5 && n%10 <=9)) || (n%100 >= 11 && n%100 <= 14)) ? 2 : 3));\n"
@@ -157,11 +157,11 @@ msgstr "Сумма превышает доступный баланс"
 
 #: src/components/offers/NFTOfferPreview.tsx:164
 msgid "An NFT's provenance is a complete record of its ownership history. It provides a direct lineage that connects everyone who has owned the NFT, all the way back to the original artist. This helps to verify that the NFT is authentic."
-msgstr ""
+msgstr "Происхождение NFT - это полная история его владения. Происхождение обеспечивает прямую родословную, которая связывает всех, кто владел NFT, вплоть до оригинального художника. Это помогает проверить подлинность NFT."
 
 #: src/components/offers/OfferManager.tsx:124
 msgid "Are you sure you want to cancel your offer?"
-msgstr ""
+msgstr "Вы уверены, что хотите отменить вашу заявку?"
 
 #: src/components/plot/PlotAction.tsx:29
 #: src/components/plot/queue/PlotQueueActions.tsx:47
@@ -178,7 +178,7 @@ msgstr "Вы уверены, что хотите отключиться?"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:72
 msgid "Are you sure you want to move this NFT to the specified profile?"
-msgstr ""
+msgstr "Вы уверены, что хотите перенести этот NFT в указанный профиль?"
 
 #: src/electron/main.tsx:366
 msgid "Are you sure you want to quit?"
@@ -191,7 +191,7 @@ msgstr "Вы уверены, что хотите использовать k={plo
 #: src/components/offers/NFTOfferTokenSelector.tsx:99
 #: src/components/offers/OfferAssetSelector.tsx:160
 msgid "Asset Type"
-msgstr ""
+msgstr "Тип актива"
 
 #: src/components/app/AppState.tsx:178
 msgid "Attempt {attempt}"
@@ -204,7 +204,7 @@ msgstr "Автоматически сгенерированное имя из к
 #: src/components/offers/NFTOfferViewer.tsx:741
 #: src/components/offers/OfferViewer.tsx:312
 msgid "Back"
-msgstr ""
+msgstr "Назад"
 
 #: src/components/backup/BackupCreate.tsx:46
 msgid "Backup file is used to restore smart wallets."
@@ -212,7 +212,7 @@ msgstr "Файл резервной копии используется для �
 
 #: src/components/settings/ProfileAdd.tsx:103
 msgid "Balance: {standardBalance} XCH"
-msgstr ""
+msgstr "Баланс: {standardBalance} XCH"
 
 #: src/components/block/Block.jsx:277
 msgid "Base Farmer Reward Amount"
@@ -220,7 +220,7 @@ msgstr "Базовая сумма вознаграждения фермера"
 
 #: src/components/offers/OfferShareDialog.tsx:1066
 msgid "Before posting an offer in Keybase to the #{channelName} channel, you must first join the {teamName} team. Please note that it might take a few moments to join the channel."
-msgstr ""
+msgstr "Прежде чем разместить предложение в Keybase на канале #{channelName}, вы должны присоединиться к команде {teamName}. Пожалуйста, обратите внимание, что присоединение к каналу может занять некоторое время."
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:39
 msgid "Below are the current block challenges. You may or may not have a proof of space for these challenges. These blocks do not currently contain a proof of time."
@@ -272,11 +272,11 @@ msgstr "Сжечь"
 
 #: src/components/nfts/NFTBurnDialog.tsx:77
 msgid "Burn NFT confirmation"
-msgstr ""
+msgstr "Подтверждение сжигания NFT"
 
 #: src/components/nfts/NFTBurnDialog.tsx:122
 msgid "Burning a non-fungible token means destroying it. Burned NFTs are sent to a verifiably un-spendable address, eliminating your NFT from the blockchain. However, transactions leading up to the burn will remain on the blockchain ledger."
-msgstr ""
+msgstr "Сжигание невзаимозаменяемого токена означает его уничтожение. Сожжённые NFT отправляются на проверяемый не тратящийся адрес, исключая ваш NFT из блокчейна. Тем не менее транзакции, обеспечивающие сожжение, останутся в книге блокчейна."
 
 #: src/components/offers/NFTOfferEditor.tsx:362
 msgid "Buy an NFT"
@@ -310,11 +310,11 @@ msgstr "Отмена"
 #: src/components/offers/OfferManager.tsx:201
 #: src/components/offers/OfferManager.tsx:498
 msgid "Cancel Offer"
-msgstr ""
+msgstr "Отменить заявку"
 
 #: src/components/nfts/NFTContextualActions.tsx:347
 msgid "Cancel Unconfirmed Transaction"
-msgstr ""
+msgstr "Отменить неподтвержденную транзакцию"
 
 #: src/components/offers/OfferManager.tsx:151
 msgid "Cancel on blockchain"
