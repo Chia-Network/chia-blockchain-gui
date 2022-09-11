@@ -8,7 +8,7 @@ msgstr ""
 "Language: ru_RU\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-09-11 15:41\n"
+"PO-Revision-Date: 2022-09-11 16:58\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "Plural-Forms: nplurals=4; plural=((n%10==1 && n%100!=11) ? 0 : ((n%10 >= 2 && n%10 <=4 && (n%100 < 12 || n%100 > 14)) ? 1 : ((n%10 == 0 || (n%10 >= 5 && n%10 <=9)) || (n%100 >= 11 && n%100 <= 14)) ? 2 : 3));\n"
@@ -561,11 +561,11 @@ msgstr "Подтвердить отключение"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:64
 msgid "Confirm Move"
-msgstr ""
+msgstr "Подтвердите перемещение"
 
 #: src/components/nfts/NFTTransferConfirmationDialog.tsx:39
 msgid "Confirm NFT Transfer"
-msgstr ""
+msgstr "Подтвердите передачу NFT"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:229
 msgid "Confirm New Passphrase"
@@ -583,11 +583,11 @@ msgstr "Подтверждение"
 
 #: src/components/offers/utils.ts:173
 msgid "Confirmed"
-msgstr ""
+msgstr "Подтверждена"
 
 #: src/components/offers/OfferViewer.tsx:155
 msgid "Confirmed at Height"
-msgstr ""
+msgstr "Подтверждена на высоте"
 
 #: src/components/block/FullNodeAddConnection.tsx:88
 #: src/components/fullNode/FullNodeAddConnection.tsx:87
@@ -610,7 +610,7 @@ msgstr "Подключен"
 #: src/components/app/AppState.tsx:171
 #: src/components/app/AppState.tsx:175
 msgid "Connecting to daemon"
-msgstr ""
+msgstr "Подключение к сервису"
 
 #: src/components/fullNode/card/FullNodeCardConnectionStatus.tsx:18
 msgid "Connection Status"
@@ -635,7 +635,7 @@ msgstr "Сотрудничать на GitHub"
 
 #: src/components/nfts/NFTContextualActions.tsx:437
 msgid "Copy Media URL"
-msgstr ""
+msgstr "Скопировать URL медиа"
 
 #: src/components/nfts/NFTContextualActions.tsx:110
 msgid "Copy NFT ID"
