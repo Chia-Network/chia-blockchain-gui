@@ -8,7 +8,7 @@ msgstr ""
 "Language: ru_RU\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-09-05 17:20\n"
+"PO-Revision-Date: 2022-09-11 15:41\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "Plural-Forms: nplurals=4; plural=((n%10==1 && n%100!=11) ? 0 : ((n%10 >= 2 && n%10 <=4 && (n%100 < 12 || n%100 > 14)) ? 1 : ((n%10 == 0 || (n%10 >= 5 && n%10 <=9)) || (n%100 >= 11 && n%100 <= 14)) ? 2 : 3));\n"
@@ -318,11 +318,11 @@ msgstr "Отменить неподтвержденную транзакцию"
 
 #: src/components/offers/OfferManager.tsx:151
 msgid "Cancel on blockchain"
-msgstr ""
+msgstr "Отменить в блокчейне"
 
 #: src/components/offers/utils.ts:171
 msgid "Cancelled"
-msgstr ""
+msgstr "Отменена"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:14
 msgid "Challenge"
@@ -352,15 +352,15 @@ msgstr "Чат в KeyBase"
 
 #: src/components/offers/NFTOfferPreview.tsx:179
 msgid "Check Provenance on MintGarden"
-msgstr ""
+msgstr "Проверить происхождение на MintGarden"
 
 #: src/components/offers/NFTOfferPreview.tsx:189
 msgid "Check Provenance on SkyNFT"
-msgstr ""
+msgstr "Проверить происхождение на SkyNFT"
 
 #: src/components/offers/NFTOfferPreview.tsx:199
 msgid "Check Provenance on Spacescan.io"
-msgstr ""
+msgstr "Проверить происхождение на Spacescan.io"
 
 #: src/electron/main.tsx:604
 msgid "Chia"
@@ -532,22 +532,22 @@ msgstr "Закрыть"
 
 #: src/components/app/AppState.tsx:116
 msgid "Closing down services"
-msgstr ""
+msgstr "Закрытие сервисов"
 
 #: src/components/offers/OfferViewer.tsx:354
 msgid "Coins"
-msgstr ""
+msgstr "Монеты"
 
 #: src/components/nfts/NFTSummary.tsx:59
 #: src/components/nfts/detail/NFTDetail.tsx:83
 #: src/components/nfts/detail/NFTDetailV2.tsx:132
 msgid "Collection"
-msgstr ""
+msgstr "Коллекция"
 
 #: src/components/nfts/gallery/NFTGallerySidebar.tsx:81
 #: src/components/nfts/gallery/NFTGallerySidebar.tsx:83
 msgid "Collections"
-msgstr ""
+msgstr "Коллекции"
 
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:180
 #: src/electron/main.tsx:364
