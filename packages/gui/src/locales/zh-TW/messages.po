@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh_TW\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-08-12 18:16\n"
+"PO-Revision-Date: 2022-09-13 06:40\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -36,7 +36,7 @@ msgstr "+ 新增新的農場"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:39
 msgid "+ Add a Plot"
-msgstr ""
+msgstr "+ 新增耕地"
 
 #: src/components/settings/ProfileAdd.tsx:91
 msgid "<0>Need some XCH?</0>"
@@ -67,7 +67,7 @@ msgstr ""
 
 #: src/components/offers/OfferViewer.tsx:161
 msgid "Accepted on Date"
-msgstr ""
+msgstr "接受日期"
 
 #: src/components/plot/PlotHarvesterPlots.tsx:79
 #: src/components/plot/PlotHarvesterPlotsDuplicate.tsx:18
@@ -129,7 +129,7 @@ msgstr ""
 #: src/components/nfts/gallery/NFTGallerySidebar.tsx:73
 #: src/components/nfts/gallery/NFTGallerySidebar.tsx:86
 msgid "All"
-msgstr ""
+msgstr "全部"
 
 #: src/components/nfts/NFTProfileDropdown.tsx:119
 #: src/components/nfts/NFTProfileDropdown.tsx:154
@@ -204,7 +204,7 @@ msgstr "自動從農會合約地址建立名稱"
 #: src/components/offers/NFTOfferViewer.tsx:741
 #: src/components/offers/OfferViewer.tsx:312
 msgid "Back"
-msgstr ""
+msgstr "上一步"
 
 #: src/components/backup/BackupCreate.tsx:46
 msgid "Backup file is used to restore smart wallets."
@@ -236,7 +236,7 @@ msgstr "區塊"
 
 #: src/components/farm/card/FarmCardBlockRewards.tsx:31
 msgid "Block Rewards"
-msgstr ""
+msgstr "區塊獎勵"
 
 #: src/components/block/Block.jsx:213
 msgid "Block VDF Iterations"
@@ -268,7 +268,7 @@ msgstr "瀏覽"
 #: src/components/nfts/NFTBurnDialog.tsx:170
 #: src/components/nfts/NFTContextualActions.tsx:616
 msgid "Burn"
-msgstr ""
+msgstr "焚毀"
 
 #: src/components/nfts/NFTBurnDialog.tsx:77
 msgid "Burn NFT confirmation"
@@ -322,7 +322,7 @@ msgstr ""
 
 #: src/components/offers/utils.ts:171
 msgid "Cancelled"
-msgstr ""
+msgstr "已取消"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:14
 msgid "Challenge"
