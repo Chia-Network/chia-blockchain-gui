@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh_TW\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-08-12 18:16\n"
+"PO-Revision-Date: 2022-09-13 06:40\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -340,7 +340,7 @@ msgstr "連接列表是空的"
 
 #: src/components/WalletReceiveAddressField.tsx:40
 msgid "Loading..."
-msgstr ""
+msgstr "讀取中..."
 
 #: src/components/cat/WalletDID.tsx:805
 #: src/components/did/WalletDID.tsx:805
@@ -676,7 +676,7 @@ msgstr ""
 #: src/components/WalletsList.tsx:32
 #: src/components/hero/WalletHeroWallets.tsx:47
 msgid "Select Wallet"
-msgstr ""
+msgstr "選擇錢包"
 
 #: src/components/create/WalletCreateList.tsx:25
 msgid "Select Wallet Type"
