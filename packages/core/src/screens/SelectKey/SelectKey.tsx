@@ -8,7 +8,9 @@ import {
   useGetPublicKeysQuery,
   useDeleteAllKeysMutation,
   useLogInAndSkipImportMutation,
+  useGetKeysQuery,
 } from '@chia/api-react';
+import type { KeyData } from '@chia/api';
 import SelectKeyItem from './SelectKeyItem';
 import Button from '../../components/Button';
 import Flex from '../../components/Flex';
@@ -36,14 +38,15 @@ export default function SelectKey() {
     isLoading: isLoadingPublicKeys,
     error,
     refetch,
-  } = useGetPublicKeysQuery();
+  } = useGetKeysQuery();
   const { data: keyringState, isLoading: isLoadingKeyringStatus } =
     useGetKeyringStatusQuery();
   const hasFingerprints = !!publicKeyFingerprints?.length;
   const [selectedFingerprint, setSelectedFingerprint] = useState<
     number | undefined
   >();
-  const [skippedMigration, _] = useSkipMigration();
+
+  const [skippedMigration] = useSkipMigration();
   const [promptForKeyringMigration] = useKeyringMigrationPrompt();
   const showError = useShowError();
 
@@ -158,22 +161,21 @@ export default function SelectKey() {
           alignSelf="stretch"
         >
           {hasFingerprints && (
-            <Card>
-              <List>
-                {publicKeyFingerprints.map((fingerprint: number) => (
-                  <SelectKeyItem
-                    key={fingerprint}
-                    fingerprint={fingerprint}
-                    onSelect={handleSelect}
-                    loading={fingerprint === selectedFingerprint}
-                    disabled={
-                      !!selectedFingerprint &&
-                      fingerprint !== selectedFingerprint
-                    }
-                  />
-                ))}
-              </List>
-            </Card>
+            <Flex gap={1} flexDirection="column" width="100%">
+              {publicKeyFingerprints.map((keyData: KeyData, index: number) => (
+                <SelectKeyItem
+                  key={keyData.fingerprint}
+                  index={index}
+                  keyData={keyData}
+                  onSelect={handleSelect}
+                  loading={keyData.fingerprint === selectedFingerprint}
+                  disabled={
+                    !!selectedFingerprint &&
+                    keyData.fingerprint !== selectedFingerprint
+                  }
+                />
+              ))}
+            </Flex>
           )}
           <Button
             onClick={() => handleNavigationIfKeyringIsMutable('/wallet/add')}
