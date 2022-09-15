@@ -41,15 +41,13 @@ msgid "Add Backup ID"
 msgstr ""
 
 #: src/components/hero/WalletHeroAdd.tsx:99
-msgid "Add Custom Token"
-msgstr ""
+#~ msgid "Add Custom Token"
+#~ msgstr ""
 
 #: src/components/WalletsList.tsx:54
 #: src/components/WalletsManageTokens.tsx:170
 #: src/components/cat/WalletCATCreateExistingSimple.tsx:61
 #: src/components/cat/WalletCATCreateSimple.tsx:70
-#: src/components/hero/WalletHeroAdd.tsx:64
-#: src/components/hero/WalletHeroWallets.tsx:83
 msgid "Add Token"
 msgstr ""
 
@@ -178,8 +176,8 @@ msgid "Create An Attestation Packet"
 msgstr ""
 
 #: src/components/cat/WalletCATCreateExisting.tsx:76
-msgid "Create Chia Asset Token Wallet from Existing TAIL"
-msgstr ""
+#~ msgid "Create Chia Asset Token Wallet from Existing TAIL"
+#~ msgstr ""
 
 #: src/components/did/WalletDIDCreate.tsx:109
 msgid "Create Distributed Identity Wallet"
@@ -214,8 +212,8 @@ msgid "Create Transaction"
 msgstr "Opprett Transaksjon"
 
 #: src/components/cat/WalletCATCreateExisting.tsx:75
-msgid "Create custom CAT Wallet"
-msgstr ""
+#~ msgid "Create custom CAT Wallet"
+#~ msgstr ""
 
 #: src/constants/WalletName.ts:20
 msgid "Custody Wallet"
@@ -227,6 +225,10 @@ msgstr ""
 
 #: src/constants/WalletName.ts:29
 msgid "DID Wallet"
+msgstr ""
+
+#: src/constants/WalletName.ts:38
+msgid "Datalayer Wallet"
 msgstr ""
 
 #: src/components/WalletHistory.tsx:199
@@ -247,7 +249,7 @@ msgstr "Slett"
 msgid "Delete Unconfirmed Transactions"
 msgstr ""
 
-#: src/components/card/WalletCardTotalBalance.tsx:63
+#: src/components/card/WalletCardTotalBalance.tsx:74
 msgid "Derivation Index: {0}"
 msgstr ""
 
@@ -273,7 +275,7 @@ msgstr "Skriv inn det 24 ordene du har lagret for å gjenopprette din Chia lomme
 msgid "Error the entered address appears to be for a different colour."
 msgstr ""
 
-#: src/components/WalletSend.tsx:189
+#: src/components/WalletSend.tsx:191
 #: src/components/cat/WalletCATSend.tsx:244
 msgid "Farm"
 msgstr "Gård"
@@ -501,8 +503,8 @@ msgid "Please enter a puzzlehash"
 msgstr ""
 
 #: src/components/cat/WalletCATCreateExisting.tsx:40
-msgid "Please enter a valid CAT name"
-msgstr ""
+#~ msgid "Please enter a valid CAT name"
+#~ msgstr ""
 
 #: src/components/cat/WalletCATCreateExistingSimple.tsx:41
 msgid "Please enter a valid asset id"
@@ -624,7 +626,6 @@ msgstr ""
 msgid "Recipient address is not a coloured wallet address. Please enter a coloured wallet address"
 msgstr ""
 
-#: src/components/cat/WalletCATCreateExisting.tsx:104
 #: src/components/cat/WalletDID.tsx:463
 #: src/components/did/WalletDID.tsx:463
 #: src/components/did/WalletDIDRecovery.tsx:124
@@ -667,13 +668,12 @@ msgstr ""
 msgid "Save"
 msgstr ""
 
-#: src/components/WalletTokenCard.tsx:144
+#: src/components/WalletTokenCard.tsx:198
 #: src/components/cat/WalletCATTAILDialog.tsx:71
 msgid "Search on Tail Database"
 msgstr ""
 
 #: src/components/WalletsList.tsx:32
-#: src/components/hero/WalletHeroWallets.tsx:47
 msgid "Select Wallet"
 msgstr ""
 
@@ -686,7 +686,7 @@ msgid "Selected recovery file:"
 msgstr ""
 
 #: src/components/WalletHeader.tsx:59
-#: src/components/WalletSend.tsx:200
+#: src/components/WalletSend.tsx:202
 #: src/components/cat/WalletCATSend.tsx:255
 #: src/components/rateLimited/WalletRateLimited.jsx:747
 msgid "Send"
@@ -757,7 +757,7 @@ msgstr "Synkronisert"
 msgid "Syncing"
 msgstr "Synkroniserer"
 
-#: src/components/card/WalletCardTotalBalance.tsx:65
+#: src/components/card/WalletCardTotalBalance.tsx:76
 msgid "The derivation index sets the range of wallet addresses that the wallet scans the blockchain for. This number is generally higher if you have a lot of transactions or canceled offers for XCH, CATs, or NFTs. If you believe your balance is incorrect because it’s missing coins, then increasing the derivation index could help the wallet include the missing coins in the balance total."
 msgstr ""
 
@@ -804,8 +804,8 @@ msgid "To"
 msgstr "Til"
 
 #: src/components/cat/WalletCATCreateExisting.tsx:85
-msgid "Token and Asset Issuance Limitations"
-msgstr ""
+#~ msgid "Token and Asset Issuance Limitations"
+#~ msgstr ""
 
 #: src/components/cat/WalletCATCreateSimple.tsx:45
 msgid "Token has empty asset id"
@@ -819,7 +819,7 @@ msgstr ""
 msgid "Tokens"
 msgstr ""
 
-#: src/components/card/WalletCardTotalBalance.tsx:56
+#: src/components/card/WalletCardTotalBalance.tsx:62
 #: src/components/rateLimited/WalletRateLimited.jsx:542
 msgid "Total Balance"
 msgstr "Total saldo"
