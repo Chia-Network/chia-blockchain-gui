@@ -1454,12 +1454,10 @@ export const walletApi = apiWithTag.injectEndpoints({
             }),
           };
         } catch (error: any) {
-          console.log('something went wrong', error);
           return {
             error,
           };
         } finally {
-          console.log('unsubscribing');
           unsubscribe();
         }
 
@@ -1947,6 +1945,42 @@ export const walletApi = apiWithTag.injectEndpoints({
     // createDIDBackup: did_create_backup_file needs an RPC change (remove filename param, return file contents)
 
     // NFTs
+    getNFTsByNFTIDs: build.query<any, { nftIds: string[] }>({
+      async queryFn(args, _queryApi, _extraOptions, fetchWithBQ) {
+        try {
+          const nfts = await Promise.all(
+            args.nftIds.map(async (nftId) => {
+              const { data: nftData, error: nftError } = await fetchWithBQ({
+                command: 'getNftInfo',
+                service: NFT,
+                args: [nftId],
+              });
+
+              if (nftError) {
+                throw nftError;
+              }
+
+              // Add bech32m-encoded NFT identifier
+              const updatedNFT = {
+                ...nftData.nftInfo,
+                $nftId: toBech32m(nftData.nftInfo.launcherId, 'nft'),
+              };
+
+              return updatedNFT;
+            })
+          );
+
+          return {
+            data: nfts,
+          };
+        } catch (error: any) {
+          return {
+            error,
+          };
+        }
+      },
+    }),
+
     getNFTs: build.query<
       { [walletId: number]: NFTInfo[] },
       { walletIds: number[] }
@@ -2251,6 +2285,7 @@ export const {
   useGetDIDCurrentCoinInfoQuery,
 
   // NFTs
+  useGetNFTsByNFTIDsQuery,
   useGetNFTsQuery,
   useGetNFTWalletsWithDIDsQuery,
   useGetNFTInfoQuery,
