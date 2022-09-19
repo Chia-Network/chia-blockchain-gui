@@ -1,30 +1,22 @@
 import React, { useState } from 'react';
 import { Trans } from '@lingui/macro';
-import { Alert, Box, Typography, ListItemIcon, Chip } from '@mui/material';
+import { Box, Typography, ListItemIcon, Chip } from '@mui/material';
 import {
   Delete as DeleteIcon,
   Visibility as VisibilityIcon,
   Edit as EditIcon,
 } from '@mui/icons-material';
 import type { KeyData } from '@chia/api';
-import {
-  useCheckDeleteKeyMutation,
-  useDeleteKeyMutation,
-  useGetKeyringStatusQuery,
-  useGetLoggedInFingerprintQuery,
-} from '@chia/api-react';
+import { useGetLoggedInFingerprintQuery } from '@chia/api-react';
 import SelectKeyDetailDialog from './SelectKeyDetailDialog';
-import ConfirmDialog from '../../components/ConfirmDialog';
-import LoadingOverlay from '../../components/LoadingOverlay';
 import CardListItem from '../../components/CardListItem';
 import More from '../../components/More';
 import { MenuItem } from '../../components/MenuItem';
 import Flex from '../../components/Flex';
 import useOpenDialog from '../../hooks/useOpenDialog';
-import useSkipMigration from '../../hooks/useSkipMigration';
-import useKeyringMigrationPrompt from '../../hooks/useKeyringMigrationPrompt';
 import SelectKeyRenameForm from './SelectKeyRenameForm';
 import WalletStatus from './WalletStatus';
+import WalletDeleteDialog from './WalletDeleteDialog';
 
 type SelectKeyItemProps = {
   keyData: KeyData;
@@ -36,14 +28,8 @@ type SelectKeyItemProps = {
 
 export default function SelectKeyItem(props: SelectKeyItemProps) {
   const { keyData, onSelect, disabled, loading, index } = props;
-  const { data: keyringState, isLoading: isLoadingKeyringStatus } =
-    useGetKeyringStatusQuery();
   const openDialog = useOpenDialog();
   const [isRenaming, setIsRenaming] = useState<boolean>(false);
-  const [deleteKey] = useDeleteKeyMutation();
-  const [checkDeleteKey] = useCheckDeleteKeyMutation();
-  const [skippedMigration] = useSkipMigration();
-  const [promptForKeyringMigration] = useKeyringMigrationPrompt();
 
   const { data: currentFingerprint } = useGetLoggedInFingerprintQuery();
 
@@ -68,73 +54,7 @@ export default function SelectKeyItem(props: SelectKeyItemProps) {
   }
 
   async function handleDeletePrivateKey() {
-    const canModifyKeyring = await handleKeyringMutator();
-    if (!canModifyKeyring) {
-      return;
-    }
-
-    const {
-      data: { usedForFarmerRewards, usedForPoolRewards, walletBalance },
-    } = await checkDeleteKey({
-      fingerprint,
-    });
-
-    async function handleKeyringMutator(): Promise<boolean> {
-      // If the keyring requires migration and the user previously skipped migration, prompt again
-      if (
-        isLoadingKeyringStatus ||
-        (keyringState?.needsMigration && skippedMigration)
-      ) {
-        await promptForKeyringMigration();
-
-        return false;
-      }
-
-      return true;
-    }
-
-    await openDialog(
-      <ConfirmDialog
-        title={<Trans>Delete key {fingerprint}</Trans>}
-        confirmTitle={<Trans>Delete</Trans>}
-        cancelTitle={<Trans>Back</Trans>}
-        confirmColor="danger"
-        onConfirm={() => deleteKey({ fingerprint }).unwrap()}
-      >
-        {usedForFarmerRewards && (
-          <Alert severity="warning">
-            <Trans>
-              Warning: This key is used for your farming rewards address. By
-              deleting this key you may lose access to any future farming
-              rewards
-            </Trans>
-          </Alert>
-        )}
-
-        {usedForPoolRewards && (
-          <Alert severity="warning">
-            <Trans>
-              Warning: This key is used for your pool rewards address. By
-              deleting this key you may lose access to any future pool rewards
-            </Trans>
-          </Alert>
-        )}
-
-        {walletBalance && (
-          <Alert severity="warning">
-            <Trans>
-              Warning: This key is used for a wallet that may have a non-zero
-              balance. By deleting this key you may lose access to this wallet
-            </Trans>
-          </Alert>
-        )}
-
-        <Trans>
-          Deleting the key will permanently remove the key from your computer,
-          make sure you have backups. Are you sure you want to continue?
-        </Trans>
-      </ConfirmDialog>
-    );
+    await openDialog(<WalletDeleteDialog fingerprint={fingerprint} />);
   }
 
   return (
