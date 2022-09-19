@@ -138,75 +138,75 @@ export default function SelectKeyItem(props: SelectKeyItemProps) {
   }
 
   return (
-    <LoadingOverlay loading={loading} disabled={disabled}>
-      <CardListItem
-        onSelect={isRenaming ? undefined : handleLogin}
-        data-testid={`SelectKeyItem-fingerprint-${fingerprint}`}
-        key={fingerprint}
-      >
-        <Flex position="relative">
-          <Flex direction="column" gap={isRenaming ? 1 : 0} flexGrow={1}>
-            {isRenaming ? (
-              <SelectKeyRenameForm
-                keyData={keyData}
-                onClose={handleCloseRename}
-              />
-            ) : (
-              <Typography variant="h6" noWrap>
-                {label || <Trans>Wallet {index + 1}</Trans>}
-              </Typography>
-            )}
-            <Typography variant="body2" color="textSecondary">
-              {fingerprint}
+    <CardListItem
+      onSelect={isRenaming ? undefined : handleLogin}
+      data-testid={`SelectKeyItem-fingerprint-${fingerprint}`}
+      key={fingerprint}
+      disabled={disabled}
+      loading={loading}
+    >
+      <Flex position="relative">
+        <Flex direction="column" gap={isRenaming ? 1 : 0} flexGrow={1}>
+          {isRenaming ? (
+            <SelectKeyRenameForm
+              keyData={keyData}
+              onClose={handleCloseRename}
+            />
+          ) : (
+            <Typography variant="h6" noWrap>
+              {label || <Trans>Wallet {index + 1}</Trans>}
             </Typography>
-          </Flex>
-          <Box>
-            <Flex flexDirection="column" alignItems="flex-end" gap={0.5}>
-              <More>
-                <MenuItem onClick={handleRename} close>
-                  <ListItemIcon>
-                    <EditIcon />
-                  </ListItemIcon>
-                  <Typography variant="inherit" noWrap>
-                    <Trans>Rename</Trans>
-                  </Typography>
-                </MenuItem>
-                <MenuItem onClick={handleShowKey} close>
-                  <ListItemIcon>
-                    <VisibilityIcon />
-                  </ListItemIcon>
-                  <Typography variant="inherit" noWrap>
-                    <Trans>Details</Trans>
-                  </Typography>
-                </MenuItem>
-                <MenuItem onClick={handleDeletePrivateKey} close>
-                  <ListItemIcon>
-                    <DeleteIcon />
-                  </ListItemIcon>
-                  <Typography variant="inherit" noWrap>
-                    <Trans>Delete</Trans>
-                  </Typography>
-                </MenuItem>
-              </More>
-            </Flex>
-          </Box>
-          {currentFingerprint === fingerprint && (
-            <Box position="absolute" bottom={-5} right={1}>
-              <Chip
-                size="small"
-                label={
-                  <WalletStatus
-                    variant="body2"
-                    indicator
-                    reversed
-                    color="white"
-                  />
-                }
-              />
-            </Box>
           )}
+          <Typography variant="body2" color="textSecondary">
+            {fingerprint}
+          </Typography>
         </Flex>
-      </CardListItem>
-    </LoadingOverlay>
+        <Box>
+          <Flex flexDirection="column" alignItems="flex-end" gap={0.5}>
+            <More>
+              <MenuItem onClick={handleRename} close>
+                <ListItemIcon>
+                  <EditIcon />
+                </ListItemIcon>
+                <Typography variant="inherit" noWrap>
+                  <Trans>Rename</Trans>
+                </Typography>
+              </MenuItem>
+              <MenuItem onClick={handleShowKey} close>
+                <ListItemIcon>
+                  <VisibilityIcon />
+                </ListItemIcon>
+                <Typography variant="inherit" noWrap>
+                  <Trans>Details</Trans>
+                </Typography>
+              </MenuItem>
+              <MenuItem onClick={handleDeletePrivateKey} close>
+                <ListItemIcon>
+                  <DeleteIcon />
+                </ListItemIcon>
+                <Typography variant="inherit" noWrap>
+                  <Trans>Delete</Trans>
+                </Typography>
+              </MenuItem>
+            </More>
+          </Flex>
+        </Box>
+        {currentFingerprint === fingerprint && (
+          <Box position="absolute" bottom={-5} right={1}>
+            <Chip
+              size="small"
+              label={
+                <WalletStatus
+                  variant="body2"
+                  indicator
+                  reversed
+                  color="white"
+                />
+              }
+            />
+          </Box>
+        )}
+      </Flex>
+    </CardListItem>
   );
 }

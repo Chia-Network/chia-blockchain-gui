@@ -161,7 +161,7 @@ export default function SelectKey() {
           alignSelf="stretch"
         >
           {hasFingerprints && (
-            <Flex gap={1} flexDirection="column" width="100%">
+            <Flex gap={2} flexDirection="column" width="100%">
               {publicKeyFingerprints.map((keyData: KeyData, index: number) => (
                 <SelectKeyItem
                   key={keyData.fingerprint}
