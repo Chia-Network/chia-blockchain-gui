@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import { Trans } from '@lingui/macro';
 import styled from 'styled-components';
-import { Alert, Card, Typography, Container, List } from '@mui/material';
+import { Alert, Typography, Container } from '@mui/material';
 import { useNavigate } from 'react-router';
 import {
   useGetKeyringStatusQuery,
-  useGetPublicKeysQuery,
   useDeleteAllKeysMutation,
   useLogInAndSkipImportMutation,
   useGetKeysQuery,
