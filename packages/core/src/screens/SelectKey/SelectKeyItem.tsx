@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Trans } from '@lingui/macro';
-import { Alert, Box, Typography, ListItemIcon } from '@mui/material';
+import { Alert, Box, Typography, ListItemIcon, Chip } from '@mui/material';
 import {
   Delete as DeleteIcon,
   Visibility as VisibilityIcon,
@@ -11,6 +11,7 @@ import {
   useCheckDeleteKeyMutation,
   useDeleteKeyMutation,
   useGetKeyringStatusQuery,
+  useGetLoggedInFingerprintQuery,
 } from '@chia/api-react';
 import SelectKeyDetailDialog from './SelectKeyDetailDialog';
 import ConfirmDialog from '../../components/ConfirmDialog';
@@ -23,6 +24,7 @@ import useOpenDialog from '../../hooks/useOpenDialog';
 import useSkipMigration from '../../hooks/useSkipMigration';
 import useKeyringMigrationPrompt from '../../hooks/useKeyringMigrationPrompt';
 import SelectKeyRenameForm from './SelectKeyRenameForm';
+import WalletStatus from './WalletStatus';
 
 type SelectKeyItemProps = {
   keyData: KeyData;
@@ -42,6 +44,8 @@ export default function SelectKeyItem(props: SelectKeyItemProps) {
   const [checkDeleteKey] = useCheckDeleteKeyMutation();
   const [skippedMigration] = useSkipMigration();
   const [promptForKeyringMigration] = useKeyringMigrationPrompt();
+
+  const { data: currentFingerprint } = useGetLoggedInFingerprintQuery();
 
   const { fingerprint, label } = keyData;
 
@@ -140,7 +144,7 @@ export default function SelectKeyItem(props: SelectKeyItemProps) {
         data-testid={`SelectKeyItem-fingerprint-${fingerprint}`}
         key={fingerprint}
       >
-        <Flex alignItems="center">
+        <Flex position="relative">
           <Flex direction="column" gap={isRenaming ? 1 : 0} flexGrow={1}>
             {isRenaming ? (
               <SelectKeyRenameForm
@@ -157,33 +161,50 @@ export default function SelectKeyItem(props: SelectKeyItemProps) {
             </Typography>
           </Flex>
           <Box>
-            <More>
-              <MenuItem onClick={handleRename} close>
-                <ListItemIcon>
-                  <EditIcon />
-                </ListItemIcon>
-                <Typography variant="inherit" noWrap>
-                  <Trans>Rename</Trans>
-                </Typography>
-              </MenuItem>
-              <MenuItem onClick={handleShowKey} close>
-                <ListItemIcon>
-                  <VisibilityIcon />
-                </ListItemIcon>
-                <Typography variant="inherit" noWrap>
-                  <Trans>Details</Trans>
-                </Typography>
-              </MenuItem>
-              <MenuItem onClick={handleDeletePrivateKey} close>
-                <ListItemIcon>
-                  <DeleteIcon />
-                </ListItemIcon>
-                <Typography variant="inherit" noWrap>
-                  <Trans>Delete</Trans>
-                </Typography>
-              </MenuItem>
-            </More>
+            <Flex flexDirection="column" alignItems="flex-end" gap={0.5}>
+              <More>
+                <MenuItem onClick={handleRename} close>
+                  <ListItemIcon>
+                    <EditIcon />
+                  </ListItemIcon>
+                  <Typography variant="inherit" noWrap>
+                    <Trans>Rename</Trans>
+                  </Typography>
+                </MenuItem>
+                <MenuItem onClick={handleShowKey} close>
+                  <ListItemIcon>
+                    <VisibilityIcon />
+                  </ListItemIcon>
+                  <Typography variant="inherit" noWrap>
+                    <Trans>Details</Trans>
+                  </Typography>
+                </MenuItem>
+                <MenuItem onClick={handleDeletePrivateKey} close>
+                  <ListItemIcon>
+                    <DeleteIcon />
+                  </ListItemIcon>
+                  <Typography variant="inherit" noWrap>
+                    <Trans>Delete</Trans>
+                  </Typography>
+                </MenuItem>
+              </More>
+            </Flex>
           </Box>
+          {currentFingerprint === fingerprint && (
+            <Box position="absolute" bottom={-5} right={1}>
+              <Chip
+                size="small"
+                label={
+                  <WalletStatus
+                    variant="body2"
+                    indicator
+                    reversed
+                    color="white"
+                  />
+                }
+              />
+            </Box>
+          )}
         </Flex>
       </CardListItem>
     </LoadingOverlay>

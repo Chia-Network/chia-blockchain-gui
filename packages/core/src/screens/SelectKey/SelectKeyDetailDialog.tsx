@@ -44,7 +44,12 @@ export default function SelectKeyDetailDialog(
 
   if (isLoading) {
     return (
-      <AlertDialog title={<Trans>Loading details</Trans>} {...rest}>
+      <AlertDialog
+        title={<Trans>Loading details</Trans>}
+        confirmTitle={<Trans>Close</Trans>}
+        confirmVariant="contained"
+        {...rest}
+      >
         <Loading center />
       </AlertDialog>
     );

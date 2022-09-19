@@ -48,6 +48,7 @@ const apiWithTag = api.enhanceEndpoints({
     'Wallets',
     'DerivationIndex',
     'CATs',
+    'DaemonKey',
   ],
 });
 
@@ -600,6 +601,9 @@ export const walletApi = apiWithTag.injectEndpoints({
       }),
       invalidatesTags: (_result, _error, { fingerprint }) => [
         { type: 'Keys', id: fingerprint },
+        { type: 'Keys', id: 'LIST' },
+        { type: 'DaemonKey', id: fingerprint },
+        { type: 'DaemonKey', id: 'LIST' },
       ],
     }),
 
