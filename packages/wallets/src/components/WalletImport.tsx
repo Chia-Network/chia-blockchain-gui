@@ -139,7 +139,12 @@ export default function WalletImport() {
       <Container maxWidth="lg">
         <Flex flexDirection="column" gap={3} alignItems="center">
           <Logo />
-          <Typography variant="h4" component="h1" gutterBottom>
+          <Typography
+            variant="h4"
+            component="h1"
+            textAlign="center"
+            gutterBottom
+          >
             <Trans>Import Wallet from Mnemonics</Trans>
           </Typography>
           <Typography variant="subtitle1" align="center">
