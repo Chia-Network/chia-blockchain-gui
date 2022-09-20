@@ -62,10 +62,7 @@ export const daemonApi = apiWithTag.injectEndpoints({
         args: [fingerprint, label],
       }),
       invalidatesTags: () => ['DaemonKey'],
-      transformResponse: (response: any) => {
-        console.log('setLabel response', response);
-        return response?.success;
-      },
+      transformResponse: (response: any) => response?.success,
     }),
 
     deleteLabel: build.mutation<
@@ -77,13 +74,10 @@ export const daemonApi = apiWithTag.injectEndpoints({
       query: ({ fingerprint }) => ({
         command: 'deleteLabel',
         service: Daemon,
-        args: [fingerprint, label],
+        args: [fingerprint],
       }),
       invalidatesTags: () => ['DaemonKey'],
-      transformResponse: (response: any) => {
-        console.log('deleteLabel response', response);
-        return response?.success;
-      },
+      transformResponse: (response: any) => response?.success,
     }),
 
     daemonPing: build.query<boolean, {}>({
