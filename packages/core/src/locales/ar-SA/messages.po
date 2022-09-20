@@ -22,7 +22,7 @@ msgstr ""
 msgid "<0>{0}</0>"
 msgstr ""
 
-#: src/components/Amount/Amount.tsx:116
+#: src/components/Amount/Amount.tsx:103
 msgid "Amount"
 msgstr "المبلغ"
 
@@ -31,7 +31,7 @@ msgid "Appearance"
 msgstr ""
 
 #: src/components/FormBackButton/FormBackButton.tsx:47
-#: src/screens/SelectKey/SelectKey.tsx:79
+#: src/screens/SelectKey/SelectKey.tsx:82
 #: src/screens/SelectKey/SelectKeyItem.tsx:93
 msgid "Back"
 msgstr "رجوع"
@@ -40,7 +40,7 @@ msgstr "رجوع"
 msgid "Can be backed up to mnemonic seed"
 msgstr "يمكن الإسترجاع من النسخة الاحتياطية للكلمات السرية"
 
-#: src/components/ConfirmDialog/ConfirmDialog.tsx:105
+#: src/components/ConfirmDialog/ConfirmDialog.tsx:32
 #: src/hooks/useKeyringMigrationPrompt.tsx:17
 msgid "Cancel"
 msgstr "إلغاء"
@@ -49,15 +49,15 @@ msgstr "إلغاء"
 msgid "Connected"
 msgstr "متصل"
 
-#: src/components/CopyToClipboard/CopyToClipboard.tsx:42
+#: src/components/CopyToClipboard/CopyToClipboard.tsx:56
 msgid "Copied"
 msgstr "تم النسخ"
 
-#: src/components/CopyToClipboard/CopyToClipboard.tsx:44
+#: src/components/CopyToClipboard/CopyToClipboard.tsx:58
 msgid "Copy to Clipboard"
 msgstr "نسخ إلى الحافظة"
 
-#: src/screens/SelectKey/SelectKey.tsx:180
+#: src/screens/SelectKey/SelectKey.tsx:187
 msgid "Create a new private key"
 msgstr "إنشاء مفتاح خاص جديد"
 
@@ -69,13 +69,13 @@ msgstr "تحذير: حذف المفتاح الخاص بشكل دائم"
 msgid "Dark"
 msgstr ""
 
-#: src/screens/SelectKey/SelectKey.tsx:78
+#: src/screens/SelectKey/SelectKey.tsx:81
 #: src/screens/SelectKey/SelectKeyItem.tsx:92
 msgid "Delete"
 msgstr "حذف"
 
-#: src/screens/SelectKey/SelectKey.tsx:202
-#: src/screens/SelectKey/SelectKey.tsx:77
+#: src/screens/SelectKey/SelectKey.tsx:209
+#: src/screens/SelectKey/SelectKey.tsx:80
 msgid "Delete all keys"
 msgstr "حذف جميع المفاتيح"
 
@@ -83,7 +83,7 @@ msgstr "حذف جميع المفاتيح"
 msgid "Delete key {fingerprint}"
 msgstr ""
 
-#: src/screens/SelectKey/SelectKey.tsx:83
+#: src/screens/SelectKey/SelectKey.tsx:86
 msgid "Deleting all keys will permanently remove the keys from your computer, make sure you have backups. Are you sure you want to continue?"
 msgstr "سيؤدي حذف جميع المفاتيح إلى إزالة المفاتيح بشكل دائم من جهاز الكمبيوتر الخاص بك، تأكد من أن لديك نسخ احتياطية. هل أنت متأكد من أنك تريد المتابعة؟"
 
@@ -127,7 +127,7 @@ msgid "Farming"
 msgstr "المزرعة"
 
 #: src/components/EstimatedFee/EstimatedFee.tsx:160
-#: src/components/EstimatedFee/EstimatedFee.tsx:192
+#: src/components/EstimatedFee/EstimatedFee.tsx:193
 #: src/components/Fee/Fee.tsx:52
 msgid "Fee"
 msgstr "الرسوم"
@@ -148,7 +148,7 @@ msgstr "المساعدة في الترجمة"
 msgid "Hide Advanced Options"
 msgstr "إخفاء الاختيارات المتقدمة"
 
-#: src/screens/SelectKey/SelectKey.tsx:191
+#: src/screens/SelectKey/SelectKey.tsx:198
 msgid "Import from Mnemonics (24 words)"
 msgstr "إستيراد من Mnemonics (24 كلمة)"
 
@@ -164,16 +164,16 @@ msgstr ""
 msgid "Light"
 msgstr ""
 
-#: src/screens/SelectKey/SelectKey.tsx:116
+#: src/screens/SelectKey/SelectKey.tsx:122
 msgid "Loading list of the keys"
 msgstr ""
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:129
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:151
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:141
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:166
 msgid "Log Out"
 msgstr ""
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:147
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:162
 msgid "Logout"
 msgstr ""
 
@@ -202,7 +202,7 @@ msgstr "لا يوجد بذور 24 كلمة، لأن هذا المفتاح مست
 msgid "Not connected"
 msgstr "غير متّصل"
 
-#: src/components/ConfirmDialog/ConfirmDialog.tsx:106
+#: src/components/ConfirmDialog/ConfirmDialog.tsx:33
 msgid "OK"
 msgstr "موافق"
 
@@ -249,7 +249,7 @@ msgstr "عرض المفتاح الخاص"
 msgid "Seed:"
 msgstr "توزيع الجدول:"
 
-#: src/screens/SelectKey/SelectKey.tsx:135
+#: src/screens/SelectKey/SelectKey.tsx:139
 msgid "Select Key"
 msgstr "اختر المفتاح"
 
@@ -275,7 +275,7 @@ msgstr ""
 msgid "Show Advanced Options"
 msgstr "إظهار الخيارات المتقدمة"
 
-#: src/screens/SelectKey/SelectKey.tsx:140
+#: src/screens/SelectKey/SelectKey.tsx:144
 msgid "Sign In"
 msgstr "تسجيل الدخول"
 
@@ -307,11 +307,11 @@ msgstr ""
 msgid "Transaction has successfully been sent to a full node and included in the mempool."
 msgstr ""
 
-#: src/screens/SelectKey/SelectKey.tsx:123
+#: src/screens/SelectKey/SelectKey.tsx:129
 msgid "Try Again"
 msgstr ""
 
-#: src/screens/SelectKey/SelectKey.tsx:127
+#: src/screens/SelectKey/SelectKey.tsx:133
 msgid "Unable to load the list of the keys"
 msgstr ""
 
@@ -332,7 +332,7 @@ msgstr ""
 msgid "Value seems high"
 msgstr ""
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:98
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:109
 #: src/components/Settings/SettingsApp.tsx:69
 msgid "Wallet"
 msgstr ""
@@ -349,7 +349,7 @@ msgstr ""
 msgid "Warning: This key is used for your pool rewards address. By deleting this key you may lose access to any future pool rewards"
 msgstr ""
 
-#: src/screens/SelectKey/SelectKey.tsx:143
+#: src/screens/SelectKey/SelectKey.tsx:147
 msgid "Welcome to Chia. Please log in with an existing key, or create a new key."
 msgstr "مرحبا بكم في تشيا. الرجاء تسجيل الدخول باستخدام مفتاح موجود, أو إنشاء مفتاح جديد."
 
@@ -362,7 +362,7 @@ msgstr ""
 msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Would you like to migrate your keys now?"
 msgstr ""
 
-#: src/components/Amount/Amount.tsx:98
+#: src/components/Amount/Amount.tsx:85
 msgid "{0, plural, one {mojo} other {mojos}}"
 msgstr ""
 

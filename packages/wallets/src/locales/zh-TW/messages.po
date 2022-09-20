@@ -18,15 +18,15 @@ msgstr ""
 "X-Crowdin-File: /main/packages/wallets/src/locales/en-US/messages.po\n"
 "X-Crowdin-File-ID: 1890\n"
 
-#: src/components/WalletHistory.tsx:210
+#: src/components/WalletHistory.tsx:209
 msgid "+"
 msgstr "+"
 
-#: src/components/WalletHistory.tsx:210
+#: src/components/WalletHistory.tsx:209
 msgid "-"
 msgstr "-"
 
-#: src/components/WalletHeader.tsx:74
+#: src/components/WalletHeader.tsx:80
 msgid "Actions"
 msgstr "動作"
 
@@ -36,7 +36,7 @@ msgstr "新增"
 
 #: src/components/cat/WalletDID.tsx:874
 #: src/components/did/WalletDID.tsx:874
-#: src/components/did/WalletDIDCreate.tsx:205
+#: src/components/did/WalletDIDCreate.tsx:207
 msgid "Add Backup ID"
 msgstr "增加備份 ID"
 
@@ -45,7 +45,7 @@ msgstr "增加備份 ID"
 #~ msgstr "新增自訂義代幣"
 
 #: src/components/WalletsList.tsx:54
-#: src/components/WalletsManageTokens.tsx:170
+#: src/components/WalletsManageTokens.tsx:174
 #: src/components/cat/WalletCATCreateExistingSimple.tsx:61
 #: src/components/cat/WalletCATCreateSimple.tsx:70
 msgid "Add Token"
@@ -65,7 +65,7 @@ msgstr "位址"
 msgid "Address / Puzzle hash"
 msgstr "位址 / 拼圖雜湊值"
 
-#: src/components/WalletHistory.tsx:226
+#: src/components/WalletHistory.tsx:225
 #: src/components/WalletSend.tsx:167
 #: src/components/cat/WalletCATSend.tsx:207
 #: src/components/rateLimited/WalletRateLimited.jsx:719
@@ -76,17 +76,17 @@ msgstr "數量"
 msgid "Amount For Initial Coin"
 msgstr "初始代幣數量"
 
-#: src/components/did/WalletDIDCreate.tsx:61
+#: src/components/did/WalletDIDCreate.tsx:60
 msgid "Amount must be an even amount."
 msgstr "金額必須是偶數"
 
-#: src/components/WalletHeader.tsx:42
+#: src/components/WalletHeader.tsx:36
 msgid "Are you sure you want to delete unconfirmed transactions?"
 msgstr "你確認要刪除未確認的交易?"
 
 #: src/components/cat/WalletCATCreateExistingSimple.tsx:80
-#: src/components/cat/WalletCATTAILDialog.tsx:43
-#: src/components/cat/WalletCATTAILDialog.tsx:55
+#: src/components/cat/WalletCATTAILDialog.tsx:46
+#: src/components/cat/WalletCATTAILDialog.tsx:56
 msgid "Asset Id"
 msgstr "資產 ID"
 
@@ -118,8 +118,8 @@ msgstr "不能寄送奇亞到有色地址。請輸入奇亞地址。"
 msgid "Check my snapshot balance"
 msgstr ""
 
-#: src/components/cat/WalletCATSelect.tsx:25
-#: src/components/create/WalletCreateList.tsx:32
+#: src/components/cat/WalletCATSelect.tsx:24
+#: src/components/create/WalletCreateList.tsx:35
 #: src/constants/WalletName.ts:23
 msgid "Chia Asset Token"
 msgstr "奇亞資產代幣"
@@ -133,15 +133,15 @@ msgstr ""
 msgid "Coin Name"
 msgstr "幣種名稱"
 
-#: src/components/WalletHeader.tsx:37
+#: src/components/WalletHeader.tsx:31
 msgid "Confirmation"
 msgstr "確認"
 
-#: src/components/WalletHistory.tsx:156
+#: src/components/WalletHistory.tsx:155
 msgid "Confirmed"
 msgstr "確認"
 
-#: src/components/WalletHistory.tsx:356
+#: src/components/WalletHistory.tsx:359
 msgid "Confirmed at Height"
 msgstr "已確認於高度"
 
@@ -166,7 +166,7 @@ msgstr "複製"
 #: src/components/cat/WalletCATCreateNew.tsx:101
 #: src/components/create/createRLAdmin.jsx:306
 #: src/components/create/createRLUser.jsx:99
-#: src/components/did/WalletDIDCreate.tsx:218
+#: src/components/did/WalletDIDCreate.tsx:220
 msgid "Create"
 msgstr "建立"
 
@@ -179,7 +179,7 @@ msgstr "建立一個證明封包"
 #~ msgid "Create Chia Asset Token Wallet from Existing TAIL"
 #~ msgstr "從現有的TAIL建立奇亞資產代幣錢包"
 
-#: src/components/did/WalletDIDCreate.tsx:109
+#: src/components/did/WalletDIDCreate.tsx:113
 msgid "Create Distributed Identity Wallet"
 msgstr "建立分散式識別的錢包"
 
@@ -187,13 +187,13 @@ msgstr "建立分散式識別的錢包"
 msgid "Create New Chia Asset Token Wallet"
 msgstr "建立新的奇亞資產代幣錢包"
 
-#: src/components/cat/WalletCATSelect.tsx:32
-#: src/components/did/WalletDIDSelect.tsx:32
+#: src/components/cat/WalletCATSelect.tsx:31
+#: src/components/did/WalletDIDSelect.tsx:31
 msgid "Create New Wallet"
 msgstr "建立新錢包"
 
-#: src/components/cat/WalletCAT.tsx:129
-#: src/components/standard/WalletStandard.tsx:54
+#: src/components/cat/WalletCAT.tsx:113
+#: src/components/standard/WalletStandard.tsx:48
 msgid "Create Offer"
 msgstr ""
 
@@ -231,30 +231,30 @@ msgstr "DID 錢包"
 msgid "Datalayer Wallet"
 msgstr ""
 
-#: src/components/WalletHistory.tsx:199
+#: src/components/WalletHistory.tsx:198
 msgid "Date"
 msgstr "日期"
 
-#: src/components/WalletHeader.tsx:38
+#: src/components/WalletHeader.tsx:32
 #: src/components/cat/WalletDID.tsx:448
 #: src/components/cat/WalletDID.tsx:862
 #: src/components/did/WalletDID.tsx:448
 #: src/components/did/WalletDID.tsx:862
-#: src/components/did/WalletDIDCreate.tsx:194
+#: src/components/did/WalletDIDCreate.tsx:196
 #: src/components/did/WalletDIDRecovery.tsx:101
 msgid "Delete"
 msgstr "刪除"
 
-#: src/components/WalletHeader.tsx:87
+#: src/components/WalletHeader.tsx:86
 msgid "Delete Unconfirmed Transactions"
 msgstr "刪除未確認的交易"
 
-#: src/components/card/WalletCardTotalBalance.tsx:74
+#: src/components/card/WalletCardTotalBalance.tsx:75
 msgid "Derivation Index: {0}"
 msgstr ""
 
-#: src/components/create/WalletCreateList.tsx:39
-#: src/components/did/WalletDIDSelect.tsx:25
+#: src/components/create/WalletCreateList.tsx:42
+#: src/components/did/WalletDIDSelect.tsx:24
 msgid "Distributed Identity"
 msgstr "分散式識別"
 
@@ -280,7 +280,7 @@ msgstr ""
 msgid "Farm"
 msgstr "耕種"
 
-#: src/components/WalletHistory.tsx:238
+#: src/components/WalletHistory.tsx:237
 #: src/components/WalletSend.tsx:179
 #: src/components/cat/WalletCATSend.tsx:221
 #: src/components/create/createRLAdmin.jsx:243
@@ -350,16 +350,16 @@ msgstr ""
 msgid "Manage Recovery DIDs"
 msgstr "管理還原的 DID"
 
-#: src/components/WalletsManageTokens.tsx:147
+#: src/components/WalletsManageTokens.tsx:151
 msgid "Manage token list"
 msgstr "管理代幣列表"
 
-#: src/components/WalletHistory.tsx:170
+#: src/components/WalletHistory.tsx:169
 #: src/components/cat/WalletCATSend.tsx:234
 msgid "Memo"
 msgstr "備註（Memo）"
 
-#: src/components/WalletHistory.tsx:365
+#: src/components/WalletHistory.tsx:368
 msgid "Memos"
 msgstr "備註（Memos）"
 
@@ -409,7 +409,7 @@ msgstr "下一步"
 msgid "Nickname"
 msgstr "暱稱"
 
-#: src/components/WalletHistory.tsx:401
+#: src/components/WalletHistory.tsx:404
 msgid "No previous transactions"
 msgstr "沒有上一個交易"
 
@@ -417,8 +417,8 @@ msgstr "沒有上一個交易"
 msgid "Node ID"
 msgstr "節點 ID"
 
-#: src/components/WalletHistory.tsx:350
-#: src/components/WalletHistory.tsx:360
+#: src/components/WalletHistory.tsx:353
+#: src/components/WalletHistory.tsx:363
 msgid "Not Available"
 msgstr "尚無"
 
@@ -430,11 +430,11 @@ msgstr "尚無"
 msgid "Not Synced"
 msgstr "未同步"
 
-#: src/components/cat/WalletCATTAILDialog.tsx:82
+#: src/components/cat/WalletCATTAILDialog.tsx:83
 msgid "OK"
 msgstr "好"
 
-#: src/components/WalletHistory.tsx:184
+#: src/components/WalletHistory.tsx:183
 msgid "Offer Accepted"
 msgstr ""
 
@@ -459,7 +459,7 @@ msgstr ""
 msgid "Paste Mnemonic (24 words)"
 msgstr ""
 
-#: src/components/WalletHistory.tsx:163
+#: src/components/WalletHistory.tsx:162
 msgid "Pending"
 msgstr "待確認中"
 
@@ -518,7 +518,7 @@ msgstr "請輸入有效的初始金額"
 
 #: src/components/cat/WalletDID.tsx:776
 #: src/components/did/WalletDID.tsx:776
-#: src/components/did/WalletDIDCreate.tsx:75
+#: src/components/did/WalletDIDCreate.tsx:74
 msgid "Please enter a valid integer of 0 or greater for the number of Backup IDs needed for recovery."
 msgstr ""
 
@@ -528,7 +528,7 @@ msgstr ""
 msgid "Please enter a valid numeric amount"
 msgstr "請輸入有效的數字值"
 
-#: src/components/did/WalletDIDCreate.tsx:49
+#: src/components/did/WalletDIDCreate.tsx:50
 msgid "Please enter a valid numeric amount."
 msgstr "請輸入有效的數值。"
 
@@ -598,7 +598,7 @@ msgstr "拼圖哈希值"
 msgid "RL Wallet"
 msgstr ""
 
-#: src/components/create/WalletCreateList.tsx:45
+#: src/components/create/WalletCreateList.tsx:48
 msgid "Rate Limited"
 msgstr "已限速"
 
@@ -615,7 +615,7 @@ msgstr "速率限制使用者錢包設定"
 msgid "Read the blog post for details"
 msgstr ""
 
-#: src/components/WalletHeader.tsx:60
+#: src/components/WalletHeader.tsx:64
 msgid "Receive"
 msgstr ""
 
@@ -645,7 +645,7 @@ msgstr "恢復 DID 錢包"
 msgid "Recover Distributed Identity Wallet"
 msgstr "還原分散式識別的錢包"
 
-#: src/components/did/WalletDIDSelect.tsx:39
+#: src/components/did/WalletDIDSelect.tsx:38
 msgid "Recover Wallet"
 msgstr "恢復錢包"
 
@@ -653,16 +653,16 @@ msgstr "恢復錢包"
 msgid "Recoverable Wallet"
 msgstr ""
 
-#: src/components/cat/WalletCATSelect.tsx:39
+#: src/components/cat/WalletCATSelect.tsx:38
 msgid "Recovery Wallet"
 msgstr ""
 
 #: src/components/WalletRenameDialog.tsx:69
-#: src/components/cat/WalletCAT.tsx:102
+#: src/components/cat/WalletCAT.tsx:96
 msgid "Rename Wallet"
 msgstr ""
 
-#: src/components/WalletHistory.tsx:177
+#: src/components/WalletHistory.tsx:176
 msgid "Retire"
 msgstr ""
 
@@ -670,8 +670,8 @@ msgstr ""
 msgid "Save"
 msgstr "儲存"
 
-#: src/components/WalletTokenCard.tsx:198
-#: src/components/cat/WalletCATTAILDialog.tsx:71
+#: src/components/WalletTokenCard.tsx:185
+#: src/components/cat/WalletCATTAILDialog.tsx:76
 msgid "Search on Tail Database"
 msgstr ""
 
@@ -679,7 +679,7 @@ msgstr ""
 msgid "Select Wallet"
 msgstr ""
 
-#: src/components/create/WalletCreateList.tsx:25
+#: src/components/create/WalletCreateList.tsx:28
 msgid "Select Wallet Type"
 msgstr "選擇錢包類型"
 
@@ -702,7 +702,7 @@ msgstr "發送這個資訊封包給你必須需要完成設定他們錢包的速
 msgid "Send your pubkey to your Rate Limited Wallet admin:"
 msgstr "發送你的公鑰到你的速率限制錢包管理員："
 
-#: src/components/cat/WalletCAT.tsx:116
+#: src/components/cat/WalletCAT.tsx:105
 msgid "Show Asset Id"
 msgstr "顯示資產 ID"
 
@@ -747,7 +747,7 @@ msgstr "確認"
 msgid "Success"
 msgstr "成功"
 
-#: src/components/WalletHeader.tsx:58
+#: src/components/WalletHeader.tsx:54
 msgid "Summary"
 msgstr "概要"
 
@@ -759,13 +759,13 @@ msgstr "已同步"
 msgid "Syncing"
 msgstr "同步中"
 
-#: src/components/card/WalletCardTotalBalance.tsx:76
+#: src/components/card/WalletCardTotalBalance.tsx:77
 msgid "The derivation index sets the range of wallet addresses that the wallet scans the blockchain for. This number is generally higher if you have a lot of transactions or canceled offers for XCH, CATs, or NFTs. If you believe your balance is incorrect because it’s missing coins, then increasing the derivation index could help the wallet include the missing coins in the balance total."
 msgstr ""
 
 #: src/components/cat/WalletDID.tsx:789
 #: src/components/did/WalletDID.tsx:789
-#: src/components/did/WalletDIDCreate.tsx:88
+#: src/components/did/WalletDIDCreate.tsx:87
 msgid "The number of Backup IDs needed for recovery cannot exceed the number of Backup IDs added."
 msgstr "恢復備份 ID的數量不能超過添加的ID 數量。"
 
@@ -801,7 +801,7 @@ msgstr ""
 msgid "This is the total balance + pending balance: it is what your balance will be after all pending transactions are confirmed."
 msgstr "這是總餘額 + 未結餘額：這是在全部未結交易結清後你的餘額。"
 
-#: src/components/WalletHistory.tsx:191
+#: src/components/WalletHistory.tsx:190
 msgid "To"
 msgstr "到"
 
@@ -830,7 +830,7 @@ msgstr "總餘額"
 msgid "Transaction has successfully been sent to a full node and included in the mempool."
 msgstr ""
 
-#: src/components/WalletHistory.tsx:308
+#: src/components/WalletHistory.tsx:311
 msgid "Transactions"
 msgstr "交易"
 

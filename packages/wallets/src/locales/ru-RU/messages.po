@@ -18,15 +18,15 @@ msgstr ""
 "X-Crowdin-File: /main/packages/wallets/src/locales/en-US/messages.po\n"
 "X-Crowdin-File-ID: 1890\n"
 
-#: src/components/WalletHistory.tsx:210
+#: src/components/WalletHistory.tsx:209
 msgid "+"
 msgstr "+"
 
-#: src/components/WalletHistory.tsx:210
+#: src/components/WalletHistory.tsx:209
 msgid "-"
 msgstr "-"
 
-#: src/components/WalletHeader.tsx:74
+#: src/components/WalletHeader.tsx:80
 msgid "Actions"
 msgstr "Действия"
 
@@ -36,7 +36,7 @@ msgstr "Добавить"
 
 #: src/components/cat/WalletDID.tsx:874
 #: src/components/did/WalletDID.tsx:874
-#: src/components/did/WalletDIDCreate.tsx:205
+#: src/components/did/WalletDIDCreate.tsx:207
 msgid "Add Backup ID"
 msgstr "Добавить ID резервной копии"
 
@@ -45,7 +45,7 @@ msgstr "Добавить ID резервной копии"
 #~ msgstr "Добавить пользовательский токен"
 
 #: src/components/WalletsList.tsx:54
-#: src/components/WalletsManageTokens.tsx:170
+#: src/components/WalletsManageTokens.tsx:174
 #: src/components/cat/WalletCATCreateExistingSimple.tsx:61
 #: src/components/cat/WalletCATCreateSimple.tsx:70
 msgid "Add Token"
@@ -65,7 +65,7 @@ msgstr "Адрес"
 msgid "Address / Puzzle hash"
 msgstr "Адрес / Хэш-головоломка"
 
-#: src/components/WalletHistory.tsx:226
+#: src/components/WalletHistory.tsx:225
 #: src/components/WalletSend.tsx:167
 #: src/components/cat/WalletCATSend.tsx:207
 #: src/components/rateLimited/WalletRateLimited.jsx:719
@@ -76,17 +76,17 @@ msgstr "Количество"
 msgid "Amount For Initial Coin"
 msgstr "Начальное количество монет"
 
-#: src/components/did/WalletDIDCreate.tsx:61
+#: src/components/did/WalletDIDCreate.tsx:60
 msgid "Amount must be an even amount."
 msgstr "Сумма должна быть не менее %{count}"
 
-#: src/components/WalletHeader.tsx:42
+#: src/components/WalletHeader.tsx:36
 msgid "Are you sure you want to delete unconfirmed transactions?"
 msgstr "Вы действительно хотите удалить неподтвержденные транзакции?"
 
 #: src/components/cat/WalletCATCreateExistingSimple.tsx:80
-#: src/components/cat/WalletCATTAILDialog.tsx:43
-#: src/components/cat/WalletCATTAILDialog.tsx:55
+#: src/components/cat/WalletCATTAILDialog.tsx:46
+#: src/components/cat/WalletCATTAILDialog.tsx:56
 msgid "Asset Id"
 msgstr "ID Актива"
 
@@ -118,8 +118,8 @@ msgstr "Не удается отправить Chia по цветному адр
 msgid "Check my snapshot balance"
 msgstr ""
 
-#: src/components/cat/WalletCATSelect.tsx:25
-#: src/components/create/WalletCreateList.tsx:32
+#: src/components/cat/WalletCATSelect.tsx:24
+#: src/components/create/WalletCreateList.tsx:35
 #: src/constants/WalletName.ts:23
 msgid "Chia Asset Token"
 msgstr ""
@@ -133,15 +133,15 @@ msgstr ""
 msgid "Coin Name"
 msgstr "Название токена"
 
-#: src/components/WalletHeader.tsx:37
+#: src/components/WalletHeader.tsx:31
 msgid "Confirmation"
 msgstr "Подтверждение"
 
-#: src/components/WalletHistory.tsx:156
+#: src/components/WalletHistory.tsx:155
 msgid "Confirmed"
 msgstr "Подтверждено"
 
-#: src/components/WalletHistory.tsx:356
+#: src/components/WalletHistory.tsx:359
 msgid "Confirmed at Height"
 msgstr ""
 
@@ -166,7 +166,7 @@ msgstr "Копировать"
 #: src/components/cat/WalletCATCreateNew.tsx:101
 #: src/components/create/createRLAdmin.jsx:306
 #: src/components/create/createRLUser.jsx:99
-#: src/components/did/WalletDIDCreate.tsx:218
+#: src/components/did/WalletDIDCreate.tsx:220
 msgid "Create"
 msgstr "Создать"
 
@@ -179,7 +179,7 @@ msgstr "Создать пакет аттестации"
 #~ msgid "Create Chia Asset Token Wallet from Existing TAIL"
 #~ msgstr ""
 
-#: src/components/did/WalletDIDCreate.tsx:109
+#: src/components/did/WalletDIDCreate.tsx:113
 msgid "Create Distributed Identity Wallet"
 msgstr "Создать распределенный идентификационный кошелек"
 
@@ -187,13 +187,13 @@ msgstr "Создать распределенный идентификацион
 msgid "Create New Chia Asset Token Wallet"
 msgstr ""
 
-#: src/components/cat/WalletCATSelect.tsx:32
-#: src/components/did/WalletDIDSelect.tsx:32
+#: src/components/cat/WalletCATSelect.tsx:31
+#: src/components/did/WalletDIDSelect.tsx:31
 msgid "Create New Wallet"
 msgstr "Создать новый кошелек"
 
-#: src/components/cat/WalletCAT.tsx:129
-#: src/components/standard/WalletStandard.tsx:54
+#: src/components/cat/WalletCAT.tsx:113
+#: src/components/standard/WalletStandard.tsx:48
 msgid "Create Offer"
 msgstr ""
 
@@ -231,30 +231,30 @@ msgstr ""
 msgid "Datalayer Wallet"
 msgstr ""
 
-#: src/components/WalletHistory.tsx:199
+#: src/components/WalletHistory.tsx:198
 msgid "Date"
 msgstr "Дата"
 
-#: src/components/WalletHeader.tsx:38
+#: src/components/WalletHeader.tsx:32
 #: src/components/cat/WalletDID.tsx:448
 #: src/components/cat/WalletDID.tsx:862
 #: src/components/did/WalletDID.tsx:448
 #: src/components/did/WalletDID.tsx:862
-#: src/components/did/WalletDIDCreate.tsx:194
+#: src/components/did/WalletDIDCreate.tsx:196
 #: src/components/did/WalletDIDRecovery.tsx:101
 msgid "Delete"
 msgstr "Удалить"
 
-#: src/components/WalletHeader.tsx:87
+#: src/components/WalletHeader.tsx:86
 msgid "Delete Unconfirmed Transactions"
 msgstr "Удалить неподтвержденные транзакции"
 
-#: src/components/card/WalletCardTotalBalance.tsx:74
+#: src/components/card/WalletCardTotalBalance.tsx:75
 msgid "Derivation Index: {0}"
 msgstr ""
 
-#: src/components/create/WalletCreateList.tsx:39
-#: src/components/did/WalletDIDSelect.tsx:25
+#: src/components/create/WalletCreateList.tsx:42
+#: src/components/did/WalletDIDSelect.tsx:24
 msgid "Distributed Identity"
 msgstr ""
 
@@ -280,7 +280,7 @@ msgstr "Ошибка введенный адрес, кажется, для др�
 msgid "Farm"
 msgstr "Ферма"
 
-#: src/components/WalletHistory.tsx:238
+#: src/components/WalletHistory.tsx:237
 #: src/components/WalletSend.tsx:179
 #: src/components/cat/WalletCATSend.tsx:221
 #: src/components/create/createRLAdmin.jsx:243
@@ -348,16 +348,16 @@ msgstr ""
 msgid "Manage Recovery DIDs"
 msgstr ""
 
-#: src/components/WalletsManageTokens.tsx:147
+#: src/components/WalletsManageTokens.tsx:151
 msgid "Manage token list"
 msgstr "Управление списком токенов"
 
-#: src/components/WalletHistory.tsx:170
+#: src/components/WalletHistory.tsx:169
 #: src/components/cat/WalletCATSend.tsx:234
 msgid "Memo"
 msgstr ""
 
-#: src/components/WalletHistory.tsx:365
+#: src/components/WalletHistory.tsx:368
 msgid "Memos"
 msgstr ""
 
@@ -407,7 +407,7 @@ msgstr "Далее"
 msgid "Nickname"
 msgstr "Псевдоним"
 
-#: src/components/WalletHistory.tsx:401
+#: src/components/WalletHistory.tsx:404
 msgid "No previous transactions"
 msgstr "Нет предыдущих транзакций"
 
@@ -415,8 +415,8 @@ msgstr "Нет предыдущих транзакций"
 msgid "Node ID"
 msgstr "Идентификатор узла"
 
-#: src/components/WalletHistory.tsx:350
-#: src/components/WalletHistory.tsx:360
+#: src/components/WalletHistory.tsx:353
+#: src/components/WalletHistory.tsx:363
 msgid "Not Available"
 msgstr "Не определено"
 
@@ -428,11 +428,11 @@ msgstr "Не определено"
 msgid "Not Synced"
 msgstr "Не синхронизирован"
 
-#: src/components/cat/WalletCATTAILDialog.tsx:82
+#: src/components/cat/WalletCATTAILDialog.tsx:83
 msgid "OK"
 msgstr "OK"
 
-#: src/components/WalletHistory.tsx:184
+#: src/components/WalletHistory.tsx:183
 msgid "Offer Accepted"
 msgstr ""
 
@@ -457,7 +457,7 @@ msgstr "Вставить мнемонику"
 msgid "Paste Mnemonic (24 words)"
 msgstr "Вставить Мнемонику (24 слова)"
 
-#: src/components/WalletHistory.tsx:163
+#: src/components/WalletHistory.tsx:162
 msgid "Pending"
 msgstr "Ожидающие"
 
@@ -516,7 +516,7 @@ msgstr "Пожалуйста, укажите корректное численн
 
 #: src/components/cat/WalletDID.tsx:776
 #: src/components/did/WalletDID.tsx:776
-#: src/components/did/WalletDIDCreate.tsx:75
+#: src/components/did/WalletDIDCreate.tsx:74
 msgid "Please enter a valid integer of 0 or greater for the number of Backup IDs needed for recovery."
 msgstr ""
 
@@ -526,7 +526,7 @@ msgstr ""
 msgid "Please enter a valid numeric amount"
 msgstr "Пожалуйста, укажите корректное численное значение"
 
-#: src/components/did/WalletDIDCreate.tsx:49
+#: src/components/did/WalletDIDCreate.tsx:50
 msgid "Please enter a valid numeric amount."
 msgstr ""
 
@@ -596,7 +596,7 @@ msgstr ""
 msgid "RL Wallet"
 msgstr ""
 
-#: src/components/create/WalletCreateList.tsx:45
+#: src/components/create/WalletCreateList.tsx:48
 msgid "Rate Limited"
 msgstr "Ограниченной Скорости"
 
@@ -613,7 +613,7 @@ msgstr "Настройка кошелька пользователя с огра
 msgid "Read the blog post for details"
 msgstr ""
 
-#: src/components/WalletHeader.tsx:60
+#: src/components/WalletHeader.tsx:64
 msgid "Receive"
 msgstr ""
 
@@ -643,7 +643,7 @@ msgstr "Восстановить DID кошелек"
 msgid "Recover Distributed Identity Wallet"
 msgstr ""
 
-#: src/components/did/WalletDIDSelect.tsx:39
+#: src/components/did/WalletDIDSelect.tsx:38
 msgid "Recover Wallet"
 msgstr "Восстановить кошелек"
 
@@ -651,16 +651,16 @@ msgstr "Восстановить кошелек"
 msgid "Recoverable Wallet"
 msgstr "Восстановляемый кошелек"
 
-#: src/components/cat/WalletCATSelect.tsx:39
+#: src/components/cat/WalletCATSelect.tsx:38
 msgid "Recovery Wallet"
 msgstr ""
 
 #: src/components/WalletRenameDialog.tsx:69
-#: src/components/cat/WalletCAT.tsx:102
+#: src/components/cat/WalletCAT.tsx:96
 msgid "Rename Wallet"
 msgstr "Переименовать кошелек"
 
-#: src/components/WalletHistory.tsx:177
+#: src/components/WalletHistory.tsx:176
 msgid "Retire"
 msgstr ""
 
@@ -668,8 +668,8 @@ msgstr ""
 msgid "Save"
 msgstr "Сохранить"
 
-#: src/components/WalletTokenCard.tsx:198
-#: src/components/cat/WalletCATTAILDialog.tsx:71
+#: src/components/WalletTokenCard.tsx:185
+#: src/components/cat/WalletCATTAILDialog.tsx:76
 msgid "Search on Tail Database"
 msgstr "Искать в Tail Database"
 
@@ -677,7 +677,7 @@ msgstr "Искать в Tail Database"
 msgid "Select Wallet"
 msgstr "Выбрать кошелек"
 
-#: src/components/create/WalletCreateList.tsx:25
+#: src/components/create/WalletCreateList.tsx:28
 msgid "Select Wallet Type"
 msgstr "Выберите Тип Кошелька"
 
@@ -700,7 +700,7 @@ msgstr "Отправьте этот информационный пакет по
 msgid "Send your pubkey to your Rate Limited Wallet admin:"
 msgstr "Отправьте этот публичный ключ администратору вашего кошелька с ограниченной скоростью вывода средств:"
 
-#: src/components/cat/WalletCAT.tsx:116
+#: src/components/cat/WalletCAT.tsx:105
 msgid "Show Asset Id"
 msgstr "Показать ID актива"
 
@@ -745,7 +745,7 @@ msgstr "Подтвердить"
 msgid "Success"
 msgstr "Успешно"
 
-#: src/components/WalletHeader.tsx:58
+#: src/components/WalletHeader.tsx:54
 msgid "Summary"
 msgstr "Сводка"
 
@@ -757,13 +757,13 @@ msgstr "Синхронизован"
 msgid "Syncing"
 msgstr "Синхронизация"
 
-#: src/components/card/WalletCardTotalBalance.tsx:76
+#: src/components/card/WalletCardTotalBalance.tsx:77
 msgid "The derivation index sets the range of wallet addresses that the wallet scans the blockchain for. This number is generally higher if you have a lot of transactions or canceled offers for XCH, CATs, or NFTs. If you believe your balance is incorrect because it’s missing coins, then increasing the derivation index could help the wallet include the missing coins in the balance total."
 msgstr ""
 
 #: src/components/cat/WalletDID.tsx:789
 #: src/components/did/WalletDID.tsx:789
-#: src/components/did/WalletDIDCreate.tsx:88
+#: src/components/did/WalletDIDCreate.tsx:87
 msgid "The number of Backup IDs needed for recovery cannot exceed the number of Backup IDs added."
 msgstr "Количество идентификаторов резервных копий, необходимых для восстановления, не может превышать количество добавленных идентификаторов резервной копии."
 
@@ -799,7 +799,7 @@ msgstr "Это общее количество монет чиа в блокче
 msgid "This is the total balance + pending balance: it is what your balance will be after all pending transactions are confirmed."
 msgstr "Это общий баланс + отложенный баланс: это то, каким будет ваш баланс после подтверждения всех ожидающих транзакций."
 
-#: src/components/WalletHistory.tsx:191
+#: src/components/WalletHistory.tsx:190
 msgid "To"
 msgstr "Кому"
 
@@ -828,7 +828,7 @@ msgstr "Итоговый баланс"
 msgid "Transaction has successfully been sent to a full node and included in the mempool."
 msgstr "Транзакция успешно отправлена на полный узел и включена в мемпул."
 
-#: src/components/WalletHistory.tsx:308
+#: src/components/WalletHistory.tsx:311
 msgid "Transactions"
 msgstr "Транзакции"
 

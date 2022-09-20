@@ -22,7 +22,7 @@ msgstr ""
 msgid "<0>{0}</0>"
 msgstr ""
 
-#: src/components/Amount/Amount.tsx:116
+#: src/components/Amount/Amount.tsx:103
 msgid "Amount"
 msgstr "Количина"
 
@@ -31,7 +31,7 @@ msgid "Appearance"
 msgstr ""
 
 #: src/components/FormBackButton/FormBackButton.tsx:47
-#: src/screens/SelectKey/SelectKey.tsx:79
+#: src/screens/SelectKey/SelectKey.tsx:82
 #: src/screens/SelectKey/SelectKeyItem.tsx:93
 msgid "Back"
 msgstr "Назад"
@@ -40,7 +40,7 @@ msgstr "Назад"
 msgid "Can be backed up to mnemonic seed"
 msgstr "Може се сачувати у мнемоничко семе"
 
-#: src/components/ConfirmDialog/ConfirmDialog.tsx:105
+#: src/components/ConfirmDialog/ConfirmDialog.tsx:32
 #: src/hooks/useKeyringMigrationPrompt.tsx:17
 msgid "Cancel"
 msgstr "Откажи"
@@ -49,15 +49,15 @@ msgstr "Откажи"
 msgid "Connected"
 msgstr "Повезано"
 
-#: src/components/CopyToClipboard/CopyToClipboard.tsx:42
+#: src/components/CopyToClipboard/CopyToClipboard.tsx:56
 msgid "Copied"
 msgstr "Копирано"
 
-#: src/components/CopyToClipboard/CopyToClipboard.tsx:44
+#: src/components/CopyToClipboard/CopyToClipboard.tsx:58
 msgid "Copy to Clipboard"
 msgstr "Копирај у привремену меморију"
 
-#: src/screens/SelectKey/SelectKey.tsx:180
+#: src/screens/SelectKey/SelectKey.tsx:187
 msgid "Create a new private key"
 msgstr "Креирај нови приватни кључ"
 
@@ -69,13 +69,13 @@ msgstr "ОПАСНОСТ: трајно брисање приватног кљу�
 msgid "Dark"
 msgstr ""
 
-#: src/screens/SelectKey/SelectKey.tsx:78
+#: src/screens/SelectKey/SelectKey.tsx:81
 #: src/screens/SelectKey/SelectKeyItem.tsx:92
 msgid "Delete"
 msgstr "Обриши"
 
-#: src/screens/SelectKey/SelectKey.tsx:202
-#: src/screens/SelectKey/SelectKey.tsx:77
+#: src/screens/SelectKey/SelectKey.tsx:209
+#: src/screens/SelectKey/SelectKey.tsx:80
 msgid "Delete all keys"
 msgstr "Обриши све кључеве"
 
@@ -83,7 +83,7 @@ msgstr "Обриши све кључеве"
 msgid "Delete key {fingerprint}"
 msgstr ""
 
-#: src/screens/SelectKey/SelectKey.tsx:83
+#: src/screens/SelectKey/SelectKey.tsx:86
 msgid "Deleting all keys will permanently remove the keys from your computer, make sure you have backups. Are you sure you want to continue?"
 msgstr "Брисање свих кључева уклониће их трајно са твог рачунара, побрини се да имаш резервне копије. Да ли сигурно желиш да наставиш?"
 
@@ -127,7 +127,7 @@ msgid "Farming"
 msgstr "Обрађивање"
 
 #: src/components/EstimatedFee/EstimatedFee.tsx:160
-#: src/components/EstimatedFee/EstimatedFee.tsx:192
+#: src/components/EstimatedFee/EstimatedFee.tsx:193
 #: src/components/Fee/Fee.tsx:52
 msgid "Fee"
 msgstr "Накнада"
@@ -148,7 +148,7 @@ msgstr "Помози у превођењу"
 msgid "Hide Advanced Options"
 msgstr "Сакриј напредне опције"
 
-#: src/screens/SelectKey/SelectKey.tsx:191
+#: src/screens/SelectKey/SelectKey.tsx:198
 msgid "Import from Mnemonics (24 words)"
 msgstr "Увези уз помоћ мнемотехнике (24 речи)"
 
@@ -164,16 +164,16 @@ msgstr ""
 msgid "Light"
 msgstr ""
 
-#: src/screens/SelectKey/SelectKey.tsx:116
+#: src/screens/SelectKey/SelectKey.tsx:122
 msgid "Loading list of the keys"
 msgstr ""
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:129
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:151
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:141
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:166
 msgid "Log Out"
 msgstr ""
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:147
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:162
 msgid "Logout"
 msgstr ""
 
@@ -202,7 +202,7 @@ msgstr "Нема 24 речи, јер је кључ увезен."
 msgid "Not connected"
 msgstr "Није повезано"
 
-#: src/components/ConfirmDialog/ConfirmDialog.tsx:106
+#: src/components/ConfirmDialog/ConfirmDialog.tsx:33
 msgid "OK"
 msgstr "ОК"
 
@@ -249,7 +249,7 @@ msgstr "Прикажи приватни кључ"
 msgid "Seed:"
 msgstr "Семе:"
 
-#: src/screens/SelectKey/SelectKey.tsx:135
+#: src/screens/SelectKey/SelectKey.tsx:139
 msgid "Select Key"
 msgstr "Изабери кључ"
 
@@ -275,7 +275,7 @@ msgstr ""
 msgid "Show Advanced Options"
 msgstr "Прикажи напредне опције"
 
-#: src/screens/SelectKey/SelectKey.tsx:140
+#: src/screens/SelectKey/SelectKey.tsx:144
 msgid "Sign In"
 msgstr "Пријави се"
 
@@ -307,11 +307,11 @@ msgstr ""
 msgid "Transaction has successfully been sent to a full node and included in the mempool."
 msgstr ""
 
-#: src/screens/SelectKey/SelectKey.tsx:123
+#: src/screens/SelectKey/SelectKey.tsx:129
 msgid "Try Again"
 msgstr ""
 
-#: src/screens/SelectKey/SelectKey.tsx:127
+#: src/screens/SelectKey/SelectKey.tsx:133
 msgid "Unable to load the list of the keys"
 msgstr ""
 
@@ -332,7 +332,7 @@ msgstr ""
 msgid "Value seems high"
 msgstr ""
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:98
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:109
 #: src/components/Settings/SettingsApp.tsx:69
 msgid "Wallet"
 msgstr ""
@@ -349,7 +349,7 @@ msgstr ""
 msgid "Warning: This key is used for your pool rewards address. By deleting this key you may lose access to any future pool rewards"
 msgstr ""
 
-#: src/screens/SelectKey/SelectKey.tsx:143
+#: src/screens/SelectKey/SelectKey.tsx:147
 msgid "Welcome to Chia. Please log in with an existing key, or create a new key."
 msgstr "Добродошли у Chia. Пријави се помоћу постојећег кључа или креирај нови кључ."
 
@@ -362,7 +362,7 @@ msgstr ""
 msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Would you like to migrate your keys now?"
 msgstr ""
 
-#: src/components/Amount/Amount.tsx:98
+#: src/components/Amount/Amount.tsx:85
 msgid "{0, plural, one {mojo} other {mojos}}"
 msgstr ""
 

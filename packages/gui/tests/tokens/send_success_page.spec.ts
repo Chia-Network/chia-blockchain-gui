@@ -1,6 +1,7 @@
 import { ElectronApplication, Page, _electron as electron } from 'playwright'
 import { test, expect } from '@playwright/test';
 import { dialog } from 'electron';
+import { LoginPage } from '../data_object_model/passphrase_login';
 
 let electronApp: ElectronApplication;
 let page: Page;
@@ -23,12 +24,8 @@ test('Confirm that User can Send TXCH to another Wallet', async () => {
   
     let receive_wallet = 'txch1u237ltq0pp4348ppwv6cge7fks87mn4wz3c0ywvgswvpwhkqqn8qn8jeq6'
 
-  //THIS FEATURE IS VOID DO TO AUTO LOGIN
-  // // Given I log into Wallet 1922132445
-  // await Promise.all([
-  //   page.waitForNavigation(/*{ url: 'file:///Users/jahifaw/Documents/Code/Chia-testnet-playwright/chia-blockchain/chia-blockchain-gui/packages/gui/build/renderer/index.html#/dashboard/wallets/1' }*/),
-  //   page.locator('div[role="button"]:has-text("Private key with public fingerprint 1922132445Can be backed up to mnemonic seed")').click()
-  // ]);
+   // Given I enter correct credentials in Passphrase dialog
+   await new LoginPage(page).login('password2022!@')
 
   // Given I click on Send Page
   await page.locator('[data-testid="WalletHeader-tab-send"]').click();

@@ -97,3 +97,6 @@ win_code_sign_cert.p12
 
 .env
 dist
+
+# playwright non-essentials
+packages/gui/playwright-report
