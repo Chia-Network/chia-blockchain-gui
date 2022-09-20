@@ -18,8 +18,7 @@
     "locale:extract": "lingui extract",
     "locale:clean": "lingui extract --clean",
     "locale:compile": "lingui compile",
-    "locale": "lingui extract && lingui compile",
-    "test": "cypress open --component --browser chrome"
+    "locale": "lingui extract && lingui compile"
   },
   "dependencies": {
     "@babel/runtime": "7.16.7",
@@ -88,7 +87,6 @@
     "babel-plugin-styled-components": "2.0.2",
     "babel-plugin-transform-imports": "2.0.0",
     "cross-env": "7.0.3",
-    "cypress": "10.8.0",
     "electron": "19.0.4",
     "react": "17.0.2",
     "react-dom": "17.0.2",
