@@ -585,7 +585,10 @@ export const walletApi = apiWithTag.injectEndpoints({
         args: [mnemonic, type, filePath],
       }),
       transformResponse: (response: any) => response?.fingerprint,
-      invalidatesTags: [{ type: 'Keys', id: 'LIST' }],
+      invalidatesTags: [
+        { type: 'Keys', id: 'LIST' },
+        { type: 'DaemonKey', id: 'LIST' },
+      ],
     }),
 
     deleteKey: build.mutation<
@@ -631,7 +634,10 @@ export const walletApi = apiWithTag.injectEndpoints({
         command: 'deleteAllKeys',
         service: Wallet,
       }),
-      invalidatesTags: [{ type: 'Keys', id: 'LIST' }],
+      invalidatesTags: [
+        { type: 'Keys', id: 'LIST' },
+        { type: 'DaemonKey', id: 'LIST' },
+      ],
     }),
 
     logIn: build.mutation<
