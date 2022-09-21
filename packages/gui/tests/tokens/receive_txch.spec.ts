@@ -30,6 +30,7 @@ test.afterAll(async () => {
     // And I navigate to a wallet with funds
     await page.locator('[data-testid="LayoutDashboard-log-out"]').click();
     await page.locator('text=1922132445').click();
+   // await page.waitForSelector('svg:has-text("3AAC59"):near(:text("Wallet"))');
 
     // And I check the balance of current wallet
     //await new SendFunds(page).check_balance()
@@ -38,8 +39,11 @@ test.afterAll(async () => {
     await page.locator('[data-testid="WalletHeader-tab-send"]').click();
 
     // When I complete the send page required fields
+    await page.waitForTimeout(30000)
+    //await page.waitForSelector('button:has-text("Synced"):right-of(:text("Wallet 1651231316"))');
+   // await page.waitForSelector('svg:has-text("3AAC59"):near(:text("Wallet"))');
     await new SendFunds(page).send(receive_wallet, '0.01', '0.00005' )
-
+ 
     //Syncing is an issue for this!!
     //Then I receive a success message
     await expect(page.locator('div[role="dialog"]')).toHaveText("SuccessTransaction has successfully been sent to a full node and included in the mempool.OK" );
@@ -59,6 +63,7 @@ test.afterAll(async () => {
 
     // Given I send funds back 
     await page.locator('[data-testid="WalletHeader-tab-send"]').click();
+    await page.waitForTimeout(40000)
     await new SendFunds(page).send(send_wallet, '0.01', '0.00005' )
  
   });
