@@ -1,14 +1,23 @@
 import { ElectronApplication, Page, _electron as electron } from 'playwright'
 import { test, expect } from '@playwright/test';
+import { LoginPage } from '../data_object_model/passphrase_login';
 
 let electronApp: ElectronApplication;
 let page: Page;
+
+ //*********Need a function to run chia stop all -d after every close of app!!
 
   test.beforeAll(async () => {
     electronApp = await electron.launch({ args: ['./build/electron/main.js'] });
     //electronApp = await electron.launch({ headless: true });
     page = await electronApp.firstWindow();
     
+  });
+
+   test.beforeEach(async () => {
+    // Given I enter correct credentials in Passphrase dialog
+    await new LoginPage(page).login('password2022!@')
+
   });
 
   test.afterAll(async () => {
@@ -18,12 +27,6 @@ let page: Page;
 //Works and Passes
 test('Confirm user can navigate and interact the Settings page in user acceptable manner. ', async () => {
 
-  // //NOTE: Playwright doesn't appear to capture any data within the loading dialog
-  // // Given Data Layer is enable upon loading Chia
-  // await expect(page.locator('text=Data Layer')).toBeVisible;
-
-  // // //  And Data Layer File Propagation Server is enable upon loading Chia
-  // await expect(page.locator('text=Data Layer File Propagation Server')).toBeVisible;
 
   // Given I navigate to the Setting's Gear
   await page.locator('[data-testid="DashboardSideBar-settings"]').click();

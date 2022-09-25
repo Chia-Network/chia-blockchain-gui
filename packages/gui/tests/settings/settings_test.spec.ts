@@ -1,5 +1,6 @@
 import { ElectronApplication, Page, _electron as electron } from 'playwright'
 import { test, expect } from '@playwright/test';
+import { LoginPage } from '../data_object_model/passphrase_login';
 
 let electronApp: ElectronApplication;
 let page: Page;
@@ -10,6 +11,12 @@ let page: Page;
     //electronApp = await electron.launch({ headless: true });
     page = await electronApp.firstWindow();
     
+  });
+
+  test.beforeEach(async () => {
+    // Given I enter correct credentials in Passphrase dialog
+    await new LoginPage(page).login('password2022!@')
+
   });
 
   test.afterAll(async () => {

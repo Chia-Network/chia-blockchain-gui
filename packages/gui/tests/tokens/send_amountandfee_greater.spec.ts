@@ -2,6 +2,7 @@ import { ElectronApplication, Page, _electron as electron } from 'playwright'
 import { test, expect } from '@playwright/test';
 import { dialog } from 'electron';
 import { LoginPage } from '../data_object_model/passphrase_login';
+import { isWalletSynced, getWalletBalance } from '../utils/wallet';
 
 let electronApp: ElectronApplication;
 let page: Page;
@@ -23,11 +24,29 @@ test.afterAll(async () => {
 test('Confirm that User cannot send a TXCH amount greater then in Wallet', async () => {
   
     let receive_wallet = 'txch1u237ltq0pp4348ppwv6cge7fks87mn4wz3c0ywvgswvpwhkqqn8qn8jeq6'
+    let funded_wallet = '1922132445'
 
    // Given I enter correct credentials in Passphrase dialog
    await new LoginPage(page).login('password2022!@')
 
-  // Given I click on Send Page
+    // And I navigate to a wallet with funds
+  await page.locator('[data-testid="LayoutDashboard-log-out"]').click();
+  await page.locator(`text=${funded_wallet}`).click();
+
+  // Begin: Wait for Wallet to Sync
+  while (!isWalletSynced(funded_wallet)) {
+    console.log('Waiting for wallet to sync...');
+    await page.waitForTimeout(1000);
+  }
+
+  console.log(`Wallet ${funded_wallet} is now fully synced`);
+
+  const balance = getWalletBalance(funded_wallet);
+
+  console.log(`XCH Balance: ${balance}`);
+  // End: Wait for Wallet to Sync
+
+  // And I click on Send Page
   await page.locator('[data-testid="WalletHeader-tab-send"]').click();
 
   // When I enter a valid wallet address in address field
@@ -43,7 +62,11 @@ test('Confirm that User cannot send a TXCH amount greater then in Wallet', async
   await page.locator('[data-testid="WalletSend-send"]').click();
 
  //Then I receive a success message
- await expect(page.locator('div[role="dialog"]')).toHaveText(`ErrorCan\'t send more than 23490469994997 in a single transactionOK` );
+ let haveBalanceString, stringBalance
+ stringBalance = balance?.toString()
+ haveBalanceString = stringBalance.replace(/\./g, '')
+ console.log(haveBalanceString)
+ await expect(page.locator('div[role="dialog"]')).toHaveText(`ErrorCan\'t send more than ${haveBalanceString} in a single transactionOK` );
  await page.locator('div[role="dialog"] >> text=OK').click();
 
   // And I navigate to Summary page 
