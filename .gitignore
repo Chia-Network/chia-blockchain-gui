@@ -95,8 +95,14 @@ packages/**/src/locales/**/*.js
 daemon/
 win_code_sign_cert.p12
 
+# testing
+packages/**/playwright-report/index.html
+
 .env
 dist
+<<<<<<< HEAD
 
 # playwright non-essentials
 packages/gui/playwright-report
+=======
+>>>>>>> main
