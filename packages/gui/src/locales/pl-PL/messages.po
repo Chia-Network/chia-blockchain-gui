@@ -8,7 +8,7 @@ msgstr ""
 "Language: pl_PL\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-08-12 18:15\n"
+"PO-Revision-Date: 2022-09-26 20:53\n"
 "Last-Translator: \n"
 "Language-Team: Polish\n"
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
@@ -463,11 +463,11 @@ msgstr "Potwierdzenie"
 
 #: src/components/offers/utils.ts:173
 msgid "Confirmed"
-msgstr ""
+msgstr "Potwierdzone"
 
 #: src/components/offers/OfferViewer.tsx:155
 msgid "Confirmed at Height"
-msgstr ""
+msgstr "Potwierdzone na wysokości"
 
 #: src/components/block/FullNodeAddConnection.tsx:88
 #: src/components/fullNode/FullNodeAddConnection.tsx:87
@@ -647,7 +647,7 @@ msgstr "Usuń działkę"
 
 #: src/components/plotNFT/PlotNFTCard.tsx:311
 msgid "Delete Unconfirmed Transactions"
-msgstr ""
+msgstr "Usuń niepotwierdzone transakcje"
 
 #: src/components/app/AppPassPrompt.tsx:106
 msgid "Deleting key"
@@ -760,7 +760,7 @@ msgstr ""
 
 #: src/components/plot/card/PlotCardPlotsDuplicate.tsx:11
 msgid "Duplicate Plots"
-msgstr ""
+msgstr "Zduplikowane działki"
 
 #: src/electron/main.tsx:442
 msgid "Edit"
@@ -805,7 +805,7 @@ msgstr "Błąd"
 
 #: src/components/fullNode/card/FullNodeEstimatedNetworkSpace.tsx:14
 msgid "Estimated Network Space"
-msgstr ""
+msgstr "Przybliżona przestrzeń sieci"
 
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:62
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:70
@@ -1036,7 +1036,7 @@ msgstr ""
 
 #: src/components/nfts/NFTContextualActions.tsx:568
 msgid "Hide"
-msgstr ""
+msgstr "Ukryj"
 
 #: src/components/settings/SettingsNFT.tsx:34
 msgid "Hide objectionable content"
@@ -1534,7 +1534,7 @@ msgstr ""
 
 #: src/components/offers/OfferViewer.tsx:156
 msgid "Not confirmed"
-msgstr ""
+msgstr "Niepotwierdzone"
 
 #: src/components/fullNode/card/FullNodeCardConnectionStatus.tsx:20
 msgid "Not connected"
@@ -2340,7 +2340,7 @@ msgstr ""
 
 #: src/components/offers/OfferViewer.tsx:269
 msgid "Summary"
-msgstr ""
+msgstr "Podsumowanie"
 
 #: src/components/fullNode/card/FullNodeCardStatus.tsx:49
 msgid "Synced"
