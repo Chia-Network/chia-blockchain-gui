@@ -18,11 +18,7 @@ msgstr ""
 "X-Crowdin-File: /main/packages/core/src/locales/en-US/messages.po\n"
 "X-Crowdin-File-ID: 1886\n"
 
-#: src/components/EstimatedFee/EstimatedFee.tsx:131
-msgid "<0>{0}</0>"
-msgstr ""
-
-#: src/components/Amount/Amount.tsx:103
+#: src/components/Amount/Amount.tsx:116
 msgid "Amount"
 msgstr "Totale"
 
@@ -31,7 +27,7 @@ msgid "Appearance"
 msgstr "Interfaccia"
 
 #: src/components/FormBackButton/FormBackButton.tsx:47
-#: src/screens/SelectKey/SelectKey.tsx:82
+#: src/screens/SelectKey/SelectKey.tsx:79
 #: src/screens/SelectKey/SelectKeyItem.tsx:93
 msgid "Back"
 msgstr "Indietro"
@@ -40,7 +36,7 @@ msgstr "Indietro"
 msgid "Can be backed up to mnemonic seed"
 msgstr "Può essere eseguito il backup su seed mnemonico"
 
-#: src/components/ConfirmDialog/ConfirmDialog.tsx:32
+#: src/components/ConfirmDialog/ConfirmDialog.tsx:105
 #: src/hooks/useKeyringMigrationPrompt.tsx:17
 msgid "Cancel"
 msgstr "Annulla"
@@ -49,15 +45,15 @@ msgstr "Annulla"
 msgid "Connected"
 msgstr "Connesso"
 
-#: src/components/CopyToClipboard/CopyToClipboard.tsx:56
+#: src/components/CopyToClipboard/CopyToClipboard.tsx:42
 msgid "Copied"
 msgstr "Copiato"
 
-#: src/components/CopyToClipboard/CopyToClipboard.tsx:58
+#: src/components/CopyToClipboard/CopyToClipboard.tsx:44
 msgid "Copy to Clipboard"
 msgstr "Copia negli appunti"
 
-#: src/screens/SelectKey/SelectKey.tsx:187
+#: src/screens/SelectKey/SelectKey.tsx:180
 msgid "Create a new private key"
 msgstr "Crea una nuova chiave privata"
 
@@ -69,13 +65,13 @@ msgstr "ATTENZIONE: cancella permanentemente la chiave privata"
 msgid "Dark"
 msgstr "Scuro"
 
-#: src/screens/SelectKey/SelectKey.tsx:81
+#: src/screens/SelectKey/SelectKey.tsx:78
 #: src/screens/SelectKey/SelectKeyItem.tsx:92
 msgid "Delete"
 msgstr "Elimina"
 
-#: src/screens/SelectKey/SelectKey.tsx:209
-#: src/screens/SelectKey/SelectKey.tsx:80
+#: src/screens/SelectKey/SelectKey.tsx:202
+#: src/screens/SelectKey/SelectKey.tsx:77
 msgid "Delete all keys"
 msgstr "Elimina tutte le chiavi"
 
@@ -83,7 +79,7 @@ msgstr "Elimina tutte le chiavi"
 msgid "Delete key {fingerprint}"
 msgstr "Elimina chiave {fingerprint}"
 
-#: src/screens/SelectKey/SelectKey.tsx:86
+#: src/screens/SelectKey/SelectKey.tsx:83
 msgid "Deleting all keys will permanently remove the keys from your computer, make sure you have backups. Are you sure you want to continue?"
 msgstr "Eliminando tutte le chiavi queste saranno rimosse definitivamente dal tuo computer, assicurati di avere un backup. Sei sicuro di voler continuare?"
 
@@ -126,8 +122,6 @@ msgstr "Chiave pubblica del farmer:"
 msgid "Farming"
 msgstr "Coltivando"
 
-#: src/components/EstimatedFee/EstimatedFee.tsx:160
-#: src/components/EstimatedFee/EstimatedFee.tsx:193
 #: src/components/Fee/Fee.tsx:52
 msgid "Fee"
 msgstr "Costo della commissione"
@@ -148,7 +142,7 @@ msgstr "Aiuta a tradurre"
 msgid "Hide Advanced Options"
 msgstr "Nascondi Opzioni Avanzate"
 
-#: src/screens/SelectKey/SelectKey.tsx:198
+#: src/screens/SelectKey/SelectKey.tsx:191
 msgid "Import from Mnemonics (24 words)"
 msgstr "Importa dalle Mnemonic (24 parole)"
 
@@ -164,16 +158,16 @@ msgstr "Lingua"
 msgid "Light"
 msgstr "Chiaro"
 
-#: src/screens/SelectKey/SelectKey.tsx:122
+#: src/screens/SelectKey/SelectKey.tsx:116
 msgid "Loading list of the keys"
 msgstr "Caricamento lista delle chiavi"
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:141
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:166
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:129
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:151
 msgid "Log Out"
 msgstr "Disconnetti"
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:162
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:147
 msgid "Logout"
 msgstr "Disconnettiti"
 
@@ -202,7 +196,7 @@ msgstr "Nessun seed di 24 parole, dato che la chiave è importata."
 msgid "Not connected"
 msgstr "Non connesso"
 
-#: src/components/ConfirmDialog/ConfirmDialog.tsx:33
+#: src/components/ConfirmDialog/ConfirmDialog.tsx:106
 msgid "OK"
 msgstr "OK"
 
@@ -249,7 +243,7 @@ msgstr "Vedi chiave privata"
 msgid "Seed:"
 msgstr "Seed:"
 
-#: src/screens/SelectKey/SelectKey.tsx:139
+#: src/screens/SelectKey/SelectKey.tsx:135
 msgid "Select Key"
 msgstr "Selezione Chiave"
 
@@ -275,7 +269,7 @@ msgstr "Impostazioni"
 msgid "Show Advanced Options"
 msgstr "Mostra Opzioni Avanzate"
 
-#: src/screens/SelectKey/SelectKey.tsx:144
+#: src/screens/SelectKey/SelectKey.tsx:140
 msgid "Sign In"
 msgstr "Registrati"
 
@@ -307,11 +301,11 @@ msgstr "La transazione è stata inviata ad un nodo completo ed è in attesa di i
 msgid "Transaction has successfully been sent to a full node and included in the mempool."
 msgstr "La transazione é stata inviata con successo ad un nodo completo ed inclusa nella mempol."
 
-#: src/screens/SelectKey/SelectKey.tsx:129
+#: src/screens/SelectKey/SelectKey.tsx:123
 msgid "Try Again"
 msgstr "Riprova"
 
-#: src/screens/SelectKey/SelectKey.tsx:133
+#: src/screens/SelectKey/SelectKey.tsx:127
 msgid "Unable to load the list of the keys"
 msgstr "Impossibile caricare la lista delle chiavi"
 
@@ -332,7 +326,7 @@ msgstr "Utilizzare una passphrase è fortemente raccomandato per proteggere le c
 msgid "Value seems high"
 msgstr "Il valore sembra alto"
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:109
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:98
 #: src/components/Settings/SettingsApp.tsx:69
 msgid "Wallet"
 msgstr "Wallet"
@@ -349,7 +343,7 @@ msgstr "Attenzione: Questa chiave è utilizzata per il tuo indirizzo delle ricom
 msgid "Warning: This key is used for your pool rewards address. By deleting this key you may lose access to any future pool rewards"
 msgstr "Attenzione: Questa chiave è utilizzata per il tuo indirizzo delle ricompense per il farming. Eliminando questa chiave potresti perdere l'accesso a qualsiasi ricompensa futura per il farming"
 
-#: src/screens/SelectKey/SelectKey.tsx:147
+#: src/screens/SelectKey/SelectKey.tsx:143
 msgid "Welcome to Chia. Please log in with an existing key, or create a new key."
 msgstr "Benvenuto da Chia. Per favore accedi con una chiave esistente, o crea una nuova chiave."
 
@@ -362,13 +356,9 @@ msgstr "Sono state apportate modifiche non salvate. Vuoi scartarle?"
 msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Would you like to migrate your keys now?"
 msgstr "Le chiavi non sono state migrate ad un nuovo keyring. Non sarà possibile creare nuove chiavi o eliminare le chiavi esistenti fino al completamento della migrazione. Vuoi migrare le tue chiavi ora?"
 
-#: src/components/Amount/Amount.tsx:85
+#: src/components/Amount/Amount.tsx:98
 msgid "{0, plural, one {mojo} other {mojos}}"
 msgstr "{0, plural, one {mojo} other {mojos}}"
-
-#: src/components/EstimatedFee/EstimatedFee.tsx:128
-msgid "{0} TXCH"
-msgstr ""
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:39
 msgid "{minPassphraseLength, plural, one {Passphrases must be at least # character in length} other {Passphrases must be at least # characters in length}}"

@@ -18,11 +18,7 @@ msgstr ""
 "X-Crowdin-File: /main/packages/core/src/locales/en-US/messages.po\n"
 "X-Crowdin-File-ID: 1886\n"
 
-#: src/components/EstimatedFee/EstimatedFee.tsx:131
-msgid "<0>{0}</0>"
-msgstr ""
-
-#: src/components/Amount/Amount.tsx:103
+#: src/components/Amount/Amount.tsx:116
 msgid "Amount"
 msgstr "총합계"
 
@@ -31,7 +27,7 @@ msgid "Appearance"
 msgstr "외관"
 
 #: src/components/FormBackButton/FormBackButton.tsx:47
-#: src/screens/SelectKey/SelectKey.tsx:82
+#: src/screens/SelectKey/SelectKey.tsx:79
 #: src/screens/SelectKey/SelectKeyItem.tsx:93
 msgid "Back"
 msgstr "뒤로"
@@ -40,7 +36,7 @@ msgstr "뒤로"
 msgid "Can be backed up to mnemonic seed"
 msgstr "니모닉 시드에 백업할 수 있습니다"
 
-#: src/components/ConfirmDialog/ConfirmDialog.tsx:32
+#: src/components/ConfirmDialog/ConfirmDialog.tsx:105
 #: src/hooks/useKeyringMigrationPrompt.tsx:17
 msgid "Cancel"
 msgstr "취소"
@@ -49,15 +45,15 @@ msgstr "취소"
 msgid "Connected"
 msgstr "연결됨"
 
-#: src/components/CopyToClipboard/CopyToClipboard.tsx:56
+#: src/components/CopyToClipboard/CopyToClipboard.tsx:42
 msgid "Copied"
 msgstr "복사됨"
 
-#: src/components/CopyToClipboard/CopyToClipboard.tsx:58
+#: src/components/CopyToClipboard/CopyToClipboard.tsx:44
 msgid "Copy to Clipboard"
 msgstr "클립보드에 복사"
 
-#: src/screens/SelectKey/SelectKey.tsx:187
+#: src/screens/SelectKey/SelectKey.tsx:180
 msgid "Create a new private key"
 msgstr "새로운 개인 키 만들기"
 
@@ -69,13 +65,13 @@ msgstr "경고: 영구적으로 개인 키를 삭제합니다."
 msgid "Dark"
 msgstr "어두운 테마"
 
-#: src/screens/SelectKey/SelectKey.tsx:81
+#: src/screens/SelectKey/SelectKey.tsx:78
 #: src/screens/SelectKey/SelectKeyItem.tsx:92
 msgid "Delete"
 msgstr "삭제"
 
-#: src/screens/SelectKey/SelectKey.tsx:209
-#: src/screens/SelectKey/SelectKey.tsx:80
+#: src/screens/SelectKey/SelectKey.tsx:202
+#: src/screens/SelectKey/SelectKey.tsx:77
 msgid "Delete all keys"
 msgstr "모든 키 삭제"
 
@@ -83,7 +79,7 @@ msgstr "모든 키 삭제"
 msgid "Delete key {fingerprint}"
 msgstr "보호키 삭제 {fingerprint}"
 
-#: src/screens/SelectKey/SelectKey.tsx:86
+#: src/screens/SelectKey/SelectKey.tsx:83
 msgid "Deleting all keys will permanently remove the keys from your computer, make sure you have backups. Are you sure you want to continue?"
 msgstr "모든 키를 컴퓨터에서 영구적으로 제거합니다. 만일을 대비하여 백업이 준비되었는지 확인하십시오. 계속하시겠습니까?"
 
@@ -126,8 +122,6 @@ msgstr "농부 퍼블릭 키"
 msgid "Farming"
 msgstr "재배 중"
 
-#: src/components/EstimatedFee/EstimatedFee.tsx:160
-#: src/components/EstimatedFee/EstimatedFee.tsx:193
 #: src/components/Fee/Fee.tsx:52
 msgid "Fee"
 msgstr "수수료"
@@ -148,7 +142,7 @@ msgstr "번역 돕기"
 msgid "Hide Advanced Options"
 msgstr "고급 옵션 숨기기"
 
-#: src/screens/SelectKey/SelectKey.tsx:198
+#: src/screens/SelectKey/SelectKey.tsx:191
 msgid "Import from Mnemonics (24 words)"
 msgstr "니모닉에서 불러오기 (24단어)"
 
@@ -164,16 +158,16 @@ msgstr "언어설정"
 msgid "Light"
 msgstr "밝은 테마"
 
-#: src/screens/SelectKey/SelectKey.tsx:122
+#: src/screens/SelectKey/SelectKey.tsx:116
 msgid "Loading list of the keys"
 msgstr "키 목록 로드 중"
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:141
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:166
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:129
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:151
 msgid "Log Out"
 msgstr "로그아웃"
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:162
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:147
 msgid "Logout"
 msgstr "로그아웃"
 
@@ -202,7 +196,7 @@ msgstr "24 단어의 씨드가 없습니다, 나중에 키를 가져 옵니다."
 msgid "Not connected"
 msgstr "연결되지 않음"
 
-#: src/components/ConfirmDialog/ConfirmDialog.tsx:33
+#: src/components/ConfirmDialog/ConfirmDialog.tsx:106
 msgid "OK"
 msgstr "확인"
 
@@ -249,7 +243,7 @@ msgstr "개인 키 보기"
 msgid "Seed:"
 msgstr "시드:"
 
-#: src/screens/SelectKey/SelectKey.tsx:139
+#: src/screens/SelectKey/SelectKey.tsx:135
 msgid "Select Key"
 msgstr "키 선택"
 
@@ -275,7 +269,7 @@ msgstr "설정"
 msgid "Show Advanced Options"
 msgstr "고급 옵션 표시"
 
-#: src/screens/SelectKey/SelectKey.tsx:144
+#: src/screens/SelectKey/SelectKey.tsx:140
 msgid "Sign In"
 msgstr "로그인"
 
@@ -307,11 +301,11 @@ msgstr "거래가 전체 노드로 전송되었으며 mempool에 포함되도록
 msgid "Transaction has successfully been sent to a full node and included in the mempool."
 msgstr "거래가 전체 노드로 성공적으로 전송되었고 mempool에 포함되었습니다."
 
-#: src/screens/SelectKey/SelectKey.tsx:129
+#: src/screens/SelectKey/SelectKey.tsx:123
 msgid "Try Again"
 msgstr "다시 시도"
 
-#: src/screens/SelectKey/SelectKey.tsx:133
+#: src/screens/SelectKey/SelectKey.tsx:127
 msgid "Unable to load the list of the keys"
 msgstr "키 목록을 로드할 수 없습니다."
 
@@ -332,7 +326,7 @@ msgstr "키를 보호하려면 암호를 사용하는 것이 좋습니다. 암�
 msgid "Value seems high"
 msgstr "값이 높음"
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:109
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:98
 #: src/components/Settings/SettingsApp.tsx:69
 msgid "Wallet"
 msgstr "내 지갑"
@@ -349,7 +343,7 @@ msgstr "경고: 이 키는 파밍 보상 주소에 사용됩니다. 이 키를 �
 msgid "Warning: This key is used for your pool rewards address. By deleting this key you may lose access to any future pool rewards"
 msgstr "경고: 이 키는 풀 보상 주소에 사용됩니다. 이 키를 삭제하면 향후 풀 보상에 접근하지 못할 수 있습니다."
 
-#: src/screens/SelectKey/SelectKey.tsx:147
+#: src/screens/SelectKey/SelectKey.tsx:143
 msgid "Welcome to Chia. Please log in with an existing key, or create a new key."
 msgstr "Chia에 오신 것을 환영합니다. 사용하고 계신 키로 로그인하시거나 새로운 키를 만드세요."
 
@@ -362,13 +356,9 @@ msgstr "변경했습니다. 삭제하시겠습니까?"
 msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Would you like to migrate your keys now?"
 msgstr "키가 새 키링으로 마이그레이션되지 않았습니다. 마이그레이션이 완료될 때까지 새 키를 생성하거나 기존 키를 삭제할 수 없습니다. 지금 키를 마이그레이션하시겠습니까?"
 
-#: src/components/Amount/Amount.tsx:85
+#: src/components/Amount/Amount.tsx:98
 msgid "{0, plural, one {mojo} other {mojos}}"
 msgstr "{0, plural, one {mojo} other {mojos}}"
-
-#: src/components/EstimatedFee/EstimatedFee.tsx:128
-msgid "{0} TXCH"
-msgstr ""
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:39
 msgid "{minPassphraseLength, plural, one {Passphrases must be at least # character in length} other {Passphrases must be at least # characters in length}}"

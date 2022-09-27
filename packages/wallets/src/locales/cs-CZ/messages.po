@@ -18,15 +18,15 @@ msgstr ""
 "X-Crowdin-File: /main/packages/wallets/src/locales/en-US/messages.po\n"
 "X-Crowdin-File-ID: 1890\n"
 
-#: src/components/WalletHistory.tsx:209
+#: src/components/WalletHistory.tsx:210
 msgid "+"
 msgstr "+"
 
-#: src/components/WalletHistory.tsx:209
+#: src/components/WalletHistory.tsx:210
 msgid "-"
 msgstr "-"
 
-#: src/components/WalletHeader.tsx:80
+#: src/components/WalletHeader.tsx:74
 msgid "Actions"
 msgstr "Akce"
 
@@ -36,18 +36,20 @@ msgstr "Přidat"
 
 #: src/components/cat/WalletDID.tsx:874
 #: src/components/did/WalletDID.tsx:874
-#: src/components/did/WalletDIDCreate.tsx:207
+#: src/components/did/WalletDIDCreate.tsx:205
 msgid "Add Backup ID"
 msgstr "Přidat ID zálohy"
 
 #: src/components/hero/WalletHeroAdd.tsx:99
-#~ msgid "Add Custom Token"
-#~ msgstr "Přidat vlastní Token"
+msgid "Add Custom Token"
+msgstr "Přidat vlastní Token"
 
 #: src/components/WalletsList.tsx:54
-#: src/components/WalletsManageTokens.tsx:174
+#: src/components/WalletsManageTokens.tsx:170
 #: src/components/cat/WalletCATCreateExistingSimple.tsx:61
 #: src/components/cat/WalletCATCreateSimple.tsx:70
+#: src/components/hero/WalletHeroAdd.tsx:64
+#: src/components/hero/WalletHeroWallets.tsx:83
 msgid "Add Token"
 msgstr "Přidat token"
 
@@ -65,7 +67,7 @@ msgstr "Adresa"
 msgid "Address / Puzzle hash"
 msgstr "Adresa / Hash šifry"
 
-#: src/components/WalletHistory.tsx:225
+#: src/components/WalletHistory.tsx:226
 #: src/components/WalletSend.tsx:167
 #: src/components/cat/WalletCATSend.tsx:207
 #: src/components/rateLimited/WalletRateLimited.jsx:719
@@ -76,17 +78,17 @@ msgstr "Částka"
 msgid "Amount For Initial Coin"
 msgstr "Částka pro počáteční minci"
 
-#: src/components/did/WalletDIDCreate.tsx:60
+#: src/components/did/WalletDIDCreate.tsx:61
 msgid "Amount must be an even amount."
 msgstr "Částka musí být sudá částka."
 
-#: src/components/WalletHeader.tsx:36
+#: src/components/WalletHeader.tsx:42
 msgid "Are you sure you want to delete unconfirmed transactions?"
 msgstr "Opravdu chcete odstranit nepotvrzenou transakci?"
 
 #: src/components/cat/WalletCATCreateExistingSimple.tsx:80
-#: src/components/cat/WalletCATTAILDialog.tsx:46
-#: src/components/cat/WalletCATTAILDialog.tsx:56
+#: src/components/cat/WalletCATTAILDialog.tsx:43
+#: src/components/cat/WalletCATTAILDialog.tsx:55
 msgid "Asset Id"
 msgstr "ID aktiva"
 
@@ -118,8 +120,8 @@ msgstr "Chia nelze odeslat na barevnou adresu. Zadejte prosím běžnou Chia adr
 msgid "Check my snapshot balance"
 msgstr ""
 
-#: src/components/cat/WalletCATSelect.tsx:24
-#: src/components/create/WalletCreateList.tsx:35
+#: src/components/cat/WalletCATSelect.tsx:25
+#: src/components/create/WalletCreateList.tsx:32
 #: src/constants/WalletName.ts:23
 msgid "Chia Asset Token"
 msgstr "Chia Asset Token"
@@ -133,15 +135,15 @@ msgstr ""
 msgid "Coin Name"
 msgstr "Název mince"
 
-#: src/components/WalletHeader.tsx:31
+#: src/components/WalletHeader.tsx:37
 msgid "Confirmation"
 msgstr "Potvrzení"
 
-#: src/components/WalletHistory.tsx:155
+#: src/components/WalletHistory.tsx:156
 msgid "Confirmed"
 msgstr "Potvrzeno"
 
-#: src/components/WalletHistory.tsx:359
+#: src/components/WalletHistory.tsx:356
 msgid "Confirmed at Height"
 msgstr "Potvrzeno ve výšce"
 
@@ -166,7 +168,7 @@ msgstr "Kopírovat"
 #: src/components/cat/WalletCATCreateNew.tsx:101
 #: src/components/create/createRLAdmin.jsx:306
 #: src/components/create/createRLUser.jsx:99
-#: src/components/did/WalletDIDCreate.tsx:220
+#: src/components/did/WalletDIDCreate.tsx:218
 msgid "Create"
 msgstr "Vytvořit"
 
@@ -176,10 +178,10 @@ msgid "Create An Attestation Packet"
 msgstr ""
 
 #: src/components/cat/WalletCATCreateExisting.tsx:76
-#~ msgid "Create Chia Asset Token Wallet from Existing TAIL"
-#~ msgstr "Vytvořit Chia Asset Token Peněženku z existující TAIL"
+msgid "Create Chia Asset Token Wallet from Existing TAIL"
+msgstr "Vytvořit Chia Asset Token Peněženku z existující TAIL"
 
-#: src/components/did/WalletDIDCreate.tsx:113
+#: src/components/did/WalletDIDCreate.tsx:109
 msgid "Create Distributed Identity Wallet"
 msgstr "Vytvořit peněženku distribuované identity"
 
@@ -187,13 +189,13 @@ msgstr "Vytvořit peněženku distribuované identity"
 msgid "Create New Chia Asset Token Wallet"
 msgstr "Vytvořit novou Chia Asset Token peněženku"
 
-#: src/components/cat/WalletCATSelect.tsx:31
-#: src/components/did/WalletDIDSelect.tsx:31
+#: src/components/cat/WalletCATSelect.tsx:32
+#: src/components/did/WalletDIDSelect.tsx:32
 msgid "Create New Wallet"
 msgstr "Vytvořit novou peněženku"
 
-#: src/components/cat/WalletCAT.tsx:113
-#: src/components/standard/WalletStandard.tsx:48
+#: src/components/cat/WalletCAT.tsx:129
+#: src/components/standard/WalletStandard.tsx:54
 msgid "Create Offer"
 msgstr ""
 
@@ -212,8 +214,8 @@ msgid "Create Transaction"
 msgstr "Vytvořit transakci"
 
 #: src/components/cat/WalletCATCreateExisting.tsx:75
-#~ msgid "Create custom CAT Wallet"
-#~ msgstr "Vytvořit vlastní CAT peněženku"
+msgid "Create custom CAT Wallet"
+msgstr "Vytvořit vlastní CAT peněženku"
 
 #: src/constants/WalletName.ts:20
 msgid "Custody Wallet"
@@ -227,34 +229,30 @@ msgstr "Vlastní"
 msgid "DID Wallet"
 msgstr "DID Peněženka"
 
-#: src/constants/WalletName.ts:38
-msgid "Datalayer Wallet"
-msgstr ""
-
-#: src/components/WalletHistory.tsx:198
+#: src/components/WalletHistory.tsx:199
 msgid "Date"
 msgstr "Datum"
 
-#: src/components/WalletHeader.tsx:32
+#: src/components/WalletHeader.tsx:38
 #: src/components/cat/WalletDID.tsx:448
 #: src/components/cat/WalletDID.tsx:862
 #: src/components/did/WalletDID.tsx:448
 #: src/components/did/WalletDID.tsx:862
-#: src/components/did/WalletDIDCreate.tsx:196
+#: src/components/did/WalletDIDCreate.tsx:194
 #: src/components/did/WalletDIDRecovery.tsx:101
 msgid "Delete"
 msgstr "Odstranit"
 
-#: src/components/WalletHeader.tsx:86
+#: src/components/WalletHeader.tsx:87
 msgid "Delete Unconfirmed Transactions"
 msgstr "Odstranit nepotvrzené transakce"
 
-#: src/components/card/WalletCardTotalBalance.tsx:75
+#: src/components/card/WalletCardTotalBalance.tsx:63
 msgid "Derivation Index: {0}"
 msgstr ""
 
-#: src/components/create/WalletCreateList.tsx:42
-#: src/components/did/WalletDIDSelect.tsx:24
+#: src/components/create/WalletCreateList.tsx:39
+#: src/components/did/WalletDIDSelect.tsx:25
 msgid "Distributed Identity"
 msgstr "Distribuovaná identita"
 
@@ -275,12 +273,12 @@ msgstr "Zadejte 24 slov, které jste si poznamenali při zakládání vaší Chi
 msgid "Error the entered address appears to be for a different colour."
 msgstr "Chyba zadaná adresa se zdá být pro jinou barvu."
 
-#: src/components/WalletSend.tsx:191
+#: src/components/WalletSend.tsx:189
 #: src/components/cat/WalletCATSend.tsx:244
 msgid "Farm"
 msgstr "Farma"
 
-#: src/components/WalletHistory.tsx:237
+#: src/components/WalletHistory.tsx:238
 #: src/components/WalletSend.tsx:179
 #: src/components/cat/WalletCATSend.tsx:221
 #: src/components/create/createRLAdmin.jsx:243
@@ -348,16 +346,16 @@ msgstr ""
 msgid "Manage Recovery DIDs"
 msgstr "Správa DID obnovení"
 
-#: src/components/WalletsManageTokens.tsx:151
+#: src/components/WalletsManageTokens.tsx:147
 msgid "Manage token list"
 msgstr "Spravovat seznam tokenů"
 
-#: src/components/WalletHistory.tsx:169
+#: src/components/WalletHistory.tsx:170
 #: src/components/cat/WalletCATSend.tsx:234
 msgid "Memo"
 msgstr ""
 
-#: src/components/WalletHistory.tsx:368
+#: src/components/WalletHistory.tsx:365
 msgid "Memos"
 msgstr ""
 
@@ -407,7 +405,7 @@ msgstr "Další"
 msgid "Nickname"
 msgstr "Uživatelské jméno"
 
-#: src/components/WalletHistory.tsx:404
+#: src/components/WalletHistory.tsx:401
 msgid "No previous transactions"
 msgstr "Žádné předchozí transakce"
 
@@ -415,8 +413,8 @@ msgstr "Žádné předchozí transakce"
 msgid "Node ID"
 msgstr "ID uzlu"
 
-#: src/components/WalletHistory.tsx:353
-#: src/components/WalletHistory.tsx:363
+#: src/components/WalletHistory.tsx:350
+#: src/components/WalletHistory.tsx:360
 msgid "Not Available"
 msgstr "Nedostupný"
 
@@ -428,11 +426,11 @@ msgstr "Nedostupný"
 msgid "Not Synced"
 msgstr " Není synchronizováno"
 
-#: src/components/cat/WalletCATTAILDialog.tsx:83
+#: src/components/cat/WalletCATTAILDialog.tsx:82
 msgid "OK"
 msgstr "OK"
 
-#: src/components/WalletHistory.tsx:183
+#: src/components/WalletHistory.tsx:184
 msgid "Offer Accepted"
 msgstr "Nabídka přijata"
 
@@ -457,7 +455,7 @@ msgstr "Vložit Mnemonic"
 msgid "Paste Mnemonic (24 words)"
 msgstr "Vložit Mnemonic (24 slov)"
 
-#: src/components/WalletHistory.tsx:162
+#: src/components/WalletHistory.tsx:163
 msgid "Pending"
 msgstr "Čeká na vyřízení"
 
@@ -503,8 +501,8 @@ msgid "Please enter a puzzlehash"
 msgstr "Prosím zadejte puzzlehash"
 
 #: src/components/cat/WalletCATCreateExisting.tsx:40
-#~ msgid "Please enter a valid CAT name"
-#~ msgstr "Zadejte prosím platný CAT název"
+msgid "Please enter a valid CAT name"
+msgstr "Zadejte prosím platný CAT název"
 
 #: src/components/cat/WalletCATCreateExistingSimple.tsx:41
 msgid "Please enter a valid asset id"
@@ -516,7 +514,7 @@ msgstr "Prosím, zadejte platné množství"
 
 #: src/components/cat/WalletDID.tsx:776
 #: src/components/did/WalletDID.tsx:776
-#: src/components/did/WalletDIDCreate.tsx:74
+#: src/components/did/WalletDIDCreate.tsx:75
 msgid "Please enter a valid integer of 0 or greater for the number of Backup IDs needed for recovery."
 msgstr "Zadejte prosím platné celé číslo 0 a více pro počet záložních ID potřebných pro obnovení."
 
@@ -526,7 +524,7 @@ msgstr "Zadejte prosím platné celé číslo 0 a více pro počet záložních 
 msgid "Please enter a valid numeric amount"
 msgstr "Prosím, zadejte platné množství"
 
-#: src/components/did/WalletDIDCreate.tsx:50
+#: src/components/did/WalletDIDCreate.tsx:49
 msgid "Please enter a valid numeric amount."
 msgstr "Prosím zadejte platnou číselnou hodnotu."
 
@@ -596,7 +594,7 @@ msgstr ""
 msgid "RL Wallet"
 msgstr ""
 
-#: src/components/create/WalletCreateList.tsx:48
+#: src/components/create/WalletCreateList.tsx:45
 msgid "Rate Limited"
 msgstr "Rychlost omezena"
 
@@ -613,7 +611,7 @@ msgstr "Nastavení uživatelské peněženky s omezenou rychlostí"
 msgid "Read the blog post for details"
 msgstr ""
 
-#: src/components/WalletHeader.tsx:64
+#: src/components/WalletHeader.tsx:60
 msgid "Receive"
 msgstr "Přijmout"
 
@@ -626,6 +624,7 @@ msgstr "Adresa příjemce"
 msgid "Recipient address is not a coloured wallet address. Please enter a coloured wallet address"
 msgstr "Adresa příjemce není barevná adresa peněženky. Zadejte prosím adresu barevné peněženky"
 
+#: src/components/cat/WalletCATCreateExisting.tsx:104
 #: src/components/cat/WalletDID.tsx:463
 #: src/components/did/WalletDID.tsx:463
 #: src/components/did/WalletDIDRecovery.tsx:124
@@ -643,7 +642,7 @@ msgstr "Obnovit DID peněženku"
 msgid "Recover Distributed Identity Wallet"
 msgstr "Obnovit peněženku distribuované identity"
 
-#: src/components/did/WalletDIDSelect.tsx:38
+#: src/components/did/WalletDIDSelect.tsx:39
 msgid "Recover Wallet"
 msgstr "Obnovit peněženku"
 
@@ -651,16 +650,16 @@ msgstr "Obnovit peněženku"
 msgid "Recoverable Wallet"
 msgstr "Obnovitelná peněženka"
 
-#: src/components/cat/WalletCATSelect.tsx:38
+#: src/components/cat/WalletCATSelect.tsx:39
 msgid "Recovery Wallet"
 msgstr "Obnovit peněženku"
 
 #: src/components/WalletRenameDialog.tsx:69
-#: src/components/cat/WalletCAT.tsx:96
+#: src/components/cat/WalletCAT.tsx:102
 msgid "Rename Wallet"
 msgstr "Přejmenovat peněženku"
 
-#: src/components/WalletHistory.tsx:176
+#: src/components/WalletHistory.tsx:177
 msgid "Retire"
 msgstr ""
 
@@ -668,16 +667,17 @@ msgstr ""
 msgid "Save"
 msgstr "Uložit"
 
-#: src/components/WalletTokenCard.tsx:185
-#: src/components/cat/WalletCATTAILDialog.tsx:76
+#: src/components/WalletTokenCard.tsx:144
+#: src/components/cat/WalletCATTAILDialog.tsx:71
 msgid "Search on Tail Database"
 msgstr "Hledat v Tail databázi"
 
 #: src/components/WalletsList.tsx:32
+#: src/components/hero/WalletHeroWallets.tsx:47
 msgid "Select Wallet"
 msgstr "Vybrat peněženku"
 
-#: src/components/create/WalletCreateList.tsx:28
+#: src/components/create/WalletCreateList.tsx:25
 msgid "Select Wallet Type"
 msgstr "Zvolte typ peněženky"
 
@@ -686,7 +686,7 @@ msgid "Selected recovery file:"
 msgstr "Vybraný soubor pro obnovení:"
 
 #: src/components/WalletHeader.tsx:59
-#: src/components/WalletSend.tsx:202
+#: src/components/WalletSend.tsx:200
 #: src/components/cat/WalletCATSend.tsx:255
 #: src/components/rateLimited/WalletRateLimited.jsx:747
 msgid "Send"
@@ -700,7 +700,7 @@ msgstr "Poslat tento informační paket uživateli Rate Limited peněženky. Ten
 msgid "Send your pubkey to your Rate Limited Wallet admin:"
 msgstr "Pošlete svůj veřejný klíč vašemu správci Rate Limited peněženky:"
 
-#: src/components/cat/WalletCAT.tsx:105
+#: src/components/cat/WalletCAT.tsx:116
 msgid "Show Asset Id"
 msgstr "Ukázat ID aktiva"
 
@@ -745,7 +745,7 @@ msgstr "Odeslat"
 msgid "Success"
 msgstr "Úspěch"
 
-#: src/components/WalletHeader.tsx:54
+#: src/components/WalletHeader.tsx:58
 msgid "Summary"
 msgstr "Shrnutí"
 
@@ -757,13 +757,13 @@ msgstr "Synchronizováno"
 msgid "Syncing"
 msgstr "Synchronizace"
 
-#: src/components/card/WalletCardTotalBalance.tsx:77
+#: src/components/card/WalletCardTotalBalance.tsx:65
 msgid "The derivation index sets the range of wallet addresses that the wallet scans the blockchain for. This number is generally higher if you have a lot of transactions or canceled offers for XCH, CATs, or NFTs. If you believe your balance is incorrect because it’s missing coins, then increasing the derivation index could help the wallet include the missing coins in the balance total."
 msgstr ""
 
 #: src/components/cat/WalletDID.tsx:789
 #: src/components/did/WalletDID.tsx:789
-#: src/components/did/WalletDIDCreate.tsx:87
+#: src/components/did/WalletDIDCreate.tsx:88
 msgid "The number of Backup IDs needed for recovery cannot exceed the number of Backup IDs added."
 msgstr "Počet záložních ID potřebných pro obnovení nesmí překročit počet přidaných záložních ID."
 
@@ -799,13 +799,13 @@ msgstr "Toto je celkový počet Chia v blockchainu na aktuálním bloku kontrolo
 msgid "This is the total balance + pending balance: it is what your balance will be after all pending transactions are confirmed."
 msgstr "Celkový zůstatek plus čekající transakce. Jinými slovy: celkový zůstatek po schválení čekajících transakcí."
 
-#: src/components/WalletHistory.tsx:190
+#: src/components/WalletHistory.tsx:191
 msgid "To"
 msgstr "Komu"
 
 #: src/components/cat/WalletCATCreateExisting.tsx:85
-#~ msgid "Token and Asset Issuance Limitations"
-#~ msgstr "Omezení vydávání tokenu a aktiv"
+msgid "Token and Asset Issuance Limitations"
+msgstr "Omezení vydávání tokenu a aktiv"
 
 #: src/components/cat/WalletCATCreateSimple.tsx:45
 msgid "Token has empty asset id"
@@ -819,7 +819,7 @@ msgstr "Token má prázdný název"
 msgid "Tokens"
 msgstr "Tokeny"
 
-#: src/components/card/WalletCardTotalBalance.tsx:62
+#: src/components/card/WalletCardTotalBalance.tsx:56
 #: src/components/rateLimited/WalletRateLimited.jsx:542
 msgid "Total Balance"
 msgstr "Celkový zůstatek"
@@ -828,7 +828,7 @@ msgstr "Celkový zůstatek"
 msgid "Transaction has successfully been sent to a full node and included in the mempool."
 msgstr "Transakce byla úspěšně odeslána do plného uzlu a zahrnuta do mempoolu."
 
-#: src/components/WalletHistory.tsx:311
+#: src/components/WalletHistory.tsx:308
 msgid "Transactions"
 msgstr "Transakce"
 

@@ -18,11 +18,7 @@ msgstr ""
 "X-Crowdin-File: /main/packages/core/src/locales/en-US/messages.po\n"
 "X-Crowdin-File-ID: 1886\n"
 
-#: src/components/EstimatedFee/EstimatedFee.tsx:131
-msgid "<0>{0}</0>"
-msgstr ""
-
-#: src/components/Amount/Amount.tsx:103
+#: src/components/Amount/Amount.tsx:116
 msgid "Amount"
 msgstr "Belopp"
 
@@ -31,7 +27,7 @@ msgid "Appearance"
 msgstr "Utseende"
 
 #: src/components/FormBackButton/FormBackButton.tsx:47
-#: src/screens/SelectKey/SelectKey.tsx:82
+#: src/screens/SelectKey/SelectKey.tsx:79
 #: src/screens/SelectKey/SelectKeyItem.tsx:93
 msgid "Back"
 msgstr "Tillbaka"
@@ -40,7 +36,7 @@ msgstr "Tillbaka"
 msgid "Can be backed up to mnemonic seed"
 msgstr "Kan säkerhetskopieras till minnesfras"
 
-#: src/components/ConfirmDialog/ConfirmDialog.tsx:32
+#: src/components/ConfirmDialog/ConfirmDialog.tsx:105
 #: src/hooks/useKeyringMigrationPrompt.tsx:17
 msgid "Cancel"
 msgstr "Avbryt"
@@ -49,15 +45,15 @@ msgstr "Avbryt"
 msgid "Connected"
 msgstr "Ansluten"
 
-#: src/components/CopyToClipboard/CopyToClipboard.tsx:56
+#: src/components/CopyToClipboard/CopyToClipboard.tsx:42
 msgid "Copied"
 msgstr "Kopierad"
 
-#: src/components/CopyToClipboard/CopyToClipboard.tsx:58
+#: src/components/CopyToClipboard/CopyToClipboard.tsx:44
 msgid "Copy to Clipboard"
 msgstr "Kopiera till Urklipp"
 
-#: src/screens/SelectKey/SelectKey.tsx:187
+#: src/screens/SelectKey/SelectKey.tsx:180
 msgid "Create a new private key"
 msgstr "Skapa ny privat nyckel"
 
@@ -69,13 +65,13 @@ msgstr "VARNING: permanent ta bort privat nyckel"
 msgid "Dark"
 msgstr "Mörkt"
 
-#: src/screens/SelectKey/SelectKey.tsx:81
+#: src/screens/SelectKey/SelectKey.tsx:78
 #: src/screens/SelectKey/SelectKeyItem.tsx:92
 msgid "Delete"
 msgstr "Ta bort"
 
-#: src/screens/SelectKey/SelectKey.tsx:209
-#: src/screens/SelectKey/SelectKey.tsx:80
+#: src/screens/SelectKey/SelectKey.tsx:202
+#: src/screens/SelectKey/SelectKey.tsx:77
 msgid "Delete all keys"
 msgstr "Ta bort alla nycklar"
 
@@ -83,7 +79,7 @@ msgstr "Ta bort alla nycklar"
 msgid "Delete key {fingerprint}"
 msgstr "Ta bort nyckel {fingerprint}"
 
-#: src/screens/SelectKey/SelectKey.tsx:86
+#: src/screens/SelectKey/SelectKey.tsx:83
 msgid "Deleting all keys will permanently remove the keys from your computer, make sure you have backups. Are you sure you want to continue?"
 msgstr "Om du tar bort alla nycklar kommer de att permanent tas bort från datorn. Se till att du har säkerhetskopierat dem. Är det säkert att du vill fortsätta?"
 
@@ -126,8 +122,6 @@ msgstr "Publik nyckel för odlare:"
 msgid "Farming"
 msgstr "Odlar"
 
-#: src/components/EstimatedFee/EstimatedFee.tsx:160
-#: src/components/EstimatedFee/EstimatedFee.tsx:193
 #: src/components/Fee/Fee.tsx:52
 msgid "Fee"
 msgstr "Avgift"
@@ -148,7 +142,7 @@ msgstr "Hjälp till med översättning"
 msgid "Hide Advanced Options"
 msgstr "Dölj avancerade alternativ"
 
-#: src/screens/SelectKey/SelectKey.tsx:198
+#: src/screens/SelectKey/SelectKey.tsx:191
 msgid "Import from Mnemonics (24 words)"
 msgstr "Importera från minnesfras (24 ord)"
 
@@ -164,16 +158,16 @@ msgstr "Språk"
 msgid "Light"
 msgstr "Ljust"
 
-#: src/screens/SelectKey/SelectKey.tsx:122
+#: src/screens/SelectKey/SelectKey.tsx:116
 msgid "Loading list of the keys"
 msgstr "Läser in en lista över nycklarna"
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:141
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:166
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:129
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:151
 msgid "Log Out"
 msgstr "Logga ut"
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:162
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:147
 msgid "Logout"
 msgstr "Logga ut"
 
@@ -202,7 +196,7 @@ msgstr "Ingen 24 ords minnesfras eftersom denna nyckel har importerats."
 msgid "Not connected"
 msgstr "Inte ansluten"
 
-#: src/components/ConfirmDialog/ConfirmDialog.tsx:33
+#: src/components/ConfirmDialog/ConfirmDialog.tsx:106
 msgid "OK"
 msgstr "OK"
 
@@ -249,7 +243,7 @@ msgstr "Visa privat nyckel"
 msgid "Seed:"
 msgstr "Minnesfras:"
 
-#: src/screens/SelectKey/SelectKey.tsx:139
+#: src/screens/SelectKey/SelectKey.tsx:135
 msgid "Select Key"
 msgstr "Välj nyckel"
 
@@ -275,7 +269,7 @@ msgstr "Inställningar"
 msgid "Show Advanced Options"
 msgstr "Visa avancerade alternativ"
 
-#: src/screens/SelectKey/SelectKey.tsx:144
+#: src/screens/SelectKey/SelectKey.tsx:140
 msgid "Sign In"
 msgstr "Logga in"
 
@@ -307,11 +301,11 @@ msgstr "Transaktionen har skickats till en fullständig nod och väntar på att 
 msgid "Transaction has successfully been sent to a full node and included in the mempool."
 msgstr "Transaktionen har skickats till en hel nod och inkluderats i mempoolen."
 
-#: src/screens/SelectKey/SelectKey.tsx:129
+#: src/screens/SelectKey/SelectKey.tsx:123
 msgid "Try Again"
 msgstr "Försök igen"
 
-#: src/screens/SelectKey/SelectKey.tsx:133
+#: src/screens/SelectKey/SelectKey.tsx:127
 msgid "Unable to load the list of the keys"
 msgstr "Det gick inte att läsa in listan över nycklarna"
 
@@ -332,7 +326,7 @@ msgstr "Att använda en lösenfras rekommenderas starkt för att skydda dina nyc
 msgid "Value seems high"
 msgstr "Värdet verkar högt"
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:109
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:98
 #: src/components/Settings/SettingsApp.tsx:69
 msgid "Wallet"
 msgstr "Plånbok"
@@ -349,7 +343,7 @@ msgstr "Varning: Denna nyckel används av din farmer. Genom att ta bort denna ny
 msgid "Warning: This key is used for your pool rewards address. By deleting this key you may lose access to any future pool rewards"
 msgstr "Varning: Denna nyckel används av din pool. Genom att ta bort denna nyckel kan du förlora tillgång till framtida vinster från poolen"
 
-#: src/screens/SelectKey/SelectKey.tsx:147
+#: src/screens/SelectKey/SelectKey.tsx:143
 msgid "Welcome to Chia. Please log in with an existing key, or create a new key."
 msgstr "Välkommen till Chia. Logga in med en existerande nyckel, eller skapa en ny nyckel."
 
@@ -362,13 +356,9 @@ msgstr "Du har gjort ändringar. Vill du kasta dem?"
 msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Would you like to migrate your keys now?"
 msgstr "Dina nycklar har inte migrerats till en ny nyckelring. Du kommer inte att kunna skapa nya nycklar eller ta bort befintliga nycklar tills migreringen är klar. Vill du migrera nycklarna nu?"
 
-#: src/components/Amount/Amount.tsx:85
+#: src/components/Amount/Amount.tsx:98
 msgid "{0, plural, one {mojo} other {mojos}}"
 msgstr "{0, plural, one {mojo} other {mojo}}"
-
-#: src/components/EstimatedFee/EstimatedFee.tsx:128
-msgid "{0} TXCH"
-msgstr ""
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:39
 msgid "{minPassphraseLength, plural, one {Passphrases must be at least # character in length} other {Passphrases must be at least # characters in length}}"

@@ -18,11 +18,7 @@ msgstr ""
 "X-Crowdin-File: /main/packages/core/src/locales/en-US/messages.po\n"
 "X-Crowdin-File-ID: 1886\n"
 
-#: src/components/EstimatedFee/EstimatedFee.tsx:131
-msgid "<0>{0}</0>"
-msgstr ""
-
-#: src/components/Amount/Amount.tsx:103
+#: src/components/Amount/Amount.tsx:116
 msgid "Amount"
 msgstr "Suma"
 
@@ -31,7 +27,7 @@ msgid "Appearance"
 msgstr "Vzhľad"
 
 #: src/components/FormBackButton/FormBackButton.tsx:47
-#: src/screens/SelectKey/SelectKey.tsx:82
+#: src/screens/SelectKey/SelectKey.tsx:79
 #: src/screens/SelectKey/SelectKeyItem.tsx:93
 msgid "Back"
 msgstr "Späť"
@@ -40,7 +36,7 @@ msgstr "Späť"
 msgid "Can be backed up to mnemonic seed"
 msgstr "Možnosť zálohovať pomocou mnemotechnickej pomôcky"
 
-#: src/components/ConfirmDialog/ConfirmDialog.tsx:32
+#: src/components/ConfirmDialog/ConfirmDialog.tsx:105
 #: src/hooks/useKeyringMigrationPrompt.tsx:17
 msgid "Cancel"
 msgstr "Zrušiť"
@@ -49,15 +45,15 @@ msgstr "Zrušiť"
 msgid "Connected"
 msgstr "Pripojené"
 
-#: src/components/CopyToClipboard/CopyToClipboard.tsx:56
+#: src/components/CopyToClipboard/CopyToClipboard.tsx:42
 msgid "Copied"
 msgstr "Skopírované"
 
-#: src/components/CopyToClipboard/CopyToClipboard.tsx:58
+#: src/components/CopyToClipboard/CopyToClipboard.tsx:44
 msgid "Copy to Clipboard"
 msgstr "Skopírovať do schránky"
 
-#: src/screens/SelectKey/SelectKey.tsx:187
+#: src/screens/SelectKey/SelectKey.tsx:180
 msgid "Create a new private key"
 msgstr "Vytvoriť nový privátny kľúč"
 
@@ -69,13 +65,13 @@ msgstr "POZOR: natrvalo odstrániť súkromný klúč"
 msgid "Dark"
 msgstr "Tmavý"
 
-#: src/screens/SelectKey/SelectKey.tsx:81
+#: src/screens/SelectKey/SelectKey.tsx:78
 #: src/screens/SelectKey/SelectKeyItem.tsx:92
 msgid "Delete"
 msgstr "Zmazať"
 
-#: src/screens/SelectKey/SelectKey.tsx:209
-#: src/screens/SelectKey/SelectKey.tsx:80
+#: src/screens/SelectKey/SelectKey.tsx:202
+#: src/screens/SelectKey/SelectKey.tsx:77
 msgid "Delete all keys"
 msgstr "Zmazať všetky kľúče"
 
@@ -83,7 +79,7 @@ msgstr "Zmazať všetky kľúče"
 msgid "Delete key {fingerprint}"
 msgstr "Odstrániť kľúč {fingerprint}"
 
-#: src/screens/SelectKey/SelectKey.tsx:86
+#: src/screens/SelectKey/SelectKey.tsx:83
 msgid "Deleting all keys will permanently remove the keys from your computer, make sure you have backups. Are you sure you want to continue?"
 msgstr "Po stlačení tlačidla zmazať odstránite natrvalo všetký kľúče z počítača. Uistite sa, že máte zálohu. Ste si istý, že chcete pokračovať?"
 
@@ -126,8 +122,6 @@ msgstr "Verejný kľúč farmára:"
 msgid "Farming"
 msgstr "Ťažba"
 
-#: src/components/EstimatedFee/EstimatedFee.tsx:160
-#: src/components/EstimatedFee/EstimatedFee.tsx:193
 #: src/components/Fee/Fee.tsx:52
 msgid "Fee"
 msgstr "Poplatok"
@@ -148,7 +142,7 @@ msgstr "Pomôcť s prekladom"
 msgid "Hide Advanced Options"
 msgstr "Skryť rozšírené možnosti"
 
-#: src/screens/SelectKey/SelectKey.tsx:198
+#: src/screens/SelectKey/SelectKey.tsx:191
 msgid "Import from Mnemonics (24 words)"
 msgstr "Obnoviť z mnemotechniky (24 slov)"
 
@@ -164,16 +158,16 @@ msgstr "Jazyk"
 msgid "Light"
 msgstr "Svetlý"
 
-#: src/screens/SelectKey/SelectKey.tsx:122
+#: src/screens/SelectKey/SelectKey.tsx:116
 msgid "Loading list of the keys"
 msgstr "Načítavanie zoznamu kľúčov"
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:141
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:166
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:129
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:151
 msgid "Log Out"
 msgstr "Odhlásiť sa"
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:162
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:147
 msgid "Logout"
 msgstr "Odhlásiť"
 
@@ -202,7 +196,7 @@ msgstr "Žiadny 24-slovný seed, pretože tento kľúč je importovaný."
 msgid "Not connected"
 msgstr "Nepripojené"
 
-#: src/components/ConfirmDialog/ConfirmDialog.tsx:33
+#: src/components/ConfirmDialog/ConfirmDialog.tsx:106
 msgid "OK"
 msgstr "OK"
 
@@ -249,7 +243,7 @@ msgstr "Zobraziť privátny kľúč"
 msgid "Seed:"
 msgstr "Zrnko:"
 
-#: src/screens/SelectKey/SelectKey.tsx:139
+#: src/screens/SelectKey/SelectKey.tsx:135
 msgid "Select Key"
 msgstr "Vyberte kľúč"
 
@@ -275,7 +269,7 @@ msgstr "Nastavenia"
 msgid "Show Advanced Options"
 msgstr "Zobraziť rozšírené možnosti"
 
-#: src/screens/SelectKey/SelectKey.tsx:144
+#: src/screens/SelectKey/SelectKey.tsx:140
 msgid "Sign In"
 msgstr "Prihlásiť sa"
 
@@ -307,11 +301,11 @@ msgstr "Transakcia bola odoslaná úplnému uzlu a čaká na zahrnutie do pamä�
 msgid "Transaction has successfully been sent to a full node and included in the mempool."
 msgstr "Transakcia bola úspešne odoslaná úplnému uzlu a zahrnutá do pamäťového fondu."
 
-#: src/screens/SelectKey/SelectKey.tsx:129
+#: src/screens/SelectKey/SelectKey.tsx:123
 msgid "Try Again"
 msgstr "Skúsiť znova"
 
-#: src/screens/SelectKey/SelectKey.tsx:133
+#: src/screens/SelectKey/SelectKey.tsx:127
 msgid "Unable to load the list of the keys"
 msgstr "Nie je možné načítať zoznam kľúčov"
 
@@ -332,7 +326,7 @@ msgstr "Na ochranu vašich kľúčov sa dôrazne odporúča používať prístup
 msgid "Value seems high"
 msgstr "Hodnota sa zdá byť vysoká"
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:109
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:98
 #: src/components/Settings/SettingsApp.tsx:69
 msgid "Wallet"
 msgstr "Peňaženka"
@@ -349,7 +343,7 @@ msgstr "Varovanie: Tento kľúč sa používa pre vašu adresu farmárskych odmi
 msgid "Warning: This key is used for your pool rewards address. By deleting this key you may lose access to any future pool rewards"
 msgstr "Varovanie: Tento kľúč sa používa pre vašu adresu odmien združenia. Odstránením tohto kľúča môžete stratiť prístup k budúcim odmenám združenia"
 
-#: src/screens/SelectKey/SelectKey.tsx:147
+#: src/screens/SelectKey/SelectKey.tsx:143
 msgid "Welcome to Chia. Please log in with an existing key, or create a new key."
 msgstr "Vitajte v Chia. Prosím prihláste sa s existujúcim kľúčom, alebo si vytvorte nový."
 
@@ -362,13 +356,9 @@ msgstr "Urobili ste zmeny. Chcete ich zrušiť?"
 msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Would you like to migrate your keys now?"
 msgstr "Vaše kľúče zatiaľ neboli migrované do nového zväzku kľúčov. Kým sa migrácia nedokončí, nebudete môcť vytvárať nové kľúče ani odstraňovať existujúce kľúče. Chcete teraz migrovať svoje kľúče?"
 
-#: src/components/Amount/Amount.tsx:85
+#: src/components/Amount/Amount.tsx:98
 msgid "{0, plural, one {mojo} other {mojos}}"
 msgstr "{0, plural, one {mojo} few {mojos} many {mojos} other {mojos}}"
-
-#: src/components/EstimatedFee/EstimatedFee.tsx:128
-msgid "{0} TXCH"
-msgstr ""
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:39
 msgid "{minPassphraseLength, plural, one {Passphrases must be at least # character in length} other {Passphrases must be at least # characters in length}}"

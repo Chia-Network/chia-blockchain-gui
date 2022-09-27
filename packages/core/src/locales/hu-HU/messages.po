@@ -18,11 +18,7 @@ msgstr ""
 "X-Crowdin-File: /main/packages/core/src/locales/en-US/messages.po\n"
 "X-Crowdin-File-ID: 1886\n"
 
-#: src/components/EstimatedFee/EstimatedFee.tsx:131
-msgid "<0>{0}</0>"
-msgstr ""
-
-#: src/components/Amount/Amount.tsx:103
+#: src/components/Amount/Amount.tsx:116
 msgid "Amount"
 msgstr "Összeg"
 
@@ -31,7 +27,7 @@ msgid "Appearance"
 msgstr "Megjelenés"
 
 #: src/components/FormBackButton/FormBackButton.tsx:47
-#: src/screens/SelectKey/SelectKey.tsx:82
+#: src/screens/SelectKey/SelectKey.tsx:79
 #: src/screens/SelectKey/SelectKeyItem.tsx:93
 msgid "Back"
 msgstr "Vissza"
@@ -40,7 +36,7 @@ msgstr "Vissza"
 msgid "Can be backed up to mnemonic seed"
 msgstr "Biztonsági mentés elérhető a mnemonic maggal"
 
-#: src/components/ConfirmDialog/ConfirmDialog.tsx:32
+#: src/components/ConfirmDialog/ConfirmDialog.tsx:105
 #: src/hooks/useKeyringMigrationPrompt.tsx:17
 msgid "Cancel"
 msgstr "Mégsem"
@@ -49,15 +45,15 @@ msgstr "Mégsem"
 msgid "Connected"
 msgstr "Csatlakozva"
 
-#: src/components/CopyToClipboard/CopyToClipboard.tsx:56
+#: src/components/CopyToClipboard/CopyToClipboard.tsx:42
 msgid "Copied"
 msgstr "Másolva"
 
-#: src/components/CopyToClipboard/CopyToClipboard.tsx:58
+#: src/components/CopyToClipboard/CopyToClipboard.tsx:44
 msgid "Copy to Clipboard"
 msgstr "Másolás a vágólapra"
 
-#: src/screens/SelectKey/SelectKey.tsx:187
+#: src/screens/SelectKey/SelectKey.tsx:180
 msgid "Create a new private key"
 msgstr "Új privát kulcs készítése"
 
@@ -69,13 +65,13 @@ msgstr "VIGYÁZAT: Privát kulcs végleges törlése"
 msgid "Dark"
 msgstr "Sötét"
 
-#: src/screens/SelectKey/SelectKey.tsx:81
+#: src/screens/SelectKey/SelectKey.tsx:78
 #: src/screens/SelectKey/SelectKeyItem.tsx:92
 msgid "Delete"
 msgstr "Törlés"
 
-#: src/screens/SelectKey/SelectKey.tsx:209
-#: src/screens/SelectKey/SelectKey.tsx:80
+#: src/screens/SelectKey/SelectKey.tsx:202
+#: src/screens/SelectKey/SelectKey.tsx:77
 msgid "Delete all keys"
 msgstr "Minden kulcs törlése"
 
@@ -83,7 +79,7 @@ msgstr "Minden kulcs törlése"
 msgid "Delete key {fingerprint}"
 msgstr "Kulcs törlése {fingerprint}"
 
-#: src/screens/SelectKey/SelectKey.tsx:86
+#: src/screens/SelectKey/SelectKey.tsx:83
 msgid "Deleting all keys will permanently remove the keys from your computer, make sure you have backups. Are you sure you want to continue?"
 msgstr "Az összes kulcs törlése véglegesen eltávolítja a kulcsokat a számítógépedről, ezért gondoskodj biztonsági mentésekről. Biztos, hogy folytatni szeretnéd?"
 
@@ -126,8 +122,6 @@ msgstr "Farmer nyilvános kulcsa:"
 msgid "Farming"
 msgstr "Farmolás"
 
-#: src/components/EstimatedFee/EstimatedFee.tsx:160
-#: src/components/EstimatedFee/EstimatedFee.tsx:193
 #: src/components/Fee/Fee.tsx:52
 msgid "Fee"
 msgstr "Díj"
@@ -148,7 +142,7 @@ msgstr "Segíts a fordításban"
 msgid "Hide Advanced Options"
 msgstr "Speciális beállítások elrejtése"
 
-#: src/screens/SelectKey/SelectKey.tsx:198
+#: src/screens/SelectKey/SelectKey.tsx:191
 msgid "Import from Mnemonics (24 words)"
 msgstr "Importálás a memonikából (24 szó)"
 
@@ -164,16 +158,16 @@ msgstr "Nyelv"
 msgid "Light"
 msgstr "Világos"
 
-#: src/screens/SelectKey/SelectKey.tsx:122
+#: src/screens/SelectKey/SelectKey.tsx:116
 msgid "Loading list of the keys"
 msgstr "A kulcsok listájának betöltése"
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:141
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:166
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:129
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:151
 msgid "Log Out"
 msgstr "Kijelentkezés"
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:162
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:147
 msgid "Logout"
 msgstr "Kijelentkezés"
 
@@ -202,7 +196,7 @@ msgstr "Nincs 24 szó mag, mivel ezt a kulcsot importálják."
 msgid "Not connected"
 msgstr "Nincs csatlakozva"
 
-#: src/components/ConfirmDialog/ConfirmDialog.tsx:33
+#: src/components/ConfirmDialog/ConfirmDialog.tsx:106
 msgid "OK"
 msgstr "Rendben"
 
@@ -249,7 +243,7 @@ msgstr "Lásd a privát kulcsot"
 msgid "Seed:"
 msgstr "Seed:"
 
-#: src/screens/SelectKey/SelectKey.tsx:139
+#: src/screens/SelectKey/SelectKey.tsx:135
 msgid "Select Key"
 msgstr "Válasszon kulcsot"
 
@@ -275,7 +269,7 @@ msgstr "Beállítások"
 msgid "Show Advanced Options"
 msgstr "Speciális beállítások megjelenítése"
 
-#: src/screens/SelectKey/SelectKey.tsx:144
+#: src/screens/SelectKey/SelectKey.tsx:140
 msgid "Sign In"
 msgstr "Bejelentkezés"
 
@@ -307,11 +301,11 @@ msgstr "A tranzakciót egy teljesnodera küldték el, és a mempoolba való felv
 msgid "Transaction has successfully been sent to a full node and included in the mempool."
 msgstr "A tranzakciót sikeresen elküldték egy teljes nodera és felvették a mempoolba."
 
-#: src/screens/SelectKey/SelectKey.tsx:129
+#: src/screens/SelectKey/SelectKey.tsx:123
 msgid "Try Again"
 msgstr "Újrapróbálkozás"
 
-#: src/screens/SelectKey/SelectKey.tsx:133
+#: src/screens/SelectKey/SelectKey.tsx:127
 msgid "Unable to load the list of the keys"
 msgstr "Nem lehet betölteni a kulcsok listáját"
 
@@ -332,7 +326,7 @@ msgstr "Erősen javasolt a jelszó beállítása, hogy a kulcsok védve legyenek
 msgid "Value seems high"
 msgstr "Az érték túl magasnak tűnik"
 
-#: src/components/LayoutDashboard/LayoutDashboard.tsx:109
+#: src/components/LayoutDashboard/LayoutDashboard.tsx:98
 #: src/components/Settings/SettingsApp.tsx:69
 msgid "Wallet"
 msgstr "Tárca"
@@ -349,7 +343,7 @@ msgstr "Figyelem: Ezt a kulcsot a farmolási jutalmak címére használják. Ha 
 msgid "Warning: This key is used for your pool rewards address. By deleting this key you may lose access to any future pool rewards"
 msgstr "Figyelem: Ezt a kulcsot a pool jutalmazási címéhez használják. Ha törli ezt a kulcsot, elveszítheti a hozzáférést a jövőbeni pool jutalmakhoz"
 
-#: src/screens/SelectKey/SelectKey.tsx:147
+#: src/screens/SelectKey/SelectKey.tsx:143
 msgid "Welcome to Chia. Please log in with an existing key, or create a new key."
 msgstr "Üdvözöljük a Chia-ban. Kérem jelentkezzen be egy létező kulccsal, vagy készítsen egy új kulcsot magának."
 
@@ -362,13 +356,9 @@ msgstr "Változtatásokat hajtott végre. El akarja vetni őket?"
 msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Would you like to migrate your keys now?"
 msgstr "Kulcsai nem kerültek át egy új kulcstartóra. A migráció befejezéséig nem tud új kulcsokat létrehozni vagy meglévő kulcsokat törölni. Szeretné most áttelepíteni a kulcsait?"
 
-#: src/components/Amount/Amount.tsx:85
+#: src/components/Amount/Amount.tsx:98
 msgid "{0, plural, one {mojo} other {mojos}}"
 msgstr "{0, plural, one {mojo} other {mojok}}"
-
-#: src/components/EstimatedFee/EstimatedFee.tsx:128
-msgid "{0} TXCH"
-msgstr ""
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:39
 msgid "{minPassphraseLength, plural, one {Passphrases must be at least # character in length} other {Passphrases must be at least # characters in length}}"
