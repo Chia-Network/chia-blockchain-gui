@@ -100,9 +100,3 @@ packages/**/playwright-report/index.html
 
 .env
 dist
-<<<<<<< HEAD
-
-# playwright non-essentials
-packages/gui/playwright-report
-=======
->>>>>>> main
