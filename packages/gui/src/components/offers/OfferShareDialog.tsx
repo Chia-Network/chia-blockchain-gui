@@ -46,6 +46,7 @@ enum OfferSharingService {
   MintGarden = 'MintGarden',
   OfferBin = 'OfferBin',
   Offerpool = 'Offerpool',
+  Spacescan = 'Spacescan',
   Keybase = 'Keybase',
 }
 
@@ -106,6 +107,11 @@ const OfferSharingProviders: {
   [OfferSharingService.Keybase]: {
     service: OfferSharingService.Keybase,
     name: 'Keybase',
+    capabilities: [OfferSharingCapability.Token, OfferSharingCapability.NFT],
+  },
+  [OfferSharingService.Spacescan]: {
+    service: OfferSharingService.Spacescan,
+    name: 'Spacescan.io',
     capabilities: [OfferSharingCapability.Token, OfferSharingCapability.NFT],
   },
 };
@@ -337,6 +343,55 @@ async function postToHashgreen(
       }
     }
   }
+}
+
+type PostToSpacescanResponse = {
+  success: boolean;
+  offer: {
+    id: string;
+    summary: Record<string, any>;
+  };
+};
+
+// Posts the offer data to OfferBin and returns a URL to the offer.
+async function postToSpacescan(
+  offerData: string,
+  testnet: boolean,
+): Promise<string> {
+  const ipcRenderer = (window as any).ipcRenderer;
+  const requestOptions = {
+    method: 'POST',
+    protocol: 'https:',
+    hostname: 'api2.spacescan.io',
+    port: 443,
+    path: `/api/offer/upload?coin=${testnet ? 'txch' : 'xch'}&version=1`,
+  };
+  const requestHeaders = {
+    'Content-Type': 'application/json',
+  };
+  const requestData = JSON.stringify({ offer: offerData });
+  const { err, statusCode, statusMessage, responseBody } =
+    await ipcRenderer?.invoke(
+      'fetchTextResponse',
+      requestOptions,
+      requestHeaders,
+      requestData,
+    );
+
+  if (err || statusCode !== 200) {
+    const error = new Error(
+      `Spacescan.io upload failed: ${err}, statusCode=${statusCode}, statusMessage=${statusMessage}, response=${responseBody}`,
+    );
+    throw error;
+  }
+
+  console.log('Spacescan.io upload completed');
+
+  const {
+    offer: { id },
+  }: PostToSpacescanResponse = JSON.parse(responseBody);
+
+  return `https://www.spacescan.io/${testnet ? 'txch' : 'xch'}/offer/${id}`;
 }
 
 enum KeybaseCLIActions {
@@ -862,6 +917,87 @@ OfferShareHashgreenDialog.defaultProps = {
   onClose: () => {},
 };
 
+function OfferShareSpacescanDialog(props: OfferShareServiceDialogProps) {
+  const { offerRecord, offerData, testnet, onClose, open } = props;
+  const openExternal = useOpenExternal();
+  const [sharedURL, setSharedURL] = React.useState('');
+
+  function handleClose() {
+    onClose(false);
+  }
+
+  async function handleConfirm() {
+    const url = await postToSpacescan(offerData, testnet);
+    console.log(`Spacescan.io URL: ${url}`);
+    setSharedURL(url);
+  }
+
+  if (sharedURL) {
+    return (
+      <Dialog
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+        maxWidth="xs"
+        open={open}
+        onClose={handleClose}
+        fullWidth
+      >
+        <DialogTitle>
+          <Trans>Offer Shared</Trans>
+        </DialogTitle>
+        <DialogContent dividers>
+          <Flex flexDirection="column" gap={3} sx={{ paddingTop: '1em' }}>
+            <TextField
+              label={<Trans>Spacescan.io URL</Trans>}
+              value={sharedURL}
+              variant="filled"
+              InputProps={{
+                readOnly: true,
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <CopyToClipboard value={sharedURL} />
+                  </InputAdornment>
+                ),
+              }}
+              fullWidth
+            />
+            <Flex>
+              <Button
+                variant="outlined"
+                onClick={() => openExternal(sharedURL)}
+              >
+                <Trans>View on Spacescan.io</Trans>
+              </Button>
+            </Flex>
+          </Flex>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} color="primary" variant="contained">
+            <Trans>Close</Trans>
+          </Button>
+        </DialogActions>
+      </Dialog>
+    );
+  }
+
+  return (
+    <OfferShareConfirmationDialog
+      offerRecord={offerRecord}
+      offerData={offerData}
+      testnet={testnet}
+      title={<Trans>Share on Spacescan.io</Trans>}
+      onConfirm={handleConfirm}
+      open={open}
+      onClose={onClose}
+    />
+  );
+}
+
+OfferShareSpacescanDialog.defaultProps = {
+  open: false,
+  onClose: () => {},
+};
+
 function OfferShareKeybaseDialog(props: OfferShareServiceDialogProps) {
   const { offerRecord, offerData, testnet, onClose, open } = props;
   const { lookupByAssetId } = useAssetIdName();
@@ -1343,6 +1479,10 @@ export default function OfferShareDialog(props: OfferShareDialogProps) {
       },
       [OfferSharingService.Offerpool]: {
         component: OfferShareOfferpoolDialog,
+        props: {},
+      },
+      [OfferSharingService.Spacescan]: {
+        component: OfferShareSpacescanDialog,
         props: {},
       },
       [OfferSharingService.Keybase]: {
