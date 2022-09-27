@@ -76,18 +76,17 @@ function CountdownBar(props: Props) {
     }
   });
 
-  // one or both of the following two lines need adjusting
   var modSec = (((seconds - start) % refreshSec) + refreshSec) % refreshSec;
   var currentProgress = modSec * Math.floor(100 / refreshSec);
 
-  console.log("refreshSec:", refreshSec, "/ seconds:", seconds, "/ modSec =", modSec, "/ currentProgress =", currentProgress);
+  // console.log("startTime:", start, "/ refreshSec:", refreshSec, "/ seconds:", seconds, "/ modSec =", modSec, "/ currentProgress =", currentProgress);
 
   const containerStyle = {
-    height: 20,
+    height: 2,
     width: '100%',
     backgroundColor: "#e0e0de",
-    borderRadius: 50,
-    margin: 5
+    borderRadius: 0,
+    margin: 0
   }
 
   const fillerStyle = {
@@ -99,7 +98,7 @@ function CountdownBar(props: Props) {
   }
 
   const labelStyle = {
-    padding: 5,
+    padding: 0,
     color: 'white',
     fontWeight: 'bold'
   }
@@ -107,7 +106,7 @@ function CountdownBar(props: Props) {
   return(
     <div style={containerStyle}>
       <div style={fillerStyle}>
-        <span style={labelStyle}>{`${currentProgress}%`}</span>
+        <span style={labelStyle}></span>
       </div>
     </div>
   )
@@ -116,7 +115,7 @@ function CountdownBar(props: Props) {
 export default function EstimatedFee(props: FeeProps) {
   const { name, txType, required, ...rest } = props;
   const [startTime, setStartTime] = useState(new Date().getSeconds());
-  const refreshTime = 13000; // in milliseconds
+  const refreshTime = 60000; // in milliseconds
   const { data: ests, isLoading: isFeeLoading, error } = useGetFeeEstimateQuery({"targetTimes": [60, 120, 300], "cost": 1}, {
     pollingInterval: refreshTime,
   });
@@ -172,9 +171,18 @@ export default function EstimatedFee(props: FeeProps) {
   function showSelect() {
     return (
       <div>
-        <CountdownBar start={startTime} refreshTime={refreshTime} />
         <InputLabel required={required} color="secondary">Fee</InputLabel>
-        <Select name={name} onTypeChange={setInputType} open={selectOpen} onOpen={handleSelectOpen} onClose={handleSelectClose} {...rest}>
+        <Select
+          name={name}
+          onTypeChange={setInputType}
+          open={selectOpen}
+          onOpen={handleSelectOpen}
+          onClose={handleSelectClose}
+          {...rest}
+        >
+          <MenuItem>
+            <CountdownBar start={startTime} refreshTime={refreshTime} />
+          </MenuItem>
           {estList.map((option) => (
             <MenuItem
               value={String(option.estimate)}
@@ -219,12 +227,13 @@ export default function EstimatedFee(props: FeeProps) {
             required={required}
             autoFocus
             color="secondary"
+            InputProps={{
+              endAdornment: <IconButton onClick={showDropdown}><ArrowDropDownIcon /></IconButton>,
+              style: {
+                paddingRight: "0"
+              }
+            }}
           />
-        </Flex>
-        <Flex alignSelf="center">
-          <IconButton onClick={showDropdown}>
-            <ArrowDropDownIcon />
-          </IconButton>
         </Flex>
       </Flex>
     )
