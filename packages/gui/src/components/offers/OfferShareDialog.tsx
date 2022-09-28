@@ -1,4 +1,5 @@
 import React, { useMemo } from 'react';
+import debug from 'debug';
 import { Trans, t } from '@lingui/macro';
 import { useLocalStorage } from '@rehooks/local-storage';
 import {
@@ -11,7 +12,7 @@ import {
   useShowError,
   useOpenExternal,
 } from '@chia/core';
-import { OfferTradeRecord, toBech32m } from '@chia/api';
+import { OfferTradeRecord } from '@chia/api';
 import {
   Button,
   Checkbox,
@@ -37,6 +38,8 @@ import OfferSummary from './OfferSummary';
 import child_process from 'child_process';
 import fs from 'fs';
 import path from 'path';
+
+const log = debug('chia-gui:offers');
 
 /* ========================================================================== */
 
@@ -64,12 +67,12 @@ interface OfferSharingProvider {
 type CommonOfferProps = {
   offerRecord: OfferTradeRecord;
   offerData: string;
-  testnet: boolean;
+  testnet?: boolean;
 };
 
 type CommonDialogProps = {
-  open: boolean;
-  onClose: (value: boolean) => void;
+  open?: boolean;
+  onClose?: (value: boolean) => void;
 };
 
 type OfferShareServiceDialogProps = CommonOfferProps & CommonDialogProps;
@@ -165,7 +168,7 @@ async function postToDexie(
     throw error;
   }
 
-  console.log('Dexie upload completed');
+  log('Dexie upload completed');
   const { id } = JSON.parse(responseBody);
 
   return `https://${testnet ? 'testnet.' : ''}dexie.space/offers/${id}`;
@@ -202,7 +205,7 @@ async function postToMintGarden(
     throw error;
   }
 
-  console.log('MintGarden upload completed');
+  log('MintGarden upload completed');
 
   const {
     offer: { id },
@@ -246,7 +249,7 @@ async function postToOfferBin(
     throw error;
   }
 
-  console.log('OfferBin upload completed');
+  log('OfferBin upload completed');
 
   if (testnet) {
     return 'https://www.chia.net/offers';
@@ -297,7 +300,7 @@ async function postToHashgreen(
   }
 
   if (statusCode === 200) {
-    console.log('Hashgreen upload completed');
+    log('Hashgreen upload completed');
 
     if (testnet) {
       return 'https://www.chia.net/offers';
@@ -322,7 +325,7 @@ async function postToHashgreen(
     if (code === HashgreenErrorCodes.OFFER_FILE_EXISTS && data) {
       return `https://hash.green/dex?order=${data}`;
     } else {
-      console.log(`Upload failure response: ${responseBody}`);
+      log(`Upload failure response: ${responseBody}`);
       switch (code) {
         case HashgreenErrorCodes.MARKET_NOT_FOUND:
           throw new Error(
@@ -385,7 +388,7 @@ async function postToSpacescan(
     throw error;
   }
 
-  console.log('Spacescan.io upload completed');
+  log('Spacescan.io upload completed');
 
   const {
     offer: { id },
@@ -560,7 +563,7 @@ async function postToOfferpool(
     throw error;
   }
 
-  console.log('offerpool upload completed');
+  log('offerpool upload completed');
 
   if (testnet) {
     return { success: true };
@@ -572,7 +575,13 @@ async function postToOfferpool(
 /* ========================================================================== */
 
 function OfferShareDexieDialog(props: OfferShareServiceDialogProps) {
-  const { offerRecord, offerData, testnet, onClose, open } = props;
+  const {
+    offerRecord,
+    offerData,
+    testnet = false,
+    onClose = () => {},
+    open = false,
+  } = props;
   const openExternal = useOpenExternal();
   const [sharedURL, setSharedURL] = React.useState('');
 
@@ -582,7 +591,7 @@ function OfferShareDexieDialog(props: OfferShareServiceDialogProps) {
 
   async function handleConfirm() {
     const url = await postToDexie(offerData, testnet);
-    console.log(`Dexie URL: ${url}`);
+    log(`Dexie URL: ${url}`);
     setSharedURL(url);
   }
 
@@ -647,13 +656,14 @@ function OfferShareDexieDialog(props: OfferShareServiceDialogProps) {
   );
 }
 
-OfferShareDexieDialog.defaultProps = {
-  open: false,
-  onClose: () => {},
-};
-
 function OfferShareMintGardenDialog(props: OfferShareServiceDialogProps) {
-  const { offerRecord, offerData, testnet, onClose, open } = props;
+  const {
+    offerRecord,
+    offerData,
+    testnet = false,
+    onClose = () => {},
+    open = false,
+  } = props;
   const openExternal = useOpenExternal();
   const [sharedURL, setSharedURL] = React.useState('');
 
@@ -663,7 +673,7 @@ function OfferShareMintGardenDialog(props: OfferShareServiceDialogProps) {
 
   async function handleConfirm() {
     const url = await postToMintGarden(offerData, testnet);
-    console.log(`MintGarden URL: ${url}`);
+    log(`MintGarden URL: ${url}`);
     setSharedURL(url);
   }
 
@@ -728,13 +738,14 @@ function OfferShareMintGardenDialog(props: OfferShareServiceDialogProps) {
   );
 }
 
-OfferShareMintGardenDialog.defaultProps = {
-  open: false,
-  onClose: () => {},
-};
-
 function OfferShareOfferBinDialog(props: OfferShareServiceDialogProps) {
-  const { offerRecord, offerData, testnet, onClose, open } = props;
+  const {
+    offerRecord,
+    offerData,
+    testnet = false,
+    onClose = () => {},
+    open = false,
+  } = props;
   const openExternal = useOpenExternal();
   const [sharePrivately, setSharePrivately] = React.useState(false);
   const [sharedURL, setSharedURL] = React.useState('');
@@ -745,7 +756,7 @@ function OfferShareOfferBinDialog(props: OfferShareServiceDialogProps) {
 
   async function handleConfirm() {
     const url = await postToOfferBin(offerData, sharePrivately, testnet);
-    console.log(`OfferBin URL (private=${sharePrivately}): ${url}`);
+    log(`OfferBin URL (private=${sharePrivately}): ${url}`);
     setSharedURL(url);
   }
 
@@ -831,13 +842,14 @@ function OfferShareOfferBinDialog(props: OfferShareServiceDialogProps) {
   );
 }
 
-OfferShareOfferBinDialog.defaultProps = {
-  open: false,
-  onClose: () => {},
-};
-
 function OfferShareHashgreenDialog(props: OfferShareServiceDialogProps) {
-  const { offerRecord, offerData, testnet, onClose, open } = props;
+  const {
+    offerRecord,
+    offerData,
+    testnet = false,
+    onClose = () => {},
+    open = false,
+  } = props;
   const openExternal = useOpenExternal();
   const [sharedURL, setSharedURL] = React.useState('');
 
@@ -847,7 +859,7 @@ function OfferShareHashgreenDialog(props: OfferShareServiceDialogProps) {
 
   async function handleConfirm() {
     const url = await postToHashgreen(offerData, testnet);
-    console.log(`Hashgreen URL: ${url}`);
+    log(`Hashgreen URL: ${url}`);
     setSharedURL(url);
   }
 
@@ -912,13 +924,14 @@ function OfferShareHashgreenDialog(props: OfferShareServiceDialogProps) {
   );
 }
 
-OfferShareHashgreenDialog.defaultProps = {
-  open: false,
-  onClose: () => {},
-};
-
 function OfferShareSpacescanDialog(props: OfferShareServiceDialogProps) {
-  const { offerRecord, offerData, testnet, onClose, open } = props;
+  const {
+    offerRecord,
+    offerData,
+    testnet = false,
+    onClose = () => {},
+    open = false,
+  } = props;
   const openExternal = useOpenExternal();
   const [sharedURL, setSharedURL] = React.useState('');
 
@@ -928,7 +941,7 @@ function OfferShareSpacescanDialog(props: OfferShareServiceDialogProps) {
 
   async function handleConfirm() {
     const url = await postToSpacescan(offerData, testnet);
-    console.log(`Spacescan.io URL: ${url}`);
+    log(`Spacescan.io URL: ${url}`);
     setSharedURL(url);
   }
 
@@ -993,13 +1006,14 @@ function OfferShareSpacescanDialog(props: OfferShareServiceDialogProps) {
   );
 }
 
-OfferShareSpacescanDialog.defaultProps = {
-  open: false,
-  onClose: () => {},
-};
-
 function OfferShareKeybaseDialog(props: OfferShareServiceDialogProps) {
-  const { offerRecord, offerData, testnet, onClose, open } = props;
+  const {
+    offerRecord,
+    offerData,
+    testnet,
+    onClose = () => {},
+    open = false,
+  } = props;
   const { lookupByAssetId } = useAssetIdName();
   const showError = useShowError();
   const [isSubmitting, setIsSubmitting] = React.useState(false);
@@ -1048,7 +1062,7 @@ function OfferShareKeybaseDialog(props: OfferShareServiceDialogProps) {
           });
 
           if (isMember) {
-            console.log('Joined team successfully');
+            log('Joined team successfully');
             break;
           }
 
@@ -1074,7 +1088,7 @@ function OfferShareKeybaseDialog(props: OfferShareServiceDialogProps) {
           }
 
           if (joinChannelSucceeded) {
-            console.log('Joined channel successfully');
+            log('Joined channel successfully');
             await new Promise((resolve) => setTimeout(resolve, 1000));
             await shell.openExternal(
               `keybase://chat/${teamName}#${channelName}`,
@@ -1245,13 +1259,14 @@ function OfferShareKeybaseDialog(props: OfferShareServiceDialogProps) {
   );
 }
 
-OfferShareKeybaseDialog.defaultProps = {
-  open: false,
-  onClose: () => {},
-};
-
 function OfferShareOfferpoolDialog(props: OfferShareServiceDialogProps) {
-  const { offerRecord, offerData, testnet, onClose, open } = props;
+  const {
+    offerRecord,
+    offerData,
+    testnet = false,
+    onClose = () => {},
+    open = false,
+  } = props;
   const openExternal = useOpenExternal();
   const [offerResponse, setOfferResponse] =
     React.useState<PostToOfferpoolResponse>();
@@ -1262,7 +1277,7 @@ function OfferShareOfferpoolDialog(props: OfferShareServiceDialogProps) {
 
   async function handleConfirm() {
     const result = await postToOfferpool(offerData, testnet);
-    console.log(`offerpool result ${JSON.stringify(result)}`);
+    log(`offerpool result ${JSON.stringify(result)}`);
     setOfferResponse(result);
   }
 
@@ -1316,11 +1331,6 @@ function OfferShareOfferpoolDialog(props: OfferShareServiceDialogProps) {
   );
 }
 
-OfferShareOfferpoolDialog.defaultProps = {
-  open: false,
-  onClose: () => {},
-};
-
 /* ========================================================================== */
 
 type OfferShareConfirmationDialogProps = CommonOfferProps &
@@ -1335,13 +1345,11 @@ function OfferShareConfirmationDialog(
 ) {
   const {
     offerRecord,
-    offerData,
-    testnet,
     title,
     onConfirm,
     actions = null,
-    onClose,
-    open,
+    onClose = () => {},
+    open = false,
   } = props;
   const showError = useShowError();
   const [isSubmitting, setIsSubmitting] = React.useState(false);
@@ -1422,24 +1430,24 @@ function OfferShareConfirmationDialog(
 
 type OfferShareDialogProps = CommonOfferProps &
   CommonDialogProps & {
-    showSuppressionCheckbox: boolean;
+    showSuppressionCheckbox?: boolean;
     exportOffer?: () => void;
   };
 
 interface OfferShareDialogProvider extends OfferSharingProvider {
   dialogComponent: React.FunctionComponent<OfferShareServiceDialogProps>;
-  props: {};
+  props: Record<string, unknown>;
 }
 
 export default function OfferShareDialog(props: OfferShareDialogProps) {
   const {
     offerRecord,
     offerData,
-    showSuppressionCheckbox,
-    testnet,
     exportOffer,
-    onClose,
-    open,
+    open = false,
+    onClose = () => {},
+    showSuppressionCheckbox = false,
+    testnet = false,
   } = props;
   const openDialog = useOpenDialog();
   const [suppressShareOnCreate, setSuppressShareOnCreate] =
@@ -1596,10 +1604,3 @@ export default function OfferShareDialog(props: OfferShareDialogProps) {
     </Dialog>
   );
 }
-
-OfferShareDialog.defaultProps = {
-  open: false,
-  onClose: () => {},
-  showSuppressionCheckbox: false,
-  testnet: false,
-};
