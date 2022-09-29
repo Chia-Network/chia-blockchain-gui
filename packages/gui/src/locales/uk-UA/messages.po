@@ -8,7 +8,7 @@ msgstr ""
 "Language: uk_UA\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-09-29 12:55\n"
+"PO-Revision-Date: 2022-09-29 19:37\n"
 "Last-Translator: \n"
 "Language-Team: Ukrainian\n"
 "Plural-Forms: nplurals=4; plural=((n%10==1 && n%100!=11) ? 0 : ((n%10 >= 2 && n%10 <=4 && (n%100 < 12 || n%100 > 14)) ? 1 : ((n%10 == 0 || (n%10 >= 5 && n%10 <=9)) || (n%100 >= 11 && n%100 <= 14)) ? 2 : 3));\n"
@@ -142,7 +142,7 @@ msgstr "Усі профілі"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:431
 msgid "Alternate bucket writing"
-msgstr ""
+msgstr "Почергове написання сегментів"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:354
 msgid "Alternate tmpdir/tmpdir2"
@@ -284,7 +284,7 @@ msgstr "Підтвердження спалення NFT"
 
 #: src/components/nfts/NFTBurnDialog.tsx:125
 msgid "Burning a non-fungible token means removing it from circulation by sending it to a verifiably un-spendable address. However, transactions leading up to the burn will remain on the blockchain ledger."
-msgstr ""
+msgstr "Спалювання невзаємозамінного токена означає вилучення його з обігу шляхом відправлення на адресу, яка не підлягає використанню. Однак транзакції, що призвели до спалювання, залишаться в книзі блокчейну."
 
 #: src/components/offers/NFTOfferEditor.tsx:362
 msgid "Buy an NFT"
@@ -292,7 +292,7 @@ msgstr "Придбати NFT"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:243
 msgid "Cache size (GB)"
-msgstr ""
+msgstr "Розмір кешу (GB)"
 
 #: src/components/app/AppPassPrompt.tsx:184
 #: src/components/backup/BackupCreate.tsx:51
@@ -361,7 +361,7 @@ msgstr "Змінити пул"
 #: src/components/settings/SettingsDataLayer.tsx:57
 #: src/components/settings/SettingsStartup.tsx:36
 msgid "Changes will take effect the next time Chia is started"
-msgstr ""
+msgstr "Зміни набудуть чинності наступного разу при запуску Chia"
 
 #: src/electron/main.tsx:660
 msgid "Chat on KeyBase"
@@ -640,7 +640,7 @@ msgstr "Data URL {0}"
 
 #: src/components/settings/Settings.tsx:87
 msgid "DataLayer"
-msgstr ""
+msgstr "DataLayer"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:30
 msgid "Date"
@@ -728,11 +728,11 @@ msgstr "Вимкнути NUMA"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:411
 msgid "Disable assigning automatic thread affinity. This is useful when running multiple simultaneous instances of Bladebit as you can manually assign thread affinity yourself when launching Bladebit."
-msgstr ""
+msgstr "Вимкнути автоматичний thread affinity. Це корисно під час одночасного запуску кількох екземплярів Bladebit, оскільки ви можете самостійно вручну призначити thread affinity під час запуску Bladebit."
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:390
 msgid "Disable automatic NUMA aware memory binding. If you set this parameter in a NUMA system you will likely get degraded performance."
-msgstr ""
+msgstr "Вимкнути автоматичне прив'язування пам'яті NUMA. Якщо ви встановите цей параметр у системі NUMA ви, швидше за все, отримаєте погіршення продуктивності."
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:331
 msgid "Disable bitfield plotting"
@@ -740,11 +740,11 @@ msgstr "Вимкнути використання бітового поля"
 
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:107
 msgid "Disable direct I/O on the temp 1 directory in order to extract maximum performance with RAM disk"
-msgstr ""
+msgstr "Вимкнути прямий I/O у каталозі temp 1, щоб отримати максимальну продуктивність за допомогою RAM-диска"
 
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:163
 msgid "Disable direct I/O on the temp 2 directory in order to extract maximum performance with RAM disk"
-msgstr ""
+msgstr "Вимкнути прямий I/O у каталозі temp 2, щоб отримати максимальну продуктивність за допомогою RAM-диска"
 
 #: src/components/fullNode/FullNodeCloseConnection.tsx:20
 msgid "Disconnect"
@@ -821,15 +821,15 @@ msgstr "Edition Number"
 
 #: src/components/settings/SettingsStartup.tsx:32
 msgid "Enable Auto Login"
-msgstr ""
+msgstr "Увімкнути автоматичний вхід"
 
 #: src/components/settings/SettingsDataLayer.tsx:38
 msgid "Enable DataLayer"
-msgstr ""
+msgstr "Увімкнути DataLayer"
 
 #: src/components/settings/SettingsDataLayer.tsx:52
 msgid "Enable File Propagation Server"
-msgstr ""
+msgstr "Увімкнути File Propagation Server"
 
 #: src/components/app/AppKeyringMigrator.tsx:143
 msgid "Enter a strong passphrase and click Migrate Keys to secure your keys"
@@ -855,11 +855,11 @@ msgstr "Помилка"
 
 #: src/components/nfts/NFTPreview.tsx:827
 msgid "Error fetching video preview"
-msgstr ""
+msgstr "Помилка при отриманні попереднього перегляду відео"
 
 #: src/components/nfts/NFTPreview.tsx:835
 msgid "Error parsing json"
-msgstr ""
+msgstr "Помилка під час аналізу json"
 
 #: src/components/fullNode/card/FullNodeEstimatedNetworkSpace.tsx:14
 msgid "Estimated Network Space"
@@ -997,7 +997,7 @@ msgstr "Файл"
 
 #: src/components/nfts/NFTPreview.tsx:55
 msgid "File is over 100MB"
-msgstr ""
+msgstr "Файл більше 100MB"
 
 #: src/components/nfts/NFTPreview.tsx:26
 #~ msgid "File is over 10MB"
@@ -1068,7 +1068,7 @@ msgstr "Перейти до Offerpool"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:433
 msgid "Halves the temp2 cache size requirements by alternating bucket writing methods between tables."
-msgstr ""
+msgstr "Зменшує вимоги до розміру кешу temp2 вдвічі шляхом чергування методів запису сегментів між таблицями."
 
 #: src/components/plot/PlotHarvesters.tsx:39
 msgid "Harvesters"
@@ -1076,11 +1076,11 @@ msgstr "Комбайни"
 
 #: src/components/nfts/detail/NFTDetailV2.tsx:123
 msgid "Hash is validated."
-msgstr ""
+msgstr "Хеш перевірено."
 
 #: src/components/nfts/detail/NFTDetailV2.tsx:127
 msgid "Hash mismatch."
-msgstr ""
+msgstr "Невідповідність хешу."
 
 #: src/components/offers/OfferShareDialog.tsx:882
 msgid "Hashgreen DEX URL"
@@ -1155,7 +1155,7 @@ msgstr "Якщо вибрано, ваша пропозиція не буде о�
 
 #: src/components/nfts/NFTBurnDialog.tsx:81
 msgid "If you burn this NFT, nobody (including you) will ever be able to access it again. Are you sure you want to continue?"
-msgstr ""
+msgstr "Якщо ви спалюєте цей НФТ, ніхто (включаючи вас) не зможе знову отримати до нього доступ. Ви впевнені, що хочете продовжити?"
 
 #: src/components/offers/OfferManager.tsx:128
 msgid "If you have already shared your offer file, you may need to submit a transaction to cancel the pending offer. Click \"Cancel on blockchain\" to submit a cancellation transaction."
@@ -1352,7 +1352,7 @@ msgstr "Завантаження даних про фармінг"
 
 #: src/components/app/AppAutoLogin.tsx:43
 msgid "Loading fingerprint"
-msgstr ""
+msgstr "Завантаження fingerprint"
 
 #: src/components/app/AppState.tsx:190
 msgid "Loading keyring status"
@@ -1400,7 +1400,7 @@ msgstr "URL метаданих {0}"
 
 #: src/components/nfts/NFTPreview.tsx:839
 msgid "Metadata hash mismatch"
-msgstr ""
+msgstr "Невідповідність хешу метаданих"
 
 #: src/components/fullNode/FullNodeConnections.tsx:57
 msgid "MiB Up/Down"
@@ -1436,7 +1436,7 @@ msgstr "Видобуто на висоті блоку"
 
 #: src/components/offers/OfferSummaryRow.tsx:156
 msgid "Minter:"
-msgstr ""
+msgstr "Minter:"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:103
 msgid "Minutes"
@@ -1448,11 +1448,11 @@ msgstr "Відсутні ключі"
 
 #: src/components/nfts/NFTPreview.tsx:823
 msgid "Missing preview_image_hash key"
-msgstr ""
+msgstr "Відсутній ключ preview_image_hash"
 
 #: src/components/nfts/NFTPreview.tsx:819
 msgid "Missing preview_video_hash key"
-msgstr ""
+msgstr "Відсутній ключ preview_video_hash"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:123
 msgid "More memory slightly increases speed"
@@ -1569,7 +1569,7 @@ msgstr "Ні"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:409
 msgid "No CPU Affinity"
-msgstr ""
+msgstr "No CPU Affinity"
 
 #: src/components/farm/card/FarmCardLastHeightFarmed.tsx:15
 msgid "No blocks farmed yet"
@@ -1667,23 +1667,23 @@ msgstr "Число потоків"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:288
 msgid "Number of threads for C table processing"
-msgstr ""
+msgstr "Кількість потоків для обробки таблиці C"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:260
 msgid "Number of threads for F1 generation"
-msgstr ""
+msgstr "Кількість потоків для генерації F1"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:302
 msgid "Number of threads for Phase 2"
-msgstr ""
+msgstr "Кількість потоків для Phase 2"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:316
 msgid "Number of threads for Phase 3"
-msgstr ""
+msgstr "Кількість потоків для Phase 3"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:274
 msgid "Number of threads for forward propagation"
-msgstr ""
+msgstr "Кількість потоків для прямого поширення"
 
 #: src/components/offers/OfferDataDialog.tsx:75
 #: src/components/plotNFT/PlotNFTGetPoolLoginLinkDialog.tsx:87
@@ -1763,23 +1763,23 @@ msgstr "Відкрити в браузері"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:289
 msgid "Override the thread count for C table processing"
-msgstr ""
+msgstr "Перевизначити кількість потоків для обробки таблиці C"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:261
 msgid "Override the thread count for F1 generation"
-msgstr ""
+msgstr "Перевизначити кількість потоків для генерації F1"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:303
 msgid "Override the thread count for Phase 2"
-msgstr ""
+msgstr "Перевизначити кількість потоків для Phase 2"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:317
 msgid "Override the thread count for Phase 3"
-msgstr ""
+msgstr "Перевизначити кількість потоків для Phase 3"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:275
 msgid "Override the thread count for forward propagation"
-msgstr ""
+msgstr "Перевизначити кількість потоків для прямого поширення"
 
 #: src/components/nfts/NFTDetails.tsx:74
 msgid "Owner DID"
@@ -2002,7 +2002,7 @@ msgstr "Ділянки - це виділений простір на жорст�
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:228
 msgid "Plots in the same queue will run in serial"
-msgstr ""
+msgstr "Ділянки в одній черзі будуть виконуватися послідовно"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:103
 msgid "Plotter"
@@ -2132,11 +2132,11 @@ msgstr "URL для попереднього перегляду недійсна"
 
 #: src/components/nfts/NFTDetails.tsx:250
 msgid "Preview image uris"
-msgstr ""
+msgstr "Попередній перегляд зображення"
 
 #: src/components/nfts/NFTDetails.tsx:270
 msgid "Preview video uris"
-msgstr ""
+msgstr "Попередній перегляд відео"
 
 #: src/components/block/Block.jsx:306
 msgid "Previous"
@@ -2414,7 +2414,7 @@ msgstr "Поділитися в OfferBin"
 
 #: src/components/offers/OfferShareDialog.tsx:1001
 msgid "Share on Spacescan.io"
-msgstr ""
+msgstr "Поділитися у Spacescan.io"
 
 #: src/components/offers/OfferShareDialog.tsx:1326
 msgid "Share on offerpool"
@@ -2438,7 +2438,7 @@ msgstr "Показувати прев'ю"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:247
 msgid "Size of cache to reserve for I/O"
-msgstr ""
+msgstr "Розмір кешу для резервування вводу/виводу"
 
 #: src/components/app/AppKeyringMigrator.tsx:64
 #: src/components/app/AppKeyringMigrator.tsx:267
@@ -2459,7 +2459,7 @@ msgstr "Отримайте свої нагороди за фарм XCH, приє
 
 #: src/components/offers/OfferShareDialog.tsx:964
 msgid "Spacescan.io URL"
-msgstr ""
+msgstr "Spacescan.io URL"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:143
 msgid "Specify a value of 0 to use all available threads"
@@ -2476,7 +2476,7 @@ msgstr "Запуск сервісів"
 #: src/components/settings/SettingsDataLayer.tsx:25
 #: src/components/settings/SettingsStartup.tsx:21
 msgid "Startup"
-msgstr ""
+msgstr "Автозавантаження"
 
 #: src/components/fullNode/FullNode.jsx:95
 msgid "State"
@@ -2570,7 +2570,7 @@ msgstr "Індекс деривації встановлює діапазон а
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:105
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:161
 msgid "The folder is on a RAM Disk"
-msgstr ""
+msgstr "Папка знаходиться на RAM диску"
 
 #: src/components/farm/FarmFullNodeConnections.tsx:89
 msgid "The full node that your farmer is connected to is below. <0>Learn more</0>"
@@ -2725,7 +2725,7 @@ msgstr "Множник потоків для етапу 2"
 
 #: src/components/nfts/NFTPreview.tsx:831
 msgid "Thumbnail hash mismatch"
-msgstr ""
+msgstr "Невідповідність Thumbnail хешу"
 
 #: src/components/fullNode/FullNode.jsx:87
 msgid "Time Created"
@@ -2808,7 +2808,7 @@ msgstr "Загальна ітерація з початку блокчейн"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:371
 msgid "Touch all pages of buffer allocations before starting to plot."
-msgstr ""
+msgstr "Торкніться всіх сторінок буферних алокацій, перш ніж починати роботу з ділянкою."
 
 #: src/components/app/AppSelectMode.tsx:96
 msgid "Trade tokens"
@@ -2903,11 +2903,11 @@ msgstr "Ітерації підслотів VDF"
 
 #: src/components/nfts/detail/NFTDetailV2.tsx:137
 msgid "Validate SHA256 SUM"
-msgstr ""
+msgstr "Перевірити SHA256 SUM"
 
 #: src/components/nfts/detail/NFTDetailV2.tsx:121
 msgid "Validating hash..."
-msgstr ""
+msgstr "Перевірка хешу..."
 
 #: src/components/plotNFT/select/PlotNFTSelectBase.tsx:156
 msgid "Verify Pool Details"
