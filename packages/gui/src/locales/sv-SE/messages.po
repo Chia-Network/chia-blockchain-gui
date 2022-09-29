@@ -8,7 +8,7 @@ msgstr ""
 "Language: sv_SE\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-08-24 05:40\n"
+"PO-Revision-Date: 2022-09-29 09:12\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -268,15 +268,15 @@ msgstr "Bläddra"
 #: src/components/nfts/NFTBurnDialog.tsx:170
 #: src/components/nfts/NFTContextualActions.tsx:616
 msgid "Burn"
-msgstr ""
+msgstr "Bränn"
 
 #: src/components/nfts/NFTBurnDialog.tsx:77
 msgid "Burn NFT confirmation"
-msgstr ""
+msgstr "Bekräftelse för att bränna NFT"
 
 #: src/components/nfts/NFTBurnDialog.tsx:122
 msgid "Burning a non-fungible token means destroying it. Burned NFTs are sent to a verifiably un-spendable address, eliminating your NFT from the blockchain. However, transactions leading up to the burn will remain on the blockchain ledger."
-msgstr ""
+msgstr "Att bränna ett icke-fungibelt token innebär att förstöra det. Brända NFT:er skickas till en adress som är verifierbart ospenderbar, vilket tar bort din NFT från blockkedjan. Transaktioner som leder fram till bränningen kommer dock att finnas kvar i blockkedjans transaktionsregister."
 
 #: src/components/offers/NFTOfferEditor.tsx:362
 msgid "Buy an NFT"
@@ -587,7 +587,7 @@ msgstr ""
 
 #: src/components/offers/NFTOfferEditor.tsx:390
 msgid "Creator Fee ({royaltyPercentage}%)"
-msgstr ""
+msgstr "Skaparavgift ({royaltyPercentage}%)"
 
 #: src/components/offers/NFTOfferEditor.tsx:395
 #: src/components/offers/NFTOfferViewer.tsx:585
@@ -728,7 +728,7 @@ msgstr "Har du redan några plottar på denna maskin? <0>Lägg till plottmapp</0
 
 #: src/components/nfts/NFTBurnDialog.tsx:114
 msgid "Do you want to burn this NFT?"
-msgstr ""
+msgstr "Vill du bränna denna NFT?"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:55
 msgid "Does your machine support parallel plotting?"
@@ -2562,11 +2562,11 @@ msgstr ""
 
 #: src/components/offers/OfferManager.tsx:594
 msgid "Token Offer"
-msgstr ""
+msgstr "Tokenerbjudande"
 
 #: src/components/settings/ProfileView.tsx:136
 msgid "Token Standard"
-msgstr ""
+msgstr "Tokenstandard"
 
 #: src/components/dashboard/DashboardSideBar.tsx:55
 #: src/components/nfts/gallery/NFTGallerySidebar.tsx:68
