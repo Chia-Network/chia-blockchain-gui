@@ -8,7 +8,7 @@ msgstr ""
 "Language: sv_SE\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-09-29 09:12\n"
+"PO-Revision-Date: 2022-09-29 10:08\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -592,7 +592,7 @@ msgstr "Skaparavgift ({royaltyPercentage}%)"
 #: src/components/offers/NFTOfferEditor.tsx:395
 #: src/components/offers/NFTOfferViewer.tsx:585
 msgid "Creator royalty percentage seems high"
-msgstr ""
+msgstr "Skaparens royaltyprocent verkar hög"
 
 #: src/components/plot/add/PlotAddForm.tsx:115
 msgid "Currency code is not defined"
@@ -2103,7 +2103,7 @@ msgstr "Återställ metadata för färgade mynt och andra smarta plånböcker fr
 
 #: src/components/nfts/NFTDetails.tsx:128
 msgid "Royalty Percentage"
-msgstr ""
+msgstr "Royaltyprocent"
 
 #: src/components/app/AppSelectMode.tsx:149
 msgid "Runs the full node"
@@ -2652,7 +2652,7 @@ msgstr "Det går inte att skapa ett erbjudande för en NFT som du inte äger."
 
 #: src/components/offers/NFTOfferEditor.tsx:765
 msgid "Unable to create an offer for an NFT with a creator royalty percentage greater than 100%"
-msgstr ""
+msgstr "Det går inte att skapa ett erbjudande för en NFT där skaparens royaltyprocent är högre än 100 %"
 
 #: src/components/offers/NFTOfferEditor.tsx:444
 msgid "Unable to create an offer where the net amount is negative"
