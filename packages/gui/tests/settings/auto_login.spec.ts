@@ -11,13 +11,9 @@ let page: Page;
   test.beforeAll(async () => {
     stopAllChia()
     electronApp = await electron.launch({ args: ['./build/electron/main.js'] });
-    //electronApp = await electron.launch({ headless: true });
     page = await electronApp.firstWindow();
     
-  });
-
-  //Need a function to run chia stop all -d after every close of app!!
- 
+  }); 
 
   test.afterAll(async () => {
     await page.close();
@@ -39,11 +35,8 @@ test('Confirm Enable Auto Login feature works as expected. ', async () => {
   page = await electronApp.firstWindow();
 
   //Then user should have to select a Wallet 
-  await Promise.all([
-      page.waitForNavigation(/*{ url: 'file:///Users/jahifaw/Documents/Code/Chia-testnet-playwright/chia-blockchain/chia-blockchain-gui/packages/gui/build/renderer/index.html#/dashboard/wallets/1' }*/),
-      page.locator('div[role="button"]:has-text("Private key with public fingerprint 1922132445Can be backed up to mnemonic seed")').click()
-    ]);
-  
+    await page.locator('button:has-text("Wallet 11922132445Syncing")').click();
+      
   // When I re-enable Auto Login 
   await page.locator('[data-testid="DashboardSideBar-settings"]').click();
   await page.locator('input[type="checkbox"]').check();
@@ -55,6 +48,7 @@ test('Confirm Enable Auto Login feature works as expected. ', async () => {
   // And User is Auto logged in upon next visit
   electronApp = await electron.launch({ args: ['./build/electron/main.js'] });
   page = await electronApp.firstWindow();
+  await new LoginPage(page).login('password2022!@')
   await page.locator('[data-testid="DashboardSideBar-settings"]').click();
   await page.waitForURL('file:///Users/jahifaw/Documents/Code/chia-tn-pw-latest/chia-blockchain/chia-blockchain-gui/packages/gui/build/renderer/index.html#/dashboard/settings/general');
   await page.close();

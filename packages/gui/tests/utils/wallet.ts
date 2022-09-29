@@ -47,8 +47,8 @@ export function getWalletBalance(
 }
 
 export function stopAllChia(){
- const command = 'chia stop all -d';
- ChildProcess.spawnSync(command, { stdio: 'pipe' });
+ const command = 'chia';
+ ChildProcess.spawnSync(command, ["stop", "all", "-d"], { stdio: 'pipe' });
  console.log(command)
 
 }
