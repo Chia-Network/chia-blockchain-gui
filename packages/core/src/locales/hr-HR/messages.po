@@ -8,7 +8,7 @@ msgstr ""
 "Language: hr_HR\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-09-29 12:56\n"
+"PO-Revision-Date: 2022-09-29 14:27\n"
 "Last-Translator: \n"
 "Language-Team: Croatian\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
@@ -20,7 +20,7 @@ msgstr ""
 
 #: src/components/EstimatedFee/EstimatedFee.tsx:162
 msgid "<0>{0}</0>"
-msgstr ""
+msgstr "<0>{0}</0>"
 
 #: src/components/Amount/Amount.tsx:103
 msgid "Amount"
@@ -28,11 +28,11 @@ msgstr "Iznos"
 
 #: src/components/Settings/SettingsApp.tsx:76
 msgid "Appearance"
-msgstr ""
+msgstr "Izgled"
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:164
 msgid "Are you sure you want to continue? Type in the fingerprint of this wallet key to confirm deletion."
-msgstr ""
+msgstr "Jeste li sigurni da želite nastaviti? Unesite identifikator (fingerprint) ovog ključa novčanika za potvrditi brisanje."
 
 #: src/components/FormBackButton/FormBackButton.tsx:47
 #: src/screens/SelectKey/SelectKey.tsx:84
@@ -53,7 +53,7 @@ msgstr "Otkaži"
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:49
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:72
 msgid "Close"
-msgstr ""
+msgstr "Zatvori"
 
 #: src/components/FormatConnectionStatus/FormatConnectionStatus.tsx:51
 msgid "Connected"
@@ -77,7 +77,7 @@ msgstr "Kreiraj novi privatni ključ"
 
 #: src/components/Settings/SettingsApp.tsx:83
 msgid "Dark"
-msgstr ""
+msgstr "Tamno"
 
 #: src/screens/SelectKey/SelectKey.tsx:83
 #: src/screens/SelectKey/SelectKeyItem.tsx:113
@@ -92,7 +92,7 @@ msgstr "Ukloni sve ključeve"
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:112
 msgid "Delete key {fingerprint}"
-msgstr ""
+msgstr "Izbriši ključ {fingerprint}"
 
 #: src/screens/SelectKey/SelectKey.tsx:88
 msgid "Deleting all keys will permanently remove the keys from your computer, make sure you have backups. Are you sure you want to continue?"
@@ -104,15 +104,15 @@ msgstr "Brisanjem svih ključeva, ključevi spremljeni na računalu biti će tra
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:105
 msgid "Details"
-msgstr ""
+msgstr "Pojedinosti"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:68
 msgid "Disable"
-msgstr ""
+msgstr "Onemogući"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:67
 msgid "Disable Passphrase Protection"
-msgstr ""
+msgstr "Isključi zaštitu lozinkom"
 
 #: src/components/Back/Back.tsx:35
 #: src/components/FormBackButton/FormBackButton.tsx:27
