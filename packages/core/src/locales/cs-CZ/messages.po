@@ -8,7 +8,7 @@ msgstr ""
 "Language: cs_CZ\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-09-30 06:22\n"
+"PO-Revision-Date: 2022-09-30 07:50\n"
 "Last-Translator: \n"
 "Language-Team: Czech\n"
 "Plural-Forms: nplurals=4; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 3;\n"
@@ -130,7 +130,7 @@ msgstr "Chyba:"
 
 #: src/screens/SelectKey/SelectKeyRenameForm.tsx:87
 msgid "Esc"
-msgstr ""
+msgstr "Esc"
 
 #: src/components/LayoutMain/LayoutFooter.tsx:50
 #~ msgid "FAQ"
@@ -310,7 +310,7 @@ msgstr "Tajný klíč"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:154
 msgid "Seed Phrase"
-msgstr ""
+msgstr "Fráze seed"
 
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:75
 msgid "Seed:"
@@ -383,7 +383,7 @@ msgstr "Tento klíč se používá pro vaši poolovou adresu odměny. Odstraněn
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:158
 msgid "This will permanently remove the key from your computer, make sure you have your mnemonic phrase backed up."
-msgstr ""
+msgstr "Toto trvale odstraní klíč z vašeho počítače, ujistěte se, že máte svou mnemotickou frázi zazálohovánu."
 
 #: src/utils/getTransactionResult.ts:15
 msgid "Transaction has not been sent to node yet"
