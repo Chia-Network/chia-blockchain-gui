@@ -8,7 +8,7 @@ msgstr ""
 "Language: cs_CZ\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-09-30 08:55\n"
+"PO-Revision-Date: 2022-09-30 10:19\n"
 "Last-Translator: \n"
 "Language-Team: Czech\n"
 "Plural-Forms: nplurals=4; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 3;\n"
@@ -272,7 +272,7 @@ msgstr "Procházet"
 #: src/components/nfts/NFTBurnDialog.tsx:173
 #: src/components/nfts/NFTContextualActions.tsx:556
 msgid "Burn"
-msgstr ""
+msgstr "Spálit"
 
 #: src/components/nfts/NFTBurnDialog.tsx:78
 msgid "Burn NFT confirmation"
@@ -740,11 +740,11 @@ msgstr "Zakázat vykreslování bitového pole"
 
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:107
 msgid "Disable direct I/O on the temp 1 directory in order to extract maximum performance with RAM disk"
-msgstr ""
+msgstr "Zakázat přímé I/O v adresáři temp 1 pro získání maximálního výkonu pomocí RAM disku"
 
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:163
 msgid "Disable direct I/O on the temp 2 directory in order to extract maximum performance with RAM disk"
-msgstr ""
+msgstr "Zakázat přímé I/O v adresáři temp 2 pro získání maximálního výkonu pomocí RAM disku"
 
 #: src/components/fullNode/FullNodeCloseConnection.tsx:20
 msgid "Disconnect"
@@ -1486,7 +1486,7 @@ msgstr ""
 
 #: src/components/offers/NFTOfferEditor.tsx:243
 msgid "NFT Identifier"
-msgstr ""
+msgstr "NTF identifikátor"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:317
 msgid "NFT Move Failed"
@@ -1498,19 +1498,19 @@ msgstr ""
 
 #: src/components/offers/OfferManager.tsx:575
 msgid "NFT Offer"
-msgstr ""
+msgstr "Nabídka NFT"
 
 #: src/components/offers/NFTOfferViewer.tsx:554
 msgid "NFT Purchase Price"
-msgstr ""
+msgstr "Nákupní cena NFT"
 
 #: src/components/nfts/NFTContextualActions.tsx:307
 msgid "NFT Status Update Failed"
-msgstr ""
+msgstr "Aktualizace stavu NFT se nezdařila"
 
 #: src/components/nfts/NFTContextualActions.tsx:297
 msgid "NFT Status Updated"
-msgstr ""
+msgstr "Stav NFT aktualizován"
 
 #: src/components/nfts/NFTContextualActions.tsx:231
 msgid "NFT Transfer Complete"
@@ -1527,7 +1527,7 @@ msgstr ""
 
 #: src/components/offers/NFTOfferEditor.tsx:735
 msgid "NFT details not available"
-msgstr ""
+msgstr "NFT podrobnosti nejsou k dispozici"
 
 #: src/components/offers/NFTOfferEditor.tsx:256
 #~ msgid "NFT for XCH"
@@ -1535,11 +1535,11 @@ msgstr ""
 
 #: src/components/offers/NFTOfferPreview.tsx:56
 msgid "NFT identifier does not reference a valid NFT coin."
-msgstr ""
+msgstr "NFT identifikátor neodkazuje na platnou NFT minci."
 
 #: src/components/offers/NFTOfferPreview.tsx:122
 msgid "NFT not specified"
-msgstr ""
+msgstr "NFT nespecifikováno"
 
 #: src/components/dashboard/DashboardSideBar.tsx:61
 msgid "NFTs"
@@ -1547,11 +1547,11 @@ msgstr ""
 
 #: src/components/offers/NFTOfferViewer.tsx:674
 msgid "Net Proceeds"
-msgstr ""
+msgstr "Čisté výnosy"
 
 #: src/components/offers/NFTOfferViewer.tsx:703
 msgid "Network Fee (Optional)"
-msgstr ""
+msgstr "Síťový poplatek (nepovinné)"
 
 #: src/components/fullNode/card/FullNodeCardNetworkName.tsx:14
 msgid "Network Name"
@@ -1579,11 +1579,11 @@ msgstr "Zatím nic nevyfarmařeno"
 
 #: src/components/offers/OfferManager.tsx:519
 msgid "No current offers"
-msgstr ""
+msgstr "Žádné aktuální nabídky"
 
 #: src/components/nfts/NFTPreview.tsx:808
 msgid "No file available"
-msgstr ""
+msgstr "Žádný soubor není k dispozici"
 
 #: src/components/plot/PlotHarvesterPlots.tsx:139
 msgid "No plots yet"
@@ -1596,7 +1596,7 @@ msgstr "Žádné soukromé klíče pro jednu nebo obě adresy. Bezpečné pouze 
 
 #: src/components/offers/OfferViewer.tsx:176
 msgid "Node Count"
-msgstr ""
+msgstr "Počet uzlů"
 
 #: src/components/farm/FarmFullNodeConnections.tsx:29
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:26
@@ -1634,7 +1634,7 @@ msgstr " Není synchronizováno"
 
 #: src/components/offers/OfferViewer.tsx:165
 msgid "Not accepted"
-msgstr ""
+msgstr "Nepřijato"
 
 #: src/components/offers/OfferViewer.tsx:156
 msgid "Not confirmed"
@@ -1713,7 +1713,7 @@ msgstr "Sdílená nabídka"
 
 #: src/components/offers/NFTOfferViewer.tsx:176
 msgid "Offer cannot be accepted because you don't possess the requested assets"
-msgstr ""
+msgstr "Nabídku nelze přijmout, protože nevlastníte požadované položky"
 
 #: src/hooks/useAcceptOfferHook.tsx:63
 msgid "Offer has been accepted and is awaiting confirmation."
@@ -1729,7 +1729,7 @@ msgstr "Nabídnuto"
 
 #: src/components/offers/utils.ts:159
 msgid "Offering: [{makerString}], Requesting: [{takerString}]"
-msgstr ""
+msgstr "Nabídka: [{makerString}], Požadováno: [{takerString}]"
 
 #: src/components/dashboard/DashboardSideBar.tsx:67
 msgid "Offers"
@@ -1757,7 +1757,7 @@ msgstr "Nabízí se jeden nebo více neznámých tokenů. Ověřte, zda ID aktiv
 
 #: src/hooks/useOpenUnsafeLink.tsx:43
 msgid "Open Link"
-msgstr ""
+msgstr "Otevřít odkaz"
 
 #: src/components/nfts/NFTContextualActions.tsx:368
 msgid "Open in Browser"
@@ -1835,7 +1835,7 @@ msgstr "Podpora hesla vyžaduje migraci vašich klíčů do nové klíčenky"
 #: src/components/offers/OfferDataEntryDialog.tsx:40
 #: src/components/offers/OfferImport.tsx:177
 msgid "Paste Offer Data"
-msgstr ""
+msgstr "Vložit data nabídky"
 
 #: src/components/plotNFT/PlotNFTCard.tsx:332
 msgid "Payout Address"
@@ -1851,15 +1851,15 @@ msgstr "Čeká na vyřízení"
 
 #: src/components/offers/utils.ts:165
 msgid "Pending Accept"
-msgstr ""
+msgstr "Čeká na přijetí"
 
 #: src/components/offers/utils.ts:169
 msgid "Pending Cancel"
-msgstr ""
+msgstr "Čeká na zrušení"
 
 #: src/components/offers/utils.ts:167
 msgid "Pending Confirm"
-msgstr ""
+msgstr "Čeká na potvrzení"
 
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:144
 #: src/hooks/useAbsorbRewards.tsx:43
@@ -2004,7 +2004,7 @@ msgstr "Pole jsou rezerovaná místa na disku použitá na farmaření a získá
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:228
 msgid "Plots in the same queue will run in serial"
-msgstr ""
+msgstr "Ploty ve stejné frontě poběží zároveň"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:103
 msgid "Plotter"
@@ -2172,7 +2172,7 @@ msgstr "Nalezeno důkazů"
 
 #: src/components/nfts/NFTProperties.tsx:103
 msgid "Properties"
-msgstr ""
+msgstr "Vlastnosti"
 
 #: src/components/pool/PoolInfo.tsx:22
 msgid "Protocol Version"
@@ -2180,7 +2180,7 @@ msgstr "Verze protokolu"
 
 #: src/components/offers/NFTOfferViewer.tsx:527
 msgid "Purchase Summary"
-msgstr ""
+msgstr "Souhrn nákupů"
 
 #: src/components/offers/OfferViewer.tsx:238
 msgid "Puzzle Hash"
@@ -2209,7 +2209,7 @@ msgstr "Doporučeno"
 
 #: src/components/settings/ProfileAdd.tsx:118
 msgid "Recommended: 0.000005 XCH"
-msgstr ""
+msgstr "Doporučeno: 0.000005 XCH"
 
 #: src/components/plot/PlotHeader.tsx:63
 #: src/components/plot/overview/PlotOverviewHero.tsx:59
@@ -2249,12 +2249,12 @@ msgstr "Nahlásit chybu..."
 
 #: src/components/offers/OfferManager.tsx:391
 msgid "Requested"
-msgstr ""
+msgstr "Požadováno"
 
 #: src/components/offers/NFTOfferEditor.tsx:532
 #: src/components/offers/OfferEditor.tsx:213
 msgid "Reset"
-msgstr ""
+msgstr "Resetovat"
 
 #: src/components/backup/BackupRestore.tsx:159
 msgid "Restore Metadata for Coloured Coins and other Smart Wallets from Backup"
@@ -2844,7 +2844,7 @@ msgstr ""
 
 #: src/components/offers/NFTOfferEditor.tsx:443
 msgid "Unable to create an offer where the net amount is negative"
-msgstr ""
+msgstr "Nelze vytvořit nabídku, kde je čistá částka záporná"
 
 #: src/components/offers/OfferShareDialog.tsx:1129
 msgid "Unable to open Keybase. Install Keybase from https://keybase.io"
@@ -2889,7 +2889,7 @@ msgstr "Odemknout klíčenku"
 
 #: src/components/offers/NFTOfferViewer.tsx:146
 msgid "Unrecognized asset"
-msgstr ""
+msgstr "Nerozpoznané aktivum"
 
 #: src/components/nfts/NFTPreview.tsx:367
 msgid "Update Pending"
@@ -2905,7 +2905,7 @@ msgstr "VDF dílčí iterace slotu"
 
 #: src/components/nfts/detail/NFTDetailV2.tsx:137
 msgid "Validate SHA256 SUM"
-msgstr ""
+msgstr "Ověřit SHA256 SUM"
 
 #: src/components/nfts/detail/NFTDetailV2.tsx:121
 msgid "Validating hash..."
@@ -2935,33 +2935,33 @@ msgstr "Zobrazit nabídku"
 
 #: src/components/offers/OfferShareDialog.tsx:632
 msgid "View on Dexie"
-msgstr ""
+msgstr "Zobrazit na Dexie"
 
 #: src/components/offers/OfferShareDialog.tsx:900
 msgid "View on Hashgreen DEX"
-msgstr ""
+msgstr "Zobrazit na Hashgreen DEX"
 
 #: src/components/nfts/NFTContextualActions.tsx:617
 #: src/components/offers/OfferShareDialog.tsx:714
 msgid "View on MintGarden"
-msgstr ""
+msgstr "Zobrazit na MintGarden"
 
 #: src/components/offers/OfferShareDialog.tsx:797
 msgid "View on OfferBin"
-msgstr ""
+msgstr "Zobrazit na OfferBin"
 
 #: src/components/nfts/NFTContextualActions.tsx:624
 msgid "View on SkyNFT"
-msgstr ""
+msgstr "Zobrazit na SkyNFT"
 
 #: src/components/nfts/NFTContextualActions.tsx:631
 #: src/components/offers/OfferShareDialog.tsx:982
 msgid "View on Spacescan.io"
-msgstr ""
+msgstr "Zobrazit na Spacescan.io"
 
 #: src/components/offers/OfferViewerTitle.tsx:54
 msgid "Viewing offer"
-msgstr ""
+msgstr "Zobrazení nabídky"
 
 #: src/components/farm/card/FarmCardNotAvailable.tsx:25
 #: src/components/plot/PlotStatus.tsx:26
@@ -2975,7 +2975,7 @@ msgstr "Čekání na potvrzení transakce"
 
 #: src/components/app/AppStatusHeader.tsx:75
 msgid "Wallet"
-msgstr ""
+msgstr "Peněženka"
 
 #: src/components/app/AppSelectMode.tsx:76
 #: src/components/app/AppSelectMode.tsx:130
@@ -3000,15 +3000,15 @@ msgstr "Teplý start"
 
 #: src/components/offers/OfferAcceptConfirmationDialog.tsx:34
 msgid "Warning"
-msgstr ""
+msgstr "Upozornění"
 
 #: src/components/offers/OfferSummary.tsx:149
 msgid "Warning: Verify that the offered CAT asset IDs match the asset IDs of the tokens you expect to receive."
-msgstr ""
+msgstr "Varování: Ověřte, že ID nabízených CAT aktiv odpovídají ID aktiv tokenů, které očekáváte, že obdržíte."
 
 #: src/hooks/useOpenUnsafeLink.tsx:42
 msgid "Warning: You're about to visit a website"
-msgstr ""
+msgstr "Upozornění: Chystáte se navštívit webovou stránku"
 
 #: src/components/block/Block.jsx:188
 msgid "Weight"
@@ -3020,7 +3020,7 @@ msgstr "Váha je celková přidaná obtížnost všech bloků až po tento včet
 
 #: src/components/offers/OfferEditorConfirmationDialog.tsx:22
 msgid "When creating an offer, any assets that are being offered will be locked and unavailable until the offer is accepted or cancelled, resulting in your spendable balance changing."
-msgstr ""
+msgstr "Při vytvoření nabídky budou nabízená aktiva uzamčena a nedostupné do doby, než bude nabídka přijata nebo zrušena, výsledkem je změna disponibilního zůstatku."
 
 #: src/electron/main.tsx:599
 msgid "Window"
@@ -3049,11 +3049,11 @@ msgstr "Ano"
 
 #: src/components/offers/OfferAcceptConfirmationDialog.tsx:24
 msgid "Yes, Accept Offer"
-msgstr ""
+msgstr "Ano, přijmout nabídku"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:65
 msgid "Yes, move"
-msgstr ""
+msgstr "Ano, přesunout"
 
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:177
 msgid "You already have 50 or more Plot NFTs."
@@ -3082,7 +3082,7 @@ msgstr "Stále můžete vytvářet pole pro toto NFT pole, ale nemůžete prová
 
 #: src/components/offers/OfferHeader.tsx:38
 msgid "You created this offer"
-msgstr ""
+msgstr "Tuto nabídku jste vytvořili"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:76
 msgid "You do not need to be synced or connected to plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
@@ -3102,13 +3102,13 @@ msgstr "Je potřeba {currencyCode}, aby se šlo připojit k poolu."
 
 #: src/components/offers/OfferEditorConditionsPanel.tsx:340
 msgid "You will offer"
-msgstr ""
+msgstr "Nabízíte"
 
 #: src/components/offers/NFTOfferEditor.tsx:425
 #: src/components/offers/NFTOfferViewer.tsx:532
 #: src/components/offers/OfferViewer.tsx:283
 msgid "You will receive"
-msgstr ""
+msgstr "Obdržíte"
 
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:150
 #: src/hooks/useAbsorbRewards.tsx:51
@@ -3149,11 +3149,11 @@ msgstr "Vaše klíčenka je zamknuta"
 
 #: src/components/offers/OfferShareDialog.tsx:1173
 msgid "Your offer has been successfully posted to Keybase."
-msgstr ""
+msgstr "Vaše nabídka byla úspěšně odeslána na Keybase."
 
 #: src/components/offers/OfferShareDialog.tsx:1393
 msgid "Your offer:"
-msgstr ""
+msgstr "Vaše nabídka:"
 
 #: src/components/app/AppKeyringMigrator.tsx:239
 #: src/components/settings/ChangePassphrasePrompt.tsx:271
