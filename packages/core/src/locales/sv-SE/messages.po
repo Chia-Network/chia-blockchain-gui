@@ -8,7 +8,7 @@ msgstr ""
 "Language: sv_SE\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-09-29 12:55\n"
+"PO-Revision-Date: 2022-09-30 19:27\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -20,7 +20,7 @@ msgstr ""
 
 #: src/components/EstimatedFee/EstimatedFee.tsx:162
 msgid "<0>{0}</0>"
-msgstr ""
+msgstr "<0>{0}</0>"
 
 #: src/components/Amount/Amount.tsx:103
 msgid "Amount"
@@ -173,7 +173,7 @@ msgstr "Hjälp till med översättning"
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:147
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:178
 msgid "Hide"
-msgstr ""
+msgstr "Dölj"
 
 #: src/components/AdvancedOptions/AdvancedOptions.tsx:75
 msgid "Hide Advanced Options"
