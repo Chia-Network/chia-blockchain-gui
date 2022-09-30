@@ -8,7 +8,7 @@ msgstr ""
 "Language: cs_CZ\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-09-29 12:55\n"
+"PO-Revision-Date: 2022-09-30 06:22\n"
 "Last-Translator: \n"
 "Language-Team: Czech\n"
 "Plural-Forms: nplurals=4; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 3;\n"
@@ -32,7 +32,7 @@ msgstr "Vzhled"
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:164
 msgid "Are you sure you want to continue? Type in the fingerprint of this wallet key to confirm deletion."
-msgstr ""
+msgstr "Jste si jisti, že chcete pokračovat? Pro potvrzení smazání zadejte otisk této peněženky."
 
 #: src/components/FormBackButton/FormBackButton.tsx:47
 #: src/screens/SelectKey/SelectKey.tsx:84
@@ -53,7 +53,7 @@ msgstr "Zrušit"
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:49
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:72
 msgid "Close"
-msgstr ""
+msgstr "Zavřít"
 
 #: src/components/FormatConnectionStatus/FormatConnectionStatus.tsx:51
 msgid "Connected"
@@ -104,7 +104,7 @@ msgstr "Smazáním klíčů permanentně odeberete všechny klíče z počítač
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:105
 msgid "Details"
-msgstr ""
+msgstr "Podrobnosti"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:68
 msgid "Disable"
@@ -138,7 +138,7 @@ msgstr ""
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:96
 msgid "Farmer Public Key"
-msgstr ""
+msgstr "Farmářuv veřejný klíč"
 
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:57
 msgid "Farmer public key:"
@@ -156,7 +156,7 @@ msgstr "Poplatek"
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:96
 msgid "Fingerprint does not match"
-msgstr ""
+msgstr "Otisk se neshoduje"
 
 #: src/components/Settings/SettingsApp.tsx:105
 msgid "Frequently Asked Questions"
@@ -173,7 +173,7 @@ msgstr "Pomozte s překladem"
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:147
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:178
 msgid "Hide"
-msgstr ""
+msgstr "Skrýt"
 
 #: src/components/AdvancedOptions/AdvancedOptions.tsx:75
 msgid "Hide Advanced Options"
@@ -197,7 +197,7 @@ msgstr "Světlý"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:48
 msgid "Loading details"
-msgstr ""
+msgstr "Načítám podrobnosti"
 
 #: src/screens/SelectKey/SelectKey.tsx:124
 msgid "Loading list of the keys"
@@ -226,7 +226,7 @@ msgstr "Režim"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:121
 msgid "NEVER SHARE THESE WITH ANYONE"
-msgstr ""
+msgstr "TOHLE NIKDY NIKOMU NESDĚLUJTE"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:49
 msgid "New passphrase is the same as your current passphrase"
@@ -239,7 +239,7 @@ msgstr "Žádný 24 slov, protože tento klíč je importován."
 
 #: src/screens/SelectKey/WalletStatus.tsx:58
 msgid "Not Synced"
-msgstr ""
+msgstr "Není synchronizováno"
 
 #: src/components/FormatConnectionStatus/FormatConnectionStatus.tsx:52
 msgid "Not connected"
@@ -252,7 +252,7 @@ msgstr "OK"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:108
 msgid "Pool Public Key"
-msgstr ""
+msgstr "Veřejný klíč poolu"
 
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:65
 msgid "Pool public key:"
@@ -273,7 +273,7 @@ msgstr "Soukromý klíč:"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:84
 msgid "Public Key"
-msgstr ""
+msgstr "Veřejný klíč"
 
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:49
 msgid "Public key:"
@@ -285,7 +285,7 @@ msgstr "Znovu spustit aplikaci"
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:97
 msgid "Rename"
-msgstr ""
+msgstr "Přejmenovat"
 
 #: src/components/ErrorBoundary/ErrorBoundary.tsx:87
 msgid "Report an Issue"
@@ -294,15 +294,15 @@ msgstr "Nahlásit problém"
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:147
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:178
 msgid "Reveal"
-msgstr ""
+msgstr "Zobrazit"
 
 #: src/screens/SelectKey/SelectKeyRenameForm.tsx:107
 msgid "Save"
-msgstr ""
+msgstr "Uložit"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:127
 msgid "Secret Key"
-msgstr ""
+msgstr "Tajný klíč"
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:151
 #~ msgid "See private key"
@@ -359,11 +359,11 @@ msgstr "Něco se pokazilo"
 
 #: src/screens/SelectKey/WalletStatus.tsx:70
 msgid "Synced"
-msgstr ""
+msgstr "Synchronizováno"
 
 #: src/screens/SelectKey/WalletStatus.tsx:82
 msgid "Syncing"
-msgstr ""
+msgstr "Synchronizuji"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:31
 msgid "The provided passphrase and confirmation do not match"
@@ -371,15 +371,15 @@ msgstr "Zadané heslo a potvrzení hesla se neshodují"
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:145
 msgid "This key is used for a wallet that may have a non-zero balance. By deleting this key you may lose access to this wallet"
-msgstr ""
+msgstr "Tento klíč je používán pro peněženku, která může mít nenulový zůstatek. Smazáním tohoto klíče můžete ztratit přístup k této peněžence"
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:125
 msgid "This key is used for your farming rewards address. By deleting this key you may lose access to any future farming rewards"
-msgstr ""
+msgstr "Tento klíč se používá pro vaši farmářskou adresu odměny. Odstraněním tohoto klíče můžete ztratit přístup k jakýmkoli budoucím odměnám z farmaření"
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:135
 msgid "This key is used for your pool rewards address. By deleting this key you may lose access to any future pool rewards"
-msgstr ""
+msgstr "Tento klíč se používá pro vaši poolovou adresu odměny. Odstraněním tohoto klíče můžete ztratit přístup k jakýmkoli budoucím odměnám z poolu"
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:158
 msgid "This will permanently remove the key from your computer, make sure you have your mnemonic phrase backed up."
@@ -429,12 +429,12 @@ msgstr "Peněženka"
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:172
 msgid "Wallet Fingerprint"
-msgstr ""
+msgstr "Otisk peněženky"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:65
 #: src/screens/SelectKey/SelectKeyItem.tsx:82
 msgid "Wallet {0}"
-msgstr ""
+msgstr "Peněženka {0}"
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:117
 #~ msgid "Warning: This key is used for a wallet that may have a non-zero balance. By deleting this key you may lose access to this wallet"
