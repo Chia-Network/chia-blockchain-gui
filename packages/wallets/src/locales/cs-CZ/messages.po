@@ -8,7 +8,7 @@ msgstr ""
 "Language: cs_CZ\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-09-30 07:50\n"
+"PO-Revision-Date: 2022-09-30 10:19\n"
 "Last-Translator: \n"
 "Language-Team: Czech\n"
 "Plural-Forms: nplurals=4; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 3;\n"
@@ -126,7 +126,7 @@ msgstr "Chia Asset Token"
 
 #: src/components/WalletsSidebar.tsx:160
 msgid "Click here to download an older version of the wallet"
-msgstr ""
+msgstr "Kliknutím sem si stáhnete starší verzi peněženky"
 
 #: src/components/cat/WalletDID.tsx:984
 #: src/components/did/WalletDID.tsx:984
@@ -173,7 +173,7 @@ msgstr "Vytvořit"
 #: src/components/cat/WalletDID.tsx:967
 #: src/components/did/WalletDID.tsx:967
 msgid "Create An Attestation Packet"
-msgstr ""
+msgstr "Vytvořit ověřovací paket"
 
 #: src/components/cat/WalletCATCreateExisting.tsx:76
 #~ msgid "Create Chia Asset Token Wallet from Existing TAIL"
