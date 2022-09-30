@@ -8,7 +8,7 @@ msgstr ""
 "Language: cs_CZ\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-09-30 07:50\n"
+"PO-Revision-Date: 2022-09-30 08:55\n"
 "Last-Translator: \n"
 "Language-Team: Czech\n"
 "Plural-Forms: nplurals=4; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 3;\n"
@@ -485,7 +485,7 @@ msgstr "Potvrzeno"
 
 #: src/components/offers/OfferViewer.tsx:155
 msgid "Confirmed at Height"
-msgstr ""
+msgstr "Potvrzeno ve výšce"
 
 #: src/components/block/FullNodeAddConnection.tsx:88
 #: src/components/fullNode/FullNodeAddConnection.tsx:87
@@ -533,11 +533,11 @@ msgstr "Pomoci s vývojem na GitHubu"
 
 #: src/components/nfts/NFTContextualActions.tsx:402
 msgid "Copy Media URL"
-msgstr ""
+msgstr "Kopírovat URL média"
 
 #: src/components/nfts/NFTContextualActions.tsx:108
 msgid "Copy NFT ID"
-msgstr ""
+msgstr "Kopírovat ID NFT"
 
 #: src/components/backup/BackupCreate.tsx:59
 #: src/components/plot/add/PlotAddForm.tsx:205
@@ -555,7 +555,7 @@ msgstr "Vytváření a správa polí"
 #: src/components/offers/OfferEditor.tsx:221
 #: src/components/offers/OfferEditorConfirmationDialog.tsx:15
 msgid "Create Offer"
-msgstr ""
+msgstr "Vytvořit nabídku"
 
 #: src/components/backup/BackupCreate.tsx:42
 msgid "Create a Backup"
@@ -567,24 +567,24 @@ msgstr "Vytvořit vykreslování NFT"
 
 #: src/components/settings/ProfileAdd.tsx:86
 msgid "Create a new profile"
-msgstr ""
+msgstr "Vytvořit nový profil"
 
 #: src/components/offers/NFTOfferEditor.tsx:865
 msgid "Create an NFT Offer"
-msgstr ""
+msgstr "Vytvořit NFT nabídku"
 
 #: src/components/offers/OfferEditor.tsx:243
 #: src/components/offers/OfferManager.tsx:567
 msgid "Create an Offer"
-msgstr ""
+msgstr "Vytvořit nabídku"
 
 #: src/components/offers/OfferManager.tsx:559
 msgid "Create an offer to exchange assets including XCH, tokens, and NFTs. View an offer to inspect and accept an offer made by another party."
-msgstr ""
+msgstr "Vytvořte nabídku na výměnu assetů včetně XCH, tokenů a NFT. Zobrazit nabídku pro kontrolu a přijetí nabídky vytvořené jinou stranou."
 
 #: src/components/offers/OfferManager.tsx:152
 msgid "Creates and submits a transaction on the blockchain that cancels the offer"
-msgstr ""
+msgstr "Vytvoří a odešle transakci do blockchainu, která zruší nabídku"
 
 #: src/components/plotNFT/PlotNFTUnconfirmedCard.tsx:59
 msgid "Creating Plot NFT and Joining the Pool"
@@ -597,15 +597,15 @@ msgstr "Vytváří se NFT pole pro vlastní poolování"
 #: src/components/offers/OfferManager.tsx:407
 #: src/components/offers/OfferViewer.tsx:171
 msgid "Creation Date"
-msgstr ""
+msgstr "Datum vytvoření"
 
 #: src/components/offers/NFTOfferViewer.tsx:578
 msgid "Creator Fee ({0}%)"
-msgstr ""
+msgstr "Poplatek autora ({0}%)"
 
 #: src/components/offers/NFTOfferEditor.tsx:390
 msgid "Creator Fee ({royaltyPercentage}%)"
-msgstr ""
+msgstr "Poplatek autora ({royaltyPercentage}%)"
 
 #: src/components/offers/NFTOfferEditor.tsx:395
 #: src/components/offers/NFTOfferViewer.tsx:585
@@ -690,20 +690,20 @@ msgstr ""
 #: src/components/nfts/detail/NFTDetail.tsx:73
 #: src/components/nfts/detail/NFTDetailV2.tsx:215
 msgid "Description"
-msgstr ""
+msgstr "Popis"
 
 #: src/components/nfts/NFTTransferConfirmationDialog.tsx:83
 msgid "Destination"
-msgstr ""
+msgstr "Umístění"
 
 #: src/components/nfts/NFTTransferConfirmationDialog.tsx:68
 msgid "Destination:"
-msgstr ""
+msgstr "Umístění:"
 
 #: src/components/nfts/NFTDetails.tsx:281
 #: src/components/offers/OfferViewer.tsx:331
 msgid "Details"
-msgstr ""
+msgstr "Podrobnosti"
 
 #: src/electron/main.tsx:557
 msgid "Developer"
