@@ -8,7 +8,7 @@ msgstr ""
 "Language: cs_CZ\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-09-30 10:19\n"
+"PO-Revision-Date: 2022-09-30 11:17\n"
 "Last-Translator: \n"
 "Language-Team: Czech\n"
 "Plural-Forms: nplurals=4; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 3;\n"
@@ -276,7 +276,7 @@ msgstr "Spálit"
 
 #: src/components/nfts/NFTBurnDialog.tsx:78
 msgid "Burn NFT confirmation"
-msgstr ""
+msgstr "Potvrzení spálení NFT"
 
 #: src/components/nfts/NFTBurnDialog.tsx:122
 #~ msgid "Burning a non-fungible token means destroying it. Burned NFTs are sent to a verifiably un-spendable address, eliminating your NFT from the blockchain. However, transactions leading up to the burn will remain on the blockchain ledger."
@@ -284,7 +284,7 @@ msgstr ""
 
 #: src/components/nfts/NFTBurnDialog.tsx:125
 msgid "Burning a non-fungible token means removing it from circulation by sending it to a verifiably un-spendable address. However, transactions leading up to the burn will remain on the blockchain ledger."
-msgstr ""
+msgstr "Spálením nezaměnitelného tokenu se rozumí jeho odstranění z oběhu odesláním na adresu, ze které nelze utratit. Transakce vedoucí ke spálení však zůstanou v blockchainu."
 
 #: src/components/offers/NFTOfferEditor.tsx:362
 msgid "Buy an NFT"
@@ -463,7 +463,7 @@ msgstr "Potvrdit přesun"
 
 #: src/components/nfts/NFTTransferConfirmationDialog.tsx:39
 msgid "Confirm NFT Transfer"
-msgstr ""
+msgstr "Potvrdit NFT převod"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:229
 msgid "Confirm New Passphrase"
@@ -766,7 +766,7 @@ msgstr "Máte již na tomto počítači existující pole? <0>Přidejte složku 
 
 #: src/components/nfts/NFTBurnDialog.tsx:117
 msgid "Do you want to burn this NFT?"
-msgstr ""
+msgstr "Chcete spálit toto NFT?"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:60
 msgid "Does your machine support parallel plotting?"
@@ -778,7 +778,7 @@ msgstr "Stáhnout"
 
 #: src/components/offers/OfferImport.tsx:191
 msgid "Drag & Drop an Offer File"
-msgstr ""
+msgstr "Přetáhnout a pustit soubor s nabídkami"
 
 #: src/components/offers/OfferImport.tsx:146
 #~ msgid "Drag & drop an offer file below to view its details"
@@ -1039,7 +1039,7 @@ msgstr "Uzel"
 
 #: src/components/fullNode/FullNodeConnections.tsx:76
 msgid "Full Node Connections"
-msgstr ""
+msgstr "Připojení k plnohodnotným uzlům"
 
 #: src/electron/main.tsx:591
 msgid "Full Screen"
@@ -1155,7 +1155,7 @@ msgstr "Pokud je vybráno, vaše nabídka nebude sdílena veřejně."
 
 #: src/components/nfts/NFTBurnDialog.tsx:81
 msgid "If you burn this NFT, nobody (including you) will ever be able to access it again. Are you sure you want to continue?"
-msgstr ""
+msgstr "Pokud spálíte toto NFT, nikdo (včetně vás) k němu již nikdy nebude mít přístup. Opravdu chcete pokračovat?"
 
 #: src/components/offers/OfferManager.tsx:128
 msgid "If you have already shared your offer file, you may need to submit a transaction to cancel the pending offer. Click \"Cancel on blockchain\" to submit a cancellation transaction."
@@ -1330,19 +1330,19 @@ msgstr "Hash licence"
 
 #: src/components/nfts/NFTDetails.tsx:211
 msgid "License URL {0}"
-msgstr ""
+msgstr "Adresa URL licence {0}"
 
 #: src/components/fullNode/FullNodeConnections.tsx:80
 msgid "List of connections is empty"
-msgstr ""
+msgstr "Seznam připojení je prázdný"
 
 #: src/components/nfts/NFTSummary.tsx:115
 msgid "Loading NFT"
-msgstr ""
+msgstr "Načítání NFT"
 
 #: src/components/offers/NFTOfferPreview.tsx:74
 msgid "Loading NFT Info..."
-msgstr ""
+msgstr "Načítání NFT informací..."
 
 #: src/components/app/AppProviders.tsx:88
 msgid "Loading configuration"
@@ -1363,7 +1363,7 @@ msgstr "Načítání stavu klíčenky"
 #: src/components/nfts/NFTPreview.tsx:844
 #: src/components/nfts/NFTPreview.tsx:876
 msgid "Loading preview..."
-msgstr ""
+msgstr "Načítání náhledu..."
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:124
 #: src/components/offers/NFTOfferTokenSelector.tsx:104
@@ -1385,7 +1385,7 @@ msgstr "Spravovat odměny z farmaření"
 
 #: src/components/offers/OfferManager.tsx:552
 msgid "Manage Offers"
-msgstr ""
+msgstr "Správa Nabídek"
 
 #: src/components/block/FarmManageFarmingRewards.tsx:98
 #: src/components/farm/FarmManageFarmingRewards.tsx:111
@@ -1394,15 +1394,15 @@ msgstr "Cílové adresy odměn z farmaření"
 
 #: src/components/nfts/NFTDetails.tsx:196
 msgid "Metadata Hash"
-msgstr ""
+msgstr "Hash metadat"
 
 #: src/components/nfts/NFTDetails.tsx:181
 msgid "Metadata URL {0}"
-msgstr ""
+msgstr "URL metadat {0}"
 
 #: src/components/nfts/NFTPreview.tsx:839
 msgid "Metadata hash mismatch"
-msgstr ""
+msgstr "Hash metadat nesouhlasí"
 
 #: src/components/fullNode/FullNodeConnections.tsx:57
 msgid "MiB Up/Down"
@@ -1430,11 +1430,11 @@ msgstr "Minimální obtížnost"
 
 #: src/components/offers/OfferShareDialog.tsx:696
 msgid "MintGarden URL"
-msgstr ""
+msgstr "MintGarden URL"
 
 #: src/components/nfts/NFTDetails.tsx:144
 msgid "Minted at Block Height"
-msgstr ""
+msgstr "Vytěženo ve výšce bloku"
 
 #: src/components/offers/OfferSummaryRow.tsx:156
 msgid "Minter:"
@@ -1462,15 +1462,15 @@ msgstr "Více paměti mírně zvyšuje rychlost"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:459
 msgid "Move"
-msgstr ""
+msgstr "Přesunout"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:505
 msgid "Move NFT to Profile"
-msgstr ""
+msgstr "Přesunout NFT do profilu"
 
 #: src/components/nfts/NFTContextualActions.tsx:261
 msgid "Move to Profile"
-msgstr ""
+msgstr "Přesunout do profilu"
 
 #: src/components/settings/ProfileView.tsx:99
 msgid "My DID"
@@ -1478,11 +1478,11 @@ msgstr ""
 
 #: src/components/offers/NFTOfferEditor.tsx:241
 msgid "NFT"
-msgstr ""
+msgstr "NFT"
 
 #: src/components/nfts/NFTDetails.tsx:44
 msgid "NFT ID"
-msgstr ""
+msgstr "NFT ID"
 
 #: src/components/offers/NFTOfferEditor.tsx:243
 msgid "NFT Identifier"
@@ -1490,11 +1490,11 @@ msgstr "NTF identifikátor"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:317
 msgid "NFT Move Failed"
-msgstr ""
+msgstr "Přesun NFT se nezdařil"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:307
 msgid "NFT Move Pending"
-msgstr ""
+msgstr "NFT přesun čeká na vyřízení"
 
 #: src/components/offers/OfferManager.tsx:575
 msgid "NFT Offer"
@@ -1514,16 +1514,16 @@ msgstr "Stav NFT aktualizován"
 
 #: src/components/nfts/NFTContextualActions.tsx:231
 msgid "NFT Transfer Complete"
-msgstr ""
+msgstr "Přenos NFT dokončen"
 
 #: src/components/nfts/NFTContextualActions.tsx:183
 #: src/components/nfts/NFTContextualActions.tsx:241
 msgid "NFT Transfer Failed"
-msgstr ""
+msgstr "Přenos NFT selhal"
 
 #: src/components/nfts/NFTContextualActions.tsx:173
 msgid "NFT Transfer Pending"
-msgstr ""
+msgstr "NFT přenos čeká na vyřízení"
 
 #: src/components/offers/NFTOfferEditor.tsx:735
 msgid "NFT details not available"
@@ -1911,11 +1911,11 @@ msgstr "Prosím zadejte profil, do kterého přesunout NFT."
 
 #: src/components/offers/OfferEditor.tsx:134
 msgid "Please select an asset for each row"
-msgstr ""
+msgstr "Prosím vyberte aktivum pro každý řádek"
 
 #: src/components/offers/NFTOfferEditor.tsx:702
 msgid "Please select an asset type"
-msgstr ""
+msgstr "Vyberte prosím typ aktiva"
 
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:56
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:60
@@ -1950,7 +1950,7 @@ msgstr "Klíč Pole"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:490
 msgid "Plot NFT Plot Target Address"
-msgstr ""
+msgstr "Cílová adresa NFT pole"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:491
 msgid "Plot NFT Pool Contract Address"
@@ -2281,7 +2281,7 @@ msgstr "Uložit"
 
 #: src/components/offers/OfferManager.tsx:468
 msgid "Save Offer File"
-msgstr ""
+msgstr "Uložit soubor nabídky"
 
 #: src/components/app/AppKeyringMigrator.tsx:235
 #: src/components/settings/ChangePassphrasePrompt.tsx:268
@@ -2295,7 +2295,7 @@ msgstr "Vyhledat block podle hashe hlavičky"
 
 #: src/components/offers/OfferSummaryRow.tsx:228
 msgid "Search on Tail Database"
-msgstr ""
+msgstr "Hledat v Tail databázi"
 
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:127
 msgid "Second temporary folder location"
@@ -2315,11 +2315,11 @@ msgstr "Zvolte cílovou složku"
 
 #: src/components/offers/OfferImport.tsx:184
 msgid "Select Offer File"
-msgstr ""
+msgstr "Vybrat soubor nabídky"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:348
 msgid "Select Profile"
-msgstr ""
+msgstr "Vybrat profil"
 
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:55
 msgid "Select Temporary Directory"
@@ -2367,7 +2367,7 @@ msgstr ""
 #: src/components/nfts/NFTBurnDialog.tsx:145
 #: src/components/nfts/NFTTransferAction.tsx:142
 msgid "Send to Address"
-msgstr ""
+msgstr "Odeslat na adresu"
 
 #: src/components/settings/SetPassphrasePrompt.tsx:154
 #: src/components/settings/SetPassphrasePrompt.tsx:264
@@ -2384,59 +2384,59 @@ msgstr "Nastavení"
 #: src/components/offers/OfferShareDialog.tsx:1255
 #: src/components/offers/OfferShareDialog.tsx:1422
 msgid "Share"
-msgstr ""
+msgstr "Sdílet"
 
 #: src/components/offers/OfferShareDialog.tsx:1553
 msgid "Share Offer"
-msgstr ""
+msgstr "Sdílet nabídku"
 
 #: src/components/offers/OfferShareDialog.tsx:831
 msgid "Share Privately"
-msgstr ""
+msgstr "Sdílet soukromě"
 
 #: src/components/offers/OfferShareDialog.tsx:651
 msgid "Share on Dexie"
-msgstr ""
+msgstr "Sdílet na Dexie"
 
 #: src/components/offers/OfferShareDialog.tsx:919
 msgid "Share on Hashgreen DEX"
-msgstr ""
+msgstr "Sdílet na Hashgreen DEX"
 
 #: src/components/offers/OfferShareDialog.tsx:1198
 msgid "Share on Keybase"
-msgstr ""
+msgstr "Sdílet na Keybase"
 
 #: src/components/offers/OfferShareDialog.tsx:733
 msgid "Share on MintGarden"
-msgstr ""
+msgstr "Sdílet na MintGarden"
 
 #: src/components/offers/OfferShareDialog.tsx:816
 msgid "Share on OfferBin"
-msgstr ""
+msgstr "Sdílet na OfferBin"
 
 #: src/components/offers/OfferShareDialog.tsx:1001
 msgid "Share on Spacescan.io"
-msgstr ""
+msgstr "Sdílet na Spacescan.io"
 
 #: src/components/offers/OfferShareDialog.tsx:1326
 msgid "Share on offerpool"
-msgstr ""
+msgstr "Sdílet na offerpool"
 
 #: src/components/nfts/NFTContextualActions.tsx:515
 msgid "Show"
-msgstr ""
+msgstr "Ukázat"
 
 #: src/components/offers/OfferManager.tsx:446
 msgid "Show Details"
-msgstr ""
+msgstr "Zobrazit podrobnosti"
 
 #: src/components/nfts/gallery/NFTGallery.tsx:156
 msgid "Show Hidden"
-msgstr ""
+msgstr "Zobrazit skryté"
 
 #: src/components/nfts/NFTPreview.tsx:859
 msgid "Show Preview"
-msgstr ""
+msgstr "Zobrazit náhled"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:247
 msgid "Size of cache to reserve for I/O"
@@ -2461,7 +2461,7 @@ msgstr "Stabilizujte odměny za vaše farmení XCH přidáním do poolu."
 
 #: src/components/offers/OfferShareDialog.tsx:964
 msgid "Spacescan.io URL"
-msgstr ""
+msgstr "Spacescan.io URL"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:143
 msgid "Specify a value of 0 to use all available threads"
@@ -2478,7 +2478,7 @@ msgstr "Spouštění služeb"
 #: src/components/settings/SettingsDataLayer.tsx:25
 #: src/components/settings/SettingsStartup.tsx:21
 msgid "Startup"
-msgstr ""
+msgstr "Po spuštění"
 
 #: src/components/fullNode/FullNode.jsx:95
 msgid "State"
@@ -2810,7 +2810,7 @@ msgstr "Počet opakování od začátku blockchainu"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:371
 msgid "Touch all pages of buffer allocations before starting to plot."
-msgstr ""
+msgstr "Osahat všechny stránky vyrovnávací paměti před spuštěním plotování."
 
 #: src/components/app/AppSelectMode.tsx:96
 msgid "Trade tokens"
@@ -3032,11 +3032,11 @@ msgstr "Bez poplatků"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:512
 msgid "Would you like to move the specified NFT to a profile?"
-msgstr ""
+msgstr "Chcete přesunout zadanou NFT do profilu?"
 
 #: src/components/nfts/NFTTransferAction.tsx:226
 msgid "Would you like to transfer the specified NFT to a new owner?"
-msgstr ""
+msgstr "Chcete převést zadané NFT na nového vlastníka?"
 
 #: src/components/offers/NFTOfferEditor.tsx:261
 #~ msgid "XCH for NFT"
