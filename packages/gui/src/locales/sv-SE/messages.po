@@ -8,7 +8,7 @@ msgstr ""
 "Language: sv_SE\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-09-29 12:55\n"
+"PO-Revision-Date: 2022-09-30 20:30\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -1352,7 +1352,7 @@ msgstr "Läser in odlingsdata"
 
 #: src/components/app/AppAutoLogin.tsx:43
 msgid "Loading fingerprint"
-msgstr ""
+msgstr "Läser in fingeravtryck"
 
 #: src/components/app/AppState.tsx:190
 msgid "Loading keyring status"
@@ -2459,7 +2459,7 @@ msgstr "Jämna ut dina XCH-odlarbelöningar genom att gå med i en pool."
 
 #: src/components/offers/OfferShareDialog.tsx:964
 msgid "Spacescan.io URL"
-msgstr ""
+msgstr "Spacescan.io URL"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:143
 msgid "Specify a value of 0 to use all available threads"
