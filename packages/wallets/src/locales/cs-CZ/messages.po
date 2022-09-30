@@ -8,7 +8,7 @@ msgstr ""
 "Language: cs_CZ\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-09-30 10:19\n"
+"PO-Revision-Date: 2022-09-30 11:17\n"
 "Last-Translator: \n"
 "Language-Team: Czech\n"
 "Plural-Forms: nplurals=4; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 3;\n"
@@ -261,7 +261,7 @@ msgstr "Distribuovaná identita"
 #: src/components/cat/WalletDID.tsx:426
 #: src/components/did/WalletDID.tsx:426
 msgid "Drag and drop attestation packet(s)"
-msgstr ""
+msgstr "Přetáhněte a pusťe atestační paket(-y)"
 
 #: src/components/did/WalletDIDRecovery.tsx:109
 msgid "Drag and drop your recovery backup file"
@@ -870,7 +870,7 @@ msgstr "Chcete pro sebe vidět svůj starý zůstatek?"
 
 #: src/components/WalletsSidebar.tsx:119
 msgid "We've made an upgrade to the CAT standard which requires all CATs to be re-issued. You will be airdropped your new tokens as they are re-issued by the original issuers. The airdropped tokens will be based on the balance as of block height:<0/><1/><2/>(Approximate time: July 26th, 2022 @ 17:00 UTC)"
-msgstr ""
+msgstr "Provedli jsme upgrade na standard CAT, který vyžaduje opětovné vydání všech CAT. Nové tokeny Vám budou zaslány, jakmile jsou znovu vydány původními emitenty. Zaslané tokeny jsou odvozeny ze zůstatku bloku:<0/><1/><2/>(Přibližný čas: 26. července 2022 @ 17:00 UTC)"
 
 #: src/components/WalletAdd.tsx:94
 msgid "Welcome! The following words are used for your wallet backup. Without them, you will lose access to your wallet, keep them safe! Write down each word along with the order number next to them. (Order is important)"
