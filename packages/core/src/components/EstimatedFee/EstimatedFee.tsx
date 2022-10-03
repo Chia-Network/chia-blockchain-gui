@@ -10,6 +10,7 @@ import {
   useLocale,
 } from '@chia/core';
 import {
+  Box,
   FormControl,
   IconButton,
   InputLabel,
@@ -170,42 +171,44 @@ export default function EstimatedFee(props: FeeProps) {
 
   function showSelect() {
     return (
-      <div>
-        <InputLabel required={required} color="secondary">Fee</InputLabel>
-        <Select
-          name={name}
-          onTypeChange={setInputType}
-          open={selectOpen}
-          onOpen={handleSelectOpen}
-          onClose={handleSelectClose}
-          {...rest}
-        >
-          <MenuItem>
-            <CountdownBar start={startTime} refreshTime={refreshTime} />
-          </MenuItem>
-          {estList.map((option) => (
-            <MenuItem
-              value={String(option.estimate)}
-              key={option.time}
-            >
-              <Flex flexDirection="row" flexGrow={1} justifyContent="space-between" alignItems="center">
-                <Flex>
-                  <Trans>{option.estimate} TXCH</Trans>
-                </Flex>
-                <Flex alignSelf="center">
-                  <Trans><Typography color="textSecondary" fontSize="small">{option.time}</Typography></Trans>
-                </Flex>
-              </Flex>
-            </MenuItem>
-          ))}
-          <MenuItem
-            value="custom"
-            key="custom"
+      <Box position="relative">
+        <Box position="relative">
+          <InputLabel required={required} color="secondary">Fee</InputLabel>
+          <Select
+            name={name}
+            onTypeChange={setInputType}
+            open={selectOpen}
+            onOpen={handleSelectOpen}
+            onClose={handleSelectClose}
+            {...rest}
           >
-            Enter a custom fee...
-          </MenuItem>
-        </Select>
-      </div>
+            {estList.map((option) => (
+              <MenuItem
+                value={String(option.estimate)}
+                key={option.time}
+              >
+                <Flex flexDirection="row" flexGrow={1} justifyContent="space-between" alignItems="center">
+                  <Flex>
+                    <Trans>{option.estimate} TXCH</Trans>
+                  </Flex>
+                  <Flex alignSelf="center">
+                    <Trans><Typography color="textSecondary" fontSize="small">{option.time}</Typography></Trans>
+                  </Flex>
+                </Flex>
+              </MenuItem>
+            ))}
+            <MenuItem
+              value="custom"
+              key="custom"
+            >
+              Enter a custom fee...
+            </MenuItem>
+          </Select>
+        </Box>
+        <Box position="absolute" bottom={0} left={0} right={0}>
+          <CountdownBar start={startTime} refreshTime={refreshTime} />
+        </Box>
+      </Box>
     )
   }
 
@@ -216,26 +219,33 @@ export default function EstimatedFee(props: FeeProps) {
     }
 
     return (
-      <Flex flexDirection="row">
-        <Flex flexGrow={1}>
-          <Fee
-            name={name}
-            type="text"
-            variant="filled"
-            label={<Trans>Fee</Trans>}
-            fullWidth
-            required={required}
-            autoFocus
-            color="secondary"
-            InputProps={{
-              endAdornment: <IconButton onClick={showDropdown}><ArrowDropDownIcon /></IconButton>,
-              style: {
-                paddingRight: "0"
-              }
-            }}
-          />
-        </Flex>
-      </Flex>
+      <div>
+        <div style={{ position: "relative", zIndex: "1" }}>
+          <Flex flexDirection="row">
+            <Flex flexGrow={1}>
+              <Fee
+                name={name}
+                type="text"
+                variant="filled"
+                label={<Trans>Fee</Trans>}
+                fullWidth
+                required={required}
+                autoFocus
+                color="secondary"
+                InputProps={{
+                  endAdornment: <IconButton onClick={showDropdown}><ArrowDropDownIcon /></IconButton>,
+                  style: {
+                    paddingRight: "0"
+                  }
+                }}
+              />
+            </Flex>
+          </Flex>
+        </div>
+        <div style={{ position: "relative", zIndex: "2" }}>
+          <CountdownBar start={startTime} refreshTime={refreshTime} />
+        </div>
+      </div>
     )
   }
 
