@@ -219,8 +219,8 @@ export default function EstimatedFee(props: FeeProps) {
     }
 
     return (
-      <div>
-        <div style={{ position: "relative", zIndex: "1" }}>
+      <Box position="relative">
+        <Box position="relative">
           <Flex flexDirection="row">
             <Flex flexGrow={1}>
               <Fee
@@ -241,11 +241,11 @@ export default function EstimatedFee(props: FeeProps) {
               />
             </Flex>
           </Flex>
-        </div>
-        <div style={{ position: "relative", zIndex: "2" }}>
+        </Box>
+        <Box position="absolute" bottom={3} left={0} right={0}>
           <CountdownBar start={startTime} refreshTime={refreshTime} />
-        </div>
-      </div>
+        </Box>
+      </Box>
     )
   }
 
