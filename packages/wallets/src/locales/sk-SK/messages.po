@@ -8,7 +8,7 @@ msgstr ""
 "Language: sk_SK\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-09-29 12:55\n"
+"PO-Revision-Date: 2022-10-03 14:07\n"
 "Last-Translator: \n"
 "Language-Team: Slovak\n"
 "Plural-Forms: nplurals=4; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 3;\n"
@@ -229,7 +229,7 @@ msgstr "DID peňaženka"
 
 #: src/constants/WalletName.ts:38
 msgid "Datalayer Wallet"
-msgstr ""
+msgstr "Peňaženka dátovej vrstvy"
 
 #: src/components/WalletHistory.tsx:198
 msgid "Date"
@@ -843,12 +843,12 @@ msgstr "Zobraziť nespracované zostatky"
 
 #: src/components/WalletConnections.tsx:80
 msgid "Wallet Connections"
-msgstr ""
+msgstr "Pripojenia peňaženky"
 
 #: src/components/WalletAdd.tsx:128
 #: src/components/WalletImport.tsx:176
 msgid "Wallet Name"
-msgstr ""
+msgstr "Názov peňaženky"
 
 #: src/components/cat/WalletCAT.tsx:75
 #: src/components/cat/WalletDID.tsx:1118
