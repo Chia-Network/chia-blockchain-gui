@@ -369,10 +369,25 @@ if (!handleSquirrelEvent()) {
                   });
 
                   response.on('end', () => {
-                    const content = Buffer.concat(buffers).toString(
-                      encoding as BufferEncoding,
-                    );
                     fileStream.end();
+
+                    // special case for iso-8859-1, which is mapped to 'latin1' in node
+                    if (encoding.toLowerCase() === 'iso-8859-1') {
+                      encoding = 'latin1';
+                    }
+
+                    let content = '';
+
+                    try {
+                      content = Buffer.concat(buffers).toString(
+                        encoding as BufferEncoding,
+                      );
+                    } catch (e: any) {
+                      console.error(
+                        `Failed to convert data to string using encoding ${encoding}: ${e.message}`,
+                      );
+                      reject(new Error('Failed to convert data to string'));
+                    }
 
                     getChecksum(fileOnDisk).then((checksum) => {
                       const isValid =
