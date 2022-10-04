@@ -38,13 +38,6 @@ export default function NFTDetail() {
   const nftRef = React.useRef(null);
   const [isValid, setIsValid] = useState(false);
 
-  // const nft: NFTInfo | undefined = useMemo(() => {
-  //   if (!nfts) {
-  //     return;
-  //   }
-  //   return nfts.find((nft: NFTInfo) => nft.$nftId === nftId);
-  // }, [nfts]);
-
   const uri = nft?.dataUris?.[0];
 
   const [contentCache] = useLocalStorage(`content-cache-${nftId}`, {});
@@ -53,11 +46,7 @@ export default function NFTDetail() {
 
   nftRef.current = nft;
 
-  const {
-    metadata,
-    isLoading: isLoadingMetadata,
-    error,
-  } = useNFTMetadata(nft, { skip: !nft });
+  const { metadata, isLoading: isLoadingMetadata, error } = useNFTMetadata(nft);
 
   useEffect(() => {
     if (metadata) {
