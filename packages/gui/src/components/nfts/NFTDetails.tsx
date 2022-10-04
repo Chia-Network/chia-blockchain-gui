@@ -34,6 +34,7 @@ export default function NFTDetails(props: NFTDetailsProps) {
   const {
     didId: minterDID,
     hexDIDId: minterHexDIDId,
+    didName: minterDIDName,
     isLoading: isLoadingMinterDID,
   } = useNFTMinterDID(nft.$nftId);
 
@@ -187,7 +188,9 @@ export default function NFTDetails(props: NFTDetailsProps) {
               </Flex>
             }
           >
-            <Typography variant="body2">{truncatedDID}</Typography>
+            <Typography variant="body2">
+              {minterDIDName ?? truncatedDID}
+            </Typography>
           </Tooltip>
         ) : (
           <Trans>Unassigned</Trans>
