@@ -8,7 +8,7 @@ msgstr ""
 "Language: sv_SE\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-09-30 20:30\n"
+"PO-Revision-Date: 2022-10-05 06:21\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -197,7 +197,7 @@ msgstr "Ljust"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:48
 msgid "Loading details"
-msgstr ""
+msgstr "Läser in information"
 
 #: src/screens/SelectKey/SelectKey.tsx:124
 msgid "Loading list of the keys"
@@ -226,7 +226,7 @@ msgstr "Läge"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:121
 msgid "NEVER SHARE THESE WITH ANYONE"
-msgstr ""
+msgstr "DELA ALDRIG DESSA MED NÅGON ANNAN"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:49
 msgid "New passphrase is the same as your current passphrase"
@@ -252,7 +252,7 @@ msgstr "OK"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:108
 msgid "Pool Public Key"
-msgstr ""
+msgstr "Publik nyckel för pool"
 
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:65
 msgid "Pool public key:"
@@ -298,11 +298,11 @@ msgstr ""
 
 #: src/screens/SelectKey/SelectKeyRenameForm.tsx:107
 msgid "Save"
-msgstr ""
+msgstr "Spara"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:127
 msgid "Secret Key"
-msgstr ""
+msgstr "Hemlig nyckel"
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:151
 #~ msgid "See private key"
@@ -310,7 +310,7 @@ msgstr ""
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:154
 msgid "Seed Phrase"
-msgstr ""
+msgstr "Minnesfras"
 
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:75
 msgid "Seed:"
@@ -371,7 +371,7 @@ msgstr "Lösenfras och bekräftelse matchar inte"
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:145
 msgid "This key is used for a wallet that may have a non-zero balance. By deleting this key you may lose access to this wallet"
-msgstr ""
+msgstr "Denna nyckel används för en plånbok som kan ha ett saldo som inte är noll. Genom att ta bort denna nyckel kan du förlora åtkomst till plånboken"
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:125
 msgid "This key is used for your farming rewards address. By deleting this key you may lose access to any future farming rewards"
@@ -383,7 +383,7 @@ msgstr ""
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:158
 msgid "This will permanently remove the key from your computer, make sure you have your mnemonic phrase backed up."
-msgstr ""
+msgstr "Detta kommer att permanent ta bort nyckeln från din dator. Se till att du har en säkerhetskopia av din minnesfras."
 
 #: src/utils/getTransactionResult.ts:15
 msgid "Transaction has not been sent to node yet"
