@@ -8,7 +8,7 @@ msgstr ""
 "Language: sv_SE\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-09-30 20:30\n"
+"PO-Revision-Date: 2022-10-05 06:21\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -292,7 +292,7 @@ msgstr "Köp en NFT"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:243
 msgid "Cache size (GB)"
-msgstr ""
+msgstr "Cachestorlek (GB)"
 
 #: src/components/app/AppPassPrompt.tsx:184
 #: src/components/backup/BackupCreate.tsx:51
@@ -361,7 +361,7 @@ msgstr "Byt pool"
 #: src/components/settings/SettingsDataLayer.tsx:57
 #: src/components/settings/SettingsStartup.tsx:36
 msgid "Changes will take effect the next time Chia is started"
-msgstr ""
+msgstr "Ändringarna börjar gälla nästa gång Chia startas"
 
 #: src/electron/main.tsx:660
 msgid "Chat on KeyBase"
@@ -1986,7 +1986,7 @@ msgstr "Plottar"
 
 #: src/components/plot/card/PlotCardPlotsFailedToOpen.tsx:13
 msgid "Plots Failed To Open"
-msgstr "Det gick inte att öppna plottar"
+msgstr "Plottar som inte kunde öppnas"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:20
 msgid "Plots Passed Filter"
