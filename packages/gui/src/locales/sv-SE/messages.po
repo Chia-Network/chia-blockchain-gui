@@ -8,7 +8,7 @@ msgstr ""
 "Language: sv_SE\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-10-05 06:21\n"
+"PO-Revision-Date: 2022-10-05 07:25\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -685,7 +685,7 @@ msgstr ""
 
 #: src/components/settings/SettingsDerivationIndex.tsx:57
 msgid "Derivation index must be greater than {index}"
-msgstr ""
+msgstr "Härledningsindex måste vara större än {index}"
 
 #: src/components/nfts/detail/NFTDetail.tsx:73
 #: src/components/nfts/detail/NFTDetailV2.tsx:215
@@ -821,7 +821,7 @@ msgstr ""
 
 #: src/components/settings/SettingsStartup.tsx:32
 msgid "Enable Auto Login"
-msgstr ""
+msgstr "Aktivera auto-inloggning"
 
 #: src/components/settings/SettingsDataLayer.tsx:38
 msgid "Enable DataLayer"
@@ -855,11 +855,11 @@ msgstr "Fel"
 
 #: src/components/nfts/NFTPreview.tsx:827
 msgid "Error fetching video preview"
-msgstr ""
+msgstr "Fel vid hämtning av videoförhandsgranskning"
 
 #: src/components/nfts/NFTPreview.tsx:835
 msgid "Error parsing json"
-msgstr ""
+msgstr "Fel vid parsning av json"
 
 #: src/components/fullNode/card/FullNodeEstimatedNetworkSpace.tsx:14
 msgid "Estimated Network Space"
@@ -997,7 +997,7 @@ msgstr "Fil"
 
 #: src/components/nfts/NFTPreview.tsx:55
 msgid "File is over 100MB"
-msgstr ""
+msgstr "Filen är större än 100MB"
 
 #: src/components/nfts/NFTPreview.tsx:26
 #~ msgid "File is over 10MB"
@@ -1667,23 +1667,23 @@ msgstr "Antal trådar"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:288
 msgid "Number of threads for C table processing"
-msgstr ""
+msgstr "Antal trådar för C-tabellbearbetning"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:260
 msgid "Number of threads for F1 generation"
-msgstr ""
+msgstr "Antal trådar för F1-generering"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:302
 msgid "Number of threads for Phase 2"
-msgstr ""
+msgstr "Antal trådar för fas 2"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:316
 msgid "Number of threads for Phase 3"
-msgstr ""
+msgstr "Antal trådar för fas 3"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:274
 msgid "Number of threads for forward propagation"
-msgstr ""
+msgstr "Antal trådar för framåtpropagering"
 
 #: src/components/offers/OfferDataDialog.tsx:75
 #: src/components/plotNFT/PlotNFTGetPoolLoginLinkDialog.tsx:87
@@ -1763,23 +1763,23 @@ msgstr "Öppna i webbläsare"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:289
 msgid "Override the thread count for C table processing"
-msgstr ""
+msgstr "Åsidosätt antal trådar för C-tabellbearbetning"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:261
 msgid "Override the thread count for F1 generation"
-msgstr ""
+msgstr "Åsidosätt antal trådar för F1-generering"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:303
 msgid "Override the thread count for Phase 2"
-msgstr ""
+msgstr "Åsidosätt antal trådar för fas 2"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:317
 msgid "Override the thread count for Phase 3"
-msgstr ""
+msgstr "Åsidosätt antal trådar för fas 3"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:275
 msgid "Override the thread count for forward propagation"
-msgstr ""
+msgstr "Åsidosätt antal trådar för framåtpropagering"
 
 #: src/components/nfts/NFTDetails.tsx:74
 msgid "Owner DID"
@@ -2509,7 +2509,7 @@ msgstr "Lyckades"
 
 #: src/components/settings/SettingsDerivationIndex.tsx:66
 msgid "Successfully updated the derivation index. Your balances may take a while to update."
-msgstr ""
+msgstr "Härledningsindex uppdaterades. Det kan ta en stund innan dina saldon uppdateras."
 
 #: src/components/offers/OfferViewer.tsx:269
 msgid "Summary"
