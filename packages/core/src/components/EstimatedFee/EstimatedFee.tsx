@@ -29,9 +29,15 @@ type Props = SelectProps & {
 };
 
 function Select(props: Props) {
-  const { name: controllerName, value: controllerValue, onTypeChange, children, ...rest } = props;
+  const { name: controllerName, value: controllerValue, estList, selectedValue, selectedTime, onTypeChange, onTimeChange, onValueChange, children, ...rest } = props;
   const { control, errors, setValue } = useFormContext();
   const errorMessage = get(errors, controllerName);
+
+  function getTimeByValue(object, value) {
+    const estIndex = Object.keys(object).find(index => object[index].estimate === value);
+    const estTime = object[estIndex].time;
+    return estTime;
+  }
 
   return (
     <Controller
@@ -48,14 +54,23 @@ function Select(props: Props) {
               onTypeChange("custom");
               setValue(controllerName, '');
             } else {
-              onTypeChange("dropdown")
+              onTypeChange("dropdown");
+              onTimeChange(getTimeByValue(estList, event.target.value));
+              onValueChange(event.target.value);
             }
           }}
           onBlur={onBlur}
-          value={value}
+          value={selectedValue}
           name={name}
           ref={ref}
           error={!!errorMessage}
+          renderValue={(value) => {
+            return (
+              <Box sx={{ display: "flex", gap: 1 }}>
+                {selectedValue} (~{selectedTime} min)
+              </Box>
+            );
+          }}
           {...rest}
         >
           {children}
@@ -122,6 +137,8 @@ export default function EstimatedFee(props: FeeProps) {
   });
   const [estList, setEstList] = React.useState([]);
   const [inputType, setInputType] = React.useState("dropdown");
+  const [selectedValue, setSelectedValue] = React.useState("");
+  const [selectedTime, setSelectedTime] = React.useState("");
   const mode = useMode();
   const [selectOpen, setSelectOpen] = React.useState(false);
   const [locale] = useLocale();
@@ -144,6 +161,12 @@ export default function EstimatedFee(props: FeeProps) {
     return (formatNum);
   }
 
+  function getValueByTime(object, time) {
+    const estIndex = Object.keys(object).find(index => object[index].time === time);
+    const estValue = object[estIndex].estimate;
+    return estValue;
+  }
+
   useEffect(() => {
     if (ests) {
       const estimateList = ests.estimates;
@@ -155,11 +178,19 @@ export default function EstimatedFee(props: FeeProps) {
       const est1 = formatEst(estimateList[1], multiplier, locale);
       const est2 = formatEst(estimateList[2], multiplier, locale);
       setEstList(current => []);
-      setEstList(current => [...current, { time: "Likely in " + targetTimes[0] + " seconds", estimate: est0 }]);
-      setEstList(current => [...current, { time: "Likely in " + (targetTimes[1] / 60) + " minutes", estimate: est1 }]);
-      setEstList(current => [...current, { time: "Likely over " + (targetTimes[2] / 60) + " minutes", estimate: est2 }]);
+      setEstList(current => [...current, { time: targetTimes[0] / 60, timeText: "Likely in " + targetTimes[0] + " seconds", estimate: est0 }]);
+      setEstList(current => [...current, { time: targetTimes[1] / 60, timeText: "Likely in " + (targetTimes[1] / 60) + " minutes", estimate: est1 }]);
+      setEstList(current => [...current, { time: targetTimes[2] / 60, timeText: "Likely over " + (targetTimes[2] / 60) + " minutes", estimate: est2 }]);
     }
   }, [ests]);
+
+  useEffect(() => {
+    if (estList) {
+      if (selectedTime) {
+        setSelectedValue(getValueByTime(estList, selectedTime));
+      }
+    }
+  }, [estList]);
 
   const handleSelectOpen = () => {
     setSelectOpen(true);
@@ -177,9 +208,14 @@ export default function EstimatedFee(props: FeeProps) {
           <Select
             name={name}
             onTypeChange={setInputType}
+            onTimeChange={setSelectedTime}
+            onValueChange={setSelectedValue}
             open={selectOpen}
             onOpen={handleSelectOpen}
             onClose={handleSelectClose}
+            estList={estList}
+            selectedValue={selectedValue}
+            selectedTime={selectedTime}
             {...rest}
           >
             {estList.map((option) => (
@@ -192,7 +228,7 @@ export default function EstimatedFee(props: FeeProps) {
                     <Trans>{option.estimate} TXCH</Trans>
                   </Flex>
                   <Flex alignSelf="center">
-                    <Trans><Typography color="textSecondary" fontSize="small">{option.time}</Typography></Trans>
+                    <Trans><Typography color="textSecondary" fontSize="small">{option.timeText}</Typography></Trans>
                   </Flex>
                 </Flex>
               </MenuItem>
