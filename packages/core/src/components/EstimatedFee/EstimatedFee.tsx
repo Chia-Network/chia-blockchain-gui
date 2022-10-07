@@ -130,6 +130,7 @@ function CountdownBar(props: Props) {
 
 export default function EstimatedFee(props: FeeProps) {
   const { name, txType, required, ...rest } = props;
+  const { setValue } = useFormContext();
   const [startTime, setStartTime] = useState(new Date().getSeconds());
   const refreshTime = 60000; // in milliseconds
   const { data: ests, isLoading: isFeeLoading, error } = useGetFeeEstimateQuery({"targetTimes": [60, 120, 300], "cost": 1}, {
@@ -188,6 +189,7 @@ export default function EstimatedFee(props: FeeProps) {
     if (estList) {
       if (selectedTime) {
         setSelectedValue(getValueByTime(estList, selectedTime));
+        setValue(name, getValueByTime(estList, selectedTime));
       }
     }
   }, [estList]);
