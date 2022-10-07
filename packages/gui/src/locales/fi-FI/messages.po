@@ -8,7 +8,7 @@ msgstr ""
 "Language: fi_FI\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-09-29 12:54\n"
+"PO-Revision-Date: 2022-10-07 10:47\n"
 "Last-Translator: \n"
 "Language-Team: Finnish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -142,7 +142,7 @@ msgstr "Kaikki Profiilit"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:431
 msgid "Alternate bucket writing"
-msgstr ""
+msgstr "Vaihtele bukettikirjoitusta"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:354
 msgid "Alternate tmpdir/tmpdir2"
@@ -292,7 +292,7 @@ msgstr "Osta NFT"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:243
 msgid "Cache size (GB)"
-msgstr ""
+msgstr "Välimuistin koko (GB)"
 
 #: src/components/app/AppPassPrompt.tsx:184
 #: src/components/backup/BackupCreate.tsx:51
@@ -945,7 +945,7 @@ msgstr "Farmarit ansaitsevat lohkopalkkioita ja transaktioveloituksia varaamalla
 #: src/components/farm/card/FarmCardStatus.tsx:61
 #: src/components/plot/PlotStatus.tsx:17
 msgid "Farming"
-msgstr "Farmaroidaan"
+msgstr "Farmataan"
 
 #: src/components/app/AppSelectMode.tsx:122
 msgid "Farming Mode"
@@ -1226,7 +1226,7 @@ msgstr "Virheellinen tila"
 
 #: src/components/plotNFT/PlotNFTGetPoolLoginLinkDialog.tsx:66
 msgid "It is a one-time login link that can be used to log in to a pool's website. It contains a signature using the farmer's key from the plot NFT. Not all pools support this feature."
-msgstr "Kertaluonteinen kirjautumislinkki, jota voidaan käyttää kirjautumiseen poolin verkkosivuilla. Sisältää allekirjoituksen käyttäen viljelijän avainta Plot-NFT:stä Kaikki poolit eivät tue tätä ominaisuutta."
+msgstr "Kertaluonteinen kirjautumislinkki, jota voidaan käyttää kirjautumiseen poolin verkkosivuilla. Sisältää allekirjoituksen käyttäen farmarin avainta Plot-NFT:stä Kaikki poolit eivät tue tätä ominaisuutta."
 
 #: src/components/plotNFT/PlotNFTCard.tsx:381
 msgid "Join Pool"
@@ -2104,7 +2104,7 @@ msgstr "Pooli:"
 #: src/components/plotNFT/PlotNFTExternalState.tsx:24
 #: src/components/plotNFT/PlotNFTState.tsx:59
 msgid "Pooling"
-msgstr "Poolataan"
+msgstr "Pooli"
 
 #: src/components/block/FullNodeAddConnection.tsx:76
 #: src/components/farm/FarmFullNodeConnections.tsx:39
