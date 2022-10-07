@@ -8,7 +8,7 @@ msgstr ""
 "Language: fi_FI\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-09-29 12:54\n"
+"PO-Revision-Date: 2022-10-07 10:47\n"
 "Last-Translator: \n"
 "Language-Team: Finnish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -229,7 +229,7 @@ msgstr "DID-lompakko"
 
 #: src/constants/WalletName.ts:38
 msgid "Datalayer Wallet"
-msgstr ""
+msgstr "Datakerroksen Lompakko"
 
 #: src/components/WalletHistory.tsx:198
 msgid "Date"
@@ -620,7 +620,7 @@ msgstr "Vastaanota"
 #: src/components/WalletReceiveAddress.tsx:46
 #: src/components/WalletReceiveAddressField.tsx:38
 msgid "Receive Address"
-msgstr "Vastaanottajan Osoite"
+msgstr "Lompakon Osoite"
 
 #: src/components/cat/WalletCATSend.tsx:122
 msgid "Recipient address is not a coloured wallet address. Please enter a coloured wallet address"
@@ -848,7 +848,7 @@ msgstr "Lompakon Yhteydet"
 #: src/components/WalletAdd.tsx:128
 #: src/components/WalletImport.tsx:176
 msgid "Wallet Name"
-msgstr ""
+msgstr "Lompakon Nimi"
 
 #: src/components/cat/WalletCAT.tsx:75
 #: src/components/cat/WalletDID.tsx:1118
