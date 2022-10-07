@@ -7,11 +7,13 @@ import {
   Tooltip,
   Truncate,
   truncateValue,
+  Link,
 } from '@chia/core';
 import { Box, Typography } from '@mui/material';
 import { stripHexPrefix } from '../../util/utils';
 import { didToDIDId } from '../../util/dids';
 import { convertRoyaltyToPercentage } from '../../util/nfts';
+import useNFTMinterDID from '../../hooks/useNFTMinterDID';
 import styled from 'styled-components';
 
 /* ========================================================================== */
@@ -29,6 +31,12 @@ const StyledValue = styled(Box)`
 
 export default function NFTDetails(props: NFTDetailsProps) {
   const { nft, metadata } = props;
+  const {
+    didId: minterDID,
+    hexDIDId: minterHexDIDId,
+    didName: minterDIDName,
+    isLoading: isLoadingMinterDID,
+  } = useNFTMinterDID(nft.$nftId);
 
   const details = useMemo(() => {
     if (!nft) {
@@ -137,6 +145,59 @@ export default function NFTDetails(props: NFTDetailsProps) {
       ),
     });
 
+    if (!isLoadingMinterDID) {
+      const truncatedDID = truncateValue(minterDID ?? '', {});
+
+      rows.push({
+        key: 'minterDID',
+        label: <Trans>Minter DID</Trans>,
+        value: minterDID ? (
+          <Tooltip
+            title={
+              <Flex flexDirection="column" gap={1}>
+                <Flex flexDirection="column" gap={0}>
+                  <Flex>
+                    <Box flexGrow={1}>
+                      <StyledTitle>DID ID</StyledTitle>
+                    </Box>
+                  </Flex>
+                  <Flex alignItems="center" gap={1}>
+                    <StyledValue>{minterDID}</StyledValue>
+                    <CopyToClipboard
+                      value={minterDID}
+                      fontSize="small"
+                      invertColor
+                    />
+                  </Flex>
+                </Flex>
+                <Flex flexDirection="column" gap={0}>
+                  <Flex>
+                    <Box flexGrow={1}>
+                      <StyledTitle>DID ID (Hex)</StyledTitle>
+                    </Box>
+                  </Flex>
+                  <Flex alignItems="center" gap={1}>
+                    <StyledValue>{minterHexDIDId}</StyledValue>
+                    <CopyToClipboard
+                      value={minterHexDIDId}
+                      fontSize="small"
+                      invertColor
+                    />
+                  </Flex>
+                </Flex>
+              </Flex>
+            }
+          >
+            <Typography variant="body2">
+              {minterDIDName ?? truncatedDID}
+            </Typography>
+          </Tooltip>
+        ) : (
+          <Trans>Unassigned</Trans>
+        ),
+      });
+    }
+
     if (nft.mintHeight) {
       rows.push({
         key: 'mintHeight',
@@ -228,6 +289,46 @@ export default function NFTDetails(props: NFTDetailsProps) {
             {nft.licenseHash}
           </Truncate>
         ),
+      });
+    }
+
+    if (metadata?.preview_image_uris) {
+      const value = metadata?.preview_image_uris.map(
+        (uri: string, idx: number) => {
+          return (
+            <span>
+              &nbsp;
+              <Link href={uri} target="_blank">
+                {uri}
+              </Link>
+            </span>
+          );
+        },
+      );
+      rows.push({
+        key: 'preview_image_uris',
+        label: <Trans>Preview image uris</Trans>,
+        value,
+      });
+    }
+
+    if (Array.isArray(metadata?.preview_video_uris)) {
+      const value = metadata?.preview_video_uris.map(
+        (uri: string, idx: number) => {
+          return (
+            <span>
+              &nbsp;
+              <Link target="_blank" href={uri}>
+                {uri}
+              </Link>
+            </span>
+          );
+        },
+      );
+      rows.push({
+        key: 'preview_video_uris',
+        label: <Trans>Preview video uris</Trans>,
+        value,
       });
     }
 

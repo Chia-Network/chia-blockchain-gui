@@ -23,6 +23,7 @@ export const {
   useStartServiceMutation,
   useStopServiceMutation,
   useIsServiceRunningQuery,
+  useRunningServicesQuery,
   useSetKeyringPassphraseMutation,
   useRemoveKeyringPassphraseMutation,
   useMigrateKeyringMutation,
@@ -31,6 +32,11 @@ export const {
   useGetPlottersQuery,
   useStopPlottingMutation,
   useStartPlottingMutation,
+
+  useGetKeyQuery,
+  useGetKeysQuery,
+  useSetLabelMutation,
+  useDeleteLabelMutation,
 } = daemon;
 
 // farmer hooks
@@ -156,6 +162,8 @@ export const {
   useGetDIDCurrentCoinInfoQuery,
 
   // NFTs
+  useCalculateRoyaltiesForNFTsQuery,
+  useGetNFTsByNFTIDsQuery,
   useGetNFTsQuery,
   useGetNFTWalletsWithDIDsQuery,
   useGetNFTInfoQuery,

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { Box, Tooltip as BaseTooltip, TooltipProps } from '@mui/material';
 import Flex from '../Flex';
 import CopyToClipboard from '../CopyToClipboard';
@@ -6,10 +6,18 @@ import CopyToClipboard from '../CopyToClipboard';
 type Props = TooltipProps & {
   copyToClipboard?: boolean;
   maxWidth?: any;
+  disableInteractive?: boolean;
 };
 
-export default function Tooltip(props: Props) {
-  const { copyToClipboard, title, maxWidth, interactive, ...rest } = props;
+function Tooltip(props: Props, ref: any) {
+  const {
+    copyToClipboard = false,
+    title,
+    maxWidth = 200,
+    disableInteractive,
+    children,
+    ...rest
+  } = props;
 
   const titleContent = copyToClipboard ? (
     <Flex alignItems="center" gap={1}>
@@ -20,18 +28,16 @@ export default function Tooltip(props: Props) {
     title
   );
 
-  const currentInteractive = copyToClipboard || interactive;
-
   return (
     <BaseTooltip
       title={titleContent}
-      interactive={currentInteractive}
+      disableInteractive={!copyToClipboard && disableInteractive}
       {...rest}
-    />
+      ref={ref}
+    >
+      {Array.isArray(children) ? <span>{children}</span> : children}
+    </BaseTooltip>
   );
 }
 
-Tooltip.defaultProps = {
-  copyToClipboard: false,
-  maxWidth: 200,
-};
+export default forwardRef(Tooltip);

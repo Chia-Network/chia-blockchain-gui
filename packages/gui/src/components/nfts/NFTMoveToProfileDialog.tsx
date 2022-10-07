@@ -15,10 +15,12 @@ import {
   ConfirmDialog,
   CopyToClipboard,
   DropdownActions,
+  DropdownActionsProps,
   Fee,
   Flex,
   Form,
   TooltipIcon,
+  MenuItem,
   chiaToMojo,
   truncateValue,
   useOpenDialog,
@@ -33,11 +35,10 @@ import {
   DialogContentText,
   DialogTitle,
   ListItemIcon,
-  MenuItem,
   Typography,
 } from '@mui/material';
 import { stripHexPrefix } from '../../util/utils';
-import { didToDIDId } from '../../util/dids';
+import { didFromDIDId, didToDIDId } from '../../util/dids';
 import NFTSummary from './NFTSummary';
 import styled from 'styled-components';
 
@@ -81,11 +82,11 @@ function NFTMoveToProfileConfirmationDialog(
 /*                            DID Profile Dropdown                            */
 /* ========================================================================== */
 
-type DIDProfileDropdownProps = {
+type DIDProfileDropdownProps = DropdownActionsProps & {
   walletId?: number;
   onChange?: (walletId?: number) => void;
   defaultTitle?: string | React.ReactElement;
-  excludeDIDs?: string[];
+  currentDID?: string;
   includeNoneOption?: boolean;
 };
 
@@ -94,7 +95,7 @@ export function DIDProfileDropdown(props: DIDProfileDropdownProps) {
     walletId,
     onChange,
     defaultTitle = t`All Profiles`,
-    excludeDIDs = [],
+    currentDID = '',
     includeNoneOption = false,
     ...rest
   } = props;
@@ -105,10 +106,18 @@ export function DIDProfileDropdown(props: DIDProfileDropdownProps) {
       return [];
     }
 
+    const excludeDIDs: string[] = [];
+    if (currentDID) {
+      const did = didFromDIDId(currentDID);
+      if (did) {
+        excludeDIDs.push(did);
+      }
+    }
+
     return allDIDWallets.filter(
       (wallet: Wallet) => !excludeDIDs.includes(wallet.myDid),
     );
-  }, [allDIDWallets, excludeDIDs]);
+  }, [allDIDWallets, currentDID]);
 
   const label = useMemo(() => {
     if (isLoading) {
@@ -133,40 +142,32 @@ export function DIDProfileDropdown(props: DIDProfileDropdownProps) {
       size="large"
       {...rest}
     >
-      {({ onClose }: { onClose: () => void }) => (
-        <>
-          {(didWallets ?? []).map((wallet: Wallet, index: number) => (
-            <MenuItem
-              key={wallet.id}
-              onClick={() => {
-                onClose();
-                handleWalletChange(wallet.id);
-              }}
-              selected={wallet.id === walletId}
-              divider={index === didWallets?.length - 1 && includeNoneOption}
-            >
-              <ListItemIcon>
-                <PermIdentityIcon />
-              </ListItemIcon>
-              {wallet.name}
-            </MenuItem>
-          ))}
-          {includeNoneOption && (
-            <MenuItem
-              key={'<none>'}
-              onClick={() => {
-                onClose();
-                handleWalletChange();
-              }}
-              selected={!walletId}
-            >
-              <ListItemIcon>
-                <PermIdentityIcon />
-              </ListItemIcon>
-              <Trans>None</Trans>
-            </MenuItem>
-          )}
-        </>
+      {(didWallets ?? []).map((wallet: Wallet, index: number) => (
+        <MenuItem
+          key={wallet.id}
+          onClick={() => handleWalletChange(wallet.id)}
+          selected={wallet.id === walletId}
+          divider={index === didWallets?.length - 1 && includeNoneOption}
+          close
+        >
+          <ListItemIcon>
+            <PermIdentityIcon />
+          </ListItemIcon>
+          {wallet.name}
+        </MenuItem>
+      ))}
+      {includeNoneOption && (
+        <MenuItem
+          key={'<none>'}
+          onClick={() => handleWalletChange()}
+          selected={!walletId && !currentDID}
+          close
+        >
+          <ListItemIcon>
+            <PermIdentityIcon />
+          </ListItemIcon>
+          <Trans>None</Trans>
+        </MenuItem>
       )}
     </DropdownActions>
   );
@@ -283,7 +284,9 @@ export function NFTMoveToProfileAction(props: NFTMoveToProfileActionProps) {
 
     const destinationDID = destination === '<none>' ? undefined : destination;
 
-    const confirmation = await openDialog(<NFTMoveToProfileConfirmationDialog />);
+    const confirmation = await openDialog(
+      <NFTMoveToProfileConfirmationDialog />,
+    );
 
     if (confirmation) {
       try {
@@ -343,7 +346,7 @@ export function NFTMoveToProfileAction(props: NFTMoveToProfileActionProps) {
             walletId={currentDID ? currentDID.id : undefined}
             onChange={handleProfileSelected}
             defaultTitle={<Trans>Select Profile</Trans>}
-            excludeDIDs={currentDIDId ? [currentDIDId] : []}
+            currentDID={currentDIDId}
             includeNoneOption={
               inbox !== undefined && currentDIDId !== undefined
             }
@@ -374,21 +377,25 @@ export function NFTMoveToProfileAction(props: NFTMoveToProfileActionProps) {
                   ) : (
                     currentDID.myDid
                   )
+                ) : currentDIDId ? (
+                  currentDIDId
                 ) : (
                   <Trans>None</Trans>
                 )}
               </Typography>
             </Flex>
-            <TooltipIcon interactive>
-              <Flex alignItems="center" gap={1}>
-                <StyledValue>{currentDIDId}</StyledValue>
-                <CopyToClipboard
-                  value={currentDIDId}
-                  fontSize="small"
-                  invertColor
-                />
-              </Flex>
-            </TooltipIcon>
+            {currentDIDId && (
+              <TooltipIcon>
+                <Flex alignItems="center" gap={1}>
+                  <StyledValue>{currentDIDId}</StyledValue>
+                  <CopyToClipboard
+                    value={currentDIDId}
+                    fontSize="small"
+                    invertColor
+                  />
+                </Flex>
+              </TooltipIcon>
+            )}
           </Flex>
           {newProfileName && (
             <Flex flexDirection="row" alignItems="center" gap={1}>
@@ -410,7 +417,7 @@ export function NFTMoveToProfileAction(props: NFTMoveToProfileActionProps) {
                 </Typography>
               </Flex>
               {newDID && (
-                <TooltipIcon interactive>
+                <TooltipIcon>
                   <Flex alignItems="center" gap={1}>
                     <StyledValue>{newDID.myDid}</StyledValue>
                     <CopyToClipboard

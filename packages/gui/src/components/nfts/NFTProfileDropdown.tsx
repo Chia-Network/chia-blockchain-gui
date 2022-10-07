@@ -1,12 +1,12 @@
 import React, { useMemo } from 'react';
 import { Trans } from '@lingui/macro';
 import type { Wallet } from '@chia/api';
-import { DropdownActions } from '@chia/core';
+import { DropdownActions, MenuItem } from '@chia/core';
 import {
   AutoAwesome as AutoAwesomeIcon,
   PermIdentity as PermIdentityIcon,
 } from '@mui/icons-material';
-import { ListItemIcon, MenuItem } from '@mui/material';
+import { ListItemIcon } from '@mui/material';
 import {
   useGetDIDsQuery,
   useGetNFTWallets,
@@ -14,6 +14,7 @@ import {
 } from '@chia/api-react';
 import { NFTsSmall as NFTsSmallIcon } from '@chia/icons';
 import { orderBy } from 'lodash';
+import useNachoNFTs from '../../hooks/useNachoNFTs';
 
 type Profile = Wallet & {
   nftWalletId: number;
@@ -58,25 +59,40 @@ export default function NFTProfileDropdown(props: NFTGallerySidebarProps) {
   const { isLoading: isLoadingProfiles, data: profiles } = useProfiles();
   const { wallets: nftWallets, isLoading: isLoadingNFTWallets } =
     useGetNFTWallets();
+  const { data: nachoNFTs, isLoading: isLoadingNachoNFTs } = useNachoNFTs();
+  const haveNachoNFTs = !isLoadingNachoNFTs && nachoNFTs?.length > 0;
 
   const inbox: Wallet | undefined = useMemo(() => {
     if (isLoadingProfiles || isLoadingNFTWallets) {
       return undefined;
     }
+    return nftWallets.find((nftWallet: Wallet) => !nftWallet.meta.did);
+  }, [nftWallets, isLoadingProfiles, isLoadingNFTWallets]);
 
-    const nftWalletIds = nftWallets.map((nftWallet) => nftWallet.id);
-    const profileWalletIds = new Set(
-      profiles.map((profile) => profile.nftWalletId),
-    );
-    const inboxWalletId = nftWalletIds.find(
-      (nftWalletId) => !profileWalletIds.has(nftWalletId),
-    );
-    return nftWallets.find((wallet) => wallet.id === inboxWalletId);
-  }, [profiles, nftWallets, isLoadingProfiles, isLoadingNFTWallets]);
+  const remainingNFTWallets = useMemo(() => {
+    if (isLoadingProfiles || isLoadingNFTWallets || !inbox) {
+      return undefined;
+    }
+
+    const nftWalletsWithoutDIDs = nftWallets.filter((nftWallet: Wallet) => {
+      return (
+        nftWallet.id !== inbox.id &&
+        profiles.find(
+          (profile: Profile) => profile.nftWalletId === nftWallet.id,
+        ) === undefined
+      );
+    });
+
+    return nftWalletsWithoutDIDs;
+  }, [profiles, nftWallets, inbox, isLoadingProfiles, isLoadingNFTWallets]);
 
   const label = useMemo(() => {
     if (isLoadingProfiles || isLoadingNFTWallets) {
       return 'Loading...';
+    }
+
+    if (walletId === -1) {
+      return 'Nacho NFTs';
     }
 
     if (inbox && inbox.id === walletId) {
@@ -87,8 +103,27 @@ export default function NFTProfileDropdown(props: NFTGallerySidebarProps) {
       (item: Profile) => item.nftWalletId === walletId,
     );
 
-    return profile?.name || <Trans>All NFTs</Trans>;
-  }, [profiles, isLoadingProfiles, isLoadingNFTWallets, walletId, inbox]);
+    if (profile) {
+      return profile.name;
+    }
+
+    const nftWallet = remainingNFTWallets?.find(
+      (wallet: Wallet) => wallet.id === walletId,
+    );
+
+    if (nftWallet) {
+      return `${nftWallet.name} ${nftWallet.id}`;
+    }
+
+    return <Trans>All NFTs</Trans>;
+  }, [
+    profiles,
+    remainingNFTWallets,
+    isLoadingProfiles,
+    isLoadingNFTWallets,
+    walletId,
+    inbox,
+  ]);
 
   function handleWalletChange(newWalletId?: number) {
     onChange?.(newWalletId);
@@ -102,52 +137,70 @@ export default function NFTProfileDropdown(props: NFTGallerySidebarProps) {
       color="secondary"
       size="large"
     >
-      {({ onClose }) => (
-        <>
+      <MenuItem
+        key="all"
+        onClick={() => handleWalletChange()}
+        selected={walletId === undefined}
+        close
+      >
+        <ListItemIcon>
+          <AutoAwesomeIcon />
+        </ListItemIcon>
+        <Trans>All NFTs</Trans>
+      </MenuItem>
+      {inbox && (
+        <MenuItem
+          key="inbox"
+          onClick={() => handleWalletChange(inbox.id)}
+          selected={walletId === inbox.id}
+          close
+        >
+          <ListItemIcon>
+            <NFTsSmallIcon />
+          </ListItemIcon>
+          <Trans>Unassigned NFTs</Trans>
+        </MenuItem>
+      )}
+      {(remainingNFTWallets ?? []).map((wallet: Wallet) => {
+        return (
           <MenuItem
-            key="all"
-            onClick={() => {
-              onClose();
-              handleWalletChange();
-            }}
-            selected={walletId === undefined}
+            key={wallet.id}
+            onClick={() => handleWalletChange(wallet.id)}
+            selected={walletId === wallet.id}
+            close
           >
             <ListItemIcon>
-              <AutoAwesomeIcon />
+              <NFTsSmallIcon />
             </ListItemIcon>
-            <Trans>All NFTs</Trans>
+            {wallet.name} {wallet.id}
           </MenuItem>
-          {inbox && (
-            <MenuItem
-              key="inbox"
-              onClick={() => {
-                onClose();
-                handleWalletChange(inbox.id);
-              }}
-              selected={walletId === inbox.id}
-            >
-              <ListItemIcon>
-                <NFTsSmallIcon />
-              </ListItemIcon>
-              <Trans>Unassigned NFTs</Trans>
-            </MenuItem>
-          )}
-          {(profiles ?? []).map((profile: Profile) => (
-            <MenuItem
-              key={profile.nftWalletId}
-              onClick={() => {
-                onClose();
-                handleWalletChange(profile.nftWalletId);
-              }}
-              selected={profile.nftWalletId === walletId}
-            >
-              <ListItemIcon>
-                <PermIdentityIcon />
-              </ListItemIcon>
-              {profile.name}
-            </MenuItem>
-          ))}
-        </>
+        );
+      })}
+      {(profiles ?? []).map((profile: Profile) => (
+        <MenuItem
+          key={profile.nftWalletId}
+          onClick={() => handleWalletChange(profile.nftWalletId)}
+          selected={profile.nftWalletId === walletId}
+          close
+        >
+          <ListItemIcon>
+            <PermIdentityIcon />
+          </ListItemIcon>
+          {profile.name}
+        </MenuItem>
+      ))}
+      {haveNachoNFTs && (
+        <MenuItem
+          key="nacho"
+          onClick={() => handleWalletChange(-1)}
+          selected={walletId === -1}
+          close
+        >
+          <ListItemIcon>
+            <NFTsSmallIcon />
+          </ListItemIcon>
+          Nacho NFTs
+        </MenuItem>
       )}
     </DropdownActions>
   );
