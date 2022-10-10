@@ -8,7 +8,7 @@ msgstr ""
 "Language: fi_FI\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-10-10 16:01\n"
+"PO-Revision-Date: 2022-10-10 16:59\n"
 "Last-Translator: \n"
 "Language-Team: Finnish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -2727,7 +2727,7 @@ msgstr "Säikeiden kerroin vaiheeseen 2"
 
 #: src/components/nfts/NFTPreview.tsx:831
 msgid "Thumbnail hash mismatch"
-msgstr ""
+msgstr "Esikatselukuvan tiiviste ei täsmää"
 
 #: src/components/fullNode/FullNode.jsx:87
 msgid "Time Created"
@@ -2810,7 +2810,7 @@ msgstr "Iteraatioiden määrä lohkoketjun alusta asti"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:371
 msgid "Touch all pages of buffer allocations before starting to plot."
-msgstr ""
+msgstr "Kosketa puskurien allokoinnin kaikkia sivuja ennen kuin plottaus aloitetaan."
 
 #: src/components/app/AppSelectMode.tsx:96
 msgid "Trade tokens"
@@ -2905,11 +2905,11 @@ msgstr "VDF -alaiteraatioita"
 
 #: src/components/nfts/detail/NFTDetailV2.tsx:137
 msgid "Validate SHA256 SUM"
-msgstr ""
+msgstr "Validoi SHA256 SUM"
 
 #: src/components/nfts/detail/NFTDetailV2.tsx:121
 msgid "Validating hash..."
-msgstr ""
+msgstr "Validoidaan tiivistettä..."
 
 #: src/components/plotNFT/select/PlotNFTSelectBase.tsx:156
 msgid "Verify Pool Details"
