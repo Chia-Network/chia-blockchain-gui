@@ -8,7 +8,7 @@ msgstr ""
 "Language: fi_FI\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-10-07 11:54\n"
+"PO-Revision-Date: 2022-10-10 16:01\n"
 "Last-Translator: \n"
 "Language-Team: Finnish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -2440,7 +2440,7 @@ msgstr "Esikatselu"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:247
 msgid "Size of cache to reserve for I/O"
-msgstr ""
+msgstr "Varattavan välimuistin koko I/O:lle"
 
 #: src/components/app/AppKeyringMigrator.tsx:64
 #: src/components/app/AppKeyringMigrator.tsx:267
@@ -2461,7 +2461,7 @@ msgstr "Tasaa XCH-farmauspalkkioita liittymällä pooliin."
 
 #: src/components/offers/OfferShareDialog.tsx:964
 msgid "Spacescan.io URL"
-msgstr ""
+msgstr "Spacescan.io URL"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:143
 msgid "Specify a value of 0 to use all available threads"
@@ -2572,7 +2572,7 @@ msgstr "Derivaatioindeksi asettaa lompakon osoitteiden määrän, jota lompakko 
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:105
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:161
 msgid "The folder is on a RAM Disk"
-msgstr ""
+msgstr "Kansio on RAM levyllä"
 
 #: src/components/farm/FarmFullNodeConnections.tsx:89
 msgid "The full node that your farmer is connected to is below. <0>Learn more</0>"
