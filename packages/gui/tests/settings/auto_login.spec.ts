@@ -20,10 +20,10 @@ let page: Page;
   });
 
 test('Confirm Enable Auto Login feature works as expected. ', async () => {
-  // Given I enter correct credentials in Passphrase dialog
+  //Given I enter correct credentials in Passphrase dialog
   await new LoginPage(page).login('password2022!@')
 
-  // And I click the Setting's Gear
+  //And I click the Setting's Gear
   await page.locator('[data-testid="DashboardSideBar-settings"]').click();
 
   //And I disable Auto Login feature 
@@ -35,17 +35,17 @@ test('Confirm Enable Auto Login feature works as expected. ', async () => {
   page = await electronApp.firstWindow();
 
   //Then user should have to select a Wallet 
-    await page.locator('button:has-text("Wallet 11922132445Syncing")').click();
+  await page.locator('[data-testid="SelectKeyItem-fingerprint-1922132445"]').click();
       
-  // When I re-enable Auto Login 
+  //When I re-enable Auto Login 
   await page.locator('[data-testid="DashboardSideBar-settings"]').click();
   await page.locator('input[type="checkbox"]').check();
 
-  // Then Auto Login setting is saved
+  //Then Auto Login setting is saved
   await page.close();
   stopAllChia()
 
-  // And User is Auto logged in upon next visit
+  //And User is Auto logged in upon next visit
   electronApp = await electron.launch({ args: ['./build/electron/main.js'] });
   page = await electronApp.firstWindow();
   await new LoginPage(page).login('password2022!@')
