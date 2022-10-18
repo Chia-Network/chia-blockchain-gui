@@ -87,7 +87,7 @@
     "babel-plugin-styled-components": "2.0.2",
     "babel-plugin-transform-imports": "2.0.0",
     "cross-env": "7.0.3",
-    "electron": "20.1.4",
+    "electron": "20.3.2",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-router": "6.2.1",
