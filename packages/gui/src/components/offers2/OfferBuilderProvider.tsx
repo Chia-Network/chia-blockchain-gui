@@ -82,10 +82,12 @@ export default function OfferBuilderProvider(props: OfferBuilderProviderProps) {
     fungibleAssets,
   };
 
-  const { data: royalties } = useCalculateRoyaltiesForNFTsQuery(request, {
-    skip:
-      request.royaltyAssets.length === 0 || request.fungibleAssets.length === 0,
-  });
+  const { data: royalties, isLoading: isCalculatingRoyalties } =
+    useCalculateRoyaltiesForNFTsQuery(request, {
+      skip:
+        request.royaltyAssets.length === 0 ||
+        request.fungibleAssets.length === 0,
+    });
 
   const usedAssetIds = useMemo(() => {
     const used: string[] = [];
@@ -109,8 +111,9 @@ export default function OfferBuilderProvider(props: OfferBuilderProviderProps) {
       readOnly,
       usedAssetIds,
       royalties,
+      isCalculatingRoyalties,
     }),
-    [readOnly, usedAssetIds, royalties],
+    [readOnly, usedAssetIds, royalties, isCalculatingRoyalties],
   );
 
   return (

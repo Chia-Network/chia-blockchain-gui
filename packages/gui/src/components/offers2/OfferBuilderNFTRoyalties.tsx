@@ -38,11 +38,12 @@ export default function OfferBuilderNFTRoyalties(
 ) {
   const { nft } = props;
 
-  const { royalties: allRoyalties } = useOfferBuilderContext();
+  const { royalties: allRoyalties, isCalculatingRoyalties } =
+    useOfferBuilderContext();
   const { data: catList, isLoading: isLoadingCATs } = useGetCatListQuery();
   const currencyCode = useCurrencyCode();
 
-  const isLoading = !allRoyalties || isLoadingCATs;
+  const isLoading = isCalculatingRoyalties || isLoadingCATs;
   const royalties = allRoyalties?.[nft.$nftId];
 
   const hasRoyalties = royalties?.length ?? 0 > 0;
