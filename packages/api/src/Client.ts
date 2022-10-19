@@ -343,13 +343,11 @@ export default class Client extends EventEmitter {
         } else if (errorMessage == '22') {
           errorMessage =
             '[Error 22] File not found. Most likely one of the plot folders in your config.yaml has an issue.';
+        } else if (message?.data?.errorDetails?.message) {
+          errorMessage = `${errorMessage}: ${message.data.errorDetails.message}`;
         }
 
         log(`Request ${requestId} rejected`, errorMessage);
-
-        if (message?.data?.errorDetails?.message) {
-          errorMessage = `${errorMessage}: ${message.data.errorDetails.message}`;
-        }
 
         reject(new ErrorData(errorMessage, message.data));
         return;
