@@ -93,9 +93,7 @@ function CountdownBar(props: Props) {
   });
 
   var modSec = (((seconds - start) % refreshSec) + refreshSec) % refreshSec;
-  var currentProgress = modSec * Math.floor(100 / refreshSec);
-
-  // console.log("startTime:", start, "/ refreshSec:", refreshSec, "/ seconds:", seconds, "/ modSec =", modSec, "/ currentProgress =", currentProgress);
+  var currentProgress = Math.floor(modSec * (100 / refreshSec));
 
   const containerStyle = {
     height: 2,
