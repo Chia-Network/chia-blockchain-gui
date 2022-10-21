@@ -1,14 +1,8 @@
-import React, {
-  useMemo,
-  useState,
-  useRef,
-  type ReactNode,
-  Fragment,
-} from 'react';
+import React, { useMemo, useState, useRef, Fragment } from 'react';
 import { renderToString } from 'react-dom/server';
 import mime from 'mime-types';
 import { t, Trans } from '@lingui/macro';
-import { Box, Button } from '@mui/material';
+import { Box, Button, Typography } from '@mui/material';
 import CheckSvg from '@mui/icons-material/Check';
 import CloseSvg from '@mui/icons-material/Close';
 import QuestionMarkSvg from '@mui/icons-material/QuestionMark';
@@ -21,6 +15,7 @@ import {
   Loading,
   Flex,
   SandboxedIframe,
+  Tooltip,
   usePersistState,
   useDarkMode,
 } from '@chia/core';
@@ -297,19 +292,19 @@ const CompactExtension = styled.div`
 
 const Sha256ValidatedIcon = styled.div`
   position: absolute;
-  background: ${(props) => {
-    return props.isDarkMode
+  background: ${({ theme }) => {
+    return theme.palette.mode === 'dark'
       ? 'rgba(33, 33, 33, 0.5)'
       : 'rgba(255, 255, 255, 0.66)';
   }};
-  color: ${(props) => {
-    return props.isDarkMode ? '#fff' : '#333';
+  color: ${({ theme }) => {
+    return theme.palette.mode === 'dark' ? '#fff' : '#333';
   }};
-  border-radius: 10px;
+  border-radius: 18px;
   padding: 0 8px;
   top: 10px;
   right: 10px;
-  z-index: 2;
+  z-index: 3;
   line-height: 25px;
   box-shadow: 0 0 2px 0 #ccc;
   font-size: 11px;
@@ -785,24 +780,29 @@ export default function NFTPreview(props: NFTPreviewProps) {
   }
 
   function renderIsHashValid() {
-    if (!isPreview) return null;
-    return (
-      <Sha256ValidatedIcon isDarkMode={isDarkMode}>
-        {contentCache.valid === undefined ? (
-          <>
-            <QuestionMarkIcon /> HASH
-          </>
-        ) : contentCache.valid ? (
-          <>
-            <CheckIcon /> HASH
-          </>
-        ) : (
-          <>
-            <CloseIcon /> HASH
-          </>
-        )}
-      </Sha256ValidatedIcon>
-    );
+    let icon = null;
+    let tooltipString = null;
+
+    if (isPreview) {
+      if (contentCache.valid === undefined) {
+        icon = <QuestionMarkIcon />;
+        tooltipString = t`Content has not been validated against the hash that was specified during NFT minting.`;
+      } else if (!contentCache.valid) {
+        icon = <CloseIcon />;
+        tooltipString = t`Content does not match the expected hash value that was specified during NFT minting. The content may have been modified.`;
+      }
+    }
+
+    if (icon && tooltipString) {
+      return (
+        <Tooltip
+          title={<Typography variant="caption">{tooltipString}</Typography>}
+        >
+          <Sha256ValidatedIcon>{icon} HASH</Sha256ValidatedIcon>
+        </Tooltip>
+      );
+    }
+    return null;
   }
 
   const showLoading = isLoading;

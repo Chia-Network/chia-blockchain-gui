@@ -5,6 +5,7 @@ export interface OfferBuilderContextData {
   readOnly: boolean;
   usedAssetIds: string[];
   royalties?: CalculateRoyaltiesResponse;
+  isCalculatingRoyalties: boolean;
 }
 
 const OfferBuilderContext = createContext<OfferBuilderContextData | undefined>(
