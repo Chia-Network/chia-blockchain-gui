@@ -31,18 +31,15 @@ test.afterAll(async () => {
 //Works
 test('Create a new Wallet , logout and Delete new Wallet', async () => {
 
-  //Given I click the Create New Private Key button 
-  await page.locator('text=Create a new private key').click();
+   //Given I click the Create New Private Key button 
+   await page.locator('text=Create a new private key').click();
 
-  //When I enter a Wallet Name
-  await page.locator('text=Wallet NameWallet Name >> input[type="text"]').fill('New Wallet');
+   //When I enter a Wallet Name
+   await page.locator('text=Wallet NameWallet Name >> input[type="text"]').fill('New Wallet');
 
-  //And I click on an enter button
-  await Promise.all([
-    page.waitForNavigation(/*{ url: 'file:///Users/jahifaw/Documents/Code/Chia-testnet-playwright/chia-blockchain/chia-blockchain-gui/packages/gui/build/renderer/index.html#/dashboard/wallets/1' }*/),
-    page.locator('button:has-text("Next")').click()
-  ]);
-
+   //And I click on the Next button
+   await page.locator('button:has-text("Next")').click()
+  
    //And I save the Wallet ID of the wallet
    await page.waitForTimeout(10000)
    const deleteWallet= await page.$eval('[data-testid="LayoutDashboard-fingerprint"]', (el) => el.textContent);
@@ -73,7 +70,6 @@ test('Create a new Wallet , logout and Delete new Wallet', async () => {
    //And New Wallet is successfully deleted
    await page.locator('button:has-text("Jahi 1st Wallet1922132445")').click();
    await page.locator('[data-testid="LayoutDashboard-log-out"]').click();
-   await page.waitForURL('file:///Users/jahifaw/Documents/Code/chia-tn-pw-latest/chia-blockchain/chia-blockchain-gui/packages/gui/build/renderer/index.html#/');
    expect(await page.locator(`[data-testid="SelectKeyItem-fingerprint-${newlyDeleteWallet}"] [aria-label="more"]`).count()).toEqual(0);
 
 
