@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Trans } from '@lingui/macro';
 import styled from 'styled-components';
 import {
@@ -9,7 +9,7 @@ import {
   useOpenDialog,
 } from '@chia/core';
 import type { NFTInfo } from '@chia/api';
-import { useGetNFTWallets } from '@chia/api-react';
+import { useGetNFTInfoQuery } from '@chia/api-react';
 import { Box, Grid, Typography, IconButton, Button } from '@mui/material';
 import { MoreVert } from '@mui/icons-material';
 import { useParams } from 'react-router-dom';
@@ -17,7 +17,6 @@ import NFTPreview from '../NFTPreview';
 import NFTProperties from '../NFTProperties';
 import NFTRankings from '../NFTRankings';
 import NFTDetails from '../NFTDetails';
-import useFetchNFTs from '../../../hooks/useFetchNFTs';
 import useNFTMetadata from '../../../hooks/useNFTMetadata';
 import NFTContextualActions, {
   NFTContextualActionTypes,
@@ -26,49 +25,53 @@ import NFTPreviewDialog from '../NFTPreviewDialog';
 import NFTProgressBar from '../NFTProgressBar';
 import { useLocalStorage } from '@chia/core';
 import { isImage } from '../../../util/utils.js';
+import { launcherIdFromNFTId } from '../../../util/nfts';
 import isURL from 'validator/lib/isURL';
+import { IpcRenderer } from 'electron';
 
 export default function NFTDetail() {
   const { nftId } = useParams();
-  const { wallets: nftWallets, isLoading: isLoadingWallets } =
-    useGetNFTWallets();
-  const openDialog = useOpenDialog();
-  const { nfts, isLoading: isLoadingNFTs } = useFetchNFTs(
-    nftWallets.map((wallet: Wallet) => wallet.id),
-  );
+  const { data: nft, isLoading: isLoadingNFT } = useGetNFTInfoQuery({
+    coinId: launcherIdFromNFTId(nftId ?? ''),
+  });
 
+  const isLoading = isLoadingNFT;
+
+  return isLoading ? <Loading center /> : <NFTDetailLoaded nft={nft} />;
+}
+
+type NFTDetailLoadedProps = {
+  nft: NFTInfo;
+};
+
+function NFTDetailLoaded(props: NFTDetailLoadedProps) {
+  const { nft } = props;
+  const nftId = nft.$nftId;
+  const openDialog = useOpenDialog();
   const [validationProcessed, setValidationProcessed] = useState(false);
   const nftRef = React.useRef(null);
-  const [isValid, setIsValid] = useState(false);
-
-  const nft: NFTInfo | undefined = useMemo(() => {
-    if (!nfts) {
-      return;
-    }
-    return nfts.find((nft: NFTInfo) => nft.$nftId === nftId);
-  }, [nfts]);
+  const [, setIsValid] = useState(false);
 
   const uri = nft?.dataUris?.[0];
-
   const [contentCache] = useLocalStorage(`content-cache-${nftId}`, {});
-
   const [validateNFT, setValidateNFT] = useState(false);
 
   nftRef.current = nft;
 
-  const { metadata, isLoading: isLoadingMetadata, error } = useNFTMetadata(nft);
-
-  useEffect(() => {
-    if (metadata) {
-      console.log(JSON.stringify(metadata, null, 2));
-    }
-  }, [metadata]);
+  const { metadata, error } = useNFTMetadata(nft);
 
   useEffect(() => {
     return () => {
+      const ipcRenderer: IpcRenderer = (window as any).ipcRenderer;
       ipcRenderer.invoke('abortFetchingBinary', uri);
     };
   }, []);
+
+  // useEffect(() => {
+  //   if (metadata) {
+  //     console.log(JSON.stringify(metadata, null, 2));
+  //   }
+  // }, [metadata]);
 
   const ValidateContainer = styled.div`
     padding-top: 25px;
@@ -78,12 +81,6 @@ export default function NFTDetail() {
   const ErrorMessage = styled.div`
     color: red;
   `;
-
-  const isLoading = isLoadingWallets || isLoadingNFTs || isLoadingMetadata;
-
-  if (isLoading) {
-    return <Loading center />;
-  }
 
   function handleShowFullScreen() {
     if (isImage(uri)) {
@@ -95,7 +92,7 @@ export default function NFTDetail() {
     if (!isURL(uri)) return null;
     if (validateNFT && !validationProcessed) {
       return <Trans>Validating hash...</Trans>;
-    } else if (contentCache.valid || (validationProcessed && isValid)) {
+    } else if (contentCache.valid) {
       return <Trans>Hash is validated.</Trans>;
     } else if (contentCache.valid === false) {
       return (

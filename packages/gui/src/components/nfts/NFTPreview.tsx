@@ -1,18 +1,13 @@
-import React, {
-  useMemo,
-  useState,
-  useRef,
-  type ReactNode,
-  Fragment,
-} from 'react';
+import React, { useMemo, useState, useRef, Fragment } from 'react';
 import { renderToString } from 'react-dom/server';
 import mime from 'mime-types';
 import { t, Trans } from '@lingui/macro';
-import { Box, Button } from '@mui/material';
+import { Box, Button, Typography } from '@mui/material';
 import CheckSvg from '@mui/icons-material/Check';
 import CloseSvg from '@mui/icons-material/Close';
 import QuestionMarkSvg from '@mui/icons-material/QuestionMark';
 import { NotInterested, Error as ErrorIcon } from '@mui/icons-material';
+import { useLocalStorage } from '@chia/core';
 import { isImage, parseExtensionFromUrl } from '../../util/utils.js';
 
 import {
@@ -20,6 +15,7 @@ import {
   Loading,
   Flex,
   SandboxedIframe,
+  Tooltip,
   usePersistState,
   useDarkMode,
 } from '@chia/core';
@@ -296,12 +292,19 @@ const CompactExtension = styled.div`
 
 const Sha256ValidatedIcon = styled.div`
   position: absolute;
-  background: rgba(255, 255, 255, 0.75);
-  border-radius: 10px;
+  background: ${({ theme }) => {
+    return theme.palette.mode === 'dark'
+      ? 'rgba(33, 33, 33, 0.5)'
+      : 'rgba(255, 255, 255, 0.66)';
+  }};
+  color: ${({ theme }) => {
+    return theme.palette.mode === 'dark' ? '#fff' : '#333';
+  }};
+  border-radius: 18px;
   padding: 0 8px;
   top: 10px;
   right: 10px;
-  z-index: 2;
+  z-index: 3;
   line-height: 25px;
   box-shadow: 0 0 2px 0 #ccc;
   font-size: 11px;
@@ -401,7 +404,7 @@ export default function NFTPreview(props: NFTPreviewProps) {
 
   const [loaded, setLoaded] = useState(false);
 
-  const { isLoading, error, thumbnail, isBinaryHashValid } = useVerifyHash({
+  const { isLoading, error, thumbnail } = useVerifyHash({
     nft,
     ignoreSizeLimit,
     metadata,
@@ -412,6 +415,8 @@ export default function NFTPreview(props: NFTPreviewProps) {
     nftId: nft.$nftId,
     validateNFT,
   });
+
+  const [contentCache] = useLocalStorage(`content-cache-${nft.$nftId}`, {});
 
   const [ignoreError, setIgnoreError] = usePersistState<boolean>(
     false,
@@ -873,27 +878,32 @@ export default function NFTPreview(props: NFTPreviewProps) {
   }
 
   function renderIsHashValid() {
-    if (!isPreview) return null;
-    return (
-      <Sha256ValidatedIcon>
-        {isBinaryHashValid === 0 ? (
-          <>
-            <QuestionMarkIcon /> HASH
-          </>
-        ) : isBinaryHashValid > 0 ? (
-          <>
-            <CheckIcon /> HASH
-          </>
-        ) : (
-          <>
-            <CloseIcon /> HASH
-          </>
-        )}
-      </Sha256ValidatedIcon>
-    );
+    let icon = null;
+    let tooltipString = null;
+
+    if (isPreview) {
+      if (contentCache.valid === undefined) {
+        icon = <QuestionMarkIcon />;
+        tooltipString = t`Content has not been validated against the hash that was specified during NFT minting.`;
+      } else if (!contentCache.valid) {
+        icon = <CloseIcon />;
+        tooltipString = t`Content does not match the expected hash value that was specified during NFT minting. The content may have been modified.`;
+      }
+    }
+
+    if (icon && tooltipString) {
+      return (
+        <Tooltip
+          title={<Typography variant="caption">{tooltipString}</Typography>}
+        >
+          <Sha256ValidatedIcon>{icon} HASH</Sha256ValidatedIcon>
+        </Tooltip>
+      );
+    }
+    return null;
   }
 
-  const showLoading = isLoading && !isImage(file);
+  const showLoading = isLoading;
 
   return (
     <StyledCardPreview height={height} width={width}>
@@ -985,9 +995,7 @@ export default function NFTPreview(props: NFTPreviewProps) {
               </Loading>
             </Flex>
           )}
-        {(isImage(file) || !showLoading) &&
-          !responseTooLarge(error) &&
-          renderElementPreview()}
+        {!showLoading && !responseTooLarge(error) && renderElementPreview()}
       </>
     </StyledCardPreview>
   );

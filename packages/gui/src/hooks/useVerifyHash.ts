@@ -1,16 +1,11 @@
 import { useState, useEffect } from 'react';
-import { type NFTInfo } from '@chia/api';
+import type { NFTInfo } from '@chia/api';
 import { useLocalStorage } from '@chia/core';
 import isURL from 'validator/lib/isURL';
 
 import getRemoteFileContent from '../util/getRemoteFileContent';
 import { MAX_FILE_SIZE } from './useNFTMetadata';
-import {
-  mimeTypeRegex,
-  isImage,
-  getCacheInstances,
-  parseExtensionFromUrl,
-} from '../util/utils';
+import { mimeTypeRegex, isImage, parseExtensionFromUrl } from '../util/utils';
 import { FileType } from '../util/getRemoteFileContent';
 
 import computeHash from '../util/computeHash';
@@ -42,7 +37,6 @@ export default function useVerifyHash(props: VerifyHash): {
   isValidationProcessed: boolean;
   validateNFT: boolean;
   encoding: string;
-  isBinaryHashValid: number;
 } {
   const {
     nft,
@@ -59,7 +53,6 @@ export default function useVerifyHash(props: VerifyHash): {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | undefined>();
   const [thumbnail, setThumbnail] = useState({});
-  const [isBinaryHashValid, setIsBinaryHashValid] = useState(0);
   const [thumbCache, setThumbCache] = useLocalStorage(
     `thumb-cache-${nftId}`,
     {},
@@ -68,6 +61,7 @@ export default function useVerifyHash(props: VerifyHash): {
     `content-cache-${nftId}`,
     {},
   );
+
   const [forceReloadNFT] = useLocalStorage(`force-reload-${nftId}`, false);
 
   const uri = nft.dataUris?.[0];
@@ -114,23 +108,20 @@ export default function useVerifyHash(props: VerifyHash): {
                 type: FileType.Video,
                 dataHash: metadata['preview_video_hash'],
               });
-              ipcRenderer.invoke('adjustCacheLimitSize', {
-                cacheInstances: getCacheInstances(),
-              });
               if (!isValid) {
                 lastError = 'thumbnail hash mismatch';
               }
               if (isValid) {
                 videoThumbValid = true;
                 const cachedUri = `${nftId}_${videoUri}`;
+                setThumbnail({
+                  video: wasCached
+                    ? `cached://${computeHash(cachedUri, {
+                        encoding: 'utf-8',
+                      })}`
+                    : videoUri,
+                });
                 if (wasCached) {
-                  setThumbnail({
-                    video: wasCached
-                      ? `cached://${computeHash(cachedUri, {
-                          encoding: 'utf-8',
-                        })}`
-                      : videoUri,
-                  });
                   setThumbCache({
                     video: computeHash(cachedUri, { encoding: 'utf-8' }),
                     time: new Date().getTime(),
@@ -185,12 +176,14 @@ export default function useVerifyHash(props: VerifyHash): {
                   image: computeHash(cachedImageUri, { encoding: 'utf-8' }),
                   time: new Date().getTime(),
                 });
-                setThumbnail({
-                  image: `cached://${computeHash(cachedImageUri, {
-                    encoding: 'utf-8',
-                  })}`,
-                });
               }
+              setThumbnail({
+                image: wasCached
+                  ? `cached://${computeHash(cachedImageUri, {
+                      encoding: 'utf-8',
+                    })}`
+                  : imageUri,
+              });
               setIsLoading(false);
               break;
             }
@@ -204,7 +197,7 @@ export default function useVerifyHash(props: VerifyHash): {
       /* ================== BINARY CONTENT ================== */
       if (isImage(uri) || !isPreview) {
         let showCachedUri: boolean = false;
-        if (contentCache.binary) {
+        if (contentCache.valid !== undefined && contentCache.binary) {
           if (parseExtensionFromUrl(uri) === 'svg') {
             const svgContent = await ipcRenderer.invoke(
               'getSvgContent',
@@ -244,10 +237,6 @@ export default function useVerifyHash(props: VerifyHash): {
 
             showCachedUri = wasCached;
 
-            ipcRenderer.invoke('adjustCacheLimitSize', {
-              cacheInstances: getCacheInstances(),
-            });
-
             encoding = fileEncoding;
 
             if (!isValid) {
@@ -268,21 +257,9 @@ export default function useVerifyHash(props: VerifyHash): {
               valid: !lastError,
               time: new Date().getTime(),
             });
-            setIsBinaryHashValid(!lastError ? 1 : -1);
             if (parseExtensionFromUrl(uri) === 'svg' && dataContent) {
               setThumbnail({
                 binary: dataContent,
-              });
-            } else if (
-              !isPreview ||
-              (isImage(uri) && !videoThumbValid && !imageThumbValid)
-            ) {
-              setThumbnail({
-                binary: showCachedUri
-                  ? `cached://${computeHash(cachedBinaryUri, {
-                      encoding: 'utf-8',
-                    })}`
-                  : uri,
               });
             }
           }
@@ -310,9 +287,6 @@ export default function useVerifyHash(props: VerifyHash): {
   }
 
   useEffect(() => {
-    if (contentCache.binary) {
-      setIsBinaryHashValid(contentCache.valid ? 1 : -1);
-    }
     if (!isLoadingMetadata) {
       if (
         metadata &&
@@ -338,6 +312,5 @@ export default function useVerifyHash(props: VerifyHash): {
     isValidationProcessed,
     validateNFT,
     encoding,
-    isBinaryHashValid,
   };
 }
