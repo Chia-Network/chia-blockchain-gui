@@ -28,7 +28,7 @@ export const plottingInfo: Record<PlotterName, PlotSize[]> = {
   ],
   [PlotterName.MADMAX]: [
     { value: 25, label: getPlotSize(25), workspace: '1.8GiB', defaultRam: 512 },
-    { value: 32, label: getPlotSize(32), workspace: '239GiB', defaultRam: 3390 },
+    { value: 32, label: getPlotSize(32), workspace: '244GiB', defaultRam: 3390 },
     { value: 33, label: getPlotSize(33), workspace: '521GiB', defaultRam: 7400 },
     // workspace are guesses using 55.35% - rounded up - past here
     { value: 34, label: getPlotSize(34), workspace: '1041GiB', defaultRam: 14800 },
