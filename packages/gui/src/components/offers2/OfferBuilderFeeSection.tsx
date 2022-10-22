@@ -7,6 +7,7 @@ import { useFieldArray } from 'react-hook-form';
 import OfferBuilderSection from './OfferBuilderSection';
 import OfferBuilderValue from './OfferBuilderValue';
 import useStandardWallet from '../../hooks/useStandardWallet';
+import useOfferBuilderContext from '../../hooks/useOfferBuilderContext';
 import OfferBuilderWalletBalance from './OfferBuilderWalletBalance';
 
 export type OfferBuilderFeeSectionProps = {
@@ -20,6 +21,7 @@ export default function OfferBuilderFeeSection(
 ) {
   const { name, offering, viewer } = props;
   const { wallet, loading } = useStandardWallet();
+  const { imported } = useOfferBuilderContext();
   const { unit = '' } = useWallet(wallet?.id);
 
   const hideBalance = !offering;
@@ -40,7 +42,7 @@ export default function OfferBuilderFeeSection(
     remove(index);
   }
 
-  const disableReadOnly = offering && viewer;
+  const disableReadOnly = offering && viewer && imported;
 
   return (
     <OfferBuilderSection
