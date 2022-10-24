@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh_TW\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-07-27 18:40\n"
+"PO-Revision-Date: 2022-10-24 18:13\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -28,7 +28,7 @@ msgstr "數量"
 
 #: src/components/Settings/SettingsApp.tsx:76
 msgid "Appearance"
-msgstr ""
+msgstr "外觀"
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:164
 msgid "Are you sure you want to continue? Type in the fingerprint of this wallet key to confirm deletion."
@@ -42,7 +42,7 @@ msgstr "返回"
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:147
 #~ msgid "Can be backed up to mnemonic seed"
-#~ msgstr "可以備份到助記符號種子"
+#~ msgstr "Can be backed up to mnemonic seed"
 
 #: src/components/ConfirmDialog/ConfirmDialog.tsx:32
 #: src/hooks/useKeyringMigrationPrompt.tsx:17
@@ -73,7 +73,7 @@ msgstr "建立一個新的私鑰"
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:163
 #~ msgid "DANGER: permanently delete private key"
-#~ msgstr "危險：將永久刪除私鑰"
+#~ msgstr "DANGER: permanently delete private key"
 
 #: src/components/Settings/SettingsApp.tsx:83
 msgid "Dark"
@@ -100,7 +100,7 @@ msgstr "刪除全部金鑰將會永久從你的電腦中移除，請確保你有
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:124
 #~ msgid "Deleting the key will permanently remove the key from your computer, make sure you have backups. Are you sure you want to continue?"
-#~ msgstr "刪除此金鑰將會永久從你的電腦中移除，請確保你有備份。你確定要繼續？"
+#~ msgstr "Deleting the key will permanently remove the key from your computer, make sure you have backups. Are you sure you want to continue?"
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:105
 msgid "Details"
@@ -126,7 +126,7 @@ msgstr "錯誤"
 
 #: src/components/ErrorBoundary/ErrorBoundary.tsx:78
 msgid "Error:"
-msgstr ""
+msgstr "錯誤:"
 
 #: src/screens/SelectKey/SelectKeyRenameForm.tsx:87
 msgid "Esc"
@@ -134,7 +134,7 @@ msgstr ""
 
 #: src/components/LayoutMain/LayoutFooter.tsx:50
 #~ msgid "FAQ"
-#~ msgstr ""
+#~ msgstr "FAQ"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:96
 msgid "Farmer Public Key"
@@ -189,7 +189,7 @@ msgstr "數值不正確"
 
 #: src/components/Settings/SettingsApp.tsx:90
 msgid "Language"
-msgstr ""
+msgstr "語言"
 
 #: src/components/Settings/SettingsApp.tsx:80
 msgid "Light"
@@ -206,11 +206,11 @@ msgstr ""
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:166
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:191
 msgid "Log Out"
-msgstr ""
+msgstr "登出"
 
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:187
 msgid "Logout"
-msgstr ""
+msgstr "登出"
 
 #: src/hooks/useKeyringMigrationPrompt.tsx:16
 msgid "Migrate"
@@ -222,7 +222,7 @@ msgstr ""
 
 #: src/components/Settings/SettingsApp.tsx:62
 msgid "Mode"
-msgstr ""
+msgstr "模式"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:121
 msgid "NEVER SHARE THESE WITH ANYONE"
@@ -230,7 +230,7 @@ msgstr ""
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:49
 msgid "New passphrase is the same as your current passphrase"
-msgstr ""
+msgstr "新密碼與您現在的密碼相同"
 
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:83
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:165
@@ -260,12 +260,12 @@ msgstr "礦池公鑰 (PPK):"
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:142
 #~ msgid "Private key with public fingerprint {fingerprint}"
-#~ msgstr "帶有公有指紋 {fingerprint} 的私鑰"
+#~ msgstr "Private key with public fingerprint {fingerprint}"
 
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:26
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:33
 msgid "Private key {fingerprint}"
-msgstr ""
+msgstr "私鑰 {fingerprint}"
 
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:41
 msgid "Private key:"
@@ -281,7 +281,7 @@ msgstr "公鑰："
 
 #: src/components/ErrorBoundary/ErrorBoundary.tsx:91
 msgid "Reload Application"
-msgstr ""
+msgstr "重新載入"
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:97
 msgid "Rename"
@@ -289,7 +289,7 @@ msgstr ""
 
 #: src/components/ErrorBoundary/ErrorBoundary.tsx:87
 msgid "Report an Issue"
-msgstr ""
+msgstr "問題回報"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:147
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:178
@@ -306,7 +306,7 @@ msgstr ""
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:151
 #~ msgid "See private key"
-#~ msgstr "看私鑰"
+#~ msgstr "See private key"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:154
 msgid "Seed Phrase"
@@ -322,20 +322,20 @@ msgstr "選擇金鑰"
 
 #: src/components/Dropdown/Dropdown.tsx:85
 msgid "Select..."
-msgstr ""
+msgstr "請選擇……"
 
 #: src/components/Settings/SettingsApp.tsx:108
 msgid "Send Feedback"
-msgstr ""
+msgstr "意見回饋"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:61
 msgid "Setting a passphrase is strongly recommended to protect your keys. Are you sure you want to skip setting a passphrase?"
-msgstr ""
+msgstr "強烈建議設置密碼來保護您的密鑰。您確定要跳過設置密碼嗎？"
 
 #: src/components/Settings/Settings.tsx:48
 #: src/components/Settings/Settings.tsx:58
 msgid "Settings"
-msgstr ""
+msgstr "設定"
 
 #: src/components/AdvancedOptions/AdvancedOptions.tsx:74
 msgid "Show Advanced Options"
@@ -347,15 +347,15 @@ msgstr "登入"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:59
 msgid "Skip"
-msgstr ""
+msgstr "略過"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:58
 msgid "Skip Passphrase Protection"
-msgstr ""
+msgstr "略過密碼保護"
 
 #: src/components/ErrorBoundary/ErrorBoundary.tsx:73
 msgid "Something went wrong"
-msgstr ""
+msgstr "發生了問題。"
 
 #: src/screens/SelectKey/WalletStatus.tsx:70
 msgid "Synced"
@@ -367,7 +367,7 @@ msgstr ""
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:31
 msgid "The provided passphrase and confirmation do not match"
-msgstr ""
+msgstr "密碼與再次確認密碼不相符"
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:145
 msgid "This key is used for a wallet that may have a non-zero balance. By deleting this key you may lose access to this wallet"
@@ -399,7 +399,7 @@ msgstr ""
 
 #: src/screens/SelectKey/SelectKey.tsx:131
 msgid "Try Again"
-msgstr ""
+msgstr "再試一次"
 
 #: src/screens/SelectKey/SelectKey.tsx:135
 msgid "Unable to load the list of the keys"
@@ -425,7 +425,7 @@ msgstr "數值有點高"
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:132
 #: src/components/Settings/SettingsApp.tsx:69
 msgid "Wallet"
-msgstr ""
+msgstr "錢包"
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:172
 msgid "Wallet Fingerprint"
@@ -438,15 +438,15 @@ msgstr ""
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:117
 #~ msgid "Warning: This key is used for a wallet that may have a non-zero balance. By deleting this key you may lose access to this wallet"
-#~ msgstr "警告：這個金鑰的錢包還有餘額，如果刪除金鑰可能會導致你遺失這個錢包"
+#~ msgstr "Warning: This key is used for a wallet that may have a non-zero balance. By deleting this key you may lose access to this wallet"
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:99
 #~ msgid "Warning: This key is used for your farming rewards address. By deleting this key you may lose access to any future farming rewards"
-#~ msgstr "警告：這個金鑰用於你的耕種獎勵地址。刪除金鑰後可能會無法領取之後的耕種獎勵。"
+#~ msgstr "Warning: This key is used for your farming rewards address. By deleting this key you may lose access to any future farming rewards"
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:108
 #~ msgid "Warning: This key is used for your pool rewards address. By deleting this key you may lose access to any future pool rewards"
-#~ msgstr "警告：這個金鑰用於你的農會獎勵地址。刪除金鑰後可能會無法領取之後的農會獎勵。"
+#~ msgstr "Warning: This key is used for your pool rewards address. By deleting this key you may lose access to any future pool rewards"
 
 #: src/screens/SelectKey/SelectKey.tsx:149
 msgid "Welcome to Chia. Please log in with an existing key, or create a new key."
@@ -459,7 +459,7 @@ msgstr "您有做過變更。請問您想要放棄它們嗎？"
 
 #: src/hooks/useKeyringMigrationPrompt.tsx:20
 msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Would you like to migrate your keys now?"
-msgstr ""
+msgstr "您的密鑰尚未遷移到新的鑰匙圈。在遷移完成之前，您將無法創建新密鑰或刪除現有密鑰。您想現在遷移您的密鑰嗎？"
 
 #: src/components/Amount/Amount.tsx:85
 msgid "{0, plural, one {mojo} other {mojos}}"
@@ -472,3 +472,4 @@ msgstr ""
 #: src/hooks/useValidateChangePassphraseParams.tsx:39
 msgid "{minPassphraseLength, plural, one {Passphrases must be at least # character in length} other {Passphrases must be at least # characters in length}}"
 msgstr ""
+
