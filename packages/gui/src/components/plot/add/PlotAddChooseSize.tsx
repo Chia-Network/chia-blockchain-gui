@@ -11,7 +11,7 @@ import {
   MenuItem,
   FormHelperText,
 } from '@mui/material';
-import { plotSizeOptions } from '../../../constants/plotSizes';
+import { getPlotSizeOptions } from '../../../constants/plotSizes';
 import Plotter from '../../../types/Plotter';
 
 const MIN_MAINNET_K_SIZE = 32;
@@ -35,10 +35,18 @@ export default function PlotAddChooseSize(props: Props) {
   const overrideK = watch('overrideK');
   const isKLow = plotSize < MIN_MAINNET_K_SIZE;
 
-  const [allowedPlotSizes, setAllowedPlotSizes] = useState(plotSizeOptions.filter((option) => plotter.options.kSizes.includes(option.value)));
+  const [allowedPlotSizes, setAllowedPlotSizes] = useState(
+    getPlotSizeOptions(plotterName).filter(option =>
+      plotter.options.kSizes.includes(option.value)
+    )
+  );
 
   useEffect(() => {
-    setAllowedPlotSizes(plotSizeOptions.filter((option) => plotter.options.kSizes.includes(option.value)));
+    setAllowedPlotSizes(
+      getPlotSizeOptions(plotterName).filter(option =>
+        plotter.options.kSizes.includes(option.value)
+      )
+    );
   }, [plotterName]);
 
   async function getConfirmation() {
@@ -87,7 +95,7 @@ export default function PlotAddChooseSize(props: Props) {
       </Typography>
 
       <Grid container>
-        <Grid xs={12} sm={10} md={8} lg={6} item>
+        <Grid xs={12} sm={10} md={8} lg={8} item>
           <FormControl variant="filled" fullWidth>
             <InputLabel required focused>
               <Trans>Plot Size</Trans>
