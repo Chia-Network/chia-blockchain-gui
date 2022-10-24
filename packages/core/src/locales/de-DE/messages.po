@@ -8,7 +8,7 @@ msgstr ""
 "Language: de_DE\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-07-27 18:38\n"
+"PO-Revision-Date: 2022-10-24 18:14\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -42,7 +42,7 @@ msgstr "Zurück"
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:147
 #~ msgid "Can be backed up to mnemonic seed"
-#~ msgstr "Kann als Mnemonik-Seed gesichert werden"
+#~ msgstr "Can be backed up to mnemonic seed"
 
 #: src/components/ConfirmDialog/ConfirmDialog.tsx:32
 #: src/hooks/useKeyringMigrationPrompt.tsx:17
@@ -73,7 +73,7 @@ msgstr "Erstelle einen neuen privaten Schlüssel"
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:163
 #~ msgid "DANGER: permanently delete private key"
-#~ msgstr "ACHTUNG: Privaten Schlüssel unwiederbringlich löschen"
+#~ msgstr "DANGER: permanently delete private key"
 
 #: src/components/Settings/SettingsApp.tsx:83
 msgid "Dark"
@@ -96,17 +96,13 @@ msgstr "Key mit Fingerabdruck {fingerprint} löschen"
 
 #: src/screens/SelectKey/SelectKey.tsx:88
 msgid "Deleting all keys will permanently remove the keys from your computer, make sure you have backups. Are you sure you want to continue?"
-msgstr ""
-"Alle Schlüssel löschen entfernt alle Schlüssel unwiederbringlich vom Computer. \n"
+msgstr "Alle Schlüssel löschen entfernt alle Schlüssel unwiederbringlich vom Computer. \n"
 "Das Erstellen einer Sicherungskopie wird empfohlen!\n"
 "Bist du sicher, dass du mit dem Löschen fortfahren möchtest?"
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:124
 #~ msgid "Deleting the key will permanently remove the key from your computer, make sure you have backups. Are you sure you want to continue?"
-#~ msgstr ""
-#~ "Diesen Schlüssel löschen entfernt diesen Schlüssel unwiederbringlich vom Computer. \n"
-#~ "Das Erstellen einer Sicherungskopie wird empfohlen!\n"
-#~ "Bist du sicher, dass du mit dem Löschen fortfahren möchtest?"
+#~ msgstr "Deleting the key will permanently remove the key from your computer, make sure you have backups. Are you sure you want to continue?"
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:105
 msgid "Details"
@@ -140,7 +136,7 @@ msgstr ""
 
 #: src/components/LayoutMain/LayoutFooter.tsx:50
 #~ msgid "FAQ"
-#~ msgstr ""
+#~ msgstr "FAQ"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:96
 msgid "Farmer Public Key"
@@ -266,7 +262,7 @@ msgstr "Öffentlicher Pool-Schlüssel:"
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:142
 #~ msgid "Private key with public fingerprint {fingerprint}"
-#~ msgstr "Privater Schlüssel mit öffentlichem Fingerabdruck {fingerprint}"
+#~ msgstr "Private key with public fingerprint {fingerprint}"
 
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:26
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:33
@@ -312,7 +308,7 @@ msgstr ""
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:151
 #~ msgid "See private key"
-#~ msgstr "Privaten Schlüssel anzeigen"
+#~ msgstr "See private key"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:154
 msgid "Seed Phrase"
@@ -444,15 +440,15 @@ msgstr ""
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:117
 #~ msgid "Warning: This key is used for a wallet that may have a non-zero balance. By deleting this key you may lose access to this wallet"
-#~ msgstr "Warnung: Dieser Key wird für eine Wallet benutzt die möglicherweise nicht leer ist. Beim Löschen des Keys könnte der Zugang zur Wallet verloren gehen"
+#~ msgstr "Warning: This key is used for a wallet that may have a non-zero balance. By deleting this key you may lose access to this wallet"
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:99
 #~ msgid "Warning: This key is used for your farming rewards address. By deleting this key you may lose access to any future farming rewards"
-#~ msgstr "Warnung: Dieser Key wird für deine Farming-Belohnungen verwendet. Durch das Löschen dieses Keys kannst du den Zugriff auf zukünftige Farming-Belohnungen verlieren"
+#~ msgstr "Warning: This key is used for your farming rewards address. By deleting this key you may lose access to any future farming rewards"
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:108
 #~ msgid "Warning: This key is used for your pool rewards address. By deleting this key you may lose access to any future pool rewards"
-#~ msgstr "Warnung: Dieser Key wird für deine Pool-Farming-Belohnungen verwendet. Durch das Löschen dieses Keys kannst du den Zugriff auf zukünftige Pool-Farming-Belohnungen verlieren"
+#~ msgstr "Warning: This key is used for your pool rewards address. By deleting this key you may lose access to any future pool rewards"
 
 #: src/screens/SelectKey/SelectKey.tsx:149
 msgid "Welcome to Chia. Please log in with an existing key, or create a new key."
@@ -478,3 +474,4 @@ msgstr ""
 #: src/hooks/useValidateChangePassphraseParams.tsx:39
 msgid "{minPassphraseLength, plural, one {Passphrases must be at least # character in length} other {Passphrases must be at least # characters in length}}"
 msgstr ""
+
