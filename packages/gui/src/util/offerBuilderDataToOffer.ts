@@ -46,8 +46,12 @@ export default async function offerBuilderDataToOffer(
   const hasRequest =
     !!requestedXch.length || !!requestedTokens.length || !!requestedNfts.length;
 
-  if (!hasOffer && !hasRequest) {
-    throw new Error(t`Offer or request must be specified`);
+  if (!hasRequest) {
+    throw new Error(t`Please specify at least one requested asset`);
+  }
+
+  if (!hasOffer) {
+    throw new Error(t`Please specify at least one offered asset`);
   }
 
   await Promise.all(
