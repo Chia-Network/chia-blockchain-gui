@@ -7,6 +7,7 @@ import {
   Fee,
   Flex,
   mojoToChiaLocaleString,
+  useCurrencyCode,
   useLocale,
 } from '@chia/core';
 import {
@@ -143,6 +144,7 @@ export default function EstimatedFee(props: FeeProps) {
   const mode = useMode();
   const [selectOpen, setSelectOpen] = React.useState(false);
   const [locale] = useLocale();
+  const currencyCode = useCurrencyCode();
 
   const maxBlockCostCLVM = 11000000000;
   const offersAcceptsPerBlock = 500;
@@ -227,7 +229,7 @@ export default function EstimatedFee(props: FeeProps) {
               >
                 <Flex flexDirection="row" flexGrow={1} justifyContent="space-between" alignItems="center">
                   <Flex>
-                    <Trans>{option.estimate} TXCH</Trans>
+                    <Trans>{option.estimate} {currencyCode}</Trans>
                   </Flex>
                   <Flex alignSelf="center">
                     <Trans><Typography color="textSecondary" fontSize="small">{option.timeText}</Typography></Trans>
