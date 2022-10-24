@@ -28,7 +28,7 @@ export default function NFTDetail() {
     }
     return nfts.find((nft: NFTInfo) => nft.$nftId === nftId);
   }, [nfts, nftId]);
-  const { metadata, isLoading: isLoadingMetadata } = useNFTMetadata(nft);
+  const { metadata, isLoading: isLoadingMetadata } = useNFTMetadata([nft]);
   const isLoading = isLoadingWallets || isLoadingNFTs || isLoadingMetadata;
 
   if (isLoading) {
@@ -73,7 +73,7 @@ export default function NFTDetail() {
                   <Trans>Description</Trans>
                 </Typography>
 
-                <Typography sx={{ whiteSpace : 'pre-line'}}>
+                <Typography sx={{ whiteSpace: 'pre-line' }}>
                   {metadata?.description ?? <Trans>Not Available</Trans>}
                 </Typography>
               </Flex>

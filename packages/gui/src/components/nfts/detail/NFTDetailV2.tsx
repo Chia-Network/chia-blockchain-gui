@@ -58,7 +58,7 @@ function NFTDetailLoaded(props: NFTDetailLoadedProps) {
 
   nftRef.current = nft;
 
-  const { metadata, error } = useNFTMetadata(nft);
+  const { metadata, error } = useNFTMetadata([nft]);
 
   useEffect(() => {
     return () => {
