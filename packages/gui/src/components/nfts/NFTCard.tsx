@@ -43,7 +43,7 @@ export default function NFTCard(props: NFTCardProps) {
 
   const navigate = useNavigate();
 
-  const { metadata, isLoading, error } = useNFTMetadata(nft);
+  const { metadata, isLoading, error } = useNFTMetadata([nft]);
 
   function handleClick() {
     if (canExpandDetails) {

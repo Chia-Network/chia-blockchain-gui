@@ -44,7 +44,7 @@ export default function NFTSummary(props: NFTSummaryProps) {
   const { data: nft, isLoading: isLoadingNFT } = useGetNFTInfoQuery({
     coinId: launcherId,
   });
-  const { metadata, isLoading: isLoadingMetadata } = useNFTMetadata(nft);
+  const { metadata, isLoading: isLoadingMetadata } = useNFTMetadata([nft]);
 
   const [properties, rankings] = useMemo(() => {
     if (!nft) {
