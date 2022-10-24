@@ -5,7 +5,7 @@ import { useLocalStorage } from '@chia/core';
 
 export const MAX_FILE_SIZE = 100 * 1024 * 1024; // 100 MB
 
-export default function useNFTsMetadata(nfts: NFTInfo[], isMultiple: boolean) {
+export default function useNFTsMetadata(nfts: NFTInfo[], isMultiple = false) {
   const nft = nfts[0];
   const nftId = nft?.$nftId;
   const [isLoading, setIsLoadingContent] = useState<boolean>(true);

@@ -579,24 +579,13 @@ export default function NFTPreview(props: NFTPreviewProps) {
       <html>
         <head>
           <style dangerouslySetInnerHTML={{ __html: style }} />
-          <script></script>
         </head>
         <body>{mediaElement}</body>
       </html>,
     );
 
-    const script = `
-        window.addEventListener("DOMContentLoaded", () => {
-          document.querySelector('video').addEventListener('mouseenter', function() {
-            console.log('window.parent', window.parent);
-          });
-        });
-    `;
-
     /* cached svg exception */
-    elem = elem
-      .replace(`<div id="replace-with-svg"></div>`, thumbnail.binary)
-      .replace('<script></script>', `<script>${script}</script>`);
+    elem = elem.replace(`<div id="replace-with-svg"></div>`, thumbnail.binary);
 
     return [elem, hasPlaybackControls];
   }, [file, thumbnail, error]);
