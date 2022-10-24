@@ -15,6 +15,7 @@ import { TransactionType, WalletType } from '@chia/api';
 import type { Transaction } from '@chia/api';
 import { mojoToChia, mojoToCAT, blockHeightToTimestamp } from '@chia/core';
 import useWalletTransactions from '../hooks/useWalletTransactions';
+import WalletGraphTooltip from './WalletGraphTooltip';
 
 const StyledGraphContainer = styled.div`
   position: relative;
@@ -52,7 +53,7 @@ function generateTransactionGraphData(transactions: Transaction[]): {
       TransactionType.OUTGOING_TRADE,
     ].includes(type);
 
-    const total = BigNumber(amount).plus(BigNumber(feeAmount));
+    const total = new BigNumber(amount).plus(new BigNumber(feeAmount));
     const value = isOutgoing ? total.negated() : total;
 
     return {
@@ -134,6 +135,11 @@ function prepareGraphPoints(
     const { timestamp, value } = item;
 
     start = start - value.toNumber();
+
+    const isAlreadyUsed = points.some((point) => point.x === timestamp);
+    if (isAlreadyUsed) {
+      return;
+    }
 
     points.push({
       x: timestamp,
@@ -218,7 +224,7 @@ export default function WalletGraph(props: WalletGraphProps) {
       >
         <VictoryArea
           data={data}
-          interpolation={'basis'}
+          interpolation={'monotoneX'}
           style={{
             data: {
               stroke: '#5DAA62',
@@ -227,8 +233,12 @@ export default function WalletGraph(props: WalletGraphProps) {
               fill: 'url(#graph-gradient)',
             },
           }}
-          labels={({ datum }) => `${datum.tooltip} ${unit}`}
-          labelComponent={<VictoryTooltip style={{ fontSize: 10 }} />}
+          labels={() => ''}
+          labelComponent={
+            <VictoryTooltip
+              flyoutComponent={<WalletGraphTooltip suffix={unit} />}
+            />
+          }
         />
         <VictoryAxis
           style={{
