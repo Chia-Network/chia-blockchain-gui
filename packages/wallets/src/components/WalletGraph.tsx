@@ -136,6 +136,11 @@ function prepareGraphPoints(
 
     start = start - value.toNumber();
 
+    const isAlreadyUsed = points.some((point) => point.x === timestamp);
+    if (isAlreadyUsed) {
+      return;
+    }
+
     points.push({
       x: timestamp,
       y: BigNumber.max(
