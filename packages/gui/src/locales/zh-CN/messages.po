@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh_CN\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-08-04 12:03\n"
+"PO-Revision-Date: 2022-10-24 18:15\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -280,7 +280,7 @@ msgstr ""
 
 #: src/components/nfts/NFTBurnDialog.tsx:122
 #~ msgid "Burning a non-fungible token means destroying it. Burned NFTs are sent to a verifiably un-spendable address, eliminating your NFT from the blockchain. However, transactions leading up to the burn will remain on the blockchain ledger."
-#~ msgstr ""
+#~ msgstr "Burning a non-fungible token means destroying it. Burned NFTs are sent to a verifiably un-spendable address, eliminating your NFT from the blockchain. However, transactions leading up to the burn will remain on the blockchain ledger."
 
 #: src/components/nfts/NFTBurnDialog.tsx:125
 msgid "Burning a non-fungible token means removing it from circulation by sending it to a verifiably un-spendable address. However, transactions leading up to the burn will remain on the blockchain ledger."
@@ -525,7 +525,7 @@ msgstr "连接类型"
 
 #: src/components/fullNode/FullNodeConnections.tsx:106
 #~ msgid "Connections"
-#~ msgstr "连接数"
+#~ msgstr "Connections"
 
 #: src/electron/main.tsx:641
 msgid "Contribute on GitHub"
@@ -782,11 +782,11 @@ msgstr ""
 
 #: src/components/offers/OfferImport.tsx:146
 #~ msgid "Drag & drop an offer file below to view its details"
-#~ msgstr "拖放一个报价文件以查看其详细信息"
+#~ msgstr "Drag & drop an offer file below to view its details"
 
 #: src/components/offers/OfferImport.tsx:166
 #~ msgid "Drag and drop offer file"
-#~ msgstr "把报价文件拖放到此处"
+#~ msgstr "Drag and drop offer file"
 
 #: src/components/backup/BackupRestore.tsx:172
 msgid "Drag and drop your backup file"
@@ -1001,7 +1001,7 @@ msgstr ""
 
 #: src/components/nfts/NFTPreview.tsx:26
 #~ msgid "File is over 10MB"
-#~ msgstr "文件超过 10MB"
+#~ msgstr "File is over 10MB"
 
 #: src/components/plot/PlotHarvesterPlots.tsx:81
 #: src/components/plot/PlotHarvesterPlotsDuplicate.tsx:13
@@ -1163,7 +1163,7 @@ msgstr "如果您已经共享了您的报价文件，您可能需要提交交易
 
 #: src/components/nfts/NFTBurnDialog.tsx:79
 #~ msgid "If you proceed, this NFT will be permanently deleted. Are you sure you want to continue?"
-#~ msgstr ""
+#~ msgstr "If you proceed, this NFT will be permanently deleted. Are you sure you want to continue?"
 
 #: src/components/nfts/NFTPreview.tsx:369
 msgid "Image Hash Mismatch"
@@ -1205,19 +1205,15 @@ msgid "Install Keybase"
 msgstr "安装 Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:78
-msgid ""
-"Insufficient funds available to accept offer. Ensure that your\n"
+msgid "Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"可用资金不足，无法接受报价。请确保您的\n"
+msgstr "可用资金不足，无法接受报价。请确保您的\n"
 "可支出余额足以支付报价金额。"
 
 #: src/components/offers/OfferEditor.tsx:182
-msgid ""
-"Insufficient funds available to create offer. Ensure that your\n"
+msgid "Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"可用的资金不足，无法创建报价。请确保您的\n"
+msgstr "可用的资金不足，无法创建报价。请确保您的\n"
 "可支出余额足以支付报价金额。"
 
 #: src/components/offers/NFTOfferEditor.tsx:698
@@ -1535,7 +1531,7 @@ msgstr "NFT 详细信息不可用"
 
 #: src/components/offers/NFTOfferEditor.tsx:256
 #~ msgid "NFT for XCH"
-#~ msgstr "NFT换取XCH"
+#~ msgstr "NFT for XCH"
 
 #: src/components/offers/NFTOfferPreview.tsx:56
 msgid "NFT identifier does not reference a valid NFT coin."
@@ -2449,11 +2445,11 @@ msgstr ""
 #: src/components/app/AppKeyringMigrator.tsx:64
 #: src/components/app/AppKeyringMigrator.tsx:267
 #~ msgid "Skip"
-#~ msgstr "跳过"
+#~ msgstr "Skip"
 
 #: src/components/app/AppKeyringMigrator.tsx:63
 #~ msgid "Skip Keyring Migration"
-#~ msgstr "跳过密钥串迁移"
+#~ msgstr "Skip Keyring Migration"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:452
 msgid "Skips adding a final directory to harvester for farming"
@@ -3044,7 +3040,7 @@ msgstr "您想要将指定的 NFT 转移给一个新的所有者吗？"
 
 #: src/components/offers/NFTOfferEditor.tsx:261
 #~ msgid "XCH for NFT"
-#~ msgstr "XCH兑换NFT"
+#~ msgstr "XCH for NFT"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:48
 #: src/electron/main.tsx:385
@@ -3141,15 +3137,15 @@ msgstr "您的钥匙串已锁定"
 
 #: src/components/app/AppKeyringMigrator.tsx:69
 #~ msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Are you sure you want to skip migrating your keys?"
-#~ msgstr "您的密钥尚未迁移到新的密钥串中。在迁移完成之前，您将无法创建新密钥或删除现有密钥。 您确定要跳过密钥迁移吗？"
+#~ msgstr "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Are you sure you want to skip migrating your keys?"
 
 #: src/components/app/AppKeyringMigrator.tsx:112
 #~ msgid "Your keys need to be migrated to a new keyring that is optionally secured by a master passphrase."
-#~ msgstr "您的密钥需要迁移到一个新的密钥串，该密钥串可以选择由主私钥密码进行保护。"
+#~ msgstr "Your keys need to be migrated to a new keyring that is optionally secured by a master passphrase."
 
 #: src/components/app/AppKeyringMigrator.tsx:118
 #~ msgid "Your keys need to be migrated to a new keyring that is secured by a master passphrase."
-#~ msgstr "您的密钥需要迁移到由私钥密码保护的新密钥串中。"
+#~ msgstr "Your keys need to be migrated to a new keyring that is secured by a master passphrase."
 
 #: src/components/offers/OfferShareDialog.tsx:1173
 msgid "Your offer has been successfully posted to Keybase."
@@ -3236,3 +3232,4 @@ msgstr "{max_value}中的{value}"
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:118
 msgid "{warning}"
 msgstr "{warning}"
+
