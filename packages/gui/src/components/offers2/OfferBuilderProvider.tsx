@@ -9,18 +9,26 @@ import type { CalculateRoyaltiesRequest, NFTInfo } from '@chia/api';
 import {
   useCalculateRoyaltiesForNFTsQuery,
   useGetNFTsByNFTIDsQuery,
+  useGetWalletsQuery,
 } from '@chia/api-react';
 import { catToMojo, chiaToMojo } from '@chia/core';
 import OfferBuilderContext from './OfferBuilderContext';
+import getUnknownCATs from '../../util/getUnknownCATs';
 
 export type OfferBuilderProviderProps = {
   children: ReactNode;
   readOnly?: boolean;
   isMyOffer?: boolean;
+  imported?: boolean;
 };
 
 export default function OfferBuilderProvider(props: OfferBuilderProviderProps) {
-  const { children, readOnly = false, isMyOffer = false } = props;
+  const {
+    children,
+    readOnly = false,
+    isMyOffer = false,
+    imported = false,
+  } = props;
   let royaltyNFTsSelector = undefined;
   let fungibleXCHSelector = undefined;
   let fungibleTokenSelector = undefined;
@@ -55,6 +63,25 @@ export default function OfferBuilderProvider(props: OfferBuilderProviderProps) {
     name: fungibleTokenSelector,
   });
 
+  const { data: wallets } = useGetWalletsQuery();
+
+  const [offeredUnknownCATs, requestedUnknownCATs] = useMemo(() => {
+    if ((!offeredTokens && !requestedTokens) || !wallets) {
+      return [];
+    }
+
+    const offeredUnknownCATs = getUnknownCATs(
+      wallets,
+      offeredTokens.map(({ assetId }) => assetId),
+    );
+    const requestedUnknownCATs = getUnknownCATs(
+      wallets,
+      requestedTokens.map(({ assetId }) => assetId),
+    );
+
+    return [offeredUnknownCATs, requestedUnknownCATs];
+  }, [offeredTokens, requestedTokens, wallets]);
+
   const { data: royaltyNFTs } = useGetNFTsByNFTIDsQuery(
     { nftIds: royaltyNFTIds },
     { skip: royaltyNFTIds.length === 0 },
@@ -82,12 +109,13 @@ export default function OfferBuilderProvider(props: OfferBuilderProviderProps) {
     fungibleAssets,
   };
 
-  const { data: royalties, isLoading: isCalculatingRoyalties } =
+  const skipRoyalitiesCalculation =
+    request.royaltyAssets.length === 0 || request.fungibleAssets.length === 0;
+  const { data: updatedRoyalties, isLoading: isCalculatingRoyalties } =
     useCalculateRoyaltiesForNFTsQuery(request, {
-      skip:
-        request.royaltyAssets.length === 0 ||
-        request.fungibleAssets.length === 0,
+      skip: skipRoyalitiesCalculation,
     });
+  const royalties = skipRoyalitiesCalculation ? undefined : updatedRoyalties;
 
   const usedAssetIds = useMemo(() => {
     const used: string[] = [];
@@ -109,11 +137,22 @@ export default function OfferBuilderProvider(props: OfferBuilderProviderProps) {
   const context = useMemo(
     () => ({
       readOnly,
+      imported,
+      offeredUnknownCATs,
+      requestedUnknownCATs,
       usedAssetIds,
       royalties,
       isCalculatingRoyalties,
     }),
-    [readOnly, usedAssetIds, royalties, isCalculatingRoyalties],
+    [
+      readOnly,
+      imported,
+      offeredUnknownCATs,
+      requestedUnknownCATs,
+      usedAssetIds,
+      royalties,
+      isCalculatingRoyalties,
+    ],
   );
 
   return (

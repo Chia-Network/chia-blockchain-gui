@@ -45,8 +45,7 @@ export default function OfferBuilderNFTRoyalties(
 
   const isLoading = isCalculatingRoyalties || isLoadingCATs;
   const royalties = allRoyalties?.[nft.$nftId];
-
-  const hasRoyalties = royalties?.length ?? 0 > 0;
+  const hasRoyalties = nft.royaltyPercentage > 0;
 
   const rows = useMemo(() => {
     return royalties?.map((royalty) => {
@@ -103,80 +102,86 @@ export default function OfferBuilderNFTRoyalties(
         <Loading center />
       ) : hasRoyalties ? (
         <Flex flexDirection="column" gap={0.5}>
-          {rows?.map(
-            ({ address, amount, amountString, symbol, displaySymbol }) => (
-              <Tooltip
-                key={`${address}-${amountString}-${symbol}`}
-                title={
-                  <Flex flexDirection="column" gap={1}>
-                    <Flex flexDirection="column" gap={0}>
-                      <Flex>
-                        <Box flexGrow={1}>
-                          <StyledTitle>
-                            <Trans>Amount</Trans>
-                          </StyledTitle>
-                        </Box>
+          {royalties?.length ?? 0 > 0
+            ? rows?.map(
+                ({ address, amount, amountString, symbol, displaySymbol }) => (
+                  <Tooltip
+                    key={`${address}-${amountString}-${symbol}`}
+                    title={
+                      <Flex flexDirection="column" gap={1}>
+                        <Flex flexDirection="column" gap={0}>
+                          <Flex>
+                            <Box flexGrow={1}>
+                              <StyledTitle>
+                                <Trans>Amount</Trans>
+                              </StyledTitle>
+                            </Box>
+                          </Flex>
+                          <Flex alignItems="center" gap={1}>
+                            <StyledValue>{amountString}</StyledValue>
+                            <CopyToClipboard
+                              value={amountString}
+                              fontSize="small"
+                              invertColor
+                            />
+                          </Flex>
+                        </Flex>
+                        <Flex flexDirection="column" gap={0}>
+                          <Flex>
+                            <Box flexGrow={1}>
+                              <StyledTitle>Asset ID</StyledTitle>
+                            </Box>
+                          </Flex>
+                          <Flex alignItems="center" gap={1}>
+                            <StyledValue>{symbol}</StyledValue>
+                            <CopyToClipboard
+                              value={symbol}
+                              fontSize="small"
+                              invertColor
+                            />
+                          </Flex>
+                        </Flex>
+                        <Flex flexDirection="column" gap={0}>
+                          <Flex>
+                            <Box flexGrow={1}>
+                              <StyledTitle>Royalty Address</StyledTitle>
+                            </Box>
+                          </Flex>
+                          <Flex alignItems="center" gap={1}>
+                            <StyledValue>{address}</StyledValue>
+                            <CopyToClipboard
+                              value={address}
+                              fontSize="small"
+                              invertColor
+                            />
+                          </Flex>
+                        </Flex>
                       </Flex>
-                      <Flex alignItems="center" gap={1}>
-                        <StyledValue>{amountString}</StyledValue>
-                        <CopyToClipboard
-                          value={amountString}
-                          fontSize="small"
-                          invertColor
-                        />
-                      </Flex>
-                    </Flex>
-                    <Flex flexDirection="column" gap={0}>
-                      <Flex>
-                        <Box flexGrow={1}>
-                          <StyledTitle>Asset ID</StyledTitle>
-                        </Box>
-                      </Flex>
-                      <Flex alignItems="center" gap={1}>
-                        <StyledValue>{symbol}</StyledValue>
-                        <CopyToClipboard
-                          value={symbol}
-                          fontSize="small"
-                          invertColor
-                        />
-                      </Flex>
-                    </Flex>
-                    <Flex flexDirection="column" gap={0}>
-                      <Flex>
-                        <Box flexGrow={1}>
-                          <StyledTitle>Royalty Address</StyledTitle>
-                        </Box>
-                      </Flex>
-                      <Flex alignItems="center" gap={1}>
-                        <StyledValue>{address}</StyledValue>
-                        <CopyToClipboard
-                          value={address}
-                          fontSize="small"
-                          invertColor
-                        />
-                      </Flex>
-                    </Flex>
-                  </Flex>
-                }
-              >
-                <Typography variant="body2" color="textSecondary" noWrap>
-                  <Flex
-                    key={`${address}-${amount}`}
-                    flexDirection="row"
-                    gap={1}
-                    alignItems="baseline"
+                    }
                   >
-                    <Typography variant="body2" color="textSecondary">
-                      <FormatLargeNumber value={amount} />
-                    </Typography>
                     <Typography variant="body2" color="textSecondary" noWrap>
-                      {displaySymbol}
+                      <Flex
+                        key={`${address}-${amount}`}
+                        flexDirection="row"
+                        gap={1}
+                        alignItems="baseline"
+                      >
+                        <Typography variant="body2" color="textSecondary">
+                          <FormatLargeNumber value={amount} />
+                        </Typography>
+                        <Typography
+                          variant="body2"
+                          color="textSecondary"
+                          noWrap
+                        >
+                          {displaySymbol}
+                        </Typography>
+                      </Flex>
                     </Typography>
-                  </Flex>
-                </Typography>
-              </Tooltip>
-            ),
-          )}
+                  </Tooltip>
+                ),
+              )
+            : null}
         </Flex>
       ) : (
         <Typography variant="body1" color="textSecondary">
