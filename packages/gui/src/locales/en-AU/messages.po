@@ -8,7 +8,7 @@ msgstr ""
 "Language: en_AU\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-08-04 10:12\n"
+"PO-Revision-Date: 2022-10-24 18:16\n"
 "Last-Translator: \n"
 "Language-Team: English, Australia\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -272,15 +272,15 @@ msgstr "Browse"
 #: src/components/nfts/NFTBurnDialog.tsx:173
 #: src/components/nfts/NFTContextualActions.tsx:556
 msgid "Burn"
-msgstr ""
+msgstr "Burn"
 
 #: src/components/nfts/NFTBurnDialog.tsx:78
 msgid "Burn NFT confirmation"
-msgstr ""
+msgstr "Burn NFT confirmation"
 
 #: src/components/nfts/NFTBurnDialog.tsx:122
 #~ msgid "Burning a non-fungible token means destroying it. Burned NFTs are sent to a verifiably un-spendable address, eliminating your NFT from the blockchain. However, transactions leading up to the burn will remain on the blockchain ledger."
-#~ msgstr ""
+#~ msgstr "Burning a non-fungible token means destroying it. Burned NFTs are sent to a verifiably un-spendable address, eliminating your NFT from the blockchain. However, transactions leading up to the burn will remain on the blockchain ledger."
 
 #: src/components/nfts/NFTBurnDialog.tsx:125
 msgid "Burning a non-fungible token means removing it from circulation by sending it to a verifiably un-spendable address. However, transactions leading up to the burn will remain on the blockchain ledger."
@@ -288,7 +288,7 @@ msgstr ""
 
 #: src/components/offers/NFTOfferEditor.tsx:362
 msgid "Buy an NFT"
-msgstr ""
+msgstr "Buy an NFT"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:243
 msgid "Cache size (GB)"
@@ -766,7 +766,7 @@ msgstr "Do you have existing plots on this machine? <0>Add Plot Directory</0>"
 
 #: src/components/nfts/NFTBurnDialog.tsx:117
 msgid "Do you want to burn this NFT?"
-msgstr ""
+msgstr "Do you want to burn this NFT?"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:60
 msgid "Does your machine support parallel plotting?"
@@ -778,7 +778,7 @@ msgstr "Download"
 
 #: src/components/offers/OfferImport.tsx:191
 msgid "Drag & Drop an Offer File"
-msgstr ""
+msgstr "Drag & Drop an Offer File"
 
 #: src/components/offers/OfferImport.tsx:146
 #~ msgid "Drag & drop an offer file below to view its details"
@@ -1012,7 +1012,7 @@ msgstr "Filename"
 
 #: src/components/nfts/gallery/NFTGallery.tsx:145
 msgid "Filters"
-msgstr ""
+msgstr "Filters"
 
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:47
 msgid "Final folder location"
@@ -1039,7 +1039,7 @@ msgstr "Full Node"
 
 #: src/components/fullNode/FullNodeConnections.tsx:76
 msgid "Full Node Connections"
-msgstr ""
+msgstr "Full Node Connections"
 
 #: src/electron/main.tsx:591
 msgid "Full Screen"
@@ -1047,7 +1047,7 @@ msgstr "Full Screen"
 
 #: src/components/settings/SettingsNFT.tsx:23
 msgid "Gallery Management"
-msgstr ""
+msgstr "Gallery Management"
 
 #: src/components/settings/Settings.tsx:67
 msgid "General"
@@ -1110,11 +1110,11 @@ msgstr "Here are the current block challenges. You may or may not have a proof o
 
 #: src/components/nfts/NFTContextualActions.tsx:515
 msgid "Hide"
-msgstr ""
+msgstr "Hide"
 
 #: src/components/settings/SettingsNFT.tsx:34
 msgid "Hide objectionable content"
-msgstr ""
+msgstr "Hide objectionable content"
 
 #: src/components/app/AppPassPrompt.tsx:160
 #: src/components/settings/RemovePassphrasePrompt.tsx:150
@@ -1163,7 +1163,7 @@ msgstr "If you have already shared your offer file, you may need to submit a tra
 
 #: src/components/nfts/NFTBurnDialog.tsx:79
 #~ msgid "If you proceed, this NFT will be permanently deleted. Are you sure you want to continue?"
-#~ msgstr ""
+#~ msgstr "If you proceed, this NFT will be permanently deleted. Are you sure you want to continue?"
 
 #: src/components/nfts/NFTPreview.tsx:369
 msgid "Image Hash Mismatch"
@@ -1205,19 +1205,15 @@ msgid "Install Keybase"
 msgstr "Install Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:78
-msgid ""
-"Insufficient funds available to accept offer. Ensure that your\n"
+msgid "Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"Insufficient funds available to accept offer. Ensure that your\n"
+msgstr "Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
 
 #: src/components/offers/OfferEditor.tsx:182
-msgid ""
-"Insufficient funds available to create offer. Ensure that your\n"
+msgid "Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"Insufficient funds available to create offer. Ensure that your\n"
+msgstr "Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
 
 #: src/components/offers/NFTOfferEditor.tsx:698
@@ -1322,11 +1318,11 @@ msgstr "Leaving Pool"
 
 #: src/components/app/AppKeyringMigrator.tsx:100
 msgid "Legacy keyrings are no longer supported. Your keys need to be migrated to a new keyring that is optionally secured by a master passphrase."
-msgstr ""
+msgstr "Legacy keyrings are no longer supported. Your keys need to be migrated to a new keyring that is optionally secured by a master passphrase."
 
 #: src/components/app/AppKeyringMigrator.tsx:107
 msgid "Legacy keyrings are no longer supported. Your keys need to be migrated to a new keyring that is secured by a master passphrase."
-msgstr ""
+msgstr "Legacy keyrings are no longer supported. Your keys need to be migrated to a new keyring that is secured by a master passphrase."
 
 #: src/components/nfts/NFTDetails.tsx:226
 msgid "License Hash"
@@ -1338,7 +1334,7 @@ msgstr "License URL {0}"
 
 #: src/components/fullNode/FullNodeConnections.tsx:80
 msgid "List of connections is empty"
-msgstr ""
+msgstr "List of connections is empty"
 
 #: src/components/nfts/NFTSummary.tsx:115
 msgid "Loading NFT"
@@ -1919,7 +1915,7 @@ msgstr "Please select an asset for each row"
 
 #: src/components/offers/NFTOfferEditor.tsx:702
 msgid "Please select an asset type"
-msgstr ""
+msgstr "Please select an asset type"
 
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:56
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:60
@@ -2366,7 +2362,7 @@ msgstr "Self pool. When you win a block you will earn XCH rewards."
 
 #: src/components/offers/NFTOfferEditor.tsx:367
 msgid "Sell an NFT"
-msgstr ""
+msgstr "Sell an NFT"
 
 #: src/components/nfts/NFTBurnDialog.tsx:145
 #: src/components/nfts/NFTTransferAction.tsx:142
@@ -2428,7 +2424,7 @@ msgstr "Share on offerpool"
 
 #: src/components/nfts/NFTContextualActions.tsx:515
 msgid "Show"
-msgstr ""
+msgstr "Show"
 
 #: src/components/offers/OfferManager.tsx:446
 msgid "Show Details"
@@ -2436,7 +2432,7 @@ msgstr "Show Details"
 
 #: src/components/nfts/gallery/NFTGallery.tsx:156
 msgid "Show Hidden"
-msgstr ""
+msgstr "Show Hidden"
 
 #: src/components/nfts/NFTPreview.tsx:859
 msgid "Show Preview"
@@ -2979,7 +2975,7 @@ msgstr "Waiting for the transaction to be confirmed"
 
 #: src/components/app/AppStatusHeader.tsx:75
 msgid "Wallet"
-msgstr ""
+msgstr "Wallet"
 
 #: src/components/app/AppSelectMode.tsx:76
 #: src/components/app/AppSelectMode.tsx:130
@@ -3187,11 +3183,11 @@ msgstr "created {0}"
 
 #: src/components/offers/OfferImport.tsx:197
 msgid "or Paste (Ctrl-V) an Offer blob"
-msgstr ""
+msgstr "or Paste (Ctrl-V) an Offer blob"
 
 #: src/components/offers/OfferImport.tsx:195
 msgid "or Paste (⌘V) an Offer blob"
-msgstr ""
+msgstr "or Paste (⌘V) an Offer blob"
 
 #: src/components/plot/add/PlotAddForm.tsx:134
 msgid "p2SingletonPuzzleHash is not defined"
@@ -3236,3 +3232,4 @@ msgstr "{value} of {max_value}"
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:118
 msgid "{warning}"
 msgstr "{warning}"
+
