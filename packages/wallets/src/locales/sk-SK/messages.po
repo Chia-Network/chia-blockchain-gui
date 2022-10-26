@@ -8,7 +8,7 @@ msgstr ""
 "Language: sk_SK\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-08-04 12:02\n"
+"PO-Revision-Date: 2022-10-24 18:16\n"
 "Last-Translator: \n"
 "Language-Team: Slovak\n"
 "Plural-Forms: nplurals=4; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 3;\n"
@@ -42,7 +42,7 @@ msgstr "Pridať záložné ID"
 
 #: src/components/hero/WalletHeroAdd.tsx:99
 #~ msgid "Add Custom Token"
-#~ msgstr "Pridať vlastný token"
+#~ msgstr "Add Custom Token"
 
 #: src/components/WalletsList.tsx:54
 #: src/components/WalletsManageTokens.tsx:174
@@ -147,7 +147,7 @@ msgstr "Potvrdené na pozícii"
 
 #: src/components/WalletStatusHeader.tsx:40
 #~ msgid "Connected ({0})"
-#~ msgstr "Pripojené ({0})"
+#~ msgstr "Connected ({0})"
 
 #: src/components/WalletConnections.tsx:62
 msgid "Connection type"
@@ -155,7 +155,7 @@ msgstr "Typ pripojenia"
 
 #: src/components/WalletConnections.tsx:80
 #~ msgid "Connections"
-#~ msgstr "Pripojenia"
+#~ msgstr "Connections"
 
 #: src/components/rateLimited/WalletRateLimited.jsx:305
 #: src/components/rateLimited/WalletRateLimited.jsx:427
@@ -177,7 +177,7 @@ msgstr "Vytvoriť atestačný paket"
 
 #: src/components/cat/WalletCATCreateExisting.tsx:76
 #~ msgid "Create Chia Asset Token Wallet from Existing TAIL"
-#~ msgstr "Vytvorte peňaženku Chia Asset Token z existujúcej TAIL"
+#~ msgstr "Create Chia Asset Token Wallet from Existing TAIL"
 
 #: src/components/did/WalletDIDCreate.tsx:113
 msgid "Create Distributed Identity Wallet"
@@ -213,7 +213,7 @@ msgstr "Vytvoriť transakciu"
 
 #: src/components/cat/WalletCATCreateExisting.tsx:75
 #~ msgid "Create custom CAT Wallet"
-#~ msgstr "Vytvoriť vlastnú CAT peňaženku"
+#~ msgstr "Create custom CAT Wallet"
 
 #: src/constants/WalletName.ts:20
 msgid "Custody Wallet"
@@ -229,7 +229,7 @@ msgstr "DID peňaženka"
 
 #: src/constants/WalletName.ts:38
 msgid "Datalayer Wallet"
-msgstr ""
+msgstr "Peňaženka dátovej vrstvy"
 
 #: src/components/WalletHistory.tsx:198
 msgid "Date"
@@ -422,7 +422,7 @@ msgstr "Nie je k dispozícií"
 
 #: src/components/WalletStatusHeader.tsx:38
 #~ msgid "Not Connected"
-#~ msgstr "Nepripojené"
+#~ msgstr "Not Connected"
 
 #: src/components/WalletStatus.tsx:57
 msgid "Not Synced"
@@ -504,7 +504,7 @@ msgstr "Zadajte prosím hash hádaniek"
 
 #: src/components/cat/WalletCATCreateExisting.tsx:40
 #~ msgid "Please enter a valid CAT name"
-#~ msgstr "Prosím zadajte platný CAT názov"
+#~ msgstr "Please enter a valid CAT name"
 
 #: src/components/cat/WalletCATCreateExistingSimple.tsx:41
 msgid "Please enter a valid asset id"
@@ -805,7 +805,7 @@ msgstr "Príjemca"
 
 #: src/components/cat/WalletCATCreateExisting.tsx:85
 #~ msgid "Token and Asset Issuance Limitations"
-#~ msgstr "Obmedzenia vydávania tokenov a aktív"
+#~ msgstr "Token and Asset Issuance Limitations"
 
 #: src/components/cat/WalletCATCreateSimple.tsx:45
 msgid "Token has empty asset id"
@@ -843,12 +843,12 @@ msgstr "Zobraziť nespracované zostatky"
 
 #: src/components/WalletConnections.tsx:80
 msgid "Wallet Connections"
-msgstr ""
+msgstr "Pripojenia peňaženky"
 
 #: src/components/WalletAdd.tsx:128
 #: src/components/WalletImport.tsx:176
 msgid "Wallet Name"
-msgstr ""
+msgstr "Názov peňaženky"
 
 #: src/components/cat/WalletCAT.tsx:75
 #: src/components/cat/WalletDID.tsx:1118
@@ -892,3 +892,4 @@ msgstr "Vaše DID vyžaduje na obnovu aspoň {dids_num_req} atestačný súbor {
 #: src/components/WalletImport.tsx:77
 msgid "Your pasted list does not include 24 valid mnemonic words."
 msgstr "Vložený zoznam neobsahuje 24 platných mnemotechnických slov."
+

@@ -8,7 +8,7 @@ msgstr ""
 "Language: fr_FR\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-08-04 10:12\n"
+"PO-Revision-Date: 2022-10-24 18:17\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
@@ -42,14 +42,14 @@ msgstr "Ajouter un identifiant de secours"
 
 #: src/components/hero/WalletHeroAdd.tsx:99
 #~ msgid "Add Custom Token"
-#~ msgstr "Ajouter un Jeton Personnalisé"
+#~ msgstr "Add Custom Token"
 
 #: src/components/WalletsList.tsx:54
 #: src/components/WalletsManageTokens.tsx:174
 #: src/components/cat/WalletCATCreateExistingSimple.tsx:61
 #: src/components/cat/WalletCATCreateSimple.tsx:70
 msgid "Add Token"
-msgstr "Ajouter un Type de Jetons"
+msgstr "Ajouter un Type de Jeton"
 
 #: src/components/cat/WalletCATCreateSimple.tsx:94
 msgid "Adding {0} token"
@@ -88,7 +88,7 @@ msgstr "Êtes-vous sûr de vouloir supprimer les transactions non confirmées ?"
 #: src/components/cat/WalletCATTAILDialog.tsx:46
 #: src/components/cat/WalletCATTAILDialog.tsx:56
 msgid "Asset Id"
-msgstr "Id de l'actif"
+msgstr "ID de l'actif"
 
 #: src/constants/WalletName.ts:11
 msgid "Atomic Swap Wallet"
@@ -147,7 +147,7 @@ msgstr "Confirmé à la Hauteur"
 
 #: src/components/WalletStatusHeader.tsx:40
 #~ msgid "Connected ({0})"
-#~ msgstr "Connectés ({0})"
+#~ msgstr "Connected ({0})"
 
 #: src/components/WalletConnections.tsx:62
 msgid "Connection type"
@@ -155,7 +155,7 @@ msgstr "Type de connexion"
 
 #: src/components/WalletConnections.tsx:80
 #~ msgid "Connections"
-#~ msgstr "Connexions"
+#~ msgstr "Connections"
 
 #: src/components/rateLimited/WalletRateLimited.jsx:305
 #: src/components/rateLimited/WalletRateLimited.jsx:427
@@ -177,7 +177,7 @@ msgstr "Créer un Paquet d’Attestation"
 
 #: src/components/cat/WalletCATCreateExisting.tsx:76
 #~ msgid "Create Chia Asset Token Wallet from Existing TAIL"
-#~ msgstr "Créer un portefeuille de jetons CAT à partir d'une TAIL existante"
+#~ msgstr "Create Chia Asset Token Wallet from Existing TAIL"
 
 #: src/components/did/WalletDIDCreate.tsx:113
 msgid "Create Distributed Identity Wallet"
@@ -213,7 +213,7 @@ msgstr "Créer une transaction"
 
 #: src/components/cat/WalletCATCreateExisting.tsx:75
 #~ msgid "Create custom CAT Wallet"
-#~ msgstr "Créer un portefeuille CAT personnalisé"
+#~ msgstr "Create custom CAT Wallet"
 
 #: src/constants/WalletName.ts:20
 msgid "Custody Wallet"
@@ -422,7 +422,7 @@ msgstr "Non Disponible"
 
 #: src/components/WalletStatusHeader.tsx:38
 #~ msgid "Not Connected"
-#~ msgstr "Non connecté"
+#~ msgstr "Not Connected"
 
 #: src/components/WalletStatus.tsx:57
 msgid "Not Synced"
@@ -469,7 +469,7 @@ msgstr "Solde en attente"
 #: src/components/card/WalletCardPendingChange.tsx:37
 #: src/components/rateLimited/WalletRateLimited.jsx:577
 msgid "Pending Change"
-msgstr "Monnaie personnelle en attente"
+msgstr "Change en attente"
 
 #: src/components/card/WalletCardPendingTotalBalance.tsx:37
 #: src/components/rateLimited/WalletRateLimited.jsx:567
@@ -504,7 +504,7 @@ msgstr "Veuillez indiquer un hash de puzzle"
 
 #: src/components/cat/WalletCATCreateExisting.tsx:40
 #~ msgid "Please enter a valid CAT name"
-#~ msgstr "Veuillez saisir un nom de jeton valide"
+#~ msgstr "Please enter a valid CAT name"
 
 #: src/components/cat/WalletCATCreateExistingSimple.tsx:41
 msgid "Please enter a valid asset id"
@@ -805,7 +805,7 @@ msgstr "À"
 
 #: src/components/cat/WalletCATCreateExisting.tsx:85
 #~ msgid "Token and Asset Issuance Limitations"
-#~ msgstr "Limites de l'Émission de Jetons et d'Actifs"
+#~ msgstr "Token and Asset Issuance Limitations"
 
 #: src/components/cat/WalletCATCreateSimple.tsx:45
 msgid "Token has empty asset id"
@@ -826,7 +826,7 @@ msgstr "Solde total"
 
 #: src/components/WalletSendTransactionResultDialog.tsx:27
 msgid "Transaction has successfully been sent to a full node and included in the mempool."
-msgstr "La transaction a été envoyée avec succès à un nœud complet et est incluse dans la mempool."
+msgstr "La transaction a été transmise au réseau et est maintenant incluse dans la mempool."
 
 #: src/components/WalletHistory.tsx:311
 msgid "Transactions"
@@ -843,7 +843,7 @@ msgstr "Voir le solde en attente"
 
 #: src/components/WalletConnections.tsx:80
 msgid "Wallet Connections"
-msgstr ""
+msgstr "Portefeuilles connectés"
 
 #: src/components/WalletAdd.tsx:128
 #: src/components/WalletImport.tsx:176
@@ -892,3 +892,4 @@ msgstr "Votre identité décentralisée nécessite au moins {dids_num_req} fichi
 #: src/components/WalletImport.tsx:77
 msgid "Your pasted list does not include 24 valid mnemonic words."
 msgstr "Votre liste collée ne contient pas 24 mots mnémoniques valides."
+

@@ -8,7 +8,7 @@ msgstr ""
 "Language: ja_JP\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-07-27 18:39\n"
+"PO-Revision-Date: 2022-10-24 18:14\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -42,7 +42,7 @@ msgstr "戻る"
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:147
 #~ msgid "Can be backed up to mnemonic seed"
-#~ msgstr "合言葉でバックアップ作成可能"
+#~ msgstr "Can be backed up to mnemonic seed"
 
 #: src/components/ConfirmDialog/ConfirmDialog.tsx:32
 #: src/hooks/useKeyringMigrationPrompt.tsx:17
@@ -73,7 +73,7 @@ msgstr "秘密鍵を新規作成"
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:163
 #~ msgid "DANGER: permanently delete private key"
-#~ msgstr "！危険！: 秘密鍵を永久的に削除"
+#~ msgstr "DANGER: permanently delete private key"
 
 #: src/components/Settings/SettingsApp.tsx:83
 msgid "Dark"
@@ -100,7 +100,7 @@ msgstr "全ての鍵を削除するとどれも復元することができなく
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:124
 #~ msgid "Deleting the key will permanently remove the key from your computer, make sure you have backups. Are you sure you want to continue?"
-#~ msgstr "鍵を削除すると復元することができませんので、必ずバックアップを取ってください。本当に続行しますか？"
+#~ msgstr "Deleting the key will permanently remove the key from your computer, make sure you have backups. Are you sure you want to continue?"
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:105
 msgid "Details"
@@ -134,7 +134,7 @@ msgstr ""
 
 #: src/components/LayoutMain/LayoutFooter.tsx:50
 #~ msgid "FAQ"
-#~ msgstr "よくある質問"
+#~ msgstr "FAQ"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:96
 msgid "Farmer Public Key"
@@ -260,7 +260,7 @@ msgstr "プール公開鍵:"
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:142
 #~ msgid "Private key with public fingerprint {fingerprint}"
-#~ msgstr "公開指紋 {fingerprint} に対応する秘密鍵"
+#~ msgstr "Private key with public fingerprint {fingerprint}"
 
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:26
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:33
@@ -306,7 +306,7 @@ msgstr ""
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:151
 #~ msgid "See private key"
-#~ msgstr "秘密鍵を表示"
+#~ msgstr "See private key"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:154
 msgid "Seed Phrase"
@@ -438,15 +438,15 @@ msgstr ""
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:117
 #~ msgid "Warning: This key is used for a wallet that may have a non-zero balance. By deleting this key you may lose access to this wallet"
-#~ msgstr "注意: この鍵を使用するウォレットは残高がゼロでない可能性があります。この鍵を削除するとウォレットを失くすかもしれません。"
+#~ msgstr "Warning: This key is used for a wallet that may have a non-zero balance. By deleting this key you may lose access to this wallet"
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:99
 #~ msgid "Warning: This key is used for your farming rewards address. By deleting this key you may lose access to any future farming rewards"
-#~ msgstr "注意: この鍵は耕作報酬アドレスに使われています。この鍵を削除すると、今後の耕作報酬を失くすかもしれません。"
+#~ msgstr "Warning: This key is used for your farming rewards address. By deleting this key you may lose access to any future farming rewards"
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:108
 #~ msgid "Warning: This key is used for your pool rewards address. By deleting this key you may lose access to any future pool rewards"
-#~ msgstr "注意: この鍵はプール報酬アドレスに使われています。この鍵を削除すると、今後のプール報酬を失くすかもしれません。"
+#~ msgstr "Warning: This key is used for your pool rewards address. By deleting this key you may lose access to any future pool rewards"
 
 #: src/screens/SelectKey/SelectKey.tsx:149
 msgid "Welcome to Chia. Please log in with an existing key, or create a new key."
@@ -472,3 +472,4 @@ msgstr ""
 #: src/hooks/useValidateChangePassphraseParams.tsx:39
 msgid "{minPassphraseLength, plural, one {Passphrases must be at least # character in length} other {Passphrases must be at least # characters in length}}"
 msgstr ""
+

@@ -8,7 +8,7 @@ msgstr ""
 "Language: pl_PL\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-07-27 18:40\n"
+"PO-Revision-Date: 2022-10-24 18:14\n"
 "Last-Translator: \n"
 "Language-Team: Polish\n"
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
@@ -42,7 +42,7 @@ msgstr "Wstecz"
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:147
 #~ msgid "Can be backed up to mnemonic seed"
-#~ msgstr "Można utworzyć kopię zapasową do ziarna mnemonicznego"
+#~ msgstr "Can be backed up to mnemonic seed"
 
 #: src/components/ConfirmDialog/ConfirmDialog.tsx:32
 #: src/hooks/useKeyringMigrationPrompt.tsx:17
@@ -73,7 +73,7 @@ msgstr "Utwórz nowy klucz prywatny"
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:163
 #~ msgid "DANGER: permanently delete private key"
-#~ msgstr "NIEBEZPIECZEŃSTWO: klucz prywatny zostanie nieodwracalnie usunięty"
+#~ msgstr "DANGER: permanently delete private key"
 
 #: src/components/Settings/SettingsApp.tsx:83
 msgid "Dark"
@@ -100,7 +100,7 @@ msgstr "Usunięcie wszystkich kluczy nieodwracalnie usunie je z twojego komputer
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:124
 #~ msgid "Deleting the key will permanently remove the key from your computer, make sure you have backups. Are you sure you want to continue?"
-#~ msgstr "Usunięcie klucza nieodwracalnie usunie z twojego komputera plik klucza, bądź pewien że masz kopię zapasową. Czy chcesz kontynuować?"
+#~ msgstr "Deleting the key will permanently remove the key from your computer, make sure you have backups. Are you sure you want to continue?"
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:105
 msgid "Details"
@@ -134,7 +134,7 @@ msgstr ""
 
 #: src/components/LayoutMain/LayoutFooter.tsx:50
 #~ msgid "FAQ"
-#~ msgstr "Najczęściej zadawane pytania (FAQ)"
+#~ msgstr "FAQ"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:96
 msgid "Farmer Public Key"
@@ -260,7 +260,7 @@ msgstr "Publiczny klucz puli:"
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:142
 #~ msgid "Private key with public fingerprint {fingerprint}"
-#~ msgstr "Klucz prywatny z publicznym odciskiem {fingerprint}"
+#~ msgstr "Private key with public fingerprint {fingerprint}"
 
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:26
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:33
@@ -306,7 +306,7 @@ msgstr ""
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:151
 #~ msgid "See private key"
-#~ msgstr "Zobacz klucz prywatny"
+#~ msgstr "See private key"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:154
 msgid "Seed Phrase"
@@ -438,15 +438,15 @@ msgstr ""
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:117
 #~ msgid "Warning: This key is used for a wallet that may have a non-zero balance. By deleting this key you may lose access to this wallet"
-#~ msgstr ""
+#~ msgstr "Warning: This key is used for a wallet that may have a non-zero balance. By deleting this key you may lose access to this wallet"
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:99
 #~ msgid "Warning: This key is used for your farming rewards address. By deleting this key you may lose access to any future farming rewards"
-#~ msgstr ""
+#~ msgstr "Warning: This key is used for your farming rewards address. By deleting this key you may lose access to any future farming rewards"
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:108
 #~ msgid "Warning: This key is used for your pool rewards address. By deleting this key you may lose access to any future pool rewards"
-#~ msgstr ""
+#~ msgstr "Warning: This key is used for your pool rewards address. By deleting this key you may lose access to any future pool rewards"
 
 #: src/screens/SelectKey/SelectKey.tsx:149
 msgid "Welcome to Chia. Please log in with an existing key, or create a new key."
@@ -472,3 +472,4 @@ msgstr ""
 #: src/hooks/useValidateChangePassphraseParams.tsx:39
 msgid "{minPassphraseLength, plural, one {Passphrases must be at least # character in length} other {Passphrases must be at least # characters in length}}"
 msgstr ""
+
