@@ -10,7 +10,7 @@ function getValueFromLocalStorage<T>(
   const item = window.localStorage.getItem(key);
 
   if (item === undefined || item === null) {
-    return undefined;
+    return defaultValue;
   }
 
   try {
