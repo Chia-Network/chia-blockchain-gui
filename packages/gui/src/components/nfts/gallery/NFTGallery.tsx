@@ -45,16 +45,24 @@ export default function NFTGallery() {
   );
   const noMetadataNFTs = nfts
     .filter((nft) => {
-      return nft.metadataUris.length === 0;
+      return (
+        !nft?.metadataUris ||
+        (Array.isArray(nft.metadataUris) && nft.metadataUris.length === 0)
+      );
     })
     .map((nft) => nft.$nftId);
 
-  const { allowedNFTs } = useNFTMetadata(
-    nfts,
+  const { allowedNFTsWithMetadata } = useNFTMetadata(
+    nfts.filter((nft: NFTInfo) => {
+      return (
+        !nft?.metadataUris ||
+        (Array.isArray(nft?.metadataUris) && nft?.metadataUris.length > 0)
+      );
+    }),
     true,
   ); /* NFTs with metadata and no sensitive_content */
 
-  const allAllowedNFTs = noMetadataNFTs.concat(allowedNFTs);
+  const allAllowedNFTs = noMetadataNFTs.concat(allowedNFTsWithMetadata);
 
   const [isNFTHidden] = useHiddenNFTs();
   const isLoading = isLoadingWallets || isLoadingNFTs;
@@ -104,8 +112,12 @@ export default function NFTGallery() {
         return false;
       }
 
-      if (hideObjectionableContent && allAllowedNFTs.indexOf(nft.$nftId) === -1)
+      if (
+        hideObjectionableContent &&
+        allAllowedNFTs.indexOf(nft.$nftId) === -1
+      ) {
         return false;
+      }
 
       const content = searchableNFTContent(nft);
       if (search) {
