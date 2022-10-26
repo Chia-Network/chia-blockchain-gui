@@ -30,6 +30,7 @@ export type OfferBuilderProps = {
   isMyOffer?: boolean;
   readOnly?: boolean;
   viewer?: boolean;
+  imported?: boolean;
   onSubmit: (values: OfferBuilderData) => Promise<void>;
   defaultValues?: OfferBuilderData;
 };
@@ -39,6 +40,7 @@ function OfferBuilder(props: OfferBuilderProps, ref: any) {
     isMyOffer = false,
     readOnly = false,
     viewer = false,
+    imported = false,
     defaultValues = emptyDefaultValues,
     onSubmit,
   } = props;
@@ -91,7 +93,11 @@ function OfferBuilder(props: OfferBuilderProps, ref: any) {
 
   return (
     <Form methods={methods} onSubmit={onSubmit} ref={formRef}>
-      <OfferBuilderProvider isMyOffer={isMyOffer} readOnly={readOnly}>
+      <OfferBuilderProvider
+        isMyOffer={isMyOffer}
+        imported={imported}
+        readOnly={readOnly}
+      >
         <Grid spacing={3} rowSpacing={4} container>
           {tradeColumns}
         </Grid>

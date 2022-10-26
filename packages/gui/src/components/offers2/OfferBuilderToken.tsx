@@ -26,6 +26,7 @@ export default function OfferBuilderToken(props: OfferBuilderTokenProps) {
   const wallet = wallets?.find(
     (wallet: Wallet) => wallet.meta?.assetId?.toLowerCase() === assetId,
   );
+  const warnUnknownCAT = assetId && !wallet;
 
   return (
     <Grid spacing={3} container>
@@ -45,6 +46,7 @@ export default function OfferBuilderToken(props: OfferBuilderTokenProps) {
           label={<Trans>Asset Type</Trans>}
           usedAssets={usedAssets}
           onRemove={onRemove}
+          warnUnknownCAT={warnUnknownCAT}
         />
       </Grid>
     </Grid>
