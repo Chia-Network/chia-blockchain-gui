@@ -39,6 +39,12 @@ export default function SelectKeyRenameForm(props: SelectKeyRenameFormProps) {
 
     const { label } = values;
     const newLabel = label.trim();
+
+    if (keyData.label === newLabel) {
+      onClose?.();
+      return;
+    }
+
     if (newLabel) {
       await setLabel({
         fingerprint,
