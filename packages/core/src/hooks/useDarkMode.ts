@@ -1,5 +1,5 @@
 import { useMediaQuery } from '@mui/material';
-import useLocalStorage from './useLocalStorage';
+import { useLocalStorage } from '@chia/api-react';
 
 const COLOR_SCHEME_QUERY = '(prefers-color-scheme: dark)';
 
@@ -12,7 +12,7 @@ export default function useDarkMode(defaultValue?: boolean): {
   const isDarkOS = useMediaQuery(COLOR_SCHEME_QUERY);
   const [isDarkMode, setDarkMode] = useLocalStorage<boolean>(
     'darkMode',
-    defaultValue ?? isDarkOS ?? false,
+    defaultValue ?? isDarkOS ?? false
   );
 
   return {
