@@ -7,7 +7,7 @@ import CheckSvg from '@mui/icons-material/Check';
 import CloseSvg from '@mui/icons-material/Close';
 import QuestionMarkSvg from '@mui/icons-material/QuestionMark';
 import { NotInterested, Error as ErrorIcon } from '@mui/icons-material';
-import { useLocalStorage } from '@chia/core';
+import { useLocalStorage } from '@chia/api-react';
 import { isImage, parseExtensionFromUrl } from '../../util/utils.js';
 
 import {
