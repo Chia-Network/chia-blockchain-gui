@@ -26,7 +26,7 @@ import useHideObjectionableContent from '../../../hooks/useHideObjectionableCont
 import useNachoNFTs from '../../../hooks/useNachoNFTs';
 import NFTProfileDropdown from '../NFTProfileDropdown';
 import NFTGalleryHero from './NFTGalleryHero';
-import { useLocalStorage } from '@chia/core';
+import { useLocalStorage } from '@chia/api-react';
 import useNFTMetadata from '../../../hooks/useNFTMetadata';
 
 export const defaultCacheSizeLimit = 1024; /* MB */
