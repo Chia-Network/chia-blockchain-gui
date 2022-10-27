@@ -8,7 +8,7 @@ msgstr ""
 "Language: hr_HR\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-07-27 18:40\n"
+"PO-Revision-Date: 2022-10-24 18:14\n"
 "Last-Translator: \n"
 "Language-Team: Croatian\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
@@ -20,7 +20,7 @@ msgstr ""
 
 #: src/components/EstimatedFee/EstimatedFee.tsx:162
 msgid "<0>{0}</0>"
-msgstr ""
+msgstr "<0>{0}</0>"
 
 #: src/components/Amount/Amount.tsx:103
 msgid "Amount"
@@ -28,11 +28,11 @@ msgstr "Iznos"
 
 #: src/components/Settings/SettingsApp.tsx:76
 msgid "Appearance"
-msgstr ""
+msgstr "Izgled"
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:164
 msgid "Are you sure you want to continue? Type in the fingerprint of this wallet key to confirm deletion."
-msgstr ""
+msgstr "Jeste li sigurni da želite nastaviti? Unesite identifikator (fingerprint) ovog ključa novčanika za potvrditi brisanje."
 
 #: src/components/FormBackButton/FormBackButton.tsx:47
 #: src/screens/SelectKey/SelectKey.tsx:84
@@ -42,7 +42,7 @@ msgstr "Natrag"
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:147
 #~ msgid "Can be backed up to mnemonic seed"
-#~ msgstr "Može biti sigurnosno kopirano na \"mnemonic seed\""
+#~ msgstr "Can be backed up to mnemonic seed"
 
 #: src/components/ConfirmDialog/ConfirmDialog.tsx:32
 #: src/hooks/useKeyringMigrationPrompt.tsx:17
@@ -53,7 +53,7 @@ msgstr "Otkaži"
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:49
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:72
 msgid "Close"
-msgstr ""
+msgstr "Zatvori"
 
 #: src/components/FormatConnectionStatus/FormatConnectionStatus.tsx:51
 msgid "Connected"
@@ -73,11 +73,11 @@ msgstr "Kreiraj novi privatni ključ"
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:163
 #~ msgid "DANGER: permanently delete private key"
-#~ msgstr "OPREZ: Trajno brisanje privatnog ključa"
+#~ msgstr "DANGER: permanently delete private key"
 
 #: src/components/Settings/SettingsApp.tsx:83
 msgid "Dark"
-msgstr ""
+msgstr "Tamno"
 
 #: src/screens/SelectKey/SelectKey.tsx:83
 #: src/screens/SelectKey/SelectKeyItem.tsx:113
@@ -92,7 +92,7 @@ msgstr "Ukloni sve ključeve"
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:112
 msgid "Delete key {fingerprint}"
-msgstr ""
+msgstr "Izbriši ključ {fingerprint}"
 
 #: src/screens/SelectKey/SelectKey.tsx:88
 msgid "Deleting all keys will permanently remove the keys from your computer, make sure you have backups. Are you sure you want to continue?"
@@ -100,24 +100,24 @@ msgstr "Brisanjem svih ključeva, ključevi spremljeni na računalu biti će tra
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:124
 #~ msgid "Deleting the key will permanently remove the key from your computer, make sure you have backups. Are you sure you want to continue?"
-#~ msgstr "Brisanjem ključa, ključ spremljen na računalu biti će trajno uklonjeni. Provjeri da imaš sigurnosnu kopiju. Sigurno želiš nastaviti?"
+#~ msgstr "Deleting the key will permanently remove the key from your computer, make sure you have backups. Are you sure you want to continue?"
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:105
 msgid "Details"
-msgstr ""
+msgstr "Pojedinosti"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:68
 msgid "Disable"
-msgstr ""
+msgstr "Onemogući"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:67
 msgid "Disable Passphrase Protection"
-msgstr ""
+msgstr "Isključi zaštitu lozinkom"
 
 #: src/components/Back/Back.tsx:35
 #: src/components/FormBackButton/FormBackButton.tsx:27
 msgid "Discard"
-msgstr ""
+msgstr "Odbaci"
 
 #: src/components/CardSimple/CardSimple.tsx:63
 #: src/hooks/useShowError.tsx:11
@@ -126,23 +126,23 @@ msgstr "Greška"
 
 #: src/components/ErrorBoundary/ErrorBoundary.tsx:78
 msgid "Error:"
-msgstr ""
+msgstr "Greška:"
 
 #: src/screens/SelectKey/SelectKeyRenameForm.tsx:87
 msgid "Esc"
-msgstr ""
+msgstr "Esc"
 
 #: src/components/LayoutMain/LayoutFooter.tsx:50
 #~ msgid "FAQ"
-#~ msgstr ""
+#~ msgstr "FAQ"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:96
 msgid "Farmer Public Key"
-msgstr ""
+msgstr "Javni ključ farmera"
 
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:57
 msgid "Farmer public key:"
-msgstr ""
+msgstr "Javni ključ farmera:"
 
 #: src/components/Settings/SettingsApp.tsx:66
 msgid "Farming"
@@ -156,7 +156,7 @@ msgstr "Naknada"
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:96
 msgid "Fingerprint does not match"
-msgstr ""
+msgstr "Neodgovarajući identifikator (fingerprint)"
 
 #: src/components/Settings/SettingsApp.tsx:105
 msgid "Frequently Asked Questions"
@@ -173,7 +173,7 @@ msgstr "Pomozite prevesti"
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:147
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:178
 msgid "Hide"
-msgstr ""
+msgstr "Sakrij"
 
 #: src/components/AdvancedOptions/AdvancedOptions.tsx:75
 msgid "Hide Advanced Options"
@@ -185,52 +185,52 @@ msgstr "Uvezi sa Mnemonics (24 riječi)"
 
 #: src/components/Fee/Fee.tsx:40
 msgid "Incorrect value"
-msgstr ""
+msgstr "Neispravna vrijednost"
 
 #: src/components/Settings/SettingsApp.tsx:90
 msgid "Language"
-msgstr ""
+msgstr "Jezik"
 
 #: src/components/Settings/SettingsApp.tsx:80
 msgid "Light"
-msgstr ""
+msgstr "Svijetlo"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:48
 msgid "Loading details"
-msgstr ""
+msgstr "Učitavanje pojedinosti"
 
 #: src/screens/SelectKey/SelectKey.tsx:124
 msgid "Loading list of the keys"
-msgstr ""
+msgstr "Učitavanje popisa ključeva"
 
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:166
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:191
 msgid "Log Out"
-msgstr ""
+msgstr "Odjavi se"
 
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:187
 msgid "Logout"
-msgstr ""
+msgstr "Odjava"
 
 #: src/hooks/useKeyringMigrationPrompt.tsx:16
 msgid "Migrate"
-msgstr ""
+msgstr "Migracija"
 
 #: src/hooks/useKeyringMigrationPrompt.tsx:15
 msgid "Migration required"
-msgstr ""
+msgstr "Potrebna migracija"
 
 #: src/components/Settings/SettingsApp.tsx:62
 msgid "Mode"
-msgstr ""
+msgstr "Način rada"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:121
 msgid "NEVER SHARE THESE WITH ANYONE"
-msgstr ""
+msgstr "NIKADA NEMOJTE PODIJELITI S BILO KIME"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:49
 msgid "New passphrase is the same as your current passphrase"
-msgstr ""
+msgstr "Nova lozinka je ista kao vaša trenutna lozinka"
 
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:83
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:165
@@ -239,7 +239,7 @@ msgstr "Nema sjemena od 24 riječi, pošto je ovaj ključ uvezen."
 
 #: src/screens/SelectKey/WalletStatus.tsx:58
 msgid "Not Synced"
-msgstr ""
+msgstr "Nije sinkronizirano"
 
 #: src/components/FormatConnectionStatus/FormatConnectionStatus.tsx:52
 msgid "Not connected"
@@ -252,20 +252,20 @@ msgstr "U redu"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:108
 msgid "Pool Public Key"
-msgstr ""
+msgstr "Javni ključ pool-a"
 
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:65
 msgid "Pool public key:"
-msgstr ""
+msgstr "Javni ključ pool-a:"
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:142
 #~ msgid "Private key with public fingerprint {fingerprint}"
-#~ msgstr "Privatni ključ sa javnim otiskom {fingerprint}"
+#~ msgstr "Private key with public fingerprint {fingerprint}"
 
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:26
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:33
 msgid "Private key {fingerprint}"
-msgstr ""
+msgstr "Privatni ključ {fingerprint}"
 
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:41
 msgid "Private key:"
@@ -273,7 +273,7 @@ msgstr "Privatni ključ:"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:84
 msgid "Public Key"
-msgstr ""
+msgstr "Javni ključ"
 
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:49
 msgid "Public key:"
@@ -281,36 +281,36 @@ msgstr "Javni ključ:"
 
 #: src/components/ErrorBoundary/ErrorBoundary.tsx:91
 msgid "Reload Application"
-msgstr ""
+msgstr "Ponovno učitaj aplikaciju"
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:97
 msgid "Rename"
-msgstr ""
+msgstr "Preimenuj"
 
 #: src/components/ErrorBoundary/ErrorBoundary.tsx:87
 msgid "Report an Issue"
-msgstr ""
+msgstr "Prijavi problem"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:147
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:178
 msgid "Reveal"
-msgstr ""
+msgstr "Otkrij"
 
 #: src/screens/SelectKey/SelectKeyRenameForm.tsx:107
 msgid "Save"
-msgstr ""
+msgstr "Spremi"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:127
 msgid "Secret Key"
-msgstr ""
+msgstr "Tajni ključ"
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:151
 #~ msgid "See private key"
-#~ msgstr "Pogledaj privatni ključ"
+#~ msgstr "See private key"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:154
 msgid "Seed Phrase"
-msgstr ""
+msgstr "Seed izraz"
 
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:75
 msgid "Seed:"
@@ -322,11 +322,11 @@ msgstr "Odaberi ključ"
 
 #: src/components/Dropdown/Dropdown.tsx:85
 msgid "Select..."
-msgstr ""
+msgstr "Odaberi..."
 
 #: src/components/Settings/SettingsApp.tsx:108
 msgid "Send Feedback"
-msgstr ""
+msgstr "Pošalji povratne informacije"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:61
 msgid "Setting a passphrase is strongly recommended to protect your keys. Are you sure you want to skip setting a passphrase?"
@@ -438,15 +438,15 @@ msgstr ""
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:117
 #~ msgid "Warning: This key is used for a wallet that may have a non-zero balance. By deleting this key you may lose access to this wallet"
-#~ msgstr ""
+#~ msgstr "Warning: This key is used for a wallet that may have a non-zero balance. By deleting this key you may lose access to this wallet"
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:99
 #~ msgid "Warning: This key is used for your farming rewards address. By deleting this key you may lose access to any future farming rewards"
-#~ msgstr ""
+#~ msgstr "Warning: This key is used for your farming rewards address. By deleting this key you may lose access to any future farming rewards"
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:108
 #~ msgid "Warning: This key is used for your pool rewards address. By deleting this key you may lose access to any future pool rewards"
-#~ msgstr ""
+#~ msgstr "Warning: This key is used for your pool rewards address. By deleting this key you may lose access to any future pool rewards"
 
 #: src/screens/SelectKey/SelectKey.tsx:149
 msgid "Welcome to Chia. Please log in with an existing key, or create a new key."
@@ -472,3 +472,4 @@ msgstr ""
 #: src/hooks/useValidateChangePassphraseParams.tsx:39
 msgid "{minPassphraseLength, plural, one {Passphrases must be at least # character in length} other {Passphrases must be at least # characters in length}}"
 msgstr ""
+

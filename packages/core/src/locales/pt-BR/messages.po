@@ -8,7 +8,7 @@ msgstr ""
 "Language: pt_BR\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-07-27 18:41\n"
+"PO-Revision-Date: 2022-10-24 18:14\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -42,7 +42,7 @@ msgstr "Voltar"
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:147
 #~ msgid "Can be backed up to mnemonic seed"
-#~ msgstr "Pode ser feito backup para semente mnemônica"
+#~ msgstr "Can be backed up to mnemonic seed"
 
 #: src/components/ConfirmDialog/ConfirmDialog.tsx:32
 #: src/hooks/useKeyringMigrationPrompt.tsx:17
@@ -73,7 +73,7 @@ msgstr "Crie uma nova chave privada"
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:163
 #~ msgid "DANGER: permanently delete private key"
-#~ msgstr "PERIGO: excluir permanentemente a chave privada"
+#~ msgstr "DANGER: permanently delete private key"
 
 #: src/components/Settings/SettingsApp.tsx:83
 msgid "Dark"
@@ -100,7 +100,7 @@ msgstr "A exclusão de todas as chaves removerá permanentemente as chaves do co
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:124
 #~ msgid "Deleting the key will permanently remove the key from your computer, make sure you have backups. Are you sure you want to continue?"
-#~ msgstr "A exclusão da chave removerá permanentemente a chave do seu computador, certifique-se de ter backups. Você tem certeza que quer continuar?"
+#~ msgstr "Deleting the key will permanently remove the key from your computer, make sure you have backups. Are you sure you want to continue?"
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:105
 msgid "Details"
@@ -112,7 +112,7 @@ msgstr "Desativado"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:67
 msgid "Disable Passphrase Protection"
-msgstr ""
+msgstr "Desabilitar proteção por senha"
 
 #: src/components/Back/Back.tsx:35
 #: src/components/FormBackButton/FormBackButton.tsx:27
@@ -126,7 +126,7 @@ msgstr "Erro"
 
 #: src/components/ErrorBoundary/ErrorBoundary.tsx:78
 msgid "Error:"
-msgstr ""
+msgstr "Erro:"
 
 #: src/screens/SelectKey/SelectKeyRenameForm.tsx:87
 msgid "Esc"
@@ -134,7 +134,7 @@ msgstr ""
 
 #: src/components/LayoutMain/LayoutFooter.tsx:50
 #~ msgid "FAQ"
-#~ msgstr "Perguntas frequentes (FAQ)"
+#~ msgstr "FAQ"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:96
 msgid "Farmer Public Key"
@@ -201,7 +201,7 @@ msgstr ""
 
 #: src/screens/SelectKey/SelectKey.tsx:124
 msgid "Loading list of the keys"
-msgstr ""
+msgstr "Carregando lista de chaves"
 
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:166
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:191
@@ -230,7 +230,7 @@ msgstr ""
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:49
 msgid "New passphrase is the same as your current passphrase"
-msgstr ""
+msgstr "Nova senha é a mesma que sua senha atual"
 
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:83
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:165
@@ -260,7 +260,7 @@ msgstr "Chave pública do bolão:"
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:142
 #~ msgid "Private key with public fingerprint {fingerprint}"
-#~ msgstr "Chave privada com impressão digital pública {fingerprint}"
+#~ msgstr "Private key with public fingerprint {fingerprint}"
 
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:26
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:33
@@ -281,7 +281,7 @@ msgstr "Chave pública:"
 
 #: src/components/ErrorBoundary/ErrorBoundary.tsx:91
 msgid "Reload Application"
-msgstr ""
+msgstr "Recarregar Aplicação"
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:97
 msgid "Rename"
@@ -289,7 +289,7 @@ msgstr ""
 
 #: src/components/ErrorBoundary/ErrorBoundary.tsx:87
 msgid "Report an Issue"
-msgstr ""
+msgstr "Reportar um problema"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:147
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:178
@@ -306,7 +306,7 @@ msgstr ""
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:151
 #~ msgid "See private key"
-#~ msgstr "Ver chave privada"
+#~ msgstr "See private key"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:154
 msgid "Seed Phrase"
@@ -330,7 +330,7 @@ msgstr "Enviar Sugestão"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:61
 msgid "Setting a passphrase is strongly recommended to protect your keys. Are you sure you want to skip setting a passphrase?"
-msgstr ""
+msgstr "Definir uma senha é altamente recomendado para proteger suas chaves. Tem certeza que deseja pular a configuração de uma senha?"
 
 #: src/components/Settings/Settings.tsx:48
 #: src/components/Settings/Settings.tsx:58
@@ -351,11 +351,11 @@ msgstr "Ignorar"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:58
 msgid "Skip Passphrase Protection"
-msgstr ""
+msgstr "Pular Proteção com senha"
 
 #: src/components/ErrorBoundary/ErrorBoundary.tsx:73
 msgid "Something went wrong"
-msgstr ""
+msgstr "Algo deu errado"
 
 #: src/screens/SelectKey/WalletStatus.tsx:70
 msgid "Synced"
@@ -438,15 +438,15 @@ msgstr ""
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:117
 #~ msgid "Warning: This key is used for a wallet that may have a non-zero balance. By deleting this key you may lose access to this wallet"
-#~ msgstr "Aviso: Esta chave é usada para uma carteira que pode ter um saldo diferente de zero. Ao excluir esta chave, você pode perder o acesso a esta carteira"
+#~ msgstr "Warning: This key is used for a wallet that may have a non-zero balance. By deleting this key you may lose access to this wallet"
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:99
 #~ msgid "Warning: This key is used for your farming rewards address. By deleting this key you may lose access to any future farming rewards"
-#~ msgstr "Aviso: Esta chave é usada para o endereço das recompensas da sua coleta. Ao excluir esta chave, você pode perder acesso a qualquer futuro prêmio da coleta"
+#~ msgstr "Warning: This key is used for your farming rewards address. By deleting this key you may lose access to any future farming rewards"
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:108
 #~ msgid "Warning: This key is used for your pool rewards address. By deleting this key you may lose access to any future pool rewards"
-#~ msgstr "Aviso: Esta chave é usada para o endereço das recompensas da sua coleta. Ao excluir esta chave, você pode perder acesso a qualquer futuro prêmio da coleta"
+#~ msgstr "Warning: This key is used for your pool rewards address. By deleting this key you may lose access to any future pool rewards"
 
 #: src/screens/SelectKey/SelectKey.tsx:149
 msgid "Welcome to Chia. Please log in with an existing key, or create a new key."
@@ -472,3 +472,4 @@ msgstr ""
 #: src/hooks/useValidateChangePassphraseParams.tsx:39
 msgid "{minPassphraseLength, plural, one {Passphrases must be at least # character in length} other {Passphrases must be at least # characters in length}}"
 msgstr ""
+

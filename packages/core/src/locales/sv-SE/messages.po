@@ -8,7 +8,7 @@ msgstr ""
 "Language: sv_SE\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-07-27 18:39\n"
+"PO-Revision-Date: 2022-10-24 18:14\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -20,7 +20,7 @@ msgstr ""
 
 #: src/components/EstimatedFee/EstimatedFee.tsx:162
 msgid "<0>{0}</0>"
-msgstr ""
+msgstr "<0>{0}</0>"
 
 #: src/components/Amount/Amount.tsx:103
 msgid "Amount"
@@ -32,7 +32,7 @@ msgstr "Utseende"
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:164
 msgid "Are you sure you want to continue? Type in the fingerprint of this wallet key to confirm deletion."
-msgstr ""
+msgstr "Är du säker på att du vill fortsätta? Skriv in fingeravtrycket för denna plånboksnyckel för att bekräfta borttagning."
 
 #: src/components/FormBackButton/FormBackButton.tsx:47
 #: src/screens/SelectKey/SelectKey.tsx:84
@@ -42,7 +42,7 @@ msgstr "Tillbaka"
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:147
 #~ msgid "Can be backed up to mnemonic seed"
-#~ msgstr "Kan säkerhetskopieras till minnesfras"
+#~ msgstr "Can be backed up to mnemonic seed"
 
 #: src/components/ConfirmDialog/ConfirmDialog.tsx:32
 #: src/hooks/useKeyringMigrationPrompt.tsx:17
@@ -53,7 +53,7 @@ msgstr "Avbryt"
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:49
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:72
 msgid "Close"
-msgstr ""
+msgstr "Stäng"
 
 #: src/components/FormatConnectionStatus/FormatConnectionStatus.tsx:51
 msgid "Connected"
@@ -73,7 +73,7 @@ msgstr "Skapa ny privat nyckel"
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:163
 #~ msgid "DANGER: permanently delete private key"
-#~ msgstr "VARNING: permanent ta bort privat nyckel"
+#~ msgstr "DANGER: permanently delete private key"
 
 #: src/components/Settings/SettingsApp.tsx:83
 msgid "Dark"
@@ -96,15 +96,15 @@ msgstr "Ta bort nyckel {fingerprint}"
 
 #: src/screens/SelectKey/SelectKey.tsx:88
 msgid "Deleting all keys will permanently remove the keys from your computer, make sure you have backups. Are you sure you want to continue?"
-msgstr "Om du tar bort alla nycklar kommer de att permanent tas bort från datorn. Se till att du har säkerhetskopierat dem. Är det säkert att du vill fortsätta?"
+msgstr "Om du tar bort alla nycklar kommer de att permanent tas bort från datorn. Se till att du har säkerhetskopierat dem. Är du säker på att du vill fortsätta?"
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:124
 #~ msgid "Deleting the key will permanently remove the key from your computer, make sure you have backups. Are you sure you want to continue?"
-#~ msgstr "Om du tar bort nyckeln kommer den att permanent tas bort från datorn. Se till att du har säkerhetskopierat den. Är det säkert att du vill fortsätta?"
+#~ msgstr "Deleting the key will permanently remove the key from your computer, make sure you have backups. Are you sure you want to continue?"
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:105
 msgid "Details"
-msgstr ""
+msgstr "Detaljer"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:68
 msgid "Disable"
@@ -130,7 +130,7 @@ msgstr "Fel:"
 
 #: src/screens/SelectKey/SelectKeyRenameForm.tsx:87
 msgid "Esc"
-msgstr ""
+msgstr "Esc"
 
 #: src/components/LayoutMain/LayoutFooter.tsx:50
 #~ msgid "FAQ"
@@ -138,7 +138,7 @@ msgstr ""
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:96
 msgid "Farmer Public Key"
-msgstr ""
+msgstr "Publik nyckel för odlare"
 
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:57
 msgid "Farmer public key:"
@@ -156,7 +156,7 @@ msgstr "Avgift"
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:96
 msgid "Fingerprint does not match"
-msgstr ""
+msgstr "Fingeravtrycket matchar inte"
 
 #: src/components/Settings/SettingsApp.tsx:105
 msgid "Frequently Asked Questions"
@@ -173,7 +173,7 @@ msgstr "Hjälp till med översättning"
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:147
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:178
 msgid "Hide"
-msgstr ""
+msgstr "Dölj"
 
 #: src/components/AdvancedOptions/AdvancedOptions.tsx:75
 msgid "Hide Advanced Options"
@@ -197,7 +197,7 @@ msgstr "Ljust"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:48
 msgid "Loading details"
-msgstr ""
+msgstr "Läser in information"
 
 #: src/screens/SelectKey/SelectKey.tsx:124
 msgid "Loading list of the keys"
@@ -226,7 +226,7 @@ msgstr "Läge"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:121
 msgid "NEVER SHARE THESE WITH ANYONE"
-msgstr ""
+msgstr "DELA ALDRIG DESSA MED NÅGON ANNAN"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:49
 msgid "New passphrase is the same as your current passphrase"
@@ -239,7 +239,7 @@ msgstr "Ingen 24 ords minnesfras eftersom denna nyckel har importerats."
 
 #: src/screens/SelectKey/WalletStatus.tsx:58
 msgid "Not Synced"
-msgstr ""
+msgstr "Ej synkad"
 
 #: src/components/FormatConnectionStatus/FormatConnectionStatus.tsx:52
 msgid "Not connected"
@@ -252,7 +252,7 @@ msgstr "OK"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:108
 msgid "Pool Public Key"
-msgstr ""
+msgstr "Publik nyckel för pool"
 
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:65
 msgid "Pool public key:"
@@ -260,7 +260,7 @@ msgstr "Publik nyckel för pool:"
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:142
 #~ msgid "Private key with public fingerprint {fingerprint}"
-#~ msgstr "Privat nyckel med publikt fingeravtryck {fingerprint}"
+#~ msgstr "Private key with public fingerprint {fingerprint}"
 
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:26
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:33
@@ -273,7 +273,7 @@ msgstr "Privat nyckel:"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:84
 msgid "Public Key"
-msgstr ""
+msgstr "Publik nyckel"
 
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:49
 msgid "Public key:"
@@ -285,7 +285,7 @@ msgstr "Läs in applikationen på nytt"
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:97
 msgid "Rename"
-msgstr ""
+msgstr "Byt namn"
 
 #: src/components/ErrorBoundary/ErrorBoundary.tsx:87
 msgid "Report an Issue"
@@ -298,19 +298,19 @@ msgstr ""
 
 #: src/screens/SelectKey/SelectKeyRenameForm.tsx:107
 msgid "Save"
-msgstr ""
+msgstr "Spara"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:127
 msgid "Secret Key"
-msgstr ""
+msgstr "Hemlig nyckel"
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:151
 #~ msgid "See private key"
-#~ msgstr "Visa privat nyckel"
+#~ msgstr "See private key"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:154
 msgid "Seed Phrase"
-msgstr ""
+msgstr "Minnesfras"
 
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:75
 msgid "Seed:"
@@ -359,11 +359,11 @@ msgstr "Något gick fel"
 
 #: src/screens/SelectKey/WalletStatus.tsx:70
 msgid "Synced"
-msgstr ""
+msgstr "Synkad"
 
 #: src/screens/SelectKey/WalletStatus.tsx:82
 msgid "Syncing"
-msgstr ""
+msgstr "Synkar"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:31
 msgid "The provided passphrase and confirmation do not match"
@@ -371,7 +371,7 @@ msgstr "Lösenfras och bekräftelse matchar inte"
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:145
 msgid "This key is used for a wallet that may have a non-zero balance. By deleting this key you may lose access to this wallet"
-msgstr ""
+msgstr "Denna nyckel används för en plånbok som kan ha ett saldo som inte är noll. Genom att ta bort denna nyckel kan du förlora åtkomst till plånboken"
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:125
 msgid "This key is used for your farming rewards address. By deleting this key you may lose access to any future farming rewards"
@@ -383,7 +383,7 @@ msgstr ""
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:158
 msgid "This will permanently remove the key from your computer, make sure you have your mnemonic phrase backed up."
-msgstr ""
+msgstr "Detta kommer att permanent ta bort nyckeln från din dator. Se till att du har en säkerhetskopia av din minnesfras."
 
 #: src/utils/getTransactionResult.ts:15
 msgid "Transaction has not been sent to node yet"
@@ -416,7 +416,7 @@ msgstr "Osparade ändringar"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:70
 msgid "Using a passphrase is strongly recommended to protect your keys. Are you sure you want to disable passphrase protection?"
-msgstr "Att använda en lösenfras rekommenderas starkt för att skydda dina nycklar. Är det säkert att du vill ta bort lösenfrasskyddet?"
+msgstr "Att använda en lösenfras rekommenderas starkt för att skydda dina nycklar. Är du säker på att du vill ta bort lösenfrasskyddet?"
 
 #: src/components/Fee/Fee.tsx:32
 msgid "Value seems high"
@@ -429,24 +429,24 @@ msgstr "Plånbok"
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:172
 msgid "Wallet Fingerprint"
-msgstr ""
+msgstr "Plånbokens fingeravtryck"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:65
 #: src/screens/SelectKey/SelectKeyItem.tsx:82
 msgid "Wallet {0}"
-msgstr ""
+msgstr "Plånbok {0}"
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:117
 #~ msgid "Warning: This key is used for a wallet that may have a non-zero balance. By deleting this key you may lose access to this wallet"
-#~ msgstr "Varning: Denna nyckel används för en plånbok som kan ha ett saldo som inte är noll. Genom att ta bort denna nyckel kan du förlora åtkomst till denna plånbok"
+#~ msgstr "Warning: This key is used for a wallet that may have a non-zero balance. By deleting this key you may lose access to this wallet"
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:99
 #~ msgid "Warning: This key is used for your farming rewards address. By deleting this key you may lose access to any future farming rewards"
-#~ msgstr "Varning: Denna nyckel används av din farmer. Genom att ta bort denna nyckel kan du förlora tillgång till framtida vinster"
+#~ msgstr "Warning: This key is used for your farming rewards address. By deleting this key you may lose access to any future farming rewards"
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:108
 #~ msgid "Warning: This key is used for your pool rewards address. By deleting this key you may lose access to any future pool rewards"
-#~ msgstr "Varning: Denna nyckel används av din pool. Genom att ta bort denna nyckel kan du förlora tillgång till framtida vinster från poolen"
+#~ msgstr "Warning: This key is used for your pool rewards address. By deleting this key you may lose access to any future pool rewards"
 
 #: src/screens/SelectKey/SelectKey.tsx:149
 msgid "Welcome to Chia. Please log in with an existing key, or create a new key."
@@ -467,8 +467,9 @@ msgstr "{0, plural, one {mojo} other {mojo}}"
 
 #: src/components/EstimatedFee/EstimatedFee.tsx:159
 msgid "{0} TXCH"
-msgstr ""
+msgstr "{0} TXCH"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:39
 msgid "{minPassphraseLength, plural, one {Passphrases must be at least # character in length} other {Passphrases must be at least # characters in length}}"
 msgstr "{minPassphraseLength, plural, one {Lösenfraser måste vara minst # tecken lång} other {Lösenfraser måste vara minst # tecken lång}}"
+
