@@ -37,7 +37,7 @@ type SendTransactionData = {
 
 export default function WalletSend(props: SendCardProps) {
   const { walletId } = props;
-
+  const [submissionCount, setSubmissionCount] = React.useState(0);
   const isSimulator = useIsSimulator();
   const openDialog = useOpenDialog();
   const [sendTransaction, { isLoading: isSendTransactionLoading }] =
@@ -134,10 +134,11 @@ export default function WalletSend(props: SendCardProps) {
     }
 
     methods.reset();
+    setSubmissionCount((prev) => prev + 1);
   }
 
   return (
-    <Form methods={methods} onSubmit={handleSubmit}>
+    <Form methods={methods} key={submissionCount} onSubmit={handleSubmit}>
       <Flex gap={2} flexDirection="column">
         <Typography variant="h6">
           <Trans>Create Transaction</Trans>
