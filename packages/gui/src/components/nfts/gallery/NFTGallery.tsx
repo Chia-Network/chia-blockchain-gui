@@ -27,6 +27,7 @@ import useNachoNFTs from '../../../hooks/useNachoNFTs';
 import NFTProfileDropdown from '../NFTProfileDropdown';
 import NFTGalleryHero from './NFTGalleryHero';
 import { useLocalStorage } from '@chia/core';
+import useNFTMetadata from '../../../hooks/useNFTMetadata';
 
 export const defaultCacheSizeLimit = 1024; /* MB */
 
@@ -42,6 +43,19 @@ export default function NFTGallery() {
   const { nfts, isLoading: isLoadingNFTs } = useFetchNFTs(
     nftWallets.map((wallet: Wallet) => wallet.id),
   );
+  const noMetadataNFTs = nfts
+    .filter((nft) => {
+      return nft.metadataUris.length === 0;
+    })
+    .map((nft) => nft.$nftId);
+
+  const { allowedNFTs } = useNFTMetadata(
+    nfts,
+    true,
+  ); /* NFTs with metadata and no sensitive_content */
+
+  const allAllowedNFTs = noMetadataNFTs.concat(allowedNFTs);
+
   const [isNFTHidden] = useHiddenNFTs();
   const isLoading = isLoadingWallets || isLoadingNFTs;
   const [search /*, setSearch*/] = useState<string>('');
@@ -90,6 +104,9 @@ export default function NFTGallery() {
         return false;
       }
 
+      if (hideObjectionableContent && allAllowedNFTs.indexOf(nft.$nftId) === -1)
+        return false;
+
       const content = searchableNFTContent(nft);
       if (search) {
         return content.includes(search.toLowerCase());
@@ -105,6 +122,7 @@ export default function NFTGallery() {
     showHidden,
     hideObjectionableContent,
     nachoNFTs,
+    allAllowedNFTs,
   ]);
 
   function handleSelect(nft: NFTInfo, selected: boolean) {
