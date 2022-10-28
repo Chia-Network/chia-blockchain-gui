@@ -51,7 +51,7 @@ export default function OfferBuilderFeeSection(
       subtitle={
         <Trans>Optional network fee to expedite acceptance of your offer</Trans>
       }
-      onAdd={!fields.length ? handleAdd : undefined}
+      onAdd={!fields.length && !viewer ? handleAdd : undefined}
       expanded={!!fields.length}
       disableReadOnly={disableReadOnly}
     >
