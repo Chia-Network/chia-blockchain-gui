@@ -21,11 +21,7 @@ import {
 } from '@chia/core';
 import isNumeric from 'validator/es/lib/isNumeric';
 import { useForm, useWatch } from 'react-hook-form';
-import {
-  Button,
-  Grid,
-  Typography,
-} from '@mui/material';
+import { Button, Grid, Typography } from '@mui/material';
 import useWallet from '../hooks/useWallet';
 import CreateWalletSendTransactionResultDialog from './WalletSendTransactionResultDialog';
 
@@ -44,7 +40,8 @@ export default function WalletSend(props: SendCardProps) {
 
   const isSimulator = useIsSimulator();
   const openDialog = useOpenDialog();
-  const [sendTransaction, { isLoading: isSendTransactionLoading }] = useSendTransactionMutation();
+  const [sendTransaction, { isLoading: isSendTransactionLoading }] =
+    useSendTransactionMutation();
   const [farmBlock] = useFarmBlockMutation();
   const methods = useForm<SendTransactionData>({
     defaultValues: {
@@ -59,9 +56,13 @@ export default function WalletSend(props: SendCardProps) {
     name: 'address',
   });
 
-  const { data: walletState, isLoading: isWalletSyncLoading } = useGetSyncStatusQuery({}, {
-    pollingInterval: 10000,
-  });
+  const { data: walletState, isLoading: isWalletSyncLoading } =
+    useGetSyncStatusQuery(
+      {},
+      {
+        pollingInterval: 10000,
+      }
+    );
 
   const { wallet } = useWallet(walletId);
 
@@ -100,7 +101,9 @@ export default function WalletSend(props: SendCardProps) {
 
     let address = data.address;
     if (address.includes('colour')) {
-      throw new Error(t`Cannot send chia to coloured address. Please enter a chia address.`);
+      throw new Error(
+        t`Cannot send chia to coloured address. Please enter a chia address.`
+      );
     }
 
     if (address.slice(0, 12) === 'chia_addr://') {
@@ -119,12 +122,14 @@ export default function WalletSend(props: SendCardProps) {
     }).unwrap();
 
     const result = getTransactionResult(response.transaction);
-    const resultDialog = CreateWalletSendTransactionResultDialog({success: result.success, message: result.message});
+    const resultDialog = CreateWalletSendTransactionResultDialog({
+      success: result.success,
+      message: result.message,
+    });
 
     if (resultDialog) {
       await openDialog(resultDialog);
-    }
-    else {
+    } else {
       throw new Error(result.message ?? 'Something went wrong');
     }
 
@@ -139,9 +144,9 @@ export default function WalletSend(props: SendCardProps) {
           &nbsp;
           <TooltipIcon>
             <Trans>
-              On average there is one minute between each transaction block. Unless
-              there is congestion you can expect your transaction to be included in
-              less than a minute.
+              On average there is one minute between each transaction block.
+              Unless there is congestion you can expect your transaction to be
+              included in less than a minute.
             </Trans>
           </TooltipIcon>
         </Typography>
@@ -179,7 +184,6 @@ export default function WalletSend(props: SendCardProps) {
                 label={<Trans>Fee</Trans>}
                 data-testid="WalletSend-fee"
                 fullWidth
-                required
                 txType="walletSendXCH"
               />
             </Grid>
@@ -187,7 +191,11 @@ export default function WalletSend(props: SendCardProps) {
         </Card>
         <Flex justifyContent="flex-end" gap={1}>
           {isSimulator && (
-            <Button onClick={farm} variant="outlined" data-testid="WalletSend-farm">
+            <Button
+              onClick={farm}
+              variant="outlined"
+              data-testid="WalletSend-farm"
+            >
               <Trans>Farm</Trans>
             </Button>
           )}
