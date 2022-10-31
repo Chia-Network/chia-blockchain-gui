@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 import { Trans } from '@lingui/macro';
 import { Flex, Loading, Tooltip } from '@chia/core';
 import { useGetNFTInfoQuery } from '@chia/api-react';
@@ -30,7 +30,7 @@ function PreviewCard(props) {
   );
 }
 
-export type OfferBuilderNFTProps = ReactNode & {
+export type OfferBuilderNFTProps = {
   name: string;
   onRemove?: () => void;
   provenance?: boolean;

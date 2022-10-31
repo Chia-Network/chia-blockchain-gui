@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 import { Trans } from '@lingui/macro';
 import { RoyaltyCalculationFungibleAssetPayout } from '@chia/api';
 import { CopyToClipboard, Flex } from '@chia/core';
@@ -16,7 +16,7 @@ const StyledValue = styled(Box)`
 
 type NFTId = string;
 
-export type OfferBuilderRoyaltyPayoutsProps = ReactNode & {
+export type OfferBuilderRoyaltyPayoutsProps = {
   totalAmount: string;
   originalAmount: string;
   royaltyPayments: Record<NFTId, RoyaltyCalculationFungibleAssetPayout>[];

@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 import { useWatch } from 'react-hook-form';
 import { Trans } from '@lingui/macro';
 import {
@@ -20,7 +20,7 @@ import useOfferBuilderContext from '../../hooks/useOfferBuilderContext';
 import OfferBuilderTokenSelector from './OfferBuilderTokenSelector';
 import OfferBuilderRoyaltyPayouts from './OfferBuilderRoyaltyPayouts';
 
-export type OfferBuilderValueProps = ReactNode & {
+export type OfferBuilderValueProps = {
   name: string;
   label: ReactNode;
   caption?: ReactNode;

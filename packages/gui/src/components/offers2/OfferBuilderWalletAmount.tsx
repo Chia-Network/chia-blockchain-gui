@@ -1,10 +1,10 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 import { Trans } from '@lingui/macro';
 import { useWallet } from '@chia/wallets';
 import OfferBuilderValue from './OfferBuilderValue';
 import OfferBuilderWalletBalance from './OfferBuilderWalletBalance';
 
-export type OfferBuilderWalletAmountProps = ReactNode & {
+export type OfferBuilderWalletAmountProps = {
   name: string;
   walletId: number;
   label?: ReactNode;
