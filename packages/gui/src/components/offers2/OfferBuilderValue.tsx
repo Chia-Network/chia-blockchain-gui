@@ -3,6 +3,7 @@ import { useWatch } from 'react-hook-form';
 import { Trans } from '@lingui/macro';
 import {
   Amount,
+  CopyToClipboard,
   Fee,
   Flex,
   FormatLargeNumber,
@@ -17,8 +18,9 @@ import { Box, Typography, IconButton } from '@mui/material';
 import { Remove } from '@mui/icons-material';
 import useOfferBuilderContext from '../../hooks/useOfferBuilderContext';
 import OfferBuilderTokenSelector from './OfferBuilderTokenSelector';
+import OfferBuilderRoyaltyPayouts from './OfferBuilderRoyaltyPayouts';
 
-export type OfferBuilderValueProps = {
+export type OfferBuilderValueProps = ReactNode & {
   name: string;
   label: ReactNode;
   caption?: ReactNode;
@@ -30,6 +32,8 @@ export type OfferBuilderValueProps = {
   usedAssets?: string[];
   disableReadOnly?: boolean;
   warnUnknownCAT?: boolean;
+  amountWithRoyalties?: string;
+  royaltyPayments?: Record<string, any>[];
 };
 
 export default function OfferBuilderValue(props: OfferBuilderValueProps) {
@@ -45,6 +49,8 @@ export default function OfferBuilderValue(props: OfferBuilderValueProps) {
     usedAssets,
     disableReadOnly = false,
     warnUnknownCAT = false,
+    amountWithRoyalties,
+    royaltyPayments,
   } = props;
   const {
     readOnly: builderReadOnly,
@@ -54,9 +60,10 @@ export default function OfferBuilderValue(props: OfferBuilderValueProps) {
   const value = useWatch({
     name,
   });
-
   const readOnly = disableReadOnly ? false : builderReadOnly;
-  const displayValue = !value ? (
+  const displayValue = amountWithRoyalties ? (
+    amountWithRoyalties
+  ) : !value ? (
     <Trans>Not Available</Trans>
   ) : ['amount', 'fee', 'token'].includes(type) && Number.isFinite(value) ? (
     <FormatLargeNumber value={value} />
@@ -75,19 +82,35 @@ export default function OfferBuilderValue(props: OfferBuilderValueProps) {
           </Typography>
           <Tooltip
             title={
-              <Flex flexDirection="column" gap={1}>
-                {displayValue}
-                {type === 'token' ? (
-                  <Link
-                    href={`https://www.taildatabase.com/tail/${value.toLowerCase()}`}
-                    target="_blank"
-                  >
-                    <Trans>Search on Tail Database</Trans>
-                  </Link>
-                ) : null}
-              </Flex>
+              royaltyPayments && amountWithRoyalties ? (
+                <OfferBuilderRoyaltyPayouts
+                  totalAmount={amountWithRoyalties}
+                  originalAmount={value}
+                  royaltyPayments={royaltyPayments}
+                />
+              ) : (
+                <Flex flexDirection="column" gap={1}>
+                  <Flex flexDirection="row" alignItems="center" gap={1}>
+                    <Flex flexDirection="column" gap={1} maxWidth={200}>
+                      {displayValue}
+                      {type === 'token' ? (
+                        <Link
+                          href={`https://www.taildatabase.com/tail/${value.toLowerCase()}`}
+                          target="_blank"
+                        >
+                          <Trans>Search on Tail Database</Trans>
+                        </Link>
+                      ) : null}
+                    </Flex>
+                    <CopyToClipboard
+                      value={displayValue}
+                      fontSize="small"
+                      invertColor
+                    />
+                  </Flex>
+                </Flex>
+              )
             }
-            copyToClipboard
           >
             <Typography variant="h6" noWrap>
               {type === 'token' ? (

@@ -77,7 +77,7 @@ export default class NFTWallet extends Wallet {
 
   async calculateRoyalties(
     req: CalculateRoyaltiesRequest
-  ): Promise<CalculateRoyaltiesResponse> {
+  ): Promise<Record<string, any>> {
     return this.command('nft_calculate_royalties', req);
   }
 }
