@@ -10,6 +10,7 @@ import { Grid } from '@mui/material';
 import OfferBuilderProvider from './OfferBuilderProvider';
 import OfferBuilderTradeColumn from './OfferBuilderTradeColumn';
 import type OfferBuilderData from '../../@types/OfferBuilderData';
+import OfferState from '../offers/OfferState';
 
 export const emptyDefaultValues = {
   offered: {
@@ -31,6 +32,7 @@ export type OfferBuilderProps = {
   readOnly?: boolean;
   viewer?: boolean;
   imported?: boolean;
+  state?: OfferState;
   onSubmit: (values: OfferBuilderData) => Promise<void>;
   defaultValues?: OfferBuilderData;
 };
@@ -42,6 +44,7 @@ function OfferBuilder(props: OfferBuilderProps, ref: any) {
     viewer = false,
     imported = false,
     defaultValues = emptyDefaultValues,
+    state,
     onSubmit,
   } = props;
 
@@ -96,6 +99,7 @@ function OfferBuilder(props: OfferBuilderProps, ref: any) {
       <OfferBuilderProvider
         isMyOffer={isMyOffer}
         imported={imported}
+        state={state}
         readOnly={readOnly}
       >
         <Grid spacing={3} rowSpacing={4} container>
