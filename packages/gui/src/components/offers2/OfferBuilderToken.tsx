@@ -1,5 +1,4 @@
 import React, { ReactNode } from 'react';
-import BigNumber from 'bignumber.js';
 import { Trans } from '@lingui/macro';
 import { Grid } from '@mui/material';
 import type { Wallet } from '@chia/api';
