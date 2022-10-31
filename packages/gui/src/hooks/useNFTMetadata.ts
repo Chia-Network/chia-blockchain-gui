@@ -6,7 +6,12 @@ import { useLocalStorage } from '@chia/api-react';
 export const MAX_FILE_SIZE = 100 * 1024 * 1024; // 100 MB
 
 function normalizedSensitiveContent(value: any): boolean {
-  return typeof value === 'boolean' ? value : value === 'true';
+  if (typeof value === 'boolean') {
+    return value;
+  } else if (Array.isArray(value) && value.length > 0) {
+    return true;
+  }
+  return value === 'true';
 }
 
 export default function useNFTsMetadata(nfts: NFTInfo[], isMultiple = false) {
