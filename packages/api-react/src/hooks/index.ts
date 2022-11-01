@@ -1,10 +1,13 @@
+export { default as useCurrentFingerprintSettings } from './useCurrentFingerprintSettings';
 export { default as useGetLatestBlocksQuery } from './useGetLatestBlocksQuery';
+export { default as useGetLocalCatName } from './useGetLocalCatName';
 export { default as useGetLatestPeakTimestampQuery } from './useGetLatestPeakTimestampQuery';
 export { default as useGetFarmerFullNodeConnectionsQuery } from './useGetFarmerFullNodeConnectionsQuery';
 export { default as useGetHarvesterConnectionsQuery } from './useGetHarvesterConnectionsQuery';
 export { default as useGetHarvesterQuery } from './useGetHarvesterQuery';
 export { default as useGetHarvesterStats } from './useGetHarvesterStats';
 export { default as useGetNFTWallets } from './useGetNFTWallets';
+export { default as useLocalStorage } from './useLocalStorage';
 export { default as useLogout } from './useLogout';
 export { default as useNFTMetadata } from './useNFTMetadata';
 export { default as useService } from './useService';

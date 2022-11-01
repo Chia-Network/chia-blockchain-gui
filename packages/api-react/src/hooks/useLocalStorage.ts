@@ -3,7 +3,10 @@ import EventEmitter from '../utils/EventEmitter';
 
 const eventEmitter = new EventEmitter();
 
-function getValueFromLocalStorage<T>(key: string, defaultValue: T) {
+function getValueFromLocalStorage<T>(
+  key: string,
+  defaultValue?: T
+): T | undefined {
   const item = window.localStorage.getItem(key);
 
   if (item === undefined || item === null) {
@@ -13,16 +16,19 @@ function getValueFromLocalStorage<T>(key: string, defaultValue: T) {
   try {
     return JSON.parse(item);
   } catch (error) {
-    return item;
+    return defaultValue;
   }
 }
 
-export default function useLocalStorage<T>(key: string, initialValue: T) {
-  const [storedValue, setStoredValue] = useState<T>(
+export default function useLocalStorage<T>(
+  key: string,
+  initialValue?: T
+): [T | undefined, (value: T | ((value: T | undefined) => T)) => void] {
+  const [storedValue, setStoredValue] = useState<T | undefined>(
     getValueFromLocalStorage(key, initialValue)
   );
 
-  const setValue = (value: (value: T) => T | T) => {
+  const setValue = (value: T | ((value: T | undefined) => T)) => {
     const newValue = value instanceof Function ? value(storedValue) : value;
 
     const newStoredValue = JSON.stringify(newValue);
