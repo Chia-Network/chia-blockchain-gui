@@ -5,6 +5,15 @@ import { useLocalStorage } from '@chia/api-react';
 
 export const MAX_FILE_SIZE = 100 * 1024 * 1024; // 100 MB
 
+function normalizedSensitiveContent(value: any): boolean {
+  if (typeof value === 'boolean') {
+    return value;
+  } else if (Array.isArray(value) && value.length > 0) {
+    return true;
+  }
+  return value === 'true';
+}
+
 export default function useNFTsMetadata(nfts: NFTInfo[], isMultiple = false) {
   const nft = nfts[0];
   const nftId = nft?.$nftId;
@@ -23,17 +32,20 @@ export default function useNFTsMetadata(nfts: NFTInfo[], isMultiple = false) {
     {},
   );
 
-  function setSensitiveContent(metadataString: string) {
-    let object;
+  function setSensitiveContent(nftId: string, metadata: Record<string, any>) {
     try {
-      object = JSON.parse(metadataString);
+      const sensitiveContentValue = normalizedSensitiveContent(
+        metadata.sensitive_content,
+      );
 
-      if (object.sensitive_content) {
+      if (sensitiveContentValue) {
         setSensitiveContentObject(
-          Object.assign({}, sensitiveContentObject, { [nft.$nftId]: true }),
+          Object.assign({}, sensitiveContentObject, { [nftId]: true }),
         );
       }
-    } catch (e) {}
+    } catch (e) {
+      // Do nothing
+    }
   }
 
   async function getMetadataContents({ dataHash, nftId, uri }): Promise<{
@@ -46,10 +58,18 @@ export default function useNFTsMetadata(nfts: NFTInfo[], isMultiple = false) {
       let metadata;
       const cachedMetadata = localStorage.getItem(`metadata-cache-${nftId}`);
       try {
-        obj = JSON.parse(cachedMetadata);
-        metadata = JSON.parse(obj.json);
-      } catch (e) {}
-      if (isMultiple && metadata && !metadata.sensitive_content) {
+        if (cachedMetadata) {
+          obj = JSON.parse(cachedMetadata);
+          metadata = JSON.parse(obj.json);
+        }
+      } catch (e) {
+        // Do nothing
+      }
+      if (
+        isMultiple &&
+        metadata &&
+        !normalizedSensitiveContent(metadata.sensitive_content)
+      ) {
         allowedNFTs.push(nftId);
       }
     } else {
@@ -111,8 +131,11 @@ export default function useNFTsMetadata(nfts: NFTInfo[], isMultiple = false) {
         });
       }
       setMetadata(metadata);
-      setSensitiveContent(metadata);
-      if (isMultiple && !metadata.sensitive_content) {
+      setSensitiveContent(nftId, metadata);
+      if (
+        isMultiple &&
+        !normalizedSensitiveContent(metadata.sensitive_content)
+      ) {
         allowedNFTs.push(nftId);
       }
     } catch (error: any) {
