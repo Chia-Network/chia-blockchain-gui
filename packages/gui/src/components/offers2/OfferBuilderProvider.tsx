@@ -14,12 +14,14 @@ import {
 import { catToMojo, chiaToMojo } from '@chia/core';
 import OfferBuilderContext from './OfferBuilderContext';
 import getUnknownCATs from '../../util/getUnknownCATs';
+import OfferState from '../offers/OfferState';
 
 export type OfferBuilderProviderProps = {
   children: ReactNode;
   readOnly?: boolean;
   isMyOffer?: boolean;
   imported?: boolean;
+  state?: OfferState;
 };
 
 export default function OfferBuilderProvider(props: OfferBuilderProviderProps) {
@@ -28,12 +30,13 @@ export default function OfferBuilderProvider(props: OfferBuilderProviderProps) {
     readOnly = false,
     isMyOffer = false,
     imported = false,
+    state,
   } = props;
   let royaltyNFTsSelector = undefined;
   let fungibleXCHSelector = undefined;
   let fungibleTokenSelector = undefined;
 
-  if (readOnly && isMyOffer) {
+  if (readOnly) {
     royaltyNFTsSelector = 'requested.nfts';
     fungibleXCHSelector = 'offered.xch';
     fungibleTokenSelector = 'offered.tokens';
@@ -111,11 +114,13 @@ export default function OfferBuilderProvider(props: OfferBuilderProviderProps) {
 
   const skipRoyalitiesCalculation =
     request.royaltyAssets.length === 0 || request.fungibleAssets.length === 0;
-  const { data: updatedRoyalties, isLoading: isCalculatingRoyalties } =
+  const { data: royaltiesData, isLoading: isCalculatingRoyalties } =
     useCalculateRoyaltiesForNFTsQuery(request, {
       skip: skipRoyalitiesCalculation,
     });
-  const royalties = skipRoyalitiesCalculation ? undefined : updatedRoyalties;
+  const royalties = skipRoyalitiesCalculation
+    ? undefined
+    : royaltiesData?.royalties;
 
   const usedAssetIds = useMemo(() => {
     const used: string[] = [];
@@ -138,6 +143,8 @@ export default function OfferBuilderProvider(props: OfferBuilderProviderProps) {
     () => ({
       readOnly,
       imported,
+      isMyOffer,
+      state,
       offeredUnknownCATs,
       requestedUnknownCATs,
       usedAssetIds,
@@ -147,6 +154,8 @@ export default function OfferBuilderProvider(props: OfferBuilderProviderProps) {
     [
       readOnly,
       imported,
+      isMyOffer,
+      state,
       offeredUnknownCATs,
       requestedUnknownCATs,
       usedAssetIds,

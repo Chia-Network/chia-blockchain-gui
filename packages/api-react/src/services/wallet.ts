@@ -1968,6 +1968,11 @@ export const walletApi = apiWithTag.injectEndpoints({
         args: [request],
       }),
       providesTags: ['NFTRoyalties'],
+      transformResponse: (response) => {
+        // Move royalties to a 'royalties' key to avoid co-mingling with success/error keys
+        const { success, ...royalties } = response;
+        return { royalties: { ...royalties }, success };
+      },
     }),
 
     getNFTsByNFTIDs: build.query<any, { nftIds: string[] }>({
