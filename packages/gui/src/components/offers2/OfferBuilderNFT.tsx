@@ -34,10 +34,17 @@ export type OfferBuilderNFTProps = {
   onRemove?: () => void;
   provenance?: boolean;
   showRoyalties?: boolean;
+  onSelectNFT: (name: string, nftId: string) => void;
 };
 
 export default function OfferBuilderNFT(props: OfferBuilderNFTProps) {
-  const { name, provenance = false, showRoyalties = false, onRemove } = props;
+  const {
+    name,
+    provenance = false,
+    showRoyalties = false,
+    onRemove,
+    onSelectNFT,
+  } = props;
 
   const fieldName = `${name}.nftId`;
   const value = useWatch({
@@ -63,6 +70,7 @@ export default function OfferBuilderNFT(props: OfferBuilderNFTProps) {
         type="text"
         label={<Trans>NFT ID</Trans>}
         onRemove={onRemove}
+        onSelectNFT={onSelectNFT}
       />
 
       {value && (

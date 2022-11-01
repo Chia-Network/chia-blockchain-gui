@@ -25,7 +25,7 @@ type VerifyHash = {
   dataHash: string;
   nftId: string;
   validateNFT: boolean;
-  isLoadingMetadata: boolean;
+  isLoadingMetadata?: boolean;
 };
 
 let encoding: string = 'binary';

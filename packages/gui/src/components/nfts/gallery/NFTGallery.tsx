@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState } from 'react';
 import {
   Flex,
   LayoutDashboardSub,
@@ -7,27 +7,25 @@ import {
   MenuItem,
   /*useTrans,*/ usePersistState,
 } from '@chia/core';
-import { Trans } from '@lingui/macro';
+import { t, Trans } from '@lingui/macro';
 import { Switch, FormGroup, FormControlLabel } from '@mui/material';
 import { FilterList as FilterListIcon } from '@mui/icons-material';
 // import { defineMessage } from '@lingui/macro';
 import { WalletReceiveAddressField } from '@chia/wallets';
-import type { NFTInfo, Wallet } from '@chia/api';
-import { useGetNFTWallets /*useGetNFTsByNFTIDsQuery*/ } from '@chia/api-react';
+import type { NFTInfo } from '@chia/api';
+
 import { Box, Grid } from '@mui/material';
 // import NFTGallerySidebar from './NFTGallerySidebar';
 import NFTCardLazy from '../NFTCardLazy';
-// import Search from './NFTGallerySearch';
-import { NFTContextualActionTypes } from '../NFTContextualActions';
-import type NFTSelection from '../../../types/NFTSelection';
-import useFetchNFTs from '../../../hooks/useFetchNFTs';
-import useHiddenNFTs from '../../../hooks/useHiddenNFTs';
-import useHideObjectionableContent from '../../../hooks/useHideObjectionableContent';
-import useNachoNFTs from '../../../hooks/useNachoNFTs';
+import Search from './NFTGallerySearch';
+import NFTContextualActions, {
+  NFTContextualActionTypes,
+} from '../NFTContextualActions';
 import NFTProfileDropdown from '../NFTProfileDropdown';
 import NFTGalleryHero from './NFTGalleryHero';
-import { useLocalStorage } from '@chia/core';
-import useNFTMetadata from '../../../hooks/useNFTMetadata';
+import useHiddenNFTs from '../../../hooks/useHiddenNFTs';
+import type NFTSelection from '../../../types/NFTSelection';
+import useFilteredNFTs from './NFTfilteredNFTs';
 
 export const defaultCacheSizeLimit = 1024; /* MB */
 
@@ -38,104 +36,27 @@ function searchableNFTContent(nft: NFTInfo) {
 }
 
 export default function NFTGallery() {
-  const { wallets: nftWallets, isLoading: isLoadingWallets } =
-    useGetNFTWallets();
-  const { nfts, isLoading: isLoadingNFTs } = useFetchNFTs(
-    nftWallets.map((wallet: Wallet) => wallet.id),
-  );
-  const noMetadataNFTs = nfts
-    .filter((nft) => {
-      return (
-        !nft?.metadataUris ||
-        (Array.isArray(nft.metadataUris) && nft.metadataUris.length === 0)
-      );
-    })
-    .map((nft) => nft.$nftId);
-
-  const { allowedNFTsWithMetadata } = useNFTMetadata(
-    nfts.filter((nft: NFTInfo) => {
-      return (
-        !nft?.metadataUris ||
-        (Array.isArray(nft?.metadataUris) && nft?.metadataUris.length > 0)
-      );
-    }),
-    true,
-  ); /* NFTs with metadata and no sensitive_content */
-
-  const allAllowedNFTs = noMetadataNFTs.concat(allowedNFTsWithMetadata);
-
+  const [search, setSearch] = useState<string>('');
+  const [selection, setSelection] = useState<NFTSelection>({
+    items: [],
+  });
   const [isNFTHidden] = useHiddenNFTs();
-  const isLoading = isLoadingWallets || isLoadingNFTs;
-  const [search /*, setSearch*/] = useState<string>('');
   const [showHidden, setShowHidden] = usePersistState(false, 'showHiddenNFTs');
-  const [hideObjectionableContent] = useHideObjectionableContent();
-
   const [walletId, setWalletId] = usePersistState<number | undefined>(
     undefined,
     'nft-profile-dropdown',
   );
-
-  const { data: nachoNFTs } = useNachoNFTs();
-
-  // const t = useTrans();
-  const [selection, setSelection] = useState<NFTSelection>({
-    items: [],
+  const { filteredNFTs, isLoading } = useFilteredNFTs({ walletId });
+  const filteredData = filteredNFTs.filter((nft: NFTInfo) => {
+    if (!showHidden && isNFTHidden(nft)) {
+      return false;
+    }
+    const content = searchableNFTContent(nft);
+    if (search) {
+      return content.includes(search.toLowerCase());
+    }
+    return true;
   });
-
-  const [limitCacheSize] = useLocalStorage(
-    `limit-cache-size`,
-    defaultCacheSizeLimit,
-  );
-
-  React.useEffect(() => {
-    if (limitCacheSize !== defaultCacheSizeLimit) {
-      const ipcRenderer = (window as any).ipcRenderer;
-      ipcRenderer?.invoke('setLimitCacheSize', limitCacheSize);
-    }
-  }, [limitCacheSize]);
-
-  const filteredData = useMemo(() => {
-    if (nachoNFTs && walletId === -1) {
-      return nachoNFTs;
-    }
-
-    if (!nfts) {
-      return nfts;
-    }
-
-    return nfts.filter((nft) => {
-      if (walletId !== undefined && nft.walletId !== walletId) {
-        return false;
-      }
-
-      if (!showHidden && isNFTHidden(nft)) {
-        return false;
-      }
-
-      if (
-        hideObjectionableContent &&
-        allAllowedNFTs.indexOf(nft.$nftId) === -1
-      ) {
-        return false;
-      }
-
-      const content = searchableNFTContent(nft);
-      if (search) {
-        return content.includes(search.toLowerCase());
-      }
-
-      return true;
-    });
-  }, [
-    search,
-    walletId,
-    nfts,
-    isNFTHidden,
-    showHidden,
-    hideObjectionableContent,
-    nachoNFTs,
-    allAllowedNFTs,
-  ]);
 
   function handleSelect(nft: NFTInfo, selected: boolean) {
     setSelection((currentSelection) => {
@@ -169,16 +90,17 @@ export default function NFTGallery() {
         >
           <NFTProfileDropdown onChange={setWalletId} walletId={walletId} />
           <Flex justifyContent="flex-end" alignItems="center">
-            {/*
-            <Search
-              onChange={setSearch}
-              value={search}
-              placeholder={t(defineMessage({ message: `Search...` }))}
-            />
-            */}
-            {/*
-            <NFTContextualActions selection={selection} />
-            */}
+            {null && (
+              <>
+                <Search
+                  onChange={setSearch}
+                  value={search}
+                  placeholder={t`Search...`}
+                />
+
+                <NFTContextualActions selection={selection} />
+              </>
+            )}
             <Box width={{ xs: 300, sm: 330, md: 600, lg: 780 }}>
               <Flex gap={1}>
                 <WalletReceiveAddressField

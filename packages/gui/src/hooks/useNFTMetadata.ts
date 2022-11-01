@@ -36,11 +36,15 @@ export default function useNFTsMetadata(nfts: NFTInfo[], isMultiple = false) {
     } catch (e) {}
   }
 
-  async function getMetadataContents({ dataHash, nftId, uri }): Promise<{
+  async function getMetadataContents(nft: NFTInfo): Promise<{
     data: string;
     encoding: string;
     isValid: boolean;
   }> {
+    const nftId = nft.$nftId;
+    const dataHash = nft.dataHash;
+    const uri = nft?.metadataUris?.[0];
+
     if (isMultiple) {
       let obj;
       let metadata;
@@ -51,7 +55,12 @@ export default function useNFTsMetadata(nfts: NFTInfo[], isMultiple = false) {
           metadata = JSON.parse(obj.json);
         } catch (e) {}
         if (isMultiple && metadata && !metadata.sensitive_content) {
-          allowedNFTsWithMetadata.push(nftId);
+          allowedNFTsWithMetadata.push({ ...nft, metadata });
+          return {
+            data: metadata.json,
+            encoding: 'utf-8',
+            isValid: metadata.isValid,
+          };
         }
       }
     } else {
@@ -88,7 +97,7 @@ export default function useNFTsMetadata(nfts: NFTInfo[], isMultiple = false) {
         data: content,
         encoding,
         isValid,
-      } = await getMetadataContents({ dataHash: nft.metadataHash, nftId, uri });
+      } = await getMetadataContents(nft);
 
       if (!isValid && !isMultiple) {
         setMetadataCache({
@@ -111,16 +120,24 @@ export default function useNFTsMetadata(nfts: NFTInfo[], isMultiple = false) {
           isValid: true,
           json: content,
         });
+      } else {
+        localStorage.setItem(
+          `metadata-cache-${nftId}`,
+          JSON.stringify({
+            isValid: true,
+            json: content,
+          }),
+        );
       }
       setMetadata(metadata);
       setSensitiveContent(metadata);
       if (isMultiple && !metadata.sensitive_content) {
-        allowedNFTsWithMetadata.push(nftId);
+        allowedNFTsWithMetadata.push({ ...nft, metadata });
       }
     } catch (error: any) {
       setErrorContent(error);
       if (isMultiple) {
-        allowedNFTsWithMetadata.push(nftId);
+        allowedNFTsWithMetadata.push({ ...nft, metadata });
       }
     } finally {
       setIsLoadingContent(false);

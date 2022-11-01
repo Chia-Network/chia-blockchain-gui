@@ -9,7 +9,6 @@ import QuestionMarkSvg from '@mui/icons-material/QuestionMark';
 import { NotInterested, Error as ErrorIcon } from '@mui/icons-material';
 import { useLocalStorage } from '@chia/core';
 import { isImage, parseExtensionFromUrl } from '../../util/utils.js';
-
 import {
   IconMessage,
   Loading,
@@ -351,9 +350,10 @@ export type NFTPreviewProps = {
   metadata?: any;
   disableThumbnail?: boolean;
   isCompact?: boolean;
-  metadataError: any;
-  validateNFT: boolean;
+  metadataError?: any;
+  validateNFT?: boolean;
   isLoadingMetadata?: boolean;
+  miniThumb?: boolean;
 };
 
 let loopImageInterval: any;
@@ -382,6 +382,7 @@ export default function NFTPreview(props: NFTPreviewProps) {
     metadataError,
     validateNFT,
     isLoadingMetadata,
+    miniThumb,
   } = props;
 
   const hasFile = dataUris?.length > 0;
@@ -557,7 +558,7 @@ export default function NFTPreview(props: NFTPreviewProps) {
       );
     }
 
-    if (isPreview && thumbnail.video && !disableThumbnail) {
+    if (isPreview && thumbnail.video && !disableThumbnail && !miniThumb) {
       mediaElement = (
         <>
           <video width="100%" height="100%" controls>
@@ -640,14 +641,25 @@ export default function NFTPreview(props: NFTPreviewProps) {
 
   function renderCompactIcon() {
     return (
-      <CompactIconFrame>
-        <CompactIcon />
+      <>
         {mimeType().match(/^video/) && <CompactVideoIcon />}
         {mimeType().match(/^audio/) && <CompactAudioIcon />}
         {mimeType().match(/^model/) && <CompactModelIcon />}
         {isDocument() && <CompactDocumentIcon />}
         {isUnknownType() && <CompactUnknownIcon />}
         {extension && <CompactExtension>.{extension}</CompactExtension>}
+      </>
+    );
+  }
+
+  function renderCompactIconWrapper() {
+    if (miniThumb) {
+      return renderCompactIcon();
+    }
+    return (
+      <CompactIconFrame>
+        <CompactIcon />
+        {renderCompactIcon()}
       </CompactIconFrame>
     );
   }
@@ -708,7 +720,7 @@ export default function NFTPreview(props: NFTPreviewProps) {
     }
 
     if (isCompact && !isImage(file)) {
-      return renderCompactIcon();
+      return renderCompactIconWrapper();
     }
 
     const isOfferNft =
@@ -753,6 +765,7 @@ export default function NFTPreview(props: NFTPreviewProps) {
           onLoadedChange={handleLoadedChange}
           hideUntilLoaded
           allowPointerEvents={true}
+          miniThumb={miniThumb}
         />
       </IframeWrapper>
     );
@@ -769,6 +782,7 @@ export default function NFTPreview(props: NFTPreviewProps) {
   }
 
   function renderIsHashValid() {
+    if (miniThumb) return null;
     let icon = null;
     let tooltipString = null;
 
@@ -797,9 +811,9 @@ export default function NFTPreview(props: NFTPreviewProps) {
   const showLoading = isLoading;
 
   return (
-    <StyledCardPreview height={height} width={width}>
+    <StyledCardPreview height={miniThumb ? '50px' : height} width={width}>
       {renderIsHashValid()}
-      {!hasFile ? (
+      {miniThumb ? null : !hasFile ? (
         <Background>
           <IconMessage icon={<NotInterested fontSize="large" />}>
             <Trans>No file available</Trans>
@@ -888,7 +902,7 @@ export default function NFTPreview(props: NFTPreviewProps) {
               alignItems="center"
             >
               <Loading center>
-                <Trans>Loading preview...</Trans>
+                {!miniThumb && <Trans>Loading preview...</Trans>}
               </Loading>
             </Flex>
           )}
