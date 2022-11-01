@@ -11,14 +11,11 @@ import { orderBy, groupBy, map } from 'lodash';
 import { useMeasure } from 'react-use';
 import styled from 'styled-components';
 import { useGetWalletBalanceQuery } from '@chia/api-react';
-import { TransactionType } from '@chia/api';
+import { TransactionType, WalletType } from '@chia/api';
 import type { Transaction } from '@chia/api';
-import {
-  useCurrencyCode,
-  mojoToChia,
-  blockHeightToTimestamp,
-} from '@chia/core';
+import { mojoToChia, mojoToCAT, blockHeightToTimestamp } from '@chia/core';
 import useWalletTransactions from '../hooks/useWalletTransactions';
+import WalletGraphTooltip from './WalletGraphTooltip';
 
 const StyledGraphContainer = styled.div`
   position: relative;
@@ -56,7 +53,7 @@ function generateTransactionGraphData(transactions: Transaction[]): {
       TransactionType.OUTGOING_TRADE,
     ].includes(type);
 
-    const total = BigNumber(amount).plus(BigNumber(feeAmount));
+    const total = new BigNumber(amount).plus(new BigNumber(feeAmount));
     const value = isOutgoing ? total.negated() : total;
 
     return {
@@ -81,12 +78,17 @@ function generateTransactionGraphData(transactions: Transaction[]): {
   // order by timestamp
   results = orderBy(results, ['timestamp'], ['desc']);
 
+  if (results.length === 1) {
+    results.push({ timestamp: 0, value: new BigNumber(0) });
+  }
+
   return results;
 }
 
 function prepareGraphPoints(
   balance: number,
   transactions: Transaction[],
+  walletType: WalletType,
   _aggregate?: Aggregate
 ): {
   x: number;
@@ -115,8 +117,17 @@ function prepareGraphPoints(
         peakTransaction.confirmedAtHeight,
         peakTransaction
       ),
-      y: BigNumber.max(0, mojoToChia(start)).toNumber(), // max 21,000,000 safe to number
-      tooltip: mojoToChia(balance).toString(), // bignumber is not supported by react
+      y: BigNumber.max(
+        0,
+        (walletType === WalletType.CAT
+          ? mojoToCAT(start)
+          : mojoToChia(start)
+        ).toNumber()
+      ), // max 21,000,000 safe to number
+      tooltip: (walletType === WalletType.CAT
+        ? mojoToCAT(balance)
+        : mojoToChia(balance)
+      ).toString(), // bignumber is not supported by react
     },
   ];
 
@@ -125,10 +136,24 @@ function prepareGraphPoints(
 
     start = start - value.toNumber();
 
+    const isAlreadyUsed = points.some((point) => point.x === timestamp);
+    if (isAlreadyUsed) {
+      return;
+    }
+
     points.push({
       x: timestamp,
-      y: BigNumber.max(0, mojoToChia(start)).toNumber(), // max 21,000,000 safe to number
-      tooltip: mojoToChia(start).toString(), // bignumber is not supported by react
+      y: BigNumber.max(
+        0,
+        (walletType === WalletType.CAT
+          ? mojoToCAT(start)
+          : mojoToChia(start)
+        ).toNumber()
+      ), // max 21,000,000 safe to number
+      tooltip:
+        walletType === WalletType.CAT
+          ? mojoToCAT(start)
+          : mojoToChia(start).toString(), // bignumber is not supported by react
     });
   });
 
@@ -146,11 +171,13 @@ function LinearGradient() {
 
 export type WalletGraphProps = {
   walletId: number;
+  walletType: WalletType;
+  unit?: string;
   height?: number | string;
 };
 
 export default function WalletGraph(props: WalletGraphProps) {
-  const { walletId, height = 150 } = props;
+  const { walletId, walletType, unit = '', height = 150 } = props;
   const { transactions, isLoading: isWalletTransactionsLoading } =
     useWalletTransactions(walletId, 50, 0, 'RELEVANCE');
   const { data: walletBalance, isLoading: isWalletBalanceLoading } =
@@ -158,7 +185,6 @@ export default function WalletGraph(props: WalletGraphProps) {
       walletId,
     });
 
-  const currencyCode = useCurrencyCode();
   const [ref, containerSize] = useMeasure();
 
   const isLoading =
@@ -176,7 +202,7 @@ export default function WalletGraph(props: WalletGraphProps) {
 
   const balance = walletBalance.confirmedWalletBalance;
 
-  const data = prepareGraphPoints(balance, confirmedTransactions, {
+  const data = prepareGraphPoints(balance, confirmedTransactions, walletType, {
     interval: 60 * 60,
     count: 24,
     offset: 0,
@@ -198,7 +224,7 @@ export default function WalletGraph(props: WalletGraphProps) {
       >
         <VictoryArea
           data={data}
-          interpolation={'basis'}
+          interpolation={'monotoneX'}
           style={{
             data: {
               stroke: '#5DAA62',
@@ -207,10 +233,12 @@ export default function WalletGraph(props: WalletGraphProps) {
               fill: 'url(#graph-gradient)',
             },
           }}
-          labels={({ datum }) =>
-            `${datum.tooltip} ${currencyCode.toUpperCase()}`
+          labels={() => ''}
+          labelComponent={
+            <VictoryTooltip
+              flyoutComponent={<WalletGraphTooltip suffix={unit} />}
+            />
           }
-          labelComponent={<VictoryTooltip style={{ fontSize: 10 }} />}
         />
         <VictoryAxis
           style={{

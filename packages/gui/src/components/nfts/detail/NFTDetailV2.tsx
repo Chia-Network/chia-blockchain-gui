@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useMemo, useState, useEffect } from 'react';
 import { Trans } from '@lingui/macro';
 import styled from 'styled-components';
 import {
@@ -9,7 +9,7 @@ import {
   useOpenDialog,
 } from '@chia/core';
 import type { NFTInfo } from '@chia/api';
-import { useGetNFTInfoQuery } from '@chia/api-react';
+import { useGetNFTInfoQuery, useGetNFTWallets } from '@chia/api-react';
 import { Box, Grid, Typography, IconButton, Button } from '@mui/material';
 import { MoreVert } from '@mui/icons-material';
 import { useParams } from 'react-router-dom';
@@ -17,6 +17,7 @@ import NFTPreview from '../NFTPreview';
 import NFTProperties from '../NFTProperties';
 import NFTRankings from '../NFTRankings';
 import NFTDetails from '../NFTDetails';
+import useFetchNFTs from '../../../hooks/useFetchNFTs';
 import useNFTMetadata from '../../../hooks/useNFTMetadata';
 import NFTContextualActions, {
   NFTContextualActionTypes,
@@ -34,10 +35,27 @@ export default function NFTDetail() {
   const { data: nft, isLoading: isLoadingNFT } = useGetNFTInfoQuery({
     coinId: launcherIdFromNFTId(nftId ?? ''),
   });
+  const { wallets: nftWallets, isLoading: isLoadingWallets } =
+    useGetNFTWallets();
+  const { nfts, isLoading: isLoadingNFTs } = useFetchNFTs(
+    nftWallets.map((wallet) => wallet.id),
+    { skip: !!isLoadingWallets },
+  );
+
+  const localNFT = useMemo(() => {
+    if (!nfts || isLoadingNFTs) {
+      return undefined;
+    }
+    return nfts.find((nft: NFTInfo) => nft.$nftId === nftId);
+  }, [nfts, nftId, isLoadingNFTs]);
 
   const isLoading = isLoadingNFT;
 
-  return isLoading ? <Loading center /> : <NFTDetailLoaded nft={nft} />;
+  return isLoading ? (
+    <Loading center />
+  ) : (
+    <NFTDetailLoaded nft={localNFT ?? nft} />
+  );
 }
 
 type NFTDetailLoadedProps = {

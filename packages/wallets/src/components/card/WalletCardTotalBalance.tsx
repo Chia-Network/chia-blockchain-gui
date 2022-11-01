@@ -91,7 +91,12 @@ export default function WalletCardTotalBalance(props: Props) {
     >
       <Flex flexGrow={1} />
       <StyledGraphContainer>
-        <WalletGraph walletId={walletId} height={80} />
+        <WalletGraph
+          walletId={walletId}
+          walletType={wallet.type}
+          unit={unit.length > 0 ? unit.toUpperCase() : wallet.name}
+          height={80}
+        />
       </StyledGraphContainer>
     </CardSimple>
   );

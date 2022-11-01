@@ -3,6 +3,9 @@ import type { CalculateRoyaltiesResponse } from '@chia/api';
 
 export interface OfferBuilderContextData {
   readOnly: boolean;
+  imported: boolean;
+  offeredUnknownCATs?: string[];
+  requestedUnknownCATs?: string[];
   usedAssetIds: string[];
   royalties?: CalculateRoyaltiesResponse;
   isCalculatingRoyalties: boolean;

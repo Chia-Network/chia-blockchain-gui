@@ -3,14 +3,17 @@ import { useWatch } from 'react-hook-form';
 import styled from 'styled-components';
 import { t, Trans } from '@lingui/macro';
 import {
-  Flex,
   Amount,
   Fee,
+  Flex,
+  FormatLargeNumber,
+  Link,
   Loading,
+  StateColor,
   TextField,
   Tooltip,
-  FormatLargeNumber,
   usePersistState,
+  TooltipIcon,
 } from '@chia/core';
 import { Box, Typography, IconButton } from '@mui/material';
 import { ConstructionOutlined, Remove } from '@mui/icons-material';
@@ -32,6 +35,7 @@ export type OfferBuilderValueProps = {
   usedAssets?: string[];
   disableReadOnly?: boolean;
   onSelectNFT: (nftId: string) => void;
+  warnUnknownCAT?: boolean;
 };
 
 export default function OfferBuilderValue(props: OfferBuilderValueProps) {
@@ -47,10 +51,16 @@ export default function OfferBuilderValue(props: OfferBuilderValueProps) {
     usedAssets,
     disableReadOnly = false,
     onSelectNFT,
+    warnUnknownCAT = false,
   } = props;
-  const { readOnly: builderReadOnly } = useOfferBuilderContext();
 
-  let value = useWatch({
+  const {
+    readOnly: builderReadOnly,
+    offeredUnknownCATs,
+    requestedUnknownCATs,
+  } = useOfferBuilderContext();
+
+  const value = useWatch({
     name,
   });
 
@@ -131,7 +141,7 @@ export default function OfferBuilderValue(props: OfferBuilderValueProps) {
   const readOnly = disableReadOnly ? false : builderReadOnly;
   const displayValue = !value ? (
     <Trans>Not Available</Trans>
-  ) : ['amount', 'fee', 'token'].includes(type) ? (
+  ) : ['amount', 'fee', 'token'].includes(type) && Number.isFinite(value) ? (
     <FormatLargeNumber value={value} />
   ) : (
     value
@@ -272,7 +282,22 @@ export default function OfferBuilderValue(props: OfferBuilderValueProps) {
           <Typography variant="body2" color="textSecondary">
             {label}
           </Typography>
-          <Tooltip title={displayValue} copyToClipboard>
+          <Tooltip
+            title={
+              <Flex flexDirection="column" gap={1}>
+                {displayValue}
+                {type === 'token' ? (
+                  <Link
+                    href={`https://www.taildatabase.com/tail/${value.toLowerCase()}`}
+                    target="_blank"
+                  >
+                    <Trans>Search on Tail Database</Trans>
+                  </Link>
+                ) : null}
+              </Flex>
+            }
+            copyToClipboard
+          >
             <Typography variant="h6" noWrap>
               {type === 'token' ? (
                 <OfferBuilderTokenSelector
@@ -353,6 +378,30 @@ export default function OfferBuilderValue(props: OfferBuilderValueProps) {
               </IconButton>
             </Box>
           )}
+        </Flex>
+      )}
+      {warnUnknownCAT && (
+        <Flex gap={0.5} alignItems="center">
+          <Typography variant="body2" color={StateColor.WARNING}>
+            Unknown CAT
+          </Typography>
+          <TooltipIcon>
+            {offeredUnknownCATs?.includes(value) ? (
+              <Typography variant="caption" color="textSecondary">
+                <Trans>
+                  Offer cannot be accepted because you don&apos;t possess the
+                  requested assets
+                </Trans>
+              </Typography>
+            ) : requestedUnknownCATs?.includes(value) ? (
+              <Typography variant="caption" color="textSecondary">
+                <Trans>
+                  Warning: Verify that the offered CAT asset IDs match the asset
+                  IDs of the tokens you expect to receive.
+                </Trans>
+              </Typography>
+            ) : null}
+          </TooltipIcon>
         </Flex>
       )}
       {caption && (

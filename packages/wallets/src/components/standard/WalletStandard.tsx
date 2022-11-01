@@ -24,9 +24,8 @@ export default function StandardWallet(props: StandardWalletProps) {
   >('summary');
 
   function handleCreateOffer() {
-    navigate('/dashboard/offers/create', {
+    navigate('/dashboard/offers/builder', {
       state: {
-        walletId,
         walletType: WalletType.STANDARD_WALLET,
         referrerPath: location.hash.split('#').slice(-1)[0],
       },

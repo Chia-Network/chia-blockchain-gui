@@ -15,10 +15,11 @@ import PlotAddSelectTemporaryDirectory from './PlotAddSelectTemporaryDirectory';
 import PlotAddSelectFinalDirectory from './PlotAddSelectFinalDirectory';
 import PlotAddNFT from './PlotAddNFT';
 import PlotAddConfig from '../../../types/PlotAdd';
-import plotSizes from '../../../constants/plotSizes';
+import { plottingInfo } from '../../../constants/plotSizes';
 import PlotNFTState from '../../../constants/PlotNFTState';
 import PlotterName from '../../../constants/PlotterName';
 import useUnconfirmedPlotNFTs from '../../../hooks/useUnconfirmedPlotNFTs';
+import { PlotterDefaults, PlotterOptions } from '../../../types/Plotter';
 
 type FormData = PlotAddConfig & {
   p2SingletonPuzzleHash?: string;
@@ -28,7 +29,17 @@ type FormData = PlotAddConfig & {
 
 type Props = {
   fingerprint: number;
-  plotters: Object;
+  plotters: Record<PlotterName, {
+    displayName: string;
+    version: string;
+    options: PlotterOptions;
+    defaults: PlotterDefaults;
+    installInfo: {
+      installed: boolean;
+      canInstall: boolean;
+      bladebitMemoryWarning?: string,
+    },
+  }>;
   currencyCode: string;
 };
 
@@ -66,7 +77,7 @@ export default function PlotAddForm(props: Props) {
     const plotterDefaults =
       plotters[plotterName]?.defaults ?? defaultPlotter.defaults;
     const plotSize = plotterDefaults.plotSize;
-    const maxRam = plotSizes.find(
+    const maxRam = plottingInfo[plotterName].find(
       (element) => element.value === plotSize,
     )?.defaultRam;
     const defaults = {
@@ -87,7 +98,7 @@ export default function PlotAddForm(props: Props) {
   const plotSize = watch('plotSize');
 
   useEffect(() => {
-    const plotSizeConfig = plotSizes.find((item) => item.value === plotSize);
+    const plotSizeConfig = plottingInfo[plotterName].find((item) => item.value === plotSize);
     if (plotSizeConfig) {
       setValue('maxRam', plotSizeConfig.defaultRam);
     }

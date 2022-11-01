@@ -8,7 +8,7 @@ msgstr ""
 "Language: uk_UA\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-07-27 18:40\n"
+"PO-Revision-Date: 2022-10-24 18:17\n"
 "Last-Translator: \n"
 "Language-Team: Ukrainian\n"
 "Plural-Forms: nplurals=4; plural=((n%10==1 && n%100!=11) ? 0 : ((n%10 >= 2 && n%10 <=4 && (n%100 < 12 || n%100 > 14)) ? 1 : ((n%10 == 0 || (n%10 >= 5 && n%10 <=9)) || (n%100 >= 11 && n%100 <= 14)) ? 2 : 3));\n"
@@ -20,11 +20,11 @@ msgstr ""
 
 #: src/components/WalletHistory.tsx:209
 msgid "+"
-msgstr ""
+msgstr "+"
 
 #: src/components/WalletHistory.tsx:209
 msgid "-"
-msgstr ""
+msgstr "-"
 
 #: src/components/WalletHeader.tsx:80
 msgid "Actions"
@@ -38,22 +38,22 @@ msgstr "Додати"
 #: src/components/did/WalletDID.tsx:874
 #: src/components/did/WalletDIDCreate.tsx:207
 msgid "Add Backup ID"
-msgstr ""
+msgstr "Додати ID резервної копії"
 
 #: src/components/hero/WalletHeroAdd.tsx:99
 #~ msgid "Add Custom Token"
-#~ msgstr ""
+#~ msgstr "Add Custom Token"
 
 #: src/components/WalletsList.tsx:54
 #: src/components/WalletsManageTokens.tsx:174
 #: src/components/cat/WalletCATCreateExistingSimple.tsx:61
 #: src/components/cat/WalletCATCreateSimple.tsx:70
 msgid "Add Token"
-msgstr ""
+msgstr "Додати токен"
 
 #: src/components/cat/WalletCATCreateSimple.tsx:94
 msgid "Adding {0} token"
-msgstr ""
+msgstr "Додавання {0} токенів"
 
 #: src/components/WalletReceiveAddress.tsx:76
 msgid "Address"
@@ -78,25 +78,25 @@ msgstr "Початкова кількість монет"
 
 #: src/components/did/WalletDIDCreate.tsx:60
 msgid "Amount must be an even amount."
-msgstr ""
+msgstr "Суми мають бути однаковими."
 
 #: src/components/WalletHeader.tsx:36
 msgid "Are you sure you want to delete unconfirmed transactions?"
-msgstr ""
+msgstr "Ви дійсно бажаєте видалити непідтверджені транзакції?"
 
 #: src/components/cat/WalletCATCreateExistingSimple.tsx:80
 #: src/components/cat/WalletCATTAILDialog.tsx:46
 #: src/components/cat/WalletCATTAILDialog.tsx:56
 msgid "Asset Id"
-msgstr ""
+msgstr "Id Активу"
 
 #: src/constants/WalletName.ts:11
 msgid "Atomic Swap Wallet"
-msgstr ""
+msgstr "Гаманець для атомарного обміну"
 
 #: src/constants/WalletName.ts:14
 msgid "Authorized Payee Wallet"
-msgstr ""
+msgstr "Авторизований Payee Гаманець"
 
 #: src/components/cat/WalletDID.tsx:646
 #: src/components/did/WalletDID.tsx:646
@@ -112,42 +112,42 @@ msgstr "Відміна"
 #: src/components/WalletSend.tsx:103
 #: src/components/cat/WalletCATSend.tsx:118
 msgid "Cannot send chia to coloured address. Please enter a chia address."
-msgstr ""
+msgstr "Не вдалося відправити Chia за кольоровою адресою. Будь ласка, введіть звичайну адресу Chia."
 
 #: src/components/WalletsSidebar.tsx:145
 msgid "Check my snapshot balance"
-msgstr ""
+msgstr "Перевірте мій snapshot баланс"
 
 #: src/components/cat/WalletCATSelect.tsx:24
 #: src/components/create/WalletCreateList.tsx:35
 #: src/constants/WalletName.ts:23
 msgid "Chia Asset Token"
-msgstr ""
+msgstr "Chia Asset Token"
 
 #: src/components/WalletsSidebar.tsx:160
 msgid "Click here to download an older version of the wallet"
-msgstr ""
+msgstr "Натисніть тут, щоб завантажити старішу версію гаманця"
 
 #: src/components/cat/WalletDID.tsx:984
 #: src/components/did/WalletDID.tsx:984
 msgid "Coin Name"
-msgstr ""
+msgstr "Назва монети"
 
 #: src/components/WalletHeader.tsx:31
 msgid "Confirmation"
-msgstr ""
+msgstr "Підтвердження"
 
 #: src/components/WalletHistory.tsx:155
 msgid "Confirmed"
-msgstr ""
+msgstr "Підтверджено"
 
 #: src/components/WalletHistory.tsx:359
 msgid "Confirmed at Height"
-msgstr ""
+msgstr "Підтверджено на висоті блоку"
 
 #: src/components/WalletStatusHeader.tsx:40
 #~ msgid "Connected ({0})"
-#~ msgstr ""
+#~ msgstr "Connected ({0})"
 
 #: src/components/WalletConnections.tsx:62
 msgid "Connection type"
@@ -155,7 +155,7 @@ msgstr "Тип підключення"
 
 #: src/components/WalletConnections.tsx:80
 #~ msgid "Connections"
-#~ msgstr "Підключення"
+#~ msgstr "Connections"
 
 #: src/components/rateLimited/WalletRateLimited.jsx:305
 #: src/components/rateLimited/WalletRateLimited.jsx:427
@@ -173,29 +173,29 @@ msgstr "Створити"
 #: src/components/cat/WalletDID.tsx:967
 #: src/components/did/WalletDID.tsx:967
 msgid "Create An Attestation Packet"
-msgstr ""
+msgstr "Створити пакет атестації"
 
 #: src/components/cat/WalletCATCreateExisting.tsx:76
 #~ msgid "Create Chia Asset Token Wallet from Existing TAIL"
-#~ msgstr ""
+#~ msgstr "Create Chia Asset Token Wallet from Existing TAIL"
 
 #: src/components/did/WalletDIDCreate.tsx:113
 msgid "Create Distributed Identity Wallet"
-msgstr ""
+msgstr "Створити розподілений ідентифікаційний гаманець"
 
 #: src/components/cat/WalletCATCreateNew.tsx:75
 msgid "Create New Chia Asset Token Wallet"
-msgstr ""
+msgstr "Створити новий Chia Asset Token гаманець"
 
 #: src/components/cat/WalletCATSelect.tsx:31
 #: src/components/did/WalletDIDSelect.tsx:31
 msgid "Create New Wallet"
-msgstr ""
+msgstr "Створити новий гаманець"
 
 #: src/components/cat/WalletCAT.tsx:113
 #: src/components/standard/WalletStandard.tsx:48
 msgid "Create Offer"
-msgstr ""
+msgstr "Створити пропозицію"
 
 #: src/components/create/createRLAdmin.jsx:187
 msgid "Create Rate Limited Admin Wallet"
@@ -213,23 +213,23 @@ msgstr "Створити транзакцію"
 
 #: src/components/cat/WalletCATCreateExisting.tsx:75
 #~ msgid "Create custom CAT Wallet"
-#~ msgstr ""
+#~ msgstr "Create custom CAT Wallet"
 
 #: src/constants/WalletName.ts:20
 msgid "Custody Wallet"
-msgstr ""
+msgstr "Кастодіальний гаманець"
 
 #: src/components/cat/WalletCATCreateSimple.tsx:102
 msgid "Custom"
-msgstr ""
+msgstr "Користувацький"
 
 #: src/constants/WalletName.ts:29
 msgid "DID Wallet"
-msgstr ""
+msgstr "DID гаманець"
 
 #: src/constants/WalletName.ts:38
 msgid "Datalayer Wallet"
-msgstr ""
+msgstr "Гаманець Datalayer"
 
 #: src/components/WalletHistory.tsx:198
 msgid "Date"
@@ -247,25 +247,25 @@ msgstr "Видалити"
 
 #: src/components/WalletHeader.tsx:86
 msgid "Delete Unconfirmed Transactions"
-msgstr ""
+msgstr "Видалити непідтверджені транзакції"
 
 #: src/components/card/WalletCardTotalBalance.tsx:75
 msgid "Derivation Index: {0}"
-msgstr ""
+msgstr "Індекс деривації: {0}"
 
 #: src/components/create/WalletCreateList.tsx:42
 #: src/components/did/WalletDIDSelect.tsx:24
 msgid "Distributed Identity"
-msgstr ""
+msgstr "Розподілена ідентифікація"
 
 #: src/components/cat/WalletDID.tsx:426
 #: src/components/did/WalletDID.tsx:426
 msgid "Drag and drop attestation packet(s)"
-msgstr ""
+msgstr "Перетягніть пакет(и) атестації(й)"
 
 #: src/components/did/WalletDIDRecovery.tsx:109
 msgid "Drag and drop your recovery backup file"
-msgstr ""
+msgstr "Перетягніть файл резервної копії"
 
 #: src/components/WalletImport.tsx:151
 msgid "Enter the 24 word mnemonic that you have saved in order to restore your Chia wallet."
@@ -273,7 +273,7 @@ msgstr "Введіть мнемоніку з 24 слів, яку ви збере
 
 #: src/components/cat/WalletCATSend.tsx:128
 msgid "Error the entered address appears to be for a different colour."
-msgstr ""
+msgstr "Помилка при введенні адреси, здається, це адреса для іншого кольору."
 
 #: src/components/WalletSend.tsx:191
 #: src/components/cat/WalletCATSend.tsx:244
@@ -296,7 +296,7 @@ msgstr "Ім'я файлу"
 
 #: src/components/WalletReceiveAddress.tsx:49
 msgid "HD or Hierarchical Deterministic keys are a type of public key/private key scheme where one private key can have a nearly infinite number of different public keys (and therefore wallet receive addresses) that will all ultimately come back to and be spendable by a single private key."
-msgstr ""
+msgstr "HD або ієрархічні детерміновані ключі - це тип відкритої схеми ключ/закритого ключа, в якій один закритий ключ може мати майже нескінченну кількість різних відкритих ключів (і адреси для прийому), які зрештою повертатимуться і витрачатимуться одним приватним ключем."
 
 #: src/components/WalletConnections.tsx:27
 msgid "IP address"
@@ -304,11 +304,11 @@ msgstr "ІР-адреса"
 
 #: src/components/WalletSendTransactionResultDialog.tsx:41
 msgid "If you would like to speed up the transaction, please delete unconfirmed transactions and retry with a higher fee."
-msgstr ""
+msgstr "Якщо ви хочете прискорити транзакцію, будь ласка, видаліть непідтверджені транзакції та спробуйте ще раз з більшою комісією."
 
 #: src/components/PasteMnemonic.tsx:86
 msgid "Import"
-msgstr ""
+msgstr "Імпорт"
 
 #: src/components/WalletImport.tsx:148
 msgid "Import Wallet from Mnemonics"
@@ -337,33 +337,33 @@ msgstr "Інтервал"
 
 #: src/components/WalletConnections.tsx:85
 msgid "List of connections is empty"
-msgstr ""
+msgstr "Список підключень порожній"
 
 #: src/components/WalletReceiveAddressField.tsx:40
 msgid "Loading..."
-msgstr ""
+msgstr "Завантаження..."
 
 #: src/components/cat/WalletDID.tsx:805
 #: src/components/did/WalletDID.tsx:805
 msgid "Manage Recovery DIDs"
-msgstr ""
+msgstr "Керування DIDs Recovery"
 
 #: src/components/WalletsManageTokens.tsx:151
 msgid "Manage token list"
-msgstr ""
+msgstr "Керування списком токенів"
 
 #: src/components/WalletHistory.tsx:169
 #: src/components/cat/WalletCATSend.tsx:234
 msgid "Memo"
-msgstr ""
+msgstr "Примітка"
 
 #: src/components/WalletHistory.tsx:368
 msgid "Memos"
-msgstr ""
+msgstr "Примітки"
 
 #: src/components/WalletSendTransactionResultDialog.tsx:19
 msgid "Mempool Full"
-msgstr ""
+msgstr "Мемпул заповнено"
 
 #: src/components/WalletConnections.tsx:55
 msgid "MiB Up/Down"
@@ -371,12 +371,12 @@ msgstr "MiB Вивантаження/Завантаження"
 
 #: src/constants/WalletName.ts:17
 msgid "Multi Sig Wallet"
-msgstr ""
+msgstr "Multi Sig Wallet"
 
 #: src/components/cat/WalletDID.tsx:536
 #: src/components/did/WalletDID.tsx:536
 msgid "My DID Wallet"
-msgstr ""
+msgstr "Мій DID гаманець"
 
 #: src/components/rateLimited/WalletRateLimited.jsx:414
 msgid "My Pubkey"
@@ -384,11 +384,11 @@ msgstr "Мій публічний ключ"
 
 #: src/constants/WalletName.ts:35
 msgid "NFT Wallet"
-msgstr ""
+msgstr "NFT Гаманець"
 
 #: src/components/cat/WalletCATCreateExistingSimple.tsx:71
 msgid "Name"
-msgstr ""
+msgstr "Назва"
 
 #: src/components/WalletReceiveAddress.tsx:64
 msgid "New Address"
@@ -422,7 +422,7 @@ msgstr "Не доступно"
 
 #: src/components/WalletStatusHeader.tsx:38
 #~ msgid "Not Connected"
-#~ msgstr ""
+#~ msgstr "Not Connected"
 
 #: src/components/WalletStatus.tsx:57
 msgid "Not Synced"
@@ -434,7 +434,7 @@ msgstr "ОК"
 
 #: src/components/WalletHistory.tsx:183
 msgid "Offer Accepted"
-msgstr ""
+msgstr "Пропозицію прийнято"
 
 #: src/components/WalletSend.tsx:141
 #: src/components/cat/WalletCATSend.tsx:179
@@ -443,7 +443,7 @@ msgstr "У середньому між кожним блоком транзак�
 
 #: src/components/did/WalletDIDRecovery.tsx:33
 msgid "Only one backup file is allowed."
-msgstr ""
+msgstr "Дозволяється лише один файл резервної копії."
 
 #: src/components/WalletHistory.tsx:93
 msgid "Outgoing"
@@ -451,11 +451,11 @@ msgstr "Вихідні"
 
 #: src/components/WalletImport.tsx:101
 msgid "Paste Mnemonic"
-msgstr ""
+msgstr "Вставити мнемоніку"
 
 #: src/components/PasteMnemonic.tsx:55
 msgid "Paste Mnemonic (24 words)"
-msgstr ""
+msgstr "Вставити мнемоніку (24 слова)"
 
 #: src/components/WalletHistory.tsx:162
 msgid "Pending"
@@ -483,32 +483,32 @@ msgstr "Будь-ласка введіть нульову комісію. Дод
 #: src/components/cat/WalletDID.tsx:924
 #: src/components/did/WalletDID.tsx:924
 msgid "Please enter a coin"
-msgstr ""
+msgstr "Будь ласка, введіть монету"
 
 #: src/components/cat/WalletDID.tsx:525
 #: src/components/cat/WalletDID.tsx:914
 #: src/components/did/WalletDID.tsx:525
 #: src/components/did/WalletDID.tsx:914
 msgid "Please enter a filename"
-msgstr ""
+msgstr "Будь ласка, введіть назву файлу"
 
 #: src/components/cat/WalletDID.tsx:934
 #: src/components/did/WalletDID.tsx:934
 msgid "Please enter a pubkey"
-msgstr ""
+msgstr "Будь ласка, введіть публічний ключ"
 
 #: src/components/cat/WalletDID.tsx:944
 #: src/components/did/WalletDID.tsx:944
 msgid "Please enter a puzzlehash"
-msgstr ""
+msgstr "Будь ласка, введіть puzzlehash"
 
 #: src/components/cat/WalletCATCreateExisting.tsx:40
 #~ msgid "Please enter a valid CAT name"
-#~ msgstr ""
+#~ msgstr "Please enter a valid CAT name"
 
 #: src/components/cat/WalletCATCreateExistingSimple.tsx:41
 msgid "Please enter a valid asset id"
-msgstr ""
+msgstr "Введіть дійсний ID активу"
 
 #: src/components/create/createRLAdmin.jsx:139
 msgid "Please enter a valid initial coin amount"
@@ -518,7 +518,7 @@ msgstr "Будь ласка, введіть припустиму початко�
 #: src/components/did/WalletDID.tsx:776
 #: src/components/did/WalletDIDCreate.tsx:74
 msgid "Please enter a valid integer of 0 or greater for the number of Backup IDs needed for recovery."
-msgstr ""
+msgstr "Будь ласка, введіть дійсне ціле число 0 або більше для кількості резервних ідентифікаторів, необхідних для відновлення."
 
 #: src/components/WalletSend.tsx:93
 #: src/components/cat/WalletCATSend.tsx:104
@@ -528,7 +528,7 @@ msgstr "Будь ласка, введіть припустиму числову 
 
 #: src/components/did/WalletDIDCreate.tsx:50
 msgid "Please enter a valid numeric amount."
-msgstr ""
+msgstr "Будь ласка, введіть дійсну цифрову суму."
 
 #: src/components/WalletSend.tsx:98
 #: src/components/cat/WalletCATSend.tsx:109
@@ -551,11 +551,11 @@ msgstr "Будь ласка, введіть коректний публічни�
 
 #: src/components/cat/WalletCATCreateExistingSimple.tsx:45
 msgid "Please enter a valid token name"
-msgstr ""
+msgstr "Будь ласка, введіть дійсну назву токена"
 
 #: src/components/WalletRenameDialog.tsx:49
 msgid "Please enter valid wallet name"
-msgstr ""
+msgstr "Будь ласка, введіть коректну назву гаманця"
 
 #: src/components/WalletSend.tsx:88
 #: src/components/cat/WalletCATSend.tsx:95
@@ -565,17 +565,17 @@ msgstr "Будь ласка, завершіть синхронізацію пе�
 
 #: src/components/did/WalletDIDRecovery.tsx:54
 msgid "Please select backup file first"
-msgstr ""
+msgstr "Будь ласка, спочатку виберіть файл резервної копії"
 
 #: src/components/cat/WalletCATCreateExistingSimple.tsx:37
 #: src/components/cat/WalletCATCreateSimple.tsx:37
 #: src/components/did/WalletDIDRecovery.tsx:63
 msgid "Please wait for wallet synchronization"
-msgstr ""
+msgstr "Будь ласка, зачекайте завершення синхронізації гаманця"
 
 #: src/constants/WalletName.ts:32
 msgid "Pooling Wallet"
-msgstr ""
+msgstr "Пул гаманець"
 
 #: src/components/WalletConnections.tsx:33
 msgid "Port"
@@ -590,11 +590,11 @@ msgstr "Публічний ключ"
 #: src/components/cat/WalletDID.tsx:1002
 #: src/components/did/WalletDID.tsx:1002
 msgid "Puzzlehash"
-msgstr ""
+msgstr "Puzzlehash"
 
 #: src/constants/WalletName.ts:8
 msgid "RL Wallet"
-msgstr ""
+msgstr "RL Гаманець"
 
 #: src/components/create/WalletCreateList.tsx:48
 msgid "Rate Limited"
@@ -611,11 +611,11 @@ msgstr "Налаштування гаманця з обмеженням част
 
 #: src/components/WalletsSidebar.tsx:152
 msgid "Read the blog post for details"
-msgstr ""
+msgstr "Прочитайте допис у блозі, щоб дізнатися більше"
 
 #: src/components/WalletHeader.tsx:64
 msgid "Receive"
-msgstr ""
+msgstr "Отримати"
 
 #: src/components/WalletReceiveAddress.tsx:46
 #: src/components/WalletReceiveAddressField.tsx:38
@@ -624,45 +624,45 @@ msgstr "Адреса отримання"
 
 #: src/components/cat/WalletCATSend.tsx:122
 msgid "Recipient address is not a coloured wallet address. Please enter a coloured wallet address"
-msgstr ""
+msgstr "Адреса одержувача не є адресою кольорового гаманця. Будь ласка, введіть адресу кольорового гаманця"
 
 #: src/components/cat/WalletDID.tsx:463
 #: src/components/did/WalletDID.tsx:463
 #: src/components/did/WalletDIDRecovery.tsx:124
 msgid "Recover"
-msgstr ""
+msgstr "Відновити"
 
 #: src/components/cat/WalletDID.tsx:338
 #: src/components/cat/WalletDID.tsx:479
 #: src/components/did/WalletDID.tsx:338
 #: src/components/did/WalletDID.tsx:479
 msgid "Recover DID Wallet"
-msgstr ""
+msgstr "Відновити DID Гаманець"
 
 #: src/components/did/WalletDIDRecovery.tsx:83
 msgid "Recover Distributed Identity Wallet"
-msgstr ""
+msgstr "Відновити розподілений ідентифікаційний гаманець"
 
 #: src/components/did/WalletDIDSelect.tsx:38
 msgid "Recover Wallet"
-msgstr ""
+msgstr "Відновити гаманець"
 
 #: src/constants/WalletName.ts:26
 msgid "Recoverable Wallet"
-msgstr ""
+msgstr "Гаманець, що відновлюється"
 
 #: src/components/cat/WalletCATSelect.tsx:38
 msgid "Recovery Wallet"
-msgstr ""
+msgstr "Відновити гаманець"
 
 #: src/components/WalletRenameDialog.tsx:69
 #: src/components/cat/WalletCAT.tsx:96
 msgid "Rename Wallet"
-msgstr ""
+msgstr "Перейменувати гаманець"
 
 #: src/components/WalletHistory.tsx:176
 msgid "Retire"
-msgstr ""
+msgstr "Відкликати"
 
 #: src/components/WalletRenameDialog.tsx:98
 msgid "Save"
@@ -671,11 +671,11 @@ msgstr "Зберегти"
 #: src/components/WalletTokenCard.tsx:185
 #: src/components/cat/WalletCATTAILDialog.tsx:76
 msgid "Search on Tail Database"
-msgstr ""
+msgstr "Пошук в Tail Database"
 
 #: src/components/WalletsList.tsx:32
 msgid "Select Wallet"
-msgstr ""
+msgstr "Обрати гаманець"
 
 #: src/components/create/WalletCreateList.tsx:28
 msgid "Select Wallet Type"
@@ -683,7 +683,7 @@ msgstr "Оберіть тип гаманця"
 
 #: src/components/did/WalletDIDRecovery.tsx:90
 msgid "Selected recovery file:"
-msgstr ""
+msgstr "Вибраний файл відновлення:"
 
 #: src/components/WalletHeader.tsx:59
 #: src/components/WalletSend.tsx:202
@@ -702,7 +702,7 @@ msgstr "Надішліть свій публічний ключ адмініст
 
 #: src/components/cat/WalletCAT.tsx:105
 msgid "Show Asset Id"
-msgstr ""
+msgstr "Показати Id активу"
 
 #: src/components/create/createRLAdmin.jsx:229
 msgid "Spendable Amount"
@@ -733,7 +733,7 @@ msgstr "Ліміт витрат (chia на інтервал): {0}"
 
 #: src/constants/WalletName.ts:5
 msgid "Standard Wallet"
-msgstr ""
+msgstr "Стандартний гаманець"
 
 #: src/components/cat/WalletDID.tsx:886
 #: src/components/did/WalletDID.tsx:886
@@ -743,11 +743,11 @@ msgstr "Надіслати"
 
 #: src/components/WalletSendTransactionResultDialog.tsx:15
 msgid "Success"
-msgstr ""
+msgstr "Успіх"
 
 #: src/components/WalletHeader.tsx:54
 msgid "Summary"
-msgstr ""
+msgstr "Звіт"
 
 #: src/components/WalletStatus.tsx:69
 msgid "Synced"
@@ -759,25 +759,25 @@ msgstr "Синхронізація"
 
 #: src/components/card/WalletCardTotalBalance.tsx:77
 msgid "The derivation index sets the range of wallet addresses that the wallet scans the blockchain for. This number is generally higher if you have a lot of transactions or canceled offers for XCH, CATs, or NFTs. If you believe your balance is incorrect because it’s missing coins, then increasing the derivation index could help the wallet include the missing coins in the balance total."
-msgstr ""
+msgstr "Індекс деривації встановлює діапазон адрес гаманця, для яких гаманець відсканує блокчейн. Це число, в загальному, більше за використання багатьох транзакцій або скасованих пропозицій для XCH, CATS або NFTs. Якщо ви вважаєте, що ваш баланс неправильний тому що на ньому недостатньо транзакцій, тоді збільшення індексу деривації може допомогти для формування правильного балансу."
 
 #: src/components/cat/WalletDID.tsx:789
 #: src/components/did/WalletDID.tsx:789
 #: src/components/did/WalletDIDCreate.tsx:87
 msgid "The number of Backup IDs needed for recovery cannot exceed the number of Backup IDs added."
-msgstr ""
+msgstr "Кількість ідентифікаторів резервних копій, необхідних для відновлення, не може перевищувати кількість доданих ідентифікаторів резервної копії."
 
 #: src/components/WalletSendTransactionResultDialog.tsx:34
 msgid "The transaction could not be immediately included in the mempool because the specified fee is too low. The transaction will be retried periodically, and may be included in the mempool once fees are lower, or if space becomes available."
-msgstr ""
+msgstr "Транзакція не може бути одразу включена до мемпулу, оскільки зазначена комісія надто мала. Транзакція буде періодично повторюватися і може бути включена до мемпулу, як тільки комісія знизиться або звільниться місце."
 
 #: src/components/WalletBadge.tsx:26
 msgid "This access token is verified"
-msgstr ""
+msgstr "Цей токен доступу перевірено"
 
 #: src/components/WalletHistory.tsx:130
 msgid "This is not a valid address for sending funds to"
-msgstr ""
+msgstr "Це не є дійсною адресою для відправки на неї коштів"
 
 #: src/components/standard/WalletStandardCards.tsx:23
 msgid "This is the amount of Chia that you can currently use to make transactions. It does not include pending farming rewards, pending incoming transactions, and Chia that you have just spent but is not yet in the blockchain."
@@ -793,7 +793,7 @@ msgstr "Це сума вхідних та вихідних відкладени�
 
 #: src/components/standard/WalletStandardCards.tsx:16
 msgid "This is the total amount of chia in the blockchain at the current peak block that is controlled by your private keys. It includes frozen farming rewards, but not pending incoming and outgoing transactions."
-msgstr ""
+msgstr "Це загальна кількість монет Chia у блокчейні у поточному піковому блоці, який контролюється вашими приватними ключами. Він включає заморожені винагороди за фармінг, але не очікуючі вхідні і вихідні транзакції."
 
 #: src/components/standard/WalletStandardCards.tsx:31
 msgid "This is the total balance + pending balance: it is what your balance will be after all pending transactions are confirmed."
@@ -805,19 +805,19 @@ msgstr "До"
 
 #: src/components/cat/WalletCATCreateExisting.tsx:85
 #~ msgid "Token and Asset Issuance Limitations"
-#~ msgstr ""
+#~ msgstr "Token and Asset Issuance Limitations"
 
 #: src/components/cat/WalletCATCreateSimple.tsx:45
 msgid "Token has empty asset id"
-msgstr ""
+msgstr "Токен має порожній Id активу"
 
 #: src/components/cat/WalletCATCreateSimple.tsx:41
 msgid "Token has empty name"
-msgstr ""
+msgstr "Токен має порожнє ім'я"
 
 #: src/components/WalletsSidebar.tsx:216
 msgid "Tokens"
-msgstr ""
+msgstr "Токени"
 
 #: src/components/card/WalletCardTotalBalance.tsx:62
 #: src/components/rateLimited/WalletRateLimited.jsx:542
@@ -826,11 +826,11 @@ msgstr "Загальний баланс"
 
 #: src/components/WalletSendTransactionResultDialog.tsx:27
 msgid "Transaction has successfully been sent to a full node and included in the mempool."
-msgstr ""
+msgstr "Транзакція успішно відправлена на повний вузол та включена до мемпулу."
 
 #: src/components/WalletHistory.tsx:311
 msgid "Transactions"
-msgstr ""
+msgstr "Транзакції"
 
 #: src/components/create/createRLAdmin.jsx:280
 #: src/components/rateLimited/WalletRateLimited.jsx:292
@@ -843,34 +843,34 @@ msgstr "Переглянути очікувані баланси"
 
 #: src/components/WalletConnections.tsx:80
 msgid "Wallet Connections"
-msgstr ""
+msgstr "З'єднання з гаманцем"
 
 #: src/components/WalletAdd.tsx:128
 #: src/components/WalletImport.tsx:176
 msgid "Wallet Name"
-msgstr ""
+msgstr "Назва Гаманця"
 
 #: src/components/cat/WalletCAT.tsx:75
 #: src/components/cat/WalletDID.tsx:1118
 #: src/components/did/WalletDID.tsx:1118
 msgid "Wallet does not exists"
-msgstr ""
+msgstr "Гаманець не існує"
 
 #: src/components/Wallet.tsx:50
 msgid "Wallet with type {0} not supported"
-msgstr ""
+msgstr "Гаманець з типом {0} не підтримується"
 
 #: src/components/Wallet.tsx:23
 msgid "Wallet {walletId} not found"
-msgstr ""
+msgstr "Гаманець {walletId} не знайдено"
 
 #: src/components/WalletsSidebar.tsx:157
 msgid "Want to see your old balance for yourself?"
-msgstr ""
+msgstr "Хочете побачити свій попередній баланс?"
 
 #: src/components/WalletsSidebar.tsx:119
 msgid "We've made an upgrade to the CAT standard which requires all CATs to be re-issued. You will be airdropped your new tokens as they are re-issued by the original issuers. The airdropped tokens will be based on the balance as of block height:<0/><1/><2/>(Approximate time: July 26th, 2022 @ 17:00 UTC)"
-msgstr ""
+msgstr "Ми зробили оновлення до стандарту CAT, який вимагає перевипущення всіх CAT. Ви отримаєте доступ до Ваших нових токенів, оскільки вони повторно будуть випущені вихідними видавцями. Токени ЛА базуються на балансі за висотою блоку:<0/><1/><2/>(Приблизний час: 26 липня, 2022 @ 17:00 UTC)"
 
 #: src/components/WalletAdd.tsx:94
 msgid "Welcome! The following words are used for your wallet backup. Without them, you will lose access to your wallet, keep them safe! Write down each word along with the order number next to them. (Order is important)"
@@ -882,13 +882,14 @@ msgstr "Коли ви отримаєте пакет інформації про 
 
 #: src/components/WalletsSidebar.tsx:115
 msgid "Your CAT tokens have been upgraded!"
-msgstr ""
+msgstr "Ваші CAT токени оновлено!"
 
 #: src/components/cat/WalletDID.tsx:326
 #: src/components/did/WalletDID.tsx:326
 msgid "Your DID requires at least {dids_num_req} attestation file{0} for recovery. Please upload additional files."
-msgstr ""
+msgstr "Ваш DID потребує принаймні {dids_num_req} атестаційного файлу {0} для відновлення. Будь ласка, завантажте додаткові файли."
 
 #: src/components/WalletImport.tsx:77
 msgid "Your pasted list does not include 24 valid mnemonic words."
-msgstr ""
+msgstr "Вставлений список не містить 24 валідних менімонічних слів."
+

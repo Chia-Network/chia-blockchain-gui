@@ -163,6 +163,7 @@ export default function WalletImport() {
                   autoFocus={index === 0}
                   variant="filled"
                   disableClearable
+                  data-testid={`mnemonic-${index}`}
                 />
               </Grid>
             ))}
