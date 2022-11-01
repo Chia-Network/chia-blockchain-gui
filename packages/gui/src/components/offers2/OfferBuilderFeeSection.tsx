@@ -21,7 +21,7 @@ export default function OfferBuilderFeeSection(
 ) {
   const { name, offering, viewer } = props;
   const { wallet, loading } = useStandardWallet();
-  const { imported } = useOfferBuilderContext();
+  const { imported, state } = useOfferBuilderContext();
   const { unit = '' } = useWallet(wallet?.id);
 
   const hideBalance = !offering;
@@ -42,6 +42,9 @@ export default function OfferBuilderFeeSection(
     remove(index);
   }
 
+  const canAdd =
+    (!fields.length && state === undefined) || // If in builder mode, or in viewer mode when offer hasn't been accepted
+    (viewer && imported && !offering); // If in viewer mode when offer has not been accepted and showing the requesting side
   const disableReadOnly = offering && viewer && imported;
 
   return (
@@ -51,7 +54,7 @@ export default function OfferBuilderFeeSection(
       subtitle={
         <Trans>Optional network fee to expedite acceptance of your offer</Trans>
       }
-      onAdd={!fields.length && !viewer ? handleAdd : undefined}
+      onAdd={canAdd ? handleAdd : undefined}
       expanded={!!fields.length}
       disableReadOnly={disableReadOnly}
     >

@@ -107,7 +107,7 @@ export default function OfferBuilderViewer(props: OfferBuilderViewerProps) {
   const missingRequestedCATs = requestedUnknownCATs?.length ?? 0 > 0;
 
   const canAccept = !!offerData;
-  const disableAccept = missingOfferedCATs;
+  const disableAccept = missingOfferedCATs || showInvalid;
 
   const isLoading = isLoadingWallets || !offerBuilderData;
 
@@ -205,6 +205,7 @@ export default function OfferBuilderViewer(props: OfferBuilderViewerProps) {
             ref={offerBuilderRef}
             isMyOffer={isMyOffer}
             imported={imported}
+            state={state}
             readOnly
             viewer
           />
