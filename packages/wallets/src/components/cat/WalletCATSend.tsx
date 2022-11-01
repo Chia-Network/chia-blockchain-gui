@@ -3,7 +3,7 @@ import { Trans, t } from '@lingui/macro';
 import {
   AdvancedOptions,
   Button,
-  Fee,
+  EstimatedFee,
   Form,
   Flex,
   Card,
@@ -212,7 +212,7 @@ export default function WalletCATSend(props: Props) {
               />
             </Grid>
             <Grid xs={12} md={6} item>
-              <Fee
+              <EstimatedFee
                 id="filled-secondary"
                 variant="filled"
                 name="fee"
@@ -221,6 +221,7 @@ export default function WalletCATSend(props: Props) {
                 label={<Trans>Fee</Trans>}
                 data-testid="WalletCATSend-fee"
                 fullWidth
+                txType="spendCATtx"
               />
             </Grid>
             <Grid xs={12} item>
