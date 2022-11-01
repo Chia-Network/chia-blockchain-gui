@@ -231,6 +231,7 @@ const StatusText = styled.div`
   font-weight: 500;
   font-size: 12px;
   line-height: 14px;
+  text-shadow: 0px 1px 4px black;
 `;
 
 const BlobBg = styled.div`

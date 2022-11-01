@@ -31,20 +31,23 @@ const StyledValue = styled(Box)`
 
 export type OfferBuilderNFTRoyaltiesProps = {
   nft?: NFTInfo;
+  offering?: boolean;
 };
 
 export default function OfferBuilderNFTRoyalties(
   props: OfferBuilderNFTRoyaltiesProps,
 ) {
-  const { nft } = props;
+  const { nft, offering = false } = props;
 
-  const { royalties: allRoyalties, isCalculatingRoyalties } =
+  const { requestedRoyalties, offeredRoyalties, isCalculatingRoyalties } =
     useOfferBuilderContext();
   const { data: catList, isLoading: isLoadingCATs } = useGetCatListQuery();
   const currencyCode = useCurrencyCode();
 
   const isLoading = isCalculatingRoyalties || isLoadingCATs;
-  const royalties = allRoyalties?.[nft.$nftId];
+  const royalties = (offering ? offeredRoyalties : requestedRoyalties)?.[
+    nft.$nftId
+  ];
   const hasRoyalties = nft.royaltyPercentage > 0;
 
   const rows = useMemo(() => {
@@ -101,9 +104,18 @@ export default function OfferBuilderNFTRoyalties(
       {isLoading ? (
         <Loading center />
       ) : hasRoyalties ? (
-        <Flex flexDirection="column" gap={0.5}>
-          {royalties?.length ?? 0 > 0
-            ? rows?.map(
+        <Flex flexDirection="column" gap={1}>
+          {nft.royaltyPercentage > 0 && (
+            <Flex flexDirection="row" gap={1}>
+              <Typography variant="body1">Percentage:</Typography>
+              <Typography variant="body1">
+                {nft.royaltyPercentage / 100.0}%
+              </Typography>
+            </Flex>
+          )}
+          {royalties?.length ?? 0 > 0 ? (
+            <Flex flexDirection="column" gap={0.5}>
+              {rows?.map(
                 ({ address, amount, amountString, symbol, displaySymbol }) => (
                   <Tooltip
                     key={`${address}-${amountString}-${symbol}`}
@@ -180,8 +192,9 @@ export default function OfferBuilderNFTRoyalties(
                     </Typography>
                   </Tooltip>
                 ),
-              )
-            : null}
+              )}
+            </Flex>
+          ) : null}
         </Flex>
       ) : (
         <Typography variant="body1" color="textSecondary">

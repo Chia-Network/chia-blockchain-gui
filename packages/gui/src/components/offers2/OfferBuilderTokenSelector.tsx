@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { Trans } from '@lingui/macro';
+import { Trans, t } from '@lingui/macro';
 import { WalletType } from '@chia/api';
 import { useFormContext, useWatch } from 'react-hook-form';
 import type { CATToken, Wallet } from '@chia/api';
@@ -17,12 +17,18 @@ export type OfferBuilderTokenSelectorProps = {
   name: string;
   readOnly?: boolean;
   usedAssets?: string[];
+  warnUnknownCAT?: boolean;
 };
 
 export default function OfferBuilderTokenSelector(
   props: OfferBuilderTokenSelectorProps,
 ) {
-  const { name, readOnly = false, usedAssets = [] } = props;
+  const {
+    name,
+    readOnly = false,
+    usedAssets = [],
+    warnUnknownCAT = false,
+  } = props;
   const { usedAssetIds } = useOfferBuilderContext();
   const { setValue } = useFormContext();
   const currentValue = useWatch({ name });
@@ -75,7 +81,9 @@ export default function OfferBuilderTokenSelector(
   if (readOnly) {
     return (
       <Typography variant="h6" noWrap>
-        {selectedOption?.displayName ?? currentValue}
+        {warnUnknownCAT
+          ? t`Unknown`
+          : selectedOption?.displayName ?? currentValue}
       </Typography>
     );
   }
