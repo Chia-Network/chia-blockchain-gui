@@ -40,14 +40,14 @@ function getSubTitle(offering = false, viewer = false, isMyOffer = false) {
       return <Trans>Assets you will give</Trans>;
     }
 
-    return <Trans>Assets I own that I&apos;d like to trade for</Trans>;
+    return <Trans>Assets I would like to trade</Trans>;
   }
 
   if (viewer) {
-    return <Trans>Assets that will be added to your wallet</Trans>;
+    return <Trans>Assets you will receive</Trans>;
   }
 
-  return <Trans>Assets I&apos;d like to trade for</Trans>;
+  return <Trans>Assets I would like to receive </Trans>;
 }
 
 function getIcon(offering = false, isMyOffer = false) {
