@@ -37,7 +37,7 @@ export default function ModeProvider(props: ModeProviderProps) {
         setModeState(newMode);
       }
     },
-    [persist]
+    [persist, setModeLocalStorage, setModeState]
   );
 
   const mode = persist ? modeLocalStorage : modeState;
