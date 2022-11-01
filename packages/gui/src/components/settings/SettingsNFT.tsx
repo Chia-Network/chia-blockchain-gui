@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import { Flex, SettingsLabel } from '@chia/core';
 import { Switch, FormGroup, FormControlLabel } from '@mui/material';
 import useHideObjectionableContent from '../../hooks/useHideObjectionableContent';
-import { useLocalStorage } from '@chia/core';
+import { useLocalStorage } from '@chia/api-react';
 import { AlertDialog, useOpenDialog } from '@chia/core';
 import { FormatBytes } from '@chia/core';
 import LimitCacheSize from './LimitCacheSize';

@@ -1,7 +1,7 @@
 import { useEffect, useState, useCallback } from 'react';
 import type NFTInfo from '@chia/api';
 import getRemoteFileContent from '../util/getRemoteFileContent';
-import { useLocalStorage } from '@chia/core';
+import { useLocalStorage } from '@chia/api-react';
 
 export const MAX_FILE_SIZE = 100 * 1024 * 1024; // 100 MB
 

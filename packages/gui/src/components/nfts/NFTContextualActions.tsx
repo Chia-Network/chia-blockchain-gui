@@ -40,7 +40,7 @@ import isURL from 'validator/lib/isURL';
 import download from '../../util/download';
 import { stripHexPrefix } from '../../util/utils';
 import NFTBurnDialog from './NFTBurnDialog';
-import { useLocalStorage } from '@chia/core';
+import { useLocalStorage } from '@chia/api-react';
 import computeHash from '../../util/computeHash';
 
 /* ========================================================================== */
