@@ -35,10 +35,17 @@ export type OfferBuilderNFTProps = {
   onRemove?: () => void;
   provenance?: boolean;
   showRoyalties?: boolean;
+  offering?: boolean;
 };
 
 export default function OfferBuilderNFT(props: OfferBuilderNFTProps) {
-  const { name, provenance = false, showRoyalties = false, onRemove } = props;
+  const {
+    name,
+    provenance = false,
+    showRoyalties = false,
+    onRemove,
+    offering = false,
+  } = props;
 
   const fieldName = `${name}.nftId`;
   const value = useWatch({
@@ -125,10 +132,14 @@ export default function OfferBuilderNFT(props: OfferBuilderNFTProps) {
               )}
             </Grid>
             <Grid xs={12} md={6} item>
-              {provenance && hasNFT && <OfferBuilderNFTProvenance nft={nft} />}
-              {showRoyalties && hasNFT && (
-                <OfferBuilderNFTRoyalties nft={nft} />
-              )}
+              <Flex flexDirection="column" gap={2}>
+                {showRoyalties && hasNFT && (
+                  <OfferBuilderNFTRoyalties nft={nft} offering={offering} />
+                )}
+                {provenance && hasNFT && (
+                  <OfferBuilderNFTProvenance nft={nft} />
+                )}
+              </Flex>
             </Grid>
           </Grid>
         </Flex>

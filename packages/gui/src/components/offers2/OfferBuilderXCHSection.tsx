@@ -34,9 +34,14 @@ export default function OfferBuilderXCHSection(
     })?.[0]?.amount ?? 0; // Assume there's only 1 XCH field per trade side
   const {
     readOnly,
-    royalties: allRoyalties,
+    requestedRoyalties,
+    offeredRoyalties,
     isCalculatingRoyalties,
   } = useOfferBuilderContext();
+
+  // Yes, this is correct. Fungible (XCH) assets used to pay royalties are from the opposite side of the trade.
+  const allRoyalties = offering ? requestedRoyalties : offeredRoyalties;
+
   const loading = isLoadingWallet || isCalculatingRoyalties;
 
   const [amountWithRoyalties, royaltyPayments] = useMemo(() => {

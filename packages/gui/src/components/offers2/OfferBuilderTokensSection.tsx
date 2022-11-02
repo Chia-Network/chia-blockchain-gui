@@ -31,10 +31,14 @@ export default function OfferBuilderTokensSection(
   });
   const {
     readOnly,
-    royalties: allRoyalties,
+    requestedRoyalties,
+    offeredRoyalties,
     isCalculatingRoyalties,
   } = useOfferBuilderContext();
   const loading = isLoadingWallets || isCalculatingRoyalties;
+
+  // Yes, this is correct. Fungible (token) assets used to pay royalties are from the opposite side of the trade.
+  const allRoyalties = offering ? requestedRoyalties : offeredRoyalties;
 
   const [amountWithRoyalties, royaltiesByAssetId] = useMemo(() => {
     if (!readOnly || !allRoyalties) {
