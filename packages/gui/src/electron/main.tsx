@@ -19,8 +19,6 @@ import url from 'url';
 import ReactDOMServer from 'react-dom/server';
 import { ServerStyleSheet, StyleSheetManager } from 'styled-components';
 import fs from 'fs';
-import http from 'http';
-import https from 'https';
 import crypto from 'crypto';
 
 // handle setupevents as quickly as possible
@@ -37,6 +35,7 @@ import AppIcon from '../assets/img/chia64x64.png';
 import windowStateKeeper from 'electron-window-state';
 import { parseExtensionFromUrl } from '../util/utils';
 import computeHash from '../util/computeHash';
+import axios from 'axios';
 
 const isPlaywrightTesting = process.env.PLAYWRIGHT_TESTS === 'true';
 const NET = 'mainnet';
@@ -230,11 +229,18 @@ if (!handleSquirrelEvent()) {
         },
       );
 
-      function getRemoteFileSize(rest: any): Promise<number> {
+      function getRemoteFileSize(url: string): Promise<number> {
         return new Promise((resolve, reject) => {
-          (rest.url.match(/^https/) ? https : http).get(rest.url, (res) => {
-            resolve(Number(res.headers['content-length']));
-          });
+          axios({
+            method: 'get',
+            url: url,
+          })
+            .then((response) => {
+              resolve(Number(response.headers['content-length']));
+            })
+            .catch((e) => {
+              reject(e.message);
+            });
         });
       }
 
@@ -286,9 +292,6 @@ if (!handleSquirrelEvent()) {
 
           let wasCached = false;
 
-          /* GET FILE SIZE */
-          const fileSize: number = await getRemoteFileSize(rest);
-
           if (allRequests[rest.uri]) {
             /* request already exists */
             return;
@@ -323,7 +326,10 @@ if (!handleSquirrelEvent()) {
           let totalLength = 0;
 
           try {
+            let fileSize: number;
+            fileSize = await getRemoteFileSize(rest.url);
             dataObject = await new Promise((resolve, reject) => {
+              /* GET FILE SIZE */
               allRequests[rest.url].on(
                 'response',
                 (response: IncomingMessage) => {
