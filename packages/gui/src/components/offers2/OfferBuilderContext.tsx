@@ -10,6 +10,8 @@ export interface OfferBuilderContextData {
   offeredUnknownCATs?: string[];
   requestedUnknownCATs?: string[];
   usedAssetIds: string[];
+  requestedRoyalties?: CalculateRoyaltiesResponse;
+  offeredRoyalties?: CalculateRoyaltiesResponse;
   royalties?: CalculateRoyaltiesResponse;
   isCalculatingRoyalties: boolean;
 }
