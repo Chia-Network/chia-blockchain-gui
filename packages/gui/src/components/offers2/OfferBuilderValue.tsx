@@ -119,6 +119,7 @@ export default function OfferBuilderValue(props: OfferBuilderValueProps) {
                   color="secondary"
                   label={label}
                   name={name}
+                  warnUnknownCAT={warnUnknownCAT}
                   required
                   fullWidth
                   readOnly
