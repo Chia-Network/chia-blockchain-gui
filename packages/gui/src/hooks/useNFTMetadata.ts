@@ -125,9 +125,10 @@ export default function useNFTsMetadata(nfts: NFTInfo[], isMultiple = false) {
         );
       }
       if (!isMultiple) {
+        const utf8Metadata = JSON.stringify(metadata);
         setMetadataCache({
           isValid: true,
-          json: content,
+          json: utf8Metadata,
         });
       }
       setMetadata(metadata);
