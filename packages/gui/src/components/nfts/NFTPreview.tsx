@@ -838,6 +838,12 @@ export default function NFTPreview(props: NFTPreviewProps) {
         <ThumbnailError>
           <Trans>Metadata hash mismatch</Trans>
         </ThumbnailError>
+      ) : typeof metadataError === 'string' &&
+        (metadataError === 'Invalid URL' ||
+          metadataError.indexOf('getaddrinfo ENOTFOUND') > -1) ? (
+        <ThumbnailError>
+          <Trans>Invalid metadata url</Trans>
+        </ThumbnailError>
       ) : error === 'Error parsing json' ? (
         <ThumbnailError>
           <Trans>Error parsing json</Trans>
