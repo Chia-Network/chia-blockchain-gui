@@ -20,7 +20,7 @@ export default function useNFTsMetadata(nfts: NFTInfo[], isMultiple = false) {
   const [isLoading, setIsLoadingContent] = useState<boolean>(true);
   const [errorContent, setErrorContent] = useState<Error | undefined>();
   const [metadata, setMetadata] = useState<any>();
-  const [allowedNFTs] = useState<NFTInfo[]>([]);
+  const [allowedNFTsWithMetadata] = useState<NFTInfo[]>([]);
 
   const [metadataCache, setMetadataCache] = useLocalStorage(
     `metadata-cache-${nftId}`,
@@ -70,7 +70,7 @@ export default function useNFTsMetadata(nfts: NFTInfo[], isMultiple = false) {
         metadata &&
         !normalizedSensitiveContent(metadata.sensitive_content)
       ) {
-        allowedNFTs.push(nftId);
+        allowedNFTsWithMetadata.push(nftId);
       }
     } else {
       if (metadataCache?.isValid !== undefined) {
@@ -136,10 +136,13 @@ export default function useNFTsMetadata(nfts: NFTInfo[], isMultiple = false) {
         isMultiple &&
         !normalizedSensitiveContent(metadata.sensitive_content)
       ) {
-        allowedNFTs.push(nftId);
+        allowedNFTsWithMetadata.push(nftId);
       }
     } catch (error: any) {
       setErrorContent(error);
+      if (isMultiple) {
+        allowedNFTsWithMetadata.push(nftId);
+      }
     } finally {
       setIsLoadingContent(false);
     }
@@ -161,6 +164,6 @@ export default function useNFTsMetadata(nfts: NFTInfo[], isMultiple = false) {
     metadata,
     isLoading,
     error,
-    allowedNFTs,
+    allowedNFTsWithMetadata,
   };
 }
