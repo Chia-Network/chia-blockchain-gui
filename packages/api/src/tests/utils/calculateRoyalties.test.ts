@@ -49,6 +49,17 @@ describe('calculateRoyalties', () => {
       );
       expect(royaltyAsset.royaltyPercentage).toBe(350);
     });
+    it('converts mainnet NFTInfo to a RoyaltyCalculationRoyaltyAsset object, mainnet as default', () => {
+      const royaltyAsset: RoyaltyCalculationRoyaltyAsset =
+        royaltyAssetFromNFTInfo(exampleNFT);
+      expect(royaltyAsset.asset).toBe(
+        'nft1g9xfeujpq402dhxrms5wqvh73rr02remvwvycr9s4cxzzlkg324s3nu8vj'
+      );
+      expect(royaltyAsset.royaltyAddress).toBe(
+        'xch17mp20xhhy7l6m20u37nw4ft338r2tt2yquenu4earcyzjwqh6kksc8dyjc'
+      );
+      expect(royaltyAsset.royaltyPercentage).toBe(350);
+    });
     it('converts testnet NFTInfo to a RoyaltyCalculationRoyaltyAsset object', () => {
       const royaltyAsset: RoyaltyCalculationRoyaltyAsset =
         royaltyAssetFromNFTInfo(exampleNFT, true);
