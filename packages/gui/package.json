@@ -126,8 +126,8 @@
     "locale:clean": "lingui extract --clean",
     "locale:compile": "lingui compile",
     "locale": "lingui extract && lingui compile",
-    "test": "cross-env PLAYWRIGHT_TESTS=true playwright test",
-    "test:jest": "jest"
+    "test:playwright": "cross-env PLAYWRIGHT_TESTS=true playwright test",
+    "test": "jest"
   },
   "dependencies": {
     "@chia/api": "1.0.0",
