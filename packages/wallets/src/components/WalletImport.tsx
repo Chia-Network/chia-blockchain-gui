@@ -3,11 +3,7 @@ import { Trans } from '@lingui/macro';
 import { Typography, Container, Grid } from '@mui/material';
 // import { shuffle } from 'lodash';
 import { useForm, useFieldArray } from 'react-hook-form';
-import {
-  useAddKeyMutation,
-  useLogInMutation,
-  useSetLabelMutation,
-} from '@chia/api-react';
+import { useAddPrivateKeyMutation, useLogInMutation } from '@chia/api-react';
 import { useNavigate } from 'react-router';
 import {
   AlertDialog,
@@ -44,8 +40,7 @@ type FormData = {
 
 export default function WalletImport() {
   const navigate = useNavigate();
-  const [setLabel] = useSetLabelMutation();
-  const [addKey] = useAddKeyMutation();
+  const [addKey] = useAddPrivateKeyMutation();
   const [logIn] = useLogInMutation();
   const trans = useTrans();
   const openDialog = useOpenDialog();
@@ -116,16 +111,9 @@ export default function WalletImport() {
     }
 
     const fingerprint = await addKey({
-      mnemonic: mnemonicWords,
-      type: 'new_wallet',
+      mnemonic: mnemonicWords.join(' '),
+      ...(label && { label: label.trim() }),
     }).unwrap();
-
-    if (label) {
-      await setLabel({
-        fingerprint,
-        label,
-      }).unwrap();
-    }
 
     await logIn({
       fingerprint,
