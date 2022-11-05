@@ -40,7 +40,7 @@ type FormData = {
 
 export default function WalletImport() {
   const navigate = useNavigate();
-  const [addKey] = useAddPrivateKeyMutation();
+  const [addPrivateKey] = useAddPrivateKeyMutation();
   const [logIn] = useLogInMutation();
   const trans = useTrans();
   const openDialog = useOpenDialog();
@@ -110,9 +110,9 @@ export default function WalletImport() {
       throw new Error(trans('Please fill all words'));
     }
 
-    const fingerprint = await addKey({
+    const fingerprint = await addPrivateKey({
       mnemonic: mnemonicWords.join(' '),
-      ...(label && { label: label.trim() }),
+      ...(label && { label: label.trim() }), // omit `label` if label is undefined/empty. backend returns an error if label is set and undefined/empty
     }).unwrap();
 
     await logIn({
