@@ -273,6 +273,25 @@ export const daemonApi = apiWithTag.injectEndpoints({
               bladebitMemoryWarning,
             },
           };
+
+          // Bladebit2 is capable of doing what bladebit1 can do. (RAM plot)
+          // The line below adds bladebit1 compatible option when bladebit2 is available.
+          if(plotterName === "bladebit2" && installed){
+            availablePlotters[plotterName].version = `${version} (Disk plot)`;
+
+            plotterName = "bladebit";
+            availablePlotters[plotterName] = {
+              displayName,
+              version: `${version} (RAM plot)`,
+              options: optionsForPlotter(plotterName),
+              defaults: defaultsForPlotter(plotterName),
+              installInfo: {
+                installed,
+                canInstall,
+                bladebitMemoryWarning,
+              },
+            };
+          }
         });
 
         return availablePlotters;
