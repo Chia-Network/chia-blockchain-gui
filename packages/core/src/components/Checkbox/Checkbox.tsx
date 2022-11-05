@@ -3,39 +3,46 @@ import React, { ChangeEvent, type ReactNode, forwardRef } from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 
 function ParseBoolean(props: CheckboxProps) {
-  const { onChange, ...rest } = props;
+  const { onChange, value, ...rest } = props;
   const { name } = rest;
   const { setValue } = useFormContext();
 
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
-    const value = !!e.target.checked;
+    const checked = Boolean(e.target.checked);
     // @ts-ignore
-    onChange(e, value);
+    onChange(e, checked);
 
     if (name) {
-      setValue(name, value);
+      setValue(name, checked);
     }
   }
 
-  return <MaterialCheckbox onChange={handleChange} {...rest} />;
+  return <MaterialCheckbox onChange={handleChange} checked={value} {...rest} />;
 }
 
 export type CheckboxProps = BaseCheckboxProps & {
   name: string;
   label?: ReactNode;
-  value?: any;
+  value: boolean;
 };
 
 function Checkbox(props: CheckboxProps, ref: any) {
-  const { name, value = true, ...rest } = props;
-  const { control } = useFormContext();
+  const { name, ...rest } = props;
+  const { control, getValues } = useFormContext();
 
   return (
     // @ts-ignore
     <Controller
       name={name}
       control={control}
-      render={({ field }) => <ParseBoolean {...field} value={value} {...rest} ref={ref} />}
+      render={({ field }) => (
+        <ParseBoolean
+          {...field}
+          {...rest}
+          value={Boolean(getValues(name))}
+          ref={ref}
+        />
+      )}
     />
   );
 }
