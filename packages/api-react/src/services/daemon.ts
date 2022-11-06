@@ -14,6 +14,18 @@ const apiWithTag = api.enhanceEndpoints({
 
 export const daemonApi = apiWithTag.injectEndpoints({
   endpoints: (build) => ({
+    addPrivateKey: build.mutation<number, { mnemonic: string; label?: string }>(
+      {
+        query: ({ mnemonic, label }) => ({
+          command: 'addPrivateKey',
+          service: Daemon,
+          args: [mnemonic, label],
+        }),
+        transformResponse: (response: any) => response?.fingerprint,
+        invalidatesTags: [{ type: 'DaemonKey', id: 'LIST' }],
+      }
+    ),
+
     getKey: build.query<
       KeyData,
       {
@@ -411,6 +423,7 @@ export const {
   useStopPlottingMutation,
   useStartPlottingMutation,
 
+  useAddPrivateKeyMutation,
   useGetKeyQuery,
   useGetKeysQuery,
   useSetLabelMutation,
