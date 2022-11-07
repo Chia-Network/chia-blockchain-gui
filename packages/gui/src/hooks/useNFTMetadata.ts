@@ -125,7 +125,7 @@ export default function useNFTsMetadata(nfts: NFTInfo[], isMultiple = false) {
       setSensitiveContent(nftId, cachedMetadata);
       if (
         isMultiple &&
-        !normalizedSensitiveContent(metadata.sensitive_content)
+        !normalizedSensitiveContent(cachedMetadata.sensitive_content)
       ) {
         allowedNFTsWithMetadata.push(nftId);
       }
