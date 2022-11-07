@@ -1,3 +1,4 @@
+export { default as useAppVersion } from './useAppVersion';
 export { default as useDarkMode } from './useDarkMode';
 export { default as useHiddenList } from './useHiddenList';
 export { default as useCurrencyCode } from './useCurrencyCode';

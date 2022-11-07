@@ -224,4 +224,8 @@ export default class Daemon extends Service {
   ) {
     return this.onStateChanged('keyring_status_changed', callback, processData);
   }
+
+  getVersion() {
+    return this.command('get_version');
+  }
 }

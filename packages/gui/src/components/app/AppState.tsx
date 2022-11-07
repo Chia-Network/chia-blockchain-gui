@@ -12,6 +12,7 @@ import {
   useGetStateQuery,
   useGetKeyringStatusQuery,
   useServices,
+  useGetVersionQuery,
 } from '@chia/api-react';
 import {
   Flex,
@@ -19,6 +20,7 @@ import {
   LayoutLoading,
   useMode,
   useIsSimulator,
+  useAppVersion,
 } from '@chia/core';
 import { Typography, Collapse } from '@mui/material';
 import AppKeyringMigrator from './AppKeyringMigrator';
@@ -29,6 +31,7 @@ import useEnableDataLayerService from '../../hooks/useEnableDataLayerService';
 import { IpcRenderer } from 'electron';
 import useEnableFilePropagationServer from '../../hooks/useEnableFilePropagationServer';
 import AppAutoLogin from './AppAutoLogin';
+import AppVersionWarning from './AppVersionWarning';
 
 const ALL_SERVICES = [
   ServiceName.WALLET,
@@ -61,6 +64,10 @@ export default function AppState(props: Props) {
   const [isFilePropagationServerEnabled] = useState(
     enableFilePropagationServer,
   );
+  const [versionDialog, setVersionDialog] = useState<boolean>(true);
+  const { data: backendVersion, isLoading: isLoadingBackendVersion } =
+    useGetVersionQuery();
+  const { version, isLoadingGuiVersion } = useAppVersion();
 
   const runServices = useMemo<ServiceName[] | undefined>(() => {
     if (mode) {
@@ -180,6 +187,18 @@ export default function AppState(props: Props) {
           </Flex>
         </Flex>
       </LayoutLoading>
+    );
+  }
+
+  if ((backendVersion && version) && (backendVersion !== version) && (versionDialog === true)) {
+    return (
+      <LayoutHero>
+        <AppVersionWarning
+          backV={backendVersion}
+          guiV={version}
+          setVersionDialog={setVersionDialog}
+        />
+      </LayoutHero>
     );
   }
 
