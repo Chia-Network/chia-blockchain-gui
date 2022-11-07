@@ -1,29 +1,19 @@
 import Wallet from '../services/Wallet';
 
 export default class CATWallet extends Wallet {
-  async createNewWallet(
-    amount: string,
-    fee: string,
-    host: string = this.client.backupHost,
-  ) {
+  async createNewWallet(amount: string, fee: string) {
     return super.createNewWallet('cat_wallet', {
       mode: 'new',
       amount,
       fee,
-      host,
     });
   }
 
-  async createWalletForExisting(
-    assetId: string,
-    fee: string,
-    host: string = this.client.backupHost,
-  ) {
+  async createWalletForExisting(assetId: string, fee: string) {
     return super.createNewWallet('cat_wallet', {
       mode: 'existing',
       assetId,
       fee,
-      host,
     });
   }
 
@@ -46,7 +36,13 @@ export default class CATWallet extends Wallet {
     });
   }
 
-  async spend(walletId: number, innerAddress: string, amount: string, fee: string, memos?: string[]) {
+  async spend(
+    walletId: number,
+    innerAddress: string,
+    amount: string,
+    fee: string,
+    memos?: string[]
+  ) {
     return this.command('cat_spend', {
       walletId,
       innerAddress,
