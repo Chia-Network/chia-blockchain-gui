@@ -18,7 +18,6 @@ type Options = {
   services?: ServiceName[];
   timeout?: number;
   camelCase?: boolean;
-  backupHost?: string;
   debug?: boolean;
 };
 
@@ -52,7 +51,6 @@ export default class Client extends EventEmitter {
     this.options = {
       timeout: 60 * 1000 * 10, // 10 minutes
       camelCase: true,
-      backupHost: 'https://backup.chia.net',
       debug: false,
       services: [],
       ...options,
@@ -117,10 +115,6 @@ export default class Client extends EventEmitter {
 
   get origin() {
     return ServiceName.EVENTS;
-  }
-
-  get backupHost() {
-    return this.options.backupHost;
   }
 
   get debug(): boolean {
