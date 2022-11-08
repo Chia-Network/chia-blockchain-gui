@@ -1,9 +1,10 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 import { useWatch } from 'react-hook-form';
 import styled from 'styled-components';
 import { t, Trans } from '@lingui/macro';
 import {
   Amount,
+  CopyToClipboard,
   Fee,
   Flex,
   FormatLargeNumber,
@@ -22,6 +23,7 @@ import OfferBuilderTokenSelector from './OfferBuilderTokenSelector';
 import useFilteredNFTs from '../nfts/gallery/NFTfilteredNFTs';
 import { NFTInfo } from '@chia/api';
 import NFTPreview from '../nfts/NFTPreview';
+import OfferBuilderRoyaltyPayouts from './OfferBuilderRoyaltyPayouts';
 
 export type OfferBuilderValueProps = {
   name: string;
@@ -36,6 +38,8 @@ export type OfferBuilderValueProps = {
   disableReadOnly?: boolean;
   onSelectNFT: (nftId: string) => void;
   warnUnknownCAT?: boolean;
+  amountWithRoyalties?: string;
+  royaltyPayments?: Record<string, any>[];
 };
 
 export default function OfferBuilderValue(props: OfferBuilderValueProps) {
@@ -52,6 +56,8 @@ export default function OfferBuilderValue(props: OfferBuilderValueProps) {
     disableReadOnly = false,
     onSelectNFT,
     warnUnknownCAT = false,
+    amountWithRoyalties,
+    royaltyPayments,
   } = props;
 
   const {
@@ -139,7 +145,9 @@ export default function OfferBuilderValue(props: OfferBuilderValueProps) {
   }, [filteredNFTs, value]);
 
   const readOnly = disableReadOnly ? false : builderReadOnly;
-  const displayValue = !value ? (
+  const displayValue = amountWithRoyalties ? (
+    amountWithRoyalties
+  ) : !value ? (
     <Trans>Not Available</Trans>
   ) : ['amount', 'fee', 'token'].includes(type) && Number.isFinite(value) ? (
     <FormatLargeNumber value={value} />
@@ -284,19 +292,35 @@ export default function OfferBuilderValue(props: OfferBuilderValueProps) {
           </Typography>
           <Tooltip
             title={
-              <Flex flexDirection="column" gap={1}>
-                {displayValue}
-                {type === 'token' ? (
-                  <Link
-                    href={`https://www.taildatabase.com/tail/${value.toLowerCase()}`}
-                    target="_blank"
-                  >
-                    <Trans>Search on Tail Database</Trans>
-                  </Link>
-                ) : null}
-              </Flex>
+              royaltyPayments && amountWithRoyalties ? (
+                <OfferBuilderRoyaltyPayouts
+                  totalAmount={amountWithRoyalties}
+                  originalAmount={value}
+                  royaltyPayments={royaltyPayments}
+                />
+              ) : (
+                <Flex flexDirection="column" gap={1}>
+                  <Flex flexDirection="row" alignItems="center" gap={1}>
+                    <Flex flexDirection="column" gap={1} maxWidth={200}>
+                      {displayValue}
+                      {type === 'token' ? (
+                        <Link
+                          href={`https://www.taildatabase.com/tail/${value.toLowerCase()}`}
+                          target="_blank"
+                        >
+                          <Trans>Search on Tail Database</Trans>
+                        </Link>
+                      ) : null}
+                    </Flex>
+                    <CopyToClipboard
+                      value={displayValue}
+                      fontSize="small"
+                      invertColor
+                    />
+                  </Flex>
+                </Flex>
+              )
             }
-            copyToClipboard
           >
             <Typography variant="h6" noWrap>
               {type === 'token' ? (
@@ -305,6 +329,7 @@ export default function OfferBuilderValue(props: OfferBuilderValueProps) {
                   color="secondary"
                   label={label}
                   name={name}
+                  warnUnknownCAT={warnUnknownCAT}
                   required
                   fullWidth
                   readOnly

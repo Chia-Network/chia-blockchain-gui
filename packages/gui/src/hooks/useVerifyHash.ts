@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import type { NFTInfo } from '@chia/api';
-import { useLocalStorage } from '@chia/core';
+import { useLocalStorage } from '@chia/api-react';
 import isURL from 'validator/lib/isURL';
 
 import getRemoteFileContent from '../util/getRemoteFileContent';

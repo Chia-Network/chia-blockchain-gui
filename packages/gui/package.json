@@ -126,8 +126,8 @@
     "locale:clean": "lingui extract --clean",
     "locale:compile": "lingui compile",
     "locale": "lingui extract && lingui compile",
-    "test": "cross-env PLAYWRIGHT_TESTS=true playwright test",
-    "test:jest": "jest"
+    "test:playwright": "cross-env PLAYWRIGHT_TESTS=true playwright test",
+    "test": "jest"
   },
   "dependencies": {
     "@chia/api": "1.0.0",
@@ -220,7 +220,7 @@
     "copy-webpack-plugin": "10.2.0",
     "cross-env": "7.0.3",
     "css-loader": "6.5.1",
-    "electron": "20.1.4",
+    "electron": "20.3.1",
     "electron-playwright-helpers": "^1.2.0",
     "electron-winstaller": "5.0.0",
     "html-loader": "3.1.0",

@@ -40,6 +40,13 @@ export default class Daemon extends Service {
     return this.command('running_services');
   }
 
+  addPrivateKey(mnemonic: string, label?: string) {
+    return this.command('add_private_key', {
+      mnemonic,
+      label,
+    });
+  }
+
   getKey(fingerprint: string, includeSecrets?: boolean) {
     return this.command('get_key', {
       fingerprint,

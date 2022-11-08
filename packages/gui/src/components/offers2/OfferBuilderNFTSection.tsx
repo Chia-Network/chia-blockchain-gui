@@ -42,7 +42,7 @@ export default function OfferBuilderNFTSection(
       ? offering
       : !offering
     : !offering;
-  const showRoyalties = viewer ? (isMyOffer ? !offering : offering) : offering;
+  const showRoyalties = viewer ? true : offering;
 
   return (
     <OfferBuilderSection
@@ -62,6 +62,7 @@ export default function OfferBuilderNFTSection(
             showRoyalties={showRoyalties}
             onRemove={() => handleRemove(index)}
             onSelectNFT={(nftId: string) => onSelectNFT(index, nftId)}
+            offering={offering}
           />
         ))}
       </Flex>

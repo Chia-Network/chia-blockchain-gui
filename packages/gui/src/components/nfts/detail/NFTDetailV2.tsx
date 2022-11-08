@@ -24,7 +24,7 @@ import NFTContextualActions, {
 } from '../NFTContextualActions';
 import NFTPreviewDialog from '../NFTPreviewDialog';
 import NFTProgressBar from '../NFTProgressBar';
-import { useLocalStorage } from '@chia/core';
+import { useLocalStorage } from '@chia/api-react';
 import { isImage } from '../../../util/utils.js';
 import { launcherIdFromNFTId } from '../../../util/nfts';
 import isURL from 'validator/lib/isURL';

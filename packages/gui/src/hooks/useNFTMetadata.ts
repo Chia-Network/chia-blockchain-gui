@@ -1,9 +1,40 @@
 import { useEffect, useState, useCallback } from 'react';
 import type NFTInfo from '@chia/api';
 import getRemoteFileContent from '../util/getRemoteFileContent';
-import { useLocalStorage } from '@chia/core';
+import { useLocalStorage } from '@chia/api-react';
 
 export const MAX_FILE_SIZE = 100 * 1024 * 1024; // 100 MB
+
+function normalizedSensitiveContent(value: any): boolean {
+  if (typeof value === 'boolean') {
+    return value;
+  } else if (Array.isArray(value) && value.length > 0) {
+    return true;
+  }
+  return value === 'true';
+}
+
+const lruMap = new Map();
+
+// TODO: Add functions to clear cache entries when "Refresh NFT Data" action is triggered
+
+function lruGet(key: string) {
+  const value = lruMap.get(key);
+  if (value) {
+    lruMap.delete(key);
+    lruMap.set(key, value);
+  }
+
+  return value;
+}
+
+function lruSet(key: string, value: any) {
+  if (lruMap.size >= 200) {
+    // delete oldest entry
+    lruMap.delete(lruMap.keys().next().value);
+  }
+  lruMap.set(key, value);
+}
 
 export default function useNFTsMetadata(nfts: NFTInfo[], isMultiple = false) {
   const nft = nfts[0];
@@ -23,17 +54,20 @@ export default function useNFTsMetadata(nfts: NFTInfo[], isMultiple = false) {
     {},
   );
 
-  function setSensitiveContent(metadataString: string) {
-    let object;
+  function setSensitiveContent(nftId: string, metadata: Record<string, any>) {
     try {
-      object = JSON.parse(metadataString);
+      const sensitiveContentValue = normalizedSensitiveContent(
+        metadata.sensitive_content,
+      );
 
-      if (object.sensitive_content) {
+      if (sensitiveContentValue) {
         setSensitiveContentObject(
-          Object.assign({}, sensitiveContentObject, { [nft.$nftId]: true }),
+          Object.assign({}, sensitiveContentObject, { [nftId]: true }),
         );
       }
-    } catch (e) {}
+    } catch (e) {
+      // Do nothing
+    }
   }
 
   async function getMetadataContents(nft: NFTInfo): Promise<{
@@ -49,19 +83,25 @@ export default function useNFTsMetadata(nfts: NFTInfo[], isMultiple = false) {
       let obj;
       let metadata;
       const cachedMetadata = localStorage.getItem(`metadata-cache-${nftId}`);
-      if (cachedMetadata) {
-        try {
+      try {
+        if (cachedMetadata) {
           obj = JSON.parse(cachedMetadata);
           metadata = JSON.parse(obj.json);
-        } catch (e) {}
-        if (isMultiple && metadata && !metadata.sensitive_content) {
-          allowedNFTsWithMetadata.push({ ...nft, metadata });
-          return {
-            data: metadata.json,
-            encoding: 'utf-8',
-            isValid: metadata.isValid,
-          };
         }
+      } catch (e) {
+        // Do nothing
+      }
+      if (
+        isMultiple &&
+        metadata &&
+        !normalizedSensitiveContent(metadata.sensitive_content)
+      ) {
+        allowedNFTsWithMetadata.push({ ...nft, metadata });
+        return {
+          data: metadata.json,
+          encoding: 'utf-8',
+          isValid: metadata.isValid,
+        };
       }
     } else {
       if (metadataCache?.isValid !== undefined) {
@@ -84,6 +124,23 @@ export default function useNFTsMetadata(nfts: NFTInfo[], isMultiple = false) {
   const getMetadata = useCallback(async (nft) => {
     const uri = nft?.metadataUris?.[0];
     const nftId = nft?.$nftId;
+
+    // Hacky proof of concept for using an LRU cache to avoid re-fetching metadata
+    const cachedMetadata = lruGet(nftId);
+    if (cachedMetadata) {
+      setIsLoadingContent(false);
+      setErrorContent(undefined);
+      setMetadata(cachedMetadata);
+      setSensitiveContent(nftId, cachedMetadata);
+      if (
+        isMultiple &&
+        !normalizedSensitiveContent(cachedMetadata.sensitive_content)
+      ) {
+        allowedNFTsWithMetadata.push({ ...nft, metadata });
+      }
+      //console.log(`found in cache ${nftId}: ${cachedMetadata}`);
+      return;
+    }
     try {
       setIsLoadingContent(true);
       setErrorContent(undefined);
@@ -115,10 +172,12 @@ export default function useNFTsMetadata(nfts: NFTInfo[], isMultiple = false) {
           Buffer.from(content, encoding as BufferEncoding).toString('utf8'),
         );
       }
+      lruSet(nftId, metadata);
       if (!isMultiple) {
+        const utf8Metadata = JSON.stringify(metadata);
         setMetadataCache({
           isValid: true,
-          json: content,
+          json: utf8Metadata,
         });
       } else {
         localStorage.setItem(
@@ -130,8 +189,11 @@ export default function useNFTsMetadata(nfts: NFTInfo[], isMultiple = false) {
         );
       }
       setMetadata(metadata);
-      setSensitiveContent(metadata);
-      if (isMultiple && !metadata.sensitive_content) {
+      setSensitiveContent(nftId, metadata);
+      if (
+        isMultiple &&
+        !normalizedSensitiveContent(metadata.sensitive_content)
+      ) {
         allowedNFTsWithMetadata.push({ ...nft, metadata });
       }
     } catch (error: any) {

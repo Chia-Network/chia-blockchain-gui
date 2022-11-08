@@ -1,11 +1,12 @@
 import React from 'react';
 import { Trans } from '@lingui/macro';
-import { Flex, Loading } from '@chia/core';
+import { Flex, Loading, Tooltip } from '@chia/core';
 import { useGetNFTInfoQuery } from '@chia/api-react';
 import { useWatch } from 'react-hook-form';
 import { Grid, Typography, Card } from '@mui/material';
 import NFTCard from '../nfts/NFTCard';
 import { launcherIdFromNFTId } from '../../util/nfts';
+import useNFTMinterDID from '../../hooks/useNFTMinterDID';
 import { NFTContextualActionTypes } from '../nfts/NFTContextualActions';
 import OfferBuilderValue from './OfferBuilderValue';
 import OfferBuilderNFTProvenance from './OfferBuilderNFTProvenance';
@@ -35,6 +36,7 @@ export type OfferBuilderNFTProps = {
   provenance?: boolean;
   showRoyalties?: boolean;
   onSelectNFT: (name: string, nftId: string) => void;
+  offering?: boolean;
 };
 
 export default function OfferBuilderNFT(props: OfferBuilderNFTProps) {
@@ -44,12 +46,14 @@ export default function OfferBuilderNFT(props: OfferBuilderNFTProps) {
     showRoyalties = false,
     onRemove,
     onSelectNFT,
+    offering = false,
   } = props;
 
   const fieldName = `${name}.nftId`;
   const value = useWatch({
     name: fieldName,
   });
+  const { didId: minterDID, didName: minterDIDName } = useNFTMinterDID(value);
 
   const launcherId = launcherIdFromNFTId(value ?? '');
 
@@ -65,14 +69,27 @@ export default function OfferBuilderNFT(props: OfferBuilderNFTProps) {
 
   return (
     <Flex flexDirection="column" gap={2}>
-      <OfferBuilderValue
-        name={fieldName}
-        type="text"
-        label={<Trans>NFT ID</Trans>}
-        onRemove={onRemove}
-        onSelectNFT={onSelectNFT}
-      />
-
+      <Flex flexDirection="column" gap={1}>
+        <OfferBuilderValue
+          name={fieldName}
+          type="text"
+          label={<Trans>NFT ID</Trans>}
+          onRemove={onRemove}
+          onSelectNFT={onSelectNFT}
+        />
+        {(minterDID || minterDIDName) && (
+          <Flex flexDirection="column" gap={1}>
+            <Typography variant="body1" color="textSecondary">
+              <Trans>Minter</Trans>
+            </Typography>
+            <Tooltip title={minterDID} copyToClipboard>
+              <Typography variant="body2" color="textPrimary" noWrap>
+                {minterDIDName ?? minterDID}
+              </Typography>
+            </Tooltip>
+          </Flex>
+        )}
+      </Flex>
       {value && (
         <Flex flexDirection="column" gap={2}>
           <Typography variant="body2" color="textSecondary">
@@ -117,10 +134,14 @@ export default function OfferBuilderNFT(props: OfferBuilderNFTProps) {
               )}
             </Grid>
             <Grid xs={12} md={6} item>
-              {provenance && hasNFT && <OfferBuilderNFTProvenance nft={nft} />}
-              {showRoyalties && hasNFT && (
-                <OfferBuilderNFTRoyalties nft={nft} />
-              )}
+              <Flex flexDirection="column" gap={2}>
+                {showRoyalties && hasNFT && (
+                  <OfferBuilderNFTRoyalties nft={nft} offering={offering} />
+                )}
+                {provenance && hasNFT && (
+                  <OfferBuilderNFTProvenance nft={nft} />
+                )}
+              </Flex>
             </Grid>
           </Grid>
         </Flex>
