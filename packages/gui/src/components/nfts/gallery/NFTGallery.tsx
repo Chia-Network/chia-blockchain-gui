@@ -10,17 +10,12 @@ import {
 import { t, Trans } from '@lingui/macro';
 import { Switch, FormGroup, FormControlLabel } from '@mui/material';
 import { FilterList as FilterListIcon } from '@mui/icons-material';
-// import { defineMessage } from '@lingui/macro';
 import { WalletReceiveAddressField } from '@chia/wallets';
 import type { NFTInfo } from '@chia/api';
-
 import { Box, Grid } from '@mui/material';
-// import NFTGallerySidebar from './NFTGallerySidebar';
 import NFTCardLazy from '../NFTCardLazy';
 import Search from './NFTGallerySearch';
-import NFTContextualActions, {
-  NFTContextualActionTypes,
-} from '../NFTContextualActions';
+import { NFTContextualActionTypes } from '../NFTContextualActions';
 import NFTProfileDropdown from '../NFTProfileDropdown';
 import NFTGalleryHero from './NFTGalleryHero';
 import useHiddenNFTs from '../../../hooks/useHiddenNFTs';
@@ -30,7 +25,13 @@ import useFilteredNFTs from './NFTfilteredNFTs';
 export const defaultCacheSizeLimit = 1024; /* MB */
 
 function searchableNFTContent(nft: NFTInfo) {
-  const items = [nft.$nftId, nft.dataUris?.join(' ') ?? '', nft.launcherId];
+  const items = [
+    nft.$nftId,
+    nft.dataUris?.join(' ') ?? '',
+    nft.launcherId,
+    nft.metadata?.name,
+    nft.metadata?.collection?.name,
+  ];
 
   return items.join(' ').toLowerCase();
 }
@@ -88,19 +89,13 @@ export default function NFTGallery() {
           flexWrap="wrap"
           justifyContent="space-between"
         >
+          <Search
+            onChange={setSearch}
+            value={search}
+            placeholder={t`Search...`}
+          />
           <NFTProfileDropdown onChange={setWalletId} walletId={walletId} />
           <Flex justifyContent="flex-end" alignItems="center">
-            {null && (
-              <>
-                <Search
-                  onChange={setSearch}
-                  value={search}
-                  placeholder={t`Search...`}
-                />
-
-                <NFTContextualActions selection={selection} />
-              </>
-            )}
             <Box width={{ xs: 300, sm: 330, md: 600, lg: 780 }}>
               <Flex gap={1}>
                 <WalletReceiveAddressField
@@ -145,6 +140,7 @@ export default function NFTGallery() {
                 )}
                 canExpandDetails={true}
                 availableActions={NFTContextualActionTypes.All}
+                isOffer={false}
               />
             </Grid>
           ))}

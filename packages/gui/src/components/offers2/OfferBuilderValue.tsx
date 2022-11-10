@@ -134,12 +134,20 @@ export default function OfferBuilderValue(props: OfferBuilderValueProps) {
       ) {
         return true;
       }
-      if (nft?.dataUris[0]?.toLowerCase().indexOf(value.toLowerCase()) > -1) {
+      if (
+        nft.metadata &&
+        nft.metadata?.collection?.name
+          ?.toLowerCase()
+          .indexOf(value.toLowerCase()) > -1
+      ) {
         return true;
       }
-      if (nft?.$nftId.substring(3).indexOf(value) > -1) {
-        return true;
-      }
+      // if (nft?.dataUris[0]?.toLowerCase().indexOf(value.toLowerCase()) > -1) {
+      //   return true;
+      // }
+      // if (nft?.$nftId.substring(3).indexOf(value) > -1) {
+      //   return true;
+      // }
       return false;
     });
   }, [filteredNFTs, value]);
@@ -264,7 +272,9 @@ export default function OfferBuilderValue(props: OfferBuilderValueProps) {
                 {highlightSearchedString(value, nft.metadata?.name) ||
                   t`Title Not Available`}
               </div>
-              <div>{highlightSearchedString(value, nft.dataUris[0])}</div>
+              <div>
+                {highlightSearchedString(value, nft.metadata?.collection?.name)}
+              </div>
             </NFTSearchedText>
           </SearchNFTrow>
         );

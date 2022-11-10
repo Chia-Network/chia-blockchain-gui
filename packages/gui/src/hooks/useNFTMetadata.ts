@@ -14,7 +14,7 @@ function normalizedSensitiveContent(value: any): boolean {
   return value === 'true';
 }
 
-const lruMap = new Map();
+export const lruMap = new Map();
 
 // TODO: Add functions to clear cache entries when "Refresh NFT Data" action is triggered
 
@@ -136,7 +136,7 @@ export default function useNFTsMetadata(nfts: NFTInfo[], isMultiple = false) {
         isMultiple &&
         !normalizedSensitiveContent(cachedMetadata.sensitive_content)
       ) {
-        allowedNFTsWithMetadata.push({ ...nft, metadata });
+        allowedNFTsWithMetadata.push({ ...nft, metadata: cachedMetadata });
       }
       //console.log(`found in cache ${nftId}: ${cachedMetadata}`);
       return;

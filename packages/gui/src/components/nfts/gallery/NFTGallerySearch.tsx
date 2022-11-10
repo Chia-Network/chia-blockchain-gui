@@ -12,6 +12,7 @@ const SearchBase = styled('div')(({ theme }) => ({
   },
   paddingLeft: theme.spacing(1),
   paddingRight: theme.spacing(1),
+  marginRight: '20px',
 }));
 
 const SearchIconWrapper = styled('div')(({ theme }) => ({

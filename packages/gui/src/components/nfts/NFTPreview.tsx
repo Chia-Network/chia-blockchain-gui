@@ -3,7 +3,6 @@ import { renderToString } from 'react-dom/server';
 import mime from 'mime-types';
 import { t, Trans } from '@lingui/macro';
 import { Box, Button, Typography } from '@mui/material';
-import CheckSvg from '@mui/icons-material/Check';
 import CloseSvg from '@mui/icons-material/Close';
 import QuestionMarkSvg from '@mui/icons-material/QuestionMark';
 import { NotInterested, Error as ErrorIcon } from '@mui/icons-material';
@@ -23,20 +22,16 @@ import { type NFTInfo } from '@chia/api';
 import isURL from 'validator/lib/isURL';
 import useVerifyHash from '../../hooks/useVerifyHash';
 
-import AudioSvg from '../../assets/img/audio.svg';
-import AudioPngIcon from '../../assets/img/audio.png';
 import UnknownPngIcon from '../../assets/img/unknown.png';
 import DocumentPngIcon from '../../assets/img/document.png';
 import VideoPngIcon from '../../assets/img/video.png';
 import ModelPngIcon from '../../assets/img/model.png';
-import AudioPngDarkIcon from '../../assets/img/audio_dark.png';
 import UnknownPngDarkIcon from '../../assets/img/unknown_dark.png';
 import DocumentPngDarkIcon from '../../assets/img/document_dark.png';
 import VideoPngDarkIcon from '../../assets/img/video_dark.png';
 import ModelPngDarkIcon from '../../assets/img/model_dark.png';
 
 import VideoBlobIcon from '../../assets/img/video-blob.svg';
-import AudioBlobIcon from '../../assets/img/audio-blob.svg';
 import ModelBlobIcon from '../../assets/img/model-blob.svg';
 import UnknownBlobIcon from '../../assets/img/unknown-blob.svg';
 import DocumentBlobIcon from '../../assets/img/document-blob.svg';
@@ -61,74 +56,6 @@ const StyledCardPreview = styled(Box)`
   justify-content: center;
   align-items: center;
   overflow: hidden;
-`;
-
-const AudioWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: 100%;
-  background-image: url(${(props) =>
-    props.albumArt ? props.albumArt : 'none'});
-  background-position: center;
-  align-items: center;
-  justify-content: center;
-  > audio + svg {
-    margin-top: 20px;
-  }
-  audio {
-    position: absolute;
-    margin-left: auto;
-    margin-right: auto;
-    left: 0;
-    right: 0;
-    bottom: 20px;
-    text-align: center;
-    // box-shadow: 0 3px 15px #000;
-    border-radius: 30px;
-  }
-  img {
-    width: 144px;
-    height: 144px;
-  }
-`;
-
-const AudioIconWrapper = styled.div`
-  position: absolute;
-  bottom: 20px;
-  left: 0;
-  background: #fff;
-  width: 54px;
-  height: 54px;
-  border-radius: 30px;
-  background: #f4f4f4;
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
-  right: 247px;
-  line-height: 66px;
-  transition: right 0.25s linear, width 0.25s linear, opacity 0.25s;
-  visibility: visible;
-  display: ${(props) => (props.isPreview ? 'inline-block' : 'none')};
-  box-shadow: 0px 0px 24px rgba(24, 162, 61, 0.5),
-    0px 4px 8px rgba(18, 99, 60, 0.32);
-  border-radius: 32px;
-  &.transition {
-    width: 300px;
-    right: 0px;
-    transition: right 0.25s linear, width 0.25s linear;
-  }
-  &.hide {
-    visibility: hidden;
-  }
-  &.dark {
-    background: #333;
-  }
-`;
-
-const AudioIcon = styled(AudioSvg)`
-  position: relative;
-  top: 2px;
 `;
 
 const IframeWrapper = styled.div`
@@ -158,46 +85,6 @@ const ModelExtension = styled.div`
     0px 4px 8px rgba(18, 99, 60, 0.32);
   border-radius: 32px;
   color: ${(props) => (props.isDarkMode ? '#fff' : '#333')};
-`;
-
-const AudioControls = styled.div`
-  visibility: ${(props) => (props.isPreview ? 'hidden' : 'visible')};
-  &.transition {
-    visibility: visible;
-  }
-  audio {
-    box-shadow: 0px 0px 24px rgba(24, 162, 61, 0.5),
-      0px 4px 8px rgba(18, 99, 60, 0.32);
-    border-radius: 32px;
-    &.dark {
-      ::-webkit-media-controls-enclosure {
-        background-color: #333;
-      }
-      ::-webkit-media-controls-play-button {
-        background-image: url('data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjZmZmIiBoZWlnaHQ9IjI0IiB3aWR0aD0iMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTggNXYxNGwxMS03eiIvPjxwYXRoIGQ9Ik0wIDBoMjR2MjRIMHoiIGZpbGw9Im5vbmUiLz48L3N2Zz4=');
-      }
-      ::-webkit-media-controls-current-time-display {
-        color: #fff;
-      }
-      ::-webkit-media-controls-time-remaining-display {
-        color: #fff;
-      }
-      ::-webkit-media-controls-mute-button {
-        background-image: url('data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjZmZmIiBoZWlnaHQ9IjI0IiB2aWV3Qm94PSIwIDAgMjQgMjQiIHdpZHRoPSIyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwYXRoIGQ9Ik0zIDl2Nmg0bDUgNVY0TDcgOUgzem0xMy41IDNjMC0xLjc3LTEuMDItMy4yOS0yLjUtNC4wM3Y4LjA1YzEuNDgtLjczIDIuNS0yLjI1IDIuNS00LjAyek0xNCAzLjIzdjIuMDZjMi44OS44NiA1IDMuNTQgNSA2Ljcxcy0yLjExIDUuODUtNSA2LjcxdjIuMDZjNC4wMS0uOTEgNy00LjQ5IDctOC43N3MtMi45OS03Ljg2LTctOC43N3oiLz4KICAgIDxwYXRoIGQ9Ik0wIDBoMjR2MjRIMHoiIGZpbGw9Im5vbmUiLz4KPC9zdmc+');
-      }
-      ::--webkit-media-controls-fullscreen-button {
-        background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMjQgMjQiIHhtbDpzcGFjZT0icHJlc2VydmUiIGZpbGw9IldpbmRvd1RleHQiPjxjaXJjbGUgY3g9IjEyIiBjeT0iNiIgcj0iMiIgZmlsbD0iI2ZmZiIvPjxjaXJjbGUgY3g9IjEyIiBjeT0iMTIiIHI9IiNmZmYiLz48Y2lyY2xlIGN4PSIxMiIgY3k9IjE4IiByPSIjZmZmIi8+PC9zdmc+');
-      }
-      ::-webkit-media-controls-toggle-closed-captions-button {
-        display: none;
-      }
-      ::-webkit-media-controls-timeline {
-        background: #444;
-        border-radius: 4px;
-        margin-left: 7px;
-      }
-    }
-  }
 `;
 
 const StatusContainer = styled.div`
@@ -325,12 +212,6 @@ const Sha256ValidatedIcon = styled.div`
   }
 `;
 
-const CheckIcon = styled(CheckSvg)`
-  path {
-    fill: #3aac59;
-  }
-`;
-
 const CloseIcon = styled(CloseSvg)`
   path {
     fill: red;
@@ -361,17 +242,10 @@ export type NFTPreviewProps = {
   miniThumb?: boolean;
 };
 
-let loopImageInterval: any;
-let audioAnimationInterval;
-
 //=========================================================================//
 // NFTPreview function
 //=========================================================================//
 export default function NFTPreview(props: NFTPreviewProps) {
-  let isPlaying: boolean = false;
-  React.useEffect(() => {
-    isPlaying = false;
-  }, []);
   const {
     nft,
     nft: { dataUris },
@@ -430,9 +304,6 @@ export default function NFTPreview(props: NFTPreviewProps) {
   );
 
   const iframeRef = useRef<any>(null);
-  const audioIconRef = useRef<any>(null);
-  const audioControlsRef = useRef<any>(null);
-  const videoThumbnailRef = useRef<any>(null);
 
   const isUrlValid = useMemo(() => {
     if (!file) {
@@ -444,7 +315,7 @@ export default function NFTPreview(props: NFTPreviewProps) {
 
   const { isDarkMode } = useDarkMode();
 
-  const [srcDoc, hasPlaybackControls] = useMemo(() => {
+  const [srcDoc] = useMemo(() => {
     if (!file) {
       return;
     }
@@ -528,10 +399,12 @@ export default function NFTPreview(props: NFTPreviewProps) {
           }
         }
       }
+      video::-webkit-media-controls {
+          display: none;
+      }
     `;
 
     let mediaElement = null;
-    let hasPlaybackControls = false;
 
     if (thumbnail.image) {
       mediaElement = (
@@ -548,7 +421,6 @@ export default function NFTPreview(props: NFTPreviewProps) {
           <source src={thumbnail.binary || file} />
         </video>
       );
-      hasPlaybackControls = true;
     } else if (parseExtensionFromUrl(file) === 'svg') {
       /* cached svg exception */
       mediaElement = <div id="replace-with-svg" />;
@@ -593,7 +465,7 @@ export default function NFTPreview(props: NFTPreviewProps) {
     /* cached svg exception */
     elem = elem.replace(`<div id="replace-with-svg"></div>`, thumbnail.binary);
 
-    return [elem, hasPlaybackControls];
+    return [elem];
   }, [file, thumbnail, error]);
 
   function mimeType(): string {

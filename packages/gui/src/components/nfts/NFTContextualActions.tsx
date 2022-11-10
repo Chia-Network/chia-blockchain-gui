@@ -42,6 +42,7 @@ import { stripHexPrefix } from '../../util/utils';
 import NFTBurnDialog from './NFTBurnDialog';
 import { useLocalStorage } from '@chia/api-react';
 import computeHash from '../../util/computeHash';
+import { lruMap } from '../../hooks/useNFTMetadata.ts';
 
 /* ========================================================================== */
 /*                          Common Action Types/Enums                         */
@@ -598,6 +599,7 @@ function NFTInvalidateContextualAction(
     if (!selectedNft) {
       return;
     }
+    lruMap.delete(selectedNft.$nftId);
     setThumbCache({});
     setContentCache({});
     setMetadataCache({});

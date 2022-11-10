@@ -83,8 +83,11 @@ export default function useVerifyHash(props: VerifyHash): {
       setIsLoading(false);
       lastError = 'missing preview_image_hash';
     } else {
-      /* ================== VIDEO THUMBNAIL ================== */
-      if (metadata['preview_video_uris']) {
+      if (thumbCache.error) {
+        setError(contentCache.error);
+        setIsLoading(false);
+      } else if (metadata['preview_video_uris']) {
+        /* ================== VIDEO THUMBNAIL ================== */
         /* if it's cached, don't try to validate hash at all */
         if (thumbCache.video) {
           setThumbnail({
@@ -110,6 +113,9 @@ export default function useVerifyHash(props: VerifyHash): {
               });
               if (!isValid) {
                 lastError = 'thumbnail hash mismatch';
+                setThumbCache({
+                  error: lastError,
+                });
               }
               if (isValid) {
                 videoThumbValid = true;
@@ -167,6 +173,9 @@ export default function useVerifyHash(props: VerifyHash): {
             });
             if (!isValid) {
               lastError = 'thumbnail hash mismatch';
+              setThumbCache({
+                error: lastError,
+              });
             }
             if (isValid) {
               imageThumbValid = true;
