@@ -3,7 +3,7 @@ import { Trans, t } from '@lingui/macro';
 import {
   ButtonLoading,
   chiaToMojo,
-  Fee,
+  EstimatedFee,
   Flex,
   Form,
   mojoToChiaLocaleString,
@@ -104,13 +104,14 @@ export default function ProfileAdd() {
             </Typography>
           </Flex>
           <Flex flexDirection="column" gap={2.5} paddingBottom={1}>
-            <Fee
+            <EstimatedFee
               id="filled-secondary"
               variant="filled"
               name="fee"
               color="secondary"
               label={<Trans>Fee</Trans>}
               fullWidth
+              txType="createDID"
             />
           </Flex>
           <Flex flexDirection="column" gap={2.5} paddingBottom={3}>

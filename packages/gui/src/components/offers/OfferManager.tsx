@@ -9,7 +9,7 @@ import {
   ButtonLoading,
   Card,
   CardHero,
-  Fee,
+  EstimatedFee,
   Flex,
   Form,
   IconButton,
@@ -160,13 +160,14 @@ function ConfirmOfferCancellation(props: ConfirmOfferCancellationProps) {
                       </Grid>
                       {cancelWithTransaction && (
                         <Grid xs={6} item>
-                          <Fee
+                          <EstimatedFee
                             id="filled-secondary"
                             variant="filled"
                             name="fee"
                             color="secondary"
                             label={<Trans>Fee</Trans>}
                             fullWidth
+                            txType="cancelOffer"
                           />
                         </Grid>
                       )}

@@ -4,7 +4,7 @@ import type { NFTInfo } from '@chia/api';
 import {
   Button,
   ButtonLoading,
-  Fee,
+  EstimatedFee,
   Form,
   Flex,
   TextField,
@@ -143,13 +143,14 @@ export default function NFTTransferAction(props: NFTTransferActionProps) {
           disabled={isLoading}
           required
         />
-        <Fee
+        <EstimatedFee
           id="filled-secondary"
           variant="filled"
           name="fee"
           color="secondary"
           label={<Trans>Fee</Trans>}
           disabled={isLoading}
+          txType="transferNFT"
         />
         <DialogActions>
           <Flex flexDirection="row" gap={3}>
