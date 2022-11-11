@@ -9,6 +9,7 @@ import { Alert, Grid } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import type OfferSummary from '../../@types/OfferSummary';
 import offerToOfferBuilderData from '../../util/offerToOfferBuilderData';
+import getUnknownCATs from '../../util/getUnknownCATs';
 import OfferBuilder from './OfferBuilder';
 import OfferNavigationHeader from './OfferNavigationHeader';
 import type OfferBuilderData from '../../@types/OfferBuilderData';
@@ -21,6 +22,7 @@ export type OfferBuilderViewerProps = {
   referrerPath?: string;
   state?: OfferState;
   isMyOffer?: boolean;
+  imported?: boolean;
 };
 
 export default function OfferBuilderViewer(props: OfferBuilderViewerProps) {
@@ -30,6 +32,7 @@ export default function OfferBuilderViewer(props: OfferBuilderViewerProps) {
     offerData,
     state,
     isMyOffer = false,
+    imported = false,
   } = props;
 
   const showError = useShowError();
@@ -45,8 +48,6 @@ export default function OfferBuilderViewer(props: OfferBuilderViewerProps) {
     offerData !== undefined,
   );
   const [isValid, setIsValid] = useState<boolean | undefined>();
-
-  const canAccept = !!offerData;
 
   const showInvalid = !isValidating && isValid === false;
 
@@ -74,16 +75,39 @@ export default function OfferBuilderViewer(props: OfferBuilderViewerProps) {
   }, [offerData]);
 
   const offerBuilderData = useMemo(() => {
-    if (!offerSummary || !wallets) {
+    if (!offerSummary) {
       return undefined;
     }
     try {
-      return offerToOfferBuilderData(offerSummary, wallets);
+      return offerToOfferBuilderData(offerSummary);
     } catch (e) {
       setError(e);
       return undefined;
     }
-  }, [JSON.stringify(offerSummary), wallets]);
+  }, [JSON.stringify(offerSummary)]);
+
+  const [offeredUnknownCATs, requestedUnknownCATs] = useMemo(() => {
+    if (!offerBuilderData || !wallets) {
+      return [];
+    }
+
+    const offeredUnknownCATs = getUnknownCATs(
+      wallets,
+      offerBuilderData.offered.tokens.map(({ assetId }) => assetId),
+    );
+    const requestedUnknownCATs = getUnknownCATs(
+      wallets,
+      offerBuilderData.requested.tokens.map(({ assetId }) => assetId),
+    );
+
+    return [offeredUnknownCATs, requestedUnknownCATs];
+  }, [offerBuilderData, wallets]);
+
+  const missingOfferedCATs = offeredUnknownCATs?.length ?? 0 > 0;
+  const missingRequestedCATs = requestedUnknownCATs?.length ?? 0 > 0;
+
+  const canAccept = !!offerData;
+  const disableAccept = missingOfferedCATs || showInvalid;
 
   const isLoading = isLoadingWallets || !offerBuilderData;
 
@@ -123,6 +147,7 @@ export default function OfferBuilderViewer(props: OfferBuilderViewerProps) {
               onClick={handleAcceptOffer}
               isLoading={isAccepting}
               disableElevation
+              disabled={disableAccept}
             >
               <Trans>Accept Offer</Trans>
             </ButtonLoading>
@@ -151,6 +176,21 @@ export default function OfferBuilderViewer(props: OfferBuilderViewerProps) {
           <Alert severity="warning">
             <Trans>This offer was cancelled</Trans>
           </Alert>
+        ) : missingOfferedCATs ? (
+          <Alert severity="warning">
+            <Trans>
+              Offer cannot be accepted because you don&apos;t possess the
+              requested assets
+            </Trans>
+          </Alert>
+        ) : missingRequestedCATs ? (
+          <Alert severity="warning">
+            <Trans>
+              One or more unknown tokens are being offered. Be sure to verify
+              that the asset IDs of the offered tokens match the asset IDs of
+              the tokens you are expecting.
+            </Trans>
+          </Alert>
         ) : isMyOffer ? (
           <Alert severity="success">
             <Trans>You created this offer</Trans>
@@ -164,6 +204,8 @@ export default function OfferBuilderViewer(props: OfferBuilderViewerProps) {
             onSubmit={handleSubmit}
             ref={offerBuilderRef}
             isMyOffer={isMyOffer}
+            imported={imported}
+            state={state}
             readOnly
             viewer
           />

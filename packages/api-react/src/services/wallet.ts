@@ -574,26 +574,6 @@ export const walletApi = apiWithTag.injectEndpoints({
           : [{ type: 'Keys', id: 'LIST' }],
     }),
 
-    addKey: build.mutation<
-      number,
-      {
-        mnemonic: string[];
-        type: 'new_wallet' | 'skip' | 'restore_backup';
-        filePath?: string;
-      }
-    >({
-      query: ({ mnemonic, type, filePath }) => ({
-        command: 'addKey',
-        service: Wallet,
-        args: [mnemonic, type, filePath],
-      }),
-      transformResponse: (response: any) => response?.fingerprint,
-      invalidatesTags: [
-        { type: 'Keys', id: 'LIST' },
-        { type: 'DaemonKey', id: 'LIST' },
-      ],
-    }),
-
     deleteKey: build.mutation<
       any,
       {
@@ -1968,6 +1948,11 @@ export const walletApi = apiWithTag.injectEndpoints({
         args: [request],
       }),
       providesTags: ['NFTRoyalties'],
+      transformResponse: (response) => {
+        // Move royalties to a 'royalties' key to avoid co-mingling with success/error keys
+        const { success, ...royalties } = response;
+        return { royalties: { ...royalties }, success };
+      },
     }),
 
     getNFTsByNFTIDs: build.query<any, { nftIds: string[] }>({
@@ -2246,7 +2231,6 @@ export const {
   useSendTransactionMutation,
   useGenerateMnemonicMutation,
   useGetPublicKeysQuery,
-  useAddKeyMutation,
   useDeleteKeyMutation,
   useCheckDeleteKeyMutation,
   useDeleteAllKeysMutation,

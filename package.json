@@ -10,8 +10,9 @@
     "lint": "eslint . --ext .ts,.tsx,.js,.jsx",
     "lint:fix": "eslint . --ext .ts,.tsx,.js,.jsx --fix",
     "publish": "lerna publish",
-    "postinstall": "npm run bootstrap && cross-env prettier --write '**/package.json' '**/package-lock.json'",
-    "prettier:format": "cross-env prettier --config prettier.config.js --write",
+    "postinstall": "npm run bootstrap && npm run prettier:postinstall",
+    "prettier:postinstall": "prettier --write **/package.json **/package-lock.json",
+    "prettier:format": "prettier --config prettier.config.js --write",
     "prettier:format:all": "npm run prettier:format -- '**/*.{ts,tsx,js,jsx}'",
     "build": "lerna run build",
     "build:watch": "lerna run build:watch",
@@ -22,10 +23,10 @@
     "locale:clean": "lerna run locale:clean",
     "locale": "lerna run locale",
     "audit": "lerna exec -- npm audit",
-    "audit:fix": "lerna exec -- npm audit fix"
+    "audit:fix": "lerna exec -- npm audit fix",
+    "test": "lerna run test --stream -- -- --passWithNoTests --coverage"
   },
   "dependencies": {
-    "cross-env": "7.0.3",
     "lerna": "^5.1.8"
   },
   "devDependencies": {

@@ -146,7 +146,7 @@ export default function OfferBuilderImport() {
     try {
       await parseOfferSummary(text, undefined);
     } catch (e) {
-      errorDialog(e);
+      showError(e);
     } finally {
       setIsParsing(false);
     }

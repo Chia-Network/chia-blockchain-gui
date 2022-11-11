@@ -1,5 +1,6 @@
 import React, { useRef, useMemo } from 'react';
 import { t, Trans } from '@lingui/macro';
+import { WalletType } from '@chia/api';
 import {
   useGetWalletsQuery,
   useCreateOfferForIdsMutation,
@@ -16,13 +17,15 @@ import offerBuilderDataToOffer from '../../util/offerBuilderDataToOffer';
 import type OfferBuilderData from '../../@types/OfferBuilderData';
 
 export type CreateOfferBuilderProps = {
+  walletType?: WalletType;
+  assetId?: string;
   nftId?: string;
   referrerPath?: string;
   onOfferCreated: (obj: { offerRecord: any; offerData: any }) => void;
 };
 
 export default function CreateOfferBuilder(props: CreateOfferBuilderProps) {
-  const { referrerPath, onOfferCreated, nftId } = props;
+  const { referrerPath, onOfferCreated, walletType, assetId, nftId } = props;
 
   const openDialog = useOpenDialog();
   const navigate = useNavigate();
@@ -31,18 +34,19 @@ export default function CreateOfferBuilder(props: CreateOfferBuilderProps) {
   const offerBuilderRef = useRef<{ submit: () => void } | undefined>(undefined);
 
   const defaultValues = useMemo(() => {
-    if (nftId) {
-      return {
-        ...emptyDefaultValues,
-        offered: {
-          ...emptyDefaultValues.offered,
-          nfts: [{ nftId }],
-        },
-      };
-    }
-
-    return emptyDefaultValues;
-  }, [nftId]);
+    return {
+      ...emptyDefaultValues,
+      offered: {
+        ...emptyDefaultValues.offered,
+        nfts: nftId ? [{ nftId }] : [],
+        xch: walletType === WalletType.STANDARD_WALLET ? [{ amount: '' }] : [],
+        tokens:
+          walletType === WalletType.CAT && assetId
+            ? [{ assetId, amount: '' }]
+            : [],
+      },
+    };
+  }, [walletType, assetId, nftId]);
 
   const [suppressShareOnCreate] = useLocalStorage<boolean>(
     OfferLocalStorageKeys.SUPPRESS_SHARE_ON_CREATE,

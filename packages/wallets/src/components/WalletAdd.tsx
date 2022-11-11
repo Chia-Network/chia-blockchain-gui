@@ -9,9 +9,8 @@ import {
 import { useForm } from 'react-hook-form';
 import {
   useGenerateMnemonicMutation,
-  useAddKeyMutation,
+  useAddPrivateKeyMutation,
   useLogInMutation,
-  useSetLabelMutation,
 } from '@chia/api-react';
 import { useNavigate } from 'react-router';
 import { useEffectOnce } from 'react-use';
@@ -33,8 +32,7 @@ export default function WalletAdd() {
   const navigate = useNavigate();
   const [generateMnemonic, { data: words, isLoading }] =
     useGenerateMnemonicMutation();
-  const [setLabel] = useSetLabelMutation();
-  const [addKey] = useAddKeyMutation();
+  const [addPrivateKey] = useAddPrivateKeyMutation();
   const [logIn] = useLogInMutation();
   const methods = useForm<FormData>({
     defaultValues: {
@@ -60,17 +58,10 @@ export default function WalletAdd() {
     const { label } = values;
 
     try {
-      const fingerprint = await addKey({
-        mnemonic: words,
-        type: 'new_wallet',
+      const fingerprint = await addPrivateKey({
+        mnemonic: words.join(' '),
+        ...(label && { label: label.trim() }), // omit `label` if label is undefined/empty. backend returns an error if label is set and undefined/empty
       }).unwrap();
-
-      if (label) {
-        await setLabel({
-          fingerprint,
-          label,
-        }).unwrap();
-      }
 
       await logIn({
         fingerprint,

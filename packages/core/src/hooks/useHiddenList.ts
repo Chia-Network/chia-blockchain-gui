@@ -1,5 +1,5 @@
 import { useCallback, useMemo } from 'react';
-import useLocalStorage from './useLocalStorage';
+import { useLocalStorage } from '@chia/api-react';
 
 type List<Type> = {
   [key: string]: Type[];

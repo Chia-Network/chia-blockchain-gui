@@ -1,34 +1,85 @@
 import { useEffect, useState, useCallback } from 'react';
 import type NFTInfo from '@chia/api';
 import getRemoteFileContent from '../util/getRemoteFileContent';
-import { useLocalStorage } from '@chia/core';
+import { useLocalStorage } from '@chia/api-react';
 
 export const MAX_FILE_SIZE = 100 * 1024 * 1024; // 100 MB
 
-export default function useNFTMetadata(nft: NFTInfo) {
-  const uri = nft?.metadataUris?.[0]; // ?? 'https://gist.githubusercontent.com/seeden/f648fc750c244f08ecb32507f217677a/raw/59fdfeb7a1c8d6d6afea5d86ecfdfd7f2d0167a5/metadata.json';
-  const nftId = nft?.$nftId;
+function normalizedSensitiveContent(value: any): boolean {
+  if (typeof value === 'boolean') {
+    return value;
+  } else if (Array.isArray(value) && value.length > 0) {
+    return true;
+  }
+  return value === 'true';
+}
 
+export default function useNFTsMetadata(nfts: NFTInfo[], isMultiple = false) {
+  const nft = nfts[0];
+  const nftId = nft?.$nftId;
   const [isLoading, setIsLoadingContent] = useState<boolean>(true);
   const [errorContent, setErrorContent] = useState<Error | undefined>();
   const [metadata, setMetadata] = useState<any>();
+  const [allowedNFTsWithMetadata] = useState<NFTInfo[]>([]);
 
   const [metadataCache, setMetadataCache] = useLocalStorage(
     `metadata-cache-${nftId}`,
     {},
   );
 
-  async function getMetadataContents({ dataHash }): Promise<{
+  const [sensitiveContentObject, setSensitiveContentObject] = useLocalStorage(
+    'sensitive-content',
+    {},
+  );
+
+  function setSensitiveContent(nftId: string, metadata: Record<string, any>) {
+    try {
+      const sensitiveContentValue = normalizedSensitiveContent(
+        metadata.sensitive_content,
+      );
+
+      if (sensitiveContentValue) {
+        setSensitiveContentObject(
+          Object.assign({}, sensitiveContentObject, { [nftId]: true }),
+        );
+      }
+    } catch (e) {
+      // Do nothing
+    }
+  }
+
+  async function getMetadataContents({ dataHash, nftId, uri }): Promise<{
     data: string;
     encoding: string;
     isValid: boolean;
   }> {
-    if (metadataCache.isValid !== undefined) {
-      return {
-        data: metadataCache.json,
-        encoding: 'utf-8',
-        isValid: metadataCache.isValid,
-      };
+    if (isMultiple) {
+      let obj;
+      let metadata;
+      const cachedMetadata = localStorage.getItem(`metadata-cache-${nftId}`);
+      try {
+        if (cachedMetadata) {
+          obj = JSON.parse(cachedMetadata);
+          metadata = JSON.parse(obj.json);
+        }
+      } catch (e) {
+        // Do nothing
+      }
+      if (
+        isMultiple &&
+        metadata &&
+        !normalizedSensitiveContent(metadata.sensitive_content)
+      ) {
+        allowedNFTsWithMetadata.push(nftId);
+      }
+    } else {
+      if (metadataCache?.isValid !== undefined) {
+        return {
+          data: metadataCache.json,
+          encoding: 'utf-8',
+          isValid: metadataCache.isValid,
+        };
+      }
     }
 
     return await getRemoteFileContent({
@@ -39,7 +90,9 @@ export default function useNFTMetadata(nft: NFTInfo) {
     });
   }
 
-  const getMetadata = useCallback(async (uri) => {
+  const getMetadata = useCallback(async (nft) => {
+    const uri = nft?.metadataUris?.[0];
+    const nftId = nft?.$nftId;
     try {
       setIsLoadingContent(true);
       setErrorContent(undefined);
@@ -53,9 +106,9 @@ export default function useNFTMetadata(nft: NFTInfo) {
         data: content,
         encoding,
         isValid,
-      } = await getMetadataContents({ dataHash: nft.metadataHash });
+      } = await getMetadataContents({ dataHash: nft.metadataHash, nftId, uri });
 
-      if (!isValid) {
+      if (!isValid && !isMultiple) {
         setMetadataCache({
           isValid: false,
         });
@@ -71,21 +124,40 @@ export default function useNFTMetadata(nft: NFTInfo) {
           Buffer.from(content, encoding as BufferEncoding).toString('utf8'),
         );
       }
-      setMetadataCache({
-        isValid: true,
-        json: content,
-      });
+      if (!isMultiple) {
+        const utf8Metadata = JSON.stringify(metadata);
+        setMetadataCache({
+          isValid: true,
+          json: utf8Metadata,
+        });
+      }
       setMetadata(metadata);
+      setSensitiveContent(nftId, metadata);
+      if (
+        isMultiple &&
+        !normalizedSensitiveContent(metadata.sensitive_content)
+      ) {
+        allowedNFTsWithMetadata.push(nftId);
+      }
     } catch (error: any) {
       setErrorContent(error);
+      if (isMultiple) {
+        allowedNFTsWithMetadata.push(nftId);
+      }
     } finally {
       setIsLoadingContent(false);
     }
   }, []);
 
   useEffect(() => {
-    getMetadata(uri);
-  }, [uri]);
+    if (isMultiple) {
+      for (let i = 0; i < nfts.length; i++) {
+        getMetadata(nfts[i]);
+      }
+    } else if (nft) {
+      getMetadata(nft);
+    }
+  }, [nft]);
 
   const error = errorContent;
 
@@ -93,5 +165,6 @@ export default function useNFTMetadata(nft: NFTInfo) {
     metadata,
     isLoading,
     error,
+    allowedNFTsWithMetadata,
   };
 }

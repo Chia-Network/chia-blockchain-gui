@@ -1,21 +1,24 @@
 import Wallet from '../services/Wallet';
 
 export default class RLWallet extends Wallet {
-  async createAdminWallet(interval: string, limit: string, pubkey: string, amount: string, host: string = this.client.backupHost) {
+  async createAdminWallet(
+    interval: string,
+    limit: string,
+    pubkey: string,
+    amount: string
+  ) {
     return this.createNewWallet('rl_wallet', {
       rlType: 'admin',
       interval,
       limit,
       pubkey,
       amount,
-      host,
     });
   }
 
-  async createUserWallet(host: string = this.client.backupHost) {
+  async createUserWallet() {
     return this.createNewWallet('rl_wallet', {
       rlType: 'user',
-      host,
     });
   }
 
@@ -24,7 +27,7 @@ export default class RLWallet extends Wallet {
     interval: string,
     limit: string,
     origin: string,
-    adminPubkey: string,
+    adminPubkey: string
   ) {
     return this.command('rl_set_user_info', {
       walletId,

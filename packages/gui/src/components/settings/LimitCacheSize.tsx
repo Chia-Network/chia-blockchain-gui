@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Trans } from '@lingui/macro';
 import { useForm } from 'react-hook-form';
-import { useLocalStorage } from '@chia/core';
+import { useLocalStorage } from '@chia/api-react';
 import {
   AlertDialog,
   ButtonLoading,

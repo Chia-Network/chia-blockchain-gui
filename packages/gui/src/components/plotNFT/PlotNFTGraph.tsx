@@ -10,6 +10,7 @@ import {
 import { useMeasure } from 'react-use';
 import { Box, Typography } from '@mui/material';
 import { Flex } from '@chia/core';
+import { WalletGraphTooltip } from '@chia/wallets';
 
 const HOUR_SECONDS = 60 * 60;
 
@@ -93,7 +94,7 @@ export default function PlotNFTGraph(props: PlotNFTGraphProps) {
           >
             <VictoryArea
               data={data}
-              interpolation={'basis'}
+              interpolation={'monotoneX'}
               style={{
                 data: {
                   stroke: '#5DAA62',
@@ -102,8 +103,10 @@ export default function PlotNFTGraph(props: PlotNFTGraphProps) {
                   fill: 'url(#graph-gradient)',
                 },
               }}
-              labels={({ datum }) => datum.tooltip}
-              labelComponent={<VictoryTooltip style={{ fontSize: 10 }} />}
+              labels={() => ''}
+              labelComponent={
+                <VictoryTooltip flyoutComponent={<WalletGraphTooltip />} />
+              }
             />
             <VictoryAxis
               style={{

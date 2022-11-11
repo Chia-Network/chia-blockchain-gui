@@ -31,22 +31,24 @@ const StyledValue = styled(Box)`
 
 export type OfferBuilderNFTRoyaltiesProps = {
   nft?: NFTInfo;
+  offering?: boolean;
 };
 
 export default function OfferBuilderNFTRoyalties(
   props: OfferBuilderNFTRoyaltiesProps,
 ) {
-  const { nft } = props;
+  const { nft, offering = false } = props;
 
-  const { royalties: allRoyalties, isCalculatingRoyalties } =
+  const { requestedRoyalties, offeredRoyalties, isCalculatingRoyalties } =
     useOfferBuilderContext();
   const { data: catList, isLoading: isLoadingCATs } = useGetCatListQuery();
   const currencyCode = useCurrencyCode();
 
   const isLoading = isCalculatingRoyalties || isLoadingCATs;
-  const royalties = allRoyalties?.[nft.$nftId];
-
-  const hasRoyalties = royalties?.length ?? 0 > 0;
+  const royalties = (offering ? offeredRoyalties : requestedRoyalties)?.[
+    nft.$nftId
+  ];
+  const hasRoyalties = nft.royaltyPercentage > 0;
 
   const rows = useMemo(() => {
     return royalties?.map((royalty) => {
@@ -102,81 +104,97 @@ export default function OfferBuilderNFTRoyalties(
       {isLoading ? (
         <Loading center />
       ) : hasRoyalties ? (
-        <Flex flexDirection="column" gap={0.5}>
-          {rows?.map(
-            ({ address, amount, amountString, symbol, displaySymbol }) => (
-              <Tooltip
-                key={`${address}-${amountString}-${symbol}`}
-                title={
-                  <Flex flexDirection="column" gap={1}>
-                    <Flex flexDirection="column" gap={0}>
-                      <Flex>
-                        <Box flexGrow={1}>
-                          <StyledTitle>
-                            <Trans>Amount</Trans>
-                          </StyledTitle>
-                        </Box>
-                      </Flex>
-                      <Flex alignItems="center" gap={1}>
-                        <StyledValue>{amountString}</StyledValue>
-                        <CopyToClipboard
-                          value={amountString}
-                          fontSize="small"
-                          invertColor
-                        />
-                      </Flex>
-                    </Flex>
-                    <Flex flexDirection="column" gap={0}>
-                      <Flex>
-                        <Box flexGrow={1}>
-                          <StyledTitle>Asset ID</StyledTitle>
-                        </Box>
-                      </Flex>
-                      <Flex alignItems="center" gap={1}>
-                        <StyledValue>{symbol}</StyledValue>
-                        <CopyToClipboard
-                          value={symbol}
-                          fontSize="small"
-                          invertColor
-                        />
-                      </Flex>
-                    </Flex>
-                    <Flex flexDirection="column" gap={0}>
-                      <Flex>
-                        <Box flexGrow={1}>
-                          <StyledTitle>Royalty Address</StyledTitle>
-                        </Box>
-                      </Flex>
-                      <Flex alignItems="center" gap={1}>
-                        <StyledValue>{address}</StyledValue>
-                        <CopyToClipboard
-                          value={address}
-                          fontSize="small"
-                          invertColor
-                        />
-                      </Flex>
-                    </Flex>
-                  </Flex>
-                }
-              >
-                <Typography variant="body2" color="textSecondary" noWrap>
-                  <Flex
-                    key={`${address}-${amount}`}
-                    flexDirection="row"
-                    gap={1}
-                    alignItems="baseline"
-                  >
-                    <Typography variant="body2" color="textSecondary">
-                      <FormatLargeNumber value={amount} />
-                    </Typography>
-                    <Typography variant="body2" color="textSecondary" noWrap>
-                      {displaySymbol}
-                    </Typography>
-                  </Flex>
-                </Typography>
-              </Tooltip>
-            ),
+        <Flex flexDirection="column" gap={1}>
+          {nft.royaltyPercentage > 0 && (
+            <Flex flexDirection="row" gap={1}>
+              <Typography variant="body1">Percentage:</Typography>
+              <Typography variant="body1">
+                {nft.royaltyPercentage / 100.0}%
+              </Typography>
+            </Flex>
           )}
+          {royalties?.length ?? 0 > 0 ? (
+            <Flex flexDirection="column" gap={0.5}>
+              {rows?.map(
+                ({ address, amount, amountString, symbol, displaySymbol }) => (
+                  <Tooltip
+                    key={`${address}-${amountString}-${symbol}`}
+                    title={
+                      <Flex flexDirection="column" gap={1}>
+                        <Flex flexDirection="column" gap={0}>
+                          <Flex>
+                            <Box flexGrow={1}>
+                              <StyledTitle>
+                                <Trans>Amount</Trans>
+                              </StyledTitle>
+                            </Box>
+                          </Flex>
+                          <Flex alignItems="center" gap={1}>
+                            <StyledValue>{amountString}</StyledValue>
+                            <CopyToClipboard
+                              value={amountString}
+                              fontSize="small"
+                              invertColor
+                            />
+                          </Flex>
+                        </Flex>
+                        <Flex flexDirection="column" gap={0}>
+                          <Flex>
+                            <Box flexGrow={1}>
+                              <StyledTitle>Asset ID</StyledTitle>
+                            </Box>
+                          </Flex>
+                          <Flex alignItems="center" gap={1}>
+                            <StyledValue>{symbol}</StyledValue>
+                            <CopyToClipboard
+                              value={symbol}
+                              fontSize="small"
+                              invertColor
+                            />
+                          </Flex>
+                        </Flex>
+                        <Flex flexDirection="column" gap={0}>
+                          <Flex>
+                            <Box flexGrow={1}>
+                              <StyledTitle>Royalty Address</StyledTitle>
+                            </Box>
+                          </Flex>
+                          <Flex alignItems="center" gap={1}>
+                            <StyledValue>{address}</StyledValue>
+                            <CopyToClipboard
+                              value={address}
+                              fontSize="small"
+                              invertColor
+                            />
+                          </Flex>
+                        </Flex>
+                      </Flex>
+                    }
+                  >
+                    <Typography variant="body2" color="textSecondary" noWrap>
+                      <Flex
+                        key={`${address}-${amount}`}
+                        flexDirection="row"
+                        gap={1}
+                        alignItems="baseline"
+                      >
+                        <Typography variant="body2" color="textSecondary">
+                          <FormatLargeNumber value={amount} />
+                        </Typography>
+                        <Typography
+                          variant="body2"
+                          color="textSecondary"
+                          noWrap
+                        >
+                          {displaySymbol}
+                        </Typography>
+                      </Flex>
+                    </Typography>
+                  </Tooltip>
+                ),
+              )}
+            </Flex>
+          ) : null}
         </Flex>
       ) : (
         <Typography variant="body1" color="textSecondary">

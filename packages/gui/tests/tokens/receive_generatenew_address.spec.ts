@@ -18,13 +18,12 @@ test.afterAll(async () => {
 
 });
 
-  //This works but. This appears to be a bug. New Address Button should generate new Address Id
   test('Verify that new address button creates new address', async () => {
 
-    // Given I enter correct credentials in Passphrase dialog
+   //Given I enter correct credentials in Passphrase dialog
    await new LoginPage(page).login('password2022!@')
 
-   // And I navigate to a wallet with funds
+   //And I navigate to a wallet with funds
    await page.locator('[data-testid="LayoutDashboard-log-out"]').click();
    await page.locator('text=975437849').click();
 
@@ -44,7 +43,7 @@ test.afterAll(async () => {
     //When I generate a new wallet address id
     await page.locator('[data-testid="WalletReceiveAddress-new-address"]').click();
 
-    //And I store the new wallet address id in a variable
+    //And I store the new wallet address id in a new variable
     const wallet_new = await page.locator('text=Receive Address New AddressAddress >> input[type="text"]').inputValue()
     console.log(wallet_new)
 

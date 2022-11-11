@@ -8,7 +8,7 @@ msgstr ""
 "Language: en_US\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-08-04 12:03\n"
+"PO-Revision-Date: 2022-10-24 18:17\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -229,7 +229,7 @@ msgstr "DID Wallet"
 
 #: src/constants/WalletName.ts:38
 msgid "Datalayer Wallet"
-msgstr "Datalayer Wallet"
+msgstr ""
 
 #: src/components/WalletHistory.tsx:198
 msgid "Date"
@@ -848,7 +848,7 @@ msgstr "Wallet Connections"
 #: src/components/WalletAdd.tsx:128
 #: src/components/WalletImport.tsx:176
 msgid "Wallet Name"
-msgstr "Wallet Name"
+msgstr ""
 
 #: src/components/cat/WalletCAT.tsx:75
 #: src/components/cat/WalletDID.tsx:1118
@@ -892,3 +892,4 @@ msgstr "Your DID requires at least {dids_num_req} attestation file{0} for recove
 #: src/components/WalletImport.tsx:77
 msgid "Your pasted list does not include 24 valid mnemonic words."
 msgstr "Your pasted list does not include 24 valid mnemonic words."
+

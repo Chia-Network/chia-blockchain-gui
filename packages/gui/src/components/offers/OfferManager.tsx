@@ -58,7 +58,6 @@ import {
   displayStringForOfferState,
   formatAmountForWalletType,
   offerAssetTypeForAssetId,
-  offerContainsAssetOfType,
 } from './utils';
 import { launcherIdToNFTId } from '../../util/nfts';
 import useAssetIdName from '../../hooks/useAssetIdName';
@@ -637,6 +636,8 @@ export function CreateOffer() {
           path="builder"
           element={
             <CreateOfferBuilder
+              walletType={locationState?.walletType}
+              assetId={locationState?.assetId}
               nftId={locationState?.nftId}
               referrerPath={locationState?.referrerPath}
               onOfferCreated={handleOfferCreated}

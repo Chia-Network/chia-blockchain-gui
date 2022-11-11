@@ -56,9 +56,9 @@ export default function WalletCAT(props: Props) {
   }
 
   function handleCreateOffer() {
-    navigate('/dashboard/offers/create', {
+    navigate('/dashboard/offers/builder', {
       state: {
-        walletId,
+        assetId: wallet.meta?.assetId,
         walletType: WalletType.CAT,
         referrerPath: location.hash.split('#').slice(-1)[0],
       },
