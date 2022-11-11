@@ -149,6 +149,7 @@ export default function EstimatedFee(props: FeeProps) {
 
   const txCostEstimates = {
       walletSendXCH: Math.floor(maxBlockCostCLVM / 1170),
+      spendCATtx: 36382111,
       acceptOffer: 721393265,
       cancelOffer: 212443993,
       burnNFT: 74385541,
