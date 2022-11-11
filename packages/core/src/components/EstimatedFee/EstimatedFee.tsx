@@ -169,11 +169,16 @@ export default function EstimatedFee(props: FeeProps) {
 
   const txCostEstimates = {
     walletSendXCH: Math.floor(maxBlockCostCLVM / 1170),
-    createOffer: Math.floor(maxBlockCostCLVM / offersAcceptsPerBlock),
-    spendCATtx: 29303497,
-    sellNFT: Math.floor(maxBlockCostCLVM / 92),
-    createPoolingWallet: Math.floor(maxBlockCostCLVM / 462), // JOIN_POOL in GUI = create pooling wallet
-  };
+    spendCATtx: 36382111,
+    acceptOffer: 721393265,
+    cancelOffer: 212443993,
+    burnNFT: 74385541,
+    assignDIDToNFT: 115540006,
+    transferNFT: 74385541,
+    createPlotNFT: 18055407,
+    claimPoolingReward: 82668466,
+    createDID: 57360396
+  }
 
   const multiplier = txCostEstimates[txType];
 
