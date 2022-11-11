@@ -29,28 +29,24 @@ export default function OfferBuilderTokensSection(
   const tokens = useWatch({
     name,
   });
-  const {
-    readOnly,
-    requestedRoyalties,
-    offeredRoyalties,
-    isCalculatingRoyalties,
-  } = useOfferBuilderContext();
+  const { requestedRoyalties, offeredRoyalties, isCalculatingRoyalties } =
+    useOfferBuilderContext();
   const loading = isLoadingWallets || isCalculatingRoyalties;
 
   // Yes, this is correct. Fungible (token) assets used to pay royalties are from the opposite side of the trade.
   const allRoyalties = offering ? requestedRoyalties : offeredRoyalties;
 
   const [amountWithRoyalties, royaltiesByAssetId] = useMemo(() => {
-    if (!readOnly || !allRoyalties) {
+    if (!allRoyalties) {
       return [];
     }
 
     const tokenAmountsWithRoyalties: Record<string, BigNumber> = {};
     const royaltiesByAssetId: Record<string, any> = {};
-    const assetIds = fields.map((field) => field.assetId);
+    const assetIds = tokens.map((token) => token.assetId);
 
-    fields.forEach((field) => {
-      tokenAmountsWithRoyalties[field.assetId] = catToMojo(field.amount ?? 0);
+    tokens.forEach((token) => {
+      tokenAmountsWithRoyalties[token.assetId] = catToMojo(token.amount ?? 0);
     });
 
     assetIds.map((assetId) => {
@@ -89,7 +85,7 @@ export default function OfferBuilderTokensSection(
     });
 
     return [amountsWithRoyalties, royaltiesByAssetId];
-  }, [fields, readOnly, allRoyalties]);
+  }, [tokens, allRoyalties]);
 
   function handleAdd() {
     append({
@@ -103,7 +99,6 @@ export default function OfferBuilderTokensSection(
   }
 
   const { usedAssetIds } = useOfferBuilderContext();
-  // const usedAssets = tokens.map((field) => field.assetId);
   const showAdd = useMemo(() => {
     if (!wallets) {
       return false;
@@ -137,8 +132,7 @@ export default function OfferBuilderTokensSection(
         <Flex gap={4} flexDirection="column">
           {fields.map((field, index) => (
             <OfferBuilderToken
-              key={field.id}
-              // usedAssets={usedAssets}
+              key={index}
               name={`${name}.${index}`}
               onRemove={() => handleRemove(index)}
               hideBalance={!offering}

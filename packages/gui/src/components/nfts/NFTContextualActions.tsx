@@ -138,6 +138,7 @@ function NFTCreateOfferContextualAction(
       state: {
         nftId: selectedNft.$nftId,
         referrerPath: location.hash.split('#').slice(-1)[0],
+        nftWalletId: selectedNft?.walletId,
       },
     });
   }

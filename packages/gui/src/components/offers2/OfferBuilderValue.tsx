@@ -220,6 +220,26 @@ export default function OfferBuilderValue(props: OfferBuilderValueProps) {
           {caption}
         </Typography>
       )}
+      {!builderReadOnly && royaltyPayments && amountWithRoyalties && (
+        <Flex flexDirection="column" gap={1}>
+          <Typography variant="h6" color="textSecondary">
+            <Trans>Total Amount with Royalties</Trans>
+          </Typography>
+          <Tooltip
+            title={
+              <OfferBuilderRoyaltyPayouts
+                totalAmount={amountWithRoyalties}
+                originalAmount={value}
+                royaltyPayments={royaltyPayments}
+              />
+            }
+          >
+            <Typography variant="h6" noWrap>
+              {amountWithRoyalties}
+            </Typography>
+          </Tooltip>
+        </Flex>
+      )}
     </Flex>
   );
 }
