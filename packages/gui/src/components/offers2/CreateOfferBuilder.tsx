@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useMemo, useRef } from 'react';
 import { t, Trans } from '@lingui/macro';
 import { WalletType } from '@chia/api';
 import {
@@ -17,13 +17,13 @@ import offerBuilderDataToOffer from '../../util/offerBuilderDataToOffer';
 import type OfferBuilderData from '../../@types/OfferBuilderData';
 
 type createDefaultValuesParams = {
-  walletType?: WalletType;
-  assetId?: string;
-  nftId?: string;
-  nftWalletId?: number;
+  walletType?: WalletType; // CAT or STANDARD_WALLET (XCH), indicates whether a token or CAT has a default entry
+  assetId?: string; // Asset ID of the CAT
+  nftId?: string; // NFT to include in the offer by default
+  nftWalletId?: number; // If set, indicates that we are offering the NFT, otherwise we are requesting it
 };
 
-function createDefaultValues(
+export function createDefaultValues(
   params: createDefaultValuesParams,
 ): OfferBuilderData {
   const { walletType, assetId, nftId, nftWalletId } = params;
@@ -71,12 +71,14 @@ export default function CreateOfferBuilder(props: CreateOfferBuilderProps) {
   const [createOfferForIds] = useCreateOfferForIdsMutation();
   const offerBuilderRef = useRef<{ submit: () => void } | undefined>(undefined);
 
-  const defaultValues = createDefaultValues({
-    walletType,
-    assetId,
-    nftId,
-    nftWalletId,
-  });
+  const defaultValues = useMemo(() => {
+    return createDefaultValues({
+      walletType,
+      assetId,
+      nftId,
+      nftWalletId,
+    });
+  }, [walletType, assetId, nftId, nftWalletId]);
 
   const [suppressShareOnCreate] = useLocalStorage<boolean>(
     OfferLocalStorageKeys.SUPPRESS_SHARE_ON_CREATE,

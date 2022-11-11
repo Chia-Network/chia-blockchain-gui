@@ -3,12 +3,11 @@ import { Trans } from '@lingui/macro';
 import { Grid } from '@mui/material';
 import type { Wallet } from '@chia/api';
 import { useGetWalletsQuery } from '@chia/api-react';
-import { Flex, Tooltip } from '@chia/core';
+import { Flex } from '@chia/core';
 import { useWatch } from 'react-hook-form';
-import OfferBuilderRoyaltyPayouts from './OfferBuilderRoyaltyPayouts';
+import OfferBuilderAmountWithRoyalties from './OfferBuilderAmountWithRoyalties';
 import OfferBuilderValue from './OfferBuilderValue';
 import OfferBuilderWalletAmount from './OfferBuilderWalletAmount';
-import { Typography } from '@mui/material';
 
 export type OfferBuilderTokenProps = {
   name: string;
@@ -66,24 +65,11 @@ export default function OfferBuilderToken(props: OfferBuilderTokenProps) {
         </Grid>
       </Grid>
       {royaltyPayments && amountWithRoyalties && (
-        <Flex flexDirection="column" gap={1}>
-          <Typography variant="h6" color="textSecondary">
-            <Trans>Total Amount with Royalties</Trans>
-          </Typography>
-          <Tooltip
-            title={
-              <OfferBuilderRoyaltyPayouts
-                totalAmount={amountWithRoyalties}
-                originalAmount={value}
-                royaltyPayments={royaltyPayments}
-              />
-            }
-          >
-            <Typography variant="h6" noWrap>
-              {amountWithRoyalties}
-            </Typography>
-          </Tooltip>
-        </Flex>
+        <OfferBuilderAmountWithRoyalties
+          originalAmount={value}
+          totalAmount={amountWithRoyalties}
+          royaltyPayments={royaltyPayments}
+        />
       )}
     </Flex>
   );

@@ -132,12 +132,14 @@ export default function OfferBuilderTokensSection(
         <Flex gap={4} flexDirection="column">
           {fields.map((field, index) => (
             <OfferBuilderToken
-              key={index}
+              key={field.id}
               name={`${name}.${index}`}
               onRemove={() => handleRemove(index)}
               hideBalance={!offering}
-              amountWithRoyalties={amountWithRoyalties?.[field.assetId]}
-              royaltyPayments={royaltiesByAssetId?.[field.assetId]}
+              amountWithRoyalties={
+                amountWithRoyalties?.[tokens[index]?.assetId]
+              }
+              royaltyPayments={royaltiesByAssetId?.[tokens[index]?.assetId]}
             />
           ))}
         </Flex>

@@ -18,6 +18,7 @@ import { Box, Typography, IconButton } from '@mui/material';
 import { Remove } from '@mui/icons-material';
 import useOfferBuilderContext from '../../hooks/useOfferBuilderContext';
 import OfferBuilderTokenSelector from './OfferBuilderTokenSelector';
+import OfferBuilderAmountWithRoyalties from './OfferBuilderAmountWithRoyalties';
 import OfferBuilderRoyaltyPayouts from './OfferBuilderRoyaltyPayouts';
 
 export type OfferBuilderValueProps = {
@@ -221,24 +222,11 @@ export default function OfferBuilderValue(props: OfferBuilderValueProps) {
         </Typography>
       )}
       {!builderReadOnly && royaltyPayments && amountWithRoyalties && (
-        <Flex flexDirection="column" gap={1}>
-          <Typography variant="h6" color="textSecondary">
-            <Trans>Total Amount with Royalties</Trans>
-          </Typography>
-          <Tooltip
-            title={
-              <OfferBuilderRoyaltyPayouts
-                totalAmount={amountWithRoyalties}
-                originalAmount={value}
-                royaltyPayments={royaltyPayments}
-              />
-            }
-          >
-            <Typography variant="h6" noWrap>
-              {amountWithRoyalties}
-            </Typography>
-          </Tooltip>
-        </Flex>
+        <OfferBuilderAmountWithRoyalties
+          originalAmount={value}
+          totalAmount={amountWithRoyalties}
+          royaltyPayments={royaltyPayments}
+        />
       )}
     </Flex>
   );
