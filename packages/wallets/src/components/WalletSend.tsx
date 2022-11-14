@@ -6,6 +6,7 @@ import {
   useFarmBlockMutation,
 } from '@chia/api-react';
 import {
+  AdvancedOptions,
   Amount,
   ButtonLoading,
   EstimatedFee,
@@ -33,6 +34,7 @@ type SendTransactionData = {
   address: string;
   amount: string;
   fee: string;
+  memo: string;
 };
 
 export default function WalletSend(props: SendCardProps) {
@@ -48,8 +50,13 @@ export default function WalletSend(props: SendCardProps) {
       address: '',
       amount: '',
       fee: '',
+      memo: '',
     },
   });
+
+  const {
+    formState: { isSubmitting },
+  } = methods;
 
   const addressValue = useWatch<string>({
     control: methods.control,
@@ -113,13 +120,22 @@ export default function WalletSend(props: SendCardProps) {
       address = address.slice(2);
     }
 
-    const response = await sendTransaction({
+    const memo = data.memo.trim();
+    const memos = memo ? [memo] : undefined; // Avoid sending empty string
+
+    const queryData = {
       walletId,
       address,
       amount: chiaToMojo(amount),
       fee: chiaToMojo(fee),
       waitForConfirmation: true,
-    }).unwrap();
+    };
+
+    if (memos) {
+      queryData.memos = memos;
+    }
+
+    const response = await sendTransaction(queryData).unwrap();
 
     const result = getTransactionResult(response.transaction);
     const resultDialog = CreateWalletSendTransactionResultDialog({
@@ -134,7 +150,8 @@ export default function WalletSend(props: SendCardProps) {
     }
 
     methods.reset();
-    setSubmissionCount((prev) => prev + 1);
+    // Workaround to force a re-render of the form. Without this, the fee field will not be cleared.
+    setSubmissionCount((prev: number) => prev + 1);
   }
 
   return (
@@ -159,6 +176,7 @@ export default function WalletSend(props: SendCardProps) {
                 variant="filled"
                 color="secondary"
                 fullWidth
+                disabled={isSubmitting}
                 label={<Trans>Address / Puzzle hash</Trans>}
                 data-testid="WalletSend-address"
                 required
@@ -170,6 +188,7 @@ export default function WalletSend(props: SendCardProps) {
                 variant="filled"
                 color="secondary"
                 name="amount"
+                disabled={isSubmitting}
                 label={<Trans>Amount</Trans>}
                 data-testid="WalletSend-amount"
                 required
@@ -182,11 +201,25 @@ export default function WalletSend(props: SendCardProps) {
                 variant="filled"
                 name="fee"
                 color="secondary"
+                disabled={isSubmitting}
                 label={<Trans>Fee</Trans>}
                 data-testid="WalletSend-fee"
                 fullWidth
                 txType="walletSendXCH"
               />
+            </Grid>
+            <Grid xs={12} item>
+              <AdvancedOptions>
+                <TextField
+                  name="memo"
+                  variant="filled"
+                  color="secondary"
+                  fullWidth
+                  disabled={isSubmitting}
+                  label={<Trans>Memo</Trans>}
+                  data-testid="WalletSend-memo"
+                />
+              </AdvancedOptions>
             </Grid>
           </Grid>
         </Card>
