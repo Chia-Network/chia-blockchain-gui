@@ -121,7 +121,7 @@ export default function WalletSend(props: SendCardProps) {
     }
 
     const memo = data.memo.trim();
-    const memos = memo ? [memo] : undefined;
+    const memos = memo ? [memo] : undefined; // Avoid sending empty string
 
     const queryData = {
       walletId,
@@ -150,6 +150,7 @@ export default function WalletSend(props: SendCardProps) {
     }
 
     methods.reset();
+    // Workaround to force a re-render of the form. Without this, the fee field will not be cleared.
     setSubmissionCount((prev: number) => prev + 1);
   }
 
