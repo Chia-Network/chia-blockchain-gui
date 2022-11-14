@@ -5,5 +5,9 @@
     "**/dist": true,
     "**/build": true,
     "**/package-lock.json": true
+  },
+  "files.associations": {
+    ".eslintrc.json": "jsonc",
+    "tsconfig.json": "jsonc"
   }
 }
