@@ -1,7 +1,7 @@
 // to print all rules (extended and overrides)
 // npx eslint --print-config .eslintrc.json
 {
-  "extends": ["airbnb", "airbnb/hooks", "airbnb-typescript", "prettier"],
+  "extends": ["airbnb", "airbnb/hooks", "airbnb-typescript", "plugin:eslint-comments/recommended", "prettier"],
   "env": {
     "browser": true,
     "es2020": true,
@@ -10,5 +10,10 @@
   "parserOptions": {
     "project": "./packages/*/tsconfig.json"
   },
-  "ignorePatterns": ["node_modules/", "dist/", "build/"]
+  "ignorePatterns": ["node_modules/", "dist/", "build/"],
+  "rules": {
+    "eslint-comments/require-description": "error",
+    "eslint-comments/no-unused-disable": "error",
+    "eslint-comments/disable-enable-pair": "off"
+  }
 }
