@@ -12,8 +12,18 @@
   },
   "ignorePatterns": ["node_modules/", "dist/", "build/"],
   "rules": {
+    // Automatically order imports
+    "import/order": [
+      "error",
+      { "groups": ["builtin", "external", "internal"], "alphabetize": { "order": "asc" }, "newlines-between": "always" }
+    ],
+    // Already taken care of by import/order. This must stay here, so require(); is before any import
+    "import/first": "off",
+    // Require a reason for disabling a rule via disable-line
     "eslint-comments/require-description": "error",
+    // Do not allow unused disable-line
     "eslint-comments/no-unused-disable": "error",
+    // Allow single line disables (overrides the eslint-comments defaults)
     "eslint-comments/disable-enable-pair": "off"
   }
 }
