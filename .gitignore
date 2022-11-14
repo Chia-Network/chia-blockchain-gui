@@ -61,10 +61,6 @@ activate
 # mypy
 .mypy_cache/
 
-# Editors
-.vscode
-.idea
-
 # Packaging
 chia-blockchain.tar.gz
 
