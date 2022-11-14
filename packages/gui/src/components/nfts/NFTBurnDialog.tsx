@@ -152,6 +152,7 @@ export default function NFTBurnDialog(props: NFTPreviewDialogProps) {
                 label={<Trans>Fee</Trans>}
                 disabled={isSubmitting}
                 txType="burnNFT"
+                fullWidth
               />
               <DialogActions>
                 <Flex flexDirection="row" gap={2}>
