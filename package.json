@@ -12,7 +12,7 @@
     "publish": "lerna publish",
     "postinstall": "npm run bootstrap && npm run prettier:postinstall",
     "prettier:postinstall": "prettier --write **/package.json **/package-lock.json",
-    "prettier:format": "prettier --config prettier.config.js --write",
+    "prettier:format": "prettier --write",
     "prettier:format:all": "npm run prettier:format -- '**/*.{ts,tsx,js,jsx}'",
     "build": "lerna run build",
     "build:watch": "lerna run build:watch",
