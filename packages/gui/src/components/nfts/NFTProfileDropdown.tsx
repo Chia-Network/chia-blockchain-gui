@@ -15,6 +15,7 @@ import {
 import { NFTsSmall as NFTsSmallIcon } from '@chia/icons';
 import { orderBy } from 'lodash';
 import useNachoNFTs from '../../hooks/useNachoNFTs';
+import { getNFTInbox } from './utils';
 
 type Profile = Wallet & {
   nftWalletId: number;
@@ -63,11 +64,12 @@ export default function NFTProfileDropdown(props: NFTGallerySidebarProps) {
   const haveNachoNFTs = !isLoadingNachoNFTs && nachoNFTs?.length > 0;
 
   const inbox: Wallet | undefined = useMemo(() => {
-    if (isLoadingProfiles || isLoadingNFTWallets) {
+    if (isLoadingNFTWallets) {
       return undefined;
     }
-    return nftWallets.find((nftWallet: Wallet) => !nftWallet.meta.did);
-  }, [nftWallets, isLoadingProfiles, isLoadingNFTWallets]);
+
+    return getNFTInbox(nftWallets);
+  }, [nftWallets, isLoadingNFTWallets]);
 
   const remainingNFTWallets = useMemo(() => {
     if (isLoadingProfiles || isLoadingNFTWallets || !inbox) {

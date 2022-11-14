@@ -39,6 +39,7 @@ import {
 } from '@mui/material';
 import { stripHexPrefix } from '../../util/utils';
 import { didFromDIDId, didToDIDId } from '../../util/dids';
+import { getNFTInbox } from './utils';
 import NFTSummary from './NFTSummary';
 import styled from 'styled-components';
 
@@ -210,23 +211,12 @@ export function NFTMoveToProfileAction(props: NFTMoveToProfileActionProps) {
     : undefined;
 
   const inbox: Wallet | undefined = useMemo(() => {
-    if (isLoadingDIDs || isLoadingNFTWallets) {
+    if (isLoadingNFTWallets) {
       return undefined;
     }
 
-    const nftWalletIds: number[] = nftWallets.map(
-      (nftWallet: Wallet) => nftWallet.walletId,
-    );
-    const didWalletIds = new Set(
-      didWallets.map((wallet: Wallet) => wallet.nftWalletId),
-    );
-    const inboxWalletId = nftWalletIds.find(
-      (nftWalletId) => !didWalletIds.has(nftWalletId),
-    );
-    return nftWallets.find(
-      (wallet: Wallet) => wallet.walletId === inboxWalletId,
-    );
-  }, [didWallets, nftWallets, isLoadingDIDs, isLoadingNFTWallets]);
+    return getNFTInbox(nftWallets);
+  }, [nftWallets, isLoadingNFTWallets]);
 
   const currentDID = useMemo(() => {
     if (!didWallets || !currentDIDId) {
