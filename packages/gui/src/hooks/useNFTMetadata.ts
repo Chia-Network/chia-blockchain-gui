@@ -132,10 +132,7 @@ export default function useNFTsMetadata(nfts: NFTInfo[], isMultiple = false) {
       setErrorContent(undefined);
       setMetadata(cachedMetadata);
       setSensitiveContent(nftId, cachedMetadata);
-      if (
-        isMultiple &&
-        !normalizedSensitiveContent(cachedMetadata.sensitive_content)
-      ) {
+      if (!normalizedSensitiveContent(cachedMetadata.sensitive_content)) {
         allowedNFTsWithMetadata.push({ ...nft, metadata: cachedMetadata });
       }
       //console.log(`found in cache ${nftId}: ${cachedMetadata}`);

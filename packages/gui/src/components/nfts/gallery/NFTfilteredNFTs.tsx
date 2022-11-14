@@ -38,7 +38,9 @@ export default function useFilteredNFTs(props: FilteredNFTtype) {
 
   const NFTmetadataObj: any = {};
   allowedNFTsWithMetadata.forEach((nft) => {
-    NFTmetadataObj[nft.$nftId] = nft.metadata;
+    if (nft.metadata) {
+      NFTmetadataObj[nft.$nftId] = nft.metadata;
+    }
   });
 
   const allAllowedNFTs = noMetadataNFTs.concat(

@@ -24,7 +24,7 @@ import useFilteredNFTs from './NFTfilteredNFTs';
 
 export const defaultCacheSizeLimit = 1024; /* MB */
 
-function searchableNFTContent(nft: NFTInfo) {
+export function searchableNFTContent(nft: NFTInfo) {
   const items = [
     nft.$nftId,
     nft.dataUris?.join(' ') ?? '',
@@ -37,7 +37,8 @@ function searchableNFTContent(nft: NFTInfo) {
 }
 
 export default function NFTGallery() {
-  const [search, setSearch] = useState<string>('');
+  let search = '';
+  let visibleNFTidxs: number[] = [];
   const [selection, setSelection] = useState<NFTSelection>({
     items: [],
   });
@@ -48,13 +49,13 @@ export default function NFTGallery() {
     'nft-profile-dropdown',
   );
   const { filteredNFTs, isLoading } = useFilteredNFTs({ walletId });
+
+  const nftContainerRef = React.useRef(null);
+  const galleryHeroRef = React.useRef(null);
+
   const filteredData = filteredNFTs.filter((nft: NFTInfo) => {
     if (!showHidden && isNFTHidden(nft)) {
       return false;
-    }
-    const content = searchableNFTContent(nft);
-    if (search) {
-      return content.includes(search.toLowerCase());
     }
     return true;
   });
@@ -79,6 +80,27 @@ export default function NFTGallery() {
     return <Loading center />;
   }
 
+  function setSearch(value) {
+    galleryHeroRef.current.style.display = 'none';
+    search = value;
+    if (nftContainerRef.current) {
+      visibleNFTidxs = [];
+      filteredData.forEach((nft, idx) => {
+        const content = searchableNFTContent(nft);
+        if (content.includes(search.toLowerCase())) {
+          visibleNFTidxs.push(idx);
+        }
+      });
+      [...nftContainerRef.current.children].forEach((node, idx) => {
+        node.style.display =
+          visibleNFTidxs.indexOf(idx) > -1 || value === '' ? 'block' : 'none';
+      });
+      if (visibleNFTidxs.length === 0) {
+        galleryHeroRef.current.style.display = 'block';
+      }
+    }
+  }
+
   return (
     <LayoutDashboardSub
       // sidebar={<NFTGallerySidebar onWalletChange={setWalletId} />}
@@ -89,11 +111,7 @@ export default function NFTGallery() {
           flexWrap="wrap"
           justifyContent="space-between"
         >
-          <Search
-            onChange={setSearch}
-            value={search}
-            placeholder={t`Search...`}
-          />
+          <Search onChange={setSearch} placeholder={t`Search...`} />
           <NFTProfileDropdown onChange={setWalletId} walletId={walletId} />
           <Flex justifyContent="flex-end" alignItems="center">
             <Box width={{ xs: 300, sm: 330, md: 600, lg: 780 }}>
@@ -129,22 +147,32 @@ export default function NFTGallery() {
       {!filteredData?.length ? (
         <NFTGalleryHero />
       ) : (
-        <Grid spacing={2} alignItems="stretch" container>
-          {filteredData?.map((nft: NFTInfo) => (
-            <Grid xs={12} sm={6} md={4} lg={4} xl={3} key={nft.$nftId} item>
-              <NFTCardLazy
-                nft={nft}
-                onSelect={(selected) => handleSelect(nft, selected)}
-                selected={selection.items.some(
-                  (item) => item.$nftId === nft.$nftId,
-                )}
-                canExpandDetails={true}
-                availableActions={NFTContextualActionTypes.All}
-                isOffer={false}
-              />
-            </Grid>
-          ))}
-        </Grid>
+        <>
+          <div ref={galleryHeroRef} style={{ display: 'none' }}>
+            <NFTGalleryHero />
+          </div>
+          <Grid
+            spacing={2}
+            alignItems="stretch"
+            container
+            ref={nftContainerRef}
+          >
+            {filteredData?.map((nft: NFTInfo) => (
+              <Grid xs={12} sm={6} md={4} lg={4} xl={3} key={nft.$nftId} item>
+                <NFTCardLazy
+                  nft={nft}
+                  onSelect={(selected) => handleSelect(nft, selected)}
+                  selected={selection.items.some(
+                    (item) => item.$nftId === nft.$nftId,
+                  )}
+                  canExpandDetails={true}
+                  availableActions={NFTContextualActionTypes.All}
+                  isOffer={false}
+                />
+              </Grid>
+            ))}
+          </Grid>
+        </>
       )}
     </LayoutDashboardSub>
   );
