@@ -1,0 +1,14 @@
+// to print all rules (extended and overrides)
+// npx eslint --print-config .eslintrc.json
+{
+  "extends": ["airbnb", "airbnb/hooks", "airbnb-typescript", "prettier"],
+  "env": {
+    "browser": true,
+    "es2020": true,
+    "node": true
+  },
+  "parserOptions": {
+    "project": "./packages/*/tsconfig.json"
+  },
+  "ignorePatterns": ["node_modules/", "dist/", "build/"]
+}
