@@ -151,6 +151,7 @@ export default function NFTTransferAction(props: NFTTransferActionProps) {
           label={<Trans>Fee</Trans>}
           disabled={isLoading}
           txType="transferNFT"
+          fullWidth
         />
         <DialogActions>
           <Flex flexDirection="row" gap={3}>

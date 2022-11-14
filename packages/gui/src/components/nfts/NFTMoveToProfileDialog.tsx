@@ -429,6 +429,7 @@ export function NFTMoveToProfileAction(props: NFTMoveToProfileActionProps) {
           label={<Trans>Fee</Trans>}
           disabled={isLoading}
           txType="assignDIDToNFT"
+          fullWidth
         />
         <DialogActions>
           <Flex flexDirection="row" gap={3}>
