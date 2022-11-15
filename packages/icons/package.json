@@ -6,7 +6,7 @@
   "private": true,
   "version": "1.0.0",
   "engines": {
-    "node": ">=12.20.0"
+    "node": ">=16.15.0"
   },
   "main": "dist/index.js",
   "module": "dist/esm.js",
