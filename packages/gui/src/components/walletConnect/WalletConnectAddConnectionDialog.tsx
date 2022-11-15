@@ -197,7 +197,7 @@ export default function WalletConnectAddConnectionDialog(
         </DialogContent>
         <Divider />
         <DialogActions>
-          <Button onClick={handleClose} variant="outlined">
+          <Button onClick={handleClose} variant="outlined" color="primary">
             <Trans>Reject</Trans>
           </Button>
           <ButtonLoading

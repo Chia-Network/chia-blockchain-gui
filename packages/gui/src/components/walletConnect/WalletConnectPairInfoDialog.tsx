@@ -10,7 +10,6 @@ import {
   CardListItem,
 } from '@chia/core';
 import {
-  Box,
   Divider,
   Dialog,
   DialogContent,
@@ -21,16 +20,16 @@ import {
 import { useGetKeysQuery } from '@chia/api-react';
 import CloseIcon from '@mui/icons-material/Close';
 import useWalletConnectContext from '../../hooks/useWalletConnectContext';
-import HeroImage from './images/walletConnectConnected.svg';
+import WalletConnectMetadata from './WalletConnectMetadata';
 
-export type WalletConnectAddConnectionDialogProps = {
+export type WalletConnectPairInfoDialogProps = {
   onClose?: () => void;
   open?: boolean;
   topic: string;
 };
 
-export default function WalletConnectConnectedDialog(
-  props: WalletConnectAddConnectionDialogProps,
+export default function WalletConnectPairInfoDialog(
+  props: WalletConnectPairInfoDialogProps,
 ) {
   const { topic, onClose = () => {}, open = false } = props;
   const [isProcessing, setIsProcessing] = useState(false);
@@ -60,6 +59,7 @@ export default function WalletConnectConnectedDialog(
   }, [pair, keys]);
 
   const isLoading = isLoadingWallet || isLoadingPublicKeys;
+  const canDisconnect = !isProcessing && !isLoading;
 
   function handleClose() {
     onClose();
@@ -78,12 +78,10 @@ export default function WalletConnectConnectedDialog(
     }
   }
 
-  const canSubmit = !isLoading || isProcessing;
-
   return (
     <Dialog onClose={handleClose} maxWidth="xs" open={open} fullWidth>
       <DialogTitle>
-        <Trans>Wallet Connect</Trans>
+        <Trans>Pair Information</Trans>
       </DialogTitle>
       <IconButton
         sx={{
@@ -98,43 +96,69 @@ export default function WalletConnectConnectedDialog(
       </IconButton>
 
       <DialogContent>
-        <Flex flexDirection="column" alignItems="center" gap={3}>
-          <HeroImage width={106} />
+        <Flex flexDirection="column" gap={3}>
           <Flex flexDirection="column" gap={3}>
-            <Box>
-              <Typography variant="h6" textAlign="center">
-                <Trans>Connected</Trans>
-              </Typography>
-              <Typography
-                variant="body2"
-                textAlign="center"
-                color="textSecondary"
-              >
-                <Trans>
-                  You can now connect to{' '}
-                  {pair?.metadata?.name ?? 'Unknown Application'} in your
-                  browser.
-                </Trans>
-              </Typography>
-            </Box>
             {isLoading ? (
               <Loading center />
+            ) : !pair ? (
+              <Typography>
+                <Trans>Pair does not exists</Trans>
+              </Typography>
             ) : (
               <Flex flexDirection="column" gap={2}>
-                {selectedKeys.map((key) => (
-                  <CardListItem key={key.fingerprint} gap={1}>
-                    <Typography variant="body2" textAlign="center">
-                      {key.label ?? key.fingerprint}
-                    </Typography>
-                    <Typography
-                      variant="body2"
-                      color="textSecondary"
-                      textAlign="center"
-                    >
-                      {key.fingerprint}
-                    </Typography>
-                  </CardListItem>
-                ))}
+                <WalletConnectMetadata metadata={pair.metadata} />
+
+                <Flex flexDirection="column" gap={1}>
+                  <Typography>
+                    <Trans>Paired Wallets</Trans>
+                  </Typography>
+                  <Flex flexDirection="column" gap={1}>
+                    {selectedKeys.length ? (
+                      selectedKeys.map((key) => (
+                        <CardListItem key={key.fingerprint} gap={1}>
+                          <Typography variant="body2" textAlign="center">
+                            {key.label ?? key.fingerprint}
+                          </Typography>
+                          <Typography
+                            variant="body2"
+                            color="textSecondary"
+                            textAlign="center"
+                          >
+                            {key.fingerprint}
+                          </Typography>
+                        </CardListItem>
+                      ))
+                    ) : (
+                      <Typography variant="body2" color="textSecondary">
+                        <Trans>No Paired Wallets</Trans>
+                      </Typography>
+                    )}
+                  </Flex>
+                </Flex>
+
+                <Flex flexDirection="column" gap={1}>
+                  <Typography>
+                    <Trans>Active Sessions</Trans>
+                  </Typography>
+                  <Flex flexDirection="column" gap={1}>
+                    {pair.sessions.length ? (
+                      pair.sessions.map((session) => (
+                        <Typography
+                          key={session.topic}
+                          variant="body2"
+                          color="textSecondary"
+                          noWrap
+                        >
+                          {session.topic}
+                        </Typography>
+                      ))
+                    ) : (
+                      <Typography variant="body2" color="textSecondary">
+                        <Trans>Application has no active sessions</Trans>
+                      </Typography>
+                    )}
+                  </Flex>
+                </Flex>
               </Flex>
             )}
           </Flex>
@@ -144,7 +168,7 @@ export default function WalletConnectConnectedDialog(
       <DialogActions>
         <ButtonLoading
           onClick={handleDisconnect}
-          disabled={!canSubmit}
+          disabled={!canDisconnect}
           loading={isProcessing}
           variant="outlined"
           color="primary"

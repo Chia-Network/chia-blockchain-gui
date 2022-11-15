@@ -1,7 +1,6 @@
 import { useCallback, useRef, useMemo } from 'react';
 import { useLocalStorage } from '@chia/api-react';
 import type Pair from '../@types/Pair';
-import { forEach } from 'lodash';
 
 export default function useWalletConnectPairs() {
   const [_pairs, setPairs] = useLocalStorage<Pair[]>('walletConnectPairs', []);
@@ -42,9 +41,12 @@ export default function useWalletConnectPairs() {
   );
 
   const removePairBySession = useCallback(
-    (session: string) => {
+    (sessionTopic: string) => {
       setPairs((pairs: Pair[]) => {
-        return pairs.filter((item) => !item.sessions.includes(session));
+        return pairs.filter(
+          (item) =>
+            !item.sessions.find((session) => session.topic === sessionTopic),
+        );
       });
     },
     [setPairs],
@@ -55,9 +57,11 @@ export default function useWalletConnectPairs() {
     return pairs.find((item) => item.topic === topic);
   }, []);
 
-  const getPairBySession = useCallback((session: string) => {
+  const getPairBySession = useCallback((sessionTopic: string) => {
     const pairs = pairsRef.current;
-    return pairs.find((item) => item.sessions?.includes(session));
+    return pairs.find((item) =>
+      item.sessions?.find((session) => session.topic === sessionTopic),
+    );
   }, []);
 
   const addPair = useCallback(
@@ -75,11 +79,11 @@ export default function useWalletConnectPairs() {
   );
 
   const removeSessionFromPair = useCallback(
-    (session: string) => {
+    (sessionTopic: string) => {
       setPairs((pairs: Pair[]) => {
         return pairs.map((pair) => ({
           ...pair,
-          sessions: pair.sessions.filter((item) => item !== session),
+          sessions: pair.sessions.filter((item) => item.topic !== sessionTopic),
         }));
       });
     },

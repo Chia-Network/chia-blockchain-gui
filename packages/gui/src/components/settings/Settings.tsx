@@ -6,6 +6,7 @@ import { Routes, Route, matchPath, useLocation, useNavigate } from 'react-router
 
 import SettingsDataLayer from './SettingsDataLayer';
 import SettingsGeneral from './SettingsGeneral';
+import SettingsIntegration from './SettingsIntegration';
 import SettingsNFT from './SettingsNFT';
 import SettingsProfiles from './SettingsProfiles';
 
@@ -89,6 +90,7 @@ export default function Settings() {
             <Route path="nft" element={<SettingsNFT />} />
             <Route path="datalayer" element={<SettingsDataLayer />} />
             <Route path="general" element={<SettingsGeneral />} />
+            <Route path="integration" element={<SettingsIntegration />} />
           </Routes>
         </Flex>
       </Flex>

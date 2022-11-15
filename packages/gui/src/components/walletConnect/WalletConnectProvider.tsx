@@ -4,6 +4,7 @@ import type Pair from '../../@types/Pair';
 
 export const WalletConnectContext = createContext<
   | {
+      enabled: boolean;
       isLoading: boolean;
       error: Error | undefined;
       pair: (
@@ -12,7 +13,10 @@ export const WalletConnectContext = createContext<
         mainnet?: boolean,
       ) => Promise<void>;
       disconnect: (topic: string) => Promise<void>;
-      pairs: Pair[];
+      pairs: {
+        getPair: (topic: string) => Pair | undefined;
+        get: () => Pair[];
+      };
     }
   | undefined
 >(undefined);

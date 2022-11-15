@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import Client from '@walletconnect/sign-client';
 import useWalletConnectCommand from './useWalletConnectCommand';
 import useWalletConnectPairs from './useWalletConnectPairs';
+import useWalletConnectPrefs from './useWalletConnectPrefs';
 
 const defaultMetadata = {
   name: 'Chia Blockchain',
@@ -19,19 +20,18 @@ export type UseWalletConnectConfig = {
     url: string;
     icons: string[];
   };
-  disabled?: boolean;
   debug?: boolean;
 };
 
 export default function useWalletConnect(config: UseWalletConnectConfig) {
   const {
-    disabled,
     projectId,
     relayUrl,
     metadata = defaultMetadata,
     debug = false,
   } = config;
 
+  const { enabled, autoConfirm } = useWalletConnectPrefs();
   const [isLoading, setIsLoading] = useState(true);
   const [_client, setClient] = useState<Client>();
   const _pairs = useWalletConnectPairs();
@@ -53,7 +53,6 @@ export default function useWalletConnect(config: UseWalletConnectConfig) {
   };
 
   const isLoadingData = isLoading || isLoadingWalletConnectCommand;
-  const enabled = !disabled;
 
   async function disconnectPair(client: Client, topic: string) {
     const { pairs } = state.current;
@@ -94,11 +93,7 @@ export default function useWalletConnect(config: UseWalletConnectConfig) {
       throw new Error('Chain not supported');
     }
 
-    const name = metadata?.name;
-
-    if (name) {
-      pairs.updatePair(pairingTopic, { application: name });
-    }
+    pairs.updatePair(pairingTopic, { metadata });
 
     const pair = pairs.getPair(pairingTopic);
     if (!pair) {
@@ -111,16 +106,18 @@ export default function useWalletConnect(config: UseWalletConnectConfig) {
       (fingerprint) => `chia:${instance}:${fingerprint}`,
     );
 
+    const namespaces = {
+      chia: {
+        accounts,
+        methods: ['chia_sendTransaction', 'chia_newAddress'],
+        events: [],
+      },
+    };
+
     // const methods =
     const { acknowledged } = await client.approve({
       id,
-      namespaces: {
-        chia: {
-          accounts,
-          methods: ['chia_sendTransaction', 'chia_newAddress'],
-          events: [],
-        },
-      },
+      namespaces,
     });
 
     const result = await acknowledged();
@@ -131,7 +128,14 @@ export default function useWalletConnect(config: UseWalletConnectConfig) {
     // new session created
     pairs.updatePair(pairingTopic, (pair) => ({
       ...pair,
-      sessions: [...pair.sessions, result.topic],
+      sessions: [
+        ...pair.sessions,
+        {
+          topic: result.topic,
+          metadata: metadata,
+          namespaces,
+        },
+      ],
     }));
   }, []);
 
@@ -196,7 +200,7 @@ export default function useWalletConnect(config: UseWalletConnectConfig) {
           throw new Error('Fingerprint not found');
         }
 
-        const result = await process(fingerprint, method, params);
+        const result = await process(topic, fingerprint, method, params);
         console.log('result', result);
 
         await client.respond({
@@ -230,9 +234,9 @@ export default function useWalletConnect(config: UseWalletConnectConfig) {
       return;
     }
 
-    client.off('session_proposal', handleSessionProposal);
-    client.off('session_delete', handleSessionDelete);
-    client.off('session_request', handleSessionRequest);
+    //client.off('session_proposal', handleSessionProposal);
+    //client.off('session_delete', handleSessionDelete);
+    // client.off('session_request', handleSessionRequest);
 
     //client.pairing.off('pairing_delete', handlePairingDelete);
 
@@ -342,7 +346,7 @@ export default function useWalletConnect(config: UseWalletConnectConfig) {
       throw new Error('Client is not defined');
     }
 
-    const { topic } = await client.core.pairing.pair({ uri });
+    const { topic, ...rest } = await client.core.pairing.pair({ uri });
     if (!topic) {
       throw new Error('Pairing failed');
     }

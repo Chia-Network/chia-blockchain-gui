@@ -1,10 +1,16 @@
+import type WalletConnectMetadata from './WalletConnectMetadata';
+import type WalletConnectNamespaces from './WalletConnectNamespaces';
+
 type Pair = {
   topic: string;
   mainnet: boolean;
   fingerprints: number[];
-  sessions: string[];
-  application?: string;
-  namespaces: {};
+  sessions: {
+    topic: string;
+    metadata?: WalletConnectMetadata;
+    namespaces: WalletConnectNamespaces;
+  }[];
+  metadata?: WalletConnectMetadata;
 };
 
 export default Pair;
