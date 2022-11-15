@@ -14,15 +14,15 @@ import {
 } from '@mui/material';
 import React from 'react';
 import { useSelector } from 'react-redux';
-
-import LayoutHero from '../../layout/LayoutHero';
-import config from '../../../config/config';
 import { Switch, Route, useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
+
+import config from '../../../config/config';
 import WalletName from '../../../constants/WalletName';
 import WalletType from '../../../constants/WalletType';
 import useTrans from '../../../hooks/useTrans';
 import type { RootState } from '../../../modules/rootReducer';
+import LayoutHero from '../../layout/LayoutHero';
 import LayoutMain from '../../layout/LayoutMain';
 import WalletsList from '../WalletsList';
 import WalletCAT from '../cat/WalletCAT';

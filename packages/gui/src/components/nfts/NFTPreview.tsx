@@ -1,9 +1,6 @@
-import { isImage, parseExtensionFromUrl } from '../../util/utils.js';
-
-import { IconMessage, Loading, Flex, SandboxedIframe, Tooltip, usePersistState, useDarkMode } from '@chia/core';
-import styled from 'styled-components';
 import { type NFTInfo } from '@chia/api';
 import { useLocalStorage } from '@chia/api-react';
+import { IconMessage, Loading, Flex, SandboxedIframe, Tooltip, usePersistState, useDarkMode } from '@chia/core';
 import { t, Trans } from '@lingui/macro';
 import { NotInterested, Error as ErrorIcon } from '@mui/icons-material';
 import CheckSvg from '@mui/icons-material/Check';
@@ -13,34 +10,33 @@ import { Box, Button, Typography } from '@mui/material';
 import mime from 'mime-types';
 import React, { useMemo, useState, useRef, Fragment } from 'react';
 import { renderToString } from 'react-dom/server';
+import styled from 'styled-components';
 import isURL from 'validator/lib/isURL';
 
-import VideoPngDarkIcon from '../../assets/img/video_dark.png';
-import ModelPngDarkIcon from '../../assets/img/model_dark.png';
-
-import VideoBlobIcon from '../../assets/img/video-blob.svg';
 import AudioBlobIcon from '../../assets/img/audio-blob.svg';
-import ModelBlobIcon from '../../assets/img/model-blob.svg';
-import UnknownBlobIcon from '../../assets/img/unknown-blob.svg';
-import DocumentBlobIcon from '../../assets/img/document-blob.svg';
-
-import CompactIconSvg from '../../assets/img/nft-small-frame.svg';
-
-import VideoSmallIcon from '../../assets/img/video-small.svg';
 import AudioSmallIcon from '../../assets/img/audio-small.svg';
 import AudioPngIcon from '../../assets/img/audio.png';
 import AudioSvg from '../../assets/img/audio.svg';
 import AudioPngDarkIcon from '../../assets/img/audio_dark.png';
+import DocumentBlobIcon from '../../assets/img/document-blob.svg';
 import DocumentSmallIcon from '../../assets/img/document-small.svg';
 import DocumentPngIcon from '../../assets/img/document.png';
 import DocumentPngDarkIcon from '../../assets/img/document_dark.png';
+import ModelBlobIcon from '../../assets/img/model-blob.svg';
 import ModelSmallIcon from '../../assets/img/model-small.svg';
 import ModelPngIcon from '../../assets/img/model.png';
+import ModelPngDarkIcon from '../../assets/img/model_dark.png';
+import CompactIconSvg from '../../assets/img/nft-small-frame.svg';
+import UnknownBlobIcon from '../../assets/img/unknown-blob.svg';
 import UnknownSmallIcon from '../../assets/img/unknown-small.svg';
 import UnknownPngIcon from '../../assets/img/unknown.png';
 import UnknownPngDarkIcon from '../../assets/img/unknown_dark.png';
+import VideoBlobIcon from '../../assets/img/video-blob.svg';
+import VideoSmallIcon from '../../assets/img/video-small.svg';
 import VideoPngIcon from '../../assets/img/video.png';
+import VideoPngDarkIcon from '../../assets/img/video_dark.png';
 import useVerifyHash from '../../hooks/useVerifyHash';
+import { isImage, parseExtensionFromUrl } from '../../util/utils.js';
 
 function responseTooLarge(error) {
   return error === 'Response too large';

@@ -1,9 +1,7 @@
-import { NFTOfferSummary } from './NFTOfferViewer';
-import OfferLocalStorageKeys from './OfferLocalStorage';
-import OfferSummary from './OfferSummary';
 import child_process from 'child_process';
 import fs from 'fs';
 import path from 'path';
+
 import { OfferTradeRecord } from '@chia/api';
 import {
   ButtonLoading,
@@ -34,6 +32,9 @@ import { Shell } from 'electron';
 import React, { useMemo } from 'react';
 
 import useAssetIdName, { AssetIdMapEntry } from '../../hooks/useAssetIdName';
+import { NFTOfferSummary } from './NFTOfferViewer';
+import OfferLocalStorageKeys from './OfferLocalStorage';
+import OfferSummary from './OfferSummary';
 import { offerContainsAssetOfType, shortSummaryForOffer, suggestedFilenameForOffer } from './utils';
 
 const log = debug('chia-gui:offers');

@@ -18,9 +18,9 @@ import NFTContextualActions, { NFTContextualActionTypes } from '../NFTContextual
 import NFTDetails from '../NFTDetails';
 import NFTPreview from '../NFTPreview';
 import NFTPreviewDialog from '../NFTPreviewDialog';
+import NFTProgressBar from '../NFTProgressBar';
 import NFTProperties from '../NFTProperties';
 import NFTRankings from '../NFTRankings';
-import NFTProgressBar from '../NFTProgressBar';
 
 export default function NFTDetail() {
   const { nftId } = useParams();

@@ -1,4 +1,5 @@
 import BigNumber from 'bignumber.js';
+
 import { NFTInfo, RoyaltyCalculationFungibleAsset, RoyaltyCalculationRoyaltyAsset } from '../../@types';
 import royaltyAssetFromNFTInfo, {
   fungibleAssetFromAssetIdAndAmount,

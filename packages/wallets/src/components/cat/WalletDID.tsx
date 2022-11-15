@@ -1,24 +1,13 @@
-import Button from '@mui/material/Button';
-import Backdrop from '@mui/material/Backdrop';
-import CircularProgress from '@mui/material/CircularProgress';
 import { AlertDialog, Card, Flex, Loading, Dropzone, mojoToChiaLocaleString } from '@chia/core';
 import { Trans } from '@lingui/macro';
 import { Backup as BackupIcon } from '@mui/icons-material';
-import {
-  did_generate_backup_file,
-  did_spend,
-  did_update_recovery_ids_action,
-  did_create_attest,
-  did_recovery_spend_action,
-  did_get_recovery_info,
-} from '../../../modules/message';
-
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import HelpIcon from '@mui/icons-material/Help';
-import { Tooltip } from '@mui/material';
-import { Accordion, AccordionSummary, AccordionDetails } from '@mui/material';
-import { Alert, Grid } from '@mui/material';
+import { Tooltip, Accordion, AccordionSummary, AccordionDetails, Alert, Grid } from '@mui/material';
+import Backdrop from '@mui/material/Backdrop';
 import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import CircularProgress from '@mui/material/CircularProgress';
 import Paper from '@mui/material/Paper';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
@@ -30,6 +19,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import useCurrencyCode from '../../../hooks/useCurrencyCode';
 import useWallet from '../../../hooks/useWallet';
 import { openDialog } from '../../../modules/dialog';
+import {
+  did_generate_backup_file,
+  did_spend,
+  did_update_recovery_ids_action,
+  did_create_attest,
+  did_recovery_spend_action,
+  did_get_recovery_info,
+} from '../../../modules/message';
 import WalletHistory from '../WalletHistory';
 
 const drawerWidth = 240;
