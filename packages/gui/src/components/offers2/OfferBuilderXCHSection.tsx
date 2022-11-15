@@ -26,7 +26,7 @@ export default function OfferBuilderXCHSection(props: OfferBuilderXCHSectionProp
     useWatch({
       name,
     })?.[0]?.amount ?? 0; // Assume there's only 1 XCH field per trade side
-  const { readOnly, requestedRoyalties, offeredRoyalties, isCalculatingRoyalties } = useOfferBuilderContext();
+  const { requestedRoyalties, offeredRoyalties, isCalculatingRoyalties } = useOfferBuilderContext();
 
   // Yes, this is correct. Fungible (XCH) assets used to pay royalties are from the opposite side of the trade.
   const allRoyalties = offering ? requestedRoyalties : offeredRoyalties;
@@ -34,7 +34,7 @@ export default function OfferBuilderXCHSection(props: OfferBuilderXCHSectionProp
   const loading = isLoadingWallet || isCalculatingRoyalties;
 
   const [amountWithRoyalties, royaltyPayments] = useMemo(() => {
-    if (!readOnly || !allRoyalties) {
+    if (!allRoyalties) {
       return [];
     }
 
@@ -55,7 +55,7 @@ export default function OfferBuilderXCHSection(props: OfferBuilderXCHSectionProp
     });
 
     return [mojoToChiaLocaleString(amountWithRoyalties), rows];
-  }, [readOnly, allRoyalties]);
+  }, [allRoyalties]);
 
   function handleAdd() {
     if (!fields.length) {

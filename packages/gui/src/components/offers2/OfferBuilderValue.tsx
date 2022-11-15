@@ -18,6 +18,7 @@ import React from 'react';
 import { useWatch } from 'react-hook-form';
 
 import useOfferBuilderContext from '../../hooks/useOfferBuilderContext';
+import OfferBuilderAmountWithRoyalties from './OfferBuilderAmountWithRoyalties';
 import OfferBuilderRoyaltyPayouts from './OfferBuilderRoyaltyPayouts';
 import OfferBuilderTokenSelector from './OfferBuilderTokenSelector';
 
@@ -192,6 +193,13 @@ export default function OfferBuilderValue(props: OfferBuilderValueProps) {
         <Typography variant="caption" color="textSecondary">
           {caption}
         </Typography>
+      )}
+      {!builderReadOnly && royaltyPayments && amountWithRoyalties && (
+        <OfferBuilderAmountWithRoyalties
+          originalAmount={value}
+          totalAmount={amountWithRoyalties}
+          royaltyPayments={royaltyPayments}
+        />
       )}
     </Flex>
   );
