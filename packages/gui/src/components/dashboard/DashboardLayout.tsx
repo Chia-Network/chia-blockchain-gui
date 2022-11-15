@@ -10,7 +10,6 @@ const StyledRoot = styled(Flex)`
 const StyledSidebar = styled(Box)`
   height: 100%;
   overflow: auto;
-  
 `;
 
 const StyledContent = styled(Box)`
@@ -31,14 +30,8 @@ export default function DashboardLayout(props: DashboardLayoutProps) {
   // and right column with content
   return (
     <StyledRoot gap="md">
-      {sidebar && (
-        <StyledSidebar>
-          {sidebar}
-        </StyledSidebar>
-      )}
-      <StyledContent>
-        {children}
-      </StyledContent>
-    </StyledRoot> 
+      {sidebar && <StyledSidebar>{sidebar}</StyledSidebar>}
+      <StyledContent>{children}</StyledContent>
+    </StyledRoot>
   );
 }

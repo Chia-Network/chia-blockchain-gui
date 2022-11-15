@@ -1,22 +1,6 @@
-import {
-  Button,
-  Flex,
-  Loading,
-  CardStep,
-  RadioGroup,
-  EstimatedFee,
-  TextField,
-} from '@chia/core';
+import { Button, Flex, Loading, CardStep, RadioGroup, EstimatedFee, TextField } from '@chia/core';
 import { Trans } from '@lingui/macro';
-import {
-  Alert,
-  Grid,
-  FormControl,
-  FormControlLabel,
-  Typography,
-  Radio,
-  Collapse,
-} from '@mui/material';
+import { Alert, Grid, FormControl, FormControlLabel, Typography, Radio, Collapse } from '@mui/material';
 import React, { ReactNode } from 'react';
 // import { uniq } from 'lodash';
 import { useWatch, useFormContext } from 'react-hook-form';
@@ -90,9 +74,7 @@ export default function PlotNFTSelectBase(props: Props) {
           </Flex>
         }
       >
-        {description && (
-          <Typography variant="subtitle1">{description}</Typography>
-        )}
+        {description && <Typography variant="subtitle1">{description}</Typography>}
 
         <Grid container spacing={4}>
           <Grid xs={12} item>
@@ -101,26 +83,12 @@ export default function PlotNFTSelectBase(props: Props) {
                 <Flex gap={1} flexDirection="column">
                   <FormControlLabel
                     control={<Radio />}
-                    label={
-                      <Trans>
-                        Self pool. When you win a block you will earn XCH
-                        rewards.
-                      </Trans>
-                    }
+                    label={<Trans>Self pool. When you win a block you will earn XCH rewards.</Trans>}
                     value
                   />
                   <Flex gap={2}>
-                    <FormControlLabel
-                      value={false}
-                      control={<Radio />}
-                      label={<Trans>Connect to pool</Trans>}
-                    />
-                    <Flex
-                      flexBasis={0}
-                      flexGrow={1}
-                      flexDirection="column"
-                      gap={1}
-                    >
+                    <FormControlLabel value={false} control={<Radio />} label={<Trans>Connect to pool</Trans>} />
+                    <Flex flexBasis={0} flexGrow={1} flexDirection="column" gap={1}>
                       <FormControl variant="filled" fullWidth>
                         <TextField
                           name="poolUrl"
@@ -156,9 +124,7 @@ export default function PlotNFTSelectBase(props: Props) {
 
       <StyledCollapse in={showPoolInfo}>
         <CardStep step={step + 1} title={<Trans>Verify Pool Details</Trans>}>
-          {poolInfo.error && (
-            <Alert severity="warning">{poolInfo.error.message}</Alert>
-          )}
+          {poolInfo.error && <Alert severity="warning">{poolInfo.error.message}</Alert>}
 
           {poolInfo.loading && <Loading center />}
 

@@ -1,11 +1,7 @@
 import type { KeyData } from '@chia/api';
 import { useGetLoggedInFingerprintQuery } from '@chia/api-react';
 import { Trans } from '@lingui/macro';
-import {
-  Delete as DeleteIcon,
-  Visibility as VisibilityIcon,
-  Edit as EditIcon,
-} from '@mui/icons-material';
+import { Delete as DeleteIcon, Visibility as VisibilityIcon, Edit as EditIcon } from '@mui/icons-material';
 import { Box, Typography, ListItemIcon, Chip } from '@mui/material';
 import React, { useState } from 'react';
 
@@ -41,9 +37,7 @@ export default function SelectKeyItem(props: SelectKeyItemProps) {
   }
 
   function handleShowKey() {
-    openDialog(
-      <SelectKeyDetailDialog fingerprint={fingerprint} index={index} />
-    );
+    openDialog(<SelectKeyDetailDialog fingerprint={fingerprint} index={index} />);
   }
 
   function handleRename() {
@@ -67,17 +61,9 @@ export default function SelectKeyItem(props: SelectKeyItemProps) {
       loading={loading}
     >
       <Flex position="relative">
-        <Flex
-          direction="column"
-          gap={isRenaming ? 1 : 0}
-          minWidth={0}
-          flexGrow={1}
-        >
+        <Flex direction="column" gap={isRenaming ? 1 : 0} minWidth={0} flexGrow={1}>
           {isRenaming ? (
-            <SelectKeyRenameForm
-              keyData={keyData}
-              onClose={handleCloseRename}
-            />
+            <SelectKeyRenameForm keyData={keyData} onClose={handleCloseRename} />
           ) : (
             <Typography variant="h6" noWrap>
               {label || <Trans>Wallet {index + 1}</Trans>}
@@ -119,17 +105,7 @@ export default function SelectKeyItem(props: SelectKeyItemProps) {
         </Box>
         {currentFingerprint === fingerprint && (
           <Box position="absolute" bottom={-5} right={1}>
-            <Chip
-              size="small"
-              label={
-                <WalletStatus
-                  variant="body2"
-                  indicator
-                  reversed
-                  color="textColor"
-                />
-              }
-            />
+            <Chip size="small" label={<WalletStatus variant="body2" indicator reversed color="textColor" />} />
           </Box>
         )}
       </Flex>

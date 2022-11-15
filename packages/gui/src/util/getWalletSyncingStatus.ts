@@ -8,7 +8,8 @@ export default function getWalletSyncingStatus(walletState: IncomingState) {
 
   if (syncing) {
     return SyncingStatus.SYNCING;
-  } if (synced) {
+  }
+  if (synced) {
     return SyncingStatus.SYNCED;
   }
 

@@ -41,22 +41,17 @@ export default function WalletCreateCard(props: Props) {
         <Flex flexDirection="column" gap={1} flexGrow={1} alignItems="center" justifyContent="center">
           {icon}
           {loading ? (
-            <Loading center>
-              {loadingDescription}
-            </Loading>
+            <Loading center>{loadingDescription}</Loading>
           ) : (
             <>
               {symbol && (
-              <Typography variant="h5" color="primary">
-                {symbol}
-              </Typography>
-            )}
-            <Typography variant="h6">
-              {title}
-            </Typography>
+                <Typography variant="h5" color="primary">
+                  {symbol}
+                </Typography>
+              )}
+              <Typography variant="h6">{title}</Typography>
             </>
           )}
-
         </Flex>
         <Typography variant="body2" color="textSecondary">
           {children}

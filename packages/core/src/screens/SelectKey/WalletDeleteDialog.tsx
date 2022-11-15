@@ -1,17 +1,6 @@
-import {
-  useCheckDeleteKeyMutation,
-  useDeleteKeyMutation,
-  useGetKeyringStatusQuery,
-} from '@chia/api-react';
+import { useCheckDeleteKeyMutation, useDeleteKeyMutation, useGetKeyringStatusQuery } from '@chia/api-react';
 import { Trans, t } from '@lingui/macro';
-import {
-  Button,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  Alert,
-  Typography,
-} from '@mui/material';
+import { Button, Dialog, DialogTitle, DialogContent, Alert, Typography } from '@mui/material';
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 
@@ -37,12 +26,10 @@ export type WalletDeleteDialogProps = {
 export default function WalletDeleteDialog(props: WalletDeleteDialogProps) {
   const { fingerprint, onClose = () => ({}), open = false } = props;
 
-  const { data: keyringState, isLoading: isLoadingKeyringStatus } =
-    useGetKeyringStatusQuery();
+  const { data: keyringState, isLoading: isLoadingKeyringStatus } = useGetKeyringStatusQuery();
 
   const [deleteKey] = useDeleteKeyMutation();
-  const [checkDeleteKey, { data: checkDeleteKeyData }] =
-    useCheckDeleteKeyMutation();
+  const [checkDeleteKey, { data: checkDeleteKeyData }] = useCheckDeleteKeyMutation();
   const [skippedMigration] = useSkipMigration();
   const [promptForKeyringMigration] = useKeyringMigrationPrompt();
 
@@ -56,10 +43,7 @@ export default function WalletDeleteDialog(props: WalletDeleteDialogProps) {
 
   async function handleKeyringMutator() {
     // If the keyring requires migration and the user previously skipped migration, prompt again
-    if (
-      isLoadingKeyringStatus ||
-      (keyringState?.needsMigration && skippedMigration)
-    ) {
+    if (isLoadingKeyringStatus || (keyringState?.needsMigration && skippedMigration)) {
       await promptForKeyringMigration();
 
       return false;
@@ -87,10 +71,8 @@ export default function WalletDeleteDialog(props: WalletDeleteDialogProps) {
   const isInitializing = !checkDeleteKeyData;
   const canSubmit = !isInitializing && !isSubmitting;
 
-  const { usedForFarmerRewards, walletBalance, usedForPoolRewards } =
-    checkDeleteKeyData ?? {};
-  const hasWarning =
-    usedForFarmerRewards || walletBalance || usedForPoolRewards;
+  const { usedForFarmerRewards, walletBalance, usedForPoolRewards } = checkDeleteKeyData ?? {};
+  const hasWarning = usedForFarmerRewards || walletBalance || usedForPoolRewards;
 
   async function handleSubmit(values: FormData) {
     if (values.fingerprint !== fingerprint.toString()) {
@@ -117,64 +99,55 @@ export default function WalletDeleteDialog(props: WalletDeleteDialogProps) {
             <Loading center />
           ) : (
             <Flex flexDirection="column" gap={2}>
-                {hasWarning && (
-                  <Alert severity="warning">
-                    <Flex flexDirection="column" gap={1}>
-                      {usedForFarmerRewards && (
-                        <Typography>
-                          <Trans>
-                            This key is used for your farming rewards address.
-                            By deleting this key you may lose access to any
-                            future farming rewards
-                          </Trans>
-                        </Typography>
-                      )}
+              {hasWarning && (
+                <Alert severity="warning">
+                  <Flex flexDirection="column" gap={1}>
+                    {usedForFarmerRewards && (
+                      <Typography>
+                        <Trans>
+                          This key is used for your farming rewards address. By deleting this key you may lose access to
+                          any future farming rewards
+                        </Trans>
+                      </Typography>
+                    )}
 
-                      {usedForPoolRewards && (
-                        <Typography>
-                          <Trans>
-                            This key is used for your pool rewards address. By
-                            deleting this key you may lose access to any future
-                            pool rewards
-                          </Trans>
-                        </Typography>
-                      )}
+                    {usedForPoolRewards && (
+                      <Typography>
+                        <Trans>
+                          This key is used for your pool rewards address. By deleting this key you may lose access to
+                          any future pool rewards
+                        </Trans>
+                      </Typography>
+                    )}
 
-                      {walletBalance && (
-                        <Typography>
-                          <Trans>
-                            This key is used for a wallet that may have a
-                            non-zero balance. By deleting this key you may lose
-                            access to this wallet
-                          </Trans>
-                        </Typography>
-                      )}
-                    </Flex>
-                  </Alert>
-                )}
+                    {walletBalance && (
+                      <Typography>
+                        <Trans>
+                          This key is used for a wallet that may have a non-zero balance. By deleting this key you may
+                          lose access to this wallet
+                        </Trans>
+                      </Typography>
+                    )}
+                  </Flex>
+                </Alert>
+              )}
 
-                <Flex flexDirection="column" gap={2}>
-                  <Typography>
-                    <Trans>
-                      This will permanently remove the key from your computer,
-                      make sure you have your mnemonic phrase backed up.
-                    </Trans>
-                  </Typography>
-                  <Typography>
-                    <Trans>
-                      Are you sure you want to continue? Type in the fingerprint
-                      of this wallet key to confirm deletion.
-                    </Trans>
-                  </Typography>
+              <Flex flexDirection="column" gap={2}>
+                <Typography>
+                  <Trans>
+                    This will permanently remove the key from your computer, make sure you have your mnemonic phrase
+                    backed up.
+                  </Trans>
+                </Typography>
+                <Typography>
+                  <Trans>
+                    Are you sure you want to continue? Type in the fingerprint of this wallet key to confirm deletion.
+                  </Trans>
+                </Typography>
 
-                  <TextField
-                    name="fingerprint"
-                    label={<Trans>Wallet Fingerprint</Trans>}
-                    autoFocus
-                    fullWidth
-                  />
-                </Flex>
+                <TextField name="fingerprint" label={<Trans>Wallet Fingerprint</Trans>} autoFocus fullWidth />
               </Flex>
+            </Flex>
           )}
         </DialogContent>
         <DialogActions>

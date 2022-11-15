@@ -54,12 +54,7 @@ export default function NFTGallerySidebar(props: NFTGallerySidebarProps) {
                 </InputLabel>
                 <Select name="price" label={<Trans>Price</Trans>}>
                   <MenuItem value="">
-                    <Slider
-                      value={price}
-                      onChange={handleSliderChange}
-                      valueLabelDisplay="auto"
-                      color="secondary"
-                    />
+                    <Slider value={price} onChange={handleSliderChange} valueLabelDisplay="auto" color="secondary" />
                   </MenuItem>
                 </Select>
               </FormControl>

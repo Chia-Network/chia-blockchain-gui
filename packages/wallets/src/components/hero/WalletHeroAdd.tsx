@@ -1,10 +1,6 @@
 import { Back, Flex, FormatLargeNumber, Loading, Logo } from '@chia/core';
 import { Trans } from '@lingui/macro';
-import {
-  ChevronRight as ChevronRightIcon,
-  EnergySavingsLeaf as EcoIcon,
-  Add as AddIcon,
-} from '@mui/icons-material';
+import { ChevronRight as ChevronRightIcon, EnergySavingsLeaf as EcoIcon, Add as AddIcon } from '@mui/icons-material';
 import {
   Box,
   Button,
@@ -91,12 +87,7 @@ export default function Wallets() {
           </List>
         </Card>
       )}
-      <Button
-        onClick={handleAddCustomToken}
-        variant="outlined"
-        size="large"
-        fullWidth
-      >
+      <Button onClick={handleAddCustomToken} variant="outlined" size="large" fullWidth>
         <Trans>Add Custom Token</Trans>
       </Button>
     </WalletHeroLayout>

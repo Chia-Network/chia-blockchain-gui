@@ -15,11 +15,7 @@ const StyledListItemIcon = styled(ListItemIcon)`
   width: ${({ theme }) => theme.spacing(6)};
   height: ${({ theme }) => theme.spacing(6)};
   border: ${({ selected, theme }) =>
-    `1px solid ${
-      selected
-        ? theme.palette.highlight.main
-        : useColorModeValue(theme, 'border')
-    }`};
+    `1px solid ${selected ? theme.palette.highlight.main : useColorModeValue(theme, 'border')}`};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -34,17 +30,14 @@ const StyledListItemIcon = styled(ListItemIcon)`
     left: 0;
     width: 100%;
     height: 100%;
-    box-shadow: 0px -2px 4px rgba(104, 249, 127, 0.41),
-      0px 1px 8px rgba(145, 247, 53, 0.45);
+    box-shadow: 0px -2px 4px rgba(104, 249, 127, 0.41), 0px 1px 8px rgba(145, 247, 53, 0.45);
     opacity: 0;
     transition: opacity 0.3s ease-in-out;
   }
 
   svg {
     color: ${({ selected, theme }) =>
-      selected
-        ? useColorModeValue(theme, 'sidebarIconSelected')
-        : useColorModeValue(theme, 'sidebarIcon')};
+      selected ? useColorModeValue(theme, 'sidebarIconSelected') : useColorModeValue(theme, 'sidebarIcon')};
   }
 `;
 
@@ -65,8 +58,7 @@ const StyledListItem = styled(ListItem)`
     border-color: #4caf50;
 
     svg {
-      color: ${({ theme }) =>
-        useColorModeValue(theme, 'sidebarIconHover')} !important;
+      color: ${({ theme }) => useColorModeValue(theme, 'sidebarIconHover')} !important;
     }
 
     &::after {

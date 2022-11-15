@@ -12,9 +12,7 @@ const Color = {
   [State.ERROR]: StateColor.ERROR,
 };
 
-const StyledFlexContainer = styled(({ color: Color, ...rest }) => (
-  <Flex {...rest} />
-))`
+const StyledFlexContainer = styled(({ color: Color, ...rest }) => <Flex {...rest} />)`
   color: ${({ color }) => color};
 `;
 
@@ -41,12 +39,7 @@ export default function StateComponent(props: StateComponentProps) {
   const iconColor = Color[state];
 
   return (
-    <StyledFlexContainer
-      color={color}
-      alignItems="center"
-      gap={gap}
-      flexDirection={reversed ? 'row-reverse' : 'row'}
-    >
+    <StyledFlexContainer color={color} alignItems="center" gap={gap} flexDirection={reversed ? 'row-reverse' : 'row'}>
       {!hideTitle && <span>{children}</span>}
       {indicator && <StateIndicatorDot color={iconColor} />}
     </StyledFlexContainer>

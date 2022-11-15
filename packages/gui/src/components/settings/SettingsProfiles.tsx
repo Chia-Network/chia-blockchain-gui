@@ -1,6 +1,6 @@
 import { WalletType } from '@chia/api';
 import { useGetWalletsQuery } from '@chia/api-react';
-import { Flex , LayoutDashboardSub } from '@chia/core';
+import { Flex, LayoutDashboardSub } from '@chia/core';
 import { Trans } from '@lingui/macro';
 import { Add } from '@mui/icons-material';
 import { IconButton, Typography } from '@mui/material';
@@ -10,7 +10,6 @@ import { Route, Routes, useNavigate } from 'react-router-dom';
 import IdentitiesPanel from './IdentitiesPanel';
 import ProfileAdd from './ProfileAdd';
 import ProfileView from './ProfileView';
-
 
 export default function SettingsProfiles() {
   const navigate = useNavigate();
@@ -55,9 +54,7 @@ export default function SettingsProfiles() {
         </Flex>
       </Flex>
       <Routes>
-        <Route
-          element={<LayoutDashboardSub sidebar={<IdentitiesPanel />} outlet />}
-        >
+        <Route element={<LayoutDashboardSub sidebar={<IdentitiesPanel />} outlet />}>
           <Route path=":walletId" element={<ProfileView />} />
           <Route path="add" element={<ProfileAdd />} />
         </Route>

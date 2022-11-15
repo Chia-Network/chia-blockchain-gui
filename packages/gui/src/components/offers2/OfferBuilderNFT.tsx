@@ -17,14 +17,7 @@ function PreviewCard(props) {
   const { children } = props;
   return (
     <Card sx={{ minHeight: 362 }} variant="outlined">
-      <Flex
-        flexDirection="column"
-        alignItems="center"
-        justifyContent="center"
-        flexGrow={1}
-        gap={1}
-        padding={3}
-      >
+      <Flex flexDirection="column" alignItems="center" justifyContent="center" flexGrow={1} gap={1} padding={3}>
         {children}
       </Flex>
     </Card>
@@ -40,13 +33,7 @@ export type OfferBuilderNFTProps = {
 };
 
 export default function OfferBuilderNFT(props: OfferBuilderNFTProps) {
-  const {
-    name,
-    provenance = false,
-    showRoyalties = false,
-    onRemove,
-    offering = false,
-  } = props;
+  const { name, provenance = false, showRoyalties = false, onRemove, offering = false } = props;
 
   const fieldName = `${name}.nftId`;
   const value = useWatch({
@@ -69,12 +56,7 @@ export default function OfferBuilderNFT(props: OfferBuilderNFTProps) {
   return (
     <Flex flexDirection="column" gap={2}>
       <Flex flexDirection="column" gap={1}>
-        <OfferBuilderValue
-          name={fieldName}
-          type="text"
-          label={<Trans>NFT ID</Trans>}
-          onRemove={onRemove}
-        />
+        <OfferBuilderValue name={fieldName} type="text" label={<Trans>NFT ID</Trans>} onRemove={onRemove} />
         {(minterDID || minterDIDName) && (
           <Flex flexDirection="column" gap={1}>
             <Typography variant="body1" color="textSecondary">
@@ -134,12 +116,8 @@ export default function OfferBuilderNFT(props: OfferBuilderNFTProps) {
             </Grid>
             <Grid xs={12} md={6} item>
               <Flex flexDirection="column" gap={2}>
-                {showRoyalties && hasNFT && (
-                  <OfferBuilderNFTRoyalties nft={nft} offering={offering} />
-                )}
-                {provenance && hasNFT && (
-                  <OfferBuilderNFTProvenance nft={nft} />
-                )}
+                {showRoyalties && hasNFT && <OfferBuilderNFTRoyalties nft={nft} offering={offering} />}
+                {provenance && hasNFT && <OfferBuilderNFTProvenance nft={nft} />}
               </Flex>
             </Grid>
           </Grid>

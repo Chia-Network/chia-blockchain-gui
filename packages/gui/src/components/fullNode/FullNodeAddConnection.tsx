@@ -36,7 +36,7 @@ export default function FullNodeAddConnection(props: Props) {
     const { host, port } = values;
 
     await openConnection({
-      host, 
+      host,
       port: Number.parseInt(port, 10),
     }).unwrap();
 
@@ -66,17 +66,8 @@ export default function FullNodeAddConnection(props: Props) {
           <Flex gap={2} flexDirection="column">
             {error && <Alert severity="error">{error.message}</Alert>}
 
-            <TextField
-              label={<Trans>IP address / host</Trans>}
-              name="host"
-              variant="filled"
-            />
-            <TextField
-              label={<Trans>Port</Trans>}
-              name="port"
-              type="number"
-              variant="filled"
-            />
+            <TextField label={<Trans>IP address / host</Trans>} name="host" variant="filled" />
+            <TextField label={<Trans>Port</Trans>} name="port" type="number" variant="filled" />
           </Flex>
         </DialogContent>
         <DialogActions>

@@ -32,31 +32,17 @@ export default function PlotOverviewHero() {
           <Plots color="primary" fontSize="extraLarge" />
           <Typography variant="body1">
             <Trans>
-              Plots are allocated space on your hard drive used to farm and earn Chia.
-              &nbsp;
-              <Link
-                target="_blank"
-                href="https://github.com/Chia-Network/chia-blockchain/wiki/Network-Architecture"
-              >
+              Plots are allocated space on your hard drive used to farm and earn Chia. &nbsp;
+              <Link target="_blank" href="https://github.com/Chia-Network/chia-blockchain/wiki/Network-Architecture">
                 Learn more
               </Link>
             </Trans>
           </Typography>
           <Flex gap={1}>
-            <Button
-              onClick={handleAddPlot}
-              variant="contained"
-              color="primary"
-              fullWidth
-            >
+            <Button onClick={handleAddPlot} variant="contained" color="primary" fullWidth>
               <Trans>Add a Plot</Trans>
             </Button>
-            <Button
-              onClick={handleRefreshPlots}
-              variant="outlined"
-              color="secondary"
-              fullWidth
-            >
+            <Button onClick={handleRefreshPlots} variant="outlined" color="secondary" fullWidth>
               <Trans>Refresh Plots</Trans>
             </Button>
           </Flex>

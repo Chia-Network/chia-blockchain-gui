@@ -13,9 +13,7 @@ export function createStore(options?: ConfigureStoreOptions['preloadedState']) {
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware({
         serializableCheck: false,
-      }).concat(
-        api.middleware,
-      ),
+      }).concat(api.middleware),
     ...options,
   });
 }

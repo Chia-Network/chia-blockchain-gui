@@ -8,10 +8,7 @@ import type PlotNFT from '../../types/PlotNFT';
 
 type Props = {
   nft: PlotNFT;
-  children: (data: {
-    join: () => Promise<void>;
-    disabled: boolean;
-  }) => JSX.Element;
+  children: (data: { join: () => Promise<void>; disabled: boolean }) => JSX.Element;
 };
 
 export default function PoolJoin(props: Props) {
@@ -35,7 +32,7 @@ export default function PoolJoin(props: Props) {
       await openDialog(
         <AlertDialog>
           <Trans>You need to claim your rewards first</Trans>
-        </AlertDialog>,
+        </AlertDialog>
       );
       return;
     }

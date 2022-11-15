@@ -1,11 +1,5 @@
 import { useLocalStorage } from '@chia/api-react';
-import React, {
-  createContext,
-  ReactNode,
-  useState,
-  useMemo,
-  useCallback,
-} from 'react';
+import React, { createContext, ReactNode, useState, useMemo, useCallback } from 'react';
 
 import type Mode from '../../constants/Mode';
 
@@ -26,9 +20,7 @@ export type ModeProviderProps = {
 export default function ModeProvider(props: ModeProviderProps) {
   const { mode: defaultMode, children, persist = false } = props;
   const [modeState, setModeState] = useState<Mode | undefined>(defaultMode);
-  const [modeLocalStorage, setModeLocalStorage] = useLocalStorage<
-    Mode | undefined
-  >('mode', defaultMode);
+  const [modeLocalStorage, setModeLocalStorage] = useLocalStorage<Mode | undefined>('mode', defaultMode);
 
   const handleSetMode = useCallback(
     (newMode: Mode) => {
@@ -51,7 +43,5 @@ export default function ModeProvider(props: ModeProviderProps) {
     [mode, handleSetMode]
   );
 
-  return (
-    <ModeContext.Provider value={context}>{children}</ModeContext.Provider>
-  );
+  return <ModeContext.Provider value={context}>{children}</ModeContext.Provider>;
 }

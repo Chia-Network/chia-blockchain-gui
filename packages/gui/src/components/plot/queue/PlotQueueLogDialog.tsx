@@ -1,14 +1,7 @@
 import { useGetPlotQueueQuery, useThrottleQuery } from '@chia/api-react';
 import { Button, Flex, Log } from '@chia/core';
 import { Trans } from '@lingui/macro';
-import {
-  Dialog,
-  DialogActions,
-  DialogTitle,
-  DialogContent,
-  LinearProgress,
-  Typography,
-} from '@mui/material';
+import { Dialog, DialogActions, DialogTitle, DialogContent, LinearProgress, Typography } from '@mui/material';
 import React, { useEffect, useState, ReactNode } from 'react';
 import styled from 'styled-components';
 
@@ -42,15 +35,11 @@ export default function PlotQueueLogDialog(props: Props) {
   function handleClose(event: any, reason: any) {
     if (reason !== 'backdropClick' || reason !== 'EscapeKeyDown') {
       onClose();
-    }}
+    }
+  }
 
   return (
-    <Dialog
-      maxWidth="md"
-      aria-labelledby="confirmation-dialog-title"
-      onClose={handleClose}
-      open={open}
-    >
+    <Dialog maxWidth="md" aria-labelledby="confirmation-dialog-title" onClose={handleClose} open={open}>
       <DialogTitle id="confirmation-dialog-title">
         <Trans>View Log</Trans>
       </DialogTitle>
@@ -60,11 +49,7 @@ export default function PlotQueueLogDialog(props: Props) {
           {!!queueItem && queueItem.progress !== undefined && (
             <Flex gap={1} alignItems="center">
               <Flex flexGrow={1}>
-                <StyledLinearProgress
-                  variant="determinate"
-                  value={queueItem.progress * 100}
-                  color="secondary"
-                />
+                <StyledLinearProgress variant="determinate" value={queueItem.progress * 100} color="secondary" />
               </Flex>
               <Flex>
                 <Typography variant="body2" color="textSecondary">

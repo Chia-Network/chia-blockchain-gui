@@ -10,31 +10,30 @@ import usePlotNFTDetails from './usePlotNFTDetails';
 export default function useAbsorbRewards(nft: PlotNFT) {
   const openDialog = useOpenDialog();
   const [pwAbsorbRewards] = usePwAbsorbRewardsMutation();
-  const { isPending, isSynced, walletId, state, balance } =
-    usePlotNFTDetails(nft);
+  const { isPending, isSynced, walletId, state, balance } = usePlotNFTDetails(nft);
 
   async function handleAbsorbRewards(fee?: string) {
     if (!isSynced) {
-      await openDialog((
+      await openDialog(
         <AlertDialog>
           <Trans>Please wait for synchronization</Trans>
         </AlertDialog>
-      ));
+      );
       return;
     }
     if (isPending) {
-      await openDialog((
+      await openDialog(
         <AlertDialog>
           <Trans>You are in pending state. Please wait for confirmation</Trans>
         </AlertDialog>
-      ));
+      );
       return;
     }
     if (state !== PlotNFTState.SELF_POOLING) {
       await openDialog(
         <AlertDialog>
           <Trans>You are not self pooling</Trans>
-        </AlertDialog>,
+        </AlertDialog>
       );
       return;
     }
@@ -44,16 +43,17 @@ export default function useAbsorbRewards(nft: PlotNFT) {
         title={<Trans>Please Confirm</Trans>}
         confirmTitle={<Trans>Confirm</Trans>}
         confirmColor="primary"
-        onConfirm={() => pwAbsorbRewards({
-          walletId,
-          fee,
-        }).unwrap()}
+        onConfirm={() =>
+          pwAbsorbRewards({
+            walletId,
+            fee,
+          }).unwrap()
+        }
       >
         <Trans>
-          You will recieve <UnitFormat value={balance} display="inline" /> to{' '}
-          {address}
+          You will recieve <UnitFormat value={balance} display="inline" /> to {address}
         </Trans>
-      </ConfirmDialog>,
+      </ConfirmDialog>
     );
   }
 

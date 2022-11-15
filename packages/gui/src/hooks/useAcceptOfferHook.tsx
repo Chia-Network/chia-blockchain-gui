@@ -1,11 +1,6 @@
 import { OfferSummaryRecord } from '@chia/api';
 import { useTakeOfferMutation } from '@chia/api-react';
-import {
-  AlertDialog,
-  chiaToMojo,
-  useOpenDialog,
-  useShowError,
-} from '@chia/core';
+import { AlertDialog, chiaToMojo, useOpenDialog, useShowError } from '@chia/core';
 import { Trans, t } from '@lingui/macro';
 import BigNumber from 'bignumber.js';
 import React from 'react';
@@ -20,7 +15,7 @@ export type AcceptOfferHook = (
   offerSummary: OfferSummaryRecord,
   fee: string | undefined,
   onUpdate: (accepting: boolean) => void,
-  onSuccess: () => void,
+  onSuccess: () => void
 ) => Promise<void>;
 
 export default function useAcceptOfferHook(): [AcceptOfferHook] {
@@ -34,20 +29,17 @@ export default function useAcceptOfferHook(): [AcceptOfferHook] {
     offerSummary: OfferSummaryRecord,
     fee: string | undefined,
     onUpdate: (accepting: boolean) => void,
-    onSuccess: () => void,
+    onSuccess: () => void
   ): Promise<void> {
     const feeInMojos: BigNumber = fee ? chiaToMojo(fee) : new BigNumber(0);
     const offeredUnknownCATs: string[] = Object.entries(offerSummary.offered)
       .filter(
         ([assetId]) =>
-          offerAssetTypeForAssetId(assetId, offerSummary) !== OfferAsset.NFT &&
-          lookupByAssetId(assetId) === undefined,
+          offerAssetTypeForAssetId(assetId, offerSummary) !== OfferAsset.NFT && lookupByAssetId(assetId) === undefined
       )
       .map(([assetId]) => assetId);
 
-    const confirmedAccept = await openDialog(
-      <OfferAcceptConfirmationDialog offeredUnknownCATs={offeredUnknownCATs} />,
-    );
+    const confirmedAccept = await openDialog(<OfferAcceptConfirmationDialog offeredUnknownCATs={offeredUnknownCATs} />);
 
     if (!confirmedAccept) {
       return;
@@ -60,12 +52,8 @@ export default function useAcceptOfferHook(): [AcceptOfferHook] {
       if (response.data?.success === true) {
         await openDialog(
           <AlertDialog title={<Trans>Success</Trans>}>
-            {response.message ?? (
-              <Trans>
-                Offer has been accepted and is awaiting confirmation.
-              </Trans>
-            )}
-          </AlertDialog>,
+            {response.message ?? <Trans>Offer has been accepted and is awaiting confirmation.</Trans>}
+          </AlertDialog>
         );
       } else {
         throw new Error(response.error?.message ?? 'Something went wrong');

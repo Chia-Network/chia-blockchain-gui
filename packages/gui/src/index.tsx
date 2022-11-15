@@ -7,9 +7,7 @@ import App from './components/app/App';
 
 // we need to use additional root for hot reloading
 function Root() {
-  return (
-    <App />
-  );
+  return <App />;
 }
 
 ReactDOM.render(<Root />, document.querySelector('#root'));

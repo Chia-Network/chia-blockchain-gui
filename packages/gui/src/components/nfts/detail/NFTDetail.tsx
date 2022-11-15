@@ -17,11 +17,8 @@ import NFTRankings from '../NFTRankings';
 
 export default function NFTDetail() {
   const { nftId } = useParams();
-  const { wallets: nftWallets, isLoading: isLoadingWallets } =
-    useGetNFTWallets();
-  const { nfts, isLoading: isLoadingNFTs } = useFetchNFTs(
-    nftWallets.map((wallet: Wallet) => wallet.id),
-  );
+  const { wallets: nftWallets, isLoading: isLoadingWallets } = useGetNFTWallets();
+  const { nfts, isLoading: isLoadingNFTs } = useFetchNFTs(nftWallets.map((wallet: Wallet) => wallet.id));
 
   const nft: NFTInfo | undefined = useMemo(() => {
     if (!nfts) {
@@ -39,9 +36,7 @@ export default function NFTDetail() {
   return (
     <LayoutDashboardSub>
       <Flex flexDirection="column" gap={2}>
-        <Back variant="h5">
-          {metadata?.name ?? <Trans>Title Not Available</Trans>}
-        </Back>
+        <Back variant="h5">{metadata?.name ?? <Trans>Title Not Available</Trans>}</Back>
         <Box
           border={1}
           borderColor="grey.300"
@@ -84,9 +79,7 @@ export default function NFTDetail() {
                     <Trans>Collection</Trans>
                   </Typography>
 
-                  <Typography>
-                    {metadata?.collection?.name ?? <Trans>Not Available</Trans>}
-                  </Typography>
+                  <Typography>{metadata?.collection?.name ?? <Trans>Not Available</Trans>}</Typography>
                 </Flex>
               )}
               {(nft?.editionTotal ?? 0) > 1 && (

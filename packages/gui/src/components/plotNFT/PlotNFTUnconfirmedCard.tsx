@@ -32,11 +32,14 @@ export default function PlotNFTUnconfirmedCard(props: Props) {
   } = props;
 
   const { remove } = useUnconfirmedPlotNFTs();
-  const { data: transaction, isLoading } = useGetTransactionQuery({
-    transactionId,
-  }, {
-    pollingInterval: 5000,
-  });
+  const { data: transaction, isLoading } = useGetTransactionQuery(
+    {
+      transactionId,
+    },
+    {
+      pollingInterval: 5000,
+    }
+  );
 
   useEffect(() => {
     if (transaction?.confirmed) {
@@ -71,13 +74,7 @@ export default function PlotNFTUnconfirmedCard(props: Props) {
               </Flex>
             )}
           </Box>
-          <Flex
-            flexGrow={1}
-            alignItems="center"
-            justifyContent="center"
-            flexDirection="column"
-            gap={2}
-          >
+          <Flex flexGrow={1} alignItems="center" justifyContent="center" flexDirection="column" gap={2}>
             <Loading />
             <Typography variant="body2" align="center">
               <Trans>Waiting for the transaction to be confirmed</Trans>

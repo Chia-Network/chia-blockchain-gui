@@ -97,12 +97,7 @@ export default class Daemon extends Service {
     });
   }
 
-  migrateKeyring(
-    passphrase: string,
-    passphraseHint: string,
-    savePassphrase: boolean,
-    cleanupLegacyKeyring: boolean
-  ) {
+  migrateKeyring(passphrase: string, passphraseHint: string, savePassphrase: boolean, cleanupLegacyKeyring: boolean) {
     return this.command('migrate_keyring', {
       passphrase,
       passphraseHint,
@@ -225,10 +220,7 @@ export default class Daemon extends Service {
     return this.command('exit');
   }
 
-  onKeyringStatusChanged(
-    callback: (data: any, message: Message) => void,
-    processData?: (data: any) => any
-  ) {
+  onKeyringStatusChanged(callback: (data: any, message: Message) => void, processData?: (data: any) => any) {
     return this.onStateChanged('keyring_status_changed', callback, processData);
   }
 }

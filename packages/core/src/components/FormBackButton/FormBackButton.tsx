@@ -29,7 +29,7 @@ export default function FormBackButton(props: Props) {
           confirmColor="danger"
         >
           <Trans>You have made changes. Do you want to discard them?</Trans>
-        </ConfirmDialog>,
+        </ConfirmDialog>
       ));
 
     if (canGoBack) {

@@ -1,4 +1,3 @@
-
 enum OfferState {
   PENDING_ACCEPT = 'PENDING_ACCEPT',
   PENDING_CONFIRM = 'PENDING_CONFIRM',
@@ -6,6 +5,6 @@ enum OfferState {
   CANCELLED = 'CANCELLED',
   CONFIRMED = 'CONFIRMED',
   FAILED = 'FAILED',
-};
+}
 
 export default OfferState;

@@ -1,12 +1,6 @@
 import { Connection } from '@chia/api';
 import { useGetFullNodeConnectionsQuery } from '@chia/api-react';
-import {
-  Card,
-  FormatBytes,
-  FormatLargeNumber,
-  Loading,
-  Table,
-} from '@chia/core';
+import { Card, FormatBytes, FormatLargeNumber, Loading, Table } from '@chia/core';
 import { Trans } from '@lingui/macro';
 import { Tooltip } from '@mui/material';
 import React from 'react';
@@ -39,19 +33,9 @@ const cols = [
     field(row: Connection) {
       return (
         <>
-          <FormatBytes
-            value={row.bytesWritten}
-            unit="MiB"
-            removeUnit
-            fixedDecimals
-          />
+          <FormatBytes value={row.bytesWritten} unit="MiB" removeUnit fixedDecimals />
           /
-          <FormatBytes
-            value={row.bytesRead}
-            unit="MiB"
-            removeUnit
-            fixedDecimals
-          />
+          <FormatBytes value={row.bytesRead} unit="MiB" removeUnit fixedDecimals />
         </>
       );
     },

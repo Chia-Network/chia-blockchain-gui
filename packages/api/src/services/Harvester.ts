@@ -23,27 +23,24 @@ export default class Harvester extends Service {
   }
 
   async deletePlot(filename: string) {
-    return this.command('delete_plot', { 
+    return this.command('delete_plot', {
       filename,
     });
   }
 
   async addPlotDirectory(dirname: string) {
-    return this.command('add_plot_directory', { 
+    return this.command('add_plot_directory', {
       dirname,
     });
   }
 
   async removePlotDirectory(dirname: string) {
-    return this.command('remove_plot_directory', { 
+    return this.command('remove_plot_directory', {
       dirname,
     });
   }
 
-  onRefreshPlots(
-    callback: (data: any, message: Message) => void,
-    processData?: (data: any) => any,
-  ) {
+  onRefreshPlots(callback: (data: any, message: Message) => void, processData?: (data: any) => any) {
     return this.onCommand('refresh_plots', callback, processData);
   }
 }

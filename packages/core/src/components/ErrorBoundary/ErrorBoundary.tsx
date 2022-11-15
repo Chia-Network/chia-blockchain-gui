@@ -3,7 +3,7 @@ import { Typography } from '@mui/material';
 import { styled } from '@mui/styles';
 import qs from 'qs';
 import React, { Component, type ReactNode } from 'react';
-import StackTrace from "stacktrace-js";
+import StackTrace from 'stacktrace-js';
 
 import Button from '../Button';
 import Flex from '../Flex';
@@ -15,7 +15,10 @@ const StyledPre = styled(Typography)(() => ({
 }));
 
 function formatStackTrace(stack: []) {
-  const stackTrace = stack.map(({ fileName, columnNumber, lineNumber, functionName }) => `at ${fileName}:${lineNumber}:${columnNumber} ${functionName}`);
+  const stackTrace = stack.map(
+    ({ fileName, columnNumber, lineNumber, functionName }) =>
+      `at ${fileName}:${lineNumber}:${columnNumber} ${functionName}`
+  );
   return stackTrace.join('\n');
 }
 
@@ -52,7 +55,7 @@ export default class ErrorBoundary extends Component {
   handleReload = () => {
     window.location.hash = '#/';
     window.location.reload();
-  }
+  };
 
   render() {
     if (this.state.hasError) {
@@ -63,7 +66,7 @@ export default class ErrorBoundary extends Component {
         title: `[BUG] ${error.message}`,
         ui: 'GUI',
         logs: `${error.message}\n\nURL\n${window.location.hash}\n\nStacktrace\n${stacktrace}`,
-      })}`
+      })}`;
       // You can render any custom fallback UI
       return (
         <LayoutHero>
@@ -73,17 +76,17 @@ export default class ErrorBoundary extends Component {
             </Typography>
 
             <Flex flexDirection="column">
-              <Typography variant="h6" >
+              <Typography variant="h6">
                 <Trans>Error:</Trans> {error.message}
               </Typography>
-              <StyledPre variant="body2">
-                {stacktrace}
-              </StyledPre>
+              <StyledPre variant="body2">{stacktrace}</StyledPre>
             </Flex>
 
             <Flex justifyContent="center">
               <Link target="_blank" href={issueLink}>
-                <Button><Trans>Report an Issue</Trans></Button>
+                <Button>
+                  <Trans>Report an Issue</Trans>
+                </Button>
               </Link>
               &nbsp;
               <Button onClick={this.handleReload} color="primary">

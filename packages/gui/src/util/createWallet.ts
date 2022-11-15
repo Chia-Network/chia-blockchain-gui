@@ -8,7 +8,7 @@ export default function createWallet(
   name: string,
   type: WalletType,
   data: Object,
-  details?: Object,
+  details?: Object
 ): Wallet {
   return {
     id,

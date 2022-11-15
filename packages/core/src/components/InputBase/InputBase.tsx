@@ -58,14 +58,7 @@ function InputBase(props: Props, ref: any) {
     <Controller
       name={name}
       control={control}
-      render={({ field }) => (
-        <MaterialInputBase
-          error={!!errorMessage}
-          {...rest}
-          {...field}
-          ref={ref}
-        />
-      )}
+      render={({ field }) => <MaterialInputBase error={!!errorMessage} {...rest} {...field} ref={ref} />}
     />
   );
 }

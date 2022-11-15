@@ -17,9 +17,7 @@ export type OfferBuilderFeeSectionProps = {
   viewer?: boolean;
 };
 
-export default function OfferBuilderFeeSection(
-  props: OfferBuilderFeeSectionProps,
-) {
+export default function OfferBuilderFeeSection(props: OfferBuilderFeeSectionProps) {
   const { name, offering, viewer } = props;
   const { wallet, loading } = useStandardWallet();
   const { imported, state } = useOfferBuilderContext();
@@ -52,9 +50,7 @@ export default function OfferBuilderFeeSection(
     <OfferBuilderSection
       icon={<Fees />}
       title={<Trans>Fees</Trans>}
-      subtitle={
-        <Trans>Optional network fee to expedite acceptance of your offer</Trans>
-      }
+      subtitle={<Trans>Optional network fee to expedite acceptance of your offer</Trans>}
       onAdd={canAdd ? handleAdd : undefined}
       expanded={!!fields.length}
       disableReadOnly={disableReadOnly}
@@ -67,11 +63,7 @@ export default function OfferBuilderFeeSection(
             key={field.id}
             type="fee"
             label={<Trans>Transaction Speed</Trans>}
-            caption={
-              !hideBalance && (
-                <OfferBuilderWalletBalance walletId={wallet?.id} />
-              )
-            }
+            caption={!hideBalance && <OfferBuilderWalletBalance walletId={wallet?.id} />}
             name={`${name}.${index}.amount`}
             symbol={unit}
             onRemove={() => handleRemove(index)}

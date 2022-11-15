@@ -13,7 +13,10 @@ export default function useWallet(walletId?: number | string): {
   const { data: wallets, isLoading } = useGetWalletsQuery();
   const { data: catList = [], isLoading: isCatListLoading } = useGetCatListQuery();
 
-  const wallet = useMemo(() => wallets?.find((item) => item.id.toString() === walletId?.toString()), [wallets, walletId]);
+  const wallet = useMemo(
+    () => wallets?.find((item) => item.id.toString() === walletId?.toString()),
+    [wallets, walletId]
+  );
 
   const unit = useMemo(() => {
     if (wallet) {
@@ -25,13 +28,13 @@ export default function useWallet(walletId?: number | string): {
 
         return undefined;
       }
-      
+
       return currencyCode;
-    } 
+    }
   }, [wallet, currencyCode, isCatListLoading]);
 
-  return { 
-    wallet, 
+  return {
+    wallet,
     loading: isLoading,
     unit,
   };

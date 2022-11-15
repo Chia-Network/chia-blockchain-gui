@@ -9,7 +9,11 @@ export default function useGetThrottlePlotQueueQuery(wait = 5000): {
   hasQueue: boolean;
   error?: Error;
 } {
-  const { data: queue, isLoading, error } = useThrottleQuery(useGetPlotQueueQuery, undefined, undefined, {
+  const {
+    data: queue,
+    isLoading,
+    error,
+  } = useThrottleQuery(useGetPlotQueueQuery, undefined, undefined, {
     wait,
   });
 

@@ -2,9 +2,7 @@ import { useGetWalletsQuery } from '@chia/api-react';
 import { Flex, Loading } from '@chia/core';
 import { Trans } from '@lingui/macro';
 import { Eco as HomeWorkIcon, Add as AddIcon } from '@mui/icons-material';
-import {
-  Grid, Typography,
-} from '@mui/material';
+import { Grid, Typography } from '@mui/material';
 import React from 'react';
 import { useNavigate } from 'react-router';
 

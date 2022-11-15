@@ -27,9 +27,7 @@ const StyledFiberManualRecordIcon = styled(FiberManualRecordIcon)`
   font-size: 1rem;
 `;
 
-const StyledFlexContainer = styled(({ color: Color, ...rest }) => (
-  <Flex {...rest} />
-))`
+const StyledFlexContainer = styled(({ color: Color, ...rest }) => <Flex {...rest} />)`
   color: ${({ color }) => color};
 `;
 

@@ -20,13 +20,21 @@ export default function WalletIcon(props: WalletIconProps) {
   const currencyCode = useCurrencyCode();
 
   if (wallet.type === WalletType.STANDARD_WALLET) {
-    return <StyledSymbol color={color} {...rest}>{currencyCode}</StyledSymbol>;
+    return (
+      <StyledSymbol color={color} {...rest}>
+        {currencyCode}
+      </StyledSymbol>
+    );
   }
 
   if (!isLoading && wallet.type === WalletType.CAT) {
     const token = catList.find((token) => token.assetId === wallet.meta?.assetId);
     if (token) {
-      return <StyledSymbol color={color} {...rest}>{token.symbol}</StyledSymbol>;
+      return (
+        <StyledSymbol color={color} {...rest}>
+          {token.symbol}
+        </StyledSymbol>
+      );
     }
   }
 

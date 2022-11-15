@@ -1,4 +1,4 @@
-import { Box, Paper, Popper , Typography } from '@mui/material';
+import { Box, Paper, Popper, Typography } from '@mui/material';
 import React, { ReactNode, useRef } from 'react';
 
 export type WalletGraphTooltipProps = {
@@ -12,23 +12,12 @@ export type WalletGraphTooltipProps = {
 };
 
 export default function WalletGraphTooltip(props: WalletGraphTooltipProps) {
-  const {
-    datum = { tooltip: '' },
-    x = 0,
-    y = 0,
-    suffix = '',
-    dotSize = 4,
-  } = props;
+  const { datum = { tooltip: '' }, x = 0, y = 0, suffix = '', dotSize = 4 } = props;
   const elementRef = useRef<HTMLDivElement | null>(null);
 
   return (
     <g style={{ pointerEvents: 'none' }}>
-      <foreignObject
-        x={x - Math.floor(dotSize / 2)}
-        y={y - Math.floor(dotSize / 2)}
-        width={dotSize}
-        height={dotSize}
-      >
+      <foreignObject x={x - Math.floor(dotSize / 2)} y={y - Math.floor(dotSize / 2)} width={dotSize} height={dotSize}>
         <Box
           sx={{
             backgroundColor: '#5DAA62',
@@ -38,12 +27,7 @@ export default function WalletGraphTooltip(props: WalletGraphTooltipProps) {
           }}
         />
         <Box ref={elementRef} />
-        <Popper
-          placement="bottom"
-          anchorEl={elementRef.current}
-          style={{ pointerEvents: 'none' }}
-          open
-        >
+        <Popper placement="bottom" anchorEl={elementRef.current} style={{ pointerEvents: 'none' }} open>
           <Paper
             sx={{
               paddingX: 1,

@@ -11,17 +11,13 @@ import untildify from './untildify';
 export function getConfigRootDir(net = 'mainnet'): string {
   const homedir = os.homedir();
 
-  return 'CHIA_ROOT' in process.env
-    ? untildify(process.env.CHIA_ROOT)
-    : path.join(homedir, '.chia', net);
+  return 'CHIA_ROOT' in process.env ? untildify(process.env.CHIA_ROOT) : path.join(homedir, '.chia', net);
 }
 
 export function readConfigFile(net?: string): string {
   const configRootDir = getConfigRootDir(net);
 
-  return yaml.load(
-    fs.readFileSync(path.resolve(configRootDir, 'config/config.yaml'), 'utf8'),
-  );
+  return yaml.load(fs.readFileSync(path.resolve(configRootDir, 'config/config.yaml'), 'utf8'));
 }
 
 export default async function loadConfig(net?: string): Promise<{
@@ -41,19 +37,11 @@ export default async function loadConfig(net?: string): Promise<{
 
     const certPath = path.resolve(
       configRootDir,
-      get(
-        config,
-        'ui.daemon_ssl.private_crt',
-        'config/ssl/daemon/private_daemon.crt',
-      ),
+      get(config, 'ui.daemon_ssl.private_crt', 'config/ssl/daemon/private_daemon.crt')
     );
     const keyPath = path.resolve(
       configRootDir,
-      get(
-        config,
-        'ui.daemon_ssl.private_key',
-        'config/ssl/daemon/private_daemon.key',
-      ),
+      get(config, 'ui.daemon_ssl.private_key', 'config/ssl/daemon/private_daemon.key')
     );
 
     return {
@@ -66,8 +54,7 @@ export default async function loadConfig(net?: string): Promise<{
       console.log('Waiting for configuration file');
       await sleep(1000);
       return loadConfig(net);
-    } 
-      throw error;
-    
+    }
+    throw error;
   }
 }

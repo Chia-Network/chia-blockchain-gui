@@ -13,15 +13,18 @@ type Props = {
 
 export default function WalletCardPendingBalance(props: Props) {
   const { walletId, tooltip } = props;
-  const { 
-    data: walletBalance, 
+  const {
+    data: walletBalance,
     isLoading: isLoadingWalletBalance,
     error,
-  } = useGetWalletBalanceQuery({
-    walletId,
-  }, {
-    pollingInterval: 10000,
-  });
+  } = useGetWalletBalanceQuery(
+    {
+      walletId,
+    },
+    {
+      pollingInterval: 10000,
+    }
+  );
 
   const { wallet, unit = '', loading } = useWallet(walletId);
 

@@ -20,16 +20,8 @@ export default function PlotAdd() {
   const isLoading = isLoadingFingerprint || isLoadingPlotters || !currencyCode || isLoadingUnconfirmedPlotNFTs;
 
   if (isLoading) {
-    return (
-      <Suspender />
-    );
+    return <Suspender />;
   }
-  
-  return (
-    <PlotAddForm
-      currencyCode={currencyCode}
-      fingerprint={fingerprint}
-      plotters={plotters}
-    />
-  );
+
+  return <PlotAddForm currencyCode={currencyCode} fingerprint={fingerprint} plotters={plotters} />;
 }

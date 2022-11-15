@@ -1,22 +1,6 @@
-import {
-  Button,
-  CopyToClipboard,
-  Flex,
-  Link,
-  Loading,
-  TextField,
-  Form,
-} from '@chia/core';
+import { Button, CopyToClipboard, Flex, Link, Loading, TextField, Form } from '@chia/core';
 import { Trans } from '@lingui/macro';
-import {
-  Alert,
-  Dialog,
-  DialogActions,
-  DialogTitle,
-  DialogContent,
-  Typography,
-  InputAdornment,
-} from '@mui/material';
+import { Alert, Dialog, DialogActions, DialogTitle, DialogContent, Typography, InputAdornment } from '@mui/material';
 import React, { useState } from 'react';
 import { useForm, useWatch } from 'react-hook-form';
 
@@ -50,7 +34,7 @@ export default function PlotNFTPayoutInstructionsDialog(props: Props) {
   const currentPayoutAddress = useWatch<string>({
     name: 'payoutAddress',
     control: methods.control,
-  })
+  });
 
   function handleClose() {
     onClose();
@@ -72,7 +56,8 @@ export default function PlotNFTPayoutInstructionsDialog(props: Props) {
   function handleDialogClose(event: any, reason: any) {
     if (reason !== 'backdropClick' || reason !== 'EscapeKeyDown') {
       onClose();
-    }}
+    }
+  }
 
   return (
     <Dialog onClose={handleDialogClose} maxWidth="md" open={open}>
@@ -105,11 +90,9 @@ export default function PlotNFTPayoutInstructionsDialog(props: Props) {
 
                 <Typography variant="body2" color="textSecondary">
                   <Trans>
-                    These are the instructions for how the farmer wants to get
-                    paid. By default this will be an XCH address, but it can be
-                    set to any string with a size of less than 1024 characters, so
-                    it can represent another blockchain or payment system
-                    identifier.
+                    These are the instructions for how the farmer wants to get paid. By default this will be an XCH
+                    address, but it can be set to any string with a size of less than 1024 characters, so it can
+                    represent another blockchain or payment system identifier.
                   </Trans>{' '}
                   <Link
                     target="_blank"

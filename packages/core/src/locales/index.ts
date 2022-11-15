@@ -77,7 +77,7 @@ export {
   svSE,
   trTR,
   ukUA,
-//  viVN,
+  //  viVN,
   zhTW,
   zhCN,
 };

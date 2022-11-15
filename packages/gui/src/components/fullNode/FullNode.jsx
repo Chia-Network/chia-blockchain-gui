@@ -1,12 +1,5 @@
 import { useGetLatestBlocksQuery, useGetUnfinishedBlockHeadersQuery } from '@chia/api-react';
-import {
-  FormatLargeNumber,
-  Flex,
-  Card,
-  StateColor,
-  Table,
-  LayoutDashboardSub,
-} from '@chia/core';
+import { FormatLargeNumber, Flex, Card, StateColor, Table, LayoutDashboardSub } from '@chia/core';
 import { Status } from '@chia/icons';
 import { Trans } from '@lingui/macro';
 import { Box, Tooltip, Typography } from '@mui/material';
@@ -28,19 +21,11 @@ const cols = [
 
       const { foliageTransactionBlockHash } = foliage || {};
 
-      const value = isFinished ? (
-        headerHash
-      ) : (
-        <span>{foliageTransactionBlockHash}</span>
-      );
+      const value = isFinished ? headerHash : <span>{foliageTransactionBlockHash}</span>;
 
       const color = isFinished ? StateColor.SUCCESS : StateColor.WARNING;
 
-      const tooltip = isFinished ? (
-        <Trans>Finished</Trans>
-      ) : (
-        <Trans>In Progress</Trans>
-      );
+      const tooltip = isFinished ? <Trans>Finished</Trans> : <Trans>In Progress</Trans>;
 
       return (
         <Flex gap={1} alignItems="center">
@@ -79,9 +64,7 @@ const cols = [
     field(row) {
       const { isFinished } = row;
 
-      const timestamp = isFinished
-        ? row.timestamp
-        : get(row, 'foliageTransactionBlock.timestamp');
+      const timestamp = isFinished ? row.timestamp : get(row, 'foliageTransactionBlock.timestamp');
 
       return timestamp ? moment(timestamp * 1000).format('LLL') : '';
     },
@@ -120,7 +103,7 @@ function BlocksCard() {
 
   return (
     <Card title={<Trans>Blocks</Trans>} titleVariant="h6" action={<FullNodeBlockSearch />} transparent>
-      <Table cols={cols} rows={rows} onRowClick={handleRowClick} isLoading={isLoading}/>
+      <Table cols={cols} rows={rows} onRowClick={handleRowClick} isLoading={isLoading} />
     </Card>
   );
 }

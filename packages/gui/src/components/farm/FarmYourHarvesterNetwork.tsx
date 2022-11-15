@@ -40,19 +40,9 @@ const cols = [
     field(row: Connection) {
       return (
         <>
-          <FormatBytes
-            value={row.bytesWritten}
-            unit="KiB"
-            removeUnit
-            fixedDecimals
-          />
+          <FormatBytes value={row.bytesWritten} unit="KiB" removeUnit fixedDecimals />
           /
-          <FormatBytes
-            value={row.bytesRead}
-            unit="KiB"
-            removeUnit
-            fixedDecimals
-          />
+          <FormatBytes value={row.bytesRead} unit="KiB" removeUnit fixedDecimals />
         </>
       );
     },
@@ -85,10 +75,8 @@ export default function FarmYourHarvesterNetwork() {
       titleVariant="h6"
       tooltip={
         <Trans>
-          A harvester is a service running on a machine where plot(s) are
-          actually stored. A farmer and harvester talk to a full node to see the
-          state of the chain. View your network of connected harvesters below
-          Learn more
+          A harvester is a service running on a machine where plot(s) are actually stored. A farmer and harvester talk
+          to a full node to see the state of the chain. View your network of connected harvesters below Learn more
         </Trans>
       }
       transparent

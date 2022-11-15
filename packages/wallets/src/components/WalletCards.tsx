@@ -30,36 +30,21 @@ export default function WalletCards(props: WalletCardsProps) {
     <div>
       <Grid spacing={2} alignItems="stretch" container>
         <Grid xs={12} lg={4} item>
-          <WalletCardTotalBalance
-            walletId={walletId}
-            tooltip={totalBalanceTooltip}
-          />
+          <WalletCardTotalBalance walletId={walletId} tooltip={totalBalanceTooltip} />
         </Grid>
         <Grid xs={12} lg={8} item>
           <Grid spacing={2} alignItems="stretch" container>
             <Grid xs={12} md={6} item>
-              <WalletCardSpendableBalance
-                walletId={walletId}
-                tooltip={spendableBalanceTooltip}
-              />
+              <WalletCardSpendableBalance walletId={walletId} tooltip={spendableBalanceTooltip} />
             </Grid>
             <Grid xs={12} md={6} item>
-              <WalletCardPendingTotalBalance
-                walletId={walletId}
-                tooltip={pendingTotalBalanceTooltip}
-              />
+              <WalletCardPendingTotalBalance walletId={walletId} tooltip={pendingTotalBalanceTooltip} />
             </Grid>
             <Grid xs={12} md={6} item>
-              <WalletCardPendingBalance
-                walletId={walletId}
-                tooltip={pendingBalanceTooltip}
-              />
+              <WalletCardPendingBalance walletId={walletId} tooltip={pendingBalanceTooltip} />
             </Grid>
             <Grid xs={12} md={6} item>
-              <WalletCardPendingChange
-                walletId={walletId}
-                tooltip={pendingChangeTooltip}
-              />
+              <WalletCardPendingChange walletId={walletId} tooltip={pendingChangeTooltip} />
             </Grid>
           </Grid>
         </Grid>

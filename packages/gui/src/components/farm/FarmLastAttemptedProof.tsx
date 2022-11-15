@@ -46,8 +46,7 @@ export default function FarmLastAttemptedProof() {
       titleVariant="h6"
       tooltip={
         <Trans>
-          This table shows you the last time your farm attempted to win a block
-          challenge.{' '}
+          This table shows you the last time your farm attempted to win a block challenge.{' '}
           <Link
             target="_blank"
             href="https://github.com/Chia-Network/chia-blockchain/wiki/FAQ#what-is-the-plot-filter-and-why-didnt-my-plot-pass-it"

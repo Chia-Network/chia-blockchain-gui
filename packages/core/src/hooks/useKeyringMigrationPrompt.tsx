@@ -10,7 +10,6 @@ export default function useKeyringMigrationPrompt() {
   const openDialog = useOpenDialog();
 
   async function promptForKeyringMigration(): Promise<void> {
-
     const beginMigration = await openDialog(
       <ConfirmDialog
         title={<Trans>Migration required</Trans>}
@@ -19,7 +18,8 @@ export default function useKeyringMigrationPrompt() {
         confirmColor="default"
       >
         <Trans>
-          Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Would you like to migrate your keys now?
+          Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing
+          keys until migration completes. Would you like to migrate your keys now?
         </Trans>
       </ConfirmDialog>
     );

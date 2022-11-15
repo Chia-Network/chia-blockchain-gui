@@ -1,11 +1,7 @@
 import { useRefreshPlotsMutation } from '@chia/api-react';
 import { Button, Flex, More, useOpenDialog, MenuItem } from '@chia/core';
 import { Trans } from '@lingui/macro';
-import {
-  Refresh as RefreshIcon,
-  Folder as FolderIcon,
-  Add as AddIcon,
-} from '@mui/icons-material';
+import { Refresh as RefreshIcon, Folder as FolderIcon, Add as AddIcon } from '@mui/icons-material';
 import { ListItemIcon, Typography } from '@mui/material';
 import React, { ReactNode } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -47,12 +43,7 @@ export default function PlotHeader(props: PlotHeaderProps) {
       <Flex alignItems="center">
         <Flex flexGrow={1}>{children}</Flex>
         <div>
-          <Button
-            color="primary"
-            variant="outlined"
-            onClick={handleAddPlot}
-            startIcon={<AddIcon />}
-          >
+          <Button color="primary" variant="outlined" onClick={handleAddPlot} startIcon={<AddIcon />}>
             <Trans>Add a Plot</Trans>
           </Button>{' '}
           <More>

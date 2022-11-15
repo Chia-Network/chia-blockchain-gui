@@ -1,9 +1,6 @@
 import type { Connection } from '@chia/api';
 import { ServiceName } from '@chia/api';
-import {
-  useGetFarmerFullNodeConnectionsQuery,
-  useService,
-} from '@chia/api-react';
+import { useGetFarmerFullNodeConnectionsQuery, useService } from '@chia/api-react';
 import { Table, Card, FormatBytes, FormatConnectionStatus } from '@chia/core';
 import { Trans } from '@lingui/macro';
 import { Delete as DeleteIcon } from '@mui/icons-material';
@@ -43,19 +40,9 @@ const cols = [
     field(row: Connection) {
       return (
         <>
-          <FormatBytes
-            value={row.bytesWritten}
-            unit="KiB"
-            removeUnit
-            fixedDecimals
-          />
+          <FormatBytes value={row.bytesWritten} unit="KiB" removeUnit fixedDecimals />
           /
-          <FormatBytes
-            value={row.bytesRead}
-            unit="KiB"
-            removeUnit
-            fixedDecimals
-          />
+          <FormatBytes value={row.bytesRead} unit="KiB" removeUnit fixedDecimals />
         </>
       );
     },
@@ -89,10 +76,7 @@ export default function FarmFullNodeConnections() {
       tooltip={
         <Trans>
           {'The full node that your farmer is connected to is below. '}
-          <Link
-            target="_blank"
-            href="https://github.com/Chia-Network/chia-blockchain/wiki/Network-Architecture"
-          >
+          <Link target="_blank" href="https://github.com/Chia-Network/chia-blockchain/wiki/Network-Architecture">
             Learn more
           </Link>
         </Trans>

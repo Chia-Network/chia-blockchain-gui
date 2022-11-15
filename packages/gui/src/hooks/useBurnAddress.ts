@@ -10,10 +10,7 @@ export default function useBurnAddress(): string | undefined {
       return;
     }
 
-    return toBech32m(
-      '000000000000000000000000000000000000000000000000000000000000dead',
-      feeUnit,
-    );
+    return toBech32m('000000000000000000000000000000000000000000000000000000000000dead', feeUnit);
   }, [feeUnit]);
 
   return retireAddress;

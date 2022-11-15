@@ -50,7 +50,8 @@ export default function OfferHeader(props: OfferHeaderProps) {
             href="https://chialisp.com/docs/tutorials/offers_gui_tutorial/#taker-attempts-to-accept-an-invalid-offer"
           >
             here
-          </Link> to learn more.
+          </Link>{' '}
+          to learn more.
         </Trans>
       </Typography>
     );

@@ -4,13 +4,7 @@ import { t } from '@lingui/macro';
 import { Box, Typography } from '@mui/material';
 import React, { ReactNode } from 'react';
 import { useMeasure } from 'react-use';
-import {
-  VictoryChart,
-  VictoryAxis,
-  VictoryArea,
-  VictoryTooltip,
-  VictoryVoronoiContainer,
-} from 'victory';
+import { VictoryChart, VictoryAxis, VictoryArea, VictoryTooltip, VictoryVoronoiContainer } from 'victory';
 
 const HOUR_SECONDS = 60 * 60;
 
@@ -69,9 +63,7 @@ export default function PlotNFTGraph(props: PlotNFTGraphProps) {
     tooltip: t`${item.y} points ${item.x - 2} - ${item.x} hours ago`,
   }));
 
-  const min = aggregated.length
-    ? Math.min(...aggregated.map((item) => item.y))
-    : 0;
+  const min = aggregated.length ? Math.min(...aggregated.map((item) => item.y)) : 0;
   const max = Math.max(min, ...aggregated.map((item) => item.y));
 
   return (
@@ -104,9 +96,7 @@ export default function PlotNFTGraph(props: PlotNFTGraphProps) {
                 },
               }}
               labels={() => ''}
-              labelComponent={
-                <VictoryTooltip flyoutComponent={<WalletGraphTooltip />} />
-              }
+              labelComponent={<VictoryTooltip flyoutComponent={<WalletGraphTooltip />} />}
             />
             <VictoryAxis
               style={{

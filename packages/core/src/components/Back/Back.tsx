@@ -20,15 +20,7 @@ export type BackProps = {
 };
 
 export default function Back(props: BackProps) {
-  const {
-    children,
-    variant,
-    to,
-    goBack,
-    form = false,
-    iconStyle,
-    alignItems = 'center',
-  } = props;
+  const { children, variant, to, goBack, form = false, iconStyle, alignItems = 'center' } = props;
   const navigate = useNavigate();
   const openDialog = useOpenDialog();
   const formContext = useFormContext();

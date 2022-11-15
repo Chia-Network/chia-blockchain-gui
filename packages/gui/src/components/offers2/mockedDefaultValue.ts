@@ -8,18 +8,15 @@ const mockedDefaultValue: OfferBuilderData = {
     tokens: [
       {
         amount: '1',
-        assetId:
-          '6d95dae356e32a71db5ddcb42224754a02524c615c5fc35f568c2af04774e589',
+        assetId: '6d95dae356e32a71db5ddcb42224754a02524c615c5fc35f568c2af04774e589',
       },
       {
         amount: '2',
-        assetId:
-          'a628c1c2c6fcb74d53746157e438e108eab5c0bb3e5c80ff9b1910b3e4832913',
+        assetId: 'a628c1c2c6fcb74d53746157e438e108eab5c0bb3e5c80ff9b1910b3e4832913',
       },
       {
         amount: '3',
-        assetId:
-          '8ebf855de6eb146db5602f0456d2f0cbe750d57f821b6f91a8592ee9f1d4cf31',
+        assetId: '8ebf855de6eb146db5602f0456d2f0cbe750d57f821b6f91a8592ee9f1d4cf31',
       },
     ],
     nfts: [

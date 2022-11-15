@@ -1,9 +1,4 @@
-import { 
-  TextField, 
-  TextFieldProps, 
-  Autocomplete as MaterialAutocomplete,
-  AutocompleteProps,
-} from '@mui/material';
+import { TextField, TextFieldProps, Autocomplete as MaterialAutocomplete, AutocompleteProps } from '@mui/material';
 import { get } from 'lodash';
 import { matchSorter } from 'match-sorter';
 import React from 'react';
@@ -11,10 +6,7 @@ import { useController, useFormContext } from 'react-hook-form';
 
 import type { ReactRules } from '../TextField/TextField';
 
-const filterOptions = (
-  options: string[],
-  { inputValue }: { inputValue: string },
-) =>
+const filterOptions = (options: string[], { inputValue }: { inputValue: string }) =>
   matchSorter(options, inputValue, {
     threshold: matchSorter.rankings.STARTS_WITH,
   });

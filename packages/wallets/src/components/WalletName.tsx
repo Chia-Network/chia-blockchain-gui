@@ -8,7 +8,6 @@ export type WalletNameProps = TypographyProps & {
   walletId: number;
 };
 
-
 export default function WalletName(props: WalletNameProps) {
   const { walletId, ...rest } = props;
   const { wallet, loading } = useWallet(walletId);
@@ -19,9 +18,5 @@ export default function WalletName(props: WalletNameProps) {
 
   const primaryTitle = getWalletPrimaryTitle(wallet);
 
-  return (
-    <Typography {...rest}>
-      {primaryTitle}
-    </Typography>
-  );
+  return <Typography {...rest}>{primaryTitle}</Typography>;
 }

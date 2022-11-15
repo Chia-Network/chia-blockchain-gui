@@ -42,7 +42,7 @@ export default function SettingsPanel() {
     await openDialog(
       <AlertDialog>
         <Trans>Your passphrase has been updated</Trans>
-      </AlertDialog>,
+      </AlertDialog>
     );
   }
 
@@ -51,7 +51,7 @@ export default function SettingsPanel() {
     await openDialog(
       <AlertDialog>
         <Trans>Your passphrase has been set</Trans>
-      </AlertDialog>,
+      </AlertDialog>
     );
   }
 
@@ -60,7 +60,7 @@ export default function SettingsPanel() {
     await openDialog(
       <AlertDialog>
         <Trans>Passphrase protection has been disabled</Trans>
-      </AlertDialog>,
+      </AlertDialog>
     );
   }
 
@@ -87,18 +87,10 @@ export default function SettingsPanel() {
 
     if (needsMigration) {
       state = State.WARNING;
-      statusMessage = (
-        <Trans>Migration required to support passphrase protection</Trans>
-      );
-      tooltipTitle = (
-        <Trans>
-          Passphrase support requires migrating your keys to a new keyring
-        </Trans>
-      );
+      statusMessage = <Trans>Migration required to support passphrase protection</Trans>;
+      tooltipTitle = <Trans>Passphrase support requires migrating your keys to a new keyring</Trans>;
     } else {
-      tooltipTitle = (
-        <Trans>Secure your keychain using a strong passphrase</Trans>
-      );
+      tooltipTitle = <Trans>Secure your keychain using a strong passphrase</Trans>;
 
       if (userPassphraseIsSet) {
         statusMessage = <Trans>Passphrase protection is enabled</Trans>;
@@ -123,18 +115,11 @@ export default function SettingsPanel() {
     if (needsMigration === false && userPassphraseIsSet) {
       return (
         <>
-          <Button
-            onClick={() => setChangePassphraseOpen(true)}
-            variant="outlined"
-            data-testid="changePassphraseAtt"
-          >
+          <Button onClick={() => setChangePassphraseOpen(true)} variant="outlined" data-testid="changePassphraseAtt">
             <Trans>Change Passphrase</Trans>
           </Button>
           {changePassphraseOpen && (
-            <ChangePassphrasePrompt
-              onSuccess={changePassphraseSucceeded}
-              onCancel={closeChangePassphrase}
-            />
+            <ChangePassphrasePrompt onSuccess={changePassphraseSucceeded} onCancel={closeChangePassphrase} />
           )}
         </>
       );
@@ -149,29 +134,23 @@ export default function SettingsPanel() {
           <Trans>Migrate Keyring</Trans>
         </Button>
       );
-    } 
-      if (userPassphraseIsSet) {
-        return (
-          <Button
-            onClick={() => setRemovePassphraseOpen(true)}
-            variant="outlined"
-            data-testid="SettingsPanel-remove-passphrase"
-          >
-            <Trans>Remove Passphrase</Trans>
-          </Button>
-        );
-      } 
-        return (
-          <Button
-            onClick={() => setAddPassphraseOpen(true)}
-            variant="outlined"
-            data-testid="SettingsPanel-set-passphrase"
-          >
-            <Trans>Set Passphrase</Trans>
-          </Button>
-        );
-      
-    
+    }
+    if (userPassphraseIsSet) {
+      return (
+        <Button
+          onClick={() => setRemovePassphraseOpen(true)}
+          variant="outlined"
+          data-testid="SettingsPanel-remove-passphrase"
+        >
+          <Trans>Remove Passphrase</Trans>
+        </Button>
+      );
+    }
+    return (
+      <Button onClick={() => setAddPassphraseOpen(true)} variant="outlined" data-testid="SettingsPanel-set-passphrase">
+        <Trans>Set Passphrase</Trans>
+      </Button>
+    );
   }
 
   return (
@@ -182,12 +161,10 @@ export default function SettingsPanel() {
             <Trans>Derivation Index</Trans>
             <TooltipIcon>
               <Trans>
-                The derivation index sets the range of wallet addresses that the
-                wallet scans the blockchain for. This number is generally higher
-                if you have a lot of transactions or canceled offers for XCH,
-                CATs, or NFTs. If you believe your balance is incorrect because
-                it’s missing coins, then increasing the derivation index could
-                help the wallet include the missing coins in the balance total.
+                The derivation index sets the range of wallet addresses that the wallet scans the blockchain for. This
+                number is generally higher if you have a lot of transactions or canceled offers for XCH, CATs, or NFTs.
+                If you believe your balance is incorrect because it’s missing coins, then increasing the derivation
+                index could help the wallet include the missing coins in the balance total.
               </Trans>
             </TooltipIcon>
           </Flex>
@@ -204,17 +181,9 @@ export default function SettingsPanel() {
         <DisplayChangePassphrase />
         <ActionButtons />
         {removePassphraseOpen && (
-          <RemovePassphrasePrompt
-            onSuccess={removePassphraseSucceeded}
-            onCancel={closeRemovePassphrase}
-          />
+          <RemovePassphrasePrompt onSuccess={removePassphraseSucceeded} onCancel={closeRemovePassphrase} />
         )}
-        {addPassphraseOpen && (
-          <SetPassphrasePrompt
-            onSuccess={setPassphraseSucceeded}
-            onCancel={closeSetPassphrase}
-          />
-        )}
+        {addPassphraseOpen && <SetPassphrasePrompt onSuccess={setPassphraseSucceeded} onCancel={closeSetPassphrase} />}
         <PassphraseFeatureStatus />
       </Flex>
     </SettingsApp>

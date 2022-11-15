@@ -19,9 +19,7 @@ export default function NFTCardLazy(props: NFTCardLazyProps) {
 
   return (
     <Box minHeight={isVisible ? undefined : `${minHeight}px`} ref={cardRef}>
-      {isVisible
-        ? <NFTCard {...rest} />
-        : <Card />}
+      {isVisible ? <NFTCard {...rest} /> : <Card />}
     </Box>
   );
 }

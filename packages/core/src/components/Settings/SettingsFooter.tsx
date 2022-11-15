@@ -21,5 +21,5 @@ export default function SettingsFooter() {
         {productName} {version}
       </Typography>
     </StyledRoot>
-  )
+  );
 }

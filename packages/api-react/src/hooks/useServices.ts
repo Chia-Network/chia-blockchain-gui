@@ -8,33 +8,23 @@ type Options = {
   disabled?: boolean;
 };
 
-function getServiceKeepState(
-  service: ServiceName,
-  options: Options
-): ServiceState | undefined {
+function getServiceKeepState(service: ServiceName, options: Options): ServiceState | undefined {
   const { keepRunning, keepStopped } = options;
   if (keepRunning && keepRunning.includes(service)) {
     return 'running';
-  } if (keepStopped && keepStopped.includes(service)) {
+  }
+  if (keepStopped && keepStopped.includes(service)) {
     return 'stopped';
   }
   return undefined;
 }
 
-function getServiceDisabled(
-  service: ServiceName,
-  services: ServiceName[],
-  options: Options
-) {
+function getServiceDisabled(service: ServiceName, services: ServiceName[], options: Options) {
   const { disabled } = options;
   return disabled || !services.includes(service);
 }
 
-function getServiceOptions(
-  service: ServiceName,
-  services: ServiceName[],
-  options: Options
-) {
+function getServiceOptions(service: ServiceName, services: ServiceName[], options: Options) {
   const keepState = getServiceKeepState(service, options);
   const disabled = getServiceDisabled(service, services, options);
 
@@ -54,50 +44,26 @@ export default function useMonitorServices(
   stopping: ServiceName[];
   running: ServiceName[];
 } {
-  const walletState = useService(
-    ServiceName.WALLET,
-    getServiceOptions(ServiceName.WALLET, services, options)
-  );
+  const walletState = useService(ServiceName.WALLET, getServiceOptions(ServiceName.WALLET, services, options));
 
-  const fullNodeState = useService(
-    ServiceName.FULL_NODE,
-    getServiceOptions(ServiceName.FULL_NODE, services, options)
-  );
+  const fullNodeState = useService(ServiceName.FULL_NODE, getServiceOptions(ServiceName.FULL_NODE, services, options));
 
-  const farmerState = useService(
-    ServiceName.FARMER,
-    getServiceOptions(ServiceName.FARMER, services, options)
-  );
+  const farmerState = useService(ServiceName.FARMER, getServiceOptions(ServiceName.FARMER, services, options));
 
-  const harvesterState = useService(
-    ServiceName.HARVESTER,
-    getServiceOptions(ServiceName.HARVESTER, services, options)
-  );
+  const harvesterState = useService(ServiceName.HARVESTER, getServiceOptions(ServiceName.HARVESTER, services, options));
 
-  const simulatorState = useService(
-    ServiceName.SIMULATOR,
-    getServiceOptions(ServiceName.SIMULATOR, services, options)
-  );
+  const simulatorState = useService(ServiceName.SIMULATOR, getServiceOptions(ServiceName.SIMULATOR, services, options));
 
-  const plotterState = useService(
-    ServiceName.PLOTTER,
-    getServiceOptions(ServiceName.PLOTTER, services, options)
-  );
+  const plotterState = useService(ServiceName.PLOTTER, getServiceOptions(ServiceName.PLOTTER, services, options));
 
-  const timelordState = useService(
-    ServiceName.TIMELORD,
-    getServiceOptions(ServiceName.TIMELORD, services, options)
-  );
+  const timelordState = useService(ServiceName.TIMELORD, getServiceOptions(ServiceName.TIMELORD, services, options));
 
   const introducerState = useService(
     ServiceName.INTRODUCER,
     getServiceOptions(ServiceName.INTRODUCER, services, options)
   );
 
-  const datalayerState = useService(
-    ServiceName.DATALAYER,
-    getServiceOptions(ServiceName.DATALAYER, services, options)
-  );
+  const datalayerState = useService(ServiceName.DATALAYER, getServiceOptions(ServiceName.DATALAYER, services, options));
 
   const datalayerServerState = useService(ServiceName.DATALAYER_SERVER, {
     ...getServiceOptions(ServiceName.DATALAYER_SERVER, services, options),

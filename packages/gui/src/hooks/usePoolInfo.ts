@@ -37,9 +37,7 @@ export default function usePoolInfo(poolUrl?: string): {
 
     if (!isValidUrl) {
       if (isMainnet && !normalizedUrl.startsWith('https:')) {
-        throw new Error(
-          t`The pool URL needs to use protocol https. ${normalizedUrl}`,
-        );
+        throw new Error(t`The pool URL needs to use protocol https. ${normalizedUrl}`);
       }
 
       throw new Error(t`The pool URL is not valid. ${normalizedUrl}`);
@@ -53,9 +51,7 @@ export default function usePoolInfo(poolUrl?: string): {
         ...data,
       };
     } catch (e) {
-      throw new Error(
-        t`The pool URL "${normalizedUrl}" is not working. Is it pool? Error: ${e.message}`,
-      );
+      throw new Error(t`The pool URL "${normalizedUrl}" is not working. Is it pool? Error: ${e.message}`);
     }
   }, [poolUrl, isMainnet]);
 

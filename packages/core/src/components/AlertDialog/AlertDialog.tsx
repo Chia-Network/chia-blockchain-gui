@@ -41,17 +41,10 @@ export default function AlertDialog(props: AlertDialogProps) {
       open={open}
     >
       {title && <DialogTitle id="alert-dialog-title">{title}</DialogTitle>}
-      {children && (
-        <DialogContent id="alert-dialog-description">{children}</DialogContent>
-      )}
+      {children && <DialogContent id="alert-dialog-description">{children}</DialogContent>}
 
       <DialogActions>
-        <Button
-          onClick={handleClose}
-          variant={confirmVariant}
-          color="primary"
-          autoFocus
-        >
+        <Button onClick={handleClose} variant={confirmVariant} color="primary" autoFocus>
           {confirmTitle}
         </Button>
       </DialogActions>

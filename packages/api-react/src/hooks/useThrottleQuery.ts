@@ -3,11 +3,16 @@ import { useRef, useCallback } from 'react';
 
 import useForceUpdate from './useForceUpdate';
 
-export default function useThrottleQuery(queryHook: Function, variables?: Object, options?: Object, throttleOptions: {
-  wait?: number;
-  leading?: boolean;
-  trailing?: boolean;
-} = {}) {
+export default function useThrottleQuery(
+  queryHook: Function,
+  variables?: Object,
+  options?: Object,
+  throttleOptions: {
+    wait?: number;
+    leading?: boolean;
+    trailing?: boolean;
+  } = {}
+) {
   const { leading = true, trailing = true, wait = 0 } = throttleOptions;
 
   const forceUpdate = useForceUpdate();
@@ -15,14 +20,11 @@ export default function useThrottleQuery(queryHook: Function, variables?: Object
   const refState = useRef<any>();
 
   const processUpdate = useCallback(
-    throttle(
-      () => forceUpdate(),
-      wait, {
-        leading,
-        trailing,
-      },
-    ),
-    [wait, leading, trailing],
+    throttle(() => forceUpdate(), wait, {
+      leading,
+      trailing,
+    }),
+    [wait, leading, trailing]
   );
 
   queryHook(variables, {

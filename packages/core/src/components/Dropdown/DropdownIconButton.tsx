@@ -5,7 +5,7 @@ import DropdownBase from './DropdownBase';
 
 export type DropdownIconButtonProps = IconButtonProps & {
   icon: ReactNode;
-  children: (options: { onClose: () => void, open: boolean }) => ReactNode;
+  children: (options: { onClose: () => void; open: boolean }) => ReactNode;
 };
 
 export default function DropdownIconButton(props: DropdownIconButtonProps) {
@@ -13,12 +13,12 @@ export default function DropdownIconButton(props: DropdownIconButtonProps) {
 
   return (
     <DropdownBase>
-      {({ onClose, onToggle, open }) => ([
+      {({ onClose, onToggle, open }) => [
         <IconButton key="button" onClick={onToggle} {...rest}>
           {icon}
         </IconButton>,
         children({ onClose, open }),
-      ])}
+      ]}
     </DropdownBase>
   );
 }

@@ -15,12 +15,5 @@ export default function ButtonLoading(props: ButtonLoadingProps) {
     }
   }
 
-  return (
-    <LoadingButton
-      onClick={handleClick}
-      loading={loading}
-      color={color}
-      {...rest}
-    />
-  );
+  return <LoadingButton onClick={handleClick} loading={loading} color={color} {...rest} />;
 }

@@ -29,14 +29,14 @@ const guessPackaged = () => {
 
 const getScriptPath = (dist_file) => {
   if (!guessPackaged()) {
-    return path.join(PY_FOLDER, `${PY_MODULE  }.py`);
+    return path.join(PY_FOLDER, `${PY_MODULE}.py`);
   }
   return getExecutablePath(dist_file);
 };
 
 const getExecutablePath = (dist_file) => {
   if (process.platform === 'win32') {
-    return path.join(__dirname, PY_WIN_DIST_FOLDER, `${dist_file  }.exe`);
+    return path.join(__dirname, PY_WIN_DIST_FOLDER, `${dist_file}.exe`);
   }
   return path.join(__dirname, PY_MAC_DIST_FOLDER, dist_file);
 };
@@ -77,17 +77,17 @@ const startChiaDaemon = () => {
     try {
       console.log('Running python executable: ');
       const Process = child_process.spawn;
-      pyProc = new Process(script, ["--wait-for-unlock"], processOptions);
+      pyProc = new Process(script, ['--wait-for-unlock'], processOptions);
     } catch (e) {
       console.log('Running python executable: Error: ');
-      console.log(`Script ${  script}`);
+      console.log(`Script ${script}`);
     }
   } else {
     console.log('Running python script');
-    console.log(`Script ${  script}`);
+    console.log(`Script ${script}`);
 
     const Process = child_process.spawn;
-    pyProc = new Process('python', [script, "--wait-for-unlock"], processOptions);
+    pyProc = new Process('python', [script, '--wait-for-unlock'], processOptions);
   }
   if (pyProc != null) {
     pyProc.stdout.setEncoding('utf8');
@@ -120,12 +120,12 @@ const startChiaDaemon = () => {
     pyProc.stderr.setEncoding('utf8');
     pyProc.stderr.on('data', (data) => {
       // Here is where the error output goes
-      process.stdout.write(`stderr: ${  data.toString()}`);
+      process.stdout.write(`stderr: ${data.toString()}`);
     });
 
     pyProc.on('close', (code) => {
       // Here you can get the exit code of the script
-      console.log(`closing code: ${  code}`);
+      console.log(`closing code: ${code}`);
     });
 
     console.log('child process success');

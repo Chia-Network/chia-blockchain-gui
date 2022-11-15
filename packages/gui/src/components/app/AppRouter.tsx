@@ -1,10 +1,4 @@
-import {
-  SelectKey,
-  LayoutHero,
-  LayoutDashboard,
-  Mode,
-  useMode,
-} from '@chia/core';
+import { SelectKey, LayoutHero, LayoutDashboard, Mode, useMode } from '@chia/core';
 import { WalletAdd, WalletImport, Wallets } from '@chia/wallets';
 import React from 'react';
 import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
@@ -32,9 +26,7 @@ export default function AppRouter() {
           <Route element={<LayoutHero settings={<SettingsPanel />} outlet />}>
             <Route index element={<SelectKey />} />
           </Route>
-          <Route
-            element={<LayoutHero settings={<SettingsPanel />} back outlet />}
-          >
+          <Route element={<LayoutHero settings={<SettingsPanel />} back outlet />}>
             <Route path="wallet/add" element={<WalletAdd />} />
             <Route path="wallet/import" element={<WalletImport />} />
           </Route>

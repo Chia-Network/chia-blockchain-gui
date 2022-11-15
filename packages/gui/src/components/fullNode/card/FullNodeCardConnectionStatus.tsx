@@ -12,9 +12,7 @@ export default function FullNodeCardConnectionStatus() {
       loading={isLoading}
       valueColor={isRunning ? 'primary' : 'textPrimary'}
       title={<Trans>Connection Status</Trans>}
-      value={
-        isRunning ? <Trans>Connected</Trans> : <Trans>Not connected</Trans>
-      }
+      value={isRunning ? <Trans>Connected</Trans> : <Trans>Not connected</Trans>}
       error={error}
     />
   );

@@ -14,7 +14,7 @@ import { prepareNFTOfferFromNFTId } from './prepareNFTOffer';
 export default async function offerBuilderDataToOffer(
   data: OfferBuilderData,
   wallets: Wallet[],
-  validateOnly?: boolean,
+  validateOnly?: boolean
 ): Promise<{
   walletIdsAndAmounts?: Record<string, BigNumber>;
   driverDict?: Record<string, any>;
@@ -22,17 +22,8 @@ export default async function offerBuilderDataToOffer(
   validateOnly?: boolean;
 }> {
   const {
-    offered: {
-      xch: offeredXch = [],
-      tokens: offeredTokens = [],
-      nfts: offeredNfts = [],
-      fee: [firstFee] = [],
-    },
-    requested: {
-      xch: requestedXch = [],
-      tokens: requestedTokens = [],
-      nfts: requestedNfts = [],
-    },
+    offered: { xch: offeredXch = [], tokens: offeredTokens = [], nfts: offeredNfts = [], fee: [firstFee] = [] },
+    requested: { xch: requestedXch = [], tokens: requestedTokens = [], nfts: requestedNfts = [] },
   } = data;
 
   const usedNFTs: string[] = [];
@@ -42,10 +33,8 @@ export default async function offerBuilderDataToOffer(
   const walletIdsAndAmounts: Record<string, BigNumber> = {};
   const driverDict: Record<string, Driver> = {};
 
-  const hasOffer =
-    !!offeredXch.length || !!offeredTokens.length || !!offeredNfts.length;
-  const hasRequest =
-    !!requestedXch.length || !!requestedTokens.length || !!requestedNfts.length;
+  const hasOffer = !!offeredXch.length || !!offeredTokens.length || !!offeredNfts.length;
+  const hasRequest = !!requestedXch.length || !!requestedTokens.length || !!requestedNfts.length;
 
   if (!hasRequest) {
     throw new Error(t`Please specify at least one requested asset`);
@@ -74,7 +63,7 @@ export default async function offerBuilderDataToOffer(
       if (!hasEnoughBalance) {
         throw new Error(t`Amount exceeds XCH spendable balance`);
       }
-    }),
+    })
   );
 
   await Promise.all(
@@ -91,9 +80,7 @@ export default async function offerBuilderDataToOffer(
       }
 
       if (!amount || amount === '0') {
-        throw new Error(
-          t`Please enter an amount for ${wallet.meta?.name} token`,
-        );
+        throw new Error(t`Please enter an amount for ${wallet.meta?.name} token`);
       }
 
       const mojoAmount = catToMojo(amount);
@@ -101,11 +88,9 @@ export default async function offerBuilderDataToOffer(
 
       const hasEnoughBalance = await hasSpendableBalance(wallet.id, mojoAmount);
       if (!hasEnoughBalance) {
-        throw new Error(
-          t`Amount exceeds spendable balance for ${wallet.meta?.name} token`,
-        );
+        throw new Error(t`Amount exceeds spendable balance for ${wallet.meta?.name} token`);
       }
-    }),
+    })
   );
 
   await Promise.all(
@@ -115,16 +100,13 @@ export default async function offerBuilderDataToOffer(
       }
       usedNFTs.push(nftId);
 
-      const { id, amount, driver } = await prepareNFTOfferFromNFTId(
-        nftId,
-        true,
-      );
+      const { id, amount, driver } = await prepareNFTOfferFromNFTId(nftId, true);
 
       walletIdsAndAmounts[id] = amount;
       if (driver) {
         driverDict[id] = driver;
       }
-    }),
+    })
   );
 
   // requested
@@ -172,16 +154,13 @@ export default async function offerBuilderDataToOffer(
       }
       usedNFTs.push(nftId);
 
-      const { id, amount, driver } = await prepareNFTOfferFromNFTId(
-        nftId,
-        false,
-      );
+      const { id, amount, driver } = await prepareNFTOfferFromNFTId(nftId, false);
 
       walletIdsAndAmounts[id] = amount;
       if (driver) {
         driverDict[id] = driver;
       }
-    }),
+    })
   );
 
   return {

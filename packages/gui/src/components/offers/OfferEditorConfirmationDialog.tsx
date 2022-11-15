@@ -20,9 +20,8 @@ export default function OfferEditorConfirmationDialog(props) {
     >
       <Typography>
         <Trans>
-          When creating an offer, any assets that are being offered will be
-          locked and unavailable until the offer is accepted or cancelled,
-          resulting in your spendable balance changing.
+          When creating an offer, any assets that are being offered will be locked and unavailable until the offer is
+          accepted or cancelled, resulting in your spendable balance changing.
         </Trans>
       </Typography>
     </ConfirmDialog>

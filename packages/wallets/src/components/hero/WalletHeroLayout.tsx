@@ -1,9 +1,6 @@
 import { Back, Flex, FormatLargeNumber, Loading, Logo } from '@chia/core';
 import { Trans } from '@lingui/macro';
-import {
-  ChevronRight as ChevronRightIcon,
-  EnergySavingsLeaf as EcoIcon,
-} from '@mui/icons-material';
+import { ChevronRight as ChevronRightIcon, EnergySavingsLeaf as EcoIcon } from '@mui/icons-material';
 import {
   Box,
   Button,
@@ -62,12 +59,7 @@ export default function Wallets(props: Props) {
               {title}
             </Typography>
           </Back>
-          <Flex
-            flexDirection="column"
-            gap={3}
-            alignItems="stretch"
-            alignSelf="stretch"
-          >
+          <Flex flexDirection="column" gap={3} alignItems="stretch" alignSelf="stretch">
             {children}
           </Flex>
         </Flex>

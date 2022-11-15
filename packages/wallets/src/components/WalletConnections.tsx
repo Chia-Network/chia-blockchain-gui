@@ -1,11 +1,6 @@
 import { Connection, ServiceConnectionName } from '@chia/api';
 import { useGetWalletConnectionsQuery } from '@chia/api-react';
-import {
-  Card,
-  FormatBytes,
-  Loading,
-  Table,
-} from '@chia/core';
+import { Card, FormatBytes, Loading, Table } from '@chia/core';
 import { Trans } from '@lingui/macro';
 import { Tooltip } from '@mui/material';
 import React from 'react';
@@ -36,19 +31,9 @@ const cols = [
     field(row: Connection) {
       return (
         <>
-          <FormatBytes
-            value={row.bytesWritten}
-            unit="MiB"
-            removeUnit
-            fixedDecimals
-          />
+          <FormatBytes value={row.bytesWritten} unit="MiB" removeUnit fixedDecimals />
           /
-          <FormatBytes
-            value={row.bytesRead}
-            unit="MiB"
-            removeUnit
-            fixedDecimals
-          />
+          <FormatBytes value={row.bytesRead} unit="MiB" removeUnit fixedDecimals />
         </>
       );
     },
@@ -69,16 +54,17 @@ export type WalletConnectionsProps = {
 
 export default function WalletConnections(props: WalletConnectionsProps) {
   const { walletId } = props;
-  const { data: connections, isLoading } = useGetWalletConnectionsQuery({
-    walletId,
-  }, {
-    pollingInterval: 10000,
-  });
+  const { data: connections, isLoading } = useGetWalletConnectionsQuery(
+    {
+      walletId,
+    },
+    {
+      pollingInterval: 10000,
+    }
+  );
 
   return (
-    <Card
-      title={<Trans>Wallet Connections</Trans>}
-    >
+    <Card title={<Trans>Wallet Connections</Trans>}>
       {isLoading ? (
         <Loading center />
       ) : !connections?.length ? (

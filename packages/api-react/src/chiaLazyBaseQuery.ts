@@ -10,9 +10,7 @@ async function getClientInstance(api: BaseQueryApi): Promise<Client> {
   if (!clientInstance) {
     const config = selectApiConfig(api.getState());
     if (!config) {
-      throw new Error(
-        'Client API config is not defined. Dispatch initializeConfig first'
-      );
+      throw new Error('Client API config is not defined. Dispatch initializeConfig first');
     }
     clientInstance = new Client(config);
   }
@@ -22,10 +20,7 @@ async function getClientInstance(api: BaseQueryApi): Promise<Client> {
 
 const services = new Map<Service, Service>();
 
-async function getServiceInstance(
-  api: BaseQueryApi,
-  ServiceClass: Service
-): Promise<Service> {
+async function getServiceInstance(api: BaseQueryApi, ServiceClass: Service): Promise<Service> {
   if (!services.has(ServiceClass)) {
     const client = await getClientInstance(api);
     const serviceInstance = new ServiceClass(client);
@@ -64,10 +59,7 @@ export default function chiaLazyBaseQuery(options: Options = {}): BaseQueryFn<
 > {
   const { service: DefaultService } = options;
 
-  return async (
-    { command, service: ServiceClass, client = false, args = [], mockResponse },
-    api
-  ) => {
+  return async ({ command, service: ServiceClass, client = false, args = [], mockResponse }, api) => {
     const instance = client
       ? await getClientInstance(api)
       : await getServiceInstance(api, ServiceClass || DefaultService);

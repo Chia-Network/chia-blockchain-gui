@@ -1,9 +1,6 @@
 import { CssBaseline } from '@mui/material';
 import * as materialLocales from '@mui/material/locale';
-import {
-  ThemeProvider as MaterialThemeProvider,
-  createTheme,
-} from '@mui/material/styles';
+import { ThemeProvider as MaterialThemeProvider, createTheme } from '@mui/material/styles';
 import React, { useMemo, ReactNode } from 'react';
 import { ThemeProvider as StyledThemeProvider, createGlobalStyle } from 'styled-components';
 
@@ -57,12 +54,8 @@ export default function ThemeProvider(props: ThemeProviderProps) {
       <MaterialThemeProvider theme={finallTheme}>
         <>
           <CssBaseline />
-          {global && (
-            <GlobalStyle />
-          )}
-          {fonts && (
-            <Fonts />
-          )}
+          {global && <GlobalStyle />}
+          {fonts && <Fonts />}
           {children}
         </>
       </MaterialThemeProvider>

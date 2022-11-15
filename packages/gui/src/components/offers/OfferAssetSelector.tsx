@@ -27,17 +27,8 @@ type BuildAssetSelectorListParams = {
   chiaCurrencyCode: string;
 };
 
-function buildAssetSelectorList(
-  params: BuildAssetSelectorListParams,
-): WalletOfferAssetSelection[] {
-  const {
-    wallets,
-    catList,
-    rows,
-    otherRows,
-    selectedWalletId,
-    chiaCurrencyCode,
-  } = params;
+function buildAssetSelectorList(params: BuildAssetSelectorListParams): WalletOfferAssetSelection[] {
+  const { wallets, catList, rows, otherRows, selectedWalletId, chiaCurrencyCode } = params;
   const list: WalletOfferAssetSelection[] = [];
   const usedWalletIds: Set<number> = new Set();
   const otherUsedWalletIds: Set<number> = new Set();
@@ -77,9 +68,7 @@ function buildAssetSelectorList(
     } else if (wallet.type === WalletType.CAT) {
       name = wallet.name;
       tail = wallet.meta.assetId;
-      const cat = catList.find(
-        (cat) => cat.assetId.toLowerCase() === tail?.toLowerCase(),
-      );
+      const cat = catList.find((cat) => cat.assetId.toLowerCase() === tail?.toLowerCase());
 
       if (cat) {
         symbol = cat.symbol;
@@ -113,18 +102,9 @@ type OfferAssetSelectorProps = {
 };
 
 function OfferAssetSelector(props: OfferAssetSelectorProps) {
-  const {
-    name,
-    id,
-    tradeSide,
-    defaultValue,
-    showAddWalletMessage,
-    onChange,
-    ...rest
-  } = props;
+  const { name, id, tradeSide, defaultValue, showAddWalletMessage, onChange, ...rest } = props;
   const { data: wallets, isLoading } = useGetWalletsQuery();
-  const { data: catList = [], isLoading: isCatListLoading } =
-    useGetCatListQuery();
+  const { data: catList = [], isLoading: isCatListLoading } = useGetCatListQuery();
   const { getValues, watch } = useFormContext();
   const currencyCode = useCurrencyCode();
   const rows = watch(tradeSide === 'buy' ? 'takerRows' : 'makerRows');
@@ -145,10 +125,7 @@ function OfferAssetSelector(props: OfferAssetSelectorProps) {
     });
   }, [wallets, catList, rows, otherRows]);
 
-  function handleSelection(
-    selectedWalletId: number,
-    selectedWalletType: WalletType,
-  ) {
+  function handleSelection(selectedWalletId: number, selectedWalletType: WalletType) {
     if (onChange) {
       onChange(selectedWalletId, selectedWalletType);
     }

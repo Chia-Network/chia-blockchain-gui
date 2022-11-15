@@ -24,15 +24,7 @@ type Props = {
 };
 
 export default function Dropzone(props: Props) {
-  const {
-    children,
-    onDrop,
-    maxFiles,
-    accept,
-    ratio,
-    processing,
-    background: Background = StyledPaper,
-  } = props;
+  const { children, onDrop, maxFiles, accept, ratio, processing, background: Background = StyledPaper } = props;
 
   const config: DropzoneOptions = {
     onDrop,
@@ -44,25 +36,15 @@ export default function Dropzone(props: Props) {
   }
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone(config);
-  const childrenContent =
-    typeof children === 'function' ? children({ isDragActive }) : children;
+  const childrenContent = typeof children === 'function' ? children({ isDragActive }) : children;
 
   return (
     <div {...getRootProps()}>
       <input {...getInputProps()} />
       <Background>
         <AspectRatio ratio={ratio}>
-          <Flex
-            alignItems="center"
-            justifyContent="center"
-            flexDirection="column"
-            height="100%"
-          >
-            {processing ? (
-              <CircularProgress color="secondary" />
-            ) : (
-              childrenContent
-            )}
+          <Flex alignItems="center" justifyContent="center" flexDirection="column" height="100%">
+            {processing ? <CircularProgress color="secondary" /> : childrenContent}
           </Flex>
         </AspectRatio>
       </Background>

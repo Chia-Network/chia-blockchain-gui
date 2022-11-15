@@ -10,12 +10,8 @@ import FullNodeStateIndicator from '../fullNode/FullNodeStateIndicator';
 export default function AppStatusHeader() {
   const [mode] = useMode();
 
-  const [anchorElFN, setAnchorElFN] = React.useState<HTMLButtonElement | null>(
-    null,
-  );
-  const [anchorElW, setAnchorElW] = React.useState<HTMLButtonElement | null>(
-    null,
-  );
+  const [anchorElFN, setAnchorElFN] = React.useState<HTMLButtonElement | null>(null);
+  const [anchorElW, setAnchorElW] = React.useState<HTMLButtonElement | null>(null);
 
   const handleClickFN = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorElFN(event.currentTarget);
@@ -41,10 +37,7 @@ export default function AppStatusHeader() {
     <ButtonGroup variant="outlined" color="secondary" size="small">
       {mode === Mode.FARMING && (
         <>
-          <Button
-            onClick={handleClickFN}
-            aria-describedby="fullnode-connections"
-          >
+          <Button onClick={handleClickFN} aria-describedby="fullnode-connections">
             <Flex gap={1} alignItems="center">
               <FullNodeStateIndicator />
               <Trans>Full Node</Trans>

@@ -28,7 +28,11 @@ export default function PlotHarvesterPlotsFailed(props: PlotHarvesterPlotsFailed
   const { nodeId } = props;
   const [page, setPage] = useState(0);
   const [pageSize, setPageSize] = useState(5);
-  const { failedToOpenFilenames, initialized, isLoading: isLoadingHarvester } = useGetHarvesterQuery({
+  const {
+    failedToOpenFilenames,
+    initialized,
+    isLoading: isLoadingHarvester,
+  } = useGetHarvesterQuery({
     nodeId,
   });
   const { isLoading: isLoadingHarvesterPlots, data = [] } = useGetHarvesterPlotsInvalidQuery({
@@ -59,11 +63,13 @@ export default function PlotHarvesterPlotsFailed(props: PlotHarvesterPlotsFailed
       isLoading={isLoading || !initialized}
       expandedCellShift={1}
       uniqueField="filename"
-      caption={!failedToOpenFilenames && (
-        <Typography variant="body2" align="center">
-          <Trans>Hooray, no files here!</Trans>
-        </Typography>
-      )}
+      caption={
+        !failedToOpenFilenames && (
+          <Typography variant="body2" align="center">
+            <Trans>Hooray, no files here!</Trans>
+          </Typography>
+        )
+      }
       pages={!!failedToOpenFilenames}
     />
   );

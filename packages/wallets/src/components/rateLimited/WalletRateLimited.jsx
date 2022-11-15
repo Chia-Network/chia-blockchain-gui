@@ -17,10 +17,7 @@ import Button from '@mui/material/Button';
 
 import useCurrencyCode from '../../../hooks/useCurrencyCode';
 import { openDialog } from '../../../modules/dialog';
-import {
-  send_transaction,
-  rl_set_user_info_action,
-} from '../../../modules/message';
+import { send_transaction, rl_set_user_info_action } from '../../../modules/message';
 import { get_transaction_result } from '../../../util/transaction_result';
 import WalletHistory from '../WalletHistory';
 
@@ -257,15 +254,7 @@ function IncompleteCard(props) {
     const interval_value = Number.parseInt(Number(interval_input));
     const chiaper_value = Number.parseInt(Number(chiaper_input));
     const origin_parsed = JSON.parse(origin_input);
-    dispatch(
-      rl_set_user_info_action(
-        id,
-        interval_value,
-        chiaper_value,
-        origin_parsed,
-        admin_pubkey_input,
-      ),
-    );
+    dispatch(rl_set_user_info_action(id, interval_value, chiaper_value, origin_parsed, admin_pubkey_input));
   }
 
   const classes = useStyles();
@@ -276,9 +265,7 @@ function IncompleteCard(props) {
           <Box display="flex">
             <Box flexGrow={1}>
               <Typography variant="subtitle1">
-                <Trans>
-                  Send your pubkey to your Rate Limited Wallet admin:
-                </Trans>
+                <Trans>Send your pubkey to your Rate Limited Wallet admin:</Trans>
               </Typography>
             </Box>
           </Box>
@@ -287,13 +274,7 @@ function IncompleteCard(props) {
       <Grid item xs={12}>
         <Box display="flex">
           <Box flexGrow={1}>
-            <TextField
-              disabled
-              fullWidth
-              label={<Trans>User Pubkey</Trans>}
-              value={pubkey}
-              variant="filled"
-            />
+            <TextField disabled fullWidth label={<Trans>User Pubkey</Trans>} value={pubkey} variant="filled" />
           </Box>
           <Box>
             <Button
@@ -314,8 +295,8 @@ function IncompleteCard(props) {
             <Box flexGrow={1} style={{ marginTop: 10, marginBottom: 0 }}>
               <Typography variant="subtitle1">
                 <Trans>
-                  When you receive the setup info packet from your admin, enter
-                  it below to complete your Rate Limited Wallet setup:
+                  When you receive the setup info packet from your admin, enter it below to complete your Rate Limited
+                  Wallet setup:
                 </Trans>
               </Typography>
             </Box>
@@ -338,12 +319,7 @@ function IncompleteCard(props) {
         <div className={classes.setupSection}>
           <Box display="flex">
             <Box>
-              <Button
-                onClick={submit}
-                className={classes.submitButton}
-                variant="contained"
-                color="primary"
-              >
+              <Button onClick={submit} className={classes.submitButton} variant="contained" color="primary">
                 <Trans>Submit</Trans>
               </Button>
             </Box>
@@ -398,10 +374,7 @@ function RLDetailsCard(props) {
             </Box>
             <Box flexGrow={1}>
               <Typography variant="subtitle1">
-                <Trans>
-                  Spending Limit (chia per interval):{' '}
-                  {mojoToChiaLocaleString(limit)}
-                </Trans>
+                <Trans>Spending Limit (chia per interval): {mojoToChiaLocaleString(limit)}</Trans>
               </Typography>
             </Box>
           </Box>
@@ -409,13 +382,7 @@ function RLDetailsCard(props) {
         <Grid item xs={12}>
           <Box display="flex" style={{ marginBottom: 20 }}>
             <Box flexGrow={1}>
-              <TextField
-                disabled
-                fullWidth
-                label={<Trans>My Pubkey</Trans>}
-                value={user_pubkey}
-                variant="filled"
-              />
+              <TextField disabled fullWidth label={<Trans>My Pubkey</Trans>} value={user_pubkey} variant="filled" />
             </Box>
             <Box>
               <Button
@@ -445,10 +412,7 @@ function RLDetailsCard(props) {
             </Box>
             <Box flexGrow={1}>
               <Typography variant="subtitle1">
-                <Trans>
-                  Spending Limit (chia per interval):{' '}
-                  {mojoToChiaLocaleString(limit)}
-                </Trans>
+                <Trans>Spending Limit (chia per interval): {mojoToChiaLocaleString(limit)}</Trans>
               </Typography>
             </Box>
           </Box>
@@ -458,21 +422,15 @@ function RLDetailsCard(props) {
             <Box flexGrow={1} style={{ marginTop: 5, marginBottom: 20 }}>
               <Typography variant="subtitle1">
                 <Trans>
-                  Send this info packet to your Rate Limited Wallet user who
-                  must use it to complete setup of their wallet:
+                  Send this info packet to your Rate Limited Wallet user who must use it to complete setup of their
+                  wallet:
                 </Trans>
               </Typography>
             </Box>
           </Box>
           <Box display="flex" style={{ marginBottom: 20 }}>
             <Box flexGrow={1}>
-              <TextField
-                disabled
-                fullWidth
-                label={<Trans>Info Packet</Trans>}
-                value={ip_hex}
-                variant="filled"
-              />
+              <TextField disabled fullWidth label={<Trans>Info Packet</Trans>} value={ip_hex} variant="filled" />
             </Box>
             <Box>
               <Button
@@ -522,42 +480,22 @@ function BalanceCardSubSection(props) {
 
 function BalanceCard(props) {
   const id = props.wallet_id;
-  const balance = useSelector(
-    (state) => state.wallet_state.wallets[id].balance_total,
-  );
-  const balance_spendable = useSelector(
-    (state) => state.wallet_state.wallets[id].balance_spendable,
-  );
-  const balance_pending = useSelector(
-    (state) => state.wallet_state.wallets[id].balance_pending,
-  );
-  const balance_change = useSelector(
-    (state) => state.wallet_state.wallets[id].balance_change,
-  );
+  const balance = useSelector((state) => state.wallet_state.wallets[id].balance_total);
+  const balance_spendable = useSelector((state) => state.wallet_state.wallets[id].balance_spendable);
+  const balance_pending = useSelector((state) => state.wallet_state.wallets[id].balance_pending);
+  const balance_change = useSelector((state) => state.wallet_state.wallets[id].balance_change);
   const balance_ptotal = balance + balance_pending;
   const classes = useStyles();
 
   return (
     <Card title={<Trans>Balance</Trans>}>
-      <BalanceCardSubSection
-        title={<Trans>Total Balance</Trans>}
-        balance={balance}
-        tooltip=""
-      />
-      <BalanceCardSubSection
-        title={<Trans>Spendable Balance</Trans>}
-        balance={balance_spendable}
-        tooltip=""
-      />
+      <BalanceCardSubSection title={<Trans>Total Balance</Trans>} balance={balance} tooltip="" />
+      <BalanceCardSubSection title={<Trans>Spendable Balance</Trans>} balance={balance_spendable} tooltip="" />
       <Grid item xs={12}>
         <Box display="flex">
           <Box flexGrow={1}>
             <Accordion className={classes.front}>
-              <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls="panel1a-content"
-                id="panel1a-header"
-              >
+              <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
                 <Typography className={classes.heading}>
                   <Trans>View pending balances</Trans>
                 </Typography>
@@ -569,16 +507,8 @@ function BalanceCard(props) {
                     balance={balance_ptotal}
                     tooltip=""
                   />
-                  <BalanceCardSubSection
-                    title={<Trans>Pending Balance</Trans>}
-                    balance={balance_pending}
-                    tooltip=""
-                  />
-                  <BalanceCardSubSection
-                    title={<Trans>Pending Change</Trans>}
-                    balance={balance_change}
-                    tooltip=""
-                  />
+                  <BalanceCardSubSection title={<Trans>Pending Balance</Trans>} balance={balance_pending} tooltip="" />
+                  <BalanceCardSubSection title={<Trans>Pending Change</Trans>} balance={balance_change} tooltip="" />
                 </Grid>
               </AccordionDetails>
             </Accordion>
@@ -597,20 +527,14 @@ function SendCard(props) {
   let fee_input = null;
   const dispatch = useDispatch();
 
-  const sending_transaction = useSelector(
-    (state) => state.wallet_state.wallets[id].sending_transaction,
-  );
+  const sending_transaction = useSelector((state) => state.wallet_state.wallets[id].sending_transaction);
   const syncing = useSelector((state) => state.wallet_state.status.syncing);
 
-  const send_transaction_result = useSelector(
-    (state) => state.wallet_state.wallets[id].send_transaction_result,
-  );
+  const send_transaction_result = useSelector((state) => state.wallet_state.wallets[id].send_transaction_result);
 
   const result = get_transaction_result(send_transaction_result);
   const result_message = result.message;
-  const result_class = result.success
-    ? classes.resultSuccess
-    : classes.resultFailure;
+  const result_class = result.success ? classes.resultSuccess : classes.resultFailure;
 
   function send() {
     if (sending_transaction) {
@@ -621,8 +545,8 @@ function SendCard(props) {
         openDialog(
           <AlertDialog>
             <Trans>Please finish syncing before making a transaction</Trans>
-          </AlertDialog>,
-        ),
+          </AlertDialog>
+        )
       );
       return;
     }
@@ -637,8 +561,8 @@ function SendCard(props) {
         openDialog(
           <AlertDialog>
             <Trans>Please enter a valid numeric amount</Trans>
-          </AlertDialog>,
-        ),
+          </AlertDialog>
+        )
       );
       return;
     }
@@ -647,8 +571,8 @@ function SendCard(props) {
         openDialog(
           <AlertDialog>
             <Trans>Please enter a valid numeric fee</Trans>
-          </AlertDialog>,
-        ),
+          </AlertDialog>
+        )
       );
       return;
     }
@@ -665,11 +589,9 @@ function SendCard(props) {
       dispatch(
         openDialog(
           <AlertDialog>
-            <Trans>
-              Please enter 0 fee. Positive fees not supported yet for RL.
-            </Trans>
-          </AlertDialog>,
-        ),
+            <Trans>Please enter 0 fee. Positive fees not supported yet for RL.</Trans>
+          </AlertDialog>
+        )
       );
       return;
     }

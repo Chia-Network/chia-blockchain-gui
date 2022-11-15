@@ -1,21 +1,12 @@
 import { WalletType } from '@chia/api';
 import { useSetCATNameMutation, useGetLocalCatName } from '@chia/api-react';
-import {
-  Tooltip,
-  CardListItem,
-  Flex,
-  Link,
-  useShowError,
-  Form,
-  TextField,
-} from '@chia/core';
+import { Tooltip, CardListItem, Flex, Link, useShowError, Form, TextField } from '@chia/core';
 import { Trans } from '@lingui/macro';
 import { Box, Typography, Switch, CircularProgress } from '@mui/material';
 import React, { useEffect, useMemo, useState, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 
 import { type ListItem } from '../hooks/useWalletsList';
-
 
 export type WalletTokenCardProps = {
   item: ListItem;
@@ -36,8 +27,7 @@ export default function WalletTokenCard(props: WalletTokenCardProps) {
 
   const [localCatName, setLocalCatName] = useGetLocalCatName(assetId);
   const [isRenaming, setIsRenaming] = useState<boolean>(false);
-  const [isChangingVisibility, setIsChangingVisibility] =
-    useState<boolean>(false);
+  const [isChangingVisibility, setIsChangingVisibility] = useState<boolean>(false);
   const isChangingVisibilityRef = useRef<boolean>(isChangingVisibility);
   const [setCATName] = useSetCATNameMutation();
   const showError = useShowError();
@@ -157,13 +147,7 @@ export default function WalletTokenCard(props: WalletTokenCardProps) {
   return (
     <CardListItem>
       <Flex gap={1} alignItems="center" width="100%">
-        <Flex
-          flexDirection="column"
-          gap={0.5}
-          flexGrow={1}
-          flexBasis={0}
-          minWidth={0}
-        >
+        <Flex flexDirection="column" gap={0.5} flexGrow={1} flexBasis={0} minWidth={0}>
           {walletType === WalletType.STANDARD_WALLET ? (
             <Typography noWrap>{name}</Typography>
           ) : (
@@ -180,12 +164,7 @@ export default function WalletTokenCard(props: WalletTokenCardProps) {
             </Form>
           )}
           {(!!subTitle || assetId) && (
-            <Flex
-              flexDirection="column"
-              flexGrow={1}
-              flexBasis={0}
-              minWidth={0}
-            >
+            <Flex flexDirection="column" flexGrow={1} flexBasis={0} minWidth={0}>
               {!!subTitle && (
                 <Tooltip title={subTitle} placement="right" copyToClipboard>
                   <Typography color="textSecondary" variant="caption" noWrap>
@@ -194,11 +173,7 @@ export default function WalletTokenCard(props: WalletTokenCardProps) {
                 </Tooltip>
               )}
               {assetId && (
-                <Link
-                  href={`https://www.taildatabase.com/tail/${assetId}`}
-                  target="_blank"
-                  variant="caption"
-                >
+                <Link href={`https://www.taildatabase.com/tail/${assetId}`} target="_blank" variant="caption">
                   <Trans>Search on Tail Database</Trans>
                 </Link>
               )}
@@ -208,10 +183,7 @@ export default function WalletTokenCard(props: WalletTokenCardProps) {
         {walletType !== WalletType.STANDARD_WALLET && (
           <Box width="60px" textAlign="center" position="relative">
             <Box position="absolute" top="0" left="25%">
-              <CircularProgress
-                size={34}
-                sx={{ zIndex: -1, opacity: isLoading ? 1 : 0 }}
-              />
+              <CircularProgress size={34} sx={{ zIndex: -1, opacity: isLoading ? 1 : 0 }} />
             </Box>
             <Switch
               checked={!hidden}

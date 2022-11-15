@@ -19,7 +19,5 @@ export type HeadingProps = TypographyProps & {
 export default function Heading(props: HeadingProps) {
   const { variant = 'TITLE', ...rest } = props;
 
-  return (
-    <Typography variant={getMuiVariant(variant)} {...rest} />
-  );
+  return <Typography variant={getMuiVariant(variant)} {...rest} />;
 }

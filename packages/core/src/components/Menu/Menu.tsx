@@ -1,20 +1,12 @@
 import { Menu as BaseMenu } from '@mui/material';
 import type { MenuProps } from '@mui/material';
-import React, {
-  createContext,
-  forwardRef,
-  SyntheticEvent,
-  useCallback,
-  useMemo,
-} from 'react';
+import React, { createContext, forwardRef, SyntheticEvent, useCallback, useMemo } from 'react';
 
 export interface MenuContextInterface {
   close: (event: SyntheticEvent<HTMLElement>, reason: any) => void;
 }
 
-export const MenuContext = createContext<MenuContextInterface | undefined>(
-  undefined
-);
+export const MenuContext = createContext<MenuContextInterface | undefined>(undefined);
 
 export { MenuProps };
 

@@ -38,6 +38,6 @@ const WalletName = {
   [WalletType.DATA_LAYER]: defineMessage({
     message: 'Datalayer Wallet',
   }),
-}
+};
 
 export default WalletName;

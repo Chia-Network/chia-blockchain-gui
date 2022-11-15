@@ -1,10 +1,6 @@
 import { NFTInfo } from '@chia/api';
 import type { Wallet } from '@chia/api';
-import {
-  useGetDIDsQuery,
-  useGetNFTWallets,
-  useSetNFTDIDMutation,
-} from '@chia/api-react';
+import { useGetDIDsQuery, useGetNFTWallets, useSetNFTDIDMutation } from '@chia/api-react';
 import {
   AlertDialog,
   Button,
@@ -56,9 +52,7 @@ const StyledValue = styled(Box)`
 
 type NFTMoveToProfileConfirmationDialogProps = {};
 
-function NFTMoveToProfileConfirmationDialog(
-  props: NFTMoveToProfileConfirmationDialogProps,
-) {
+function NFTMoveToProfileConfirmationDialog(props: NFTMoveToProfileConfirmationDialogProps) {
   const { ...rest } = props;
 
   return (
@@ -71,9 +65,7 @@ function NFTMoveToProfileConfirmationDialog(
     >
       <Flex flexDirection="column" gap={3}>
         <Typography variant="body1">
-          <Trans>
-            Are you sure you want to move this NFT to the specified profile?
-          </Trans>
+          <Trans>Are you sure you want to move this NFT to the specified profile?</Trans>
         </Typography>
       </Flex>
     </ConfirmDialog>
@@ -116,9 +108,7 @@ export function DIDProfileDropdown(props: DIDProfileDropdownProps) {
       }
     }
 
-    return allDIDWallets.filter(
-      (wallet: Wallet) => !excludeDIDs.includes(wallet.myDid),
-    );
+    return allDIDWallets.filter((wallet: Wallet) => !excludeDIDs.includes(wallet.myDid));
   }, [allDIDWallets, currentDID]);
 
   const label = useMemo(() => {
@@ -159,12 +149,7 @@ export function DIDProfileDropdown(props: DIDProfileDropdownProps) {
         </MenuItem>
       ))}
       {includeNoneOption && (
-        <MenuItem
-          key="<none>"
-          onClick={() => handleWalletChange()}
-          selected={!walletId && !currentDID}
-          close
-        >
+        <MenuItem key="<none>" onClick={() => handleWalletChange()} selected={!walletId && !currentDID} close>
           <ListItemIcon>
             <PermIdentityIcon />
           </ListItemIcon>
@@ -205,11 +190,8 @@ export function NFTMoveToProfileAction(props: NFTMoveToProfileActionProps) {
   });
   const destination = methods.watch('destination');
   const { data: didWallets, isLoading: isLoadingDIDs } = useGetDIDsQuery();
-  const { wallets: nftWallets, isLoading: isLoadingNFTWallets } =
-    useGetNFTWallets();
-  const currentDIDId = nft.ownerDid
-    ? didToDIDId(stripHexPrefix(nft.ownerDid))
-    : undefined;
+  const { wallets: nftWallets, isLoading: isLoadingNFTWallets } = useGetNFTWallets();
+  const currentDIDId = nft.ownerDid ? didToDIDId(stripHexPrefix(nft.ownerDid)) : undefined;
 
   const inbox: Wallet | undefined = useMemo(() => {
     if (isLoadingNFTWallets) {
@@ -227,9 +209,7 @@ export function NFTMoveToProfileAction(props: NFTMoveToProfileActionProps) {
     return didWallets.find((wallet: Wallet) => wallet.myDid === currentDIDId);
   }, [didWallets, currentDIDId]);
 
-  const newDID = destination
-    ? didWallets.find((wallet: Wallet) => wallet.myDid === destination)
-    : undefined;
+  const newDID = destination ? didWallets.find((wallet: Wallet) => wallet.myDid === destination) : undefined;
 
   let newProfileName;
   if (newDID) {
@@ -246,9 +226,7 @@ export function NFTMoveToProfileAction(props: NFTMoveToProfileActionProps) {
     if (!walletId) {
       methods.setValue('destination', '<none>');
     } else {
-      const selectedWallet = didWallets.find(
-        (wallet: Wallet) => wallet.id === walletId,
-      );
+      const selectedWallet = didWallets.find((wallet: Wallet) => wallet.id === walletId);
       methods.setValue('destination', selectedWallet?.myDid || '');
     }
   }
@@ -275,9 +253,7 @@ export function NFTMoveToProfileAction(props: NFTMoveToProfileActionProps) {
 
     const destinationDID = destination === '<none>' ? undefined : destination;
 
-    const confirmation = await openDialog(
-      <NFTMoveToProfileConfirmationDialog />,
-    );
+    const confirmation = await openDialog(<NFTMoveToProfileConfirmationDialog />);
 
     if (confirmation) {
       try {
@@ -296,18 +272,15 @@ export function NFTMoveToProfileAction(props: NFTMoveToProfileActionProps) {
         if (success) {
           openDialog(
             <AlertDialog title={<Trans>NFT Move Pending</Trans>}>
-              <Trans>
-                The NFT move transaction has been successfully submitted to the
-                blockchain.
-              </Trans>
-            </AlertDialog>,
+              <Trans>The NFT move transaction has been successfully submitted to the blockchain.</Trans>
+            </AlertDialog>
           );
         } else {
           const error = errorMessage || 'Unknown error';
           openDialog(
             <AlertDialog title={<Trans>NFT Move Failed</Trans>}>
               <Trans>The NFT move failed: {error}</Trans>
-            </AlertDialog>,
+            </AlertDialog>
           );
         }
       } finally {
@@ -338,9 +311,7 @@ export function NFTMoveToProfileAction(props: NFTMoveToProfileActionProps) {
             onChange={handleProfileSelected}
             defaultTitle={<Trans>Select Profile</Trans>}
             currentDID={currentDIDId}
-            includeNoneOption={
-              inbox !== undefined && currentDIDId !== undefined
-            }
+            includeNoneOption={inbox !== undefined && currentDIDId !== undefined}
             variant="outlined"
             color="primary"
             disabled={isLoading || isLoadingDIDs || isLoadingNFTWallets}
@@ -362,26 +333,18 @@ export function NFTMoveToProfileAction(props: NFTMoveToProfileActionProps) {
               }}
             >
               <Typography variant="body1" noWrap>
-                {currentDID ? (
-                  currentDID.name ? (
-                    currentDID.name
-                  ) : (
-                    currentDID.myDid
-                  )
-                ) : currentDIDId || (
-                  <Trans>None</Trans>
-                )}
+                {currentDID
+                  ? currentDID.name
+                    ? currentDID.name
+                    : currentDID.myDid
+                  : currentDIDId || <Trans>None</Trans>}
               </Typography>
             </Flex>
             {currentDIDId && (
               <TooltipIcon>
                 <Flex alignItems="center" gap={1}>
                   <StyledValue>{currentDIDId}</StyledValue>
-                  <CopyToClipboard
-                    value={currentDIDId}
-                    fontSize="small"
-                    invertColor
-                  />
+                  <CopyToClipboard value={currentDIDId} fontSize="small" invertColor />
                 </Flex>
               </TooltipIcon>
             )}
@@ -409,11 +372,7 @@ export function NFTMoveToProfileAction(props: NFTMoveToProfileActionProps) {
                 <TooltipIcon>
                   <Flex alignItems="center" gap={1}>
                     <StyledValue>{newDID.myDid}</StyledValue>
-                    <CopyToClipboard
-                      value={newDID.myDid}
-                      fontSize="small"
-                      invertColor
-                    />
+                    <CopyToClipboard value={newDID.myDid} fontSize="small" invertColor />
                   </Flex>
                 </TooltipIcon>
               )}
@@ -432,21 +391,10 @@ export function NFTMoveToProfileAction(props: NFTMoveToProfileActionProps) {
         />
         <DialogActions>
           <Flex flexDirection="row" gap={3}>
-            <Button
-              onClick={handleClose}
-              color="secondary"
-              variant="outlined"
-              autoFocus
-            >
+            <Button onClick={handleClose} color="secondary" variant="outlined" autoFocus>
               <Trans>Close</Trans>
             </Button>
-            <ButtonLoading
-              type="submit"
-              autoFocus
-              color="primary"
-              variant="contained"
-              loading={isLoading}
-            >
+            <ButtonLoading type="submit" autoFocus color="primary" variant="contained" loading={isLoading}>
               <Trans>Move</Trans>
             </ButtonLoading>
           </Flex>
@@ -467,9 +415,7 @@ type NFTMoveToProfileDialogProps = {
   destination?: string;
 };
 
-export default function NFTMoveToProfileDialog(
-  props: NFTMoveToProfileDialogProps,
-) {
+export default function NFTMoveToProfileDialog(props: NFTMoveToProfileDialogProps) {
   const { open, onClose, nft, destination, ...rest } = props;
 
   function handleClose() {
@@ -500,15 +446,9 @@ export default function NFTMoveToProfileDialog(
       <DialogContent>
         <Flex flexDirection="column" gap={3}>
           <DialogContentText id="nft-move-dialog-description">
-            <Trans>
-              Would you like to move the specified NFT to a profile?
-            </Trans>
+            <Trans>Would you like to move the specified NFT to a profile?</Trans>
           </DialogContentText>
-          <NFTMoveToProfileAction
-            nft={nft}
-            destination={destination}
-            onComplete={handleCompletion}
-          />
+          <NFTMoveToProfileAction nft={nft} destination={destination} onComplete={handleCompletion} />
         </Flex>
       </DialogContent>
     </Dialog>

@@ -28,7 +28,11 @@ export default function PlotHarvesterPlotsDuplicate(props: PlotHarvesterPlotsDup
   const { nodeId } = props;
   const [page, setPage] = useState(0);
   const [pageSize, setPageSize] = useState(5);
-  const { duplicates, initialized, isLoading: isLoadingHarvester } = useGetHarvesterQuery({
+  const {
+    duplicates,
+    initialized,
+    isLoading: isLoadingHarvester,
+  } = useGetHarvesterQuery({
     nodeId,
   });
   const { isLoading: isLoadingHarvesterPlots, data = [] } = useGetHarvesterPlotsDuplicatesQuery({
@@ -59,11 +63,13 @@ export default function PlotHarvesterPlotsDuplicate(props: PlotHarvesterPlotsDup
       isLoading={isLoading || !initialized}
       expandedCellShift={1}
       uniqueField="filename"
-      caption={!duplicates && (
-        <Typography variant="body2" align="center">
-          <Trans>Hooray, no files here!</Trans>
-        </Typography>
-      )}
+      caption={
+        !duplicates && (
+          <Typography variant="body2" align="center">
+            <Trans>Hooray, no files here!</Trans>
+          </Typography>
+        )
+      }
       pages={!!duplicates}
     />
   );

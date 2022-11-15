@@ -22,9 +22,7 @@ export type OfferBuilderRoyaltyPayoutsProps = {
   royaltyPayments: Record<NFTId, RoyaltyCalculationFungibleAssetPayout>[];
 };
 
-export default function OfferBuilderRoyaltyPayouts(
-  props: OfferBuilderRoyaltyPayoutsProps,
-) {
+export default function OfferBuilderRoyaltyPayouts(props: OfferBuilderRoyaltyPayoutsProps) {
   const { totalAmount, originalAmount, royaltyPayments } = props;
 
   return (
@@ -62,11 +60,7 @@ export default function OfferBuilderRoyaltyPayouts(
               <StyledTitle>Royalty Recipient</StyledTitle>
               <StyledValue>{payment.address}</StyledValue>
             </Flex>
-            <CopyToClipboard
-              value={payment.address}
-              fontSize="small"
-              invertColor
-            />
+            <CopyToClipboard value={payment.address} fontSize="small" invertColor />
           </Flex>
           {i < royaltyPayments.length - 1 && <Divider />}
         </Flex>

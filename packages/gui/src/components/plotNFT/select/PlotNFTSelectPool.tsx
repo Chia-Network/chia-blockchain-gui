@@ -1,12 +1,7 @@
 import { ButtonLoading, Loading, Flex, Form, Back, chiaToMojo, ConfirmDialog, useOpenDialog } from '@chia/core';
 import { t, Trans } from '@lingui/macro';
 import { Alert } from '@mui/material';
-import React, {
-  useState,
-  ReactNode,
-  forwardRef,
-  useImperativeHandle,
-} from 'react';
+import React, { useState, ReactNode, forwardRef, useImperativeHandle } from 'react';
 import { useForm } from 'react-hook-form';
 
 import usePlotNFTs from '../../../hooks/usePlotNFTs';
@@ -30,9 +25,7 @@ async function prepareSubmitData(data: FormData): SubmitData {
 
   if (!self && poolUrl) {
     const normalizedPoolUrl = normalizeUrl(poolUrl);
-    const { targetPuzzleHash, relativeLockHeight } = await getPoolInfo(
-      normalizedPoolUrl,
-    );
+    const { targetPuzzleHash, relativeLockHeight } = await getPoolInfo(normalizedPoolUrl);
     if (!targetPuzzleHash) {
       throw new Error(t`Pool does not provide targetPuzzleHash.`);
     }
@@ -76,17 +69,7 @@ type Props = {
 };
 
 const PlotNFTSelectPool = forwardRef((props: Props, ref) => {
-  const {
-    step,
-    onCancel,
-    defaultValues,
-    onSubmit,
-    title,
-    description,
-    submitTitle,
-    hideFee,
-    feeDescription,
-  } = props;
+  const { step, onCancel, defaultValues, onSubmit, title, description, submitTitle, hideFee, feeDescription } = props;
   const [loading, setLoading] = useState<boolean>(false);
   const { balance, loading: walletLoading } = useStandardWallet();
   const { nfts } = usePlotNFTs();
@@ -114,27 +97,22 @@ const PlotNFTSelectPool = forwardRef((props: Props, ref) => {
   async function handleSubmit(data: FormData) {
     let createNFT = true;
     if (nfts?.length > 10) {
-       createNFT = await openDialog(
-        <ConfirmDialog
-          title={<Trans>Too Many Plot NFTs</Trans>}
-          confirmColor="danger"
-        >
-          <Trans>
-            You already have more than 10 Plot NFTs. Click OK if you're sure you want to create a new one.
-          </Trans>
+      createNFT = await openDialog(
+        <ConfirmDialog title={<Trans>Too Many Plot NFTs</Trans>} confirmColor="danger">
+          <Trans>You already have more than 10 Plot NFTs. Click OK if you're sure you want to create a new one.</Trans>
         </ConfirmDialog>
       );
     }
     if (createNFT && !exceededNFTLimit) {
-    try {
-      setLoading(true);
+      try {
+        setLoading(true);
 
-      const submitData = await prepareSubmitData(data);
+        const submitData = await prepareSubmitData(data);
 
-      await onSubmit(submitData);
-    } finally {
-      setLoading(false);
-    }
+        await onSubmit(submitData);
+      } finally {
+        setLoading(false);
+      }
     }
   }
 
@@ -174,9 +152,11 @@ const PlotNFTSelectPool = forwardRef((props: Props, ref) => {
           hideFee={hideFee}
           feeDescription={feeDescription}
         />
-        {exceededNFTLimit && <Alert severity="error">
-          <Trans>You already have 50 or more Plot NFTs.</Trans>
-        </Alert>}
+        {exceededNFTLimit && (
+          <Alert severity="error">
+            <Trans>You already have 50 or more Plot NFTs.</Trans>
+          </Alert>
+        )}
         {!onCancel && (
           <Flex gap={1} justifyContent="right">
             <ButtonLoading

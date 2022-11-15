@@ -12,8 +12,7 @@ export default function manageDaemonLifetime(net?: string): boolean {
     if (error.code === 'ENOENT') {
       // configuration file does not exists, use default value
       return true;
-    } 
-      throw error;
-    
+    }
+    throw error;
   }
 }

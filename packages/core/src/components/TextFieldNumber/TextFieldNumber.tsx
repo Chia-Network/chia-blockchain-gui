@@ -29,9 +29,7 @@ export default function TextFieldNumber(props: TextFieldNumberProps) {
         InputProps={{
           spellCheck: false,
           inputComponent: NumberFormatCustom as any,
-          endAdornment: currency ? (
-            <InputAdornment position="end">{currency}</InputAdornment>
-          ) : undefined,
+          endAdornment: currency ? <InputAdornment position="end">{currency}</InputAdornment> : undefined,
         }}
         {...rest}
       />

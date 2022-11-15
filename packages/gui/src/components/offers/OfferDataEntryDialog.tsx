@@ -1,19 +1,12 @@
 import { Button, DialogActions } from '@chia/core';
 import { Trans } from '@lingui/macro';
-import {
-  Box,
-  Grid,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  TextField,
-} from '@mui/material';
+import { Box, Grid, Dialog, DialogTitle, DialogContent, TextField } from '@mui/material';
 import React from 'react';
 
-type Props ={
+type Props = {
   open: boolean;
   onClose: (offerData?: string) => void;
-}
+};
 
 export default function OfferDataEntryDialog(props: Props) {
   const { open, onClose } = props;
@@ -51,7 +44,7 @@ export default function OfferDataEntryDialog(props: Props) {
                 }}
                 minRows={5}
                 maxRows={10}
-                inputRef={(ref) => input = ref}
+                inputRef={(ref) => (input = ref)}
                 fullWidth
                 multiline
               />
@@ -60,17 +53,10 @@ export default function OfferDataEntryDialog(props: Props) {
         </Grid>
       </DialogContent>
       <DialogActions>
-        <Button
-          onClick={handleClose}
-          variant="outlined"
-        >
+        <Button onClick={handleClose} variant="outlined">
           <Trans>Cancel</Trans>
         </Button>
-        <Button
-          onClick={handleOK}
-          color="primary"
-          variant="contained"
-        >
+        <Button onClick={handleOK} color="primary" variant="contained">
           <Trans>Import</Trans>
         </Button>
       </DialogActions>

@@ -70,9 +70,7 @@ export default function WalletImport() {
     if (!intersection || intersection.length !== 24) {
       openDialog(
         <AlertDialog>
-          <Trans>
-            Your pasted list does not include 24 valid mnemonic words.
-          </Trans>
+          <Trans>Your pasted list does not include 24 valid mnemonic words.</Trans>
         </AlertDialog>
       );
       return;
@@ -89,11 +87,7 @@ export default function WalletImport() {
 
   function ActionButtons() {
     return (
-      <Button
-        onClick={() => setMnemonicPasteOpen(true)}
-        variant="contained"
-        disableElevation
-      >
+      <Button onClick={() => setMnemonicPasteOpen(true)} variant="contained" disableElevation>
         <Trans>Paste Mnemonic</Trans>
       </Button>
     );
@@ -128,19 +122,11 @@ export default function WalletImport() {
       <Container maxWidth="lg">
         <Flex flexDirection="column" gap={3} alignItems="center">
           <Logo />
-          <Typography
-            variant="h4"
-            component="h1"
-            textAlign="center"
-            gutterBottom
-          >
+          <Typography variant="h4" component="h1" textAlign="center" gutterBottom>
             <Trans>Import Wallet from Mnemonics</Trans>
           </Typography>
           <Typography variant="subtitle1" align="center">
-            <Trans>
-              Enter the 24 word mnemonic that you have saved in order to restore
-              your Chia wallet.
-            </Trans>
+            <Trans>Enter the 24 word mnemonic that you have saved in order to restore your Chia wallet.</Trans>
           </Typography>
           <Grid spacing={2} rowSpacing={3} container>
             {fields.map((field, index) => (
@@ -169,22 +155,11 @@ export default function WalletImport() {
                   }}
                   fullWidth
                 />
-                <ButtonLoading
-                  type="submit"
-                  variant="contained"
-                  color="primary"
-                  loading={isSubmitting}
-                  fullWidth
-                >
+                <ButtonLoading type="submit" variant="contained" color="primary" loading={isSubmitting} fullWidth>
                   <Trans>Next</Trans>
                 </ButtonLoading>
                 <ActionButtons />
-                {mnemonicPasteOpen && (
-                  <MnemonicPaste
-                    onSuccess={submitMnemonicPaste}
-                    onCancel={closeMnemonicPaste}
-                  />
-                )}
+                {mnemonicPasteOpen && <MnemonicPaste onSuccess={submitMnemonicPaste} onCancel={closeMnemonicPaste} />}
               </Flex>
             </Grid>
           </Grid>

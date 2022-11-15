@@ -28,11 +28,7 @@ export default function LoadingOverlay(props: LoadingOverlayProps) {
   return (
     <Box width="100%" position="relative">
       {children}
-      {(loading || disabled) && (
-        <StyledLoadingContainer>
-          {!disabled && <Loading center />}
-        </StyledLoadingContainer>
-      )}
+      {(loading || disabled) && <StyledLoadingContainer>{!disabled && <Loading center />}</StyledLoadingContainer>}
     </Box>
   );
 }

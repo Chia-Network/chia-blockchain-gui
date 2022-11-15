@@ -17,17 +17,14 @@ export type SelectKeyDetailDialogProps = {
   index: number;
 };
 
-export default function SelectKeyDetailDialog(
-  props: SelectKeyDetailDialogProps
-) {
+export default function SelectKeyDetailDialog(props: SelectKeyDetailDialogProps) {
   const { fingerprint, index, ...rest } = props;
 
   const [showPrivateKey, setShowPrivateKey] = useState<boolean>(false);
   const [showSeed, setShowSeed] = useState<boolean>(false);
-  const { data: privateKey, isLoading: isLoadingPrivateKey } =
-    useGetPrivateKeyQuery({
-      fingerprint,
-    });
+  const { data: privateKey, isLoading: isLoadingPrivateKey } = useGetPrivateKeyQuery({
+    fingerprint,
+  });
 
   const { data: keyData, isLoading: isLoadingKeyData } = useGetKeyQuery({
     fingerprint,
@@ -84,11 +81,7 @@ export default function SelectKeyDetailDialog(
             <Typography component="dt" variant="subtitle2">
               <Trans>Public Key</Trans>
             </Typography>
-            <StyledTypographyDD
-              component="dd"
-              variant="body2"
-              color="textSecondary"
-            >
+            <StyledTypographyDD component="dd" variant="body2" color="textSecondary">
               {privateKey.pk}
             </StyledTypographyDD>
           </Grid>
@@ -96,11 +89,7 @@ export default function SelectKeyDetailDialog(
             <Typography component="dt" variant="subtitle2">
               <Trans>Farmer Public Key</Trans>
             </Typography>
-            <StyledTypographyDD
-              component="dd"
-              variant="body2"
-              color="textSecondary"
-            >
+            <StyledTypographyDD component="dd" variant="body2" color="textSecondary">
               {privateKey.farmerPk}
             </StyledTypographyDD>
           </Grid>
@@ -108,11 +97,7 @@ export default function SelectKeyDetailDialog(
             <Typography component="dt" variant="subtitle2">
               <Trans>Pool Public Key</Trans>
             </Typography>
-            <StyledTypographyDD
-              component="dd"
-              variant="body2"
-              color="textSecondary"
-            >
+            <StyledTypographyDD component="dd" variant="body2" color="textSecondary">
               {privateKey.poolPk}
             </StyledTypographyDD>
           </Grid>
@@ -127,20 +112,11 @@ export default function SelectKeyDetailDialog(
             <Typography component="dt" variant="subtitle2">
               <Trans>Secret Key</Trans>
             </Typography>
-            <StyledTypographyDD
-              component="dd"
-              variant="body2"
-              color="textSecondary"
-            >
+            <StyledTypographyDD component="dd" variant="body2" color="textSecondary">
               {showPrivateKey ? (
                 privateKey.sk
               ) : (
-                <Box
-                  borderTop="2px dotted"
-                  marginTop={1}
-                  marginBottom={1}
-                  height="1px"
-                />
+                <Box borderTop="2px dotted" marginTop={1} marginBottom={1} height="1px" />
               )}
             </StyledTypographyDD>
             <Box>
@@ -154,11 +130,7 @@ export default function SelectKeyDetailDialog(
             <Typography component="dt" variant="subtitle2">
               <Trans>Seed Phrase</Trans>
             </Typography>
-            <StyledTypographyDD
-              component="dd"
-              variant="body2"
-              color="textSecondary"
-            >
+            <StyledTypographyDD component="dd" variant="body2" color="textSecondary">
               {showSeed ? (
                 privateKey.seed ? (
                   privateKey.seed
@@ -166,12 +138,7 @@ export default function SelectKeyDetailDialog(
                   <Trans>No 24 word seed, since this key is imported.</Trans>
                 )
               ) : (
-                <Box
-                  borderTop="2px dotted"
-                  marginTop={1}
-                  marginBottom={1}
-                  height="1px"
-                />
+                <Box borderTop="2px dotted" marginTop={1} marginBottom={1} height="1px" />
               )}
             </StyledTypographyDD>
             <Box>

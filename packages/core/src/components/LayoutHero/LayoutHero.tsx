@@ -6,7 +6,6 @@ import styled from 'styled-components';
 
 import Flex from '../Flex';
 
-
 const StyledWrapper = styled(Box)`
   padding-top: ${({ theme }) => `${theme.spacing(3)}`};
   display: flex;
@@ -35,12 +34,7 @@ export type LayoutHeroProps = {
 };
 
 export default function LayoutHero(props: LayoutHeroProps) {
-  const {
-    children,
-    header,
-    back = false,
-    outlet = false,
-  } = props;
+  const { children, header, back = false, outlet = false } = props;
 
   return (
     <StyledWrapper>

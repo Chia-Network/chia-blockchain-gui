@@ -5,14 +5,17 @@ import PlotNFTExternal from 'types/PlotNFTExternal';
 
 import useUnconfirmedPlotNFTs from './useUnconfirmedPlotNFTs';
 
-
 export default function usePlotNFTs(): {
   loading: boolean;
   nfts?: PlotNFT[];
   external?: PlotNFTExternal[];
   error?: Error;
 } {
-  const { data, isLoading: isLoadingGetPlotNFTs, error } = useGetPlotNFTsQuery(undefined, {
+  const {
+    data,
+    isLoading: isLoadingGetPlotNFTs,
+    error,
+  } = useGetPlotNFTsQuery(undefined, {
     pollingInterval: 10000,
   });
 

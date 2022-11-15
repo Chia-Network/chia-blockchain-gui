@@ -7,12 +7,10 @@ import bigNumberToLocaleString from './bigNumberToLocaleString';
 class Chia {
   private _value: BigNumber;
 
-  private _unit: Unit
+  private _unit: Unit;
 
   constructor(value: number | string | BigNumber, unit: Unit) {
-    const stringValue = value === '' || value === '.' || value === null || value === undefined
-      ? '0'
-      : value.toString();
+    const stringValue = value === '' || value === '.' || value === null || value === undefined ? '0' : value.toString();
 
     this._value = new BigNumber(stringValue);
     this._unit = unit;
@@ -29,7 +27,7 @@ class Chia {
   to(newUnit: Unit) {
     const fromUnitValue = UnitValue[this.unit];
     const toUnitValue = UnitValue[newUnit];
-  
+
     const amountInFromUnit = this.value.times(fromUnitValue.toString());
     const newValue = amountInFromUnit.div(toUnitValue.toString());
 

@@ -8,7 +8,6 @@ import styled from 'styled-components';
 
 import isRankingAttribute from '../../util/isRankingAttribute';
 
-
 /* ========================================================================== */
 
 const StyledTitle = styled(Box)`
@@ -47,11 +46,7 @@ export function NFTProperty(props: NFTPropertyProps) {
   return (
     <Grid xs={12} sm={6} item>
       <Box {...borderStyle}>
-        <Typography
-          variant={size === 'small' ? 'caption' : 'body1'}
-          color={color}
-          noWrap
-        >
+        <Typography variant={size === 'small' ? 'caption' : 'body1'} color={color} noWrap>
           {title}
         </Typography>
         {/* <Tooltip title={value} copyToClipboard={true}> */}
@@ -72,11 +67,7 @@ export function NFTProperty(props: NFTPropertyProps) {
             </Flex>
           }
         >
-          <Typography
-            variant={size === 'small' ? 'body2' : 'h6'}
-            color={color}
-            noWrap
-          >
+          <Typography variant={size === 'small' ? 'body2' : 'h6'} color={color} noWrap>
             {value}
           </Typography>
         </Tooltip>

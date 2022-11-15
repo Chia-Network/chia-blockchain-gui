@@ -88,12 +88,7 @@ export default function SelectKeyRenameForm(props: SelectKeyRenameFormProps) {
             endAdornment: (
               <InputAdornment position="end">
                 <Tooltip title={<Trans>Cancel</Trans>}>
-                  <Chip
-                    size="small"
-                    aria-label="cancel"
-                    label={<Trans>Esc</Trans>}
-                    onClick={handleCancel}
-                  />
+                  <Chip size="small" aria-label="cancel" label={<Trans>Esc</Trans>} onClick={handleCancel} />
                 </Tooltip>
               </InputAdornment>
             ),

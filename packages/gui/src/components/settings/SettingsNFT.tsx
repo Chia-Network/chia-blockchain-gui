@@ -1,7 +1,7 @@
 import { useLocalStorage } from '@chia/api-react';
-import { Flex, SettingsLabel , AlertDialog, useOpenDialog , FormatBytes } from '@chia/core';
+import { Flex, SettingsLabel, AlertDialog, useOpenDialog, FormatBytes } from '@chia/core';
 import { Trans } from '@lingui/macro';
-import { Grid, Box, Button , Switch, FormGroup, FormControlLabel } from '@mui/material';
+import { Grid, Box, Button, Switch, FormGroup, FormControlLabel } from '@mui/material';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -9,12 +9,9 @@ import useHideObjectionableContent from '../../hooks/useHideObjectionableContent
 import LimitCacheSize from './LimitCacheSize';
 
 export default function SettingsGeneral() {
-  const [hideObjectionableContent, setHideObjectionableContent] =
-    useHideObjectionableContent();
+  const [hideObjectionableContent, setHideObjectionableContent] = useHideObjectionableContent();
 
-  function handleChangeHideObjectionableContent(
-    event: React.ChangeEvent<HTMLInputElement>,
-  ) {
+  function handleChangeHideObjectionableContent(event: React.ChangeEvent<HTMLInputElement>) {
     setHideObjectionableContent(event.target.checked);
   }
 
@@ -22,7 +19,7 @@ export default function SettingsGeneral() {
   const [defaultCacheFolder, setDefaultCacheFolder] = React.useState();
   const [cacheSize, setCacheSize] = React.useState(0);
   const openDialog = useOpenDialog();
-  const {ipcRenderer} = window as any;
+  const { ipcRenderer } = window as any;
 
   React.useEffect(() => {
     ipcRenderer.invoke('getDefaultCacheFolder').then((folder) => {
@@ -71,22 +68,16 @@ export default function SettingsGeneral() {
     const newFolder = await ipcRenderer.invoke('selectCacheFolder');
 
     if (!newFolder.canceled) {
-      const folderFileCount = await ipcRenderer.invoke(
-        'isNewFolderEmtpy',
-        newFolder.filePaths[0],
-      );
+      const folderFileCount = await ipcRenderer.invoke('isNewFolderEmtpy', newFolder.filePaths[0]);
 
       if (folderFileCount > 0) {
         openDialog(
           <AlertDialog title={<Trans>Error</Trans>}>
             <Trans>Please select an empty folder</Trans>
-          </AlertDialog>,
+          </AlertDialog>
         );
       } else {
-        ipcRenderer.invoke('changeCacheFolderFromTo', [
-          cacheFolder,
-          newFolder.filePaths[0],
-        ]);
+        ipcRenderer.invoke('changeCacheFolderFromTo', [cacheFolder, newFolder.filePaths[0]]);
         setCacheFolder(newFolder.filePaths[0]);
       }
     }
@@ -104,12 +95,7 @@ export default function SettingsGeneral() {
 
           <FormGroup>
             <FormControlLabel
-              control={
-                <Switch
-                  checked={hideObjectionableContent}
-                  onChange={handleChangeHideObjectionableContent}
-                />
-              }
+              control={<Switch checked={hideObjectionableContent} onChange={handleChangeHideObjectionableContent} />}
               label={<Trans>Hide objectionable content</Trans>}
             />
             <Box sx={{ m: 2 }} />
@@ -134,12 +120,7 @@ export default function SettingsGeneral() {
                 </div>
                 <div>{renderCacheFolder()}</div>
                 <div>
-                  <Button
-                    onClick={chooseAnotherFolder}
-                    color="primary"
-                    variant="outlined"
-                    size="small"
-                  >
+                  <Button onClick={chooseAnotherFolder} color="primary" variant="outlined" size="small">
                     <Trans>Change</Trans>
                   </Button>
                 </div>

@@ -28,11 +28,14 @@ export default function FormatLargeNumber(props: FormatLargeNumberProps) {
   const formatedValue = useMemo(() => {
     if (typeof value === 'undefined' || value === null) {
       return value;
-    } if (value instanceof BigNumber) {
+    }
+    if (value instanceof BigNumber) {
       return bigNumberToLocaleString(value, locale);
-    } if (typeof value === 'bigint') {
+    }
+    if (typeof value === 'bigint') {
       return BigInt(value).toLocaleString(locale);
-    } if (typeof value === 'string') {
+    }
+    if (typeof value === 'string') {
       return bigNumberToLocaleString(new BigNumber(value), locale);
     }
 

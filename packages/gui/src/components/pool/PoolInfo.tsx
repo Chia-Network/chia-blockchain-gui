@@ -5,7 +5,6 @@ import React from 'react';
 
 import type PoolInfoType from '../../types/PoolInfo';
 
-
 type Props = {
   poolInfo: PoolInfoType;
 };
@@ -52,12 +51,7 @@ export default function PoolInfo(props: Props) {
         <Typography gutterBottom variant="h5" component="h2">
           {poolInfo.name}
         </Typography>
-        <Typography
-          gutterBottom
-          variant="body2"
-          color="textSecondary"
-          component="p"
-        >
+        <Typography gutterBottom variant="body2" color="textSecondary" component="p">
           <Link href={poolInfo.poolUrl} target="_blank">
             {poolInfo.poolUrl}
           </Link>

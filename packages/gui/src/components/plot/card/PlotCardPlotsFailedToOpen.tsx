@@ -1,5 +1,3 @@
-
-
 import { useGetTotalHarvestersSummaryQuery } from '@chia/api-react';
 import { FormatLargeNumber, CardSimple } from '@chia/core';
 import { Trans } from '@lingui/macro';

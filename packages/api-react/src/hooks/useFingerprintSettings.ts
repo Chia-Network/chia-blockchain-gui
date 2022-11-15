@@ -6,8 +6,7 @@ export default function useFingerprintSettings<Type>(
   defaultValue?: Type
 ): [Type | undefined, (value: Type) => void] {
   type LocalStorageType = Record<string, Record<string, any> | undefined>;
-  const [fingerprintSettings, setFingerprintSettings] =
-    useLocalStorage<LocalStorageType>('fingerprintSettings', {});
+  const [fingerprintSettings, setFingerprintSettings] = useLocalStorage<LocalStorageType>('fingerprintSettings', {});
 
   if (fingerprint === undefined) {
     return [

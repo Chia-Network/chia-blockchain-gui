@@ -30,11 +30,7 @@ export default function PlotStatus(props: Props) {
     <Flex flexDirection="column" gap={1}>
       {progress !== undefined ? (
         <Flex gap={1} alignItems="center">
-          <StyledLinearProgress
-            variant="determinate"
-            value={progress * 100}
-            color="secondary"
-          />
+          <StyledLinearProgress variant="determinate" value={progress * 100} color="secondary" />
           <Flex>
             <Typography variant="body2" color="textSecondary">
               {`${Math.round(progress * 100)}%`}

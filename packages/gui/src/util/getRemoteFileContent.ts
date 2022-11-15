@@ -14,15 +14,13 @@ export type RemoteFileContent = {
   dataHash?: string;
 };
 
-export default async function getRemoteFileContent(
-  props: RemoteFileContent,
-): Promise<{
+export default async function getRemoteFileContent(props: RemoteFileContent): Promise<{
   data: string;
   encoding: string;
   wasCached: boolean;
   isValid: boolean;
 }> {
-  const {ipcRenderer} = window as any;
+  const { ipcRenderer } = window as any;
   const requestOptions = {
     url: props.uri,
     maxSize: props.maxSize,
@@ -32,8 +30,10 @@ export default async function getRemoteFileContent(
     dataHash: props.dataHash,
   };
 
-  const { dataObject, statusCode, encoding, error, wasCached } =
-    await ipcRenderer?.invoke('fetchBinaryContent', requestOptions);
+  const { dataObject, statusCode, encoding, error, wasCached } = await ipcRenderer?.invoke(
+    'fetchBinaryContent',
+    requestOptions
+  );
 
   if (error) {
     throw error;

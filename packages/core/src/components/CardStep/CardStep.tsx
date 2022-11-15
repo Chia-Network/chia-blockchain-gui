@@ -1,12 +1,4 @@
-import {
-  Avatar,
-  Card,
-  CardContent,
-  CardHeader,
-  Divider,
-  Grid,
-  Typography,
-} from '@mui/material';
+import { Avatar, Card, CardContent, CardHeader, Divider, Grid, Typography } from '@mui/material';
 import React, { ReactNode } from 'react';
 import styled from 'styled-components';
 

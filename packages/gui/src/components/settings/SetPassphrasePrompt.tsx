@@ -1,5 +1,13 @@
 import { useGetKeyringStatusQuery, useSetKeyringPassphraseMutation } from '@chia/api-react';
-import { AlertDialog, Button, DialogActions, Flex, useValidateChangePassphraseParams, useOpenDialog, Suspender } from '@chia/core';
+import {
+  AlertDialog,
+  Button,
+  DialogActions,
+  Flex,
+  useValidateChangePassphraseParams,
+  useOpenDialog,
+  Suspender,
+} from '@chia/core';
 import { t, Trans } from '@lingui/macro';
 import {
   Help as HelpIcon,
@@ -52,12 +60,10 @@ export default function SetPassphrasePrompt(props: Props) {
   async function validateDialog(passphrase: string, confirmation: string): Promise<boolean> {
     let isValid = false;
 
-    if (passphrase === "" && confirmation === "") {
+    if (passphrase === '' && confirmation === '') {
       await openDialog(
         <AlertDialog>
-          <Trans>
-            Please enter a passphrase
-          </Trans>
+          <Trans>Please enter a passphrase</Trans>
         </AlertDialog>
       );
     } else {
@@ -68,9 +74,9 @@ export default function SetPassphrasePrompt(props: Props) {
   }
 
   async function handleSubmit() {
-    const passphrase: string = passphraseInput?.value ?? "";
-    const confirmation: string = confirmationInput?.value ?? "";
-    const passphraseHint: string = passphraseHintInput?.value ?? "";
+    const passphrase: string = passphraseInput?.value ?? '';
+    const confirmation: string = confirmationInput?.value ?? '';
+    const passphraseHint: string = passphraseHintInput?.value ?? '';
     const savePassphrase: boolean = savePassphraseCheckbox?.checked ?? false;
     const isValid = await validateDialog(passphrase, confirmation);
 
@@ -87,9 +93,7 @@ export default function SetPassphrasePrompt(props: Props) {
       } catch (error: any) {
         await openDialog(
           <AlertDialog>
-            <Trans>
-              Failed to set passphrase: {error.message}
-            </Trans>
+            <Trans>Failed to set passphrase: {error.message}</Trans>
           </AlertDialog>
         );
         setNeedsFocusAndSelect(true);
@@ -105,11 +109,11 @@ export default function SetPassphrasePrompt(props: Props) {
 
   async function handleKeyDown(e: React.KeyboardEvent) {
     const keyHandlerMapping: { [key: string]: () => Promise<void> } = {
-      'Enter' : handleSubmit,
-      'Escape' : handleCancel,
+      Enter: handleSubmit,
+      Escape: handleCancel,
     };
 
-    if (e.getModifierState("CapsLock")) {
+    if (e.getModifierState('CapsLock')) {
       setShowCapsLock(true);
     }
 
@@ -125,28 +129,23 @@ export default function SetPassphrasePrompt(props: Props) {
   }
 
   const handleKeyUp = (event) => {
-    if (event.key === "CapsLock") {
+    if (event.key === 'CapsLock') {
       setShowCapsLock(false);
     }
-  }
+  };
 
   if (isLoading) {
-    return (
-      <Suspender />
-    );
+    return <Suspender />;
   }
 
-  const {
-    canSavePassphrase,
-    canSetPassphraseHint,
-  } = keyringState;
+  const { canSavePassphrase, canSetPassphraseHint } = keyringState;
 
   return (
     <Dialog
       open
       aria-labelledby="form-dialog-title"
       fullWidth
-      maxWidth = "xs"
+      maxWidth="xs"
       onKeyDown={handleKeyDown}
       onKeyUp={handleKeyUp}
     >
@@ -155,9 +154,7 @@ export default function SetPassphrasePrompt(props: Props) {
       </DialogTitle>
       <DialogContent>
         <DialogContentText>
-          <Trans>
-            Enter a strong passphrase to secure your keys:
-          </Trans>
+          <Trans>Enter a strong passphrase to secure your keys:</Trans>
         </DialogContentText>
         <Flex flexDirection="row" gap={1.5} alignItems="center">
           <TextField
@@ -168,19 +165,23 @@ export default function SetPassphrasePrompt(props: Props) {
             id="passphraseInput"
             label={<Trans>Passphrase</Trans>}
             placeholder="Passphrase"
-            inputRef={(input) => passphraseInput = input}
-            type={showPassphraseText1 ? "text" : "password"}
+            inputRef={(input) => (passphraseInput = input)}
+            type={showPassphraseText1 ? 'text' : 'password'}
             InputProps={{
               endAdornment: (
                 <Flex alignItems="center">
                   <InputAdornment position="end">
-                    {showCapsLock && <Flex><KeyboardCapslockIcon /></Flex>}
-                    <IconButton onClick={() => setShowPassphraseText1(s => !s)}>
+                    {showCapsLock && (
+                      <Flex>
+                        <KeyboardCapslockIcon />
+                      </Flex>
+                    )}
+                    <IconButton onClick={() => setShowPassphraseText1((s) => !s)}>
                       <VisibilityIcon />
                     </IconButton>
                   </InputAdornment>
                 </Flex>
-              )
+              ),
             }}
             data-testid="SetPassphrasePrompt-passphrase"
             fullWidth
@@ -194,19 +195,23 @@ export default function SetPassphrasePrompt(props: Props) {
             id="confirmationInput"
             label={<Trans>Confirm Passphrase</Trans>}
             placeholder="Confirm Passphrase"
-            inputRef={(input) => confirmationInput = input}
-            type={showPassphraseText2 ? "text" : "password"}
+            inputRef={(input) => (confirmationInput = input)}
+            type={showPassphraseText2 ? 'text' : 'password'}
             InputProps={{
               endAdornment: (
                 <Flex alignItems="center">
                   <InputAdornment position="end">
-                    {showCapsLock && <Flex><KeyboardCapslockIcon /></Flex>}
-                    <IconButton onClick={() => setShowPassphraseText2(s => !s)}>
+                    {showCapsLock && (
+                      <Flex>
+                        <KeyboardCapslockIcon />
+                      </Flex>
+                    )}
+                    <IconButton onClick={() => setShowPassphraseText2((s) => !s)}>
                       <VisibilityIcon />
                     </IconButton>
                   </InputAdornment>
                 </Flex>
-              )
+              ),
             }}
             data-testid="SetPassphrasePrompt-confirm-passphrase"
             fullWidth
@@ -220,7 +225,7 @@ export default function SetPassphrasePrompt(props: Props) {
             id="passphraseHintInput"
             label={<Trans>Passphrase Hint (Optional)</Trans>}
             placeholder={t`Passphrase Hint`}
-            inputRef={(input) => passphraseHintInput = input}
+            inputRef={(input) => (passphraseHintInput = input)}
             data-testid="SetPassphrasePrompt-hint"
             fullWidth
           />
@@ -228,18 +233,20 @@ export default function SetPassphrasePrompt(props: Props) {
         {!!canSavePassphrase && (
           <Box display="flex" alignItems="center">
             <FormControlLabel
-              control={(
+              control={
                 <Checkbox
                   disabled={isLoadingSetKeyringPassphrase}
                   name="cleanupKeyringPostMigration"
-                  inputRef={(input) => savePassphraseCheckbox = input}
+                  inputRef={(input) => (savePassphraseCheckbox = input)}
                 />
-              )}
+              }
               label={t`Save passphrase`}
               style={{ marginRight: '8px' }}
               data-testid="SetPassphrasePrompt-save-passphrase"
             />
-            <Tooltip title={t`Your passphrase can be stored in your system's secure credential store. Chia will be able to access your keys without prompting for your passphrase.`}>
+            <Tooltip
+              title={t`Your passphrase can be stored in your system's secure credential store. Chia will be able to access your keys without prompting for your passphrase.`}
+            >
               <HelpIcon style={{ color: '#c8c8c8', fontSize: 12 }} />
             </Tooltip>
           </Box>

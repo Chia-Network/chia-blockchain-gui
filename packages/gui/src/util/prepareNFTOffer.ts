@@ -5,10 +5,7 @@ import BigNumber from 'bignumber.js';
 import type Driver from '../@types/Driver';
 import { launcherIdFromNFTId } from './nfts';
 
-export async function prepareNFTOfferFromNFTId(
-  nftId: string,
-  offeredNFT: boolean,
-) {
+export async function prepareNFTOfferFromNFTId(nftId: string, offeredNFT: boolean) {
   const launcherId = launcherIdFromNFTId(nftId);
   if (!launcherId) {
     throw new Error('Invalid NFT ID');
@@ -18,7 +15,7 @@ export async function prepareNFTOfferFromNFTId(
   const resultPromise = store.dispatch(
     walletApi.endpoints.getNFTInfo.initiate({
       coinId: launcherId ?? '',
-    }),
+    })
   );
 
   const result = await resultPromise;

@@ -9,4 +9,3 @@ export default function usePersist(baseNamespace: string): (namespace?: string) 
 
   return handleGenerateNamespace;
 }
-

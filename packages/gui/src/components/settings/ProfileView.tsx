@@ -1,16 +1,6 @@
 import { fromBech32m } from '@chia/api';
-import {
-  useGetDIDQuery,
-  useGetDIDNameQuery,
-  useSetDIDNameMutation,
-} from '@chia/api-react';
-import {
-  CopyToClipboard,
-  Flex,
-  Suspender,
-  Tooltip,
-  truncateValue,
-} from '@chia/core';
+import { useGetDIDQuery, useGetDIDNameQuery, useSetDIDNameMutation } from '@chia/api-react';
+import { CopyToClipboard, Flex, Suspender, Tooltip, truncateValue } from '@chia/core';
 import { Trans } from '@lingui/macro';
 import { Box, Card, TextField, Typography } from '@mui/material';
 import React, { useState, useEffect } from 'react';
@@ -26,7 +16,7 @@ const StyledCard = styled(Card)(
   padding: ${theme.spacing(3)};
   border-radius: ${theme.spacing(1)};
   background-color: ${theme.palette.background.paper};
-`,
+`
 );
 
 const StyledTitle = styled(Box)`
@@ -141,7 +131,6 @@ export default function ProfileView() {
         </StyledCard>
       </div>
     );
-  } 
-    return null;
-  
+  }
+  return null;
 }

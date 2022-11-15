@@ -16,7 +16,7 @@ export default function createTransaction(
   additions: Coin[],
   removals: Coin[],
   wallet_id: number,
-  type: TransactionType,
+  type: TransactionType
 ): Transaction {
   return {
     confirmed_at_height,

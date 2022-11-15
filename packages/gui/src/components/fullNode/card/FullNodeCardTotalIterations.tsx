@@ -12,9 +12,7 @@ export default function FullNodeCardTotalIterations() {
       loading={isLoading}
       valueColor="textPrimary"
       title={<Trans>Total Iterations</Trans>}
-      tooltip={
-        <Trans>Total iterations since the start of the blockchain</Trans>
-      }
+      tooltip={<Trans>Total iterations since the start of the blockchain</Trans>}
       value={<FormatLargeNumber value={value} />}
       error={error}
     />

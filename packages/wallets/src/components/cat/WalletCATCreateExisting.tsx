@@ -1,4 +1,4 @@
-import { AlertDialog, Fee, Back, ButtonLoading, Card, Flex, Form, TextField , chiaToMojo } from '@chia/core';
+import { AlertDialog, Fee, Back, ButtonLoading, Card, Flex, Form, TextField, chiaToMojo } from '@chia/core';
 import { Trans } from '@lingui/macro';
 import { Box, Grid } from '@mui/material';
 import React, { useState } from 'react';
@@ -38,8 +38,8 @@ export default function WalletCATCreateExisting() {
           openDialog(
             <AlertDialog>
               <Trans>Please enter a valid CAT name</Trans>
-            </AlertDialog>,
-          ),
+            </AlertDialog>
+          )
         );
         return;
       }
@@ -71,10 +71,11 @@ export default function WalletCATCreateExisting() {
     <Form methods={methods} onSubmit={handleSubmit}>
       <Flex flexDirection="column" gap={3}>
         <Back variant="h5">
-          {asteroid 
-            ? <Trans>Create custom CAT Wallet</Trans>
-            : <Trans>Create Chia Asset Token Wallet from Existing TAIL</Trans>}
-          
+          {asteroid ? (
+            <Trans>Create custom CAT Wallet</Trans>
+          ) : (
+            <Trans>Create Chia Asset Token Wallet from Existing TAIL</Trans>
+          )}
         </Back>
         <Card>
           <Grid spacing={2} container>
@@ -87,20 +88,12 @@ export default function WalletCATCreateExisting() {
               />
             </Grid>
             <Grid xs={12} md={6} item>
-              <Fee
-                variant="outlined"
-                fullWidth
-              />
+              <Fee variant="outlined" fullWidth />
             </Grid>
           </Grid>
         </Card>
         <Box>
-          <ButtonLoading
-            type="submit"
-            variant="contained"
-            color="primary"
-            loading={loading}
-          >
+          <ButtonLoading type="submit" variant="contained" color="primary" loading={loading}>
             <Trans>Recover</Trans>
           </ButtonLoading>
         </Box>

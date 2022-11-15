@@ -19,12 +19,14 @@ export default function FullNodeCloseConnection(props: Props): JSX.Element {
         title={<Trans>Confirm Disconnect</Trans>}
         confirmTitle={<Trans>Disconnect</Trans>}
         confirmColor="danger"
-        onConfirm={() => closeConnection({
-          nodeId,
-        }).unwrap()}
+        onConfirm={() =>
+          closeConnection({
+            nodeId,
+          }).unwrap()
+        }
       >
         <Trans>Are you sure you want to disconnect?</Trans>
-      </ConfirmDialog>,
+      </ConfirmDialog>
     );
   }
 

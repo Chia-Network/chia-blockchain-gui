@@ -18,8 +18,7 @@ function getPrimaryTitle(wallet: Wallet): string {
   }
 }
 
-type Props = {
-};
+type Props = {};
 
 export default function WalletsDropdown(props: Props) {
   const navigate = useNavigate();
@@ -32,7 +31,7 @@ export default function WalletsDropdown(props: Props) {
     }
 
     return wallets
-      .filter(wallet => ![WalletType.POOLING_WALLET, WalletType.DATA_LAYER].includes(wallet.type))
+      .filter((wallet) => ![WalletType.POOLING_WALLET, WalletType.DATA_LAYER].includes(wallet.type))
       .map((wallet) => {
         const primaryTitle = getPrimaryTitle(wallet);
         const secondaryTitle = trans(WalletName[wallet.type]);
@@ -47,13 +46,13 @@ export default function WalletsDropdown(props: Props) {
                 <WalletIcon wallet={wallet} />
               </ListItemIcon>
               <ListItemText
-                primary={(
+                primary={
                   <Flex gap={1} alignItems="center">
                     <Typography>{primaryTitle}</Typography>
                     <WalletBadge wallet={wallet} fontSize="small" tooltip />
                   </Flex>
-                )}
-                secondary={!hasSameTitle ? secondaryTitle: undefined}
+                }
+                secondary={!hasSameTitle ? secondaryTitle : undefined}
                 secondaryTypographyProps={{
                   variant: 'caption',
                 }}
@@ -69,23 +68,19 @@ export default function WalletsDropdown(props: Props) {
   }
 
   if (isLoading) {
-    return (
-      <Loading size="small" />
-    );
+    return <Loading size="small" />;
   }
 
   return (
-    <Dropdown 
-      options={options}
-      selected={1}
-      onSelect={handleSelectWallet}
-    >
-      {(option) => !!option?.wallet && (
-        <Flex gap={1} alignItems="center">
-          <Typography>{getPrimaryTitle(option.wallet)}</Typography>
-          <WalletBadge wallet={option.wallet} fontSize="small" />
-        </Flex>
-      )}
+    <Dropdown options={options} selected={1} onSelect={handleSelectWallet}>
+      {(option) =>
+        !!option?.wallet && (
+          <Flex gap={1} alignItems="center">
+            <Typography>{getPrimaryTitle(option.wallet)}</Typography>
+            <WalletBadge wallet={option.wallet} fontSize="small" />
+          </Flex>
+        )
+      }
     </Dropdown>
   );
 }

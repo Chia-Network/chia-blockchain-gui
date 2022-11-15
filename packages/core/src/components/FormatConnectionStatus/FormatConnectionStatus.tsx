@@ -19,9 +19,7 @@ function getIconSize(size: string): string {
   }
 }
 
-const StyledFiberManualRecordIcon = styled(({ iconSize, ...rest }) => (
-  <FiberManualRecordIcon {...rest} />
-))`
+const StyledFiberManualRecordIcon = styled(({ iconSize, ...rest }) => <FiberManualRecordIcon {...rest} />)`
   font-size: ${({ iconSize }) => getIconSize(iconSize)};
 `;
 
@@ -34,8 +32,7 @@ type Props = {
 };
 
 export default function FormatConnectionStatus(props: Props) {
-  const { connected, connectedTitle, notConnectedTitle, variant, iconSize } =
-    props;
+  const { connected, connectedTitle, notConnectedTitle, variant, iconSize } = props;
   const color = connected ? 'primary' : 'secondary';
 
   return (

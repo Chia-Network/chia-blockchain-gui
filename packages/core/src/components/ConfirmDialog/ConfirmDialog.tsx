@@ -1,11 +1,5 @@
 import { Trans } from '@lingui/macro';
-import {
-  ButtonProps,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogContentText,
-} from '@mui/material';
+import { ButtonProps, Dialog, DialogTitle, DialogContent, DialogContentText } from '@mui/material';
 import React, { type ReactNode, useState } from 'react';
 
 import useShowError from '../../hooks/useShowError';
@@ -70,27 +64,15 @@ export default function ConfirmDialog(props: ConfirmDialogProps) {
       {title && <DialogTitle id="alert-dialog-title">{title}</DialogTitle>}
       {children && (
         <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            {children}
-          </DialogContentText>
+          <DialogContentText id="alert-dialog-description">{children}</DialogContentText>
         </DialogContent>
       )}
 
       <DialogActions>
-        <Button
-          onClick={handleCancel}
-          color="secondary"
-          variant="outlined"
-          autoFocus
-        >
+        <Button onClick={handleCancel} color="secondary" variant="outlined" autoFocus>
           {cancelTitle}
         </Button>
-        <ButtonLoading
-          onClick={handleConfirm}
-          color={confirmColor}
-          variant="contained"
-          loading={loading}
-        >
+        <ButtonLoading onClick={handleConfirm} color={confirmColor} variant="contained" loading={loading}>
           {confirmTitle}
         </ButtonLoading>
       </DialogActions>

@@ -11,7 +11,7 @@ import Plotter from '../../../types/Plotter';
 
 type Props = {
   step: number;
-  plotter: Plotter
+  plotter: Plotter;
 };
 
 export default function PlotAddSelectFinalDirectory(props: Props) {
@@ -35,9 +35,8 @@ export default function PlotAddSelectFinalDirectory(props: Props) {
     <CardStep step={step} title={<Trans>Select Final Directory</Trans>}>
       <Typography variant="subtitle1">
         <Trans>
-          Select the final destination for the folder where you would like the
-          plot to be stored. We recommend you use a large slow hard drive (like
-          external HDD).
+          Select the final destination for the folder where you would like the plot to be stored. We recommend you use a
+          large slow hard drive (like external HDD).
         </Trans>
       </Typography>
 

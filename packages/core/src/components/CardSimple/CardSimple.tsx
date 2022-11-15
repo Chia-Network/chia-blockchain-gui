@@ -1,17 +1,9 @@
 import { Trans } from '@lingui/macro';
-import {
-  Box,
-  Card,
-  CardContent,
-  Typography,
-  TypographyProps,
-  CircularProgress,
-} from '@mui/material';
+import { Box, Card, CardContent, Typography, TypographyProps, CircularProgress } from '@mui/material';
 import React, { type ReactNode, ReactElement } from 'react';
 
 import Flex from '../Flex';
 import TooltipIcon from '../TooltipIcon';
-
 
 export type CardSimpleProps = {
   title: ReactNode;
@@ -40,17 +32,9 @@ export default function CardSimple(props: CardSimpleProps) {
 
   return (
     <Card sx={{ height: '100%', overflow: 'visible' }}>
-      <CardContent
-        sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
-      >
+      <CardContent sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
         <Box marginBottom={0.5}>
-          <Flex
-            flexGrow={1}
-            justifyContent="space-between"
-            alignItems="center"
-            flexWrap="wrap"
-            gap={0.5}
-          >
+          <Flex flexGrow={1} justifyContent="space-between" alignItems="center" flexWrap="wrap" gap={0.5}>
             <Flex gap={1} alignItems="center">
               <Typography color="textSecondary">{title}</Typography>
               {tooltip && <TooltipIcon>{tooltip}</TooltipIcon>}
@@ -71,11 +55,7 @@ export default function CardSimple(props: CardSimpleProps) {
             <TooltipIcon>{error?.message}</TooltipIcon>
           </Flex>
         ) : (
-          <Typography
-            variant="h5"
-            color={valueColor}
-            sx={{ wordWrap: 'break-word', fontSize: '1.25rem' }}
-          >
+          <Typography variant="h5" color={valueColor} sx={{ wordWrap: 'break-word', fontSize: '1.25rem' }}>
             {value}
           </Typography>
         )}

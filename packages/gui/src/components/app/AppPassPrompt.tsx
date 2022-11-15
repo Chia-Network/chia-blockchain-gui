@@ -2,10 +2,7 @@ import { PassphrasePromptReason } from '@chia/api';
 import { useUnlockKeyringMutation, useGetKeyringStatusQuery } from '@chia/api-react';
 import { Button, Flex, TooltipIcon, useShowError, Suspender, ButtonLoading } from '@chia/core';
 import { Trans, t } from '@lingui/macro';
-import {
-  KeyboardCapslock as KeyboardCapslockIcon,
-  Visibility as VisibilityIcon,
-} from '@mui/icons-material';
+import { KeyboardCapslock as KeyboardCapslockIcon, Visibility as VisibilityIcon } from '@mui/icons-material';
 import {
   Dialog,
   DialogTitle,
@@ -42,15 +39,10 @@ export default function AppPassPrompt(props: Props) {
   });
 
   if (isLoading) {
-    return (
-      <Suspender />
-    );
+    return <Suspender />;
   }
 
-  const {
-    userPassphraseIsSet,
-    passphraseHint,
-  } = keyringState;
+  const { userPassphraseIsSet, passphraseHint } = keyringState;
 
   async function handleSubmit(): Promise<void> {
     const passphrase: string | undefined = passphraseInput?.value;
@@ -74,16 +66,16 @@ export default function AppPassPrompt(props: Props) {
       handleSubmit();
     }
 
-    if (e.getModifierState("CapsLock")) {
+    if (e.getModifierState('CapsLock')) {
       setShowCapsLock(true);
     }
   }
 
   const handleKeyUp = (event) => {
-    if (event.key === "CapsLock") {
+    if (event.key === 'CapsLock') {
       setShowCapsLock(false);
     }
-  }
+  };
 
   let dialogTitle: React.ReactElement;
   let submitButtonTitle: React.ReactElement;
@@ -93,25 +85,33 @@ export default function AppPassPrompt(props: Props) {
     case PassphrasePromptReason.KEYRING_LOCKED:
       dialogTitle = (
         <div>
-          <Typography variant="h6"><Trans>Your keyring is locked</Trans></Typography>
-          <Typography variant="subtitle1"><Trans>Please enter your passphrase</Trans></Typography>
+          <Typography variant="h6">
+            <Trans>Your keyring is locked</Trans>
+          </Typography>
+          <Typography variant="subtitle1">
+            <Trans>Please enter your passphrase</Trans>
+          </Typography>
         </div>
       );
-      submitButtonTitle = (<Trans>Unlock Keyring</Trans>);
+      submitButtonTitle = <Trans>Unlock Keyring</Trans>;
       cancellable = false;
       break;
     case PassphrasePromptReason.DELETING_KEY:
       dialogTitle = (
         <div>
-          <Typography variant="h6"><Trans>Deleting key</Trans></Typography>
-          <Typography variant="subtitle1"><Trans>Please enter your passphrase to proceed</Trans></Typography>
+          <Typography variant="h6">
+            <Trans>Deleting key</Trans>
+          </Typography>
+          <Typography variant="subtitle1">
+            <Trans>Please enter your passphrase to proceed</Trans>
+          </Typography>
         </div>
       );
-      submitButtonTitle = (<Trans>Delete Key</Trans>);
+      submitButtonTitle = <Trans>Delete Key</Trans>;
       break;
     default:
-      dialogTitle = (<Trans>Please enter your passphrase</Trans>);
-      submitButtonTitle = (<Trans>Submit</Trans>);
+      dialogTitle = <Trans>Please enter your passphrase</Trans>;
+      submitButtonTitle = <Trans>Submit</Trans>;
       break;
   }
 
@@ -124,7 +124,7 @@ export default function AppPassPrompt(props: Props) {
           open
           aria-labelledby="form-dialog-title"
           fullWidth
-          maxWidth = "xs"
+          maxWidth="xs"
         >
           <DialogTitle id="form-dialog-title">{dialogTitle}</DialogTitle>
           <DialogContent>
@@ -137,19 +137,23 @@ export default function AppPassPrompt(props: Props) {
                   margin="dense"
                   id="passphraseInput"
                   label={<Trans>Passphrase</Trans>}
-                  inputRef={(input: HTMLInputElement) => passphraseInput = input}
-                  type={showPassphraseText ? "text" : "password"}
+                  inputRef={(input: HTMLInputElement) => (passphraseInput = input)}
+                  type={showPassphraseText ? 'text' : 'password'}
                   InputProps={{
                     endAdornment: (
                       <Flex alignItems="center">
                         <InputAdornment position="end">
-                          {showCapsLock && <Flex><KeyboardCapslockIcon /></Flex>}
-                          <IconButton onClick={() => setShowPassphraseText(s => !s)}>
+                          {showCapsLock && (
+                            <Flex>
+                              <KeyboardCapslockIcon />
+                            </Flex>
+                          )}
+                          <IconButton onClick={() => setShowPassphraseText((s) => !s)}>
                             <VisibilityIcon />
                           </IconButton>
                         </InputAdornment>
                       </Flex>
-                    )
+                    ),
                   }}
                   fullWidth
                 />
@@ -160,9 +164,7 @@ export default function AppPassPrompt(props: Props) {
                     <Trans>Hint</Trans>
                   </Typography>
                   <TooltipIcon>
-                    <Typography variant="inherit">
-                      {passphraseHint}
-                    </Typography>
+                    <Typography variant="inherit">{passphraseHint}</Typography>
                   </TooltipIcon>
                 </Flex>
               )}
@@ -181,9 +183,7 @@ export default function AppPassPrompt(props: Props) {
             </ButtonLoading>
             {cancellable && (
               <Button>
-                <Trans>
-                  Cancel
-                </Trans>
+                <Trans>Cancel</Trans>
               </Button>
             )}
           </DialogActions>

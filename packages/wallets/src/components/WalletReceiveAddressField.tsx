@@ -2,11 +2,7 @@ import { useGetCurrentAddressQuery, useGetNextAddressMutation } from '@chia/api-
 import { CopyToClipboard, Loading, Flex } from '@chia/core';
 import { t, Trans } from '@lingui/macro';
 import { Autorenew } from '@mui/icons-material';
-import {
-  TextField,
-  InputAdornment,
-  IconButton,
-} from '@mui/material';
+import { TextField, InputAdornment, IconButton } from '@mui/material';
 import React, { useState } from 'react';
 
 export type WalletReceiveAddressProps = {
@@ -50,7 +46,7 @@ export default function WalletReceiveAddressField(props: WalletReceiveAddressPro
                 <IconButton onClick={handleNewAddress} size="small">
                   <Autorenew />
                 </IconButton>
-            )}
+              )}
             </Flex>
           </InputAdornment>
         ),

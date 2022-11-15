@@ -14,20 +14,14 @@ export default function usePoolJoin(nft: PlotNFT) {
   const dispatch = useDispatch();
   const openDialog = useOpenDialog();
   const absorbRewards = useAbsorbRewards(nft);
-  const { isPending, isSynced, walletId, balance, state } =
-    usePlotNFTDetails(nft);
+  const { isPending, isSynced, walletId, balance, state } = usePlotNFTDetails(nft);
 
-  async function handleJoin(
-    poolUrl: string,
-    relativeLockHeight: number,
-    targetPuzzlehash?: string,
-    fee?: number,
-  ) {
+  async function handleJoin(poolUrl: string, relativeLockHeight: number, targetPuzzlehash?: string, fee?: number) {
     if (!isSynced) {
       await openDialog(
         <AlertDialog>
           <Trans>Please wait for wallet synchronization</Trans>
-        </AlertDialog>,
+        </AlertDialog>
       );
       return;
     }
@@ -35,7 +29,7 @@ export default function usePoolJoin(nft: PlotNFT) {
       await openDialog(
         <AlertDialog>
           <Trans>You are in pending state. Please wait for confirmation</Trans>
-        </AlertDialog>,
+        </AlertDialog>
       );
       return;
     }
@@ -44,9 +38,7 @@ export default function usePoolJoin(nft: PlotNFT) {
       await absorbRewards(walletId);
     }
 
-    await dispatch(
-      pwJoinPool(walletId, poolUrl, relativeLockHeight, targetPuzzlehash, fee),
-    );
+    await dispatch(pwJoinPool(walletId, poolUrl, relativeLockHeight, targetPuzzlehash, fee));
   }
 
   return handleJoin;

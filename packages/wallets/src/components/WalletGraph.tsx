@@ -7,13 +7,7 @@ import { orderBy, groupBy, map } from 'lodash';
 import React, { ReactNode } from 'react';
 import { useMeasure } from 'react-use';
 import styled from 'styled-components';
-import {
-  VictoryChart,
-  VictoryAxis,
-  VictoryArea,
-  VictoryTooltip,
-  VictoryVoronoiContainer,
-} from 'victory';
+import { VictoryChart, VictoryAxis, VictoryArea, VictoryTooltip, VictoryVoronoiContainer } from 'victory';
 
 import useWalletTransactions from '../hooks/useWalletTransactions';
 import WalletGraphTooltip from './WalletGraphTooltip';
@@ -21,8 +15,7 @@ import WalletGraphTooltip from './WalletGraphTooltip';
 const StyledGraphContainer = styled.div`
   position: relative;
   min-height: 80px;
-  height: ${({ height }) =>
-    typeof height === 'string' ? height : `${height}px`};
+  height: ${({ height }) => (typeof height === 'string' ? height : `${height}px`)};
 `;
 
 type Aggregate = {
@@ -36,9 +29,7 @@ function generateTransactionGraphData(transactions: Transaction[]): {
   timestamp: number;
 }[] {
   // use only confirmed transactions
-  const confirmedTransactions = transactions.filter(
-    (transaction) => transaction.confirmed
-  );
+  const confirmedTransactions = transactions.filter((transaction) => transaction.confirmed);
 
   const [peakTransaction] = confirmedTransactions;
 
@@ -49,10 +40,7 @@ function generateTransactionGraphData(transactions: Transaction[]): {
   }>((transaction) => {
     const { type, confirmedAtHeight, amount, feeAmount } = transaction;
 
-    const isOutgoing = [
-      TransactionType.OUTGOING,
-      TransactionType.OUTGOING_TRADE,
-    ].includes(type);
+    const isOutgoing = [TransactionType.OUTGOING, TransactionType.OUTGOING_TRADE].includes(type);
 
     const total = new BigNumber(amount).plus(new BigNumber(feeAmount));
     const value = isOutgoing ? total.negated() : total;
@@ -114,21 +102,9 @@ function prepareGraphPoints(
 
   const points = [
     {
-      x: blockHeightToTimestamp(
-        peakTransaction.confirmedAtHeight,
-        peakTransaction
-      ),
-      y: BigNumber.max(
-        0,
-        (walletType === WalletType.CAT
-          ? mojoToCAT(start)
-          : mojoToChia(start)
-        ).toNumber()
-      ), // max 21,000,000 safe to number
-      tooltip: (walletType === WalletType.CAT
-        ? mojoToCAT(balance)
-        : mojoToChia(balance)
-      ).toString(), // bignumber is not supported by react
+      x: blockHeightToTimestamp(peakTransaction.confirmedAtHeight, peakTransaction),
+      y: BigNumber.max(0, (walletType === WalletType.CAT ? mojoToCAT(start) : mojoToChia(start)).toNumber()), // max 21,000,000 safe to number
+      tooltip: (walletType === WalletType.CAT ? mojoToCAT(balance) : mojoToChia(balance)).toString(), // bignumber is not supported by react
     },
   ];
 
@@ -144,17 +120,8 @@ function prepareGraphPoints(
 
     points.push({
       x: timestamp,
-      y: BigNumber.max(
-        0,
-        (walletType === WalletType.CAT
-          ? mojoToCAT(start)
-          : mojoToChia(start)
-        ).toNumber()
-      ), // max 21,000,000 safe to number
-      tooltip:
-        walletType === WalletType.CAT
-          ? mojoToCAT(start)
-          : mojoToChia(start).toString(), // bignumber is not supported by react
+      y: BigNumber.max(0, (walletType === WalletType.CAT ? mojoToCAT(start) : mojoToChia(start)).toNumber()), // max 21,000,000 safe to number
+      tooltip: walletType === WalletType.CAT ? mojoToCAT(start) : mojoToChia(start).toString(), // bignumber is not supported by react
     });
   });
 
@@ -179,24 +146,19 @@ export type WalletGraphProps = {
 
 export default function WalletGraph(props: WalletGraphProps) {
   const { walletId, walletType, unit = '', height = 150 } = props;
-  const { transactions, isLoading: isWalletTransactionsLoading } =
-    useWalletTransactions(walletId, 50, 0, 'RELEVANCE');
-  const { data: walletBalance, isLoading: isWalletBalanceLoading } =
-    useGetWalletBalanceQuery({
-      walletId,
-    });
+  const { transactions, isLoading: isWalletTransactionsLoading } = useWalletTransactions(walletId, 50, 0, 'RELEVANCE');
+  const { data: walletBalance, isLoading: isWalletBalanceLoading } = useGetWalletBalanceQuery({
+    walletId,
+  });
 
   const [ref, containerSize] = useMeasure();
 
-  const isLoading =
-    isWalletTransactionsLoading || isWalletBalanceLoading || !transactions;
+  const isLoading = isWalletTransactionsLoading || isWalletBalanceLoading || !transactions;
   if (isLoading || !walletBalance) {
     return null;
   }
 
-  const confirmedTransactions = transactions.filter(
-    (transaction) => transaction.confirmed
-  );
+  const confirmedTransactions = transactions.filter((transaction) => transaction.confirmed);
   if (!confirmedTransactions.length) {
     return null;
   }
@@ -235,11 +197,7 @@ export default function WalletGraph(props: WalletGraphProps) {
             },
           }}
           labels={() => ''}
-          labelComponent={
-            <VictoryTooltip
-              flyoutComponent={<WalletGraphTooltip suffix={unit} />}
-            />
-          }
+          labelComponent={<VictoryTooltip flyoutComponent={<WalletGraphTooltip suffix={unit} />} />}
         />
         <VictoryAxis
           style={{

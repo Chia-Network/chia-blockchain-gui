@@ -8,8 +8,7 @@ import getRemoteFileContent, { FileType } from '../util/getRemoteFileContent';
 import { mimeTypeRegex, isImage, parseExtensionFromUrl } from '../util/utils';
 import { MAX_FILE_SIZE } from './useNFTMetadata';
 
-
-const {ipcRenderer} = window as any;
+const { ipcRenderer } = window as any;
 
 function isAudio(uri: string) {
   return mimeTypeRegex(uri, /^audio/);
@@ -37,29 +36,14 @@ export default function useVerifyHash(props: VerifyHash): {
   validateNFT: boolean;
   encoding: string;
 } {
-  const {
-    nft,
-    ignoreSizeLimit,
-    metadata,
-    metadataError,
-    isPreview,
-    dataHash,
-    nftId,
-    validateNFT,
-    isLoadingMetadata,
-  } = props;
+  const { nft, ignoreSizeLimit, metadata, metadataError, isPreview, dataHash, nftId, validateNFT, isLoadingMetadata } =
+    props;
   const [isValidationProcessed, setIsValidationProcessed] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | undefined>();
   const [thumbnail, setThumbnail] = useState({});
-  const [thumbCache, setThumbCache] = useLocalStorage(
-    `thumb-cache-${nftId}`,
-    {},
-  );
-  const [contentCache, setContentCache] = useLocalStorage(
-    `content-cache-${nftId}`,
-    {},
-  );
+  const [thumbCache, setThumbCache] = useLocalStorage(`thumb-cache-${nftId}`, {});
+  const [contentCache, setContentCache] = useLocalStorage(`content-cache-${nftId}`, {});
 
   const [forceReloadNFT] = useLocalStorage(`force-reload-${nftId}`, false);
 
@@ -92,50 +76,49 @@ export default function useVerifyHash(props: VerifyHash): {
           setIsLoading(false);
           videoThumbValid = true;
           return;
-        } 
-          uris = metadata.preview_video_uris;
-          for (let i = 0; i < uris.length; i++) {
-            const videoUri = uris[i];
-            try {
-              if (!isURL(videoUri)) {
-                lastError = 'Invalid URI';
-              }
-              const { isValid, wasCached } = await getRemoteFileContent({
-                uri: videoUri,
-                forceCache: true,
-                nftId,
-                type: FileType.Video,
-                dataHash: metadata.preview_video_hash,
-              });
-              if (!isValid) {
-                lastError = 'thumbnail hash mismatch';
-              }
-              if (isValid) {
-                videoThumbValid = true;
-                const cachedUri = `${nftId}_${videoUri}`;
-                setThumbnail({
-                  video: wasCached
-                    ? `cached://${computeHash(cachedUri, {
-                        encoding: 'utf-8',
-                      })}`
-                    : videoUri,
-                });
-                if (wasCached) {
-                  setThumbCache({
-                    video: computeHash(cachedUri, { encoding: 'utf-8' }),
-                    time: new Date().getTime(),
-                  });
-                }
-                setIsLoading(false);
-                lastError = null;
-                break;
-              }
-            } catch (e: any) {
-              /* if we already found content that is hash mismatched, show mismatch error! */
-              lastError = lastError || 'failed fetch content';
+        }
+        uris = metadata.preview_video_uris;
+        for (let i = 0; i < uris.length; i++) {
+          const videoUri = uris[i];
+          try {
+            if (!isURL(videoUri)) {
+              lastError = 'Invalid URI';
             }
+            const { isValid, wasCached } = await getRemoteFileContent({
+              uri: videoUri,
+              forceCache: true,
+              nftId,
+              type: FileType.Video,
+              dataHash: metadata.preview_video_hash,
+            });
+            if (!isValid) {
+              lastError = 'thumbnail hash mismatch';
+            }
+            if (isValid) {
+              videoThumbValid = true;
+              const cachedUri = `${nftId}_${videoUri}`;
+              setThumbnail({
+                video: wasCached
+                  ? `cached://${computeHash(cachedUri, {
+                      encoding: 'utf-8',
+                    })}`
+                  : videoUri,
+              });
+              if (wasCached) {
+                setThumbCache({
+                  video: computeHash(cachedUri, { encoding: 'utf-8' }),
+                  time: new Date().getTime(),
+                });
+              }
+              setIsLoading(false);
+              lastError = null;
+              break;
+            }
+          } catch (e: any) {
+            /* if we already found content that is hash mismatched, show mismatch error! */
+            lastError = lastError || 'failed fetch content';
           }
-        
+        }
       }
 
       /* ================== IMAGE THUMBNAIL ================== */
@@ -198,10 +181,7 @@ export default function useVerifyHash(props: VerifyHash): {
         let showCachedUri: boolean = false;
         if (contentCache.valid !== undefined && contentCache.binary) {
           if (parseExtensionFromUrl(uri) === 'svg') {
-            const svgContent = await ipcRenderer.invoke(
-              'getSvgContent',
-              contentCache.binary,
-            );
+            const svgContent = await ipcRenderer.invoke('getSvgContent', contentCache.binary);
             if (svgContent) {
               setThumbnail({
                 binary: svgContent,
@@ -224,8 +204,7 @@ export default function useVerifyHash(props: VerifyHash): {
               isValid,
             } = await getRemoteFileContent({
               uri,
-              maxSize:
-                ignoreSizeLimit || validateNFT ? Infinity : MAX_FILE_SIZE,
+              maxSize: ignoreSizeLimit || validateNFT ? Infinity : MAX_FILE_SIZE,
               forceCache: true,
               nftId,
               type: FileType.Binary,
@@ -250,9 +229,7 @@ export default function useVerifyHash(props: VerifyHash): {
             const cachedBinaryUri = `${nftId}_${uri}`;
             setContentCache({
               nftId,
-              binary: showCachedUri
-                ? computeHash(cachedBinaryUri, { encoding: 'utf-8' })
-                : null,
+              binary: showCachedUri ? computeHash(cachedBinaryUri, { encoding: 'utf-8' }) : null,
               valid: !lastError,
               time: new Date().getTime(),
             });
@@ -287,12 +264,7 @@ export default function useVerifyHash(props: VerifyHash): {
 
   useEffect(() => {
     if (!isLoadingMetadata) {
-      if (
-        metadata &&
-        Object.keys(metadata).length > 0 &&
-        !metadataError &&
-        (isPreview || isAudio(uri))
-      ) {
+      if (metadata && Object.keys(metadata).length > 0 && !metadataError && (isPreview || isAudio(uri))) {
         validateHash(metadata);
       } else if (isImage(uri) || validateNFT || isAudio(uri)) {
         validateHash({});

@@ -1,18 +1,8 @@
 import { fromBech32m } from '@chia/api';
-import {
-  useSetRewardTargetsMutation,
-  useGetRewardTargetsQuery,
-} from '@chia/api-react';
+import { useSetRewardTargetsMutation, useGetRewardTargetsQuery } from '@chia/api-react';
 import { Button, Flex, Form, TextField, Loading } from '@chia/core';
 import { Trans } from '@lingui/macro';
-import {
-  Alert,
-  Dialog,
-  DialogActions,
-  DialogTitle,
-  DialogContent,
-  Typography,
-} from '@mui/material';
+import { Alert, Dialog, DialogActions, DialogTitle, DialogContent, Typography } from '@mui/material';
 import React, { useMemo, useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import styled from 'styled-components';
@@ -98,12 +88,7 @@ export default function FarmManageFarmingRewards(props: Props) {
   }
 
   return (
-    <Dialog
-      onClose={handleDialogClose}
-      maxWidth="lg"
-      aria-labelledby="manage-farming-rewards-title"
-      open={open}
-    >
+    <Dialog onClose={handleDialogClose} maxWidth="lg" aria-labelledby="manage-farming-rewards-title" open={open}>
       <Form methods={methods} onSubmit={handleSubmit}>
         <DialogTitle id="manage-farming-rewards-title">
           <Trans>Manage Your Farming Rewards Target Addresses</Trans>
@@ -115,20 +100,16 @@ export default function FarmManageFarmingRewards(props: Props) {
             ) : (
               <>
                 {error && <Alert severity="error">{error.message}</Alert>}
-                {errors.farmerTarget &&
-                  errors.farmerTarget.type === 'required' && (
-                    <Alert severity="error">
-                      <Trans>Farmer Reward Address must not be empty.</Trans>
-                    </Alert>
-                  )}
-                {errors.farmerTarget &&
-                  errors.farmerTarget.type === 'validate' && (
-                    <Alert severity="error">
-                      <Trans>
-                        Farmer Reward Address is not properly formatted.
-                      </Trans>
-                    </Alert>
-                  )}
+                {errors.farmerTarget && errors.farmerTarget.type === 'required' && (
+                  <Alert severity="error">
+                    <Trans>Farmer Reward Address must not be empty.</Trans>
+                  </Alert>
+                )}
+                {errors.farmerTarget && errors.farmerTarget.type === 'validate' && (
+                  <Alert severity="error">
+                    <Trans>Farmer Reward Address is not properly formatted.</Trans>
+                  </Alert>
+                )}
                 {errors.poolTarget && errors.poolTarget.type === 'required' && (
                   <Alert severity="error">
                     <Trans>Pool Reward Address must not be empty.</Trans>
@@ -136,16 +117,13 @@ export default function FarmManageFarmingRewards(props: Props) {
                 )}
                 {errors.poolTarget && errors.poolTarget.type === 'validate' && (
                   <Alert severity="error">
-                    <Trans>
-                      Pool Reward Address is not properly formatted.
-                    </Trans>
+                    <Trans>Pool Reward Address is not properly formatted.</Trans>
                   </Alert>
                 )}
                 {showWarning && (
                   <Alert severity="warning">
                     <Trans>
-                      No private keys for one or both addresses. Safe only if
-                      you are sending rewards to another wallet.
+                      No private keys for one or both addresses. Safe only if you are sending rewards to another wallet.
                     </Trans>
                   </Alert>
                 )}
@@ -172,9 +150,8 @@ export default function FarmManageFarmingRewards(props: Props) {
 
                 <Typography variant="body2" color="textSecondary">
                   <Trans>
-                    Note that this does not change your pooling payout
-                    addresses. This only affects old format plots, and the
-                    0.25XCH reward for pooling plots.
+                    Note that this does not change your pooling payout addresses. This only affects old format plots,
+                    and the 0.25XCH reward for pooling plots.
                   </Trans>
                 </Typography>
               </>

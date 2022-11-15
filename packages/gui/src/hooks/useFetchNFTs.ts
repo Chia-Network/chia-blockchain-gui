@@ -9,20 +9,23 @@ type UseFetchNFTsResult = {
 
 export default function useFetchNFTs(
   walletIds: number[],
-  queryOpts: undefined | Record<string, any> = {},
+  queryOpts: undefined | Record<string, any> = {}
 ): UseFetchNFTsResult {
-  const {
-    data,
-    isLoading,
-  }: { data: { [walletId: number]: NFTInfo[] }; isLoading: boolean } =
-    useGetNFTsQuery({ walletIds }, queryOpts);
-  const nfts = useMemo(() => 
-    // Convert [ { <wallet_id>: IncompleteNFTInfo[] }, { <wallet_id>: IncompleteNFTInfo[] } ] to NFTInfo[]
-     Object.entries(data ?? []).flatMap(([walletId, nfts]) => nfts.map((nft) => ({
-        ...nft,
-        walletId: Number(walletId), // Add in the source wallet id
-      })))
-  , [data, isLoading]);
+  const { data, isLoading }: { data: { [walletId: number]: NFTInfo[] }; isLoading: boolean } = useGetNFTsQuery(
+    { walletIds },
+    queryOpts
+  );
+  const nfts = useMemo(
+    () =>
+      // Convert [ { <wallet_id>: IncompleteNFTInfo[] }, { <wallet_id>: IncompleteNFTInfo[] } ] to NFTInfo[]
+      Object.entries(data ?? []).flatMap(([walletId, nfts]) =>
+        nfts.map((nft) => ({
+          ...nft,
+          walletId: Number(walletId), // Add in the source wallet id
+        }))
+      ),
+    [data, isLoading]
+  );
 
   return { isLoading, nfts };
 }

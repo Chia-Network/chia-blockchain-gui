@@ -1,4 +1,8 @@
-import { useAddPlotDirectoryMutation, useRemovePlotDirectoryMutation, useGetPlotDirectoriesQuery } from '@chia/api-react';
+import {
+  useAddPlotDirectoryMutation,
+  useRemovePlotDirectoryMutation,
+  useGetPlotDirectoriesQuery,
+} from '@chia/api-react';
 import { useShowError, Button, Suspender } from '@chia/core';
 import { Trans } from '@lingui/macro';
 import { Folder as FolderIcon, Delete as DeleteIcon } from '@mui/icons-material';
@@ -37,9 +41,7 @@ export default function PlotAddDirectoryDialog(props: Props) {
   });
 
   if (isLoading) {
-    return (
-      <Suspender />
-    );
+    return <Suspender />;
   }
 
   function handleClose() {
@@ -49,7 +51,8 @@ export default function PlotAddDirectoryDialog(props: Props) {
   function handleDialogClose(event: any, reason: any) {
     if (reason !== 'backdropClick' || reason !== 'EscapeKeyDown') {
       onClose();
-    }}
+    }
+  }
 
   async function removePlotDir(dirname: string) {
     try {
@@ -75,20 +78,15 @@ export default function PlotAddDirectoryDialog(props: Props) {
   }
 
   return (
-    <Dialog
-      onClose={handleDialogClose}
-      maxWidth="md"
-      aria-labelledby="confirmation-dialog-title"
-      open={open}
-    >
+    <Dialog onClose={handleDialogClose} maxWidth="md" aria-labelledby="confirmation-dialog-title" open={open}>
       <DialogTitle id="confirmation-dialog-title">
         <Trans>Add a plot</Trans>
       </DialogTitle>
       <DialogContent dividers>
         <Typography>
           <Trans>
-            This allows you to add a directory that has plots in it. If you have
-            not created any plots, go to the plotting screen.
+            This allows you to add a directory that has plots in it. If you have not created any plots, go to the
+            plotting screen.
           </Trans>
         </Typography>
         <Box display="flex">
@@ -102,11 +100,7 @@ export default function PlotAddDirectoryDialog(props: Props) {
                 </ListItemAvatar>
                 <ListItemText primary={dir} />
                 <ListItemSecondaryAction>
-                  <IconButton
-                    edge="end"
-                    aria-label="delete"
-                    onClick={() => removePlotDir(dir)}
-                  >
+                  <IconButton edge="end" aria-label="delete" onClick={() => removePlotDir(dir)}>
                     <DeleteIcon />
                   </IconButton>
                 </ListItemSecondaryAction>
@@ -116,11 +110,7 @@ export default function PlotAddDirectoryDialog(props: Props) {
         </Box>
         <Box display="flex">
           <Box>
-            <Button
-              onClick={handleSelectDirectory}
-              variant="contained"
-              color="primary"
-            >
+            <Button onClick={handleSelectDirectory} variant="contained" color="primary">
               <Trans>Add plot directory</Trans>
             </Button>
           </Box>

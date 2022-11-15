@@ -36,15 +36,10 @@ export default function LocaleToggle(props) {
   function handleHelpTranslate() {
     handleClose();
 
-    openExternal(
-      'https://github.com/Chia-Network/chia-blockchain-gui/tree/main/src/locales/README.md',
-    );
+    openExternal('https://github.com/Chia-Network/chia-blockchain-gui/tree/main/src/locales/README.md');
   }
 
-  const localeData = useMemo(
-    () => locales.find((item) => item.locale === currentLocale),
-    [currentLocale, locales],
-  );
+  const localeData = useMemo(() => locales.find((item) => item.locale === currentLocale), [currentLocale, locales]);
 
   const currentLocaleLabel = localeData?.label ?? t`Unknown`;
 
@@ -61,13 +56,7 @@ export default function LocaleToggle(props) {
       >
         {currentLocaleLabel}
       </Button>
-      <Menu
-        id="simple-menu"
-        anchorEl={anchorEl}
-        keepMounted
-        open={open}
-        onClose={handleClose}
-      >
+      <Menu id="simple-menu" anchorEl={anchorEl} keepMounted open={open} onClose={handleClose}>
         <MenuItem onClick={handleHelpTranslate}>
           <Trans>Help translate</Trans>
         </MenuItem>

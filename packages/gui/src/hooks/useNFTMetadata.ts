@@ -4,13 +4,13 @@ import { useEffect, useState, useCallback } from 'react';
 
 import getRemoteFileContent from '../util/getRemoteFileContent';
 
-
 export const MAX_FILE_SIZE = 100 * 1024 * 1024; // 100 MB
 
 function normalizedSensitiveContent(value: any): boolean {
   if (typeof value === 'boolean') {
     return value;
-  } if (Array.isArray(value) && value.length > 0) {
+  }
+  if (Array.isArray(value) && value.length > 0) {
     return true;
   }
   return value === 'true';
@@ -24,26 +24,16 @@ export default function useNFTsMetadata(nfts: NFTInfo[], isMultiple = false) {
   const [metadata, setMetadata] = useState<any>();
   const [allowedNFTsWithMetadata] = useState<NFTInfo[]>([]);
 
-  const [metadataCache, setMetadataCache] = useLocalStorage(
-    `metadata-cache-${nftId}`,
-    {},
-  );
+  const [metadataCache, setMetadataCache] = useLocalStorage(`metadata-cache-${nftId}`, {});
 
-  const [sensitiveContentObject, setSensitiveContentObject] = useLocalStorage(
-    'sensitive-content',
-    {},
-  );
+  const [sensitiveContentObject, setSensitiveContentObject] = useLocalStorage('sensitive-content', {});
 
   function setSensitiveContent(nftId: string, metadata: Record<string, any>) {
     try {
-      const sensitiveContentValue = normalizedSensitiveContent(
-        metadata.sensitive_content,
-      );
+      const sensitiveContentValue = normalizedSensitiveContent(metadata.sensitive_content);
 
       if (sensitiveContentValue) {
-        setSensitiveContentObject(
-          { ...sensitiveContentObject, [nftId]: true},
-        );
+        setSensitiveContentObject({ ...sensitiveContentObject, [nftId]: true });
       }
     } catch (e) {
       // Do nothing
@@ -67,20 +57,16 @@ export default function useNFTsMetadata(nfts: NFTInfo[], isMultiple = false) {
       } catch (e) {
         // Do nothing
       }
-      if (
-        isMultiple &&
-        metadata &&
-        !normalizedSensitiveContent(metadata.sensitive_content)
-      ) {
+      if (isMultiple && metadata && !normalizedSensitiveContent(metadata.sensitive_content)) {
         allowedNFTsWithMetadata.push(nftId);
       }
     } else if (metadataCache?.isValid !== undefined) {
-        return {
-          data: metadataCache.json,
-          encoding: 'utf-8',
-          isValid: metadataCache.isValid,
-        };
-      }
+      return {
+        data: metadataCache.json,
+        encoding: 'utf-8',
+        isValid: metadataCache.isValid,
+      };
+    }
 
     return getRemoteFileContent({
       nftId,
@@ -120,9 +106,7 @@ export default function useNFTsMetadata(nfts: NFTInfo[], isMultiple = false) {
         metadata = JSON.parse(content);
       } else {
         // Special case where we don't know the encoding type -- assume UTF-8
-        metadata = JSON.parse(
-          Buffer.from(content, encoding as BufferEncoding).toString('utf8'),
-        );
+        metadata = JSON.parse(Buffer.from(content, encoding as BufferEncoding).toString('utf8'));
       }
       if (!isMultiple) {
         const utf8Metadata = JSON.stringify(metadata);
@@ -133,10 +117,7 @@ export default function useNFTsMetadata(nfts: NFTInfo[], isMultiple = false) {
       }
       setMetadata(metadata);
       setSensitiveContent(nftId, metadata);
-      if (
-        isMultiple &&
-        !normalizedSensitiveContent(metadata.sensitive_content)
-      ) {
+      if (isMultiple && !normalizedSensitiveContent(metadata.sensitive_content)) {
         allowedNFTsWithMetadata.push(nftId);
       }
     } catch (error: any) {

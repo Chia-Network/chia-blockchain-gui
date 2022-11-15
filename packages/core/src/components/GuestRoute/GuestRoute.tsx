@@ -7,9 +7,7 @@ type RootState = any;
 type Props = RouteProps;
 
 export default function GuestRoute(props: Props) {
-  const loggedIn = useSelector(
-    (state: RootState) => state.wallet_state.logged_in,
-  );
+  const loggedIn = useSelector((state: RootState) => state.wallet_state.logged_in);
 
   if (loggedIn) {
     return <Navigate to="/dashboard" />;

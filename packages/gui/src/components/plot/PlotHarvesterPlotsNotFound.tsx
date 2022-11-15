@@ -28,7 +28,11 @@ export default function PlotHarvesterPlotsNotFound(props: PlotHarvesterPlotsNotF
   const { nodeId } = props;
   const [page, setPage] = useState(0);
   const [pageSize, setPageSize] = useState(5);
-  const { noKeyFilenames, initialized, isLoading: isLoadingHarvester } = useGetHarvesterQuery({
+  const {
+    noKeyFilenames,
+    initialized,
+    isLoading: isLoadingHarvester,
+  } = useGetHarvesterQuery({
     nodeId,
   });
   const { isLoading: isLoadingHarvesterPlots, data = [] } = useGetHarvesterPlotsKeysMissingQuery({
@@ -59,11 +63,13 @@ export default function PlotHarvesterPlotsNotFound(props: PlotHarvesterPlotsNotF
       isLoading={isLoading || !initialized}
       expandedCellShift={1}
       uniqueField="filename"
-      caption={!noKeyFilenames && (
-        <Typography variant="body2" align="center">
-          <Trans>Hooray, no files here!</Trans>
-        </Typography>
-      )}
+      caption={
+        !noKeyFilenames && (
+          <Typography variant="body2" align="center">
+            <Trans>Hooray, no files here!</Trans>
+          </Typography>
+        )
+      }
       pages={!!noKeyFilenames}
     />
   );

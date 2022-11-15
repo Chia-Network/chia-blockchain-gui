@@ -20,9 +20,7 @@ export default function StandardWallet(props: StandardWalletProps) {
   const { walletId } = props;
   // const showDebugInformation = useShowDebugInformation();
   const navigate = useNavigate();
-  const [selectedTab, setSelectedTab] = useState<
-    'summary' | 'send' | 'receive'
-  >('summary');
+  const [selectedTab, setSelectedTab] = useState<'summary' | 'send' | 'receive'>('summary');
 
   function handleCreateOffer() {
     navigate('/dashboard/offers/builder', {

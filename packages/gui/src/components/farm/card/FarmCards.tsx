@@ -5,7 +5,7 @@ import FarmCardBlockRewards from './FarmCardBlockRewards';
 import FarmCardExpectedTimeToWin from './FarmCardExpectedTimeToWin';
 import FarmCardLastHeightFarmed from './FarmCardLastHeightFarmed';
 import FarmCardPlotCount from './FarmCardPlotCount';
-import FarmCardStatus from "./FarmCardStatus";
+import FarmCardStatus from './FarmCardStatus';
 import FarmCardTotalChiaFarmed from './FarmCardTotalChiaFarmed';
 import FarmCardTotalNetworkSpace from './FarmCardTotalNetworkSpace';
 import FarmCardTotalSizeOfPlots from './FarmCardTotalSizeOfPlots';

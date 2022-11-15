@@ -14,14 +14,7 @@ import {
   useShowError,
 } from '@chia/core';
 import { Trans } from '@lingui/macro';
-import {
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-  Typography,
-} from '@mui/material';
+import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
@@ -96,9 +89,7 @@ export default function NFTTransferAction(props: NFTTransferActionProps) {
       return;
     }
 
-    const confirmation = await openDialog(
-      <NFTTransferConfirmationDialog destination={destination} fee={fee} />,
-    );
+    const confirmation = await openDialog(<NFTTransferConfirmationDialog destination={destination} fee={fee} />);
 
     if (confirmation) {
       setIsLoading(true);
@@ -156,21 +147,10 @@ export default function NFTTransferAction(props: NFTTransferActionProps) {
         />
         <DialogActions>
           <Flex flexDirection="row" gap={3}>
-            <Button
-              onClick={handleClose}
-              color="secondary"
-              variant="outlined"
-              autoFocus
-            >
+            <Button onClick={handleClose} color="secondary" variant="outlined" autoFocus>
               <Trans>Close</Trans>
             </Button>
-            <ButtonLoading
-              type="submit"
-              autoFocus
-              color="primary"
-              variant="contained"
-              loading={isLoading}
-            >
+            <ButtonLoading type="submit" autoFocus color="primary" variant="contained" loading={isLoading}>
               <Trans>Transfer</Trans>
             </ButtonLoading>
           </Flex>
@@ -226,15 +206,9 @@ export function NFTTransferDialog(props: NFTTransferDialogProps) {
       <DialogContent>
         <Flex flexDirection="column" gap={3}>
           <DialogContentText id="nft-transfer-dialog-description">
-            <Trans>
-              Would you like to transfer the specified NFT to a new owner?
-            </Trans>
+            <Trans>Would you like to transfer the specified NFT to a new owner?</Trans>
           </DialogContentText>
-          <NFTTransferAction
-            nft={nft}
-            destination={destination}
-            onComplete={handleCompletion}
-          />
+          <NFTTransferAction nft={nft} destination={destination} onComplete={handleCompletion} />
         </Flex>
       </DialogContent>
     </Dialog>

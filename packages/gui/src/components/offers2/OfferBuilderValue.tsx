@@ -53,22 +53,20 @@ export default function OfferBuilderValue(props: OfferBuilderValueProps) {
     amountWithRoyalties,
     royaltyPayments,
   } = props;
-  const {
-    readOnly: builderReadOnly,
-    offeredUnknownCATs,
-    requestedUnknownCATs,
-  } = useOfferBuilderContext();
+  const { readOnly: builderReadOnly, offeredUnknownCATs, requestedUnknownCATs } = useOfferBuilderContext();
   const value = useWatch({
     name,
   });
   const readOnly = disableReadOnly ? false : builderReadOnly;
-  const displayValue = amountWithRoyalties || (!value ? (
-    <Trans>Not Available</Trans>
-  ) : ['amount', 'fee', 'token'].includes(type) && Number.isFinite(value) ? (
-    <FormatLargeNumber value={value} />
-  ) : (
-    value
-  ));
+  const displayValue =
+    amountWithRoyalties ||
+    (!value ? (
+      <Trans>Not Available</Trans>
+    ) : ['amount', 'fee', 'token'].includes(type) && Number.isFinite(value) ? (
+      <FormatLargeNumber value={value} />
+    ) : (
+      value
+    ));
 
   return (
     <Flex flexDirection="column" minWidth={0} gap={1}>
@@ -93,19 +91,12 @@ export default function OfferBuilderValue(props: OfferBuilderValueProps) {
                     <Flex flexDirection="column" gap={1} maxWidth={200}>
                       {displayValue}
                       {type === 'token' ? (
-                        <Link
-                          href={`https://www.taildatabase.com/tail/${value.toLowerCase()}`}
-                          target="_blank"
-                        >
+                        <Link href={`https://www.taildatabase.com/tail/${value.toLowerCase()}`} target="_blank">
                           <Trans>Search on Tail Database</Trans>
                         </Link>
                       ) : null}
                     </Flex>
-                    <CopyToClipboard
-                      value={displayValue}
-                      fontSize="small"
-                      invertColor
-                    />
+                    <CopyToClipboard value={displayValue} fontSize="small" invertColor />
                   </Flex>
                 </Flex>
               )
@@ -148,23 +139,9 @@ export default function OfferBuilderValue(props: OfferBuilderValueProps) {
                 fullWidth
               />
             ) : type === 'fee' ? (
-              <Fee
-                variant="filled"
-                color="secondary"
-                label={label}
-                name={name}
-                required
-                fullWidth
-              />
+              <Fee variant="filled" color="secondary" label={label} name={name} required fullWidth />
             ) : type === 'text' ? (
-              <TextField
-                variant="filled"
-                color="secondary"
-                label={label}
-                name={name}
-                required
-                fullWidth
-              />
+              <TextField variant="filled" color="secondary" label={label} name={name} required fullWidth />
             ) : type === 'token' ? (
               <OfferBuilderTokenSelector
                 variant="filled"
@@ -198,16 +175,13 @@ export default function OfferBuilderValue(props: OfferBuilderValueProps) {
           <TooltipIcon>
             {offeredUnknownCATs?.includes(value) ? (
               <Typography variant="caption" color="textSecondary">
-                <Trans>
-                  Offer cannot be accepted because you don&apos;t possess the
-                  requested assets
-                </Trans>
+                <Trans>Offer cannot be accepted because you don&apos;t possess the requested assets</Trans>
               </Typography>
             ) : requestedUnknownCATs?.includes(value) ? (
               <Typography variant="caption" color="textSecondary">
                 <Trans>
-                  Warning: Verify that the offered CAT asset IDs match the asset
-                  IDs of the tokens you expect to receive.
+                  Warning: Verify that the offered CAT asset IDs match the asset IDs of the tokens you expect to
+                  receive.
                 </Trans>
               </Typography>
             ) : null}

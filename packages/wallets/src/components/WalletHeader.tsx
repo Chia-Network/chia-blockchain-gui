@@ -1,11 +1,5 @@
 import { useDeleteUnconfirmedTransactionsMutation } from '@chia/api-react';
-import {
-  Flex,
-  ConfirmDialog,
-  useOpenDialog,
-  DropdownActions,
-  MenuItem,
-} from '@chia/core';
+import { Flex, ConfirmDialog, useOpenDialog, DropdownActions, MenuItem } from '@chia/core';
 import { Trans } from '@lingui/macro';
 import { Delete as DeleteIcon } from '@mui/icons-material';
 import { Typography, ListItemIcon, Tab, Tabs } from '@mui/material';
@@ -23,8 +17,7 @@ type StandardWalletProps = {
 export default function WalletHeader(props: StandardWalletProps) {
   const { walletId, actions, tab, onTabChange } = props;
   const openDialog = useOpenDialog();
-  const [deleteUnconfirmedTransactions] =
-    useDeleteUnconfirmedTransactionsMutation();
+  const [deleteUnconfirmedTransactions] = useDeleteUnconfirmedTransactionsMutation();
 
   async function handleDeleteUnconfirmedTransactions() {
     await openDialog(
@@ -50,21 +43,9 @@ export default function WalletHeader(props: StandardWalletProps) {
             textColor="primary"
             indicatorColor="primary"
           >
-            <Tab
-              value="summary"
-              label={<Trans>Summary</Trans>}
-              data-testid="WalletHeader-tab-summary"
-            />
-            <Tab
-              value="send"
-              label={<Trans>Send</Trans>}
-              data-testid="WalletHeader-tab-send"
-            />
-            <Tab
-              value="receive"
-              label={<Trans>Receive</Trans>}
-              data-testid="WalletHeader-tab-receive"
-            />
+            <Tab value="summary" label={<Trans>Summary</Trans>} data-testid="WalletHeader-tab-summary" />
+            <Tab value="send" label={<Trans>Send</Trans>} data-testid="WalletHeader-tab-send" />
+            <Tab value="receive" label={<Trans>Receive</Trans>} data-testid="WalletHeader-tab-receive" />
           </Tabs>
         </Flex>
         <Flex gap={1} alignItems="center">

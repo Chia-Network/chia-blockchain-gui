@@ -18,8 +18,7 @@ export const get_transaction_result = (transaction) => {
   for (const full_node_response of transaction.transaction.sent_to) {
     if (full_node_response[1] === mempool_inclusion_status.SUCCESS) {
       return {
-        message:
-          'Transaction has successfully been sent to a full node and included in the mempool.',
+        message: 'Transaction has successfully been sent to a full node and included in the mempool.',
         success: true,
       };
     }

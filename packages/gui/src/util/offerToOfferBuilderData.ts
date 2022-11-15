@@ -3,11 +3,9 @@ import BigNumber from 'bignumber.js';
 
 import type OfferBuilderData from '../@types/OfferBuilderData';
 import type OfferSummary from '../@types/OfferSummary';
-import { launcherIdToNFTId } from "./nfts";
+import { launcherIdToNFTId } from './nfts';
 
-export default function offerToOfferBuilderData(
-  offerSummary: OfferSummary,
-): OfferBuilderData {
+export default function offerToOfferBuilderData(offerSummary: OfferSummary): OfferBuilderData {
   const { fees, offered, requested, infos } = offerSummary;
 
   const offeredXch: OfferBuilderData['offered']['xch'] = [];

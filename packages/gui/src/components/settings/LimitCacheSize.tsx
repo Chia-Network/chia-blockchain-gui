@@ -1,12 +1,5 @@
 import { useLocalStorage } from '@chia/api-react';
-import {
-  AlertDialog,
-  ButtonLoading,
-  Flex,
-  Form,
-  TextField,
-  useOpenDialog,
-} from '@chia/core';
+import { AlertDialog, ButtonLoading, Flex, Form, TextField, useOpenDialog } from '@chia/core';
 import { Trans } from '@lingui/macro';
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
@@ -18,16 +11,13 @@ type FormData = {
   cacheLimitSize: number;
 };
 
-const {ipcRenderer} = window as any;
+const { ipcRenderer } = window as any;
 
 function LimitCacheSize(props: any) {
   const { forceUpdateCacheSize } = props;
   const openDialog = useOpenDialog();
 
-  const [cacheLimitSize, setCacheLimitSize] = useLocalStorage(
-    `cacheLimitSize`,
-    defaultCacheSizeLimit,
-  );
+  const [cacheLimitSize, setCacheLimitSize] = useLocalStorage(`cacheLimitSize`, defaultCacheSizeLimit);
 
   const methods = useForm<FormData>({
     defaultValues: {
@@ -43,10 +33,7 @@ function LimitCacheSize(props: any) {
   useEffect(() => {
     ipcRenderer.on('removedFromLocalStorage', removeFromLocalStorageListener);
     return () => {
-      ipcRenderer.removeListener(
-        'removedFromLocalStorage',
-        removeFromLocalStorageListener,
-      );
+      ipcRenderer.removeListener('removedFromLocalStorage', removeFromLocalStorageListener);
     };
   }, []);
 
@@ -71,7 +58,7 @@ function LimitCacheSize(props: any) {
     await openDialog(
       <AlertDialog>
         <Trans>Successfully updated cache size limit.</Trans>
-      </AlertDialog>,
+      </AlertDialog>
     );
   }
 

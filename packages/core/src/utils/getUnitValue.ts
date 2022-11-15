@@ -8,7 +8,6 @@ type Display = {
   fractionDigits: number;
 };
 
-
 const display: {
   [key in Unit]: Display;
 } = {

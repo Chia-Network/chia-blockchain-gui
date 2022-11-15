@@ -33,9 +33,7 @@ test('Confirm Enable Auto Login feature works as expected. ', async () => {
   page = await electronApp.firstWindow();
 
   //Then user should have to select a Wallet
-  await page
-    .locator('[data-testid="SelectKeyItem-fingerprint-1922132445"]')
-    .click();
+  await page.locator('[data-testid="SelectKeyItem-fingerprint-1922132445"]').click();
 
   //When I re-enable Auto Login
   await page.locator('[data-testid="DashboardSideBar-settings"]').click();

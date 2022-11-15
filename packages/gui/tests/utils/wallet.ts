@@ -1,6 +1,5 @@
 import ChildProcess from 'child_process';
 
-
 export function runWalletCommandWithArgs(commandArgs: string[]): string {
   const command = 'chia';
   const args = ['wallet', ...commandArgs];
@@ -14,11 +13,7 @@ export function runWalletCommandWithArgs(commandArgs: string[]): string {
 }
 
 export function isWalletSynced(fingerprint: string | number) {
-  const output = runWalletCommandWithArgs([
-    'show',
-    '--fingerprint',
-    fingerprint.toString(),
-  ]);
+  const output = runWalletCommandWithArgs(['show', '--fingerprint', fingerprint.toString()]);
   // console.log(`stdout: ${output}`);
 
   // Regular expression to check output for "Sync Status:"
@@ -30,25 +25,16 @@ export function isWalletSynced(fingerprint: string | number) {
   return isSynced;
 }
 
-export function getWalletBalance(
-  fingerprint: string | number,
-): string | undefined {
-  const output = runWalletCommandWithArgs([
-    'show',
-    '--fingerprint',
-    fingerprint.toString(),
-  ]);
+export function getWalletBalance(fingerprint: string | number): string | undefined {
+  const output = runWalletCommandWithArgs(['show', '--fingerprint', fingerprint.toString()]);
 
-  const balanceMatch = output.match(
-    /Chia Wallet:\s+-Total Balance:\s+([^\s]+)/,
-  );
+  const balanceMatch = output.match(/Chia Wallet:\s+-Total Balance:\s+([^\s]+)/);
   const balance = balanceMatch?.[1];
   return balance;
 }
 
-export function stopAllChia(){
- const command = 'chia';
- ChildProcess.spawnSync(command, ["stop", "all", "-d"], { stdio: 'pipe' });
- console.log(command)
-
+export function stopAllChia() {
+  const command = 'chia';
+  ChildProcess.spawnSync(command, ['stop', 'all', '-d'], { stdio: 'pipe' });
+  console.log(command);
 }

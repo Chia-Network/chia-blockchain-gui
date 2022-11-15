@@ -1,7 +1,4 @@
-import {
-  useGetSignagePointsQuery,
-  useGetTotalHarvestersSummaryQuery,
-} from '@chia/api-react';
+import { useGetSignagePointsQuery, useGetTotalHarvestersSummaryQuery } from '@chia/api-react';
 import { Table, Card } from '@chia/core';
 import { Trans } from '@lingui/macro';
 import React from 'react';
@@ -22,10 +19,8 @@ const cols = [
 ];
 
 export default function FarmLatestBlockChallenges() {
-  const { data: signagePoints = [], isLoading: isLoadingSignagePoints } =
-    useGetSignagePointsQuery();
-  const { hasPlots, isLoading: isLoadingTotalHarvestersSummary } =
-    useGetTotalHarvestersSummaryQuery();
+  const { data: signagePoints = [], isLoading: isLoadingSignagePoints } = useGetSignagePointsQuery();
+  const { hasPlots, isLoading: isLoadingTotalHarvestersSummary } = useGetTotalHarvestersSummaryQuery();
 
   const isLoading = isLoadingSignagePoints || isLoadingTotalHarvestersSummary;
   const reducedSignagePoints = signagePoints;
@@ -38,9 +33,8 @@ export default function FarmLatestBlockChallenges() {
       tooltip={
         hasPlots ? (
           <Trans>
-            Below are the current block challenges. You may or may not have a
-            proof of space for these challenges. These blocks do not currently
-            contain a proof of time.
+            Below are the current block challenges. You may or may not have a proof of space for these challenges. These
+            blocks do not currently contain a proof of time.
           </Trans>
         ) : undefined
       }
@@ -55,9 +49,8 @@ export default function FarmLatestBlockChallenges() {
         caption={
           !hasPlots && (
             <Trans>
-              Here are the current block challenges. You may or may not have a
-              proof of space for these challenges. These blocks do not currently
-              contain a proof of time.
+              Here are the current block challenges. You may or may not have a proof of space for these challenges.
+              These blocks do not currently contain a proof of time.
             </Trans>
           )
         }

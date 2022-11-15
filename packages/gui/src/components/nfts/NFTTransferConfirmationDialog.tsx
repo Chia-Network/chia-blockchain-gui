@@ -1,11 +1,4 @@
-import {
-  useCurrencyCode,
-  chiaToMojo,
-  ConfirmDialog,
-  Flex,
-  TooltipIcon,
-  FormatLargeNumber,
-} from '@chia/core';
+import { useCurrencyCode, chiaToMojo, ConfirmDialog, Flex, TooltipIcon, FormatLargeNumber } from '@chia/core';
 import { Trans, Plural } from '@lingui/macro';
 import { Box, Divider, Typography } from '@mui/material';
 import React, { type ReactNode } from 'react';
@@ -30,17 +23,15 @@ export type NFTTransferConfirmationDialogProps = {
   confirmColor?: string;
 };
 
-export default function NFTTransferConfirmationDialog(
-  props: NFTTransferConfirmationDialogProps,
-) {
+export default function NFTTransferConfirmationDialog(props: NFTTransferConfirmationDialogProps) {
   const {
     destination,
     fee,
     title = <Trans>Confirm NFT Transfer</Trans>,
     description = (
       <Trans>
-        Once you initiate this transfer, you will not be able to cancel the
-        transaction. Are you sure you want to transfer the NFT?
+        Once you initiate this transfer, you will not be able to cancel the transaction. Are you sure you want to
+        transfer the NFT?
       </Trans>
     ),
     confirmTitle = <Trans>Transfer</Trans>,
@@ -68,12 +59,7 @@ export default function NFTTransferConfirmationDialog(
                 <Trans>Destination:</Trans>
               </Typography>
             </Flex>
-            <Flex
-              flexDirection="row"
-              alignItems="center"
-              gap={1}
-              sx={{ overflow: 'hidden' }}
-            >
+            <Flex flexDirection="row" alignItems="center" gap={1} sx={{ overflow: 'hidden' }}>
               <Typography noWrap variant="body1">
                 {destination}
               </Typography>
@@ -98,11 +84,7 @@ export default function NFTTransferConfirmationDialog(
               <>
                 <FormatLargeNumber value={feeInMojos} />
                 <Box>
-                  <Plural
-                    value={feeInMojos.toNumber()}
-                    one="mojo"
-                    other="mojos"
-                  />
+                  <Plural value={feeInMojos.toNumber()} one="mojo" other="mojos" />
                 </Box>
               </>
             )}

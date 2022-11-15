@@ -39,10 +39,7 @@ export default function Dropdown(props: Props) {
     onSelect(option.value);
   }
 
-  const selectedOption = useMemo(
-    () => options.find(option => option.value === selected),
-    [options, selected],
-  );
+  const selectedOption = useMemo(() => options.find((option) => option.value === selected), [options, selected]);
 
   const value = selectedOption?.label ?? placeholder;
 
@@ -67,11 +64,7 @@ export default function Dropdown(props: Props) {
         keepMounted
       >
         {options.map((option) => (
-          <MenuItem
-            key={option.value}
-            onClick={() => handleSelect(option)}
-            selected={option.value === selected}
-          >
+          <MenuItem key={option.value} onClick={() => handleSelect(option)} selected={option.value === selected}>
             {option.label}
           </MenuItem>
         ))}

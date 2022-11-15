@@ -10,7 +10,7 @@ export default function usePlotNFTExternalDetails(nft: PlotNFTExternal): {
   plots?: Plot[];
   isSelfPooling: boolean;
 } {
-  const isWalletSynced = useIsWalletSynced()
+  const isWalletSynced = useIsWalletSynced();
 
   const humanName = usePlotNFTName(nft);
   const details = useMemo(() => {

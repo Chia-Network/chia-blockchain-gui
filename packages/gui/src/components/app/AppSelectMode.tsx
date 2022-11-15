@@ -13,7 +13,7 @@ import styled from 'styled-components';
 const StyledCheckIcon = styled(CheckIcon)`
   border-radius: 9999px;
   padding: ${({ theme }) => theme.spacing(0.5)};
-  background-color: rgba(97,188,122,0.2);
+  background-color: rgba(97, 188, 122, 0.2);
 `;
 
 const StyledSettingsIcon = styled(SettingsIcon)`
@@ -33,9 +33,7 @@ const StyledContainer = styled(Container)`
 `;
 
 const StyledAccountBalanceWalletIconBase = styled(AccountBalanceWalletIcon)`
-  color: ${({ theme }) => theme.palette.mode === 'dark'
-    ? 'white'
-    : 'rgba(0, 0, 0, 0.54)'};
+  color: ${({ theme }) => (theme.palette.mode === 'dark' ? 'white' : 'rgba(0, 0, 0, 0.54)')};
 `;
 
 const StyledAccountBalanceWalletIcon = styled(StyledAccountBalanceWalletIconBase)`
@@ -60,11 +58,7 @@ export default function AppSelectMode() {
 
         <Grid container spacing={5} alignItems="stretch">
           <Grid xs={12} sm={6} item>
-            <Card
-              onSelect={() => handleModeChange(Mode.WALLET)}
-              highlight={false}
-              fullHeight
-            >
+            <Card onSelect={() => handleModeChange(Mode.WALLET)} highlight={false} fullHeight>
               <StyledCardContent>
                 <Flex flexDirection="column" gap={4} flexGrow={1} alignItems="center">
                   <Flex flexDirection="column" gap={1} alignItems="center">
@@ -106,11 +100,7 @@ export default function AppSelectMode() {
             </Card>
           </Grid>
           <Grid xs={12} sm={6} item>
-            <Card
-              onSelect={() => handleModeChange(Mode.FARMING)}
-              highlight={<Trans>Recommended</Trans>}
-              fullHeight
-            >
+            <Card onSelect={() => handleModeChange(Mode.FARMING)} highlight={<Trans>Recommended</Trans>} fullHeight>
               <StyledCardContent>
                 <Flex flexDirection="column" gap={4} alignItems="center">
                   <Flex flexDirection="column" gap={1} alignItems="center">

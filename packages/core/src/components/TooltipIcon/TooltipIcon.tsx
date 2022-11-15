@@ -4,8 +4,7 @@ import React, { ReactElement } from 'react';
 import styled from 'styled-components';
 
 const StyledHelpIcon = styled(HelpIcon)`
-  color: ${({ theme }) =>
-    theme.palette.mode === 'dark' ? '#c8c8c8' : '#757575'};
+  color: ${({ theme }) => (theme.palette.mode === 'dark' ? '#c8c8c8' : '#757575')};
   font-size: 1rem;
 `;
 

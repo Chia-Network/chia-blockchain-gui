@@ -1,9 +1,4 @@
-import {
-  Loading,
-  chiaToMojo,
-  mojoToChiaLocaleString,
-  useCurrencyCode,
-} from '@chia/core';
+import { Loading, chiaToMojo, mojoToChiaLocaleString, useCurrencyCode } from '@chia/core';
 import { Farming } from '@chia/icons';
 import { Trans } from '@lingui/macro';
 import React, { useMemo } from 'react';
@@ -20,9 +15,7 @@ export type OfferBuilderXCHSectionProps = {
   muted?: boolean;
 };
 
-export default function OfferBuilderXCHSection(
-  props: OfferBuilderXCHSectionProps,
-) {
+export default function OfferBuilderXCHSection(props: OfferBuilderXCHSectionProps) {
   const { name, offering, muted = false } = props;
   const { wallet, loading: isLoadingWallet } = useStandardWallet();
   const currencyCode = useCurrencyCode();
@@ -33,12 +26,7 @@ export default function OfferBuilderXCHSection(
     useWatch({
       name,
     })?.[0]?.amount ?? 0; // Assume there's only 1 XCH field per trade side
-  const {
-    readOnly,
-    requestedRoyalties,
-    offeredRoyalties,
-    isCalculatingRoyalties,
-  } = useOfferBuilderContext();
+  const { readOnly, requestedRoyalties, offeredRoyalties, isCalculatingRoyalties } = useOfferBuilderContext();
 
   // Yes, this is correct. Fungible (XCH) assets used to pay royalties are from the opposite side of the trade.
   const allRoyalties = offering ? requestedRoyalties : offeredRoyalties;
@@ -53,9 +41,7 @@ export default function OfferBuilderXCHSection(
     let amountWithRoyalties = chiaToMojo(amount);
     const rows: Record<string, any>[] = [];
     Object.entries(allRoyalties).forEach(([nftId, royaltyPayments]) => {
-      const matchingPayment = royaltyPayments?.find(
-        (payment) => payment.asset === 'xch',
-      );
+      const matchingPayment = royaltyPayments?.find((payment) => payment.asset === 'xch');
       if (matchingPayment) {
         amountWithRoyalties = amountWithRoyalties.plus(matchingPayment.amount);
         rows.push({
@@ -87,12 +73,7 @@ export default function OfferBuilderXCHSection(
     <OfferBuilderSection
       icon={<Farming />}
       title={currencyCode}
-      subtitle={
-        <Trans>
-          Chia ({currencyCode}) is a digital currency that is secure and
-          sustainable
-        </Trans>
-      }
+      subtitle={<Trans>Chia ({currencyCode}) is a digital currency that is secure and sustainable</Trans>}
       onAdd={!fields.length ? handleAdd : undefined}
       expanded={!!fields.length}
       muted={muted}

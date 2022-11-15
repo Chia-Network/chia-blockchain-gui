@@ -12,7 +12,6 @@ import useWalletState from '../../hooks/useWalletState';
 import isCATWalletPresent from '../../utils/isCATWalletPresent';
 import WalletCreateCard from '../create/WalletCreateCard';
 
-
 export default function WalletCATCreateSimple() {
   const navigate = useNavigate();
   const showError = useShowError();
@@ -54,15 +53,13 @@ export default function WalletCATCreateSimple() {
       }).unwrap();
 
       navigate(`/dashboard/wallets/${walletId}`);
-    } catch(error: any) {
+    } catch (error: any) {
       showError(error);
     }
   }
 
   if (isLoading) {
-    return (
-      <Loading center />
-    );
+    return <Loading center />;
   }
 
   return (

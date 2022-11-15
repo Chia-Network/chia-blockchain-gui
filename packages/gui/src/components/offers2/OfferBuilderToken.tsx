@@ -18,14 +18,7 @@ export type OfferBuilderTokenProps = {
 };
 
 export default function OfferBuilderToken(props: OfferBuilderTokenProps) {
-  const {
-    name,
-    onRemove,
-    usedAssets,
-    hideBalance,
-    amountWithRoyalties,
-    royaltyPayments,
-  } = props;
+  const { name, onRemove, usedAssets, hideBalance, amountWithRoyalties, royaltyPayments } = props;
 
   const assetIdFieldName = `${name}.assetId`;
   const assetId = useWatch({
@@ -33,9 +26,7 @@ export default function OfferBuilderToken(props: OfferBuilderTokenProps) {
   });
 
   const { data: wallets } = useGetWalletsQuery();
-  const wallet = wallets?.find(
-    (wallet: Wallet) => wallet.meta?.assetId?.toLowerCase() === assetId,
-  );
+  const wallet = wallets?.find((wallet: Wallet) => wallet.meta?.assetId?.toLowerCase() === assetId);
   const warnUnknownCAT = assetId && !wallet;
 
   return (

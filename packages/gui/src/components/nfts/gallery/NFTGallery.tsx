@@ -1,5 +1,5 @@
 import type { NFTInfo, Wallet } from '@chia/api';
-import { useGetNFTWallets /* useGetNFTsByNFTIDsQuery */ , useLocalStorage } from '@chia/api-react';
+import { useGetNFTWallets /* useGetNFTsByNFTIDsQuery */, useLocalStorage } from '@chia/api-react';
 import {
   Flex,
   LayoutDashboardSub,
@@ -11,7 +11,7 @@ import {
 import { WalletReceiveAddressField } from '@chia/wallets';
 import { Trans } from '@lingui/macro';
 import { FilterList as FilterListIcon } from '@mui/icons-material';
-import { Switch, FormGroup, FormControlLabel , Box, Grid } from '@mui/material';
+import { Switch, FormGroup, FormControlLabel, Box, Grid } from '@mui/material';
 import React, { useState, useMemo } from 'react';
 // import { defineMessage } from '@lingui/macro';
 
@@ -37,24 +37,17 @@ function searchableNFTContent(nft: NFTInfo) {
 }
 
 export default function NFTGallery() {
-  const { wallets: nftWallets, isLoading: isLoadingWallets } =
-    useGetNFTWallets();
-  const { nfts, isLoading: isLoadingNFTs } = useFetchNFTs(
-    nftWallets.map((wallet: Wallet) => wallet.id),
-  );
+  const { wallets: nftWallets, isLoading: isLoadingWallets } = useGetNFTWallets();
+  const { nfts, isLoading: isLoadingNFTs } = useFetchNFTs(nftWallets.map((wallet: Wallet) => wallet.id));
   const noMetadataNFTs = nfts
-    .filter((nft) => (
-        !nft?.metadataUris ||
-        (Array.isArray(nft.metadataUris) && nft.metadataUris.length === 0)
-      ))
+    .filter((nft) => !nft?.metadataUris || (Array.isArray(nft.metadataUris) && nft.metadataUris.length === 0))
     .map((nft) => nft.$nftId);
 
   const { allowedNFTsWithMetadata } = useNFTMetadata(
-    nfts.filter((nft: NFTInfo) => (
-        !nft?.metadataUris ||
-        (Array.isArray(nft?.metadataUris) && nft?.metadataUris.length > 0)
-      )),
-    true,
+    nfts.filter(
+      (nft: NFTInfo) => !nft?.metadataUris || (Array.isArray(nft?.metadataUris) && nft?.metadataUris.length > 0)
+    ),
+    true
   ); /* NFTs with metadata and no sensitive_content */
 
   const allAllowedNFTs = noMetadataNFTs.concat(allowedNFTsWithMetadata);
@@ -65,10 +58,7 @@ export default function NFTGallery() {
   const [showHidden, setShowHidden] = usePersistState(false, 'showHiddenNFTs');
   const [hideObjectionableContent] = useHideObjectionableContent();
 
-  const [walletId, setWalletId] = usePersistState<number | undefined>(
-    undefined,
-    'nft-profile-dropdown',
-  );
+  const [walletId, setWalletId] = usePersistState<number | undefined>(undefined, 'nft-profile-dropdown');
 
   const { data: nachoNFTs } = useNachoNFTs();
 
@@ -77,14 +67,11 @@ export default function NFTGallery() {
     items: [],
   });
 
-  const [limitCacheSize] = useLocalStorage(
-    `limit-cache-size`,
-    defaultCacheSizeLimit,
-  );
+  const [limitCacheSize] = useLocalStorage(`limit-cache-size`, defaultCacheSizeLimit);
 
   React.useEffect(() => {
     if (limitCacheSize !== defaultCacheSizeLimit) {
-      const {ipcRenderer} = window as any;
+      const { ipcRenderer } = window as any;
       ipcRenderer?.invoke('setLimitCacheSize', limitCacheSize);
     }
   }, [limitCacheSize]);
@@ -107,10 +94,7 @@ export default function NFTGallery() {
         return false;
       }
 
-      if (
-        hideObjectionableContent &&
-        allAllowedNFTs.indexOf(nft.$nftId) === -1
-      ) {
+      if (hideObjectionableContent && allAllowedNFTs.indexOf(nft.$nftId) === -1) {
         return false;
       }
 
@@ -121,25 +105,14 @@ export default function NFTGallery() {
 
       return true;
     });
-  }, [
-    search,
-    walletId,
-    nfts,
-    isNFTHidden,
-    showHidden,
-    hideObjectionableContent,
-    nachoNFTs,
-    allAllowedNFTs,
-  ]);
+  }, [search, walletId, nfts, isNFTHidden, showHidden, hideObjectionableContent, nachoNFTs, allAllowedNFTs]);
 
   function handleSelect(nft: NFTInfo, selected: boolean) {
     setSelection((currentSelection) => {
       const { items } = currentSelection;
 
       return {
-        items: selected
-          ? [...items, nft]
-          : items.filter((item) => item.$nftId !== nft.$nftId),
+        items: selected ? [...items, nft] : items.filter((item) => item.$nftId !== nft.$nftId),
       };
     });
   }
@@ -156,12 +129,7 @@ export default function NFTGallery() {
     <LayoutDashboardSub
       // sidebar={<NFTGallerySidebar onWalletChange={setWalletId} />}
       header={
-        <Flex
-          gap={2}
-          alignItems="center"
-          flexWrap="wrap"
-          justifyContent="space-between"
-        >
+        <Flex gap={2} alignItems="center" flexWrap="wrap" justifyContent="space-between">
           <NFTProfileDropdown onChange={setWalletId} walletId={walletId} />
           <Flex justifyContent="flex-end" alignItems="center">
             {/*
@@ -176,11 +144,7 @@ export default function NFTGallery() {
             */}
             <Box width={{ xs: 300, sm: 330, md: 600, lg: 780 }}>
               <Flex gap={1}>
-                <WalletReceiveAddressField
-                  variant="outlined"
-                  size="small"
-                  fullWidth
-                />
+                <WalletReceiveAddressField variant="outlined" size="small" fullWidth />
                 <DropdownActions
                   label={<Trans>Filters</Trans>}
                   startIcon={<FilterListIcon />}
@@ -191,10 +155,7 @@ export default function NFTGallery() {
                 >
                   <MenuItem onClick={handleToggleShowHidden}>
                     <FormGroup>
-                      <FormControlLabel
-                        control={<Switch checked={showHidden} />}
-                        label={<Trans>Show Hidden</Trans>}
-                      />
+                      <FormControlLabel control={<Switch checked={showHidden} />} label={<Trans>Show Hidden</Trans>} />
                     </FormGroup>
                   </MenuItem>
                 </DropdownActions>
@@ -213,9 +174,7 @@ export default function NFTGallery() {
               <NFTCardLazy
                 nft={nft}
                 onSelect={(selected) => handleSelect(nft, selected)}
-                selected={selection.items.some(
-                  (item) => item.$nftId === nft.$nftId,
-                )}
+                selected={selection.items.some((item) => item.$nftId === nft.$nftId)}
                 canExpandDetails
                 availableActions={NFTContextualActionTypes.All}
               />

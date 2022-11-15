@@ -31,20 +31,11 @@ export default function SelectKey() {
   const openDialog = useOpenDialog();
   const navigate = useNavigate();
   const [deleteAllKeys] = useDeleteAllKeysMutation();
-  const [logIn, { isLoading: isLoadingLogIn }] =
-    useLogInAndSkipImportMutation();
-  const {
-    data: publicKeyFingerprints,
-    isLoading: isLoadingPublicKeys,
-    error,
-    refetch,
-  } = useGetKeysQuery();
-  const { data: keyringState, isLoading: isLoadingKeyringStatus } =
-    useGetKeyringStatusQuery();
+  const [logIn, { isLoading: isLoadingLogIn }] = useLogInAndSkipImportMutation();
+  const { data: publicKeyFingerprints, isLoading: isLoadingPublicKeys, error, refetch } = useGetKeysQuery();
+  const { data: keyringState, isLoading: isLoadingKeyringStatus } = useGetKeyringStatusQuery();
   const hasFingerprints = !!publicKeyFingerprints?.length;
-  const [selectedFingerprint, setSelectedFingerprint] = useState<
-    number | undefined
-  >();
+  const [selectedFingerprint, setSelectedFingerprint] = useState<number | undefined>();
 
   const [skippedMigration] = useSkipMigration();
   const [promptForKeyringMigration] = useKeyringMigrationPrompt();
@@ -87,8 +78,8 @@ export default function SelectKey() {
         onConfirm={() => deleteAllKeys().unwrap()}
       >
         <Trans>
-          Deleting all keys will permanently remove the keys from your computer,
-          make sure you have backups. Are you sure you want to continue?
+          Deleting all keys will permanently remove the keys from your computer, make sure you have backups. Are you
+          sure you want to continue?
         </Trans>
       </ConfirmDialog>
     );
@@ -96,10 +87,7 @@ export default function SelectKey() {
 
   async function handleKeyringMutator(): Promise<boolean> {
     // If the keyring requires migration and the user previously skipped migration, prompt again
-    if (
-      isLoadingKeyringStatus ||
-      (keyringState?.needsMigration && skippedMigration)
-    ) {
+    if (isLoadingKeyringStatus || (keyringState?.needsMigration && skippedMigration)) {
       await promptForKeyringMigration();
 
       return false;
@@ -147,19 +135,11 @@ export default function SelectKey() {
               <Trans>Sign In</Trans>
             </Typography>
             <Typography variant="subtitle1" align="center">
-              <Trans>
-                Welcome to Chia. Please log in with an existing key, or create a
-                new key.
-              </Trans>
+              <Trans>Welcome to Chia. Please log in with an existing key, or create a new key.</Trans>
             </Typography>
           </>
         )}
-        <Flex
-          flexDirection="column"
-          gap={3}
-          alignItems="stretch"
-          alignSelf="stretch"
-        >
+        <Flex flexDirection="column" gap={3} alignItems="stretch" alignSelf="stretch">
           {hasFingerprints && (
             <Flex gap={2} flexDirection="column" width="100%">
               {publicKeyFingerprints.map((keyData: KeyData, index: number) => (
@@ -169,10 +149,7 @@ export default function SelectKey() {
                   keyData={keyData}
                   onSelect={handleSelect}
                   loading={keyData.fingerprint === selectedFingerprint}
-                  disabled={
-                    !!selectedFingerprint &&
-                    keyData.fingerprint !== selectedFingerprint
-                  }
+                  disabled={!!selectedFingerprint && keyData.fingerprint !== selectedFingerprint}
                 />
               ))}
             </Flex>

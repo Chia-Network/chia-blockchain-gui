@@ -1,8 +1,5 @@
 import { WalletType, TransactionType, toBech32m } from '@chia/api';
-import {
-  useGetOfferRecordMutation,
-  useGetSyncStatusQuery,
-} from '@chia/api-react';
+import { useGetOfferRecordMutation, useGetSyncStatusQuery } from '@chia/api-react';
 import {
   Card,
   CopyToClipboard,
@@ -57,12 +54,7 @@ const StyledWarning = styled(Box)`
   color: ${StateColor.WARNING};
 `;
 
-async function handleRowClick(
-  event: React.MouseEvent<HTMLTableRowElement>,
-  row: Row,
-  getOfferRecord,
-  navigate
-) {
+async function handleRowClick(event: React.MouseEvent<HTMLTableRowElement>, row: Row, getOfferRecord, navigate) {
   if (row.tradeId) {
     try {
       const { data: response } = await getOfferRecord(row.tradeId);
@@ -82,23 +74,12 @@ async function handleRowClick(
 const getCols = (type: WalletType, isSyncing, getOfferRecord, navigate) => [
   {
     field: (row: Row) => {
-      const isOutgoing = [
-        TransactionType.OUTGOING,
-        TransactionType.OUTGOING_TRADE,
-      ].includes(row.type);
+      const isOutgoing = [TransactionType.OUTGOING, TransactionType.OUTGOING_TRADE].includes(row.type);
 
       return (
         <Flex gap={1}>
-          <Tooltip
-            title={
-              isOutgoing ? <Trans>Outgoing</Trans> : <Trans>Incoming</Trans>
-            }
-          >
-            {isOutgoing ? (
-              <CallMadeIcon color="secondary" />
-            ) : (
-              <CallReceivedIcon color="primary" />
-            )}
+          <Tooltip title={isOutgoing ? <Trans>Outgoing</Trans> : <Trans>Incoming</Trans>}>
+            {isOutgoing ? <CallMadeIcon color="secondary" /> : <CallReceivedIcon color="primary" />}
           </Tooltip>
         </Flex>
       );
@@ -128,62 +109,27 @@ const getCols = (type: WalletType, isSyncing, getOfferRecord, navigate) => [
               <Flex flexDirection="column" gap={1}>
                 {shouldObscureAddress && (
                   <StyledWarning>
-                    <Trans>
-                      This is not a valid address for sending funds to
-                    </Trans>
+                    <Trans>This is not a valid address for sending funds to</Trans>
                   </StyledWarning>
                 )}
                 <Flex flexDirection="row" alignItems="center" gap={1}>
                   <Box maxWidth={200}>{row.toAddress}</Box>
-                  {!shouldObscureAddress && (
-                    <CopyToClipboard value={row.toAddress} fontSize="small" />
-                  )}
+                  {!shouldObscureAddress && <CopyToClipboard value={row.toAddress} fontSize="small" />}
                 </Flex>
               </Flex>
             }
           >
-            <span>
-              {shouldObscureAddress
-                ? `${row.toAddress.slice(0, 20)  }...`
-                : row.toAddress}
-            </span>
+            <span>{shouldObscureAddress ? `${row.toAddress.slice(0, 20)}...` : row.toAddress}</span>
           </Tooltip>
           <Flex gap={0.5}>
             {isConfirmed ? (
-              <Chip
-                size="small"
-                variant="outlined"
-                label={<Trans>Confirmed</Trans>}
-              />
+              <Chip size="small" variant="outlined" label={<Trans>Confirmed</Trans>} />
             ) : (
-              <Chip
-                size="small"
-                color="primary"
-                variant="outlined"
-                label={<Trans>Pending</Trans>}
-              />
+              <Chip size="small" color="primary" variant="outlined" label={<Trans>Pending</Trans>} />
             )}
-            {hasMemos && (
-              <Chip
-                size="small"
-                variant="outlined"
-                label={<Trans>Memo</Trans>}
-              />
-            )}
-            {isRetire && (
-              <Chip
-                size="small"
-                variant="outlined"
-                label={<Trans>Retire</Trans>}
-              />
-            )}
-            {isOffer && (
-              <Chip
-                size="small"
-                variant="outlined"
-                label={<Trans>Offer Accepted</Trans>}
-              />
-            )}
+            {hasMemos && <Chip size="small" variant="outlined" label={<Trans>Memo</Trans>} />}
+            {isRetire && <Chip size="small" variant="outlined" label={<Trans>Retire</Trans>} />}
+            {isOffer && <Chip size="small" variant="outlined" label={<Trans>Offer Accepted</Trans>} />}
           </Flex>
         </Flex>
       );
@@ -200,23 +146,14 @@ const getCols = (type: WalletType, isSyncing, getOfferRecord, navigate) => [
   },
   {
     field: (row: Row, metadata) => {
-      const isOutgoing = [
-        TransactionType.OUTGOING,
-        TransactionType.OUTGOING_TRADE,
-      ].includes(row.type);
+      const isOutgoing = [TransactionType.OUTGOING, TransactionType.OUTGOING_TRADE].includes(row.type);
 
       return (
         <>
           <strong>{isOutgoing ? <Trans>-</Trans> : <Trans>+</Trans>}</strong>
           &nbsp;
           <strong>
-            <FormatLargeNumber
-              value={
-                type === WalletType.CAT
-                  ? mojoToCAT(row.amount)
-                  : mojoToChia(row.amount)
-              }
-            />
+            <FormatLargeNumber value={type === WalletType.CAT ? mojoToCAT(row.amount) : mojoToChia(row.amount)} />
           </strong>
           &nbsp;
           {metadata.unit}
@@ -253,13 +190,12 @@ type Props = {
 export default function WalletHistory(props: Props) {
   const { walletId } = props;
 
-  const { data: walletState, isLoading: isWalletSyncLoading } =
-    useGetSyncStatusQuery(
-      {},
-      {
-        pollingInterval: 10000,
-      }
-    );
+  const { data: walletState, isLoading: isWalletSyncLoading } = useGetSyncStatusQuery(
+    {},
+    {
+      pollingInterval: 10000,
+    }
+  );
   const { wallet, loading: isWalletLoading, unit } = useWallet(walletId);
   const {
     transactions,
@@ -274,23 +210,14 @@ export default function WalletHistory(props: Props) {
   const { navigate } = useSerializedNavigationState();
 
   const isLoading = isWalletTransactionsLoading || isWalletLoading;
-  const isSyncing =
-    isWalletSyncLoading || !walletState || !!walletState?.syncing;
+  const isSyncing = isWalletSyncLoading || !walletState || !!walletState?.syncing;
 
   const metadata = useMemo(() => {
     const retireAddress =
-      feeUnit &&
-      toBech32m(
-        '0000000000000000000000000000000000000000000000000000000000000000',
-        feeUnit
-      );
+      feeUnit && toBech32m('0000000000000000000000000000000000000000000000000000000000000000', feeUnit);
 
     const offerTakerAddress =
-      feeUnit &&
-      toBech32m(
-        '0101010101010101010101010101010101010101010101010101010101010101',
-        feeUnit
-      );
+      feeUnit && toBech32m('0101010101010101010101010101010101010101010101010101010101010101', feeUnit);
 
     return {
       unit,
@@ -358,9 +285,7 @@ export default function WalletHistory(props: Props) {
             confirmedAtHeight && {
               key: 'confirmedAtHeight',
               label: <Trans>Confirmed at Height</Trans>,
-              value: confirmedAtHeight || (
-                <Trans>Not Available</Trans>
-              ),
+              value: confirmedAtHeight || <Trans>Not Available</Trans>,
             },
             {
               key: 'memos',
@@ -375,12 +300,7 @@ export default function WalletHistory(props: Props) {
                 {rows.map((row) => (
                   <TableRow key={row.key}>
                     <StyledTableCellSmall>
-                      <Typography
-                        component="div"
-                        variant="body2"
-                        color="textSecondary"
-                        noWrap
-                      >
+                      <Typography component="div" variant="body2" color="textSecondary" noWrap>
                         {row.label}
                       </Typography>
                     </StyledTableCellSmall>

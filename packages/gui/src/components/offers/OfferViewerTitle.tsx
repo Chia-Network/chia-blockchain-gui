@@ -23,23 +23,16 @@ type OfferViewerTitleProps = {
   tradeRecord?: OfferTradeRecord;
 };
 
-export default function OfferViewerTitle(
-  props: OfferViewerTitleProps,
-): React.ReactElement {
+export default function OfferViewerTitle(props: OfferViewerTitleProps): React.ReactElement {
   const { offerFilePath, tradeRecord } = props;
-  const offerFileName = offerFilePath
-    ? path.basename(offerFilePath)
-    : undefined;
+  const offerFileName = offerFilePath ? path.basename(offerFilePath) : undefined;
 
   function OfferTitleValue() {
     if (offerFileName) {
       return offerFileName;
-    } if (tradeRecord) {
-      return (
-        <Trans>
-          created {moment(tradeRecord.createdAtTime * 1000).format('LLL')}
-        </Trans>
-      );
+    }
+    if (tradeRecord) {
+      return <Trans>created {moment(tradeRecord.createdAtTime * 1000).format('LLL')}</Trans>;
     }
 
     return null;

@@ -17,8 +17,6 @@ export interface OfferBuilderContextData {
   isCalculatingRoyalties: boolean;
 }
 
-const OfferBuilderContext = createContext<OfferBuilderContextData | undefined>(
-  undefined,
-);
+const OfferBuilderContext = createContext<OfferBuilderContextData | undefined>(undefined);
 
 export default OfferBuilderContext;

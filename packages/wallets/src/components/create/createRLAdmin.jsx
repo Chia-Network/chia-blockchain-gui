@@ -1,23 +1,12 @@
 import { AlertDialog, chiaToMojo } from '@chia/core';
 import { Trans } from '@lingui/macro';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-import {
-  Typography,
-  Button,
-  Box,
-  TextField,
-  Backdrop,
-  CircularProgress,
-} from '@mui/material';
+import { Typography, Button, Box, TextField, Backdrop, CircularProgress } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import {
-  createState,
-  changeCreateWallet,
-  CREATE_RL_WALLET_OPTIONS,
-} from '../../../modules/createWallet';
+import { createState, changeCreateWallet, CREATE_RL_WALLET_OPTIONS } from '../../../modules/createWallet';
 import { openDialog } from '../../../modules/dialog';
 import { create_rl_admin_action } from '../../../modules/message';
 import { useStyles } from './WalletCreate';
@@ -97,8 +86,8 @@ export function CreateRLAdminWallet() {
         openDialog(
           <AlertDialog>
             <Trans>Please enter a valid numeric interval length</Trans>
-          </AlertDialog>,
-        ),
+          </AlertDialog>
+        )
       );
       return;
     }
@@ -112,8 +101,8 @@ export function CreateRLAdminWallet() {
         openDialog(
           <AlertDialog>
             <Trans>Please enter a valid numeric spendable amount</Trans>
-          </AlertDialog>,
-        ),
+          </AlertDialog>
+        )
       );
       return;
     }
@@ -122,8 +111,8 @@ export function CreateRLAdminWallet() {
         openDialog(
           <AlertDialog>
             <Trans>Please enter a valid pubkey</Trans>
-          </AlertDialog>,
-        ),
+          </AlertDialog>
+        )
       );
       return;
     }
@@ -137,8 +126,8 @@ export function CreateRLAdminWallet() {
         openDialog(
           <AlertDialog>
             <Trans>Please enter a valid initial coin amount</Trans>
-          </AlertDialog>,
-        ),
+          </AlertDialog>
+        )
       );
       return;
     }
@@ -147,8 +136,8 @@ export function CreateRLAdminWallet() {
         openDialog(
           <AlertDialog>
             <Trans>Please enter a valid numeric fee</Trans>
-          </AlertDialog>,
-        ),
+          </AlertDialog>
+        )
       );
       return;
     }
@@ -163,14 +152,7 @@ export function CreateRLAdminWallet() {
     // var fee = chiaToMojo(fee_input.value);
     // TODO(lipa): send fee to server
     // const fee_value = parseInt(Number(fee));
-    dispatch(
-      create_rl_admin_action(
-        interval_value,
-        chiaper_value,
-        userpubkey,
-        amount_value,
-      ),
-    );
+    dispatch(create_rl_admin_action(interval_value, chiaper_value, userpubkey, amount_value));
   }
 
   return (
@@ -297,12 +279,7 @@ export function CreateRLAdminWallet() {
             />
           </Box>
           <Box>
-            <Button
-              onClick={create}
-              className={custom.send}
-              variant="contained"
-              color="primary"
-            >
+            <Button onClick={create} className={custom.send} variant="contained" color="primary">
               <Trans>Create</Trans>
             </Button>
           </Box>

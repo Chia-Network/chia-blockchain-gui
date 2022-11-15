@@ -26,13 +26,16 @@ export default {
       babelHelpers: 'runtime',
     }),
   ],
-  output: [{
-    file: pkg.module,
-    format: 'es',
-    sourcemap: true,
-  }, {
-    file: pkg.main,
-    format: 'cjs',
-    sourcemap: true,
-  }],
+  output: [
+    {
+      file: pkg.module,
+      format: 'es',
+      sourcemap: true,
+    },
+    {
+      file: pkg.main,
+      format: 'cjs',
+      sourcemap: true,
+    },
+  ],
 };

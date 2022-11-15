@@ -23,11 +23,6 @@ export default function FarmCardTotalChiaFarmed() {
   }, [farmedAmount, locale, currencyCode]);
 
   return (
-    <CardSimple
-      title={<Trans>Total Chia Farmed</Trans>}
-      value={totalChiaFarmed}
-      loading={isLoading}
-      error={error}
-    />
+    <CardSimple title={<Trans>Total Chia Farmed</Trans>} value={totalChiaFarmed} loading={isLoading} error={error} />
   );
 }

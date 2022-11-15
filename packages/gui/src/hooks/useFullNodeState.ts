@@ -15,7 +15,7 @@ export default function useFullNodeState(): {
     {},
     {
       pollingInterval: 10000,
-    },
+    }
   );
   const blockchainSynced = blockchainState?.sync?.synced;
   const blockchainSynching = blockchainState?.sync?.syncMode;

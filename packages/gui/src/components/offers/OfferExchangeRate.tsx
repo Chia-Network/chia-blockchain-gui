@@ -1,35 +1,21 @@
 import { WalletType } from '@chia/api';
-import {
-  Flex,
-} from '@chia/core';
+import { Flex } from '@chia/core';
 import { ImportExport } from '@mui/icons-material';
-import {
-  InputAdornment,
-  TextField,
-  Typography,
-} from '@mui/material';
-import React, { useMemo, useState } from "react";
+import { InputAdornment, TextField, Typography } from '@mui/material';
+import React, { useMemo, useState } from 'react';
 import NumberFormat from 'react-number-format';
 
 import { AssetIdMapEntry } from '../../hooks/useAssetIdName';
 
-
 interface OfferExchangeRateNumberFormatProps {
   inputRef: (instance: NumberFormat | null) => void;
   name: string;
-};
+}
 
 function OfferExchangeRateNumberFormat(props: OfferExchangeRateNumberFormatProps) {
   const { inputRef, ...other } = props;
 
-  return (
-    <NumberFormat
-      {...other}
-      getInputRef={inputRef}
-      allowNegative={false}
-      isNumericString
-    />
-  );
+  return <NumberFormat {...other} getInputRef={inputRef} allowNegative={false} isNumericString />;
 }
 
 type Props = {
@@ -54,32 +40,46 @@ export default function OfferExchangeRate(props: Props) {
 
   const [editingMakerExchangeRate, setEditingMakerExchangeRate] = useState(false);
   const [editingTakerExchangeRate, setEditingTakerExchangeRate] = useState(false);
-  const [makerDisplayRate, takerDisplayRate] = useMemo(() => [
-      {rate: makerExchangeRate, walletType: makerAssetInfo.walletType, counterCurrencyName: takerAssetInfo.displayName},
-      {rate: takerExchangeRate, walletType: takerAssetInfo.walletType, counterCurrencyName: makerAssetInfo.displayName}
-    ].map(({rate, walletType}) => {
-      let displayRate = '';
+  const [makerDisplayRate, takerDisplayRate] = useMemo(
+    () =>
+      [
+        {
+          rate: makerExchangeRate,
+          walletType: makerAssetInfo.walletType,
+          counterCurrencyName: takerAssetInfo.displayName,
+        },
+        {
+          rate: takerExchangeRate,
+          walletType: takerAssetInfo.walletType,
+          counterCurrencyName: makerAssetInfo.displayName,
+        },
+      ].map(({ rate, walletType }) => {
+        let displayRate = '';
 
-      if (Number.isInteger(rate)) {
-        displayRate = `${rate}`;
-      }
-      else if (rate && Number.isFinite(rate)) {  // !(NaN or Infinity)
-        const fixed = rate.toFixed(walletType === WalletType.STANDARD_WALLET ? 9 : 12);
+        if (Number.isInteger(rate)) {
+          displayRate = `${rate}`;
+        } else if (rate && Number.isFinite(rate)) {
+          // !(NaN or Infinity)
+          const fixed = rate.toFixed(walletType === WalletType.STANDARD_WALLET ? 9 : 12);
 
-        // remove trailing zeros
-        displayRate = fixed.replace(/\.0+$/, '');
-      }
-      return `${displayRate}`;
-    }), [makerAssetInfo, takerAssetInfo, makerExchangeRate, takerExchangeRate]);
+          // remove trailing zeros
+          displayRate = fixed.replace(/\.0+$/, '');
+        }
+        return `${displayRate}`;
+      }),
+    [makerAssetInfo, takerAssetInfo, makerExchangeRate, takerExchangeRate]
+  );
 
   const makerValueProps = editingMakerExchangeRate === false ? { value: makerDisplayRate } : {};
   const takerValueProps = editingTakerExchangeRate === false ? { value: takerDisplayRate } : {};
 
   return (
     <Flex flexDirection="row">
-      <Flex flexDirection="row" flexGrow={1} justifyContent="flex-end" gap={3} style={{width: '45%'}}>
+      <Flex flexDirection="row" flexGrow={1} justifyContent="flex-end" gap={3} style={{ width: '45%' }}>
         <Flex alignItems="baseline" gap={1}>
-          <Typography variant="subtitle1" noWrap>1 {makerAssetInfo.displayName} =</Typography>
+          <Typography variant="subtitle1" noWrap>
+            1 {makerAssetInfo.displayName} =
+          </Typography>
           <TextField
             {...makerValueProps}
             key={`makerExchangeRate-${takerAssetInfo.displayName}`}
@@ -101,10 +101,10 @@ export default function OfferExchangeRate(props: Props) {
           />
         </Flex>
       </Flex>
-      <Flex flexDirection="column" alignItems="center" justifyContent="center" style={{width: '2em'}}>
-        <ImportExport style={{transform: 'rotate(90deg)'}} />
+      <Flex flexDirection="column" alignItems="center" justifyContent="center" style={{ width: '2em' }}>
+        <ImportExport style={{ transform: 'rotate(90deg)' }} />
       </Flex>
-      <Flex flexDirection="row" gap={3} flexGrow={1} style={{width: '45%'}}>
+      <Flex flexDirection="row" gap={3} flexGrow={1} style={{ width: '45%' }}>
         <Flex alignItems="baseline" gap={1}>
           <TextField
             {...takerValueProps}
@@ -125,7 +125,9 @@ export default function OfferExchangeRate(props: Props) {
             }}
             fullWidth={false}
           />
-          <Typography variant="subtitle1" noWrap>= 1 {takerAssetInfo.displayName}</Typography>
+          <Typography variant="subtitle1" noWrap>
+            = 1 {takerAssetInfo.displayName}
+          </Typography>
         </Flex>
       </Flex>
     </Flex>

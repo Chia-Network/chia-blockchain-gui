@@ -1,21 +1,11 @@
 import { Trans } from '@lingui/macro';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-import {
-  Typography,
-  Button,
-  Box,
-  Backdrop,
-  CircularProgress,
-} from '@mui/material';
+import { Typography, Button, Box, Backdrop, CircularProgress } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import {
-  createState,
-  changeCreateWallet,
-  CREATE_RL_WALLET_OPTIONS,
-} from '../../../modules/createWallet';
+import { createState, changeCreateWallet, CREATE_RL_WALLET_OPTIONS } from '../../../modules/createWallet';
 import { create_rl_user_action } from '../../../modules/message';
 import { useStyles } from './WalletCreate';
 
@@ -90,12 +80,7 @@ export function CreateRLUserWallet() {
         </Box>
         <Box display="flex">
           <Box flexGrow={1} className={custom.inputTitleLeft}>
-            <Button
-              onClick={create}
-              className={custom.createButton}
-              variant="contained"
-              color="primary"
-            >
+            <Button onClick={create} className={custom.createButton} variant="contained" color="primary">
               <Trans>Create</Trans>
             </Button>
           </Box>

@@ -1,7 +1,4 @@
-import {
-  useGetLoggedInFingerprintQuery,
-  useLocalStorage,
-} from '@chia/api-react';
+import { useGetLoggedInFingerprintQuery, useLocalStorage } from '@chia/api-react';
 import { useCallback } from 'react';
 
 export default function useHiddenWallet(): {

@@ -1,7 +1,4 @@
-import {
-  Checkbox as MaterialCheckbox,
-  type CheckboxProps as BaseCheckboxProps,
-} from '@mui/material';
+import { Checkbox as MaterialCheckbox, type CheckboxProps as BaseCheckboxProps } from '@mui/material';
 import React, { ChangeEvent, type ReactNode, forwardRef } from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 
@@ -38,9 +35,7 @@ function Checkbox(props: CheckboxProps, ref: any) {
     <Controller
       name={name}
       control={control}
-      render={({ field }) => (
-        <ParseBoolean {...field} value={value} {...rest} ref={ref} />
-      )}
+      render={({ field }) => <ParseBoolean {...field} value={value} {...rest} ref={ref} />}
     />
   );
 }

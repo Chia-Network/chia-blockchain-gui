@@ -35,11 +35,7 @@ export default function FullNodeBlockSearch() {
       <Paper elevation={0} variant="outlined">
         <Flex alignItems="center" gap={1}>
           <Box />
-          <StyledInputBase
-            name="hash"
-            placeholder={t`Search block by header hash`}
-            fullWidth
-          />
+          <StyledInputBase name="hash" placeholder={t`Search block by header hash`} fullWidth />
           <IconButton type="submit" aria-label="search">
             <SearchIcon />
           </IconButton>

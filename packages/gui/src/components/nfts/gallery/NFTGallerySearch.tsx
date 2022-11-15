@@ -49,11 +49,7 @@ export default function Search(props: SearchProps) {
       <SearchIconWrapper>
         <SearchIcon />
       </SearchIconWrapper>
-      <StyledInputBase
-        value={value}
-        onChange={(event) => onChange(event.target.value)}
-        placeholder={placeholder}
-      />
+      <StyledInputBase value={value} onChange={(event) => onChange(event.target.value)} placeholder={placeholder} />
     </SearchBase>
   );
 }

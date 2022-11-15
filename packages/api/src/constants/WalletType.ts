@@ -1,4 +1,3 @@
- 
 enum WalletType {
   STANDARD_WALLET = 0,
   RATE_LIMITED = 1,

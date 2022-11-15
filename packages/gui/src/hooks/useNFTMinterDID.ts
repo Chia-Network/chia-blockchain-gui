@@ -15,11 +15,7 @@ export type UseNFTMinterDIDResult = {
 
 export default function useNFTMinterDID(nftId: string): UseNFTMinterDIDResult {
   const launcherId = launcherIdFromNFTId(nftId);
-  const {
-    data: nft,
-    isLoading,
-    error,
-  } = useGetNFTInfoQuery({ coinId: launcherId ?? '' });
+  const { data: nft, isLoading, error } = useGetNFTInfoQuery({ coinId: launcherId ?? '' });
 
   const [didId, hexDIDId, didName] = useMemo(() => {
     if (!nft) {
@@ -33,10 +29,7 @@ export default function useNFTMinterDID(nftId: string): UseNFTMinterDIDResult {
     const didId = didToDIDId(hexDIDId);
     let didName;
 
-    if (
-      didId ===
-      'did:chia:19qf3g9876t0rkq7tfdkc28cxfy424yzanea29rkzylq89kped9hq3q7wd2'
-    ) {
+    if (didId === 'did:chia:19qf3g9876t0rkq7tfdkc28cxfy424yzanea29rkzylq89kped9hq3q7wd2') {
       didName = 'Chia Network';
     }
 

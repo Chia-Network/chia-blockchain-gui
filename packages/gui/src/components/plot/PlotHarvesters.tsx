@@ -28,13 +28,10 @@ export default function PlotHarvesters() {
   }, [data]);
 
   if (isLoading) {
-    return (
-      <Loading center />
-    );
+    return <Loading center />;
   }
 
   return (
-
     <Flex flexDirection="column" gap={1}>
       <Typography variant="h6">
         <Trans>Harvesters</Trans>

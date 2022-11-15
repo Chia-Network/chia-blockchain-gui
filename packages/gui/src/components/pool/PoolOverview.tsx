@@ -1,9 +1,6 @@
 import { Button, Flex, Suspender } from '@chia/core';
 import { Trans } from '@lingui/macro';
-import {
-  Grid,
-  Typography,
-} from '@mui/material';
+import { Grid, Typography } from '@mui/material';
 import React from 'react';
 import { useNavigate } from 'react-router';
 
@@ -19,8 +16,7 @@ export default function PoolOverview() {
   const { nfts, external, loading } = usePlotNFTs();
   const { unconfirmed } = useUnconfirmedPlotNFTs();
 
-  const hasNFTs =
-    (!!nfts && !!nfts?.length) || !!external?.length || unconfirmed.length;
+  const hasNFTs = (!!nfts && !!nfts?.length) || !!external?.length || unconfirmed.length;
 
   function handleAddPool() {
     navigate('/dashboard/pool/add');
@@ -56,28 +52,16 @@ export default function PoolOverview() {
         <Grid spacing={3} alignItems="stretch" container>
           {unconfirmed.map((unconfirmedPlotNFT) => (
             <Grid key={unconfirmedPlotNFT.transactionId} xs={12} md={6} item>
-              <PlotNFTUnconfirmedCard
-                unconfirmedPlotNFT={unconfirmedPlotNFT}
-              />
+              <PlotNFTUnconfirmedCard unconfirmedPlotNFT={unconfirmedPlotNFT} />
             </Grid>
           ))}
           {nfts?.map((item) => (
-            <Grid
-              key={item.poolState.p2SingletonPuzzleHash}
-              xs={12}
-              md={6}
-              item
-            >
+            <Grid key={item.poolState.p2SingletonPuzzleHash} xs={12} md={6} item>
               <PlotNFTCard nft={item} />
             </Grid>
           ))}
           {external?.map((item) => (
-            <Grid
-              key={item.poolState.p2SingletonPuzzleHash}
-              xs={12}
-              md={6}
-              item
-            >
+            <Grid key={item.poolState.p2SingletonPuzzleHash} xs={12} md={6} item>
               <PlotExternalNFTCard nft={item} />
             </Grid>
           ))}

@@ -1,12 +1,7 @@
 import useCurrentFingerprintSettings from './useCurrentFingerprintSettings';
 
-export default function useGetLocalCatName(
-  assetId?: string,
-  defaultName?: string
-) {
-  const [names, setNames] = useCurrentFingerprintSettings<
-    Record<string, string | undefined>
-  >('names', {});
+export default function useGetLocalCatName(assetId?: string, defaultName?: string) {
+  const [names, setNames] = useCurrentFingerprintSettings<Record<string, string | undefined>>('names', {});
 
   function setName(name: string) {
     if (!assetId) {

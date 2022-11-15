@@ -1,6 +1,4 @@
-import {
-  Dialog, DialogContent,
-} from '@mui/material';
+import { Dialog, DialogContent } from '@mui/material';
 import React, { cloneElement, useContext, Suspense } from 'react';
 
 import Loading from '../Loading';

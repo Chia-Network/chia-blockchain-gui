@@ -7,9 +7,7 @@ export default function usePersistState<T>(defaultValue: T, namespace?: string):
   const persistContext = useContext(PersistContext);
   const update = useUpdate();
 
-  const value = namespace && persistContext
-    ? persistContext.getValue(defaultValue, namespace)
-    : defaultValue;
+  const value = namespace && persistContext ? persistContext.getValue(defaultValue, namespace) : defaultValue;
 
   const setValue = useCallback((value: T) => {
     if (namespace && persistContext) {

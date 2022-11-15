@@ -2,13 +2,7 @@ import { Flex, LayoutDashboardSub } from '@chia/core';
 import { Trans } from '@lingui/macro';
 import { Typography, Tab, Tabs } from '@mui/material';
 import React from 'react';
-import {
-  Routes,
-  Route,
-  matchPath,
-  useLocation,
-  useNavigate,
-} from 'react-router-dom';
+import { Routes, Route, matchPath, useLocation, useNavigate } from 'react-router-dom';
 
 import SettingsDataLayer from './SettingsDataLayer';
 import SettingsGeneral from './SettingsGeneral';
@@ -39,14 +33,10 @@ export default function Settings() {
   };
 
   const activeTab =
-    Object.entries(mapping).find(
-      ([, pattern]) => !!matchPath(pattern, pathname),
-    )?.[0] ?? SettingsTab.GENERAL;
+    Object.entries(mapping).find(([, pattern]) => !!matchPath(pattern, pathname))?.[0] ?? SettingsTab.GENERAL;
 
   function handleChangeTab(newTab: SettingsTab) {
-    const path =
-      SettingsTabsPathMapping[newTab] ??
-      SettingsTabsPathMapping[SettingsTab.GENERAL];
+    const path = SettingsTabsPathMapping[newTab] ?? SettingsTabsPathMapping[SettingsTab.GENERAL];
     navigate(path);
   }
 

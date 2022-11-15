@@ -1,15 +1,6 @@
 import { CopyToClipboard, DialogActions } from '@chia/core';
 import { Trans } from '@lingui/macro';
-import {
-  Box,
-  Button,
-  Grid,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  InputAdornment,
-  TextField,
-} from '@mui/material';
+import { Box, Button, Grid, Dialog, DialogTitle, DialogContent, InputAdornment, TextField } from '@mui/material';
 import React from 'react';
 
 type Props = {
@@ -19,11 +10,7 @@ type Props = {
 };
 
 export default function OfferDataDialog(props: Props) {
-  const {
-    onClose,
-    open,
-    offerData,
-  } = props;
+  const { onClose, open, offerData } = props;
 
   function handleClose() {
     onClose(false);
@@ -67,11 +54,7 @@ export default function OfferDataDialog(props: Props) {
         </Grid>
       </DialogContent>
       <DialogActions>
-        <Button
-          onClick={handleClose}
-          color="primary"
-          variant="outlined"
-        >
+        <Button onClick={handleClose} color="primary" variant="outlined">
           <Trans>OK</Trans>
         </Button>
       </DialogActions>

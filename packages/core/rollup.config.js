@@ -13,13 +13,14 @@ export default {
   plugins: [
     alias({
       entries: [
-        { 
-          find: '@mui/styled-engine', 
-          replacement: '@mui/styled-engine-sc' },
+        {
+          find: '@mui/styled-engine',
+          replacement: '@mui/styled-engine-sc',
+        },
       ],
     }),
 
-    json(), 
+    json(),
 
     externals({
       deps: true,
@@ -32,19 +33,22 @@ export default {
     commonjs(),
 
     // Compile TypeScript/JavaScript files
-    babel({ 
+    babel({
       extensions,
       babelHelpers: 'runtime',
       include: ['src/**/*'],
     }),
   ],
-  output: [{
-    file: pkg.module,
-    format: 'es',
-    sourcemap: true,
-  }, {
-    file: pkg.main,
-    format: 'cjs',
-    sourcemap: true,
-  }],
+  output: [
+    {
+      file: pkg.module,
+      format: 'es',
+      sourcemap: true,
+    },
+    {
+      file: pkg.main,
+      format: 'cjs',
+      sourcemap: true,
+    },
+  ],
 };

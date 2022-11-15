@@ -8,9 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 import useNFTMetadata from '../../hooks/useNFTMetadata';
-import NFTContextualActions, {
-  NFTContextualActionTypes,
-} from './NFTContextualActions';
+import NFTContextualActions, { NFTContextualActionTypes } from './NFTContextualActions';
 import NFTPreview from './NFTPreview';
 
 const StyledCardContent = styled(CardContent)`
@@ -35,12 +33,7 @@ export type NFTCardProps = {
 };
 
 export default function NFTCard(props: NFTCardProps) {
-  const {
-    nft,
-    canExpandDetails = true,
-    availableActions = NFTContextualActionTypes.None,
-    isOffer,
-  } = props;
+  const { nft, canExpandDetails = true, availableActions = NFTContextualActionTypes.None, isOffer } = props;
 
   const navigate = useNavigate();
 
@@ -72,16 +65,11 @@ export default function NFTCard(props: NFTCardProps) {
                 metadataError={error}
               />
             </CardActionArea>
-            <CardActionArea
-              onClick={() => canExpandDetails && handleClick()}
-              component="div"
-            >
+            <CardActionArea onClick={() => canExpandDetails && handleClick()} component="div">
               <StyledCardContent>
                 <Flex justifyContent="space-between" alignItems="center">
                   <Flex gap={1} alignItems="center" minWidth={0}>
-                    <Typography noWrap>
-                      {metadata?.name ?? <Trans>Title Not Available</Trans>}
-                    </Typography>
+                    <Typography noWrap>{metadata?.name ?? <Trans>Title Not Available</Trans>}</Typography>
                   </Flex>
                   {availableActions !== NFTContextualActionTypes.None && (
                     <NFTContextualActions

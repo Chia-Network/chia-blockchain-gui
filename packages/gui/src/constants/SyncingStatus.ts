@@ -1,4 +1,3 @@
- 
 enum SyncingStatus {
   SYNCING = 'SYNCING',
   SYNCED = 'SYNCED',

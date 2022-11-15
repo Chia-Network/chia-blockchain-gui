@@ -1,10 +1,5 @@
 import { Trans, Plural } from '@lingui/macro';
-import {
-  Box,
-  InputAdornment,
-  FormControl,
-  FormHelperText,
-} from '@mui/material';
+import { Box, InputAdornment, FormControl, FormHelperText } from '@mui/material';
 import BigNumber from 'bignumber.js';
 import React, { type ReactNode } from 'react';
 import { useWatch, useFormContext } from 'react-hook-form';
@@ -18,10 +13,7 @@ import TextField, { TextFieldProps } from '../TextField';
 import NumberFormatCustom from './NumberFormatCustom';
 
 export type AmountProps = TextFieldProps & {
-  children?: (props: {
-    mojo: BigNumber;
-    value: string | undefined;
-  }) => ReactNode;
+  children?: (props: { mojo: BigNumber; value: string | undefined }) => ReactNode;
   name?: string;
   symbol?: string; // if set, overrides the currencyCode. empty string is allowed
   showAmountInMojos?: boolean; // if true, shows the mojo amount below the input field
@@ -30,16 +22,7 @@ export type AmountProps = TextFieldProps & {
 };
 
 export default function Amount(props: AmountProps) {
-  const {
-    children,
-    name,
-    symbol,
-    showAmountInMojos,
-    variant,
-    fullWidth,
-    'data-testid': dataTestid,
-    ...rest
-  } = props;
+  const { children, name, symbol, showAmountInMojos, variant, fullWidth, 'data-testid': dataTestid, ...rest } = props;
   const { control } = useFormContext();
   const defaultCurrencyCode = useCurrencyCode();
 
@@ -52,9 +35,7 @@ export default function Amount(props: AmountProps) {
 
   const currencyCode = symbol === undefined ? defaultCurrencyCode : symbol;
   const isChiaCurrency = ['XCH', 'TXCH'].includes(currencyCode);
-  const mojo = isChiaCurrency
-    ? chiaToMojo(correctedValue)
-    : catToMojo(correctedValue);
+  const mojo = isChiaCurrency ? chiaToMojo(correctedValue) : catToMojo(correctedValue);
 
   return (
     <FormControl variant={variant} fullWidth={fullWidth}>
@@ -69,9 +50,7 @@ export default function Amount(props: AmountProps) {
             decimalScale: isChiaCurrency ? 12 : 3,
             'data-testid': dataTestid,
           },
-          endAdornment: (
-            <InputAdornment position="end">{currencyCode}</InputAdornment>
-          ),
+          endAdornment: <InputAdornment position="end">{currencyCode}</InputAdornment>,
         }}
         {...rest}
       />

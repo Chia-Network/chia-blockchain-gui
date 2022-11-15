@@ -11,14 +11,7 @@ type Props = TooltipProps & {
 };
 
 function Tooltip(props: Props, ref: any) {
-  const {
-    copyToClipboard = false,
-    title,
-    maxWidth = 200,
-    disableInteractive,
-    children,
-    ...rest
-  } = props;
+  const { copyToClipboard = false, title, maxWidth = 200, disableInteractive, children, ...rest } = props;
 
   const titleContent = copyToClipboard ? (
     <Flex alignItems="center" gap={1}>
@@ -30,12 +23,7 @@ function Tooltip(props: Props, ref: any) {
   );
 
   return (
-    <BaseTooltip
-      title={titleContent}
-      disableInteractive={!copyToClipboard && disableInteractive}
-      {...rest}
-      ref={ref}
-    >
+    <BaseTooltip title={titleContent} disableInteractive={!copyToClipboard && disableInteractive} {...rest} ref={ref}>
       {Array.isArray(children) ? <span>{children}</span> : children}
     </BaseTooltip>
   );
