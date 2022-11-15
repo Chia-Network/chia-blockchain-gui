@@ -1,9 +1,10 @@
-import React from 'react';
-import { Trans } from '@lingui/macro';
 import { Flex, State, StateTypography, TooltipIcon } from '@chia/core';
+import { Trans } from '@lingui/macro';
 import { Typography } from '@mui/material';
-import type PlotNFT from '../../types/PlotNFT';
+import React from 'react';
+
 import PlotNFTStateEnum from '../../constants/PlotNFTState';
+import type PlotNFT from '../../types/PlotNFT';
 
 type Props = {
   nft: PlotNFT;

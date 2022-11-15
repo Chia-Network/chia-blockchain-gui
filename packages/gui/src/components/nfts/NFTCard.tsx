@@ -1,16 +1,17 @@
-import React from 'react';
-import { Trans } from '@lingui/macro';
-import { useNavigate } from 'react-router-dom';
-import { Card, CardActionArea, CardContent, Typography } from '@mui/material';
-import { IconButton, Flex, Loading } from '@chia/core';
-import { MoreVert } from '@mui/icons-material';
-import styled from 'styled-components';
-import NFTPreview from './NFTPreview';
 import { type NFTInfo } from '@chia/api';
+import { IconButton, Flex, Loading } from '@chia/core';
+import { Trans } from '@lingui/macro';
+import { MoreVert } from '@mui/icons-material';
+import { Card, CardActionArea, CardContent, Typography } from '@mui/material';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+
+import useNFTMetadata from '../../hooks/useNFTMetadata';
 import NFTContextualActions, {
   NFTContextualActionTypes,
 } from './NFTContextualActions';
-import useNFTMetadata from '../../hooks/useNFTMetadata';
+import NFTPreview from './NFTPreview';
 
 const StyledCardContent = styled(CardContent)`
   //padding-top: ${({ theme }) => theme.spacing(1)};

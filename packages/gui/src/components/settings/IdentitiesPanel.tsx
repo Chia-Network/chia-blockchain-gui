@@ -1,12 +1,12 @@
-import React, { useMemo } from 'react';
-import { useNavigate, useParams } from 'react-router';
+import { WalletType } from '@chia/api';
+import { useGetDIDQuery, useGetWalletsQuery } from '@chia/api-react';
 import { CardListItem, Flex, Truncate } from '@chia/core';
 import { Box, Card, CardContent, Typography } from '@mui/material';
-import styled from 'styled-components';
 import { orderBy } from 'lodash';
+import React, { useMemo } from 'react';
+import { useNavigate, useParams } from 'react-router';
+import styled from 'styled-components';
 
-import { useGetDIDQuery, useGetWalletsQuery } from '@chia/api-react';
-import { WalletType } from '@chia/api';
 import { didToDIDId } from '../../util/dids';
 
 const StyledRoot = styled(Box)`
@@ -54,7 +54,7 @@ const StyledCardContent = styled(CardContent)(
 );
 
 function DisplayDid(wallet) {
-  const id = wallet.wallet.id;
+  const {id} = wallet.wallet;
   const { data: did } = useGetDIDQuery({ walletId: id });
 
   if (did) {
@@ -67,9 +67,9 @@ function DisplayDid(wallet) {
         </Truncate>
       </div>
     );
-  } else {
+  } 
     return null;
-  }
+  
 }
 
 export default function IdentitiesPanel() {
@@ -107,7 +107,7 @@ export default function IdentitiesPanel() {
           </StyledCardContent>
         </StyledCard>
       );
-    } else {
+    } 
       const orderedProfiles = orderBy(wallets, ['id'], ['asc']);
 
       return orderedProfiles
@@ -138,7 +138,7 @@ export default function IdentitiesPanel() {
             </CardListItem>
           );
         });
-    }
+    
   }, [wallets, walletId, isLoading]);
 
   return (

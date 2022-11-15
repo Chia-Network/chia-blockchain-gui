@@ -1,13 +1,13 @@
-import React, { useMemo, ReactNode } from 'react';
-import { Trans } from '@lingui/macro';
-import { useNavigate } from 'react-router';
 import { useGetPlotNFTsQuery, usePwSelfPoolMutation, usePwJoinPoolMutation } from '@chia/api-react';
 import { Flex, State, Loading, StateTypography } from '@chia/core';
+import { Trans } from '@lingui/macro';
 import { ChevronRight as ChevronRightIcon } from '@mui/icons-material';
-import { useParams } from 'react-router';
-import PlotNFTSelectPool, { SubmitData } from './select/PlotNFTSelectPool';
-import PlotNFTName from './PlotNFTName';
+import React, { useMemo, ReactNode } from 'react';
+import { useNavigate , useParams } from 'react-router';
+
 import PlotNFTStateEnum from '../../constants/PlotNFTState';
+import PlotNFTName from './PlotNFTName';
+import PlotNFTSelectPool, { SubmitData } from './select/PlotNFTSelectPool';
 
 type Props = {
   headerTag?: ReactNode;
@@ -24,11 +24,9 @@ export default function PlotNFTChangePool(props: Props) {
   }>();
 
   const navigate = useNavigate();
-  const nft = useMemo(() => {
-    return data?.nfts?.find(
+  const nft = useMemo(() => data?.nfts?.find(
       (nft) => nft.poolState.p2SingletonPuzzleHash === plotNFTId,
-    );
-  }, [data?.nfts, plotNFTId]);
+    ), [data?.nfts, plotNFTId]);
 
 
   const state = nft?.poolWalletStatus?.current?.state;
@@ -103,7 +101,7 @@ export default function PlotNFTChangePool(props: Props) {
 
   const defaultValues = {
     self: !poolUrl,
-    poolUrl: poolUrl,
+    poolUrl,
   };
 
   return (

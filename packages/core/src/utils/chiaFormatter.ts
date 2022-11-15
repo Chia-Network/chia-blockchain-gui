@@ -1,10 +1,12 @@
 import BigNumber from 'bignumber.js';
+
 import type Unit from '../constants/Unit';
 import UnitValue from '../constants/UnitValue';
 import bigNumberToLocaleString from './bigNumberToLocaleString';
 
 class Chia {
   private _value: BigNumber;
+
   private _unit: Unit
 
   constructor(value: number | string | BigNumber, unit: Unit) {

@@ -1,5 +1,8 @@
-import React, { useState } from 'react';
-import { Trans } from '@lingui/macro';
+import { type Plot } from '@chia/api';
+import {
+  useGetHarvesterPlotsValidQuery,
+  useGetHarvesterQuery,
+} from '@chia/api-react';
 import {
   Address,
   TableControlled,
@@ -8,16 +11,14 @@ import {
   Tooltip,
   StateColor,
 } from '@chia/core';
+import { Trans } from '@lingui/macro';
 import { Warning as WarningIcon } from '@mui/icons-material';
-import { type Plot } from '@chia/api';
-import {
-  useGetHarvesterPlotsValidQuery,
-  useGetHarvesterQuery,
-} from '@chia/api-react';
-import styled from 'styled-components';
 import { Box, Typography } from '@mui/material';
-import PlotStatus from './PlotStatus';
+import React, { useState } from 'react';
+import styled from 'styled-components';
+
 import PlotAction from './PlotAction';
+import PlotStatus from './PlotStatus';
 
 const StyledWarningIcon = styled(WarningIcon)`
   color: ${StateColor.WARNING};

@@ -1,5 +1,5 @@
-import { sumBy } from 'lodash';
 import type { Point } from '@chia/api';
+import { sumBy } from 'lodash';
 
 function sumPoints(points: Point[]): number {
   return sumBy(points, (point) => point[1]) ?? 0;

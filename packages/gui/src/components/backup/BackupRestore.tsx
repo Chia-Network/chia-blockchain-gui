@@ -1,6 +1,6 @@
-import React, { DragEvent } from 'react';
+import { Button, Flex, Link } from '@chia/core';
 import { Trans } from '@lingui/macro';
-import styled from 'styled-components';
+import { ArrowBackIos as ArrowBackIosIcon } from '@mui/icons-material';
 import {
   Box,
   Paper,
@@ -9,17 +9,12 @@ import {
   Container,
 } from '@mui/material';
 import moment from 'moment';
-import { ArrowBackIos as ArrowBackIosIcon } from '@mui/icons-material';
+import React, { DragEvent } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
-import { Button, Flex, Link } from '@chia/core';
-import {
-  add_new_key_action,
-  add_and_restore_from_backup,
-  login_and_skip_action,
-  get_backup_info_action,
-  log_in_and_import_backup_action,
-} from '../../modules/message';
+import styled from 'styled-components';
+
+import myStyle from '../../constants/style';
 import {
   changeBackupView,
   presentMain,
@@ -27,9 +22,15 @@ import {
   setBackupInfo,
   selectFilePath,
 } from '../../modules/backup';
+import {
+  add_new_key_action,
+  add_and_restore_from_backup,
+  login_and_skip_action,
+  get_backup_info_action,
+  log_in_and_import_backup_action,
+} from '../../modules/message';
 import type { RootState } from '../../modules/rootReducer';
 import Wallet from '../../types/Wallet';
-import myStyle from '../../constants/style';
 import LayoutHero from '../layout/LayoutHero';
 
 const StyledDropPaper = styled(Paper)`

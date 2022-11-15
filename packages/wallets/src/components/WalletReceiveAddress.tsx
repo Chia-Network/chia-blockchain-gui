@@ -1,5 +1,7 @@
-import React from 'react';
-import { Trans } from '@lingui/macro';
+import {
+  useGetCurrentAddressQuery,
+  useGetNextAddressMutation,
+} from '@chia/api-react';
 import {
   ButtonLoading,
   CopyToClipboard,
@@ -8,10 +10,7 @@ import {
   Flex,
   TooltipIcon,
 } from '@chia/core';
-import {
-  useGetCurrentAddressQuery,
-  useGetNextAddressMutation,
-} from '@chia/api-react';
+import { Trans } from '@lingui/macro';
 import {
   Box,
   TextField,
@@ -19,6 +18,7 @@ import {
   Grid,
   Typography,
 } from '@mui/material';
+import React from 'react';
 
 export type WalletReceiveAddressProps = {
   walletId: number;

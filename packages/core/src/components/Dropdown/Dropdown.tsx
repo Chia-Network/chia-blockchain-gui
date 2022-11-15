@@ -1,8 +1,8 @@
-import React, { useMemo, useState, ReactNode } from 'react';
 import { Trans } from '@lingui/macro';
-import { useToggle } from 'react-use';
-import { Button, Menu, MenuItem, MenuProps } from '@mui/material';
 import { ExpandMore } from '@mui/icons-material';
+import { Button, Menu, MenuItem, MenuProps } from '@mui/material';
+import React, { useMemo, useState, ReactNode } from 'react';
+import { useToggle } from 'react-use';
 
 type DropdownOption = {
   value: string | number;

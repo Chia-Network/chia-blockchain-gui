@@ -1,8 +1,9 @@
-import React, { useContext, useMemo } from 'react';
 import { Trans, t } from '@lingui/macro';
-import { useToggle } from 'react-use';
-import { Divider, Menu, MenuItem } from '@mui/material';
 import { Translate, ExpandMore } from '@mui/icons-material';
+import { Divider, Menu, MenuItem } from '@mui/material';
+import React, { useContext, useMemo } from 'react';
+import { useToggle } from 'react-use';
+
 import useLocale from '../../hooks/useLocale';
 import useOpenExternal from '../../hooks/useOpenExternal';
 import Button from '../Button';

@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
-import { Trans } from '@lingui/macro';
 import { useGetPrivateKeyQuery, useGetKeyQuery } from '@chia/api-react';
+import { Trans } from '@lingui/macro';
 import { Box, Button, Grid, Typography } from '@mui/material';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+
 import AlertDialog from '../../components/AlertDialog';
-import Loading from '../../components/Loading';
 import Flex from '../../components/Flex';
+import Loading from '../../components/Loading';
 
 const StyledTypographyDD = styled(Typography)`
   word-break: break-all;
@@ -181,7 +182,7 @@ export default function SelectKeyDetailDialog(
           </Flex>
         </Flex>
 
-        <Grid item></Grid>
+        <Grid item />
       </Flex>
     </AlertDialog>
   );

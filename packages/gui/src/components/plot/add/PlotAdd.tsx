@@ -1,8 +1,9 @@
-import React from 'react';
 import { useGetLoggedInFingerprintQuery, useGetPlottersQuery } from '@chia/api-react';
 import { useCurrencyCode, Suspender } from '@chia/core';
-import PlotAddConfig from '../../../types/PlotAdd';
+import React from 'react';
+
 import useUnconfirmedPlotNFTs from '../../../hooks/useUnconfirmedPlotNFTs';
+import PlotAddConfig from '../../../types/PlotAdd';
 import PlotAddForm from './PlotAddForm';
 
 type FormData = PlotAddConfig & {

@@ -1,9 +1,5 @@
-import React, { useState } from 'react';
-import BigNumber from 'bignumber.js';
-import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
-import { useLocalStorage } from '@rehooks/local-storage';
-import { Trans, t } from '@lingui/macro';
+import { WalletType } from '@chia/api';
+import { useCreateOfferForIdsMutation } from '@chia/api-react';
 import {
   Back,
   Button,
@@ -13,15 +9,19 @@ import {
   Form,
   useOpenDialog,
   useShowError,
-} from '@chia/core';
-import { useCreateOfferForIdsMutation } from '@chia/api-react';
+ chiaToMojo, catToMojo } from '@chia/core';
+import { Trans, t } from '@lingui/macro';
 import { Grid } from '@mui/material';
-import type OfferEditorRowData from './OfferEditorRowData';
-import { WalletType } from '@chia/api';
+import { useLocalStorage } from '@rehooks/local-storage';
+import BigNumber from 'bignumber.js';
+import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
+
 import OfferEditorConditionsPanel from './OfferEditorConditionsPanel';
 import OfferEditorConfirmationDialog from './OfferEditorConfirmationDialog';
+import type OfferEditorRowData from './OfferEditorRowData';
 import OfferLocalStorageKeys from './OfferLocalStorage';
-import { chiaToMojo, catToMojo } from '@chia/core';
 
 /* ========================================================================== */
 /*                                Offer Editor                                */
@@ -104,7 +104,7 @@ function OfferEditor(props: OfferEditorProps) {
     let missingAssetSelection = false;
     let missingAmount = false;
     let amountExceedsSpendableBalance = false;
-    let feeInMojos = chiaToMojo(formData.fee ?? 0);
+    const feeInMojos = chiaToMojo(formData.fee ?? 0);
 
     formData.makerRows.forEach((row: OfferEditorRowData) => {
       updateOffer(offer, row, true);

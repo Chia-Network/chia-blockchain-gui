@@ -1,9 +1,9 @@
-import Client from '../Client';
-import Service from './Service';
-import type { Options } from './Service';
 import type FarmingInfo from '../@types/FarmingInfo';
+import Client from '../Client';
 import type Message from '../Message';
 import ServiceName from '../constants/ServiceName';
+import Service from './Service';
+import type { Options } from './Service';
 
 const FARMING_INFO_MAX_ITEMS = 1000;
 export default class Farmer extends Service {

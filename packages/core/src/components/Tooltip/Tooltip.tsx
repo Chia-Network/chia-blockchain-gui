@@ -1,7 +1,8 @@
-import React, { forwardRef } from 'react';
 import { Box, Tooltip as BaseTooltip, TooltipProps } from '@mui/material';
-import Flex from '../Flex';
+import React, { forwardRef } from 'react';
+
 import CopyToClipboard from '../CopyToClipboard';
+import Flex from '../Flex';
 
 type Props = TooltipProps & {
   copyToClipboard?: boolean;

@@ -1,9 +1,7 @@
-import React, { useMemo } from 'react';
-import { Trans, t } from '@lingui/macro';
 import { WalletType } from '@chia/api';
-import { useFormContext, useWatch } from 'react-hook-form';
 import type { CATToken, Wallet } from '@chia/api';
 import { useGetCatListQuery, useGetWalletsQuery } from '@chia/api-react';
+import { Trans, t } from '@lingui/macro';
 import {
   FormControl,
   InputLabel,
@@ -11,6 +9,9 @@ import {
   Select,
   Typography,
 } from '@mui/material';
+import React, { useMemo } from 'react';
+import { useFormContext, useWatch } from 'react-hook-form';
+
 import useOfferBuilderContext from '../../hooks/useOfferBuilderContext';
 
 export type OfferBuilderTokenSelectorProps = {

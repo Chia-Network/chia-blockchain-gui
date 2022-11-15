@@ -1,6 +1,3 @@
-import React from 'react';
-import BigNumber from 'bignumber.js';
-import { Trans, t } from '@lingui/macro';
 import { OfferSummaryRecord } from '@chia/api';
 import { useTakeOfferMutation } from '@chia/api-react';
 import {
@@ -9,10 +6,14 @@ import {
   useOpenDialog,
   useShowError,
 } from '@chia/core';
-import useAssetIdName from './useAssetIdName';
+import { Trans, t } from '@lingui/macro';
+import BigNumber from 'bignumber.js';
+import React from 'react';
+
 import OfferAcceptConfirmationDialog from '../components/offers/OfferAcceptConfirmationDialog';
 import OfferAsset from '../components/offers/OfferAsset';
 import { offerAssetTypeForAssetId } from '../components/offers/utils';
+import useAssetIdName from './useAssetIdName';
 
 export type AcceptOfferHook = (
   offerData: string,

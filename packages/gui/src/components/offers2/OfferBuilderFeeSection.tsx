@@ -1,13 +1,14 @@
-import React from 'react';
-import { Trans } from '@lingui/macro';
 import { Loading } from '@chia/core';
 import { Fees } from '@chia/icons';
 import { useWallet } from '@chia/wallets';
+import { Trans } from '@lingui/macro';
+import React from 'react';
 import { useFieldArray } from 'react-hook-form';
+
+import useOfferBuilderContext from '../../hooks/useOfferBuilderContext';
+import useStandardWallet from '../../hooks/useStandardWallet';
 import OfferBuilderSection from './OfferBuilderSection';
 import OfferBuilderValue from './OfferBuilderValue';
-import useStandardWallet from '../../hooks/useStandardWallet';
-import useOfferBuilderContext from '../../hooks/useOfferBuilderContext';
 import OfferBuilderWalletBalance from './OfferBuilderWalletBalance';
 
 export type OfferBuilderFeeSectionProps = {

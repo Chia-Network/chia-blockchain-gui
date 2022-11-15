@@ -1,5 +1,5 @@
-import Wallet from '../services/Wallet';
 import { CalculateRoyaltiesRequest } from '../@types';
+import Wallet from '../services/Wallet';
 
 export default class NFTWallet extends Wallet {
   async getNfts(walletId: number) {

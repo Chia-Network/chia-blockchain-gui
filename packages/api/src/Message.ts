@@ -1,17 +1,23 @@
 import { randomBytes } from 'crypto-browserify';
 import JSONbig from 'json-bigint';
+
 import type MessageInterface from './@types/MessageInterface';
 import ServiceName from './constants/ServiceName';
 import toCamelCase from './utils/toCamelCase';
-import toSnakeCase from './utils/toSnakeCase';
 import toSafeNumber from './utils/toSafeNumber';
+import toSnakeCase from './utils/toSnakeCase';
 
 export default class Message implements MessageInterface {
   command: string;
+
   data: Object;
+
   origin: ServiceName;
+
   destination: ServiceName;
+
   ack: boolean;
+
   requestId: string;
 
   constructor(options: MessageInterface) {

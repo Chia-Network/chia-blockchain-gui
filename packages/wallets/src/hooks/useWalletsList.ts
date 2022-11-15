@@ -1,14 +1,15 @@
-import { useMemo } from 'react';
 import { WalletType } from '@chia/api';
 import type { Wallet } from '@chia/api';
-import { useShowError } from '@chia/core';
-import { orderBy } from 'lodash';
 import {
   useGetWalletsQuery,
   useGetStrayCatsQuery,
   useGetCatListQuery,
   useAddCATTokenMutation,
 } from '@chia/api-react';
+import { useShowError } from '@chia/core';
+import { orderBy } from 'lodash';
+import { useMemo } from 'react';
+
 import useHiddenWallet from './useHiddenWallet';
 
 export type ListItem = {

@@ -1,20 +1,21 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { Trans } from '@lingui/macro';
 import {
   useGetWalletsQuery,
   useCheckOfferValidityMutation,
 } from '@chia/api-react';
 import { Flex, ButtonLoading, Link, Loading, useShowError } from '@chia/core';
+import { Trans } from '@lingui/macro';
 import { Alert, Grid } from '@mui/material';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+
+import type OfferBuilderData from '../../@types/OfferBuilderData';
 import type OfferSummary from '../../@types/OfferSummary';
-import offerToOfferBuilderData from '../../util/offerToOfferBuilderData';
+import useAcceptOfferHook from '../../hooks/useAcceptOfferHook';
 import getUnknownCATs from '../../util/getUnknownCATs';
+import offerToOfferBuilderData from '../../util/offerToOfferBuilderData';
+import OfferState from '../offers/OfferState';
 import OfferBuilder from './OfferBuilder';
 import OfferNavigationHeader from './OfferNavigationHeader';
-import type OfferBuilderData from '../../@types/OfferBuilderData';
-import useAcceptOfferHook from '../../hooks/useAcceptOfferHook';
-import OfferState from '../offers/OfferState';
 
 export type OfferBuilderViewerProps = {
   offerData: string;

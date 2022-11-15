@@ -1,6 +1,7 @@
-import { useMemo } from 'react';
-import { useLocalStorage, writeStorage } from '@rehooks/local-storage';
 import { useGetLoggedInFingerprintQuery } from '@chia/api-react';
+import { useLocalStorage, writeStorage } from '@rehooks/local-storage';
+import { useMemo } from 'react';
+
 import UnconfirmedPlotNFT from '../types/UnconfirmedPlotNFT';
 
 const LOCAL_STORAGE_KEY = 'unconfirmedPlotNFTsV2';
@@ -17,9 +18,7 @@ export default function useUnconfirmedPlotNFTs(): {
     [],
   );
 
-  const currentUnconfirmed = useMemo(() => {
-    return unconfirmed.filter(item => item.fingerprint === fingerprint);
-  }, [fingerprint, unconfirmed]);
+  const currentUnconfirmed = useMemo(() => unconfirmed.filter(item => item.fingerprint === fingerprint), [fingerprint, unconfirmed]);
 
   function handleAdd(item: Omit<UnconfirmedPlotNFT, 'fingerprint'>) {
     if (!fingerprint) {

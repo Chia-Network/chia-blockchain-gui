@@ -1,14 +1,15 @@
-import React from 'react';
-import { Trans } from '@lingui/macro';
-import { AdvancedOptions, Flex, LayoutDashboardSub, Loading } from '@chia/core';
 import { useGetHarvesterConnectionsQuery, useGetTotalHarvestersSummaryQuery } from '@chia/api-react';
-import FarmHeader from './FarmHeader';
-import FarmLatestBlockChallenges from './FarmLatestBlockChallenges';
+import { AdvancedOptions, Flex, LayoutDashboardSub, Loading } from '@chia/core';
+import { Trans } from '@lingui/macro';
+import React from 'react';
+
 import FarmFullNodeConnections from './FarmFullNodeConnections';
-import FarmYourHarvesterNetwork from './FarmYourHarvesterNetwork';
-import FarmLastAttemptedProof from './FarmLastAttemptedProof';
-import FarmCards from './card/FarmCards';
+import FarmHeader from './FarmHeader';
 import FarmHero from './FarmHero';
+import FarmLastAttemptedProof from './FarmLastAttemptedProof';
+import FarmLatestBlockChallenges from './FarmLatestBlockChallenges';
+import FarmYourHarvesterNetwork from './FarmYourHarvesterNetwork';
+import FarmCards from './card/FarmCards';
 
 export default function Farm() {
   const { hasPlots, initialized, isLoading } = useGetTotalHarvestersSummaryQuery();

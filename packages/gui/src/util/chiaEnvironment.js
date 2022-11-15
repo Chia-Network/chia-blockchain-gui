@@ -1,10 +1,10 @@
-const path = require('path');
 const child_process = require('child_process');
 const fs = require('fs');
+const path = require('path');
 
-/*************************************************************
+/** ***********************************************************
  * py process
- *************************************************************/
+ ************************************************************ */
 
 const PY_MAC_DIST_FOLDER = '../../../app.asar.unpacked/daemon';
 const PY_WIN_DIST_FOLDER = '../../../app.asar.unpacked/daemon';
@@ -29,14 +29,14 @@ const guessPackaged = () => {
 
 const getScriptPath = (dist_file) => {
   if (!guessPackaged()) {
-    return path.join(PY_FOLDER, PY_MODULE + '.py');
+    return path.join(PY_FOLDER, `${PY_MODULE  }.py`);
   }
   return getExecutablePath(dist_file);
 };
 
 const getExecutablePath = (dist_file) => {
   if (process.platform === 'win32') {
-    return path.join(__dirname, PY_WIN_DIST_FOLDER, dist_file + '.exe');
+    return path.join(__dirname, PY_WIN_DIST_FOLDER, `${dist_file  }.exe`);
   }
   return path.join(__dirname, PY_MAC_DIST_FOLDER, dist_file);
 };
@@ -68,10 +68,10 @@ const getChiaVersion = () => {
 };
 
 const startChiaDaemon = () => {
-  let script = getScriptPath(PY_DIST_FILE);
-  let processOptions = {};
-  //processOptions.detached = true;
-  //processOptions.stdio = "ignore";
+  const script = getScriptPath(PY_DIST_FILE);
+  const processOptions = {};
+  // processOptions.detached = true;
+  // processOptions.stdio = "ignore";
   pyProc = null;
   if (guessPackaged()) {
     try {
@@ -80,11 +80,11 @@ const startChiaDaemon = () => {
       pyProc = new Process(script, ["--wait-for-unlock"], processOptions);
     } catch (e) {
       console.log('Running python executable: Error: ');
-      console.log('Script ' + script);
+      console.log(`Script ${  script}`);
     }
   } else {
     console.log('Running python script');
-    console.log('Script ' + script);
+    console.log(`Script ${  script}`);
 
     const Process = child_process.spawn;
     pyProc = new Process('python', [script, "--wait-for-unlock"], processOptions);
@@ -92,18 +92,18 @@ const startChiaDaemon = () => {
   if (pyProc != null) {
     pyProc.stdout.setEncoding('utf8');
 
-    pyProc.stdout.on('data', function (data) {
+    pyProc.stdout.on('data', (data) => {
       if (!have_cert) {
         process.stdout.write('No cert\n');
         // listen for ssl path message
         try {
-          let str_arr = data.toString().split('\n');
-          for (var i = 0; i < str_arr.length; i++) {
-            let str = str_arr[i];
+          const str_arr = data.toString().split('\n');
+          for (let i = 0; i < str_arr.length; i++) {
+            const str = str_arr[i];
             try {
-              let json = JSON.parse(str);
-              global.cert_path = json['cert'];
-              global.key_path = json['key'];
+              const json = JSON.parse(str);
+              global.cert_path = json.cert;
+              global.key_path = json.key;
               if (cert_path && key_path) {
                 have_cert = true;
                 process.stdout.write('Have cert\n');
@@ -118,19 +118,19 @@ const startChiaDaemon = () => {
     });
 
     pyProc.stderr.setEncoding('utf8');
-    pyProc.stderr.on('data', function (data) {
-      //Here is where the error output goes
-      process.stdout.write('stderr: ' + data.toString());
+    pyProc.stderr.on('data', (data) => {
+      // Here is where the error output goes
+      process.stdout.write(`stderr: ${  data.toString()}`);
     });
 
-    pyProc.on('close', function (code) {
-      //Here you can get the exit code of the script
-      console.log('closing code: ' + code);
+    pyProc.on('close', (code) => {
+      // Here you can get the exit code of the script
+      console.log(`closing code: ${  code}`);
     });
 
     console.log('child process success');
   }
-  //pyProc.unref();
+  // pyProc.unref();
 };
 
 module.exports = {

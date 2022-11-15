@@ -1,4 +1,12 @@
+import { TransactionType, WalletType } from '@chia/api';
+import type { Transaction } from '@chia/api';
+import { useGetWalletBalanceQuery } from '@chia/api-react';
+import { mojoToChia, mojoToCAT, blockHeightToTimestamp } from '@chia/core';
+import BigNumber from 'bignumber.js';
+import { orderBy, groupBy, map } from 'lodash';
 import React, { ReactNode } from 'react';
+import { useMeasure } from 'react-use';
+import styled from 'styled-components';
 import {
   VictoryChart,
   VictoryAxis,
@@ -6,14 +14,7 @@ import {
   VictoryTooltip,
   VictoryVoronoiContainer,
 } from 'victory';
-import BigNumber from 'bignumber.js';
-import { orderBy, groupBy, map } from 'lodash';
-import { useMeasure } from 'react-use';
-import styled from 'styled-components';
-import { useGetWalletBalanceQuery } from '@chia/api-react';
-import { TransactionType, WalletType } from '@chia/api';
-import type { Transaction } from '@chia/api';
-import { mojoToChia, mojoToCAT, blockHeightToTimestamp } from '@chia/core';
+
 import useWalletTransactions from '../hooks/useWalletTransactions';
 import WalletGraphTooltip from './WalletGraphTooltip';
 
@@ -134,7 +135,7 @@ function prepareGraphPoints(
   data.forEach((item) => {
     const { timestamp, value } = item;
 
-    start = start - value.toNumber();
+    start -= value.toNumber();
 
     const isAlreadyUsed = points.some((point) => point.x === timestamp);
     if (isAlreadyUsed) {
@@ -224,7 +225,7 @@ export default function WalletGraph(props: WalletGraphProps) {
       >
         <VictoryArea
           data={data}
-          interpolation={'monotoneX'}
+          interpolation="monotoneX"
           style={{
             data: {
               stroke: '#5DAA62',

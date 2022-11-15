@@ -1,12 +1,14 @@
 import EventEmitter from 'events';
+
 import debug from 'debug';
-import ServiceName from './constants/ServiceName';
+
 import Message from './Message';
+import ConnectionState from './constants/ConnectionState';
+import ServiceName from './constants/ServiceName';
 import Daemon from './services/Daemon';
-import sleep from './utils/sleep';
 import type Service from './services/Service';
 import ErrorData from './utils/ErrorData';
-import ConnectionState from './constants/ConnectionState';
+import sleep from './utils/sleep';
 
 const log = debug('chia-api:client');
 
@@ -23,9 +25,11 @@ type Options = {
 
 export default class Client extends EventEmitter {
   private options: Required<Options>;
+
   private ws: any;
 
   private connected = false;
+
   private requests: Map<
     string,
     {
@@ -35,14 +39,19 @@ export default class Client extends EventEmitter {
   > = new Map();
 
   private services: Set<ServiceName> = new Set();
+
   private started: Set<ServiceName> = new Set();
+
   private connectedPromise: Promise<void> | null = null;
 
   private daemon: Daemon;
 
   private closed = false;
+
   private state: ConnectionState = ConnectionState.DISCONNECTED;
+
   private reconnectAttempt = 0;
+
   private startingService?: ServiceName;
 
   constructor(options: Options) {
@@ -230,9 +239,7 @@ export default class Client extends EventEmitter {
     const services = Array.from(this.services);
 
     await Promise.all(
-      services.map(async (serviceName) => {
-        return this.startService(serviceName);
-      })
+      services.map(async (serviceName) => this.startService(serviceName))
     );
   }
 
@@ -308,7 +315,7 @@ export default class Client extends EventEmitter {
     if (this.connectedPromiseResponse) {
       await sleep(1000);
       this.connect(true);
-      return;
+      
       // this.connectedPromiseResponse.reject(error);
       // this.connectedPromiseResponse = null;
     }
@@ -419,9 +426,7 @@ export default class Client extends EventEmitter {
     }
 
     await Promise.all(
-      Array.from(this.started).map(async (serviceName) => {
-        return await this.stopService(serviceName);
-      })
+      Array.from(this.started).map(async (serviceName) => this.stopService(serviceName))
     );
 
     await this.daemon.exit();

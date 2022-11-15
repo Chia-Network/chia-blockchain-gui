@@ -1,6 +1,3 @@
-import { uniq } from 'lodash';
-import React, { ReactNode, useMemo } from 'react';
-import { useWatch } from 'react-hook-form';
 import {
   fungibleAssetFromAssetIdAndAmount,
   royaltyAssetFromNFTInfo,
@@ -12,9 +9,13 @@ import {
   useGetWalletsQuery,
 } from '@chia/api-react';
 import { catToMojo, chiaToMojo } from '@chia/core';
-import OfferBuilderContext from './OfferBuilderContext';
+import { uniq } from 'lodash';
+import React, { ReactNode, useMemo } from 'react';
+import { useWatch } from 'react-hook-form';
+
 import getUnknownCATs from '../../util/getUnknownCATs';
 import OfferState from '../offers/OfferState';
+import OfferBuilderContext from './OfferBuilderContext';
 
 export type OfferBuilderProviderProps = {
   children: ReactNode;

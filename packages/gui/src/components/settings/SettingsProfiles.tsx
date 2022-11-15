@@ -1,15 +1,16 @@
-import React, { useEffect, useMemo } from 'react';
-import { Trans } from '@lingui/macro';
-import { IconButton, Typography } from '@mui/material';
-import { Flex } from '@chia/core';
-import { Route, Routes, useNavigate } from 'react-router-dom';
-import IdentitiesPanel from './IdentitiesPanel';
-import { LayoutDashboardSub } from '@chia/core';
-import ProfileView from './ProfileView';
-import ProfileAdd from './ProfileAdd';
-import { Add } from '@mui/icons-material';
-import { useGetWalletsQuery } from '@chia/api-react';
 import { WalletType } from '@chia/api';
+import { useGetWalletsQuery } from '@chia/api-react';
+import { Flex , LayoutDashboardSub } from '@chia/core';
+import { Trans } from '@lingui/macro';
+import { Add } from '@mui/icons-material';
+import { IconButton, Typography } from '@mui/material';
+import React, { useEffect, useMemo } from 'react';
+import { Route, Routes, useNavigate } from 'react-router-dom';
+
+import IdentitiesPanel from './IdentitiesPanel';
+import ProfileAdd from './ProfileAdd';
+import ProfileView from './ProfileView';
+
 
 export default function SettingsProfiles() {
   const navigate = useNavigate();

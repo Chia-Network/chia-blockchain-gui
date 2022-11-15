@@ -1,10 +1,11 @@
-import React, { useMemo } from 'react';
-import { useFormContext } from 'react-hook-form';
 import { Wallet, WalletType, type CATToken } from '@chia/api';
 import { useGetCatListQuery, useGetWalletsQuery } from '@chia/api-react';
+import { Select, useCurrencyCode } from '@chia/core';
 import { Trans } from '@lingui/macro';
 import { FormControl, InputLabel, MenuItem } from '@mui/material';
-import { Select, useCurrencyCode } from '@chia/core';
+import React, { useMemo } from 'react';
+import { useFormContext } from 'react-hook-form';
+
 import type OfferEditorRowData from './OfferEditorRowData';
 
 type WalletOfferAssetSelection = {
@@ -161,7 +162,7 @@ function OfferAssetSelector(props: OfferAssetSelectorProps) {
       </InputLabel>
       <Select name={name} id={id} defaultValue={defaultValue || ''}>
         {showAddWalletMessage === true && (
-          <MenuItem disabled={true} value={-1} key={-1} onClick={() => {}}>
+          <MenuItem disabled value={-1} key={-1} onClick={() => {}}>
             <Trans>Add CAT wallets to have more options</Trans>
           </MenuItem>
         )}

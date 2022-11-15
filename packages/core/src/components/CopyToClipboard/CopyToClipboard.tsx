@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
 import { Trans } from '@lingui/macro';
-import { useCopyToClipboard } from 'react-use';
-import { Tooltip, IconButton } from '@mui/material';
 import { Assignment as AssignmentIcon } from '@mui/icons-material';
+import { Tooltip, IconButton } from '@mui/material';
+import { styled } from '@mui/system';
+import React, { useState } from 'react';
+import { useCopyToClipboard } from 'react-use';
 // @ts-ignore
 import { useTimeout } from 'react-use-timeout';
-import { styled } from '@mui/system';
 
 const StyledAssignmentIcon = styled(({ invertColor, ...rest }) => (
   <AssignmentIcon {...rest} />

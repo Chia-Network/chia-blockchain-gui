@@ -1,4 +1,11 @@
-import React, { useEffect, useState, KeyboardEvent } from 'react';
+import { PassphrasePromptReason } from '@chia/api';
+import { useUnlockKeyringMutation, useGetKeyringStatusQuery } from '@chia/api-react';
+import { Button, Flex, TooltipIcon, useShowError, Suspender, ButtonLoading } from '@chia/core';
+import { Trans, t } from '@lingui/macro';
+import {
+  KeyboardCapslock as KeyboardCapslockIcon,
+  Visibility as VisibilityIcon,
+} from '@mui/icons-material';
 import {
   Dialog,
   DialogTitle,
@@ -9,14 +16,7 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
-import { Trans, t } from '@lingui/macro';
-import {
-  KeyboardCapslock as KeyboardCapslockIcon,
-  Visibility as VisibilityIcon,
-} from '@mui/icons-material';
-import { PassphrasePromptReason } from '@chia/api';
-import { useUnlockKeyringMutation, useGetKeyringStatusQuery } from '@chia/api-react';
-import { Button, Flex, TooltipIcon, useShowError, Suspender, ButtonLoading } from '@chia/core';
+import React, { useEffect, useState, KeyboardEvent } from 'react';
 
 type Props = {
   reason: PassphrasePromptReason;
@@ -121,10 +121,10 @@ export default function AppPassPrompt(props: Props) {
         <Dialog
           onKeyDown={handleKeyDown}
           onKeyUp={handleKeyUp}
-          open={true}
+          open
           aria-labelledby="form-dialog-title"
-          fullWidth={true}
-          maxWidth = {'xs'}
+          fullWidth
+          maxWidth = "xs"
         >
           <DialogTitle id="form-dialog-title">{dialogTitle}</DialogTitle>
           <DialogContent>

@@ -1,7 +1,7 @@
-import type SpendBundle from '../types/SpendBundle';
-import type Coin from '../types/Coin';
-import type Transaction from '../types/Transaction';
 import type TransactionType from '../constants/TransactionType';
+import type Coin from '../types/Coin';
+import type SpendBundle from '../types/SpendBundle';
+import type Transaction from '../types/Transaction';
 
 export default function createTransaction(
   confirmed_at_height: number,

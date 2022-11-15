@@ -1,6 +1,6 @@
-import React, { useState, ReactNode } from 'react';
 import { Card, Flex, Loading } from '@chia/core';
 import { Typography } from '@mui/material';
+import React, { useState, ReactNode } from 'react';
 import styled from 'styled-components';
 
 const StyledCardBody = styled(Flex)`

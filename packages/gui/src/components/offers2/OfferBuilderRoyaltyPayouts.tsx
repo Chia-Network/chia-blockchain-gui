@@ -1,8 +1,8 @@
-import React from 'react';
-import { Trans } from '@lingui/macro';
 import { RoyaltyCalculationFungibleAssetPayout } from '@chia/api';
 import { CopyToClipboard, Flex } from '@chia/core';
+import { Trans } from '@lingui/macro';
 import { Box, Divider } from '@mui/material';
+import React from 'react';
 import styled from 'styled-components';
 
 const StyledTitle = styled(Box)`

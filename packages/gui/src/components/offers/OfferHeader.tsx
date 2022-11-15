@@ -1,7 +1,7 @@
-import React from 'react';
-import { Trans } from '@lingui/macro';
 import { Flex, Link, useColorModeValue } from '@chia/core';
+import { Trans } from '@lingui/macro';
 import { Typography } from '@mui/material';
+import React from 'react';
 import styled from 'styled-components';
 
 /* ========================================================================== */
@@ -30,7 +30,7 @@ type OfferHeaderProps = {
 
 export default function OfferHeader(props: OfferHeaderProps) {
   const { isMyOffer, isInvalid, isComplete } = props;
-  let headerElement: React.ReactElement | undefined = undefined;
+  let headerElement: React.ReactElement | undefined;
 
   if (isMyOffer) {
     headerElement = (

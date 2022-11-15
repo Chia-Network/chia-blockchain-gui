@@ -1,16 +1,17 @@
-import React from 'react';
+import { useGetWalletsQuery } from '@chia/api-react';
+import { Flex, Loading } from '@chia/core';
 import { Trans } from '@lingui/macro';
+import { Eco as HomeWorkIcon, Add as AddIcon } from '@mui/icons-material';
 import {
   Grid, Typography,
 } from '@mui/material';
-import { useGetWalletsQuery } from '@chia/api-react';
-import { Flex, Loading } from '@chia/core';
+import React from 'react';
 import { useNavigate } from 'react-router';
-import { Eco as HomeWorkIcon, Add as AddIcon } from '@mui/icons-material';
-import Wallet from '../../types/Wallet';
-import WalletCreateCard from './create/WalletCreateCard';
+
 import WalletName from '../../constants/WalletName';
 import useTrans from '../../hooks/useTrans';
+import Wallet from '../../types/Wallet';
+import WalletCreateCard from './create/WalletCreateCard';
 
 export default function WalletsList() {
   const navigate = useNavigate();

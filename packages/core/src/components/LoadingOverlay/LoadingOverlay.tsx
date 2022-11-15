@@ -1,6 +1,7 @@
+import { Box } from '@mui/material';
 import React, { ReactNode } from 'react';
 import styled from 'styled-components';
-import { Box } from '@mui/material';
+
 import Loading from '../Loading';
 
 const StyledLoadingContainer = styled(Box)`

@@ -1,9 +1,6 @@
-import React, { useMemo, useState } from 'react';
-import { Trans } from '@lingui/macro';
-import { useForm } from 'react-hook-form';
-import styled from 'styled-components';
-import { Button, Flex, Form, TextField, Loading } from '@chia/core';
 import { useSetRewardTargetsMutation, useGetRewardTargetsQuery } from '@chia/api-react';
+import { Button, Flex, Form, TextField, Loading } from '@chia/core';
+import { Trans } from '@lingui/macro';
 import {
   Alert,
   Dialog,
@@ -13,6 +10,9 @@ import {
   Typography,
 } from '@mui/material';
 import { bech32m } from 'bech32';
+import React, { useMemo, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import styled from 'styled-components';
 
 const StyledTextField = styled(TextField)`
   min-width: 640px;
@@ -43,9 +43,7 @@ export default function FarmManageFarmingRewards(props: Props) {
     },
   });
 
-  const showWarning = useMemo(() => {
-    return !data?.haveFarmerSk || !data?.havePoolSk;
-  }, [data?.haveFarmerSk, data?.havePoolSk]);
+  const showWarning = useMemo(() => !data?.haveFarmerSk || !data?.havePoolSk, [data?.haveFarmerSk, data?.havePoolSk]);
 
   const {
     register,

@@ -1,7 +1,8 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import WalletHeroWallets from './WalletHeroWallets';
+
 import WalletHeroAdd from './WalletHeroAdd';
+import WalletHeroWallets from './WalletHeroWallets';
 
 export default function Wallets() {
   return (

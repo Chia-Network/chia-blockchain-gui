@@ -1,6 +1,3 @@
-import React from 'react';
-import { Trans } from '@lingui/macro';
-import { useLocalStorage } from '@rehooks/local-storage';
 import {
   ConfirmDialog,
   CopyToClipboard,
@@ -8,6 +5,7 @@ import {
   useOpenDialog,
   useOpenExternal,
 } from '@chia/core';
+import { Trans } from '@lingui/macro';
 import {
   Checkbox,
   FormControlLabel,
@@ -15,6 +13,8 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
+import { useLocalStorage } from '@rehooks/local-storage';
+import React from 'react';
 
 /* ========================================================================== */
 

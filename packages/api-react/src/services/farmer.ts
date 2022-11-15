@@ -1,7 +1,8 @@
 import { Farmer } from '@chia/api';
 import type { Plot, FarmerConnection, RewardTargets, SignagePoint, Pool, FarmingInfo } from '@chia/api';
-import onCacheEntryAddedInvalidate from '../utils/onCacheEntryAddedInvalidate';
+
 import api, { baseQuery } from '../api';
+import onCacheEntryAddedInvalidate from '../utils/onCacheEntryAddedInvalidate';
 
 const MAX_SIGNAGE_POINTS = 500;
 export const apiWithTag = api.enhanceEndpoints({addTagTypes: ['Harvesters', 'RewardTargets', 'FarmerConnections', 'SignagePoints', 'PoolLoginLink', 'Pools', 'PayoutInstructions', 'HarvesterPlots', 'HarvesterPlotsInvalid', 'HarvestersSummary', 'HarvesterPlotsKeysMissing', 'HarvesterPlotsDuplicates']})

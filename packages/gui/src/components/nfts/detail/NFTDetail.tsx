@@ -1,16 +1,17 @@
-import React, { useMemo } from 'react';
-import { Trans } from '@lingui/macro';
-import { Back, Flex, LayoutDashboardSub, Loading } from '@chia/core';
 import type { NFTInfo, Wallet } from '@chia/api';
 import { useGetNFTWallets } from '@chia/api-react';
+import { Back, Flex, LayoutDashboardSub, Loading } from '@chia/core';
+import { Trans } from '@lingui/macro';
 import { Box, Typography } from '@mui/material';
+import React, { useMemo } from 'react';
 import { useParams } from 'react-router-dom';
-import NFTPreview from '../NFTPreview';
+
 import useFetchNFTs from '../../../hooks/useFetchNFTs';
 import useNFTMetadata from '../../../hooks/useNFTMetadata';
-import NFTRankings from '../NFTRankings';
-import NFTProperties from '../NFTProperties';
 import NFTDetails from '../NFTDetails';
+import NFTPreview from '../NFTPreview';
+import NFTProperties from '../NFTProperties';
+import NFTRankings from '../NFTRankings';
 
 /* ========================================================================== */
 

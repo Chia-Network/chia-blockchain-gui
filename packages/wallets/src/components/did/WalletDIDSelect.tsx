@@ -1,9 +1,10 @@
+import { Back, Flex } from '@chia/core';
+import { Trans } from '@lingui/macro';
+import { Restore as RestoreIcon, Add as AddIcon } from '@mui/icons-material';
+import { Grid } from '@mui/material';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Trans } from '@lingui/macro';
-import { Grid } from '@mui/material';
-import { Restore as RestoreIcon, Add as AddIcon } from '@mui/icons-material';
-import { Back, Flex } from '@chia/core';
+
 import WalletCreateCard from '../create/WalletCreateCard';
 
 export default function WalletDIDSelect() {

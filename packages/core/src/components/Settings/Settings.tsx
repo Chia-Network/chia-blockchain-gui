@@ -1,8 +1,9 @@
-import React, { type ReactNode, useState } from 'react';
 import { Trans } from '@lingui/macro';
-import styled from 'styled-components';
-import { Box, Drawer, Typography, IconButton, Divider } from '@mui/material';
 import { Settings as SettingsIcon, Close as CloseIcon } from '@mui/icons-material';
+import { Box, Drawer, Typography, IconButton, Divider } from '@mui/material';
+import React, { type ReactNode, useState } from 'react';
+import styled from 'styled-components';
+
 import Flex from '../Flex';
 import Tooltip from '../Tooltip';
 import SettingsApp from './SettingsApp';

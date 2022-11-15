@@ -1,11 +1,11 @@
-import React from 'react';
+import { Flex, Form, InputBase } from '@chia/core';
 import { t } from '@lingui/macro';
-import { Box, IconButton, Paper } from '@mui/material';
 import { Search as SearchIcon } from '@mui/icons-material';
+import { Box, IconButton, Paper } from '@mui/material';
+import React from 'react';
+import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { Flex, Form, InputBase } from '@chia/core';
-import { useForm } from 'react-hook-form';
 
 const StyledInputBase = styled(InputBase)`
   min-width: 15rem;

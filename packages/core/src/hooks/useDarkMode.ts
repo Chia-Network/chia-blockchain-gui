@@ -1,5 +1,5 @@
-import { useMediaQuery } from '@mui/material';
 import { useLocalStorage } from '@chia/api-react';
+import { useMediaQuery } from '@mui/material';
 
 const COLOR_SCHEME_QUERY = '(prefers-color-scheme: dark)';
 

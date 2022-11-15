@@ -1,6 +1,4 @@
-import React, { useMemo, useState, ReactNode } from 'react';
-import { Trans, t } from '@lingui/macro';
-import { useNavigate } from 'react-router';
+import { usePwAbsorbRewardsMutation, useGetPlotNFTsQuery, useGetCurrentAddressQuery } from '@chia/api-react'
 import {
   UnitFormat,
   CardStep,
@@ -14,14 +12,16 @@ import {
   chiaToMojo,
   Back,
 } from '@chia/core';
-import { useForm } from 'react-hook-form';
-import { usePwAbsorbRewardsMutation, useGetPlotNFTsQuery, useGetCurrentAddressQuery } from '@chia/api-react'
+import { Trans, t } from '@lingui/macro';
 import { ChevronRight as ChevronRightIcon } from '@mui/icons-material';
 import { Grid, Typography } from '@mui/material';
-import { useParams } from 'react-router';
-import { SubmitData } from './select/PlotNFTSelectPool';
-import PlotNFTName from './PlotNFTName';
+import React, { useMemo, useState, ReactNode } from 'react';
+import { useForm } from 'react-hook-form';
+import { useNavigate , useParams } from 'react-router';
+
 import useStandardWallet from '../../hooks/useStandardWallet';
+import PlotNFTName from './PlotNFTName';
+import { SubmitData } from './select/PlotNFTSelectPool';
 
 type FormData = {
   fee?: string | number;
@@ -47,11 +47,9 @@ export default function PlotNFTAbsorbRewards(props: Props) {
     walletId: 1,
   });
   const navigate = useNavigate();
-  const nft = useMemo(() => {
-    return data?.nfts?.find(
+  const nft = useMemo(() => data?.nfts?.find(
       (nft) => nft.poolState.p2SingletonPuzzleHash === plotNFTId,
-    );
-  }, [data?.nfts, plotNFTId]);
+    ), [data?.nfts, plotNFTId]);
 
   const methods = useForm<FormData>({
     defaultValues: {

@@ -1,18 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import {
-  Alert,
-  Paper,
-  TableRow,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-} from '@mui/material';
-import moment from 'moment';
-import { Trans } from '@lingui/macro';
 import { toBech32m } from '@chia/api';
 import { useGetBlockQuery, useGetBlockRecordQuery } from '@chia/api-react';
-import { useParams, useNavigate } from 'react-router-dom';
 import {
   Back,
   Button,
@@ -28,6 +15,20 @@ import {
   mojoToChia,
   Suspender,
 } from '@chia/core';
+import { Trans } from '@lingui/macro';
+import {
+  Alert,
+  Paper,
+  TableRow,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+} from '@mui/material';
+import moment from 'moment';
+import React, { useEffect, useState } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+
 import { hex_to_array, arr_to_hex, sha256 } from '../../util/utils';
 import BlockTitle from './BlockTitle';
 

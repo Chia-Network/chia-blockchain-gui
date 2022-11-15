@@ -26,7 +26,7 @@ export function arr_to_hex(buffer) {
 }
 
 export async function sha256(buf) {
-  return await window.crypto.subtle.digest('SHA-256', new Uint8Array(buf));
+  return window.crypto.subtle.digest('SHA-256', new Uint8Array(buf));
 }
 
 export function mimeTypeRegex(uri, regexp) {
@@ -51,9 +51,7 @@ export function getCacheInstances() {
         key.indexOf('content-cache-') > -1 || key.indexOf('thumb-cache-') > -1,
     )
     .map((key) => JSON.parse(localStorage[key]))
-    .sort((a, b) => {
-      return a.time > b.time ? -1 : 1;
-    });
+    .sort((a, b) => a.time > b.time ? -1 : 1);
 }
 
 export function removeFromLocalStorage({ removedObjects }) {

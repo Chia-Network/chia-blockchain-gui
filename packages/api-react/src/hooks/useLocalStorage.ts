@@ -1,4 +1,5 @@
 import { useState, useCallback, useEffect } from 'react';
+
 import EventEmitter from '../utils/EventEmitter';
 
 const eventEmitter = new EventEmitter();

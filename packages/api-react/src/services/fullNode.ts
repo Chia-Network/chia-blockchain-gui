@@ -1,7 +1,8 @@
 import { FullNode } from '@chia/api';
 import type { Block, BlockRecord, BlockHeader, BlockchainState, FullNodeConnection } from '@chia/api';
-import onCacheEntryAddedInvalidate from '../utils/onCacheEntryAddedInvalidate';
+
 import api, { baseQuery } from '../api';
+import onCacheEntryAddedInvalidate from '../utils/onCacheEntryAddedInvalidate';
 
 const apiWithTag = api.enhanceEndpoints({addTagTypes: ['BlockchainState', 'FeeEstimate', 'FullNodeConnections']})
 

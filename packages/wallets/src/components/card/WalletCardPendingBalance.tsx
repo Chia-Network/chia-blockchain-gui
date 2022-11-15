@@ -1,7 +1,8 @@
-import React, { ReactElement } from 'react';
-import { Trans } from '@lingui/macro';
 import { useGetWalletBalanceQuery } from '@chia/api-react';
 import { CardSimple } from '@chia/core';
+import { Trans } from '@lingui/macro';
+import React, { ReactElement } from 'react';
+
 import useWallet from '../../hooks/useWallet';
 import useWalletHumanValue from '../../hooks/useWalletHumanValue';
 

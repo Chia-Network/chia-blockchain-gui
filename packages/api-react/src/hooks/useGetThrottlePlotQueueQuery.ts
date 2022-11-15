@@ -1,6 +1,7 @@
 import PlotQueueItem from 'types/PlotQueueItem';
-import useThrottleQuery from './useThrottleQuery';
+
 import { useGetPlotQueueQuery } from '../services/plotter';
+import useThrottleQuery from './useThrottleQuery';
 
 export default function useGetThrottlePlotQueueQuery(wait = 5000): {
   isLoading: boolean;

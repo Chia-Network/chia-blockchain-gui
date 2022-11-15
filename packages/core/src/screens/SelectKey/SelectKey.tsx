@@ -1,26 +1,27 @@
-import React, { useState } from 'react';
-import { Trans } from '@lingui/macro';
-import styled from 'styled-components';
-import { Alert, Typography, Container } from '@mui/material';
-import { useNavigate } from 'react-router';
+import type { KeyData } from '@chia/api';
 import {
   useGetKeyringStatusQuery,
   useDeleteAllKeysMutation,
   useLogInAndSkipImportMutation,
   useGetKeysQuery,
 } from '@chia/api-react';
-import type { KeyData } from '@chia/api';
-import SelectKeyItem from './SelectKeyItem';
+import { Trans } from '@lingui/macro';
+import { Alert, Typography, Container } from '@mui/material';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router';
+import styled from 'styled-components';
+
 import Button from '../../components/Button';
-import Flex from '../../components/Flex';
-import Logo from '../../components/Logo';
-import Loading from '../../components/Loading';
-import TooltipIcon from '../../components/TooltipIcon';
 import ConfirmDialog from '../../components/ConfirmDialog';
+import Flex from '../../components/Flex';
+import Loading from '../../components/Loading';
+import Logo from '../../components/Logo';
+import TooltipIcon from '../../components/TooltipIcon';
+import useKeyringMigrationPrompt from '../../hooks/useKeyringMigrationPrompt';
 import useOpenDialog from '../../hooks/useOpenDialog';
 import useShowError from '../../hooks/useShowError';
 import useSkipMigration from '../../hooks/useSkipMigration';
-import useKeyringMigrationPrompt from '../../hooks/useKeyringMigrationPrompt';
+import SelectKeyItem from './SelectKeyItem';
 
 const StyledContainer = styled(Container)`
   padding-bottom: 1rem;

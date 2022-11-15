@@ -1,3 +1,5 @@
+import JSONbig from 'json-bigint';
+import { isString } from 'lodash';
 import {
   Location,
   NavigateFunction,
@@ -6,8 +8,6 @@ import {
   useLocation,
   useNavigate,
 } from 'react-router-dom';
-import JSONbig from 'json-bigint';
-import { isString } from 'lodash';
 
 export type SerializedNavigationStateResult = {
   navigate: NavigateFunction;

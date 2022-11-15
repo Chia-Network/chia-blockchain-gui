@@ -1,8 +1,10 @@
-import yaml from 'js-yaml';
 import fs from 'fs';
 import os from 'os';
 import path from 'path';
+
+import yaml from 'js-yaml';
 import { get } from 'lodash';
+
 import sleep from './sleep';
 import untildify from './untildify';
 
@@ -64,8 +66,8 @@ export default async function loadConfig(net?: string): Promise<{
       console.log('Waiting for configuration file');
       await sleep(1000);
       return loadConfig(net);
-    } else {
+    } 
       throw error;
-    }
+    
   }
 }

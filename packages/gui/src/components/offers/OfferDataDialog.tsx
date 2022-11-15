@@ -1,4 +1,4 @@
-import React from 'react';
+import { CopyToClipboard, DialogActions } from '@chia/core';
 import { Trans } from '@lingui/macro';
 import {
   Box,
@@ -10,7 +10,7 @@ import {
   InputAdornment,
   TextField,
 } from '@mui/material';
-import { CopyToClipboard, DialogActions } from '@chia/core';
+import React from 'react';
 
 type Props = {
   offerData: string;

@@ -1,22 +1,21 @@
-import { Typography } from '@mui/material';
 import { Trans } from '@lingui/macro';
-import React, { Component, type ReactNode } from 'react';
-import StackTrace from "stacktrace-js";
+import { Typography } from '@mui/material';
 import { styled } from '@mui/styles';
 import qs from 'qs';
-import LayoutHero from '../LayoutHero';
+import React, { Component, type ReactNode } from 'react';
+import StackTrace from "stacktrace-js";
+
 import Button from '../Button';
-import Link from '../Link';
 import Flex from '../Flex';
+import LayoutHero from '../LayoutHero';
+import Link from '../Link';
 
 const StyledPre = styled(Typography)(() => ({
   whiteSpace: 'pre-wrap',
 }));
 
 function formatStackTrace(stack: []) {
-  const stackTrace = stack.map(({ fileName, columnNumber, lineNumber, functionName }) => {
-    return `at ${fileName}:${lineNumber}:${columnNumber} ${functionName}`;
-  });
+  const stackTrace = stack.map(({ fileName, columnNumber, lineNumber, functionName }) => `at ${fileName}:${lineNumber}:${columnNumber} ${functionName}`);
   return stackTrace.join('\n');
 }
 

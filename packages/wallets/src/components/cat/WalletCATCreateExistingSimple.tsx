@@ -1,12 +1,14 @@
-import React from 'react';
-import { Trans, t } from '@lingui/macro';
-import { Back, ButtonLoading, Card, Flex, Form, TextField } from '@chia/core';
-import { Grid } from '@mui/material';
+import { SyncingStatus } from '@chia/api';
 import { useAddCATTokenMutation } from '@chia/api-react';
+import { Back, ButtonLoading, Card, Flex, Form, TextField } from '@chia/core';
+import { Trans, t } from '@lingui/macro';
+import { Grid } from '@mui/material';
+import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router';
+
 import useWalletState from '../../hooks/useWalletState';
-import { SyncingStatus } from '@chia/api';
+
 
 type CreateExistingCATWalletData = {
   name: string;

@@ -1,5 +1,6 @@
-import React from 'react';
 import { SvgIcon, SvgIconProps } from '@mui/material';
+import React from 'react';
+
 import TokensIcon from './images/Tokens.svg';
 
 export default function Tokens(props: SvgIconProps) {

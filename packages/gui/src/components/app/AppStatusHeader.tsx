@@ -1,8 +1,9 @@
-import React from 'react';
-import { Trans } from '@lingui/macro';
 import { Flex, useMode, Mode } from '@chia/core';
-import { Box, ButtonGroup, Button, Popover } from '@mui/material';
 import { WalletConnections, WalletStatus } from '@chia/wallets';
+import { Trans } from '@lingui/macro';
+import { Box, ButtonGroup, Button, Popover } from '@mui/material';
+import React from 'react';
+
 import Connections from '../fullNode/FullNodeConnections';
 import FullNodeStateIndicator from '../fullNode/FullNodeStateIndicator';
 

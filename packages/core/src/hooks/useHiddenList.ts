@@ -1,5 +1,5 @@
-import { useCallback, useMemo } from 'react';
 import { useLocalStorage } from '@chia/api-react';
+import { useCallback, useMemo } from 'react';
 
 type List<Type> = {
   [key: string]: Type[];
@@ -48,9 +48,7 @@ export default function useHiddenList<Type>(
   );
 
   const isHidden = useCallback(
-    (key: Type) => {
-      return list.includes(key);
-    },
+    (key: Type) => list.includes(key),
     [list]
   );
 

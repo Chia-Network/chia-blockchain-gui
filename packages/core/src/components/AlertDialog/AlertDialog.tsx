@@ -1,9 +1,10 @@
-import React, { ReactNode } from 'react';
-import { Dialog, DialogTitle, DialogContent } from '@mui/material';
 import { Trans } from '@lingui/macro';
-import DialogActions from '../DialogActions';
+import { Dialog, DialogTitle, DialogContent } from '@mui/material';
+import React, { ReactNode } from 'react';
+
 import Button from '../Button';
 import type { ButtonProps } from '../Button';
+import DialogActions from '../DialogActions';
 
 export type AlertDialogProps = {
   title?: ReactNode;

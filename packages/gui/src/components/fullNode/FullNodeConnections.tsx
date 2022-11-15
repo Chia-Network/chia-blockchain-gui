@@ -1,5 +1,5 @@
-import React from 'react';
-import { Trans } from '@lingui/macro';
+import { Connection } from '@chia/api';
+import { useGetFullNodeConnectionsQuery } from '@chia/api-react';
 import {
   Card,
   FormatBytes,
@@ -7,9 +7,10 @@ import {
   Loading,
   Table,
 } from '@chia/core';
-import { useGetFullNodeConnectionsQuery } from '@chia/api-react';
-import { Connection } from '@chia/api';
+import { Trans } from '@lingui/macro';
 import { Tooltip } from '@mui/material';
+import React from 'react';
+
 import { service_connection_types } from '../../util/service_names';
 
 const cols = [

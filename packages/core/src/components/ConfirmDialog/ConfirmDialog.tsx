@@ -1,4 +1,3 @@
-import React, { type ReactNode, useState } from 'react';
 import { Trans } from '@lingui/macro';
 import {
   ButtonProps,
@@ -7,10 +6,12 @@ import {
   DialogContent,
   DialogContentText,
 } from '@mui/material';
-import DialogActions from '../DialogActions';
+import React, { type ReactNode, useState } from 'react';
+
+import useShowError from '../../hooks/useShowError';
 import Button from '../Button';
 import ButtonLoading from '../ButtonLoading';
-import useShowError from '../../hooks/useShowError';
+import DialogActions from '../DialogActions';
 
 export type ConfirmDialogProps = {
   title?: ReactNode;

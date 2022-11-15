@@ -1,10 +1,11 @@
-import React from 'react';
-import { Trans } from '@lingui/macro';
-import moment from 'moment';
+import path from 'path';
+
 import { OfferTradeRecord } from '@chia/api';
 import { Flex, useColorModeValue } from '@chia/core';
+import { Trans } from '@lingui/macro';
 import { Typography } from '@mui/material';
-import path from 'path';
+import moment from 'moment';
+import React from 'react';
 import styled from 'styled-components';
 
 const StyledHeaderBox = styled.div`
@@ -33,7 +34,7 @@ export default function OfferViewerTitle(
   function OfferTitleValue() {
     if (offerFileName) {
       return offerFileName;
-    } else if (tradeRecord) {
+    } if (tradeRecord) {
       return (
         <Trans>
           created {moment(tradeRecord.createdAtTime * 1000).format('LLL')}

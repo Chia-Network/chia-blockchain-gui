@@ -1,5 +1,3 @@
-import React, { useMemo } from 'react';
-import { Trans } from '@lingui/macro';
 import {
   Flex,
   CardKeyValue,
@@ -9,12 +7,15 @@ import {
   truncateValue,
   Link,
 } from '@chia/core';
+import { Trans } from '@lingui/macro';
 import { Box, Typography } from '@mui/material';
-import { stripHexPrefix } from '../../util/utils';
+import React, { useMemo } from 'react';
+import styled from 'styled-components';
+
+import useNFTMinterDID from '../../hooks/useNFTMinterDID';
 import { didToDIDId } from '../../util/dids';
 import { convertRoyaltyToPercentage } from '../../util/nfts';
-import useNFTMinterDID from '../../hooks/useNFTMinterDID';
-import styled from 'styled-components';
+import { stripHexPrefix } from '../../util/utils';
 
 /* ========================================================================== */
 
@@ -66,9 +67,9 @@ export default function NFTDetails(props: NFTDetailsProps) {
       },
     ].filter(Boolean);
 
-    let hexDIDId = undefined;
-    let didId = undefined;
-    let truncatedDID = undefined;
+    let hexDIDId;
+    let didId;
+    let truncatedDID;
 
     if (nft.ownerDid) {
       hexDIDId = stripHexPrefix(nft.ownerDid);
@@ -294,16 +295,14 @@ export default function NFTDetails(props: NFTDetailsProps) {
 
     if (metadata?.preview_image_uris) {
       const value = metadata?.preview_image_uris.map(
-        (uri: string, idx: number) => {
-          return (
+        (uri: string, idx: number) => (
             <span>
               &nbsp;
               <Link href={uri} target="_blank">
                 {uri}
               </Link>
             </span>
-          );
-        },
+          ),
       );
       rows.push({
         key: 'preview_image_uris',
@@ -314,16 +313,14 @@ export default function NFTDetails(props: NFTDetailsProps) {
 
     if (Array.isArray(metadata?.preview_video_uris)) {
       const value = metadata?.preview_video_uris.map(
-        (uri: string, idx: number) => {
-          return (
+        (uri: string, idx: number) => (
             <span>
               &nbsp;
               <Link target="_blank" href={uri}>
                 {uri}
               </Link>
             </span>
-          );
-        },
+          ),
       );
       rows.push({
         key: 'preview_video_uris',

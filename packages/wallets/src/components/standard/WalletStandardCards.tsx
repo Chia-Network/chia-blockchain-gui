@@ -1,5 +1,6 @@
-import React from 'react';
 import { Trans } from '@lingui/macro';
+import React from 'react';
+
 import WalletCards from '../WalletCards';
 
 type Props = {

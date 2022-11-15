@@ -1,7 +1,7 @@
-import React, { ReactElement } from 'react';
-import styled from 'styled-components';
 import { Help as HelpIcon } from '@mui/icons-material';
 import { Tooltip } from '@mui/material';
+import React, { ReactElement } from 'react';
+import styled from 'styled-components';
 
 const StyledHelpIcon = styled(HelpIcon)`
   color: ${({ theme }) =>

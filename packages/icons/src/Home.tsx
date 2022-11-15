@@ -1,6 +1,7 @@
-import React from 'react';
 import { SvgIcon, SvgIconProps } from '@mui/material';
+import React from 'react';
 import styled from 'styled-components';
+
 import HomeIcon from './images/home.svg';
 
 function getColor({ theme, color }) {

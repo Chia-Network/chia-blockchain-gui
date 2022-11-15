@@ -1,4 +1,5 @@
 import { useMemo } from 'react';
+
 import { useGetHarvestersSummaryQuery } from '../services/farmer';
 
 export default function useGetHarvesterQuery({
@@ -22,9 +23,7 @@ export default function useGetHarvesterQuery({
 } {
   const { data, isLoading: isLoadingHarvesterSummary, error } = useGetHarvestersSummaryQuery();
 
-  const harvester = useMemo(() => {
-    return data?.find((harvester) => harvester.connection.nodeId === nodeId);
-  }, [data, nodeId]);
+  const harvester = useMemo(() => data?.find((harvester) => harvester.connection.nodeId === nodeId), [data, nodeId]);
 
   const isLoading = isLoadingHarvesterSummary;
 

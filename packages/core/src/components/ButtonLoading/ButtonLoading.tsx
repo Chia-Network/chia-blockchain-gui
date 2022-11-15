@@ -1,5 +1,5 @@
-import React from 'react';
 import { LoadingButton, type LoadingButtonProps } from '@mui/lab';
+import React from 'react';
 
 export type ButtonLoadingProps = LoadingButtonProps & {
   loading?: boolean;

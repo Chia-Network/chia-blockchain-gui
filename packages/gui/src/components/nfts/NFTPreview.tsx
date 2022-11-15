@@ -1,13 +1,3 @@
-import React, { useMemo, useState, useRef, Fragment } from 'react';
-import { renderToString } from 'react-dom/server';
-import mime from 'mime-types';
-import { t, Trans } from '@lingui/macro';
-import { Box, Button, Typography } from '@mui/material';
-import CheckSvg from '@mui/icons-material/Check';
-import CloseSvg from '@mui/icons-material/Close';
-import QuestionMarkSvg from '@mui/icons-material/QuestionMark';
-import { NotInterested, Error as ErrorIcon } from '@mui/icons-material';
-import { useLocalStorage } from '@chia/api-react';
 import { isImage, parseExtensionFromUrl } from '../../util/utils.js';
 
 import {
@@ -21,18 +11,19 @@ import {
 } from '@chia/core';
 import styled from 'styled-components';
 import { type NFTInfo } from '@chia/api';
+import { useLocalStorage } from '@chia/api-react';
+import { t, Trans } from '@lingui/macro';
+import { NotInterested, Error as ErrorIcon } from '@mui/icons-material';
+import CheckSvg from '@mui/icons-material/Check';
+import CloseSvg from '@mui/icons-material/Close';
+import QuestionMarkSvg from '@mui/icons-material/QuestionMark';
+import { Box, Button, Typography } from '@mui/material';
+import mime from 'mime-types';
+import React, { useMemo, useState, useRef, Fragment } from 'react';
+import { renderToString } from 'react-dom/server';
 import isURL from 'validator/lib/isURL';
-import useVerifyHash from '../../hooks/useVerifyHash';
 
-import AudioSvg from '../../assets/img/audio.svg';
-import AudioPngIcon from '../../assets/img/audio.png';
-import UnknownPngIcon from '../../assets/img/unknown.png';
-import DocumentPngIcon from '../../assets/img/document.png';
-import VideoPngIcon from '../../assets/img/video.png';
-import ModelPngIcon from '../../assets/img/model.png';
-import AudioPngDarkIcon from '../../assets/img/audio_dark.png';
-import UnknownPngDarkIcon from '../../assets/img/unknown_dark.png';
-import DocumentPngDarkIcon from '../../assets/img/document_dark.png';
+
 import VideoPngDarkIcon from '../../assets/img/video_dark.png';
 import ModelPngDarkIcon from '../../assets/img/model_dark.png';
 
@@ -46,9 +37,19 @@ import CompactIconSvg from '../../assets/img/nft-small-frame.svg';
 
 import VideoSmallIcon from '../../assets/img/video-small.svg';
 import AudioSmallIcon from '../../assets/img/audio-small.svg';
-import ModelSmallIcon from '../../assets/img/model-small.svg';
-import UnknownSmallIcon from '../../assets/img/unknown-small.svg';
+import AudioPngIcon from '../../assets/img/audio.png';
+import AudioSvg from '../../assets/img/audio.svg';
+import AudioPngDarkIcon from '../../assets/img/audio_dark.png';
 import DocumentSmallIcon from '../../assets/img/document-small.svg';
+import DocumentPngIcon from '../../assets/img/document.png';
+import DocumentPngDarkIcon from '../../assets/img/document_dark.png';
+import ModelSmallIcon from '../../assets/img/model-small.svg';
+import ModelPngIcon from '../../assets/img/model.png';
+import UnknownSmallIcon from '../../assets/img/unknown-small.svg';
+import UnknownPngIcon from '../../assets/img/unknown.png';
+import UnknownPngDarkIcon from '../../assets/img/unknown_dark.png';
+import VideoPngIcon from '../../assets/img/video.png';
+import useVerifyHash from '../../hooks/useVerifyHash';
 
 function responseTooLarge(error) {
   return error === 'Response too large';
@@ -213,11 +214,9 @@ const StatusContainer = styled.div`
 `;
 
 const StatusPill = styled.div`
-  background-color: ${({ theme }) => {
-    return theme.palette.mode === 'dark'
+  background-color: ${({ theme }) => theme.palette.mode === 'dark'
       ? 'rgba(50, 50, 50, 0.4)'
-      : 'rgba(255, 255, 255, 0.4)';
-  }};
+      : 'rgba(255, 255, 255, 0.4)'};
   backdrop-filter: blur(6px);
   border: 1px solid rgba(255, 255, 255, 0.13);
   border-radius: 16px;
@@ -297,14 +296,10 @@ const CompactExtension = styled.div`
 
 const Sha256ValidatedIcon = styled.div`
   position: absolute;
-  background: ${({ theme }) => {
-    return theme.palette.mode === 'dark'
+  background: ${({ theme }) => theme.palette.mode === 'dark'
       ? 'rgba(33, 33, 33, 0.5)'
-      : 'rgba(255, 255, 255, 0.66)';
-  }};
-  color: ${({ theme }) => {
-    return theme.palette.mode === 'dark' ? '#fff' : '#333';
-  }};
+      : 'rgba(255, 255, 255, 0.66)'};
+  color: ${({ theme }) => theme.palette.mode === 'dark' ? '#fff' : '#333'};
   border-radius: 18px;
   padding: 0 8px;
   top: 10px;
@@ -364,9 +359,9 @@ export type NFTPreviewProps = {
 let loopImageInterval: any;
 let audioAnimationInterval;
 
-//=========================================================================//
+//= ========================================================================//
 // NFTPreview function
-//=========================================================================//
+//= ========================================================================//
 export default function NFTPreview(props: NFTPreviewProps) {
   let isPlaying: boolean = false;
   React.useEffect(() => {
@@ -564,11 +559,9 @@ export default function NFTPreview(props: NFTPreviewProps) {
 
     if (isPreview && thumbnail.video && !disableThumbnail) {
       mediaElement = (
-        <>
-          <video width="100%" height="100%" controls>
+        <video width="100%" height="100%" controls>
             <source src={thumbnail.video} />
           </video>
-        </>
       );
     }
 
@@ -660,41 +653,33 @@ export default function NFTPreview(props: NFTPreviewProps) {
   function renderNftIcon() {
     if (isDocument()) {
       return (
-        <>
-          <BlobBg isDarkMode={isDarkMode}>
+        <BlobBg isDarkMode={isDarkMode}>
             <DocumentBlobIcon />
             <img src={isDarkMode ? DocumentPngDarkIcon : DocumentPngIcon} />
           </BlobBg>
-        </>
       );
-    } else if (mimeType().match(/^model/)) {
+    } if (mimeType().match(/^model/)) {
       return (
-        <>
-          <BlobBg isDarkMode={isDarkMode}>
+        <BlobBg isDarkMode={isDarkMode}>
             <ModelBlobIcon />
             <img src={isDarkMode ? ModelPngDarkIcon : ModelPngIcon} />
           </BlobBg>
-        </>
       );
-    } else if (mimeType().match(/^video/)) {
+    } if (mimeType().match(/^video/)) {
       return (
-        <>
-          <BlobBg isDarkMode={isDarkMode}>
+        <BlobBg isDarkMode={isDarkMode}>
             <VideoBlobIcon />
             <img src={isDarkMode ? VideoPngDarkIcon : VideoPngIcon} />
           </BlobBg>
-        </>
       );
-    } else {
+    } 
       return (
-        <>
-          <BlobBg isDarkMode={isDarkMode}>
+        <BlobBg isDarkMode={isDarkMode}>
             <UnknownBlobIcon />
             <img src={isDarkMode ? UnknownPngDarkIcon : UnknownPngIcon} />;
           </BlobBg>
-        </>
       );
-    }
+    
   }
 
   function isUnknownType() {
@@ -757,7 +742,7 @@ export default function NFTPreview(props: NFTPreviewProps) {
           height={height}
           onLoadedChange={handleLoadedChange}
           hideUntilLoaded
-          allowPointerEvents={true}
+          allowPointerEvents
         />
       </IframeWrapper>
     );

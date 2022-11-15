@@ -1,6 +1,7 @@
-import React, { ReactNode, ReactElement } from 'react';
 import { Flex } from '@chia/core';
 import { Box, CardActionArea, Collapse, Typography } from '@mui/material';
+import React, { ReactNode, ReactElement } from 'react';
+
 import useOfferBuilderContext from '../../hooks/useOfferBuilderContext';
 
 export type OfferBuilderSectionCardProps = {

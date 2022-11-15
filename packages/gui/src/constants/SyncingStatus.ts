@@ -1,4 +1,4 @@
-// eslint-disable-next-line
+ 
 enum SyncingStatus {
   SYNCING = 'SYNCING',
   SYNCED = 'SYNCED',

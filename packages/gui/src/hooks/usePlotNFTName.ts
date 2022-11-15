@@ -1,3 +1,4 @@
+import type { PlotNFTExternal, PlotNFT } from '@chia/api';
 import { useMemo } from 'react';
 import seedrandom from 'seedrandom';
 import {
@@ -6,7 +7,6 @@ import {
   colors,
   animals,
 } from 'unique-names-generator';
-import type { PlotNFTExternal, PlotNFT } from '@chia/api';
 
 const uniqueNames: {
   [key: string]: string;

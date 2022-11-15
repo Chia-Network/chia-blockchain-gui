@@ -1,10 +1,11 @@
-import React from 'react';
-import { Trans } from '@lingui/macro';
-import { AlertDialog, ConfirmDialog, UnitFormat, useOpenDialog } from '@chia/core';
 import type { PlotNFT } from '@chia/api';
 import { usePwAbsorbRewardsMutation } from '@chia/api-react';
-import usePlotNFTDetails from './usePlotNFTDetails';
+import { AlertDialog, ConfirmDialog, UnitFormat, useOpenDialog } from '@chia/core';
+import { Trans } from '@lingui/macro';
+import React from 'react';
+
 import PlotNFTState from '../constants/PlotNFTState';
+import usePlotNFTDetails from './usePlotNFTDetails';
 
 export default function useAbsorbRewards(nft: PlotNFT) {
   const openDialog = useOpenDialog();

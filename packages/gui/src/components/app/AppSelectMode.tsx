@@ -1,14 +1,14 @@
-import React from 'react';
-import { Trans } from '@lingui/macro';
-import styled from 'styled-components';
 import { Button, Flex, Logo, Card, useMode, Mode } from '@chia/core';
+import { Farming as FarmingIcon } from '@chia/icons';
+import { Trans } from '@lingui/macro';
 import {
   AccountBalanceWallet as AccountBalanceWalletIcon,
   Settings as SettingsIcon,
   Check as CheckIcon,
 } from '@mui/icons-material';
-import { Farming as FarmingIcon } from '@chia/icons';
 import { Box, Typography, Container, Grid } from '@mui/material';
+import React from 'react';
+import styled from 'styled-components';
 
 const StyledCheckIcon = styled(CheckIcon)`
   border-radius: 9999px;

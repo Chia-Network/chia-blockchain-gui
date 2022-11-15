@@ -1,8 +1,8 @@
-import React from 'react';
-import isElectron from 'is-electron';
-import { Trans } from '@lingui/macro';
 import { AlertDialog, useOpenDialog } from '@chia/core';
 import { dialog } from '@electron/remote';
+import { Trans } from '@lingui/macro';
+import isElectron from 'is-electron';
+import React from 'react';
 
 type Options = {
   defaultPath?: string;

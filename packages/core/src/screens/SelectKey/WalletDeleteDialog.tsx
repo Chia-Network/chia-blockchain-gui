@@ -1,4 +1,8 @@
-import React, { useEffect } from 'react';
+import {
+  useCheckDeleteKeyMutation,
+  useDeleteKeyMutation,
+  useGetKeyringStatusQuery,
+} from '@chia/api-react';
 import { Trans, t } from '@lingui/macro';
 import {
   Button,
@@ -8,20 +12,17 @@ import {
   Alert,
   Typography,
 } from '@mui/material';
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import {
-  useCheckDeleteKeyMutation,
-  useDeleteKeyMutation,
-  useGetKeyringStatusQuery,
-} from '@chia/api-react';
-import useSkipMigration from '../../hooks/useSkipMigration';
-import useKeyringMigrationPrompt from '../../hooks/useKeyringMigrationPrompt';
-import Flex from '../../components/Flex';
-import Loading from '../../components/Loading';
-import Form from '../../components/Form';
-import TextField from '../../components/TextField';
+
 import ButtonLoading from '../../components/ButtonLoading';
 import DialogActions from '../../components/DialogActions';
+import Flex from '../../components/Flex';
+import Form from '../../components/Form';
+import Loading from '../../components/Loading';
+import TextField from '../../components/TextField';
+import useKeyringMigrationPrompt from '../../hooks/useKeyringMigrationPrompt';
+import useSkipMigration from '../../hooks/useSkipMigration';
 
 type FormData = {
   fingerprint: string;
@@ -115,8 +116,7 @@ export default function WalletDeleteDialog(props: WalletDeleteDialogProps) {
           {isInitializing ? (
             <Loading center />
           ) : (
-            <>
-              <Flex flexDirection="column" gap={2}>
+            <Flex flexDirection="column" gap={2}>
                 {hasWarning && (
                   <Alert severity="warning">
                     <Flex flexDirection="column" gap={1}>
@@ -175,7 +175,6 @@ export default function WalletDeleteDialog(props: WalletDeleteDialogProps) {
                   />
                 </Flex>
               </Flex>
-            </>
           )}
         </DialogContent>
         <DialogActions>

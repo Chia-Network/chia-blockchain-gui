@@ -1,13 +1,14 @@
-import React from 'react';
-import { useNavigate } from 'react-router';
+import { Flex } from '@chia/core';
 import { Trans } from '@lingui/macro';
-import { Grid, Typography } from '@mui/material';
 import {
   Share as ShareIcon,
   Speed as SpeedIcon,
   HomeWork as HomeWorkIcon,
 } from '@mui/icons-material';
-import { Flex } from '@chia/core';
+import { Grid, Typography } from '@mui/material';
+import React from 'react';
+import { useNavigate } from 'react-router';
+
 import WalletCreateCard from './WalletCreateCard';
 
 export default function WalletCreateList() {

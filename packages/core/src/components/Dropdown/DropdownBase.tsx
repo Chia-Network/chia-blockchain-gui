@@ -1,7 +1,7 @@
-import React, { type ReactNode } from 'react';
-import { styled, alpha } from '@mui/material/styles';
 import { Box } from '@mui/material';
 import Menu, { MenuProps } from '@mui/material/Menu';
+import { styled, alpha } from '@mui/material/styles';
+import React, { type ReactNode } from 'react';
 
 const StyledMenu = styled((props: MenuProps) => (
   <Menu

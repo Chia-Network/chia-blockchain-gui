@@ -1,9 +1,5 @@
-import React, { useMemo, ReactNode } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useCopyToClipboard } from 'react-use';
-import { Trans } from '@lingui/macro';
 import type { NFTInfo } from '@chia/api';
-import { useSetNFTStatusMutation } from '@chia/api-react';
+import { useSetNFTStatusMutation , useLocalStorage } from '@chia/api-react';
 import {
   AlertDialog,
   DropdownActions,
@@ -15,7 +11,7 @@ import {
   NFTsSmall as NFTsSmallIcon,
   OffersSmall as OffersSmallIcon,
 } from '@chia/icons';
-import { ListItemIcon, Typography } from '@mui/material';
+import { Trans } from '@lingui/macro';
 import {
   ArrowForward as TransferIcon,
   Cancel as CancelIcon,
@@ -27,21 +23,25 @@ import {
   DeleteForever as DeleteForeverIcon,
   Refresh as RefreshIcon,
 } from '@mui/icons-material';
-import { NFTTransferDialog, NFTTransferResult } from './NFTTransferAction';
-import NFTMoveToProfileDialog from './NFTMoveToProfileDialog';
-import NFTSelection from '../../types/NFTSelection';
-import useOpenUnsafeLink from '../../hooks/useOpenUnsafeLink';
-import useHiddenNFTs from '../../hooks/useHiddenNFTs';
+import { ListItemIcon, Typography } from '@mui/material';
+import React, { useMemo, ReactNode } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useCopyToClipboard } from 'react-use';
+import isURL from 'validator/lib/isURL';
+
 import useBurnAddress from '../../hooks/useBurnAddress';
+import useHiddenNFTs from '../../hooks/useHiddenNFTs';
+import useOpenUnsafeLink from '../../hooks/useOpenUnsafeLink';
 import useViewNFTOnExplorer, {
   NFTExplorer,
 } from '../../hooks/useViewNFTOnExplorer';
-import isURL from 'validator/lib/isURL';
+import NFTSelection from '../../types/NFTSelection';
+import computeHash from '../../util/computeHash';
 import download from '../../util/download';
 import { stripHexPrefix } from '../../util/utils';
 import NFTBurnDialog from './NFTBurnDialog';
-import { useLocalStorage } from '@chia/api-react';
-import computeHash from '../../util/computeHash';
+import NFTMoveToProfileDialog from './NFTMoveToProfileDialog';
+import { NFTTransferDialog, NFTTransferResult } from './NFTTransferAction';
 
 /* ========================================================================== */
 /*                          Common Action Types/Enums                         */
@@ -602,7 +602,7 @@ function NFTInvalidateContextualAction(
     setContentCache({});
     setMetadataCache({});
     setForceReloadNFT(!forceReloadNFT);
-    const ipcRenderer = (window as any).ipcRenderer;
+    const {ipcRenderer} = window as any;
     ipcRenderer.invoke(
       'removeCachedFile',
       computeHash(`${selectedNft.$nftId}_${dataUrl}`, { encoding: 'utf-8' }),

@@ -1,5 +1,10 @@
-import React from 'react';
+import { Back, Flex, FormatLargeNumber, Loading, Logo } from '@chia/core';
 import { Trans } from '@lingui/macro';
+import {
+  ChevronRight as ChevronRightIcon,
+  EnergySavingsLeaf as EcoIcon,
+  Add as AddIcon,
+} from '@mui/icons-material';
 import {
   Box,
   Button,
@@ -11,28 +16,24 @@ import {
   ListItemText,
   ListItemSecondaryAction,
 } from '@mui/material';
-import styled from 'styled-components';
-import {
-  ChevronRight as ChevronRightIcon,
-  EnergySavingsLeaf as EcoIcon,
-  Add as AddIcon,
-} from '@mui/icons-material';
+import React from 'react';
 import { useSelector } from 'react-redux';
-import { Back, Flex, FormatLargeNumber, Loading, Logo } from '@chia/core';
-import StandardWallet from '../standard/WalletStandard';
-import { CreateWalletView } from '../create/WalletCreate';
-import WalletCAT from '../cat/WalletCAT';
-import RateLimitedWallet from '../rateLimited/WalletRateLimited';
-import DistributedWallet from '../did/WalletDID';
-import type { RootState } from '../../../modules/rootReducer';
-import WalletType from '../../../constants/WalletType';
-import WalletName from '../../../constants/WalletName';
-import LayoutMain from '../../layout/LayoutMain';
+
 import LayoutHero from '../../layout/LayoutHero';
 import config from '../../../config/config';
 import { Switch, Route, useNavigate, useParams } from 'react-router-dom';
+import styled from 'styled-components';
+import WalletName from '../../../constants/WalletName';
+import WalletType from '../../../constants/WalletType';
 import useTrans from '../../../hooks/useTrans';
+import type { RootState } from '../../../modules/rootReducer';
+import LayoutMain from '../../layout/LayoutMain';
 import WalletsList from '../WalletsList';
+import WalletCAT from '../cat/WalletCAT';
+import { CreateWalletView } from '../create/WalletCreate';
+import DistributedWallet from '../did/WalletDID';
+import RateLimitedWallet from '../rateLimited/WalletRateLimited';
+import StandardWallet from '../standard/WalletStandard';
 import WalletHeroLayout from './WalletHeroLayout';
 
 const StyledListItem = styled(ListItem)`

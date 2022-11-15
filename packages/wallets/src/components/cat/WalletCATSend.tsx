@@ -1,5 +1,5 @@
-import React, { useMemo } from 'react';
-import { Trans, t } from '@lingui/macro';
+import { SyncingStatus, toBech32m } from '@chia/api';
+import { useSpendCATMutation, useFarmBlockMutation } from '@chia/api-react';
 import {
   AdvancedOptions,
   Button,
@@ -18,11 +18,12 @@ import {
   getTransactionResult,
   TooltipIcon,
 } from '@chia/core';
-import { useSpendCATMutation, useFarmBlockMutation } from '@chia/api-react';
-import { SyncingStatus, toBech32m } from '@chia/api';
-import isNumeric from 'validator/es/lib/isNumeric';
-import { useForm, useWatch } from 'react-hook-form';
+import { Trans, t } from '@lingui/macro';
 import { Grid, Typography } from '@mui/material';
+import React, { useMemo } from 'react';
+import { useForm, useWatch } from 'react-hook-form';
+import isNumeric from 'validator/es/lib/isNumeric';
+
 import useWallet from '../../hooks/useWallet';
 import useWalletState from '../../hooks/useWalletState';
 import CreateWalletSendTransactionResultDialog from '../WalletSendTransactionResultDialog';
@@ -109,7 +110,7 @@ export default function WalletCATSend(props: Props) {
       throw new Error(t`Please enter a valid numeric fee`);
     }
 
-    let address = data.address;
+    let {address} = data;
     if (address === 'retire' && retireAddress) {
       address = retireAddress;
     }

@@ -1,4 +1,5 @@
 import { WalletType } from '@chia/api';
+
 import findCATWalletByAssetId from './findCATWalletByAssetId';
 
 describe('findCATWalletByAssetId', () => {

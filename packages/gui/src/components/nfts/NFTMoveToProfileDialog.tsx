@@ -1,6 +1,3 @@
-import React, { useMemo, useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { Trans, t } from '@lingui/macro';
 import { NFTInfo } from '@chia/api';
 import type { Wallet } from '@chia/api';
 import {
@@ -26,6 +23,7 @@ import {
   useOpenDialog,
   useShowError,
 } from '@chia/core';
+import { Trans, t } from '@lingui/macro';
 import { PermIdentity as PermIdentityIcon } from '@mui/icons-material';
 import {
   Box,
@@ -37,11 +35,14 @@ import {
   ListItemIcon,
   Typography,
 } from '@mui/material';
-import { stripHexPrefix } from '../../util/utils';
-import { didFromDIDId, didToDIDId } from '../../util/dids';
-import { getNFTInbox } from './utils';
-import NFTSummary from './NFTSummary';
+import React, { useMemo, useState } from 'react';
+import { useForm } from 'react-hook-form';
 import styled from 'styled-components';
+
+import { didFromDIDId, didToDIDId } from '../../util/dids';
+import { stripHexPrefix } from '../../util/utils';
+import NFTSummary from './NFTSummary';
+import { getNFTInbox } from './utils';
 
 /* ========================================================================== */
 
@@ -159,7 +160,7 @@ export function DIDProfileDropdown(props: DIDProfileDropdownProps) {
       ))}
       {includeNoneOption && (
         <MenuItem
-          key={'<none>'}
+          key="<none>"
           onClick={() => handleWalletChange()}
           selected={!walletId && !currentDID}
           close
@@ -230,7 +231,7 @@ export function NFTMoveToProfileAction(props: NFTMoveToProfileActionProps) {
     ? didWallets.find((wallet: Wallet) => wallet.myDid === destination)
     : undefined;
 
-  let newProfileName = undefined;
+  let newProfileName;
   if (newDID) {
     newProfileName = newDID.name;
 
@@ -367,9 +368,7 @@ export function NFTMoveToProfileAction(props: NFTMoveToProfileActionProps) {
                   ) : (
                     currentDID.myDid
                   )
-                ) : currentDIDId ? (
-                  currentDIDId
-                ) : (
+                ) : currentDIDId || (
                   <Trans>None</Trans>
                 )}
               </Typography>

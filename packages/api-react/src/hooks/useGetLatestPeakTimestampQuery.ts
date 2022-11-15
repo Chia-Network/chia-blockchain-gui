@@ -1,4 +1,5 @@
 import { useRef, useMemo } from 'react';
+
 import useGetLatestBlocksQuery from './useGetLatestBlocksQuery';
 
 function getLatestTimestamp(

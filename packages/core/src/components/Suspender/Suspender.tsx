@@ -6,11 +6,9 @@ export default function Suspender() {
     resolve.current = res;
   }), []);
 
-  useEffect(() => {
-    return () => {
+  useEffect(() => () => {
       resolve.current?.();
-    };
-  });
+    });
 
   throw promise;
 }

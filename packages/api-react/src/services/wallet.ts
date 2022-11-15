@@ -21,9 +21,10 @@ import type {
   WalletConnections,
 } from '@chia/api';
 import BigNumber from 'bignumber.js';
-import onCacheEntryAddedInvalidate from '../utils/onCacheEntryAddedInvalidate';
-import normalizePoolState from '../utils/normalizePoolState';
+
 import api, { baseQuery } from '../api';
+import normalizePoolState from '../utils/normalizePoolState';
+import onCacheEntryAddedInvalidate from '../utils/onCacheEntryAddedInvalidate';
 
 const apiWithTag = api.enhanceEndpoints({
   addTagTypes: [
@@ -2011,13 +2012,11 @@ export const walletApi = apiWithTag.injectEndpoints({
                 }
 
                 // Add bech32m-encoded NFT identifier
-                const updatedNFTs = nftsData.nftList.map((nft) => {
-                  return {
+                const updatedNFTs = nftsData.nftList.map((nft) => ({
                     ...nft,
                     walletId,
                     $nftId: toBech32m(nft.launcherId, 'nft'),
-                  };
-                });
+                  }));
 
                 return {
                   [walletId]: updatedNFTs,
@@ -2042,11 +2041,9 @@ export const walletApi = apiWithTag.injectEndpoints({
       providesTags: (nftsByWalletId, _error) =>
         nftsByWalletId
           ? [
-              ...Object.entries(nftsByWalletId).flatMap(([_walletId, nfts]) => {
-                return nfts.map(
+              ...Object.entries(nftsByWalletId).flatMap(([_walletId, nfts]) => nfts.map(
                   (nft) => ({ type: 'NFTInfo', id: nft.launcherId } as const)
-                );
-              }),
+                )),
               { type: 'NFTInfo', id: 'LIST' },
             ]
           : [{ type: 'NFTInfo', id: 'LIST' }],

@@ -1,7 +1,3 @@
-import React from 'react';
-import styled from 'styled-components';
-import { Trans } from '@lingui/macro';
-import { useNavigate } from 'react-router';
 import {
   TooltipTypography,
   Flex,
@@ -14,6 +10,11 @@ import {
   Link,
   useOpenDialog,
 } from '@chia/core';
+import { Plot as PlotIcon } from '@chia/icons';
+import { Trans } from '@lingui/macro';
+import {
+  /* Link as LinkIcon, */ Payment as PaymentIcon,
+} from '@mui/icons-material';
 import {
   Box,
   Card,
@@ -21,18 +22,18 @@ import {
   Typography,
   ListItemIcon,
 } from '@mui/material';
-import { Plot as PlotIcon } from '@chia/icons';
-import {
-  /* Link as LinkIcon, */ Payment as PaymentIcon,
-} from '@mui/icons-material';
-import PlotNFTName from './PlotNFTName';
-import PlotNFTExternalState from './PlotNFTExternalState';
+import React from 'react';
+import { useNavigate } from 'react-router';
+import styled from 'styled-components';
+
 import usePlotNFTExternalDetails from '../../hooks/usePlotNFTExternalDetails';
 import PlotNFTExternal from '../../types/PlotNFTExternal';
-import PlotNFTGraph from './PlotNFTGraph';
 // import PlotNFTGetPoolLoginLinkDialog from './PlotNFTGetPoolLoginLinkDialog';
-import PlotNFTPayoutInstructionsDialog from './PlotNFTPayoutInstructionsDialog';
 import getPercentPointsSuccessfull from '../../util/getPercentPointsSuccessfull';
+import PlotNFTExternalState from './PlotNFTExternalState';
+import PlotNFTGraph from './PlotNFTGraph';
+import PlotNFTName from './PlotNFTName';
+import PlotNFTPayoutInstructionsDialog from './PlotNFTPayoutInstructionsDialog';
 
 const StyledCard = styled(Card)`
   display: flex;
@@ -222,7 +223,7 @@ export default function PlotExternalNFTCard(props: PlotExternalNFTCardProps) {
                     <Trans>Add a Plot</Trans>
                   </Typography>
                 </MenuItem>
-                {/*!isSelfPooling && (
+                {/*! isSelfPooling && (
                   <MenuItem
                     onClick={() => {
                       onClose();
@@ -236,7 +237,7 @@ export default function PlotExternalNFTCard(props: PlotExternalNFTCardProps) {
                       <Trans>View Pool Login Link</Trans>
                     </Typography>
                   </MenuItem>
-                )*/}
+                ) */}
                 {!isSelfPooling && (
                   <MenuItem onClick={handlePayoutInstructions} close>
                     <ListItemIcon>

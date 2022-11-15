@@ -1,5 +1,3 @@
-import React, { useMemo } from 'react';
-import { Plural, Trans } from '@lingui/macro';
 import { type OfferSummaryRecord } from '@chia/api';
 import {
   Flex,
@@ -9,9 +7,12 @@ import {
   mojoToChia,
   mojoToCAT,
 } from '@chia/core';
+import { Plural, Trans } from '@lingui/macro';
 import { Box, Divider, Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
+import React, { useMemo } from 'react';
 import styled from 'styled-components';
+
 import useAssetIdName from '../../hooks/useAssetIdName';
 import OfferExchangeRate from './OfferExchangeRate';
 import { OfferSummaryTokenRow } from './OfferSummaryRow';

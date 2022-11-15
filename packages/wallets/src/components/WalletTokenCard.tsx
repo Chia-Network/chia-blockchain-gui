@@ -1,8 +1,5 @@
-import React, { useEffect, useMemo, useState, useRef } from 'react';
 import { WalletType } from '@chia/api';
 import { useSetCATNameMutation, useGetLocalCatName } from '@chia/api-react';
-import { Trans } from '@lingui/macro';
-import { Box, Typography, Switch, CircularProgress } from '@mui/material';
 import {
   Tooltip,
   CardListItem,
@@ -12,8 +9,13 @@ import {
   Form,
   TextField,
 } from '@chia/core';
-import { type ListItem } from '../hooks/useWalletsList';
+import { Trans } from '@lingui/macro';
+import { Box, Typography, Switch, CircularProgress } from '@mui/material';
+import React, { useEffect, useMemo, useState, useRef } from 'react';
 import { useForm } from 'react-hook-form';
+
+import { type ListItem } from '../hooks/useWalletsList';
+
 
 export type WalletTokenCardProps = {
   item: ListItem;

@@ -1,5 +1,6 @@
-import React, { ReactNode } from 'react';
 import { Card, CardContent, CardProps } from '@mui/material';
+import React, { ReactNode } from 'react';
+
 import Flex from '../Flex';
 
 export type CardHeroProps = {

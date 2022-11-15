@@ -1,5 +1,3 @@
-import React from 'react';
-import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
 import {
   SelectKey,
   LayoutHero,
@@ -8,17 +6,20 @@ import {
   useMode,
 } from '@chia/core';
 import { WalletAdd, WalletImport, Wallets } from '@chia/wallets';
-import AppProviders from './AppProviders';
-import FullNode from '../fullNode/FullNode';
+import React from 'react';
+import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
+
 import Block from '../block/Block';
-import Settings from '../settings/Settings';
-import Plot from '../plot/Plot';
+import DashboardSideBar from '../dashboard/DashboardSideBar';
 import Farm from '../farm/Farm';
-import Pool from '../pool/Pool';
+import FullNode from '../fullNode/FullNode';
 import NFTs from '../nfts/NFTs';
 import { CreateOffer } from '../offers/OfferManager';
-import DashboardSideBar from '../dashboard/DashboardSideBar';
+import Plot from '../plot/Plot';
+import Pool from '../pool/Pool';
+import Settings from '../settings/Settings';
 import SettingsPanel from '../settings/SettingsPanel';
+import AppProviders from './AppProviders';
 import AppStatusHeader from './AppStatusHeader';
 
 export default function AppRouter() {

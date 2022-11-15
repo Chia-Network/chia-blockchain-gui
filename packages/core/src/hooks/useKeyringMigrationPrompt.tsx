@@ -1,8 +1,9 @@
-import React from 'react';
 import { Trans } from '@lingui/macro';
+import React from 'react';
+
 import ConfirmDialog from '../components/ConfirmDialog';
-import useSkipMigration from './useSkipMigration';
 import useOpenDialog from './useOpenDialog';
+import useSkipMigration from './useSkipMigration';
 
 export default function useKeyringMigrationPrompt() {
   const [_, setSkipMigration] = useSkipMigration();

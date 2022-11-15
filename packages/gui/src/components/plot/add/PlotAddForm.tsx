@@ -1,25 +1,26 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { useNavigate, useLocation } from 'react-router';
-import { t, Trans } from '@lingui/macro';
 import { defaultPlotter, toBech32m, fromBech32m } from '@chia/api';
 import {
   useStartPlottingMutation,
   useCreateNewPoolWalletMutation,
 } from '@chia/api-react';
-import { useForm, SubmitHandler } from 'react-hook-form';
 import { Back, useShowError, ButtonLoading, Flex, Form } from '@chia/core';
-import PlotAddChoosePlotter from './PlotAddChoosePlotter';
-import PlotAddChooseSize from './PlotAddChooseSize';
-import PlotAddNumberOfPlots from './PlotAddNumberOfPlots';
-import PlotAddSelectTemporaryDirectory from './PlotAddSelectTemporaryDirectory';
-import PlotAddSelectFinalDirectory from './PlotAddSelectFinalDirectory';
-import PlotAddNFT from './PlotAddNFT';
-import PlotAddConfig from '../../../types/PlotAdd';
-import { plottingInfo } from '../../../constants/plotSizes';
+import { t, Trans } from '@lingui/macro';
+import React, { useState, useEffect, useRef } from 'react';
+import { useForm, SubmitHandler } from 'react-hook-form';
+import { useNavigate, useLocation } from 'react-router';
+
 import PlotNFTState from '../../../constants/PlotNFTState';
 import PlotterName from '../../../constants/PlotterName';
+import { plottingInfo } from '../../../constants/plotSizes';
 import useUnconfirmedPlotNFTs from '../../../hooks/useUnconfirmedPlotNFTs';
+import PlotAddConfig from '../../../types/PlotAdd';
 import { PlotterDefaults, PlotterOptions } from '../../../types/Plotter';
+import PlotAddChoosePlotter from './PlotAddChoosePlotter';
+import PlotAddChooseSize from './PlotAddChooseSize';
+import PlotAddNFT from './PlotAddNFT';
+import PlotAddNumberOfPlots from './PlotAddNumberOfPlots';
+import PlotAddSelectFinalDirectory from './PlotAddSelectFinalDirectory';
+import PlotAddSelectTemporaryDirectory from './PlotAddSelectTemporaryDirectory';
 
 type FormData = PlotAddConfig & {
   p2SingletonPuzzleHash?: string;
@@ -76,14 +77,14 @@ export default function PlotAddForm(props: Props) {
   const defaultsForPlotter = (plotterName: PlotterName) => {
     const plotterDefaults =
       plotters[plotterName]?.defaults ?? defaultPlotter.defaults;
-    const plotSize = plotterDefaults.plotSize;
+    const {plotSize} = plotterDefaults;
     const maxRam = plottingInfo[plotterName].find(
       (element) => element.value === plotSize,
     )?.defaultRam;
     const defaults = {
       ...plotterDefaults,
       ...otherDefaults,
-      maxRam: maxRam,
+      maxRam,
     };
 
     return defaults;

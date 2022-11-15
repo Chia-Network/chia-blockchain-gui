@@ -1,11 +1,11 @@
-import React, { ChangeEvent, type ReactNode, forwardRef } from 'react';
-import { Controller, useFormContext } from 'react-hook-form';
 import {
   Checkbox as MaterialCheckbox,
   type CheckboxProps as BaseCheckboxProps,
 } from '@mui/material';
+import React, { ChangeEvent, type ReactNode, forwardRef } from 'react';
+import { Controller, useFormContext } from 'react-hook-form';
 
-const ParseBoolean = (props: CheckboxProps) => {
+function ParseBoolean(props: CheckboxProps) {
   const { onChange, ...rest } = props;
   const { name } = rest;
   const { setValue } = useFormContext();
@@ -21,7 +21,7 @@ const ParseBoolean = (props: CheckboxProps) => {
   }
 
   return <MaterialCheckbox onChange={handleChange} {...rest} />;
-};
+}
 
 export type CheckboxProps = BaseCheckboxProps & {
   name: string;

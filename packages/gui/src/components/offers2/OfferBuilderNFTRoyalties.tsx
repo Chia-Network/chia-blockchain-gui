@@ -1,5 +1,3 @@
-import React, { useMemo } from 'react';
-import { Trans } from '@lingui/macro';
 import type { NFTInfo } from '@chia/api';
 import { useGetCatListQuery } from '@chia/api-react';
 import {
@@ -16,9 +14,12 @@ import {
   mojoToCAT,
   mojoToCATLocaleString,
 } from '@chia/core';
+import { Trans } from '@lingui/macro';
 import { Box, Typography } from '@mui/material';
-import useOfferBuilderContext from '../../hooks/useOfferBuilderContext';
+import React, { useMemo } from 'react';
 import styled from 'styled-components';
+
+import useOfferBuilderContext from '../../hooks/useOfferBuilderContext';
 
 const StyledTitle = styled(Box)`
   font-size: 0.625rem;
@@ -50,8 +51,7 @@ export default function OfferBuilderNFTRoyalties(
   ];
   const hasRoyalties = nft.royaltyPercentage > 0;
 
-  const rows = useMemo(() => {
-    return royalties?.map((royalty) => {
+  const rows = useMemo(() => royalties?.map((royalty) => {
       const { address, amount, asset } = royalty;
       const assetLowerCase = asset.toLowerCase();
 
@@ -86,8 +86,7 @@ export default function OfferBuilderNFTRoyalties(
         symbol: assetLowerCase,
         displaySymbol: <Truncate>{assetLowerCase}</Truncate>,
       };
-    });
-  }, [royalties, catList, currencyCode]);
+    }), [royalties, catList, currencyCode]);
 
   return (
     <Flex flexDirection="column" flexGrow={1} gap={2}>

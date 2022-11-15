@@ -1,9 +1,10 @@
-import React from 'react';
 import type { KeyData } from '@chia/api';
 import { useDeleteLabelMutation, useSetLabelMutation } from '@chia/api-react';
 import { Trans } from '@lingui/macro';
-import { useForm } from 'react-hook-form';
 import { ButtonGroup, Chip, InputAdornment } from '@mui/material';
+import React from 'react';
+import { useForm } from 'react-hook-form';
+
 import ButtonLoading from '../../components/ButtonLoading';
 import Flex from '../../components/Flex';
 import Form from '../../components/Form';

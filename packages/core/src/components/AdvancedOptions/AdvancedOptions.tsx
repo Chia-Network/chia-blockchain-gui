@@ -1,14 +1,15 @@
-import React, { ReactNode } from 'react';
 import { Trans } from '@lingui/macro';
-import { useToggle } from 'react-use';
-import { Typography } from '@mui/material';
-import styled from 'styled-components';
 import {
   KeyboardArrowUp as KeyboardArrowUpIcon,
   KeyboardArrowDown as KeyboardArrowDownIcon,
 } from '@mui/icons-material';
-import Flex from '../Flex';
+import { Typography } from '@mui/material';
+import React, { ReactNode } from 'react';
+import { useToggle } from 'react-use';
+import styled from 'styled-components';
+
 import Accordion from '../Accordion';
+import Flex from '../Flex';
 
 const StyledToggleAdvancedOptions = styled(({ expanded, ...rest }) => (
   <Typography {...rest} />

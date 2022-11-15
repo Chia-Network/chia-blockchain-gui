@@ -1,13 +1,14 @@
-import React, { useMemo, ReactNode } from 'react';
 import { CssBaseline } from '@mui/material';
+import * as materialLocales from '@mui/material/locale';
 import {
   ThemeProvider as MaterialThemeProvider,
   createTheme,
 } from '@mui/material/styles';
-import * as materialLocales from '@mui/material/locale';
+import React, { useMemo, ReactNode } from 'react';
 import { ThemeProvider as StyledThemeProvider, createGlobalStyle } from 'styled-components';
-import Fonts from '../Fonts';
+
 import useLocale from '../../hooks/useLocale';
+import Fonts from '../Fonts';
 
 export function getMaterialLocale(locale: string) {
   if (!locale) {

@@ -1,27 +1,28 @@
-import React from 'react';
+import { AlertDialog, Card, Flex, chiaToMojo, mojoToChiaLocaleString } from '@chia/core';
+import { Trans } from '@lingui/macro';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import HelpIcon from '@mui/icons-material/Help';
+import { Tooltip } from '@mui/material';
+import Accordion from '@mui/material/Accordion';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
+import React from 'react';
 import { makeStyles } from '@mui/styles';
 import { useDispatch, useSelector } from 'react-redux';
-import { Trans } from '@lingui/macro';
 import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import Accordion from '@mui/material/Accordion';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import AccordionDetails from '@mui/material/AccordionDetails';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { Tooltip } from '@mui/material';
-import HelpIcon from '@mui/icons-material/Help';
-import { AlertDialog, Card, Flex, chiaToMojo, mojoToChiaLocaleString } from '@chia/core';
+
+import useCurrencyCode from '../../../hooks/useCurrencyCode';
+import { openDialog } from '../../../modules/dialog';
 import {
   send_transaction,
   rl_set_user_info_action,
 } from '../../../modules/message';
 import { get_transaction_result } from '../../../util/transaction_result';
-import { openDialog } from '../../../modules/dialog';
 import WalletHistory from '../WalletHistory';
-import useCurrencyCode from '../../../hooks/useCurrencyCode';
 
 const drawerWidth = 240;
 
@@ -223,7 +224,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const IncompleteCard = (props) => {
+function IncompleteCard(props) {
   const id = props.wallet_id;
 
   const dispatch = useDispatch();
@@ -351,9 +352,9 @@ const IncompleteCard = (props) => {
       </Grid>
     </Card>
   );
-};
+}
 
-const RLDetailsCard = (props) => {
+function RLDetailsCard(props) {
   const id = props.wallet_id;
 
   const data = useSelector((state) => state.wallet_state.wallets[id].data);
@@ -489,9 +490,9 @@ const RLDetailsCard = (props) => {
       </Card>
     );
   }
-};
+}
 
-const BalanceCardSubSection = (props) => {
+function BalanceCardSubSection(props) {
   const currencyCode = useCurrencyCode();
 
   return (
@@ -517,9 +518,9 @@ const BalanceCardSubSection = (props) => {
       </Box>
     </Grid>
   );
-};
+}
 
-const BalanceCard = (props) => {
+function BalanceCard(props) {
   const id = props.wallet_id;
   const balance = useSelector(
     (state) => state.wallet_state.wallets[id].balance_total,
@@ -586,9 +587,9 @@ const BalanceCard = (props) => {
       </Grid>
     </Card>
   );
-};
+}
 
-const SendCard = (props) => {
+function SendCard(props) {
   const id = props.wallet_id;
   const classes = useStyles();
   let address_input = null;
@@ -751,7 +752,7 @@ const SendCard = (props) => {
       </Grid>
     </Card>
   );
-};
+}
 
 export default function RateLimitedWallet(props) {
   const id = useSelector((state) => state.wallet_menu.id);

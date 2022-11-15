@@ -1,6 +1,4 @@
 import { WalletType } from '@chia/api';
-import { t } from '@lingui/macro';
-import type { ChipProps } from '@mui/material';
 import type {
   OfferSummaryAssetInfo,
   OfferSummaryInfos,
@@ -12,11 +10,14 @@ import {
   mojoToCATLocaleString,
   mojoToChiaLocaleString,
 } from '@chia/core';
-import NFTOfferExchangeType from './NFTOfferExchangeType';
-import OfferState from './OfferState';
-import OfferAsset from './OfferAsset';
+import { t } from '@lingui/macro';
+import type { ChipProps } from '@mui/material';
+
 import { AssetIdMapEntry } from '../../hooks/useAssetIdName';
 import { launcherIdToNFTId } from '../../util/nfts';
+import NFTOfferExchangeType from './NFTOfferExchangeType';
+import OfferAsset from './OfferAsset';
+import OfferState from './OfferState';
 
 let filenameCounter = 0;
 
@@ -141,9 +142,9 @@ export function shortSummaryForOffer(
 
     if (assetInfo && amount !== undefined) {
       shortSummary +=
-        formatAmountForWalletType(amount, assetInfo.walletType) +
-        ' ' +
-        assetInfo.displayName.replace(/\s/g, '');
+        `${formatAmountForWalletType(amount, assetInfo.walletType) 
+        } ${ 
+        assetInfo.displayName.replace(/\s/g, '')}`;
     }
 
     return shortSummary;
@@ -204,7 +205,7 @@ export function formatAmountForWalletType(
 ): string {
   if (walletType === WalletType.STANDARD_WALLET) {
     return mojoToChiaLocaleString(amount, locale);
-  } else if (walletType === WalletType.CAT) {
+  } if (walletType === WalletType.CAT) {
     return mojoToCATLocaleString(amount, locale);
   }
 
@@ -215,7 +216,7 @@ export function offerContainsAssetOfType(
   offerSummary: OfferSummaryRecord,
   assetType: string,
 ): boolean {
-  const infos: OfferSummaryInfos = offerSummary.infos;
+  const {infos} = offerSummary;
   const matchingAssetId: string | undefined = Object.keys(infos).find(
     (assetId) => {
       const info: OfferSummaryAssetInfo = infos[assetId];
@@ -240,7 +241,7 @@ export function offerAssetTypeForAssetId(
   if (['xch', 'txch'].includes(assetId)) {
     assetType = OfferAsset.CHIA;
   } else {
-    const infos: OfferSummaryInfos = offerSummary.infos;
+    const {infos} = offerSummary;
     const info: OfferSummaryAssetInfo = infos[assetId];
 
     if (info) {

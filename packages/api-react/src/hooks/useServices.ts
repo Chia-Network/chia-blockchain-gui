@@ -1,4 +1,5 @@
 import { ServiceName } from '@chia/api';
+
 import useService, { ServiceState } from './useService';
 
 type Options = {
@@ -14,7 +15,7 @@ function getServiceKeepState(
   const { keepRunning, keepStopped } = options;
   if (keepRunning && keepRunning.includes(service)) {
     return 'running';
-  } else if (keepStopped && keepStopped.includes(service)) {
+  } if (keepStopped && keepStopped.includes(service)) {
     return 'stopped';
   }
   return undefined;

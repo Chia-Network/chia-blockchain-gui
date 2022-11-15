@@ -1,4 +1,3 @@
-import React, { ReactNode } from 'react';
 import {
   Box,
   Typography,
@@ -7,6 +6,7 @@ import {
   TableCell,
   TableRow,
 } from '@mui/material';
+import React, { ReactNode } from 'react';
 import styled from 'styled-components';
 
 const StyledTableCell= styled(({ hideDivider, ...rest }) => (

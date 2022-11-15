@@ -5,7 +5,7 @@ export default function getWalletSyncingStatus(walletState) {
 
   if (syncing) {
     return SyncingStatus.SYNCING;
-  } else if (synced) {
+  } if (synced) {
     return SyncingStatus.SYNCED;
   }
 

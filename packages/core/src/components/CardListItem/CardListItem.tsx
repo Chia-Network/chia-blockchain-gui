@@ -1,8 +1,9 @@
-import React, { type ReactNode } from 'react';
 import { Box, Card, CardContent, CardActionArea } from '@mui/material';
 import { styled } from '@mui/system';
-import Loading from '../Loading';
+import React, { type ReactNode } from 'react';
+
 import useColorModeValue from '../../utils/useColorModeValue';
+import Loading from '../Loading';
 
 const StyledCard = styled(
   ({ selected, disabled, ...rest }) => <Card {...rest} />,

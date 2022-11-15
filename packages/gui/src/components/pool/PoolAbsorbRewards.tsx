@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router';
-import type PlotNFT from '../../types/PlotNFT';
+
 import usePlotNFTDetails from '../../hooks/usePlotNFTDetails';
+import type PlotNFT from '../../types/PlotNFT';
 
 type Props = {
   nft: PlotNFT;

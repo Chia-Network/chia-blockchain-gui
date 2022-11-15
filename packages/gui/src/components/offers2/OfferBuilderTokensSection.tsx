@@ -1,15 +1,17 @@
-import React, { useMemo } from 'react';
-import { Trans } from '@lingui/macro';
-import { Tokens } from '@chia/icons';
-import { Flex, Loading, catToMojo, mojoToCATLocaleString } from '@chia/core';
 import { WalletType } from '@chia/api';
 import type { Wallet } from '@chia/api';
 import { useGetWalletsQuery } from '@chia/api-react';
+import { Flex, Loading, catToMojo, mojoToCATLocaleString } from '@chia/core';
+import { Tokens } from '@chia/icons';
+import { Trans } from '@lingui/macro';
+import BigNumber from 'bignumber.js';
+import React, { useMemo } from 'react';
 import { useFieldArray, useWatch } from 'react-hook-form';
+
+import useOfferBuilderContext from '../../hooks/useOfferBuilderContext';
 import OfferBuilderSection from './OfferBuilderSection';
 import OfferBuilderToken from './OfferBuilderToken';
-import useOfferBuilderContext from '../../hooks/useOfferBuilderContext';
-import BigNumber from 'bignumber.js';
+
 
 export type OfferBuilderTokensSectionProps = {
   name: string;

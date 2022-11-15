@@ -1,4 +1,5 @@
-import React from 'react';
+import { useAddPlotDirectoryMutation, useRemovePlotDirectoryMutation, useGetPlotDirectoriesQuery } from '@chia/api-react';
+import { useShowError, Button, Suspender } from '@chia/core';
 import { Trans } from '@lingui/macro';
 import { Folder as FolderIcon, Delete as DeleteIcon } from '@mui/icons-material';
 import {
@@ -16,8 +17,8 @@ import {
   ListItemText,
   Typography,
 } from '@mui/material';
-import { useShowError, Button, Suspender } from '@chia/core';
-import { useAddPlotDirectoryMutation, useRemovePlotDirectoryMutation, useGetPlotDirectoriesQuery } from '@chia/api-react';
+import React from 'react';
+
 import useSelectDirectory from '../../hooks/useSelectDirectory';
 
 type Props = {

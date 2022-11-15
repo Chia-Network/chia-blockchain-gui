@@ -1,9 +1,11 @@
-import React, { type ReactNode } from 'react';
-import { AppBar, Toolbar, Box } from '@mui/material';
-import styled from 'styled-components';
-import { Outlet, Link } from 'react-router-dom';
-import Flex from '../Flex';
 import { ArrowBackIos as ArrowBackIosIcon } from '@mui/icons-material';
+import { AppBar, Toolbar, Box } from '@mui/material';
+import React, { type ReactNode } from 'react';
+import { Outlet, Link } from 'react-router-dom';
+import styled from 'styled-components';
+
+import Flex from '../Flex';
+
 
 const StyledWrapper = styled(Box)`
   padding-top: ${({ theme }) => `${theme.spacing(3)}`};
@@ -51,11 +53,11 @@ export default function LayoutHero(props: LayoutHeroProps) {
             </Link>
           )}
           <Flex flexGrow={1} />
-          {/*!hideSettings && (
+          {/*! hideSettings && (
             <Settings>
               {settings}
             </Settings>
-          )*/}
+          ) */}
         </Toolbar>
       </AppBar>
       <StyledBody>

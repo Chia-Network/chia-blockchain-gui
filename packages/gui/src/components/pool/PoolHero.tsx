@@ -1,9 +1,9 @@
-import React from 'react';
-import { Trans } from '@lingui/macro';
-import { useNavigate } from 'react-router-dom';
-import { Grid, Typography } from '@mui/material';
 import { Button, CardHero } from '@chia/core';
 import { Pooling } from '@chia/icons';
+import { Trans } from '@lingui/macro';
+import { Grid, Typography } from '@mui/material';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function PoolHero() {
   const navigate = useNavigate();

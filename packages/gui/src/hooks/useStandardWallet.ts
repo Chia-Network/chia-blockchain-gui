@@ -1,7 +1,7 @@
-import { useMemo } from 'react';
 import type { Wallet } from '@chia/api';
 import { WalletType } from '@chia/api';
 import { useGetWalletsQuery, useGetWalletBalanceQuery } from '@chia/api-react';
+import { useMemo } from 'react';
 
 export default function useStandardWallet(): {
   loading: boolean;
@@ -17,11 +17,9 @@ export default function useStandardWallet(): {
 
   const isLoading = isLoadingGetWallets || isLoadingWalletBalance;
 
-  const wallet = useMemo(() => {
-    return wallets?.find(
+  const wallet = useMemo(() => wallets?.find(
       (item: Wallet) => item?.type === WalletType.STANDARD_WALLET,
-    );
-  }, [wallets]);
+    ), [wallets]);
 
   return {
     loading: isLoading,

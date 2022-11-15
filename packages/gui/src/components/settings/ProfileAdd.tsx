@@ -1,5 +1,7 @@
-import React from 'react';
-import { Trans, t } from '@lingui/macro';
+import {
+  useCreateNewWalletMutation,
+  useGetWalletBalanceQuery,
+} from '@chia/api-react';
 import {
   ButtonLoading,
   chiaToMojo,
@@ -8,19 +10,18 @@ import {
   Form,
   mojoToChiaLocaleString,
 } from '@chia/core';
+import { Trans, t } from '@lingui/macro';
 import {
   Card,
   Typography,
 } from '@mui/material';
-import styled from 'styled-components';
-import {
-  useCreateNewWalletMutation,
-  useGetWalletBalanceQuery,
-} from '@chia/api-react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router';
-import useOpenExternal from '../../hooks/useOpenExternal';
+import styled from 'styled-components';
 import isNumeric from 'validator/es/lib/isNumeric';
+
+import useOpenExternal from '../../hooks/useOpenExternal';
 
 const StyledCard = styled(Card)(({ theme }) => `
   width: 100%;

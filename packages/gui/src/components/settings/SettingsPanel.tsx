@@ -1,5 +1,4 @@
-import React from 'react';
-import { Trans } from '@lingui/macro';
+import { useGetKeyringStatusQuery } from '@chia/api-react';
 import {
   Button,
   AlertDialog,
@@ -13,14 +12,16 @@ import {
   State,
   TooltipIcon,
 } from '@chia/core';
-import { useGetKeyringStatusQuery } from '@chia/api-react';
-import { Tooltip } from '@mui/material';
+import { Trans } from '@lingui/macro';
 import { Help as HelpIcon } from '@mui/icons-material';
+import { Tooltip } from '@mui/material';
+import React from 'react';
+
 import ChangePassphrasePrompt from './ChangePassphrasePrompt';
 import RemovePassphrasePrompt from './RemovePassphrasePrompt';
 import SetPassphrasePrompt from './SetPassphrasePrompt';
-import SettingsStartup from './SettingsStartup';
 import SettingsDerivationIndex from './SettingsDerivationIndex';
+import SettingsStartup from './SettingsStartup';
 
 export default function SettingsPanel() {
   const openDialog = useOpenDialog();
@@ -148,7 +149,7 @@ export default function SettingsPanel() {
           <Trans>Migrate Keyring</Trans>
         </Button>
       );
-    } else {
+    } 
       if (userPassphraseIsSet) {
         return (
           <Button
@@ -159,7 +160,7 @@ export default function SettingsPanel() {
             <Trans>Remove Passphrase</Trans>
           </Button>
         );
-      } else {
+      } 
         return (
           <Button
             onClick={() => setAddPassphraseOpen(true)}
@@ -169,8 +170,8 @@ export default function SettingsPanel() {
             <Trans>Set Passphrase</Trans>
           </Button>
         );
-      }
-    }
+      
+    
   }
 
   return (

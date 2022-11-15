@@ -1,5 +1,6 @@
-import React from 'react';
 import { SvgIcon, SvgIconProps } from '@mui/material';
+import React from 'react';
+
 import ChiaIcon from './images/chia.svg';
 
 export default function Keys(props: SvgIconProps) {

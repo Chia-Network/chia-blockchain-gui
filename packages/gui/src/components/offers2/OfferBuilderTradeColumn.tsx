@@ -1,14 +1,15 @@
-import React from 'react';
-import { Trans } from '@lingui/macro';
 import { Flex } from '@chia/core';
-import { useWatch } from 'react-hook-form';
 import { Offering, Requesting } from '@chia/icons';
-import OfferBuilderHeader from './OfferBuilderHeader';
+import { Trans } from '@lingui/macro';
+import React from 'react';
+import { useWatch } from 'react-hook-form';
+
+import useOfferBuilderContext from '../../hooks/useOfferBuilderContext';
 import OfferBuilderFeeSection from './OfferBuilderFeeSection';
+import OfferBuilderHeader from './OfferBuilderHeader';
 import OfferBuilderNFTSection from './OfferBuilderNFTSection';
 import OfferBuilderTokensSection from './OfferBuilderTokensSection';
 import OfferBuilderXCHSection from './OfferBuilderXCHSection';
-import useOfferBuilderContext from '../../hooks/useOfferBuilderContext';
 
 function getTitle(offering = false, viewer = false, isMyOffer = false) {
   if (isMyOffer) {

@@ -1,22 +1,23 @@
-import React, { useState } from 'react';
+import type { KeyData } from '@chia/api';
+import { useGetLoggedInFingerprintQuery } from '@chia/api-react';
 import { Trans } from '@lingui/macro';
-import { Box, Typography, ListItemIcon, Chip } from '@mui/material';
 import {
   Delete as DeleteIcon,
   Visibility as VisibilityIcon,
   Edit as EditIcon,
 } from '@mui/icons-material';
-import type { KeyData } from '@chia/api';
-import { useGetLoggedInFingerprintQuery } from '@chia/api-react';
-import SelectKeyDetailDialog from './SelectKeyDetailDialog';
+import { Box, Typography, ListItemIcon, Chip } from '@mui/material';
+import React, { useState } from 'react';
+
 import CardListItem from '../../components/CardListItem';
-import More from '../../components/More';
-import { MenuItem } from '../../components/MenuItem';
 import Flex from '../../components/Flex';
+import { MenuItem } from '../../components/MenuItem';
+import More from '../../components/More';
 import useOpenDialog from '../../hooks/useOpenDialog';
+import SelectKeyDetailDialog from './SelectKeyDetailDialog';
 import SelectKeyRenameForm from './SelectKeyRenameForm';
-import WalletStatus from './WalletStatus';
 import WalletDeleteDialog from './WalletDeleteDialog';
+import WalletStatus from './WalletStatus';
 
 type SelectKeyItemProps = {
   keyData: KeyData;

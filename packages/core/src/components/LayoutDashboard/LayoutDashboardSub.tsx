@@ -1,8 +1,10 @@
-import React, { type ReactNode } from 'react';
-import styled from 'styled-components';
 import { Box } from '@mui/material';
-import Flex from '../Flex';
+import React, { type ReactNode } from 'react';
 import { Outlet } from 'react-router';
+import styled from 'styled-components';
+
+import Flex from '../Flex';
+
 
 const StyledRoot = styled(Flex)`
   width: 100%;

@@ -1,5 +1,3 @@
-import React, { useMemo } from 'react';
-import { Trans } from '@lingui/macro';
 import { WalletType } from '@chia/api';
 import { useGetWalletBalanceQuery } from '@chia/api-react';
 import {
@@ -9,6 +7,8 @@ import {
   useLocale,
 } from '@chia/core';
 import { useWallet } from '@chia/wallets';
+import { Trans } from '@lingui/macro';
+import React, { useMemo } from 'react';
 
 export type OfferBuilderWalletBalanceProps = {
   walletId: number;

@@ -1,7 +1,4 @@
-import React from 'react';
-import styled from 'styled-components';
-import { Trans } from '@lingui/macro';
-import { Box } from '@mui/material';
+import { Flex, SideBarItem } from '@chia/core';
 import {
   Farming as FarmingIcon,
   FullNode as FullNodeIcon,
@@ -12,7 +9,10 @@ import {
   Tokens as TokensIcon,
   Settings as SettingsIcon,
 } from '@chia/icons';
-import { Flex, SideBarItem } from '@chia/core';
+import { Trans } from '@lingui/macro';
+import { Box } from '@mui/material';
+import React from 'react';
+import styled from 'styled-components';
 
 const StyledItemsContainer = styled(Flex)`
   flex-direction: column;
@@ -87,7 +87,7 @@ export default function DashboardSideBar(props: DashboardSideBarProps) {
               title={<Trans>Plots</Trans>}
               data-testid="DashboardSideBar-plots"
             />
-            {/*}
+            {/* }
             <SideBarItem
               to="/dashboard/wallets"
               icon={<WalletIcon fontSize="large" />}

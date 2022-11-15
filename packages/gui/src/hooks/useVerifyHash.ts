@@ -1,16 +1,15 @@
-import { useState, useEffect } from 'react';
 import type { NFTInfo } from '@chia/api';
 import { useLocalStorage } from '@chia/api-react';
+import { useState, useEffect } from 'react';
 import isURL from 'validator/lib/isURL';
 
-import getRemoteFileContent from '../util/getRemoteFileContent';
-import { MAX_FILE_SIZE } from './useNFTMetadata';
-import { mimeTypeRegex, isImage, parseExtensionFromUrl } from '../util/utils';
-import { FileType } from '../util/getRemoteFileContent';
-
 import computeHash from '../util/computeHash';
+import getRemoteFileContent, { FileType } from '../util/getRemoteFileContent';
+import { mimeTypeRegex, isImage, parseExtensionFromUrl } from '../util/utils';
+import { MAX_FILE_SIZE } from './useNFTMetadata';
 
-const ipcRenderer = (window as any).ipcRenderer;
+
+const {ipcRenderer} = window as any;
 
 function isAudio(uri: string) {
   return mimeTypeRegex(uri, /^audio/);
@@ -84,7 +83,7 @@ export default function useVerifyHash(props: VerifyHash): {
       lastError = 'missing preview_image_hash';
     } else {
       /* ================== VIDEO THUMBNAIL ================== */
-      if (metadata['preview_video_uris']) {
+      if (metadata.preview_video_uris) {
         /* if it's cached, don't try to validate hash at all */
         if (thumbCache.video) {
           setThumbnail({
@@ -93,8 +92,8 @@ export default function useVerifyHash(props: VerifyHash): {
           setIsLoading(false);
           videoThumbValid = true;
           return;
-        } else {
-          uris = metadata['preview_video_uris'];
+        } 
+          uris = metadata.preview_video_uris;
           for (let i = 0; i < uris.length; i++) {
             const videoUri = uris[i];
             try {
@@ -106,7 +105,7 @@ export default function useVerifyHash(props: VerifyHash): {
                 forceCache: true,
                 nftId,
                 type: FileType.Video,
-                dataHash: metadata['preview_video_hash'],
+                dataHash: metadata.preview_video_hash,
               });
               if (!isValid) {
                 lastError = 'thumbnail hash mismatch';
@@ -136,12 +135,12 @@ export default function useVerifyHash(props: VerifyHash): {
               lastError = lastError || 'failed fetch content';
             }
           }
-        }
+        
       }
 
       /* ================== IMAGE THUMBNAIL ================== */
-      if (metadata['preview_image_uris'] && !videoThumbValid) {
-        uris = metadata['preview_image_uris'];
+      if (metadata.preview_image_uris && !videoThumbValid) {
+        uris = metadata.preview_image_uris;
         for (let i = 0; i < uris.length; i++) {
           const imageUri = uris[i];
           /* if it's cached, don't try to validate hash at all */
@@ -162,7 +161,7 @@ export default function useVerifyHash(props: VerifyHash): {
               uri: imageUri,
               forceCache: true,
               nftId,
-              dataHash: metadata['preview_image_hash'],
+              dataHash: metadata.preview_image_hash,
               type: FileType.Image,
             });
             if (!isValid) {

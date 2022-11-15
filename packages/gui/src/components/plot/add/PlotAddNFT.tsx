@@ -1,6 +1,5 @@
-import React, { useState, forwardRef } from 'react';
-import { Trans } from '@lingui/macro';
 import { Button, CardStep, Select, Flex, Loading } from '@chia/core';
+import { Trans } from '@lingui/macro';
 import {
   Box,
   Grid,
@@ -9,11 +8,13 @@ import {
   MenuItem,
   Typography,
 } from '@mui/material';
+import React, { useState, forwardRef } from 'react';
 import { useFormContext } from 'react-hook-form';
+
 import usePlotNFTs from '../../../hooks/usePlotNFTs';
+import Plotter from '../../../types/Plotter';
 import PlotNFTName from '../../plotNFT/PlotNFTName';
 import PlotNFTSelectPool from '../../plotNFT/select/PlotNFTSelectPool';
-import Plotter from '../../../types/Plotter';
 
 type Props = {
   step: number;

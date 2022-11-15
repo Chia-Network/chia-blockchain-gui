@@ -1,6 +1,5 @@
+import { Box, Paper, Popper , Typography } from '@mui/material';
 import React, { ReactNode, useRef } from 'react';
-import { Box, Paper, Popper } from '@mui/material';
-import { Typography } from '@mui/material';
 
 export type WalletGraphTooltipProps = {
   x?: number;

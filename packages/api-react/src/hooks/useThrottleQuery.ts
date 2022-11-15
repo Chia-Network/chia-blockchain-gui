@@ -1,5 +1,6 @@
-import { useRef, useCallback } from 'react';
 import { throttle } from 'lodash';
+import { useRef, useCallback } from 'react';
+
 import useForceUpdate from './useForceUpdate';
 
 export default function useThrottleQuery(queryHook: Function, variables?: Object, options?: Object, throttleOptions: {

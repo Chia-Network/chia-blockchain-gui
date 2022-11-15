@@ -1,12 +1,13 @@
-import React, { useMemo } from 'react';
-import { ListItemIcon, ListItemText, Typography } from '@mui/material';
-import { Dropdown, Flex, Loading, useTrans } from '@chia/core';
-import { useGetWalletsQuery } from '@chia/api-react';
 import { WalletType, type Wallet } from '@chia/api';
+import { useGetWalletsQuery } from '@chia/api-react';
+import { Dropdown, Flex, Loading, useTrans } from '@chia/core';
+import { ListItemIcon, ListItemText, Typography } from '@mui/material';
+import React, { useMemo } from 'react';
 import { useNavigate } from 'react-router';
+
 import WalletName from '../constants/WalletName';
-import WalletIcon from './WalletIcon';
 import WalletBadge from './WalletBadge';
+import WalletIcon from './WalletIcon';
 
 function getPrimaryTitle(wallet: Wallet): string {
   switch (wallet.type) {

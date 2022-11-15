@@ -1,8 +1,9 @@
-import { useMemo } from 'react';
 import { useGetNFTInfoQuery } from '@chia/api-react';
+import { useMemo } from 'react';
+
+import { didToDIDId } from '../util/dids';
 import { launcherIdFromNFTId } from '../util/nfts';
 import { stripHexPrefix } from '../util/utils';
-import { didToDIDId } from '../util/dids';
 
 export type UseNFTMinterDIDResult = {
   didId: string | undefined;

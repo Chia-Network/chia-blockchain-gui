@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { getPlotSize } from '../../../constants/plotSizes';
 import type PlotQueueItem from '../../../types/PlotQueueItem';
 

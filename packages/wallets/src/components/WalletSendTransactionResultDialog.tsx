@@ -1,9 +1,9 @@
-import React from 'react';
-import { Trans } from '@lingui/macro';
 import {
   AlertDialog,
   Flex,
 } from '@chia/core';
+import { Trans } from '@lingui/macro';
+import React from 'react';
 
 type WalletSendTransactionResultDialogProps = {
   success: boolean;
@@ -14,11 +14,11 @@ function WalletSendTransactionResultDialogTitle(success: boolean, message: strin
   if (success) {
     return <Trans>Success</Trans>;
   }
-  else {
+  
     if (message === "INVALID_FEE_TOO_CLOSE_TO_ZERO" || message === "INVALID_FEE_LOW_FEE") {
       return <Trans>Mempool Full</Trans>;
     }
-  }
+  
   return undefined;
 }
 
@@ -26,7 +26,7 @@ function WalletSendTransactionResultDialogContent(success: boolean, message: str
   if (success) {
     return message ?? <Trans>Transaction has successfully been sent to a full node and included in the mempool.</Trans>
   }
-  else {
+  
     if (message === "INVALID_FEE_TOO_CLOSE_TO_ZERO" || message === "INVALID_FEE_LOW_FEE") {
       return (
         <Flex flexDirection="column" gap={3}>
@@ -46,7 +46,7 @@ function WalletSendTransactionResultDialogContent(success: boolean, message: str
         </Flex>
       );
     }
-  }
+  
   return undefined;
 }
 

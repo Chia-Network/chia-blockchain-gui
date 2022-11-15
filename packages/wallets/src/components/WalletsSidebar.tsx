@@ -1,8 +1,9 @@
-import React, { useMemo } from 'react';
-import { Trans } from '@lingui/macro';
-import { orderBy } from 'lodash';
-import { useNavigate, useParams } from 'react-router';
-import { Box, Typography, Button } from '@mui/material';
+import { WalletType } from '@chia/api';
+import {
+  useGetLoggedInFingerprintQuery,
+  useGetPrivateKeyQuery,
+  useGetWalletsQuery,
+} from '@chia/api-react';
 import {
   Flex,
   CardListItem,
@@ -12,18 +13,18 @@ import {
   useOpenExternal,
   FormatLargeNumber,
 } from '@chia/core';
-import {
-  useGetLoggedInFingerprintQuery,
-  useGetPrivateKeyQuery,
-  useGetWalletsQuery,
-} from '@chia/api-react';
-import { WalletType } from '@chia/api';
+import { Trans } from '@lingui/macro';
+import { Box, Typography, Button } from '@mui/material';
+import { orderBy } from 'lodash';
+import React, { useMemo } from 'react';
+import { useNavigate, useParams } from 'react-router';
 import styled from 'styled-components';
-import WalletIcon from './WalletIcon';
-import getWalletPrimaryTitle from '../utils/getWalletPrimaryTitle';
-import WalletsManageTokens from './WalletsManageTokens';
+
 import useHiddenWallet from '../hooks/useHiddenWallet';
+import getWalletPrimaryTitle from '../utils/getWalletPrimaryTitle';
 import WalletEmptyDialog from './WalletEmptyDialog';
+import WalletIcon from './WalletIcon';
+import WalletsManageTokens from './WalletsManageTokens';
 
 const StyledRoot = styled(Box)`
   min-width: 390px;
@@ -134,10 +135,10 @@ export default function WalletsSidebar() {
                 size="large"
                 onClick={() =>
                   openExternal(
-                    'https://cat1.chia.net/#publicKey=' +
-                      privateKey.pk +
-                      '&fingerprint=' +
-                      fingerprint
+                    `https://cat1.chia.net/#publicKey=${ 
+                      privateKey.pk 
+                      }&fingerprint=${ 
+                      fingerprint}`
                   )
                 }
                 disabled={isLoadingFingerprint || isLoadingPrivateKey}

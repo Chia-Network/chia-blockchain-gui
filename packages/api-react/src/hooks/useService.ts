@@ -1,5 +1,6 @@
-import { useEffect, useState, useMemo } from 'react';
 import { ServiceName } from '@chia/api';
+import { useEffect, useState, useMemo } from 'react';
+
 import { useClientStartServiceMutation } from '../services/client';
 import {
   useStopServiceMutation,
@@ -38,7 +39,7 @@ export default function useService(
   // isRunning is not working when stopService is called (backend issue)
   const {
     data: runningServices,
-    isLoading: isLoading,
+    isLoading,
     refetch,
     error,
   } = useRunningServicesQuery(
@@ -46,14 +47,12 @@ export default function useService(
     {
       pollingInterval: latestIsProcessing ? 1_000 : 10_000,
       skip: disabled,
-      selectFromResult: (state) => {
-        return {
+      selectFromResult: (state) => ({
           data: state.data,
           refetch: state.refetch,
           error: state.error,
           isLoading: state.isLoading,
-        };
-      },
+        }),
     }
   );
 

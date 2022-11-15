@@ -1,8 +1,9 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import WalletDIDSelect from './WalletDIDSelect';
+
 import WalletDIDCreate from './WalletDIDCreate';
 import WalletDIDRecovery from './WalletDIDRecovery';
+import WalletDIDSelect from './WalletDIDSelect';
 
 export default function WalletDIDList() {
   return (

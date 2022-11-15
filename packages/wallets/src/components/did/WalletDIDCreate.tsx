@@ -1,5 +1,3 @@
-import React, { useState } from 'react';
-import { Trans } from '@lingui/macro';
 import {
   Amount,
   Form,
@@ -10,15 +8,18 @@ import {
   ButtonLoading,
   chiaToMojo,
 } from '@chia/core';
-import { Typography, Button, Box, TextField, Tooltip } from '@mui/material';
-import { createState } from '../../../modules/createWallet';
-import { useDispatch } from 'react-redux';
-import { create_did_action } from '../../../modules/message';
-import { openDialog } from '../../../modules/dialog';
-import { useForm, Controller, useFieldArray } from 'react-hook-form';
+import { Trans } from '@lingui/macro';
 import { Help as HelpIcon } from '@mui/icons-material';
+import { Typography, Button, Box, TextField, Tooltip } from '@mui/material';
 import { divide } from 'lodash';
+import React, { useState } from 'react';
+import { useForm, Controller, useFieldArray } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
+
+import { createState } from '../../../modules/createWallet';
+import { openDialog } from '../../../modules/dialog';
+import { create_did_action } from '../../../modules/message';
 
 export default function WalletDIDCreate() {
   const dispatch = useDispatch();

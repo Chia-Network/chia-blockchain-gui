@@ -1,6 +1,7 @@
-import { app } from 'electron';
 import ChildProcess from 'child_process';
 import path from 'path';
+
+import { app } from 'electron';
 
 export default function handleSquirrelEvent() {
   if (process.argv.length === 1) {

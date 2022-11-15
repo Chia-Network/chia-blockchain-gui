@@ -1,9 +1,9 @@
-import React, { useMemo, useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { Trans, t } from '@lingui/macro';
-import moment from 'moment';
-import BigNumber from 'bignumber.js';
-import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
+import { OfferSummaryRecord, OfferTradeRecord } from '@chia/api';
+import {
+  useCancelOfferMutation,
+  useGetOfferDataMutation,
+  useGetWalletsQuery,
+} from '@chia/api-react';
 import {
   Button,
   ButtonLoading,
@@ -26,7 +26,14 @@ import {
   LayoutDashboardSub,
   MenuItem,
 } from '@chia/core';
-import { OfferSummaryRecord, OfferTradeRecord } from '@chia/api';
+import { Trans, t } from '@lingui/macro';
+import {
+  Cancel,
+  GetApp as Download,
+  Info,
+  Reply as Share,
+  Visibility,
+} from '@mui/icons-material';
 import {
   Box,
   Checkbox,
@@ -41,39 +48,33 @@ import {
   ListItemIcon,
   Typography,
 } from '@mui/material';
-import {
-  Cancel,
-  GetApp as Download,
-  Info,
-  Reply as Share,
-  Visibility,
-} from '@mui/icons-material';
-import {
-  useCancelOfferMutation,
-  useGetOfferDataMutation,
-  useGetWalletsQuery,
-} from '@chia/api-react';
+import BigNumber from 'bignumber.js';
+import moment from 'moment';
+import React, { useMemo, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
+
+import useAssetIdName from '../../hooks/useAssetIdName';
+import useSaveOfferFile from '../../hooks/useSaveOfferFile';
+import useWalletOffers from '../../hooks/useWalletOffers';
+import { launcherIdToNFTId } from '../../util/nfts';
+import CreateOfferBuilder from '../offers2/CreateOfferBuilder';
+import OfferBuilderImport from '../offers2/OfferBuilderImport';
+import OfferBuilderViewer from '../offers2/OfferBuilderViewer';
+import { CreateNFTOfferEditor } from './NFTOfferEditor';
+import NFTOfferViewer from './NFTOfferViewer';
+import OfferAsset from './OfferAsset';
+import OfferDataDialog from './OfferDataDialog';
+import { CreateOfferEditor } from './OfferEditor';
+import { OfferImport } from './OfferImport';
+import OfferShareDialog from './OfferShareDialog';
+import OfferState from './OfferState';
 import {
   colorForOfferState,
   displayStringForOfferState,
   formatAmountForWalletType,
   offerAssetTypeForAssetId,
 } from './utils';
-import { launcherIdToNFTId } from '../../util/nfts';
-import useAssetIdName from '../../hooks/useAssetIdName';
-import useSaveOfferFile from '../../hooks/useSaveOfferFile';
-import useWalletOffers from '../../hooks/useWalletOffers';
-import { CreateOfferEditor } from './OfferEditor';
-import { CreateNFTOfferEditor } from './NFTOfferEditor';
-import { OfferImport } from './OfferImport';
-import NFTOfferViewer from './NFTOfferViewer';
-import OfferAsset from './OfferAsset';
-import OfferDataDialog from './OfferDataDialog';
-import OfferShareDialog from './OfferShareDialog';
-import OfferState from './OfferState';
-import CreateOfferBuilder from '../offers2/CreateOfferBuilder';
-import OfferBuilderImport from '../offers2/OfferBuilderImport';
-import OfferBuilderViewer from '../offers2/OfferBuilderViewer';
 
 type ConfirmOfferCancellationProps = {
   canCancelWithTransaction: boolean;
@@ -293,7 +294,7 @@ function OfferList(props: OfferListProps) {
       const fee = canCancelWithTransaction
         ? cancellationOptions.cancellationFee
         : 0;
-      await cancelOffer({ tradeId, secure: secure, fee: fee });
+      await cancelOffer({ tradeId, secure, fee });
     }
   }
 
@@ -319,8 +320,7 @@ function OfferList(props: OfferListProps) {
     );
   }
 
-  const cols = useMemo(() => {
-    return [
+  const cols = useMemo(() => [
       {
         field: (row: OfferTradeRecord) => {
           const { status } = row;
@@ -492,8 +492,7 @@ function OfferList(props: OfferListProps) {
         maxWidth: '100px',
         title: <Flex justifyContent="center">Actions</Flex>,
       },
-    ];
-  }, []);
+    ], []);
 
   const hasOffers = !!offers?.length;
 
@@ -596,13 +595,13 @@ export function OfferManager() {
       </Flex>
       <OfferList
         title={<Trans>Offers you created</Trans>}
-        includeMyOffers={true}
+        includeMyOffers
         includeTakenOffers={false}
       />
       <OfferList
         title={<Trans>Offers you accepted</Trans>}
         includeMyOffers={false}
-        includeTakenOffers={true}
+        includeTakenOffers
       />
     </Flex>
   );
@@ -622,7 +621,7 @@ export function CreateOffer() {
       <OfferShareDialog
         offerRecord={offerRecord}
         offerData={offerData as string}
-        showSuppressionCheckbox={true}
+        showSuppressionCheckbox
         exportOffer={() => saveOffer(offerRecord.tradeId)}
         testnet={testnet}
       />,

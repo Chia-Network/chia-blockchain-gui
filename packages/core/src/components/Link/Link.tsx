@@ -1,13 +1,14 @@
-import React, { SyntheticEvent } from 'react';
-import styled from 'styled-components';
 import {
   Link as BaseLink,
   LinkProps as BaseLinkProps,
 } from '@mui/material';
+import React, { SyntheticEvent } from 'react';
 import {
   Link as RouterLink,
   LinkProps as RouterLinkProps,
 } from 'react-router-dom';
+import styled from 'styled-components';
+
 import useOpenExternal from '../../hooks/useOpenExternal';
 
 type Props = BaseLinkProps &
@@ -47,7 +48,7 @@ export default function Link(props: Props) {
       event.preventDefault();
       event.stopPropagation();
       openExternal(href);
-      return;
+      
     }
   }
 

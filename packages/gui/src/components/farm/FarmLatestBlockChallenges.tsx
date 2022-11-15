@@ -1,10 +1,11 @@
-import React from 'react';
-import { Trans } from '@lingui/macro';
-import { Table, Card } from '@chia/core';
 import {
   useGetSignagePointsQuery,
   useGetTotalHarvestersSummaryQuery,
 } from '@chia/api-react';
+import { Table, Card } from '@chia/core';
+import { Trans } from '@lingui/macro';
+import React from 'react';
+
 import type { Row } from '../core/components/Table/Table';
 
 const cols = [

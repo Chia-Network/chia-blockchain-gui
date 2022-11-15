@@ -1,23 +1,23 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Trans } from '@lingui/macro';
+import { WalletType } from '@chia/api';
+import { useSetCATNameMutation, useGetCatListQuery } from '@chia/api-react';
 import { Flex, Loading, MenuItem, useOpenDialog } from '@chia/core';
-import { Alert, Typography } from '@mui/material';
+import { Offers as OffersIcon } from '@chia/icons';
+import { Trans } from '@lingui/macro';
 import {
   Edit as RenameIcon,
   Fingerprint as FingerprintIcon,
 } from '@mui/icons-material';
-import { Box, ListItemIcon } from '@mui/material';
-import { WalletType } from '@chia/api';
-import { useSetCATNameMutation, useGetCatListQuery } from '@chia/api-react';
-import { Offers as OffersIcon } from '@chia/icons';
-import WalletHistory from '../WalletHistory';
+import { Box, ListItemIcon , Alert, Typography } from '@mui/material';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import useWallet from '../../hooks/useWallet';
-import WalletReceiveAddress from '../WalletReceiveAddress';
 import WalletCards from '../WalletCards';
-import WalletCATSend from './WalletCATSend';
 import WalletHeader from '../WalletHeader';
+import WalletHistory from '../WalletHistory';
+import WalletReceiveAddress from '../WalletReceiveAddress';
 import WalletRenameDialog from '../WalletRenameDialog';
+import WalletCATSend from './WalletCATSend';
 import WalletCATTAILDialog from './WalletCATTAILDialog';
 
 type Props = {

@@ -1,8 +1,9 @@
 import React, { ReactNode } from 'react';
 import styled from 'styled-components';
-import Flex from '../Flex';
+
 import State from '../../constants/State';
 import StateColor from '../../constants/StateColor';
+import Flex from '../Flex';
 import StateIndicatorDot from './StateIndicatorDot';
 
 const Color = {

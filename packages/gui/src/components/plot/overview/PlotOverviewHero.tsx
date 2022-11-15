@@ -1,10 +1,11 @@
-import React from 'react';
-import { Trans } from '@lingui/macro';
-import { useNavigate } from 'react-router-dom';
 import { useRefreshPlotsMutation } from '@chia/api-react';
-import { Grid, Typography, Divider } from '@mui/material';
 import { Button, CardHero, Flex, Link, useOpenDialog } from '@chia/core';
 import { Plots } from '@chia/icons';
+import { Trans } from '@lingui/macro';
+import { Grid, Typography, Divider } from '@mui/material';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import PlotAddDirectoryDialog from '../PlotAddDirectoryDialog';
 
 export default function PlotOverviewHero() {

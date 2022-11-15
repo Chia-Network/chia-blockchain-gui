@@ -1,9 +1,10 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
+
+import WalletCATCreateSimple from '../cat/WalletCATCreateSimple';
+import WalletCATList from '../cat/WalletCATList';
 import WalletCreateList from './WalletCreateList';
 // import WalletDIDList from '../did/WalletDIDList';
-import WalletCATList from '../cat/WalletCATList';
-import WalletCATCreateSimple from '../cat/WalletCATCreateSimple';
 
 /*
 export const useStyles = makeStyles((theme) => ({

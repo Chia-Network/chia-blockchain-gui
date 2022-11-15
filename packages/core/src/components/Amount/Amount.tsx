@@ -1,19 +1,20 @@
-import React, { type ReactNode } from 'react';
 import { Trans, Plural } from '@lingui/macro';
-import BigNumber from 'bignumber.js';
 import {
   Box,
   InputAdornment,
   FormControl,
   FormHelperText,
 } from '@mui/material';
+import BigNumber from 'bignumber.js';
+import React, { type ReactNode } from 'react';
 import { useWatch, useFormContext } from 'react-hook-form';
-import TextField, { TextFieldProps } from '../TextField';
-import chiaToMojo from '../../utils/chiaToMojo';
-import catToMojo from '../../utils/catToMojo';
+
 import useCurrencyCode from '../../hooks/useCurrencyCode';
-import FormatLargeNumber from '../FormatLargeNumber';
+import catToMojo from '../../utils/catToMojo';
+import chiaToMojo from '../../utils/chiaToMojo';
 import Flex from '../Flex';
+import FormatLargeNumber from '../FormatLargeNumber';
+import TextField, { TextFieldProps } from '../TextField';
 import NumberFormatCustom from './NumberFormatCustom';
 
 export type AmountProps = TextFieldProps & {

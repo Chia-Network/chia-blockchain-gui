@@ -1,6 +1,5 @@
-import React from 'react';
-import { Trans } from '@lingui/macro';
 import { Flex, SettingsLabel } from '@chia/core';
+import { Trans } from '@lingui/macro';
 import {
   FormGroup,
   FormControlLabel,
@@ -8,6 +7,8 @@ import {
   Switch,
   Typography,
 } from '@mui/material';
+import React from 'react';
+
 import useEnableAutoLogin from '../../hooks/useEnableAutoLogin';
 
 export default function SettingsStartup() {

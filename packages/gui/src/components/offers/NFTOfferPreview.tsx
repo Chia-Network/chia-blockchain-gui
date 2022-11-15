@@ -1,5 +1,3 @@
-import React from 'react';
-import { Trans, t } from '@lingui/macro';
 import { useGetNFTInfoQuery } from '@chia/api-react';
 import {
   Button,
@@ -8,14 +6,17 @@ import {
   TooltipIcon,
   useColorModeValue,
 } from '@chia/core';
+import { Trans, t } from '@lingui/macro';
 import { Card, Grid, Typography } from '@mui/material';
-import NFTCard from '../nfts/NFTCard';
-import { launcherIdFromNFTId } from '../../util/nfts';
-import { NFTContextualActionTypes } from '../nfts/NFTContextualActions';
+import React from 'react';
 import styled from 'styled-components';
+
 import useViewNFTOnExplorer, {
   NFTExplorer,
 } from '../../hooks/useViewNFTOnExplorer';
+import { launcherIdFromNFTId } from '../../util/nfts';
+import NFTCard from '../nfts/NFTCard';
+import { NFTContextualActionTypes } from '../nfts/NFTContextualActions';
 
 /* ========================================================================== */
 
@@ -75,7 +76,7 @@ export default function NFTOfferPreview(props: NFTOfferPreviewProps) {
           </Loading>
         </Flex>
       );
-    } else if (launcherId && nft) {
+    } if (launcherId && nft) {
       return (
         <Grid xs={12} item>
           <NFTCard
@@ -91,7 +92,7 @@ export default function NFTOfferPreview(props: NFTOfferPreviewProps) {
           />
         </Grid>
       );
-    } else if (launcherId && error) {
+    } if (launcherId && error) {
       return (
         <Flex
           flexDirection="column"
@@ -106,7 +107,7 @@ export default function NFTOfferPreview(props: NFTOfferPreviewProps) {
           </Typography>
         </Flex>
       );
-    } else {
+    } 
       return (
         <Flex
           flexDirection="column"
@@ -123,7 +124,7 @@ export default function NFTOfferPreview(props: NFTOfferPreviewProps) {
           </Typography>
         </Flex>
       );
-    }
+    
   })();
 
   return (

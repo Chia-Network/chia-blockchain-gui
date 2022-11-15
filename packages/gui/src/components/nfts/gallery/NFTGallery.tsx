@@ -1,33 +1,32 @@
-import React, { useState, useMemo } from 'react';
+import type { NFTInfo, Wallet } from '@chia/api';
+import { useGetNFTWallets /* useGetNFTsByNFTIDsQuery */ , useLocalStorage } from '@chia/api-react';
 import {
   Flex,
   LayoutDashboardSub,
   Loading,
   DropdownActions,
   MenuItem,
-  /*useTrans,*/ usePersistState,
+  /* useTrans, */ usePersistState,
 } from '@chia/core';
-import { Trans } from '@lingui/macro';
-import { Switch, FormGroup, FormControlLabel } from '@mui/material';
-import { FilterList as FilterListIcon } from '@mui/icons-material';
-// import { defineMessage } from '@lingui/macro';
 import { WalletReceiveAddressField } from '@chia/wallets';
-import type { NFTInfo, Wallet } from '@chia/api';
-import { useGetNFTWallets /*useGetNFTsByNFTIDsQuery*/ } from '@chia/api-react';
-import { Box, Grid } from '@mui/material';
+import { Trans } from '@lingui/macro';
+import { FilterList as FilterListIcon } from '@mui/icons-material';
+import { Switch, FormGroup, FormControlLabel , Box, Grid } from '@mui/material';
+import React, { useState, useMemo } from 'react';
+// import { defineMessage } from '@lingui/macro';
+
 // import NFTGallerySidebar from './NFTGallerySidebar';
-import NFTCardLazy from '../NFTCardLazy';
-// import Search from './NFTGallerySearch';
-import { NFTContextualActionTypes } from '../NFTContextualActions';
-import type NFTSelection from '../../../types/NFTSelection';
 import useFetchNFTs from '../../../hooks/useFetchNFTs';
 import useHiddenNFTs from '../../../hooks/useHiddenNFTs';
 import useHideObjectionableContent from '../../../hooks/useHideObjectionableContent';
+import useNFTMetadata from '../../../hooks/useNFTMetadata';
 import useNachoNFTs from '../../../hooks/useNachoNFTs';
+import type NFTSelection from '../../../types/NFTSelection';
+import NFTCardLazy from '../NFTCardLazy';
+// import Search from './NFTGallerySearch';
+import { NFTContextualActionTypes } from '../NFTContextualActions';
 import NFTProfileDropdown from '../NFTProfileDropdown';
 import NFTGalleryHero from './NFTGalleryHero';
-import { useLocalStorage } from '@chia/api-react';
-import useNFTMetadata from '../../../hooks/useNFTMetadata';
 
 export const defaultCacheSizeLimit = 1024; /* MB */
 
@@ -44,21 +43,17 @@ export default function NFTGallery() {
     nftWallets.map((wallet: Wallet) => wallet.id),
   );
   const noMetadataNFTs = nfts
-    .filter((nft) => {
-      return (
+    .filter((nft) => (
         !nft?.metadataUris ||
         (Array.isArray(nft.metadataUris) && nft.metadataUris.length === 0)
-      );
-    })
+      ))
     .map((nft) => nft.$nftId);
 
   const { allowedNFTsWithMetadata } = useNFTMetadata(
-    nfts.filter((nft: NFTInfo) => {
-      return (
+    nfts.filter((nft: NFTInfo) => (
         !nft?.metadataUris ||
         (Array.isArray(nft?.metadataUris) && nft?.metadataUris.length > 0)
-      );
-    }),
+      )),
     true,
   ); /* NFTs with metadata and no sensitive_content */
 
@@ -66,7 +61,7 @@ export default function NFTGallery() {
 
   const [isNFTHidden] = useHiddenNFTs();
   const isLoading = isLoadingWallets || isLoadingNFTs;
-  const [search /*, setSearch*/] = useState<string>('');
+  const [search /* , setSearch */] = useState<string>('');
   const [showHidden, setShowHidden] = usePersistState(false, 'showHiddenNFTs');
   const [hideObjectionableContent] = useHideObjectionableContent();
 
@@ -89,7 +84,7 @@ export default function NFTGallery() {
 
   React.useEffect(() => {
     if (limitCacheSize !== defaultCacheSizeLimit) {
-      const ipcRenderer = (window as any).ipcRenderer;
+      const {ipcRenderer} = window as any;
       ipcRenderer?.invoke('setLimitCacheSize', limitCacheSize);
     }
   }, [limitCacheSize]);
@@ -221,7 +216,7 @@ export default function NFTGallery() {
                 selected={selection.items.some(
                   (item) => item.$nftId === nft.$nftId,
                 )}
-                canExpandDetails={true}
+                canExpandDetails
                 availableActions={NFTContextualActionTypes.All}
               />
             </Grid>

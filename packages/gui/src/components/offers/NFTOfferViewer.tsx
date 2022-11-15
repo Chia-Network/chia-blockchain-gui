@@ -1,15 +1,10 @@
-import React, { useMemo, useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
-import BigNumber from 'bignumber.js';
-import { Plural, Trans, t } from '@lingui/macro';
+import type { Wallet } from '@chia/api';
+import { OfferSummaryRecord, OfferTradeRecord } from '@chia/api';
 import {
   useCheckOfferValidityMutation,
   useGetNFTInfoQuery,
   useGetNFTWallets,
 } from '@chia/api-react';
-import type { Wallet } from '@chia/api';
-import { OfferSummaryRecord, OfferTradeRecord } from '@chia/api';
 import {
   Back,
   Button,
@@ -27,28 +22,34 @@ import {
   useColorModeValue,
   useShowError,
 } from '@chia/core';
-import { Box, Divider, Grid, Typography } from '@mui/material';
+import { Plural, Trans, t } from '@lingui/macro';
 import { Warning as WarningIcon } from '@mui/icons-material';
+import { Box, Divider, Grid, Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
+import BigNumber from 'bignumber.js';
+import React, { useMemo, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+
 import useAcceptOfferHook from '../../hooks/useAcceptOfferHook';
 import useAssetIdName from '../../hooks/useAssetIdName';
 import useFetchNFTs from '../../hooks/useFetchNFTs';
-import { stripHexPrefix } from '../../util/utils';
 import { convertRoyaltyToPercentage, launcherIdToNFTId } from '../../util/nfts';
+import { stripHexPrefix } from '../../util/utils';
+import NFTOfferExchangeType from './NFTOfferExchangeType';
+import NFTOfferPreview from './NFTOfferPreview';
+import OfferAsset from './OfferAsset';
+import OfferHeader from './OfferHeader';
+import OfferState from './OfferState';
+import { OfferSummaryNFTRow, OfferSummaryTokenRow } from './OfferSummaryRow';
+import OfferViewerTitle from './OfferViewerTitle';
 import {
   calculateNFTRoyalties,
   determineNFTOfferExchangeType,
   getNFTPriceWithoutRoyalties,
   offerAssetTypeForAssetId,
 } from './utils';
-import OfferAsset from './OfferAsset';
-import OfferHeader from './OfferHeader';
-import OfferState from './OfferState';
-import { OfferSummaryNFTRow, OfferSummaryTokenRow } from './OfferSummaryRow';
-import OfferViewerTitle from './OfferViewerTitle';
-import NFTOfferExchangeType from './NFTOfferExchangeType';
-import NFTOfferPreview from './NFTOfferPreview';
-import styled from 'styled-components';
 
 /* ========================================================================== */
 
@@ -87,8 +88,7 @@ function NFTOfferSummaryRow(props: NFTOfferSummaryRowProps) {
   const summaryData: { [key: string]: number } = summary[summaryKey];
   const summaryInfo = summary.infos;
   const assetIdsToTypes: { [key: string]: OfferAsset | undefined }[] =
-    useMemo(() => {
-      return Object.keys(summaryData).map((key) => {
+    useMemo(() => Object.keys(summaryData).map((key) => {
         const infoDict = summaryInfo[key];
         let assetType: OfferAsset | undefined;
 
@@ -111,8 +111,7 @@ function NFTOfferSummaryRow(props: NFTOfferSummaryRowProps) {
         }
 
         return { [key]: assetType };
-      });
-    }, [summaryData, summaryInfo]);
+      }), [summaryData, summaryInfo]);
 
   const rows: (React.ReactElement | null)[] = assetIdsToTypes.map((entry) => {
     const [assetId, assetType]: [string, OfferAsset | undefined] =

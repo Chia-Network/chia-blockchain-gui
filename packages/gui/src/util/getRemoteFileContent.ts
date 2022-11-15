@@ -22,7 +22,7 @@ export default async function getRemoteFileContent(
   wasCached: boolean;
   isValid: boolean;
 }> {
-  const ipcRenderer = (window as any).ipcRenderer;
+  const {ipcRenderer} = window as any;
   const requestOptions = {
     url: props.uri,
     maxSize: props.maxSize,

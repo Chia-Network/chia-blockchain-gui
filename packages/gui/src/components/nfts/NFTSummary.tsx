@@ -1,5 +1,3 @@
-import React, { useMemo } from 'react';
-import { t, Trans } from '@lingui/macro';
 import type { NFTAttribute } from '@chia/api';
 import { useGetNFTInfoQuery } from '@chia/api-react';
 import {
@@ -9,15 +7,18 @@ import {
   TooltipIcon,
   truncateValue,
 } from '@chia/core';
+import { t, Trans } from '@lingui/macro';
 import { Box, Card, CardContent, Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
+import React, { useMemo } from 'react';
+import styled from 'styled-components';
+
 import useNFTMetadata from '../../hooks/useNFTMetadata';
 import isRankingAttribute from '../../util/isRankingAttribute';
 import { launcherIdToNFTId } from '../../util/nfts';
-import NFTPreview from '../nfts/NFTPreview';
-import { NFTProperty } from '../nfts/NFTProperties';
-import { NFTRanking } from '../nfts/NFTRankings';
-import styled from 'styled-components';
+import NFTPreview from "./NFTPreview";
+import { NFTProperty } from "./NFTProperties";
+import { NFTRanking } from "./NFTRankings";
 
 /* ========================================================================== */
 

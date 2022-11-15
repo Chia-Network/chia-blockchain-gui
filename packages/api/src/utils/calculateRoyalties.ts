@@ -1,10 +1,11 @@
 import BigNumber from 'bignumber.js';
-import toBech32m from './toBech32m';
+
 import {
   NFTInfo,
   RoyaltyCalculationFungibleAsset,
   RoyaltyCalculationRoyaltyAsset,
 } from '../@types';
+import toBech32m from './toBech32m';
 
 export default function royaltyAssetFromNFTInfo(
   nftInfo: NFTInfo,

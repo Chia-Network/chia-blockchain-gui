@@ -1,17 +1,18 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router';
-import { useDispatch, useSelector } from 'react-redux';
 import { AlertDialog, Back, ButtonLoading, Card, Flex, Dropzone, useOpenDialog } from '@chia/core';
 import { Trans } from '@lingui/macro';
+import { Backup as BackupIcon } from '@mui/icons-material';
 import {
   Typography,
   Button,
   Box,
 } from '@mui/material';
-import { Backup as BackupIcon } from '@mui/icons-material';
-import type { RootState } from '../../../modules/rootReducer';
-import { recover_did_action } from '../../../modules/message';
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router';
+
 import SyncingStatus from '../../../constants/SyncingStatus';
+import { recover_did_action } from '../../../modules/message';
+import type { RootState } from '../../../modules/rootReducer';
 import getWalletSyncingStatus from '../../../util/getWalletSyncingStatus';
 
 export default function WalletDIDRecovery() {

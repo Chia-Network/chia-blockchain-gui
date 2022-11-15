@@ -1,7 +1,8 @@
-import React from 'react';
 import { Loading, State, StateIndicator } from '@chia/core';
-import useFullNodeState from '../../hooks/useFullNodeState';
+import React from 'react';
+
 import FullNodeState from '../../constants/FullNodeState';
+import useFullNodeState from '../../hooks/useFullNodeState';
 
 export type FullNodeStateIndicatorProps = {
   color?: string;
@@ -21,11 +22,11 @@ export default function FullNodeStateIndicator(
     return (
       <StateIndicator state={State.ERROR} color={color} indicator hideTitle />
     );
-  } else if (state === FullNodeState.SYNCED) {
+  } if (state === FullNodeState.SYNCED) {
     return (
       <StateIndicator state={State.SUCCESS} color={color} indicator hideTitle />
     );
-  } else if (state === FullNodeState.SYNCHING) {
+  } if (state === FullNodeState.SYNCHING) {
     return (
       <StateIndicator state={State.WARNING} color={color} indicator hideTitle />
     );

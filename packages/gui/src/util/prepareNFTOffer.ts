@@ -1,8 +1,9 @@
 import type { NFTInfo } from '@chia/api';
 import { store, walletApi } from '@chia/api-react';
 import BigNumber from 'bignumber.js';
-import { launcherIdFromNFTId } from './nfts';
+
 import type Driver from '../@types/Driver';
+import { launcherIdFromNFTId } from './nfts';
 
 export async function prepareNFTOfferFromNFTId(
   nftId: string,

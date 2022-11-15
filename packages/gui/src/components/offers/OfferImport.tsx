@@ -1,5 +1,7 @@
-import React from 'react';
-import { Trans } from '@lingui/macro';
+import fs, { Stats } from 'fs';
+
+import { type OfferSummaryRecord } from '@chia/api';
+import { useGetOfferSummaryMutation } from '@chia/api-react';
 import {
   Back,
   Card,
@@ -9,14 +11,16 @@ import {
   useSerializedNavigationState,
   useShowError,
 } from '@chia/core';
+import { Trans } from '@lingui/macro';
 import { Button, Grid, Typography } from '@mui/material';
-import { useGetOfferSummaryMutation } from '@chia/api-react';
-import { type OfferSummaryRecord } from '@chia/api';
+import { IpcRenderer } from 'electron';
+import React from 'react';
+import { useHotkeys } from 'react-hotkeys-hook';
+
 import OfferDataEntryDialog from './OfferDataEntryDialog';
 import { offerContainsAssetOfType } from './utils';
-import fs, { Stats } from 'fs';
-import { IpcRenderer } from 'electron';
-import { useHotkeys } from 'react-hotkeys-hook';
+
+
 
 function SelectOfferFile() {
   const { navigate } = useSerializedNavigationState();
@@ -47,7 +51,7 @@ function SelectOfferFile() {
     rawOfferData: string,
     offerFilePath: string | undefined,
   ) {
-    const [offerData /*, leadingText, trailingText*/] =
+    const [offerData /* , leadingText, trailingText */] =
       parseOfferData(rawOfferData);
     let offerSummary: OfferSummaryRecord | undefined;
 
@@ -131,7 +135,7 @@ function SelectOfferFile() {
     const dialogOptions = {
       filters: [{ name: 'Offer Files', extensions: ['offer'] }],
     } as Electron.OpenDialogOptions;
-    const ipcRenderer: IpcRenderer = (window as any).ipcRenderer;
+    const {ipcRenderer} = window as any;
     const { canceled, filePaths } = await ipcRenderer.invoke(
       'showOpenDialog',
       dialogOptions,

@@ -1,7 +1,4 @@
-import React, { type ReactNode, ReactElement } from 'react';
 import { Trans } from '@lingui/macro';
-import Flex from '../Flex';
-import TooltipIcon from '../TooltipIcon';
 import {
   Box,
   Card,
@@ -10,6 +7,11 @@ import {
   TypographyProps,
   CircularProgress,
 } from '@mui/material';
+import React, { type ReactNode, ReactElement } from 'react';
+
+import Flex from '../Flex';
+import TooltipIcon from '../TooltipIcon';
+
 
 export type CardSimpleProps = {
   title: ReactNode;

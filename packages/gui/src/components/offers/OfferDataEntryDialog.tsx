@@ -1,4 +1,4 @@
-import React from 'react';
+import { Button, DialogActions } from '@chia/core';
 import { Trans } from '@lingui/macro';
 import {
   Box,
@@ -8,7 +8,7 @@ import {
   DialogContent,
   TextField,
 } from '@mui/material';
-import { Button, DialogActions } from '@chia/core';
+import React from 'react';
 
 type Props ={
   open: boolean;
@@ -17,7 +17,7 @@ type Props ={
 
 export default function OfferDataEntryDialog(props: Props) {
   const { open, onClose } = props;
-  let input: any = undefined;
+  let input: any;
 
   function handleClose() {
     onClose();

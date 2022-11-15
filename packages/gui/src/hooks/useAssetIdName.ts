@@ -1,7 +1,7 @@
-import { useMemo } from 'react';
+import { WalletType } from '@chia/api';
 import { useGetCatListQuery, useGetWalletsQuery } from '@chia/api-react';
 import { CATToken, Wallet, useCurrencyCode } from '@chia/core';
-import { WalletType } from '@chia/api';
+import { useMemo } from 'react';
 
 export type AssetIdMapEntry = {
   walletId: number;
@@ -55,7 +55,7 @@ export default function useAssetIdName() {
       }
 
       if (assetId && name) {
-        const displayName = symbol ? symbol : name;
+        const displayName = symbol || name;
         const entry: AssetIdMapEntry = {
           walletId,
           walletType,
@@ -74,10 +74,10 @@ export default function useAssetIdName() {
         return;
       }
 
-      const assetId = cat.assetId;
-      const name = cat.name;
-      const symbol = cat.symbol;
-      const displayName = symbol ? symbol : name;
+      const {assetId} = cat;
+      const {name} = cat;
+      const {symbol} = cat;
+      const displayName = symbol || name;
       const entry: AssetIdMapEntry = {
         walletId: 0,
         walletType: WalletType.CAT,
@@ -94,7 +94,7 @@ export default function useAssetIdName() {
       const assetId = 'txch';
       const name = 'Chia (Testnet)';
       const symbol = 'TXCH';
-      const displayName = symbol ? symbol : name;
+      const displayName = symbol || name;
       const entry: AssetIdMapEntry = {
         walletId: 1,
         walletType: WalletType.STANDARD_WALLET,

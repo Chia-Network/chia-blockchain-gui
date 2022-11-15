@@ -1,20 +1,21 @@
-import React, { useRef, useMemo } from 'react';
-import { t, Trans } from '@lingui/macro';
 import { WalletType } from '@chia/api';
 import {
   useGetWalletsQuery,
   useCreateOfferForIdsMutation,
 } from '@chia/api-react';
 import { Flex, ButtonLoading, useOpenDialog, Loading } from '@chia/core';
+import { t, Trans } from '@lingui/macro';
 import { Grid } from '@mui/material';
 import { useLocalStorage } from '@rehooks/local-storage';
-import OfferLocalStorageKeys from '../offers/OfferLocalStorage';
-import OfferEditorConfirmationDialog from '../offers/OfferEditorConfirmationDialog';
+import React, { useRef, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
+
+import type OfferBuilderData from '../../@types/OfferBuilderData';
+import offerBuilderDataToOffer from '../../util/offerBuilderDataToOffer';
+import OfferEditorConfirmationDialog from '../offers/OfferEditorConfirmationDialog';
+import OfferLocalStorageKeys from '../offers/OfferLocalStorage';
 import OfferBuilder, { emptyDefaultValues } from './OfferBuilder';
 import OfferNavigationHeader from './OfferNavigationHeader';
-import offerBuilderDataToOffer from '../../util/offerBuilderDataToOffer';
-import type OfferBuilderData from '../../@types/OfferBuilderData';
 
 export type CreateOfferBuilderProps = {
   walletType?: WalletType;
@@ -33,8 +34,7 @@ export default function CreateOfferBuilder(props: CreateOfferBuilderProps) {
   const [createOfferForIds] = useCreateOfferForIdsMutation();
   const offerBuilderRef = useRef<{ submit: () => void } | undefined>(undefined);
 
-  const defaultValues = useMemo(() => {
-    return {
+  const defaultValues = useMemo(() => ({
       ...emptyDefaultValues,
       offered: {
         ...emptyDefaultValues.offered,
@@ -45,8 +45,7 @@ export default function CreateOfferBuilder(props: CreateOfferBuilderProps) {
             ? [{ assetId, amount: '' }]
             : [],
       },
-    };
-  }, [walletType, assetId, nftId]);
+    }), [walletType, assetId, nftId]);
 
   const [suppressShareOnCreate] = useLocalStorage<boolean>(
     OfferLocalStorageKeys.SUPPRESS_SHARE_ON_CREATE,

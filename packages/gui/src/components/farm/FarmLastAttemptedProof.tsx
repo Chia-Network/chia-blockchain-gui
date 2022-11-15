@@ -1,8 +1,9 @@
-import React from 'react';
-import { Trans } from '@lingui/macro';
-import { Link, Table, Card } from '@chia/core';
 import { useGetFarmingInfoQuery } from '@chia/api-react';
+import { Link, Table, Card } from '@chia/core';
+import { Trans } from '@lingui/macro';
 import moment from 'moment';
+import React from 'react';
+
 import type { Row } from '../core/components/Table/Table';
 // import usePlots from '../../hooks/usePlots';
 

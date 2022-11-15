@@ -1,5 +1,4 @@
-import React, { type ReactNode } from 'react';
-import { Trans } from '@lingui/macro';
+import { useDeleteUnconfirmedTransactionsMutation } from '@chia/api-react';
 import {
   Flex,
   ConfirmDialog,
@@ -7,9 +6,11 @@ import {
   DropdownActions,
   MenuItem,
 } from '@chia/core';
-import { Typography, ListItemIcon, Tab, Tabs } from '@mui/material';
+import { Trans } from '@lingui/macro';
 import { Delete as DeleteIcon } from '@mui/icons-material';
-import { useDeleteUnconfirmedTransactionsMutation } from '@chia/api-react';
+import { Typography, ListItemIcon, Tab, Tabs } from '@mui/material';
+import React, { type ReactNode } from 'react';
+
 import WalletName from './WalletName';
 
 type StandardWalletProps = {

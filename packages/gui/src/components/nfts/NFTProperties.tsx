@@ -1,11 +1,13 @@
-import React, { useMemo } from 'react';
 import type { NFTAttribute } from '@chia/api';
-import { Trans } from '@lingui/macro';
 import { CopyToClipboard, Flex, Tooltip } from '@chia/core';
+import { Trans } from '@lingui/macro';
 import { Box, Grid, Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import isRankingAttribute from '../../util/isRankingAttribute';
+import React, { useMemo } from 'react';
 import styled from 'styled-components';
+
+import isRankingAttribute from '../../util/isRankingAttribute';
+
 
 /* ========================================================================== */
 

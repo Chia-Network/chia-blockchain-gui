@@ -1,11 +1,12 @@
-import React, { useMemo } from 'react';
-import { orderBy } from 'lodash';
 import { useGetHarvestersSummaryQuery } from '@chia/api-react';
-import { Trans } from '@lingui/macro';
 import { Loading, Flex } from '@chia/core';
+import { Trans } from '@lingui/macro';
 import { Typography } from '@mui/material';
-import PlotHarvester from './PlotHarvester';
+import { orderBy } from 'lodash';
+import React, { useMemo } from 'react';
+
 import isLocalhost from '../../util/isLocalhost';
+import PlotHarvester from './PlotHarvester';
 
 function getIpAddress(harvester) {
   if (isLocalhost(harvester.connection.host)) {

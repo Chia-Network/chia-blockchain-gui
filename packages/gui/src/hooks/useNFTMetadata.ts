@@ -1,14 +1,16 @@
-import { useEffect, useState, useCallback } from 'react';
 import type NFTInfo from '@chia/api';
-import getRemoteFileContent from '../util/getRemoteFileContent';
 import { useLocalStorage } from '@chia/api-react';
+import { useEffect, useState, useCallback } from 'react';
+
+import getRemoteFileContent from '../util/getRemoteFileContent';
+
 
 export const MAX_FILE_SIZE = 100 * 1024 * 1024; // 100 MB
 
 function normalizedSensitiveContent(value: any): boolean {
   if (typeof value === 'boolean') {
     return value;
-  } else if (Array.isArray(value) && value.length > 0) {
+  } if (Array.isArray(value) && value.length > 0) {
     return true;
   }
   return value === 'true';
@@ -40,7 +42,7 @@ export default function useNFTsMetadata(nfts: NFTInfo[], isMultiple = false) {
 
       if (sensitiveContentValue) {
         setSensitiveContentObject(
-          Object.assign({}, sensitiveContentObject, { [nftId]: true }),
+          { ...sensitiveContentObject, [nftId]: true},
         );
       }
     } catch (e) {
@@ -72,17 +74,15 @@ export default function useNFTsMetadata(nfts: NFTInfo[], isMultiple = false) {
       ) {
         allowedNFTsWithMetadata.push(nftId);
       }
-    } else {
-      if (metadataCache?.isValid !== undefined) {
+    } else if (metadataCache?.isValid !== undefined) {
         return {
           data: metadataCache.json,
           encoding: 'utf-8',
           isValid: metadataCache.isValid,
         };
       }
-    }
 
-    return await getRemoteFileContent({
+    return getRemoteFileContent({
       nftId,
       uri,
       maxSize: MAX_FILE_SIZE,
@@ -115,7 +115,7 @@ export default function useNFTsMetadata(nfts: NFTInfo[], isMultiple = false) {
         throw new Error('Metadata hash mismatch');
       }
 
-      let metadata = undefined;
+      let metadata;
       if (['utf8', 'utf-8'].includes(encoding.toLowerCase())) {
         metadata = JSON.parse(content);
       } else {

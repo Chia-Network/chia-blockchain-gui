@@ -1,9 +1,10 @@
-import React from 'react';
-import { Trans } from '@lingui/macro';
-import { useNavigate } from 'react-router-dom';
-import { Divider, Grid, Typography } from '@mui/material';
 import { Button, CardHero, Link, useOpenDialog } from '@chia/core';
 import { Farming } from '@chia/icons';
+import { Trans } from '@lingui/macro';
+import { Divider, Grid, Typography } from '@mui/material';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import PlotAddDirectoryDialog from '../plot/PlotAddDirectoryDialog';
 
 export default function FarmHero() {

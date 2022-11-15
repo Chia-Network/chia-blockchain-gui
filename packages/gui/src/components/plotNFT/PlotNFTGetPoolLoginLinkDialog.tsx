@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { t, Trans } from '@lingui/macro';
-import styled from 'styled-components';
+import type { PlotNFT, PlotNFTExternal } from '@chia/api';
+import { useGetPoolLoginLinkQuery } from '@chia/api-react';
 import { Button, CopyToClipboard, Flex, Link, Loading } from '@chia/core';
+import { t, Trans } from '@lingui/macro';
 import {
   Alert,
   Dialog,
@@ -10,8 +10,8 @@ import {
   DialogContent,
   Typography,
 } from '@mui/material';
-import { useGetPoolLoginLinkQuery } from '@chia/api-react';
-import type { PlotNFT, PlotNFTExternal } from '@chia/api';
+import React, { useEffect, useState } from 'react';
+import styled from 'styled-components';
 
 const StyledLoginLink = styled(Typography)`
   word-break: break-all;

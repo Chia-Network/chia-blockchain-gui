@@ -1,23 +1,8 @@
-import React, { useMemo } from 'react';
-import { Trans } from '@lingui/macro';
-import moment from 'moment';
+import { WalletType, TransactionType, toBech32m } from '@chia/api';
 import {
-  Box,
-  IconButton,
-  Table as TableBase,
-  TableBody,
-  TableCell,
-  TableRow,
-  Tooltip,
-  Typography,
-  Chip,
-} from '@mui/material';
-import {
-  CallReceived as CallReceivedIcon,
-  CallMade as CallMadeIcon,
-  ExpandLess as ExpandLessIcon,
-  ExpandMore as ExpandMoreIcon,
-} from '@mui/icons-material';
+  useGetOfferRecordMutation,
+  useGetSyncStatusQuery,
+} from '@chia/api-react';
 import {
   Card,
   CopyToClipboard,
@@ -30,13 +15,29 @@ import {
   mojoToCAT,
   FormatLargeNumber,
 } from '@chia/core';
-import {
-  useGetOfferRecordMutation,
-  useGetSyncStatusQuery,
-} from '@chia/api-react';
-import styled from 'styled-components';
 import type { Row } from '@chia/core';
-import { WalletType, TransactionType, toBech32m } from '@chia/api';
+import { Trans } from '@lingui/macro';
+import {
+  CallReceived as CallReceivedIcon,
+  CallMade as CallMadeIcon,
+  ExpandLess as ExpandLessIcon,
+  ExpandMore as ExpandMoreIcon,
+} from '@mui/icons-material';
+import {
+  Box,
+  IconButton,
+  Table as TableBase,
+  TableBody,
+  TableCell,
+  TableRow,
+  Tooltip,
+  Typography,
+  Chip,
+} from '@mui/material';
+import moment from 'moment';
+import React, { useMemo } from 'react';
+import styled from 'styled-components';
+
 import useWallet from '../hooks/useWallet';
 import useWalletTransactions from '../hooks/useWalletTransactions';
 
@@ -69,7 +70,7 @@ async function handleRowClick(
 
       if (success === true && tradeRecord) {
         navigate('/dashboard/offers/view', {
-          state: { tradeRecord: tradeRecord },
+          state: { tradeRecord },
         });
       }
     } catch (e) {
@@ -143,7 +144,7 @@ const getCols = (type: WalletType, isSyncing, getOfferRecord, navigate) => [
           >
             <span>
               {shouldObscureAddress
-                ? row.toAddress.slice(0, 20) + '...'
+                ? `${row.toAddress.slice(0, 20)  }...`
                 : row.toAddress}
             </span>
           </Tooltip>
@@ -357,9 +358,7 @@ export default function WalletHistory(props: Props) {
             confirmedAtHeight && {
               key: 'confirmedAtHeight',
               label: <Trans>Confirmed at Height</Trans>,
-              value: confirmedAtHeight ? (
-                confirmedAtHeight
-              ) : (
+              value: confirmedAtHeight || (
                 <Trans>Not Available</Trans>
               ),
             },

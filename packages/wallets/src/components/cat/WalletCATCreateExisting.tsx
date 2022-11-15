@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
+import { AlertDialog, Fee, Back, ButtonLoading, Card, Flex, Form, TextField , chiaToMojo } from '@chia/core';
 import { Trans } from '@lingui/macro';
-import { AlertDialog, Fee, Back, ButtonLoading, Card, Flex, Form, TextField } from '@chia/core';
 import { Box, Grid } from '@mui/material';
-import { useDispatch } from 'react-redux';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
-import { create_cc_for_colour_action } from '../../../modules/message';
-import { chiaToMojo } from '@chia/core';
-import { openDialog } from '../../../modules/dialog';
+
 import config from '../../../config/config';
+import { openDialog } from '../../../modules/dialog';
+import { create_cc_for_colour_action } from '../../../modules/message';
 
 const { asteroid } = config;
 
@@ -54,7 +54,7 @@ export default function WalletCATCreateExisting() {
           ),
         );
         return;
-      }*/
+      } */
 
       const feeMojos = chiaToMojo(fee || '0');
 

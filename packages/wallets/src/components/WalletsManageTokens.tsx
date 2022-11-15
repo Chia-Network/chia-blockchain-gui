@@ -1,6 +1,3 @@
-import React, { type ReactNode, useState } from 'react';
-import { Trans } from '@lingui/macro';
-import { Box, IconButton, InputBase } from '@mui/material';
 import { WalletType } from '@chia/api';
 import {
   Button,
@@ -10,13 +7,18 @@ import {
   Tooltip,
   useTrans,
 } from '@chia/core';
-import styled from 'styled-components';
+import { Trans } from '@lingui/macro';
 import { Add, KeyboardArrowDown, KeyboardArrowUp } from '@mui/icons-material';
+import SearchIcon from '@mui/icons-material/Search';
+import { Box, IconButton, InputBase } from '@mui/material';
+import React, { type ReactNode, useState } from 'react';
+import { useNavigate } from 'react-router';
 import { useToggle } from 'react-use';
+import styled from 'styled-components';
+
 import useWalletsList from '../hooks/useWalletsList';
 import WalletTokenCard from './WalletTokenCard';
-import { useNavigate } from 'react-router';
-import SearchIcon from '@mui/icons-material/Search';
+
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',

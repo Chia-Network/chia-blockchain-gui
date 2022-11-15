@@ -1,5 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { Trans } from '@lingui/macro';
+import { fromBech32m } from '@chia/api';
+import {
+  useGetDIDQuery,
+  useGetDIDNameQuery,
+  useSetDIDNameMutation,
+} from '@chia/api-react';
 import {
   CopyToClipboard,
   Flex,
@@ -7,17 +11,14 @@ import {
   Tooltip,
   truncateValue,
 } from '@chia/core';
+import { Trans } from '@lingui/macro';
 import { Box, Card, TextField, Typography } from '@mui/material';
-import styled from 'styled-components';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { fromBech32m } from '@chia/api';
-import {
-  useGetDIDQuery,
-  useGetDIDNameQuery,
-  useSetDIDNameMutation,
-} from '@chia/api-react';
-import { stripHexPrefix } from '../../util/utils';
+import styled from 'styled-components';
+
 import { didToDIDId } from '../../util/dids';
+import { stripHexPrefix } from '../../util/utils';
 
 const StyledCard = styled(Card)(
   ({ theme }) => `
@@ -37,7 +38,7 @@ const StyledValue = styled(Box)`
   word-break: break-all;
 `;
 
-const InlineEdit = ({ text, walletId }) => {
+function InlineEdit({ text, walletId }) {
   const [editedText, setEditedText] = useState(text);
   const [setDid] = useSetDIDNameMutation();
 
@@ -57,7 +58,7 @@ const InlineEdit = ({ text, walletId }) => {
     if (event.target.value.trim() === '') {
       setEditedText(text);
     } else {
-      setDid({ walletId: walletId, name: event.target.value });
+      setDid({ walletId, name: event.target.value });
     }
   };
 
@@ -71,12 +72,12 @@ const InlineEdit = ({ text, walletId }) => {
       fullWidth
     />
   );
-};
+}
 
 export default function ProfileView() {
   const { walletId } = useParams();
-  const { data: did, isLoading } = useGetDIDQuery({ walletId: walletId });
-  const { data: didName, loading } = useGetDIDNameQuery({ walletId: walletId });
+  const { data: did, isLoading } = useGetDIDQuery({ walletId });
+  const { data: didName, loading } = useGetDIDNameQuery({ walletId });
 
   if (isLoading || loading) {
     return <Suspender />;
@@ -140,7 +141,7 @@ export default function ProfileView() {
         </StyledCard>
       </div>
     );
-  } else {
+  } 
     return null;
-  }
+  
 }

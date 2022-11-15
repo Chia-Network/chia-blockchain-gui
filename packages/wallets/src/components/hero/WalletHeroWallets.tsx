@@ -1,5 +1,6 @@
-import React from 'react';
+import { Flex, Loading, Logo } from '@chia/core';
 import { Trans } from '@lingui/macro';
+import { ChevronRight as ChevronRightIcon } from '@mui/icons-material';
 import {
   Button,
   Card,
@@ -7,15 +8,15 @@ import {
   ListItem,
   ListItemText,
 } from '@mui/material';
-import styled from 'styled-components';
-import { ChevronRight as ChevronRightIcon } from '@mui/icons-material';
+import React from 'react';
 import { useSelector } from 'react-redux';
-import { Flex, Loading, Logo } from '@chia/core';
-import type { RootState } from '../../../modules/rootReducer';
-import WalletName from '../../../constants/WalletName';
-import config from '../../../config/config';
 import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+
+import config from '../../../config/config';
+import WalletName from '../../../constants/WalletName';
 import useTrans from '../../../hooks/useTrans';
+import type { RootState } from '../../../modules/rootReducer';
 import WalletHeroLayout from './WalletHeroLayout';
 
 const StyledListItem = styled(ListItem)`

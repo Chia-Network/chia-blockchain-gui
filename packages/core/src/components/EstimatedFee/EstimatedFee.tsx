@@ -1,7 +1,3 @@
-import React, { useState, useEffect } from 'react';
-import { get } from 'lodash';
-import { Controller, useFormContext } from 'react-hook-form';
-import { Trans } from '@lingui/macro';
 import { useGetFeeEstimateQuery } from '@chia/api-react';
 import {
   Fee,
@@ -10,6 +6,8 @@ import {
   useCurrencyCode,
   useLocale,
 } from '@chia/core';
+import { Trans } from '@lingui/macro';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import {
   Box,
   FormControl,
@@ -20,9 +18,12 @@ import {
   SelectProps,
   Typography,
 } from '@mui/material';
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import useMode from '../../hooks/useMode';
+import { get } from 'lodash';
+import React, { useState, useEffect } from 'react';
+import { Controller, useFormContext } from 'react-hook-form';
+
 import Mode from '../../constants/Mode';
+import useMode from '../../hooks/useMode';
 
 type Props = SelectProps & {
   hideError?: boolean;
@@ -78,13 +79,11 @@ function Select(props: Props) {
           name={name}
           ref={ref}
           error={!!errorMessage}
-          renderValue={(value) => {
-            return (
+          renderValue={(value) => (
               <Box sx={{ display: 'flex', gap: 1 }}>
                 {selectedValue} (~{selectedTime} min)
               </Box>
-            );
-          }}
+            )}
           {...rest}
         >
           {children}
@@ -96,18 +95,18 @@ function Select(props: Props) {
 
 function CountdownBar(props: Props) {
   const { start, refreshTime, ...rest } = props;
-  var [seconds, setSeconds] = useState(new Date().getSeconds());
+  const [seconds, setSeconds] = useState(new Date().getSeconds());
   const refreshSec = refreshTime * 10e-4;
 
   useEffect(() => {
-    var timer = setInterval(() => setSeconds(new Date().getSeconds()), 500);
+    const timer = setInterval(() => setSeconds(new Date().getSeconds()), 500);
     return function cleanup() {
       clearInterval(timer);
     };
   });
 
-  var modSec = (((seconds - start) % refreshSec) + refreshSec) % refreshSec;
-  var currentProgress = Math.floor(modSec * (100 / refreshSec));
+  const modSec = (((seconds - start) % refreshSec) + refreshSec) % refreshSec;
+  const currentProgress = Math.floor(modSec * (100 / refreshSec));
 
   const containerStyle = {
     height: 2,
@@ -134,7 +133,7 @@ function CountdownBar(props: Props) {
   return (
     <div style={containerStyle}>
       <div style={fillerStyle}>
-        <span style={labelStyle}></span>
+        <span style={labelStyle} />
       </div>
     </div>
   );
@@ -183,8 +182,8 @@ export default function EstimatedFee(props: FeeProps) {
   const multiplier = txCostEstimates[txType];
 
   function formatEst(number, multiplier, locale) {
-    let num = Math.round(number * multiplier * 10 ** -4) * 10 ** 4;
-    let formatNum = mojoToChiaLocaleString(num, locale);
+    const num = Math.round(number * multiplier * 10 ** -4) * 10 ** 4;
+    const formatNum = mojoToChiaLocaleString(num, locale);
     return formatNum;
   }
 
@@ -199,7 +198,7 @@ export default function EstimatedFee(props: FeeProps) {
   useEffect(() => {
     if (ests) {
       const estimateList = ests.estimates;
-      const targetTimes = ests.targetTimes;
+      const {targetTimes} = ests;
       // if (
       //   estimateList[0] == 0 &&
       //   estimateList[1] == 0 &&
@@ -224,7 +223,7 @@ export default function EstimatedFee(props: FeeProps) {
         ...current,
         {
           time: targetTimes[0] / 60,
-          timeText: 'Likely in ' + targetTimes[0] + ' seconds',
+          timeText: `Likely in ${  targetTimes[0]  } seconds`,
           estimate: est0,
         },
       ]);
@@ -232,7 +231,7 @@ export default function EstimatedFee(props: FeeProps) {
         ...current,
         {
           time: targetTimes[1] / 60,
-          timeText: 'Likely in ' + targetTimes[1] / 60 + ' minutes',
+          timeText: `Likely in ${  targetTimes[1] / 60  } minutes`,
           estimate: est1,
         },
       ]);
@@ -240,7 +239,7 @@ export default function EstimatedFee(props: FeeProps) {
         ...current,
         {
           time: targetTimes[2] / 60,
-          timeText: 'Likely over ' + targetTimes[2] / 60 + ' minutes',
+          timeText: `Likely over ${  targetTimes[2] / 60  } minutes`,
           estimate: est2,
         },
       ]);
@@ -368,7 +367,7 @@ export default function EstimatedFee(props: FeeProps) {
         </FormControl>
       </Flex>
     );
-  } else {
+  } 
     return (
       <Flex>
         <FormControl variant="filled" fullWidth>
@@ -384,5 +383,5 @@ export default function EstimatedFee(props: FeeProps) {
         </FormControl>
       </Flex>
     );
-  }
+  
 }

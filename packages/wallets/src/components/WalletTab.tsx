@@ -1,9 +1,10 @@
-import React from 'react';
-import { Tab, Typography } from '@mui/material';
 import { Flex } from '@chia/core';
-import Wallet from "../../types/Wallet";
+import { Tab, Typography } from '@mui/material';
+import React from 'react';
+
 import WalletName from "../../constants/WalletName";
 import useTrans from '../../hooks/useTrans';
+import Wallet from "../../types/Wallet";
 
 type Props = {
   wallet: Wallet;

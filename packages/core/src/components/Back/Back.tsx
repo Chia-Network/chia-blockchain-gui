@@ -1,12 +1,13 @@
-import React, { ReactNode } from 'react';
-import { Typography, IconButton } from '@mui/material';
 import { Trans } from '@lingui/macro';
 import { ArrowBackIosNew } from '@mui/icons-material';
-import { useNavigate } from 'react-router-dom';
+import { Typography, IconButton } from '@mui/material';
+import React, { ReactNode } from 'react';
 import { useFormContext } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
+
 import useOpenDialog from '../../hooks/useOpenDialog';
-import Flex from '../Flex';
 import ConfirmDialog from '../ConfirmDialog';
+import Flex from '../Flex';
 
 export type BackProps = {
   children?: ReactNode;

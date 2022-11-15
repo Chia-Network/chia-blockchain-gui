@@ -1,15 +1,16 @@
-import React, { ReactNode } from 'react';
-import { Trans } from '@lingui/macro';
+import { useRefreshPlotsMutation } from '@chia/api-react';
 import { Button, Flex, More, useOpenDialog, MenuItem } from '@chia/core';
-import { createTeleporter } from 'react-teleporter';
-import { useNavigate } from 'react-router-dom';
-import { ListItemIcon, Typography } from '@mui/material';
+import { Trans } from '@lingui/macro';
 import {
   Refresh as RefreshIcon,
   Folder as FolderIcon,
   Add as AddIcon,
 } from '@mui/icons-material';
-import { useRefreshPlotsMutation } from '@chia/api-react';
+import { ListItemIcon, Typography } from '@mui/material';
+import React, { ReactNode } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { createTeleporter } from 'react-teleporter';
+
 import PlotAddDirectoryDialog from './PlotAddDirectoryDialog';
 
 export type PlotHeaderProps = {

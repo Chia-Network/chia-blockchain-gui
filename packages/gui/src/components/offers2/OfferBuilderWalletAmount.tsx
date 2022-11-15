@@ -1,6 +1,7 @@
-import React from 'react';
-import { Trans } from '@lingui/macro';
 import { useWallet } from '@chia/wallets';
+import { Trans } from '@lingui/macro';
+import React from 'react';
+
 import OfferBuilderValue from './OfferBuilderValue';
 import OfferBuilderWalletBalance from './OfferBuilderWalletBalance';
 

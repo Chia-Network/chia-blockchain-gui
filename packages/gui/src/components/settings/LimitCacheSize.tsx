@@ -1,6 +1,3 @@
-import React, { useEffect } from 'react';
-import { Trans } from '@lingui/macro';
-import { useForm } from 'react-hook-form';
 import { useLocalStorage } from '@chia/api-react';
 import {
   AlertDialog,
@@ -10,16 +7,18 @@ import {
   TextField,
   useOpenDialog,
 } from '@chia/core';
+import { Trans } from '@lingui/macro';
+import React, { useEffect } from 'react';
+import { useForm } from 'react-hook-form';
 
 import { getCacheInstances, removeFromLocalStorage } from '../../util/utils';
-
 import { defaultCacheSizeLimit } from '../nfts/gallery/NFTGallery';
 
 type FormData = {
   cacheLimitSize: number;
 };
 
-const ipcRenderer = (window as any).ipcRenderer;
+const {ipcRenderer} = window as any;
 
 function LimitCacheSize(props: any) {
   const { forceUpdateCacheSize } = props;

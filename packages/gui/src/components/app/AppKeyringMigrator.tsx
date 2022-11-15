@@ -1,5 +1,21 @@
-import React, { ReactElement, useState } from 'react';
+import {
+  useGetKeyringStatusQuery,
+  useMigrateKeyringMutation,
+} from '@chia/api-react';
+import {
+  Button,
+  AlertDialog,
+  Flex,
+  useOpenDialog,
+  useValidateChangePassphraseParams,
+  Suspender,
+} from '@chia/core';
 import { t, Trans } from '@lingui/macro';
+import {
+  Help as HelpIcon,
+  KeyboardCapslock as KeyboardCapslockIcon,
+  Visibility as VisibilityIcon,
+} from '@mui/icons-material';
 import {
   Box,
   Checkbox,
@@ -16,23 +32,7 @@ import {
   Tooltip,
   Typography,
 } from '@mui/material';
-import {
-  Help as HelpIcon,
-  KeyboardCapslock as KeyboardCapslockIcon,
-  Visibility as VisibilityIcon,
-} from '@mui/icons-material';
-import {
-  useGetKeyringStatusQuery,
-  useMigrateKeyringMutation,
-} from '@chia/api-react';
-import {
-  Button,
-  AlertDialog,
-  Flex,
-  useOpenDialog,
-  useValidateChangePassphraseParams,
-  Suspender,
-} from '@chia/core';
+import React, { ReactElement, useState } from 'react';
 
 export default function AppKeyringMigrator() {
   const [validateChangePassphraseParams] = useValidateChangePassphraseParams();
@@ -126,8 +126,8 @@ export default function AppKeyringMigrator() {
   return (
     <Dialog
       aria-labelledby="keyring-migration-dialog-title"
-      fullWidth={true}
-      maxWidth={'sm'}
+      fullWidth
+      maxWidth="sm"
       open
       onKeyDown={handleKeyDown}
       onKeyUp={handleKeyUp}

@@ -1,5 +1,6 @@
-import React from 'react';
 import { SvgIcon, SvgIconProps } from '@mui/material';
+import React from 'react';
+
 import LinkSmallIcon from './images/LinkSmall.svg';
 
 export default function LinkSmall(props: SvgIconProps) {

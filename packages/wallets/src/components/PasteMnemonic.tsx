@@ -1,4 +1,4 @@
-import React from 'react';
+import { Trans } from '@lingui/macro';
 import {
   Button,
   Dialog,
@@ -7,7 +7,7 @@ import {
   DialogTitle,
   TextField,
 } from '@mui/material';
-import { Trans } from '@lingui/macro';
+import React from 'react';
 
 type Props = {
   onSuccess: (mnemonicList: string) => void;
@@ -45,10 +45,10 @@ export default function MnemonicPaste(props: Props) {
 
   return (
     <Dialog
-      open={true}
+      open
       aria-labelledby="form-dialog-title"
-      fullWidth={true}
-      maxWidth = {'md'}
+      fullWidth
+      maxWidth = "md"
       onKeyDown={handleKeyDown}
     >
       <DialogTitle id="form-dialog-title">

@@ -1,6 +1,6 @@
-import React from 'react';
-import { Trans } from '@lingui/macro';
 import { AlertDialog, chiaToMojo } from '@chia/core';
+import { Trans } from '@lingui/macro';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import {
   Typography,
   Button,
@@ -10,17 +10,17 @@ import {
   CircularProgress,
 } from '@mui/material';
 import { makeStyles } from '@mui/styles';
-
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+
 import {
   createState,
   changeCreateWallet,
   CREATE_RL_WALLET_OPTIONS,
 } from '../../../modules/createWallet';
-import { useStyles } from './WalletCreate';
-import { create_rl_admin_action } from '../../../modules/message';
 import { openDialog } from '../../../modules/dialog';
+import { create_rl_admin_action } from '../../../modules/message';
+import { useStyles } from './WalletCreate';
 
 export const customStyles = makeStyles((theme) => ({
   input: {
@@ -70,7 +70,7 @@ export const customStyles = makeStyles((theme) => ({
   },
 }));
 
-export const CreateRLAdminWallet = () => {
+export function CreateRLAdminWallet() {
   const classes = useStyles();
   const custom = customStyles();
   const dispatch = useDispatch();
@@ -313,4 +313,4 @@ export const CreateRLAdminWallet = () => {
       </Backdrop>
     </div>
   );
-};
+}

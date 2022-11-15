@@ -1,12 +1,13 @@
-import React, { useMemo } from 'react';
-import { Trans } from '@lingui/macro';
 import { useGetThrottlePlotQueueQuery } from '@chia/api-react';
-import { TableRow } from '@mui/material';
 import { Card, Table } from '@chia/core';
+import { Trans } from '@lingui/macro';
+import { TableRow } from '@mui/material';
+import React, { useMemo } from 'react';
 import styled from 'styled-components';
-import PlotQueueSize from './queue/PlotQueueSize';
-import PlotQueueIndicator from './queue/PlotQueueIndicator';
+
 import PlotQueueActions from './queue/PlotQueueActions';
+import PlotQueueIndicator from './queue/PlotQueueIndicator';
+import PlotQueueSize from './queue/PlotQueueSize';
 
 export const StyledTableRow = styled(({ odd, ...rest }) => <TableRow {...rest} />)`
   ${({ odd, theme }) => odd
@@ -37,9 +38,7 @@ const cols = [
 export default function PlotPlotting() {
   const { isLoading, queue } = useGetThrottlePlotQueueQuery();
 
-  const nonFinished = useMemo(() => {
-    return queue?.filter((item) => item.state !== 'FINISHED');
-  }, [queue]);
+  const nonFinished = useMemo(() => queue?.filter((item) => item.state !== 'FINISHED'), [queue]);
 
   if (isLoading || !nonFinished?.length) {
     return null;

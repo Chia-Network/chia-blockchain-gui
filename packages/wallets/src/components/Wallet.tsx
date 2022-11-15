@@ -1,12 +1,13 @@
-import { Alert } from '@mui/material';
-import { useParams } from 'react-router-dom';
-import { Trans } from '@lingui/macro';
-import { Suspender } from '@chia/core';
 import { WalletType } from '@chia/api';
+import { Suspender } from '@chia/core';
+import { Trans } from '@lingui/macro';
+import { Alert } from '@mui/material';
 import React from 'react';
-import WalletStandard from './standard/WalletStandard';
-import WalletCAT from './cat/WalletCAT';
+import { useParams } from 'react-router-dom';
+
 import useWallet from '../hooks/useWallet';
+import WalletCAT from './cat/WalletCAT';
+import WalletStandard from './standard/WalletStandard';
 
 export default function Wallet() {
   const { walletId } = useParams();

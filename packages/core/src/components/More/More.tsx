@@ -1,7 +1,8 @@
-import React, { ReactNode } from 'react';
-import { Menu, MenuProps } from '../Menu';
 import { MoreVert as MoreVertIcon } from '@mui/icons-material';
+import React, { ReactNode } from 'react';
+
 import IconButton from '../IconButton';
+import { Menu, MenuProps } from '../Menu';
 
 export type MoreProps = Omit<MenuProps, 'open'> & {
   children?: ReactNode;

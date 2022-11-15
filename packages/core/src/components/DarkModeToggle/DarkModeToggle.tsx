@@ -1,9 +1,11 @@
-import React from 'react';
-import { IconButton } from '@mui/material';
-import { Brightness4, Brightness7 } from '@mui/icons-material';
-import useDarkMode from '../../hooks/useDarkMode';
-import isElectron from 'is-electron';
 import { nativeTheme } from '@electron/remote';
+import { Brightness4, Brightness7 } from '@mui/icons-material';
+import { IconButton } from '@mui/material';
+import isElectron from 'is-electron';
+import React from 'react';
+
+import useDarkMode from '../../hooks/useDarkMode';
+
 
 export default function DarkModeToggle() {
   const { toggle, isDarkMode } = useDarkMode();

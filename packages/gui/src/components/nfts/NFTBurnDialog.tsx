@@ -1,9 +1,5 @@
-import React, { useEffect } from 'react';
-import { Trans } from '@lingui/macro';
 import { type NFTInfo } from '@chia/api';
 import { useTransferNFTMutation } from '@chia/api-react';
-import { useForm } from 'react-hook-form';
-import useBurnAddress from '../../hooks/useBurnAddress';
 import {
   Button,
   ButtonLoading,
@@ -15,6 +11,7 @@ import {
   useOpenDialog,
   useShowError,
 } from '@chia/core';
+import { Trans } from '@lingui/macro';
 import {
   Alert,
   Dialog,
@@ -24,6 +21,10 @@ import {
   DialogTitle,
   Typography,
 } from '@mui/material';
+import React, { useEffect } from 'react';
+import { useForm } from 'react-hook-form';
+
+import useBurnAddress from '../../hooks/useBurnAddress';
 import NFTSummary from './NFTSummary';
 import NFTTransferConfirmationDialog from './NFTTransferConfirmationDialog';
 

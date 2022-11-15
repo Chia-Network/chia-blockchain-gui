@@ -1,4 +1,5 @@
 import { WalletType } from '@chia/api';
+
 import { getNFTInbox } from './utils';
 
 describe('utils', () => {

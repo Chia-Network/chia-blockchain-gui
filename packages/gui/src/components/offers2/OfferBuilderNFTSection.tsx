@@ -1,10 +1,11 @@
-import React from 'react';
-import { Trans } from '@lingui/macro';
-import { NFTs } from '@chia/icons';
 import { Flex } from '@chia/core';
+import { NFTs } from '@chia/icons';
+import { Trans } from '@lingui/macro';
+import React from 'react';
 import { useFieldArray } from 'react-hook-form';
-import OfferBuilderSection from './OfferBuilderSection';
+
 import OfferBuilderNFT from './OfferBuilderNFT';
+import OfferBuilderSection from './OfferBuilderSection';
 
 export type OfferBuilderNFTSectionProps = {
   name: string;

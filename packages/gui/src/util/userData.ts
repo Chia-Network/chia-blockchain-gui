@@ -1,7 +1,9 @@
-import { app } from 'electron';
-import { getConfigRootDir } from '../util/loadConfig';
-import path from 'path';
 import fs from 'fs';
+import path from 'path';
+
+import { app } from 'electron';
+
+import { getConfigRootDir } from "./loadConfig";
 
 export function getUserDataDir(): string {
   const chiaRootPath = getConfigRootDir();

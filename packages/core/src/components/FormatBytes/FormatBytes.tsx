@@ -1,5 +1,5 @@
-import React from 'react';
 import BigNumber from 'bignumber.js';
+import React from 'react';
 
 const Convert: [BigNumber, string][] = [
   [new BigNumber(0), 'B'],

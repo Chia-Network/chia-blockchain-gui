@@ -1,7 +1,5 @@
-import React, { useMemo } from 'react';
-import BigNumber from 'bignumber.js';
-import { useFormContext, useFieldArray } from 'react-hook-form';
-import { Trans } from '@lingui/macro';
+import { Wallet, WalletType } from '@chia/api';
+import { useGetWalletBalanceQuery, useGetWalletsQuery } from '@chia/api-react';
 import {
   Amount,
   Fee,
@@ -13,14 +11,17 @@ import {
   mojoToCATLocaleString,
   useLocale,
 } from '@chia/core';
-import { Box, Divider, IconButton, Typography } from '@mui/material';
+import { Trans } from '@lingui/macro';
 import { Add, Remove } from '@mui/icons-material';
-import { useGetWalletBalanceQuery, useGetWalletsQuery } from '@chia/api-react';
-import { Wallet, WalletType } from '@chia/api';
-import type OfferEditorRowData from './OfferEditorRowData';
-import OfferAssetSelector from './OfferAssetSelector';
-import OfferExchangeRate from './OfferExchangeRate';
+import { Box, Divider, IconButton, Typography } from '@mui/material';
+import BigNumber from 'bignumber.js';
+import React, { useMemo } from 'react';
+import { useFormContext, useFieldArray } from 'react-hook-form';
+
 import useAssetIdName, { AssetIdMapEntry } from '../../hooks/useAssetIdName';
+import OfferAssetSelector from './OfferAssetSelector';
+import type OfferEditorRowData from './OfferEditorRowData';
+import OfferExchangeRate from './OfferExchangeRate';
 
 type OfferEditorConditionsRowProps = {
   namePrefix: string;
@@ -276,10 +277,10 @@ function OfferEditorConditionsPanel(props: OfferEditorConditionsPanelProps) {
     takerAssetInfo,
     takerExchangeRate,
   } = useMemo(() => {
-    let makerAssetInfo: AssetIdMapEntry | undefined = undefined;
-    let takerAssetInfo: AssetIdMapEntry | undefined = undefined;
-    let makerExchangeRate: number | undefined = undefined;
-    let takerExchangeRate: number | undefined = undefined;
+    let makerAssetInfo: AssetIdMapEntry | undefined;
+    let takerAssetInfo: AssetIdMapEntry | undefined;
+    let makerExchangeRate: number | undefined;
+    let takerExchangeRate: number | undefined;
 
     if (!isLoading && makerRows.length === 1 && takerRows.length === 1) {
       const makerWalletId: string | undefined =
@@ -442,7 +443,7 @@ function OfferEditorConditionsPanel(props: OfferEditorConditionsPanelProps) {
               flexDirection="column"
               alignItems="center"
               style={{ width: '10%' }}
-            ></Flex>
+             />
           </Flex>
         </>
       )}
@@ -472,7 +473,7 @@ function OfferEditorConditionsPanel(props: OfferEditorConditionsPanelProps) {
           flexDirection="column"
           flexGrow={1}
           style={{ width: '45%' }}
-        ></Flex>
+         />
       </Flex>
     </Flex>
   );

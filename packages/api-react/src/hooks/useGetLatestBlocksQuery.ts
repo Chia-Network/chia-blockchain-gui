@@ -1,4 +1,5 @@
 import { get } from 'lodash';
+
 import { useGetBlockchainStateQuery, useGetBlockRecordsQuery } from "../services/fullNode";
 
 export default function useGetLatestBlocksQuery(count = 10) {

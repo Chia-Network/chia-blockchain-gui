@@ -1,14 +1,11 @@
-import React from 'react';
+import { useLocalStorage } from '@chia/api-react';
+import { Flex, SettingsLabel , AlertDialog, useOpenDialog , FormatBytes } from '@chia/core';
 import { Trans } from '@lingui/macro';
-import { Grid, Box, Button } from '@mui/material';
+import { Grid, Box, Button , Switch, FormGroup, FormControlLabel } from '@mui/material';
+import React from 'react';
 import styled from 'styled-components';
 
-import { Flex, SettingsLabel } from '@chia/core';
-import { Switch, FormGroup, FormControlLabel } from '@mui/material';
 import useHideObjectionableContent from '../../hooks/useHideObjectionableContent';
-import { useLocalStorage } from '@chia/api-react';
-import { AlertDialog, useOpenDialog } from '@chia/core';
-import { FormatBytes } from '@chia/core';
 import LimitCacheSize from './LimitCacheSize';
 
 export default function SettingsGeneral() {
@@ -25,7 +22,7 @@ export default function SettingsGeneral() {
   const [defaultCacheFolder, setDefaultCacheFolder] = React.useState();
   const [cacheSize, setCacheSize] = React.useState(0);
   const openDialog = useOpenDialog();
-  const ipcRenderer = (window as any).ipcRenderer;
+  const {ipcRenderer} = window as any;
 
   React.useEffect(() => {
     ipcRenderer.invoke('getDefaultCacheFolder').then((folder) => {
@@ -154,7 +151,7 @@ export default function SettingsGeneral() {
                 <div>
                   <LimitCacheSize forceUpdateCacheSize={forceUpdateCacheSize} />
                 </div>
-                <div></div>
+                <div />
               </div>
             </CacheTable>
           </FormGroup>

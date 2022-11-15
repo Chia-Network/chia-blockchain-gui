@@ -1,14 +1,14 @@
-import React from 'react';
-import { Trans } from '@lingui/macro';
+import { Connection, ServiceConnectionName } from '@chia/api';
+import { useGetWalletConnectionsQuery } from '@chia/api-react';
 import {
   Card,
   FormatBytes,
   Loading,
   Table,
 } from '@chia/core';
+import { Trans } from '@lingui/macro';
 import { Tooltip } from '@mui/material';
-import { Connection, ServiceConnectionName } from '@chia/api';
-import { useGetWalletConnectionsQuery } from '@chia/api-react';
+import React from 'react';
 
 const cols = [
   {

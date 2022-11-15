@@ -1,7 +1,7 @@
 import Client from '../Client';
+import ServiceName from '../constants/ServiceName';
 import Service from './Service';
 import type { Options } from './Service';
-import ServiceName from '../constants/ServiceName';
 
 
 function parseProgressUpdate(line: string, currentProgress: number): number {
@@ -24,7 +24,7 @@ function addPlotProgress(queue: PlotQueueItem[]): PlotQueueItem[] {
         ...item,
         progress: 1.0,
       };
-    } else if (state !== 'RUNNING') {
+    } if (state !== 'RUNNING') {
       return item;
     }
 

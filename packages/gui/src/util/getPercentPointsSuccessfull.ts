@@ -1,4 +1,5 @@
 import { sumBy } from 'lodash';
+
 import type Point from '../types/Point';
 
 function sumPoints(points: Point[]): number {

@@ -1,5 +1,6 @@
-import React from 'react';
 import { SvgIcon, SvgIconProps } from '@mui/material';
+import React from 'react';
+
 import NFTsIcon from './images/NFTs.svg';
 import NFTsSmallIcon from './images/NFTsSmall.svg';
 

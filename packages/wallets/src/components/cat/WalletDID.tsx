@@ -1,17 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { Alert, Grid } from '@mui/material';
-import { makeStyles } from '@mui/styles';
-import { useDispatch, useSelector } from 'react-redux';
-import { Trans } from '@lingui/macro';
-import { Backup as BackupIcon } from '@mui/icons-material';
-import Typography from '@mui/material/Typography';
-import Paper from '@mui/material/Paper';
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 import { AlertDialog, Card, Flex, Loading, Dropzone, mojoToChiaLocaleString } from '@chia/core';
+import { Trans } from '@lingui/macro';
+import { Backup as BackupIcon } from '@mui/icons-material';
 import {
   did_generate_backup_file,
   did_spend,
@@ -20,19 +12,29 @@ import {
   did_recovery_spend_action,
   did_get_recovery_info
 } from '../../../modules/message';
+
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import HelpIcon from '@mui/icons-material/Help';
+import { Tooltip } from '@mui/material';
 import {
   Accordion,
   AccordionSummary,
   AccordionDetails,
 } from '@mui/material';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { Tooltip } from '@mui/material';
-import HelpIcon from '@mui/icons-material/Help';
+import { Alert, Grid } from '@mui/material';
+import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
+import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
+import { makeStyles } from '@mui/styles';
+import React, { useEffect, useState } from 'react';
 import { useForm, Controller, useFieldArray } from 'react-hook-form';
-import { openDialog } from '../../../modules/dialog';
+import { useDispatch, useSelector } from 'react-redux';
+
 import useCurrencyCode from '../../../hooks/useCurrencyCode';
-import WalletHistory from '../WalletHistory';
 import useWallet from '../../../hooks/useWallet';
+import { openDialog } from '../../../modules/dialog';
+import WalletHistory from '../WalletHistory';
 
 const drawerWidth = 240;
 
@@ -284,7 +286,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const RecoveryCard = (props) => {
+function RecoveryCard(props) {
   const id = props.wallet_id;
   const { wallet } = useWallet(id);
 
@@ -327,7 +329,7 @@ const RecoveryCard = (props) => {
           </AlertDialog>
         ),
       );
-      return;
+      
     } else {
       dispatch(did_recovery_spend_action(id, files));
     }
@@ -465,14 +467,14 @@ const RecoveryCard = (props) => {
       </Box>
     </Flex>
   );
-};
+}
 
-const RecoveryTransCard = (props) => {
+function RecoveryTransCard(props) {
   const id = props.wallet_id;
   const { wallet } = useWallet(id);
   const { mydid, data } = wallet;
   const data_parsed = JSON.parse(data);
-  const temp_coin = data_parsed.temp_coin;
+  const {temp_coin} = data_parsed;
   const classes = useStyles();
 
   return (
@@ -506,9 +508,9 @@ const RecoveryTransCard = (props) => {
       </Grid>
     </Card>
   );
-};
+}
 
-const MyDIDCard = (props) => {
+function MyDIDCard(props) {
   const id = props.wallet_id;
   const { wallet } = useWallet(id);
   const { mydid } = wallet;
@@ -588,9 +590,9 @@ const MyDIDCard = (props) => {
       </Grid>
     </Card>
   );
-};
+}
 
-const BalanceCardSubSection = (props) => {
+function BalanceCardSubSection(props) {
   const currencyCode = useCurrencyCode();
   const classes = useStyles();
   return (
@@ -603,7 +605,7 @@ const BalanceCardSubSection = (props) => {
               <Tooltip title={props.tooltip}>
                 <HelpIcon
                   style={{ color: '#c8c8c8', fontSize: 12 }}
-                ></HelpIcon>
+                 />
               </Tooltip>
             ) : (
               ''
@@ -618,9 +620,9 @@ const BalanceCardSubSection = (props) => {
       </Box>
     </Grid>
   );
-};
+}
 
-const BalanceCard = (props) => {
+function BalanceCard(props) {
   const id = props.wallet_id;
 
   const classes = useStyles();
@@ -652,7 +654,7 @@ const BalanceCard = (props) => {
       <BalanceCardSubSection
         title="Spendable Balance"
         balance={balance_spendable}
-        tooltip={''}
+        tooltip=""
       />
       <Grid item xs={12}>
         <Box display="flex">
@@ -672,17 +674,17 @@ const BalanceCard = (props) => {
                   <BalanceCardSubSection
                     title="Pending Total Balance"
                     balance={balance_ptotal}
-                    tooltip={''}
+                    tooltip=""
                   />
                   <BalanceCardSubSection
                     title="Pending Balance"
                     balance={balance_pending}
-                    tooltip={''}
+                    tooltip=""
                   />
                   <BalanceCardSubSection
                     title="Pending Change"
                     balance={balance_change}
-                    tooltip={''}
+                    tooltip=""
                   />
                 </Grid>
               </AccordionDetails>
@@ -692,12 +694,12 @@ const BalanceCard = (props) => {
       </Grid>
     </Card>
   );
-};
+}
 
-const ViewDIDsSubsection = (props) => {
+function ViewDIDsSubsection(props) {
   const classes = useStyles();
   const backup_list = props.backup_did_list;
-  const dids_num_req = props.dids_num_req;
+  const {dids_num_req} = props;
   const isEmptyList = !backup_list || !backup_list.length;
 
   return (
@@ -740,9 +742,9 @@ const ViewDIDsSubsection = (props) => {
       </Box>
     </Grid>
   );
-};
+}
 
-const ManageDIDsCard = (props) => {
+function ManageDIDsCard(props) {
   const id = props.wallet_id;
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -896,9 +898,9 @@ const ManageDIDsCard = (props) => {
       )}
     </Card>
   );
-};
+}
 
-const CreateAttest = (props) => {
+function CreateAttest(props) {
   const id = props.wallet_id;
   let filename_input = null;
   let coin_input = null;
@@ -1012,10 +1014,10 @@ const CreateAttest = (props) => {
       </Box>
     </Card>
   );
-};
+}
 
 // this is currently not being displayed; did_spend does not exist in wallet_rpc_api.py
-const CashoutCard = (props) => {
+function CashoutCard(props) {
   const id = props.wallet_id;
   let address_input = null;
   const classes = useStyles();
@@ -1059,7 +1061,7 @@ const CashoutCard = (props) => {
                   label="Address / Puzzle hash"
                 />
               </Box>
-              <Box></Box>
+              <Box />
             </Box>
           </div>
         </Grid>
@@ -1082,7 +1084,7 @@ const CashoutCard = (props) => {
       </Grid>
     </Paper>
   );
-};
+}
 
 type Props = {
   walletId: number;

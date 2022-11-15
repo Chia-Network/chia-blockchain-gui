@@ -1,19 +1,8 @@
-import React from 'react';
-import { Trans } from '@lingui/macro';
-import {
-  TextField as TextFieldMaterial,
-  Typography,
-  Grid,
-  Container,
-} from '@mui/material';
-import { useForm } from 'react-hook-form';
 import {
   useGenerateMnemonicMutation,
   useAddPrivateKeyMutation,
   useLogInMutation,
 } from '@chia/api-react';
-import { useNavigate } from 'react-router';
-import { useEffectOnce } from 'react-use';
 import {
   ButtonLoading,
   Form,
@@ -23,6 +12,17 @@ import {
   Logo,
   useShowError,
 } from '@chia/core';
+import { Trans } from '@lingui/macro';
+import {
+  TextField as TextFieldMaterial,
+  Typography,
+  Grid,
+  Container,
+} from '@mui/material';
+import React from 'react';
+import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router';
+import { useEffectOnce } from 'react-use';
 
 type FormData = {
   label: string;

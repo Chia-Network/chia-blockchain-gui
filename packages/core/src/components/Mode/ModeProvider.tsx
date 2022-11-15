@@ -1,3 +1,4 @@
+import { useLocalStorage } from '@chia/api-react';
 import React, {
   createContext,
   ReactNode,
@@ -5,7 +6,7 @@ import React, {
   useMemo,
   useCallback,
 } from 'react';
-import { useLocalStorage } from '@chia/api-react';
+
 import type Mode from '../../constants/Mode';
 
 export const ModeContext = createContext<

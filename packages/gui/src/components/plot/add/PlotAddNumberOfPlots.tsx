@@ -1,5 +1,3 @@
-import React from 'react';
-import { Trans, t } from '@lingui/macro';
 import {
   AdvancedOptions,
   CardStep,
@@ -10,6 +8,7 @@ import {
   TooltipIcon,
   Select,
 } from '@chia/core';
+import { Trans, t } from '@lingui/macro';
 import {
   Grid,
   FormControl,
@@ -20,7 +19,9 @@ import {
   MenuItem,
   InputLabel,
 } from '@mui/material';
+import React from 'react';
 import { useFormContext } from 'react-hook-form';
+
 import Plotter from '../../../types/Plotter';
 
 type Props = {

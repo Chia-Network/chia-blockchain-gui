@@ -1,6 +1,3 @@
-import React from 'react';
-import { useWatch } from 'react-hook-form';
-import { Trans } from '@lingui/macro';
 import {
   Amount,
   CopyToClipboard,
@@ -14,11 +11,15 @@ import {
   Tooltip,
   TooltipIcon,
 } from '@chia/core';
-import { Box, Typography, IconButton } from '@mui/material';
+import { Trans } from '@lingui/macro';
 import { Remove } from '@mui/icons-material';
+import { Box, Typography, IconButton } from '@mui/material';
+import React from 'react';
+import { useWatch } from 'react-hook-form';
+
 import useOfferBuilderContext from '../../hooks/useOfferBuilderContext';
-import OfferBuilderTokenSelector from './OfferBuilderTokenSelector';
 import OfferBuilderRoyaltyPayouts from './OfferBuilderRoyaltyPayouts';
+import OfferBuilderTokenSelector from './OfferBuilderTokenSelector';
 
 export type OfferBuilderValueProps = {
   name: string;
@@ -61,15 +62,13 @@ export default function OfferBuilderValue(props: OfferBuilderValueProps) {
     name,
   });
   const readOnly = disableReadOnly ? false : builderReadOnly;
-  const displayValue = amountWithRoyalties ? (
-    amountWithRoyalties
-  ) : !value ? (
+  const displayValue = amountWithRoyalties || (!value ? (
     <Trans>Not Available</Trans>
   ) : ['amount', 'fee', 'token'].includes(type) && Number.isFinite(value) ? (
     <FormatLargeNumber value={value} />
   ) : (
     value
-  );
+  ));
 
   return (
     <Flex flexDirection="column" minWidth={0} gap={1}>

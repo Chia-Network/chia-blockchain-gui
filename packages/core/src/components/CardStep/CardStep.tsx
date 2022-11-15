@@ -1,5 +1,3 @@
-import React, { ReactNode } from 'react';
-import styled from 'styled-components';
 import {
   Avatar,
   Card,
@@ -9,6 +7,9 @@ import {
   Grid,
   Typography,
 } from '@mui/material';
+import React, { ReactNode } from 'react';
+import styled from 'styled-components';
+
 import Flex from '../Flex';
 
 const StyledCardContent = styled(CardContent)`

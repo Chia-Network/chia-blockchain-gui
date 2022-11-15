@@ -1,5 +1,5 @@
-import React from 'react';
 import { Typography, type TypographyProps } from '@mui/material';
+import React from 'react';
 
 function getMuiVariant(variant: string): TypographyProps['variant'] {
   switch (variant) {

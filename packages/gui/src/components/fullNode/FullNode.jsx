@@ -1,7 +1,4 @@
-import React from 'react';
-import { Trans } from '@lingui/macro';
-import moment from 'moment';
-import { get } from 'lodash';
+import { useGetLatestBlocksQuery, useGetUnfinishedBlockHeadersQuery } from '@chia/api-react';
 import {
   FormatLargeNumber,
   Flex,
@@ -11,12 +8,16 @@ import {
   LayoutDashboardSub,
 } from '@chia/core';
 import { Status } from '@chia/icons';
-import { useGetLatestBlocksQuery, useGetUnfinishedBlockHeadersQuery } from '@chia/api-react';
-import { useNavigate } from 'react-router-dom';
+import { Trans } from '@lingui/macro';
 import { Box, Tooltip, Typography } from '@mui/material';
+import { get } from 'lodash';
+import moment from 'moment';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+
 // import HelpIcon from '@mui/icons-material/Help';
-import FullNodeConnections from './FullNodeConnections';
 import FullNodeBlockSearch from './FullNodeBlockSearch';
+import FullNodeConnections from './FullNodeConnections';
 import FullNodeCards from './card/FullNodeCards';
 
 const cols = [
@@ -96,7 +97,7 @@ const cols = [
   },
 ];
 
-const BlocksCard = () => {
+function BlocksCard() {
   const navigate = useNavigate();
   const { data: latestBlocks = [], isLoading } = useGetLatestBlocksQuery();
   const { data: unfinishedBlockHeaders = [] } = useGetUnfinishedBlockHeadersQuery();
@@ -122,7 +123,7 @@ const BlocksCard = () => {
       <Table cols={cols} rows={rows} onRowClick={handleRowClick} isLoading={isLoading}/>
     </Card>
   );
-};
+}
 
 export default function FullNode() {
   return (

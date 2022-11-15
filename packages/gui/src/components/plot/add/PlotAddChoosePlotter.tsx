@@ -1,8 +1,8 @@
-import React, { useMemo } from 'react';
-import { useWatch } from 'react-hook-form';
-import { t, Trans } from '@lingui/macro';
-import { CardStep, Select, StateColor } from '@chia/core';
+import { defaultPlotter, PlotterName } from '@chia/api';
+import type { Plotter, PlotterMap } from '@chia/api';
 import { useGetPlottersQuery } from '@chia/api-react';
+import { CardStep, Select, StateColor } from '@chia/core';
+import { t, Trans } from '@lingui/macro';
 import {
   FormControl,
   FormHelperText,
@@ -11,9 +11,9 @@ import {
   MenuItem,
   Typography,
 } from '@mui/material';
+import React, { useMemo } from 'react';
+import { useWatch } from 'react-hook-form';
 import styled from 'styled-components';
-import { defaultPlotter, PlotterName } from '@chia/api';
-import type { Plotter, PlotterMap } from '@chia/api';
 
 type Props = {
   step: number;
@@ -36,9 +36,7 @@ export default function PlotAddChoosePlotter(props: Props) {
     return displayablePlotters;
   }
 
-  const displayedPlotters = useMemo(() => {
-    return plotters ? displayablePlotters(plotters) : [];
-  }, [plotters]);
+  const displayedPlotters = useMemo(() => plotters ? displayablePlotters(plotters) : [], [plotters]);
 
 
   const handleChange = async (event: any) => {
@@ -61,17 +59,17 @@ export default function PlotAddChoosePlotter(props: Props) {
     const plotter = plotters[plotterName] ?? defaultPlotter;
     const { version } = plotter;
     const installed = plotter.installInfo?.installed ?? false;
-    let displayName = plotter.displayName;
+    let {displayName} = plotter;
 
     if (version) {
-      displayName += " " + version;
+      displayName += ` ${  version}`;
     }
 
     if (!isPlotterSupported(plotterName)) {
-      displayName += " " + t`(Not Supported)`;
+      displayName += ` ${  t`(Not Supported)`}`;
     }
     else if (!installed) {
-      displayName += " " + t`(Not Installed)`;
+      displayName += ` ${  t`(Not Installed)`}`;
     }
 
     return displayName;

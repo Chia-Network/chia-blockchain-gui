@@ -1,6 +1,3 @@
-import React, { type ReactNode } from 'react';
-import { Trans, Plural } from '@lingui/macro';
-import styled from 'styled-components';
 import {
   useCurrencyCode,
   chiaToMojo,
@@ -9,7 +6,10 @@ import {
   TooltipIcon,
   FormatLargeNumber,
 } from '@chia/core';
+import { Trans, Plural } from '@lingui/macro';
 import { Box, Divider, Typography } from '@mui/material';
+import React, { type ReactNode } from 'react';
+import styled from 'styled-components';
 
 const StyledTitle = styled(Box)`
   font-size: 0.625rem;

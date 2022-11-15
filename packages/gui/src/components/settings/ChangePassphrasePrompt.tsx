@@ -1,4 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import { useGetKeyringStatusQuery, useRemoveKeyringPassphraseMutation, useSetKeyringPassphraseMutation } from '@chia/api-react';
+import { AlertDialog, Button, DialogActions, Flex, useOpenDialog, Suspender, useValidateChangePassphraseParams } from '@chia/core';
+import { t, Trans } from '@lingui/macro';
+import {
+  Help as HelpIcon,
+  KeyboardCapslock as KeyboardCapslockIcon,
+  Visibility as VisibilityIcon,
+} from '@mui/icons-material';
 import {
   Box,
   Checkbox,
@@ -12,14 +19,7 @@ import {
   TextField,
   Tooltip,
 } from '@mui/material';
-import {
-  Help as HelpIcon,
-  KeyboardCapslock as KeyboardCapslockIcon,
-  Visibility as VisibilityIcon,
-} from '@mui/icons-material';
-import { t, Trans } from '@lingui/macro';
-import { AlertDialog, Button, DialogActions, Flex, useOpenDialog, Suspender, useValidateChangePassphraseParams } from '@chia/core';
-import { useGetKeyringStatusQuery, useRemoveKeyringPassphraseMutation, useSetKeyringPassphraseMutation } from '@chia/api-react';
+import React, { useEffect, useState } from 'react';
 
 type Props = {
   onSuccess: () => void;
@@ -163,7 +163,7 @@ export default function ChangePassphrasePrompt(props: Props) {
     <Dialog
       open
       aria-labelledby="form-dialog-title"
-      fullWidth={true}
+      fullWidth
       maxWidth="sm"
       onKeyUp={handleKeyUp}
       onKeyDown={handleKeyDown}

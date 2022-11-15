@@ -1,5 +1,6 @@
-import React from 'react';
 import { Grid } from '@mui/material';
+import React from 'react';
+
 import SettingsPanel from './SettingsPanel';
 
 export default function SettingsGeneral() {

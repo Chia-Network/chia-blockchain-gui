@@ -1,4 +1,5 @@
-import React, { useEffect, useState, ReactNode } from 'react';
+import { useGetPlotQueueQuery, useThrottleQuery } from '@chia/api-react';
+import { Button, Flex, Log } from '@chia/core';
 import { Trans } from '@lingui/macro';
 import {
   Dialog,
@@ -8,8 +9,7 @@ import {
   LinearProgress,
   Typography,
 } from '@mui/material';
-import { Button, Flex, Log } from '@chia/core';
-import { useGetPlotQueueQuery, useThrottleQuery } from '@chia/api-react';
+import React, { useEffect, useState, ReactNode } from 'react';
 import styled from 'styled-components';
 
 const StyledLinearProgress = styled(LinearProgress)`

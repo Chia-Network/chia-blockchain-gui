@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
-import { Trans } from '@lingui/macro';
 import { Flex, Form, Select } from '@chia/core';
+import { Trans } from '@lingui/macro';
 import { Box, MenuItem, FormControl, InputLabel, Slider } from '@mui/material';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+
 import NFTProfileDropdown from '../NFTProfileDropdown';
 
 export type NFTGallerySidebarProps = {

@@ -1,9 +1,10 @@
-import React, { useEffect, type ReactNode } from 'react';
-import { Trans } from '@lingui/macro';
-import { useUpdate } from 'react-use';
-import { useNavigate } from 'react-router-dom';
 import { useGetLoggedInFingerprintQuery } from '@chia/api-react';
 import { LayoutLoading } from '@chia/core';
+import { Trans } from '@lingui/macro';
+import React, { useEffect, type ReactNode } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useUpdate } from 'react-use';
+
 import useEnableAutoLogin from '../../hooks/useEnableAutoLogin';
 
 export type AppAutoLoginProps = {

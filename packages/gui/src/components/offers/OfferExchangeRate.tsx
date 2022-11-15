@@ -1,16 +1,18 @@
-import React, { useMemo, useState } from "react";
-import NumberFormat from 'react-number-format';
+import { WalletType } from '@chia/api';
 import {
   Flex,
 } from '@chia/core';
+import { ImportExport } from '@mui/icons-material';
 import {
   InputAdornment,
   TextField,
   Typography,
 } from '@mui/material';
-import { ImportExport } from '@mui/icons-material';
+import React, { useMemo, useState } from "react";
+import NumberFormat from 'react-number-format';
+
 import { AssetIdMapEntry } from '../../hooks/useAssetIdName';
-import { WalletType } from '@chia/api';
+
 
 interface OfferExchangeRateNumberFormatProps {
   inputRef: (instance: NumberFormat | null) => void;
@@ -52,8 +54,7 @@ export default function OfferExchangeRate(props: Props) {
 
   const [editingMakerExchangeRate, setEditingMakerExchangeRate] = useState(false);
   const [editingTakerExchangeRate, setEditingTakerExchangeRate] = useState(false);
-  const [makerDisplayRate, takerDisplayRate] = useMemo(() => {
-    return [
+  const [makerDisplayRate, takerDisplayRate] = useMemo(() => [
       {rate: makerExchangeRate, walletType: makerAssetInfo.walletType, counterCurrencyName: takerAssetInfo.displayName},
       {rate: takerExchangeRate, walletType: takerAssetInfo.walletType, counterCurrencyName: makerAssetInfo.displayName}
     ].map(({rate, walletType}) => {
@@ -69,8 +70,7 @@ export default function OfferExchangeRate(props: Props) {
         displayRate = fixed.replace(/\.0+$/, '');
       }
       return `${displayRate}`;
-    });
-  }, [makerAssetInfo, takerAssetInfo, makerExchangeRate, takerExchangeRate]);
+    }), [makerAssetInfo, takerAssetInfo, makerExchangeRate, takerExchangeRate]);
 
   const makerValueProps = editingMakerExchangeRate === false ? { value: makerDisplayRate } : {};
   const takerValueProps = editingTakerExchangeRate === false ? { value: takerDisplayRate } : {};
@@ -95,7 +95,7 @@ export default function OfferExchangeRate(props: Props) {
                 decimalScale: takerAssetInfo.walletType === WalletType.STANDARD_WALLET ? 12 : 9,
               },
               endAdornment: <InputAdornment position="end">{takerAssetInfo.displayName}</InputAdornment>,
-              readOnly: readOnly,
+              readOnly,
             }}
             fullWidth={false}
           />
@@ -121,7 +121,7 @@ export default function OfferExchangeRate(props: Props) {
                 decimalScale: makerAssetInfo.walletType === WalletType.STANDARD_WALLET ? 12 : 9,
               },
               endAdornment: <InputAdornment position="end">{makerAssetInfo.displayName}</InputAdornment>,
-              readOnly: readOnly,
+              readOnly,
             }}
             fullWidth={false}
           />

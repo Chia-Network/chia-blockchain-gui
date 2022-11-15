@@ -1,10 +1,11 @@
-import React, { ReactElement } from 'react';
 import { Grid } from '@mui/material';
-import WalletCardTotalBalance from './card/WalletCardTotalBalance';
-import WalletCardSpendableBalance from './card/WalletCardSpendableBalance';
-import WalletCardPendingTotalBalance from './card/WalletCardPendingTotalBalance';
+import React, { ReactElement } from 'react';
+
 import WalletCardPendingBalance from './card/WalletCardPendingBalance';
 import WalletCardPendingChange from './card/WalletCardPendingChange';
+import WalletCardPendingTotalBalance from './card/WalletCardPendingTotalBalance';
+import WalletCardSpendableBalance from './card/WalletCardSpendableBalance';
+import WalletCardTotalBalance from './card/WalletCardTotalBalance';
 
 export type WalletCardsProps = {
   walletId: number;

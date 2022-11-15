@@ -1,7 +1,10 @@
-import React, { ReactNode, Suspense } from 'react';
-import styled from 'styled-components';
-import { useNavigate, Outlet } from 'react-router-dom';
+import {
+  useLogout,
+  useGetLoggedInFingerprintQuery,
+  useGetKeyQuery,
+} from '@chia/api-react';
 import { t, Trans } from '@lingui/macro';
+import { ExitToApp as ExitToAppIcon } from '@mui/icons-material';
 import {
   Box,
   AppBar,
@@ -12,17 +15,15 @@ import {
   Typography,
   CircularProgress,
 } from '@mui/material';
+import React, { ReactNode, Suspense } from 'react';
+import { useNavigate, Outlet } from 'react-router-dom';
+import styled from 'styled-components';
+
 import Flex from '../Flex';
-import Logo from '../Logo';
-import ToolbarSpacing from '../ToolbarSpacing';
 import Loading from '../Loading';
-import {
-  useLogout,
-  useGetLoggedInFingerprintQuery,
-  useGetKeyQuery,
-} from '@chia/api-react';
-import { ExitToApp as ExitToAppIcon } from '@mui/icons-material';
+import Logo from '../Logo';
 import Settings from '../Settings';
+import ToolbarSpacing from '../ToolbarSpacing';
 import Tooltip from '../Tooltip';
 // import LayoutFooter from '../LayoutMain/LayoutFooter';
 

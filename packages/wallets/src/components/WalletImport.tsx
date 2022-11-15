@@ -1,10 +1,5 @@
-import React from 'react';
-import { Trans } from '@lingui/macro';
-import { Typography, Container, Grid } from '@mui/material';
-// import { shuffle } from 'lodash';
-import { useForm, useFieldArray } from 'react-hook-form';
+import { english } from '@chia/api';
 import { useAddPrivateKeyMutation, useLogInMutation } from '@chia/api-react';
-import { useNavigate } from 'react-router';
 import {
   AlertDialog,
   Autocomplete,
@@ -17,7 +12,13 @@ import {
   useTrans,
   TextField,
 } from '@chia/core';
-import { english } from '@chia/api';
+import { Trans } from '@lingui/macro';
+import { Typography, Container, Grid } from '@mui/material';
+import React from 'react';
+// import { shuffle } from 'lodash';
+import { useForm, useFieldArray } from 'react-hook-form';
+import { useNavigate } from 'react-router';
+
 import MnemonicPaste from './PasteMnemonic';
 
 /*

@@ -1,9 +1,3 @@
-import React, { useMemo, useState } from 'react';
-import { useForm, useFormContext } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
-import BigNumber from 'bignumber.js';
-import { Trans, t } from '@lingui/macro';
-import { useLocalStorage } from '@rehooks/local-storage';
 import { WalletType } from '@chia/api';
 import type { NFTInfo, Wallet } from '@chia/api';
 import {
@@ -38,6 +32,8 @@ import {
   useOpenDialog,
   useShowError,
 } from '@chia/core';
+import { Trans, t } from '@lingui/macro';
+import { Warning as WarningIcon } from '@mui/icons-material';
 import {
   Box,
   Divider,
@@ -47,20 +43,25 @@ import {
   Typography,
   useTheme,
 } from '@mui/material';
-import { Warning as WarningIcon } from '@mui/icons-material';
-import OfferLocalStorageKeys from './OfferLocalStorage';
-import OfferEditorConfirmationDialog from './OfferEditorConfirmationDialog';
+import { useLocalStorage } from '@rehooks/local-storage';
+import BigNumber from 'bignumber.js';
+import React, { useMemo, useState } from 'react';
+import { useForm, useFormContext } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+
+import useFetchNFTs from '../../hooks/useFetchNFTs';
 import {
   convertRoyaltyToPercentage,
   isValidNFTId,
   launcherIdFromNFTId,
 } from '../../util/nfts';
-import { calculateNFTRoyalties } from './utils';
-import useFetchNFTs from '../../hooks/useFetchNFTs';
-import NFTOfferPreview from './NFTOfferPreview';
 import NFTOfferExchangeType from './NFTOfferExchangeType';
-import styled from 'styled-components';
+import NFTOfferPreview from './NFTOfferPreview';
 import NFTOfferTokenSelector from './NFTOfferTokenSelector';
+import OfferEditorConfirmationDialog from './OfferEditorConfirmationDialog';
+import OfferLocalStorageKeys from './OfferLocalStorage';
+import { calculateNFTRoyalties } from './utils';
 
 /* ========================================================================== */
 /*              Temporary home for the NFT-specific Offer Editor              */
@@ -213,8 +214,8 @@ function NFTOfferConditionalsPanel(props: NFTOfferConditionalsPanelProps) {
 
     return {
       ...calculateNFTRoyalties(
-        parseFloat(amount ? amount : '0'),
-        parseFloat(includedMakerFee ? includedMakerFee : '0'),
+        parseFloat(amount || '0'),
+        parseFloat(includedMakerFee || '0'),
         convertRoyaltyToPercentage(nft.royaltyPercentage),
         tab,
       ),
@@ -264,7 +265,7 @@ function NFTOfferConditionalsPanel(props: NFTOfferConditionalsPanelProps) {
             onChange={handleAmountChange}
             onFocus={() => setAmountFocused(true)}
             onBlur={() => setAmountFocused(false)}
-            showAmountInMojos={true}
+            showAmountInMojos
             InputLabelProps={{ shrink: shrinkAmount }}
             autoFocus
             required
@@ -665,7 +666,7 @@ export default function NFTOfferEditor(props: NFTOfferEditorProps) {
     OfferLocalStorageKeys.SUPPRESS_SHARE_ON_CREATE,
   );
   const defaultValues: NFTOfferEditorFormData = {
-    exchangeType: exchangeType,
+    exchangeType,
     nftId: nft?.$nftId ?? '',
     tokenWalletInfo: {
       walletId: 1,
@@ -690,7 +691,7 @@ export default function NFTOfferEditor(props: NFTOfferEditorProps) {
   ): NFTOfferEditorValidatedFormData | undefined {
     const { exchangeType, nftId, tokenWalletInfo, tokenAmount, fee } =
       unvalidatedFormData;
-    let result: NFTOfferEditorValidatedFormData | undefined = undefined;
+    let result: NFTOfferEditorValidatedFormData | undefined;
 
     if (!nftId) {
       errorDialog(new Error(t`Please enter an NFT identifier`));

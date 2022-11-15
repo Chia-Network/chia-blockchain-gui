@@ -1,6 +1,3 @@
-import React, { useState } from 'react';
-import { Trans } from '@lingui/macro';
-import { useForm, useWatch } from 'react-hook-form';
 import {
   Button,
   CopyToClipboard,
@@ -10,6 +7,7 @@ import {
   TextField,
   Form,
 } from '@chia/core';
+import { Trans } from '@lingui/macro';
 import {
   Alert,
   Dialog,
@@ -19,9 +17,12 @@ import {
   Typography,
   InputAdornment,
 } from '@mui/material';
+import React, { useState } from 'react';
+import { useForm, useWatch } from 'react-hook-form';
+
+import usePayoutAddress from '../../hooks/usePayoutAddress';
 import PlotNFT from '../../types/PlotNFT';
 import PlotNFTExternal from '../../types/PlotNFTExternal';
-import usePayoutAddress from '../../hooks/usePayoutAddress';
 
 type FormData = {
   payoutAddress: string;

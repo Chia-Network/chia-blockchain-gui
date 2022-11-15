@@ -1,12 +1,3 @@
-import React, {
-  ReactNode,
-  useMemo,
-  useState,
-  SyntheticEvent,
-  Fragment,
-} from 'react';
-import styled from 'styled-components';
-import { get } from 'lodash';
 import {
   Box,
   TableContainer,
@@ -20,6 +11,16 @@ import {
   TablePagination,
   Collapse,
 } from '@mui/material';
+import { get } from 'lodash';
+import React, {
+  ReactNode,
+  useMemo,
+  useState,
+  SyntheticEvent,
+  Fragment,
+} from 'react';
+import styled from 'styled-components';
+
 import LoadingOverlay from '../LoadingOverlay';
 
 const StyledTableHead = styled(TableHead)`
@@ -219,7 +220,7 @@ export default function TableControlled(props: TableControlledProps) {
                     key={i}
                     style={{ paddingBottom: 0, paddingTop: 0 }}
                     isExpanded={isExpanded}
-                  ></StyledExpandedTableCell>
+                   />
                 );
               }
 

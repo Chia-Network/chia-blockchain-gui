@@ -1,9 +1,10 @@
-import React, { useState, useMemo } from 'react';
-import { Trans } from '@lingui/macro';
-import { TableControlled } from '@chia/core';
 import { type Plot } from '@chia/api';
 import { useGetHarvesterPlotsInvalidQuery, useGetHarvesterQuery } from '@chia/api-react';
+import { TableControlled } from '@chia/core';
+import { Trans } from '@lingui/macro';
 import { Typography } from '@mui/material';
+import React, { useState, useMemo } from 'react';
+
 import PlotAction from './PlotAction';
 
 const cols = [
@@ -36,9 +37,7 @@ export default function PlotHarvesterPlotsFailed(props: PlotHarvesterPlotsFailed
     pageSize,
   });
 
-  const rows = useMemo(() => {
-    return data?.map((filename) => ({ filename }));
-  }, [data]);
+  const rows = useMemo(() => data?.map((filename) => ({ filename })), [data]);
 
   const isLoading = isLoadingHarvester || isLoadingHarvesterPlots;
   const count = failedToOpenFilenames ?? 0;

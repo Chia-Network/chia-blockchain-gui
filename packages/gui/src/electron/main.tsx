@@ -1,3 +1,10 @@
+import crypto from 'crypto';
+import fs from 'fs';
+import path from 'path';
+import url from 'url';
+
+import { initialize } from '@electron/remote/main';
+import axios from 'axios';
 import {
   app,
   dialog,
@@ -10,32 +17,30 @@ import {
   nativeImage,
   protocol,
 } from 'electron';
-import { initialize } from '@electron/remote/main';
-import path from 'path';
+import windowStateKeeper from 'electron-window-state';
 import React from 'react';
-import url from 'url';
+
+
 // import os from 'os';
 // import installExtension, { REDUX_DEVTOOLS, REACT_DEVELOPER_TOOLS } from 'electron-devtools-installer';
 import ReactDOMServer from 'react-dom/server';
 import { ServerStyleSheet, StyleSheetManager } from 'styled-components';
-import fs from 'fs';
-import crypto from 'crypto';
+
 
 // handle setupevents as quickly as possible
 import '../config/env';
-import handleSquirrelEvent from './handleSquirrelEvent';
-import loadConfig from '../util/loadConfig';
-import manageDaemonLifetime from '../util/manageDaemonLifetime';
-import chiaEnvironment from '../util/chiaEnvironment';
-import { setUserDataDir } from '../util/userData';
-import { i18n } from '../config/locales';
-import About from '../components/about/About';
 import packageJson from '../../package.json';
 import AppIcon from '../assets/img/chia64x64.png';
-import windowStateKeeper from 'electron-window-state';
-import { parseExtensionFromUrl } from '../util/utils';
+import About from '../components/about/About';
+import { i18n } from '../config/locales';
+import chiaEnvironment from '../util/chiaEnvironment';
 import computeHash from '../util/computeHash';
-import axios from 'axios';
+import loadConfig from '../util/loadConfig';
+import manageDaemonLifetime from '../util/manageDaemonLifetime';
+import { setUserDataDir } from '../util/userData';
+import { parseExtensionFromUrl } from '../util/utils';
+import handleSquirrelEvent from './handleSquirrelEvent';
+
 
 const isPlaywrightTesting = process.env.PLAYWRIGHT_TESTS === 'true';
 const NET = 'mainnet';
@@ -191,10 +196,10 @@ if (!handleSquirrelEvent()) {
             request.setHeader(header, value as any);
           });
 
-          let err: any | undefined = undefined;
-          let statusCode: number | undefined = undefined;
-          let statusMessage: string | undefined = undefined;
-          let responseBody: string | undefined = undefined;
+          let err: any | undefined;
+          let statusCode: number | undefined;
+          let statusMessage: string | undefined;
+          let responseBody: string | undefined;
 
           try {
             responseBody = await new Promise((resolve, reject) => {
@@ -233,7 +238,7 @@ if (!handleSquirrelEvent()) {
         return new Promise((resolve, reject) => {
           axios({
             method: 'get',
-            url: url,
+            url,
           })
             .then((response) => {
               resolve(Number(response.headers['content-length']));
@@ -272,12 +277,12 @@ if (!handleSquirrelEvent()) {
           const fileOnDisk = path.join(thumbCacheFolder, file);
           if (fs.existsSync(fileOnDisk)) {
             return fs.readFileSync(fileOnDisk, { encoding: 'utf8' });
-          } else {
+          } 
             return null;
-          }
-        } else {
+          
+        } 
           console.error('Error getting svg file...', file);
-        }
+        
       });
 
       ipcMain.handle(
@@ -404,11 +409,9 @@ if (!handleSquirrelEvent()) {
                         /* should we cache it or delete it? */
                         if (shouldCacheFile(fileOnDisk)) {
                           wasCached = true;
-                        } else {
-                          if (fs.existsSync(fileOnDisk)) {
+                        } else if (fs.existsSync(fileOnDisk)) {
                             fs.unlinkSync(fileOnDisk);
                           }
-                        }
                         mainWindow?.webContents.send('fetchBinaryContentDone', {
                           nftIdUrl,
                           valid: isValid,
@@ -457,24 +460,18 @@ if (!handleSquirrelEvent()) {
         },
       );
 
-      ipcMain.handle('showMessageBox', async (_event, options) => {
-        return await dialog.showMessageBox(mainWindow, options);
-      });
+      ipcMain.handle('showMessageBox', async (_event, options) => dialog.showMessageBox(mainWindow, options));
 
-      ipcMain.handle('showOpenDialog', async (_event, options) => {
-        return await dialog.showOpenDialog(options);
-      });
+      ipcMain.handle('showOpenDialog', async (_event, options) => dialog.showOpenDialog(options));
 
-      ipcMain.handle('showSaveDialog', async (_event, options) => {
-        return await dialog.showSaveDialog(options);
-      });
+      ipcMain.handle('showSaveDialog', async (_event, options) => dialog.showSaveDialog(options));
 
       ipcMain.handle('download', async (_event, options) => {
         if (mainWindow) {
           return mainWindow.webContents.downloadURL(options.url);
-        } else {
+        } 
           console.error('mainWindow was not initialized');
-        }
+        
       });
 
       ipcMain.handle('processLaunchTasks', async (_event) => {
@@ -491,30 +488,26 @@ if (!handleSquirrelEvent()) {
         const files = fs.readdirSync(thumbCacheFolder);
 
         files
-          .filter((file) => {
+          .filter((file) => 
             /* skip files that start with a dot */
-            return !file.match(/^\./);
-          })
+             !file.match(/^\./)
+          )
           .forEach((file) => {
             const stats = fs.statSync(path.join(thumbCacheFolder, file));
             folderSize += stats.size;
           });
         return folderSize;
       }
-      ipcMain.handle('getDefaultCacheFolder', (_event) => {
-        return thumbCacheFolder;
-      });
+      ipcMain.handle('getDefaultCacheFolder', (_event) => thumbCacheFolder);
 
       ipcMain.handle('setCacheFolder', (_event, newFolder) => {
         thumbCacheFolder = newFolder;
       });
 
-      ipcMain.handle('selectCacheFolder', async (_event) => {
-        return await dialog.showOpenDialog({
+      ipcMain.handle('selectCacheFolder', async (_event) => dialog.showOpenDialog({
           properties: ['openDirectory'],
           defaultPath: thumbCacheFolder,
-        });
-      });
+        }));
 
       ipcMain.handle('changeCacheFolderFromTo', async (_event, [from, to]) => {
         const fromFolder = from || thumbCacheFolder;
@@ -533,16 +526,12 @@ if (!handleSquirrelEvent()) {
         thumbCacheFolder = to;
       });
 
-      ipcMain.handle('getCacheSize', async (_event) => {
-        return getCacheSize();
-      });
+      ipcMain.handle('getCacheSize', async (_event) => getCacheSize());
 
-      ipcMain.handle('isNewFolderEmtpy', (_event, selectedFolder) => {
-        return fs.readdirSync(selectedFolder).filter((file) => {
+      ipcMain.handle('isNewFolderEmtpy', (_event, selectedFolder) => fs.readdirSync(selectedFolder).filter((file) => 
           /* skip files that start with a dot */
-          return !file.match(/^\./);
-        }).length;
-      });
+           !file.match(/^\./)
+        ).length);
 
       ipcMain.handle(
         'adjustCacheLimitSize',
@@ -564,7 +553,7 @@ if (!handleSquirrelEvent()) {
                 if (fs.existsSync(filePath)) {
                   const fileStats = fs.statSync(filePath);
                   fs.unlinkSync(filePath);
-                  overSize = overSize - fileStats.size;
+                  overSize -= fileStats.size;
                   removedEntries.push(cacheInstances[cnt]);
                 }
               }
@@ -838,12 +827,12 @@ if (!handleSquirrelEvent()) {
                     : 'Ctrl+Shift+I',
                 click: () => mainWindow.toggleDevTools(),
               },
-              //{
-              //label: isSimulator
+              // {
+              // label: isSimulator
               //  ? i18n._(/* i18n */ { id: 'Disable Simulator' })
               //   : i18n._(/* i18n */ { id: 'Enable Simulator' }),
               // click: () => toggleSimulatorMode(),
-              //},
+              // },
             ],
           },
           {

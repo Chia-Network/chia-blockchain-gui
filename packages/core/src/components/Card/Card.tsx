@@ -1,5 +1,3 @@
-import React, { ReactNode, ReactElement } from 'react';
-import styled from 'styled-components';
 import {
   Box,
   Card as CardMaterial,
@@ -8,6 +6,9 @@ import {
   Grid,
   Typography,
 } from '@mui/material';
+import React, { ReactNode, ReactElement } from 'react';
+import styled from 'styled-components';
+
 import Flex from '../Flex';
 import TooltipIcon from '../TooltipIcon';
 

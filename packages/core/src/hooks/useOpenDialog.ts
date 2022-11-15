@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState, ReactNode } from 'react';
+
 import ModalDialogsContext from '../components/ModalDialogs/ModalDialogsContext';
 
 export default function useOpenDialog() {

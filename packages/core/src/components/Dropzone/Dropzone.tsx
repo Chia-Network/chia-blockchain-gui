@@ -1,7 +1,8 @@
-import React, { ReactNode } from 'react';
 import { Paper, CircularProgress } from '@mui/material';
-import styled from 'styled-components';
+import React, { ReactNode } from 'react';
 import { useDropzone, DropzoneOptions } from 'react-dropzone';
+import styled from 'styled-components';
+
 import AspectRatio from '../AspectRatio';
 import Flex from '../Flex';
 

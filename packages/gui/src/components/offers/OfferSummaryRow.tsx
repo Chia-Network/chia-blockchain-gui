@@ -1,5 +1,4 @@
-import React from 'react';
-import { Plural, t, Trans } from '@lingui/macro';
+import { WalletType } from '@chia/api';
 import {
   CopyToClipboard,
   Flex,
@@ -8,14 +7,16 @@ import {
   TooltipIcon,
   mojoToCATLocaleString,
 } from '@chia/core';
+import { Plural, t, Trans } from '@lingui/macro';
 import { Box, Typography } from '@mui/material';
+import React from 'react';
+import styled from 'styled-components';
+
 import useAssetIdName from '../../hooks/useAssetIdName';
-import { WalletType } from '@chia/api';
 import useNFTMinterDID from '../../hooks/useNFTMinterDID';
-import { formatAmountForWalletType } from './utils';
 import { launcherIdToNFTId } from '../../util/nfts';
 import NFTSummary from '../nfts/NFTSummary';
-import styled from 'styled-components';
+import { formatAmountForWalletType } from './utils';
 
 /* ========================================================================== */
 

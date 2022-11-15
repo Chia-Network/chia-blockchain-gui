@@ -1,5 +1,5 @@
-import PlotterName from '../constants/PlotterName';
 import { PlotterOptions } from '../@types/Plotter';
+import PlotterName from '../constants/PlotterName';
 import {
   bladebitOptions,
   bladebit2Options,

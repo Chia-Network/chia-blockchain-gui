@@ -1,16 +1,17 @@
-import React from 'react';
-import { Trans } from '@lingui/macro';
-import { Flex, Loading, Tooltip } from '@chia/core';
 import { useGetNFTInfoQuery } from '@chia/api-react';
-import { useWatch } from 'react-hook-form';
+import { Flex, Loading, Tooltip } from '@chia/core';
+import { Trans } from '@lingui/macro';
 import { Grid, Typography, Card } from '@mui/material';
-import NFTCard from '../nfts/NFTCard';
-import { launcherIdFromNFTId } from '../../util/nfts';
+import React from 'react';
+import { useWatch } from 'react-hook-form';
+
 import useNFTMinterDID from '../../hooks/useNFTMinterDID';
+import { launcherIdFromNFTId } from '../../util/nfts';
+import NFTCard from '../nfts/NFTCard';
 import { NFTContextualActionTypes } from '../nfts/NFTContextualActions';
-import OfferBuilderValue from './OfferBuilderValue';
 import OfferBuilderNFTProvenance from './OfferBuilderNFTProvenance';
 import OfferBuilderNFTRoyalties from './OfferBuilderNFTRoyalties';
+import OfferBuilderValue from './OfferBuilderValue';
 
 function PreviewCard(props) {
   const { children } = props;

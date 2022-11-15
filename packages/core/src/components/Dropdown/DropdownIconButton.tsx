@@ -1,5 +1,6 @@
-import React, { type ReactNode } from 'react';
 import { IconButton, IconButtonProps } from '@mui/material';
+import React, { type ReactNode } from 'react';
+
 import DropdownBase from './DropdownBase';
 
 export type DropdownIconButtonProps = IconButtonProps & {

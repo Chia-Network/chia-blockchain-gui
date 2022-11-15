@@ -1,8 +1,8 @@
-import { useMemo } from 'react';
 import type { Wallet } from '@chia/api';
 import { WalletType } from '@chia/api';
-import BigNumber from 'bignumber.js';
 import { mojoToCATLocaleString, mojoToChiaLocaleString, useLocale } from '@chia/core';
+import BigNumber from 'bignumber.js';
+import { useMemo } from 'react';
 
 export default function useWalletHumanValue(wallet: Wallet, value?: string | number | BigNumber, unit?: string): string {
   const [locale] = useLocale();

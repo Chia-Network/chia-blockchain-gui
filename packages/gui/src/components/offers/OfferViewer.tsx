@@ -1,8 +1,9 @@
-import React, { useMemo, useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
-import moment from 'moment';
-import { Trans, Plural } from '@lingui/macro';
+import {
+  OfferSummaryRecord,
+  OfferTradeRecord,
+  OfferCoinOfInterest,
+} from '@chia/api';
+import { useCheckOfferValidityMutation } from '@chia/api-react';
 import {
   Back,
   ButtonLoading,
@@ -17,6 +18,7 @@ import {
   useShowError,
   mojoToChiaLocaleString,
 } from '@chia/core';
+import { Trans, Plural } from '@lingui/macro';
 import {
   Box,
   Button,
@@ -31,18 +33,17 @@ import {
   Tooltip,
   Typography,
 } from '@mui/material';
-import {
-  OfferSummaryRecord,
-  OfferTradeRecord,
-  OfferCoinOfInterest,
-} from '@chia/api';
-import { useCheckOfferValidityMutation } from '@chia/api-react';
-import { colorForOfferState, displayStringForOfferState } from './utils';
+import moment from 'moment';
+import React, { useMemo, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
+
 import useAcceptOfferHook from '../../hooks/useAcceptOfferHook';
 import OfferHeader from './OfferHeader';
 import OfferState from './OfferState';
 import OfferSummary from './OfferSummary';
 import OfferViewerTitle from './OfferViewerTitle';
+import { colorForOfferState, displayStringForOfferState } from './utils';
 
 type OfferMojoAmountProps = {
   mojos: number;
@@ -186,20 +187,17 @@ function OfferDetails(props: OfferDetailsProps) {
 
   const coinCols = [
     {
-      field: (coin: OfferCoinOfInterest) => {
-        return (
+      field: (coin: OfferCoinOfInterest) => (
           <Typography variant="body2">
             <Flex flexDirection="row" flexGrow={1} gap={1}>
               {mojoToChiaLocaleString(coin.amount)}
             </Flex>
           </Typography>
-        );
-      },
+        ),
       title: <Trans>Amount</Trans>,
     },
     {
-      field: (coin: OfferCoinOfInterest) => {
-        return (
+      field: (coin: OfferCoinOfInterest) => (
           <Tooltip
             title={
               <Flex alignItems="center" gap={1}>
@@ -212,14 +210,12 @@ function OfferDetails(props: OfferDetailsProps) {
               {coin.parentCoinInfo}
             </span>
           </Tooltip>
-        );
-      },
+        ),
       minWidth: '200px',
       title: <Trans>Parent Coin</Trans>,
     },
     {
-      field: (coin: OfferCoinOfInterest) => {
-        return (
+      field: (coin: OfferCoinOfInterest) => (
           <Tooltip
             title={
               <Flex alignItems="center" gap={1}>
@@ -232,8 +228,7 @@ function OfferDetails(props: OfferDetailsProps) {
               {coin.puzzleHash}
             </span>
           </Tooltip>
-        );
-      },
+        ),
       fullWidth: true,
       title: <Trans>Puzzle Hash</Trans>,
     },

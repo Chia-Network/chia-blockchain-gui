@@ -1,14 +1,15 @@
-import React from 'react';
-import { Trans } from '@lingui/macro';
+import { useStopPlottingMutation } from '@chia/api-react';
 import { ConfirmDialog, More, MenuItem, useOpenDialog } from '@chia/core';
-import { Divider, ListItemIcon, Typography } from '@mui/material';
+import { Trans } from '@lingui/macro';
 import {
   DeleteForever as DeleteForeverIcon,
   Info as InfoIcon,
 } from '@mui/icons-material';
-import { useStopPlottingMutation } from '@chia/api-react';
-import type PlotQueueItem from '../../../types/PlotQueueItem';
+import { Divider, ListItemIcon, Typography } from '@mui/material';
+import React from 'react';
+
 import PlotStatus from '../../../constants/PlotStatus';
+import type PlotQueueItem from '../../../types/PlotQueueItem';
 import PlotQueueLogDialog from './PlotQueueLogDialog';
 
 export type PlotQueueActionProps = {

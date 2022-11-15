@@ -1,6 +1,3 @@
-import React, { useEffect } from 'react';
-import { Trans, t } from '@lingui/macro';
-import { useForm } from 'react-hook-form';
 import { SyncingStatus } from '@chia/api';
 import {
   useExtendDerivationIndexMutation,
@@ -15,6 +12,9 @@ import {
   useOpenDialog,
 } from '@chia/core';
 import { useWalletState } from '@chia/wallets';
+import { Trans, t } from '@lingui/macro';
+import React, { useEffect } from 'react';
+import { useForm } from 'react-hook-form';
 
 type FormData = {
   index: string;

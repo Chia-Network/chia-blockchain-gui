@@ -1,4 +1,5 @@
 import { WalletType } from '@chia/api';
+
 import type Wallet from '../types/Wallet';
 
 // deprecated

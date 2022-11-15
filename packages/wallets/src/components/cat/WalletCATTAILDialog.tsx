@@ -1,4 +1,11 @@
-import React from 'react';
+import {
+  Button,
+  CopyToClipboard,
+  DialogActions,
+  Loading,
+  Link,
+  Flex,
+} from '@chia/core';
 import { Trans } from '@lingui/macro';
 import {
   Box,
@@ -8,14 +15,8 @@ import {
   InputAdornment,
   TextField,
 } from '@mui/material';
-import {
-  Button,
-  CopyToClipboard,
-  DialogActions,
-  Loading,
-  Link,
-  Flex,
-} from '@chia/core';
+import React from 'react';
+
 import useWallet from '../../hooks/useWallet';
 
 type Props = {

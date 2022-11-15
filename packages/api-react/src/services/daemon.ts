@@ -1,7 +1,8 @@
 import { Daemon, optionsForPlotter, defaultsForPlotter } from '@chia/api';
 import type { KeyringStatus, ServiceName, KeyData } from '@chia/api';
-import onCacheEntryAddedInvalidate from '../utils/onCacheEntryAddedInvalidate';
+
 import api, { baseQuery } from '../api';
+import onCacheEntryAddedInvalidate from '../utils/onCacheEntryAddedInvalidate';
 
 const apiWithTag = api.enhanceEndpoints({
   addTagTypes: [

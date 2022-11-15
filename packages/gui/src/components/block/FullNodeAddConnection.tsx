@@ -1,9 +1,9 @@
-import React from 'react';
-import { Trans } from '@lingui/macro';
-import { Button, DialogActions, Flex, Form, TextField } from '@chia/core';
 import { useOpenFullNodeConnectionMutation } from '@chia/api-react';
-import { useForm } from 'react-hook-form';
+import { Button, DialogActions, Flex, Form, TextField } from '@chia/core';
+import { Trans } from '@lingui/macro';
 import { Alert, Dialog, DialogTitle, DialogContent } from '@mui/material';
+import React from 'react';
+import { useForm } from 'react-hook-form';
 
 type Props = {
   open: boolean;

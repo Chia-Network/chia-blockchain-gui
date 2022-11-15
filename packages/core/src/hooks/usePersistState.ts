@@ -1,5 +1,6 @@
 import { useCallback, useContext } from 'react';
 import { useUpdate } from 'react-use';
+
 import { PersistContext } from '../components/Persist';
 
 export default function usePersistState<T>(defaultValue: T, namespace?: string): [T, (value: T) => void] {

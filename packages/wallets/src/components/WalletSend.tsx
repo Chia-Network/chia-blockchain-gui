@@ -1,5 +1,3 @@
-import React from 'react';
-import { Trans, t } from '@lingui/macro';
 import {
   useGetSyncStatusQuery,
   useSendTransactionMutation,
@@ -20,9 +18,12 @@ import {
   useIsSimulator,
   TooltipIcon,
 } from '@chia/core';
-import isNumeric from 'validator/es/lib/isNumeric';
-import { useForm, useWatch } from 'react-hook-form';
+import { Trans, t } from '@lingui/macro';
 import { Button, Grid, Typography } from '@mui/material';
+import React from 'react';
+import { useForm, useWatch } from 'react-hook-form';
+import isNumeric from 'validator/es/lib/isNumeric';
+
 import useWallet from '../hooks/useWallet';
 import CreateWalletSendTransactionResultDialog from './WalletSendTransactionResultDialog';
 
@@ -106,7 +107,7 @@ export default function WalletSend(props: SendCardProps) {
       throw new Error(t`Please enter a valid numeric fee`);
     }
 
-    let address = data.address;
+    let {address} = data;
     if (address.includes('colour')) {
       throw new Error(
         t`Cannot send chia to coloured address. Please enter a chia address.`

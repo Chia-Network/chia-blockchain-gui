@@ -1,8 +1,8 @@
 import Client from '../Client';
+import type Message from '../Message';
+import ServiceName from '../constants/ServiceName';
 import Service from './Service';
 import type { Options } from './Service';
-import ServiceName from '../constants/ServiceName';
-import type Message from '../Message';
 
 export default class Wallet extends Service {
   constructor(client: Client, options?: Options) {
@@ -263,8 +263,8 @@ export default class Wallet extends Service {
       end,
       sortKey,
       reverse,
-      excludeMyOffers: includeMyOffers ? false : true,
-      excludeTakenOffers: includeTakenOffers ? false : true,
+      excludeMyOffers: !includeMyOffers,
+      excludeTakenOffers: !includeTakenOffers,
     });
   }
 
@@ -295,7 +295,7 @@ export default class Wallet extends Service {
 
   async cancelOffer(tradeId: string, secure: boolean, fee: number | string) {
     return this.command('cancel_offer', {
-      tradeId: tradeId,
+      tradeId,
       secure,
       fee,
     });

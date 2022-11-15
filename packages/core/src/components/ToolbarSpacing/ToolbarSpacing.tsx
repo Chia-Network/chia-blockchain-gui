@@ -1,5 +1,5 @@
-import React from 'react';
 import { makeStyles, Theme, createStyles } from '@mui/styles';
+import React from 'react';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({

@@ -1,6 +1,7 @@
-import React, { ReactNode } from 'react';
 import { Box, LinearProgress, Typography } from '@mui/material';
+import React, { ReactNode } from 'react';
 import styled from 'styled-components';
+
 import Flex from '../Flex';
 
 const StyledIndicator = styled(Box)`

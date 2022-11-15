@@ -1,5 +1,9 @@
-import React, { ReactNode } from 'react';
+import { Flex } from '@chia/core';
+import { WalletGraphTooltip } from '@chia/wallets';
 import { t } from '@lingui/macro';
+import { Box, Typography } from '@mui/material';
+import React, { ReactNode } from 'react';
+import { useMeasure } from 'react-use';
 import {
   VictoryChart,
   VictoryAxis,
@@ -7,10 +11,6 @@ import {
   VictoryTooltip,
   VictoryVoronoiContainer,
 } from 'victory';
-import { useMeasure } from 'react-use';
-import { Box, Typography } from '@mui/material';
-import { Flex } from '@chia/core';
-import { WalletGraphTooltip } from '@chia/wallets';
 
 const HOUR_SECONDS = 60 * 60;
 
@@ -94,7 +94,7 @@ export default function PlotNFTGraph(props: PlotNFTGraphProps) {
           >
             <VictoryArea
               data={data}
-              interpolation={'monotoneX'}
+              interpolation="monotoneX"
               style={{
                 data: {
                   stroke: '#5DAA62',

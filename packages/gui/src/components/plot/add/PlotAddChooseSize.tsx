@@ -1,8 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
-import { Trans } from '@lingui/macro';
-import { useFormContext } from 'react-hook-form';
 import { CardStep, ConfirmDialog, Link, Select, StateColor, useOpenDialog } from '@chia/core';
+import { Trans } from '@lingui/macro';
 import {
   Grid,
   FormControl,
@@ -11,6 +8,10 @@ import {
   MenuItem,
   FormHelperText,
 } from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import { useFormContext } from 'react-hook-form';
+import styled from 'styled-components';
+
 import { getPlotSizeOptions } from '../../../constants/plotSizes';
 import Plotter from '../../../types/Plotter';
 

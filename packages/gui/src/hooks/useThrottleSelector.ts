@@ -1,7 +1,7 @@
+import { throttle } from 'lodash';
 import { useEffect, useRef, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import { useUpdate } from 'react-use';
-import { throttle } from 'lodash';
 
 export default function useThrottleSelector<T extends (...args: any) => any>(
   fn: T,

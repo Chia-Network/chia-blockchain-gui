@@ -1,10 +1,10 @@
-import React, { useMemo } from 'react';
-import { Trans } from '@lingui/macro';
 import { WalletType } from '@chia/api';
 import type { CATToken, Wallet } from '@chia/api';
 import { useGetCatListQuery, useGetWalletsQuery } from '@chia/api-react';
 import { useCurrencyCode } from '@chia/core';
+import { Trans } from '@lingui/macro';
 import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
+import React, { useMemo } from 'react';
 
 type TokenSelectOption = {
   walletId: number;
@@ -48,8 +48,7 @@ export default function NFTOfferTokenSelector(props: Props) {
       wallets.find(
         (wallet: Wallet) => wallet.type === WalletType.STANDARD_WALLET,
       ),
-    ].map((wallet: WalletType) => {
-      return {
+    ].map((wallet: WalletType) => ({
         walletId: wallet.id,
         walletType: wallet.type,
         name: 'Chia',
@@ -57,8 +56,7 @@ export default function NFTOfferTokenSelector(props: Props) {
         displayName: `Chia (${currencyCode})`,
         disabled: false,
         tail: '',
-      };
-    });
+      }));
     const catOptions = wallets
       .filter((wallet: Wallet) => wallet.type === WalletType.CAT)
       .map((wallet: Wallet) => {

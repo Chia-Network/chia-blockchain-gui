@@ -1,5 +1,7 @@
-import React from 'react';
+import { Flex, LayoutDashboardSub } from '@chia/core';
 import { Trans } from '@lingui/macro';
+import { Typography, Tab, Tabs } from '@mui/material';
+import React from 'react';
 import {
   Routes,
   Route,
@@ -7,12 +9,11 @@ import {
   useLocation,
   useNavigate,
 } from 'react-router-dom';
-import { Flex, LayoutDashboardSub } from '@chia/core';
-import { Typography, Tab, Tabs } from '@mui/material';
+
 import SettingsDataLayer from './SettingsDataLayer';
 import SettingsGeneral from './SettingsGeneral';
-import SettingsProfiles from './SettingsProfiles';
 import SettingsNFT from './SettingsNFT';
+import SettingsProfiles from './SettingsProfiles';
 
 enum SettingsTab {
   GENERAL = 'general',

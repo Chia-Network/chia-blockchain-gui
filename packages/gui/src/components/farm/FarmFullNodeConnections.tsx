@@ -1,15 +1,16 @@
-import React from 'react';
-import { Trans } from '@lingui/macro';
-import styled from 'styled-components';
-import { Link, Typography, Tooltip, IconButton } from '@mui/material';
-import { Delete as DeleteIcon } from '@mui/icons-material';
-import { Table, Card, FormatBytes, FormatConnectionStatus } from '@chia/core';
+import type { Connection } from '@chia/api';
+import { ServiceName } from '@chia/api';
 import {
   useGetFarmerFullNodeConnectionsQuery,
   useService,
 } from '@chia/api-react';
-import type { Connection } from '@chia/api';
-import { ServiceName } from '@chia/api';
+import { Table, Card, FormatBytes, FormatConnectionStatus } from '@chia/core';
+import { Trans } from '@lingui/macro';
+import { Delete as DeleteIcon } from '@mui/icons-material';
+import { Link, Typography, Tooltip, IconButton } from '@mui/material';
+import React from 'react';
+import styled from 'styled-components';
+
 import FarmCloseConnection from './FarmCloseConnection';
 
 const StyledIconButton = styled(IconButton)`

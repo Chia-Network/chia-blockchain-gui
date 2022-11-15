@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import { Trans } from '@lingui/macro';
-import { useToggle } from 'react-use';
+import { useGetHarvesterQuery } from '@chia/api-react';
 import {
   Accordion,
   Flex,
@@ -8,16 +6,18 @@ import {
   Tooltip,
   FormatLargeNumber,
 } from '@chia/core';
-import { useGetHarvesterQuery } from '@chia/api-react';
-import { Typography, Chip } from '@mui/material';
+import { Trans } from '@lingui/macro';
 import { ExpandMore, ExpandLess } from '@mui/icons-material';
-import { Box, Tab, Tabs } from '@mui/material';
-import PlotHarvesterPlots from './PlotHarvesterPlots';
-import PlotHarvesterPlotsNotFound from './PlotHarvesterPlotsNotFound';
-import PlotHarvesterPlotsFailed from './PlotHarvesterPlotsFailed';
-import PlotHarvesterPlotsDuplicate from './PlotHarvesterPlotsDuplicate';
-import PlotHarvesterState from './PlotHarvesterState';
+import { Typography, Chip , Box, Tab, Tabs } from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import { useToggle } from 'react-use';
+
 import isLocalhost from '../../util/isLocalhost';
+import PlotHarvesterPlots from './PlotHarvesterPlots';
+import PlotHarvesterPlotsDuplicate from './PlotHarvesterPlotsDuplicate';
+import PlotHarvesterPlotsFailed from './PlotHarvesterPlotsFailed';
+import PlotHarvesterPlotsNotFound from './PlotHarvesterPlotsNotFound';
+import PlotHarvesterState from './PlotHarvesterState';
 
 export type PlotHarvesterProps = {
   nodeId: string;

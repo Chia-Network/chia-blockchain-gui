@@ -1,8 +1,3 @@
-import React, { ReactNode } from 'react';
-import { Trans } from '@lingui/macro';
-// import { uniq } from 'lodash';
-import styled from 'styled-components';
-import { useWatch, useFormContext } from 'react-hook-form';
 import {
   Button,
   Flex,
@@ -12,6 +7,7 @@ import {
   EstimatedFee,
   TextField,
 } from '@chia/core';
+import { Trans } from '@lingui/macro';
 import {
   Alert,
   Grid,
@@ -21,8 +17,13 @@ import {
   Radio,
   Collapse,
 } from '@mui/material';
-import PoolInfo from '../../pool/PoolInfo';
+import React, { ReactNode } from 'react';
+// import { uniq } from 'lodash';
+import { useWatch, useFormContext } from 'react-hook-form';
+import styled from 'styled-components';
+
 import usePoolInfo from '../../../hooks/usePoolInfo';
+import PoolInfo from '../../pool/PoolInfo';
 // import usePlotNFTs from '../../../hooks/usePlotNFTs';
 
 const StyledCollapse = styled(Collapse)`

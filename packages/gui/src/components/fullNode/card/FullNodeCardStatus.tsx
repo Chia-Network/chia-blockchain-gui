@@ -1,7 +1,7 @@
-import React from 'react';
-import { Trans } from '@lingui/macro';
-import { FormatLargeNumber, CardSimple, StateColor } from '@chia/core';
 import { useGetBlockchainStateQuery } from '@chia/api-react';
+import { FormatLargeNumber, CardSimple, StateColor } from '@chia/core';
+import { Trans } from '@lingui/macro';
+import React from 'react';
 import styled from 'styled-components';
 
 const StyledWarning = styled.span`
@@ -38,13 +38,13 @@ function getData(sync) {
         </Trans>
       ),
     };
-  } else if (!sync.synced) {
+  } if (!sync.synced) {
     return {
       value: <Trans>Not Synced</Trans>,
       color: 'error',
       tooltip: <Trans>The node is not synced</Trans>,
     };
-  } else {
+  } 
     return {
       value: <Trans>Synced</Trans>,
       color: 'primary',
@@ -52,7 +52,7 @@ function getData(sync) {
         <Trans>This node is fully caught up and validating the network</Trans>
       ),
     };
-  }
+  
 }
 
 export default function FullNodeCardStatus() {

@@ -1,13 +1,14 @@
-import React from 'react';
-import { Trans } from '@lingui/macro';
-import { useDispatch } from 'react-redux';
 import { AlertDialog } from '@chia/core';
-import type PlotNFT from '../types/PlotNFT';
-import { pwJoinPool } from '../modules/plotNFT';
-import useOpenDialog from './useOpenDialog';
-import useAbsorbRewards from './useAbsorbRewards';
-import usePlotNFTDetails from './usePlotNFTDetails';
+import { Trans } from '@lingui/macro';
+import React from 'react';
+import { useDispatch } from 'react-redux';
+
 import PlotNFTState from '../constants/PlotNFTState';
+import { pwJoinPool } from '../modules/plotNFT';
+import type PlotNFT from '../types/PlotNFT';
+import useAbsorbRewards from './useAbsorbRewards';
+import useOpenDialog from './useOpenDialog';
+import usePlotNFTDetails from './usePlotNFTDetails';
 
 export default function usePoolJoin(nft: PlotNFT) {
   const dispatch = useDispatch();

@@ -1,5 +1,6 @@
 import { Typography, type TypographyProps } from '@mui/material';
 import React from 'react';
+
 import useWallet from '../hooks/useWallet';
 import getWalletPrimaryTitle from '../utils/getWalletPrimaryTitle';
 

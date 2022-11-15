@@ -1,12 +1,13 @@
-import React from 'react';
-import { Trans } from '@lingui/macro';
-import { useFormContext } from 'react-hook-form';
-import { useLocalStorage, writeStorage } from '@rehooks/local-storage';
 import { ButtonSelected, CardStep, Flex, TextField } from '@chia/core';
+import { Trans } from '@lingui/macro';
 import { Typography } from '@mui/material';
+import { useLocalStorage, writeStorage } from '@rehooks/local-storage';
+import React from 'react';
+import { useFormContext } from 'react-hook-form';
+
+import PlotLocalStorageKeys from '../../../constants/plotLocalStorage';
 import useSelectDirectory from '../../../hooks/useSelectDirectory';
 import Plotter from '../../../types/Plotter';
-import PlotLocalStorageKeys from '../../../constants/plotLocalStorage';
 
 type Props = {
   step: number;

@@ -1,17 +1,18 @@
-import React, { useMemo } from 'react';
-import { Trans } from '@lingui/macro';
-import { useFieldArray, useWatch } from 'react-hook-form';
-import { Farming } from '@chia/icons';
 import {
   Loading,
   chiaToMojo,
   mojoToChiaLocaleString,
   useCurrencyCode,
 } from '@chia/core';
-import OfferBuilderSection from './OfferBuilderSection';
-import OfferBuilderWalletAmount from './OfferBuilderWalletAmount';
+import { Farming } from '@chia/icons';
+import { Trans } from '@lingui/macro';
+import React, { useMemo } from 'react';
+import { useFieldArray, useWatch } from 'react-hook-form';
+
 import useOfferBuilderContext from '../../hooks/useOfferBuilderContext';
 import useStandardWallet from '../../hooks/useStandardWallet';
+import OfferBuilderSection from './OfferBuilderSection';
+import OfferBuilderWalletAmount from './OfferBuilderWalletAmount';
 
 export type OfferBuilderXCHSectionProps = {
   name: string;
