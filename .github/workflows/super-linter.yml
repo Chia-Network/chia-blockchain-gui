@@ -60,7 +60,6 @@ jobs:
           VALIDATE_GO: true
           VALIDATE_HTML: true
           VALIDATE_JAVASCRIPT_ES: true
-          VALIDATE_JSON: false
           VALIDATE_MD: true
           VALIDATE_POWERSHELL: true
           VALIDATE_SHELL_SHFMT: true
