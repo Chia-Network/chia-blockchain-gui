@@ -7,7 +7,7 @@ type Config = {
   webSocket: any;
 };
 
-const initialState = {} as { 
+const initialState = {} as {
   config?: Config;
 };
 

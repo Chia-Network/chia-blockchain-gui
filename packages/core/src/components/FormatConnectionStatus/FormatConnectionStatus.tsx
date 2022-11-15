@@ -1,8 +1,9 @@
+import { Trans } from '@lingui/macro';
+import { FiberManualRecord as FiberManualRecordIcon } from '@mui/icons-material';
+import { Typography, TypographyProps } from '@mui/material';
 import React, { ReactNode } from 'react';
 import styled from 'styled-components';
-import { Trans } from '@lingui/macro';
-import { Typography, TypographyProps } from '@mui/material';
-import { FiberManualRecord as FiberManualRecordIcon } from '@mui/icons-material';
+
 import Flex from '../Flex';
 
 function getIconSize(size: string): string {
@@ -18,9 +19,7 @@ function getIconSize(size: string): string {
   }
 }
 
-const StyledFiberManualRecordIcon = styled(({ iconSize, ...rest }) => (
-  <FiberManualRecordIcon {...rest} />
-))`
+const StyledFiberManualRecordIcon = styled(({ iconSize, ...rest }) => <FiberManualRecordIcon {...rest} />)`
   font-size: ${({ iconSize }) => getIconSize(iconSize)};
 `;
 
@@ -33,8 +32,7 @@ type Props = {
 };
 
 export default function FormatConnectionStatus(props: Props) {
-  const { connected, connectedTitle, notConnectedTitle, variant, iconSize } =
-    props;
+  const { connected, connectedTitle, notConnectedTitle, variant, iconSize } = props;
   const color = connected ? 'primary' : 'secondary';
 
   return (

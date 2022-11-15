@@ -1,9 +1,10 @@
-import React from 'react';
-import Flex from '../Flex';
 import { Typography } from '@mui/material';
+import React from 'react';
 import styled from 'styled-components';
+
 import { default as walletPackageJson } from '../../../package.json';
 import useAppVersion from '../../hooks/useAppVersion';
+import Flex from '../Flex';
 
 const { productName } = walletPackageJson;
 
@@ -20,5 +21,5 @@ export default function SettingsFooter() {
         {productName} {version}
       </Typography>
     </StyledRoot>
-  )
+  );
 }

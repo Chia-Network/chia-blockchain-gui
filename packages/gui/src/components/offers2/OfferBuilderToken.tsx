@@ -1,10 +1,11 @@
-import React from 'react';
-import { Trans } from '@lingui/macro';
-import { Grid } from '@mui/material';
 import type { Wallet } from '@chia/api';
 import { useGetWalletsQuery } from '@chia/api-react';
 import { Flex } from '@chia/core';
+import { Trans } from '@lingui/macro';
+import { Grid } from '@mui/material';
+import React from 'react';
 import { useWatch } from 'react-hook-form';
+
 import OfferBuilderAmountWithRoyalties from './OfferBuilderAmountWithRoyalties';
 import OfferBuilderValue from './OfferBuilderValue';
 import OfferBuilderWalletAmount from './OfferBuilderWalletAmount';
@@ -19,14 +20,7 @@ export type OfferBuilderTokenProps = {
 };
 
 export default function OfferBuilderToken(props: OfferBuilderTokenProps) {
-  const {
-    name,
-    onRemove,
-    usedAssets,
-    hideBalance,
-    amountWithRoyalties,
-    royaltyPayments,
-  } = props;
+  const { name, onRemove, usedAssets, hideBalance, amountWithRoyalties, royaltyPayments } = props;
 
   const assetIdFieldName = `${name}.assetId`;
   const assetId = useWatch({
@@ -37,9 +31,7 @@ export default function OfferBuilderToken(props: OfferBuilderTokenProps) {
   });
 
   const { data: wallets } = useGetWalletsQuery();
-  const wallet = wallets?.find(
-    (wallet: Wallet) => wallet.meta?.assetId?.toLowerCase() === assetId,
-  );
+  const wallet = wallets?.find((wallet: Wallet) => wallet.meta?.assetId?.toLowerCase() === assetId);
   const warnUnknownCAT = assetId && !wallet;
 
   return (

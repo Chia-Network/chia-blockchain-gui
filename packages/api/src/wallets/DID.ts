@@ -1,28 +1,20 @@
 import Wallet from '../services/Wallet';
 
 export default class DIDWallet extends Wallet {
-  async createNewWallet(
-    amount: string,
-    fee: string,
-    backupDids: string,
-    numOfBackupIdsNeeded: number,
-    host: string = this.client.backupHost,
-  ) {
+  async createNewWallet(amount: string, fee: string, backupDids: string, numOfBackupIdsNeeded: number) {
     return super.createNewWallet('did_wallet', {
       did_type: 'new',
       amount,
       fee,
       backupDids,
       numOfBackupIdsNeeded,
-      host,
     });
   }
 
-  async createNewRecoveryWallet(filename: string, host: string = this.client.backupHost) {
+  async createNewRecoveryWallet(filename: string) {
     return super.createNewWallet('did_wallet', {
       did_type: 'recovery',
       filename,
-      host,
     });
   }
 

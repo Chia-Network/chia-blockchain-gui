@@ -1,13 +1,9 @@
-import React, { useEffect } from 'react';
-import { Trans } from '@lingui/macro';
 import { type NFTInfo } from '@chia/api';
 import { useTransferNFTMutation } from '@chia/api-react';
-import { useForm } from 'react-hook-form';
-import useBurnAddress from '../../hooks/useBurnAddress';
 import {
   Button,
   ButtonLoading,
-  Fee,
+  EstimatedFee,
   Form,
   Flex,
   TextField,
@@ -15,15 +11,12 @@ import {
   useOpenDialog,
   useShowError,
 } from '@chia/core';
-import {
-  Alert,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-  Typography,
-} from '@mui/material';
+import { Trans } from '@lingui/macro';
+import { Alert, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Typography } from '@mui/material';
+import React, { useEffect } from 'react';
+import { useForm } from 'react-hook-form';
+
+import useBurnAddress from '../../hooks/useBurnAddress';
 import NFTSummary from './NFTSummary';
 import NFTTransferConfirmationDialog from './NFTTransferConfirmationDialog';
 
@@ -79,13 +72,13 @@ export default function NFTBurnDialog(props: NFTPreviewDialogProps) {
         description={
           <Alert severity="warning" icon={false}>
             <Trans>
-              If you burn this NFT, nobody (including you) will ever be able to
-              access it again. Are you sure you want to continue?
+              If you burn this NFT, nobody (including you) will ever be able to access it again. Are you sure you want
+              to continue?
             </Trans>
           </Alert>
         }
         confirmTitle={<Trans>Burn</Trans>}
-      />,
+      />
     );
 
     if (!confirmation) {
@@ -123,10 +116,8 @@ export default function NFTBurnDialog(props: NFTPreviewDialogProps) {
           <Flex flexDirection="column" gap={3}>
             <DialogContentText id="nft-transfer-dialog-description">
               <Trans>
-                Burning a non-fungible token means removing it from circulation
-                by sending it to a verifiably un-spendable address. However,
-                transactions leading up to the burn will remain on the
-                blockchain ledger.
+                Burning a non-fungible token means removing it from circulation by sending it to a verifiably
+                un-spendable address. However, transactions leading up to the burn will remain on the blockchain ledger.
               </Trans>
             </DialogContentText>
 
@@ -144,22 +135,19 @@ export default function NFTBurnDialog(props: NFTPreviewDialogProps) {
                 fullWidth
                 label={<Trans>Send to Address</Trans>}
               />
-              <Fee
+              <EstimatedFee
                 id="filled-secondary"
                 variant="filled"
                 name="fee"
                 color="secondary"
                 label={<Trans>Fee</Trans>}
                 disabled={isSubmitting}
+                txType="burnNFT"
+                fullWidth
               />
               <DialogActions>
                 <Flex flexDirection="row" gap={2}>
-                  <Button
-                    onClick={handleClose}
-                    color="secondary"
-                    variant="outlined"
-                    autoFocus
-                  >
+                  <Button onClick={handleClose} color="secondary" variant="outlined" autoFocus>
                     <Trans>Cancel</Trans>
                   </Button>
                   <ButtonLoading

@@ -1,11 +1,12 @@
-import React from 'react';
 import { Grid } from '@mui/material';
+import React from 'react';
+
+import PlotCardNotFound from '../card/PlotCardNotFound';
+import PlotCardPlotsDuplicate from '../card/PlotCardPlotsDuplicate';
+import PlotCardPlotsFailedToOpen from '../card/PlotCardPlotsFailedToOpen';
 import PlotCardTotalHarvesters from '../card/PlotCardTotalHarvesters';
 import PlotCardTotalPlots from '../card/PlotCardTotalPlots';
-import PlotCardNotFound from '../card/PlotCardNotFound';
 import PlotCardTotalPlotsSize from '../card/PlotCardTotalPlotsSize';
-import PlotCardPlotsFailedToOpen from '../card/PlotCardPlotsFailedToOpen';
-import PlotCardPlotsDuplicate from '../card/PlotCardPlotsDuplicate';
 
 export default function PlotOverviewCards() {
   return (

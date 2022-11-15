@@ -1,6 +1,7 @@
-import React, { ReactNode } from 'react';
 import { Box, LinearProgress, Typography } from '@mui/material';
+import React, { ReactNode } from 'react';
 import styled from 'styled-components';
+
 import Flex from '../Flex';
 
 const StyledIndicator = styled(Box)`
@@ -29,11 +30,7 @@ export default function PlotStatus(props: Props) {
     <Flex flexDirection="column" gap={1}>
       {progress !== undefined ? (
         <Flex gap={1} alignItems="center">
-          <StyledLinearProgress
-            variant="determinate"
-            value={progress * 100}
-            color="secondary"
-          />
+          <StyledLinearProgress variant="determinate" value={progress * 100} color="secondary" />
           <Flex>
             <Typography variant="body2" color="textSecondary">
               {`${Math.round(progress * 100)}%`}

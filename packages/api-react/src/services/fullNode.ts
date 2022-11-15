@@ -1,14 +1,14 @@
 import { FullNode } from '@chia/api';
 import type { Block, BlockRecord, BlockHeader, BlockchainState, FullNodeConnection } from '@chia/api';
-import onCacheEntryAddedInvalidate from '../utils/onCacheEntryAddedInvalidate';
-import api, { baseQuery } from '../api';
 
-const apiWithTag = api.enhanceEndpoints({addTagTypes: ['BlockchainState', 'FeeEstimate', 'FullNodeConnections']})
+import api, { baseQuery } from '../api';
+import onCacheEntryAddedInvalidate from '../utils/onCacheEntryAddedInvalidate';
+
+const apiWithTag = api.enhanceEndpoints({ addTagTypes: ['BlockchainState', 'FeeEstimate', 'FullNodeConnections'] });
 
 export const fullNodeApi = apiWithTag.injectEndpoints({
   endpoints: (build) => ({
-    fullNodePing: build.query<boolean, {
-    }>({
+    fullNodePing: build.query<boolean, {}>({
       query: () => ({
         command: 'ping',
         service: FullNode,
@@ -16,10 +16,13 @@ export const fullNodeApi = apiWithTag.injectEndpoints({
       transformResponse: (response: any) => response?.success,
     }),
 
-    getBlockRecords: build.query<BlockRecord[], {
-      start?: number;
-      end?: number;
-    }>({
+    getBlockRecords: build.query<
+      BlockRecord[],
+      {
+        start?: number;
+        end?: number;
+      }
+    >({
       query: ({ start, end }) => ({
         command: 'getBlockRecords',
         service: FullNode,
@@ -33,11 +36,13 @@ export const fullNodeApi = apiWithTag.injectEndpoints({
         service: FullNode,
       }),
       transformResponse: (response: any) => response?.headers,
-      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, [{
-        command: 'onBlockchainState',
-        service: FullNode,
-        endpoint: () => fullNodeApi.endpoints.getUnfinishedBlockHeaders,
-      }]),
+      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, [
+        {
+          command: 'onBlockchainState',
+          service: FullNode,
+          endpoint: () => fullNodeApi.endpoints.getUnfinishedBlockHeaders,
+        },
+      ]),
     }),
     getBlockchainState: build.query<BlockchainState, undefined>({
       query: () => ({
@@ -46,13 +51,16 @@ export const fullNodeApi = apiWithTag.injectEndpoints({
       }),
       providesTags: ['BlockchainState'],
       transformResponse: (response: any) => response?.blockchainState,
-      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, [{
-        command: 'onBlockchainState',
-        service: FullNode,
-        onUpdate: (draft, data) => Object.assign(draft, {
-          ...data.blockchainState,
-        }),
-      }]),
+      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, [
+        {
+          command: 'onBlockchainState',
+          service: FullNode,
+          onUpdate: (draft, data) =>
+            Object.assign(draft, {
+              ...data.blockchainState,
+            }),
+        },
+      ]),
     }),
     getFullNodeConnections: build.query<FullNodeConnection[], undefined>({
       query: () => ({
@@ -60,28 +68,34 @@ export const fullNodeApi = apiWithTag.injectEndpoints({
         service: FullNode,
       }),
       transformResponse: (response: any) => response?.connections,
-      providesTags: (connections) => connections
-      ? [
-        ...connections.map(({ nodeId }) => ({ type: 'FullNodeConnections', id: nodeId } as const)),
-        { type: 'FullNodeConnections', id: 'LIST' },
-      ]
-      :  [{ type: 'FullNodeConnections', id: 'LIST' }],
-      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, [{
-        command: 'onConnections',
-        service: FullNode,
-        onUpdate: (draft, data) => {
-          // empty base array
-          draft.splice(0);
+      providesTags: (connections) =>
+        connections
+          ? [
+              ...connections.map(({ nodeId }) => ({ type: 'FullNodeConnections', id: nodeId } as const)),
+              { type: 'FullNodeConnections', id: 'LIST' },
+            ]
+          : [{ type: 'FullNodeConnections', id: 'LIST' }],
+      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, [
+        {
+          command: 'onConnections',
+          service: FullNode,
+          onUpdate: (draft, data) => {
+            // empty base array
+            draft.splice(0);
 
-          // assign new items
-          Object.assign(draft, data.connections);
+            // assign new items
+            Object.assign(draft, data.connections);
+          },
         },
-      }]),
+      ]),
     }),
-    openFullNodeConnection: build.mutation<FullNodeConnection, {
-      host: string;
-      port: number;
-    }>({
+    openFullNodeConnection: build.mutation<
+      FullNodeConnection,
+      {
+        host: string;
+        port: number;
+      }
+    >({
       query: ({ host, port }) => ({
         command: 'openConnection',
         service: FullNode,
@@ -89,19 +103,28 @@ export const fullNodeApi = apiWithTag.injectEndpoints({
       }),
       invalidatesTags: [{ type: 'FullNodeConnections', id: 'LIST' }],
     }),
-    closeFullNodeConnection: build.mutation<FullNodeConnection, {
-      nodeId: string;
-    }>({
+    closeFullNodeConnection: build.mutation<
+      FullNodeConnection,
+      {
+        nodeId: string;
+      }
+    >({
       query: ({ nodeId }) => ({
         command: 'closeConnection',
         service: FullNode,
         args: [nodeId],
       }),
-      invalidatesTags: (_result, _error, { nodeId }) => [{ type: 'FullNodeConnections', id: 'LIST' }, { type: 'FullNodeConnections', id: nodeId }],
+      invalidatesTags: (_result, _error, { nodeId }) => [
+        { type: 'FullNodeConnections', id: 'LIST' },
+        { type: 'FullNodeConnections', id: nodeId },
+      ],
     }),
-    getBlock: build.query<Block, {
-      headerHash: string;
-    }>({
+    getBlock: build.query<
+      Block,
+      {
+        headerHash: string;
+      }
+    >({
       query: ({ headerHash }) => ({
         command: 'getBlock',
         service: FullNode,
@@ -109,9 +132,12 @@ export const fullNodeApi = apiWithTag.injectEndpoints({
       }),
       transformResponse: (response: any) => response?.block,
     }),
-    getBlockRecord: build.query<BlockRecord, {
-      headerHash: string;
-    }>({
+    getBlockRecord: build.query<
+      BlockRecord,
+      {
+        headerHash: string;
+      }
+    >({
       query: ({ headerHash }) => ({
         command: 'getBlockRecord',
         service: FullNode,
@@ -119,14 +145,14 @@ export const fullNodeApi = apiWithTag.injectEndpoints({
       }),
       transformResponse: (response: any) => response?.blockRecord,
     }),
-    getFeeEstimate: build.query<string, {
-      targetTimes: number[];
-      cost: number;
-    }>({
-      query: ({
-        targetTimes,
-        cost,
-      }) => ({
+    getFeeEstimate: build.query<
+      string,
+      {
+        targetTimes: number[];
+        cost: number;
+      }
+    >({
+      query: ({ targetTimes, cost }) => ({
         command: 'getFeeEstimate',
         service: FullNode,
         args: [targetTimes, cost],

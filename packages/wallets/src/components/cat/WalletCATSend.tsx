@@ -1,5 +1,5 @@
-import React, { useMemo } from 'react';
-import { Trans, t } from '@lingui/macro';
+import { SyncingStatus, toBech32m } from '@chia/api';
+import { useSpendCATMutation, useFarmBlockMutation } from '@chia/api-react';
 import {
   AdvancedOptions,
   Button,
@@ -18,11 +18,12 @@ import {
   getTransactionResult,
   TooltipIcon,
 } from '@chia/core';
-import { useSpendCATMutation, useFarmBlockMutation } from '@chia/api-react';
-import { SyncingStatus, toBech32m } from '@chia/api';
-import isNumeric from 'validator/es/lib/isNumeric';
-import { useForm, useWatch } from 'react-hook-form';
+import { Trans, t } from '@lingui/macro';
 import { Grid, Typography } from '@mui/material';
+import React, { useMemo } from 'react';
+import { useForm, useWatch } from 'react-hook-form';
+import isNumeric from 'validator/es/lib/isNumeric';
+
 import useWallet from '../../hooks/useWallet';
 import useWalletState from '../../hooks/useWalletState';
 import CreateWalletSendTransactionResultDialog from '../WalletSendTransactionResultDialog';
@@ -52,10 +53,7 @@ export default function WalletCATSend(props: Props) {
     if (!currencyCode) {
       return undefined;
     }
-    return toBech32m(
-      '0000000000000000000000000000000000000000000000000000000000000000',
-      currencyCode
-    );
+    return toBech32m('0000000000000000000000000000000000000000000000000000000000000000', currencyCode);
   }, [currencyCode]);
 
   const methods = useForm<SendTransactionData>({
@@ -109,29 +107,23 @@ export default function WalletCATSend(props: Props) {
       throw new Error(t`Please enter a valid numeric fee`);
     }
 
-    let address = data.address;
+    let { address } = data;
     if (address === 'retire' && retireAddress) {
       address = retireAddress;
     }
 
     if (address.includes('colour')) {
-      throw new Error(
-        t`Cannot send chia to coloured address. Please enter a chia address.`
-      );
+      throw new Error(t`Cannot send chia to coloured address. Please enter a chia address.`);
     }
 
     if (address.includes('chia_addr') || address.includes('colour_desc')) {
-      throw new Error(
-        t`Recipient address is not a coloured wallet address. Please enter a coloured wallet address`
-      );
+      throw new Error(t`Recipient address is not a coloured wallet address. Please enter a coloured wallet address`);
     }
     if (address.slice(0, 14) === 'colour_addr://') {
       const colour_id = address.slice(14, 78);
       address = address.slice(79);
       if (colour_id !== assetId) {
-        throw new Error(
-          t`Error the entered address appears to be for a different colour.`
-        );
+        throw new Error(t`Error the entered address appears to be for a different colour.`);
       }
     }
 
@@ -186,9 +178,8 @@ export default function WalletCATSend(props: Props) {
           &nbsp;
           <TooltipIcon>
             <Trans>
-              On average there is one minute between each transaction block.
-              Unless there is congestion you can expect your transaction to be
-              included in less than a minute.
+              On average there is one minute between each transaction block. Unless there is congestion you can expect
+              your transaction to be included in less than a minute.
             </Trans>
           </TooltipIcon>
         </Typography>
@@ -250,11 +241,7 @@ export default function WalletCATSend(props: Props) {
         </Card>
         <Flex justifyContent="flex-end" gap={1}>
           {isSimulator && (
-            <Button
-              onClick={farm}
-              variant="outlined"
-              data-testid="WalletCATSend-farm"
-            >
+            <Button onClick={farm} variant="outlined" data-testid="WalletCATSend-farm">
               <Trans>Farm</Trans>
             </Button>
           )}

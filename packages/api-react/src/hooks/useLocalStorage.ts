@@ -1,12 +1,10 @@
 import { useState, useCallback, useEffect } from 'react';
+
 import EventEmitter from '../utils/EventEmitter';
 
 const eventEmitter = new EventEmitter();
 
-function getValueFromLocalStorage<T>(
-  key: string,
-  defaultValue?: T
-): T | undefined {
+function getValueFromLocalStorage<T>(key: string, defaultValue?: T): T | undefined {
   const item = window.localStorage.getItem(key);
 
   if (item === undefined || item === null) {
@@ -24,9 +22,7 @@ export default function useLocalStorage<T>(
   key: string,
   initialValue?: T
 ): [T | undefined, (value: T | ((value: T | undefined) => T)) => void] {
-  const [storedValue, setStoredValue] = useState<T | undefined>(
-    getValueFromLocalStorage(key, initialValue)
-  );
+  const [storedValue, setStoredValue] = useState<T | undefined>(getValueFromLocalStorage(key, initialValue));
 
   const setValue = (value: T | ((value: T | undefined) => T)) => {
     const newValue = value instanceof Function ? value(storedValue) : value;

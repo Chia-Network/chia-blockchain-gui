@@ -1,8 +1,9 @@
-import React, { ReactElement, ReactNode } from 'react';
 import { Container } from '@mui/material';
-import styled from 'styled-components';
-import Flex from '../Flex';
+import React, { ReactElement, ReactNode } from 'react';
 import { Outlet } from 'react-router-dom';
+import styled from 'styled-components';
+
+import Flex from '../Flex';
 import LayoutFooter from './LayoutFooter';
 
 const StyledContainer = styled(Container)`

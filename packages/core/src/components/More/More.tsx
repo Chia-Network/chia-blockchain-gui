@@ -1,7 +1,8 @@
-import React, { ReactNode } from 'react';
-import { Menu, MenuProps } from '../Menu';
 import { MoreVert as MoreVertIcon } from '@mui/icons-material';
+import React, { ReactNode } from 'react';
+
 import IconButton from '../IconButton';
+import { Menu, MenuProps } from '../Menu';
 
 export type MoreProps = Omit<MenuProps, 'open'> & {
   children?: ReactNode;
@@ -24,12 +25,7 @@ export default function More(props: MoreProps) {
 
   return (
     <>
-      <IconButton
-        aria-label="more"
-        aria-haspopup="true"
-        onClick={handleClick}
-        disabled={disabled}
-      >
+      <IconButton aria-label="more" aria-haspopup="true" onClick={handleClick} disabled={disabled}>
         <MoreVertIcon />
       </IconButton>
       <Menu anchorEl={anchorEl} onClose={handleClose} {...rest} open={open}>

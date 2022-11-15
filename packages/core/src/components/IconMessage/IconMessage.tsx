@@ -1,5 +1,6 @@
-import React, { type ReactNode } from 'react';
 import { Typography, type TypographyProps } from '@mui/material';
+import React, { type ReactNode } from 'react';
+
 import Flex from '../Flex';
 
 export type IconMessageProps = TypographyProps & {

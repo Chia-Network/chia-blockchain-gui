@@ -1,28 +1,20 @@
-import React from 'react';
-import { Trans, t } from '@lingui/macro';
 import { useGetNFTInfoQuery } from '@chia/api-react';
-import {
-  Button,
-  Flex,
-  Loading,
-  TooltipIcon,
-  useColorModeValue,
-} from '@chia/core';
+import { Button, Flex, Loading, TooltipIcon, useColorModeValue } from '@chia/core';
+import { Trans, t } from '@lingui/macro';
 import { Card, Grid, Typography } from '@mui/material';
-import NFTCard from '../nfts/NFTCard';
-import { launcherIdFromNFTId } from '../../util/nfts';
-import { NFTContextualActionTypes } from '../nfts/NFTContextualActions';
+import React from 'react';
 import styled from 'styled-components';
-import useViewNFTOnExplorer, {
-  NFTExplorer,
-} from '../../hooks/useViewNFTOnExplorer';
+
+import useViewNFTOnExplorer, { NFTExplorer } from '../../hooks/useViewNFTOnExplorer';
+import { launcherIdFromNFTId } from '../../util/nfts';
+import NFTCard from '../nfts/NFTCard';
+import { NFTContextualActionTypes } from '../nfts/NFTContextualActions';
 
 /* ========================================================================== */
 
 const StyledPreviewContainer = styled(Flex)`
   width: 364px;
-  border-left: ${({ theme }) =>
-    `1px solid ${useColorModeValue(theme, 'border')}`};
+  border-left: ${({ theme }) => `1px solid ${useColorModeValue(theme, 'border')}`};
   background-color: ${({ theme }) => theme.palette.background.default};
   padding-bottom: ${({ theme }) => theme.spacing(4)};
 `;
@@ -43,11 +35,7 @@ type NFTOfferPreviewProps = {
 export default function NFTOfferPreview(props: NFTOfferPreviewProps) {
   const { nftId } = props;
   const launcherId = launcherIdFromNFTId(nftId ?? '');
-  const {
-    data: nft,
-    isLoading: isLoadingNFT,
-    error: rawError,
-  } = useGetNFTInfoQuery({ coinId: launcherId ?? '' });
+  const { data: nft, isLoading: isLoadingNFT, error: rawError } = useGetNFTInfoQuery({ coinId: launcherId ?? '' });
   const viewOnExplorer = useViewNFTOnExplorer();
   let error = rawError?.message ?? '';
 
@@ -75,7 +63,8 @@ export default function NFTOfferPreview(props: NFTOfferPreviewProps) {
           </Loading>
         </Flex>
       );
-    } else if (launcherId && nft) {
+    }
+    if (launcherId && nft) {
       return (
         <Grid xs={12} item>
           <NFTCard
@@ -91,48 +80,36 @@ export default function NFTOfferPreview(props: NFTOfferPreviewProps) {
           />
         </Grid>
       );
-    } else if (launcherId && error) {
+    }
+    if (launcherId && error) {
       return (
-        <Flex
-          flexDirection="column"
-          alignItems="center"
-          justifyContent="center"
-          flexGrow={1}
-          gap={1}
-          padding={3}
-        >
+        <Flex flexDirection="column" alignItems="center" justifyContent="center" flexGrow={1} gap={1} padding={3}>
           <Typography variant="body1" color="error">
             {error}
           </Typography>
         </Flex>
       );
-    } else {
-      return (
-        <Flex
-          flexDirection="column"
-          alignItems="center"
-          justifyContent="center"
-          flexGrow={1}
-          gap={1}
-          style={{
-            wordBreak: 'break-all',
-          }}
-        >
-          <Typography variant="h6">
-            <Trans>NFT not specified</Trans>
-          </Typography>
-        </Flex>
-      );
     }
+    return (
+      <Flex
+        flexDirection="column"
+        alignItems="center"
+        justifyContent="center"
+        flexGrow={1}
+        gap={1}
+        style={{
+          wordBreak: 'break-all',
+        }}
+      >
+        <Typography variant="h6">
+          <Trans>NFT not specified</Trans>
+        </Typography>
+      </Flex>
+    );
   })();
 
   return (
-    <StyledPreviewContainer
-      flexDirection="column"
-      alignItems="center"
-      justifyContent="center"
-      gap={1}
-    >
+    <StyledPreviewContainer flexDirection="column" alignItems="center" justifyContent="center" gap={1}>
       <Flex
         flexDirection="column"
         gap={1}
@@ -154,19 +131,13 @@ export default function NFTOfferPreview(props: NFTOfferPreviewProps) {
             padding: '0 2rem',
           }}
         >
-          <Flex
-            flexDirection="row"
-            alignItems="center"
-            gap={0.5}
-            style={{ width: '100%' }}
-          >
+          <Flex flexDirection="row" alignItems="center" gap={0.5} style={{ width: '100%' }}>
             <Typography variant="subtitle1">Provenance</Typography>
             <TooltipIcon>
               <Trans>
-                An NFT's provenance is a complete record of its ownership
-                history. It provides a direct lineage that connects everyone who
-                has owned the NFT, all the way back to the original artist. This
-                helps to verify that the NFT is authentic.
+                An NFT's provenance is a complete record of its ownership history. It provides a direct lineage that
+                connects everyone who has owned the NFT, all the way back to the original artist. This helps to verify
+                that the NFT is authentic.
               </Trans>
             </TooltipIcon>
           </Flex>

@@ -1,11 +1,6 @@
-import React from 'react';
-import { Trans, t } from '@lingui/macro';
+import { useGetSyncStatusQuery, useSendTransactionMutation, useFarmBlockMutation } from '@chia/api-react';
 import {
-  useGetSyncStatusQuery,
-  useSendTransactionMutation,
-  useFarmBlockMutation,
-} from '@chia/api-react';
-import {
+  AdvancedOptions,
   Amount,
   ButtonLoading,
   EstimatedFee,
@@ -19,9 +14,12 @@ import {
   useIsSimulator,
   TooltipIcon,
 } from '@chia/core';
-import isNumeric from 'validator/es/lib/isNumeric';
-import { useForm, useWatch } from 'react-hook-form';
+import { Trans, t } from '@lingui/macro';
 import { Button, Grid, Typography } from '@mui/material';
+import React from 'react';
+import { useForm, useWatch } from 'react-hook-form';
+import isNumeric from 'validator/es/lib/isNumeric';
+
 import useWallet from '../hooks/useWallet';
 import CreateWalletSendTransactionResultDialog from './WalletSendTransactionResultDialog';
 
@@ -33,6 +31,7 @@ type SendTransactionData = {
   address: string;
   amount: string;
   fee: string;
+  memo: string;
 };
 
 export default function WalletSend(props: SendCardProps) {
@@ -40,29 +39,32 @@ export default function WalletSend(props: SendCardProps) {
   const [submissionCount, setSubmissionCount] = React.useState(0);
   const isSimulator = useIsSimulator();
   const openDialog = useOpenDialog();
-  const [sendTransaction, { isLoading: isSendTransactionLoading }] =
-    useSendTransactionMutation();
+  const [sendTransaction, { isLoading: isSendTransactionLoading }] = useSendTransactionMutation();
   const [farmBlock] = useFarmBlockMutation();
   const methods = useForm<SendTransactionData>({
     defaultValues: {
       address: '',
       amount: '',
       fee: '',
+      memo: '',
     },
   });
+
+  const {
+    formState: { isSubmitting },
+  } = methods;
 
   const addressValue = useWatch<string>({
     control: methods.control,
     name: 'address',
   });
 
-  const { data: walletState, isLoading: isWalletSyncLoading } =
-    useGetSyncStatusQuery(
-      {},
-      {
-        pollingInterval: 10000,
-      }
-    );
+  const { data: walletState, isLoading: isWalletSyncLoading } = useGetSyncStatusQuery(
+    {},
+    {
+      pollingInterval: 10000,
+    }
+  );
 
   const { wallet } = useWallet(walletId);
 
@@ -99,11 +101,9 @@ export default function WalletSend(props: SendCardProps) {
       throw new Error(t`Please enter a valid numeric fee`);
     }
 
-    let address = data.address;
+    let { address } = data;
     if (address.includes('colour')) {
-      throw new Error(
-        t`Cannot send chia to coloured address. Please enter a chia address.`
-      );
+      throw new Error(t`Cannot send chia to coloured address. Please enter a chia address.`);
     }
 
     if (address.slice(0, 12) === 'chia_addr://') {
@@ -113,13 +113,22 @@ export default function WalletSend(props: SendCardProps) {
       address = address.slice(2);
     }
 
-    const response = await sendTransaction({
+    const memo = data.memo.trim();
+    const memos = memo ? [memo] : undefined; // Avoid sending empty string
+
+    const queryData = {
       walletId,
       address,
       amount: chiaToMojo(amount),
       fee: chiaToMojo(fee),
       waitForConfirmation: true,
-    }).unwrap();
+    };
+
+    if (memos) {
+      queryData.memos = memos;
+    }
+
+    const response = await sendTransaction(queryData).unwrap();
 
     const result = getTransactionResult(response.transaction);
     const resultDialog = CreateWalletSendTransactionResultDialog({
@@ -134,7 +143,8 @@ export default function WalletSend(props: SendCardProps) {
     }
 
     methods.reset();
-    setSubmissionCount((prev) => prev + 1);
+    // Workaround to force a re-render of the form. Without this, the fee field will not be cleared.
+    setSubmissionCount((prev: number) => prev + 1);
   }
 
   return (
@@ -145,9 +155,8 @@ export default function WalletSend(props: SendCardProps) {
           &nbsp;
           <TooltipIcon>
             <Trans>
-              On average there is one minute between each transaction block.
-              Unless there is congestion you can expect your transaction to be
-              included in less than a minute.
+              On average there is one minute between each transaction block. Unless there is congestion you can expect
+              your transaction to be included in less than a minute.
             </Trans>
           </TooltipIcon>
         </Typography>
@@ -159,6 +168,7 @@ export default function WalletSend(props: SendCardProps) {
                 variant="filled"
                 color="secondary"
                 fullWidth
+                disabled={isSubmitting}
                 label={<Trans>Address / Puzzle hash</Trans>}
                 data-testid="WalletSend-address"
                 required
@@ -170,6 +180,7 @@ export default function WalletSend(props: SendCardProps) {
                 variant="filled"
                 color="secondary"
                 name="amount"
+                disabled={isSubmitting}
                 label={<Trans>Amount</Trans>}
                 data-testid="WalletSend-amount"
                 required
@@ -182,21 +193,31 @@ export default function WalletSend(props: SendCardProps) {
                 variant="filled"
                 name="fee"
                 color="secondary"
+                disabled={isSubmitting}
                 label={<Trans>Fee</Trans>}
                 data-testid="WalletSend-fee"
                 fullWidth
                 txType="walletSendXCH"
               />
             </Grid>
+            <Grid xs={12} item>
+              <AdvancedOptions>
+                <TextField
+                  name="memo"
+                  variant="filled"
+                  color="secondary"
+                  fullWidth
+                  disabled={isSubmitting}
+                  label={<Trans>Memo</Trans>}
+                  data-testid="WalletSend-memo"
+                />
+              </AdvancedOptions>
+            </Grid>
           </Grid>
         </Card>
         <Flex justifyContent="flex-end" gap={1}>
           {isSimulator && (
-            <Button
-              onClick={farm}
-              variant="outlined"
-              data-testid="WalletSend-farm"
-            >
+            <Button onClick={farm} variant="outlined" data-testid="WalletSend-farm">
               <Trans>Farm</Trans>
             </Button>
           )}

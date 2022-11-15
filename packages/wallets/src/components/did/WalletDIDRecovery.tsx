@@ -1,17 +1,14 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router';
-import { useDispatch, useSelector } from 'react-redux';
 import { AlertDialog, Back, ButtonLoading, Card, Flex, Dropzone, useOpenDialog } from '@chia/core';
 import { Trans } from '@lingui/macro';
-import {
-  Typography,
-  Button,
-  Box,
-} from '@mui/material';
 import { Backup as BackupIcon } from '@mui/icons-material';
-import type { RootState } from '../../../modules/rootReducer';
-import { recover_did_action } from '../../../modules/message';
+import { Typography, Button, Box } from '@mui/material';
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router';
+
 import SyncingStatus from '../../../constants/SyncingStatus';
+import { recover_did_action } from '../../../modules/message';
+import type { RootState } from '../../../modules/rootReducer';
 import getWalletSyncingStatus from '../../../util/getWalletSyncingStatus';
 
 export default function WalletDIDRecovery() {
@@ -49,20 +46,20 @@ export default function WalletDIDRecovery() {
 
   async function handleSubmit() {
     if (!file) {
-      await openDialog((
+      await openDialog(
         <AlertDialog>
           <Trans>Please select backup file first</Trans>
         </AlertDialog>
-      ));
+      );
       return;
     }
 
     if (!isSynced) {
-      await openDialog((
+      await openDialog(
         <AlertDialog>
           <Trans>Please wait for wallet synchronization</Trans>
         </AlertDialog>
-      ));
+      );
       return;
     }
 
@@ -93,34 +90,23 @@ export default function WalletDIDRecovery() {
                 {file.name}
               </Typography>
               <Flex justifyContent="center">
-                <Button
-                  onClick={handleRemoveFile}
-                  variant="contained"
-                  color="danger"
-                >
+                <Button onClick={handleRemoveFile} variant="contained" color="danger">
                   <Trans>Delete</Trans>
                 </Button>
               </Flex>
             </Flex>
-          ): (
+          ) : (
             <Flex flexDirection="column" gap={2} alignItems="center">
               <BackupIcon fontSize="large" />
               <Typography variant="body2" align="center">
-                <Trans>
-                  Drag and drop your recovery backup file
-                </Trans>
+                <Trans>Drag and drop your recovery backup file</Trans>
               </Typography>
             </Flex>
           )}
         </Dropzone>
       </Card>
       <Box>
-        <ButtonLoading
-          onClick={handleSubmit}
-          variant="contained"
-          color="primary"
-          loading={loading}
-        >
+        <ButtonLoading onClick={handleSubmit} variant="contained" color="primary" loading={loading}>
           <Trans>Recover</Trans>
         </ButtonLoading>
       </Box>

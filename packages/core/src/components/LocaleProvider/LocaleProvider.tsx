@@ -1,13 +1,8 @@
-import React, {
-  useMemo,
-  createContext,
-  useCallback,
-  ReactNode,
-  useEffect,
-} from 'react';
-import { I18nProvider } from '@lingui/react';
-import type { I18n } from '@lingui/core';
 import { useLocalStorage } from '@chia/api-react';
+import type { I18n } from '@lingui/core';
+import { I18nProvider } from '@lingui/react';
+import React, { useMemo, createContext, useCallback, ReactNode, useEffect } from 'react';
+
 import activateLocale from '../../utils/activateLocale';
 
 export const LocaleContext = createContext<

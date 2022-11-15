@@ -13,17 +13,9 @@ export default function useCurrentFingerprintSettings<Type>(
     error?: Error;
   }
 ] {
-  const {
-    data: fingerprint,
-    isLoading,
-    error,
-  } = useGetLoggedInFingerprintQuery();
+  const { data: fingerprint, isLoading, error } = useGetLoggedInFingerprintQuery();
 
-  const [data, setData] = useFingerprintSettings<Type>(
-    fingerprint,
-    key,
-    defaultValue
-  );
+  const [data, setData] = useFingerprintSettings<Type>(fingerprint, key, defaultValue);
 
   return [
     data,

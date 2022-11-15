@@ -1,5 +1,5 @@
-import ServiceName from "./ServiceName";
-import ServiceHumanName from "./ServiceHumanName";
+import ServiceHumanName from './ServiceHumanName';
+import ServiceName from './ServiceName';
 
 export default {
   1: ServiceHumanName[ServiceName.FULL_NODE],

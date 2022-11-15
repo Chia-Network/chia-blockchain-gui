@@ -1,23 +1,13 @@
-import React from 'react';
 import { Trans } from '@lingui/macro';
-import {
-  Typography,
-  Button,
-  Box,
-  Backdrop,
-  CircularProgress,
-} from '@mui/material';
-import { makeStyles } from '@mui/styles';
-
-import { useDispatch, useSelector } from 'react-redux';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-import {
-  createState,
-  changeCreateWallet,
-  CREATE_RL_WALLET_OPTIONS,
-} from '../../../modules/createWallet';
-import { useStyles } from './WalletCreate';
+import { Typography, Button, Box, Backdrop, CircularProgress } from '@mui/material';
+import { makeStyles } from '@mui/styles';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { createState, changeCreateWallet, CREATE_RL_WALLET_OPTIONS } from '../../../modules/createWallet';
 import { create_rl_user_action } from '../../../modules/message';
+import { useStyles } from './WalletCreate';
 
 export const customStyles = makeStyles((theme) => ({
   walletContainer: {
@@ -48,7 +38,7 @@ export const customStyles = makeStyles((theme) => ({
   },
 }));
 
-export const CreateRLUserWallet = () => {
+export function CreateRLUserWallet() {
   const classes = useStyles();
   const custom = customStyles();
   const dispatch = useDispatch();
@@ -90,12 +80,7 @@ export const CreateRLUserWallet = () => {
         </Box>
         <Box display="flex">
           <Box flexGrow={1} className={custom.inputTitleLeft}>
-            <Button
-              onClick={create}
-              className={custom.createButton}
-              variant="contained"
-              color="primary"
-            >
+            <Button onClick={create} className={custom.createButton} variant="contained" color="primary">
               <Trans>Create</Trans>
             </Button>
           </Box>
@@ -106,4 +91,4 @@ export const CreateRLUserWallet = () => {
       </Backdrop>
     </div>
   );
-};
+}

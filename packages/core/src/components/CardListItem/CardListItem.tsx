@@ -1,36 +1,22 @@
-import React, { type ReactNode } from 'react';
 import { Box, Card, CardContent, CardActionArea } from '@mui/material';
 import { styled } from '@mui/system';
-import Loading from '../Loading';
-import useColorModeValue from '../../utils/useColorModeValue';
+import React, { type ReactNode } from 'react';
 
-const StyledCard = styled(
-  ({ selected, disabled, ...rest }) => <Card {...rest} />,
-  {
-    shouldForwardProp: (prop) => !['selected'].includes(prop.toString()),
-  }
-)(
+import useColorModeValue from '../../utils/useColorModeValue';
+import Loading from '../Loading';
+
+const StyledCard = styled(({ selected, disabled, ...rest }) => <Card {...rest} />, {
+  shouldForwardProp: (prop) => !['selected'].includes(prop.toString()),
+})(
   ({ theme, selected, disabled }) => `
   width: 100%;
   border-radius: ${theme.spacing(1)};
-  border: 1px solid ${
-    selected ? theme.palette.highlight.main : theme.palette.divider
-  };
-  background-color: ${
-    selected
-      ? useColorModeValue(theme, 'sidebarBackground')
-      : theme.palette.background.paper
-  };
+  border: 1px solid ${selected ? theme.palette.highlight.main : theme.palette.divider};
+  background-color: ${selected ? useColorModeValue(theme, 'sidebarBackground') : theme.palette.background.paper};
   position: relative;
 
   &:hover {
-    border-color: ${
-      disabled
-        ? theme.palette.divider
-        : selected
-        ? theme.palette.highlight.main
-        : theme.palette.divider
-    };
+    border-color: ${disabled ? theme.palette.divider : selected ? theme.palette.highlight.main : theme.palette.divider};
   }
 `
 );
@@ -55,17 +41,8 @@ export default function CardListItem(props: CardListItemProps) {
   const content = <StyledCardContent>{children}</StyledCardContent>;
 
   return (
-    <StyledCard
-      variant="outlined"
-      selected={selected}
-      disabled={disabled}
-      {...rest}
-    >
-      {onSelect ? (
-        <CardActionArea onClick={onSelect}>{content}</CardActionArea>
-      ) : (
-        content
-      )}
+    <StyledCard variant="outlined" selected={selected} disabled={disabled} {...rest}>
+      {onSelect ? <CardActionArea onClick={onSelect}>{content}</CardActionArea> : content}
       {(loading || disabled) && (
         <Box
           position="absolute"

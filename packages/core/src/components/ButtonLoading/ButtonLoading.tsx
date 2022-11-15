@@ -1,5 +1,5 @@
-import React from 'react';
 import { LoadingButton, type LoadingButtonProps } from '@mui/lab';
+import React from 'react';
 
 export type ButtonLoadingProps = LoadingButtonProps & {
   loading?: boolean;
@@ -15,12 +15,5 @@ export default function ButtonLoading(props: ButtonLoadingProps) {
     }
   }
 
-  return (
-    <LoadingButton
-      onClick={handleClick}
-      loading={loading}
-      color={color}
-      {...rest}
-    />
-  );
+  return <LoadingButton onClick={handleClick} loading={loading} color={color} {...rest} />;
 }

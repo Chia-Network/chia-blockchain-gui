@@ -1,39 +1,32 @@
 import { WalletType } from '@chia/api';
+import type { OfferSummaryAssetInfo, OfferSummaryInfos, OfferSummaryRecord } from '@chia/api';
+import { mojoToCAT, mojoToChia, mojoToCATLocaleString, mojoToChiaLocaleString } from '@chia/core';
 import { t } from '@lingui/macro';
 import type { ChipProps } from '@mui/material';
-import type {
-  OfferSummaryAssetInfo,
-  OfferSummaryInfos,
-  OfferSummaryRecord,
-} from '@chia/api';
-import {
-  mojoToCAT,
-  mojoToChia,
-  mojoToCATLocaleString,
-  mojoToChiaLocaleString,
-} from '@chia/core';
-import NFTOfferExchangeType from './NFTOfferExchangeType';
-import OfferState from './OfferState';
-import OfferAsset from './OfferAsset';
+
 import { AssetIdMapEntry } from '../../hooks/useAssetIdName';
 import { launcherIdToNFTId } from '../../util/nfts';
+import NFTOfferExchangeType from './NFTOfferExchangeType';
+import OfferAsset from './OfferAsset';
+import OfferState from './OfferState';
 
 let filenameCounter = 0;
 
 export function summaryStringsForOffer(
   summary: OfferSummaryRecord,
   lookupByAssetId: (assetId: string) => AssetIdMapEntry | undefined,
-  builder: (
-    filename: string,
-    args: [assetInfo: AssetIdMapEntry | undefined, amount: string],
-  ) => string,
+  builder: (filename: string, args: [assetInfo: AssetIdMapEntry | undefined, amount: string]) => string
 ): [makerString: string, takerString: string] {
   const makerEntries: [string, string][] = Object.entries(summary.offered);
   const takerEntries: [string, string][] = Object.entries(summary.requested);
-  const makerAssetInfoAndAmounts: [AssetIdMapEntry | undefined, string][] =
-    makerEntries.map(([assetId, amount]) => [lookupByAssetId(assetId), amount]);
-  const takerAssetInfoAndAmounts: [AssetIdMapEntry | undefined, string][] =
-    takerEntries.map(([assetId, amount]) => [lookupByAssetId(assetId), amount]);
+  const makerAssetInfoAndAmounts: [AssetIdMapEntry | undefined, string][] = makerEntries.map(([assetId, amount]) => [
+    lookupByAssetId(assetId),
+    amount,
+  ]);
+  const takerAssetInfoAndAmounts: [AssetIdMapEntry | undefined, string][] = takerEntries.map(([assetId, amount]) => [
+    lookupByAssetId(assetId),
+    amount,
+  ]);
 
   const makerString = makerAssetInfoAndAmounts.reduce(builder, '');
   const takerString = takerAssetInfoAndAmounts.reduce(builder, '');
@@ -44,10 +37,7 @@ export function summaryStringsForOffer(
 export function summaryStringsForNFTOffer(
   summary: OfferSummaryRecord,
   lookupByAssetId: (assetId: string) => AssetIdMapEntry | undefined,
-  builder: (
-    filename: string,
-    args: [assetInfo: AssetIdMapEntry | undefined, amount: string],
-  ) => string,
+  builder: (filename: string, args: [assetInfo: AssetIdMapEntry | undefined, amount: string]) => string
 ): [makerString: string, takerString: string] {
   // const makerAssetType = offerAssetTypeForAssetId
   // TODO: Remove 1:1 NFT <--> XCH assumption
@@ -61,18 +51,20 @@ export function summaryStringsForNFTOffer(
   if (makerAssetType === OfferAsset.NFT) {
     makerString = `${makerEntry[1]}_${launcherIdToNFTId(makerEntry[0])}`;
   } else {
-    const makerAssetInfoAndAmounts: [AssetIdMapEntry | undefined, string][] = [
-      makerEntry,
-    ].map(([assetId, amount]) => [lookupByAssetId(assetId), amount]);
+    const makerAssetInfoAndAmounts: [AssetIdMapEntry | undefined, string][] = [makerEntry].map(([assetId, amount]) => [
+      lookupByAssetId(assetId),
+      amount,
+    ]);
     makerString = makerAssetInfoAndAmounts.reduce(builder, '');
   }
 
   if (takerAssetType === OfferAsset.NFT) {
     takerString = `${takerEntry[1]}_${launcherIdToNFTId(takerEntry[0])}`;
   } else {
-    const takerAssetInfoAndAmounts: [AssetIdMapEntry | undefined, string][] = [
-      takerEntry,
-    ].map(([assetId, amount]) => [lookupByAssetId(assetId), amount]);
+    const takerAssetInfoAndAmounts: [AssetIdMapEntry | undefined, string][] = [takerEntry].map(([assetId, amount]) => [
+      lookupByAssetId(assetId),
+      amount,
+    ]);
     takerString = takerAssetInfoAndAmounts.reduce(builder, '');
   }
 
@@ -81,21 +73,15 @@ export function summaryStringsForNFTOffer(
 
 export function suggestedFilenameForOffer(
   summary: OfferSummaryRecord,
-  lookupByAssetId: (assetId: string) => AssetIdMapEntry | undefined,
+  lookupByAssetId: (assetId: string) => AssetIdMapEntry | undefined
 ): string {
   if (!summary) {
-    const filename =
-      filenameCounter === 0
-        ? 'Untitled Offer.offer'
-        : `Untitled Offer ${filenameCounter}.offer`;
+    const filename = filenameCounter === 0 ? 'Untitled Offer.offer' : `Untitled Offer ${filenameCounter}.offer`;
     filenameCounter++;
     return filename;
   }
 
-  function filenameBuilder(
-    filename: string,
-    args: [assetInfo: AssetIdMapEntry | undefined, amount: string],
-  ): string {
+  function filenameBuilder(filename: string, args: [assetInfo: AssetIdMapEntry | undefined, amount: string]): string {
     const [assetInfo, amount] = args;
 
     if (filename) {
@@ -111,10 +97,7 @@ export function suggestedFilenameForOffer(
     return filename;
   }
 
-  const [makerString, takerString] = offerContainsAssetOfType(
-    summary,
-    'singleton',
-  )
+  const [makerString, takerString] = offerContainsAssetOfType(summary, 'singleton')
     ? summaryStringsForNFTOffer(summary, lookupByAssetId, filenameBuilder)
     : summaryStringsForOffer(summary, lookupByAssetId, filenameBuilder);
 
@@ -123,7 +106,7 @@ export function suggestedFilenameForOffer(
 
 export function shortSummaryForOffer(
   summary: OfferSummaryRecord,
-  lookupByAssetId: (assetId: string) => AssetIdMapEntry | undefined,
+  lookupByAssetId: (assetId: string) => AssetIdMapEntry | undefined
 ): string {
   if (!summary) {
     return '';
@@ -131,7 +114,7 @@ export function shortSummaryForOffer(
 
   function summaryBuilder(
     shortSummary: string,
-    args: [assetInfo: AssetIdMapEntry | undefined, amount: string],
+    args: [assetInfo: AssetIdMapEntry | undefined, amount: string]
   ): string {
     const [assetInfo, amount] = args;
 
@@ -140,19 +123,16 @@ export function shortSummaryForOffer(
     }
 
     if (assetInfo && amount !== undefined) {
-      shortSummary +=
-        formatAmountForWalletType(amount, assetInfo.walletType) +
-        ' ' +
-        assetInfo.displayName.replace(/\s/g, '');
+      shortSummary += `${formatAmountForWalletType(amount, assetInfo.walletType)} ${assetInfo.displayName.replace(
+        /\s/g,
+        ''
+      )}`;
     }
 
     return shortSummary;
   }
 
-  const [makerString, takerString] = offerContainsAssetOfType(
-    summary,
-    'singleton',
-  )
+  const [makerString, takerString] = offerContainsAssetOfType(summary, 'singleton')
     ? summaryStringsForNFTOffer(summary, lookupByAssetId, summaryBuilder)
     : summaryStringsForOffer(summary, lookupByAssetId, summaryBuilder);
 
@@ -197,31 +177,23 @@ export function colorForOfferState(state: OfferState): ChipProps['color'] {
   }
 }
 
-export function formatAmountForWalletType(
-  amount: string | number,
-  walletType: WalletType,
-  locale?: string,
-): string {
+export function formatAmountForWalletType(amount: string | number, walletType: WalletType, locale?: string): string {
   if (walletType === WalletType.STANDARD_WALLET) {
     return mojoToChiaLocaleString(amount, locale);
-  } else if (walletType === WalletType.CAT) {
+  }
+  if (walletType === WalletType.CAT) {
     return mojoToCATLocaleString(amount, locale);
   }
 
   return amount.toString();
 }
 
-export function offerContainsAssetOfType(
-  offerSummary: OfferSummaryRecord,
-  assetType: string,
-): boolean {
-  const infos: OfferSummaryInfos = offerSummary.infos;
-  const matchingAssetId: string | undefined = Object.keys(infos).find(
-    (assetId) => {
-      const info: OfferSummaryAssetInfo = infos[assetId];
-      return info.type === assetType;
-    },
-  );
+export function offerContainsAssetOfType(offerSummary: OfferSummaryRecord, assetType: string): boolean {
+  const { infos } = offerSummary;
+  const matchingAssetId: string | undefined = Object.keys(infos).find((assetId) => {
+    const info: OfferSummaryAssetInfo = infos[assetId];
+    return info.type === assetType;
+  });
 
   return (
     !!matchingAssetId &&
@@ -231,16 +203,13 @@ export function offerContainsAssetOfType(
   );
 }
 
-export function offerAssetTypeForAssetId(
-  assetId: string,
-  offerSummary: OfferSummaryRecord,
-): OfferAsset | undefined {
+export function offerAssetTypeForAssetId(assetId: string, offerSummary: OfferSummaryRecord): OfferAsset | undefined {
   let assetType: OfferAsset | undefined;
 
   if (['xch', 'txch'].includes(assetId)) {
     assetType = OfferAsset.CHIA;
   } else {
-    const infos: OfferSummaryInfos = offerSummary.infos;
+    const { infos } = offerSummary;
     const info: OfferSummaryAssetInfo = infos[assetId];
 
     if (info) {
@@ -260,47 +229,35 @@ export function offerAssetTypeForAssetId(
   return assetType;
 }
 
-export function offerAssetIdForAssetType(
-  assetType: OfferAsset,
-  offerSummary: OfferSummaryRecord,
-): string | undefined {
+export function offerAssetIdForAssetType(assetType: OfferAsset, offerSummary: OfferSummaryRecord): string | undefined {
   if (assetType === OfferAsset.CHIA) {
     return 'xch';
   }
 
   const assetId = Object.keys(offerSummary.infos).find(
-    (assetId) => offerAssetTypeForAssetId(assetId, offerSummary) === assetType,
+    (assetId) => offerAssetTypeForAssetId(assetId, offerSummary) === assetType
   );
 
   return assetId;
 }
 
-export function offerAssetAmountForAssetId(
-  assetId: string,
-  offerSummary: OfferSummaryRecord,
-): number | undefined {
-  let amount = Object.keys(offerSummary.offered).includes(assetId)
-    ? offerSummary.offered[assetId]
-    : undefined;
+export function offerAssetAmountForAssetId(assetId: string, offerSummary: OfferSummaryRecord): number | undefined {
+  let amount = Object.keys(offerSummary.offered).includes(assetId) ? offerSummary.offered[assetId] : undefined;
 
   if (amount === undefined) {
-    amount = Object.keys(offerSummary.requested).includes(assetId)
-      ? offerSummary.requested[assetId]
-      : undefined;
+    amount = Object.keys(offerSummary.requested).includes(assetId) ? offerSummary.requested[assetId] : undefined;
   }
   return amount;
 }
 
 /* ========================================================================== */
 
-export function determineNFTOfferExchangeType(
-  summary: OfferSummaryRecord,
-): NFTOfferExchangeType | undefined {
+export function determineNFTOfferExchangeType(summary: OfferSummaryRecord): NFTOfferExchangeType | undefined {
   const nftOffered = Object.keys(summary.offered).find(
-    (assetId) => offerAssetTypeForAssetId(assetId, summary) === OfferAsset.NFT,
+    (assetId) => offerAssetTypeForAssetId(assetId, summary) === OfferAsset.NFT
   );
   const nftRequested = Object.keys(summary.requested).find(
-    (assetId) => offerAssetTypeForAssetId(assetId, summary) === OfferAsset.NFT,
+    (assetId) => offerAssetTypeForAssetId(assetId, summary) === OfferAsset.NFT
   );
 
   if (nftOffered === nftRequested) {
@@ -308,9 +265,7 @@ export function determineNFTOfferExchangeType(
     return undefined;
   }
 
-  return nftOffered
-    ? NFTOfferExchangeType.NFTForToken
-    : NFTOfferExchangeType.TokenForNFT;
+  return nftOffered ? NFTOfferExchangeType.NFTForToken : NFTOfferExchangeType.TokenForNFT;
 }
 
 /* ========================================================================== */
@@ -322,17 +277,14 @@ export type GetNFTPriceWithoutRoyaltiesResult = {
 };
 
 export function getNFTPriceWithoutRoyalties(
-  summary: OfferSummaryRecord,
+  summary: OfferSummaryRecord
 ): GetNFTPriceWithoutRoyaltiesResult | undefined {
   for (const assetType of [OfferAsset.TOKEN, OfferAsset.CHIA]) {
     const assetId = offerAssetIdForAssetType(assetType, summary);
     if (assetId) {
       const amountInMojos = offerAssetAmountForAssetId(assetId, summary);
       if (amountInMojos) {
-        const amountInTokens =
-          assetType === OfferAsset.CHIA
-            ? mojoToChia(amountInMojos)
-            : mojoToCAT(amountInMojos);
+        const amountInTokens = assetType === OfferAsset.CHIA ? mojoToChia(amountInMojos) : mojoToCAT(amountInMojos);
         return { amount: amountInTokens.toNumber(), assetId, assetType };
       }
     }
@@ -355,20 +307,16 @@ export function calculateNFTRoyalties(
   amount: number,
   makerFee: number,
   royaltyPercentage: number,
-  exchangeType: NFTOfferExchangeType,
+  exchangeType: NFTOfferExchangeType
 ): CalculateNFTRoyaltiesResult {
-  const royaltyAmount: number = royaltyPercentage
-    ? (royaltyPercentage / 100) * amount
-    : 0;
+  const royaltyAmount: number = royaltyPercentage ? (royaltyPercentage / 100) * amount : 0;
   const royaltyAmountString: string = formatAmount(royaltyAmount);
   const nftSellerNetAmount: number = amount;
   // : parseFloat(
   //     (amount - parseFloat(royaltyAmountString) - makerFee).toFixed(12),
   //   );
   const totalAmount: number =
-    exchangeType === NFTOfferExchangeType.NFTForToken
-      ? amount + royaltyAmount
-      : amount + makerFee + royaltyAmount;
+    exchangeType === NFTOfferExchangeType.NFTForToken ? amount + royaltyAmount : amount + makerFee + royaltyAmount;
   const totalAmountString: string = formatAmount(totalAmount);
 
   return {

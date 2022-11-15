@@ -1,16 +1,14 @@
+import { AlertDialog, useOpenDialog } from '@chia/core';
+import { Trans } from '@lingui/macro';
 import React from 'react';
 import { useNavigate } from 'react-router';
-import { Trans } from '@lingui/macro';
-import { AlertDialog, useOpenDialog } from '@chia/core';
-import type PlotNFT from '../../types/PlotNFT';
+
 import usePlotNFTDetails from '../../hooks/usePlotNFTDetails';
+import type PlotNFT from '../../types/PlotNFT';
 
 type Props = {
   nft: PlotNFT;
-  children: (data: {
-    join: () => Promise<void>;
-    disabled: boolean;
-  }) => JSX.Element;
+  children: (data: { join: () => Promise<void>; disabled: boolean }) => JSX.Element;
 };
 
 export default function PoolJoin(props: Props) {
@@ -34,7 +32,7 @@ export default function PoolJoin(props: Props) {
       await openDialog(
         <AlertDialog>
           <Trans>You need to claim your rewards first</Trans>
-        </AlertDialog>,
+        </AlertDialog>
       );
       return;
     }

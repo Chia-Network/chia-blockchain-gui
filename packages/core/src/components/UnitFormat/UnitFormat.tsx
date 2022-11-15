@@ -1,6 +1,7 @@
 import React from 'react';
-import useCurrencyCode from '../../hooks/useCurrencyCode';
+
 import State from '../../constants/State';
+import useCurrencyCode from '../../hooks/useCurrencyCode';
 import StateTypography from '../StateTypography';
 
 type Props = {

@@ -1,5 +1,6 @@
-import React from 'react';
 import { SvgIcon, SvgIconProps } from '@mui/material';
+import React from 'react';
+
 import WalletIcon from './images/wallet.svg';
 
 export default function Wallet(props: SvgIconProps) {

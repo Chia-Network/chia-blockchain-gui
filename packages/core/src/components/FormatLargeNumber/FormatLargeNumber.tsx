@@ -1,5 +1,6 @@
-import React, { useMemo } from 'react';
 import BigNumber from 'bignumber.js';
+import React, { useMemo } from 'react';
+
 // import { Tooltip } from '@mui/material';
 import useLocale from '../../hooks/useLocale';
 import bigNumberToLocaleString from '../../utils/bigNumberToLocaleString';
@@ -27,11 +28,14 @@ export default function FormatLargeNumber(props: FormatLargeNumberProps) {
   const formatedValue = useMemo(() => {
     if (typeof value === 'undefined' || value === null) {
       return value;
-    } else if (value instanceof BigNumber) {
+    }
+    if (value instanceof BigNumber) {
       return bigNumberToLocaleString(value, locale);
-    } else if (typeof value === 'bigint') {
+    }
+    if (typeof value === 'bigint') {
       return BigInt(value).toLocaleString(locale);
-    } else if (typeof value === 'string') {
+    }
+    if (typeof value === 'string') {
       return bigNumberToLocaleString(new BigNumber(value), locale);
     }
 

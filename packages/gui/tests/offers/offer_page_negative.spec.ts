@@ -1,16 +1,14 @@
-import { ElectronApplication, Page, _electron as electron } from 'playwright'
+import { ElectronApplication, Page, _electron as electron } from 'playwright';
 import { test, expect } from '@playwright/test';
 import { dialog } from 'electron';
 
 let electronApp: ElectronApplication;
 let page: Page;
 
-
 test.beforeAll(async () => {
   electronApp = await electron.launch({ args: ['./build/electron/main.js'] });
   //electronApp = await electron.launch({ headless: true });
   page = await electronApp.firstWindow();
-  
 });
 
 test.afterAll(async () => {
@@ -19,8 +17,7 @@ test.afterAll(async () => {
 
 //Works
 test('Confirm Error message when fields are not completed on Offer Page', async () => {
-
-  // Given I log into Wallet 
+  // Given I log into Wallet
   await page.locator('[data-testid="SelectKeyItem-fingerprint-1922132445"]').click();
 
   // And I navigate to Offers Page
@@ -32,13 +29,13 @@ test('Confirm Error message when fields are not completed on Offer Page', async 
   // And I select token offer
   await page.locator('li[role="menuitem"]:has-text("NFT Offer")').click();
 
-  // When I enter an Amount 
+  // When I enter an Amount
   await page.locator('text=Amount *TXCH >> input[type="text"]').fill('0.05');
 
-  // And I enter invalid text in Exchange field 
+  // And I enter invalid text in Exchange field
   await page.locator('[placeholder="NFT Identifier"]').fill('hjuyt');
 
-  // And I click Create offer 
+  // And I click Create offer
   await page.locator('text=Create Offer').click();
 
   // Then user receives appropriate error message
@@ -48,8 +45,11 @@ test('Confirm Error message when fields are not completed on Offer Page', async 
   await page.locator('button:has-text("OK")').click();
 
   // Given I Click Back Button
-  await page.locator('text=Create an NFT OfferBuy an NFTSell an NFTYou will offerAmount *TXCH50,000,000,000 >> button').first().click();
-  
+  await page
+    .locator('text=Create an NFT OfferBuy an NFTSell an NFTYou will offerAmount *TXCH50,000,000,000 >> button')
+    .first()
+    .click();
+
   // And I click on Create an Offer
   await page.locator('button:has-text("Create an Offer")').click();
 
@@ -58,7 +58,6 @@ test('Confirm Error message when fields are not completed on Offer Page', async 
 
   // When I complete Amount under heading You will offer
   await page.locator('text=You will offerAsset Type *​Amount *TXCH >> input[type="text"]').fill('0.00000000005');
-
 
   // And I complete Amount under heading In exchange for
   await page.locator('text=In exchange forAsset Type *​Amount *TXCH >> input[type="text"]').fill('0.00000000005');
@@ -71,9 +70,4 @@ test('Confirm Error message when fields are not completed on Offer Page', async 
 
   // Click button:has-text("OK")
   await page.locator('button:has-text("OK")').click();
-
-  
-})
-
-
-
+});

@@ -1,8 +1,9 @@
-import React from 'react';
-import { Trans } from '@lingui/macro';
 import { useGetPrivateKeyQuery } from '@chia/api-react';
+import { Trans } from '@lingui/macro';
 import { Grid, Typography } from '@mui/material';
+import React from 'react';
 import styled from 'styled-components';
+
 import AlertDialog from '../../components/AlertDialog';
 import Loading from '../../components/Loading';
 

@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState, ReactNode } from 'react';
+
 import ModalDialogsContext from '../components/ModalDialogs/ModalDialogsContext';
 
 export default function useOpenDialog() {
@@ -8,17 +9,20 @@ export default function useOpenDialog() {
     throw new Error('Use ModalDialogsProvider provider');
   }
 
-  const { hide, show } = context; 
+  const { hide, show } = context;
 
   // remove all modals after unmount
-  useEffect(() => () => {
-    dialogs.forEach((dialog) => {
-      hide(dialog);
-    });
+  useEffect(
+    () => () => {
+      dialogs.forEach((dialog) => {
+        hide(dialog);
+      });
 
-    // todo maybe remove ecause it is uneccessary
-    setDialogs([]);
-  }, []);
+      // todo maybe remove ecause it is uneccessary
+      setDialogs([]);
+    },
+    []
+  );
 
   async function handleOpen<T>(dialog: ReactNode): Promise<T> {
     setDialogs((dialogs) => [...dialogs, dialog]);

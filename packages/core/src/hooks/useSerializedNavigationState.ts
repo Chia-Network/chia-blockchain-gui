@@ -1,13 +1,6 @@
-import {
-  Location,
-  NavigateFunction,
-  NavigateOptions,
-  To,
-  useLocation,
-  useNavigate,
-} from 'react-router-dom';
 import JSONbig from 'json-bigint';
 import { isString } from 'lodash';
+import { Location, NavigateFunction, NavigateOptions, To, useLocation, useNavigate } from 'react-router-dom';
 
 export type SerializedNavigationStateResult = {
   navigate: NavigateFunction;

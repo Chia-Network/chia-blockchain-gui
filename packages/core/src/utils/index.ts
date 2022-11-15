@@ -14,8 +14,5 @@ export { default as mojoToCATLocaleString } from './mojoToCATLocaleString';
 export { default as mojoToChia } from './mojoToChia';
 export { default as mojoToChiaLocaleString } from './mojoToChiaLocaleString';
 export { default as sleep } from './sleep';
-export {
-  default as useColorModeValue,
-  getColorModeValue,
-} from './useColorModeValue';
+export { default as useColorModeValue, getColorModeValue } from './useColorModeValue';
 export { default as validAddress } from './validAddress';

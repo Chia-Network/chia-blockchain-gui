@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
+
 import ModalDialogsContext from './ModalDialogsContext';
 
 type Props = {
-  children: Node,
+  children: Node;
 };
 
 let nextId = 1;
@@ -29,11 +30,14 @@ export default function ModalDialogsProvider(props: Props) {
         resolve(value);
       }
 
-      setDialogs((dialogs) => [...dialogs, {
-        id,
-        dialog,
-        handleClose,
-      }]);
+      setDialogs((dialogs) => [
+        ...dialogs,
+        {
+          id,
+          dialog,
+          handleClose,
+        },
+      ]);
     });
   }
 
@@ -43,9 +47,5 @@ export default function ModalDialogsProvider(props: Props) {
     dialogs,
   };
 
-  return (
-    <ModalDialogsContext.Provider value={value}>
-      {children}
-    </ModalDialogsContext.Provider>
-  );
+  return <ModalDialogsContext.Provider value={value}>{children}</ModalDialogsContext.Provider>;
 }

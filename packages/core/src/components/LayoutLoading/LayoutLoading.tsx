@@ -1,6 +1,7 @@
 import React, { type ReactNode } from 'react';
-import Loading from '../Loading';
+
 import LayoutHero from '../LayoutHero';
+import Loading from '../Loading';
 
 export type LayoutLoadingProps = {
   children?: ReactNode;

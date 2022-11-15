@@ -1,15 +1,5 @@
-import React from 'react';
+import { AdvancedOptions, CardStep, TextField, RadioGroup, Flex, Checkbox, TooltipIcon, Select } from '@chia/core';
 import { Trans, t } from '@lingui/macro';
-import {
-  AdvancedOptions,
-  CardStep,
-  TextField,
-  RadioGroup,
-  Flex,
-  Checkbox,
-  TooltipIcon,
-  Select,
-} from '@chia/core';
 import {
   Grid,
   FormControl,
@@ -20,7 +10,9 @@ import {
   MenuItem,
   InputLabel,
 } from '@mui/material';
+import React from 'react';
 import { useFormContext } from 'react-hook-form';
+
 import Plotter from '../../../types/Plotter';
 
 type Props = {
@@ -60,25 +52,14 @@ export default function PlotAddNumberOfPlots(props: Props) {
               <Trans>Does your machine support parallel plotting?</Trans>
             </Typography>
             <Typography color="textSecondary">
-              <Trans>
-                Plotting in parallel can save time. Otherwise, add plot(s) to the
-                queue.
-              </Trans>
+              <Trans>Plotting in parallel can save time. Otherwise, add plot(s) to the queue.</Trans>
             </Typography>
 
             <FormControl variant="filled" fullWidth>
               <RadioGroup name="parallel" boolean>
                 <Flex gap={2} flexWrap="wrap">
-                  <FormControlLabel
-                    value={false}
-                    control={<Radio />}
-                    label={<Trans>Add Plot to Queue</Trans>}
-                  />
-                  <FormControlLabel
-                    control={<Radio />}
-                    label={<Trans>Plot in Parallel</Trans>}
-                    value
-                  />
+                  <FormControlLabel value={false} control={<Radio />} label={<Trans>Add Plot to Queue</Trans>} />
+                  <FormControlLabel control={<Radio />} label={<Trans>Plot in Parallel</Trans>} value />
                 </Flex>
               </RadioGroup>
             </FormControl>
@@ -123,9 +104,7 @@ export default function PlotAddNumberOfPlots(props: Props) {
                   helperText={<Trans>More memory slightly increases speed</Trans>}
                   InputProps={{
                     inputProps: { min: 0 },
-                    endAdornment: (
-                      <InputAdornment position="end">MiB</InputAdornment>
-                    ),
+                    endAdornment: <InputAdornment position="end">MiB</InputAdornment>,
                   }}
                 />
               </FormControl>
@@ -139,9 +118,11 @@ export default function PlotAddNumberOfPlots(props: Props) {
                 variant="filled"
                 placeholder="2"
                 label={<Trans>Number of threads</Trans>}
-                helperText={plotter.defaults.plotterName.startsWith("bladebit") && (
-                  <Trans>Specify a value of 0 to use all available threads</Trans>
-                )}
+                helperText={
+                  plotter.defaults.plotterName.startsWith('bladebit') && (
+                    <Trans>Specify a value of 0 to use all available threads</Trans>
+                  )
+                }
                 InputProps={{
                   inputProps: { min: 0 },
                 }}
@@ -165,7 +146,7 @@ export default function PlotAddNumberOfPlots(props: Props) {
               </FormControl>
             </Grid>
           )}
-          {op.haveNumBuckets && plotter.defaults.plotterName !== "bladebit2" && (
+          {op.haveNumBuckets && plotter.defaults.plotterName !== 'bladebit2' && (
             <Grid xs={12} sm={6} item>
               <FormControl variant="filled" fullWidth>
                 <TextField
@@ -182,16 +163,13 @@ export default function PlotAddNumberOfPlots(props: Props) {
               </FormControl>
             </Grid>
           )}
-          {op.haveNumBuckets && plotter.defaults.plotterName === "bladebit2" && (
+          {op.haveNumBuckets && plotter.defaults.plotterName === 'bladebit2' && (
             <Grid xs={12} sm={6} item>
               <FormControl variant="filled" fullWidth>
                 <InputLabel>
                   <Trans>Number of buckets</Trans>
                 </InputLabel>
-                <Select
-                  name="numBuckets"
-                  defaultValue={plotter.defaults.numBuckets}
-                >
+                <Select name="numBuckets" defaultValue={plotter.defaults.numBuckets}>
                   <MenuItem value={64}>64</MenuItem>
                   <MenuItem value={128}>128</MenuItem>
                   <MenuItem value={256}>256</MenuItem>
@@ -202,20 +180,20 @@ export default function PlotAddNumberOfPlots(props: Props) {
           )}
           {op.haveMadmaxNumBucketsPhase3 && (
             <Grid xs={12} sm={6} item>
-            <FormControl variant="filled" fullWidth>
-              <TextField
-                name="madmaxNumBucketsPhase3"
-                type="number"
-                variant="filled"
-                placeholder=""
-                label={<Trans>Number of buckets for phase 3 &amp; 4</Trans>}
-                helperText={<Trans>{plotter.defaults.madmaxNumBucketsPhase3} buckets is recommended</Trans>}
-                InputProps={{
-                  inputProps: { min: 0 },
-                }}
-              />
-            </FormControl>
-          </Grid>
+              <FormControl variant="filled" fullWidth>
+                <TextField
+                  name="madmaxNumBucketsPhase3"
+                  type="number"
+                  variant="filled"
+                  placeholder=""
+                  label={<Trans>Number of buckets for phase 3 &amp; 4</Trans>}
+                  helperText={<Trans>{plotter.defaults.madmaxNumBucketsPhase3} buckets is recommended</Trans>}
+                  InputProps={{
+                    inputProps: { min: 0 },
+                  }}
+                />
+              </FormControl>
+            </Grid>
           )}
           <Grid xs={12} sm={6} item>
             <FormControl variant="filled" fullWidth>
@@ -229,8 +207,12 @@ export default function PlotAddNumberOfPlots(props: Props) {
               />
             </FormControl>
           </Grid>
-          {(op.haveBladebit2Cache || op.haveBladebit2F1Threads || op.haveBladebit2FpThreads
-            || op.haveBladebit2CThreads || op.haveBladebit2P2Threads || op.haveBladebit2P3Threads) && (
+          {(op.haveBladebit2Cache ||
+            op.haveBladebit2F1Threads ||
+            op.haveBladebit2FpThreads ||
+            op.haveBladebit2CThreads ||
+            op.haveBladebit2P2Threads ||
+            op.haveBladebit2P3Threads) && (
             <Grid container item spacing={1}>
               {op.haveBladebit2Cache && (
                 <Grid xs={12} sm={6} item>
@@ -331,11 +313,9 @@ export default function PlotAddNumberOfPlots(props: Props) {
                       <Trans>Disable bitfield plotting</Trans>{' '}
                       <TooltipIcon>
                         <Trans>
-                          Plotting with bitfield enabled has about 30% less
-                          overall writes and is now almost always faster. You may
-                          see reduced memory requirements with bitfield plotting
-                          disabled. If your CPU design is from before 2010 you may
-                          have to disable bitfield plotting.
+                          Plotting with bitfield enabled has about 30% less overall writes and is now almost always
+                          faster. You may see reduced memory requirements with bitfield plotting disabled. If your CPU
+                          design is from before 2010 you may have to disable bitfield plotting.
                         </Trans>
                       </TooltipIcon>
                     </>
@@ -368,9 +348,7 @@ export default function PlotAddNumberOfPlots(props: Props) {
                       <>
                         <Trans>Warm start</Trans>
                         <TooltipIcon>
-                          <Trans>
-                            Touch all pages of buffer allocations before starting to plot.
-                          </Trans>
+                          <Trans>Touch all pages of buffer allocations before starting to plot.</Trans>
                         </TooltipIcon>
                       </>
                     }
@@ -388,8 +366,7 @@ export default function PlotAddNumberOfPlots(props: Props) {
                         <Trans>Disable NUMA</Trans>{' '}
                         <TooltipIcon>
                           <Trans>
-                            Disable automatic NUMA aware memory binding.
-                            If you set this parameter in a NUMA system you
+                            Disable automatic NUMA aware memory binding. If you set this parameter in a NUMA system you
                             will likely get degraded performance.
                           </Trans>
                         </TooltipIcon>
@@ -409,10 +386,9 @@ export default function PlotAddNumberOfPlots(props: Props) {
                         <Trans>No CPU Affinity</Trans>{' '}
                         <TooltipIcon>
                           <Trans>
-                            Disable assigning automatic thread affinity.
-                            This is useful when running multiple simultaneous
-                            instances of Bladebit as you can manually
-                            assign thread affinity yourself when launching Bladebit.
+                            Disable assigning automatic thread affinity. This is useful when running multiple
+                            simultaneous instances of Bladebit as you can manually assign thread affinity yourself when
+                            launching Bladebit.
                           </Trans>
                         </TooltipIcon>
                       </>
@@ -431,8 +407,8 @@ export default function PlotAddNumberOfPlots(props: Props) {
                         <Trans>Alternate bucket writing</Trans>{' '}
                         <TooltipIcon>
                           <Trans>
-                            Halves the temp2 cache size requirements
-                            by alternating bucket writing methods between tables.
+                            Halves the temp2 cache size requirements by alternating bucket writing methods between
+                            tables.
                           </Trans>
                         </TooltipIcon>
                       </>
@@ -449,9 +425,7 @@ export default function PlotAddNumberOfPlots(props: Props) {
                     <>
                       <Trans>Exclude final directory</Trans>{' '}
                       <TooltipIcon>
-                        <Trans>
-                          Skips adding a final directory to harvester for farming
-                        </Trans>
+                        <Trans>Skips adding a final directory to harvester for farming</Trans>
                       </TooltipIcon>
                     </>
                   }

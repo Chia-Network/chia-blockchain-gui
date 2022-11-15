@@ -1,14 +1,11 @@
-import { sumBy } from 'lodash';
 import type { Point } from '@chia/api';
+import { sumBy } from 'lodash';
 
 function sumPoints(points: Point[]): number {
   return sumBy(points, (point) => point[1]) ?? 0;
 }
 
-export default function getPercentPointsSuccessfull(
-  pointsAcknowledged: Point[],
-  pointsFound: Point[],
-): number {
+export default function getPercentPointsSuccessfull(pointsAcknowledged: Point[], pointsFound: Point[]): number {
   const acknowledged = sumPoints(pointsAcknowledged);
   const found = sumPoints(pointsFound);
 

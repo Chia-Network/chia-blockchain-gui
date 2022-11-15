@@ -11,8 +11,8 @@ function TrieNode(key) {
 }
 
 TrieNode.prototype.getWord = function () {
-  var output = [];
-  var node = this;
+  const output = [];
+  let node = this;
 
   while (node !== null) {
     output.unshift(node.key);
@@ -27,8 +27,8 @@ function Trie() {
 }
 
 Trie.prototype.insert = function (word) {
-  var node = this.root;
-  for (var i = 0; i < word.length; i++) {
+  let node = this.root;
+  for (let i = 0; i < word.length; i++) {
     if (!node.children[word[i]]) {
       node.children[word[i]] = new TrieNode(word[i]);
 
@@ -44,9 +44,9 @@ Trie.prototype.insert = function (word) {
 };
 
 Trie.prototype.contains = function (word) {
-  var node = this.root;
+  let node = this.root;
 
-  for (var i = 0; i < word.length; i++) {
+  for (let i = 0; i < word.length; i++) {
     if (node.children[word[i]]) {
       node = node.children[word[i]];
     } else {
@@ -58,10 +58,10 @@ Trie.prototype.contains = function (word) {
 };
 
 Trie.prototype.find = function (prefix) {
-  var node = this.root;
-  var output = [];
+  let node = this.root;
+  const output = [];
 
-  for (var i = 0; i < prefix.length; i++) {
+  for (let i = 0; i < prefix.length; i++) {
     if (node.children[prefix[i]]) {
       node = node.children[prefix[i]];
     } else {
@@ -79,7 +79,7 @@ function findAllWords(node, arr) {
     arr.unshift(node.getWord());
   }
 
-  for (var child in node.children) {
+  for (const child in node.children) {
     findAllWords(node.children[child], arr);
   }
 }

@@ -1,0 +1,28 @@
+// to print all rules (extended and overrides)
+// npx eslint --print-config .eslintrc.json
+{
+  "extends": ["airbnb", "airbnb/hooks", "airbnb-typescript", "plugin:eslint-comments/recommended", "prettier"],
+  "env": {
+    "browser": true,
+    "es2020": true,
+    "node": true
+  },
+  "parserOptions": {
+    "project": "./packages/*/tsconfig.json"
+  },
+  "rules": {
+    // Automatically order imports
+    "import/order": [
+      "error",
+      { "groups": ["builtin", "external", "internal"], "alphabetize": { "order": "asc" }, "newlines-between": "always" }
+    ],
+    // Already taken care of by import/order. This must stay here, so require(); is before any import
+    "import/first": "off",
+    // Require a reason for disabling a rule via disable-line
+    "eslint-comments/require-description": "error",
+    // Do not allow unused disable-line
+    "eslint-comments/no-unused-disable": "error",
+    // Allow single line disables (overrides the eslint-comments defaults)
+    "eslint-comments/disable-enable-pair": "off"
+  }
+}

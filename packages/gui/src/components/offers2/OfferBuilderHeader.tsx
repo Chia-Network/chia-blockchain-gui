@@ -1,6 +1,6 @@
-import React, { ReactNode } from 'react';
 import { Flex } from '@chia/core';
 import { Typography } from '@mui/material';
+import React, { ReactNode } from 'react';
 
 export type OfferBuilderHeaderProps = {
   icon: ReactNode;

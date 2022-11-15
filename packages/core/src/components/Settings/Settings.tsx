@@ -1,8 +1,9 @@
-import React, { type ReactNode, useState } from 'react';
 import { Trans } from '@lingui/macro';
-import styled from 'styled-components';
-import { Box, Drawer, Typography, IconButton, Divider } from '@mui/material';
 import { Settings as SettingsIcon, Close as CloseIcon } from '@mui/icons-material';
+import { Box, Drawer, Typography, IconButton, Divider } from '@mui/material';
+import React, { type ReactNode, useState } from 'react';
+import styled from 'styled-components';
+
 import Flex from '../Flex';
 import Tooltip from '../Tooltip';
 import SettingsApp from './SettingsApp';
@@ -46,18 +47,16 @@ export default function Settings(props: SettingsProps) {
   return (
     <>
       <Tooltip title={<Trans>Settings</Trans>}>
-      <IconButton color="inherit" onClick={handleOpen} disableFocusRipple>
-        <SettingsIcon />
-      </IconButton>
+        <IconButton color="inherit" onClick={handleOpen} disableFocusRipple>
+          <SettingsIcon />
+        </IconButton>
       </Tooltip>
       <Drawer anchor="right" open={open} onClose={handleClose}>
         <Flex flexDirection="column" height="100%">
           <StyledHeader>
             <Flex gap={1} justifyContent="space-between" alignItems="center">
               <Typography variant="h6">
-                <Trans>
-                  Settings
-                </Trans>
+                <Trans>Settings</Trans>
               </Typography>
               <IconButton color="inherit" onClick={handleClose}>
                 <CloseIcon />
@@ -65,9 +64,7 @@ export default function Settings(props: SettingsProps) {
             </Flex>
           </StyledHeader>
           <Divider />
-          <StyledBody>
-            {children}
-          </StyledBody>
+          <StyledBody>{children}</StyledBody>
           <SettingsFooter />
         </Flex>
       </Drawer>

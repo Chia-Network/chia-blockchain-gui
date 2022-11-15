@@ -1,5 +1,3 @@
-import React, { ReactNode, ReactElement } from 'react';
-import styled from 'styled-components';
 import {
   Box,
   Card as CardMaterial,
@@ -8,39 +6,29 @@ import {
   Grid,
   Typography,
 } from '@mui/material';
+import React, { ReactNode, ReactElement } from 'react';
+import styled from 'styled-components';
+
 import Flex from '../Flex';
 import TooltipIcon from '../TooltipIcon';
 
 const StyledCardTitle = styled(({ transparent, ...rest }) => <Box {...rest} />)`
   padding: ${({ theme, transparent }) =>
-    !transparent
-      ? `${theme.spacing(2)} ${theme.spacing(2)}`
-      : `0 0 ${theme.spacing(2)} 0`};
+    !transparent ? `${theme.spacing(2)} ${theme.spacing(2)}` : `0 0 ${theme.spacing(2)} 0`};
 `;
 
-const StyledCardMaterial = styled(
-  ({
-    cursor,
-    opacity,
-    clickable,
-    fullHeight,
-    highlight,
-    transparent,
-    ...rest
-  }) => <CardMaterial {...rest} />
-)`
+const StyledCardMaterial = styled(({ cursor, opacity, clickable, fullHeight, highlight, transparent, ...rest }) => (
+  <CardMaterial {...rest} />
+))`
   cursor: ${({ clickable }) => (clickable ? 'pointer' : 'default')};
   opacity: ${({ disabled }) => (disabled ? '0.5' : '1')};
   height: ${({ fullHeight }) => (fullHeight ? '100%' : 'auto')};
   border: ${({ clickable }) => (clickable ? '1px solid transparent' : 'none')};
   border-radius: ${({ theme, highlight }) =>
-    highlight
-      ? `0 0 ${theme.shape.borderRadius}px ${theme.shape.borderRadius}px`
-      : `${theme.shape.borderRadius}px`};
+    highlight ? `0 0 ${theme.shape.borderRadius}px ${theme.shape.borderRadius}px` : `${theme.shape.borderRadius}px`};
 
   &:hover {
-    border-color: ${({ theme, clickable }) =>
-      clickable ? theme.palette.primary.main : 'transparent'};
+    border-color: ${({ theme, clickable }) => (clickable ? theme.palette.primary.main : 'transparent')};
   }
 
   ${({ transparent }) =>
@@ -60,14 +48,11 @@ const StyledCardMaterial = styled(
       : ''}
 `;
 
-const StyledCardContent = styled(({ fullHeight, transparent, ...rest }) => (
-  <CardContent {...rest} />
-))`
+const StyledCardContent = styled(({ fullHeight, transparent, ...rest }) => <CardContent {...rest} />)`
   display: flex;
   flex-direction: column;
   height: ${({ fullHeight }) => (fullHeight ? '100%' : 'auto')};
-  padding-bottom: ${({ theme, transparent }) =>
-    !transparent ? theme.spacing(2) : '0'} !important;
+  padding-bottom: ${({ theme, transparent }) => (!transparent ? theme.spacing(2) : '0')} !important;
 
   ${({ transparent }) =>
     transparent
@@ -94,8 +79,7 @@ const StyledHighlight = styled(Box)`
   text-transform: uppercase;
   font-size: 0.75rem;
   visibility: ${({ empty }) => (empty ? 'hidden' : 'visible')};
-  border-radius: ${({ theme }) => theme.shape.borderRadius}px
-    ${({ theme }) => theme.shape.borderRadius}px 0 0;
+  border-radius: ${({ theme }) => theme.shape.borderRadius}px ${({ theme }) => theme.shape.borderRadius}px 0 0;
 `;
 
 export type CardProps = {
@@ -136,9 +120,7 @@ export default function Card(props: CardProps) {
   const headerTitle = tooltip ? (
     <Flex alignItems="center" gap={1}>
       <Box>{title}</Box>
-      <TooltipIcon disableInteractive={disableInteractive}>
-        {tooltip}
-      </TooltipIcon>
+      <TooltipIcon disableInteractive={disableInteractive}>{tooltip}</TooltipIcon>
     </Flex>
   ) : (
     title
