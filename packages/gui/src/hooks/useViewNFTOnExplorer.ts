@@ -10,12 +10,6 @@ function getMintGardenURL(nft: NFTInfo, testnet: boolean) {
   return url;
 }
 
-function getSkyNFTURL(nft: NFTInfo, testnet: boolean) {
-  const launcherId = nft.launcherId.startsWith('0x') ? nft.launcherId.substring(2) : nft.launcherId;
-  const url = `https://${testnet ? 'test.' : ''}skynft.org/item.php?launcher_id=${launcherId}`;
-  return url;
-}
-
 function getSpacescanURL(nft: NFTInfo, testnet: boolean) {
   const url = `https://spacescan.io/${testnet ? 'txch10' : 'xch'}/nft/${nft.$nftId}`;
   return url;
@@ -25,13 +19,11 @@ function getSpacescanURL(nft: NFTInfo, testnet: boolean) {
 
 export enum NFTExplorer {
   MintGarden = 'mintgarden',
-  SkyNFT = 'skynft',
   Spacescan = 'spacescan',
 }
 
 const UrlBuilderMapping = {
   [NFTExplorer.MintGarden]: getMintGardenURL,
-  [NFTExplorer.SkyNFT]: getSkyNFTURL,
   [NFTExplorer.Spacescan]: getSpacescanURL,
 };
 
