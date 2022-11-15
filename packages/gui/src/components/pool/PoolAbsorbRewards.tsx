@@ -1,13 +1,11 @@
 import { useNavigate } from 'react-router';
-import type PlotNFT from '../../types/PlotNFT';
+
 import usePlotNFTDetails from '../../hooks/usePlotNFTDetails';
+import type PlotNFT from '../../types/PlotNFT';
 
 type Props = {
   nft: PlotNFT;
-  children: (data: {
-    absorb: () => Promise<void>;
-    disabled: boolean;
-  }) => JSX.Element;
+  children: (data: { absorb: () => Promise<void>; disabled: boolean }) => JSX.Element;
 };
 
 export default function PoolAbsorbRewards(props: Props) {

@@ -1,6 +1,6 @@
-import { useState } from 'react';
-import { useGetOffersCountQuery, useGetAllOffersQuery } from '@chia/api-react';
 import { OfferTradeRecord } from '@chia/api';
+import { useGetOffersCountQuery, useGetAllOffersQuery } from '@chia/api-react';
+import { useState } from 'react';
 
 export default function useWalletOffers(
   defaultRowsPerPage = 5,
@@ -8,7 +8,7 @@ export default function useWalletOffers(
   includeMyOffers = true,
   includeTakenOffers = true,
   sortKey?: 'CONFIRMED_AT_HEIGHT' | 'RELEVANCE',
-  reverse?: boolean,
+  reverse?: boolean
 ): {
   isLoading: boolean;
   offers?: OfferTradeRecord[];
@@ -25,9 +25,7 @@ export default function useWalletOffers(
 
   const all = rowsPerPage === -1;
 
-  const start = all
-    ? 0
-    : page * rowsPerPage;
+  const start = all ? 0 : page * rowsPerPage;
 
   let selectedCount = 0;
 
@@ -39,11 +37,13 @@ export default function useWalletOffers(
     selectedCount += counts?.takenOffersCount ?? 0;
   }
 
-  const end = all
-    ? selectedCount
-    : start + rowsPerPage;
+  const end = all ? selectedCount : start + rowsPerPage;
 
-  const { data: offers, isLoading: isOffersLoading, error: offersError } = useGetAllOffersQuery({
+  const {
+    data: offers,
+    isLoading: isOffersLoading,
+    error: offersError,
+  } = useGetAllOffersQuery({
     start,
     end,
     sortKey,
@@ -60,7 +60,7 @@ export default function useWalletOffers(
     setPage(page);
   }
 
-  return  {
+  return {
     offers,
     count: selectedCount,
     page,

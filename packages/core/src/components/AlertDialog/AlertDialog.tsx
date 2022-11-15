@@ -1,9 +1,10 @@
-import React, { ReactNode } from 'react';
-import { Dialog, DialogTitle, DialogContent } from '@mui/material';
 import { Trans } from '@lingui/macro';
-import DialogActions from '../DialogActions';
+import { Dialog, DialogTitle, DialogContent } from '@mui/material';
+import React, { ReactNode } from 'react';
+
 import Button from '../Button';
 import type { ButtonProps } from '../Button';
+import DialogActions from '../DialogActions';
 
 export type AlertDialogProps = {
   title?: ReactNode;
@@ -40,17 +41,10 @@ export default function AlertDialog(props: AlertDialogProps) {
       open={open}
     >
       {title && <DialogTitle id="alert-dialog-title">{title}</DialogTitle>}
-      {children && (
-        <DialogContent id="alert-dialog-description">{children}</DialogContent>
-      )}
+      {children && <DialogContent id="alert-dialog-description">{children}</DialogContent>}
 
       <DialogActions>
-        <Button
-          onClick={handleClose}
-          variant={confirmVariant}
-          color="primary"
-          autoFocus
-        >
+        <Button onClick={handleClose} variant={confirmVariant} color="primary" autoFocus>
           {confirmTitle}
         </Button>
       </DialogActions>

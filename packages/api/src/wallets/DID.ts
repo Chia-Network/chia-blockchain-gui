@@ -1,12 +1,7 @@
 import Wallet from '../services/Wallet';
 
 export default class DIDWallet extends Wallet {
-  async createNewWallet(
-    amount: string,
-    fee: string,
-    backupDids: string,
-    numOfBackupIdsNeeded: number
-  ) {
+  async createNewWallet(amount: string, fee: string, backupDids: string, numOfBackupIdsNeeded: number) {
     return super.createNewWallet('did_wallet', {
       did_type: 'new',
       amount,
@@ -23,11 +18,7 @@ export default class DIDWallet extends Wallet {
     });
   }
 
-  async updateRecoveryIds(
-    walletId: number,
-    newList: string[],
-    numVerificationsRequired: boolean
-  ) {
+  async updateRecoveryIds(walletId: number, newList: string[], numVerificationsRequired: boolean) {
     return this.command('did_update_recovery_ids', {
       walletId,
       newList,
@@ -80,13 +71,7 @@ export default class DIDWallet extends Wallet {
     });
   }
 
-  async createAttest(
-    walletId: number,
-    filename: string,
-    coinName: string,
-    pubkey: string,
-    puzhash: string
-  ) {
+  async createAttest(walletId: number, filename: string, coinName: string, pubkey: string, puzhash: string) {
     return this.command('did_create_attest', {
       walletId,
       filename,

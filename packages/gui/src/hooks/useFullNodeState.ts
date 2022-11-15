@@ -1,4 +1,5 @@
 import { useGetBlockchainStateQuery } from '@chia/api-react';
+
 import FullNodeState from '../constants/FullNodeState';
 
 export default function useFullNodeState(): {
@@ -14,7 +15,7 @@ export default function useFullNodeState(): {
     {},
     {
       pollingInterval: 10000,
-    },
+    }
   );
   const blockchainSynced = blockchainState?.sync?.synced;
   const blockchainSynching = blockchainState?.sync?.syncMode;

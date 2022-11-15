@@ -1,8 +1,8 @@
+import { Dialog, DialogContent } from '@mui/material';
 import React, { cloneElement, useContext, Suspense } from 'react';
-import ModalDialogsContext from './ModalDialogsContext';import {
-  Dialog, DialogContent,
-} from '@mui/material';
+
 import Loading from '../Loading';
+import ModalDialogsContext from './ModalDialogsContext';
 
 function DialogLoading(props) {
   const { onClose } = props;

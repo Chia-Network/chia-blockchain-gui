@@ -5,23 +5,25 @@ module.exports = function babel(api) {
 
   return {
     presets: [
-      ['@babel/preset-env', {
-        targets: {
-          node: true,
+      [
+        '@babel/preset-env',
+        {
+          targets: {
+            node: true,
+          },
+          useBuiltIns: 'entry',
+          corejs: 3,
+          loose: LOOSE,
         },
-        useBuiltIns: 'entry',
-        corejs: 3,
-        loose: LOOSE,
-      }],
+      ],
       '@babel/preset-typescript',
-      ['@babel/preset-react', {
-        runtime: 'automatic',
-      }],
+      [
+        '@babel/preset-react',
+        {
+          runtime: 'automatic',
+        },
+      ],
     ],
-    plugins: [
-      'macros',
-      '@loadable/babel-plugin',
-      ['babel-plugin-styled-components'],
-    ],
+    plugins: ['macros', '@loadable/babel-plugin', ['babel-plugin-styled-components']],
   };
 };

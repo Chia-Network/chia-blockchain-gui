@@ -1,9 +1,10 @@
-import React, { useState, useMemo } from 'react';
-import { Trans } from '@lingui/macro';
-import { TableControlled } from '@chia/core';
 import { type Plot } from '@chia/api';
 import { useGetHarvesterPlotsKeysMissingQuery, useGetHarvesterQuery } from '@chia/api-react';
+import { TableControlled } from '@chia/core';
+import { Trans } from '@lingui/macro';
 import { Typography } from '@mui/material';
+import React, { useState, useMemo } from 'react';
+
 import PlotAction from './PlotAction';
 
 const cols = [
@@ -27,7 +28,11 @@ export default function PlotHarvesterPlotsNotFound(props: PlotHarvesterPlotsNotF
   const { nodeId } = props;
   const [page, setPage] = useState(0);
   const [pageSize, setPageSize] = useState(5);
-  const { noKeyFilenames, initialized, isLoading: isLoadingHarvester } = useGetHarvesterQuery({
+  const {
+    noKeyFilenames,
+    initialized,
+    isLoading: isLoadingHarvester,
+  } = useGetHarvesterQuery({
     nodeId,
   });
   const { isLoading: isLoadingHarvesterPlots, data = [] } = useGetHarvesterPlotsKeysMissingQuery({
@@ -44,9 +49,7 @@ export default function PlotHarvesterPlotsNotFound(props: PlotHarvesterPlotsNotF
     setPage(page);
   }
 
-  const rows = useMemo(() => {
-    return data?.map((filename) => ({ filename }));
-  }, [data]);
+  const rows = useMemo(() => data?.map((filename) => ({ filename })), [data]);
 
   return (
     <TableControlled
@@ -60,11 +63,13 @@ export default function PlotHarvesterPlotsNotFound(props: PlotHarvesterPlotsNotF
       isLoading={isLoading || !initialized}
       expandedCellShift={1}
       uniqueField="filename"
-      caption={!noKeyFilenames && (
-        <Typography variant="body2" align="center">
-          <Trans>Hooray, no files here!</Trans>
-        </Typography>
-      )}
+      caption={
+        !noKeyFilenames && (
+          <Typography variant="body2" align="center">
+            <Trans>Hooray, no files here!</Trans>
+          </Typography>
+        )
+      }
       pages={!!noKeyFilenames}
     />
   );

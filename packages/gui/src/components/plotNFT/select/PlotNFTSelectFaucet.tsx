@@ -1,7 +1,8 @@
-import React from 'react';
-import { Trans } from '@lingui/macro';
 import { Button, Flex, CardStep, useCurrencyCode } from '@chia/core';
+import { Trans } from '@lingui/macro';
 import { Box, Typography } from '@mui/material';
+import React from 'react';
+
 import useOpenExternal from '../../../hooks/useOpenExternal';
 
 type Props = {

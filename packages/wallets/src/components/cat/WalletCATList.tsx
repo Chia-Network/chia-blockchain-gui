@@ -1,8 +1,9 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import WalletCATSelect from './WalletCATSelect';
-import WalletCATCreateNew from './WalletCATCreateNew';
+
 import WalletCATCreateExistingSimple from './WalletCATCreateExistingSimple';
+import WalletCATCreateNew from './WalletCATCreateNew';
+import WalletCATSelect from './WalletCATSelect';
 
 export default function WalletCATList() {
   return (

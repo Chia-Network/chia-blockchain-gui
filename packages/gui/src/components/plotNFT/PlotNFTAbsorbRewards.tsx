@@ -1,6 +1,4 @@
-import React, { useMemo, useState, ReactNode } from 'react';
-import { Trans, t } from '@lingui/macro';
-import { useNavigate } from 'react-router';
+import { usePwAbsorbRewardsMutation, useGetPlotNFTsQuery, useGetCurrentAddressQuery } from '@chia/api-react';
 import {
   UnitFormat,
   CardStep,
@@ -14,14 +12,16 @@ import {
   chiaToMojo,
   Back,
 } from '@chia/core';
-import { useForm } from 'react-hook-form';
-import { usePwAbsorbRewardsMutation, useGetPlotNFTsQuery, useGetCurrentAddressQuery } from '@chia/api-react'
+import { Trans, t } from '@lingui/macro';
 import { ChevronRight as ChevronRightIcon } from '@mui/icons-material';
 import { Grid, Typography } from '@mui/material';
-import { useParams } from 'react-router';
-import { SubmitData } from './select/PlotNFTSelectPool';
-import PlotNFTName from './PlotNFTName';
+import React, { useMemo, useState, ReactNode } from 'react';
+import { useForm } from 'react-hook-form';
+import { useNavigate, useParams } from 'react-router';
+
 import useStandardWallet from '../../hooks/useStandardWallet';
+import PlotNFTName from './PlotNFTName';
+import { SubmitData } from './select/PlotNFTSelectPool';
 
 type FormData = {
   fee?: string | number;
@@ -47,11 +47,10 @@ export default function PlotNFTAbsorbRewards(props: Props) {
     walletId: 1,
   });
   const navigate = useNavigate();
-  const nft = useMemo(() => {
-    return data?.nfts?.find(
-      (nft) => nft.poolState.p2SingletonPuzzleHash === plotNFTId,
-    );
-  }, [data?.nfts, plotNFTId]);
+  const nft = useMemo(
+    () => data?.nfts?.find((nft) => nft.poolState.p2SingletonPuzzleHash === plotNFTId),
+    [data?.nfts, plotNFTId]
+  );
 
   const methods = useForm<FormData>({
     defaultValues: {
@@ -66,7 +65,6 @@ export default function PlotNFTAbsorbRewards(props: Props) {
 
       const { fee } = data;
       const feeMojos = chiaToMojo(fee);
-
 
       if (walletId === undefined) {
         throw new Error(t`Wallet is not defined`);
@@ -107,11 +105,7 @@ export default function PlotNFTAbsorbRewards(props: Props) {
   }
 
   if (!nft) {
-    return (
-      <Trans>
-        Plot NFT with p2_singleton_puzzle_hash {plotNFTId} does not exists
-      </Trans>
-    );
+    return <Trans>Plot NFT with p2_singleton_puzzle_hash {plotNFTId} does not exists</Trans>;
   }
 
   const {
@@ -149,12 +143,8 @@ export default function PlotNFTAbsorbRewards(props: Props) {
             <Typography variant="subtitle1">
               <Trans>
                 You will recieve{' '}
-                <UnitFormat
-                  value={mojoToChiaLocaleString(balance)}
-                  display="inline"
-                  state={State.SUCCESS}
-                />{' '}
-                to {address}
+                <UnitFormat value={mojoToChiaLocaleString(balance)} display="inline" state={State.SUCCESS} /> to{' '}
+                {address}
               </Trans>
             </Typography>
 
@@ -172,12 +162,7 @@ export default function PlotNFTAbsorbRewards(props: Props) {
             </Grid>
           </CardStep>
           <Flex gap={1} justifyContent="flex-end">
-            <ButtonLoading
-              loading={working}
-              color="primary"
-              type="submit"
-              variant="contained"
-            >
+            <ButtonLoading loading={working} color="primary" type="submit" variant="contained">
               <Trans>Confirm</Trans>
             </ButtonLoading>
           </Flex>

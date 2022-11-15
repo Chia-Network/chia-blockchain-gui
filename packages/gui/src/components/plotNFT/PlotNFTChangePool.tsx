@@ -1,13 +1,13 @@
-import React, { useMemo, ReactNode } from 'react';
-import { Trans } from '@lingui/macro';
-import { useNavigate } from 'react-router';
 import { useGetPlotNFTsQuery, usePwSelfPoolMutation, usePwJoinPoolMutation } from '@chia/api-react';
 import { Flex, State, Loading, StateTypography } from '@chia/core';
+import { Trans } from '@lingui/macro';
 import { ChevronRight as ChevronRightIcon } from '@mui/icons-material';
-import { useParams } from 'react-router';
-import PlotNFTSelectPool, { SubmitData } from './select/PlotNFTSelectPool';
-import PlotNFTName from './PlotNFTName';
+import React, { useMemo, ReactNode } from 'react';
+import { useNavigate, useParams } from 'react-router';
+
 import PlotNFTStateEnum from '../../constants/PlotNFTState';
+import PlotNFTName from './PlotNFTName';
+import PlotNFTSelectPool, { SubmitData } from './select/PlotNFTSelectPool';
 
 type Props = {
   headerTag?: ReactNode;
@@ -24,12 +24,10 @@ export default function PlotNFTChangePool(props: Props) {
   }>();
 
   const navigate = useNavigate();
-  const nft = useMemo(() => {
-    return data?.nfts?.find(
-      (nft) => nft.poolState.p2SingletonPuzzleHash === plotNFTId,
-    );
-  }, [data?.nfts, plotNFTId]);
-
+  const nft = useMemo(
+    () => data?.nfts?.find((nft) => nft.poolState.p2SingletonPuzzleHash === plotNFTId),
+    [data?.nfts, plotNFTId]
+  );
 
   const state = nft?.poolWalletStatus?.current?.state;
   const isDoubleFee = state === PlotNFTStateEnum.FARMING_TO_POOL;
@@ -38,25 +36,17 @@ export default function PlotNFTChangePool(props: Props) {
     const walletId = nft?.poolWalletStatus.walletId;
 
     const {
-      initialTargetState: {
-        state,
-        poolUrl,
-        relativeLockHeight,
-        targetPuzzleHash,
-      },
+      initialTargetState: { state, poolUrl, relativeLockHeight, targetPuzzleHash },
       fee,
     } = data;
 
-    if (
-      walletId === undefined ||
-      poolUrl === nft?.poolState.poolConfig.poolUrl
-    ) {
+    if (walletId === undefined || poolUrl === nft?.poolState.poolConfig.poolUrl) {
       return;
     }
 
     if (state === 'SELF_POOLING') {
       await pwSelfPool({
-        walletId, 
+        walletId,
         fee,
       }).unwrap();
     } else {
@@ -88,11 +78,7 @@ export default function PlotNFTChangePool(props: Props) {
   }
 
   if (!nft) {
-    return (
-      <Trans>
-        Plot NFT with p2_singleton_puzzle_hash {plotNFTId} does not exists
-      </Trans>
-    );
+    return <Trans>Plot NFT with p2_singleton_puzzle_hash {plotNFTId} does not exists</Trans>;
   }
 
   const {
@@ -103,7 +89,7 @@ export default function PlotNFTChangePool(props: Props) {
 
   const defaultValues = {
     self: !poolUrl,
-    poolUrl: poolUrl,
+    poolUrl,
   };
 
   return (
@@ -121,11 +107,13 @@ export default function PlotNFTChangePool(props: Props) {
         title={<Trans>Change Pool</Trans>}
         submitTitle={<Trans>Change</Trans>}
         defaultValues={defaultValues}
-        feeDescription={isDoubleFee && (
-          <StateTypography variant="body2" state={State.WARNING}>
-            <Trans>Fee is used TWICE: once to leave pool, once to join.</Trans>
-          </StateTypography>
-        )}
+        feeDescription={
+          isDoubleFee && (
+            <StateTypography variant="body2" state={State.WARNING}>
+              <Trans>Fee is used TWICE: once to leave pool, once to join.</Trans>
+            </StateTypography>
+          )
+        }
       />
     </>
   );

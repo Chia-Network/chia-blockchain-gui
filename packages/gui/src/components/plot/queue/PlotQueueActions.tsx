@@ -1,14 +1,12 @@
-import React from 'react';
-import { Trans } from '@lingui/macro';
-import { ConfirmDialog, More, MenuItem, useOpenDialog } from '@chia/core';
-import { Divider, ListItemIcon, Typography } from '@mui/material';
-import {
-  DeleteForever as DeleteForeverIcon,
-  Info as InfoIcon,
-} from '@mui/icons-material';
 import { useStopPlottingMutation } from '@chia/api-react';
-import type PlotQueueItem from '../../../types/PlotQueueItem';
+import { ConfirmDialog, More, MenuItem, useOpenDialog } from '@chia/core';
+import { Trans } from '@lingui/macro';
+import { DeleteForever as DeleteForeverIcon, Info as InfoIcon } from '@mui/icons-material';
+import { Divider, ListItemIcon, Typography } from '@mui/material';
+import React from 'react';
+
 import PlotStatus from '../../../constants/PlotStatus';
+import type PlotQueueItem from '../../../types/PlotQueueItem';
 import PlotQueueLogDialog from './PlotQueueLogDialog';
 
 export type PlotQueueActionProps = {
@@ -40,11 +38,8 @@ export default function PlotQueueAction(props: PlotQueueActionProps) {
           }).unwrap()
         }
       >
-        <Trans>
-          Are you sure you want to delete the plot? The plot cannot be
-          recovered.
-        </Trans>
-      </ConfirmDialog>,
+        <Trans>Are you sure you want to delete the plot? The plot cannot be recovered.</Trans>
+      </ConfirmDialog>
     );
   }
 

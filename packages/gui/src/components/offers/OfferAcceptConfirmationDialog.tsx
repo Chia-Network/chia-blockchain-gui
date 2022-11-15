@@ -1,7 +1,7 @@
-import React from 'react';
-import { Trans } from '@lingui/macro';
 import { ConfirmDialog, CopyToClipboard, Flex } from '@chia/core';
+import { Trans } from '@lingui/macro';
 import { Divider, Typography } from '@mui/material';
+import React from 'react';
 import styled from 'styled-components';
 
 const StyledSummaryBox = styled.div`
@@ -13,9 +13,7 @@ type OfferAcceptConfirmationDialogProps = {
   offeredUnknownCATs: string[];
 };
 
-export default function OfferAcceptConfirmationDialog(
-  props: OfferAcceptConfirmationDialogProps,
-): React.ReactElement {
+export default function OfferAcceptConfirmationDialog(props: OfferAcceptConfirmationDialogProps): React.ReactElement {
   const { offeredUnknownCATs, ...rest } = props;
 
   return (
@@ -35,27 +33,17 @@ export default function OfferAcceptConfirmationDialog(
               </Typography>
               <Typography variant="body1">
                 <Trans>
-                  One or more unknown tokens are being offered. Please verify
-                  that the asset IDs of the tokens listed below match the asset
-                  IDs of the tokens you expect to receive.
+                  One or more unknown tokens are being offered. Please verify that the asset IDs of the tokens listed
+                  below match the asset IDs of the tokens you expect to receive.
                 </Trans>
               </Typography>
               <Typography variant="subtitle1">Unknown CATs:</Typography>
               <StyledSummaryBox>
                 <Flex flexDirection="column">
                   {offeredUnknownCATs.map((assetId) => (
-                    <Flex
-                      alignItems="center"
-                      justifyContent="space-between"
-                      gap={1}
-                    >
-                      <Typography variant="caption">
-                        {assetId.toLowerCase()}
-                      </Typography>
-                      <CopyToClipboard
-                        value={assetId.toLowerCase()}
-                        fontSize="small"
-                      />
+                    <Flex alignItems="center" justifyContent="space-between" gap={1}>
+                      <Typography variant="caption">{assetId.toLowerCase()}</Typography>
+                      <CopyToClipboard value={assetId.toLowerCase()} fontSize="small" />
                     </Flex>
                   ))}
                 </Flex>
@@ -66,8 +54,8 @@ export default function OfferAcceptConfirmationDialog(
         )}
         <Typography>
           <Trans>
-            Once you accept this offer, you will not be able to cancel the
-            transaction. Are you sure you want to accept this offer?
+            Once you accept this offer, you will not be able to cancel the transaction. Are you sure you want to accept
+            this offer?
           </Trans>
         </Typography>
       </Flex>

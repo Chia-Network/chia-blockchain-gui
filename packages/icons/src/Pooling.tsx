@@ -1,6 +1,6 @@
-
-import React from 'react';
 import { SvgIcon, SvgIconProps } from '@mui/material';
+import React from 'react';
+
 import PoolingIcon from './images/Pooling.svg';
 
 export default function Pooling(props: SvgIconProps) {

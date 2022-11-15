@@ -1,6 +1,6 @@
+import { Box } from '@mui/material';
 import React from 'react';
 import styled from 'styled-components';
-import { Box } from '@mui/material';
 
 const ProgressBar = styled.div`
   width: 100%;
@@ -15,7 +15,7 @@ const ProgressBar = styled.div`
     border-radius: 2px;
   }
 `;
-const ipcRenderer = (window as any).ipcRenderer;
+const { ipcRenderer } = window as any;
 
 type ProgressBarType = {
   nftIdUrl: string;
@@ -23,11 +23,7 @@ type ProgressBarType = {
   fetchBinaryContentDone: (valid: boolean) => void;
 };
 
-export default function NFTProgressBar({
-  nftIdUrl,
-  setValidateNFT,
-  fetchBinaryContentDone,
-}: ProgressBarType) {
+export default function NFTProgressBar({ nftIdUrl, setValidateNFT, fetchBinaryContentDone }: ProgressBarType) {
   const [progressBarWidth, setProgressBarWidth] = React.useState(-1);
 
   React.useEffect(() => {

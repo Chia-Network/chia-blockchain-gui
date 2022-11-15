@@ -1,9 +1,9 @@
-import Client from '../Client';
-import Service from './Service';
-import type { Options } from './Service';
 import type FarmingInfo from '../@types/FarmingInfo';
+import Client from '../Client';
 import type Message from '../Message';
 import ServiceName from '../constants/ServiceName';
+import Service from './Service';
+import type { Options } from './Service';
 
 const FARMING_INFO_MAX_ITEMS = 1000;
 export default class Farmer extends Service {
@@ -16,10 +16,7 @@ export default class Farmer extends Service {
         const { farmingInfo } = data;
 
         if (farmingInfo) {
-          this.farmingInfo = [
-            farmingInfo,
-            ...this.farmingInfo,
-          ].slice(0, FARMING_INFO_MAX_ITEMS);
+          this.farmingInfo = [farmingInfo, ...this.farmingInfo].slice(0, FARMING_INFO_MAX_ITEMS);
 
           this.emit('farming_info_changed', this.farmingInfo, null);
         }
@@ -123,66 +120,39 @@ export default class Farmer extends Service {
     });
   }
 
-  onConnections(
-    callback: (data: any, message: Message) => void,
-    processData?: (data: any) => any,
-  ) {
+  onConnections(callback: (data: any, message: Message) => void, processData?: (data: any) => any) {
     return this.onCommand('get_connections', callback, processData);
   }
 
-  onNewFarmingInfo(
-    callback: (data: any, message: Message) => void,
-    processData?: (data: any) => any,
-  ) {
+  onNewFarmingInfo(callback: (data: any, message: Message) => void, processData?: (data: any) => any) {
     return this.onCommand('new_farming_info', callback, processData);
   }
 
-  onNewPlots(
-    callback: (data: any, message: Message) => void,
-    processData?: (data: any) => any,
-  ) {
+  onNewPlots(callback: (data: any, message: Message) => void, processData?: (data: any) => any) {
     return this.onCommand('new_plots', callback, processData);
   }
 
-  onNewSignagePoint(
-    callback: (data: any, message: Message) => void,
-    processData?: (data: any) => any,
-  ) {
+  onNewSignagePoint(callback: (data: any, message: Message) => void, processData?: (data: any) => any) {
     return this.onCommand('new_signage_point', callback, processData);
   }
 
-  onHarvesterChanged(
-    callback: (data: any, message: Message) => void,
-    processData?: (data: any) => any,
-  ) {
+  onHarvesterChanged(callback: (data: any, message: Message) => void, processData?: (data: any) => any) {
     return this.onCommand('get_harvesters', callback, processData);
   }
 
-  onHarvesterUpdated(
-    callback: (data: any, message: Message) => void,
-    processData?: (data: any) => any,
-  ) {
+  onHarvesterUpdated(callback: (data: any, message: Message) => void, processData?: (data: any) => any) {
     return this.onCommand('harvester_update', callback, processData);
   }
 
-  onHarvesterRemoved(
-    callback: (data: any, message: Message) => void,
-    processData?: (data: any) => any,
-  ) {
+  onHarvesterRemoved(callback: (data: any, message: Message) => void, processData?: (data: any) => any) {
     return this.onCommand('harvester_removed', callback, processData);
   }
 
-  onRefreshPlots(
-    callback: (data: any, message: Message) => void,
-    processData?: (data: any) => any,
-  ) {
+  onRefreshPlots(callback: (data: any, message: Message) => void, processData?: (data: any) => any) {
     return this.onCommand('refresh_plots', callback, processData);
   }
 
-  onFarmingInfoChanged(
-    callback: (data: any, message?: Message) => void,
-    processData?: (data: any) => any,
-  ) {
+  onFarmingInfoChanged(callback: (data: any, message?: Message) => void, processData?: (data: any) => any) {
     return this.onCommand('farming_info_changed', callback, processData);
   }
 }

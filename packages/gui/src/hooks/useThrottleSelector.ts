@@ -1,7 +1,7 @@
+import { throttle } from 'lodash';
 import { useEffect, useRef, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import { useUpdate } from 'react-use';
-import { throttle } from 'lodash';
 
 export default function useThrottleSelector<T extends (...args: any) => any>(
   fn: T,
@@ -9,13 +9,8 @@ export default function useThrottleSelector<T extends (...args: any) => any>(
     wait?: number;
     leading?: boolean;
     trailing?: boolean;
-    force?: (
-      data: any,
-      dataBefore: any,
-      state: any,
-      stateBefore: any,
-    ) => boolean;
-  } = {},
+    force?: (data: any, dataBefore: any, state: any, stateBefore: any) => boolean;
+  } = {}
 ): ReturnType<T> {
   const { force, leading = true, trailing = true, wait = 0 } = options;
 
@@ -33,9 +28,9 @@ export default function useThrottleSelector<T extends (...args: any) => any>(
       {
         leading,
         trailing,
-      },
+      }
     ),
-    [wait, leading, trailing],
+    [wait, leading, trailing]
   );
 
   useSelector((state: any) => {
@@ -48,10 +43,7 @@ export default function useThrottleSelector<T extends (...args: any) => any>(
       refData.current = fn(state);
       processUpdate();
 
-      if (
-        force &&
-        force(refData.current, dataBefore, refState.current, stateBefore)
-      ) {
+      if (force && force(refData.current, dataBefore, refState.current, stateBefore)) {
         update();
       }
     }
@@ -62,7 +54,7 @@ export default function useThrottleSelector<T extends (...args: any) => any>(
       // @ts-ignore
       processUpdate.cancel();
     },
-    [],
+    []
   );
 
   return refData.current;

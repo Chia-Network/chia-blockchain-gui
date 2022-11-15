@@ -1,6 +1,7 @@
+import { Box } from '@mui/material';
 import React, { ReactNode } from 'react';
 import styled from 'styled-components';
-import { Box } from '@mui/material';
+
 import Loading from '../Loading';
 
 const StyledLoadingContainer = styled(Box)`
@@ -27,11 +28,7 @@ export default function LoadingOverlay(props: LoadingOverlayProps) {
   return (
     <Box width="100%" position="relative">
       {children}
-      {(loading || disabled) && (
-        <StyledLoadingContainer>
-          {!disabled && <Loading center />}
-        </StyledLoadingContainer>
-      )}
+      {(loading || disabled) && <StyledLoadingContainer>{!disabled && <Loading center />}</StyledLoadingContainer>}
     </Box>
   );
 }

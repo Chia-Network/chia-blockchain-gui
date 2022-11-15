@@ -1,9 +1,9 @@
-import React from 'react';
-import { Trans } from '@lingui/macro';
-import { Button, DialogActions, Flex, Form, TextField } from '@chia/core';
 import { useOpenFullNodeConnectionMutation } from '@chia/api-react';
-import { useForm } from 'react-hook-form';
+import { Button, DialogActions, Flex, Form, TextField } from '@chia/core';
+import { Trans } from '@lingui/macro';
 import { Alert, Dialog, DialogTitle, DialogContent } from '@mui/material';
+import React from 'react';
+import { useForm } from 'react-hook-form';
 
 type Props = {
   open: boolean;
@@ -37,7 +37,7 @@ export default function FullNodeAddConnection(props: Props) {
     const { host, port } = values;
 
     await openConnection({
-      host, 
+      host,
       port: Number.parseInt(port, 10),
     }).unwrap();
 
@@ -67,17 +67,8 @@ export default function FullNodeAddConnection(props: Props) {
           <Flex gap={2} flexDirection="column">
             {error && <Alert severity="error">{error.message}</Alert>}
 
-            <TextField
-              label={<Trans>IP address / host</Trans>}
-              name="host"
-              variant="filled"
-            />
-            <TextField
-              label={<Trans>Port</Trans>}
-              name="port"
-              type="number"
-              variant="filled"
-            />
+            <TextField label={<Trans>IP address / host</Trans>} name="host" variant="filled" />
+            <TextField label={<Trans>Port</Trans>} name="port" type="number" variant="filled" />
           </Flex>
         </DialogContent>
         <DialogActions>

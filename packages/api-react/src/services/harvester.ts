@@ -1,7 +1,8 @@
 import { Harvester } from '@chia/api';
 import type { Plot } from '@chia/api';
-import onCacheEntryAddedInvalidate from '../utils/onCacheEntryAddedInvalidate';
+
 import api, { baseQuery } from '../api';
+import onCacheEntryAddedInvalidate from '../utils/onCacheEntryAddedInvalidate';
 import { apiWithTag } from './farmer';
 
 const apiWithTag2 = apiWithTag.enhanceEndpoints({
@@ -23,17 +24,10 @@ export const harvesterApi = apiWithTag2.injectEndpoints({
         command: 'getPlots',
         service: Harvester,
       }),
-      transformResponse: (response: any) => {
-        return response?.plots;
-      },
+      transformResponse: (response: any) => response?.plots,
       providesTags: (plots) =>
         plots
-          ? [
-              ...plots.map(
-                ({ filename }) => ({ type: 'Plots', id: filename } as const)
-              ),
-              { type: 'Plots', id: 'LIST' },
-            ]
+          ? [...plots.map(({ filename }) => ({ type: 'Plots', id: filename } as const)), { type: 'Plots', id: 'LIST' }]
           : [{ type: 'Plots', id: 'LIST' }],
       onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, [
         {
@@ -119,10 +113,7 @@ export const harvesterApi = apiWithTag2.injectEndpoints({
       providesTags: (directories) =>
         directories
           ? [
-              ...directories.map(
-                (directory) =>
-                  ({ type: 'PlotDirectories', id: directory } as const)
-              ),
+              ...directories.map((directory) => ({ type: 'PlotDirectories', id: directory } as const)),
               { type: 'PlotDirectories', id: 'LIST' },
             ]
           : [{ type: 'PlotDirectories', id: 'LIST' }],

@@ -1,8 +1,10 @@
 import EventEmitter from 'events';
+
 import { isUndefined, omitBy } from 'lodash';
+
 import type Client from '../Client';
-import ServiceName from '../constants/ServiceName';
 import Message from '../Message';
+import ServiceName from '../constants/ServiceName';
 import sleep from '../utils/sleep';
 
 export type Options = {
@@ -12,16 +14,14 @@ export type Options = {
 
 export default class Service extends EventEmitter {
   private _client: Client;
+
   private _name: ServiceName;
+
   private _origin: ServiceName;
+
   private _readyPromise: Promise<null> | undefined;
 
-  constructor(
-    name: ServiceName,
-    client: Client,
-    options: Options = {},
-    onInit?: () => Promise<void>,
-  ) {
+  constructor(name: ServiceName, client: Client, options: Options = {}, onInit?: () => Promise<void>) {
     super();
 
     const { origin, skipAddService } = options;
@@ -142,11 +142,7 @@ export default class Service extends EventEmitter {
     };
   }
 
-  onStateChanged(
-    state: string,
-    callback: (data: any, message: Message) => void,
-    processData?: (data: any) => any
-  ) {
+  onStateChanged(state: string, callback: (data: any, message: Message) => void, processData?: (data: any) => any) {
     return this.onCommand(
       'state_changed',
       (data, message) => {

@@ -1,4 +1,4 @@
-import PlotterName from "./PlotterName";
+import PlotterName from './PlotterName';
 
 type PlotSize = {
   label: string;
@@ -7,14 +7,16 @@ type PlotSize = {
   defaultRam: number;
 };
 
-export function getPlotSize(kSize: 25|32|33|34|35){
-  return {
-    25: '600MiB',
-    32: '101.4GiB',
-    33: '208.8GiB',
-    34: '429.8GiB',
-    35: '884.1GiB',
-  }[kSize] || "Size Unknown";
+export function getPlotSize(kSize: 25 | 32 | 33 | 34 | 35) {
+  return (
+    {
+      25: '600MiB',
+      32: '101.4GiB',
+      33: '208.8GiB',
+      34: '429.8GiB',
+      35: '884.1GiB',
+    }[kSize] || 'Size Unknown'
+  );
 }
 
 export const plottingInfo: Record<PlotterName, PlotSize[]> = {
@@ -34,15 +36,11 @@ export const plottingInfo: Record<PlotterName, PlotSize[]> = {
     { value: 34, label: getPlotSize(34), workspace: '1041GiB', defaultRam: 14800 },
     { value: 35, label: getPlotSize(35), workspace: '2175GiB', defaultRam: 29600 },
   ],
-  [PlotterName.BLADEBIT]: [
-    { value: 32, label: getPlotSize(32), workspace: '416GiB', defaultRam: 3390 },
-  ],
-  [PlotterName.BLADEBIT2]: [
-    { value: 32, label: getPlotSize(32), workspace: '480GiB', defaultRam: 3390 },
-  ],
+  [PlotterName.BLADEBIT]: [{ value: 32, label: getPlotSize(32), workspace: '416GiB', defaultRam: 3390 }],
+  [PlotterName.BLADEBIT2]: [{ value: 32, label: getPlotSize(32), workspace: '480GiB', defaultRam: 3390 }],
 };
 
-export function getPlotSizeOptions(plotterName: PlotterName){
+export function getPlotSizeOptions(plotterName: PlotterName) {
   return plottingInfo[plotterName].map((item) => ({
     value: item.value,
     label: `${item.label} (k=${item.value}, temporary space: ${item.workspace})`,

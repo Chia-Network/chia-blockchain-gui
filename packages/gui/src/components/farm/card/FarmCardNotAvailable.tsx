@@ -1,6 +1,6 @@
-import React, { type ReactNode } from 'react';
-import { Trans } from '@lingui/macro';
 import { State, StateIndicator, CardSimple } from '@chia/core';
+import { Trans } from '@lingui/macro';
+import React, { type ReactNode } from 'react';
 
 type Props = {
   title: ReactNode;

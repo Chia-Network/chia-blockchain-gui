@@ -1,18 +1,11 @@
-import React, { useMemo, useState } from 'react';
+import { useSetRewardTargetsMutation, useGetRewardTargetsQuery } from '@chia/api-react';
+import { Button, Flex, Form, TextField, Loading } from '@chia/core';
 import { Trans } from '@lingui/macro';
+import { Alert, Dialog, DialogActions, DialogTitle, DialogContent, Typography } from '@mui/material';
+import { bech32m } from 'bech32';
+import React, { useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import styled from 'styled-components';
-import { Button, Flex, Form, TextField, Loading } from '@chia/core';
-import { useSetRewardTargetsMutation, useGetRewardTargetsQuery } from '@chia/api-react';
-import {
-  Alert,
-  Dialog,
-  DialogActions,
-  DialogTitle,
-  DialogContent,
-  Typography,
-} from '@mui/material';
-import { bech32m } from 'bech32';
 
 const StyledTextField = styled(TextField)`
   min-width: 640px;
@@ -32,7 +25,7 @@ export default function FarmManageFarmingRewards(props: Props) {
   const { onClose, open } = props;
   const [setRewardTargets] = useSetRewardTargetsMutation();
   const { data, isLoading } = useGetRewardTargetsQuery();
-  
+
   const [error, setError] = useState<Error | null>(null);
   const methods = useForm<FormData>({
     mode: 'onChange',
@@ -43,9 +36,7 @@ export default function FarmManageFarmingRewards(props: Props) {
     },
   });
 
-  const showWarning = useMemo(() => {
-    return !data?.haveFarmerSk || !data?.havePoolSk;
-  }, [data?.haveFarmerSk, data?.havePoolSk]);
+  const showWarning = useMemo(() => !data?.haveFarmerSk || !data?.havePoolSk, [data?.haveFarmerSk, data?.havePoolSk]);
 
   const {
     register,
@@ -56,20 +47,19 @@ export default function FarmManageFarmingRewards(props: Props) {
     onClose();
   }
   function handleDialogClose(event: any, reason: any) {
-      if (reason !== 'backdropClick' || reason !== 'EscapeKeyDown') {
+    if (reason !== 'backdropClick' || reason !== 'EscapeKeyDown') {
       onClose();
-      }}
-
-      function checkAddress(stringToCheck: string): boolean {
-    try {
-      bech32m.decode(stringToCheck);
-      return true;
-    }
-    catch {
-      return false;
     }
   }
 
+  function checkAddress(stringToCheck: string): boolean {
+    try {
+      bech32m.decode(stringToCheck);
+      return true;
+    } catch {
+      return false;
+    }
+  }
 
   async function handleSubmit(values: FormData) {
     const { farmerTarget, poolTarget } = values;
@@ -77,7 +67,7 @@ export default function FarmManageFarmingRewards(props: Props) {
 
     try {
       await setRewardTargets({
-        farmerTarget, 
+        farmerTarget,
         poolTarget,
       }).unwrap();
       handleClose();
@@ -87,12 +77,7 @@ export default function FarmManageFarmingRewards(props: Props) {
   }
 
   return (
-    <Dialog
-      onClose={handleDialogClose}
-      maxWidth="lg"
-      aria-labelledby="manage-farming-rewards-title"
-      open={open}
-    >
+    <Dialog onClose={handleDialogClose} maxWidth="lg" aria-labelledby="manage-farming-rewards-title" open={open}>
       <Form methods={methods} onSubmit={handleSubmit}>
         <DialogTitle id="manage-farming-rewards-title">
           <Trans>Manage Your Farming Rewards Target Addresses</Trans>
@@ -104,20 +89,16 @@ export default function FarmManageFarmingRewards(props: Props) {
             ) : (
               <>
                 {error && <Alert severity="error">{error.message}</Alert>}
-                {errors.farmerTarget &&
-                  errors.farmerTarget.type === 'required' && (
-                    <Alert severity="error">
-                      <Trans>Farmer Reward Address must not be empty.</Trans>
-                    </Alert>
-                  )}
-                {errors.farmerTarget &&
-                  errors.farmerTarget.type === 'validate' && (
-                    <Alert severity="error">
-                      <Trans>
-                        Farmer Reward Address is not properly formatted.
-                      </Trans>
-                    </Alert>
-                  )}
+                {errors.farmerTarget && errors.farmerTarget.type === 'required' && (
+                  <Alert severity="error">
+                    <Trans>Farmer Reward Address must not be empty.</Trans>
+                  </Alert>
+                )}
+                {errors.farmerTarget && errors.farmerTarget.type === 'validate' && (
+                  <Alert severity="error">
+                    <Trans>Farmer Reward Address is not properly formatted.</Trans>
+                  </Alert>
+                )}
                 {errors.poolTarget && errors.poolTarget.type === 'required' && (
                   <Alert severity="error">
                     <Trans>Pool Reward Address must not be empty.</Trans>
@@ -125,16 +106,13 @@ export default function FarmManageFarmingRewards(props: Props) {
                 )}
                 {errors.poolTarget && errors.poolTarget.type === 'validate' && (
                   <Alert severity="error">
-                    <Trans>
-                      Pool Reward Address is not properly formatted.
-                    </Trans>
+                    <Trans>Pool Reward Address is not properly formatted.</Trans>
                   </Alert>
                 )}
                 {showWarning && (
                   <Alert severity="warning">
                     <Trans>
-                      No private keys for one or both addresses. Safe only if
-                      you are sending rewards to another wallet.
+                      No private keys for one or both addresses. Safe only if you are sending rewards to another wallet.
                     </Trans>
                   </Alert>
                 )}
@@ -161,9 +139,8 @@ export default function FarmManageFarmingRewards(props: Props) {
 
                 <Typography variant="body2" color="textSecondary">
                   <Trans>
-                    Note that this does not change your pooling payout
-                    addresses. This only affects old format plots, and the
-                    0.25XCH reward for pooling plots.
+                    Note that this does not change your pooling payout addresses. This only affects old format plots,
+                    and the 0.25XCH reward for pooling plots.
                   </Trans>
                 </Typography>
               </>

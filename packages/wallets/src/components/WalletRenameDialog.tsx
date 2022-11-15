@@ -1,16 +1,8 @@
-import React, { useState } from 'react';
+import { AlertDialog, ButtonLoading, DialogActions, Flex, Form, TextField, useOpenDialog } from '@chia/core';
 import { Trans } from '@lingui/macro';
-import { useForm } from 'react-hook-form';
 import { Button, Dialog, DialogTitle, DialogContent } from '@mui/material';
-import {
-  AlertDialog,
-  ButtonLoading,
-  DialogActions,
-  Flex,
-  Form,
-  TextField,
-  useOpenDialog,
-} from '@chia/core';
+import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
 
 type WalletRenameDialogFormData = {
   name: string;
@@ -72,29 +64,14 @@ export default function WalletRenameDialog(props: Props) {
       <Form methods={methods} onSubmit={handleSubmit}>
         <DialogContent dividers>
           <Flex flexDirection="column" gap={2}>
-            <TextField
-              name="name"
-              variant="outlined"
-              label={<Trans>Nickname</Trans>}
-              fullWidth
-            />
+            <TextField name="name" variant="outlined" label={<Trans>Nickname</Trans>} fullWidth />
           </Flex>
         </DialogContent>
         <DialogActions>
-          <Button
-            onClick={handleCancel}
-            color="secondary"
-            variant="outlined"
-            autoFocus
-          >
+          <Button onClick={handleCancel} color="secondary" variant="outlined" autoFocus>
             <Trans>Cancel</Trans>
           </Button>
-          <ButtonLoading
-            type="submit"
-            color="primary"
-            variant="contained"
-            loading={isSubmitting}
-          >
+          <ButtonLoading type="submit" color="primary" variant="contained" loading={isSubmitting}>
             <Trans>Save</Trans>
           </ButtonLoading>
         </DialogActions>

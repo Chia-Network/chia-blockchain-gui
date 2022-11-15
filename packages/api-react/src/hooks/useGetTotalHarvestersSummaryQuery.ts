@@ -1,5 +1,6 @@
 import BigNumber from 'bignumber.js';
 import { useMemo } from 'react';
+
 import { useGetHarvestersSummaryQuery } from '../services/farmer';
 
 export default function useGetTotalHarvestersSummaryQuery(): {
@@ -19,7 +20,17 @@ export default function useGetTotalHarvestersSummaryQuery(): {
 } {
   const { data, isLoading, error } = useGetHarvestersSummaryQuery();
 
-  const { plots, duplicates, noKeyFilenames, failedToOpenFilenames, plotsProcessed, totalPlotSize, plotFilesTotal, initialized, initializedHarvesters } = useMemo(() => {
+  const {
+    plots,
+    duplicates,
+    noKeyFilenames,
+    failedToOpenFilenames,
+    plotsProcessed,
+    totalPlotSize,
+    plotFilesTotal,
+    initialized,
+    initializedHarvesters,
+  } = useMemo(() => {
     let duplicates = new BigNumber(0);
     let failedToOpenFilenames = new BigNumber(0);
     let noKeyFilenames = new BigNumber(0);
@@ -47,7 +58,7 @@ export default function useGetTotalHarvestersSummaryQuery(): {
       }
 
       if (harvester?.syncing?.initial !== true) {
-        initializedHarvesters +=1;
+        initializedHarvesters += 1;
       }
     });
 
@@ -62,7 +73,6 @@ export default function useGetTotalHarvestersSummaryQuery(): {
       initialized,
       initializedHarvesters,
     };
-
   }, [data]);
 
   return {

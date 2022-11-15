@@ -1,38 +1,37 @@
-import React from 'react';
 import { Trans } from '@lingui/macro';
-import Flex from '../Flex';
 import { Typography } from '@mui/material';
-import styled from 'styled-components';
 import { Shell } from 'electron';
+import React from 'react';
+import styled from 'styled-components';
+
 import { default as walletPackageJson } from '../../../package.json';
 import useAppVersion from '../../hooks/useAppVersion';
+import Flex from '../Flex';
 
 const { productName } = walletPackageJson;
 
 const FAQ = styled.a`
-color: rgb(128, 160, 194);
+  color: rgb(128, 160, 194);
 `;
 
 const SendFeedback = styled.a`
-color: rgb(128, 160, 194);
+  color: rgb(128, 160, 194);
 `;
 
 async function openFAQURL(): Promise<void> {
   try {
-    const shell: Shell = (window as any).shell;
+    const { shell } = window as any;
     await shell.openExternal('https://github.com/Chia-Network/chia-blockchain/wiki/FAQ');
-  }
-  catch (e) {
+  } catch (e) {
     console.error(e);
   }
 }
 
 async function openSendFeedbackURL(): Promise<void> {
   try {
-    const shell: Shell = (window as any).shell;
+    const { shell } = window as any;
     await shell.openExternal('https://feedback.chia.net/lightwallet');
-  }
-  catch (e) {
+  } catch (e) {
     console.error(e);
   }
 }
@@ -54,5 +53,5 @@ export default function LayoutFooter() {
         </SendFeedback>
       </Flex>
     </Flex>
-  )
+  );
 }

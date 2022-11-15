@@ -1,15 +1,16 @@
-import React, { useMemo } from 'react';
-import { Trans } from '@lingui/macro';
-import { Tokens } from '@chia/icons';
-import { Flex, Loading, catToMojo, mojoToCATLocaleString } from '@chia/core';
 import { WalletType } from '@chia/api';
 import type { Wallet } from '@chia/api';
 import { useGetWalletsQuery } from '@chia/api-react';
+import { Flex, Loading, catToMojo, mojoToCATLocaleString } from '@chia/core';
+import { Tokens } from '@chia/icons';
+import { Trans } from '@lingui/macro';
+import BigNumber from 'bignumber.js';
+import React, { useMemo } from 'react';
 import { useFieldArray, useWatch } from 'react-hook-form';
+
+import useOfferBuilderContext from '../../hooks/useOfferBuilderContext';
 import OfferBuilderSection from './OfferBuilderSection';
 import OfferBuilderToken from './OfferBuilderToken';
-import useOfferBuilderContext from '../../hooks/useOfferBuilderContext';
-import BigNumber from 'bignumber.js';
 
 export type OfferBuilderTokensSectionProps = {
   name: string;
@@ -17,9 +18,7 @@ export type OfferBuilderTokensSectionProps = {
   muted?: boolean;
 };
 
-export default function OfferBuilderTokensSection(
-  props: OfferBuilderTokensSectionProps,
-) {
+export default function OfferBuilderTokensSection(props: OfferBuilderTokensSectionProps) {
   const { name, offering, muted } = props;
 
   const { data: wallets, isLoading: isLoadingWallets } = useGetWalletsQuery();
@@ -29,12 +28,7 @@ export default function OfferBuilderTokensSection(
   const tokens = useWatch({
     name,
   });
-  const {
-    readOnly,
-    requestedRoyalties,
-    offeredRoyalties,
-    isCalculatingRoyalties,
-  } = useOfferBuilderContext();
+  const { readOnly, requestedRoyalties, offeredRoyalties, isCalculatingRoyalties } = useOfferBuilderContext();
   const loading = isLoadingWallets || isCalculatingRoyalties;
 
   // Yes, this is correct. Fungible (token) assets used to pay royalties are from the opposite side of the trade.
@@ -55,17 +49,14 @@ export default function OfferBuilderTokensSection(
 
     assetIds.map((assetId) => {
       Object.entries(allRoyalties).forEach(([nftId, royaltyPayments]) => {
-        const royaltyPayment = royaltyPayments?.find(
-          (payment) => payment.asset === assetId,
-        );
+        const royaltyPayment = royaltyPayments?.find((payment) => payment.asset === assetId);
 
         if (royaltyPayment) {
           if (!royaltiesByAssetId[assetId]) {
             royaltiesByAssetId[assetId] = [];
           }
 
-          const baseTotal: BigNumber =
-            tokenAmountsWithRoyalties[royaltyPayment.asset];
+          const baseTotal: BigNumber = tokenAmountsWithRoyalties[royaltyPayment.asset];
           const totalAmount = baseTotal.plus(royaltyPayment.amount);
 
           tokenAmountsWithRoyalties[royaltyPayment.asset] = totalAmount;
@@ -109,12 +100,9 @@ export default function OfferBuilderTokensSection(
       return false;
     }
 
-    const emptyTokensCount =
-      tokens?.filter((token) => !token.assetId).length ?? 0;
+    const emptyTokensCount = tokens?.filter((token) => !token.assetId).length ?? 0;
 
-    const catWallets = wallets.filter(
-      (wallet: Wallet) => wallet.type === WalletType.CAT,
-    );
+    const catWallets = wallets.filter((wallet: Wallet) => wallet.type === WalletType.CAT);
 
     const availableTokensCount = catWallets.length - usedAssetIds.length;
     return availableTokensCount > emptyTokensCount;
@@ -124,9 +112,7 @@ export default function OfferBuilderTokensSection(
     <OfferBuilderSection
       icon={<Tokens />}
       title={<Trans>Tokens</Trans>}
-      subtitle={
-        <Trans>Chia Asset Tokens (CATs) are tokens built on top of XCH</Trans>
-      }
+      subtitle={<Trans>Chia Asset Tokens (CATs) are tokens built on top of XCH</Trans>}
       onAdd={showAdd ? handleAdd : undefined}
       expanded={!!fields.length}
       muted={muted}

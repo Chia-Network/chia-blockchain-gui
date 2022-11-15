@@ -1,8 +1,9 @@
-import React, { type ReactNode } from 'react';
-import styled from 'styled-components';
 import { Box } from '@mui/material';
-import Flex from '../Flex';
+import React, { type ReactNode } from 'react';
 import { Outlet } from 'react-router';
+import styled from 'styled-components';
+
+import Flex from '../Flex';
 
 const StyledRoot = styled(Flex)`
   width: 100%;
@@ -19,14 +20,11 @@ const StyledHeader = styled(({ sidebar, ...rest }) => <Box {...rest} />)`
   padding-bottom: ${({ theme }) => theme.spacing(3)};
   padding-right: ${({ theme }) => theme.spacing(3)};
 
-  padding-left: ${({ theme, sidebar }) =>
-    !sidebar ? theme.spacing(3) : '10px'};
+  padding-left: ${({ theme, sidebar }) => (!sidebar ? theme.spacing(3) : '10px')};
   margin-left: ${({ sidebar }) => (!sidebar ? `0` : '-10px')};
 `;
 
-const StyledContent = styled(({ header, sidebar, ...rest }) => (
-  <Box {...rest} />
-))`
+const StyledContent = styled(({ header, sidebar, ...rest }) => <Box {...rest} />)`
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -38,8 +36,7 @@ const StyledContent = styled(({ header, sidebar, ...rest }) => (
   padding-bottom: ${({ theme }) => theme.spacing(3)};
   padding-right: ${({ theme }) => theme.spacing(3)};
 
-  padding-left: ${({ theme, sidebar }) =>
-    !sidebar ? theme.spacing(3) : '10px'};
+  padding-left: ${({ theme, sidebar }) => (!sidebar ? theme.spacing(3) : '10px')};
   margin-left: ${({ sidebar }) => (!sidebar ? `0` : '-10px')};
 `;
 
@@ -65,9 +62,7 @@ export default function DashboardLayout(props: DashboardLayoutProps) {
           </StyledContent>
         </Flex>
       ) : (
-        <StyledContent sidebar={!!sidebar}>
-          {outlet ? <Outlet /> : children}
-        </StyledContent>
+        <StyledContent sidebar={!!sidebar}>{outlet ? <Outlet /> : children}</StyledContent>
       )}
     </StyledRoot>
   );

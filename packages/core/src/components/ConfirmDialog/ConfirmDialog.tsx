@@ -1,16 +1,11 @@
-import React, { type ReactNode, useState } from 'react';
 import { Trans } from '@lingui/macro';
-import {
-  ButtonProps,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogContentText,
-} from '@mui/material';
-import DialogActions from '../DialogActions';
+import { ButtonProps, Dialog, DialogTitle, DialogContent, DialogContentText } from '@mui/material';
+import React, { type ReactNode, useState } from 'react';
+
+import useShowError from '../../hooks/useShowError';
 import Button from '../Button';
 import ButtonLoading from '../ButtonLoading';
-import useShowError from '../../hooks/useShowError';
+import DialogActions from '../DialogActions';
 
 export type ConfirmDialogProps = {
   title?: ReactNode;
@@ -69,27 +64,15 @@ export default function ConfirmDialog(props: ConfirmDialogProps) {
       {title && <DialogTitle id="alert-dialog-title">{title}</DialogTitle>}
       {children && (
         <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            {children}
-          </DialogContentText>
+          <DialogContentText id="alert-dialog-description">{children}</DialogContentText>
         </DialogContent>
       )}
 
       <DialogActions>
-        <Button
-          onClick={handleCancel}
-          color="secondary"
-          variant="outlined"
-          autoFocus
-        >
+        <Button onClick={handleCancel} color="secondary" variant="outlined" autoFocus>
           {cancelTitle}
         </Button>
-        <ButtonLoading
-          onClick={handleConfirm}
-          color={confirmColor}
-          variant="contained"
-          loading={loading}
-        >
+        <ButtonLoading onClick={handleConfirm} color={confirmColor} variant="contained" loading={loading}>
           {confirmTitle}
         </ButtonLoading>
       </DialogActions>

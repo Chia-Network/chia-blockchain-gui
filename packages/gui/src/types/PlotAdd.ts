@@ -23,7 +23,7 @@ type PlotAdd = {
   madmaxNumBucketsPhase3?: number;
   madmaxTempToggle?: boolean;
   madmaxThreadMultiplier?: number;
-  madmaxWaitForCopy?: boolean
+  madmaxWaitForCopy?: boolean;
   maxRam: number;
   numBuckets: number;
   numThreads: number;

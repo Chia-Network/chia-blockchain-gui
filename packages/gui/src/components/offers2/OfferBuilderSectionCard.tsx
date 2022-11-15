@@ -1,6 +1,7 @@
-import React, { ReactNode, ReactElement } from 'react';
 import { Flex } from '@chia/core';
 import { Box, CardActionArea, Collapse, Typography } from '@mui/material';
+import React, { ReactNode, ReactElement } from 'react';
+
 import useOfferBuilderContext from '../../hooks/useOfferBuilderContext';
 
 export type OfferBuilderSectionCardProps = {
@@ -11,9 +12,7 @@ export type OfferBuilderSectionCardProps = {
   children?: ReactNode;
 };
 
-export default function OfferBuilderSectionCard(
-  props: OfferBuilderSectionCardProps,
-) {
+export default function OfferBuilderSectionCard(props: OfferBuilderSectionCardProps) {
   const { icon, title, subtitle, children, name } = props;
   const { isExpanded, expand, readOnly } = useOfferBuilderContext();
 

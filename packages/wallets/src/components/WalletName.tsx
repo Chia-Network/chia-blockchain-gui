@@ -1,12 +1,12 @@
 import { Typography, type TypographyProps } from '@mui/material';
 import React from 'react';
+
 import useWallet from '../hooks/useWallet';
 import getWalletPrimaryTitle from '../utils/getWalletPrimaryTitle';
 
 export type WalletNameProps = TypographyProps & {
   walletId: number;
 };
-
 
 export default function WalletName(props: WalletNameProps) {
   const { walletId, ...rest } = props;
@@ -18,9 +18,5 @@ export default function WalletName(props: WalletNameProps) {
 
   const primaryTitle = getWalletPrimaryTitle(wallet);
 
-  return (
-    <Typography {...rest}>
-      {primaryTitle}
-    </Typography>
-  );
+  return <Typography {...rest}>{primaryTitle}</Typography>;
 }

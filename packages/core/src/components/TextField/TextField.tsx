@@ -1,10 +1,7 @@
-import React, { ReactElement, ReactNode } from 'react';
+import { TextField as MaterialTextField, TextFieldProps as MaterialTextFieldProps } from '@mui/material';
 import { get } from 'lodash';
+import React, { ReactElement, ReactNode } from 'react';
 import { Controller, ControllerProps, useFormContext } from 'react-hook-form';
-import {
-  TextField as MaterialTextField,
-  TextFieldProps as MaterialTextFieldProps,
-} from '@mui/material';
 
 export type ReactRules<T> =
   | ControllerProps<ReactElement<T>>['rules']
@@ -49,11 +46,11 @@ export type TextFieldProps = MaterialTextFieldProps & {
   hideError?: boolean;
   name: string;
   rules?: ReactRules<typeof MaterialTextField>;
-  "data-testid"?: string;
+  'data-testid'?: string;
 };
 
 export default function TextField(props: TextFieldProps): JSX.Element {
-  const { name, onChange: baseOnChange, "data-testid": dataTestid, inputProps, ...rest } = props;
+  const { name, onChange: baseOnChange, 'data-testid': dataTestid, inputProps, ...rest } = props;
   const { control, errors } = useFormContext();
   const errorMessage = get(errors, name);
 
@@ -78,7 +75,7 @@ export default function TextField(props: TextFieldProps): JSX.Element {
             error={!!errorMessage}
             helperText={errorMessage?.message}
             inputProps={{
-              "data-testid": dataTestid,
+              'data-testid': dataTestid,
               ...inputProps,
             }}
             {...rest}

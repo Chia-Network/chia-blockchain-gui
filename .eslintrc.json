@@ -10,7 +10,6 @@
   "parserOptions": {
     "project": "./packages/*/tsconfig.json"
   },
-  "ignorePatterns": ["node_modules/", "dist/", "build/"],
   "rules": {
     // Automatically order imports
     "import/order": [

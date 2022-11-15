@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
+import { AlertDialog, Fee, Back, ButtonLoading, Card, Flex, Form, TextField, chiaToMojo } from '@chia/core';
 import { Trans } from '@lingui/macro';
-import { AlertDialog, Fee, Back, ButtonLoading, Card, Flex, Form, TextField } from '@chia/core';
 import { Box, Grid } from '@mui/material';
-import { useDispatch } from 'react-redux';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
-import { create_cc_for_colour_action } from '../../../modules/message';
-import { chiaToMojo } from '@chia/core';
-import { openDialog } from '../../../modules/dialog';
+
 import config from '../../../config/config';
+import { openDialog } from '../../../modules/dialog';
+import { create_cc_for_colour_action } from '../../../modules/message';
 
 const { asteroid } = config;
 
@@ -38,8 +38,8 @@ export default function WalletCATCreateExisting() {
           openDialog(
             <AlertDialog>
               <Trans>Please enter a valid CAT name</Trans>
-            </AlertDialog>,
-          ),
+            </AlertDialog>
+          )
         );
         return;
       }
@@ -54,7 +54,7 @@ export default function WalletCATCreateExisting() {
           ),
         );
         return;
-      }*/
+      } */
 
       const feeMojos = chiaToMojo(fee || '0');
 
@@ -71,10 +71,11 @@ export default function WalletCATCreateExisting() {
     <Form methods={methods} onSubmit={handleSubmit}>
       <Flex flexDirection="column" gap={3}>
         <Back variant="h5">
-          {asteroid 
-            ? <Trans>Create custom CAT Wallet</Trans>
-            : <Trans>Create Chia Asset Token Wallet from Existing TAIL</Trans>}
-          
+          {asteroid ? (
+            <Trans>Create custom CAT Wallet</Trans>
+          ) : (
+            <Trans>Create Chia Asset Token Wallet from Existing TAIL</Trans>
+          )}
         </Back>
         <Card>
           <Grid spacing={2} container>
@@ -87,20 +88,12 @@ export default function WalletCATCreateExisting() {
               />
             </Grid>
             <Grid xs={12} md={6} item>
-              <Fee
-                variant="outlined"
-                fullWidth
-              />
+              <Fee variant="outlined" fullWidth />
             </Grid>
           </Grid>
         </Card>
         <Box>
-          <ButtonLoading
-            type="submit"
-            variant="contained"
-            color="primary"
-            loading={loading}
-          >
+          <ButtonLoading type="submit" variant="contained" color="primary" loading={loading}>
             <Trans>Recover</Trans>
           </ButtonLoading>
         </Box>

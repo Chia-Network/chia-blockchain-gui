@@ -1,6 +1,8 @@
 {
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.codeActionsOnSave": ["source.fixAll.eslint"],
+  "git.inputValidationSubjectLength": 70,
   "search.exclude": {
     "**/dist": true,
     "**/build": true,

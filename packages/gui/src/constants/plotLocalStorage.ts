@@ -1,6 +1,6 @@
 enum PlotLocalStorageKeys {
   TMPDIR = 'tmpdir',
-  TMP2DIR= 'tmp2dir',
+  TMP2DIR = 'tmp2dir',
   FINALDIR = 'finaldir',
 }
 

@@ -1,8 +1,9 @@
-import React from 'react';
-import { Trans } from '@lingui/macro';
 import { Flex, More, useOpenDialog, MenuItem } from '@chia/core';
-import { ListItemIcon, Typography } from '@mui/material';
+import { Trans } from '@lingui/macro';
 import { Settings as SettingsIcon } from '@mui/icons-material';
+import { ListItemIcon, Typography } from '@mui/material';
+import React from 'react';
+
 import FarmManageFarmingRewards from './FarmManageFarmingRewards';
 
 export default function FarmHeader() {

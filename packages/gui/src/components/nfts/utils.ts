@@ -11,7 +11,5 @@ import type { Wallet } from '@chia/api';
  * @returns NFT inbox or undefined if not found
  */
 export function getNFTInbox(wallets: Wallet[] | undefined): Wallet | undefined {
-  return wallets
-    ?.filter((wallet) => wallet.type === WalletType.NFT)
-    .find((nftWallet: Wallet) => !nftWallet.meta?.did);
+  return wallets?.filter((wallet) => wallet.type === WalletType.NFT).find((nftWallet: Wallet) => !nftWallet.meta?.did);
 }

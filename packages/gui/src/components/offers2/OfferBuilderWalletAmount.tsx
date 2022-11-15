@@ -1,6 +1,7 @@
-import React from 'react';
-import { Trans } from '@lingui/macro';
 import { useWallet } from '@chia/wallets';
+import { Trans } from '@lingui/macro';
+import React from 'react';
+
 import OfferBuilderValue from './OfferBuilderValue';
 import OfferBuilderWalletBalance from './OfferBuilderWalletBalance';
 
@@ -15,9 +16,7 @@ export type OfferBuilderWalletAmountProps = {
   royaltyPayments?: Record<string, any>[];
 };
 
-export default function OfferBuilderWalletAmount(
-  props: OfferBuilderWalletAmountProps,
-) {
+export default function OfferBuilderWalletAmount(props: OfferBuilderWalletAmountProps) {
   const {
     walletId,
     name,
@@ -34,21 +33,11 @@ export default function OfferBuilderWalletAmount(
   return (
     <OfferBuilderValue
       name={name}
-      label={
-        label ??
-        (amountWithRoyalties ? (
-          <Trans>Total Amount</Trans>
-        ) : (
-          <Trans>Amount</Trans>
-        ))
-      }
+      label={label ?? (amountWithRoyalties ? <Trans>Total Amount</Trans> : <Trans>Amount</Trans>)}
       type="amount"
       symbol={unit}
       showAmountInMojos={showAmountInMojos}
-      caption={
-        walletId !== undefined &&
-        !hideBalance && <OfferBuilderWalletBalance walletId={walletId} />
-      }
+      caption={walletId !== undefined && !hideBalance && <OfferBuilderWalletBalance walletId={walletId} />}
       onRemove={onRemove}
       amountWithRoyalties={amountWithRoyalties}
       royaltyPayments={royaltyPayments}

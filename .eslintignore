@@ -4,6 +4,5 @@ examples
 daemon
 build
 *_old
-packages/*/src/tests
-packages/*/test/fixtures
+packages/*/test/data_fixtures
 packages/wallet/*

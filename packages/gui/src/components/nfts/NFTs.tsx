@@ -1,7 +1,8 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import NFTGallery from './gallery/NFTGallery';
+
 import NFTDetail from './detail/NFTDetailV2';
+import NFTGallery from './gallery/NFTGallery';
 
 /* ========================================================================== */
 

@@ -1,26 +1,24 @@
-import React, { useMemo } from 'react';
-import { Trans } from '@lingui/macro';
-import { Back, Flex, LayoutDashboardSub, Loading } from '@chia/core';
 import type { NFTInfo, Wallet } from '@chia/api';
 import { useGetNFTWallets } from '@chia/api-react';
+import { Back, Flex, LayoutDashboardSub, Loading } from '@chia/core';
+import { Trans } from '@lingui/macro';
 import { Box, Typography } from '@mui/material';
+import React, { useMemo } from 'react';
 import { useParams } from 'react-router-dom';
-import NFTPreview from '../NFTPreview';
+
 import useFetchNFTs from '../../../hooks/useFetchNFTs';
 import useNFTMetadata from '../../../hooks/useNFTMetadata';
-import NFTRankings from '../NFTRankings';
-import NFTProperties from '../NFTProperties';
 import NFTDetails from '../NFTDetails';
+import NFTPreview from '../NFTPreview';
+import NFTProperties from '../NFTProperties';
+import NFTRankings from '../NFTRankings';
 
 /* ========================================================================== */
 
 export default function NFTDetail() {
   const { nftId } = useParams();
-  const { wallets: nftWallets, isLoading: isLoadingWallets } =
-    useGetNFTWallets();
-  const { nfts, isLoading: isLoadingNFTs } = useFetchNFTs(
-    nftWallets.map((wallet: Wallet) => wallet.id),
-  );
+  const { wallets: nftWallets, isLoading: isLoadingWallets } = useGetNFTWallets();
+  const { nfts, isLoading: isLoadingNFTs } = useFetchNFTs(nftWallets.map((wallet: Wallet) => wallet.id));
 
   const nft: NFTInfo | undefined = useMemo(() => {
     if (!nfts) {
@@ -38,9 +36,7 @@ export default function NFTDetail() {
   return (
     <LayoutDashboardSub>
       <Flex flexDirection="column" gap={2}>
-        <Back variant="h5">
-          {metadata?.name ?? <Trans>Title Not Available</Trans>}
-        </Back>
+        <Back variant="h5">{metadata?.name ?? <Trans>Title Not Available</Trans>}</Back>
         <Box
           border={1}
           borderColor="grey.300"
@@ -83,9 +79,7 @@ export default function NFTDetail() {
                     <Trans>Collection</Trans>
                   </Typography>
 
-                  <Typography>
-                    {metadata?.collection?.name ?? <Trans>Not Available</Trans>}
-                  </Typography>
+                  <Typography>{metadata?.collection?.name ?? <Trans>Not Available</Trans>}</Typography>
                 </Flex>
               )}
               {(nft?.editionTotal ?? 0) > 1 && (

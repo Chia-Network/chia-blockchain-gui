@@ -38,9 +38,7 @@ test('Read data from Json file', async () => {
     let x = JSON.stringify(i);
     let dataVariable = JSON.stringify(dataFile[x]);
     // Given I enter the first 24 words of the mnemonic
-    await page
-      .locator(`[data-testid="mnemonic-${i}"] input[role="combobox"]`)
-      .fill(dataVariable);
+    await page.locator(`[data-testid="mnemonic-${i}"] input[role="combobox"]`).fill(dataVariable);
     i++;
   }
 });

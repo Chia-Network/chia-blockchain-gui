@@ -1,10 +1,5 @@
-import React from 'react';
-import { Trans } from '@lingui/macro';
-import { Typography, Container, Grid } from '@mui/material';
-// import { shuffle } from 'lodash';
-import { useForm, useFieldArray } from 'react-hook-form';
+import { english } from '@chia/api';
 import { useAddPrivateKeyMutation, useLogInMutation } from '@chia/api-react';
-import { useNavigate } from 'react-router';
 import {
   AlertDialog,
   Autocomplete,
@@ -17,7 +12,13 @@ import {
   useTrans,
   TextField,
 } from '@chia/core';
-import { english } from '@chia/api';
+import { Trans } from '@lingui/macro';
+import { Typography, Container, Grid } from '@mui/material';
+import React from 'react';
+// import { shuffle } from 'lodash';
+import { useForm, useFieldArray } from 'react-hook-form';
+import { useNavigate } from 'react-router';
+
 import MnemonicPaste from './PasteMnemonic';
 
 /*
@@ -69,9 +70,7 @@ export default function WalletImport() {
     if (!intersection || intersection.length !== 24) {
       openDialog(
         <AlertDialog>
-          <Trans>
-            Your pasted list does not include 24 valid mnemonic words.
-          </Trans>
+          <Trans>Your pasted list does not include 24 valid mnemonic words.</Trans>
         </AlertDialog>
       );
       return;
@@ -88,11 +87,7 @@ export default function WalletImport() {
 
   function ActionButtons() {
     return (
-      <Button
-        onClick={() => setMnemonicPasteOpen(true)}
-        variant="contained"
-        disableElevation
-      >
+      <Button onClick={() => setMnemonicPasteOpen(true)} variant="contained" disableElevation>
         <Trans>Paste Mnemonic</Trans>
       </Button>
     );
@@ -127,19 +122,11 @@ export default function WalletImport() {
       <Container maxWidth="lg">
         <Flex flexDirection="column" gap={3} alignItems="center">
           <Logo />
-          <Typography
-            variant="h4"
-            component="h1"
-            textAlign="center"
-            gutterBottom
-          >
+          <Typography variant="h4" component="h1" textAlign="center" gutterBottom>
             <Trans>Import Wallet from Mnemonics</Trans>
           </Typography>
           <Typography variant="subtitle1" align="center">
-            <Trans>
-              Enter the 24 word mnemonic that you have saved in order to restore
-              your Chia wallet.
-            </Trans>
+            <Trans>Enter the 24 word mnemonic that you have saved in order to restore your Chia wallet.</Trans>
           </Typography>
           <Grid spacing={2} rowSpacing={3} container>
             {fields.map((field, index) => (
@@ -168,22 +155,11 @@ export default function WalletImport() {
                   }}
                   fullWidth
                 />
-                <ButtonLoading
-                  type="submit"
-                  variant="contained"
-                  color="primary"
-                  loading={isSubmitting}
-                  fullWidth
-                >
+                <ButtonLoading type="submit" variant="contained" color="primary" loading={isSubmitting} fullWidth>
                   <Trans>Next</Trans>
                 </ButtonLoading>
                 <ActionButtons />
-                {mnemonicPasteOpen && (
-                  <MnemonicPaste
-                    onSuccess={submitMnemonicPaste}
-                    onCancel={closeMnemonicPaste}
-                  />
-                )}
+                {mnemonicPasteOpen && <MnemonicPaste onSuccess={submitMnemonicPaste} onCancel={closeMnemonicPaste} />}
               </Flex>
             </Grid>
           </Grid>

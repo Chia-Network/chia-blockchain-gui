@@ -1,7 +1,8 @@
-import React, { ReactElement } from 'react';
-import { Trans } from '@lingui/macro';
 import { useGetWalletBalanceQuery } from '@chia/api-react';
 import { CardSimple } from '@chia/core';
+import { Trans } from '@lingui/macro';
+import React, { ReactElement } from 'react';
+
 import useWallet from '../../hooks/useWallet';
 import useWalletHumanValue from '../../hooks/useWalletHumanValue';
 
@@ -13,15 +14,18 @@ type Props = {
 export default function WalletCardPendingTotalBalance(props: Props) {
   const { walletId, tooltip } = props;
 
-  const { 
-    data: walletBalance, 
+  const {
+    data: walletBalance,
     isLoading: isLoadingWalletBalance,
     error,
-  } = useGetWalletBalanceQuery({
-    walletId,
-  }, {
-    pollingInterval: 10000,
-  });
+  } = useGetWalletBalanceQuery(
+    {
+      walletId,
+    },
+    {
+      pollingInterval: 10000,
+    }
+  );
 
   const { wallet, unit = '', loading } = useWallet(walletId);
 

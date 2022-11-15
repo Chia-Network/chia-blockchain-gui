@@ -1,6 +1,7 @@
-import React from 'react';
 import { Trans } from '@lingui/macro';
 import { Typography } from '@mui/material';
+import React from 'react';
+
 import type PlotNFTExternal from '../../types/PlotNFTExternal';
 
 type Props = {

@@ -1,16 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
-import { Trans } from '@lingui/macro';
-import { useFormContext } from 'react-hook-form';
 import { CardStep, ConfirmDialog, Link, Select, StateColor, useOpenDialog } from '@chia/core';
-import {
-  Grid,
-  FormControl,
-  Typography,
-  InputLabel,
-  MenuItem,
-  FormHelperText,
-} from '@mui/material';
+import { Trans } from '@lingui/macro';
+import { Grid, FormControl, Typography, InputLabel, MenuItem, FormHelperText } from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import { useFormContext } from 'react-hook-form';
+import styled from 'styled-components';
+
 import { getPlotSizeOptions } from '../../../constants/plotSizes';
 import Plotter from '../../../types/Plotter';
 
@@ -36,16 +30,12 @@ export default function PlotAddChooseSize(props: Props) {
   const isKLow = plotSize < MIN_MAINNET_K_SIZE;
 
   const [allowedPlotSizes, setAllowedPlotSizes] = useState(
-    getPlotSizeOptions(plotterName).filter(option =>
-      plotter.options.kSizes.includes(option.value)
-    )
+    getPlotSizeOptions(plotterName).filter((option) => plotter.options.kSizes.includes(option.value))
   );
 
   useEffect(() => {
     setAllowedPlotSizes(
-      getPlotSizeOptions(plotterName).filter(option =>
-        plotter.options.kSizes.includes(option.value)
-      )
+      getPlotSizeOptions(plotterName).filter((option) => plotter.options.kSizes.includes(option.value))
     );
   }, [plotterName]);
 
@@ -57,7 +47,7 @@ export default function PlotAddChooseSize(props: Props) {
         confirmColor="danger"
       >
         <Trans>Are you sure you want to use k={plotSize}?</Trans>
-      </ConfirmDialog>,
+      </ConfirmDialog>
     );
 
     // @ts-ignore
@@ -85,10 +75,7 @@ export default function PlotAddChooseSize(props: Props) {
           {
             'You do not need to be synced or connected to plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. '
           }
-          <Link
-            target="_blank"
-            href="https://github.com/Chia-Network/chia-blockchain/wiki/k-sizes"
-          >
+          <Link target="_blank" href="https://github.com/Chia-Network/chia-blockchain/wiki/k-sizes">
             Learn more
           </Link>
         </Trans>
