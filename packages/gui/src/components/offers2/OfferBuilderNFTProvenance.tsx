@@ -40,16 +40,6 @@ export default function OfferBuilderNFTProvenance(props: OfferBuilderNFTProvenan
       <Button
         variant="outlined"
         color="primary"
-        onClick={() => viewOnExplorer(nft, NFTExplorer.SkyNFT)}
-        style={{ width: '100%' }}
-      >
-        <Typography variant="caption" color="secondary">
-          <Trans>Check Provenance on SkyNFT</Trans>
-        </Typography>
-      </Button>
-      <Button
-        variant="outlined"
-        color="primary"
         onClick={() => viewOnExplorer(nft, NFTExplorer.Spacescan)}
         style={{ width: '100%' }}
       >
