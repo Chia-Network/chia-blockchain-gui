@@ -16,6 +16,7 @@ import {
   useLogInAndSkipImportMutation,
   useSignMessageByAddressMutation,
   useSignMessageByIdMutation,
+  useGetSyncStatusQuery,
 } from '@chia/api-react';
 import BigNumber from 'bignumber.js';
 import useWalletConnectPrefs from './useWalletConnectPrefs';
@@ -45,15 +46,23 @@ export default function useWalletConnectCommand() {
   const [logIn] = useLogInAndSkipImportMutation();
   const [signMessageByAddress] = useSignMessageByAddressMutation();
   const [signMessageById] = useSignMessageByIdMutation();
+  const walletSyncState = useGetSyncStatusQuery(
+    {},
+    {
+      pollingInterval: 10000,
+    },
+  );
   const { getPairBySession } = useWalletConnectPairs();
 
   const state = useRef({
     currentFingerprint,
     currencyCode,
+    walletSyncState,
   });
 
   state.current.currentFingerprint = currentFingerprint;
   state.current.currencyCode = currencyCode;
+  state.current.walletSyncState = walletSyncState;
 
   async function confirm(
     topic: string,
@@ -79,7 +88,7 @@ export default function useWalletConnectCommand() {
         <Flex flexDirection="column" gap={2}>
           <Typography variant="body1">{message}</Typography>
 
-          {attributes.length && (
+          {attributes.length > 0 && (
             <Flex flexDirection="column" gap={2}>
               {attributes.map(({ label, value }, index) => (
                 <Flex flexDirection="column" key={index}>
@@ -282,6 +291,32 @@ export default function useWalletConnectCommand() {
     }).unwrap();
   }
 
+  async function chiaGetWalletSyncStatus(
+    topic: string,
+    params: {
+      fingerprint: number;
+    },
+  ) {
+    const { fingerprint } = params;
+    const { walletSyncState, currentFingerprint } = state.current;
+    if (fingerprint !== currentFingerprint) {
+      throw new Error('Invalid fingerprint');
+    }
+
+    const confirmed = await confirm(
+      topic,
+      <Trans>Do you want to send the current wallet sync state?</Trans>,
+    );
+    if (!confirmed) {
+      throw new Error('User cancelled command getWalletSyncStatus');
+    }
+
+    return {
+      ...walletSyncState.data,
+      isLoading: walletSyncState.isLoading,
+    };
+  }
+
   const handleProcess = useCallback(
     async (topic, command: string, params: any) => {
       switch (command) {
@@ -295,6 +330,8 @@ export default function useWalletConnectCommand() {
           return chiaSignMessageByAddress(topic, params);
         case 'chia_signMessageById':
           return chiaSignMessageById(topic, params);
+        case 'chia_getWalletSyncStatus':
+          return chiaGetWalletSyncStatus(topic, params);
         default:
           throw new Error(`Unknown command ${command}`);
       }

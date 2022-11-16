@@ -115,6 +115,7 @@ export default function useWalletConnect(config: UseWalletConnectConfig) {
           'chia_logIn',
           'chia_signMessageByAddress',
           'chia_signMessageById',
+          'chia_getWalletSyncStatus',
         ],
         events: [],
       },
