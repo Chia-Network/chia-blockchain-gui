@@ -64,7 +64,6 @@ export default class Wallet extends Service {
     options: Object = {}
   ) {
     return this.command('create_new_wallet', {
-      host: this.client.backupHost,
       walletType,
       ...options,
     });
@@ -145,30 +144,23 @@ export default class Wallet extends Service {
   async logIn(
     fingerprint: string,
     type: 'normal' | 'skip' | 'restore_backup' = 'normal', // skip is used to skip import
-    host: string = this.client.backupHost,
     filePath?: string
   ) {
     return this.command('log_in', {
       fingerprint,
       type,
       filePath,
-      host,
     });
   }
 
-  logInAndSkipImport(
-    fingerprint: string,
-    host: string = this.client.backupHost
-  ) {
-    return this.logIn(fingerprint, 'skip', host);
+  // TODO: Remove
+  logInAndSkipImport(fingerprint: string) {
+    return this.logIn(fingerprint, 'skip');
   }
 
-  logInAndImportBackup(
-    fingerprint: string,
-    filePath: string,
-    host: string = this.client.backupHost
-  ) {
-    return this.logIn(fingerprint, 'restore_backup', host, filePath);
+  // TODO: Remove
+  logInAndImportBackup(fingerprint: string, filePath: string) {
+    return this.logIn(fingerprint, 'restore_backup', filePath);
   }
 
   async getBackupInfo(

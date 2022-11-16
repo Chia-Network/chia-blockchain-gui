@@ -9,7 +9,7 @@ import {
   Loading,
   CardStep,
   RadioGroup,
-  Fee,
+  EstimatedFee,
   TextField,
 } from '@chia/core';
 import {
@@ -139,12 +139,13 @@ export default function PlotNFTSelectBase(props: Props) {
           </Grid>
           {!hideFee && (
             <Grid xs={12} lg={6} item>
-              <Fee
+              <EstimatedFee
                 name="fee"
                 type="text"
                 variant="filled"
                 label={<Trans>Fee</Trans>}
                 fullWidth
+                txType="createPlotNFT"
               />
               {feeDescription}
             </Grid>

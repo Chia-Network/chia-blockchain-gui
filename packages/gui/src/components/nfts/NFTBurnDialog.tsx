@@ -7,7 +7,7 @@ import useBurnAddress from '../../hooks/useBurnAddress';
 import {
   Button,
   ButtonLoading,
-  Fee,
+  EstimatedFee,
   Form,
   Flex,
   TextField,
@@ -144,13 +144,14 @@ export default function NFTBurnDialog(props: NFTPreviewDialogProps) {
                 fullWidth
                 label={<Trans>Send to Address</Trans>}
               />
-              <Fee
+              <EstimatedFee
                 id="filled-secondary"
                 variant="filled"
                 name="fee"
                 color="secondary"
                 label={<Trans>Fee</Trans>}
                 disabled={isSubmitting}
+                txType="burnNFT"
               />
               <DialogActions>
                 <Flex flexDirection="row" gap={2}>

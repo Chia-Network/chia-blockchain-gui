@@ -16,7 +16,7 @@ import {
   CopyToClipboard,
   DropdownActions,
   DropdownActionsProps,
-  Fee,
+  EstimatedFee,
   Flex,
   Form,
   TooltipIcon,
@@ -431,13 +431,14 @@ export function NFTMoveToProfileAction(props: NFTMoveToProfileActionProps) {
             </Flex>
           )}
         </Flex>
-        <Fee
+        <EstimatedFee
           id="filled-secondary"
           variant="filled"
           name="fee"
           color="secondary"
           label={<Trans>Fee</Trans>}
           disabled={isLoading}
+          txType="assignDIDToNFT"
         />
         <DialogActions>
           <Flex flexDirection="row" gap={3}>
