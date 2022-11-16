@@ -172,6 +172,10 @@ export const {
   useSetNFTDIDMutation,
   useSetNFTStatusMutation,
   useReceiveNFTMutation,
+
+  // sign
+  useSignMessageByAddressMutation,
+  useSignMessageByIdMutation,
 } = wallet;
 
 // harvester hooks

@@ -2082,6 +2082,34 @@ export const walletApi = apiWithTag.injectEndpoints({
       }),
       invalidatesTags: (result, _error) => (result ? [{ type: 'NFTInfo', id: 'LIST' }] : []),
     }),
+
+    signMessageByAddress: build.mutation<
+      any,
+      {
+        address: string;
+        message: string;
+      }
+    >({
+      query: ({ address, message }) => ({
+        command: 'signMessageByAddress',
+        service: Wallet,
+        args: [address, message],
+      }),
+    }),
+
+    signMessageById: build.mutation<
+      any,
+      {
+        id: string;
+        message: string;
+      }
+    >({
+      query: ({ id, message }) => ({
+        command: 'signMessageById',
+        service: Wallet,
+        args: [id, message],
+      }),
+    }),
   }),
 });
 
@@ -2174,4 +2202,8 @@ export const {
   useSetNFTDIDMutation,
   useSetNFTStatusMutation,
   useReceiveNFTMutation,
+
+  // sign
+  useSignMessageByAddressMutation,
+  useSignMessageByIdMutation,
 } = walletApi;

@@ -141,8 +141,10 @@ export default function WalletConnectAddConnectionDialog(
 
       <Form methods={methods} onSubmit={handleSubmit}>
         <DialogContent>
-          <Flex flexDirection="column" alignItems="center" gap={3} minWidth={0}>
-            <HeroImage width={240} />
+          <Flex flexDirection="column" gap={3}>
+            <Box alignSelf="center">
+              <HeroImage width={240} />
+            </Box>
             <Flex flexDirection="column" gap={5} minWidth={0}>
               <Box>
                 <Typography variant="h6" textAlign="center">

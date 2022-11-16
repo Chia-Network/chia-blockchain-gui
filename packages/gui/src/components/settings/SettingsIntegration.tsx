@@ -18,8 +18,7 @@ export default function SettingsIntegration() {
               <TooltipIcon>
                 <Trans>
                   WalletConnect is an open protocol to communicate securely
-                  between mobile wallets and decentralized applications (dApps)
-                  using QR code scanning (desktop) or deep linking (mobile).
+                  between wallets and decentralized applications (dApps).
                 </Trans>
               </TooltipIcon>
             </Flex>

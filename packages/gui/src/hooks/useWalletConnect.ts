@@ -31,7 +31,7 @@ export default function useWalletConnect(config: UseWalletConnectConfig) {
     debug = false,
   } = config;
 
-  const { enabled, autoConfirm } = useWalletConnectPrefs();
+  const { enabled } = useWalletConnectPrefs();
   const [isLoading, setIsLoading] = useState(true);
   const [_client, setClient] = useState<Client>();
   const _pairs = useWalletConnectPairs();
@@ -109,7 +109,13 @@ export default function useWalletConnect(config: UseWalletConnectConfig) {
     const namespaces = {
       chia: {
         accounts,
-        methods: ['chia_sendTransaction', 'chia_newAddress'],
+        methods: [
+          'chia_sendTransaction',
+          'chia_newAddress',
+          'chia_logIn',
+          'chia_signMessageByAddress',
+          'chia_signMessageById',
+        ],
         events: [],
       },
     };
@@ -195,13 +201,17 @@ export default function useWalletConnect(config: UseWalletConnectConfig) {
           throw new Error('Network instance is different');
         }
 
-        const fingerprint = Number.parseInt(params.fingerprint);
-        if (!pair.fingerprints.includes(fingerprint)) {
+        const { fingerprint, ...rest } = params;
+        const updatedParams = {
+          ...rest,
+          fingerprint: Number.parseInt(fingerprint),
+        };
+
+        if (!pair.fingerprints.includes(updatedParams.fingerprint)) {
           throw new Error('Fingerprint not found');
         }
 
-        const result = await process(topic, fingerprint, method, params);
-        console.log('result', result);
+        const result = await process(topic, method, updatedParams);
 
         await client.respond({
           topic,
@@ -212,7 +222,6 @@ export default function useWalletConnect(config: UseWalletConnectConfig) {
           },
         });
       } catch (error) {
-        console.log('error', error);
         await client?.respond({
           topic,
           response: {
