@@ -1,6 +1,7 @@
 import {
   Amount,
   CopyToClipboard,
+  EstimatedFee,
   Fee,
   Flex,
   FormatLargeNumber,
@@ -140,7 +141,18 @@ export default function OfferBuilderValue(props: OfferBuilderValueProps) {
                 fullWidth
               />
             ) : type === 'fee' ? (
-              <Fee variant="filled" color="secondary" label={label} name={name} required fullWidth />
+              builderReadOnly ? (
+                <EstimatedFee
+                  txType="acceptOffer"
+                  variant="filled"
+                  color="secondary"
+                  label={label}
+                  name={name}
+                  fullWidth
+                />
+              ) : (
+                <Fee variant="filled" color="secondary" label={label} name={name} fullWidth />
+              )
             ) : type === 'text' ? (
               <TextField variant="filled" color="secondary" label={label} name={name} required fullWidth />
             ) : type === 'token' ? (
