@@ -1,14 +1,15 @@
-import React from 'react';
-import { Trans } from '@lingui/macro';
-import { useNavigate } from 'react-router';
 import { useRefreshPlotsMutation } from '@chia/api-react';
 import { Button, Flex, useOpenDialog, MenuItem, More } from '@chia/core';
-import { ListItemIcon, Typography } from '@mui/material';
+import { Trans } from '@lingui/macro';
 import { Add, Refresh } from '@mui/icons-material';
-import PlotOverviewCards from './PlotOverviewCards';
+import { ListItemIcon, Typography } from '@mui/material';
+import React from 'react';
+import { useNavigate } from 'react-router';
+
+import PlotAddDirectoryDialog from '../PlotAddDirectoryDialog';
 import PlotHarvesters from '../PlotHarvesters';
 import PlotPlotting from '../PlotPlotting';
-import PlotAddDirectoryDialog from '../PlotAddDirectoryDialog';
+import PlotOverviewCards from './PlotOverviewCards';
 
 export default function PlotOverviewPlots() {
   const navigate = useNavigate();

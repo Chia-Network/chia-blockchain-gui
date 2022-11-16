@@ -9,7 +9,7 @@ export function launcherIdToNFTId(launcherId: string): string {
 }
 
 export function launcherIdFromNFTId(nftId: string): string | undefined {
-  let decoded: string | undefined = undefined;
+  let decoded: string | undefined;
 
   try {
     decoded = fromBech32m(nftId);

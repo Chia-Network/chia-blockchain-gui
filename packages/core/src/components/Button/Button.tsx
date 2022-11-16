@@ -1,14 +1,9 @@
+import { Button as BaseButton, ButtonProps as BaseButtonProps } from '@mui/material';
 import React from 'react';
-import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
-import {
-  Button as BaseButton,
-  ButtonProps as BaseButtonProps,
-} from '@mui/material';
+import styled from 'styled-components';
 
-const StyledBaseButton = styled(({ nowrap: boolean, selected, ...rest }) => (
-  <BaseButton {...rest} />
-))`
+const StyledBaseButton = styled(({ nowrap: boolean, selected, ...rest }) => <BaseButton {...rest} />)`
   white-space: ${({ nowrap }) => (nowrap ? 'nowrap' : 'normal')};
   ${({ selected, theme }) => {
     if (!selected) {
@@ -36,17 +31,11 @@ function getColor(theme, variant) {
 
 const DangerButton = styled(StyledBaseButton)`
   color: ${({ theme, variant }) => getColor(theme, variant)};
-  ${({ theme, variant }) =>
-    variant === 'contained'
-      ? `background-color: ${theme.palette.danger.main};`
-      : undefined}
+  ${({ theme, variant }) => (variant === 'contained' ? `background-color: ${theme.palette.danger.main};` : undefined)}
 
   &:hover {
     color: ${({ theme, variant }) => getColor(theme, variant)};
-    ${({ theme, variant }) =>
-      variant === 'contained'
-        ? `background-color: ${theme.palette.danger.main};`
-        : undefined}
+    ${({ theme, variant }) => (variant === 'contained' ? `background-color: ${theme.palette.danger.main};` : undefined)}
   }
 `;
 
@@ -76,13 +65,9 @@ export default function Button(props: ButtonProps) {
     case 'danger':
       return <DangerButton onClick={handleClick} disableElevation={disableElevation} {...rest} />;
     case 'primary':
-      return (
-        <StyledBaseButton onClick={handleClick} disableElevation={disableElevation} color="primary" {...rest} />
-      );
+      return <StyledBaseButton onClick={handleClick} disableElevation={disableElevation} color="primary" {...rest} />;
     case 'secondary':
-      return (
-        <StyledBaseButton onClick={handleClick} disableElevation={disableElevation} color="secondary" {...rest} />
-      );
+      return <StyledBaseButton onClick={handleClick} disableElevation={disableElevation} color="secondary" {...rest} />;
     default:
       return <StyledBaseButton onClick={handleClick} disableElevation={disableElevation} {...rest} />;
   }

@@ -1,19 +1,16 @@
-import React from 'react';
-import { Trans } from '@lingui/macro';
 import type { NFTInfo } from '@chia/api';
 import { Button, Flex, TooltipIcon } from '@chia/core';
+import { Trans } from '@lingui/macro';
 import { Typography } from '@mui/material';
-import useViewNFTOnExplorer, {
-  NFTExplorer,
-} from '../../hooks/useViewNFTOnExplorer';
+import React from 'react';
+
+import useViewNFTOnExplorer, { NFTExplorer } from '../../hooks/useViewNFTOnExplorer';
 
 export type OfferBuilderNFTProvenanceProps = {
   nft?: NFTInfo;
 };
 
-export default function OfferBuilderNFTProvenance(
-  props: OfferBuilderNFTProvenanceProps,
-) {
+export default function OfferBuilderNFTProvenance(props: OfferBuilderNFTProvenanceProps) {
   const { nft } = props;
   const viewOnExplorer = useViewNFTOnExplorer();
 
@@ -24,10 +21,9 @@ export default function OfferBuilderNFTProvenance(
         &nbsp;
         <TooltipIcon>
           <Trans>
-            An NFT's provenance is a complete record of its ownership history.
-            It provides a direct lineage that connects everyone who has owned
-            the NFT, all the way back to the original artist. This helps to
-            verify that the NFT is authentic.
+            An NFT's provenance is a complete record of its ownership history. It provides a direct lineage that
+            connects everyone who has owned the NFT, all the way back to the original artist. This helps to verify that
+            the NFT is authentic.
           </Trans>
         </TooltipIcon>
       </Flex>

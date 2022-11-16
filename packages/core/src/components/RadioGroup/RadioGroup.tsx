@@ -1,9 +1,6 @@
+import { RadioGroup as MaterialRadioGroup, RadioGroupProps } from '@mui/material';
 import React, { ChangeEvent, ReactElement, ReactNode, forwardRef } from 'react';
 import { Controller, ControllerProps, useFormContext } from 'react-hook-form';
-import {
-  RadioGroup as MaterialRadioGroup,
-  RadioGroupProps,
-} from '@mui/material';
 
 type ReactRules<T> =
   | ControllerProps<ReactElement<T>>['rules']
@@ -78,7 +75,9 @@ export default function RadioGroup(props: Props) {
     <Controller
       name={name}
       control={control}
-      render={({ field }) => (boolean ? <ParseBoolean {...field} {...rest} /> :  <MaterialRadioGroup {...field} {...rest} /> )}
+      render={({ field }) =>
+        boolean ? <ParseBoolean {...field} {...rest} /> : <MaterialRadioGroup {...field} {...rest} />
+      }
     />
   );
 }

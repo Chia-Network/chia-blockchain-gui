@@ -1,5 +1,6 @@
-import React from 'react';
 import { SvgIcon, SvgIconProps } from '@mui/material';
+import React from 'react';
+
 import OffersIcon from './images/Offers.svg';
 import OffersSmallIcon from './images/OffersSmall.svg';
 

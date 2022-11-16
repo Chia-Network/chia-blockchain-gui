@@ -1,26 +1,28 @@
 import { Plotter } from '@chia/api';
 import type { Plot } from '@chia/api';
-import onCacheEntryAddedInvalidate from '../utils/onCacheEntryAddedInvalidate';
-import api, { baseQuery } from '../api';
 
-const apiWithTag = api.enhanceEndpoints({addTagTypes: ['PlotQueue']})
+import api, { baseQuery } from '../api';
+import onCacheEntryAddedInvalidate from '../utils/onCacheEntryAddedInvalidate';
+
+const apiWithTag = api.enhanceEndpoints({ addTagTypes: ['PlotQueue'] });
 
 export const plotterApi = apiWithTag.injectEndpoints({
   endpoints: (build) => ({
-    getPlotQueue: build.query<Plot[], {
-    }>({
+    getPlotQueue: build.query<Plot[], {}>({
       query: () => ({
         command: 'getQueue',
         service: Plotter,
       }),
       // transformResponse: (response: any) => response,
-      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, [{
-        command: 'onQueueChanged',
-        service: Plotter,
-        endpoint: () => plotterApi.endpoints.getPlotQueue,
-      }]),
+      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, [
+        {
+          command: 'onQueueChanged',
+          service: Plotter,
+          endpoint: () => plotterApi.endpoints.getPlotQueue,
+        },
+      ]),
     }),
-/*
+    /*
     stopPlotting: build.mutation<boolean, {
       id: string;
     }>({
@@ -33,7 +35,7 @@ export const plotterApi = apiWithTag.injectEndpoints({
       // providesTags: (_result, _err, { service }) => [{ type: 'ServiceRunning', id: service }],
     }),
     */
-/*
+    /*
     startPlotting: build.mutation<boolean, PlotAdd>({
       query: ({ 
         bladebitDisableNUMA,
@@ -97,7 +99,7 @@ export const plotterApi = apiWithTag.injectEndpoints({
   }),
 });
 
-export const { 
+export const {
   useGetPlotQueueQuery,
   // useStopPlottingMutation,
   // useStartPlottingMutation,

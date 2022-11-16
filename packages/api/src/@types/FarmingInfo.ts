@@ -8,4 +8,3 @@ type FarmingInfo = {
 };
 
 export default FarmingInfo;
-

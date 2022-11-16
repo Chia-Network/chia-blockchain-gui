@@ -1,7 +1,8 @@
 import type BigNumber from 'bignumber.js';
+
+import type TransactionType from '../constants/TransactionType';
 import type Coin from './Coin';
 import type SpendBundle from './SpendBundle';
-import type TransactionType from '../constants/TransactionType';
 
 type Transaction = {
   confirmedAtHeight: number;

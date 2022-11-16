@@ -1,9 +1,10 @@
-import React from 'react';
-import { Trans } from '@lingui/macro';
-import { useNavigate } from 'react-router-dom';
-import { Divider, Grid, Typography } from '@mui/material';
 import { Button, CardHero, Link, useOpenDialog } from '@chia/core';
 import { Farming } from '@chia/icons';
+import { Trans } from '@lingui/macro';
+import { Divider, Grid, Typography } from '@mui/material';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import PlotAddDirectoryDialog from '../plot/PlotAddDirectoryDialog';
 
 export default function FarmHero() {
@@ -25,13 +26,9 @@ export default function FarmHero() {
           <Farming color="primary" fontSize="extraLarge" />
           <Typography variant="body1">
             <Trans>
-              Farmers earn block rewards and transaction fees by committing
-              spare space to the network to help secure transactions. This is
-              where your farm will be once you add a plot.{' '}
-              <Link
-                target="_blank"
-                href="https://github.com/Chia-Network/chia-blockchain/wiki/Network-Architecture"
-              >
+              Farmers earn block rewards and transaction fees by committing spare space to the network to help secure
+              transactions. This is where your farm will be once you add a plot.{' '}
+              <Link target="_blank" href="https://github.com/Chia-Network/chia-blockchain/wiki/Network-Architecture">
                 Learn more
               </Link>
             </Trans>

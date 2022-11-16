@@ -1,17 +1,8 @@
+import { Box, Typography, Table, TableBody, TableCell, TableRow } from '@mui/material';
 import React, { ReactNode } from 'react';
-import {
-  Box,
-  Typography,
-  Table,
-  TableBody,
-  TableCell,
-  TableRow,
-} from '@mui/material';
 import styled from 'styled-components';
 
-const StyledTableCell= styled(({ hideDivider, ...rest }) => (
-  <TableCell {...rest}/>
-))`
+const StyledTableCell = styled(({ hideDivider, ...rest }) => <TableCell {...rest} />)`
   ${({ hideDivider }) =>
     hideDivider
       ? `
@@ -42,14 +33,23 @@ export default function CardKeyValue(props: CardKeyValueProps) {
         {rows.map((row) => (
           <TableRow key={row.key}>
             <StyledTableCell hideDivider={hideDivider}>
-              <Typography component='div' variant="body1" color="textSecondary" noWrap>
+              <Typography component="div" variant="body1" color="textSecondary" noWrap>
                 {row.label}
               </Typography>
             </StyledTableCell>
             <StyledTableCell hideDivider={hideDivider} width="100%">
               <Box ml={2} position="relative">
-                <Box position="absolute" left="0" top="0" bottom="0" right="0" display="flex" alignItems="center" justifyContent="flex-end">
-                  <Typography component='div' variant="body2" noWrap>
+                <Box
+                  position="absolute"
+                  left="0"
+                  top="0"
+                  bottom="0"
+                  right="0"
+                  display="flex"
+                  alignItems="center"
+                  justifyContent="flex-end"
+                >
+                  <Typography component="div" variant="body2" noWrap>
                     {row.value}
                   </Typography>
                 </Box>

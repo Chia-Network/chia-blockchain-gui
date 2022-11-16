@@ -1,6 +1,6 @@
+import { Box } from '@mui/material';
 import React, { ReactNode } from 'react';
 import styled from 'styled-components';
-import { Box } from '@mui/material';
 
 const OuterWrapper = styled(({ ration, ...rest }) => <Box {...rest} />)`
   position: relative;
@@ -39,9 +39,7 @@ export default function AspectRatio(props: Props) {
 
   return (
     <OuterWrapper ratio={ratio}>
-      <InnerWrapper>
-        {children}
-      </InnerWrapper>
+      <InnerWrapper>{children}</InnerWrapper>
     </OuterWrapper>
   );
 }

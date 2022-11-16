@@ -1,20 +1,18 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { Trans } from '@lingui/macro';
-import {
-  useGetWalletsQuery,
-  useCheckOfferValidityMutation,
-} from '@chia/api-react';
+import { useGetWalletsQuery, useCheckOfferValidityMutation } from '@chia/api-react';
 import { Flex, ButtonLoading, Link, Loading, useShowError } from '@chia/core';
+import { Trans } from '@lingui/macro';
 import { Alert, Grid } from '@mui/material';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+
+import type OfferBuilderData from '../../@types/OfferBuilderData';
 import type OfferSummary from '../../@types/OfferSummary';
-import offerToOfferBuilderData from '../../util/offerToOfferBuilderData';
+import useAcceptOfferHook from '../../hooks/useAcceptOfferHook';
 import getUnknownCATs from '../../util/getUnknownCATs';
+import offerToOfferBuilderData from '../../util/offerToOfferBuilderData';
+import OfferState from '../offers/OfferState';
 import OfferBuilder from './OfferBuilder';
 import OfferNavigationHeader from './OfferNavigationHeader';
-import type OfferBuilderData from '../../@types/OfferBuilderData';
-import useAcceptOfferHook from '../../hooks/useAcceptOfferHook';
-import OfferState from '../offers/OfferState';
 
 export type OfferBuilderViewerProps = {
   offerData: string;
@@ -26,14 +24,7 @@ export type OfferBuilderViewerProps = {
 };
 
 export default function OfferBuilderViewer(props: OfferBuilderViewerProps) {
-  const {
-    offerSummary,
-    referrerPath,
-    offerData,
-    state,
-    isMyOffer = false,
-    imported = false,
-  } = props;
+  const { offerSummary, referrerPath, offerData, state, isMyOffer = false, imported = false } = props;
 
   const showError = useShowError();
   const navigate = useNavigate();
@@ -44,9 +35,7 @@ export default function OfferBuilderViewer(props: OfferBuilderViewerProps) {
   const offerBuilderRef = useRef<{ submit: () => void } | undefined>(undefined);
 
   const [checkOfferValidity] = useCheckOfferValidityMutation();
-  const [isValidating, setIsValidating] = useState<boolean>(
-    offerData !== undefined,
-  );
+  const [isValidating, setIsValidating] = useState<boolean>(offerData !== undefined);
   const [isValid, setIsValid] = useState<boolean | undefined>();
 
   const showInvalid = !isValidating && isValid === false;
@@ -93,11 +82,11 @@ export default function OfferBuilderViewer(props: OfferBuilderViewerProps) {
 
     const offeredUnknownCATs = getUnknownCATs(
       wallets,
-      offerBuilderData.offered.tokens.map(({ assetId }) => assetId),
+      offerBuilderData.offered.tokens.map(({ assetId }) => assetId)
     );
     const requestedUnknownCATs = getUnknownCATs(
       wallets,
-      offerBuilderData.requested.tokens.map(({ assetId }) => assetId),
+      offerBuilderData.requested.tokens.map(({ assetId }) => assetId)
     );
 
     return [offeredUnknownCATs, requestedUnknownCATs];
@@ -127,7 +116,7 @@ export default function OfferBuilderViewer(props: OfferBuilderViewerProps) {
       offerSummary,
       feeAmount,
       (accepting: boolean) => setIsAccepting(accepting),
-      () => navigate('/dashboard/offers'),
+      () => navigate('/dashboard/offers')
     );
   }
 
@@ -178,17 +167,13 @@ export default function OfferBuilderViewer(props: OfferBuilderViewerProps) {
           </Alert>
         ) : missingOfferedCATs ? (
           <Alert severity="warning">
-            <Trans>
-              Offer cannot be accepted because you don&apos;t possess the
-              requested assets
-            </Trans>
+            <Trans>Offer cannot be accepted because you don&apos;t possess the requested assets</Trans>
           </Alert>
         ) : missingRequestedCATs ? (
           <Alert severity="warning">
             <Trans>
-              One or more unknown tokens are being offered. Be sure to verify
-              that the asset IDs of the offered tokens match the asset IDs of
-              the tokens you are expecting.
+              One or more unknown tokens are being offered. Be sure to verify that the asset IDs of the offered tokens
+              match the asset IDs of the tokens you are expecting.
             </Trans>
           </Alert>
         ) : isMyOffer ? (

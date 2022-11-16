@@ -10,8 +10,8 @@ import { default as enAU } from './en-AU/messages';
 import { default as enNZ } from './en-NZ/messages';
 import { default as enPT } from './en-PT/messages';
 import { default as enUS } from './en-US/messages';
-import { default as esES } from './es-ES/messages';
 import { default as esAR } from './es-AR/messages';
+import { default as esES } from './es-ES/messages';
 import { default as esMX } from './es-MX/messages';
 import { default as faIR } from './fa-IR/messages';
 import { default as fiFI } from './fi-FI/messages';
@@ -36,8 +36,8 @@ import { default as svSE } from './sv-SE/messages';
 import { default as trTR } from './tr-TR/messages';
 import { default as ukUA } from './uk-UA/messages';
 // import { default as viVN } from './vi-VN/messages';
-import { default as zhTW } from './zh-TW/messages';
 import { default as zhCN } from './zh-CN/messages';
+import { default as zhTW } from './zh-TW/messages';
 
 export {
   arSA,
@@ -77,7 +77,7 @@ export {
   svSE,
   trTR,
   ukUA,
-//  viVN,
+  //  viVN,
   zhTW,
   zhCN,
 };

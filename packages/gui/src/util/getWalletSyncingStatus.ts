@@ -1,5 +1,5 @@
-import type { IncomingState } from '../modules/incoming';
 import SyncingStatus from '../constants/SyncingStatus';
+import type { IncomingState } from '../modules/incoming';
 
 export default function getWalletSyncingStatus(walletState: IncomingState) {
   const {
@@ -8,7 +8,8 @@ export default function getWalletSyncingStatus(walletState: IncomingState) {
 
   if (syncing) {
     return SyncingStatus.SYNCING;
-  } else if (synced) {
+  }
+  if (synced) {
     return SyncingStatus.SYNCED;
   }
 

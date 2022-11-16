@@ -1,13 +1,6 @@
-import React from 'react';
-import {
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-  TextField,
-} from '@mui/material';
 import { Trans } from '@lingui/macro';
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@mui/material';
+import React from 'react';
 
 type Props = {
   onSuccess: (mnemonicList: string) => void;
@@ -19,7 +12,7 @@ export default function MnemonicPaste(props: Props) {
   let mnemonicListInput: HTMLInputElement | null;
 
   async function handleSubmit() {
-    const mnemonicList: string = mnemonicListInput?.value ?? "";
+    const mnemonicList: string = mnemonicListInput?.value ?? '';
     onSuccess(mnemonicList);
   }
 
@@ -29,8 +22,8 @@ export default function MnemonicPaste(props: Props) {
 
   async function handleKeyDown(e: React.KeyboardEvent) {
     const keyHandlerMapping: { [key: string]: () => Promise<void> } = {
-      'Enter' : handleSubmit,
-      'Escape' : handleCancel,
+      Enter: handleSubmit,
+      Escape: handleCancel,
     };
     const handler: () => Promise<void> | undefined = keyHandlerMapping[e.key];
 
@@ -44,13 +37,7 @@ export default function MnemonicPaste(props: Props) {
   }
 
   return (
-    <Dialog
-      open={true}
-      aria-labelledby="form-dialog-title"
-      fullWidth={true}
-      maxWidth = {'md'}
-      onKeyDown={handleKeyDown}
-    >
+    <Dialog open aria-labelledby="form-dialog-title" fullWidth maxWidth="md" onKeyDown={handleKeyDown}>
       <DialogTitle id="form-dialog-title">
         <Trans>Paste Mnemonic (24 words)</Trans>
       </DialogTitle>
@@ -63,7 +50,7 @@ export default function MnemonicPaste(props: Props) {
           margin="dense"
           id="mnemonicListInput"
           variant="filled"
-          inputRef={(input) => mnemonicListInput = input}
+          inputRef={(input) => (mnemonicListInput = input)}
           type="password"
           fullWidth
         />

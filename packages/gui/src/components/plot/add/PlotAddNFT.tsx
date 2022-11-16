@@ -1,19 +1,13 @@
-import React, { useState, forwardRef } from 'react';
-import { Trans } from '@lingui/macro';
 import { Button, CardStep, Select, Flex, Loading } from '@chia/core';
-import {
-  Box,
-  Grid,
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Typography,
-} from '@mui/material';
+import { Trans } from '@lingui/macro';
+import { Box, Grid, FormControl, InputLabel, MenuItem, Typography } from '@mui/material';
+import React, { useState, forwardRef } from 'react';
 import { useFormContext } from 'react-hook-form';
+
 import usePlotNFTs from '../../../hooks/usePlotNFTs';
+import Plotter from '../../../types/Plotter';
 import PlotNFTName from '../../plotNFT/PlotNFTName';
 import PlotNFTSelectPool from '../../plotNFT/select/PlotNFTSelectPool';
-import Plotter from '../../../types/Plotter';
 
 type Props = {
   step: number;
@@ -47,8 +41,8 @@ const PlotAddNFT = forwardRef((props: Props, ref) => {
         title={<Trans>Create a Plot NFT</Trans>}
         description={
           <Trans>
-            Join a pool and get consistent XCH farming rewards. The average
-            returns are the same, but it is much less volatile.
+            Join a pool and get consistent XCH farming rewards. The average returns are the same, but it is much less
+            volatile.
           </Trans>
         }
       />
@@ -74,9 +68,7 @@ const PlotAddNFT = forwardRef((props: Props, ref) => {
       {!loading && hasNFTs && (
         <>
           <Typography variant="subtitle1">
-            <Trans>
-              Select your Plot NFT from the dropdown or create a new one.
-            </Trans>
+            <Trans>Select your Plot NFT from the dropdown or create a new one.</Trans>
           </Typography>
 
           <Grid spacing={2} direction="column" container>
@@ -97,10 +89,7 @@ const PlotAddNFT = forwardRef((props: Props, ref) => {
                     } = nft;
 
                     return (
-                      <MenuItem
-                        value={p2SingletonPuzzleHash}
-                        key={p2SingletonPuzzleHash}
-                      >
+                      <MenuItem value={p2SingletonPuzzleHash} key={p2SingletonPuzzleHash}>
                         <PlotNFTName nft={nft} />
                       </MenuItem>
                     );
@@ -111,10 +100,7 @@ const PlotAddNFT = forwardRef((props: Props, ref) => {
                     } = nft;
 
                     return (
-                      <MenuItem
-                        value={p2SingletonPuzzleHash}
-                        key={p2SingletonPuzzleHash}
-                      >
+                      <MenuItem value={p2SingletonPuzzleHash} key={p2SingletonPuzzleHash}>
                         <PlotNFTName nft={nft} />
                       </MenuItem>
                     );
@@ -136,13 +122,13 @@ const PlotAddNFT = forwardRef((props: Props, ref) => {
         <>
           <Typography variant="subtitle1">
             <Trans>
-              Join a pool and get more consistent XCH farming rewards. Create a
-              plot NFT and assign your new plots to a group.
+              Join a pool and get more consistent XCH farming rewards. Create a plot NFT and assign your new plots to a
+              group.
             </Trans>
           </Typography>
 
           <Box>
-            <Button onClick={handleJoinPool} variant="outlined" >
+            <Button onClick={handleJoinPool} variant="outlined">
               <Trans>Join a Pool</Trans>
             </Button>
           </Box>

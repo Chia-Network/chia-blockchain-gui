@@ -1,24 +1,19 @@
+import { SelectKey, LayoutHero, LayoutDashboard, Mode, useMode } from '@chia/core';
+import { WalletAdd, WalletImport, Wallets } from '@chia/wallets';
 import React from 'react';
 import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
-import {
-  SelectKey,
-  LayoutHero,
-  LayoutDashboard,
-  Mode,
-  useMode,
-} from '@chia/core';
-import { WalletAdd, WalletImport, Wallets } from '@chia/wallets';
-import AppProviders from './AppProviders';
-import FullNode from '../fullNode/FullNode';
+
 import Block from '../block/Block';
-import Settings from '../settings/Settings';
-import Plot from '../plot/Plot';
+import DashboardSideBar from '../dashboard/DashboardSideBar';
 import Farm from '../farm/Farm';
-import Pool from '../pool/Pool';
+import FullNode from '../fullNode/FullNode';
 import NFTs from '../nfts/NFTs';
 import { CreateOffer } from '../offers/OfferManager';
-import DashboardSideBar from '../dashboard/DashboardSideBar';
+import Plot from '../plot/Plot';
+import Pool from '../pool/Pool';
+import Settings from '../settings/Settings';
 import SettingsPanel from '../settings/SettingsPanel';
+import AppProviders from './AppProviders';
 import AppStatusHeader from './AppStatusHeader';
 
 export default function AppRouter() {
@@ -31,9 +26,7 @@ export default function AppRouter() {
           <Route element={<LayoutHero settings={<SettingsPanel />} outlet />}>
             <Route index element={<SelectKey />} />
           </Route>
-          <Route
-            element={<LayoutHero settings={<SettingsPanel />} back outlet />}
-          >
+          <Route element={<LayoutHero settings={<SettingsPanel />} back outlet />}>
             <Route path="wallet/add" element={<WalletAdd />} />
             <Route path="wallet/import" element={<WalletImport />} />
           </Route>

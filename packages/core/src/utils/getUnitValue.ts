@@ -1,13 +1,12 @@
 // deprecated
 import Unit from '../constants/Unit';
-import UnitValue from '../constants/UnitValue';
 import UnitAliases from '../constants/UnitAliases';
+import UnitValue from '../constants/UnitValue';
 
 type Display = {
   format: string;
   fractionDigits: number;
 };
-
 
 const display: {
   [key in Unit]: Display;

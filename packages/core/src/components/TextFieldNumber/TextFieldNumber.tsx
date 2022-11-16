@@ -1,6 +1,7 @@
-import React, { type ReactNode } from 'react';
 import { InputAdornment, FormControl, FormHelperText } from '@mui/material';
+import React, { type ReactNode } from 'react';
 import { useWatch, useFormContext } from 'react-hook-form';
+
 import TextField, { TextFieldProps } from '../TextField';
 import NumberFormatCustom from './NumberFormatCustom';
 
@@ -28,9 +29,7 @@ export default function TextFieldNumber(props: TextFieldNumberProps) {
         InputProps={{
           spellCheck: false,
           inputComponent: NumberFormatCustom as any,
-          endAdornment: currency ? (
-            <InputAdornment position="end">{currency}</InputAdornment>
-          ) : undefined,
+          endAdornment: currency ? <InputAdornment position="end">{currency}</InputAdornment> : undefined,
         }}
         {...rest}
       />

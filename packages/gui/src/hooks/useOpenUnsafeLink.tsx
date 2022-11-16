@@ -1,20 +1,8 @@
-import React from 'react';
+import { ConfirmDialog, CopyToClipboard, Flex, useOpenDialog, useOpenExternal } from '@chia/core';
 import { Trans } from '@lingui/macro';
+import { Checkbox, FormControlLabel, InputAdornment, TextField, Typography } from '@mui/material';
 import { useLocalStorage } from '@rehooks/local-storage';
-import {
-  ConfirmDialog,
-  CopyToClipboard,
-  Flex,
-  useOpenDialog,
-  useOpenExternal,
-} from '@chia/core';
-import {
-  Checkbox,
-  FormControlLabel,
-  InputAdornment,
-  TextField,
-  Typography,
-} from '@mui/material';
+import React from 'react';
 
 /* ========================================================================== */
 
@@ -26,12 +14,12 @@ type OpenUnsafeLinkConfirmationDialogProps = {
   url: string;
 };
 
-function OpenUnsafeLinkConfirmationDialog(
-  props: OpenUnsafeLinkConfirmationDialogProps,
-) {
+function OpenUnsafeLinkConfirmationDialog(props: OpenUnsafeLinkConfirmationDialogProps) {
   const { url, ...rest } = props;
-  const [suppressUnsafeLinkWarning, setSuppressUnsafeLinkWarning] =
-    useLocalStorage<boolean>(SuppressUnsafeLinkWarningLocalStorageKey, false);
+  const [suppressUnsafeLinkWarning, setSuppressUnsafeLinkWarning] = useLocalStorage<boolean>(
+    SuppressUnsafeLinkWarningLocalStorageKey,
+    false
+  );
 
   function toggleSuppression(value: boolean) {
     setSuppressUnsafeLinkWarning(value);
@@ -48,8 +36,7 @@ function OpenUnsafeLinkConfirmationDialog(
       <Flex flexDirection="column" gap={2}>
         <Typography>
           <Trans>
-            Please check the following link to verify the site you are going to
-            visit. Proceed at your own risk.
+            Please check the following link to verify the site you are going to visit. Proceed at your own risk.
           </Trans>
         </Typography>
         <TextField
@@ -86,10 +73,7 @@ function OpenUnsafeLinkConfirmationDialog(
 export default function useOpenUnsafeLink() {
   const openDialog = useOpenDialog();
   const openExternal = useOpenExternal();
-  const [suppressUnsafeLinkWarning] = useLocalStorage<boolean>(
-    SuppressUnsafeLinkWarningLocalStorageKey,
-    false,
-  );
+  const [suppressUnsafeLinkWarning] = useLocalStorage<boolean>(SuppressUnsafeLinkWarningLocalStorageKey, false);
 
   async function openUnsafeLink(url: string) {
     let openUrl = false;
@@ -97,9 +81,7 @@ export default function useOpenUnsafeLink() {
     if (suppressUnsafeLinkWarning) {
       openUrl = true;
     } else {
-      openUrl = await openDialog(
-        <OpenUnsafeLinkConfirmationDialog url={url} />,
-      );
+      openUrl = await openDialog(<OpenUnsafeLinkConfirmationDialog url={url} />);
     }
 
     if (openUrl) {

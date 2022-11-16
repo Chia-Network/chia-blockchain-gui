@@ -1,5 +1,6 @@
-import React, { ReactElement } from 'react';
 import { Typography, TypographyProps } from '@mui/material';
+import React, { ReactElement } from 'react';
+
 import Flex from '../Flex';
 import TooltipIcon from '../TooltipIcon';
 

@@ -1,8 +1,9 @@
+import { Flex, StateColor } from '@chia/core';
+import { Trans } from '@lingui/macro';
+import { FiberManualRecord as FiberManualRecordIcon } from '@mui/icons-material';
 import React from 'react';
 import styled from 'styled-components';
-import { Trans } from '@lingui/macro';
-import { Flex, StateColor } from '@chia/core';
-import { FiberManualRecord as FiberManualRecordIcon } from '@mui/icons-material';
+
 import FarmerStatus from '../../constants/FarmerStatus';
 import useFarmerStatus from '../../hooks/useFarmerStatus';
 
@@ -26,9 +27,7 @@ const StyledFiberManualRecordIcon = styled(FiberManualRecordIcon)`
   font-size: 1rem;
 `;
 
-const StyledFlexContainer = styled(({ color: Color, ...rest }) => (
-  <Flex {...rest} />
-))`
+const StyledFlexContainer = styled(({ color: Color, ...rest }) => <Flex {...rest} />)`
   color: ${({ color }) => color};
 `;
 

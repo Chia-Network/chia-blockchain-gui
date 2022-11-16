@@ -1,28 +1,11 @@
-import React from 'react';
+import { useGenerateMnemonicMutation, useAddPrivateKeyMutation, useLogInMutation } from '@chia/api-react';
+import { ButtonLoading, Form, TextField, Flex, Loading, Logo, useShowError } from '@chia/core';
 import { Trans } from '@lingui/macro';
-import {
-  TextField as TextFieldMaterial,
-  Typography,
-  Grid,
-  Container,
-} from '@mui/material';
+import { TextField as TextFieldMaterial, Typography, Grid, Container } from '@mui/material';
+import React from 'react';
 import { useForm } from 'react-hook-form';
-import {
-  useGenerateMnemonicMutation,
-  useAddPrivateKeyMutation,
-  useLogInMutation,
-} from '@chia/api-react';
 import { useNavigate } from 'react-router';
 import { useEffectOnce } from 'react-use';
-import {
-  ButtonLoading,
-  Form,
-  TextField,
-  Flex,
-  Loading,
-  Logo,
-  useShowError,
-} from '@chia/core';
 
 type FormData = {
   label: string;
@@ -30,8 +13,7 @@ type FormData = {
 
 export default function WalletAdd() {
   const navigate = useNavigate();
-  const [generateMnemonic, { data: words, isLoading }] =
-    useGenerateMnemonicMutation();
+  const [generateMnemonic, { data: words, isLoading }] = useGenerateMnemonicMutation();
   const [addPrivateKey] = useAddPrivateKeyMutation();
   const [logIn] = useLogInMutation();
   const methods = useForm<FormData>({
@@ -83,10 +65,9 @@ export default function WalletAdd() {
           </Typography>
           <Typography variant="subtitle1" align="center">
             <Trans>
-              Welcome! The following words are used for your wallet backup.
-              Without them, you will lose access to your wallet, keep them safe!
-              Write down each word along with the order number next to them.
-              (Order is important)
+              Welcome! The following words are used for your wallet backup. Without them, you will lose access to your
+              wallet, keep them safe! Write down each word along with the order number next to them. (Order is
+              important)
             </Trans>
           </Typography>
           {!isLoading && words ? (

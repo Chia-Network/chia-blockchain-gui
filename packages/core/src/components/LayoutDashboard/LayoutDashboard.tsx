@@ -1,28 +1,16 @@
-import React, { ReactNode, Suspense } from 'react';
-import styled from 'styled-components';
-import { useNavigate, Outlet } from 'react-router-dom';
+import { useLogout, useGetLoggedInFingerprintQuery, useGetKeyQuery } from '@chia/api-react';
 import { t, Trans } from '@lingui/macro';
-import {
-  Box,
-  AppBar,
-  Toolbar,
-  Drawer,
-  Container,
-  IconButton,
-  Typography,
-  CircularProgress,
-} from '@mui/material';
-import Flex from '../Flex';
-import Logo from '../Logo';
-import ToolbarSpacing from '../ToolbarSpacing';
-import Loading from '../Loading';
-import {
-  useLogout,
-  useGetLoggedInFingerprintQuery,
-  useGetKeyQuery,
-} from '@chia/api-react';
 import { ExitToApp as ExitToAppIcon } from '@mui/icons-material';
+import { Box, AppBar, Toolbar, Drawer, Container, IconButton, Typography, CircularProgress } from '@mui/material';
+import React, { ReactNode, Suspense } from 'react';
+import { useNavigate, Outlet } from 'react-router-dom';
+import styled from 'styled-components';
+
+import Flex from '../Flex';
+import Loading from '../Loading';
+import Logo from '../Logo';
 import Settings from '../Settings';
+import ToolbarSpacing from '../ToolbarSpacing';
 import Tooltip from '../Tooltip';
 // import LayoutFooter from '../LayoutMain/LayoutFooter';
 
@@ -33,8 +21,7 @@ const StyledRoot = styled(Flex)`
 
 const StyledAppBar = styled(({ drawer, ...rest }) => <AppBar {...rest} />)`
   border-bottom: 1px solid ${({ theme }) => theme.palette.divider};
-  width: ${({ theme, drawer }) =>
-    drawer ? `calc(100% - ${theme.drawer.width})` : '100%'};
+  width: ${({ theme, drawer }) => (drawer ? `calc(100% - ${theme.drawer.width})` : '100%')};
   margin-left: ${({ theme, drawer }) => (drawer ? theme.drawer.width : 0)};
   z-index: ${({ theme }) => theme.zIndex.drawer + 1};};
 `;
@@ -76,8 +63,7 @@ export default function LayoutDashboard(props: LayoutDashboardProps) {
 
   const navigate = useNavigate();
   const logout = useLogout();
-  const { data: fingerprint, isLoading: isLoadingFingerprint } =
-    useGetLoggedInFingerprintQuery();
+  const { data: fingerprint, isLoading: isLoadingFingerprint } = useGetLoggedInFingerprintQuery();
   const { data: keyData, isLoading: isLoadingKeyData } = useGetKeyQuery(
     {
       fingerprint,
@@ -100,19 +86,9 @@ export default function LayoutDashboard(props: LayoutDashboardProps) {
       <Suspense fallback={<Loading center />}>
         {sidebar ? (
           <>
-            <StyledAppBar
-              position="fixed"
-              color="transparent"
-              elevation={0}
-              drawer
-            >
+            <StyledAppBar position="fixed" color="transparent" elevation={0} drawer>
               <StyledToolbar>
-                <Flex
-                  width="100%"
-                  alignItems="center"
-                  justifyContent="space-between"
-                  gap={3}
-                >
+                <Flex width="100%" alignItems="center" justifyContent="space-between" gap={3}>
                   <Flex
                     alignItems="center"
                     flexGrow={1}
@@ -164,10 +140,7 @@ export default function LayoutDashboard(props: LayoutDashboardProps) {
                         &nbsp;
                         */}
                     <Tooltip title={<Trans>Log Out</Trans>}>
-                      <IconButton
-                        onClick={handleLogout}
-                        data-testid="LayoutDashboard-log-out"
-                      >
+                      <IconButton onClick={handleLogout} data-testid="LayoutDashboard-log-out">
                         <ExitToAppIcon />
                       </IconButton>
                     </Tooltip>
@@ -185,11 +158,7 @@ export default function LayoutDashboard(props: LayoutDashboardProps) {
                   <Logo width="100px" />
                   <Flex flexGrow={1} />
                   <Tooltip title={<Trans>Logout</Trans>}>
-                    <IconButton
-                      color="inherit"
-                      onClick={handleLogout}
-                      title={t`Log Out`}
-                    >
+                    <IconButton color="inherit" onClick={handleLogout} title={t`Log Out`}>
                       <ExitToAppIcon />
                     </IconButton>
                   </Tooltip>
@@ -203,9 +172,7 @@ export default function LayoutDashboard(props: LayoutDashboardProps) {
         <StyledBody flexDirection="column" flexGrow={1}>
           <ToolbarSpacing />
           <Flex flexDirection="column" gap={2} flexGrow={1} overflow="auto">
-            <Suspense fallback={<Loading center />}>
-              {outlet ? <Outlet /> : children}
-            </Suspense>
+            <Suspense fallback={<Loading center />}>{outlet ? <Outlet /> : children}</Suspense>
           </Flex>
         </StyledBody>
       </Suspense>
