@@ -10,4 +10,12 @@ function Root() {
   return <App />;
 }
 
-ReactDOM.render(<Root />, document.querySelector('#root'));
+(window as any).ipcRenderer.invoke('readPrefs')
+  .then((prefs: Record<string, any>) => {
+    (window as any).preferences = prefs;
+    ReactDOM.render(<Root />, document.querySelector('#root'));
+  })
+  .catch((e: unknown) => {
+    window.alert(e);
+  })
+;
