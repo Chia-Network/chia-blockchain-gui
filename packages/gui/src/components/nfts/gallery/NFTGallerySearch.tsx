@@ -12,6 +12,7 @@ const SearchBase = styled('div')(({ theme }) => ({
   },
   paddingLeft: theme.spacing(1),
   paddingRight: theme.spacing(1),
+  marginRight: '20px',
 }));
 
 const SearchIconWrapper = styled('div')(({ theme }) => ({
@@ -49,7 +50,11 @@ export default function Search(props: SearchProps) {
       <SearchIconWrapper>
         <SearchIcon />
       </SearchIconWrapper>
-      <StyledInputBase value={value} onChange={(event) => onChange(event.target.value)} placeholder={placeholder} />
+      <StyledInputBase
+        value={value}
+        onInput={(event) => onChange(event.target.value)}
+        placeholder={placeholder}
+      />
     </SearchBase>
   );
 }

@@ -9,14 +9,13 @@ export const MAX_FILE_SIZE = 100 * 1024 * 1024; // 100 MB
 function normalizedSensitiveContent(value: any): boolean {
   if (typeof value === 'boolean') {
     return value;
-  }
-  if (Array.isArray(value) && value.length > 0) {
+  } else if (Array.isArray(value) && value.length > 0) {
     return true;
   }
   return value === 'true';
 }
 
-const lruMap = new Map();
+export const lruMap = new Map();
 
 // TODO: Add functions to clear cache entries when "Refresh NFT Data" action is triggered
 
@@ -55,18 +54,22 @@ export default function useNFTsMetadata(nfts: NFTInfo[], isMultiple = false) {
       const sensitiveContentValue = normalizedSensitiveContent(metadata.sensitive_content);
 
       if (sensitiveContentValue) {
-        setSensitiveContentObject({ ...sensitiveContentObject, [nftId]: true });
+        setSensitiveContentObject(Object.assign({}, sensitiveContentObject, { [nftId]: true }));
       }
     } catch (e) {
       // Do nothing
     }
   }
 
-  async function getMetadataContents({ dataHash, nftId, uri }): Promise<{
+  async function getMetadataContents(nft: NFTInfo): Promise<{
     data: string;
     encoding: string;
     isValid: boolean;
   }> {
+    const nftId = nft.$nftId;
+    const dataHash = nft.dataHash;
+    const uri = nft?.metadataUris?.[0];
+
     if (isMultiple) {
       let obj;
       let metadata;
@@ -80,17 +83,24 @@ export default function useNFTsMetadata(nfts: NFTInfo[], isMultiple = false) {
         // Do nothing
       }
       if (isMultiple && metadata && !normalizedSensitiveContent(metadata.sensitive_content)) {
-        allowedNFTsWithMetadata.push(nftId);
+        allowedNFTsWithMetadata.push({ ...nft, metadata });
+        return {
+          data: metadata.json,
+          encoding: 'utf-8',
+          isValid: metadata.isValid,
+        };
       }
-    } else if (metadataCache?.isValid !== undefined) {
-      return {
-        data: metadataCache.json,
-        encoding: 'utf-8',
-        isValid: metadataCache.isValid,
-      };
+    } else {
+      if (metadataCache?.isValid !== undefined) {
+        return {
+          data: metadataCache.json,
+          encoding: 'utf-8',
+          isValid: metadataCache.isValid,
+        };
+      }
     }
 
-    return getRemoteFileContent({
+    return await getRemoteFileContent({
       nftId,
       uri,
       maxSize: MAX_FILE_SIZE,
@@ -109,8 +119,8 @@ export default function useNFTsMetadata(nfts: NFTInfo[], isMultiple = false) {
       setErrorContent(undefined);
       setMetadata(cachedMetadata);
       setSensitiveContent(nftId, cachedMetadata);
-      if (isMultiple && !normalizedSensitiveContent(cachedMetadata.sensitive_content)) {
-        allowedNFTsWithMetadata.push(nftId);
+      if (!normalizedSensitiveContent(cachedMetadata.sensitive_content)) {
+        allowedNFTsWithMetadata.push({ ...nft, metadata: cachedMetadata });
       }
       //console.log(`found in cache ${nftId}: ${cachedMetadata}`);
       return;
@@ -124,11 +134,7 @@ export default function useNFTsMetadata(nfts: NFTInfo[], isMultiple = false) {
         throw new Error('Invalid URI');
       }
 
-      const {
-        data: content,
-        encoding,
-        isValid,
-      } = await getMetadataContents({ dataHash: nft.metadataHash, nftId, uri });
+      const { data: content, encoding, isValid } = await getMetadataContents(nft);
 
       if (!isValid && !isMultiple) {
         setMetadataCache({
@@ -137,7 +143,7 @@ export default function useNFTsMetadata(nfts: NFTInfo[], isMultiple = false) {
         throw new Error('Metadata hash mismatch');
       }
 
-      let metadata;
+      let metadata = undefined;
       if (['utf8', 'utf-8'].includes(encoding.toLowerCase())) {
         metadata = JSON.parse(content);
       } else {
@@ -151,16 +157,24 @@ export default function useNFTsMetadata(nfts: NFTInfo[], isMultiple = false) {
           isValid: true,
           json: utf8Metadata,
         });
+      } else {
+        localStorage.setItem(
+          `metadata-cache-${nftId}`,
+          JSON.stringify({
+            isValid: true,
+            json: content,
+          })
+        );
       }
       setMetadata(metadata);
       setSensitiveContent(nftId, metadata);
       if (isMultiple && !normalizedSensitiveContent(metadata.sensitive_content)) {
-        allowedNFTsWithMetadata.push(nftId);
+        allowedNFTsWithMetadata.push({ ...nft, metadata });
       }
     } catch (error: any) {
       setErrorContent(error);
       if (isMultiple) {
-        allowedNFTsWithMetadata.push(nftId);
+        allowedNFTsWithMetadata.push({ ...nft, metadata });
       }
     } finally {
       setIsLoadingContent(false);

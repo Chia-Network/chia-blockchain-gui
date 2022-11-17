@@ -15,10 +15,12 @@ export type OfferBuilderNFTSectionProps = {
   isMyOffer?: boolean;
 };
 
-export default function OfferBuilderNFTSection(props: OfferBuilderNFTSectionProps) {
+export default function OfferBuilderNFTSection(
+  props: OfferBuilderNFTSectionProps,
+) {
   const { name, offering, muted, viewer, isMyOffer = false } = props;
 
-  const { fields, append, remove } = useFieldArray({
+  const { fields, append, remove, update } = useFieldArray({
     name,
   });
 
@@ -28,12 +30,20 @@ export default function OfferBuilderNFTSection(props: OfferBuilderNFTSectionProp
     });
   }
 
+  function onSelectNFT(index, nftId) {
+    update(index, { nftId });
+  }
+
   function handleRemove(index: number) {
     remove(index);
   }
 
-  const showProvenance = viewer ? (isMyOffer ? offering : !offering) : !offering;
-  const showRoyalties = viewer ? true : offering;
+  const showProvenance = viewer
+    ? isMyOffer
+      ? offering
+      : !offering
+    : !offering;
+  const showRoyalties = viewer ? (isMyOffer ? !offering : offering) : offering;
 
   return (
     <OfferBuilderSection
@@ -52,7 +62,7 @@ export default function OfferBuilderNFTSection(props: OfferBuilderNFTSectionProp
             provenance={showProvenance}
             showRoyalties={showRoyalties}
             onRemove={() => handleRemove(index)}
-            offering={offering}
+            onSelectNFT={(nftId: string) => onSelectNFT(index, nftId)}
           />
         ))}
       </Flex>
