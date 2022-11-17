@@ -16,6 +16,28 @@ function normalizedSensitiveContent(value: any): boolean {
   return value === 'true';
 }
 
+const lruMap = new Map();
+
+// TODO: Add functions to clear cache entries when "Refresh NFT Data" action is triggered
+
+function lruGet(key: string) {
+  const value = lruMap.get(key);
+  if (value) {
+    lruMap.delete(key);
+    lruMap.set(key, value);
+  }
+
+  return value;
+}
+
+function lruSet(key: string, value: any) {
+  if (lruMap.size >= 200) {
+    // delete oldest entry
+    lruMap.delete(lruMap.keys().next().value);
+  }
+  lruMap.set(key, value);
+}
+
 export default function useNFTsMetadata(nfts: NFTInfo[], isMultiple = false) {
   const nft = nfts[0];
   const nftId = nft?.$nftId;
@@ -79,6 +101,20 @@ export default function useNFTsMetadata(nfts: NFTInfo[], isMultiple = false) {
   const getMetadata = useCallback(async (nft) => {
     const uri = nft?.metadataUris?.[0];
     const nftId = nft?.$nftId;
+
+    // Hacky proof of concept for using an LRU cache to avoid re-fetching metadata
+    const cachedMetadata = lruGet(nftId);
+    if (cachedMetadata) {
+      setIsLoadingContent(false);
+      setErrorContent(undefined);
+      setMetadata(cachedMetadata);
+      setSensitiveContent(nftId, cachedMetadata);
+      if (isMultiple && !normalizedSensitiveContent(cachedMetadata.sensitive_content)) {
+        allowedNFTsWithMetadata.push(nftId);
+      }
+      //console.log(`found in cache ${nftId}: ${cachedMetadata}`);
+      return;
+    }
     try {
       setIsLoadingContent(true);
       setErrorContent(undefined);
@@ -108,6 +144,7 @@ export default function useNFTsMetadata(nfts: NFTInfo[], isMultiple = false) {
         // Special case where we don't know the encoding type -- assume UTF-8
         metadata = JSON.parse(Buffer.from(content, encoding as BufferEncoding).toString('utf8'));
       }
+      lruSet(nftId, metadata);
       if (!isMultiple) {
         const utf8Metadata = JSON.stringify(metadata);
         setMetadataCache({
