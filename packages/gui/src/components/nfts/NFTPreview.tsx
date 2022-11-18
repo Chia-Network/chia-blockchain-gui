@@ -8,15 +8,7 @@ import { Box, Button, Typography } from '@mui/material';
 import mime from 'mime-types';
 import React, { useMemo, useState, useRef, Fragment } from 'react';
 import { renderToString } from 'react-dom/server';
-import {
-  IconMessage,
-  Loading,
-  Flex,
-  SandboxedIframe,
-  Tooltip,
-  usePersistState,
-  useDarkMode,
-} from '@chia/core';
+import { IconMessage, Loading, Flex, SandboxedIframe, Tooltip, usePersistState, useDarkMode } from '@chia/core';
 import styled from 'styled-components';
 import isURL from 'validator/lib/isURL';
 
@@ -78,8 +70,7 @@ const ModelExtension = styled.div`
   align-items: center;
   padding: 8px 16px;
   background: ${(props) => (props.isDarkMode ? '#333' : '#fff')};
-  box-shadow: 0px 0px 24px rgba(24, 162, 61, 0.5),
-    0px 4px 8px rgba(18, 99, 60, 0.32);
+  box-shadow: 0px 0px 24px rgba(24, 162, 61, 0.5), 0px 4px 8px rgba(18, 99, 60, 0.32);
   border-radius: 32px;
   color: ${(props) => (props.isDarkMode ? '#fff' : '#333')};
 `;
@@ -97,9 +88,7 @@ const StatusContainer = styled.div`
 
 const StatusPill = styled.div`
   background-color: ${({ theme }) => {
-    return theme.palette.mode === 'dark'
-      ? 'rgba(50, 50, 50, 0.4)'
-      : 'rgba(255, 255, 255, 0.4)';
+    return theme.palette.mode === 'dark' ? 'rgba(50, 50, 50, 0.4)' : 'rgba(255, 255, 255, 0.4)';
   }};
   backdrop-filter: blur(6px);
   border: 1px solid rgba(255, 255, 255, 0.13);
@@ -181,9 +170,7 @@ const CompactExtension = styled.div`
 const Sha256ValidatedIcon = styled.div`
   position: absolute;
   background: ${({ theme }) => {
-    return theme.palette.mode === 'dark'
-      ? 'rgba(33, 33, 33, 0.5)'
-      : 'rgba(255, 255, 255, 0.66)';
+    return theme.palette.mode === 'dark' ? 'rgba(33, 33, 33, 0.5)' : 'rgba(255, 255, 255, 0.66)';
   }};
   color: ${({ theme }) => {
     return theme.palette.mode === 'dark' ? '#fff' : '#333';
@@ -191,7 +178,7 @@ const Sha256ValidatedIcon = styled.div`
   border-radius: 18px;
   padding: 0 8px;
   top: 10px;
-  right: 10px;
+  left: 10px;
   z-index: 3;
   line-height: 25px;
   box-shadow: 0 0 2px 0 #ccc;
@@ -276,7 +263,7 @@ export default function NFTPreview(props: NFTPreviewProps) {
 
   const [ignoreSizeLimit, setIgnoreSizeLimit] = usePersistState<boolean>(
     false,
-    `nft-preview-ignore-size-limit-${nft.$nftId}-${file}`,
+    `nft-preview-ignore-size-limit-${nft.$nftId}-${file}`
   );
 
   const [loaded, setLoaded] = useState(false);
@@ -297,7 +284,7 @@ export default function NFTPreview(props: NFTPreviewProps) {
 
   const [ignoreError, setIgnoreError] = usePersistState<boolean>(
     false,
-    `nft-preview-ignore-error-${nft.$nftId}-${file}`,
+    `nft-preview-ignore-error-${nft.$nftId}-${file}`
   );
 
   const iframeRef = useRef<any>(null);
@@ -404,14 +391,7 @@ export default function NFTPreview(props: NFTPreviewProps) {
     let mediaElement = null;
 
     if (thumbnail.image) {
-      mediaElement = (
-        <img
-          src={thumbnail.image}
-          alt={t`Preview`}
-          width="100%"
-          height="100%"
-        />
-      );
+      mediaElement = <img src={thumbnail.image} alt={t`Preview`} width="100%" height="100%" />;
     } else if (mimeType().match(/^video/)) {
       mediaElement = (
         <video width="100%" height="100%">
@@ -422,14 +402,7 @@ export default function NFTPreview(props: NFTPreviewProps) {
       /* cached svg exception */
       mediaElement = <div id="replace-with-svg" />;
     } else {
-      mediaElement = (
-        <img
-          src={thumbnail.binary || file}
-          alt={t`Preview`}
-          width="100%"
-          height="100%"
-        />
-      );
+      mediaElement = <img src={thumbnail.binary || file} alt={t`Preview`} width="100%" height="100%" />;
     }
 
     if (isPreview && thumbnail.video && !disableThumbnail && !miniThumb) {
@@ -456,7 +429,7 @@ export default function NFTPreview(props: NFTPreviewProps) {
           <style dangerouslySetInnerHTML={{ __html: style }} />
         </head>
         <body>{mediaElement}</body>
-      </html>,
+      </html>
     );
 
     /* cached svg exception */
@@ -489,27 +462,13 @@ export default function NFTPreview(props: NFTPreviewProps) {
   }
 
   function isDocument() {
-    return (
-      [
-        'pdf',
-        'docx',
-        'doc',
-        'xls',
-        'xlsx',
-        'ppt',
-        'pptx',
-        'txt',
-        'rtf',
-      ].indexOf(extension) > -1
-    );
+    return ['pdf', 'docx', 'doc', 'xls', 'xlsx', 'ppt', 'pptx', 'txt', 'rtf'].indexOf(extension) > -1;
   }
 
   function isAudio() {
     return (
       mimeType().match(/^audio/) &&
-      (!isPreview ||
-        (isPreview && !thumbnail.video && !thumbnail.image) ||
-        disableThumbnail)
+      (!isPreview || (isPreview && !thumbnail.video && !thumbnail.image) || disableThumbnail)
     );
   }
 
@@ -597,11 +556,7 @@ export default function NFTPreview(props: NFTPreviewProps) {
       return renderCompactIconWrapper();
     }
 
-    const isOfferNft =
-      disableThumbnail &&
-      !mimeType().match(/^video/) &&
-      !mimeType().match(/^audio/) &&
-      !isImage(file);
+    const isOfferNft = disableThumbnail && !mimeType().match(/^video/) && !mimeType().match(/^audio/) && !isImage(file);
 
     const isPreviewNft =
       mimeType() !== '' &&
@@ -613,19 +568,13 @@ export default function NFTPreview(props: NFTPreviewProps) {
       !disableThumbnail;
 
     const notPreviewNft =
-      !disableThumbnail &&
-      !isPreview &&
-      (mimeType().match(/^model/) || isDocument() || isUnknownType());
+      !disableThumbnail && !isPreview && (mimeType().match(/^model/) || isDocument() || isUnknownType());
 
     if (isOfferNft || isPreviewNft || notPreviewNft) {
       return (
         <>
           {renderNftIcon()}
-          {extension && (
-            <ModelExtension isDarkMode={isDarkMode}>
-              .{extension}
-            </ModelExtension>
-          )}
+          {extension && <ModelExtension isDarkMode={isDarkMode}>.{extension}</ModelExtension>}
         </>
       );
     }
@@ -672,9 +621,7 @@ export default function NFTPreview(props: NFTPreviewProps) {
 
     if (icon && tooltipString) {
       return (
-        <Tooltip
-          title={<Typography variant="caption">{tooltipString}</Typography>}
-        >
+        <Tooltip title={<Typography variant="caption">{tooltipString}</Typography>}>
           <Sha256ValidatedIcon>{icon} HASH</Sha256ValidatedIcon>
         </Tooltip>
       );
@@ -726,8 +673,7 @@ export default function NFTPreview(props: NFTPreviewProps) {
           <Trans>Metadata hash mismatch</Trans>
         </ThumbnailError>
       ) : typeof metadataError === 'string' &&
-        (metadataError === 'Invalid URL' ||
-          metadataError.indexOf('getaddrinfo ENOTFOUND') > -1) ? (
+        (metadataError === 'Invalid URL' || metadataError.indexOf('getaddrinfo ENOTFOUND') > -1) ? (
         <ThumbnailError>
           <Trans>Invalid metadata url</Trans>
         </ThumbnailError>
@@ -746,12 +692,7 @@ export default function NFTPreview(props: NFTPreviewProps) {
               <Trans>Response too large</Trans>
             </IconMessage>
             {error !== 'url is not defined' && (
-              <Button
-                onClick={handleIgnoreError}
-                variant="outlined"
-                size="small"
-                color="secondary"
-              >
+              <Button onClick={handleIgnoreError} variant="outlined" size="small" color="secondary">
                 <Trans>Show Preview</Trans>
               </Button>
             )}
@@ -759,25 +700,10 @@ export default function NFTPreview(props: NFTPreviewProps) {
         </Background>
       ) : null}
       <>
-        {(showLoading ||
-          (!loaded &&
-            isImage(file) &&
-            !thumbnail.image &&
-            !thumbnail.video &&
-            isUrlValid)) &&
+        {(showLoading || (!loaded && isImage(file) && !thumbnail.image && !thumbnail.video && isUrlValid)) &&
           !responseTooLarge(error) && (
-            <Flex
-              position="absolute"
-              left="0"
-              top="0"
-              bottom="0"
-              right="0"
-              justifyContent="center"
-              alignItems="center"
-            >
-              <Loading center>
-                {!miniThumb && <Trans>Loading preview...</Trans>}
-              </Loading>
+            <Flex position="absolute" left="0" top="0" bottom="0" right="0" justifyContent="center" alignItems="center">
+              <Loading center>{!miniThumb && <Trans>Loading preview...</Trans>}</Loading>
             </Flex>
           )}
         {!showLoading && !responseTooLarge(error) && renderElementPreview()}
