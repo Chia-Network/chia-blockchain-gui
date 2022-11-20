@@ -1,5 +1,5 @@
-import { useLocalStorage } from '@chia/api-react';
+import { usePrefs } from '@chia/api-react';
 
 export default function useEnableFilePropagationServer() {
-  return useLocalStorage<boolean>('enableFilePropagationServer', false);
+  return usePrefs<boolean>('enableFilePropagationServer', false);
 }
