@@ -15,7 +15,7 @@ export function readPrefs(): Record<string, any> {
   try{
     const path = getPrefsPath();
     if(!fs.existsSync(path)){
-      return migrateGUIPrefsFromLocalStorage();
+      return {};
     }
 
     const yamlData = fs.readFileSync(path, 'utf-8');
@@ -41,27 +41,15 @@ export function savePrefs(prefs: Record<string, any>){
   }
 }
 
-function migrateGUIPrefsFromLocalStorage(){
-  const prefs: Record<string, any> = {};
-  const targets: string[] = [
-    // 'cacheFolder',
-  ];
-
-  for(const key of targets){
-    const item = window.localStorage.getItem(key);
-    if(item === undefined || item === null){
-      continue;
-    }
-
-    try{
-      prefs[key] = JSON.parse(item);
-      window.localStorage.removeItem(key);
-    }
-    catch(e){
-      console.warn(e);
+export function migratePrefs(prefs: Record<string, any>){
+  const currentPrefs = readPrefs();
+  for(const key in prefs){
+    // When currentPrefs already has the pref, don't override it.
+    // Prefs in `prefs.yaml` has priority over prefs from localStorage.
+    if(!Object.hasOwn(currentPrefs, key)){
+      currentPrefs[key] = prefs[key];
     }
   }
 
-  savePrefs(prefs);
-  return prefs;
+  savePrefs(currentPrefs);
 }

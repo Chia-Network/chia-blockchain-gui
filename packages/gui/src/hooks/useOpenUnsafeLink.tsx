@@ -1,7 +1,7 @@
 import { ConfirmDialog, CopyToClipboard, Flex, useOpenDialog, useOpenExternal } from '@chia/core';
+import { usePrefs } from '@chia/api-react';
 import { Trans } from '@lingui/macro';
 import { Checkbox, FormControlLabel, InputAdornment, TextField, Typography } from '@mui/material';
-import { useLocalStorage } from '@rehooks/local-storage';
 import React from 'react';
 
 /* ========================================================================== */
@@ -16,7 +16,7 @@ type OpenUnsafeLinkConfirmationDialogProps = {
 
 function OpenUnsafeLinkConfirmationDialog(props: OpenUnsafeLinkConfirmationDialogProps) {
   const { url, ...rest } = props;
-  const [suppressUnsafeLinkWarning, setSuppressUnsafeLinkWarning] = useLocalStorage<boolean>(
+  const [suppressUnsafeLinkWarning, setSuppressUnsafeLinkWarning] = usePrefs<boolean>(
     SuppressUnsafeLinkWarningLocalStorageKey,
     false
   );
@@ -73,7 +73,7 @@ function OpenUnsafeLinkConfirmationDialog(props: OpenUnsafeLinkConfirmationDialo
 export default function useOpenUnsafeLink() {
   const openDialog = useOpenDialog();
   const openExternal = useOpenExternal();
-  const [suppressUnsafeLinkWarning] = useLocalStorage<boolean>(SuppressUnsafeLinkWarningLocalStorageKey, false);
+  const [suppressUnsafeLinkWarning] = usePrefs<boolean>(SuppressUnsafeLinkWarningLocalStorageKey, false);
 
   async function openUnsafeLink(url: string) {
     let openUrl = false;

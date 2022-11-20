@@ -1,4 +1,4 @@
-import { useLocalStorage } from '@chia/api-react';
+import { usePrefs } from '@chia/api-react';
 import type { I18n } from '@lingui/core';
 import { I18nProvider } from '@lingui/react';
 import React, { useMemo, createContext, useCallback, ReactNode, useEffect } from 'react';
@@ -31,7 +31,7 @@ export type LocaleProviderProps = {
 export default function LocaleProvider(props: LocaleProviderProps) {
   const { children, i18n, locales, defaultLocale } = props;
 
-  let [locale, setLocale] = useLocalStorage<string>('locale', defaultLocale);
+  let [locale, setLocale] = usePrefs<string>('locale', defaultLocale);
   if (typeof locale !== 'string' || (locale && locale.length === 2)) {
     locale = defaultLocale;
   }

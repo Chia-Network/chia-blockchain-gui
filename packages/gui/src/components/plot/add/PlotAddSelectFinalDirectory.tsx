@@ -1,7 +1,7 @@
 import { ButtonSelected, CardStep, Flex, TextField } from '@chia/core';
+import {usePrefs} from '@chia/api-react';
 import { Trans } from '@lingui/macro';
 import { Typography } from '@mui/material';
-import { useLocalStorage, writeStorage } from '@rehooks/local-storage';
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
 
@@ -21,13 +21,14 @@ export default function PlotAddSelectFinalDirectory(props: Props) {
 
   const finalLocation = watch('finalLocation');
   const hasFinalLocation = !!finalLocation;
-  const [defaultFinalDirPath] = useLocalStorage<string>(PlotLocalStorageKeys.FINALDIR);
+  const [defaultFinalDirPath] = usePrefs<string>(PlotLocalStorageKeys.FINALDIR);
 
   async function handleSelect() {
     const location = await selectDirectory({ defaultPath: defaultFinalDirPath || undefined });
     if (location) {
       setValue('finalLocation', location, { shouldValidate: true });
-      writeStorage(PlotLocalStorageKeys.FINALDIR, location);
+      (window as any).preferences[PlotLocalStorageKeys.FINALDIR] = location;
+      (window as any).ipcRenderer.invoke('savePrefs', (window as any).preferences);
     }
   }
 

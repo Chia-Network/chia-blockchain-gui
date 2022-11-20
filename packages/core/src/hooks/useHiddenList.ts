@@ -1,4 +1,4 @@
-import { useLocalStorage } from '@chia/api-react';
+import { usePrefs } from '@chia/api-react';
 import { useCallback, useMemo } from 'react';
 
 type List<Type> = {
@@ -12,7 +12,7 @@ export default function useHiddenList<Type>(
   setIsHidden: (key: Type, newValue: (isHidden: boolean) => boolean | boolean) => void,
   hidden: Type[]
 ] {
-  const [hiddenLists, setHiddenLists] = useLocalStorage<List<Type>>('isHidden', {});
+  const [hiddenLists, setHiddenLists] = usePrefs<List<Type>>('isHidden', {});
 
   const list = useMemo(() => (hiddenLists[listName] ? [...hiddenLists[listName]] : []), [hiddenLists, listName]);
 

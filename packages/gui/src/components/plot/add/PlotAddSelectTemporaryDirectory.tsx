@@ -1,7 +1,7 @@
 import { AdvancedOptions, ButtonSelected, CardStep, Flex, TextField, Checkbox, TooltipIcon } from '@chia/core';
+import { usePrefs } from '@chia/api-react';
 import { Trans } from '@lingui/macro';
 import { FormControl, FormControlLabel, Typography } from '@mui/material';
-import { useLocalStorage, writeStorage } from '@rehooks/local-storage';
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
 
@@ -22,8 +22,8 @@ export default function PlotAddSelectTemporaryDirectory(props: Props) {
 
   const workspaceLocation = watch('workspaceLocation');
   const hasWorkspaceLocation = !!workspaceLocation;
-  const [defaultTmpDirPath] = useLocalStorage<string>(PlotLocalStorageKeys.TMPDIR);
-  const [defaultTmp2DirPath] = useLocalStorage<string>(PlotLocalStorageKeys.TMP2DIR);
+  const [defaultTmpDirPath, setDefaultTmpDirPath] = usePrefs<string>(PlotLocalStorageKeys.TMPDIR);
+  const [defaultTmp2DirPath, setDefaultTmp2DirPath] = usePrefs<string>(PlotLocalStorageKeys.TMP2DIR);
 
   const workspaceLocation2 = watch('workspaceLocation2');
   const hasWorkspaceLocation2 = !!workspaceLocation2;
@@ -32,7 +32,7 @@ export default function PlotAddSelectTemporaryDirectory(props: Props) {
     const location = await selectDirectory({ defaultPath: defaultTmpDirPath || undefined });
     if (location) {
       setValue('workspaceLocation', location, { shouldValidate: true });
-      writeStorage(PlotLocalStorageKeys.TMPDIR, location);
+      setDefaultTmpDirPath(location);
     }
   }
 
@@ -40,7 +40,7 @@ export default function PlotAddSelectTemporaryDirectory(props: Props) {
     const location = await selectDirectory({ defaultPath: defaultTmp2DirPath || undefined });
     if (location) {
       setValue('workspaceLocation2', location, { shouldValidate: true });
-      writeStorage(PlotLocalStorageKeys.TMP2DIR, location);
+      setDefaultTmp2DirPath(location);
     }
   }
 

@@ -1,4 +1,7 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
+import EventEmitter from '../utils/EventEmitter';
+
+const eventEmitter = new EventEmitter();
 
 function deepEqual(objA: any, objB: any){
   return JSON.stringify(objA) === JSON.stringify(objB);
@@ -20,12 +23,34 @@ export default function usePrefs<T>(
         return;
       }
 
-      setPrefStateValue(newPrefValue);
       (window as any).preferences[key] = newPrefValue;
       (window as any).ipcRenderer.invoke('savePrefs', (window as any).preferences);
+
+      eventEmitter.emit('prefs', { key, newValue: newPrefValue });
     },
     [prefStateValue, currentPrefValue, key],
   );
+
+  const changeHandler = useCallback(
+    (e: {key: string; newValue: any}) => {
+      if (key === e.key) {
+        setPrefStateValue(e.newValue);
+      }
+    },
+    [key]
+  );
+
+  // The reason to use EventEmitter for updating prefs state:
+  // Without using 'global' event handler, usePrefs is just the local, component wide
+  // state manager, which means `setPrefStateValue` does not propagate to other component states.
+  // By EventEmitter, state update from one component triggers `setPrefStateValue` of other components
+  // which has the same preference key.
+  useEffect(() => {
+    eventEmitter.on('prefs', changeHandler);
+    return () => {
+      eventEmitter.remove('prefs', changeHandler);
+    };
+  }, [changeHandler]);
 
   return [prefStateValue, setPrefValue];
 }

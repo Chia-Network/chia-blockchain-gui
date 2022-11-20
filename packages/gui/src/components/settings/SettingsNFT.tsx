@@ -1,4 +1,4 @@
-import { useLocalStorage } from '@chia/api-react';
+import { usePrefs } from '@chia/api-react';
 import { Flex, SettingsLabel, AlertDialog, useOpenDialog, FormatBytes } from '@chia/core';
 import { Trans } from '@lingui/macro';
 import { Grid, Box, Button, Switch, FormGroup, FormControlLabel } from '@mui/material';
@@ -15,17 +15,17 @@ export default function SettingsGeneral() {
     setHideObjectionableContent(event.target.checked);
   }
 
-  const [cacheFolder, setCacheFolder] = useLocalStorage('cacheFolder');
-  const [defaultCacheFolder, setDefaultCacheFolder] = React.useState();
+  const [cacheFolder, setCacheFolder] = usePrefs('cacheFolder', '');
+  const [defaultCacheFolder, setDefaultCacheFolder] = React.useState('');
   const [cacheSize, setCacheSize] = React.useState(0);
   const openDialog = useOpenDialog();
   const { ipcRenderer } = window as any;
 
   React.useEffect(() => {
-    ipcRenderer.invoke('getDefaultCacheFolder').then((folder) => {
+    ipcRenderer.invoke('getDefaultCacheFolder').then((folder: string) => {
       setDefaultCacheFolder(folder);
     });
-    ipcRenderer.invoke('getCacheSize').then((cacheSize) => {
+    ipcRenderer.invoke('getCacheSize').then((cacheSize: number) => {
       setCacheSize(cacheSize);
     });
   }, []);
