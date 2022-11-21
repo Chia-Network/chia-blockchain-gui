@@ -3,6 +3,7 @@ import { Trans, Plural } from '@lingui/macro';
 import BigNumber from 'bignumber.js';
 import {
   Box,
+  IconButton,
   InputAdornment,
   FormControl,
   FormHelperText,
@@ -15,6 +16,7 @@ import useCurrencyCode from '../../hooks/useCurrencyCode';
 import FormatLargeNumber from '../FormatLargeNumber';
 import Flex from '../Flex';
 import NumberFormatCustom from './NumberFormatCustom';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
 export type AmountProps = TextFieldProps & {
   children?: (props: {
@@ -24,6 +26,7 @@ export type AmountProps = TextFieldProps & {
   name?: string;
   symbol?: string; // if set, overrides the currencyCode. empty string is allowed
   showAmountInMojos?: boolean; // if true, shows the mojo amount below the input field
+  dropdownAdornment?: func;
   // feeMode?: boolean; // if true, amounts are expressed in mojos used to set a transaction fee
   'data-testid'?: string;
 };
@@ -34,6 +37,7 @@ export default function Amount(props: AmountProps) {
     name,
     symbol,
     showAmountInMojos,
+    dropdownAdornment,
     variant,
     fullWidth,
     'data-testid': dataTestid,
@@ -68,9 +72,10 @@ export default function Amount(props: AmountProps) {
             decimalScale: isChiaCurrency ? 12 : 3,
             'data-testid': dataTestid,
           },
-          endAdornment: (
-            <InputAdornment position="end">{currencyCode}</InputAdornment>
-          ),
+          endAdornment: dropdownAdornment ?
+            <IconButton onClick={dropdownAdornment}><ArrowDropDownIcon /></IconButton>
+            : <InputAdornment position="end">{currencyCode}</InputAdornment>,
+          style: dropdownAdornment ? {paddingRight: '0'} : undefined,
         }}
         {...rest}
       />
