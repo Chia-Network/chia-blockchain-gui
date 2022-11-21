@@ -28,7 +28,7 @@
     "events": "3.3.0",
     "json-bigint": "1.0.0",
     "lodash": "4.17.21",
-    "regenerator-runtime": "0.13.9"
+    "regenerator-runtime": "0.13.10"
   },
   "devDependencies": {
     "@babel/core": "7.16.7",
