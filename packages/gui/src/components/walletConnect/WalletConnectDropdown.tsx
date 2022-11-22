@@ -1,7 +1,7 @@
 import React from 'react';
 import { DropdownIconButton } from '@chia/core';
 import { Box } from '@mui/material';
-import { InfoOutlined as InfoOutlinedIcon } from '@mui/icons-material';
+import { WalletConnect } from '@chia/icons';
 import WalletConnectConnections from './WalletConnectConnections';
 import useWalletConnectContext from '../../hooks/useWalletConnectContext';
 
@@ -12,7 +12,7 @@ export default function WalletConnectDropdown() {
     enabled && !isLoading && pairs.get().length > 0 ? 'primary' : 'secondary';
 
   return (
-    <DropdownIconButton icon={<InfoOutlinedIcon color={color} />}>
+    <DropdownIconButton icon={<WalletConnect color={color} />}>
       {({ onClose }) => (
         <Box sx={{ minWidth: 360 }}>
           <WalletConnectConnections onClose={onClose} />

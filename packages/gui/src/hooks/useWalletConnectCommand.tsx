@@ -10,18 +10,16 @@ import {
 } from '@chia/core';
 import { Divider, Typography } from '@mui/material';
 import {
+  api,
+  store,
   useGetLoggedInFingerprintQuery,
-  useSendTransactionMutation,
-  useGetNextAddressMutation,
-  useLogInAndSkipImportMutation,
-  useSignMessageByAddressMutation,
-  useSignMessageByIdMutation,
   useGetSyncStatusQuery,
 } from '@chia/api-react';
-import BigNumber from 'bignumber.js';
 import useWalletConnectPrefs from './useWalletConnectPrefs';
 import useWalletConnectPairs from './useWalletConnectPairs';
 import WalletConnectMetadata from '../components/walletConnect/WalletConnectMetadata';
+import prepareWalletConnectCommand from '../util/prepareWalletConnectCommand';
+import walletConnectCommands from '../constants/WalletConnectCommands';
 
 /*
 export const STANDARD_ERROR_MAP = {
@@ -41,11 +39,6 @@ export default function useWalletConnectCommand() {
     useGetLoggedInFingerprintQuery();
   const currencyCode = useCurrencyCode();
   const { autoConfirm } = useWalletConnectPrefs();
-  const [sendTransaction] = useSendTransactionMutation();
-  const [newAddress] = useGetNextAddressMutation();
-  const [logIn] = useLogInAndSkipImportMutation();
-  const [signMessageByAddress] = useSignMessageByAddressMutation();
-  const [signMessageById] = useSignMessageByIdMutation();
   const walletSyncState = useGetSyncStatusQuery(
     {},
     {
@@ -58,17 +51,20 @@ export default function useWalletConnectCommand() {
     currentFingerprint,
     currencyCode,
     walletSyncState,
+    autoConfirm,
   });
 
   state.current.currentFingerprint = currentFingerprint;
   state.current.currencyCode = currencyCode;
   state.current.walletSyncState = walletSyncState;
+  state.current.autoConfirm = autoConfirm;
 
   async function confirm(
     topic: string,
     message: ReactNode,
     attributes: { label: ReactNode; value: ReactNode }[] = [],
   ) {
+    const { autoConfirm } = state.current;
     if (autoConfirm) {
       return true;
     }
@@ -114,227 +110,61 @@ export default function useWalletConnectCommand() {
     return isConfirmed;
   }
 
-  async function chiaSendTransaction(
-    topic: string,
-    params: {
-      to: string;
-      amount: string;
-      fee: string;
-      fingerprint: number;
-    },
-  ) {
-    const { currencyCode } = state.current;
-    const { fingerprint, to, amount, fee = '0' } = params;
-    if (fingerprint !== state.current.currentFingerprint) {
-      throw new Error('Invalid fingerprint');
-    }
-
-    const amountChia = mojoToChiaLocaleString(amount, locale);
-    const feeChia = mojoToChiaLocaleString(fee, locale);
-
-    const confirmed = await confirm(
-      topic,
-      <Trans>Do you want to send transaction?</Trans>,
-      [
-        {
-          label: <Trans>Amount</Trans>,
-          value: `${amountChia} ${currencyCode}`,
-        },
-        {
-          label: <Trans>Fee</Trans>,
-          value: `${feeChia} ${currencyCode}`,
-        },
-        {
-          label: <Trans>To</Trans>,
-          value: to,
-        },
-      ],
-    );
-
-    if (!confirmed) {
-      throw new Error('User cancelled send transaction');
-    }
-
-    return sendTransaction({
-      walletId: 1,
-      address: to,
-      amount: new BigNumber(amount),
-      fee: new BigNumber(fee),
-      waitForConfirmation: true,
-    }).unwrap();
-  }
-
-  async function chiaNewAddress(
-    topic: string,
-    params: {
-      fingerprint: number;
-    },
-  ) {
-    const { fingerprint } = params;
-    if (fingerprint !== state.current.currentFingerprint) {
-      throw new Error('Invalid fingerprint');
-    }
-
-    const confirmed = await confirm(
-      topic,
-      <Trans>Do you want to use new receive address?</Trans>,
-    );
-    if (!confirmed) {
-      throw new Error('User cancelled command newAddress');
-    }
-
-    const address = await newAddress({
-      walletId: 1,
-      newAddress: true,
-    }).unwrap();
-
-    return {
-      address,
-    };
-  }
-
-  async function chiaLogIn(
-    topic: string,
-    params: {
-      fingerprint: number;
-    },
-  ) {
-    const { fingerprint } = params;
-    const confirmed = await confirm(
-      topic,
-      <Trans>Do you want to use wallet: {fingerprint}?</Trans>,
-    );
-    if (!confirmed) {
-      throw new Error('User cancelled command logIn');
-    }
-
-    const response = await logIn({
-      fingerprint,
-    }).unwrap();
-
-    return {
-      response,
-    };
-  }
-
-  async function chiaSignMessageByAddress(
-    topic: string,
-    params: {
-      fingerprint: number;
-      address: string;
-      message: string;
-    },
-  ) {
-    const { fingerprint, address, message } = params;
-    if (fingerprint !== state.current.currentFingerprint) {
-      throw new Error('Invalid fingerprint');
-    }
-
-    const confirmed = await confirm(
-      topic,
-      <Trans>Do you want to sign message by address?</Trans>,
-      [
-        {
-          label: <Trans>Address</Trans>,
-          value: address,
-        },
-        {
-          label: <Trans>Message</Trans>,
-          value: message,
-        },
-      ],
-    );
-    if (!confirmed) {
-      throw new Error('User cancelled command signInMessageByAddress');
-    }
-
-    return signMessageByAddress({
-      address,
-      message,
-    }).unwrap();
-  }
-
-  async function chiaSignMessageById(
-    topic: string,
-    params: {
-      fingerprint: number;
-      id: string;
-      message: string;
-    },
-  ) {
-    const { fingerprint, id, message } = params;
-    if (fingerprint !== state.current.currentFingerprint) {
-      throw new Error('Invalid fingerprint');
-    }
-
-    const confirmed = await confirm(
-      topic,
-      <Trans>Do you want to sign message by id?</Trans>,
-      [
-        {
-          label: <Trans>Id</Trans>,
-          value: id,
-        },
-        {
-          label: <Trans>Message</Trans>,
-          value: message,
-        },
-      ],
-    );
-    if (!confirmed) {
-      throw new Error('User cancelled command signInMessageById');
-    }
-
-    return signMessageById({
-      id,
-      message,
-    }).unwrap();
-  }
-
-  async function chiaGetWalletSyncStatus(
-    topic: string,
-    params: {
-      fingerprint: number;
-    },
-  ) {
-    const { fingerprint } = params;
-    const { walletSyncState, currentFingerprint } = state.current;
-    if (fingerprint !== currentFingerprint) {
-      throw new Error('Invalid fingerprint');
-    }
-
-    const confirmed = await confirm(
-      topic,
-      <Trans>Do you want to send the current wallet sync state?</Trans>,
-    );
-    if (!confirmed) {
-      throw new Error('User cancelled command getWalletSyncStatus');
-    }
-
-    return {
-      ...walletSyncState.data,
-      isLoading: walletSyncState.isLoading,
-    };
-  }
-
   const handleProcess = useCallback(
-    async (topic, command: string, params: any) => {
-      switch (command) {
-        case 'chia_sendTransaction':
-          return chiaSendTransaction(topic, params);
-        case 'chia_newAddress':
-          return chiaNewAddress(topic, params);
-        case 'chia_logIn':
-          return chiaLogIn(topic, params);
-        case 'chia_signMessageByAddress':
-          return chiaSignMessageByAddress(topic, params);
-        case 'chia_signMessageById':
-          return chiaSignMessageById(topic, params);
-        case 'chia_getWalletSyncStatus':
-          return chiaGetWalletSyncStatus(topic, params);
-        default:
-          throw new Error(`Unknown command ${command}`);
+    async (topic, requestedCommand: string, requestedParams: any) => {
+      const { command, params, definition } = prepareWalletConnectCommand(
+        walletConnectCommands,
+        requestedCommand,
+        requestedParams,
+      );
+
+      // validate fingerprint for current command
+      const { allFingerprints } = definition;
+      if (!allFingerprints) {
+        const { fingerprint } = requestedParams;
+        if (fingerprint !== state.current.currentFingerprint) {
+          throw new Error(`Invalid fingerprint ${fingerprint}`);
+        }
       }
+
+      const confirmArguments: {
+        label: ReactNode;
+        value: ReactNode;
+      }[] = [];
+
+      const { params: definitionParams = [] } = definition;
+      definitionParams.forEach((param) => {
+        const { name, label } = param;
+
+        if (name in params) {
+          confirmArguments.push({
+            label: label ?? name,
+            value: params[name],
+          });
+        }
+      });
+
+      const confirmed = await confirm(
+        topic,
+        <Trans>Do you want to execute command {command}?</Trans>,
+        confirmArguments,
+      );
+
+      if (!confirmed) {
+        throw new Error(`User cancelled command ${requestedCommand}`);
+      }
+
+      // execute command
+      const resultPromise = store.dispatch(
+        api.endpoints[command].initiate(params),
+      );
+
+      const result = await resultPromise;
+
+      // Removing the corresponding cache subscription
+      resultPromise.unsubscribe();
+
+      return result;
     },
     [],
   );

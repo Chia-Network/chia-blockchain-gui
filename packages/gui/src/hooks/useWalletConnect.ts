@@ -3,6 +3,11 @@ import Client from '@walletconnect/sign-client';
 import useWalletConnectCommand from './useWalletConnectCommand';
 import useWalletConnectPairs from './useWalletConnectPairs';
 import useWalletConnectPrefs from './useWalletConnectPrefs';
+import walletConnectCommands from '../constants/WalletConnectCommands';
+
+const availableCommands = walletConnectCommands.map(
+  (command) => `chia_${command.command}`,
+);
 
 const defaultMetadata = {
   name: 'Chia Blockchain',
@@ -109,14 +114,7 @@ export default function useWalletConnect(config: UseWalletConnectConfig) {
     const namespaces = {
       chia: {
         accounts,
-        methods: [
-          'chia_sendTransaction',
-          'chia_newAddress',
-          'chia_logIn',
-          'chia_signMessageByAddress',
-          'chia_signMessageById',
-          'chia_getWalletSyncStatus',
-        ],
+        methods: availableCommands,
         events: [],
       },
     };
