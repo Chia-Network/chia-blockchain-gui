@@ -190,16 +190,19 @@ export default function AppState(props: Props) {
     );
   }
 
-  if ((backendVersion && version) && (backendVersion !== version) && (versionDialog === true)) {
-    return (
-      <LayoutHero>
-        <AppVersionWarning
-          backV={backendVersion}
-          guiV={version}
-          setVersionDialog={setVersionDialog}
-        />
-      </LayoutHero>
-    );
+  if ((backendVersion && version) && (versionDialog === true)) {
+    const guiVersion = version.replace('-','.');
+    if (backendVersion !== guiVersion) {
+      return (
+        <LayoutHero>
+          <AppVersionWarning
+            backV={backendVersion}
+            guiV={guiVersion}
+            setVersionDialog={setVersionDialog}
+          />
+        </LayoutHero>
+      );
+    }
   }
 
   if (isLoadingKeyringStatus || !keyringStatus) {
