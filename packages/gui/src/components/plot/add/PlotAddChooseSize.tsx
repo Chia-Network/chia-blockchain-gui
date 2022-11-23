@@ -50,7 +50,6 @@ export default function PlotAddChooseSize(props: Props) {
       </ConfirmDialog>
     );
 
-    // @ts-ignore
     if (canUse) {
       setValue('overrideK', true);
     } else {

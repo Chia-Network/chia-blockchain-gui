@@ -22,33 +22,38 @@ export default function PlotAddChoosePlotter(props: Props) {
   const plotterName: PlotterName | undefined = useWatch<PlotterName>({ name: 'plotterName' });
   const { data: plotters } = useGetPlottersQuery();
 
-  function displayablePlotters(plotters: PlotterMap<PlotterName, Plotter>): PlotterName[] {
-    const displayablePlotters = Object.keys(plotters) as PlotterName[];
+  function getDisplayablePlotters(p: PlotterMap<PlotterName, Plotter>): PlotterName[] {
+    const displayablePlotters = Object.keys(p) as PlotterName[];
     // Sort chiapos to the top of the list
-    displayablePlotters.sort((a, b) => (a == PlotterName.CHIAPOS ? -1 : a.localeCompare(b)));
+    displayablePlotters.sort((a, b) =>
+      (a === PlotterName.CHIAPOS ? -1 : a.localeCompare(b))
+    );
     return displayablePlotters;
   }
 
-  const displayedPlotters = useMemo(() => (plotters ? displayablePlotters(plotters) : []), [plotters]);
+  const displayedPlotters = useMemo(
+    () => (plotters ? getDisplayablePlotters(plotters) : []),
+    [plotters],
+  );
 
   const handleChange = async (event: any) => {
     const selectedPlotterName: PlotterName = event.target.value as PlotterName;
     onChange(selectedPlotterName);
   };
 
-  const isPlotterInstalled = (plotterName: PlotterName): boolean => {
-    const installed = plotters[plotterName]?.installInfo?.installed ?? false;
+  const isPlotterInstalled = (name: PlotterName): boolean => {
+    const installed = plotters[name]?.installInfo?.installed ?? false;
     return installed;
   };
 
-  const isPlotterSupported = (plotterName: PlotterName): boolean => {
-    const installed = plotters[plotterName]?.installInfo?.installed ?? false;
-    const supported = installed || (plotters[plotterName]?.installInfo?.canInstall ?? false);
+  const isPlotterSupported = (name: PlotterName): boolean => {
+    const installed = plotters[name]?.installInfo?.installed ?? false;
+    const supported = installed || (plotters[name]?.installInfo?.canInstall ?? false);
     return supported;
   };
 
-  function plotterDisplayName(plotterName: PlotterName): string {
-    const plotter = plotters[plotterName] ?? defaultPlotter;
+  function plotterDisplayName(name: PlotterName): string {
+    const plotter = plotters[name] ?? defaultPlotter;
     const { version } = plotter;
     const installed = plotter.installInfo?.installed ?? false;
     let { displayName } = plotter;
@@ -57,7 +62,7 @@ export default function PlotAddChoosePlotter(props: Props) {
       displayName += ` ${version}`;
     }
 
-    if (!isPlotterSupported(plotterName)) {
+    if (!isPlotterSupported(name)) {
       displayName += ` ${t`(Not Supported)`}`;
     } else if (!installed) {
       displayName += ` ${t`(Not Installed)`}`;
@@ -66,9 +71,9 @@ export default function PlotAddChoosePlotter(props: Props) {
     return displayName;
   }
 
-  const plotterWarningString = (plotterName: PlotterName | undefined): string | undefined => {
-    if (plotterName === PlotterName.BLADEBIT) {
-      return plotters[PlotterName.BLADEBIT]?.installInfo?.bladebitMemoryWarning;
+  const plotterWarningString = (name: PlotterName | undefined): string | undefined => {
+    if (name === PlotterName.BLADEBIT_RAM) {
+      return plotters[PlotterName.BLADEBIT_RAM]?.installInfo?.bladebitMemoryWarning;
     }
     return undefined;
   };
