@@ -28,7 +28,8 @@
   "peerDependencies": {
     "@chia/api": "1.0.0",
     "@reduxjs/toolkit": "1.7.1",
-    "react-redux": "7.2.6"
+    "react-redux": "7.2.6",
+    "react": "^17.0.0"
   },
   "devDependencies": {
     "@babel/core": "7.16.7",

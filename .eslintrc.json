@@ -13,6 +13,10 @@
   "parserOptions": {
     "project": "./packages/*/tsconfig.json"
   },
+  // Allow electron to be only a devDependency instead of normal dependency
+  "settings": {
+    "import/core-modules": ["electron"]
+  },
   // Airbnb rule overrides and additions
   "rules": {
     // Automatically order imports
