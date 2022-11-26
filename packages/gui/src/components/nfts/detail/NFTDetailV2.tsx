@@ -1,10 +1,11 @@
+import { IpcRenderer } from 'electron';
+
 import type { NFTInfo } from '@chia/api';
 import { useGetNFTInfoQuery, useGetNFTWallets, useLocalStorage } from '@chia/api-react';
 import { Back, Flex, LayoutDashboardSub, Loading, useOpenDialog } from '@chia/core';
 import { Trans } from '@lingui/macro';
 import { MoreVert } from '@mui/icons-material';
 import { Box, Grid, Typography, IconButton, Button } from '@mui/material';
-import { IpcRenderer } from 'electron';
 import React, { useMemo, useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';

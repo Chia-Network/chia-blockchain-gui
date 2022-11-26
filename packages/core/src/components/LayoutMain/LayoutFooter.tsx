@@ -1,6 +1,7 @@
+import { Shell } from 'electron';
+
 import { Trans } from '@lingui/macro';
 import { Typography } from '@mui/material';
-import { Shell } from 'electron';
 import React from 'react';
 import styled from 'styled-components';
 

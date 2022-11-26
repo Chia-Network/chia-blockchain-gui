@@ -1,10 +1,4 @@
 import crypto from 'crypto';
-import fs from 'fs';
-import path from 'path';
-import url from 'url';
-
-import { initialize } from '@electron/remote/main';
-import axios from 'axios';
 import {
   app,
   dialog,
@@ -17,9 +11,14 @@ import {
   nativeImage,
   protocol,
 } from 'electron';
+import fs from 'fs';
+import path from 'path';
+import url from 'url';
+
+import { initialize } from '@electron/remote/main';
+import axios from 'axios';
 import windowStateKeeper from 'electron-window-state';
 import React from 'react';
-
 // import os from 'os';
 // import installExtension, { REDUX_DEVTOOLS, REACT_DEVELOPER_TOOLS } from 'electron-devtools-installer';
 import ReactDOMServer from 'react-dom/server';

@@ -1,9 +1,10 @@
+import { IpcRenderer } from 'electron';
+
 import { ConnectionState, ServiceHumanName, ServiceName, PassphrasePromptReason } from '@chia/api';
 import { useCloseMutation, useGetStateQuery, useGetKeyringStatusQuery, useServices } from '@chia/api-react';
 import { Flex, LayoutHero, LayoutLoading, useMode, useIsSimulator } from '@chia/core';
 import { Trans } from '@lingui/macro';
 import { Typography, Collapse } from '@mui/material';
-import { IpcRenderer } from 'electron';
 import isElectron from 'is-electron';
 import React, { useState, useEffect, ReactNode, useMemo } from 'react';
 

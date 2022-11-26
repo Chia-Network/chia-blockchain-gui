@@ -1,4 +1,5 @@
 import child_process from 'child_process';
+import { Shell } from 'electron';
 import fs from 'fs';
 import path from 'path';
 
@@ -28,7 +29,6 @@ import {
 } from '@mui/material';
 import { useLocalStorage } from '@rehooks/local-storage';
 import debug from 'debug';
-import { Shell } from 'electron';
 import React, { useMemo } from 'react';
 
 import useAssetIdName, { AssetIdMapEntry } from '../../hooks/useAssetIdName';
