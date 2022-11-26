@@ -1,9 +1,9 @@
 import type { PlotNFT, PlotNFTExternal } from '@chia/api';
 import { useGetPoolLoginLinkQuery } from '@chia/api-react';
 import { Button, CopyToClipboard, Flex, Link, Loading } from '@chia/core';
-import { t, Trans } from '@lingui/macro';
+import { Trans } from '@lingui/macro';
 import { Alert, Dialog, DialogActions, DialogTitle, DialogContent, Typography } from '@mui/material';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 const StyledLoginLink = styled(Typography)`

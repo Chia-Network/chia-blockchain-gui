@@ -1,5 +1,4 @@
 import child_process from 'child_process';
-import { Shell } from 'electron';
 import fs from 'fs';
 import path from 'path';
 

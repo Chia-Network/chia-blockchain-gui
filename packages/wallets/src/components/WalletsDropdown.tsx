@@ -18,9 +18,7 @@ function getPrimaryTitle(wallet: Wallet): string {
   }
 }
 
-type Props = {};
-
-export default function WalletsDropdown(props: Props) {
+export default function WalletsDropdown() {
   const navigate = useNavigate();
   const trans = useTrans();
   const { data: wallets, isLoading } = useGetWalletsQuery();

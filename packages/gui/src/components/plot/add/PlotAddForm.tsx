@@ -51,7 +51,7 @@ export default function PlotAddForm(props: Props) {
   const [loading, setLoading] = useState<boolean>(false);
   const showError = useShowError();
 
-  const { isLoading: isLoadingUnconfirmedPlotNFTs, add: addUnconfirmedPlotNFT } = useUnconfirmedPlotNFTs();
+  const { add: addUnconfirmedPlotNFT } = useUnconfirmedPlotNFTs();
   const [startPlotting] = useStartPlottingMutation();
   const [createNewPoolWallet] = useCreateNewPoolWalletMutation();
   const addNFTref = useRef();

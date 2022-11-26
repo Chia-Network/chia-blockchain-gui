@@ -1,6 +1,6 @@
 import { Button } from '@chia/core';
 import { Trans } from '@lingui/macro';
-import { Dialog, DialogContent, DialogContentText, DialogTitle, DialogActions, Modal, Typography } from '@mui/material';
+import { Dialog, DialogContent, DialogContentText, DialogTitle, DialogActions, Modal } from '@mui/material';
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 

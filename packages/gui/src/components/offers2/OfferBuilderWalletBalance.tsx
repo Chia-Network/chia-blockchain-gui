@@ -1,6 +1,6 @@
 import { WalletType } from '@chia/api';
 import { useGetWalletBalanceQuery } from '@chia/api-react';
-import { FormatLargeNumber, mojoToCATLocaleString, mojoToChiaLocaleString, useLocale } from '@chia/core';
+import { mojoToCATLocaleString, mojoToChiaLocaleString, useLocale } from '@chia/core';
 import { useWallet } from '@chia/wallets';
 import { Trans } from '@lingui/macro';
 import React, { useMemo } from 'react';

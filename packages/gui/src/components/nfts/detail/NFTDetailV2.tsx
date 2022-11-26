@@ -1,5 +1,3 @@
-import { IpcRenderer } from 'electron';
-
 import type { NFTInfo } from '@chia/api';
 import { useGetNFTInfoQuery, useGetNFTWallets, useLocalStorage } from '@chia/api-react';
 import { Back, Flex, LayoutDashboardSub, Loading, useOpenDialog } from '@chia/core';
@@ -14,7 +12,7 @@ import isURL from 'validator/lib/isURL';
 import useFetchNFTs from '../../../hooks/useFetchNFTs';
 import useNFTMetadata from '../../../hooks/useNFTMetadata';
 import { launcherIdFromNFTId } from '../../../util/nfts';
-import { isImage } from '../../../util/utils.js';
+import { isImage } from '../../../util/utils';
 import NFTContextualActions, { NFTContextualActionTypes } from '../NFTContextualActions';
 import NFTDetails from '../NFTDetails';
 import NFTPreview from '../NFTPreview';

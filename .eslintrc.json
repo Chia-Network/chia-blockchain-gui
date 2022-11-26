@@ -97,6 +97,16 @@
     // We do not see the value of this turned on
     "prefer-rest-params": "off",
     // These issues should be decided and reported in typescript config
-    "@typescript-eslint/no-explicit-any": "off"
+    "@typescript-eslint/no-explicit-any": "off",
+    // Adding _ will bypass no-used issues
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      {
+        "vars": "all",
+        "args": "after-used",
+        "ignoreRestSiblings": true,
+        "argsIgnorePattern": "^_"
+      }
+    ]
   }
 }

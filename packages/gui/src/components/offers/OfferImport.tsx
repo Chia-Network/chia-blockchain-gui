@@ -1,4 +1,3 @@
-import { IpcRenderer } from 'electron';
 import fs, { Stats } from 'fs';
 
 import { type OfferSummaryRecord } from '@chia/api';

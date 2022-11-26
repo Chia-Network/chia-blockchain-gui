@@ -1,5 +1,3 @@
-import { Shell } from 'electron';
-
 import { Trans } from '@lingui/macro';
 import { Typography } from '@mui/material';
 import React from 'react';

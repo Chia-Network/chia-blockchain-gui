@@ -6,7 +6,7 @@ import useOpenDialog from './useOpenDialog';
 import useSkipMigration from './useSkipMigration';
 
 export default function useKeyringMigrationPrompt() {
-  const [_, setSkipMigration] = useSkipMigration();
+  const [, setSkipMigration] = useSkipMigration();
   const openDialog = useOpenDialog();
 
   async function promptForKeyringMigration(): Promise<void> {

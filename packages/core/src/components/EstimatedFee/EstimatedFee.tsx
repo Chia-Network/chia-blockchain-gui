@@ -50,7 +50,7 @@ function Select(props: Props) {
     <Controller
       name={controllerName}
       control={control}
-      render={({ field: { onChange, onBlur, value, name, ref } }) => (
+      render={({ field: { onChange, onBlur, name, ref } }) => (
         <MaterialSelect
           onChange={(event, ...args) => {
             onChange(event, ...args);
@@ -71,7 +71,7 @@ function Select(props: Props) {
           name={name}
           ref={ref}
           error={!!errorMessage}
-          renderValue={(value) => (
+          renderValue={() => (
             <Box sx={{ display: 'flex', gap: 1 }}>
               {selectedValue} (~{selectedTime} min)
             </Box>
@@ -86,7 +86,7 @@ function Select(props: Props) {
 }
 
 function CountdownBar(props: Props) {
-  const { start, refreshTime, ...rest } = props;
+  const { start, refreshTime } = props;
   const [seconds, setSeconds] = useState(new Date().getSeconds());
   const refreshSec = refreshTime * 10e-4;
 
@@ -134,13 +134,9 @@ function CountdownBar(props: Props) {
 export default function EstimatedFee(props: FeeProps) {
   const { name, txType, required, ...rest } = props;
   const { setValue } = useFormContext();
-  const [startTime, setStartTime] = useState(new Date().getSeconds());
+  const [startTime] = useState(new Date().getSeconds());
   const refreshTime = 60000; // in milliseconds
-  const {
-    data: ests,
-    isLoading: isFeeLoading,
-    error,
-  } = useGetFeeEstimateQuery(
+  const { data: ests, error } = useGetFeeEstimateQuery(
     { targetTimes: [60, 120, 300], cost: 1 },
     {
       pollingInterval: refreshTime,
@@ -156,7 +152,6 @@ export default function EstimatedFee(props: FeeProps) {
   const currencyCode = useCurrencyCode();
 
   const maxBlockCostCLVM = 11000000000;
-  const offersAcceptsPerBlock = 500;
 
   const txCostEstimates = {
     walletSendXCH: Math.floor(maxBlockCostCLVM / 1170),
@@ -201,7 +196,7 @@ export default function EstimatedFee(props: FeeProps) {
       const est1 =
         estimateList[1] === 0 ? formatEst(5_000_000, 1, locale) : formatEst(estimateList[1], multiplier, locale);
       const est2 = estimateList[2] === 0 ? formatEst(0, 1, locale) : formatEst(estimateList[2], multiplier, locale);
-      setEstList((current) => []);
+      setEstList(() => []);
       setEstList((current) => [
         ...current,
         {

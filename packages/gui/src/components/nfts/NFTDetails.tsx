@@ -268,7 +268,7 @@ export default function NFTDetails(props: NFTDetailsProps) {
     }
 
     if (metadata?.preview_image_uris) {
-      const value = metadata?.preview_image_uris.map((uri: string, idx: number) => (
+      const value = metadata?.preview_image_uris.map((uri: string) => (
         <span>
           &nbsp;
           <Link href={uri} target="_blank">
@@ -284,7 +284,7 @@ export default function NFTDetails(props: NFTDetailsProps) {
     }
 
     if (Array.isArray(metadata?.preview_video_uris)) {
-      const value = metadata?.preview_video_uris.map((uri: string, idx: number) => (
+      const value = metadata?.preview_video_uris.map((uri: string) => (
         <span>
           &nbsp;
           <Link target="_blank" href={uri}>
