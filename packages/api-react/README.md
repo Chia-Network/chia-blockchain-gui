@@ -1,6 +1,8 @@
-# @chia/api-react
+# chia-blockchain-gui/api-react
 
-![Alt text](https://www.chia.net/img/chia_logo.svg)
+![Chia logo](https://www.chia.net/wp-content/uploads/2022/09/chia-logo.svg)
+
+![GitHub contributors](https://img.shields.io/github/contributors/Chia-Network/chia-blockchain-gui?logo=GitHub)
 
 This library provides react hooks on the top of @chia/api and uses [RTK Query](https://redux-toolkit.js.org/rtk-query/overview) under do hood.
 It is designed to simplify common cases for loading data in a web application, eliminating the need to hand-write data fetching & caching logic yourself. Providing much more benefits:
@@ -26,25 +28,17 @@ export default function PublicKeys() {
   const { data: publicKeys, isLoading, error } = useGetPublicKeysQuery();
 
   if (isLoading) {
-    return (
-      <Suspender />
-    );
+    return <Suspender />;
   }
 
   if (error) {
-    return (
-      <Alert severiry="error">
-        {error.message}
-      </Alert>
-    );
+    return <Alert severiry="error">{error.message}</Alert>;
   }
 
   return (
     <ul>
-      {publicKeys.map(key => (
-        <li key={key}>
-          {key}
-        </li>
+      {publicKeys.map((key) => (
+        <li key={key}>{key}</li>
       ))}
     </ul>
   );
@@ -77,3 +71,7 @@ export default function Application() {
   );
 }
 ```
+
+## Development
+
+Please read and follow the main [README.md](https://github.com/Chia-Network/chia-blockchain-gui) of this monorepo.
