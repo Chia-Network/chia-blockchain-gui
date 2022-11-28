@@ -19,8 +19,6 @@ This monorepo consists of the following packages:
 | **icons**     | Chia specific icons                                                                                        |
 | **wallets**   | Common React components and hooks. Do not use this in you project. Will be merged to **core** package soon |
 
-Feel free to install any of these packages as dependencies for your next Chia project.
-
 ## Development
 
 1. This repo (chia-blockchain-gui) must be under chia-blockchain repo. Please follow the [installation steps for the chia-blockchain](https://github.com/Chia-Network/chia-blockchain/wiki/INSTALL#install-from-source). Make sure to install from source code (git clone...).
