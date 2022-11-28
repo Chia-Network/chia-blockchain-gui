@@ -38,6 +38,7 @@ export default function SettingsIntegration() {
               />
             </FormGroup>
 
+            {/*
             <FormGroup>
               <FormControlLabel
                 control={
@@ -52,6 +53,7 @@ export default function SettingsIntegration() {
                 label={<Trans>Enable Auto Confirm</Trans>}
               />
             </FormGroup>
+            */}
           </Flex>
         </Flex>
       </Grid>

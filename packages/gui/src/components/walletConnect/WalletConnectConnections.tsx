@@ -1,19 +1,24 @@
 import React from 'react';
 import { Trans } from '@lingui/macro';
-import { Flex, Loading, useOpenDialog, More, MenuItem } from '@chia/core';
+import {
+  Flex,
+  Loading,
+  useOpenDialog,
+  More,
+  MenuItem,
+  useShowError,
+} from '@chia/core';
 import {
   CheckCircleTwoTone as CheckCircleTwoToneIcon,
   Delete as DeleteIcon,
   Edit as EditIcon,
 } from '@mui/icons-material';
-import { useGetKeysQuery } from '@chia/api-react';
 import { Button, ListItemIcon, Typography, Divider } from '@mui/material';
 import WalletConnectAddConnectionDialog from './WalletConnectAddConnectionDialog';
 import useWalletConnectContext from '../../hooks/useWalletConnectContext';
 import useWalletConnectPrefs from '../../hooks/useWalletConnectPrefs';
 import WalletConnectConnectedDialog from './WalletConnectConnectedDialog';
 import WalletConnectPairInfoDialog from './WalletConnectPairInfoDialog';
-import type Pair from '../../@types/Pair';
 
 export type WalletConnectConnectionsProps = {
   onClose?: () => void;
@@ -24,42 +29,32 @@ export default function WalletConnectConnections(
 ) {
   const { onClose } = props;
   const openDialog = useOpenDialog();
+  const showError = useShowError();
   const { enabled, setEnabled } = useWalletConnectPrefs();
   const {
     disconnect,
     pairs,
     isLoading: isLoadingWalletConnect,
   } = useWalletConnectContext();
-  const { data: publicKeyFingerprints, isLoading: isLoadingPublicKeys } =
-    useGetKeysQuery();
 
-  const isLoading = isLoadingWalletConnect || isLoadingPublicKeys;
-
-  function getName(pair: Pair) {
-    const { fingerprints } = pair;
-
-    const value = publicKeyFingerprints
-      ?.filter((key) => fingerprints.includes(key.fingerprint))
-      .map((key) => key.label ?? key.fingerprint)
-      .join(',');
-
-    return value ?? 'No keys';
-  }
+  const isLoading = isLoadingWalletConnect;
 
   async function handleAddConnection() {
-    console.log('handleAddConnection');
     onClose?.();
     const topic = await openDialog(<WalletConnectAddConnectionDialog />);
-    console.log('topic', topic);
 
     if (topic) {
       await openDialog(<WalletConnectConnectedDialog topic={topic} />);
     }
   }
 
-  function handleDisconnect(topic: string) {
-    disconnect(topic);
-    onClose?.();
+  async function handleDisconnect(topic: string) {
+    try {
+      onClose?.();
+      await disconnect(topic);
+    } catch (error) {
+      showError(error);
+    }
   }
 
   function handleEnableWalletConnect() {

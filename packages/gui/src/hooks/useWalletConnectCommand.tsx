@@ -1,16 +1,17 @@
 import React, { useRef, useCallback, ReactNode } from 'react';
 import { Trans } from '@lingui/macro';
+import BigNumber from 'bignumber.js';
+import debug from 'debug';
 import {
   useOpenDialog,
-  mojoToChiaLocaleString,
   useLocale,
   useCurrencyCode,
   ConfirmDialog,
   Flex,
+  FormatLargeNumber,
 } from '@chia/core';
 import { Divider, Typography } from '@mui/material';
-import {
-  api,
+import api, {
   store,
   useGetLoggedInFingerprintQuery,
   useGetSyncStatusQuery,
@@ -20,6 +21,8 @@ import useWalletConnectPairs from './useWalletConnectPairs';
 import WalletConnectMetadata from '../components/walletConnect/WalletConnectMetadata';
 import prepareWalletConnectCommand from '../util/prepareWalletConnectCommand';
 import walletConnectCommands from '../constants/WalletConnectCommands';
+
+const log = debug('chia-gui:walletConnectCommand');
 
 /*
 export const STANDARD_ERROR_MAP = {
@@ -86,12 +89,25 @@ export default function useWalletConnectCommand() {
 
           {attributes.length > 0 && (
             <Flex flexDirection="column" gap={2}>
-              {attributes.map(({ label, value }, index) => (
-                <Flex flexDirection="column" key={index}>
-                  <Typography color="textPrimary">{label}</Typography>
-                  <Typography color="textSecondary">{value}</Typography>
-                </Flex>
-              ))}
+              {attributes.map(({ label, value, displayComponent }, index) => {
+                const isNumber =
+                  typeof value === 'number' || value instanceof BigNumber;
+
+                return (
+                  <Flex flexDirection="column" key={index}>
+                    <Typography color="textPrimary">{label}</Typography>
+                    <Typography color="textSecondary">
+                      {displayComponent ? (
+                        displayComponent(value)
+                      ) : isNumber ? (
+                        <FormatLargeNumber value={value} />
+                      ) : (
+                        value
+                      )}
+                    </Typography>
+                  </Flex>
+                );
+              })}
             </Flex>
           )}
 
@@ -130,16 +146,18 @@ export default function useWalletConnectCommand() {
       const confirmArguments: {
         label: ReactNode;
         value: ReactNode;
+        displayComponent?: (value: any) => ReactNode;
       }[] = [];
 
       const { params: definitionParams = [] } = definition;
       definitionParams.forEach((param) => {
-        const { name, label } = param;
+        const { name, label, displayComponent } = param;
 
         if (name in params) {
           confirmArguments.push({
             label: label ?? name,
             value: params[name],
+            displayComponent,
           });
         }
       });
@@ -154,12 +172,15 @@ export default function useWalletConnectCommand() {
         throw new Error(`User cancelled command ${requestedCommand}`);
       }
 
+      log('Executing', command, params);
+
       // execute command
       const resultPromise = store.dispatch(
         api.endpoints[command].initiate(params),
       );
 
       const result = await resultPromise;
+      log('Result', result);
 
       // Removing the corresponding cache subscription
       resultPromise.unsubscribe();

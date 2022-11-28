@@ -1,9 +1,12 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import Client from '@walletconnect/sign-client';
+import debug from 'debug';
 import useWalletConnectCommand from './useWalletConnectCommand';
 import useWalletConnectPairs from './useWalletConnectPairs';
 import useWalletConnectPrefs from './useWalletConnectPrefs';
 import walletConnectCommands from '../constants/WalletConnectCommands';
+
+const log = debug('chia-gui:walletConnect');
 
 const availableCommands = walletConnectCommands.map(
   (command) => `chia_${command.command}`,
@@ -62,94 +65,116 @@ export default function useWalletConnect(config: UseWalletConnectConfig) {
   async function disconnectPair(client: Client, topic: string) {
     const { pairs } = state.current;
 
-    await client.core.pairing.disconnect({ topic });
+    const pairings = await client.core.pairing.getPairings();
+    const pairing = pairings.find((p) => p.topic === topic);
+
+    if (pairing) {
+      await client.core.pairing.disconnect({ topic });
+    }
     pairs.removePair(topic);
   }
 
   const handleSessionProposal = useCallback(async (event) => {
-    const { client, pairs } = state.current;
-    if (!client) {
-      throw new Error('Client not initialized');
-    }
+    try {
+      const { client, pairs } = state.current;
+      if (!client) {
+        throw new Error('Client not initialized');
+      }
 
-    const {
-      id,
-      params: {
-        pairingTopic,
-        proposer: { metadata },
-        requiredNamespaces,
-      },
-    } = event;
-
-    if (!pairingTopic) {
-      throw new Error('Pairing topic not found');
-    }
-
-    const requiredNamespace = requiredNamespaces.chia;
-    if (!requiredNamespace) {
-      throw new Error('Missing required chia namespace');
-    }
-
-    const { chains } = requiredNamespace;
-    const chain = chains.find((chain: string) =>
-      ['chia:testnet', 'chia:mainnet'].includes(chain),
-    );
-    if (!chain) {
-      throw new Error('Chain not supported');
-    }
-
-    pairs.updatePair(pairingTopic, { metadata });
-
-    const pair = pairs.getPair(pairingTopic);
-    if (!pair) {
-      throw new Error('Pair not found');
-    }
-
-    const { fingerprints, mainnet } = pair;
-    const instance = mainnet ? 'mainnet' : 'testnet';
-    const accounts = fingerprints.map(
-      (fingerprint) => `chia:${instance}:${fingerprint}`,
-    );
-
-    const namespaces = {
-      chia: {
-        accounts,
-        methods: availableCommands,
-        events: [],
-      },
-    };
-
-    // const methods =
-    const { acknowledged } = await client.approve({
-      id,
-      namespaces,
-    });
-
-    const result = await acknowledged();
-    if (!result?.acknowledged) {
-      return;
-    }
-
-    // new session created
-    pairs.updatePair(pairingTopic, (pair) => ({
-      ...pair,
-      sessions: [
-        ...pair.sessions,
-        {
-          topic: result.topic,
-          metadata: metadata,
-          namespaces,
+      const {
+        id,
+        params: {
+          pairingTopic,
+          proposer: { metadata },
+          requiredNamespaces,
         },
-      ],
-    }));
+      } = event;
+
+      if (!pairingTopic) {
+        throw new Error('Pairing topic not found');
+      }
+
+      const requiredNamespace = requiredNamespaces.chia;
+      if (!requiredNamespace) {
+        throw new Error('Missing required chia namespace');
+      }
+
+      const { chains, methods } = requiredNamespace;
+      const chain = chains.find((chain: string) =>
+        ['chia:testnet', 'chia:mainnet'].includes(chain),
+      );
+      if (!chain) {
+        throw new Error('Chain not supported');
+      }
+
+      // find unsupported methods
+      const method = methods.find(
+        (method: string) => !availableCommands.includes(method),
+      );
+
+      if (method) {
+        throw new Error(`Method not supported: ${method}`);
+      }
+
+      pairs.updatePair(pairingTopic, { metadata });
+
+      const pair = pairs.getPair(pairingTopic);
+      if (!pair) {
+        throw new Error('Pair not found');
+      }
+
+      const { fingerprints, mainnet } = pair;
+      const instance = mainnet ? 'mainnet' : 'testnet';
+      const accounts = fingerprints.map(
+        (fingerprint) => `chia:${instance}:${fingerprint}`,
+      );
+
+      const namespaces = {
+        chia: {
+          accounts,
+          methods,
+          events: [],
+        },
+      };
+
+      // const methods =
+      const { acknowledged } = await client.approve({
+        id,
+        namespaces,
+      });
+
+      const result = await acknowledged();
+      if (!result?.acknowledged) {
+        return;
+      }
+
+      // new session created
+      pairs.updatePair(pairingTopic, (pair) => ({
+        ...pair,
+        sessions: [
+          ...pair.sessions,
+          {
+            topic: result.topic,
+            metadata: metadata,
+            namespaces,
+          },
+        ],
+      }));
+    } catch (error) {
+      log(error);
+    }
   }, []);
 
   const handleSessionDelete = useCallback((event) => {
-    const { topic: session } = event;
-    const { pairs } = state.current;
+    try {
+      const { topic: session } = event;
+      const { pairs } = state.current;
 
-    if (session) {
-      pairs.removeSessionFromPair(session);
+      if (session) {
+        pairs.removeSessionFromPair(session);
+      }
+    } catch (error) {
+      log(error);
     }
   }, []);
 
@@ -210,7 +235,9 @@ export default function useWalletConnect(config: UseWalletConnectConfig) {
           throw new Error('Fingerprint not found');
         }
 
+        log('method', method, updatedParams);
         const result = await process(topic, method, updatedParams);
+        log('result', result);
 
         await client.respond({
           topic,
@@ -221,6 +248,7 @@ export default function useWalletConnect(config: UseWalletConnectConfig) {
           },
         });
       } catch (error) {
+        log(error);
         await client?.respond({
           topic,
           response: {
@@ -238,17 +266,21 @@ export default function useWalletConnect(config: UseWalletConnectConfig) {
   );
 
   function disconnectClient(client: Client) {
-    if (!client) {
-      return;
+    try {
+      if (!client) {
+        return;
+      }
+
+      setClient(undefined);
+
+      client.off('session_proposal', handleSessionProposal);
+      client.off('session_delete', handleSessionDelete);
+      client.off('session_request', handleSessionRequest);
+
+      client.pairing.off('pairing_delete', handlePairingDelete);
+    } catch (error) {
+      log(error);
     }
-
-    //client.off('session_proposal', handleSessionProposal);
-    //client.off('session_delete', handleSessionDelete);
-    // client.off('session_request', handleSessionRequest);
-
-    //client.pairing.off('pairing_delete', handlePairingDelete);
-
-    setClient(undefined);
   }
 
   const subscribeToEvents = useCallback(
@@ -257,17 +289,15 @@ export default function useWalletConnect(config: UseWalletConnectConfig) {
         throw new Error('Client is not defined');
       }
 
-      client.on('session_proposal', handleSessionProposal);
-      client.on('session_delete', handleSessionDelete);
-      client.on('session_request', handleSessionRequest);
+      try {
+        client.on('session_proposal', handleSessionProposal);
+        client.on('session_delete', handleSessionDelete);
+        client.on('session_request', handleSessionRequest);
 
-      // client.pairing.on('pairing_delete', handlePairingDelete);
-
-      /*
-      client.on('session_event', (args) => {
-        console.log('session_event', args);
-      });
-      */
+        client.pairing.on('pairing_delete', handlePairingDelete);
+      } catch (error) {
+        log(error);
+      }
     },
     [handleSessionProposal, handleSessionDelete, handleSessionRequest],
   );
@@ -281,12 +311,20 @@ export default function useWalletConnect(config: UseWalletConnectConfig) {
 
       // disconnect peers which are not used in application
       if (!pairs.hasPair(topic)) {
-        await disconnectPair(client, topic);
+        try {
+          await disconnectPair(client, topic);
+        } catch (error) {
+          log(error);
+        }
       }
 
       // reactivate pairing if it was active before
       if (!active) {
-        await client.core.pairing.activate({ topic });
+        try {
+          await client.core.pairing.activate({ topic });
+        } catch (error) {
+          log(error);
+        }
       }
     }
 
@@ -296,7 +334,11 @@ export default function useWalletConnect(config: UseWalletConnectConfig) {
       const hasPairing = pairings.find((pairing) => pairing.topic === topic);
 
       if (!hasPairing) {
-        disconnectPair(client, topic);
+        try {
+          await disconnectPair(client, topic);
+        } catch (error) {
+          log(error);
+        }
       }
     }
   }
@@ -305,12 +347,12 @@ export default function useWalletConnect(config: UseWalletConnectConfig) {
     setIsLoading(true);
     setError(undefined);
 
-    const { client } = state.current;
-    if (client) {
-      disconnectClient(client);
-    }
-
     try {
+      const { client } = state.current;
+      if (client) {
+        await disconnectClient(client);
+      }
+
       if (!enabled) {
         return;
       }
@@ -354,7 +396,7 @@ export default function useWalletConnect(config: UseWalletConnectConfig) {
       throw new Error('Client is not defined');
     }
 
-    const { topic, ...rest } = await client.core.pairing.pair({ uri });
+    const { topic } = await client.core.pairing.pair({ uri });
     if (!topic) {
       throw new Error('Pairing failed');
     }
