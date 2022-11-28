@@ -5,7 +5,6 @@ import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import {
   Box,
   FormControl,
-  IconButton,
   InputLabel,
   MenuItem,
   Select as MaterialSelect,
@@ -316,16 +315,7 @@ export default function EstimatedFee(props: FeeProps) {
                 required={required}
                 autoFocus
                 color="secondary"
-                InputProps={{
-                  endAdornment: (
-                    <IconButton onClick={showDropdown}>
-                      <ArrowDropDownIcon />
-                    </IconButton>
-                  ),
-                  style: {
-                    paddingRight: '0',
-                  },
-                }}
+                dropdownAdornment={showDropdown}
               />
             </Flex>
           </Flex>

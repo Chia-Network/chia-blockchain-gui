@@ -1,5 +1,5 @@
 import { Trans, Plural } from '@lingui/macro';
-import { Box, InputAdornment, FormControl, FormHelperText } from '@mui/material';
+import { Box, IconButton, InputAdornment, FormControl, FormHelperText } from '@mui/material';
 import BigNumber from 'bignumber.js';
 import React, { type ReactNode } from 'react';
 import { useWatch, useFormContext } from 'react-hook-form';
@@ -11,18 +11,20 @@ import Flex from '../Flex';
 import FormatLargeNumber from '../FormatLargeNumber';
 import TextField, { TextFieldProps } from '../TextField';
 import NumberFormatCustom from './NumberFormatCustom';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
 export type AmountProps = TextFieldProps & {
   children?: (props: { mojo: BigNumber; value: string | undefined }) => ReactNode;
   name?: string;
   symbol?: string; // if set, overrides the currencyCode. empty string is allowed
   showAmountInMojos?: boolean; // if true, shows the mojo amount below the input field
+  dropdownAdornment?: func;
   // feeMode?: boolean; // if true, amounts are expressed in mojos used to set a transaction fee
   'data-testid'?: string;
 };
 
 export default function Amount(props: AmountProps) {
-  const { children, name, symbol, showAmountInMojos, variant, fullWidth, 'data-testid': dataTestid, ...rest } = props;
+  const { children, name, symbol, showAmountInMojos, dropdownAdornment, variant, fullWidth, 'data-testid': dataTestid, ...rest } = props;
   const { control } = useFormContext();
   const defaultCurrencyCode = useCurrencyCode();
 
@@ -50,7 +52,10 @@ export default function Amount(props: AmountProps) {
             decimalScale: isChiaCurrency ? 12 : 3,
             'data-testid': dataTestid,
           },
-          endAdornment: <InputAdornment position="end">{currencyCode}</InputAdornment>,
+          endAdornment: dropdownAdornment ?
+            <IconButton onClick={dropdownAdornment}><ArrowDropDownIcon /></IconButton>
+            : <InputAdornment position="end">{currencyCode}</InputAdornment>,
+          style: dropdownAdornment ? {paddingRight: '0'} : undefined,
         }}
         {...rest}
       />
