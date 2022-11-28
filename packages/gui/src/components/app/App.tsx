@@ -1,5 +1,6 @@
-import React from 'react';
 import { ModeProvider, Persist } from '@chia/core';
+import React from 'react';
+
 import AppRouter from './AppRouter';
 
 export default function App() {

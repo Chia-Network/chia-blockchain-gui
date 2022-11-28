@@ -1,5 +1,5 @@
-import { transform } from 'lodash';
 import BigNumber from 'bignumber.js';
+import { transform } from 'lodash';
 
 export default function toSafeNumber(object: Object): Object {
   return transform(object, (acc, value, key) => {

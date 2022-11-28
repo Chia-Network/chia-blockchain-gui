@@ -1,7 +1,9 @@
-import { app } from 'electron';
-import { getConfigRootDir } from '../util/loadConfig';
-import path from 'path';
 import fs from 'fs';
+import path from 'path';
+
+import { app } from 'electron';
+
+import { getConfigRootDir } from './loadConfig';
 
 export function getUserDataDir(): string {
   const chiaRootPath = getConfigRootDir();
@@ -22,22 +24,13 @@ export function setUserDataDir(): void {
 export function migrateUserDataIfNecessary() {
   const defaultUserDataPath = app.getPath('userData');
   const chiaRootUserDataPath = getUserDataDir();
-  const leveldbSrcPath = path.join(
-    defaultUserDataPath,
-    'Local Storage',
-    'leveldb',
-  );
-  const leveldbDestPath = path.join(
-    chiaRootUserDataPath,
-    'Local Storage',
-    'leveldb',
-  );
+  const leveldbSrcPath = path.join(defaultUserDataPath, 'Local Storage', 'leveldb');
+  const leveldbDestPath = path.join(chiaRootUserDataPath, 'Local Storage', 'leveldb');
   const leveldbMigratedMarker = path.join(leveldbSrcPath, 'migrated');
   const sourceExists = fs.existsSync(leveldbSrcPath);
   const destinationExists = fs.existsSync(leveldbDestPath);
   const migrationMarkerExists = fs.existsSync(leveldbMigratedMarker);
-  const migrationNeeded =
-    sourceExists && !destinationExists && !migrationMarkerExists;
+  const migrationNeeded = sourceExists && !destinationExists && !migrationMarkerExists;
 
   console.info(`Checking if userData migration is needed`);
   console.info(`${leveldbSrcPath} exists: ${sourceExists}`);
@@ -88,10 +81,7 @@ function createIntermediateDirectories(pathToCreate: string) {
   }
 }
 
-function shallowCopyDirectoryContents(
-  source: string,
-  destination: string,
-): void {
+function shallowCopyDirectoryContents(source: string, destination: string): void {
   if (!fs.existsSync(destination)) {
     fs.mkdirSync(destination);
   }

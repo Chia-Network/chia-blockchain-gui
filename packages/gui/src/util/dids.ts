@@ -12,7 +12,7 @@ export function didToDIDId(did: string): string {
 }
 
 export function didFromDIDId(didId: string): string | undefined {
-  let decoded: string | undefined = undefined;
+  let decoded: string | undefined;
 
   try {
     decoded = fromBech32m(didId);

@@ -1,9 +1,10 @@
-import React, { useState, useMemo } from 'react';
-import { Trans } from '@lingui/macro';
-import { TableControlled } from '@chia/core';
 import { type Plot } from '@chia/api';
 import { useGetHarvesterPlotsDuplicatesQuery, useGetHarvesterQuery } from '@chia/api-react';
+import { TableControlled } from '@chia/core';
+import { Trans } from '@lingui/macro';
 import { Typography } from '@mui/material';
+import React, { useState, useMemo } from 'react';
+
 import PlotAction from './PlotAction';
 
 const cols = [
@@ -27,7 +28,11 @@ export default function PlotHarvesterPlotsDuplicate(props: PlotHarvesterPlotsDup
   const { nodeId } = props;
   const [page, setPage] = useState(0);
   const [pageSize, setPageSize] = useState(5);
-  const { duplicates, initialized, isLoading: isLoadingHarvester } = useGetHarvesterQuery({
+  const {
+    duplicates,
+    initialized,
+    isLoading: isLoadingHarvester,
+  } = useGetHarvesterQuery({
     nodeId,
   });
   const { isLoading: isLoadingHarvesterPlots, data = [] } = useGetHarvesterPlotsDuplicatesQuery({
@@ -36,9 +41,7 @@ export default function PlotHarvesterPlotsDuplicate(props: PlotHarvesterPlotsDup
     pageSize,
   });
 
-  const rows = useMemo(() => {
-    return data?.map((filename) => ({ filename }));
-  }, [data]);
+  const rows = useMemo(() => data?.map((filename) => ({ filename })), [data]);
 
   const isLoading = isLoadingHarvester || isLoadingHarvesterPlots;
   const count = duplicates ?? 0;
@@ -60,11 +63,13 @@ export default function PlotHarvesterPlotsDuplicate(props: PlotHarvesterPlotsDup
       isLoading={isLoading || !initialized}
       expandedCellShift={1}
       uniqueField="filename"
-      caption={!duplicates && (
-        <Typography variant="body2" align="center">
-          <Trans>Hooray, no files here!</Trans>
-        </Typography>
-      )}
+      caption={
+        !duplicates && (
+          <Typography variant="body2" align="center">
+            <Trans>Hooray, no files here!</Trans>
+          </Typography>
+        )
+      }
       pages={!!duplicates}
     />
   );

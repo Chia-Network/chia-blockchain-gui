@@ -1,5 +1,6 @@
-import React from 'react';
 import { SvgIcon, SvgIconProps } from '@mui/material';
+import React from 'react';
+
 import OfferingIcon from './images/Offering.svg';
 
 export default function Offering(props: SvgIconProps) {

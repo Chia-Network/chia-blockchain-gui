@@ -1,5 +1,6 @@
-import PlotterName from './PlotterName';
 import { PlotterOptions, PlotterDefaults } from 'types/Plotter';
+
+import PlotterName from './PlotterName';
 
 export const bladebitOptions: PlotterOptions = {
   kSizes: [32],

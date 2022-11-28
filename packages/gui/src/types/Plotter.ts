@@ -35,7 +35,7 @@ interface MadMaxOptions extends CommonOptions {
 export type PlotterOptions = CommonOptions & BladeBitOptions & BladeBit2Options & MadMaxOptions;
 
 interface CommonDefaults {
-  plotterName: string,
+  plotterName: string;
   plotSize: number;
   numThreads: number;
   numBuckets?: number;

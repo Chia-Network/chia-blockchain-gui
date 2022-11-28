@@ -1,5 +1,5 @@
-import { defineMessage } from '@lingui/macro';
 import { WalletType } from '@chia/api';
+import { defineMessage } from '@lingui/macro';
 
 const WalletName = {
   [WalletType.STANDARD_WALLET]: defineMessage({
@@ -38,6 +38,6 @@ const WalletName = {
   [WalletType.DATA_LAYER]: defineMessage({
     message: 'Datalayer Wallet',
   }),
-}
+};
 
 export default WalletName;

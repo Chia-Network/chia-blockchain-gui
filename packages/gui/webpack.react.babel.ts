@@ -93,11 +93,7 @@ export default {
   },
   resolve: {
     extensions: ['.wasm', '.mjs', '.ts', '.tsx', '.js', '.jsx', '.json'],
-    modules: [
-      path.resolve(CONTEXT, 'node_modules'),
-      path.resolve(CONTEXT, '../../node_modules'),
-      'node_modules',
-    ],
+    modules: [path.resolve(CONTEXT, 'node_modules'), path.resolve(CONTEXT, '../../node_modules'), 'node_modules'],
     alias: {
       '@mui/styled-engine': '@mui/styled-engine-sc',
       crypto: 'crypto-browserify',
@@ -142,9 +138,7 @@ export default {
       collections: true,
     }),
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(
-        DEV ? 'development' : 'production',
-      ),
+      'process.env.NODE_ENV': JSON.stringify(DEV ? 'development' : 'production'),
       'process.env.BROWSER': true,
       IS_BROWSER: true,
     }),

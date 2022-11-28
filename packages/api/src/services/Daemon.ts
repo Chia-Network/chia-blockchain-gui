@@ -1,7 +1,7 @@
 import type Client from '../Client';
+import ServiceName from '../constants/ServiceName';
 import Service from './Service';
 import type { Options } from './Service';
-import ServiceName from '../constants/ServiceName';
 
 export default class Daemon extends Service {
   constructor(client: Client, options?: Options) {
@@ -97,12 +97,7 @@ export default class Daemon extends Service {
     });
   }
 
-  migrateKeyring(
-    passphrase: string,
-    passphraseHint: string,
-    savePassphrase: boolean,
-    cleanupLegacyKeyring: boolean
-  ) {
+  migrateKeyring(passphrase: string, passphraseHint: string, savePassphrase: boolean, cleanupLegacyKeyring: boolean) {
     return this.command('migrate_keyring', {
       passphrase,
       passphraseHint,
@@ -144,7 +139,7 @@ export default class Daemon extends Service {
     delay: number, // delay
     e?: boolean, // disableBitfieldPlotting
     x?: boolean, // excludeFinalDir
-    overrideK?: boolean, //overrideK
+    overrideK?: boolean, // overrideK
     f?: string, // farmerPublicKey
     p?: string, // poolPublicKey
     c?: string, // poolContractAddress
@@ -225,10 +220,7 @@ export default class Daemon extends Service {
     return this.command('exit');
   }
 
-  onKeyringStatusChanged(
-    callback: (data: any, message: Message) => void,
-    processData?: (data: any) => any
-  ) {
+  onKeyringStatusChanged(callback: (data: any, message: Message) => void, processData?: (data: any) => any) {
     return this.onStateChanged('keyring_status_changed', callback, processData);
   }
 }

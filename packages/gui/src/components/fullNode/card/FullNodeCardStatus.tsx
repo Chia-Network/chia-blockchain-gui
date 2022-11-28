@@ -1,7 +1,7 @@
-import React from 'react';
-import { Trans } from '@lingui/macro';
-import { FormatLargeNumber, CardSimple, StateColor } from '@chia/core';
 import { useGetBlockchainStateQuery } from '@chia/api-react';
+import { FormatLargeNumber, CardSimple, StateColor } from '@chia/core';
+import { Trans } from '@lingui/macro';
+import React from 'react';
 import styled from 'styled-components';
 
 const StyledWarning = styled.span`
@@ -33,26 +33,24 @@ function getData(sync) {
       color: 'error',
       tooltip: (
         <Trans>
-          The node is syncing, which means it is downloading blocks from other
-          nodes, to reach the latest block in the chain
+          The node is syncing, which means it is downloading blocks from other nodes, to reach the latest block in the
+          chain
         </Trans>
       ),
     };
-  } else if (!sync.synced) {
+  }
+  if (!sync.synced) {
     return {
       value: <Trans>Not Synced</Trans>,
       color: 'error',
       tooltip: <Trans>The node is not synced</Trans>,
     };
-  } else {
-    return {
-      value: <Trans>Synced</Trans>,
-      color: 'primary',
-      tooltip: (
-        <Trans>This node is fully caught up and validating the network</Trans>
-      ),
-    };
   }
+  return {
+    value: <Trans>Synced</Trans>,
+    color: 'primary',
+    tooltip: <Trans>This node is fully caught up and validating the network</Trans>,
+  };
 }
 
 export default function FullNodeCardStatus() {
@@ -64,7 +62,7 @@ export default function FullNodeCardStatus() {
     {},
     {
       pollingInterval: 10000,
-    },
+    }
   );
 
   if (isLoading) {
@@ -73,13 +71,5 @@ export default function FullNodeCardStatus() {
 
   const { value, tooltip, color } = getData(state?.sync);
 
-  return (
-    <CardSimple
-      valueColor={color}
-      title={<Trans>Status</Trans>}
-      tooltip={tooltip}
-      value={value}
-      error={error}
-    />
-  );
+  return <CardSimple valueColor={color} title={<Trans>Status</Trans>} tooltip={tooltip} value={value} error={error} />;
 }

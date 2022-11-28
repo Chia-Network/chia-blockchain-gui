@@ -1,5 +1,5 @@
-import React from 'react';
 import { Stack, type StackProps } from '@mui/material';
+import React from 'react';
 
 export type FlexProps = StackProps & {
   flexDirection?: 'row' | 'column';

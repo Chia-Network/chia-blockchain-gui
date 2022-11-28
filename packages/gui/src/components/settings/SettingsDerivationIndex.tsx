@@ -1,20 +1,10 @@
-import React, { useEffect } from 'react';
-import { Trans, t } from '@lingui/macro';
-import { useForm } from 'react-hook-form';
 import { SyncingStatus } from '@chia/api';
-import {
-  useExtendDerivationIndexMutation,
-  useGetCurrentDerivationIndexQuery,
-} from '@chia/api-react';
-import {
-  AlertDialog,
-  ButtonLoading,
-  Flex,
-  Form,
-  TextField,
-  useOpenDialog,
-} from '@chia/core';
+import { useExtendDerivationIndexMutation, useGetCurrentDerivationIndexQuery } from '@chia/api-react';
+import { AlertDialog, ButtonLoading, Flex, Form, TextField, useOpenDialog } from '@chia/core';
 import { useWalletState } from '@chia/wallets';
+import { Trans, t } from '@lingui/macro';
+import React, { useEffect } from 'react';
+import { useForm } from 'react-hook-form';
 
 type FormData = {
   index: string;
@@ -22,8 +12,7 @@ type FormData = {
 
 export default function SettingsDerivationIndex() {
   const { state, isLoading: isLoadingWalletState } = useWalletState();
-  const { data, isLoading: isLoadingCurrentDerivationIndex } =
-    useGetCurrentDerivationIndexQuery();
+  const { data, isLoading: isLoadingCurrentDerivationIndex } = useGetCurrentDerivationIndexQuery();
   const [extendDerivationIndex] = useExtendDerivationIndexMutation();
   const openDialog = useOpenDialog();
 
@@ -42,8 +31,7 @@ export default function SettingsDerivationIndex() {
   }, [index]);
 
   const { isSubmitting } = methods.formState;
-  const isLoading =
-    isLoadingCurrentDerivationIndex || isLoadingWalletState || isSubmitting;
+  const isLoading = isLoadingCurrentDerivationIndex || isLoadingWalletState || isSubmitting;
   const canSubmit = !isLoading && state === SyncingStatus.SYNCED;
 
   async function handleSubmit(values: FormData) {
@@ -63,11 +51,8 @@ export default function SettingsDerivationIndex() {
 
     await openDialog(
       <AlertDialog>
-        <Trans>
-          Successfully updated the derivation index. Your balances may take a
-          while to update.
-        </Trans>
-      </AlertDialog>,
+        <Trans>Successfully updated the derivation index. Your balances may take a while to update.</Trans>
+      </AlertDialog>
     );
   }
 

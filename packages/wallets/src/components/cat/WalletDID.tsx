@@ -1,38 +1,33 @@
-import React, { useEffect, useState } from 'react';
-import { Alert, Grid } from '@mui/material';
-import { makeStyles } from '@mui/styles';
-import { useDispatch, useSelector } from 'react-redux';
+import { AlertDialog, Card, Flex, Loading, Dropzone, mojoToChiaLocaleString } from '@chia/core';
 import { Trans } from '@lingui/macro';
 import { Backup as BackupIcon } from '@mui/icons-material';
-import Typography from '@mui/material/Typography';
-import Paper from '@mui/material/Paper';
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import HelpIcon from '@mui/icons-material/Help';
+import { Tooltip, Accordion, AccordionSummary, AccordionDetails, Alert, Grid } from '@mui/material';
 import Backdrop from '@mui/material/Backdrop';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
 import CircularProgress from '@mui/material/CircularProgress';
-import { AlertDialog, Card, Flex, Loading, Dropzone, mojoToChiaLocaleString } from '@chia/core';
+import Paper from '@mui/material/Paper';
+import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
+import { makeStyles } from '@mui/styles';
+import React, { useEffect, useState } from 'react';
+import { useForm, Controller, useFieldArray } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
+
+import useCurrencyCode from '../../../hooks/useCurrencyCode';
+import useWallet from '../../../hooks/useWallet';
+import { openDialog } from '../../../modules/dialog';
 import {
   did_generate_backup_file,
   did_spend,
   did_update_recovery_ids_action,
   did_create_attest,
   did_recovery_spend_action,
-  did_get_recovery_info
+  did_get_recovery_info,
 } from '../../../modules/message';
-import {
-  Accordion,
-  AccordionSummary,
-  AccordionDetails,
-} from '@mui/material';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { Tooltip } from '@mui/material';
-import HelpIcon from '@mui/icons-material/Help';
-import { useForm, Controller, useFieldArray } from 'react-hook-form';
-import { openDialog } from '../../../modules/dialog';
-import useCurrencyCode from '../../../hooks/useCurrencyCode';
 import WalletHistory from '../WalletHistory';
-import useWallet from '../../../hooks/useWallet';
 
 const drawerWidth = 240;
 
@@ -284,18 +279,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const RecoveryCard = (props) => {
+function RecoveryCard(props) {
   const id = props.wallet_id;
   const { wallet } = useWallet(id);
 
-  const { 
-    mydid, 
-    didcoin, 
-    did_rec_pubkey, 
-    did_rec_puzhash, 
-    backup_dids: backup_did_list,
-    dids_num_req,
-  } = wallet;
+  const { mydid, didcoin, did_rec_pubkey, did_rec_puzhash, backup_dids: backup_did_list, dids_num_req } = wallet;
 
   const dispatch = useDispatch();
 
@@ -323,11 +311,13 @@ const RecoveryCard = (props) => {
       dispatch(
         openDialog(
           <AlertDialog>
-            <Trans>Your DID requires at least {dids_num_req} attestation file{dids_num_req === 1 ? "" : "s"} for recovery. Please upload additional files.</Trans>
+            <Trans>
+              Your DID requires at least {dids_num_req} attestation file{dids_num_req === 1 ? '' : 's'} for recovery.
+              Please upload additional files.
+            </Trans>
           </AlertDialog>
-        ),
+        )
       );
-      return;
     } else {
       dispatch(did_recovery_spend_action(id, files));
     }
@@ -404,16 +394,11 @@ const RecoveryCard = (props) => {
             </Box>
           </Box>
         </Grid>
-        <ViewDIDsSubsection
-          backup_did_list={backup_did_list}
-          dids_num_req={dids_num_req}
-        />
+        <ViewDIDsSubsection backup_did_list={backup_did_list} dids_num_req={dids_num_req} />
         <Grid item xs={12}>
           <Box display="flex">
             <Box flexGrow={1} style={{ marginTop: 30 }}>
-              <Typography variant="subtitle1">
-                Input Attestation Packet(s)
-              </Typography>
+              <Typography variant="subtitle1">Input Attestation Packet(s)</Typography>
             </Box>
           </Box>
         </Grid>
@@ -423,16 +408,12 @@ const RecoveryCard = (props) => {
               <Flex flexDirection="column" gap={2} alignItems="center">
                 <BackupIcon fontSize="large" />
                 <Typography variant="body2" align="center">
-                  <Trans>
-                    Drag and drop attestation packet(s)
-                  </Trans>
+                  <Trans>Drag and drop attestation packet(s)</Trans>
                 </Typography>
               </Flex>
             ) : (
               <Flex flexDirection="column" gap={2}>
-                <Typography variant="subtitle1">
-                  Attestation Packet(s):
-                </Typography>
+                <Typography variant="subtitle1">Attestation Packet(s):</Typography>
                 {files.map((object, index) => (
                   <Flex flexBasis={0} key={index} gap={1} alignItems="center">
                     <Flex flexGrow={1} flexBasis={0}>
@@ -440,11 +421,7 @@ const RecoveryCard = (props) => {
                         {object}
                       </Typography>
                     </Flex>
-                    <Button
-                      onClick={(event) => handleRemoveFile(event, object)}
-                      variant="contained"
-                      color="danger"
-                    >
+                    <Button onClick={(event) => handleRemoveFile(event, object)} variant="contained" color="danger">
                       <Trans>Delete</Trans>
                     </Button>
                   </Flex>
@@ -455,24 +432,20 @@ const RecoveryCard = (props) => {
         </Grid>
       </Card>
       <Box>
-        <Button
-          onClick={submit}
-          variant="contained"
-          color="primary"
-        >
+        <Button onClick={submit} variant="contained" color="primary">
           <Trans>Recover</Trans>
         </Button>
       </Box>
     </Flex>
   );
-};
+}
 
-const RecoveryTransCard = (props) => {
+function RecoveryTransCard(props) {
   const id = props.wallet_id;
   const { wallet } = useWallet(id);
   const { mydid, data } = wallet;
   const data_parsed = JSON.parse(data);
-  const temp_coin = data_parsed.temp_coin;
+  const { temp_coin } = data_parsed;
   const classes = useStyles();
 
   return (
@@ -495,7 +468,9 @@ const RecoveryTransCard = (props) => {
           <Box display="flex">
             <Box flexGrow={1} style={{ marginTop: 20, marginBottom: 20 }}>
               <Flex alignItems="stretch">
-                <Typography variant="subtitle1">Your DID wallet recovery is in progress. Please check back soon.</Typography>
+                <Typography variant="subtitle1">
+                  Your DID wallet recovery is in progress. Please check back soon.
+                </Typography>
                 <Tooltip title="The DID recovery process usually resolves after the addition of a few blockheights.">
                   <HelpIcon style={{ color: '#c8c8c8', fontSize: 12 }} />
                 </Tooltip>
@@ -506,9 +481,9 @@ const RecoveryTransCard = (props) => {
       </Grid>
     </Card>
   );
-};
+}
 
-const MyDIDCard = (props) => {
+function MyDIDCard(props) {
   const id = props.wallet_id;
   const { wallet } = useWallet(id);
   const { mydid } = wallet;
@@ -524,10 +499,10 @@ const MyDIDCard = (props) => {
           <AlertDialog>
             <Trans>Please enter a filename</Trans>
           </AlertDialog>
-        ),
+        )
       );
       return;
-    };
+    }
     dispatch(did_generate_backup_file(id, filename));
     filename_input.value = '';
   };
@@ -551,14 +526,8 @@ const MyDIDCard = (props) => {
       </Grid>
       <Grid item xs={12}>
         <Box display="flex">
-          <Box
-            flexGrow={6}
-            className={classes.inputTitleLeft}
-            style={{ marginBottom: 10 }}
-          >
-            <Typography variant="subtitle1">
-              Create a backup file:
-            </Typography>
+          <Box flexGrow={6} className={classes.inputTitleLeft} style={{ marginBottom: 10 }}>
+            <Typography variant="subtitle1">Create a backup file:</Typography>
           </Box>
         </Box>
         <Box display="flex">
@@ -575,12 +544,7 @@ const MyDIDCard = (props) => {
             />
           </Box>
           <Box>
-            <Button
-              onClick={generateBackup}
-              className={classes.sendButtonSide}
-              variant="contained"
-              color="primary"
-            >
+            <Button onClick={generateBackup} className={classes.sendButtonSide} variant="contained" color="primary">
               Create
             </Button>
           </Box>
@@ -588,9 +552,9 @@ const MyDIDCard = (props) => {
       </Grid>
     </Card>
   );
-};
+}
 
-const BalanceCardSubSection = (props) => {
+function BalanceCardSubSection(props) {
   const currencyCode = useCurrencyCode();
   const classes = useStyles();
   return (
@@ -601,9 +565,7 @@ const BalanceCardSubSection = (props) => {
             {props.title}
             {props.tooltip ? (
               <Tooltip title={props.tooltip}>
-                <HelpIcon
-                  style={{ color: '#c8c8c8', fontSize: 12 }}
-                ></HelpIcon>
+                <HelpIcon style={{ color: '#c8c8c8', fontSize: 12 }} />
               </Tooltip>
             ) : (
               ''
@@ -611,79 +573,44 @@ const BalanceCardSubSection = (props) => {
           </Typography>
         </Box>
         <Box>
-          <Typography variant="subtitle1">
-            {mojoToChiaLocaleString(props.balance)} TXCH
-          </Typography>
+          <Typography variant="subtitle1">{mojoToChiaLocaleString(props.balance)} TXCH</Typography>
         </Box>
       </Box>
     </Grid>
   );
-};
+}
 
-const BalanceCard = (props) => {
+function BalanceCard(props) {
   const id = props.wallet_id;
 
   const classes = useStyles();
   const { wallet, loading } = useWallet(id);
   if (loading || !wallet.wallet_balance) {
-    return (
-      <Loading center />
-    );
+    return <Loading center />;
   }
 
   const {
-    wallet_balance: {
-      confirmed_wallet_balance: balance,
-      balance_spendable,
-      balance_pending,
-      balance_change,
-    },
+    wallet_balance: { confirmed_wallet_balance: balance, balance_spendable, balance_pending, balance_change },
   } = wallet;
 
   const balance_ptotal = balance + balance_pending;
 
   return (
     <Card title={<Trans>Balance</Trans>}>
-      <BalanceCardSubSection
-        title="Total Balance"
-        balance={balance}
-        tooltip=""
-      />
-      <BalanceCardSubSection
-        title="Spendable Balance"
-        balance={balance_spendable}
-        tooltip={''}
-      />
+      <BalanceCardSubSection title="Total Balance" balance={balance} tooltip="" />
+      <BalanceCardSubSection title="Spendable Balance" balance={balance_spendable} tooltip="" />
       <Grid item xs={12}>
         <Box display="flex">
           <Box flexGrow={1}>
             <Accordion className={classes.front}>
-              <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls="panel1a-content"
-                id="panel1a-header"
-              >
-                <Typography className={classes.heading}>
-                  View pending balances
-                </Typography>
+              <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
+                <Typography className={classes.heading}>View pending balances</Typography>
               </AccordionSummary>
               <AccordionDetails>
                 <Grid container spacing={0}>
-                  <BalanceCardSubSection
-                    title="Pending Total Balance"
-                    balance={balance_ptotal}
-                    tooltip={''}
-                  />
-                  <BalanceCardSubSection
-                    title="Pending Balance"
-                    balance={balance_pending}
-                    tooltip={''}
-                  />
-                  <BalanceCardSubSection
-                    title="Pending Change"
-                    balance={balance_change}
-                    tooltip={''}
-                  />
+                  <BalanceCardSubSection title="Pending Total Balance" balance={balance_ptotal} tooltip="" />
+                  <BalanceCardSubSection title="Pending Balance" balance={balance_pending} tooltip="" />
+                  <BalanceCardSubSection title="Pending Change" balance={balance_change} tooltip="" />
                 </Grid>
               </AccordionDetails>
             </Accordion>
@@ -692,12 +619,12 @@ const BalanceCard = (props) => {
       </Grid>
     </Card>
   );
-};
+}
 
-const ViewDIDsSubsection = (props) => {
+function ViewDIDsSubsection(props) {
   const classes = useStyles();
   const backup_list = props.backup_did_list;
-  const dids_num_req = props.dids_num_req;
+  const { dids_num_req } = props;
   const isEmptyList = !backup_list || !backup_list.length;
 
   return (
@@ -705,13 +632,10 @@ const ViewDIDsSubsection = (props) => {
       <Box display="flex">
         <Box flexGrow={1}>
           <Accordion className={classes.front}>
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel1a-content"
-              id="panel1a-header"
-            >
+            <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
               <Typography className={classes.heading}>
-                View your list of Backup IDs ({dids_num_req} Backup ID{dids_num_req === 1 ? " is " : "s are "} required for recovery)
+                View your list of Backup IDs ({dids_num_req} Backup ID{dids_num_req === 1 ? ' is ' : 's are '} required
+                for recovery)
               </Typography>
             </AccordionSummary>
             <AccordionDetails>
@@ -723,12 +647,10 @@ const ViewDIDsSubsection = (props) => {
                         {isEmptyList
                           ? 'Your backup list is currently empty.'
                           : backup_list.map((object, i) => (
-                            <span key={i}>
-                              <Typography variant="subtitle1">
-                                &#8226; {object}
-                              </Typography>
-                            </span>
-                          ))}
+                              <span key={i}>
+                                <Typography variant="subtitle1">&#8226; {object}</Typography>
+                              </span>
+                            ))}
                       </Typography>
                     </Box>
                   </Box>
@@ -740,9 +662,9 @@ const ViewDIDsSubsection = (props) => {
       </Box>
     </Grid>
   );
-};
+}
 
-const ManageDIDsCard = (props) => {
+function ManageDIDsCard(props) {
   const id = props.wallet_id;
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -750,10 +672,7 @@ const ManageDIDsCard = (props) => {
   const created = useSelector((state) => state.create_options.created);
 
   const { wallet } = useWallet(id);
-  const { 
-    backup_dids: backup_did_list,
-    dids_num_req
-  } = wallet;
+  const { backup_dids: backup_did_list, dids_num_req } = wallet;
 
   const { handleSubmit, control } = useForm();
   const { fields, append, remove } = useFieldArray({
@@ -764,57 +683,42 @@ const ManageDIDsCard = (props) => {
   const onSubmit = (data) => {
     const didArray = data.backup_dids?.map((item) => item.backupid) ?? [];
     let uniqDidArray = Array.from(new Set(didArray));
-    uniqDidArray = uniqDidArray.filter(item => item !== "")
+    uniqDidArray = uniqDidArray.filter((item) => item !== '');
     const num_of_backup_ids_needed = data.num_needed;
-    if (
-      num_of_backup_ids_needed === '' ||
-      isNaN(Number(num_of_backup_ids_needed))
-    ) {
+    if (num_of_backup_ids_needed === '' || isNaN(Number(num_of_backup_ids_needed))) {
       dispatch(
         openDialog(
           <AlertDialog>
-            <Trans>Please enter a valid integer of 0 or greater for the number of Backup IDs needed for recovery.</Trans>
+            <Trans>
+              Please enter a valid integer of 0 or greater for the number of Backup IDs needed for recovery.
+            </Trans>
           </AlertDialog>
-        ),
+        )
       );
       return;
     }
-    if (
-      num_of_backup_ids_needed > uniqDidArray.length
-    )
-    {
+    if (num_of_backup_ids_needed > uniqDidArray.length) {
       dispatch(
         openDialog(
           <AlertDialog>
             <Trans>The number of Backup IDs needed for recovery cannot exceed the number of Backup IDs added.</Trans>
           </AlertDialog>
-        ),
+        )
       );
       return;
     }
-    dispatch(
-      did_update_recovery_ids_action(
-        id,
-        uniqDidArray,
-        num_of_backup_ids_needed,
-      ),
-    );
+    dispatch(did_update_recovery_ids_action(id, uniqDidArray, num_of_backup_ids_needed));
   };
 
   return (
     <Card title={<Trans>Manage Recovery DIDs</Trans>}>
-      <ViewDIDsSubsection
-        backup_did_list={backup_did_list}
-        dids_num_req={dids_num_req}
-      />
+      <ViewDIDsSubsection backup_did_list={backup_did_list} dids_num_req={dids_num_req} />
       <Grid item xs={12}>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Flex flexDirection="column" gap={3}>
             <Flex flexDirection="column" gap={1}>
               <Flex alignItems="center" gap={1}>
-                <Typography variant="subtitle1">
-                  Update number of Backup IDs needed for recovery
-                </Typography>
+                <Typography variant="subtitle1">Update number of Backup IDs needed for recovery</Typography>
                 <Tooltip title="This number must be greater than or equal to 0, and it may not exceed the number of Backup IDs you have added. You will be able to change this number as well as your list of Backup IDs.">
                   <HelpIcon style={{ color: '#c8c8c8', fontSize: 12 }} />
                 </Tooltip>
@@ -829,12 +733,10 @@ const ManageDIDsCard = (props) => {
                 defaultValue=""
               />
             </Flex>
-              
+
             <Flex flexDirection="column" gap={1}>
               <Flex alignItems="center" gap={1}>
-                <Typography variant="subtitle1">
-                  Update Backup IDs
-                </Typography>
+                <Typography variant="subtitle1">Update Backup IDs</Typography>
                 <Tooltip title="Please enter a new set of recovery IDs. Be sure to re-enter any current recovery IDs which you would like to keep in your recovery list.">
                   <HelpIcon style={{ color: '#c8c8c8', fontSize: 12 }} />
                 </Tooltip>
@@ -853,12 +755,7 @@ const ManageDIDsCard = (props) => {
                       color="secondary"
                     />
                   </Box>
-                  <Button
-                    onClick={() => remove(index)}
-                    variant="contained"
-                    color="danger"
-                    disableElevation
-                  >
+                  <Button onClick={() => remove(index)} variant="contained" color="danger" disableElevation>
                     <Trans>Delete</Trans>
                   </Button>
                 </Flex>
@@ -877,12 +774,7 @@ const ManageDIDsCard = (props) => {
             </Flex>
 
             <Box>
-              <Button
-                type="submit"
-                variant="contained"
-                color="primary"
-                disableElevation
-              >
+              <Button type="submit" variant="contained" color="primary" disableElevation>
                 <Trans>Submit</Trans>
               </Button>
             </Box>
@@ -896,9 +788,9 @@ const ManageDIDsCard = (props) => {
       )}
     </Card>
   );
-};
+}
 
-const CreateAttest = (props) => {
+function CreateAttest(props) {
   const id = props.wallet_id;
   let filename_input = null;
   let coin_input = null;
@@ -913,7 +805,7 @@ const CreateAttest = (props) => {
           <AlertDialog>
             <Trans>Please enter a filename</Trans>
           </AlertDialog>
-        ),
+        )
       );
       return;
     }
@@ -923,7 +815,7 @@ const CreateAttest = (props) => {
           <AlertDialog>
             <Trans>Please enter a coin</Trans>
           </AlertDialog>
-        ),
+        )
       );
       return;
     }
@@ -933,7 +825,7 @@ const CreateAttest = (props) => {
           <AlertDialog>
             <Trans>Please enter a pubkey</Trans>
           </AlertDialog>
-        ),
+        )
       );
       return;
     }
@@ -943,7 +835,7 @@ const CreateAttest = (props) => {
           <AlertDialog>
             <Trans>Please enter a puzzlehash</Trans>
           </AlertDialog>
-        ),
+        )
       );
       return;
     }
@@ -1002,20 +894,16 @@ const CreateAttest = (props) => {
         label={<Trans>Puzzlehash</Trans>}
       />
       <Box>
-        <Button
-          onClick={createAttestPacket}
-          variant="contained"
-          color="primary"
-        >
+        <Button onClick={createAttestPacket} variant="contained" color="primary">
           Create
         </Button>
       </Box>
     </Card>
   );
-};
+}
 
 // this is currently not being displayed; did_spend does not exist in wallet_rpc_api.py
-const CashoutCard = (props) => {
+function CashoutCard(props) {
   const id = props.wallet_id;
   let address_input = null;
   const classes = useStyles();
@@ -1059,7 +947,7 @@ const CashoutCard = (props) => {
                   label="Address / Puzzle hash"
                 />
               </Box>
-              <Box></Box>
+              <Box />
             </Box>
           </div>
         </Grid>
@@ -1067,12 +955,7 @@ const CashoutCard = (props) => {
           <div className={classes.cardSubSection}>
             <Box display="flex">
               <Box>
-                <Button
-                  onClick={cashout}
-                  className={classes.sendButton}
-                  variant="contained"
-                  color="primary"
-                >
+                <Button onClick={cashout} className={classes.sendButton} variant="contained" color="primary">
                   Cash Out
                 </Button>
               </Box>
@@ -1082,7 +965,7 @@ const CashoutCard = (props) => {
       </Grid>
     </Paper>
   );
-};
+}
 
 type Props = {
   walletId: number;
@@ -1095,10 +978,7 @@ export default function WalletDID(props: Props) {
 
   useEffect(() => {
     if (wallet && wallet.data) {
-      const {
-        temp_coin: tempCoin,
-        sent_recovery_transaction: sentRecoveryTransaction,
-      } = JSON.parse(wallet.data);
+      const { temp_coin: tempCoin, sent_recovery_transaction: sentRecoveryTransaction } = JSON.parse(wallet.data);
 
       if (tempCoin && !sentRecoveryTransaction) {
         dispatch(did_get_recovery_info(walletId));
@@ -1107,9 +987,7 @@ export default function WalletDID(props: Props) {
   }, [wallet, dispatch, walletId]);
 
   if (loading) {
-    return (
-      <Loading />
-    );
+    return <Loading />;
   }
 
   if (!wallet) {
@@ -1121,10 +999,7 @@ export default function WalletDID(props: Props) {
   }
 
   const { data } = wallet;
-  const {
-    temp_coin: tempCoin,
-    sent_recovery_transaction: sentRecoveryTransaction,
-  } = JSON.parse(data);
+  const { temp_coin: tempCoin, sent_recovery_transaction: sentRecoveryTransaction } = JSON.parse(data);
 
   if (tempCoin) {
     if (sentRecoveryTransaction) {

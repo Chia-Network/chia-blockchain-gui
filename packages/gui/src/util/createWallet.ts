@@ -1,4 +1,5 @@
 import { WalletType } from '@chia/api';
+
 import type Wallet from '../types/Wallet';
 
 // deprecated
@@ -7,7 +8,7 @@ export default function createWallet(
   name: string,
   type: WalletType,
   data: Object,
-  details?: Object,
+  details?: Object
 ): Wallet {
   return {
     id,

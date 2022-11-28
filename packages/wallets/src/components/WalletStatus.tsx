@@ -1,10 +1,11 @@
-import React from 'react';
-import { Trans } from '@lingui/macro';
-import { Loading, State, StateIndicator } from '@chia/core';
-import { useGetSyncStatusQuery } from '@chia/api-react';
-import { Box, Typography } from '@mui/material';
-import getWalletSyncingStatus from '../utils/getWalletSyncingStatus';
 import { SyncingStatus } from '@chia/api';
+import { useGetSyncStatusQuery } from '@chia/api-react';
+import { Loading, State, StateIndicator } from '@chia/core';
+import { Trans } from '@lingui/macro';
+import { Box, Typography } from '@mui/material';
+import React from 'react';
+
+import getWalletSyncingStatus from '../utils/getWalletSyncingStatus';
 import WalletStatusHeight from './WalletStatusHeight';
 
 export type WalletStatusProps = {

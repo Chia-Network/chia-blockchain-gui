@@ -50,7 +50,7 @@ function SandboxedIframe(props: SandboxIframeProps) {
       frameBorder="0"
       onLoad={handleLoad}
       isVisible={isVisible}
-      allowFullScreen={true}
+      allowFullScreen
       style={{ pointerEvents: allowPointerEvents ? 'auto' : 'none' }}
     />
   );

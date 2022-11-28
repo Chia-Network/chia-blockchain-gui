@@ -1,11 +1,6 @@
-import PlotterName from '../constants/PlotterName';
 import { PlotterDefaults } from '../@types/Plotter';
-import {
-  bladebitDefaults,
-  bladebit2Defaults,
-  madmaxDefaults,
-  chiaposDefaults,
-} from '../constants/Plotters';
+import PlotterName from '../constants/PlotterName';
+import { bladebitDefaults, bladebit2Defaults, madmaxDefaults, chiaposDefaults } from '../constants/Plotters';
 
 export default function defaultsForPlotter(plotterName: PlotterName): PlotterDefaults {
   switch (plotterName) {

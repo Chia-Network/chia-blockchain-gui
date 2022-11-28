@@ -1,21 +1,16 @@
-import React from 'react';
-import { Trans } from '@lingui/macro';
-import {
-  Button,
-  Card,
-  List,
-  ListItem,
-  ListItemText,
-} from '@mui/material';
-import styled from 'styled-components';
-import { ChevronRight as ChevronRightIcon } from '@mui/icons-material';
-import { useSelector } from 'react-redux';
 import { Flex, Loading, Logo } from '@chia/core';
-import type { RootState } from '../../../modules/rootReducer';
-import WalletName from '../../../constants/WalletName';
-import config from '../../../config/config';
+import { Trans } from '@lingui/macro';
+import { ChevronRight as ChevronRightIcon } from '@mui/icons-material';
+import { Button, Card, List, ListItem, ListItemText } from '@mui/material';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+
+import config from '../../../config/config';
+import WalletName from '../../../constants/WalletName';
 import useTrans from '../../../hooks/useTrans';
+import type { RootState } from '../../../modules/rootReducer';
 import WalletHeroLayout from './WalletHeroLayout';
 
 const StyledListItem = styled(ListItem)`
@@ -43,28 +38,19 @@ export default function Wallets() {
   }
 
   return (
-    <WalletHeroLayout
-      title={<Trans>Select Wallet</Trans>}
-    >
+    <WalletHeroLayout title={<Trans>Select Wallet</Trans>}>
       {!wallets ? (
         <Loading center />
       ) : (
         <Card>
           <List>
             {wallets.map((wallet: Wallet) => (
-              <StyledListItem
-                onClick={() => handleChange(null, wallet.id)}
-                key={wallet.id}
-                button
-              >
+              <StyledListItem onClick={() => handleChange(null, wallet.id)} key={wallet.id} button>
                 <Flex flexGrow={1} alignItems="center">
                   <Flex flexGrow={1} gap={3} alignItems="center">
                     <Logo width={32} />
-                  
-                    <ListItemText
-                      primary={trans(WalletName[wallet.type])}
-                      secondary={wallet.name}
-                    />
+
+                    <ListItemText primary={trans(WalletName[wallet.type])} secondary={wallet.name} />
                   </Flex>
 
                   <ChevronRightIcon />
@@ -74,12 +60,7 @@ export default function Wallets() {
           </List>
         </Card>
       )}
-      <Button
-        onClick={handleAddToken}
-        variant="outlined"
-        size="large"
-        fullWidth
-      >
+      <Button onClick={handleAddToken} variant="outlined" size="large" fullWidth>
         <Trans>Add Token</Trans>
       </Button>
     </WalletHeroLayout>

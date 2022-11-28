@@ -1,5 +1,6 @@
-import React from 'react';
 import { SvgIcon, SvgIconProps } from '@mui/material';
+import React from 'react';
+
 import PlotIcon from './images/plot.svg';
 
 export default function Plot(props: SvgIconProps) {

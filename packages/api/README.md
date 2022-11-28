@@ -1,6 +1,8 @@
-# @chia/api
+# chia-blockchain-gui/api
 
-![Alt text](https://www.chia.net/img/chia_logo.svg)
+![Chia logo](https://www.chia.net/wp-content/uploads/2022/09/chia-logo.svg)
+
+![GitHub contributors](https://img.shields.io/github/contributors/Chia-Network/chia-blockchain-gui?logo=GitHub)
 
 This library provides support for TypeScript/JavaScript [Chia](https://www.chia.net) apps to access the [Chia Blockchain RPC](https://github.com/Chia-Network/chia-blockchain/wiki/RPC-Interfaces), by making it easier to perform the following actions:
 
@@ -55,3 +57,7 @@ import sleep from 'sleep-promise';
   }
 })();
 ```
+
+## Development
+
+Please read and follow the main [README.md](https://github.com/Chia-Network/chia-blockchain-gui) of this monorepo.

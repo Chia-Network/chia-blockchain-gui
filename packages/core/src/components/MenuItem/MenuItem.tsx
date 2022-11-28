@@ -1,6 +1,7 @@
-import React, { useContext, forwardRef, ReactNode } from 'react';
 import { MenuItem as BaseMenuItem } from '@mui/material';
 import type { MenuItemProps as BaseMenuItemsProps } from '@mui/material';
+import React, { useContext, forwardRef, ReactNode } from 'react';
+
 import { MenuContext } from '../Menu';
 import type { MenuContextInterface } from '../Menu';
 import Tooltip from '../Tooltip';

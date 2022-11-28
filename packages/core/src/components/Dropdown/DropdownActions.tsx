@@ -1,8 +1,9 @@
-import React, { cloneElement, type ReactNode, forwardRef } from 'react';
-import { styled, alpha } from '@mui/material/styles';
-import Button, { type ButtonProps } from '@mui/material/Button';
-import { Menu, type MenuProps } from '../Menu';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import Button, { type ButtonProps } from '@mui/material/Button';
+import { styled, alpha } from '@mui/material/styles';
+import React, { cloneElement, type ReactNode, forwardRef } from 'react';
+
+import { Menu, type MenuProps } from '../Menu';
 
 const StyledMenu = styled((props: MenuProps) => (
   <Menu
@@ -22,10 +23,7 @@ const StyledMenu = styled((props: MenuProps) => (
     borderRadius: 6,
     marginTop: theme.spacing(1),
     minWidth: 180,
-    color:
-      theme.palette.mode === 'light'
-        ? 'rgb(55, 65, 81)'
-        : theme.palette.grey[300],
+    color: theme.palette.mode === 'light' ? 'rgb(55, 65, 81)' : theme.palette.grey[300],
     boxShadow:
       'rgb(255, 255, 255) 0px 0px 0px 0px, rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px',
     '& .MuiMenu-list': {
@@ -38,10 +36,7 @@ const StyledMenu = styled((props: MenuProps) => (
         marginRight: theme.spacing(1.5),
       },
       '&:active': {
-        backgroundColor: alpha(
-          theme.palette.primary.main,
-          theme.palette.action.selectedOpacity
-        ),
+        backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
       },
     },
   },
@@ -91,12 +86,7 @@ function DropdownActions(props: DropdownActionsProps, ref: any) {
         </Button>
       )}
 
-      <StyledMenu
-        anchorEl={anchorEl}
-        open={open}
-        onClose={handleClose}
-        onClick={handlePreventDefault}
-      >
+      <StyledMenu anchorEl={anchorEl} open={open} onClose={handleClose} onClick={handlePreventDefault}>
         {children}
       </StyledMenu>
     </div>

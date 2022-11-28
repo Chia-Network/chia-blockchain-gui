@@ -1,7 +1,7 @@
-import React, { forwardRef, ReactElement, type ReactNode } from 'react';
-import { get } from 'lodash';
-import { Controller, ControllerProps, useFormContext } from 'react-hook-form';
 import { InputBase as MaterialInputBase, InputBaseProps } from '@mui/material';
+import { get } from 'lodash';
+import React, { forwardRef, ReactElement, type ReactNode } from 'react';
+import { Controller, ControllerProps, useFormContext } from 'react-hook-form';
 
 type ReactRules<T> =
   | ControllerProps<ReactElement<T>>['rules']
@@ -58,14 +58,7 @@ function InputBase(props: Props, ref: any) {
     <Controller
       name={name}
       control={control}
-      render={({ field }) => (
-        <MaterialInputBase
-          error={!!errorMessage}
-          {...rest}
-          {...field}
-          ref={ref}
-        />
-      )}
+      render={({ field }) => <MaterialInputBase error={!!errorMessage} {...rest} {...field} ref={ref} />}
     />
   );
 }

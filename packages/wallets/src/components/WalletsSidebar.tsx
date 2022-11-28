@@ -1,8 +1,5 @@
-import React, { useMemo } from 'react';
-import { Trans } from '@lingui/macro';
-import { orderBy } from 'lodash';
-import { useNavigate, useParams } from 'react-router';
-import { Box, Typography, Button } from '@mui/material';
+import { WalletType } from '@chia/api';
+import { useGetLoggedInFingerprintQuery, useGetPrivateKeyQuery, useGetWalletsQuery } from '@chia/api-react';
 import {
   Flex,
   CardListItem,
@@ -12,18 +9,18 @@ import {
   useOpenExternal,
   FormatLargeNumber,
 } from '@chia/core';
-import {
-  useGetLoggedInFingerprintQuery,
-  useGetPrivateKeyQuery,
-  useGetWalletsQuery,
-} from '@chia/api-react';
-import { WalletType } from '@chia/api';
+import { Trans } from '@lingui/macro';
+import { Box, Typography, Button } from '@mui/material';
+import { orderBy } from 'lodash';
+import React, { useMemo } from 'react';
+import { useNavigate, useParams } from 'react-router';
 import styled from 'styled-components';
-import WalletIcon from './WalletIcon';
-import getWalletPrimaryTitle from '../utils/getWalletPrimaryTitle';
-import WalletsManageTokens from './WalletsManageTokens';
+
 import useHiddenWallet from '../hooks/useHiddenWallet';
+import getWalletPrimaryTitle from '../utils/getWalletPrimaryTitle';
 import WalletEmptyDialog from './WalletEmptyDialog';
+import WalletIcon from './WalletIcon';
+import WalletsManageTokens from './WalletsManageTokens';
 
 const StyledRoot = styled(Box)`
   min-width: 390px;
@@ -80,28 +77,22 @@ export default function WalletsSidebar() {
   const navigate = useNavigate();
   const { walletId } = useParams();
   const { data: wallets, isLoading } = useGetWalletsQuery();
-  const {
-    isHidden,
-    hidden,
-    isLoading: isLoadingHiddenWallet,
-  } = useHiddenWallet();
+  const { isHidden, hidden, isLoading: isLoadingHiddenWallet } = useHiddenWallet();
 
   const openDialog = useOpenDialog();
 
   const openExternal = useOpenExternal();
 
-  const { data: fingerprint, isLoading: isLoadingFingerprint } =
-    useGetLoggedInFingerprintQuery();
+  const { data: fingerprint, isLoading: isLoadingFingerprint } = useGetLoggedInFingerprintQuery();
 
-  const { data: privateKey, isLoading: isLoadingPrivateKey } =
-    useGetPrivateKeyQuery(
-      {
-        fingerprint,
-      },
-      {
-        skip: !fingerprint,
-      }
-    );
+  const { data: privateKey, isLoading: isLoadingPrivateKey } = useGetPrivateKeyQuery(
+    {
+      fingerprint,
+    },
+    {
+      skip: !fingerprint,
+    }
+  );
 
   function handleOpenBlogPost() {
     openExternal('https://www.chia.net/cat2blog');
@@ -117,10 +108,9 @@ export default function WalletsSidebar() {
           <br />
           <Typography textAlign="center" color="grey">
             <Trans>
-              We've made an upgrade to the CAT standard which requires all CATs
-              to be re-issued. You will be airdropped your new tokens as they
-              are re-issued by the original issuers. The airdropped tokens will
-              be based on the balance as of block height:
+              We've made an upgrade to the CAT standard which requires all CATs to be re-issued. You will be airdropped
+              your new tokens as they are re-issued by the original issuers. The airdropped tokens will be based on the
+              balance as of block height:
               <br />
               <FormatLargeNumber value={2311760} />
               <br />
@@ -133,22 +123,13 @@ export default function WalletsSidebar() {
                 variant="outlined"
                 size="large"
                 onClick={() =>
-                  openExternal(
-                    'https://cat1.chia.net/#publicKey=' +
-                      privateKey.pk +
-                      '&fingerprint=' +
-                      fingerprint
-                  )
+                  openExternal(`https://cat1.chia.net/#publicKey=${privateKey.pk}&fingerprint=${fingerprint}`)
                 }
                 disabled={isLoadingFingerprint || isLoadingPrivateKey}
               >
                 <Trans>Check my snapshot balance</Trans>
               </Button>
-              <Button
-                variant="outlined"
-                size="large"
-                onClick={handleOpenBlogPost}
-              >
+              <Button variant="outlined" size="large" onClick={handleOpenBlogPost}>
                 <Trans>Read the blog post for details</Trans>
               </Button>
             </Flex>
@@ -176,12 +157,8 @@ export default function WalletsSidebar() {
     const orderedWallets = orderBy(wallets, ['type', 'name'], ['asc', 'asc']);
 
     return orderedWallets
-      .filter(
-        wallet =>
-          [WalletType.STANDARD_WALLET, WalletType.CAT].includes(wallet.type) &&
-          !isHidden(wallet.id)
-      )
-      .map(wallet => {
+      .filter((wallet) => [WalletType.STANDARD_WALLET, WalletType.CAT].includes(wallet.type) && !isHidden(wallet.id))
+      .map((wallet) => {
         const primaryTitle = getWalletPrimaryTitle(wallet);
 
         function handleSelect() {
@@ -197,11 +174,7 @@ export default function WalletsSidebar() {
           >
             <Flex flexDirection="column">
               <Typography>{primaryTitle}</Typography>
-              <WalletIcon
-                wallet={wallet}
-                color="textSecondary"
-                variant="caption"
-              />
+              <WalletIcon wallet={wallet} color="textSecondary" variant="caption" />
             </Flex>
           </CardListItem>
         );
@@ -215,12 +188,7 @@ export default function WalletsSidebar() {
           <Typography variant="h5">
             <Trans>Tokens</Trans>
             <TokensInfo onClick={() => openTokensInfoDialog()}>
-              <svg
-                width="20"
-                height="20"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
+              <svg width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
                   d="M9 5h2v2H9V5Zm0 4h2v6H9V9Zm1-9C4.48 0 0 4.48 0 10s4.48 10 10 10 10-4.48 10-10S15.52 0 10 0Zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8Z"
                   fill="currentColor"
