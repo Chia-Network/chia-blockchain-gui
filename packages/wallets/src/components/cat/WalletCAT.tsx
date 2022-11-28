@@ -1,23 +1,20 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Trans } from '@lingui/macro';
-import { Flex, Loading, MenuItem, useOpenDialog } from '@chia/core';
-import { Alert, Typography } from '@mui/material';
-import {
-  Edit as RenameIcon,
-  Fingerprint as FingerprintIcon,
-} from '@mui/icons-material';
-import { Box, ListItemIcon } from '@mui/material';
 import { WalletType } from '@chia/api';
 import { useSetCATNameMutation, useGetCatListQuery } from '@chia/api-react';
+import { Flex, Loading, MenuItem, useOpenDialog } from '@chia/core';
 import { Offers as OffersIcon } from '@chia/icons';
-import WalletHistory from '../WalletHistory';
+import { Trans } from '@lingui/macro';
+import { Edit as RenameIcon, Fingerprint as FingerprintIcon } from '@mui/icons-material';
+import { Box, ListItemIcon, Alert, Typography } from '@mui/material';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import useWallet from '../../hooks/useWallet';
-import WalletReceiveAddress from '../WalletReceiveAddress';
 import WalletCards from '../WalletCards';
-import WalletCATSend from './WalletCATSend';
 import WalletHeader from '../WalletHeader';
+import WalletHistory from '../WalletHistory';
+import WalletReceiveAddress from '../WalletReceiveAddress';
 import WalletRenameDialog from '../WalletRenameDialog';
+import WalletCATSend from './WalletCATSend';
 import WalletCATTAILDialog from './WalletCATTAILDialog';
 
 type Props = {
@@ -27,14 +24,11 @@ type Props = {
 export default function WalletCAT(props: Props) {
   const { walletId } = props;
   const { wallet, loading } = useWallet(walletId);
-  const { data: catList = [], isLoading: isCatListLoading } =
-    useGetCatListQuery();
+  const { data: catList = [], isLoading: isCatListLoading } = useGetCatListQuery();
   const navigate = useNavigate();
   const openDialog = useOpenDialog();
   const [setCATName] = useSetCATNameMutation();
-  const [selectedTab, setSelectedTab] = useState<
-    'summary' | 'send' | 'receive'
-  >('summary');
+  const [selectedTab, setSelectedTab] = useState<'summary' | 'send' | 'receive'>('summary');
 
   function handleRename() {
     if (!wallet) {
@@ -44,10 +38,7 @@ export default function WalletCAT(props: Props) {
     const { name } = wallet;
 
     openDialog(
-      <WalletRenameDialog
-        name={name}
-        onSave={(newName) => setCATName({ walletId, name: newName }).unwrap()}
-      />
+      <WalletRenameDialog name={name} onSave={(newName) => setCATName({ walletId, name: newName }).unwrap()} />
     );
   }
 
@@ -56,9 +47,9 @@ export default function WalletCAT(props: Props) {
   }
 
   function handleCreateOffer() {
-    navigate('/dashboard/offers/create', {
+    navigate('/dashboard/offers/builder', {
       state: {
-        walletId,
+        assetId: wallet.meta?.assetId,
         walletType: WalletType.CAT,
         referrerPath: location.hash.split('#').slice(-1)[0],
       },

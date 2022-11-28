@@ -1,5 +1,6 @@
-import React from 'react';
 import { SvgIcon, SvgIconProps } from '@mui/material';
+import React from 'react';
+
 import PlotHeroIcon from './images/PlotHero.svg';
 
 export default function PlotHero(props: SvgIconProps) {

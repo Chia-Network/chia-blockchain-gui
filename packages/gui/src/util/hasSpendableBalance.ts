@@ -1,15 +1,12 @@
 import { store, walletApi } from '@chia/api-react';
 import BigNumber from 'bignumber.js';
 
-export default async function hasSpendableBalance(
-  walletId: number,
-  amount: BigNumber,
-) {
+export default async function hasSpendableBalance(walletId: number, amount: BigNumber) {
   // Adding a cache subscription
   const resultPromise = store.dispatch(
     walletApi.endpoints.getWalletBalance.initiate({
       walletId,
-    }),
+    })
   );
 
   const result = await resultPromise;

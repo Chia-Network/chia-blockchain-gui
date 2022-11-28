@@ -1,5 +1,5 @@
-import React, { ReactNode } from 'react';
 import { Collapse } from '@mui/material';
+import React, { ReactNode } from 'react';
 
 type Props = {
   children?: ReactNode;

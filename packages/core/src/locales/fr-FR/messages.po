@@ -8,7 +8,7 @@ msgstr ""
 "Language: fr_FR\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-08-04 12:02\n"
+"PO-Revision-Date: 2022-10-24 18:14\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
@@ -20,7 +20,7 @@ msgstr ""
 
 #: src/components/EstimatedFee/EstimatedFee.tsx:162
 msgid "<0>{0}</0>"
-msgstr ""
+msgstr "<0>{0}</0>"
 
 #: src/components/Amount/Amount.tsx:103
 msgid "Amount"
@@ -32,7 +32,7 @@ msgstr "Apparence"
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:164
 msgid "Are you sure you want to continue? Type in the fingerprint of this wallet key to confirm deletion."
-msgstr ""
+msgstr "Êtes-vous sûr de vouloir continuer ? Tapez l'empreinte de cette clé de porte-monnaie pour confirmer la suppression."
 
 #: src/components/FormBackButton/FormBackButton.tsx:47
 #: src/screens/SelectKey/SelectKey.tsx:84
@@ -42,7 +42,7 @@ msgstr "Retour"
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:147
 #~ msgid "Can be backed up to mnemonic seed"
-#~ msgstr "Peut être sauvegardé en seed mnémonique"
+#~ msgstr "Can be backed up to mnemonic seed"
 
 #: src/components/ConfirmDialog/ConfirmDialog.tsx:32
 #: src/hooks/useKeyringMigrationPrompt.tsx:17
@@ -53,7 +53,7 @@ msgstr "Annuler"
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:49
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:72
 msgid "Close"
-msgstr ""
+msgstr "Fermer"
 
 #: src/components/FormatConnectionStatus/FormatConnectionStatus.tsx:51
 msgid "Connected"
@@ -73,7 +73,7 @@ msgstr "Créer une nouvelle clé privée"
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:163
 #~ msgid "DANGER: permanently delete private key"
-#~ msgstr "DANGER : Suppression permanente de la clé privée"
+#~ msgstr "DANGER: permanently delete private key"
 
 #: src/components/Settings/SettingsApp.tsx:83
 msgid "Dark"
@@ -100,11 +100,11 @@ msgstr "Supprimer toutes les clés va définitivement les enlever de votre ordin
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:124
 #~ msgid "Deleting the key will permanently remove the key from your computer, make sure you have backups. Are you sure you want to continue?"
-#~ msgstr "Supprimer la clé va définitivement l'enlever de votre ordinateur, assurez-vous d'avoir une sauvegarde. Êtes-vous sûr de vouloir continuer ?"
+#~ msgstr "Deleting the key will permanently remove the key from your computer, make sure you have backups. Are you sure you want to continue?"
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:105
 msgid "Details"
-msgstr ""
+msgstr "Détails"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:68
 msgid "Disable"
@@ -130,7 +130,7 @@ msgstr "Erreur :"
 
 #: src/screens/SelectKey/SelectKeyRenameForm.tsx:87
 msgid "Esc"
-msgstr ""
+msgstr "Échap"
 
 #: src/components/LayoutMain/LayoutFooter.tsx:50
 #~ msgid "FAQ"
@@ -138,7 +138,7 @@ msgstr ""
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:96
 msgid "Farmer Public Key"
-msgstr ""
+msgstr "Clé Publique du Fermier"
 
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:57
 msgid "Farmer public key:"
@@ -156,7 +156,7 @@ msgstr "Frais"
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:96
 msgid "Fingerprint does not match"
-msgstr ""
+msgstr "L'empreinte ne correspond pas"
 
 #: src/components/Settings/SettingsApp.tsx:105
 msgid "Frequently Asked Questions"
@@ -173,7 +173,7 @@ msgstr "Aider à traduire"
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:147
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:178
 msgid "Hide"
-msgstr ""
+msgstr "Masquer"
 
 #: src/components/AdvancedOptions/AdvancedOptions.tsx:75
 msgid "Hide Advanced Options"
@@ -197,7 +197,7 @@ msgstr "Clair"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:48
 msgid "Loading details"
-msgstr ""
+msgstr "Chargement des détails"
 
 #: src/screens/SelectKey/SelectKey.tsx:124
 msgid "Loading list of the keys"
@@ -226,7 +226,7 @@ msgstr "Mode"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:121
 msgid "NEVER SHARE THESE WITH ANYONE"
-msgstr ""
+msgstr "NE JAMAIS PARTAGER AVEC QUICONQUE"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:49
 msgid "New passphrase is the same as your current passphrase"
@@ -239,7 +239,7 @@ msgstr "Pas de phrase mnémonique (24 mots), car cette clé est importée."
 
 #: src/screens/SelectKey/WalletStatus.tsx:58
 msgid "Not Synced"
-msgstr ""
+msgstr "Non Synchronisé"
 
 #: src/components/FormatConnectionStatus/FormatConnectionStatus.tsx:52
 msgid "Not connected"
@@ -252,7 +252,7 @@ msgstr "D'accord"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:108
 msgid "Pool Public Key"
-msgstr ""
+msgstr "Clé publique du pool"
 
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:65
 msgid "Pool public key:"
@@ -260,7 +260,7 @@ msgstr "Clé publique du pool :"
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:142
 #~ msgid "Private key with public fingerprint {fingerprint}"
-#~ msgstr "Clé privée avec empreinte publique {fingerprint}"
+#~ msgstr "Private key with public fingerprint {fingerprint}"
 
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:26
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:33
@@ -273,7 +273,7 @@ msgstr "Clé privée :"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:84
 msgid "Public Key"
-msgstr ""
+msgstr "Clé publique"
 
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:49
 msgid "Public key:"
@@ -285,7 +285,7 @@ msgstr "Relancer l'application"
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:97
 msgid "Rename"
-msgstr ""
+msgstr "Renommer"
 
 #: src/components/ErrorBoundary/ErrorBoundary.tsx:87
 msgid "Report an Issue"
@@ -294,23 +294,23 @@ msgstr "Signaler un problème"
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:147
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:178
 msgid "Reveal"
-msgstr ""
+msgstr "Révéler"
 
 #: src/screens/SelectKey/SelectKeyRenameForm.tsx:107
 msgid "Save"
-msgstr ""
+msgstr "Définir"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:127
 msgid "Secret Key"
-msgstr ""
+msgstr "Clé secrète"
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:151
 #~ msgid "See private key"
-#~ msgstr "Voir la clé privée"
+#~ msgstr "See private key"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:154
 msgid "Seed Phrase"
-msgstr ""
+msgstr "Phrase mnémonique"
 
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:75
 msgid "Seed:"
@@ -359,11 +359,11 @@ msgstr "Une erreur s'est produite"
 
 #: src/screens/SelectKey/WalletStatus.tsx:70
 msgid "Synced"
-msgstr ""
+msgstr "Synchronisé"
 
 #: src/screens/SelectKey/WalletStatus.tsx:82
 msgid "Syncing"
-msgstr ""
+msgstr "Synchronisation"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:31
 msgid "The provided passphrase and confirmation do not match"
@@ -371,19 +371,19 @@ msgstr "La phrase secrète fournie et la confirmation ne correspondent pas"
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:145
 msgid "This key is used for a wallet that may have a non-zero balance. By deleting this key you may lose access to this wallet"
-msgstr ""
+msgstr "Attention : Cette clé est utilisée pour un portefeuille qui pourrait avoir un solde non nul. En supprimant cette clé, vous risquez de perdre accès à ce portefeuille"
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:125
 msgid "This key is used for your farming rewards address. By deleting this key you may lose access to any future farming rewards"
-msgstr ""
+msgstr "Attention : Cette clé est utilisée pour votre adresse de récompenses de culture. En supprimant cette clé, vous risquez de perdre accès à toute future récompense de culture"
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:135
 msgid "This key is used for your pool rewards address. By deleting this key you may lose access to any future pool rewards"
-msgstr ""
+msgstr "Attention : Cette clé est utilisée pour votre adresse de récompenses de pool. En supprimant cette clé, vous risquez de perdre accès à toute future récompense de pool"
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:158
 msgid "This will permanently remove the key from your computer, make sure you have your mnemonic phrase backed up."
-msgstr ""
+msgstr "Cela supprimera définitivement la clé de votre ordinateur, assurez-vous d'avoir une copie de votre phrase mnémonique."
 
 #: src/utils/getTransactionResult.ts:15
 msgid "Transaction has not been sent to node yet"
@@ -429,24 +429,24 @@ msgstr "Portefeuille"
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:172
 msgid "Wallet Fingerprint"
-msgstr ""
+msgstr "Empreinte du porte-monnaie"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:65
 #: src/screens/SelectKey/SelectKeyItem.tsx:82
 msgid "Wallet {0}"
-msgstr ""
+msgstr "Porte-monnaie {0}"
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:117
 #~ msgid "Warning: This key is used for a wallet that may have a non-zero balance. By deleting this key you may lose access to this wallet"
-#~ msgstr "Attention : Cette clé est utilisée pour un portefeuille qui pourrait avoir un solde non nul. En supprimant cette clé, vous risquez de perdre accès à ce portefeuille"
+#~ msgstr "Warning: This key is used for a wallet that may have a non-zero balance. By deleting this key you may lose access to this wallet"
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:99
 #~ msgid "Warning: This key is used for your farming rewards address. By deleting this key you may lose access to any future farming rewards"
-#~ msgstr "Attention : Cette clé est utilisée pour votre adresse de récompenses de culture. En supprimant cette clé, vous risquez de perdre accès à toute future récompense de culture"
+#~ msgstr "Warning: This key is used for your farming rewards address. By deleting this key you may lose access to any future farming rewards"
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:108
 #~ msgid "Warning: This key is used for your pool rewards address. By deleting this key you may lose access to any future pool rewards"
-#~ msgstr "Attention : Cette clé est utilisée pour votre adresse de récompenses de pool. En supprimant cette clé, vous risquez de perdre accès à toute future récompense de pool"
+#~ msgstr "Warning: This key is used for your pool rewards address. By deleting this key you may lose access to any future pool rewards"
 
 #: src/screens/SelectKey/SelectKey.tsx:149
 msgid "Welcome to Chia. Please log in with an existing key, or create a new key."
@@ -467,8 +467,9 @@ msgstr "{0, plural, one {mojo} other {mojos}}"
 
 #: src/components/EstimatedFee/EstimatedFee.tsx:159
 msgid "{0} TXCH"
-msgstr ""
+msgstr "{0} TXCH"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:39
 msgid "{minPassphraseLength, plural, one {Passphrases must be at least # character in length} other {Passphrases must be at least # characters in length}}"
 msgstr "{minPassphraseLength, plural, one {Les phrases secrètes doivent comporter au moins # caractères} other {Les phrases secrètes doivent comporter au moins # caractères}}"
+

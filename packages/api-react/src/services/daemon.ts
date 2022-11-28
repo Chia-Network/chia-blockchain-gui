@@ -1,19 +1,25 @@
 import { Daemon, optionsForPlotter, defaultsForPlotter } from '@chia/api';
 import type { KeyringStatus, ServiceName, KeyData } from '@chia/api';
-import onCacheEntryAddedInvalidate from '../utils/onCacheEntryAddedInvalidate';
+
 import api, { baseQuery } from '../api';
+import onCacheEntryAddedInvalidate from '../utils/onCacheEntryAddedInvalidate';
 
 const apiWithTag = api.enhanceEndpoints({
-  addTagTypes: [
-    'KeyringStatus',
-    'ServiceRunning',
-    'DaemonKey',
-    'RunningServices',
-  ],
+  addTagTypes: ['KeyringStatus', 'ServiceRunning', 'DaemonKey', 'RunningServices'],
 });
 
 export const daemonApi = apiWithTag.injectEndpoints({
   endpoints: (build) => ({
+    addPrivateKey: build.mutation<number, { mnemonic: string; label?: string }>({
+      query: ({ mnemonic, label }) => ({
+        command: 'addPrivateKey',
+        service: Daemon,
+        args: [mnemonic, label],
+      }),
+      transformResponse: (response: any) => response?.fingerprint,
+      invalidatesTags: [{ type: 'DaemonKey', id: 'LIST' }],
+    }),
+
     getKey: build.query<
       KeyData,
       {
@@ -27,8 +33,7 @@ export const daemonApi = apiWithTag.injectEndpoints({
         args: [fingerprint, includeSecrets],
       }),
       transformResponse: (response: any) => response?.key,
-      providesTags: (key) =>
-        key ? [{ type: 'DaemonKey', id: key.fingerprint }] : [],
+      providesTags: (key) => (key ? [{ type: 'DaemonKey', id: key.fingerprint }] : []),
     }),
 
     getKeys: build.query<
@@ -46,9 +51,7 @@ export const daemonApi = apiWithTag.injectEndpoints({
       providesTags: (keys) =>
         keys
           ? [
-              ...keys.map(
-                (key) => ({ type: 'DaemonKey', id: key.fingerprint } as const)
-              ),
+              ...keys.map((key) => ({ type: 'DaemonKey', id: key.fingerprint } as const)),
               { type: 'DaemonKey', id: 'LIST' },
             ]
           : [{ type: 'DaemonKey', id: 'LIST' }],
@@ -162,9 +165,7 @@ export const daemonApi = apiWithTag.injectEndpoints({
         args: [service],
       }),
       transformResponse: (response: any) => response?.isRunning,
-      providesTags: (_result, _err, { service }) => [
-        { type: 'ServiceRunning', id: service },
-      ],
+      providesTags: (_result, _err, { service }) => [{ type: 'ServiceRunning', id: service }],
     }),
 
     runningServices: build.query<KeyringStatus, {}>({
@@ -185,20 +186,10 @@ export const daemonApi = apiWithTag.injectEndpoints({
         savePassphrase?: boolean;
       }
     >({
-      query: ({
-        currentPassphrase,
-        newPassphrase,
-        passphraseHint,
-        savePassphrase,
-      }) => ({
+      query: ({ currentPassphrase, newPassphrase, passphraseHint, savePassphrase }) => ({
         command: 'setKeyringPassphrase',
         service: Daemon,
-        args: [
-          currentPassphrase,
-          newPassphrase,
-          passphraseHint,
-          savePassphrase,
-        ],
+        args: [currentPassphrase, newPassphrase, passphraseHint, savePassphrase],
       }),
       invalidatesTags: () => ['KeyringStatus'],
       transformResponse: (response: any) => response?.success,
@@ -228,20 +219,10 @@ export const daemonApi = apiWithTag.injectEndpoints({
         cleanupLegacyKeyring: boolean;
       }
     >({
-      query: ({
-        passphrase,
-        passphraseHint,
-        savePassphrase,
-        cleanupLegacyKeyring,
-      }) => ({
+      query: ({ passphrase, passphraseHint, savePassphrase, cleanupLegacyKeyring }) => ({
         command: 'migrateKeyring',
         service: Daemon,
-        args: [
-          passphrase,
-          passphraseHint,
-          savePassphrase,
-          cleanupLegacyKeyring,
-        ],
+        args: [passphrase, passphraseHint, savePassphrase, cleanupLegacyKeyring],
       }),
       invalidatesTags: () => ['KeyringStatus'],
       transformResponse: (response: any) => response?.success,
@@ -419,6 +400,7 @@ export const {
   useStopPlottingMutation,
   useStartPlottingMutation,
 
+  useAddPrivateKeyMutation,
   useGetKeyQuery,
   useGetKeysQuery,
   useSetLabelMutation,

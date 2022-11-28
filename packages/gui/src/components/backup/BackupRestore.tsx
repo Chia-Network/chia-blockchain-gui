@@ -1,18 +1,15 @@
-import React, { DragEvent } from 'react';
+import { Button, Flex, Link } from '@chia/core';
 import { Trans } from '@lingui/macro';
-import styled from 'styled-components';
-import {
-  Box,
-  Paper,
-  Grid,
-  Typography,
-  Container,
-} from '@mui/material';
-import moment from 'moment';
 import { ArrowBackIos as ArrowBackIosIcon } from '@mui/icons-material';
+import { Box, Paper, Grid, Typography, Container } from '@mui/material';
+import moment from 'moment';
+import React, { DragEvent } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
-import { Button, Flex, Link } from '@chia/core';
+import styled from 'styled-components';
+
+import myStyle from '../../constants/style';
+import { changeBackupView, presentMain, presentBackupInfo, setBackupInfo, selectFilePath } from '../../modules/backup';
 import {
   add_new_key_action,
   add_and_restore_from_backup,
@@ -20,21 +17,12 @@ import {
   get_backup_info_action,
   log_in_and_import_backup_action,
 } from '../../modules/message';
-import {
-  changeBackupView,
-  presentMain,
-  presentBackupInfo,
-  setBackupInfo,
-  selectFilePath,
-} from '../../modules/backup';
 import type { RootState } from '../../modules/rootReducer';
 import Wallet from '../../types/Wallet';
-import myStyle from '../../constants/style';
 import LayoutHero from '../layout/LayoutHero';
 
 const StyledDropPaper = styled(Paper)`
-  background-color: ${({ theme }) =>
-    theme.palette.mode === 'dark' ? '#424242' : '#F0F0F0'};
+  background-color: ${({ theme }) => (theme.palette.mode === 'dark' ? '#424242' : '#F0F0F0')};
   height: 300px;
   width: 100%;
   display: flex;
@@ -99,12 +87,8 @@ function WalletRow(props: WalletRowProps) {
 function UIPart() {
   const dispatch = useDispatch();
   const classes = myStyle();
-  let words = useSelector(
-    (state: RootState) => state.mnemonic_state.mnemonic_input,
-  );
-  const fingerprint = useSelector(
-    (state: RootState) => state.wallet_state.selected_fingerprint,
-  );
+  let words = useSelector((state: RootState) => state.mnemonic_state.mnemonic_input);
+  const fingerprint = useSelector((state: RootState) => state.wallet_state.selected_fingerprint);
 
   words.forEach((word) => {
     if (word === '') {
@@ -156,10 +140,7 @@ function UIPart() {
       <Container maxWidth="lg">
         <Flex flexDirection="column" gap={3} alignItems="center">
           <Typography variant="h5" component="h1" gutterBottom>
-            <Trans>
-              Restore Metadata for Coloured Coins and other Smart Wallets from
-              Backup
-            </Trans>
+            <Trans>Restore Metadata for Coloured Coins and other Smart Wallets from Backup</Trans>
           </Typography>
 
           <StyledDropPaper
@@ -195,33 +176,16 @@ function BackupDetails() {
   const navigate = useNavigate();
   const classes = myStyle();
   const dispatch = useDispatch();
-  const file_path = useSelector(
-    (state: RootState) => state.backup_state.selected_file_path,
-  );
-  const backupInfo = useSelector(
-    (state: RootState) => state.backup_state.backup_info,
-  );
-  const selected_file_path = useSelector(
-    (state: RootState) => state.backup_state.selected_file_path,
-  );
+  const file_path = useSelector((state: RootState) => state.backup_state.selected_file_path);
+  const backupInfo = useSelector((state: RootState) => state.backup_state.backup_info);
+  const selected_file_path = useSelector((state: RootState) => state.backup_state.selected_file_path);
 
-  const {
-    timestamp,
-    version,
-    wallets,
-    downloaded,
-    backup_host: host,
-    fingerprint: backup_fingerprint,
-  } = backupInfo;
+  const { timestamp, version, wallets, downloaded, backup_host: host, fingerprint: backup_fingerprint } = backupInfo;
 
-  const date = moment(timestamp * 1000).format('LLL')
+  const date = moment(timestamp * 1000).format('LLL');
 
-  let words = useSelector(
-    (state: RootState) => state.mnemonic_state.mnemonic_input,
-  );
-  const fingerprint = useSelector(
-    (state: RootState) => state.wallet_state.selected_fingerprint,
-  );
+  let words = useSelector((state: RootState) => state.mnemonic_state.mnemonic_input);
+  const fingerprint = useSelector((state: RootState) => state.wallet_state.selected_fingerprint);
 
   words.forEach((word) => {
     if (word === '') {
@@ -272,17 +236,10 @@ function BackupDetails() {
             padding: '20px',
           }}
         >
-          <Box
-            display="flex"
-            onClick={goBackBackup}
-            style={{ cursor: 'pointer', minWidth: '100%' }}
-          >
+          <Box display="flex" onClick={goBackBackup} style={{ cursor: 'pointer', minWidth: '100%' }}>
             <Box>
               {' '}
-              <ArrowBackIosIcon
-                style={{ cursor: 'pointer' }}
-                onClick={goBackBackup}
-              />
+              <ArrowBackIosIcon style={{ cursor: 'pointer' }} onClick={goBackBackup} />
             </Box>
             <Box className={classes.align_left} flexGrow={1}>
               <Typography variant="subtitle2">Import Backup File</Typography>
@@ -318,9 +275,7 @@ function BackupDetails() {
                 </Box>
               </Box>
               <Box display="flex" style={{ minWidth: '100%' }}>
-                <Box flexGrow={1}>
-                  {downloaded ? 'Backup Host:' : 'File Path'}
-                </Box>
+                <Box flexGrow={1}>{downloaded ? 'Backup Host:' : 'File Path'}</Box>
                 <Box className={classes.align_right} flexGrow={1}>
                   {downloaded ? host : selected_file_path}
                 </Box>
@@ -329,20 +284,12 @@ function BackupDetails() {
           </Grid>
           <Typography variant="subtitle1">Smart wallets</Typography>
           <WalletHeader />
-          {!!wallets &&
-            wallets.map((wallet: Wallet) => <WalletRow wallet={wallet} />)}
+          {!!wallets && wallets.map((wallet: Wallet) => <WalletRow wallet={wallet} />)}
         </Paper>
       </div>
       <Container component="main" maxWidth="xs">
         <div className={classes.paper}>
-          <Button
-            onClick={next}
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >
+          <Button onClick={next} type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
             Continue
           </Button>
         </div>

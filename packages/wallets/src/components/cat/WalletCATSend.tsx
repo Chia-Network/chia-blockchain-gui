@@ -1,9 +1,9 @@
-import React, { useMemo } from 'react';
-import { Trans, t } from '@lingui/macro';
+import { SyncingStatus, toBech32m } from '@chia/api';
+import { useSpendCATMutation, useFarmBlockMutation } from '@chia/api-react';
 import {
   AdvancedOptions,
   Button,
-  Fee,
+  EstimatedFee,
   Form,
   Flex,
   Card,
@@ -18,14 +18,12 @@ import {
   getTransactionResult,
   TooltipIcon,
 } from '@chia/core';
-import {
-  useSpendCATMutation,
-  useFarmBlockMutation,
-} from '@chia/api-react';
-import { SyncingStatus, toBech32m } from '@chia/api';
-import isNumeric from 'validator/es/lib/isNumeric';
-import { useForm, useWatch } from 'react-hook-form';
+import { Trans, t } from '@lingui/macro';
 import { Grid, Typography } from '@mui/material';
+import React, { useMemo } from 'react';
+import { useForm, useWatch } from 'react-hook-form';
+import isNumeric from 'validator/es/lib/isNumeric';
+
 import useWallet from '../../hooks/useWallet';
 import useWalletState from '../../hooks/useWalletState';
 import CreateWalletSendTransactionResultDialog from '../WalletSendTransactionResultDialog';
@@ -43,6 +41,7 @@ type SendTransactionData = {
 
 export default function WalletCATSend(props: Props) {
   const { walletId } = props;
+  const [submissionCount, setSubmissionCount] = React.useState(0);
   const openDialog = useOpenDialog();
   const [farmBlock] = useFarmBlockMutation();
   const [spendCAT, { isLoading: isSpendCatLoading }] = useSpendCATMutation();
@@ -54,10 +53,7 @@ export default function WalletCATSend(props: Props) {
     if (!currencyCode) {
       return undefined;
     }
-    return toBech32m(
-      '0000000000000000000000000000000000000000000000000000000000000000',
-      currencyCode
-    );
+    return toBech32m('0000000000000000000000000000000000000000000000000000000000000000', currencyCode);
   }, [currencyCode]);
 
   const methods = useForm<SendTransactionData>({
@@ -69,7 +65,9 @@ export default function WalletCATSend(props: Props) {
     },
   });
 
-  const { formState: { isSubmitting } } = methods;
+  const {
+    formState: { isSubmitting },
+  } = methods;
 
   const addressValue = useWatch<string>({
     control: methods.control,
@@ -109,7 +107,7 @@ export default function WalletCATSend(props: Props) {
       throw new Error(t`Please enter a valid numeric fee`);
     }
 
-    let address = data.address;
+    let { address } = data;
     if (address === 'retire' && retireAddress) {
       address = retireAddress;
     }
@@ -157,29 +155,31 @@ export default function WalletCATSend(props: Props) {
     const response = await spendCAT(queryData).unwrap();
 
     const result = getTransactionResult(response.transaction);
-    const resultDialog = CreateWalletSendTransactionResultDialog({success: result.success, message: result.message});
+    const resultDialog = CreateWalletSendTransactionResultDialog({
+      success: result.success,
+      message: result.message,
+    });
 
     if (resultDialog) {
       await openDialog(resultDialog);
-    }
-    else {
+    } else {
       throw new Error(result.message ?? 'Something went wrong');
     }
 
     methods.reset();
+    setSubmissionCount((prev) => prev + 1);
   }
 
   return (
-    <Form methods={methods} onSubmit={handleSubmit}>
+    <Form methods={methods} key={submissionCount} onSubmit={handleSubmit}>
       <Flex gap={2} flexDirection="column">
         <Typography variant="h6">
           <Trans>Create Transaction</Trans>
           &nbsp;
           <TooltipIcon>
             <Trans>
-              On average there is one minute between each transaction block. Unless
-              there is congestion you can expect your transaction to be included in
-              less than a minute.
+              On average there is one minute between each transaction block. Unless there is congestion you can expect
+              your transaction to be included in less than a minute.
             </Trans>
           </TooltipIcon>
         </Typography>
@@ -212,7 +212,7 @@ export default function WalletCATSend(props: Props) {
               />
             </Grid>
             <Grid xs={12} md={6} item>
-              <Fee
+              <EstimatedFee
                 id="filled-secondary"
                 variant="filled"
                 name="fee"
@@ -221,6 +221,7 @@ export default function WalletCATSend(props: Props) {
                 label={<Trans>Fee</Trans>}
                 data-testid="WalletCATSend-fee"
                 fullWidth
+                txType="spendCATtx"
               />
             </Grid>
             <Grid xs={12} item>

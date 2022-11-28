@@ -1,5 +1,5 @@
-import React from 'react';
 import { Typography, type TypographyProps } from '@mui/material';
+import React from 'react';
 
 function getMuiVariant(variant: string): TypographyProps['variant'] {
   switch (variant) {
@@ -19,7 +19,5 @@ export type HeadingProps = TypographyProps & {
 export default function Heading(props: HeadingProps) {
   const { variant = 'TITLE', ...rest } = props;
 
-  return (
-    <Typography variant={getMuiVariant(variant)} {...rest} />
-  );
+  return <Typography variant={getMuiVariant(variant)} {...rest} />;
 }

@@ -1,18 +1,22 @@
-import React, { useMemo, createContext, useCallback, ReactNode, useEffect } from 'react';
-import { I18nProvider } from '@lingui/react';
+import { useLocalStorage } from '@chia/api-react';
 import type { I18n } from '@lingui/core';
-import activateLocale from '../../utils/activateLocale';
-import useLocalStorage from '../../hooks/useLocalStorage';
+import { I18nProvider } from '@lingui/react';
+import React, { useMemo, createContext, useCallback, ReactNode, useEffect } from 'react';
 
-export const LocaleContext = createContext<{
-  defaultLocale: string;
-  locales: {
-    locale: string;
-    label: string;
-  }[];
-  locale: string;
-  setLocale: (locale: string) => void;
-} | undefined>(undefined);
+import activateLocale from '../../utils/activateLocale';
+
+export const LocaleContext = createContext<
+  | {
+      defaultLocale: string;
+      locales: {
+        locale: string;
+        label: string;
+      }[];
+      locale: string;
+      setLocale: (locale: string) => void;
+    }
+  | undefined
+>(undefined);
 
 export type LocaleProviderProps = {
   i18n: I18n;
@@ -32,19 +36,25 @@ export default function LocaleProvider(props: LocaleProviderProps) {
     locale = defaultLocale;
   }
 
-  const handleSetLocale = useCallback((locale: string) => {
-    if (typeof locale !== 'string') {
-      throw new Error(`Locale ${locales} is not a string`);
-    }
-    setLocale(locale);
-  }, [setLocale]);
+  const handleSetLocale = useCallback(
+    (locale: string) => {
+      if (typeof locale !== 'string') {
+        throw new Error(`Locale ${locales} is not a string`);
+      }
+      setLocale(locale);
+    },
+    [setLocale]
+  );
 
-  const context = useMemo(() => ({
-    locales,
-    defaultLocale,
-    locale,
-    setLocale: handleSetLocale,
-  }), [locales, defaultLocale, locale, handleSetLocale]);
+  const context = useMemo(
+    () => ({
+      locales,
+      defaultLocale,
+      locale,
+      setLocale: handleSetLocale,
+    }),
+    [locales, defaultLocale, locale, handleSetLocale]
+  );
 
   // prepare default locale
   useMemo(() => {
@@ -57,10 +67,7 @@ export default function LocaleProvider(props: LocaleProviderProps) {
 
   return (
     <LocaleContext.Provider value={context}>
-      <I18nProvider i18n={i18n}>
-        {children}
-      </I18nProvider>
+      <I18nProvider i18n={i18n}>{children}</I18nProvider>
     </LocaleContext.Provider>
   );
 }
-

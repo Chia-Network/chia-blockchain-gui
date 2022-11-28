@@ -1,4 +1,3 @@
-
 type OfferCoinOfInterest = {
   amount: number;
   parentCoinInfo: string;

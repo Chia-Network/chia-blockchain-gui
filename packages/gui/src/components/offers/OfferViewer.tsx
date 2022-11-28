@@ -1,8 +1,5 @@
-import React, { useMemo, useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
-import moment from 'moment';
-import { Trans, Plural } from '@lingui/macro';
+import { OfferSummaryRecord, OfferTradeRecord, OfferCoinOfInterest } from '@chia/api';
+import { useCheckOfferValidityMutation } from '@chia/api-react';
 import {
   Back,
   ButtonLoading,
@@ -17,6 +14,7 @@ import {
   useShowError,
   mojoToChiaLocaleString,
 } from '@chia/core';
+import { Trans, Plural } from '@lingui/macro';
 import {
   Box,
   Button,
@@ -31,18 +29,17 @@ import {
   Tooltip,
   Typography,
 } from '@mui/material';
-import {
-  OfferSummaryRecord,
-  OfferTradeRecord,
-  OfferCoinOfInterest,
-} from '@chia/api';
-import { useCheckOfferValidityMutation } from '@chia/api-react';
-import { colorForOfferState, displayStringForOfferState } from './utils';
+import moment from 'moment';
+import React, { useMemo, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
+
 import useAcceptOfferHook from '../../hooks/useAcceptOfferHook';
 import OfferHeader from './OfferHeader';
 import OfferState from './OfferState';
 import OfferSummary from './OfferSummary';
 import OfferViewerTitle from './OfferViewerTitle';
+import { colorForOfferState, displayStringForOfferState } from './utils';
 
 type OfferMojoAmountProps = {
   mojos: number;
@@ -83,14 +80,7 @@ type OfferDetailsProps = {
 type OfferDetailsRow = {
   name: React.ReactElement;
   value: any;
-  color?:
-    | 'initial'
-    | 'inherit'
-    | 'primary'
-    | 'secondary'
-    | 'textPrimary'
-    | 'textSecondary'
-    | 'error';
+  color?: 'initial' | 'inherit' | 'primary' | 'secondary' | 'textPrimary' | 'textSecondary' | 'error';
   tooltip?: React.ReactElement;
 };
 
@@ -104,8 +94,7 @@ function OfferDetails(props: OfferDetailsProps) {
   const [isAccepting, setIsAccepting] = useState<boolean>(false);
   const [isValidating, setIsValidating] = useState<boolean>(false);
   const [isValid, setIsValid] = useState<boolean>(tradeRecord !== undefined);
-  const [isMissingRequestedAsset, setIsMissingRequestedAsset] =
-    useState<boolean>(false);
+  const [isMissingRequestedAsset, setIsMissingRequestedAsset] = useState<boolean>(false);
   const [checkOfferValidity] = useCheckOfferValidityMutation();
   const detailRows: OfferDetailsRow[] = [];
 
@@ -124,12 +113,7 @@ function OfferDetails(props: OfferDetailsProps) {
       if (response.data?.success === true) {
         valid = response.data?.valid === true;
       } else {
-        showError(
-          response.data?.error ??
-            new Error(
-              'Encountered an unknown error while checking offer validity',
-            ),
-        );
+        showError(response.data?.error ?? new Error('Encountered an unknown error while checking offer validity'));
       }
     } catch (e) {
       showError(e);
@@ -174,66 +158,51 @@ function OfferDetails(props: OfferDetailsProps) {
 
     detailRows.push({
       name: <Trans>Node Count</Trans>,
-      tooltip: (
-        <Trans>
-          This number reflects the number of nodes that the accepted SpendBundle
-          has been sent to
-        </Trans>
-      ),
+      tooltip: <Trans>This number reflects the number of nodes that the accepted SpendBundle has been sent to</Trans>,
       value: tradeRecord.sent,
     });
   }
 
   const coinCols = [
     {
-      field: (coin: OfferCoinOfInterest) => {
-        return (
-          <Typography variant="body2">
-            <Flex flexDirection="row" flexGrow={1} gap={1}>
-              {mojoToChiaLocaleString(coin.amount)}
-            </Flex>
-          </Typography>
-        );
-      },
+      field: (coin: OfferCoinOfInterest) => (
+        <Typography variant="body2">
+          <Flex flexDirection="row" flexGrow={1} gap={1}>
+            {mojoToChiaLocaleString(coin.amount)}
+          </Flex>
+        </Typography>
+      ),
       title: <Trans>Amount</Trans>,
     },
     {
-      field: (coin: OfferCoinOfInterest) => {
-        return (
-          <Tooltip
-            title={
-              <Flex alignItems="center" gap={1}>
-                <Box maxWidth={200}>{coin.parentCoinInfo}</Box>
-                <CopyToClipboard value={coin.parentCoinInfo} fontSize="small" />
-              </Flex>
-            }
-          >
-            <span>
-              {coin.parentCoinInfo}
-            </span>
-          </Tooltip>
-        );
-      },
+      field: (coin: OfferCoinOfInterest) => (
+        <Tooltip
+          title={
+            <Flex alignItems="center" gap={1}>
+              <Box maxWidth={200}>{coin.parentCoinInfo}</Box>
+              <CopyToClipboard value={coin.parentCoinInfo} fontSize="small" />
+            </Flex>
+          }
+        >
+          <span>{coin.parentCoinInfo}</span>
+        </Tooltip>
+      ),
       minWidth: '200px',
       title: <Trans>Parent Coin</Trans>,
     },
     {
-      field: (coin: OfferCoinOfInterest) => {
-        return (
-          <Tooltip
-            title={
-              <Flex alignItems="center" gap={1}>
-                <Box maxWidth={200}>{coin.puzzleHash}</Box>
-                <CopyToClipboard value={coin.puzzleHash} fontSize="small" />
-              </Flex>
-            }
-          >
-            <span>
-              {coin.puzzleHash}
-            </span>
-          </Tooltip>
-        );
-      },
+      field: (coin: OfferCoinOfInterest) => (
+        <Tooltip
+          title={
+            <Flex alignItems="center" gap={1}>
+              <Box maxWidth={200}>{coin.puzzleHash}</Box>
+              <CopyToClipboard value={coin.puzzleHash} fontSize="small" />
+            </Flex>
+          }
+        >
+          <span>{coin.puzzleHash}</span>
+        </Tooltip>
+      ),
       fullWidth: true,
       title: <Trans>Puzzle Hash</Trans>,
     },
@@ -252,7 +221,7 @@ function OfferDetails(props: OfferDetailsProps) {
       summary,
       fee,
       (accepting: boolean) => setIsAccepting(accepting),
-      () => navigate(-2),
+      () => navigate(-2)
     );
   }
 
@@ -283,9 +252,7 @@ function OfferDetails(props: OfferDetailsProps) {
                   <Trans>You will receive</Trans>
                 </Typography>
               }
-              setIsMissingRequestedAsset={(isMissing: boolean) =>
-                setIsMissingRequestedAsset(isMissing)
-              }
+              setIsMissingRequestedAsset={(isMissing: boolean) => setIsMissingRequestedAsset(isMissing)}
             />
             {imported && (
               <Form methods={methods} onSubmit={handleAcceptOffer}>
@@ -304,11 +271,7 @@ function OfferDetails(props: OfferDetailsProps) {
                     </Grid>
                   )}
                   <Flex flexDirection="row" gap={3}>
-                    <Button
-                      variant="outlined"
-                      onClick={() => navigate(-1)}
-                      disabled={isAccepting}
-                    >
+                    <Button variant="outlined" onClick={() => navigate(-1)} disabled={isAccepting}>
                       <Trans>Back</Trans>
                     </Button>
                     <ButtonLoading
@@ -335,8 +298,7 @@ function OfferDetails(props: OfferDetailsProps) {
                 {detailRows.map((row, index) => (
                   <TableRow key={index}>
                     <TableCell component="th" scope="row">
-                      {row.name}{' '}
-                      {row.tooltip && <TooltipIcon>{row.tooltip}</TooltipIcon>}
+                      {row.name} {row.tooltip && <TooltipIcon>{row.tooltip}</TooltipIcon>}
                     </TableCell>
                     <TableCell align="right">
                       <Typography variant="body2" color={row.color}>
@@ -368,22 +330,12 @@ type OfferViewerProps = {
 };
 
 export function OfferViewer(props: OfferViewerProps) {
-  const {
-    offerData,
-    offerFilePath,
-    offerSummary,
-    tradeRecord,
-    imported,
-    ...rest
-  } = props;
+  const { offerData, offerFilePath, offerSummary, tradeRecord, imported, ...rest } = props;
 
   return (
     <Flex flexDirection="column" gap={3}>
       <Back variant="h5">
-        <OfferViewerTitle
-          offerFilePath={offerFilePath}
-          tradeRecord={tradeRecord}
-        />
+        <OfferViewerTitle offerFilePath={offerFilePath} tradeRecord={tradeRecord} />
       </Back>
 
       <OfferDetails

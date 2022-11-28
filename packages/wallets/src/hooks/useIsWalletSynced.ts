@@ -1,4 +1,5 @@
 import { SyncingStatus } from '@chia/api';
+
 import useWalletState from './useWalletState';
 
 export default function useIsWalletSynced(): boolean {

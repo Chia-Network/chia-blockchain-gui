@@ -1,54 +1,42 @@
-import React, { useMemo, useState, useRef, Fragment } from 'react';
-import { renderToString } from 'react-dom/server';
-import mime from 'mime-types';
+import { type NFTInfo } from '@chia/api';
+import { useLocalStorage } from '@chia/api-react';
+import { IconMessage, Loading, Flex, SandboxedIframe, Tooltip, usePersistState, useDarkMode } from '@chia/core';
 import { t, Trans } from '@lingui/macro';
-import { Box, Button, Typography } from '@mui/material';
+import { NotInterested, Error as ErrorIcon } from '@mui/icons-material';
 import CheckSvg from '@mui/icons-material/Check';
 import CloseSvg from '@mui/icons-material/Close';
 import QuestionMarkSvg from '@mui/icons-material/QuestionMark';
-import { NotInterested, Error as ErrorIcon } from '@mui/icons-material';
-import { useLocalStorage } from '@chia/core';
-import { isImage, parseExtensionFromUrl } from '../../util/utils.js';
-
-import {
-  IconMessage,
-  Loading,
-  Flex,
-  SandboxedIframe,
-  Tooltip,
-  usePersistState,
-  useDarkMode,
-} from '@chia/core';
+import { Box, Button, Typography } from '@mui/material';
+import mime from 'mime-types';
+import React, { useMemo, useState, useRef, Fragment } from 'react';
+import { renderToString } from 'react-dom/server';
 import styled from 'styled-components';
-import { type NFTInfo } from '@chia/api';
 import isURL from 'validator/lib/isURL';
-import useVerifyHash from '../../hooks/useVerifyHash';
 
-import AudioSvg from '../../assets/img/audio.svg';
-import AudioPngIcon from '../../assets/img/audio.png';
-import UnknownPngIcon from '../../assets/img/unknown.png';
-import DocumentPngIcon from '../../assets/img/document.png';
-import VideoPngIcon from '../../assets/img/video.png';
-import ModelPngIcon from '../../assets/img/model.png';
-import AudioPngDarkIcon from '../../assets/img/audio_dark.png';
-import UnknownPngDarkIcon from '../../assets/img/unknown_dark.png';
-import DocumentPngDarkIcon from '../../assets/img/document_dark.png';
-import VideoPngDarkIcon from '../../assets/img/video_dark.png';
-import ModelPngDarkIcon from '../../assets/img/model_dark.png';
-
-import VideoBlobIcon from '../../assets/img/video-blob.svg';
 import AudioBlobIcon from '../../assets/img/audio-blob.svg';
-import ModelBlobIcon from '../../assets/img/model-blob.svg';
-import UnknownBlobIcon from '../../assets/img/unknown-blob.svg';
-import DocumentBlobIcon from '../../assets/img/document-blob.svg';
-
-import CompactIconSvg from '../../assets/img/nft-small-frame.svg';
-
-import VideoSmallIcon from '../../assets/img/video-small.svg';
 import AudioSmallIcon from '../../assets/img/audio-small.svg';
-import ModelSmallIcon from '../../assets/img/model-small.svg';
-import UnknownSmallIcon from '../../assets/img/unknown-small.svg';
+import AudioPngIcon from '../../assets/img/audio.png';
+import AudioSvg from '../../assets/img/audio.svg';
+import AudioPngDarkIcon from '../../assets/img/audio_dark.png';
+import DocumentBlobIcon from '../../assets/img/document-blob.svg';
 import DocumentSmallIcon from '../../assets/img/document-small.svg';
+import DocumentPngIcon from '../../assets/img/document.png';
+import DocumentPngDarkIcon from '../../assets/img/document_dark.png';
+import ModelBlobIcon from '../../assets/img/model-blob.svg';
+import ModelSmallIcon from '../../assets/img/model-small.svg';
+import ModelPngIcon from '../../assets/img/model.png';
+import ModelPngDarkIcon from '../../assets/img/model_dark.png';
+import CompactIconSvg from '../../assets/img/nft-small-frame.svg';
+import UnknownBlobIcon from '../../assets/img/unknown-blob.svg';
+import UnknownSmallIcon from '../../assets/img/unknown-small.svg';
+import UnknownPngIcon from '../../assets/img/unknown.png';
+import UnknownPngDarkIcon from '../../assets/img/unknown_dark.png';
+import VideoBlobIcon from '../../assets/img/video-blob.svg';
+import VideoSmallIcon from '../../assets/img/video-small.svg';
+import VideoPngIcon from '../../assets/img/video.png';
+import VideoPngDarkIcon from '../../assets/img/video_dark.png';
+import useVerifyHash from '../../hooks/useVerifyHash';
+import { isImage, parseExtensionFromUrl } from '../../util/utils.js';
 
 function responseTooLarge(error) {
   return error === 'Response too large';
@@ -69,8 +57,7 @@ const AudioWrapper = styled.div`
   flex-direction: column;
   width: 100%;
   height: 100%;
-  background-image: url(${(props) =>
-    props.albumArt ? props.albumArt : 'none'});
+  background-image: url(${(props) => (props.albumArt ? props.albumArt : 'none')});
   background-position: center;
   align-items: center;
   justify-content: center;
@@ -111,8 +98,7 @@ const AudioIconWrapper = styled.div`
   transition: right 0.25s linear, width 0.25s linear, opacity 0.25s;
   visibility: visible;
   display: ${(props) => (props.isPreview ? 'inline-block' : 'none')};
-  box-shadow: 0px 0px 24px rgba(24, 162, 61, 0.5),
-    0px 4px 8px rgba(18, 99, 60, 0.32);
+  box-shadow: 0px 0px 24px rgba(24, 162, 61, 0.5), 0px 4px 8px rgba(18, 99, 60, 0.32);
   border-radius: 32px;
   &.transition {
     width: 300px;
@@ -155,8 +141,7 @@ const ModelExtension = styled.div`
   align-items: center;
   padding: 8px 16px;
   background: ${(props) => (props.isDarkMode ? '#333' : '#fff')};
-  box-shadow: 0px 0px 24px rgba(24, 162, 61, 0.5),
-    0px 4px 8px rgba(18, 99, 60, 0.32);
+  box-shadow: 0px 0px 24px rgba(24, 162, 61, 0.5), 0px 4px 8px rgba(18, 99, 60, 0.32);
   border-radius: 32px;
   color: ${(props) => (props.isDarkMode ? '#fff' : '#333')};
 `;
@@ -167,8 +152,7 @@ const AudioControls = styled.div`
     visibility: visible;
   }
   audio {
-    box-shadow: 0px 0px 24px rgba(24, 162, 61, 0.5),
-      0px 4px 8px rgba(18, 99, 60, 0.32);
+    box-shadow: 0px 0px 24px rgba(24, 162, 61, 0.5), 0px 4px 8px rgba(18, 99, 60, 0.32);
     border-radius: 32px;
     &.dark {
       ::-webkit-media-controls-enclosure {
@@ -213,7 +197,8 @@ const StatusContainer = styled.div`
 `;
 
 const StatusPill = styled.div`
-  background-color: rgba(255, 255, 255, 0.4);
+  background-color: ${({ theme }) =>
+    theme.palette.mode === 'dark' ? 'rgba(50, 50, 50, 0.4)' : 'rgba(255, 255, 255, 0.4)'};
   backdrop-filter: blur(6px);
   border: 1px solid rgba(255, 255, 255, 0.13);
   border-radius: 16px;
@@ -221,7 +206,7 @@ const StatusPill = styled.div`
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   display: flex;
   height: 30px;
-  margin-top: 20px;
+  margin-top: -200px;
   padding: 8px 20px;
 `;
 
@@ -231,6 +216,7 @@ const StatusText = styled.div`
   font-weight: 500;
   font-size: 12px;
   line-height: 14px;
+  text-shadow: 0px 1px 4px black;
 `;
 
 const BlobBg = styled.div`
@@ -292,14 +278,8 @@ const CompactExtension = styled.div`
 
 const Sha256ValidatedIcon = styled.div`
   position: absolute;
-  background: ${({ theme }) => {
-    return theme.palette.mode === 'dark'
-      ? 'rgba(33, 33, 33, 0.5)'
-      : 'rgba(255, 255, 255, 0.66)';
-  }};
-  color: ${({ theme }) => {
-    return theme.palette.mode === 'dark' ? '#fff' : '#333';
-  }};
+  background: ${({ theme }) => (theme.palette.mode === 'dark' ? 'rgba(33, 33, 33, 0.5)' : 'rgba(255, 255, 255, 0.66)')};
+  color: ${({ theme }) => (theme.palette.mode === 'dark' ? '#fff' : '#333')};
   border-radius: 18px;
   padding: 0 8px;
   top: 10px;
@@ -359,9 +339,9 @@ export type NFTPreviewProps = {
 let loopImageInterval: any;
 let audioAnimationInterval;
 
-//=========================================================================//
+//= ========================================================================//
 // NFTPreview function
-//=========================================================================//
+//= ========================================================================//
 export default function NFTPreview(props: NFTPreviewProps) {
   let isPlaying: boolean = false;
   React.useEffect(() => {
@@ -399,7 +379,7 @@ export default function NFTPreview(props: NFTPreviewProps) {
 
   const [ignoreSizeLimit, setIgnoreSizeLimit] = usePersistState<boolean>(
     false,
-    `nft-preview-ignore-size-limit-${nft.$nftId}-${file}`,
+    `nft-preview-ignore-size-limit-${nft.$nftId}-${file}`
   );
 
   const [loaded, setLoaded] = useState(false);
@@ -420,7 +400,7 @@ export default function NFTPreview(props: NFTPreviewProps) {
 
   const [ignoreError, setIgnoreError] = usePersistState<boolean>(
     false,
-    `nft-preview-ignore-error-${nft.$nftId}-${file}`,
+    `nft-preview-ignore-error-${nft.$nftId}-${file}`
   );
 
   const iframeRef = useRef<any>(null);
@@ -442,14 +422,6 @@ export default function NFTPreview(props: NFTPreviewProps) {
     if (!file) {
       return;
     }
-
-    const hideVideoCss = isPreview
-      ? `
-    video::-webkit-media-controls {
-      display: none !important;
-    }   
-    `
-      : '';
 
     const style = `
     html, body {
@@ -501,22 +473,42 @@ export default function NFTPreview(props: NFTPreviewProps) {
       }
       audio {
         margin-top: 140px;
+        box-shadow: 0px 0px 24px rgba(24, 162, 61, 0.5),
+          0px 4px 8px rgba(18, 99, 60, 0.32);
+        border-radius: 32px;
+      }
+      audio.dark::-webkit-media-controls-enclosure {
+        background-color: #333;
+      }
+      audio.dark::-webkit-media-controls-current-time-display {
+        color: #fff;
       }     
-      ${hideVideoCss}
+      audio.dark::-webkit-media-controls-time-remaining-display {
+        color: #fff;
+      }
+      audio.dark::-webkit-media-controls-mute-button {
+        background-image: url('data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjZmZmIiBoZWlnaHQ9IjI0IiB2aWV3Qm94PSIwIDAgMjQgMjQiIHdpZHRoPSIyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwYXRoIGQ9Ik0zIDl2Nmg0bDUgNVY0TDcgOUgzem0xMy41IDNjMC0xLjc3LTEuMDItMy4yOS0yLjUtNC4wM3Y4LjA1YzEuNDgtLjczIDIuNS0yLjI1IDIuNS00LjAyek0xNCAzLjIzdjIuMDZjMi44OS44NiA1IDMuNTQgNSA2Ljcxcy0yLjExIDUuODUtNSA2LjcxdjIuMDZjNC4wMS0uOTEgNy00LjQ5IDctOC43N3MtMi45OS03Ljg2LTctOC43N3oiLz4KICAgIDxwYXRoIGQ9Ik0wIDBoMjR2MjRIMHoiIGZpbGw9Im5vbmUiLz4KPC9zdmc+');
+      }
+      audio.dark::--webkit-media-controls-fullscreen-button {
+        background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMjQgMjQiIHhtbDpzcGFjZT0icHJlc2VydmUiIGZpbGw9IldpbmRvd1RleHQiPjxjaXJjbGUgY3g9IjEyIiBjeT0iNiIgcj0iMiIgZmlsbD0iI2ZmZiIvPjxjaXJjbGUgY3g9IjEyIiBjeT0iMTIiIHI9IiNmZmYiLz48Y2lyY2xlIGN4PSIxMiIgY3k9IjE4IiByPSIjZmZmIi8+PC9zdmc+');
+      }
+      audio.dark::-webkit-media-controls-toggle-closed-captions-button {
+        display: none;
+      }
+      audio.dark::-webkit-media-controls-timeline {
+            background: #444;
+            border-radius: 4px;
+            margin-left: 7px;
+          }
+        }
+      }
     `;
 
     let mediaElement = null;
     let hasPlaybackControls = false;
 
     if (thumbnail.image) {
-      mediaElement = (
-        <img
-          src={thumbnail.image}
-          alt={t`Preview`}
-          width="100%"
-          height="100%"
-        />
-      );
+      mediaElement = <img src={thumbnail.image} alt={t`Preview`} width="100%" height="100%" />;
     } else if (mimeType().match(/^video/)) {
       mediaElement = (
         <video width="100%" height="100%">
@@ -528,13 +520,22 @@ export default function NFTPreview(props: NFTPreviewProps) {
       /* cached svg exception */
       mediaElement = <div id="replace-with-svg" />;
     } else {
+      mediaElement = <img src={thumbnail.binary || file} alt={t`Preview`} width="100%" height="100%" />;
+    }
+
+    if (isPreview && thumbnail.video && !disableThumbnail) {
       mediaElement = (
-        <img
-          src={thumbnail.binary || file}
-          alt={t`Preview`}
-          width="100%"
-          height="100%"
-        />
+        <video width="100%" height="100%" controls>
+          <source src={thumbnail.video} />
+        </video>
+      );
+    }
+
+    if (isAudio()) {
+      mediaElement = (
+        <audio className={isDarkMode ? 'dark' : ''} controls>
+          <source src={thumbnail.binary || file} />
+        </audio>
       );
     }
 
@@ -544,7 +545,7 @@ export default function NFTPreview(props: NFTPreviewProps) {
           <style dangerouslySetInnerHTML={{ __html: style }} />
         </head>
         <body>{mediaElement}</body>
-      </html>,
+      </html>
     );
 
     /* cached svg exception */
@@ -563,34 +564,8 @@ export default function NFTPreview(props: NFTPreviewProps) {
     return mime.lookup(pathName) || '';
   }
 
-  function getVideoDOM() {
-    if (videoThumbnailRef.current) {
-      return videoThumbnailRef.current;
-    }
-    return null;
-  }
-
-  function stopVideo() {
-    const video = getVideoDOM();
-    if (video && !video.paused) {
-      video.pause();
-    }
-  }
-
-  function hideVideoControls() {
-    const video = getVideoDOM();
-    if (video) {
-      video.controls = false;
-      video.removeAttribute('controls');
-      video.playsInline = true;
-    }
-  }
-
   function handleLoadedChange(loadedValue: any) {
     setLoaded(loadedValue);
-    if (thumbnail.video) {
-      hideVideoControls();
-    }
   }
 
   function handleIgnoreError(event: any) {
@@ -602,101 +577,14 @@ export default function NFTPreview(props: NFTPreviewProps) {
     }
   }
 
-  function renderAudioTag() {
-    return (
-      <AudioControls
-        ref={audioControlsRef}
-        isPreview={isPreview && !disableThumbnail}
-      >
-        <audio className={isDarkMode ? 'dark' : ''} controls>
-          <source src={thumbnail.binary || file} />
-        </audio>
-      </AudioControls>
-    );
-  }
-
-  function renderAudioIcon() {
-    return (
-      <AudioIconWrapper
-        ref={audioIconRef}
-        isPreview={isPreview && !disableThumbnail}
-        className={isDarkMode ? 'dark' : ''}
-      >
-        <AudioIcon />
-      </AudioIconWrapper>
-    );
-  }
-
-  function audioMouseEnter(e: any) {
-    if (!isPreview) return;
-    if (!isPlaying) {
-      if (audioIconRef.current)
-        audioIconRef.current.classList.add('transition');
-      audioAnimationInterval = setTimeout(() => {
-        if (audioControlsRef.current)
-          audioControlsRef.current.classList.add('transition');
-        if (audioIconRef.current) audioIconRef.current.classList.add('hide');
-      }, 250);
-    }
-  }
-
-  function audioMouseLeave(e: any) {
-    if (audioAnimationInterval) {
-      clearTimeout(audioAnimationInterval);
-    }
-    if (!isPreview) return;
-    if (!isPlaying) {
-      if (audioIconRef.current) {
-        audioIconRef.current.classList.remove('transition');
-        audioIconRef.current.classList.remove('hide');
-      }
-      if (audioControlsRef.current) {
-        audioControlsRef.current.classList.remove('transition');
-      }
-    }
-  }
-
-  function audioPlayEvent(e: any) {
-    isPlaying = true;
-  }
-
-  function audioPauseEvent(e: any) {
-    isPlaying = false;
-  }
-
-  function videoMouseEnter(e: any) {
-    e.stopPropagation();
-    e.preventDefault();
-    const videoDOM = getVideoDOM();
-    if (isPreview && thumbnail.video && videoDOM) {
-      videoDOM.pause();
-      const playPromise = videoDOM.play();
-      playPromise.catch((e) => {});
-    }
-  }
-
-  function videoMouseLeave() {
-    if (isPreview && thumbnail.video) {
-      stopVideo();
-    }
-    if (thumbnail.images) {
-      clearTimeout(loopImageInterval);
-    }
-  }
-
   function isDocument() {
+    return ['pdf', 'docx', 'doc', 'xls', 'xlsx', 'ppt', 'pptx', 'txt', 'rtf'].indexOf(extension) > -1;
+  }
+
+  function isAudio() {
     return (
-      [
-        'pdf',
-        'docx',
-        'doc',
-        'xls',
-        'xlsx',
-        'ppt',
-        'pptx',
-        'txt',
-        'rtf',
-      ].indexOf(extension) > -1
+      mimeType().match(/^audio/) &&
+      (!isPreview || (isPreview && !thumbnail.video && !thumbnail.image) || disableThumbnail)
     );
   }
 
@@ -717,41 +605,34 @@ export default function NFTPreview(props: NFTPreviewProps) {
   function renderNftIcon() {
     if (isDocument()) {
       return (
-        <>
-          <BlobBg isDarkMode={isDarkMode}>
-            <DocumentBlobIcon />
-            <img src={isDarkMode ? DocumentPngDarkIcon : DocumentPngIcon} />
-          </BlobBg>
-        </>
-      );
-    } else if (mimeType().match(/^model/)) {
-      return (
-        <>
-          <BlobBg isDarkMode={isDarkMode}>
-            <ModelBlobIcon />
-            <img src={isDarkMode ? ModelPngDarkIcon : ModelPngIcon} />
-          </BlobBg>
-        </>
-      );
-    } else if (mimeType().match(/^video/)) {
-      return (
-        <>
-          <BlobBg isDarkMode={isDarkMode}>
-            <VideoBlobIcon />
-            <img src={isDarkMode ? VideoPngDarkIcon : VideoPngIcon} />
-          </BlobBg>
-        </>
-      );
-    } else {
-      return (
-        <>
-          <BlobBg isDarkMode={isDarkMode}>
-            <UnknownBlobIcon />
-            <img src={isDarkMode ? UnknownPngDarkIcon : UnknownPngIcon} />;
-          </BlobBg>
-        </>
+        <BlobBg isDarkMode={isDarkMode}>
+          <DocumentBlobIcon />
+          <img src={isDarkMode ? DocumentPngDarkIcon : DocumentPngIcon} />
+        </BlobBg>
       );
     }
+    if (mimeType().match(/^model/)) {
+      return (
+        <BlobBg isDarkMode={isDarkMode}>
+          <ModelBlobIcon />
+          <img src={isDarkMode ? ModelPngDarkIcon : ModelPngIcon} />
+        </BlobBg>
+      );
+    }
+    if (mimeType().match(/^video/)) {
+      return (
+        <BlobBg isDarkMode={isDarkMode}>
+          <VideoBlobIcon />
+          <img src={isDarkMode ? VideoPngDarkIcon : VideoPngIcon} />
+        </BlobBg>
+      );
+    }
+    return (
+      <BlobBg isDarkMode={isDarkMode}>
+        <UnknownBlobIcon />
+        <img src={isDarkMode ? UnknownPngDarkIcon : UnknownPngIcon} />;
+      </BlobBg>
+    );
   }
 
   function isUnknownType() {
@@ -773,11 +654,7 @@ export default function NFTPreview(props: NFTPreviewProps) {
       return renderCompactIcon();
     }
 
-    const isOfferNft =
-      disableThumbnail &&
-      !mimeType().match(/^video/) &&
-      !mimeType().match(/^audio/) &&
-      !isImage(file);
+    const isOfferNft = disableThumbnail && !mimeType().match(/^video/) && !mimeType().match(/^audio/) && !isImage(file);
 
     const isPreviewNft =
       mimeType() !== '' &&
@@ -789,79 +666,26 @@ export default function NFTPreview(props: NFTPreviewProps) {
       !disableThumbnail;
 
     const notPreviewNft =
-      !disableThumbnail &&
-      !isPreview &&
-      (mimeType().match(/^model/) || isDocument() || isUnknownType());
+      !disableThumbnail && !isPreview && (mimeType().match(/^model/) || isDocument() || isUnknownType());
 
     if (isOfferNft || isPreviewNft || notPreviewNft) {
       return (
         <>
           {renderNftIcon()}
-          {extension && (
-            <ModelExtension isDarkMode={isDarkMode}>
-              .{extension}
-            </ModelExtension>
-          )}
+          {extension && <ModelExtension isDarkMode={isDarkMode}>.{extension}</ModelExtension>}
         </>
-      );
-    }
-
-    if (isPreview && thumbnail.video && !disableThumbnail) {
-      return (
-        <video
-          width="100%"
-          height="100%"
-          ref={videoThumbnailRef}
-          onMouseEnter={videoMouseEnter}
-          onMouseLeave={videoMouseLeave}
-        >
-          <source src={thumbnail.video} />
-        </video>
-      );
-    }
-
-    if (
-      mimeType().match(/^audio/) &&
-      (!isPreview ||
-        (isPreview && !thumbnail.video && !thumbnail.image) ||
-        disableThumbnail)
-    ) {
-      return (
-        <AudioWrapper
-          onMouseEnter={audioMouseEnter}
-          onMouseLeave={audioMouseLeave}
-          onPlay={audioPlayEvent}
-          onPause={audioPauseEvent}
-          albumArt={thumbnail.image}
-        >
-          {!thumbnail.image && (
-            <>
-              <BlobBg isDarkMode={isDarkMode}>
-                <AudioBlobIcon />
-                <img src={isDarkMode ? AudioPngDarkIcon : AudioPngIcon} />
-              </BlobBg>
-            </>
-          )}
-          {renderAudioTag()}
-          {renderAudioIcon()}
-          {!thumbnail.image ? (
-            <ModelExtension isDarkMode={isDarkMode}>
-              .{extension}
-            </ModelExtension>
-          ) : null}
-        </AudioWrapper>
       );
     }
 
     return (
       <IframeWrapper ref={iframeRef}>
-        {isPreview && <IframePreventEvents />}
+        {isPreview && !thumbnail.video && !isAudio() && <IframePreventEvents />}
         <SandboxedIframe
           srcDoc={srcDoc}
           height={height}
           onLoadedChange={handleLoadedChange}
           hideUntilLoaded
-          allowPointerEvents={!!hasPlaybackControls}
+          allowPointerEvents
         />
       </IframeWrapper>
     );
@@ -893,9 +717,7 @@ export default function NFTPreview(props: NFTPreviewProps) {
 
     if (icon && tooltipString) {
       return (
-        <Tooltip
-          title={<Typography variant="caption">{tooltipString}</Typography>}
-        >
+        <Tooltip title={<Typography variant="caption">{tooltipString}</Typography>}>
           <Sha256ValidatedIcon>{icon} HASH</Sha256ValidatedIcon>
         </Tooltip>
       );
@@ -946,6 +768,11 @@ export default function NFTPreview(props: NFTPreviewProps) {
         <ThumbnailError>
           <Trans>Metadata hash mismatch</Trans>
         </ThumbnailError>
+      ) : typeof metadataError === 'string' &&
+        (metadataError === 'Invalid URL' || metadataError.indexOf('getaddrinfo ENOTFOUND') > -1) ? (
+        <ThumbnailError>
+          <Trans>Invalid metadata url</Trans>
+        </ThumbnailError>
       ) : error === 'Error parsing json' ? (
         <ThumbnailError>
           <Trans>Error parsing json</Trans>
@@ -961,12 +788,7 @@ export default function NFTPreview(props: NFTPreviewProps) {
               <Trans>Response too large</Trans>
             </IconMessage>
             {error !== 'url is not defined' && (
-              <Button
-                onClick={handleIgnoreError}
-                variant="outlined"
-                size="small"
-                color="secondary"
-              >
+              <Button onClick={handleIgnoreError} variant="outlined" size="small" color="secondary">
                 <Trans>Show Preview</Trans>
               </Button>
             )}
@@ -974,22 +796,9 @@ export default function NFTPreview(props: NFTPreviewProps) {
         </Background>
       ) : null}
       <>
-        {(showLoading ||
-          (!loaded &&
-            isImage(file) &&
-            !thumbnail.image &&
-            !thumbnail.video &&
-            isUrlValid)) &&
+        {(showLoading || (!loaded && isImage(file) && !thumbnail.image && !thumbnail.video && isUrlValid)) &&
           !responseTooLarge(error) && (
-            <Flex
-              position="absolute"
-              left="0"
-              top="0"
-              bottom="0"
-              right="0"
-              justifyContent="center"
-              alignItems="center"
-            >
+            <Flex position="absolute" left="0" top="0" bottom="0" right="0" justifyContent="center" alignItems="center">
               <Loading center>
                 <Trans>Loading preview...</Trans>
               </Loading>

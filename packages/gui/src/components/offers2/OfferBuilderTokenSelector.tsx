@@ -1,33 +1,26 @@
-import React, { useMemo } from 'react';
-import { Trans } from '@lingui/macro';
 import { WalletType } from '@chia/api';
-import { useFormContext, useWatch } from 'react-hook-form';
 import type { CATToken, Wallet } from '@chia/api';
 import { useGetCatListQuery, useGetWalletsQuery } from '@chia/api-react';
-import {
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
-  Typography,
-} from '@mui/material';
+import { Trans, t } from '@lingui/macro';
+import { FormControl, InputLabel, MenuItem, Select, Typography } from '@mui/material';
+import React, { useMemo } from 'react';
+import { useFormContext, useWatch } from 'react-hook-form';
+
 import useOfferBuilderContext from '../../hooks/useOfferBuilderContext';
 
 export type OfferBuilderTokenSelectorProps = {
   name: string;
   readOnly?: boolean;
   usedAssets?: string[];
+  warnUnknownCAT?: boolean;
 };
 
-export default function OfferBuilderTokenSelector(
-  props: OfferBuilderTokenSelectorProps,
-) {
-  const { name, readOnly = false, usedAssets = [] } = props;
+export default function OfferBuilderTokenSelector(props: OfferBuilderTokenSelectorProps) {
+  const { name, readOnly = false, usedAssets = [], warnUnknownCAT = false } = props;
   const { usedAssetIds } = useOfferBuilderContext();
   const { setValue } = useFormContext();
   const currentValue = useWatch({ name });
-  const { data: wallets = [], isLoading: isLoadingWallets } =
-    useGetWalletsQuery();
+  const { data: wallets = [], isLoading: isLoadingWallets } = useGetWalletsQuery();
   const { data: catList = [], isLoading: isLoadingCATs } = useGetCatListQuery();
   const isLoading = isLoadingWallets || isLoadingCATs;
 
@@ -40,17 +33,12 @@ export default function OfferBuilderTokenSelector(
       .filter((wallet: Wallet) => wallet.type === WalletType.CAT)
       .map((wallet: Wallet) => {
         const cat: CATToken | undefined = catList.find(
-          (cat: CATToken) =>
-            cat.assetId.toLowerCase() === wallet.meta?.assetId?.toLowerCase(),
+          (cat: CATToken) => cat.assetId.toLowerCase() === wallet.meta?.assetId?.toLowerCase()
         );
 
         const assetId = wallet.meta?.assetId.toLowerCase();
 
-        if (
-          assetId &&
-          assetId !== currentValue &&
-          usedAssetIds.includes(assetId)
-        ) {
+        if (assetId && assetId !== currentValue && usedAssetIds.includes(assetId)) {
           return undefined;
         }
 
@@ -61,9 +49,7 @@ export default function OfferBuilderTokenSelector(
       })
       .filter(Boolean);
 
-    const selected = allOptions.find(
-      (option) => option.assetId.toString() === currentValue,
-    );
+    const selected = allOptions.find((option) => option.assetId.toString() === currentValue);
 
     return [selected, allOptions];
   }, [isLoading, wallets, catList, currentValue, usedAssets, usedAssetIds]);
@@ -75,7 +61,7 @@ export default function OfferBuilderTokenSelector(
   if (readOnly) {
     return (
       <Typography variant="h6" noWrap>
-        {selectedOption?.displayName ?? currentValue}
+        {warnUnknownCAT ? t`Unknown` : selectedOption?.displayName ?? currentValue}
       </Typography>
     );
   }
@@ -92,11 +78,7 @@ export default function OfferBuilderTokenSelector(
           </MenuItem>
         ) : (
           options.map((option) => (
-            <MenuItem
-              value={option.assetId}
-              key={option.assetId}
-              onClick={() => handleSelection(option)}
-            >
+            <MenuItem value={option.assetId} key={option.assetId} onClick={() => handleSelection(option)}>
               {option.displayName}
             </MenuItem>
           ))

@@ -1,7 +1,7 @@
-import React from 'react';
-import { Trans } from '@lingui/macro';
-import { FormatLargeNumber, CardSimple } from '@chia/core';
 import { useGetBlockchainStateQuery } from '@chia/api-react';
+import { FormatLargeNumber, CardSimple } from '@chia/core';
+import { Trans } from '@lingui/macro';
+import React from 'react';
 
 export default function FullNodeCardPeakHeight() {
   const { data, isLoading, error } = useGetBlockchainStateQuery();

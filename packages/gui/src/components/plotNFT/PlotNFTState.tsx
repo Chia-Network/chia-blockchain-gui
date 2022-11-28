@@ -1,9 +1,10 @@
-import React from 'react';
-import { Trans } from '@lingui/macro';
 import { Flex, State, StateTypography, TooltipIcon } from '@chia/core';
+import { Trans } from '@lingui/macro';
 import { Typography } from '@mui/material';
-import type PlotNFT from '../../types/PlotNFT';
+import React from 'react';
+
 import PlotNFTStateEnum from '../../constants/PlotNFTState';
+import type PlotNFT from '../../types/PlotNFT';
 
 type Props = {
   nft: PlotNFT;
@@ -26,10 +27,7 @@ export default function PlotNFTState(props: Props) {
           <Trans>Invalid state</Trans>
         </StateTypography>
         <TooltipIcon>
-          <Trans>
-            The pool switching operation was cancelled, please try again by
-            changing pool, or self pooling
-          </Trans>
+          <Trans>The pool switching operation was cancelled, please try again by changing pool, or self pooling</Trans>
         </TooltipIcon>
       </Flex>
     );
@@ -44,8 +42,8 @@ export default function PlotNFTState(props: Props) {
         </StateTypography>
         <TooltipIcon>
           <Trans>
-            PlotNFT is transitioning to (target state). This can take a while.
-            Please do not close the application until this is finalized.
+            PlotNFT is transitioning to (target state). This can take a while. Please do not close the application until
+            this is finalized.
           </Trans>
         </TooltipIcon>
       </Flex>
@@ -53,7 +51,7 @@ export default function PlotNFTState(props: Props) {
   }
 
   return (
-    <Typography component='div' variant="body1">
+    <Typography component="div" variant="body1">
       {state === PlotNFTStateEnum.SELF_POOLING && <Trans>Self Pooling</Trans>}
       {state === PlotNFTStateEnum.LEAVING_POOL && <Trans>Leaving Pool</Trans>}
       {state === PlotNFTStateEnum.FARMING_TO_POOL && <Trans>Pooling</Trans>}

@@ -6,7 +6,7 @@
   "private": true,
   "version": "1.0.0",
   "engines": {
-    "node": ">=12.20.0"
+    "node": ">=16.15.0"
   },
   "main": "dist/index.js",
   "module": "dist/esm.js",
@@ -43,7 +43,6 @@
     "@types/json-bigint": "1.0.1",
     "@types/lodash": "4.14.178",
     "@types/node": "17.0.10",
-    "cross-env": "7.0.3",
     "jest": "29.0.3",
     "rollup": "2.64.0",
     "rollup-plugin-node-externals": "3.1.2",

@@ -1,6 +1,7 @@
-import { useMemo } from 'react';
-import { useLocalStorage, writeStorage } from '@rehooks/local-storage';
 import { useGetLoggedInFingerprintQuery } from '@chia/api-react';
+import { useLocalStorage, writeStorage } from '@rehooks/local-storage';
+import { useMemo } from 'react';
+
 import UnconfirmedPlotNFT from '../types/UnconfirmedPlotNFT';
 
 const LOCAL_STORAGE_KEY = 'unconfirmedPlotNFTsV2';
@@ -12,29 +13,28 @@ export default function useUnconfirmedPlotNFTs(): {
   remove: (transactionId: string) => void;
 } {
   const { data: fingerprint, isLoading } = useGetLoggedInFingerprintQuery();
-  const [unconfirmed] = useLocalStorage<UnconfirmedPlotNFT[]>(
-    LOCAL_STORAGE_KEY,
-    [],
-  );
+  const [unconfirmed] = useLocalStorage<UnconfirmedPlotNFT[]>(LOCAL_STORAGE_KEY, []);
 
-  const currentUnconfirmed = useMemo(() => {
-    return unconfirmed.filter(item => item.fingerprint === fingerprint);
-  }, [fingerprint, unconfirmed]);
+  const currentUnconfirmed = useMemo(
+    () => unconfirmed.filter((item) => item.fingerprint === fingerprint),
+    [fingerprint, unconfirmed]
+  );
 
   function handleAdd(item: Omit<UnconfirmedPlotNFT, 'fingerprint'>) {
     if (!fingerprint) {
       throw new Error('Wait for isLoading useUnconfirmedPlotNFTs');
     }
-    writeStorage(LOCAL_STORAGE_KEY, [...unconfirmed, {
-      ...item,
-      fingerprint,
-    }]);
+    writeStorage(LOCAL_STORAGE_KEY, [
+      ...unconfirmed,
+      {
+        ...item,
+        fingerprint,
+      },
+    ]);
   }
 
   function handleRemove(transactionId: string) {
-    const newList = unconfirmed.filter(
-      (item) => item.transactionId !== transactionId,
-    );
+    const newList = unconfirmed.filter((item) => item.transactionId !== transactionId);
     writeStorage(LOCAL_STORAGE_KEY, newList);
   }
 

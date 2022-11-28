@@ -1,6 +1,4 @@
-import React, { ReactNode, useEffect, useState, Suspense } from 'react';
-import { Provider } from 'react-redux';
-import { Outlet } from 'react-router-dom';
+import { store, api } from '@chia/api-react';
 import {
   useDarkMode,
   sleep,
@@ -13,14 +11,17 @@ import {
   light,
   ErrorBoundary,
 } from '@chia/core';
-import { Typography } from '@mui/material';
-import { store, api } from '@chia/api-react';
+import { nativeTheme } from '@electron/remote';
 import { Trans } from '@lingui/macro';
+import { Typography } from '@mui/material';
+import isElectron from 'is-electron';
+import React, { ReactNode, useEffect, useState, Suspense } from 'react';
+import { Provider } from 'react-redux';
+import { Outlet } from 'react-router-dom';
+import WebSocket from 'ws';
+
 import { i18n, defaultLocale, locales } from '../../config/locales';
 import AppState from './AppState';
-import WebSocket from 'ws';
-import isElectron from 'is-electron';
-import { nativeTheme } from '@electron/remote';
 
 async function waitForConfig() {
   while (true) {
@@ -58,7 +59,7 @@ export default function App(props: AppProps) {
         cert,
         key,
         webSocket: WebSocket,
-      }),
+      })
     );
 
     setIsReady(true);
@@ -70,11 +71,7 @@ export default function App(props: AppProps) {
 
   return (
     <Provider store={store}>
-      <LocaleProvider
-        i18n={i18n}
-        defaultLocale={defaultLocale}
-        locales={locales}
-      >
+      <LocaleProvider i18n={i18n} defaultLocale={defaultLocale} locales={locales}>
         <ThemeProvider theme={theme} fonts global>
           <ErrorBoundary>
             <ModalDialogsProvider>

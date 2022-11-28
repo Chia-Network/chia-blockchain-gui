@@ -1,7 +1,8 @@
-import React from 'react';
-import { Trans } from '@lingui/macro';
 import { Flex, Indicator, StateColor, TooltipIcon } from '@chia/core';
+import { Trans } from '@lingui/macro';
 import { Box } from '@mui/material';
+import React from 'react';
+
 import PlotStatusEnum from '../../../constants/PlotStatus';
 import type PlotQueueItem from '../../../types/PlotQueueItem';
 

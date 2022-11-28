@@ -1,27 +1,25 @@
-import React from 'react';
-import Grid from '@mui/material/Grid';
-import { makeStyles } from '@mui/styles';
-import { useDispatch, useSelector } from 'react-redux';
-import { Trans } from '@lingui/macro';
-import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
-import Accordion from '@mui/material/Accordion';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import AccordionDetails from '@mui/material/AccordionDetails';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { Tooltip } from '@mui/material';
-import HelpIcon from '@mui/icons-material/Help';
 import { AlertDialog, Card, Flex, chiaToMojo, mojoToChiaLocaleString } from '@chia/core';
-import {
-  send_transaction,
-  rl_set_user_info_action,
-} from '../../../modules/message';
-import { get_transaction_result } from '../../../util/transaction_result';
-import { openDialog } from '../../../modules/dialog';
-import WalletHistory from '../WalletHistory';
+import { Trans } from '@lingui/macro';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import HelpIcon from '@mui/icons-material/Help';
+import { Tooltip } from '@mui/material';
+import Accordion from '@mui/material/Accordion';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Grid from '@mui/material/Grid';
+import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
+import { makeStyles } from '@mui/styles';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
 import useCurrencyCode from '../../../hooks/useCurrencyCode';
+import { openDialog } from '../../../modules/dialog';
+import { send_transaction, rl_set_user_info_action } from '../../../modules/message';
+import { get_transaction_result } from '../../../util/transaction_result';
+import WalletHistory from '../WalletHistory';
 
 const drawerWidth = 240;
 
@@ -223,7 +221,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const IncompleteCard = (props) => {
+function IncompleteCard(props) {
   const id = props.wallet_id;
 
   const dispatch = useDispatch();
@@ -256,15 +254,7 @@ const IncompleteCard = (props) => {
     const interval_value = Number.parseInt(Number(interval_input));
     const chiaper_value = Number.parseInt(Number(chiaper_input));
     const origin_parsed = JSON.parse(origin_input);
-    dispatch(
-      rl_set_user_info_action(
-        id,
-        interval_value,
-        chiaper_value,
-        origin_parsed,
-        admin_pubkey_input,
-      ),
-    );
+    dispatch(rl_set_user_info_action(id, interval_value, chiaper_value, origin_parsed, admin_pubkey_input));
   }
 
   const classes = useStyles();
@@ -275,9 +265,7 @@ const IncompleteCard = (props) => {
           <Box display="flex">
             <Box flexGrow={1}>
               <Typography variant="subtitle1">
-                <Trans>
-                  Send your pubkey to your Rate Limited Wallet admin:
-                </Trans>
+                <Trans>Send your pubkey to your Rate Limited Wallet admin:</Trans>
               </Typography>
             </Box>
           </Box>
@@ -286,13 +274,7 @@ const IncompleteCard = (props) => {
       <Grid item xs={12}>
         <Box display="flex">
           <Box flexGrow={1}>
-            <TextField
-              disabled
-              fullWidth
-              label={<Trans>User Pubkey</Trans>}
-              value={pubkey}
-              variant="filled"
-            />
+            <TextField disabled fullWidth label={<Trans>User Pubkey</Trans>} value={pubkey} variant="filled" />
           </Box>
           <Box>
             <Button
@@ -313,8 +295,8 @@ const IncompleteCard = (props) => {
             <Box flexGrow={1} style={{ marginTop: 10, marginBottom: 0 }}>
               <Typography variant="subtitle1">
                 <Trans>
-                  When you receive the setup info packet from your admin, enter
-                  it below to complete your Rate Limited Wallet setup:
+                  When you receive the setup info packet from your admin, enter it below to complete your Rate Limited
+                  Wallet setup:
                 </Trans>
               </Typography>
             </Box>
@@ -337,12 +319,7 @@ const IncompleteCard = (props) => {
         <div className={classes.setupSection}>
           <Box display="flex">
             <Box>
-              <Button
-                onClick={submit}
-                className={classes.submitButton}
-                variant="contained"
-                color="primary"
-              >
+              <Button onClick={submit} className={classes.submitButton} variant="contained" color="primary">
                 <Trans>Submit</Trans>
               </Button>
             </Box>
@@ -351,9 +328,9 @@ const IncompleteCard = (props) => {
       </Grid>
     </Card>
   );
-};
+}
 
-const RLDetailsCard = (props) => {
+function RLDetailsCard(props) {
   const id = props.wallet_id;
 
   const data = useSelector((state) => state.wallet_state.wallets[id].data);
@@ -397,10 +374,7 @@ const RLDetailsCard = (props) => {
             </Box>
             <Box flexGrow={1}>
               <Typography variant="subtitle1">
-                <Trans>
-                  Spending Limit (chia per interval):{' '}
-                  {mojoToChiaLocaleString(limit)}
-                </Trans>
+                <Trans>Spending Limit (chia per interval): {mojoToChiaLocaleString(limit)}</Trans>
               </Typography>
             </Box>
           </Box>
@@ -408,13 +382,7 @@ const RLDetailsCard = (props) => {
         <Grid item xs={12}>
           <Box display="flex" style={{ marginBottom: 20 }}>
             <Box flexGrow={1}>
-              <TextField
-                disabled
-                fullWidth
-                label={<Trans>My Pubkey</Trans>}
-                value={user_pubkey}
-                variant="filled"
-              />
+              <TextField disabled fullWidth label={<Trans>My Pubkey</Trans>} value={user_pubkey} variant="filled" />
             </Box>
             <Box>
               <Button
@@ -444,10 +412,7 @@ const RLDetailsCard = (props) => {
             </Box>
             <Box flexGrow={1}>
               <Typography variant="subtitle1">
-                <Trans>
-                  Spending Limit (chia per interval):{' '}
-                  {mojoToChiaLocaleString(limit)}
-                </Trans>
+                <Trans>Spending Limit (chia per interval): {mojoToChiaLocaleString(limit)}</Trans>
               </Typography>
             </Box>
           </Box>
@@ -457,21 +422,15 @@ const RLDetailsCard = (props) => {
             <Box flexGrow={1} style={{ marginTop: 5, marginBottom: 20 }}>
               <Typography variant="subtitle1">
                 <Trans>
-                  Send this info packet to your Rate Limited Wallet user who
-                  must use it to complete setup of their wallet:
+                  Send this info packet to your Rate Limited Wallet user who must use it to complete setup of their
+                  wallet:
                 </Trans>
               </Typography>
             </Box>
           </Box>
           <Box display="flex" style={{ marginBottom: 20 }}>
             <Box flexGrow={1}>
-              <TextField
-                disabled
-                fullWidth
-                label={<Trans>Info Packet</Trans>}
-                value={ip_hex}
-                variant="filled"
-              />
+              <TextField disabled fullWidth label={<Trans>Info Packet</Trans>} value={ip_hex} variant="filled" />
             </Box>
             <Box>
               <Button
@@ -489,9 +448,9 @@ const RLDetailsCard = (props) => {
       </Card>
     );
   }
-};
+}
 
-const BalanceCardSubSection = (props) => {
+function BalanceCardSubSection(props) {
   const currencyCode = useCurrencyCode();
 
   return (
@@ -517,46 +476,26 @@ const BalanceCardSubSection = (props) => {
       </Box>
     </Grid>
   );
-};
+}
 
-const BalanceCard = (props) => {
+function BalanceCard(props) {
   const id = props.wallet_id;
-  const balance = useSelector(
-    (state) => state.wallet_state.wallets[id].balance_total,
-  );
-  const balance_spendable = useSelector(
-    (state) => state.wallet_state.wallets[id].balance_spendable,
-  );
-  const balance_pending = useSelector(
-    (state) => state.wallet_state.wallets[id].balance_pending,
-  );
-  const balance_change = useSelector(
-    (state) => state.wallet_state.wallets[id].balance_change,
-  );
+  const balance = useSelector((state) => state.wallet_state.wallets[id].balance_total);
+  const balance_spendable = useSelector((state) => state.wallet_state.wallets[id].balance_spendable);
+  const balance_pending = useSelector((state) => state.wallet_state.wallets[id].balance_pending);
+  const balance_change = useSelector((state) => state.wallet_state.wallets[id].balance_change);
   const balance_ptotal = balance + balance_pending;
   const classes = useStyles();
 
   return (
     <Card title={<Trans>Balance</Trans>}>
-      <BalanceCardSubSection
-        title={<Trans>Total Balance</Trans>}
-        balance={balance}
-        tooltip=""
-      />
-      <BalanceCardSubSection
-        title={<Trans>Spendable Balance</Trans>}
-        balance={balance_spendable}
-        tooltip=""
-      />
+      <BalanceCardSubSection title={<Trans>Total Balance</Trans>} balance={balance} tooltip="" />
+      <BalanceCardSubSection title={<Trans>Spendable Balance</Trans>} balance={balance_spendable} tooltip="" />
       <Grid item xs={12}>
         <Box display="flex">
           <Box flexGrow={1}>
             <Accordion className={classes.front}>
-              <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls="panel1a-content"
-                id="panel1a-header"
-              >
+              <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
                 <Typography className={classes.heading}>
                   <Trans>View pending balances</Trans>
                 </Typography>
@@ -568,16 +507,8 @@ const BalanceCard = (props) => {
                     balance={balance_ptotal}
                     tooltip=""
                   />
-                  <BalanceCardSubSection
-                    title={<Trans>Pending Balance</Trans>}
-                    balance={balance_pending}
-                    tooltip=""
-                  />
-                  <BalanceCardSubSection
-                    title={<Trans>Pending Change</Trans>}
-                    balance={balance_change}
-                    tooltip=""
-                  />
+                  <BalanceCardSubSection title={<Trans>Pending Balance</Trans>} balance={balance_pending} tooltip="" />
+                  <BalanceCardSubSection title={<Trans>Pending Change</Trans>} balance={balance_change} tooltip="" />
                 </Grid>
               </AccordionDetails>
             </Accordion>
@@ -586,9 +517,9 @@ const BalanceCard = (props) => {
       </Grid>
     </Card>
   );
-};
+}
 
-const SendCard = (props) => {
+function SendCard(props) {
   const id = props.wallet_id;
   const classes = useStyles();
   let address_input = null;
@@ -596,20 +527,14 @@ const SendCard = (props) => {
   let fee_input = null;
   const dispatch = useDispatch();
 
-  const sending_transaction = useSelector(
-    (state) => state.wallet_state.wallets[id].sending_transaction,
-  );
+  const sending_transaction = useSelector((state) => state.wallet_state.wallets[id].sending_transaction);
   const syncing = useSelector((state) => state.wallet_state.status.syncing);
 
-  const send_transaction_result = useSelector(
-    (state) => state.wallet_state.wallets[id].send_transaction_result,
-  );
+  const send_transaction_result = useSelector((state) => state.wallet_state.wallets[id].send_transaction_result);
 
   const result = get_transaction_result(send_transaction_result);
   const result_message = result.message;
-  const result_class = result.success
-    ? classes.resultSuccess
-    : classes.resultFailure;
+  const result_class = result.success ? classes.resultSuccess : classes.resultFailure;
 
   function send() {
     if (sending_transaction) {
@@ -620,8 +545,8 @@ const SendCard = (props) => {
         openDialog(
           <AlertDialog>
             <Trans>Please finish syncing before making a transaction</Trans>
-          </AlertDialog>,
-        ),
+          </AlertDialog>
+        )
       );
       return;
     }
@@ -636,8 +561,8 @@ const SendCard = (props) => {
         openDialog(
           <AlertDialog>
             <Trans>Please enter a valid numeric amount</Trans>
-          </AlertDialog>,
-        ),
+          </AlertDialog>
+        )
       );
       return;
     }
@@ -646,8 +571,8 @@ const SendCard = (props) => {
         openDialog(
           <AlertDialog>
             <Trans>Please enter a valid numeric fee</Trans>
-          </AlertDialog>,
-        ),
+          </AlertDialog>
+        )
       );
       return;
     }
@@ -664,11 +589,9 @@ const SendCard = (props) => {
       dispatch(
         openDialog(
           <AlertDialog>
-            <Trans>
-              Please enter 0 fee. Positive fees not supported yet for RL.
-            </Trans>
-          </AlertDialog>,
-        ),
+            <Trans>Please enter 0 fee. Positive fees not supported yet for RL.</Trans>
+          </AlertDialog>
+        )
       );
       return;
     }
@@ -751,7 +674,7 @@ const SendCard = (props) => {
       </Grid>
     </Card>
   );
-};
+}
 
 export default function RateLimitedWallet(props) {
   const id = useSelector((state) => state.wallet_menu.id);

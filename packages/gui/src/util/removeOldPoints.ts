@@ -2,10 +2,7 @@ import type Point from '../types/Point';
 
 const DAY_SECONDS = 60 * 60 * 24;
 
-export default function removeOldPoints(
-  points: Point[],
-  second: number = DAY_SECONDS,
-): Point[] {
+export default function removeOldPoints(points: Point[], second: number = DAY_SECONDS): Point[] {
   const current = Date.now() / 1000;
   const dayBefore = current - second;
 

@@ -8,7 +8,7 @@ msgstr ""
 "Language: fi_FI\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-08-04 12:02\n"
+"PO-Revision-Date: 2022-10-24 18:14\n"
 "Last-Translator: \n"
 "Language-Team: Finnish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -142,7 +142,7 @@ msgstr "Kaikki Profiilit"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:431
 msgid "Alternate bucket writing"
-msgstr ""
+msgstr "Vaihtele bukettikirjoitusta"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:354
 msgid "Alternate tmpdir/tmpdir2"
@@ -272,27 +272,27 @@ msgstr "Selaa"
 #: src/components/nfts/NFTBurnDialog.tsx:173
 #: src/components/nfts/NFTContextualActions.tsx:556
 msgid "Burn"
-msgstr ""
+msgstr "Polta"
 
 #: src/components/nfts/NFTBurnDialog.tsx:78
 msgid "Burn NFT confirmation"
-msgstr ""
+msgstr "Polta NFT -vahvistus"
 
 #: src/components/nfts/NFTBurnDialog.tsx:122
 #~ msgid "Burning a non-fungible token means destroying it. Burned NFTs are sent to a verifiably un-spendable address, eliminating your NFT from the blockchain. However, transactions leading up to the burn will remain on the blockchain ledger."
-#~ msgstr ""
+#~ msgstr "Burning a non-fungible token means destroying it. Burned NFTs are sent to a verifiably un-spendable address, eliminating your NFT from the blockchain. However, transactions leading up to the burn will remain on the blockchain ledger."
 
 #: src/components/nfts/NFTBurnDialog.tsx:125
 msgid "Burning a non-fungible token means removing it from circulation by sending it to a verifiably un-spendable address. However, transactions leading up to the burn will remain on the blockchain ledger."
-msgstr ""
+msgstr "NFT:n polttaminen tarkoittaa sen poistamista liikenteestä lähettämällä se todennettavissa olevaan käyttämättömään osoitteeseen. Transaktiot jotka johtavat polttamiseen pysyvät kuitenkin lohkoketjussa."
 
 #: src/components/offers/NFTOfferEditor.tsx:362
 msgid "Buy an NFT"
-msgstr ""
+msgstr "Osta NFT"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:243
 msgid "Cache size (GB)"
-msgstr ""
+msgstr "Välimuistin koko (GB)"
 
 #: src/components/app/AppPassPrompt.tsx:184
 #: src/components/backup/BackupCreate.tsx:51
@@ -361,7 +361,7 @@ msgstr "Vaihda Poolia"
 #: src/components/settings/SettingsDataLayer.tsx:57
 #: src/components/settings/SettingsStartup.tsx:36
 msgid "Changes will take effect the next time Chia is started"
-msgstr ""
+msgstr "Muutokset tulevat voimaan kun Chia-sovellus käynnistetään seuraavan kerran"
 
 #: src/electron/main.tsx:660
 msgid "Chat on KeyBase"
@@ -525,7 +525,7 @@ msgstr "Yhteystyyppi"
 
 #: src/components/fullNode/FullNodeConnections.tsx:106
 #~ msgid "Connections"
-#~ msgstr "Yhteydet"
+#~ msgstr "Connections"
 
 #: src/electron/main.tsx:641
 msgid "Contribute on GitHub"
@@ -640,7 +640,7 @@ msgstr "Datan URL {0}"
 
 #: src/components/settings/Settings.tsx:87
 msgid "DataLayer"
-msgstr ""
+msgstr "Datakerros"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:30
 msgid "Date"
@@ -728,11 +728,11 @@ msgstr "Poista NUMA Käytöstä"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:411
 msgid "Disable assigning automatic thread affinity. This is useful when running multiple simultaneous instances of Bladebit as you can manually assign thread affinity yourself when launching Bladebit."
-msgstr ""
+msgstr "Poista auotmaattinen säikeiden affiniteetin määrittäminen. Tämä on hyödyllistä, kun ajetaan useita samanaikaisia Bladebit-instansseja, koska voit manuaalisesti määrittää affiniteetin Bladebitin käynnistämisessä."
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:390
 msgid "Disable automatic NUMA aware memory binding. If you set this parameter in a NUMA system you will likely get degraded performance."
-msgstr ""
+msgstr "Poista automaattisen NUMA-muistin sitominen käytöstä. Jos asetat tämän parametrin NUMA-järjestelmässä, suorituskyky todennäköisesti huononee."
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:331
 msgid "Disable bitfield plotting"
@@ -740,11 +740,11 @@ msgstr "Kytke bitfield-plottaus pois"
 
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:107
 msgid "Disable direct I/O on the temp 1 directory in order to extract maximum performance with RAM disk"
-msgstr ""
+msgstr "Poista suora I/O temp 1 -hakemistosta saadaksesi maksimaalisen suorituskyvyn RAM-levylle"
 
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:163
 msgid "Disable direct I/O on the temp 2 directory in order to extract maximum performance with RAM disk"
-msgstr ""
+msgstr "Poista suora I/O temp 2 -hakemistosta saadaksesi maksimaalisen suorituskyvyn RAM-levylle"
 
 #: src/components/fullNode/FullNodeCloseConnection.tsx:20
 msgid "Disconnect"
@@ -766,7 +766,7 @@ msgstr "Onko sinulla plot-tiedostoja koneella? <0>Lisää Hakemisto</0>"
 
 #: src/components/nfts/NFTBurnDialog.tsx:117
 msgid "Do you want to burn this NFT?"
-msgstr ""
+msgstr "Haluatko polttaa tämän NFT:n?"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:60
 msgid "Does your machine support parallel plotting?"
@@ -778,15 +778,15 @@ msgstr "Lataa"
 
 #: src/components/offers/OfferImport.tsx:191
 msgid "Drag & Drop an Offer File"
-msgstr ""
+msgstr "Vedä ja pudota tarjoustiedosto"
 
 #: src/components/offers/OfferImport.tsx:146
 #~ msgid "Drag & drop an offer file below to view its details"
-#~ msgstr "Vedä ja pudota tarjous alle nähdäksesi sen tiedot"
+#~ msgstr "Drag & drop an offer file below to view its details"
 
 #: src/components/offers/OfferImport.tsx:166
 #~ msgid "Drag and drop offer file"
-#~ msgstr "Raahaa ja pudota tarjoustiedosto"
+#~ msgstr "Drag and drop offer file"
 
 #: src/components/backup/BackupRestore.tsx:172
 msgid "Drag and drop your backup file"
@@ -821,15 +821,15 @@ msgstr "Painoksen Nro"
 
 #: src/components/settings/SettingsStartup.tsx:32
 msgid "Enable Auto Login"
-msgstr ""
+msgstr "Salli automaattinen käynnistys"
 
 #: src/components/settings/SettingsDataLayer.tsx:38
 msgid "Enable DataLayer"
-msgstr ""
+msgstr "Ota Datakerros Käyttöön"
 
 #: src/components/settings/SettingsDataLayer.tsx:52
 msgid "Enable File Propagation Server"
-msgstr ""
+msgstr "Ota Käyttöön Tiedostonvälityksen Palvelin"
 
 #: src/components/app/AppKeyringMigrator.tsx:143
 msgid "Enter a strong passphrase and click Migrate Keys to secure your keys"
@@ -855,11 +855,11 @@ msgstr "Virhe"
 
 #: src/components/nfts/NFTPreview.tsx:827
 msgid "Error fetching video preview"
-msgstr ""
+msgstr "Virhe videon esikatselun hakemisessa"
 
 #: src/components/nfts/NFTPreview.tsx:835
 msgid "Error parsing json"
-msgstr ""
+msgstr "JSONin parsiminen epäonnistui"
 
 #: src/components/fullNode/card/FullNodeEstimatedNetworkSpace.tsx:14
 msgid "Estimated Network Space"
@@ -945,7 +945,7 @@ msgstr "Farmarit ansaitsevat lohkopalkkioita ja transaktioveloituksia varaamalla
 #: src/components/farm/card/FarmCardStatus.tsx:61
 #: src/components/plot/PlotStatus.tsx:17
 msgid "Farming"
-msgstr "Farmaroidaan"
+msgstr "Farmataan"
 
 #: src/components/app/AppSelectMode.tsx:122
 msgid "Farming Mode"
@@ -997,11 +997,11 @@ msgstr "Tiedosto"
 
 #: src/components/nfts/NFTPreview.tsx:55
 msgid "File is over 100MB"
-msgstr ""
+msgstr "Tiedosto on yli 100 Mt"
 
 #: src/components/nfts/NFTPreview.tsx:26
 #~ msgid "File is over 10MB"
-#~ msgstr "Tiedosto on yli 10 Mt"
+#~ msgstr "File is over 10MB"
 
 #: src/components/plot/PlotHarvesterPlots.tsx:81
 #: src/components/plot/PlotHarvesterPlotsDuplicate.tsx:13
@@ -1012,7 +1012,7 @@ msgstr "Tiedoston nimi"
 
 #: src/components/nfts/gallery/NFTGallery.tsx:145
 msgid "Filters"
-msgstr ""
+msgstr "Suodattimet"
 
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:47
 msgid "Final folder location"
@@ -1039,7 +1039,7 @@ msgstr "Verkkonoodi"
 
 #: src/components/fullNode/FullNodeConnections.tsx:76
 msgid "Full Node Connections"
-msgstr ""
+msgstr "Noodin Yhteydet"
 
 #: src/electron/main.tsx:591
 msgid "Full Screen"
@@ -1047,7 +1047,7 @@ msgstr "Kokoruutu"
 
 #: src/components/settings/SettingsNFT.tsx:23
 msgid "Gallery Management"
-msgstr ""
+msgstr "Gallerian Hallinta"
 
 #: src/components/settings/Settings.tsx:67
 msgid "General"
@@ -1068,7 +1068,7 @@ msgstr "Siirry Offerpooliin"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:433
 msgid "Halves the temp2 cache size requirements by alternating bucket writing methods between tables."
-msgstr ""
+msgstr "Puolittaa temp2 -välimuistin tarpeen vaihtelemalla bukettien kirjoitusmetodia taulujen välillä"
 
 #: src/components/plot/PlotHarvesters.tsx:39
 msgid "Harvesters"
@@ -1076,11 +1076,11 @@ msgstr "Harvesterit"
 
 #: src/components/nfts/detail/NFTDetailV2.tsx:123
 msgid "Hash is validated."
-msgstr ""
+msgstr "Tiiviste on validoitu."
 
 #: src/components/nfts/detail/NFTDetailV2.tsx:127
 msgid "Hash mismatch."
-msgstr ""
+msgstr "Tiiviste ei täsmää."
 
 #: src/components/offers/OfferShareDialog.tsx:882
 msgid "Hashgreen DEX URL"
@@ -1110,11 +1110,11 @@ msgstr "Tämänhetkiset lohkohaasteet, joiden tilatodisteet voivat löytyä plot
 
 #: src/components/nfts/NFTContextualActions.tsx:515
 msgid "Hide"
-msgstr ""
+msgstr "Piilota"
 
 #: src/components/settings/SettingsNFT.tsx:34
 msgid "Hide objectionable content"
-msgstr ""
+msgstr "Piilota kysseenalainen sisältö"
 
 #: src/components/app/AppPassPrompt.tsx:160
 #: src/components/settings/RemovePassphrasePrompt.tsx:150
@@ -1155,7 +1155,7 @@ msgstr "Jos valittu, tarjoustasi ei jaeta julkisesti."
 
 #: src/components/nfts/NFTBurnDialog.tsx:81
 msgid "If you burn this NFT, nobody (including you) will ever be able to access it again. Are you sure you want to continue?"
-msgstr ""
+msgstr "Jos poltat tämän NFT:n, kukaan (mukaan lukien sinä) ei voi enää käyttää sitä. Oletko varma, että haluat jatkaa?"
 
 #: src/components/offers/OfferManager.tsx:128
 msgid "If you have already shared your offer file, you may need to submit a transaction to cancel the pending offer. Click \"Cancel on blockchain\" to submit a cancellation transaction."
@@ -1163,7 +1163,7 @@ msgstr "Jos olet jo jakanut tarjouksesi tiedoston, saatat joutua lähettämään
 
 #: src/components/nfts/NFTBurnDialog.tsx:79
 #~ msgid "If you proceed, this NFT will be permanently deleted. Are you sure you want to continue?"
-#~ msgstr ""
+#~ msgstr "If you proceed, this NFT will be permanently deleted. Are you sure you want to continue?"
 
 #: src/components/nfts/NFTPreview.tsx:369
 msgid "Image Hash Mismatch"
@@ -1205,19 +1205,15 @@ msgid "Install Keybase"
 msgstr "Asenna Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:78
-msgid ""
-"Insufficient funds available to accept offer. Ensure that your\n"
+msgid "Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"Riittämätön määrä varoja tarjouksen hyväksymiseen. Varmista, että\n"
+msgstr "Riittämätön määrä varoja tarjouksen hyväksymiseen. Varmista, että\n"
 "käytettävissä oleva saldo riittää tarjouksen määrän kattamiseen."
 
 #: src/components/offers/OfferEditor.tsx:182
-msgid ""
-"Insufficient funds available to create offer. Ensure that your\n"
+msgid "Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"Riittämätön määrä varoja tarjouksen luomiseen. Varmista, että\n"
+msgstr "Riittämätön määrä varoja tarjouksen luomiseen. Varmista, että\n"
 "käytettävissä oleva saldo riittää tarjouksen määrän kattamiseen."
 
 #: src/components/offers/NFTOfferEditor.tsx:698
@@ -1230,7 +1226,7 @@ msgstr "Virheellinen tila"
 
 #: src/components/plotNFT/PlotNFTGetPoolLoginLinkDialog.tsx:66
 msgid "It is a one-time login link that can be used to log in to a pool's website. It contains a signature using the farmer's key from the plot NFT. Not all pools support this feature."
-msgstr "Kertaluonteinen kirjautumislinkki, jota voidaan käyttää kirjautumiseen poolin verkkosivuilla. Sisältää allekirjoituksen käyttäen viljelijän avainta Plot-NFT:stä Kaikki poolit eivät tue tätä ominaisuutta."
+msgstr "Kertaluonteinen kirjautumislinkki, jota voidaan käyttää kirjautumiseen poolin verkkosivuilla. Sisältää allekirjoituksen käyttäen farmarin avainta Plot-NFT:stä Kaikki poolit eivät tue tätä ominaisuutta."
 
 #: src/components/plotNFT/PlotNFTCard.tsx:381
 msgid "Join Pool"
@@ -1322,11 +1318,11 @@ msgstr "Poistuminen Poolista"
 
 #: src/components/app/AppKeyringMigrator.tsx:100
 msgid "Legacy keyrings are no longer supported. Your keys need to be migrated to a new keyring that is optionally secured by a master passphrase."
-msgstr ""
+msgstr "Vanhoja avainlenkkejä ei enää tueta. Avaimesi on siirrettävä uuteen avainlenkkiin, joka voidaan suojata pääsalasanalla."
 
 #: src/components/app/AppKeyringMigrator.tsx:107
 msgid "Legacy keyrings are no longer supported. Your keys need to be migrated to a new keyring that is secured by a master passphrase."
-msgstr ""
+msgstr "Vanhoja avainlenkkejä ei enää tueta. Avaimesi on siirrettävä uuteen avainlenkkiin, joka on suojattu pääsalasanalla."
 
 #: src/components/nfts/NFTDetails.tsx:226
 msgid "License Hash"
@@ -1338,7 +1334,7 @@ msgstr "Lisenssin URL {0}"
 
 #: src/components/fullNode/FullNodeConnections.tsx:80
 msgid "List of connections is empty"
-msgstr ""
+msgstr "Luettelo yhteyksistä on tyhjä"
 
 #: src/components/nfts/NFTSummary.tsx:115
 msgid "Loading NFT"
@@ -1358,7 +1354,7 @@ msgstr "Ladataan farmausdataa"
 
 #: src/components/app/AppAutoLogin.tsx:43
 msgid "Loading fingerprint"
-msgstr ""
+msgstr "Ladataan sormenjälkeä"
 
 #: src/components/app/AppState.tsx:190
 msgid "Loading keyring status"
@@ -1406,7 +1402,7 @@ msgstr "Metatietojen URL {0}"
 
 #: src/components/nfts/NFTPreview.tsx:839
 msgid "Metadata hash mismatch"
-msgstr ""
+msgstr "Metadatan tiiviste ei täsmää"
 
 #: src/components/fullNode/FullNodeConnections.tsx:57
 msgid "MiB Up/Down"
@@ -1442,7 +1438,7 @@ msgstr "Lyöty lohkokorkeudessa"
 
 #: src/components/offers/OfferSummaryRow.tsx:156
 msgid "Minter:"
-msgstr ""
+msgstr "Tekijä:"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:103
 msgid "Minutes"
@@ -1454,11 +1450,11 @@ msgstr "Puuttuvat Avaimet"
 
 #: src/components/nfts/NFTPreview.tsx:823
 msgid "Missing preview_image_hash key"
-msgstr ""
+msgstr "Puuttuu preview_image_hash -avain"
 
 #: src/components/nfts/NFTPreview.tsx:819
 msgid "Missing preview_video_hash key"
-msgstr ""
+msgstr "Puuttuu preview_video_hash -avain"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:123
 msgid "More memory slightly increases speed"
@@ -1535,7 +1531,7 @@ msgstr "NFT:n tietoja ei ole saatavilla"
 
 #: src/components/offers/NFTOfferEditor.tsx:256
 #~ msgid "NFT for XCH"
-#~ msgstr "NFT XCH:ta vastaan"
+#~ msgstr "NFT for XCH"
 
 #: src/components/offers/NFTOfferPreview.tsx:56
 msgid "NFT identifier does not reference a valid NFT coin."
@@ -1575,7 +1571,7 @@ msgstr "Ei"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:409
 msgid "No CPU Affinity"
-msgstr ""
+msgstr "EI CPU:n affiniteettia"
 
 #: src/components/farm/card/FarmCardLastHeightFarmed.tsx:15
 msgid "No blocks farmed yet"
@@ -1673,23 +1669,23 @@ msgstr "Säikeiden määrä"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:288
 msgid "Number of threads for C table processing"
-msgstr ""
+msgstr "Säikeiden lukumäärä C-taulun prosessointiin"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:260
 msgid "Number of threads for F1 generation"
-msgstr ""
+msgstr "Säikeiden määrä F1 -luontiin"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:302
 msgid "Number of threads for Phase 2"
-msgstr ""
+msgstr "Vaiheen 2 säikeiden määrä"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:316
 msgid "Number of threads for Phase 3"
-msgstr ""
+msgstr "Vaiheen 3 säikeiden määrä"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:274
 msgid "Number of threads for forward propagation"
-msgstr ""
+msgstr "Säikeiden lukumäärä eteenpäin propagoimista varten"
 
 #: src/components/offers/OfferDataDialog.tsx:75
 #: src/components/plotNFT/PlotNFTGetPoolLoginLinkDialog.tsx:87
@@ -1769,23 +1765,23 @@ msgstr "Avaa selaimessa"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:289
 msgid "Override the thread count for C table processing"
-msgstr ""
+msgstr "Ohita säikeiden määrä C-taulun prosessoinnissa"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:261
 msgid "Override the thread count for F1 generation"
-msgstr ""
+msgstr "Ohita säikeiden määrä F1:n luomisessa"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:303
 msgid "Override the thread count for Phase 2"
-msgstr ""
+msgstr "Ohita säikeiden määrä vaiheessa 2"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:317
 msgid "Override the thread count for Phase 3"
-msgstr ""
+msgstr "Ohita säikeiden määrä vaiheessa 3"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:275
 msgid "Override the thread count for forward propagation"
-msgstr ""
+msgstr "Ohita säikeiden määrä eteenpäin propagoinissa"
 
 #: src/components/nfts/NFTDetails.tsx:74
 msgid "Owner DID"
@@ -1919,7 +1915,7 @@ msgstr "Ole hyvä ja valitse assetti jokaiselle riville"
 
 #: src/components/offers/NFTOfferEditor.tsx:702
 msgid "Please select an asset type"
-msgstr ""
+msgstr "Ole hyvä ja valitse assetin tyyppi"
 
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:56
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:60
@@ -2008,7 +2004,7 @@ msgstr "Plotit ovat levyn tilavarauksia, joita farmataan ja joilla ansaitaan Chi
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:228
 msgid "Plots in the same queue will run in serial"
-msgstr ""
+msgstr "Plotit samassa jonossa ajetaan peräkkäin"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:103
 msgid "Plotter"
@@ -2108,7 +2104,7 @@ msgstr "Pooli:"
 #: src/components/plotNFT/PlotNFTExternalState.tsx:24
 #: src/components/plotNFT/PlotNFTState.tsx:59
 msgid "Pooling"
-msgstr "Poolataan"
+msgstr "Pooli"
 
 #: src/components/block/FullNodeAddConnection.tsx:76
 #: src/components/farm/FarmFullNodeConnections.tsx:39
@@ -2138,11 +2134,11 @@ msgstr "Esikatselun URL-osoite ei kelpaa"
 
 #: src/components/nfts/NFTDetails.tsx:250
 msgid "Preview image uris"
-msgstr ""
+msgstr "Esikatsele kuvan URIt"
 
 #: src/components/nfts/NFTDetails.tsx:270
 msgid "Preview video uris"
-msgstr ""
+msgstr "Esikatsele videon URIt"
 
 #: src/components/block/Block.jsx:306
 msgid "Previous"
@@ -2366,7 +2362,7 @@ msgstr "Itsepoolaus. Kun voitat lohkon, ansaitset XCH-kolikoita."
 
 #: src/components/offers/NFTOfferEditor.tsx:367
 msgid "Sell an NFT"
-msgstr ""
+msgstr "Myy NFT"
 
 #: src/components/nfts/NFTBurnDialog.tsx:145
 #: src/components/nfts/NFTTransferAction.tsx:142
@@ -2420,7 +2416,7 @@ msgstr "Jaa OfferBinissä"
 
 #: src/components/offers/OfferShareDialog.tsx:1001
 msgid "Share on Spacescan.io"
-msgstr ""
+msgstr "Jaa Spacescan.io:ssa"
 
 #: src/components/offers/OfferShareDialog.tsx:1326
 msgid "Share on offerpool"
@@ -2428,7 +2424,7 @@ msgstr "Jaa Offerpoolissa"
 
 #: src/components/nfts/NFTContextualActions.tsx:515
 msgid "Show"
-msgstr ""
+msgstr "Näytä"
 
 #: src/components/offers/OfferManager.tsx:446
 msgid "Show Details"
@@ -2436,7 +2432,7 @@ msgstr "Näytä Tiedot"
 
 #: src/components/nfts/gallery/NFTGallery.tsx:156
 msgid "Show Hidden"
-msgstr ""
+msgstr "Näytä Piilotetut"
 
 #: src/components/nfts/NFTPreview.tsx:859
 msgid "Show Preview"
@@ -2444,16 +2440,16 @@ msgstr "Esikatselu"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:247
 msgid "Size of cache to reserve for I/O"
-msgstr ""
+msgstr "Varattavan välimuistin koko I/O:lle"
 
 #: src/components/app/AppKeyringMigrator.tsx:64
 #: src/components/app/AppKeyringMigrator.tsx:267
 #~ msgid "Skip"
-#~ msgstr "Ohita"
+#~ msgstr "Skip"
 
 #: src/components/app/AppKeyringMigrator.tsx:63
 #~ msgid "Skip Keyring Migration"
-#~ msgstr "Ohita Aivainrenkaan Siirto"
+#~ msgstr "Skip Keyring Migration"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:452
 msgid "Skips adding a final directory to harvester for farming"
@@ -2465,7 +2461,7 @@ msgstr "Tasaa XCH-farmauspalkkioita liittymällä pooliin."
 
 #: src/components/offers/OfferShareDialog.tsx:964
 msgid "Spacescan.io URL"
-msgstr ""
+msgstr "Spacescan.io URL"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:143
 msgid "Specify a value of 0 to use all available threads"
@@ -2482,7 +2478,7 @@ msgstr "Käynnistetään palveluja"
 #: src/components/settings/SettingsDataLayer.tsx:25
 #: src/components/settings/SettingsStartup.tsx:21
 msgid "Startup"
-msgstr ""
+msgstr "Käynnistys"
 
 #: src/components/fullNode/FullNode.jsx:95
 msgid "State"
@@ -2576,7 +2572,7 @@ msgstr "Derivaatioindeksi asettaa lompakon osoitteiden määrän, jota lompakko 
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:105
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:161
 msgid "The folder is on a RAM Disk"
-msgstr ""
+msgstr "Kansio on RAM levyllä"
 
 #: src/components/farm/FarmFullNodeConnections.tsx:89
 msgid "The full node that your farmer is connected to is below. <0>Learn more</0>"
@@ -2731,7 +2727,7 @@ msgstr "Säikeiden kerroin vaiheeseen 2"
 
 #: src/components/nfts/NFTPreview.tsx:831
 msgid "Thumbnail hash mismatch"
-msgstr ""
+msgstr "Esikatselukuvan tiiviste ei täsmää"
 
 #: src/components/fullNode/FullNode.jsx:87
 msgid "Time Created"
@@ -2814,7 +2810,7 @@ msgstr "Iteraatioiden määrä lohkoketjun alusta asti"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:371
 msgid "Touch all pages of buffer allocations before starting to plot."
-msgstr ""
+msgstr "Kosketa puskurien allokoinnin kaikkia sivuja ennen kuin plottaus aloitetaan."
 
 #: src/components/app/AppSelectMode.tsx:96
 msgid "Trade tokens"
@@ -2909,11 +2905,11 @@ msgstr "VDF -alaiteraatioita"
 
 #: src/components/nfts/detail/NFTDetailV2.tsx:137
 msgid "Validate SHA256 SUM"
-msgstr ""
+msgstr "Validoi SHA256 SUM"
 
 #: src/components/nfts/detail/NFTDetailV2.tsx:121
 msgid "Validating hash..."
-msgstr ""
+msgstr "Validoidaan tiivistettä..."
 
 #: src/components/plotNFT/select/PlotNFTSelectBase.tsx:156
 msgid "Verify Pool Details"
@@ -2979,7 +2975,7 @@ msgstr "Odotetaan, että tapahtuma on vahvistettu"
 
 #: src/components/app/AppStatusHeader.tsx:75
 msgid "Wallet"
-msgstr ""
+msgstr "Lompakot"
 
 #: src/components/app/AppSelectMode.tsx:76
 #: src/components/app/AppSelectMode.tsx:130
@@ -3044,7 +3040,7 @@ msgstr "Haluatko siirtää NFT:n uudelle omistajalle?"
 
 #: src/components/offers/NFTOfferEditor.tsx:261
 #~ msgid "XCH for NFT"
-#~ msgstr "XCH NFT:tä vastaan"
+#~ msgstr "XCH for NFT"
 
 #: src/components/plot/add/PlotAddChooseSize.tsx:48
 #: src/electron/main.tsx:385
@@ -3141,15 +3137,15 @@ msgstr "Avainrenkaasi on lukittu"
 
 #: src/components/app/AppKeyringMigrator.tsx:69
 #~ msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Are you sure you want to skip migrating your keys?"
-#~ msgstr "Avaimia ei ole siirretty uuteen avainrenkaaseen. Et voi luoda uusia avaimia tai poistaa olemassa olevia avaimia ennen kuin siirto on tehty. Oletko varma, että haluat ohittaa avaimiesi siirron?"
+#~ msgstr "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Are you sure you want to skip migrating your keys?"
 
 #: src/components/app/AppKeyringMigrator.tsx:112
 #~ msgid "Your keys need to be migrated to a new keyring that is optionally secured by a master passphrase."
-#~ msgstr "Avaimesi täytyy siirtää uuteen avainrenkaaseen, joka voidaan suojata pääsalasanalla."
+#~ msgstr "Your keys need to be migrated to a new keyring that is optionally secured by a master passphrase."
 
 #: src/components/app/AppKeyringMigrator.tsx:118
 #~ msgid "Your keys need to be migrated to a new keyring that is secured by a master passphrase."
-#~ msgstr "Avaimesi täytyy siirtää uuteen avainrenkaaseen, joka on suojattu pääsalasanalla."
+#~ msgstr "Your keys need to be migrated to a new keyring that is secured by a master passphrase."
 
 #: src/components/offers/OfferShareDialog.tsx:1173
 msgid "Your offer has been successfully posted to Keybase."
@@ -3187,11 +3183,11 @@ msgstr "Luotu {0}"
 
 #: src/components/offers/OfferImport.tsx:197
 msgid "or Paste (Ctrl-V) an Offer blob"
-msgstr ""
+msgstr "tai Liitä (Ctrl-V) Tarjouksen data"
 
 #: src/components/offers/OfferImport.tsx:195
 msgid "or Paste (⌘V) an Offer blob"
-msgstr ""
+msgstr "tai Liitä (⌘ V) Tarjouksen data"
 
 #: src/components/plot/add/PlotAddForm.tsx:134
 msgid "p2SingletonPuzzleHash is not defined"
@@ -3236,3 +3232,4 @@ msgstr "{value} / {max_value}"
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:118
 msgid "{warning}"
 msgstr "{warning}"
+

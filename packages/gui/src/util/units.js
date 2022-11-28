@@ -57,8 +57,7 @@ const getDisplay = (unit) => display[getUnitName(unit)];
 
 const setUnit = (unit, value, displayOptions = null) => {
   units[unit.toLowerCase()] = value;
-  display[unit.toLowerCase()] =
-    displayOptions !== null ? displayOptions : { format: `{amount} ${unit}` };
+  display[unit.toLowerCase()] = displayOptions !== null ? displayOptions : { format: `{amount} ${unit}` };
 };
 
 module.exports = {

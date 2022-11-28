@@ -1,19 +1,12 @@
-import React, { useEffect, useMemo, useState, useRef } from 'react';
 import { WalletType } from '@chia/api';
-import { useSetCATNameMutation } from '@chia/api-react';
+import { useSetCATNameMutation, useGetLocalCatName } from '@chia/api-react';
+import { Tooltip, CardListItem, Flex, Link, useShowError, Form, TextField } from '@chia/core';
 import { Trans } from '@lingui/macro';
 import { Box, Typography, Switch, CircularProgress } from '@mui/material';
-import {
-  Tooltip,
-  CardListItem,
-  Flex,
-  Link,
-  useShowError,
-  Form,
-  TextField,
-} from '@chia/core';
-import { type ListItem } from '../hooks/useWalletsList';
+import React, { useEffect, useMemo, useState, useRef } from 'react';
 import { useForm } from 'react-hook-form';
+
+import { type ListItem } from '../hooks/useWalletsList';
 
 export type WalletTokenCardProps = {
   item: ListItem;
@@ -27,14 +20,14 @@ type FormData = {
 
 export default function WalletTokenCard(props: WalletTokenCardProps) {
   const {
-    item: { type, walletType, walletId, assetId, hidden, name = '' },
+    item: { type, walletType, walletId, assetId, hidden, name },
     onHide,
     onShow,
   } = props;
 
+  const [localCatName, setLocalCatName] = useGetLocalCatName(assetId);
   const [isRenaming, setIsRenaming] = useState<boolean>(false);
-  const [isChangingVisibility, setIsChangingVisibility] =
-    useState<boolean>(false);
+  const [isChangingVisibility, setIsChangingVisibility] = useState<boolean>(false);
   const isChangingVisibilityRef = useRef<boolean>(isChangingVisibility);
   const [setCATName] = useSetCATNameMutation();
   const showError = useShowError();
@@ -48,9 +41,16 @@ export default function WalletTokenCard(props: WalletTokenCardProps) {
 
   const isLoading = isRenaming || isChangingVisibility;
 
+  const showedName = useMemo(() => {
+    if (['CAT_LIST', 'STRAY_CAT'].includes(type)) {
+      return localCatName || name;
+    }
+    return name;
+  }, [localCatName, name, type]);
+
   useEffect(() => {
-    form.setValue('name', name);
-  }, [form, name]);
+    form.setValue('name', showedName);
+  }, [form, showedName]);
 
   async function handleSubmit(values: FormData) {
     return handleRename(values.name);
@@ -62,31 +62,26 @@ export default function WalletTokenCard(props: WalletTokenCardProps) {
     }
 
     try {
-      if (!newName || newName === name) {
+      if (newName === showedName) {
         return;
       }
 
       setIsRenaming(true);
       setIsChangingVisibility(false);
 
-      let currentWalletId = walletId;
-
-      if (!currentWalletId) {
+      if (!walletId) {
         if (!assetId) {
           return;
         }
 
-        currentWalletId = await onShow(assetId);
-
-        // hide wallet
-        if (hidden && !isChangingVisibilityRef.current) {
-          await onHide(currentWalletId);
+        setLocalCatName(newName ?? undefined);
+      } else {
+        if (!newName) {
+          return;
         }
-      }
 
-      if (currentWalletId) {
         await setCATName({
-          walletId: currentWalletId,
+          walletId,
           name: newName,
         }).unwrap();
       }
@@ -115,7 +110,19 @@ export default function WalletTokenCard(props: WalletTokenCardProps) {
       if (id) {
         if (checked) {
           setIsChangingVisibility(true);
-          await onShow(id);
+
+          if (!walletId) {
+            const newWalletId = await onShow(assetId);
+            // use name from local storage
+            if (localCatName) {
+              await setCATName({
+                walletId: newWalletId,
+                name: localCatName,
+              }).unwrap();
+            }
+          } else {
+            await onShow(walletId);
+          }
         } else {
           onHide(id);
         }
@@ -140,13 +147,7 @@ export default function WalletTokenCard(props: WalletTokenCardProps) {
   return (
     <CardListItem>
       <Flex gap={1} alignItems="center" width="100%">
-        <Flex
-          flexDirection="column"
-          gap={0.5}
-          flexGrow={1}
-          flexBasis={0}
-          minWidth={0}
-        >
+        <Flex flexDirection="column" gap={0.5} flexGrow={1} flexBasis={0} minWidth={0}>
           {walletType === WalletType.STANDARD_WALLET ? (
             <Typography noWrap>{name}</Typography>
           ) : (
@@ -163,12 +164,7 @@ export default function WalletTokenCard(props: WalletTokenCardProps) {
             </Form>
           )}
           {(!!subTitle || assetId) && (
-            <Flex
-              flexDirection="column"
-              flexGrow={1}
-              flexBasis={0}
-              minWidth={0}
-            >
+            <Flex flexDirection="column" flexGrow={1} flexBasis={0} minWidth={0}>
               {!!subTitle && (
                 <Tooltip title={subTitle} placement="right" copyToClipboard>
                   <Typography color="textSecondary" variant="caption" noWrap>
@@ -177,11 +173,7 @@ export default function WalletTokenCard(props: WalletTokenCardProps) {
                 </Tooltip>
               )}
               {assetId && (
-                <Link
-                  href={`https://www.taildatabase.com/tail/${assetId}`}
-                  target="_blank"
-                  variant="caption"
-                >
+                <Link href={`https://www.taildatabase.com/tail/${assetId}`} target="_blank" variant="caption">
                   <Trans>Search on Tail Database</Trans>
                 </Link>
               )}
@@ -191,10 +183,7 @@ export default function WalletTokenCard(props: WalletTokenCardProps) {
         {walletType !== WalletType.STANDARD_WALLET && (
           <Box width="60px" textAlign="center" position="relative">
             <Box position="absolute" top="0" left="25%">
-              <CircularProgress
-                size={34}
-                sx={{ zIndex: -1, opacity: isLoading ? 1 : 0 }}
-              />
+              <CircularProgress size={34} sx={{ zIndex: -1, opacity: isLoading ? 1 : 0 }} />
             </Box>
             <Switch
               checked={!hidden}

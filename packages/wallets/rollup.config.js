@@ -10,7 +10,7 @@ const extensions = ['.js', '.jsx', '.ts', '.tsx'];
 export default {
   input: './src/index.ts',
   plugins: [
-    json(), 
+    json(),
 
     externals({
       deps: true,
@@ -23,19 +23,22 @@ export default {
     commonjs(),
 
     // Compile TypeScript/JavaScript files
-    babel({ 
+    babel({
       extensions,
       babelHelpers: 'runtime',
       include: ['src/**/*'],
     }),
   ],
-  output: [{
-    file: pkg.module,
-    format: 'es',
-    sourcemap: false,
-  }, {
-    file: pkg.main,
-    format: 'cjs',
-    sourcemap: false,
-  }],
+  output: [
+    {
+      file: pkg.module,
+      format: 'es',
+      sourcemap: false,
+    },
+    {
+      file: pkg.main,
+      format: 'cjs',
+      sourcemap: false,
+    },
+  ],
 };

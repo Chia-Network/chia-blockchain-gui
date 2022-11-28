@@ -1,19 +1,15 @@
-import React, { useState } from 'react';
 import { Trans } from '@lingui/macro';
-import { useCopyToClipboard } from 'react-use';
-import { Tooltip, IconButton } from '@mui/material';
 import { Assignment as AssignmentIcon } from '@mui/icons-material';
+import { Tooltip, IconButton } from '@mui/material';
+import { styled } from '@mui/system';
+import React, { useState } from 'react';
+import { useCopyToClipboard } from 'react-use';
 // @ts-ignore
 import { useTimeout } from 'react-use-timeout';
-import { styled } from '@mui/system';
 
-const StyledAssignmentIcon = styled(({ invertColor, ...rest }) => (
-  <AssignmentIcon {...rest} />
-))(
+const StyledAssignmentIcon = styled(({ invertColor, ...rest }) => <AssignmentIcon {...rest} />)(
   ({ theme, invertColor }) => `
-  color: ${
-    invertColor ? theme.palette.common.white : theme.palette.text.secondary
-  };
+  color: ${invertColor ? theme.palette.common.white : theme.palette.text.secondary};
 `
 );
 
@@ -52,20 +48,12 @@ export default function CopyToClipboard(props: CopyToClipboardProps) {
     timeout.start();
   }
 
-  const tooltipTitle = copied ? (
-    <Trans>Copied</Trans>
-  ) : (
-    <Trans>Copy to Clipboard</Trans>
-  );
+  const tooltipTitle = copied ? <Trans>Copied</Trans> : <Trans>Copy to Clipboard</Trans>;
 
   return (
     <Tooltip title={tooltipTitle}>
       <IconButton onClick={handleCopy} size={size} data-testid={dataTestid}>
-        <StyledAssignmentIcon
-          fontSize={fontSize}
-          invertColor={invertColor}
-          {...rest}
-        />
+        <StyledAssignmentIcon fontSize={fontSize} invertColor={invertColor} {...rest} />
       </IconButton>
     </Tooltip>
   );

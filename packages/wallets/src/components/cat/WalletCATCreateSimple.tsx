@@ -1,15 +1,16 @@
+import type { CATToken } from '@chia/api';
+import { SyncingStatus } from '@chia/api';
+import { useGetWalletsQuery, useAddCATTokenMutation, useGetCatListQuery } from '@chia/api-react';
+import { Back, Flex, Loading, useShowError } from '@chia/core';
+import { Trans, t } from '@lingui/macro';
+import { Add as AddIcon } from '@mui/icons-material';
+import { Grid } from '@mui/material';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Trans, t } from '@lingui/macro';
-import { Grid } from '@mui/material';
-import { Add as AddIcon } from '@mui/icons-material';
-import { Back, Flex, Loading, useShowError } from '@chia/core';
-import { useGetWalletsQuery, useAddCATTokenMutation, useGetCatListQuery } from '@chia/api-react';
-import WalletCreateCard from '../create/WalletCreateCard';
-import isCATWalletPresent from '../../utils/isCATWalletPresent';
-import type { CATToken } from '@chia/api';
+
 import useWalletState from '../../hooks/useWalletState';
-import { SyncingStatus } from '@chia/api';
+import isCATWalletPresent from '../../utils/isCATWalletPresent';
+import WalletCreateCard from '../create/WalletCreateCard';
 
 export default function WalletCATCreateSimple() {
   const navigate = useNavigate();
@@ -52,15 +53,13 @@ export default function WalletCATCreateSimple() {
       }).unwrap();
 
       navigate(`/dashboard/wallets/${walletId}`);
-    } catch(error: any) {
+    } catch (error: any) {
       showError(error);
     }
   }
 
   if (isLoading) {
-    return (
-      <Loading center />
-    );
+    return <Loading center />;
   }
 
   return (

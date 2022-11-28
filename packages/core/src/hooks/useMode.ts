@@ -1,4 +1,5 @@
 import { useContext } from 'react';
+
 import { ModeContext } from '../components/Mode/ModeProvider';
 import type Mode from '../constants/Mode';
 

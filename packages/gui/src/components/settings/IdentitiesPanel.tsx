@@ -1,12 +1,12 @@
-import React, { useMemo } from 'react';
-import { useNavigate, useParams } from 'react-router';
+import { WalletType } from '@chia/api';
+import { useGetDIDQuery, useGetWalletsQuery } from '@chia/api-react';
 import { CardListItem, Flex, Truncate } from '@chia/core';
 import { Box, Card, CardContent, Typography } from '@mui/material';
-import styled from 'styled-components';
 import { orderBy } from 'lodash';
+import React, { useMemo } from 'react';
+import { useNavigate, useParams } from 'react-router';
+import styled from 'styled-components';
 
-import { useGetDIDQuery, useGetWalletsQuery } from '@chia/api-react';
-import { WalletType } from '@chia/api';
 import { didToDIDId } from '../../util/dids';
 
 const StyledRoot = styled(Box)`
@@ -44,17 +44,17 @@ const StyledCard = styled(Card)(
   border: 1px dashed ${theme.palette.divider};
   background-color: ${theme.palette.background.paper};
   margin-bottom: ${theme.spacing(1)};
-`,
+`
 );
 
 const StyledCardContent = styled(CardContent)(
   ({ theme }) => `
   padding-bottom: ${theme.spacing(2)} !important;
-`,
+`
 );
 
 function DisplayDid(wallet) {
-  const id = wallet.wallet.id;
+  const { id } = wallet.wallet;
   const { data: did } = useGetDIDQuery({ walletId: id });
 
   if (did) {
@@ -67,9 +67,8 @@ function DisplayDid(wallet) {
         </Truncate>
       </div>
     );
-  } else {
-    return null;
   }
+  return null;
 }
 
 export default function IdentitiesPanel() {
@@ -107,38 +106,33 @@ export default function IdentitiesPanel() {
           </StyledCardContent>
         </StyledCard>
       );
-    } else {
-      const orderedProfiles = orderBy(wallets, ['id'], ['asc']);
-
-      return orderedProfiles
-        .filter((wallet) => [WalletType.DECENTRALIZED_ID].includes(wallet.type))
-        .map((wallet) => {
-          const primaryTitle = wallet.name;
-
-          function handleSelect() {
-            handleSelectWallet(wallet.id);
-          }
-
-          return (
-            <CardListItem
-              onSelect={handleSelect}
-              key={wallet.id}
-              selected={wallet.id === Number(walletId)}
-            >
-              <Flex gap={0.5} flexDirection="column" height="100%" width="100%">
-                <Flex>
-                  <Typography>
-                    <strong>{primaryTitle}</strong>
-                  </Typography>
-                </Flex>
-                <Flex>
-                  <DisplayDid wallet={wallet} />
-                </Flex>
-              </Flex>
-            </CardListItem>
-          );
-        });
     }
+    const orderedProfiles = orderBy(wallets, ['id'], ['asc']);
+
+    return orderedProfiles
+      .filter((wallet) => [WalletType.DECENTRALIZED_ID].includes(wallet.type))
+      .map((wallet) => {
+        const primaryTitle = wallet.name;
+
+        function handleSelect() {
+          handleSelectWallet(wallet.id);
+        }
+
+        return (
+          <CardListItem onSelect={handleSelect} key={wallet.id} selected={wallet.id === Number(walletId)}>
+            <Flex gap={0.5} flexDirection="column" height="100%" width="100%">
+              <Flex>
+                <Typography>
+                  <strong>{primaryTitle}</strong>
+                </Typography>
+              </Flex>
+              <Flex>
+                <DisplayDid wallet={wallet} />
+              </Flex>
+            </Flex>
+          </CardListItem>
+        );
+      });
   }, [wallets, walletId, isLoading]);
 
   return (

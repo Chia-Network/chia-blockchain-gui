@@ -1,13 +1,14 @@
-import React from 'react';
 import { Grid } from '@mui/material';
-import FullNodeCardStatus from './FullNodeCardStatus';
+import React from 'react';
+
 import FullNodeCardConnectionStatus from './FullNodeCardConnectionStatus';
+import FullNodeCardDifficulty from './FullNodeCardDifficulty';
 import FullNodeCardNetworkName from './FullNodeCardNetworkName';
 import FullNodeCardPeakHeight from './FullNodeCardPeakHeight';
 import FullNodeCardPeakTime from './FullNodeCardPeakTime';
-import FullNodeCardDifficulty from './FullNodeCardDifficulty';
-import FullNodeCardVDFSubSlotIterations from './FullNodeCardVDFSubSlotIterations';
+import FullNodeCardStatus from './FullNodeCardStatus';
 import FullNodeCardTotalIterations from './FullNodeCardTotalIterations';
+import FullNodeCardVDFSubSlotIterations from './FullNodeCardVDFSubSlotIterations';
 import FullNodeEstimatedNetworkSpace from './FullNodeEstimatedNetworkSpace';
 
 export default function FullNodeCards() {

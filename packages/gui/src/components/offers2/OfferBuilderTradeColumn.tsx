@@ -1,14 +1,15 @@
-import React from 'react';
-import { Trans } from '@lingui/macro';
 import { Flex } from '@chia/core';
-import { useWatch } from 'react-hook-form';
 import { Offering, Requesting } from '@chia/icons';
-import OfferBuilderHeader from './OfferBuilderHeader';
+import { Trans } from '@lingui/macro';
+import React from 'react';
+import { useWatch } from 'react-hook-form';
+
+import useOfferBuilderContext from '../../hooks/useOfferBuilderContext';
 import OfferBuilderFeeSection from './OfferBuilderFeeSection';
+import OfferBuilderHeader from './OfferBuilderHeader';
 import OfferBuilderNFTSection from './OfferBuilderNFTSection';
 import OfferBuilderTokensSection from './OfferBuilderTokensSection';
 import OfferBuilderXCHSection from './OfferBuilderXCHSection';
-import useOfferBuilderContext from '../../hooks/useOfferBuilderContext';
 
 function getTitle(offering = false, viewer = false, isMyOffer = false) {
   if (isMyOffer) {
@@ -40,14 +41,14 @@ function getSubTitle(offering = false, viewer = false, isMyOffer = false) {
       return <Trans>Assets you will give</Trans>;
     }
 
-    return <Trans>Assets I own that I&apos;d like to trade for</Trans>;
+    return <Trans>Assets I would like to trade</Trans>;
   }
 
   if (viewer) {
-    return <Trans>Assets that will be added to your wallet</Trans>;
+    return <Trans>Assets you will receive</Trans>;
   }
 
-  return <Trans>Assets I&apos;d like to trade for</Trans>;
+  return <Trans>Assets I would like to receive </Trans>;
 }
 
 function getIcon(offering = false, isMyOffer = false) {
@@ -55,11 +56,7 @@ function getIcon(offering = false, isMyOffer = false) {
     offering = !offering;
   }
 
-  return offering ? (
-    <Offering fontSize="large" />
-  ) : (
-    <Requesting fontSize="large" />
-  );
+  return offering ? <Offering fontSize="large" /> : <Requesting fontSize="large" />;
 }
 
 export type OfferBuilderTradeColumnProps = {
@@ -69,9 +66,7 @@ export type OfferBuilderTradeColumnProps = {
   isMyOffer?: boolean;
 };
 
-export default function OfferBuilderTradeColumn(
-  props: OfferBuilderTradeColumnProps,
-) {
+export default function OfferBuilderTradeColumn(props: OfferBuilderTradeColumnProps) {
   const { name, offering = false, viewer = false, isMyOffer = false } = props;
   const { readOnly } = useOfferBuilderContext();
 
@@ -115,20 +110,10 @@ export default function OfferBuilderTradeColumn(
           padding: 1,
         }}
       >
-        {showXCH && (
-          <OfferBuilderXCHSection
-            name={`${name}.xch`}
-            offering={offering}
-            muted={mutedXCH}
-          />
-        )}
+        {showXCH && <OfferBuilderXCHSection name={`${name}.xch`} offering={offering} muted={mutedXCH} />}
 
         {showTokensSection && (
-          <OfferBuilderTokensSection
-            name={`${name}.tokens`}
-            offering={offering}
-            muted={mutedTokens}
-          />
+          <OfferBuilderTokensSection name={`${name}.tokens`} offering={offering} muted={mutedTokens} />
         )}
 
         {showNFTSection && (
@@ -141,13 +126,7 @@ export default function OfferBuilderTradeColumn(
           />
         )}
 
-        {showFeeSection && (
-          <OfferBuilderFeeSection
-            name={`${name}.fee`}
-            offering={offering}
-            viewer={viewer}
-          />
-        )}
+        {showFeeSection && <OfferBuilderFeeSection name={`${name}.fee`} offering={offering} viewer={viewer} />}
       </Flex>
     </Flex>
   );

@@ -1,24 +1,8 @@
-import React from 'react';
+import { useGetCurrentAddressQuery, useGetNextAddressMutation } from '@chia/api-react';
+import { ButtonLoading, CopyToClipboard, Card, Loading, Flex, TooltipIcon } from '@chia/core';
 import { Trans } from '@lingui/macro';
-import {
-  ButtonLoading,
-  CopyToClipboard,
-  Card,
-  Loading,
-  Flex,
-  TooltipIcon,
-} from '@chia/core';
-import {
-  useGetCurrentAddressQuery,
-  useGetNextAddressMutation,
-} from '@chia/api-react';
-import {
-  Box,
-  TextField,
-  InputAdornment,
-  Grid,
-  Typography,
-} from '@mui/material';
+import { Box, TextField, InputAdornment, Grid, Typography } from '@mui/material';
+import React from 'react';
 
 export type WalletReceiveAddressProps = {
   walletId: number;
@@ -29,8 +13,7 @@ export default function WalletReceiveAddress(props: WalletReceiveAddressProps) {
   const { data: address, isLoading } = useGetCurrentAddressQuery({
     walletId,
   });
-  const [newAddress, { isLoading: isLoadingNewAddress }] =
-    useGetNextAddressMutation();
+  const [newAddress, { isLoading: isLoadingNewAddress }] = useGetNextAddressMutation();
 
   async function handleNewAddress() {
     await newAddress({
@@ -47,11 +30,9 @@ export default function WalletReceiveAddress(props: WalletReceiveAddressProps) {
           &nbsp;
           <TooltipIcon>
             <Trans>
-              HD or Hierarchical Deterministic keys are a type of public
-              key/private key scheme where one private key can have a nearly
-              infinite number of different public keys (and therefore wallet
-              receive addresses) that will all ultimately come back to and be
-              spendable by a single private key.
+              HD or Hierarchical Deterministic keys are a type of public key/private key scheme where one private key
+              can have a nearly infinite number of different public keys (and therefore wallet receive addresses) that
+              will all ultimately come back to and be spendable by a single private key.
             </Trans>
           </TooltipIcon>
         </Typography>
@@ -83,10 +64,7 @@ export default function WalletReceiveAddress(props: WalletReceiveAddressProps) {
                   InputProps={{
                     endAdornment: (
                       <InputAdornment position="end">
-                        <CopyToClipboard
-                          value={address}
-                          data-testid="WalletReceiveAddress-address-copy"
-                        />
+                        <CopyToClipboard value={address} data-testid="WalletReceiveAddress-address-copy" />
                       </InputAdornment>
                     ),
                   }}

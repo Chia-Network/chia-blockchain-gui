@@ -1,43 +1,48 @@
-import React, { useState, useEffect } from 'react';
-import { Trans } from '@lingui/macro';
-import styled from 'styled-components';
-import {
-  Back,
-  Flex,
-  LayoutDashboardSub,
-  Loading,
-  useOpenDialog,
-} from '@chia/core';
 import type { NFTInfo } from '@chia/api';
-import { useGetNFTInfoQuery } from '@chia/api-react';
-import { Box, Grid, Typography, IconButton, Button } from '@mui/material';
+import { useGetNFTInfoQuery, useGetNFTWallets, useLocalStorage } from '@chia/api-react';
+import { Back, Flex, LayoutDashboardSub, Loading, useOpenDialog } from '@chia/core';
+import { Trans } from '@lingui/macro';
 import { MoreVert } from '@mui/icons-material';
+import { Box, Grid, Typography, IconButton, Button } from '@mui/material';
+import { IpcRenderer } from 'electron';
+import React, { useMemo, useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import NFTPreview from '../NFTPreview';
-import NFTProperties from '../NFTProperties';
-import NFTRankings from '../NFTRankings';
-import NFTDetails from '../NFTDetails';
+import styled from 'styled-components';
+import isURL from 'validator/lib/isURL';
+
+import useFetchNFTs from '../../../hooks/useFetchNFTs';
 import useNFTMetadata from '../../../hooks/useNFTMetadata';
-import NFTContextualActions, {
-  NFTContextualActionTypes,
-} from '../NFTContextualActions';
+import { launcherIdFromNFTId } from '../../../util/nfts';
+import { isImage } from '../../../util/utils.js';
+import NFTContextualActions, { NFTContextualActionTypes } from '../NFTContextualActions';
+import NFTDetails from '../NFTDetails';
+import NFTPreview from '../NFTPreview';
 import NFTPreviewDialog from '../NFTPreviewDialog';
 import NFTProgressBar from '../NFTProgressBar';
-import { useLocalStorage } from '@chia/core';
-import { isImage } from '../../../util/utils.js';
-import { launcherIdFromNFTId } from '../../../util/nfts';
-import isURL from 'validator/lib/isURL';
-import { IpcRenderer } from 'electron';
+import NFTProperties from '../NFTProperties';
+import NFTRankings from '../NFTRankings';
 
 export default function NFTDetail() {
   const { nftId } = useParams();
   const { data: nft, isLoading: isLoadingNFT } = useGetNFTInfoQuery({
     coinId: launcherIdFromNFTId(nftId ?? ''),
   });
+  const { wallets: nftWallets, isLoading: isLoadingWallets } = useGetNFTWallets();
+  const { nfts, isLoading: isLoadingNFTs } = useFetchNFTs(
+    nftWallets.map((wallet) => wallet.id),
+    { skip: !!isLoadingWallets }
+  );
+
+  const localNFT = useMemo(() => {
+    if (!nfts || isLoadingNFTs) {
+      return undefined;
+    }
+    return nfts.find((nft: NFTInfo) => nft.$nftId === nftId);
+  }, [nfts, nftId, isLoadingNFTs]);
 
   const isLoading = isLoadingNFT;
 
-  return isLoading ? <Loading center /> : <NFTDetailLoaded nft={nft} />;
+  return isLoading ? <Loading center /> : <NFTDetailLoaded nft={localNFT ?? nft} />;
 }
 
 type NFTDetailLoadedProps = {
@@ -58,14 +63,15 @@ function NFTDetailLoaded(props: NFTDetailLoadedProps) {
 
   nftRef.current = nft;
 
-  const { metadata, error } = useNFTMetadata(nft);
+  const { metadata, error } = useNFTMetadata([nft]);
 
-  useEffect(() => {
-    return () => {
-      const ipcRenderer: IpcRenderer = (window as any).ipcRenderer;
+  useEffect(
+    () => () => {
+      const { ipcRenderer } = window as any;
       ipcRenderer.invoke('abortFetchingBinary', uri);
-    };
-  }, []);
+    },
+    []
+  );
 
   // useEffect(() => {
   //   if (metadata) {
@@ -92,25 +98,22 @@ function NFTDetailLoaded(props: NFTDetailLoadedProps) {
     if (!isURL(uri)) return null;
     if (validateNFT && !validationProcessed) {
       return <Trans>Validating hash...</Trans>;
-    } else if (contentCache.valid) {
+    }
+    if (contentCache.valid) {
       return <Trans>Hash is validated.</Trans>;
-    } else if (contentCache.valid === false) {
+    }
+    if (contentCache.valid === false) {
       return (
         <ErrorMessage>
           <Trans>Hash mismatch.</Trans>
         </ErrorMessage>
       );
-    } else {
-      return (
-        <Button
-          onClick={() => setValidateNFT(true)}
-          variant="outlined"
-          size="large"
-        >
-          <Trans>Validate SHA256 SUM</Trans>
-        </Button>
-      );
     }
+    return (
+      <Button onClick={() => setValidateNFT(true)} variant="outlined" size="large">
+        <Trans>Validate SHA256 SUM</Trans>
+      </Button>
+    );
   }
 
   function fetchBinaryContentDone(valid: boolean) {
@@ -120,18 +123,8 @@ function NFTDetailLoaded(props: NFTDetailLoadedProps) {
 
   return (
     <Flex flexDirection="column" gap={2}>
-      <Flex
-        sx={{ bgcolor: 'background.paper' }}
-        justifyContent="center"
-        py={{ xs: 2, sm: 3, md: 7 }}
-        px={3}
-      >
-        <Flex
-          position="relative"
-          maxWidth="1200px"
-          width="100%"
-          justifyContent="center"
-        >
+      <Flex sx={{ bgcolor: 'background.paper' }} justifyContent="center" py={{ xs: 2, sm: 3, md: 7 }} px={3}>
+        <Flex position="relative" maxWidth="1200px" width="100%" justifyContent="center">
           <Box
             overflow="hidden"
             alignItems="center"
@@ -168,14 +161,7 @@ function NFTDetailLoaded(props: NFTDetailLoadedProps) {
         </Flex>
       </Flex>
       <LayoutDashboardSub>
-        <Flex
-          flexDirection="column"
-          gap={2}
-          maxWidth="1200px"
-          width="100%"
-          alignSelf="center"
-          mb={3}
-        >
+        <Flex flexDirection="column" gap={2} maxWidth="1200px" width="100%" alignSelf="center" mb={3}>
           <Flex alignItems="center" justifyContent="space-between">
             <Typography variant="h4" overflow="hidden">
               {metadata?.name ?? <Trans>Title Not Available</Trans>}
@@ -210,9 +196,7 @@ function NFTDetailLoaded(props: NFTDetailLoadedProps) {
                     </Typography>
 
                     <Typography overflow="hidden">
-                      {metadata?.collection?.name ?? (
-                        <Trans>Not Available</Trans>
-                      )}
+                      {metadata?.collection?.name ?? <Trans>Not Available</Trans>}
                     </Typography>
                   </Flex>
                 )}

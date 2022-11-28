@@ -1,12 +1,14 @@
 import EventEmitter from 'events';
+
 import debug from 'debug';
-import ServiceName from './constants/ServiceName';
+
 import Message from './Message';
+import ConnectionState from './constants/ConnectionState';
+import ServiceName from './constants/ServiceName';
 import Daemon from './services/Daemon';
-import sleep from './utils/sleep';
 import type Service from './services/Service';
 import ErrorData from './utils/ErrorData';
-import ConnectionState from './constants/ConnectionState';
+import sleep from './utils/sleep';
 
 const log = debug('chia-api:client');
 
@@ -18,29 +20,38 @@ type Options = {
   services?: ServiceName[];
   timeout?: number;
   camelCase?: boolean;
-  backupHost?: string;
   debug?: boolean;
 };
 
 export default class Client extends EventEmitter {
   private options: Required<Options>;
+
   private ws: any;
 
   private connected = false;
-  private requests: Map<string, {
-    resolve: (value: Response) => void;
-    reject: (reason: Error) => void;
-  }> = new Map();
+
+  private requests: Map<
+    string,
+    {
+      resolve: (value: Response) => void;
+      reject: (reason: Error) => void;
+    }
+  > = new Map();
 
   private services: Set<ServiceName> = new Set();
+
   private started: Set<ServiceName> = new Set();
+
   private connectedPromise: Promise<void> | null = null;
 
   private daemon: Daemon;
 
   private closed = false;
+
   private state: ConnectionState = ConnectionState.DISCONNECTED;
+
   private reconnectAttempt = 0;
+
   private startingService?: ServiceName;
 
   constructor(options: Options) {
@@ -49,7 +60,6 @@ export default class Client extends EventEmitter {
     this.options = {
       timeout: 60 * 1000 * 10, // 10 minutes
       camelCase: true,
-      backupHost: 'https://backup.chia.net',
       debug: false,
       services: [],
       ...options,
@@ -68,11 +78,11 @@ export default class Client extends EventEmitter {
 
     if (this.options.services.length) {
       this.connect();
-    } 
+    }
   }
 
   getState(): {
-    state: ConnectionState,
+    state: ConnectionState;
     attempt: number;
     startingService?: string;
     startedServices: ServiceName[];
@@ -102,7 +112,7 @@ export default class Client extends EventEmitter {
     this.emit('state', this.getState());
   }
 
-  onStateChange(callback: (state: { state: ConnectionState, attempt: number }) => void) {
+  onStateChange(callback: (state: { state: ConnectionState; attempt: number }) => void) {
     this.on('state', callback);
 
     return () => {
@@ -112,10 +122,6 @@ export default class Client extends EventEmitter {
 
   get origin() {
     return ServiceName.EVENTS;
-  }
-
-  get backupHost() {
-    return this.options.backupHost;
   }
 
   get debug(): boolean {
@@ -197,14 +203,17 @@ export default class Client extends EventEmitter {
     // wait for service initialisation
     log(`Waiting for ping from service: ${serviceName}`);
     if (!disableWait) {
-      while(true) {
+      while (true) {
         try {
-          const { data: pingResponse } = await this.send(new Message({
-            command: 'ping',
-            origin: this.origin,
-            destination: serviceName,
-          }), 1000);
-          
+          const { data: pingResponse } = await this.send(
+            new Message({
+              command: 'ping',
+              origin: this.origin,
+              destination: serviceName,
+            }),
+            1000
+          );
+
           if (pingResponse.success) {
             break;
           }
@@ -227,9 +236,7 @@ export default class Client extends EventEmitter {
 
     const services = Array.from(this.services);
 
-    await Promise.all(services.map(async (serviceName) => {
-      return this.startService(serviceName);
-    }));
+    await Promise.all(services.map(async (serviceName) => this.startService(serviceName)));
   }
 
   async stopService(serviceName: ServiceName) {
@@ -245,13 +252,16 @@ export default class Client extends EventEmitter {
 
     // wait for service initialisation
     log(`Waiting for service: ${serviceName}`);
-    while(true) {
+    while (true) {
       try {
-        const { data: pingResponse } = await this.send(new Message({
-          command: 'ping',
-          origin: this.origin,
-          destination: serviceName,
-        }), 1000);
+        const { data: pingResponse } = await this.send(
+          new Message({
+            command: 'ping',
+            origin: this.origin,
+            destination: serviceName,
+          }),
+          1000
+        );
 
         if (pingResponse.success) {
           await sleep(1000);
@@ -282,7 +292,7 @@ export default class Client extends EventEmitter {
       this.connectedPromiseResponse.resolve();
       this.connectedPromiseResponse = null;
     }
-  }
+  };
 
   registerService(service: ServiceName) {
     return this.daemon.registerService(service);
@@ -295,20 +305,22 @@ export default class Client extends EventEmitter {
     this.requests.forEach((request) => {
       request.reject(new Error(`Connection closed`));
     });
-  }
+  };
 
   private handleError = async (error: any) => {
     if (this.connectedPromiseResponse) {
       await sleep(1000);
       this.connect(true);
-      return;
+
       // this.connectedPromiseResponse.reject(error);
       // this.connectedPromiseResponse = null;
     }
-  }
+  };
 
   private handleMessage = (data: string) => {
-    const { options: { camelCase } } = this;
+    const {
+      options: { camelCase },
+    } = this;
 
     log('Received message', data.toString());
     const message = Message.fromJSON(data, camelCase);
@@ -323,9 +335,13 @@ export default class Client extends EventEmitter {
         let errorMessage = message.data.error;
 
         if (errorMessage == '13') {
-          errorMessage = '[Error 13] Permission denied. You are trying to access a file/directory without having the necessary permissions. Most likely one of the plot folders in your config.yaml has an issue.';
+          errorMessage =
+            '[Error 13] Permission denied. You are trying to access a file/directory without having the necessary permissions. Most likely one of the plot folders in your config.yaml has an issue.';
         } else if (errorMessage == '22') {
-          errorMessage = '[Error 22] File not found. Most likely one of the plot folders in your config.yaml has an issue.';
+          errorMessage =
+            '[Error 22] File not found. Most likely one of the plot folders in your config.yaml has an issue.';
+        } else if (message?.data?.errorDetails?.message) {
+          errorMessage = `${errorMessage}: ${message.data.errorDetails.message}`;
         }
 
         log(`Request ${requestId} rejected`, errorMessage);
@@ -345,15 +361,12 @@ export default class Client extends EventEmitter {
       // other messages can be events like get_harvesters
       this.emit('message', message);
     }
-  }
+  };
 
   async send(message: Message, timeout?: number, disableFormat?: boolean): Promise<Response> {
-    const { 
+    const {
       connected,
-      options: {
-        timeout: defaultTimeout,
-        camelCase,
-      },
+      options: { timeout: defaultTimeout, camelCase },
     } = this;
 
     const currentTimeout = timeout ?? defaultTimeout;
@@ -376,7 +389,7 @@ export default class Client extends EventEmitter {
         setTimeout(() => {
           if (this.requests.has(requestId)) {
             this.requests.delete(requestId);
-  
+
             reject(new ErrorData(`The request ${requestId} has timed out ${currentTimeout / 1000} seconds.`));
           }
         }, currentTimeout);
@@ -393,9 +406,7 @@ export default class Client extends EventEmitter {
       return;
     }
 
-    await Promise.all(Array.from(this.started).map(async (serviceName) => {
-      return await this.stopService(serviceName);
-    }));
+    await Promise.all(Array.from(this.started).map(async (serviceName) => this.stopService(serviceName)));
 
     await this.daemon.exit();
 

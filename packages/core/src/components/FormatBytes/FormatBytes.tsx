@@ -1,5 +1,5 @@
-import React from 'react';
 import BigNumber from 'bignumber.js';
+import React from 'react';
 
 const Convert: [BigNumber, string][] = [
   [new BigNumber(0), 'B'],
@@ -25,14 +25,7 @@ type Props = {
 };
 
 export default function FormatBytes(props: Props) {
-  const {
-    value,
-    precision,
-    unit,
-    removeUnit,
-    unitSeparator = ' ',
-    fixedDecimals,
-  } = props;
+  const { value, precision, unit, removeUnit, unitSeparator = ' ', fixedDecimals } = props;
 
   if (value === null || value === undefined) {
     return null;
@@ -46,19 +39,20 @@ export default function FormatBytes(props: Props) {
   let humanUnit;
 
   if (unit) {
-    const unitIndex = Convert.findIndex(item => item[1].toLowerCase() === unit.toLowerCase());
+    const unitIndex = Convert.findIndex((item) => item[1].toLowerCase() === unit.toLowerCase());
     const [unitValue, unitName] = Convert[unitIndex];
 
     humanValue = bigValue.dividedBy(unitValue);
     humanUnit = unitName;
   } else {
     // convert value to nearest bytes representation
-    const unitIndex = Math.min(CovertReversed.length -1, CovertReversed.findIndex(item => absValue.isGreaterThanOrEqualTo(item[0])));
+    const unitIndex = Math.min(
+      CovertReversed.length - 1,
+      CovertReversed.findIndex((item) => absValue.isGreaterThanOrEqualTo(item[0]))
+    );
     const [unitValue, unitName] = CovertReversed[unitIndex];
 
-    humanValue = !unitValue.isZero() 
-      ? bigValue.dividedBy(unitValue) 
-      : bigValue;
+    humanValue = !unitValue.isZero() ? bigValue.dividedBy(unitValue) : bigValue;
     humanUnit = unitName;
   }
 

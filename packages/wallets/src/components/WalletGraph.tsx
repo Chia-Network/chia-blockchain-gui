@@ -1,30 +1,21 @@
-import React, { ReactNode } from 'react';
-import {
-  VictoryChart,
-  VictoryAxis,
-  VictoryArea,
-  VictoryTooltip,
-  VictoryVoronoiContainer,
-} from 'victory';
+import { TransactionType, WalletType } from '@chia/api';
+import type { Transaction } from '@chia/api';
+import { useGetWalletBalanceQuery } from '@chia/api-react';
+import { mojoToChia, mojoToCAT, blockHeightToTimestamp } from '@chia/core';
 import BigNumber from 'bignumber.js';
 import { orderBy, groupBy, map } from 'lodash';
+import React, { ReactNode } from 'react';
 import { useMeasure } from 'react-use';
 import styled from 'styled-components';
-import { useGetWalletBalanceQuery } from '@chia/api-react';
-import { TransactionType } from '@chia/api';
-import type { Transaction } from '@chia/api';
-import {
-  useCurrencyCode,
-  mojoToChia,
-  blockHeightToTimestamp,
-} from '@chia/core';
+import { VictoryChart, VictoryAxis, VictoryArea, VictoryTooltip, VictoryVoronoiContainer } from 'victory';
+
 import useWalletTransactions from '../hooks/useWalletTransactions';
+import WalletGraphTooltip from './WalletGraphTooltip';
 
 const StyledGraphContainer = styled.div`
   position: relative;
   min-height: 80px;
-  height: ${({ height }) =>
-    typeof height === 'string' ? height : `${height}px`};
+  height: ${({ height }) => (typeof height === 'string' ? height : `${height}px`)};
 `;
 
 type Aggregate = {
@@ -38,9 +29,7 @@ function generateTransactionGraphData(transactions: Transaction[]): {
   timestamp: number;
 }[] {
   // use only confirmed transactions
-  const confirmedTransactions = transactions.filter(
-    (transaction) => transaction.confirmed
-  );
+  const confirmedTransactions = transactions.filter((transaction) => transaction.confirmed);
 
   const [peakTransaction] = confirmedTransactions;
 
@@ -51,12 +40,9 @@ function generateTransactionGraphData(transactions: Transaction[]): {
   }>((transaction) => {
     const { type, confirmedAtHeight, amount, feeAmount } = transaction;
 
-    const isOutgoing = [
-      TransactionType.OUTGOING,
-      TransactionType.OUTGOING_TRADE,
-    ].includes(type);
+    const isOutgoing = [TransactionType.OUTGOING, TransactionType.OUTGOING_TRADE].includes(type);
 
-    const total = BigNumber(amount).plus(BigNumber(feeAmount));
+    const total = new BigNumber(amount).plus(new BigNumber(feeAmount));
     const value = isOutgoing ? total.negated() : total;
 
     return {
@@ -81,12 +67,17 @@ function generateTransactionGraphData(transactions: Transaction[]): {
   // order by timestamp
   results = orderBy(results, ['timestamp'], ['desc']);
 
+  if (results.length === 1) {
+    results.push({ timestamp: 0, value: new BigNumber(0) });
+  }
+
   return results;
 }
 
 function prepareGraphPoints(
   balance: number,
   transactions: Transaction[],
+  walletType: WalletType,
   _aggregate?: Aggregate
 ): {
   x: number;
@@ -111,24 +102,26 @@ function prepareGraphPoints(
 
   const points = [
     {
-      x: blockHeightToTimestamp(
-        peakTransaction.confirmedAtHeight,
-        peakTransaction
-      ),
-      y: BigNumber.max(0, mojoToChia(start)).toNumber(), // max 21,000,000 safe to number
-      tooltip: mojoToChia(balance).toString(), // bignumber is not supported by react
+      x: blockHeightToTimestamp(peakTransaction.confirmedAtHeight, peakTransaction),
+      y: BigNumber.max(0, (walletType === WalletType.CAT ? mojoToCAT(start) : mojoToChia(start)).toNumber()), // max 21,000,000 safe to number
+      tooltip: (walletType === WalletType.CAT ? mojoToCAT(balance) : mojoToChia(balance)).toString(), // bignumber is not supported by react
     },
   ];
 
   data.forEach((item) => {
     const { timestamp, value } = item;
 
-    start = start - value.toNumber();
+    start -= value.toNumber();
+
+    const isAlreadyUsed = points.some((point) => point.x === timestamp);
+    if (isAlreadyUsed) {
+      return;
+    }
 
     points.push({
       x: timestamp,
-      y: BigNumber.max(0, mojoToChia(start)).toNumber(), // max 21,000,000 safe to number
-      tooltip: mojoToChia(start).toString(), // bignumber is not supported by react
+      y: BigNumber.max(0, (walletType === WalletType.CAT ? mojoToCAT(start) : mojoToChia(start)).toNumber()), // max 21,000,000 safe to number
+      tooltip: walletType === WalletType.CAT ? mojoToCAT(start) : mojoToChia(start).toString(), // bignumber is not supported by react
     });
   });
 
@@ -146,37 +139,33 @@ function LinearGradient() {
 
 export type WalletGraphProps = {
   walletId: number;
+  walletType: WalletType;
+  unit?: string;
   height?: number | string;
 };
 
 export default function WalletGraph(props: WalletGraphProps) {
-  const { walletId, height = 150 } = props;
-  const { transactions, isLoading: isWalletTransactionsLoading } =
-    useWalletTransactions(walletId, 50, 0, 'RELEVANCE');
-  const { data: walletBalance, isLoading: isWalletBalanceLoading } =
-    useGetWalletBalanceQuery({
-      walletId,
-    });
+  const { walletId, walletType, unit = '', height = 150 } = props;
+  const { transactions, isLoading: isWalletTransactionsLoading } = useWalletTransactions(walletId, 50, 0, 'RELEVANCE');
+  const { data: walletBalance, isLoading: isWalletBalanceLoading } = useGetWalletBalanceQuery({
+    walletId,
+  });
 
-  const currencyCode = useCurrencyCode();
   const [ref, containerSize] = useMeasure();
 
-  const isLoading =
-    isWalletTransactionsLoading || isWalletBalanceLoading || !transactions;
+  const isLoading = isWalletTransactionsLoading || isWalletBalanceLoading || !transactions;
   if (isLoading || !walletBalance) {
     return null;
   }
 
-  const confirmedTransactions = transactions.filter(
-    (transaction) => transaction.confirmed
-  );
+  const confirmedTransactions = transactions.filter((transaction) => transaction.confirmed);
   if (!confirmedTransactions.length) {
     return null;
   }
 
   const balance = walletBalance.confirmedWalletBalance;
 
-  const data = prepareGraphPoints(balance, confirmedTransactions, {
+  const data = prepareGraphPoints(balance, confirmedTransactions, walletType, {
     interval: 60 * 60,
     count: 24,
     offset: 0,
@@ -198,7 +187,7 @@ export default function WalletGraph(props: WalletGraphProps) {
       >
         <VictoryArea
           data={data}
-          interpolation={'basis'}
+          interpolation="monotoneX"
           style={{
             data: {
               stroke: '#5DAA62',
@@ -207,10 +196,8 @@ export default function WalletGraph(props: WalletGraphProps) {
               fill: 'url(#graph-gradient)',
             },
           }}
-          labels={({ datum }) =>
-            `${datum.tooltip} ${currencyCode.toUpperCase()}`
-          }
-          labelComponent={<VictoryTooltip style={{ fontSize: 10 }} />}
+          labels={() => ''}
+          labelComponent={<VictoryTooltip flyoutComponent={<WalletGraphTooltip suffix={unit} />} />}
         />
         <VictoryAxis
           style={{

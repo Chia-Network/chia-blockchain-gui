@@ -1,10 +1,10 @@
-import ServiceName from "../constants/ServiceName";
+import ServiceName from '../constants/ServiceName';
 
 export default interface MessageInterface {
   command: string;
   data: Object;
   origin: ServiceName;
   destination: ServiceName;
-  ack: boolean; 
+  ack: boolean;
   requestId?: string;
 }

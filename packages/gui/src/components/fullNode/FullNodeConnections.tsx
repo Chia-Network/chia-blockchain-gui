@@ -1,15 +1,10 @@
-import React from 'react';
-import { Trans } from '@lingui/macro';
-import {
-  Card,
-  FormatBytes,
-  FormatLargeNumber,
-  Loading,
-  Table,
-} from '@chia/core';
-import { useGetFullNodeConnectionsQuery } from '@chia/api-react';
 import { Connection } from '@chia/api';
+import { useGetFullNodeConnectionsQuery } from '@chia/api-react';
+import { Card, FormatBytes, FormatLargeNumber, Loading, Table } from '@chia/core';
+import { Trans } from '@lingui/macro';
 import { Tooltip } from '@mui/material';
+import React from 'react';
+
 import { service_connection_types } from '../../util/service_names';
 
 const cols = [
@@ -38,19 +33,9 @@ const cols = [
     field(row: Connection) {
       return (
         <>
-          <FormatBytes
-            value={row.bytesWritten}
-            unit="MiB"
-            removeUnit
-            fixedDecimals
-          />
+          <FormatBytes value={row.bytesWritten} unit="MiB" removeUnit fixedDecimals />
           /
-          <FormatBytes
-            value={row.bytesRead}
-            unit="MiB"
-            removeUnit
-            fixedDecimals
-          />
+          <FormatBytes value={row.bytesRead} unit="MiB" removeUnit fixedDecimals />
         </>
       );
     },

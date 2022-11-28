@@ -1,1 +1,3 @@
-export default function useIsSimulator(): boolean {return false}
+export default function useIsSimulator(): boolean {
+  return false;
+}

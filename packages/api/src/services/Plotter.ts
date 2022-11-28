@@ -1,13 +1,12 @@
 import Client from '../Client';
+import ServiceName from '../constants/ServiceName';
 import Service from './Service';
 import type { Options } from './Service';
-import ServiceName from '../constants/ServiceName';
-
 
 function parseProgressUpdate(line: string, currentProgress: number): number {
   let progress: number = currentProgress;
-  if (line.startsWith("Progress update: ")) {
-    progress = Math.min(1, parseFloat(line.substr("Progress update: ".length)));
+  if (line.startsWith('Progress update: ')) {
+    progress = Math.min(1, parseFloat(line.substr('Progress update: '.length)));
   }
   return progress;
 }
@@ -24,7 +23,8 @@ function addPlotProgress(queue: PlotQueueItem[]): PlotQueueItem[] {
         ...item,
         progress: 1.0,
       };
-    } else if (state !== 'RUNNING') {
+    }
+    if (state !== 'RUNNING') {
       return item;
     }
 
@@ -47,7 +47,7 @@ function addPlotProgress(queue: PlotQueueItem[]): PlotQueueItem[] {
 function mergeQueue(
   currentQueue: PlotQueueItem[],
   partialQueue: PlotQueueItemPartial[],
-  isLogChange: boolean,
+  isLogChange: boolean
 ): PlotQueueItem[] {
   let result = [...currentQueue];
 
@@ -68,9 +68,7 @@ function mergeQueue(
     };
 
     if (isLogChange && logNew !== undefined) {
-      const newLog = originalItem.log
-        ? `${originalItem.log}${logNew}`
-        : logNew;
+      const newLog = originalItem.log ? `${originalItem.log}${logNew}` : logNew;
 
       newItem.log = newLog;
     }
@@ -80,7 +78,6 @@ function mergeQueue(
 
   return addPlotProgress(result);
 }
-
 
 export default class Plotter extends Service {
   private queue: Object[] | undefined;
@@ -98,14 +95,14 @@ export default class Plotter extends Service {
         this.queue = mergeQueue(this.queue, queue);
         this.emit('queue_changed', this.queue, null);
       });
-  
+
       const { queue } = await this.register();
       if (queue) {
         this.queue = queue;
       }
     });
   }
-/*
+  /*
   startPlotting(
     plotterName, // plotterName
     k, // plotSize
@@ -201,24 +198,15 @@ export default class Plotter extends Service {
     return this.queue;
   }
 
-  onQueueChanged(
-    callback: (data: any, message?: Message) => void,
-    processData?: (data: any) => any,
-  ) {
+  onQueueChanged(callback: (data: any, message?: Message) => void, processData?: (data: any) => any) {
     return this.onCommand('queue_changed', callback, processData);
   }
 
-  onLogChanged(
-    callback: (data: any, message?: Message) => void,
-    processData?: (data: any) => any,
-  ) {
+  onLogChanged(callback: (data: any, message?: Message) => void, processData?: (data: any) => any) {
     return this.onStateChanged('log_changed', callback, processData);
   }
 
-  onPlotQueueStateChange(
-    callback: (data: any, message?: Message) => void,
-    processData?: (data: any) => any,
-  ) {
+  onPlotQueueStateChange(callback: (data: any, message?: Message) => void, processData?: (data: any) => any) {
     return this.onStateChanged('state_changed', callback, processData);
   }
 }

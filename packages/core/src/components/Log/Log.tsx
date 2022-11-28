@@ -1,8 +1,8 @@
-import React, { ReactNode } from 'react';
 import { Paper } from '@mui/material';
+import React, { ReactNode } from 'react';
+import ScrollToBottom from 'react-scroll-to-bottom';
 import styled from 'styled-components';
 // @ts-ignore
-import ScrollToBottom from 'react-scroll-to-bottom';
 
 const StyledScrollToBottom = styled(ScrollToBottom)`
   width: 100%;

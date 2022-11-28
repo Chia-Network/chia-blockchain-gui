@@ -1,8 +1,8 @@
 import Client from '../Client';
+import type Message from '../Message';
+import ServiceName from '../constants/ServiceName';
 import Service from './Service';
 import type { Options } from './Service';
-import ServiceName from '../constants/ServiceName';
-import type Message from '../Message';
 
 export default class Wallet extends Service {
   constructor(client: Client, options?: Options) {
@@ -59,12 +59,8 @@ export default class Wallet extends Service {
     });
   }
 
-  async createNewWallet(
-    walletType: 'pool_wallet' | 'rl_wallet' | 'did_wallet' | 'cat_wallet',
-    options: Object = {}
-  ) {
+  async createNewWallet(walletType: 'pool_wallet' | 'rl_wallet' | 'did_wallet' | 'cat_wallet', options: Object = {}) {
     return this.command('create_new_wallet', {
-      host: this.client.backupHost,
       walletType,
       ...options,
     });
@@ -86,12 +82,7 @@ export default class Wallet extends Service {
     return this.command('get_farmed_amount');
   }
 
-  async sendTransaction(
-    walletId: number,
-    amount: string,
-    fee: string,
-    address: string
-  ) {
+  async sendTransaction(walletId: number, amount: string, fee: string, address: string) {
     return this.command('send_transaction', {
       walletId,
       amount,
@@ -114,11 +105,7 @@ export default class Wallet extends Service {
     return this.command('get_public_keys');
   }
 
-  async addKey(
-    mnemonic: string[],
-    type: 'new_wallet' | 'skip' | 'restore_backup',
-    filePath?: string
-  ) {
+  async addKey(mnemonic: string[], type: 'new_wallet' | 'skip' | 'restore_backup', filePath?: string) {
     return this.command('add_key', {
       mnemonic,
       type,
@@ -145,36 +132,26 @@ export default class Wallet extends Service {
   async logIn(
     fingerprint: string,
     type: 'normal' | 'skip' | 'restore_backup' = 'normal', // skip is used to skip import
-    host: string = this.client.backupHost,
     filePath?: string
   ) {
     return this.command('log_in', {
       fingerprint,
       type,
       filePath,
-      host,
     });
   }
 
-  logInAndSkipImport(
-    fingerprint: string,
-    host: string = this.client.backupHost
-  ) {
-    return this.logIn(fingerprint, 'skip', host);
+  // TODO: Remove
+  logInAndSkipImport(fingerprint: string) {
+    return this.logIn(fingerprint, 'skip');
   }
 
-  logInAndImportBackup(
-    fingerprint: string,
-    filePath: string,
-    host: string = this.client.backupHost
-  ) {
-    return this.logIn(fingerprint, 'restore_backup', host, filePath);
+  // TODO: Remove
+  logInAndImportBackup(fingerprint: string, filePath: string) {
+    return this.logIn(fingerprint, 'restore_backup', filePath);
   }
 
-  async getBackupInfo(
-    filePath: string,
-    options: { fingerprint: string } | { words: string }
-  ) {
+  async getBackupInfo(filePath: string, options: { fingerprint: string } | { words: string }) {
     return this.command('get_backup_info', {
       filePath,
       ...options,
@@ -271,8 +248,8 @@ export default class Wallet extends Service {
       end,
       sortKey,
       reverse,
-      excludeMyOffers: includeMyOffers ? false : true,
-      excludeTakenOffers: includeTakenOffers ? false : true,
+      excludeMyOffers: !includeMyOffers,
+      excludeTakenOffers: !includeTakenOffers,
     });
   }
 
@@ -303,7 +280,7 @@ export default class Wallet extends Service {
 
   async cancelOffer(tradeId: string, secure: boolean, fee: number | string) {
     return this.command('cancel_offer', {
-      tradeId: tradeId,
+      tradeId,
       secure,
       fee,
     });
@@ -352,24 +329,15 @@ export default class Wallet extends Service {
     });
   }
 
-  onSyncChanged(
-    callback: (data: any, message: Message) => void,
-    processData?: (data: any) => any
-  ) {
+  onSyncChanged(callback: (data: any, message: Message) => void, processData?: (data: any) => any) {
     return this.onStateChanged('sync_changed', callback, processData);
   }
 
-  onNewBlock(
-    callback: (data: any, message: Message) => void,
-    processData?: (data: any) => any
-  ) {
+  onNewBlock(callback: (data: any, message: Message) => void, processData?: (data: any) => any) {
     return this.onStateChanged('new_block', callback, processData);
   }
 
-  onNewPeak(
-    callback: (data: any, message: Message) => void,
-    processData?: (data: any) => any
-  ) {
+  onNewPeak(callback: (data: any, message: Message) => void, processData?: (data: any) => any) {
     return this.onStateChanged('new_peak', callback, processData);
   }
 
@@ -401,31 +369,19 @@ export default class Wallet extends Service {
     return this.onStateChanged('coin_removed', callback);
   }
 
-  onWalletCreated(
-    callback: (data: any, message: Message) => void,
-    processData?: (data: any) => any
-  ) {
+  onWalletCreated(callback: (data: any, message: Message) => void, processData?: (data: any) => any) {
     return this.onStateChanged('wallet_created', callback, processData);
   }
 
-  onConnections(
-    callback: (data: any, message: Message) => void,
-    processData?: (data: any) => any
-  ) {
+  onConnections(callback: (data: any, message: Message) => void, processData?: (data: any) => any) {
     return this.onCommand('get_connections', callback, processData);
   }
 
-  onTransactionUpdate(
-    callback: (data: any, message: Message) => void,
-    processData?: (data: any) => any
-  ) {
+  onTransactionUpdate(callback: (data: any, message: Message) => void, processData?: (data: any) => any) {
     return this.onStateChanged('tx_update', callback, processData);
   }
 
-  onPendingTransaction(
-    callback: (data: any, message: Message) => void,
-    processData?: (data: any) => any
-  ) {
+  onPendingTransaction(callback: (data: any, message: Message) => void, processData?: (data: any) => any) {
     return this.onStateChanged('pending_transaction', callback, processData);
   }
 

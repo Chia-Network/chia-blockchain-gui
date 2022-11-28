@@ -1,14 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { get } from 'lodash';
-import { Controller, useFormContext } from 'react-hook-form';
-import { Trans } from '@lingui/macro';
 import { useGetFeeEstimateQuery } from '@chia/api-react';
-import {
-  Fee,
-  Flex,
-  mojoToChiaLocaleString,
-  useLocale,
-} from '@chia/core';
+import { Fee, Flex, mojoToChiaLocaleString, useCurrencyCode, useLocale } from '@chia/core';
+import { Trans } from '@lingui/macro';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import {
   Box,
   FormControl,
@@ -19,9 +12,12 @@ import {
   SelectProps,
   Typography,
 } from '@mui/material';
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import useMode from '../../hooks/useMode';
+import { get } from 'lodash';
+import React, { useState, useEffect } from 'react';
+import { Controller, useFormContext } from 'react-hook-form';
+
 import Mode from '../../constants/Mode';
+import useMode from '../../hooks/useMode';
 
 type Props = SelectProps & {
   hideError?: boolean;
@@ -29,12 +25,23 @@ type Props = SelectProps & {
 };
 
 function Select(props: Props) {
-  const { name: controllerName, value: controllerValue, estList, selectedValue, selectedTime, onTypeChange, onTimeChange, onValueChange, children, ...rest } = props;
+  const {
+    name: controllerName,
+    value: controllerValue,
+    estList,
+    selectedValue,
+    selectedTime,
+    onTypeChange,
+    onTimeChange,
+    onValueChange,
+    children,
+    ...rest
+  } = props;
   const { control, errors, setValue } = useFormContext();
   const errorMessage = get(errors, controllerName);
 
   function getTimeByValue(object, value) {
-    const estIndex = Object.keys(object).find(index => object[index].estimate === value);
+    const estIndex = Object.keys(object).find((index) => object[index].estimate === value);
     const estTime = object[estIndex].time;
     return estTime;
   }
@@ -50,11 +57,11 @@ function Select(props: Props) {
             if (props.onChange) {
               props.onChange(event, ...args);
             }
-            if (event.target.value == "custom") {
-              onTypeChange("custom");
+            if (event.target.value == 'custom') {
+              onTypeChange('custom');
               setValue(controllerName, '');
             } else {
-              onTypeChange("dropdown");
+              onTypeChange('dropdown');
               onTimeChange(getTimeByValue(estList, event.target.value));
               onValueChange(event.target.value);
             }
@@ -64,13 +71,11 @@ function Select(props: Props) {
           name={name}
           ref={ref}
           error={!!errorMessage}
-          renderValue={(value) => {
-            return (
-              <Box sx={{ display: "flex", gap: 1 }}>
-                {selectedValue} (~{selectedTime} min)
-              </Box>
-            );
-          }}
+          renderValue={(value) => (
+            <Box sx={{ display: 'flex', gap: 1 }}>
+              {selectedValue} (~{selectedTime} min)
+            </Box>
+          )}
           {...rest}
         >
           {children}
@@ -82,50 +87,48 @@ function Select(props: Props) {
 
 function CountdownBar(props: Props) {
   const { start, refreshTime, ...rest } = props;
-  var [seconds, setSeconds] = useState(new Date().getSeconds());
+  const [seconds, setSeconds] = useState(new Date().getSeconds());
   const refreshSec = refreshTime * 10e-4;
 
   useEffect(() => {
-    var timer = setInterval(() => setSeconds(new Date().getSeconds()), 500)
+    const timer = setInterval(() => setSeconds(new Date().getSeconds()), 500);
     return function cleanup() {
-      clearInterval(timer)
-    }
+      clearInterval(timer);
+    };
   });
 
-  var modSec = (((seconds - start) % refreshSec) + refreshSec) % refreshSec;
-  var currentProgress = modSec * Math.floor(100 / refreshSec);
-
-  // console.log("startTime:", start, "/ refreshSec:", refreshSec, "/ seconds:", seconds, "/ modSec =", modSec, "/ currentProgress =", currentProgress);
+  const modSec = (((seconds - start) % refreshSec) + refreshSec) % refreshSec;
+  const currentProgress = Math.floor(modSec * (100 / refreshSec));
 
   const containerStyle = {
     height: 2,
     width: '100%',
-    backgroundColor: "#e0e0de",
+    backgroundColor: '#e0e0de',
     borderRadius: 0,
-    margin: 0
-  }
+    margin: 0,
+  };
 
   const fillerStyle = {
     height: '100%',
     width: `${currentProgress}%`,
-    backgroundColor: "green",
+    backgroundColor: 'green',
     borderRadius: 'inherit',
-    textAlign: 'right'
-  }
+    textAlign: 'right',
+  };
 
   const labelStyle = {
     padding: 0,
     color: 'white',
-    fontWeight: 'bold'
-  }
+    fontWeight: 'bold',
+  };
 
-  return(
+  return (
     <div style={containerStyle}>
       <div style={fillerStyle}>
-        <span style={labelStyle}></span>
+        <span style={labelStyle} />
       </div>
     </div>
-  )
+  );
 }
 
 export default function EstimatedFee(props: FeeProps) {
@@ -133,37 +136,51 @@ export default function EstimatedFee(props: FeeProps) {
   const { setValue } = useFormContext();
   const [startTime, setStartTime] = useState(new Date().getSeconds());
   const refreshTime = 60000; // in milliseconds
-  const { data: ests, isLoading: isFeeLoading, error } = useGetFeeEstimateQuery({"targetTimes": [60, 120, 300], "cost": 1}, {
-    pollingInterval: refreshTime,
-  });
+  const {
+    data: ests,
+    isLoading: isFeeLoading,
+    error,
+  } = useGetFeeEstimateQuery(
+    { targetTimes: [60, 120, 300], cost: 1 },
+    {
+      pollingInterval: refreshTime,
+    }
+  );
   const [estList, setEstList] = React.useState([]);
-  const [inputType, setInputType] = React.useState("dropdown");
-  const [selectedValue, setSelectedValue] = React.useState("");
-  const [selectedTime, setSelectedTime] = React.useState("");
+  const [inputType, setInputType] = React.useState('dropdown');
+  const [selectedValue, setSelectedValue] = React.useState('');
+  const [selectedTime, setSelectedTime] = React.useState('');
   const mode = useMode();
   const [selectOpen, setSelectOpen] = React.useState(false);
   const [locale] = useLocale();
+  const currencyCode = useCurrencyCode();
 
   const maxBlockCostCLVM = 11000000000;
   const offersAcceptsPerBlock = 500;
 
   const txCostEstimates = {
-      walletSendXCH: Math.floor(maxBlockCostCLVM / 1170),
-      createOffer: Math.floor(maxBlockCostCLVM / offersAcceptsPerBlock),
-      sellNFT: Math.floor(maxBlockCostCLVM / 92),
-      createPoolingWallet: Math.floor(maxBlockCostCLVM / 462)  // JOIN_POOL in GUI = create pooling wallet
-  }
+    walletSendXCH: Math.floor(maxBlockCostCLVM / 1170),
+    spendCATtx: 36382111,
+    acceptOffer: 721393265,
+    cancelOffer: 212443993,
+    burnNFT: 74385541,
+    assignDIDToNFT: 115540006,
+    transferNFT: 74385541,
+    createPlotNFT: 18055407,
+    claimPoolingReward: 82668466,
+    createDID: 57360396,
+  };
 
   const multiplier = txCostEstimates[txType];
 
   function formatEst(number, multiplier, locale) {
-    let num = (Math.round(number * multiplier * (10**(-4)))) * (10**(4));
-    let formatNum = mojoToChiaLocaleString(num, locale);
-    return (formatNum);
+    const num = Math.round(number * multiplier * 10 ** -4) * 10 ** 4;
+    const formatNum = mojoToChiaLocaleString(num, locale);
+    return formatNum;
   }
 
   function getValueByTime(object, time) {
-    const estIndex = Object.keys(object).find(index => object[index].time === time);
+    const estIndex = Object.keys(object).find((index) => object[index].time === time);
     const estValue = object[estIndex].estimate;
     return estValue;
   }
@@ -171,17 +188,44 @@ export default function EstimatedFee(props: FeeProps) {
   useEffect(() => {
     if (ests) {
       const estimateList = ests.estimates;
-      const targetTimes = ests.targetTimes;
-      if (estimateList[0] == 0 && estimateList[1] == 0 && estimateList[2] == 0) {
-        setInputType("classic");
-      }
-      const est0 = formatEst(estimateList[0], multiplier, locale);
-      const est1 = formatEst(estimateList[1], multiplier, locale);
-      const est2 = formatEst(estimateList[2], multiplier, locale);
-      setEstList(current => []);
-      setEstList(current => [...current, { time: targetTimes[0] / 60, timeText: "Likely in " + targetTimes[0] + " seconds", estimate: est0 }]);
-      setEstList(current => [...current, { time: targetTimes[1] / 60, timeText: "Likely in " + (targetTimes[1] / 60) + " minutes", estimate: est1 }]);
-      setEstList(current => [...current, { time: targetTimes[2] / 60, timeText: "Likely over " + (targetTimes[2] / 60) + " minutes", estimate: est2 }]);
+      const { targetTimes } = ests;
+      // if (
+      //   estimateList[0] == 0 &&
+      //   estimateList[1] == 0 &&
+      //   estimateList[2] == 0
+      // ) {
+      //   //setInputType('classic');
+      // }
+      const est0 =
+        estimateList[0] === 0 ? formatEst(6_000_000, 1, locale) : formatEst(estimateList[0], multiplier, locale);
+      const est1 =
+        estimateList[1] === 0 ? formatEst(5_000_000, 1, locale) : formatEst(estimateList[1], multiplier, locale);
+      const est2 = estimateList[2] === 0 ? formatEst(0, 1, locale) : formatEst(estimateList[2], multiplier, locale);
+      setEstList((current) => []);
+      setEstList((current) => [
+        ...current,
+        {
+          time: targetTimes[0] / 60,
+          timeText: `Likely in ${targetTimes[0]} seconds`,
+          estimate: est0,
+        },
+      ]);
+      setEstList((current) => [
+        ...current,
+        {
+          time: targetTimes[1] / 60,
+          timeText: `Likely in ${targetTimes[1] / 60} minutes`,
+          estimate: est1,
+        },
+      ]);
+      setEstList((current) => [
+        ...current,
+        {
+          time: targetTimes[2] / 60,
+          timeText: `Likely over ${targetTimes[2] / 60} minutes`,
+          estimate: est2,
+        },
+      ]);
     }
   }, [ests]);
 
@@ -206,7 +250,9 @@ export default function EstimatedFee(props: FeeProps) {
     return (
       <Box position="relative">
         <Box position="relative">
-          <InputLabel required={required} color="secondary">Fee</InputLabel>
+          <InputLabel required={required} color="secondary">
+            Fee
+          </InputLabel>
           <Select
             name={name}
             onTypeChange={setInputType}
@@ -221,24 +267,24 @@ export default function EstimatedFee(props: FeeProps) {
             {...rest}
           >
             {estList.map((option) => (
-              <MenuItem
-                value={String(option.estimate)}
-                key={option.time}
-              >
+              <MenuItem value={String(option.estimate)} key={option.time}>
                 <Flex flexDirection="row" flexGrow={1} justifyContent="space-between" alignItems="center">
                   <Flex>
-                    <Trans>{option.estimate} TXCH</Trans>
+                    <Trans>
+                      {option.estimate} {currencyCode}
+                    </Trans>
                   </Flex>
                   <Flex alignSelf="center">
-                    <Trans><Typography color="textSecondary" fontSize="small">{option.timeText}</Typography></Trans>
+                    <Trans>
+                      <Typography color="textSecondary" fontSize="small">
+                        {option.timeText}
+                      </Typography>
+                    </Trans>
                   </Flex>
                 </Flex>
               </MenuItem>
             ))}
-            <MenuItem
-              value="custom"
-              key="custom"
-            >
+            <MenuItem value="custom" key="custom">
               Enter a custom fee...
             </MenuItem>
           </Select>
@@ -247,13 +293,13 @@ export default function EstimatedFee(props: FeeProps) {
           <CountdownBar start={startTime} refreshTime={refreshTime} />
         </Box>
       </Box>
-    )
+    );
   }
 
   function showInput() {
     function showDropdown() {
       setSelectOpen(true);
-      setInputType("dropdown");
+      setInputType('dropdown');
     }
 
     return (
@@ -271,45 +317,48 @@ export default function EstimatedFee(props: FeeProps) {
                 autoFocus
                 color="secondary"
                 InputProps={{
-                  endAdornment: <IconButton onClick={showDropdown}><ArrowDropDownIcon /></IconButton>,
+                  endAdornment: (
+                    <IconButton onClick={showDropdown}>
+                      <ArrowDropDownIcon />
+                    </IconButton>
+                  ),
                   style: {
-                    paddingRight: "0"
-                  }
+                    paddingRight: '0',
+                  },
                 }}
               />
             </Flex>
           </Flex>
         </Box>
-        <Box position="absolute" bottom={3} left={0} right={0}>
+        {/* <Box position="absolute" bottom={3} left={0} right={0}>
           <CountdownBar start={startTime} refreshTime={refreshTime} />
-        </Box>
+        </Box> */}
       </Box>
-    )
+    );
   }
 
-  if (!error && (mode[0] === Mode.FARMING) && (inputType !== "classic")) {
+  if (!error && mode[0] === Mode.FARMING && inputType !== 'classic') {
     return (
       <Flex>
         <FormControl variant="filled" fullWidth>
-          {inputType === "dropdown" ? showSelect() : showInput()}
+          {inputType === 'dropdown' ? showSelect() : showInput()}
         </FormControl>
       </Flex>
     );
-  } else {
-    return (
-      <Flex>
-        <FormControl variant="filled" fullWidth>
-          <Fee
-            name={name}
-            type="text"
-            variant="filled"
-            label={<Trans>Fee</Trans>}
-            fullWidth
-            required={required}
-            color="secondary"
-          />
-        </FormControl>
-      </Flex>
-    )
   }
-};
+  return (
+    <Flex>
+      <FormControl variant="filled" fullWidth>
+        <Fee
+          name={name}
+          type="text"
+          variant="filled"
+          label={<Trans>Fee</Trans>}
+          fullWidth
+          required={required}
+          color="secondary"
+        />
+      </FormControl>
+    </Flex>
+  );
+}

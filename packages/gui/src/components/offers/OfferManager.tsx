@@ -1,15 +1,11 @@
-import React, { useMemo, useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { Trans, t } from '@lingui/macro';
-import moment from 'moment';
-import BigNumber from 'bignumber.js';
-import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
+import { OfferSummaryRecord, OfferTradeRecord } from '@chia/api';
+import { useCancelOfferMutation, useGetOfferDataMutation, useGetWalletsQuery } from '@chia/api-react';
 import {
   Button,
   ButtonLoading,
   Card,
   CardHero,
-  Fee,
+  EstimatedFee,
   Flex,
   Form,
   IconButton,
@@ -26,7 +22,8 @@ import {
   LayoutDashboardSub,
   MenuItem,
 } from '@chia/core';
-import { OfferSummaryRecord, OfferTradeRecord } from '@chia/api';
+import { Trans, t } from '@lingui/macro';
+import { Cancel, GetApp as Download, Info, Reply as Share, Visibility } from '@mui/icons-material';
 import {
   Box,
   Checkbox,
@@ -41,40 +38,33 @@ import {
   ListItemIcon,
   Typography,
 } from '@mui/material';
-import {
-  Cancel,
-  GetApp as Download,
-  Info,
-  Reply as Share,
-  Visibility,
-} from '@mui/icons-material';
-import {
-  useCancelOfferMutation,
-  useGetOfferDataMutation,
-  useGetWalletsQuery,
-} from '@chia/api-react';
+import BigNumber from 'bignumber.js';
+import moment from 'moment';
+import React, { useMemo, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
+
+import useAssetIdName from '../../hooks/useAssetIdName';
+import useSaveOfferFile from '../../hooks/useSaveOfferFile';
+import useWalletOffers from '../../hooks/useWalletOffers';
+import { launcherIdToNFTId } from '../../util/nfts';
+import CreateOfferBuilder from '../offers2/CreateOfferBuilder';
+import OfferBuilderImport from '../offers2/OfferBuilderImport';
+import OfferBuilderViewer from '../offers2/OfferBuilderViewer';
+import { CreateNFTOfferEditor } from './NFTOfferEditor';
+import NFTOfferViewer from './NFTOfferViewer';
+import OfferAsset from './OfferAsset';
+import OfferDataDialog from './OfferDataDialog';
+import { CreateOfferEditor } from './OfferEditor';
+import { OfferImport } from './OfferImport';
+import OfferShareDialog from './OfferShareDialog';
+import OfferState from './OfferState';
 import {
   colorForOfferState,
   displayStringForOfferState,
   formatAmountForWalletType,
   offerAssetTypeForAssetId,
-  offerContainsAssetOfType,
 } from './utils';
-import { launcherIdToNFTId } from '../../util/nfts';
-import useAssetIdName from '../../hooks/useAssetIdName';
-import useSaveOfferFile from '../../hooks/useSaveOfferFile';
-import useWalletOffers from '../../hooks/useWalletOffers';
-import { CreateOfferEditor } from './OfferEditor';
-import { CreateNFTOfferEditor } from './NFTOfferEditor';
-import { OfferImport } from './OfferImport';
-import NFTOfferViewer from './NFTOfferViewer';
-import OfferAsset from './OfferAsset';
-import OfferDataDialog from './OfferDataDialog';
-import OfferShareDialog from './OfferShareDialog';
-import OfferState from './OfferState';
-import CreateOfferBuilder from '../offers2/CreateOfferBuilder';
-import OfferBuilderImport from '../offers2/OfferBuilderImport';
-import OfferBuilderViewer from '../offers2/OfferBuilderViewer';
 
 type ConfirmOfferCancellationProps = {
   canCancelWithTransaction: boolean;
@@ -89,9 +79,7 @@ function ConfirmOfferCancellation(props: ConfirmOfferCancellationProps) {
       fee: '',
     },
   });
-  const [cancelWithTransaction, setCancelWithTransaction] = useState<boolean>(
-    canCancelWithTransaction,
-  );
+  const [cancelWithTransaction, setCancelWithTransaction] = useState<boolean>(canCancelWithTransaction);
 
   function handleCancel() {
     onClose([false]);
@@ -126,10 +114,8 @@ function ConfirmOfferCancellation(props: ConfirmOfferCancellationProps) {
                 <>
                   <Typography variant="body1">
                     <Trans>
-                      If you have already shared your offer file, you may need
-                      to submit a transaction to cancel the pending offer. Click
-                      "Cancel on blockchain" to submit a cancellation
-                      transaction.
+                      If you have already shared your offer file, you may need to submit a transaction to cancel the
+                      pending offer. Click "Cancel on blockchain" to submit a cancellation transaction.
                     </Trans>
                   </Typography>
                   <Flex flexDirection="row" gap={3}>
@@ -140,9 +126,7 @@ function ConfirmOfferCancellation(props: ConfirmOfferCancellationProps) {
                             <Checkbox
                               name="cancelWithTransaction"
                               checked={cancelWithTransaction}
-                              onChange={(event) =>
-                                setCancelWithTransaction(event.target.checked)
-                              }
+                              onChange={(event) => setCancelWithTransaction(event.target.checked)}
                             />
                           }
                           label={
@@ -150,8 +134,7 @@ function ConfirmOfferCancellation(props: ConfirmOfferCancellationProps) {
                               <Trans>Cancel on blockchain</Trans>{' '}
                               <TooltipIcon>
                                 <Trans>
-                                  Creates and submits a transaction on the
-                                  blockchain that cancels the offer
+                                  Creates and submits a transaction on the blockchain that cancels the offer
                                 </Trans>
                               </TooltipIcon>
                             </>
@@ -160,13 +143,14 @@ function ConfirmOfferCancellation(props: ConfirmOfferCancellationProps) {
                       </Grid>
                       {cancelWithTransaction && (
                         <Grid xs={6} item>
-                          <Fee
+                          <EstimatedFee
                             id="filled-secondary"
                             variant="filled"
                             name="fee"
                             color="secondary"
                             label={<Trans>Fee</Trans>}
                             fullWidth
+                            txType="cancelOffer"
                           />
                         </Grid>
                       )}
@@ -179,24 +163,11 @@ function ConfirmOfferCancellation(props: ConfirmOfferCancellationProps) {
         </DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Flex
-          flexDirection="row"
-          gap={3}
-          style={{ paddingBottom: '8px', paddingRight: '16px' }}
-        >
-          <Button
-            onClick={handleCancel}
-            color="secondary"
-            variant="outlined"
-            autoFocus
-          >
+        <Flex flexDirection="row" gap={3} style={{ paddingBottom: '8px', paddingRight: '16px' }}>
+          <Button onClick={handleCancel} color="secondary" variant="outlined" autoFocus>
             <Trans>Close</Trans>
           </Button>
-          <ButtonLoading
-            onClick={handleConfirm}
-            color="danger"
-            variant="contained"
-          >
+          <ButtonLoading onClick={handleConfirm} color="danger" variant="contained">
             <Trans>Cancel Offer</Trans>
           </ButtonLoading>
         </Flex>
@@ -214,28 +185,23 @@ ConfirmOfferCancellation.defaultProps = {
 function resolveOfferInfo(
   summary: OfferSummaryRecord,
   summaryKey: string,
-  lookupByAssetId: (assetId: string) => AssetIdMapEntry | undefined,
+  lookupByAssetId: (assetId: string) => AssetIdMapEntry | undefined
 ) {
-  const resolvedOfferInfo = Object.entries(summary[summaryKey]).map(
-    ([assetId, amount]) => {
-      const assetType = offerAssetTypeForAssetId(assetId, summary);
-      const assetIdInfo =
-        assetType === OfferAsset.NFT ? undefined : lookupByAssetId(assetId);
-      const displayAmount = assetIdInfo
-        ? formatAmountForWalletType(amount as number, assetIdInfo.walletType)
-        : amount;
-      let displayName = '';
-      if (assetType === OfferAsset.NFT) {
-        displayName = launcherIdToNFTId(assetId);
-      } else {
-        displayName = assetIdInfo?.displayName ?? t`Unknown CAT`;
-      }
-      return {
-        displayAmount,
-        displayName,
-      };
-    },
-  );
+  const resolvedOfferInfo = Object.entries(summary[summaryKey]).map(([assetId, amount]) => {
+    const assetType = offerAssetTypeForAssetId(assetId, summary);
+    const assetIdInfo = assetType === OfferAsset.NFT ? undefined : lookupByAssetId(assetId);
+    const displayAmount = assetIdInfo ? formatAmountForWalletType(amount as number, assetIdInfo.walletType) : amount;
+    let displayName = '';
+    if (assetType === OfferAsset.NFT) {
+      displayName = launcherIdToNFTId(assetId);
+    } else {
+      displayName = assetIdInfo?.displayName ?? t`Unknown CAT`;
+    }
+    return {
+      displayAmount,
+      displayName,
+    };
+  });
   return resolvedOfferInfo;
 }
 
@@ -263,37 +229,21 @@ function OfferList(props: OfferListProps) {
     rowsPerPage,
     count,
     pageChange,
-  } = useWalletOffers(
-    5,
-    0,
-    includeMyOffers,
-    includeTakenOffers,
-    'RELEVANCE',
-    false,
-  );
+  } = useWalletOffers(5, 0, includeMyOffers, includeTakenOffers, 'RELEVANCE', false);
 
   async function handleShowOfferData(offerData: string) {
     openDialog(<OfferDataDialog offerData={offerData} />);
   }
 
-  async function handleCancelOffer(
-    tradeId: string,
-    canCancelWithTransaction: boolean,
-  ) {
+  async function handleCancelOffer(tradeId: string, canCancelWithTransaction: boolean) {
     const [cancelConfirmed, cancellationOptions] = await openDialog(
-      <ConfirmOfferCancellation
-        canCancelWithTransaction={canCancelWithTransaction}
-      />,
+      <ConfirmOfferCancellation canCancelWithTransaction={canCancelWithTransaction} />
     );
 
     if (cancelConfirmed === true) {
-      const secure = canCancelWithTransaction
-        ? cancellationOptions.cancelWithTransaction
-        : false;
-      const fee = canCancelWithTransaction
-        ? cancellationOptions.cancellationFee
-        : 0;
-      await cancelOffer({ tradeId, secure: secure, fee: fee });
+      const secure = canCancelWithTransaction ? cancellationOptions.cancelWithTransaction : false;
+      const fee = canCancelWithTransaction ? cancellationOptions.cancellationFee : 0;
+      await cancelOffer({ tradeId, secure, fee });
     }
   }
 
@@ -315,23 +265,19 @@ function OfferList(props: OfferListProps) {
         offerData={row._offerData}
         exportOffer={() => saveOffer(row.tradeId)}
         testnet={testnet}
-      />,
+      />
     );
   }
 
-  const cols = useMemo(() => {
-    return [
+  const cols = useMemo(
+    () => [
       {
         field: (row: OfferTradeRecord) => {
           const { status } = row;
 
           return (
             <Box onClick={(event) => handleRowClick(event, row)}>
-              <Chip
-                label={displayStringForOfferState(status)}
-                variant="outlined"
-                color={colorForOfferState(status)}
-              />
+              <Chip label={displayStringForOfferState(status)} variant="outlined" color={colorForOfferState(status)} />
             </Box>
           );
         },
@@ -341,20 +287,10 @@ function OfferList(props: OfferListProps) {
       },
       {
         field: (row: OfferTradeRecord) => {
-          const resolvedOfferInfo = resolveOfferInfo(
-            row.summary,
-            'offered',
-            lookupByAssetId,
-          );
+          const resolvedOfferInfo = resolveOfferInfo(row.summary, 'offered', lookupByAssetId);
           return resolvedOfferInfo.map((info, index) => (
-            <Flex
-              flexDirection="row"
-              gap={0.5}
-              key={`${index}-${info.displayName}`}
-            >
-              <Typography variant="body2">
-                {(info.displayAmount as any).toString()}
-              </Typography>
+            <Flex flexDirection="row" gap={0.5} key={`${index}-${info.displayName}`}>
+              <Typography variant="body2">{(info.displayAmount as any).toString()}</Typography>
               <Typography noWrap variant="body2">
                 {info.displayName}
               </Typography>
@@ -366,20 +302,10 @@ function OfferList(props: OfferListProps) {
       },
       {
         field: (row: OfferTradeRecord) => {
-          const resolvedOfferInfo = resolveOfferInfo(
-            row.summary,
-            'requested',
-            lookupByAssetId,
-          );
+          const resolvedOfferInfo = resolveOfferInfo(row.summary, 'requested', lookupByAssetId);
           return resolvedOfferInfo.map((info, index) => (
-            <Flex
-              flexDirection="row"
-              gap={0.5}
-              key={`${index}-${info.displayName}`}
-            >
-              <Typography variant="body2">
-                {(info.displayAmount as any).toString()}
-              </Typography>
+            <Flex flexDirection="row" gap={0.5} key={`${index}-${info.displayName}`}>
+              <Typography variant="body2">{(info.displayAmount as any).toString()}</Typography>
               <Typography noWrap variant="body2">
                 {info.displayName}
               </Typography>
@@ -410,23 +336,16 @@ function OfferList(props: OfferListProps) {
           const { tradeId, status } = row;
           const canExport = status === OfferState.PENDING_ACCEPT; // implies isMyOffer === true
           const canDisplayData = status === OfferState.PENDING_ACCEPT;
-          const canCancel =
-            status === OfferState.PENDING_ACCEPT ||
-            status === OfferState.PENDING_CONFIRM;
+          const canCancel = status === OfferState.PENDING_ACCEPT || status === OfferState.PENDING_CONFIRM;
           const canShare = status === OfferState.PENDING_ACCEPT;
-          const canCancelWithTransaction =
-            canCancel && status === OfferState.PENDING_ACCEPT;
+          const canCancelWithTransaction = canCancel && status === OfferState.PENDING_ACCEPT;
 
           return (
             <Flex flexDirection="row" justifyContent="center" gap={0}>
               <Flex style={{ width: '32px' }}>
                 {canShare && (
                   <Tooltip title={<Trans>Share</Trans>}>
-                    <IconButton
-                      size="small"
-                      disabled={!canShare}
-                      onClick={() => handleShare(undefined, row)}
-                    >
+                    <IconButton size="small" disabled={!canShare} onClick={() => handleShare(undefined, row)}>
                       <Share style={{ transform: 'scaleX(-1)' }} />
                     </IconButton>
                   </Tooltip>
@@ -434,10 +353,7 @@ function OfferList(props: OfferListProps) {
               </Flex>
               <Flex style={{ width: '32px' }}>
                 <More>
-                  <MenuItem
-                    onClick={() => handleRowClick(undefined, row)}
-                    close
-                  >
+                  <MenuItem onClick={() => handleRowClick(undefined, row)} close>
                     <ListItemIcon>
                       <Info fontSize="small" />
                     </ListItemIcon>
@@ -446,10 +362,7 @@ function OfferList(props: OfferListProps) {
                     </Typography>
                   </MenuItem>
                   {canDisplayData && (
-                    <MenuItem
-                      onClick={() => handleShowOfferData(row._offerData)}
-                      close
-                    >
+                    <MenuItem onClick={() => handleShowOfferData(row._offerData)} close>
                       <ListItemIcon>
                         <Visibility fontSize="small" />
                       </ListItemIcon>
@@ -469,12 +382,7 @@ function OfferList(props: OfferListProps) {
                     </MenuItem>
                   )}
                   {canCancel && (
-                    <MenuItem
-                      onClick={() =>
-                        handleCancelOffer(tradeId, canCancelWithTransaction)
-                      }
-                      close
-                    >
+                    <MenuItem onClick={() => handleCancelOffer(tradeId, canCancelWithTransaction)} close>
                       <ListItemIcon>
                         <Cancel fontSize="small" />
                       </ListItemIcon>
@@ -492,8 +400,9 @@ function OfferList(props: OfferListProps) {
         maxWidth: '100px',
         title: <Flex justifyContent="center">Actions</Flex>,
       },
-    ];
-  }, []);
+    ],
+    []
+  );
 
   const hasOffers = !!offers?.length;
 
@@ -543,8 +452,7 @@ export function OfferManager() {
           </Typography>
           <Typography variant="body2" color="textSecondary">
             <Trans>
-              Offers are a way to trade assets in a genuinely peer-to-peer way
-              to eliminate counterparty risk.
+              Offers are a way to trade assets in a genuinely peer-to-peer way to eliminate counterparty risk.
             </Trans>
           </Typography>
         </Flex>
@@ -563,17 +471,13 @@ export function OfferManager() {
                       </Typography>
                       <Typography variant="body1" color="textSecondary">
                         <Trans>
-                          Create a file that you can use to trade XCH, Chia
-                          Asset Tokens, or NFTs with no counter-party risk.
+                          Create a file that you can use to trade XCH, Chia Asset Tokens, or NFTs with no counter-party
+                          risk.
                         </Trans>
                       </Typography>
                     </Flex>
                     <Flex justifyContent="flex-end">
-                      <Button
-                        onClick={handleOfferBuilder}
-                        variant="contained"
-                        color="primary"
-                      >
+                      <Button onClick={handleOfferBuilder} variant="contained" color="primary">
                         <Typography variant="inherit" noWrap>
                           <Trans>Create an Offer</Trans>
                         </Typography>
@@ -594,16 +498,8 @@ export function OfferManager() {
           </Grid>
         </Box>
       </Flex>
-      <OfferList
-        title={<Trans>Offers you created</Trans>}
-        includeMyOffers={true}
-        includeTakenOffers={false}
-      />
-      <OfferList
-        title={<Trans>Offers you accepted</Trans>}
-        includeMyOffers={false}
-        includeTakenOffers={true}
-      />
+      <OfferList title={<Trans>Offers you created</Trans>} includeMyOffers includeTakenOffers={false} />
+      <OfferList title={<Trans>Offers you accepted</Trans>} includeMyOffers={false} includeTakenOffers />
     </Flex>
   );
 }
@@ -622,10 +518,10 @@ export function CreateOffer() {
       <OfferShareDialog
         offerRecord={offerRecord}
         offerData={offerData as string}
-        showSuppressionCheckbox={true}
+        showSuppressionCheckbox
         exportOffer={() => saveOffer(offerRecord.tradeId)}
         testnet={testnet}
-      />,
+      />
     );
   }
 
@@ -636,7 +532,10 @@ export function CreateOffer() {
           path="builder"
           element={
             <CreateOfferBuilder
+              walletType={locationState?.walletType}
+              assetId={locationState?.assetId}
               nftId={locationState?.nftId}
+              nftWalletId={locationState?.nftWalletId}
               referrerPath={locationState?.referrerPath}
               onOfferCreated={handleOfferCreated}
             />

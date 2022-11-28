@@ -1,23 +1,18 @@
-import React, { useMemo } from 'react';
-import { t, Trans } from '@lingui/macro';
 import type { NFTAttribute } from '@chia/api';
 import { useGetNFTInfoQuery } from '@chia/api-react';
-import {
-  CopyToClipboard,
-  Flex,
-  Loading,
-  TooltipIcon,
-  truncateValue,
-} from '@chia/core';
+import { CopyToClipboard, Flex, Loading, TooltipIcon, truncateValue } from '@chia/core';
+import { t, Trans } from '@lingui/macro';
 import { Box, Card, CardContent, Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
+import React, { useMemo } from 'react';
+import styled from 'styled-components';
+
 import useNFTMetadata from '../../hooks/useNFTMetadata';
 import isRankingAttribute from '../../util/isRankingAttribute';
 import { launcherIdToNFTId } from '../../util/nfts';
-import NFTPreview from '../nfts/NFTPreview';
-import { NFTProperty } from '../nfts/NFTProperties';
-import { NFTRanking } from '../nfts/NFTRankings';
-import styled from 'styled-components';
+import NFTPreview from './NFTPreview';
+import { NFTProperty } from './NFTProperties';
+import { NFTRanking } from './NFTRankings';
 
 /* ========================================================================== */
 
@@ -44,7 +39,7 @@ export default function NFTSummary(props: NFTSummaryProps) {
   const { data: nft, isLoading: isLoadingNFT } = useGetNFTInfoQuery({
     coinId: launcherId,
   });
-  const { metadata, isLoading: isLoadingMetadata } = useNFTMetadata(nft);
+  const { metadata, isLoading: isLoadingMetadata } = useNFTMetadata([nft]);
 
   const [properties, rankings] = useMemo(() => {
     if (!nft) {
@@ -85,22 +80,13 @@ export default function NFTSummary(props: NFTSummaryProps) {
     metadata?.attributes
       ?.filter((attribute: NFTAttribute) => !isRankingAttribute(attribute))
       .forEach((attribute: NFTAttribute) =>
-        properties.push(
-          <NFTProperty attribute={attribute} size="small" color="secondary" />,
-        ),
+        properties.push(<NFTProperty attribute={attribute} size="small" color="secondary" />)
       );
 
     metadata?.attributes
       ?.filter((attribute: NFTAttribute) => isRankingAttribute(attribute))
       .forEach((attribute: NFTAttribute) =>
-        rankings.push(
-          <NFTRanking
-            attribute={attribute}
-            size="small"
-            color="secondary"
-            progressColor="secondary"
-          />,
-        ),
+        rankings.push(<NFTRanking attribute={attribute} size="small" color="secondary" progressColor="secondary" />)
       );
 
     return [properties, rankings];
@@ -147,11 +133,7 @@ export default function NFTSummary(props: NFTSummaryProps) {
               </Flex>
               <Flex alignItems="center" gap={1}>
                 <StyledValue>{launcherId}</StyledValue>
-                <CopyToClipboard
-                  value={launcherId}
-                  fontSize="small"
-                  invertColor
-                />
+                <CopyToClipboard value={launcherId} fontSize="small" invertColor />
               </Flex>
             </Flex>
           </Flex>

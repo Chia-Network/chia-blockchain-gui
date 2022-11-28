@@ -1,9 +1,10 @@
-import React from 'react';
-import { Trans } from '@lingui/macro';
 import { StateIndicator, State, CardSimple } from '@chia/core';
-import FarmCardNotAvailable from './FarmCardNotAvailable';
-import useFarmerStatus from '../../../hooks/useFarmerStatus';
+import { Trans } from '@lingui/macro';
+import React from 'react';
+
 import FarmerStatus from '../../../constants/FarmerStatus';
+import useFarmerStatus from '../../../hooks/useFarmerStatus';
+import FarmCardNotAvailable from './FarmCardNotAvailable';
 
 export default function FarmCardStatus() {
   const farmerStatus = useFarmerStatus();

@@ -1,10 +1,11 @@
-import React from 'react';
-import { Trans } from '@lingui/macro';
-import { NFTs } from '@chia/icons';
 import { Flex } from '@chia/core';
+import { NFTs } from '@chia/icons';
+import { Trans } from '@lingui/macro';
+import React from 'react';
 import { useFieldArray } from 'react-hook-form';
-import OfferBuilderSection from './OfferBuilderSection';
+
 import OfferBuilderNFT from './OfferBuilderNFT';
+import OfferBuilderSection from './OfferBuilderSection';
 
 export type OfferBuilderNFTSectionProps = {
   name: string;
@@ -14,9 +15,7 @@ export type OfferBuilderNFTSectionProps = {
   isMyOffer?: boolean;
 };
 
-export default function OfferBuilderNFTSection(
-  props: OfferBuilderNFTSectionProps,
-) {
+export default function OfferBuilderNFTSection(props: OfferBuilderNFTSectionProps) {
   const { name, offering, muted, viewer, isMyOffer = false } = props;
 
   const { fields, append, remove } = useFieldArray({
@@ -33,12 +32,8 @@ export default function OfferBuilderNFTSection(
     remove(index);
   }
 
-  const showProvenance = viewer
-    ? isMyOffer
-      ? offering
-      : !offering
-    : !offering;
-  const showRoyalties = viewer ? (isMyOffer ? !offering : offering) : offering;
+  const showProvenance = viewer ? (isMyOffer ? offering : !offering) : !offering;
+  const showRoyalties = viewer ? true : offering;
 
   return (
     <OfferBuilderSection
@@ -57,6 +52,7 @@ export default function OfferBuilderNFTSection(
             provenance={showProvenance}
             showRoyalties={showRoyalties}
             onRemove={() => handleRemove(index)}
+            offering={offering}
           />
         ))}
       </Flex>

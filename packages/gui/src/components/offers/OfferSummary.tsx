@@ -1,17 +1,11 @@
-import React, { useMemo } from 'react';
-import { Plural, Trans } from '@lingui/macro';
 import { type OfferSummaryRecord } from '@chia/api';
-import {
-  Flex,
-  FormatLargeNumber,
-  StateColor,
-  TooltipIcon,
-  mojoToChia,
-  mojoToCAT,
-} from '@chia/core';
+import { Flex, FormatLargeNumber, StateColor, TooltipIcon, mojoToChia, mojoToCAT } from '@chia/core';
+import { Plural, Trans } from '@lingui/macro';
 import { Box, Divider, Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
+import React, { useMemo } from 'react';
 import styled from 'styled-components';
+
 import useAssetIdName from '../../hooks/useAssetIdName';
 import OfferExchangeRate from './OfferExchangeRate';
 import { OfferSummaryTokenRow } from './OfferSummaryRow';
@@ -32,25 +26,15 @@ type Props = {
 };
 
 export default function OfferSummary(props: Props) {
-  const {
-    isMyOffer,
-    imported,
-    summary,
-    makerTitle,
-    takerTitle,
-    rowIndentation,
-    setIsMissingRequestedAsset,
-  } = props;
+  const { isMyOffer, imported, summary, makerTitle, takerTitle, rowIndentation, setIsMissingRequestedAsset } = props;
   const theme = useTheme();
   const { lookupByAssetId } = useAssetIdName();
   const horizontalPadding = `${theme.spacing(rowIndentation)}`; // logic borrowed from Flex's gap computation
   const makerEntries: [string, number][] = Object.entries(summary.offered);
   const takerEntries: [string, number][] = Object.entries(summary.requested);
   const makerFee: number = summary.fees;
-  const makerAssetInfo =
-    makerEntries.length === 1 ? lookupByAssetId(makerEntries[0][0]) : undefined;
-  const takerAssetInfo =
-    takerEntries.length === 1 ? lookupByAssetId(takerEntries[0][0]) : undefined;
+  const makerAssetInfo = makerEntries.length === 1 ? lookupByAssetId(makerEntries[0][0]) : undefined;
+  const takerAssetInfo = takerEntries.length === 1 ? lookupByAssetId(takerEntries[0][0]) : undefined;
   const makerAmount =
     makerEntries.length > 0
       ? ['xch', 'txch'].includes(makerEntries[0][0].toLowerCase())
@@ -63,14 +47,9 @@ export default function OfferSummary(props: Props) {
         ? mojoToChia(takerEntries[0][1])
         : mojoToCAT(takerEntries[0][1])
       : undefined;
-  const canSetExchangeRate =
-    makerAssetInfo && takerAssetInfo && makerAmount && takerAmount;
-  const makerExchangeRate = canSetExchangeRate
-    ? takerAmount / makerAmount
-    : undefined;
-  const takerExchangeRate = canSetExchangeRate
-    ? makerAmount / takerAmount
-    : undefined;
+  const canSetExchangeRate = makerAssetInfo && takerAssetInfo && makerAmount && takerAmount;
+  const makerExchangeRate = canSetExchangeRate ? takerAmount / makerAmount : undefined;
+  const takerExchangeRate = canSetExchangeRate ? makerAmount / takerAmount : undefined;
 
   const [takerUnknownCATs, makerUnknownCATs] = useMemo(() => {
     if (isMyOffer) {
@@ -109,9 +88,7 @@ export default function OfferSummary(props: Props) {
   ];
 
   if (setIsMissingRequestedAsset) {
-    const isMissingRequestedAsset = isMyOffer
-      ? false
-      : makerUnknownCATs?.length !== 0 ?? false;
+    const isMissingRequestedAsset = isMyOffer ? false : makerUnknownCATs?.length !== 0 ?? false;
 
     setIsMissingRequestedAsset(isMissingRequestedAsset);
   }
@@ -134,12 +111,7 @@ export default function OfferSummary(props: Props) {
             <Flex flexDirection="column" gap={1}>
               <Flex flexDirection="column" gap={1}>
                 {entries.map(([assetId, amount], index) => (
-                  <OfferSummaryTokenRow
-                    key={index}
-                    assetId={assetId}
-                    amount={amount as number}
-                    rowNumber={index + 1}
-                  />
+                  <OfferSummaryTokenRow key={index} assetId={assetId} amount={amount as number} rowNumber={index + 1} />
                 ))}
               </Flex>
               {unknownCATs !== undefined && unknownCATs.length > 0 && (
@@ -147,15 +119,14 @@ export default function OfferSummary(props: Props) {
                   {tradeSide === 'sell' && (
                     <StyledWarningText variant="caption">
                       <Trans>
-                        Warning: Verify that the offered CAT asset IDs match the
-                        asset IDs of the tokens you expect to receive.
+                        Warning: Verify that the offered CAT asset IDs match the asset IDs of the tokens you expect to
+                        receive.
                       </Trans>
                     </StyledWarningText>
                   )}
                   {tradeSide === 'buy' && (
                     <StyledWarningText variant="caption">
-                      Offer cannot be accepted because you don't possess the
-                      requested assets
+                      Offer cannot be accepted because you don't possess the requested assets
                     </StyledWarningText>
                   )}
                 </Flex>
@@ -165,29 +136,22 @@ export default function OfferSummary(props: Props) {
           {index !== sections.length - 1 && <Divider />}
         </>
       ))}
-      {!!makerAssetInfo &&
-        !!takerAssetInfo &&
-        !!makerExchangeRate &&
-        !!takerExchangeRate && (
-          <Flex flexDirection="column" gap={2}>
-            <Divider />
-            <OfferExchangeRate
-              makerAssetInfo={makerAssetInfo}
-              takerAssetInfo={takerAssetInfo}
-              makerExchangeRate={makerExchangeRate}
-              takerExchangeRate={takerExchangeRate}
-            />
-          </Flex>
-        )}
+      {!!makerAssetInfo && !!takerAssetInfo && !!makerExchangeRate && !!takerExchangeRate && (
+        <Flex flexDirection="column" gap={2}>
+          <Divider />
+          <OfferExchangeRate
+            makerAssetInfo={makerAssetInfo}
+            takerAssetInfo={takerAssetInfo}
+            makerExchangeRate={makerExchangeRate}
+            takerExchangeRate={takerExchangeRate}
+          />
+        </Flex>
+      )}
       {makerFee > 0 && (
         <Flex flexDirection="column" gap={2}>
           <Divider />
           <Flex flexDirection="row" alignItems="center" gap={1}>
-            <Typography
-              variant="body1"
-              color="secondary"
-              style={{ fontWeight: 'bold' }}
-            >
+            <Typography variant="body1" color="secondary" style={{ fontWeight: 'bold' }}>
               <Trans>Fees included in offer:</Trans>
             </Typography>
             <Typography color="primary">
@@ -199,14 +163,12 @@ export default function OfferSummary(props: Props) {
             <TooltipIcon>
               {imported ? (
                 <Trans>
-                  This offer has a fee included to help expedite the transaction
-                  when the offer is accepted. You may specify an additional fee
-                  if you feel that the included fee is too small.
+                  This offer has a fee included to help expedite the transaction when the offer is accepted. You may
+                  specify an additional fee if you feel that the included fee is too small.
                 </Trans>
               ) : (
                 <Trans>
-                  This offer has a fee included to help expedite the transaction
-                  when the offer is accepted.
+                  This offer has a fee included to help expedite the transaction when the offer is accepted.
                 </Trans>
               )}
             </TooltipIcon>

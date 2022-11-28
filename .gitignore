@@ -61,10 +61,6 @@ activate
 # mypy
 .mypy_cache/
 
-# Editors
-.vscode
-.idea
-
 # Packaging
 chia-blockchain.tar.gz
 
@@ -100,3 +96,5 @@ packages/**/playwright-report/index.html
 
 .env
 dist
+**/coverage
+

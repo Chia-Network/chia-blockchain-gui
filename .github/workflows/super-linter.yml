@@ -42,13 +42,13 @@ jobs:
       # Checkout the code base #
       ##########################
       - name: Checkout Code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       ################################
       # Run Linter against code base #
       ################################
       - name: Lint Code Base
-#        uses: github/super-linter@v3.10.0
+        #        uses: github/super-linter@v3.10.0
         uses: docker://github/super-linter:v3.10.2
         env:
           VALIDATE_ALL_CODEBASE: true
@@ -60,15 +60,12 @@ jobs:
           VALIDATE_GO: true
           VALIDATE_HTML: true
           VALIDATE_JAVASCRIPT_ES: true
-          VALIDATE_JSON: true
           VALIDATE_MD: true
           VALIDATE_POWERSHELL: true
           VALIDATE_SHELL_SHFMT: true
           VALIDATE_TYPESCRIPT_ES: true
           VALIDATE_YAML: true
           DISABLE_ERRORS: false
-#          PYTHONPATH: ${{ github.workspace }}:$PYTHONPATH
+          # PYTHONPATH: ${{ github.workspace }}:$PYTHONPATH
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#          ACTIONS_RUNNER_DEBUG: true
-
-...
+          # ACTIONS_RUNNER_DEBUG: true
