@@ -1,5 +1,5 @@
 import type NFTInfo from '@chia/api';
-import { useLocalStorage } from '@chia/api-react';
+import { useLocalStorage, usePrefs } from '@chia/api-react';
 import { useEffect, useState, useCallback } from 'react';
 
 import getRemoteFileContent from '../util/getRemoteFileContent';
@@ -26,7 +26,7 @@ export default function useNFTsMetadata(nfts: NFTInfo[], isMultiple = false) {
 
   const [metadataCache, setMetadataCache] = useLocalStorage(`metadata-cache-${nftId}`, {});
 
-  const [sensitiveContentObject, setSensitiveContentObject] = useLocalStorage('sensitive-content', {});
+  const [sensitiveContentObject, setSensitiveContentObject] = usePrefs('sensitive-content', {});
 
   function setSensitiveContent(nftId: string, metadata: Record<string, any>) {
     try {

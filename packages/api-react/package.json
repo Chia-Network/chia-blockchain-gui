@@ -28,6 +28,7 @@
   "peerDependencies": {
     "@chia/api": "1.0.0",
     "@reduxjs/toolkit": "1.7.1",
+    "react": "17.0.2",
     "react-redux": "7.2.6"
   },
   "devDependencies": {

@@ -1,4 +1,4 @@
-import { useLocalStorage } from '@chia/api-react';
+import { usePrefs } from '@chia/api-react';
 import { AlertDialog, ButtonLoading, Flex, Form, TextField, useOpenDialog } from '@chia/core';
 import { Trans } from '@lingui/macro';
 import React, { useEffect } from 'react';
@@ -17,7 +17,7 @@ function LimitCacheSize(props: any) {
   const { forceUpdateCacheSize } = props;
   const openDialog = useOpenDialog();
 
-  const [cacheLimitSize, setCacheLimitSize] = useLocalStorage(`cacheLimitSize`, defaultCacheSizeLimit);
+  const [cacheLimitSize, setCacheLimitSize] = usePrefs(`cacheLimitSize`, defaultCacheSizeLimit);
 
   const methods = useForm<FormData>({
     defaultValues: {

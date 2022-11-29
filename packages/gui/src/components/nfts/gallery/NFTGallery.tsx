@@ -1,5 +1,5 @@
 import type { NFTInfo, Wallet } from '@chia/api';
-import { useGetNFTWallets /* useGetNFTsByNFTIDsQuery */, useLocalStorage } from '@chia/api-react';
+import { useGetNFTWallets /* useGetNFTsByNFTIDsQuery */, usePrefs } from '@chia/api-react';
 import {
   Flex,
   LayoutDashboardSub,
@@ -67,7 +67,7 @@ export default function NFTGallery() {
     items: [],
   });
 
-  const [limitCacheSize] = useLocalStorage(`limit-cache-size`, defaultCacheSizeLimit);
+  const [limitCacheSize] = usePrefs(`limit-cache-size`, defaultCacheSizeLimit);
 
   React.useEffect(() => {
     if (limitCacheSize !== defaultCacheSizeLimit) {

@@ -98,3 +98,5 @@ packages/**/playwright-report/index.html
 dist
 **/coverage
 
+# JetBrains
+.idea/

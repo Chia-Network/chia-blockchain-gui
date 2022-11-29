@@ -38,6 +38,7 @@ import manageDaemonLifetime from '../util/manageDaemonLifetime';
 import { setUserDataDir } from '../util/userData';
 import { parseExtensionFromUrl } from '../util/utils';
 import handleSquirrelEvent from './handleSquirrelEvent';
+import { readPrefs, savePrefs, migratePrefs } from './prefs';
 
 const isPlaywrightTesting = process.env.PLAYWRIGHT_TESTS === 'true';
 const NET = 'mainnet';
@@ -533,6 +534,18 @@ if (!handleSquirrelEvent()) {
         }
       });
 
+      ipcMain.handle('readPrefs', async (_event) => {
+        return readPrefs();
+      });
+
+      ipcMain.handle('savePrefs', async (_event, prefsObj) => {
+        savePrefs(prefsObj);
+      });
+
+      ipcMain.handle('migratePrefs', async (_event, prefsObj) => {
+        return migratePrefs(prefsObj);
+      });
+
       /* ======================================================================== */
 
       decidedToClose = false;
@@ -639,20 +652,29 @@ if (!handleSquirrelEvent()) {
         const filePath: string = path.join(thumbCacheFolder, request.url.replace(/^cached:\/\//, ''));
         callback({ path: filePath });
       });
-      mainWindow?.webContents.executeJavaScript('localStorage.getItem("cacheLimitSize");', true).then((stringValue) => {
-        try {
-          cacheLimitSize = stringValue ? JSON.parse(stringValue) : cacheLimitSize;
-        } catch (e) {
+      const prefs = readPrefs();
+      if(prefs['cacheLimitSize'] !== undefined){
+        try{
+          const prefs_cacheLimitSize = +prefs['cacheLimitSize'];
+          if(!isNaN(prefs_cacheLimitSize) && isFinite(prefs_cacheLimitSize) && prefs_cacheLimitSize > 0){
+            cacheLimitSize = prefs_cacheLimitSize;
+          }
+        }
+        catch (e) {
           console.log(e);
         }
-      });
-      mainWindow?.webContents.executeJavaScript('localStorage.getItem("cacheFolder");', true).then((stringValue) => {
-        try {
-          thumbCacheFolder = stringValue ? JSON.parse(stringValue) : thumbCacheFolder;
-        } catch (e) {
+      }
+      if(prefs['cacheFolder'] !== undefined){
+        try{
+          const prefs_cacheFolder = prefs['cacheFolder'];
+          if (fs.existsSync(prefs_cacheFolder)) {
+            thumbCacheFolder = prefs_cacheFolder;
+          }
+        }
+        catch (e) {
           console.log(e);
         }
-      });
+      }
     };
 
     app.on('ready', appReady);

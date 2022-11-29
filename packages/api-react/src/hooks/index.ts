@@ -8,6 +8,7 @@ export { default as useGetHarvesterQuery } from './useGetHarvesterQuery';
 export { default as useGetHarvesterStats } from './useGetHarvesterStats';
 export { default as useGetNFTWallets } from './useGetNFTWallets';
 export { default as useLocalStorage } from './useLocalStorage';
+export { default as usePrefs } from './usePrefs';
 export { default as useLogout } from './useLogout';
 export { default as useNFTMetadata } from './useNFTMetadata';
 export { default as useService } from './useService';
