@@ -4,7 +4,7 @@
 
 ![GitHub contributors](https://img.shields.io/github/contributors/Chia-Network/chia-blockchain-gui?logo=GitHub)
 
-This library provides support for TypeScript/JavaScript [Chia](https://www.chia.net) apps to access the [Chia Blockchain RPC](https://github.com/Chia-Network/chia-blockchain/wiki/RPC-Interfaces), by making it easier to perform the following actions:
+This library provides support for TypeScript/JavaScript [Chia](https://www.chia.net) apps to access the [Chia Blockchain RPC](https://docs.chia.net/rpc/), by making it easier to perform the following actions:
 
 - Making requests to the Chia Blockchain RPC.
 - Catch responses and errors with standard try/catch and async/await syntax.
@@ -32,18 +32,18 @@ import sleep from 'sleep-promise';
   const wallet = new Wallet(client);
 
   try {
-    // get list of available publick keys
+    // get list of available public keys
     const publicKeys = await wallet.getPublicKeys();
 
     // bind to sync changes
     const unsubscribeSyncChanges = wallet.onSyncChanged((syncData) => {
-      console.log('do something with synchronisation data');
+      console.log('do something with synchronization data');
     });
 
     // wait 5 minutes
     await sleep(1000 * 60 * 5);
 
-    // unubscribe from synchronisation changes
+    // unsubscribe from synchronization changes
     await unsubscribeSyncChanges();
 
     // wait 5 minutes
