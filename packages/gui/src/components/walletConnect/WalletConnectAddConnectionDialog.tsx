@@ -120,8 +120,6 @@ export default function WalletConnectAddConnectionDialog(
   const isStepValid = step === Step.CONNECT || selectedFingerprints.length > 0;
   const canSubmit = !isSubmitting && !isLoading && isStepValid;
 
-  console.log('keys', keys);
-
   return (
     <Dialog onClose={handleClose} maxWidth="xs" open={open} fullWidth>
       <DialogTitle>

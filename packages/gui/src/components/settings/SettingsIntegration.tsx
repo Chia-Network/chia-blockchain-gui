@@ -5,12 +5,18 @@ import { FormGroup, FormControlLabel, Grid, Switch } from '@mui/material';
 import useWalletConnectPrefs from '../../hooks/useWalletConnectPrefs';
 
 export default function SettingsIntegration() {
-  const { enabled, setEnabled, autoConfirm, setAutoConfirm } =
-    useWalletConnectPrefs();
+  const {
+    enabled,
+    setEnabled,
+    autoConfirm,
+    setAutoConfirm,
+    allowConfirmationFingerprintChange,
+    setAllowConfirmationFingerprintChange,
+  } = useWalletConnectPrefs();
 
   return (
     <Grid container>
-      <Grid item xs={12} sm={6} lg={3}>
+      <Grid item xs={12} lg={6}>
         <Flex flexDirection="column" gap={2}>
           <SettingsLabel>
             <Flex gap={1} alignItems="center">
@@ -35,6 +41,28 @@ export default function SettingsIntegration() {
                   />
                 }
                 label={<Trans>Enable</Trans>}
+              />
+            </FormGroup>
+            <FormGroup>
+              <FormControlLabel
+                control={
+                  <Switch
+                    checked={allowConfirmationFingerprintChange}
+                    onChange={() =>
+                      setAllowConfirmationFingerprintChange(
+                        !allowConfirmationFingerprintChange,
+                      )
+                    }
+                    inputProps={{
+                      'data-testid': 'Enable_Wallet_Connect_Change_fingerprint',
+                    }}
+                  />
+                }
+                label={
+                  <Trans>
+                    Enable change fingerprint in the confirmation dialog
+                  </Trans>
+                }
               />
             </FormGroup>
 

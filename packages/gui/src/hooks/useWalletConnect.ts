@@ -248,18 +248,22 @@ export default function useWalletConnect(config: UseWalletConnectConfig) {
           },
         });
       } catch (error) {
-        log(error);
-        await client?.respond({
-          topic,
-          response: {
-            id,
-            jsonrpc: '2.0',
-            error: {
-              code: -32600,
-              message: (error as Error).message ?? 'Invalid Request',
+        try {
+          log(error);
+          await client?.respond({
+            topic,
+            response: {
+              id,
+              jsonrpc: '2.0',
+              error: {
+                code: -32600,
+                message: (error as Error).message ?? 'Invalid Request',
+              },
             },
-          },
-        });
+          });
+        } catch (error) {
+          log(error);
+        }
       }
     },
     [process],

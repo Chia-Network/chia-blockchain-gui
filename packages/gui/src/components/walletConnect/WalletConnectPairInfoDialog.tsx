@@ -80,9 +80,6 @@ export default function WalletConnectPairInfoDialog(
 
   return (
     <Dialog onClose={handleClose} maxWidth="xs" open={open} fullWidth>
-      <DialogTitle>
-        <Trans>Pair Information</Trans>
-      </DialogTitle>
       <IconButton
         sx={{
           position: 'absolute',
@@ -94,7 +91,9 @@ export default function WalletConnectPairInfoDialog(
       >
         <CloseIcon />
       </IconButton>
-
+      <DialogTitle>
+        <Trans>Pair Information</Trans>
+      </DialogTitle>
       <DialogContent>
         <Flex flexDirection="column" gap={3}>
           <Flex flexDirection="column" gap={3}>
@@ -106,7 +105,12 @@ export default function WalletConnectPairInfoDialog(
               </Typography>
             ) : (
               <Flex flexDirection="column" gap={2}>
-                <WalletConnectMetadata metadata={pair.metadata} />
+                <Flex flexDirection="column" gap={1}>
+                  <Typography>
+                    <Trans>Application</Trans>
+                  </Typography>
+                  <WalletConnectMetadata metadata={pair.metadata} />
+                </Flex>
 
                 <Flex flexDirection="column" gap={1}>
                   <Typography>
