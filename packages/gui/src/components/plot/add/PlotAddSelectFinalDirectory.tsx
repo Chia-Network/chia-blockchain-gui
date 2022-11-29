@@ -21,14 +21,13 @@ export default function PlotAddSelectFinalDirectory(props: Props) {
 
   const finalLocation = watch('finalLocation');
   const hasFinalLocation = !!finalLocation;
-  const [defaultFinalDirPath] = usePrefs<string>(PlotLocalStorageKeys.FINALDIR);
+  const [defaultFinalDirPath, setDefaultFinalDirPath] = usePrefs<string>(PlotLocalStorageKeys.FINALDIR);
 
   async function handleSelect() {
     const location = await selectDirectory({ defaultPath: defaultFinalDirPath || undefined });
     if (location) {
       setValue('finalLocation', location, { shouldValidate: true });
-      (window as any).preferences[PlotLocalStorageKeys.FINALDIR] = location;
-      (window as any).ipcRenderer.invoke('savePrefs', (window as any).preferences);
+      setDefaultFinalDirPath(location);
     }
   }
 

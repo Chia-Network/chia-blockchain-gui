@@ -1,7 +1,9 @@
-import { getUserDataDir } from '../util/userData';
-import path from 'path';
 import fs from 'fs';
+import path from 'path';
+
 import {dump, load} from 'js-yaml';
+
+import { getUserDataDir } from '../util/userData';
 
 function getPrefsPath(){
   const userDataDir = getUserDataDir();
@@ -13,12 +15,12 @@ function getPrefsPath(){
 
 export function readPrefs(): Record<string, any> {
   try{
-    const path = getPrefsPath();
-    if(!fs.existsSync(path)){
+    const prefsPath = getPrefsPath();
+    if(!fs.existsSync(prefsPath)){
       return {};
     }
 
-    const yamlData = fs.readFileSync(path, 'utf-8');
+    const yamlData = fs.readFileSync(prefsPath, 'utf-8');
     return load(yamlData) as Record<string, any>;
   }
   catch (e) {
@@ -32,9 +34,9 @@ export function savePrefs(prefs: Record<string, any>){
     if(!prefs){
       return;
     }
-    const path = getPrefsPath();
+    const prefsPath = getPrefsPath();
     const yamlData = dump(prefs);
-    fs.writeFileSync(path, yamlData, {encoding: 'utf-8'});
+    fs.writeFileSync(prefsPath, yamlData, {encoding: 'utf-8'});
   }
   catch (e) {
     console.warn(e);
@@ -43,13 +45,13 @@ export function savePrefs(prefs: Record<string, any>){
 
 export function migratePrefs(prefs: Record<string, any>){
   const currentPrefs = readPrefs();
-  for(const key in prefs){
+  Object.keys(prefs).forEach(key => {
     // When currentPrefs already has the pref, don't override it.
     // Prefs in `prefs.yaml` has priority over prefs from localStorage.
     if(!Object.hasOwn(currentPrefs, key)){
       currentPrefs[key] = prefs[key];
     }
-  }
+  });
 
   savePrefs(currentPrefs);
 }

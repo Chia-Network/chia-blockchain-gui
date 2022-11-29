@@ -3,11 +3,20 @@ import EventEmitter from '../utils/EventEmitter';
 
 const eventEmitter = new EventEmitter();
 
-function deepEqual(objA: any, objB: any){
+function maybeEqual(objA: any, objB: any){
+  // This does not consider object property ordering, so it's "maybe" equal.
   return JSON.stringify(objA) === JSON.stringify(objB);
 }
 
-export default function usePrefs<T>(
+export type Serializable = number
+  | string
+  | null
+  | boolean
+  | { [k: string ]: Serializable }
+  | Serializable[]
+;
+
+export default function usePrefs<T extends Serializable>(
   key: string,
   initialValue?: T
 ): [T | undefined, (value: T | ((value: T | undefined) => T)) => void] {
@@ -19,7 +28,7 @@ export default function usePrefs<T>(
   const setPrefValue = useCallback(
     (valueOrFunc: T | ((value: T | undefined) => T)) => {
       const newPrefValue = valueOrFunc instanceof Function ? valueOrFunc(prefStateValue) : valueOrFunc;
-      if(deepEqual(newPrefValue, currentPrefValue)){
+      if(maybeEqual(newPrefValue, currentPrefValue)){
         return;
       }
 
