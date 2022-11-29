@@ -1,25 +1,10 @@
-import React, { useMemo, useState } from 'react';
-import { Trans } from '@lingui/macro';
-import {
-  ButtonLoading,
-  DialogActions,
-  Flex,
-  Button,
-  Loading,
-  useShowError,
-  CardListItem,
-} from '@chia/core';
-import {
-  Box,
-  Divider,
-  Dialog,
-  DialogContent,
-  DialogTitle,
-  IconButton,
-  Typography,
-} from '@mui/material';
 import { useGetKeysQuery } from '@chia/api-react';
+import { ButtonLoading, DialogActions, Flex, Button, Loading, useShowError, CardListItem } from '@chia/core';
+import { Trans } from '@lingui/macro';
 import CloseIcon from '@mui/icons-material/Close';
+import { Box, Divider, Dialog, DialogContent, DialogTitle, IconButton, Typography } from '@mui/material';
+import React, { useMemo, useState } from 'react';
+
 import useWalletConnectContext from '../../hooks/useWalletConnectContext';
 import HeroImage from './images/walletConnectConnected.svg';
 
@@ -29,17 +14,11 @@ export type WalletConnectAddConnectionDialogProps = {
   topic: string;
 };
 
-export default function WalletConnectConnectedDialog(
-  props: WalletConnectAddConnectionDialogProps,
-) {
+export default function WalletConnectConnectedDialog(props: WalletConnectAddConnectionDialogProps) {
   const { topic, onClose = () => {}, open = false } = props;
   const [isProcessing, setIsProcessing] = useState(false);
   const showError = useShowError();
-  const {
-    pairs,
-    disconnect,
-    isLoading: isLoadingWallet,
-  } = useWalletConnectContext();
+  const { pairs, disconnect, isLoading: isLoadingWallet } = useWalletConnectContext();
   const { data: keys, isLoading: isLoadingPublicKeys } = useGetKeysQuery();
 
   const pair = useMemo(() => pairs.getPair(topic), [topic, pairs]);
@@ -105,16 +84,8 @@ export default function WalletConnectConnectedDialog(
               <Typography variant="h6" textAlign="center">
                 <Trans>Connected</Trans>
               </Typography>
-              <Typography
-                variant="body2"
-                textAlign="center"
-                color="textSecondary"
-              >
-                <Trans>
-                  You can now connect to{' '}
-                  {pair?.metadata?.name ?? 'Unknown Application'} in your
-                  browser.
-                </Trans>
+              <Typography variant="body2" textAlign="center" color="textSecondary">
+                <Trans>You can now connect to {pair?.metadata?.name ?? 'Unknown Application'} in your browser.</Trans>
               </Typography>
             </Box>
             {isLoading ? (
@@ -126,11 +97,7 @@ export default function WalletConnectConnectedDialog(
                     <Typography variant="body2" textAlign="center">
                       {key.label ?? key.fingerprint}
                     </Typography>
-                    <Typography
-                      variant="body2"
-                      color="textSecondary"
-                      textAlign="center"
-                    >
+                    <Typography variant="body2" color="textSecondary" textAlign="center">
                       {key.fingerprint}
                     </Typography>
                   </CardListItem>
@@ -151,12 +118,7 @@ export default function WalletConnectConnectedDialog(
         >
           <Trans>Disconnect</Trans>
         </ButtonLoading>
-        <Button
-          onClick={handleClose}
-          variant="contained"
-          color="primary"
-          disableElevation
-        >
+        <Button onClick={handleClose} variant="contained" color="primary" disableElevation>
           <Trans>Close</Trans>
         </Button>
       </DialogActions>

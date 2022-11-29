@@ -8,8 +8,7 @@ import useWalletConnectContext from '../../hooks/useWalletConnectContext';
 export default function WalletConnectDropdown() {
   const { enabled, pairs, isLoading } = useWalletConnectContext();
 
-  const color =
-    enabled && !isLoading && pairs.get().length > 0 ? 'primary' : 'secondary';
+  const color = enabled && !isLoading && pairs.get().length > 0 ? 'primary' : 'secondary';
 
   return (
     <DropdownIconButton icon={<WalletConnect color={color} />}>

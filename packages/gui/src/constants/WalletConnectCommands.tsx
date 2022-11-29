@@ -1,7 +1,8 @@
-import React from 'react';
-import { Trans } from '@lingui/macro';
 import { ServiceName } from '@chia/api';
 import { MojoToChia } from '@chia/core';
+import { Trans } from '@lingui/macro';
+import React from 'react';
+
 import type WalletConnectCommand from '../@types/WalletConnectCommand';
 
 const walletConnectCommands: WalletConnectCommand[] = [

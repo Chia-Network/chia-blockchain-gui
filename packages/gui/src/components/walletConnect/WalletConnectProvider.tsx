@@ -1,17 +1,14 @@
 import React, { ReactNode, createContext } from 'react';
-import useWalletConnect from '../../hooks/useWalletConnect';
+
 import type Pair from '../../@types/Pair';
+import useWalletConnect from '../../hooks/useWalletConnect';
 
 export const WalletConnectContext = createContext<
   | {
       enabled: boolean;
       isLoading: boolean;
       error: Error | undefined;
-      pair: (
-        uri: string,
-        fingerprints: number[],
-        mainnet?: boolean,
-      ) => Promise<void>;
+      pair: (uri: string, fingerprints: number[], mainnet?: boolean) => Promise<void>;
       disconnect: (topic: string) => Promise<void>;
       pairs: {
         getPair: (topic: string) => Pair | undefined;
@@ -26,18 +23,12 @@ export type WalletConnectProviderProps = {
   projectId: string;
 };
 
-export default function WalletConnectProvider(
-  props: WalletConnectProviderProps,
-) {
+export default function WalletConnectProvider(props: WalletConnectProviderProps) {
   const { children, projectId } = props;
 
   const walletConnect = useWalletConnect({
     projectId,
   });
 
-  return (
-    <WalletConnectContext.Provider value={walletConnect}>
-      {children}
-    </WalletConnectContext.Provider>
-  );
+  return <WalletConnectContext.Provider value={walletConnect}>{children}</WalletConnectContext.Provider>;
 }

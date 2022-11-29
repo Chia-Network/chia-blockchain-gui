@@ -1,5 +1,5 @@
-import { useCallback } from 'react';
 import { useLocalStorage } from '@chia/api-react';
+import { useCallback } from 'react';
 
 type Preferences = {
   enabled?: boolean;
@@ -15,15 +15,11 @@ export default function useWalletConnectPrefs(): {
   allowConfirmationFingerprintChange: boolean;
   setAllowConfirmationFingerprintChange: (enabled: boolean) => void;
 } {
-  const [prefs, setPrefs] = useLocalStorage<Preferences>(
-    'walletConnectPrefs',
-    {},
-  );
+  const [prefs, setPrefs] = useLocalStorage<Preferences>('walletConnectPrefs', {});
 
   const enabled = prefs?.enabled ?? false;
   const autoConfirm = prefs?.autoConfirm ?? false;
-  const allowConfirmationFingerprintChange =
-    prefs?.allowConfirmationFingerprintChange ?? false;
+  const allowConfirmationFingerprintChange = prefs?.allowConfirmationFingerprintChange ?? false;
 
   const setEnabled = useCallback(
     (enabled: boolean) => {
@@ -32,7 +28,7 @@ export default function useWalletConnectPrefs(): {
         enabled,
       }));
     },
-    [setPrefs],
+    [setPrefs]
   );
 
   const setAutoConfirm = useCallback(
@@ -42,7 +38,7 @@ export default function useWalletConnectPrefs(): {
         autoConfirm,
       }));
     },
-    [setPrefs],
+    [setPrefs]
   );
 
   const setAllowConfirmationFingerprintChange = useCallback(
@@ -52,7 +48,7 @@ export default function useWalletConnectPrefs(): {
         allowConfirmationFingerprintChange,
       }));
     },
-    [setPrefs],
+    [setPrefs]
   );
 
   return {

@@ -11,16 +11,9 @@ export type WalletConnectMetadataProps = {
   metadata?: WalletConnectMetadataType;
 };
 
-export default function WalletConnectMetadata(
-  props: WalletConnectMetadataProps,
-) {
+export default function WalletConnectMetadata(props: WalletConnectMetadataProps) {
   const { metadata } = props;
-  const {
-    name = <Trans>Unknown Application</Trans>,
-    description,
-    url,
-    icons = [],
-  } = metadata ?? {};
+  const { name = <Trans>Unknown Application</Trans>, description, url, icons = [] } = metadata ?? {};
 
   const openExternal = useOpenExternal();
 
@@ -34,18 +27,12 @@ export default function WalletConnectMetadata(
 
   return (
     <Flex gap={2}>
-      {icon && (
-        <Avatar src={icon} sx={{ bgcolor: blue[500] }} variant="rounded" />
-      )}
+      {icon && <Avatar src={icon} sx={{ bgcolor: blue[500] }} variant="rounded" />}
       <Flex flexDirection="column">
         <Typography>
           {name}{' '}
           {url && (
-            <IconButton
-              aria-label="openLink"
-              size="small"
-              onClick={handleOpenLink}
-            >
+            <IconButton aria-label="openLink" size="small" onClick={handleOpenLink}>
               <LinkIcon fontSize="inherit" />
             </IconButton>
           )}

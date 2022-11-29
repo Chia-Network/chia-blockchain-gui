@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import { Trans, t } from '@lingui/macro';
+import { useGetKeysQuery, useGetLoggedInFingerprintQuery } from '@chia/api-react';
 import {
   ButtonLoading,
   DialogActions,
@@ -11,21 +10,12 @@ import {
   useCurrencyCode,
   CardListItem,
 } from '@chia/core';
-import {
-  Box,
-  Divider,
-  Dialog,
-  DialogContent,
-  DialogTitle,
-  IconButton,
-  Typography,
-} from '@mui/material';
-import {
-  useGetKeysQuery,
-  useGetLoggedInFingerprintQuery,
-} from '@chia/api-react';
+import { Trans, t } from '@lingui/macro';
 import CloseIcon from '@mui/icons-material/Close';
+import { Box, Divider, Dialog, DialogContent, DialogTitle, IconButton, Typography } from '@mui/material';
+import React, { useEffect, useState } from 'react';
 import { useForm, useWatch } from 'react-hook-form';
+
 import useWalletConnectContext from '../../hooks/useWalletConnectContext';
 import HeroImage from './images/walletConnectToChia.svg';
 
@@ -44,16 +34,13 @@ export type WalletConnectAddConnectionDialogProps = {
   open?: boolean;
 };
 
-export default function WalletConnectAddConnectionDialog(
-  props: WalletConnectAddConnectionDialogProps,
-) {
+export default function WalletConnectAddConnectionDialog(props: WalletConnectAddConnectionDialogProps) {
   const { onClose = () => {}, open = false } = props;
 
   const [step, setStep] = useState<Step>(Step.CONNECT);
   const { pair, isLoading: isLoadingWallet } = useWalletConnectContext();
   const { data: keys, isLoading: isLoadingPublicKeys } = useGetKeysQuery();
-  const { data: fingerprint, isLoading: isLoadingLoggedInFingerprint } =
-    useGetLoggedInFingerprintQuery();
+  const { data: fingerprint, isLoading: isLoadingLoggedInFingerprint } = useGetLoggedInFingerprintQuery();
   const mainnet = useCurrencyCode() === 'XCH';
   const methods = useForm<FormData>({
     defaultValues: {
@@ -62,8 +49,7 @@ export default function WalletConnectAddConnectionDialog(
     },
   });
 
-  const isLoading =
-    isLoadingWallet || isLoadingPublicKeys || isLoadingLoggedInFingerprint;
+  const isLoading = isLoadingWallet || isLoadingPublicKeys || isLoadingLoggedInFingerprint;
 
   const selectedFingerprints = useWatch({
     control: methods.control,
@@ -111,7 +97,7 @@ export default function WalletConnectAddConnectionDialog(
     } else {
       setValue(
         'fingerprints',
-        fingerprints.filter((f) => f !== fingerprint),
+        fingerprints.filter((f) => f !== fingerprint)
       );
     }
   }
@@ -148,39 +134,25 @@ export default function WalletConnectAddConnectionDialog(
                 <Typography variant="h6" textAlign="center">
                   <Trans>Wallet Connect Integration</Trans>
                 </Typography>
-                <Typography
-                  variant="body2"
-                  textAlign="center"
-                  color="textSecondary"
-                >
+                <Typography variant="body2" textAlign="center" color="textSecondary">
                   {step === Step.CONNECT ? (
                     <Trans>Paste the address from WalletConnect below. </Trans>
                   ) : (
-                    <Trans>
-                      Select keys which you want to share with WalletConnect
-                    </Trans>
+                    <Trans>Select keys which you want to share with WalletConnect</Trans>
                   )}
                 </Typography>
               </Box>
               {isLoading ? (
                 <Loading center />
               ) : step === Step.CONNECT ? (
-                <TextField
-                  name="uri"
-                  label={<Trans>Paste link</Trans>}
-                  multiline
-                  required
-                  autoFocus
-                />
+                <TextField name="uri" label={<Trans>Paste link</Trans>} multiline required autoFocus />
               ) : (
                 <Flex flexDirection="column" gap={2} minWidth={0}>
                   {keys?.map((key, index) => (
                     <CardListItem
                       key={key.fingerprint}
                       selected={selectedFingerprints.includes(key.fingerprint)}
-                      onSelect={() =>
-                        handleToggleSelectFingerprint(key.fingerprint)
-                      }
+                      onSelect={() => handleToggleSelectFingerprint(key.fingerprint)}
                     >
                       <Typography variant="body1" noWrap>
                         {key.label || <Trans>Wallet {index + 1}</Trans>}

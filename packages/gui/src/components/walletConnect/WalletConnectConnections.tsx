@@ -1,13 +1,6 @@
 import React from 'react';
 import { Trans } from '@lingui/macro';
-import {
-  Flex,
-  Loading,
-  useOpenDialog,
-  More,
-  MenuItem,
-  useShowError,
-} from '@chia/core';
+import { Flex, Loading, useOpenDialog, More, MenuItem, useShowError } from '@chia/core';
 import {
   CheckCircleTwoTone as CheckCircleTwoToneIcon,
   Delete as DeleteIcon,
@@ -24,18 +17,12 @@ export type WalletConnectConnectionsProps = {
   onClose?: () => void;
 };
 
-export default function WalletConnectConnections(
-  props: WalletConnectConnectionsProps,
-) {
+export default function WalletConnectConnections(props: WalletConnectConnectionsProps) {
   const { onClose } = props;
   const openDialog = useOpenDialog();
   const showError = useShowError();
   const { enabled, setEnabled } = useWalletConnectPrefs();
-  const {
-    disconnect,
-    pairs,
-    isLoading: isLoadingWalletConnect,
-  } = useWalletConnectContext();
+  const { disconnect, pairs, isLoading: isLoadingWalletConnect } = useWalletConnectContext();
 
   const isLoading = isLoadingWalletConnect;
 
@@ -79,24 +66,13 @@ export default function WalletConnectConnections(
         ) : enabled && pairsList.length ? (
           <Flex flexDirection="column">
             {pairsList.map((pair) => (
-              <Flex
-                alignItems="center"
-                key={pair.topic}
-                justifyContent="space-between"
-              >
+              <Flex alignItems="center" key={pair.topic} justifyContent="space-between">
                 <Flex alignItems="center" gap={1}>
-                  <CheckCircleTwoToneIcon
-                    color={pair.sessions.length ? 'primary' : 'secondary'}
-                  />
-                  <Typography>
-                    {pair.metadata?.name ?? <Trans>Unknown Application</Trans>}
-                  </Typography>
+                  <CheckCircleTwoToneIcon color={pair.sessions.length ? 'primary' : 'secondary'} />
+                  <Typography>{pair.metadata?.name ?? <Trans>Unknown Application</Trans>}</Typography>
                 </Flex>
                 <More>
-                  <MenuItem
-                    onClick={() => handleShowMoreInfo(pair.topic)}
-                    close
-                  >
+                  <MenuItem onClick={() => handleShowMoreInfo(pair.topic)} close>
                     <ListItemIcon>
                       <EditIcon fontSize="small" />
                     </ListItemIcon>
@@ -123,22 +99,11 @@ export default function WalletConnectConnections(
 
       <Flex justifyContent="flex-end" paddingX={2} paddingY={1.5}>
         {enabled ? (
-          <Button
-            onClick={handleAddConnection}
-            variant="outlined"
-            color="primary"
-            size="small"
-            disabled={isLoading}
-          >
+          <Button onClick={handleAddConnection} variant="outlined" color="primary" size="small" disabled={isLoading}>
             <Trans>Add Connection</Trans>
           </Button>
         ) : (
-          <Button
-            onClick={handleEnableWalletConnect}
-            variant="outlined"
-            color="primary"
-            size="small"
-          >
+          <Button onClick={handleEnableWalletConnect} variant="outlined" color="primary" size="small">
             <Trans>Enable Wallet Connect</Trans>
           </Button>
         )}

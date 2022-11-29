@@ -1,24 +1,10 @@
-import React, { useMemo, useState } from 'react';
-import { Trans } from '@lingui/macro';
-import {
-  ButtonLoading,
-  DialogActions,
-  Flex,
-  Button,
-  Loading,
-  useShowError,
-  CardListItem,
-} from '@chia/core';
-import {
-  Divider,
-  Dialog,
-  DialogContent,
-  DialogTitle,
-  IconButton,
-  Typography,
-} from '@mui/material';
 import { useGetKeysQuery } from '@chia/api-react';
+import { ButtonLoading, DialogActions, Flex, Button, Loading, useShowError, CardListItem } from '@chia/core';
+import { Trans } from '@lingui/macro';
 import CloseIcon from '@mui/icons-material/Close';
+import { Divider, Dialog, DialogContent, DialogTitle, IconButton, Typography } from '@mui/material';
+import React, { useMemo, useState } from 'react';
+
 import useWalletConnectContext from '../../hooks/useWalletConnectContext';
 import WalletConnectMetadata from './WalletConnectMetadata';
 
@@ -28,17 +14,11 @@ export type WalletConnectPairInfoDialogProps = {
   topic: string;
 };
 
-export default function WalletConnectPairInfoDialog(
-  props: WalletConnectPairInfoDialogProps,
-) {
+export default function WalletConnectPairInfoDialog(props: WalletConnectPairInfoDialogProps) {
   const { topic, onClose = () => {}, open = false } = props;
   const [isProcessing, setIsProcessing] = useState(false);
   const showError = useShowError();
-  const {
-    pairs,
-    disconnect,
-    isLoading: isLoadingWallet,
-  } = useWalletConnectContext();
+  const { pairs, disconnect, isLoading: isLoadingWallet } = useWalletConnectContext();
   const { data: keys, isLoading: isLoadingPublicKeys } = useGetKeysQuery();
 
   const pair = useMemo(() => pairs.getPair(topic), [topic, pairs]);
@@ -123,11 +103,7 @@ export default function WalletConnectPairInfoDialog(
                           <Typography variant="body2" textAlign="center">
                             {key.label ?? key.fingerprint}
                           </Typography>
-                          <Typography
-                            variant="body2"
-                            color="textSecondary"
-                            textAlign="center"
-                          >
+                          <Typography variant="body2" color="textSecondary" textAlign="center">
                             {key.fingerprint}
                           </Typography>
                         </CardListItem>
@@ -147,12 +123,7 @@ export default function WalletConnectPairInfoDialog(
                   <Flex flexDirection="column" gap={1}>
                     {pair.sessions.length ? (
                       pair.sessions.map((session) => (
-                        <Typography
-                          key={session.topic}
-                          variant="body2"
-                          color="textSecondary"
-                          noWrap
-                        >
+                        <Typography key={session.topic} variant="body2" color="textSecondary" noWrap>
                           {session.topic}
                         </Typography>
                       ))
@@ -179,12 +150,7 @@ export default function WalletConnectPairInfoDialog(
         >
           <Trans>Disconnect</Trans>
         </ButtonLoading>
-        <Button
-          onClick={handleClose}
-          variant="contained"
-          color="primary"
-          disableElevation
-        >
+        <Button onClick={handleClose} variant="contained" color="primary" disableElevation>
           <Trans>Close</Trans>
         </Button>
       </DialogActions>

@@ -1,16 +1,15 @@
-import { useState, useEffect, useCallback, useRef } from 'react';
 import Client from '@walletconnect/sign-client';
 import debug from 'debug';
+import { useState, useEffect, useCallback, useRef } from 'react';
+
+import walletConnectCommands from '../constants/WalletConnectCommands';
 import useWalletConnectCommand from './useWalletConnectCommand';
 import useWalletConnectPairs from './useWalletConnectPairs';
 import useWalletConnectPrefs from './useWalletConnectPrefs';
-import walletConnectCommands from '../constants/WalletConnectCommands';
 
 const log = debug('chia-gui:walletConnect');
 
-const availableCommands = walletConnectCommands.map(
-  (command) => `chia_${command.command}`,
-);
+const availableCommands = walletConnectCommands.map((command) => `chia_${command.command}`);
 
 const defaultMetadata = {
   name: 'Chia Blockchain',
@@ -32,20 +31,14 @@ export type UseWalletConnectConfig = {
 };
 
 export default function useWalletConnect(config: UseWalletConnectConfig) {
-  const {
-    projectId,
-    relayUrl,
-    metadata = defaultMetadata,
-    debug = false,
-  } = config;
+  const { projectId, relayUrl, metadata = defaultMetadata, debug = false } = config;
 
   const { enabled } = useWalletConnectPrefs();
   const [isLoading, setIsLoading] = useState(true);
   const [_client, setClient] = useState<Client>();
   const _pairs = useWalletConnectPairs();
   const [error, setError] = useState<Error>();
-  const { process, isLoading: isLoadingWalletConnectCommand } =
-    useWalletConnectCommand();
+  const { process, isLoading: isLoadingWalletConnectCommand } = useWalletConnectCommand();
 
   const state = useRef<{
     client?: Client;
@@ -100,17 +93,13 @@ export default function useWalletConnect(config: UseWalletConnectConfig) {
       }
 
       const { chains, methods } = requiredNamespace;
-      const chain = chains.find((chain: string) =>
-        ['chia:testnet', 'chia:mainnet'].includes(chain),
-      );
+      const chain = chains.find((chain: string) => ['chia:testnet', 'chia:mainnet'].includes(chain));
       if (!chain) {
         throw new Error('Chain not supported');
       }
 
       // find unsupported methods
-      const method = methods.find(
-        (method: string) => !availableCommands.includes(method),
-      );
+      const method = methods.find((method: string) => !availableCommands.includes(method));
 
       if (method) {
         throw new Error(`Method not supported: ${method}`);
@@ -125,9 +114,7 @@ export default function useWalletConnect(config: UseWalletConnectConfig) {
 
       const { fingerprints, mainnet } = pair;
       const instance = mainnet ? 'mainnet' : 'testnet';
-      const accounts = fingerprints.map(
-        (fingerprint) => `chia:${instance}:${fingerprint}`,
-      );
+      const accounts = fingerprints.map((fingerprint) => `chia:${instance}:${fingerprint}`);
 
       const namespaces = {
         chia: {
@@ -155,7 +142,7 @@ export default function useWalletConnect(config: UseWalletConnectConfig) {
           ...pair.sessions,
           {
             topic: result.topic,
-            metadata: metadata,
+            metadata,
             namespaces,
           },
         ],
@@ -266,7 +253,7 @@ export default function useWalletConnect(config: UseWalletConnectConfig) {
         }
       }
     },
-    [process],
+    [process]
   );
 
   function disconnectClient(client: Client) {
@@ -303,7 +290,7 @@ export default function useWalletConnect(config: UseWalletConnectConfig) {
         log(error);
       }
     },
-    [handleSessionProposal, handleSessionDelete, handleSessionRequest],
+    [handleSessionProposal, handleSessionDelete, handleSessionRequest]
   );
 
   async function updatePairings(client: Client) {
@@ -390,11 +377,7 @@ export default function useWalletConnect(config: UseWalletConnectConfig) {
     };
   }, [projectId, relayUrl, JSON.stringify(metadata), enabled]);
 
-  async function handlePair(
-    uri: string,
-    fingerprints: number[],
-    mainnet = false,
-  ) {
+  async function handlePair(uri: string, fingerprints: number[], mainnet = false) {
     const { client, pairs } = state.current;
     if (!client) {
       throw new Error('Client is not defined');
