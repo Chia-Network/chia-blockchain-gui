@@ -1,14 +1,14 @@
 import { type NFTInfo } from '@chia/api';
 import { useLocalStorage } from '@chia/api-react';
+import { IconMessage, Loading, Flex, SandboxedIframe, Tooltip, usePersistState, useDarkMode } from '@chia/core';
 import { t, Trans } from '@lingui/macro';
 import { NotInterested, Error as ErrorIcon } from '@mui/icons-material';
 import CloseSvg from '@mui/icons-material/Close';
 import QuestionMarkSvg from '@mui/icons-material/QuestionMark';
 import { Box, Button, Typography } from '@mui/material';
 import mime from 'mime-types';
-import React, { useMemo, useState, useRef, Fragment } from 'react';
+import React, { useMemo, useState, useRef, Fragment, useEffect } from 'react';
 import { renderToString } from 'react-dom/server';
-import { IconMessage, Loading, Flex, SandboxedIframe, Tooltip, usePersistState, useDarkMode } from '@chia/core';
 import styled from 'styled-components';
 import isURL from 'validator/lib/isURL';
 
@@ -87,9 +87,8 @@ const StatusContainer = styled.div`
 `;
 
 const StatusPill = styled.div`
-  background-color: ${({ theme }) => {
-    return theme.palette.mode === 'dark' ? 'rgba(50, 50, 50, 0.4)' : 'rgba(255, 255, 255, 0.4)';
-  }};
+  background-color: ${({ theme }) =>
+    theme.palette.mode === 'dark' ? 'rgba(50, 50, 50, 0.4)' : 'rgba(255, 255, 255, 0.4)'};
   backdrop-filter: blur(6px);
   border: 1px solid rgba(255, 255, 255, 0.13);
   border-radius: 16px;
@@ -169,12 +168,8 @@ const CompactExtension = styled.div`
 
 const Sha256ValidatedIcon = styled.div`
   position: absolute;
-  background: ${({ theme }) => {
-    return theme.palette.mode === 'dark' ? 'rgba(33, 33, 33, 0.5)' : 'rgba(255, 255, 255, 0.66)';
-  }};
-  color: ${({ theme }) => {
-    return theme.palette.mode === 'dark' ? '#fff' : '#333';
-  }};
+  background: ${({ theme }) => (theme.palette.mode === 'dark' ? 'rgba(33, 33, 33, 0.5)' : 'rgba(255, 255, 255, 0.66)')};
+  color: ${({ theme }) => (theme.palette.mode === 'dark' ? '#fff' : '#333')};
   border-radius: 18px;
   padding: 0 8px;
   top: 10px;
@@ -208,6 +203,16 @@ const QuestionMarkIcon = styled(QuestionMarkSvg)`
   }
 `;
 
+function ThumbnailError(props: any) {
+  return (
+    <StatusContainer>
+      <StatusPill>
+        <StatusText>{props.children}</StatusText>
+      </StatusPill>
+    </StatusContainer>
+  );
+}
+
 export type NFTPreviewProps = {
   nft: NFTInfo;
   height?: number | string;
@@ -224,11 +229,12 @@ export type NFTPreviewProps = {
   validateNFT?: boolean;
   isLoadingMetadata?: boolean;
   miniThumb?: boolean;
+  setNFTCardMetadata: () => void;
 };
 
-//=========================================================================//
+// ======================================================================= //
 // NFTPreview function
-//=========================================================================//
+// ======================================================================= //
 export default function NFTPreview(props: NFTPreviewProps) {
   const {
     nft,
@@ -237,15 +243,13 @@ export default function NFTPreview(props: NFTPreviewProps) {
     width = '100%',
     fit = 'cover',
     background: Background = Fragment,
-    hideStatusBar = false,
     isPreview = false,
     isCompact = false,
-    metadata,
     disableThumbnail = false,
     metadataError,
     validateNFT,
-    isLoadingMetadata,
     miniThumb,
+    setNFTCardMetadata,
   } = props;
 
   const hasFile = dataUris?.length > 0;
@@ -268,19 +272,17 @@ export default function NFTPreview(props: NFTPreviewProps) {
 
   const [loaded, setLoaded] = useState(false);
 
-  const { isLoading, error, thumbnail } = useVerifyHash({
+  const { isLoading, error, thumbnail, isValid } = useVerifyHash({
     nft,
     ignoreSizeLimit,
-    metadata,
-    isLoadingMetadata,
-    metadataError,
     isPreview,
     dataHash: nft.dataHash,
     nftId: nft.$nftId,
     validateNFT,
+    setNFTCardMetadata,
   });
 
-  const [contentCache] = useLocalStorage(`content-cache-${nft.$nftId}`, {});
+  // console.log('THUMBNAIL???????', isLoading, thumbnail);
 
   const [ignoreError, setIgnoreError] = usePersistState<boolean>(
     false,
@@ -407,11 +409,9 @@ export default function NFTPreview(props: NFTPreviewProps) {
 
     if (isPreview && thumbnail.video && !disableThumbnail && !miniThumb) {
       mediaElement = (
-        <>
-          <video width="100%" height="100%" controls>
-            <source src={thumbnail.video} />
-          </video>
-        </>
+        <video width="100%" height="100%" controls>
+          <source src={thumbnail.video} />
+        </video>
       );
     }
 
@@ -500,41 +500,34 @@ export default function NFTPreview(props: NFTPreviewProps) {
   function renderNftIcon() {
     if (isDocument()) {
       return (
-        <>
-          <BlobBg isDarkMode={isDarkMode}>
-            <DocumentBlobIcon />
-            <img src={isDarkMode ? DocumentPngDarkIcon : DocumentPngIcon} />
-          </BlobBg>
-        </>
-      );
-    } else if (mimeType().match(/^model/)) {
-      return (
-        <>
-          <BlobBg isDarkMode={isDarkMode}>
-            <ModelBlobIcon />
-            <img src={isDarkMode ? ModelPngDarkIcon : ModelPngIcon} />
-          </BlobBg>
-        </>
-      );
-    } else if (mimeType().match(/^video/)) {
-      return (
-        <>
-          <BlobBg isDarkMode={isDarkMode}>
-            <VideoBlobIcon />
-            <img src={isDarkMode ? VideoPngDarkIcon : VideoPngIcon} />
-          </BlobBg>
-        </>
-      );
-    } else {
-      return (
-        <>
-          <BlobBg isDarkMode={isDarkMode}>
-            <UnknownBlobIcon />
-            <img src={isDarkMode ? UnknownPngDarkIcon : UnknownPngIcon} />;
-          </BlobBg>
-        </>
+        <BlobBg isDarkMode={isDarkMode}>
+          <DocumentBlobIcon />
+          <img src={isDarkMode ? DocumentPngDarkIcon : DocumentPngIcon} />
+        </BlobBg>
       );
     }
+    if (mimeType().match(/^model/)) {
+      return (
+        <BlobBg isDarkMode={isDarkMode}>
+          <ModelBlobIcon />
+          <img src={isDarkMode ? ModelPngDarkIcon : ModelPngIcon} />
+        </BlobBg>
+      );
+    }
+    if (mimeType().match(/^video/)) {
+      return (
+        <BlobBg isDarkMode={isDarkMode}>
+          <VideoBlobIcon />
+          <img src={isDarkMode ? VideoPngDarkIcon : VideoPngIcon} />
+        </BlobBg>
+      );
+    }
+    return (
+      <BlobBg isDarkMode={isDarkMode}>
+        <UnknownBlobIcon />
+        <img src={isDarkMode ? UnknownPngDarkIcon : UnknownPngIcon} />;
+      </BlobBg>
+    );
   }
 
   function isUnknownType() {
@@ -587,33 +580,23 @@ export default function NFTPreview(props: NFTPreviewProps) {
           height={height}
           onLoadedChange={handleLoadedChange}
           hideUntilLoaded
-          allowPointerEvents={true}
+          allowPointerEvents
           miniThumb={miniThumb}
         />
       </IframeWrapper>
     );
   }
 
-  function ThumbnailError(props: any) {
-    return (
-      <StatusContainer>
-        <StatusPill>
-          <StatusText>{props.children}</StatusText>
-        </StatusPill>
-      </StatusContainer>
-    );
-  }
-
   function renderIsHashValid() {
-    if (miniThumb) return null;
+    if (isValid || miniThumb) return null;
     let icon = null;
     let tooltipString = null;
 
     if (isPreview) {
-      if (contentCache.valid === undefined) {
+      if (isValid === undefined) {
         icon = <QuestionMarkIcon />;
         tooltipString = t`Content has not been validated against the hash that was specified during NFT minting.`;
-      } else if (!contentCache.valid) {
+      } else if (!isValid) {
         icon = <CloseIcon />;
         tooltipString = t`Content does not match the expected hash value that was specified during NFT minting. The content may have been modified.`;
       }

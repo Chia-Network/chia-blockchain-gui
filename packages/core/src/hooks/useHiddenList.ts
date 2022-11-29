@@ -10,7 +10,8 @@ export default function useHiddenList<Type>(
 ): [
   isHidden: (key: Type) => boolean,
   setIsHidden: (key: Type, newValue: (isHidden: boolean) => boolean | boolean) => void,
-  hidden: Type[]
+  hidden: Type[],
+  setIsNFTMultipleHide: (nftIds: string[]) => void
 ] {
   const [hiddenLists, setHiddenLists] = useLocalStorage<List<Type>>('isHidden', {});
 
@@ -37,7 +38,15 @@ export default function useHiddenList<Type>(
     [list, hiddenLists, setHiddenLists, listName]
   );
 
+  const setIsNFTMultipleHide = (nftIds: string[], hide: boolean) => {
+    const hiddenArray = hide ? list.concat(nftIds) : list.filter((nftId) => nftIds.indexOf(nftId) === -1);
+    setHiddenLists({
+      ...hiddenLists,
+      [listName]: hiddenArray,
+    });
+  };
+
   const isHidden = useCallback((key: Type) => list.includes(key), [list]);
 
-  return [isHidden, handleSetIsHidden, list];
+  return [isHidden, handleSetIsHidden, list, setIsNFTMultipleHide];
 }

@@ -9,7 +9,7 @@ import { useTimeout } from 'react-use-timeout';
 
 const StyledAssignmentIcon = styled(({ invertColor, ...rest }) => <AssignmentIcon {...rest} />)(
   ({ theme, invertColor }) => `
-  color: ${invertColor ? theme.palette.common.white : theme.palette.text.secondary};
+  color: ${invertColor ? theme.palette.common.white : '#757575'};
 `
 );
 

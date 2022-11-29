@@ -7,20 +7,57 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
+import CheckIcon from '../../assets/img/checkmark.svg';
 import useNFTMetadata from '../../hooks/useNFTMetadata';
 import NFTContextualActions, { NFTContextualActionTypes } from './NFTContextualActions';
 import NFTPreview from './NFTPreview';
 
-const StyledCardContent = styled(CardContent)`
-  //padding-top: ${({ theme }) => theme.spacing(1)};
-  // padding-bottom: ${({ theme }) => theme.spacing(1)} !important;
-`;
+const StyledCardContent = styled(CardContent)``;
 
 const StyledLoadingCardContent = styled(CardContent)`
   min-height: 362px;
   display: flex;
   align-items: center;
   justify-content: center;
+`;
+
+const MultipleSelectionCheckmark = styled.div`
+  position: absolute;
+  right: 11px;
+  top: 11px;
+  width: 18px;
+  height: 18px;
+  border-radius: 3px;
+  display: none;
+  background: #fff;
+  z-index: 3;
+`;
+
+const MultipleSelectionEmptyCheckmark = styled.div`
+  position: absolute;
+  right: 11px;
+  top: 11px;
+  border: 2px solid #555;
+  width: 18px;
+  height: 18px;
+  z-index: 6;
+  line-height: 22px;
+  text-align: center;
+  display: none;
+  border-radius: 2px;
+  display: none;
+  background: #fff;
+`;
+
+const CardWrapper = styled(Card)`
+  box-sizing: border-box;
+`;
+
+const ClickableCardTop = styled.div`
+  position: absolute;
+  z-index: 3;
+  height: 50px;
+  width: 100%;
 `;
 
 export type NFTCardProps = {
@@ -30,40 +67,46 @@ export type NFTCardProps = {
   canExpandDetails: boolean;
   availableActions: NFTContextualActionTypes;
   isOffer: boolean;
+  selctedItemAction?: () => void;
 };
 
 export default function NFTCard(props: NFTCardProps) {
-  const { nft, canExpandDetails = true, availableActions = NFTContextualActionTypes.None, isOffer } = props;
+  const {
+    nft,
+    canExpandDetails = true,
+    availableActions = NFTContextualActionTypes.None,
+    isOffer,
+    selectedItemAction,
+  } = props;
+
+  const [metadata, setMetadata] = React.useState({});
 
   const navigate = useNavigate();
 
-  const { metadata, isLoading, error } = useNFTMetadata([nft]);
-
   function handleClick() {
-    if (canExpandDetails) {
+    if (selectedItemAction) {
+      selectedItemAction(nft.$nftId);
+    } else if (canExpandDetails) {
       navigate(`/dashboard/nfts/${nft.$nftId}`);
     }
   }
 
   return (
     <Flex flexDirection="column" flexGrow={1}>
-      <Card sx={{ borderRadius: '8px' }} variant="outlined">
-        {isLoading ? (
+      <CardWrapper sx={{ borderRadius: '8px' }} variant="outlined" className="card-wrapper">
+        {false ? (
           <StyledLoadingCardContent>
             <Loading center />
           </StyledLoadingCardContent>
         ) : (
           <>
             <CardActionArea onClick={handleClick}>
-              <NFTPreview
-                nft={nft}
-                fit="cover"
-                isPreview
-                metadata={metadata}
-                isLoadingMetadata={isLoading}
-                disableThumbnail={isOffer}
-                metadataError={error}
-              />
+              <ClickableCardTop onClick={handleClick} />
+              <MultipleSelectionCheckmark className="multiple-selection-checkmark">
+                <CheckIcon />
+              </MultipleSelectionCheckmark>
+              <MultipleSelectionEmptyCheckmark className="multiple-selection-empty" />
+              <NFTPreview nft={nft} fit="cover" isPreview disableThumbnail={isOffer} setNFTCardMetadata={setMetadata} />
             </CardActionArea>
             <CardActionArea onClick={() => canExpandDetails && handleClick()} component="div">
               <StyledCardContent>
@@ -87,7 +130,7 @@ export default function NFTCard(props: NFTCardProps) {
             </CardActionArea>
           </>
         )}
-      </Card>
+      </CardWrapper>
     </Flex>
   );
 }

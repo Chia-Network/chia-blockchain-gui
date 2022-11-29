@@ -535,6 +535,7 @@ export function CreateOffer() {
               walletType={locationState?.walletType}
               assetId={locationState?.assetId}
               nftId={locationState?.nftId}
+              nftIds={locationState?.nftIds}
               nftWalletId={locationState?.nftWalletId}
               referrerPath={locationState?.referrerPath}
               onOfferCreated={handleOfferCreated}

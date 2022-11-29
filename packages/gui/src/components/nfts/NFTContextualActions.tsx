@@ -1,8 +1,10 @@
+import EventEmitter from 'events';
+
 import type { NFTInfo } from '@chia/api';
-import { AlertDialog, DropdownActions, MenuItem, useOpenDialog } from '@chia/core';
+import { useSetNFTStatusMutation, useLocalStorage } from '@chia/api-react';
+import { AlertDialog, DropdownActions, MenuItem, useOpenDialog, usePersistState } from '@chia/core';
 import { LinkSmall as LinkSmallIcon, NFTsSmall as NFTsSmallIcon, OffersSmall as OffersSmallIcon } from '@chia/icons';
 import { Trans } from '@lingui/macro';
-import { useSetNFTStatusMutation } from '@chia/api-react';
 import {
   ArrowForward as TransferIcon,
   Cancel as CancelIcon,
@@ -22,6 +24,7 @@ import isURL from 'validator/lib/isURL';
 
 import useBurnAddress from '../../hooks/useBurnAddress';
 import useHiddenNFTs from '../../hooks/useHiddenNFTs';
+import { lruMap } from '../../hooks/useNFTMetadata.ts';
 import useOpenUnsafeLink from '../../hooks/useOpenUnsafeLink';
 import useViewNFTOnExplorer, { NFTExplorer } from '../../hooks/useViewNFTOnExplorer';
 import NFTSelection from '../../types/NFTSelection';
@@ -31,8 +34,8 @@ import { stripHexPrefix } from '../../util/utils';
 import NFTBurnDialog from './NFTBurnDialog';
 import NFTMoveToProfileDialog from './NFTMoveToProfileDialog';
 import { NFTTransferDialog, NFTTransferResult } from './NFTTransferAction';
-import { useLocalStorage } from '@chia/api-react';
-import { lruMap } from '../../hooks/useNFTMetadata.ts';
+
+export const eventEmitter = new EventEmitter();
 
 /* ========================================================================== */
 /*                          Common Action Types/Enums                         */
@@ -44,14 +47,14 @@ export enum NFTContextualActionTypes {
   Transfer = 1 << 1, // 2
   MoveToProfile = 1 << 2, // 4
   CancelUnconfirmedTransaction = 1 << 3, // 8
-  Hide = 1 << 4,
-  Invalidate = 1 << 5,
-  Burn = 1 << 6, // 16
-  CopyNFTId = 1 << 7, // 32
-  CopyURL = 1 << 8, // 64
-  ViewOnExplorer = 1 << 9, // 128
-  OpenInBrowser = 1 << 10, // 256
-  Download = 1 << 11, // 512
+  Hide = 1 << 4, // 16
+  Invalidate = 1 << 5, // 32
+  Burn = 1 << 6, // 64
+  CopyNFTId = 1 << 7, // 128
+  CopyURL = 1 << 8, // 256
+  ViewOnExplorer = 1 << 9, // 512
+  OpenInBrowser = 1 << 10, // 1024
+  Download = 1 << 11, // 2048
 
   All = CreateOffer |
     Transfer |
@@ -69,6 +72,7 @@ export enum NFTContextualActionTypes {
 
 type NFTContextualActionProps = {
   selection?: NFTSelection;
+  isMultiSelect?: boolean;
 };
 
 /* ========================================================================== */
@@ -112,19 +116,25 @@ type NFTCreateOfferContextualActionProps = NFTContextualActionProps;
 function NFTCreateOfferContextualAction(props: NFTCreateOfferContextualActionProps) {
   const { selection } = props;
   const navigate = useNavigate();
+  const [, setSelectedNFTIds] = useLocalStorage('gallery-selected-nfts', []);
   const selectedNft: NFTInfo | undefined = selection?.items[0];
-  const disabled = (selection?.items.length ?? 0) !== 1 || selectedNft?.pendingTransaction;
+  const disabled = !selection?.items?.length || selectedNft?.pendingTransaction;
+
+  if (!selectedNft) return null;
 
   function handleCreateOffer() {
     if (!selectedNft) {
       throw new Error('No NFT selected');
     }
 
+    setSelectedNFTIds([]);
+
     navigate('/dashboard/offers/builder', {
       state: {
         nftId: selectedNft.$nftId,
         referrerPath: location.hash.split('#').slice(-1)[0],
         nftWalletId: selectedNft?.walletId,
+        nftIds: selection?.items.map((item) => item.$nftId),
       },
     });
   }
@@ -436,26 +446,32 @@ function NFTDownloadContextualAction(props: NFTDownloadContextualActionProps) {
 }
 
 /* ========================================================================== */
-/*                          Hide NFT                                     */
+/*                          Hide / Show NFT(s)                                */
 /* ========================================================================== */
 
 type NFTHideContextualActionProps = NFTContextualActionProps;
 
 function NFTHideContextualAction(props: NFTHideContextualActionProps) {
-  const { selection } = props;
+  const { selection, isMultiSelect, showOrHide } = props;
   const selectedNft: NFTInfo | undefined = selection?.items[0];
   const disabled = !selectedNft;
   const dataUrl = selectedNft?.dataUris?.[0];
-  const [isNFTHidden, setIsNFTHidden] = useHiddenNFTs();
+  const [isNFTHidden, setIsNFTHidden, , setHiddenMultiple] = useHiddenNFTs();
+  const [, setSelectedNFTIds] = useLocalStorage('gallery-selected-nfts', []);
 
-  const isHidden = isNFTHidden(selectedNft);
+  const isHidden = isMultiSelect && showOrHide === 1 ? true : isNFTHidden(selectedNft);
 
   function handleToggle() {
     if (!selectedNft) {
       return;
     }
 
-    setIsNFTHidden(selectedNft, !isHidden);
+    if (isMultiSelect) {
+      setHiddenMultiple(selection?.items, !isHidden);
+      setSelectedNFTIds([]);
+    } else {
+      setIsNFTHidden(selectedNft, !isHidden);
+    }
   }
 
   if (!dataUrl) {
@@ -519,29 +535,43 @@ function NFTBurnContextualAction(props: NFTBurnContextualActionProps) {
 type NFTInvalidateContextualActionProps = NFTContextualActionProps;
 
 function NFTInvalidateContextualAction(props: NFTInvalidateContextualActionProps) {
-  const { selection } = props;
+  const { selection, isMultiSelect } = props;
 
   const selectedNft: NFTInfo | undefined = selection?.items[0];
   const disabled = !selectedNft || selectedNft?.pendingTransaction;
   const dataUrl = selectedNft?.dataUris?.[0];
-  const [, setThumbCache] = useLocalStorage(`thumb-cache-${selectedNft.$nftId}`, null);
-  const [, setContentCache] = useLocalStorage(`content-cache-${selectedNft.$nftId}`, null);
-
-  const [forceReloadNFT, setForceReloadNFT] = useLocalStorage(`force-reload-${selectedNft.$nftId}`, false);
-
-  const [, setMetadataCache] = useLocalStorage(`metadata-cache-${selectedNft.$nftId}`, {});
-
+  const [, setThumbCache] = useLocalStorage(`thumb-cache-${selectedNft?.$nftId}`, null);
+  const [, setContentCache] = useLocalStorage(`content-cache-${selectedNft?.$nftId}`, null);
+  // const [, setMetadataCache] = useLocalStorage(`metadata-cache-${selectedNft?.$nftId}`, {});
+  const [selectedNFTIds, setSelectedNFTIds] = useLocalStorage('gallery-selected-nfts', []);
+  const { ipcRenderer } = window as any;
   async function handleInvalidate() {
+    if (isMultiSelect) {
+      selection?.items.forEach((nft) => {
+        window.localStorage.removeItem(`thumb-cache-${nft?.$nftId}`);
+        window.localStorage.removeItem(`content-cache-${nft?.$nftId}`);
+        window.localStorage.removeItem(`metadata-cache-${nft?.$nftId}`);
+        lruMap.delete(nft?.$nftId);
+        ipcRenderer.invoke(
+          'removeCachedFile',
+          computeHash(`${nft?.$nftId}_${nft?.dataUris?.[0]}`, { encoding: 'utf-8' })
+        );
+        eventEmitter.emit(`force-reload-metadata-${nft?.$nftId}`);
+        // eventEmitter.emit(`force-reload-${nft?.$nftId}`);
+      });
+      setSelectedNFTIds([]);
+      return;
+    }
     if (!selectedNft) {
       return;
     }
-    lruMap.delete(selectedNft.$nftId);
+
+    lruMap.delete(selectedNft?.$nftId);
     setThumbCache({});
     setContentCache({});
-    setMetadataCache({});
-    setForceReloadNFT(!forceReloadNFT);
-    const ipcRenderer = (window as any).ipcRenderer;
-    ipcRenderer.invoke('removeCachedFile', computeHash(`${selectedNft.$nftId}_${dataUrl}`, { encoding: 'utf-8' }));
+    ipcRenderer.invoke('removeCachedFile', computeHash(`${selectedNft?.$nftId}_${dataUrl}`, { encoding: 'utf-8' }));
+    console.log('FORCE RELOAD METADATA!!!!');
+    eventEmitter.emit(`force-reload-metadata-${selectedNft?.$nftId}`);
   }
 
   if (!dataUrl) {
@@ -575,6 +605,8 @@ type NFTContextualActionsProps = {
   selection?: NFTSelection;
   availableActions?: NFTContextualActionTypes;
   toggle?: ReactNode;
+  isMultiSelect?: boolean;
+  showOrHide?: boolean;
 };
 
 export default function NFTContextualActions(props: NFTContextualActionsProps) {
@@ -582,6 +614,8 @@ export default function NFTContextualActions(props: NFTContextualActionsProps) {
     label = <Trans>Actions</Trans>,
     selection,
     availableActions = NFTContextualActionTypes.CreateOffer | NFTContextualActionTypes.Transfer,
+    isMultiSelect,
+    showOrHide,
     ...rest
   } = props;
 
@@ -593,11 +627,11 @@ export default function NFTContextualActions(props: NFTContextualActionsProps) {
       },
       [NFTContextualActionTypes.CreateOffer]: {
         action: NFTCreateOfferContextualAction,
-        props: {},
+        props: { isMultiSelect },
       },
       [NFTContextualActionTypes.Transfer]: {
         action: NFTTransferContextualAction,
-        props: {},
+        props: { isMultiSelect },
       },
       [NFTContextualActionTypes.MoveToProfile]: {
         action: NFTMoveToProfileContextualAction,
@@ -605,7 +639,7 @@ export default function NFTContextualActions(props: NFTContextualActionsProps) {
       },
       [NFTContextualActionTypes.Invalidate]: {
         action: NFTInvalidateContextualAction,
-        props: {},
+        props: { isMultiSelect },
       },
       [NFTContextualActionTypes.CancelUnconfirmedTransaction]: {
         action: NFTCancelUnconfirmedTransactionContextualAction,
@@ -614,11 +648,11 @@ export default function NFTContextualActions(props: NFTContextualActionsProps) {
 
       [NFTContextualActionTypes.Hide]: {
         action: NFTHideContextualAction,
-        props: {},
+        props: { isMultiSelect, showOrHide },
       },
       [NFTContextualActionTypes.Burn]: {
         action: NFTBurnContextualAction,
-        props: {},
+        props: { isMultiSelect },
       },
 
       [NFTContextualActionTypes.ViewOnExplorer]: [
@@ -668,7 +702,7 @@ export default function NFTContextualActions(props: NFTContextualActionsProps) {
   }, [availableActions]);
 
   return (
-    <DropdownActions label={label} variant="outlined" {...rest}>
+    <DropdownActions label={label} variant="outlined" items={selection?.items} {...rest}>
       {actions.map(({ action: Action, props: actionProps }, index) => (
         <Action key={`${index}-${actionProps?.title}`} selection={selection} {...actionProps} />
       ))}

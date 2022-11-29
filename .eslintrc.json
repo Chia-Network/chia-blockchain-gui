@@ -23,6 +23,9 @@
     // Do not allow unused disable-line
     "eslint-comments/no-unused-disable": "error",
     // Allow single line disables (overrides the eslint-comments defaults)
-    "eslint-comments/disable-enable-pair": "off"
+    "eslint-comments/disable-enable-pair": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    // There are cases when Promise.All doesn't work for us (for example when we need to break a for loop - as in our case)
+    "no-await-in-loop": "off"
   }
 }

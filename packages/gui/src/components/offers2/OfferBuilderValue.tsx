@@ -64,8 +64,6 @@ export default function OfferBuilderValue(props: OfferBuilderValueProps) {
     name,
   });
 
-  const ValueSearchRef = React.useRef(null);
-
   const readOnly = disableReadOnly ? false : builderReadOnly;
   const displayValue =
     amountWithRoyalties ||
@@ -162,20 +160,8 @@ export default function OfferBuilderValue(props: OfferBuilderValueProps) {
               )
             ) : type === 'text' ? (
               <>
-                <TextField
-                  variant="filled"
-                  color="secondary"
-                  label={label}
-                  name={name}
-                  required
-                  fullWidth
-                  onKeyDown={(e) => {
-                    if (ValueSearchRef.current) {
-                      (ValueSearchRef.current as any).keyPressed(e);
-                    }
-                  }}
-                />
-                <OfferBuilderValueSearch value={value} onSelectNFT={onSelectNFT} ref={ValueSearchRef} />
+                <TextField variant="filled" color="secondary" label={label} name={name} required fullWidth />
+                <OfferBuilderValueSearch value={value} onSelectNFT={onSelectNFT} />
               </>
             ) : type === 'token' ? (
               <OfferBuilderTokenSelector

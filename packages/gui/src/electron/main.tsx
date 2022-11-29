@@ -5,6 +5,7 @@ import url from 'url';
 
 import { initialize } from '@electron/remote/main';
 import axios from 'axios';
+import chokidar from 'chokidar';
 import {
   app,
   dialog,
@@ -53,6 +54,8 @@ let thumbCacheFolder = path.join(app.getPath('cache'), app.getName());
 if (!fs.existsSync(thumbCacheFolder)) {
   fs.mkdirSync(thumbCacheFolder);
 }
+
+const watcher = chokidar.watch(thumbCacheFolder, { persistent: true });
 
 let cacheLimitSize: number = 1024;
 
@@ -153,6 +156,10 @@ if (!handleSquirrelEvent()) {
   };
 
   let mainWindow: BrowserWindow | null = null;
+
+  watcher.on('unlink', (path: any) => {
+    mainWindow?.webContents.send('removed-cache-file', path.split('/').splice(-1, 1)[0]);
+  });
 
   const createMenu = () => Menu.buildFromTemplate(getMenuTemplate());
 

@@ -39,7 +39,7 @@ export function mimeTypeRegex(uri, regexp) {
 }
 
 export function isImage(uri) {
-  return mimeTypeRegex(uri || '', /^image/) || mimeTypeRegex(uri || '', /^$/);
+  return !!(mimeTypeRegex(uri || '', /^image/) || mimeTypeRegex(uri || '', /^$/));
 }
 
 export function getCacheInstances() {
@@ -85,4 +85,27 @@ export function toBase64Safe(url) {
 
 export function fromBase64Safe(base64String) {
   return Buffer.from(base64String.replace(/_/g, '/').replace(/-/, '+'), 'base64');
+}
+
+export function isDocument(extension) {
+  return ['pdf', 'docx', 'doc', 'xls', 'xlsx', 'ppt', 'pptx', 'txt', 'rtf'].indexOf(extension) > -1;
+}
+
+export function getNFTFileType(nft) {
+  const file = Array.isArray(nft.dataUris) && nft.dataUris[0];
+  try {
+    const extension = new URL(file).pathname.split('.').slice(-1)[0];
+    if (extension.match(/^[a-zA-Z0-9]+$/) && isDocument(extension)) {
+      return 'Document';
+    }
+  } catch (e) {}
+  return isImage(file)
+    ? 'Image'
+    : mimeTypeRegex(file, /^audio/)
+    ? 'Audio'
+    : mimeTypeRegex(file, /^video/)
+    ? 'Video'
+    : mimeTypeRegex(file, /^model/)
+    ? 'Model'
+    : 'Unknown';
 }
