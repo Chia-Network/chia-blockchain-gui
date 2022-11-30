@@ -57,7 +57,6 @@ export default function NFTCard(props: NFTCardProps) {
             <CardActionArea onClick={handleClick}>
               <NFTPreview
                 nft={nft}
-                fit="cover"
                 isPreview
                 metadata={metadata}
                 isLoadingMetadata={isLoading}

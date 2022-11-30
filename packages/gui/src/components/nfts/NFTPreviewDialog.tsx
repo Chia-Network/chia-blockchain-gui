@@ -37,14 +37,7 @@ export default function NFTPreviewDialog(props: NFTPreviewDialogProps) {
       )}
       {...rest}
     >
-      <NFTPreview
-        nft={nft}
-        width="100%"
-        height="100%"
-        fit="contain"
-        background={StyledNFTPreviewBackground}
-        hideStatusBar
-      />
+      <NFTPreview nft={nft} width="100%" height="100%" background={StyledNFTPreviewBackground} hideStatusBar />
     </Dialog>
   );
 }
