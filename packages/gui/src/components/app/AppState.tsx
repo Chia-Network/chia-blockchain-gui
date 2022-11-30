@@ -154,7 +154,7 @@ export default function AppState(props: Props) {
   }
 
   if ((backendVersion && version) && (versionDialog === true)) {
-    const guiVersion = version.replace('-','.');
+    const guiVersion = version.replace('-','');
     if (backendVersion !== guiVersion) {
       return (
         <LayoutHero>
