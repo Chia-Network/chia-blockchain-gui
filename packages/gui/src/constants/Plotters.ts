@@ -2,7 +2,7 @@ import { PlotterOptions, PlotterDefaults } from 'types/Plotter';
 
 import PlotterName from './PlotterName';
 
-export const bladebitOptions: PlotterOptions = {
+export const bladebitRamOptions: PlotterOptions = {
   kSizes: [32],
   haveNumBuckets: false,
   haveMadmaxNumBucketsPhase3: false,
@@ -12,23 +12,24 @@ export const bladebitOptions: PlotterOptions = {
   haveBladebitDisableNUMA: true,
   haveBladebitNoCpuAffinity: true,
   haveBladebitOutputDir: true,
-  haveBladebit2Cache: false,
-  haveBladebit2F1Threads: false,
-  haveBladebit2FpThreads: false,
-  haveBladebit2CThreads: false,
-  haveBladebit2P2Threads: false,
-  haveBladebit2P3Threads: false,
-  haveBladebit2Alternate: false,
-  haveBladebit2NoT1Direct: false,
-  haveBladebit2NoT2Direct: false,
+  haveBladebitDiskCache: false,
+  haveBladebitDiskF1Threads: false,
+  haveBladebitDiskFpThreads: false,
+  haveBladebitDiskCThreads: false,
+  haveBladebitDiskP2Threads: false,
+  haveBladebitDiskP3Threads: false,
+  haveBladebitDiskAlternate: false,
+  haveBladebitDiskNoT1Direct: false,
+  haveBladebitDiskNoT2Direct: false,
   canDisableBitfieldPlotting: false,
   canPlotInParallel: false,
   canDelayParallelPlots: false,
   canSetBufferSize: false,
 };
 
-export const bladebitDefaults: PlotterDefaults = {
-  plotterName: PlotterName.BLADEBIT,
+export const bladebitRamDefaults: PlotterDefaults = {
+  plotterName: PlotterName.BLADEBIT_RAM,
+  plotType: 'ramplot',
   plotSize: 32,
   numThreads: 0,
   numBuckets: undefined,
@@ -39,21 +40,21 @@ export const bladebitDefaults: PlotterDefaults = {
   bladebitWarmStart: false,
   bladebitDisableNUMA: false,
   bladebitNoCpuAffinity: false,
-  bladebit2Cache: undefined,
-  bladebit2F1Threads: undefined,
-  bladebit2FpThreads: undefined,
-  bladebit2CThreads: undefined,
-  bladebit2P2Threads: undefined,
-  bladebit2P3Threads: undefined,
-  bladebit2Alternate: undefined,
-  bladebit2NoT1Direct: undefined,
-  bladebit2NoT2Direct: undefined,
+  bladebitDiskCache: undefined,
+  bladebitDiskF1Threads: undefined,
+  bladebitDiskFpThreads: undefined,
+  bladebitDiskCThreads: undefined,
+  bladebitDiskP2Threads: undefined,
+  bladebitDiskP3Threads: undefined,
+  bladebitDiskAlternate: undefined,
+  bladebitDiskNoT1Direct: undefined,
+  bladebitDiskNoT2Direct: undefined,
   disableBitfieldPlotting: undefined,
   parallel: false,
   delay: 0,
 };
 
-export const bladebit2Options: PlotterOptions = {
+export const bladebitDiskOptions: PlotterOptions = {
   kSizes: [32],
   haveNumBuckets: true,
   haveMadmaxNumBucketsPhase3: false,
@@ -63,23 +64,24 @@ export const bladebit2Options: PlotterOptions = {
   haveBladebitNoCpuAffinity: true,
   haveBladebitDisableNUMA: true,
   haveBladebitOutputDir: false,
-  haveBladebit2Cache: true,
-  haveBladebit2F1Threads: true,
-  haveBladebit2FpThreads: true,
-  haveBladebit2CThreads: true,
-  haveBladebit2P2Threads: true,
-  haveBladebit2P3Threads: true,
-  haveBladebit2Alternate: true,
-  haveBladebit2NoT1Direct: true,
-  haveBladebit2NoT2Direct: true,
+  haveBladebitDiskCache: true,
+  haveBladebitDiskF1Threads: true,
+  haveBladebitDiskFpThreads: true,
+  haveBladebitDiskCThreads: true,
+  haveBladebitDiskP2Threads: true,
+  haveBladebitDiskP3Threads: true,
+  haveBladebitDiskAlternate: true,
+  haveBladebitDiskNoT1Direct: true,
+  haveBladebitDiskNoT2Direct: true,
   canDisableBitfieldPlotting: false,
   canPlotInParallel: false,
   canDelayParallelPlots: false,
   canSetBufferSize: false,
 };
 
-export const bladebit2Defaults: PlotterDefaults = {
-  plotterName: PlotterName.BLADEBIT2,
+export const bladebitDiskDefaults: PlotterDefaults = {
+  plotterName: PlotterName.BLADEBIT_DISK,
+  plotType: 'diskplot',
   plotSize: 32,
   numThreads: 0,
   numBuckets: 256,
@@ -90,15 +92,15 @@ export const bladebit2Defaults: PlotterDefaults = {
   bladebitWarmStart: false,
   bladebitDisableNUMA: false,
   bladebitNoCpuAffinity: false,
-  bladebit2Cache: undefined,
-  bladebit2F1Threads: undefined,
-  bladebit2FpThreads: undefined,
-  bladebit2CThreads: undefined,
-  bladebit2P2Threads: undefined,
-  bladebit2P3Threads: undefined,
-  bladebit2Alternate: undefined,
-  bladebit2NoT1Direct: undefined,
-  bladebit2NoT2Direct: undefined,
+  bladebitDiskCache: undefined,
+  bladebitDiskF1Threads: undefined,
+  bladebitDiskFpThreads: undefined,
+  bladebitDiskCThreads: undefined,
+  bladebitDiskP2Threads: undefined,
+  bladebitDiskP3Threads: undefined,
+  bladebitDiskAlternate: undefined,
+  bladebitDiskNoT1Direct: undefined,
+  bladebitDiskNoT2Direct: undefined,
   disableBitfieldPlotting: undefined,
   parallel: false,
   delay: 0,
@@ -114,15 +116,15 @@ export const chiaposOptions: PlotterOptions = {
   haveBladebitDisableNUMA: false,
   haveBladebitNoCpuAffinity: false,
   haveBladebitOutputDir: false,
-  haveBladebit2Cache: false,
-  haveBladebit2F1Threads: false,
-  haveBladebit2FpThreads: false,
-  haveBladebit2CThreads: false,
-  haveBladebit2P2Threads: false,
-  haveBladebit2P3Threads: false,
-  haveBladebit2Alternate: false,
-  haveBladebit2NoT1Direct: false,
-  haveBladebit2NoT2Direct: false,
+  haveBladebitDiskCache: false,
+  haveBladebitDiskF1Threads: false,
+  haveBladebitDiskFpThreads: false,
+  haveBladebitDiskCThreads: false,
+  haveBladebitDiskP2Threads: false,
+  haveBladebitDiskP3Threads: false,
+  haveBladebitDiskAlternate: false,
+  haveBladebitDiskNoT1Direct: false,
+  haveBladebitDiskNoT2Direct: false,
   canDisableBitfieldPlotting: true,
   canPlotInParallel: true,
   canDelayParallelPlots: true,
@@ -141,15 +143,15 @@ export const chiaposDefaults: PlotterDefaults = {
   bladebitWarmStart: undefined,
   bladebitDisableNUMA: undefined,
   bladebitNoCpuAffinity: undefined,
-  bladebit2Cache: undefined,
-  bladebit2F1Threads: undefined,
-  bladebit2FpThreads: undefined,
-  bladebit2CThreads: undefined,
-  bladebit2P2Threads: undefined,
-  bladebit2P3Threads: undefined,
-  bladebit2Alternate: undefined,
-  bladebit2NoT1Direct: undefined,
-  bladebit2NoT2Direct: undefined,
+  bladebitDiskCache: undefined,
+  bladebitDiskF1Threads: undefined,
+  bladebitDiskFpThreads: undefined,
+  bladebitDiskCThreads: undefined,
+  bladebitDiskP2Threads: undefined,
+  bladebitDiskP3Threads: undefined,
+  bladebitDiskAlternate: undefined,
+  bladebitDiskNoT1Direct: undefined,
+  bladebitDiskNoT2Direct: undefined,
   disableBitfieldPlotting: false,
   parallel: false,
   delay: 0,
@@ -165,15 +167,15 @@ export const madmaxOptions: PlotterOptions = {
   haveBladebitDisableNUMA: false,
   haveBladebitNoCpuAffinity: false,
   haveBladebitOutputDir: false,
-  haveBladebit2Cache: false,
-  haveBladebit2F1Threads: false,
-  haveBladebit2FpThreads: false,
-  haveBladebit2CThreads: false,
-  haveBladebit2P2Threads: false,
-  haveBladebit2P3Threads: false,
-  haveBladebit2Alternate: false,
-  haveBladebit2NoT1Direct: false,
-  haveBladebit2NoT2Direct: false,
+  haveBladebitDiskCache: false,
+  haveBladebitDiskF1Threads: false,
+  haveBladebitDiskFpThreads: false,
+  haveBladebitDiskCThreads: false,
+  haveBladebitDiskP2Threads: false,
+  haveBladebitDiskP3Threads: false,
+  haveBladebitDiskAlternate: false,
+  haveBladebitDiskNoT1Direct: false,
+  haveBladebitDiskNoT2Direct: false,
   canDisableBitfieldPlotting: false,
   canPlotInParallel: false,
   canDelayParallelPlots: false,
@@ -192,15 +194,15 @@ export const madmaxDefaults: PlotterDefaults = {
   bladebitWarmStart: undefined,
   bladebitDisableNUMA: undefined,
   bladebitNoCpuAffinity: undefined,
-  bladebit2Cache: undefined,
-  bladebit2F1Threads: undefined,
-  bladebit2FpThreads: undefined,
-  bladebit2CThreads: undefined,
-  bladebit2P2Threads: undefined,
-  bladebit2P3Threads: undefined,
-  bladebit2Alternate: undefined,
-  bladebit2NoT1Direct: undefined,
-  bladebit2NoT2Direct: undefined,
+  bladebitDiskCache: undefined,
+  bladebitDiskF1Threads: undefined,
+  bladebitDiskFpThreads: undefined,
+  bladebitDiskCThreads: undefined,
+  bladebitDiskP2Threads: undefined,
+  bladebitDiskP3Threads: undefined,
+  bladebitDiskAlternate: undefined,
+  bladebitDiskNoT1Direct: undefined,
+  bladebitDiskNoT2Direct: undefined,
   disableBitfieldPlotting: undefined,
   parallel: false,
   delay: 0,
@@ -208,10 +210,10 @@ export const madmaxDefaults: PlotterDefaults = {
 
 export const optionsForPlotter = (plotterName: PlotterName): PlotterOptions => {
   switch (plotterName) {
-    case PlotterName.BLADEBIT:
-      return bladebitOptions;
-    case PlotterName.BLADEBIT2:
-      return bladebit2Options;
+    case PlotterName.BLADEBIT_RAM:
+      return bladebitRamOptions;
+    case PlotterName.BLADEBIT_DISK:
+      return bladebitDiskOptions;
     case PlotterName.MADMAX:
       return madmaxOptions;
     case PlotterName.CHIAPOS: // fallthrough
@@ -222,10 +224,10 @@ export const optionsForPlotter = (plotterName: PlotterName): PlotterOptions => {
 
 export const defaultsForPlotter = (plotterName: PlotterName): PlotterDefaults => {
   switch (plotterName) {
-    case PlotterName.BLADEBIT:
-      return bladebitDefaults;
-    case PlotterName.BLADEBIT2:
-      return bladebit2Defaults;
+    case PlotterName.BLADEBIT_RAM:
+      return bladebitRamDefaults;
+    case PlotterName.BLADEBIT_DISK:
+      return bladebitDiskDefaults;
     case PlotterName.MADMAX:
       return madmaxDefaults;
     case PlotterName.CHIAPOS: // fallthrough

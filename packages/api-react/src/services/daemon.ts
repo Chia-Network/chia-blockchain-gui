@@ -262,17 +262,64 @@ export const daemonApi = apiWithTag.injectEndpoints({
             bladebitMemoryWarning,
           } = plotters[plotterName];
 
-          availablePlotters[plotterName] = {
-            displayName,
-            version,
-            options: optionsForPlotter(plotterName),
-            defaults: defaultsForPlotter(plotterName),
-            installInfo: {
-              installed,
-              canInstall,
-              bladebitMemoryWarning,
-            },
-          };
+          if(!plotterName.startsWith('bladebit')){
+            availablePlotters[plotterName] = {
+              displayName,
+              version,
+              options: optionsForPlotter(plotterName),
+              defaults: defaultsForPlotter(plotterName),
+              installInfo: {
+                installed,
+                canInstall,
+                bladebitMemoryWarning,
+              },
+            };
+            return;
+          }
+
+          // if (plotterName.startsWith('bladebit'))
+          const majorVersion = typeof version === 'string' ? +version.split('.')[0] : 0;
+          if(majorVersion > 1){
+            const bbDisk = 'bladebit_disk';
+            availablePlotters[bbDisk] = {
+              displayName,
+              version: `${version} (Disk plot)`,
+              options: optionsForPlotter(bbDisk),
+              defaults: defaultsForPlotter(bbDisk),
+              installInfo: {
+                installed,
+                canInstall,
+                bladebitMemoryWarning,
+              },
+            };
+
+            const bbRam = 'bladebit_ram';
+            availablePlotters[bbRam] = {
+              displayName,
+              version: `${version} (RAM plot)`,
+              options: optionsForPlotter(bbRam),
+              defaults: defaultsForPlotter(bbRam),
+              installInfo: {
+                installed,
+                canInstall,
+                bladebitMemoryWarning,
+              },
+            };
+          }
+          else{
+            const bbRam = 'bladebit_ram';
+            availablePlotters[bbRam] = {
+              displayName,
+              version: `${version} (RAM plot)`,
+              options: optionsForPlotter(bbRam),
+              defaults: defaultsForPlotter(bbRam),
+              installInfo: {
+                installed: false,
+                canInstall: false,
+                bladebitMemoryWarning,
+              },
+            };
+          }
         });
 
         return availablePlotters;
@@ -299,15 +346,15 @@ export const daemonApi = apiWithTag.injectEndpoints({
         bladebitDisableNUMA,
         bladebitWarmStart,
         bladebitNoCpuAffinity,
-        bladebit2Cache,
-        bladebit2F1Threads,
-        bladebit2FpThreads,
-        bladebit2CThreads,
-        bladebit2P2Threads,
-        bladebit2P3Threads,
-        bladebit2Alternate,
-        bladebit2NoT1Direct,
-        bladebit2NoT2Direct,
+        bladebitDiskCache,
+        bladebitDiskF1Threads,
+        bladebitDiskFpThreads,
+        bladebitDiskCThreads,
+        bladebitDiskP2Threads,
+        bladebitDiskP3Threads,
+        bladebitDiskAlternate,
+        bladebitDiskNoT1Direct,
+        bladebitDiskNoT2Direct,
         c,
         delay,
         disableBitfieldPlotting,
@@ -326,6 +373,7 @@ export const daemonApi = apiWithTag.injectEndpoints({
         plotCount,
         plotSize,
         plotterName,
+        plotType,
         poolPublicKey,
         queue,
         workspaceLocation,
@@ -353,21 +401,22 @@ export const daemonApi = apiWithTag.injectEndpoints({
           farmerPublicKey,
           poolPublicKey,
           c,
-          bladebitDisableNUMA,
-          bladebitWarmStart,
           madmaxNumBucketsPhase3,
           madmaxTempToggle,
           madmaxThreadMultiplier,
+          plotType,
+          bladebitDisableNUMA,
+          bladebitWarmStart,
           bladebitNoCpuAffinity,
-          bladebit2Cache,
-          bladebit2F1Threads,
-          bladebit2FpThreads,
-          bladebit2CThreads,
-          bladebit2P2Threads,
-          bladebit2P3Threads,
-          bladebit2Alternate,
-          bladebit2NoT1Direct,
-          bladebit2NoT2Direct,
+          bladebitDiskCache,
+          bladebitDiskF1Threads,
+          bladebitDiskFpThreads,
+          bladebitDiskCThreads,
+          bladebitDiskP2Threads,
+          bladebitDiskP3Threads,
+          bladebitDiskAlternate,
+          bladebitDiskNoT1Direct,
+          bladebitDiskNoT2Direct,
         ],
       }),
       transformResponse: (response: any) => response?.success,
