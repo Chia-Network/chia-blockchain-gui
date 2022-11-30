@@ -1,5 +1,4 @@
 import { type WalletType } from '@chia/api';
-import type BigNumber from 'bignumber.js';
 
 type OfferRowData = {
   amount: string;

@@ -4,7 +4,6 @@ import { Back, Flex, LayoutDashboardSub, Loading, useOpenDialog } from '@chia/co
 import { Trans } from '@lingui/macro';
 import { MoreVert } from '@mui/icons-material';
 import { Box, Grid, Typography, IconButton, Button } from '@mui/material';
-import { IpcRenderer } from 'electron';
 import React, { useMemo, useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
@@ -13,7 +12,7 @@ import isURL from 'validator/lib/isURL';
 import useFetchNFTs from '../../../hooks/useFetchNFTs';
 import useNFTMetadata from '../../../hooks/useNFTMetadata';
 import { launcherIdFromNFTId } from '../../../util/nfts';
-import { isImage } from '../../../util/utils.js';
+import { isImage } from '../../../util/utils';
 import NFTContextualActions, { NFTContextualActionTypes } from '../NFTContextualActions';
 import NFTDetails from '../NFTDetails';
 import NFTPreview from '../NFTPreview';

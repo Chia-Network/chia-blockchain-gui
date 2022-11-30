@@ -1,10 +1,4 @@
 import crypto from 'crypto';
-import fs from 'fs';
-import path from 'path';
-import url from 'url';
-
-import { initialize } from '@electron/remote/main';
-import axios from 'axios';
 import {
   app,
   dialog,
@@ -17,9 +11,14 @@ import {
   nativeImage,
   protocol,
 } from 'electron';
+import fs from 'fs';
+import path from 'path';
+import url from 'url';
+
+import { initialize } from '@electron/remote/main';
+import axios from 'axios';
 import windowStateKeeper from 'electron-window-state';
 import React from 'react';
-
 // import os from 'os';
 // import installExtension, { REDUX_DEVTOOLS, REACT_DEVELOPER_TOOLS } from 'electron-devtools-installer';
 import ReactDOMServer from 'react-dom/server';
@@ -56,8 +55,6 @@ if (!fs.existsSync(thumbCacheFolder)) {
 }
 
 let cacheLimitSize: number = 1024;
-
-const validatingProgress = {};
 
 // Set the userData directory to its location within CHIA_ROOT/gui
 setUserDataDir();
@@ -130,7 +127,7 @@ if (!handleSquirrelEvent()) {
       app.quit();
       return false;
     }
-    app.on('second-instance', (event, commandLine, workingDirectory) => {
+    app.on('second-instance', () => {
       // Someone tried to run a second instance, we should focus our window.
       if (mainWindow) {
         if (mainWindow.isMinimized()) {
@@ -159,7 +156,7 @@ if (!handleSquirrelEvent()) {
 
   // if any of these checks return false, don't do any other initialization since the app is quitting
   if (ensureSingleInstance() && ensureCorrectEnvironment()) {
-    const exitPyProc = (e) => {};
+    const exitPyProc = () => {};
 
     app.on('will-quit', exitPyProc);
 
@@ -624,7 +621,7 @@ if (!handleSquirrelEvent()) {
           mainWindowState.unmanage(mainWindow);
           mainWindow.setBounds({ height: 500, width: 500 });
           mainWindow.center();
-          ipcMain.on('daemon-exited', (event, args) => {
+          ipcMain.on('daemon-exited', () => {
             mainWindow.close();
 
             openedWindows.forEach((win) => win.close());
@@ -725,15 +722,6 @@ if (!handleSquirrelEvent()) {
       i18n.activate(locale);
       app.applicationMenu = createMenu();
     });
-  }
-
-  function validatingInProgress(uri: string, action: string) {
-    if (action === 'stop') {
-      delete validatingProgress[uri];
-    }
-    if (action === 'start') {
-      validatingProgress[uri] = true;
-    }
   }
 
   const getMenuTemplate = () => {

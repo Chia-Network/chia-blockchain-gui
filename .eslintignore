@@ -7,3 +7,5 @@ build
 packages/*/test/data_fixtures
 packages/wallet/*
 locales
+rollup.config.js
+webpack.**

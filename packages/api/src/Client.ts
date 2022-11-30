@@ -307,13 +307,10 @@ export default class Client extends EventEmitter {
     });
   };
 
-  private handleError = async (error: any) => {
+  private handleError = async () => {
     if (this.connectedPromiseResponse) {
       await sleep(1000);
       this.connect(true);
-
-      // this.connectedPromiseResponse.reject(error);
-      // this.connectedPromiseResponse = null;
     }
   };
 

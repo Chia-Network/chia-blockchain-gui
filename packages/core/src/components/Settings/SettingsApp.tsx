@@ -1,3 +1,5 @@
+import { type Shell } from 'electron';
+
 import { Farming } from '@chia/icons';
 import { Trans } from '@lingui/macro';
 import {
@@ -6,7 +8,6 @@ import {
   AccountBalanceWallet as AccountBalanceWalletIcon,
 } from '@mui/icons-material';
 import { ButtonGroup } from '@mui/material';
-import { type Shell } from 'electron';
 import React, { type ReactNode } from 'react';
 
 import Mode from '../../constants/Mode';

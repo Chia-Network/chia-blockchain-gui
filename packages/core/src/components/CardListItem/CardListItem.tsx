@@ -1,5 +1,5 @@
 import { Box, Card, CardContent, CardActionArea } from '@mui/material';
-import { styled } from '@mui/system';
+import { styled } from '@mui/material/styles';
 import React, { type ReactNode } from 'react';
 
 import useColorModeValue from '../../utils/useColorModeValue';

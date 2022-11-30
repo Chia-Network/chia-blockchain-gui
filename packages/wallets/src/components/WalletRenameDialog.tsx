@@ -1,7 +1,7 @@
 import { AlertDialog, ButtonLoading, DialogActions, Flex, Form, TextField, useOpenDialog } from '@chia/core';
 import { Trans } from '@lingui/macro';
 import { Button, Dialog, DialogTitle, DialogContent } from '@mui/material';
-import React, { useState } from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
 
 type WalletRenameDialogFormData = {

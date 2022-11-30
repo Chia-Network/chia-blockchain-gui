@@ -3,17 +3,11 @@ import { useCurrencyCode, Suspender } from '@chia/core';
 import React from 'react';
 
 import useUnconfirmedPlotNFTs from '../../../hooks/useUnconfirmedPlotNFTs';
-import PlotAddConfig from '../../../types/PlotAdd';
 import PlotAddForm from './PlotAddForm';
-
-type FormData = PlotAddConfig & {
-  p2SingletonPuzzleHash?: string;
-  createNFT?: boolean;
-};
 
 export default function PlotAdd() {
   const currencyCode = useCurrencyCode();
-  const { isLoading: isLoadingUnconfirmedPlotNFTs, add: addUnconfirmedPlotNFT } = useUnconfirmedPlotNFTs();
+  const { isLoading: isLoadingUnconfirmedPlotNFTs } = useUnconfirmedPlotNFTs();
   const { data: fingerprint, isLoading: isLoadingFingerprint } = useGetLoggedInFingerprintQuery();
   const { data: plotters, isLoading: isLoadingPlotters } = useGetPlottersQuery();
 

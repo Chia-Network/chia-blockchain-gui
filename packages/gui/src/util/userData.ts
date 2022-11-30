@@ -1,7 +1,6 @@
+import { app } from 'electron';
 import fs from 'fs';
 import path from 'path';
-
-import { app } from 'electron';
 
 import { getConfigRootDir } from './loadConfig';
 
