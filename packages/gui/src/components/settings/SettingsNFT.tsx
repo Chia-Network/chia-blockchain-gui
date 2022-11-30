@@ -104,7 +104,6 @@ export default function SettingsGeneral() {
               control={<Switch checked={hideObjectionableContent} onChange={handleChangeHideObjectionableContent} />}
               label={<Trans>Hide objectionable content</Trans>}
             />
-            <Box sx={{ m: 2 }} />
 
             <FormControlLabel
               control={<Switch checked={nftImageFittingMode === 'contain'} onChange={handleScalePreviewImages} />}
