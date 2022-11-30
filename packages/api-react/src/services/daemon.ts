@@ -422,6 +422,13 @@ export const daemonApi = apiWithTag.injectEndpoints({
       transformResponse: (response: any) => response?.success,
       // providesTags: (_result, _err, { service }) => [{ type: 'ServiceRunning', id: service }],
     }),
+    getVersion: build.query<string, {}>({
+      query: () => ({
+        command: 'getVersion',
+        service: Daemon,
+      }),
+      transformResponse: (response: any) => response?.version,
+    }),
   }),
 });
 
@@ -436,6 +443,7 @@ export const {
   useRemoveKeyringPassphraseMutation,
   useMigrateKeyringMutation,
   useUnlockKeyringMutation,
+  useGetVersionQuery,
 
   useGetPlottersQuery,
   useStopPlottingMutation,

@@ -226,4 +226,8 @@ export default class Daemon extends Service {
   onKeyringStatusChanged(callback: (data: any, message: Message) => void, processData?: (data: any) => any) {
     return this.onStateChanged('keyring_status_changed', callback, processData);
   }
+
+  getVersion() {
+    return this.command('get_version');
+  }
 }

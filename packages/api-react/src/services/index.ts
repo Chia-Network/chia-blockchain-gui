@@ -28,6 +28,7 @@ export const {
   useRemoveKeyringPassphraseMutation,
   useMigrateKeyringMutation,
   useUnlockKeyringMutation,
+  useGetVersionQuery,
 
   useGetPlottersQuery,
   useStopPlottingMutation,
