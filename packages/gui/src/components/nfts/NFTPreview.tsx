@@ -30,6 +30,7 @@ import VideoBlobIcon from '../../assets/img/video-blob.svg';
 import VideoSmallIcon from '../../assets/img/video-small.svg';
 import VideoPngIcon from '../../assets/img/video.png';
 import VideoPngDarkIcon from '../../assets/img/video_dark.png';
+import useNFTImageFittingMode from '../../hooks/useNFTImageFittingMode';
 import useVerifyHash from '../../hooks/useVerifyHash';
 import { isImage, parseExtensionFromUrl } from '../../util/utils.js';
 
@@ -224,12 +225,13 @@ export type NFTPreviewProps = {
 // NFTPreview function
 //= ========================================================================//
 export default function NFTPreview(props: NFTPreviewProps) {
+  const [nftImageFittingMode] = useNFTImageFittingMode();
   const {
     nft,
     nft: { dataUris },
     height = '300px',
     width = '100%',
-    fit = 'cover',
+    fit = nftImageFittingMode,
     background: Background = Fragment,
     isPreview = false,
     isCompact = false,
