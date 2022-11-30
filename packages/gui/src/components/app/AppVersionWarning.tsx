@@ -22,7 +22,7 @@ export interface DialogProps {
 export interface WarningProps {
   backV: string;
   guiV: string;
-  setVersionDialog: (value: string) => void;
+  setVersionDialog: (value: boolean) => void;
 }
 
 function WarningDialog(props: DialogProps) {
