@@ -1,4 +1,4 @@
-import useLocalStorage from './useLocalStorage';
+import usePrefs from './usePrefs';
 
 export default function useFingerprintSettings<Type>(
   fingerprint: number | undefined,
@@ -6,7 +6,7 @@ export default function useFingerprintSettings<Type>(
   defaultValue?: Type
 ): [Type | undefined, (value: Type) => void] {
   type LocalStorageType = Record<string, Record<string, any> | undefined>;
-  const [fingerprintSettings, setFingerprintSettings] = useLocalStorage<LocalStorageType>('fingerprintSettings', {});
+  const [fingerprintSettings, setFingerprintSettings] = usePrefs<LocalStorageType>('fingerprintSettings', {});
 
   if (fingerprint === undefined) {
     return [

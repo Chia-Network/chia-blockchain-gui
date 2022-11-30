@@ -1,5 +1,5 @@
 import { WalletType } from '@chia/api';
-import { useCreateOfferForIdsMutation } from '@chia/api-react';
+import { useCreateOfferForIdsMutation, usePrefs } from '@chia/api-react';
 import {
   Back,
   Button,
@@ -14,7 +14,6 @@ import {
 } from '@chia/core';
 import { Trans, t } from '@lingui/macro';
 import { Grid } from '@mui/material';
-import { useLocalStorage } from '@rehooks/local-storage';
 import BigNumber from 'bignumber.js';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -72,7 +71,7 @@ function OfferEditor(props: OfferEditorProps) {
   });
   const openDialog = useOpenDialog();
   const errorDialog = useShowError();
-  const [suppressShareOnCreate] = useLocalStorage<boolean>(OfferLocalStorageKeys.SUPPRESS_SHARE_ON_CREATE);
+  const [suppressShareOnCreate] = usePrefs<boolean>(OfferLocalStorageKeys.SUPPRESS_SHARE_ON_CREATE);
   const [createOfferForIds] = useCreateOfferForIdsMutation();
   const [processing, setIsProcessing] = useState<boolean>(false);
 
