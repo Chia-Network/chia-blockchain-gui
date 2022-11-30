@@ -1,5 +1,4 @@
 import { useGetFeeEstimateQuery } from '@chia/api-react';
-import { Fee, Flex, mojoToChiaLocaleString, useCurrencyCode, useLocale } from '@chia/core';
 import { Trans } from '@lingui/macro';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import {
@@ -16,7 +15,12 @@ import React, { useState, useEffect } from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 
 import Mode from '../../constants/Mode';
+import useCurrencyCode from '../../hooks/useCurrencyCode';
+import useLocale from '../../hooks/useLocale';
 import useMode from '../../hooks/useMode';
+import mojoToChiaLocaleString from '../../utils/mojoToChiaLocaleString';
+import Fee from '../Fee';
+import Flex from '../Flex';
 
 type Props = SelectProps & {
   hideError?: boolean;

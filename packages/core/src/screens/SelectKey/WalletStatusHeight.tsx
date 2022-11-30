@@ -1,6 +1,7 @@
 import { useGetHeightInfoQuery } from '@chia/api-react';
-import { FormatLargeNumber } from '@chia/core';
 import React from 'react';
+
+import FormatLargeNumber from '../../components/FormatLargeNumber';
 
 export default function WalletStatusHeight() {
   const { data: height, isLoading } = useGetHeightInfoQuery(
