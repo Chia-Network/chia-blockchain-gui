@@ -47,15 +47,16 @@ function WarningDialog(props: DialogProps) {
           <Flex flexDirection="column" gap={1}>
             <Typography variant="body2" color="textSecondary">
               <Trans>
-              The backend and the GUI are using two different versions.
-              <br />
-              <br />
-              Backend version: {backV}
-              <br />
-              GUI version: {guiV}
-              <br />
-              <br />
-              Due to this, the GUI may not behave properly.
+                The Chia application and its services are using different versions. Some functionality may not be behave
+                properly as a result.
+                <br />
+                <br />
+                Chia services version: {backV}
+                <br />
+                Chia application version: {guiV}
+                <br />
+                <br />
+                It is recommended that you quit the Chia application and stop all Chia services.
               </Trans>
             </Typography>
           </Flex>
