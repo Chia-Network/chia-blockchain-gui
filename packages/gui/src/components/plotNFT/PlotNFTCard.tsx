@@ -98,7 +98,7 @@ export default function PlotNFTCard(props: Props) {
   }
 
   async function handleDeleteUnconfirmedTransactions() {
-    const deleteConfirmed = await openDialog(
+    await openDialog(
       <ConfirmDialog
         title={<Trans>Confirmation</Trans>}
         confirmTitle={<Trans>Delete</Trans>}

@@ -1,6 +1,5 @@
 import type { PlotNFT } from '@chia/api';
 import { useGetPlotNFTsQuery } from '@chia/api-react';
-import { useEffect } from 'react';
 import PlotNFTExternal from 'types/PlotNFTExternal';
 
 import useUnconfirmedPlotNFTs from './useUnconfirmedPlotNFTs';
@@ -19,7 +18,7 @@ export default function usePlotNFTs(): {
     pollingInterval: 10000,
   });
 
-  const { unconfirmed, isLoading: isLoadingUnconfirmedPlotNFTs } = useUnconfirmedPlotNFTs();
+  const { isLoading: isLoadingUnconfirmedPlotNFTs } = useUnconfirmedPlotNFTs();
   const isLoading = isLoadingGetPlotNFTs || isLoadingUnconfirmedPlotNFTs;
 
   /*

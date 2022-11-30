@@ -7,7 +7,7 @@ interface NumberFormatCustomProps {
   name: string;
 }
 
-function NumberFormatCustom(props: NumberFormatCustomProps, ref: any) {
+function NumberFormatCustom(props: NumberFormatCustomProps) {
   const { inputRef, onChange, ...other } = props;
 
   function handleChange(values: Object) {

@@ -30,7 +30,7 @@ export default function PlotNFTAdd(props: Props) {
       initialTargetState: { state },
     } = data;
 
-    const { transaction, ...rest } = await createNewPoolWallet({
+    const { transaction } = await createNewPoolWallet({
       initialTargetState,
       fee,
     }).unwrap();

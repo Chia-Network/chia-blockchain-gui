@@ -4,7 +4,7 @@ import { Trans } from '@lingui/macro';
 import { Add, KeyboardArrowDown, KeyboardArrowUp } from '@mui/icons-material';
 import SearchIcon from '@mui/icons-material/Search';
 import { Box, IconButton, InputBase } from '@mui/material';
-import React, { type ReactNode, useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
 import { useToggle } from 'react-use';
 import styled from 'styled-components';
@@ -111,11 +111,7 @@ const StyledExpandButtonContainer = styled(Box)`
   top: ${({ theme }) => theme.spacing(0)};
 `;
 
-export type WalletsManageTokensProps = {
-  children?: ReactNode;
-};
-
-export default function WalletsManageTokens(props: WalletsManageTokensProps) {
+export default function WalletsManageTokens() {
   const [expanded, toggle] = useToggle(false);
   const t = useTrans();
   const navigate = useNavigate();

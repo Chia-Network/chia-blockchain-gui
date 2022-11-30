@@ -5,7 +5,6 @@ import { useGetOfferSummaryMutation } from '@chia/api-react';
 import { Back, Card, Dropzone, Flex, useOpenDialog, useSerializedNavigationState, useShowError } from '@chia/core';
 import { Trans } from '@lingui/macro';
 import { Button, Grid, Typography } from '@mui/material';
-import { IpcRenderer } from 'electron';
 import React from 'react';
 import { useHotkeys } from 'react-hotkeys-hook';
 

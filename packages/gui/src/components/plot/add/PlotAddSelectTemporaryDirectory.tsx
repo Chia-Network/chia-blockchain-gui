@@ -79,10 +79,10 @@ export default function PlotAddSelectTemporaryDirectory(props: Props) {
           {hasWorkspaceLocation ? <Trans>Selected</Trans> : <Trans>Browse</Trans>}
         </ButtonSelected>
       </Flex>
-      {op.haveBladebit2NoT1Direct && (
+      {op.haveBladebitDiskNoT1Direct && (
         <FormControl variant="filled" fullWidth>
           <FormControlLabel
-            control={<Checkbox name="bladebit2NoT1Direct" />}
+            control={<Checkbox name="bladebitDiskNoT1Direct" />}
             label={
               <>
                 <Trans>The folder is on a RAM Disk</Trans>{' '}
@@ -128,10 +128,10 @@ export default function PlotAddSelectTemporaryDirectory(props: Props) {
             <Trans>If none selected, then it will default to the temporary directory.</Trans>
           </Typography>
         </Flex>
-        {op.haveBladebit2NoT2Direct && (
+        {op.haveBladebitDiskNoT2Direct && (
           <FormControl variant="filled" fullWidth>
             <FormControlLabel
-              control={<Checkbox name="bladebit2NoT2Direct" />}
+              control={<Checkbox name="bladebitDiskNoT2Direct" />}
               label={
                 <>
                   <Trans>The folder is on a RAM Disk</Trans>{' '}

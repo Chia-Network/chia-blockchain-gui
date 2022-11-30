@@ -1331,17 +1331,11 @@ export const walletApi = apiWithTag.injectEndpoints({
 
               // make transaction
               // console.log('sending transaction');
-              const {
-                data: sendTransactionData,
-                error,
-                ...rest
-              } = await fetchWithBQ({
+              const { data: sendTransactionData, error } = await fetchWithBQ({
                 command: 'spend',
                 service: CAT,
                 args: [walletId, address, amount, fee, memos],
               });
-
-              // console.log('response', sendTransactionData, error, rest);
 
               if (error) {
                 reject(error);
@@ -2041,12 +2035,12 @@ export const walletApi = apiWithTag.injectEndpoints({
         fee: string;
       }
     >({
-      query: ({ walletId, nftLauncherId, nftCoinId, did, fee }) => ({
+      query: ({ walletId, nftCoinId, did, fee }) => ({
         command: 'setNftDid',
         service: NFT,
         args: [walletId, nftCoinId, did, fee],
       }),
-      invalidatesTags: (result, _error, { nftLauncherId }) =>
+      invalidatesTags: (result, _error) =>
         result
           ? [
               { type: 'NFTInfo', id: 'LIST' },
@@ -2065,12 +2059,12 @@ export const walletApi = apiWithTag.injectEndpoints({
         inTransaction: boolean;
       }
     >({
-      query: ({ walletId, nftLauncherId, nftCoinId, inTransaction }) => ({
+      query: ({ walletId, nftCoinId, inTransaction }) => ({
         command: 'setNftStatus',
         service: NFT,
         args: [walletId, nftCoinId, inTransaction],
       }),
-      invalidatesTags: (result, _error, { nftLauncherId }) => (result ? [{ type: 'NFTInfo', id: 'LIST' }] : []),
+      invalidatesTags: (result, _error) => (result ? [{ type: 'NFTInfo', id: 'LIST' }] : []),
     }),
 
     receiveNFT: build.mutation<
@@ -2086,7 +2080,7 @@ export const walletApi = apiWithTag.injectEndpoints({
         service: NFT,
         args: [walletId, spendBundle, fee],
       }),
-      invalidatesTags: (result, _error, { walletId }) => (result ? [{ type: 'NFTInfo', id: 'LIST' }] : []),
+      invalidatesTags: (result, _error) => (result ? [{ type: 'NFTInfo', id: 'LIST' }] : []),
     }),
   }),
 });

@@ -26,7 +26,7 @@ const shuffledEnglish = shuffle(english);
 const test = new Array(24).fill('').map((item, index) => shuffledEnglish[index].word);
 */
 
-const emptyMnemonic = Array.from(Array(24).keys()).map((i) => ({
+const emptyMnemonic = Array.from(Array(24).keys()).map(() => ({
   word: '',
 }));
 

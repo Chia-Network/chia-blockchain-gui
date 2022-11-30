@@ -1,13 +1,13 @@
 import { PlotterOptions } from '../@types/Plotter';
 import PlotterName from '../constants/PlotterName';
-import { bladebitOptions, bladebit2Options, madmaxOptions, chiaposOptions } from '../constants/Plotters';
+import { bladebitRamOptions, bladebitDiskOptions, madmaxOptions, chiaposOptions } from '../constants/Plotters';
 
 export default function optionsForPlotter(plotterName: PlotterName): PlotterOptions {
   switch (plotterName) {
-    case PlotterName.BLADEBIT:
-      return bladebitOptions;
-    case PlotterName.BLADEBIT2:
-      return bladebit2Options;
+    case PlotterName.BLADEBIT_RAM:
+      return bladebitRamOptions;
+    case PlotterName.BLADEBIT_DISK:
+      return bladebitDiskOptions;
     case PlotterName.MADMAX:
       return madmaxOptions;
     case PlotterName.CHIAPOS: // fallthrough

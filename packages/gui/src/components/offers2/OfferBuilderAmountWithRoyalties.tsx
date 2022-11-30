@@ -1,7 +1,8 @@
-import React from 'react';
-import { Trans } from '@lingui/macro';
 import { Flex, TooltipIcon } from '@chia/core';
+import { Trans } from '@lingui/macro';
 import { Typography } from '@mui/material';
+import React from 'react';
+
 import OfferBuilderRoyaltyPayouts from './OfferBuilderRoyaltyPayouts';
 
 export type OfferBuilderAmountWithRoyaltiesProps = {
@@ -10,9 +11,7 @@ export type OfferBuilderAmountWithRoyaltiesProps = {
   royaltyPayments: Record<string, any>[];
 };
 
-export default function OfferBuilderAmountWithRoyalties(
-  props: OfferBuilderAmountWithRoyaltiesProps,
-) {
+export default function OfferBuilderAmountWithRoyalties(props: OfferBuilderAmountWithRoyaltiesProps) {
   const { originalAmount, totalAmount, royaltyPayments } = props;
 
   return (

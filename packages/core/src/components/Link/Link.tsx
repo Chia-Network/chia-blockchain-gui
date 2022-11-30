@@ -17,7 +17,7 @@ type Props = BaseLinkProps &
 
 const StyledBaseLink = styled(({ fullWidth, noWrap, ...rest }) => <BaseLink {...rest} />)`
   width: ${({ fullWidth }) => (fullWidth ? '100%' : 'inherit')};
-  ${({ noWrap }) => `white-space: nowrap;`}
+  ${() => `white-space: nowrap;`}
   cursor: pointer;
 `;
 
