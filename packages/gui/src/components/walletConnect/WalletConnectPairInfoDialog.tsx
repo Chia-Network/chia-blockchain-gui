@@ -94,7 +94,7 @@ export default function WalletConnectPairInfoDialog(props: WalletConnectPairInfo
 
                 <Flex flexDirection="column" gap={1}>
                   <Typography>
-                    <Trans>Paired Wallets</Trans>
+                    <Trans>Paired Keys</Trans>
                   </Typography>
                   <Flex flexDirection="column" gap={1}>
                     {selectedKeys.length ? (
@@ -110,7 +110,7 @@ export default function WalletConnectPairInfoDialog(props: WalletConnectPairInfo
                       ))
                     ) : (
                       <Typography variant="body2" color="textSecondary">
-                        <Trans>No Paired Wallets</Trans>
+                        <Trans>No Paired Keys</Trans>
                       </Typography>
                     )}
                   </Flex>

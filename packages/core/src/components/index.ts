@@ -25,7 +25,7 @@ export { default as EstimatedFee } from './EstimatedFee';
 export { default as Heading } from './Heading';
 export { default as ConfirmDialog } from './ConfirmDialog';
 export { default as DarkModeToggle } from './DarkModeToggle';
-export { default as Dropdown, DropdownActions, DropdownIconButton } from './Dropdown';
+export { default as Dropdown, DropdownActions, DropdownBase, DropdownIconButton } from './Dropdown';
 export { default as ErrorBoundary } from './ErrorBoundary';
 export { default as Flex } from './Flex';
 export { default as Fonts } from './Fonts';

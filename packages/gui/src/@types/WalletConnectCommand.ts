@@ -1,5 +1,6 @@
-import { ReactNode } from 'react';
 import { type ServiceName } from '@chia/api';
+import { ReactNode } from 'react';
+
 import type WalletConnectCommandParam from './WalletConnectCommandParam';
 
 type WalletConnectCommand = {
@@ -7,6 +8,7 @@ type WalletConnectCommand = {
   label: ReactNode;
   service: ServiceName;
   allFingerprints?: boolean;
+  waitForSync?: boolean;
   params?: WalletConnectCommandParam[];
 };
 

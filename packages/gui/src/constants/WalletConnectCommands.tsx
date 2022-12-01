@@ -48,6 +48,7 @@ const walletConnectCommands: WalletConnectCommand[] = [
         label: <Trans>Wallet Id</Trans>,
         isOptional: true,
         defaultValue: 1,
+        hide: true,
       },
     ],
   },
@@ -62,6 +63,7 @@ const walletConnectCommands: WalletConnectCommand[] = [
         label: <Trans>Wallet Id</Trans>,
         isOptional: true,
         defaultValue: 1,
+        hide: true,
       },
     ],
   },
@@ -70,6 +72,7 @@ const walletConnectCommands: WalletConnectCommand[] = [
     command: 'sendTransaction',
     label: <Trans>Send Transaction</Trans>,
     service: ServiceName.WALLET,
+    waitForSync: true,
     params: [
       {
         name: 'amount',
@@ -93,12 +96,14 @@ const walletConnectCommands: WalletConnectCommand[] = [
         label: <Trans>Wallet ID</Trans>,
         type: 'number',
         defaultValue: 1,
+        hide: true,
       },
       {
         name: 'waitForConfirmation',
         label: <Trans>Wait for Confirmation</Trans>,
         type: 'boolean',
         isOptional: true,
+        hide: true,
       },
     ],
   },
@@ -147,6 +152,7 @@ const walletConnectCommands: WalletConnectCommand[] = [
         isOptional: true,
         defaultValue: 1,
         type: 'number',
+        hide: true,
       },
       {
         name: 'newAddress',
@@ -154,6 +160,7 @@ const walletConnectCommands: WalletConnectCommand[] = [
         isOptional: true,
         defaultValue: true,
         type: 'boolean',
+        hide: true,
       },
     ],
   },
@@ -367,6 +374,7 @@ const walletConnectCommands: WalletConnectCommand[] = [
     command: 'spendCAT',
     label: <Trans>Spend CAT</Trans>,
     service: ServiceName.WALLET,
+    waitForSync: true,
     params: [
       {
         name: 'walletId',
@@ -400,6 +408,7 @@ const walletConnectCommands: WalletConnectCommand[] = [
         label: <Trans>Wait for Confirmation</Trans>,
         type: 'boolean',
         isOptional: true,
+        hide: true,
       },
     ],
   },

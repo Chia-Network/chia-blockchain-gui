@@ -1,18 +1,19 @@
-import React from 'react';
-import { Trans } from '@lingui/macro';
 import { SettingsLabel, Flex, TooltipIcon } from '@chia/core';
+import { Trans } from '@lingui/macro';
 import { FormGroup, FormControlLabel, Grid, Switch } from '@mui/material';
-import useWalletConnectPrefs from '../../hooks/useWalletConnectPrefs';
+import React from 'react';
+
+import useWalletConnectPreferences from '../../hooks/useWalletConnectPreferences';
 
 export default function SettingsIntegration() {
   const {
     enabled,
     setEnabled,
-    autoConfirm,
-    setAutoConfirm,
+    // autoConfirm,
+    // setAutoConfirm,
     allowConfirmationFingerprintChange,
     setAllowConfirmationFingerprintChange,
-  } = useWalletConnectPrefs();
+  } = useWalletConnectPreferences();
 
   return (
     <Grid container>
@@ -23,8 +24,8 @@ export default function SettingsIntegration() {
               <Trans>Wallet Connect</Trans>
               <TooltipIcon>
                 <Trans>
-                  WalletConnect is an open protocol to communicate securely
-                  between wallets and decentralized applications (dApps).
+                  WalletConnect is an open protocol to communicate securely between wallets and decentralized
+                  applications (dApps).
                 </Trans>
               </TooltipIcon>
             </Flex>
@@ -48,21 +49,13 @@ export default function SettingsIntegration() {
                 control={
                   <Switch
                     checked={allowConfirmationFingerprintChange}
-                    onChange={() =>
-                      setAllowConfirmationFingerprintChange(
-                        !allowConfirmationFingerprintChange,
-                      )
-                    }
+                    onChange={() => setAllowConfirmationFingerprintChange(!allowConfirmationFingerprintChange)}
                     inputProps={{
                       'data-testid': 'Enable_Wallet_Connect_Change_fingerprint',
                     }}
                   />
                 }
-                label={
-                  <Trans>
-                    Enable change fingerprint in the confirmation dialog
-                  </Trans>
-                }
+                label={<Trans>Enable change fingerprint in the confirmation dialog</Trans>}
               />
             </FormGroup>
 

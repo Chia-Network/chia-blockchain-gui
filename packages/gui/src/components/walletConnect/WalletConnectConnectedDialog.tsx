@@ -21,7 +21,7 @@ export default function WalletConnectConnectedDialog(props: WalletConnectAddConn
   const { pairs, disconnect, isLoading: isLoadingWallet } = useWalletConnectContext();
   const { data: keys, isLoading: isLoadingPublicKeys } = useGetKeysQuery();
 
-  const pair = useMemo(() => pairs.getPair(topic), [topic, pairs]);
+  const pair = pairs.getPair(topic);
 
   const selectedKeys = useMemo(() => {
     if (!pair) {

@@ -1,15 +1,21 @@
-import React, { useRef, useCallback, ReactNode } from 'react';
+import api, {
+  store,
+  useGetLoggedInFingerprintQuery,
+  useLogInAndSkipImportMutation,
+  useGetKeysQuery,
+} from '@chia/api-react';
+import { useOpenDialog, ConfirmDialog, Flex } from '@chia/core';
 import { Trans } from '@lingui/macro';
-import BigNumber from 'bignumber.js';
-import debug from 'debug';
-import { useOpenDialog, ConfirmDialog, Flex, FormatLargeNumber } from '@chia/core';
 import { Divider, Typography } from '@mui/material';
-import api, { store, useGetLoggedInFingerprintQuery, useLogInAndSkipImportMutation } from '@chia/api-react';
-import useWalletConnectPrefs from './useWalletConnectPrefs';
-import useWalletConnectPairs from './useWalletConnectPairs';
+import debug from 'debug';
+import React, { ReactNode } from 'react';
+
 import WalletConnectMetadata from '../components/walletConnect/WalletConnectMetadata';
-import prepareWalletConnectCommand from '../util/prepareWalletConnectCommand';
 import walletConnectCommands from '../constants/WalletConnectCommands';
+import prepareWalletConnectCommand from '../util/prepareWalletConnectCommand';
+import waitForWalletSync from '../util/waitForWalletSync';
+import useWalletConnectPairs from './useWalletConnectPairs';
+import useWalletConnectPreferences from './useWalletConnectPreferences';
 
 const log = debug('chia-gui:walletConnectCommand');
 
@@ -27,19 +33,12 @@ export const STANDARD_ERROR_MAP = {
 export default function useWalletConnectCommand() {
   const openDialog = useOpenDialog();
   const [logIn] = useLogInAndSkipImportMutation();
-  const { data: currentFingerprint, isLoading } = useGetLoggedInFingerprintQuery();
-  const { autoConfirm, allowConfirmationFingerprintChange } = useWalletConnectPrefs();
+  const { data: currentFingerprint, isLoading: isLoadingLoggedInFingerprint } = useGetLoggedInFingerprintQuery();
   const { getPairBySession } = useWalletConnectPairs();
+  const { data: keys, isLoading: isLoadingPublicKeys } = useGetKeysQuery();
+  const { allowConfirmationFingerprintChange } = useWalletConnectPreferences();
 
-  const state = useRef({
-    currentFingerprint,
-    autoConfirm,
-    allowConfirmationFingerprintChange,
-  });
-
-  state.current.currentFingerprint = currentFingerprint;
-  state.current.autoConfirm = autoConfirm;
-  state.current.allowConfirmationFingerprintChange = allowConfirmationFingerprintChange;
+  const isLoading = isLoadingLoggedInFingerprint || isLoadingPublicKeys;
 
   async function confirm(props: {
     topic: string;
@@ -49,8 +48,10 @@ export default function useWalletConnectCommand() {
       value: ReactNode;
       displayComponent?: (value: ReactNode) => ReactNode;
     }[];
+    fingerprint: number;
+    isDifferentFingerprint: boolean;
   }) {
-    const { topic, message, params = [] } = props;
+    const { topic, message, params = [], fingerprint, isDifferentFingerprint } = props;
 
     /*
     const { autoConfirm } = state.current;
@@ -58,6 +59,8 @@ export default function useWalletConnectCommand() {
       return true;
     }
     */
+
+    const key = keys?.find((key) => key.fingerprint === fingerprint);
 
     const pair = getPairBySession(topic);
     if (!pair) {
@@ -76,18 +79,32 @@ export default function useWalletConnectCommand() {
 
           {params.length > 0 && (
             <Flex flexDirection="column" gap={2}>
-              {params.map(({ label, value, displayComponent }, index) => {
-                return (
-                  <Flex flexDirection="column" key={index}>
-                    <Typography color="textPrimary">{label}</Typography>
-                    <Typography color="textSecondary">
-                      {displayComponent ? displayComponent(value) : value?.toString() ?? <Trans>Not Available</Trans>}
-                    </Typography>
-                  </Flex>
-                );
-              })}
+              {params.map(({ label, value, displayComponent }, index) => (
+                <Flex flexDirection="column" key={index}>
+                  <Typography color="textPrimary">{label}</Typography>
+                  <Typography color="textSecondary">
+                    {displayComponent ? displayComponent(value) : value?.toString() ?? <Trans>Not Available</Trans>}
+                  </Typography>
+                </Flex>
+              ))}
             </Flex>
           )}
+
+          <Divider />
+          <Flex flexDirection="column" gap={1}>
+            <Typography variant="body1" color="textPrimary">
+              <Trans>Key</Trans>
+            </Typography>
+            {!!key && (
+              <Typography variant="body1" color={isDifferentFingerprint ? 'warning' : 'textSecondary'}>
+                {key.label ?? <Trans>Wallet</Trans>}
+              </Typography>
+            )}
+
+            <Typography variant="body2" color={isDifferentFingerprint ? 'warning' : 'textSecondary'}>
+              {fingerprint}
+            </Typography>
+          </Flex>
 
           <Divider />
 
@@ -104,21 +121,19 @@ export default function useWalletConnectCommand() {
     return isConfirmed;
   }
 
-  const handleProcess = useCallback(async (topic, requestedCommand: string, requestedParams: any) => {
+  async function handleProcess(topic: string, requestedCommand: string, requestedParams: any) {
     const { command, params, definition } = prepareWalletConnectCommand(
       walletConnectCommands,
       requestedCommand,
       requestedParams
     );
 
-    const { allowConfirmationFingerprintChange } = state.current;
-
     // validate fingerprint for current command
-    const { allFingerprints } = definition;
+    const { allFingerprints, waitForSync } = definition;
     const { fingerprint } = requestedParams;
-    const isSameFingerprint = fingerprint === state.current.currentFingerprint;
+    const isDifferentFingerprint = fingerprint !== currentFingerprint;
     if (!allFingerprints) {
-      if (!isSameFingerprint && !allowConfirmationFingerprintChange) {
+      if (isDifferentFingerprint && !allowConfirmationFingerprintChange) {
         throw new Error(`Invalid fingerprint ${fingerprint}`);
       }
     }
@@ -131,9 +146,9 @@ export default function useWalletConnectCommand() {
 
     const { params: definitionParams = [] } = definition;
     definitionParams.forEach((param) => {
-      const { name, label, displayComponent } = param;
+      const { name, label, displayComponent, hide } = param;
 
-      if (name in params) {
+      if (name in params && !hide) {
         confirmParams.push({
           label: label ?? name,
           value: params[name],
@@ -147,7 +162,7 @@ export default function useWalletConnectCommand() {
     const confirmed = await confirm({
       topic,
       message:
-        !allFingerprints && !isSameFingerprint ? (
+        !allFingerprints && isDifferentFingerprint ? (
           <Trans>
             Do you want to log in to {fingerprint} and execute command {command}?
           </Trans>
@@ -155,6 +170,8 @@ export default function useWalletConnectCommand() {
           <Trans>Do you want to execute command {command}?</Trans>
         ),
       params: confirmParams,
+      fingerprint,
+      isDifferentFingerprint,
     });
 
     if (!confirmed) {
@@ -162,18 +179,32 @@ export default function useWalletConnectCommand() {
     }
 
     // auto login before execute command
-    if (!isSameFingerprint && allowConfirmationFingerprintChange) {
+    if (isDifferentFingerprint && allowConfirmationFingerprintChange) {
       log('Changing fingerprint', fingerprint);
       await logIn({
         fingerprint,
       }).unwrap();
+
+      // wait for sync
+      if (waitForSync) {
+        log('Waiting for sync');
+        // wait for wallet synchronisation
+        await waitForWalletSync();
+      }
     }
 
-    log('Executing', command, params);
+    // validate current fingerprint again
+    const currentLoggedInFingerptintPromise = store.dispatch(api.endpoints.getLoggedInFingerprint.initiate());
+    const { data: currentFingerprintAfterWait } = await currentLoggedInFingerptintPromise;
+    currentLoggedInFingerptintPromise.unsubscribe();
+
+    if (currentFingerprintAfterWait !== fingerprint) {
+      throw new Error(`Fingerprint changed during execution`);
+    }
 
     // execute command
+    log('Executing', command, params);
     const resultPromise = store.dispatch(api.endpoints[command].initiate(params));
-
     const result = await resultPromise;
     log('Result', result);
 
@@ -181,7 +212,7 @@ export default function useWalletConnectCommand() {
     resultPromise.unsubscribe();
 
     return result;
-  }, []);
+  }
 
   return {
     isLoading,

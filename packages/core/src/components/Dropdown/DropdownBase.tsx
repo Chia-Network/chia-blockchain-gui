@@ -49,7 +49,7 @@ export type DropdownBaseProps = {
   }) => [ReactNode, ReactNode];
 };
 
-export default function DropdownActions(props: DropdownBaseProps) {
+export default function DropdownBase(props: DropdownBaseProps) {
   const { children } = props;
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);

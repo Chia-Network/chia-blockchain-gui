@@ -3,86 +3,96 @@ import { useCallback, useRef, useMemo } from 'react';
 
 import type Pair from '../@types/Pair';
 
-export default function useWalletConnectPairs() {
-  const [_pairs, setPairs] = useLocalStorage<Pair[]>('walletConnectPairs', []);
-  const pairsRef = useRef<Pair[]>(_pairs);
+type PairCallback = (pairs: Pair[]) => Pair[];
 
-  pairsRef.current = _pairs;
+export type Pairs = {
+  addPair: (pair: Pair) => void;
+  getPair: (topic: string) => Pair | undefined;
+  updatePair: (topic: string, pair: Partial<Pair> | ((pair: Pair) => Pair)) => void;
+  removePair: (topic: string) => void;
+  hasPair: (topic: string) => boolean;
 
-  const updatePair = useCallback(
-    (topic: string, data: Partial<Omit<Pair, 'topic'>> | ((pair: Pair) => Pair)) => {
-      setPairs((pairs: Pair[]) => {
-        const index = pairs.findIndex((item) => item.topic === topic);
-        if (index === -1) {
-          return pairs;
-        }
+  get: () => Pair[];
 
-        const oldPair = pairs[index];
-        const newPairing = typeof data === 'function' ? data(oldPair) : { ...oldPair, ...data };
-        const newPairings = [...pairs];
-        newPairings[index] = newPairing;
+  getPairBySession: (sessionTopic: string) => Pair | undefined;
+  removePairBySession: (sessionTopic: string) => void;
 
-        return newPairings;
-      });
-    },
-    [setPairs]
-  );
+  removeSessionFromPair: (sessionTopic: string) => void;
+};
 
-  const removePair = useCallback(
-    (topic: string) => {
-      setPairs((pairs: Pair[]) => pairs.filter((item) => item.topic !== topic));
-    },
-    [setPairs]
-  );
+export default function useWalletConnectPairs(): Pairs {
+  const localStorageData = useLocalStorage<Pair[]>('walletConnectPairs', []);
 
-  const removePairBySession = useCallback(
-    (sessionTopic: string) => {
-      setPairs((pairs: Pair[]) =>
-        pairs.filter((item) => !item.sessions.find((session) => session.topic === sessionTopic))
-      );
-    },
-    [setPairs]
-  );
+  const pairsRef = useRef<[Pair[], (pairs: Pair[] | PairCallback) => void]>(localStorageData);
+  pairsRef.current = localStorageData;
+
+  const updatePair = useCallback((topic: string, data: Partial<Omit<Pair, 'topic'>> | ((pair: Pair) => Pair)) => {
+    const [, setPairs] = pairsRef.current;
+    setPairs((pairs: Pair[]) => {
+      const index = pairs.findIndex((item) => item.topic === topic);
+      if (index === -1) {
+        return pairs;
+      }
+
+      const oldPair = pairs[index];
+      const newPairing = typeof data === 'function' ? data(oldPair) : { ...oldPair, ...data };
+      const newPairings = [...pairs];
+      newPairings[index] = newPairing;
+
+      return newPairings;
+    });
+  }, []);
+
+  const removePair = useCallback((topic: string) => {
+    const [, setPairs] = pairsRef.current;
+    setPairs((pairs: Pair[]) => pairs.filter((item) => item.topic !== topic));
+  }, []);
+
+  const removePairBySession = useCallback((sessionTopic: string) => {
+    const [, setPairs] = pairsRef.current;
+    setPairs((pairs: Pair[]) =>
+      pairs.filter((item) => !item.sessions.find((session) => session.topic === sessionTopic))
+    );
+  }, []);
 
   const getPair = useCallback((topic: string) => {
-    const pairs = pairsRef.current;
+    const [pairs] = pairsRef.current;
     return pairs.find((item) => item.topic === topic);
   }, []);
 
+  const hasPair = useCallback((topic: string) => {
+    const [pairs] = pairsRef.current;
+    return !!pairs.find((item) => item.topic === topic);
+  }, []);
+
   const getPairBySession = useCallback((sessionTopic: string) => {
-    const pairs = pairsRef.current;
+    const [pairs] = pairsRef.current;
     return pairs.find((item) => item.sessions?.find((session) => session.topic === sessionTopic));
   }, []);
 
-  const addPair = useCallback(
-    (pair: Pair) => {
-      setPairs((pairs: Pair[]) => {
-        const index = pairs.findIndex((item) => item.topic === pair.topic);
-        if (index !== -1) {
-          throw new Error('Pair already exists');
-        }
+  const addPair = useCallback((pair: Pair) => {
+    const [, setPairs] = pairsRef.current;
+    setPairs((pairs: Pair[]) => {
+      const index = pairs.findIndex((item) => item.topic === pair.topic);
+      if (index !== -1) {
+        throw new Error('Pair already exists');
+      }
 
-        return [...pairs, pair];
-      });
-    },
-    [setPairs]
-  );
+      return [...pairs, pair];
+    });
+  }, []);
 
-  const removeSessionFromPair = useCallback(
-    (sessionTopic: string) => {
-      setPairs((pairs: Pair[]) =>
-        pairs.map((pair) => ({
-          ...pair,
-          sessions: pair.sessions.filter((item) => item.topic !== sessionTopic),
-        }))
-      );
-    },
-    [setPairs]
-  );
+  const removeSessionFromPair = useCallback((sessionTopic: string) => {
+    const [, setPairs] = pairsRef.current;
+    setPairs((pairs: Pair[]) =>
+      pairs.map((pair) => ({
+        ...pair,
+        sessions: pair.sessions.filter((item) => item.topic !== sessionTopic),
+      }))
+    );
+  }, []);
 
-  const hasPair = useCallback((topic: string) => !!getPair(topic), [getPair]);
-
-  const get = useCallback(() => pairsRef.current, []);
+  const get = useCallback(() => pairsRef.current[0], []);
 
   const pairs = useMemo(
     () => ({

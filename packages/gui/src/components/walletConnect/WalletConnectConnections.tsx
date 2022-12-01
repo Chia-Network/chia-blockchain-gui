@@ -1,15 +1,16 @@
-import React from 'react';
-import { Trans } from '@lingui/macro';
 import { Flex, Loading, useOpenDialog, More, MenuItem, useShowError } from '@chia/core';
+import { Trans } from '@lingui/macro';
 import {
   CheckCircleTwoTone as CheckCircleTwoToneIcon,
   Delete as DeleteIcon,
   Edit as EditIcon,
 } from '@mui/icons-material';
 import { Button, ListItemIcon, Typography, Divider } from '@mui/material';
-import WalletConnectAddConnectionDialog from './WalletConnectAddConnectionDialog';
+import React from 'react';
+
 import useWalletConnectContext from '../../hooks/useWalletConnectContext';
-import useWalletConnectPrefs from '../../hooks/useWalletConnectPrefs';
+import useWalletConnectPreferences from '../../hooks/useWalletConnectPreferences';
+import WalletConnectAddConnectionDialog from './WalletConnectAddConnectionDialog';
 import WalletConnectConnectedDialog from './WalletConnectConnectedDialog';
 import WalletConnectPairInfoDialog from './WalletConnectPairInfoDialog';
 
@@ -21,10 +22,8 @@ export default function WalletConnectConnections(props: WalletConnectConnections
   const { onClose } = props;
   const openDialog = useOpenDialog();
   const showError = useShowError();
-  const { enabled, setEnabled } = useWalletConnectPrefs();
-  const { disconnect, pairs, isLoading: isLoadingWalletConnect } = useWalletConnectContext();
-
-  const isLoading = isLoadingWalletConnect;
+  const { enabled, setEnabled } = useWalletConnectPreferences();
+  const { disconnect, pairs, isLoading } = useWalletConnectContext();
 
   async function handleAddConnection() {
     onClose?.();

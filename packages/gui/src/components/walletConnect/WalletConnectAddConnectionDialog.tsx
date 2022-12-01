@@ -12,7 +12,7 @@ import {
 } from '@chia/core';
 import { Trans, t } from '@lingui/macro';
 import CloseIcon from '@mui/icons-material/Close';
-import { Box, Divider, Dialog, DialogContent, DialogTitle, IconButton, Typography } from '@mui/material';
+import { Box, Divider, Dialog, DialogContent, DialogTitle, IconButton, Typography, Checkbox } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useForm, useWatch } from 'react-hook-form';
 
@@ -30,7 +30,7 @@ type FormData = {
 };
 
 export type WalletConnectAddConnectionDialogProps = {
-  onClose?: () => void;
+  onClose?: (topic?: string) => void;
   open?: boolean;
 };
 
@@ -154,12 +154,17 @@ export default function WalletConnectAddConnectionDialog(props: WalletConnectAdd
                       selected={selectedFingerprints.includes(key.fingerprint)}
                       onSelect={() => handleToggleSelectFingerprint(key.fingerprint)}
                     >
-                      <Typography variant="body1" noWrap>
-                        {key.label || <Trans>Wallet {index + 1}</Trans>}
-                      </Typography>
-                      <Typography variant="body2" color="textSecondary">
-                        {key.fingerprint}
-                      </Typography>
+                      <Flex flexDirection="row" gap={2} alignItems="center" justifyContent="space-between">
+                        <Flex flexDirection="column" gap={1} minWidth={0}>
+                          <Typography variant="body1" noWrap>
+                            {key.label || <Trans>Wallet {index + 1}</Trans>}
+                          </Typography>
+                          <Typography variant="body2" color="textSecondary">
+                            {key.fingerprint}
+                          </Typography>
+                        </Flex>
+                        <Checkbox checked={selectedFingerprints.includes(key.fingerprint)} disableRipple />
+                      </Flex>
                     </CardListItem>
                   ))}
                 </Flex>
