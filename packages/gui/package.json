@@ -4,7 +4,6 @@
   "description": "GUI for Chia Blockchain",
   "license": "Apache-2.0",
   "productName": "Chia Blockchain",
-  "private": true,
   "homepage": "./",
   "main": "build/electron/main.js",
   "engines": {
