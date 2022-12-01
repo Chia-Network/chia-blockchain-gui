@@ -1,4 +1,14 @@
-import { Flex, CardKeyValue, CopyToClipboard, Tooltip, Truncate, truncateValue, Link } from '@chia/core';
+import { toBech32m } from '@chia/api';
+import {
+  Flex,
+  CardKeyValue,
+  CopyToClipboard,
+  Tooltip,
+  Truncate,
+  truncateValue,
+  Link,
+  useCurrencyCode,
+} from '@chia/core';
 import { Trans } from '@lingui/macro';
 import { Box, Typography } from '@mui/material';
 import React, { useMemo } from 'react';
@@ -30,6 +40,7 @@ export default function NFTDetails(props: NFTDetailsProps) {
     didName: minterDIDName,
     isLoading: isLoadingMinterDID,
   } = useNFTMinterDID(nft.$nftId);
+  const currencyCode = useCurrencyCode();
 
   const details = useMemo(() => {
     if (!nft) {
@@ -57,7 +68,30 @@ export default function NFTDetails(props: NFTDetailsProps) {
           </Truncate>
         ),
       },
+      {
+        key: 'nftCoinId',
+        label: <Trans>NFT Coin ID</Trans>,
+        value: (
+          <Truncate ValueProps={{ variant: 'body2' }} tooltip copyToClipboard>
+            {stripHexPrefix(nft.nftCoinId)}
+          </Truncate>
+        ),
+      },
     ].filter(Boolean);
+
+    if (nft.p2Address) {
+      const p2Address = toBech32m(nft.p2Address, currencyCode);
+
+      rows.push({
+        key: 'p2Address',
+        label: <Trans>Owner Address</Trans>,
+        value: (
+          <Truncate ValueProps={{ variant: 'body2' }} tooltip copyToClipboard>
+            {p2Address}
+          </Truncate>
+        ),
+      });
+    }
 
     let hexDIDId;
     let didId;
