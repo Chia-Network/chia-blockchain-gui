@@ -82,12 +82,13 @@ export default class Wallet extends Service {
     return this.command('get_farmed_amount');
   }
 
-  async sendTransaction(walletId: number, amount: string, fee: string, address: string) {
+  async sendTransaction(walletId: number, amount: string, fee: string, address: string, memos?: string[]) {
     return this.command('send_transaction', {
       walletId,
       amount,
       fee,
       address,
+      memos,
     });
   }
 
@@ -358,10 +359,7 @@ export default class Wallet extends Service {
     });
   }
 
-  onSyncChanged(
-    callback: (data: any, message: Message) => void,
-    processData?: (data: any) => any
-  ) {
+  onSyncChanged(callback: (data: any, message: Message) => void, processData?: (data: any) => any) {
     return this.onStateChanged('sync_changed', callback, processData);
   }
 
