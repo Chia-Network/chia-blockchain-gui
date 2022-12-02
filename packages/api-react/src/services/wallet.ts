@@ -402,6 +402,7 @@ export const walletApi = apiWithTag.injectEndpoints({
         amount: string;
         fee: string;
         address: string;
+        memos?: string[];
         waitForConfirmation?: boolean;
       }
     >({
@@ -420,7 +421,7 @@ export const walletApi = apiWithTag.injectEndpoints({
         }
 
         try {
-          const { walletId, amount, fee, address, waitForConfirmation } = args;
+          const { walletId, amount, fee, address, memos, waitForConfirmation } = args;
 
           return {
             data: await new Promise(async (resolve, reject) => {
@@ -489,7 +490,7 @@ export const walletApi = apiWithTag.injectEndpoints({
               const { data: sendTransactionData, error } = await fetchWithBQ({
                 command: 'sendTransaction',
                 service: Wallet,
-                args: [walletId, amount, fee, address],
+                args: [walletId, amount, fee, address, memos],
               });
 
               if (error) {
