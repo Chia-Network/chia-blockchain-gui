@@ -1,4 +1,6 @@
-import { store, api } from '@chia/api-react';
+import React, { ReactNode, useEffect, useState, Suspense } from 'react';
+import { Provider } from 'react-redux';
+import { Outlet } from 'react-router-dom';
 import {
   useDarkMode,
   sleep,
@@ -11,17 +13,15 @@ import {
   light,
   ErrorBoundary,
 } from '@chia/core';
-import { nativeTheme } from '@electron/remote';
-import { Trans } from '@lingui/macro';
 import { Typography } from '@mui/material';
-import isElectron from 'is-electron';
-import React, { ReactNode, useEffect, useState, Suspense } from 'react';
-import { Provider } from 'react-redux';
-import { Outlet } from 'react-router-dom';
-import WebSocket from 'ws';
-
+import { store, api } from '@chia/api-react';
+import { Trans } from '@lingui/macro';
 import { i18n, defaultLocale, locales } from '../../config/locales';
 import AppState from './AppState';
+import WebSocket from 'ws';
+import isElectron from 'is-electron';
+import { nativeTheme } from '@electron/remote';
+import WalletConnectProvider from '../walletConnect/WalletConnectProvider';
 
 async function waitForConfig() {
   while (true) {
@@ -75,18 +75,20 @@ export default function App(props: AppProps) {
         <ThemeProvider theme={theme} fonts global>
           <ErrorBoundary>
             <ModalDialogsProvider>
-              {isReady ? (
-                <Suspense fallback={<LayoutLoading />}>
-                  <AppState>{outlet ? <Outlet /> : children}</AppState>
-                </Suspense>
-              ) : (
-                <LayoutLoading>
-                  <Typography variant="body1">
-                    <Trans>Loading configuration</Trans>
-                  </Typography>
-                </LayoutLoading>
-              )}
-              <ModalDialogs />
+              <WalletConnectProvider projectId="1c7538f8cbfde0495071429752137ffe">
+                {isReady ? (
+                  <Suspense fallback={<LayoutLoading />}>
+                    <AppState>{outlet ? <Outlet /> : children}</AppState>
+                  </Suspense>
+                ) : (
+                  <LayoutLoading>
+                    <Typography variant="body1">
+                      <Trans>Loading configuration</Trans>
+                    </Typography>
+                  </LayoutLoading>
+                )}
+                <ModalDialogs />
+              </WalletConnectProvider>
             </ModalDialogsProvider>
           </ErrorBoundary>
         </ThemeProvider>

@@ -329,7 +329,39 @@ export default class Wallet extends Service {
     });
   }
 
-  onSyncChanged(callback: (data: any, message: Message) => void, processData?: (data: any) => any) {
+  async signMessageByAddress(
+    address: string,
+    message: string
+  ): Promise<{
+    success: boolean;
+    pubkey: string;
+    signature: string;
+  }> {
+    return this.command('sign_message_by_address', {
+      address,
+      message,
+    });
+  }
+
+  async signMessageById(
+    id: string,
+    message: string
+  ): Promise<{
+    success: boolean;
+    pubkey: string;
+    signature: string;
+    latestCoinId: string;
+  }> {
+    return this.command('sign_message_by_id', {
+      id,
+      message,
+    });
+  }
+
+  onSyncChanged(
+    callback: (data: any, message: Message) => void,
+    processData?: (data: any) => any
+  ) {
     return this.onStateChanged('sync_changed', callback, processData);
   }
 

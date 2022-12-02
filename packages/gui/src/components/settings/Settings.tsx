@@ -6,6 +6,7 @@ import { Routes, Route, matchPath, useLocation, useNavigate } from 'react-router
 
 import SettingsDataLayer from './SettingsDataLayer';
 import SettingsGeneral from './SettingsGeneral';
+import SettingsIntegration from './SettingsIntegration';
 import SettingsNFT from './SettingsNFT';
 import SettingsProfiles from './SettingsProfiles';
 
@@ -14,6 +15,7 @@ enum SettingsTab {
   PROFILES = 'profiles',
   NFT = 'nft',
   DATALAYER = 'datalayer',
+  INTEGRATION = 'integration',
 }
 
 const SettingsTabsPathMapping = {
@@ -21,6 +23,7 @@ const SettingsTabsPathMapping = {
   [SettingsTab.PROFILES]: '/dashboard/settings/profiles',
   [SettingsTab.NFT]: '/dashboard/settings/nft',
   [SettingsTab.DATALAYER]: '/dashboard/settings/datalayer',
+  [SettingsTab.INTEGRATION]: '/dashboard/settings/integration',
 };
 
 export default function Settings() {
@@ -56,28 +59,29 @@ export default function Settings() {
             <Tab
               value={SettingsTab.GENERAL}
               label={<Trans>General</Trans>}
-              style={{ width: '175px' }}
               data-testid="Settings-tab-general"
             />
             <Tab
               value={SettingsTab.PROFILES}
               label={<Trans>Profiles</Trans>}
-              style={{ width: '175px' }}
               data-testid="Settings-tab-profiles"
             />
 
             <Tab
               value={SettingsTab.NFT}
               label={<Trans>NFT</Trans>}
-              style={{ width: '175px' }}
               data-testid="Settings-tab-nft"
             />
 
             <Tab
               value={SettingsTab.DATALAYER}
               label={<Trans>DataLayer</Trans>}
-              style={{ width: '175px' }}
               data-testid="Settings-tab-datalayer"
+            />
+            <Tab
+              value={SettingsTab.INTEGRATION}
+              label={<Trans>Integration</Trans>}
+              data-testid="Settings-tab-integration"
             />
           </Tabs>
 
@@ -86,6 +90,7 @@ export default function Settings() {
             <Route path="nft" element={<SettingsNFT />} />
             <Route path="datalayer" element={<SettingsDataLayer />} />
             <Route path="general" element={<SettingsGeneral />} />
+            <Route path="integration" element={<SettingsIntegration />} />
           </Routes>
         </Flex>
       </Flex>
