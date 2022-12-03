@@ -531,17 +531,13 @@ if (!handleSquirrelEvent()) {
         }
       });
 
-      ipcMain.handle('readPrefs', async (_event) => {
-        return readPrefs();
-      });
+      ipcMain.handle('readPrefs', async (_event) => readPrefs());
 
       ipcMain.handle('savePrefs', async (_event, prefsObj) => {
         savePrefs(prefsObj);
       });
 
-      ipcMain.handle('migratePrefs', async (_event, prefsObj) => {
-        return migratePrefs(prefsObj);
-      });
+      ipcMain.handle('migratePrefs', async (_event, prefsObj) => migratePrefs(prefsObj));
 
       /* ======================================================================== */
 
@@ -650,25 +646,23 @@ if (!handleSquirrelEvent()) {
         callback({ path: filePath });
       });
       const prefs = readPrefs();
-      if(prefs['cacheLimitSize'] !== undefined){
-        try{
-          const prefs_cacheLimitSize = +prefs['cacheLimitSize'];
-          if(!isNaN(prefs_cacheLimitSize) && isFinite(prefs_cacheLimitSize) && prefs_cacheLimitSize > 0){
+      if (prefs.cacheLimitSize !== undefined) {
+        try {
+          const prefs_cacheLimitSize = +prefs.cacheLimitSize;
+          if (!isNaN(prefs_cacheLimitSize) && isFinite(prefs_cacheLimitSize) && prefs_cacheLimitSize > 0) {
             cacheLimitSize = prefs_cacheLimitSize;
           }
-        }
-        catch (e) {
+        } catch (e) {
           console.log(e);
         }
       }
-      if(prefs['cacheFolder'] !== undefined){
-        try{
-          const prefs_cacheFolder = prefs['cacheFolder'];
+      if (prefs.cacheFolder !== undefined) {
+        try {
+          const prefs_cacheFolder = prefs.cacheFolder;
           if (fs.existsSync(prefs_cacheFolder)) {
             thumbCacheFolder = prefs_cacheFolder;
           }
-        }
-        catch (e) {
+        } catch (e) {
           console.log(e);
         }
       }

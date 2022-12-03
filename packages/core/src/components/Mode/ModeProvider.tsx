@@ -1,5 +1,6 @@
-import React, { createContext, ReactNode, useState, useMemo, useCallback } from 'react';
 import { usePrefs } from '@chia-network/api-react';
+import React, { createContext, ReactNode, useState, useMemo, useCallback } from 'react';
+
 import type Mode from '../../constants/Mode';
 
 export const ModeContext = createContext<

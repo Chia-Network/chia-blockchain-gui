@@ -13,5 +13,7 @@ function Root() {
 
 const onInit = () => {
   ReactDOM.render(<Root />, document.querySelector('#root'));
-}
-initPrefs(onInit).catch((e: unknown) => { window.alert(e) });
+};
+initPrefs(onInit).catch((e: unknown) => {
+  window.alert(e);
+});

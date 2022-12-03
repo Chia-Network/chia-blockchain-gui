@@ -45,7 +45,7 @@ interface CommonDefaults {
 }
 
 interface BladeBitRamDefaults extends CommonDefaults {
-  plotType?: 'ramplot'|'diskplot';
+  plotType?: 'ramplot' | 'diskplot';
   bladebitWarmStart?: boolean;
   bladebitDisableNUMA?: boolean;
   bladebitNoCpuAffinity?: boolean;

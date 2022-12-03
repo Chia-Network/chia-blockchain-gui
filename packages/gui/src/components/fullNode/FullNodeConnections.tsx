@@ -2,14 +2,14 @@ import { Connection } from '@chia-network/api';
 import { useGetFullNodeConnectionsQuery } from '@chia-network/api-react';
 import { Card, FormatBytes, FormatLargeNumber, IconButton, Loading, Table, useOpenDialog } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
-import { Button, Tooltip } from '@mui/material';
 import { Delete as DeleteIcon } from '@mui/icons-material';
-import styled from 'styled-components';
-import FullNodeAddConnection from './FullNodeAddConnection';
-import FullNodeCloseConnection from './FullNodeCloseConnection';
+import { Button, Tooltip } from '@mui/material';
 import React from 'react';
+import styled from 'styled-components';
 
 import { service_connection_types } from '../../util/service_names';
+import FullNodeAddConnection from './FullNodeAddConnection';
+import FullNodeCloseConnection from './FullNodeCloseConnection';
 
 const StyledIconButton = styled(IconButton)`
   padding: 0.2rem;

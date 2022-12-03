@@ -1,10 +1,11 @@
 import BigNumber from 'bignumber.js';
+
 import type WalletConnectCommand from '../@types/WalletConnectCommand';
 
 export default function prepareWalletConnectCommand(
   commands: WalletConnectCommand[],
   command: string,
-  params: Record<string, any>,
+  params: Record<string, any>
 ) {
   // remove chia_ prefix from command
   const commandName = command.replace(/^chia_/, '');

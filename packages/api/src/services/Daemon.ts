@@ -190,7 +190,7 @@ export default class Daemon extends Service {
     // madmaxThreadMultiplier
     if (mm_K) args.K = mm_K;
     // 'ramplot' or 'diskplot'
-    if(plot_type) args.plot_type = plot_type;
+    if (plot_type) args.plot_type = plot_type;
     // bladebitDisableNUMA
     if (bb_disable_numa) args.m = bb_disable_numa;
     // bladebitWarmStart
