@@ -87,7 +87,7 @@ function OfferEditor(props: OfferEditorProps) {
 
       offer[assetWalletId] = debit ? mojoAmount.negated() : mojoAmount;
     } else {
-      console.log('missing asset wallet id');
+      console.error('missing asset wallet id');
     }
   }
 

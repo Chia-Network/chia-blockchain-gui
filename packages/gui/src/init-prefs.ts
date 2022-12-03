@@ -51,7 +51,6 @@ async function migrateGUIPrefsFromLocalStorage() {
     return;
   }
 
-  console.log('GUI Prefs Migration has been dispatched');
   await w.ipcRenderer.invoke('migratePrefs', prefs);
 
   Object.keys(prefs).forEach((key) => {

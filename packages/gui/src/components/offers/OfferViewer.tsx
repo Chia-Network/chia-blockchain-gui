@@ -212,7 +212,7 @@ function OfferDetails(props: OfferDetailsProps) {
     const { fee } = formData;
 
     if (!offerData) {
-      console.log('No offer data to accept');
+      console.error('No offer data to accept');
       return;
     }
 

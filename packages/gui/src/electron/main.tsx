@@ -653,7 +653,7 @@ if (!handleSquirrelEvent()) {
             cacheLimitSize = prefs_cacheLimitSize;
           }
         } catch (e) {
-          console.log(e);
+          console.error(e);
         }
       }
       if (prefs.cacheFolder !== undefined) {
@@ -663,7 +663,7 @@ if (!handleSquirrelEvent()) {
             thumbCacheFolder = prefs_cacheFolder;
           }
         } catch (e) {
-          console.log(e);
+          console.error(e);
         }
       }
     };
@@ -982,7 +982,6 @@ if (!handleSquirrelEvent()) {
    * Open the given external protocol URL in the desktop’s default manner.
    */
   const openExternal = (url) => {
-    // console.log(`openExternal: ${url}`)
     shell.openExternal(url);
   };
 }

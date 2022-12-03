@@ -515,7 +515,7 @@ export const walletApi = apiWithTag.injectEndpoints({
             }),
           };
         } catch (error: any) {
-          console.log('error trx', error);
+          console.error('error trx', error);
           return {
             error,
           };
@@ -1270,7 +1270,6 @@ export const walletApi = apiWithTag.injectEndpoints({
 
         function unsubscribe() {
           if (subscribeResponse) {
-            // console.log('Unsubscribing from tx_updates');
             subscribeResponse.data();
             subscribeResponse = undefined;
           }
@@ -1286,7 +1285,7 @@ export const walletApi = apiWithTag.injectEndpoints({
 
               function processUpdates() {
                 if (!transactionName) {
-                  console.log(`Transaction name is not defined`, updatedTransactions);
+                  console.warn(`Transaction name is not defined`, updatedTransactions);
                   return;
                 }
 
@@ -1295,13 +1294,11 @@ export const walletApi = apiWithTag.injectEndpoints({
                 );
 
                 if (transaction) {
-                  // console.log('we found transaction with all data hurai');
                   resolve({
                     transaction,
                     transactionId: transaction.name,
                   });
                 } else {
-                  // console.log('we do not have transaction in the list with data', updatedTransactions);
                 }
               }
 
@@ -1318,8 +1315,6 @@ export const walletApi = apiWithTag.injectEndpoints({
                           additionalData: { transaction },
                         } = data;
 
-                        // console.log('update received');
-
                         updatedTransactions.push(transaction);
                         processUpdates();
                       },
@@ -1331,7 +1326,7 @@ export const walletApi = apiWithTag.injectEndpoints({
               }
 
               // make transaction
-              // console.log('sending transaction');
+
               const { data: sendTransactionData, error } = await fetchWithBQ({
                 command: 'spend',
                 service: CAT,

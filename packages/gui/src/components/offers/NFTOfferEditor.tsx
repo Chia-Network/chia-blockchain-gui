@@ -609,8 +609,8 @@ export default function NFTOfferEditor(props: NFTOfferEditorProps) {
     const formData = validateFormData(unvalidatedFormData);
 
     if (!formData) {
-      console.log('Invalid NFT offer:');
-      console.log(unvalidatedFormData);
+      console.error('Invalid NFT offer:');
+      console.error(unvalidatedFormData);
       return;
     }
 

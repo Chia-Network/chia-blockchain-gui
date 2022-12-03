@@ -153,7 +153,7 @@ export default function OfferBuilderImport() {
         pasteParse(text);
       })
       .catch((err) => {
-        console.log('Error during paste from clipboard', err);
+        console.error('Error during paste from clipboard', err);
       });
   });
 
