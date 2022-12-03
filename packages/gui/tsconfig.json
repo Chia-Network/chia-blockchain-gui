@@ -3,9 +3,6 @@
     "baseUrl": "src",
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
-    "paths": {
-      "@chia-network/*": ["./components/*"]
-    },
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
