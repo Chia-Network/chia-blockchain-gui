@@ -1,7 +1,13 @@
 import { IpcRenderer } from 'electron';
 
 import { ConnectionState, ServiceHumanName, ServiceName, PassphrasePromptReason } from '@chia/api';
-import { useCloseMutation, useGetStateQuery, useGetKeyringStatusQuery, useServices, useGetVersionQuery } from '@chia/api-react';
+import {
+  useCloseMutation,
+  useGetStateQuery,
+  useGetKeyringStatusQuery,
+  useServices,
+  useGetVersionQuery,
+} from '@chia/api-react';
 import { Flex, LayoutHero, LayoutLoading, useMode, useIsSimulator, useAppVersion } from '@chia/core';
 import { Trans } from '@lingui/macro';
 import { Typography, Collapse } from '@mui/material';
@@ -12,10 +18,10 @@ import ModeServices, { SimulatorServices } from '../../constants/ModeServices';
 import useEnableDataLayerService from '../../hooks/useEnableDataLayerService';
 import useEnableFilePropagationServer from '../../hooks/useEnableFilePropagationServer';
 import AppAutoLogin from './AppAutoLogin';
-import AppVersionWarning from './AppVersionWarning';
 import AppKeyringMigrator from './AppKeyringMigrator';
 import AppPassPrompt from './AppPassPrompt';
 import AppSelectMode from './AppSelectMode';
+import AppVersionWarning from './AppVersionWarning';
 
 const ALL_SERVICES = [
   ServiceName.WALLET,
@@ -45,8 +51,7 @@ export default function AppState(props: Props) {
   const [isDataLayerEnabled] = useState(enableDataLayerService);
   const [isFilePropagationServerEnabled] = useState(enableFilePropagationServer);
   const [versionDialog, setVersionDialog] = useState<boolean>(true);
-  const { data: backendVersion, isLoading: isLoadingBackendVersion } =
-    useGetVersionQuery();
+  const { data: backendVersion, isLoading: isLoadingBackendVersion } = useGetVersionQuery();
   const { version, isLoadingGuiVersion } = useAppVersion();
 
   const runServices = useMemo<ServiceName[] | undefined>(() => {
@@ -154,16 +159,17 @@ export default function AppState(props: Props) {
     );
   }
 
-  if ((backendVersion && version) && (versionDialog === true)) {
-    const guiVersion = version.replace('-','');
-    if (backendVersion !== guiVersion) {
+  if (backendVersion && version && versionDialog === true) {
+    // backendVersion can be in the format of 1.6.1, 1.7.0b3, or 1.7.0b3.dev123
+    // version can be in the format of 1.6.1, 1.7.0b3, 1.7.0-b2.dev123, or 1.7.0b3-dev123
+
+    const backendVersionClean = backendVersion.replace(/[-.]/g, '');
+    const guiVersionClean = version.replace(/[-.]/g, '');
+
+    if (backendVersionClean !== guiVersionClean) {
       return (
         <LayoutHero>
-          <AppVersionWarning
-            backV={backendVersion}
-            guiV={guiVersion}
-            setVersionDialog={setVersionDialog}
-          />
+          <AppVersionWarning backV={backendVersion} guiV={version} setVersionDialog={setVersionDialog} />
         </LayoutHero>
       );
     }
