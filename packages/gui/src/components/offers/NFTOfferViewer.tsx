@@ -1,6 +1,6 @@
-import type { Wallet } from '@chia/api';
-import { OfferSummaryRecord, OfferTradeRecord } from '@chia/api';
-import { useCheckOfferValidityMutation, useGetNFTInfoQuery, useGetNFTWallets } from '@chia/api-react';
+import type { Wallet } from '@chia-network/api';
+import { OfferSummaryRecord, OfferTradeRecord } from '@chia-network/api';
+import { useCheckOfferValidityMutation, useGetNFTInfoQuery, useGetNFTWallets } from '@chia-network/api-react';
 import {
   Back,
   Button,
@@ -17,7 +17,7 @@ import {
   mojoToChia,
   useColorModeValue,
   useShowError,
-} from '@chia/core';
+} from '@chia-network/core';
 import { Plural, Trans, t } from '@lingui/macro';
 import { Warning as WarningIcon } from '@mui/icons-material';
 import { Box, Divider, Grid, Typography } from '@mui/material';

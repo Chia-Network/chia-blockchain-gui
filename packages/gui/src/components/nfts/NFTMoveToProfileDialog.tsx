@@ -1,6 +1,6 @@
-import { NFTInfo } from '@chia/api';
-import type { Wallet } from '@chia/api';
-import { useGetDIDsQuery, useGetNFTWallets, useSetNFTDIDMutation } from '@chia/api-react';
+import { NFTInfo } from '@chia-network/api';
+import type { Wallet } from '@chia-network/api';
+import { useGetDIDsQuery, useGetNFTWallets, useSetNFTDIDMutation } from '@chia-network/api-react';
 import {
   AlertDialog,
   Button,
@@ -18,7 +18,7 @@ import {
   truncateValue,
   useOpenDialog,
   useShowError,
-} from '@chia/core';
+} from '@chia-network/core';
 import { Trans, t } from '@lingui/macro';
 import { PermIdentity as PermIdentityIcon } from '@mui/icons-material';
 import {

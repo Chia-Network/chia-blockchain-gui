@@ -1,4 +1,4 @@
-import type { Plot } from '@chia/api';
+import type { Plot } from '@chia-network/api';
 
 export default function combineHarvesters(harvesters): {
   plots: Plot[];

@@ -1,4 +1,4 @@
-import { usePrefs } from '@chia/api-react';
+import { usePrefs } from '@chia-network/api-react';
 
 export type NFTImageFittingMode = 'contain' | 'cover' | 'fill';
 

@@ -1,4 +1,4 @@
-import { CAT, DID, Farmer, NFT, OfferTradeRecord, Pool, Wallet, WalletType, toBech32m } from '@chia/api';
+import { CAT, DID, Farmer, NFT, OfferTradeRecord, Pool, Wallet, WalletType, toBech32m } from '@chia-network/api';
 import type {
   CalculateRoyaltiesRequest,
   CalculateRoyaltiesResponse,
@@ -9,7 +9,7 @@ import type {
   Transaction,
   WalletBalance,
   WalletConnections,
-} from '@chia/api';
+} from '@chia-network/api';
 import BigNumber from 'bignumber.js';
 
 import api, { baseQuery } from '../api';

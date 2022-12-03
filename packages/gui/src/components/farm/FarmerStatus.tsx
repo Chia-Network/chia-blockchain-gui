@@ -1,4 +1,4 @@
-import { Flex, StateColor } from '@chia/core';
+import { Flex, StateColor } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { FiberManualRecord as FiberManualRecordIcon } from '@mui/icons-material';
 import React from 'react';

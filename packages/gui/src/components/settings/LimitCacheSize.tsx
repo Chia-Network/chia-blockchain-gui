@@ -1,5 +1,5 @@
-import { usePrefs } from '@chia/api-react';
-import { AlertDialog, ButtonLoading, Flex, Form, TextField, useOpenDialog } from '@chia/core';
+import { usePrefs } from '@chia-network/api-react';
+import { AlertDialog, ButtonLoading, Flex, Form, TextField, useOpenDialog } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';

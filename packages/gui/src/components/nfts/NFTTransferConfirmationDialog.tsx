@@ -1,4 +1,4 @@
-import { useCurrencyCode, chiaToMojo, ConfirmDialog, Flex, TooltipIcon, FormatLargeNumber } from '@chia/core';
+import { useCurrencyCode, chiaToMojo, ConfirmDialog, Flex, TooltipIcon, FormatLargeNumber } from '@chia-network/core';
 import { Trans, Plural } from '@lingui/macro';
 import { Box, Divider, Typography } from '@mui/material';
 import React, { type ReactNode } from 'react';

@@ -1,6 +1,6 @@
-import type { PlotNFT } from '@chia/api';
-import { usePwAbsorbRewardsMutation } from '@chia/api-react';
-import { AlertDialog, ConfirmDialog, UnitFormat, useOpenDialog } from '@chia/core';
+import type { PlotNFT } from '@chia-network/api';
+import { usePwAbsorbRewardsMutation } from '@chia-network/api-react';
+import { AlertDialog, ConfirmDialog, UnitFormat, useOpenDialog } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import React from 'react';
 

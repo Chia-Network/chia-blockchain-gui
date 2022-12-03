@@ -1,5 +1,5 @@
 {
-  "name": "@chia/api",
+  "name": "@chia-network/api",
   "author": "Chia Network <hello@chia.net> (https://chia.net/)",
   "description": "Chia API Library",
   "productName": "Chia Blockchain",

@@ -1,5 +1,5 @@
 {
-  "name": "@chia/core",
+  "name": "@chia-network/core",
   "author": "Chia Network <hello@chia.net> (https://chia.net/)",
   "description": "Chia Core Library",
   "productName": "Chia Blockchain",
@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "@babel/runtime": "7.16.7",
-    "@chia/icons": "1.0.0",
+    "@chia-network/icons": "1.0.0",
     "@fontsource/roboto": "4.5.1",
     "@lingui/macro": "3.13.0",
     "@mui/utils": "5.5.3",
@@ -55,8 +55,8 @@
     "@babel/preset-env": "7.16.8",
     "@babel/preset-react": "7.16.7",
     "@babel/preset-typescript": "7.16.7",
-    "@chia/api": "1.0.0",
-    "@chia/api-react": "1.0.0",
+    "@chia-network/api": "1.0.0",
+    "@chia-network/api-react": "1.0.0",
     "@electron/remote": "2.0.8",
     "@emotion/react": "11.10.4",
     "@emotion/styled": "11.10.4",
@@ -100,8 +100,8 @@
     "vite": "3.1.1"
   },
   "peerDependencies": {
-    "@chia/api": "1.0.0",
-    "@chia/api-react": "1.0.0",
+    "@chia-network/api": "1.0.0",
+    "@chia-network/api-react": "1.0.0",
     "@electron/remote": "2.0.8",
     "@lingui/core": "3.13.0",
     "@lingui/react": "3.13.0",

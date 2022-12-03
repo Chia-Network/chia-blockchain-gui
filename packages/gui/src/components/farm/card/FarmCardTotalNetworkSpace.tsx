@@ -1,5 +1,5 @@
-import { useGetBlockchainStateQuery } from '@chia/api-react';
-import { FormatBytes, CardSimple } from '@chia/core';
+import { useGetBlockchainStateQuery } from '@chia-network/api-react';
+import { FormatBytes, CardSimple } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import React from 'react';
 

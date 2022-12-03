@@ -1,5 +1,5 @@
-import { SyncingStatus } from '@chia/api';
-import { useGetSyncStatusQuery } from '@chia/api-react';
+import { SyncingStatus } from '@chia-network/api';
+import { useGetSyncStatusQuery } from '@chia-network/api-react';
 
 import getWalletSyncingStatus from '../utils/getWalletSyncingStatus';
 

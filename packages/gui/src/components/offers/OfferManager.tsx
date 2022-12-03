@@ -1,5 +1,5 @@
-import { OfferSummaryRecord, OfferTradeRecord } from '@chia/api';
-import { useCancelOfferMutation, useGetWalletsQuery } from '@chia/api-react';
+import { OfferSummaryRecord, OfferTradeRecord } from '@chia-network/api';
+import { useCancelOfferMutation, useGetWalletsQuery } from '@chia-network/api-react';
 import {
   Button,
   ButtonLoading,
@@ -20,7 +20,7 @@ import {
   Tooltip,
   LayoutDashboardSub,
   MenuItem,
-} from '@chia/core';
+} from '@chia-network/core';
 import { Trans, t } from '@lingui/macro';
 import { Cancel, GetApp as Download, Info, Reply as Share, Visibility } from '@mui/icons-material';
 import {

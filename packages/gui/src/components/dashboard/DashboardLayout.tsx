@@ -1,4 +1,4 @@
-import { Flex, Box } from '@chia/core';
+import { Flex, Box } from '@chia-network/core';
 import React, { type ReactNode } from 'react';
 import styled from 'styled-components';
 

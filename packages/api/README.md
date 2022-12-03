@@ -17,7 +17,7 @@ This library provides support for TypeScript/JavaScript [Chia](https://www.chia.
 ## Example
 
 ```ts
-import Client, { Wallet } from '@chia/api';
+import Client, { Wallet } from '@chia-network/api';
 import Websocket from 'ws';
 import sleep from 'sleep-promise';
 

@@ -1,14 +1,14 @@
 import { IpcRenderer } from 'electron';
 
-import { ConnectionState, ServiceHumanName, ServiceName, PassphrasePromptReason } from '@chia/api';
+import { ConnectionState, ServiceHumanName, ServiceName, PassphrasePromptReason } from '@chia-network/api';
 import {
   useCloseMutation,
   useGetStateQuery,
   useGetKeyringStatusQuery,
   useServices,
   useGetVersionQuery,
-} from '@chia/api-react';
-import { Flex, LayoutHero, LayoutLoading, useMode, useIsSimulator, useAppVersion } from '@chia/core';
+} from '@chia-network/api-react';
+import { Flex, LayoutHero, LayoutLoading, useMode, useIsSimulator, useAppVersion } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Typography, Collapse } from '@mui/material';
 import isElectron from 'is-electron';

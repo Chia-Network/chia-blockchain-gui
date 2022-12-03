@@ -1,10 +1,10 @@
-import type { KeyData } from '@chia/api';
+import type { KeyData } from '@chia-network/api';
 import {
   useGetKeyringStatusQuery,
   useDeleteAllKeysMutation,
   useLogInAndSkipImportMutation,
   useGetKeysQuery,
-} from '@chia/api-react';
+} from '@chia-network/api-react';
 import { Trans } from '@lingui/macro';
 import { Alert, Typography, Container } from '@mui/material';
 import React, { useState } from 'react';

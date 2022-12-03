@@ -1,5 +1,5 @@
-import { WalletType } from '@chia/api';
-import { Button, useColorModeValue, Spinner, Flex, Tooltip, useTrans } from '@chia/core';
+import { WalletType } from '@chia-network/api';
+import { Button, useColorModeValue, Spinner, Flex, Tooltip, useTrans } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Add, KeyboardArrowDown, KeyboardArrowUp } from '@mui/icons-material';
 import SearchIcon from '@mui/icons-material/Search';

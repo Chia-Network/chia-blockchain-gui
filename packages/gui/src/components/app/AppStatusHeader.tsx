@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Trans } from '@lingui/macro';
-import { Flex, useMode, Mode } from '@chia/core';
+import { Flex, useMode, Mode } from '@chia-network/core';
 import { Box, ButtonGroup, Button, Popover } from '@mui/material';
-import { WalletConnections, WalletStatus } from '@chia/wallets';
+import { WalletConnections, WalletStatus } from '@chia-network/wallets';
 import Connections from '../fullNode/FullNodeConnections';
 import FullNodeStateIndicator from '../fullNode/FullNodeStateIndicator';
 import WalletConnectDropdown from '../walletConnect/WalletConnectDropdown';
@@ -35,10 +35,7 @@ export default function AppStatusHeader() {
       <ButtonGroup variant="outlined" color="secondary" size="small">
         {mode === Mode.FARMING && (
           <>
-            <Button
-              onClick={handleClickFN}
-              aria-describedby="fullnode-connections"
-            >
+            <Button onClick={handleClickFN} aria-describedby="fullnode-connections">
               <Flex gap={1} alignItems="center">
                 <FullNodeStateIndicator />
                 <Trans>Full Node</Trans>

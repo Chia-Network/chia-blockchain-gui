@@ -1,5 +1,5 @@
-import { WalletType } from '@chia/api';
-import { useGetLoggedInFingerprintQuery, useGetPrivateKeyQuery, useGetWalletsQuery } from '@chia/api-react';
+import { WalletType } from '@chia-network/api';
+import { useGetLoggedInFingerprintQuery, useGetPrivateKeyQuery, useGetWalletsQuery } from '@chia-network/api-react';
 import {
   Flex,
   CardListItem,
@@ -8,7 +8,7 @@ import {
   useColorModeValue,
   useOpenExternal,
   FormatLargeNumber,
-} from '@chia/core';
+} from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Box, Typography, Button } from '@mui/material';
 import { orderBy } from 'lodash';

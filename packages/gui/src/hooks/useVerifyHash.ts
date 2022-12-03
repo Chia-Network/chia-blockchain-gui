@@ -1,5 +1,5 @@
-import type { NFTInfo } from '@chia/api';
-import { useLocalStorage } from '@chia/api-react';
+import type { NFTInfo } from '@chia-network/api';
+import { useLocalStorage } from '@chia-network/api-react';
 import { useState, useEffect } from 'react';
 import isURL from 'validator/lib/isURL';
 

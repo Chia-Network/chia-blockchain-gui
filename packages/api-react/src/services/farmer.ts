@@ -1,5 +1,5 @@
-import { Farmer } from '@chia/api';
-import type { Plot, FarmerConnection, RewardTargets, SignagePoint, Pool, FarmingInfo } from '@chia/api';
+import { Farmer } from '@chia-network/api';
+import type { Plot, FarmerConnection, RewardTargets, SignagePoint, Pool, FarmingInfo } from '@chia-network/api';
 
 import api, { baseQuery } from '../api';
 import onCacheEntryAddedInvalidate from '../utils/onCacheEntryAddedInvalidate';

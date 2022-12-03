@@ -1,6 +1,6 @@
-import type { PlotNFT, PlotNFTExternal } from '@chia/api';
-import { useGetPoolLoginLinkQuery } from '@chia/api-react';
-import { Button, CopyToClipboard, Flex, Link, Loading } from '@chia/core';
+import type { PlotNFT, PlotNFTExternal } from '@chia-network/api';
+import { useGetPoolLoginLinkQuery } from '@chia-network/api-react';
+import { Button, CopyToClipboard, Flex, Link, Loading } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Alert, Dialog, DialogActions, DialogTitle, DialogContent, Typography } from '@mui/material';
 import React from 'react';

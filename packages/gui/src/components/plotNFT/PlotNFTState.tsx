@@ -1,4 +1,4 @@
-import { Flex, State, StateTypography, TooltipIcon } from '@chia/core';
+import { Flex, State, StateTypography, TooltipIcon } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Typography } from '@mui/material';
 import React from 'react';

@@ -1,4 +1,4 @@
-import { useLocalStorage } from '@chia/api-react';
+import { useLocalStorage } from '@chia-network/api-react';
 import { useCallback, useRef, useMemo } from 'react';
 
 import type Pair from '../@types/Pair';

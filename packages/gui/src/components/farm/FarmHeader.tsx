@@ -1,4 +1,4 @@
-import { Flex, More, useOpenDialog, MenuItem } from '@chia/core';
+import { Flex, More, useOpenDialog, MenuItem } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Settings as SettingsIcon } from '@mui/icons-material';
 import { ListItemIcon, Typography } from '@mui/material';

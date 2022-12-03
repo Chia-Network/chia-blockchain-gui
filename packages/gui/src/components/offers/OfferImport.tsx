@@ -1,8 +1,16 @@
 import fs, { Stats } from 'fs';
 
-import { type OfferSummaryRecord } from '@chia/api';
-import { useGetOfferSummaryMutation } from '@chia/api-react';
-import { Back, Card, Dropzone, Flex, useOpenDialog, useSerializedNavigationState, useShowError } from '@chia/core';
+import { type OfferSummaryRecord } from '@chia-network/api';
+import { useGetOfferSummaryMutation } from '@chia-network/api-react';
+import {
+  Back,
+  Card,
+  Dropzone,
+  Flex,
+  useOpenDialog,
+  useSerializedNavigationState,
+  useShowError,
+} from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Button, Grid, Typography } from '@mui/material';
 import React from 'react';

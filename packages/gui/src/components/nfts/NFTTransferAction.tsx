@@ -1,5 +1,5 @@
-import type { NFTInfo } from '@chia/api';
-import { useTransferNFTMutation } from '@chia/api-react';
+import type { NFTInfo } from '@chia-network/api';
+import { useTransferNFTMutation } from '@chia-network/api-react';
 import {
   Button,
   ButtonLoading,
@@ -12,7 +12,7 @@ import {
   useOpenDialog,
   validAddress,
   useShowError,
-} from '@chia/core';
+} from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Typography } from '@mui/material';
 import React, { useState } from 'react';

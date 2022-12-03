@@ -1,5 +1,5 @@
-import { Harvester } from '@chia/api';
-import type { Plot } from '@chia/api';
+import { Harvester } from '@chia-network/api';
+import type { Plot } from '@chia-network/api';
 
 import { baseQuery } from '../api';
 import onCacheEntryAddedInvalidate from '../utils/onCacheEntryAddedInvalidate';

@@ -1,5 +1,5 @@
-import type { NFTInfo } from '@chia/api';
-import { useHiddenList } from '@chia/core';
+import type { NFTInfo } from '@chia-network/api';
+import { useHiddenList } from '@chia-network/core';
 import { useCallback } from 'react';
 
 export default function useHiddenNFTs() {

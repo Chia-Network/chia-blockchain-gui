@@ -1,5 +1,5 @@
-import { useGetBlockchainStateQuery } from '@chia/api-react';
-import { FormatLargeNumber, CardSimple, StateColor } from '@chia/core';
+import { useGetBlockchainStateQuery } from '@chia-network/api-react';
+import { FormatLargeNumber, CardSimple, StateColor } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import React from 'react';
 import styled from 'styled-components';

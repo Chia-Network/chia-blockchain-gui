@@ -1,4 +1,4 @@
-import { Flex, LayoutDashboardSub } from '@chia/core';
+import { Flex, LayoutDashboardSub } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Typography, Tab, Tabs } from '@mui/material';
 import React from 'react';
@@ -56,28 +56,12 @@ export default function Settings() {
             textColor="primary"
             indicatorColor="primary"
           >
-            <Tab
-              value={SettingsTab.GENERAL}
-              label={<Trans>General</Trans>}
-              data-testid="Settings-tab-general"
-            />
-            <Tab
-              value={SettingsTab.PROFILES}
-              label={<Trans>Profiles</Trans>}
-              data-testid="Settings-tab-profiles"
-            />
+            <Tab value={SettingsTab.GENERAL} label={<Trans>General</Trans>} data-testid="Settings-tab-general" />
+            <Tab value={SettingsTab.PROFILES} label={<Trans>Profiles</Trans>} data-testid="Settings-tab-profiles" />
 
-            <Tab
-              value={SettingsTab.NFT}
-              label={<Trans>NFT</Trans>}
-              data-testid="Settings-tab-nft"
-            />
+            <Tab value={SettingsTab.NFT} label={<Trans>NFT</Trans>} data-testid="Settings-tab-nft" />
 
-            <Tab
-              value={SettingsTab.DATALAYER}
-              label={<Trans>DataLayer</Trans>}
-              data-testid="Settings-tab-datalayer"
-            />
+            <Tab value={SettingsTab.DATALAYER} label={<Trans>DataLayer</Trans>} data-testid="Settings-tab-datalayer" />
             <Tab
               value={SettingsTab.INTEGRATION}
               label={<Trans>Integration</Trans>}

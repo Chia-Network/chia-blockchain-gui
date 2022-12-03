@@ -1,6 +1,6 @@
-import { WalletType, type Wallet } from '@chia/api';
-import { useGetWalletsQuery } from '@chia/api-react';
-import { Dropdown, Flex, Loading, useTrans } from '@chia/core';
+import { WalletType, type Wallet } from '@chia-network/api';
+import { useGetWalletsQuery } from '@chia-network/api-react';
+import { Dropdown, Flex, Loading, useTrans } from '@chia-network/core';
 import { ListItemIcon, ListItemText, Typography } from '@mui/material';
 import React, { useMemo } from 'react';
 import { useNavigate } from 'react-router';

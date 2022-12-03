@@ -1,4 +1,4 @@
-import { CardStep, ConfirmDialog, Link, Select, StateColor, useOpenDialog } from '@chia/core';
+import { CardStep, ConfirmDialog, Link, Select, StateColor, useOpenDialog } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Grid, FormControl, Typography, InputLabel, MenuItem, FormHelperText } from '@mui/material';
 import React, { useEffect, useState } from 'react';

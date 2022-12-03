@@ -1,5 +1,5 @@
-import { useCreateNewWalletMutation, useGetWalletBalanceQuery } from '@chia/api-react';
-import { ButtonLoading, chiaToMojo, EstimatedFee, Flex, Form, mojoToChiaLocaleString } from '@chia/core';
+import { useCreateNewWalletMutation, useGetWalletBalanceQuery } from '@chia-network/api-react';
+import { ButtonLoading, chiaToMojo, EstimatedFee, Flex, Form, mojoToChiaLocaleString } from '@chia-network/core';
 import { Trans, t } from '@lingui/macro';
 import { Card, Typography } from '@mui/material';
 import React from 'react';

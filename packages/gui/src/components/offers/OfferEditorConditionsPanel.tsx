@@ -1,5 +1,5 @@
-import { Wallet, WalletType } from '@chia/api';
-import { useGetWalletBalanceQuery, useGetWalletsQuery } from '@chia/api-react';
+import { Wallet, WalletType } from '@chia-network/api';
+import { useGetWalletBalanceQuery, useGetWalletsQuery } from '@chia-network/api-react';
 import {
   Amount,
   Fee,
@@ -10,7 +10,7 @@ import {
   mojoToCAT,
   mojoToCATLocaleString,
   useLocale,
-} from '@chia/core';
+} from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Add, Remove } from '@mui/icons-material';
 import { Box, Divider, IconButton, Typography } from '@mui/material';
