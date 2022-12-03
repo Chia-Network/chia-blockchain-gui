@@ -359,6 +359,47 @@ export default class Wallet extends Service {
     });
   }
 
+  // notifications
+  async getNotifications(
+    ids?: string[],
+    start?: number,
+    end?: number
+  ): Promise<{
+    notifications: {
+      id: string;
+      message: string;
+      amount: string;
+    }[];
+  }> {
+    return this.command('get_notifications', {
+      ids,
+      start,
+      end,
+    });
+  }
+
+  async deleteNotifications(ids?: string[]): Promise<{}> {
+    return this.command('delete_notifications', {
+      ids,
+    });
+  }
+
+  async sendNotifications(
+    target: string,
+    message: string,
+    amount: string | number,
+    fee: string | number
+  ): Promise<{
+    tx: any;
+  }> {
+    return this.command('send_notification', {
+      target,
+      message,
+      amount,
+      fee,
+    });
+  }
+
   onSyncChanged(callback: (data: any, message: Message) => void, processData?: (data: any) => any) {
     return this.onStateChanged('sync_changed', callback, processData);
   }
@@ -421,6 +462,10 @@ export default class Wallet extends Service {
 
   onOfferUpdated(callback: (data: any, message: Message) => void) {
     return this.onStateChanged('offer_cancelled', callback);
+  }
+
+  onNewOnChainNotification(callback: (data: any, message: Message) => void) {
+    return this.onStateChanged('new_on_chain_notification', callback);
   }
 
   onNFTCoinAdded(

@@ -7,6 +7,7 @@ import styled from 'styled-components';
 
 import Connections from '../fullNode/FullNodeConnections';
 import FullNodeStateIndicator from '../fullNode/FullNodeStateIndicator';
+import NotificationsDropdown from '../notification/NotificationsDropdown';
 import WalletConnectDropdown from '../walletConnect/WalletConnectDropdown';
 
 export default function AppStatusHeader() {
@@ -48,7 +49,7 @@ export default function AppStatusHeader() {
       <ButtonGroup variant="outlined" color="secondary" size="small">
         {mode === Mode.FARMING && (
           <>
-            <ButtonStyled onClick={handleClickFN} aria-describedby="fullnode-connections">
+            <Button onClick={handleClickFN} aria-describedby="fullnode-connections">
               <Flex gap={1} alignItems="center">
                 <FullNodeStateIndicator />
                 <Trans>Full Node</Trans>
@@ -97,6 +98,7 @@ export default function AppStatusHeader() {
           </Box>
         </Popover>
       </ButtonGroup>
+      <NotificationsDropdown />
     </Flex>
   );
 }

@@ -71,7 +71,7 @@ type ConfirmOfferCancellationProps = {
   open?: boolean;
 };
 
-function ConfirmOfferCancellation(props: ConfirmOfferCancellationProps) {
+export function ConfirmOfferCancellation(props: ConfirmOfferCancellationProps) {
   const { canCancelWithTransaction = true, onClose = () => {}, open = true } = props;
   const methods = useForm({
     defaultValues: {
