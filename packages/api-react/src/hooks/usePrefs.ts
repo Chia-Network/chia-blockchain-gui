@@ -1,34 +1,28 @@
 import { useCallback, useEffect, useState } from 'react';
+
 import EventEmitter from '../utils/EventEmitter';
 
 const eventEmitter = new EventEmitter();
 
-function maybeEqual(objA: any, objB: any){
+function maybeEqual(objA: any, objB: any) {
   // This does not consider object property ordering, so it's "maybe" equal.
   return JSON.stringify(objA) === JSON.stringify(objB);
 }
 
-export type Serializable = number
-  | string
-  | null
-  | boolean
-  | { [k: string ]: Serializable }
-  | Serializable[]
-;
+export type Serializable = number | string | null | boolean | { [k: string]: Serializable } | Serializable[];
 
 export default function usePrefs<T extends Serializable>(
   key: string,
   initialValue?: T
 ): [T | undefined, (value: T | ((value: T | undefined) => T)) => void] {
   const prefsInRAM = (window as any).preferences;
-  const currentPrefValue = prefsInRAM[key] === undefined
-    ? initialValue : prefsInRAM[key];
+  const currentPrefValue = prefsInRAM[key] === undefined ? initialValue : prefsInRAM[key];
   const [prefStateValue, setPrefStateValue] = useState<T | undefined>(currentPrefValue);
 
   const setPrefValue = useCallback(
     (valueOrFunc: T | ((value: T | undefined) => T)) => {
       const newPrefValue = valueOrFunc instanceof Function ? valueOrFunc(prefStateValue) : valueOrFunc;
-      if(maybeEqual(newPrefValue, currentPrefValue)){
+      if (maybeEqual(newPrefValue, currentPrefValue)) {
         return;
       }
 
@@ -37,11 +31,11 @@ export default function usePrefs<T extends Serializable>(
 
       eventEmitter.emit('prefs', { key, newValue: newPrefValue });
     },
-    [prefStateValue, currentPrefValue, key],
+    [prefStateValue, currentPrefValue, key]
   );
 
   const changeHandler = useCallback(
-    (e: {key: string; newValue: any}) => {
+    (e: { key: string; newValue: any }) => {
       if (key === e.key) {
         setPrefStateValue(e.newValue);
       }

@@ -1,4 +1,4 @@
-import { AlertDialog, ButtonLoading, DialogActions, Flex, Form, TextField, useOpenDialog } from '@chia/core';
+import { AlertDialog, ButtonLoading, DialogActions, Flex, Form, TextField, useOpenDialog } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Button, Dialog, DialogTitle, DialogContent } from '@mui/material';
 import React from 'react';

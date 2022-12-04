@@ -1,5 +1,5 @@
-import { Daemon, optionsForPlotter, defaultsForPlotter } from '@chia/api';
-import type { KeyringStatus, ServiceName, KeyData } from '@chia/api';
+import { Daemon, optionsForPlotter, defaultsForPlotter } from '@chia-network/api';
+import type { KeyringStatus, ServiceName, KeyData } from '@chia-network/api';
 
 import api, { baseQuery } from '../api';
 import onCacheEntryAddedInvalidate from '../utils/onCacheEntryAddedInvalidate';
@@ -262,7 +262,7 @@ export const daemonApi = apiWithTag.injectEndpoints({
             bladebitMemoryWarning,
           } = plotters[plotterName];
 
-          if(!plotterName.startsWith('bladebit')){
+          if (!plotterName.startsWith('bladebit')) {
             availablePlotters[plotterName] = {
               displayName,
               version,
@@ -279,7 +279,7 @@ export const daemonApi = apiWithTag.injectEndpoints({
 
           // if (plotterName.startsWith('bladebit'))
           const majorVersion = typeof version === 'string' ? +version.split('.')[0] : 0;
-          if(majorVersion > 1){
+          if (majorVersion > 1) {
             const bbDisk = 'bladebit_disk';
             availablePlotters[bbDisk] = {
               displayName,
@@ -305,8 +305,7 @@ export const daemonApi = apiWithTag.injectEndpoints({
                 bladebitMemoryWarning,
               },
             };
-          }
-          else{
+          } else {
             const bbRam = 'bladebit_ram';
             availablePlotters[bbRam] = {
               displayName,

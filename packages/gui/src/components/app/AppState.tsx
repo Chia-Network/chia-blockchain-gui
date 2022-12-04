@@ -1,14 +1,14 @@
 import { IpcRenderer } from 'electron';
 
-import { ConnectionState, ServiceHumanName, ServiceName, PassphrasePromptReason } from '@chia/api';
+import { ConnectionState, ServiceHumanName, ServiceName, PassphrasePromptReason } from '@chia-network/api';
 import {
   useCloseMutation,
   useGetStateQuery,
   useGetKeyringStatusQuery,
   useServices,
   useGetVersionQuery,
-} from '@chia/api-react';
-import { Flex, LayoutHero, LayoutLoading, useMode, useIsSimulator, useAppVersion } from '@chia/core';
+} from '@chia-network/api-react';
+import { Flex, LayoutHero, LayoutLoading, useMode, useIsSimulator, useAppVersion } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Typography, Collapse } from '@mui/material';
 import isElectron from 'is-electron';
@@ -96,16 +96,6 @@ export default function AppState(props: Props) {
 
   const isConnected = !isClientStateLoading && clientState?.state === ConnectionState.CONNECTED;
 
-  async function handleOpenFile(event, path: string) {
-    console.log('Opening file:');
-    console.log(path);
-  }
-
-  async function handleOpenUrl(event, url: string) {
-    console.log('Opening url:');
-    console.log(url);
-  }
-
   async function handleClose(event) {
     if (closing) {
       return;
@@ -124,8 +114,6 @@ export default function AppState(props: Props) {
     if (isElectron()) {
       const { ipcRenderer } = window as unknown as { ipcRenderer: IpcRenderer };
 
-      ipcRenderer.on('open-file', handleOpenFile);
-      ipcRenderer.on('open-url', handleOpenUrl);
       ipcRenderer.on('exit-daemon', handleClose);
 
       // Handle files/URLs opened at launch now that the app is ready

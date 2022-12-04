@@ -51,7 +51,6 @@ export default async function loadConfig(net?: string): Promise<{
     };
   } catch (error: any) {
     if (error.code === 'ENOENT') {
-      console.log('Waiting for configuration file');
       await sleep(1000);
       return loadConfig(net);
     }

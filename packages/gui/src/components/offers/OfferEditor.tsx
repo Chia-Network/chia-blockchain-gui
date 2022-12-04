@@ -1,5 +1,5 @@
-import { WalletType } from '@chia/api';
-import { useCreateOfferForIdsMutation, usePrefs } from '@chia/api-react';
+import { WalletType } from '@chia-network/api';
+import { useCreateOfferForIdsMutation, usePrefs } from '@chia-network/api-react';
 import {
   Back,
   Button,
@@ -11,7 +11,7 @@ import {
   useShowError,
   chiaToMojo,
   catToMojo,
-} from '@chia/core';
+} from '@chia-network/core';
 import { Trans, t } from '@lingui/macro';
 import { Grid } from '@mui/material';
 import BigNumber from 'bignumber.js';
@@ -87,7 +87,7 @@ function OfferEditor(props: OfferEditorProps) {
 
       offer[assetWalletId] = debit ? mojoAmount.negated() : mojoAmount;
     } else {
-      console.log('missing asset wallet id');
+      console.error('missing asset wallet id');
     }
   }
 

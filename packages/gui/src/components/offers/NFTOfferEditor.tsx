@@ -1,12 +1,12 @@
-import { WalletType } from '@chia/api';
-import type { NFTInfo, Wallet } from '@chia/api';
+import { WalletType } from '@chia-network/api';
+import type { NFTInfo, Wallet } from '@chia-network/api';
 import {
   useCreateOfferForIdsMutation,
   useGetNFTInfoQuery,
   useGetNFTWallets,
   useGetWalletBalanceQuery,
   usePrefs,
-} from '@chia/api-react';
+} from '@chia-network/api-react';
 import {
   Amount,
   AmountProps,
@@ -32,7 +32,7 @@ import {
   useLocale,
   useOpenDialog,
   useShowError,
-} from '@chia/core';
+} from '@chia-network/core';
 import { Trans, t } from '@lingui/macro';
 import { Warning as WarningIcon } from '@mui/icons-material';
 import { Box, Divider, Grid, Tabs, Tab, Typography, useTheme } from '@mui/material';
@@ -609,8 +609,8 @@ export default function NFTOfferEditor(props: NFTOfferEditorProps) {
     const formData = validateFormData(unvalidatedFormData);
 
     if (!formData) {
-      console.log('Invalid NFT offer:');
-      console.log(unvalidatedFormData);
+      console.error('Invalid NFT offer:');
+      console.error(unvalidatedFormData);
       return;
     }
 

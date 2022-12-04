@@ -1,13 +1,13 @@
 import fs, { Stats } from 'fs';
 
-import { useGetOfferSummaryMutation } from '@chia/api-react';
+import { useGetOfferSummaryMutation } from '@chia-network/api-react';
 import {
   Dropzone,
   Flex,
   // useOpenDialog,
   useSerializedNavigationState,
   useShowError,
-} from '@chia/core';
+} from '@chia-network/core';
 import { Trans, t } from '@lingui/macro';
 import { Box, Card, Typography } from '@mui/material';
 import React from 'react';
@@ -153,7 +153,7 @@ export default function OfferBuilderImport() {
         pasteParse(text);
       })
       .catch((err) => {
-        console.log('Error during paste from clipboard', err);
+        console.error('Error during paste from clipboard', err);
       });
   });
 

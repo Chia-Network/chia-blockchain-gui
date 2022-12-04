@@ -1,5 +1,5 @@
-import { SyncingStatus, toBech32m } from '@chia/api';
-import { useSpendCATMutation, useFarmBlockMutation } from '@chia/api-react';
+import { SyncingStatus, toBech32m } from '@chia-network/api';
+import { useSpendCATMutation, useFarmBlockMutation } from '@chia-network/api-react';
 import {
   AdvancedOptions,
   Button,
@@ -17,7 +17,7 @@ import {
   useCurrencyCode,
   getTransactionResult,
   TooltipIcon,
-} from '@chia/core';
+} from '@chia-network/core';
 import { Trans, t } from '@lingui/macro';
 import { Grid, Typography } from '@mui/material';
 import React, { useMemo } from 'react';

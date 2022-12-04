@@ -1,11 +1,6 @@
-import React, {
-  createContext,
-  ReactNode,
-  useState,
-  useMemo,
-  useCallback,
-} from 'react';
-import { usePrefs } from '@chia/api-react';
+import { usePrefs } from '@chia-network/api-react';
+import React, { createContext, ReactNode, useState, useMemo, useCallback } from 'react';
+
 import type Mode from '../../constants/Mode';
 
 export const ModeContext = createContext<
@@ -24,8 +19,8 @@ export type ModeProviderProps = {
 
 export default function ModeProvider(props: ModeProviderProps) {
   const { mode: defaultMode, children, persist = false } = props;
-  const [modeState, setModeState] = useState<Mode|undefined>(defaultMode);
-  const [modePref, setModePref] = usePrefs<Mode|undefined>('mode', defaultMode);
+  const [modeState, setModeState] = useState<Mode | undefined>(defaultMode);
+  const [modePref, setModePref] = usePrefs<Mode | undefined>('mode', defaultMode);
 
   const handleSetMode = useCallback(
     (newMode: Mode) => {

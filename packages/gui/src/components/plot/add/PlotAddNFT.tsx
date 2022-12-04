@@ -1,4 +1,4 @@
-import { Button, CardStep, Select, Flex, Loading } from '@chia/core';
+import { Button, CardStep, Select, Flex, Loading } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Box, Grid, FormControl, InputLabel, MenuItem, Typography } from '@mui/material';
 import React, { useState, forwardRef } from 'react';

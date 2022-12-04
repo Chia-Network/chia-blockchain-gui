@@ -1,4 +1,5 @@
 import { Trans, Plural } from '@lingui/macro';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import { Box, IconButton, InputAdornment, FormControl, FormHelperText } from '@mui/material';
 import BigNumber from 'bignumber.js';
 import React, { type ReactNode } from 'react';
@@ -11,7 +12,6 @@ import Flex from '../Flex';
 import FormatLargeNumber from '../FormatLargeNumber';
 import TextField, { TextFieldProps } from '../TextField';
 import NumberFormatCustom from './NumberFormatCustom';
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
 export type AmountProps = TextFieldProps & {
   children?: (props: { mojo: BigNumber; value: string | undefined }) => ReactNode;
@@ -24,7 +24,17 @@ export type AmountProps = TextFieldProps & {
 };
 
 export default function Amount(props: AmountProps) {
-  const { children, name, symbol, showAmountInMojos, dropdownAdornment, variant, fullWidth, 'data-testid': dataTestid, ...rest } = props;
+  const {
+    children,
+    name,
+    symbol,
+    showAmountInMojos,
+    dropdownAdornment,
+    variant,
+    fullWidth,
+    'data-testid': dataTestid,
+    ...rest
+  } = props;
   const { control } = useFormContext();
   const defaultCurrencyCode = useCurrencyCode();
 
@@ -52,10 +62,14 @@ export default function Amount(props: AmountProps) {
             decimalScale: isChiaCurrency ? 12 : 3,
             'data-testid': dataTestid,
           },
-          endAdornment: dropdownAdornment ?
-            <IconButton onClick={dropdownAdornment}><ArrowDropDownIcon /></IconButton>
-            : <InputAdornment position="end">{currencyCode}</InputAdornment>,
-          style: dropdownAdornment ? {paddingRight: '0'} : undefined,
+          endAdornment: dropdownAdornment ? (
+            <IconButton onClick={dropdownAdornment}>
+              <ArrowDropDownIcon />
+            </IconButton>
+          ) : (
+            <InputAdornment position="end">{currencyCode}</InputAdornment>
+          ),
+          style: dropdownAdornment ? { paddingRight: '0' } : undefined,
         }}
         {...rest}
       />

@@ -1,5 +1,5 @@
-import { DropdownBase } from '@chia/core';
-import { WalletConnect } from '@chia/icons';
+import { DropdownBase } from '@chia-network/core';
+import { WalletConnect } from '@chia-network/icons';
 import { Box, Button } from '@mui/material';
 import React from 'react';
 

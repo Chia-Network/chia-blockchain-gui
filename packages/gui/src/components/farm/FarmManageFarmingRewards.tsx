@@ -1,6 +1,6 @@
-import { fromBech32m } from '@chia/api';
-import { useSetRewardTargetsMutation, useGetRewardTargetsQuery } from '@chia/api-react';
-import { Button, Flex, Form, TextField, Loading } from '@chia/core';
+import { fromBech32m } from '@chia-network/api';
+import { useSetRewardTargetsMutation, useGetRewardTargetsQuery } from '@chia-network/api-react';
+import { Button, Flex, Form, TextField, Loading } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Alert, Dialog, DialogActions, DialogTitle, DialogContent, Typography } from '@mui/material';
 import React, { useMemo, useState, useEffect } from 'react';

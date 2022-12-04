@@ -1,4 +1,4 @@
-import { Flex } from '@chia/core';
+import { Flex } from '@chia-network/core';
 import { Typography } from '@mui/material';
 import React, { ReactNode } from 'react';
 

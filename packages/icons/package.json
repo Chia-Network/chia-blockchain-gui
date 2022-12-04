@@ -1,9 +1,8 @@
 {
-  "name": "@chia/icons",
+  "name": "@chia-network/icons",
   "author": "Chia Network <hello@chia.net> (https://chia.net/)",
   "description": "Chia Icons Library",
   "productName": "Chia Blockchain",
-  "private": true,
   "version": "1.0.0",
   "engines": {
     "node": ">=16.15.0"

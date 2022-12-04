@@ -1,5 +1,5 @@
-import { WalletType, TransactionType, toBech32m } from '@chia/api';
-import { useGetOfferRecordMutation, useGetSyncStatusQuery } from '@chia/api-react';
+import { WalletType, TransactionType, toBech32m } from '@chia-network/api';
+import { useGetOfferRecordMutation, useGetSyncStatusQuery } from '@chia-network/api-react';
 import {
   Card,
   CopyToClipboard,
@@ -11,8 +11,8 @@ import {
   mojoToChia,
   mojoToCAT,
   FormatLargeNumber,
-} from '@chia/core';
-import type { Row } from '@chia/core';
+} from '@chia-network/core';
+import type { Row } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import {
   CallReceived as CallReceivedIcon,

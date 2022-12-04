@@ -1,9 +1,10 @@
-import React from 'react';
+import { Flex } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Link as LinkIcon } from '@mui/icons-material';
-import { blue } from '@mui/material/colors';
 import { Avatar, IconButton, Typography } from '@mui/material';
-import { Flex } from '@chia/core';
+import { blue } from '@mui/material/colors';
+import React from 'react';
+
 import type WalletConnectMetadataType from '../../@types/WalletConnectMetadata';
 import useOpenExternal from '../../hooks/useOpenExternal';
 

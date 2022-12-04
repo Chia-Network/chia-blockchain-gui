@@ -1,5 +1,5 @@
-import { Loading, chiaToMojo, mojoToChiaLocaleString, useCurrencyCode } from '@chia/core';
-import { Farming } from '@chia/icons';
+import { Loading, chiaToMojo, mojoToChiaLocaleString, useCurrencyCode } from '@chia-network/core';
+import { Farming } from '@chia-network/icons';
 import { Trans } from '@lingui/macro';
 import React, { useMemo } from 'react';
 import { useFieldArray, useWatch } from 'react-hook-form';

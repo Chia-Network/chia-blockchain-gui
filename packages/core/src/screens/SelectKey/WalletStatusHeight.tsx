@@ -1,4 +1,4 @@
-import { useGetHeightInfoQuery } from '@chia/api-react';
+import { useGetHeightInfoQuery } from '@chia-network/api-react';
 import React from 'react';
 
 import FormatLargeNumber from '../../components/FormatLargeNumber';

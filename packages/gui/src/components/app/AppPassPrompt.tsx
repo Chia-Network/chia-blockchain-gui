@@ -1,6 +1,6 @@
-import { PassphrasePromptReason } from '@chia/api';
-import { useUnlockKeyringMutation, useGetKeyringStatusQuery } from '@chia/api-react';
-import { Button, Flex, TooltipIcon, useShowError, Suspender, ButtonLoading } from '@chia/core';
+import { PassphrasePromptReason } from '@chia-network/api';
+import { useUnlockKeyringMutation, useGetKeyringStatusQuery } from '@chia-network/api-react';
+import { Button, Flex, TooltipIcon, useShowError, Suspender, ButtonLoading } from '@chia-network/core';
 import { Trans, t } from '@lingui/macro';
 import { KeyboardCapslock as KeyboardCapslockIcon, Visibility as VisibilityIcon } from '@mui/icons-material';
 import {

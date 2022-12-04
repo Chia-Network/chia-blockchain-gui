@@ -1,5 +1,5 @@
-import { WalletType } from '@chia/api';
-import { Suspender } from '@chia/core';
+import { WalletType } from '@chia-network/api';
+import { Suspender } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Alert } from '@mui/material';
 import React from 'react';

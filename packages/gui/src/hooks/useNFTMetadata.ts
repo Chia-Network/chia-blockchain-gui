@@ -1,5 +1,5 @@
-import type NFTInfo from '@chia/api';
-import { useLocalStorage, usePrefs } from '@chia/api-react';
+import type NFTInfo from '@chia-network/api';
+import { useLocalStorage, usePrefs } from '@chia-network/api-react';
 import { useEffect, useState, useCallback } from 'react';
 
 import getRemoteFileContent from '../util/getRemoteFileContent';

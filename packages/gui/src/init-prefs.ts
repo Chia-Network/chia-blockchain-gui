@@ -5,7 +5,7 @@ type WindowExt = typeof window & {
   ipcRenderer: IpcRenderer;
 };
 
-async function migrateGUIPrefsFromLocalStorage(){
+async function migrateGUIPrefsFromLocalStorage() {
   const w = window as WindowExt;
   const prefs: Record<string, any> = {};
   const targets: string[] = [
@@ -31,43 +31,36 @@ async function migrateGUIPrefsFromLocalStorage(){
     'tmpdir',
   ];
   // Items which were not stringified on localStorage
-  const noParse: string[] = [
-    'finaldir',
-    'tmp2dir',
-    'tmpdir',
-  ];
+  const noParse: string[] = ['finaldir', 'tmp2dir', 'tmpdir'];
 
-  targets.forEach(key => {
+  targets.forEach((key) => {
     const item = window.localStorage.getItem(key);
-    if(item === undefined || item === null){
+    if (item === undefined || item === null) {
       return;
     }
 
-    try{
+    try {
       prefs[key] = noParse.includes(key) ? item : JSON.parse(item);
-    }
-    catch(e){
+    } catch (e) {
       console.warn(e);
     }
   });
 
   const hasMigratingItems = Object.keys(prefs).length > 0;
-  if(!hasMigratingItems){
+  if (!hasMigratingItems) {
     return;
   }
 
-  console.log('GUI Prefs Migration has been dispatched');
   await w.ipcRenderer.invoke('migratePrefs', prefs);
 
-  Object.keys(prefs).forEach(key => {
+  Object.keys(prefs).forEach((key) => {
     window.localStorage.removeItem(key);
   });
 }
 
-export default async function initPrefs(onInitCallback: Function){
+export default async function initPrefs(onInitCallback: Function) {
   const w = window as WindowExt;
   await migrateGUIPrefsFromLocalStorage();
   w.preferences = await w.ipcRenderer.invoke('readPrefs');
   onInitCallback();
 }
-

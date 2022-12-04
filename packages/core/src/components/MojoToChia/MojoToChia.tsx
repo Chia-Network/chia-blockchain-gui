@@ -1,7 +1,8 @@
-import React from 'react';
 import BigNumber from 'bignumber.js';
-import mojoToChia from '../../utils/mojoToChiaLocaleString';
+import React from 'react';
+
 import useCurrencyCode from '../../hooks/useCurrencyCode';
+import mojoToChia from '../../utils/mojoToChiaLocaleString';
 import FormatLargeNumber from '../FormatLargeNumber';
 
 export type MojoToChiaProps = {

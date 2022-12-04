@@ -1,7 +1,7 @@
-import { defaultPlotter, PlotterName } from '@chia/api';
-import type { Plotter, PlotterMap } from '@chia/api';
-import { useGetPlottersQuery } from '@chia/api-react';
-import { CardStep, Select, StateColor } from '@chia/core';
+import { defaultPlotter, PlotterName } from '@chia-network/api';
+import type { Plotter, PlotterMap } from '@chia-network/api';
+import { useGetPlottersQuery } from '@chia-network/api-react';
+import { CardStep, Select, StateColor } from '@chia-network/core';
 import { t, Trans } from '@lingui/macro';
 import { FormControl, FormHelperText, Grid, InputLabel, MenuItem, Typography } from '@mui/material';
 import React, { useMemo } from 'react';
@@ -25,16 +25,11 @@ export default function PlotAddChoosePlotter(props: Props) {
   function getDisplayablePlotters(p: PlotterMap<PlotterName, Plotter>): PlotterName[] {
     const displayablePlotters = Object.keys(p) as PlotterName[];
     // Sort chiapos to the top of the list
-    displayablePlotters.sort((a, b) =>
-      (a === PlotterName.CHIAPOS ? -1 : a.localeCompare(b))
-    );
+    displayablePlotters.sort((a, b) => (a === PlotterName.CHIAPOS ? -1 : a.localeCompare(b)));
     return displayablePlotters;
   }
 
-  const displayedPlotters = useMemo(
-    () => (plotters ? getDisplayablePlotters(plotters) : []),
-    [plotters],
-  );
+  const displayedPlotters = useMemo(() => (plotters ? getDisplayablePlotters(plotters) : []), [plotters]);
 
   const handleChange = async (event: any) => {
     const selectedPlotterName: PlotterName = event.target.value as PlotterName;

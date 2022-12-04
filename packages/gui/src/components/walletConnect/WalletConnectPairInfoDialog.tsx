@@ -1,5 +1,5 @@
-import { useGetKeysQuery } from '@chia/api-react';
-import { ButtonLoading, DialogActions, Flex, Button, Loading, useShowError, CardListItem } from '@chia/core';
+import { useGetKeysQuery } from '@chia-network/api-react';
+import { ButtonLoading, DialogActions, Flex, Button, Loading, useShowError, CardListItem } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import CloseIcon from '@mui/icons-material/Close';
 import { Divider, Dialog, DialogContent, DialogTitle, IconButton, Typography } from '@mui/material';

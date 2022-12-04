@@ -1,4 +1,4 @@
-import { LayoutDashboardSub } from '@chia/core';
+import { LayoutDashboardSub } from '@chia-network/core';
 import React from 'react';
 import { Navigate, Routes, Route } from 'react-router-dom';
 

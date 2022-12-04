@@ -87,7 +87,7 @@
     // We often want named export even if there is only one at the beginning
     "import/prefer-default-export": "off",
     // So we do not forget to remove console.logs after debugging
-    "no-console": ["error", { "allow": ["warn", "error"] }],
+    "no-console": ["error", { "allow": ["warn", "error", "info"] }],
     // Better readability
     "react/no-unescaped-entities": "off",
     // Useless - the warning that it is dangerous is in the property name

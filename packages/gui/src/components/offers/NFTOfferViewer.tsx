@@ -1,6 +1,6 @@
-import type { Wallet } from '@chia/api';
-import { OfferSummaryRecord, OfferTradeRecord } from '@chia/api';
-import { useCheckOfferValidityMutation, useGetNFTInfoQuery, useGetNFTWallets } from '@chia/api-react';
+import type { Wallet } from '@chia-network/api';
+import { OfferSummaryRecord, OfferTradeRecord } from '@chia-network/api';
+import { useCheckOfferValidityMutation, useGetNFTInfoQuery, useGetNFTWallets } from '@chia-network/api-react';
 import {
   Back,
   Button,
@@ -17,7 +17,7 @@ import {
   mojoToChia,
   useColorModeValue,
   useShowError,
-} from '@chia/core';
+} from '@chia-network/core';
 import { Plural, Trans, t } from '@lingui/macro';
 import { Warning as WarningIcon } from '@mui/icons-material';
 import { Box, Divider, Grid, Typography } from '@mui/material';
@@ -100,11 +100,11 @@ function NFTOfferSummaryRow(props: NFTOfferSummaryRowProps) {
               assetType = OfferAsset.TOKEN;
               break;
             default:
-              console.log(`Unknown asset type: ${infoDict.type}`);
+              console.error(`Unknown asset type: ${infoDict.type}`);
               break;
           }
         } else {
-          console.log(`Unknown asset: ${key}`);
+          console.error(`Unknown asset: ${key}`);
         }
 
         return { [key]: assetType };
@@ -132,7 +132,7 @@ function NFTOfferSummaryRow(props: NFTOfferSummaryRowProps) {
           <OfferSummaryNFTRow launcherId={assetId} amount={summaryData[assetId]} showNFTPreview={showNFTPreview} />
         );
       default:
-        console.log(`Unhandled OfferAsset type: ${assetType}`);
+        console.error(`Unhandled OfferAsset type: ${assetType}`);
         return (
           <div>
             <Typography variant="h5">
@@ -144,8 +144,8 @@ function NFTOfferSummaryRow(props: NFTOfferSummaryRowProps) {
   });
 
   if (unknownAssets?.length ?? 0 > 0) {
-    console.log('Unknown assets');
-    console.log(unknownAssets);
+    console.error('Unknown assets');
+    console.error(unknownAssets);
   }
 
   return (
@@ -425,7 +425,7 @@ function NFTOfferDetails(props: NFTOfferDetailsProps) {
     const { fee } = formData;
 
     if (!offerData) {
-      console.log('No offer data to accept');
+      console.error('No offer data to accept');
       return;
     }
 

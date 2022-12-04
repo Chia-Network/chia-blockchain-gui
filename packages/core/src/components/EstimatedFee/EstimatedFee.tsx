@@ -1,4 +1,4 @@
-import { useGetFeeEstimateQuery } from '@chia/api-react';
+import { useGetFeeEstimateQuery } from '@chia-network/api-react';
 import { Trans } from '@lingui/macro';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import {

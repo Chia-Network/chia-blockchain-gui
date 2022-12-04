@@ -1,4 +1,4 @@
-import { Button, Flex, Loading, CardStep, RadioGroup, EstimatedFee, TextField } from '@chia/core';
+import { Button, Flex, Loading, CardStep, RadioGroup, EstimatedFee, TextField } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Alert, Grid, FormControl, FormControlLabel, Typography, Radio, Collapse } from '@mui/material';
 import React, { ReactNode } from 'react';

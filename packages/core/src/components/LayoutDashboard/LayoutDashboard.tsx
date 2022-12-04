@@ -1,4 +1,4 @@
-import { useLogout, useGetLoggedInFingerprintQuery, useGetKeyQuery } from '@chia/api-react';
+import { useLogout, useGetLoggedInFingerprintQuery, useGetKeyQuery } from '@chia-network/api-react';
 import { t, Trans } from '@lingui/macro';
 import { ExitToApp as ExitToAppIcon } from '@mui/icons-material';
 import { Box, AppBar, Toolbar, Drawer, Container, IconButton, Typography, CircularProgress } from '@mui/material';

@@ -1,4 +1,4 @@
-import { usePrefs } from '@chia/api-react';
+import { usePrefs } from '@chia-network/api-react';
 import { useMediaQuery } from '@mui/material';
 
 const COLOR_SCHEME_QUERY = '(prefers-color-scheme: dark)';

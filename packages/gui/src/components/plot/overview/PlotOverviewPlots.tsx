@@ -1,5 +1,5 @@
-import { useRefreshPlotsMutation } from '@chia/api-react';
-import { Button, Flex, useOpenDialog, MenuItem, More } from '@chia/core';
+import { useRefreshPlotsMutation } from '@chia-network/api-react';
+import { Button, Flex, useOpenDialog, MenuItem, More } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Add, Refresh } from '@mui/icons-material';
 import { ListItemIcon, Typography } from '@mui/material';

@@ -2,8 +2,8 @@ import child_process from 'child_process';
 import fs from 'fs';
 import path from 'path';
 
-import { OfferTradeRecord } from '@chia/api';
-import { usePrefs } from '@chia/api-react';
+import { OfferTradeRecord } from '@chia-network/api';
+import { usePrefs } from '@chia-network/api-react';
 import {
   ButtonLoading,
   CopyToClipboard,
@@ -13,7 +13,7 @@ import {
   useOpenDialog,
   useShowError,
   useOpenExternal,
-} from '@chia/core';
+} from '@chia-network/core';
 import { Trans, t } from '@lingui/macro';
 import {
   Button,

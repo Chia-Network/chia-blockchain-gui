@@ -1,5 +1,5 @@
-import { OfferSummaryRecord, OfferTradeRecord, OfferCoinOfInterest } from '@chia/api';
-import { useCheckOfferValidityMutation } from '@chia/api-react';
+import { OfferSummaryRecord, OfferTradeRecord, OfferCoinOfInterest } from '@chia-network/api';
+import { useCheckOfferValidityMutation } from '@chia-network/api-react';
 import {
   Back,
   ButtonLoading,
@@ -13,7 +13,7 @@ import {
   TooltipIcon,
   useShowError,
   mojoToChiaLocaleString,
-} from '@chia/core';
+} from '@chia-network/core';
 import { Trans, Plural } from '@lingui/macro';
 import {
   Box,
@@ -212,7 +212,7 @@ function OfferDetails(props: OfferDetailsProps) {
     const { fee } = formData;
 
     if (!offerData) {
-      console.log('No offer data to accept');
+      console.error('No offer data to accept');
       return;
     }
 

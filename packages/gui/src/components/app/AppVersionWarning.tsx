@@ -1,16 +1,7 @@
-import React from 'react';
-import {
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogActions,
-  Typography,
-} from '@mui/material';
+import { Button, Flex } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
-import {
-  Button,
-  Flex,
-} from '@chia/core';
+import { Dialog, DialogTitle, DialogContent, DialogActions, Typography } from '@mui/material';
+import React from 'react';
 
 export interface DialogProps {
   open: boolean;
@@ -30,16 +21,11 @@ function WarningDialog(props: DialogProps) {
 
   function handleClose() {
     onClose();
-  };
+  }
 
   return (
     <div>
-      <Dialog
-        open={open}
-        aria-labelledby="alert-dialog-title"
-        fullWidth={true}
-        maxWidth = {'xs'}
-      >
+      <Dialog open={open} aria-labelledby="alert-dialog-title" fullWidth maxWidth="xs">
         <DialogTitle id="alert-dialog-title">
           <Trans>Warning: Mismatched Versions</Trans>
         </DialogTitle>
@@ -87,12 +73,7 @@ export default function AppVersionWarning(props: WarningProps) {
 
   return (
     <div>
-      <WarningDialog
-        open={open}
-        onClose={handleClose}
-        backV={backV}
-        guiV={guiV}
-      />
+      <WarningDialog open={open} onClose={handleClose} backV={backV} guiV={guiV} />
     </div>
   );
 }

@@ -1,4 +1,13 @@
-import { AdvancedOptions, CardStep, TextField, RadioGroup, Flex, Checkbox, TooltipIcon, Select } from '@chia/core';
+import {
+  AdvancedOptions,
+  CardStep,
+  TextField,
+  RadioGroup,
+  Flex,
+  Checkbox,
+  TooltipIcon,
+  Select,
+} from '@chia-network/core';
 import { Trans, t } from '@lingui/macro';
 import {
   Grid,
@@ -120,9 +129,8 @@ export default function PlotAddNumberOfPlots(props: Props) {
                 placeholder="2"
                 label={<Trans>Number of threads</Trans>}
                 helperText={
-                  (plotter.defaults.plotterName === PlotterName.BLADEBIT_RAM
-                    || plotter.defaults.plotterName === PlotterName.BLADEBIT_DISK)
-                  && (
+                  (plotter.defaults.plotterName === PlotterName.BLADEBIT_RAM ||
+                    plotter.defaults.plotterName === PlotterName.BLADEBIT_DISK) && (
                     <Trans>Specify a value of 0 to use all available threads</Trans>
                   )
                 }

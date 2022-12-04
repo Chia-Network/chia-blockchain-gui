@@ -27,8 +27,7 @@ export default function useLocalStorage<T>(
   const setValue = useCallback(
     (value: T | ((value: T | undefined) => T)) => {
       setStoredValue((currentStoredValue) => {
-        const newValue =
-          value instanceof Function ? value(currentStoredValue) : value;
+        const newValue = value instanceof Function ? value(currentStoredValue) : value;
 
         const newStoredValue = JSON.stringify(newValue);
         const oldStoredValue = JSON.stringify(currentStoredValue);

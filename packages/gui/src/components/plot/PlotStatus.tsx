@@ -1,4 +1,4 @@
-import { Flex, Indicator, StateColor, TooltipIcon } from '@chia/core';
+import { Flex, Indicator, StateColor, TooltipIcon } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import React from 'react';
 

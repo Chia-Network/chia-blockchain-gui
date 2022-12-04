@@ -1,4 +1,4 @@
-import { usePrefs } from '@chia/api-react';
+import { usePrefs } from '@chia-network/api-react';
 import type { I18n } from '@lingui/core';
 import { I18nProvider } from '@lingui/react';
 import React, { useMemo, createContext, useCallback, ReactNode, useEffect } from 'react';

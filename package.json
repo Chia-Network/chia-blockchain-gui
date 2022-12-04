@@ -1,6 +1,5 @@
 {
   "name": "root",
-  "private": true,
   "scripts": {
     "clean": "lerna clean",
     "bootstrap": "lerna bootstrap",
@@ -18,8 +17,8 @@
     "autofix:prettier": "prettier --write --ignore-path .gitignore '**/*.{js,jsx,ts,tsx}'",
     "build": "lerna run build",
     "build:watch": "lerna run build:watch",
-    "start:gui": "lerna run start --scope @chia/gui",
-    "dev:gui": "lerna run dev --scope @chia/gui --stream",
+    "start:gui": "lerna run start --scope @chia-network/gui",
+    "dev:gui": "lerna run dev --scope @chia-network/gui --stream",
     "electron": "npm run start:gui",
     "locale:extract": "lerna run locale:extract",
     "locale:clean": "lerna run locale:clean",
@@ -33,8 +32,8 @@
     "lerna": "^5.1.8"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "5.42.1",
-    "@typescript-eslint/parser": "5.42.1",
+    "@typescript-eslint/eslint-plugin": "5.45.0",
+    "@typescript-eslint/parser": "5.45.0",
     "eslint": "8.27.0",
     "eslint-config-airbnb": "19.0.4",
     "eslint-config-airbnb-typescript": "17.0.0",

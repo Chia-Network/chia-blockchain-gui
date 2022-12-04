@@ -1,10 +1,9 @@
 {
-  "name": "@chia/gui",
+  "name": "@chia-network/gui",
   "author": "Chia Network <hello@chia.net> (https://chia.net/)",
   "description": "GUI for Chia Blockchain",
   "license": "Apache-2.0",
   "productName": "Chia Blockchain",
-  "private": true,
   "homepage": "./",
   "main": "build/electron/main.js",
   "engines": {
@@ -130,11 +129,11 @@
     "test": "jest"
   },
   "dependencies": {
-    "@chia/api": "1.0.0",
-    "@chia/api-react": "1.0.0",
-    "@chia/core": "1.0.0",
-    "@chia/icons": "1.0.0",
-    "@chia/wallets": "1.0.0",
+    "@chia-network/api": "1.0.0",
+    "@chia-network/api-react": "1.0.0",
+    "@chia-network/core": "1.0.0",
+    "@chia-network/icons": "1.0.0",
+    "@chia-network/wallets": "1.0.0",
     "@electron/remote": "2.0.1",
     "@lingui/core": "3.13.0",
     "@lingui/macro": "3.13.0",

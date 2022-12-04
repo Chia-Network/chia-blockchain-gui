@@ -1,4 +1,4 @@
-import { usePwAbsorbRewardsMutation, useGetPlotNFTsQuery, useGetCurrentAddressQuery } from '@chia/api-react';
+import { usePwAbsorbRewardsMutation, useGetPlotNFTsQuery, useGetCurrentAddressQuery } from '@chia-network/api-react';
 import {
   UnitFormat,
   CardStep,
@@ -11,7 +11,7 @@ import {
   mojoToChiaLocaleString,
   chiaToMojo,
   Back,
-} from '@chia/core';
+} from '@chia-network/core';
 import { Trans, t } from '@lingui/macro';
 import { ChevronRight as ChevronRightIcon } from '@mui/icons-material';
 import { Grid, Typography } from '@mui/material';

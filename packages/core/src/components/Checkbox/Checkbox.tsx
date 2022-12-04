@@ -35,14 +35,7 @@ function Checkbox(props: CheckboxProps, ref: any) {
     <Controller
       name={name}
       control={control}
-      render={({ field }) => (
-        <ParseBoolean
-          {...field}
-          {...rest}
-          value={Boolean(getValues(name))}
-          ref={ref}
-        />
-      )}
+      render={({ field }) => <ParseBoolean {...field} {...rest} value={Boolean(getValues(name))} ref={ref} />}
     />
   );
 }

@@ -1,4 +1,4 @@
-import { ButtonLoading, Loading, Flex, Form, Back, chiaToMojo, ConfirmDialog, useOpenDialog } from '@chia/core';
+import { ButtonLoading, Loading, Flex, Form, Back, chiaToMojo, ConfirmDialog, useOpenDialog } from '@chia-network/core';
 import { t, Trans } from '@lingui/macro';
 import { Alert } from '@mui/material';
 import React, { useState, ReactNode, forwardRef, useImperativeHandle } from 'react';
