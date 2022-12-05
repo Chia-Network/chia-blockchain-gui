@@ -47,7 +47,7 @@ This monorepo consists of the following packages:
 
 1. Separate subject from body with a blank line
 
-   Most often, you do not need commit body message at all. But if you need one, separate it with a new line. Example:
+   A single subject line is usually sufficient, but if you need to include additional details, add an empty line after the subject and enter the detailed message. Example:
 
    ```
     Capitalized, short (70 chars or less) summary
