@@ -40,7 +40,7 @@ This monorepo consists of the following packages:
 ## Git workflow
 
 - Git branch from "**main**"
-- For Chia employees: **prefix your branch with your name**, like this: `yourName/what-it-the-code-about`. This helps with old branches cleanup.
+- For Chia employees: **prefix your branch with your name**, like this: `yourName/what-is-the-code-about`. This helps when cleaning up old branches.
 - All commits must be [signed](https://docs.github.com/en/authentication/managing-commit-signature-verification/signing-commits).
 
 ## Git commit messages
