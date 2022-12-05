@@ -49,16 +49,14 @@ This monorepo consists of the following packages:
 
    A single subject line is usually sufficient, but if you need to include additional details, add an empty line after the subject and enter the detailed message. Example:
 
-   ```
-    Capitalized, short (70 chars or less) summary
-
-    More detailed explanatory text, if necessary. Wrap it to about 72
-    characters or so. In some contexts, the first line is treated as the
-    subject of an email and the rest of the text as the body. The blank
-    line separating the summary from the body is critical (unless you omit
-    the body entirely); tools like rebase can get confused if you run the
-    two together.
-   ```
+   > Capitalized, short (70 chars or less) summary
+   >
+   > More detailed explanatory text, if necessary. Wrap it to about 72
+   > characters or so. In some contexts, the first line is treated as the
+   > subject of an email and the rest of the text as the body. The blank
+   > line separating the summary from the body is critical (unless you omit
+   > the body entirely); tools like rebase can get confused if you run the
+   > two together.
 
 2. Commit subject line should always be able to complete the following sentence:
 
