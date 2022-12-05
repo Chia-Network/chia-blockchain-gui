@@ -107,6 +107,8 @@
         "ignoreRestSiblings": true,
         "argsIgnorePattern": "^_"
       }
-    ]
+    ],
+    // Memoizing all prop callbacks would speed up the app but introduce a hard to debug bugs (wrong memo dependencies)
+    "react/jsx-no-bind": "off"
   }
 }
