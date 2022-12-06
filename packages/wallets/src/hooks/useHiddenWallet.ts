@@ -1,4 +1,4 @@
-import { useGetLoggedInFingerprintQuery, useLocalStorage } from '@chia/api-react';
+import { useGetLoggedInFingerprintQuery, usePrefs } from '@chia-network/api-react';
 import { useCallback } from 'react';
 
 export default function useHiddenWallet(): {
@@ -9,7 +9,7 @@ export default function useHiddenWallet(): {
   isLoading: boolean;
 } {
   const { data: fingerprint, isLoading } = useGetLoggedInFingerprintQuery();
-  const [hiddenWalletIds, setHiddenWalletIds] = useLocalStorage<{
+  const [hiddenWalletIds, setHiddenWalletIds] = usePrefs<{
     [key: string]: number[];
   }>('hiddenWalletsItems', {});
 

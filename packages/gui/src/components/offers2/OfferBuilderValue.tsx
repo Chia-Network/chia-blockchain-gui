@@ -1,5 +1,3 @@
-import React from 'react';
-import { t, Trans } from '@lingui/macro';
 import {
   Amount,
   CopyToClipboard,
@@ -13,10 +11,13 @@ import {
   TextField,
   Tooltip,
   TooltipIcon,
-} from '@chia/core';
-import { Box, Typography, IconButton } from '@mui/material';
-import { useWatch } from 'react-hook-form';
+} from '@chia-network/core';
+import { Trans } from '@lingui/macro';
 import { Remove } from '@mui/icons-material';
+import { Box, Typography, IconButton } from '@mui/material';
+import React from 'react';
+import { useWatch } from 'react-hook-form';
+
 import useOfferBuilderContext from '../../hooks/useOfferBuilderContext';
 import OfferBuilderAmountWithRoyalties from './OfferBuilderAmountWithRoyalties';
 import OfferBuilderRoyaltyPayouts from './OfferBuilderRoyaltyPayouts';

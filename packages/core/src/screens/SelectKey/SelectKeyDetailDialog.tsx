@@ -1,4 +1,4 @@
-import { useGetPrivateKeyQuery, useGetKeyQuery } from '@chia/api-react';
+import { useGetPrivateKeyQuery, useGetKeyQuery } from '@chia-network/api-react';
 import { Trans } from '@lingui/macro';
 import { Box, Button, Grid, Typography } from '@mui/material';
 import React, { useState } from 'react';

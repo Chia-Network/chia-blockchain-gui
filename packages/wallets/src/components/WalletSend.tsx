@@ -1,4 +1,4 @@
-import { useGetSyncStatusQuery, useSendTransactionMutation, useFarmBlockMutation } from '@chia/api-react';
+import { useGetSyncStatusQuery, useSendTransactionMutation, useFarmBlockMutation } from '@chia-network/api-react';
 import {
   AdvancedOptions,
   Amount,
@@ -13,7 +13,7 @@ import {
   getTransactionResult,
   useIsSimulator,
   TooltipIcon,
-} from '@chia/core';
+} from '@chia-network/core';
 import { Trans, t } from '@lingui/macro';
 import { Button, Grid, Typography } from '@mui/material';
 import React from 'react';

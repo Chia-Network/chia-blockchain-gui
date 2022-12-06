@@ -1,5 +1,5 @@
-import { english } from '@chia/api';
-import { useAddPrivateKeyMutation, useLogInMutation } from '@chia/api-react';
+import { english } from '@chia-network/api';
+import { useAddPrivateKeyMutation, useLogInMutation } from '@chia-network/api-react';
 import {
   AlertDialog,
   Autocomplete,
@@ -11,7 +11,7 @@ import {
   useOpenDialog,
   useTrans,
   TextField,
-} from '@chia/core';
+} from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Typography, Container, Grid } from '@mui/material';
 import React from 'react';
@@ -26,7 +26,7 @@ const shuffledEnglish = shuffle(english);
 const test = new Array(24).fill('').map((item, index) => shuffledEnglish[index].word);
 */
 
-const emptyMnemonic = Array.from(Array(24).keys()).map((i) => ({
+const emptyMnemonic = Array.from(Array(24).keys()).map(() => ({
   word: '',
 }));
 

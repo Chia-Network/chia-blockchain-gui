@@ -1,4 +1,4 @@
-import { useGetPrivateKeyQuery } from '@chia/api-react';
+import { useGetPrivateKeyQuery } from '@chia-network/api-react';
 import { Trans } from '@lingui/macro';
 import { Grid, Typography } from '@mui/material';
 import React from 'react';

@@ -1,5 +1,5 @@
-import { useLocalStorage } from '@chia/api-react';
+import { usePrefs } from '@chia-network/api-react';
 
 export default function useEnableDataLayerService() {
-  return useLocalStorage<boolean>('enableDataLayerService', false);
+  return usePrefs<boolean>('enableDataLayerService', false);
 }

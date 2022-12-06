@@ -1,6 +1,6 @@
-import { type Plot } from '@chia/api';
-import { useGetHarvesterPlotsDuplicatesQuery, useGetHarvesterQuery } from '@chia/api-react';
-import { TableControlled } from '@chia/core';
+import { type Plot } from '@chia-network/api';
+import { useGetHarvesterPlotsDuplicatesQuery, useGetHarvesterQuery } from '@chia-network/api-react';
+import { TableControlled } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Typography } from '@mui/material';
 import React, { useState, useMemo } from 'react';

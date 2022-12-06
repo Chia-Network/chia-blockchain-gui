@@ -1,6 +1,6 @@
-import { defaultPlotter, toBech32m, fromBech32m } from '@chia/api';
-import { useStartPlottingMutation, useCreateNewPoolWalletMutation } from '@chia/api-react';
-import { Back, useShowError, ButtonLoading, Flex, Form } from '@chia/core';
+import { defaultPlotter, toBech32m, fromBech32m } from '@chia-network/api';
+import { useStartPlottingMutation, useCreateNewPoolWalletMutation } from '@chia-network/api-react';
+import { Back, useShowError, ButtonLoading, Flex, Form } from '@chia-network/core';
 import { t, Trans } from '@lingui/macro';
 import React, { useState, useEffect, useRef } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
@@ -51,7 +51,7 @@ export default function PlotAddForm(props: Props) {
   const [loading, setLoading] = useState<boolean>(false);
   const showError = useShowError();
 
-  const { isLoading: isLoadingUnconfirmedPlotNFTs, add: addUnconfirmedPlotNFT } = useUnconfirmedPlotNFTs();
+  const { add: addUnconfirmedPlotNFT } = useUnconfirmedPlotNFTs();
   const [startPlotting] = useStartPlottingMutation();
   const [createNewPoolWallet] = useCreateNewPoolWalletMutation();
   const addNFTref = useRef();

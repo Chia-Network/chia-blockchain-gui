@@ -1,10 +1,11 @@
+import { NFTInfo } from '@chia-network/api';
+import { usePersistState } from '@chia-network/core';
+import { t, Trans } from '@lingui/macro';
 import React from 'react';
 import styled from 'styled-components';
-import { t, Trans } from '@lingui/macro';
+
 import NFTPreview from '../nfts/NFTPreview';
 import useFilteredNFTs from '../nfts/gallery/NFTfilteredNFTs';
-import { NFTInfo } from '@chia/api';
-import { usePersistState } from '@chia/core';
 
 const SearchNFTrow = styled.div`
   cursor: pointer;
@@ -85,14 +86,16 @@ function isNFTInSearchValue(value, nft: NFTInfo) {
 
 function highlightSearchedString(searchString: string, str: string) {
   if (!str) return '';
-  const r = new RegExp('(' + searchString + ')', 'i');
-  return str.split(r).map((part) => {
-    return part.toLocaleLowerCase() === searchString.toLocaleLowerCase() ? (
-      <span className="highlight">{part}</span>
-    ) : (
-      <span>{part}</span>
+  const r = new RegExp(`(${searchString})`, 'i');
+  return str
+    .split(r)
+    .map((part) =>
+      part.toLocaleLowerCase() === searchString.toLocaleLowerCase() ? (
+        <span className="highlight">{part}</span>
+      ) : (
+        <span>{part}</span>
+      )
     );
-  });
 }
 
 export default function OfferBuilderValueSearch(props: OfferBuilderValueSearchProps) {
@@ -104,23 +107,21 @@ export default function OfferBuilderValueSearch(props: OfferBuilderValueSearchPr
     onSelectNFT(nftId);
   }
 
-  const nftPreviews = filteredNFTs.map((nft: NFTInfo) => {
-    return (
-      <SearchNFTrow
-        className="nft-searched-row"
-        onClick={() => selectNFT(nft.$nftId)}
-        style={{ display: isNFTInSearchValue(value, nft) ? 'block' : 'none' }}
-      >
-        <div>
-          <NFTPreview nft={nft} fit="cover" isPreview metadata={nft?.metadata} isCompact miniThumb />
-        </div>
-        <NFTSearchedText>
-          <div>{highlightSearchedString(value, nft.metadata?.name) || t`Title Not Available`}</div>
-          <div>{highlightSearchedString(value, nft.metadata?.collection?.name)}</div>
-        </NFTSearchedText>
-      </SearchNFTrow>
-    );
-  });
+  const nftPreviews = filteredNFTs.map((nft: NFTInfo) => (
+    <SearchNFTrow
+      className="nft-searched-row"
+      onClick={() => selectNFT(nft.$nftId)}
+      style={{ display: isNFTInSearchValue(value, nft) ? 'block' : 'none' }}
+    >
+      <div>
+        <NFTPreview nft={nft} fit="cover" isPreview metadata={nft?.metadata} isCompact miniThumb />
+      </div>
+      <NFTSearchedText>
+        <div>{highlightSearchedString(value, nft.metadata?.name) || t`Title Not Available`}</div>
+        <div>{highlightSearchedString(value, nft.metadata?.collection?.name)}</div>
+      </NFTSearchedText>
+    </SearchNFTrow>
+  ));
   return (
     <SearchPlaceholder style={{ display: value.length > 0 ? 'block' : 'none' }}>
       <div>{isLoading ? <Trans>Loading NFTs...</Trans> : nftPreviews}</div>

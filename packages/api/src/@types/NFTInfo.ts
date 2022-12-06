@@ -19,6 +19,7 @@ type NFTInfo = {
   royaltyPercentage: number; // e.g. 175 == 1.75%
   royaltyPuzzleHash: string;
   supportsDid: boolean;
+  p2Address: string;
   updaterPuzhash: string;
 
   // Properties added by the frontend

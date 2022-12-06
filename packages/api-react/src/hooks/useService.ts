@@ -1,4 +1,4 @@
-import { ServiceName } from '@chia/api';
+import { ServiceName } from '@chia-network/api';
 import { useEffect, useState, useMemo } from 'react';
 
 import { useClientStartServiceMutation } from '../services/client';

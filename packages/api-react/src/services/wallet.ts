@@ -1,4 +1,4 @@
-import { CAT, DID, Farmer, NFT, OfferTradeRecord, Pool, Wallet, WalletType, toBech32m } from '@chia/api';
+import { CAT, DID, Farmer, NFT, OfferTradeRecord, Pool, Wallet, WalletType, toBech32m } from '@chia-network/api';
 import type {
   CalculateRoyaltiesRequest,
   CalculateRoyaltiesResponse,
@@ -9,7 +9,7 @@ import type {
   Transaction,
   WalletBalance,
   WalletConnections,
-} from '@chia/api';
+} from '@chia-network/api';
 import BigNumber from 'bignumber.js';
 
 import api, { baseQuery } from '../api';
@@ -402,6 +402,7 @@ export const walletApi = apiWithTag.injectEndpoints({
         amount: string;
         fee: string;
         address: string;
+        memos?: string[];
         waitForConfirmation?: boolean;
       }
     >({
@@ -420,7 +421,7 @@ export const walletApi = apiWithTag.injectEndpoints({
         }
 
         try {
-          const { walletId, amount, fee, address, waitForConfirmation } = args;
+          const { walletId, amount, fee, address, memos, waitForConfirmation } = args;
 
           return {
             data: await new Promise(async (resolve, reject) => {
@@ -489,7 +490,7 @@ export const walletApi = apiWithTag.injectEndpoints({
               const { data: sendTransactionData, error } = await fetchWithBQ({
                 command: 'sendTransaction',
                 service: Wallet,
-                args: [walletId, amount, fee, address],
+                args: [walletId, amount, fee, address, memos],
               });
 
               if (error) {
@@ -514,7 +515,7 @@ export const walletApi = apiWithTag.injectEndpoints({
             }),
           };
         } catch (error: any) {
-          console.log('error trx', error);
+          console.error('error trx', error);
           return {
             error,
           };
@@ -1269,7 +1270,6 @@ export const walletApi = apiWithTag.injectEndpoints({
 
         function unsubscribe() {
           if (subscribeResponse) {
-            // console.log('Unsubscribing from tx_updates');
             subscribeResponse.data();
             subscribeResponse = undefined;
           }
@@ -1285,7 +1285,7 @@ export const walletApi = apiWithTag.injectEndpoints({
 
               function processUpdates() {
                 if (!transactionName) {
-                  console.log(`Transaction name is not defined`, updatedTransactions);
+                  console.warn(`Transaction name is not defined`, updatedTransactions);
                   return;
                 }
 
@@ -1294,13 +1294,11 @@ export const walletApi = apiWithTag.injectEndpoints({
                 );
 
                 if (transaction) {
-                  // console.log('we found transaction with all data hurai');
                   resolve({
                     transaction,
                     transactionId: transaction.name,
                   });
                 } else {
-                  // console.log('we do not have transaction in the list with data', updatedTransactions);
                 }
               }
 
@@ -1317,8 +1315,6 @@ export const walletApi = apiWithTag.injectEndpoints({
                           additionalData: { transaction },
                         } = data;
 
-                        // console.log('update received');
-
                         updatedTransactions.push(transaction);
                         processUpdates();
                       },
@@ -1330,18 +1326,12 @@ export const walletApi = apiWithTag.injectEndpoints({
               }
 
               // make transaction
-              // console.log('sending transaction');
-              const {
-                data: sendTransactionData,
-                error,
-                ...rest
-              } = await fetchWithBQ({
+
+              const { data: sendTransactionData, error } = await fetchWithBQ({
                 command: 'spend',
                 service: CAT,
                 args: [walletId, address, amount, fee, memos],
               });
-
-              // console.log('response', sendTransactionData, error, rest);
 
               if (error) {
                 reject(error);
@@ -2041,12 +2031,12 @@ export const walletApi = apiWithTag.injectEndpoints({
         fee: string;
       }
     >({
-      query: ({ walletId, nftLauncherId, nftCoinId, did, fee }) => ({
+      query: ({ walletId, nftCoinId, did, fee }) => ({
         command: 'setNftDid',
         service: NFT,
         args: [walletId, nftCoinId, did, fee],
       }),
-      invalidatesTags: (result, _error, { nftLauncherId }) =>
+      invalidatesTags: (result, _error) =>
         result
           ? [
               { type: 'NFTInfo', id: 'LIST' },
@@ -2065,12 +2055,12 @@ export const walletApi = apiWithTag.injectEndpoints({
         inTransaction: boolean;
       }
     >({
-      query: ({ walletId, nftLauncherId, nftCoinId, inTransaction }) => ({
+      query: ({ walletId, nftCoinId, inTransaction }) => ({
         command: 'setNftStatus',
         service: NFT,
         args: [walletId, nftCoinId, inTransaction],
       }),
-      invalidatesTags: (result, _error, { nftLauncherId }) => (result ? [{ type: 'NFTInfo', id: 'LIST' }] : []),
+      invalidatesTags: (result, _error) => (result ? [{ type: 'NFTInfo', id: 'LIST' }] : []),
     }),
 
     receiveNFT: build.mutation<
@@ -2086,7 +2076,35 @@ export const walletApi = apiWithTag.injectEndpoints({
         service: NFT,
         args: [walletId, spendBundle, fee],
       }),
-      invalidatesTags: (result, _error, { walletId }) => (result ? [{ type: 'NFTInfo', id: 'LIST' }] : []),
+      invalidatesTags: (result, _error) => (result ? [{ type: 'NFTInfo', id: 'LIST' }] : []),
+    }),
+
+    signMessageByAddress: build.mutation<
+      any,
+      {
+        address: string;
+        message: string;
+      }
+    >({
+      query: ({ address, message }) => ({
+        command: 'signMessageByAddress',
+        service: Wallet,
+        args: [address, message],
+      }),
+    }),
+
+    signMessageById: build.mutation<
+      any,
+      {
+        id: string;
+        message: string;
+      }
+    >({
+      query: ({ id, message }) => ({
+        command: 'signMessageById',
+        service: Wallet,
+        args: [id, message],
+      }),
     }),
   }),
 });
@@ -2180,4 +2198,8 @@ export const {
   useSetNFTDIDMutation,
   useSetNFTStatusMutation,
   useReceiveNFTMutation,
+
+  // sign
+  useSignMessageByAddressMutation,
+  useSignMessageByIdMutation,
 } = walletApi;

@@ -1,11 +1,4 @@
 import crypto from 'crypto';
-import fs from 'fs';
-import path from 'path';
-import url from 'url';
-
-import { initialize } from '@electron/remote/main';
-import axios from 'axios';
-import chokidar from 'chokidar';
 import {
   app,
   dialog,
@@ -18,9 +11,15 @@ import {
   nativeImage,
   protocol,
 } from 'electron';
+import fs from 'fs';
+import path from 'path';
+import url from 'url';
+
+import { initialize } from '@electron/remote/main';
+import axios from 'axios';
+import chokidar from 'chokidar';
 import windowStateKeeper from 'electron-window-state';
 import React from 'react';
-
 // import os from 'os';
 // import installExtension, { REDUX_DEVTOOLS, REACT_DEVELOPER_TOOLS } from 'electron-devtools-installer';
 import ReactDOMServer from 'react-dom/server';
@@ -39,6 +38,7 @@ import manageDaemonLifetime from '../util/manageDaemonLifetime';
 import { setUserDataDir } from '../util/userData';
 import { parseExtensionFromUrl } from '../util/utils';
 import handleSquirrelEvent from './handleSquirrelEvent';
+import { readPrefs, savePrefs, migratePrefs } from './prefs';
 
 const isPlaywrightTesting = process.env.PLAYWRIGHT_TESTS === 'true';
 const NET = 'mainnet';
@@ -58,8 +58,6 @@ if (!fs.existsSync(thumbCacheFolder)) {
 const watcher = chokidar.watch(thumbCacheFolder, { persistent: true });
 
 let cacheLimitSize: number = 1024;
-
-const validatingProgress = {};
 
 // Set the userData directory to its location within CHIA_ROOT/gui
 setUserDataDir();
@@ -132,7 +130,7 @@ if (!handleSquirrelEvent()) {
       app.quit();
       return false;
     }
-    app.on('second-instance', (event, commandLine, workingDirectory) => {
+    app.on('second-instance', () => {
       // Someone tried to run a second instance, we should focus our window.
       if (mainWindow) {
         if (mainWindow.isMinimized()) {
@@ -165,7 +163,7 @@ if (!handleSquirrelEvent()) {
 
   // if any of these checks return false, don't do any other initialization since the app is quitting
   if (ensureSingleInstance() && ensureCorrectEnvironment()) {
-    const exitPyProc = (e) => {};
+    const exitPyProc = () => {};
 
     app.on('will-quit', exitPyProc);
 
@@ -540,6 +538,14 @@ if (!handleSquirrelEvent()) {
         }
       });
 
+      ipcMain.handle('readPrefs', async (_event) => readPrefs());
+
+      ipcMain.handle('savePrefs', async (_event, prefsObj) => {
+        savePrefs(prefsObj);
+      });
+
+      ipcMain.handle('migratePrefs', async (_event, prefsObj) => migratePrefs(prefsObj));
+
       /* ======================================================================== */
 
       decidedToClose = false;
@@ -618,7 +624,7 @@ if (!handleSquirrelEvent()) {
           mainWindowState.unmanage(mainWindow);
           mainWindow.setBounds({ height: 500, width: 500 });
           mainWindow.center();
-          ipcMain.on('daemon-exited', (event, args) => {
+          ipcMain.on('daemon-exited', () => {
             mainWindow.close();
 
             openedWindows.forEach((win) => win.close());
@@ -646,20 +652,27 @@ if (!handleSquirrelEvent()) {
         const filePath: string = path.join(thumbCacheFolder, request.url.replace(/^cached:\/\//, ''));
         callback({ path: filePath });
       });
-      mainWindow?.webContents.executeJavaScript('localStorage.getItem("cacheLimitSize");', true).then((stringValue) => {
+      const prefs = readPrefs();
+      if (prefs.cacheLimitSize !== undefined) {
         try {
-          cacheLimitSize = stringValue ? JSON.parse(stringValue) : cacheLimitSize;
+          const prefs_cacheLimitSize = +prefs.cacheLimitSize;
+          if (!isNaN(prefs_cacheLimitSize) && isFinite(prefs_cacheLimitSize) && prefs_cacheLimitSize > 0) {
+            cacheLimitSize = prefs_cacheLimitSize;
+          }
         } catch (e) {
-          console.log(e);
+          console.error(e);
         }
-      });
-      mainWindow?.webContents.executeJavaScript('localStorage.getItem("cacheFolder");', true).then((stringValue) => {
+      }
+      if (prefs.cacheFolder !== undefined) {
         try {
-          thumbCacheFolder = stringValue ? JSON.parse(stringValue) : thumbCacheFolder;
+          const prefs_cacheFolder = prefs.cacheFolder;
+          if (fs.existsSync(prefs_cacheFolder)) {
+            thumbCacheFolder = prefs_cacheFolder;
+          }
         } catch (e) {
-          console.log(e);
+          console.error(e);
         }
-      });
+      }
     };
 
     app.on('ready', appReady);
@@ -710,15 +723,6 @@ if (!handleSquirrelEvent()) {
       i18n.activate(locale);
       app.applicationMenu = createMenu();
     });
-  }
-
-  function validatingInProgress(uri: string, action: string) {
-    if (action === 'stop') {
-      delete validatingProgress[uri];
-    }
-    if (action === 'start') {
-      validatingProgress[uri] = true;
-    }
   }
 
   const getMenuTemplate = () => {
@@ -985,7 +989,6 @@ if (!handleSquirrelEvent()) {
    * Open the given external protocol URL in the desktop’s default manner.
    */
   const openExternal = (url) => {
-    // console.log(`openExternal: ${url}`)
     shell.openExternal(url);
   };
 }

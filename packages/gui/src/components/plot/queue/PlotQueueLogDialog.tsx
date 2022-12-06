@@ -1,5 +1,5 @@
-import { useGetPlotQueueQuery, useThrottleQuery } from '@chia/api-react';
-import { Button, Flex, Log } from '@chia/core';
+import { useGetPlotQueueQuery, useThrottleQuery } from '@chia-network/api-react';
+import { Button, Flex, Log } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Dialog, DialogActions, DialogTitle, DialogContent, LinearProgress, Typography } from '@mui/material';
 import React, { useEffect, useState, ReactNode } from 'react';

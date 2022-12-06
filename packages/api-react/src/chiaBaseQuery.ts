@@ -1,4 +1,4 @@
-import Client, { Service } from '@chia/api';
+import Client, { Service } from '@chia-network/api';
 import { BaseQueryFn } from '@reduxjs/toolkit/query/react';
 
 type Options = {

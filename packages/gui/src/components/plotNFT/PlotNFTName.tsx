@@ -1,4 +1,4 @@
-import { Address, Flex, TooltipIcon } from '@chia/core';
+import { Address, Flex, TooltipIcon } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Box, Typography } from '@mui/material';
 import React from 'react';

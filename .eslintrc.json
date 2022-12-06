@@ -1,4 +1,7 @@
-// to print all rules (extended and overrides)
+// To add or update the rule, please make a separate PR with only this file changed
+// PRs where a rule is changed within a lager PR will be rejected.
+//
+// To print currently used rules (AirBnB + our overrides) run:
 // npx eslint --print-config .eslintrc.json
 {
   "extends": ["airbnb", "airbnb/hooks", "airbnb-typescript", "plugin:eslint-comments/recommended", "prettier"],
@@ -10,6 +13,11 @@
   "parserOptions": {
     "project": "./packages/*/tsconfig.json"
   },
+  // Allow electron to be only a devDependency instead of normal dependency
+  "settings": {
+    "import/core-modules": ["electron"]
+  },
+  // Airbnb rule overrides and additions
   "rules": {
     // Automatically order imports
     "import/order": [
@@ -24,8 +32,85 @@
     "eslint-comments/no-unused-disable": "error",
     // Allow single line disables (overrides the eslint-comments defaults)
     "eslint-comments/disable-enable-pair": "off",
-    "@typescript-eslint/no-explicit-any": "off",
     // There are cases when Promise.All doesn't work for us (for example when we need to break a for loop - as in our case)
-    "no-await-in-loop": "off"
+    "no-await-in-loop": "off",
+    // We use TS instead of prop-types
+    "react/prop-types": [0],
+    // We do not see the value of this turned on
+    "no-plusplus": "off",
+    // We do not see the value of this turned on
+    "react/jsx-props-no-spreading": "off",
+    // We do not see the value of this turned on
+    "react/destructuring-assignment": "off",
+    // Only functions can be used before assigning
+    "@typescript-eslint/no-use-before-define": ["error", { "functions": false, "classes": false, "variables": true }],
+    // Add additional directories to the default airbnb list
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": [
+          // these are defaults from airbnb
+          "test/**",
+          "tests/**",
+          "spec/**",
+          "**/__tests__/**",
+          "**/__mocks__/**",
+          "test.{js,jsx}",
+          "test-*.{js,jsx}",
+          "**/*{.,_}{test,spec}.{js,jsx}",
+          "**/jest.config.js",
+          "**/jest.setup.js",
+          "**/vue.config.js",
+          "**/webpack.config.js",
+          "**/webpack.config.*.js",
+          "**/rollup.config.js",
+          "**/rollup.config.*.js",
+          "**/gulpfile.js",
+          "**/gulpfile.*.js",
+          "**/Gruntfile{,.js}",
+          "**/protractor.conf.js",
+          "**/protractor.conf.*.js",
+          "**/karma.conf.js",
+          "**/.eslintrc.js",
+
+          // These are our custom additions
+          // Add any directory here that is used in development or CI only
+          "**/@types/**",
+          "**/test/**",
+          "**/tests/**",
+          "**/cypress/**"
+        ],
+        "optionalDependencies": false
+      }
+    ],
+
+    // The airbnb default has ignoreCase: true
+    "react/jsx-no-duplicate-props": ["error", { "ignoreCase": false }],
+    // We often want named export even if there is only one at the beginning
+    "import/prefer-default-export": "off",
+    // So we do not forget to remove console.logs after debugging
+    "no-console": ["error", { "allow": ["warn", "error", "info"] }],
+    // Better readability
+    "react/no-unescaped-entities": "off",
+    // Useless - the warning that it is dangerous is in the property name
+    "react/no-danger": "off",
+    // Prettier will make it obvious that its a nested ternary
+    "no-nested-ternary": "off",
+    // We do not see the value of this turned on
+    "prefer-rest-params": "off",
+    // These issues should be decided and reported in typescript config
+    "@typescript-eslint/no-explicit-any": "off",
+    // Adding _ will bypass no-used issues
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      {
+        "vars": "all",
+        "args": "after-used",
+        "ignoreRestSiblings": true,
+        "argsIgnorePattern": "^_"
+      }
+    ],
+    // Memoizing all prop callbacks would speed up the app but introduce a hard to debug bugs (wrong memo dependencies)
+    "react/jsx-no-bind": "off"
   }
 }

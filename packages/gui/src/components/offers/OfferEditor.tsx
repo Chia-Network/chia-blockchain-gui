@@ -1,5 +1,5 @@
-import { WalletType } from '@chia/api';
-import { useCreateOfferForIdsMutation } from '@chia/api-react';
+import { WalletType } from '@chia-network/api';
+import { useCreateOfferForIdsMutation, usePrefs } from '@chia-network/api-react';
 import {
   Back,
   Button,
@@ -11,10 +11,9 @@ import {
   useShowError,
   chiaToMojo,
   catToMojo,
-} from '@chia/core';
+} from '@chia-network/core';
 import { Trans, t } from '@lingui/macro';
 import { Grid } from '@mui/material';
-import { useLocalStorage } from '@rehooks/local-storage';
 import BigNumber from 'bignumber.js';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -72,7 +71,7 @@ function OfferEditor(props: OfferEditorProps) {
   });
   const openDialog = useOpenDialog();
   const errorDialog = useShowError();
-  const [suppressShareOnCreate] = useLocalStorage<boolean>(OfferLocalStorageKeys.SUPPRESS_SHARE_ON_CREATE);
+  const [suppressShareOnCreate] = usePrefs<boolean>(OfferLocalStorageKeys.SUPPRESS_SHARE_ON_CREATE);
   const [createOfferForIds] = useCreateOfferForIdsMutation();
   const [processing, setIsProcessing] = useState<boolean>(false);
 
@@ -88,7 +87,7 @@ function OfferEditor(props: OfferEditorProps) {
 
       offer[assetWalletId] = debit ? mojoAmount.negated() : mojoAmount;
     } else {
-      console.log('missing asset wallet id');
+      console.error('missing asset wallet id');
     }
   }
 

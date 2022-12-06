@@ -1,5 +1,5 @@
-import { useCreateNewPoolWalletMutation } from '@chia/api-react';
-import { Flex, Suspender } from '@chia/core';
+import { useCreateNewPoolWalletMutation } from '@chia-network/api-react';
+import { Flex, Suspender } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { ChevronRight as ChevronRightIcon } from '@mui/icons-material';
 import React, { ReactNode } from 'react';
@@ -30,7 +30,7 @@ export default function PlotNFTAdd(props: Props) {
       initialTargetState: { state },
     } = data;
 
-    const { transaction, ...rest } = await createNewPoolWallet({
+    const { transaction } = await createNewPoolWallet({
       initialTargetState,
       fee,
     }).unwrap();

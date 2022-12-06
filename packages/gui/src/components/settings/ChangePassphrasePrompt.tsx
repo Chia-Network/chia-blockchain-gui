@@ -2,7 +2,7 @@ import {
   useGetKeyringStatusQuery,
   useRemoveKeyringPassphraseMutation,
   useSetKeyringPassphraseMutation,
-} from '@chia/api-react';
+} from '@chia-network/api-react';
 import {
   AlertDialog,
   Button,
@@ -11,7 +11,7 @@ import {
   useOpenDialog,
   Suspender,
   useValidateChangePassphraseParams,
-} from '@chia/core';
+} from '@chia-network/core';
 import { t, Trans } from '@lingui/macro';
 import {
   Help as HelpIcon,

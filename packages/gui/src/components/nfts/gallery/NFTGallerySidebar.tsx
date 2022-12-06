@@ -1,4 +1,4 @@
-import { Flex, Form, Select } from '@chia/core';
+import { Flex, Form, Select } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Box, MenuItem, FormControl, InputLabel, Slider } from '@mui/material';
 import React, { useState } from 'react';

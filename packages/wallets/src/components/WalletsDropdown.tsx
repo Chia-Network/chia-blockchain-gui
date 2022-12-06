@@ -1,6 +1,6 @@
-import { WalletType, type Wallet } from '@chia/api';
-import { useGetWalletsQuery } from '@chia/api-react';
-import { Dropdown, Flex, Loading, useTrans } from '@chia/core';
+import { WalletType, type Wallet } from '@chia-network/api';
+import { useGetWalletsQuery } from '@chia-network/api-react';
+import { Dropdown, Flex, Loading, useTrans } from '@chia-network/core';
 import { ListItemIcon, ListItemText, Typography } from '@mui/material';
 import React, { useMemo } from 'react';
 import { useNavigate } from 'react-router';
@@ -18,9 +18,7 @@ function getPrimaryTitle(wallet: Wallet): string {
   }
 }
 
-type Props = {};
-
-export default function WalletsDropdown(props: Props) {
+export default function WalletsDropdown() {
   const navigate = useNavigate();
   const trans = useTrans();
   const { data: wallets, isLoading } = useGetWalletsQuery();

@@ -18,5 +18,5 @@ export { default as Requesting } from './Requesting';
 export { default as Status } from './Status';
 export { default as Tokens } from './Tokens';
 export { default as Trade } from './Trade';
-export { default as Wallet } from './Wallet';
 export { default as Settings } from './Settings';
+export { default as WalletConnect } from './WalletConnect';

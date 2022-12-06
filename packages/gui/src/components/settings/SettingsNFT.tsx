@@ -1,11 +1,12 @@
-import { useLocalStorage } from '@chia/api-react';
-import { Flex, SettingsLabel, AlertDialog, useOpenDialog, FormatBytes } from '@chia/core';
+import { usePrefs } from '@chia-network/api-react';
+import { Flex, SettingsLabel, AlertDialog, useOpenDialog, FormatBytes } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Grid, Box, Button, Switch, FormGroup, FormControlLabel } from '@mui/material';
 import React from 'react';
 import styled from 'styled-components';
 
 import useHideObjectionableContent from '../../hooks/useHideObjectionableContent';
+import useNFTImageFittingMode from '../../hooks/useNFTImageFittingMode';
 import LimitCacheSize from './LimitCacheSize';
 
 export default function SettingsGeneral() {
@@ -15,17 +16,22 @@ export default function SettingsGeneral() {
     setHideObjectionableContent(event.target.checked);
   }
 
-  const [cacheFolder, setCacheFolder] = useLocalStorage('cacheFolder');
-  const [defaultCacheFolder, setDefaultCacheFolder] = React.useState();
+  const [nftImageFittingMode, setNFTImageFittingMode] = useNFTImageFittingMode();
+  const [cacheFolder, setCacheFolder] = usePrefs('cacheFolder', '');
+  const [defaultCacheFolder, setDefaultCacheFolder] = React.useState('');
   const [cacheSize, setCacheSize] = React.useState(0);
   const openDialog = useOpenDialog();
   const { ipcRenderer } = window as any;
 
+  function handleScalePreviewImages(event: React.ChangeEvent<HTMLInputElement>) {
+    setNFTImageFittingMode(event.target.checked ? 'contain' : 'cover');
+  }
+
   React.useEffect(() => {
-    ipcRenderer.invoke('getDefaultCacheFolder').then((folder) => {
+    ipcRenderer.invoke('getDefaultCacheFolder').then((folder: string) => {
       setDefaultCacheFolder(folder);
     });
-    ipcRenderer.invoke('getCacheSize').then((cacheSize) => {
+    ipcRenderer.invoke('getCacheSize').then((cacheSize: number) => {
       setCacheSize(cacheSize);
     });
   }, []);
@@ -97,6 +103,11 @@ export default function SettingsGeneral() {
             <FormControlLabel
               control={<Switch checked={hideObjectionableContent} onChange={handleChangeHideObjectionableContent} />}
               label={<Trans>Hide objectionable content</Trans>}
+            />
+
+            <FormControlLabel
+              control={<Switch checked={nftImageFittingMode === 'contain'} onChange={handleScalePreviewImages} />}
+              label={<Trans>Scale NFT images to fit</Trans>}
             />
             <Box sx={{ m: 2 }} />
 

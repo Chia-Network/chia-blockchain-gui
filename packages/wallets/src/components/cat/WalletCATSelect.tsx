@@ -1,4 +1,4 @@
-import { Back, Flex } from '@chia/core';
+import { Back, Flex } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Restore as RestoreIcon, Add as AddIcon } from '@mui/icons-material';
 import { Grid } from '@mui/material';

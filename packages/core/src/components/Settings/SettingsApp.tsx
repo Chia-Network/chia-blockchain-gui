@@ -1,4 +1,6 @@
-import { Farming } from '@chia/icons';
+import { type Shell } from 'electron';
+
+import { Farming } from '@chia-network/icons';
 import { Trans } from '@lingui/macro';
 import {
   WbSunny as WbSunnyIcon,
@@ -6,7 +8,6 @@ import {
   AccountBalanceWallet as AccountBalanceWalletIcon,
 } from '@mui/icons-material';
 import { ButtonGroup } from '@mui/material';
-import { type Shell } from 'electron';
 import React, { type ReactNode } from 'react';
 
 import Mode from '../../constants/Mode';

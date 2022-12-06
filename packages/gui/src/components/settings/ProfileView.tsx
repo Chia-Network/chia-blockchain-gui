@@ -1,6 +1,6 @@
-import { fromBech32m } from '@chia/api';
-import { useGetDIDQuery, useGetDIDNameQuery, useSetDIDNameMutation } from '@chia/api-react';
-import { CopyToClipboard, Flex, Suspender, Tooltip, truncateValue } from '@chia/core';
+import { fromBech32m } from '@chia-network/api';
+import { useGetDIDQuery, useGetDIDNameQuery, useSetDIDNameMutation } from '@chia-network/api-react';
+import { CopyToClipboard, Flex, Suspender, Tooltip, truncateValue } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Box, Card, TextField, Typography } from '@mui/material';
 import React, { useState, useEffect } from 'react';

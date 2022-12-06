@@ -1,11 +1,18 @@
 import fs, { Stats } from 'fs';
 
-import { type OfferSummaryRecord } from '@chia/api';
-import { useGetOfferSummaryMutation } from '@chia/api-react';
-import { Back, Card, Dropzone, Flex, useOpenDialog, useSerializedNavigationState, useShowError } from '@chia/core';
+import { type OfferSummaryRecord } from '@chia-network/api';
+import { useGetOfferSummaryMutation } from '@chia-network/api-react';
+import {
+  Back,
+  Card,
+  Dropzone,
+  Flex,
+  useOpenDialog,
+  useSerializedNavigationState,
+  useShowError,
+} from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Button, Grid, Typography } from '@mui/material';
-import { IpcRenderer } from 'electron';
 import React from 'react';
 import { useHotkeys } from 'react-hotkeys-hook';
 
@@ -138,7 +145,7 @@ function SelectOfferFile() {
         pasteParse(text);
       })
       .catch((err) => {
-        console.log('Error during paste from clipboard', err);
+        console.error('Error during paste from clipboard', err);
       });
   });
 

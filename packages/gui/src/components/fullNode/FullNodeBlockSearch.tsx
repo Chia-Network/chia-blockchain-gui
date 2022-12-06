@@ -1,4 +1,4 @@
-import { Flex, Form, InputBase } from '@chia/core';
+import { Flex, Form, InputBase } from '@chia-network/core';
 import { t } from '@lingui/macro';
 import { Search as SearchIcon } from '@mui/icons-material';
 import { Box, IconButton, Paper } from '@mui/material';

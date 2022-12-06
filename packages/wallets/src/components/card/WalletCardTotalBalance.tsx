@@ -1,5 +1,5 @@
-import { useGetWalletBalanceQuery, useGetCurrentDerivationIndexQuery } from '@chia/api-react';
-import { CardSimple, Flex, TooltipIcon } from '@chia/core';
+import { useGetWalletBalanceQuery, useGetCurrentDerivationIndexQuery } from '@chia-network/api-react';
+import { CardSimple, Flex, TooltipIcon } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Typography } from '@mui/material';
 import React, { ReactElement } from 'react';

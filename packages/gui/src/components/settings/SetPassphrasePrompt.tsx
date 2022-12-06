@@ -1,4 +1,4 @@
-import { useGetKeyringStatusQuery, useSetKeyringPassphraseMutation } from '@chia/api-react';
+import { useGetKeyringStatusQuery, useSetKeyringPassphraseMutation } from '@chia-network/api-react';
 import {
   AlertDialog,
   Button,
@@ -7,7 +7,7 @@ import {
   useValidateChangePassphraseParams,
   useOpenDialog,
   Suspender,
-} from '@chia/core';
+} from '@chia-network/core';
 import { t, Trans } from '@lingui/macro';
 import {
   Help as HelpIcon,

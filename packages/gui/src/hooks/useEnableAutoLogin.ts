@@ -1,5 +1,5 @@
-import { useLocalStorage } from '@chia/api-react';
+import { usePrefs } from '@chia-network/api-react';
 
 export default function useEnableAutoLogin() {
-  return useLocalStorage<boolean>('enableAutoLogin', true);
+  return usePrefs<boolean>('enableAutoLogin', true);
 }

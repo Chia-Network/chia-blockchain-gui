@@ -2,7 +2,8 @@ import child_process from 'child_process';
 import fs from 'fs';
 import path from 'path';
 
-import { OfferTradeRecord } from '@chia/api';
+import { OfferTradeRecord } from '@chia-network/api';
+import { usePrefs } from '@chia-network/api-react';
 import {
   ButtonLoading,
   CopyToClipboard,
@@ -12,7 +13,7 @@ import {
   useOpenDialog,
   useShowError,
   useOpenExternal,
-} from '@chia/core';
+} from '@chia-network/core';
 import { Trans, t } from '@lingui/macro';
 import {
   Button,
@@ -26,9 +27,7 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
-import { useLocalStorage } from '@rehooks/local-storage';
 import debug from 'debug';
-import { Shell } from 'electron';
 import React, { useMemo } from 'react';
 
 import useAssetIdName, { AssetIdMapEntry } from '../../hooks/useAssetIdName';
@@ -1287,7 +1286,7 @@ export default function OfferShareDialog(props: OfferShareDialogProps) {
     testnet = false,
   } = props;
   const openDialog = useOpenDialog();
-  const [suppressShareOnCreate, setSuppressShareOnCreate] = useLocalStorage<boolean>(
+  const [suppressShareOnCreate, setSuppressShareOnCreate] = usePrefs<boolean>(
     OfferLocalStorageKeys.SUPPRESS_SHARE_ON_CREATE
   );
   const isNFTOffer = offerContainsAssetOfType(offerRecord.summary, 'singleton');

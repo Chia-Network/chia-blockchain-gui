@@ -7,23 +7,23 @@ interface CommonOptions {
   canSetBufferSize: boolean;
 }
 
-interface BladeBitOptions extends CommonOptions {
+interface BladeBitRamOptions extends CommonOptions {
   haveBladebitWarmStart: boolean;
   haveBladebitDisableNUMA: boolean;
   haveBladebitNoCpuAffinity: boolean;
   haveBladebitOutputDir: boolean;
 }
 
-interface BladeBit2Options extends BladeBitOptions {
-  haveBladebit2Cache: boolean;
-  haveBladebit2F1Threads: boolean;
-  haveBladebit2FpThreads: boolean;
-  haveBladebit2CThreads: boolean;
-  haveBladebit2P2Threads: boolean;
-  haveBladebit2P3Threads: boolean;
-  haveBladebit2Alternate: boolean;
-  haveBladebit2NoT1Direct: boolean;
-  haveBladebit2NoT2Direct: boolean;
+interface BladeBitDiskOptions extends BladeBitRamOptions {
+  haveBladebitDiskCache: boolean;
+  haveBladebitDiskF1Threads: boolean;
+  haveBladebitDiskFpThreads: boolean;
+  haveBladebitDiskCThreads: boolean;
+  haveBladebitDiskP2Threads: boolean;
+  haveBladebitDiskP3Threads: boolean;
+  haveBladebitDiskAlternate: boolean;
+  haveBladebitDiskNoT1Direct: boolean;
+  haveBladebitDiskNoT2Direct: boolean;
 }
 
 interface MadMaxOptions extends CommonOptions {
@@ -32,7 +32,7 @@ interface MadMaxOptions extends CommonOptions {
   haveMadmaxTempToggle: boolean;
 }
 
-export type PlotterOptions = CommonOptions & BladeBitOptions & BladeBit2Options & MadMaxOptions;
+export type PlotterOptions = CommonOptions & BladeBitRamOptions & BladeBitDiskOptions & MadMaxOptions;
 
 interface CommonDefaults {
   plotterName: string;
@@ -44,22 +44,23 @@ interface CommonDefaults {
   delay?: number;
 }
 
-interface BladeBitDefaults extends CommonDefaults {
+interface BladeBitRamDefaults extends CommonDefaults {
+  plotType?: 'ramplot' | 'diskplot';
   bladebitWarmStart?: boolean;
   bladebitDisableNUMA?: boolean;
   bladebitNoCpuAffinity?: boolean;
 }
 
-interface BladeBit2Defaults extends BladeBitDefaults {
-  bladebit2Cache?: number;
-  bladebit2F1Threads?: number;
-  bladebit2FpThreads?: number;
-  bladebit2CThreads?: number;
-  bladebit2P2Threads?: number;
-  bladebit2P3Threads?: number;
-  bladebit2Alternate?: boolean;
-  bladebit2NoT1Direct?: boolean;
-  bladebit2NoT2Direct?: boolean;
+interface BladeBitDiskDefaults extends BladeBitRamDefaults {
+  bladebitDiskCache?: number;
+  bladebitDiskF1Threads?: number;
+  bladebitDiskFpThreads?: number;
+  bladebitDiskCThreads?: number;
+  bladebitDiskP2Threads?: number;
+  bladebitDiskP3Threads?: number;
+  bladebitDiskAlternate?: boolean;
+  bladebitDiskNoT1Direct?: boolean;
+  bladebitDiskNoT2Direct?: boolean;
 }
 
 interface MadMaxDefaults extends CommonDefaults {
@@ -69,7 +70,7 @@ interface MadMaxDefaults extends CommonDefaults {
   madmaxTempToggle?: boolean;
 }
 
-export type PlotterDefaults = CommonDefaults & BladeBitDefaults & BladeBit2Defaults & MadMaxDefaults;
+export type PlotterDefaults = CommonDefaults & BladeBitRamDefaults & BladeBitDiskDefaults & MadMaxDefaults;
 
 type PlotterInstallInfo = {
   version?: string;

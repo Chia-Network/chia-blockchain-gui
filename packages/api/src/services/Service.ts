@@ -5,7 +5,6 @@ import { isUndefined, omitBy } from 'lodash';
 import type Client from '../Client';
 import Message from '../Message';
 import ServiceName from '../constants/ServiceName';
-import sleep from '../utils/sleep';
 
 export type Options = {
   origin?: ServiceName;

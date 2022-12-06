@@ -1,4 +1,4 @@
-import React, { ReactNode, useMemo, useState, SyntheticEvent, Fragment } from 'react';
+import React, { useMemo, useState } from 'react';
 
 import TableControlled, { TableControlledProps, InternalTableRow } from './TableControlled';
 
@@ -6,18 +6,8 @@ type Props = TableControlledProps;
 
 export default function Table(props: Props) {
   const { rows, page: defaultPage, pages, rowsPerPage: defaultRowsPerPage, ...rest } = props;
-  const [expanded, setExpanded] = useState<{
-    [key: string]: boolean;
-  }>({});
   const [page, setPage] = useState<number>(defaultPage ?? 0);
   const [rowsPerPage, setRowsPerPage] = useState<number>(defaultRowsPerPage ?? 10);
-
-  function handleToggleExpand(rowId: string) {
-    setExpanded({
-      ...expanded,
-      [rowId]: !expanded[rowId],
-    });
-  }
 
   function handlePageChange(newRowsPerPage: number, newPage: number) {
     setPage(newPage);

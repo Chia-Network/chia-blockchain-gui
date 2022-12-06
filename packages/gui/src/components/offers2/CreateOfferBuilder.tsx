@@ -1,9 +1,8 @@
-import { WalletType } from '@chia/api';
-import { useGetWalletsQuery, useCreateOfferForIdsMutation } from '@chia/api-react';
-import { Flex, ButtonLoading, useOpenDialog, Loading } from '@chia/core';
+import { WalletType } from '@chia-network/api';
+import { useGetWalletsQuery, useCreateOfferForIdsMutation, usePrefs } from '@chia-network/api-react';
+import { Flex, ButtonLoading, useOpenDialog, Loading } from '@chia-network/core';
 import { t, Trans } from '@lingui/macro';
 import { Grid } from '@mui/material';
-import { useLocalStorage } from '@rehooks/local-storage';
 import React, { useRef, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -82,7 +81,7 @@ export default function CreateOfferBuilder(props: CreateOfferBuilderProps) {
     [walletType, assetId, nftId, nftWalletId, nftIds]
   );
 
-  const [suppressShareOnCreate] = useLocalStorage<boolean>(OfferLocalStorageKeys.SUPPRESS_SHARE_ON_CREATE);
+  const [suppressShareOnCreate] = usePrefs<boolean>(OfferLocalStorageKeys.SUPPRESS_SHARE_ON_CREATE);
 
   function handleCreateOffer() {
     offerBuilderRef.current?.submit();

@@ -1,5 +1,5 @@
-import { type NFTInfo } from '@chia/api';
-import { IconButton, Flex, Loading } from '@chia/core';
+import { type NFTInfo } from '@chia-network/api';
+import { IconButton, Flex, Loading } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { MoreVert } from '@mui/icons-material';
 import { Card, CardActionArea, CardContent, Typography } from '@mui/material';
@@ -8,7 +8,6 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 import CheckIcon from '../../assets/img/checkmark.svg';
-import useNFTMetadata from '../../hooks/useNFTMetadata';
 import NFTContextualActions, { NFTContextualActionTypes } from './NFTContextualActions';
 import NFTPreview from './NFTPreview';
 

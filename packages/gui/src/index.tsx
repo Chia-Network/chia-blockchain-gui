@@ -4,10 +4,16 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import App from './components/app/App';
+import initPrefs from './init-prefs';
 
 // we need to use additional root for hot reloading
 function Root() {
   return <App />;
 }
 
-ReactDOM.render(<Root />, document.querySelector('#root'));
+const onInit = () => {
+  ReactDOM.render(<Root />, document.querySelector('#root'));
+};
+initPrefs(onInit).catch((e: unknown) => {
+  window.alert(e);
+});

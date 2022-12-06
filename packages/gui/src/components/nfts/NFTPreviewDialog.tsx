@@ -1,5 +1,5 @@
-import { type NFTInfo } from '@chia/api';
-import { Flex } from '@chia/core';
+import { type NFTInfo } from '@chia-network/api';
+import { Flex } from '@chia-network/core';
 import { Dialog, Paper } from '@mui/material';
 import { styled } from '@mui/styles';
 import React from 'react';
@@ -37,14 +37,7 @@ export default function NFTPreviewDialog(props: NFTPreviewDialogProps) {
       )}
       {...rest}
     >
-      <NFTPreview
-        nft={nft}
-        width="100%"
-        height="100%"
-        fit="contain"
-        background={StyledNFTPreviewBackground}
-        hideStatusBar
-      />
+      <NFTPreview nft={nft} width="100%" height="100%" background={StyledNFTPreviewBackground} hideStatusBar />
     </Dialog>
   );
 }

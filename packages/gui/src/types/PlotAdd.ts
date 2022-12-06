@@ -1,6 +1,7 @@
 import Fingerprint from './Fingerprint';
 
 type PlotAdd = {
+  plotType?: 'ramplot' | 'diskplot';
   bladebitDisableNUMA?: boolean;
   bladebitWarmStart?: boolean;
   bladebitNoCpuAffinity?: boolean;

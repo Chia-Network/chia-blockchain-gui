@@ -1,9 +1,16 @@
-import { ConnectionState, ServiceHumanName, ServiceName, PassphrasePromptReason } from '@chia/api';
-import { useCloseMutation, useGetStateQuery, useGetKeyringStatusQuery, useServices } from '@chia/api-react';
-import { Flex, LayoutHero, LayoutLoading, useMode, useIsSimulator } from '@chia/core';
+import { IpcRenderer } from 'electron';
+
+import { ConnectionState, ServiceHumanName, ServiceName, PassphrasePromptReason } from '@chia-network/api';
+import {
+  useCloseMutation,
+  useGetStateQuery,
+  useGetKeyringStatusQuery,
+  useServices,
+  useGetVersionQuery,
+} from '@chia-network/api-react';
+import { Flex, LayoutHero, LayoutLoading, useMode, useIsSimulator, useAppVersion } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Typography, Collapse } from '@mui/material';
-import { IpcRenderer } from 'electron';
 import isElectron from 'is-electron';
 import React, { useState, useEffect, ReactNode, useMemo } from 'react';
 
@@ -16,6 +23,7 @@ import AppAutoLogin from './AppAutoLogin';
 import AppKeyringMigrator from './AppKeyringMigrator';
 import AppPassPrompt from './AppPassPrompt';
 import AppSelectMode from './AppSelectMode';
+import AppVersionWarning from './AppVersionWarning';
 
 const ALL_SERVICES = [
   ServiceName.WALLET,
@@ -44,6 +52,9 @@ export default function AppState(props: Props) {
   // NOTE: We only start the DL at launch time for now
   const [isDataLayerEnabled] = useState(enableDataLayerService);
   const [isFilePropagationServerEnabled] = useState(enableFilePropagationServer);
+  const [versionDialog, setVersionDialog] = useState<boolean>(true);
+  const { data: backendVersion, isLoading: isLoadingBackendVersion } = useGetVersionQuery();
+  const { version, isLoadingGuiVersion } = useAppVersion();
 
   const runServices = useMemo<ServiceName[] | undefined>(() => {
     if (mode) {
@@ -87,16 +98,6 @@ export default function AppState(props: Props) {
 
   const isConnected = !isClientStateLoading && clientState?.state === ConnectionState.CONNECTED;
 
-  async function handleOpenFile(event, path: string) {
-    console.log('Opening file:');
-    console.log(path);
-  }
-
-  async function handleOpenUrl(event, url: string) {
-    console.log('Opening url:');
-    console.log(url);
-  }
-
   async function handleClose(event) {
     if (closing) {
       return;
@@ -132,8 +133,6 @@ export default function AppState(props: Props) {
     if (isElectron()) {
       const { ipcRenderer } = window as unknown as { ipcRenderer: IpcRenderer };
 
-      ipcRenderer.on('open-file', handleOpenFile);
-      ipcRenderer.on('open-url', handleOpenUrl);
       ipcRenderer.on('exit-daemon', handleClose);
       ipcRenderer.on('removed-cache-file', handleRemovedCachedFile);
 
@@ -166,6 +165,22 @@ export default function AppState(props: Props) {
         </Flex>
       </LayoutLoading>
     );
+  }
+
+  if (backendVersion && version && versionDialog === true) {
+    // backendVersion can be in the format of 1.6.1, 1.7.0b3, or 1.7.0b3.dev123
+    // version can be in the format of 1.6.1, 1.7.0b3, 1.7.0-b2.dev123, or 1.7.0b3-dev123
+
+    const backendVersionClean = backendVersion.replace(/[-.]/g, '');
+    const guiVersionClean = version.replace(/[-.]/g, '');
+
+    if (backendVersionClean !== guiVersionClean) {
+      return (
+        <LayoutHero>
+          <AppVersionWarning backV={backendVersion} guiV={version} setVersionDialog={setVersionDialog} />
+        </LayoutHero>
+      );
+    }
   }
 
   if (isLoadingKeyringStatus || !keyringStatus) {

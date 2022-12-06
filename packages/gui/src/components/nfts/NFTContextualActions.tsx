@@ -1,9 +1,13 @@
 import EventEmitter from 'events';
 
-import type { NFTInfo } from '@chia/api';
-import { useSetNFTStatusMutation, useLocalStorage } from '@chia/api-react';
-import { AlertDialog, DropdownActions, MenuItem, useOpenDialog, usePersistState } from '@chia/core';
-import { LinkSmall as LinkSmallIcon, NFTsSmall as NFTsSmallIcon, OffersSmall as OffersSmallIcon } from '@chia/icons';
+import type { NFTInfo } from '@chia-network/api';
+import { useSetNFTStatusMutation, useLocalStorage } from '@chia-network/api-react';
+import { AlertDialog, DropdownActions, MenuItem, useOpenDialog } from '@chia-network/core';
+import {
+  LinkSmall as LinkSmallIcon,
+  NFTsSmall as NFTsSmallIcon,
+  OffersSmall as OffersSmallIcon,
+} from '@chia-network/icons';
 import { Trans } from '@lingui/macro';
 import {
   ArrowForward as TransferIcon,

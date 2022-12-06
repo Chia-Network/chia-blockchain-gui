@@ -10,7 +10,7 @@ export default class Harvester extends Service {
 
   // deprecated
   async getPlots() {
-    console.log('WARNING: get_plots is deprecated use get_harvesters');
+    console.warn('WARNING: get_plots is deprecated use get_harvesters');
     return this.command('get_plots');
   }
 

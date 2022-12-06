@@ -1,7 +1,7 @@
 import { Trans } from '@lingui/macro';
 import { Assignment as AssignmentIcon } from '@mui/icons-material';
 import { Tooltip, IconButton } from '@mui/material';
-import { styled } from '@mui/system';
+import { styled } from '@mui/material/styles';
 import React, { useState } from 'react';
 import { useCopyToClipboard } from 'react-use';
 // @ts-ignore

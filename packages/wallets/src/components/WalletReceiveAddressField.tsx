@@ -1,5 +1,5 @@
-import { useGetCurrentAddressQuery, useGetNextAddressMutation } from '@chia/api-react';
-import { CopyToClipboard } from '@chia/core';
+import { useGetCurrentAddressQuery, useGetNextAddressMutation } from '@chia-network/api-react';
+import { CopyToClipboard } from '@chia-network/core';
 import { t } from '@lingui/macro';
 import { TextField, IconButton } from '@mui/material';
 import React, { useState } from 'react';
@@ -81,9 +81,13 @@ export default function WalletReceiveAddressField(props: WalletReceiveAddressPro
         }}
       />
       <CopyToClipboard value={address} />
-      <IconButton onClick={handleNewAddress} size="small">
-        <ReloadIconSvg />
-      </IconButton>
+      {isLoading ? (
+        <Loading size="1em" />
+      ) : (
+        <IconButton onClick={handleNewAddress} size="small">
+          <ReloadIconSvg />
+        </IconButton>
+      )}
     </WalletReceiveAddressWrapper>
   );
 }

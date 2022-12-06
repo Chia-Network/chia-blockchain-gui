@@ -1,4 +1,4 @@
-import { Button, DialogActions } from '@chia/core';
+import { Button, DialogActions } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Box, Grid, Dialog, DialogTitle, DialogContent, TextField } from '@mui/material';
 import React from 'react';

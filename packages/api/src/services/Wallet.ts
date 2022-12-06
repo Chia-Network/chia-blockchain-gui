@@ -82,12 +82,13 @@ export default class Wallet extends Service {
     return this.command('get_farmed_amount');
   }
 
-  async sendTransaction(walletId: number, amount: string, fee: string, address: string) {
+  async sendTransaction(walletId: number, amount: string, fee: string, address: string, memos?: string[]) {
     return this.command('send_transaction', {
       walletId,
       amount,
       fee,
       address,
+      memos,
     });
   }
 
@@ -326,6 +327,35 @@ export default class Wallet extends Service {
   async extendDerivationIndex(index: number) {
     return this.command('extend_derivation_index', {
       index,
+    });
+  }
+
+  async signMessageByAddress(
+    address: string,
+    message: string
+  ): Promise<{
+    success: boolean;
+    pubkey: string;
+    signature: string;
+  }> {
+    return this.command('sign_message_by_address', {
+      address,
+      message,
+    });
+  }
+
+  async signMessageById(
+    id: string,
+    message: string
+  ): Promise<{
+    success: boolean;
+    pubkey: string;
+    signature: string;
+    latestCoinId: string;
+  }> {
+    return this.command('sign_message_by_id', {
+      id,
+      message,
     });
   }
 

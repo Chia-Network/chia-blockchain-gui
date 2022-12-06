@@ -1,4 +1,4 @@
-import { toBech32m } from '@chia/api';
+import { toBech32m } from '@chia-network/api';
 import { Box } from '@mui/material';
 import React from 'react';
 import styled from 'styled-components';

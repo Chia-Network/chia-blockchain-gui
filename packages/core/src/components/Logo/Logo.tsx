@@ -1,4 +1,4 @@
-import { Chia } from '@chia/icons';
+import { Chia } from '@chia-network/icons';
 import { Box, BoxProps } from '@mui/material';
 import React from 'react';
 import styled from 'styled-components';

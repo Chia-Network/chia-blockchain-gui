@@ -1,5 +1,5 @@
-import { OfferSummaryRecord, OfferTradeRecord } from '@chia/api';
-import { useCancelOfferMutation, useGetOfferDataMutation, useGetWalletsQuery } from '@chia/api-react';
+import { OfferSummaryRecord, OfferTradeRecord } from '@chia-network/api';
+import { useCancelOfferMutation, useGetWalletsQuery } from '@chia-network/api-react';
 import {
   Button,
   ButtonLoading,
@@ -17,11 +17,10 @@ import {
   chiaToMojo,
   useCurrencyCode,
   useSerializedNavigationState,
-  useShowSaveDialog,
   Tooltip,
   LayoutDashboardSub,
   MenuItem,
-} from '@chia/core';
+} from '@chia-network/core';
 import { Trans, t } from '@lingui/macro';
 import { Cancel, GetApp as Download, Info, Reply as Share, Visibility } from '@mui/icons-material';
 import {
@@ -213,11 +212,10 @@ type OfferListProps = {
 
 function OfferList(props: OfferListProps) {
   const { title, includeMyOffers, includeTakenOffers } = props;
-  const showSaveDialog = useShowSaveDialog();
-  const [getOfferData] = useGetOfferDataMutation();
+
   const [cancelOffer] = useCancelOfferMutation();
   const [saveOffer] = useSaveOfferFile();
-  const { data: wallets, isLoading: isLoadingWallets } = useGetWalletsQuery();
+  const { isLoading: isLoadingWallets } = useGetWalletsQuery();
   const { lookupByAssetId } = useAssetIdName();
   const testnet = useCurrencyCode() === 'TXCH';
   const openDialog = useOpenDialog();

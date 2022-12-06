@@ -1,4 +1,4 @@
-import { useCloseFarmerConnectionMutation } from '@chia/api-react';
+import { useCloseFarmerConnectionMutation } from '@chia-network/api-react';
 
 type Props = {
   nodeId: string;

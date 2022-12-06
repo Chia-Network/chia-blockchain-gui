@@ -1,4 +1,4 @@
-import { Button, Flex, Suspender } from '@chia/core';
+import { Button, Flex, Suspender } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Grid, Typography } from '@mui/material';
 import React from 'react';

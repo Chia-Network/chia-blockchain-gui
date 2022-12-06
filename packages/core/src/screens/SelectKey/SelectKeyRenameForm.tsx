@@ -1,5 +1,5 @@
-import type { KeyData } from '@chia/api';
-import { useDeleteLabelMutation, useSetLabelMutation } from '@chia/api-react';
+import type { KeyData } from '@chia-network/api';
+import { useDeleteLabelMutation, useSetLabelMutation } from '@chia-network/api-react';
 import { Trans } from '@lingui/macro';
 import { ButtonGroup, Chip, InputAdornment } from '@mui/material';
 import React from 'react';

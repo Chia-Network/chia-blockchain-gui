@@ -1,4 +1,13 @@
-import { AdvancedOptions, CardStep, TextField, RadioGroup, Flex, Checkbox, TooltipIcon, Select } from '@chia/core';
+import {
+  AdvancedOptions,
+  CardStep,
+  TextField,
+  RadioGroup,
+  Flex,
+  Checkbox,
+  TooltipIcon,
+  Select,
+} from '@chia-network/core';
 import { Trans, t } from '@lingui/macro';
 import {
   Grid,
@@ -13,6 +22,7 @@ import {
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
 
+import PlotterName from '../../../constants/PlotterName';
 import Plotter from '../../../types/Plotter';
 
 type Props = {
@@ -119,7 +129,8 @@ export default function PlotAddNumberOfPlots(props: Props) {
                 placeholder="2"
                 label={<Trans>Number of threads</Trans>}
                 helperText={
-                  plotter.defaults.plotterName.startsWith('bladebit') && (
+                  (plotter.defaults.plotterName === PlotterName.BLADEBIT_RAM ||
+                    plotter.defaults.plotterName === PlotterName.BLADEBIT_DISK) && (
                     <Trans>Specify a value of 0 to use all available threads</Trans>
                   )
                 }
@@ -146,7 +157,7 @@ export default function PlotAddNumberOfPlots(props: Props) {
               </FormControl>
             </Grid>
           )}
-          {op.haveNumBuckets && plotter.defaults.plotterName !== 'bladebit2' && (
+          {op.haveNumBuckets && plotter.defaults.plotterName !== PlotterName.BLADEBIT_DISK && (
             <Grid xs={12} sm={6} item>
               <FormControl variant="filled" fullWidth>
                 <TextField
@@ -163,7 +174,7 @@ export default function PlotAddNumberOfPlots(props: Props) {
               </FormControl>
             </Grid>
           )}
-          {op.haveNumBuckets && plotter.defaults.plotterName === 'bladebit2' && (
+          {op.haveNumBuckets && plotter.defaults.plotterName === PlotterName.BLADEBIT_DISK && (
             <Grid xs={12} sm={6} item>
               <FormControl variant="filled" fullWidth>
                 <InputLabel>
@@ -207,18 +218,18 @@ export default function PlotAddNumberOfPlots(props: Props) {
               />
             </FormControl>
           </Grid>
-          {(op.haveBladebit2Cache ||
-            op.haveBladebit2F1Threads ||
-            op.haveBladebit2FpThreads ||
-            op.haveBladebit2CThreads ||
-            op.haveBladebit2P2Threads ||
-            op.haveBladebit2P3Threads) && (
+          {(op.haveBladebitDiskCache ||
+            op.haveBladebitDiskF1Threads ||
+            op.haveBladebitDiskFpThreads ||
+            op.haveBladebitDiskCThreads ||
+            op.haveBladebitDiskP2Threads ||
+            op.haveBladebitDiskP3Threads) && (
             <Grid container item spacing={1}>
-              {op.haveBladebit2Cache && (
+              {op.haveBladebitDiskCache && (
                 <Grid xs={12} sm={6} item>
                   <FormControl variant="filled" fullWidth>
                     <TextField
-                      name="bladebit2Cache"
+                      name="bladebitDiskCache"
                       type="number"
                       variant="filled"
                       placeholder="192"
@@ -231,11 +242,11 @@ export default function PlotAddNumberOfPlots(props: Props) {
                   </FormControl>
                 </Grid>
               )}
-              {op.haveBladebit2F1Threads && (
+              {op.haveBladebitDiskF1Threads && (
                 <Grid xs={12} sm={6} item>
                   <FormControl variant="filled" fullWidth>
                     <TextField
-                      name="bladebit2F1Threads"
+                      name="bladebitDiskF1Threads"
                       type="number"
                       variant="filled"
                       placeholder=""
@@ -245,11 +256,11 @@ export default function PlotAddNumberOfPlots(props: Props) {
                   </FormControl>
                 </Grid>
               )}
-              {op.haveBladebit2FpThreads && (
+              {op.haveBladebitDiskFpThreads && (
                 <Grid xs={12} sm={6} item>
                   <FormControl variant="filled" fullWidth>
                     <TextField
-                      name="bladebit2FpThreads"
+                      name="bladebitDiskFpThreads"
                       type="number"
                       variant="filled"
                       placeholder=""
@@ -259,11 +270,11 @@ export default function PlotAddNumberOfPlots(props: Props) {
                   </FormControl>
                 </Grid>
               )}
-              {op.haveBladebit2CThreads && (
+              {op.haveBladebitDiskCThreads && (
                 <Grid xs={12} sm={6} item>
                   <FormControl variant="filled" fullWidth>
                     <TextField
-                      name="bladebit2CThreads"
+                      name="bladebitDiskCThreads"
                       type="number"
                       variant="filled"
                       placeholder=""
@@ -273,11 +284,11 @@ export default function PlotAddNumberOfPlots(props: Props) {
                   </FormControl>
                 </Grid>
               )}
-              {op.haveBladebit2P2Threads && (
+              {op.haveBladebitDiskP2Threads && (
                 <Grid xs={12} sm={6} item>
                   <FormControl variant="filled" fullWidth>
                     <TextField
-                      name="bladebit2P2Threads"
+                      name="bladebitDiskP2Threads"
                       type="number"
                       variant="filled"
                       placeholder=""
@@ -287,11 +298,11 @@ export default function PlotAddNumberOfPlots(props: Props) {
                   </FormControl>
                 </Grid>
               )}
-              {op.haveBladebit2P3Threads && (
+              {op.haveBladebitDiskP3Threads && (
                 <Grid xs={12} sm={6} item>
                   <FormControl variant="filled" fullWidth>
                     <TextField
-                      name="bladebit2P3Threads"
+                      name="bladebitDiskP3Threads"
                       type="number"
                       variant="filled"
                       placeholder=""
@@ -397,11 +408,11 @@ export default function PlotAddNumberOfPlots(props: Props) {
                 </FormControl>
               </Grid>
             )}
-            {op.haveBladebit2Alternate && (
+            {op.haveBladebitDiskAlternate && (
               <Grid xs={6} sm={4} item>
                 <FormControl variant="filled" fullWidth>
                   <FormControlLabel
-                    control={<Checkbox name="bladebit2Alternate" />}
+                    control={<Checkbox name="bladebitDiskAlternate" />}
                     label={
                       <>
                         <Trans>Alternate bucket writing</Trans>{' '}

@@ -1,4 +1,4 @@
-import { decodeBech32m } from '@chia/api';
+import { decodeBech32m } from '@chia-network/api';
 
 export default function validAddress(address: string, allowedPrefixes?: string[]) {
   const response = decodeBech32m(address);

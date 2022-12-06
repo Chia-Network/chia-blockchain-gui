@@ -1,7 +1,11 @@
-import { fungibleAssetFromAssetIdAndAmount, royaltyAssetFromNFTInfo } from '@chia/api';
-import type { CalculateRoyaltiesRequest, NFTInfo } from '@chia/api';
-import { useCalculateRoyaltiesForNFTsQuery, useGetNFTsByNFTIDsQuery, useGetWalletsQuery } from '@chia/api-react';
-import { catToMojo, chiaToMojo } from '@chia/core';
+import { fungibleAssetFromAssetIdAndAmount, royaltyAssetFromNFTInfo } from '@chia-network/api';
+import type { CalculateRoyaltiesRequest, NFTInfo } from '@chia-network/api';
+import {
+  useCalculateRoyaltiesForNFTsQuery,
+  useGetNFTsByNFTIDsQuery,
+  useGetWalletsQuery,
+} from '@chia-network/api-react';
+import { catToMojo, chiaToMojo } from '@chia-network/core';
 import { uniq } from 'lodash';
 import React, { ReactNode, useMemo } from 'react';
 import { useWatch } from 'react-hook-form';

@@ -1,6 +1,6 @@
-import { WalletType } from '@chia/api';
-import type { OfferSummaryAssetInfo, OfferSummaryInfos, OfferSummaryRecord } from '@chia/api';
-import { mojoToCAT, mojoToChia, mojoToCATLocaleString, mojoToChiaLocaleString } from '@chia/core';
+import { WalletType } from '@chia-network/api';
+import type { OfferSummaryAssetInfo, OfferSummaryRecord } from '@chia-network/api';
+import { mojoToCAT, mojoToChia, mojoToCATLocaleString, mojoToChiaLocaleString } from '@chia-network/core';
 import { t } from '@lingui/macro';
 import type { ChipProps } from '@mui/material';
 

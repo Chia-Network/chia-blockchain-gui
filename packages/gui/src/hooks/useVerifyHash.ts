@@ -1,9 +1,7 @@
-import { useLocalStorage } from '@chia/api-react';
-import { ContactSupportOutlined } from '@mui/icons-material';
+import type { NFTInfo } from '@chia-network/api';
 import { useState, useEffect, useRef } from 'react';
 import isURL from 'validator/lib/isURL';
 
-import { eventEmitter } from '../components/nfts/NFTContextualActions';
 import computeHash from '../util/computeHash';
 import getRemoteFileContent, { FileType } from '../util/getRemoteFileContent';
 import { mimeTypeRegex, isImage, parseExtensionFromUrl } from '../util/utils';
@@ -77,7 +75,6 @@ export default function useVerifyHash(props: VerifyHash): {
 
     const thumbCache = getCacheItem(`thumb-cache-${nftId}`);
     const contentCache = getCacheItem(`content-cache-${nftId}`);
-
 
     if (metadata?.preview_video_uris && !metadata.preview_video_hash) {
       setIsLoading(false);

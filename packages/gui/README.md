@@ -1,24 +1,18 @@
-# chia-blockchain
-![Alt text](https://www.chia.net/img/chia_logo.svg)
+# chia-blockchain-gui/gui
 
-![GitHub contributors](https://img.shields.io/github/contributors/Chia-Network/chia-blockchain?logo=GitHub)
+![Chia logo](https://www.chia.net/wp-content/uploads/2022/09/chia-logo.svg)
 
-Please check out the [wiki](https://github.com/Chia-Network/chia-blockchain/wiki)
-and [FAQ](https://github.com/Chia-Network/chia-blockchain/wiki/FAQ) for
-information on this project.
+![GitHub contributors](https://img.shields.io/github/contributors/Chia-Network/chia-blockchain-gui?logo=GitHub)
 
-## Installing
+Chia GUI - written in TypeScript and uses Electron/React.
 
-This is the GUI for chia-blockchain. It is built into distribution packages in the chia-blockchain repository.
+## Development
 
-Install instructions are available in the
-[INSTALL](https://github.com/Chia-Network/chia-blockchain/wiki/INSTALL)
-section of the
-[chia-blockchain repository wiki](https://github.com/Chia-Network/chia-blockchain/wiki).
+Please read and follow the main [README.md](https://github.com/Chia-Network/chia-blockchain-gui) of this monorepo.
 
-## Running
+## Best practices
 
-Once installed, a
-[Quick Start Guide](https://github.com/Chia-Network/chia-blockchain/wiki/Quick-Start-Guide)
-is available from the repository
-[wiki](https://github.com/Chia-Network/chia-blockchain/wiki).
+- Only one exported component per file
+- Same file name like exported function / component / class
+- CSS, GraphQL file next to the component file with different extension
+- For material-ui use the sx property or other properties instead of styled

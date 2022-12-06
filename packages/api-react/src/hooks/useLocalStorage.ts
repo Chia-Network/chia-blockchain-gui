@@ -24,21 +24,25 @@ export default function useLocalStorage<T>(
 ): [T | undefined, (value: T | ((value: T | undefined) => T)) => void] {
   const [storedValue, setStoredValue] = useState<T | undefined>(getValueFromLocalStorage(key, initialValue));
 
-  const setValue = (value: T | ((value: T | undefined) => T)) => {
-    const newValue = value instanceof Function ? value(storedValue) : value;
+  const setValue = useCallback(
+    (value: T | ((value: T | undefined) => T)) => {
+      setStoredValue((currentStoredValue) => {
+        const newValue = value instanceof Function ? value(currentStoredValue) : value;
 
-    const newStoredValue = JSON.stringify(newValue);
-    const oldStoredValue = JSON.stringify(storedValue);
-    if (newStoredValue === oldStoredValue) {
-      return;
-    }
+        const newStoredValue = JSON.stringify(newValue);
+        const oldStoredValue = JSON.stringify(currentStoredValue);
+        if (newStoredValue === oldStoredValue) {
+          return currentStoredValue;
+        }
 
-    setStoredValue(newValue);
+        window.localStorage.setItem(key, newStoredValue);
+        eventEmitter.emit('storage', { key, newValue });
 
-    window.localStorage.setItem(key, newStoredValue);
-
-    eventEmitter.emit('storage', { key, newValue });
-  };
+        return newValue;
+      });
+    },
+    [key]
+  );
 
   const changeHandler = useCallback(
     (e) => {

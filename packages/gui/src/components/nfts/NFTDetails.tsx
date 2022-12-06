@@ -1,4 +1,14 @@
-import { Flex, CardKeyValue, CopyToClipboard, Tooltip, Truncate, truncateValue, Link } from '@chia/core';
+import { toBech32m } from '@chia-network/api';
+import {
+  Flex,
+  CardKeyValue,
+  CopyToClipboard,
+  Tooltip,
+  Truncate,
+  truncateValue,
+  Link,
+  useCurrencyCode,
+} from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Box, Typography } from '@mui/material';
 import React, { useMemo } from 'react';
@@ -30,6 +40,7 @@ export default function NFTDetails(props: NFTDetailsProps) {
     didName: minterDIDName,
     isLoading: isLoadingMinterDID,
   } = useNFTMinterDID(nft.$nftId);
+  const currencyCode = useCurrencyCode();
 
   const details = useMemo(() => {
     if (!nft) {
@@ -57,7 +68,30 @@ export default function NFTDetails(props: NFTDetailsProps) {
           </Truncate>
         ),
       },
+      {
+        key: 'nftCoinId',
+        label: <Trans>NFT Coin ID</Trans>,
+        value: (
+          <Truncate ValueProps={{ variant: 'body2' }} tooltip copyToClipboard>
+            {stripHexPrefix(nft.nftCoinId)}
+          </Truncate>
+        ),
+      },
     ].filter(Boolean);
+
+    if (nft.p2Address) {
+      const p2Address = toBech32m(nft.p2Address, currencyCode);
+
+      rows.push({
+        key: 'p2Address',
+        label: <Trans>Owner Address</Trans>,
+        value: (
+          <Truncate ValueProps={{ variant: 'body2' }} tooltip copyToClipboard>
+            {p2Address}
+          </Truncate>
+        ),
+      });
+    }
 
     let hexDIDId;
     let didId;
@@ -268,7 +302,7 @@ export default function NFTDetails(props: NFTDetailsProps) {
     }
 
     if (metadata?.preview_image_uris) {
-      const value = metadata?.preview_image_uris.map((uri: string, idx: number) => (
+      const value = metadata?.preview_image_uris.map((uri: string) => (
         <span>
           &nbsp;
           <Link href={uri} target="_blank">
@@ -284,7 +318,7 @@ export default function NFTDetails(props: NFTDetailsProps) {
     }
 
     if (Array.isArray(metadata?.preview_video_uris)) {
-      const value = metadata?.preview_video_uris.map((uri: string, idx: number) => (
+      const value = metadata?.preview_video_uris.map((uri: string) => (
         <span>
           &nbsp;
           <Link target="_blank" href={uri}>

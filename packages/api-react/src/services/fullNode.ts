@@ -1,5 +1,5 @@
-import { FullNode } from '@chia/api';
-import type { Block, BlockRecord, BlockHeader, BlockchainState, FullNodeConnection } from '@chia/api';
+import { FullNode } from '@chia-network/api';
+import type { Block, BlockRecord, BlockHeader, BlockchainState, FullNodeConnection } from '@chia-network/api';
 
 import api, { baseQuery } from '../api';
 import onCacheEntryAddedInvalidate from '../utils/onCacheEntryAddedInvalidate';

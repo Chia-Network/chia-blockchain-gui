@@ -1,5 +1,5 @@
-import { type OfferSummaryRecord } from '@chia/api';
-import { Flex, FormatLargeNumber, StateColor, TooltipIcon, mojoToChia, mojoToCAT } from '@chia/core';
+import { type OfferSummaryRecord } from '@chia-network/api';
+import { Flex, FormatLargeNumber, StateColor, TooltipIcon, mojoToChia, mojoToCAT } from '@chia-network/core';
 import { Plural, Trans } from '@lingui/macro';
 import { Box, Divider, Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';

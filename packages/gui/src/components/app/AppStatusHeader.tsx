@@ -1,17 +1,18 @@
-import { Flex, useMode, Mode } from '@chia/core';
-import { WalletConnections, WalletStatus } from '@chia/wallets';
+import { Flex, useMode, Mode } from '@chia-network/core';
+import { WalletConnections, WalletStatus } from '@chia-network/wallets';
 import { Trans } from '@lingui/macro';
 import { Box, ButtonGroup, Button, Popover } from '@mui/material';
-import React from 'react';
+import React, { useState } from 'react';
 
 import Connections from '../fullNode/FullNodeConnections';
 import FullNodeStateIndicator from '../fullNode/FullNodeStateIndicator';
+import WalletConnectDropdown from '../walletConnect/WalletConnectDropdown';
 
 export default function AppStatusHeader() {
   const [mode] = useMode();
 
-  const [anchorElFN, setAnchorElFN] = React.useState<HTMLButtonElement | null>(null);
-  const [anchorElW, setAnchorElW] = React.useState<HTMLButtonElement | null>(null);
+  const [anchorElFN, setAnchorElFN] = useState<HTMLButtonElement | null>(null);
+  const [anchorElW, setAnchorElW] = useState<HTMLButtonElement | null>(null);
 
   const handleClickFN = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorElFN(event.currentTarget);
@@ -21,8 +22,6 @@ export default function AppStatusHeader() {
     setAnchorElFN(null);
   };
 
-  const openFN = Boolean(anchorElFN);
-
   const handleClickW = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorElW(event.currentTarget);
   };
@@ -31,62 +30,61 @@ export default function AppStatusHeader() {
     setAnchorElW(null);
   };
 
-  const openW = Boolean(anchorElW);
-
   return (
-    <ButtonGroup variant="outlined" color="secondary" size="small">
-      {mode === Mode.FARMING && (
-        <>
-          <Button onClick={handleClickFN} aria-describedby="fullnode-connections">
-            <Flex gap={1} alignItems="center">
-              <FullNodeStateIndicator />
-              <Trans>Full Node</Trans>
-            </Flex>
-          </Button>
-          <Popover
-            id="fullnode-connections"
-            open={openFN}
-            anchorEl={anchorElFN}
-            onClose={handleCloseFN}
-            anchorOrigin={{
-              vertical: 'bottom',
-              horizontal: 'right',
-            }}
-            transformOrigin={{
-              vertical: 'top',
-              horizontal: 'right',
-            }}
-          >
-            <Box sx={{ minWidth: 800 }}>
-              <Connections />
-            </Box>
-          </Popover>
-        </>
-      )}
-      <Button onClick={handleClickW}>
-        <Flex gap={1} alignItems="center">
-          <WalletStatus indicator hideTitle />
-          <Trans>Wallet</Trans>
-        </Flex>
-      </Button>
-      <Popover
-        id={openW ? 'simple-popover' : undefined}
-        open={openW}
-        anchorEl={anchorElW}
-        onClose={handleCloseW}
-        anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'right',
-        }}
-        transformOrigin={{
-          vertical: 'top',
-          horizontal: 'right',
-        }}
-      >
-        <Box sx={{ minWidth: 800 }}>
-          <WalletConnections walletId={1} />
-        </Box>
-      </Popover>
-    </ButtonGroup>
+    <Flex gap={1}>
+      <WalletConnectDropdown />
+      <ButtonGroup variant="outlined" color="secondary" size="small">
+        {mode === Mode.FARMING && (
+          <>
+            <Button onClick={handleClickFN} aria-describedby="fullnode-connections">
+              <Flex gap={1} alignItems="center">
+                <FullNodeStateIndicator />
+                <Trans>Full Node</Trans>
+              </Flex>
+            </Button>
+            <Popover
+              open={!!anchorElFN}
+              anchorEl={anchorElFN}
+              onClose={handleCloseFN}
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'right',
+              }}
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+            >
+              <Box sx={{ minWidth: 800 }}>
+                <Connections />
+              </Box>
+            </Popover>
+          </>
+        )}
+        <Button onClick={handleClickW}>
+          <Flex gap={1} alignItems="center">
+            <WalletStatus indicator hideTitle />
+            <Trans>Wallet</Trans>
+          </Flex>
+        </Button>
+        <Popover
+          open={!!anchorElW}
+          anchorEl={anchorElW}
+          onClose={handleCloseW}
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'right',
+          }}
+          transformOrigin={{
+            vertical: 'top',
+            horizontal: 'right',
+          }}
+        >
+          <Box sx={{ minWidth: 800 }}>
+            <WalletConnections walletId={1} />
+          </Box>
+        </Popover>
+      </ButtonGroup>
+    </Flex>
   );
 }

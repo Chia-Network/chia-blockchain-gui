@@ -1,11 +1,19 @@
-import { Connection } from '@chia/api';
-import { useGetFullNodeConnectionsQuery } from '@chia/api-react';
-import { Card, FormatBytes, FormatLargeNumber, Loading, Table } from '@chia/core';
+import { Connection } from '@chia-network/api';
+import { useGetFullNodeConnectionsQuery } from '@chia-network/api-react';
+import { Card, FormatBytes, FormatLargeNumber, IconButton, Loading, Table, useOpenDialog } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
-import { Tooltip } from '@mui/material';
+import { Delete as DeleteIcon } from '@mui/icons-material';
+import { Button, Tooltip } from '@mui/material';
 import React from 'react';
+import styled from 'styled-components';
 
 import { service_connection_types } from '../../util/service_names';
+import FullNodeAddConnection from './FullNodeAddConnection';
+import FullNodeCloseConnection from './FullNodeCloseConnection';
+
+const StyledIconButton = styled(IconButton)`
+  padding: 0.2rem;
+`;
 
 const cols = [
   {
@@ -52,13 +60,39 @@ const cols = [
     field: (row: Connection) => <FormatLargeNumber value={row.peakHeight} />,
     title: <Trans>Height</Trans>,
   },
+  {
+    title: <Trans>Actions</Trans>,
+    field(row: Connection) {
+      return (
+        <FullNodeCloseConnection nodeId={row.nodeId}>
+          {({ onClose }) => (
+            <StyledIconButton onClick={onClose}>
+              <DeleteIcon />
+            </StyledIconButton>
+          )}
+        </FullNodeCloseConnection>
+      );
+    },
+  },
 ];
 
 export default function Connections() {
+  const openDialog = useOpenDialog();
   const { data: connections, isLoading } = useGetFullNodeConnectionsQuery();
 
+  function handleAddPeer() {
+    openDialog(<FullNodeAddConnection />);
+  }
+
   return (
-    <Card title={<Trans>Full Node Connections</Trans>}>
+    <Card
+      title={<Trans>Full Node Connections</Trans>}
+      action={
+        <Button onClick={handleAddPeer} variant="outlined">
+          <Trans>Connect to other peers</Trans>
+        </Button>
+      }
+    >
       {isLoading ? (
         <Loading center />
       ) : !connections?.length ? (

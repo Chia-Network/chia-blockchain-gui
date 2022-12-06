@@ -75,16 +75,16 @@ const startChiaDaemon = () => {
   pyProc = null;
   if (guessPackaged()) {
     try {
-      console.log('Running python executable: ');
+      console.info('Running python executable: ');
       const Process = child_process.spawn;
       pyProc = new Process(script, ['--wait-for-unlock'], processOptions);
     } catch (e) {
-      console.log('Running python executable: Error: ');
-      console.log(`Script ${script}`);
+      console.info('Running python executable: Error: ');
+      console.info(`Script ${script}`);
     }
   } else {
-    console.log('Running python script');
-    console.log(`Script ${script}`);
+    console.info('Running python script');
+    console.info(`Script ${script}`);
 
     const Process = child_process.spawn;
     pyProc = new Process('python', [script, '--wait-for-unlock'], processOptions);
@@ -125,10 +125,10 @@ const startChiaDaemon = () => {
 
     pyProc.on('close', (code) => {
       // Here you can get the exit code of the script
-      console.log(`closing code: ${code}`);
+      console.info(`closing code: ${code}`);
     });
 
-    console.log('child process success');
+    console.info('child process success');
   }
   // pyProc.unref();
 };

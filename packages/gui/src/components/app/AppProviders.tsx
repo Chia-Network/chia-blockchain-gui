@@ -1,4 +1,4 @@
-import { store, api } from '@chia/api-react';
+import { store, api } from '@chia-network/api-react';
 import {
   useDarkMode,
   sleep,
@@ -10,7 +10,7 @@ import {
   dark,
   light,
   ErrorBoundary,
-} from '@chia/core';
+} from '@chia-network/core';
 import { nativeTheme } from '@electron/remote';
 import { Trans } from '@lingui/macro';
 import { Typography } from '@mui/material';
@@ -21,6 +21,7 @@ import { Outlet } from 'react-router-dom';
 import WebSocket from 'ws';
 
 import { i18n, defaultLocale, locales } from '../../config/locales';
+import WalletConnectProvider, { WalletConnectChiaProjectId } from '../walletConnect/WalletConnectProvider';
 import AppState from './AppState';
 
 async function waitForConfig() {
@@ -75,18 +76,20 @@ export default function App(props: AppProps) {
         <ThemeProvider theme={theme} fonts global>
           <ErrorBoundary>
             <ModalDialogsProvider>
-              {isReady ? (
-                <Suspense fallback={<LayoutLoading />}>
-                  <AppState>{outlet ? <Outlet /> : children}</AppState>
-                </Suspense>
-              ) : (
-                <LayoutLoading>
-                  <Typography variant="body1">
-                    <Trans>Loading configuration</Trans>
-                  </Typography>
-                </LayoutLoading>
-              )}
-              <ModalDialogs />
+              <WalletConnectProvider projectId={WalletConnectChiaProjectId}>
+                {isReady ? (
+                  <Suspense fallback={<LayoutLoading />}>
+                    <AppState>{outlet ? <Outlet /> : children}</AppState>
+                  </Suspense>
+                ) : (
+                  <LayoutLoading>
+                    <Typography variant="body1">
+                      <Trans>Loading configuration</Trans>
+                    </Typography>
+                  </LayoutLoading>
+                )}
+                <ModalDialogs />
+              </WalletConnectProvider>
             </ModalDialogsProvider>
           </ErrorBoundary>
         </ThemeProvider>

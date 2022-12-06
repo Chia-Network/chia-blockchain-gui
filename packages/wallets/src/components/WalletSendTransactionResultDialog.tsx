@@ -1,4 +1,4 @@
-import { AlertDialog, Flex } from '@chia/core';
+import { AlertDialog, Flex } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import React from 'react';
 
