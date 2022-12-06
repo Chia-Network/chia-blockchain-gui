@@ -20,6 +20,7 @@ export default function FarmCardTotalChiaFarmed() {
         </>
       );
     }
+    return undefined;
   }, [farmedAmount, locale, currencyCode]);
 
   return (

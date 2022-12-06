@@ -268,6 +268,7 @@ if (!handleSquirrelEvent()) {
           return null;
         }
         console.error('Error getting svg file...', file);
+        return undefined;
       });
 
       ipcMain.handle(
@@ -279,7 +280,7 @@ if (!handleSquirrelEvent()) {
 
           if (allRequests[rest.uri]) {
             /* request already exists */
-            return;
+            return undefined;
           }
 
           allRequests[rest.url] = net.request(rest);
@@ -434,6 +435,7 @@ if (!handleSquirrelEvent()) {
           return mainWindow.webContents.downloadURL(options.url);
         }
         console.error('mainWindow was not initialized');
+        return undefined;
       });
 
       ipcMain.handle('processLaunchTasks', async (_event) => {

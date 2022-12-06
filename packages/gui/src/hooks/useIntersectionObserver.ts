@@ -20,7 +20,7 @@ export default function useIntersectionObserver(
     const node = elementRef?.current; // DOM Ref
     const hasIOSupport = !!window.IntersectionObserver;
 
-    if (!hasIOSupport || frozen || !node) return;
+    if (!hasIOSupport || frozen || !node) return undefined;
 
     const observerParams = { threshold, root, rootMargin };
     const observer = new IntersectionObserver(updateEntry, observerParams);

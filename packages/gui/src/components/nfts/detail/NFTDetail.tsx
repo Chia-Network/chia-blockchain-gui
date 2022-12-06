@@ -22,7 +22,7 @@ export default function NFTDetail() {
 
   const nft: NFTInfo | undefined = useMemo(() => {
     if (!nfts) {
-      return;
+      return undefined;
     }
     return nfts.find((nft: NFTInfo) => nft.$nftId === nftId);
   }, [nfts, nftId]);

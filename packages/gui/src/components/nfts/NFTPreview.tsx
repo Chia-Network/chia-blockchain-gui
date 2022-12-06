@@ -295,7 +295,7 @@ export default function NFTPreview(props: NFTPreviewProps) {
 
   const [srcDoc] = useMemo(() => {
     if (!file) {
-      return;
+      return undefined;
     }
 
     const style = `

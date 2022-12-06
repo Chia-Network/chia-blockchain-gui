@@ -24,7 +24,7 @@ export default function Fee(props: FeeProps) {
         const isLow = mojo.gt('0') && mojo.lt('1');
 
         if (!value) {
-          return;
+          return null;
         }
 
         if (isHigh) {

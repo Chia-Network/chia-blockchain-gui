@@ -100,7 +100,7 @@ function OfferDetails(props: OfferDetailsProps) {
 
   useMemo(async () => {
     if (!offerData) {
-      return false;
+      return;
     }
 
     let valid = false;

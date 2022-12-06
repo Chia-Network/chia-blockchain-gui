@@ -45,7 +45,7 @@ export default function useWalletConnect(config: UseWalletConnectConfig) {
 
   useEffect(() => {
     if (!client) {
-      return;
+      return undefined;
     }
 
     function handleSessionProposal(event: any) {

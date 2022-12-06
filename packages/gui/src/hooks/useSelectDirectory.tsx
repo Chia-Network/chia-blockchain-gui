@@ -32,6 +32,7 @@ export default function useSelectDirectory(
         <Trans>This feature is available only from the GUI.</Trans>
       </AlertDialog>
     );
+    return undefined;
   }
 
   return handleSelect;
