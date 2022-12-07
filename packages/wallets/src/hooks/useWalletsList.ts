@@ -194,7 +194,7 @@ export default function useWalletsList(
 
         const cat = catList?.find((cat) => cat.assetId === id);
         if (cat) {
-          return await addCATToken({
+          return addCATToken({
             name: cat.name,
             assetId: cat.assetId,
             fee: '0',
@@ -204,7 +204,7 @@ export default function useWalletsList(
         // assign stray cat
         const strayCat = strayCats?.find((cat) => cat.assetId === id);
         if (strayCat) {
-          return await addCATToken({
+          return addCATToken({
             name: strayCat.name,
             assetId: strayCat.assetId,
             fee: '0',

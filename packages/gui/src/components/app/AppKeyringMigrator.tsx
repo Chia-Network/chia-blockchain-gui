@@ -58,7 +58,7 @@ export default function AppKeyringMigrator() {
   let cleanupKeyringCheckbox: HTMLInputElement | null = null;
 
   async function validateDialog(passphrase: string, confirmation: string): Promise<boolean> {
-    return await validateChangePassphraseParams(null, passphrase, confirmation);
+    return validateChangePassphraseParams(null, passphrase, confirmation);
   }
 
   async function handleMigrate(): Promise<void> {
