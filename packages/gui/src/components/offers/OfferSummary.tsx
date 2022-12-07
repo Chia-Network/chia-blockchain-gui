@@ -22,7 +22,6 @@ type Props = {
   takerTitle: React.ReactElement | string;
   rowIndentation: number;
   setIsMissingRequestedAsset?: (isMissing: boolean) => void;
-  showNFTPreview: boolean;
 };
 
 export default function OfferSummary(props: Props) {
@@ -183,5 +182,4 @@ OfferSummary.defaultProps = {
   isMyOffer: false,
   imported: false,
   rowIndentation: 3,
-  showNFTPreview: false,
 };
