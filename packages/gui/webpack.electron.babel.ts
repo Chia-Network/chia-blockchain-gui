@@ -21,7 +21,7 @@ export default {
       {
         test: /\.svg$/,
         issuer: /\.[jt]sx?$/,
-        use: ['@svgr/webpack', 'url-loader'],
+        use: ['@svgr/webpack'],
       },
       {
         test: /\.(gif|png|jpe?g|ico|icns)$/i,
