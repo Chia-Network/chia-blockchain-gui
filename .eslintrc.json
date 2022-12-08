@@ -110,5 +110,8 @@
     ],
     // Memoizing all prop callbacks would speed up the app but introduce a hard to debug bugs (wrong memo dependencies)
     "react/jsx-no-bind": "off"
+    //
+    // ** Before adding or updating any rule, please read the comments at the top of this file
+    //
   }
 }
