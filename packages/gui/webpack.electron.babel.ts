@@ -19,9 +19,8 @@ export default {
         },
       },
       {
-        test: /\.svg$/,
-        issuer: /\.[jt]sx?$/,
-        use: ['@svgr/webpack'],
+        test: /\.svg$/i,
+        type: 'asset/inline',
       },
       {
         test: /\.(gif|png|jpe?g|ico|icns)$/i,
