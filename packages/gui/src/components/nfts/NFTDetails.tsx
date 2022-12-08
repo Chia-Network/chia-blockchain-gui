@@ -79,7 +79,7 @@ export default function NFTDetails(props: NFTDetailsProps) {
       },
     ].filter(Boolean);
 
-    if (nft.p2Address) {
+    if (nft.p2Address && currencyCode) {
       const p2Address = toBech32m(nft.p2Address, currencyCode);
 
       rows.push({
