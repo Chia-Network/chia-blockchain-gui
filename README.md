@@ -78,6 +78,14 @@ Do not edit files directly in the repo, but instead please head over to our [Cro
 
   Please run `npx lerna clean -y && rm -rf node_modules && npm install && npx lerna bootstrap`
 
+- **`npm run dev:gui` fails to start the app without providing a reason**
+
+  1. In your command line, please go to the `chia-blockchain` directory (one level up)
+  2. Run `. ./activate`
+  3. Run `cd chia-blockchain-gui`
+  4. Run `npm run dev:gui` to start the app.
+  5. If still does not work, please open you process manager and kill all Chia / Python related processes.
+
 ## Chia FAQ/WIKI
 
 Please check out the [wiki](https://github.com/Chia-Network/chia-blockchain/wiki)
