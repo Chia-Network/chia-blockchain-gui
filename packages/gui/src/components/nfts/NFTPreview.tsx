@@ -222,14 +222,10 @@ export type NFTPreviewProps = {
   background?: any;
   hideStatusBar?: boolean;
   isPreview?: boolean;
-  metadata?: any;
   disableThumbnail?: boolean;
   isCompact?: boolean;
-  metadataError?: any;
-  validateNFT?: boolean;
-  isLoadingMetadata?: boolean;
   miniThumb?: boolean;
-  setNFTCardMetadata: () => void;
+  setNFTCardMetadata: (obj: any) => void;
 };
 
 // ======================================================================= //
@@ -247,8 +243,6 @@ export default function NFTPreview(props: NFTPreviewProps) {
     isPreview = false,
     isCompact = false,
     disableThumbnail = false,
-    metadataError,
-    validateNFT,
     miniThumb,
     setNFTCardMetadata,
   } = props;
@@ -273,17 +267,17 @@ export default function NFTPreview(props: NFTPreviewProps) {
 
   const [loaded, setLoaded] = useState(false);
 
+  const [metadataError, setNFTPreviewMetadataError] = useState();
+
   const { isLoading, error, thumbnail, isValid } = useVerifyHash({
     nft,
     ignoreSizeLimit,
     isPreview,
     dataHash: nft.dataHash,
     nftId: nft.$nftId,
-    validateNFT,
     setNFTCardMetadata,
+    setNFTPreviewMetadataError,
   });
-
-  // console.log('THUMBNAIL???????', isLoading, thumbnail);
 
   const [ignoreError, setIgnoreError] = usePersistState<boolean>(
     false,
@@ -652,22 +646,17 @@ export default function NFTPreview(props: NFTPreviewProps) {
         <ThumbnailError>
           <Trans>Error fetching video preview</Trans>
         </ThumbnailError>
-      ) : metadataError?.message === 'Metadata hash mismatch' ? (
+      ) : metadataError === 'Metadata hash mismatch' ? (
         <ThumbnailError>
           <Trans>Metadata hash mismatch</Trans>
         </ThumbnailError>
-      ) : typeof metadataError === 'string' &&
-        (metadataError === 'Invalid URL' || metadataError.indexOf('getaddrinfo ENOTFOUND') > -1) ? (
+      ) : metadataError === 'Invalid URI' || metadataError?.indexOf('getaddrinfo ENOTFOUND') > -1 ? (
         <ThumbnailError>
           <Trans>Invalid metadata url</Trans>
         </ThumbnailError>
       ) : error === 'Error parsing json' ? (
         <ThumbnailError>
           <Trans>Error parsing json</Trans>
-        </ThumbnailError>
-      ) : metadataError?.message === 'Hash mismatch' ? (
-        <ThumbnailError>
-          <Trans>Metadata hash mismatch</Trans>
         </ThumbnailError>
       ) : responseTooLarge(error) && !ignoreError ? (
         <Background>
@@ -684,10 +673,15 @@ export default function NFTPreview(props: NFTPreviewProps) {
         </Background>
       ) : null}
       <>
-        {(showLoading || (!loaded && isImage(file) && !thumbnail.image && !thumbnail.video && isUrlValid)) &&
-          !responseTooLarge(error) && (
+        {(showLoading ||
+          (!loaded && isImage(file) && !thumbnail.image && !thumbnail.video) ||
+          (!isPreview && !loaded && isImage(file))) &&
+          !responseTooLarge(error) &&
+          isUrlValid && (
             <Flex position="absolute" left="0" top="0" bottom="0" right="0" justifyContent="center" alignItems="center">
-              <Loading center>{!miniThumb && <Trans>Loading preview...</Trans>}</Loading>
+              <Loading center>
+                {!miniThumb && <Trans>{isPreview ? 'Loading preview...' : 'Loading NFT...'}</Trans>}
+              </Loading>
             </Flex>
           )}
         {!showLoading && !responseTooLarge(error) && renderElementPreview()}

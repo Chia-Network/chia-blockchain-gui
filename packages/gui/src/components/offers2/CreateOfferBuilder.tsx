@@ -24,16 +24,7 @@ type createDefaultValuesParams = {
 export function createDefaultValues(params: createDefaultValuesParams): OfferBuilderData {
   const { walletType, assetId, nftId, nftWalletId, nftIds } = params;
 
-  const nfts =
-    nftIds && nftWalletId
-      ? nftIds.map((nftId) => {
-          return { nftId };
-        })
-      : nftId && nftWalletId
-      ? [{ nftId }]
-      : [];
-
-  console.log('nftIds??????', nftIds);
+  const nfts = nftIds && nftWalletId ? nftIds.map((nftId) => ({ nftId })) : nftId && nftWalletId ? [{ nftId }] : [];
 
   return {
     ...emptyDefaultValues,

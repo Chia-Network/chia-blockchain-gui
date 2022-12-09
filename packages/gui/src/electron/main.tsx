@@ -232,7 +232,7 @@ if (!handleSquirrelEvent()) {
       function getRemoteFileSize(url: string): Promise<number> {
         return new Promise((resolve, reject) => {
           axios({
-            method: 'get',
+            method: 'HEAD',
             url,
           })
             .then((response) => {

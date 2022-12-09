@@ -1,9 +1,7 @@
 import React, { useEffect, useState, memo } from 'react';
 import styled from 'styled-components';
 
-const StyledIframe = styled(({ isVisible, miniThumb, ...rest }) => (
-  <iframe {...rest} />
-))`
+const StyledIframe = styled(({ isVisible, miniThumb, ...rest }) => <iframe {...rest} />)`
   position: relative;
   width: ${({ miniThumb }) => (miniThumb ? '50px' : '100%')};
   height: ${({ miniThumb }) => (miniThumb ? '50px' : '100%')};
@@ -55,7 +53,7 @@ function SandboxedIframe(props: SandboxIframeProps) {
       frameBorder="0"
       onLoad={handleLoad}
       isVisible={isVisible}
-      allowFullScreen={true}
+      allowFullScreen
       style={{ pointerEvents: allowPointerEvents ? 'auto' : 'none' }}
       miniThumb={miniThumb}
     />

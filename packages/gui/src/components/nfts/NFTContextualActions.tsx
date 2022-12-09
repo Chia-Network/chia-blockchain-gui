@@ -561,7 +561,6 @@ function NFTInvalidateContextualAction(props: NFTInvalidateContextualActionProps
           computeHash(`${nft?.$nftId}_${nft?.dataUris?.[0]}`, { encoding: 'utf-8' })
         );
         eventEmitter.emit(`force-reload-metadata-${nft?.$nftId}`);
-        // eventEmitter.emit(`force-reload-${nft?.$nftId}`);
       });
       setSelectedNFTIds([]);
       return;
@@ -574,7 +573,8 @@ function NFTInvalidateContextualAction(props: NFTInvalidateContextualActionProps
     setThumbCache({});
     setContentCache({});
     ipcRenderer.invoke('removeCachedFile', computeHash(`${selectedNft?.$nftId}_${dataUrl}`, { encoding: 'utf-8' }));
-    console.log('FORCE RELOAD METADATA!!!!');
+    lruMap.delete(selectedNft?.$nftId);
+    window.localStorage.removeItem(`metadata-cache-${selectedNft?.$nftId}`);
     eventEmitter.emit(`force-reload-metadata-${selectedNft?.$nftId}`);
   }
 
