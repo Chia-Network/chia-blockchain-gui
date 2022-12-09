@@ -24,12 +24,12 @@ function useProfiles() {
     if (!dids || !nftWallets) {
       return [];
     }
-    const profiles = nftWallets.map((nftWallet: Wallet) => ({
+    const profilesLocal = nftWallets.map((nftWallet: Wallet) => ({
       ...dids.find((didWallet: Wallet) => didWallet.id === nftWallet.didWalletId),
       nftWalletId: nftWallet.walletId,
     }));
 
-    return orderBy(profiles, ['name'], ['asc']);
+    return orderBy(profilesLocal, ['name'], ['asc']);
   }, [dids, nftWallets]);
 
   return {

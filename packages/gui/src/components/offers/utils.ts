@@ -235,7 +235,7 @@ export function offerAssetIdForAssetType(assetType: OfferAsset, offerSummary: Of
   }
 
   const assetId = Object.keys(offerSummary.infos).find(
-    (assetId) => offerAssetTypeForAssetId(assetId, offerSummary) === assetType
+    (item) => offerAssetTypeForAssetId(item, offerSummary) === assetType
   );
 
   return assetId;

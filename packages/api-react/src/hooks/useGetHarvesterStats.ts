@@ -9,7 +9,10 @@ export default function useGetHarvesterStats(nodeId: string): {
 } {
   const { data, isLoading, error } = useGetHarvestersSummaryQuery();
 
-  const harvester = useMemo(() => data?.find((harvester) => harvester.connection.nodeId === nodeId), [data, nodeId]);
+  const harvester = useMemo(
+    () => data?.find((harvesterItem) => harvesterItem.connection.nodeId === nodeId),
+    [data, nodeId]
+  );
 
   return {
     isLoading,

@@ -17,14 +17,13 @@ function normalizedSensitiveContent(value: any): boolean {
 }
 
 export default function useNFTsMetadata(nfts: NFTInfo[], isMultiple = false) {
-  const nft = nfts[0];
-  const nftId = nft?.$nftId;
+  const nftObject = nfts[0];
   const [isLoading, setIsLoadingContent] = useState<boolean>(true);
   const [errorContent, setErrorContent] = useState<Error | undefined>();
-  const [metadata, setMetadata] = useState<any>();
+  const [metadataToReturn, setMetadata] = useState<any>();
   const [allowedNFTsWithMetadata] = useState<NFTInfo[]>([]);
 
-  const [metadataCache, setMetadataCache] = useLocalStorage(`metadata-cache-${nftId}`, {});
+  const [metadataCache, setMetadataCache] = useLocalStorage(`metadata-cache-${nftObject?.$nftId}`, {});
 
   const [sensitiveContentObject, setSensitiveContentObject] = usePrefs('sensitive-content', {});
 
@@ -135,15 +134,15 @@ export default function useNFTsMetadata(nfts: NFTInfo[], isMultiple = false) {
       for (let i = 0; i < nfts.length; i++) {
         getMetadata(nfts[i]);
       }
-    } else if (nft) {
-      getMetadata(nft);
+    } else if (nftObject) {
+      getMetadata(nftObject);
     }
-  }, [nft]);
+  }, [nftObject]);
 
   const error = errorContent;
 
   return {
-    metadata,
+    metadata: metadataToReturn,
     isLoading,
     error,
     allowedNFTsWithMetadata,

@@ -24,7 +24,7 @@ export default function NFTDetail() {
     if (!nfts) {
       return undefined;
     }
-    return nfts.find((nft: NFTInfo) => nft.$nftId === nftId);
+    return nfts.find((nftItem: NFTInfo) => nftItem.$nftId === nftId);
   }, [nfts, nftId]);
   const { metadata, isLoading: isLoadingMetadata } = useNFTMetadata([nft]);
   const isLoading = isLoadingWallets || isLoadingNFTs || isLoadingMetadata;

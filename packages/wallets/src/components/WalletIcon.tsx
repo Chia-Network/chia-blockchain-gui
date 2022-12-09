@@ -28,7 +28,7 @@ export default function WalletIcon(props: WalletIconProps) {
   }
 
   if (!isLoading && wallet.type === WalletType.CAT) {
-    const token = catList.find((token) => token.assetId === wallet.meta?.assetId);
+    const token = catList.find((tokenItem) => tokenItem.assetId === wallet.meta?.assetId);
     if (token) {
       return (
         <StyledSymbol color={color} {...rest}>

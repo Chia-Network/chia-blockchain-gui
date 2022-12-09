@@ -76,8 +76,8 @@ export default function IdentitiesPanel() {
   const { walletId } = useParams();
   const { data: wallets, isLoading } = useGetWalletsQuery();
 
-  function handleSelectWallet(walletId: number) {
-    navigate(`/dashboard/settings/profiles/${walletId}`);
+  function handleSelectWallet(id: number) {
+    navigate(`/dashboard/settings/profiles/${id}`);
   }
 
   const dids = [];

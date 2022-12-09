@@ -31,8 +31,8 @@ export const clientApi = apiWithTag.injectEndpoints({
         command: 'getState',
         client: true,
       }),
-      async onCacheEntryAdded(_arg, api) {
-        const { updateCachedData, cacheDataLoaded, cacheEntryRemoved } = api;
+      async onCacheEntryAdded(_arg, apiLocal) {
+        const { updateCachedData, cacheDataLoaded, cacheEntryRemoved } = apiLocal;
         let unsubscribe;
         try {
           await cacheDataLoaded;
@@ -51,7 +51,7 @@ export const clientApi = apiWithTag.injectEndpoints({
                 },
               ],
             },
-            api,
+            apiLocal,
             {}
           );
 

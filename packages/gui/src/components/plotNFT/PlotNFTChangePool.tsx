@@ -25,26 +25,26 @@ export default function PlotNFTChangePool(props: Props) {
 
   const navigate = useNavigate();
   const nft = useMemo(
-    () => data?.nfts?.find((nft) => nft.poolState.p2SingletonPuzzleHash === plotNFTId),
+    () => data?.nfts?.find((nftItem) => nftItem.poolState.p2SingletonPuzzleHash === plotNFTId),
     [data?.nfts, plotNFTId]
   );
 
   const state = nft?.poolWalletStatus?.current?.state;
   const isDoubleFee = state === PlotNFTStateEnum.FARMING_TO_POOL;
 
-  async function handleSubmit(data: SubmitData) {
+  async function handleSubmit(dataLocal: SubmitData) {
     const walletId = nft?.poolWalletStatus.walletId;
 
     const {
-      initialTargetState: { state, poolUrl, relativeLockHeight, targetPuzzleHash },
+      initialTargetState: { state: stateLocal, poolUrl, relativeLockHeight, targetPuzzleHash },
       fee,
-    } = data;
+    } = dataLocal;
 
     if (walletId === undefined || poolUrl === nft?.poolState.poolConfig.poolUrl) {
       return;
     }
 
-    if (state === 'SELF_POOLING') {
+    if (stateLocal === 'SELF_POOLING') {
       await pwSelfPool({
         walletId,
         fee,

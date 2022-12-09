@@ -76,12 +76,12 @@ function OfferEditor(props: OfferEditorProps) {
   const [processing, setIsProcessing] = useState<boolean>(false);
 
   function updateOffer(offer: { [key: string]: BigNumber }, row: OfferEditorRowData, debit: boolean) {
-    const { amount, assetWalletId, walletType } = row;
+    const { amount, assetWalletId, walletType: walletTypeLocal } = row;
     if (assetWalletId > 0) {
       let mojoAmount = new BigNumber(0);
-      if (walletType === WalletType.STANDARD_WALLET) {
+      if (walletTypeLocal === WalletType.STANDARD_WALLET) {
         mojoAmount = chiaToMojo(amount);
-      } else if (walletType === WalletType.CAT) {
+      } else if (walletTypeLocal === WalletType.CAT) {
         mojoAmount = catToMojo(amount);
       }
 

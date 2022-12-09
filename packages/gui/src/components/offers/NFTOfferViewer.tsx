@@ -256,14 +256,14 @@ export function NFTOfferSummary(props: NFTOfferSummaryProps) {
     if (isMyOffer || isLoadingNFTs) {
       return [];
     }
-    const takerUnknownAssets = makerEntries
+    const takerUnknownAssetsLocal = makerEntries
       .filter(
         ([assetId]) =>
           offerAssetTypeForAssetId(assetId, summary) !== OfferAsset.NFT && lookupByAssetId(assetId) === undefined
       )
       .map(([assetId]) => assetId);
 
-    const makerUnknownAssets = takerEntries
+    const makerUnknownAssetsLocal = takerEntries
       .filter(([assetId]) => {
         const assetType = offerAssetTypeForAssetId(assetId, summary);
         if (assetType === OfferAsset.NFT) {
@@ -275,7 +275,7 @@ export function NFTOfferSummary(props: NFTOfferSummaryProps) {
       })
       .map(([assetId]) => assetId);
 
-    return [takerUnknownAssets, makerUnknownAssets];
+    return [takerUnknownAssetsLocal, makerUnknownAssetsLocal];
   }, [isMyOffer, isLoadingNFTs, makerEntries, takerEntries, summary, lookupByAssetId, nfts]);
   const makerSummary: React.ReactElement = (
     <NFTOfferSummaryRow
@@ -315,9 +315,9 @@ export function NFTOfferSummary(props: NFTOfferSummaryProps) {
   return (
     <Flex flexDirection="column" gap={2}>
       {title}
-      {summaries.map((summary, index) => (
+      {summaries.map((summaryItem, index) => (
         <Flex flexDirection="column" key={index} gap={2}>
-          {summary}
+          {summaryItem}
           {index !== summaries.length - 1 && <Divider />}
         </Flex>
       ))}

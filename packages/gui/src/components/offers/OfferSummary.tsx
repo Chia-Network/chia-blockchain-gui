@@ -56,14 +56,14 @@ export default function OfferSummary(props: Props) {
     }
 
     // Identify unknown CATs offered/requested by the maker
-    const takerUnknownCATs = makerEntries
+    const takerUnknownCATsLocal = makerEntries
       .filter(([assetId, _]) => lookupByAssetId(assetId) === undefined)
       .map(([assetId, _]) => assetId);
-    const makerUnknownCATs = takerEntries
+    const makerUnknownCATsLocal = takerEntries
       .filter(([assetId, _]) => lookupByAssetId(assetId) === undefined)
       .map(([assetId, _]) => assetId);
 
-    return [takerUnknownCATs, makerUnknownCATs];
+    return [takerUnknownCATsLocal, makerUnknownCATsLocal];
   }, [summary]);
 
   const sections: {
@@ -98,7 +98,7 @@ export default function OfferSummary(props: Props) {
 
   return (
     <Flex flexDirection="column" flexGrow={1} gap={2}>
-      {sections.map(({ tradeSide, title, entries, unknownCATs }, index) => (
+      {sections.map(({ tradeSide, title, entries, unknownCATs }, indexSections) => (
         <>
           {title}
           <Box
@@ -109,8 +109,13 @@ export default function OfferSummary(props: Props) {
           >
             <Flex flexDirection="column" gap={1}>
               <Flex flexDirection="column" gap={1}>
-                {entries.map(([assetId, amount], index) => (
-                  <OfferSummaryTokenRow key={index} assetId={assetId} amount={amount as number} rowNumber={index + 1} />
+                {entries.map(([assetId, amount], indexEntries) => (
+                  <OfferSummaryTokenRow
+                    key={indexEntries}
+                    assetId={assetId}
+                    amount={amount as number}
+                    rowNumber={indexEntries + 1}
+                  />
                 ))}
               </Flex>
               {unknownCATs !== undefined && unknownCATs.length > 0 && (
@@ -132,7 +137,7 @@ export default function OfferSummary(props: Props) {
               )}
             </Flex>
           </Box>
-          {index !== sections.length - 1 && <Divider />}
+          {indexSections !== sections.length - 1 && <Divider />}
         </>
       ))}
       {!!makerAssetInfo && !!takerAssetInfo && !!makerExchangeRate && !!takerExchangeRate && (

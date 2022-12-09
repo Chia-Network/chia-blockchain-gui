@@ -274,8 +274,8 @@ function NFTOfferConditionalsPanel(props: NFTOfferConditionalsPanelProps) {
   const royaltyPercentageColor = showRoyaltyWarning ? StateColor.WARNING : 'textSecondary';
   const showNegativeAmountWarning = (nftSellerNetAmount ?? 0) < 0;
 
-  function handleAmountChange(amount: string) {
-    methods.setValue('tokenAmount', amount);
+  function handleAmountChange(amountLocal: string) {
+    methods.setValue('tokenAmount', amountLocal);
   }
 
   function handleFeeChange(fee: string) {
@@ -574,12 +574,18 @@ export default function NFTOfferEditor(props: NFTOfferEditorProps) {
   const { data: queriedNFTInfo } = useGetNFTInfoQuery({ coinId: launcherId });
 
   function validateFormData(unvalidatedFormData: NFTOfferEditorFormData): NFTOfferEditorValidatedFormData | undefined {
-    const { exchangeType, nftId, tokenWalletInfo, tokenAmount, fee } = unvalidatedFormData;
+    const {
+      exchangeType: exchangeTypeLocal,
+      nftId: nftIdLocal,
+      tokenWalletInfo,
+      tokenAmount,
+      fee,
+    } = unvalidatedFormData;
     let result: NFTOfferEditorValidatedFormData | undefined;
 
-    if (!nftId) {
+    if (!nftIdLocal) {
       errorDialog(new Error(t`Please enter an NFT identifier`));
-    } else if (!isValidNFTId(nftId)) {
+    } else if (!isValidNFTId(nftIdLocal)) {
       errorDialog(new Error(t`Invalid NFT identifier`));
     } else if (!launcherId) {
       errorDialog(new Error(t`Failed to decode NFT identifier`));
@@ -588,13 +594,13 @@ export default function NFTOfferEditor(props: NFTOfferEditorProps) {
     } else if (!tokenAmount || tokenAmount === '0') {
       errorDialog(new Error(t`Please enter an amount`));
     } else if (
-      exchangeType === NFTOfferExchangeType.TokenForNFT &&
+      exchangeTypeLocal === NFTOfferExchangeType.TokenForNFT &&
       tokenWalletInfo.spendableBalance?.isLessThan(tokenAmount)
     ) {
       errorDialog(new Error(t`Amount exceeds spendable balance`));
     } else {
       result = {
-        exchangeType,
+        exchangeType: exchangeTypeLocal,
         launcherId,
         tokenWalletInfo,
         tokenAmount,
@@ -621,10 +627,16 @@ export default function NFTOfferEditor(props: NFTOfferEditorProps) {
       return;
     }
 
-    const { exchangeType, launcherId, tokenWalletInfo, tokenAmount, fee } = formData;
+    const {
+      exchangeType: exchangeTypeLocal,
+      launcherId: launcherIdLocal,
+      tokenWalletInfo,
+      tokenAmount,
+      fee,
+    } = formData;
 
-    if (exchangeType === NFTOfferExchangeType.NFTForToken) {
-      const haveNFT = nfts.find((nft: NFTInfo) => nft.$nftId === offerNFT.$nftId) !== undefined;
+    if (exchangeTypeLocal === NFTOfferExchangeType.NFTForToken) {
+      const haveNFT = nfts.find((nftItem: NFTInfo) => nftItem.$nftId === offerNFT.$nftId) !== undefined;
 
       if (!haveNFT) {
         errorDialog(new Error(t`Unable to create an offer for an NFT that you do not own.`));
@@ -642,9 +654,9 @@ export default function NFTOfferEditor(props: NFTOfferEditorProps) {
     }
 
     const [offer, driverDict, feeInMojos] = buildOfferRequest({
-      exchangeType,
+      exchangeType: exchangeTypeLocal,
       nft: offerNFT,
-      nftLauncherId: launcherId,
+      nftLauncherId: launcherIdLocal,
       tokenWalletInfo,
       tokenAmount,
       fee,

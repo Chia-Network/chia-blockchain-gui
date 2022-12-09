@@ -18,8 +18,8 @@ export default function useFetchNFTs(
   const nfts = useMemo(
     () =>
       // Convert [ { <wallet_id>: IncompleteNFTInfo[] }, { <wallet_id>: IncompleteNFTInfo[] } ] to NFTInfo[]
-      Object.entries(data ?? []).flatMap(([walletId, nfts]) =>
-        nfts.map((nft) => ({
+      Object.entries(data ?? []).flatMap(([walletId, nftsLocal]) =>
+        nftsLocal.map((nft) => ({
           ...nft,
           walletId: Number(walletId), // Add in the source wallet id
         }))
