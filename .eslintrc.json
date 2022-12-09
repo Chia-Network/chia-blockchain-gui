@@ -32,8 +32,6 @@
     "eslint-comments/no-unused-disable": "error",
     // Allow single line disables (overrides the eslint-comments defaults)
     "eslint-comments/disable-enable-pair": "off",
-    // There are cases when Promise.All doesn't work for us (for example when we need to break a for loop - as in our case)
-    "no-await-in-loop": "off",
     // We use TS instead of prop-types
     "react/prop-types": [0],
     // We do not see the value of this turned on
