@@ -57,9 +57,9 @@ export default function useWalletTransactions(
   // TODO move sorting to the backend
   const transactionsOrdered = transactions;
 
-  function handlePageChange(rowsPerPage: number, page: number) {
-    setRowsPerPage(rowsPerPage);
-    setPage(page);
+  function handlePageChange(rowsPerPageLocal: number, pageLocal: number) {
+    setRowsPerPage(rowsPerPageLocal);
+    setPage(pageLocal);
   }
 
   return {

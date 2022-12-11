@@ -165,8 +165,8 @@ export default function WalletsManageTokens() {
               <Spinner center />
             ) : (
               <Flex gap={1} flexDirection="column" width="100%">
-                {list?.map((list) => (
-                  <WalletTokenCard item={list} key={list.id} onHide={hide} onShow={show} />
+                {list?.map((listItem) => (
+                  <WalletTokenCard item={listItem} key={listItem.id} onHide={hide} onShow={show} />
                 ))}
               </Flex>
             )}

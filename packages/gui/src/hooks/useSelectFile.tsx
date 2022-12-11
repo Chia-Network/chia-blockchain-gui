@@ -12,6 +12,7 @@ export default function useSelectFile(): () => Promise<string | undefined> {
       return filePath;
     } catch (error: any) {
       showError(error);
+      return undefined;
     }
   }
 

@@ -171,9 +171,9 @@ export default function EstimatedFee(props: FeeProps) {
 
   const multiplier = txCostEstimates[txType];
 
-  function formatEst(number, multiplier, locale) {
-    const num = Math.round(number * multiplier * 10 ** -4) * 10 ** 4;
-    const formatNum = mojoToChiaLocaleString(num, locale);
+  function formatEst(number, multiplierLocal, localeLocal) {
+    const num = Math.round(number * multiplierLocal * 10 ** -4) * 10 ** 4;
+    const formatNum = mojoToChiaLocaleString(num, localeLocal);
     return formatNum;
   }
 

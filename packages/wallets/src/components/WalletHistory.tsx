@@ -297,17 +297,17 @@ export default function WalletHistory(props: Props) {
           return (
             <TableBase size="small">
               <TableBody>
-                {rows.map((row) => (
-                  <TableRow key={row.key}>
+                {rows.map((rowItem) => (
+                  <TableRow key={rowItem.key}>
                     <StyledTableCellSmall>
                       <Typography component="div" variant="body2" color="textSecondary" noWrap>
-                        {row.label}
+                        {rowItem.label}
                       </Typography>
                     </StyledTableCellSmall>
                     <StyledTableCellSmallRight>
                       <Box maxWidth="100%">
                         <Typography component="div" variant="body2" noWrap>
-                          {row.value}
+                          {rowItem.value}
                         </Typography>
                       </Box>
                     </StyledTableCellSmallRight>

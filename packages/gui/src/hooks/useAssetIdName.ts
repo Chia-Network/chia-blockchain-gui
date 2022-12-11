@@ -17,7 +17,7 @@ export default function useAssetIdName() {
   const { data: catList = [], isLoading: isCatListLoading } = useGetCatListQuery();
   const currencyCode = useCurrencyCode();
 
-  const { assetIdNameMapping, walletIdNameMapping } = useMemo(() => {
+  const memoized = useMemo(() => {
     const assetIdNameMapping = new Map<string, AssetIdMapEntry>();
     const walletIdNameMapping = new Map<number, AssetIdMapEntry>();
 
@@ -40,7 +40,7 @@ export default function useAssetIdName() {
         isVerified = true;
       } else if (walletType === WalletType.CAT) {
         const lowercaseTail = wallet.meta.assetId.toLowerCase();
-        const cat = catList.find((cat: CATToken) => cat.assetId.toLowerCase() === lowercaseTail);
+        const cat = catList.find((catItem: CATToken) => catItem.assetId.toLowerCase() === lowercaseTail);
 
         assetId = lowercaseTail;
         name = wallet.name;
@@ -107,11 +107,11 @@ export default function useAssetIdName() {
   }, [catList, wallets, isCatListLoading, isLoading]);
 
   function lookupByAssetId(assetId: string): AssetIdMapEntry | undefined {
-    return assetIdNameMapping.get(assetId.toLowerCase());
+    return memoized.assetIdNameMapping.get(assetId.toLowerCase());
   }
 
   function lookupByWalletId(walletId: number | string): AssetIdMapEntry | undefined {
-    return walletIdNameMapping.get(Number(walletId));
+    return memoized.walletIdNameMapping.get(Number(walletId));
   }
 
   return { lookupByAssetId, lookupByWalletId };

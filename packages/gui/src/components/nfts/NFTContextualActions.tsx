@@ -273,10 +273,10 @@ function NFTCancelUnconfirmedTransactionContextualAction(props: NFTCancelUnconfi
         </AlertDialog>
       );
     } else {
-      const error = errorMessage || 'Unknown error';
+      const err = errorMessage || 'Unknown error';
       openDialog(
         <AlertDialog title={<Trans>NFT Status Update Failed</Trans>}>
-          <Trans>The NFT status update failed: {error}</Trans>
+          <Trans>The NFT status update failed: {err}</Trans>
         </AlertDialog>
       );
     }
@@ -415,9 +415,9 @@ function NFTDownloadContextualAction(props: NFTDownloadContextualActionProps) {
       return;
     }
 
-    const dataUrl = selectedNft?.dataUris?.[0];
-    if (dataUrl) {
-      download(dataUrl);
+    const dataUrlLocal = selectedNft?.dataUris?.[0];
+    if (dataUrlLocal) {
+      download(dataUrlLocal);
     }
   }
 

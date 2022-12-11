@@ -1340,11 +1340,11 @@ export default function OfferShareDialog(props: OfferShareDialogProps) {
         OfferSharingProviders[key as OfferSharingService].capabilities.some((cap) => capabilities.includes(cap))
       )
       .map((key) => {
-        const { component, props } = dialogComponents[key as OfferSharingService];
+        const { component, props: dialogProps } = dialogComponents[key as OfferSharingService];
         return {
           ...OfferSharingProviders[key as OfferSharingService],
           dialogComponent: component,
-          dialogProps: props,
+          dialogProps,
         };
       });
 
@@ -1357,9 +1357,11 @@ export default function OfferShareDialog(props: OfferShareDialogProps) {
 
   async function handleShare(dialogProvider: OfferShareDialogProvider) {
     const DialogComponent = dialogProvider.dialogComponent;
-    const { props } = dialogProvider;
+    const { props: dialogProps } = dialogProvider;
 
-    await openDialog(<DialogComponent offerRecord={offerRecord} offerData={offerData} testnet={testnet} {...props} />);
+    await openDialog(
+      <DialogComponent offerRecord={offerRecord} offerData={offerData} testnet={testnet} {...dialogProps} />
+    );
   }
 
   function toggleSuppression(value: boolean) {

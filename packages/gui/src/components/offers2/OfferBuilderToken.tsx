@@ -31,7 +31,7 @@ export default function OfferBuilderToken(props: OfferBuilderTokenProps) {
   });
 
   const { data: wallets } = useGetWalletsQuery();
-  const wallet = wallets?.find((wallet: Wallet) => wallet.meta?.assetId?.toLowerCase() === assetId);
+  const wallet = wallets?.find((walletItem: Wallet) => walletItem.meta?.assetId?.toLowerCase() === assetId);
   const warnUnknownCAT = assetId && !wallet;
 
   return (

@@ -104,10 +104,10 @@ function openAbout() {
   // aboutWindow.webContents.openDevTools({ mode: 'detach' });
 }
 
-export function getChecksum(path: string) {
+export function getChecksum(pathLocal: string) {
   return new Promise((resolve, reject) => {
     const hash = crypto.createHash('sha256');
-    const input = fs.createReadStream(path);
+    const input = fs.createReadStream(pathLocal);
     input.on('error', reject);
     input.on('data', (chunk) => {
       hash.update(chunk);
@@ -222,11 +222,11 @@ if (!handleSquirrelEvent()) {
         return { err, statusCode, statusMessage, responseBody };
       });
 
-      function getRemoteFileSize(url: string): Promise<number> {
+      function getRemoteFileSize(urlLocal: string): Promise<number> {
         return new Promise((resolve, reject) => {
           axios({
             method: 'get',
-            url,
+            url: urlLocal,
           })
             .then((response) => {
               resolve(Number(response.headers['content-length']));
@@ -268,6 +268,7 @@ if (!handleSquirrelEvent()) {
           return null;
         }
         console.error('Error getting svg file...', file);
+        return undefined;
       });
 
       ipcMain.handle(
@@ -279,7 +280,7 @@ if (!handleSquirrelEvent()) {
 
           if (allRequests[rest.uri]) {
             /* request already exists */
-            return;
+            return undefined;
           }
 
           allRequests[rest.url] = net.request(rest);
@@ -398,8 +399,8 @@ if (!handleSquirrelEvent()) {
                 });
               });
 
-              allRequests[rest.url].on('error', (error: any) => {
-                reject(error);
+              allRequests[rest.url].on('error', (err: any) => {
+                reject(err);
               });
 
               if (requestData) {
@@ -434,6 +435,7 @@ if (!handleSquirrelEvent()) {
           return mainWindow.webContents.downloadURL(options.url);
         }
         console.error('mainWindow was not initialized');
+        return undefined;
       });
 
       ipcMain.handle('processLaunchTasks', async (_event) => {
@@ -577,9 +579,9 @@ if (!handleSquirrelEvent()) {
       // don't show remote daeomn detials in the title bar
       if (!manageDaemonLifetime(NET)) {
         mainWindow.webContents.on('did-finish-load', async () => {
-          const { url } = await loadConfig(NET);
+          const { url: urlLocal } = await loadConfig(NET);
           if (mainWindow) {
-            mainWindow.setTitle(`${app.getName()} [${url}]`);
+            mainWindow.setTitle(`${app.getName()} [${urlLocal}]`);
           }
         });
       }
@@ -674,31 +676,31 @@ if (!handleSquirrelEvent()) {
       app.quit();
     });
 
-    app.on('open-file', (event, path) => {
+    app.on('open-file', (event, pathLocal) => {
       event.preventDefault();
 
       // App may have been launched with a file to open. Make sure we have a
       // main window before trying to open a file.
       if (!mainWindow) {
         mainWindowLaunchTasks.push((window: BrowserWindow) => {
-          window.webContents.send('open-file', path);
+          window.webContents.send('open-file', pathLocal);
         });
       } else {
-        mainWindow?.webContents.send('open-file', path);
+        mainWindow?.webContents.send('open-file', pathLocal);
       }
     });
 
-    app.on('open-url', (event, url) => {
+    app.on('open-url', (event, urlLocal) => {
       event.preventDefault();
 
       // App may have been launched with a URL to open. Make sure we have a
       // main window before trying to open a URL.
       if (!mainWindow) {
         mainWindowLaunchTasks.push((window: BrowserWindow) => {
-          window.webContents.send('open-url', url);
+          window.webContents.send('open-url', urlLocal);
         });
       } else {
-        mainWindow?.webContents.send('open-url', url);
+        mainWindow?.webContents.send('open-url', urlLocal);
       }
     });
 
@@ -981,7 +983,7 @@ if (!handleSquirrelEvent()) {
   /**
    * Open the given external protocol URL in the desktop’s default manner.
    */
-  const openExternal = (url) => {
-    shell.openExternal(url);
+  const openExternal = (urlLocal) => {
+    shell.openExternal(urlLocal);
   };
 }

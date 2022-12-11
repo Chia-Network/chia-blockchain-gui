@@ -36,7 +36,7 @@ export default function NFTDetail() {
     if (!nfts || isLoadingNFTs) {
       return undefined;
     }
-    return nfts.find((nft: NFTInfo) => nft.$nftId === nftId);
+    return nfts.find((nftItem: NFTInfo) => nftItem.$nftId === nftId);
   }, [nfts, nftId, isLoadingNFTs]);
 
   const isLoading = isLoadingNFT;

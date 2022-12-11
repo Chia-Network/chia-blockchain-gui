@@ -84,8 +84,8 @@ export default function useValidateChangePassphraseParams() {
       }
 
       return true;
-    } catch (error: any) {
-      await openDialog(<AlertDialog>{error.message}</AlertDialog>);
+    } catch (err: any) {
+      await openDialog(<AlertDialog>{err.message}</AlertDialog>);
       return false;
     }
   }

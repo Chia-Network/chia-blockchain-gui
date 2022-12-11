@@ -46,8 +46,8 @@ export default function NFTSummary(props: NFTSummaryProps) {
       return [[], []];
     }
 
-    const properties: React.ReactElement[] = [];
-    const rankings: React.ReactElement[] = [];
+    const propertiesLocal: React.ReactElement[] = [];
+    const rankingsLocal: React.ReactElement[] = [];
 
     const collectionNameProperty = metadata?.collection_name ? (
       <NFTProperty
@@ -70,26 +70,28 @@ export default function NFTSummary(props: NFTSummaryProps) {
       ) : null;
 
     if (collectionNameProperty) {
-      properties.push(collectionNameProperty);
+      propertiesLocal.push(collectionNameProperty);
     }
 
     if (editionProperty) {
-      properties.push(editionProperty);
+      propertiesLocal.push(editionProperty);
     }
 
     metadata?.attributes
       ?.filter((attribute: NFTAttribute) => !isRankingAttribute(attribute))
       .forEach((attribute: NFTAttribute) =>
-        properties.push(<NFTProperty attribute={attribute} size="small" color="secondary" />)
+        propertiesLocal.push(<NFTProperty attribute={attribute} size="small" color="secondary" />)
       );
 
     metadata?.attributes
       ?.filter((attribute: NFTAttribute) => isRankingAttribute(attribute))
       .forEach((attribute: NFTAttribute) =>
-        rankings.push(<NFTRanking attribute={attribute} size="small" color="secondary" progressColor="secondary" />)
+        rankingsLocal.push(
+          <NFTRanking attribute={attribute} size="small" color="secondary" progressColor="secondary" />
+        )
       );
 
-    return [properties, rankings];
+    return [propertiesLocal, rankingsLocal];
   }, [nft, metadata]);
 
   const havePropertiesOrRankings = properties.length > 0 || rankings.length > 0;
@@ -105,12 +107,11 @@ export default function NFTSummary(props: NFTSummaryProps) {
     );
   }
 
-  const NFTIDComponent = function (props: any) {
-    const { ...rest } = props;
+  const NFTIDComponent = function ({ ...flexProps }) {
     const truncatedNftId = truncateValue(nftId, {});
 
     return (
-      <Flex flexDirection="row" alignItems="center" gap={1} {...rest}>
+      <Flex flexDirection="row" alignItems="center" gap={1} {...flexProps}>
         <Typography variant="body2">{truncatedNftId}</Typography>
         <TooltipIcon>
           <Flex flexDirection="column" gap={1}>

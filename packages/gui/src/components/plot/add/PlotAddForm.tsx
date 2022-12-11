@@ -127,24 +127,24 @@ export default function PlotAddForm(props: Props) {
         const {
           fee,
           initialTargetState,
-          initialTargetState: { state },
+          initialTargetState: { state: stateLocal },
         } = nftData;
-        const { transaction, p2SingletonPuzzleHash } = await createNewPoolWallet({
+        const { transaction, p2SingletonPuzzleHash: p2SingletonPuzzleHashLocal } = await createNewPoolWallet({
           initialTargetState,
           fee,
         }).unwrap();
 
-        if (!p2SingletonPuzzleHash) {
+        if (!p2SingletonPuzzleHashLocal) {
           throw new Error(t`p2SingletonPuzzleHash is not defined`);
         }
 
         addUnconfirmedPlotNFT({
           transactionId: transaction.name,
-          state: state === 'SELF_POOLING' ? PlotNFTState.SELF_POOLING : PlotNFTState.FARMING_TO_POOL,
+          state: stateLocal === 'SELF_POOLING' ? PlotNFTState.SELF_POOLING : PlotNFTState.FARMING_TO_POOL,
           poolUrl: initialTargetState.poolUrl,
         });
 
-        selectedP2SingletonPuzzleHash = p2SingletonPuzzleHash;
+        selectedP2SingletonPuzzleHash = p2SingletonPuzzleHashLocal;
       }
 
       const plotAddConfig = {

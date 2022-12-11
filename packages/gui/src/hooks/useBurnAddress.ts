@@ -7,7 +7,7 @@ export default function useBurnAddress(): string | undefined {
 
   const retireAddress = useMemo(() => {
     if (!feeUnit) {
-      return;
+      return undefined;
     }
 
     return toBech32m('000000000000000000000000000000000000000000000000000000000000dead', feeUnit);

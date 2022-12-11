@@ -107,7 +107,7 @@ export default function useWalletsList(
   function getCATName(assetId: string) {
     if (walletAssetIds.has(assetId)) {
       const walletId = walletAssetIds.get(assetId);
-      const wallet = wallets?.find((wallet: Wallet) => wallet.id === walletId);
+      const wallet = wallets?.find((walletItem: Wallet) => walletItem.id === walletId);
 
       return wallet?.meta?.name ?? wallet?.name ?? assetId;
     }
@@ -192,9 +192,9 @@ export default function useWalletsList(
       if (typeof id === 'string') {
         // assign wallet for CAT
 
-        const cat = catList?.find((cat) => cat.assetId === id);
+        const cat = catList?.find((catItem) => catItem.assetId === id);
         if (cat) {
-          return await addCATToken({
+          return addCATToken({
             name: cat.name,
             assetId: cat.assetId,
             fee: '0',
@@ -202,9 +202,9 @@ export default function useWalletsList(
         }
 
         // assign stray cat
-        const strayCat = strayCats?.find((cat) => cat.assetId === id);
+        const strayCat = strayCats?.find((catItem) => catItem.assetId === id);
         if (strayCat) {
-          return await addCATToken({
+          return addCATToken({
             name: strayCat.name,
             assetId: strayCat.assetId,
             fee: '0',

@@ -1,9 +1,9 @@
-import Client, { Service } from '@chia-network/api';
+import Client, { Service as ServiceType } from '@chia-network/api';
 import { BaseQueryFn } from '@reduxjs/toolkit/query/react';
 
 type Options = {
   client: Client;
-  service: Service;
+  service: ServiceType;
 };
 
 export default function chiaBaseQuery(options: Options): BaseQueryFn<

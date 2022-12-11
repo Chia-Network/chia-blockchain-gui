@@ -34,7 +34,7 @@ export default function OfferBuilderTokenSelector(props: OfferBuilderTokenSelect
       .filter((wallet: Wallet) => wallet.type === WalletType.CAT)
       .map((wallet: Wallet) => {
         const cat: CATToken | undefined = catList.find(
-          (cat: CATToken) => cat.assetId.toLowerCase() === wallet.meta?.assetId?.toLowerCase()
+          (catItem: CATToken) => catItem.assetId.toLowerCase() === wallet.meta?.assetId?.toLowerCase()
         );
 
         const assetId = wallet.meta?.assetId.toLowerCase();

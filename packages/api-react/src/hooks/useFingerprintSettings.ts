@@ -20,8 +20,8 @@ export default function useFingerprintSettings<Type>(
   const settings = fingerprintSettings?.[fingerprint] ?? {};
   const value = settings[key] ?? defaultValue;
 
-  function setValue(value: Type | undefined) {
-    if (value === undefined) {
+  function setValue(val: Type | undefined) {
+    if (val === undefined) {
       const newSettings = { ...settings };
       delete newSettings[key];
 
@@ -34,7 +34,7 @@ export default function useFingerprintSettings<Type>(
         ...fingerprintSettings,
         [fingerprint as number]: {
           ...settings,
-          [key]: value,
+          [key]: val,
         },
       });
     }

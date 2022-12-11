@@ -31,8 +31,8 @@ export default function SettingsGeneral() {
     ipcRenderer.invoke('getDefaultCacheFolder').then((folder: string) => {
       setDefaultCacheFolder(folder);
     });
-    ipcRenderer.invoke('getCacheSize').then((cacheSize: number) => {
-      setCacheSize(cacheSize);
+    ipcRenderer.invoke('getCacheSize').then((cacheSizeLocal: number) => {
+      setCacheSize(cacheSizeLocal);
     });
   }, []);
 

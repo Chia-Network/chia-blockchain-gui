@@ -55,7 +55,6 @@ function shouldShowMojoAmount(mojos: number, mojoThreshold = 1000000000 /* 1 bil
 
 type OfferSummaryNFTRowProps = {
   launcherId: string;
-  amount: number;
   rowNumber?: number;
   showNFTPreview: boolean;
 };

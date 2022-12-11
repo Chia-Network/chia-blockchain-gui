@@ -71,9 +71,9 @@ export default function Block() {
     }
   );
 
-  async function updateNewPlotId(block) {
-    if (block) {
-      setNewPlotId(await computeNewPlotId(block));
+  async function updateNewPlotId(blockLocal) {
+    if (blockLocal) {
+      setNewPlotId(await computeNewPlotId(blockLocal));
     } else {
       setNewPlotId(undefined);
     }

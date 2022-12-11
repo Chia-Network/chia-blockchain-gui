@@ -20,7 +20,7 @@ export default function WalletBadge(props: Props) {
   const { data: catList = [], isLoading } = useGetCatListQuery();
 
   if (!isLoading && wallet.type === WalletType.CAT) {
-    const token = catList.find((token) => token.assetId === wallet.meta?.assetId);
+    const token = catList.find((tokenItem) => tokenItem.assetId === wallet.meta?.assetId);
     if (token) {
       return (
         <Tooltip title={<Trans>This access token is verified</Trans>}>

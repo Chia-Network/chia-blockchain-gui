@@ -60,7 +60,7 @@ export default function useWalletConnectCommand() {
     }
     */
 
-    const key = keys?.find((key) => key.fingerprint === fingerprint);
+    const key = keys?.find((item) => item.fingerprint === fingerprint);
 
     const pair = getPairBySession(topic);
     if (!pair) {

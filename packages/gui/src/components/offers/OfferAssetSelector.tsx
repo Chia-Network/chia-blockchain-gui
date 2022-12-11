@@ -68,7 +68,7 @@ function buildAssetSelectorList(params: BuildAssetSelectorListParams): WalletOff
     } else if (wallet.type === WalletType.CAT) {
       name = wallet.name;
       tail = wallet.meta.assetId;
-      const cat = catList.find((cat) => cat.assetId.toLowerCase() === tail?.toLowerCase());
+      const cat = catList.find((catItem) => catItem.assetId.toLowerCase() === tail?.toLowerCase());
 
       if (cat) {
         symbol = cat.symbol;
@@ -125,9 +125,9 @@ function OfferAssetSelector(props: OfferAssetSelectorProps) {
     });
   }, [wallets, catList, rows, otherRows]);
 
-  function handleSelection(selectedWalletId: number, selectedWalletType: WalletType) {
+  function handleSelection(selectedWalletIdLocal: number, selectedWalletType: WalletType) {
     if (onChange) {
-      onChange(selectedWalletId, selectedWalletType);
+      onChange(selectedWalletIdLocal, selectedWalletType);
     }
   }
 

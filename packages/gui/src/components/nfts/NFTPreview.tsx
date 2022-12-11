@@ -295,7 +295,7 @@ export default function NFTPreview(props: NFTPreviewProps) {
 
   const [srcDoc] = useMemo(() => {
     if (!file) {
-      return;
+      return undefined;
     }
 
     const style = `
@@ -566,11 +566,11 @@ export default function NFTPreview(props: NFTPreviewProps) {
     );
   }
 
-  function ThumbnailError(props: any) {
+  function ThumbnailError({ children }) {
     return (
       <StatusContainer>
         <StatusPill>
-          <StatusText>{props.children}</StatusText>
+          <StatusText>{children}</StatusText>
         </StatusPill>
       </StatusContainer>
     );

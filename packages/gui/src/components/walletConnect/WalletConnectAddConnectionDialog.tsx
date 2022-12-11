@@ -88,16 +88,16 @@ export default function WalletConnectAddConnectionDialog(props: WalletConnectAdd
     onClose(topic);
   }
 
-  function handleToggleSelectFingerprint(fingerprint: number) {
+  function handleToggleSelectFingerprint(fingerprintLocal: number) {
     const { setValue } = methods;
     const { fingerprints } = methods.getValues();
-    const index = fingerprints.indexOf(fingerprint);
+    const index = fingerprints.indexOf(fingerprintLocal);
     if (index === -1) {
-      setValue('fingerprints', [...fingerprints, fingerprint]);
+      setValue('fingerprints', [...fingerprints, fingerprintLocal]);
     } else {
       setValue(
         'fingerprints',
-        fingerprints.filter((f) => f !== fingerprint)
+        fingerprints.filter((f) => f !== fingerprintLocal)
       );
     }
   }

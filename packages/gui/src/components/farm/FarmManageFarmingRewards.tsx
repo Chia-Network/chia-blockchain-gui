@@ -82,8 +82,8 @@ export default function FarmManageFarmingRewards(props: Props) {
         poolTarget,
       }).unwrap();
       handleClose();
-    } catch (error) {
-      setError(error);
+    } catch (err) {
+      setError(err);
     }
   }
 

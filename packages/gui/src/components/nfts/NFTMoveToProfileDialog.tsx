@@ -116,7 +116,7 @@ export function DIDProfileDropdown(props: DIDProfileDropdownProps) {
       return t`Loading...`;
     }
 
-    const wallet = didWallets?.find((wallet: Wallet) => wallet.id === walletId);
+    const wallet = didWallets?.find((walletItem: Wallet) => walletItem.id === walletId);
 
     return wallet?.name || defaultTitle;
   }, [defaultTitle, didWallets, isLoading, walletId]);
@@ -238,11 +238,11 @@ export function NFTMoveToProfileAction(props: NFTMoveToProfileActionProps) {
   }
 
   async function handleSubmit(formData: NFTMoveToProfileFormData) {
-    const { destination, fee } = formData;
+    const { destination: destinationLocal, fee } = formData;
     const feeInMojos = chiaToMojo(fee || 0);
     let isValid = true;
 
-    if (!destination || destination === currentDIDId) {
+    if (!destinationLocal || destinationLocal === currentDIDId) {
       errorDialog(new Error(t`Please select a profile to move the NFT to.`));
       isValid = false;
     }
@@ -251,7 +251,7 @@ export function NFTMoveToProfileAction(props: NFTMoveToProfileActionProps) {
       return;
     }
 
-    const destinationDID = destination === '<none>' ? undefined : destination;
+    const destinationDID = destinationLocal === '<none>' ? undefined : destinationLocal;
 
     const confirmation = await openDialog(<NFTMoveToProfileConfirmationDialog />);
 
@@ -276,10 +276,10 @@ export function NFTMoveToProfileAction(props: NFTMoveToProfileActionProps) {
             </AlertDialog>
           );
         } else {
-          const error = errorMessage || 'Unknown error';
+          const err = errorMessage || 'Unknown error';
           openDialog(
             <AlertDialog title={<Trans>NFT Move Failed</Trans>}>
-              <Trans>The NFT move failed: {error}</Trans>
+              <Trans>The NFT move failed: {err}</Trans>
             </AlertDialog>
           );
         }
