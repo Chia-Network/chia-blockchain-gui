@@ -203,16 +203,6 @@ const QuestionMarkIcon = styled(QuestionMarkSvg)`
   }
 `;
 
-function ThumbnailError(props: any) {
-  return (
-    <StatusContainer>
-      <StatusPill>
-        <StatusText>{props.children}</StatusText>
-      </StatusPill>
-    </StatusContainer>
-  );
-}
-
 export type NFTPreviewProps = {
   nft: NFTInfo;
   height?: number | string;
@@ -298,7 +288,7 @@ export default function NFTPreview(props: NFTPreviewProps) {
 
   const [srcDoc] = useMemo(() => {
     if (!file) {
-      return;
+      return undefined;
     }
 
     const style = `
@@ -579,6 +569,16 @@ export default function NFTPreview(props: NFTPreviewProps) {
           miniThumb={miniThumb}
         />
       </IframeWrapper>
+    );
+  }
+
+  function ThumbnailError({ children }) {
+    return (
+      <StatusContainer>
+        <StatusPill>
+          <StatusText>{children}</StatusText>
+        </StatusPill>
+      </StatusContainer>
     );
   }
 

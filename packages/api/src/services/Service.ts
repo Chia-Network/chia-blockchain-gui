@@ -55,6 +55,7 @@ export default class Service extends EventEmitter {
     if (callback) {
       return callback();
     }
+    return undefined;
   }
 
   get name() {

@@ -55,8 +55,8 @@ export default function SelectKey() {
       }).unwrap();
 
       navigate('/dashboard/wallets');
-    } catch (error) {
-      showError(error);
+    } catch (err) {
+      showError(err);
     } finally {
       setSelectedFingerprint(undefined);
     }

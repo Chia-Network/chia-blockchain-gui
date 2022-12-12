@@ -145,8 +145,8 @@ export default function WalletsSidebar() {
     );
   }
 
-  function handleSelectWallet(walletId: number) {
-    navigate(`/dashboard/wallets/${walletId}`);
+  function handleSelectWallet(id: number) {
+    navigate(`/dashboard/wallets/${id}`);
   }
 
   const items = useMemo(() => {

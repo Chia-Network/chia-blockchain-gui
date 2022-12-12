@@ -20,6 +20,7 @@ export default function FarmCardUserFees() {
         </>
       );
     }
+    return undefined;
   }, [feeAmount, locale, currencyCode]);
 
   return (

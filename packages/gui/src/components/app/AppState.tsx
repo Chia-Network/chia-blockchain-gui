@@ -145,6 +145,7 @@ export default function AppState(props: Props) {
         ipcRenderer.off('exit-daemon', handleClose);
       };
     }
+    return undefined;
   }, []);
 
   if (closing) {

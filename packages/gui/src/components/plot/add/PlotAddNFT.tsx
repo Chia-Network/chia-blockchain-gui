@@ -5,13 +5,11 @@ import React, { useState, forwardRef } from 'react';
 import { useFormContext } from 'react-hook-form';
 
 import usePlotNFTs from '../../../hooks/usePlotNFTs';
-import Plotter from '../../../types/Plotter';
 import PlotNFTName from '../../plotNFT/PlotNFTName';
 import PlotNFTSelectPool from '../../plotNFT/select/PlotNFTSelectPool';
 
 type Props = {
   step: number;
-  plotter: Plotter;
 };
 
 const PlotAddNFT = forwardRef((props: Props, ref) => {

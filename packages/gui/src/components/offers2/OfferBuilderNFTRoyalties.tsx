@@ -62,7 +62,7 @@ export default function OfferBuilderNFTRoyalties(props: OfferBuilderNFTRoyalties
           };
         }
 
-        const cat = catList?.find((cat) => cat.assetId === asset);
+        const cat = catList?.find((catItem) => catItem.assetId === asset);
         if (cat) {
           return {
             address,

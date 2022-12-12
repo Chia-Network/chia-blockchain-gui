@@ -41,11 +41,10 @@ export default function PlotNFTPayoutInstructionsDialog(props: Props) {
   }
 
   async function handleSubmit(values) {
-    const { payoutAddress } = values;
     try {
       setError(undefined);
       setLoading(true);
-      await setPayoutAddress(payoutAddress);
+      await setPayoutAddress(values.payoutAddress);
     } catch (e) {
       setError(e);
     } finally {

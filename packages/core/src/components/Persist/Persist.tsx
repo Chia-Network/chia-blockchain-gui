@@ -42,14 +42,14 @@ function Persist(props: PersistProps, ref: any) {
   }>(defaultValue);
 
   const getValue = useCallback(
-    (defaultValue: any, namespace?: string) => {
+    (defaultValueLocal: any, namespace?: string) => {
       const currentNamespace = namespace ? `${persistNamespace}.${namespace}` : persistNamespace;
 
       if (parentPersistContext) {
-        return parentPersistContext.getValue(defaultValue, currentNamespace);
+        return parentPersistContext.getValue(defaultValueLocal, currentNamespace);
       }
 
-      return state[currentNamespace] ?? defaultValue;
+      return state[currentNamespace] ?? defaultValueLocal;
     },
     [state, persistNamespace, parentPersistContext]
   );

@@ -59,7 +59,7 @@ export default function NFTOfferTokenSelector(props: Props) {
       .filter((wallet: Wallet) => wallet.type === WalletType.CAT)
       .map((wallet: Wallet) => {
         const cat: CATToken | undefined = catList.find(
-          (cat: CATToken) => cat.assetId.toLowerCase() === wallet.tail?.toLowerCase()
+          (catItem: CATToken) => catItem.assetId.toLowerCase() === wallet.tail?.toLowerCase()
         );
         return {
           walletId: wallet.id,

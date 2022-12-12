@@ -61,8 +61,6 @@ const ClickableCardTop = styled.div`
 
 export type NFTCardProps = {
   nft: NFTInfo;
-  onSelect?: (selected: boolean) => void;
-  selected?: boolean;
   canExpandDetails: boolean;
   availableActions: NFTContextualActionTypes;
   isOffer: boolean;

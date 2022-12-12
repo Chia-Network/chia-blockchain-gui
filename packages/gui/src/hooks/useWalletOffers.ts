@@ -55,9 +55,9 @@ export default function useWalletOffers(
   const isLoading = isOffersLoading || isOffersCountLoading;
   const error = offersError || offersCountError;
 
-  function handlePageChange(rowsPerPage: number, page: number) {
-    setRowsPerPage(rowsPerPage);
-    setPage(page);
+  function handlePageChange(rowsPerPageLocal: number, pageLocal: number) {
+    setRowsPerPage(rowsPerPageLocal);
+    setPage(pageLocal);
   }
 
   return {
