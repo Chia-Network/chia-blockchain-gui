@@ -184,13 +184,13 @@ export default function useWalletConnectCommand() {
       await logIn({
         fingerprint,
       }).unwrap();
+    }
 
-      // wait for sync
-      if (waitForSync) {
-        log('Waiting for sync');
-        // wait for wallet synchronisation
-        await waitForWalletSync();
-      }
+    // wait for sync
+    if (waitForSync) {
+      log('Waiting for sync');
+      // wait for wallet synchronisation
+      await waitForWalletSync();
     }
 
     // validate current fingerprint again
