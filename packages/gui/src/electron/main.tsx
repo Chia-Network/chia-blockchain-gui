@@ -55,7 +55,27 @@ if (!fs.existsSync(thumbCacheFolder)) {
   fs.mkdirSync(thumbCacheFolder);
 }
 
-const watcher = chokidar.watch(thumbCacheFolder, { persistent: true });
+let mainWindow: BrowserWindow | null = null;
+
+let watcher;
+
+function watchCacheFolder(folder: string | undefined) {
+  function watchFolder(f) {
+    watcher = chokidar.watch(f, { persistent: true });
+    watcher.on('unlink', (path: any) => {
+      mainWindow?.webContents.send('removed-cache-file', path.split('/').splice(-1, 1)[0]);
+    });
+  }
+  if (folder && watcher) {
+    watcher.close().then(() => {
+      watchFolder(folder);
+    });
+  } else {
+    watchFolder(thumbCacheFolder);
+  }
+}
+
+watchCacheFolder(undefined);
 
 let cacheLimitSize: number = 1024;
 
@@ -152,12 +172,6 @@ if (!handleSquirrelEvent()) {
 
     return true;
   };
-
-  let mainWindow: BrowserWindow | null = null;
-
-  watcher.on('unlink', (path: any) => {
-    mainWindow?.webContents.send('removed-cache-file', path.split('/').splice(-1, 1)[0]);
-  });
 
   const createMenu = () => Menu.buildFromTemplate(getMenuTemplate());
 
@@ -492,6 +506,7 @@ if (!handleSquirrelEvent()) {
               }
             });
           }
+          watchCacheFolder(to);
         }
 
         thumbCacheFolder = to;
