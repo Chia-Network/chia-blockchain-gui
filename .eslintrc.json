@@ -33,7 +33,11 @@
     // Allow single line disables (overrides the eslint-comments defaults)
     "eslint-comments/disable-enable-pair": "off",
     // We use TS instead of prop-types
-    "react/prop-types": [0],
+    "react/prop-types": "off",
+    // TS takes care of this
+    // .defaultProps are deprecated for functional components: https://github.com/facebook/react/pull/16210
+    // "functions":  "defaultArguments" was not used since it requires to do the props destructuring in the function signature
+    "react/require-default-props": "off",
     // We do not see the value of this turned on
     "no-plusplus": "off",
     // We do not see the value of this turned on
@@ -109,7 +113,16 @@
       }
     ],
     // Memoizing all prop callbacks would speed up the app but introduce a hard to debug bugs (wrong memo dependencies)
-    "react/jsx-no-bind": "off"
+    "react/jsx-no-bind": "off",
+    // This code should be allowed `export { default } from './Link';`
+    // Remove "no-restricted-exports" after eslint fixes issue https://github.com/eslint/eslint/issues/15617
+    "no-restricted-exports": [
+      "error",
+      {
+        "restrictedNamedExports": ["then"]
+      }
+    ]
+
     //
     // ** Before adding or updating any rule, please read the comments at the top of this file
     //
