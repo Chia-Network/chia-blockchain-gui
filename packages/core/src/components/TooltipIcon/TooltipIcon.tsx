@@ -25,7 +25,3 @@ export default function TooltipIcon(props: Props) {
     </Tooltip>
   );
 }
-
-TooltipIcon.defaultProps = {
-  children: undefined,
-};

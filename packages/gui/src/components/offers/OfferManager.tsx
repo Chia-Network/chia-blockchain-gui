@@ -175,12 +175,6 @@ function ConfirmOfferCancellation(props: ConfirmOfferCancellationProps) {
   );
 }
 
-ConfirmOfferCancellation.defaultProps = {
-  canCancelWithTransaction: true,
-  onClose: () => {},
-  open: true,
-};
-
 function resolveOfferInfo(
   summary: OfferSummaryRecord,
   summaryKey: string,

@@ -43,10 +43,6 @@ function OfferMojoAmount(props: OfferMojoAmountProps): React.ReactElement | null
   );
 }
 
-OfferMojoAmount.defaultProps = {
-  mojos: 0,
-};
-
 function shouldShowMojoAmount(mojos: number, mojoThreshold = 1000000000 /* 1 billion */): boolean {
   return mojoThreshold > 0 && mojos < mojoThreshold;
 }

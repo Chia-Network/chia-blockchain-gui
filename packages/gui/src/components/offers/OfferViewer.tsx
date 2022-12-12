@@ -47,7 +47,7 @@ type OfferMojoAmountProps = {
 };
 
 function OfferMojoAmount(props: OfferMojoAmountProps): React.ReactElement {
-  const { mojos, mojoThreshold } = props;
+  const { mojos, mojoThreshold = 1000000000 } = props;
 
   return (
     <>
@@ -64,11 +64,6 @@ function OfferMojoAmount(props: OfferMojoAmountProps): React.ReactElement {
     </>
   );
 }
-
-OfferMojoAmount.defaultProps = {
-  mojos: 0,
-  mojoThreshold: 1000000000, // 1 billion
-};
 
 type OfferDetailsProps = {
   tradeRecord?: OfferTradeRecord;

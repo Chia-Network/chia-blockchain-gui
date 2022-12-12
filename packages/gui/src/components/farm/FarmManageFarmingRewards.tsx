@@ -170,8 +170,3 @@ export default function FarmManageFarmingRewards(props: Props) {
     </Dialog>
   );
 }
-
-FarmManageFarmingRewards.defaultProps = {
-  open: false,
-  onClose: () => {},
-};

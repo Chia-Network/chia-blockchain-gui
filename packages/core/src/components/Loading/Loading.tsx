@@ -14,7 +14,7 @@ export type LoadingProps = CircularProgressProps & {
 };
 
 export default function Loading(props: LoadingProps) {
-  const { children, center, ...rest } = props;
+  const { children, center = false, ...rest } = props;
 
   if (children) {
     return (
@@ -37,8 +37,3 @@ export default function Loading(props: LoadingProps) {
 
   return <StyledCircularProgress {...rest} />;
 }
-
-Loading.defaultProps = {
-  children: undefined,
-  center: false,
-};

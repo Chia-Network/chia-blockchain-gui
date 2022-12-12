@@ -61,8 +61,3 @@ export default function OfferDataDialog(props: Props) {
     </Dialog>
   );
 }
-
-OfferDataDialog.defaultProps = {
-  open: false,
-  onClose: () => {},
-};

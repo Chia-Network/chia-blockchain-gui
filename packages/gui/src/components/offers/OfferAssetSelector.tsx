@@ -159,7 +159,6 @@ function OfferAssetSelector(props: OfferAssetSelectorProps) {
 }
 
 OfferAssetSelector.defaultProps = {
-  showAddWalletMessage: false,
   disabled: false,
 };
 

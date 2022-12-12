@@ -90,20 +90,20 @@ export type TableControlledProps = {
 
 export default function TableControlled(props: TableControlledProps) {
   const {
-    cols,
-    rows,
+    cols = [],
+    rows = [],
     page,
-    pages,
-    rowsPerPageOptions,
-    rowsPerPage,
-    hideHeader,
+    pages = false,
+    rowsPerPageOptions = [10, 25, 100],
+    rowsPerPage = 10,
+    hideHeader = false,
     caption,
     onRowClick,
-    rowHover,
+    rowHover = false,
     uniqueField,
     metadata,
     expandedField,
-    expandedCellShift,
+    expandedCellShift = 0,
     onPageChange,
     count,
     isLoading,
@@ -272,19 +272,3 @@ export default function TableControlled(props: TableControlledProps) {
     </LoadingOverlay>
   );
 }
-
-TableControlled.defaultProps = {
-  rows: [],
-  cols: [],
-  pages: false,
-  rowsPerPageOptions: [10, 25, 100],
-  rowsPerPage: 10,
-  hideHeader: false,
-  caption: undefined,
-  children: undefined,
-  rowHover: false,
-  uniqueField: undefined,
-  metadata: undefined,
-  expandable: false,
-  expandedCellShift: 0,
-};

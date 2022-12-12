@@ -11,7 +11,7 @@ type Props = {
 };
 
 export default function PlotNFTSelectFaucet(props: Props) {
-  const { step, onCancel } = props;
+  const { step = 1, onCancel } = props;
   const currencyCode = useCurrencyCode();
   const openExternal = useOpenExternal();
 
@@ -45,7 +45,3 @@ export default function PlotNFTSelectFaucet(props: Props) {
     </CardStep>
   );
 }
-
-PlotNFTSelectFaucet.defaultProps = {
-  step: 1,
-};

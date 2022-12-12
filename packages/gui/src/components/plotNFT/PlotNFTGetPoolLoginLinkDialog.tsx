@@ -89,8 +89,3 @@ export default function PlotNFTGetPoolLoginLinkDialog(props: Props) {
     </Dialog>
   );
 }
-
-PlotNFTGetPoolLoginLinkDialog.defaultProps = {
-  open: false,
-  onClose: () => {},
-};
