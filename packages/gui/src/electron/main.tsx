@@ -313,8 +313,7 @@ if (!handleSquirrelEvent()) {
           let totalLength = 0;
 
           try {
-            let fileSize: number;
-            fileSize = await getRemoteFileSize(rest.url);
+            const fileSize: number = await getRemoteFileSize(rest.url);
             dataObject = await new Promise((resolve, reject) => {
               /* GET FILE SIZE */
               allRequests[rest.url].on('response', (response: IncomingMessage) => {

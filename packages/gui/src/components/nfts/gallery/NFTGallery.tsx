@@ -128,14 +128,14 @@ export default function NFTGallery() {
   });
   const [search, setSearch] = useState('');
   const [inMultipleSelectionMode, toggleMultipleSelection] = useState(false);
-  const [typeFilter, setTypeFilter] = useState([]); /* exclude types that are inside array */
+  const [typeFilter, setTypeFilter] = useLocalStorage('typeFilter', []); /* exclude types that are inside array */
   const [isNFTHidden] = useHiddenNFTs();
   const [walletId, setWalletId] = usePersistState<number | undefined>(undefined, 'nft-profile-dropdown');
   const { filteredNFTs, isLoading } = useFilteredNFTs({ walletId });
   const [hideObjectionableContent] = useHideObjectionableContent();
   const { allowNFTsFiltered } = useAllowFilteredShow(filteredNFTs, hideObjectionableContent, isLoading);
   const [filtersShown, setFiltersShown] = useState<string[]>([]);
-  const [visibilityFilters, setVisibilityFilters] = useState<string[]>(['visible']);
+  const [visibilityFilters, setVisibilityFilters] = useLocalStorage('visibilityFilters', ['visible']);
   const typesFilterRef = React.useRef();
   const visibilityFilterRef = React.useRef();
 
@@ -327,6 +327,10 @@ export default function NFTGallery() {
     );
   }
 
+  function checkedNftTypes(nftTypes: any, typeFilter: string[]) {
+    return Object.keys(nftTypes).filter((key) => typeFilter.indexOf(key) > -1).length;
+  }
+
   return (
     <LayoutDashboardSub
       // sidebar={<NFTGallerySidebar onWalletChange={setWalletId} />}
@@ -351,11 +355,8 @@ export default function NFTGallery() {
                   setFiltersShown={setFiltersShown}
                   filtersShown={filtersShown}
                   which="types"
-                  title={
-                    <Trans>
-                      Types ({Object.keys(nftTypes).length - typeFilter.length}/{Object.keys(nftTypes).length})
-                    </Trans>
-                  }
+                  title={t`Types (${Object.keys(nftTypes).length - checkedNftTypes(nftTypes, typeFilter)} /
+                      ${Object.keys(nftTypes).length})`}
                 >
                   <VisibilityRadioWrapper>
                     <div>{renderTypeFilter()}</div>
@@ -368,15 +369,11 @@ export default function NFTGallery() {
                   filtersShown={filtersShown}
                   which="visibility"
                   title={
-                    visibilityFilters.length > 1 ? (
-                      <>
-                        <Trans>Visible and hidden</Trans> ({countNFTs('hidden') + countNFTs('visible')})
-                      </>
-                    ) : visibilityFilters[0] === 'visible' ? (
-                      <Trans>Visible ({countNFTs('visible')})</Trans>
-                    ) : (
-                      <Trans>Hidden ({countNFTs('hidden')})</Trans>
-                    )
+                    visibilityFilters.length > 1
+                      ? t`Visible and hidden (${countNFTs('hidden') + countNFTs('visible')})`
+                      : visibilityFilters[0] === 'visible'
+                      ? t`Visible (${countNFTs('visible')})`
+                      : t`Hidden (${countNFTs('hidden')})`
                   }
                 >
                   <VisibilityRadioWrapper>
