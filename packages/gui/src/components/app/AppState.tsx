@@ -118,9 +118,10 @@ export default function AppState(props: Props) {
         const json = JSON.parse(localStorage.getItem(key)!);
         if (json.binary === hash || json.video === hash || json.image === hash) {
           localStorage.removeItem(key);
-          eventEmitter.emit(`force-reload-${json.nftId}`);
-          if (json.nftId && lruMap.get(json.nftId)) {
-            lruMap.delete(json.nftId);
+          const nftId = key.replace('thumb-cache-', '').replace('metadata-cache-', '').replace('content-cache-', '');
+          eventEmitter.emit(`force-reload-metadata-${nftId}`);
+          if (lruMap.get(nftId)) {
+            lruMap.delete(nftId);
           }
         }
       } catch (err) {
