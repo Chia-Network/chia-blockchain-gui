@@ -35,7 +35,17 @@ type OfferEditorConditionsRowProps = {
 };
 
 function OfferEditorConditionRow(props: OfferEditorConditionsRowProps) {
-  const { namePrefix, item, tradeSide, addRow, removeRow, updateRow, showAddWalletMessage, disabled, ...rest } = props;
+  const {
+    namePrefix,
+    item,
+    tradeSide,
+    addRow,
+    removeRow,
+    updateRow,
+    showAddWalletMessage,
+    disabled = false,
+    ...rest
+  } = props;
   const { getValues } = useFormContext();
   const [locale] = useLocale();
   const row: OfferEditorRowData = getValues(namePrefix);
@@ -157,18 +167,13 @@ function OfferEditorConditionRow(props: OfferEditorConditionsRowProps) {
   );
 }
 
-OfferEditorConditionRow.defaultProps = {
-  showAddWalletMessage: false,
-  disabled: false,
-};
-
 type OfferEditorConditionsPanelProps = {
   makerSide: 'buy' | 'sell';
   disabled?: boolean;
 };
 
 function OfferEditorConditionsPanel(props: OfferEditorConditionsPanelProps) {
-  const { makerSide, disabled } = props;
+  const { makerSide, disabled = false } = props;
   const { control } = useFormContext();
   const {
     fields: makerFields,
@@ -395,9 +400,5 @@ function OfferEditorConditionsPanel(props: OfferEditorConditionsPanelProps) {
     </Flex>
   );
 }
-
-OfferEditorConditionsPanel.defaultProps = {
-  disabled: false,
-};
 
 export default OfferEditorConditionsPanel;

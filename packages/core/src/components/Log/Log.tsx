@@ -39,7 +39,3 @@ export default function Log(props: Props) {
     </StyledPaper>
   );
 }
-
-Log.defaultProps = {
-  children: undefined,
-};

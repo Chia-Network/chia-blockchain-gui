@@ -133,7 +133,3 @@ export default function OfferExchangeRate(props: Props) {
     </Flex>
   );
 }
-
-OfferExchangeRate.defaultProps = {
-  readOnly: true,
-};

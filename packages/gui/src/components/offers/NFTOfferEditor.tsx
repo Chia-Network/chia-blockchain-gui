@@ -447,10 +447,6 @@ function NFTOfferConditionalsPanel(props: NFTOfferConditionalsPanelProps) {
   );
 }
 
-NFTOfferConditionalsPanel.defaultProps = {
-  isProcessing: false,
-};
-
 /* ========================================================================== */
 /*                              NFT Offer Editor                              */
 /*           Currently only supports a single NFT <--> XCH/CAT offer          */

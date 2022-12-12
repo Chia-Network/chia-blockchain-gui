@@ -26,13 +26,15 @@ export type AmountProps = TextFieldProps & {
 export default function Amount(props: AmountProps) {
   const {
     children,
-    name,
+    name = 'amount',
     symbol,
-    showAmountInMojos,
+    showAmountInMojos = true,
     dropdownAdornment,
     variant,
     fullWidth,
     'data-testid': dataTestid,
+    // TODO: Zlatko. Label was in defaultProps but is not in propTypes. Also added label={label}
+    label = <Trans>Amount</Trans>,
     ...rest
   } = props;
   const { control } = useFormContext();
@@ -71,6 +73,7 @@ export default function Amount(props: AmountProps) {
           ),
           style: dropdownAdornment ? { paddingRight: '0' } : undefined,
         }}
+        label={label}
         {...rest}
       />
       <FormHelperText component="div">
@@ -97,11 +100,3 @@ export default function Amount(props: AmountProps) {
     </FormControl>
   );
 }
-
-Amount.defaultProps = {
-  label: <Trans>Amount</Trans>,
-  name: 'amount',
-  children: undefined,
-  showAmountInMojos: true,
-  // feeMode: false,
-};

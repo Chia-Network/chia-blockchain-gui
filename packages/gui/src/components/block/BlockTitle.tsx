@@ -28,7 +28,3 @@ export default function BlockTitle(props: Props) {
     </Flex>
   );
 }
-
-BlockTitle.defaultProps = {
-  children: undefined,
-};

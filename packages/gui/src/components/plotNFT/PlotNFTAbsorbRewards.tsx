@@ -170,7 +170,3 @@ export default function PlotNFTAbsorbRewards(props: Props) {
     </>
   );
 }
-
-PlotNFTAbsorbRewards.defaultProps = {
-  headerTag: undefined,
-};

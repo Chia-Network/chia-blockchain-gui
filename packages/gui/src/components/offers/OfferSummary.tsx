@@ -182,9 +182,3 @@ export default function OfferSummary(props: Props) {
     </Flex>
   );
 }
-
-OfferSummary.defaultProps = {
-  isMyOffer: false,
-  imported: false,
-  rowIndentation: 3,
-};

@@ -24,7 +24,13 @@ type Props = {
 };
 
 export default function AdvancedOptions(props: Props) {
-  const { children, expanded: defaultExpanded, hideExpanded, moreTitle, lessTitle } = props;
+  const {
+    children,
+    expanded: defaultExpanded = false,
+    hideExpanded = false,
+    moreTitle = <Trans>Show Advanced Options</Trans>,
+    lessTitle = <Trans>Hide Advanced Options</Trans>,
+  } = props;
   const [isExpanded, setIsExpanded] = useToggle(defaultExpanded);
 
   const hideTitle = hideExpanded && isExpanded;
@@ -55,11 +61,3 @@ export default function AdvancedOptions(props: Props) {
     </Flex>
   );
 }
-
-AdvancedOptions.defaultProps = {
-  expanded: false,
-  children: undefined,
-  hideExpanded: false,
-  moreTitle: <Trans>Show Advanced Options</Trans>,
-  lessTitle: <Trans>Hide Advanced Options</Trans>,
-};

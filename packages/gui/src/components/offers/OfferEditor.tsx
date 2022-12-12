@@ -198,10 +198,6 @@ function OfferEditor(props: OfferEditorProps) {
   );
 }
 
-OfferEditor.defaultProps = {
-  onOfferCreated: () => {},
-};
-
 type CreateOfferEditorProps = {
   walletId?: number;
   walletType?: WalletType;
@@ -230,7 +226,3 @@ export function CreateOfferEditor(props: CreateOfferEditorProps) {
     </Grid>
   );
 }
-
-CreateOfferEditor.defaultProps = {
-  onOfferCreated: () => {},
-};
