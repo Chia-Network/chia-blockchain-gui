@@ -55,7 +55,7 @@ export default function SettingsIntegration() {
                     }}
                   />
                 }
-                label={<Trans>Enable change fingerprint in the confirmation dialog</Trans>}
+                label={<Trans>Allow requests that require switching to a different wallet key</Trans>}
               />
             </FormGroup>
 
