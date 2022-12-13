@@ -36,7 +36,7 @@ export default function WalletStatus(props: WalletStatusProps) {
   const { data: walletState, isLoading } = useGetSyncStatusQuery(
     {},
     {
-      pollingInterval: 10000,
+      pollingInterval: 10_000,
     }
   );
 

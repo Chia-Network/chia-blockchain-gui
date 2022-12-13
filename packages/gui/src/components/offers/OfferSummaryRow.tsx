@@ -47,7 +47,7 @@ OfferMojoAmount.defaultProps = {
   mojos: 0,
 };
 
-function shouldShowMojoAmount(mojos: number, mojoThreshold = 1000000000 /* 1 billion */): boolean {
+function shouldShowMojoAmount(mojos: number, mojoThreshold = 1_000_000_000): boolean {
   return mojoThreshold > 0 && mojos < mojoThreshold;
 }
 

@@ -25,16 +25,16 @@ export const plottingInfo: Record<PlotterName, PlotSize[]> = {
     { value: 32, label: getPlotSize(32), workspace: '239GiB', defaultRam: 3390 },
     { value: 33, label: getPlotSize(33), workspace: '521GiB', defaultRam: 7400 },
     // workspace are guesses using 55.35% - rounded up - past here
-    { value: 34, label: getPlotSize(34), workspace: '1041GiB', defaultRam: 14800 },
-    { value: 35, label: getPlotSize(35), workspace: '2175GiB', defaultRam: 29600 },
+    { value: 34, label: getPlotSize(34), workspace: '1041GiB', defaultRam: 14_800 },
+    { value: 35, label: getPlotSize(35), workspace: '2175GiB', defaultRam: 29_600 },
   ],
   [PlotterName.MADMAX]: [
     { value: 25, label: getPlotSize(25), workspace: '1.8GiB', defaultRam: 512 },
     { value: 32, label: getPlotSize(32), workspace: '239GiB', defaultRam: 3390 },
     { value: 33, label: getPlotSize(33), workspace: '521GiB', defaultRam: 7400 },
     // workspace are guesses using 55.35% - rounded up - past here
-    { value: 34, label: getPlotSize(34), workspace: '1041GiB', defaultRam: 14800 },
-    { value: 35, label: getPlotSize(35), workspace: '2175GiB', defaultRam: 29600 },
+    { value: 34, label: getPlotSize(34), workspace: '1041GiB', defaultRam: 14_800 },
+    { value: 35, label: getPlotSize(35), workspace: '2175GiB', defaultRam: 29_600 },
   ],
   [PlotterName.BLADEBIT_RAM]: [{ value: 32, label: getPlotSize(32), workspace: '416GiB', defaultRam: 3390 }],
   [PlotterName.BLADEBIT_DISK]: [{ value: 32, label: getPlotSize(32), workspace: '480GiB', defaultRam: 3390 }],

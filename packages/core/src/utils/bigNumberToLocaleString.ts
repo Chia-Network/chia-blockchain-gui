@@ -1,6 +1,6 @@
 import BigNumber from 'bignumber.js';
 
-const complexNumber = 1234567.0123456789;
+const complexNumber = 1_234_567.012_345_678_9;
 
 export default function bigNumberToLocaleString(value: BigNumber, locale?: string): string {
   const formatter = Intl.NumberFormat(locale);

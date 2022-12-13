@@ -138,7 +138,7 @@ export default function EstimatedFee(props: FeeProps) {
   const { name, txType, required, ...rest } = props;
   const { setValue } = useFormContext();
   const [startTime] = useState(new Date().getSeconds());
-  const refreshTime = 60000; // in milliseconds
+  const refreshTime = 60_000; // in milliseconds
   const { data: ests, error } = useGetFeeEstimateQuery(
     { targetTimes: [60, 120, 300], cost: 1 },
     {
@@ -154,19 +154,19 @@ export default function EstimatedFee(props: FeeProps) {
   const [locale] = useLocale();
   const currencyCode = useCurrencyCode();
 
-  const maxBlockCostCLVM = 11000000000;
+  const maxBlockCostCLVM = 11_000_000_000;
 
   const txCostEstimates = {
     walletSendXCH: Math.floor(maxBlockCostCLVM / 1170),
-    spendCATtx: 36382111,
-    acceptOffer: 721393265,
-    cancelOffer: 212443993,
-    burnNFT: 74385541,
-    assignDIDToNFT: 115540006,
-    transferNFT: 74385541,
-    createPlotNFT: 18055407,
-    claimPoolingReward: 82668466,
-    createDID: 57360396,
+    spendCATtx: 36_382_111,
+    acceptOffer: 721_393_265,
+    cancelOffer: 212_443_993,
+    burnNFT: 74_385_541,
+    assignDIDToNFT: 115_540_006,
+    transferNFT: 74_385_541,
+    createPlotNFT: 18_055_407,
+    claimPoolingReward: 82_668_466,
+    createDID: 57_360_396,
   };
 
   const multiplier = txCostEstimates[txType];

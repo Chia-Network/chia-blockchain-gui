@@ -15,7 +15,7 @@ export default function usePlotNFTs(): {
     isLoading: isLoadingGetPlotNFTs,
     error,
   } = useGetPlotNFTsQuery(undefined, {
-    pollingInterval: 10000,
+    pollingInterval: 10_000,
   });
 
   const { isLoading: isLoadingUnconfirmedPlotNFTs } = useUnconfirmedPlotNFTs();

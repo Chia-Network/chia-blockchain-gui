@@ -67,7 +67,7 @@ function OfferMojoAmount(props: OfferMojoAmountProps): React.ReactElement {
 
 OfferMojoAmount.defaultProps = {
   mojos: 0,
-  mojoThreshold: 1000000000, // 1 billion
+  mojoThreshold: 1_000_000_000,
 };
 
 type OfferDetailsProps = {

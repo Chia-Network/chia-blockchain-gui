@@ -17,6 +17,7 @@
   "settings": {
     "import/core-modules": ["electron"]
   },
+  "plugins": ["unicorn"],
   // Airbnb rule overrides and additions
   "rules": {
     // Automatically order imports
@@ -121,8 +122,9 @@
       {
         "restrictedNamedExports": ["then"]
       }
-    ]
-
+    ],
+    // We use a lot of large numbers. This rule enforce large number has to use separator. Example: 1_000_000
+    "unicorn/numeric-separators-style": "error"
     //
     // ** Before adding or updating any rule, please read the comments at the top of this file
     //

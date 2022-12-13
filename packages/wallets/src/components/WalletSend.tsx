@@ -62,7 +62,7 @@ export default function WalletSend(props: SendCardProps) {
   const { data: walletState, isLoading: isWalletSyncLoading } = useGetSyncStatusQuery(
     {},
     {
-      pollingInterval: 10000,
+      pollingInterval: 10_000,
     }
   );
 

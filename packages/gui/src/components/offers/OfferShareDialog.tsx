@@ -242,10 +242,10 @@ async function postToOfferBin(offerData: string, sharePrivately: boolean, testne
 }
 
 enum HashgreenErrorCodes {
-  OFFERED_AMOUNT_TOO_SMALL = 40020, // The offered amount is too small
-  MARKET_NOT_FOUND = 50029, // Pairing doesn't exist e.g. XCH/RandoCoin
-  OFFER_FILE_EXISTS = 50037, // Offer already shared
-  COINS_ALREADY_COMMITTED = 50041, // Coins in the offer are already committed in another offer
+  OFFERED_AMOUNT_TOO_SMALL = 40_020, // The offered amount is too small
+  MARKET_NOT_FOUND = 50_029, // Pairing doesn't exist e.g. XCH/RandoCoin
+  OFFER_FILE_EXISTS = 50_037, // Offer already shared
+  COINS_ALREADY_COMMITTED = 50_041, // Coins in the offer are already committed in another offer
 }
 
 async function postToHashgreen(offerData: string, testnet: boolean): Promise<string> {

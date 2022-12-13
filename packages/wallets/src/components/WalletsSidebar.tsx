@@ -112,7 +112,7 @@ export default function WalletsSidebar() {
               your new tokens as they are re-issued by the original issuers. The airdropped tokens will be based on the
               balance as of block height:
               <br />
-              <FormatLargeNumber value={2311760} />
+              <FormatLargeNumber value={2_311_760} />
               <br />
               (Approximate time: July 26th, 2022 @ 17:00 UTC)
             </Trans>
