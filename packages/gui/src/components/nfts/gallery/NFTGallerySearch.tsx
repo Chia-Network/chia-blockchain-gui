@@ -1,20 +1,21 @@
+import { useDarkMode } from '@chia-network/core';
 import { InputBase } from '@mui/material';
 import React from 'react';
 import styled from 'styled-components';
 
 import CheckIcon from '../../../assets/img/search.svg';
 
-const SearchBase = styled('div')(({ theme }) => ({
+const SearchBase = styled('div')(({ theme, isDarkMode }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
-  backgroundColor: '#fff',
+  backgroundColor: isDarkMode ? '#333' : '#fff',
   '&:hover': {
     backgroundColor: theme.palette.action.hover,
   },
   paddingLeft: theme.spacing(1),
   paddingRight: theme.spacing(1),
   width: '350px',
-  border: '1px solid #E0E0E0',
+  border: `1px solid ${isDarkMode ? '#333' : '#E0E0E0'}`,
 }));
 
 const SearchIconWrapper = styled('div')(({ theme }) => ({
@@ -51,9 +52,10 @@ export type SearchProps = {
 
 export default function Search(props: SearchProps) {
   const { value, onChange, placeholder } = props;
+  const { isDarkMode } = useDarkMode();
 
   return (
-    <SearchBase>
+    <SearchBase isDarkMode={isDarkMode}>
       <SearchIconWrapper>
         <SearchIcon />
       </SearchIconWrapper>

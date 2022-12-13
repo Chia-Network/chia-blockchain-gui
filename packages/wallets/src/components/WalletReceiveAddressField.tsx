@@ -1,5 +1,5 @@
 import { useGetCurrentAddressQuery, useGetNextAddressMutation } from '@chia-network/api-react';
-import { CopyToClipboard } from '@chia-network/core';
+import { CopyToClipboard, Loading } from '@chia-network/core';
 import { t } from '@lingui/macro';
 import { TextField, IconButton } from '@mui/material';
 import React, { useState } from 'react';
@@ -24,15 +24,17 @@ const WalletReceiveAddressWrapper = styled.div`
   flex: 1;
   width: 100%;
   padding: 9px;
-  background: #fff;
+  background: ${(props) => (props.isDarkMode ? '#333' : '#fff')};
   border-radius: 5px;
-  border: 1px solid #e2e2e2;
+  border: 1px solid ${(props) => (props.isDarkMode ? '#333' : '#e2e2e2')};
   > div {
-    background: #f4f4f4;
+    background: ${(props) => (props.isDarkMode ? '#444' : '#f4f4f4')};
+    border-radius: 5px;
   }
   input {
     padding: 3px 8px;
     border: 0;
+    outline: none;
   }
   height: 48px;
   button {
@@ -68,7 +70,7 @@ export default function WalletReceiveAddressField(props: WalletReceiveAddressPro
   }
 
   return (
-    <WalletReceiveAddressWrapper>
+    <WalletReceiveAddressWrapper isDarkMode={props?.isDarkMode}>
       <TextField
         value={address}
         placeholder={t`Loading...`}

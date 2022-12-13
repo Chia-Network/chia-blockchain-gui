@@ -1,5 +1,5 @@
 import { NFTInfo } from '@chia-network/api';
-import { usePersistState } from '@chia-network/core';
+import { usePersistState, useDarkMode } from '@chia-network/core';
 import { t, Trans } from '@lingui/macro';
 import React from 'react';
 import styled from 'styled-components';
@@ -15,7 +15,7 @@ const SearchNFTrow = styled.div`
   padding: 5px;
   display: table;
   &:hover {
-    background: #eee !important;
+    background: ${(props) => (props.isDarkMode ? '#444' : '#eee')} !important;
   }
   > div:first-child {
     width: 50px;
@@ -43,9 +43,9 @@ const SearchPlaceholder = styled.div`
   z-index: 3;
   background: red;
   > div {
-    background: #fafafa;
+    background: ${(props) => (props.isDarkMode ? '#222' : '#fafafa')};
     ::-webkit-scrollbar-thumb {
-      background-color: #ddd;
+      background-color: ${(props) => (props.isDarkMode ? '#444' : '#ddd')};
       border: 4px solid transparent;
       border-radius: 8px;
       background-clip: padding-box;
@@ -53,7 +53,7 @@ const SearchPlaceholder = styled.div`
     ::-webkit-scrollbar {
       width: 16px;
     }
-    border: 1px solid #ddd;
+    border: 1px solid ${(props) => (props.isDarkMode ? '#222' : '#ddd')};
     border-radius: 15px;
     box-shadow: 0px 0px 25px 0 rgba(0, 0, 0, 0.2);
     max-height: 300px;
@@ -63,10 +63,10 @@ const SearchPlaceholder = styled.div`
     overflow-y: auto;
     position: absolute;
     > div:nth-child(odd) {
-      background: #f8f8f8;
+      background: ${(props) => (props.isDarkMode ? '#333' : '#fff')};
     }
     > div:nth-child(even) {
-      background: #fff;
+      background: ${(props) => (props.isDarkMode ? '#333' : '#fff')};
     }
   }
 `;
@@ -96,6 +96,7 @@ export default function OfferBuilderValueSearch(props: OfferBuilderValueSearchPr
   const { filteredNFTs, isLoading } = useFilteredNFTs({ walletId });
   const [hideObjectionableContent] = useHideObjectionableContent();
   const { allowNFTsFiltered } = useAllowFilteredShow(filteredNFTs, hideObjectionableContent, isLoading);
+  const { isDarkMode } = useDarkMode();
 
   function isNFTInSearchValue(searchString, nft: NFTInfo) {
     const metadataObj = allowNFTsFiltered.find((obj: any) => obj.nftId === nft.$nftId) || {};
@@ -126,6 +127,7 @@ export default function OfferBuilderValueSearch(props: OfferBuilderValueSearchPr
         className="nft-searched-row"
         onClick={() => selectNFT(nft.$nftId)}
         style={{ display: isNFTInSearchValue(value, nft) ? 'block' : 'none' }}
+        isDarkMode={isDarkMode}
       >
         <div>
           <NFTPreview nft={nft} fit="cover" isPreview metadata={nft?.metadata} isCompact miniThumb />
@@ -137,7 +139,7 @@ export default function OfferBuilderValueSearch(props: OfferBuilderValueSearchPr
       </SearchNFTrow>
     ));
   return (
-    <SearchPlaceholder style={{ display: value.length > 0 ? 'block' : 'none' }}>
+    <SearchPlaceholder isDarkMode={isDarkMode} style={{ display: value.length > 0 ? 'block' : 'none' }}>
       <div>{isLoading ? <Trans>Loading NFTs...</Trans> : nftPreviews}</div>
     </SearchPlaceholder>
   );

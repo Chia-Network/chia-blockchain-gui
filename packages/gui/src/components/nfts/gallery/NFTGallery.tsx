@@ -1,6 +1,6 @@
 import type { NFTInfo } from '@chia-network/api';
 import { useLocalStorage } from '@chia-network/api-react';
-import { Flex, LayoutDashboardSub, Loading, /* useTrans, */ usePersistState } from '@chia-network/core';
+import { Flex, LayoutDashboardSub, Loading, /* useTrans, */ usePersistState, useDarkMode } from '@chia-network/core';
 import { WalletReceiveAddressField } from '@chia-network/wallets';
 import { t, Trans } from '@lingui/macro';
 import { FormControlLabel, RadioGroup, FormControl, Checkbox, Grid } from '@mui/material';
@@ -77,9 +77,9 @@ const VisibilityRadioWrapper = styled.div`
     position: absolute;
     right: -15px;
     top: 30px;
-    background: #fff;
+    background: ${(props) => (props.isDarkMode ? '#333' : '#fff')};
     padding: 15px;
-    border: 1px solid #e0e0e0;
+    border: 1px solid ${(props) => (props.isDarkMode ? '#333' : '#fff')};
   }
   span {
     white-space: nowrap;
@@ -91,8 +91,8 @@ const MultiSelectAndFilterWrapper = styled.div`
   align-items: center;
   height: 48px;
   padding: 0 15px;
-  background: #fff;
-  border: 1px solid #e0e0e0;
+  background: ${(props) => (props.isDarkMode ? '#333' : '#fff')};
+  border: 1px solid ${(props) => (props.isDarkMode ? '#333' : '#e0e0e0')};
   border-radius: 5px;
   > * {
     cursor: pointer;
@@ -122,6 +122,12 @@ const Filters = styled.div`
   }
 `;
 
+const FilterIconStyled = styled(FilterIcon)`
+  path {
+    stroke: ${(props) => (props.active ? props.theme.palette.primary.main : '#aaa')};
+  }
+`;
+
 export default function NFTGallery() {
   const [selection, setSelection] = useState<NFTSelection>({
     items: [],
@@ -138,6 +144,7 @@ export default function NFTGallery() {
   const [visibilityFilters, setVisibilityFilters] = useLocalStorage('visibilityFilters', ['visible']);
   const typesFilterRef = React.useRef();
   const visibilityFilterRef = React.useRef();
+  const { isDarkMode } = useDarkMode();
 
   useEffect(() => {
     const listener = (event) => {
@@ -339,10 +346,10 @@ export default function NFTGallery() {
           <Flex gap={2} alignItems="stretch" flexWrap="wrap" justifyContent="space-between">
             <NFTProfileDropdown onChange={setWalletId} walletId={walletId} />
             <Search onChange={setSearch} placeholder={t`Search...`} />
-            <WalletReceiveAddressField variant="outlined" size="small" fullWidth />
-            <MultiSelectAndFilterWrapper className={inMultipleSelectionMode ? 'active' : ''}>
+            <WalletReceiveAddressField variant="outlined" size="small" fullWidth isDarkMode={isDarkMode} />
+            <MultiSelectAndFilterWrapper className={inMultipleSelectionMode ? 'active' : ''} isDarkMode={isDarkMode}>
               <MultiSelectIcon onClick={() => toggleMultipleSelection(!inMultipleSelectionMode)} />
-              <FilterIcon />
+              <FilterIconStyled active={typeFilter.length > 0 || visibilityFilters.length !== 1} />
             </MultiSelectAndFilterWrapper>
           </Flex>
 
@@ -357,8 +364,9 @@ export default function NFTGallery() {
                   which="types"
                   title={t`Types (${Object.keys(nftTypes).length - checkedNftTypes(nftTypes, typeFilter)} /
                       ${Object.keys(nftTypes).length})`}
+                  isDarkMode={isDarkMode}
                 >
-                  <VisibilityRadioWrapper>
+                  <VisibilityRadioWrapper isDarkMode={isDarkMode}>
                     <div>{renderTypeFilter()}</div>
                   </VisibilityRadioWrapper>
                 </FilterPill>
@@ -375,8 +383,9 @@ export default function NFTGallery() {
                       ? t`Visible (${countNFTs('visible')})`
                       : t`Hidden (${countNFTs('hidden')})`
                   }
+                  isDarkMode={isDarkMode}
                 >
-                  <VisibilityRadioWrapper>
+                  <VisibilityRadioWrapper isDarkMode={isDarkMode}>
                     <div>
                       <FormControl>
                         <RadioGroup>

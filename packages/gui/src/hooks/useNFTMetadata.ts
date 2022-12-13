@@ -61,6 +61,7 @@ export default function useNFTsMetadata(nfts: NFTInfo[]) {
 
   async function getMetadata(nft) {
     setIsLoading(true);
+    setErrorContent(undefined);
     const { metadataHash } = nft;
     const uri = nft?.metadataUris?.[0];
     const nftId = nft?.$nftId;
@@ -79,7 +80,6 @@ export default function useNFTsMetadata(nfts: NFTInfo[]) {
 
     // ============== OTHERWISE FETCH DATA FROM INTERNET =========== //
     let metadataContent;
-    setErrorContent(undefined);
     try {
       if (!uri) {
         setIsLoading(false);

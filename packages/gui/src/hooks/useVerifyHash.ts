@@ -319,9 +319,7 @@ export default function useVerifyHash(props: VerifyHash): {
     if (metadata && setNFTCardMetadata) {
       setNFTCardMetadata(metadata);
     }
-    if (metadataError) {
-      setNFTPreviewMetadataError(metadataError);
-    }
+    setNFTPreviewMetadataError(metadataError);
   }, [isLoadingMetadata, metadata, metadataError]);
 
   return {
