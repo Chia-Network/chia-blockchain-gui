@@ -8,7 +8,7 @@ export type NFTCardLazyProps = NFTCardProps & {
   minHeight?: number;
 };
 
-export default React.memo((props: NFTCardLazyProps) => {
+export default function (props: NFTCardLazyProps) {
   const { minHeight = 300, ...rest } = props;
   const cardRef = useRef();
   const entry = useIntersectionObserver(cardRef, {
@@ -22,4 +22,4 @@ export default React.memo((props: NFTCardLazyProps) => {
       {isVisible ? <NFTCard {...rest} /> : <Card />}
     </Box>
   );
-});
+}
