@@ -11,7 +11,7 @@ export default function useHiddenList<Type>(
   isHidden: (key: Type) => boolean,
   setIsHidden: (key: Type, newValue: (isHidden: boolean) => boolean | boolean) => void,
   hidden: Type[],
-  setIsNFTMultipleHide: (nftIds: string[]) => void
+  setIsNFTMultipleHide: (nftIds: string[], hide: boolean) => void
 ] {
   const [hiddenLists, setHiddenLists] = usePrefs<List<Type>>('isHidden', {});
 
