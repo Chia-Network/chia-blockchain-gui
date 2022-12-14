@@ -30,7 +30,7 @@ type OfferEditorConditionsRowProps = {
   addRow: (() => void) | undefined; // undefined if adding is not allowed
   removeRow: (() => void) | undefined; // undefined if removing is not allowed
   updateRow: (row: OfferEditorRowData) => void;
-  showAddWalletMessage: boolean;
+  showAddWalletMessage?: boolean;
   disabled?: boolean;
 };
 
@@ -42,7 +42,7 @@ function OfferEditorConditionRow(props: OfferEditorConditionsRowProps) {
     addRow,
     removeRow,
     updateRow,
-    showAddWalletMessage,
+    showAddWalletMessage = false,
     disabled = false,
     ...rest
   } = props;

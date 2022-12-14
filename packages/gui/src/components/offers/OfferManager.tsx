@@ -66,13 +66,13 @@ import {
 } from './utils';
 
 type ConfirmOfferCancellationProps = {
-  canCancelWithTransaction: boolean;
-  onClose: (value: any) => void;
-  open: boolean;
+  canCancelWithTransaction?: boolean;
+  onClose?: (value: any) => void;
+  open?: boolean;
 };
 
 function ConfirmOfferCancellation(props: ConfirmOfferCancellationProps) {
-  const { canCancelWithTransaction, onClose, open } = props;
+  const { canCancelWithTransaction = true, onClose = () => {}, open = true } = props;
   const methods = useForm({
     defaultValues: {
       fee: '',
