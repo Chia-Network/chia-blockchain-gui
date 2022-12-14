@@ -14,7 +14,7 @@ type OfferAcceptConfirmationDialogProps = {
 };
 
 export default function OfferAcceptConfirmationDialog(props: OfferAcceptConfirmationDialogProps): React.ReactElement {
-  const { offeredUnknownCATs, ...rest } = props;
+  const { offeredUnknownCATs = [], ...rest } = props;
 
   return (
     <ConfirmDialog
@@ -62,7 +62,3 @@ export default function OfferAcceptConfirmationDialog(props: OfferAcceptConfirma
     </ConfirmDialog>
   );
 }
-
-OfferAcceptConfirmationDialog.defaultProps = {
-  offeredUnknownCATs: [],
-};

@@ -67,8 +67,3 @@ export default function PlotNFTAdd(props: Props) {
     </>
   );
 }
-
-PlotNFTAdd.defaultProps = {
-  step: undefined,
-  onCancel: undefined,
-};

@@ -20,7 +20,7 @@ type Props = {
 
 export default function PlotNFTName(props: Props) {
   const {
-    variant,
+    variant = 'body1',
     nft,
     nft: {
       poolState: { p2SingletonPuzzleHash },
@@ -45,7 +45,3 @@ export default function PlotNFTName(props: Props) {
     </Flex>
   );
 }
-
-PlotNFTName.defaultProps = {
-  variant: 'body1',
-};

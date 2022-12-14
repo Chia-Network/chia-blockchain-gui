@@ -75,9 +75,3 @@ export default function OfferHeader(props: OfferHeaderProps) {
     <></>
   );
 }
-
-OfferHeader.defaultProps = {
-  isMyOffer: false,
-  isInvalid: false,
-  isComplete: false,
-};

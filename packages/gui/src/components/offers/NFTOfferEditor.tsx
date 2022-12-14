@@ -104,11 +104,11 @@ function NFTOfferCreationFee(props: NFTOfferCreationFeeProps) {
 
 type NFTOfferConditionalsPanelProps = {
   defaultValues: NFTOfferEditorFormData;
-  isProcessing: boolean;
+  isProcessing?: boolean;
 };
 
 function NFTOfferConditionalsPanel(props: NFTOfferConditionalsPanelProps) {
-  const { defaultValues, isProcessing } = props;
+  const { defaultValues, isProcessing = false } = props;
   const disabled = isProcessing;
   const methods = useFormContext();
   const [locale] = useLocale();
@@ -446,10 +446,6 @@ function NFTOfferConditionalsPanel(props: NFTOfferConditionalsPanelProps) {
     </Flex>
   );
 }
-
-NFTOfferConditionalsPanel.defaultProps = {
-  isProcessing: false,
-};
 
 /* ========================================================================== */
 /*                              NFT Offer Editor                              */

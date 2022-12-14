@@ -38,7 +38,7 @@ type FormData = {
 type OfferEditorProps = {
   walletId?: number;
   walletType?: WalletType;
-  onOfferCreated: (obj: { offerRecord: any; offerData: any }) => void;
+  onOfferCreated?: (obj: { offerRecord: any; offerData: any }) => void;
 };
 
 function defaultMakerRow(walletId?: number, walletType?: WalletType): OfferEditorRowData {
@@ -51,7 +51,7 @@ function defaultMakerRow(walletId?: number, walletType?: WalletType): OfferEdito
 }
 
 function OfferEditor(props: OfferEditorProps) {
-  const { walletId, walletType, onOfferCreated } = props;
+  const { walletId, walletType, onOfferCreated = () => {} } = props;
   const navigate = useNavigate();
   const defaultValues: FormData = {
     selectedTab: 0,
@@ -198,19 +198,15 @@ function OfferEditor(props: OfferEditorProps) {
   );
 }
 
-OfferEditor.defaultProps = {
-  onOfferCreated: () => {},
-};
-
 type CreateOfferEditorProps = {
   walletId?: number;
   walletType?: WalletType;
   referrerPath?: string;
-  onOfferCreated: (obj: { offerRecord: any; offerData: any }) => void;
+  onOfferCreated?: (obj: { offerRecord: any; offerData: any }) => void;
 };
 
 export function CreateOfferEditor(props: CreateOfferEditorProps) {
-  const { walletId, walletType, referrerPath, onOfferCreated } = props;
+  const { walletId, walletType, referrerPath, onOfferCreated = () => {} } = props;
 
   const title = <Trans>Create an Offer</Trans>;
   const navElement = referrerPath ? (
@@ -230,7 +226,3 @@ export function CreateOfferEditor(props: CreateOfferEditorProps) {
     </Grid>
   );
 }
-
-CreateOfferEditor.defaultProps = {
-  onOfferCreated: () => {},
-};

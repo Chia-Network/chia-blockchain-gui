@@ -25,8 +25,7 @@ export type CardKeyValueProps = {
 };
 
 export default function CardKeyValue(props: CardKeyValueProps) {
-  const { rows, label, hideDivider, size } = props;
-
+  const { rows, label, hideDivider = false, size = 'small' } = props;
   return (
     <Table size={size} aria-label={label}>
       <TableBody>
@@ -61,9 +60,3 @@ export default function CardKeyValue(props: CardKeyValueProps) {
     </Table>
   );
 }
-
-CardKeyValue.defaultProps = {
-  label: undefined,
-  hideDivider: false,
-  size: 'small',
-};

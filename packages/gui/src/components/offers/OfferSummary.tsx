@@ -20,12 +20,20 @@ type Props = {
   summary: OfferSummaryRecord;
   makerTitle: React.ReactElement | string;
   takerTitle: React.ReactElement | string;
-  rowIndentation: number;
+  rowIndentation?: number;
   setIsMissingRequestedAsset?: (isMissing: boolean) => void;
 };
 
 export default function OfferSummary(props: Props) {
-  const { isMyOffer, imported, summary, makerTitle, takerTitle, rowIndentation, setIsMissingRequestedAsset } = props;
+  const {
+    isMyOffer,
+    imported,
+    summary,
+    makerTitle,
+    takerTitle,
+    rowIndentation = 3,
+    setIsMissingRequestedAsset,
+  } = props;
   const theme = useTheme();
   const { lookupByAssetId } = useAssetIdName();
   const horizontalPadding = `${theme.spacing(rowIndentation)}`; // logic borrowed from Flex's gap computation
@@ -182,9 +190,3 @@ export default function OfferSummary(props: Props) {
     </Flex>
   );
 }
-
-OfferSummary.defaultProps = {
-  isMyOffer: false,
-  imported: false,
-  rowIndentation: 3,
-};

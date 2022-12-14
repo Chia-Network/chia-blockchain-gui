@@ -12,7 +12,7 @@ type Props = {
 };
 
 export default function FormBackButton(props: Props) {
-  const { children, ...rest } = props;
+  const { children = <Trans>Back</Trans>, ...rest } = props;
   const openDialog = useOpenDialog();
   const { formState } = useFormContext();
   const navigate = useNavigate();
@@ -43,7 +43,3 @@ export default function FormBackButton(props: Props) {
     </Button>
   );
 }
-
-FormBackButton.defaultProps = {
-  children: <Trans>Back</Trans>,
-};
