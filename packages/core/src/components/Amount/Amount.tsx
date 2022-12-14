@@ -19,7 +19,7 @@ export type AmountProps = TextFieldProps & {
   symbol?: string; // if set, overrides the currencyCode. empty string is allowed
   showAmountInMojos?: boolean; // if true, shows the mojo amount below the input field
   dropdownAdornment?: func;
-  // feeMode?: boolean; // if true, amounts are expressed in mojos used to set a transaction fee
+  label?: ReactNode;
   'data-testid'?: string;
 };
 
@@ -33,7 +33,6 @@ export default function Amount(props: AmountProps) {
     variant,
     fullWidth,
     'data-testid': dataTestid,
-    // TODO: Zlatko. Label was in defaultProps but is not in propTypes. Also added label={label}
     label = <Trans>Amount</Trans>,
     ...rest
   } = props;
