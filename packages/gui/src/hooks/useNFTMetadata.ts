@@ -70,6 +70,7 @@ export default function useNFTsMetadata(nfts: NFTInfo[]) {
 
     if (metadataObject.error) {
       setErrorContent(metadataObject.error);
+      setIsLoading(false);
       return;
     }
     if (metadataObject.isValid) {
@@ -95,6 +96,7 @@ export default function useNFTsMetadata(nfts: NFTInfo[]) {
         uri,
         maxSize: MAX_FILE_SIZE,
         dataHash: metadataHash,
+        timeout: 2000,
       });
 
       if (!isValid) {

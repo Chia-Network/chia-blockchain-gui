@@ -13,6 +13,7 @@ import MultiSelectIcon from '../../../assets/img/multi-select.svg';
 import useAllowFilteredShow from '../../../hooks/useAllowFilteredShow';
 import useHiddenNFTs from '../../../hooks/useHiddenNFTs';
 import useHideObjectionableContent from '../../../hooks/useHideObjectionableContent';
+import useSyncCache from '../../../hooks/useSyncCache';
 import type NFTSelection from '../../../types/NFTSelection';
 import { mimeTypeRegex, isImage, isDocument, getNFTFileType } from '../../../util/utils';
 import NFTCardLazy from '../NFTCardLazy';
@@ -79,7 +80,7 @@ const VisibilityRadioWrapper = styled.div`
     top: 30px;
     background: ${(props) => (props.isDarkMode ? '#333' : '#fff')};
     padding: 15px;
-    border: 1px solid ${(props) => (props.isDarkMode ? '#333' : '#fff')};
+    border: 1px solid ${(props) => (props.isDarkMode ? '#333' : '#e0e0e0')};
   }
   span {
     white-space: nowrap;
@@ -103,13 +104,13 @@ const MultiSelectAndFilterWrapper = styled.div`
   &.active {
     svg:first-child {
       path {
-        stroke: ${(props) => props.theme.palette.primary.main};
+        stroke: ${(props) => props.theme.palette.primary.main} !important;
       }
       rect {
-        stroke: ${(props) => props.theme.palette.primary.main};
+        stroke: ${(props) => props.theme.palette.primary.main} !important;
       }
       rect:nth-child(3) {
-        fill: ${(props) => props.theme.palette.primary.main};
+        fill: ${(props) => props.theme.palette.primary.main} !important;
       }
     }
   }
@@ -128,6 +129,18 @@ const FilterIconStyled = styled(FilterIcon)`
   }
 `;
 
+const MultiSelectIconStyled = styled(MultiSelectIcon)`
+  path {
+    stroke: ${(props) => (props.isDarkMode ? props.theme.palette.common.white : props.theme.palette.text.secondary)};
+  }
+  rect {
+    stroke: ${(props) => (props.isDarkMode ? props.theme.palette.common.white : props.theme.palette.text.secondary)};
+  }
+  rect:nth-child(3) {
+    stroke: ${(props) => (props.isDarkMode ? props.theme.palette.common.white : props.theme.palette.text.secondary)};
+  }
+`;
+
 export default function NFTGallery() {
   const [selection, setSelection] = useState<NFTSelection>({
     items: [],
@@ -139,7 +152,12 @@ export default function NFTGallery() {
   const [walletId, setWalletId] = usePersistState<number | undefined>(undefined, 'nft-profile-dropdown');
   const { filteredNFTs, isLoading } = useFilteredNFTs({ walletId });
   const [hideObjectionableContent] = useHideObjectionableContent();
-  const { allowNFTsFiltered } = useAllowFilteredShow(filteredNFTs, hideObjectionableContent, isLoading);
+  const { isSyncingCache } = useSyncCache();
+  const { allowNFTsFiltered, allowedNFTsLoading } = useAllowFilteredShow(
+    filteredNFTs,
+    hideObjectionableContent,
+    isLoading || isSyncingCache
+  );
   const [filtersShown, setFiltersShown] = useState<string[]>([]);
   const [visibilityFilters, setVisibilityFilters] = useLocalStorage('visibilityFilters', ['visible']);
   const typesFilterRef = React.useRef();
@@ -218,7 +236,7 @@ export default function NFTGallery() {
     });
   }
 
-  if (isLoading) {
+  if (isLoading || allowedNFTsLoading) {
     return <Loading center />;
   }
 
@@ -348,7 +366,10 @@ export default function NFTGallery() {
             <Search onChange={setSearch} placeholder={t`Search...`} />
             <WalletReceiveAddressField variant="outlined" size="small" fullWidth isDarkMode={isDarkMode} />
             <MultiSelectAndFilterWrapper className={inMultipleSelectionMode ? 'active' : ''} isDarkMode={isDarkMode}>
-              <MultiSelectIcon onClick={() => toggleMultipleSelection(!inMultipleSelectionMode)} />
+              <MultiSelectIconStyled
+                onClick={() => toggleMultipleSelection(!inMultipleSelectionMode)}
+                isDarkMode={isDarkMode}
+              />
               <FilterIconStyled active={typeFilter.length > 0 || visibilityFilters.length !== 1} />
             </MultiSelectAndFilterWrapper>
           </Flex>
@@ -362,8 +383,9 @@ export default function NFTGallery() {
                   setFiltersShown={setFiltersShown}
                   filtersShown={filtersShown}
                   which="types"
-                  title={t`Types (${Object.keys(nftTypes).length - checkedNftTypes(nftTypes, typeFilter)} /
-                      ${Object.keys(nftTypes).length})`}
+                  title={t`Types (${Object.keys(nftTypes).length - checkedNftTypes(nftTypes, typeFilter)}/${
+                    Object.keys(nftTypes).length
+                  })`}
                   isDarkMode={isDarkMode}
                 >
                   <VisibilityRadioWrapper isDarkMode={isDarkMode}>

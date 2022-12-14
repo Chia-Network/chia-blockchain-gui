@@ -17,6 +17,7 @@ async function getMetadata(nft) {
   }
 
   let metadata;
+  let gotContent;
   try {
     if (!uri) {
       throw new Error('Invalid URI');
@@ -30,7 +31,10 @@ async function getMetadata(nft) {
       nftId,
       uri,
       dataHash: metadataHash,
+      timeout: 2000,
     });
+
+    gotContent = content;
 
     if (!isValid) {
       lruSet(nftId, JSON.stringify({ isValid: false }));
@@ -62,7 +66,7 @@ async function getMetadata(nft) {
 
 export default function useAllowFilteredShow(nfts: NFTInfo[], hideObjectionableContent: boolean, isLoading: boolean) {
   const [allowNFTsFiltered, setAllowNFTsFiltered] = useState<NFTInfo[]>([]);
-
+  const [isLoadingLocal, setIsLoadingLocal] = useState(true);
   const nftArray = React.useRef<NFTInfo[]>([]);
 
   const fetchMultipleMetadata = async () => {
@@ -75,9 +79,10 @@ export default function useAllowFilteredShow(nfts: NFTInfo[], hideObjectionableC
         (nftWithMetadata?.metadata && !nftWithMetadata?.metadata.sensitive_content)
       ) {
         nftArray.current = nftArray.current.concat(nftWithMetadata);
-        setAllowNFTsFiltered(nftArray.current);
       }
     }
+    setAllowNFTsFiltered(nftArray.current);
+    setIsLoadingLocal(false);
   };
 
   useEffect(() => {
@@ -86,5 +91,5 @@ export default function useAllowFilteredShow(nfts: NFTInfo[], hideObjectionableC
     }
   }, [nfts[0], isLoading]);
 
-  return { allowNFTsFiltered };
+  return { allowNFTsFiltered, allowedNFTsLoading: isLoadingLocal };
 }

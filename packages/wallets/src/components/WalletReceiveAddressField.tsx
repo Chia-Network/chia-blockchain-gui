@@ -1,23 +1,17 @@
 import { useGetCurrentAddressQuery, useGetNextAddressMutation } from '@chia-network/api-react';
 import { CopyToClipboard, Loading } from '@chia-network/core';
+import { Reload } from '@chia-network/icons';
 import { t } from '@lingui/macro';
 import { TextField, IconButton } from '@mui/material';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-function ReloadIconSvg() {
-  return (
-    <svg width="18" height="18" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path
-        d="M18.453 10.893C18.1752 13.5029 16.6964 15.9487 14.2494 17.3614C10.1839 19.7086 4.98539 18.3157 2.63818 14.2502L2.38818 13.8172M1.54613 9.10701C1.82393 6.49711 3.30272 4.05138 5.74971 2.63862C9.8152 0.291406 15.0137 1.68434 17.3609 5.74983L17.6109 6.18285M1.49316 16.0661L2.22521 13.334L4.95727 14.0661M15.0424 5.93401L17.7744 6.66606L18.5065 3.93401"
-        stroke="#757575"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
+const ReloadIconSvg = styled(Reload)`
+  path {
+    fill: none;
+    stroke: ${(props) => (props.isDarkMode ? props.theme.palette.common.white : props.theme.palette.text.secondary)};
+  }
+`;
 
 const WalletReceiveAddressWrapper = styled.div`
   display: flex;
@@ -87,7 +81,7 @@ export default function WalletReceiveAddressField(props: WalletReceiveAddressPro
         <Loading size="1em" />
       ) : (
         <IconButton onClick={handleNewAddress} size="small">
-          <ReloadIconSvg />
+          <ReloadIconSvg isDarkMode={props?.isDarkMode} />
         </IconButton>
       )}
     </WalletReceiveAddressWrapper>

@@ -49,33 +49,34 @@ app.commandLine.appendSwitch('disable-http-cache');
 initialize();
 
 const appIcon = nativeImage.createFromPath(path.join(__dirname, AppIcon));
-let thumbCacheFolder = path.join(app.getPath('cache'), app.getName());
+const defaultThumbCacheFolder = path.join(app.getPath('cache'), app.getName());
+let thumbCacheFolder = defaultThumbCacheFolder;
 
-if (!fs.existsSync(thumbCacheFolder)) {
-  fs.mkdirSync(thumbCacheFolder);
+if (!fs.existsSync(defaultThumbCacheFolder)) {
+  fs.mkdirSync(defaultThumbCacheFolder);
 }
 
 let mainWindow: BrowserWindow | null = null;
 
 let watcher;
 
-function watchCacheFolder(folder: string | undefined) {
+function watchCacheFolder(folder: string) {
   function watchFolder(f) {
     watcher = chokidar.watch(f, { persistent: true });
     watcher.on('unlink', (path: any) => {
       mainWindow?.webContents.send('removed-cache-file', path.split('/').splice(-1, 1)[0]);
     });
   }
-  if (folder && watcher) {
-    watcher.close().then(() => {
+  if (folder) {
+    if (watcher) {
+      watcher.close().then(() => {
+        watchFolder(folder);
+      });
+    } else {
       watchFolder(folder);
-    });
-  } else {
-    watchFolder(thumbCacheFolder);
+    }
   }
 }
-
-watchCacheFolder(undefined);
 
 let cacheLimitSize: number = 1024;
 
@@ -247,10 +248,10 @@ if (!handleSquirrelEvent()) {
         return new Promise((resolve, reject) => {
           axios({
             method: 'HEAD',
-            url,
+            url: urlLocal,
           })
             .then((response) => {
-              resolve(Number(response.headers['content-length']));
+              resolve(Number(response.headers['content-length'] || -1));
             })
             .catch((e) => {
               reject(e.message);
@@ -299,7 +300,7 @@ if (!handleSquirrelEvent()) {
 
           let wasCached = false;
 
-          if (allRequests[rest.uri]) {
+          if (allRequests[rest.url]) {
             /* request already exists */
             return undefined;
           }
@@ -312,7 +313,7 @@ if (!handleSquirrelEvent()) {
           const fileStream = fs.createWriteStream(fileOnDisk);
 
           Object.entries(requestHeaders).forEach(([header, value]: [string, any]) => {
-            allRequests[rest.uri].setHeader(header, value);
+            allRequests[rest.url].setHeader(header, value);
           });
 
           let error: Error | undefined;
@@ -328,9 +329,9 @@ if (!handleSquirrelEvent()) {
           let totalLength = 0;
 
           try {
+            /* GET FILE SIZE */
             const fileSize: number = await getRemoteFileSize(rest.url);
             dataObject = await new Promise((resolve, reject) => {
-              /* GET FILE SIZE */
               allRequests[rest.url].on('response', (response: IncomingMessage) => {
                 statusCode = response.statusCode;
                 statusMessage = response.statusMessage;
@@ -430,6 +431,10 @@ if (!handleSquirrelEvent()) {
               allRequests[rest.url].end();
             });
           } catch (e: any) {
+            if (fs.existsSync(fileOnDisk)) {
+              fs.unlinkSync(fileOnDisk);
+            }
+            delete allRequests[rest.url];
             error = e;
           }
 
@@ -562,6 +567,8 @@ if (!handleSquirrelEvent()) {
 
       ipcMain.handle('migratePrefs', async (_event, prefsObj) => migratePrefs(prefsObj));
 
+      ipcMain.handle('getCacheFilenames', (_event) => fs.readdirSync(thumbCacheFolder));
+
       /* ======================================================================== */
 
       decidedToClose = false;
@@ -669,6 +676,9 @@ if (!handleSquirrelEvent()) {
         callback({ path: filePath });
       });
       const prefs = readPrefs();
+      thumbCacheFolder = prefs.cacheFolder || defaultThumbCacheFolder;
+      watchCacheFolder(thumbCacheFolder);
+
       if (prefs.cacheLimitSize !== undefined) {
         try {
           const prefs_cacheLimitSize = +prefs.cacheLimitSize;
