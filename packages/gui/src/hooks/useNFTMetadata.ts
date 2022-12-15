@@ -1,10 +1,13 @@
+import EventEmitter from 'events';
+
 import type NFTInfo from '@chia/api';
 import { useEffect, useState, useCallback } from 'react';
 
-import { eventEmitter } from '../components/nfts/NFTContextualActions';
 import getRemoteFileContent from '../util/getRemoteFileContent';
 
 export const MAX_FILE_SIZE = 100 * 1024 * 1024; // 100 MB
+
+export const eventEmitter = new EventEmitter();
 
 export const lruMap = new Map();
 

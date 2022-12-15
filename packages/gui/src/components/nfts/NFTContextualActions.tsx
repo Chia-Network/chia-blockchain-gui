@@ -1,5 +1,3 @@
-import EventEmitter from 'events';
-
 import type { NFTInfo } from '@chia-network/api';
 import { useSetNFTStatusMutation, useLocalStorage } from '@chia-network/api-react';
 import { AlertDialog, DropdownActions, MenuItem, useOpenDialog } from '@chia-network/core';
@@ -28,7 +26,7 @@ import isURL from 'validator/lib/isURL';
 
 import useBurnAddress from '../../hooks/useBurnAddress';
 import useHiddenNFTs from '../../hooks/useHiddenNFTs';
-import { lruMap } from '../../hooks/useNFTMetadata.ts';
+import { eventEmitter, lruMap } from '../../hooks/useNFTMetadata.ts';
 import useOpenUnsafeLink from '../../hooks/useOpenUnsafeLink';
 import useViewNFTOnExplorer, { NFTExplorer } from '../../hooks/useViewNFTOnExplorer';
 import NFTSelection from '../../types/NFTSelection';
@@ -38,8 +36,6 @@ import { stripHexPrefix } from '../../util/utils';
 import NFTBurnDialog from './NFTBurnDialog';
 import NFTMoveToProfileDialog from './NFTMoveToProfileDialog';
 import { NFTTransferDialog, NFTTransferResult } from './NFTTransferAction';
-
-export const eventEmitter = new EventEmitter();
 
 /* ========================================================================== */
 /*                          Common Action Types/Enums                         */
@@ -453,7 +449,9 @@ function NFTDownloadContextualAction(props: NFTDownloadContextualActionProps) {
 /*                          Hide / Show NFT(s)                                */
 /* ========================================================================== */
 
-type NFTHideContextualActionProps = NFTContextualActionProps;
+type NFTHideContextualActionProps = NFTContextualActionProps & {
+  showOrHide?: number;
+};
 
 function NFTHideContextualAction(props: NFTHideContextualActionProps) {
   const { selection, isMultiSelect, showOrHide } = props;
@@ -547,7 +545,7 @@ function NFTInvalidateContextualAction(props: NFTInvalidateContextualActionProps
   const [, setThumbCache] = useLocalStorage(`thumb-cache-${selectedNft?.$nftId}`, null);
   const [, setContentCache] = useLocalStorage(`content-cache-${selectedNft?.$nftId}`, null);
   // const [, setMetadataCache] = useLocalStorage(`metadata-cache-${selectedNft?.$nftId}`, {});
-  const [selectedNFTIds, setSelectedNFTIds] = useLocalStorage('gallery-selected-nfts', []);
+  const [, setSelectedNFTIds] = useLocalStorage('gallery-selected-nfts', []);
   const { ipcRenderer } = window as any;
   async function handleInvalidate() {
     if (isMultiSelect) {
@@ -610,7 +608,7 @@ type NFTContextualActionsProps = {
   availableActions?: NFTContextualActionTypes;
   toggle?: ReactNode;
   isMultiSelect?: boolean;
-  showOrHide?: boolean;
+  showOrHide?: number;
 };
 
 export default function NFTContextualActions(props: NFTContextualActionsProps) {
