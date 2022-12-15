@@ -95,9 +95,6 @@ const MultiSelectAndFilterWrapper = styled.div`
   background: ${(props) => (props.isDarkMode ? '#333' : '#fff')};
   border: 1px solid ${(props) => (props.isDarkMode ? '#333' : '#e0e0e0')};
   border-radius: 5px;
-  > * {
-    cursor: pointer;
-  }
   > * + * {
     margin-left: 20px;
   }
@@ -130,6 +127,7 @@ const FilterIconStyled = styled(FilterIcon)`
 `;
 
 const MultiSelectIconStyled = styled(MultiSelectIcon)`
+  cursor: pointer;
   path {
     stroke: ${(props) => (props.isDarkMode ? props.theme.palette.common.white : props.theme.palette.text.secondary)};
   }
@@ -139,6 +137,10 @@ const MultiSelectIconStyled = styled(MultiSelectIcon)`
   rect:nth-child(3) {
     stroke: ${(props) => (props.isDarkMode ? props.theme.palette.common.white : props.theme.palette.text.secondary)};
   }
+`;
+
+const LoadingWrapper = styled.div`
+  padding: 25px;
 `;
 
 export default function NFTGallery() {
@@ -151,6 +153,7 @@ export default function NFTGallery() {
   const [isNFTHidden] = useHiddenNFTs();
   const [walletId, setWalletId] = usePersistState<number | undefined>(undefined, 'nft-profile-dropdown');
   const { filteredNFTs, isLoading } = useFilteredNFTs({ walletId });
+  console.log('FilteredNFTS', filteredNFTs.length, isLoading);
   const [hideObjectionableContent] = useHideObjectionableContent();
   const { isSyncingCache } = useSyncCache();
   const { allowNFTsFiltered, allowedNFTsLoading } = useAllowFilteredShow(
@@ -186,6 +189,9 @@ export default function NFTGallery() {
 
   filteredNFTs
     .filter((nft: NFTInfo) => {
+      if (allowNFTsFiltered.map((nft) => nft.nftId).indexOf(nft.$nftId) === -1) {
+        return false;
+      }
       if (visibilityFilters.indexOf('hidden') === -1 && isNFTHidden(nft)) {
         return false;
       }
@@ -197,24 +203,28 @@ export default function NFTGallery() {
     .forEach((nft: NFTInfo) => {
       const file = Array.isArray(nft.dataUris) && nft.dataUris[0];
       if (file) {
-        if (mimeTypeRegex(file, /^audio/)) {
-          nftTypes.Audio = (nftTypes.Audio || 0) + 1;
-        } else if (mimeTypeRegex(file, /^video/)) {
-          nftTypes.Video = (nftTypes.Video || 0) + 1;
-        } else if (mimeTypeRegex(file, /^model/)) {
-          nftTypes.Model = (nftTypes.Model || 0) + 1;
-        } else if (isImage(file)) {
-          nftTypes.Image = (nftTypes.Image || 0) + 1;
-        } else {
-          nftTypes.Unknown = (nftTypes.Unknown || 0) + 1;
-        }
+        let isDocument: boolean = false;
         try {
           const extension = new URL(file).pathname.split('.').slice(-1)[0];
           if (extension.match(/^[a-zA-Z0-9]+$/) && isDocument(extension)) {
             nftTypes.Document = (nftTypes.Document || 0) + 1;
+            isDocument = true;
           }
         } catch (e) {
           console.error(`Failed to check file extension for ${file}: ${e}`);
+        }
+        if (!isDocument) {
+          if (mimeTypeRegex(file, /^audio/)) {
+            nftTypes.Audio = (nftTypes.Audio || 0) + 1;
+          } else if (mimeTypeRegex(file, /^video/)) {
+            nftTypes.Video = (nftTypes.Video || 0) + 1;
+          } else if (mimeTypeRegex(file, /^model/)) {
+            nftTypes.Model = (nftTypes.Model || 0) + 1;
+          } else if (isImage(file)) {
+            nftTypes.Image = (nftTypes.Image || 0) + 1;
+          } else {
+            nftTypes.Unknown = (nftTypes.Unknown || 0) + 1;
+          }
         }
       }
     });
@@ -237,7 +247,11 @@ export default function NFTGallery() {
   }
 
   if (isLoading || allowedNFTsLoading) {
-    return <Loading center />;
+    return (
+      <LoadingWrapper>
+        <Loading center />
+      </LoadingWrapper>
+    );
   }
 
   function applyTypeFilter(nft: NFTInfo) {
@@ -378,7 +392,7 @@ export default function NFTGallery() {
             {t`Showing ${showCount()} of ${allowNFTsFiltered.length} items`}
 
             <Filters>
-              <div ref={typesFilterRef} style={{ display: Object.keys(nftTypes).length ? 'block' : 'none' }}>
+              <div ref={typesFilterRef} style={{ display: Object.keys(nftTypes).length > 1 ? 'flex' : 'none' }}>
                 <FilterPill
                   setFiltersShown={setFiltersShown}
                   filtersShown={filtersShown}
@@ -393,7 +407,10 @@ export default function NFTGallery() {
                   </VisibilityRadioWrapper>
                 </FilterPill>
               </div>
-              <div ref={visibilityFilterRef}>
+              <div
+                ref={visibilityFilterRef}
+                style={{ display: countNFTs('hidden') + countNFTs('visible') > 0 ? 'flex' : 'none' }}
+              >
                 <FilterPill
                   setFiltersShown={setFiltersShown}
                   filtersShown={filtersShown}

@@ -88,6 +88,8 @@ export default function useAllowFilteredShow(nfts: NFTInfo[], hideObjectionableC
   useEffect(() => {
     if (nfts.length && !isLoading) {
       fetchMultipleMetadata();
+    } else {
+      setIsLoadingLocal(false);
     }
   }, [nfts[0], isLoading]);
 

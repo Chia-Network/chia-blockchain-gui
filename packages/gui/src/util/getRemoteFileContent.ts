@@ -45,30 +45,35 @@ export default function getRemoteFileContent(props: RemoteFileContent): Promise<
 
   return new Promise((resolve, reject) => {
     ipcRenderer?.invoke('fetchBinaryContent', requestOptions).then((response: fetchBinaryResponseType) => {
-      const { dataObject, statusCode, encoding, error, wasCached } = response;
-      if (props.timeout) {
-        setTimeout(() => {
-          if (!error || !dataObject) {
-            reject(failedToFetchContent);
-            done = true;
-          }
-        }, props.timeout);
-      }
-      if (error) {
-        reject(error);
-      }
+      if (typeof response === 'object') {
+        const { dataObject, statusCode, encoding, error, wasCached } = response;
+        if (props.timeout) {
+          setTimeout(() => {
+            if (!error || !dataObject) {
+              console.log('Reject.....', requestOptions.url);
+              reject(failedToFetchContent);
+              done = true;
+            }
+          }, props.timeout);
+        }
+        if (error) {
+          reject(error);
+        }
 
-      if (statusCode !== 200) {
-        reject(failedToFetchContent);
-      }
-      if (!done) {
-        resolve({
-          data: dataObject.content,
-          isValid: dataObject.isValid,
-          encoding,
-          wasCached,
-        });
-        done = true;
+        if (statusCode !== 200) {
+          reject(failedToFetchContent);
+        }
+        if (!done) {
+          resolve({
+            data: dataObject.content,
+            isValid: dataObject.isValid,
+            encoding,
+            wasCached,
+          });
+          done = true;
+        }
+      } else {
+        reject(new Error('Fetch binary content error'));
       }
     });
   });
