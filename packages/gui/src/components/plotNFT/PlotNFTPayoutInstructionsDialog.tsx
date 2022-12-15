@@ -117,8 +117,3 @@ export default function PlotNFTPayoutInstructionsDialog(props: Props) {
     </Dialog>
   );
 }
-
-PlotNFTPayoutInstructionsDialog.defaultProps = {
-  open: false,
-  onClose: () => {},
-};

@@ -69,8 +69,3 @@ export default function PlotQueueLogDialog(props: Props) {
     </Dialog>
   );
 }
-
-PlotQueueLogDialog.defaultProps = {
-  open: false,
-  onClose: () => {},
-};

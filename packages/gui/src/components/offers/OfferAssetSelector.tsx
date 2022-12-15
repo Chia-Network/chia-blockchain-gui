@@ -102,7 +102,7 @@ type OfferAssetSelectorProps = {
 };
 
 function OfferAssetSelector(props: OfferAssetSelectorProps) {
-  const { name, id, tradeSide, defaultValue, showAddWalletMessage, onChange, ...rest } = props;
+  const { name, id, tradeSide, defaultValue, showAddWalletMessage, onChange, disabled = false, ...rest } = props;
   const { data: wallets, isLoading } = useGetWalletsQuery();
   const { data: catList = [], isLoading: isCatListLoading } = useGetCatListQuery();
   const { getValues, watch } = useFormContext();
@@ -133,7 +133,7 @@ function OfferAssetSelector(props: OfferAssetSelectorProps) {
 
   return (
     // Form control with popup selection of assets
-    <FormControl variant="filled" fullWidth {...rest}>
+    <FormControl variant="filled" fullWidth disabled={disabled} {...rest}>
       <InputLabel required focused>
         <Trans>Asset Type</Trans>
       </InputLabel>
@@ -157,10 +157,5 @@ function OfferAssetSelector(props: OfferAssetSelectorProps) {
     </FormControl>
   );
 }
-
-OfferAssetSelector.defaultProps = {
-  showAddWalletMessage: false,
-  disabled: false,
-};
 
 export default OfferAssetSelector;

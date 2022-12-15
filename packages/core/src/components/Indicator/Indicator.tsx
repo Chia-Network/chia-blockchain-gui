@@ -45,7 +45,3 @@ export default function PlotStatus(props: Props) {
     </Flex>
   );
 }
-
-PlotStatus.defaultProps = {
-  children: undefined,
-};

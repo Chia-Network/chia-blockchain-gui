@@ -71,13 +71,5 @@ export default function OfferHeader(props: OfferHeaderProps) {
         {headerElement}
       </Flex>
     </StyledHeaderBox>
-  ) : (
-    <></>
-  );
+  ) : null;
 }
-
-OfferHeader.defaultProps = {
-  isMyOffer: false,
-  isInvalid: false,
-  isComplete: false,
-};

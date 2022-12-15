@@ -82,8 +82,3 @@ export default function FullNodeAddConnection(props: Props) {
     </Dialog>
   );
 }
-
-FullNodeAddConnection.defaultProps = {
-  open: false,
-  onClose: () => {},
-};

@@ -214,8 +214,3 @@ export function NFTTransferDialog(props: NFTTransferDialogProps) {
     </Dialog>
   );
 }
-
-NFTTransferDialog.defaultProps = {
-  open: false,
-  onClose: () => {},
-};

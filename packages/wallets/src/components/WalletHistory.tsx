@@ -193,7 +193,7 @@ export default function WalletHistory(props: Props) {
   const { data: walletState, isLoading: isWalletSyncLoading } = useGetSyncStatusQuery(
     {},
     {
-      pollingInterval: 10000,
+      pollingInterval: 10_000,
     }
   );
   const { wallet, loading: isWalletLoading, unit } = useWallet(walletId);

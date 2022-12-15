@@ -54,14 +54,14 @@ export default function useWalletsList(
   show: (id: number | string) => Promise<void>;
 } {
   const { data: wallets, isLoading: isLoadingGetWallets } = useGetWalletsQuery(undefined, {
-    pollingInterval: 10000,
+    pollingInterval: 10_000,
   });
   const { data: catList, isLoading: isLoadingGetCatList } = useGetCatListQuery(undefined, {
-    pollingInterval: 10000,
+    pollingInterval: 10_000,
   });
 
   const { data: strayCats, isLoading: isLoadingGetStrayCats } = useGetStrayCatsQuery(undefined, {
-    pollingInterval: 10000,
+    pollingInterval: 10_000,
   });
 
   const { hidden, isHidden, show, hide, isLoading: isLoadingHiddenWallet } = useHiddenWallet();

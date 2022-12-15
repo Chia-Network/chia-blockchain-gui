@@ -12,22 +12,22 @@ export type Options = {
 };
 
 export default class Service extends EventEmitter {
-  private _client: Client;
+  readonly client: Client;
 
-  private _name: ServiceName;
+  readonly name: ServiceName;
 
-  private _origin: ServiceName;
+  readonly origin: ServiceName;
 
-  private _readyPromise: Promise<null> | undefined;
+  #readyPromise: Promise<null> | undefined;
 
   constructor(name: ServiceName, client: Client, options: Options = {}, onInit?: () => Promise<void>) {
     super();
 
     const { origin, skipAddService } = options;
 
-    this._client = client;
-    this._name = name;
-    this._origin = origin ?? client.origin;
+    this.client = client;
+    this.name = name;
+    this.origin = origin ?? client.origin;
 
     if (!skipAddService) {
       client.addService(this);
@@ -35,7 +35,7 @@ export default class Service extends EventEmitter {
 
     client.on('message', this.handleMessage);
 
-    this._readyPromise = new Promise(async (resolve, reject) => {
+    this.#readyPromise = new Promise(async (resolve, reject) => {
       setTimeout(async () => {
         try {
           if (onInit) {
@@ -51,27 +51,15 @@ export default class Service extends EventEmitter {
   }
 
   async whenReady(callback?: () => Promise<any>) {
-    await this._readyPromise;
+    await this.#readyPromise;
     if (callback) {
       return callback();
     }
     return undefined;
   }
 
-  get name() {
-    return this._name;
-  }
-
-  get client() {
-    return this._client;
-  }
-
-  get origin() {
-    return this._origin;
-  }
-
   register() {
-    return this._client.registerService(this.name);
+    return this.client.registerService(this.name);
   }
 
   handleMessage = (message: Message) => {

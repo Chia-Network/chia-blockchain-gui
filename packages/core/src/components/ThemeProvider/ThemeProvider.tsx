@@ -41,7 +41,7 @@ export type ThemeProviderProps = {
 };
 
 export default function ThemeProvider(props: ThemeProviderProps) {
-  const { children, theme, global, fonts } = props;
+  const { children, theme, global = false, fonts = false } = props;
   const [locale] = useLocale();
 
   const finallTheme = useMemo(() => {
@@ -62,8 +62,3 @@ export default function ThemeProvider(props: ThemeProviderProps) {
     </StyledThemeProvider>
   );
 }
-
-ThemeProvider.defaultProps = {
-  fonts: false,
-  global: false,
-};

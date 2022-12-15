@@ -24,7 +24,7 @@ type Props = {
 };
 
 export default function PlotNFTSelectBase(props: Props) {
-  const { step, onCancel, title, description, hideFee, feeDescription } = props;
+  const { step = 1, onCancel, title, description, hideFee = false, feeDescription } = props;
   // const { nfts } = usePlotNFTs();
   const { setValue } = useFormContext();
   const self = useWatch<boolean>({
@@ -134,10 +134,3 @@ export default function PlotNFTSelectBase(props: Props) {
     </>
   );
 }
-
-PlotNFTSelectBase.defaultProps = {
-  step: 1,
-  onCancel: undefined,
-  description: undefined,
-  hideFee: false,
-};

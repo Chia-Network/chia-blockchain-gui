@@ -20,8 +20,7 @@ type Props = {
 };
 
 export default function Address(props: Props) {
-  const { value, copyToClipboard, tooltip, children } = props;
-
+  const { value, copyToClipboard = false, tooltip = false, children } = props;
   const currencyCode = useCurrencyCode();
   const address = currencyCode && value ? toBech32m(value, currencyCode.toLowerCase()) : '';
 
@@ -57,8 +56,3 @@ export default function Address(props: Props) {
 
   return children(address);
 }
-
-Address.defaultProps = {
-  copyToClipboard: false,
-  tooltip: false,
-};

@@ -69,7 +69,17 @@ type Props = {
 };
 
 const PlotNFTSelectPool = forwardRef((props: Props, ref) => {
-  const { step, onCancel, defaultValues, onSubmit, title, description, submitTitle, hideFee, feeDescription } = props;
+  const {
+    step,
+    onCancel,
+    defaultValues,
+    onSubmit,
+    title,
+    description,
+    submitTitle = <Trans>Create</Trans>,
+    hideFee = false,
+    feeDescription,
+  } = props;
   const [loading, setLoading] = useState<boolean>(false);
   const { balance, loading: walletLoading } = useStandardWallet();
   const { nfts } = usePlotNFTs();
@@ -174,15 +184,5 @@ const PlotNFTSelectPool = forwardRef((props: Props, ref) => {
     </Form>
   );
 });
-
-PlotNFTSelectPool.defaultProps = {
-  step: undefined,
-  onCancel: undefined,
-  defaultValues: undefined,
-  title: undefined,
-  description: undefined,
-  hideFee: false,
-  submitTitle: <Trans>Create</Trans>,
-};
 
 export default PlotNFTSelectPool;

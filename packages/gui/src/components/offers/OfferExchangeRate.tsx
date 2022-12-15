@@ -19,7 +19,7 @@ function OfferExchangeRateNumberFormat(props: OfferExchangeRateNumberFormatProps
 }
 
 type Props = {
-  readOnly: boolean;
+  readOnly?: boolean;
   makerAssetInfo: AssetIdMapEntry;
   takerAssetInfo: AssetIdMapEntry;
   makerExchangeRate?: number;
@@ -29,7 +29,7 @@ type Props = {
 };
 export default function OfferExchangeRate(props: Props) {
   const {
-    readOnly,
+    readOnly = true,
     makerAssetInfo,
     takerAssetInfo,
     makerExchangeRate,
@@ -133,7 +133,3 @@ export default function OfferExchangeRate(props: Props) {
     </Flex>
   );
 }
-
-OfferExchangeRate.defaultProps = {
-  readOnly: true,
-};

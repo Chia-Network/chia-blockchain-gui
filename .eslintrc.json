@@ -8,7 +8,8 @@
   "env": {
     "browser": true,
     "es2020": true,
-    "node": true
+    "node": true,
+    "jest": true
   },
   "parserOptions": {
     "project": "./packages/*/tsconfig.json"
@@ -17,6 +18,7 @@
   "settings": {
     "import/core-modules": ["electron"]
   },
+  "plugins": ["unicorn"],
   // Airbnb rule overrides and additions
   "rules": {
     // Automatically order imports
@@ -112,6 +114,8 @@
         "argsIgnorePattern": "^_"
       }
     ],
+    // required for TS where string does not satisfy the expected return type of JSX.Element
+    "react/jsx-no-useless-fragment": ["error", { "allowExpressions": true }],
     // Memoizing all prop callbacks would speed up the app but introduce a hard to debug bugs (wrong memo dependencies)
     "react/jsx-no-bind": "off",
     // This code should be allowed `export { default } from './Link';`
@@ -121,7 +125,9 @@
       {
         "restrictedNamedExports": ["then"]
       }
-    ]
+    ],
+    // We use a lot of large numbers. This rule enforce large number has to use separator. Example: 1_000_000
+    "unicorn/numeric-separators-style": "error"
 
     //
     // ** Before adding or updating any rule, please read the comments at the top of this file
