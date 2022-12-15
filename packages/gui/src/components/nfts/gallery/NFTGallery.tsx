@@ -2,7 +2,7 @@ import type { NFTInfo } from '@chia-network/api';
 import { useLocalStorage } from '@chia-network/api-react';
 import { Flex, LayoutDashboardSub, Loading, /* useTrans, */ usePersistState, useDarkMode } from '@chia-network/core';
 import { WalletReceiveAddressField } from '@chia-network/wallets';
-import { t, Trans } from '@lingui/macro';
+import { t } from '@lingui/macro';
 import { FormControlLabel, RadioGroup, FormControl, Checkbox, Grid } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';

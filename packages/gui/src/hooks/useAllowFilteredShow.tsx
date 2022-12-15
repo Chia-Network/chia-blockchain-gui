@@ -64,7 +64,11 @@ async function getMetadata(nft) {
   return { nftId: nft?.$nftId, metadata };
 }
 
-export default function useAllowFilteredShow(nfts: NFTInfo[], hideObjectionableContent: boolean, isLoading: boolean) {
+export default function useAllowFilteredShow(
+  nfts: NFTInfo[],
+  hideObjectionableContent: boolean,
+  isLoading: boolean
+): { allowNFTsFiltered: NFTInfo[]; allowedNFTsLoading: boolean } {
   const [allowNFTsFiltered, setAllowNFTsFiltered] = useState<NFTInfo[]>([]);
   const [isLoadingLocal, setIsLoadingLocal] = useState(true);
   const nftArray = React.useRef<NFTInfo[]>([]);
