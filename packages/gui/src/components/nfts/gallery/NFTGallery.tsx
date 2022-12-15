@@ -153,7 +153,6 @@ export default function NFTGallery() {
   const [isNFTHidden] = useHiddenNFTs();
   const [walletId, setWalletId] = usePersistState<number | undefined>(undefined, 'nft-profile-dropdown');
   const { filteredNFTs, isLoading } = useFilteredNFTs({ walletId });
-  console.log('FilteredNFTS', filteredNFTs.length, isLoading);
   const [hideObjectionableContent] = useHideObjectionableContent();
   const { isSyncingCache } = useSyncCache();
   const { allowNFTsFiltered, allowedNFTsLoading } = useAllowFilteredShow(
@@ -203,17 +202,17 @@ export default function NFTGallery() {
     .forEach((nft: NFTInfo) => {
       const file = Array.isArray(nft.dataUris) && nft.dataUris[0];
       if (file) {
-        let isDocument: boolean = false;
+        let isDocumentTemp: boolean = false;
         try {
           const extension = new URL(file).pathname.split('.').slice(-1)[0];
           if (extension.match(/^[a-zA-Z0-9]+$/) && isDocument(extension)) {
             nftTypes.Document = (nftTypes.Document || 0) + 1;
-            isDocument = true;
+            isDocumentTemp = true;
           }
         } catch (e) {
           console.error(`Failed to check file extension for ${file}: ${e}`);
         }
-        if (!isDocument) {
+        if (!isDocumentTemp) {
           if (mimeTypeRegex(file, /^audio/)) {
             nftTypes.Audio = (nftTypes.Audio || 0) + 1;
           } else if (mimeTypeRegex(file, /^video/)) {
