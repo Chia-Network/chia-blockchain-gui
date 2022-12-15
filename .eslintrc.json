@@ -8,7 +8,8 @@
   "env": {
     "browser": true,
     "es2020": true,
-    "node": true
+    "node": true,
+    "jest": true
   },
   "parserOptions": {
     "project": "./packages/*/tsconfig.json"
@@ -113,6 +114,8 @@
         "argsIgnorePattern": "^_"
       }
     ],
+    // required for TS where string does not satisfy the expected return type of JSX.Element
+    "react/jsx-no-useless-fragment": ["error", { "allowExpressions": true }],
     // Memoizing all prop callbacks would speed up the app but introduce a hard to debug bugs (wrong memo dependencies)
     "react/jsx-no-bind": "off",
     // This code should be allowed `export { default } from './Link';`
