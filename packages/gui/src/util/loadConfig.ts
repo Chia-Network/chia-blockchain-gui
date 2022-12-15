@@ -29,7 +29,7 @@ export default async function loadConfig(net?: string): Promise<{
     const config = readConfigFile(net);
 
     const selfHostname = get(config, 'ui.daemon_host', 'localhost');
-    const daemonPort = get(config, 'ui.daemon_port', 55400);
+    const daemonPort = get(config, 'ui.daemon_port', 55_400);
 
     // store these in the global object so they can be used by both main and renderer processes
     const url = `wss://${selfHostname}:${daemonPort}`;

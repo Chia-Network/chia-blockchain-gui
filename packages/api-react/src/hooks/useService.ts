@@ -42,7 +42,7 @@ export default function useService(
   } = useRunningServicesQuery(
     {},
     {
-      pollingInterval: latestIsProcessing ? 1_000 : 10_000,
+      pollingInterval: latestIsProcessing ? 1000 : 10_000,
       skip: disabled,
       selectFromResult: (state) => ({
         data: state.data,

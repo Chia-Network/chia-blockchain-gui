@@ -61,7 +61,7 @@ export default function FullNodeCardStatus() {
   } = useGetBlockchainStateQuery(
     {},
     {
-      pollingInterval: 10000,
+      pollingInterval: 10_000,
     }
   );
 

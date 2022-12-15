@@ -215,7 +215,7 @@ export async function processSessionRequest(
           id,
           jsonrpc: '2.0',
           error: {
-            code: -32600,
+            code: -32_600,
             message: (error as Error).message ?? 'Invalid Request',
           },
         },
