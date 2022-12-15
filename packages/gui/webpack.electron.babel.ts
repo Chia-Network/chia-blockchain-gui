@@ -43,4 +43,7 @@ export default {
       ],
     }),
   ],
+  externals: {
+    fsevents: "require('fsevents')",
+  },
 };

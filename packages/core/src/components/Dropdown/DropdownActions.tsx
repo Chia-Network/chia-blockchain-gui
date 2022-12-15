@@ -49,14 +49,15 @@ export type DropdownActionsProps = ButtonProps & {
 };
 
 function DropdownActions(props: DropdownActionsProps, ref: any) {
-  const { label, children, toggle, ...rest } = props;
+  const { label, children, toggle, items, ...rest } = props;
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     event.preventDefault();
     event.stopPropagation();
-
-    setAnchorEl(event.currentTarget);
+    if (!Array.isArray(items) || items.length > 0) {
+      setAnchorEl(event.currentTarget);
+    }
   };
 
   const handleClose = () => {

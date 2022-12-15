@@ -17,17 +17,20 @@ type createDefaultValuesParams = {
   walletType?: WalletType; // CAT or STANDARD_WALLET (XCH), indicates whether a token or CAT has a default entry
   assetId?: string; // Asset ID of the CAT
   nftId?: string; // NFT to include in the offer by default
+  nftIds?: string[]; // multiple NFT selection
   nftWalletId?: number; // If set, indicates that we are offering the NFT, otherwise we are requesting it
 };
 
 export function createDefaultValues(params: createDefaultValuesParams): OfferBuilderData {
-  const { walletType, assetId, nftId, nftWalletId } = params;
+  const { walletType, assetId, nftId, nftWalletId, nftIds } = params;
+
+  const nfts = nftIds && nftWalletId ? nftIds.map((nftId) => ({ nftId })) : nftId && nftWalletId ? [{ nftId }] : [];
 
   return {
     ...emptyDefaultValues,
     offered: {
       ...emptyDefaultValues.offered,
-      nfts: nftId && nftWalletId ? [{ nftId }] : [],
+      nfts,
       xch: walletType === WalletType.STANDARD_WALLET ? [{ amount: '' }] : [],
       tokens: walletType === WalletType.CAT && assetId ? [{ assetId, amount: '' }] : [],
     },
@@ -45,10 +48,11 @@ export type CreateOfferBuilderProps = {
   nftWalletId?: number;
   referrerPath?: string;
   onOfferCreated: (obj: { offerRecord: any; offerData: any }) => void;
+  nftIds?: string[];
 };
 
 export default function CreateOfferBuilder(props: CreateOfferBuilderProps) {
-  const { referrerPath, onOfferCreated, walletType, assetId, nftId, nftWalletId } = props;
+  const { referrerPath, onOfferCreated, walletType, assetId, nftId, nftWalletId, nftIds } = props;
 
   const openDialog = useOpenDialog();
   const navigate = useNavigate();
@@ -63,8 +67,9 @@ export default function CreateOfferBuilder(props: CreateOfferBuilderProps) {
         assetId,
         nftId,
         nftWalletId,
+        nftIds,
       }),
-    [walletType, assetId, nftId, nftWalletId]
+    [walletType, assetId, nftId, nftWalletId, nftIds]
   );
 
   const [suppressShareOnCreate] = usePrefs<boolean>(OfferLocalStorageKeys.SUPPRESS_SHARE_ON_CREATE);

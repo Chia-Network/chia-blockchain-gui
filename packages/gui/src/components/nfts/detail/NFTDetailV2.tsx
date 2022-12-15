@@ -2,7 +2,7 @@ import type { NFTInfo } from '@chia-network/api';
 import { useGetNFTInfoQuery, useGetNFTWallets, useLocalStorage } from '@chia-network/api-react';
 import { Back, Flex, LayoutDashboardSub, Loading, useOpenDialog } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
-import { MoreVert } from '@mui/icons-material';
+import { MoreVert, SettingsOverscanOutlined } from '@mui/icons-material';
 import { Box, Grid, Typography, IconButton, Button } from '@mui/material';
 import React, { useMemo, useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
@@ -10,10 +10,9 @@ import styled from 'styled-components';
 import isURL from 'validator/lib/isURL';
 
 import useFetchNFTs from '../../../hooks/useFetchNFTs';
-import useNFTMetadata from '../../../hooks/useNFTMetadata';
 import { launcherIdFromNFTId } from '../../../util/nfts';
 import { isImage } from '../../../util/utils';
-import NFTContextualActions, { NFTContextualActionTypes } from '../NFTContextualActions';
+import NFTContextualActions, { NFTContextualActionTypes, eventEmitter } from '../NFTContextualActions';
 import NFTDetails from '../NFTDetails';
 import NFTPreview from '../NFTPreview';
 import NFTPreviewDialog from '../NFTPreviewDialog';
@@ -54,15 +53,14 @@ function NFTDetailLoaded(props: NFTDetailLoadedProps) {
   const openDialog = useOpenDialog();
   const [validationProcessed, setValidationProcessed] = useState(false);
   const nftRef = React.useRef(null);
-  const [, setIsValid] = useState(false);
+  const [isValid, setIsValid] = useState(false);
+  const [metadata, setMetadata] = React.useState({});
 
   const uri = nft?.dataUris?.[0];
   const [contentCache] = useLocalStorage(`content-cache-${nftId}`, {});
   const [validateNFT, setValidateNFT] = useState(false);
 
   nftRef.current = nft;
-
-  const { metadata, error } = useNFTMetadata([nft]);
 
   useEffect(
     () => () => {
@@ -71,12 +69,6 @@ function NFTDetailLoaded(props: NFTDetailLoadedProps) {
     },
     []
   );
-
-  // useEffect(() => {
-  //   if (metadata) {
-  //     console.log(JSON.stringify(metadata, null, 2));
-  //   }
-  // }, [metadata]);
 
   const ValidateContainer = styled.div`
     padding-top: 25px;
@@ -98,10 +90,11 @@ function NFTDetailLoaded(props: NFTDetailLoadedProps) {
     if (validateNFT && !validationProcessed) {
       return <Trans>Validating hash...</Trans>;
     }
-    if (contentCache.valid) {
+
+    if (contentCache.valid || (validationProcessed && isValid)) {
       return <Trans>Hash is validated.</Trans>;
     }
-    if (contentCache.valid === false) {
+    if (contentCache.valid === false || (validationProcessed && !isValid)) {
       return (
         <ErrorMessage>
           <Trans>Hash mismatch.</Trans>
@@ -109,7 +102,14 @@ function NFTDetailLoaded(props: NFTDetailLoadedProps) {
       );
     }
     return (
-      <Button onClick={() => setValidateNFT(true)} variant="outlined" size="large">
+      <Button
+        onClick={() => {
+          setValidateNFT(true);
+          eventEmitter.emit(`force-reload-${nft.$nftId}`);
+        }}
+        variant="outlined"
+        size="large"
+      >
         <Trans>Validate SHA256 SUM</Trans>
       </Button>
     );
@@ -136,14 +136,7 @@ function NFTDetailLoaded(props: NFTDetailLoadedProps) {
             {nft && (
               <Flex flexDirection="column">
                 <Box onClick={handleShowFullScreen} sx={{ cursor: 'pointer' }}>
-                  <NFTPreview
-                    nft={nft}
-                    width="100%"
-                    height="412px"
-                    fit="contain"
-                    validateNFT={validateNFT}
-                    metadataError={error}
-                  />
+                  <NFTPreview nft={nft} width="100%" height="412px" fit="contain" setNFTCardMetadata={setMetadata} />
                 </Box>
                 <ValidateContainer>{renderValidationState()}</ValidateContainer>
                 <NFTProgressBar
