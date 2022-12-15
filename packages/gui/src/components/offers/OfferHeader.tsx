@@ -71,7 +71,5 @@ export default function OfferHeader(props: OfferHeaderProps) {
         {headerElement}
       </Flex>
     </StyledHeaderBox>
-  ) : (
-    <></>
-  );
+  ) : null;
 }
