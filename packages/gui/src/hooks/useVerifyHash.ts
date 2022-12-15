@@ -2,11 +2,10 @@ import type { NFTInfo } from '@chia-network/api';
 import { useState, useEffect, useRef } from 'react';
 import isURL from 'validator/lib/isURL';
 
-import { eventEmitter } from '../components/nfts/NFTContextualActions';
 import computeHash from '../util/computeHash';
 import getRemoteFileContent, { FileType } from '../util/getRemoteFileContent';
 import { isImage, parseExtensionFromUrl } from '../util/utils';
-import useNFTMetadata, { MAX_FILE_SIZE } from './useNFTMetadata';
+import useNFTMetadata, { eventEmitter, MAX_FILE_SIZE } from './useNFTMetadata';
 
 const { ipcRenderer } = window as any;
 
