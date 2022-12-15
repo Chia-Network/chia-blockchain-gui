@@ -6,7 +6,7 @@ import CloseSvg from '@mui/icons-material/Close';
 import QuestionMarkSvg from '@mui/icons-material/QuestionMark';
 import { Box, Button, Typography } from '@mui/material';
 import mime from 'mime-types';
-import React, { useMemo, useState, useRef, Fragment, useEffect } from 'react';
+import React, { useMemo, useState, useRef, Fragment } from 'react';
 import { renderToString } from 'react-dom/server';
 import styled from 'styled-components';
 import isURL from 'validator/lib/isURL';
@@ -202,6 +202,16 @@ const QuestionMarkIcon = styled(QuestionMarkSvg)`
     fill: grey;
   }
 `;
+
+function ThumbnailError(props: any) {
+  return (
+    <StatusContainer>
+      <StatusPill>
+        <StatusText>{props.children}</StatusText>
+      </StatusPill>
+    </StatusContainer>
+  );
+}
 
 export type NFTPreviewProps = {
   nft: NFTInfo;
@@ -569,16 +579,6 @@ export default function NFTPreview(props: NFTPreviewProps) {
           miniThumb={miniThumb}
         />
       </IframeWrapper>
-    );
-  }
-
-  function ThumbnailError({ children }) {
-    return (
-      <StatusContainer>
-        <StatusPill>
-          <StatusText>{children}</StatusText>
-        </StatusPill>
-      </StatusContainer>
     );
   }
 
