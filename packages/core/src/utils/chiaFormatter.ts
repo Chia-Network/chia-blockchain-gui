@@ -5,23 +5,15 @@ import UnitValue from '../constants/UnitValue';
 import bigNumberToLocaleString from './bigNumberToLocaleString';
 
 class Chia {
-  private _value: BigNumber;
+  readonly value: BigNumber;
 
-  private _unit: Unit;
+  readonly unit: Unit;
 
   constructor(value: number | string | BigNumber, unit: Unit) {
     const stringValue = value === '' || value === '.' || value === null || value === undefined ? '0' : value.toString();
 
-    this._value = new BigNumber(stringValue);
-    this._unit = unit;
-  }
-
-  get value(): BigNumber {
-    return this._value;
-  }
-
-  get unit(): Unit {
-    return this._unit;
+    this.value = new BigNumber(stringValue);
+    this.unit = unit;
   }
 
   to(newUnit: Unit) {
