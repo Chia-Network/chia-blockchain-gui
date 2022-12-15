@@ -47,7 +47,7 @@ type OfferMojoAmountProps = {
 };
 
 function OfferMojoAmount(props: OfferMojoAmountProps): React.ReactElement {
-  const { mojos, mojoThreshold = 1000000000 } = props;
+  const { mojos, mojoThreshold = 1_000_000_000 } = props;
 
   return (
     <>

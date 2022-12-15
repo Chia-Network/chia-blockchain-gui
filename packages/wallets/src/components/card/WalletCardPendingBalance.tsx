@@ -22,7 +22,7 @@ export default function WalletCardPendingBalance(props: Props) {
       walletId,
     },
     {
-      pollingInterval: 10000,
+      pollingInterval: 10_000,
     }
   );
 

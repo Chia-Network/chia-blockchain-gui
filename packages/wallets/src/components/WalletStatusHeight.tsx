@@ -6,7 +6,7 @@ export default function WalletStatusHeight() {
   const { data: height, isLoading } = useGetHeightInfoQuery(
     {},
     {
-      pollingInterval: 10000,
+      pollingInterval: 10_000,
     }
   );
 
