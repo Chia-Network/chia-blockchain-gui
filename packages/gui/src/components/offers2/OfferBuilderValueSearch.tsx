@@ -116,31 +116,37 @@ export default function OfferBuilderValueSearch(props: OfferBuilderValueSearchPr
     onSelectNFT(nftId);
   }
 
+  let atLeastOnRowDisplayed = false;
   const nftPreviews = filteredNFTs
     .map((nft: NFTInfo) => {
       const metadataObj = allowNFTsFiltered.find((obj: any) => obj.nftId === nft.$nftId) || {};
       const metadata = metadataObj?.metadata;
       return { ...nft, metadata };
     })
-    .map((nft: NFTInfo) => (
-      <SearchNFTrow
-        className="nft-searched-row"
-        onClick={() => selectNFT(nft.$nftId)}
-        style={{ display: isNFTInSearchValue(value, nft) ? 'block' : 'none' }}
-        isDarkMode={isDarkMode}
-      >
-        <div>
-          <NFTPreview nft={nft} fit="cover" isPreview metadata={nft?.metadata} isCompact miniThumb />
-        </div>
-        <NFTSearchedText>
-          <div>{highlightSearchedString(value, nft.metadata?.name) || t`Title Not Available`}</div>
-          <div>{highlightSearchedString(value, nft.metadata?.collection?.name)}</div>
-        </NFTSearchedText>
-      </SearchNFTrow>
-    ));
-  return (
+    .map((nft: NFTInfo) => {
+      const displayNFT = isNFTInSearchValue(value, nft);
+      atLeastOnRowDisplayed = atLeastOnRowDisplayed || displayNFT;
+      return (
+        <SearchNFTrow
+          key={nft.$nftId}
+          className="nft-searched-row"
+          onClick={() => selectNFT(nft.$nftId)}
+          style={{ display: displayNFT ? 'block' : 'none' }}
+          isDarkMode={isDarkMode}
+        >
+          <div>
+            <NFTPreview nft={nft} fit="cover" isPreview metadata={nft?.metadata} isCompact miniThumb />
+          </div>
+          <NFTSearchedText>
+            <div>{highlightSearchedString(value, nft.metadata?.name) || t`Title Not Available`}</div>
+            <div>{highlightSearchedString(value, nft.metadata?.collection?.name)}</div>
+          </NFTSearchedText>
+        </SearchNFTrow>
+      );
+    });
+  return atLeastOnRowDisplayed || isLoading ? (
     <SearchPlaceholder isDarkMode={isDarkMode} style={{ display: value.length > 0 ? 'block' : 'none' }}>
       <div>{isLoading ? <Trans>Loading NFTs...</Trans> : nftPreviews}</div>
     </SearchPlaceholder>
-  );
+  ) : null;
 }
