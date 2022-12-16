@@ -21,7 +21,7 @@ export default function SettingsIntegration() {
         <Flex flexDirection="column" gap={2}>
           <SettingsLabel>
             <Flex gap={1} alignItems="center">
-              <Trans>Wallet Connect</Trans>
+              <Trans>WalletConnect</Trans>
               <TooltipIcon>
                 <Trans>
                   WalletConnect is an open protocol to communicate securely between wallets and decentralized
