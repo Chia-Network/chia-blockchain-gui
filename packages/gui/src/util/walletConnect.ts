@@ -251,7 +251,7 @@ export async function cleanupPairings(client: Client, pairs: Pairs) {
 
         // disconnect peers which are not used in application
         if (!pairs.hasPair(topic)) {
-          log('Disconnecting pairing because wallet connect pair is not registered in the application', topic);
+          log('Disconnecting pairing because WalletConnect pair is not registered in the application', topic);
           await disconnectPair(client, pairs, topic);
           return;
         }
@@ -275,7 +275,7 @@ export async function cleanupPairings(client: Client, pairs: Pairs) {
         const hasPairing = pairings.find((pairing) => pairing.topic === topic);
 
         if (!hasPairing) {
-          log('Disconnecting pairing because wallet connect pair is not registered in the pairing list', topic);
+          log('Disconnecting pairing because WalletConnect pair is not registered in the pairing list', topic);
           await disconnectPair(client, pairs, topic);
         }
       })

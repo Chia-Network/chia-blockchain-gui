@@ -109,7 +109,7 @@ export default function WalletConnectAddConnectionDialog(props: WalletConnectAdd
   return (
     <Dialog onClose={handleClose} maxWidth="xs" open={open} fullWidth>
       <DialogTitle>
-        <Trans>Wallet Connect</Trans>
+        <Trans>WalletConnect</Trans>
       </DialogTitle>
       <IconButton
         sx={{
@@ -132,7 +132,7 @@ export default function WalletConnectAddConnectionDialog(props: WalletConnectAdd
             <Flex flexDirection="column" gap={5} minWidth={0}>
               <Box>
                 <Typography variant="h6" textAlign="center">
-                  <Trans>Wallet Connect Integration</Trans>
+                  <Trans>WalletConnect Integration</Trans>
                 </Typography>
                 <Typography variant="body2" textAlign="center" color="textSecondary">
                   {step === Step.CONNECT ? (
