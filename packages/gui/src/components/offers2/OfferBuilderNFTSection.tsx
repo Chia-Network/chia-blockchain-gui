@@ -15,9 +15,7 @@ export type OfferBuilderNFTSectionProps = {
   isMyOffer?: boolean;
 };
 
-export default function OfferBuilderNFTSection(
-  props: OfferBuilderNFTSectionProps,
-) {
+export default function OfferBuilderNFTSection(props: OfferBuilderNFTSectionProps) {
   const { name, offering, muted, viewer, isMyOffer = false } = props;
 
   const { fields, append, remove, update } = useFieldArray({
@@ -38,11 +36,7 @@ export default function OfferBuilderNFTSection(
     remove(index);
   }
 
-  const showProvenance = viewer
-    ? isMyOffer
-      ? offering
-      : !offering
-    : !offering;
+  const showProvenance = viewer ? (isMyOffer ? offering : !offering) : !offering;
   const showRoyalties = viewer ? (isMyOffer ? !offering : offering) : offering;
 
   return (
