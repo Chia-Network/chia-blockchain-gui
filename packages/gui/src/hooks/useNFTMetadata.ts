@@ -112,7 +112,9 @@ export default function useNFTsMetadata(nfts: NFTInfo[]) {
   }
 
   useEffect(() => {
-    getMetadata(nft);
+    if (nft) {
+      getMetadata(nft);
+    }
   }, [nft]);
 
   function loadReload() {
