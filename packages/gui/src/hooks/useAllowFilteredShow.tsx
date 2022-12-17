@@ -1,23 +1,24 @@
-import type NFTInfo from '@chia/api';
+import type NFTInfo from '@chia-network/api';
+import type LRU from '@chia-network/core';
 import React, { useEffect, useState } from 'react';
 
 import getRemoteFileContent from '../util/getRemoteFileContent';
-import { lruSet, getMetadataObject } from './useNFTMetadata';
+import { getMetadataObject } from './useNFTMetadata';
+import useNFTMetadataLRU from './useNFTMetadataLRU';
 
-async function getMetadata(nft) {
+async function getMetadata(nft: NFTInfo | undefined, lru: LRU<string, any>) {
   const uri = nft?.metadataUris?.[0];
   const nftId = nft?.$nftId;
   const { metadataHash } = nft;
 
   /* Try cache first */
-  const metadataObject = getMetadataObject(nftId);
+  const metadataObject = getMetadataObject(nftId, lru);
 
   if (Object.keys(metadataObject).length) {
     return { ...nft, nftId, metadata: metadataObject.metadata };
   }
 
   let metadata;
-  let gotContent;
   try {
     if (!uri) {
       throw new Error('Invalid URI');
@@ -34,10 +35,8 @@ async function getMetadata(nft) {
       timeout: 2000,
     });
 
-    gotContent = content;
-
     if (!isValid) {
-      lruSet(nftId, JSON.stringify({ isValid: false }));
+      lru.set(nftId, JSON.stringify({ isValid: false }));
     }
 
     if (['utf8', 'utf-8'].includes(encoding.toLowerCase())) {
@@ -50,7 +49,7 @@ async function getMetadata(nft) {
     const errorStringified = JSON.stringify({
       isValid: false,
     });
-    lruSet(nftId, errorStringified);
+    lru.set(nftId, errorStringified);
     localStorage.setItem(`metadata-cache-${nft.$nftId}`, errorStringified);
   }
   if (metadata) {
@@ -58,7 +57,7 @@ async function getMetadata(nft) {
       metadata,
       isValid: true,
     });
-    lruSet(nftId, stringifiedCacheObject);
+    lru.set(nftId, stringifiedCacheObject);
     localStorage.setItem(`metadata-cache-${nft.$nftId}`, stringifiedCacheObject);
   }
   return { nftId: nft?.$nftId, metadata };
@@ -68,11 +67,12 @@ export default function useAllowFilteredShow(nfts: NFTInfo[], hideObjectionableC
   const [allowNFTsFiltered, setAllowNFTsFiltered] = useState<NFTInfo[]>([]);
   const [isLoadingLocal, setIsLoadingLocal] = useState(true);
   const nftArray = React.useRef<NFTInfo[]>([]);
+  const lru = useNFTMetadataLRU();
 
   const fetchMultipleMetadata = async () => {
     nftArray.current = [];
     for (let i = 0; i < nfts.length; i++) {
-      const nftWithMetadata: any = (await getMetadata(nfts[i])) || { nftId: nfts[i]?.$nftId };
+      const nftWithMetadata: any = (await getMetadata(nfts[i], lru)) || { nftId: nfts[i]?.$nftId };
       if (
         !hideObjectionableContent ||
         !nftWithMetadata?.metadata ||

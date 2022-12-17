@@ -28,7 +28,7 @@ import isURL from 'validator/lib/isURL';
 
 import useBurnAddress from '../../hooks/useBurnAddress';
 import useHiddenNFTs from '../../hooks/useHiddenNFTs';
-import { lruMap } from '../../hooks/useNFTMetadata.ts';
+import useNFTMetadataLRU from '../../hooks/useNFTMetadataLRU.ts';
 import useOpenUnsafeLink from '../../hooks/useOpenUnsafeLink';
 import useViewNFTOnExplorer, { NFTExplorer } from '../../hooks/useViewNFTOnExplorer';
 import NFTSelection from '../../types/NFTSelection';
@@ -547,7 +547,8 @@ function NFTInvalidateContextualAction(props: NFTInvalidateContextualActionProps
   const [, setThumbCache] = useLocalStorage(`thumb-cache-${selectedNft?.$nftId}`, null);
   const [, setContentCache] = useLocalStorage(`content-cache-${selectedNft?.$nftId}`, null);
   // const [, setMetadataCache] = useLocalStorage(`metadata-cache-${selectedNft?.$nftId}`, {});
-  const [selectedNFTIds, setSelectedNFTIds] = useLocalStorage('gallery-selected-nfts', []);
+  const [, setSelectedNFTIds] = useLocalStorage('gallery-selected-nfts', []);
+  const lru = useNFTMetadataLRU();
   const { ipcRenderer } = window as any;
   async function handleInvalidate() {
     if (isMultiSelect) {
@@ -555,7 +556,7 @@ function NFTInvalidateContextualAction(props: NFTInvalidateContextualActionProps
         window.localStorage.removeItem(`thumb-cache-${nft?.$nftId}`);
         window.localStorage.removeItem(`content-cache-${nft?.$nftId}`);
         window.localStorage.removeItem(`metadata-cache-${nft?.$nftId}`);
-        lruMap.delete(nft?.$nftId);
+        lru.delete(nft?.$nftId);
         ipcRenderer.invoke(
           'removeCachedFile',
           computeHash(`${nft?.$nftId}_${nft?.dataUris?.[0]}`, { encoding: 'utf-8' })
@@ -569,11 +570,10 @@ function NFTInvalidateContextualAction(props: NFTInvalidateContextualActionProps
       return;
     }
 
-    lruMap.delete(selectedNft?.$nftId);
+    lru.delete(selectedNft?.$nftId);
     setThumbCache({});
     setContentCache({});
     ipcRenderer.invoke('removeCachedFile', computeHash(`${selectedNft?.$nftId}_${dataUrl}`, { encoding: 'utf-8' }));
-    lruMap.delete(selectedNft?.$nftId);
     window.localStorage.removeItem(`metadata-cache-${selectedNft?.$nftId}`);
     eventEmitter.emit(`force-reload-metadata-${selectedNft?.$nftId}`);
   }
