@@ -1,49 +1,28 @@
-import type NFTInfo from '@chia/api';
-import { useEffect, useState, useCallback } from 'react';
+import type NFTInfo from '@chia-network/api';
+import type LRU from '@chia-network/core';
+import { useEffect, useState } from 'react';
 
 import { eventEmitter } from '../components/nfts/NFTContextualActions';
 import getRemoteFileContent from '../util/getRemoteFileContent';
+import useNFTMetadataLRU from './useNFTMetadataLRU';
 
 export const MAX_FILE_SIZE = 100 * 1024 * 1024; // 100 MB
 
-export const lruMap = new Map();
-
-(window as any).lru_map = lruMap;
-
-export function lruGet(key: string) {
-  const value = lruMap.get(key);
-  if (value) {
-    lruMap.delete(key);
-
-    lruMap.set(key, value);
-  }
-
-  return value;
-}
-
-export function lruSet(key: string, value: any) {
-  if (lruMap.size >= 2000) {
-    // delete oldest entry
-    lruMap.delete(lruMap.keys().next().value);
-  }
-  lruMap.set(key, value);
-}
-
-export function getMetadataObject(nftId) {
+export function getMetadataObject(nftId: string, lru: LRU<string, any>) {
   let parsedMetadataObject = {};
   try {
     // ============= TRY MEMORY CACHE FIRST ============== //
-    const lru = lruGet(nftId);
-    if (lru) {
-      if (typeof lru === 'object') {
-        lruMap.delete(nftId);
+    const cached = lru.get(nftId);
+    if (cached) {
+      if (typeof cached === 'object') {
+        lru.delete(nftId);
       } else {
-        parsedMetadataObject = JSON.parse(lru);
+        parsedMetadataObject = JSON.parse(cached);
       }
     } else {
       // ============= TRY LOCALSTORAGE CACHE SECOND ============== //
       const lsCache = localStorage.getItem(`metadata-cache-${nftId}`);
-      lruSet(nftId, lsCache);
+      lru.set(nftId, lsCache);
       if (lsCache) {
         parsedMetadataObject = JSON.parse(lsCache);
       }
@@ -58,6 +37,7 @@ export default function useNFTsMetadata(nfts: NFTInfo[]) {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [errorContent, setErrorContent] = useState<string | undefined>();
   const [metadata, setMetadata] = useState<any>();
+  const lru = useNFTMetadataLRU();
 
   async function getMetadata(nft) {
     setIsLoading(true);
@@ -66,7 +46,7 @@ export default function useNFTsMetadata(nfts: NFTInfo[]) {
     const uri = nft?.metadataUris?.[0];
     const nftId = nft?.$nftId;
 
-    const metadataObject = getMetadataObject(nftId);
+    const metadataObject = getMetadataObject(nftId, lru);
 
     if (metadataObject.error) {
       setErrorContent(metadataObject.error);
@@ -101,7 +81,7 @@ export default function useNFTsMetadata(nfts: NFTInfo[]) {
 
       if (!isValid) {
         setErrorContent('Metadata hash mismatch');
-        lruSet(nftId, JSON.stringify({ isValid: false }));
+        lru.set(nftId, JSON.stringify({ isValid: false }));
       }
 
       if (['utf8', 'utf-8'].includes(encoding.toLowerCase())) {
@@ -115,7 +95,7 @@ export default function useNFTsMetadata(nfts: NFTInfo[]) {
         isValid: false,
         error: 'Invalid URI',
       });
-      lruSet(nftId, errorStringified);
+      lru.set(nftId, errorStringified);
       localStorage.setItem(`metadata-cache-${nft.$nftId}`, errorStringified);
       setErrorContent('Invalid URI');
     }
@@ -125,14 +105,16 @@ export default function useNFTsMetadata(nfts: NFTInfo[]) {
         metadata: metadataContent,
         isValid: true,
       });
-      lruSet(nftId, stringifiedCacheObject);
+      lru.set(nftId, stringifiedCacheObject);
       localStorage.setItem(`metadata-cache-${nft.$nftId}`, stringifiedCacheObject);
     }
     setIsLoading(false);
   }
 
   useEffect(() => {
-    getMetadata(nft);
+    if (nft) {
+      getMetadata(nft);
+    }
   }, [nft]);
 
   function loadReload() {

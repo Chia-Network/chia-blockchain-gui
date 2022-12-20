@@ -21,6 +21,7 @@ import { Outlet } from 'react-router-dom';
 import WebSocket from 'ws';
 
 import { i18n, defaultLocale, locales } from '../../config/locales';
+import LRUsProvider from '../lrus/LRUsProvider';
 import WalletConnectProvider, { WalletConnectChiaProjectId } from '../walletConnect/WalletConnectProvider';
 import AppState from './AppState';
 
@@ -75,22 +76,24 @@ export default function App(props: AppProps) {
       <LocaleProvider i18n={i18n} defaultLocale={defaultLocale} locales={locales}>
         <ThemeProvider theme={theme} fonts global>
           <ErrorBoundary>
-            <ModalDialogsProvider>
-              <WalletConnectProvider projectId={WalletConnectChiaProjectId}>
-                {isReady ? (
-                  <Suspense fallback={<LayoutLoading />}>
-                    <AppState>{outlet ? <Outlet /> : children}</AppState>
-                  </Suspense>
-                ) : (
-                  <LayoutLoading>
-                    <Typography variant="body1">
-                      <Trans>Loading configuration</Trans>
-                    </Typography>
-                  </LayoutLoading>
-                )}
-                <ModalDialogs />
-              </WalletConnectProvider>
-            </ModalDialogsProvider>
+            <LRUsProvider>
+              <ModalDialogsProvider>
+                <WalletConnectProvider projectId={WalletConnectChiaProjectId}>
+                  {isReady ? (
+                    <Suspense fallback={<LayoutLoading />}>
+                      <AppState>{outlet ? <Outlet /> : children}</AppState>
+                    </Suspense>
+                  ) : (
+                    <LayoutLoading>
+                      <Typography variant="body1">
+                        <Trans>Loading configuration</Trans>
+                      </Typography>
+                    </LayoutLoading>
+                  )}
+                  <ModalDialogs />
+                </WalletConnectProvider>
+              </ModalDialogsProvider>
+            </LRUsProvider>
           </ErrorBoundary>
         </ThemeProvider>
       </LocaleProvider>
