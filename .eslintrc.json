@@ -4,7 +4,15 @@
 // To print currently used rules (AirBnB + our overrides) run:
 // npx eslint --print-config .eslintrc.json
 {
-  "extends": ["airbnb", "airbnb/hooks", "airbnb-typescript", "plugin:eslint-comments/recommended", "prettier"],
+  "extends": [
+    // airbnb is replaced with airbnb-base and airbnb/rules/react to exclude jsx-a11y
+    "airbnb-base",
+    "airbnb/rules/react",
+    "airbnb/hooks",
+    "airbnb-typescript",
+    "plugin:eslint-comments/recommended",
+    "prettier"
+  ],
   "env": {
     "browser": true,
     "es2020": true,
@@ -127,7 +135,17 @@
       }
     ],
     // We use a lot of large numbers. This rule enforce large number has to use separator. Example: 1_000_000
-    "unicorn/numeric-separators-style": "error"
+    "unicorn/numeric-separators-style": "error",
+    // Airbnb is too restrictive
+    "@typescript-eslint/no-unused-expressions": [
+      "error",
+      {
+        "allowShortCircuit": true,
+        "allowTernary": true,
+        "allowTaggedTemplates": true,
+        "enforceForJSX": false
+      }
+    ]
 
     //
     // ** Before adding or updating any rule, please read the comments at the top of this file
