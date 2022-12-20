@@ -1,3 +1,5 @@
+/* eslint-disable react/no-unstable-nested-components -- These components are at the edges of the component tree, so no perf issues */
+
 import { useGetKeyringStatusQuery } from '@chia-network/api-react';
 import {
   Button,

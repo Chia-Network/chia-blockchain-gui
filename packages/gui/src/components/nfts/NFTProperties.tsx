@@ -34,6 +34,7 @@ export type NFTPropertiesProps = {
 export function NFTProperty(props: NFTPropertyProps) {
   const { attribute, size = 'regular', color = 'secondary' } = props;
   const theme = useTheme();
+  // eslint-disable-next-line @typescript-eslint/naming-convention -- Comes from API like this
   const { name, trait_type, value } = attribute;
   const title = trait_type ?? name;
   const borderStyle = {
@@ -96,8 +97,8 @@ export default function NFTProperties(props: NFTPropertiesProps) {
         <Trans>Properties</Trans>
       </Typography>
       <Grid spacing={2} container>
-        {valueAttributes.map((attribute, index) => (
-          <React.Fragment key={`${attribute?.name}-${index}`}>
+        {valueAttributes.map((attribute) => (
+          <React.Fragment key={JSON.stringify(attribute)}>
             <NFTProperty attribute={attribute} />
           </React.Fragment>
         ))}

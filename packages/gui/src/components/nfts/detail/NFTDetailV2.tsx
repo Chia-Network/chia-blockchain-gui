@@ -2,7 +2,7 @@ import type { NFTInfo } from '@chia-network/api';
 import { useGetNFTInfoQuery, useGetNFTWallets, useLocalStorage } from '@chia-network/api-react';
 import { Back, Flex, LayoutDashboardSub, Loading, useOpenDialog } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
-import { MoreVert, SettingsOverscanOutlined } from '@mui/icons-material';
+import { MoreVert } from '@mui/icons-material';
 import { Box, Grid, Typography, IconButton, Button } from '@mui/material';
 import React, { useMemo, useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';

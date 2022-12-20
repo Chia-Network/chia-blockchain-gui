@@ -53,8 +53,8 @@ export default function AppState(props: Props) {
   const [isDataLayerEnabled] = useState(enableDataLayerService);
   const [isFilePropagationServerEnabled] = useState(enableFilePropagationServer);
   const [versionDialog, setVersionDialog] = useState<boolean>(true);
-  const { data: backendVersion, isLoading: isLoadingBackendVersion } = useGetVersionQuery();
-  const { version, isLoadingGuiVersion } = useAppVersion();
+  const { data: backendVersion } = useGetVersionQuery();
+  const { version } = useAppVersion();
 
   const runServices = useMemo<ServiceName[] | undefined>(() => {
     if (mode) {

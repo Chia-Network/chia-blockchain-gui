@@ -23,6 +23,7 @@ export default function NFTPreviewDialog(props: NFTPreviewDialogProps) {
     <Dialog
       open={open}
       onClose={onClose}
+      // eslint-disable-next-line react/no-unstable-nested-components -- Not a performance issue
       PaperComponent={({ children }) => (
         <Flex
           width="95vw"

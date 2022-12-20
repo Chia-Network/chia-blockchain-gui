@@ -26,12 +26,14 @@ import WalletConnectProvider, { WalletConnectChiaProjectId } from '../walletConn
 import AppState from './AppState';
 
 async function waitForConfig() {
+  // eslint-disable-next-line no-constant-condition -- We want this
   while (true) {
+    // eslint-disable-next-line no-await-in-loop -- We want to run promises in series
     const config = await window.ipcRenderer.invoke('getConfig');
     if (config) {
       return config;
     }
-
+    // eslint-disable-next-line no-await-in-loop -- We want to run promises in series
     await sleep(50);
   }
 }

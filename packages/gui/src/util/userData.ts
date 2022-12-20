@@ -61,6 +61,7 @@ function createIntermediateDirectories(pathToCreate: string) {
     let pathPart: string | undefined = pathParts.shift();
 
     if (pathPart === undefined) {
+      // eslint-disable-next-line no-continue -- Its safe here
       continue;
     }
 

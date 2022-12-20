@@ -1,6 +1,5 @@
 import { useGetFeeEstimateQuery } from '@chia-network/api-react';
 import { Trans } from '@lingui/macro';
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import {
   Box,
   FormControl,
@@ -23,7 +22,7 @@ import Fee from '../Fee';
 import Flex from '../Flex';
 
 type Props = SelectProps & {
-  hideError?: boolean;
+  // eslint-disable-next-line react/no-unused-prop-types -- False positive
   name: string;
 };
 
@@ -60,7 +59,7 @@ function Select(props: Props) {
             if (props.onChange) {
               props.onChange(event, ...args);
             }
-            if (event.target.value == 'custom') {
+            if (event.target.value === 'custom') {
               onTypeChange('custom');
               setValue(controllerName, '');
             } else {

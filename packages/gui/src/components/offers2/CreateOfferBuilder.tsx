@@ -13,7 +13,7 @@ import OfferLocalStorageKeys from '../offers/OfferLocalStorage';
 import OfferBuilder, { emptyDefaultValues } from './OfferBuilder';
 import OfferNavigationHeader from './OfferNavigationHeader';
 
-type createDefaultValuesParams = {
+type CreateDefaultValuesParams = {
   walletType?: WalletType; // CAT or STANDARD_WALLET (XCH), indicates whether a token or CAT has a default entry
   assetId?: string; // Asset ID of the CAT
   nftId?: string; // NFT to include in the offer by default
@@ -21,10 +21,11 @@ type createDefaultValuesParams = {
   nftWalletId?: number; // If set, indicates that we are offering the NFT, otherwise we are requesting it
 };
 
-export function createDefaultValues(params: createDefaultValuesParams): OfferBuilderData {
+export function createDefaultValues(params: CreateDefaultValuesParams): OfferBuilderData {
   const { walletType, assetId, nftId, nftWalletId, nftIds } = params;
 
-  const nfts = nftIds && nftWalletId ? nftIds.map((nftId) => ({ nftId })) : nftId && nftWalletId ? [{ nftId }] : [];
+  const nfts =
+    nftIds && nftWalletId ? nftIds.map((nftIdItem) => ({ nftId: nftIdItem })) : nftId && nftWalletId ? [{ nftId }] : [];
 
   return {
     ...emptyDefaultValues,

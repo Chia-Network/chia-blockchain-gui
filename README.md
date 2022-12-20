@@ -37,6 +37,17 @@ This monorepo consists of the following packages:
 
   `// eslint-disable-next-line react-hooks/exhaustive-deps -- Some dependencies intentionally left out`
 
+## Common eslint issues
+
+- **react/no-array-index-key**
+
+  Only use `index` as a `key` when all of the following conditions are met:
+
+  1.  the list and items are static / hardcoded.
+  2.  the list is never reordered or filtered.
+
+  In all other cases, you have to figure out what unique string you will use as an `key`, or create a dedicated `ID`.
+
 ## Git workflow
 
 - Git branch from "**main**"

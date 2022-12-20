@@ -96,7 +96,7 @@ export default function IdentitiesPanel() {
 
     const didLength = dids.length;
 
-    if (didLength == 0) {
+    if (didLength === 0) {
       return (
         <StyledCard variant="outlined">
           <StyledCardContent>

@@ -85,14 +85,6 @@ export default function WalletImport() {
     setMnemonicPasteOpen(false);
   }
 
-  function ActionButtons() {
-    return (
-      <Button onClick={() => setMnemonicPasteOpen(true)} variant="contained" disableElevation>
-        <Trans>Paste Mnemonic</Trans>
-      </Button>
-    );
-  }
-
   async function handleSubmit(values: FormData) {
     if (isSubmitting) {
       return;
@@ -158,7 +150,7 @@ export default function WalletImport() {
                 <ButtonLoading type="submit" variant="contained" color="primary" loading={isSubmitting} fullWidth>
                   <Trans>Next</Trans>
                 </ButtonLoading>
-                <ActionButtons />
+                <ActionButton onClick={() => setMnemonicPasteOpen(true)} />
                 {mnemonicPasteOpen && <MnemonicPaste onSuccess={submitMnemonicPaste} onCancel={closeMnemonicPaste} />}
               </Flex>
             </Grid>
@@ -166,5 +158,13 @@ export default function WalletImport() {
         </Flex>
       </Container>
     </Form>
+  );
+}
+
+function ActionButton({ onClick }: { onClick: () => void }) {
+  return (
+    <Button onClick={onClick} variant="contained" disableElevation>
+      <Trans>Paste Mnemonic</Trans>
+    </Button>
   );
 }

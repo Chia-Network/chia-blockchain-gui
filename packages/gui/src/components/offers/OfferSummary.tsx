@@ -119,7 +119,7 @@ export default function OfferSummary(props: Props) {
               <Flex flexDirection="column" gap={1}>
                 {entries.map(([assetId, amount], indexEntries) => (
                   <OfferSummaryTokenRow
-                    key={indexEntries}
+                    key={`${assetId}_${amount}`}
                     assetId={assetId}
                     amount={amount as number}
                     rowNumber={indexEntries + 1}

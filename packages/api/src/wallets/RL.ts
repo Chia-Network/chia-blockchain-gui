@@ -26,9 +26,4 @@ export default class RLWallet extends Wallet {
       adminPubkey,
     });
   }
-
-  async clawbackCoin(/* walletId: number */) {
-    // THIS IS A PLACEHOLDER FOR RL CLAWBACK FUNCTIONALITY
-    throw new Error('RL Clawback is not implemented');
-  }
 }

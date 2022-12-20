@@ -1,6 +1,6 @@
 import mime from 'mime-types';
 
-export function hex_to_array(hexString) {
+export function hexToArray(hexString) {
   if (hexString.slice(0, 2) === '0x' || hexString.slice(0, 2) === '0X') {
     hexString = hexString.slice(2);
   }
@@ -18,7 +18,7 @@ export function stripHexPrefix(hexString) {
   return hexString;
 }
 
-export function arr_to_hex(buffer) {
+export function arrToHex(buffer) {
   // buffer is an ArrayBuffer
   return Array.prototype.map.call(new Uint8Array(buffer), (x) => `00${x.toString(16)}`.slice(-2)).join('');
 }
@@ -98,7 +98,9 @@ export function getNFTFileType(nft) {
     if (extension.match(/^[a-zA-Z0-9]+$/) && isDocument(extension)) {
       return 'Document';
     }
-  } catch (e) {}
+  } catch (e) {
+    // do nothing
+  }
   return isImage(file)
     ? 'Image'
     : mimeTypeRegex(file, /^audio/)

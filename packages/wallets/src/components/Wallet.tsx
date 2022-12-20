@@ -32,18 +32,6 @@ export default function Wallet() {
     return <WalletCAT walletId={Number(walletId)} />;
   }
 
-  {
-    /* wallet.type === WalletType.RATE_LIMITED && (
-    <RateLimitedWallet wallet_id={wallet.id} />
-  ) */
-  }
-
-  {
-    /* wallet.type === WalletType.DECENTRALIZED_ID && (
-    <DistributedWallet walletId={wallet.id} />
-  ) */
-  }
-
   return (
     <Alert severity="warning">
       <Trans>Wallet with type {wallet.type} not supported</Trans>
