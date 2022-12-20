@@ -47,7 +47,7 @@ export default function OfferBuilderTokensSection(props: OfferBuilderTokensSecti
       tokenAmountsWithRoyalties[token.assetId] = catToMojo(token.amount ?? 0);
     });
 
-    assetIds.map((assetId) => {
+    assetIds.forEach((assetId) => {
       Object.entries(allRoyalties).forEach(([nftId, royaltyPayments]) => {
         const royaltyPayment = royaltyPayments?.find((payment) => payment.asset === assetId);
 

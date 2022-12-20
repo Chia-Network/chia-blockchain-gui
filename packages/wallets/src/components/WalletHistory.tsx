@@ -249,12 +249,13 @@ export default function WalletHistory(props: Props) {
         metadata={metadata}
         expandedCellShift={1}
         uniqueField="name"
+        // eslint-disable-next-line react/no-unstable-nested-components -- It would be risky to refactor without tests
         expandedField={(row) => {
           const { confirmedAtHeight, memos } = row;
           const memoValues = memos ? Object.values(memos) : [];
           const memoValuesDecoded = memoValues.map((memoHex) => {
             try {
-              const buf = new Buffer(memoHex, 'hex');
+              const buf = Buffer.from(memoHex, 'hex');
               const decodedValue = buf.toString('utf8');
 
               const bufCheck = Buffer.from(decodedValue, 'utf8');
@@ -272,6 +273,7 @@ export default function WalletHistory(props: Props) {
             memoValuesDecoded && memoValuesDecoded.length ? (
               <Flex flexDirection="column">
                 {memoValuesDecoded.map((memo, index) => (
+                  // eslint-disable-next-line react/no-array-index-key -- There is no ID to use
                   <Typography variant="inherit" key={index}>
                     {memo ?? ''}
                   </Typography>

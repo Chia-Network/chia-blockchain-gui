@@ -165,6 +165,7 @@ export default function SetPassphrasePrompt(props: Props) {
             id="passphraseInput"
             label={<Trans>Passphrase</Trans>}
             placeholder="Passphrase"
+            // eslint-disable-next-line no-return-assign -- Yes we want assignment instead of comparison
             inputRef={(input) => (passphraseInput = input)}
             type={showPassphraseText1 ? 'text' : 'password'}
             InputProps={{
@@ -195,6 +196,7 @@ export default function SetPassphrasePrompt(props: Props) {
             id="confirmationInput"
             label={<Trans>Confirm Passphrase</Trans>}
             placeholder="Confirm Passphrase"
+            // eslint-disable-next-line no-return-assign -- Yes we want assignment instead of comparison
             inputRef={(input) => (confirmationInput = input)}
             type={showPassphraseText2 ? 'text' : 'password'}
             InputProps={{
@@ -225,6 +227,7 @@ export default function SetPassphrasePrompt(props: Props) {
             id="passphraseHintInput"
             label={<Trans>Passphrase Hint (Optional)</Trans>}
             placeholder={t`Passphrase Hint`}
+            // eslint-disable-next-line no-return-assign -- Yes we want assignment instead of comparison
             inputRef={(input) => (passphraseHintInput = input)}
             data-testid="SetPassphrasePrompt-hint"
             fullWidth
@@ -237,6 +240,7 @@ export default function SetPassphrasePrompt(props: Props) {
                 <Checkbox
                   disabled={isLoadingSetKeyringPassphrase}
                   name="cleanupKeyringPostMigration"
+                  // eslint-disable-next-line no-return-assign -- Yes we want assignment instead of comparison
                   inputRef={(input) => (savePassphraseCheckbox = input)}
                 />
               }

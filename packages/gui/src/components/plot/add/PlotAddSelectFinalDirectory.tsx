@@ -7,11 +7,9 @@ import { useFormContext } from 'react-hook-form';
 
 import PlotLocalStorageKeys from '../../../constants/plotLocalStorage';
 import useSelectDirectory from '../../../hooks/useSelectDirectory';
-import Plotter from '../../../types/Plotter';
 
 type Props = {
   step: number;
-  plotter: Plotter;
 };
 
 export default function PlotAddSelectFinalDirectory(props: Props) {

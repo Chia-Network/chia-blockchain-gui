@@ -12,8 +12,7 @@ const Color = {
   [State.ERROR]: StateColor.ERROR,
 };
 
-// TODO Zlatko
-const StyledFlexContainer = styled(({ color: Color, ...rest }) => <Flex {...rest} />)`
+const StyledFlexContainer = styled(({ color, ...rest }) => <Flex {...rest} />)`
   color: ${({ color }) => color};
 `;
 

@@ -57,7 +57,7 @@ function OfferEditorConditionRow(props: OfferEditorConditionsRowProps) {
     let balanceString: string | undefined;
     let balance = new BigNumber(0);
 
-    if (!isLoading && tradeSide === 'sell' && walletBalance && walletBalance.walletId == row.assetWalletId) {
+    if (!isLoading && tradeSide === 'sell' && walletBalance && walletBalance.walletId === row.assetWalletId) {
       switch (item.walletType) {
         case WalletType.STANDARD_WALLET:
           balanceString = mojoToChiaLocaleString(walletBalance.spendableBalance, locale);
@@ -312,11 +312,11 @@ function OfferEditorConditionsPanel(props: OfferEditorConditionsPanelProps) {
   return (
     <Flex flexDirection="column" gap={3}>
       {sections.map((section, sectionIndex) => (
-        <Flex flexDirection="column" gap={2} key={sectionIndex}>
+        <Flex flexDirection="column" gap={2} key={section.side}>
           <Typography variant="subtitle1">{section.headerTitle}</Typography>
           {section.fields.map((field, fieldIndex) => (
             <OfferEditorConditionRow
-              key={fieldIndex}
+              key={JSON.stringify(field)}
               namePrefix={`${section.namePrefix}[${fieldIndex}]`}
               item={field}
               tradeSide={section.side}

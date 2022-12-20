@@ -7,7 +7,7 @@ import { Button, Tooltip } from '@mui/material';
 import React from 'react';
 import styled from 'styled-components';
 
-import { service_connection_types } from '../../util/service_names';
+import { serviceConnectionTypes } from '../../util/service_names';
 import FullNodeAddConnection from './FullNodeAddConnection';
 import FullNodeCloseConnection from './FullNodeCloseConnection';
 
@@ -52,7 +52,7 @@ const cols = [
   {
     field(row: Connection) {
       // @ts-ignore
-      return service_connection_types[row.type];
+      return serviceConnectionTypes[row.type];
     },
     title: <Trans>Connection type</Trans>,
   },

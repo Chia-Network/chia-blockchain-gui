@@ -139,7 +139,7 @@ function NFTOfferConditionalsPanel(props: NFTOfferConditionalsPanelProps) {
       !isLoadingWalletBalance &&
       tab === NFTOfferExchangeType.TokenForNFT &&
       walletBalance &&
-      walletBalance.walletId == tokenWalletInfo.walletId
+      walletBalance.walletId === tokenWalletInfo.walletId
     ) {
       switch (tokenWalletInfo.walletType) {
         case WalletType.STANDARD_WALLET:

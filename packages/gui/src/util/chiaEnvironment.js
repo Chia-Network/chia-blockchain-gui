@@ -1,4 +1,4 @@
-const child_process = require('child_process');
+const childProcess = require('child_process');
 const fs = require('fs');
 const path = require('path');
 
@@ -13,7 +13,7 @@ const PY_FOLDER = '../../../chia/daemon';
 const PY_MODULE = 'server'; // without .py suffix
 
 let pyProc = null;
-let have_cert = null;
+let haveCert = null;
 
 const guessPackaged = () => {
   let packed;
@@ -27,13 +27,6 @@ const guessPackaged = () => {
   return packed;
 };
 
-const getScriptPath = (dist_file) => {
-  if (!guessPackaged()) {
-    return path.join(PY_FOLDER, `${PY_MODULE}.py`);
-  }
-  return getExecutablePath(dist_file);
-};
-
 const getExecutablePath = (dist_file) => {
   if (process.platform === 'win32') {
     return path.join(__dirname, PY_WIN_DIST_FOLDER, `${dist_file}.exe`);
@@ -41,12 +34,19 @@ const getExecutablePath = (dist_file) => {
   return path.join(__dirname, PY_MAC_DIST_FOLDER, dist_file);
 };
 
+const getScriptPath = (dist_file) => {
+  if (!guessPackaged()) {
+    return path.join(PY_FOLDER, `${PY_MODULE}.py`);
+  }
+  return getExecutablePath(dist_file);
+};
+
 const getChiaVersion = () => {
   let version = null;
   const exePath = getExecutablePath('chia');
   // first see if we can get a chia exe in a standard location relative to where we are
   try {
-    version = child_process
+    version = childProcess
       .execFileSync(exePath, ['version'], {
         encoding: 'UTF-8',
       })
@@ -54,7 +54,7 @@ const getChiaVersion = () => {
   } catch (e1) {
     // that didn't work, let's try as if we're in the venv or chia is on the path
     try {
-      version = child_process
+      version = childProcess
         .execFileSync(path.basename(exePath), ['version'], {
           encoding: 'UTF-8',
         })
@@ -76,7 +76,7 @@ const startChiaDaemon = () => {
   if (guessPackaged()) {
     try {
       console.info('Running python executable: ');
-      const Process = child_process.spawn;
+      const Process = childProcess.spawn;
       pyProc = new Process(script, ['--wait-for-unlock'], processOptions);
     } catch (e) {
       console.info('Running python executable: Error: ');
@@ -86,32 +86,38 @@ const startChiaDaemon = () => {
     console.info('Running python script');
     console.info(`Script ${script}`);
 
-    const Process = child_process.spawn;
+    const Process = childProcess.spawn;
     pyProc = new Process('python', [script, '--wait-for-unlock'], processOptions);
   }
   if (pyProc != null) {
     pyProc.stdout.setEncoding('utf8');
 
     pyProc.stdout.on('data', (data) => {
-      if (!have_cert) {
+      if (!haveCert) {
         process.stdout.write('No cert\n');
         // listen for ssl path message
         try {
-          const str_arr = data.toString().split('\n');
-          for (let i = 0; i < str_arr.length; i++) {
-            const str = str_arr[i];
+          const strArr = data.toString().split('\n');
+          for (let i = 0; i < strArr.length; i++) {
+            const str = strArr[i];
             try {
               const json = JSON.parse(str);
               global.cert_path = json.cert;
               global.key_path = json.key;
-              if (cert_path && key_path) {
-                have_cert = true;
+              // TODO Zlatko: cert_path and key_path were undefined. Prefixed them with global, which changes functionality.
+              // Do they even need to be globals?
+              if (global.cert_path && global.key_path) {
+                haveCert = true;
                 process.stdout.write('Have cert\n');
                 return;
               }
-            } catch (e) {}
+            } catch (e) {
+              // Do nothing
+            }
           }
-        } catch (e) {}
+        } catch (e) {
+          // Do nothing
+        }
       }
 
       process.stdout.write(data.toString());

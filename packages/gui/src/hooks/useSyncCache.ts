@@ -23,7 +23,9 @@ export default function useSyncCache() {
           if (metadata.image && files.indexOf(metadata.image) === -1) {
             localStorage.removeItem(key);
           }
-        } catch (e) {}
+        } catch (e) {
+          // Do nothing
+        }
       }
     });
     setSynced(false);

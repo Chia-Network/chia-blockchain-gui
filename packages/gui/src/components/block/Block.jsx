@@ -21,7 +21,7 @@ import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
-import { hex_to_array, arr_to_hex, sha256 } from '../../util/utils';
+import { hexToArray, arrToHex, sha256 } from '../../util/utils';
 import BlockTitle from './BlockTitle';
 
 async function computeNewPlotId(block) {
@@ -29,10 +29,10 @@ async function computeNewPlotId(block) {
   if (!poolPublicKey) {
     return undefined;
   }
-  let buf = hex_to_array(poolPublicKey);
-  buf = buf.concat(hex_to_array(plotPublicKey));
+  let buf = hexToArray(poolPublicKey);
+  buf = buf.concat(hexToArray(plotPublicKey));
   const bufHash = await sha256(buf);
-  return arr_to_hex(bufHash);
+  return arrToHex(bufHash);
 }
 
 export default function Block() {
@@ -266,6 +266,7 @@ export default function Block() {
           <Table>
             <TableBody>
               {rows.map((row, index) => (
+                // eslint-disable-next-line react/no-array-index-key -- Number of rows never change
                 <TableRow key={index}>
                   <TableCell component="th" scope="row">
                     {row.name} {row.tooltip && <TooltipIcon>{row.tooltip}</TooltipIcon>}

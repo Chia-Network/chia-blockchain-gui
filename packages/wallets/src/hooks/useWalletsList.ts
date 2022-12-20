@@ -45,7 +45,7 @@ function getTypeOrder(item: ListItem) {
 }
 
 export default function useWalletsList(
-  search?: string,
+  search: string,
   walletTypes: WalletType[]
 ): {
   list?: ListItem[];
@@ -211,8 +211,10 @@ export default function useWalletsList(
           }).unwrap();
         }
       }
+      return undefined;
     } catch (error) {
       showError(error);
+      return undefined;
     }
   }
 

@@ -28,7 +28,6 @@ export default function Dropdown(props: Props) {
     placeholder = <Trans>Select...</Trans>,
     startIcon,
     children,
-    open: _,
     ...rest
   } = props;
   const [open, toggleOpen] = useToggle(defaultOpen);

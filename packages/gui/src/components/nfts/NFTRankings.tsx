@@ -25,6 +25,7 @@ export type NFTRankingsProps = {
 
 export function NFTRanking(props: NFTRankingProps) {
   const { attribute, size = 'regular', color = 'secondary', progressColor = 'primary' } = props;
+  // eslint-disable-next-line @typescript-eslint/naming-convention -- Comes from API like this
   const { name, trait_type, value, min_value = 0, max_value } = attribute;
   const title = trait_type ?? name;
   const percentage = (value - min_value) / (max_value - min_value);
@@ -69,8 +70,8 @@ export default function NFTRankings(props: NFTRankingsProps) {
         <Trans>Rankings</Trans>
       </Typography>
       <Grid spacing={2} container>
-        {rankingsAttributes.map((attribute, index) => (
-          <React.Fragment key={`${attribute?.name}-${index}`}>
+        {rankingsAttributes.map((attribute) => (
+          <React.Fragment key={JSON.stringify(attribute)}>
             <NFTRanking attribute={attribute} />
           </React.Fragment>
         ))}

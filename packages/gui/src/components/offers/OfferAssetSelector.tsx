@@ -33,19 +33,19 @@ function buildAssetSelectorList(params: BuildAssetSelectorListParams): WalletOff
   const usedWalletIds: Set<number> = new Set();
   const otherUsedWalletIds: Set<number> = new Set();
 
-  rows.map((row) => {
+  rows.forEach((row) => {
     if (row.assetWalletId > 0 && row.assetWalletId !== selectedWalletId) {
       usedWalletIds.add(row.assetWalletId);
     }
   });
 
-  otherRows.map((row) => {
+  otherRows.forEach((row) => {
     if (row.assetWalletId > 0) {
       otherUsedWalletIds.add(row.assetWalletId);
     }
   });
 
-  wallets.map((wallet) => {
+  wallets.forEach((wallet) => {
     const walletId: number = wallet.id;
     const walletType: WalletType = wallet.type;
     let name: string | undefined;
