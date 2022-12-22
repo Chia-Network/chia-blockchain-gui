@@ -45,6 +45,7 @@ export type DashboardLayoutProps = {
   children?: ReactNode;
   header?: ReactNode;
   outlet?: boolean;
+  onScroll?: () => void;
 };
 
 export default function DashboardLayout(props: DashboardLayoutProps) {
@@ -57,7 +58,7 @@ export default function DashboardLayout(props: DashboardLayoutProps) {
       {header ? (
         <Flex flexDirection="column" flexGrow={1}>
           <StyledHeader sidebar={!!sidebar}>{header}</StyledHeader>
-          <StyledContent sidebar={!!sidebar} header={!!header}>
+          <StyledContent sidebar={!!sidebar} header={!!header} onScroll={props.onScroll || function () {}}>
             {outlet ? <Outlet /> : children}
           </StyledContent>
         </Flex>

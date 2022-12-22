@@ -8,7 +8,7 @@ import useNFTMetadataLRU from './useNFTMetadataLRU';
 
 export const MAX_FILE_SIZE = 100 * 1024 * 1024; // 100 MB
 
-export function getMetadataObject(nftId: string, lru: LRU<string, any>) {
+export function getMetadataObject(nftId: string, lru: LRU<string, any>): any {
   let parsedMetadataObject = {};
   try {
     // ============= TRY MEMORY CACHE FIRST ============== //
@@ -39,12 +39,12 @@ export default function useNFTsMetadata(nfts: NFTInfo[]) {
   const [metadata, setMetadata] = useState<any>();
   const lru = useNFTMetadataLRU();
 
-  async function getMetadata(nft) {
+  async function getMetadata(nftObject: NFTInfo) {
     setIsLoading(true);
     setErrorContent(undefined);
-    const { metadataHash } = nft;
-    const uri = nft?.metadataUris?.[0];
-    const nftId = nft?.$nftId;
+    const { metadataHash } = nftObject;
+    const uri = nftObject?.metadataUris?.[0];
+    const nftId = nftObject?.$nftId;
 
     const metadataObject = getMetadataObject(nftId, lru);
 
@@ -118,7 +118,7 @@ export default function useNFTsMetadata(nfts: NFTInfo[]) {
   }, [nft]);
 
   function loadReload() {
-    setErrorContent(null);
+    setErrorContent(undefined);
     getMetadata(nft);
   }
 

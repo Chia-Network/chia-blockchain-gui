@@ -2,9 +2,9 @@ import type { NFTInfo } from '@chia-network/api';
 import { useLocalStorage } from '@chia-network/api-react';
 import { Flex, LayoutDashboardSub, Loading, /* useTrans, */ usePersistState, useDarkMode } from '@chia-network/core';
 import { WalletReceiveAddressField } from '@chia-network/wallets';
-import { t, Trans } from '@lingui/macro';
+import { t } from '@lingui/macro';
 import { FormControlLabel, RadioGroup, FormControl, Checkbox, Grid } from '@mui/material';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -14,7 +14,6 @@ import useAllowFilteredShow from '../../../hooks/useAllowFilteredShow';
 import useHiddenNFTs from '../../../hooks/useHiddenNFTs';
 import useHideObjectionableContent from '../../../hooks/useHideObjectionableContent';
 import useSyncCache from '../../../hooks/useSyncCache';
-import type NFTSelection from '../../../types/NFTSelection';
 import { mimeTypeRegex, isImage, isDocument, getNFTFileType } from '../../../util/utils';
 import NFTCardLazy from '../NFTCardLazy';
 import { NFTContextualActionTypes } from '../NFTContextualActions';
@@ -26,6 +25,8 @@ import useFilteredNFTs from './NFTfilteredNFTs';
 import SelectedActionsDialog from './SelectedActionsDialog';
 
 export const defaultCacheSizeLimit = 1024; /* MB */
+
+const maxNFTsPerPage = 200;
 
 export function searchableNFTContent(nft: NFTInfo) {
   const items = [
@@ -71,7 +72,7 @@ const SelectedActionsContainer = styled.div`
   }
 `;
 
-const VisibilityRadioWrapper = styled.div`
+const VisibilityRadioWrapper = styled.div<{ isDarkMode: boolean }>`
   position: relative;
   z-index: 7;
   > div {
@@ -87,7 +88,7 @@ const VisibilityRadioWrapper = styled.div`
   }
 `;
 
-const MultiSelectAndFilterWrapper = styled.div`
+const MultiSelectAndFilterWrapper = styled.div<{ isDarkMode: boolean }>`
   display: flex;
   align-items: center;
   height: 48px;
@@ -143,16 +144,18 @@ const LoadingWrapper = styled.div`
   padding: 25px;
 `;
 
+let visibleIndex = 0;
+const allowNFTsFilteredObject: any = {};
+let allowNFTsFilteredNftIds: string[] = [];
+
 export default function NFTGallery() {
-  const [selection, setSelection] = useState<NFTSelection>({
-    items: [],
-  });
   const [search, setSearch] = useState('');
   const [inMultipleSelectionMode, toggleMultipleSelection] = useState(false);
   const [typeFilter, setTypeFilter] = useLocalStorage('typeFilter', []); /* exclude types that are inside array */
   const [isNFTHidden] = useHiddenNFTs();
   const [walletId, setWalletId] = usePersistState<number | undefined>(undefined, 'nft-profile-dropdown');
   const { filteredNFTs, isLoading } = useFilteredNFTs({ walletId });
+  const [nfts, setNfts] = useState<NFTInfo[]>([]);
   const [hideObjectionableContent] = useHideObjectionableContent();
   const { isSyncingCache } = useSyncCache();
   const { allowNFTsFiltered, allowedNFTsLoading } = useAllowFilteredShow(
@@ -160,35 +163,42 @@ export default function NFTGallery() {
     hideObjectionableContent,
     isLoading || isSyncingCache
   );
+
   const [filtersShown, setFiltersShown] = useState<string[]>([]);
   const [visibilityFilters, setVisibilityFilters] = useLocalStorage('visibilityFilters', ['visible']);
-  const typesFilterRef = React.useRef();
-  const visibilityFilterRef = React.useRef();
+  const typesFilterRef = React.useRef<HTMLInputElement>(null);
+  const visibilityFilterRef = React.useRef<HTMLInputElement>(null);
+  const dashboardSub = React.useRef<HTMLInputElement>(null);
   const { isDarkMode } = useDarkMode();
+  const [nftTypes, setNftTypes] = useState<any>([]);
 
   useEffect(() => {
-    const listener = (event) => {
-      if (
-        !typesFilterRef.current ||
-        typesFilterRef.current.contains(event.target) ||
-        !visibilityFilterRef.current ||
-        visibilityFilterRef.current.contains(event.target)
-      ) {
-        return;
+    if (allowNFTsFiltered.length) {
+      allowNFTsFiltered.forEach((nft) => {
+        allowNFTsFilteredObject[nft.$nftId] = nft;
+      });
+      allowNFTsFilteredNftIds = allowNFTsFiltered.map((nft) => nft.nftId);
+      setNfts(
+        allowNFTsFiltered.length > maxNFTsPerPage
+          ? allowNFTsFiltered.filter((_: any, idx: number) => idx < maxNFTsPerPage)
+          : allowNFTsFiltered
+      );
+    }
+  }, [allowNFTsFiltered]);
+
+  const applyTypeFilter = React.useCallback(
+    (nft: NFTInfo) => {
+      if (typeFilter.indexOf(getNFTFileType(nft)) > -1) {
+        return false;
       }
-      setFiltersShown([]);
-    };
-    document.addEventListener('mousedown', listener);
-    return () => {
-      document.removeEventListener('mousedown', listener);
-    };
-  }, []);
+      return true;
+    },
+    [typeFilter]
+  );
 
-  const nftTypes: any = {};
-
-  filteredNFTs
-    .filter((nft: NFTInfo) => {
-      if (allowNFTsFiltered.map((nft) => nft.nftId).indexOf(nft.$nftId) === -1) {
+  const showCard = useCallback(
+    (nft: NFTInfo) => {
+      if (allowNFTsFilteredNftIds.indexOf(nft?.$nftId) === -1) {
         return false;
       }
       if (visibilityFilters.indexOf('hidden') === -1 && isNFTHidden(nft)) {
@@ -197,36 +207,99 @@ export default function NFTGallery() {
       if (visibilityFilters.indexOf('visible') === -1 && !isNFTHidden(nft)) {
         return false;
       }
-      return true;
-    })
-    .forEach((nft: NFTInfo) => {
-      const file = Array.isArray(nft.dataUris) && nft.dataUris[0];
-      if (file) {
-        let isDocumentTemp: boolean = false;
-        try {
-          const extension = new URL(file).pathname.split('.').slice(-1)[0];
-          if (extension.match(/^[a-zA-Z0-9]+$/) && isDocument(extension)) {
-            nftTypes.Document = (nftTypes.Document || 0) + 1;
-            isDocumentTemp = true;
-          }
-        } catch (e) {
-          console.error(`Failed to check file extension for ${file}: ${e}`);
-        }
-        if (!isDocumentTemp) {
-          if (mimeTypeRegex(file, /^audio/)) {
-            nftTypes.Audio = (nftTypes.Audio || 0) + 1;
-          } else if (mimeTypeRegex(file, /^video/)) {
-            nftTypes.Video = (nftTypes.Video || 0) + 1;
-          } else if (mimeTypeRegex(file, /^model/)) {
-            nftTypes.Model = (nftTypes.Model || 0) + 1;
-          } else if (isImage(file)) {
-            nftTypes.Image = (nftTypes.Image || 0) + 1;
-          } else {
-            nftTypes.Unknown = (nftTypes.Unknown || 0) + 1;
-          }
-        }
+      if (applyTypeFilter(nft) === false) {
+        return false;
       }
-    });
+      const metadataObj = allowNFTsFilteredObject[nft.$nftId] || {};
+      const content = searchableNFTContent({ ...nft, metadata: metadataObj.metadata });
+      return content.includes(search.toLowerCase());
+    },
+    [isNFTHidden, search, visibilityFilters, applyTypeFilter]
+  );
+
+  const nftsFiltered = useCallback((): NFTInfo[] => {
+    if (allowNFTsFiltered.length) {
+      return allowNFTsFiltered.filter((nft: NFTInfo) => showCard(nft)).length > maxNFTsPerPage
+        ? allowNFTsFiltered
+            .filter((nft: NFTInfo) => showCard(nft))
+            .filter((_: any, idx: number) => idx < maxNFTsPerPage)
+        : allowNFTsFiltered.filter((nft: NFTInfo) => showCard(nft));
+    }
+    return [];
+  }, [allowNFTsFiltered, showCard]);
+
+  React.useEffect(() => {
+    setNfts(nftsFiltered);
+    visibleIndex = 0;
+  }, [search, nftsFiltered]);
+
+  useEffect(() => {
+    const listener = (event: any) => {
+      if (
+        !typesFilterRef.current ||
+        typesFilterRef.current.contains(event.target) ||
+        !visibilityFilterRef.current ||
+        visibilityFilterRef.current.contains(event.target)
+      ) {
+        return;
+      }
+      if (event?.target) {
+        setFiltersShown([]);
+      }
+    };
+    document.addEventListener('mousedown', listener);
+    return () => {
+      document.removeEventListener('mousedown', listener);
+    };
+  }, []);
+
+  React.useEffect(() => {
+    const nftTypesObject: any = {};
+    if (allowNFTsFilteredNftIds.length && nfts.length) {
+      nfts
+        .filter((nft: NFTInfo) => {
+          if (allowNFTsFilteredNftIds.indexOf(nft.$nftId) === -1) {
+            return false;
+          }
+          if (visibilityFilters.indexOf('hidden') === -1 && isNFTHidden(nft)) {
+            return false;
+          }
+          if (visibilityFilters.indexOf('visible') === -1 && !isNFTHidden(nft)) {
+            return false;
+          }
+          return true;
+        })
+        .forEach((nft: NFTInfo) => {
+          const file = Array.isArray(nft.dataUris) && nft.dataUris[0];
+          if (file) {
+            let isDocumentTemp: boolean = false;
+            try {
+              const extension = new URL(file).pathname.split('.').slice(-1)[0];
+              if (extension.match(/^[a-zA-Z0-9]+$/) && isDocument(extension)) {
+                nftTypesObject.Document = (nftTypesObject.Document || 0) + 1;
+                isDocumentTemp = true;
+              }
+            } catch (e) {
+              console.error(`Failed to check file extension for ${file}: ${e}`);
+            }
+            if (!isDocumentTemp) {
+              if (mimeTypeRegex(file, /^audio/)) {
+                nftTypesObject.Audio = (nftTypesObject.Audio || 0) + 1;
+              } else if (mimeTypeRegex(file, /^video/)) {
+                nftTypesObject.Video = (nftTypesObject.Video || 0) + 1;
+              } else if (mimeTypeRegex(file, /^model/)) {
+                nftTypesObject.Model = (nftTypesObject.Model || 0) + 1;
+              } else if (isImage(file)) {
+                nftTypesObject.Image = (nftTypesObject.Image || 0) + 1;
+              } else {
+                nftTypesObject.Unknown = (nftTypesObject.Unknown || 0) + 1;
+              }
+            }
+          }
+        });
+    }
+    setNftTypes(nftTypesObject);
+  }, [visibilityFilters, isNFTHidden, nfts]);
 
   const nftContainerRef = React.useRef(null);
   const galleryHeroRef = React.useRef(null);
@@ -234,16 +307,6 @@ export default function NFTGallery() {
   const navigate = useNavigate();
 
   const [selectedNFTIds, setSelectedNFTIds] = useLocalStorage('gallery-selected-nfts', []);
-
-  function handleSelect(nft: NFTInfo, selected: boolean) {
-    setSelection((currentSelection) => {
-      const { items } = currentSelection;
-
-      return {
-        items: selected ? [...items, nft] : items.filter((item) => item.$nftId !== nft.$nftId),
-      };
-    });
-  }
 
   if (isLoading || allowedNFTsLoading) {
     return (
@@ -253,37 +316,8 @@ export default function NFTGallery() {
     );
   }
 
-  function applyTypeFilter(nft: NFTInfo) {
-    if (typeFilter.indexOf(getNFTFileType(nft)) > -1) {
-      return false;
-    }
-    return true;
-  }
-
-  function showCard(nft: NFTInfo) {
-    if (allowNFTsFiltered.map((nft) => nft.nftId).indexOf(nft?.$nftId) === -1) {
-      return false;
-    }
-    if (visibilityFilters.indexOf('hidden') === -1 && isNFTHidden(nft)) {
-      return false;
-    }
-    if (visibilityFilters.indexOf('visible') === -1 && !isNFTHidden(nft)) {
-      return false;
-    }
-    if (applyTypeFilter(nft) === false) {
-      return false;
-    }
-
-    const metadataObj = allowNFTsFiltered.find((obj: any) => obj.nftId === nft.$nftId) || {};
-    const content = searchableNFTContent({ ...nft, metadata: metadataObj.metadata });
-    return content.includes(search.toLowerCase());
-  }
-
   function showCount() {
-    return filteredNFTs.filter((nft) => {
-      if (allowNFTsFiltered.map((nft) => nft.nftId).indexOf(nft?.$nftId) === -1) {
-        return false;
-      }
+    return filteredNFTs.filter((nft: NFTInfo) => {
       if (applyTypeFilter(nft) === false) {
         return false;
       }
@@ -293,7 +327,7 @@ export default function NFTGallery() {
       if (visibilityFilters.indexOf('visible') === -1 && !isNFTHidden(nft)) {
         return false;
       }
-      const metadataObj = allowNFTsFiltered.find((obj: any) => obj.nftId === nft.$nftId) || {};
+      const metadataObj = allowNFTsFilteredObject[nft.$nftId] || {};
       const content = searchableNFTContent({ ...nft, metadata: metadataObj.metadata });
       return content.includes(search.toLowerCase());
     }).length;
@@ -302,7 +336,9 @@ export default function NFTGallery() {
   function selectedItemAction(nftId: string) {
     if (inMultipleSelectionMode) {
       setSelectedNFTIds(
-        selectedNFTIds.indexOf(nftId) === -1 ? selectedNFTIds.concat(nftId) : selectedNFTIds.filter((x) => x !== nftId)
+        selectedNFTIds.indexOf(nftId) === -1
+          ? selectedNFTIds.concat(nftId)
+          : selectedNFTIds.filter((x: string) => x !== nftId)
       );
     } else {
       navigate(`/dashboard/nfts/${nftId}`);
@@ -310,11 +346,11 @@ export default function NFTGallery() {
   }
 
   function countNFTs(type: any) {
-    return filteredNFTs.filter((nft) => {
+    return filteredNFTs.filter((nft: NFTInfo) => {
       if (applyTypeFilter(nft) === false) {
         return false;
       }
-      if (allowNFTsFiltered.map((nft) => nft.nftId).indexOf(nft?.$nftId) === -1) {
+      if (!allowNFTsFilteredObject[nft?.$nftId]) {
         return false;
       }
       if (type === 'visible' && isNFTHidden(nft)) {
@@ -344,7 +380,9 @@ export default function NFTGallery() {
                     e.preventDefault();
                     e.stopPropagation();
                     setTypeFilter(
-                      typeFilter.indexOf(key) === -1 ? typeFilter.concat(key) : typeFilter.filter((x) => key !== x)
+                      typeFilter.indexOf(key) === -1
+                        ? typeFilter.concat(key)
+                        : typeFilter.filter((x: string) => key !== x)
                     );
                   }}
                 />
@@ -355,23 +393,48 @@ export default function NFTGallery() {
     );
   }
 
-  function toggleVisibilityFilter(e, type: string) {
+  function toggleVisibilityFilter(e: MouseEvent, type: string) {
     e.preventDefault();
     e.stopPropagation();
     setVisibilityFilters(
       visibilityFilters.indexOf(type) === -1
         ? visibilityFilters.concat(type)
-        : visibilityFilters.filter((x) => x !== type)
+        : visibilityFilters.filter((x: string) => x !== type)
     );
   }
 
-  function checkedNftTypes(nftTypes: any, typeFilter: string[]) {
-    return Object.keys(nftTypes).filter((key) => typeFilter.indexOf(key) > -1).length;
+  function checkedNftTypes(nftTypeKeys: any, typeFilterArray: string[]) {
+    return Object.keys(nftTypeKeys).filter((key) => typeFilterArray.indexOf(key) > -1).length;
   }
 
   return (
     <LayoutDashboardSub
+      ref={dashboardSub}
       // sidebar={<NFTGallerySidebar onWalletChange={setWalletId} />}
+      onScroll={(e: MouseEvent) => {
+        if (allowNFTsFiltered.filter((nft: NFTInfo) => showCard(nft)).length > maxNFTsPerPage) {
+          const perRowCount = window.document.body.offsetWidth > 1535 ? 4 : 3; /* number of NFTs in one row */
+          const oldVisibleIndex = visibleIndex;
+          if (
+            (e.target as HTMLElement).scrollHeight -
+              (e.target as HTMLElement).scrollTop -
+              (e.target as HTMLElement).offsetHeight -
+              767 <
+            0
+          ) {
+            visibleIndex += perRowCount;
+          } else if ((e.target as HTMLElement).scrollTop < 360 && visibleIndex - perRowCount >= 0) {
+            visibleIndex -= perRowCount;
+          }
+          if (oldVisibleIndex !== visibleIndex) {
+            setNfts(
+              allowNFTsFiltered
+                .filter((nft: NFTInfo) => showCard(nft))
+                .filter((_: any, idx: number) => idx > visibleIndex && idx < maxNFTsPerPage + visibleIndex)
+            );
+          }
+        }
+      }}
       header={
         <>
           <Flex gap={2} alignItems="stretch" flexWrap="wrap" justifyContent="space-between">
@@ -431,13 +494,13 @@ export default function NFTGallery() {
                             control={<Checkbox />}
                             label={`${t`Visible`} (${countNFTs('visible')})`}
                             checked={visibilityFilters.indexOf('visible') > -1}
-                            onClick={(e) => toggleVisibilityFilter(e, 'visible')}
+                            onClick={(e) => toggleVisibilityFilter(e as any, 'visible')}
                           />
                           <FormControlLabel
                             control={<Checkbox />}
                             label={`${t`Hidden`} (${countNFTs('hidden')})`}
                             checked={visibilityFilters.indexOf('hidden') > -1}
-                            onClick={(e) => toggleVisibilityFilter(e, 'hidden')}
+                            onClick={(e) => toggleVisibilityFilter(e as any, 'hidden')}
                           />
                         </RadioGroup>
                       </FormControl>
@@ -450,17 +513,17 @@ export default function NFTGallery() {
         </>
       }
     >
-      {!filteredNFTs?.length ? (
+      {!nfts?.length && !isLoading && !allowedNFTsLoading && !isSyncingCache ? (
         <NFTGalleryHero />
       ) : (
         <>
           <SelectedActionsContainer
             style={{ display: inMultipleSelectionMode ? 'block' : 'none' }}
-            className={inMultipleSelectionMode && 'active'}
+            className={inMultipleSelectionMode ? 'active' : ''}
           >
             <SelectedActionsDialog
               allCount={allowNFTsFiltered.length}
-              nfts={filteredNFTs.filter((nft: NFTInfo) => selectedNFTIds.indexOf(nft.$nftId) > -1)}
+              nfts={nfts.filter((nft: NFTInfo) => selectedNFTIds.indexOf(nft.$nftId) > -1)}
             />
           </SelectedActionsContainer>
           <div ref={galleryHeroRef} style={{ display: 'none' }}>
@@ -473,7 +536,7 @@ export default function NFTGallery() {
             className={`${inMultipleSelectionMode ? 'active show-multiple-select' : ''}`}
             ref={nftContainerRef}
           >
-            {filteredNFTs.map((nft: NFTInfo) => {
+            {nfts.map((nft: NFTInfo) => {
               const gridClassNames = [];
               if (selectedNFTIds.indexOf(nft.$nftId) > -1) {
                 gridClassNames.push('multiple-selection');
@@ -497,8 +560,6 @@ export default function NFTGallery() {
                 >
                   <NFTCardLazy
                     nft={nft}
-                    onSelect={(selected) => handleSelect(nft, selected)}
-                    selected={selection.items.some((item) => item.$nftId === nft.$nftId)}
                     canExpandDetails
                     availableActions={NFTContextualActionTypes.All}
                     isOffer={false}

@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 import CheckIcon from '../../../assets/img/search.svg';
 
-const SearchBase = styled('div')(({ theme, isDarkMode }) => ({
+const SearchBase = styled('div')<{ isDarkMode: boolean }>(({ theme, isDarkMode }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
   backgroundColor: isDarkMode ? '#333' : '#fff',
@@ -45,13 +45,12 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 const SearchIcon = styled(CheckIcon)``;
 
 export type SearchProps = {
-  value: string;
   onChange: (value: string) => void;
   placeholder?: string;
 };
 
 export default function Search(props: SearchProps) {
-  const { value, onChange, placeholder } = props;
+  const { onChange, placeholder } = props;
   const { isDarkMode } = useDarkMode();
 
   return (
@@ -59,7 +58,7 @@ export default function Search(props: SearchProps) {
       <SearchIconWrapper>
         <SearchIcon />
       </SearchIconWrapper>
-      <StyledInputBase value={value} onInput={(event) => onChange(event.target.value)} placeholder={placeholder} />
+      <StyledInputBase onInput={(event) => onChange(event.target.value)} placeholder={placeholder} />
     </SearchBase>
   );
 }

@@ -69,6 +69,8 @@ export default function useAllowFilteredShow(nfts: NFTInfo[], hideObjectionableC
   const nftArray = React.useRef<NFTInfo[]>([]);
   const lru = useNFTMetadataLRU();
 
+  /* eslint no-await-in-loop: off -- cannot be executed in parallel, because of too many network requests,
+     todo: optimize to have a loop of 50 parallel requests */
   const fetchMultipleMetadata = async () => {
     nftArray.current = [];
     for (let i = 0; i < nfts.length; i++) {
@@ -91,7 +93,7 @@ export default function useAllowFilteredShow(nfts: NFTInfo[], hideObjectionableC
     } else {
       setIsLoadingLocal(false);
     }
-  }, [nfts[0], isLoading]);
+  }, [nfts[0], isLoading, nfts.length]);
 
   return { allowNFTsFiltered, allowedNFTsLoading: isLoadingLocal };
 }

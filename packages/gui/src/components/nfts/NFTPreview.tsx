@@ -62,7 +62,7 @@ const IframePreventEvents = styled.div`
   z-index: 2;
 `;
 
-const ModelExtension = styled.div`
+const ModelExtension = styled.div<{ isDarkMode: boolean }>`
   position: relative;
   top: -20px;
   display: flex;
@@ -109,7 +109,7 @@ const StatusText = styled.div`
   text-shadow: 0px 1px 4px black;
 `;
 
-const BlobBg = styled.div`
+const BlobBg = styled.div<{ isDarkMode: boolean }>`
   > svg {
     position: absolute;
     left: 0;
@@ -208,15 +208,23 @@ export type NFTPreviewProps = {
   height?: number | string;
   width?: number | string;
   fit?: 'cover' | 'contain' | 'fill';
-  elevate?: boolean;
   background?: any;
-  hideStatusBar?: boolean;
   isPreview?: boolean;
   disableThumbnail?: boolean;
   isCompact?: boolean;
   miniThumb?: boolean;
   setNFTCardMetadata: (obj: any) => void;
 };
+
+function ThumbnailError({ children }: any) {
+  return (
+    <StatusContainer>
+      <StatusPill>
+        <StatusText>{children}</StatusText>
+      </StatusPill>
+    </StatusContainer>
+  );
+}
 
 // ======================================================================= //
 // NFTPreview function
@@ -242,7 +250,7 @@ export default function NFTPreview(props: NFTPreviewProps) {
   let extension = '';
 
   try {
-    extension = new URL(file).pathname.split('.').slice(-1)[0];
+    [extension] = new URL(file).pathname.split('.').slice(-1);
     if (!extension.match(/^[a-zA-Z0-9]+$/)) {
       extension = '';
     }
@@ -257,7 +265,7 @@ export default function NFTPreview(props: NFTPreviewProps) {
 
   const [loaded, setLoaded] = useState(false);
 
-  const [metadataError, setNFTPreviewMetadataError] = useState();
+  const [metadataError, setNFTPreviewMetadataError] = useState<string | undefined>(undefined);
 
   const { isLoading, error, thumbnail, isValid } = useVerifyHash({
     nft,
@@ -572,16 +580,6 @@ export default function NFTPreview(props: NFTPreviewProps) {
     );
   }
 
-  function ThumbnailError({ children }) {
-    return (
-      <StatusContainer>
-        <StatusPill>
-          <StatusText>{children}</StatusText>
-        </StatusPill>
-      </StatusContainer>
-    );
-  }
-
   function renderIsHashValid() {
     if (isValid || miniThumb) return null;
     let icon = null;
@@ -650,7 +648,7 @@ export default function NFTPreview(props: NFTPreviewProps) {
         <ThumbnailError>
           <Trans>Metadata hash mismatch</Trans>
         </ThumbnailError>
-      ) : metadataError === 'Invalid URI' || metadataError?.indexOf('getaddrinfo ENOTFOUND') > -1 ? (
+      ) : metadataError === 'Invalid URI' || (metadataError && metadataError.indexOf('getaddrinfo ENOTFOUND') > -1) ? (
         <ThumbnailError>
           <Trans>Invalid metadata url</Trans>
         </ThumbnailError>
