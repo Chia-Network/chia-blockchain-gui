@@ -51,16 +51,16 @@ export type TextFieldProps = MaterialTextFieldProps & {
 /**
  * Convert original form rules to `react-hook-form` compatible rules.
  */
-function normalizeRules<T>(rules?: ReactRules<T>): ControllerProps<ReactElement<T>>['rules']|undefined {
-  if(!rules){
+function normalizeRules<T>(rules?: ReactRules<T>): ControllerProps<ReactElement<T>>['rules'] | undefined {
+  if (!rules) {
     return undefined;
   }
-  
+
   const newRules: ControllerProps<ReactElement<T>>['rules'] = {};
-  
-  if(typeof rules.min === 'object' && rules.min.value !== undefined){
+
+  if (typeof rules.min === 'object' && rules.min.value !== undefined) {
     newRules.min = rules.min.value;
-  } else if(typeof rules.min === 'number' || typeof rules.min === 'string'){
+  } else if (typeof rules.min === 'number' || typeof rules.min === 'string') {
     newRules.min = rules.min;
   }
   if (typeof rules.max === 'object' && rules.max.value !== undefined) {
@@ -83,65 +83,56 @@ function normalizeRules<T>(rules?: ReactRules<T>): ControllerProps<ReactElement<
   } else if (typeof rules.required === 'number' || typeof rules.required === 'string') {
     newRules.required = rules.required;
   }
-  
+
   return newRules;
 }
 
-type ErrorType = "min" | "max" | "minLength" | "maxLength" | "required";
+type ErrorType = 'min' | 'max' | 'minLength' | 'maxLength' | 'required';
 
 export default function TextField(props: TextFieldProps): JSX.Element {
+  const { name, onChange: baseOnChange, 'data-testid': dataTestid, inputProps, rules, helperText, ...rest } = props;
   const {
-    name,
-    onChange: baseOnChange,
-    'data-testid': dataTestid,
-    inputProps,
-    rules,
-    helperText,
-    ...rest
-  } = props;
-  const { control, formState: {errors} } = useFormContext();
+    control,
+    formState: { errors },
+  } = useFormContext();
   const normalizedRules = React.useMemo(() => normalizeRules(rules), [rules]);
-  const render = React.useCallback(({ field: { onChange, value } }) => {
-    function handleChange(...args) {
-      onChange(...args);
-      if (baseOnChange) {
-        baseOnChange(...args);
-      }
-    }
-  
-    let errorMsg: ReactNode | undefined;
-    const error = errors ? (errors[name] as { type: ErrorType } | undefined) : undefined;
-    if(!helperText){
-      const errorType = error ? (error.type as ErrorType) : undefined;
-      if (errorType && rules) {
-        const rule = rules[errorType];
-        if (rule && typeof rule === 'object') {
-          errorMsg = rule.message;
+  const render = React.useCallback(
+    ({ field: { onChange, value } }) => {
+      function handleChange(...args) {
+        onChange(...args);
+        if (baseOnChange) {
+          baseOnChange(...args);
         }
       }
-    }
-  
-    return (
-      <MaterialTextField
-        value={value}
-        onChange={handleChange}
-        inputProps={{
-          'data-testid': dataTestid,
-          ...inputProps,
-        }}
-        error={Boolean(error)}
-        helperText={helperText || errorMsg}
-        {...rest}
-      />
-    );
-  }, [baseOnChange, name, dataTestid, inputProps, rest, rules, errors, helperText]);
-  
-  return (
-    <Controller
-      name={name}
-      control={control}
-      rules={normalizedRules}
-      render={render}
-    />
+
+      let errorMsg: ReactNode | undefined;
+      const error = errors ? (errors[name] as { type: ErrorType } | undefined) : undefined;
+      if (!helperText) {
+        const errorType = error ? (error.type as ErrorType) : undefined;
+        if (errorType && rules) {
+          const rule = rules[errorType];
+          if (rule && typeof rule === 'object') {
+            errorMsg = rule.message;
+          }
+        }
+      }
+
+      return (
+        <MaterialTextField
+          value={value}
+          onChange={handleChange}
+          inputProps={{
+            'data-testid': dataTestid,
+            ...inputProps,
+          }}
+          error={Boolean(error)}
+          helperText={helperText || errorMsg}
+          {...rest}
+        />
+      );
+    },
+    [baseOnChange, name, dataTestid, inputProps, rest, rules, errors, helperText]
   );
+
+  return <Controller name={name} control={control} rules={normalizedRules} render={render} />;
 }
