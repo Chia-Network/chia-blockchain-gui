@@ -2174,6 +2174,22 @@ export const walletApi = apiWithTag.injectEndpoints({
       }),
       invalidatesTags: (result, _error) => (result ? [{ type: 'Notification', id: 'LIST' }] : []),
     }),
+
+    verifySignature: build.mutation<
+      any,
+      {
+        message: string;
+        pubkey: string;
+        signature: string;
+        signingMode?: string | undefined;
+      }
+    >({
+      query: ({ message, pubkey, signature, signingMode }) => ({
+        command: 'verifySignature',
+        service: WalletService,
+        args: [message, pubkey, signature, signingMode],
+      }),
+    }),
   }),
 });
 
@@ -2275,4 +2291,7 @@ export const {
   useGetNotificationsQuery,
   useDeleteNotificationsMutation,
   useSendNotificationsMutation,
+
+  // verify
+  useVerifySignatureMutation,
 } = walletApi;

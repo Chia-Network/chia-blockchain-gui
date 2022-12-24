@@ -400,6 +400,24 @@ export default class Wallet extends Service {
     });
   }
 
+  async verifySignature(
+    message: string,
+    pubkey: string,
+    signature: string,
+    signingMode: string | undefined
+  ): Promise<{
+    success: boolean;
+    isValid: boolean;
+    error: string;
+  }> {
+    return this.command('verify_signature', {
+      message,
+      pubkey,
+      signature,
+      signingMode,
+    });
+  }
+
   onSyncChanged(callback: (data: any, message: Message) => void, processData?: (data: any) => any) {
     return this.onStateChanged('sync_changed', callback, processData);
   }
