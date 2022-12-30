@@ -3,7 +3,7 @@ import { Box, Grid } from '@mui/material';
 import React, { useEffect } from 'react';
 import { useFormContext } from 'react-hook-form';
 
-import { DIDProfileDropdown } from '../nfts/NFTMoveToProfileDialog';
+import DIDProfileDropdown from '../did/DIDProfileDropdown';
 import { SignMessageEntityType, SignMessageDIDEntity } from './SignMessageEntities';
 
 export type SigningEntityDIDProps = {
