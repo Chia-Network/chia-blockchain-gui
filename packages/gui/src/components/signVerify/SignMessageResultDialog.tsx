@@ -10,18 +10,24 @@ export type SignMessageResultDialogProps = {
   message: string;
   pubkey: string;
   signature: string;
+  address?: string;
   open?: boolean;
   onClose?: () => void;
 };
 
 export default function SignMessageResultDialog(props: SignMessageResultDialogProps) {
-  const { message, pubkey, signature, open = false, onClose = () => ({}), ...rest } = props;
+  const { message, pubkey, signature, address, open = false, onClose = () => ({}), ...rest } = props;
   const [, copyToClipboard] = useCopyToClipboard();
   const saveFile = useSaveFile();
 
   const content = `Message: ${message}
 Public Key: ${pubkey}
-Signature: ${signature}`;
+Signature: ${signature}${
+    address
+      ? `
+Address: ${address}`
+      : ''
+  }`;
 
   async function handleSaveToFile() {
     await saveFile({ fileContent: content, suggestedFilename: 'signed_message.chiasig' });
@@ -50,8 +56,8 @@ Signature: ${signature}`;
                   readOnly: true,
                 }}
                 value={content}
-                minRows={5}
-                maxRows={10}
+                minRows={7}
+                maxRows={12}
                 fullWidth
                 multiline
               />

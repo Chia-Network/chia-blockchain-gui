@@ -404,6 +404,7 @@ export default class Wallet extends Service {
     message: string,
     pubkey: string,
     signature: string,
+    address: string | undefined,
     signingMode: string | undefined
   ): Promise<{
     success: boolean;
@@ -414,6 +415,7 @@ export default class Wallet extends Service {
       message,
       pubkey,
       signature,
+      address,
       signingMode,
     });
   }

@@ -4,14 +4,21 @@ import { Dropzone, Flex, useShowError } from '@chia-network/core';
 import { Trans, t } from '@lingui/macro';
 import { Box, Card, Typography } from '@mui/material';
 import React, { useState } from 'react';
+import { FileWithPath } from 'react-dropzone';
 
 import usePaste from '../../hooks/usePaste';
 import { isMac } from '../../util/utils';
 
-function parseSignedMessageData(text: string): { message: string; signature: string; pubkey: string } {
+function parseSignedMessageData(text: string): {
+  message: string;
+  signature: string;
+  pubkey: string;
+  address?: string;
+} {
   const message = text.match(/Message: (.*)/)?.[1];
   const pubkey = text.match(/Public Key: (.*)/)?.[1];
   const signature = text.match(/Signature: (.*)/)?.[1];
+  const address = text.match(/Address: (.*)/)?.[1]; // Optional
 
   if (!message || !pubkey || !signature) {
     throw new Error('Invalid signed message data');
@@ -21,10 +28,10 @@ function parseSignedMessageData(text: string): { message: string; signature: str
   if (/^[0-9a-fA-F]+$/.test(message)) {
     const hex = message;
     const utf8 = Buffer.from(hex, 'hex').toString('utf8');
-    return { message: utf8, pubkey, signature };
+    return { message: utf8, pubkey, signature, address };
   }
 
-  return { message, pubkey, signature };
+  return { message, pubkey, signature, address };
 }
 
 function Background(props) {
@@ -48,13 +55,19 @@ function Background(props) {
 }
 
 export type VerifyMessageImportProps = {
-  onImport: (imported: { message: string; signature: string; pubkey: string }) => void;
+  onImport: (imported: { message: string; signature: string; pubkey: string; address?: string }) => void;
 };
 
 export default function VerifyMessageImport(props: VerifyMessageImportProps) {
   const { onImport } = props;
   const [isParsing, setIsParsing] = useState<boolean>(false);
   const showError = useShowError();
+  const prompt = (
+    <Trans>
+      Drag & Drop a Signed Message File,
+      <br /> Paste ({isMac() ? '⌘' : 'Ctrl-'}V)
+    </Trans>
+  );
 
   async function handleOpen(path: string) {
     async function continueOpen(stats: Stats) {
@@ -86,9 +99,11 @@ export default function VerifyMessageImport(props: VerifyMessageImportProps) {
     });
   }
 
-  async function handleDrop(acceptedFiles: [File]) {
+  async function handleDrop(acceptedFiles: [FileWithPath]) {
     if (acceptedFiles.length !== 1) {
       showError(new Error('Please drop one offer file at a time'));
+    } else if (acceptedFiles[0].path === undefined) {
+      showError(new Error('Unable to resolve file path'));
     } else {
       handleOpen(acceptedFiles[0].path);
     }
@@ -122,12 +137,7 @@ export default function VerifyMessageImport(props: VerifyMessageImportProps) {
       <Dropzone maxFiles={1} onDrop={handleDrop} processing={isParsing} background={Background}>
         <Flex flexDirection="column" alignItems="center">
           <Typography color="textSecondary" variant="h6" textAlign="center">
-            <Trans>
-              Drag & Drop a Signed Message File,
-              <br />
-              Paste{' '}
-            </Trans>
-            {isMac() ? <Trans>(⌘V) signature data</Trans> : <Trans>(Ctrl-V) signature data</Trans>}
+            {prompt}
           </Typography>
           <Typography color="textSecondary" textAlign="center">
             <Trans>

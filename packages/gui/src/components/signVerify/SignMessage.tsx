@@ -77,7 +77,14 @@ export default function SignMessage(props: SignMessageProps) {
       address,
     });
 
-    openDialog(<SignMessageResultDialog message={messageToSign} pubkey={result.pubkey} signature={result.signature} />);
+    openDialog(
+      <SignMessageResultDialog
+        message={messageToSign}
+        pubkey={result.pubkey}
+        signature={result.signature}
+        address={address}
+      />
+    );
   }
 
   async function handleSignById(messageToSign: string, id: string) {
@@ -160,15 +167,13 @@ export default function SignMessage(props: SignMessageProps) {
         </Card>
         <Card>
           <Flex flexDirection="column" gap={1}>
-            <Typography variant="body1">
-              <Trans>Message</Trans>
-            </Typography>
             <TextField
               variant="filled"
               InputProps={{
                 readOnly: false,
               }}
               name="message"
+              label={<Trans>Message</Trans>}
               minRows={5}
               maxRows={10}
               fullWidth

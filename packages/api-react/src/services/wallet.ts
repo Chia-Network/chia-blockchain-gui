@@ -2181,13 +2181,14 @@ export const walletApi = apiWithTag.injectEndpoints({
         message: string;
         pubkey: string;
         signature: string;
+        address?: string;
         signingMode?: string | undefined;
       }
     >({
-      query: ({ message, pubkey, signature, signingMode }) => ({
+      query: ({ message, pubkey, signature, address, signingMode }) => ({
         command: 'verifySignature',
         service: WalletService,
-        args: [message, pubkey, signature, signingMode],
+        args: [message, pubkey, signature, address, signingMode],
       }),
     }),
   }),
