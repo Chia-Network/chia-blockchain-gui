@@ -125,7 +125,7 @@ export default function VerifyMessage(props: VerifyMessageProps) {
             <TooltipIcon>
               <Trans>
                 The signature was made by the private key associated with the wallet address. The signer can be assumed
-                to be the owner of private key.
+                to be the owner of the private key.
               </Trans>
             </TooltipIcon>
           </Flex>
