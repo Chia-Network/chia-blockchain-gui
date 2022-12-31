@@ -1,6 +1,9 @@
-import { Card, Flex } from '@chia-network/core';
-import { Box, Grid } from '@mui/material';
-import React, { useEffect } from 'react';
+import type { Wallet } from '@chia-network/api';
+import { useGetDIDsQuery } from '@chia-network/api-react';
+import { Card, CopyToClipboard, Flex, TextField } from '@chia-network/core';
+import { Trans } from '@lingui/macro';
+import { Box, Grid, InputAdornment } from '@mui/material';
+import React, { useEffect, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 
 import DIDProfileDropdown from '../did/DIDProfileDropdown';
@@ -13,34 +16,72 @@ export type SigningEntityDIDProps = {
 
 export default function SigningEntityDID(props: SigningEntityDIDProps) {
   const { entityName, entityValueName } = props;
+  const [walletId, setWalletId] = useState<number | undefined>(undefined);
   const { getValues, setValue } = useFormContext();
 
-  useEffect(() => {
-    if (entityName) {
-      const currentValue = getValues(entityName);
+  const { data: allDIDWallets, isLoading: isLoadingDIDs } = useGetDIDsQuery();
+  const isLoading = isLoadingDIDs;
 
-      // Set the current address if a value isn't already set
-      if (!currentValue) {
+  function handleProfileSelected(newWalletId?: number) {
+    const did = allDIDWallets?.find((wallet: Wallet) => wallet.id === newWalletId)?.myDid;
+    setWalletId(newWalletId);
+    setValue(entityValueName, did);
+  }
+
+  useEffect(() => {
+    if (entityName && allDIDWallets?.length > 0) {
+      const currentValue = getValues(entityName);
+      const firstDID = allDIDWallets[0].myDid;
+
+      // Set the first DID if a value isn't already set
+      if (!currentValue?.didId && firstDID) {
         const entity: SignMessageDIDEntity = {
           type: SignMessageEntityType.DID,
-          didId: '',
+          didId: firstDID,
         };
+        setWalletId(allDIDWallets[0].id);
         setValue(entityName, entity);
       }
     }
-  }, [entityName, setValue, getValues]);
+  }, [entityName, allDIDWallets, setValue, getValues]);
 
   return (
     <Flex flexDirection="column" gap={1}>
-      <Card>
-        <Grid item xs={12}>
-          <Box display="flex">
-            <Box flexGrow={1}>
-              <DIDProfileDropdown />
-            </Box>
+      {/* <Card> */}
+      <Grid item xs={12}>
+        <Box display="flex">
+          <Box flexGrow={1}>
+            <Flex flexDirection="column" gap={1}>
+              <DIDProfileDropdown
+                walletId={walletId}
+                onChange={handleProfileSelected}
+                defaultTitle={<Trans>Select Profile</Trans>}
+                variant="outlined"
+                color="primary"
+                disabled={isLoading}
+              />
+              <TextField
+                label={<Trans>DID</Trans>}
+                variant="filled"
+                name={entityValueName}
+                inputProps={{
+                  'data-testid': 'SigningEntityDID-did',
+                  readOnly: true,
+                }}
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <CopyToClipboard value="currentAddress" data-testid="SigningEntityDID-did-copy" />
+                    </InputAdornment>
+                  ),
+                }}
+                fullWidth
+              />
+            </Flex>
           </Box>
-        </Grid>
-      </Card>
+        </Box>
+      </Grid>
+      {/* </Card> */}
     </Flex>
   );
 }

@@ -119,9 +119,7 @@ export default function SignMessage(props: SignMessageProps) {
       case SignMessageEntityType.WalletAddress:
         await handleSignByAddress(hexMessage, entityValue);
         break;
-      case SignMessageEntityType.NFT:
-        await handleSignById(hexMessage, entityValue);
-        break;
+      case SignMessageEntityType.NFT: // fall through
       case SignMessageEntityType.DID:
         await handleSignById(hexMessage, entityValue);
         break;
@@ -131,6 +129,7 @@ export default function SignMessage(props: SignMessageProps) {
   }
 
   async function handleSubmit() {
+    onComplete();
     await handleSign();
   }
 
@@ -151,7 +150,12 @@ export default function SignMessage(props: SignMessageProps) {
             <Flex flexDirection="column" gap={2}>
               <ButtonGroup fullWidth>
                 {buttons.map(({ type, label }) => (
-                  <Button key={type} selected={selectedEntityType === type} onClick={() => handleEntityChange(type)}>
+                  <Button
+                    key={type}
+                    selected={selectedEntityType === type}
+                    onClick={() => handleEntityChange(type)}
+                    disabled={type === SignMessageEntityType.NFT}
+                  >
                     {label}
                   </Button>
                 ))}
