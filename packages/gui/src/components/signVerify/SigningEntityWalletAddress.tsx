@@ -19,11 +19,11 @@ export default function SigningEntityWalletAddress(props: SigningEntityWalletAdd
   const { data: currentAddress, isLoading: isLoadingCurrentAddress } = useGetCurrentAddressQuery({ walletId: 1 });
 
   useEffect(() => {
-    if (entityName && currentAddress) {
-      const currentValue = getValues(entityName);
+    if (entityName && entityValueName && currentAddress) {
+      const currentValue = getValues(entityValueName);
 
       // Set the current address if a value isn't already set
-      if (!currentValue) {
+      if (currentValue === undefined) {
         const entity: SignMessageWalletAddressEntity = {
           type: SignMessageEntityType.WalletAddress,
           address: currentAddress,
@@ -31,7 +31,7 @@ export default function SigningEntityWalletAddress(props: SigningEntityWalletAdd
         setValue(entityName, entity);
       }
     }
-  }, [entityName, currentAddress, setValue, getValues]);
+  }, [entityName, entityValueName, currentAddress, setValue, getValues]);
 
   return (
     <Flex flexDirection="column" gap={1}>

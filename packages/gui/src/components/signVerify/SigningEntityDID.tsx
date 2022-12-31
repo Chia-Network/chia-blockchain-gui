@@ -1,6 +1,6 @@
 import type { Wallet } from '@chia-network/api';
 import { useGetDIDsQuery } from '@chia-network/api-react';
-import { Card, CopyToClipboard, Flex, TextField } from '@chia-network/core';
+import { CopyToClipboard, Flex, TextField } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Box, Grid, InputAdornment } from '@mui/material';
 import React, { useEffect, useState } from 'react';
@@ -29,12 +29,12 @@ export default function SigningEntityDID(props: SigningEntityDIDProps) {
   }
 
   useEffect(() => {
-    if (entityName && allDIDWallets?.length > 0) {
-      const currentValue = getValues(entityName);
+    if (entityName && entityValueName && allDIDWallets?.length > 0) {
+      const currentValue = getValues(entityValueName);
       const firstDID = allDIDWallets[0].myDid;
 
       // Set the first DID if a value isn't already set
-      if (!currentValue?.didId && firstDID) {
+      if (currentValue === undefined && firstDID) {
         const entity: SignMessageDIDEntity = {
           type: SignMessageEntityType.DID,
           didId: firstDID,
@@ -43,11 +43,10 @@ export default function SigningEntityDID(props: SigningEntityDIDProps) {
         setValue(entityName, entity);
       }
     }
-  }, [entityName, allDIDWallets, setValue, getValues]);
+  }, [entityName, entityValueName, allDIDWallets, setValue, getValues]);
 
   return (
     <Flex flexDirection="column" gap={1}>
-      {/* <Card> */}
       <Grid item xs={12}>
         <Box display="flex">
           <Box flexGrow={1}>
@@ -81,7 +80,6 @@ export default function SigningEntityDID(props: SigningEntityDIDProps) {
           </Box>
         </Box>
       </Grid>
-      {/* </Card> */}
     </Flex>
   );
 }

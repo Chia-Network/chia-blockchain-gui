@@ -1,3 +1,4 @@
+import { toBech32m } from '@chia-network/api';
 import { useSignMessageByAddressMutation, useSignMessageByIdMutation } from '@chia-network/api-react';
 import { Button, Card, Flex, Form, TextField, useOpenDialog, useShowError } from '@chia-network/core';
 import { Trans, t } from '@lingui/macro';
@@ -8,6 +9,7 @@ import { useForm } from 'react-hook-form';
 import { SignMessageEntityType, SignMessageEntity } from './SignMessageEntities';
 import SignMessageResultDialog from './SignMessageResultDialog';
 import SigningEntityDID from './SigningEntityDID';
+import SigningEntityNFT from './SigningEntityNFT';
 import SigningEntityWalletAddress from './SigningEntityWalletAddress';
 
 const ERROR_MISSING_ENTITY = t`Specify a wallet address, NFT, or DID to sign with`;
@@ -98,12 +100,32 @@ export default function SignMessage(props: SignMessageProps) {
       return;
     }
 
-    const { data: result } = await signMessageById({
+    const { data: result, error } = await signMessageById({
       message: messageToSign,
       id,
     });
 
-    openDialog(<SignMessageResultDialog message={messageToSign} pubkey={result.pubkey} signature={result.signature} />);
+    if (error) {
+      const missingNFTMatch = error.message.match(/^NFT for (.*) doesn't exist/);
+      const missingDIDMatch = error.message.match(/^DID for (.*) doesn't exist/);
+
+      if (missingNFTMatch || missingDIDMatch) {
+        const entityPuzzleHash = missingNFTMatch ? missingNFTMatch[1] : missingDIDMatch![1];
+        const entityId = toBech32m(entityPuzzleHash, missingNFTMatch ? 'nft' : 'did:chia:');
+
+        if (missingNFTMatch) {
+          showError(new Error(t`Unable to find NFT ${entityId}`));
+        } else {
+          showError(new Error(t`Unable to find DID ${entityId}`));
+        }
+      } else {
+        showError(error);
+      }
+    } else {
+      openDialog(
+        <SignMessageResultDialog message={messageToSign} pubkey={result.pubkey} signature={result.signature} />
+      );
+    }
   }
 
   async function handleSign() {
@@ -150,18 +172,16 @@ export default function SignMessage(props: SignMessageProps) {
             <Flex flexDirection="column" gap={2}>
               <ButtonGroup fullWidth>
                 {buttons.map(({ type, label }) => (
-                  <Button
-                    key={type}
-                    selected={selectedEntityType === type}
-                    onClick={() => handleEntityChange(type)}
-                    disabled={type === SignMessageEntityType.NFT}
-                  >
+                  <Button key={type} selected={selectedEntityType === type} onClick={() => handleEntityChange(type)}>
                     {label}
                   </Button>
                 ))}
               </ButtonGroup>
               {selectedEntityType === SignMessageEntityType.WalletAddress && (
                 <SigningEntityWalletAddress entityName="entity" entityValueName="entity.address" />
+              )}
+              {selectedEntityType === SignMessageEntityType.NFT && (
+                <SigningEntityNFT entityName="entity" entityValueName="entity.nftId" />
               )}
               {selectedEntityType === SignMessageEntityType.DID && (
                 <SigningEntityDID entityName="entity" entityValueName="entity.didId" />
