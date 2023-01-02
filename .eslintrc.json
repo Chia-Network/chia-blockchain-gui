@@ -86,11 +86,14 @@
           "**/.eslintrc.js",
 
           // These are our custom additions
-          // Add any directory here that is used in development or CI only
+          // Add any directory or file here that is used in development or CI only
           "**/@types/**",
           "**/test/**",
           "**/tests/**",
-          "**/cypress/**"
+          "**/cypress/**",
+          "**/vite.config.ts",
+          "**/babel.config.js",
+          "**/playwright.config.js"
         ],
         "optionalDependencies": false
       }
