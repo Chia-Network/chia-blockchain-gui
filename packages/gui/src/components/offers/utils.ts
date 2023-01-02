@@ -81,7 +81,11 @@ export function suggestedFilenameForOffer(
     return filename;
   }
 
-  function filenameBuilder(filename: string, args: [assetInfo: AssetIdMapEntry | undefined, amount: string]): string {
+  function filenameBuilder(
+    filenameParam: string,
+    args: [assetInfo: AssetIdMapEntry | undefined, amount: string]
+  ): string {
+    let filename = filenameParam;
     const [assetInfo, amount] = args;
 
     if (filename) {
@@ -113,9 +117,10 @@ export function shortSummaryForOffer(
   }
 
   function summaryBuilder(
-    shortSummary: string,
+    shortSummaryParam: string,
     args: [assetInfo: AssetIdMapEntry | undefined, amount: string]
   ): string {
+    let shortSummary = shortSummaryParam;
     const [assetInfo, amount] = args;
 
     if (shortSummary) {

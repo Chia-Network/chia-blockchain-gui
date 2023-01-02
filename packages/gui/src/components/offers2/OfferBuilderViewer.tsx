@@ -92,8 +92,8 @@ export default function OfferBuilderViewer(props: OfferBuilderViewerProps) {
     return [offeredUnknownCATsLocal, requestedUnknownCATsLocal];
   }, [offerBuilderData, wallets]);
 
-  const missingOfferedCATs = offeredUnknownCATs?.length ?? 0 > 0;
-  const missingRequestedCATs = requestedUnknownCATs?.length ?? 0 > 0;
+  const missingOfferedCATs = !!offeredUnknownCATs?.length;
+  const missingRequestedCATs = !!requestedUnknownCATs?.length;
 
   const canAccept = !!offerData;
   const disableAccept = missingOfferedCATs || showInvalid;
