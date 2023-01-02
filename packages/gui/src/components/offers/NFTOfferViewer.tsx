@@ -143,7 +143,7 @@ function NFTOfferSummaryRow(props: NFTOfferSummaryRowProps) {
     }
   });
 
-  if (unknownAssets?.length ?? 0 > 0) {
+  if (unknownAssets?.length) {
     console.error('Unknown assets');
     console.error(unknownAssets);
   }
