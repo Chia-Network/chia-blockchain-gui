@@ -12,7 +12,7 @@ export default function useNotifications() {
   }
 
   return {
-    notifications,
+    notifications: [{ id: 1, message: 'https://storage.googleapis.com/chia-offers/_test_offer_nft' }],
     isLoading,
     error,
     unseenCount,

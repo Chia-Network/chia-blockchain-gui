@@ -1,10 +1,10 @@
 import { Flex, Loading } from '@chia/core';
 import { Trans } from '@lingui/macro';
-import { CheckCircleTwoTone as CheckCircleTwoToneIcon } from '@mui/icons-material';
 import { Button, Typography, Divider } from '@mui/material';
 import React from 'react';
 
 import useNotifications from '../../hooks/useNotifications';
+import Notification from './Notification';
 
 export type NotificationsMenuProps = {
   onClose?: () => void;
@@ -22,10 +22,14 @@ export default function NotificationsMenu(props: NotificationsMenuProps) {
     });
   }
 
+  function handleClick() {
+    onClose?.();
+  }
+
   return (
     <Flex flexDirection="column" gap={1}>
-      <Flex flexDirection="column" gap={1} paddingX={2} paddingY={1.5}>
-        <Typography variant="h6">
+      <Flex flexDirection="column" gap={1} paddingTop={1.5}>
+        <Typography variant="h6" paddingX={2}>
           <Trans>Activity</Trans>
         </Typography>
         {isLoading ? (
@@ -33,12 +37,7 @@ export default function NotificationsMenu(props: NotificationsMenuProps) {
         ) : notifications.length ? (
           <Flex flexDirection="column">
             {notifications.map((notification) => (
-              <Flex alignItems="center" key={notification.id} justifyContent="space-between">
-                <Flex alignItems="center" gap={1}>
-                  <CheckCircleTwoToneIcon color="primary" />
-                </Flex>
-                {notification.message}
-              </Flex>
+              <Notification key={notification.id} notification={notification} onClick={handleClick} />
             ))}
           </Flex>
         ) : null}

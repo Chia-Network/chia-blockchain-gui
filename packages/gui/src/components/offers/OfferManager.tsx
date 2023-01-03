@@ -193,6 +193,7 @@ function resolveOfferInfo(
     return {
       displayAmount,
       displayName,
+      assetType,
     };
   });
   return resolvedOfferInfo;
