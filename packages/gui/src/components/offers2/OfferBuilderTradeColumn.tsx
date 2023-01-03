@@ -11,10 +11,8 @@ import OfferBuilderNFTSection from './OfferBuilderNFTSection';
 import OfferBuilderTokensSection from './OfferBuilderTokensSection';
 import OfferBuilderXCHSection from './OfferBuilderXCHSection';
 
-function getTitle(offering = false, viewer = false, isMyOffer = false) {
-  if (isMyOffer) {
-    offering = !offering;
-  }
+function getTitle(offeringParam = false, viewer = false, isMyOffer = false) {
+  const offering = isMyOffer ? !offeringParam : offeringParam;
 
   if (offering) {
     if (viewer) {
@@ -31,10 +29,8 @@ function getTitle(offering = false, viewer = false, isMyOffer = false) {
   return <Trans>Requesting</Trans>;
 }
 
-function getSubTitle(offering = false, viewer = false, isMyOffer = false) {
-  if (isMyOffer) {
-    offering = !offering;
-  }
+function getSubTitle(offeringParam = false, viewer = false, isMyOffer = false) {
+  const offering = isMyOffer ? !offeringParam : offeringParam;
 
   if (offering) {
     if (viewer) {
@@ -51,10 +47,8 @@ function getSubTitle(offering = false, viewer = false, isMyOffer = false) {
   return <Trans>Assets I would like to receive </Trans>;
 }
 
-function getIcon(offering = false, isMyOffer = false) {
-  if (isMyOffer) {
-    offering = !offering;
-  }
+function getIcon(offeringParam = false, isMyOffer = false) {
+  const offering = isMyOffer ? !offeringParam : offeringParam;
 
   return offering ? <Offering fontSize="large" /> : <Requesting fontSize="large" />;
 }

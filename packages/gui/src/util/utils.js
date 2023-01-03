@@ -1,6 +1,7 @@
 import mime from 'mime-types';
 
-export function hexToArray(hexString) {
+export function hexToArray(hexStringParam) {
+  let hexString = hexStringParam;
   if (hexString.slice(0, 2) === '0x' || hexString.slice(0, 2) === '0X') {
     hexString = hexString.slice(2);
   }
