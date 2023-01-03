@@ -58,7 +58,7 @@ export default function DashboardLayout(props: DashboardLayoutProps) {
       {header ? (
         <Flex flexDirection="column" flexGrow={1}>
           <StyledHeader sidebar={!!sidebar}>{header}</StyledHeader>
-          <StyledContent sidebar={!!sidebar} header={!!header} onScroll={props.onScroll || function () {}}>
+          <StyledContent sidebar={!!sidebar} header={!!header} onScroll={props?.onScroll}>
             {outlet ? <Outlet /> : children}
           </StyledContent>
         </Flex>

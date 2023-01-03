@@ -6,7 +6,7 @@ import CloseSvg from '@mui/icons-material/Close';
 import QuestionMarkSvg from '@mui/icons-material/QuestionMark';
 import { Box, Button, Typography } from '@mui/material';
 import mime from 'mime-types';
-import React, { useMemo, useState, useRef, Fragment, useEffect } from 'react';
+import React, { useMemo, useState, useRef, Fragment } from 'react';
 import { renderToString } from 'react-dom/server';
 import styled from 'styled-components';
 import isURL from 'validator/lib/isURL';
@@ -31,7 +31,7 @@ import VideoPngIcon from '../../assets/img/video.png';
 import VideoPngDarkIcon from '../../assets/img/video_dark.png';
 import useNFTImageFittingMode from '../../hooks/useNFTImageFittingMode';
 import useVerifyHash from '../../hooks/useVerifyHash';
-import { isImage, parseExtensionFromUrl } from '../../util/utils.js';
+import { isImage, parseExtensionFromUrl } from '../../util/utils';
 
 function responseTooLarge(error) {
   return error === 'Response too large';
@@ -294,6 +294,23 @@ export default function NFTPreview(props: NFTPreviewProps) {
 
   const { isDarkMode } = useDarkMode();
 
+  const mimeType = React.useCallback((): string => {
+    let pathName = '';
+    try {
+      pathName = new URL(file).pathname;
+    } catch (e) {
+      console.error(`Failed to check file extension for ${file}: ${e}`);
+    }
+    return mime.lookup(pathName) || '';
+  }, [file]);
+
+  const isAudio = React.useCallback(
+    () =>
+      mimeType().match(/^audio/) &&
+      (!isPreview || (isPreview && !thumbnail.video && !thumbnail.image) || disableThumbnail),
+    [isPreview, thumbnail?.video, thumbnail?.image, disableThumbnail, mimeType]
+  );
+
   const [srcDoc] = useMemo(() => {
     if (!file) {
       return undefined;
@@ -429,17 +446,7 @@ export default function NFTPreview(props: NFTPreviewProps) {
     elem = elem.replace(`<div id="replace-with-svg"></div>`, thumbnail.binary);
 
     return [elem];
-  }, [file, thumbnail, error]);
-
-  function mimeType(): string {
-    let pathName = '';
-    try {
-      pathName = new URL(file).pathname;
-    } catch (e) {
-      console.error(`Failed to check file extension for ${file}: ${e}`);
-    }
-    return mime.lookup(pathName) || '';
-  }
+  }, [file, thumbnail, disableThumbnail, fit, isPreview, isAudio, isDarkMode, mimeType, miniThumb]);
 
   function handleLoadedChange(loadedValue: any) {
     setLoaded(loadedValue);
@@ -456,13 +463,6 @@ export default function NFTPreview(props: NFTPreviewProps) {
 
   function isDocument() {
     return ['pdf', 'docx', 'doc', 'xls', 'xlsx', 'ppt', 'pptx', 'txt', 'rtf'].indexOf(extension) > -1;
-  }
-
-  function isAudio() {
-    return (
-      mimeType().match(/^audio/) &&
-      (!isPreview || (isPreview && !thumbnail.video && !thumbnail.image) || disableThumbnail)
-    );
   }
 
   function renderCompactIcon() {

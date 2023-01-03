@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle -- disable */
 import type { NFTInfo } from '@chia-network/api';
 import { useState, useEffect, useRef, useCallback } from 'react';
 import isURL from 'validator/lib/isURL';
@@ -42,8 +43,6 @@ export default function useVerifyHash(props: VerifyHash): {
 
   const uri = nft.dataUris?.[0];
 
-  let lastError: any;
-
   function getCacheItem(key: string) {
     let cacheObject;
     try {
@@ -78,6 +77,7 @@ export default function useVerifyHash(props: VerifyHash): {
 
   const validateHash = useCallback(
     async (forceValidateSHA256: boolean): Promise<void> => {
+      let lastError: any;
       let uris: string[] = [];
       let videoThumbValid: boolean = false;
       let imageThumbValid: boolean = false;
@@ -297,7 +297,18 @@ export default function useVerifyHash(props: VerifyHash): {
       setIsLoading(false);
       setIsValidationProcessed(true);
     },
-    [isLoadingMetadata]
+    [
+      checkBinaryCache,
+      dataHash,
+      ignoreSizeLimit,
+      isPreview,
+      metadata?.preview_image_hash,
+      metadata?.preview_image_uris,
+      metadata?.preview_video_hash,
+      metadata?.preview_video_uris,
+      nftId,
+      uri,
+    ]
   );
 
   useEffect(() => {

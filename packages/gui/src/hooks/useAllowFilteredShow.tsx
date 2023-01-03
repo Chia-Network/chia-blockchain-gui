@@ -1,6 +1,6 @@
 import type NFTInfo from '@chia-network/api';
 import type LRU from '@chia-network/core';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 
 import getRemoteFileContent from '../util/getRemoteFileContent';
 import { getMetadataObject } from './useNFTMetadata';
@@ -69,9 +69,11 @@ export default function useAllowFilteredShow(nfts: NFTInfo[], hideObjectionableC
   const nftArray = React.useRef<NFTInfo[]>([]);
   const lru = useNFTMetadataLRU();
 
+  const nftsLengthOld = React.useRef(0);
+
   /* eslint no-await-in-loop: off -- cannot be executed in parallel, because of too many network requests,
      todo: optimize to have a loop of 50 parallel requests */
-  const fetchMultipleMetadata = async () => {
+  const fetchMultipleMetadata = useCallback(async () => {
     nftArray.current = [];
     for (let i = 0; i < nfts.length; i++) {
       const nftWithMetadata: any = (await getMetadata(nfts[i], lru)) || { nftId: nfts[i]?.$nftId };
@@ -85,15 +87,16 @@ export default function useAllowFilteredShow(nfts: NFTInfo[], hideObjectionableC
     }
     setAllowNFTsFiltered(nftArray.current);
     setIsLoadingLocal(false);
-  };
+  }, [hideObjectionableContent, lru, nfts]);
 
   useEffect(() => {
-    if (nfts.length && !isLoading) {
+    if (nfts.length && !isLoading && nfts.length !== nftsLengthOld.current) {
       fetchMultipleMetadata();
+      nftsLengthOld.current = nfts.length;
     } else {
       setIsLoadingLocal(false);
     }
-  }, [nfts[0], isLoading, nfts.length]);
+  }, [isLoading, nfts.length, fetchMultipleMetadata]);
 
   return { allowNFTsFiltered, allowedNFTsLoading: isLoadingLocal };
 }
