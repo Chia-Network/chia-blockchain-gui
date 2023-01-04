@@ -67,6 +67,7 @@ export default function SigningEntityDID(props: SigningEntityDIDProps) {
                   'data-testid': 'SigningEntityDID-did',
                   readOnly: true,
                 }}
+                disabled
                 InputProps={{
                   endAdornment: (
                     <InputAdornment position="end">

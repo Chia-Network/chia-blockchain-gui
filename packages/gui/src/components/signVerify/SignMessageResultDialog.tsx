@@ -30,7 +30,7 @@ Address: ${address}`
   }`;
 
   async function handleSaveToFile() {
-    await saveFile({ fileContent: content, suggestedFilename: 'signed_message.chiasig' });
+    await saveFile({ fileContent: content, suggestedFilename: 'signed_message.sig' });
   }
 
   function handleCopyToClipboard() {

@@ -135,15 +135,14 @@ export default function SignMessage(props: SignMessageProps) {
     }
 
     const entityValue = getEntityValue(entity);
-    const hexMessage = Buffer.from(message).toString('hex');
 
     switch (selectedEntityType) {
       case SignMessageEntityType.WalletAddress:
-        await handleSignByAddress(hexMessage, entityValue);
+        await handleSignByAddress(message, entityValue);
         break;
       case SignMessageEntityType.NFT: // fall through
       case SignMessageEntityType.DID:
-        await handleSignById(hexMessage, entityValue);
+        await handleSignById(message, entityValue);
         break;
       default:
         throw new Error(`Unknown entity type used for signing: ${selectedEntityType}`);

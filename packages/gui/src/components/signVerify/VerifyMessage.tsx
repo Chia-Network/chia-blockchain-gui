@@ -97,10 +97,9 @@ export default function VerifyMessage(props: VerifyMessageProps) {
   }
 
   async function handleVerify() {
-    const messageToVerify = Buffer.from(message).toString('hex');
     let error: Error | undefined;
     const result = await verifySignature({
-      message: messageToVerify,
+      message,
       pubkey,
       signature,
       address: address || undefined,
@@ -227,12 +226,13 @@ export default function VerifyMessage(props: VerifyMessageProps) {
                       readOnly: imported,
                     }}
                     name="address"
-                    label={<Trans>Address (Optional)</Trans>}
+                    label={<Trans>Signing Address (Optional)</Trans>}
                     fullWidth
                   />
                   <Typography variant="caption" color="textSecondary">
                     <Trans>
-                      By providing an address, the public key can be validated as being associated with the address.
+                      By providing a signing address, the public key can be validated as being associated with the
+                      address used for signing.
                     </Trans>
                   </Typography>
                 </>
