@@ -34,15 +34,15 @@ export function getMetadataObject(nftId: string, lru: LRU<string, any>): any {
   return parsedMetadataObject;
 }
 
-export default function useNFTsMetadata(nfts: NFTInfo[]) {
-  const nft = nfts[0];
+export default function useNFTsMetadata(nfts: NFTInfo[] | undefined) {
+  const nft: NFTInfo | undefined = nfts?.[0];
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [errorContent, setErrorContent] = useState<string | undefined>();
   const [metadata, setMetadata] = useState<any>();
   const lru = useNFTMetadataLRU();
 
   const getMetadata = useCallback(
-    async (nftObject: NFTInfo) => {
+    async (nftObject: NFTInfo | undefined) => {
       setIsLoading(true);
       setErrorContent(undefined);
       const { metadataHash } = nftObject;
@@ -113,7 +113,7 @@ export default function useNFTsMetadata(nfts: NFTInfo[]) {
       }
       setIsLoading(false);
     },
-    [lru, nft.$nftId]
+    [lru, nft?.$nftId]
   );
 
   useEffect(() => {
