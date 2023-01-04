@@ -60,7 +60,7 @@ async function getMetadata(nft: NFTInfo | undefined, lru: LRU<string, any>) {
     lru.set(nftId, stringifiedCacheObject);
     localStorage.setItem(`metadata-cache-${nft.$nftId}`, stringifiedCacheObject);
   }
-  return { nftId: nft?.$nftId, metadata };
+  return { ...nft, nftId: nft?.$nftId, metadata };
 }
 
 export default function useAllowFilteredShow(nfts: NFTInfo[], hideObjectionableContent: boolean, isLoading: boolean) {
