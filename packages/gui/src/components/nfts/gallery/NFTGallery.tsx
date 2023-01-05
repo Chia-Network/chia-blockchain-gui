@@ -413,7 +413,9 @@ export default function NFTGallery() {
       // sidebar={<NFTGallerySidebar onWalletChange={setWalletId} />}
       onScroll={(e: MouseEvent) => {
         if (allowNFTsFiltered.filter((nft: NFTInfo) => showCard(nft)).length > maxNFTsPerPage) {
-          const perRowCount = window.document.body.offsetWidth > 1535 ? 4 : 3; /* number of NFTs in one row */
+          const offset = window.document.body.offsetWidth;
+          const perRowCount =
+            offset > 1535 ? 4 : offset > 899 ? 3 : offset > 599 ? 2 : 1; /* number of NFTs in one row */
           const oldVisibleIndex = visibleIndex;
           if (
             (e.target as HTMLElement).scrollHeight -
