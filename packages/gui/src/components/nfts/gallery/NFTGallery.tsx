@@ -28,6 +28,8 @@ export const defaultCacheSizeLimit = 1024; /* MB */
 
 const maxNFTsPerPage = 200;
 
+const scrollPosition = new Map();
+
 export function searchableNFTContent(nft: NFTInfo) {
   const items = [
     nft.$nftId,
@@ -168,7 +170,6 @@ export default function NFTGallery() {
   const [visibilityFilters, setVisibilityFilters] = useLocalStorage('visibilityFilters', ['visible']);
   const typesFilterRef = React.useRef<HTMLInputElement>(null);
   const visibilityFilterRef = React.useRef<HTMLInputElement>(null);
-  const dashboardSub = React.useRef<HTMLInputElement>(null);
   const { isDarkMode } = useDarkMode();
   const [nftTypes, setNftTypes] = useState<any>([]);
 
@@ -228,7 +229,7 @@ export default function NFTGallery() {
     return [];
   }, [allowNFTsFiltered, showCard]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     setNfts(nftsFiltered);
     visibleIndex = 0;
   }, [search, nftsFiltered]);
@@ -252,6 +253,21 @@ export default function NFTGallery() {
       document.removeEventListener('mousedown', listener);
     };
   }, []);
+
+  React.useEffect(() => {
+    if (allowNFTsFiltered.length) {
+      if (document.getElementById('scroll-helper') && scrollPosition.get('position') > 0) {
+        setTimeout(() => {
+          if (document.getElementById('scroll-helper')?.parentNode) {
+            (document.getElementById('scroll-helper')?.parentNode as HTMLElement).scrollTo(
+              0,
+              scrollPosition.get('position')
+            );
+          }
+        }, 0);
+      }
+    }
+  }, [allowNFTsFiltered.length]);
 
   React.useEffect(() => {
     const nftTypesObject: any = {};
@@ -409,9 +425,9 @@ export default function NFTGallery() {
 
   return (
     <LayoutDashboardSub
-      ref={dashboardSub}
       // sidebar={<NFTGallerySidebar onWalletChange={setWalletId} />}
       onScroll={(e: MouseEvent) => {
+        scrollPosition.set('position', (e.target as HTMLElement).scrollTop);
         if (allowNFTsFiltered.filter((nft: NFTInfo) => showCard(nft)).length > maxNFTsPerPage) {
           const offset = window.document.body.offsetWidth;
           const perRowCount =
@@ -515,6 +531,7 @@ export default function NFTGallery() {
         </>
       }
     >
+      <div id="scroll-helper" />
       {!nfts?.length && !isLoading && !allowedNFTsLoading && !isSyncingCache ? (
         <NFTGalleryHero />
       ) : (
