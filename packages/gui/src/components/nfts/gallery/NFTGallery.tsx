@@ -27,6 +27,8 @@ import SelectedActionsDialog from './SelectedActionsDialog';
 
 export const defaultCacheSizeLimit = 1024; /* MB */
 
+export const shownNFTs = new Map();
+
 export function searchableNFTContent(nft: NFTInfo) {
   const items = [
     nft.$nftId,
@@ -305,6 +307,10 @@ export default function NFTGallery() {
         selectedNFTIds.indexOf(nftId) === -1 ? selectedNFTIds.concat(nftId) : selectedNFTIds.filter((x) => x !== nftId)
       );
     } else {
+      shownNFTs.set(
+        'nfts',
+        filteredNFTs.filter((nft) => showCard(nft)).map((nft) => nft.$nftId)
+      );
       navigate(`/dashboard/nfts/${nftId}`);
     }
   }

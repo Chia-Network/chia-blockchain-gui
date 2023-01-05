@@ -1,11 +1,11 @@
 import type { NFTInfo } from '@chia-network/api';
 import { useGetNFTInfoQuery, useGetNFTWallets, useLocalStorage } from '@chia-network/api-react';
-import { Back, Flex, LayoutDashboardSub, Loading, useOpenDialog } from '@chia-network/core';
+import { Flex, LayoutDashboardSub, Loading, useOpenDialog, Tooltip } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
-import { MoreVert } from '@mui/icons-material';
+import { MoreVert, ArrowBackIosNew } from '@mui/icons-material';
 import { Box, Grid, Typography, IconButton, Button } from '@mui/material';
 import React, { useMemo, useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import isURL from 'validator/lib/isURL';
 
@@ -19,6 +19,7 @@ import NFTPreviewDialog from '../NFTPreviewDialog';
 import NFTProgressBar from '../NFTProgressBar';
 import NFTProperties from '../NFTProperties';
 import NFTRankings from '../NFTRankings';
+import { shownNFTs } from '../gallery/NFTGallery';
 
 export default function NFTDetail() {
   const { nftId } = useParams();
@@ -51,6 +52,7 @@ function NFTDetailLoaded(props: NFTDetailLoadedProps) {
   const { nft } = props;
   const nftId = nft.$nftId;
   const openDialog = useOpenDialog();
+  const navigate = useNavigate();
   const [validationProcessed, setValidationProcessed] = useState(false);
   const nftRef = React.useRef(null);
   const [isValid, setIsValid] = useState(false);
@@ -62,13 +64,29 @@ function NFTDetailLoaded(props: NFTDetailLoadedProps) {
 
   nftRef.current = nft;
 
-  useEffect(
-    () => () => {
-      const { ipcRenderer } = window as any;
-      ipcRenderer.invoke('abortFetchingBinary', uri);
-    },
-    []
-  );
+  useEffect(() => {
+    function detailKeyPress(e) {
+      if (Array.isArray(shownNFTs.get('nfts'))) {
+        const idx = shownNFTs.get('nfts').indexOf(nftId);
+        if (e.code === 'ArrowLeft') {
+          if (idx > 0) {
+            navigate(`/dashboard/nfts/${shownNFTs.get('nfts')[idx - 1]}`);
+          }
+        }
+        if (e.code === 'ArrowRight') {
+          if (idx < shownNFTs.get('nfts').length - 1) {
+            navigate(`/dashboard/nfts/${shownNFTs.get('nfts')[idx + 1]}`);
+          }
+        }
+      }
+    }
+    const { ipcRenderer } = window as any;
+    ipcRenderer.invoke('abortFetchingBinary', uri);
+    document.addEventListener('keyup', detailKeyPress);
+    return () => {
+      document.removeEventListener('keyup', detailKeyPress);
+    };
+  }, [nftId]);
 
   const ValidateContainer = styled.div`
     padding-top: 25px;
@@ -120,6 +138,10 @@ function NFTDetailLoaded(props: NFTDetailLoadedProps) {
     setIsValid(valid);
   }
 
+  function handleGoBack() {
+    navigate('/dashboard/nfts');
+  }
+
   return (
     <Flex flexDirection="column" gap={2}>
       <Flex sx={{ bgcolor: 'background.paper' }} justifyContent="center" py={{ xs: 2, sm: 3, md: 7 }} px={3}>
@@ -148,7 +170,18 @@ function NFTDetailLoaded(props: NFTDetailLoadedProps) {
             )}
           </Box>
           <Box position="absolute" left={1} top={1}>
-            <Back iconStyle={{ backgroundColor: 'action.hover' }} />
+            <IconButton onClick={handleGoBack} sx={{ backgroundColor: 'action.hover' }}>
+              <ArrowBackIosNew />
+            </IconButton>
+          </Box>
+          <Box sx={{ paddingLeft: '15px', whiteSpace: 'nowrap' }}>
+            <Tooltip title={<Trans>Use left and right arrow keys to navigate</Trans>}>
+              <Typography variant="body1">
+                {Array.isArray(shownNFTs.get('nfts'))
+                  ? `${shownNFTs.get('nfts').indexOf(nftId) + 1} / ${shownNFTs.get('nfts').length}`
+                  : null}
+              </Typography>
+            </Tooltip>
           </Box>
         </Flex>
       </Flex>
