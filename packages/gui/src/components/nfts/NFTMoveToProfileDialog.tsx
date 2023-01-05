@@ -410,7 +410,7 @@ export function NFTMoveToProfileAction(props: NFTMoveToProfileActionProps) {
 
 type NFTMoveToProfileDialogProps = {
   open: boolean;
-  onClose: (value: any) => void;
+  onClose?: (value: any) => void;
   nft: NFTInfo;
   destination?: string;
 };
@@ -419,11 +419,11 @@ export default function NFTMoveToProfileDialog(props: NFTMoveToProfileDialogProp
   const { open, onClose, nft, destination, ...rest } = props;
 
   function handleClose() {
-    onClose(false);
+    if (onClose) onClose(false);
   }
 
   function handleCompletion() {
-    onClose(true);
+    if (onClose) onClose(true);
   }
 
   return (

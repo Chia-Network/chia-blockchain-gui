@@ -11,7 +11,7 @@ export default function useGetNFTWallets() {
     }
 
     return data.filter((wallet: Wallet) => wallet.type === WalletType.NFT);
-  }, [data]);
+  }, [data, isLoading]);
 
   return { wallets: nftWallets, isLoading };
 }

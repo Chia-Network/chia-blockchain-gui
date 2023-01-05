@@ -34,7 +34,7 @@ export default function SettingsGeneral() {
     ipcRenderer.invoke('getCacheSize').then((cacheSizeLocal: number) => {
       setCacheSize(cacheSizeLocal);
     });
-  }, []);
+  }, [ipcRenderer]);
 
   async function forceUpdateCacheSize() {
     setCacheSize(await ipcRenderer.invoke('getCacheSize'));

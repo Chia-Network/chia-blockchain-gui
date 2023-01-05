@@ -106,9 +106,9 @@ export default function OfferBuilderNFT(props: OfferBuilderNFTProps) {
                   nft={nft}
                   canExpandDetails={false}
                   availableActions={
-                    NFTContextualActionTypes.CopyNFTId |
-                    NFTContextualActionTypes.ViewOnExplorer |
-                    NFTContextualActionTypes.OpenInBrowser |
+                    NFTContextualActionTypes.CopyNFTId ||
+                    NFTContextualActionTypes.ViewOnExplorer ||
+                    NFTContextualActionTypes.OpenInBrowser ||
                     NFTContextualActionTypes.CopyURL
                   }
                   isOffer

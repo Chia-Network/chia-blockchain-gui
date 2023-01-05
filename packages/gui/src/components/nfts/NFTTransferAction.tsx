@@ -165,8 +165,8 @@ export default function NFTTransferAction(props: NFTTransferActionProps) {
 /* ========================================================================== */
 
 type NFTTransferDialogProps = {
-  open: boolean;
-  onClose: (value: any) => void;
+  open?: boolean;
+  onClose?: (value: any) => void;
   onComplete?: (result?: NFTTransferResult) => void;
   nft: NFTInfo;
   destination?: string;
@@ -176,11 +176,11 @@ export function NFTTransferDialog(props: NFTTransferDialogProps) {
   const { open, onClose, onComplete, nft, destination, ...rest } = props;
 
   function handleClose() {
-    onClose(false);
+    if (onClose) onClose(false);
   }
 
   function handleCompletion(result?: NFTTransferResult) {
-    onClose(true);
+    if (onClose) onClose(true);
     if (onComplete) {
       onComplete(result);
     }
