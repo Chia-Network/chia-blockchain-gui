@@ -569,6 +569,16 @@ if (!handleSquirrelEvent()) {
 
       ipcMain.handle('getCacheFilenames', (_event) => fs.readdirSync(thumbCacheFolder));
 
+      ipcMain.handle('clearNFTCache', (_event) => {
+        if (fs.existsSync(thumbCacheFolder)) {
+          const files = fs.readdirSync(thumbCacheFolder);
+          for (let i = 0; i < files.length; i++) {
+            fs.unlinkSync(path.join(thumbCacheFolder, files[i]));
+          }
+        }
+        return true;
+      });
+
       /* ======================================================================== */
 
       decidedToClose = false;
