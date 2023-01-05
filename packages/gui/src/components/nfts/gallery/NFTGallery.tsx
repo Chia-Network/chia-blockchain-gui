@@ -432,7 +432,7 @@ export default function NFTGallery() {
             setNfts(
               allowNFTsFiltered
                 .filter((nft: NFTInfo) => showCard(nft))
-                .filter((_: any, idx: number) => idx > visibleIndex && idx < maxNFTsPerPage + visibleIndex)
+                .filter((_: any, idx: number) => idx >= visibleIndex && idx <= maxNFTsPerPage + visibleIndex)
             );
           }
         }
