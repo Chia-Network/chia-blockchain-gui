@@ -65,7 +65,7 @@ async function getMetadata(nft: NFTInfo | undefined, lru: LRU<string, any>) {
 
 export default function useAllowFilteredShow(nfts: NFTInfo[], hideObjectionableContent: boolean, isLoading: boolean) {
   const [allowNFTsFiltered, setAllowNFTsFiltered] = useState<NFTInfo[]>([]);
-  const [isLoadingLocal, setIsLoadingLocal] = useState(true);
+  const [isGettingMetadata, setIsGettingMetadata] = useState(true);
   const nftArray = React.useRef<NFTInfo[]>([]);
   const lru = useNFTMetadataLRU();
 
@@ -83,20 +83,22 @@ export default function useAllowFilteredShow(nfts: NFTInfo[], hideObjectionableC
         (nftWithMetadata?.metadata && !nftWithMetadata?.metadata.sensitive_content)
       ) {
         nftArray.current = nftArray.current.concat(nftWithMetadata);
+        /* compromise - rerender gallery only every 10% of the size of your whole collection */
+        if (i % (Math.floor(nfts.length / 10) + 1) === 0 && i > 0) {
+          setAllowNFTsFiltered(nftArray.current);
+        }
       }
     }
     setAllowNFTsFiltered(nftArray.current);
-    setIsLoadingLocal(false);
+    setIsGettingMetadata(false);
   }, [hideObjectionableContent, lru, nfts]);
 
   useEffect(() => {
     if (nfts.length && !isLoading && nfts.length !== nftsLengthOld.current) {
       fetchMultipleMetadata();
       nftsLengthOld.current = nfts.length;
-    } else {
-      setIsLoadingLocal(false);
     }
   }, [isLoading, nfts.length, fetchMultipleMetadata]);
 
-  return { allowNFTsFiltered, allowedNFTsLoading: isLoadingLocal };
+  return { allowNFTsFiltered, isDoneLoadingAllowedNFTs: !isGettingMetadata };
 }
