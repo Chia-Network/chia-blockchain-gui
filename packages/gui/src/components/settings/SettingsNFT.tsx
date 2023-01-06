@@ -43,8 +43,8 @@ export default function SettingsGeneral() {
   async function clearNFTCache() {
     openDialog(
       <ConfirmDialog
-        title={<Trans>Clear NFT gallery cache</Trans>}
-        confirmTitle={<Trans>Delete</Trans>}
+        title={<Trans>Clear NFT cache</Trans>}
+        confirmTitle={<Trans>Yes, delete</Trans>}
         confirmColor="danger"
         onConfirm={() => {
           ipcRenderer.invoke('clearNFTCache').then(() => {
@@ -52,7 +52,7 @@ export default function SettingsGeneral() {
           });
         }}
       >
-        <Trans>Are you sure you want to delete cache files?</Trans>
+        <Trans>Are you sure you want to delete the NFT cache?</Trans>
       </ConfirmDialog>
     );
   }
