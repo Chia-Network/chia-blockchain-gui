@@ -64,8 +64,6 @@ export default function WalletImport() {
     name: 'mnemonic',
   });
 
-  console.log("fields: ", fields);
-
   const submitMnemonicPaste = (mnemonicList: string) => {
     const mList = mnemonicList.match(/\b(\w+)\b/g);
     const intersection = mList?.filter((element) => options.includes(element));
@@ -130,11 +128,9 @@ export default function WalletImport() {
 
     const { mnemonic, label } = values;
     const mnemonicWords = mnemonic.map((item) => item.word);
-    console.log("mnemonicWords:", mnemonicWords);
     if (twelveWord) {
       mnemonicWords.splice(12, 12);
     }
-    console.log("mnemonicWords:", mnemonicWords);
     const hasEmptyWord = !!mnemonicWords.filter((word) => !word).length;
     if (hasEmptyWord) {
       throw new Error(trans('Please fill all words'));
