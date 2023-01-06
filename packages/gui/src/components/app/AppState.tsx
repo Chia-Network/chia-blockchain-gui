@@ -173,8 +173,8 @@ export default function AppState(props: Props) {
     // backendVersion can be in the format of 1.6.1, 1.7.0b3, or 1.7.0b3.dev123
     // version can be in the format of 1.6.1, 1.7.0b3, 1.7.0-b2.dev123, or 1.7.0b3-dev123
 
-    const backendVersionClean = backendVersion.replace(/[-.]/g, '');
-    const guiVersionClean = version.replace(/[-.]/g, '');
+    const backendVersionClean = backendVersion.replace(/[-+.]/g, '');
+    const guiVersionClean = version.replace(/[-+.]/g, '');
 
     if (backendVersionClean !== guiVersionClean) {
       return (
