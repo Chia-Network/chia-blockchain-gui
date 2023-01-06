@@ -13,6 +13,7 @@ import MultiSelectIcon from '../../../assets/img/multi-select.svg';
 import useAllowFilteredShow from '../../../hooks/useAllowFilteredShow';
 import useHiddenNFTs from '../../../hooks/useHiddenNFTs';
 import useHideObjectionableContent from '../../../hooks/useHideObjectionableContent';
+import useNFTGalleryScrollPosition from '../../../hooks/useNFTGalleryScrollPosition';
 import useSyncCache from '../../../hooks/useSyncCache';
 import { mimeTypeRegex, isImage, isDocument, getNFTFileType } from '../../../util/utils';
 import NFTCardLazy from '../NFTCardLazy';
@@ -27,8 +28,6 @@ import SelectedActionsDialog from './SelectedActionsDialog';
 export const defaultCacheSizeLimit = 1024; /* MB */
 
 const maxNFTsPerPage = 200;
-
-let scrollPosition: number = 0;
 
 export function searchableNFTContent(nft: NFTInfo) {
   const items = [
@@ -172,6 +171,7 @@ export default function NFTGallery() {
   const visibilityFilterRef = React.useRef<HTMLInputElement>(null);
   const { isDarkMode } = useDarkMode();
   const [nftTypes, setNftTypes] = useState<any>([]);
+  const [getScrollPosition, setScrollPosition] = useNFTGalleryScrollPosition();
 
   useEffect(() => {
     if (allowNFTsFiltered.length) {
@@ -256,12 +256,13 @@ export default function NFTGallery() {
 
   const restoreScrollPosition = useCallback(() => {
     const scrollHelper = document.getElementById('scroll-helper');
+    const scrollPosition = getScrollPosition();
     if (scrollHelper && scrollPosition > 0) {
       if (scrollHelper?.parentNode) {
         (scrollHelper?.parentNode as HTMLElement).scrollTo(0, scrollPosition);
       }
     }
-  }, []);
+  }, [getScrollPosition]);
 
   useEffect(() => {
     if (isDoneLoadingAllowedNFTs) {
@@ -423,15 +424,11 @@ export default function NFTGallery() {
     return Object.keys(nftTypeKeys).filter((key) => typeFilterArray.indexOf(key) > -1).length;
   }
 
-  function setScrollPosition(e: MouseEvent) {
-    scrollPosition = (e.target as HTMLElement).scrollTop;
-  }
-
   return (
     <LayoutDashboardSub
       // sidebar={<NFTGallerySidebar onWalletChange={setWalletId} />}
       onScroll={(e: MouseEvent) => {
-        setScrollPosition(e);
+        setScrollPosition((e.target as HTMLElement).scrollTop);
         if (allowNFTsFiltered.filter((nft: NFTInfo) => showCard(nft)).length > maxNFTsPerPage) {
           const offset = window.document.body.offsetWidth;
           const perRowCount =
