@@ -5,10 +5,11 @@ import React from 'react';
 type Props = {
   onSuccess: (mnemonicList: string) => void;
   onCancel: () => void;
+  twelveWord: boolean;
 };
 
 export default function MnemonicPaste(props: Props) {
-  const { onSuccess, onCancel } = props;
+  const { onSuccess, onCancel, twelveWord } = props;
   let mnemonicListInput: HTMLInputElement | null;
 
   async function handleSubmit() {
@@ -39,7 +40,7 @@ export default function MnemonicPaste(props: Props) {
   return (
     <Dialog open aria-labelledby="form-dialog-title" fullWidth maxWidth="md" onKeyDown={handleKeyDown}>
       <DialogTitle id="form-dialog-title">
-        <Trans>Paste Mnemonic (24 words)</Trans>
+        <Trans>Paste Mnemonic ({twelveWord ? '12' : '24'} words)</Trans>
       </DialogTitle>
       <DialogContent>
         <TextField

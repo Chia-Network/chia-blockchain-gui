@@ -174,7 +174,7 @@ export default function SelectKey() {
             data-testid="SelectKey-import-from-mnemonics"
             fullWidth
           >
-            <Trans>Import from Mnemonics (24 words)</Trans>
+            <Trans>Import from Mnemonics (12 or 24 words)</Trans>
           </Button>
           <Button
             onClick={handleDeleteAllKeys}

@@ -46,6 +46,7 @@ export default function WalletImport() {
   const trans = useTrans();
   const openDialog = useOpenDialog();
   const [mnemonicPasteOpen, setMnemonicPasteOpen] = React.useState(false);
+  const [twelveWord, setTwelveWord] = React.useState(false);
 
   const methods = useForm<FormData>({
     defaultValues: {
@@ -63,14 +64,16 @@ export default function WalletImport() {
     name: 'mnemonic',
   });
 
+  console.log("fields: ", fields);
+
   const submitMnemonicPaste = (mnemonicList: string) => {
     const mList = mnemonicList.match(/\b(\w+)\b/g);
     const intersection = mList?.filter((element) => options.includes(element));
 
-    if (!intersection || intersection.length !== 24) {
+    if (!intersection || (!twelveWord && intersection.length !== 24) || (twelveWord && intersection.length !== 12) ) {
       openDialog(
         <AlertDialog>
-          <Trans>Your pasted list does not include 24 valid mnemonic words.</Trans>
+          <Trans>Your pasted list does not include {twelveWord ? '12' : '24'} valid mnemonic words.</Trans>
         </AlertDialog>
       );
       return;
@@ -93,6 +96,33 @@ export default function WalletImport() {
     );
   }
 
+  function makeTwelve() {
+    setTwelveWord(true);
+    fields.splice(12, 12);
+  }
+
+  function makeTwentyFour() {
+    setTwelveWord(false);
+    for (let i = 0; i < 12; i++) {
+      fields.push({word: ''});
+    }
+  }
+
+  function TwelveToggle() {
+    if (twelveWord === true) {
+      return (
+        <Button onClick={() => makeTwentyFour()} variant="contained" color="primary" fullWidth>
+          <Trans>Import from 24 word mnemonic</Trans>
+        </Button>
+      );
+    }
+    return (
+      <Button onClick={() => makeTwelve()} variant="contained" color="primary" fullWidth>
+        <Trans>Import from 12 word mnemonic</Trans>
+      </Button>
+    );
+  }
+
   async function handleSubmit(values: FormData) {
     if (isSubmitting) {
       return;
@@ -100,6 +130,11 @@ export default function WalletImport() {
 
     const { mnemonic, label } = values;
     const mnemonicWords = mnemonic.map((item) => item.word);
+    console.log("mnemonicWords:", mnemonicWords);
+    if (twelveWord) {
+      mnemonicWords.splice(12, 12);
+    }
+    console.log("mnemonicWords:", mnemonicWords);
     const hasEmptyWord = !!mnemonicWords.filter((word) => !word).length;
     if (hasEmptyWord) {
       throw new Error(trans('Please fill all words'));
@@ -126,8 +161,14 @@ export default function WalletImport() {
             <Trans>Import Wallet from Mnemonics</Trans>
           </Typography>
           <Typography variant="subtitle1" align="center">
-            <Trans>Enter the 24 word mnemonic that you have saved in order to restore your Chia wallet.</Trans>
+            <Trans>Enter the {twelveWord ? '12' : '24'} word mnemonic that you have saved in order to restore your Chia wallet.</Trans>
           </Typography>
+          <Grid container>
+            <Grid xs={0} md={4} item />
+            <Grid xs={12} md={4} item>
+              <TwelveToggle />
+            </Grid>
+          </Grid>
           <Grid spacing={2} rowSpacing={3} container>
             {fields.map((field, index) => (
               <Grid key={field.id} xs={6} sm={4} md={2} item>
@@ -159,7 +200,7 @@ export default function WalletImport() {
                   <Trans>Next</Trans>
                 </ButtonLoading>
                 <ActionButtons />
-                {mnemonicPasteOpen && <MnemonicPaste onSuccess={submitMnemonicPaste} onCancel={closeMnemonicPaste} />}
+                {mnemonicPasteOpen && <MnemonicPaste onSuccess={submitMnemonicPaste} onCancel={closeMnemonicPaste} twelveWord={twelveWord} />}
               </Flex>
             </Grid>
           </Grid>
