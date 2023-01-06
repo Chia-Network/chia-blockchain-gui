@@ -28,7 +28,7 @@ export const defaultCacheSizeLimit = 1024; /* MB */
 
 const maxNFTsPerPage = 200;
 
-const scrollPosition = new Map();
+let scrollPosition: number = 0;
 
 export function searchableNFTContent(nft: NFTInfo) {
   const items = [
@@ -160,7 +160,7 @@ export default function NFTGallery() {
   const [nfts, setNfts] = useState<NFTInfo[]>([]);
   const [hideObjectionableContent] = useHideObjectionableContent();
   const { isSyncingCache } = useSyncCache();
-  const { allowNFTsFiltered, allowedNFTsLoading } = useAllowFilteredShow(
+  const { allowNFTsFiltered, isDoneLoadingAllowedNFTs } = useAllowFilteredShow(
     filteredNFTs,
     hideObjectionableContent,
     isLoading || isSyncingCache
@@ -254,22 +254,22 @@ export default function NFTGallery() {
     };
   }, []);
 
-  React.useEffect(() => {
-    if (allowNFTsFiltered.length) {
-      if (document.getElementById('scroll-helper') && scrollPosition.get('position') > 0) {
-        setTimeout(() => {
-          if (document.getElementById('scroll-helper')?.parentNode) {
-            (document.getElementById('scroll-helper')?.parentNode as HTMLElement).scrollTo(
-              0,
-              scrollPosition.get('position')
-            );
-          }
-        }, 0);
+  const restoreScrollPosition = useCallback(() => {
+    const scrollHelper = document.getElementById('scroll-helper');
+    if (scrollHelper && scrollPosition > 0) {
+      if (scrollHelper?.parentNode) {
+        (scrollHelper?.parentNode as HTMLElement).scrollTo(0, scrollPosition);
       }
     }
-  }, [allowNFTsFiltered.length]);
+  }, []);
 
-  React.useEffect(() => {
+  useEffect(() => {
+    if (isDoneLoadingAllowedNFTs) {
+      restoreScrollPosition();
+    }
+  }, [restoreScrollPosition, isDoneLoadingAllowedNFTs]);
+
+  useEffect(() => {
     const nftTypesObject: any = {};
     if (allowNFTsFilteredNftIds.length && nfts.length) {
       nfts
@@ -324,7 +324,7 @@ export default function NFTGallery() {
 
   const [selectedNFTIds, setSelectedNFTIds] = useLocalStorage('gallery-selected-nfts', []);
 
-  if (isLoading || allowedNFTsLoading) {
+  if (isLoading) {
     return (
       <LoadingWrapper>
         <Loading center />
@@ -333,7 +333,7 @@ export default function NFTGallery() {
   }
 
   function showCount() {
-    return filteredNFTs.filter((nft: NFTInfo) => {
+    return allowNFTsFiltered.filter((nft: NFTInfo) => {
       if (applyTypeFilter(nft) === false) {
         return false;
       }
@@ -423,11 +423,15 @@ export default function NFTGallery() {
     return Object.keys(nftTypeKeys).filter((key) => typeFilterArray.indexOf(key) > -1).length;
   }
 
+  function setScrollPosition(e: MouseEvent) {
+    scrollPosition = (e.target as HTMLElement).scrollTop;
+  }
+
   return (
     <LayoutDashboardSub
       // sidebar={<NFTGallerySidebar onWalletChange={setWalletId} />}
       onScroll={(e: MouseEvent) => {
-        scrollPosition.set('position', (e.target as HTMLElement).scrollTop);
+        setScrollPosition(e);
         if (allowNFTsFiltered.filter((nft: NFTInfo) => showCard(nft)).length > maxNFTsPerPage) {
           const offset = window.document.body.offsetWidth;
           const perRowCount =
@@ -532,7 +536,7 @@ export default function NFTGallery() {
       }
     >
       <div id="scroll-helper" />
-      {!nfts?.length && !isLoading && !allowedNFTsLoading && !isSyncingCache ? (
+      {!nfts?.length && !isLoading && !isSyncingCache ? (
         <NFTGalleryHero />
       ) : (
         <>
@@ -574,7 +578,7 @@ export default function NFTGallery() {
                   xl={3}
                   key={nft.$nftId}
                   item
-                  style={{ display: showCard(nft) ? 'block' : 'none' }}
+                  style={{ display: showCard(nft) ? 'block' : 'none', height: '380px' }}
                   className={gridClassNames.join(' ')}
                 >
                   <NFTCardLazy
