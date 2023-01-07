@@ -17,7 +17,7 @@ import React, { useState, useEffect, ReactNode, useMemo } from 'react';
 import ModeServices, { SimulatorServices } from '../../constants/ModeServices';
 import useEnableDataLayerService from '../../hooks/useEnableDataLayerService';
 import useEnableFilePropagationServer from '../../hooks/useEnableFilePropagationServer';
-import { lruMap } from '../../hooks/useNFTMetadata';
+import useNFTMetadataLRU from '../../hooks/useNFTMetadataLRU';
 import { eventEmitter } from '../nfts/NFTContextualActions';
 import AppAutoLogin from './AppAutoLogin';
 import AppKeyringMigrator from './AppKeyringMigrator';
@@ -55,6 +55,7 @@ export default function AppState(props: Props) {
   const [versionDialog, setVersionDialog] = useState<boolean>(true);
   const { data: backendVersion } = useGetVersionQuery();
   const { version } = useAppVersion();
+  const lru = useNFTMetadataLRU();
 
   const runServices = useMemo<ServiceName[] | undefined>(() => {
     if (mode) {
@@ -120,8 +121,8 @@ export default function AppState(props: Props) {
           localStorage.removeItem(key);
           const nftId = key.replace('thumb-cache-', '').replace('metadata-cache-', '').replace('content-cache-', '');
           eventEmitter.emit(`force-reload-metadata-${nftId}`);
-          if (lruMap.get(nftId)) {
-            lruMap.delete(nftId);
+          if (lru.get(nftId)) {
+            lru.delete(nftId);
           }
         }
       } catch (err) {

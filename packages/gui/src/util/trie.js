@@ -39,7 +39,7 @@ Trie.prototype.insert = function (word) {
 
     node = node.children[word[i]];
 
-    if (i == word.length - 1) {
+    if (i === word.length - 1) {
       node.end = true;
     }
   }

@@ -24,7 +24,7 @@ export default function useFetchNFTs(
           walletId: Number(walletId), // Add in the source wallet id
         }))
       ),
-    [data, isLoading]
+    [data]
   );
 
   return { isLoading, nfts };

@@ -1,13 +1,14 @@
-import { NFTInfo } from '@chia-network/api';
-import { usePersistState, useDarkMode } from '@chia-network/core';
+import { NFTInfo, Wallet } from '@chia-network/api';
+import { useGetNFTWallets } from '@chia-network/api-react';
+import { useDarkMode } from '@chia-network/core';
 import { t, Trans } from '@lingui/macro';
 import React from 'react';
 import styled from 'styled-components';
 
 import useAllowFilteredShow from '../../hooks/useAllowFilteredShow';
+import useFetchNFTs from '../../hooks/useFetchNFTs';
 import useHideObjectionableContent from '../../hooks/useHideObjectionableContent';
 import NFTPreview from '../nfts/NFTPreview';
-import useFilteredNFTs from '../nfts/gallery/NFTfilteredNFTs';
 
 const SearchNFTrow = styled.div`
   cursor: pointer;
@@ -92,13 +93,13 @@ function highlightSearchedString(searchString: string, str: string) {
 
 export default function OfferBuilderValueSearch(props: OfferBuilderValueSearchProps) {
   const { value, onSelectNFT } = props;
-  const [walletId] = usePersistState<number | undefined>(undefined, 'nft-profile-dropdown');
-  const { filteredNFTs, isLoading } = useFilteredNFTs({ walletId });
+  const { wallets: nftWallets } = useGetNFTWallets();
+  const { nfts, isLoading } = useFetchNFTs(nftWallets.map((wallet: Wallet) => wallet.id));
   const [hideObjectionableContent] = useHideObjectionableContent();
-  const { allowNFTsFiltered } = useAllowFilteredShow(filteredNFTs, hideObjectionableContent, isLoading);
+  const { allowNFTsFiltered } = useAllowFilteredShow(nfts, hideObjectionableContent, isLoading);
   const { isDarkMode } = useDarkMode();
 
-  function isNFTInSearchValue(searchString, nft: NFTInfo) {
+  function isNFTInSearchValue(searchString: string, nft: NFTInfo) {
     const metadataObj = allowNFTsFiltered.find((obj: any) => obj.nftId === nft.$nftId) || {};
     if (metadataObj.metadata?.name?.toLowerCase().indexOf(searchString.toLowerCase()) > -1) {
       return true;
@@ -116,7 +117,7 @@ export default function OfferBuilderValueSearch(props: OfferBuilderValueSearchPr
     onSelectNFT(nftId);
   }
 
-  const nftPreviews = filteredNFTs
+  const nftPreviews = nfts
     .map((nft: NFTInfo) => {
       const metadataObj = allowNFTsFiltered.find((obj: any) => obj.nftId === nft.$nftId) || {};
       const metadata = metadataObj?.metadata;

@@ -1,6 +1,6 @@
 import type NFTInfo from '@chia-network/api';
 import type LRU from '@chia-network/core';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 
 import getRemoteFileContent from '../util/getRemoteFileContent';
 import { getMetadataObject } from './useNFTMetadata';
@@ -60,16 +60,20 @@ async function getMetadata(nft: NFTInfo | undefined, lru: LRU<string, any>) {
     lru.set(nftId, stringifiedCacheObject);
     localStorage.setItem(`metadata-cache-${nft.$nftId}`, stringifiedCacheObject);
   }
-  return { nftId: nft?.$nftId, metadata };
+  return { ...nft, nftId: nft?.$nftId, metadata };
 }
 
 export default function useAllowFilteredShow(nfts: NFTInfo[], hideObjectionableContent: boolean, isLoading: boolean) {
   const [allowNFTsFiltered, setAllowNFTsFiltered] = useState<NFTInfo[]>([]);
-  const [isLoadingLocal, setIsLoadingLocal] = useState(true);
+  const [isGettingMetadata, setIsGettingMetadata] = useState(true);
   const nftArray = React.useRef<NFTInfo[]>([]);
   const lru = useNFTMetadataLRU();
 
-  const fetchMultipleMetadata = async () => {
+  const nftsLengthOld = React.useRef(0);
+
+  /* eslint no-await-in-loop: off -- cannot be executed in parallel, because of too many network requests,
+     todo: optimize to have a loop of 50 parallel requests */
+  const fetchMultipleMetadata = useCallback(async () => {
     nftArray.current = [];
     for (let i = 0; i < nfts.length; i++) {
       const nftWithMetadata: any = (await getMetadata(nfts[i], lru)) || { nftId: nfts[i]?.$nftId };
@@ -79,19 +83,22 @@ export default function useAllowFilteredShow(nfts: NFTInfo[], hideObjectionableC
         (nftWithMetadata?.metadata && !nftWithMetadata?.metadata.sensitive_content)
       ) {
         nftArray.current = nftArray.current.concat(nftWithMetadata);
+        /* compromise - rerender gallery only every 10% of the size of your whole collection */
+        if (i % (Math.floor(nfts.length / 10) + 1) === 0 && i > 0) {
+          setAllowNFTsFiltered(nftArray.current);
+        }
       }
     }
     setAllowNFTsFiltered(nftArray.current);
-    setIsLoadingLocal(false);
-  };
+    setIsGettingMetadata(false);
+  }, [hideObjectionableContent, lru, nfts]);
 
   useEffect(() => {
-    if (nfts.length && !isLoading) {
+    if (!isLoading) {
       fetchMultipleMetadata();
-    } else {
-      setIsLoadingLocal(false);
+      nftsLengthOld.current = nfts.length;
     }
-  }, [nfts[0], isLoading]);
+  }, [isLoading, nfts.length, fetchMultipleMetadata]);
 
-  return { allowNFTsFiltered, allowedNFTsLoading: isLoadingLocal };
+  return { allowNFTsFiltered, isDoneLoadingAllowedNFTs: !isGettingMetadata };
 }

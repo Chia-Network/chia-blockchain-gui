@@ -13,13 +13,6 @@ import NFTPreview from './NFTPreview';
 
 const StyledCardContent = styled(CardContent)``;
 
-const StyledLoadingCardContent = styled(CardContent)`
-  min-height: 362px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
 const MultipleSelectionCheckmark = styled.div`
   position: absolute;
   right: 11px;
@@ -64,7 +57,7 @@ export type NFTCardProps = {
   canExpandDetails: boolean;
   availableActions: NFTContextualActionTypes;
   isOffer: boolean;
-  selectedItemAction?: () => void;
+  selectedItemAction?: (nft: NFTInfo) => void;
 };
 
 export default function NFTCard(props: NFTCardProps) {
@@ -76,7 +69,7 @@ export default function NFTCard(props: NFTCardProps) {
     selectedItemAction,
   } = props;
 
-  const [metadata, setMetadata] = React.useState({});
+  const [metadata, setMetadata] = React.useState<any>({});
 
   const navigate = useNavigate();
 

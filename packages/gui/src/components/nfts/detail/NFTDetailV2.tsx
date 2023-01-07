@@ -27,7 +27,7 @@ export default function NFTDetail() {
   });
   const { wallets: nftWallets, isLoading: isLoadingWallets } = useGetNFTWallets();
   const { nfts, isLoading: isLoadingNFTs } = useFetchNFTs(
-    nftWallets.map((wallet) => wallet.id),
+    nftWallets.map((wallet: any) => wallet.id),
     { skip: !!isLoadingWallets }
   );
 
@@ -54,7 +54,7 @@ function NFTDetailLoaded(props: NFTDetailLoadedProps) {
   const [validationProcessed, setValidationProcessed] = useState(false);
   const nftRef = React.useRef(null);
   const [isValid, setIsValid] = useState(false);
-  const [metadata, setMetadata] = React.useState({});
+  const [metadata, setMetadata] = React.useState<any>({});
 
   const uri = nft?.dataUris?.[0];
   const [contentCache] = useLocalStorage(`content-cache-${nftId}`, {});
@@ -67,7 +67,7 @@ function NFTDetailLoaded(props: NFTDetailLoadedProps) {
       const { ipcRenderer } = window as any;
       ipcRenderer.invoke('abortFetchingBinary', uri);
     },
-    []
+    [uri]
   );
 
   const ValidateContainer = styled.div`

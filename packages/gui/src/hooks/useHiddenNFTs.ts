@@ -20,7 +20,7 @@ export default function useHiddenNFTs() {
         hide
       );
     },
-    [isNFTHidden]
+    [setIsNFTMultipleHidden]
   );
 
   return [handleIsNFTHidden, handleSetIsHidden, hiddenNFTs, setHiddenMultiple];
