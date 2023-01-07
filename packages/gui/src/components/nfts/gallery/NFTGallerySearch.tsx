@@ -1,5 +1,5 @@
 import { useDarkMode } from '@chia-network/core';
-import { InputBase } from '@mui/material';
+import { InputBase, InputBaseProps } from '@mui/material';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -44,13 +44,13 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 const SearchIcon = styled(CheckIcon)``;
 
-export type SearchProps = {
-  onChange: (value: string) => void;
+export type SearchProps = InputBaseProps & {
+  onUpdate: (value: string) => void;
   placeholder?: string;
 };
 
 export default function Search(props: SearchProps) {
-  const { onChange, placeholder } = props;
+  const { onUpdate, placeholder, ...rest } = props;
   const { isDarkMode } = useDarkMode();
 
   return (
@@ -58,7 +58,11 @@ export default function Search(props: SearchProps) {
       <SearchIconWrapper>
         <SearchIcon />
       </SearchIconWrapper>
-      <StyledInputBase onInput={(event) => onChange(event.target.value)} placeholder={placeholder} />
+      <StyledInputBase
+        onInput={(event) => onUpdate((event.target as HTMLInputElement).value)}
+        placeholder={placeholder}
+        {...rest}
+      />
     </SearchBase>
   );
 }
