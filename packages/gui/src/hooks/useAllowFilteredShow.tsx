@@ -94,7 +94,7 @@ export default function useAllowFilteredShow(nfts: NFTInfo[], hideObjectionableC
   }, [hideObjectionableContent, lru, nfts]);
 
   useEffect(() => {
-    if (nfts.length && !isLoading && nfts.length !== nftsLengthOld.current) {
+    if (!isLoading) {
       fetchMultipleMetadata();
       nftsLengthOld.current = nfts.length;
     }

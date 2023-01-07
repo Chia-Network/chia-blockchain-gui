@@ -1,10 +1,10 @@
 import type { NFTInfo } from '@chia-network/api';
 import { useLocalStorage } from '@chia-network/api-react';
-import { Flex, LayoutDashboardSub, Loading, /* useTrans, */ usePersistState, useDarkMode } from '@chia-network/core';
+import { Flex, LayoutDashboardSub, Loading, /* useTrans, */ useDarkMode } from '@chia-network/core';
 import { WalletReceiveAddressField } from '@chia-network/wallets';
 import { t } from '@lingui/macro';
 import { FormControlLabel, RadioGroup, FormControl, Checkbox, Grid } from '@mui/material';
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState, useCallback, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -18,6 +18,7 @@ import useSyncCache from '../../../hooks/useSyncCache';
 import { mimeTypeRegex, isImage, isDocument, getNFTFileType } from '../../../util/utils';
 import NFTCardLazy from '../NFTCardLazy';
 import { NFTContextualActionTypes } from '../NFTContextualActions';
+import { NFTFilterContext } from '../NFTFilterProvider';
 import NFTProfileDropdown from '../NFTProfileDropdown';
 import FilterPill from './FilterPill';
 import NFTGalleryHero from './NFTGalleryHero';
@@ -150,11 +151,22 @@ const allowNFTsFilteredObject: any = {};
 let allowNFTsFilteredNftIds: string[] = [];
 
 export default function NFTGallery() {
-  const [search, setSearch] = useState('');
+  const filterContext = useContext(NFTFilterContext);
+
+  if (!filterContext) {
+    throw new Error('NFTGallery must be used within a NFTFilterProvider');
+  }
+
+  const walletId = filterContext.getWalletId();
+  const { setWalletId } = filterContext;
+  const typeFilter = filterContext.getTypeFilter();
+  const { setTypeFilter } = filterContext;
+  const visibilityFilters = filterContext.getVisibilityFilters();
+  const { setVisibilityFilters } = filterContext;
+  const search = filterContext.getSearchFilter();
+  const { setSearchFilter: setSearch } = filterContext;
   const [inMultipleSelectionMode, toggleMultipleSelection] = useState(false);
-  const [typeFilter, setTypeFilter] = useLocalStorage('typeFilter', []); /* exclude types that are inside array */
   const [isNFTHidden] = useHiddenNFTs();
-  const [walletId, setWalletId] = usePersistState<number | undefined>(undefined, 'nft-profile-dropdown');
   const { filteredNFTs, isLoading } = useFilteredNFTs({ walletId });
   const [nfts, setNfts] = useState<NFTInfo[]>([]);
   const [hideObjectionableContent] = useHideObjectionableContent();
@@ -166,12 +178,12 @@ export default function NFTGallery() {
   );
 
   const [filtersShown, setFiltersShown] = useState<string[]>([]);
-  const [visibilityFilters, setVisibilityFilters] = useLocalStorage('visibilityFilters', ['visible']);
   const typesFilterRef = React.useRef<HTMLInputElement>(null);
   const visibilityFilterRef = React.useRef<HTMLInputElement>(null);
   const { isDarkMode } = useDarkMode();
   const [nftTypes, setNftTypes] = useState<any>([]);
   const [getScrollPosition, setScrollPosition] = useNFTGalleryScrollPosition();
+  const allTypes = Array.from(new Set([...Object.keys(nftTypes), ...typeFilter]));
 
   useEffect(() => {
     if (allowNFTsFiltered.length) {
@@ -381,29 +393,27 @@ export default function NFTGallery() {
   }
 
   function renderTypeFilter() {
-    if (Object.keys(nftTypes).length === 0) return null;
+    if (Object.keys(allTypes).length === 0) return null;
     return (
       <div>
         <FormControl>
           <RadioGroup>
-            {Object.keys(nftTypes)
-              .sort()
-              .map((key: string) => (
-                <FormControlLabel
-                  control={<Checkbox />}
-                  label={t`${key} (${nftTypes[key]})`}
-                  checked={typeFilter.indexOf(key) === -1}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    setTypeFilter(
-                      typeFilter.indexOf(key) === -1
-                        ? typeFilter.concat(key)
-                        : typeFilter.filter((x: string) => key !== x)
-                    );
-                  }}
-                />
-              ))}
+            {allTypes.sort().map((key: string) => (
+              <FormControlLabel
+                control={<Checkbox />}
+                label={t`${key} (${nftTypes[key] || 0})`}
+                checked={typeFilter.indexOf(key) === -1}
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  setTypeFilter(
+                    typeFilter.indexOf(key) === -1
+                      ? typeFilter.concat(key)
+                      : typeFilter.filter((x: string) => key !== x)
+                  );
+                }}
+              />
+            ))}
           </RadioGroup>
         </FormControl>
       </div>
@@ -458,7 +468,7 @@ export default function NFTGallery() {
         <>
           <Flex gap={2} alignItems="stretch" flexWrap="wrap" justifyContent="space-between">
             <NFTProfileDropdown onChange={setWalletId} walletId={walletId} />
-            <Search onChange={setSearch} placeholder={t`Search...`} />
+            <Search onUpdate={setSearch} placeholder={t`Search...`} defaultValue={search || undefined} />
             <WalletReceiveAddressField variant="outlined" size="small" fullWidth isDarkMode={isDarkMode} />
             <MultiSelectAndFilterWrapper className={inMultipleSelectionMode ? 'active' : ''} isDarkMode={isDarkMode}>
               <MultiSelectIconStyled
@@ -473,13 +483,13 @@ export default function NFTGallery() {
             {t`Showing ${showCount()} of ${allowNFTsFiltered.length} items`}
 
             <Filters>
-              <div ref={typesFilterRef} style={{ display: Object.keys(nftTypes).length > 1 ? 'flex' : 'none' }}>
+              <div ref={typesFilterRef} style={{ display: allTypes.length > 0 ? 'flex' : 'none' }}>
                 <FilterPill
                   setFiltersShown={setFiltersShown}
                   filtersShown={filtersShown}
                   which="types"
                   title={t`Types (${Object.keys(nftTypes).length - checkedNftTypes(nftTypes, typeFilter)}/${
-                    Object.keys(nftTypes).length
+                    allTypes.length
                   })`}
                   isDarkMode={isDarkMode}
                 >
