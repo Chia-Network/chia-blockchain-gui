@@ -97,7 +97,7 @@ export default function TextField(props: TextFieldProps): JSX.Element {
   } = useFormContext();
   const normalizedRules = React.useMemo(() => normalizeRules(rules), [rules]);
   const render = React.useCallback(
-    ({ field: { onChange, value } }) => {
+    ({ field: { onChange, value, ref } }) => {
       function handleChange(...args) {
         onChange(...args);
         if (baseOnChange) {
@@ -119,6 +119,7 @@ export default function TextField(props: TextFieldProps): JSX.Element {
 
       return (
         <MaterialTextField
+          inputRef={ref}
           value={value}
           onChange={handleChange}
           inputProps={{
