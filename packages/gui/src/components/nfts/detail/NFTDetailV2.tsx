@@ -1,15 +1,18 @@
 import type { NFTInfo } from '@chia-network/api';
 import { useGetNFTInfoQuery, useGetNFTWallets, useLocalStorage } from '@chia-network/api-react';
-import { Back, Flex, LayoutDashboardSub, Loading, useOpenDialog } from '@chia-network/core';
+import { Flex, LayoutDashboardSub, Loading, useOpenDialog, Tooltip } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
-import { MoreVert } from '@mui/icons-material';
+import { MoreVert, ArrowBackIosNew } from '@mui/icons-material';
 import { Box, Grid, Typography, IconButton, Button } from '@mui/material';
 import React, { useMemo, useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import isURL from 'validator/lib/isURL';
 
+import NextIcon from '../../../assets/img/next.svg';
+import PreviousIcon from '../../../assets/img/previous.svg';
 import useFetchNFTs from '../../../hooks/useFetchNFTs';
+import useShownNFTs from '../../../hooks/useShownNFTs';
 import { launcherIdFromNFTId } from '../../../util/nfts';
 import { isImage } from '../../../util/utils';
 import NFTContextualActions, { NFTContextualActionTypes, eventEmitter } from '../NFTContextualActions';
@@ -59,6 +62,8 @@ function NFTDetailLoaded(props: NFTDetailLoadedProps) {
   const uri = nft?.dataUris?.[0];
   const [contentCache] = useLocalStorage(`content-cache-${nftId}`, {});
   const [validateNFT, setValidateNFT] = useState(false);
+  const [getVisibleNFTs] = useShownNFTs();
+  const navigate = useNavigate();
 
   nftRef.current = nft;
 
@@ -70,6 +75,39 @@ function NFTDetailLoaded(props: NFTDetailLoadedProps) {
     [uri]
   );
 
+  const detailPosition = getVisibleNFTs().indexOf(nftId);
+  const isLastPosition = getVisibleNFTs().length === detailPosition + 1;
+  const navigateToDetail = React.useCallback(
+    (offset: number) => {
+      if (Array.isArray(getVisibleNFTs())) {
+        if (detailPosition >= 0 && detailPosition < getVisibleNFTs().length) {
+          navigate(`/dashboard/nfts/${getVisibleNFTs()[detailPosition + offset]}`);
+        }
+      }
+    },
+    [getVisibleNFTs, navigate, detailPosition]
+  );
+
+  useEffect(() => {
+    function detailKeyPress(e: any) {
+      if (e.code === 'ArrowLeft') {
+        navigateToDetail(-1);
+      }
+      if (e.code === 'ArrowRight') {
+        navigateToDetail(1);
+      }
+    }
+    document.addEventListener('keyup', detailKeyPress);
+    return () => {
+      document.removeEventListener('keyup', detailKeyPress);
+    };
+  }, [navigateToDetail]);
+
+  useEffect(() => {
+    const { ipcRenderer } = window as any;
+    ipcRenderer.invoke('abortFetchingBinary', uri);
+  }, [uri]);
+
   const ValidateContainer = styled.div`
     padding-top: 25px;
     text-align: center;
@@ -77,6 +115,42 @@ function NFTDetailLoaded(props: NFTDetailLoadedProps) {
 
   const ErrorMessage = styled.div`
     color: red;
+  `;
+
+  const LeftRightNavigation = styled.div`
+    padding: 30px 0 20px 0;
+    text-align: right;
+    font-size: 14px;
+    display: block;
+    > div {
+      background: #fafafa;
+      align-items: center;
+      border: 1px solid #e0e0e0;
+      padding: 10px 15px 10px 5px;
+      border-radius: 8px;
+      display: inline-flex;
+      > div + div {
+        margin-left: 25px;
+      }
+    }
+  `;
+
+  const NavigationButton = styled.div`
+    display: inline-flex;
+    cursor: pointer;
+    user-select: none;
+    color: rgba(0, 0, 0, 0.6);
+    > svg {
+      margin: 0 10px;
+    }
+    &.disabled {
+      color: rgba(0, 0, 0, 0.2);
+      > svg {
+        path {
+          stroke: rgba(0, 0, 0, 0.15);
+        }
+      }
+    }
   `;
 
   function handleShowFullScreen() {
@@ -120,6 +194,10 @@ function NFTDetailLoaded(props: NFTDetailLoadedProps) {
     setIsValid(valid);
   }
 
+  function handleGoBack() {
+    navigate('/dashboard/nfts');
+  }
+
   return (
     <Flex flexDirection="column" gap={2}>
       <Flex sx={{ bgcolor: 'background.paper' }} justifyContent="center" py={{ xs: 2, sm: 3, md: 7 }} px={3}>
@@ -135,9 +213,34 @@ function NFTDetailLoaded(props: NFTDetailLoadedProps) {
           >
             {nft && (
               <Flex flexDirection="column">
+                <Box sx={{ textAlign: 'center', color: 'rgba(0, 0, 0, 0.6)', paddingBottom: '20px' }}>
+                  <Tooltip title={<Trans>Use left and right arrow keys to navigate</Trans>}>
+                    <Typography variant="body2">
+                      {Array.isArray(getVisibleNFTs())
+                        ? `${getVisibleNFTs().indexOf(nftId) + 1} / ${getVisibleNFTs().length}`
+                        : null}
+                    </Typography>
+                  </Tooltip>
+                </Box>
+
                 <Box onClick={handleShowFullScreen} sx={{ cursor: 'pointer' }}>
                   <NFTPreview nft={nft} width="100%" height="412px" fit="contain" setNFTCardMetadata={setMetadata} />
                 </Box>
+                <LeftRightNavigation>
+                  <div>
+                    <NavigationButton
+                      onClick={() => navigateToDetail(-1)}
+                      className={detailPosition === 0 ? 'disabled' : ''}
+                    >
+                      <PreviousIcon />
+                      <Trans>Previous</Trans>
+                    </NavigationButton>
+                    <NavigationButton onClick={() => navigateToDetail(1)} className={isLastPosition ? 'disabled' : ''}>
+                      <NextIcon />
+                      <Trans>Next</Trans>
+                    </NavigationButton>
+                  </div>
+                </LeftRightNavigation>
                 <ValidateContainer>{renderValidationState()}</ValidateContainer>
                 <NFTProgressBar
                   nftIdUrl={`${nft.$nftId}_${uri}`}
@@ -148,7 +251,9 @@ function NFTDetailLoaded(props: NFTDetailLoadedProps) {
             )}
           </Box>
           <Box position="absolute" left={1} top={1}>
-            <Back iconStyle={{ backgroundColor: 'action.hover' }} />
+            <IconButton onClick={handleGoBack} sx={{ backgroundColor: 'action.hover' }}>
+              <ArrowBackIosNew />
+            </IconButton>
           </Box>
         </Flex>
       </Flex>
