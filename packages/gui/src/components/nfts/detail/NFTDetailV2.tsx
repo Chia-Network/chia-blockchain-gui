@@ -1,6 +1,6 @@
 import type { NFTInfo } from '@chia-network/api';
 import { useGetNFTInfoQuery, useGetNFTWallets, useLocalStorage } from '@chia-network/api-react';
-import { Flex, LayoutDashboardSub, Loading, useOpenDialog, Tooltip } from '@chia-network/core';
+import { Flex, LayoutDashboardSub, Loading, useOpenDialog, Tooltip, useDarkMode } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { MoreVert, ArrowBackIosNew } from '@mui/icons-material';
 import { Box, Grid, Typography, IconButton, Button } from '@mui/material';
@@ -64,6 +64,7 @@ function NFTDetailLoaded(props: NFTDetailLoadedProps) {
   const [validateNFT, setValidateNFT] = useState(false);
   const [getVisibleNFTs] = useShownNFTs();
   const navigate = useNavigate();
+  const { isDarkMode } = useDarkMode();
 
   nftRef.current = nft;
 
@@ -123,7 +124,7 @@ function NFTDetailLoaded(props: NFTDetailLoadedProps) {
     font-size: 14px;
     display: block;
     > div {
-      background: #fafafa;
+      background: ${() => (isDarkMode ? '#333' : '#fafafa')};
       align-items: center;
       border: 1px solid #e0e0e0;
       padding: 10px 15px 10px 5px;
@@ -139,18 +140,25 @@ function NFTDetailLoaded(props: NFTDetailLoadedProps) {
     display: inline-flex;
     cursor: pointer;
     user-select: none;
-    color: rgba(0, 0, 0, 0.6);
+    color: ${() => (isDarkMode ? '#fff' : 'rgba(0, 0, 0, 0.6)')};
     > svg {
       margin: 0 10px;
+      path {
+        stroke: ${() => (isDarkMode ? '#ccc' : 'rgba(0, 0, 0, 0.6)')};
+      }
     }
     &.disabled {
-      color: rgba(0, 0, 0, 0.2);
+      color: ${() => (isDarkMode ? '#666' : 'rgba(0, 0, 0, 0.2)')};
       > svg {
         path {
-          stroke: rgba(0, 0, 0, 0.15);
+          stroke: ${() => (isDarkMode ? '#666' : 'rgba(0, 0, 0, 0.6)')};
         }
       }
     }
+  `;
+
+  const TypographyStyled = styled(Typography)`
+    color: ${() => (isDarkMode ? '#fff' : '#333')};
   `;
 
   function handleShowFullScreen() {
@@ -215,14 +223,13 @@ function NFTDetailLoaded(props: NFTDetailLoadedProps) {
               <Flex flexDirection="column">
                 <Box sx={{ textAlign: 'center', color: 'rgba(0, 0, 0, 0.6)', paddingBottom: '20px' }}>
                   <Tooltip title={<Trans>Use left and right arrow keys to navigate</Trans>}>
-                    <Typography variant="body2">
+                    <TypographyStyled variant="body2">
                       {Array.isArray(getVisibleNFTs())
                         ? `${getVisibleNFTs().indexOf(nftId) + 1} / ${getVisibleNFTs().length}`
                         : null}
-                    </Typography>
+                    </TypographyStyled>
                   </Tooltip>
                 </Box>
-
                 <Box onClick={handleShowFullScreen} sx={{ cursor: 'pointer' }}>
                   <NFTPreview nft={nft} width="100%" height="412px" fit="contain" setNFTCardMetadata={setMetadata} />
                 </Box>
