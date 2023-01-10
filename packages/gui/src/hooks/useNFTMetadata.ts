@@ -9,7 +9,7 @@ import useNFTMetadataLRU from './useNFTMetadataLRU';
 export const MAX_FILE_SIZE = 100 * 1024 * 1024; // 100 MB
 
 export function getMetadataObject(nftId: string, lru: LRU<string, any>): any {
-  let parsedMetadataObject = {};
+  let parsedMetadataObject: { isValid?: boolean; json?: string; metadata?: Record<string, any> } = {};
   try {
     // ============= TRY MEMORY CACHE FIRST ============== //
     const cached = lru.get(nftId);
@@ -26,6 +26,10 @@ export function getMetadataObject(nftId: string, lru: LRU<string, any>): any {
       if (lsCache) {
         parsedMetadataObject = JSON.parse(lsCache);
       }
+    }
+
+    if (parsedMetadataObject.json) {
+      parsedMetadataObject.metadata = JSON.parse(parsedMetadataObject.json);
     }
   } catch (e) {
     /* todo */
