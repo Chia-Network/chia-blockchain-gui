@@ -14,6 +14,7 @@ import useAllowFilteredShow from '../../../hooks/useAllowFilteredShow';
 import useHiddenNFTs from '../../../hooks/useHiddenNFTs';
 import useHideObjectionableContent from '../../../hooks/useHideObjectionableContent';
 import useNFTGalleryScrollPosition from '../../../hooks/useNFTGalleryScrollPosition';
+import useShownNFTs from '../../../hooks/useShownNFTs';
 import useSyncCache from '../../../hooks/useSyncCache';
 import { mimeTypeRegex, isImage, isDocument, getNFTFileType } from '../../../util/utils';
 import NFTCardLazy from '../NFTCardLazy';
@@ -184,6 +185,8 @@ export default function NFTGallery() {
   const [nftTypes, setNftTypes] = useState<any>([]);
   const [getScrollPosition, setScrollPosition] = useNFTGalleryScrollPosition();
   const allTypes = Array.from(new Set([...Object.keys(nftTypes), ...typeFilter]));
+  const [, setVisibleNFTs] = useShownNFTs();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (allowNFTsFiltered.length) {
@@ -282,6 +285,31 @@ export default function NFTGallery() {
     }
   }, [restoreScrollPosition, isDoneLoadingAllowedNFTs]);
 
+  const filteredShownNFTs = useCallback(
+    () =>
+      allowNFTsFiltered.filter((nft: NFTInfo) => {
+        if (applyTypeFilter(nft) === false) {
+          return false;
+        }
+        if (visibilityFilters.indexOf('hidden') === -1 && isNFTHidden(nft)) {
+          return false;
+        }
+        if (visibilityFilters.indexOf('visible') === -1 && !isNFTHidden(nft)) {
+          return false;
+        }
+        const metadataObj = allowNFTsFilteredObject[nft.$nftId] || {};
+        const content = searchableNFTContent({ ...nft, metadata: metadataObj.metadata });
+        return content.includes(search.toLowerCase());
+      }),
+    [allowNFTsFiltered, applyTypeFilter, isNFTHidden, visibilityFilters, search]
+  );
+
+  useEffect(() => {
+    if (isDoneLoadingAllowedNFTs) {
+      setVisibleNFTs(filteredShownNFTs().map((nft: NFTInfo) => nft.$nftId));
+    }
+  }, [isDoneLoadingAllowedNFTs, filteredShownNFTs, setVisibleNFTs]);
+
   useEffect(() => {
     const nftTypesObject: any = {};
     if (allowNFTsFilteredNftIds.length && nfts.length) {
@@ -333,8 +361,6 @@ export default function NFTGallery() {
   const nftContainerRef = React.useRef(null);
   const galleryHeroRef = React.useRef(null);
 
-  const navigate = useNavigate();
-
   const [selectedNFTIds, setSelectedNFTIds] = useLocalStorage('gallery-selected-nfts', []);
 
   if (isLoading) {
@@ -343,23 +369,6 @@ export default function NFTGallery() {
         <Loading center />
       </LoadingWrapper>
     );
-  }
-
-  function showCount() {
-    return allowNFTsFiltered.filter((nft: NFTInfo) => {
-      if (applyTypeFilter(nft) === false) {
-        return false;
-      }
-      if (visibilityFilters.indexOf('hidden') === -1 && isNFTHidden(nft)) {
-        return false;
-      }
-      if (visibilityFilters.indexOf('visible') === -1 && !isNFTHidden(nft)) {
-        return false;
-      }
-      const metadataObj = allowNFTsFilteredObject[nft.$nftId] || {};
-      const content = searchableNFTContent({ ...nft, metadata: metadataObj.metadata });
-      return content.includes(search.toLowerCase());
-    }).length;
   }
 
   function selectedItemAction(nftId: string) {
@@ -480,7 +489,7 @@ export default function NFTGallery() {
           </Flex>
 
           <Flex gap={2} alignItems="center" flexWrap="wrap" justifyContent="space-between" sx={{ padding: '10px 0' }}>
-            {t`Showing ${showCount()} of ${allowNFTsFiltered.length} items`}
+            {t`Showing ${filteredShownNFTs().length} of ${allowNFTsFiltered.length} items`}
 
             <Filters>
               <div ref={typesFilterRef} style={{ display: allTypes.length > 0 ? 'flex' : 'none' }}>

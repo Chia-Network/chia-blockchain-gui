@@ -1,5 +1,5 @@
 import { type NFTInfo } from '@chia-network/api';
-import { IconButton, Flex, Loading } from '@chia-network/core';
+import { IconButton, Flex } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { MoreVert } from '@mui/icons-material';
 import { Card, CardActionArea, CardContent, Typography } from '@mui/material';
