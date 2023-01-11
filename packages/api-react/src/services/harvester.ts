@@ -67,7 +67,7 @@ export const harvesterApi = apiWithTag2.injectEndpoints({
           });
 
           if (error) {
-            throw error;
+            throw error as Error;
           }
 
           const refreshResponse = await fetchWithBQ({
@@ -82,7 +82,7 @@ export const harvesterApi = apiWithTag2.injectEndpoints({
           return {
             data,
           };
-        } catch (error: any) {
+        } catch (error) {
           return {
             error,
           };

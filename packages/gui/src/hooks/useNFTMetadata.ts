@@ -2,7 +2,7 @@ import type NFTInfo from '@chia-network/api';
 import type LRU from '@chia-network/core';
 import { useEffect, useState, useCallback } from 'react';
 
-import { eventEmitter } from '../components/nfts/NFTContextualActions';
+import NFTContextualActionsEventEmitter from '../components/nfts/NFTContextualActionsEventEmitter';
 import getRemoteFileContent from '../util/getRemoteFileContent';
 import useNFTMetadataLRU from './useNFTMetadataLRU';
 
@@ -133,11 +133,11 @@ export default function useNFTsMetadata(nfts: NFTInfo[] | undefined) {
 
   useEffect(() => {
     if (nft) {
-      eventEmitter.on(`force-reload-metadata-${nft.$nftId}`, loadReload);
+      NFTContextualActionsEventEmitter.on(`force-reload-metadata-${nft.$nftId}`, loadReload);
     }
     return () => {
       if (nft) {
-        eventEmitter.off(`force-reload-metadata-${nft.$nftId}`, loadReload);
+        NFTContextualActionsEventEmitter.off(`force-reload-metadata-${nft.$nftId}`, loadReload);
       }
     };
   }, [nft, loadReload]);

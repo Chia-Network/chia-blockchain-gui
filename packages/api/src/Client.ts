@@ -1,3 +1,5 @@
+/* eslint-disable no-constant-condition -- Used for waiting for service to start */
+/* eslint-disable no-await-in-loop -- Used for waiting for service to start */
 import EventEmitter from 'events';
 
 import debug from 'debug';
