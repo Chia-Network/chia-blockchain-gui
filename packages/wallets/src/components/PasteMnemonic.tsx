@@ -1,8 +1,14 @@
-import { Form, TextField } from '@chia-network/core';
-import { Trans } from '@lingui/macro';
-import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material';
-import React from 'react';
-import { useForm } from 'react-hook-form';
+import { Form, TextField } from "@chia-network/core";
+import { Trans } from "@lingui/macro";
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+} from "@mui/material";
+import React from "react";
+import { useForm } from "react-hook-form";
 
 type MnemonicPasteFormData = {
   mnemonicList: string;
@@ -11,14 +17,15 @@ type MnemonicPasteFormData = {
 type Props = {
   onSuccess: (mnemonicList: string) => void;
   onCancel: () => void;
+  twelveWord: boolean;
 };
 
 export default function MnemonicPaste(props: Props) {
-  const { onSuccess, onCancel } = props;
+  const { onSuccess, onCancel, twelveWord } = props;
 
   const formMethods = useForm<MnemonicPasteFormData>({
     defaultValues: {
-      mnemonicList: '',
+      mnemonicList: "",
     },
   });
 
@@ -47,11 +54,20 @@ export default function MnemonicPaste(props: Props) {
   }
 
   return (
-    <Dialog open aria-labelledby="form-dialog-title" fullWidth maxWidth="md" onKeyDown={handleKeyDown}>
+    <Dialog
+      open
+      aria-labelledby="form-dialog-title"
+      fullWidth
+      maxWidth="md"
+      onKeyDown={handleKeyDown}
+    >
       <DialogTitle id="form-dialog-title">
-        <Trans>Paste Mnemonic (24 words)</Trans>
+        <Trans>Paste Mnemonic ({twelveWord ? "12" : "24"} words)</Trans>
       </DialogTitle>
-      <Form methods={formMethods} onSubmit={formMethods.handleSubmit(handleSubmit)}>
+      <Form
+        methods={formMethods}
+        onSubmit={formMethods.handleSubmit(handleSubmit)}
+      >
         <DialogContent>
           <TextField
             autoFocus
@@ -70,11 +86,16 @@ export default function MnemonicPaste(props: Props) {
             onClick={handleCancel}
             color="secondary"
             variant="contained"
-            style={{ marginBottom: '8px', marginRight: '8px' }}
+            style={{ marginBottom: "8px", marginRight: "8px" }}
           >
             <Trans>Cancel</Trans>
           </Button>
-          <Button type="submit" color="primary" variant="contained" style={{ marginBottom: '8px', marginRight: '8px' }}>
+          <Button
+            type="submit"
+            color="primary"
+            variant="contained"
+            style={{ marginBottom: "8px", marginRight: "8px" }}
+          >
             <Trans>Import</Trans>
           </Button>
         </DialogActions>
