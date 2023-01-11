@@ -76,20 +76,20 @@ export default function NFTTransferAction(props: NFTTransferActionProps) {
   }
 
   async function handleSubmit(formData: NFTTransferFormData) {
-    const { destination, fee } = formData;
+    const { destination: destinationLocal, fee } = formData;
     const feeInMojos = chiaToMojo(fee || 0);
 
     try {
       if (!currencyCode) {
         throw new Error('Selected network address prefix is not defined');
       }
-      validAddress(destination, [currencyCode.toLowerCase()]);
+      validAddress(destinationLocal, [currencyCode.toLowerCase()]);
     } catch (error) {
       showError(error);
       return;
     }
 
-    const confirmation = await openDialog(<NFTTransferConfirmationDialog destination={destination} fee={fee} />);
+    const confirmation = await openDialog(<NFTTransferConfirmationDialog destination={destinationLocal} fee={fee} />);
 
     if (confirmation) {
       setIsLoading(true);
@@ -98,7 +98,7 @@ export default function NFTTransferAction(props: NFTTransferActionProps) {
         walletId: nft.walletId,
         nftCoinId: nft.nftCoinId,
         launcherId: nft.launcherId,
-        targetAddress: destination,
+        targetAddress: destinationLocal,
         fee: feeInMojos,
       });
       const success = response?.success ?? false;
@@ -111,7 +111,7 @@ export default function NFTTransferAction(props: NFTTransferActionProps) {
           success,
           transferInfo: {
             nftAssetId: nft.nftCoinId,
-            destination,
+            destination: destinationLocal,
             fee,
           },
           error: errorMessage,
@@ -165,8 +165,8 @@ export default function NFTTransferAction(props: NFTTransferActionProps) {
 /* ========================================================================== */
 
 type NFTTransferDialogProps = {
-  open: boolean;
-  onClose: (value: any) => void;
+  open?: boolean;
+  onClose?: (value: any) => void;
   onComplete?: (result?: NFTTransferResult) => void;
   nft: NFTInfo;
   destination?: string;
@@ -176,11 +176,11 @@ export function NFTTransferDialog(props: NFTTransferDialogProps) {
   const { open, onClose, onComplete, nft, destination, ...rest } = props;
 
   function handleClose() {
-    onClose(false);
+    if (onClose) onClose(false);
   }
 
   function handleCompletion(result?: NFTTransferResult) {
-    onClose(true);
+    if (onClose) onClose(true);
     if (onComplete) {
       onComplete(result);
     }
@@ -214,8 +214,3 @@ export function NFTTransferDialog(props: NFTTransferDialogProps) {
     </Dialog>
   );
 }
-
-NFTTransferDialog.defaultProps = {
-  open: false,
-  onClose: () => {},
-};

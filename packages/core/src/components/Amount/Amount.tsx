@@ -19,20 +19,21 @@ export type AmountProps = TextFieldProps & {
   symbol?: string; // if set, overrides the currencyCode. empty string is allowed
   showAmountInMojos?: boolean; // if true, shows the mojo amount below the input field
   dropdownAdornment?: func;
-  // feeMode?: boolean; // if true, amounts are expressed in mojos used to set a transaction fee
+  label?: ReactNode;
   'data-testid'?: string;
 };
 
 export default function Amount(props: AmountProps) {
   const {
     children,
-    name,
+    name = 'amount',
     symbol,
-    showAmountInMojos,
+    showAmountInMojos = true,
     dropdownAdornment,
     variant,
     fullWidth,
     'data-testid': dataTestid,
+    label = <Trans>Amount</Trans>,
     ...rest
   } = props;
   const { control } = useFormContext();
@@ -71,6 +72,7 @@ export default function Amount(props: AmountProps) {
           ),
           style: dropdownAdornment ? { paddingRight: '0' } : undefined,
         }}
+        label={label}
         {...rest}
       />
       <FormHelperText component="div">
@@ -97,11 +99,3 @@ export default function Amount(props: AmountProps) {
     </FormControl>
   );
 }
-
-Amount.defaultProps = {
-  label: <Trans>Amount</Trans>,
-  name: 'amount',
-  children: undefined,
-  showAmountInMojos: true,
-  // feeMode: false,
-};

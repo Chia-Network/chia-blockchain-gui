@@ -37,6 +37,17 @@ This monorepo consists of the following packages:
 
   `// eslint-disable-next-line react-hooks/exhaustive-deps -- Some dependencies intentionally left out`
 
+## Common eslint issues
+
+- **react/no-array-index-key**
+
+  Only use `index` as a `key` when all of the following conditions are met:
+
+  1.  the list and items are static / hardcoded.
+  2.  the list is never reordered or filtered.
+
+  In all other cases, you have to figure out what unique string you will use as an `key`, or create a dedicated `ID`.
+
 ## Git workflow
 
 - Git branch from "**main**"
@@ -77,6 +88,14 @@ Do not edit files directly in the repo, but instead please head over to our [Cro
 - **`npm install` in the root directory does not install packages correctly (Or other Lerna issues)**
 
   Please run `npx lerna clean -y && rm -rf node_modules && npm install && npx lerna bootstrap`
+
+- **`npm run dev:gui` fails to start the app without providing a reason**
+
+  1. In your command line, please go to the `chia-blockchain` directory (one level up)
+  2. Run `. ./activate`
+  3. Run `cd chia-blockchain-gui`
+  4. Run `npm run dev:gui` to start the app.
+  5. If still does not work, please open you process manager and kill all Chia / Python related processes.
 
 ## Chia FAQ/WIKI
 

@@ -71,8 +71,8 @@ export default function FarmManageFarmingRewards(props: Props) {
         poolTarget,
       }).unwrap();
       handleClose();
-    } catch (error) {
-      setError(error);
+    } catch (err) {
+      setError(err);
     }
   }
 
@@ -159,8 +159,3 @@ export default function FarmManageFarmingRewards(props: Props) {
     </Dialog>
   );
 }
-
-FarmManageFarmingRewards.defaultProps = {
-  open: false,
-  onClose: () => {},
-};

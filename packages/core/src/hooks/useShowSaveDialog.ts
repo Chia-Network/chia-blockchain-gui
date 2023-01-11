@@ -10,7 +10,7 @@ export default function useShowSaveDialog(): () => Promise<string[] | undefined>
       throw new Error('ipcRenderer is not available');
     }
 
-    return await window.ipcRenderer?.invoke('showSaveDialog', options);
+    return window.ipcRenderer?.invoke('showSaveDialog', options);
   }
 
   return handleShowSaveDialog;

@@ -1519,12 +1519,11 @@ export const walletApi = apiWithTag.injectEndpoints({
                 throw error;
               }
 
-              const wallets = data?.wallets;
-              if (!wallets) {
+              if (!data?.wallets) {
                 throw new Error('List of the wallets is not defined');
               }
 
-              return wallets;
+              return data.wallets;
             })(),
             (async () => {
               const { data, error } = await fetchWithBQ({
@@ -1748,17 +1747,17 @@ export const walletApi = apiWithTag.injectEndpoints({
           return {
             data: await Promise.all(
               didWallets.map(async (wallet: Wallet) => {
-                const { data, error } = await fetchWithBQ({
+                const { data: dataLocal, error: errorLocal } = await fetchWithBQ({
                   command: 'getDid',
                   service: DID,
                   args: [wallet.id],
                 });
 
-                if (error) {
-                  throw error;
+                if (errorLocal) {
+                  throw errorLocal;
                 }
 
-                const { myDid } = data;
+                const { myDid } = dataLocal;
 
                 return {
                   ...wallet,

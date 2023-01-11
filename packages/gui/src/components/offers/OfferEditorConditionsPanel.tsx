@@ -30,12 +30,22 @@ type OfferEditorConditionsRowProps = {
   addRow: (() => void) | undefined; // undefined if adding is not allowed
   removeRow: (() => void) | undefined; // undefined if removing is not allowed
   updateRow: (row: OfferEditorRowData) => void;
-  showAddWalletMessage: boolean;
+  showAddWalletMessage?: boolean;
   disabled?: boolean;
 };
 
 function OfferEditorConditionRow(props: OfferEditorConditionsRowProps) {
-  const { namePrefix, item, tradeSide, addRow, removeRow, updateRow, showAddWalletMessage, disabled, ...rest } = props;
+  const {
+    namePrefix,
+    item,
+    tradeSide,
+    addRow,
+    removeRow,
+    updateRow,
+    showAddWalletMessage = false,
+    disabled = false,
+    ...rest
+  } = props;
   const { getValues } = useFormContext();
   const [locale] = useLocale();
   const row: OfferEditorRowData = getValues(namePrefix);
@@ -47,7 +57,7 @@ function OfferEditorConditionRow(props: OfferEditorConditionsRowProps) {
     let balanceString: string | undefined;
     let balance = new BigNumber(0);
 
-    if (!isLoading && tradeSide === 'sell' && walletBalance && walletBalance.walletId == row.assetWalletId) {
+    if (!isLoading && tradeSide === 'sell' && walletBalance && walletBalance.walletId === row.assetWalletId) {
       switch (item.walletType) {
         case WalletType.STANDARD_WALLET:
           balanceString = mojoToChiaLocaleString(walletBalance.spendableBalance, locale);
@@ -72,22 +82,22 @@ function OfferEditorConditionRow(props: OfferEditorConditionsRowProps) {
     return balanceString;
   }, [row.assetWalletId, walletBalance, isLoading, locale]);
 
-  function handleAssetChange(namePrefix: string, selectedWalletId: number, selectedWalletType: WalletType) {
-    const row: OfferEditorRowData = getValues(namePrefix);
+  function handleAssetChange(namePrefixLocal: string, selectedWalletId: number, selectedWalletType: WalletType) {
+    const rowLocal: OfferEditorRowData = getValues(namePrefixLocal);
 
-    row.assetWalletId = selectedWalletId;
-    row.walletType = selectedWalletType;
-    row.spendableBalanceString = spendableBalanceString;
-    row.spendableBalance = walletBalance ? new BigNumber(walletBalance.spendableBalance) : new BigNumber(0);
+    rowLocal.assetWalletId = selectedWalletId;
+    rowLocal.walletType = selectedWalletType;
+    rowLocal.spendableBalanceString = spendableBalanceString;
+    rowLocal.spendableBalance = walletBalance ? new BigNumber(walletBalance.spendableBalance) : new BigNumber(0);
 
-    updateRow(row);
+    updateRow(rowLocal);
   }
 
-  function handleAmountChange(namePrefix: string, amount: string) {
-    const row: OfferEditorRowData = getValues(namePrefix);
+  function handleAmountChange(namePrefixLocal: string, amount: string) {
+    const rowLocal: OfferEditorRowData = getValues(namePrefixLocal);
 
     updateRow({
-      ...row,
+      ...rowLocal,
       amount,
     });
   }
@@ -157,18 +167,13 @@ function OfferEditorConditionRow(props: OfferEditorConditionsRowProps) {
   );
 }
 
-OfferEditorConditionRow.defaultProps = {
-  showAddWalletMessage: false,
-  disabled: false,
-};
-
 type OfferEditorConditionsPanelProps = {
   makerSide: 'buy' | 'sell';
   disabled?: boolean;
 };
 
 function OfferEditorConditionsPanel(props: OfferEditorConditionsPanelProps) {
-  const { makerSide, disabled } = props;
+  const { makerSide, disabled = false } = props;
   const { control } = useFormContext();
   const {
     fields: makerFields,
@@ -195,8 +200,8 @@ function OfferEditorConditionsPanel(props: OfferEditorConditionsPanelProps) {
   const takerRows: OfferEditorRowData[] = watch('takerRows');
 
   const { canAddMakerRow, canAddTakerRow } = useMemo(() => {
-    let canAddMakerRow = false;
-    let canAddTakerRow = false;
+    let canAddMakerRowLocal = false;
+    let canAddTakerRowLocal = false;
 
     if (!isLoading) {
       const makerWalletIds: Set<number> = new Set();
@@ -211,24 +216,24 @@ function OfferEditorConditionsPanel(props: OfferEditorConditionsPanelProps) {
           takerWalletIds.add(takerRow.assetWalletId);
         }
       });
-      canAddMakerRow =
+      canAddMakerRowLocal =
         makerWalletIds.size < wallets.length &&
         makerRows.length < wallets.length &&
         makerRows.length + takerRows.length < wallets.length;
-      canAddTakerRow =
+      canAddTakerRowLocal =
         takerWalletIds.size < wallets.length &&
         takerRows.length < wallets.length &&
         makerRows.length + takerRows.length < wallets.length;
     }
 
-    return { canAddMakerRow, canAddTakerRow };
+    return { canAddMakerRow: canAddMakerRowLocal, canAddTakerRow: canAddTakerRowLocal };
   }, [wallets, isLoading, makerRows, takerRows]);
 
   const { makerAssetInfo, makerExchangeRate, takerAssetInfo, takerExchangeRate } = useMemo(() => {
-    let makerAssetInfo: AssetIdMapEntry | undefined;
-    let takerAssetInfo: AssetIdMapEntry | undefined;
-    let makerExchangeRate: number | undefined;
-    let takerExchangeRate: number | undefined;
+    let makerAssetInfoLocal: AssetIdMapEntry | undefined;
+    let takerAssetInfoLocal: AssetIdMapEntry | undefined;
+    let makerExchangeRateLocal: number | undefined;
+    let takerExchangeRateLocal: number | undefined;
 
     if (!isLoading && makerRows.length === 1 && takerRows.length === 1) {
       const makerWalletId: string | undefined =
@@ -237,18 +242,18 @@ function OfferEditorConditionsPanel(props: OfferEditorConditionsPanelProps) {
         takerRows[0].assetWalletId > 0 ? takerRows[0].assetWalletId.toString() : undefined;
 
       if (makerWalletId && takerWalletId) {
-        makerAssetInfo = lookupByWalletId(makerWalletId);
-        takerAssetInfo = lookupByWalletId(takerWalletId);
-        makerExchangeRate = Number(takerRows[0].amount) / Number(makerRows[0].amount);
-        takerExchangeRate = Number(makerRows[0].amount) / Number(takerRows[0].amount);
+        makerAssetInfoLocal = lookupByWalletId(makerWalletId);
+        takerAssetInfoLocal = lookupByWalletId(takerWalletId);
+        makerExchangeRateLocal = Number(takerRows[0].amount) / Number(makerRows[0].amount);
+        takerExchangeRateLocal = Number(makerRows[0].amount) / Number(takerRows[0].amount);
       }
     }
 
     return {
-      makerAssetInfo,
-      makerExchangeRate,
-      takerAssetInfo,
-      takerExchangeRate,
+      makerAssetInfo: makerAssetInfoLocal,
+      makerExchangeRate: makerExchangeRateLocal,
+      takerAssetInfo: takerAssetInfoLocal,
+      takerExchangeRate: takerExchangeRateLocal,
     };
   }, [isLoading, makerRows, takerRows]);
 
@@ -307,11 +312,11 @@ function OfferEditorConditionsPanel(props: OfferEditorConditionsPanelProps) {
   return (
     <Flex flexDirection="column" gap={3}>
       {sections.map((section, sectionIndex) => (
-        <Flex flexDirection="column" gap={2} key={sectionIndex}>
+        <Flex flexDirection="column" gap={2} key={section.side}>
           <Typography variant="subtitle1">{section.headerTitle}</Typography>
           {section.fields.map((field, fieldIndex) => (
             <OfferEditorConditionRow
-              key={fieldIndex}
+              key={JSON.stringify(field)}
               namePrefix={`${section.namePrefix}[${fieldIndex}]`}
               item={field}
               tradeSide={section.side}
@@ -395,9 +400,5 @@ function OfferEditorConditionsPanel(props: OfferEditorConditionsPanelProps) {
     </Flex>
   );
 }
-
-OfferEditorConditionsPanel.defaultProps = {
-  disabled: false,
-};
 
 export default OfferEditorConditionsPanel;

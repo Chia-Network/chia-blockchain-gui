@@ -16,7 +16,6 @@ import PlotHarvesterState from './PlotHarvesterState';
 export type PlotHarvesterProps = {
   nodeId: string;
   host: string;
-  port: string;
   expanded?: boolean;
 };
 

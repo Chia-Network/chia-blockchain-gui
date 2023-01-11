@@ -76,6 +76,8 @@ export default function LayoutDashboard(props: LayoutDashboardProps) {
   const isLoading = isLoadingFingerprint || isLoadingKeyData;
 
   async function handleLogout() {
+    localStorage.setItem('visibilityFilters', JSON.stringify(['visible']));
+    localStorage.setItem('typeFilter', JSON.stringify([]));
     await logout();
 
     navigate('/');

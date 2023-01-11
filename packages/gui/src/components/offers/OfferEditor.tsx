@@ -38,7 +38,7 @@ type FormData = {
 type OfferEditorProps = {
   walletId?: number;
   walletType?: WalletType;
-  onOfferCreated: (obj: { offerRecord: any; offerData: any }) => void;
+  onOfferCreated?: (obj: { offerRecord: any; offerData: any }) => void;
 };
 
 function defaultMakerRow(walletId?: number, walletType?: WalletType): OfferEditorRowData {
@@ -51,7 +51,7 @@ function defaultMakerRow(walletId?: number, walletType?: WalletType): OfferEdito
 }
 
 function OfferEditor(props: OfferEditorProps) {
-  const { walletId, walletType, onOfferCreated } = props;
+  const { walletId, walletType, onOfferCreated = () => {} } = props;
   const navigate = useNavigate();
   const defaultValues: FormData = {
     selectedTab: 0,
@@ -75,31 +75,15 @@ function OfferEditor(props: OfferEditorProps) {
   const [createOfferForIds] = useCreateOfferForIdsMutation();
   const [processing, setIsProcessing] = useState<boolean>(false);
 
-  function updateOffer(offer: { [key: string]: BigNumber }, row: OfferEditorRowData, debit: boolean) {
-    const { amount, assetWalletId, walletType } = row;
-    if (assetWalletId > 0) {
-      let mojoAmount = new BigNumber(0);
-      if (walletType === WalletType.STANDARD_WALLET) {
-        mojoAmount = chiaToMojo(amount);
-      } else if (walletType === WalletType.CAT) {
-        mojoAmount = catToMojo(amount);
-      }
-
-      offer[assetWalletId] = debit ? mojoAmount.negated() : mojoAmount;
-    } else {
-      console.error('missing asset wallet id');
-    }
-  }
-
   async function onSubmit(formData: FormData) {
-    const offer: { [key: string]: BigNumber } = {};
+    let offer: { [key: string]: BigNumber } = {};
     let missingAssetSelection = false;
     let missingAmount = false;
     let amountExceedsSpendableBalance = false;
     const feeInMojos = chiaToMojo(formData.fee ?? 0);
 
     formData.makerRows.forEach((row: OfferEditorRowData) => {
-      updateOffer(offer, row, true);
+      offer = getUpdatedOffer(offer, row, true);
       if (row.assetWalletId === 0) {
         missingAssetSelection = true;
       } else if (!row.amount) {
@@ -109,7 +93,7 @@ function OfferEditor(props: OfferEditorProps) {
       }
     });
     formData.takerRows.forEach((row: OfferEditorRowData) => {
-      updateOffer(offer, row, false);
+      offer = getUpdatedOffer(offer, row, false);
       if (row.assetWalletId === 0) {
         missingAssetSelection = true;
       }
@@ -198,19 +182,15 @@ function OfferEditor(props: OfferEditorProps) {
   );
 }
 
-OfferEditor.defaultProps = {
-  onOfferCreated: () => {},
-};
-
 type CreateOfferEditorProps = {
   walletId?: number;
   walletType?: WalletType;
   referrerPath?: string;
-  onOfferCreated: (obj: { offerRecord: any; offerData: any }) => void;
+  onOfferCreated?: (obj: { offerRecord: any; offerData: any }) => void;
 };
 
 export function CreateOfferEditor(props: CreateOfferEditorProps) {
-  const { walletId, walletType, referrerPath, onOfferCreated } = props;
+  const { walletId, walletType, referrerPath, onOfferCreated = () => {} } = props;
 
   const title = <Trans>Create an Offer</Trans>;
   const navElement = referrerPath ? (
@@ -231,6 +211,20 @@ export function CreateOfferEditor(props: CreateOfferEditorProps) {
   );
 }
 
-CreateOfferEditor.defaultProps = {
-  onOfferCreated: () => {},
-};
+function getUpdatedOffer(offerParam: { [key: string]: BigNumber }, row: OfferEditorRowData, debit: boolean) {
+  const offer = JSON.parse(JSON.stringify(offerParam));
+  const { amount, assetWalletId, walletType: walletTypeLocal } = row;
+  if (assetWalletId > 0) {
+    let mojoAmount = new BigNumber(0);
+    if (walletTypeLocal === WalletType.STANDARD_WALLET) {
+      mojoAmount = chiaToMojo(amount);
+    } else if (walletTypeLocal === WalletType.CAT) {
+      mojoAmount = catToMojo(amount);
+    }
+
+    offer[assetWalletId] = debit ? mojoAmount.negated() : mojoAmount;
+  } else {
+    console.error('missing asset wallet id');
+  }
+  return offer;
+}

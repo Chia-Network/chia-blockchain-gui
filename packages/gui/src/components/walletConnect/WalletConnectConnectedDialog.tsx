@@ -62,7 +62,7 @@ export default function WalletConnectConnectedDialog(props: WalletConnectAddConn
   return (
     <Dialog onClose={handleClose} maxWidth="xs" open={open} fullWidth>
       <DialogTitle>
-        <Trans>Wallet Connect</Trans>
+        <Trans>WalletConnect</Trans>
       </DialogTitle>
       <IconButton
         sx={{

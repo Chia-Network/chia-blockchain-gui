@@ -6,7 +6,8 @@
   "search.exclude": {
     "**/dist": true,
     "**/build": true,
-    "**/package-lock.json": true
+    "**/package-lock.json": true,
+    "**/*.po": true
   },
   "files.associations": {
     ".eslintrc.json": "jsonc",

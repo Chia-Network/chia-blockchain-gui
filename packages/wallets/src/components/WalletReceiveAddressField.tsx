@@ -1,9 +1,43 @@
 import { useGetCurrentAddressQuery, useGetNextAddressMutation } from '@chia-network/api-react';
-import { CopyToClipboard, Loading, Flex } from '@chia-network/core';
-import { t, Trans } from '@lingui/macro';
-import { Autorenew } from '@mui/icons-material';
-import { TextField, InputAdornment, IconButton } from '@mui/material';
+import { CopyToClipboard, Loading } from '@chia-network/core';
+import { Reload } from '@chia-network/icons';
+import { t } from '@lingui/macro';
+import { TextField, IconButton } from '@mui/material';
 import React, { useState } from 'react';
+import styled from 'styled-components';
+
+const ReloadIconSvg = styled(Reload)`
+  path {
+    fill: none;
+    stroke: ${(props) => (props.isDarkMode ? props.theme.palette.common.white : props.theme.palette.text.secondary)};
+  }
+`;
+
+const WalletReceiveAddressWrapper = styled.div`
+  display: flex;
+  flex: 1;
+  width: 100%;
+  padding: 9px;
+  background: ${(props) => (props.isDarkMode ? '#333' : '#fff')};
+  border-radius: 5px;
+  border: 1px solid ${(props) => (props.isDarkMode ? '#333' : '#e2e2e2')};
+  > div {
+    background: ${(props) => (props.isDarkMode ? '#444' : '#f4f4f4')};
+    border-radius: 5px;
+  }
+  input {
+    padding: 3px 8px;
+    border: 0;
+    outline: none;
+  }
+  height: 48px;
+  button {
+    padding: 3px 5px;
+  }
+  fieldSet {
+    border: 1px solid rgba(0, 0, 0, 0.15);
+  }
+`;
 
 export type WalletReceiveAddressProps = {
   walletId?: number;
@@ -30,33 +64,26 @@ export default function WalletReceiveAddressField(props: WalletReceiveAddressPro
   }
 
   return (
-    <TextField
-      label={<Trans>Receive Address</Trans>}
-      value={address}
-      placeholder={t`Loading...`}
-      variant="filled"
-      InputProps={{
-        readOnly: true,
-        startAdornment: (
-          <InputAdornment position="start">
-            <Flex justifyContent="center" minWidth={35}>
-              {isLoading ? (
-                <Loading size="1em" />
-              ) : (
-                <IconButton onClick={handleNewAddress} size="small">
-                  <Autorenew />
-                </IconButton>
-              )}
-            </Flex>
-          </InputAdornment>
-        ),
-        endAdornment: (
-          <InputAdornment position="end">
-            <CopyToClipboard value={address} />
-          </InputAdornment>
-        ),
-      }}
-      {...rest}
-    />
+    <WalletReceiveAddressWrapper isDarkMode={props?.isDarkMode}>
+      <TextField
+        value={address}
+        placeholder={t`Loading...`}
+        variant="filled"
+        {...rest}
+        sx={{
+          width: 'initial',
+          flex: 1,
+          width: '100%',
+        }}
+      />
+      <CopyToClipboard value={address} />
+      {isLoading ? (
+        <Loading size="1em" />
+      ) : (
+        <IconButton onClick={handleNewAddress} size="small">
+          <ReloadIconSvg isDarkMode={props?.isDarkMode} />
+        </IconButton>
+      )}
+    </WalletReceiveAddressWrapper>
   );
 }

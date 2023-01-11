@@ -56,16 +56,16 @@ export default function OfferBuilderProvider(props: OfferBuilderProviderProps) {
       return [];
     }
 
-    const offeredUnknownCATs = getUnknownCATs(
+    const offeredUnknownCATsLocal = getUnknownCATs(
       wallets,
       offeredTokens.map(({ assetId }) => assetId)
     );
-    const requestedUnknownCATs = getUnknownCATs(
+    const requestedUnknownCATsLocal = getUnknownCATs(
       wallets,
       requestedTokens.map(({ assetId }) => assetId)
     );
 
-    return [offeredUnknownCATs, requestedUnknownCATs];
+    return [offeredUnknownCATsLocal, requestedUnknownCATsLocal];
   }, [offeredTokens, requestedTokens, wallets]);
 
   const { data: requestedNFTs } = useGetNFTsByNFTIDsQuery(

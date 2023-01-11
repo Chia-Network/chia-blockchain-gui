@@ -80,20 +80,20 @@ export default function OfferBuilderViewer(props: OfferBuilderViewerProps) {
       return [];
     }
 
-    const offeredUnknownCATs = getUnknownCATs(
+    const offeredUnknownCATsLocal = getUnknownCATs(
       wallets,
       offerBuilderData.offered.tokens.map(({ assetId }) => assetId)
     );
-    const requestedUnknownCATs = getUnknownCATs(
+    const requestedUnknownCATsLocal = getUnknownCATs(
       wallets,
       offerBuilderData.requested.tokens.map(({ assetId }) => assetId)
     );
 
-    return [offeredUnknownCATs, requestedUnknownCATs];
+    return [offeredUnknownCATsLocal, requestedUnknownCATsLocal];
   }, [offerBuilderData, wallets]);
 
-  const missingOfferedCATs = offeredUnknownCATs?.length ?? 0 > 0;
-  const missingRequestedCATs = requestedUnknownCATs?.length ?? 0 > 0;
+  const missingOfferedCATs = !!offeredUnknownCATs?.length;
+  const missingRequestedCATs = !!requestedUnknownCATs?.length;
 
   const canAccept = !!offerData;
   const disableAccept = missingOfferedCATs || showInvalid;

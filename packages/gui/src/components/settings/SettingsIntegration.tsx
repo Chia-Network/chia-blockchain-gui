@@ -21,7 +21,7 @@ export default function SettingsIntegration() {
         <Flex flexDirection="column" gap={2}>
           <SettingsLabel>
             <Flex gap={1} alignItems="center">
-              <Trans>Wallet Connect</Trans>
+              <Trans>WalletConnect</Trans>
               <TooltipIcon>
                 <Trans>
                   WalletConnect is an open protocol to communicate securely between wallets and decentralized
@@ -55,7 +55,7 @@ export default function SettingsIntegration() {
                     }}
                   />
                 }
-                label={<Trans>Enable change fingerprint in the confirmation dialog</Trans>}
+                label={<Trans>Allow requests that require switching to a different wallet key</Trans>}
               />
             </FormGroup>
 

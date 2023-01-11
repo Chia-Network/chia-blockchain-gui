@@ -65,7 +65,7 @@ export default function PlotAddChooseSize(props: Props) {
     } else {
       setValue('overrideK', false);
     }
-  }, [plotSize, overrideK]); // eslint-disable-line
+  }, [plotSize, overrideK]);
 
   return (
     <CardStep step={step} title={<Trans>Choose Plot Size</Trans>}>

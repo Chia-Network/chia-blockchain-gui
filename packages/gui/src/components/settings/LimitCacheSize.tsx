@@ -1,7 +1,7 @@
 import { usePrefs } from '@chia-network/api-react';
 import { AlertDialog, ButtonLoading, Flex, Form, TextField, useOpenDialog } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { useForm } from 'react-hook-form';
 
 import { getCacheInstances, removeFromLocalStorage } from '../../util/utils';
@@ -25,17 +25,20 @@ function LimitCacheSize(props: any) {
     },
   });
 
-  function removeFromLocalStorageListener(_event, response: any) {
-    removeFromLocalStorage({ removedObjects: response?.removedEntries });
-    forceUpdateCacheSize();
-  }
+  const removeFromLocalStorageListener = useCallback(
+    (_event: any, response: any) => {
+      removeFromLocalStorage({ removedObjects: response?.removedEntries });
+      forceUpdateCacheSize();
+    },
+    [forceUpdateCacheSize]
+  );
 
   useEffect(() => {
     ipcRenderer.on('removedFromLocalStorage', removeFromLocalStorageListener);
     return () => {
       ipcRenderer.removeListener('removedFromLocalStorage', removeFromLocalStorageListener);
     };
-  }, []);
+  }, [removeFromLocalStorageListener]);
 
   const { isSubmitting } = methods.formState;
   const isLoading = isSubmitting;

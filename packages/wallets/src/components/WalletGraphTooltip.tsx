@@ -27,7 +27,7 @@ export default function WalletGraphTooltip(props: WalletGraphTooltipProps) {
           }}
         />
         <Box ref={elementRef} />
-        <Popper placement="bottom" anchorEl={elementRef.current} style={{ pointerEvents: 'none' }} open>
+        <Popper placement="bottom" anchorEl={elementRef.current} style={{ pointerEvents: 'none', zIndex: 9999 }} open>
           <Paper
             sx={{
               paddingX: 1,

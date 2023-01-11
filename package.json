@@ -9,12 +9,13 @@
     "publish": "lerna publish",
     "postinstall": "npm run bootstrap && npm run prettier:postinstall",
     "prettier:postinstall": "prettier --write **/package.json **/package-lock.json",
-    "prettier:format": "prettier --write",
-    "prettier:format:all": "npm run prettier:format -- '**/*.{ts,tsx,js,jsx}'",
-    "lint": "eslint . --ext .ts,.tsx,.js,.jsx",
+    "check": "npm run check:lint ; npm run check:prettier ; npm run check:types",
+    "check:lint": "eslint . --ext .ts,.tsx,.js,.jsx",
+    "check:prettier": "prettier --check --ignore-path .gitignore .",
+    "check:types": "lerna exec -- npm run check:types",
     "autofix": "npm run autofix:lint ; npm run autofix:prettier",
     "autofix:lint": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
-    "autofix:prettier": "prettier --write --ignore-path .gitignore '**/*.{js,jsx,ts,tsx}'",
+    "autofix:prettier": "prettier --write --ignore-path .gitignore .",
     "build": "lerna run build",
     "build:watch": "lerna run build:watch",
     "start:gui": "lerna run start --scope @chia-network/gui",
@@ -32,31 +33,21 @@
     "lerna": "^5.1.8"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "5.45.0",
-    "@typescript-eslint/parser": "5.45.0",
-    "eslint": "8.27.0",
+    "@typescript-eslint/eslint-plugin": "5.46.1",
+    "@typescript-eslint/parser": "5.46.1",
+    "eslint": "8.30.0",
     "eslint-config-airbnb": "19.0.4",
     "eslint-config-airbnb-typescript": "17.0.0",
     "eslint-config-prettier": "8.5.0",
     "eslint-plugin-eslint-comments": "3.2.0",
     "eslint-plugin-import": "2.26.0",
     "eslint-plugin-jsx-a11y": "6.6.1",
-    "eslint-plugin-react": "7.31.10",
+    "eslint-plugin-react": "7.31.11",
     "eslint-plugin-react-hooks": "4.6.0",
+    "eslint-plugin-unicorn": "45.0.2",
     "lerna-audit": "^1.3.3",
-    "prettier": "2.7.1",
-    "typescript": "^4.5.4"
-  },
-  "lint-staged": {
-    "./{*,{api,packages,test,utils}/**/*}.{js,ts,jsx,tsx}": [
-      "prettier --write",
-      "eslint",
-      "git add"
-    ],
-    "*.{json,md}": [
-      "prettier --write",
-      "git add"
-    ]
+    "prettier": "2.8.1",
+    "typescript": "^4.9.4"
   },
   "version": "1.2.10-dev132"
 }

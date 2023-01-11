@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unstable-nested-components -- This component is deep in the component tree, so no performance issues */
 import { OfferSummaryRecord, OfferTradeRecord, OfferCoinOfInterest } from '@chia-network/api';
 import { useCheckOfferValidityMutation } from '@chia-network/api-react';
 import {
@@ -8,13 +9,12 @@ import {
   Fee,
   Flex,
   Form,
-  FormatLargeNumber,
   TableControlled,
   TooltipIcon,
   useShowError,
   mojoToChiaLocaleString,
 } from '@chia-network/core';
-import { Trans, Plural } from '@lingui/macro';
+import { Trans } from '@lingui/macro';
 import {
   Box,
   Button,
@@ -40,35 +40,6 @@ import OfferState from './OfferState';
 import OfferSummary from './OfferSummary';
 import OfferViewerTitle from './OfferViewerTitle';
 import { colorForOfferState, displayStringForOfferState } from './utils';
-
-type OfferMojoAmountProps = {
-  mojos: number;
-  mojoThreshold?: number;
-};
-
-function OfferMojoAmount(props: OfferMojoAmountProps): React.ReactElement {
-  const { mojos, mojoThreshold } = props;
-
-  return (
-    <>
-      {mojoThreshold && mojos < mojoThreshold && (
-        <Flex flexDirection="row" flexGrow={1} gap={1}>
-          (
-          <FormatLargeNumber value={mojos} />
-          <Box>
-            <Plural value={mojos} one="mojo" other="mojos" />
-          </Box>
-          )
-        </Flex>
-      )}
-    </>
-  );
-}
-
-OfferMojoAmount.defaultProps = {
-  mojos: 0,
-  mojoThreshold: 1000000000, // 1 billion
-};
 
 type OfferDetailsProps = {
   tradeRecord?: OfferTradeRecord;
@@ -100,7 +71,7 @@ function OfferDetails(props: OfferDetailsProps) {
 
   useMemo(async () => {
     if (!offerData) {
-      return false;
+      return;
     }
 
     let valid = false;
@@ -295,8 +266,8 @@ function OfferDetails(props: OfferDetailsProps) {
           <TableContainer component={Paper}>
             <Table>
               <TableBody>
-                {detailRows.map((row, index) => (
-                  <TableRow key={index}>
+                {detailRows.map((row) => (
+                  <TableRow key={JSON.stringify(row.name)}>
                     <TableCell component="th" scope="row">
                       {row.name} {row.tooltip && <TooltipIcon>{row.tooltip}</TooltipIcon>}
                     </TableCell>

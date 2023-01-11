@@ -40,20 +40,20 @@ export default function OfferBuilderTokensSection(props: OfferBuilderTokensSecti
     }
 
     const tokenAmountsWithRoyalties: Record<string, BigNumber> = {};
-    const royaltiesByAssetId: Record<string, any> = {};
+    const royaltiesByAssetIdLocal: Record<string, any> = {};
     const assetIds = tokens.map((token) => token.assetId);
 
     tokens.forEach((token) => {
       tokenAmountsWithRoyalties[token.assetId] = catToMojo(token.amount ?? 0);
     });
 
-    assetIds.map((assetId) => {
+    assetIds.forEach((assetId) => {
       Object.entries(allRoyalties).forEach(([nftId, royaltyPayments]) => {
         const royaltyPayment = royaltyPayments?.find((payment) => payment.asset === assetId);
 
         if (royaltyPayment) {
-          if (!royaltiesByAssetId[assetId]) {
-            royaltiesByAssetId[assetId] = [];
+          if (!royaltiesByAssetIdLocal[assetId]) {
+            royaltiesByAssetIdLocal[assetId] = [];
           }
 
           const baseTotal: BigNumber = tokenAmountsWithRoyalties[royaltyPayment.asset];
@@ -61,7 +61,7 @@ export default function OfferBuilderTokensSection(props: OfferBuilderTokensSecti
 
           tokenAmountsWithRoyalties[royaltyPayment.asset] = totalAmount;
 
-          royaltiesByAssetId[assetId].push({
+          royaltiesByAssetIdLocal[assetId].push({
             nftId,
             payment: {
               asset: royaltyPayment.asset,
@@ -79,7 +79,7 @@ export default function OfferBuilderTokensSection(props: OfferBuilderTokensSecti
       amountsWithRoyalties[assetId] = mojoToCATLocaleString(amount);
     });
 
-    return [amountsWithRoyalties, royaltiesByAssetId];
+    return [amountsWithRoyalties, royaltiesByAssetIdLocal];
   }, [tokens, allRoyalties]);
 
   function handleAdd() {

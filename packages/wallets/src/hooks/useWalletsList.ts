@@ -45,7 +45,7 @@ function getTypeOrder(item: ListItem) {
 }
 
 export default function useWalletsList(
-  search?: string,
+  search: string,
   walletTypes: WalletType[]
 ): {
   list?: ListItem[];
@@ -54,14 +54,14 @@ export default function useWalletsList(
   show: (id: number | string) => Promise<void>;
 } {
   const { data: wallets, isLoading: isLoadingGetWallets } = useGetWalletsQuery(undefined, {
-    pollingInterval: 10000,
+    pollingInterval: 10_000,
   });
   const { data: catList, isLoading: isLoadingGetCatList } = useGetCatListQuery(undefined, {
-    pollingInterval: 10000,
+    pollingInterval: 10_000,
   });
 
   const { data: strayCats, isLoading: isLoadingGetStrayCats } = useGetStrayCatsQuery(undefined, {
-    pollingInterval: 10000,
+    pollingInterval: 10_000,
   });
 
   const { hidden, isHidden, show, hide, isLoading: isLoadingHiddenWallet } = useHiddenWallet();
@@ -107,7 +107,7 @@ export default function useWalletsList(
   function getCATName(assetId: string) {
     if (walletAssetIds.has(assetId)) {
       const walletId = walletAssetIds.get(assetId);
-      const wallet = wallets?.find((wallet: Wallet) => wallet.id === walletId);
+      const wallet = wallets?.find((walletItem: Wallet) => walletItem.id === walletId);
 
       return wallet?.meta?.name ?? wallet?.name ?? assetId;
     }
@@ -192,9 +192,9 @@ export default function useWalletsList(
       if (typeof id === 'string') {
         // assign wallet for CAT
 
-        const cat = catList?.find((cat) => cat.assetId === id);
+        const cat = catList?.find((catItem) => catItem.assetId === id);
         if (cat) {
-          return await addCATToken({
+          return addCATToken({
             name: cat.name,
             assetId: cat.assetId,
             fee: '0',
@@ -202,17 +202,19 @@ export default function useWalletsList(
         }
 
         // assign stray cat
-        const strayCat = strayCats?.find((cat) => cat.assetId === id);
+        const strayCat = strayCats?.find((catItem) => catItem.assetId === id);
         if (strayCat) {
-          return await addCATToken({
+          return addCATToken({
             name: strayCat.name,
             assetId: strayCat.assetId,
             fee: '0',
           }).unwrap();
         }
       }
+      return undefined;
     } catch (error) {
       showError(error);
+      return undefined;
     }
   }
 

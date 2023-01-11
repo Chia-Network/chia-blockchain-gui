@@ -17,6 +17,8 @@ import React, { useState, useEffect, ReactNode, useMemo } from 'react';
 import ModeServices, { SimulatorServices } from '../../constants/ModeServices';
 import useEnableDataLayerService from '../../hooks/useEnableDataLayerService';
 import useEnableFilePropagationServer from '../../hooks/useEnableFilePropagationServer';
+import useNFTMetadataLRU from '../../hooks/useNFTMetadataLRU';
+import { eventEmitter } from '../nfts/NFTContextualActions';
 import AppAutoLogin from './AppAutoLogin';
 import AppKeyringMigrator from './AppKeyringMigrator';
 import AppPassPrompt from './AppPassPrompt';
@@ -51,8 +53,9 @@ export default function AppState(props: Props) {
   const [isDataLayerEnabled] = useState(enableDataLayerService);
   const [isFilePropagationServerEnabled] = useState(enableFilePropagationServer);
   const [versionDialog, setVersionDialog] = useState<boolean>(true);
-  const { data: backendVersion, isLoading: isLoadingBackendVersion } = useGetVersionQuery();
-  const { version, isLoadingGuiVersion } = useAppVersion();
+  const { data: backendVersion } = useGetVersionQuery();
+  const { version } = useAppVersion();
+  const lru = useNFTMetadataLRU();
 
   const runServices = useMemo<ServiceName[] | undefined>(() => {
     if (mode) {
@@ -110,11 +113,30 @@ export default function AppState(props: Props) {
     event.sender.send('daemon-exited');
   }
 
+  function handleRemovedCachedFile(e: any, hash: string) {
+    Object.keys({ ...localStorage }).forEach((key: string) => {
+      try {
+        const json = JSON.parse(localStorage.getItem(key)!);
+        if (json.binary === hash || json.video === hash || json.image === hash) {
+          localStorage.removeItem(key);
+          const nftId = key.replace('thumb-cache-', '').replace('metadata-cache-', '').replace('content-cache-', '');
+          eventEmitter.emit(`force-reload-metadata-${nftId}`);
+          if (lru.get(nftId)) {
+            lru.delete(nftId);
+          }
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    });
+  }
+
   useEffect(() => {
     if (isElectron()) {
       const { ipcRenderer } = window as unknown as { ipcRenderer: IpcRenderer };
 
       ipcRenderer.on('exit-daemon', handleClose);
+      ipcRenderer.on('removed-cache-file', handleRemovedCachedFile);
 
       // Handle files/URLs opened at launch now that the app is ready
       ipcRenderer.invoke('processLaunchTasks');
@@ -124,6 +146,7 @@ export default function AppState(props: Props) {
         ipcRenderer.off('exit-daemon', handleClose);
       };
     }
+    return undefined;
   }, []);
 
   if (closing) {
@@ -151,8 +174,8 @@ export default function AppState(props: Props) {
     // backendVersion can be in the format of 1.6.1, 1.7.0b3, or 1.7.0b3.dev123
     // version can be in the format of 1.6.1, 1.7.0b3, 1.7.0-b2.dev123, or 1.7.0b3-dev123
 
-    const backendVersionClean = backendVersion.replace(/[-.]/g, '');
-    const guiVersionClean = version.replace(/[-.]/g, '');
+    const backendVersionClean = backendVersion.replace(/[-+.]/g, '');
+    const guiVersionClean = version.replace(/[-+.]/g, '');
 
     if (backendVersionClean !== guiVersionClean) {
       return (

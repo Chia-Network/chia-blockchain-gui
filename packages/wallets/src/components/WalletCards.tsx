@@ -52,11 +52,3 @@ export default function WalletCards(props: WalletCardsProps) {
     </div>
   );
 }
-
-WalletCards.defaultProps = {
-  totalBalanceTooltip: undefined,
-  spendableBalanceTooltip: undefined,
-  pendingTotalBalanceTooltip: undefined,
-  pendingBalanceTooltip: undefined,
-  pendingChangeTooltip: undefined,
-};

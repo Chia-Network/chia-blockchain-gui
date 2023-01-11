@@ -3,6 +3,7 @@ import type { CATToken, Wallet } from '@chia-network/api';
 import { useGetCatListQuery, useGetWalletsQuery } from '@chia-network/api-react';
 import { Trans, t } from '@lingui/macro';
 import { FormControl, InputLabel, MenuItem, Select, Typography } from '@mui/material';
+import { orderBy } from 'lodash';
 import React, { useMemo } from 'react';
 import { useFormContext, useWatch } from 'react-hook-form';
 
@@ -33,7 +34,7 @@ export default function OfferBuilderTokenSelector(props: OfferBuilderTokenSelect
       .filter((wallet: Wallet) => wallet.type === WalletType.CAT)
       .map((wallet: Wallet) => {
         const cat: CATToken | undefined = catList.find(
-          (cat: CATToken) => cat.assetId.toLowerCase() === wallet.meta?.assetId?.toLowerCase()
+          (catItem: CATToken) => catItem.assetId.toLowerCase() === wallet.meta?.assetId?.toLowerCase()
         );
 
         const assetId = wallet.meta?.assetId.toLowerCase();
@@ -49,9 +50,11 @@ export default function OfferBuilderTokenSelector(props: OfferBuilderTokenSelect
       })
       .filter(Boolean);
 
-    const selected = allOptions.find((option) => option.assetId.toString() === currentValue);
+    const orderedAllOptions = orderBy(allOptions, ['displayName'], ['asc']);
 
-    return [selected, allOptions];
+    const selected = orderedAllOptions.find((option) => option.assetId.toString() === currentValue);
+
+    return [selected, orderedAllOptions];
   }, [isLoading, wallets, catList, currentValue, usedAssets, usedAssetIds]);
 
   function handleSelection(selection: { assetId: number }) {

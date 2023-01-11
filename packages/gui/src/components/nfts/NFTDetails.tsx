@@ -79,7 +79,7 @@ export default function NFTDetails(props: NFTDetailsProps) {
       },
     ].filter(Boolean);
 
-    if (nft.p2Address) {
+    if (nft.p2Address && currencyCode) {
       const p2Address = toBech32m(nft.p2Address, currencyCode);
 
       rows.push({
@@ -165,7 +165,7 @@ export default function NFTDetails(props: NFTDetailsProps) {
     });
 
     if (!isLoadingMinterDID) {
-      const truncatedDID = truncateValue(minterDID ?? '', {});
+      const truncatedDIDLocal = truncateValue(minterDID ?? '', {});
 
       rows.push({
         key: 'minterDID',
@@ -199,7 +199,7 @@ export default function NFTDetails(props: NFTDetailsProps) {
               </Flex>
             }
           >
-            <Typography variant="body2">{minterDIDName ?? truncatedDID}</Typography>
+            <Typography variant="body2">{minterDIDName ?? truncatedDIDLocal}</Typography>
           </Tooltip>
         ) : (
           <Trans>Unassigned</Trans>

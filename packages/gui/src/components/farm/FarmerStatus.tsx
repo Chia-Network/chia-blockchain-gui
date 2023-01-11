@@ -27,6 +27,7 @@ const StyledFiberManualRecordIcon = styled(FiberManualRecordIcon)`
   font-size: 1rem;
 `;
 
+// TODO Zlatko
 const StyledFlexContainer = styled(({ color: Color, ...rest }) => <Flex {...rest} />)`
   color: ${({ color }) => color};
 `;

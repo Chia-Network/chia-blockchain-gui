@@ -33,19 +33,19 @@ function buildAssetSelectorList(params: BuildAssetSelectorListParams): WalletOff
   const usedWalletIds: Set<number> = new Set();
   const otherUsedWalletIds: Set<number> = new Set();
 
-  rows.map((row) => {
+  rows.forEach((row) => {
     if (row.assetWalletId > 0 && row.assetWalletId !== selectedWalletId) {
       usedWalletIds.add(row.assetWalletId);
     }
   });
 
-  otherRows.map((row) => {
+  otherRows.forEach((row) => {
     if (row.assetWalletId > 0) {
       otherUsedWalletIds.add(row.assetWalletId);
     }
   });
 
-  wallets.map((wallet) => {
+  wallets.forEach((wallet) => {
     const walletId: number = wallet.id;
     const walletType: WalletType = wallet.type;
     let name: string | undefined;
@@ -68,7 +68,7 @@ function buildAssetSelectorList(params: BuildAssetSelectorListParams): WalletOff
     } else if (wallet.type === WalletType.CAT) {
       name = wallet.name;
       tail = wallet.meta.assetId;
-      const cat = catList.find((cat) => cat.assetId.toLowerCase() === tail?.toLowerCase());
+      const cat = catList.find((catItem) => catItem.assetId.toLowerCase() === tail?.toLowerCase());
 
       if (cat) {
         symbol = cat.symbol;
@@ -102,7 +102,7 @@ type OfferAssetSelectorProps = {
 };
 
 function OfferAssetSelector(props: OfferAssetSelectorProps) {
-  const { name, id, tradeSide, defaultValue, showAddWalletMessage, onChange, ...rest } = props;
+  const { name, id, tradeSide, defaultValue, showAddWalletMessage, onChange, disabled = false, ...rest } = props;
   const { data: wallets, isLoading } = useGetWalletsQuery();
   const { data: catList = [], isLoading: isCatListLoading } = useGetCatListQuery();
   const { getValues, watch } = useFormContext();
@@ -125,15 +125,15 @@ function OfferAssetSelector(props: OfferAssetSelectorProps) {
     });
   }, [wallets, catList, rows, otherRows]);
 
-  function handleSelection(selectedWalletId: number, selectedWalletType: WalletType) {
+  function handleSelection(selectedWalletIdLocal: number, selectedWalletType: WalletType) {
     if (onChange) {
-      onChange(selectedWalletId, selectedWalletType);
+      onChange(selectedWalletIdLocal, selectedWalletType);
     }
   }
 
   return (
     // Form control with popup selection of assets
-    <FormControl variant="filled" fullWidth {...rest}>
+    <FormControl variant="filled" fullWidth disabled={disabled} {...rest}>
       <InputLabel required focused>
         <Trans>Asset Type</Trans>
       </InputLabel>
@@ -157,10 +157,5 @@ function OfferAssetSelector(props: OfferAssetSelectorProps) {
     </FormControl>
   );
 }
-
-OfferAssetSelector.defaultProps = {
-  showAddWalletMessage: false,
-  disabled: false,
-};
 
 export default OfferAssetSelector;

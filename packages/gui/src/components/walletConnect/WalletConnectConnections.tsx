@@ -103,7 +103,7 @@ export default function WalletConnectConnections(props: WalletConnectConnections
           </Button>
         ) : (
           <Button onClick={handleEnableWalletConnect} variant="outlined" color="primary" size="small">
-            <Trans>Enable Wallet Connect</Trans>
+            <Trans>Enable WalletConnect</Trans>
           </Button>
         )}
       </Flex>

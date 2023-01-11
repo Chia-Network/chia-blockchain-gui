@@ -62,7 +62,7 @@ export default function OfferBuilderNFTRoyalties(props: OfferBuilderNFTRoyalties
           };
         }
 
-        const cat = catList?.find((cat) => cat.assetId === asset);
+        const cat = catList?.find((catItem) => catItem.assetId === asset);
         if (cat) {
           return {
             address,
@@ -106,7 +106,7 @@ export default function OfferBuilderNFTRoyalties(props: OfferBuilderNFTRoyalties
               <Typography variant="body1">{nft.royaltyPercentage / 100.0}%</Typography>
             </Flex>
           )}
-          {royalties?.length ?? 0 > 0 ? (
+          {royalties?.length ? (
             <Flex flexDirection="column" gap={0.5}>
               {rows?.map(({ address, amount, amountString, symbol, displaySymbol }) => (
                 <Tooltip

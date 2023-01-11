@@ -63,7 +63,9 @@ interface OfferSharingProvider {
 
 type CommonOfferProps = {
   offerRecord: OfferTradeRecord;
+  // eslint-disable-next-line react/no-unused-prop-types -- False positive
   offerData: string;
+  // eslint-disable-next-line react/no-unused-prop-types -- False positive
   testnet?: boolean;
 };
 
@@ -216,7 +218,7 @@ async function postToOfferBin(offerData: string, sharePrivately: boolean, testne
     'Content-Type': 'application/text',
   };
   const requestData = offerData;
-  const { err, statusCode, statusMessage, responseBody } = await ipcRenderer?.invoke(
+  const { err, statusCode, statusMessage, responseBody } = await ipcRenderer.invoke(
     'fetchTextResponse',
     requestOptions,
     requestHeaders,
@@ -242,10 +244,10 @@ async function postToOfferBin(offerData: string, sharePrivately: boolean, testne
 }
 
 enum HashgreenErrorCodes {
-  OFFERED_AMOUNT_TOO_SMALL = 40020, // The offered amount is too small
-  MARKET_NOT_FOUND = 50029, // Pairing doesn't exist e.g. XCH/RandoCoin
-  OFFER_FILE_EXISTS = 50037, // Offer already shared
-  COINS_ALREADY_COMMITTED = 50041, // Coins in the offer are already committed in another offer
+  OFFERED_AMOUNT_TOO_SMALL = 40_020, // The offered amount is too small
+  MARKET_NOT_FOUND = 50_029, // Pairing doesn't exist e.g. XCH/RandoCoin
+  OFFER_FILE_EXISTS = 50_037, // Offer already shared
+  COINS_ALREADY_COMMITTED = 50_041, // Coins in the offer are already committed in another offer
 }
 
 async function postToHashgreen(offerData: string, testnet: boolean): Promise<string> {
@@ -262,7 +264,7 @@ async function postToHashgreen(offerData: string, testnet: boolean): Promise<str
     'Content-Type': 'application/x-www-form-urlencoded',
   };
   const requestData = `offer=${offerData}`;
-  const { err, statusCode, statusMessage, responseBody } = await ipcRenderer?.invoke(
+  const { err, statusCode, statusMessage, responseBody } = await ipcRenderer.invoke(
     'fetchTextResponse',
     requestOptions,
     requestHeaders,
@@ -335,7 +337,7 @@ async function postToSpacescan(offerData: string, testnet: boolean): Promise<str
     'Content-Type': 'application/json',
   };
   const requestData = JSON.stringify({ offer: offerData });
-  const { err, statusCode, statusMessage, responseBody } = await ipcRenderer?.invoke(
+  const { err, statusCode, statusMessage, responseBody } = await ipcRenderer.invoke(
     'fetchTextResponse',
     requestOptions,
     requestHeaders,
@@ -405,9 +407,8 @@ async function execKeybaseCLI(request: KeybaseCLIRequest): Promise<boolean> {
           command = `keybase chat join-channel ${teamName} '#${channelName}'`;
           break;
         case KeybaseCLIActions.UPLOAD_OFFER:
-          const { title, filePath } = uploadArgs!;
-          if (title && filePath) {
-            command = `keybase chat upload "${teamName}" --channel "${channelName}" --title "${title}" "${filePath}"`;
+          if (uploadArgs?.title && uploadArgs?.filePath) {
+            command = `keybase chat upload "${teamName}" --channel "${channelName}" --title "${uploadArgs.title}" "${uploadArgs.filePath}"`;
           } else {
             reject(new Error(`Missing title or filePath in uploadArgs`));
           }
@@ -949,7 +950,11 @@ function OfferShareKeybaseDialog(props: OfferShareServiceDialogProps) {
         let attempts = 0;
         let isMember = false;
         while (attempts < 20) {
-          await new Promise((resolve) => setTimeout(resolve, 1000));
+          // eslint-disable-next-line no-await-in-loop -- Intentionally sequential
+          await new Promise((resolve) => {
+            setTimeout(resolve, 1000);
+          });
+          // eslint-disable-next-line no-await-in-loop -- Intentionally sequential
           isMember = await execKeybaseCLI({
             action: KeybaseCLIActions.CHECK_TEAM_MEMBERSHIP,
             teamName,
@@ -968,7 +973,11 @@ function OfferShareKeybaseDialog(props: OfferShareServiceDialogProps) {
           attempts = 0;
           let joinChannelSucceeded = false;
           while (attempts < 30) {
-            await new Promise((resolve) => setTimeout(resolve, 1000));
+            // eslint-disable-next-line no-await-in-loop -- Intentionally sequential
+            await new Promise((resolve) => {
+              setTimeout(resolve, 1000);
+            });
+            // eslint-disable-next-line no-await-in-loop -- Intentionally sequential
             joinChannelSucceeded = await execKeybaseCLI({
               action: KeybaseCLIActions.JOIN_CHANNEL,
               teamName,
@@ -984,7 +993,9 @@ function OfferShareKeybaseDialog(props: OfferShareServiceDialogProps) {
 
           if (joinChannelSucceeded) {
             log('Joined channel successfully');
-            await new Promise((resolve) => setTimeout(resolve, 1000));
+            await new Promise((resolve) => {
+              setTimeout(resolve, 1000);
+            });
             await shell.openExternal(`keybase://chat/${teamName}#${channelName}`);
           } else {
             console.error('Failed to join channel');
@@ -1340,11 +1351,11 @@ export default function OfferShareDialog(props: OfferShareDialogProps) {
         OfferSharingProviders[key as OfferSharingService].capabilities.some((cap) => capabilities.includes(cap))
       )
       .map((key) => {
-        const { component, props } = dialogComponents[key as OfferSharingService];
+        const { component, props: dialogProps } = dialogComponents[key as OfferSharingService];
         return {
           ...OfferSharingProviders[key as OfferSharingService],
           dialogComponent: component,
-          dialogProps: props,
+          dialogProps,
         };
       });
 
@@ -1357,9 +1368,11 @@ export default function OfferShareDialog(props: OfferShareDialogProps) {
 
   async function handleShare(dialogProvider: OfferShareDialogProvider) {
     const DialogComponent = dialogProvider.dialogComponent;
-    const { props } = dialogProvider;
+    const { props: dialogProps } = dialogProvider;
 
-    await openDialog(<DialogComponent offerRecord={offerRecord} offerData={offerData} testnet={testnet} {...props} />);
+    await openDialog(
+      <DialogComponent offerRecord={offerRecord} offerData={offerData} testnet={testnet} {...dialogProps} />
+    );
   }
 
   function toggleSuppression(value: boolean) {
@@ -1383,8 +1396,8 @@ export default function OfferShareDialog(props: OfferShareDialogProps) {
           <Flex flexDirection="column" gap={2}>
             <Typography variant="subtitle1">Where would you like to share your offer?</Typography>
             <Flex flexDirection="column" gap={3}>
-              {shareOptions.map((dialogProvider, index) => (
-                <Button variant="outlined" onClick={() => handleShare(dialogProvider)} key={index}>
+              {shareOptions.map((dialogProvider) => (
+                <Button variant="outlined" onClick={() => handleShare(dialogProvider)} key={dialogProvider.name}>
                   {dialogProvider.name}
                 </Button>
               ))}

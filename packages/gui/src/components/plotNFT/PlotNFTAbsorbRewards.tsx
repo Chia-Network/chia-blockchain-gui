@@ -48,7 +48,7 @@ export default function PlotNFTAbsorbRewards(props: Props) {
   });
   const navigate = useNavigate();
   const nft = useMemo(
-    () => data?.nfts?.find((nft) => nft.poolState.p2SingletonPuzzleHash === plotNFTId),
+    () => data?.nfts?.find((nftItem) => nftItem.poolState.p2SingletonPuzzleHash === plotNFTId),
     [data?.nfts, plotNFTId]
   );
 
@@ -58,12 +58,11 @@ export default function PlotNFTAbsorbRewards(props: Props) {
     },
   });
 
-  async function handleSubmit(data: SubmitData) {
+  async function handleSubmit({ fee }: SubmitData) {
     try {
       setWorking(true);
       const walletId = nft?.poolWalletStatus.walletId;
 
-      const { fee } = data;
       const feeMojos = chiaToMojo(fee);
 
       if (walletId === undefined) {
@@ -171,7 +170,3 @@ export default function PlotNFTAbsorbRewards(props: Props) {
     </>
   );
 }
-
-PlotNFTAbsorbRewards.defaultProps = {
-  headerTag: undefined,
-};

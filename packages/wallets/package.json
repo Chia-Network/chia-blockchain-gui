@@ -17,6 +17,7 @@
     "locale:clean": "lingui extract --clean",
     "locale:compile": "lingui compile",
     "locale": "lingui extract && lingui compile",
+    "check:types": "tsc --noEmit",
     "test": "jest"
   },
   "dependencies": {
@@ -37,7 +38,7 @@
     "moment": "2.29.4",
     "qs": "6.10.3",
     "react-dropzone": "11.5.1",
-    "react-hook-form": "7.24.1",
+    "react-hook-form": "7.41.5",
     "react-redux": "7.2.6",
     "react-scroll-to-bottom": "4.2.0",
     "react-use": "17.3.2",

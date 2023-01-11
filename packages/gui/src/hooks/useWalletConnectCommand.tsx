@@ -60,7 +60,7 @@ export default function useWalletConnectCommand() {
     }
     */
 
-    const key = keys?.find((key) => key.fingerprint === fingerprint);
+    const key = keys?.find((item) => item.fingerprint === fingerprint);
 
     const pair = getPairBySession(topic);
     if (!pair) {
@@ -79,8 +79,8 @@ export default function useWalletConnectCommand() {
 
           {params.length > 0 && (
             <Flex flexDirection="column" gap={2}>
-              {params.map(({ label, value, displayComponent }, index) => (
-                <Flex flexDirection="column" key={index}>
+              {params.map(({ label, value, displayComponent }) => (
+                <Flex flexDirection="column" key={label}>
                   <Typography color="textPrimary">{label}</Typography>
                   <Typography color="textSecondary">
                     {displayComponent ? displayComponent(value) : value?.toString() ?? <Trans>Not Available</Trans>}
@@ -184,13 +184,13 @@ export default function useWalletConnectCommand() {
       await logIn({
         fingerprint,
       }).unwrap();
+    }
 
-      // wait for sync
-      if (waitForSync) {
-        log('Waiting for sync');
-        // wait for wallet synchronisation
-        await waitForWalletSync();
-      }
+    // wait for sync
+    if (waitForSync) {
+      log('Waiting for sync');
+      // wait for wallet synchronisation
+      await waitForWalletSync();
     }
 
     // validate current fingerprint again

@@ -6,7 +6,7 @@ export default function useGetHarvesterConnectionsQuery() {
   const { data: connections, ...rest } = useGetFarmerConnectionsQuery(
     {},
     {
-      pollingInterval: 10000,
+      pollingInterval: 10_000,
     }
   );
   const data = useMemo(() => connections?.filter((connection) => connection.type === 2), [connections]);
