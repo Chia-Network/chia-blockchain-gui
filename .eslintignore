@@ -9,3 +9,4 @@ packages/wallet/*
 locales
 rollup.config.js
 webpack.**
+packages/gui/tests

@@ -31,6 +31,7 @@ export default function useWallet(walletId?: number | string): {
 
       return currencyCode;
     }
+    return undefined;
   }, [wallet, currencyCode, isCatListLoading]);
 
   return {

@@ -22,6 +22,7 @@ import useOfferBuilderContext from '../../hooks/useOfferBuilderContext';
 import OfferBuilderAmountWithRoyalties from './OfferBuilderAmountWithRoyalties';
 import OfferBuilderRoyaltyPayouts from './OfferBuilderRoyaltyPayouts';
 import OfferBuilderTokenSelector from './OfferBuilderTokenSelector';
+import OfferBuilderValueSearch from './OfferBuilderValueSearch';
 
 export type OfferBuilderValueProps = {
   name: string;
@@ -34,6 +35,7 @@ export type OfferBuilderValueProps = {
   showAmountInMojos?: boolean;
   usedAssets?: string[];
   disableReadOnly?: boolean;
+  onSelectNFT: (nftId: string) => void;
   warnUnknownCAT?: boolean;
   amountWithRoyalties?: string;
   royaltyPayments?: Record<string, any>[];
@@ -51,14 +53,18 @@ export default function OfferBuilderValue(props: OfferBuilderValueProps) {
     showAmountInMojos,
     usedAssets,
     disableReadOnly = false,
+    onSelectNFT,
     warnUnknownCAT = false,
     amountWithRoyalties,
     royaltyPayments,
   } = props;
+
   const { readOnly: builderReadOnly, offeredUnknownCATs, requestedUnknownCATs } = useOfferBuilderContext();
+
   const value = useWatch({
     name,
   });
+
   const readOnly = disableReadOnly ? false : builderReadOnly;
   const displayValue =
     amountWithRoyalties ||
@@ -154,7 +160,10 @@ export default function OfferBuilderValue(props: OfferBuilderValueProps) {
                 <Fee variant="filled" color="secondary" label={label} name={name} fullWidth />
               )
             ) : type === 'text' ? (
-              <TextField variant="filled" color="secondary" label={label} name={name} required fullWidth />
+              <>
+                <TextField variant="filled" color="secondary" label={label} name={name} required fullWidth />
+                <OfferBuilderValueSearch value={value} onSelectNFT={onSelectNFT} />
+              </>
             ) : type === 'token' ? (
               <OfferBuilderTokenSelector
                 variant="filled"

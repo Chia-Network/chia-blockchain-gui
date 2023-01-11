@@ -11,6 +11,9 @@ import {
   useOpenDialog,
   Suspender,
   useValidateChangePassphraseParams,
+  Form,
+  TextField,
+  Checkbox,
 } from '@chia-network/core';
 import { t, Trans } from '@lingui/macro';
 import {
@@ -20,7 +23,6 @@ import {
 } from '@mui/icons-material';
 import {
   Box,
-  Checkbox,
   Dialog,
   DialogContent,
   DialogContentText,
@@ -28,10 +30,18 @@ import {
   FormControlLabel,
   IconButton,
   InputAdornment,
-  TextField,
   Tooltip,
 } from '@mui/material';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
+
+type ChangePassphrasePromptFormData = {
+  currentPassphrase: string;
+  newPassphrase: string;
+  passphraseConfirmation: string;
+  passphraseHint: string;
+  savePassphrase: boolean;
+};
 
 type Props = {
   onSuccess: () => void;
@@ -52,27 +62,17 @@ export default function ChangePassphrasePrompt(props: Props) {
 
   const isProcessing = isLoadingRemoveKeyringPassphrase || isLoadingSetKeyringPassphrase;
 
-  let currentPassphraseInput: HTMLInputElement | null;
-  let passphraseInput: HTMLInputElement | null;
-  let confirmationInput: HTMLInputElement | null;
-  let passphraseHintInput: HTMLInputElement | null;
-  let savePassphraseCheckbox: HTMLInputElement | null = null;
+  const formMethods = useForm<ChangePassphrasePromptFormData>({
+    defaultValues: {
+      currentPassphrase: '',
+      newPassphrase: '',
+      passphraseConfirmation: '',
+      passphraseHint: '',
+      savePassphrase: false,
+    },
+  });
 
   const { data: keyringState, isLoading } = useGetKeyringStatusQuery();
-
-  const [needsFocusAndSelect, setNeedsFocusAndSelect] = React.useState(false);
-  useEffect(() => {
-    if (needsFocusAndSelect && passphraseInput) {
-      if (currentPassphraseInput && currentPassphraseInput.value === '') {
-        currentPassphraseInput.focus();
-        currentPassphraseInput.select();
-      } else {
-        passphraseInput.focus();
-        passphraseInput.select();
-      }
-      setNeedsFocusAndSelect(false);
-    }
-  });
 
   if (isLoading) {
     return <Suspender />;
@@ -96,13 +96,14 @@ export default function ChangePassphrasePrompt(props: Props) {
     return isValid;
   }
 
-  async function handleSubmit() {
-    const currentPassphrase: string = currentPassphraseInput?.value ?? '';
-    const newPassphrase: string = passphraseInput?.value ?? '';
-    const confirmation: string = confirmationInput?.value ?? '';
-    const savePassphrase: boolean = savePassphraseCheckbox?.checked ?? false;
-    const passphraseHint: string = passphraseHintInput?.value ?? '';
-    const isValid = await validateDialog(currentPassphrase, newPassphrase, confirmation);
+  async function handleSubmit({
+    currentPassphrase,
+    newPassphrase,
+    passphraseConfirmation,
+    passphraseHint,
+    savePassphrase,
+  }: ChangePassphrasePromptFormData) {
+    const isValid = await validateDialog(currentPassphrase, newPassphrase, passphraseConfirmation);
 
     if (isValid) {
       try {
@@ -125,10 +126,7 @@ export default function ChangePassphrasePrompt(props: Props) {
             <Trans>Failed to update passphrase: {error.message}</Trans>
           </AlertDialog>
         );
-        setNeedsFocusAndSelect(true);
       }
-    } else {
-      setNeedsFocusAndSelect(true);
     }
   }
 
@@ -138,7 +136,7 @@ export default function ChangePassphrasePrompt(props: Props) {
 
   async function handleKeyDown(e: React.KeyboardEvent) {
     const keyHandlerMapping: { [key: string]: () => Promise<void> } = {
-      Enter: handleSubmit,
+      Enter: formMethods.handleSubmit(handleSubmit),
       Escape: handleCancel,
     };
 
@@ -173,133 +171,125 @@ export default function ChangePassphrasePrompt(props: Props) {
       onKeyDown={handleKeyDown}
     >
       <DialogTitle id="form-dialog-title">Change Passphrase</DialogTitle>
-      <DialogContent>
-        <DialogContentText>Enter your current passphrase and a new passphrase:</DialogContentText>
-        <Flex flexDirection="row" gap={1.5} alignItems="center">
-          <TextField
-            autoFocus
-            disabled={isProcessing}
-            color="secondary"
-            id="currentPassphraseInput"
-            inputRef={(input) => (currentPassphraseInput = input)}
-            label={<Trans>Current Passphrase</Trans>}
-            type={showPassphraseText1 ? 'text' : 'password'}
-            InputProps={{
-              endAdornment: (
-                <Flex alignItems="center">
-                  <InputAdornment position="end">
-                    {showCapsLock && (
-                      <Flex>
-                        <KeyboardCapslockIcon />
-                      </Flex>
-                    )}
-                    <IconButton onClick={() => setShowPassphraseText1((s) => !s)}>
-                      <VisibilityIcon />
-                    </IconButton>
-                  </InputAdornment>
-                </Flex>
-              ),
-            }}
-            fullWidth
-          />
-        </Flex>
-        <Flex flexDirection="row" gap={1.5} alignItems="center">
-          <TextField
-            disabled={isProcessing}
-            color="secondary"
-            margin="dense"
-            id="passphraseInput"
-            inputRef={(input) => (passphraseInput = input)}
-            label={<Trans>New Passphrase</Trans>}
-            type={showPassphraseText2 ? 'text' : 'password'}
-            InputProps={{
-              endAdornment: (
-                <Flex alignItems="center">
-                  <InputAdornment position="end">
-                    {showCapsLock && (
-                      <Flex>
-                        <KeyboardCapslockIcon />
-                      </Flex>
-                    )}
-                    <IconButton onClick={() => setShowPassphraseText2((s) => !s)}>
-                      <VisibilityIcon />
-                    </IconButton>
-                  </InputAdornment>
-                </Flex>
-              ),
-            }}
-            fullWidth
-          />
-        </Flex>
-        <Flex flexDirection="row" gap={1.5} alignItems="center">
-          <TextField
-            disabled={isProcessing}
-            color="secondary"
-            margin="dense"
-            id="confirmationInput"
-            inputRef={(input) => (confirmationInput = input)}
-            label={<Trans>Confirm New Passphrase</Trans>}
-            type={showPassphraseText3 ? 'text' : 'password'}
-            InputProps={{
-              endAdornment: (
-                <Flex alignItems="center">
-                  <InputAdornment position="end">
-                    {showCapsLock && (
-                      <Flex>
-                        <KeyboardCapslockIcon />
-                      </Flex>
-                    )}
-                    <IconButton onClick={() => setShowPassphraseText3((s) => !s)}>
-                      <VisibilityIcon />
-                    </IconButton>
-                  </InputAdornment>
-                </Flex>
-              ),
-            }}
-            fullWidth
-          />
-        </Flex>
-        {!!canSetPassphraseHint && (
-          <TextField
-            disabled={isProcessing}
-            color="secondary"
-            margin="dense"
-            id="passphraseHintInput"
-            label={<Trans>Passphrase Hint (Optional)</Trans>}
-            placeholder={t`Passphrase Hint`}
-            inputRef={(input) => (passphraseHintInput = input)}
-            fullWidth
-          />
-        )}
-        {!!canSavePassphrase && (
-          <Box display="flex" alignItems="center">
-            <FormControlLabel
-              control={
-                <Checkbox
-                  disabled={isProcessing}
-                  name="cleanupKeyringPostMigration"
-                  inputRef={(input) => (savePassphraseCheckbox = input)}
-                />
-              }
-              label={t`Save passphrase`}
-              style={{ marginRight: '8px' }}
+      <Form methods={formMethods} onSubmit={formMethods.handleSubmit(handleSubmit)}>
+        <DialogContent>
+          <DialogContentText sx={{ mb: 2 }}>Enter your current passphrase and a new passphrase:</DialogContentText>
+          <Flex flexDirection="row" gap={1.5} alignItems="center">
+            <TextField
+              autoFocus
+              disabled={isProcessing}
+              color="secondary"
+              name="currentPassphrase"
+              label={<Trans>Current Passphrase</Trans>}
+              type={showPassphraseText1 ? 'text' : 'password'}
+              InputProps={{
+                endAdornment: (
+                  <Flex alignItems="center">
+                    <InputAdornment position="end">
+                      {showCapsLock && (
+                        <Flex>
+                          <KeyboardCapslockIcon />
+                        </Flex>
+                      )}
+                      <IconButton onClick={() => setShowPassphraseText1((s) => !s)}>
+                        <VisibilityIcon />
+                      </IconButton>
+                    </InputAdornment>
+                  </Flex>
+                ),
+              }}
+              fullWidth
             />
-            <Tooltip
-              title={t`Your passphrase can be stored in your system's secure credential store. Chia will be able to access your keys without prompting for your passphrase.`}
-            >
-              <HelpIcon style={{ color: '#c8c8c8', fontSize: 12 }} />
-            </Tooltip>
-          </Box>
-        )}
-        <DialogActions>
-          <Button disabled={isProcessing} onClick={handleCancel} color="secondary" variant="outlined">
-            <Trans>Cancel</Trans>
-          </Button>
-          <Button disabled={isProcessing} onClick={handleSubmit} color="primary" variant="contained">
-            <Trans>Change Passphrase</Trans>
-          </Button>
-        </DialogActions>
-      </DialogContent>
+          </Flex>
+          <Flex flexDirection="row" gap={1.5} alignItems="center">
+            <TextField
+              disabled={isProcessing}
+              color="secondary"
+              margin="dense"
+              name="newPassphrase"
+              label={<Trans>New Passphrase</Trans>}
+              type={showPassphraseText2 ? 'text' : 'password'}
+              InputProps={{
+                endAdornment: (
+                  <Flex alignItems="center">
+                    <InputAdornment position="end">
+                      {showCapsLock && (
+                        <Flex>
+                          <KeyboardCapslockIcon />
+                        </Flex>
+                      )}
+                      <IconButton onClick={() => setShowPassphraseText2((s) => !s)}>
+                        <VisibilityIcon />
+                      </IconButton>
+                    </InputAdornment>
+                  </Flex>
+                ),
+              }}
+              fullWidth
+            />
+          </Flex>
+          <Flex flexDirection="row" gap={1.5} alignItems="center">
+            <TextField
+              disabled={isProcessing}
+              color="secondary"
+              margin="dense"
+              name="passphraseConfirmation"
+              label={<Trans>Confirm New Passphrase</Trans>}
+              type={showPassphraseText3 ? 'text' : 'password'}
+              InputProps={{
+                endAdornment: (
+                  <Flex alignItems="center">
+                    <InputAdornment position="end">
+                      {showCapsLock && (
+                        <Flex>
+                          <KeyboardCapslockIcon />
+                        </Flex>
+                      )}
+                      <IconButton onClick={() => setShowPassphraseText3((s) => !s)}>
+                        <VisibilityIcon />
+                      </IconButton>
+                    </InputAdornment>
+                  </Flex>
+                ),
+              }}
+              fullWidth
+            />
+          </Flex>
+          {!!canSetPassphraseHint && (
+            <TextField
+              disabled={isProcessing}
+              color="secondary"
+              margin="dense"
+              name="passphraseHint"
+              label={<Trans>Passphrase Hint (Optional)</Trans>}
+              placeholder={t`Passphrase Hint`}
+              fullWidth
+            />
+          )}
+          {!!canSavePassphrase && (
+            <Box display="flex" alignItems="center">
+              <FormControlLabel
+                control={<Checkbox disabled={isProcessing} name="savePassphrase" />}
+                label={t`Save passphrase`}
+                style={{ marginRight: '8px' }}
+              />
+              <Tooltip
+                title={t`Your passphrase can be stored in your system's secure credential store. Chia will be able to access your keys without prompting for your passphrase.`}
+              >
+                <HelpIcon style={{ color: '#c8c8c8', fontSize: 12 }} />
+              </Tooltip>
+            </Box>
+          )}
+          <DialogActions>
+            <Button disabled={isProcessing} onClick={handleCancel} color="secondary" variant="outlined">
+              <Trans>Cancel</Trans>
+            </Button>
+            <Button disabled={isProcessing} type="submit" color="primary" variant="contained">
+              <Trans>Change Passphrase</Trans>
+            </Button>
+          </DialogActions>
+        </DialogContent>
+      </Form>
     </Dialog>
   );
 }

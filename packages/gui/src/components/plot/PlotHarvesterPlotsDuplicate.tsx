@@ -46,9 +46,9 @@ export default function PlotHarvesterPlotsDuplicate(props: PlotHarvesterPlotsDup
   const isLoading = isLoadingHarvester || isLoadingHarvesterPlots;
   const count = duplicates ?? 0;
 
-  function handlePageChange(rowsPerPage: number, page: number) {
+  function handlePageChange(rowsPerPage: number, pageLocal: number) {
     setPageSize(rowsPerPage);
-    setPage(page);
+    setPage(pageLocal);
   }
 
   return (

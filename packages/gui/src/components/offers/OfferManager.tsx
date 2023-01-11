@@ -66,13 +66,13 @@ import {
 } from './utils';
 
 type ConfirmOfferCancellationProps = {
-  canCancelWithTransaction: boolean;
-  onClose: (value: any) => void;
-  open: boolean;
+  canCancelWithTransaction?: boolean;
+  onClose?: (value: any) => void;
+  open?: boolean;
 };
 
 function ConfirmOfferCancellation(props: ConfirmOfferCancellationProps) {
-  const { canCancelWithTransaction, onClose, open } = props;
+  const { canCancelWithTransaction = true, onClose = () => {}, open = true } = props;
   const methods = useForm({
     defaultValues: {
       fee: '',
@@ -175,12 +175,6 @@ function ConfirmOfferCancellation(props: ConfirmOfferCancellationProps) {
   );
 }
 
-ConfirmOfferCancellation.defaultProps = {
-  canCancelWithTransaction: true,
-  onClose: () => {},
-  open: true,
-};
-
 function resolveOfferInfo(
   summary: OfferSummaryRecord,
   summaryKey: string,
@@ -260,6 +254,7 @@ function OfferList(props: OfferListProps) {
     await openDialog(
       <OfferShareDialog
         offerRecord={row}
+        // eslint-disable-next-line no-underscore-dangle -- Can't do anything about it
         offerData={row._offerData}
         exportOffer={() => saveOffer(row.tradeId)}
         testnet={testnet}
@@ -270,6 +265,7 @@ function OfferList(props: OfferListProps) {
   const cols = useMemo(
     () => [
       {
+        // eslint-disable-next-line react/no-unstable-nested-components -- The result is memoized. No performance issue
         field: (row: OfferTradeRecord) => {
           const { status } = row;
 
@@ -286,8 +282,8 @@ function OfferList(props: OfferListProps) {
       {
         field: (row: OfferTradeRecord) => {
           const resolvedOfferInfo = resolveOfferInfo(row.summary, 'offered', lookupByAssetId);
-          return resolvedOfferInfo.map((info, index) => (
-            <Flex flexDirection="row" gap={0.5} key={`${index}-${info.displayName}`}>
+          return resolvedOfferInfo.map((info) => (
+            <Flex flexDirection="row" gap={0.5} key={`${info.displayAmount}-${info.displayName}`}>
               <Typography variant="body2">{(info.displayAmount as any).toString()}</Typography>
               <Typography noWrap variant="body2">
                 {info.displayName}
@@ -301,8 +297,8 @@ function OfferList(props: OfferListProps) {
       {
         field: (row: OfferTradeRecord) => {
           const resolvedOfferInfo = resolveOfferInfo(row.summary, 'requested', lookupByAssetId);
-          return resolvedOfferInfo.map((info, index) => (
-            <Flex flexDirection="row" gap={0.5} key={`${index}-${info.displayName}`}>
+          return resolvedOfferInfo.map((info) => (
+            <Flex flexDirection="row" gap={0.5} key={`${info.displayAmount}-${info.displayName}`}>
               <Typography variant="body2">{(info.displayAmount as any).toString()}</Typography>
               <Typography noWrap variant="body2">
                 {info.displayName}
@@ -314,6 +310,7 @@ function OfferList(props: OfferListProps) {
         title: <Trans>Requested</Trans>,
       },
       {
+        // eslint-disable-next-line react/no-unstable-nested-components -- The result is memoized. No performance issue
         field: (row: OfferTradeRecord) => {
           const { createdAtTime } = row;
 
@@ -330,6 +327,7 @@ function OfferList(props: OfferListProps) {
         title: <Trans>Creation Date</Trans>,
       },
       {
+        // eslint-disable-next-line react/no-unstable-nested-components -- The result is memoized. No performance issue
         field: (row: OfferTradeRecord) => {
           const { tradeId, status } = row;
           const canExport = status === OfferState.PENDING_ACCEPT; // implies isMyOffer === true
@@ -360,6 +358,7 @@ function OfferList(props: OfferListProps) {
                     </Typography>
                   </MenuItem>
                   {canDisplayData && (
+                    // eslint-disable-next-line no-underscore-dangle -- Can't do anything about it
                     <MenuItem onClick={() => handleShowOfferData(row._offerData)} close>
                       <ListItemIcon>
                         <Visibility fontSize="small" />
@@ -533,6 +532,7 @@ export function CreateOffer() {
               walletType={locationState?.walletType}
               assetId={locationState?.assetId}
               nftId={locationState?.nftId}
+              nftIds={locationState?.nftIds}
               nftWalletId={locationState?.nftWalletId}
               referrerPath={locationState?.referrerPath}
               onOfferCreated={handleOfferCreated}

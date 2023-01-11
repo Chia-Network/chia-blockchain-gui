@@ -38,12 +38,12 @@ export default function OfferBuilderXCHSection(props: OfferBuilderXCHSectionProp
       return [];
     }
 
-    let amountWithRoyalties = chiaToMojo(amount);
+    let amountWithRoyaltiesLocal = chiaToMojo(amount);
     const rows: Record<string, any>[] = [];
-    Object.entries(allRoyalties).forEach(([nftId, royaltyPayments]) => {
-      const matchingPayment = royaltyPayments?.find((payment) => payment.asset === 'xch');
+    Object.entries(allRoyalties).forEach(([nftId, royaltyPaymentsLocal]) => {
+      const matchingPayment = royaltyPaymentsLocal?.find((payment) => payment.asset === 'xch');
       if (matchingPayment) {
-        amountWithRoyalties = amountWithRoyalties.plus(matchingPayment.amount);
+        amountWithRoyaltiesLocal = amountWithRoyaltiesLocal.plus(matchingPayment.amount);
         rows.push({
           nftId,
           payment: {
@@ -54,7 +54,7 @@ export default function OfferBuilderXCHSection(props: OfferBuilderXCHSectionProp
       }
     });
 
-    return [mojoToChiaLocaleString(amountWithRoyalties), rows];
+    return [mojoToChiaLocaleString(amountWithRoyaltiesLocal), rows];
   }, [allRoyalties]);
 
   function handleAdd() {

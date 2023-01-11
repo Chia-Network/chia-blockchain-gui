@@ -58,7 +58,7 @@ export default function AppKeyringMigrator() {
   let cleanupKeyringCheckbox: HTMLInputElement | null = null;
 
   async function validateDialog(passphrase: string, confirmation: string): Promise<boolean> {
-    return await validateChangePassphraseParams(null, passphrase, confirmation);
+    return validateChangePassphraseParams(null, passphrase, confirmation);
   }
 
   async function handleMigrate(): Promise<void> {
@@ -175,6 +175,7 @@ export default function AppKeyringMigrator() {
             id="confirmation_input"
             label={<Trans>Confirm Passphrase</Trans>}
             placeholder={t`Confirm Passphrase`}
+            // eslint-disable-next-line no-return-assign -- We want assignment
             inputRef={(input: HTMLInputElement) => (confirmationInput = input)}
             type={showPassphraseText2 ? 'text' : 'password'}
             InputProps={{
@@ -204,6 +205,7 @@ export default function AppKeyringMigrator() {
             id="passphraseHintInput"
             label={<Trans>Passphrase Hint (Optional)</Trans>}
             placeholder={t`Passphrase Hint`}
+            // eslint-disable-next-line no-return-assign -- We want assignment
             inputRef={(input) => (passphraseHintInput = input)}
             fullWidth
           />
@@ -215,6 +217,7 @@ export default function AppKeyringMigrator() {
                 <Checkbox
                   disabled={isLoadingMigrateKeyring}
                   name="cleanupKeyringPostMigration"
+                  // eslint-disable-next-line no-return-assign -- We want assignment
                   inputRef={(input) => (savePassphraseCheckbox = input)}
                 />
               }
@@ -235,6 +238,7 @@ export default function AppKeyringMigrator() {
                 <Checkbox
                   disabled={isLoadingMigrateKeyring}
                   name="cleanupKeyringPostMigration"
+                  // eslint-disable-next-line no-return-assign -- We want assignment
                   inputRef={(input) => (cleanupKeyringCheckbox = input)}
                 />
               }

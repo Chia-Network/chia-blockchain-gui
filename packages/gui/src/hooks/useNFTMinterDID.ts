@@ -25,15 +25,15 @@ export default function useNFTMinterDID(nftId: string): UseNFTMinterDIDResult {
     if (!minterDid) {
       return [];
     }
-    const hexDIDId = stripHexPrefix(minterDid);
-    const didId = didToDIDId(hexDIDId);
-    let didName;
+    const hexDIDIdLocal = stripHexPrefix(minterDid);
+    const didIdLocal = didToDIDId(hexDIDIdLocal);
+    let didNameLocal;
 
-    if (didId === 'did:chia:19qf3g9876t0rkq7tfdkc28cxfy424yzanea29rkzylq89kped9hq3q7wd2') {
-      didName = 'Chia Network';
+    if (didIdLocal === 'did:chia:19qf3g9876t0rkq7tfdkc28cxfy424yzanea29rkzylq89kped9hq3q7wd2') {
+      didNameLocal = 'Chia Network';
     }
 
-    return [didId, hexDIDId, didName];
+    return [didIdLocal, hexDIDIdLocal, didNameLocal];
   }, [nft]);
 
   return { didId, hexDIDId, didName, isLoading, error };

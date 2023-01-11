@@ -81,7 +81,11 @@ export function suggestedFilenameForOffer(
     return filename;
   }
 
-  function filenameBuilder(filename: string, args: [assetInfo: AssetIdMapEntry | undefined, amount: string]): string {
+  function filenameBuilder(
+    filenameParam: string,
+    args: [assetInfo: AssetIdMapEntry | undefined, amount: string]
+  ): string {
+    let filename = filenameParam;
     const [assetInfo, amount] = args;
 
     if (filename) {
@@ -113,9 +117,10 @@ export function shortSummaryForOffer(
   }
 
   function summaryBuilder(
-    shortSummary: string,
+    shortSummaryParam: string,
     args: [assetInfo: AssetIdMapEntry | undefined, amount: string]
   ): string {
+    let shortSummary = shortSummaryParam;
     const [assetInfo, amount] = args;
 
     if (shortSummary) {
@@ -235,7 +240,7 @@ export function offerAssetIdForAssetType(assetType: OfferAsset, offerSummary: Of
   }
 
   const assetId = Object.keys(offerSummary.infos).find(
-    (assetId) => offerAssetTypeForAssetId(assetId, offerSummary) === assetType
+    (item) => offerAssetTypeForAssetId(item, offerSummary) === assetType
   );
 
   return assetId;
@@ -279,6 +284,7 @@ export type GetNFTPriceWithoutRoyaltiesResult = {
 export function getNFTPriceWithoutRoyalties(
   summary: OfferSummaryRecord
 ): GetNFTPriceWithoutRoyaltiesResult | undefined {
+  // eslint-disable-next-line no-restricted-syntax -- We are returning a value, so cannot use .forEach()
   for (const assetType of [OfferAsset.TOKEN, OfferAsset.CHIA]) {
     const assetId = offerAssetIdForAssetType(assetType, summary);
     if (assetId) {

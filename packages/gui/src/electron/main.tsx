@@ -15,8 +15,9 @@ import fs from 'fs';
 import path from 'path';
 import url from 'url';
 
-import { initialize } from '@electron/remote/main';
+import { initialize, enable } from '@electron/remote/main';
 import axios from 'axios';
+import chokidar from 'chokidar';
 import windowStateKeeper from 'electron-window-state';
 import React from 'react';
 // import os from 'os';
@@ -48,10 +49,33 @@ app.commandLine.appendSwitch('disable-http-cache');
 initialize();
 
 const appIcon = nativeImage.createFromPath(path.join(__dirname, AppIcon));
-let thumbCacheFolder = path.join(app.getPath('cache'), app.getName());
+const defaultThumbCacheFolder = path.join(app.getPath('cache'), app.getName());
+let thumbCacheFolder = defaultThumbCacheFolder;
 
-if (!fs.existsSync(thumbCacheFolder)) {
-  fs.mkdirSync(thumbCacheFolder);
+if (!fs.existsSync(defaultThumbCacheFolder)) {
+  fs.mkdirSync(defaultThumbCacheFolder);
+}
+
+let mainWindow: BrowserWindow | null = null;
+
+let watcher;
+
+function watchCacheFolder(folder: string) {
+  function watchFolder(f) {
+    watcher = chokidar.watch(f, { persistent: true });
+    watcher.on('unlink', (pathLocal: any) => {
+      mainWindow?.webContents.send('removed-cache-file', pathLocal.split('/').splice(-1, 1)[0]);
+    });
+  }
+  if (folder) {
+    if (watcher) {
+      watcher.close().then(() => {
+        watchFolder(folder);
+      });
+    } else {
+      watchFolder(folder);
+    }
+  }
 }
 
 let cacheLimitSize: number = 1024;
@@ -104,10 +128,10 @@ function openAbout() {
   // aboutWindow.webContents.openDevTools({ mode: 'detach' });
 }
 
-export function getChecksum(path: string) {
+export function getChecksum(pathLocal: string) {
   return new Promise((resolve, reject) => {
     const hash = crypto.createHash('sha256');
-    const input = fs.createReadStream(path);
+    const input = fs.createReadStream(pathLocal);
     input.on('error', reject);
     input.on('data', (chunk) => {
       hash.update(chunk);
@@ -149,8 +173,6 @@ if (!handleSquirrelEvent()) {
 
     return true;
   };
-
-  let mainWindow: BrowserWindow | null = null;
 
   const createMenu = () => Menu.buildFromTemplate(getMenuTemplate());
 
@@ -222,14 +244,14 @@ if (!handleSquirrelEvent()) {
         return { err, statusCode, statusMessage, responseBody };
       });
 
-      function getRemoteFileSize(url: string): Promise<number> {
+      function getRemoteFileSize(urlLocal: string): Promise<number> {
         return new Promise((resolve, reject) => {
           axios({
-            method: 'get',
-            url,
+            method: 'HEAD',
+            url: urlLocal,
           })
             .then((response) => {
-              resolve(Number(response.headers['content-length']));
+              resolve(Number(response.headers['content-length'] || -1));
             })
             .catch((e) => {
               reject(e.message);
@@ -268,6 +290,7 @@ if (!handleSquirrelEvent()) {
           return null;
         }
         console.error('Error getting svg file...', file);
+        return undefined;
       });
 
       ipcMain.handle(
@@ -277,9 +300,9 @@ if (!handleSquirrelEvent()) {
 
           let wasCached = false;
 
-          if (allRequests[rest.uri]) {
+          if (allRequests[rest.url]) {
             /* request already exists */
-            return;
+            return undefined;
           }
 
           allRequests[rest.url] = net.request(rest);
@@ -290,7 +313,7 @@ if (!handleSquirrelEvent()) {
           const fileStream = fs.createWriteStream(fileOnDisk);
 
           Object.entries(requestHeaders).forEach(([header, value]: [string, any]) => {
-            allRequests[rest.uri].setHeader(header, value);
+            allRequests[rest.url].setHeader(header, value);
           });
 
           let error: Error | undefined;
@@ -306,10 +329,9 @@ if (!handleSquirrelEvent()) {
           let totalLength = 0;
 
           try {
-            let fileSize: number;
-            fileSize = await getRemoteFileSize(rest.url);
+            /* GET FILE SIZE */
+            const fileSize: number = await getRemoteFileSize(rest.url);
             dataObject = await new Promise((resolve, reject) => {
-              /* GET FILE SIZE */
               allRequests[rest.url].on('response', (response: IncomingMessage) => {
                 statusCode = response.statusCode;
                 statusMessage = response.statusMessage;
@@ -317,7 +339,7 @@ if (!handleSquirrelEvent()) {
                 const rawContentType = response.headers['content-type'];
                 if (rawContentType) {
                   if (Array.isArray(rawContentType)) {
-                    contentType = rawContentType[0];
+                    [contentType] = rawContentType;
                   } else {
                     contentType = rawContentType;
                   }
@@ -326,7 +348,7 @@ if (!handleSquirrelEvent()) {
                     // extract charset from contentType
                     const charsetMatch = contentType.match(/charset=([^;]+)/);
                     if (charsetMatch) {
-                      encoding = charsetMatch[1];
+                      [, encoding] = charsetMatch;
                     }
                   }
                 }
@@ -398,8 +420,8 @@ if (!handleSquirrelEvent()) {
                 });
               });
 
-              allRequests[rest.url].on('error', (error: any) => {
-                reject(error);
+              allRequests[rest.url].on('error', (err: any) => {
+                reject(err);
               });
 
               if (requestData) {
@@ -409,6 +431,10 @@ if (!handleSquirrelEvent()) {
               allRequests[rest.url].end();
             });
           } catch (e: any) {
+            if (fs.existsSync(fileOnDisk)) {
+              fs.unlinkSync(fileOnDisk);
+            }
+            delete allRequests[rest.url];
             error = e;
           }
 
@@ -434,6 +460,7 @@ if (!handleSquirrelEvent()) {
           return mainWindow.webContents.downloadURL(options.url);
         }
         console.error('mainWindow was not initialized');
+        return undefined;
       });
 
       ipcMain.handle('processLaunchTasks', async (_event) => {
@@ -486,6 +513,7 @@ if (!handleSquirrelEvent()) {
               }
             });
           }
+          watchCacheFolder(to);
         }
 
         thumbCacheFolder = to;
@@ -539,6 +567,18 @@ if (!handleSquirrelEvent()) {
 
       ipcMain.handle('migratePrefs', async (_event, prefsObj) => migratePrefs(prefsObj));
 
+      ipcMain.handle('getCacheFilenames', (_event) => fs.readdirSync(thumbCacheFolder));
+
+      ipcMain.handle('clearNFTCache', (_event) => {
+        if (fs.existsSync(thumbCacheFolder)) {
+          const files = fs.readdirSync(thumbCacheFolder);
+          for (let i = 0; i < files.length; i++) {
+            fs.unlinkSync(path.join(thumbCacheFolder, files[i]));
+          }
+        }
+        return true;
+      });
+
       /* ======================================================================== */
 
       decidedToClose = false;
@@ -577,9 +617,9 @@ if (!handleSquirrelEvent()) {
       // don't show remote daeomn detials in the title bar
       if (!manageDaemonLifetime(NET)) {
         mainWindow.webContents.on('did-finish-load', async () => {
-          const { url } = await loadConfig(NET);
+          const { url: urlLocal } = await loadConfig(NET);
           if (mainWindow) {
-            mainWindow.setTitle(`${app.getName()} [${url}]`);
+            mainWindow.setTitle(`${app.getName()} [${urlLocal}]`);
           }
         });
       }
@@ -605,7 +645,7 @@ if (!handleSquirrelEvent()) {
               }
             ),
           });
-          if (choice == 0) {
+          if (choice === 0) {
             isClosing = false;
             return;
           }
@@ -635,7 +675,7 @@ if (!handleSquirrelEvent()) {
             });
 
       mainWindow.loadURL(startUrl);
-      require('@electron/remote/main').enable(mainWindow.webContents);
+      enable(mainWindow.webContents);
     };
 
     const appReady = async () => {
@@ -646,11 +686,14 @@ if (!handleSquirrelEvent()) {
         callback({ path: filePath });
       });
       const prefs = readPrefs();
+      thumbCacheFolder = prefs.cacheFolder || defaultThumbCacheFolder;
+      watchCacheFolder(thumbCacheFolder);
+
       if (prefs.cacheLimitSize !== undefined) {
         try {
-          const prefs_cacheLimitSize = +prefs.cacheLimitSize;
-          if (!isNaN(prefs_cacheLimitSize) && isFinite(prefs_cacheLimitSize) && prefs_cacheLimitSize > 0) {
-            cacheLimitSize = prefs_cacheLimitSize;
+          const prefsCacheLimitSize = +prefs.cacheLimitSize;
+          if (!Number.isNaN(prefsCacheLimitSize) && Number.isFinite(prefsCacheLimitSize) && prefsCacheLimitSize > 0) {
+            cacheLimitSize = prefsCacheLimitSize;
           }
         } catch (e) {
           console.error(e);
@@ -658,9 +701,9 @@ if (!handleSquirrelEvent()) {
       }
       if (prefs.cacheFolder !== undefined) {
         try {
-          const prefs_cacheFolder = prefs.cacheFolder;
-          if (fs.existsSync(prefs_cacheFolder)) {
-            thumbCacheFolder = prefs_cacheFolder;
+          const prefsCacheFolder = prefs.cacheFolder;
+          if (fs.existsSync(prefsCacheFolder)) {
+            thumbCacheFolder = prefsCacheFolder;
           }
         } catch (e) {
           console.error(e);
@@ -674,37 +717,37 @@ if (!handleSquirrelEvent()) {
       app.quit();
     });
 
-    app.on('open-file', (event, path) => {
+    app.on('open-file', (event, pathLocal) => {
       event.preventDefault();
 
       // App may have been launched with a file to open. Make sure we have a
       // main window before trying to open a file.
       if (!mainWindow) {
         mainWindowLaunchTasks.push((window: BrowserWindow) => {
-          window.webContents.send('open-file', path);
+          window.webContents.send('open-file', pathLocal);
         });
       } else {
-        mainWindow?.webContents.send('open-file', path);
+        mainWindow?.webContents.send('open-file', pathLocal);
       }
     });
 
-    app.on('open-url', (event, url) => {
+    app.on('open-url', (event, urlLocal) => {
       event.preventDefault();
 
       // App may have been launched with a URL to open. Make sure we have a
       // main window before trying to open a URL.
       if (!mainWindow) {
         mainWindowLaunchTasks.push((window: BrowserWindow) => {
-          window.webContents.send('open-url', url);
+          window.webContents.send('open-url', urlLocal);
         });
       } else {
-        mainWindow?.webContents.send('open-url', url);
+        mainWindow?.webContents.send('open-url', urlLocal);
       }
     });
 
     ipcMain.on('load-page', (_, arg: { file: string; query: string }) => {
       mainWindow.loadURL(
-        require('url').format({
+        url.format({
           pathname: path.join(__dirname, arg.file),
           protocol: 'file:',
           slashes: true,
@@ -717,271 +760,271 @@ if (!handleSquirrelEvent()) {
       app.applicationMenu = createMenu();
     });
   }
+}
 
-  const getMenuTemplate = () => {
-    const template = [
-      {
-        label: i18n._(/* i18n */ { id: 'File' }),
-        submenu: [
-          {
-            role: 'quit',
-          },
-        ],
-      },
-      {
-        label: i18n._(/* i18n */ { id: 'Edit' }),
-        submenu: [
-          {
-            role: 'undo',
-          },
-          {
-            role: 'redo',
-          },
-          {
-            type: 'separator',
-          },
-          {
-            role: 'cut',
-          },
-          {
-            role: 'copy',
-          },
-          {
-            role: 'paste',
-          },
-          {
-            role: 'delete',
-          },
-          {
-            type: 'separator',
-          },
-          {
-            role: 'selectall',
-          },
-        ],
-      },
-      {
-        label: i18n._(/* i18n */ { id: 'View' }),
-        submenu: [
-          {
-            role: 'reload',
-          },
-          {
-            role: 'forcereload',
-          },
-          {
-            label: i18n._(/* i18n */ { id: 'Developer' }),
-            submenu: [
-              {
-                label: i18n._(/* i18n */ { id: 'Developer Tools' }),
-                accelerator: process.platform === 'darwin' ? 'Alt+Command+I' : 'Ctrl+Shift+I',
-                click: () => mainWindow.toggleDevTools(),
-              },
-              // {
-              // label: isSimulator
-              //  ? i18n._(/* i18n */ { id: 'Disable Simulator' })
-              //   : i18n._(/* i18n */ { id: 'Enable Simulator' }),
-              // click: () => toggleSimulatorMode(),
-              // },
-            ],
-          },
-          {
-            type: 'separator',
-          },
-          {
-            role: 'resetzoom',
-          },
-          {
-            role: 'zoomin',
-          },
-          {
-            role: 'zoomout',
-          },
-          {
-            type: 'separator',
-          },
-          {
-            label: i18n._(/* i18n */ { id: 'Full Screen' }),
-            accelerator: process.platform === 'darwin' ? 'Ctrl+Command+F' : 'F11',
-            click: () => mainWindow.setFullScreen(!mainWindow.isFullScreen()),
-          },
-        ],
-      },
-      {
-        label: i18n._(/* i18n */ { id: 'Window' }),
-        submenu: [
-          {
-            role: 'minimize',
-          },
-          {
-            role: 'zoom',
-          },
-          {
-            role: 'close',
-          },
-        ],
-      },
-      {
-        label: i18n._(/* i18n */ { id: 'Help' }),
-        role: 'help',
-        submenu: [
-          {
-            label: i18n._(/* i18n */ { id: 'Chia Blockchain Wiki' }),
-            click: () => {
-              openExternal('https://github.com/Chia-Network/chia-blockchain/wiki');
-            },
-          },
-          {
-            label: i18n._(/* i18n */ { id: 'Frequently Asked Questions' }),
-            click: () => {
-              openExternal('https://github.com/Chia-Network/chia-blockchain/wiki/FAQ');
-            },
-          },
-          {
-            label: i18n._(/* i18n */ { id: 'Release Notes' }),
-            click: () => {
-              openExternal('https://github.com/Chia-Network/chia-blockchain/releases');
-            },
-          },
-          {
-            label: i18n._(/* i18n */ { id: 'Contribute on GitHub' }),
-            click: () => {
-              openExternal('https://github.com/Chia-Network/chia-blockchain/blob/main/CONTRIBUTING.md');
-            },
-          },
-          {
-            type: 'separator',
-          },
-          {
-            label: i18n._(/* i18n */ { id: 'Report an Issue...' }),
-            click: () => {
-              openExternal('https://github.com/Chia-Network/chia-blockchain/issues');
-            },
-          },
-          {
-            label: i18n._(/* i18n */ { id: 'Chat on KeyBase' }),
-            click: () => {
-              openExternal('https://keybase.io/team/chia_network.public');
-            },
-          },
-          {
-            label: i18n._(/* i18n */ { id: 'Follow on Twitter' }),
-            click: () => {
-              openExternal('https://twitter.com/chia_project');
-            },
-          },
-        ],
-      },
-    ];
-
-    if (process.platform === 'darwin') {
-      // Chia Blockchain menu (Mac)
-      template.unshift({
-        label: i18n._(/* i18n */ { id: 'Chia' }),
-        submenu: [
-          {
-            label: i18n._(/* i18n */ { id: 'About Chia Blockchain' }),
-            click: () => {
-              openAbout();
-            },
-          },
-          {
-            type: 'separator',
-          },
-          {
-            role: 'services',
-          },
-          {
-            type: 'separator',
-          },
-          {
-            role: 'hide',
-          },
-          {
-            role: 'hideothers',
-          },
-          {
-            role: 'unhide',
-          },
-          {
-            type: 'separator',
-          },
-          {
-            role: 'quit',
-          },
-        ],
-      });
-
-      // File menu (MacOS)
-      template.splice(1, 1, {
-        label: i18n._(/* i18n */ { id: 'File' }),
-        submenu: [
-          {
-            role: 'close',
-          },
-        ],
-      });
-
-      // Edit menu (MacOS)
-      template[2].submenu.push(
+function getMenuTemplate() {
+  const template = [
+    {
+      label: i18n._(/* i18n */ { id: 'File' }),
+      submenu: [
+        {
+          role: 'quit',
+        },
+      ],
+    },
+    {
+      label: i18n._(/* i18n */ { id: 'Edit' }),
+      submenu: [
+        {
+          role: 'undo',
+        },
+        {
+          role: 'redo',
+        },
         {
           type: 'separator',
         },
         {
-          label: i18n._(/* i18n */ { id: 'Speech' }),
+          role: 'cut',
+        },
+        {
+          role: 'copy',
+        },
+        {
+          role: 'paste',
+        },
+        {
+          role: 'delete',
+        },
+        {
+          type: 'separator',
+        },
+        {
+          role: 'selectall',
+        },
+      ],
+    },
+    {
+      label: i18n._(/* i18n */ { id: 'View' }),
+      submenu: [
+        {
+          role: 'reload',
+        },
+        {
+          role: 'forcereload',
+        },
+        {
+          label: i18n._(/* i18n */ { id: 'Developer' }),
           submenu: [
             {
-              role: 'startspeaking',
+              label: i18n._(/* i18n */ { id: 'Developer Tools' }),
+              accelerator: process.platform === 'darwin' ? 'Alt+Command+I' : 'Ctrl+Shift+I',
+              click: () => mainWindow.toggleDevTools(),
             },
-            {
-              role: 'stopspeaking',
-            },
+            // {
+            // label: isSimulator
+            //  ? i18n._(/* i18n */ { id: 'Disable Simulator' })
+            //   : i18n._(/* i18n */ { id: 'Enable Simulator' }),
+            // click: () => toggleSimulatorMode(),
+            // },
           ],
-        }
-      );
-
-      // Window menu (MacOS)
-      template.splice(4, 1, {
-        role: 'window',
-        submenu: [
-          {
-            role: 'minimize',
-          },
-          {
-            role: 'zoom',
-          },
-          {
-            type: 'separator',
-          },
-          {
-            role: 'front',
-          },
-        ],
-      });
-    }
-
-    if (process.platform === 'linux' || process.platform === 'win32') {
-      // Help menu (Windows, Linux)
-      template[4].submenu.push(
+        },
         {
           type: 'separator',
         },
         {
+          role: 'resetzoom',
+        },
+        {
+          role: 'zoomin',
+        },
+        {
+          role: 'zoomout',
+        },
+        {
+          type: 'separator',
+        },
+        {
+          label: i18n._(/* i18n */ { id: 'Full Screen' }),
+          accelerator: process.platform === 'darwin' ? 'Ctrl+Command+F' : 'F11',
+          click: () => mainWindow.setFullScreen(!mainWindow.isFullScreen()),
+        },
+      ],
+    },
+    {
+      label: i18n._(/* i18n */ { id: 'Window' }),
+      submenu: [
+        {
+          role: 'minimize',
+        },
+        {
+          role: 'zoom',
+        },
+        {
+          role: 'close',
+        },
+      ],
+    },
+    {
+      label: i18n._(/* i18n */ { id: 'Help' }),
+      role: 'help',
+      submenu: [
+        {
+          label: i18n._(/* i18n */ { id: 'Chia Blockchain Wiki' }),
+          click: () => {
+            openExternal('https://github.com/Chia-Network/chia-blockchain/wiki');
+          },
+        },
+        {
+          label: i18n._(/* i18n */ { id: 'Frequently Asked Questions' }),
+          click: () => {
+            openExternal('https://github.com/Chia-Network/chia-blockchain/wiki/FAQ');
+          },
+        },
+        {
+          label: i18n._(/* i18n */ { id: 'Release Notes' }),
+          click: () => {
+            openExternal('https://github.com/Chia-Network/chia-blockchain/releases');
+          },
+        },
+        {
+          label: i18n._(/* i18n */ { id: 'Contribute on GitHub' }),
+          click: () => {
+            openExternal('https://github.com/Chia-Network/chia-blockchain/blob/main/CONTRIBUTING.md');
+          },
+        },
+        {
+          type: 'separator',
+        },
+        {
+          label: i18n._(/* i18n */ { id: 'Report an Issue...' }),
+          click: () => {
+            openExternal('https://github.com/Chia-Network/chia-blockchain/issues');
+          },
+        },
+        {
+          label: i18n._(/* i18n */ { id: 'Chat on KeyBase' }),
+          click: () => {
+            openExternal('https://keybase.io/team/chia_network.public');
+          },
+        },
+        {
+          label: i18n._(/* i18n */ { id: 'Follow on Twitter' }),
+          click: () => {
+            openExternal('https://twitter.com/chia_project');
+          },
+        },
+      ],
+    },
+  ];
+
+  if (process.platform === 'darwin') {
+    // Chia Blockchain menu (Mac)
+    template.unshift({
+      label: i18n._(/* i18n */ { id: 'Chia' }),
+      submenu: [
+        {
           label: i18n._(/* i18n */ { id: 'About Chia Blockchain' }),
-          click() {
+          click: () => {
             openAbout();
           },
-        }
-      );
-    }
+        },
+        {
+          type: 'separator',
+        },
+        {
+          role: 'services',
+        },
+        {
+          type: 'separator',
+        },
+        {
+          role: 'hide',
+        },
+        {
+          role: 'hideothers',
+        },
+        {
+          role: 'unhide',
+        },
+        {
+          type: 'separator',
+        },
+        {
+          role: 'quit',
+        },
+      ],
+    });
 
-    return template;
-  };
+    // File menu (MacOS)
+    template.splice(1, 1, {
+      label: i18n._(/* i18n */ { id: 'File' }),
+      submenu: [
+        {
+          role: 'close',
+        },
+      ],
+    });
 
-  /**
-   * Open the given external protocol URL in the desktop’s default manner.
-   */
-  const openExternal = (url) => {
-    shell.openExternal(url);
-  };
+    // Edit menu (MacOS)
+    template[2].submenu.push(
+      {
+        type: 'separator',
+      },
+      {
+        label: i18n._(/* i18n */ { id: 'Speech' }),
+        submenu: [
+          {
+            role: 'startspeaking',
+          },
+          {
+            role: 'stopspeaking',
+          },
+        ],
+      }
+    );
+
+    // Window menu (MacOS)
+    template.splice(4, 1, {
+      role: 'window',
+      submenu: [
+        {
+          role: 'minimize',
+        },
+        {
+          role: 'zoom',
+        },
+        {
+          type: 'separator',
+        },
+        {
+          role: 'front',
+        },
+      ],
+    });
+  }
+
+  if (process.platform === 'linux' || process.platform === 'win32') {
+    // Help menu (Windows, Linux)
+    template[4].submenu.push(
+      {
+        type: 'separator',
+      },
+      {
+        label: i18n._(/* i18n */ { id: 'About Chia Blockchain' }),
+        click() {
+          openAbout();
+        },
+      }
+    );
+  }
+
+  return template;
+}
+
+/**
+ * Open the given external protocol URL in the desktop’s default manner.
+ */
+function openExternal(urlLocal) {
+  shell.openExternal(urlLocal);
 }

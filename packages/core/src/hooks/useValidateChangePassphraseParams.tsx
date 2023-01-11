@@ -24,10 +24,10 @@ export default function useValidateChangePassphraseParams() {
 
       const { isOptional: allowEmptyPassphrase, minLength: minPassphraseLength } = keyringState.passphraseRequirements;
 
-      if (newPassphrase != confirmationPassphrase) {
+      if (newPassphrase !== confirmationPassphrase) {
         throw new Error(t`The provided passphrase and confirmation do not match`);
       } else if (
-        (newPassphrase.length == 0 && !allowEmptyPassphrase) || // Passphrase required, no passphrase provided
+        (newPassphrase.length === 0 && !allowEmptyPassphrase) || // Passphrase required, no passphrase provided
         (newPassphrase.length > 0 && newPassphrase.length < minPassphraseLength)
       ) {
         // Passphrase provided, not long enough
@@ -37,9 +37,9 @@ export default function useValidateChangePassphraseParams() {
             other: 'Passphrases must be at least # characters in length',
           })
         );
-      } else if (currentPassphrase !== null && currentPassphrase == newPassphrase) {
+      } else if (currentPassphrase !== null && currentPassphrase === newPassphrase) {
         throw new Error(t`New passphrase is the same as your current passphrase`);
-      } else if (newPassphrase.length == 0) {
+      } else if (newPassphrase.length === 0) {
         // Warn about using an empty passphrase
         let alertTitle: React.ReactElement | string;
         let buttonTitle: React.ReactElement | string;
@@ -84,8 +84,8 @@ export default function useValidateChangePassphraseParams() {
       }
 
       return true;
-    } catch (error: any) {
-      await openDialog(<AlertDialog>{error.message}</AlertDialog>);
+    } catch (err: any) {
+      await openDialog(<AlertDialog>{err.message}</AlertDialog>);
       return false;
     }
   }

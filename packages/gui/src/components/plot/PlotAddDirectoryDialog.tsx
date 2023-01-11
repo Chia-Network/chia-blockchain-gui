@@ -124,8 +124,3 @@ export default function PlotAddDirectoryDialog(props: Props) {
     </Dialog>
   );
 }
-
-PlotAddDirectoryDialog.defaultProps = {
-  open: false,
-  onClose: () => {},
-};

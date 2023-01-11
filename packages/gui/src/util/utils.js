@@ -1,6 +1,7 @@
 import mime from 'mime-types';
 
-export function hex_to_array(hexString) {
+export function hexToArray(hexStringParam) {
+  let hexString = hexStringParam;
   if (hexString.slice(0, 2) === '0x' || hexString.slice(0, 2) === '0X') {
     hexString = hexString.slice(2);
   }
@@ -18,7 +19,7 @@ export function stripHexPrefix(hexString) {
   return hexString;
 }
 
-export function arr_to_hex(buffer) {
+export function arrToHex(buffer) {
   // buffer is an ArrayBuffer
   return Array.prototype.map.call(new Uint8Array(buffer), (x) => `00${x.toString(16)}`.slice(-2)).join('');
 }
@@ -39,7 +40,7 @@ export function mimeTypeRegex(uri, regexp) {
 }
 
 export function isImage(uri) {
-  return mimeTypeRegex(uri || '', /^image/) || mimeTypeRegex(uri || '', /^$/);
+  return !!(mimeTypeRegex(uri || '', /^image/) || mimeTypeRegex(uri || '', /^$/));
 }
 
 export function getCacheInstances() {
@@ -85,4 +86,29 @@ export function toBase64Safe(url) {
 
 export function fromBase64Safe(base64String) {
   return Buffer.from(base64String.replace(/_/g, '/').replace(/-/, '+'), 'base64');
+}
+
+export function isDocument(extension) {
+  return ['pdf', 'docx', 'doc', 'xls', 'xlsx', 'ppt', 'pptx', 'txt', 'rtf'].indexOf(extension) > -1;
+}
+
+export function getNFTFileType(nft) {
+  const file = Array.isArray(nft.dataUris) && nft.dataUris[0];
+  try {
+    const extension = new URL(file).pathname.split('.').slice(-1)[0];
+    if (extension.match(/^[a-zA-Z0-9]+$/) && isDocument(extension)) {
+      return 'Document';
+    }
+  } catch (e) {
+    // do nothing
+  }
+  return isImage(file)
+    ? 'Image'
+    : mimeTypeRegex(file, /^audio/)
+    ? 'Audio'
+    : mimeTypeRegex(file, /^video/)
+    ? 'Video'
+    : mimeTypeRegex(file, /^model/)
+    ? 'Model'
+    : 'Unknown';
 }

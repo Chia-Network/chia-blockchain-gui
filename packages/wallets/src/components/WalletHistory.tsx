@@ -193,7 +193,7 @@ export default function WalletHistory(props: Props) {
   const { data: walletState, isLoading: isWalletSyncLoading } = useGetSyncStatusQuery(
     {},
     {
-      pollingInterval: 10000,
+      pollingInterval: 10_000,
     }
   );
   const { wallet, loading: isWalletLoading, unit } = useWallet(walletId);
@@ -249,12 +249,13 @@ export default function WalletHistory(props: Props) {
         metadata={metadata}
         expandedCellShift={1}
         uniqueField="name"
+        // eslint-disable-next-line react/no-unstable-nested-components -- It would be risky to refactor without tests
         expandedField={(row) => {
           const { confirmedAtHeight, memos } = row;
           const memoValues = memos ? Object.values(memos) : [];
           const memoValuesDecoded = memoValues.map((memoHex) => {
             try {
-              const buf = new Buffer(memoHex, 'hex');
+              const buf = Buffer.from(memoHex, 'hex');
               const decodedValue = buf.toString('utf8');
 
               const bufCheck = Buffer.from(decodedValue, 'utf8');
@@ -272,6 +273,7 @@ export default function WalletHistory(props: Props) {
             memoValuesDecoded && memoValuesDecoded.length ? (
               <Flex flexDirection="column">
                 {memoValuesDecoded.map((memo, index) => (
+                  // eslint-disable-next-line react/no-array-index-key -- There is no ID to use
                   <Typography variant="inherit" key={index}>
                     {memo ?? ''}
                   </Typography>
@@ -297,17 +299,17 @@ export default function WalletHistory(props: Props) {
           return (
             <TableBase size="small">
               <TableBody>
-                {rows.map((row) => (
-                  <TableRow key={row.key}>
+                {rows.map((rowItem) => (
+                  <TableRow key={rowItem.key}>
                     <StyledTableCellSmall>
                       <Typography component="div" variant="body2" color="textSecondary" noWrap>
-                        {row.label}
+                        {rowItem.label}
                       </Typography>
                     </StyledTableCellSmall>
                     <StyledTableCellSmallRight>
                       <Box maxWidth="100%">
                         <Typography component="div" variant="body2" noWrap>
-                          {row.value}
+                          {rowItem.value}
                         </Typography>
                       </Box>
                     </StyledTableCellSmallRight>

@@ -12,15 +12,15 @@ export default function useIntersectionObserver(
 
   const frozen = entry?.isIntersecting && freezeOnceVisible;
 
-  const updateEntry = ([entry]: IntersectionObserverEntry[]): void => {
-    setEntry(entry);
+  const updateEntry = ([entryLocal]: IntersectionObserverEntry[]): void => {
+    setEntry(entryLocal);
   };
 
   useEffect(() => {
     const node = elementRef?.current; // DOM Ref
     const hasIOSupport = !!window.IntersectionObserver;
 
-    if (!hasIOSupport || frozen || !node) return;
+    if (!hasIOSupport || frozen || !node) return undefined;
 
     const observerParams = { threshold, root, rootMargin };
     const observer = new IntersectionObserver(updateEntry, observerParams);

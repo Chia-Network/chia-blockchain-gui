@@ -15,24 +15,21 @@ import {
 import { Trans } from '@lingui/macro';
 import { Typography, Container, Grid } from '@mui/material';
 import React from 'react';
-// import { shuffle } from 'lodash';
 import { useForm, useFieldArray } from 'react-hook-form';
 import { useNavigate } from 'react-router';
 
 import MnemonicPaste from './PasteMnemonic';
 
-/*
-const shuffledEnglish = shuffle(english);
-const test = new Array(24).fill('').map((item, index) => shuffledEnglish[index].word);
-*/
-
 const emptyMnemonic = Array.from(Array(24).keys()).map(() => ({
   word: '',
 }));
 
-const options = english.map((item) => item.word);
+const options = english.map((item: { word: string; value: number }) => item.word);
+
+type MnemonicWordCountOption = 12 | 24;
 
 type FormData = {
+  mnemonicWordCount: MnemonicWordCountOption;
   mnemonic: {
     word: string;
   }[];
@@ -46,14 +43,15 @@ export default function WalletImport() {
   const trans = useTrans();
   const openDialog = useOpenDialog();
   const [mnemonicPasteOpen, setMnemonicPasteOpen] = React.useState(false);
-  const [twelveWord, setTwelveWord] = React.useState(false);
 
   const methods = useForm<FormData>({
     defaultValues: {
+      mnemonicWordCount: 24,
       mnemonic: emptyMnemonic,
       label: '',
     },
   });
+  const mnemonicWordCount = methods.watch('mnemonicWordCount');
 
   const {
     formState: { isSubmitting },
@@ -68,17 +66,20 @@ export default function WalletImport() {
     const mList = mnemonicList.match(/\b(\w+)\b/g);
     const intersection = mList?.filter((element) => options.includes(element));
 
-    if (!intersection || (!twelveWord && intersection.length !== 24) || (twelveWord && intersection.length !== 12) ) {
+    if (!intersection || mnemonicWordCount !== intersection.length) {
       openDialog(
         <AlertDialog>
-          <Trans>Your pasted list does not include {twelveWord ? '12' : '24'} valid mnemonic words.</Trans>
+          <Trans>Your pasted list does not include {mnemonicWordCount} valid mnemonic words.</Trans>
         </AlertDialog>
       );
       return;
     }
 
     const mnemonic = intersection.map((word) => ({ word }));
+
     replace(mnemonic);
+    methods.setValue('mnemonic', mnemonic);
+
     closeMnemonicPaste();
   };
 
@@ -86,49 +87,32 @@ export default function WalletImport() {
     setMnemonicPasteOpen(false);
   }
 
-  function ActionButtons() {
-    return (
-      <Button onClick={() => setMnemonicPasteOpen(true)} variant="contained" disableElevation>
-        <Trans>Paste Mnemonic</Trans>
-      </Button>
-    );
-  }
+  function setMnemonicWordCount(newWordCount: MnemonicWordCountOption) {
+    const currentMnemonic = methods.getValues('mnemonic');
+    let updatedMnemonic = [];
 
-  function makeTwelve() {
-    setTwelveWord(true);
-    fields.splice(12, 12);
-  }
-
-  function makeTwentyFour() {
-    setTwelveWord(false);
-    for (let i = 0; i < 12; i++) {
-      fields.push({word: ''});
+    if (newWordCount < currentMnemonic.length) {
+      updatedMnemonic = currentMnemonic.splice(0, newWordCount);
+    } else {
+      const elementsToAdd = newWordCount - currentMnemonic.length;
+      updatedMnemonic = [...currentMnemonic];
+      for (let i = 0; i < elementsToAdd; i++) {
+        updatedMnemonic.push({ word: '' });
+      }
     }
-  }
-
-  function TwelveToggle() {
-    if (twelveWord === true) {
-      return (
-        <Button onClick={() => makeTwentyFour()} variant="contained" color="primary" fullWidth>
-          <Trans>Import from 24 word mnemonic</Trans>
-        </Button>
-      );
-    }
-    return (
-      <Button onClick={() => makeTwelve()} variant="contained" color="primary" fullWidth>
-        <Trans>Import from 12 word mnemonic</Trans>
-      </Button>
-    );
+    methods.setValue('mnemonic', updatedMnemonic);
+    methods.setValue('mnemonicWordCount', newWordCount);
   }
 
   async function handleSubmit(values: FormData) {
-    if (isSubmitting) {
+    if (isSubmitting || mnemonicPasteOpen) {
       return;
     }
 
     const { mnemonic, label } = values;
     const mnemonicWords = mnemonic.map((item) => item.word);
-    if (twelveWord) {
+
+    if (mnemonicWordCount === 12) {
       mnemonicWords.splice(12, 12);
     }
     const hasEmptyWord = !!mnemonicWords.filter((word) => !word).length;
@@ -156,15 +140,25 @@ export default function WalletImport() {
           <Typography variant="h4" component="h1" textAlign="center" gutterBottom>
             <Trans>Import Wallet from Mnemonics</Trans>
           </Typography>
-          <Typography variant="subtitle1" align="center">
-            <Trans>Enter the {twelveWord ? '12' : '24'} word mnemonic that you have saved in order to restore your Chia wallet.</Trans>
-          </Typography>
           <Grid container>
             <Grid xs={0} md={4} item />
             <Grid xs={12} md={4} item>
-              <TwelveToggle />
+              <TextField
+                name="label"
+                label={<Trans>Wallet Name</Trans>}
+                inputProps={{
+                  readOnly: isSubmitting,
+                }}
+                disabled={isSubmitting}
+                fullWidth
+              />
             </Grid>
           </Grid>
+          <Typography variant="subtitle1" align="center">
+            <Trans>
+              Enter the {mnemonicWordCount} word mnemonic that you have saved in order to restore your Chia wallet.
+            </Trans>
+          </Typography>
           <Grid spacing={2} rowSpacing={3} container>
             {fields.map((field, index) => (
               <Grid key={field.id} xs={6} sm={4} md={2} item>
@@ -174,6 +168,7 @@ export default function WalletImport() {
                   label={index + 1}
                   autoFocus={index === 0}
                   variant="filled"
+                  disabled={isSubmitting}
                   disableClearable
                   data-testid={`mnemonic-${index}`}
                 />
@@ -184,24 +179,59 @@ export default function WalletImport() {
             <Grid xs={0} md={4} item />
             <Grid xs={12} md={4} item>
               <Flex flexDirection="column" gap={3}>
-                <TextField
-                  name="label"
-                  label={<Trans>Wallet Name</Trans>}
-                  inputProps={{
-                    readOnly: isSubmitting,
-                  }}
-                  fullWidth
+                <MnemonicWordCount
+                  mnemonicWordCount={mnemonicWordCount}
+                  setMnemonicWordCount={setMnemonicWordCount}
+                  disabled={isSubmitting}
                 />
+                <ActionButton onClick={() => setMnemonicPasteOpen(true)} disabled={isSubmitting} />
+                {mnemonicPasteOpen && (
+                  <MnemonicPaste
+                    onSuccess={submitMnemonicPaste}
+                    onCancel={closeMnemonicPaste}
+                    twelveWord={mnemonicWordCount === 12}
+                  />
+                )}
                 <ButtonLoading type="submit" variant="contained" color="primary" loading={isSubmitting} fullWidth>
                   <Trans>Next</Trans>
                 </ButtonLoading>
-                <ActionButtons />
-                {mnemonicPasteOpen && <MnemonicPaste onSuccess={submitMnemonicPaste} onCancel={closeMnemonicPaste} twelveWord={twelveWord} />}
               </Flex>
             </Grid>
           </Grid>
         </Flex>
       </Container>
     </Form>
+  );
+}
+
+function MnemonicWordCount({
+  mnemonicWordCount,
+  setMnemonicWordCount,
+  disabled,
+}: {
+  mnemonicWordCount: MnemonicWordCountOption;
+  setMnemonicWordCount: (value: MnemonicWordCountOption) => void;
+  disabled: boolean;
+}) {
+  const alternativeWordCount = mnemonicWordCount === 12 ? 24 : 12;
+
+  return (
+    <Button
+      onClick={() => setMnemonicWordCount(alternativeWordCount)}
+      variant="outlined"
+      color="secondary"
+      disabled={disabled}
+      fullWidth
+    >
+      <Trans>Import from {alternativeWordCount} word mnemonic</Trans>
+    </Button>
+  );
+}
+
+function ActionButton({ onClick, disabled }: { onClick: () => void; disabled: boolean }) {
+  return (
+    <Button onClick={onClick} variant="contained" disabled={disabled} disableElevation>
+      <Trans>Paste Mnemonic</Trans>
+    </Button>
   );
 }

@@ -141,7 +141,7 @@ export default class Client extends EventEmitter {
   async connect(reconnect?: boolean) {
     if (this.closed) {
       log('Client is permanently closed');
-      return;
+      return undefined;
     }
 
     if (this.connectedPromise && !reconnect) {

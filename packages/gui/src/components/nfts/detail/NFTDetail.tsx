@@ -22,9 +22,9 @@ export default function NFTDetail() {
 
   const nft: NFTInfo | undefined = useMemo(() => {
     if (!nfts) {
-      return;
+      return undefined;
     }
-    return nfts.find((nft: NFTInfo) => nft.$nftId === nftId);
+    return nfts.find((nftItem: NFTInfo) => nftItem.$nftId === nftId);
   }, [nfts, nftId]);
   const { metadata, isLoading: isLoadingMetadata } = useNFTMetadata([nft]);
   const isLoading = isLoadingWallets || isLoadingNFTs || isLoadingMetadata;

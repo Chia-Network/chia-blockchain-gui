@@ -10,10 +10,9 @@ import styled from 'styled-components';
 import isURL from 'validator/lib/isURL';
 
 import useFetchNFTs from '../../../hooks/useFetchNFTs';
-import useNFTMetadata from '../../../hooks/useNFTMetadata';
 import { launcherIdFromNFTId } from '../../../util/nfts';
 import { isImage } from '../../../util/utils';
-import NFTContextualActions, { NFTContextualActionTypes } from '../NFTContextualActions';
+import NFTContextualActions, { NFTContextualActionTypes, eventEmitter } from '../NFTContextualActions';
 import NFTDetails from '../NFTDetails';
 import NFTPreview from '../NFTPreview';
 import NFTPreviewDialog from '../NFTPreviewDialog';
@@ -28,7 +27,7 @@ export default function NFTDetail() {
   });
   const { wallets: nftWallets, isLoading: isLoadingWallets } = useGetNFTWallets();
   const { nfts, isLoading: isLoadingNFTs } = useFetchNFTs(
-    nftWallets.map((wallet) => wallet.id),
+    nftWallets.map((wallet: any) => wallet.id),
     { skip: !!isLoadingWallets }
   );
 
@@ -36,7 +35,7 @@ export default function NFTDetail() {
     if (!nfts || isLoadingNFTs) {
       return undefined;
     }
-    return nfts.find((nft: NFTInfo) => nft.$nftId === nftId);
+    return nfts.find((nftItem: NFTInfo) => nftItem.$nftId === nftId);
   }, [nfts, nftId, isLoadingNFTs]);
 
   const isLoading = isLoadingNFT;
@@ -54,7 +53,8 @@ function NFTDetailLoaded(props: NFTDetailLoadedProps) {
   const openDialog = useOpenDialog();
   const [validationProcessed, setValidationProcessed] = useState(false);
   const nftRef = React.useRef(null);
-  const [, setIsValid] = useState(false);
+  const [isValid, setIsValid] = useState(false);
+  const [metadata, setMetadata] = React.useState<any>({});
 
   const uri = nft?.dataUris?.[0];
   const [contentCache] = useLocalStorage(`content-cache-${nftId}`, {});
@@ -62,21 +62,13 @@ function NFTDetailLoaded(props: NFTDetailLoadedProps) {
 
   nftRef.current = nft;
 
-  const { metadata, error } = useNFTMetadata([nft]);
-
   useEffect(
     () => () => {
       const { ipcRenderer } = window as any;
       ipcRenderer.invoke('abortFetchingBinary', uri);
     },
-    []
+    [uri]
   );
-
-  // useEffect(() => {
-  //   if (metadata) {
-  //     console.log(JSON.stringify(metadata, null, 2));
-  //   }
-  // }, [metadata]);
 
   const ValidateContainer = styled.div`
     padding-top: 25px;
@@ -98,10 +90,11 @@ function NFTDetailLoaded(props: NFTDetailLoadedProps) {
     if (validateNFT && !validationProcessed) {
       return <Trans>Validating hash...</Trans>;
     }
-    if (contentCache.valid) {
+
+    if (contentCache.valid || (validationProcessed && isValid)) {
       return <Trans>Hash is validated.</Trans>;
     }
-    if (contentCache.valid === false) {
+    if (contentCache.valid === false || (validationProcessed && !isValid)) {
       return (
         <ErrorMessage>
           <Trans>Hash mismatch.</Trans>
@@ -109,7 +102,14 @@ function NFTDetailLoaded(props: NFTDetailLoadedProps) {
       );
     }
     return (
-      <Button onClick={() => setValidateNFT(true)} variant="outlined" size="large">
+      <Button
+        onClick={() => {
+          setValidateNFT(true);
+          eventEmitter.emit(`force-reload-${nft.$nftId}`);
+        }}
+        variant="outlined"
+        size="large"
+      >
         <Trans>Validate SHA256 SUM</Trans>
       </Button>
     );
@@ -136,14 +136,7 @@ function NFTDetailLoaded(props: NFTDetailLoadedProps) {
             {nft && (
               <Flex flexDirection="column">
                 <Box onClick={handleShowFullScreen} sx={{ cursor: 'pointer' }}>
-                  <NFTPreview
-                    nft={nft}
-                    width="100%"
-                    height="412px"
-                    fit="contain"
-                    validateNFT={validateNFT}
-                    metadataError={error}
-                  />
+                  <NFTPreview nft={nft} width="100%" height="412px" fit="contain" setNFTCardMetadata={setMetadata} />
                 </Box>
                 <ValidateContainer>{renderValidationState()}</ValidateContainer>
                 <NFTProgressBar

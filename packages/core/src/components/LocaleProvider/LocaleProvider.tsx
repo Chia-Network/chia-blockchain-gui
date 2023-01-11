@@ -37,11 +37,11 @@ export default function LocaleProvider(props: LocaleProviderProps) {
   }
 
   const handleSetLocale = useCallback(
-    (locale: string) => {
-      if (typeof locale !== 'string') {
+    (localeLocal: string) => {
+      if (typeof localeLocal !== 'string') {
         throw new Error(`Locale ${locales} is not a string`);
       }
-      setLocale(locale);
+      setLocale(localeLocal);
     },
     [setLocale]
   );

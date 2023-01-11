@@ -44,9 +44,9 @@ export default function PlotHarvesterPlotsNotFound(props: PlotHarvesterPlotsNotF
   const isLoading = isLoadingHarvester || isLoadingHarvesterPlots;
   const count = noKeyFilenames ?? 0;
 
-  function handlePageChange(rowsPerPage: number, page: number) {
+  function handlePageChange(rowsPerPage: number, pageLocal: number) {
     setPageSize(rowsPerPage);
-    setPage(page);
+    setPage(pageLocal);
   }
 
   const rows = useMemo(() => data?.map((filename) => ({ filename })), [data]);

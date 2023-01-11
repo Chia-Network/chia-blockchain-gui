@@ -1,5 +1,5 @@
 import { usePrefs } from '@chia-network/api-react';
-import { Flex, SettingsLabel, AlertDialog, useOpenDialog, FormatBytes } from '@chia-network/core';
+import { Flex, SettingsLabel, AlertDialog, useOpenDialog, FormatBytes, ConfirmDialog } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Grid, Box, Button, Switch, FormGroup, FormControlLabel } from '@mui/material';
 import React from 'react';
@@ -31,13 +31,30 @@ export default function SettingsGeneral() {
     ipcRenderer.invoke('getDefaultCacheFolder').then((folder: string) => {
       setDefaultCacheFolder(folder);
     });
-    ipcRenderer.invoke('getCacheSize').then((cacheSize: number) => {
-      setCacheSize(cacheSize);
+    ipcRenderer.invoke('getCacheSize').then((cacheSizeLocal: number) => {
+      setCacheSize(cacheSizeLocal);
     });
-  }, []);
+  }, [ipcRenderer]);
 
   async function forceUpdateCacheSize() {
     setCacheSize(await ipcRenderer.invoke('getCacheSize'));
+  }
+
+  async function clearNFTCache() {
+    openDialog(
+      <ConfirmDialog
+        title={<Trans>Clear NFT cache</Trans>}
+        confirmTitle={<Trans>Yes, delete</Trans>}
+        confirmColor="danger"
+        onConfirm={() => {
+          ipcRenderer.invoke('clearNFTCache').then(() => {
+            setCacheSize(0);
+          });
+        }}
+      >
+        <Trans>Are you sure you want to delete the NFT cache?</Trans>
+      </ConfirmDialog>
+    );
   }
 
   const CacheTable = styled.div`
@@ -123,7 +140,11 @@ export default function SettingsGeneral() {
                   <Trans>Occupied space</Trans>
                 </div>
                 <div>{renderCacheSize()}</div>
-                <div>&nbsp;</div>
+                <div>
+                  <Button onClick={clearNFTCache} color="primary" variant="outlined" size="small">
+                    <Trans>Clear NFT cache</Trans>
+                  </Button>
+                </div>
               </div>
               <div>
                 <div>

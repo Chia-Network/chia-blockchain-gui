@@ -20,7 +20,16 @@ type Props = MenuProps & {
 };
 
 export default function Dropdown(props: Props) {
-  const { selected, options, defaultOpen, onSelect, placeholder, startIcon, children, open: _, ...rest } = props;
+  const {
+    selected,
+    options,
+    defaultOpen = false,
+    onSelect,
+    placeholder = <Trans>Select...</Trans>,
+    startIcon,
+    children,
+    ...rest
+  } = props;
   const [open, toggleOpen] = useToggle(defaultOpen);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
@@ -72,10 +81,3 @@ export default function Dropdown(props: Props) {
     </>
   );
 }
-
-Dropdown.defaultProps = {
-  defaultOpen: false,
-  placeholder: <Trans>Select...</Trans>,
-  startIcon: undefined,
-  children: undefined,
-};

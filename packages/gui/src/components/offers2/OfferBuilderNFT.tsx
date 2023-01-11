@@ -30,10 +30,11 @@ export type OfferBuilderNFTProps = {
   provenance?: boolean;
   showRoyalties?: boolean;
   offering?: boolean;
+  onSelectNFT: (name: string, nftId: string) => void;
 };
 
 export default function OfferBuilderNFT(props: OfferBuilderNFTProps) {
-  const { name, provenance = false, showRoyalties = false, onRemove, offering = false } = props;
+  const { name, provenance = false, showRoyalties = false, onRemove, offering = false, onSelectNFT } = props;
 
   const fieldName = `${name}.nftId`;
   const value = useWatch({
@@ -56,7 +57,13 @@ export default function OfferBuilderNFT(props: OfferBuilderNFTProps) {
   return (
     <Flex flexDirection="column" gap={2}>
       <Flex flexDirection="column" gap={1}>
-        <OfferBuilderValue name={fieldName} type="text" label={<Trans>NFT ID</Trans>} onRemove={onRemove} />
+        <OfferBuilderValue
+          name={fieldName}
+          type="text"
+          label={<Trans>NFT ID</Trans>}
+          onRemove={onRemove}
+          onSelectNFT={onSelectNFT}
+        />
         {(minterDID || minterDIDName) && (
           <Flex flexDirection="column" gap={1}>
             <Typography variant="body1" color="textSecondary">
@@ -99,9 +106,9 @@ export default function OfferBuilderNFT(props: OfferBuilderNFTProps) {
                   nft={nft}
                   canExpandDetails={false}
                   availableActions={
-                    NFTContextualActionTypes.CopyNFTId |
-                    NFTContextualActionTypes.ViewOnExplorer |
-                    NFTContextualActionTypes.OpenInBrowser |
+                    NFTContextualActionTypes.CopyNFTId +
+                    NFTContextualActionTypes.ViewOnExplorer +
+                    NFTContextualActionTypes.OpenInBrowser +
                     NFTContextualActionTypes.CopyURL
                   }
                   isOffer

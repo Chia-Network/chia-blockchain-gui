@@ -4,11 +4,20 @@
 // To print currently used rules (AirBnB + our overrides) run:
 // npx eslint --print-config .eslintrc.json
 {
-  "extends": ["airbnb", "airbnb/hooks", "airbnb-typescript", "plugin:eslint-comments/recommended", "prettier"],
+  "extends": [
+    // airbnb is replaced with airbnb-base and airbnb/rules/react to exclude jsx-a11y
+    "airbnb-base",
+    "airbnb/rules/react",
+    "airbnb/hooks",
+    "airbnb-typescript",
+    "plugin:eslint-comments/recommended",
+    "prettier"
+  ],
   "env": {
     "browser": true,
     "es2020": true,
-    "node": true
+    "node": true,
+    "jest": true
   },
   "parserOptions": {
     "project": "./packages/*/tsconfig.json"
@@ -17,6 +26,7 @@
   "settings": {
     "import/core-modules": ["electron"]
   },
+  "plugins": ["unicorn"],
   // Airbnb rule overrides and additions
   "rules": {
     // Automatically order imports
@@ -33,7 +43,11 @@
     // Allow single line disables (overrides the eslint-comments defaults)
     "eslint-comments/disable-enable-pair": "off",
     // We use TS instead of prop-types
-    "react/prop-types": [0],
+    "react/prop-types": "off",
+    // TS takes care of this
+    // .defaultProps are deprecated for functional components: https://github.com/facebook/react/pull/16210
+    // "functions":  "defaultArguments" was not used since it requires to do the props destructuring in the function signature
+    "react/require-default-props": "off",
     // We do not see the value of this turned on
     "no-plusplus": "off",
     // We do not see the value of this turned on
@@ -72,11 +86,14 @@
           "**/.eslintrc.js",
 
           // These are our custom additions
-          // Add any directory here that is used in development or CI only
+          // Add any directory or file here that is used in development or CI only
           "**/@types/**",
           "**/test/**",
           "**/tests/**",
-          "**/cypress/**"
+          "**/cypress/**",
+          "**/vite.config.ts",
+          "**/babel.config.js",
+          "**/playwright.config.js"
         ],
         "optionalDependencies": false
       }
@@ -108,7 +125,33 @@
         "argsIgnorePattern": "^_"
       }
     ],
+    // required for TS where string does not satisfy the expected return type of JSX.Element
+    "react/jsx-no-useless-fragment": ["error", { "allowExpressions": true }],
     // Memoizing all prop callbacks would speed up the app but introduce a hard to debug bugs (wrong memo dependencies)
-    "react/jsx-no-bind": "off"
+    "react/jsx-no-bind": "off",
+    // This code should be allowed `export { default } from './Link';`
+    // Remove "no-restricted-exports" after eslint fixes issue https://github.com/eslint/eslint/issues/15617
+    "no-restricted-exports": [
+      "error",
+      {
+        "restrictedNamedExports": ["then"]
+      }
+    ],
+    // We use a lot of large numbers. This rule enforce large number has to use separator. Example: 1_000_000
+    "unicorn/numeric-separators-style": "error",
+    // Airbnb is too restrictive
+    "@typescript-eslint/no-unused-expressions": [
+      "error",
+      {
+        "allowShortCircuit": true,
+        "allowTernary": true,
+        "allowTaggedTemplates": true,
+        "enforceForJSX": false
+      }
+    ]
+
+    //
+    // ** Before adding or updating any rule, please read the comments at the top of this file
+    //
   }
 }

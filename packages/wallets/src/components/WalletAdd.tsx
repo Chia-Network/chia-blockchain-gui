@@ -74,6 +74,7 @@ export default function WalletAdd() {
             <Flex flexDirection="column" gap={3}>
               <Grid container spacing={2} rowSpacing={3}>
                 {words.map((word: string, index: number) => (
+                  // eslint-disable-next-line react/no-array-index-key -- We never change the length. There is no better way
                   <Grid key={index} xs={6} sm={4} md={2} item>
                     <TextFieldMaterial
                       variant="filled"

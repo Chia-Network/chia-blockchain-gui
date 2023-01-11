@@ -103,9 +103,9 @@ export default function PlotHarvesterPlots(props: PlotHarvesterPlotsProps) {
   const isLoading = isLoadingHarvester || isLoadingHarvesterPlots;
   const count = plots ?? 0;
 
-  function handlePageChange(rowsPerPage: number, page: number) {
+  function handlePageChange(rowsPerPage: number, pageLocal: number) {
     setPageSize(rowsPerPage);
-    setPage(page);
+    setPage(pageLocal);
   }
 
   return (

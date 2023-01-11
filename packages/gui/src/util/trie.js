@@ -1,3 +1,5 @@
+/* eslint-disable guard-for-in, no-restricted-syntax, func-names -- Not our code */
+
 // Trie.js - super simple JS implementation
 // https://en.wikipedia.org/wiki/Trie
 // https://gist.github.com/tpae/72e1c54471e88b689f85ad2b3940a8f0
@@ -37,7 +39,7 @@ Trie.prototype.insert = function (word) {
 
     node = node.children[word[i]];
 
-    if (i == word.length - 1) {
+    if (i === word.length - 1) {
       node.end = true;
     }
   }

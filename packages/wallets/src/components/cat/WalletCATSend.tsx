@@ -120,9 +120,9 @@ export default function WalletCATSend(props: Props) {
       throw new Error(t`Recipient address is not a coloured wallet address. Please enter a coloured wallet address`);
     }
     if (address.slice(0, 14) === 'colour_addr://') {
-      const colour_id = address.slice(14, 78);
+      const colourId = address.slice(14, 78);
       address = address.slice(79);
-      if (colour_id !== assetId) {
+      if (colourId !== assetId) {
         throw new Error(t`Error the entered address appears to be for a different colour.`);
       }
     }

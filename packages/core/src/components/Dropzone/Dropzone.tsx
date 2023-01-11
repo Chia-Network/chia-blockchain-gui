@@ -24,7 +24,15 @@ type Props = {
 };
 
 export default function Dropzone(props: Props) {
-  const { children, onDrop, maxFiles, accept, ratio, processing, background: Background = StyledPaper } = props;
+  const {
+    children,
+    onDrop,
+    maxFiles,
+    accept,
+    ratio = 16 / 6,
+    processing = false,
+    background: Background = StyledPaper,
+  } = props;
 
   const config: DropzoneOptions = {
     onDrop,
@@ -51,10 +59,3 @@ export default function Dropzone(props: Props) {
     </div>
   );
 }
-
-Dropzone.defaultProps = {
-  maxFiles: undefined,
-  accept: undefined,
-  ratio: 16 / 6,
-  processing: false,
-};
