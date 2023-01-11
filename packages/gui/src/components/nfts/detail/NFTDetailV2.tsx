@@ -15,7 +15,8 @@ import useFetchNFTs from '../../../hooks/useFetchNFTs';
 import useShownNFTs from '../../../hooks/useShownNFTs';
 import { launcherIdFromNFTId } from '../../../util/nfts';
 import { isImage } from '../../../util/utils';
-import NFTContextualActions, { NFTContextualActionTypes, eventEmitter } from '../NFTContextualActions';
+import NFTContextualActions, { NFTContextualActionTypes } from '../NFTContextualActions';
+import NFTContextualActionsEventEmitter from '../NFTContextualActionsEventEmitter';
 import NFTDetails from '../NFTDetails';
 import NFTPreview from '../NFTPreview';
 import NFTPreviewDialog from '../NFTPreviewDialog';
@@ -187,7 +188,7 @@ function NFTDetailLoaded(props: NFTDetailLoadedProps) {
       <Button
         onClick={() => {
           setValidateNFT(true);
-          eventEmitter.emit(`force-reload-${nft.$nftId}`);
+          NFTContextualActionsEventEmitter.emit(`force-reload-${nft.$nftId}`);
         }}
         variant="outlined"
         size="large"

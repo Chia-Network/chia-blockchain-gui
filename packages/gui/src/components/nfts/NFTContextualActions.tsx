@@ -1,5 +1,4 @@
 /* eslint-disable no-bitwise -- enable bitwise operators for this file */
-import EventEmitter from 'events';
 
 import type { NFTInfo } from '@chia-network/api';
 import { useSetNFTStatusMutation, useLocalStorage } from '@chia-network/api-react';
@@ -37,10 +36,9 @@ import computeHash from '../../util/computeHash';
 import download from '../../util/download';
 import { stripHexPrefix } from '../../util/utils';
 import NFTBurnDialog from './NFTBurnDialog';
+import NFTContextualActionsEventEmitter from './NFTContextualActionsEventEmitter';
 import NFTMoveToProfileDialog from './NFTMoveToProfileDialog';
 import { NFTTransferDialog, NFTTransferResult } from './NFTTransferAction';
-
-export const eventEmitter = new EventEmitter();
 
 /* ========================================================================== */
 /*                          Common Action Types/Enums                         */
@@ -549,7 +547,7 @@ function NFTInvalidateContextualAction(props: NFTInvalidateContextualActionProps
           'removeCachedFile',
           computeHash(`${nft?.$nftId}_${nft?.dataUris?.[0]}`, { encoding: 'utf-8' })
         );
-        eventEmitter.emit(`force-reload-metadata-${nft?.$nftId}`);
+        NFTContextualActionsEventEmitter.emit(`force-reload-metadata-${nft?.$nftId}`);
       });
       setSelectedNFTIds([]);
       return;
@@ -563,7 +561,7 @@ function NFTInvalidateContextualAction(props: NFTInvalidateContextualActionProps
     setContentCache({});
     ipcRenderer.invoke('removeCachedFile', computeHash(`${selectedNft?.$nftId}_${dataUrl}`, { encoding: 'utf-8' }));
     window.localStorage.removeItem(`metadata-cache-${selectedNft?.$nftId}`);
-    eventEmitter.emit(`force-reload-metadata-${selectedNft?.$nftId}`);
+    NFTContextualActionsEventEmitter.emit(`force-reload-metadata-${selectedNft?.$nftId}`);
   }
 
   if (!dataUrl) {

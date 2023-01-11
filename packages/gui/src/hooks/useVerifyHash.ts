@@ -3,7 +3,7 @@ import type { NFTInfo } from '@chia-network/api';
 import { useState, useEffect, useRef, useCallback } from 'react';
 import isURL from 'validator/lib/isURL';
 
-import { eventEmitter } from '../components/nfts/NFTContextualActions';
+import NFTContextualActionsEventEmitter from '../components/nfts/NFTContextualActionsEventEmitter';
 import computeHash from '../util/computeHash';
 import getRemoteFileContent, { FileType } from '../util/getRemoteFileContent';
 import { isImage, parseExtensionFromUrl } from '../util/utils';
@@ -324,9 +324,9 @@ export default function useVerifyHash(props: VerifyHash): {
     function forceValidateBinary() {
       validateHash(true);
     }
-    eventEmitter.on(`force-reload-${nft.$nftId}`, forceValidateBinary);
+    NFTContextualActionsEventEmitter.on(`force-reload-${nft.$nftId}`, forceValidateBinary);
     return () => {
-      eventEmitter.off(`force-reload-${nft.$nftId}`, forceValidateBinary);
+      NFTContextualActionsEventEmitter.off(`force-reload-${nft.$nftId}`, forceValidateBinary);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps -- component mount
   }, []);

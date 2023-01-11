@@ -18,7 +18,7 @@ import ModeServices, { SimulatorServices } from '../../constants/ModeServices';
 import useEnableDataLayerService from '../../hooks/useEnableDataLayerService';
 import useEnableFilePropagationServer from '../../hooks/useEnableFilePropagationServer';
 import useNFTMetadataLRU from '../../hooks/useNFTMetadataLRU';
-import { eventEmitter } from '../nfts/NFTContextualActions';
+import NFTContextualActionsEventEmitter from '../nfts/NFTContextualActionsEventEmitter';
 import AppAutoLogin from './AppAutoLogin';
 import AppKeyringMigrator from './AppKeyringMigrator';
 import AppPassPrompt from './AppPassPrompt';
@@ -120,7 +120,7 @@ export default function AppState(props: Props) {
         if (json.binary === hash || json.video === hash || json.image === hash) {
           localStorage.removeItem(key);
           const nftId = key.replace('thumb-cache-', '').replace('metadata-cache-', '').replace('content-cache-', '');
-          eventEmitter.emit(`force-reload-metadata-${nftId}`);
+          NFTContextualActionsEventEmitter.emit(`force-reload-metadata-${nftId}`);
           if (lru.get(nftId)) {
             lru.delete(nftId);
           }
