@@ -25,7 +25,7 @@ export default function useAssetIdName() {
       return { assetIdNameMapping, walletIdNameMapping };
     }
 
-    wallets.map((wallet: Wallet) => {
+    wallets.forEach((wallet: Wallet) => {
       const walletId: number = wallet.id;
       const walletType: WalletType = wallet.type;
       let assetId: string | undefined;
@@ -66,7 +66,7 @@ export default function useAssetIdName() {
       }
     });
 
-    catList.map((cat: CATToken) => {
+    catList.forEach((cat: CATToken) => {
       if (assetIdNameMapping.has(cat.assetId)) {
         return;
       }

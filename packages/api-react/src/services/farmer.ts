@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign -- This file use Ember */
 import { Farmer } from '@chia-network/api';
 import type { Plot, FarmerConnection, RewardTargets, SignagePoint, Pool, FarmingInfo } from '@chia-network/api';
 

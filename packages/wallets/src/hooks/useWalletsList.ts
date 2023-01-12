@@ -64,7 +64,7 @@ export default function useWalletsList(
     pollingInterval: 10_000,
   });
 
-  const { hidden, isHidden, show, hide, isLoading: isLoadingHiddenWallet } = useHiddenWallet();
+  const { isHidden, show, hide, isLoading: isLoadingHiddenWallet } = useHiddenWallet();
   const [addCATToken] = useAddCATTokenMutation();
   const showError = useShowError();
 

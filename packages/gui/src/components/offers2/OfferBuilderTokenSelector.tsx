@@ -12,12 +12,11 @@ import useOfferBuilderContext from '../../hooks/useOfferBuilderContext';
 export type OfferBuilderTokenSelectorProps = {
   name: string;
   readOnly?: boolean;
-  usedAssets?: string[];
   warnUnknownCAT?: boolean;
 };
 
 export default function OfferBuilderTokenSelector(props: OfferBuilderTokenSelectorProps) {
-  const { name, readOnly = false, usedAssets = [], warnUnknownCAT = false } = props;
+  const { name, readOnly = false, warnUnknownCAT = false } = props;
   const { usedAssetIds } = useOfferBuilderContext();
   const { setValue } = useFormContext();
   const currentValue = useWatch({ name });

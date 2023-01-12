@@ -85,7 +85,7 @@ export const walletApi = apiWithTag.injectEndpoints({
           });
 
           if (error) {
-            throw error;
+            throw error as Error;
           }
 
           const wallets = data?.wallets;
@@ -107,7 +107,7 @@ export const walletApi = apiWithTag.injectEndpoints({
                   });
 
                   if (assetError) {
-                    throw assetError;
+                    throw assetError as Error;
                   }
 
                   meta.assetId = assetData.assetId;
@@ -120,7 +120,7 @@ export const walletApi = apiWithTag.injectEndpoints({
                   });
 
                   if (nameError) {
-                    throw nameError;
+                    throw nameError as Error;
                   }
 
                   meta.name = nameData.name;
@@ -133,7 +133,7 @@ export const walletApi = apiWithTag.injectEndpoints({
                   });
 
                   if (didError) {
-                    throw didError;
+                    throw didError as Error;
                   }
 
                   meta.did = didData.didId;
@@ -1475,7 +1475,7 @@ export const walletApi = apiWithTag.injectEndpoints({
           });
 
           if (error) {
-            throw error;
+            throw error as Error;
           }
 
           const walletId = data?.walletId;
@@ -1516,7 +1516,7 @@ export const walletApi = apiWithTag.injectEndpoints({
               });
 
               if (error) {
-                throw error;
+                throw error as Error;
               }
 
               if (!data?.wallets) {
@@ -1532,7 +1532,7 @@ export const walletApi = apiWithTag.injectEndpoints({
               });
 
               if (error) {
-                throw error;
+                throw error as Error;
               }
 
               const poolState = data?.poolState;
@@ -1561,7 +1561,7 @@ export const walletApi = apiWithTag.injectEndpoints({
                 });
 
                 if (error) {
-                  throw error;
+                  throw error as Error;
                 }
 
                 return {
@@ -1579,7 +1579,7 @@ export const walletApi = apiWithTag.injectEndpoints({
                 });
 
                 if (error) {
-                  throw error;
+                  throw error as Error;
                 }
 
                 return data?.walletBalance;
@@ -1734,7 +1734,7 @@ export const walletApi = apiWithTag.injectEndpoints({
           });
 
           if (error) {
-            throw error;
+            throw error as Error;
           }
 
           const wallets = data?.wallets;
@@ -1754,7 +1754,7 @@ export const walletApi = apiWithTag.injectEndpoints({
                 });
 
                 if (errorLocal) {
-                  throw errorLocal;
+                  throw errorLocal as Error;
                 }
 
                 const { myDid } = dataLocal;
@@ -1846,7 +1846,7 @@ export const walletApi = apiWithTag.injectEndpoints({
               });
 
               if (nftError) {
-                throw nftError;
+                throw nftError as Error;
               }
 
               // Add bech32m-encoded NFT identifier
@@ -1882,7 +1882,7 @@ export const walletApi = apiWithTag.injectEndpoints({
               });
 
               if (nftsError) {
-                throw nftsError;
+                throw nftsError as Error;
               }
 
               // Add bech32m-encoded NFT identifier
@@ -1983,7 +1983,7 @@ export const walletApi = apiWithTag.injectEndpoints({
           });
 
           if (nftError) {
-            throw nftError;
+            throw nftError as Error;
           }
 
           // Add bech32m-encoded NFT identifier

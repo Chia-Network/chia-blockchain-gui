@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign -- This file use Ember */
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 type Config = {

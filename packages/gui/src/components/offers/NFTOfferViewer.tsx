@@ -159,6 +159,7 @@ function NFTOfferSummaryRow(props: NFTOfferSummaryRowProps) {
           }}
         >
           {rows.map((row, index) => (
+            // eslint-disable-next-line react/no-array-index-key -- Its a list of react elements, we have nothing else to use
             <div key={index}>{row}</div>
           ))}
         </Box>
@@ -316,6 +317,7 @@ export function NFTOfferSummary(props: NFTOfferSummaryProps) {
     <Flex flexDirection="column" gap={2}>
       {title}
       {summaries.map((summaryItem, index) => (
+        // eslint-disable-next-line react/no-array-index-key -- Its a list of react elements, we have nothing else to use
         <Flex flexDirection="column" key={index} gap={2}>
           {summaryItem}
           {index !== summaries.length - 1 && <Divider />}

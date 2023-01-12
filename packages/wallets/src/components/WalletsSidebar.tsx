@@ -77,7 +77,7 @@ export default function WalletsSidebar() {
   const navigate = useNavigate();
   const { walletId } = useParams();
   const { data: wallets, isLoading } = useGetWalletsQuery();
-  const { isHidden, hidden, isLoading: isLoadingHiddenWallet } = useHiddenWallet();
+  const { isHidden, isLoading: isLoadingHiddenWallet } = useHiddenWallet();
 
   const openDialog = useOpenDialog();
 
