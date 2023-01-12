@@ -4,7 +4,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import useHiddenNFTs from '../../../hooks/useHiddenNFTs';
-import NFTContextualActions from '../NFTContextualActions';
+import NFTContextualActions, { NFTContextualActionTypes } from '../NFTContextualActions';
 
 const SelectedItemsContainer = styled.div`
   color: #fff;
@@ -52,13 +52,21 @@ export default function SelectedActionsDialog(props: SelectedActionsDialogProps)
     return isHidden ? 1 : 2;
   }, -1);
 
+  const menuWithHide =
+    NFTContextualActionTypes.CreateOffer +
+    NFTContextualActionTypes.MoveToProfile +
+    NFTContextualActionTypes.Invalidate +
+    NFTContextualActionTypes.Hide;
+  const menuWithoutHide =
+    NFTContextualActionTypes.CreateOffer + NFTContextualActionTypes.MoveToProfile + NFTContextualActionTypes.Invalidate;
+
   return (
     <SelectedItemsContainer>
       <TableWrapper>
         <SelectedCountText>{t`${nfts.length} of ${allCount} items selected:`}</SelectedCountText>
         <NFTContextualActions
           selection={{ items: nfts }}
-          availableActions={showOrHide > 0 ? 49 : 33}
+          availableActions={showOrHide > 0 ? menuWithHide : menuWithoutHide}
           isMultiSelect
           showOrHide={showOrHide}
         />

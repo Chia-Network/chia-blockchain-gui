@@ -213,11 +213,10 @@ function NFTMoveToProfileContextualAction(props: NFTMoveToProfileContextualActio
   const { selection } = props;
   const openDialog = useOpenDialog();
 
-  const selectedNft: NFTInfo | undefined = selection?.items[0];
-  const disabled = (selection?.items.length ?? 0) !== 1 || selectedNft?.pendingTransaction || !selectedNft?.supportsDid;
+  const disabled = selection?.items.reduce((p, c) => p || c?.pendingTransaction || !c?.supportsDid, false);
 
   function handleTransferNFT() {
-    openDialog(<NFTMoveToProfileDialog nft={selectedNft} open />);
+    openDialog(<NFTMoveToProfileDialog nfts={selection?.items || []} open />);
   }
 
   return (
