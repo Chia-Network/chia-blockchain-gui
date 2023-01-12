@@ -685,7 +685,13 @@ export default function NFTContextualActions(props: NFTContextualActionsProps) {
   }, [availableActions, isMultiSelect, showOrHide]);
 
   return (
-    <DropdownActions label={label} variant="outlined" items={selection?.items} {...rest}>
+    <DropdownActions
+      label={label}
+      variant="outlined"
+      items={selection?.items}
+      menuSx={{ top: '-78px', left: '38px' }} /* menu shouldn't appear over ACTIONS button, but above! */
+      {...rest}
+    >
       {actions.map(({ action: Action, props: actionProps }) => (
         <Action key={`${Action.name}`} selection={selection} {...actionProps} />
       ))}
