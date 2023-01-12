@@ -66,6 +66,7 @@ export default function WalletDeleteDialog(props: WalletDeleteDialogProps) {
 
   useEffect(() => {
     initialize();
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- Always run only once
   }, []);
 
   const isInitializing = !checkDeleteKeyData;

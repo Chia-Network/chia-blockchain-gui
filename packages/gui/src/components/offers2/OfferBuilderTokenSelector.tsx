@@ -55,7 +55,7 @@ export default function OfferBuilderTokenSelector(props: OfferBuilderTokenSelect
     const selected = orderedAllOptions.find((option) => option.assetId.toString() === currentValue);
 
     return [selected, orderedAllOptions];
-  }, [isLoading, wallets, catList, currentValue, usedAssets, usedAssetIds]);
+  }, [isLoading, wallets, catList, currentValue, usedAssetIds]);
 
   function handleSelection(selection: { assetId: number }) {
     setValue(name, selection.assetId);

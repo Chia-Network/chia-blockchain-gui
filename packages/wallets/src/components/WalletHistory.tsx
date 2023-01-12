@@ -233,7 +233,7 @@ export default function WalletHistory(props: Props) {
     }
 
     return getCols(wallet.type, isSyncing, getOfferRecord, navigate);
-  }, [wallet?.type]);
+  }, [getOfferRecord, isSyncing, navigate, wallet]);
 
   return (
     <Card title={<Trans>Transactions</Trans>} titleVariant="h6" transparent>

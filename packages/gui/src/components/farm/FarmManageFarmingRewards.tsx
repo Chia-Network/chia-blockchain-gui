@@ -46,7 +46,7 @@ export default function FarmManageFarmingRewards(props: Props) {
         poolTarget: data.poolTarget,
       });
     }
-  }, [data]);
+  }, [data, methods]);
 
   const {
     register,

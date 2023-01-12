@@ -104,7 +104,7 @@ export default function useAssetIdName() {
     }
 
     return { assetIdNameMapping, walletIdNameMapping };
-  }, [catList, wallets, isCatListLoading, isLoading]);
+  }, [isLoading, isCatListLoading, wallets, catList, currencyCode]);
 
   function lookupByAssetId(assetId: string): AssetIdMapEntry | undefined {
     return memoized.assetIdNameMapping.get(assetId.toLowerCase());

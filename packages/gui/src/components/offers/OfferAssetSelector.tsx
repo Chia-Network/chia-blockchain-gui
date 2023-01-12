@@ -123,7 +123,7 @@ function OfferAssetSelector(props: OfferAssetSelectorProps) {
       selectedWalletId,
       chiaCurrencyCode: currencyCode,
     });
-  }, [wallets, catList, rows, otherRows]);
+  }, [isLoading, isCatListLoading, wallets, catList, rows, otherRows, selectedWalletId, currencyCode]);
 
   function handleSelection(selectedWalletIdLocal: number, selectedWalletType: WalletType) {
     if (onChange) {

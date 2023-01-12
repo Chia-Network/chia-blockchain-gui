@@ -386,7 +386,7 @@ function NFTOfferDetails(props: NFTOfferDetailsProps) {
       ),
       royaltyPercentage,
     };
-  }, [nft]);
+  }, [amount, exchangeType, makerFee, nft]);
   const showRoyaltyWarning = (nftSaleInfo?.royaltyPercentage ?? 0) >= 20;
   const royaltyPercentageColor = showRoyaltyWarning ? StateColor.WARNING : 'textSecondary';
   const overrideNFTSellerAmount =
@@ -419,7 +419,7 @@ function NFTOfferDetails(props: NFTOfferDetailsProps) {
       setIsValid(valid);
       setIsValidating(false);
     }
-  }, [offerData]);
+  }, [checkOfferValidity, offerData, showError]);
 
   async function handleAcceptOffer(formData: any) {
     const { fee } = formData;

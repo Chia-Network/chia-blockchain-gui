@@ -35,7 +35,7 @@ function SandboxedIframe(props: SandboxIframeProps) {
   useEffect(() => {
     setLoaded(false);
     onLoadedChange?.(false);
-  }, [srcDoc]);
+  }, [onLoadedChange, srcDoc]);
 
   function handleLoad() {
     setLoaded(true);

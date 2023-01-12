@@ -21,7 +21,7 @@ export default function useOpenDialog() {
       // todo maybe remove ecause it is uneccessary
       setDialogs([]);
     },
-    []
+    [dialogs, hide]
   );
 
   async function handleOpen<T>(dialog: ReactNode): Promise<T> {

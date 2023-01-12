@@ -91,36 +91,36 @@ export default function useWalletsList(
     return ids;
   }, [catList]);
 
-  function hasCatAssignedWallet(assetId: string) {
-    return walletAssetIds.has(assetId);
-  }
-
-  function isHiddenCAT(assetId: string) {
-    if (!walletAssetIds.has(assetId)) {
-      return true;
-    }
-
-    const walletId = walletAssetIds.get(assetId);
-    return isHidden(walletId);
-  }
-
-  function getCATName(assetId: string) {
-    if (walletAssetIds.has(assetId)) {
-      const walletId = walletAssetIds.get(assetId);
-      const wallet = wallets?.find((walletItem: Wallet) => walletItem.id === walletId);
-
-      return wallet?.meta?.name ?? wallet?.name ?? assetId;
-    }
-
-    const catKnown = catList?.find((cat) => cat.assetId === assetId);
-    const strayCAT = strayCats?.find((cat) => cat.assetId === assetId);
-
-    return catKnown?.name ?? strayCAT?.name ?? assetId;
-  }
-
   const list = useMemo(() => {
     if (isLoading) {
       return undefined;
+    }
+
+    function hasCatAssignedWallet(assetId: string) {
+      return walletAssetIds.has(assetId);
+    }
+
+    function isHiddenCAT(assetId: string) {
+      if (!walletAssetIds.has(assetId)) {
+        return true;
+      }
+
+      const walletId = walletAssetIds.get(assetId);
+      return isHidden(walletId);
+    }
+
+    function getCATName(assetId: string) {
+      if (walletAssetIds.has(assetId)) {
+        const walletId = walletAssetIds.get(assetId);
+        const wallet = wallets?.find((walletItem: Wallet) => walletItem.id === walletId);
+
+        return wallet?.meta?.name ?? wallet?.name ?? assetId;
+      }
+
+      const catKnown = catList?.find((cat) => cat.assetId === assetId);
+      const strayCAT = strayCats?.find((cat) => cat.assetId === assetId);
+
+      return catKnown?.name ?? strayCAT?.name ?? assetId;
     }
 
     const baseWallets =
@@ -180,7 +180,7 @@ export default function useWalletsList(
     }
 
     return orderBy(tokens, [getWalletTypeOrder, getTypeOrder, 'name'], ['asc', 'asc', 'asc']);
-  }, [isLoading, wallets, catList, strayCats, hidden, search, walletAssetIds]);
+  }, [isLoading, wallets, catList, strayCats, search, isHidden, knownCatAssetIds, walletAssetIds, walletTypes]);
 
   async function handleShow(id: number | string) {
     try {

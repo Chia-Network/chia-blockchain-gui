@@ -43,7 +43,7 @@ export default function LocaleProvider(props: LocaleProviderProps) {
       }
       setLocale(localeLocal);
     },
-    [setLocale]
+    [locales, setLocale]
   );
 
   const context = useMemo(
@@ -59,11 +59,11 @@ export default function LocaleProvider(props: LocaleProviderProps) {
   // prepare default locale
   useMemo(() => {
     activateLocale(i18n, defaultLocale);
-  }, []);
+  }, [defaultLocale, i18n]);
 
   useEffect(() => {
     activateLocale(i18n, locale);
-  }, [locale]);
+  }, [i18n, locale]);
 
   return (
     <LocaleContext.Provider value={context}>
