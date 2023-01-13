@@ -1,4 +1,4 @@
-import Wallet from '../services/Wallet';
+import Wallet from '../services/WalletService';
 
 export default class RLWallet extends Wallet {
   async createAdminWallet(interval: string, limit: string, pubkey: string, amount: string) {

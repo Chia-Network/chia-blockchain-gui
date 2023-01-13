@@ -1,4 +1,4 @@
-import { Wallet, WalletType, type CATToken } from '@chia-network/api';
+import type { Wallet, WalletType, CATToken } from '@chia-network/api';
 import { useGetCatListQuery, useGetWalletsQuery } from '@chia-network/api-react';
 import { Select, useCurrencyCode } from '@chia-network/core';
 import { Trans } from '@lingui/macro';

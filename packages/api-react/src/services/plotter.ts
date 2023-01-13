@@ -1,4 +1,4 @@
-import { Plotter } from '@chia-network/api';
+import { PlotterService } from '@chia-network/api';
 import type { Plot } from '@chia-network/api';
 
 import api, { baseQuery } from '../api';
@@ -11,13 +11,13 @@ export const plotterApi = apiWithTag.injectEndpoints({
     getPlotQueue: build.query<Plot[], {}>({
       query: () => ({
         command: 'getQueue',
-        service: Plotter,
+        service: PlotterService,
       }),
       // transformResponse: (response: any) => response,
       onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, [
         {
           command: 'onQueueChanged',
-          service: Plotter,
+          service: PlotterService,
           endpoint: () => plotterApi.endpoints.getPlotQueue,
         },
       ]),
@@ -28,7 +28,7 @@ export const plotterApi = apiWithTag.injectEndpoints({
     }>({
       query: ({ id }) => ({
         command: 'stopPlotting',
-        service: Plotter,
+        service: PlotterService,
         args: [id],
       }),
       transformResponse: (response: any) => response?.success,
@@ -64,7 +64,7 @@ export const plotterApi = apiWithTag.injectEndpoints({
         workspaceLocation2,
        }) => ({
         command: 'startPlotting',
-        service: Plotter,
+        service: PlotterService,
         args: [
           plotterName,
           plotSize,
