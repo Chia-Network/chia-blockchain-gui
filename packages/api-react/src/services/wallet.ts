@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign -- This file use Immer */
 import { CAT, DID, Farmer, NFT, OfferTradeRecord, Pool, Wallet, WalletType, toBech32m } from '@chia-network/api';
 import type {
   CalculateRoyaltiesRequest,
@@ -424,7 +425,7 @@ export const walletApi = apiWithTag.injectEndpoints({
           const { walletId, amount, fee, address, memos, waitForConfirmation } = args;
 
           return {
-            data: await new Promise(async (resolve, reject) => {
+            data: await new Promise((resolve, reject) => {
               const updatedTransactions: Transaction[] = [];
               let transactionName: string;
 
@@ -1279,7 +1280,7 @@ export const walletApi = apiWithTag.injectEndpoints({
           const { walletId, address, amount, fee, memos, waitForConfirmation } = args;
 
           return {
-            data: await new Promise(async (resolve, reject) => {
+            data: await new Promise((resolve, reject) => {
               const updatedTransactions: Transaction[] = [];
               let transactionName: string;
 
@@ -1298,7 +1299,6 @@ export const walletApi = apiWithTag.injectEndpoints({
                     transaction,
                     transactionId: transaction.name,
                   });
-                } else {
                 }
               }
 

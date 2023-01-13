@@ -31,7 +31,8 @@ export type LocaleProviderProps = {
 export default function LocaleProvider(props: LocaleProviderProps) {
   const { children, i18n, locales, defaultLocale } = props;
 
-  let [locale, setLocale] = usePrefs<string>('locale', defaultLocale);
+  const [localeState, setLocale] = usePrefs<string>('locale', defaultLocale);
+  let locale = localeState;
   if (typeof locale !== 'string' || (locale && locale.length === 2)) {
     locale = defaultLocale;
   }
