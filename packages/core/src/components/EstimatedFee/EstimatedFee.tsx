@@ -6,16 +6,14 @@ import {
   InputLabel,
   MenuItem,
   Select as MaterialSelect,
-  SelectProps,
+  SelectProps as MaterialSelectProps,
   Typography,
 } from '@mui/material';
-import { get } from 'lodash';
 import React, { useState, useEffect, useMemo } from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 
 import useCurrencyCode from '../../hooks/useCurrencyCode';
 import useLocale from '../../hooks/useLocale';
-import useMode from '../../hooks/useMode';
 import mojoToChiaLocaleString from '../../utils/mojoToChiaLocaleString';
 import Fee from '../Fee';
 import Flex from '../Flex';
@@ -29,12 +27,17 @@ type FormattedEstimate = {
   formattedEstimate: string;
 };
 
-type Props = SelectProps & {
-  // eslint-disable-next-line react/no-unused-prop-types -- False positive
+type SelectProps = MaterialSelectProps & {
   name: string;
+  formattedEstimates: FormattedEstimate[];
+  selectedValue: string;
+  selectedTime: number;
+  onTypeChange: (type: 'dropdown' | 'custom') => void;
+  onTimeChange: (time: number) => void;
+  onValueChange: (value: string) => void;
 };
 
-function Select(props: Props) {
+function Select(props: SelectProps) {
   const {
     name: controllerName,
     value: controllerValue,
@@ -47,8 +50,12 @@ function Select(props: Props) {
     children,
     ...rest
   } = props;
-  const { control, errors, setValue } = useFormContext();
-  const errorMessage = get(errors, controllerName);
+  const {
+    control,
+    formState: { errors },
+    setValue,
+  } = useFormContext();
+  const haveError = Object.keys(errors).length > 0;
 
   function getTimeByValue(object: FormattedEstimate[], value: string) {
     const match = object.find((estimate) => estimate.formattedEstimate === value);
@@ -71,15 +78,15 @@ function Select(props: Props) {
               setValue(controllerName, '');
             } else {
               onTypeChange('dropdown');
-              onTimeChange(getTimeByValue(formattedEstimates, event.target.value));
-              onValueChange(event.target.value);
+              onTimeChange(getTimeByValue(formattedEstimates, event.target.value as string));
+              onValueChange(event.target.value as string);
             }
           }}
           onBlur={onBlur}
           value={selectedValue}
           name={name}
           ref={ref}
-          error={!!errorMessage}
+          error={haveError}
           renderValue={() => (
             <Box sx={{ display: 'flex', gap: 1 }}>
               {selectedValue} (~{selectedTime} min)
@@ -94,8 +101,7 @@ function Select(props: Props) {
   );
 }
 
-function CountdownBar(props: Props) {
-  const { start, refreshTime } = props;
+function CountdownBar({ start, refreshTime }: { start: number; refreshTime: number }) {
   const [seconds, setSeconds] = useState(new Date().getSeconds());
   const refreshSec = refreshTime * 10e-4;
 
@@ -122,7 +128,7 @@ function CountdownBar(props: Props) {
     width: `${currentProgress}%`,
     backgroundColor: 'green',
     borderRadius: 'inherit',
-    textAlign: 'right',
+    // textAlign: 'right',
   };
 
   const labelStyle = {
@@ -140,11 +146,30 @@ function CountdownBar(props: Props) {
   );
 }
 
+enum FeeTxType {
+  walletSendXCH = 'walletSendXCH',
+  spendCATtx = 'spendCATtx',
+  acceptOffer = 'acceptOffer',
+  cancelOffer = 'cancelOffer',
+  burnNFT = 'burnNFT',
+  assignDIDToNFT = 'assignDIDToNFT',
+  transferNFT = 'transferNFT',
+  createPlotNFT = 'createPlotNFT',
+  claimPoolingReward = 'claimPoolingReward',
+  createDID = 'createDID',
+}
+
+type FeeProps = {
+  name: string;
+  txType: FeeTxType;
+  required?: boolean;
+};
+
 export default function EstimatedFee(props: FeeProps) {
   const { name, txType, required, ...rest } = props;
   const { setValue } = useFormContext();
   const [startTime] = useState(new Date().getSeconds());
-  const refreshTime = 60_000; // in milliseconds
+  const refreshTime = 10_000; // in milliseconds
   const targetTimes = TARGET_TIMES;
   const { data: ests } = useGetFeeEstimateQuery(
     { targetTimes, cost: 1 },
@@ -152,11 +177,9 @@ export default function EstimatedFee(props: FeeProps) {
       pollingInterval: refreshTime,
     }
   );
-  const [estList, setEstList] = React.useState([]);
   const [inputType, setInputType] = React.useState('dropdown');
   const [selectedValue, setSelectedValue] = React.useState('');
-  const [selectedTime, setSelectedTime] = React.useState('');
-  const mode = useMode();
+  const [selectedTime, setSelectedTime] = React.useState(0);
   const [selectOpen, setSelectOpen] = React.useState(false);
   const [locale] = useLocale();
   const currencyCode = useCurrencyCode();
@@ -178,7 +201,7 @@ export default function EstimatedFee(props: FeeProps) {
 
   const multiplier = txCostEstimates[txType];
 
-  function formatEst(number, multiplierLocal, localeLocal) {
+  function formatEst(number: number, multiplierLocal: number, localeLocal: string) {
     const num = Math.round(number * multiplierLocal * 10 ** -4) * 10 ** 4;
     return mojoToChiaLocaleString(num, localeLocal);
   }
@@ -200,50 +223,6 @@ export default function EstimatedFee(props: FeeProps) {
       };
     });
   }, [ests, targetTimes, locale, multiplier]);
-
-  useEffect(() => {
-    const estimateList = ests?.estimates ?? [0, 0, 0];
-    // if (ests) {
-    // const { targetTimes } = ests;
-    // if (
-    //   estimateList[0] == 0 &&
-    //   estimateList[1] == 0 &&
-    //   estimateList[2] == 0
-    // ) {
-    //   //setInputType('classic');
-    // }
-    const est0 =
-      estimateList[0] === 0 ? formatEst(6_000_000, 1, locale) : formatEst(estimateList[0], multiplier, locale);
-    const est1 =
-      estimateList[1] === 0 ? formatEst(5_000_000, 1, locale) : formatEst(estimateList[1], multiplier, locale);
-    const est2 = estimateList[2] === 0 ? formatEst(0, 1, locale) : formatEst(estimateList[2], multiplier, locale);
-    setEstList(() => []);
-    setEstList((current) => [
-      ...current,
-      {
-        time: targetTimes[0] / 60,
-        timeText: `Likely in ${targetTimes[0]} seconds`,
-        estimate: est0,
-      },
-    ]);
-    setEstList((current) => [
-      ...current,
-      {
-        time: targetTimes[1] / 60,
-        timeText: `Likely in ${targetTimes[1] / 60} minutes`,
-        estimate: est1,
-      },
-    ]);
-    setEstList((current) => [
-      ...current,
-      {
-        time: targetTimes[2] / 60,
-        timeText: `Likely over ${targetTimes[2] / 60} minutes`,
-        estimate: est2,
-      },
-    ]);
-    // }
-  }, [ests]);
 
   useEffect(() => {
     if (formattedEstimates) {
@@ -281,7 +260,6 @@ export default function EstimatedFee(props: FeeProps) {
             open={selectOpen}
             onOpen={handleSelectOpen}
             onClose={handleSelectClose}
-            // estList={estList}
             formattedEstimates={formattedEstimates}
             selectedValue={selectedValue}
             selectedTime={selectedTime}
@@ -346,7 +324,7 @@ export default function EstimatedFee(props: FeeProps) {
   }
 
   // if (!error && mode[0] === Mode.FARMING && inputType !== 'classic') {
-  if (inputType !== 'classic' && estList) {
+  if (inputType !== 'classic' && formattedEstimates) {
     return (
       <Flex>
         <FormControl variant="filled" fullWidth>
