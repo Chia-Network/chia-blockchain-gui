@@ -18,6 +18,7 @@ import mojoToChiaLocaleString from '../../utils/mojoToChiaLocaleString';
 import Fee from '../Fee';
 import Flex from '../Flex';
 
+const REFRESH_SECONDS = 30;
 const TARGET_TIMES = [60, 120, 300];
 
 type FormattedEstimate = {
@@ -57,11 +58,6 @@ function Select(props: SelectProps) {
   } = useFormContext();
   const haveError = Object.keys(errors).length > 0;
 
-  function getTimeByValue(object: FormattedEstimate[], value: string) {
-    const match = object.find((estimate) => estimate.formattedEstimate === value);
-    return match?.minutes ?? 0;
-  }
-
   return (
     <Controller
       name={controllerName}
@@ -78,7 +74,10 @@ function Select(props: SelectProps) {
               setValue(controllerName, '');
             } else {
               onTypeChange('dropdown');
-              onTimeChange(getTimeByValue(formattedEstimates, event.target.value as string));
+              onTimeChange(
+                formattedEstimates.find((estimate) => estimate.formattedEstimate === (event.target.value as string))
+                  ?.minutes ?? 0
+              );
               onValueChange(event.target.value as string);
             }
           }}
@@ -101,19 +100,21 @@ function Select(props: SelectProps) {
   );
 }
 
-function CountdownBar({ start, refreshTime }: { start: number; refreshTime: number }) {
-  const [seconds, setSeconds] = useState(new Date().getSeconds());
-  const refreshSec = refreshTime * 10e-4;
+function CountdownBar({ startTime, refreshSeconds }: { startTime: number; refreshSeconds: number }) {
+  const [currentProgress, setCurrentProgress] = useState(0);
 
   useEffect(() => {
-    const timer = setInterval(() => setSeconds(new Date().getSeconds()), 500);
-    return function cleanup() {
-      clearInterval(timer);
+    let animationId: number | null = null;
+    const updateProgress = () => {
+      const elapsedTime = Date.now() - startTime;
+      setCurrentProgress(Math.min(100, (elapsedTime / (refreshSeconds * 1000)) * 100));
+      animationId = requestAnimationFrame(updateProgress);
     };
-  });
-
-  const modSec = (((seconds - start) % refreshSec) + refreshSec) % refreshSec;
-  const currentProgress = Math.floor(modSec * (100 / refreshSec));
+    updateProgress();
+    return () => {
+      if (animationId) cancelAnimationFrame(animationId);
+    };
+  }, [startTime, refreshSeconds]);
 
   const containerStyle = {
     height: 2,
@@ -168,15 +169,16 @@ type FeeProps = {
 export default function EstimatedFee(props: FeeProps) {
   const { name, txType, required, ...rest } = props;
   const { setValue } = useFormContext();
-  const [startTime] = useState(new Date().getSeconds());
-  const refreshTime = 10_000; // in milliseconds
-  const targetTimes = TARGET_TIMES;
-  const { data: ests } = useGetFeeEstimateQuery(
-    { targetTimes, cost: 1 },
+  const [requestId, setRequestId] = useState<string | undefined>(undefined);
+  const [startTime, setStartTime] = useState<number | undefined>(undefined);
+  const result = useGetFeeEstimateQuery(
+    { targetTimes: TARGET_TIMES, cost: 1 },
     {
-      pollingInterval: refreshTime,
+      pollingInterval: REFRESH_SECONDS * 1000, // in milliseconds
     }
   );
+  const { data: ests, isLoading, isSuccess, requestId: feeEstimateRequestId, startedTimeStamp } = result;
+
   const [inputType, setInputType] = React.useState('dropdown');
   const [selectedValue, setSelectedValue] = React.useState('');
   const [selectedTime, setSelectedTime] = React.useState(0);
@@ -213,16 +215,27 @@ export default function EstimatedFee(props: FeeProps) {
 
     return (allZeroes ? defaultValues : estimateList).map((estimate: number, i: number) => {
       const formattedEstimate = formatEst(estimate, allZeroes ? 1 : multiplier, locale);
-      const minutes = targetTimes[i] / 60;
+      const minutes = TARGET_TIMES[i] / 60;
 
       return {
         minutes,
-        timeDescription: minutes > 1 ? t`Likely in ${minutes} minutes` : t`Likely in ${targetTimes[i]} seconds`,
+        timeDescription: minutes > 1 ? t`Likely in ${minutes} minutes` : t`Likely in ${TARGET_TIMES[i]} seconds`,
         estimate,
         formattedEstimate,
       };
     });
-  }, [ests, targetTimes, locale, multiplier]);
+  }, [ests, locale, multiplier]);
+
+  useEffect(() => {
+    if (!isLoading) {
+      if (!isSuccess) {
+        setStartTime(undefined);
+      } else if (feeEstimateRequestId !== requestId) {
+        setRequestId(feeEstimateRequestId);
+        setStartTime(startedTimeStamp);
+      }
+    }
+  }, [requestId, setRequestId, feeEstimateRequestId, startedTimeStamp, isLoading, isSuccess]);
 
   useEffect(() => {
     if (formattedEstimates) {
@@ -284,9 +297,11 @@ export default function EstimatedFee(props: FeeProps) {
             </MenuItem>
           </Select>
         </Box>
-        <Box position="absolute" bottom={0} left={0} right={0}>
-          <CountdownBar start={startTime} refreshTime={refreshTime} />
-        </Box>
+        {startTime && (
+          <Box position="absolute" bottom={0} left={0} right={0}>
+            <CountdownBar startTime={startTime} refreshSeconds={REFRESH_SECONDS} />
+          </Box>
+        )}
       </Box>
     );
   }
