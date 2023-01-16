@@ -8,7 +8,7 @@ msgstr ""
 "Language: ru_RU\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-10-24 18:16\n"
+"PO-Revision-Date: 2023-01-16 18:18\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "Plural-Forms: nplurals=4; plural=((n%10==1 && n%100!=11) ? 0 : ((n%10 >= 2 && n%10 <=4 && (n%100 < 12 || n%100 > 14)) ? 1 : ((n%10 == 0 || (n%10 >= 5 && n%10 <=9)) || (n%100 >= 11 && n%100 <= 14)) ? 2 : 3));\n"
@@ -195,7 +195,7 @@ msgstr "Создать новый кошелек"
 #: src/components/cat/WalletCAT.tsx:113
 #: src/components/standard/WalletStandard.tsx:48
 msgid "Create Offer"
-msgstr ""
+msgstr "Создать предложение"
 
 #: src/components/create/createRLAdmin.jsx:187
 msgid "Create Rate Limited Admin Wallet"
@@ -388,7 +388,7 @@ msgstr ""
 
 #: src/components/cat/WalletCATCreateExistingSimple.tsx:71
 msgid "Name"
-msgstr ""
+msgstr "Название"
 
 #: src/components/WalletReceiveAddress.tsx:64
 msgid "New Address"
@@ -434,7 +434,7 @@ msgstr "OK"
 
 #: src/components/WalletHistory.tsx:183
 msgid "Offer Accepted"
-msgstr ""
+msgstr "Предложение принято"
 
 #: src/components/WalletSend.tsx:141
 #: src/components/cat/WalletCATSend.tsx:179
@@ -848,7 +848,7 @@ msgstr "Соединения с кошельком"
 #: src/components/WalletAdd.tsx:128
 #: src/components/WalletImport.tsx:176
 msgid "Wallet Name"
-msgstr ""
+msgstr "Название кошелька"
 
 #: src/components/cat/WalletCAT.tsx:75
 #: src/components/cat/WalletDID.tsx:1118
