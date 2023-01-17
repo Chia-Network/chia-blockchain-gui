@@ -435,7 +435,7 @@ function NFTDownloadContextualAction(props: NFTDownloadContextualActionProps) {
 type NFTHideContextualActionProps = NFTContextualActionProps & {
   selection?: NFTSelection;
   isMultiSelect?: boolean;
-  showOrHide?: boolean;
+  showOrHide?: number;
 };
 
 function NFTHideContextualAction(props: NFTHideContextualActionProps) {
@@ -446,7 +446,7 @@ function NFTHideContextualAction(props: NFTHideContextualActionProps) {
   const [isNFTHidden, setIsNFTHidden, , setHiddenMultiple] = useHiddenNFTs();
   const [, setSelectedNFTIds] = useLocalStorage('gallery-selected-nfts', []);
 
-  const isHidden = isMultiSelect && showOrHide ? true : isNFTHidden(selectedNft);
+  const isHidden = isMultiSelect && showOrHide === 1 ? true : isNFTHidden(selectedNft);
 
   function handleToggle() {
     if (!selectedNft) {
@@ -596,7 +596,7 @@ type NFTContextualActionsProps = {
   availableActions?: NFTContextualActionTypes;
   toggle?: ReactNode;
   isMultiSelect?: boolean;
-  showOrHide?: boolean;
+  showOrHide?: number;
 };
 
 export default function NFTContextualActions(props: NFTContextualActionsProps) {
