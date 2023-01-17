@@ -46,6 +46,7 @@ export type DropdownActionsProps = ButtonProps & {
   label?: ReactNode;
   toggle?: ReactNode;
   children: ReactNode;
+  menuSx: any;
 };
 
 function DropdownActions(props: DropdownActionsProps, ref: any) {
@@ -86,8 +87,7 @@ function DropdownActions(props: DropdownActionsProps, ref: any) {
           {label}
         </Button>
       )}
-
-      <StyledMenu anchorEl={anchorEl} open={open} onClose={handleClose} onClick={handlePreventDefault}>
+      <StyledMenu anchorEl={anchorEl} open={open} onClose={handleClose} onClick={handlePreventDefault} sx={rest.menuSx}>
         {children}
       </StyledMenu>
     </div>

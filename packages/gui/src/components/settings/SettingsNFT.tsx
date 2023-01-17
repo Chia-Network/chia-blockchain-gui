@@ -49,6 +49,12 @@ export default function SettingsGeneral() {
         onConfirm={() => {
           ipcRenderer.invoke('clearNFTCache').then(() => {
             setCacheSize(0);
+            Object.keys(localStorage).forEach((key) => {
+              if (key.indexOf('content-cache-') > -1) localStorage.removeItem(key);
+              if (key.indexOf('thumb-cache-') > -1) localStorage.removeItem(key);
+              if (key.indexOf('metadata-cache-') > -1) localStorage.removeItem(key);
+              if (key.indexOf('force-reload-') > -1) localStorage.removeItem(key);
+            });
           });
         }}
       >

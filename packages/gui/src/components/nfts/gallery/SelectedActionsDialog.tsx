@@ -13,12 +13,7 @@ const SelectedItemsContainer = styled.div`
     0px 9px 44px 8px rgba(0, 0, 0, 0.12);
   border-radius: 16px;
   padding: 12px 32px;
-  position: fixed;
-  bottom: 50px;
-  z-index: 7;
   display: inline-block;
-  margin-left: auto;
-  margin-right: auto;
 `;
 
 const SelectedCountText = styled.div`
