@@ -686,8 +686,9 @@ export default function NFTContextualActions(props: NFTContextualActionsProps) {
 
   return (
     <DropdownActions label={label} variant="outlined" items={selection?.items} {...rest}>
-      {actions.map(({ action: Action, props: actionProps }) => (
-        <Action key={`${Action.name}`} selection={selection} {...actionProps} />
+      {actions.map(({ action: Action, props: actionProps }, index) => (
+        // eslint-disable-next-line react/no-array-index-key -- Nothing better to use
+        <Action key={index} selection={selection} {...actionProps} />
       ))}
     </DropdownActions>
   );

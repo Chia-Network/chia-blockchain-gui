@@ -448,9 +448,9 @@ export default function NFTPreview(props: NFTPreviewProps) {
     return [elem];
   }, [file, thumbnail, disableThumbnail, fit, isPreview, isAudio, isDarkMode, mimeType, miniThumb]);
 
-  function handleLoadedChange(loadedValue: any) {
+  const handleLoadedChange = React.useCallback((loadedValue: any) => {
     setLoaded(loadedValue);
-  }
+  }, []);
 
   function handleIgnoreError(event: any) {
     event.stopPropagation();

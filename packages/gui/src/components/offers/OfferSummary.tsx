@@ -72,7 +72,7 @@ export default function OfferSummary(props: Props) {
       .map(([assetId, _]) => assetId);
 
     return [takerUnknownCATsLocal, makerUnknownCATsLocal];
-  }, [summary]);
+  }, [isMyOffer, lookupByAssetId, makerEntries, takerEntries]);
 
   const sections: {
     tradeSide: 'buy' | 'sell';

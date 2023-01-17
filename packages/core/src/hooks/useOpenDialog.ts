@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState, ReactNode } from 'react';
+import { useContext, useEffect, useState, ReactNode, useCallback } from 'react';
 
 import ModalDialogsContext from '../components/ModalDialogs/ModalDialogsContext';
 
@@ -17,22 +17,23 @@ export default function useOpenDialog() {
       dialogs.forEach((dialog) => {
         hide(dialog);
       });
-
-      // todo maybe remove ecause it is uneccessary
-      setDialogs([]);
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- Used only for unmounting
     []
   );
 
-  async function handleOpen<T>(dialog: ReactNode): Promise<T> {
-    setDialogs((prevState) => [...prevState, dialog]);
+  const handleOpen = useCallback(
+    async (dialog: ReactNode) => {
+      setDialogs((prevState) => [...prevState, dialog]);
 
-    const result = await show(dialog);
+      const result = await show(dialog);
 
-    setDialogs((prevState) => prevState.filter((d) => d !== dialog));
+      setDialogs((prevState) => prevState.filter((d) => d !== dialog));
 
-    return result;
-  }
+      return result;
+    },
+    [show]
+  );
 
   return handleOpen;
 }

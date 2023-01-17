@@ -166,7 +166,7 @@ function NFTOfferConditionalsPanel(props: NFTOfferConditionalsPanelProps) {
     }
 
     return balanceString;
-  }, [tokenWalletInfo.walletId, walletBalance, isLoadingWalletBalance, locale]);
+  }, [isLoadingWalletBalance, tab, walletBalance, tokenWalletInfo, locale, methods]);
 
   // HACK: manually determine the value for the amount field's shrink input prop.
   // Without this, toggling between the two tabs with an amount specified will cause

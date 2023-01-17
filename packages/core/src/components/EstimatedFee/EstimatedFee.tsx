@@ -224,7 +224,7 @@ export default function EstimatedFee(props: FeeProps) {
         },
       ]);
     }
-  }, [ests]);
+  }, [ests, locale, multiplier]);
 
   useEffect(() => {
     if (estList) {
@@ -233,7 +233,7 @@ export default function EstimatedFee(props: FeeProps) {
         setValue(name, getValueByTime(estList, selectedTime));
       }
     }
-  }, [estList]);
+  }, [estList, name, selectedTime, setValue]);
 
   const handleSelectOpen = () => {
     setSelectOpen(true);

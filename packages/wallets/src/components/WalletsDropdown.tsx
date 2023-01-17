@@ -59,7 +59,7 @@ export default function WalletsDropdown() {
           ),
         };
       });
-  }, [wallets, isLoading]);
+  }, [isLoading, wallets, trans]);
 
   function handleSelectWallet(walletId: number) {
     navigate(`/dashboard/wallets/${walletId}`);

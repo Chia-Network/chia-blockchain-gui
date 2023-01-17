@@ -34,7 +34,7 @@ export default function OfferBuilderWalletBalance(props: OfferBuilderWalletBalan
     }
 
     return undefined;
-  }, [isLoading, wallet, walletBalance, walletBalance?.spendableBalance, locale]);
+  }, [isLoading, wallet, walletBalance, locale]);
 
   if (!isLoading && xchBalance === undefined) {
     return null;
