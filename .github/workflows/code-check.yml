@@ -1,0 +1,26 @@
+name: code-check
+on:
+  # We never push directly to 'main', so do not run on it
+  push:
+    branches-ignore:
+      - 'main'
+  pull_request:
+    branches-ignore:
+      - 'main'
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          # Use node version from '.nvmrc' instead of hardcoding here
+          node-version-file: '.nvmrc'
+      - name: install
+        run: npm ci
+      - name: Prettier
+        run: npm run check:prettier
+      - name: ESLint
+        run: npm run check:lint
