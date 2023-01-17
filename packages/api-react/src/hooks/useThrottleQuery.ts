@@ -20,11 +20,12 @@ export default function useThrottleQuery(
   const refState = useRef<any>();
 
   const processUpdate = useCallback(
-    throttle(() => forceUpdate(), wait, {
-      leading,
-      trailing,
-    }),
-    [wait, leading, trailing]
+    () =>
+      throttle(() => forceUpdate(), wait, {
+        leading,
+        trailing,
+      }),
+    [wait, leading, trailing, forceUpdate]
   );
 
   queryHook(variables, {

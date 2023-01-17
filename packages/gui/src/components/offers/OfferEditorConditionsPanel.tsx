@@ -1,4 +1,5 @@
-import { Wallet, WalletType } from '@chia-network/api';
+import type { Wallet } from '@chia-network/api';
+import { WalletType } from '@chia-network/api';
 import { useGetWalletBalanceQuery, useGetWalletsQuery } from '@chia-network/api-react';
 import {
   Amount,
@@ -80,7 +81,7 @@ function OfferEditorConditionRow(props: OfferEditorConditionsRowProps) {
     }
 
     return balanceString;
-  }, [row.assetWalletId, walletBalance, isLoading, locale]);
+  }, [isLoading, tradeSide, walletBalance, row, item.walletType, locale, updateRow]);
 
   function handleAssetChange(namePrefixLocal: string, selectedWalletId: number, selectedWalletType: WalletType) {
     const rowLocal: OfferEditorRowData = getValues(namePrefixLocal);
@@ -255,7 +256,7 @@ function OfferEditorConditionsPanel(props: OfferEditorConditionsPanelProps) {
       takerAssetInfo: takerAssetInfoLocal,
       takerExchangeRate: takerExchangeRateLocal,
     };
-  }, [isLoading, makerRows, takerRows]);
+  }, [isLoading, lookupByWalletId, makerRows, takerRows]);
 
   type Section = {
     side: 'buy' | 'sell';

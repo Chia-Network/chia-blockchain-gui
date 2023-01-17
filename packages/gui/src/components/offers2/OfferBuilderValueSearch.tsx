@@ -1,4 +1,4 @@
-import { NFTInfo, Wallet } from '@chia-network/api';
+import type { NFTInfo, Wallet } from '@chia-network/api';
 import { useGetNFTWallets } from '@chia-network/api-react';
 import { useDarkMode } from '@chia-network/core';
 import { t, Trans } from '@lingui/macro';

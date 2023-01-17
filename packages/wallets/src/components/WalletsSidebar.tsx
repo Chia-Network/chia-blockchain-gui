@@ -77,7 +77,7 @@ export default function WalletsSidebar() {
   const navigate = useNavigate();
   const { walletId } = useParams();
   const { data: wallets, isLoading } = useGetWalletsQuery();
-  const { isHidden, hidden, isLoading: isLoadingHiddenWallet } = useHiddenWallet();
+  const { isHidden, isLoading: isLoadingHiddenWallet } = useHiddenWallet();
 
   const openDialog = useOpenDialog();
 
@@ -145,15 +145,13 @@ export default function WalletsSidebar() {
     );
   }
 
-  function handleSelectWallet(id: number) {
-    navigate(`/dashboard/wallets/${id}`);
-  }
-
   const items = useMemo(() => {
     if (isLoading || isLoadingHiddenWallet) {
       return [];
     }
-
+    function handleSelectWallet(id: number) {
+      navigate(`/dashboard/wallets/${id}`);
+    }
     const orderedWallets = orderBy(wallets, ['type', 'name'], ['asc', 'asc']);
 
     return orderedWallets
@@ -179,7 +177,7 @@ export default function WalletsSidebar() {
           </CardListItem>
         );
       });
-  }, [wallets, walletId, isLoading, hidden, isLoadingHiddenWallet]);
+  }, [isLoading, isLoadingHiddenWallet, wallets, navigate, isHidden, walletId]);
 
   return (
     <StyledRoot>

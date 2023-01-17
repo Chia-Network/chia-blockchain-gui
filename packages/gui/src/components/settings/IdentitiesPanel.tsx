@@ -76,10 +76,6 @@ export default function IdentitiesPanel() {
   const { walletId } = useParams();
   const { data: wallets, isLoading } = useGetWalletsQuery();
 
-  function handleSelectWallet(id: number) {
-    navigate(`/dashboard/settings/profiles/${id}`);
-  }
-
   const dids = [];
   if (wallets) {
     wallets.forEach((wallet) => {
@@ -93,7 +89,9 @@ export default function IdentitiesPanel() {
     if (isLoading) {
       return [];
     }
-
+    function handleSelectWallet(id: number) {
+      navigate(`/dashboard/settings/profiles/${id}`);
+    }
     const didLength = dids.length;
 
     if (didLength === 0) {
@@ -133,7 +131,7 @@ export default function IdentitiesPanel() {
           </CardListItem>
         );
       });
-  }, [wallets, walletId, isLoading]);
+  }, [isLoading, dids.length, wallets, navigate, walletId]);
 
   return (
     <StyledRoot>

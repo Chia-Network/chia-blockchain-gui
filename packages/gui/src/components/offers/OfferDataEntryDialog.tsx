@@ -44,6 +44,7 @@ export default function OfferDataEntryDialog(props: Props) {
                 }}
                 minRows={5}
                 maxRows={10}
+                // eslint-disable-next-line no-return-assign -- Could not trigger this, maybe legacy file?
                 inputRef={(ref) => (input = ref)}
                 fullWidth
                 multiline

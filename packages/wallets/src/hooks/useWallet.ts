@@ -32,7 +32,7 @@ export default function useWallet(walletId?: number | string): {
       return currencyCode;
     }
     return undefined;
-  }, [wallet, currencyCode, isCatListLoading]);
+  }, [wallet, isCatListLoading, currencyCode, catList]);
 
   return {
     wallet,

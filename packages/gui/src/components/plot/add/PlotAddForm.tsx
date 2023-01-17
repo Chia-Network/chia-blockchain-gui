@@ -97,7 +97,7 @@ export default function PlotAddForm(props: Props) {
     if (plotSizeConfig) {
       setValue('maxRam', plotSizeConfig.defaultRam);
     }
-  }, [plotSize, setValue]);
+  }, [plotSize, plotterName, setValue]);
 
   const plotter = plotters[plotterName] ?? defaultPlotter;
   let step = 1;

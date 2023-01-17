@@ -22,6 +22,12 @@ const Pill = styled.div`
   }
 `;
 
+const Children = styled.div`
+  transition: opacity 400ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, transform 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  opacity: 1;
+  display: flex;
+`;
+
 const ArrowDown = styled(ArrowDownIcon)`
   margin-left: 10px;
 `;
@@ -47,7 +53,7 @@ export default function FilterPill(props: FilterPillProps) {
     <Pill onClick={() => toggleFilterShow()} isDarkMode={isDarkMode}>
       <Trans>{title}</Trans>
       <ArrowDown />
-      <div style={{ display: filtersShown.indexOf(which) > -1 ? 'flex' : 'none' }}>{children}</div>
+      <Children style={{ opacity: filtersShown.indexOf(which) > -1 ? 1 : 0 }}>{children}</Children>
     </Pill>
   );
 }

@@ -1360,7 +1360,7 @@ export default function OfferShareDialog(props: OfferShareDialogProps) {
       });
 
     return options;
-  }, [isNFTOffer]);
+  }, [isNFTOffer, testnet]);
 
   function handleClose() {
     onClose(false);

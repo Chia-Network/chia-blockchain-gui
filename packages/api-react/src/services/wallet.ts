@@ -1,4 +1,5 @@
-import { CAT, DID, Farmer, NFT, OfferTradeRecord, Pool, Wallet, WalletType, toBech32m } from '@chia-network/api';
+/* eslint-disable no-param-reassign -- This file use Immer */
+import { CAT, DID, Farmer, NFT, OfferTradeRecord, Pool, WalletService, WalletType, toBech32m } from '@chia-network/api';
 import type {
   CalculateRoyaltiesRequest,
   CalculateRoyaltiesResponse,
@@ -7,6 +8,7 @@ import type {
   PlotNFT,
   PlotNFTExternal,
   Transaction,
+  Wallet,
   WalletBalance,
   WalletConnections,
 } from '@chia-network/api';
@@ -57,7 +59,7 @@ export const walletApi = apiWithTag.injectEndpoints({
     walletPing: build.query<boolean, {}>({
       query: () => ({
         command: 'ping',
-        service: Wallet,
+        service: WalletService,
       }),
       transformResponse: (response: any) => response?.success,
     }),
@@ -65,7 +67,7 @@ export const walletApi = apiWithTag.injectEndpoints({
     getLoggedInFingerprint: build.query<string | undefined, {}>({
       query: () => ({
         command: 'getLoggedInFingerprint',
-        service: Wallet,
+        service: WalletService,
       }),
       transformResponse: (response: any) => response?.fingerprint,
       providesTags: ['LoggedInFingerprint'],
@@ -81,11 +83,11 @@ export const walletApi = apiWithTag.injectEndpoints({
         try {
           const { data, error } = await fetchWithBQ({
             command: 'getWallets',
-            service: Wallet,
+            service: WalletService,
           });
 
           if (error) {
-            throw error;
+            throw error as Error;
           }
 
           const wallets = data?.wallets;
@@ -107,7 +109,7 @@ export const walletApi = apiWithTag.injectEndpoints({
                   });
 
                   if (assetError) {
-                    throw assetError;
+                    throw assetError as Error;
                   }
 
                   meta.assetId = assetData.assetId;
@@ -120,7 +122,7 @@ export const walletApi = apiWithTag.injectEndpoints({
                   });
 
                   if (nameError) {
-                    throw nameError;
+                    throw nameError as Error;
                   }
 
                   meta.name = nameData.name;
@@ -133,7 +135,7 @@ export const walletApi = apiWithTag.injectEndpoints({
                   });
 
                   if (didError) {
-                    throw didError;
+                    throw didError as Error;
                   }
 
                   meta.did = didData.didId;
@@ -161,7 +163,7 @@ export const walletApi = apiWithTag.injectEndpoints({
       onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, [
         {
           command: 'onWalletCreated',
-          service: Wallet,
+          service: WalletService,
           endpoint: () => walletApi.endpoints.getWallets,
         },
       ]),
@@ -175,14 +177,14 @@ export const walletApi = apiWithTag.injectEndpoints({
     >({
       query: ({ transactionId }) => ({
         command: 'getTransaction',
-        service: Wallet,
+        service: WalletService,
         args: [transactionId],
       }),
       transformResponse: (response: any) => response?.transaction,
       onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, [
         {
           command: 'onTransactionUpdate',
-          service: Wallet,
+          service: WalletService,
           onUpdate: (draft, data, { transactionId }) => {
             const {
               additionalData: { transaction },
@@ -204,7 +206,7 @@ export const walletApi = apiWithTag.injectEndpoints({
     >({
       query: ({ walletId }) => ({
         command: 'getPwStatus',
-        service: Wallet,
+        service: WalletService,
         args: [walletId],
       }),
       /*
@@ -227,7 +229,7 @@ export const walletApi = apiWithTag.injectEndpoints({
     >({
       query: ({ walletId, fee }) => ({
         command: 'pwAbsorbRewards',
-        service: Wallet,
+        service: WalletService,
         args: [walletId, fee],
       }),
       invalidatesTags: [
@@ -248,7 +250,7 @@ export const walletApi = apiWithTag.injectEndpoints({
     >({
       query: ({ walletId, poolUrl, relativeLockHeight, targetPuzzleHash, fee }) => ({
         command: 'pwJoinPool',
-        service: Wallet,
+        service: WalletService,
         args: [walletId, poolUrl, relativeLockHeight, targetPuzzleHash, fee],
       }),
       invalidatesTags: [
@@ -266,7 +268,7 @@ export const walletApi = apiWithTag.injectEndpoints({
     >({
       query: ({ walletId, fee }) => ({
         command: 'pwSelfPool',
-        service: Wallet,
+        service: WalletService,
         args: [walletId, fee],
       }),
       invalidatesTags: [
@@ -284,7 +286,7 @@ export const walletApi = apiWithTag.injectEndpoints({
     >({
       query: ({ walletType, options }) => ({
         command: 'createNewWallet',
-        service: Wallet,
+        service: WalletService,
         args: [walletType, options],
       }),
       invalidatesTags: [
@@ -301,7 +303,7 @@ export const walletApi = apiWithTag.injectEndpoints({
     >({
       query: ({ walletId }) => ({
         command: 'deleteUnconfirmedTransactions',
-        service: Wallet,
+        service: WalletService,
         args: [walletId],
       }),
       invalidatesTags: (_result, _error, { walletId }) => [
@@ -329,7 +331,7 @@ export const walletApi = apiWithTag.injectEndpoints({
     >({
       query: ({ walletId }) => ({
         command: 'getWalletBalance',
-        service: Wallet,
+        service: WalletService,
         args: [walletId],
       }),
       transformResponse: (response) => {
@@ -350,27 +352,27 @@ export const walletApi = apiWithTag.injectEndpoints({
       onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, [
         {
           command: 'onCoinAdded',
-          service: Wallet,
+          service: WalletService,
           endpoint: () => walletApi.endpoints.getWalletBalance,
         },
         {
           command: 'onCoinRemoved',
-          service: Wallet,
+          service: WalletService,
           endpoint: () => walletApi.endpoints.getWalletBalance,
         },
         {
           command: 'onPendingTransaction',
-          service: Wallet,
+          service: WalletService,
           endpoint: () => walletApi.endpoints.getWalletBalance,
         },
         {
           command: 'onOfferAdded',
-          service: Wallet,
+          service: WalletService,
           endpoint: () => walletApi.endpoints.getWalletBalance,
         },
         {
           command: 'onOfferUpdated',
-          service: Wallet,
+          service: WalletService,
           endpoint: () => walletApi.endpoints.getWalletBalance,
         },
       ]),
@@ -379,17 +381,17 @@ export const walletApi = apiWithTag.injectEndpoints({
     getFarmedAmount: build.query<any, undefined>({
       query: () => ({
         command: 'getFarmedAmount',
-        service: Wallet,
+        service: WalletService,
       }),
       onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, [
         {
           command: 'onCoinAdded',
-          service: Wallet,
+          service: WalletService,
           endpoint: () => walletApi.endpoints.getFarmedAmount,
         },
         {
           command: 'onCoinRemoved',
-          service: Wallet,
+          service: WalletService,
           endpoint: () => walletApi.endpoints.getFarmedAmount,
         },
       ]),
@@ -424,6 +426,7 @@ export const walletApi = apiWithTag.injectEndpoints({
           const { walletId, amount, fee, address, memos, waitForConfirmation } = args;
 
           return {
+            // eslint-disable-next-line no-async-promise-executor -- Not refactoring from `new Promise` to keep consistent
             data: await new Promise(async (resolve, reject) => {
               const updatedTransactions: Transaction[] = [];
               let transactionName: string;
@@ -469,7 +472,7 @@ export const walletApi = apiWithTag.injectEndpoints({
                 subscribeResponse = await baseQuery(
                   {
                     command: 'onTransactionUpdate',
-                    service: Wallet,
+                    service: WalletService,
                     args: [
                       (data: any) => {
                         const {
@@ -489,7 +492,7 @@ export const walletApi = apiWithTag.injectEndpoints({
               // make transaction
               const { data: sendTransactionData, error } = await fetchWithBQ({
                 command: 'sendTransaction',
-                service: Wallet,
+                service: WalletService,
                 args: [walletId, amount, fee, address, memos],
               });
 
@@ -529,7 +532,7 @@ export const walletApi = apiWithTag.injectEndpoints({
     generateMnemonic: build.mutation<string[], undefined>({
       query: () => ({
         command: 'generateMnemonic',
-        service: Wallet,
+        service: WalletService,
       }),
       transformResponse: (response: any) => response?.mnemonic,
     }),
@@ -537,7 +540,7 @@ export const walletApi = apiWithTag.injectEndpoints({
     getPublicKeys: build.query<number[], undefined>({
       query: () => ({
         command: 'getPublicKeys',
-        service: Wallet,
+        service: WalletService,
       }),
       transformResponse: (response: any) => response?.publicKeyFingerprints,
       providesTags: (keys) =>
@@ -554,7 +557,7 @@ export const walletApi = apiWithTag.injectEndpoints({
     >({
       query: ({ fingerprint }) => ({
         command: 'deleteKey',
-        service: Wallet,
+        service: WalletService,
         args: [fingerprint],
       }),
       invalidatesTags: (_result, _error, { fingerprint }) => [
@@ -579,7 +582,7 @@ export const walletApi = apiWithTag.injectEndpoints({
     >({
       query: ({ fingerprint }) => ({
         command: 'checkDeleteKey',
-        service: Wallet,
+        service: WalletService,
         args: [fingerprint],
       }),
     }),
@@ -587,7 +590,7 @@ export const walletApi = apiWithTag.injectEndpoints({
     deleteAllKeys: build.mutation<any, undefined>({
       query: () => ({
         command: 'deleteAllKeys',
-        service: Wallet,
+        service: WalletService,
       }),
       invalidatesTags: [
         { type: 'Keys', id: 'LIST' },
@@ -606,7 +609,7 @@ export const walletApi = apiWithTag.injectEndpoints({
     >({
       query: ({ fingerprint, type, filePath, host }) => ({
         command: 'logIn',
-        service: Wallet,
+        service: WalletService,
         args: [fingerprint, type, filePath, host],
       }),
       invalidatesTags: ['LoggedInFingerprint'],
@@ -621,7 +624,7 @@ export const walletApi = apiWithTag.injectEndpoints({
     >({
       query: ({ fingerprint, host }) => ({
         command: 'logInAndSkipImport',
-        service: Wallet,
+        service: WalletService,
         args: [fingerprint, host],
       }),
       invalidatesTags: ['LoggedInFingerprint'],
@@ -637,7 +640,7 @@ export const walletApi = apiWithTag.injectEndpoints({
     >({
       query: ({ fingerprint, filePath, host }) => ({
         command: 'logInAndImportBackup',
-        service: Wallet,
+        service: WalletService,
         args: [fingerprint, filePath, host],
       }),
     }),
@@ -651,7 +654,7 @@ export const walletApi = apiWithTag.injectEndpoints({
     >({
       query: ({ filePath, options }) => ({
         command: 'getBackupInfo',
-        service: Wallet,
+        service: WalletService,
         args: [filePath, options],
       }),
     }),
@@ -665,7 +668,7 @@ export const walletApi = apiWithTag.injectEndpoints({
     >({
       query: ({ filePath, fingerprint }) => ({
         command: 'getBackupInfoByFingerprint',
-        service: Wallet,
+        service: WalletService,
         args: [filePath, fingerprint],
       }),
     }),
@@ -679,7 +682,7 @@ export const walletApi = apiWithTag.injectEndpoints({
     >({
       query: ({ filePath, words }) => ({
         command: 'getBackupInfoByWords',
-        service: Wallet,
+        service: WalletService,
         args: [filePath, words],
       }),
     }),
@@ -699,7 +702,7 @@ export const walletApi = apiWithTag.injectEndpoints({
     >({
       query: ({ fingerprint }) => ({
         command: 'getPrivateKey',
-        service: Wallet,
+        service: WalletService,
         args: [fingerprint],
       }),
       transformResponse: (response: any) => response?.privateKey,
@@ -717,7 +720,7 @@ export const walletApi = apiWithTag.injectEndpoints({
     >({
       query: ({ walletId, start, end, sortKey, reverse }) => ({
         command: 'getTransactions',
-        service: Wallet,
+        service: WalletService,
         args: [walletId, start, end, sortKey, reverse],
       }),
       transformResponse: (response: any) => response?.transactions,
@@ -732,17 +735,17 @@ export const walletApi = apiWithTag.injectEndpoints({
       onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, [
         {
           command: 'onCoinAdded',
-          service: Wallet,
+          service: WalletService,
           endpoint: () => walletApi.endpoints.getTransactions,
         },
         {
           command: 'onCoinRemoved',
-          service: Wallet,
+          service: WalletService,
           endpoint: () => walletApi.endpoints.getTransactions,
         },
         {
           command: 'onPendingTransaction',
-          service: Wallet,
+          service: WalletService,
           endpoint: () => walletApi.endpoints.getTransactions,
         },
       ]),
@@ -756,7 +759,7 @@ export const walletApi = apiWithTag.injectEndpoints({
     >({
       query: ({ walletId }) => ({
         command: 'getTransactionsCount',
-        service: Wallet,
+        service: WalletService,
         args: [walletId],
       }),
       transformResponse: (response: any) => response?.count,
@@ -764,17 +767,17 @@ export const walletApi = apiWithTag.injectEndpoints({
       onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, [
         {
           command: 'onCoinAdded',
-          service: Wallet,
+          service: WalletService,
           endpoint: () => walletApi.endpoints.getTransactionsCount,
         },
         {
           command: 'onCoinRemoved',
-          service: Wallet,
+          service: WalletService,
           endpoint: () => walletApi.endpoints.getTransactionsCount,
         },
         {
           command: 'onPendingTransaction',
-          service: Wallet,
+          service: WalletService,
           endpoint: () => walletApi.endpoints.getTransactionsCount,
         },
       ]),
@@ -788,7 +791,7 @@ export const walletApi = apiWithTag.injectEndpoints({
     >({
       query: ({ walletId }) => ({
         command: 'getNextAddress',
-        service: Wallet,
+        service: WalletService,
         args: [walletId, false],
       }),
       transformResponse: (response: any) => response?.address,
@@ -804,7 +807,7 @@ export const walletApi = apiWithTag.injectEndpoints({
     >({
       query: ({ walletId, newAddress }) => ({
         command: 'getNextAddress',
-        service: Wallet,
+        service: WalletService,
         args: [walletId, newAddress],
       }),
       transformResponse: (response: any) => response?.address,
@@ -819,7 +822,7 @@ export const walletApi = apiWithTag.injectEndpoints({
     >({
       query: ({ address }) => ({
         command: 'farmBlock',
-        service: Wallet,
+        service: WalletService,
         args: [address],
       }),
     }),
@@ -827,18 +830,18 @@ export const walletApi = apiWithTag.injectEndpoints({
     getHeightInfo: build.query<number, undefined>({
       query: () => ({
         command: 'getHeightInfo',
-        service: Wallet,
+        service: WalletService,
       }),
       transformResponse: (response: any) => response?.height,
       onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, [
         {
           command: 'onSyncChanged',
-          service: Wallet,
+          service: WalletService,
           endpoint: () => walletApi.endpoints.getHeightInfo,
         },
         {
           command: 'onNewBlock',
-          service: Wallet,
+          service: WalletService,
           endpoint: () => walletApi.endpoints.getHeightInfo,
         },
       ]),
@@ -847,13 +850,13 @@ export const walletApi = apiWithTag.injectEndpoints({
     getCurrentDerivationIndex: build.query<number, undefined>({
       query: () => ({
         command: 'getCurrentDerivationIndex',
-        service: Wallet,
+        service: WalletService,
       }),
       providesTags: (result) => (result ? [{ type: 'DerivationIndex' }] : []),
       onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, [
         {
           command: 'onNewDerivationIndex',
-          service: Wallet,
+          service: WalletService,
           onUpdate: (draft, data) => {
             draft.index = data?.additionalData?.index;
           },
@@ -868,7 +871,7 @@ export const walletApi = apiWithTag.injectEndpoints({
     >({
       query: ({ index }) => ({
         command: 'extendDerivationIndex',
-        service: Wallet,
+        service: WalletService,
         args: [index],
       }),
       invalidatesTags: [{ type: 'DerivationIndex' }],
@@ -877,24 +880,24 @@ export const walletApi = apiWithTag.injectEndpoints({
     getNetworkInfo: build.query<any, undefined>({
       query: () => ({
         command: 'getNetworkInfo',
-        service: Wallet,
+        service: WalletService,
       }),
     }),
 
     getSyncStatus: build.query<any, undefined>({
       query: () => ({
         command: 'getSyncStatus',
-        service: Wallet,
+        service: WalletService,
       }),
       onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, [
         {
           command: 'onSyncChanged',
-          service: Wallet,
+          service: WalletService,
           endpoint: () => walletApi.endpoints.getSyncStatus,
         },
         {
           command: 'onNewBlock',
-          service: Wallet,
+          service: WalletService,
           endpoint: () => walletApi.endpoints.getSyncStatus,
         },
       ]),
@@ -903,7 +906,7 @@ export const walletApi = apiWithTag.injectEndpoints({
     getWalletConnections: build.query<WalletConnections[], undefined>({
       query: () => ({
         command: 'getConnections',
-        service: Wallet,
+        service: WalletService,
       }),
       transformResponse: (response: any) => response?.connections,
       providesTags: (connections) =>
@@ -916,7 +919,7 @@ export const walletApi = apiWithTag.injectEndpoints({
       onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, [
         {
           command: 'onConnections',
-          service: Wallet,
+          service: WalletService,
           onUpdate: (draft, data) => {
             // empty base array
             draft.splice(0);
@@ -936,7 +939,7 @@ export const walletApi = apiWithTag.injectEndpoints({
     >({
       query: ({ host, port }) => ({
         command: 'openConnection',
-        service: Wallet,
+        service: WalletService,
         args: [host, port],
       }),
       invalidatesTags: [{ type: 'WalletConnections', id: 'LIST' }],
@@ -949,7 +952,7 @@ export const walletApi = apiWithTag.injectEndpoints({
     >({
       query: ({ nodeId }) => ({
         command: 'closeConnection',
-        service: Wallet,
+        service: WalletService,
         args: [nodeId],
       }),
       invalidatesTags: (_result, _error, { nodeId }) => [
@@ -965,7 +968,7 @@ export const walletApi = apiWithTag.injectEndpoints({
     >({
       query: ({ filePath }) => ({
         command: 'createBackup',
-        service: Wallet,
+        service: WalletService,
         args: [filePath],
       }),
     }),
@@ -984,7 +987,7 @@ export const walletApi = apiWithTag.injectEndpoints({
     >({
       query: ({ start, end, sortKey, reverse, includeMyOffers, includeTakenOffers }) => ({
         command: 'getAllOffers',
-        service: Wallet,
+        service: WalletService,
         args: [start, end, sortKey, reverse, includeMyOffers, includeTakenOffers],
       }),
       transformResponse: (response: any) => {
@@ -1007,17 +1010,17 @@ export const walletApi = apiWithTag.injectEndpoints({
       onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, [
         {
           command: 'onCoinAdded',
-          service: Wallet,
+          service: WalletService,
           endpoint: () => walletApi.endpoints.getAllOffers,
         },
         {
           command: 'onCoinRemoved',
-          service: Wallet,
+          service: WalletService,
           endpoint: () => walletApi.endpoints.getAllOffers,
         },
         {
           command: 'onPendingTransaction',
-          service: Wallet,
+          service: WalletService,
           endpoint: () => walletApi.endpoints.getAllOffers,
         },
       ]),
@@ -1026,7 +1029,7 @@ export const walletApi = apiWithTag.injectEndpoints({
     getOffersCount: build.query<OfferCounts, undefined>({
       query: () => ({
         command: 'getOffersCount',
-        service: Wallet,
+        service: WalletService,
       }),
       providesTags: ['OfferCounts'],
     }),
@@ -1043,7 +1046,7 @@ export const walletApi = apiWithTag.injectEndpoints({
     >({
       query: ({ walletIdsAndAmounts, feeInMojos, driverDict, validateOnly, disableJSONFormatting }) => ({
         command: 'createOfferForIds',
-        service: Wallet,
+        service: WalletService,
         args: [walletIdsAndAmounts, feeInMojos, driverDict, validateOnly, disableJSONFormatting],
       }),
       invalidatesTags: [{ type: 'OfferTradeRecord', id: 'LIST' }, 'OfferCounts'],
@@ -1059,7 +1062,7 @@ export const walletApi = apiWithTag.injectEndpoints({
     >({
       query: ({ tradeId, secure, fee }) => ({
         command: 'cancelOffer',
-        service: Wallet,
+        service: WalletService,
         args: [tradeId, secure, fee],
       }),
       invalidatesTags: (result, error, { tradeId }) => [{ type: 'OfferTradeRecord', id: tradeId }],
@@ -1068,7 +1071,7 @@ export const walletApi = apiWithTag.injectEndpoints({
     checkOfferValidity: build.mutation<any, string>({
       query: (offerData: string) => ({
         command: 'checkOfferValidity',
-        service: Wallet,
+        service: WalletService,
         args: [offerData],
       }),
     }),
@@ -1082,7 +1085,7 @@ export const walletApi = apiWithTag.injectEndpoints({
     >({
       query: ({ offer, fee }) => ({
         command: 'takeOffer',
-        service: Wallet,
+        service: WalletService,
         args: [offer, fee],
       }),
       invalidatesTags: [{ type: 'OfferTradeRecord', id: 'LIST' }, 'OfferCounts'],
@@ -1091,7 +1094,7 @@ export const walletApi = apiWithTag.injectEndpoints({
     getOfferSummary: build.mutation<any, string>({
       query: (offerData: string) => ({
         command: 'getOfferSummary',
-        service: Wallet,
+        service: WalletService,
         args: [offerData],
       }),
     }),
@@ -1099,7 +1102,7 @@ export const walletApi = apiWithTag.injectEndpoints({
     getOfferData: build.mutation<any, string>({
       query: (offerId: string) => ({
         command: 'getOfferData',
-        service: Wallet,
+        service: WalletService,
         args: [offerId],
       }),
     }),
@@ -1107,7 +1110,7 @@ export const walletApi = apiWithTag.injectEndpoints({
     getOfferRecord: build.mutation<any, OfferTradeRecord>({
       query: (offerId: string) => ({
         command: 'getOfferRecord',
-        service: Wallet,
+        service: WalletService,
         args: [offerId],
       }),
     }),
@@ -1279,6 +1282,7 @@ export const walletApi = apiWithTag.injectEndpoints({
           const { walletId, address, amount, fee, memos, waitForConfirmation } = args;
 
           return {
+            // eslint-disable-next-line no-async-promise-executor -- Not refactoring from `new Promise` to keep consistent
             data: await new Promise(async (resolve, reject) => {
               const updatedTransactions: Transaction[] = [];
               let transactionName: string;
@@ -1298,7 +1302,6 @@ export const walletApi = apiWithTag.injectEndpoints({
                     transaction,
                     transactionId: transaction.name,
                   });
-                } else {
                 }
               }
 
@@ -1308,7 +1311,7 @@ export const walletApi = apiWithTag.injectEndpoints({
                 subscribeResponse = await baseQuery(
                   {
                     command: 'onTransactionUpdate',
-                    service: Wallet,
+                    service: WalletService,
                     args: [
                       (data: any) => {
                         const {
@@ -1475,7 +1478,7 @@ export const walletApi = apiWithTag.injectEndpoints({
           });
 
           if (error) {
-            throw error;
+            throw error as Error;
           }
 
           const walletId = data?.walletId;
@@ -1512,11 +1515,11 @@ export const walletApi = apiWithTag.injectEndpoints({
             (async () => {
               const { data, error } = await fetchWithBQ({
                 command: 'getWallets',
-                service: Wallet,
+                service: WalletService,
               });
 
               if (error) {
-                throw error;
+                throw error as Error;
               }
 
               if (!data?.wallets) {
@@ -1532,7 +1535,7 @@ export const walletApi = apiWithTag.injectEndpoints({
               });
 
               if (error) {
-                throw error;
+                throw error as Error;
               }
 
               const poolState = data?.poolState;
@@ -1556,12 +1559,12 @@ export const walletApi = apiWithTag.injectEndpoints({
               poolWallets.map(async (wallet) => {
                 const { data, error } = await fetchWithBQ({
                   command: 'getPwStatus',
-                  service: Wallet,
+                  service: WalletService,
                   args: [wallet.id],
                 });
 
                 if (error) {
-                  throw error;
+                  throw error as Error;
                 }
 
                 return {
@@ -1574,12 +1577,12 @@ export const walletApi = apiWithTag.injectEndpoints({
               poolWallets.map(async (wallet) => {
                 const { data, error } = await fetchWithBQ({
                   command: 'getWalletBalance',
-                  service: Wallet,
+                  service: WalletService,
                   args: [wallet.id],
                 });
 
                 if (error) {
-                  throw error;
+                  throw error as Error;
                 }
 
                 return data?.walletBalance;
@@ -1730,11 +1733,11 @@ export const walletApi = apiWithTag.injectEndpoints({
         try {
           const { data, error } = await fetchWithBQ({
             command: 'getWallets',
-            service: Wallet,
+            service: WalletService,
           });
 
           if (error) {
-            throw error;
+            throw error as Error;
           }
 
           const wallets = data?.wallets;
@@ -1754,7 +1757,7 @@ export const walletApi = apiWithTag.injectEndpoints({
                 });
 
                 if (errorLocal) {
-                  throw errorLocal;
+                  throw errorLocal as Error;
                 }
 
                 const { myDid } = dataLocal;
@@ -1780,7 +1783,7 @@ export const walletApi = apiWithTag.injectEndpoints({
       onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, [
         {
           command: 'onWalletCreated',
-          service: Wallet,
+          service: WalletService,
           endpoint: () => walletApi.endpoints.getWallets,
         },
       ]),
@@ -1846,7 +1849,7 @@ export const walletApi = apiWithTag.injectEndpoints({
               });
 
               if (nftError) {
-                throw nftError;
+                throw nftError as Error;
               }
 
               // Add bech32m-encoded NFT identifier
@@ -1882,7 +1885,7 @@ export const walletApi = apiWithTag.injectEndpoints({
               });
 
               if (nftsError) {
-                throw nftsError;
+                throw nftsError as Error;
               }
 
               // Add bech32m-encoded NFT identifier
@@ -1960,7 +1963,7 @@ export const walletApi = apiWithTag.injectEndpoints({
       onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, [
         {
           command: 'onWalletCreated',
-          service: Wallet,
+          service: WalletService,
           endpoint: () => walletApi.endpoints.getNFTWalletsWithDIDs,
         },
       ]),
@@ -1983,7 +1986,7 @@ export const walletApi = apiWithTag.injectEndpoints({
           });
 
           if (nftError) {
-            throw nftError;
+            throw nftError as Error;
           }
 
           // Add bech32m-encoded NFT identifier
@@ -2087,7 +2090,7 @@ export const walletApi = apiWithTag.injectEndpoints({
     >({
       query: ({ address, message }) => ({
         command: 'signMessageByAddress',
-        service: Wallet,
+        service: WalletService,
         args: [address, message],
       }),
     }),
@@ -2101,7 +2104,7 @@ export const walletApi = apiWithTag.injectEndpoints({
     >({
       query: ({ id, message }) => ({
         command: 'signMessageById',
-        service: Wallet,
+        service: WalletService,
         args: [id, message],
       }),
     }),

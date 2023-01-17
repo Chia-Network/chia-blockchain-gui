@@ -1,3 +1,5 @@
+/* eslint-disable no-constant-condition -- Used for waiting for service to start */
+/* eslint-disable no-await-in-loop -- Used for waiting for service to start */
 import EventEmitter from 'events';
 
 import debug from 'debug';
@@ -331,10 +333,10 @@ export default class Client extends EventEmitter {
       if (message.data?.error) {
         let errorMessage = message.data.error;
 
-        if (errorMessage == '13') {
+        if (errorMessage === '13') {
           errorMessage =
             '[Error 13] Permission denied. You are trying to access a file/directory without having the necessary permissions. Most likely one of the plot folders in your config.yaml has an issue.';
-        } else if (errorMessage == '22') {
+        } else if (errorMessage === '22') {
           errorMessage =
             '[Error 22] File not found. Most likely one of the plot folders in your config.yaml has an issue.';
         } else if (message?.data?.errorDetails?.message) {
