@@ -65,11 +65,13 @@ const StyledGrid = styled(Grid)`
 `;
 
 const SelectedActionsContainer = styled.div`
-  position: absolute;
+  position: fixed;
   text-align: center;
   width: 100%;
-  background: green;
-  display: none;
+  transition: opacity 600ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, transform 400ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  opacity: 1;
+  bottom: 25px;
+  z-index: 7;
   &.active {
     display: block;
   }
@@ -598,7 +600,7 @@ export default function NFTGallery() {
       ) : (
         <>
           <SelectedActionsContainer
-            style={{ display: inMultipleSelectionMode ? 'block' : 'none' }}
+            style={{ opacity: inMultipleSelectionMode ? 1 : 0 }}
             className={inMultipleSelectionMode ? 'active' : ''}
           >
             <SelectedActionsDialog
