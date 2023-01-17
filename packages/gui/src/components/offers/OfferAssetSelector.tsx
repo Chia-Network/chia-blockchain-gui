@@ -1,4 +1,5 @@
-import { Wallet, WalletType, type CATToken } from '@chia-network/api';
+import type { Wallet, CATToken } from '@chia-network/api';
+import { WalletType } from '@chia-network/api';
 import { useGetCatListQuery, useGetWalletsQuery } from '@chia-network/api-react';
 import { Select, useCurrencyCode } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
@@ -123,7 +124,7 @@ function OfferAssetSelector(props: OfferAssetSelectorProps) {
       selectedWalletId,
       chiaCurrencyCode: currencyCode,
     });
-  }, [wallets, catList, rows, otherRows]);
+  }, [isLoading, isCatListLoading, wallets, catList, rows, otherRows, selectedWalletId, currencyCode]);
 
   function handleSelection(selectedWalletIdLocal: number, selectedWalletType: WalletType) {
     if (onChange) {

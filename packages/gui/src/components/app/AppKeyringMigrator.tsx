@@ -145,6 +145,7 @@ export default function AppKeyringMigrator() {
               id="passphrase_input"
               label={<Trans>Passphrase</Trans>}
               placeholder={t`Passphrase`}
+              // eslint-disable-next-line no-return-assign -- Legacy file, will get deleted soon
               inputRef={(input: HTMLInputElement) => (passphraseInput = input)}
               type={showPassphraseText1 ? 'text' : 'password'}
               InputProps={{

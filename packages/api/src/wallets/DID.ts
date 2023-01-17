@@ -1,4 +1,4 @@
-import Wallet from '../services/Wallet';
+import Wallet from '../services/WalletService';
 
 export default class DIDWallet extends Wallet {
   async createNewWallet(amount: string, fee: string, backupDids: string, numOfBackupIdsNeeded: number) {

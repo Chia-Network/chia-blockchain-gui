@@ -1,5 +1,5 @@
 import { ServiceName } from '@chia-network/api';
-import { useEffect, useState, useMemo } from 'react';
+import { useEffect, useState, useMemo, useCallback } from 'react';
 
 import { useClientStartServiceMutation } from '../services/client';
 import { useStopServiceMutation, useRunningServicesQuery } from '../services/daemon';
@@ -73,7 +73,7 @@ export default function useService(
     state = 'running';
   }
 
-  async function handleStart() {
+  const handleStart = useCallback(async () => {
     if (isProcessing) {
       return;
     }
@@ -89,9 +89,9 @@ export default function useService(
     } finally {
       setIsStarting(false);
     }
-  }
+  }, [disableWait, isProcessing, refetch, service, startService]);
 
-  async function handleStop() {
+  const handleStop = useCallback(async () => {
     if (isProcessing) {
       return;
     }
@@ -106,7 +106,7 @@ export default function useService(
     } finally {
       setIsStopping(false);
     }
-  }
+  }, [isProcessing, refetch, service, stopService]);
 
   useEffect(() => {
     if (disabled) {
@@ -118,7 +118,7 @@ export default function useService(
     } else if (keepState === 'stopped' && keepState !== state && !isProcessing && isRunning === true) {
       handleStop();
     }
-  }, [keepState, state, isProcessing, disabled, isRunning]);
+  }, [keepState, state, isProcessing, disabled, isRunning, handleStart, handleStop]);
 
   return {
     state,

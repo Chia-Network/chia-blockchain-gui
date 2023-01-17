@@ -223,47 +223,46 @@ function OfferList(props: OfferListProps) {
     pageChange,
   } = useWalletOffers(5, 0, includeMyOffers, includeTakenOffers, 'RELEVANCE', false);
 
-  async function handleShowOfferData(offerData: string) {
-    openDialog(<OfferDataDialog offerData={offerData} />);
-  }
-
-  async function handleCancelOffer(tradeId: string, canCancelWithTransaction: boolean) {
-    const [cancelConfirmed, cancellationOptions] = await openDialog(
-      <ConfirmOfferCancellation canCancelWithTransaction={canCancelWithTransaction} />
-    );
-
-    if (cancelConfirmed === true) {
-      const secure = canCancelWithTransaction ? cancellationOptions.cancelWithTransaction : false;
-      const fee = canCancelWithTransaction ? cancellationOptions.cancellationFee : 0;
-      await cancelOffer({ tradeId, secure, fee });
+  const cols = useMemo(() => {
+    async function handleShowOfferData(offerData: string) {
+      openDialog(<OfferDataDialog offerData={offerData} />);
     }
-  }
 
-  function handleRowClick(event: any, row: OfferTradeRecord) {
-    navigate('/dashboard/offers/view', {
-      state: {
-        referrerPath: '/dashboard/offers',
-        offerSummary: row.summary,
-        isMyOffer: row.isMyOffer,
-        state: row.status,
-      },
-    });
-  }
+    async function handleCancelOffer(tradeId: string, canCancelWithTransaction: boolean) {
+      const [cancelConfirmed, cancellationOptions] = await openDialog(
+        <ConfirmOfferCancellation canCancelWithTransaction={canCancelWithTransaction} />
+      );
 
-  async function handleShare(event: any, row: OfferTradeRecord) {
-    await openDialog(
-      <OfferShareDialog
-        offerRecord={row}
-        // eslint-disable-next-line no-underscore-dangle -- Can't do anything about it
-        offerData={row._offerData}
-        exportOffer={() => saveOffer(row.tradeId)}
-        testnet={testnet}
-      />
-    );
-  }
+      if (cancelConfirmed === true) {
+        const secure = canCancelWithTransaction ? cancellationOptions.cancelWithTransaction : false;
+        const fee = canCancelWithTransaction ? cancellationOptions.cancellationFee : 0;
+        await cancelOffer({ tradeId, secure, fee });
+      }
+    }
 
-  const cols = useMemo(
-    () => [
+    function handleRowClick(event: any, row: OfferTradeRecord) {
+      navigate('/dashboard/offers/view', {
+        state: {
+          referrerPath: '/dashboard/offers',
+          offerSummary: row.summary,
+          isMyOffer: row.isMyOffer,
+          state: row.status,
+        },
+      });
+    }
+
+    async function handleShare(event: any, row: OfferTradeRecord) {
+      await openDialog(
+        <OfferShareDialog
+          offerRecord={row}
+          // eslint-disable-next-line no-underscore-dangle -- Can't do anything about it
+          offerData={row._offerData}
+          exportOffer={() => saveOffer(row.tradeId)}
+          testnet={testnet}
+        />
+      );
+    }
+    return [
       {
         // eslint-disable-next-line react/no-unstable-nested-components -- The result is memoized. No performance issue
         field: (row: OfferTradeRecord) => {
@@ -397,9 +396,8 @@ function OfferList(props: OfferListProps) {
         maxWidth: '100px',
         title: <Flex justifyContent="center">Actions</Flex>,
       },
-    ],
-    []
-  );
+    ];
+  }, [cancelOffer, lookupByAssetId, navigate, openDialog, saveOffer, testnet]);
 
   const hasOffers = !!offers?.length;
 

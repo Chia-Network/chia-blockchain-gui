@@ -334,7 +334,16 @@ export default function NFTDetails(props: NFTDetailsProps) {
     }
 
     return rows;
-  }, [metadata, nft]);
+  }, [
+    currencyCode,
+    isLoadingMinterDID,
+    metadata?.preview_image_uris,
+    metadata?.preview_video_uris,
+    minterDID,
+    minterDIDName,
+    minterHexDIDId,
+    nft,
+  ]);
 
   return (
     <Flex flexDirection="column" gap={1}>

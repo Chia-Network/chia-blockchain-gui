@@ -154,7 +154,7 @@ export default function TableControlled(props: TableControlledProps) {
         $uniqueId: uniqueField ? get(row, uniqueField) : rowIndex,
         ...row,
       })),
-    [rows]
+    [rows, uniqueField]
   );
 
   function handleRowClick(e: SyntheticEvent, row: Row) {

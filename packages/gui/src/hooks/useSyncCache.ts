@@ -33,6 +33,7 @@ export default function useSyncCache() {
 
   React.useEffect(() => {
     syncCacheFiles();
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- Should be run only once
   }, []);
 
   return {

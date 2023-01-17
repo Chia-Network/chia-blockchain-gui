@@ -17,7 +17,9 @@ export default function handleSquirrelEvent() {
 
     try {
       spawnedProcess = ChildProcess.spawn(command, args, { detached: true });
-    } catch {}
+    } catch {
+      // do nothing
+    }
 
     return spawnedProcess;
   }
@@ -27,6 +29,7 @@ export default function handleSquirrelEvent() {
   }
 
   const squirrelEvent = process.argv[1];
+
   switch (squirrelEvent) {
     case '--squirrel-install':
     case '--squirrel-updated':
@@ -58,5 +61,7 @@ export default function handleSquirrelEvent() {
 
       app.quit();
       return true;
+    default:
+      return undefined;
   }
 }

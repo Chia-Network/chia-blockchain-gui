@@ -1,4 +1,4 @@
-import Wallet from '../services/Wallet';
+import Wallet from '../services/WalletService';
 
 export default class CATWallet extends Wallet {
   async createNewWallet(amount: string, fee: string) {
