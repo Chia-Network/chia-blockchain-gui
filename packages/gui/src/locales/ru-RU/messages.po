@@ -8,7 +8,7 @@ msgstr ""
 "Language: ru_RU\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-01-17 08:05\n"
+"PO-Revision-Date: 2023-01-17 09:12\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "Plural-Forms: nplurals=4; plural=((n%10==1 && n%100!=11) ? 0 : ((n%10 >= 2 && n%10 <=4 && (n%100 < 12 || n%100 > 14)) ? 1 : ((n%10 == 0 || (n%10 >= 5 && n%10 <=9)) || (n%100 >= 11 && n%100 <= 14)) ? 2 : 3));\n"
@@ -848,11 +848,11 @@ msgstr "Отключить NUMA"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:411
 msgid "Disable assigning automatic thread affinity. This is useful when running multiple simultaneous instances of Bladebit as you can manually assign thread affinity yourself when launching Bladebit."
-msgstr ""
+msgstr "Отключить назначение автоматического сходства потоков. Это полезно при одновременном запуске нескольких экземпляров Bladebit, поскольку вы можете вручную назначить привязку потоков при запуске Bladebit."
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:390
 msgid "Disable automatic NUMA aware memory binding. If you set this parameter in a NUMA system you will likely get degraded performance."
-msgstr ""
+msgstr "Отключите автоматическую привязку памяти с учетом NUMA. Если вы установите этот параметр в системе NUMA, вы, скорее всего, получите снижение производительности."
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:331
 msgid "Disable bitfield plotting"
@@ -860,11 +860,11 @@ msgstr "Отключить битовое поле"
 
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:107
 msgid "Disable direct I/O on the temp 1 directory in order to extract maximum performance with RAM disk"
-msgstr ""
+msgstr "Отключите прямой ввод-вывод в каталоге temp 1, чтобы добиться максимальной производительности с помощью RAM-диска"
 
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:163
 msgid "Disable direct I/O on the temp 2 directory in order to extract maximum performance with RAM disk"
-msgstr ""
+msgstr "Отключите прямой ввод-вывод в каталоге temp 2, чтобы добиться максимальной производительности с помощью RAM-диска"
 
 #: src/components/fullNode/FullNodeCloseConnection.tsx:20
 msgid "Disconnect"
@@ -872,12 +872,12 @@ msgstr "Отключить"
 
 #: src/components/offers/OfferManager.tsx:458
 msgid "Display Offer Data"
-msgstr ""
+msgstr "Показать данные предложения"
 
 #: src/components/offers/OfferShareDialog.tsx:1594
 #: src/hooks/useOpenUnsafeLink.tsx:77
 msgid "Do not show this dialog again"
-msgstr ""
+msgstr "Больше не показывай этот диалог"
 
 #: src/components/farm/FarmHero.tsx:46
 #: src/components/plot/overview/PlotOverviewHero.tsx:66
@@ -886,7 +886,7 @@ msgstr "Есть ли у вас на этой машине участки? <0>Д
 
 #: src/components/nfts/NFTBurnDialog.tsx:117
 msgid "Do you want to burn this NFT?"
-msgstr ""
+msgstr "Вы хотите сжечь этот NFT?"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:60
 msgid "Does your machine support parallel plotting?"
@@ -894,7 +894,7 @@ msgstr "Поддерживает ли ваша машина параллельн
 
 #: src/components/nfts/NFTContextualActions.tsx:476
 msgid "Download"
-msgstr ""
+msgstr "Скачать"
 
 #: src/components/offers/OfferImport.tsx:191
 msgid "Drag & Drop an Offer File"
@@ -932,24 +932,24 @@ msgstr "Редактировать инструкции выплат"
 
 #: src/components/nfts/NFTSummary.tsx:69
 msgid "Edition #"
-msgstr ""
+msgstr "Издание #"
 
 #: src/components/nfts/detail/NFTDetail.tsx:94
 #: src/components/nfts/detail/NFTDetailV2.tsx:238
 msgid "Edition Number"
-msgstr ""
+msgstr "Номер издания"
 
 #: src/components/settings/SettingsStartup.tsx:32
 msgid "Enable Auto Login"
-msgstr ""
+msgstr "Включить автоматический вход"
 
 #: src/components/settings/SettingsDataLayer.tsx:38
 msgid "Enable DataLayer"
-msgstr ""
+msgstr "Включить уровень данных"
 
 #: src/components/settings/SettingsDataLayer.tsx:52
 msgid "Enable File Propagation Server"
-msgstr ""
+msgstr "Включить сервер распространения файлов"
 
 #: src/components/app/AppKeyringMigrator.tsx:143
 msgid "Enter a strong passphrase and click Migrate Keys to secure your keys"
@@ -975,11 +975,11 @@ msgstr "Ошибка"
 
 #: src/components/nfts/NFTPreview.tsx:827
 msgid "Error fetching video preview"
-msgstr ""
+msgstr "Не удалось получить превью видео"
 
 #: src/components/nfts/NFTPreview.tsx:835
 msgid "Error parsing json"
-msgstr ""
+msgstr "Ошибка парсинга json"
 
 #: src/components/fullNode/card/FullNodeEstimatedNetworkSpace.tsx:14
 msgid "Estimated Network Space"
@@ -1000,7 +1000,7 @@ msgstr "Исключить окончательную директорию"
 
 #: src/components/nfts/gallery/NFTGalleryHero.tsx:17
 msgid "Explore the Chia ecosystem; discover and trade great NFTs"
-msgstr ""
+msgstr "Исследуйте экосистему Chia; открывать и торговать отличными NFT"
 
 #: src/components/offers/utils.ts:175
 #: src/components/plot/PlotHarvester.tsx:154
@@ -1009,11 +1009,11 @@ msgstr "Неудачно"
 
 #: src/components/offers/NFTOfferEditor.tsx:700
 msgid "Failed to decode NFT identifier"
-msgstr ""
+msgstr "Не удалось расшифровать идентификатор NFT"
 
 #: src/components/offers/OfferShareDialog.tsx:478
 msgid "Failed to execute Keybase command: {stderr}"
-msgstr ""
+msgstr "Не удалось выполнить команду Keybase: {stderr}"
 
 #: src/components/settings/SetPassphrasePrompt.tsx:90
 msgid "Failed to set passphrase: {0}"
@@ -1069,7 +1069,7 @@ msgstr "Фарминг"
 
 #: src/components/app/AppSelectMode.tsx:122
 msgid "Farming Mode"
-msgstr ""
+msgstr "Режим фарминга"
 
 #: src/components/farm/card/FarmCardStatus.tsx:14
 #: src/components/farm/card/FarmCardStatus.tsx:25
@@ -1095,11 +1095,11 @@ msgstr "Комиссия"
 #: src/components/offers/NFTOfferEditor.tsx:97
 #: src/components/offers/OfferEditorConditionsPanel.tsx:457
 msgid "Fee (Optional)"
-msgstr ""
+msgstr "Комиссия (необязательно)"
 
 #: src/components/plotNFT/PlotNFTChangePool.tsx:126
 msgid "Fee is used TWICE: once to leave pool, once to join."
-msgstr ""
+msgstr "Комиссия используется ДВАЖДЫ: один раз для выхода из пула, один раз для присоединения."
 
 #: src/components/block/Block.jsx:280
 msgid "Fees Amount"
@@ -1108,7 +1108,7 @@ msgstr "Объем коммисий"
 #: src/components/offers/NFTOfferViewer.tsx:210
 #: src/components/offers/OfferSummary.tsx:191
 msgid "Fees included in offer:"
-msgstr ""
+msgstr "Сборы, включенные в предложение:"
 
 #: src/electron/main.tsx:508
 #: src/electron/main.tsx:715
@@ -1117,7 +1117,7 @@ msgstr "Файл"
 
 #: src/components/nfts/NFTPreview.tsx:55
 msgid "File is over 100MB"
-msgstr ""
+msgstr "Размер файла превышает 100 МБ"
 
 #: src/components/nfts/NFTPreview.tsx:26
 #~ msgid "File is over 10MB"
@@ -1600,52 +1600,52 @@ msgstr ""
 
 #: src/components/nfts/NFTDetails.tsx:44
 msgid "NFT ID"
-msgstr ""
+msgstr "NFT-идентификатор"
 
 #: src/components/offers/NFTOfferEditor.tsx:243
 msgid "NFT Identifier"
-msgstr ""
+msgstr "NFT-идентификатор"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:317
 msgid "NFT Move Failed"
-msgstr ""
+msgstr "Не удалось перенести NFT"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:307
 msgid "NFT Move Pending"
-msgstr ""
+msgstr "Ожидание переноса NFT"
 
 #: src/components/offers/OfferManager.tsx:575
 msgid "NFT Offer"
-msgstr ""
+msgstr "Предложение NFT"
 
 #: src/components/offers/NFTOfferViewer.tsx:554
 msgid "NFT Purchase Price"
-msgstr ""
+msgstr "Цена покупки NFT"
 
 #: src/components/nfts/NFTContextualActions.tsx:307
 msgid "NFT Status Update Failed"
-msgstr ""
+msgstr "Не удалось обновить статус NFT"
 
 #: src/components/nfts/NFTContextualActions.tsx:297
 msgid "NFT Status Updated"
-msgstr ""
+msgstr "Статус NFT обновлен"
 
 #: src/components/nfts/NFTContextualActions.tsx:231
 msgid "NFT Transfer Complete"
-msgstr ""
+msgstr "Передача NFT завершена"
 
 #: src/components/nfts/NFTContextualActions.tsx:183
 #: src/components/nfts/NFTContextualActions.tsx:241
 msgid "NFT Transfer Failed"
-msgstr ""
+msgstr "Не удалось передать NFT"
 
 #: src/components/nfts/NFTContextualActions.tsx:173
 msgid "NFT Transfer Pending"
-msgstr ""
+msgstr "Ожидается передача NFT"
 
 #: src/components/offers/NFTOfferEditor.tsx:735
 msgid "NFT details not available"
-msgstr ""
+msgstr "Детали NFT недоступны"
 
 #: src/components/offers/NFTOfferEditor.tsx:256
 #~ msgid "NFT for XCH"
@@ -1653,11 +1653,11 @@ msgstr ""
 
 #: src/components/offers/NFTOfferPreview.tsx:56
 msgid "NFT identifier does not reference a valid NFT coin."
-msgstr ""
+msgstr "Идентификатор NFT не относится к действительной монете NFT."
 
 #: src/components/offers/NFTOfferPreview.tsx:122
 msgid "NFT not specified"
-msgstr ""
+msgstr "NFT не указан"
 
 #: src/components/dashboard/DashboardSideBar.tsx:61
 msgid "NFTs"
