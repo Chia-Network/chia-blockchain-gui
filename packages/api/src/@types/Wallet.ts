@@ -1,4 +1,4 @@
-import type WalletType from '../constants/WalletType';
+import WalletType from '../constants/WalletType';
 import type Transaction from './Transaction';
 import WalletBalance from './WalletBalance';
 
