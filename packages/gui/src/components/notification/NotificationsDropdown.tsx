@@ -28,7 +28,7 @@ export default function NotificationsDropdown() {
           </Badge>
         </Button>,
         <Box sx={{ minWidth: 360 }}>
-          <NotificationsMenu onClose={onClose} />
+          <NotificationsMenu onClose={onClose} size={3} />
         </Box>,
       ]}
     </DropdownBase>

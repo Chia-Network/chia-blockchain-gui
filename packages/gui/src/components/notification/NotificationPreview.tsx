@@ -7,10 +7,11 @@ export type NotificationPreviewProps = {
   offer?: any;
   loading?: boolean;
   size?: number;
+  fallback?: JSX.Element;
 };
 
 export default function NotificationPreview(props: NotificationPreviewProps) {
-  const { offer, loading = false, size = 40 } = props;
+  const { offer, loading = false, size = 40, fallback = null } = props;
 
   if (loading) {
     return <Loading size={size} />;
@@ -22,5 +23,5 @@ export default function NotificationPreview(props: NotificationPreviewProps) {
     return <NotificationPreviewNFT nftId={nft.nftId} size={size} />;
   }
 
-  return null;
+  return fallback;
 }

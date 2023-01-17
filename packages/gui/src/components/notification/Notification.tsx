@@ -1,46 +1,29 @@
-import { Flex, Loading } from '@chia/core';
+import { Flex } from '@chia/core';
+import { Offers as OffersIcon } from '@chia/icons';
 import { Trans } from '@lingui/macro';
 import { MenuItem, Typography } from '@mui/material';
-import React, { useMemo } from 'react';
+import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
-import useAssetIdName from '../../hooks/useAssetIdName';
-import useOffer from '../../hooks/useOffer';
 import OfferAsset from '../offers/OfferAsset';
-import { resolveOfferInfo } from '../offers/OfferManager';
 import NotificationNFTTitle from './NotificationNFTTitle';
 import NotificationPreview from './NotificationPreview';
 
 export type NotificationProps = {
   notification: {
-    id: number;
+    id: string;
     message: string;
   };
   onClick?: () => void;
 };
 
 export default function Notification(props: NotificationProps) {
-  const { notification, onClick } = props;
-  const { isLoading, error, offer, offerSummary, offerData } = useOffer(notification.message);
-  const { lookupByAssetId } = useAssetIdName();
+  const {
+    notification: { offer, offerSummary, offerData, error, offered, requested },
+    onClick,
+  } = props;
   const navigate = useNavigate();
   const location = useLocation();
-
-  const offered = useMemo(() => {
-    if (offerSummary) {
-      return resolveOfferInfo(offerSummary, 'offered', lookupByAssetId);
-    }
-
-    return [];
-  }, [offerSummary, lookupByAssetId]);
-
-  const requested = useMemo(() => {
-    if (offerSummary) {
-      return resolveOfferInfo(offerSummary, 'requested', lookupByAssetId);
-    }
-
-    return [];
-  }, [offerSummary, lookupByAssetId]);
 
   function handleClick() {
     onClick?.();
@@ -60,12 +43,8 @@ export default function Notification(props: NotificationProps) {
   return (
     <MenuItem onClick={handleClick}>
       <Flex alignItems="flex-start" gap={2}>
-        <Flex alignItems="center" gap={1}>
-          <NotificationPreview offer={offer} loading={isLoading} />
-        </Flex>
-        {isLoading ? (
-          <Loading center size={14} />
-        ) : error ? (
+        <NotificationPreview offer={offer} fallback={<OffersIcon sx={{ fontSize: 40 }} />} />
+        {error ? (
           <Typography color="error">{error.message}</Typography>
         ) : (
           <Flex flexDirection="column">

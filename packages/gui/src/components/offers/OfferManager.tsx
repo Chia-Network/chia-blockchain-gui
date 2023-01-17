@@ -50,6 +50,7 @@ import { launcherIdToNFTId } from '../../util/nfts';
 import CreateOfferBuilder from '../offers2/CreateOfferBuilder';
 import OfferBuilderImport from '../offers2/OfferBuilderImport';
 import OfferBuilderViewer from '../offers2/OfferBuilderViewer';
+import OfferIncomingTable from '../offers2/OfferIncomingTable';
 import { CreateNFTOfferEditor } from './NFTOfferEditor';
 import NFTOfferViewer from './NFTOfferViewer';
 import OfferAsset from './OfferAsset';
@@ -494,6 +495,7 @@ export function OfferManager() {
           </Grid>
         </Box>
       </Flex>
+      <OfferIncomingTable />
       <OfferList title={<Trans>Offers you created</Trans>} includeMyOffers includeTakenOffers={false} />
       <OfferList title={<Trans>Offers you accepted</Trans>} includeMyOffers={false} includeTakenOffers />
     </Flex>

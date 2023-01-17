@@ -23,8 +23,4 @@ export default [
     label: 'Offerpool',
     domains: ['offerpool.io'],
   },
-  {
-    label: 'Chia NFT',
-    domains: ['storage.googleapis.com'],
-  },
 ];
