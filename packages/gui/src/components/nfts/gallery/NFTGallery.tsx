@@ -1,7 +1,6 @@
 import type { NFTInfo } from '@chia-network/api';
 import { useLocalStorage } from '@chia-network/api-react';
 import { Flex, LayoutDashboardSub, Loading, /* useTrans, */ useDarkMode } from '@chia-network/core';
-import { WalletReceiveAddressField } from '@chia-network/wallets';
 import { t } from '@lingui/macro';
 import { FormControlLabel, RadioGroup, FormControl, Checkbox, Grid } from '@mui/material';
 import React, { useEffect, useState, useCallback, useContext } from 'react';
@@ -478,7 +477,6 @@ export default function NFTGallery() {
           <Flex gap={2} alignItems="stretch" flexWrap="wrap" justifyContent="space-between">
             <NFTProfileDropdown onChange={setWalletId} walletId={walletId} />
             <Search onUpdate={setSearch} placeholder={t`Search...`} defaultValue={search || undefined} />
-            <WalletReceiveAddressField variant="outlined" size="small" fullWidth isDarkMode={isDarkMode} />
             <MultiSelectAndFilterWrapper className={inMultipleSelectionMode ? 'active' : ''} isDarkMode={isDarkMode}>
               <MultiSelectIconStyled
                 onClick={() => toggleMultipleSelection(!inMultipleSelectionMode)}
