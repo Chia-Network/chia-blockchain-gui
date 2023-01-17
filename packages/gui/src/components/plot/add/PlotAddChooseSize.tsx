@@ -37,27 +37,27 @@ export default function PlotAddChooseSize(props: Props) {
     setAllowedPlotSizes(
       getPlotSizeOptions(plotterName).filter((option) => plotter.options.kSizes.includes(option.value))
     );
-  }, [plotterName]);
-
-  async function getConfirmation() {
-    const canUse = await openDialog(
-      <ConfirmDialog
-        title={<Trans>The minimum required size for mainnet is k=32</Trans>}
-        confirmTitle={<Trans>Yes</Trans>}
-        confirmColor="danger"
-      >
-        <Trans>Are you sure you want to use k={plotSize}?</Trans>
-      </ConfirmDialog>
-    );
-
-    if (canUse) {
-      setValue('overrideK', true);
-    } else {
-      setValue('plotSize', 32);
-    }
-  }
+  }, [plotter.options.kSizes, plotterName]);
 
   useEffect(() => {
+    async function getConfirmation() {
+      const canUse = await openDialog(
+        <ConfirmDialog
+          title={<Trans>The minimum required size for mainnet is k=32</Trans>}
+          confirmTitle={<Trans>Yes</Trans>}
+          confirmColor="danger"
+        >
+          <Trans>Are you sure you want to use k={plotSize}?</Trans>
+        </ConfirmDialog>
+      );
+
+      if (canUse) {
+        setValue('overrideK', true);
+      } else {
+        setValue('plotSize', 32);
+      }
+    }
+
     if (plotSize === 25) {
       if (!overrideK) {
         getConfirmation();
@@ -65,7 +65,7 @@ export default function PlotAddChooseSize(props: Props) {
     } else {
       setValue('overrideK', false);
     }
-  }, [plotSize, overrideK]);
+  }, [plotSize, overrideK, setValue, openDialog]);
 
   return (
     <CardStep step={step} title={<Trans>Choose Plot Size</Trans>}>

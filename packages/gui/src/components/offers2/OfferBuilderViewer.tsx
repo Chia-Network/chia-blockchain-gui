@@ -40,40 +40,42 @@ export default function OfferBuilderViewer(props: OfferBuilderViewerProps) {
 
   const showInvalid = !isValidating && isValid === false;
 
-  async function validateOfferData() {
-    if (!offerData) {
-      return;
-    }
-
-    try {
-      setIsValid(undefined);
-      setIsValidating(true);
-
-      const response = await checkOfferValidity(offerData).unwrap();
-      setIsValid(response.valid === true);
-    } catch (e) {
-      setIsValid(false);
-      showError(e);
-    } finally {
-      setIsValidating(false);
-    }
-  }
-
   useEffect(() => {
-    validateOfferData();
-  }, [offerData]);
+    async function validateOfferData() {
+      if (!offerData) {
+        return;
+      }
 
+      try {
+        setIsValid(undefined);
+        setIsValidating(true);
+
+        const response = await checkOfferValidity(offerData).unwrap();
+        setIsValid(response.valid === true);
+      } catch (e) {
+        setIsValid(false);
+        showError(e);
+      } finally {
+        setIsValidating(false);
+      }
+    }
+
+    validateOfferData();
+  }, [checkOfferValidity, offerData, showError]);
+
+  const offerSummaryStringified = JSON.stringify(offerSummary);
   const offerBuilderData = useMemo(() => {
-    if (!offerSummary) {
+    const offerSummaryParsed = JSON.parse(offerSummaryStringified);
+    if (!offerSummaryParsed) {
       return undefined;
     }
     try {
-      return offerToOfferBuilderData(offerSummary);
+      return offerToOfferBuilderData(offerSummaryParsed);
     } catch (e) {
       setError(e);
       return undefined;
     }
-  }, [JSON.stringify(offerSummary)]);
+  }, [offerSummaryStringified]);
 
   const [offeredUnknownCATs, requestedUnknownCATs] = useMemo(() => {
     if (!offerBuilderData || !wallets) {

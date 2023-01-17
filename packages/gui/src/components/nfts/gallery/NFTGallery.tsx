@@ -2,8 +2,8 @@ import type { NFTInfo } from '@chia-network/api';
 import { useLocalStorage } from '@chia-network/api-react';
 import { Flex, LayoutDashboardSub, Loading, /* useTrans, */ useDarkMode } from '@chia-network/core';
 import { WalletReceiveAddressField } from '@chia-network/wallets';
-import { t } from '@lingui/macro';
-import { FormControlLabel, RadioGroup, FormControl, Checkbox, Grid } from '@mui/material';
+import { t, Trans } from '@lingui/macro';
+import { FormControlLabel, RadioGroup, FormControl, Checkbox, Grid, Button } from '@mui/material';
 import React, { useEffect, useState, useCallback, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
@@ -147,6 +147,21 @@ const MultiSelectIconStyled = styled(MultiSelectIcon)`
 
 const LoadingWrapper = styled.div`
   padding: 25px;
+`;
+
+const TotalItemsStyled = styled.div`
+  display: flex;
+  > span {
+    margin-right: 15px;
+    position: relative;
+    top: 6px;
+  }
+`;
+
+const SelectAllButtonStyled = styled(Button)`
+  color: ${(props) => props.theme.palette.primary.main};
+  margin: 0 10px;
+  user-select: none;
 `;
 
 let visibleIndex = 0;
@@ -445,6 +460,30 @@ export default function NFTGallery() {
     return Object.keys(nftTypeKeys).filter((key) => typeFilterArray.indexOf(key) > -1).length;
   }
 
+  function renderSelectDeselectButtons() {
+    if (!inMultipleSelectionMode) return null;
+    return (
+      <>
+        <SelectAllButtonStyled
+          variant="text"
+          onClick={() => {
+            setSelectedNFTIds(filteredShownNFTs().map((nft: NFTInfo) => nft.$nftId));
+          }}
+        >
+          <Trans>Select all</Trans>
+        </SelectAllButtonStyled>
+        <SelectAllButtonStyled
+          variant="text"
+          onClick={() => {
+            setSelectedNFTIds([]);
+          }}
+        >
+          <Trans>Deselect all</Trans>
+        </SelectAllButtonStyled>
+      </>
+    );
+  }
+
   return (
     <LayoutDashboardSub
       // sidebar={<NFTGallerySidebar onWalletChange={setWalletId} />}
@@ -491,8 +530,10 @@ export default function NFTGallery() {
           </Flex>
 
           <Flex gap={2} alignItems="center" flexWrap="wrap" justifyContent="space-between" sx={{ padding: '10px 0' }}>
-            {t`Showing ${filteredShownNFTs().length} of ${allowNFTsFiltered.length} items`}
-
+            <TotalItemsStyled>
+              <span>{t`Showing ${filteredShownNFTs().length} of ${allowNFTsFiltered.length} items`}</span>
+              {renderSelectDeselectButtons()}
+            </TotalItemsStyled>
             <Filters>
               <div ref={typesFilterRef} style={{ display: allTypes.length > 0 ? 'flex' : 'none' }}>
                 <FilterPill

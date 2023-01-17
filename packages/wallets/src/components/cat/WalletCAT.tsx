@@ -51,7 +51,7 @@ export default function WalletCAT(props: Props) {
       state: {
         assetId: wallet.meta?.assetId,
         walletType: WalletType.CAT,
-        referrerPath: location.hash.split('#').slice(-1)[0],
+        referrerPath: window.location.hash.split('#').slice(-1)[0],
       },
     });
   }

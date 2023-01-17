@@ -1,4 +1,3 @@
-/* eslint-disable import/no-cycle -- disable */
 import type { NFTInfo } from '@chia-network/api';
 import { useState, useEffect, useRef, useCallback } from 'react';
 import isURL from 'validator/lib/isURL';

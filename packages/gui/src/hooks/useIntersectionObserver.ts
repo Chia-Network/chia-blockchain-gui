@@ -16,19 +16,20 @@ export default function useIntersectionObserver(
     setEntry(entryLocal);
   };
 
+  const thresholdStringified = JSON.stringify(threshold);
   useEffect(() => {
     const node = elementRef?.current; // DOM Ref
     const hasIOSupport = !!window.IntersectionObserver;
 
     if (!hasIOSupport || frozen || !node) return undefined;
 
-    const observerParams = { threshold, root, rootMargin };
+    const observerParams = { threshold: JSON.parse(thresholdStringified), root, rootMargin };
     const observer = new IntersectionObserver(updateEntry, observerParams);
 
     observer.observe(node);
 
     return () => observer.disconnect();
-  }, [elementRef, JSON.stringify(threshold), root, rootMargin, frozen]);
+  }, [elementRef, thresholdStringified, root, rootMargin, frozen]);
 
   return entry;
 }
