@@ -8,7 +8,7 @@ msgstr ""
 "Language: ru_RU\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-10-24 18:14\n"
+"PO-Revision-Date: 2023-01-17 08:05\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "Plural-Forms: nplurals=4; plural=((n%10==1 && n%100!=11) ? 0 : ((n%10 >= 2 && n%10 <=4 && (n%100 < 12 || n%100 > 14)) ? 1 : ((n%10 == 0 || (n%10 >= 5 && n%10 <=9)) || (n%100 >= 11 && n%100 <= 14)) ? 2 : 3));\n"
@@ -284,7 +284,7 @@ msgstr "Подтверждение сжигания NFT"
 
 #: src/components/nfts/NFTBurnDialog.tsx:125
 msgid "Burning a non-fungible token means removing it from circulation by sending it to a verifiably un-spendable address. However, transactions leading up to the burn will remain on the blockchain ledger."
-msgstr ""
+msgstr "Сжигание невзаимозаменяемого токена означает удаление его из обращения путем отправки на проверенный адрес, который невозможно потратить. Однако транзакции, приведшие к сжиганию, останутся в реестре блокчейна."
 
 #: src/components/offers/NFTOfferEditor.tsx:362
 msgid "Buy an NFT"
@@ -292,7 +292,7 @@ msgstr "Купить NFT"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:243
 msgid "Cache size (GB)"
-msgstr ""
+msgstr "Размер кэша (ГБ)"
 
 #: src/components/app/AppPassPrompt.tsx:184
 #: src/components/backup/BackupCreate.tsx:51
@@ -361,7 +361,7 @@ msgstr "Сменить пул"
 #: src/components/settings/SettingsDataLayer.tsx:57
 #: src/components/settings/SettingsStartup.tsx:36
 msgid "Changes will take effect the next time Chia is started"
-msgstr ""
+msgstr "Изменения вступят в силу при следующем запуске Chia"
 
 #: src/electron/main.tsx:660
 msgid "Chat on KeyBase"
@@ -657,7 +657,7 @@ msgstr "Скопировать URL медиа"
 
 #: src/components/nfts/NFTContextualActions.tsx:108
 msgid "Copy NFT ID"
-msgstr ""
+msgstr "Копировать NFT-идентификатор"
 
 #: src/components/backup/BackupCreate.tsx:59
 #: src/components/plot/add/PlotAddForm.tsx:205
@@ -668,14 +668,14 @@ msgstr "Создать"
 
 #: src/components/app/AppSelectMode.tsx:137
 msgid "Create & Manage plots"
-msgstr ""
+msgstr "Создание участков и управление ими"
 
 #: src/components/nfts/NFTContextualActions.tsx:149
 #: src/components/offers/NFTOfferEditor.tsx:540
 #: src/components/offers/OfferEditor.tsx:221
 #: src/components/offers/OfferEditorConfirmationDialog.tsx:15
 msgid "Create Offer"
-msgstr ""
+msgstr "Создать предложение"
 
 #: src/components/backup/BackupCreate.tsx:42
 msgid "Create a Backup"
@@ -687,24 +687,24 @@ msgstr "Создать участок NFT"
 
 #: src/components/settings/ProfileAdd.tsx:86
 msgid "Create a new profile"
-msgstr ""
+msgstr "Создать новый профиль"
 
 #: src/components/offers/NFTOfferEditor.tsx:865
 msgid "Create an NFT Offer"
-msgstr ""
+msgstr "Создать предложение NFT"
 
 #: src/components/offers/OfferEditor.tsx:243
 #: src/components/offers/OfferManager.tsx:567
 msgid "Create an Offer"
-msgstr ""
+msgstr "Создать предложение"
 
 #: src/components/offers/OfferManager.tsx:559
 msgid "Create an offer to exchange assets including XCH, tokens, and NFTs. View an offer to inspect and accept an offer made by another party."
-msgstr ""
+msgstr "Создайте предложение об обмене активами, включая XCH, токены и NFT. Просмотрите предложение, чтобы проверить и принять предложение, сделанное другой стороной."
 
 #: src/components/offers/OfferManager.tsx:152
 msgid "Creates and submits a transaction on the blockchain that cancels the offer"
-msgstr ""
+msgstr "Создает и отправляет транзакцию в блокчейне, которая отменяет предложение"
 
 #: src/components/plotNFT/PlotNFTUnconfirmedCard.tsx:59
 msgid "Creating Plot NFT and Joining the Pool"
@@ -717,20 +717,20 @@ msgstr "Создание участка NFT для самостоятельно�
 #: src/components/offers/OfferManager.tsx:407
 #: src/components/offers/OfferViewer.tsx:171
 msgid "Creation Date"
-msgstr ""
+msgstr "Дата создания"
 
 #: src/components/offers/NFTOfferViewer.tsx:578
 msgid "Creator Fee ({0}%)"
-msgstr ""
+msgstr "Комиссия автора ({0}%)"
 
 #: src/components/offers/NFTOfferEditor.tsx:390
 msgid "Creator Fee ({royaltyPercentage}%)"
-msgstr ""
+msgstr "Комиссия автора ({royaltyPercentage}%)"
 
 #: src/components/offers/NFTOfferEditor.tsx:395
 #: src/components/offers/NFTOfferViewer.tsx:585
 msgid "Creator royalty percentage seems high"
-msgstr ""
+msgstr "Процент авторских отчислений кажется высоким"
 
 #: src/components/plot/add/PlotAddForm.tsx:115
 msgid "Currency code is not defined"
@@ -752,15 +752,15 @@ msgstr "Текущий баланс пунктов"
 
 #: src/components/nfts/NFTDetails.tsx:166
 msgid "Data Hash"
-msgstr ""
+msgstr "Хэш данных"
 
 #: src/components/nfts/NFTDetails.tsx:153
 msgid "Data URL {0}"
-msgstr ""
+msgstr "URL-адрес данных {0}"
 
 #: src/components/settings/Settings.tsx:87
 msgid "DataLayer"
-msgstr ""
+msgstr "Слой данных"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:30
 msgid "Date"
@@ -793,7 +793,7 @@ msgstr "Удалить неподтвержденные транзакции"
 
 #: src/components/app/AppPassPrompt.tsx:106
 msgid "Deleting key"
-msgstr ""
+msgstr "Удаление ключа"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:92
 msgid "Depending on your system configuration, you may find that an alternative plotter produces plots faster than the default Chia Proof of Space plotter. If unsure, use the default Chia Proof of Space plotter."
@@ -801,29 +801,29 @@ msgstr "В зависимости от конфигурации системы, 
 
 #: src/components/settings/SettingsPanel.tsx:180
 msgid "Derivation Index"
-msgstr ""
+msgstr "Индекс деривации"
 
 #: src/components/settings/SettingsDerivationIndex.tsx:57
 msgid "Derivation index must be greater than {index}"
-msgstr ""
+msgstr "Индекс деривации должен быть больше {index}"
 
 #: src/components/nfts/detail/NFTDetail.tsx:73
 #: src/components/nfts/detail/NFTDetailV2.tsx:215
 msgid "Description"
-msgstr ""
+msgstr "Описание"
 
 #: src/components/nfts/NFTTransferConfirmationDialog.tsx:83
 msgid "Destination"
-msgstr ""
+msgstr "Место назначения"
 
 #: src/components/nfts/NFTTransferConfirmationDialog.tsx:68
 msgid "Destination:"
-msgstr ""
+msgstr "Место назначения:"
 
 #: src/components/nfts/NFTDetails.tsx:281
 #: src/components/offers/OfferViewer.tsx:331
 msgid "Details"
-msgstr ""
+msgstr "Детали"
 
 #: src/electron/main.tsx:557
 msgid "Developer"
@@ -835,7 +835,7 @@ msgstr "Инструменты разработчика"
 
 #: src/components/offers/OfferShareDialog.tsx:614
 msgid "Dexie URL"
-msgstr ""
+msgstr "Dexie URL"
 
 #: src/components/block/Block.jsx:204
 #: src/components/fullNode/card/FullNodeCardDifficulty.tsx:14
