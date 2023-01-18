@@ -1,4 +1,4 @@
-import { OfferSummaryRecord, OfferTradeRecord } from '@chia-network/api';
+import { OfferTradeRecord } from '@chia-network/api';
 import { useCancelOfferMutation, useGetWalletsQuery } from '@chia-network/api-react';
 import {
   Button,
@@ -21,7 +21,7 @@ import {
   LayoutDashboardSub,
   MenuItem,
 } from '@chia-network/core';
-import { Trans, t } from '@lingui/macro';
+import { Trans } from '@lingui/macro';
 import { Cancel, GetApp as Download, Info, Reply as Share, Visibility } from '@mui/icons-material';
 import {
   Box,
@@ -46,25 +46,19 @@ import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import useAssetIdName from '../../hooks/useAssetIdName';
 import useSaveOfferFile from '../../hooks/useSaveOfferFile';
 import useWalletOffers from '../../hooks/useWalletOffers';
-import { launcherIdToNFTId } from '../../util/nfts';
+import resolveOfferInfo from '../../util/resolveOfferInfo';
 import CreateOfferBuilder from '../offers2/CreateOfferBuilder';
 import OfferBuilderImport from '../offers2/OfferBuilderImport';
 import OfferBuilderViewer from '../offers2/OfferBuilderViewer';
 import OfferIncomingTable from '../offers2/OfferIncomingTable';
 import { CreateNFTOfferEditor } from './NFTOfferEditor';
 import NFTOfferViewer from './NFTOfferViewer';
-import OfferAsset from './OfferAsset';
 import OfferDataDialog from './OfferDataDialog';
 import { CreateOfferEditor } from './OfferEditor';
 import { OfferImport } from './OfferImport';
 import OfferShareDialog from './OfferShareDialog';
 import OfferState from './OfferState';
-import {
-  colorForOfferState,
-  displayStringForOfferState,
-  formatAmountForWalletType,
-  offerAssetTypeForAssetId,
-} from './utils';
+import { colorForOfferState, displayStringForOfferState } from './utils';
 
 type ConfirmOfferCancellationProps = {
   canCancelWithTransaction?: boolean;
@@ -174,30 +168,6 @@ export function ConfirmOfferCancellation(props: ConfirmOfferCancellationProps) {
       </DialogActions>
     </Dialog>
   );
-}
-
-function resolveOfferInfo(
-  summary: OfferSummaryRecord,
-  summaryKey: string,
-  lookupByAssetId: (assetId: string) => AssetIdMapEntry | undefined
-) {
-  const resolvedOfferInfo = Object.entries(summary[summaryKey]).map(([assetId, amount]) => {
-    const assetType = offerAssetTypeForAssetId(assetId, summary);
-    const assetIdInfo = assetType === OfferAsset.NFT ? undefined : lookupByAssetId(assetId);
-    const displayAmount = assetIdInfo ? formatAmountForWalletType(amount as number, assetIdInfo.walletType) : amount;
-    let displayName = '';
-    if (assetType === OfferAsset.NFT) {
-      displayName = launcherIdToNFTId(assetId);
-    } else {
-      displayName = assetIdInfo?.displayName ?? t`Unknown CAT`;
-    }
-    return {
-      displayAmount,
-      displayName,
-      assetType,
-    };
-  });
-  return resolvedOfferInfo;
 }
 
 type OfferListProps = {

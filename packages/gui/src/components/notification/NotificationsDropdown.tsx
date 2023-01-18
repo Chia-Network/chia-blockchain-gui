@@ -1,4 +1,4 @@
-import { DropdownBase } from '@chia/core';
+import { DropdownBase } from '@chia-network/core';
 import { NotificationsNone as NotificationsNoneIcon } from '@mui/icons-material';
 import { Badge, Box, Button } from '@mui/material';
 import React from 'react';

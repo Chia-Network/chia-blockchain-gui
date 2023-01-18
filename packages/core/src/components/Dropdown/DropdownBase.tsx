@@ -76,7 +76,7 @@ export default function DropdownBase(props: DropdownBaseProps) {
   });
 
   return (
-    <Box>
+    <Box display="flex">
       {item}
       <StyledMenu anchorEl={anchorEl} open={open} onClose={handleClose}>
         {menuItems}

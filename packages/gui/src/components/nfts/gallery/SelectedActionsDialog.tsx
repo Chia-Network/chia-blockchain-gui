@@ -1,4 +1,4 @@
-import type { NFTInfo } from '@chia/api';
+import type { NFTInfo } from '@chia-network/api';
 import { t } from '@lingui/macro';
 import React from 'react';
 import styled from 'styled-components';

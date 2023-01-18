@@ -1,5 +1,5 @@
-import { Flex } from '@chia/core';
-import { Offers as OffersIcon } from '@chia/icons';
+import { Flex } from '@chia-network/core';
+import { Offers as OffersIcon } from '@chia-network/icons';
 import { Trans } from '@lingui/macro';
 import { MenuItem, Typography } from '@mui/material';
 import React from 'react';
@@ -51,8 +51,8 @@ export default function Notification(props: NotificationProps) {
             <Typography variant="body2" color="textSecondary">
               <Trans>You have a new offer</Trans>
             </Typography>
-            {offered.map((info, index) => (
-              <Flex flexDirection="row" gap={0.5} key={`${index}-${info.displayName}`}>
+            {offered.map((info) => (
+              <Flex flexDirection="row" gap={0.5} key={`${info.displayAmount}-${info.displayName}`}>
                 {info.assetType === OfferAsset.NFT ? (
                   <NotificationNFTTitle nftId={info.displayName} />
                 ) : (
@@ -62,8 +62,8 @@ export default function Notification(props: NotificationProps) {
                 )}
               </Flex>
             ))}
-            {requested.map((info, index) => (
-              <Flex flexDirection="row" gap={0.5} key={`${index}-${info.displayName}`}>
+            {requested.map((info) => (
+              <Flex flexDirection="row" gap={0.5} key={`${info.displayAmount}-${info.displayName}`}>
                 {info.assetType === OfferAsset.NFT ? (
                   <Typography color="primary" variant="body2" noWrap>
                     <NotificationNFTTitle nftId={info.displayName} />

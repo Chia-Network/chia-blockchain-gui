@@ -1,5 +1,5 @@
-import { Card, Flex, Table, LoadingOverlay, Button, useShowError } from '@chia/core';
-import { Offers as OffersIcon } from '@chia/icons';
+import { Card, Flex, Table, LoadingOverlay, Button, useShowError } from '@chia-network/core';
+import { Offers as OffersIcon } from '@chia-network/icons';
 import { Trans } from '@lingui/macro';
 import { Typography } from '@mui/material';
 import React, { useMemo, type ReactNode } from 'react';
@@ -23,8 +23,8 @@ const cols = [
             <NotificationPreview offer={offer} fallback={<OffersIcon sx={{ fontSize: 32 }} />} />
           </div>
           <Flex flexDirection="column">
-            {resolvedOfferInfo.map((info, index) => (
-              <Flex flexDirection="row" gap={0.5} key={`${index}-${info.displayName}`}>
+            {resolvedOfferInfo.map((info) => (
+              <Flex flexDirection="row" gap={0.5} key={`${info.displayAmount}-${info.displayName}`}>
                 {info.assetType === OfferAsset.NFT ? (
                   <NotificationNFTTitle nftId={info.displayName} />
                 ) : (
@@ -44,8 +44,8 @@ const cols = [
   {
     field: (notification: NotificationDetails) => {
       const { offered: resolvedOfferInfo } = notification;
-      return resolvedOfferInfo.map((info, index) => (
-        <Flex flexDirection="row" gap={0.5} key={`${index}-${info.displayName}`}>
+      return resolvedOfferInfo.map((info) => (
+        <Flex flexDirection="row" gap={0.5} key={`${info.displayAmount}-${info.displayName}`}>
           {info.assetType === OfferAsset.NFT ? (
             <NotificationNFTTitle nftId={info.displayName} />
           ) : (
@@ -63,7 +63,7 @@ const cols = [
     title: <Trans>Creation Height</Trans>,
   },
   {
-    field: (notification: NotificationDetails, { acceptOffer, deleteNotification, showOffer }) => {
+    field: (notification: NotificationDetails, { acceptOffer, deleteNotification /* , showOffer */ }) => {
       const { id } = notification;
 
       async function handleAcceptOffer() {
@@ -74,9 +74,11 @@ const cols = [
         await deleteNotification(id);
       }
 
+      /*
       function handleShowOffer() {
         showOffer(id);
       }
+      */
 
       return (
         <Flex gap={1}>

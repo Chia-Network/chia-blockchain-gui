@@ -1,4 +1,4 @@
-import { useGetNFTInfoQuery } from '@chia/api-react';
+import { useGetNFTInfoQuery } from '@chia-network/api-react';
 import { Trans } from '@lingui/macro';
 import React from 'react';
 

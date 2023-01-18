@@ -1,13 +1,13 @@
-import { useGetNotificationsQuery, usePrefs, useDeleteNotificationsMutation } from '@chia/api-react';
-import { ConfirmDialog, useOpenDialog } from '@chia/core';
+import { useGetNotificationsQuery, usePrefs, useDeleteNotificationsMutation } from '@chia-network/api-react';
+import { ConfirmDialog, useOpenDialog } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import debug from 'debug';
 import { orderBy } from 'lodash';
 import React, { useMemo, useState, useEffect, useCallback } from 'react';
 
-import { resolveOfferInfo } from '../components/offers/OfferManager';
 import NotificationType from '../constants/NotificationType';
 import fetchOffer from '../util/fetchOffer';
+import resolveOfferInfo from '../util/resolveOfferInfo';
 import useAssetIdName from './useAssetIdName';
 import useShowNotification from './useShowNotification';
 
@@ -54,7 +54,7 @@ export default function useNotifications() {
   const isLoading = isLoadingNotifications || isPreparingNotifications;
   const error = getNotificationsError || preparingError;
 
-  async function prepareNotifications() {
+  const prepareNotifications = useCallback(async () => {
     try {
       setIsPreparingNotifications(true);
 
@@ -112,7 +112,7 @@ export default function useNotifications() {
     } finally {
       setIsPreparingNotifications(false);
     }
-  }
+  }, [notifications, lookupByAssetId]);
 
   const showPushNotifications = useCallback(() => {
     if (!enabled) {
@@ -142,7 +142,7 @@ export default function useNotifications() {
 
   useEffect(() => {
     prepareNotifications();
-  }, [notifications]);
+  }, [prepareNotifications]);
 
   useEffect(() => {
     showPushNotifications();

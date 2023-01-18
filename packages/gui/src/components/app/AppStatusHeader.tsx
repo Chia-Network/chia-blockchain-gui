@@ -3,7 +3,6 @@ import { WalletConnections, WalletStatus, WalletReceiveAddressField } from '@chi
 import { Trans } from '@lingui/macro';
 import { Box, ButtonGroup, Button, Popover } from '@mui/material';
 import React, { useState } from 'react';
-import styled from 'styled-components';
 
 import Connections from '../fullNode/FullNodeConnections';
 import FullNodeStateIndicator from '../fullNode/FullNodeStateIndicator';
@@ -11,15 +10,6 @@ import NotificationsDropdown from '../notification/NotificationsDropdown';
 import WalletConnectDropdown from '../walletConnect/WalletConnectDropdown';
 
 export default function AppStatusHeader() {
-  const ButtonStyled = styled(Button)`
-    padding-top: 3px;
-    padding-bottom: 0;
-    border: 1px solid ${(props: any) => props.theme.palette.border.main};
-    &:hover {
-      border: 1px solid ${(props: any) => props.theme.palette.border.main};
-    }
-    white-space: nowrap;
-  `;
   const [mode] = useMode();
 
   const [anchorElFN, setAnchorElFN] = useState<HTMLButtonElement | null>(null);
@@ -54,7 +44,7 @@ export default function AppStatusHeader() {
                 <FullNodeStateIndicator />
                 <Trans>Full Node</Trans>
               </Flex>
-            </ButtonStyled>
+            </Button>
             <Popover
               open={!!anchorElFN}
               anchorEl={anchorElFN}
@@ -74,12 +64,12 @@ export default function AppStatusHeader() {
             </Popover>
           </>
         )}
-        <ButtonStyled onClick={handleClickW}>
+        <Button onClick={handleClickW}>
           <Flex gap={1} alignItems="center">
             <WalletStatus indicator hideTitle />
             <Trans>Wallet</Trans>
           </Flex>
-        </ButtonStyled>
+        </Button>
         <Popover
           open={!!anchorElW}
           anchorEl={anchorElW}

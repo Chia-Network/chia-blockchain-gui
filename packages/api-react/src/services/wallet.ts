@@ -2138,7 +2138,7 @@ export const walletApi = apiWithTag.injectEndpoints({
       onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, [
         {
           command: 'onNewOnChainNotification',
-          service: Wallet,
+          service: WalletService,
           endpoint: () => walletApi.endpoints.getNotifications,
         },
       ]),
@@ -2152,7 +2152,7 @@ export const walletApi = apiWithTag.injectEndpoints({
     >({
       query: ({ ids }) => ({
         command: 'deleteNotifications',
-        service: Wallet,
+        service: WalletService,
         args: [ids],
       }),
       invalidatesTags: (result, _error) => (result ? [{ type: 'Notification', id: 'LIST' }] : []),
@@ -2169,7 +2169,7 @@ export const walletApi = apiWithTag.injectEndpoints({
     >({
       query: ({ target, message, amount, fee }) => ({
         command: 'sendNotifications',
-        service: Wallet,
+        service: WalletService,
         args: [target, message, amount, fee],
       }),
       invalidatesTags: (result, _error) => (result ? [{ type: 'Notification', id: 'LIST' }] : []),

@@ -1,4 +1,4 @@
-import { store, walletApi } from '@chia/api-react';
+import { store, walletApi } from '@chia-network/api-react';
 import isURL from 'validator/lib/isURL';
 
 import OfferServices from '../constants/OfferServices';
@@ -16,7 +16,7 @@ export default async function fetchOffer(offerUrl: string) {
   }
 
   const domain = new URL(offerUrl).hostname;
-  const service = OfferServices.find((service) => service.domains.includes(domain));
+  const service = OfferServices.find(({ domains }) => domains.includes(domain));
   if (!service) {
     throw new Error('Service not found');
   }

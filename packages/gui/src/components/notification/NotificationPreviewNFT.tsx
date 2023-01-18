@@ -1,5 +1,5 @@
-import { useGetNFTInfoQuery } from '@chia/api-react';
-import { Loading } from '@chia/core';
+import { useGetNFTInfoQuery } from '@chia-network/api-react';
+import { Loading } from '@chia-network/core';
 import { Error as ErrorIcon } from '@mui/icons-material';
 import React from 'react';
 
