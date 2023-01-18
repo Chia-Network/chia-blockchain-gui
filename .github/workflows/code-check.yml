@@ -19,7 +19,7 @@ jobs:
           # Use node version from '.nvmrc' instead of hardcoding here
           node-version-file: '.nvmrc'
       - name: install
-        run: npm ci
+        run: npm ci && npx lerna bootstrap
       - name: Prettier
         run: npm run check:prettier
       - name: ESLint
