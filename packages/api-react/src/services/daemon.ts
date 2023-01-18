@@ -428,6 +428,15 @@ export const daemonApi = apiWithTag.injectEndpoints({
       }),
       transformResponse: (response: any) => response?.version,
     }),
+    /*
+    relaunchGui: build.query<string, {}>({
+      query: () => ({
+        command: 'relaunchGui',
+        service: Daemon,
+      }),
+      transformResponse: (response: any) => response?.version, # change this <--
+    }),
+    */
   }),
 });
 

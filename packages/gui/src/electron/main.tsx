@@ -200,6 +200,13 @@ if (!handleSquirrelEvent()) {
 
       ipcMain.handle('getVersion', () => app.getVersion());
 
+      ipcMain.handle('relaunchGUI', () => {
+        app.relaunch();
+        app.quit();
+      });
+
+      ipcMain.handle('quitGUI', () => app.quit());
+
       ipcMain.handle('fetchTextResponse', async (_event, requestOptions, requestHeaders, requestData) => {
         const request = net.request(requestOptions as any);
 
