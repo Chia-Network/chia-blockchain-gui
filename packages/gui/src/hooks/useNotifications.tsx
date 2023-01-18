@@ -55,6 +55,10 @@ export default function useNotifications() {
   const error = getNotificationsError || preparingError;
 
   const prepareNotifications = useCallback(async () => {
+    if (!notifications || !isPreparingNotifications) {
+      return;
+    }
+
     try {
       setIsPreparingNotifications(true);
 
@@ -112,7 +116,7 @@ export default function useNotifications() {
     } finally {
       setIsPreparingNotifications(false);
     }
-  }, [notifications, lookupByAssetId]);
+  }, [notifications, lookupByAssetId, isPreparingNotifications]);
 
   const showPushNotifications = useCallback(() => {
     if (!enabled) {
