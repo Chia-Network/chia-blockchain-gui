@@ -18,8 +18,10 @@ jobs:
         with:
           # Use node version from '.nvmrc' instead of hardcoding here
           node-version-file: '.nvmrc'
-      - name: install
+      - name: install & boostrap
         run: npm ci && npx lerna bootstrap
+      - name: build
+        run: npm run build
       - name: Prettier
         run: npm run check:prettier
       - name: ESLint
