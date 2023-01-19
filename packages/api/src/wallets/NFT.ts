@@ -42,16 +42,11 @@ export default class NFTWallet extends Wallet {
         fee,
       });
     }
-    return Promise.all(
-      nftCoinIds.map((nftCoinId) =>
-        this.command('nft_set_nft_did', {
-          walletId,
-          nftCoinId,
-          didId: did,
-          fee,
-        })
-      )
-    ).then((responses) => responses);
+    return this.command('nft_set_did_bulk', {
+      nftCoinList: nftCoinIds.map((nftId: string) => ({ nft_coin_id: nftId, wallet_id: walletId })),
+      didId: did,
+      fee,
+    });
   }
 
   async setNftStatus(walletId: number, nftCoinId: string, inTransaction: boolean) {
