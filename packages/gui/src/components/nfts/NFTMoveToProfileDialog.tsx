@@ -329,6 +329,7 @@ export function NFTMoveToProfileAction(props: NFTMoveToProfileActionProps) {
         </Flex>
       );
     }
+    return null;
   }
 
   return (
