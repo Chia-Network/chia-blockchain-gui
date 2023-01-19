@@ -14,7 +14,7 @@ export type AssetIdMapEntry = {
 };
 
 export default function useAssetIdName() {
-  const { data: wallets, isLoading } = useGetWalletsQuery();
+  const { data: wallets = [], isLoading } = useGetWalletsQuery();
   const { data: catList = [], isLoading: isCatListLoading } = useGetCatListQuery();
   const currencyCode = useCurrencyCode();
 
