@@ -1,6 +1,6 @@
 import { NFTInfo } from '@chia-network/api';
 import type { Wallet } from '@chia-network/api';
-import { useGetDIDsQuery, useGetNFTWallets, useSetNFTDIDMutation } from '@chia-network/api-react';
+import { useGetDIDsQuery, useGetNFTWallets, useSetNFTDIDMutation, useLocalStorage } from '@chia-network/api-react';
 import {
   AlertDialog,
   Button,
@@ -44,6 +44,12 @@ import { getNFTInbox } from './utils';
 
 const StyledValue = styled(Box)`
   word-break: break-all;
+`;
+
+const ErrorTextWrapper = styled.div`
+  > div + div {
+    margin-top: 15px;
+  }
 `;
 
 /* ========================================================================== */
@@ -170,13 +176,13 @@ type NFTMoveToProfileFormData = {
 };
 
 type NFTMoveToProfileActionProps = {
-  nft: NFTInfo;
+  nfts: NFTInfo[];
   destination?: string;
   onComplete?: () => void;
 };
 
 export function NFTMoveToProfileAction(props: NFTMoveToProfileActionProps) {
-  const { nft, destination: defaultDestination, onComplete } = props;
+  const { nfts, destination: defaultDestination, onComplete } = props;
   const [isLoading, setIsLoading] = useState(false);
   const [setNFTDID] = useSetNFTDIDMutation();
   const openDialog = useOpenDialog();
@@ -191,7 +197,8 @@ export function NFTMoveToProfileAction(props: NFTMoveToProfileActionProps) {
   const destination = methods.watch('destination');
   const { data: didWallets, isLoading: isLoadingDIDs } = useGetDIDsQuery();
   const { wallets: nftWallets, isLoading: isLoadingNFTWallets } = useGetNFTWallets();
-  const currentDIDId = nft.ownerDid ? didToDIDId(stripHexPrefix(nft.ownerDid)) : undefined;
+  const currentDIDId = nfts[0].ownerDid ? didToDIDId(stripHexPrefix(nfts[0].ownerDid)) : undefined;
+  const [, setSelectedNFTIds] = useLocalStorage('gallery-selected-nfts', []);
 
   const inbox: Wallet | undefined = useMemo(() => {
     if (isLoadingNFTWallets) {
@@ -260,16 +267,37 @@ export function NFTMoveToProfileAction(props: NFTMoveToProfileActionProps) {
         setIsLoading(true);
 
         const { error, data: response } = await setNFTDID({
-          walletId: nft.walletId,
-          nftLauncherId: stripHexPrefix(nft.launcherId),
-          nftCoinId: stripHexPrefix(nft.nftCoinId),
+          walletId: nfts[0].walletId,
+          nftLauncherId: stripHexPrefix(nfts[0].launcherId),
+          nftCoinIds: nfts.map((nft) => stripHexPrefix(nft.nftCoinId)),
           did: destinationDID,
           fee: feeInMojos,
         });
         const success = response?.success ?? false;
         const errorMessage = error ?? undefined;
 
-        if (success) {
+        if (Array.isArray(response)) {
+          const successTransfers = response.filter((r: any) => r?.success === true);
+          const failedTransfers = response.filter((r: any) => r?.success !== true);
+          setSelectedNFTIds([]);
+          openDialog(
+            <AlertDialog title={<Trans>NFT Move Pending</Trans>}>
+              <ErrorTextWrapper>
+                <div>
+                  <Trans
+                    id="{count} transactions have been successfully submitted to the blockchain."
+                    values={{ count: successTransfers.length }}
+                  />
+                </div>
+                <div>
+                  {failedTransfers.length ? (
+                    <Trans id="{count} NFTs failed to move." values={{ count: failedTransfers.length }} />
+                  ) : null}
+                </div>
+              </ErrorTextWrapper>
+            </AlertDialog>
+          );
+        } else if (success) {
           openDialog(
             <AlertDialog title={<Trans>NFT Move Pending</Trans>}>
               <Trans>The NFT move transaction has been successfully submitted to the blockchain.</Trans>
@@ -293,12 +321,21 @@ export function NFTMoveToProfileAction(props: NFTMoveToProfileActionProps) {
     }
   }
 
+  function renderNftPreview() {
+    if (nfts.length === 1) {
+      return (
+        <Flex flexDirection="column" gap={1}>
+          <NFTSummary launcherId={nfts[0].launcherId} />
+        </Flex>
+      );
+    }
+    return null;
+  }
+
   return (
     <Form methods={methods} onSubmit={handleSubmit}>
       <Flex flexDirection="column" gap={3}>
-        <Flex flexDirection="column" gap={1}>
-          <NFTSummary launcherId={nft.launcherId} />
-        </Flex>
+        {renderNftPreview()}
         <Flex
           sx={{
             overflow: 'hidden',
@@ -411,12 +448,12 @@ export function NFTMoveToProfileAction(props: NFTMoveToProfileActionProps) {
 type NFTMoveToProfileDialogProps = {
   open: boolean;
   onClose?: (value: any) => void;
-  nft: NFTInfo;
+  nfts: NFTInfo[];
   destination?: string;
 };
 
 export default function NFTMoveToProfileDialog(props: NFTMoveToProfileDialogProps) {
-  const { open, onClose, nft, destination, ...rest } = props;
+  const { open, onClose, nfts, destination, ...rest } = props;
 
   function handleClose() {
     if (onClose) onClose(false);
@@ -446,9 +483,13 @@ export default function NFTMoveToProfileDialog(props: NFTMoveToProfileDialogProp
       <DialogContent>
         <Flex flexDirection="column" gap={3}>
           <DialogContentText id="nft-move-dialog-description">
-            <Trans>Would you like to move the specified NFT to a profile?</Trans>
+            {nfts.length > 1 ? (
+              <Trans id="Would you like to move {count} NFTs to a profile?" values={{ count: nfts.length }} />
+            ) : (
+              <Trans>Would you like to move the specified NFT to a profile?</Trans>
+            )}
           </DialogContentText>
-          <NFTMoveToProfileAction nft={nft} destination={destination} onComplete={handleCompletion} />
+          <NFTMoveToProfileAction nfts={nfts} destination={destination} onComplete={handleCompletion} />
         </Flex>
       </DialogContent>
     </Dialog>

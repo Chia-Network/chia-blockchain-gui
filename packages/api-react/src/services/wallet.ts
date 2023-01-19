@@ -2028,15 +2028,15 @@ export const walletApi = apiWithTag.injectEndpoints({
       {
         walletId: number;
         nftLauncherId: string;
-        nftCoinId: string;
+        nftCoinIds: string[];
         did: string;
         fee: string;
       }
     >({
-      query: ({ walletId, nftCoinId, did, fee }) => ({
+      query: ({ walletId, nftCoinIds, did, fee }) => ({
         command: 'setNftDid',
         service: NFT,
-        args: [walletId, nftCoinId, did, fee],
+        args: [walletId, nftCoinIds, did, fee],
       }),
       invalidatesTags: (result, _error) =>
         result
