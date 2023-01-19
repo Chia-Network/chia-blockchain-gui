@@ -1,36 +1,48 @@
 import { useGetFeeEstimateQuery } from '@chia-network/api-react';
-import { Trans } from '@lingui/macro';
+import { Trans, t } from '@lingui/macro';
 import {
   Box,
   FormControl,
   InputLabel,
   MenuItem,
   Select as MaterialSelect,
-  SelectProps,
+  SelectProps as MaterialSelectProps,
   Typography,
 } from '@mui/material';
-import { get } from 'lodash';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 
-import Mode from '../../constants/Mode';
 import useCurrencyCode from '../../hooks/useCurrencyCode';
 import useLocale from '../../hooks/useLocale';
-import useMode from '../../hooks/useMode';
 import mojoToChiaLocaleString from '../../utils/mojoToChiaLocaleString';
 import Fee from '../Fee';
 import Flex from '../Flex';
 
-type Props = SelectProps & {
-  // eslint-disable-next-line react/no-unused-prop-types -- False positive
-  name: string;
+const REFRESH_SECONDS = 30;
+const TARGET_TIMES = [60, 120, 300];
+
+type FormattedEstimate = {
+  minutes: number;
+  timeDescription: string;
+  estimate: number;
+  formattedEstimate: string;
 };
 
-function Select(props: Props) {
+type SelectProps = MaterialSelectProps & {
+  name: string;
+  formattedEstimates: FormattedEstimate[];
+  selectedValue: string;
+  selectedTime: number;
+  onTypeChange: (type: 'dropdown' | 'custom') => void;
+  onTimeChange: (time: number) => void;
+  onValueChange: (value: string) => void;
+};
+
+function Select(props: SelectProps) {
   const {
     name: controllerName,
     value: controllerValue,
-    estList,
+    formattedEstimates,
     selectedValue,
     selectedTime,
     onTypeChange,
@@ -39,14 +51,12 @@ function Select(props: Props) {
     children,
     ...rest
   } = props;
-  const { control, errors, setValue } = useFormContext();
-  const errorMessage = get(errors, controllerName);
-
-  function getTimeByValue(object, value) {
-    const estIndex = Object.keys(object).find((index) => object[index].estimate === value);
-    const estTime = object[estIndex].time;
-    return estTime;
-  }
+  const {
+    control,
+    formState: { errors },
+    setValue,
+  } = useFormContext();
+  const haveError = Object.keys(errors).length > 0;
 
   return (
     <Controller
@@ -64,15 +74,18 @@ function Select(props: Props) {
               setValue(controllerName, '');
             } else {
               onTypeChange('dropdown');
-              onTimeChange(getTimeByValue(estList, event.target.value));
-              onValueChange(event.target.value);
+              onTimeChange(
+                formattedEstimates.find((estimate) => estimate.formattedEstimate === (event.target.value as string))
+                  ?.minutes ?? 0
+              );
+              onValueChange(event.target.value as string);
             }
           }}
           onBlur={onBlur}
           value={selectedValue}
           name={name}
           ref={ref}
-          error={!!errorMessage}
+          error={haveError}
           renderValue={() => (
             <Box sx={{ display: 'flex', gap: 1 }}>
               {selectedValue} (~{selectedTime} min)
@@ -87,20 +100,21 @@ function Select(props: Props) {
   );
 }
 
-function CountdownBar(props: Props) {
-  const { start, refreshTime } = props;
-  const [seconds, setSeconds] = useState(new Date().getSeconds());
-  const refreshSec = refreshTime * 10e-4;
+function CountdownBar({ startTime, refreshSeconds }: { startTime: number; refreshSeconds: number }) {
+  const [currentProgress, setCurrentProgress] = useState(0);
 
   useEffect(() => {
-    const timer = setInterval(() => setSeconds(new Date().getSeconds()), 500);
-    return function cleanup() {
-      clearInterval(timer);
+    let animationId: number | null = null;
+    const updateProgress = () => {
+      const elapsedTime = Date.now() - startTime;
+      setCurrentProgress(Math.min(100, (elapsedTime / (refreshSeconds * 1000)) * 100));
+      animationId = requestAnimationFrame(updateProgress);
     };
-  });
-
-  const modSec = (((seconds - start) % refreshSec) + refreshSec) % refreshSec;
-  const currentProgress = Math.floor(modSec * (100 / refreshSec));
+    updateProgress();
+    return () => {
+      if (animationId) cancelAnimationFrame(animationId);
+    };
+  }, [startTime, refreshSeconds]);
 
   const containerStyle = {
     height: 2,
@@ -115,7 +129,7 @@ function CountdownBar(props: Props) {
     width: `${currentProgress}%`,
     backgroundColor: 'green',
     borderRadius: 'inherit',
-    textAlign: 'right',
+    // textAlign: 'right',
   };
 
   const labelStyle = {
@@ -133,22 +147,41 @@ function CountdownBar(props: Props) {
   );
 }
 
+enum FeeTxType {
+  walletSendXCH = 'walletSendXCH',
+  spendCATtx = 'spendCATtx',
+  acceptOffer = 'acceptOffer',
+  cancelOffer = 'cancelOffer',
+  burnNFT = 'burnNFT',
+  assignDIDToNFT = 'assignDIDToNFT',
+  transferNFT = 'transferNFT',
+  createPlotNFT = 'createPlotNFT',
+  claimPoolingReward = 'claimPoolingReward',
+  createDID = 'createDID',
+}
+
+type FeeProps = {
+  name: string;
+  txType: FeeTxType;
+  required?: boolean;
+};
+
 export default function EstimatedFee(props: FeeProps) {
   const { name, txType, required, ...rest } = props;
   const { setValue } = useFormContext();
-  const [startTime] = useState(new Date().getSeconds());
-  const refreshTime = 60_000; // in milliseconds
-  const { data: ests, error } = useGetFeeEstimateQuery(
-    { targetTimes: [60, 120, 300], cost: 1 },
+  const [requestId, setRequestId] = useState<string | undefined>(undefined);
+  const [startTime, setStartTime] = useState<number | undefined>(undefined);
+  const result = useGetFeeEstimateQuery(
+    { targetTimes: TARGET_TIMES, cost: 1 },
     {
-      pollingInterval: refreshTime,
+      pollingInterval: REFRESH_SECONDS * 1000, // in milliseconds
     }
   );
-  const [estList, setEstList] = React.useState([]);
+  const { data: ests, isLoading, isSuccess, requestId: feeEstimateRequestId, startedTimeStamp } = result;
+
   const [inputType, setInputType] = React.useState('dropdown');
   const [selectedValue, setSelectedValue] = React.useState('');
-  const [selectedTime, setSelectedTime] = React.useState('');
-  const mode = useMode();
+  const [selectedTime, setSelectedTime] = React.useState(0);
   const [selectOpen, setSelectOpen] = React.useState(false);
   const [locale] = useLocale();
   const currencyCode = useCurrencyCode();
@@ -170,70 +203,52 @@ export default function EstimatedFee(props: FeeProps) {
 
   const multiplier = txCostEstimates[txType];
 
-  function formatEst(number, multiplierLocal, localeLocal) {
+  function formatEst(number: number, multiplierLocal: number, localeLocal: string) {
     const num = Math.round(number * multiplierLocal * 10 ** -4) * 10 ** 4;
-    const formatNum = mojoToChiaLocaleString(num, localeLocal);
-    return formatNum;
+    return mojoToChiaLocaleString(num, localeLocal);
   }
 
-  function getValueByTime(object, time) {
-    const estIndex = Object.keys(object).find((index) => object[index].time === time);
-    const estValue = object[estIndex].estimate;
-    return estValue;
-  }
+  const formattedEstimates: FormattedEstimate[] = useMemo(() => {
+    const estimateList = ests?.estimates ?? [0, 0, 0];
+    const defaultValues = [6_000_000, 5_000_000, 0];
+    const allZeroes = estimateList.filter((value: number) => value !== 0).length === 0;
+
+    return (allZeroes ? defaultValues : estimateList).map((estimate: number, i: number) => {
+      const formattedEstimate = formatEst(estimate, allZeroes ? 1 : multiplier, locale);
+      const minutes = TARGET_TIMES[i] / 60;
+
+      return {
+        minutes,
+        timeDescription: minutes > 1 ? t`Likely in ${minutes} minutes` : t`Likely in ${TARGET_TIMES[i]} seconds`,
+        estimate,
+        formattedEstimate,
+      };
+    });
+  }, [ests, locale, multiplier]);
 
   useEffect(() => {
-    if (ests) {
-      const estimateList = ests.estimates;
-      const { targetTimes } = ests;
-      // if (
-      //   estimateList[0] == 0 &&
-      //   estimateList[1] == 0 &&
-      //   estimateList[2] == 0
-      // ) {
-      //   //setInputType('classic');
-      // }
-      const est0 =
-        estimateList[0] === 0 ? formatEst(6_000_000, 1, locale) : formatEst(estimateList[0], multiplier, locale);
-      const est1 =
-        estimateList[1] === 0 ? formatEst(5_000_000, 1, locale) : formatEst(estimateList[1], multiplier, locale);
-      const est2 = estimateList[2] === 0 ? formatEst(0, 1, locale) : formatEst(estimateList[2], multiplier, locale);
-      setEstList(() => []);
-      setEstList((current) => [
-        ...current,
-        {
-          time: targetTimes[0] / 60,
-          timeText: `Likely in ${targetTimes[0]} seconds`,
-          estimate: est0,
-        },
-      ]);
-      setEstList((current) => [
-        ...current,
-        {
-          time: targetTimes[1] / 60,
-          timeText: `Likely in ${targetTimes[1] / 60} minutes`,
-          estimate: est1,
-        },
-      ]);
-      setEstList((current) => [
-        ...current,
-        {
-          time: targetTimes[2] / 60,
-          timeText: `Likely over ${targetTimes[2] / 60} minutes`,
-          estimate: est2,
-        },
-      ]);
-    }
-  }, [ests]);
-
-  useEffect(() => {
-    if (estList) {
-      if (selectedTime) {
-        setSelectedValue(getValueByTime(estList, selectedTime));
-        setValue(name, getValueByTime(estList, selectedTime));
+    if (!isLoading) {
+      if (!isSuccess) {
+        setStartTime(undefined);
+      } else if (feeEstimateRequestId !== requestId) {
+        setRequestId(feeEstimateRequestId);
+        setStartTime(startedTimeStamp);
       }
     }
-  }, [estList]);
+  }, [requestId, setRequestId, feeEstimateRequestId, startedTimeStamp, isLoading, isSuccess]);
+
+  useEffect(() => {
+    if (formattedEstimates) {
+      if (selectedTime) {
+        const estimate = formattedEstimates.find((formattedEstimate) => formattedEstimate.minutes === selectedTime);
+        if (estimate) {
+          const xchFee = mojoToChiaLocaleString(estimate.estimate, 'en-US');
+          setSelectedValue(estimate.formattedEstimate);
+          setValue(name, xchFee);
+        }
+      }
+    }
+  }, [formattedEstimates, name, selectedTime, setValue]);
 
   const handleSelectOpen = () => {
     setSelectOpen(true);
@@ -258,25 +273,21 @@ export default function EstimatedFee(props: FeeProps) {
             open={selectOpen}
             onOpen={handleSelectOpen}
             onClose={handleSelectClose}
-            estList={estList}
+            formattedEstimates={formattedEstimates}
             selectedValue={selectedValue}
             selectedTime={selectedTime}
             {...rest}
           >
-            {estList.map((option) => (
-              <MenuItem value={String(option.estimate)} key={option.time}>
+            {formattedEstimates.map((formattedEstimate) => (
+              <MenuItem value={formattedEstimate.formattedEstimate} key={formattedEstimate.minutes}>
                 <Flex flexDirection="row" flexGrow={1} justifyContent="space-between" alignItems="center">
                   <Flex>
-                    <Trans>
-                      {option.estimate} {currencyCode}
-                    </Trans>
+                    {formattedEstimate.formattedEstimate} {currencyCode}
                   </Flex>
                   <Flex alignSelf="center">
-                    <Trans>
-                      <Typography color="textSecondary" fontSize="small">
-                        {option.timeText}
-                      </Typography>
-                    </Trans>
+                    <Typography color="textSecondary" fontSize="small">
+                      {formattedEstimate.timeDescription}
+                    </Typography>
                   </Flex>
                 </Flex>
               </MenuItem>
@@ -286,9 +297,11 @@ export default function EstimatedFee(props: FeeProps) {
             </MenuItem>
           </Select>
         </Box>
-        <Box position="absolute" bottom={0} left={0} right={0}>
-          <CountdownBar start={startTime} refreshTime={refreshTime} />
-        </Box>
+        {startTime && (
+          <Box position="absolute" bottom={0} left={0} right={0}>
+            <CountdownBar startTime={startTime} refreshSeconds={REFRESH_SECONDS} />
+          </Box>
+        )}
       </Box>
     );
   }
@@ -325,7 +338,8 @@ export default function EstimatedFee(props: FeeProps) {
     );
   }
 
-  if (!error && mode[0] === Mode.FARMING && inputType !== 'classic') {
+  // if (!error && mode[0] === Mode.FARMING && inputType !== 'classic') {
+  if (inputType !== 'classic' && formattedEstimates) {
     return (
       <Flex>
         <FormControl variant="filled" fullWidth>

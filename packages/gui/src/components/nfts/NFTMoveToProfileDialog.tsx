@@ -145,7 +145,7 @@ export function DIDProfileDropdown(props: DIDProfileDropdownProps) {
           key={wallet.id}
           onClick={() => handleWalletChange(wallet.id)}
           selected={wallet.id === walletId}
-          divider={index === didWallets?.length - 1 && includeNoneOption}
+          divider={index === didWallets.length - 1 && includeNoneOption}
           close
         >
           <ListItemIcon>

@@ -27,6 +27,7 @@ export default function OfferViewerTitle(props: OfferViewerTitleProps): React.Re
   const { offerFilePath, tradeRecord } = props;
   const offerFileName = offerFilePath ? path.basename(offerFilePath) : undefined;
 
+  // eslint-disable-next-line react/no-unstable-nested-components -- Not a perf issue
   function OfferTitleValue() {
     if (offerFileName) {
       return offerFileName;

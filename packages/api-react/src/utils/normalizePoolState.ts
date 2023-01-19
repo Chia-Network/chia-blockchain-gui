@@ -1,4 +1,5 @@
-import PoolState from '../types/PoolState';
+import type { PoolState } from '@chia-network/api';
+
 import removeOldPoints from './removeOldPoints';
 
 export default function normalizePoolState(poolState: PoolState): PoolState {

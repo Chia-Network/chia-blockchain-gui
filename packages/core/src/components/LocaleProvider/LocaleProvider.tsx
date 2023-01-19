@@ -31,7 +31,8 @@ export type LocaleProviderProps = {
 export default function LocaleProvider(props: LocaleProviderProps) {
   const { children, i18n, locales, defaultLocale } = props;
 
-  let [locale, setLocale] = usePrefs<string>('locale', defaultLocale);
+  const [localeState, setLocale] = usePrefs<string>('locale', defaultLocale);
+  let locale = localeState;
   if (typeof locale !== 'string' || (locale && locale.length === 2)) {
     locale = defaultLocale;
   }
@@ -43,7 +44,7 @@ export default function LocaleProvider(props: LocaleProviderProps) {
       }
       setLocale(localeLocal);
     },
-    [setLocale]
+    [locales, setLocale]
   );
 
   const context = useMemo(
@@ -59,11 +60,11 @@ export default function LocaleProvider(props: LocaleProviderProps) {
   // prepare default locale
   useMemo(() => {
     activateLocale(i18n, defaultLocale);
-  }, []);
+  }, [defaultLocale, i18n]);
 
   useEffect(() => {
     activateLocale(i18n, locale);
-  }, [locale]);
+  }, [i18n, locale]);
 
   return (
     <LocaleContext.Provider value={context}>

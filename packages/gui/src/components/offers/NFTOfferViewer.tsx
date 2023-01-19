@@ -159,6 +159,7 @@ function NFTOfferSummaryRow(props: NFTOfferSummaryRowProps) {
           }}
         >
           {rows.map((row, index) => (
+            // eslint-disable-next-line react/no-array-index-key -- Its a list of react elements, we have nothing else to use
             <div key={index}>{row}</div>
           ))}
         </Box>
@@ -316,6 +317,7 @@ export function NFTOfferSummary(props: NFTOfferSummaryProps) {
     <Flex flexDirection="column" gap={2}>
       {title}
       {summaries.map((summaryItem, index) => (
+        // eslint-disable-next-line react/no-array-index-key -- Its a list of react elements, we have nothing else to use
         <Flex flexDirection="column" key={index} gap={2}>
           {summaryItem}
           {index !== summaries.length - 1 && <Divider />}
@@ -386,7 +388,7 @@ function NFTOfferDetails(props: NFTOfferDetailsProps) {
       ),
       royaltyPercentage,
     };
-  }, [nft]);
+  }, [amount, exchangeType, makerFee, nft]);
   const showRoyaltyWarning = (nftSaleInfo?.royaltyPercentage ?? 0) >= 20;
   const royaltyPercentageColor = showRoyaltyWarning ? StateColor.WARNING : 'textSecondary';
   const overrideNFTSellerAmount =
@@ -419,7 +421,7 @@ function NFTOfferDetails(props: NFTOfferDetailsProps) {
       setIsValid(valid);
       setIsValidating(false);
     }
-  }, [offerData]);
+  }, [checkOfferValidity, offerData, showError]);
 
   async function handleAcceptOffer(formData: any) {
     const { fee } = formData;

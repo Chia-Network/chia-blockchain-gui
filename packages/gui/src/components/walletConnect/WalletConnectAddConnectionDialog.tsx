@@ -67,7 +67,7 @@ export default function WalletConnectAddConnectionDialog(props: WalletConnectAdd
     if (fingerprint && !fingerprints.length) {
       setValue('fingerprints', [fingerprint]);
     }
-  }, [fingerprint]);
+  }, [fingerprint, methods]);
 
   async function handleSubmit(values: FormData) {
     const { uri, fingerprints } = values;

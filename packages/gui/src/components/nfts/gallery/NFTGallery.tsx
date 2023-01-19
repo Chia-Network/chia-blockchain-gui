@@ -1,9 +1,8 @@
 import type { NFTInfo } from '@chia-network/api';
 import { useLocalStorage } from '@chia-network/api-react';
 import { Flex, LayoutDashboardSub, Loading, /* useTrans, */ useDarkMode } from '@chia-network/core';
-import { WalletReceiveAddressField } from '@chia-network/wallets';
-import { t } from '@lingui/macro';
-import { FormControlLabel, RadioGroup, FormControl, Checkbox, Grid } from '@mui/material';
+import { t, Trans } from '@lingui/macro';
+import { FormControlLabel, RadioGroup, FormControl, Checkbox, Grid, Button } from '@mui/material';
 import React, { useEffect, useState, useCallback, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
@@ -65,11 +64,13 @@ const StyledGrid = styled(Grid)`
 `;
 
 const SelectedActionsContainer = styled.div`
-  position: absolute;
+  position: fixed;
   text-align: center;
   width: 100%;
-  background: green;
-  display: none;
+  transition: opacity 600ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, transform 400ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  opacity: 1;
+  bottom: 25px;
+  z-index: 7;
   &.active {
     display: block;
   }
@@ -145,6 +146,21 @@ const MultiSelectIconStyled = styled(MultiSelectIcon)`
 
 const LoadingWrapper = styled.div`
   padding: 25px;
+`;
+
+const TotalItemsStyled = styled.div`
+  display: flex;
+  > span {
+    margin-right: 15px;
+    position: relative;
+    top: 6px;
+  }
+`;
+
+const SelectAllButtonStyled = styled(Button)`
+  color: ${(props) => props.theme.palette.primary.main};
+  margin: 0 10px;
+  user-select: none;
 `;
 
 let visibleIndex = 0;
@@ -443,6 +459,30 @@ export default function NFTGallery() {
     return Object.keys(nftTypeKeys).filter((key) => typeFilterArray.indexOf(key) > -1).length;
   }
 
+  function renderSelectDeselectButtons() {
+    if (!inMultipleSelectionMode) return null;
+    return (
+      <>
+        <SelectAllButtonStyled
+          variant="text"
+          onClick={() => {
+            setSelectedNFTIds(filteredShownNFTs().map((nft: NFTInfo) => nft.$nftId));
+          }}
+        >
+          <Trans>Select all</Trans>
+        </SelectAllButtonStyled>
+        <SelectAllButtonStyled
+          variant="text"
+          onClick={() => {
+            setSelectedNFTIds([]);
+          }}
+        >
+          <Trans>Deselect all</Trans>
+        </SelectAllButtonStyled>
+      </>
+    );
+  }
+
   return (
     <LayoutDashboardSub
       // sidebar={<NFTGallerySidebar onWalletChange={setWalletId} />}
@@ -478,7 +518,6 @@ export default function NFTGallery() {
           <Flex gap={2} alignItems="stretch" flexWrap="wrap" justifyContent="space-between">
             <NFTProfileDropdown onChange={setWalletId} walletId={walletId} />
             <Search onUpdate={setSearch} placeholder={t`Search...`} defaultValue={search || undefined} />
-            <WalletReceiveAddressField variant="outlined" size="small" fullWidth isDarkMode={isDarkMode} />
             <MultiSelectAndFilterWrapper className={inMultipleSelectionMode ? 'active' : ''} isDarkMode={isDarkMode}>
               <MultiSelectIconStyled
                 onClick={() => toggleMultipleSelection(!inMultipleSelectionMode)}
@@ -489,8 +528,10 @@ export default function NFTGallery() {
           </Flex>
 
           <Flex gap={2} alignItems="center" flexWrap="wrap" justifyContent="space-between" sx={{ padding: '10px 0' }}>
-            {t`Showing ${filteredShownNFTs().length} of ${allowNFTsFiltered.length} items`}
-
+            <TotalItemsStyled>
+              <span>{t`Showing ${filteredShownNFTs().length} of ${allowNFTsFiltered.length} items`}</span>
+              {renderSelectDeselectButtons()}
+            </TotalItemsStyled>
             <Filters>
               <div ref={typesFilterRef} style={{ display: allTypes.length > 0 ? 'flex' : 'none' }}>
                 <FilterPill
@@ -557,7 +598,7 @@ export default function NFTGallery() {
       ) : (
         <>
           <SelectedActionsContainer
-            style={{ display: inMultipleSelectionMode ? 'block' : 'none' }}
+            style={{ opacity: inMultipleSelectionMode ? 1 : 0 }}
             className={inMultipleSelectionMode ? 'active' : ''}
           >
             <SelectedActionsDialog

@@ -45,7 +45,7 @@ export default function NFTOfferPreview(props: NFTOfferPreviewProps) {
     }
   }
 
-  const cardContentElem = (function () {
+  const cardContentElem = (() => {
     if (isLoadingNFT) {
       return (
         <Flex
@@ -71,9 +71,9 @@ export default function NFTOfferPreview(props: NFTOfferPreviewProps) {
             nft={nft}
             canExpandDetails={false}
             availableActions={
-              NFTContextualActionTypes.CopyNFTId |
-              NFTContextualActionTypes.ViewOnExplorer |
-              NFTContextualActionTypes.OpenInBrowser |
+              NFTContextualActionTypes.CopyNFTId +
+              NFTContextualActionTypes.ViewOnExplorer +
+              NFTContextualActionTypes.OpenInBrowser +
               NFTContextualActionTypes.CopyURL
             }
             isOffer

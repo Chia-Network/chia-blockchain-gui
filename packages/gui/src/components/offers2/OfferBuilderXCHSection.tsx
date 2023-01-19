@@ -55,7 +55,7 @@ export default function OfferBuilderXCHSection(props: OfferBuilderXCHSectionProp
     });
 
     return [mojoToChiaLocaleString(amountWithRoyaltiesLocal), rows];
-  }, [allRoyalties]);
+  }, [allRoyalties, amount]);
 
   function handleAdd() {
     if (!fields.length) {
