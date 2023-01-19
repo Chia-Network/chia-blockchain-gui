@@ -1,5 +1,5 @@
+import { Copy as AssignmentIcon } from '@chia-network/icons';
 import { Trans } from '@lingui/macro';
-import { Assignment as AssignmentIcon } from '@mui/icons-material';
 import { Tooltip, IconButton } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import React, { useState } from 'react';

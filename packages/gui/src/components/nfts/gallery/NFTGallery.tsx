@@ -1,7 +1,6 @@
 import type { NFTInfo } from '@chia-network/api';
 import { useLocalStorage } from '@chia-network/api-react';
 import { Flex, LayoutDashboardSub, Loading, /* useTrans, */ useDarkMode } from '@chia-network/core';
-import { WalletReceiveAddressField } from '@chia-network/wallets';
 import { t, Trans } from '@lingui/macro';
 import { FormControlLabel, RadioGroup, FormControl, Checkbox, Grid, Button } from '@mui/material';
 import React, { useEffect, useState, useCallback, useContext } from 'react';
@@ -65,11 +64,13 @@ const StyledGrid = styled(Grid)`
 `;
 
 const SelectedActionsContainer = styled.div`
-  position: absolute;
+  position: fixed;
   text-align: center;
   width: 100%;
-  background: green;
-  display: none;
+  transition: opacity 600ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, transform 400ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  opacity: 1;
+  bottom: 25px;
+  z-index: 7;
   &.active {
     display: block;
   }
@@ -517,7 +518,6 @@ export default function NFTGallery() {
           <Flex gap={2} alignItems="stretch" flexWrap="wrap" justifyContent="space-between">
             <NFTProfileDropdown onChange={setWalletId} walletId={walletId} />
             <Search onUpdate={setSearch} placeholder={t`Search...`} defaultValue={search || undefined} />
-            <WalletReceiveAddressField variant="outlined" size="small" fullWidth isDarkMode={isDarkMode} />
             <MultiSelectAndFilterWrapper className={inMultipleSelectionMode ? 'active' : ''} isDarkMode={isDarkMode}>
               <MultiSelectIconStyled
                 onClick={() => toggleMultipleSelection(!inMultipleSelectionMode)}
@@ -598,7 +598,7 @@ export default function NFTGallery() {
       ) : (
         <>
           <SelectedActionsContainer
-            style={{ display: inMultipleSelectionMode ? 'block' : 'none' }}
+            style={{ opacity: inMultipleSelectionMode ? 1 : 0 }}
             className={inMultipleSelectionMode ? 'active' : ''}
           >
             <SelectedActionsDialog
