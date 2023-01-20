@@ -1,4 +1,3 @@
-import { StateColor } from '@chia-network/core';
 import { FiberManualRecord as FiberManualRecordIcon } from '@mui/icons-material';
 import React, { forwardRef } from 'react';
 import styled from 'styled-components';
@@ -9,10 +8,9 @@ const StyledFiberManualRecordIcon = styled(({ color, ...rest }) => <FiberManualR
 `;
 
 type Props = {
-  color: StateColor;
+  color: string;
 };
 
-// @ts-ignore
 function Status(props: Props, ref) {
   const { color } = props;
 

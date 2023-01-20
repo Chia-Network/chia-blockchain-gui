@@ -14,7 +14,7 @@ export default {
       deps: true,
     }),
 
-    svgr(),
+    svgr({ typescript: true }),
 
     // Allows node_modules resolution
     nodeResolve({ extensions }),
