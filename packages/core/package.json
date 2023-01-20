@@ -18,7 +18,7 @@
     "locale:clean": "lingui extract --clean",
     "locale:compile": "lingui compile",
     "locale": "lingui extract && lingui compile",
-    "check:types": "tsc --noEmit",
+    "check:types": "tsc --noEmit --emitDeclarationOnly false",
     "test": "jest"
   },
   "dependencies": {

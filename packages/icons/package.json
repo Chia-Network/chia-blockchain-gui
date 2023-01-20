@@ -14,7 +14,7 @@
     "build:js": "rollup -c",
     "build:watch": "rollup -c -w",
     "build:types": "tsc --emitDeclarationOnly",
-    "check:types": "tsc --noEmit",
+    "check:types": "tsc --noEmit --emitDeclarationOnly false",
     "test": "jest"
   },
   "dependencies": {
