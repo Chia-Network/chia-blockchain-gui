@@ -126,6 +126,7 @@ const Filters = styled.div`
 `;
 
 const FilterIconStyled = styled(FilterIcon)`
+  cursor: pointer;
   path {
     stroke: ${(props) => (props.active ? props.theme.palette.primary.main : '#aaa')};
   }
@@ -483,6 +484,11 @@ export default function NFTGallery() {
     );
   }
 
+  function toggleShowFilters(e: MouseEvent) {
+    setFiltersShown(filtersShown.length < 2 ? ['types', 'visibility'] : []);
+    e.stopPropagation();
+  }
+
   return (
     <LayoutDashboardSub
       // sidebar={<NFTGallerySidebar onWalletChange={setWalletId} />}
@@ -523,7 +529,7 @@ export default function NFTGallery() {
                 onClick={() => toggleMultipleSelection(!inMultipleSelectionMode)}
                 isDarkMode={isDarkMode}
               />
-              <FilterIconStyled active={typeFilter.length > 0 || visibilityFilters.length !== 1} />
+              <FilterIconStyled onMouseDown={toggleShowFilters} active={filtersShown.length > 0} />
             </MultiSelectAndFilterWrapper>
           </Flex>
 

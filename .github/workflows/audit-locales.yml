@@ -8,6 +8,10 @@ on:
     branches-ignore:
       - 'main'
 
+concurrency:
+  group: ${{ github.ref }}-${{ github.workflow }}-${{ github.event_name }}--${{ (github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/heads/release/') || startsWith(github.ref, 'refs/heads/long_lived/')) && github.sha || '' }}
+  cancel-in-progress: true
+
 jobs:
   build:
     name: Check npm audit and locales
@@ -21,12 +25,6 @@ jobs:
         os: [ubuntu-latest, macos-latest, windows-latest]
 
     steps:
-      - name: Cancel previous runs on the same branch
-        if: ${{ github.ref != 'refs/heads/dev' }}
-        uses: styfle/cancel-workflow-action@0.11.0
-        with:
-          access_token: ${{ github.token }}
-
       - name: Checkout Code
         uses: actions/checkout@v3
         with:
