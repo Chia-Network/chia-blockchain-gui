@@ -8,6 +8,7 @@ import SettingsDataLayer from './SettingsDataLayer';
 import SettingsGeneral from './SettingsGeneral';
 import SettingsIntegration from './SettingsIntegration';
 import SettingsNFT from './SettingsNFT';
+import SettingsNotifications from './SettingsNotifications';
 import SettingsProfiles from './SettingsProfiles';
 
 enum SettingsTab {
@@ -16,6 +17,7 @@ enum SettingsTab {
   NFT = 'nft',
   DATALAYER = 'datalayer',
   INTEGRATION = 'integration',
+  NOTIFICATIONS = 'notifications',
 }
 
 const SettingsTabsPathMapping = {
@@ -24,6 +26,7 @@ const SettingsTabsPathMapping = {
   [SettingsTab.NFT]: '/dashboard/settings/nft',
   [SettingsTab.DATALAYER]: '/dashboard/settings/datalayer',
   [SettingsTab.INTEGRATION]: '/dashboard/settings/integration',
+  [SettingsTab.NOTIFICATIONS]: '/dashboard/settings/notifications',
 };
 
 export default function Settings() {
@@ -67,6 +70,11 @@ export default function Settings() {
               label={<Trans>Integration</Trans>}
               data-testid="Settings-tab-integration"
             />
+            <Tab
+              value={SettingsTab.NOTIFICATIONS}
+              label={<Trans>Notifications</Trans>}
+              data-testid="Settings-tab-notifications"
+            />
           </Tabs>
 
           <Routes>
@@ -75,6 +83,7 @@ export default function Settings() {
             <Route path="datalayer" element={<SettingsDataLayer />} />
             <Route path="general" element={<SettingsGeneral />} />
             <Route path="integration" element={<SettingsIntegration />} />
+            <Route path="notifications" element={<SettingsNotifications />} />
           </Routes>
         </Flex>
       </Flex>

@@ -15,6 +15,7 @@ import useFetchNFTs from '../../../hooks/useFetchNFTs';
 import useShownNFTs from '../../../hooks/useShownNFTs';
 import { launcherIdFromNFTId } from '../../../util/nfts';
 import { isImage } from '../../../util/utils';
+import OfferIncomingTable from '../../offers2/OfferIncomingTable';
 import NFTContextualActions, { NFTContextualActionTypes } from '../NFTContextualActions';
 import NFTContextualActionsEventEmitter from '../NFTContextualActionsEventEmitter';
 import NFTDetails from '../NFTDetails';
@@ -327,14 +328,7 @@ function NFTDetailLoaded(props: NFTDetailLoadedProps) {
             </Grid>
           </Grid>
 
-          {/**
-          <Flex flexDirection="column" gap={1}>
-            <Typography variant="h6">
-              <Trans>Item Activity</Trans>
-            </Typography>
-            <Table cols={cols} rows={metadata.activity} />
-          </Flex>
-          */}
+          <OfferIncomingTable nftId={nftId} title={<Trans>Offers</Trans>} />
         </Flex>
       </LayoutDashboardSub>
     </Flex>

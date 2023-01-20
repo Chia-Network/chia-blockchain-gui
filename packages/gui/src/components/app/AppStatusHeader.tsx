@@ -7,6 +7,7 @@ import React, { useState } from 'react';
 
 import Connections from '../fullNode/FullNodeConnections';
 import FullNodeStateIndicator from '../fullNode/FullNodeStateIndicator';
+import NotificationsDropdown from '../notification/NotificationsDropdown';
 import WalletConnectDropdown from '../walletConnect/WalletConnectDropdown';
 
 export default function AppStatusHeader() {
@@ -100,6 +101,7 @@ export default function AppStatusHeader() {
           </Box>
         </Popover>
       </ButtonGroup>
+      <NotificationsDropdown />
     </Flex>
   );
 }

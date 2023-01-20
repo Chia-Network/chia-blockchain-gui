@@ -45,6 +45,7 @@ const apiWithTag = api.enhanceEndpoints({
     'DerivationIndex',
     'CATs',
     'DaemonKey',
+    'Notification',
   ],
 });
 
@@ -2108,6 +2109,71 @@ export const walletApi = apiWithTag.injectEndpoints({
         args: [id, message],
       }),
     }),
+
+    // notifications
+    getNotifications: build.query<
+      any,
+      {
+        ids?: string[];
+        start?: number;
+        end?: number;
+      }
+    >({
+      query: ({ ids, start, end } = {}) => ({
+        command: 'getNotifications',
+        service: NFT,
+        args: [ids, start, end],
+      }),
+      transformResponse: (response: any) => response?.notifications,
+      providesTags: (result, _error) =>
+        result
+          ? [
+              ...result.map(({ id }) => ({
+                type: 'Notification',
+                id,
+              })),
+              { type: 'Notification', id: 'LIST' },
+            ]
+          : [{ type: 'Notification', id: 'LIST' }],
+      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, [
+        {
+          command: 'onNewOnChainNotification',
+          service: WalletService,
+          endpoint: () => walletApi.endpoints.getNotifications,
+        },
+      ]),
+    }),
+
+    deleteNotifications: build.mutation<
+      any,
+      {
+        ids: string[];
+      }
+    >({
+      query: ({ ids }) => ({
+        command: 'deleteNotifications',
+        service: WalletService,
+        args: [ids],
+      }),
+      invalidatesTags: (result, _error) => (result ? [{ type: 'Notification', id: 'LIST' }] : []),
+    }),
+
+    sendNotifications: build.mutation<
+      any,
+      {
+        target: string;
+        message: string;
+        amount: string | number;
+        fee: string | number;
+      }
+    >({
+      query: ({ target, message, amount, fee }) => ({
+        command: 'sendNotifications',
+        service: WalletService,
+        args: [target, message, amount, fee],
+      }),
+      invalidatesTags: (result, _error) => (result ? [{ type: 'Notification', id: 'LIST' }] : []),
+    }),
   }),
 });
 
@@ -2204,4 +2270,9 @@ export const {
   // sign
   useSignMessageByAddressMutation,
   useSignMessageByIdMutation,
+
+  // notifications
+  useGetNotificationsQuery,
+  useDeleteNotificationsMutation,
+  useSendNotificationsMutation,
 } = walletApi;

@@ -176,6 +176,11 @@ export const {
   // sign
   useSignMessageByAddressMutation,
   useSignMessageByIdMutation,
+
+  // notifications
+  useGetNotificationsQuery,
+  useDeleteNotificationsMutation,
+  useSendNotificationsMutation,
 } = wallet;
 
 // harvester hooks

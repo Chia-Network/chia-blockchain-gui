@@ -2,7 +2,7 @@ import { WalletType } from '@chia-network/api';
 import { useGetCatListQuery, useGetWalletsQuery } from '@chia-network/api-react';
 import type { CATToken, Wallet } from '@chia-network/core';
 import { useCurrencyCode } from '@chia-network/core';
-import { useMemo } from 'react';
+import { useMemo, useRef, useCallback } from 'react';
 
 export type AssetIdMapEntry = {
   walletId: number;
@@ -107,13 +107,18 @@ export default function useAssetIdName() {
     return { assetIdNameMapping, walletIdNameMapping };
   }, [isLoading, isCatListLoading, wallets, catList, currencyCode]);
 
-  function lookupByAssetId(assetId: string): AssetIdMapEntry | undefined {
-    return memoized.assetIdNameMapping.get(assetId.toLowerCase());
-  }
+  const ref = useRef(memoized);
+  ref.current = memoized;
 
-  function lookupByWalletId(walletId: number | string): AssetIdMapEntry | undefined {
-    return memoized.walletIdNameMapping.get(Number(walletId));
-  }
+  const lookupByAssetId = useCallback(
+    (assetId: string) => ref.current.assetIdNameMapping.get(assetId.toLowerCase()),
+    [ref]
+  );
+
+  const lookupByWalletId = useCallback(
+    (walletId: number | string) => ref.current.walletIdNameMapping.get(Number(walletId)),
+    [ref]
+  );
 
   return { lookupByAssetId, lookupByWalletId };
 }

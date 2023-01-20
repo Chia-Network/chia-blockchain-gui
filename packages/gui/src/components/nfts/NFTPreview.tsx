@@ -325,15 +325,15 @@ export default function NFTPreview(props: NFTPreviewProps) {
       width: 100%;
       text-align: center;
     }
-    
+
     body {
       overflow: hidden;
     }
-    
+
     img {
       object-fit: ${fit};
     }
-    
+
     #status-container {
       display: flex;
       flex-direction: row;
@@ -375,7 +375,7 @@ export default function NFTPreview(props: NFTPreviewProps) {
       }
       audio.dark::-webkit-media-controls-current-time-display {
         color: #fff;
-      }     
+      }
       audio.dark::-webkit-media-controls-time-remaining-display {
         color: #fff;
       }
