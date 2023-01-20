@@ -9,7 +9,7 @@ import {
   SelectProps as MaterialSelectProps,
   Typography,
 } from '@mui/material';
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useCallback, useState, useEffect, useMemo } from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 
 import useCurrencyCode from '../../hooks/useCurrencyCode';
@@ -203,10 +203,18 @@ export default function EstimatedFee(props: FeeProps) {
 
   const multiplier = txCostEstimates[txType];
 
-  function formatEst(number: number, multiplierLocal: number, localeLocal: string) {
-    const num = Math.round(number * multiplierLocal * 10 ** -4) * 10 ** 4;
-    return mojoToChiaLocaleString(num, localeLocal);
-  }
+  const multiplyEstimate = useCallback((estimate: number, multiplierLocal: number) => {
+    const num = Math.round(estimate * multiplierLocal * 10 ** -4) * 10 ** 4;
+    return num;
+  }, []);
+
+  const formatEst = useCallback(
+    (number: number, multiplierLocal: number, localeLocal: string) => {
+      const num = multiplyEstimate(number, multiplierLocal);
+      return mojoToChiaLocaleString(num, localeLocal);
+    },
+    [multiplyEstimate]
+  );
 
   const formattedEstimates: FormattedEstimate[] = useMemo(() => {
     const estimateList = ests?.estimates ?? [0, 0, 0];
@@ -214,17 +222,19 @@ export default function EstimatedFee(props: FeeProps) {
     const allZeroes = estimateList.filter((value: number) => value !== 0).length === 0;
 
     return (allZeroes ? defaultValues : estimateList).map((estimate: number, i: number) => {
-      const formattedEstimate = formatEst(estimate, allZeroes ? 1 : multiplier, locale);
+      const multiplierLocal = allZeroes ? 1 : multiplier;
+      const multipliedEstimate = multiplyEstimate(estimate, multiplierLocal);
+      const formattedEstimate = formatEst(estimate, multiplierLocal, locale);
       const minutes = TARGET_TIMES[i] / 60;
 
       return {
         minutes,
         timeDescription: minutes > 1 ? t`Likely in ${minutes} minutes` : t`Likely in ${TARGET_TIMES[i]} seconds`,
-        estimate,
+        estimate: multipliedEstimate,
         formattedEstimate,
       };
     });
-  }, [ests, locale, multiplier]);
+  }, [ests, locale, multiplier, formatEst, multiplyEstimate]);
 
   useEffect(() => {
     if (!isLoading) {

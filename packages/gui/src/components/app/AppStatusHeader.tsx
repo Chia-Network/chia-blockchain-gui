@@ -2,6 +2,7 @@ import { Flex, useMode, Mode, useDarkMode } from '@chia-network/core';
 import { WalletConnections, WalletStatus, WalletReceiveAddressField } from '@chia-network/wallets';
 import { Trans } from '@lingui/macro';
 import { Box, ButtonGroup, Button, Popover } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 import React, { useState } from 'react';
 
 import Connections from '../fullNode/FullNodeConnections';
@@ -10,11 +11,23 @@ import NotificationsDropdown from '../notification/NotificationsDropdown';
 import WalletConnectDropdown from '../walletConnect/WalletConnectDropdown';
 
 export default function AppStatusHeader() {
+  const theme = useTheme();
+  const { isDarkMode } = useDarkMode();
+  const borderColor = (theme.palette as any).border[isDarkMode ? 'dark' : 'main'];
+  const ButtonStyle = {
+    paddingTop: '3px',
+    paddingBottom: 0,
+    border: `1px solid ${borderColor}`,
+    '&:hover': {
+      border: `1px solid ${borderColor}`,
+    },
+    whiteSpace: 'nowrap',
+  };
+
   const [mode] = useMode();
 
   const [anchorElFN, setAnchorElFN] = useState<HTMLButtonElement | null>(null);
   const [anchorElW, setAnchorElW] = useState<HTMLButtonElement | null>(null);
-  const { isDarkMode } = useDarkMode();
 
   const handleClickFN = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorElFN(event.currentTarget);
@@ -39,7 +52,7 @@ export default function AppStatusHeader() {
       <ButtonGroup variant="outlined" color="secondary" size="small">
         {mode === Mode.FARMING && (
           <>
-            <Button onClick={handleClickFN} aria-describedby="fullnode-connections">
+            <Button onClick={handleClickFN} aria-describedby="fullnode-connections" sx={ButtonStyle}>
               <Flex gap={1} alignItems="center">
                 <FullNodeStateIndicator />
                 <Trans>Full Node</Trans>
@@ -64,7 +77,7 @@ export default function AppStatusHeader() {
             </Popover>
           </>
         )}
-        <Button onClick={handleClickW}>
+        <Button onClick={handleClickW} sx={ButtonStyle}>
           <Flex gap={1} alignItems="center">
             <WalletStatus indicator hideTitle />
             <Trans>Wallet</Trans>
