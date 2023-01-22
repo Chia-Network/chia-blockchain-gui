@@ -28,13 +28,21 @@ import {
   Typography,
 } from '@mui/material';
 import debug from 'debug';
-import React, { useMemo } from 'react';
+import React, { useCallback, useEffect, useMemo } from 'react';
 
 import useAssetIdName, { AssetIdMapEntry } from '../../hooks/useAssetIdName';
+import { launcherIdToNFTId } from '../../util/nfts';
+import NotificationSendDialog from '../notification/NotificationSendDialog';
 import { NFTOfferSummary } from './NFTOfferViewer';
+import OfferAsset from './OfferAsset';
 import OfferLocalStorageKeys from './OfferLocalStorage';
 import OfferSummary from './OfferSummary';
-import { offerContainsAssetOfType, shortSummaryForOffer, suggestedFilenameForOffer } from './utils';
+import {
+  offerAssetIdForAssetType,
+  offerContainsAssetOfType,
+  shortSummaryForOffer,
+  suggestedFilenameForOffer,
+} from './utils';
 
 const log = debug('chia-gui:offers');
 
@@ -74,7 +82,14 @@ type CommonDialogProps = {
   onClose?: (value: boolean) => void;
 };
 
-type OfferShareServiceDialogProps = CommonOfferProps & CommonDialogProps;
+type CommonShareServiceDialogProps = CommonDialogProps & {
+  // eslint-disable-next-line react/no-unused-prop-types -- False positive
+  isNFTOffer?: boolean;
+  // eslint-disable-next-line react/no-unused-prop-types -- False positive
+  showSendOfferNotificationDialog?: (show: boolean) => void;
+};
+
+type OfferShareServiceDialogProps = CommonOfferProps & CommonShareServiceDialogProps;
 
 const testnetDummyHost = 'offers-api-sim.chia.net';
 
@@ -528,9 +543,20 @@ async function postToOfferpool(offerData: string, testnet: boolean): Promise<Pos
 /* ========================================================================== */
 
 function OfferShareDexieDialog(props: OfferShareServiceDialogProps) {
-  const { offerRecord, offerData, testnet = false, onClose = () => {}, open = false } = props;
+  const {
+    offerRecord,
+    offerData,
+    testnet = false,
+    onClose = () => {},
+    open = false,
+    isNFTOffer = false,
+    showSendOfferNotificationDialog = () => {},
+  } = props;
   const openExternal = useOpenExternal();
-  const [sharedURL, setSharedURL] = React.useState('');
+  // TODO: Remove hardcoded testing URL
+  const [sharedURL, setSharedURL] = React.useState(
+    'https://dexie.space/offers/5xW9PcewrjgzNk5kckgpJYiMqfteJXheus7n8TA8Vm9v'
+  );
 
   function handleClose() {
     onClose(false);
@@ -540,6 +566,10 @@ function OfferShareDexieDialog(props: OfferShareServiceDialogProps) {
     const url = await postToDexie(offerData, testnet);
     log(`Dexie URL: ${url}`);
     setSharedURL(url);
+  }
+
+  function handleShowSendOfferNotificationDialog() {
+    showSendOfferNotificationDialog(true);
   }
 
   if (sharedURL) {
@@ -579,6 +609,11 @@ function OfferShareDexieDialog(props: OfferShareServiceDialogProps) {
           </Flex>
         </DialogContent>
         <DialogActions>
+          {isNFTOffer && (
+            <Button onClick={handleShowSendOfferNotificationDialog} color="primary" variant="outlined">
+              <Trans>Notify Current Owner</Trans>
+            </Button>
+          )}
           <Button onClick={handleClose} color="primary" variant="contained">
             <Trans>Close</Trans>
           </Button>
@@ -1283,7 +1318,7 @@ type OfferShareDialogProps = CommonOfferProps &
 
 interface OfferShareDialogProvider extends OfferSharingProvider {
   dialogComponent: React.FunctionComponent<OfferShareServiceDialogProps>;
-  props: Record<string, unknown>;
+  dialogProps: Record<string, unknown>;
 }
 
 export default function OfferShareDialog(props: OfferShareDialogProps) {
@@ -1297,51 +1332,65 @@ export default function OfferShareDialog(props: OfferShareDialogProps) {
     testnet = false,
   } = props;
   const openDialog = useOpenDialog();
+  const [sendOfferNotificationOpen, setSendOfferNotificationOpen] = React.useState(false);
   const [suppressShareOnCreate, setSuppressShareOnCreate] = usePrefs<boolean>(
     OfferLocalStorageKeys.SUPPRESS_SHARE_ON_CREATE
   );
   const isNFTOffer = offerContainsAssetOfType(offerRecord.summary, 'singleton');
+  const nftLauncherId = isNFTOffer ? offerAssetIdForAssetType(OfferAsset.NFT, offerRecord.summary) : undefined;
+  const nftId = nftLauncherId ? launcherIdToNFTId(nftLauncherId) : undefined;
+
+  const showSendOfferNotificationDialog = useCallback(
+    (localOpen: boolean) => {
+      setSendOfferNotificationOpen(localOpen);
+    },
+    [setSendOfferNotificationOpen]
+  );
 
   const shareOptions: OfferShareDialogProvider[] = useMemo(() => {
     const capabilities = isNFTOffer ? [OfferSharingCapability.NFT] : [OfferSharingCapability.Token];
+    const commonDialogProps: CommonShareServiceDialogProps = {
+      showSendOfferNotificationDialog,
+      isNFTOffer,
+    };
 
     const dialogComponents: {
-      [key in OfferSharingService]: {
+      [key in OfferSharingService]?: {
         component: React.FunctionComponent<OfferShareServiceDialogProps>;
-        props: any;
+        props: CommonShareServiceDialogProps;
       };
     } = {
       [OfferSharingService.Dexie]: {
         component: OfferShareDexieDialog,
-        props: {},
+        props: commonDialogProps,
       },
       [OfferSharingService.Hashgreen]: {
         component: OfferShareHashgreenDialog,
-        props: {},
+        props: commonDialogProps,
       },
       ...(testnet
         ? {
             [OfferSharingService.MintGarden]: {
               component: OfferShareMintGardenDialog,
-              props: {},
+              props: commonDialogProps,
             },
           }
         : {}),
       [OfferSharingService.OfferBin]: {
         component: OfferShareOfferBinDialog,
-        props: {},
+        props: commonDialogProps,
       },
       [OfferSharingService.Offerpool]: {
         component: OfferShareOfferpoolDialog,
-        props: {},
+        props: commonDialogProps,
       },
       [OfferSharingService.Spacescan]: {
         component: OfferShareSpacescanDialog,
-        props: {},
+        props: commonDialogProps,
       },
       [OfferSharingService.Keybase]: {
         component: OfferShareKeybaseDialog,
-        props: {},
+        props: commonDialogProps,
       },
     };
 
@@ -1351,7 +1400,7 @@ export default function OfferShareDialog(props: OfferShareDialogProps) {
         OfferSharingProviders[key as OfferSharingService].capabilities.some((cap) => capabilities.includes(cap))
       )
       .map((key) => {
-        const { component, props: dialogProps } = dialogComponents[key as OfferSharingService];
+        const { component, props: dialogProps } = dialogComponents[key as OfferSharingService]!;
         return {
           ...OfferSharingProviders[key as OfferSharingService],
           dialogComponent: component,
@@ -1360,7 +1409,15 @@ export default function OfferShareDialog(props: OfferShareDialogProps) {
       });
 
     return options;
-  }, [isNFTOffer, testnet]);
+  }, [isNFTOffer, testnet, showSendOfferNotificationDialog]);
+
+  useEffect(() => {
+    if (sendOfferNotificationOpen && nftId) {
+      console.log('in useEffect, opening dialog');
+      openDialog(<NotificationSendDialog nftId={nftId} />);
+      setSendOfferNotificationOpen(false);
+    }
+  }, [openDialog, sendOfferNotificationOpen, nftId]);
 
   function handleClose() {
     onClose(false);
@@ -1368,7 +1425,7 @@ export default function OfferShareDialog(props: OfferShareDialogProps) {
 
   async function handleShare(dialogProvider: OfferShareDialogProvider) {
     const DialogComponent = dialogProvider.dialogComponent;
-    const { props: dialogProps } = dialogProvider;
+    const { dialogProps } = dialogProvider;
 
     await openDialog(
       <DialogComponent offerRecord={offerRecord} offerData={offerData} testnet={testnet} {...dialogProps} />
