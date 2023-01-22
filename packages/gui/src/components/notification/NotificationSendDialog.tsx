@@ -1,5 +1,15 @@
+import { toBech32m } from '@chia-network/api';
 import { useGetNFTInfoQuery } from '@chia-network/api-react';
-import { ButtonLoading, Flex } from '@chia-network/core';
+import {
+  Amount,
+  ButtonLoading,
+  EstimatedFee,
+  Flex,
+  Form,
+  Loading,
+  TextField,
+  useCurrencyCode,
+} from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import {
   Box,
@@ -7,26 +17,51 @@ import {
   Dialog,
   DialogActions,
   DialogContent,
-  DialogContentText,
   DialogTitle,
+  Divider,
+  Grid,
   Typography,
 } from '@mui/material';
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useForm } from 'react-hook-form';
 
 import { launcherIdFromNFTId } from '../../util/nfts';
 import NFTPreview from '../nfts/NFTPreview';
 
+const DEFAULT_MESSAGE_COST = '0.00001';
+
+type NotificationSendDialogFormData = {
+  address: string;
+  amount: string;
+  fee: string;
+};
+
 export type NotificationSendDialogProps = {
   nftId: string;
+  recommendedAmount?: string;
   open?: boolean;
   onClose?: () => void;
 };
 
 export default function NotificationSendDialog(props: NotificationSendDialogProps) {
-  const { nftId, onClose = () => ({}), open = false, ...rest } = props;
+  const { nftId, recommendedAmount = DEFAULT_MESSAGE_COST, onClose = () => ({}), open = false, ...rest } = props;
+  const methods = useForm<NotificationSendDialogFormData>({ defaultValues: { address: '', amount: '', fee: '' } });
   const launcherId = launcherIdFromNFTId(nftId ?? '');
+  const currencyCode = useCurrencyCode();
   const { data: nft } = useGetNFTInfoQuery({ coinId: launcherId ?? '' });
   const [, setMetadata] = React.useState<any>({});
+  const [isLoading, setIsLoading] = React.useState(true);
+  const [isSubmitting, setIsSubmitting] = React.useState(false);
+
+  useEffect(() => {
+    if (nft?.p2Address && currencyCode) {
+      const p2Address = toBech32m(nft.p2Address, currencyCode);
+
+      methods.setValue('address', p2Address);
+
+      setIsLoading(false);
+    }
+  }, [nft, currencyCode, methods]);
 
   const nftPreviewContainer = {
     display: 'flex',
@@ -42,46 +77,113 @@ export default function NotificationSendDialog(props: NotificationSendDialogProp
     padding: '8px',
   };
 
+  async function handleSubmit(values: NotificationSendDialogFormData) {
+    console.log('handleSubmit values:');
+    console.log(values);
+
+    setIsSubmitting(true);
+
+    try {
+      // wait for 3 seconds
+      await new Promise((resolve) => setTimeout(resolve, 3000));
+    } catch (e: any) {
+      console.error(e);
+    } finally {
+      setIsSubmitting(false);
+    }
+  }
+
   function handleClose() {
-    onClose(false);
+    onClose();
   }
 
   return (
     <Dialog open={open} onClose={onClose} {...rest}>
-      <DialogTitle id="nft-move-dialog-title">
-        <Flex flexDirection="row" justifyContent="center" gap={1} paddingTop="20px">
-          <Typography variant="h6">
-            <Trans>Send an Offer Notification</Trans>
-          </Typography>
-        </Flex>
-      </DialogTitle>
-      <DialogContent>
-        <Flex flexDirection="column" alignItems="center" gap={3}>
-          <Box sx={nftPreviewContainer}>
-            <NFTPreview nft={nft} disableThumbnail setNFTCardMetadata={setMetadata} />
-          </Box>
-          <Flex flexDirection="column" alignItems="center" gap={1}>
-            <Typography variant="h6">
-              <Trans>Message the NFT Holder</Trans>
-            </Typography>
-            <Typography variant="body1" color="textSecondary">
-              <Trans>
-                For a small fee, you can message the current NFT holder to let them know about your offer. The message
-                cost will be a donation to the NFT holder.
-              </Trans>
-            </Typography>
+      <Form methods={methods} onSubmit={handleSubmit}>
+        <Box sx={{ width: '600px' }}>
+          <Flex flexDirection="column">
+            <DialogTitle id="nft-move-dialog-title">
+              <Flex flexDirection="row" justifyContent="center" gap={1} paddingTop="20px">
+                <Typography variant="h6">
+                  <Trans>Send an Offer Notification</Trans>
+                </Typography>
+              </Flex>
+            </DialogTitle>
+            <DialogContent sx={{ paddingBottom: 5 }}>
+              {isLoading ? (
+                <Loading />
+              ) : (
+                <Flex flexDirection="column" alignItems="center" gap={3}>
+                  <Box sx={nftPreviewContainer}>
+                    <NFTPreview nft={nft} disableThumbnail setNFTCardMetadata={setMetadata} />
+                  </Box>
+                  <Flex flexDirection="column" alignItems="center" gap={1}>
+                    <Typography variant="h6">
+                      <Trans>Message the NFT Holder</Trans>
+                    </Typography>
+                    <Typography variant="body1" color="textSecondary" align="center" sx={{ width: '380px' }}>
+                      <Trans>
+                        For a small fee, you can message the NFT holder to let them know about your offer. The message
+                        cost will be a donation to the NFT holder.
+                      </Trans>
+                    </Typography>
+                  </Flex>
+
+                  <Grid container spacing={3}>
+                    <Grid item xs={12}>
+                      <TextField
+                        variant="filled"
+                        name="address"
+                        label={<Trans>NFT Holder Address</Trans>}
+                        disabled={isSubmitting}
+                        fullWidth
+                        required
+                      />
+                    </Grid>
+                    <Grid item xs={12}>
+                      <Flex flexDirection="column" gap={1}>
+                        <Amount
+                          variant="filled"
+                          name="amount"
+                          label={<Trans>Message Cost</Trans>}
+                          disabled={isSubmitting}
+                          fullWidth
+                          required
+                        />
+                        <Typography variant="body2" color="textSecondary">
+                          <Trans>
+                            Recommended value: {recommendedAmount} {currencyCode}
+                          </Trans>
+                        </Typography>
+                      </Flex>
+                    </Grid>
+                    <Grid item xs={12}>
+                      <EstimatedFee
+                        name="fee"
+                        label={<Trans>Transaction Fee</Trans>}
+                        txType="walletSendXCH"
+                        disabled={isSubmitting}
+                        fullWidth
+                      />
+                    </Grid>
+                  </Grid>
+                </Flex>
+              )}
+            </DialogContent>
+            <Divider sx={{ width: '100%' }} />
+            <DialogActions>
+              <Flex flexDirection="row" gap={2} p={2}>
+                <Button onClick={handleClose} color="primary" variant="outlined">
+                  <Trans>Close</Trans>
+                </Button>
+                <ButtonLoading type="submit" color="primary" variant="contained" loading={isSubmitting}>
+                  <Trans>Send Message</Trans>
+                </ButtonLoading>
+              </Flex>
+            </DialogActions>
           </Flex>
-          <DialogContentText id="nft-move-dialog-description">
-            <Trans>Would you like to move the specified NFT to a profile?</Trans>
-          </DialogContentText>
-        </Flex>
-      </DialogContent>
-      <DialogActions>
-        <Button onClick={handleClose} color="primary" variant="contained">
-          <Trans>Close</Trans>
-        </Button>
-      </DialogActions>
-      {/* <NFTPreview nft={nft} width="100%" height="100%" background={StyledNFTPreviewBackground} hideStatusBar /> */}
+        </Box>
+      </Form>
     </Dialog>
   );
 }
