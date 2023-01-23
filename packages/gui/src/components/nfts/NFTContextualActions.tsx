@@ -35,6 +35,7 @@ import NFTSelection from '../../types/NFTSelection';
 import computeHash from '../../util/computeHash';
 import download from '../../util/download';
 import { stripHexPrefix } from '../../util/utils';
+import MultipleDownloadDialog from './MultipleDownloadDialog';
 import NFTBurnDialog from './NFTBurnDialog';
 import NFTContextualActionsEventEmitter from './NFTContextualActionsEventEmitter';
 import NFTMoveToProfileDialog from './NFTMoveToProfileDialog';
@@ -397,17 +398,41 @@ type NFTDownloadContextualActionProps = NFTContextualActionProps;
 function NFTDownloadContextualAction(props: NFTDownloadContextualActionProps) {
   const { selection } = props;
   const selectedNft: NFTInfo | undefined = selection?.items[0];
+  const selectedNfts: NFTInfo | undefined = selection?.items;
   const disabled = !selectedNft;
   const dataUrl = selectedNft?.dataUris?.[0];
+  const openDialog = useOpenDialog();
 
-  function handleDownload() {
+  async function handleDownload() {
+    const { ipcRenderer } = window as any;
     if (!selectedNft) {
       return;
     }
 
-    const dataUrlLocal = selectedNft?.dataUris?.[0];
-    if (dataUrlLocal) {
-      download(dataUrlLocal);
+    if (selectedNfts.length > 1) {
+      const folder = await ipcRenderer.invoke('selectMultipleDownloadFolder');
+      if (folder?.canceled !== true) {
+        const nfts = selectedNfts.map((nft: NFTInfo) => {
+          let hash;
+          try {
+            const item = localStorage.getItem(`content-cache-${nft.$nftId}`) || '';
+            const obj = JSON.parse(item);
+            if (obj.valid && obj.binary) {
+              hash = obj.binary;
+            }
+          } catch (e) {
+            return nft;
+          }
+          return { ...nft, hash };
+        });
+        ipcRenderer.invoke('startMultipleDownload', { folder: folder.filePaths[0], nfts });
+        await openDialog(<MultipleDownloadDialog />);
+      }
+    } else {
+      const dataUrlLocal = selectedNft?.dataUris?.[0];
+      if (dataUrlLocal) {
+        download(dataUrlLocal);
+      }
     }
   }
 

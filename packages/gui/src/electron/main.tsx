@@ -16,6 +16,7 @@ import fs from 'fs';
 import path from 'path';
 import url from 'url';
 
+import { NFTInfo } from '@chia-network/api';
 import { initialize, enable } from '@electron/remote/main';
 import axios from 'axios';
 import chokidar from 'chokidar';
@@ -60,6 +61,9 @@ if (!fs.existsSync(defaultThumbCacheFolder)) {
 let mainWindow: BrowserWindow | null = null;
 
 let watcher;
+
+let currentDownloadRequest: any;
+let abortDownloadingFiles: boolean = false;
 
 function watchCacheFolder(folder: string) {
   function watchFolder(f) {
@@ -475,6 +479,103 @@ if (!handleSquirrelEvent()) {
         }
         console.error('mainWindow was not initialized');
         return undefined;
+      });
+
+      ipcMain.handle('selectMultipleDownloadFolder', async (_event: any) =>
+        dialog.showOpenDialog({
+          properties: ['openDirectory'],
+          defaultPath: app.getPath('downloads'),
+        })
+      );
+
+      type DownloadFileWithProgressProps = {
+        folder: string;
+        nft: NFTInfo;
+        current: number;
+        total: number;
+      };
+
+      function downloadFileWithProgress(props: DownloadFileWithProgressProps): Promise<number> {
+        const { folder, nft, current, total } = props;
+        const uri = nft.dataUris[0];
+        return new Promise((resolve, reject) => {
+          getRemoteFileSize(uri).then((fileSize: number) => {
+            let totalLength = 0;
+            currentDownloadRequest = net.request(uri);
+            currentDownloadRequest.on('response', (response: IncomingMessage) => {
+              let fileName: string = '';
+              /* first try to get file name from server headers */
+              const disposition = response.headers['content-disposition'];
+              if (disposition && typeof disposition === 'string') {
+                const filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
+                const matches = filenameRegex.exec(disposition);
+                if (matches != null && matches[1]) {
+                  fileName = matches[1].replace(/['"]/g, '');
+                }
+              }
+              /* if we didn't get file name from server headers, then parse it from uri */
+              fileName = fileName || uri.replace(/\/$/, '').split('/').splice(-1, 1)[0];
+              currentDownloadRequest.on('abort', () => {
+                reject(new Error('download aborted'));
+              });
+
+              /* if there is already a file with that name in this folder, add nftId to the file name */
+              if (fs.existsSync(path.join(folder, fileName))) {
+                fileName = `${fileName}-${nft.$nftId}`;
+              }
+
+              const fileStream = fs.createWriteStream(path.join(folder, fileName));
+              response.on('data', (chunk) => {
+                fileStream.write(chunk);
+                totalLength += chunk.byteLength;
+                if (fileSize > 0) {
+                  mainWindow?.webContents.send('downloadProgress', {
+                    url: nft.dataUris[0],
+                    nftId: nft.$nftId,
+                    progress: totalLength / fileSize,
+                    i: current,
+                    total,
+                  });
+                }
+              });
+              response.on('end', () => {
+                fileStream.end();
+                resolve(totalLength);
+              });
+            });
+            currentDownloadRequest.end();
+          });
+        });
+      }
+
+      ipcMain.handle('startMultipleDownload', async (_event: any, options: any) => {
+        /* eslint no-await-in-loop: off -- we want to handle each file separately! */
+        let totalDownloadedSize = 0;
+        for (let i = 0; i < options.nfts.length; i++) {
+          let fileSize;
+          try {
+            fileSize = await downloadFileWithProgress({
+              folder: options.folder,
+              nft: options.nfts[i],
+              current: i,
+              total: options.nfts.length,
+            });
+            totalDownloadedSize += fileSize;
+          } catch (e) {
+            if (abortDownloadingFiles) {
+              break;
+            }
+            mainWindow?.webContents.send('errorDownloadingUrl', options.nfts[i]);
+          }
+        }
+        abortDownloadingFiles = false;
+        mainWindow?.webContents.send('multipleDownloadDone', totalDownloadedSize);
+        return true;
+      });
+
+      ipcMain.handle('abortDownloadingFiles', async (_event: any) => {
+        abortDownloadingFiles = true;
+        currentDownloadRequest.abort();
       });
 
       ipcMain.handle('processLaunchTasks', async (_event) => {
