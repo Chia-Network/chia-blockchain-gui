@@ -29,6 +29,7 @@ export const {
   useMigrateKeyringMutation,
   useUnlockKeyringMutation,
   useGetVersionQuery,
+  useResyncWalletQuery,
 
   useGetPlottersQuery,
   useStopPlottingMutation,

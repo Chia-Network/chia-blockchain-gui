@@ -230,4 +230,8 @@ export default class Daemon extends Service {
   getVersion() {
     return this.command('get_version');
   }
+
+  resyncWallet() {
+    return this.command('set_wallet_resync');
+  }
 }

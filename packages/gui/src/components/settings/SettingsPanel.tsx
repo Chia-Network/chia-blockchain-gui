@@ -16,7 +16,7 @@ import {
 } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Help as HelpIcon } from '@mui/icons-material';
-import { Tooltip } from '@mui/material';
+import { Tooltip, Typography } from '@mui/material';
 import React from 'react';
 
 import ChangePassphrasePrompt from './ChangePassphrasePrompt';
@@ -24,7 +24,7 @@ import RemovePassphrasePrompt from './RemovePassphrasePrompt';
 import SetPassphrasePrompt from './SetPassphrasePrompt';
 import SettingsDerivationIndex from './SettingsDerivationIndex';
 import SettingsStartup from './SettingsStartup';
-import SettingsResync from './SettingsResync';
+import ResyncPrompt from './ResyncPrompt';
 
 export default function SettingsPanel() {
   const openDialog = useOpenDialog();
@@ -33,6 +33,7 @@ export default function SettingsPanel() {
   const [changePassphraseOpen, setChangePassphraseOpen] = React.useState(false);
   const [removePassphraseOpen, setRemovePassphraseOpen] = React.useState(false);
   const [addPassphraseOpen, setAddPassphraseOpen] = React.useState(false);
+  const [resyncWalletOpen, setResyncWalletOpen] = React.useState(false);
 
   if (isLoading) {
     return <Suspender />;
@@ -77,6 +78,14 @@ export default function SettingsPanel() {
 
   function closeRemovePassphrase() {
     setRemovePassphraseOpen(false);
+  }
+
+  async function resyncWalletSucceeded() {
+    closeResyncWallet();
+  }
+
+  function closeResyncWallet() {
+    setResyncWalletOpen(false);
   }
 
   function PassphraseFeatureStatus() {
@@ -189,7 +198,19 @@ export default function SettingsPanel() {
         {addPassphraseOpen && <SetPassphrasePrompt onSuccess={setPassphraseSucceeded} onCancel={closeSetPassphrase} />}
         <PassphraseFeatureStatus />
       </Flex>
-      <SettingsResync />
+      <Flex flexDirection="column" gap={1}>
+        <SettingsLabel>
+          <Trans>Resync Wallet DB</Trans>
+        </SettingsLabel>
+        
+        <Button onClick={() => setResyncWalletOpen(true)} variant="outlined" data-testid="SettingsPanel-resync-wallet-db">
+            <Trans>Resync</Trans>
+        </Button>
+        {resyncWalletOpen && <ResyncPrompt onSuccess={resyncWalletSucceeded} onCancel={closeResyncWallet} />}
+        <Typography variant="body2" color="textSecondary">
+          <Trans>Resync description info goes here</Trans>
+        </Typography>
+      </Flex>
     </SettingsApp>
   );
 }

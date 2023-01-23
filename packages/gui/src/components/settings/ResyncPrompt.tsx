@@ -1,4 +1,5 @@
-import { Button, DialogActions } from '@chia-network/core';
+import { useResyncWalletQuery } from '@chia-network/api-react';
+import { AlertDialog, Button, DialogActions, useOpenDialog } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import {
   Dialog,
@@ -15,9 +16,20 @@ type Props = {
 
 export default function ResyncPrompt(props: Props) {
   const { onSuccess, onCancel } = props;
+  const openDialog = useOpenDialog();
+  const resyncWallet = useResyncWalletQuery();
 
   async function handleSubmit() {
-    console.log("Submit resync request here");
+    try {
+      await resyncWallet;
+      window.ipcRenderer.invoke('quitGUI');
+    } catch (error: any) {
+      await openDialog(
+        <AlertDialog>
+          <Trans>Error: {error.message}</Trans>
+        </AlertDialog>
+      );
+    }
     onSuccess();
   }
 
@@ -37,14 +49,22 @@ export default function ResyncPrompt(props: Props) {
       </DialogTitle>
       <DialogContent>
         <DialogContentText>
-          <Trans>In order to resync, Chia will need to shut down and restart. Are you sure you want to resync?</Trans>
+          <Trans>To resync, Chia must shut down. After shutting down, please reopen Chia to complete resyncing. Are you sure you want to resync and shut down Chia?</Trans>
         </DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleCancel} color="secondary" variant="outlined">
+        <Button
+          onClick={handleCancel}
+          color="secondary"
+          variant="outlined"
+        >
           <Trans>Cancel</Trans>
         </Button>
-        <Button onClick={handleSubmit} color="primary" variant="contained">
+        <Button
+          onClick={handleSubmit}
+          color="primary"
+          variant="contained"
+        >
           <Trans>Resync</Trans>
         </Button>
       </DialogActions>
