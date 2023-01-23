@@ -86,7 +86,7 @@ type CommonShareServiceDialogProps = CommonDialogProps & {
   // eslint-disable-next-line react/no-unused-prop-types -- False positive
   isNFTOffer?: boolean;
   // eslint-disable-next-line react/no-unused-prop-types -- False positive
-  showSendOfferNotificationDialog?: (show: boolean) => void;
+  showSendOfferNotificationDialog?: (show: boolean, offerURL: string) => void;
 };
 
 type OfferShareServiceDialogProps = CommonOfferProps & CommonShareServiceDialogProps;
@@ -555,7 +555,8 @@ function OfferShareDexieDialog(props: OfferShareServiceDialogProps) {
   const openExternal = useOpenExternal();
   // TODO: Remove hardcoded testing URL
   const [sharedURL, setSharedURL] = React.useState(
-    'https://dexie.space/offers/5xW9PcewrjgzNk5kckgpJYiMqfteJXheus7n8TA8Vm9v'
+    // 'https://dexie.space/offers/5xW9PcewrjgzNk5kckgpJYiMqfteJXheus7n8TA8Vm9v'
+    'https://testnet.dexie.space/offers/2tqTaTStwMFzCjqpZarYRGfF3DTCgYViuWvuoQDg2s2r'
   );
 
   function handleClose() {
@@ -569,7 +570,11 @@ function OfferShareDexieDialog(props: OfferShareServiceDialogProps) {
   }
 
   function handleShowSendOfferNotificationDialog() {
-    showSendOfferNotificationDialog(true);
+    const offerId = sharedURL.split('/').pop();
+    const hostname = sharedURL.split('/')[2];
+    const offerURL = `https://${hostname}/v1/offers/${offerId}`;
+
+    showSendOfferNotificationDialog(true, offerURL);
   }
 
   if (sharedURL) {
@@ -1333,6 +1338,7 @@ export default function OfferShareDialog(props: OfferShareDialogProps) {
   } = props;
   const openDialog = useOpenDialog();
   const [sendOfferNotificationOpen, setSendOfferNotificationOpen] = React.useState(false);
+  const [offerURL, setOfferURL] = React.useState('');
   const [suppressShareOnCreate, setSuppressShareOnCreate] = usePrefs<boolean>(
     OfferLocalStorageKeys.SUPPRESS_SHARE_ON_CREATE
   );
@@ -1341,10 +1347,11 @@ export default function OfferShareDialog(props: OfferShareDialogProps) {
   const nftId = nftLauncherId ? launcherIdToNFTId(nftLauncherId) : undefined;
 
   const showSendOfferNotificationDialog = useCallback(
-    (localOpen: boolean) => {
+    (localOpen: boolean, localOfferURL: string) => {
+      setOfferURL(localOfferURL);
       setSendOfferNotificationOpen(localOpen);
     },
-    [setSendOfferNotificationOpen]
+    [setOfferURL, setSendOfferNotificationOpen]
   );
 
   const shareOptions: OfferShareDialogProvider[] = useMemo(() => {
@@ -1412,12 +1419,11 @@ export default function OfferShareDialog(props: OfferShareDialogProps) {
   }, [isNFTOffer, testnet, showSendOfferNotificationDialog]);
 
   useEffect(() => {
-    if (sendOfferNotificationOpen && nftId) {
-      console.log('in useEffect, opening dialog');
-      openDialog(<NotificationSendDialog nftId={nftId} />);
+    if (sendOfferNotificationOpen && offerURL && nftId) {
+      openDialog(<NotificationSendDialog offerURL={offerURL} nftId={nftId} />);
       setSendOfferNotificationOpen(false);
     }
-  }, [openDialog, sendOfferNotificationOpen, nftId]);
+  }, [openDialog, sendOfferNotificationOpen, offerURL, nftId]);
 
   function handleClose() {
     onClose(false);

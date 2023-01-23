@@ -1,5 +1,5 @@
-import { toBech32m } from '@chia-network/api';
-import { useGetNFTInfoQuery } from '@chia-network/api-react';
+import { toBech32m, fromBech32m } from '@chia-network/api';
+import { useGetNFTInfoQuery, useSendNotificationsMutation } from '@chia-network/api-react';
 import {
   Amount,
   ButtonLoading,
@@ -8,6 +8,7 @@ import {
   Form,
   Loading,
   TextField,
+  chiaToMojo,
   useCurrencyCode,
 } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
@@ -20,9 +21,10 @@ import {
   DialogTitle,
   Divider,
   Grid,
+  Switch,
   Typography,
 } from '@mui/material';
-import React, { useEffect } from 'react';
+import React, { SyntheticEvent, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 
 import { launcherIdFromNFTId } from '../../util/nfts';
@@ -33,10 +35,12 @@ const DEFAULT_MESSAGE_COST = '0.00001';
 type NotificationSendDialogFormData = {
   address: string;
   amount: string;
+  allowCounterOffer: boolean;
   fee: string;
 };
 
 export type NotificationSendDialogProps = {
+  offerURL: string;
   nftId: string;
   recommendedAmount?: string;
   open?: boolean;
@@ -44,14 +48,25 @@ export type NotificationSendDialogProps = {
 };
 
 export default function NotificationSendDialog(props: NotificationSendDialogProps) {
-  const { nftId, recommendedAmount = DEFAULT_MESSAGE_COST, onClose = () => ({}), open = false, ...rest } = props;
-  const methods = useForm<NotificationSendDialogFormData>({ defaultValues: { address: '', amount: '', fee: '' } });
+  const {
+    offerURL,
+    nftId,
+    recommendedAmount = DEFAULT_MESSAGE_COST,
+    onClose = () => ({}),
+    open = false,
+    ...rest
+  } = props;
+  const methods = useForm<NotificationSendDialogFormData>({
+    defaultValues: { address: '', amount: '', allowCounterOffer: true, fee: '' },
+  });
   const launcherId = launcherIdFromNFTId(nftId ?? '');
   const currencyCode = useCurrencyCode();
   const { data: nft } = useGetNFTInfoQuery({ coinId: launcherId ?? '' });
+  const [sendNotifications] = useSendNotificationsMutation();
   const [, setMetadata] = React.useState<any>({});
   const [isLoading, setIsLoading] = React.useState(true);
   const [isSubmitting, setIsSubmitting] = React.useState(false);
+  const allowCounterOffer = methods.watch('allowCounterOffer');
 
   useEffect(() => {
     if (nft?.p2Address && currencyCode) {
@@ -78,6 +93,11 @@ export default function NotificationSendDialog(props: NotificationSendDialogProp
   };
 
   async function handleSubmit(values: NotificationSendDialogFormData) {
+    const { address, amount, allowCounterOffer, fee } = values;
+    const hexMessage = Buffer.from(offerURL).toString('hex');
+    const puzzleHash = fromBech32m(address);
+    const amountMojos = chiaToMojo(amount);
+    const feeMojos = chiaToMojo(fee);
     console.log('handleSubmit values:');
     console.log(values);
 
@@ -85,7 +105,16 @@ export default function NotificationSendDialog(props: NotificationSendDialogProp
 
     try {
       // wait for 3 seconds
-      await new Promise((resolve) => setTimeout(resolve, 3000));
+      // await new Promise((resolve) => setTimeout(resolve, 3000));
+      const result = await sendNotifications({
+        target: puzzleHash,
+        amount: amountMojos,
+        message: hexMessage,
+        fee: feeMojos,
+      });
+
+      console.log('result:');
+      console.log(result);
     } catch (e: any) {
       console.error(e);
     } finally {
@@ -95,6 +124,11 @@ export default function NotificationSendDialog(props: NotificationSendDialogProp
 
   function handleClose() {
     onClose();
+  }
+
+  function handleToggleAllowCounterOffer(event: SyntheticEvent) {
+    const { checked } = event.target as HTMLInputElement;
+    methods.setValue('allowCounterOffer', checked);
   }
 
   return (
@@ -156,6 +190,27 @@ export default function NotificationSendDialog(props: NotificationSendDialogProp
                           </Trans>
                         </Typography>
                       </Flex>
+                    </Grid>
+                    <Grid item xs={12}>
+                      <Grid container spacing={3}>
+                        <Grid item xs={8}>
+                          <Typography variant="body2" color="textPrimary">
+                            <Trans>
+                              Allow the NFT holder to send a counter offer. Your receive address will be included in the
+                              message.
+                            </Trans>
+                          </Typography>
+                        </Grid>
+                        <Grid item xs={4}>
+                          <Flex flexDirection="row" justifyContent="flex-end">
+                            <Switch
+                              checked={allowCounterOffer}
+                              onChange={handleToggleAllowCounterOffer}
+                              disabled={isSubmitting}
+                            />
+                          </Flex>
+                        </Grid>
+                      </Grid>
                     </Grid>
                     <Grid item xs={12}>
                       <EstimatedFee
