@@ -1,10 +1,11 @@
 import { Trans } from '@lingui/macro';
+import { Fade } from '@mui/material';
 import React, { ReactNode } from 'react';
 import styled from 'styled-components';
 
 import ArrowDownIcon from '../../../assets/img/arrow-down.svg';
 
-const Pill = styled.div`
+const Pill = styled.div<{ isDarkMode: boolean }>`
   display: flex;
   height: 38px;
   border: 1px solid ${(props) => (props.isDarkMode ? '#333' : '#e0e0e0')};
@@ -15,17 +16,12 @@ const Pill = styled.div`
   align-items: center;
   cursor: pointer;
   z-index: 7;
+  user-select: none;
   > svg {
     path {
       fill: ${(props) => (props.isDarkMode ? '#fff' : '#333')};
     }
   }
-`;
-
-const Children = styled.div`
-  transition: opacity 400ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, transform 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-  opacity: 1;
-  display: flex;
 `;
 
 const ArrowDown = styled(ArrowDownIcon)`
@@ -53,7 +49,9 @@ export default function FilterPill(props: FilterPillProps) {
     <Pill onClick={() => toggleFilterShow()} isDarkMode={isDarkMode}>
       <Trans>{title}</Trans>
       <ArrowDown />
-      <Children style={{ opacity: filtersShown.indexOf(which) > -1 ? 1 : 0 }}>{children}</Children>
+      <Fade in={filtersShown.indexOf(which) > -1} timeout={600}>
+        <div>{children}</div>
+      </Fade>
     </Pill>
   );
 }
