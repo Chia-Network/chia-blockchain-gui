@@ -1,10 +1,11 @@
 import { useGetNotificationsQuery, usePrefs, useDeleteNotificationsMutation } from '@chia-network/api-react';
-import { ConfirmDialog, useOpenDialog } from '@chia-network/core';
+import { ConfirmDialog, useCurrencyCode, useOpenDialog } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import debug from 'debug';
 import { orderBy } from 'lodash';
 import React, { useMemo, useState, useEffect, useCallback } from 'react';
 
+import { parseNotificationOfferData } from '../components/notification/utils';
 import NotificationType from '../constants/NotificationType';
 import fetchOffer from '../util/fetchOffer';
 import resolveOfferInfo from '../util/resolveOfferInfo';
@@ -50,6 +51,7 @@ export default function useNotifications() {
   const [deleteNotifications] = useDeleteNotificationsMutation();
   const showNotification = useShowNotification();
   const openDialog = useOpenDialog();
+  const currencyCode = useCurrencyCode() ?? 'xch';
 
   const isLoading = isLoadingNotifications || isPreparingNotifications;
   const error = getNotificationsError || preparingError;
@@ -69,20 +71,49 @@ export default function useNotifications() {
       const prepared = (
         await Promise.all(
           notifications.map(async (notification) => {
-            const { message } = notification;
+            const { message: hexMessage } = notification;
+            const message = Buffer.from(hexMessage ?? '', 'hex').toString('utf8');
 
+            console.log('message:');
+            console.log(message);
             if (!message) {
               log('Notification has no message', notification);
               return null;
             }
 
+            const { u: offerURLString, ph: senderPuzzleHash } = parseNotificationOfferData(message) ?? {};
+
+            console.log('offerURLString:');
+            console.log(offerURLString);
+            console.log('senderPuzzleHash:');
+            console.log(senderPuzzleHash);
+
             try {
-              const data = await fetchOffer(message);
+              const offerURL = new URL(offerURLString ?? '');
+              const pathComponents = offerURL.pathname.split('/');
+              const offerId = pathComponents[pathComponents.length - 1];
+              let resolvedOfferURL = offerURLString;
+
+              if (offerURL.host.endsWith('spacescan.io')) {
+                resolvedOfferURL = `https://api2.spacescan.io/api/offer/${offerId}?coin=${currencyCode}&version=1`;
+              } else if (offerURL.host.endsWith('dexie.space')) {
+                resolvedOfferURL = `https://${offerURL.host}/v1/offers/${offerId}`;
+              }
+
+              console.log('resolvedOfferURL:');
+              console.log(resolvedOfferURL);
+
+              const data = await fetchOffer(resolvedOfferURL);
               const { offerSummary } = data;
 
               const offered = resolveOfferInfo(offerSummary, 'offered', lookupByAssetId);
               const requested = resolveOfferInfo(offerSummary, 'requested', lookupByAssetId);
 
+              console.log('offered:');
+              console.log(offered);
+
+              console.log('requested:');
+              console.log(requested);
               return {
                 type: NotificationType.OFFER,
                 offered,
@@ -91,6 +122,7 @@ export default function useNotifications() {
                 ...notification,
               };
             } catch (e) {
+              console.error(e);
               log('Failed to prepare notification', e);
               return null;
             }
@@ -101,15 +133,22 @@ export default function useNotifications() {
           return false;
         }
 
+        console.log('notification:');
+        console.log(notification);
         if (notification.type === NotificationType.OFFER) {
-          return !!notification.valid;
+          // return !!notification.valid;
+          return true;
         }
 
         return true;
       });
 
+      console.log('prepared:');
+      console.log(prepared);
       const sortedNotifications = orderBy(prepared, ['height'], ['desc']);
 
+      console.log('sortedNotifications:');
+      console.log(sortedNotifications);
       setPreparedNotifications(sortedNotifications);
     } catch (e) {
       setPreparingError(e as Error);

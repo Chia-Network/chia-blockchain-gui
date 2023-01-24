@@ -16,21 +16,33 @@ export default async function fetchOffer(offerUrl: string) {
   }
 
   const domain = new URL(offerUrl).hostname;
-  const service = OfferServices.find(({ domains }) => domains.includes(domain));
+  const service = OfferServices.find(({ domains }) => domains.some((d) => domain.endsWith(d)));
   if (!service) {
     throw new Error('Service not found');
   }
 
-  const { data: offerData } = await getRemoteFileContent({
+  const { data: rawOfferData } = await getRemoteFileContent({
     uri: offerUrl,
     maxSize: MAX_FILE_SIZE,
     nftId: offerUrl,
     dataHash: 'no hash',
   });
 
+  let offerData = rawOfferData;
+
   if (!offerData) {
     throw new Error('Failed to get offer data');
   }
+
+  const isSpacescanOffer = domain.endsWith('spacescan.io');
+  const isDexieOffer = domain.endsWith('dexie.space');
+
+  if (isSpacescanOffer || isDexieOffer) {
+    offerData = JSON.parse(offerData).offer.offer;
+  }
+
+  console.log('offerData:');
+  console.log(offerData);
 
   // fetch offer summary
   const resultOfferSummaryPromise = store.dispatch(walletApi.endpoints.getOfferSummary.initiate(offerData));
@@ -44,9 +56,12 @@ export default async function fetchOffer(offerUrl: string) {
 
   // check offer validity
   const resultOfferValidityPromise = store.dispatch(walletApi.endpoints.checkOfferValidity.initiate(offerData));
+  const validityResult = await resultOfferValidityPromise;
+  console.log('validityResult:');
+  console.log(validityResult);
   const {
     data: { valid, success: isValiditySuccess },
-  } = await resultOfferValidityPromise;
+  } = validityResult;
   resultOfferValidityPromise.unsubscribe();
   if (!isValiditySuccess) {
     throw new Error('Failed to check offer validity');
