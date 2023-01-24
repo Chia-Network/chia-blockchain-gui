@@ -1,6 +1,6 @@
-import { Flex, SettingsLabel } from '@chia-network/core';
+import { Flex, SettingsHR, SettingsLabel, SettingsSection, SettingsTitle, SettingsText } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
-import { FormGroup, FormControlLabel, Grid, Switch, Typography } from '@mui/material';
+import { FormGroup, FormControlLabel, FormHelperText, Grid, Switch, Typography } from '@mui/material';
 import React from 'react';
 
 import useEnableDataLayerService from '../../hooks/useEnableDataLayerService';
@@ -11,40 +11,67 @@ export default function SettingsDataLayer() {
   const [enableFilePropagationServer, setEnableFilePropagationServer] = useEnableFilePropagationServer();
 
   return (
-    <Grid container>
-      <Grid item>
+    <Grid container style={{ maxWidth: '624px' }} gap={2}>
+      <Grid item style={{ maxWidth: '400px' }}>
         <Flex flexDirection="column" gap={1}>
-          <SettingsLabel>
+          <SettingsSection>
             <Trans>Startup</Trans>
-          </SettingsLabel>
-
-          <FormGroup>
-            <FormControlLabel
-              control={
-                <Switch
-                  checked={enableDataLayerService}
-                  onChange={() => setEnableDataLayerService(!enableDataLayerService)}
-                />
-              }
-              label={<Trans>Enable DataLayer</Trans>}
-            />
-            {enableDataLayerService && (
-              <FormControlLabel
-                control={
-                  <Switch
-                    checked={enableFilePropagationServer}
-                    onChange={() => setEnableFilePropagationServer(!enableFilePropagationServer)}
-                  />
-                }
-                label={<Trans>Enable File Propagation Server</Trans>}
-              />
-            )}
-          </FormGroup>
-          <Typography variant="body2" color="textSecondary">
-            <Trans>Changes will take effect the next time Chia is started</Trans>
-          </Typography>
+          </SettingsSection>
+          <SettingsText>
+            <Trans>Enable other services when the Chia Wallet starts.</Trans>
+          </SettingsText>
         </Flex>
       </Grid>
+
+      <Grid item xs={12} sm={12} lg={12}>
+        <SettingsHR />
+      </Grid>
+
+      <Grid container>
+        <Grid item style={{width: "400px"}}>
+          <SettingsTitle>
+            <Trans>Enable DataLayer</Trans>
+          </SettingsTitle>
+        </Grid>
+        <Grid item container xs justifyContent="flex-end" marginTop="-4px">
+          <FormControlLabel
+            control={<Switch checked={enableDataLayerService} onChange={() => setEnableDataLayerService(!enableDataLayerService)} />}
+          />
+        </Grid>
+        <Grid item container style={{width: "400px"}} gap={2}>
+          <SettingsText>
+            <Trans>Datalayer enables rich data to be stored on mirrored databases that can be verified using the Chia Blockchain.</Trans>
+          </SettingsText>
+          <FormHelperText>
+            <Trans>Changes will take effect the next time Chia is started.</Trans>
+          </FormHelperText>
+        </Grid>
+      </Grid>
+  
+      <Grid item xs={12} sm={12} lg={12}>
+        <SettingsHR />
+      </Grid>
+
+      {enableDataLayerService && (
+        <div style={{ width: '624px' }}>
+          <Grid container style={{ maxWidth: '624px' }} paddingBottom="10px">
+            <Grid item style={{width: "400px"}}>
+              <SettingsTitle>
+                <Trans>Enable File Propagation Server</Trans>
+              </SettingsTitle>
+            </Grid>
+            <Grid item container xs justifyContent="flex-end" marginTop="-6px">
+              <FormControlLabel
+                control={<Switch checked={enableFilePropagationServer} onChange={() => setEnableFilePropagationServer(!enableFilePropagationServer)} />}
+              />
+            </Grid>
+          </Grid>
+      
+          <Grid item xs={12} sm={12} lg={12}>
+            <SettingsHR />
+          </Grid>
+        </div>
+      )}
     </Grid>
   );
 }
