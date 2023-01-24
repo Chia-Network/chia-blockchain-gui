@@ -1,6 +1,6 @@
 const NOTIFICATION_MESSAGE_VERSION = 1;
 
-enum NotificationType {
+enum NotificationTypeId {
   OFFER = 1,
 }
 
@@ -36,7 +36,7 @@ export function createNotificationOfferData({
   };
 }
 
-export function createNotificationPayload(type: NotificationType, data: NotificationData): string {
+export function createNotificationPayload(type: NotificationTypeId, data: NotificationData): string {
   return JSON.stringify({
     v: NOTIFICATION_MESSAGE_VERSION,
     t: type,
@@ -51,10 +51,10 @@ export function createOfferNotificationPayload({
   offerURL: string;
   puzzleHash?: string;
 }): string {
-  return createNotificationPayload(NotificationType.OFFER, createNotificationOfferData({ offerURL, puzzleHash }));
+  return createNotificationPayload(NotificationTypeId.OFFER, createNotificationOfferData({ offerURL, puzzleHash }));
 }
 
-export function parseNotificationPayload(payload: string): { type: NotificationType; data: NotificationData } | null {
+export function parseNotificationPayload(payload: string): { type: NotificationTypeId; data: NotificationData } | null {
   try {
     const { v, t, d } = JSON.parse(payload);
     if (v !== NOTIFICATION_MESSAGE_VERSION) {
@@ -64,4 +64,20 @@ export function parseNotificationPayload(payload: string): { type: NotificationT
   } catch (e) {
     return null;
   }
+}
+
+export function parseNotificationOfferData(payload: string): NotificationOfferData | null {
+  const parsed = parseNotificationPayload(payload);
+  if (!parsed) {
+    return null;
+  }
+
+  if (parsed.type !== NotificationTypeId.OFFER) {
+    return null;
+  }
+
+  return {
+    u: parsed.data?.u ?? '',
+    ph: parsed.data?.ph,
+  };
 }

@@ -168,7 +168,7 @@ export default function NotificationSendDialog(props: NotificationSendDialogProp
             <DialogTitle id="nft-move-dialog-title">
               <Flex flexDirection="row" justifyContent="center" gap={1} paddingTop="20px">
                 <Typography variant="h6">
-                  <Trans>Notify NFT Holder of Offer</Trans>
+                  <Trans>Send offer notification</Trans>
                 </Typography>
               </Flex>
             </DialogTitle>
@@ -180,46 +180,53 @@ export default function NotificationSendDialog(props: NotificationSendDialogProp
                   <Box sx={nftPreviewContainer}>
                     <NFTPreview nft={nft} disableThumbnail setNFTCardMetadata={setMetadata} />
                   </Box>
-                  <Flex flexDirection="column" alignItems="center" gap={1}>
-                    {/* <Typography variant="h6">
+                  {/* <Flex flexDirection="column" alignItems="center" gap={1}>
+                    <Typography variant="h6">
                       <Trans>Message the NFT Holder</Trans>
-                    </Typography> */}
+                    </Typography>
                     <Typography variant="body1" color="textSecondary" align="center" sx={{ width: '380px' }}>
                       <Trans>
                         For a small fee, you can message the NFT holder to let them know about your offer. The message
                         cost will be a donation to the NFT holder.
                       </Trans>
                     </Typography>
-                  </Flex>
+                  </Flex> */}
 
                   <Grid container spacing={3}>
                     <Grid item xs={12}>
-                      <TextField
-                        variant="filled"
-                        name="address"
-                        label={<Trans>NFT Holder Address</Trans>}
-                        InputProps={{
-                          endAdornment: (
-                            <InputAdornment position="end">
-                              <CopyToClipboard value={address} />
-                            </InputAdornment>
-                          ),
-                        }}
-                        disabled
-                        fullWidth
-                        required
-                      />
+                      <Flex flexDirection="column" gap={1}>
+                        <Typography variant="caption" color="textPrimary">
+                          <Trans>NFT holder address</Trans>
+                        </Typography>
+                        <TextField
+                          variant="filled"
+                          name="address"
+                          label={<Trans>Address</Trans>}
+                          InputProps={{
+                            endAdornment: (
+                              <InputAdornment position="end">
+                                <CopyToClipboard value={address} />
+                              </InputAdornment>
+                            ),
+                          }}
+                          disabled
+                          fullWidth
+                          // required
+                        />
+                      </Flex>
                     </Grid>
                     <Grid item xs={12}>
                       <Flex flexDirection="column" gap={1}>
+                        <Typography variant="caption" color="textPrimary">
+                          <Trans>Cost to send notification to the NFT holder</Trans>
+                        </Typography>
                         <Amount
                           variant="filled"
                           name="amount"
-                          label={<Trans>Cost to Send</Trans>}
                           disabled /* Will allow editing the message cost in the future */
                           autoFocus
                           fullWidth
-                          required
+                          // required
                         />
                         {/* <Typography variant="body2" color="textSecondary">
                           <Trans>
