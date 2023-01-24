@@ -1,8 +1,10 @@
 import { toBech32m, fromBech32m } from '@chia-network/api';
-import { useGetNFTInfoQuery, useSendNotificationsMutation } from '@chia-network/api-react';
+import { useGetCurrentAddressQuery, useGetNFTInfoQuery, useSendNotificationsMutation } from '@chia-network/api-react';
 import {
+  AlertDialog,
   Amount,
   ButtonLoading,
+  CopyToClipboard,
   EstimatedFee,
   Flex,
   Form,
@@ -10,18 +12,21 @@ import {
   TextField,
   chiaToMojo,
   useCurrencyCode,
+  useOpenDialog,
 } from '@chia-network/core';
-import { Trans } from '@lingui/macro';
+import { Trans, t } from '@lingui/macro';
 import {
   Box,
   Button,
+  Checkbox,
   Dialog,
   DialogActions,
   DialogContent,
   DialogTitle,
   Divider,
+  FormControlLabel,
   Grid,
-  Switch,
+  InputAdornment,
   Typography,
 } from '@mui/material';
 import React, { SyntheticEvent, useEffect } from 'react';
@@ -29,8 +34,9 @@ import { useForm } from 'react-hook-form';
 
 import { launcherIdFromNFTId } from '../../util/nfts';
 import NFTPreview from '../nfts/NFTPreview';
+import { createOfferNotificationPayload } from './utils';
 
-const DEFAULT_MESSAGE_COST = '0.00001';
+// const DEFAULT_MESSAGE_COST = '0.00001';
 
 type NotificationSendDialogFormData = {
   address: string;
@@ -42,7 +48,7 @@ type NotificationSendDialogFormData = {
 export type NotificationSendDialogProps = {
   offerURL: string;
   nftId: string;
-  recommendedAmount?: string;
+  // recommendedAmount?: string;
   open?: boolean;
   onClose?: () => void;
 };
@@ -51,21 +57,24 @@ export default function NotificationSendDialog(props: NotificationSendDialogProp
   const {
     offerURL,
     nftId,
-    recommendedAmount = DEFAULT_MESSAGE_COST,
+    // recommendedAmount = DEFAULT_MESSAGE_COST,
     onClose = () => ({}),
     open = false,
     ...rest
   } = props;
   const methods = useForm<NotificationSendDialogFormData>({
-    defaultValues: { address: '', amount: '', allowCounterOffer: true, fee: '' },
+    defaultValues: { address: '', amount: '0.00001', allowCounterOffer: true, fee: '' },
   });
   const launcherId = launcherIdFromNFTId(nftId ?? '');
   const currencyCode = useCurrencyCode();
+  const openDialog = useOpenDialog();
   const { data: nft } = useGetNFTInfoQuery({ coinId: launcherId ?? '' });
+  const { data: currentAddress = '' } = useGetCurrentAddressQuery({ walletId: 1 });
   const [sendNotifications] = useSendNotificationsMutation();
   const [, setMetadata] = React.useState<any>({});
   const [isLoading, setIsLoading] = React.useState(true);
   const [isSubmitting, setIsSubmitting] = React.useState(false);
+  const address = methods.watch('address');
   const allowCounterOffer = methods.watch('allowCounterOffer');
 
   useEffect(() => {
@@ -93,32 +102,52 @@ export default function NotificationSendDialog(props: NotificationSendDialogProp
   };
 
   async function handleSubmit(values: NotificationSendDialogFormData) {
-    const { address, amount, allowCounterOffer, fee } = values;
-    const hexMessage = Buffer.from(offerURL).toString('hex');
-    const puzzleHash = fromBech32m(address);
+    const { amount, fee } = values;
+    const targetPuzzleHash = fromBech32m(address);
+    const senderPuzzleHash = allowCounterOffer ? fromBech32m(currentAddress) : undefined;
     const amountMojos = chiaToMojo(amount);
     const feeMojos = chiaToMojo(fee);
-    console.log('handleSubmit values:');
-    console.log(values);
+    const payload = createOfferNotificationPayload({ offerURL, puzzleHash: senderPuzzleHash });
+    let success = false;
+    let error = '';
+
+    const hexMessage = Buffer.from(payload).toString('hex');
 
     setIsSubmitting(true);
 
     try {
-      // wait for 3 seconds
-      // await new Promise((resolve) => setTimeout(resolve, 3000));
       const result = await sendNotifications({
-        target: puzzleHash,
+        target: targetPuzzleHash,
         amount: amountMojos,
         message: hexMessage,
         fee: feeMojos,
       });
 
-      console.log('result:');
-      console.log(result);
+      success = result?.data?.success ?? false;
     } catch (e: any) {
       console.error(e);
+      error = e.message;
     } finally {
       setIsSubmitting(false);
+    }
+
+    const resultDialog = (
+      <AlertDialog title={success ? t`Success` : t`Failure`}>
+        <Flex flexDirection="column" gap={3}>
+          {success ? (
+            <Trans>Notification has successfully been sent to a full node and included in the mempool.</Trans>
+          ) : (
+            <Trans>Failed to send the notification: {error}</Trans>
+          )}
+        </Flex>
+      </AlertDialog>
+    );
+
+    if (resultDialog) {
+      if (success) {
+        onClose();
+      }
+      await openDialog(resultDialog);
     }
   }
 
@@ -139,7 +168,7 @@ export default function NotificationSendDialog(props: NotificationSendDialogProp
             <DialogTitle id="nft-move-dialog-title">
               <Flex flexDirection="row" justifyContent="center" gap={1} paddingTop="20px">
                 <Typography variant="h6">
-                  <Trans>Send an Offer Notification</Trans>
+                  <Trans>Notify NFT Holder of Offer</Trans>
                 </Typography>
               </Flex>
             </DialogTitle>
@@ -152,9 +181,9 @@ export default function NotificationSendDialog(props: NotificationSendDialogProp
                     <NFTPreview nft={nft} disableThumbnail setNFTCardMetadata={setMetadata} />
                   </Box>
                   <Flex flexDirection="column" alignItems="center" gap={1}>
-                    <Typography variant="h6">
+                    {/* <Typography variant="h6">
                       <Trans>Message the NFT Holder</Trans>
-                    </Typography>
+                    </Typography> */}
                     <Typography variant="body1" color="textSecondary" align="center" sx={{ width: '380px' }}>
                       <Trans>
                         For a small fee, you can message the NFT holder to let them know about your offer. The message
@@ -169,7 +198,14 @@ export default function NotificationSendDialog(props: NotificationSendDialogProp
                         variant="filled"
                         name="address"
                         label={<Trans>NFT Holder Address</Trans>}
-                        disabled={isSubmitting}
+                        InputProps={{
+                          endAdornment: (
+                            <InputAdornment position="end">
+                              <CopyToClipboard value={address} />
+                            </InputAdornment>
+                          ),
+                        }}
+                        disabled
                         fullWidth
                         required
                       />
@@ -179,38 +215,18 @@ export default function NotificationSendDialog(props: NotificationSendDialogProp
                         <Amount
                           variant="filled"
                           name="amount"
-                          label={<Trans>Message Cost</Trans>}
-                          disabled={isSubmitting}
+                          label={<Trans>Cost to Send</Trans>}
+                          disabled /* Will allow editing the message cost in the future */
+                          autoFocus
                           fullWidth
                           required
                         />
-                        <Typography variant="body2" color="textSecondary">
+                        {/* <Typography variant="body2" color="textSecondary">
                           <Trans>
                             Recommended value: {recommendedAmount} {currencyCode}
                           </Trans>
-                        </Typography>
+                        </Typography> */}
                       </Flex>
-                    </Grid>
-                    <Grid item xs={12}>
-                      <Grid container spacing={3}>
-                        <Grid item xs={8}>
-                          <Typography variant="body2" color="textPrimary">
-                            <Trans>
-                              Allow the NFT holder to send a counter offer. Your receive address will be included in the
-                              message.
-                            </Trans>
-                          </Typography>
-                        </Grid>
-                        <Grid item xs={4}>
-                          <Flex flexDirection="row" justifyContent="flex-end">
-                            <Switch
-                              checked={allowCounterOffer}
-                              onChange={handleToggleAllowCounterOffer}
-                              disabled={isSubmitting}
-                            />
-                          </Flex>
-                        </Grid>
-                      </Grid>
                     </Grid>
                     <Grid item xs={12}>
                       <EstimatedFee
@@ -221,11 +237,38 @@ export default function NotificationSendDialog(props: NotificationSendDialogProp
                         fullWidth
                       />
                     </Grid>
+                    <Grid
+                      item
+                      xs={12}
+                      sx={{
+                        marginBottom: '-20px',
+                      }}
+                    >
+                      <Flex flexDirection="column" gap={0}>
+                        <FormControlLabel
+                          control={
+                            <Checkbox
+                              name="allowCounterOffer"
+                              checked={allowCounterOffer}
+                              onChange={handleToggleAllowCounterOffer}
+                            />
+                          }
+                          label={<Trans>Allow the NFT holder to send a counter offer</Trans>}
+                        />
+                        <Typography
+                          variant="caption"
+                          color="textSecondary"
+                          sx={{ paddingLeft: '31px', marginTop: '-8px' }}
+                        >
+                          Your receive address will be included in the message if this option is checked.
+                        </Typography>
+                      </Flex>
+                    </Grid>
                   </Grid>
                 </Flex>
               )}
             </DialogContent>
-            <Divider sx={{ width: '100%' }} />
+            <Divider />
             <DialogActions>
               <Flex flexDirection="row" gap={2} p={2}>
                 <Button onClick={handleClose} color="primary" variant="outlined">

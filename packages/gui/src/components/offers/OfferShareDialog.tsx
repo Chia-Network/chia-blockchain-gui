@@ -570,11 +570,7 @@ function OfferShareDexieDialog(props: OfferShareServiceDialogProps) {
   }
 
   function handleShowSendOfferNotificationDialog() {
-    const offerId = sharedURL.split('/').pop();
-    const hostname = sharedURL.split('/')[2];
-    const offerURL = `https://${hostname}/v1/offers/${offerId}`;
-
-    showSendOfferNotificationDialog(true, offerURL);
+    showSendOfferNotificationDialog(true, sharedURL);
   }
 
   if (sharedURL) {
