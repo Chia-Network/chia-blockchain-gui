@@ -1,4 +1,4 @@
-import { useResyncWalletQuery } from '@chia-network/api-react';
+import { useResyncWalletMutation } from '@chia-network/api-react';
 import { AlertDialog, Button, DialogActions, useOpenDialog } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import {
@@ -17,12 +17,11 @@ type Props = {
 export default function ResyncPrompt(props: Props) {
   const { onSuccess, onCancel } = props;
   const openDialog = useOpenDialog();
-  const resyncWallet = useResyncWalletQuery();
+  const resyncWallet = useResyncWalletMutation();
 
   async function handleSubmit() {
     try {
       await resyncWallet;
-      window.ipcRenderer.invoke('quitGUI');
     } catch (error: any) {
       await openDialog(
         <AlertDialog>
@@ -45,7 +44,7 @@ export default function ResyncPrompt(props: Props) {
       maxWidth="xs"
     >
       <DialogTitle id="form-dialog-title">
-        <Trans>Resync Wallet DB</Trans>
+        <Trans>Resync Wallet</Trans>
       </DialogTitle>
       <DialogContent>
         <DialogContentText>

@@ -82,6 +82,7 @@ export default function SettingsPanel() {
 
   async function resyncWalletSucceeded() {
     closeResyncWallet();
+    window.ipcRenderer.invoke('quitGUI');
   }
 
   function closeResyncWallet() {
@@ -200,7 +201,7 @@ export default function SettingsPanel() {
       </Flex>
       <Flex flexDirection="column" gap={1}>
         <SettingsLabel>
-          <Trans>Resync Wallet DB</Trans>
+          <Trans>Resync Wallet</Trans>
         </SettingsLabel>
         
         <Button onClick={() => setResyncWalletOpen(true)} variant="outlined" data-testid="SettingsPanel-resync-wallet-db">
