@@ -553,11 +553,7 @@ function OfferShareDexieDialog(props: OfferShareServiceDialogProps) {
     showSendOfferNotificationDialog = () => {},
   } = props;
   const openExternal = useOpenExternal();
-  // TODO: Remove hardcoded testing URL
-  const [sharedURL, setSharedURL] = React.useState(
-    // 'https://dexie.space/offers/5xW9PcewrjgzNk5kckgpJYiMqfteJXheus7n8TA8Vm9v'
-    'https://testnet.dexie.space/offers/2tqTaTStwMFzCjqpZarYRGfF3DTCgYViuWvuoQDg2s2r'
-  );
+  const [sharedURL, setSharedURL] = React.useState('');
 
   function handleClose() {
     onClose(false);
@@ -876,7 +872,15 @@ function OfferShareHashgreenDialog(props: OfferShareServiceDialogProps) {
 }
 
 function OfferShareSpacescanDialog(props: OfferShareServiceDialogProps) {
-  const { offerRecord, offerData, testnet = false, onClose = () => {}, open = false } = props;
+  const {
+    offerRecord,
+    offerData,
+    testnet = false,
+    onClose = () => {},
+    open = false,
+    isNFTOffer = false,
+    showSendOfferNotificationDialog = () => {},
+  } = props;
   const openExternal = useOpenExternal();
   const [sharedURL, setSharedURL] = React.useState('');
 
@@ -888,6 +892,10 @@ function OfferShareSpacescanDialog(props: OfferShareServiceDialogProps) {
     const url = await postToSpacescan(offerData, testnet);
     log(`Spacescan.io URL: ${url}`);
     setSharedURL(url);
+  }
+
+  function handleShowSendOfferNotificationDialog() {
+    showSendOfferNotificationDialog(true, sharedURL);
   }
 
   if (sharedURL) {
@@ -927,6 +935,12 @@ function OfferShareSpacescanDialog(props: OfferShareServiceDialogProps) {
           </Flex>
         </DialogContent>
         <DialogActions>
+          {' '}
+          {isNFTOffer && (
+            <Button onClick={handleShowSendOfferNotificationDialog} color="primary" variant="outlined">
+              <Trans>Notify Current Owner</Trans>
+            </Button>
+          )}
           <Button onClick={handleClose} color="primary" variant="contained">
             <Trans>Close</Trans>
           </Button>
