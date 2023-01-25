@@ -41,8 +41,8 @@ export function summaryStringsForNFTOffer(
 ): [makerString: string, takerString: string] {
   // const makerAssetType = offerAssetTypeForAssetId
   // TODO: Remove 1:1 NFT <--> XCH assumption
-  const makerEntry: [string, string] = Object.entries(summary.offered)[0];
-  const takerEntry: [string, string] = Object.entries(summary.requested)[0];
+  const makerEntry: [string, string] = Object.entries(summary.offered)[0] as [string, string];
+  const takerEntry: [string, string] = Object.entries(summary.requested)[0] as [string, string];
   const makerAssetType = offerAssetTypeForAssetId(makerEntry[0], summary);
   const takerAssetType = Array.isArray(takerEntry) && offerAssetTypeForAssetId(takerEntry[0], summary);
   let makerString = '';
@@ -57,7 +57,6 @@ export function summaryStringsForNFTOffer(
     ]);
     makerString = makerAssetInfoAndAmounts.reduce(builder, '');
   }
-
 
   if (takerAssetType) {
     if (takerAssetType === OfferAsset.NFT) {
