@@ -13,7 +13,6 @@ import {
 import { Trans } from '@lingui/macro';
 import { Grid, Button, Switch, FormControlLabel, Typography } from '@mui/material';
 import React from 'react';
-import styled from 'styled-components';
 
 import useHideObjectionableContent from '../../hooks/useHideObjectionableContent';
 import useNFTImageFittingMode from '../../hooks/useNFTImageFittingMode';
@@ -73,25 +72,6 @@ export default function SettingsGeneral() {
     );
   }
 
-  const CacheTable = styled.div`
-    display: table;
-    margin-top: 15px;
-    font-size: 15px;
-    max-width: 10px;
-    > div {
-      display: table-row;
-      > div {
-        display: table-cell;
-        padding: 10px 20px 10px 0;
-        white-space: nowrap;
-      }
-      > div:nth-child(2) {
-        font-weight: bold;
-        min-width: 250px;
-      }
-    }
-  `;
-
   function renderCacheFolder() {
     if (cacheFolder) {
       return cacheFolder;
@@ -123,11 +103,11 @@ export default function SettingsGeneral() {
   }
 
   return (
-    <Grid container style={{ maxWidth: '624px' }} gap={2}>
-      <Grid item style={{ maxWidth: '400px' }}>
+    <Grid container style={{ maxWidth: '624px' }} gap={3}>
+      <Grid item>
         <Flex flexDirection="column" gap={1}>
           <SettingsSection>
-            <Trans>NFT Content</Trans>
+            <Trans>NFT</Trans>
           </SettingsSection>
           <SettingsText>
             <Trans>Choose what you want to see and how you want to view it.</Trans>
@@ -159,10 +139,6 @@ export default function SettingsGeneral() {
         </Grid>
       </Grid>
 
-      <Grid item xs={12} sm={12} lg={12}>
-        <SettingsHR />
-      </Grid>
-
       <Grid container>
         <Grid item style={{ width: '400px' }}>
           <SettingsTitle>
@@ -179,10 +155,6 @@ export default function SettingsGeneral() {
             <Trans>Images will be scaled to fill the NFT card and ignore their original proportions.</Trans>
           </SettingsText>
         </Grid>
-      </Grid>
-
-      <Grid item xs={12} sm={12} lg={12}>
-        <SettingsHR />
       </Grid>
 
       <Grid item style={{ maxWidth: '400px' }}>
@@ -218,10 +190,6 @@ export default function SettingsGeneral() {
         </Grid>
       </Grid>
 
-      <Grid item xs={12} sm={12} lg={12}>
-        <SettingsHR />
-      </Grid>
-
       <Grid container>
         <Grid item style={{ width: '400px' }}>
           <SettingsTitle>
@@ -240,10 +208,6 @@ export default function SettingsGeneral() {
         </Grid>
       </Grid>
 
-      <Grid item xs={12} sm={12} lg={12}>
-        <SettingsHR />
-      </Grid>
-
       <Grid container>
         <Grid item style={{ width: '400px' }}>
           <SettingsTitle>
@@ -253,10 +217,6 @@ export default function SettingsGeneral() {
         <Grid item container xs justifyContent="flex-end">
           <LimitCacheSize forceUpdateCacheSize={forceUpdateCacheSize} />
         </Grid>
-      </Grid>
-
-      <Grid item xs={12} sm={12} lg={12}>
-        <SettingsHR />
       </Grid>
     </Grid>
   );
