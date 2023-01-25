@@ -19,5 +19,5 @@ export function Reload(props: SvgIconProps) {
 }
 
 export function Copy(props: SvgIconProps) {
-  return <CopyIcon component={ReloadIcon} viewBox="0 0 22 22" {...props} />;
+  return <SvgIcon component={CopyIcon} viewBox="0 0 22 22" {...props} />;
 }
