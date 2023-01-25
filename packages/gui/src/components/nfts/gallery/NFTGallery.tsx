@@ -2,7 +2,7 @@ import type { NFTInfo } from '@chia-network/api';
 import { useLocalStorage } from '@chia-network/api-react';
 import { Flex, LayoutDashboardSub, Loading, /* useTrans, */ useDarkMode } from '@chia-network/core';
 import { t, Trans } from '@lingui/macro';
-import { FormControlLabel, RadioGroup, FormControl, Checkbox, Grid, Button } from '@mui/material';
+import { FormControlLabel, RadioGroup, FormControl, Checkbox, Grid, Button, Fade } from '@mui/material';
 import React, { useEffect, useState, useCallback, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
@@ -67,8 +67,6 @@ const SelectedActionsContainer = styled.div`
   position: fixed;
   text-align: center;
   width: 100%;
-  transition: opacity 600ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, transform 400ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-  opacity: 1;
   bottom: 25px;
   z-index: 7;
   &.active {
@@ -603,15 +601,14 @@ export default function NFTGallery() {
         <NFTGalleryHero />
       ) : (
         <>
-          <SelectedActionsContainer
-            style={{ opacity: inMultipleSelectionMode ? 1 : 0 }}
-            className={inMultipleSelectionMode ? 'active' : ''}
-          >
-            <SelectedActionsDialog
-              allCount={allowNFTsFiltered.length}
-              nfts={nfts.filter((nft: NFTInfo) => selectedNFTIds.indexOf(nft.$nftId) > -1)}
-            />
-          </SelectedActionsContainer>
+          <Fade in={inMultipleSelectionMode} timeout={600}>
+            <SelectedActionsContainer style={{ opacity: inMultipleSelectionMode ? 1 : 0 }}>
+              <SelectedActionsDialog
+                allCount={allowNFTsFiltered.length}
+                nfts={nfts.filter((nft: NFTInfo) => selectedNFTIds.indexOf(nft.$nftId) > -1)}
+              />
+            </SelectedActionsContainer>
+          </Fade>
           <div ref={galleryHeroRef} style={{ display: 'none' }}>
             <NFTGalleryHero />
           </div>

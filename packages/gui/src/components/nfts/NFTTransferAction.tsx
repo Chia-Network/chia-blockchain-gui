@@ -49,13 +49,13 @@ type NFTTransferFormData = {
 };
 
 type NFTTransferActionProps = {
-  nft: NFTInfo;
+  nfts: NFTInfo[];
   destination?: string;
   onComplete?: (result?: NFTTransferResult) => void;
 };
 
 export default function NFTTransferAction(props: NFTTransferActionProps) {
-  const { nft, destination = '', onComplete } = props;
+  const { nfts, destination = '', onComplete } = props;
   const [isLoading, setIsLoading] = useState(false);
   const [transferNFT] = useTransferNFTMutation();
   const openDialog = useOpenDialog();
@@ -89,15 +89,24 @@ export default function NFTTransferAction(props: NFTTransferActionProps) {
       return;
     }
 
-    const confirmation = await openDialog(<NFTTransferConfirmationDialog destination={destinationLocal} fee={fee} />);
+    const description = nfts.length > 1 && (
+      <Trans>
+        Once you initiate this transfer, you will not be able to cancel the transaction. Are you sure you want to
+        transfer {nfts.length} NFTs?
+      </Trans>
+    );
+
+    const confirmation = await openDialog(
+      <NFTTransferConfirmationDialog destination={destinationLocal} fee={fee} description={description} />
+    );
 
     if (confirmation) {
       setIsLoading(true);
 
       const { error, data: response } = await transferNFT({
-        walletId: nft.walletId,
-        nftCoinId: nft.nftCoinId,
-        launcherId: nft.launcherId,
+        walletId: nfts[0].walletId,
+        nftCoinIds: nfts.map((nft: NFTInfo) => nft.nftCoinId),
+        launcherId: nfts[0].launcherId,
         targetAddress: destinationLocal,
         fee: feeInMojos,
       });
@@ -109,23 +118,29 @@ export default function NFTTransferAction(props: NFTTransferActionProps) {
       if (onComplete) {
         onComplete({
           success,
-          transferInfo: {
-            nftAssetId: nft.nftCoinId,
-            destination: destinationLocal,
-            fee,
-          },
           error: errorMessage,
         });
       }
     }
   }
 
+  function renderNFTPreview() {
+    if (nfts.length === 1) {
+      return (
+        <Flex flexDirection="column" gap={1}>
+          <NFTSummary launcherId={nfts[0].launcherId} />
+        </Flex>
+      );
+    }
+    return null;
+  }
+
+  <NFTSummary launcherId={nfts[0].launcherId} />;
+
   return (
     <Form methods={methods} onSubmit={handleSubmit}>
       <Flex flexDirection="column" gap={3}>
-        <Flex flexDirection="column" gap={1}>
-          <NFTSummary launcherId={nft.launcherId} />
-        </Flex>
+        {renderNFTPreview()}
         <TextField
           name="destination"
           variant="filled"
@@ -168,12 +183,12 @@ type NFTTransferDialogProps = {
   open?: boolean;
   onClose?: (value: any) => void;
   onComplete?: (result?: NFTTransferResult) => void;
-  nft: NFTInfo;
+  nfts: NFTInfo[];
   destination?: string;
 };
 
 export function NFTTransferDialog(props: NFTTransferDialogProps) {
-  const { open, onClose, onComplete, nft, destination, ...rest } = props;
+  const { open, onClose, onComplete, nfts, destination, ...rest } = props;
 
   function handleClose() {
     if (onClose) onClose(false);
@@ -206,9 +221,13 @@ export function NFTTransferDialog(props: NFTTransferDialogProps) {
       <DialogContent>
         <Flex flexDirection="column" gap={3}>
           <DialogContentText id="nft-transfer-dialog-description">
-            <Trans>Would you like to transfer the specified NFT to a new owner?</Trans>
+            {nfts.length > 1 ? (
+              <Trans id="Would you like to transfer {count} NFTs to a new owner?" values={{ count: nfts.length }} />
+            ) : (
+              <Trans>Would you like to transfer the specified NFT to a new owner</Trans>
+            )}
           </DialogContentText>
-          <NFTTransferAction nft={nft} destination={destination} onComplete={handleCompletion} />
+          <NFTTransferAction nfts={nfts} destination={destination} onComplete={handleCompletion} />
         </Flex>
       </DialogContent>
     </Dialog>
