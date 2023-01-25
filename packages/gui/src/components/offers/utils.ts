@@ -41,10 +41,10 @@ export function summaryStringsForNFTOffer(
 ): [makerString: string, takerString: string] {
   // const makerAssetType = offerAssetTypeForAssetId
   // TODO: Remove 1:1 NFT <--> XCH assumption
-  const makerEntry: [string, string] = Object.entries(summary.offered)[0];
-  const takerEntry: [string, string] = Object.entries(summary.requested)[0];
+  const makerEntry: [string, string] = Object.entries(summary.offered)[0] as [string, string];
+  const takerEntry: [string, string] = Object.entries(summary.requested)[0] as [string, string];
   const makerAssetType = offerAssetTypeForAssetId(makerEntry[0], summary);
-  const takerAssetType = offerAssetTypeForAssetId(takerEntry[0], summary);
+  const takerAssetType = Array.isArray(takerEntry) && offerAssetTypeForAssetId(takerEntry[0], summary);
   let makerString = '';
   let takerString = '';
 
@@ -58,14 +58,15 @@ export function summaryStringsForNFTOffer(
     makerString = makerAssetInfoAndAmounts.reduce(builder, '');
   }
 
-  if (takerAssetType === OfferAsset.NFT) {
-    takerString = `${takerEntry[1]}_${launcherIdToNFTId(takerEntry[0])}`;
-  } else {
-    const takerAssetInfoAndAmounts: [AssetIdMapEntry | undefined, string][] = [takerEntry].map(([assetId, amount]) => [
-      lookupByAssetId(assetId),
-      amount,
-    ]);
-    takerString = takerAssetInfoAndAmounts.reduce(builder, '');
+  if (takerAssetType) {
+    if (takerAssetType === OfferAsset.NFT) {
+      takerString = `${takerEntry[1]}_${launcherIdToNFTId(takerEntry[0])}`;
+    } else {
+      const takerAssetInfoAndAmounts: [AssetIdMapEntry | undefined, string][] = [takerEntry].map(
+        ([assetId, amount]) => [lookupByAssetId(assetId), amount]
+      );
+      takerString = takerAssetInfoAndAmounts.reduce(builder, '');
+    }
   }
 
   return [makerString, takerString];
