@@ -14,5 +14,6 @@ export default function Suspender() {
     resolve.current?.();
   });
 
+  // eslint-disable-next-line @typescript-eslint/no-throw-literal -- Suspense means throwing a promise
   throw promise;
 }

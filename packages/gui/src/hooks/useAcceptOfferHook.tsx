@@ -28,8 +28,8 @@ export default function useAcceptOfferHook(): [AcceptOfferHook] {
     offerData: string,
     offerSummary: OfferSummaryRecord,
     fee: string | undefined,
-    onUpdate: (accepting: boolean) => void,
-    onSuccess: () => void
+    onUpdate?: (accepting: boolean) => void,
+    onSuccess?: () => void
   ): Promise<void> {
     const feeInMojos: BigNumber = fee ? chiaToMojo(fee) : new BigNumber(0);
     const offeredUnknownCATs: string[] = Object.entries(offerSummary.offered)
@@ -45,7 +45,7 @@ export default function useAcceptOfferHook(): [AcceptOfferHook] {
       return;
     }
     try {
-      onUpdate(true);
+      onUpdate?.(true);
 
       const response = await takeOffer({ offer: offerData, fee: feeInMojos });
 
@@ -59,7 +59,7 @@ export default function useAcceptOfferHook(): [AcceptOfferHook] {
         throw new Error(response.error?.message ?? 'Something went wrong');
       }
 
-      onSuccess();
+      onSuccess?.();
     } catch (e) {
       let error = e as Error;
 
@@ -71,7 +71,7 @@ export default function useAcceptOfferHook(): [AcceptOfferHook] {
       }
       showError(error);
     } finally {
-      onUpdate(false);
+      onUpdate?.(false);
     }
   }
 

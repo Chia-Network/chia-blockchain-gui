@@ -69,6 +69,12 @@ export default {
             fontSize: '2rem',
           },
         },
+        {
+          props: { fontSize: 'notificationIcon' },
+          style: {
+            fontSize: '5rem',
+          },
+        },
       ],
     },
     MuiTypography: {

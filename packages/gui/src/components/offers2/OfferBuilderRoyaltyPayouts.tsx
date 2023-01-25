@@ -41,7 +41,7 @@ export default function OfferBuilderRoyaltyPayouts(props: OfferBuilderRoyaltyPay
       </Flex>
       {royaltyPayments.length > 0 && <Divider />}
       {royaltyPayments.map(({ nftId, payment }, i) => (
-        <Flex key={i} flexDirection="column" gap={1}>
+        <Flex key={nftId} flexDirection="column" gap={1}>
           <Flex flexDirection="row" alignItems="center" gap={1}>
             <Flex flexDirection="column" gap={0}>
               <StyledTitle>

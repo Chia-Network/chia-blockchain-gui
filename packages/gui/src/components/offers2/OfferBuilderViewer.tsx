@@ -2,7 +2,7 @@ import { useGetWalletsQuery, useCheckOfferValidityMutation } from '@chia-network
 import { Flex, ButtonLoading, Link, Loading, useShowError } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Alert, Grid } from '@mui/material';
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import type OfferBuilderData from '../../@types/OfferBuilderData';
@@ -40,11 +40,7 @@ export default function OfferBuilderViewer(props: OfferBuilderViewerProps) {
 
   const showInvalid = !isValidating && isValid === false;
 
-  async function validateOfferData() {
-    if (!offerData) {
-      return;
-    }
-
+  const validateOfferData = useCallback(async () => {
     try {
       setIsValid(undefined);
       setIsValidating(true);
@@ -57,23 +53,29 @@ export default function OfferBuilderViewer(props: OfferBuilderViewerProps) {
     } finally {
       setIsValidating(false);
     }
-  }
+  }, [offerData, checkOfferValidity, showError]);
 
   useEffect(() => {
-    validateOfferData();
-  }, [offerData]);
+    if (!offerData || isValid !== undefined || isValidating) {
+      return;
+    }
 
+    validateOfferData();
+  }, [isValid, isValidating, offerData, validateOfferData]);
+
+  const offerSummaryStringified = JSON.stringify(offerSummary);
   const offerBuilderData = useMemo(() => {
-    if (!offerSummary) {
+    const offerSummaryParsed = JSON.parse(offerSummaryStringified);
+    if (!offerSummaryParsed) {
       return undefined;
     }
     try {
-      return offerToOfferBuilderData(offerSummary);
+      return offerToOfferBuilderData(offerSummaryParsed);
     } catch (e) {
       setError(e);
       return undefined;
     }
-  }, [JSON.stringify(offerSummary)]);
+  }, [offerSummaryStringified]);
 
   const [offeredUnknownCATs, requestedUnknownCATs] = useMemo(() => {
     if (!offerBuilderData || !wallets) {

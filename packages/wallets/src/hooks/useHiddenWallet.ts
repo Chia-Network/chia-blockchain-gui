@@ -28,7 +28,7 @@ export default function useHiddenWallet(): {
         };
       });
     },
-    [setHiddenWalletIds, fingerprint]
+    [isLoading, setHiddenWalletIds, fingerprint]
   );
 
   const show = useCallback(
@@ -46,7 +46,7 @@ export default function useHiddenWallet(): {
         };
       });
     },
-    [setHiddenWalletIds, fingerprint]
+    [isLoading, setHiddenWalletIds, fingerprint]
   );
 
   const isHidden = useCallback(
@@ -58,7 +58,7 @@ export default function useHiddenWallet(): {
       const listItems = hiddenWalletIds[fingerprint] ?? [];
       return listItems.includes(walletId);
     },
-    [hiddenWalletIds, fingerprint]
+    [isLoading, hiddenWalletIds, fingerprint]
   );
 
   return {

@@ -18,7 +18,7 @@ import ModeServices, { SimulatorServices } from '../../constants/ModeServices';
 import useEnableDataLayerService from '../../hooks/useEnableDataLayerService';
 import useEnableFilePropagationServer from '../../hooks/useEnableFilePropagationServer';
 import useNFTMetadataLRU from '../../hooks/useNFTMetadataLRU';
-import { eventEmitter } from '../nfts/NFTContextualActions';
+import NFTContextualActionsEventEmitter from '../nfts/NFTContextualActionsEventEmitter';
 import AppAutoLogin from './AppAutoLogin';
 import AppKeyringMigrator from './AppKeyringMigrator';
 import AppPassPrompt from './AppPassPrompt';
@@ -99,39 +99,39 @@ export default function AppState(props: Props) {
 
   const isConnected = !isClientStateLoading && clientState?.state === ConnectionState.CONNECTED;
 
-  async function handleClose(event) {
-    if (closing) {
-      return;
+  useEffect(() => {
+    async function handleClose(event) {
+      if (closing) {
+        return;
+      }
+
+      setClosing(true);
+
+      await close({
+        force: true,
+      }).unwrap();
+
+      event.sender.send('daemon-exited');
     }
 
-    setClosing(true);
-
-    await close({
-      force: true,
-    }).unwrap();
-
-    event.sender.send('daemon-exited');
-  }
-
-  function handleRemovedCachedFile(e: any, hash: string) {
-    Object.keys({ ...localStorage }).forEach((key: string) => {
-      try {
-        const json = JSON.parse(localStorage.getItem(key)!);
-        if (json.binary === hash || json.video === hash || json.image === hash) {
-          localStorage.removeItem(key);
-          const nftId = key.replace('thumb-cache-', '').replace('metadata-cache-', '').replace('content-cache-', '');
-          eventEmitter.emit(`force-reload-metadata-${nftId}`);
-          if (lru.get(nftId)) {
-            lru.delete(nftId);
+    function handleRemovedCachedFile(e: any, hash: string) {
+      Object.keys({ ...localStorage }).forEach((key: string) => {
+        try {
+          const json = JSON.parse(localStorage.getItem(key)!);
+          if (json.binary === hash || json.video === hash || json.image === hash) {
+            localStorage.removeItem(key);
+            const nftId = key.replace('thumb-cache-', '').replace('metadata-cache-', '').replace('content-cache-', '');
+            NFTContextualActionsEventEmitter.emit(`force-reload-metadata-${nftId}`);
+            if (lru.get(nftId)) {
+              lru.delete(nftId);
+            }
           }
+        } catch (err) {
+          console.error(err);
         }
-      } catch (err) {
-        console.error(err);
-      }
-    });
-  }
+      });
+    }
 
-  useEffect(() => {
     if (isElectron()) {
       const { ipcRenderer } = window as unknown as { ipcRenderer: IpcRenderer };
 
@@ -147,7 +147,7 @@ export default function AppState(props: Props) {
       };
     }
     return undefined;
-  }, []);
+  }, [close, closing, lru]);
 
   if (closing) {
     return (
@@ -174,8 +174,8 @@ export default function AppState(props: Props) {
     // backendVersion can be in the format of 1.6.1, 1.7.0b3, or 1.7.0b3.dev123
     // version can be in the format of 1.6.1, 1.7.0b3, 1.7.0-b2.dev123, or 1.7.0b3-dev123
 
-    const backendVersionClean = backendVersion.replace(/[-.]/g, '');
-    const guiVersionClean = version.replace(/[-.]/g, '');
+    const backendVersionClean = backendVersion.replace(/[-+.]/g, '');
+    const guiVersionClean = version.replace(/[-+.]/g, '');
 
     if (backendVersionClean !== guiVersionClean) {
       return (

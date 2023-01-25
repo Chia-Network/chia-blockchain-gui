@@ -28,7 +28,7 @@ export default function SettingsDerivationIndex() {
     if (index !== null && index !== undefined) {
       methods.setValue('index', index);
     }
-  }, [index]);
+  }, [index, methods]);
 
   const { isSubmitting } = methods.formState;
   const isLoading = isLoadingCurrentDerivationIndex || isLoadingWalletState || isSubmitting;

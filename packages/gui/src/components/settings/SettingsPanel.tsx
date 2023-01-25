@@ -37,7 +37,7 @@ export default function SettingsPanel() {
     return <Suspender />;
   }
 
-  const { userPassphraseIsSet, needsMigration } = keyringStatus;
+  const { userPassphraseIsSet, needsMigration = false } = keyringStatus;
 
   async function changePassphraseSucceeded() {
     closeChangePassphrase();

@@ -1,10 +1,10 @@
-import type { NFTInfo } from '@chia/api';
+import type { NFTInfo } from '@chia-network/api';
 import { t } from '@lingui/macro';
 import React from 'react';
 import styled from 'styled-components';
 
 import useHiddenNFTs from '../../../hooks/useHiddenNFTs';
-import NFTContextualActions from '../NFTContextualActions';
+import NFTContextualActions, { NFTContextualActionTypes } from '../NFTContextualActions';
 
 const SelectedItemsContainer = styled.div`
   color: #fff;
@@ -13,12 +13,7 @@ const SelectedItemsContainer = styled.div`
     0px 9px 44px 8px rgba(0, 0, 0, 0.12);
   border-radius: 16px;
   padding: 12px 32px;
-  position: fixed;
-  bottom: 50px;
-  z-index: 7;
   display: inline-block;
-  margin-left: auto;
-  margin-right: auto;
 `;
 
 const SelectedCountText = styled.div`
@@ -52,13 +47,21 @@ export default function SelectedActionsDialog(props: SelectedActionsDialogProps)
     return isHidden ? 1 : 2;
   }, -1);
 
+  const menuWithHide =
+    NFTContextualActionTypes.CreateOffer +
+    NFTContextualActionTypes.MoveToProfile +
+    NFTContextualActionTypes.Invalidate +
+    NFTContextualActionTypes.Hide +
+    NFTContextualActionTypes.Transfer;
+  const menuWithoutHide = menuWithHide - NFTContextualActionTypes.Hide;
+
   return (
     <SelectedItemsContainer>
       <TableWrapper>
         <SelectedCountText>{t`${nfts.length} of ${allCount} items selected:`}</SelectedCountText>
         <NFTContextualActions
           selection={{ items: nfts }}
-          availableActions={showOrHide > 0 ? 49 : 33}
+          availableActions={showOrHide > 0 ? menuWithHide : menuWithoutHide}
           isMultiSelect
           showOrHide={showOrHide}
         />

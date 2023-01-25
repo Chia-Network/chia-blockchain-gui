@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import HomeIcon from './images/home.svg';
 
-function getColor({ theme, color }) {
+function getColor({ theme, color }: { color?: string }) {
   if (color !== 'inherit') {
     return color;
   }

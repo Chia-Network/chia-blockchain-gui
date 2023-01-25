@@ -75,7 +75,7 @@ export default function NFTOfferTokenSelector(props: Props) {
     const selected = allOptions.find((option: TokenSelectOption) => option.walletId === selectedWalletId);
 
     return [selected, allOptions];
-  }, [catList, currencyCode, selectedWalletId]);
+  }, [catList, currencyCode, isLoading, selectedWalletId, wallets]);
 
   function handleSelection(selection: TokenSelectOption) {
     onChange({

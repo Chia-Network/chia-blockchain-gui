@@ -9,34 +9,41 @@ import styled from 'styled-components';
 const ReloadIconSvg = styled(Reload)`
   path {
     fill: none;
-    stroke: ${(props) => (props.isDarkMode ? props.theme.palette.common.white : props.theme.palette.text.secondary)};
+    stroke: ${(props) => (props.isDarkMode ? props.theme.palette.common.white : props.theme.palette.sidebarIcon)};
   }
 `;
 
 const WalletReceiveAddressWrapper = styled.div`
   display: flex;
+  position: relative;
   flex: 1;
   width: 100%;
-  padding: 9px;
-  background: ${(props) => (props.isDarkMode ? '#333' : '#fff')};
+  padding: 3px;
   border-radius: 5px;
-  border: 1px solid ${(props) => (props.isDarkMode ? '#333' : '#e2e2e2')};
+  border: 1px solid ${(props) => (props.isDarkMode ? props.theme.palette.border.dark : props.theme.palette.border.main)};
   > div {
     background: ${(props) => (props.isDarkMode ? '#444' : '#f4f4f4')};
     border-radius: 5px;
   }
   input {
-    padding: 3px 8px;
+    padding: 4px 8px 4px 36px;
+    height: 24px;
     border: 0;
     outline: none;
   }
-  height: 48px;
   button {
     padding: 3px 5px;
   }
   fieldSet {
     border: 1px solid rgba(0, 0, 0, 0.15);
   }
+`;
+
+const CopyToClipboardWrapper = styled.div`
+  position: absolute;
+  z-index: 5;
+  left: 5px;
+  top: 5px;
 `;
 
 export type WalletReceiveAddressProps = {
@@ -65,6 +72,9 @@ export default function WalletReceiveAddressField(props: WalletReceiveAddressPro
 
   return (
     <WalletReceiveAddressWrapper isDarkMode={props?.isDarkMode}>
+      <CopyToClipboardWrapper>
+        <CopyToClipboard value={address} />
+      </CopyToClipboardWrapper>
       <TextField
         value={address}
         placeholder={t`Loading...`}
@@ -74,9 +84,9 @@ export default function WalletReceiveAddressField(props: WalletReceiveAddressPro
           width: 'initial',
           flex: 1,
           width: '100%',
+          borderRadius: '10px',
         }}
       />
-      <CopyToClipboard value={address} />
       {isLoading ? (
         <Loading size="1em" />
       ) : (

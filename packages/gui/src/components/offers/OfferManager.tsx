@@ -1,4 +1,4 @@
-import { OfferSummaryRecord, OfferTradeRecord } from '@chia-network/api';
+import { OfferTradeRecord } from '@chia-network/api';
 import { useCancelOfferMutation, useGetWalletsQuery } from '@chia-network/api-react';
 import {
   Button,
@@ -21,7 +21,7 @@ import {
   LayoutDashboardSub,
   MenuItem,
 } from '@chia-network/core';
-import { Trans, t } from '@lingui/macro';
+import { Trans } from '@lingui/macro';
 import { Cancel, GetApp as Download, Info, Reply as Share, Visibility } from '@mui/icons-material';
 import {
   Box,
@@ -46,24 +46,19 @@ import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import useAssetIdName from '../../hooks/useAssetIdName';
 import useSaveOfferFile from '../../hooks/useSaveOfferFile';
 import useWalletOffers from '../../hooks/useWalletOffers';
-import { launcherIdToNFTId } from '../../util/nfts';
+import resolveOfferInfo from '../../util/resolveOfferInfo';
 import CreateOfferBuilder from '../offers2/CreateOfferBuilder';
 import OfferBuilderImport from '../offers2/OfferBuilderImport';
 import OfferBuilderViewer from '../offers2/OfferBuilderViewer';
+import OfferIncomingTable from '../offers2/OfferIncomingTable';
 import { CreateNFTOfferEditor } from './NFTOfferEditor';
 import NFTOfferViewer from './NFTOfferViewer';
-import OfferAsset from './OfferAsset';
 import OfferDataDialog from './OfferDataDialog';
 import { CreateOfferEditor } from './OfferEditor';
 import { OfferImport } from './OfferImport';
 import OfferShareDialog from './OfferShareDialog';
 import OfferState from './OfferState';
-import {
-  colorForOfferState,
-  displayStringForOfferState,
-  formatAmountForWalletType,
-  offerAssetTypeForAssetId,
-} from './utils';
+import { colorForOfferState, displayStringForOfferState } from './utils';
 
 type ConfirmOfferCancellationProps = {
   canCancelWithTransaction?: boolean;
@@ -71,7 +66,7 @@ type ConfirmOfferCancellationProps = {
   open?: boolean;
 };
 
-function ConfirmOfferCancellation(props: ConfirmOfferCancellationProps) {
+export function ConfirmOfferCancellation(props: ConfirmOfferCancellationProps) {
   const { canCancelWithTransaction = true, onClose = () => {}, open = true } = props;
   const methods = useForm({
     defaultValues: {
@@ -175,29 +170,6 @@ function ConfirmOfferCancellation(props: ConfirmOfferCancellationProps) {
   );
 }
 
-function resolveOfferInfo(
-  summary: OfferSummaryRecord,
-  summaryKey: string,
-  lookupByAssetId: (assetId: string) => AssetIdMapEntry | undefined
-) {
-  const resolvedOfferInfo = Object.entries(summary[summaryKey]).map(([assetId, amount]) => {
-    const assetType = offerAssetTypeForAssetId(assetId, summary);
-    const assetIdInfo = assetType === OfferAsset.NFT ? undefined : lookupByAssetId(assetId);
-    const displayAmount = assetIdInfo ? formatAmountForWalletType(amount as number, assetIdInfo.walletType) : amount;
-    let displayName = '';
-    if (assetType === OfferAsset.NFT) {
-      displayName = launcherIdToNFTId(assetId);
-    } else {
-      displayName = assetIdInfo?.displayName ?? t`Unknown CAT`;
-    }
-    return {
-      displayAmount,
-      displayName,
-    };
-  });
-  return resolvedOfferInfo;
-}
-
 type OfferListProps = {
   title: string | React.ReactElement;
   includeMyOffers: boolean;
@@ -223,47 +195,46 @@ function OfferList(props: OfferListProps) {
     pageChange,
   } = useWalletOffers(5, 0, includeMyOffers, includeTakenOffers, 'RELEVANCE', false);
 
-  async function handleShowOfferData(offerData: string) {
-    openDialog(<OfferDataDialog offerData={offerData} />);
-  }
-
-  async function handleCancelOffer(tradeId: string, canCancelWithTransaction: boolean) {
-    const [cancelConfirmed, cancellationOptions] = await openDialog(
-      <ConfirmOfferCancellation canCancelWithTransaction={canCancelWithTransaction} />
-    );
-
-    if (cancelConfirmed === true) {
-      const secure = canCancelWithTransaction ? cancellationOptions.cancelWithTransaction : false;
-      const fee = canCancelWithTransaction ? cancellationOptions.cancellationFee : 0;
-      await cancelOffer({ tradeId, secure, fee });
+  const cols = useMemo(() => {
+    async function handleShowOfferData(offerData: string) {
+      openDialog(<OfferDataDialog offerData={offerData} />);
     }
-  }
 
-  function handleRowClick(event: any, row: OfferTradeRecord) {
-    navigate('/dashboard/offers/view', {
-      state: {
-        referrerPath: '/dashboard/offers',
-        offerSummary: row.summary,
-        isMyOffer: row.isMyOffer,
-        state: row.status,
-      },
-    });
-  }
+    async function handleCancelOffer(tradeId: string, canCancelWithTransaction: boolean) {
+      const [cancelConfirmed, cancellationOptions] = await openDialog(
+        <ConfirmOfferCancellation canCancelWithTransaction={canCancelWithTransaction} />
+      );
 
-  async function handleShare(event: any, row: OfferTradeRecord) {
-    await openDialog(
-      <OfferShareDialog
-        offerRecord={row}
-        // eslint-disable-next-line no-underscore-dangle -- Can't do anything about it
-        offerData={row._offerData}
-        exportOffer={() => saveOffer(row.tradeId)}
-        testnet={testnet}
-      />
-    );
-  }
+      if (cancelConfirmed === true) {
+        const secure = canCancelWithTransaction ? cancellationOptions.cancelWithTransaction : false;
+        const fee = canCancelWithTransaction ? cancellationOptions.cancellationFee : 0;
+        await cancelOffer({ tradeId, secure, fee });
+      }
+    }
 
-  const cols = useMemo(
-    () => [
+    function handleRowClick(event: any, row: OfferTradeRecord) {
+      navigate('/dashboard/offers/view', {
+        state: {
+          referrerPath: '/dashboard/offers',
+          offerSummary: row.summary,
+          isMyOffer: row.isMyOffer,
+          state: row.status,
+        },
+      });
+    }
+
+    async function handleShare(event: any, row: OfferTradeRecord) {
+      await openDialog(
+        <OfferShareDialog
+          offerRecord={row}
+          // eslint-disable-next-line no-underscore-dangle -- Can't do anything about it
+          offerData={row._offerData}
+          exportOffer={() => saveOffer(row.tradeId)}
+          testnet={testnet}
+        />
+      );
+    }
+    return [
       {
         // eslint-disable-next-line react/no-unstable-nested-components -- The result is memoized. No performance issue
         field: (row: OfferTradeRecord) => {
@@ -397,9 +368,8 @@ function OfferList(props: OfferListProps) {
         maxWidth: '100px',
         title: <Flex justifyContent="center">Actions</Flex>,
       },
-    ],
-    []
-  );
+    ];
+  }, [cancelOffer, lookupByAssetId, navigate, openDialog, saveOffer, testnet]);
 
   const hasOffers = !!offers?.length;
 
@@ -495,6 +465,7 @@ export function OfferManager() {
           </Grid>
         </Box>
       </Flex>
+      <OfferIncomingTable />
       <OfferList title={<Trans>Offers you created</Trans>} includeMyOffers includeTakenOffers={false} />
       <OfferList title={<Trans>Offers you accepted</Trans>} includeMyOffers={false} includeTakenOffers />
     </Flex>

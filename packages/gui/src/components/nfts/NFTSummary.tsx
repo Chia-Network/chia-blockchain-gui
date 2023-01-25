@@ -107,42 +107,6 @@ export default function NFTSummary(props: NFTSummaryProps) {
     );
   }
 
-  const NFTIDComponent = function ({ ...flexProps }) {
-    const truncatedNftId = truncateValue(nftId, {});
-
-    return (
-      <Flex flexDirection="row" alignItems="center" gap={1} {...flexProps}>
-        <Typography variant="body2">{truncatedNftId}</Typography>
-        <TooltipIcon>
-          <Flex flexDirection="column" gap={1}>
-            <Flex flexDirection="column" gap={0}>
-              <Flex>
-                <Box flexGrow={1}>
-                  <StyledTitle>NFT ID</StyledTitle>
-                </Box>
-              </Flex>
-              <Flex alignItems="center" gap={1}>
-                <StyledValue>{nftId}</StyledValue>
-                <CopyToClipboard value={nftId} fontSize="small" invertColor />
-              </Flex>
-            </Flex>
-            <Flex flexDirection="column" gap={0}>
-              <Flex>
-                <Box flexGrow={1}>
-                  <StyledTitle>Launcher ID</StyledTitle>
-                </Box>
-              </Flex>
-              <Flex alignItems="center" gap={1}>
-                <StyledValue>{launcherId}</StyledValue>
-                <CopyToClipboard value={launcherId} fontSize="small" invertColor />
-              </Flex>
-            </Flex>
-          </Flex>
-        </TooltipIcon>
-      </Flex>
-    );
-  };
-
   return (
     <Card>
       <CardContent style={{ paddingBottom: `${bottomPadding}` }}>
@@ -176,7 +140,7 @@ export default function NFTSummary(props: NFTSummaryProps) {
                   {metadata.description}
                 </Typography>
               )}
-              <NFTIDComponent style={{ paddingTop: '0.5rem' }} />
+              <NFTIDComponent style={{ paddingTop: '0.5rem' }} nftId={nftId} launcherId={launcherId} />
             </Flex>
           </Flex>
           {havePropertiesOrRankings && (
@@ -184,6 +148,7 @@ export default function NFTSummary(props: NFTSummaryProps) {
               {properties.length > 0 && (
                 <Flex flexDirection="row" gap={1}>
                   {properties?.map((property, index) => (
+                    // eslint-disable-next-line react/no-array-index-key -- Its a list of react elements, we have nothing else to use
                     <React.Fragment key={index}>{property}</React.Fragment>
                   ))}
                 </Flex>
@@ -191,6 +156,7 @@ export default function NFTSummary(props: NFTSummaryProps) {
               {rankings.length > 0 && (
                 <Flex flexDirection="row" gap={1}>
                   {rankings?.map((ranking, index) => (
+                    // eslint-disable-next-line react/no-array-index-key -- Its a list of react elements, we have nothing else to use
                     <React.Fragment key={index}>{ranking}</React.Fragment>
                   ))}
                 </Flex>
@@ -200,5 +166,47 @@ export default function NFTSummary(props: NFTSummaryProps) {
         </Flex>
       </CardContent>
     </Card>
+  );
+}
+
+type NFTIDComponentProps = {
+  launcherId: string;
+  nftId: string;
+};
+
+function NFTIDComponent(props: NFTIDComponentProps) {
+  const { nftId, launcherId, ...flexProps } = props;
+  const truncatedNftId = truncateValue(nftId, {});
+
+  return (
+    <Flex flexDirection="row" alignItems="center" gap={1} {...flexProps}>
+      <Typography variant="body2">{truncatedNftId}</Typography>
+      <TooltipIcon>
+        <Flex flexDirection="column" gap={1}>
+          <Flex flexDirection="column" gap={0}>
+            <Flex>
+              <Box flexGrow={1}>
+                <StyledTitle>NFT ID</StyledTitle>
+              </Box>
+            </Flex>
+            <Flex alignItems="center" gap={1}>
+              <StyledValue>{nftId}</StyledValue>
+              <CopyToClipboard value={nftId} fontSize="small" invertColor />
+            </Flex>
+          </Flex>
+          <Flex flexDirection="column" gap={0}>
+            <Flex>
+              <Box flexGrow={1}>
+                <StyledTitle>Launcher ID</StyledTitle>
+              </Box>
+            </Flex>
+            <Flex alignItems="center" gap={1}>
+              <StyledValue>{launcherId}</StyledValue>
+              <CopyToClipboard value={launcherId} fontSize="small" invertColor />
+            </Flex>
+          </Flex>
+        </Flex>
+      </TooltipIcon>
+    </Flex>
   );
 }

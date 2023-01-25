@@ -1,4 +1,5 @@
 import { useLogout, useGetLoggedInFingerprintQuery, useGetKeyQuery } from '@chia-network/api-react';
+import { Exit as ExitIcon } from '@chia-network/icons';
 import { t, Trans } from '@lingui/macro';
 import { ExitToApp as ExitToAppIcon } from '@mui/icons-material';
 import { Box, AppBar, Toolbar, Drawer, Container, IconButton, Typography, CircularProgress } from '@mui/material';
@@ -48,6 +49,13 @@ const StyledToolbar = styled(Toolbar)`
 
 const StyledInlineTypography = styled(Typography)`
   display: inline-block;
+`;
+
+const ExitIconStyled = styled(ExitIcon)`
+  fill: none !important;
+  position: relative;
+  top: 2px;
+  left: 4px;
 `;
 
 export type LayoutDashboardProps = {
@@ -143,7 +151,7 @@ export default function LayoutDashboard(props: LayoutDashboardProps) {
                         */}
                     <Tooltip title={<Trans>Log Out</Trans>}>
                       <IconButton onClick={handleLogout} data-testid="LayoutDashboard-log-out">
-                        <ExitToAppIcon />
+                        <ExitIconStyled />
                       </IconButton>
                     </Tooltip>
                   </Box>

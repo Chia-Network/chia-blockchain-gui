@@ -2,14 +2,14 @@ import type NFTInfo from '@chia-network/api';
 import type LRU from '@chia-network/core';
 import { useEffect, useState, useCallback } from 'react';
 
-import { eventEmitter } from '../components/nfts/NFTContextualActions';
+import NFTContextualActionsEventEmitter from '../components/nfts/NFTContextualActionsEventEmitter';
 import getRemoteFileContent from '../util/getRemoteFileContent';
 import useNFTMetadataLRU from './useNFTMetadataLRU';
 
 export const MAX_FILE_SIZE = 100 * 1024 * 1024; // 100 MB
 
 export function getMetadataObject(nftId: string, lru: LRU<string, any>): any {
-  let parsedMetadataObject = {};
+  let parsedMetadataObject: { isValid?: boolean; json?: string; metadata?: Record<string, any> } = {};
   try {
     // ============= TRY MEMORY CACHE FIRST ============== //
     const cached = lru.get(nftId);
@@ -26,6 +26,10 @@ export function getMetadataObject(nftId: string, lru: LRU<string, any>): any {
       if (lsCache) {
         parsedMetadataObject = JSON.parse(lsCache);
       }
+    }
+
+    if (parsedMetadataObject.json) {
+      parsedMetadataObject.metadata = JSON.parse(parsedMetadataObject.json);
     }
   } catch (e) {
     /* todo */
@@ -129,11 +133,11 @@ export default function useNFTsMetadata(nfts: NFTInfo[] | undefined) {
 
   useEffect(() => {
     if (nft) {
-      eventEmitter.on(`force-reload-metadata-${nft.$nftId}`, loadReload);
+      NFTContextualActionsEventEmitter.on(`force-reload-metadata-${nft.$nftId}`, loadReload);
     }
     return () => {
       if (nft) {
-        eventEmitter.off(`force-reload-metadata-${nft.$nftId}`, loadReload);
+        NFTContextualActionsEventEmitter.off(`force-reload-metadata-${nft.$nftId}`, loadReload);
       }
     };
   }, [nft, loadReload]);

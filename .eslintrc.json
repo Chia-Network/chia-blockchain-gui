@@ -148,7 +148,9 @@
         "allowTaggedTemplates": true,
         "enforceForJSX": false
       }
-    ]
+    ],
+    // We do not see the value of this turned on
+    "class-methods-use-this": "off"
 
     //
     // ** Before adding or updating any rule, please read the comments at the top of this file

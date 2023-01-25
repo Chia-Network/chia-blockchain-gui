@@ -35,7 +35,7 @@ export default class Service extends EventEmitter {
 
     client.on('message', this.handleMessage);
 
-    this.#readyPromise = new Promise(async (resolve, reject) => {
+    this.#readyPromise = new Promise((resolve, reject) => {
       setTimeout(async () => {
         try {
           if (onInit) {

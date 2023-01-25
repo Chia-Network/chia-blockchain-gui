@@ -30,26 +30,18 @@ export default class ErrorBoundary extends Component {
   constructor(props: ErrorBoundaryProps) {
     super(props);
     this.state = {
-      hasError: false,
       error: null,
       stacktrace: '',
     };
   }
 
-  static getDerivedStateFromError(error) {
-    // Update state so the next render will show the fallback UI.
-    return {
-      hasError: true,
+  async componentDidCatch(error: Error) {
+    // Catch errors in any components below and re-render with error message
+    this.setState({
       error,
-    };
-  }
-
-  async componentDidUpdate(_prevProps, prevState) {
-    if (this.state.error && prevState.error !== this.state.error) {
-      this.setState({
-        stacktrace: formatStackTrace(await StackTrace.fromError(this.state.error)),
-      });
-    }
+      stacktrace: formatStackTrace(await StackTrace.fromError(error)),
+    });
+    // You can also log error messages to an error reporting service here
   }
 
   handleReload = () => {
@@ -58,7 +50,7 @@ export default class ErrorBoundary extends Component {
   };
 
   render() {
-    if (this.state.hasError) {
+    if (this.state.error) {
       const { stacktrace, error } = this.state;
       const issueLink = `https://github.com/Chia-Network/chia-blockchain-gui/issues/new?${qs.stringify({
         labels: 'bug',

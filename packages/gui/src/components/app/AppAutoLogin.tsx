@@ -20,23 +20,23 @@ export default function AppAutoLogin(props: AppAutoLoginProps) {
   const [enableAutoLogin] = useEnableAutoLogin();
   const { data: fingerprint, isLoading } = useGetLoggedInFingerprintQuery();
 
-  async function processFingerprint() {
-    if (isLoading || isFingerprintReady) {
-      return;
-    }
-
-    isFingerprintReady = true;
-
-    if (fingerprint && enableAutoLogin) {
-      navigate('/dashboard/wallets');
-    }
-
-    update();
-  }
-
   useEffect(() => {
+    async function processFingerprint() {
+      if (isLoading || isFingerprintReady) {
+        return;
+      }
+
+      isFingerprintReady = true;
+
+      if (fingerprint && enableAutoLogin) {
+        navigate('/dashboard/wallets');
+      }
+
+      update();
+    }
+
     processFingerprint();
-  }, [isLoading, fingerprint]);
+  }, [isLoading, fingerprint, enableAutoLogin, update, navigate]);
 
   if (!isFingerprintReady) {
     return (

@@ -76,7 +76,7 @@ function Persist(props: PersistProps, ref: any) {
       getValue,
       setValue,
     }),
-    [getValue]
+    [getValue, setValue]
   );
 
   return (
