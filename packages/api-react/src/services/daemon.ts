@@ -428,19 +428,6 @@ export const daemonApi = apiWithTag.injectEndpoints({
       }),
       transformResponse: (response: any) => response?.version,
     }),
-    resyncWallet: build.mutation<
-      boolean,
-      {
-        enable?: boolean;
-      }
-      >({
-        query: ({ enable }) => ({
-          command: 'resyncWallet',
-          service: Daemon,
-          args: [enable],
-        }),
-        transformResponse: (response: any) => response?.success,
-      }),
   }),
 });
 
@@ -456,7 +443,6 @@ export const {
   useMigrateKeyringMutation,
   useUnlockKeyringMutation,
   useGetVersionQuery,
-  useResyncWalletMutation,
 
   useGetPlottersQuery,
   useStopPlottingMutation,

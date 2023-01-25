@@ -17,11 +17,11 @@ type Props = {
 export default function ResyncPrompt(props: Props) {
   const { onSuccess, onCancel } = props;
   const openDialog = useOpenDialog();
-  const resyncWallet = useResyncWalletMutation();
+  const [resyncWallet] = useResyncWalletMutation();
 
   async function handleSubmit() {
     try {
-      await resyncWallet;
+      await resyncWallet();
     } catch (error: any) {
       await openDialog(
         <AlertDialog>
@@ -48,7 +48,7 @@ export default function ResyncPrompt(props: Props) {
       </DialogTitle>
       <DialogContent>
         <DialogContentText>
-          <Trans>To resync, Chia must shut down. After shutting down, please reopen Chia to complete resyncing. Are you sure you want to resync and shut down Chia?</Trans>
+          <Trans>To initiate a wallet resync, all Chia services must first be shut down. After shutting down, you will be required to restart Chia to begin the resyncing process. Are you sure you want to shut down and resync?</Trans>
         </DialogContentText>
       </DialogContent>
       <DialogActions>
@@ -64,7 +64,7 @@ export default function ResyncPrompt(props: Props) {
           color="primary"
           variant="contained"
         >
-          <Trans>Resync</Trans>
+          <Trans>Shut down</Trans>
         </Button>
       </DialogActions>
     </Dialog>

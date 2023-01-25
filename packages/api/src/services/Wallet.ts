@@ -478,4 +478,8 @@ export default class Wallet extends Service {
   ) {
     return this.onStateChanged('new_derivation_index', callback, processData);
   }
+
+  resyncWallet() {
+    return this.command('set_wallet_resync');
+  }
 }
