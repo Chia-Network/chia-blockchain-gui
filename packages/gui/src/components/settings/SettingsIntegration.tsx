@@ -16,8 +16,8 @@ export default function SettingsIntegration() {
   } = useWalletConnectPreferences();
 
   return (
-    <Grid container style={{ maxWidth: '624px' }} gap={2}>
-      <Grid item style={{ maxWidth: '400px' }}>
+    <Grid container style={{ maxWidth: '624px' }} gap={3}>
+      <Grid item>
         <Flex flexDirection="column" gap={1}>
           <SettingsSection>
             <Trans>WalletConnect</Trans>
@@ -59,10 +59,6 @@ export default function SettingsIntegration() {
         </Grid>
       </Grid>
 
-      <Grid item xs={12} sm={12} lg={12}>
-        <SettingsHR />
-      </Grid>
-
       <Grid container>
         <Grid item style={{ width: '400px' }}>
           <SettingsTitle>
@@ -85,10 +81,6 @@ export default function SettingsIntegration() {
             <Trans>Allow requests that require switching to a different wallet key.</Trans>
           </SettingsText>
         </Grid>
-      </Grid>
-
-      <Grid item xs={12} sm={12} lg={12}>
-        <SettingsHR />
       </Grid>
     </Grid>
   );

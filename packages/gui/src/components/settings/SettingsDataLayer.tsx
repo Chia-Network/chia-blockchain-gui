@@ -11,14 +11,17 @@ export default function SettingsDataLayer() {
   const [enableFilePropagationServer, setEnableFilePropagationServer] = useEnableFilePropagationServer();
 
   return (
-    <Grid container style={{ maxWidth: '624px' }} gap={2}>
-      <Grid item style={{ maxWidth: '400px' }}>
+    <Grid container style={{ maxWidth: '624px' }} gap={3}>
+      <Grid item>
         <Flex flexDirection="column" gap={1}>
           <SettingsSection>
             <Trans>DataLayer Services</Trans>
           </SettingsSection>
           <SettingsText>
-            <Trans>Enable other services when the Chia Wallet starts.</Trans>
+            <Trans>
+              DataLayer enables rich data to be stored on mirrored databases that can be verified using the Chia
+              Blockchain.
+            </Trans>
           </SettingsText>
         </Flex>
       </Grid>
@@ -45,19 +48,12 @@ export default function SettingsDataLayer() {
         </Grid>
         <Grid item container style={{ width: '400px' }} gap={2}>
           <SettingsText>
-            <Trans>
-              Datalayer enables rich data to be stored on mirrored databases that can be verified using the Chia
-              Blockchain.
-            </Trans>
+            <Trans>Turn on/off the DataLayer service.</Trans>
           </SettingsText>
           <FormHelperText>
             <Trans>Changes will take effect the next time Chia is started.</Trans>
           </FormHelperText>
         </Grid>
-      </Grid>
-
-      <Grid item xs={12} sm={12} lg={12}>
-        <SettingsHR />
       </Grid>
 
       {enableDataLayerService && (
@@ -83,10 +79,6 @@ export default function SettingsDataLayer() {
                 <Trans>A reference server that enables creating mirrored copies of DataLayer.</Trans>
               </SettingsText>
             </Grid>
-          </Grid>
-
-          <Grid item xs={12} sm={12} lg={12}>
-            <SettingsHR />
           </Grid>
         </div>
       )}

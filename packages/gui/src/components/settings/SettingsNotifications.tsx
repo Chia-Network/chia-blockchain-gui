@@ -9,8 +9,8 @@ export default function SettingsNotifications() {
   const { enabled, setEnabled } = useNotifications();
 
   return (
-    <Grid container style={{ maxWidth: '624px' }} gap={2}>
-      <Grid item style={{ maxWidth: '400px' }}>
+    <Grid container style={{ maxWidth: '624px' }} gap={3}>
+      <Grid item>
         <Flex flexDirection="column" gap={1}>
           <SettingsSection>
             <Trans>Notifications</Trans>
@@ -49,9 +49,6 @@ export default function SettingsNotifications() {
         </Grid>
       </Grid>
 
-      <Grid item xs={12} sm={12} lg={12}>
-        <SettingsHR />
-      </Grid>
       {/*
             <FormGroup>
               <FormControlLabel
