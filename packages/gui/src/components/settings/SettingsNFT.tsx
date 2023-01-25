@@ -1,5 +1,15 @@
 import { usePrefs } from '@chia-network/api-react';
-import { Flex, SettingsHR, SettingsSection, SettingsText, SettingsTitle, AlertDialog, useOpenDialog, FormatBytes, ConfirmDialog } from '@chia-network/core';
+import {
+  Flex,
+  SettingsHR,
+  SettingsSection,
+  SettingsText,
+  SettingsTitle,
+  AlertDialog,
+  useOpenDialog,
+  FormatBytes,
+  ConfirmDialog,
+} from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Grid, Button, Switch, FormControlLabel, Typography } from '@mui/material';
 import React from 'react';
@@ -130,7 +140,7 @@ export default function SettingsGeneral() {
       </Grid>
 
       <Grid container>
-        <Grid item style={{width: "400px"}}>
+        <Grid item style={{ width: '400px' }}>
           <SettingsTitle>
             <Trans>Hide objectionable content</Trans>
           </SettingsTitle>
@@ -140,9 +150,11 @@ export default function SettingsGeneral() {
             control={<Switch checked={hideObjectionableContent} onChange={handleChangeHideObjectionableContent} />}
           />
         </Grid>
-        <Grid item style={{width: "400px"}}>
+        <Grid item style={{ width: '400px' }}>
           <SettingsText>
-            <Trans>NFTs that have been categorized by the creator as objectionable content will be hidden by default.</Trans>
+            <Trans>
+              NFTs that have been categorized by the creator as objectionable content will be hidden by default.
+            </Trans>
           </SettingsText>
         </Grid>
       </Grid>
@@ -152,17 +164,17 @@ export default function SettingsGeneral() {
       </Grid>
 
       <Grid container>
-        <Grid item style={{width: "400px"}}>
+        <Grid item style={{ width: '400px' }}>
           <SettingsTitle>
             <Trans>Fit images to cards</Trans>
           </SettingsTitle>
         </Grid>
         <Grid item container xs justifyContent="flex-end" marginTop="-6px">
           <FormControlLabel
-              control={<Switch checked={nftImageFittingMode === 'contain'} onChange={handleScalePreviewImages} />}
+            control={<Switch checked={nftImageFittingMode === 'contain'} onChange={handleScalePreviewImages} />}
           />
         </Grid>
-        <Grid item style={{width: "400px"}}>
+        <Grid item style={{ width: '400px' }}>
           <SettingsText>
             <Trans>Images will be scaled to fill the NFT card and ignore their original proportions.</Trans>
           </SettingsText>
@@ -189,7 +201,7 @@ export default function SettingsGeneral() {
       </Grid>
 
       <Grid container>
-        <Grid item style={{width: "400px"}}>
+        <Grid item style={{ width: '400px' }}>
           <SettingsTitle>
             <Trans>Occupied space</Trans>
           </SettingsTitle>
@@ -199,7 +211,7 @@ export default function SettingsGeneral() {
             <Trans>Clear NFT cache</Trans>
           </Button>
         </Grid>
-        <Grid item style={{width: "400px"}}>
+        <Grid item style={{ width: '400px' }}>
           <Typography variant="body2" fontWeight="500" component="div">
             {renderCacheSize()}
           </Typography>
@@ -211,7 +223,7 @@ export default function SettingsGeneral() {
       </Grid>
 
       <Grid container>
-        <Grid item style={{width: "400px"}}>
+        <Grid item style={{ width: '400px' }}>
           <SettingsTitle>
             <Trans>Local folder</Trans>
           </SettingsTitle>
@@ -221,7 +233,7 @@ export default function SettingsGeneral() {
             <Trans>Change</Trans>
           </Button>
         </Grid>
-        <Grid item style={{width: "400px"}}>
+        <Grid item style={{ width: '400px' }}>
           <Typography variant="body2" fontWeight="500" component="div">
             {renderCacheFolder()}
           </Typography>
@@ -233,7 +245,7 @@ export default function SettingsGeneral() {
       </Grid>
 
       <Grid container>
-        <Grid item style={{width: "400px"}}>
+        <Grid item style={{ width: '400px' }}>
           <SettingsTitle>
             <Trans>Limit cache size</Trans>
           </SettingsTitle>
@@ -246,7 +258,6 @@ export default function SettingsGeneral() {
       <Grid item xs={12} sm={12} lg={12}>
         <SettingsHR />
       </Grid>
-
     </Grid>
   );
 }

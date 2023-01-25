@@ -26,27 +26,33 @@ export default function SettingsNotifications() {
       </Grid>
 
       <Grid container>
-        <Grid item style={{width: "400px"}}>
+        <Grid item style={{ width: '400px' }}>
           <SettingsTitle>
             <Trans>Enable push notifications</Trans>
           </SettingsTitle>
         </Grid>
         <Grid item container xs justifyContent="flex-end" marginTop="-6px">
           <FormControlLabel
-            control={<Switch checked={!enabled} onChange={() => setEnabled(!enabled)} inputProps={{ 'data-testid': 'Notifications-Pause-All' }}/>}
+            control={
+              <Switch
+                checked={!enabled}
+                onChange={() => setEnabled(!enabled)}
+                inputProps={{ 'data-testid': 'Notifications-Pause-All' }}
+              />
+            }
           />
         </Grid>
-        <Grid item container style={{width: "400px"}} gap={2}>
+        <Grid item container style={{ width: '400px' }} gap={2}>
           <SettingsText>
             <Trans>Turn on/off the ability to show you notifications.</Trans>
           </SettingsText>
         </Grid>
       </Grid>
-  
+
       <Grid item xs={12} sm={12} lg={12}>
         <SettingsHR />
       </Grid>
-            {/*
+      {/*
             <FormGroup>
               <FormControlLabel
                 control={
