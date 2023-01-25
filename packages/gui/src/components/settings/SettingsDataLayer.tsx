@@ -1,6 +1,6 @@
-import { Flex, SettingsHR, SettingsLabel, SettingsSection, SettingsTitle, SettingsText } from '@chia-network/core';
+import { Flex, SettingsHR, SettingsSection, SettingsTitle, SettingsText } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
-import { FormGroup, FormControlLabel, FormHelperText, Grid, Switch, Typography } from '@mui/material';
+import { FormControlLabel, FormHelperText, Grid, Switch } from '@mui/material';
 import React from 'react';
 
 import useEnableDataLayerService from '../../hooks/useEnableDataLayerService';
@@ -15,7 +15,7 @@ export default function SettingsDataLayer() {
       <Grid item style={{ maxWidth: '400px' }}>
         <Flex flexDirection="column" gap={1}>
           <SettingsSection>
-            <Trans>Startup</Trans>
+            <Trans>DataLayer Services</Trans>
           </SettingsSection>
           <SettingsText>
             <Trans>Enable other services when the Chia Wallet starts.</Trans>
@@ -33,7 +33,7 @@ export default function SettingsDataLayer() {
             <Trans>Enable DataLayer</Trans>
           </SettingsTitle>
         </Grid>
-        <Grid item container xs justifyContent="flex-end" marginTop="-4px">
+        <Grid item container xs justifyContent="flex-end" marginTop="-6px">
           <FormControlLabel
             control={<Switch checked={enableDataLayerService} onChange={() => setEnableDataLayerService(!enableDataLayerService)} />}
           />
@@ -64,6 +64,11 @@ export default function SettingsDataLayer() {
               <FormControlLabel
                 control={<Switch checked={enableFilePropagationServer} onChange={() => setEnableFilePropagationServer(!enableFilePropagationServer)} />}
               />
+            </Grid>
+            <Grid item container style={{width: "400px"}} gap={2}>
+              <SettingsText>
+                <Trans>A reference server that enables creating mirrored copies of DataLayer.</Trans>
+              </SettingsText>
             </Grid>
           </Grid>
       

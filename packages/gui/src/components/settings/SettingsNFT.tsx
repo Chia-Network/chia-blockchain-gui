@@ -167,7 +167,7 @@ export default function SettingsGeneral() {
       <Grid container>
         <Grid item style={{width: "400px"}}>
           <SettingsTitle>
-            <Trans>Fit Images to cards</Trans>
+            <Trans>Fit images to cards</Trans>
           </SettingsTitle>
         </Grid>
         <Grid item container xs justifyContent="flex-end" marginTop="-6px">
@@ -192,7 +192,7 @@ export default function SettingsGeneral() {
             <Trans>Cache</Trans>
           </SettingsSection>
           <SettingsText>
-            <Trans>Manage how and where files are cached.</Trans>
+            <Trans>Manage how and where files are stored on this computer.</Trans>
           </SettingsText>
         </Flex>
       </Grid>

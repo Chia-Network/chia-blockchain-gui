@@ -1,5 +1,4 @@
-import { Typography } from '@mui/material';
-import React, { type ReactNode } from 'react';
+import React from 'react';
 
 
 export default function SettingsHR() {

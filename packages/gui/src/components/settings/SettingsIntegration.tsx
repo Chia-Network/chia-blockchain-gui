@@ -23,7 +23,7 @@ export default function SettingsIntegration() {
             <Trans>WalletConnect</Trans>
           </SettingsSection>
           <SettingsText>
-            <Trans>Enable other services when the Chia Wallet starts.</Trans>
+            <Trans>WalletConnect enables a decentralized app on the Chia blockchain to communicate and make requests directly to a Chia wallet.</Trans>
           </SettingsText>
         </Flex>
       </Grid>
@@ -57,7 +57,7 @@ export default function SettingsIntegration() {
       <Grid container>
         <Grid item style={{width: "400px"}}>
           <SettingsTitle>
-            <Trans>Key Switching</Trans>
+            <Trans>Key switching</Trans>
           </SettingsTitle>
         </Grid>
         <Grid item container xs justifyContent="flex-end" marginTop="-6px">
