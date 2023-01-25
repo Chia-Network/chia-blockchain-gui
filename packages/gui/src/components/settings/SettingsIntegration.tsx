@@ -1,6 +1,6 @@
-import { SettingsLabel, Flex, SettingsHR, SettingsSection, SettingsTitle, SettingsText, TooltipIcon } from '@chia-network/core';
+import { Flex, SettingsHR, SettingsSection, SettingsTitle, SettingsText } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
-import { FormGroup, FormControlLabel, Grid, Switch } from '@mui/material';
+import { FormControlLabel, Grid, Switch } from '@mui/material';
 import React from 'react';
 
 import useWalletConnectPreferences from '../../hooks/useWalletConnectPreferences';

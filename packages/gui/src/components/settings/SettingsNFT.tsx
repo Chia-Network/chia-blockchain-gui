@@ -1,7 +1,7 @@
 import { usePrefs } from '@chia-network/api-react';
-import { Flex, SettingsHR, SettingsLabel, SettingsSection, SettingsText, SettingsTitle, AlertDialog, useOpenDialog, FormatBytes, ConfirmDialog } from '@chia-network/core';
+import { Flex, SettingsHR, SettingsSection, SettingsText, SettingsTitle, AlertDialog, useOpenDialog, FormatBytes, ConfirmDialog } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
-import { Grid, Box, Button, Switch, FormGroup, FormControlLabel, Typography } from '@mui/material';
+import { Grid, Button, Switch, FormControlLabel, Typography } from '@mui/material';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -82,17 +82,6 @@ export default function SettingsGeneral() {
     }
   `;
 
-  /*
-  const horRule = () => (
-    <hr
-      style={{
-        color: E0E0E0,
-        height: 1,
-      }}
-    />
-  )
-  */
-
   function renderCacheFolder() {
     if (cacheFolder) {
       return cacheFolder;
@@ -122,8 +111,6 @@ export default function SettingsGeneral() {
       }
     }
   }
-
-  // <Grid item xs={12} sm={6} lg={6}>
 
   return (
     <Grid container style={{ maxWidth: '624px' }} gap={2}>
