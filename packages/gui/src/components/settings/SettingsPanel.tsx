@@ -16,7 +16,7 @@ import {
 } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Help as HelpIcon } from '@mui/icons-material';
-import { Tooltip, Typography } from '@mui/material';
+import { Tooltip } from '@mui/material';
 import React from 'react';
 
 import ChangePassphrasePrompt from './ChangePassphrasePrompt';
