@@ -7,6 +7,7 @@ import React, { useMemo, useState, useEffect, useCallback } from 'react';
 
 import NotificationType from '../constants/NotificationType';
 import fetchOffer from '../util/fetchOffer';
+import parseNotification from '../util/parseNotification';
 import resolveOfferInfo from '../util/resolveOfferInfo';
 import useAssetIdName from './useAssetIdName';
 import useShowNotification from './useShowNotification';
@@ -77,7 +78,9 @@ export default function useNotifications() {
             }
 
             try {
-              const data = await fetchOffer(message);
+              const { url } = parseNotification(message);
+
+              const data = await fetchOffer(url);
               const { offerSummary } = data;
 
               const offered = resolveOfferInfo(offerSummary, 'offered', lookupByAssetId);
