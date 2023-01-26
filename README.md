@@ -32,10 +32,19 @@ This monorepo consists of the following packages:
 - When you open the repo in the vscode, click on "**Install recommended plugins**" pop-up.
 - To develop in testnet, please follow [these steps](https://github.com/Chia-Network/chia-blockchain/wiki/How-to-connect-to-the-Testnet).
 - Please write tests for your code
-- When adding a new NPM package, please **pin down the package version**. This is done to lower the possibility of supply chain attacks.
 - When disabling an eslint rule, please provide a reason after two dashes (--), example:
 
   `// eslint-disable-next-line react-hooks/exhaustive-deps -- Some dependencies intentionally left out`
+
+## Installing NPM packages
+
+To install an NPM package, please navigate to the **root directory** of this repo.
+
+- To install `lodash` for **all** packages: `npx lerna add lodash`
+- To install `lodash` for **single** package: `npx lerna add lodash --scope=@chia-network/icons`
+- To install as a dev dependency, add `--dev`
+
+After adding a new NPM package, please **pin down the package version**. This is done to lower the possibility of supply chain attacks.
 
 ## Common eslint issues
 

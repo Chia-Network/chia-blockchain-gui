@@ -2010,16 +2010,16 @@ export const walletApi = apiWithTag.injectEndpoints({
       any,
       {
         walletId: number;
-        nftCoinId: string;
+        nftCoinIds: string[];
         launcherId: string;
         targetAddress: string;
         fee: string;
       }
     >({
-      query: ({ walletId, nftCoinId, targetAddress, fee }) => ({
+      query: ({ walletId, nftCoinIds, targetAddress, fee }) => ({
         command: 'transferNft',
         service: NFT,
-        args: [walletId, nftCoinId, targetAddress, fee],
+        args: [walletId, nftCoinIds, targetAddress, fee],
       }),
       invalidatesTags: (result, _error, { launcherId }) => (result ? [{ type: 'NFTInfo', id: launcherId }] : []),
     }),

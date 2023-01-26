@@ -163,13 +163,14 @@ type NFTTransferContextualActionProps = NFTContextualActionProps;
 function NFTTransferContextualAction(props: NFTTransferContextualActionProps) {
   const { selection } = props;
   const openDialog = useOpenDialog();
+  const [, setSelectedNFTIds] = useLocalStorage('gallery-selected-nfts', []);
 
-  const selectedNft: NFTInfo | undefined = selection?.items[0];
-  const disabled = (selection?.items.length ?? 0) !== 1 || selectedNft?.pendingTransaction;
+  const disabled = selection?.items.reduce((p, c) => p || c?.pendingTransaction, false);
 
   function handleComplete(result?: NFTTransferResult) {
     if (result) {
       if (result.success) {
+        setSelectedNFTIds([]);
         openDialog(
           <AlertDialog title={<Trans>NFT Transfer Pending</Trans>}>
             <Trans>The NFT transfer transaction has been successfully submitted to the blockchain.</Trans>
@@ -187,7 +188,7 @@ function NFTTransferContextualAction(props: NFTTransferContextualActionProps) {
   }
 
   function handleTransferNFT() {
-    openDialog(<NFTTransferDialog nft={selectedNft} onComplete={handleComplete} />);
+    openDialog(<NFTTransferDialog nfts={selection?.items || []} onComplete={handleComplete} />);
   }
 
   return (

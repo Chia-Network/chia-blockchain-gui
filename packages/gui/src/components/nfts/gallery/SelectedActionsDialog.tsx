@@ -52,12 +52,9 @@ export default function SelectedActionsDialog(props: SelectedActionsDialogProps)
     NFTContextualActionTypes.MoveToProfile +
     NFTContextualActionTypes.Invalidate +
     NFTContextualActionTypes.Hide +
-    NFTContextualActionTypes.Download;
-  const menuWithoutHide =
-    NFTContextualActionTypes.CreateOffer +
-    NFTContextualActionTypes.MoveToProfile +
-    NFTContextualActionTypes.Invalidate +
-    NFTContextualActionTypes.Download;
+    NFTContextualActionTypes.Download +
+    NFTContextualActionTypes.Transfer;
+  const menuWithoutHide = menuWithHide - NFTContextualActionTypes.Hide;
 
   return (
     <SelectedItemsContainer>

@@ -24,10 +24,17 @@ export default class NFTWallet extends Wallet {
     });
   }
 
-  async transferNft(walletId: number, nftCoinId: string, targetAddress: string, fee: string) {
-    return this.command('nft_transfer_nft', {
-      walletId,
-      nftCoinId,
+  async transferNft(walletId: number, nftCoinIds: string[], targetAddress: string, fee: string) {
+    if (nftCoinIds.length === 1) {
+      return this.command('nft_transfer_nft', {
+        walletId,
+        nftCoinId: nftCoinIds[0],
+        targetAddress,
+        fee,
+      });
+    }
+    return this.command('nft_transfer_bulk', {
+      nftCoinList: nftCoinIds.map((nftId: string) => ({ nft_coin_id: nftId, wallet_id: walletId })),
       targetAddress,
       fee,
     });
