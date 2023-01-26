@@ -18,6 +18,10 @@ export function Reload(props: SvgIconProps) {
   return <SvgIcon component={ReloadIcon} viewBox="-3 -3 26 26" {...props} />;
 }
 
+function CopyIconWithoutFill() {
+  // this icons looks bad when filling any color
+  return <CopyIcon fill="none" />;
+}
 export function Copy(props: SvgIconProps) {
-  return <SvgIcon component={CopyIcon} viewBox="0 0 22 22" {...props} />;
+  return <SvgIcon fill="none" component={CopyIconWithoutFill} viewBox="0 0 22 22" {...props} />;
 }
