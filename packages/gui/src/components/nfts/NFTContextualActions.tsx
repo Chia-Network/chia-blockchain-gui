@@ -402,6 +402,7 @@ function NFTDownloadContextualAction(props: NFTDownloadContextualActionProps) {
   const disabled = !selectedNft;
   const dataUrl = selectedNft?.dataUris?.[0];
   const openDialog = useOpenDialog();
+  const [selectedNFTs, setSelectedNFTIds] = useLocalStorage('gallery-selected-nfts', []);
 
   async function handleDownload() {
     const { ipcRenderer } = window as any;
@@ -425,8 +426,9 @@ function NFTDownloadContextualAction(props: NFTDownloadContextualActionProps) {
           }
           return { ...nft, hash };
         });
+        setSelectedNFTIds([]);
         ipcRenderer.invoke('startMultipleDownload', { folder: folder.filePaths[0], nfts });
-        await openDialog(<MultipleDownloadDialog />);
+        await openDialog(<MultipleDownloadDialog folder={folder.filePaths[0]} />);
       }
     } else {
       const dataUrlLocal = selectedNft?.dataUris?.[0];

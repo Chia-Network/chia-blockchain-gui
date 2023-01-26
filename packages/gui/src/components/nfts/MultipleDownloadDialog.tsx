@@ -6,12 +6,13 @@ import React, { useEffect, useState } from 'react';
 
 type MultipleDownloadDialogProps = {
   onClose?: (value?: any) => void;
+  folder: string;
 };
 
 const { ipcRenderer } = window as any;
 
 export default function MultipleDownloadDialog(props: MultipleDownloadDialogProps) {
-  const { onClose = () => {} } = props;
+  const { onClose = () => {}, folder } = props;
   const theme = useTheme();
   const [progressObject, setProgressObject] = useState<any>({
     progress: 0,
@@ -19,14 +20,16 @@ export default function MultipleDownloadDialog(props: MultipleDownloadDialogProp
     i: 1,
     total: 1,
   });
-  const [totalSize, setTotalSize] = useState<number>(0);
+  const [responseObject, setResponseObject] = useState<any>({});
+  const [downloadDone, setDownloadDone] = useState<boolean>(false);
 
   useEffect(() => {
     const downloadProgressFn = (_: any, obj: any) => {
       setProgressObject(obj);
     };
-    const downloadDoneFn = (_: any, totalDownloadedSize: number) => {
-      setTotalSize(totalDownloadedSize);
+    const downloadDoneFn = (_: any, obj: any) => {
+      setResponseObject(obj);
+      setDownloadDone(true);
     };
     ipcRenderer.on('downloadProgress', downloadProgressFn);
     ipcRenderer.on('multipleDownloadDone', downloadDoneFn);
@@ -37,25 +40,36 @@ export default function MultipleDownloadDialog(props: MultipleDownloadDialogProp
     };
   }, []);
 
-  function handleClose(isCancel: boolean) {
-    if (isCancel) {
+  function handleClose({ isCanceled }: { isCanceled: boolean }) {
+    if (isCanceled) {
       ipcRenderer.invoke('abortDownloadingFiles');
     }
     onClose?.(true);
   }
 
   function renderContent() {
-    if (totalSize > 0) {
+    if (downloadDone) {
       return (
         <Box>
           <Box>
-            <Trans>Downloaded files: </Trans> {progressObject.total}
+            <Trans>Downloaded files: </Trans> {responseObject.successFileCount}
           </Box>
-          <Box>
-            <Typography variant="body1">
-              <Trans>Total size of downloaded files: </Trans> <FormatBytes value={totalSize} precision={3} />
-            </Typography>
-          </Box>
+          {responseObject.errorFileCount > 0 && (
+            <Box>
+              <Trans>Failed downloads: </Trans> {responseObject.errorFileCount}
+            </Box>
+          )}
+          {responseObject.successFileCount > 0 && (
+            <>
+              <Box>Download folder: {folder}</Box>{' '}
+              <Box>
+                <Typography variant="body1">
+                  <Trans>Total size of downloaded files: </Trans>{' '}
+                  <FormatBytes value={responseObject.totalDownloadedSize} precision={3} />
+                </Typography>
+              </Box>
+            </>
+          )}
         </Box>
       );
     }
@@ -66,13 +80,24 @@ export default function MultipleDownloadDialog(props: MultipleDownloadDialogProp
     );
   }
 
+  function renderTitle() {
+    if (!downloadDone) {
+      return <Trans>Downloading selected NFTs</Trans>;
+    }
+    if (responseObject.successFileCount > 0 && responseObject.errorFileCount === 0) {
+      return <Trans>Download successful.</Trans>;
+    } else if (responseObject.successFileCount === 0) {
+      return <Trans>Download failed.</Trans>;
+    } else {
+      return <Trans>Download finished.</Trans>;
+    }
+  }
+
   return (
-    <Dialog open onClose={handleClose} maxWidth={false}>
-      <DialogTitle>
-        {totalSize === 0 ? <Trans>Downloading selected NFTs</Trans> : <Trans>Download successful.</Trans>}
-      </DialogTitle>
+    <Dialog open onClose={() => handleClose({ isCanceled: false })} maxWidth={false}>
+      <DialogTitle>{renderTitle()}</DialogTitle>
       <DialogContent>{renderContent()}</DialogContent>
-      {totalSize === 0 && (
+      {!downloadDone && (
         <Box sx={{ padding: '0 50px 20px 50px' }}>
           <Box>{progressObject.url}</Box>
           <Box
@@ -86,12 +111,12 @@ export default function MultipleDownloadDialog(props: MultipleDownloadDialogProp
         </Box>
       )}
       <DialogActions sx={{ justifyContent: 'center', marginBottom: '15px' }}>
-        {totalSize > 0 ? (
-          <Button onClick={() => handleClose('cancel')} color="primary" variant="outlined">
+        {downloadDone ? (
+          <Button onClick={() => handleClose({ isCanceled: true })} color="primary" variant="outlined">
             <Trans>Close</Trans>
           </Button>
         ) : (
-          <Button onClick={handleClose} color="secondary" variant="outlined">
+          <Button onClick={() => handleClose({ isCanceled: false })} color="secondary" variant="outlined">
             <Trans>Cancel</Trans>
           </Button>
         )}
