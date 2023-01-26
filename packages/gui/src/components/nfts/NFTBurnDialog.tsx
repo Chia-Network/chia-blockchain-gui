@@ -1,5 +1,5 @@
 import { type NFTInfo } from '@chia-network/api';
-import { useTransferNFTMutation } from '@chia-network/api-react';
+import { useTransferNFTMutation, useLocalStorage } from '@chia-network/api-react';
 import {
   Button,
   ButtonLoading,
@@ -21,7 +21,7 @@ import NFTSummary from './NFTSummary';
 import NFTTransferConfirmationDialog from './NFTTransferConfirmationDialog';
 
 type NFTPreviewDialogProps = {
-  nft: NFTInfo;
+  nfts: NFTInfo[];
   open?: boolean;
   onClose?: () => void;
 };
@@ -32,11 +32,12 @@ type FormData = {
 };
 
 export default function NFTBurnDialog(props: NFTPreviewDialogProps) {
-  const { nft, onClose = () => ({}), open = false, ...rest } = props;
+  const { nfts, onClose = () => ({}), open = false, ...rest } = props;
   const burnAddress = useBurnAddress();
   const openDialog = useOpenDialog();
   const showError = useShowError();
   const [transferNFT] = useTransferNFTMutation();
+  const [, setSelectedNFTIds] = useLocalStorage('gallery-selected-nfts', []);
 
   const methods = useForm<FormData>({
     defaultValues: {
@@ -71,10 +72,17 @@ export default function NFTBurnDialog(props: NFTPreviewDialogProps) {
         title={<Trans>Burn NFT confirmation</Trans>}
         description={
           <Alert severity="warning" icon={false}>
-            <Trans>
-              If you burn this NFT, nobody (including you) will ever be able to access it again. Are you sure you want
-              to continue?
-            </Trans>
+            {nfts.length > 1 ? (
+              <Trans>
+                If you burn these NFTs, nobody (including you) will ever be able to access it again. Are you sure you
+                want to continue?
+              </Trans>
+            ) : (
+              <Trans>
+                If you burn this NFT, nobody (including you) will ever be able to access it again. Are you sure you want
+                to continue?
+              </Trans>
+            )}
           </Alert>
         }
         confirmTitle={<Trans>Burn</Trans>}
@@ -89,12 +97,14 @@ export default function NFTBurnDialog(props: NFTPreviewDialogProps) {
       const feeInMojos = chiaToMojo(fee || 0);
 
       await transferNFT({
-        walletId: nft.walletId,
-        nftCoinId: nft.nftCoinId,
-        launcherId: nft.launcherId,
+        walletId: nfts[0].walletId,
+        nftCoinIds: nfts.map((nft: NFTInfo) => nft.nftCoinId),
+        launcherId: nfts[0].launcherId,
         targetAddress: destination,
         fee: feeInMojos,
       }).unwrap();
+
+      setSelectedNFTIds([]);
 
       onClose();
     } catch (error) {
@@ -102,12 +112,27 @@ export default function NFTBurnDialog(props: NFTPreviewDialogProps) {
     }
   }
 
+  function renderNFTPreview() {
+    if (nfts.length === 1) {
+      return (
+        <Flex flexDirection="column" gap={1}>
+          <NFTSummary launcherId={nfts[0].launcherId} />
+        </Flex>
+      );
+    }
+    return null;
+  }
+
   return (
     <Dialog open={open} onClose={handleClose} maxWidth="sm" fullWidth {...rest}>
       <DialogTitle id="nft-transfer-dialog-title">
         <Flex flexDirection="row" gap={1}>
           <Typography variant="h6">
-            <Trans>Do you want to burn this NFT?</Trans>
+            {nfts.length > 1 ? (
+              <Trans id="Do you want to burn {count} NFTs?" values={{ count: nfts.length }} />
+            ) : (
+              <Trans>Do you want to burn this NFT?</Trans>
+            )}
           </Typography>
         </Flex>
       </DialogTitle>
@@ -122,9 +147,7 @@ export default function NFTBurnDialog(props: NFTPreviewDialogProps) {
             </DialogContentText>
 
             <Flex flexDirection="column" gap={3}>
-              <Flex flexDirection="column" gap={1}>
-                <NFTSummary launcherId={nft.launcherId} />
-              </Flex>
+              {renderNFTPreview()}
               <TextField
                 name="destination"
                 variant="filled"
