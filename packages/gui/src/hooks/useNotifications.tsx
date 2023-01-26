@@ -40,21 +40,6 @@ type NotificationDetails = Notification & {
   }[];
 };
 
-const notificationsMocked = [
-  {
-    id: '1',
-    message: JSON.stringify({
-      d: {
-        u: 'https://storage.googleapis.com/chia-offers/gulka_from_72',
-      },
-    }),
-    height: 10_000_000,
-  },
-
-  // nft1fnvc6ysynx0rrxdyc352jjk6qj4axkk24enh9txq4x8awc0t5a2qkv3dks 78
-  // nft14gcw9emalnv28zqj20ckmz58flzkrrc0d4qnxdxhvmzdmw4a0acsapqd8u 52
-];
-
 export default function useNotifications() {
   const {
     data: notifications,
