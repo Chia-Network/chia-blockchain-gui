@@ -1,4 +1,5 @@
 import type Client from '../Client';
+import type Message from '../Message';
 import ServiceName from '../constants/ServiceName';
 import Service from './Service';
 import type { Options } from './Service';
