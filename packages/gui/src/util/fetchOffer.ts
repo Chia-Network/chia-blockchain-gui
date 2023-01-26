@@ -5,11 +5,6 @@ import OfferServices from '../constants/OfferServices';
 import getRemoteFileContent from './getRemoteFileContent';
 import offerToOfferBuilderData from './offerToOfferBuilderData';
 
-// test
-// https://api.offerbin.io/download/HMUL8iRzS6RXy6gCXeyoi92UhNr2hMuBfwnqqRBoC3CE.offer
-
-export const MAX_FILE_SIZE = 1 * 1024 * 1024; // 1 MB
-
 export default async function fetchOffer(offerUrl: string) {
   if (!offerUrl || !isURL(offerUrl)) {
     throw new Error(`URL is not valid: ${offerUrl}`);
@@ -23,7 +18,7 @@ export default async function fetchOffer(offerUrl: string) {
 
   const { data: offerData } = await getRemoteFileContent({
     uri: offerUrl,
-    maxSize: MAX_FILE_SIZE,
+    maxSize: 10 * 1024 * 1024, // 10 MB
     nftId: offerUrl,
     dataHash: 'no hash',
   });
@@ -34,9 +29,12 @@ export default async function fetchOffer(offerUrl: string) {
 
   // fetch offer summary
   const resultOfferSummaryPromise = store.dispatch(walletApi.endpoints.getOfferSummary.initiate(offerData));
-  const {
-    data: { summary: offerSummary, success },
-  } = await resultOfferSummaryPromise;
+  const { data: dataOfferSummary, error: errorOfferSummary } = await resultOfferSummaryPromise;
+  if (errorOfferSummary) {
+    throw errorOfferSummary;
+  }
+
+  const { summary: offerSummary, success } = dataOfferSummary;
   resultOfferSummaryPromise.unsubscribe();
   if (!success) {
     throw new Error('Failed to get offer summary');
@@ -44,28 +42,31 @@ export default async function fetchOffer(offerUrl: string) {
 
   // check offer validity
   const resultOfferValidityPromise = store.dispatch(walletApi.endpoints.checkOfferValidity.initiate(offerData));
-  const {
-    data: { valid, success: isValiditySuccess },
-  } = await resultOfferValidityPromise;
+  const { data: dataOfferValidity, error: errorOfferValidity } = await resultOfferValidityPromise;
+  if (errorOfferValidity) {
+    throw errorOfferValidity;
+  }
+  const { valid, success: isValiditySuccess, id } = dataOfferValidity;
   resultOfferValidityPromise.unsubscribe();
   if (!isValiditySuccess) {
     throw new Error('Failed to check offer validity');
   }
 
-  /*
-  console.log('offer', offerData, offerSummary);
+  // fetch offer record
+  let tradeRecord;
+  if (id) {
+    const resultOfferRecordPromise = store.dispatch(walletApi.endpoints.getOfferRecord.initiate(id));
+    const { data: dataOfferRecord, error: errorOfferRecord } = await resultOfferRecordPromise;
+    if (!errorOfferRecord) {
+      const { success: isOfferRecordSuccess } = dataOfferRecord;
+      resultOfferRecordPromise.unsubscribe();
+      if (!isOfferRecordSuccess) {
+        throw new Error('Failed to get offer record');
+      }
 
-  // get offer record
-  const resultOfferRecordPromise = store.dispatch(walletApi.endpoints.getOfferRecord.initiate(offerData));
-  const {
-    data: { success: isOfferRecordSuccess, ...rest },
-  } = await resultOfferRecordPromise;
-  console.log('rest', success, rest);
-  resultOfferRecordPromise.unsubscribe();
-  if (!isOfferRecordSuccess) {
-    throw new Error('Failed to check offer record');
+      tradeRecord = dataOfferRecord.tradeRecord;
+    }
   }
-  */
 
   const offer = offerToOfferBuilderData(offerSummary);
 
@@ -74,6 +75,6 @@ export default async function fetchOffer(offerUrl: string) {
     offer,
     offerData,
     offerSummary,
-    // rest,
+    tradeRecord,
   };
 }
