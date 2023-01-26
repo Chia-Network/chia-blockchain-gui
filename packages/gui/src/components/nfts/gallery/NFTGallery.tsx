@@ -149,10 +149,9 @@ const LoadingWrapper = styled.div`
 
 const TotalItemsStyled = styled.div`
   display: flex;
+  align-items: center;
   > span {
     margin-right: 15px;
-    position: relative;
-    top: 6px;
   }
 `;
 
@@ -460,25 +459,16 @@ export default function NFTGallery() {
 
   function renderSelectDeselectButtons() {
     if (!inMultipleSelectionMode) return null;
+    const isSelectAll = selectedNFTIds.length < filteredShownNFTs().length;
     return (
-      <>
-        <SelectAllButtonStyled
-          variant="text"
-          onClick={() => {
-            setSelectedNFTIds(filteredShownNFTs().map((nft: NFTInfo) => nft.$nftId));
-          }}
-        >
-          <Trans>Select all</Trans>
-        </SelectAllButtonStyled>
-        <SelectAllButtonStyled
-          variant="text"
-          onClick={() => {
-            setSelectedNFTIds([]);
-          }}
-        >
-          <Trans>Deselect all</Trans>
-        </SelectAllButtonStyled>
-      </>
+      <SelectAllButtonStyled
+        variant="text"
+        onClick={() => {
+          setSelectedNFTIds(isSelectAll ? filteredShownNFTs().map((nft: NFTInfo) => nft.$nftId) : []);
+        }}
+      >
+        {isSelectAll ? <Trans>Select all</Trans> : <Trans>Deselect all</Trans>}
+      </SelectAllButtonStyled>
     );
   }
 
