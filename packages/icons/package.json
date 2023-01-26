@@ -9,11 +9,10 @@
   },
   "main": "dist/index.js",
   "module": "dist/esm.js",
+  "types": "./dist/types",
   "scripts": {
-    "build": "npm run build:js",
-    "build:js": "rollup -c",
-    "build:watch": "rollup -c -w",
-    "build:types": "tsc --emitDeclarationOnly",
+    "build": "rollup -c && tsc --emitDeclarationOnly",
+    "build:watch": "tsc --emitDeclarationOnly --watch & rollup -c -w",
     "check:types": "tsc --noEmit --emitDeclarationOnly false",
     "test": "jest"
   },
@@ -31,6 +30,8 @@
     "@babel/preset-typescript": "7.16.7",
     "@mui/icons-material": "5.8.4",
     "@mui/material": "5.10.0",
+    "@mui/styled-engine-sc": "5.10.0",
+    "@rollup/plugin-alias": "3.1.9",
     "@rollup/plugin-babel": "5.3.0",
     "@rollup/plugin-commonjs": "21.0.1",
     "@rollup/plugin-node-resolve": "13.1.3",
