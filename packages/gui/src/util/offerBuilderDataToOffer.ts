@@ -34,11 +34,6 @@ export default async function offerBuilderDataToOffer(
   const driverDict: Record<string, Driver> = {};
 
   const hasOffer = !!offeredXch.length || !!offeredTokens.length || !!offeredNfts.length;
-  const hasRequest = !!requestedXch.length || !!requestedTokens.length || !!requestedNfts.length;
-
-  if (!hasRequest) {
-    throw new Error(t`Please specify at least one requested asset`);
-  }
 
   if (!hasOffer) {
     throw new Error(t`Please specify at least one offered asset`);

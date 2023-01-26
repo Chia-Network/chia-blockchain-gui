@@ -1,6 +1,6 @@
-import { SettingsLabel, Flex } from '@chia-network/core';
+import { Flex, SettingsHR, SettingsSection, SettingsTitle, SettingsText } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
-import { FormGroup, FormControlLabel, Grid, Switch } from '@mui/material';
+import { FormControlLabel, Grid, Switch } from '@mui/material';
 import React from 'react';
 
 import useNotifications from '../../hooks/useNotifications';
@@ -9,30 +9,47 @@ export default function SettingsNotifications() {
   const { enabled, setEnabled } = useNotifications();
 
   return (
-    <Grid container>
-      <Grid item xs={12} lg={6}>
-        <Flex flexDirection="column" gap={2}>
-          <SettingsLabel>
-            <Flex gap={1} alignItems="center">
-              <Trans>Push Notifications</Trans>
-            </Flex>
-          </SettingsLabel>
+    <Grid container style={{ maxWidth: '624px' }} gap={3}>
+      <Grid item>
+        <Flex flexDirection="column" gap={1}>
+          <SettingsSection>
+            <Trans>Notifications</Trans>
+          </SettingsSection>
+          <SettingsText>
+            <Trans>Choose your notification settings.</Trans>
+          </SettingsText>
+        </Flex>
+      </Grid>
 
-          <Flex flexDirection="column" gap={1}>
-            <FormGroup>
-              <FormControlLabel
-                control={
-                  <Switch
-                    checked={!enabled}
-                    onChange={() => setEnabled(!enabled)}
-                    inputProps={{ 'data-testid': 'Notifications-Pause-All' }}
-                  />
-                }
-                label={<Trans>Pause all</Trans>}
+      <Grid item xs={12} sm={12} lg={12}>
+        <SettingsHR />
+      </Grid>
+
+      <Grid container>
+        <Grid item style={{ width: '400px' }}>
+          <SettingsTitle>
+            <Trans>Enable push notifications</Trans>
+          </SettingsTitle>
+        </Grid>
+        <Grid item container xs justifyContent="flex-end" marginTop="-6px">
+          <FormControlLabel
+            control={
+              <Switch
+                checked={!enabled}
+                onChange={() => setEnabled(!enabled)}
+                inputProps={{ 'data-testid': 'Notifications-Pause-All' }}
               />
-            </FormGroup>
+            }
+          />
+        </Grid>
+        <Grid item container style={{ width: '400px' }} gap={2}>
+          <SettingsText>
+            <Trans>Turn on/off the ability to show you notifications.</Trans>
+          </SettingsText>
+        </Grid>
+      </Grid>
 
-            {/*
+      {/*
             <FormGroup>
               <FormControlLabel
                 control={
@@ -46,9 +63,6 @@ export default function SettingsNotifications() {
               />
             </FormGroup>
               */}
-          </Flex>
-        </Flex>
-      </Grid>
     </Grid>
   );
 }
