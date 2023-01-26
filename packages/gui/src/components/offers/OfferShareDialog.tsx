@@ -157,6 +157,7 @@ async function postToDexie(offerData: string, testnet: boolean): Promise<string>
     port: 443,
     path: '/v1/offers',
   };
+
   const requestHeaders = {
     'Content-Type': 'application/json',
   };
@@ -175,8 +176,12 @@ async function postToDexie(offerData: string, testnet: boolean): Promise<string>
     throw error;
   }
 
+  const { success, id, error_message: errorMessage } = JSON.parse(responseBody);
+  if (!success) {
+    throw new Error(`Dexie upload failed: ${errorMessage}`);
+  }
+
   log('Dexie upload completed');
-  const { id } = JSON.parse(responseBody);
 
   return `https://${testnet ? 'testnet.' : ''}dexie.space/offers/${id}`;
 }
