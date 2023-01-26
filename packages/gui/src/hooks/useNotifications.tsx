@@ -22,6 +22,11 @@ type Notification = {
 
 type NotificationDetails = Notification & {
   type: NotificationType;
+  metadata: {
+    type: NotificationType;
+    version: number;
+    data: Record<string, any>;
+  };
   valid: boolean;
   offered?: {
     assetType: string;
@@ -34,6 +39,21 @@ type NotificationDetails = Notification & {
     displayAmount: number;
   }[];
 };
+
+const notificationsMocked = [
+  {
+    id: '1',
+    message: JSON.stringify({
+      d: {
+        u: 'https://storage.googleapis.com/chia-offers/gulka_from_72',
+      },
+    }),
+    height: 10_000_000,
+  },
+
+  // nft1fnvc6ysynx0rrxdyc352jjk6qj4axkk24enh9txq4x8awc0t5a2qkv3dks 78
+  // nft14gcw9emalnv28zqj20ckmz58flzkrrc0d4qnxdxhvmzdmw4a0acsapqd8u 52
+];
 
 export default function useNotifications() {
   const {
@@ -51,6 +71,8 @@ export default function useNotifications() {
   const [deleteNotifications] = useDeleteNotificationsMutation();
   const showNotification = useShowNotification();
   const openDialog = useOpenDialog();
+
+  console.log('notifications', notifications);
 
   const isLoading = isLoadingNotifications || isPreparingNotifications;
   const error = getNotificationsError || preparingError;
@@ -78,38 +100,45 @@ export default function useNotifications() {
             }
 
             try {
-              const { url } = parseNotification(message);
+              console.log('message', message);
+              const metadata = parseNotification(message);
+              const { type } = metadata;
+              console.log('metadata', metadata);
 
-              const data = await fetchOffer(url);
-              const { offerSummary } = data;
+              if ([NotificationType.OFFER, NotificationType.COUNTER_OFFER].includes(type)) {
+                const {
+                  data: { url },
+                } = metadata;
+                const data = await fetchOffer(url);
+                const { valid, offerSummary } = data;
+                if (!valid) {
+                  return null;
+                }
 
-              const offered = resolveOfferInfo(offerSummary, 'offered', lookupByAssetId);
-              const requested = resolveOfferInfo(offerSummary, 'requested', lookupByAssetId);
+                const offered = resolveOfferInfo(offerSummary, 'offered', lookupByAssetId);
+                const requested = resolveOfferInfo(offerSummary, 'requested', lookupByAssetId);
 
-              return {
-                type: NotificationType.OFFER,
-                offered,
-                requested,
-                ...data,
-                ...notification,
-              };
+                // todo add limit to 1 NFT per offer
+
+                return {
+                  type,
+                  metadata,
+                  offered,
+                  requested,
+                  ...data,
+                  ...notification,
+                };
+              }
+
+              throw new Error(`Unknown notification type: ${type}`);
             } catch (e) {
+              console.log('e', e);
               log('Failed to prepare notification', e);
               return null;
             }
           })
         )
-      ).filter((notification) => {
-        if (!notification) {
-          return false;
-        }
-
-        if (notification.type === NotificationType.OFFER) {
-          return !!notification.valid;
-        }
-
-        return true;
-      });
+      ).filter(Boolean);
 
       const sortedNotifications = orderBy(prepared, ['height'], ['desc']);
 
