@@ -7,7 +7,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 
 import NotificationType from '../../constants/NotificationType';
 import useAcceptOfferHook from '../../hooks/useAcceptOfferHook';
-import useNotifications from '../../hooks/useNotifications';
+import useNotifications, { type NotificationDetails } from '../../hooks/useNotifications';
 import NotificationNFTTitle from '../notification/NotificationNFTTitle';
 import NotificationPreview from '../notification/NotificationPreview';
 import OfferAsset from '../offers/OfferAsset';
@@ -63,27 +63,28 @@ const cols = [
     title: <Trans>Creation Height</Trans>,
   },
   {
-    field: (notification: NotificationDetails, { acceptOffer, deleteNotification /* , showOffer */ }) => {
+    field: (notification: NotificationDetails, { /* acceptOffer, */ deleteNotification, showOffer }) => {
       const { id } = notification;
 
-      async function handleAcceptOffer() {
-        await acceptOffer(id);
-      }
+      // async function handleAcceptOffer() {
+      //   await acceptOffer(id);
+      // }
 
       async function handleDelete() {
         await deleteNotification(id);
       }
 
-      /*
       function handleShowOffer() {
         showOffer(id);
       }
-      */
 
       return (
         <Flex gap={1}>
-          <Button variant="outlined" color="primary" onClick={handleAcceptOffer}>
+          {/* <Button variant="outlined" color="primary" onClick={handleAcceptOffer}>
             <Trans>Accept</Trans>
+          </Button> */}
+          <Button variant="outlined" color="primary" onClick={handleShowOffer}>
+            <Trans>View</Trans>
           </Button>
           {/*
           <Button variant="outlined" color="primary" onClick={handleShowOffer}>

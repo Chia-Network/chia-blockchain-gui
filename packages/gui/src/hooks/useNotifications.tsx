@@ -20,7 +20,7 @@ type Notification = {
   height: number;
 };
 
-type NotificationDetails = Notification & {
+export type NotificationDetails = Notification & {
   type: NotificationType;
   metadata: {
     type: NotificationType;
