@@ -57,8 +57,6 @@ export default function useNotifications() {
   const showNotification = useShowNotification();
   const openDialog = useOpenDialog();
 
-  console.log('notifications', notifications);
-
   const isLoading = isLoadingNotifications || isPreparingNotifications;
   const error = getNotificationsError || preparingError;
 
