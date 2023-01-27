@@ -4,6 +4,7 @@ import {
   useDeleteAllKeysMutation,
   useLogInAndSkipImportMutation,
   useGetKeysQuery,
+  useLogout,
 } from '@chia-network/api-react';
 import { Trans } from '@lingui/macro';
 import { Alert, Typography, Container } from '@mui/material';
@@ -40,6 +41,7 @@ export default function SelectKey() {
   const [skippedMigration] = useSkipMigration();
   const [promptForKeyringMigration] = useKeyringMigrationPrompt();
   const showError = useShowError();
+  const cleanCache = useLogout();
 
   const isLoading = isLoadingPublicKeys || isLoadingLogIn;
 
@@ -53,6 +55,8 @@ export default function SelectKey() {
       await logIn({
         fingerprint,
       }).unwrap();
+
+      await cleanCache();
 
       navigate('/dashboard/wallets');
     } catch (err) {
