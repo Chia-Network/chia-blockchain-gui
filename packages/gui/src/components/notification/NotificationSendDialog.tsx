@@ -51,6 +51,7 @@ export type NotificationSendDialogProps = {
   // recommendedAmount?: string;
   open?: boolean;
   onClose?: () => void;
+  address?: string;
 };
 
 export default function NotificationSendDialog(props: NotificationSendDialogProps) {
@@ -60,10 +61,11 @@ export default function NotificationSendDialog(props: NotificationSendDialogProp
     // recommendedAmount = DEFAULT_MESSAGE_COST,
     onClose = () => ({}),
     open = false,
+    address: defaultAddress = '',
     ...rest
   } = props;
   const methods = useForm<NotificationSendDialogFormData>({
-    defaultValues: { address: '', amount: '0.00001', allowCounterOffer: true, fee: '' },
+    defaultValues: { address: defaultAddress, amount: '0.0001', allowCounterOffer: true, fee: '' },
   });
   const launcherId = launcherIdFromNFTId(nftId ?? '');
   const currencyCode = useCurrencyCode();
@@ -78,6 +80,11 @@ export default function NotificationSendDialog(props: NotificationSendDialogProp
   const allowCounterOffer = methods.watch('allowCounterOffer');
 
   useEffect(() => {
+    if (defaultAddress) {
+      setIsLoading(false);
+      return;
+    }
+
     if (nft?.p2Address && currencyCode) {
       const p2Address = toBech32m(nft.p2Address, currencyCode);
 
@@ -85,7 +92,7 @@ export default function NotificationSendDialog(props: NotificationSendDialogProp
 
       setIsLoading(false);
     }
-  }, [nft, currencyCode, methods]);
+  }, [nft, currencyCode, methods, defaultAddress]);
 
   const nftPreviewContainer = {
     display: 'flex',
@@ -121,9 +128,9 @@ export default function NotificationSendDialog(props: NotificationSendDialogProp
         amount: amountMojos,
         message: hexMessage,
         fee: feeMojos,
-      });
+      }).unwrap();
 
-      success = result?.data?.success ?? false;
+      success = result?.success ?? false;
     } catch (e: any) {
       console.error(e);
       error = e.message;
@@ -174,7 +181,9 @@ export default function NotificationSendDialog(props: NotificationSendDialogProp
             </DialogTitle>
             <DialogContent sx={{ paddingBottom: 5 }}>
               {isLoading ? (
-                <Loading />
+                <Flex flexDirection="column" alignItems="center" gap={3}>
+                  <Loading />
+                </Flex>
               ) : (
                 <Flex flexDirection="column" alignItems="center" gap={3}>
                   <Box sx={nftPreviewContainer}>
