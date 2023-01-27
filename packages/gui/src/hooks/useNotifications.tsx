@@ -1,5 +1,7 @@
+import { SyncingStatus } from '@chia-network/api';
 import { useGetNotificationsQuery, usePrefs, useDeleteNotificationsMutation } from '@chia-network/api-react';
 import { ConfirmDialog, useOpenDialog } from '@chia-network/core';
+import { useWalletState } from '@chia-network/wallets';
 import { Trans } from '@lingui/macro';
 import debug from 'debug';
 import { orderBy } from 'lodash';
@@ -46,10 +48,11 @@ export default function useNotifications() {
     isLoading: isLoadingNotifications,
     error: getNotificationsError,
   } = useGetNotificationsQuery();
+  const { state, isLoading: isLoadingWalletState } = useWalletState();
   const [enabled, setEnabled] = usePrefs<number>('notifications', true);
   const [lastPushNotificationHeight, setLastPushNotificationHeight] = usePrefs<string>('lastPushNotificationHeight', 0);
   const [seenHeight, setSeenHeight] = usePrefs<number>('notificationsSeenHeight', 0);
-  const [isPreparingNotifications, setIsPreparingNotifications] = useState<boolean>(true);
+  const [isPreparingNotifications, setIsPreparingNotifications] = useState<boolean>(false);
   const [preparingError, setPreparingError] = useState<Error | undefined>();
   const [preparedNotifications, setPreparedNotifications] = useState<NotificationDetails[]>([]);
   const { lookupByAssetId } = useAssetIdName();
@@ -57,37 +60,30 @@ export default function useNotifications() {
   const showNotification = useShowNotification();
   const openDialog = useOpenDialog();
 
-  const isLoading = isLoadingNotifications || isPreparingNotifications;
+  const isSynced = state === SyncingStatus.SYNCED;
+  const isLoading = isLoadingNotifications || isPreparingNotifications || isLoadingWalletState;
   const error = getNotificationsError || preparingError;
 
   const prepareNotifications = useCallback(async () => {
-    if (!notifications || !isPreparingNotifications) {
+    if (!notifications || isPreparingNotifications || !isSynced) {
       return;
     }
 
     try {
       setIsPreparingNotifications(true);
 
-      if (!notifications) {
-        return;
-      }
-
       const prepared = (
         await Promise.all(
           notifications.map(async (notification) => {
-            const { message: hexMessage } = notification;
-            const message = hexMessage ? Buffer.from(hexMessage, 'hex').toString() : '';
-
-            if (!message) {
-              log('Notification has no message', notification);
-              return null;
-            }
-
             try {
-              console.log('message', message);
+              const { message: hexMessage } = notification;
+              const message = hexMessage ? Buffer.from(hexMessage, 'hex').toString() : '';
+              if (!message) {
+                throw new Error('Notification has not message');
+              }
+
               const metadata = parseNotification(message);
               const { type } = metadata;
-              console.log('metadata', metadata);
 
               if ([NotificationType.OFFER, NotificationType.COUNTER_OFFER].includes(type)) {
                 const {
@@ -132,7 +128,7 @@ export default function useNotifications() {
     } finally {
       setIsPreparingNotifications(false);
     }
-  }, [notifications, lookupByAssetId, isPreparingNotifications]);
+  }, [notifications, lookupByAssetId, isSynced]);
 
   const showPushNotifications = useCallback(() => {
     if (!enabled) {

@@ -48,12 +48,26 @@ export type CreateOfferBuilderProps = {
   nftId?: string;
   nftWalletId?: number;
   referrerPath?: string;
-  onOfferCreated: (obj: { offerRecord: any; offerData: any }) => void;
+  onOfferCreated: (obj: { offerRecord: any; offerData: any; address?: string }) => void;
   nftIds?: string[];
+  counterOffer?: boolean;
+  offer?: OfferBuilderData;
+  address?: string;
 };
 
 export default function CreateOfferBuilder(props: CreateOfferBuilderProps) {
-  const { referrerPath, onOfferCreated, walletType, assetId, nftId, nftWalletId, nftIds } = props;
+  const {
+    referrerPath,
+    onOfferCreated,
+    walletType,
+    assetId,
+    nftId,
+    nftWalletId,
+    nftIds,
+    counterOffer = false,
+    offer,
+    address,
+  } = props;
 
   const openDialog = useOpenDialog();
   const navigate = useNavigate();
@@ -61,17 +75,18 @@ export default function CreateOfferBuilder(props: CreateOfferBuilderProps) {
   const [createOfferForIds] = useCreateOfferForIdsMutation();
   const offerBuilderRef = useRef<{ submit: () => void } | undefined>(undefined);
 
-  const defaultValues = useMemo(
-    () =>
-      createDefaultValues({
-        walletType,
-        assetId,
-        nftId,
-        nftWalletId,
-        nftIds,
-      }),
-    [walletType, assetId, nftId, nftWalletId, nftIds]
-  );
+  const defaultValues = useMemo(() => {
+    if (offer) {
+      return offer;
+    }
+    return createDefaultValues({
+      walletType,
+      assetId,
+      nftId,
+      nftWalletId,
+      nftIds,
+    });
+  }, [walletType, assetId, nftId, nftWalletId, nftIds, offer]);
 
   const [suppressShareOnCreate] = usePrefs<boolean>(OfferLocalStorageKeys.SUPPRESS_SHARE_ON_CREATE);
 
@@ -99,7 +114,7 @@ export default function CreateOfferBuilder(props: CreateOfferBuilderProps) {
       navigate(-1);
 
       if (!suppressShareOnCreate) {
-        onOfferCreated({ offerRecord, offerData });
+        onOfferCreated({ offerRecord, offerData, address });
       }
     } catch (error) {
       if ((error as Error).message.startsWith('insufficient funds')) {
@@ -119,7 +134,7 @@ export default function CreateOfferBuilder(props: CreateOfferBuilderProps) {
         <Flex alignItems="center" justifyContent="space-between" gap={2}>
           <OfferNavigationHeader referrerPath={referrerPath} />
           <ButtonLoading variant="contained" color="primary" onClick={handleCreateOffer} disableElevation>
-            <Trans>Create Offer</Trans>
+            {counterOffer ? <Trans>Create Counter Offer</Trans> : <Trans>Create Offer</Trans>}
           </ButtonLoading>
         </Flex>
 

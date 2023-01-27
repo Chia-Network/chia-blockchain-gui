@@ -1,4 +1,5 @@
-import { Card, Flex, Table, LoadingOverlay, Button, useShowError } from '@chia-network/core';
+import { toBech32m } from '@chia-network/api';
+import { Card, Flex, Table, LoadingOverlay, Button, useShowError, useCurrencyCode } from '@chia-network/core';
 import { Offers as OffersIcon } from '@chia-network/icons';
 import { Trans } from '@lingui/macro';
 import { Typography } from '@mui/material';
@@ -6,8 +7,8 @@ import React, { useMemo, type ReactNode } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 import NotificationType from '../../constants/NotificationType';
-import useAcceptOfferHook from '../../hooks/useAcceptOfferHook';
 import useNotifications, { type NotificationDetails } from '../../hooks/useNotifications';
+import HeightToTimestamp from '../helpers/HeightToTimestamp';
 import NotificationNFTTitle from '../notification/NotificationNFTTitle';
 import NotificationPreview from '../notification/NotificationPreview';
 import OfferAsset from '../offers/OfferAsset';
@@ -59,16 +60,17 @@ const cols = [
     title: <Trans>Offering</Trans>,
   },
   {
-    field: 'height',
-    title: <Trans>Creation Height</Trans>,
+    field: (notification: NotificationDetails) => <HeightToTimestamp height={notification.height} />,
+    title: <Trans>Creation Date</Trans>,
   },
   {
-    field: (notification: NotificationDetails, { /* acceptOffer, */ deleteNotification, showOffer }) => {
-      const { id } = notification;
-
-      // async function handleAcceptOffer() {
-      //   await acceptOffer(id);
-      // }
+    field: (notification: NotificationDetails, { deleteNotification, showOffer, counterOffer }) => {
+      const {
+        id,
+        metadata: {
+          data: { puzzleHash },
+        },
+      } = notification;
 
       async function handleDelete() {
         await deleteNotification(id);
@@ -78,23 +80,18 @@ const cols = [
         showOffer(id);
       }
 
+      async function handleCounter() {
+        await counterOffer(id);
+      }
+
       return (
         <Flex gap={1}>
-          {/* <Button variant="outlined" color="primary" onClick={handleAcceptOffer}>
-            <Trans>Accept</Trans>
-          </Button> */}
           <Button variant="outlined" color="primary" onClick={handleShowOffer}>
             <Trans>View</Trans>
           </Button>
-          {/*
-          <Button variant="outlined" color="primary" onClick={handleShowOffer}>
+          <Button variant="outlined" color="primary" onClick={handleCounter} disabled={!puzzleHash}>
             <Trans>Counter</Trans>
           </Button>
-          {/*
-          <Button variant="outlined" color="primary">
-            <Trans>Decline</Trans>
-          </Button>
-          */}
           <Button variant="outlined" color="primary" onClick={handleDelete}>
             <Trans>Delete</Trans>
           </Button>
@@ -114,15 +111,15 @@ export type OfferIncomingTableProps = {
 export default function OfferIncomingTable(props: OfferIncomingTableProps) {
   const { nftId, title = <Trans>Incoming Offers</Trans> } = props;
   const { notifications = [], isLoading, deleteNotification } = useNotifications();
-  const [acceptOffer] = useAcceptOfferHook();
   const navigate = useNavigate();
   const location = useLocation();
+  const currencyCode = useCurrencyCode();
   const showError = useShowError();
 
   const filteredNotifications = useMemo(
     () =>
       notifications.filter((notification) => {
-        if (notification.type !== NotificationType.OFFER) {
+        if (![NotificationType.OFFER, NotificationType.COUNTER_OFFER].includes(notification.type)) {
           return false;
         }
 
@@ -138,10 +135,29 @@ export default function OfferIncomingTable(props: OfferIncomingTableProps) {
     [notifications, nftId]
   );
 
-  async function handleAcceptOffer(id: string, feeAmount = '0') {
+  async function handleCounterOffer(id: string) {
     try {
-      const { offerData, offerSummary } = filteredNotifications.find((notification) => notification.id === id);
-      await acceptOffer(offerData, offerSummary, feeAmount);
+      const {
+        offer,
+        metadata: {
+          data: { puzzleHash },
+        },
+      } = filteredNotifications.find((notification) => notification.id === id);
+
+      if (!puzzleHash || !currencyCode) {
+        return;
+      }
+
+      const address = currencyCode && puzzleHash ? toBech32m(puzzleHash, currencyCode.toLowerCase()) : '';
+
+      navigate('/dashboard/offers/builder', {
+        state: {
+          referrerPath: location.pathname,
+          counterOffer: true,
+          address,
+          offer,
+        },
+      });
     } catch (e) {
       showError(e);
     }
@@ -167,7 +183,7 @@ export default function OfferIncomingTable(props: OfferIncomingTableProps) {
     });
   }
 
-  const hasOffers = !!filteredNotifications?.length;
+  const hasNotifications = !!filteredNotifications?.length;
 
   return (
     <Card title={title} titleVariant="h6" transparent>
@@ -177,15 +193,15 @@ export default function OfferIncomingTable(props: OfferIncomingTableProps) {
           cols={cols}
           rowsPerPageOptions={[5, 25, 100]}
           rowsPerPage={5}
-          pages={hasOffers}
+          pages={hasNotifications}
           isLoading={isLoading}
           metadata={{
-            acceptOffer: handleAcceptOffer,
             deleteNotification: handleDeleteNotification,
             showOffer: handleShowOffer,
+            counterOffer: handleCounterOffer,
           }}
           caption={
-            !hasOffers &&
+            !hasNotifications &&
             !isLoading && (
               <Typography variant="body2" align="center">
                 <Trans>No incoming offers</Trans>

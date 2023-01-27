@@ -5,6 +5,8 @@ import OfferServices from '../constants/OfferServices';
 import getRemoteFileContent from './getRemoteFileContent';
 import offerToOfferBuilderData from './offerToOfferBuilderData';
 
+const cache: Record<string, string> = {};
+
 export default async function fetchOffer(offerUrl: string) {
   if (!offerUrl || !isURL(offerUrl)) {
     throw new Error(`URL is not valid: ${offerUrl}`);
@@ -16,12 +18,18 @@ export default async function fetchOffer(offerUrl: string) {
     throw new Error('Service not found');
   }
 
-  const { data: offerData } = await getRemoteFileContent({
-    uri: offerUrl,
-    maxSize: 10 * 1024 * 1024, // 10 MB
-    nftId: offerUrl,
-    dataHash: 'no hash',
-  });
+  if (!cache[offerUrl]) {
+    const { data } = await getRemoteFileContent({
+      uri: offerUrl,
+      maxSize: 10 * 1024 * 1024, // 10 MB
+      nftId: offerUrl,
+      dataHash: 'no hash',
+    });
+
+    cache[offerUrl] = data;
+  }
+
+  const offerData = cache[offerUrl];
 
   if (!offerData) {
     throw new Error('Failed to get offer data');
@@ -46,26 +54,10 @@ export default async function fetchOffer(offerUrl: string) {
   if (errorOfferValidity) {
     throw errorOfferValidity;
   }
-  const { valid, success: isValiditySuccess, id } = dataOfferValidity;
+  const { valid, success: isValiditySuccess } = dataOfferValidity;
   resultOfferValidityPromise.unsubscribe();
   if (!isValiditySuccess) {
     throw new Error('Failed to check offer validity');
-  }
-
-  // fetch offer record
-  let tradeRecord;
-  if (id) {
-    const resultOfferRecordPromise = store.dispatch(walletApi.endpoints.getOfferRecord.initiate(id));
-    const { data: dataOfferRecord, error: errorOfferRecord } = await resultOfferRecordPromise;
-    if (!errorOfferRecord) {
-      const { success: isOfferRecordSuccess } = dataOfferRecord;
-      resultOfferRecordPromise.unsubscribe();
-      if (!isOfferRecordSuccess) {
-        throw new Error('Failed to get offer record');
-      }
-
-      tradeRecord = dataOfferRecord.tradeRecord;
-    }
   }
 
   const offer = offerToOfferBuilderData(offerSummary);
@@ -75,6 +67,5 @@ export default async function fetchOffer(offerUrl: string) {
     offer,
     offerData,
     offerSummary,
-    tradeRecord,
   };
 }

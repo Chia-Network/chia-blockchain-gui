@@ -1343,6 +1343,7 @@ type OfferShareDialogProps = CommonOfferProps &
   CommonDialogProps & {
     showSuppressionCheckbox?: boolean;
     exportOffer?: () => void;
+    address?: string;
   };
 
 interface OfferShareDialogProvider extends OfferSharingProvider {
@@ -1359,6 +1360,7 @@ export default function OfferShareDialog(props: OfferShareDialogProps) {
     onClose = () => {},
     showSuppressionCheckbox = false,
     testnet = false,
+    address,
   } = props;
   const openDialog = useOpenDialog();
   const [sendOfferNotificationOpen, setSendOfferNotificationOpen] = React.useState(false);
@@ -1444,10 +1446,10 @@ export default function OfferShareDialog(props: OfferShareDialogProps) {
 
   useEffect(() => {
     if (sendOfferNotificationOpen && offerURL && nftId) {
-      openDialog(<NotificationSendDialog offerURL={offerURL} nftId={nftId} />);
+      openDialog(<NotificationSendDialog offerURL={offerURL} nftId={nftId} address={address} />);
       setSendOfferNotificationOpen(false);
     }
-  }, [openDialog, sendOfferNotificationOpen, offerURL, nftId]);
+  }, [openDialog, sendOfferNotificationOpen, offerURL, nftId, address]);
 
   function handleClose() {
     onClose(false);

@@ -29,6 +29,7 @@ export type OfferBuilderProps = {
   viewer?: boolean;
   imported?: boolean;
   state?: OfferState;
+  counterOffer?: boolean;
   onSubmit: (values: OfferBuilderData) => Promise<void>;
   defaultValues?: OfferBuilderData;
 };
