@@ -5,6 +5,7 @@ import { MenuItem, Typography } from '@mui/material';
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
+import HeightToTimestamp from '../helpers/HeightToTimestamp';
 import OfferAsset from '../offers/OfferAsset';
 import NotificationNFTTitle from './NotificationNFTTitle';
 import NotificationPreview from './NotificationPreview';
@@ -19,7 +20,7 @@ export type NotificationProps = {
 
 export default function Notification(props: NotificationProps) {
   const {
-    notification: { offer, offerSummary, offerData, error, offered, requested },
+    notification: { offer, offerSummary, offerData, error, offered, requested, height },
     onClick,
   } = props;
   const navigate = useNavigate();
@@ -50,6 +51,8 @@ export default function Notification(props: NotificationProps) {
           <Flex flexDirection="column">
             <Typography variant="body2" color="textSecondary">
               <Trans>You have a new offer</Trans>
+              {' · '}
+              <HeightToTimestamp height={height} fromNow />
             </Typography>
             {offered.map((info) => (
               <Flex flexDirection="row" gap={0.5} key={`${info.displayAmount}-${info.displayName}`}>
