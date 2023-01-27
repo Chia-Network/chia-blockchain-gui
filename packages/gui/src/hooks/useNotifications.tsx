@@ -77,7 +77,8 @@ export default function useNotifications() {
       const prepared = (
         await Promise.all(
           notifications.map(async (notification) => {
-            const { message } = notification;
+            const { message: hexMessage } = notification;
+            const message = hexMessage ? Buffer.from(hexMessage, 'hex').toString() : '';
 
             if (!message) {
               log('Notification has no message', notification);
