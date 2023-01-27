@@ -11,7 +11,7 @@ export default async function fetchOffer(offerUrl: string) {
   }
 
   const domain = new URL(offerUrl).hostname;
-  const service = OfferServices.find(({ domains }) => domains.includes(domain));
+  const service = OfferServices.find(({ domains }) => domains.find((localDomain) => domain.endsWith(localDomain)));
   if (!service) {
     throw new Error('Service not found');
   }
