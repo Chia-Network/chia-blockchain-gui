@@ -148,7 +148,7 @@ async function writeTempOfferFile(offerData: string, filename: string): Promise<
 
 /* ========================================================================== */
 
-async function postToDexie(offerData: string, testnet: boolean): Promise<string> {
+async function postToDexie(offerData: string, testnet: boolean): Promise<{ viewLink: string; offerLink: string }> {
   const { ipcRenderer } = window as any;
   const requestOptions = {
     method: 'POST',
@@ -183,7 +183,10 @@ async function postToDexie(offerData: string, testnet: boolean): Promise<string>
 
   log('Dexie upload completed');
 
-  return `https://${testnet ? 'testnet.' : ''}dexie.space/offers/${id}`;
+  const viewLink = `https://${testnet ? 'testnet.' : ''}dexie.space/offers/${id}`;
+  const offerLink = `https://${testnet ? 'raw-testnet.' : 'raw.'}dexie.space/${id}`;
+
+  return { viewLink, offerLink };
 }
 
 async function postToMintGarden(offerData: string, testnet: boolean): Promise<string> {
@@ -341,10 +344,12 @@ type PostToSpacescanResponse = {
     id: string;
     summary: Record<string, any>;
   };
+  view_link: string;
+  offer_link: string;
 };
 
 // Posts the offer data to OfferBin and returns a URL to the offer.
-async function postToSpacescan(offerData: string, testnet: boolean): Promise<string> {
+async function postToSpacescan(offerData: string, testnet: boolean): Promise<{ viewLink: string; offerLink: string }> {
   const { ipcRenderer } = window as any;
   const requestOptions = {
     method: 'POST',
@@ -373,11 +378,9 @@ async function postToSpacescan(offerData: string, testnet: boolean): Promise<str
 
   log('Spacescan.io upload completed');
 
-  const {
-    offer: { id },
-  }: PostToSpacescanResponse = JSON.parse(responseBody);
+  const { view_link: viewLink, offer_link: offerLink }: PostToSpacescanResponse = JSON.parse(responseBody);
 
-  return `https://www.spacescan.io/${testnet ? 'txch' : 'xch'}/offer/${id}`;
+  return { viewLink, offerLink };
 }
 
 enum KeybaseCLIActions {
@@ -559,19 +562,22 @@ function OfferShareDexieDialog(props: OfferShareServiceDialogProps) {
   } = props;
   const openExternal = useOpenExternal();
   const [sharedURL, setSharedURL] = React.useState('');
+  const [rawOfferURL, setRawOfferURL] = React.useState('');
 
   function handleClose() {
     onClose(false);
   }
 
   async function handleConfirm() {
-    const url = await postToDexie(offerData, testnet);
+    const { viewLink: url, offerLink } = await postToDexie(offerData, testnet);
     log(`Dexie URL: ${url}`);
     setSharedURL(url);
+    log(`Dexie offerLink: ${offerLink}`);
+    setRawOfferURL(offerLink);
   }
 
   function handleShowSendOfferNotificationDialog() {
-    showSendOfferNotificationDialog(true, sharedURL);
+    showSendOfferNotificationDialog(true, rawOfferURL);
   }
 
   if (sharedURL) {
@@ -888,19 +894,22 @@ function OfferShareSpacescanDialog(props: OfferShareServiceDialogProps) {
   } = props;
   const openExternal = useOpenExternal();
   const [sharedURL, setSharedURL] = React.useState('');
+  const [rawOfferURL, setRawOfferURL] = React.useState('');
 
   function handleClose() {
     onClose(false);
   }
 
   async function handleConfirm() {
-    const url = await postToSpacescan(offerData, testnet);
+    const { viewLink: url, offerLink } = await postToSpacescan(offerData, testnet);
     log(`Spacescan.io URL: ${url}`);
     setSharedURL(url);
+    log(`Spacescan.io Offer URL: ${offerLink}`);
+    setRawOfferURL(offerLink);
   }
 
   function handleShowSendOfferNotificationDialog() {
-    showSendOfferNotificationDialog(true, sharedURL);
+    showSendOfferNotificationDialog(true, rawOfferURL);
   }
 
   if (sharedURL) {
