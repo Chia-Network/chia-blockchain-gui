@@ -13,25 +13,36 @@ function parseSignedMessageData(text: string): {
   message: string;
   signature: string;
   pubkey: string;
+  signing_mode: string;
   address?: string;
 } {
+  try {
+    const data = JSON.parse(text);
+    if (data.message && data.signature && data.pubkey && data.signing_mode) {
+      return data;
+    }
+  } catch (e) {
+    // ignore
+  }
+
   const message = text.match(/Message: (.*)/)?.[1];
   const pubkey = text.match(/Public Key: (.*)/)?.[1];
   const signature = text.match(/Signature: (.*)/)?.[1];
+  const signing_mode = text.match(/Signing Mode: (.*)/)?.[1];
   const address = text.match(/Address: (.*)/)?.[1]; // Optional
 
-  if (!message || !pubkey || !signature) {
+  if (!message || !pubkey || !signature || !signing_mode) {
     throw new Error('Invalid signed message data');
   }
 
   // If message contains only hex characters, convert to utf8
-  if (/^[0-9a-fA-F]+$/.test(message)) {
-    const hex = message;
-    const utf8 = Buffer.from(hex, 'hex').toString('utf8');
-    return { message: utf8, pubkey, signature, address };
-  }
+  // if (/^[0-9a-fA-F]+$/.test(message)) {
+  //   const hex = message;
+  //   const utf8 = Buffer.from(hex, 'hex').toString('utf8');
+  //   return { message: utf8, pubkey, signature, address };
+  // }
 
-  return { message, pubkey, signature, address };
+  return { message, pubkey, signature, signing_mode, address };
 }
 
 function Background(props) {

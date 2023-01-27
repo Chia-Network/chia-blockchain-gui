@@ -9,7 +9,7 @@ import {
   TooltipIcon,
   Truncate,
   useOpenDialog,
-  useShowError,
+  // useShowError,
 } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import ArrowForwardIosSharpIcon from '@mui/icons-material/ArrowForwardIosSharp';
@@ -44,6 +44,7 @@ type VerifyMessageFormData = {
   message: string;
   pubkey: string;
   signature: string;
+  signing_mode: string;
   address: string;
   imported: boolean;
 };
@@ -56,7 +57,7 @@ export default function VerifyMessage(props: VerifyMessageProps) {
   const { onComplete } = props;
   const [verifySignature] = useVerifySignatureMutation();
   const openDialog = useOpenDialog();
-  const showError = useShowError();
+  // const showError = useShowError();
   const [expanded, setExpanded] = useState(false);
 
   const methods = useForm<VerifyMessageFormData>({
@@ -64,23 +65,32 @@ export default function VerifyMessage(props: VerifyMessageProps) {
       message: '',
       pubkey: '',
       signature: '',
+      signing_mode: '',
       address: '',
       imported: false,
     },
   });
 
-  const { message, pubkey, signature, address, imported } = methods.watch();
+  const { message, pubkey, signature, signing_mode: signingMode, address, imported } = methods.watch();
 
-  function importComplete(data: { message: string; pubkey: string; signature: string; address?: string }) {
+  function importComplete(data: {
+    message: string;
+    pubkey: string;
+    signature: string;
+    signing_mode: string;
+    address?: string;
+  }) {
     const {
       message: importedMessage,
       pubkey: importedPubkey,
       signature: importedSignature,
+      signing_mode: importedSigningMode,
       address: importedAddress = '',
     } = data;
     methods.setValue('message', importedMessage);
     methods.setValue('pubkey', importedPubkey);
     methods.setValue('signature', importedSignature);
+    methods.setValue('signing_mode', importedSigningMode);
     methods.setValue('address', importedAddress);
     methods.setValue('imported', true);
 
@@ -102,8 +112,8 @@ export default function VerifyMessage(props: VerifyMessageProps) {
       message,
       pubkey,
       signature,
+      signingMode,
       address: address || undefined,
-      signingMode: 'chip_0002',
     })
       .unwrap()
       .catch((err: Error) => {
@@ -216,6 +226,15 @@ export default function VerifyMessage(props: VerifyMessageProps) {
                 }}
                 name="signature"
                 label={<Trans>Signature</Trans>}
+                fullWidth
+              />
+              <TextField
+                variant="filled"
+                InputProps={{
+                  readOnly: imported,
+                }}
+                name="signing_mode"
+                label={<Trans>Signing Mode</Trans>}
                 fullWidth
               />
               {(address || !imported) && (

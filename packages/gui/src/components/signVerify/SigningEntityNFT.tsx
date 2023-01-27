@@ -16,12 +16,15 @@ export type SigningEntityNFTProps = {
 export default function SigningEntityNFT(props: SigningEntityNFTProps) {
   const { entityName, entityValueName } = props;
   const { getValues, setValue } = useFormContext();
+  const currentValue = getValues(entityName);
+  const nftId = currentValue?.nftId;
+  let launcherId: string | undefined;
 
   useEffect(() => {
     if (entityName && entityValueName) {
-      const currentValue = getValues(entityValueName);
+      const localCurrentValue = getValues(entityValueName);
 
-      if (currentValue === undefined) {
+      if (localCurrentValue === undefined) {
         const entity: SignMessageNFTEntity = {
           type: SignMessageEntityType.NFT,
           nftId: '',
@@ -31,12 +34,9 @@ export default function SigningEntityNFT(props: SigningEntityNFTProps) {
     }
   }, [entityName, entityValueName, setValue, getValues]);
 
-  const currentValue = getValues(entityName);
-  let launcherId: string | undefined;
-
-  if (currentValue?.nftId) {
+  if (nftId) {
     try {
-      launcherId = launcherIdFromNFTId(currentValue.nftId);
+      launcherId = launcherIdFromNFTId(nftId);
     } catch (e) {
       // do nothing
     }

@@ -1,4 +1,4 @@
-import { toBech32m } from '@chia-network/api';
+import { toBech32m, toSnakeCase } from '@chia-network/api';
 import { useSignMessageByAddressMutation, useSignMessageByIdMutation } from '@chia-network/api-react';
 import { Button, Card, Flex, Form, TextField, useOpenDialog, useShowError } from '@chia-network/core';
 import { Trans, t } from '@lingui/macro';
@@ -79,14 +79,12 @@ export default function SignMessage(props: SignMessageProps) {
       address,
     });
 
-    openDialog(
-      <SignMessageResultDialog
-        message={messageToSign}
-        pubkey={result.pubkey}
-        signature={result.signature}
-        address={address}
-      />
-    );
+    const content = toSnakeCase({ ...result, message: messageToSign, address });
+    delete content.success;
+
+    const jsonContent = JSON.stringify(content, null, 2);
+
+    openDialog(<SignMessageResultDialog content={jsonContent} />);
   }
 
   async function handleSignById(messageToSign: string, id: string) {
@@ -122,9 +120,13 @@ export default function SignMessage(props: SignMessageProps) {
         showError(error);
       }
     } else {
-      openDialog(
-        <SignMessageResultDialog message={messageToSign} pubkey={result.pubkey} signature={result.signature} />
-      );
+      const content = toSnakeCase({ ...result, message: messageToSign });
+      delete content.success;
+      delete content.latest_coin_id;
+
+      const jsonContent = JSON.stringify(content, null, 2);
+
+      openDialog(<SignMessageResultDialog content={jsonContent} />);
     }
   }
 
