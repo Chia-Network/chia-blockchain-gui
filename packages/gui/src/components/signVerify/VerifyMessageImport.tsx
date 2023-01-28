@@ -28,10 +28,10 @@ function parseSignedMessageData(text: string): {
   const message = text.match(/Message: (.*)/)?.[1];
   const pubkey = text.match(/Public Key: (.*)/)?.[1];
   const signature = text.match(/Signature: (.*)/)?.[1];
-  const signing_mode = text.match(/Signing Mode: (.*)/)?.[1];
+  const signingMode = text.match(/Signing Mode: (.*)/)?.[1];
   const address = text.match(/Address: (.*)/)?.[1]; // Optional
 
-  if (!message || !pubkey || !signature || !signing_mode) {
+  if (!message || !pubkey || !signature || !signingMode) {
     throw new Error('Invalid signed message data');
   }
 
@@ -42,7 +42,7 @@ function parseSignedMessageData(text: string): {
   //   return { message: utf8, pubkey, signature, address };
   // }
 
-  return { message, pubkey, signature, signing_mode, address };
+  return { message, pubkey, signature, signing_mode: signingMode, address };
 }
 
 function Background(props) {
