@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 
 import ModalDialogsContext from './ModalDialogsContext';
 
@@ -12,12 +12,12 @@ export default function ModalDialogsProvider(props: Props) {
   const { children } = props;
   const [dialogs, setDialogs] = useState([]);
 
-  const modalDialogsContextValue = useMemo(() => {
-    function hide(dialog) {
-      setDialogs((prevDialogs) => prevDialogs.filter((d) => d.dialog !== dialog));
-    }
+  const hide = useCallback((dialog) => {
+    setDialogs((prevDialogs) => prevDialogs.filter((d) => d.dialog !== dialog));
+  }, []);
 
-    function show(dialog) {
+  const show = useCallback(
+    (dialog) => {
       const id = nextId;
       nextId += 1;
 
@@ -40,14 +40,18 @@ export default function ModalDialogsProvider(props: Props) {
           },
         ]);
       });
-    }
+    },
+    [hide]
+  );
 
-    return {
+  const modalDialogsContextValue = useMemo(
+    () => ({
       show,
       hide,
       dialogs,
-    };
-  }, [dialogs]);
+    }),
+    [dialogs, hide, show]
+  );
 
   return <ModalDialogsContext.Provider value={modalDialogsContextValue}>{children}</ModalDialogsContext.Provider>;
 }
