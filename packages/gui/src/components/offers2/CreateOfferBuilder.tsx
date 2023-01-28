@@ -95,7 +95,7 @@ export default function CreateOfferBuilder(props: CreateOfferBuilderProps) {
   }
 
   async function handleSubmit(values: OfferBuilderData) {
-    const offer = await offerBuilderDataToOffer(values, wallets, false);
+    const localOffer = await offerBuilderDataToOffer(values, wallets, false);
 
     const confirmedCreation = await openDialog(<OfferEditorConfirmationDialog />);
 
@@ -105,7 +105,7 @@ export default function CreateOfferBuilder(props: CreateOfferBuilderProps) {
 
     try {
       const response = await createOfferForIds({
-        ...offer,
+        ...localOffer,
         disableJSONFormatting: true,
       }).unwrap();
 

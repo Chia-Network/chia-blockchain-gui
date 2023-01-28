@@ -112,7 +112,6 @@ export default function useNotifications() {
 
               throw new Error(`Unknown notification type: ${type}`);
             } catch (e) {
-              console.log('e', e);
               log('Failed to prepare notification', e);
               return null;
             }
@@ -128,7 +127,7 @@ export default function useNotifications() {
     } finally {
       setIsPreparingNotifications(false);
     }
-  }, [notifications, lookupByAssetId, isSynced]);
+  }, [notifications, lookupByAssetId, isSynced, isPreparingNotifications]);
 
   const showPushNotifications = useCallback(() => {
     if (!enabled) {
