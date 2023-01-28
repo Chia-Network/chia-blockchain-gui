@@ -127,7 +127,9 @@ export default function useNotifications() {
     } finally {
       setIsPreparingNotifications(false);
     }
-  }, [notifications, lookupByAssetId, isSynced, isPreparingNotifications]);
+    // TODO: fix dependency array
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- isPreparingNotifications causes this to run infinitely
+  }, [notifications, lookupByAssetId, isSynced]);
 
   const showPushNotifications = useCallback(() => {
     if (!enabled) {
