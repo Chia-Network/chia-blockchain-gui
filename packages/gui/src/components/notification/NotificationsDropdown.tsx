@@ -6,6 +6,15 @@ import React from 'react';
 import useNotifications from '../../hooks/useNotifications';
 import NotificationsMenu from './NotificationsMenu';
 
+const buttonStyle = (theme) => ({
+  minWidth: 0,
+  borderColor: theme.palette.mode === 'dark' ? 'border.dark' : 'border.main',
+  height: '40px',
+  '&:hover': {
+    borderColor: theme.palette.mode === 'dark' ? 'border.dark' : 'border.main',
+  },
+});
+
 export default function NotificationsDropdown() {
   const { unseenCount, setAsSeen } = useNotifications();
 
@@ -21,7 +30,7 @@ export default function NotificationsDropdown() {
           variant="outlined"
           color="secondary"
           size="small"
-          sx={{ px: 1, minWidth: 0 }}
+          sx={buttonStyle}
         >
           <Badge color="primary" badgeContent={unseenCount} invisible={!unseenCount}>
             <NotificationsNoneIcon color="secondary" />

@@ -212,6 +212,14 @@ export default class Wallet extends Service {
     });
   }
 
+  async getTimestampForHeight(height: number) {
+    return this.command<{
+      timestamp: number;
+    }>('get_timestamp_for_height', {
+      height,
+    });
+  }
+
   async getHeightInfo() {
     return this.command('get_height_info');
   }
