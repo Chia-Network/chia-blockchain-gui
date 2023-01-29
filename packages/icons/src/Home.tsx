@@ -1,14 +1,10 @@
-import { SvgIcon, SvgIconProps } from '@mui/material';
+import { SvgIcon, SvgIconProps, styled, type Theme } from '@mui/material';
 import React from 'react';
-import styled from 'styled-components';
 
 import HomeIcon from './images/home.svg';
 
-function getColor({ theme, color }: { color?: string }) {
-  if (color !== 'inherit') {
-    return color;
-  }
-  return theme.palette.type === 'dark' ? 'white' : '#757575';
+function getColor({ theme }: { theme: Theme }) {
+  return theme.palette.mode === 'dark' ? 'white' : '#757575';
 }
 
 const StyledHomeIcon = styled(HomeIcon)`
