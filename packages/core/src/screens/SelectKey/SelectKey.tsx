@@ -180,17 +180,19 @@ export default function SelectKey() {
           >
             <Trans>Import from Mnemonics (12 or 24 words)</Trans>
           </Button>
-          <Button
-            onClick={handleDeleteAllKeys}
-            variant="outlined"
-            color="danger"
-            size="large"
-            disabled={isLoading}
-            data-testid="SelectKey-delete-all-keys"
-            fullWidth
-          >
-            <Trans>Delete all keys</Trans>
-          </Button>
+          {hasFingerprints && (
+            <Button
+              onClick={handleDeleteAllKeys}
+              variant="outlined"
+              color="danger"
+              size="large"
+              disabled={isLoading}
+              data-testid="SelectKey-delete-all-keys"
+              fullWidth
+            >
+              <Trans>Delete all keys</Trans>
+            </Button>
+          )}
         </Flex>
       </Flex>
     </StyledContainer>
