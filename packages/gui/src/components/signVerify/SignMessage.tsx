@@ -6,7 +6,13 @@ import { ButtonGroup, DialogActions, Typography } from '@mui/material';
 import React, { ReactNode } from 'react';
 import { useForm } from 'react-hook-form';
 
-import { SignMessageEntityType, SignMessageEntity } from './SignMessageEntities';
+import {
+  SignMessageEntityType,
+  SignMessageEntity,
+  SignMessageDIDEntity,
+  SignMessageNFTEntity,
+  SignMessageWalletAddressEntity,
+} from './SignMessageEntities';
 import SignMessageResultDialog from './SignMessageResultDialog';
 import SigningEntityDID from './SigningEntityDID';
 import SigningEntityNFT from './SigningEntityNFT';
@@ -23,19 +29,6 @@ type SignMessageFormData = {
 export type SignMessageProps = {
   onComplete: () => void;
 };
-
-function getEntityValue(entity: SignMessageEntity): string {
-  switch (entity.type) {
-    case SignMessageEntityType.WalletAddress:
-      return entity.address;
-    case SignMessageEntityType.NFT:
-      return entity.nftId;
-    case SignMessageEntityType.DID:
-      return entity.didId;
-    default:
-      throw new Error(`Unknown entity type: ${entity}`);
-  }
-}
 
 export default function SignMessage(props: SignMessageProps) {
   const { onComplete } = props;
@@ -87,7 +80,7 @@ export default function SignMessage(props: SignMessageProps) {
     openDialog(<SignMessageResultDialog content={jsonContent} />);
   }
 
-  async function handleSignById(messageToSign: string, id: string) {
+  async function handleSignById(messageToSign: string, id: string, address: string) {
     if (!messageToSign) {
       showError(new Error(t`Enter a message to sign`));
       return;
@@ -120,7 +113,7 @@ export default function SignMessage(props: SignMessageProps) {
         showError(error);
       }
     } else {
-      const content = toSnakeCase({ ...result, message: messageToSign });
+      const content = toSnakeCase({ ...result, message: messageToSign, address: address });
       delete content.success;
       delete content.latest_coin_id;
 
@@ -136,15 +129,15 @@ export default function SignMessage(props: SignMessageProps) {
       return;
     }
 
-    const entityValue = getEntityValue(entity);
-
     switch (selectedEntityType) {
       case SignMessageEntityType.WalletAddress:
-        await handleSignByAddress(message, entityValue);
+        await handleSignByAddress(message, (entity as SignMessageWalletAddressEntity).address);
         break;
-      case SignMessageEntityType.NFT: // fall through
+      case SignMessageEntityType.NFT:
+        await handleSignById(message, (entity as SignMessageNFTEntity).nftId, (entity as SignMessageNFTEntity).address);
+        break;
       case SignMessageEntityType.DID:
-        await handleSignById(message, entityValue);
+        await handleSignById(message, (entity as SignMessageDIDEntity).didId, (entity as SignMessageDIDEntity).address);
         break;
       default:
         throw new Error(`Unknown entity type used for signing: ${selectedEntityType}`);

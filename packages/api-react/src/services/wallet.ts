@@ -23,6 +23,7 @@ const apiWithTag = api.enhanceEndpoints({
     'Address',
     'DID',
     'DIDCoinInfo',
+    'DIDInfo',
     'DIDName',
     'DIDPubKey',
     'DIDRecoveryInfo',
@@ -1821,6 +1822,15 @@ export const walletApi = apiWithTag.injectEndpoints({
       providesTags: (result, _error, { walletId }) => (result ? [{ type: 'DIDCoinInfo', id: walletId }] : []),
     }),
 
+    getDIDInfo: build.query<any, { coinOrDIDId: string }>({
+      query: ({ coinOrDIDId }) => ({
+        command: 'getDidInfo',
+        service: DID,
+        args: [coinOrDIDId],
+      }),
+      providesTags: (result, _error, { coinOrDIDId }) => (result ? [{ type: 'DIDInfo', id: coinOrDIDId }] : []),
+    }),
+
     // createDIDBackup: did_create_backup_file needs an RPC change (remove filename param, return file contents)
 
     // NFTs
@@ -2272,6 +2282,7 @@ export const {
   useGetDIDRecoveryListQuery,
   useGetDIDInformationNeededForRecoveryQuery,
   useGetDIDCurrentCoinInfoQuery,
+  useGetDIDInfoQuery,
 
   // NFTs
   useCalculateRoyaltiesForNFTsQuery,

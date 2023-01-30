@@ -161,6 +161,7 @@ export const {
   useGetDIDRecoveryListQuery,
   useGetDIDInformationNeededForRecoveryQuery,
   useGetDIDCurrentCoinInfoQuery,
+  useGetDIDInfoQuery,
 
   // NFTs
   useCalculateRoyaltiesForNFTsQuery,

@@ -1,4 +1,6 @@
-import { CopyToClipboard, Flex, TextField } from '@chia-network/core';
+import { toBech32m } from '@chia-network/api';
+import { useGetNFTInfoQuery } from '@chia-network/api-react';
+import { CopyToClipboard, Flex, TextField, useCurrencyCode } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Box, Grid, InputAdornment } from '@mui/material';
 import React, { useEffect } from 'react';
@@ -16,9 +18,11 @@ export type SigningEntityNFTProps = {
 export default function SigningEntityNFT(props: SigningEntityNFTProps) {
   const { entityName, entityValueName } = props;
   const { getValues, setValue } = useFormContext();
+  const currencyCode = useCurrencyCode();
   const currentValue = getValues(entityName);
   const nftId = currentValue?.nftId;
-  let launcherId: string | undefined;
+  const launcherId = nftId ? launcherIdFromNFTId(nftId) : undefined;
+  const { data: nftInfo } = useGetNFTInfoQuery({ coinId: launcherId }, { skip: !launcherId });
 
   useEffect(() => {
     if (entityName && entityValueName) {
@@ -28,19 +32,26 @@ export default function SigningEntityNFT(props: SigningEntityNFTProps) {
         const entity: SignMessageNFTEntity = {
           type: SignMessageEntityType.NFT,
           nftId: '',
+          address: '',
         };
         setValue(entityName, entity);
       }
     }
   }, [entityName, entityValueName, setValue, getValues]);
 
-  if (nftId) {
-    try {
-      launcherId = launcherIdFromNFTId(nftId);
-    } catch (e) {
-      // do nothing
+  useEffect(() => {
+    const localCurrentValue = getValues(entityValueName);
+
+    if (localCurrentValue && nftInfo?.p2Address && currencyCode) {
+      const p2Address = toBech32m(nftInfo.p2Address, currencyCode);
+      const entity: SignMessageNFTEntity = {
+        type: SignMessageEntityType.NFT,
+        nftId: localCurrentValue,
+        address: p2Address,
+      };
+      setValue(entityName, entity);
     }
-  }
+  }, [entityName, entityValueName, setValue, getValues, nftInfo, currencyCode]);
 
   return (
     <Flex flexDirection="column" gap={1}>

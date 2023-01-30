@@ -1,5 +1,5 @@
 import type { Wallet } from '@chia-network/api';
-import { useGetDIDsQuery } from '@chia-network/api-react';
+import { useGetDIDInfoQuery, useGetDIDsQuery } from '@chia-network/api-react';
 import { CopyToClipboard, Flex, TextField } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Box, Grid, InputAdornment } from '@mui/material';
@@ -18,8 +18,10 @@ export default function SigningEntityDID(props: SigningEntityDIDProps) {
   const { entityName, entityValueName } = props;
   const [walletId, setWalletId] = useState<number | undefined>(undefined);
   const { getValues, setValue } = useFormContext();
-
   const { data: allDIDWallets, isLoading: isLoadingDIDs } = useGetDIDsQuery();
+  const currentValue = getValues(entityName);
+  const { data: didInfo } = useGetDIDInfoQuery({ coinOrDIDId: currentValue?.didId }, { skip: !currentValue?.didId });
+
   const isLoading = isLoadingDIDs;
 
   function handleProfileSelected(newWalletId?: number) {
@@ -30,20 +32,34 @@ export default function SigningEntityDID(props: SigningEntityDIDProps) {
 
   useEffect(() => {
     if (entityName && entityValueName && allDIDWallets?.length > 0) {
-      const currentValue = getValues(entityValueName);
+      const localCurrentValue = getValues(entityValueName);
       const firstDID = allDIDWallets[0].myDid;
 
       // Set the first DID if a value isn't already set
-      if (currentValue === undefined && firstDID) {
+      if (localCurrentValue === undefined && firstDID) {
         const entity: SignMessageDIDEntity = {
           type: SignMessageEntityType.DID,
           didId: firstDID,
+          address: '',
         };
         setWalletId(allDIDWallets[0].id);
         setValue(entityName, entity);
       }
     }
   }, [entityName, entityValueName, allDIDWallets, setValue, getValues]);
+
+  useEffect(() => {
+    const localCurrentValue = getValues(entityValueName);
+
+    if (localCurrentValue && didInfo?.p2Address) {
+      const entity: SignMessageDIDEntity = {
+        type: SignMessageEntityType.DID,
+        didId: localCurrentValue,
+        address: didInfo.p2Address,
+      };
+      setValue(entityName, entity);
+    }
+  }, [entityName, entityValueName, didInfo, setValue, getValues]);
 
   return (
     <Flex flexDirection="column" gap={1}>
