@@ -539,7 +539,7 @@ if (!handleSquirrelEvent()) {
                     });
                   }
                 });
-                response.on('end', (wtf) => {
+                response.on('end', () => {
                   fileStream.end();
                   resolve(totalLength);
                 });

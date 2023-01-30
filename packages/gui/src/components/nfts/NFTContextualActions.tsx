@@ -403,7 +403,7 @@ function NFTDownloadContextualAction(props: NFTDownloadContextualActionProps) {
   const disabled = !selectedNft;
   const dataUrl = selectedNft?.dataUris?.[0];
   const openDialog = useOpenDialog();
-  const [selectedNFTs, setSelectedNFTIds] = useLocalStorage('gallery-selected-nfts', []);
+  const [, setSelectedNFTIds] = useLocalStorage('gallery-selected-nfts', []);
 
   async function handleDownload() {
     const { ipcRenderer } = window as any;

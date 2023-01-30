@@ -86,11 +86,11 @@ export default function MultipleDownloadDialog(props: MultipleDownloadDialogProp
     }
     if (responseObject.successFileCount > 0 && responseObject.errorFileCount === 0) {
       return <Trans>Download successful.</Trans>;
-    } else if (responseObject.successFileCount === 0) {
-      return <Trans>Download failed.</Trans>;
-    } else {
-      return <Trans>Download finished.</Trans>;
     }
+    if (responseObject.successFileCount === 0) {
+      return <Trans>Download failed.</Trans>;
+    }
+    return <Trans>Download finished.</Trans>;
   }
 
   return (
