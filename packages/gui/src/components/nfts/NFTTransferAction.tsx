@@ -135,8 +135,6 @@ export default function NFTTransferAction(props: NFTTransferActionProps) {
     return null;
   }
 
-  <NFTSummary launcherId={nfts[0].launcherId} />;
-
   return (
     <Form methods={methods} onSubmit={handleSubmit}>
       <Flex flexDirection="column" gap={3}>
@@ -224,7 +222,7 @@ export function NFTTransferDialog(props: NFTTransferDialogProps) {
             {nfts.length > 1 ? (
               <Trans id="Would you like to transfer {count} NFTs to a new owner?" values={{ count: nfts.length }} />
             ) : (
-              <Trans>Would you like to transfer the specified NFT to a new owner</Trans>
+              <Trans>Would you like to transfer the specified NFT to a new owner?</Trans>
             )}
           </DialogContentText>
           <NFTTransferAction nfts={nfts} destination={destination} onComplete={handleCompletion} />
