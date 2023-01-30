@@ -1,3 +1,4 @@
+import type Message from '../Message';
 import Wallet from '../services/WalletService';
 
 export default class DIDWallet extends Wallet {

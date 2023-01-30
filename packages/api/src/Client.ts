@@ -46,6 +46,8 @@ export default class Client extends EventEmitter {
 
   private connectedPromise: Promise<void> | null = null;
 
+  private connectedPromiseResponse: { resolve: any; reject: any } | null = null;
+
   private daemon: Daemon;
 
   private closed = false;
@@ -389,7 +391,9 @@ export default class Client extends EventEmitter {
           if (this.requests.has(requestId)) {
             this.requests.delete(requestId);
 
-            reject(new ErrorData(`The request ${requestId} has timed out ${currentTimeout / 1000} seconds.`));
+            reject(
+              new ErrorData(`The request ${requestId} has timed out ${currentTimeout / 1000} seconds.`, undefined)
+            );
           }
         }, currentTimeout);
       }
