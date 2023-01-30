@@ -1,6 +1,6 @@
 import type { NFTInfo } from '@chia-network/api';
 import { useLocalStorage } from '@chia-network/api-react';
-import { Flex, LayoutDashboardSub, Loading, /* useTrans, */ useDarkMode } from '@chia-network/core';
+import { Flex, LayoutDashboardSub, Loading, /* useTrans, */ useDarkMode, usePersistState } from '@chia-network/core';
 import { t, Trans } from '@lingui/macro';
 import { FormControlLabel, RadioGroup, FormControl, Checkbox, Grid, Button, Fade } from '@mui/material';
 import React, { useEffect, useState, useCallback, useContext } from 'react';
@@ -13,7 +13,6 @@ import useAllowFilteredShow from '../../../hooks/useAllowFilteredShow';
 import useHiddenNFTs from '../../../hooks/useHiddenNFTs';
 import useHideObjectionableContent from '../../../hooks/useHideObjectionableContent';
 import useNFTGalleryScrollPosition from '../../../hooks/useNFTGalleryScrollPosition';
-import useShownNFTs from '../../../hooks/useShownNFTs';
 import useSyncCache from '../../../hooks/useSyncCache';
 import { mimeTypeRegex, isImage, isDocument, getNFTFileType } from '../../../util/utils';
 import NFTCardLazy from '../NFTCardLazy';
@@ -200,8 +199,9 @@ export default function NFTGallery() {
   const [nftTypes, setNftTypes] = useState<any>([]);
   const [getScrollPosition, setScrollPosition] = useNFTGalleryScrollPosition();
   const allTypes = Array.from(new Set([...Object.keys(nftTypes), ...typeFilter]));
-  const [, setVisibleNFTs] = useShownNFTs();
   const navigate = useNavigate();
+
+  const [, setVisibleNFTs] = usePersistState<string[]>([], `visibleNFTs`);
 
   useEffect(() => {
     if (allowNFTsFiltered.length) {

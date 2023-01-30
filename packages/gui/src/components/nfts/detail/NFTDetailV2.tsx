@@ -1,6 +1,14 @@
 import type { NFTInfo } from '@chia-network/api';
 import { useGetNFTInfoQuery, useGetNFTWallets, useLocalStorage } from '@chia-network/api-react';
-import { Flex, LayoutDashboardSub, Loading, useOpenDialog, Tooltip, useDarkMode } from '@chia-network/core';
+import {
+  Flex,
+  LayoutDashboardSub,
+  Loading,
+  useOpenDialog,
+  Tooltip,
+  useDarkMode,
+  usePersistState,
+} from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { MoreVert, ArrowBackIosNew } from '@mui/icons-material';
 import { Box, Grid, Typography, IconButton, Button } from '@mui/material';
@@ -12,7 +20,6 @@ import isURL from 'validator/lib/isURL';
 import NextIcon from '../../../assets/img/next.svg';
 import PreviousIcon from '../../../assets/img/previous.svg';
 import useFetchNFTs from '../../../hooks/useFetchNFTs';
-import useShownNFTs from '../../../hooks/useShownNFTs';
 import { launcherIdFromNFTId } from '../../../util/nfts';
 import { isImage } from '../../../util/utils';
 import OfferIncomingTable from '../../offers2/OfferIncomingTable';
@@ -64,7 +71,7 @@ function NFTDetailLoaded(props: NFTDetailLoadedProps) {
   const uri = nft?.dataUris?.[0];
   const [contentCache] = useLocalStorage(`content-cache-${nftId}`, {});
   const [validateNFT, setValidateNFT] = useState(false);
-  const [getVisibleNFTs] = useShownNFTs();
+  const [visibleNFTs] = usePersistState<string[]>([], `visibleNFTs`);
   const navigate = useNavigate();
   const { isDarkMode } = useDarkMode();
 
@@ -78,17 +85,17 @@ function NFTDetailLoaded(props: NFTDetailLoadedProps) {
     [uri]
   );
 
-  const detailPosition = getVisibleNFTs().indexOf(nftId);
-  const isLastPosition = getVisibleNFTs().length === detailPosition + 1;
+  const detailPosition = visibleNFTs.indexOf(nftId);
+  const isLastPosition = visibleNFTs.length === detailPosition + 1;
   const navigateToDetail = React.useCallback(
     (offset: number) => {
-      if (Array.isArray(getVisibleNFTs())) {
-        if (detailPosition >= 0 && detailPosition < getVisibleNFTs().length) {
-          navigate(`/dashboard/nfts/${getVisibleNFTs()[detailPosition + offset]}`);
+      if (Array.isArray(visibleNFTs)) {
+        if (detailPosition >= 0 && detailPosition < visibleNFTs.length) {
+          navigate(`/dashboard/nfts/${visibleNFTs[detailPosition + offset]}`);
         }
       }
     },
-    [getVisibleNFTs, navigate, detailPosition]
+    [visibleNFTs, navigate, detailPosition]
   );
 
   useEffect(() => {
@@ -226,9 +233,7 @@ function NFTDetailLoaded(props: NFTDetailLoadedProps) {
                 <Box sx={{ textAlign: 'center', color: 'rgba(0, 0, 0, 0.6)', paddingBottom: '20px' }}>
                   <Tooltip title={<Trans>Use left and right arrow keys to navigate</Trans>}>
                     <TypographyStyled variant="body2">
-                      {Array.isArray(getVisibleNFTs())
-                        ? `${getVisibleNFTs().indexOf(nftId) + 1} / ${getVisibleNFTs().length}`
-                        : null}
+                      {Array.isArray(visibleNFTs) ? `${visibleNFTs.indexOf(nftId) + 1} / ${visibleNFTs.length}` : null}
                     </TypographyStyled>
                   </Tooltip>
                 </Box>
