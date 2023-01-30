@@ -37,7 +37,6 @@ export default function StateComponent(props: StateComponentProps) {
     gap = 1,
     hideTitle = false,
   } = props;
-  const iconColor = Color[state];
 
   return (
     <StyledFlexContainer color={color} alignItems="center" gap={gap} flexDirection={reversed ? 'row-reverse' : 'row'}>
