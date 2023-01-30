@@ -33,7 +33,7 @@ export default function SettingsProfiles() {
     } else {
       navigate(`/dashboard/settings/profiles/add`);
     }
-  }, [didList, navigate]);
+  }, [didList]);
 
   function navAdd() {
     navigate(`/dashboard/settings/profiles/add`);
