@@ -1653,7 +1653,7 @@ export const walletApi = apiWithTag.injectEndpoints({
       }
     >({
       query: ({ amount, fee, backupDids, numOfBackupIdsNeeded, host }) => ({
-        command: 'createNewWallet',
+        command: 'createNewDIDWallet',
         service: DID,
         args: [amount, fee, backupDids, numOfBackupIdsNeeded, host],
       }),
