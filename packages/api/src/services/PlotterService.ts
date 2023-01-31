@@ -47,8 +47,9 @@ function addPlotProgress(queue: PlotQueueItem[]): PlotQueueItem[] {
 }
 
 function mergeQueue(
+  // partialQueue does not contain `log` property. currentQueue and the result contains it
   currentQueue: PlotQueueItem[],
-  partialQueue: PlotQueueItemPartial[],
+  partialQueue: PlotQueueItem[],
   isLogChange: boolean
 ): PlotQueueItem[] {
   let result = [...currentQueue];
