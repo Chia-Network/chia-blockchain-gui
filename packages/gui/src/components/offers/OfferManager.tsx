@@ -53,6 +53,7 @@ import OfferBuilderViewer from '../offers2/OfferBuilderViewer';
 import OfferIncomingTable from '../offers2/OfferIncomingTable';
 import { CreateNFTOfferEditor } from './NFTOfferEditor';
 import NFTOfferViewer from './NFTOfferViewer';
+import OfferAsset from './OfferAsset';
 import OfferDataDialog from './OfferDataDialog';
 import { CreateOfferEditor } from './OfferEditor';
 import { OfferImport } from './OfferImport';
@@ -257,7 +258,7 @@ function OfferList(props: OfferListProps) {
             <Flex flexDirection="row" gap={0.5} key={`${info.displayAmount}-${info.displayName}`}>
               <Typography variant="body2">{(info.displayAmount as any).toString()}</Typography>
               <Typography noWrap variant="body2">
-                {info.displayName}
+                {info.assetType === OfferAsset.NFT ? row.name : info.displayName}
               </Typography>
             </Flex>
           ));

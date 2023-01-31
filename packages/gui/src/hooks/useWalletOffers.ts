@@ -1,6 +1,11 @@
 import { OfferTradeRecord } from '@chia-network/api';
-import { useGetOffersCountQuery, useGetAllOffersQuery } from '@chia-network/api-react';
-import { useState } from 'react';
+import { useGetOffersCountQuery, useGetAllOffersQuery, useGetNFTsByNFTIDsQuery } from '@chia-network/api-react';
+import { t } from '@lingui/macro';
+import { useState, useRef } from 'react';
+
+import resolveOfferInfo from '../util/resolveOfferInfo';
+import useAllowFilteredShow from './useAllowFilteredShow';
+import useAssetIdName from './useAssetIdName';
 
 export default function useWalletOffers(
   defaultRowsPerPage = 5,
@@ -20,6 +25,15 @@ export default function useWalletOffers(
 } {
   const [rowsPerPage, setRowsPerPage] = useState<number>(defaultRowsPerPage);
   const [page, setPage] = useState<number>(defaultPage);
+  const { lookupByAssetId } = useAssetIdName();
+
+  function getNFTidFromOffer(offer: any) {
+    const resolveArray = resolveOfferInfo(offer.summary, 'infos', lookupByAssetId);
+    if (resolveArray.length > 0) {
+      return resolveArray[0].displayName;
+    }
+    return '';
+  }
 
   const { data: counts, isLoading: isOffersCountLoading, error: offersCountError } = useGetOffersCountQuery();
 
@@ -52,6 +66,17 @@ export default function useWalletOffers(
     includeTakenOffers,
   });
 
+  const metadataObj = useRef<any>({});
+  const nftIds =
+    offers && offers.length
+      ? offers.map((offer: any) => getNFTidFromOffer(offer)).filter((nftId: string) => !!nftId)
+      : [];
+  const { data: requestedNFTs } = useGetNFTsByNFTIDsQuery({ nftIds }, { skip: nftIds.length === 0 });
+  const { allowNFTsFiltered } = useAllowFilteredShow(requestedNFTs || [], false, requestedNFTs?.length === 0, true);
+  allowNFTsFiltered.forEach((nft) => {
+    metadataObj.current[nft.$nftId] = nft?.metadata?.name || t`Title not available`;
+  });
+
   const isLoading = isOffersLoading || isOffersCountLoading;
   const error = offersError || offersCountError;
 
@@ -61,7 +86,9 @@ export default function useWalletOffers(
   }
 
   return {
-    offers,
+    offers: offers
+      ? offers.map((offer: any) => ({ ...offer, name: metadataObj.current[getNFTidFromOffer(offer)] }))
+      : [],
     count: selectedCount,
     page,
     rowsPerPage,

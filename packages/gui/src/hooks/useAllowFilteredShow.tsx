@@ -63,7 +63,12 @@ async function getMetadata(nft: NFTInfo | undefined, lru: LRU<string, any>) {
   return { ...nft, nftId: nft?.$nftId, metadata };
 }
 
-export default function useAllowFilteredShow(nfts: NFTInfo[], hideObjectionableContent: boolean, isLoading: boolean) {
+export default function useAllowFilteredShow(
+  nfts: NFTInfo[],
+  hideObjectionableContent: boolean,
+  isLoading: boolean,
+  disablePartialUpdate: boolean
+) {
   const [allowNFTsFiltered, setAllowNFTsFiltered] = useState<NFTInfo[]>([]);
   const [isGettingMetadata, setIsGettingMetadata] = useState(true);
   const nftArray = React.useRef<NFTInfo[]>([]);
@@ -84,17 +89,17 @@ export default function useAllowFilteredShow(nfts: NFTInfo[], hideObjectionableC
       ) {
         nftArray.current = nftArray.current.concat(nftWithMetadata);
         /* compromise - rerender gallery only every 10% of the size of your whole collection */
-        if (i % (Math.floor(nfts.length / 10) + 1) === 0 && i > 0) {
+        if (i % (Math.floor(nfts.length / 10) + 1) === 0 && i > 0 && !disablePartialUpdate) {
           setAllowNFTsFiltered(nftArray.current);
         }
       }
     }
     setAllowNFTsFiltered(nftArray.current);
     setIsGettingMetadata(false);
-  }, [hideObjectionableContent, lru, nfts]);
+  }, [hideObjectionableContent, lru, nfts, disablePartialUpdate]);
 
   useEffect(() => {
-    if (!isLoading) {
+    if (!isLoading && nfts.length > 0) {
       fetchMultipleMetadata();
       nftsLengthOld.current = nfts.length;
     }
