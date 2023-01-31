@@ -327,7 +327,7 @@ export default function NFTGallery() {
   useEffect(() => {
     const nftTypesObject: any = {};
     if (allowNFTsFilteredNftIds.length && nfts.length) {
-      nfts
+      allowNFTsFiltered
         .filter((nft: NFTInfo) => {
           if (allowNFTsFilteredNftIds.indexOf(nft.$nftId) === -1) {
             return false;
