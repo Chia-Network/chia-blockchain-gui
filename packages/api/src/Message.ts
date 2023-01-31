@@ -54,7 +54,18 @@ export default class Message implements MessageInterface {
   }
 
   static fromJSON(json: string, useCamelCase: boolean): Message {
-    const { command, data, origin, destination, ack, request_id: requestId } = toSafeNumber(JSONbig.parse(json));
+    interface MessageSnakeCase extends Message {
+      request_id?: Message['requestId'];
+    }
+
+    const {
+      command,
+      data,
+      origin,
+      destination,
+      ack,
+      request_id: requestId,
+    }: MessageSnakeCase = toSafeNumber(JSONbig.parse(json)) as any;
 
     return new Message({
       command,

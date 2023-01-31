@@ -10,7 +10,7 @@ type Invalidate =
   | {
       command: string;
       service: Service;
-      onUpdate: (draft: any, data, args: any) => void;
+      onUpdate: (draft: any, data: any, args: any) => void;
       skip?: (draft: any, data: any, args: any) => boolean;
     };
 
