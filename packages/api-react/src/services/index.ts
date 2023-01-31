@@ -114,6 +114,7 @@ export const {
   useGetCurrentAddressQuery,
   useGetNextAddressMutation,
   useFarmBlockMutation,
+  useGetTimestampForHeightQuery,
   useGetHeightInfoQuery,
   useGetNetworkInfoQuery,
   useGetSyncStatusQuery,
