@@ -6,20 +6,17 @@ import State from '../../constants/State';
 
 const WrapperStyled = styled.div`
   display: inline-block;
-  width: 18px;
-  height: 18px;
   font-size: 1rem;
-  border: 2px solid ${({ color }) => color};
-  border-radius: 50%;
+  position: relative;
+  top: 1px;
 `;
 
 type StateIndicatorDotTypes = {
-  color: string;
   state: string;
 };
 
 export default function StateIndicatorDot(props: StateIndicatorDotTypes) {
-  const { color, state } = props;
+  const { state } = props;
   function renderIcon() {
     if (state === State.SUCCESS) {
       return <ConnectCheckmark />;
@@ -32,5 +29,5 @@ export default function StateIndicatorDot(props: StateIndicatorDotTypes) {
     }
     return null;
   }
-  return <WrapperStyled color={color}>{renderIcon()}</WrapperStyled>;
+  return <WrapperStyled>{renderIcon()}</WrapperStyled>;
 }
