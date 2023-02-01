@@ -1281,7 +1281,7 @@ function OfferShareOfferpoolDialog(props: OfferShareServiceDialogProps) {
           )}
           <Button onClick={handleClose} color="primary" variant="contained">
             <Trans>Close</Trans>
-          </Button>{' '}
+          </Button>
         </DialogActions>
       </Dialog>
     );
