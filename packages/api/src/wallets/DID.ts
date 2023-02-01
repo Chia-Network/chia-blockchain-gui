@@ -2,8 +2,8 @@ import type Message from '../Message';
 import Wallet from '../services/WalletService';
 
 export default class DIDWallet extends Wallet {
-  async createNewWallet(amount: string, fee: string, backupDids: string, numOfBackupIdsNeeded: number) {
-    return super.createNewWallet('did_wallet', {
+  async createNewDIDWallet(amount: string, fee: string, backupDids: string, numOfBackupIdsNeeded: number) {
+    return this.createNewWallet('did_wallet', {
       did_type: 'new',
       amount,
       fee,
@@ -13,7 +13,7 @@ export default class DIDWallet extends Wallet {
   }
 
   async createNewRecoveryWallet(filename: string) {
-    return super.createNewWallet('did_wallet', {
+    return this.createNewWallet('did_wallet', {
       did_type: 'recovery',
       filename,
     });
