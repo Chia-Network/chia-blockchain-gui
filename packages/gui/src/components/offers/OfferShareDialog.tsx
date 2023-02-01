@@ -1481,7 +1481,7 @@ export default function OfferShareDialog(props: OfferShareDialogProps) {
       </DialogTitle>
 
       <DialogContent dividers>
-        <Flex flexDirection="column" gap={2} paddingTop="16px">
+        <Flex flexDirection="column" gap={2} paddingTop={2}>
           <Flex flexDirection="column" gap={2}>
             <Typography variant="subtitle1">Where would you like to share your offer?</Typography>
             <Flex flexDirection="column" gap={3}>
