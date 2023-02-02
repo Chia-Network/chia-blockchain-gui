@@ -52,6 +52,7 @@ export default function SelectedActionsDialog(props: SelectedActionsDialogProps)
     NFTContextualActionTypes.MoveToProfile +
     NFTContextualActionTypes.Invalidate +
     NFTContextualActionTypes.Hide +
+    NFTContextualActionTypes.Download +
     NFTContextualActionTypes.Transfer +
     NFTContextualActionTypes.Burn;
   const menuWithoutHide = menuWithHide - NFTContextualActionTypes.Hide;
