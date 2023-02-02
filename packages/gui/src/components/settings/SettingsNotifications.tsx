@@ -26,9 +26,9 @@ export default function SettingsNotifications() {
       </Grid>
 
       <Grid container>
-        <Grid item style={{ width: '400px' }}>
+        <Grid item style={{ width: '450px' }}>
           <SettingsTitle>
-            <Trans>Enable push notifications</Trans>
+            <Trans>Receive push notifications when your wallet is minimized</Trans>
           </SettingsTitle>
         </Grid>
         <Grid item container xs justifyContent="flex-end" marginTop="-6px">
@@ -42,9 +42,9 @@ export default function SettingsNotifications() {
             }
           />
         </Grid>
-        <Grid item container style={{ width: '400px' }} gap={2}>
+        <Grid item container style={{ width: '450px' }} gap={2}>
           <SettingsText>
-            <Trans>Turn on/off the ability to show you notifications.</Trans>
+            <Trans>Turn on/off the ability to show you notifications on the desktop.</Trans>
           </SettingsText>
         </Grid>
       </Grid>
