@@ -35,7 +35,7 @@ export default function SettingsNotifications() {
           <FormControlLabel
             control={
               <Switch
-                checked={!enabled}
+                checked={enabled}
                 onChange={() => setEnabled(!enabled)}
                 inputProps={{ 'data-testid': 'Notifications-Pause-All' }}
               />
