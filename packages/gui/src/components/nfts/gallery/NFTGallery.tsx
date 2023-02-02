@@ -370,7 +370,7 @@ export default function NFTGallery() {
         });
     }
     setNftTypes(nftTypesObject);
-  }, [visibilityFilters, isNFTHidden, nfts]);
+  }, [allowNFTsFiltered, visibilityFilters, isNFTHidden, nfts]);
 
   const nftContainerRef = React.useRef(null);
   const galleryHeroRef = React.useRef(null);
