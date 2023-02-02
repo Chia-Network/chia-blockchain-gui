@@ -1,5 +1,4 @@
 import PlotQueueItem from '../@types/PlotQueueItem';
-import Response from '../@types/Response';
 import type Client from '../Client';
 import type Message from '../Message';
 import ServiceName from '../constants/ServiceName';
@@ -15,11 +14,9 @@ export default class Daemon extends Service {
   }
 
   registerService(service: string) {
-    return this.command<
-      Response & {
-        queue: [PlotQueueItem];
-      }
-    >('register_service', {
+    return this.command<{
+      queue: [PlotQueueItem];
+    }>('register_service', {
       service,
     });
   }
@@ -38,11 +35,9 @@ export default class Daemon extends Service {
   }
 
   isRunning(service: string) {
-    return this.command<
-      Response & {
-        isRunning: boolean;
-      }
-    >('is_running', {
+    return this.command<{
+      isRunning: boolean;
+    }>('is_running', {
       service,
     });
   }
