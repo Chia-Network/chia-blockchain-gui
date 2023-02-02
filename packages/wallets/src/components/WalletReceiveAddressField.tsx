@@ -65,6 +65,7 @@ export default function WalletReceiveAddressField(props: WalletReceiveAddressPro
   }, clearCopiedDelay);
   const [prefix, suffix] = address.split('1');
   const truncatedAddress = truncateValue(suffix, {});
+  const rejoinedPrefix = prefix ? `${prefix}1` : '';
 
   const tooltipTitle = copied ? (
     <Trans>Copied</Trans>
@@ -102,7 +103,7 @@ export default function WalletReceiveAddressField(props: WalletReceiveAddressPro
       <Tooltip title={tooltipTitle}>
         <Button onClick={handleCopyToClipboard} variant="text" sx={{ textTransform: 'none' }}>
           <Typography variant="body1" color="primary">
-            {prefix}1
+            {rejoinedPrefix}
           </Typography>
           <Typography variant="body1" color="textPrimary">
             {truncatedAddress}
