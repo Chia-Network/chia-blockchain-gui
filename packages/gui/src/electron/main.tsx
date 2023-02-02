@@ -318,153 +318,157 @@ if (!handleSquirrelEvent()) {
 
           const request = net.request(rest);
 
-          allRequests[rest.url] = {
-            abort: () => request.abort(),
-            promise: new Promise(async (resolveResult) => {
-              let wasCached = false;
-              let error: Error | undefined;
-              let statusCode: number | undefined;
-              let statusMessage: string | undefined;
-              let contentType: string | undefined;
-              let encoding = 'binary';
-              let dataObject: { isValid?: boolean; content: string } = {
-                content: '',
-              };
+          async function processUri() {
+            let wasCached = false;
+            let error: Error | undefined;
+            let statusCode: number | undefined;
+            let statusMessage: string | undefined;
+            let contentType: string | undefined;
+            let encoding = 'binary';
+            let dataObject: { isValid?: boolean; content: string } = {
+              content: '',
+            };
 
-              const nftIdUrl = `${rest.nftId}_${rest.url}`;
-              const fileOnDisk = path.join(thumbCacheFolder, computeHash(nftIdUrl, { encoding: 'utf-8' }));
+            const nftIdUrl = `${rest.nftId}_${rest.url}`;
+            const fileOnDisk = path.join(thumbCacheFolder, computeHash(nftIdUrl, { encoding: 'utf-8' }));
 
-              try {
-                const fileStream = fs.createWriteStream(fileOnDisk);
+            try {
+              const fileStream = fs.createWriteStream(fileOnDisk);
 
-                Object.entries(requestHeaders).forEach(([header, value]: [string, any]) => {
-                  request.setHeader(header, value);
-                });
+              Object.entries(requestHeaders).forEach(([header, value]: [string, any]) => {
+                request.setHeader(header, value);
+              });
 
-                const buffers: Buffer[] = [];
-                let totalLength = 0;
+              const buffers: Buffer[] = [];
+              let totalLength = 0;
 
-                /* GET FILE SIZE */
-                const fileSize: number = await getRemoteFileSize(rest.url);
-                dataObject = await new Promise((resolve, reject) => {
-                  request.on('response', (response: IncomingMessage) => {
-                    statusCode = response.statusCode;
-                    statusMessage = response.statusMessage;
+              /* GET FILE SIZE */
+              const fileSize: number = await getRemoteFileSize(rest.url);
+              dataObject = await new Promise((resolve, reject) => {
+                request.on('response', (response: IncomingMessage) => {
+                  statusCode = response.statusCode;
+                  statusMessage = response.statusMessage;
 
-                    const rawContentType = response.headers['content-type'];
-                    if (rawContentType) {
-                      if (Array.isArray(rawContentType)) {
-                        [contentType] = rawContentType;
-                      } else {
-                        contentType = rawContentType;
-                      }
-
-                      if (contentType) {
-                        // extract charset from contentType
-                        const charsetMatch = contentType.match(/charset=([^;]+)/);
-                        if (charsetMatch) {
-                          [, encoding] = charsetMatch;
-                        }
-                      }
+                  const rawContentType = response.headers['content-type'];
+                  if (rawContentType) {
+                    if (Array.isArray(rawContentType)) {
+                      [contentType] = rawContentType;
+                    } else {
+                      contentType = rawContentType;
                     }
 
-                    response.on('data', (chunk) => {
-                      buffers.push(chunk);
-
-                      fileStream.write(chunk);
-
-                      totalLength += chunk.byteLength;
-
-                      if (fileSize > 0) {
-                        mainWindow?.webContents.send('fetchBinaryContentProgress', {
-                          nftIdUrl,
-                          progress: totalLength / fileSize,
-                        });
+                    if (contentType) {
+                      // extract charset from contentType
+                      const charsetMatch = contentType.match(/charset=([^;]+)/);
+                      if (charsetMatch) {
+                        [, encoding] = charsetMatch;
                       }
-                      if (totalLength > maxSize || fileSize > maxSize) {
-                        if (request) {
-                          request.abort();
-                          if (fs.existsSync(fileOnDisk)) {
-                            fs.unlinkSync(fileOnDisk);
-                          }
-                        }
-                        reject(new Error('Response too large'));
-                      }
-                    });
-
-                    response.on('end', () => {
-                      let content;
-                      // special case for iso-8859-1, which is mapped to 'latin1' in node
-                      if (encoding.toLowerCase() === 'iso-8859-1') {
-                        encoding = 'latin1';
-                      }
-                      try {
-                        content = Buffer.concat(buffers).toString(encoding as BufferEncoding);
-                      } catch (e: any) {
-                        console.error(`Failed to convert data to string using encoding ${encoding}: ${e.message}`);
-                      }
-                      fileStream.end();
-                      getChecksum(fileOnDisk).then((checksum) => {
-                        const isValid = (checksum as string).replace(/^0x/, '') === rest.dataHash.replace(/^0x/, '');
-                        if (rest.forceCache) {
-                          /* should we cache it or delete it? */
-                          if (shouldCacheFile(fileOnDisk)) {
-                            wasCached = true;
-                          } else if (fs.existsSync(fileOnDisk)) {
-                            fs.unlinkSync(fileOnDisk);
-                          }
-                          mainWindow?.webContents.send('fetchBinaryContentDone', {
-                            nftIdUrl,
-                            valid: isValid,
-                          });
-                          const extension = parseExtensionFromUrl(rest.url);
-                          resolve({
-                            isValid,
-                            content: extension === 'svg' ? content : '',
-                          });
-                        } else {
-                          resolve({ isValid, content });
-                        }
-                      });
-                      delete allRequests[rest.url];
-                    });
-
-                    response.on('error', (e: string) => {
-                      fileStream.end();
-                      reject(new Error(e));
-                    });
-                  });
-
-                  request.on('error', (err: any) => {
-                    reject(err);
-                  });
-
-                  if (requestData) {
-                    request.write(requestData);
+                    }
                   }
 
-                  request.end();
-                });
-              } catch (e: any) {
-                if (fs.existsSync(fileOnDisk)) {
-                  fs.unlinkSync(fileOnDisk);
-                }
-                delete allRequests[rest.url];
-                error = e;
-              }
+                  response.on('data', (chunk) => {
+                    buffers.push(chunk);
 
-              resolveResult({
-                error,
-                statusCode,
-                statusMessage,
-                encoding,
-                dataObject,
-                wasCached,
+                    fileStream.write(chunk);
+
+                    totalLength += chunk.byteLength;
+
+                    if (fileSize > 0) {
+                      mainWindow?.webContents.send('fetchBinaryContentProgress', {
+                        nftIdUrl,
+                        progress: totalLength / fileSize,
+                      });
+                    }
+                    if (totalLength > maxSize || fileSize > maxSize) {
+                      if (request) {
+                        request.abort();
+                        if (fs.existsSync(fileOnDisk)) {
+                          fs.unlinkSync(fileOnDisk);
+                        }
+                      }
+                      reject(new Error('Response too large'));
+                    }
+                  });
+
+                  response.on('end', () => {
+                    let content;
+                    // special case for iso-8859-1, which is mapped to 'latin1' in node
+                    if (encoding.toLowerCase() === 'iso-8859-1') {
+                      encoding = 'latin1';
+                    }
+                    try {
+                      content = Buffer.concat(buffers).toString(encoding as BufferEncoding);
+                    } catch (e: any) {
+                      console.error(`Failed to convert data to string using encoding ${encoding}: ${e.message}`);
+                    }
+                    fileStream.end();
+                    getChecksum(fileOnDisk).then((checksum) => {
+                      const isValid = (checksum as string).replace(/^0x/, '') === rest.dataHash.replace(/^0x/, '');
+                      if (rest.forceCache) {
+                        /* should we cache it or delete it? */
+                        if (shouldCacheFile(fileOnDisk)) {
+                          wasCached = true;
+                        } else if (fs.existsSync(fileOnDisk)) {
+                          fs.unlinkSync(fileOnDisk);
+                        }
+                        mainWindow?.webContents.send('fetchBinaryContentDone', {
+                          nftIdUrl,
+                          valid: isValid,
+                        });
+                        const extension = parseExtensionFromUrl(rest.url);
+                        resolve({
+                          isValid,
+                          content: extension === 'svg' ? content : '',
+                        });
+                      } else {
+                        resolve({ isValid, content });
+                      }
+                    });
+                    delete allRequests[rest.url];
+                  });
+
+                  response.on('error', (e: string) => {
+                    fileStream.end();
+                    reject(new Error(e));
+                  });
+                });
+
+                request.on('error', (err: any) => {
+                  reject(err);
+                });
+
+                if (requestData) {
+                  request.write(requestData);
+                }
+
+                request.end();
               });
-            }),
+            } catch (e: any) {
+              if (fs.existsSync(fileOnDisk)) {
+                fs.unlinkSync(fileOnDisk);
+              }
+              delete allRequests[rest.url];
+              error = e;
+            }
+
+            return {
+              error,
+              statusCode,
+              statusMessage,
+              encoding,
+              dataObject,
+              wasCached,
+            };
+          }
+
+          const promise = processUri();
+
+          allRequests[rest.url] = {
+            abort: () => request.abort(),
+            promise,
           };
 
-          return allRequests[rest.url].promise;
+          return promise;
         }
       );
 
