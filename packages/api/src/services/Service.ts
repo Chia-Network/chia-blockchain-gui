@@ -77,13 +77,13 @@ export default class Service extends EventEmitter {
     }
   }
 
-  async command<Response>(
+  async command<Data>(
     command: string,
     data: Object = {},
     ack = false,
     timeout?: number,
     disableFormat?: boolean
-  ): Promise<Response> {
+  ): Promise<Data> {
     const { client, origin, name } = this;
 
     if (!command) {
@@ -105,7 +105,7 @@ export default class Service extends EventEmitter {
       disableFormat
     );
 
-    return response?.data;
+    return response?.data as Data;
   }
 
   async ping(): Promise<Response> {
