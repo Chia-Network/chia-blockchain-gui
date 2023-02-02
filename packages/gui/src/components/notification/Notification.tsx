@@ -44,7 +44,7 @@ export default function Notification(props: NotificationProps) {
   return (
     <MenuItem onClick={handleClick}>
       <Flex alignItems="flex-start" gap={2}>
-        <NotificationPreview offer={offer} fallback={<OffersIcon sx={{ fontSize: 40 }} />} />
+        <NotificationPreview offer={offer} fallback={<OffersIcon sx={{ fontSize: '32px !important' }} />} />
         {error ? (
           <Typography color="error">{error.message}</Typography>
         ) : (
