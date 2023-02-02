@@ -9,15 +9,15 @@ export default [
   },
   {
     label: 'Mint Garden',
-    domains: ['api.mintgarden.io', 'api.testnet.mintgarden.io'],
+    domains: ['mintgarden.io'],
   },
   {
     label: 'Offer Bin',
-    domains: ['api.offerbin.io'],
+    domains: ['offerbin.io'],
   },
   {
     label: 'Spacescan',
-    domains: ['api2.spacescan.io'],
+    domains: ['spacescan.io'],
   },
   {
     label: 'Offerpool',

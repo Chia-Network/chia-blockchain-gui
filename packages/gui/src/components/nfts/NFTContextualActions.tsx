@@ -513,21 +513,13 @@ function NFTBurnContextualAction(props: NFTBurnContextualActionProps) {
 
   const openDialog = useOpenDialog();
   const burnAddress = useBurnAddress();
-
-  const selectedNft: NFTInfo | undefined = selection?.items[0];
-  const disabled = !selectedNft || !burnAddress || selectedNft?.pendingTransaction;
-  const dataUrl = selectedNft?.dataUris?.[0];
+  const disabled = selection?.items.reduce((p, c) => p || c?.pendingTransaction, false) || !burnAddress;
 
   async function handleBurn() {
-    if (!selectedNft) {
+    if (!selection?.items) {
       return;
     }
-
-    await openDialog(<NFTBurnDialog nft={selectedNft} />);
-  }
-
-  if (!dataUrl) {
-    return null;
+    await openDialog(<NFTBurnDialog nfts={selection?.items || []} />);
   }
 
   return (

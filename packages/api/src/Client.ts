@@ -4,6 +4,7 @@ import EventEmitter from 'events';
 
 import debug from 'debug';
 
+import type Response from './@types/Response';
 import Message from './Message';
 import ConnectionState from './constants/ConnectionState';
 import ServiceName from './constants/ServiceName';
@@ -35,7 +36,7 @@ export default class Client extends EventEmitter {
   private requests: Map<
     string,
     {
-      resolve: (value: Response) => void;
+      resolve: (value: Message) => void;
       reject: (reason: Error) => void;
     }
   > = new Map();
@@ -45,6 +46,8 @@ export default class Client extends EventEmitter {
   private started: Set<ServiceName> = new Set();
 
   private connectedPromise: Promise<void> | null = null;
+
+  private connectedPromiseResponse: { resolve: any; reject: any } | null = null;
 
   private daemon: Daemon;
 
@@ -207,7 +210,7 @@ export default class Client extends EventEmitter {
     if (!disableWait) {
       while (true) {
         try {
-          const { data: pingResponse } = await this.send(
+          const { data } = <Message & { data: Response }>await this.send(
             new Message({
               command: 'ping',
               origin: this.origin,
@@ -216,7 +219,7 @@ export default class Client extends EventEmitter {
             1000
           );
 
-          if (pingResponse.success) {
+          if (data.success) {
             break;
           }
         } catch (error) {
@@ -256,7 +259,7 @@ export default class Client extends EventEmitter {
     log(`Waiting for service: ${serviceName}`);
     while (true) {
       try {
-        const { data: pingResponse } = await this.send(
+        const { data } = <Message & { data: Response }>await this.send(
           new Message({
             command: 'ping',
             origin: this.origin,
@@ -265,7 +268,7 @@ export default class Client extends EventEmitter {
           1000
         );
 
-        if (pingResponse.success) {
+        if (data.success) {
           await sleep(1000);
         }
       } catch (error) {
@@ -322,12 +325,13 @@ export default class Client extends EventEmitter {
     } = this;
 
     log('Received message', data.toString());
-    const message = Message.fromJSON(data, camelCase);
+    const message = <Message & { data: Response }>Message.fromJSON(data, camelCase);
 
     const { requestId } = message;
 
-    if (this.requests.has(requestId)) {
-      const { resolve, reject } = this.requests.get(requestId);
+    const request = this.requests.get(requestId);
+    if (request) {
+      const { resolve, reject } = request;
       this.requests.delete(requestId);
 
       if (message.data?.error) {
@@ -362,7 +366,7 @@ export default class Client extends EventEmitter {
     }
   };
 
-  async send(message: Message, timeout?: number, disableFormat?: boolean): Promise<Response> {
+  async send(message: Message, timeout?: number, disableFormat?: boolean): Promise<Message> {
     const {
       connected,
       options: { timeout: defaultTimeout, camelCase },
@@ -389,7 +393,9 @@ export default class Client extends EventEmitter {
           if (this.requests.has(requestId)) {
             this.requests.delete(requestId);
 
-            reject(new ErrorData(`The request ${requestId} has timed out ${currentTimeout / 1000} seconds.`));
+            reject(
+              new ErrorData(`The request ${requestId} has timed out ${currentTimeout / 1000} seconds.`, undefined)
+            );
           }
         }, currentTimeout);
       }
