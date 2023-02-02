@@ -153,7 +153,6 @@ export default function NotificationsProvider(props: NotificationsProviderProps)
 
               throw new Error(`Unknown notification type: ${type}`);
             } catch (e) {
-              console.log('e', e);
               log('Failed to prepare notification', e);
               return null;
             }
@@ -187,9 +186,9 @@ export default function NotificationsProvider(props: NotificationsProviderProps)
     }
 
     setLastPushNotificationHeight(firstUnseenNotification.height);
-
     showNotification({
-      title: 'You have a new offer',
+      title: 'New Offer',
+      body: 'You have a new offer',
     });
   }, [lastPushNotificationHeight, enabled, setLastPushNotificationHeight, showNotification, isLoading]);
 
