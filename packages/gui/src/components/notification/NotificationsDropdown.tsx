@@ -33,7 +33,7 @@ export default function NotificationsDropdown() {
           sx={buttonStyle}
         >
           <Badge color="primary" badgeContent={unseenCount} invisible={!unseenCount}>
-            <NotificationIcon />
+            <NotificationIcon color="secondary" />
           </Badge>
         </Button>,
         <Box sx={{ minWidth: 360 }}>
