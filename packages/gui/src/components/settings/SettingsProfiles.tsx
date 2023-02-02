@@ -4,7 +4,7 @@ import { Flex, LayoutDashboardSub } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Add } from '@mui/icons-material';
 import { IconButton, Typography } from '@mui/material';
-import React, { useEffect, useMemo } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 
 import IdentitiesPanel from './IdentitiesPanel';
@@ -13,7 +13,8 @@ import ProfileView from './ProfileView';
 
 export default function SettingsProfiles() {
   const navigate = useNavigate();
-  const { data: wallets } = useGetWalletsQuery();
+  const { data: wallets, isLoading } = useGetWalletsQuery();
+  const [profileStartDisplay, setProfileStartDisplay] = useState(true);
 
   const didList = useMemo(() => {
     const dids: number[] = [];
@@ -24,16 +25,23 @@ export default function SettingsProfiles() {
         }
       });
     }
+    setProfileStartDisplay(true);
     return dids;
   }, [wallets]);
 
   useEffect(() => {
-    if (didList.length) {
-      navigate(`/dashboard/settings/profiles/${didList[0]}`);
-    } else {
-      navigate(`/dashboard/settings/profiles/add`);
+    if (isLoading) {
+      return;
     }
-  }, [didList, navigate]);
+    if (profileStartDisplay) {
+      if (didList.length) {
+        navigate(`/dashboard/settings/profiles/${didList[0]}`);
+      } else {
+        navigate(`/dashboard/settings/profiles/add`);
+      }
+      setProfileStartDisplay(false);
+    }
+  }, [isLoading, profileStartDisplay, didList, navigate]);
 
   function navAdd() {
     navigate(`/dashboard/settings/profiles/add`);
