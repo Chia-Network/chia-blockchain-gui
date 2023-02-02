@@ -1,9 +1,11 @@
 import { useGetCurrentAddressQuery, useGetNextAddressMutation } from '@chia-network/api-react';
-import { CopyToClipboard, Loading } from '@chia-network/core';
+import { Flex, Loading, truncateValue, useColorModeValue } from '@chia-network/core';
 import { Reload } from '@chia-network/icons';
-import { t } from '@lingui/macro';
-import { TextField, IconButton } from '@mui/material';
+import { Trans } from '@lingui/macro';
+import { Button, IconButton, Tooltip, Typography } from '@mui/material';
 import React, { useState } from 'react';
+import { useCopyToClipboard } from 'react-use';
+import { useTimeout } from 'react-use-timeout';
 import styled from 'styled-components';
 
 const ReloadIconSvg = styled(Reload)`
@@ -18,16 +20,21 @@ const WalletReceiveAddressWrapper = styled.div`
   position: relative;
   flex: 1;
   width: 100%;
-  padding: 3px;
-  border-radius: 5px;
+  padding: 4px;
+  border-radius: 8px;
   border: 1px solid ${(props) => (props.isDarkMode ? props.theme.palette.border.dark : props.theme.palette.border.main)};
-  > div {
-    background: ${(props) => (props.isDarkMode ? '#444' : '#f4f4f4')};
-    border-radius: 5px;
+  > .MuiButton-root {
+    border: 1px solid
+      ${(props) => (props.isDarkMode ? props.theme.palette.border.dark : props.theme.palette.border.main)};
+    border-radius: 4px;
+    background: ${(props) => (props.isDarkMode ? '#333' : '#f4f4f4')};
+  }
+  > .MuiButton-root:hover {
+    background: ${({ theme }) => useColorModeValue(theme, 'sidebarBackground')};
   }
   input {
-    padding: 4px 8px 4px 36px;
-    height: 24px;
+    padding: 4px 8px;
+    height: 22px;
     border: 0;
     outline: none;
   }
@@ -39,24 +46,38 @@ const WalletReceiveAddressWrapper = styled.div`
   }
 `;
 
-const CopyToClipboardWrapper = styled.div`
-  position: absolute;
-  z-index: 5;
-  left: 5px;
-  top: 5px;
-`;
-
 export type WalletReceiveAddressProps = {
   walletId?: number;
+  clearCopiedDelay?: number;
 };
 
 export default function WalletReceiveAddressField(props: WalletReceiveAddressProps) {
-  const { walletId = 1, ...rest } = props;
+  const { walletId = 1, clearCopiedDelay = 1000 } = props;
   const { data: address = '' } = useGetCurrentAddressQuery({
     walletId,
   });
   const [newAddress] = useGetNextAddressMutation();
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [copied, setCopied] = useState<boolean>(false);
+  const [, copyToClipboard] = useCopyToClipboard();
+  const timeout = useTimeout(() => {
+    setCopied(false);
+  }, clearCopiedDelay);
+  const [prefix, suffix] = address.split('1');
+  const truncatedAddress = truncateValue(suffix, {});
+
+  const tooltipTitle = copied ? (
+    <Trans>Copied</Trans>
+  ) : (
+    <Flex flexDirection="column" gap={0.5}>
+      <Typography variant="caption" color="textSecondary">
+        <Trans>Copy wallet address</Trans>
+      </Typography>
+      <Typography variant="caption" color="textPrimary">
+        {address}
+      </Typography>
+    </Flex>
+  );
 
   async function handleNewAddress() {
     try {
@@ -70,23 +91,24 @@ export default function WalletReceiveAddressField(props: WalletReceiveAddressPro
     }
   }
 
+  function handleCopyToClipboard() {
+    copyToClipboard(address);
+    setCopied(true);
+    timeout.start();
+  }
+
   return (
     <WalletReceiveAddressWrapper isDarkMode={props?.isDarkMode}>
-      <CopyToClipboardWrapper>
-        <CopyToClipboard value={address} />
-      </CopyToClipboardWrapper>
-      <TextField
-        value={address}
-        placeholder={t`Loading...`}
-        variant="filled"
-        {...rest}
-        sx={{
-          width: 'initial',
-          flex: 1,
-          width: '100%',
-          borderRadius: '10px',
-        }}
-      />
+      <Tooltip title={tooltipTitle}>
+        <Button onClick={handleCopyToClipboard} variant="text" sx={{ textTransform: 'none' }}>
+          <Typography variant="body1" color="primary">
+            {prefix}1
+          </Typography>
+          <Typography variant="body1" color="textPrimary">
+            {truncatedAddress}
+          </Typography>
+        </Button>
+      </Tooltip>
       {isLoading ? (
         <Loading size="1em" />
       ) : (
