@@ -41,7 +41,7 @@ export default function SettingsProfiles() {
       }
       setProfileStartDisplay(false);
     }
-  }, [profileStartDisplay, didList, navigate]);
+  }, [isLoading, profileStartDisplay, didList, navigate]);
 
   function navAdd() {
     navigate(`/dashboard/settings/profiles/add`);
