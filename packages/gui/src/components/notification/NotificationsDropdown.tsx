@@ -1,5 +1,5 @@
 import { DropdownBase } from '@chia-network/core';
-import { NotificationsNone as NotificationsNoneIcon } from '@mui/icons-material';
+import { Notification as NotificationIcon } from '@chia-network/icons';
 import { Badge, Box, Button } from '@mui/material';
 import React from 'react';
 
@@ -33,7 +33,7 @@ export default function NotificationsDropdown() {
           sx={buttonStyle}
         >
           <Badge color="primary" badgeContent={unseenCount} invisible={!unseenCount}>
-            <NotificationsNoneIcon color="secondary" />
+            <NotificationIcon color="secondary" />
           </Badge>
         </Button>,
         <Box sx={{ minWidth: 360 }}>

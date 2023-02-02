@@ -18,5 +18,6 @@ export { default as Requesting } from './Requesting';
 export { default as Status } from './Status';
 export { default as Tokens } from './Tokens';
 export { default as Trade } from './Trade';
+export { default as Notification } from './Notification';
 export { default as Settings } from './Settings';
 export { default as WalletConnect, ConnectCheckmark, ConnectCancel, ConnectReload, Exit } from './WalletConnect';
