@@ -327,7 +327,7 @@ export default function NFTGallery() {
   useEffect(() => {
     const nftTypesObject: any = {};
     if (allowNFTsFilteredNftIds.length && nfts.length) {
-      nfts
+      allowNFTsFiltered
         .filter((nft: NFTInfo) => {
           if (allowNFTsFilteredNftIds.indexOf(nft.$nftId) === -1) {
             return false;
@@ -370,7 +370,7 @@ export default function NFTGallery() {
         });
     }
     setNftTypes(nftTypesObject);
-  }, [visibilityFilters, isNFTHidden, nfts]);
+  }, [allowNFTsFiltered, visibilityFilters, isNFTHidden, nfts]);
 
   const nftContainerRef = React.useRef(null);
   const galleryHeroRef = React.useRef(null);
