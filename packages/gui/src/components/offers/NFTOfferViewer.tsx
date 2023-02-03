@@ -281,7 +281,7 @@ export function NFTOfferSummary(props: NFTOfferSummaryProps) {
   const makerSummary: React.ReactElement = (
     <NFTOfferSummaryRow
       title={makerTitle}
-      summaryKey={isMyOffer ? 'requested' : 'offered'}
+      summaryKey="offered"
       summary={summary}
       unknownAssets={isMyOffer ? undefined : takerUnknownAssets}
       rowIndentation={rowIndentation}
@@ -292,7 +292,7 @@ export function NFTOfferSummary(props: NFTOfferSummaryProps) {
   const takerSummary: React.ReactElement = (
     <NFTOfferSummaryRow
       title={takerTitle}
-      summaryKey={isMyOffer ? 'offered' : 'requested'}
+      summaryKey="requested"
       summary={summary}
       unknownAssets={isMyOffer ? undefined : makerUnknownAssets}
       rowIndentation={rowIndentation}
@@ -307,10 +307,6 @@ export function NFTOfferSummary(props: NFTOfferSummaryProps) {
     const isMissingRequestedAsset = isMyOffer ? false : makerUnknownAssets?.length !== 0 ?? false;
 
     setIsMissingRequestedAsset(isMissingRequestedAsset);
-  }
-
-  if (isMyOffer) {
-    summaries.reverse();
   }
 
   return (
