@@ -12,8 +12,8 @@
   "scripts": {
     "build": "npm run build:js",
     "build:js": "rollup -c",
+    "build:ci": "npm run build:js",
     "build:watch": "rollup -c -w",
-    "build:types": "tsc --emitDeclarationOnly",
     "check:types": "tsc --noEmit --emitDeclarationOnly false",
     "test": "jest"
   },
