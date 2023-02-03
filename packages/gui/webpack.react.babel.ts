@@ -172,6 +172,7 @@ export default {
         test: /\.[jt]sx?$/,
         exclude: DEV ? /node_modules/ : undefined,
         use: [
+          'thread-loader',
           {
             loader: 'babel-loader',
             options: babelQuery,
