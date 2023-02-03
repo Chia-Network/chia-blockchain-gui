@@ -20,8 +20,8 @@ jobs:
           node-version-file: '.nvmrc'
       - name: npm ci && npx lerna bootstrap
         run: npm ci && npx lerna bootstrap
-      - name: npm run build
-        run: npm run build
+      - name: npm run build:ci
+        run: npm run build:ci
       - name: Check for Prettier issues
         run: npm run check:prettier
       - name: Check for ESLint issues
