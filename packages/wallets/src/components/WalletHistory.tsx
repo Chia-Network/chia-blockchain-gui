@@ -60,10 +60,10 @@ async function handleRowClick(event: React.MouseEvent<HTMLTableRowElement>, row:
       const { data: response } = await getOfferRecord(row.tradeId);
       const { tradeRecord, success } = response;
 
-      if (success === true && tradeRecord) {
-        navigate('/dashboard/offers/view', {
-          state: { tradeRecord },
-        });
+      if (success === true && tradeRecord && navigate) {
+        // navigate('/dashboard/offers/view', {
+        //   state: { tradeRecord },
+        // });
       }
     } catch (e) {
       console.error(e);
