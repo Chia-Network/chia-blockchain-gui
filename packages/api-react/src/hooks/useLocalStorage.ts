@@ -4,28 +4,28 @@ import EventEmitter from '../utils/EventEmitter';
 
 const eventEmitter = new EventEmitter();
 
-function getValueFromLocalStorage<T>(key: string, defaultValue?: T): T | undefined {
+function getValueFromLocalStorage<T>(key: string): T | undefined {
   const item = window.localStorage.getItem(key);
 
   if (item === undefined || item === null) {
-    return defaultValue;
+    return undefined;
   }
 
   try {
     return JSON.parse(item);
   } catch (error) {
-    return defaultValue;
+    return undefined;
   }
 }
 
 export default function useLocalStorage<T>(
   key: string,
-  initialValue?: T
+  defaultValue?: T
 ): [T | undefined, (value: T | ((value: T | undefined) => T)) => void] {
-  const [storedValue, setStoredValue] = useState<T | undefined>(getValueFromLocalStorage(key, initialValue));
+  const [storedValue, setStoredValue] = useState<T | undefined>(getValueFromLocalStorage(key));
 
   const setValue = useCallback(
-    (value: T | ((value: T | undefined) => T)) => {
+    (value: T | ((nv: T | undefined) => T)) => {
       setStoredValue((currentStoredValue) => {
         const newValue = value instanceof Function ? value(currentStoredValue) : value;
 
@@ -62,5 +62,5 @@ export default function useLocalStorage<T>(
     };
   }, [changeHandler]);
 
-  return [storedValue, setValue];
+  return [storedValue ?? defaultValue, setValue];
 }
