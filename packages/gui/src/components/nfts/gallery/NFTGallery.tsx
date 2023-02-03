@@ -98,6 +98,7 @@ const MultiSelectAndFilterWrapper = styled.div<{ isDarkMode: boolean }>`
   background: ${(props) => (props.isDarkMode ? '#333' : '#fff')};
   border: 1px solid ${(props) => (props.isDarkMode ? '#333' : '#e0e0e0')};
   border-radius: 5px;
+  margin-left: 15px;
   > * + * {
     margin-left: 20px;
   }
@@ -511,14 +512,16 @@ export default function NFTGallery() {
         <>
           <Flex gap={2} alignItems="stretch" flexWrap="wrap" justifyContent="space-between">
             <NFTProfileDropdown onChange={setWalletId} walletId={walletId} />
-            <Search onUpdate={setSearch} placeholder={t`Search...`} defaultValue={search || undefined} />
-            <MultiSelectAndFilterWrapper className={inMultipleSelectionMode ? 'active' : ''} isDarkMode={isDarkMode}>
-              <MultiSelectIconStyled
-                onClick={() => toggleMultipleSelection(!inMultipleSelectionMode)}
-                isDarkMode={isDarkMode}
-              />
-              <FilterIconStyled onMouseDown={toggleShowFilters} active={filtersShown.length > 0} />
-            </MultiSelectAndFilterWrapper>
+            <Flex alignItems="stretch" justifyContent="space-between">
+              <Search onUpdate={setSearch} placeholder={t`Search...`} defaultValue={search || undefined} />
+              <MultiSelectAndFilterWrapper className={inMultipleSelectionMode ? 'active' : ''} isDarkMode={isDarkMode}>
+                <MultiSelectIconStyled
+                  onClick={() => toggleMultipleSelection(!inMultipleSelectionMode)}
+                  isDarkMode={isDarkMode}
+                />
+                <FilterIconStyled onMouseDown={toggleShowFilters} active={filtersShown.length > 0} />
+              </MultiSelectAndFilterWrapper>
+            </Flex>
           </Flex>
 
           <Flex gap={2} alignItems="center" flexWrap="wrap" justifyContent="space-between" sx={{ padding: '10px 0' }}>
