@@ -1350,12 +1350,12 @@ function OfferShareConfirmationDialog(props: OfferShareConfirmationDialogProps) 
             summary={offerRecord.summary}
             makerTitle={
               <Typography variant="subtitle1">
-                <Trans>Your offer:</Trans>
+                <Trans>Assets I am offering:</Trans>
               </Typography>
             }
             takerTitle={
               <Typography variant="subtitle1">
-                <Trans>In exchange for:</Trans>
+                <Trans>Assets I will receive:</Trans>
               </Typography>
             }
             rowIndentation={3}
@@ -1521,7 +1521,7 @@ export default function OfferShareDialog(props: OfferShareDialogProps) {
       </DialogTitle>
 
       <DialogContent dividers>
-        <Flex flexDirection="column" gap={2}>
+        <Flex flexDirection="column" gap={2} paddingTop={2}>
           <Flex flexDirection="column" gap={2}>
             <Typography variant="subtitle1">Where would you like to share your offer?</Typography>
             <Flex flexDirection="column" gap={3}>
