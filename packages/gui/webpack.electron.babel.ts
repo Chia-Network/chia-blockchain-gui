@@ -14,12 +14,9 @@ export default {
       {
         test: /\.(js|ts|tsx)$/,
         exclude: /node_modules/,
-        use: [
-          'thread-loader',
-          {
-            loader: 'babel-loader',
-          },
-        ],
+        use: {
+          loader: 'babel-loader',
+        },
       },
       {
         test: /\.svg$/i,
