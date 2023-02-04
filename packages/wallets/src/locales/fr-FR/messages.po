@@ -8,7 +8,7 @@ msgstr ""
 "Language: fr_FR\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-10-24 18:17\n"
+"PO-Revision-Date: 2023-02-04 17:00\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
@@ -848,7 +848,7 @@ msgstr "Portefeuilles connectés"
 #: src/components/WalletAdd.tsx:128
 #: src/components/WalletImport.tsx:176
 msgid "Wallet Name"
-msgstr ""
+msgstr "Nom du portefeuille"
 
 #: src/components/cat/WalletCAT.tsx:75
 #: src/components/cat/WalletDID.tsx:1118
