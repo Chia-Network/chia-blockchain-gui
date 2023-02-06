@@ -1,3 +1,5 @@
+import PlotterName from '../constants/PlotterName';
+
 interface CommonOptions {
   kSizes: number[];
   haveNumBuckets: boolean;
@@ -86,6 +88,15 @@ type Plotter = {
   defaults: PlotterDefaults;
   installInfo: PlotterInstallInfo;
 };
+
+export type PlotterApi = {
+  displayName: string;
+  installed: boolean;
+  version?: string;
+  canInstall?: boolean;
+};
+
+export type PlottersApi = { [key in PlotterName]?: PlotterApi };
 
 export type PlotterMap<T extends string, U> = {
   [K in T]?: U;

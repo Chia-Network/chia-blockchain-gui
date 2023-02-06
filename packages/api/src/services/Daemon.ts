@@ -1,4 +1,4 @@
-import PlotQueueItem from '../@types/PlotQueueItem';
+import { PlotQueueItem, KeyringStatus, KeyData, PlottersApi } from '../@types';
 import type Client from '../Client';
 import type Message from '../Message';
 import ServiceName from '../constants/ServiceName';
@@ -22,14 +22,16 @@ export default class Daemon extends Service {
   }
 
   startService(service: string, testing?: boolean) {
-    return this.command('start_service', {
+    return this.command<{
+      service: string;
+    }>('start_service', {
       service,
       testing: testing ? true : undefined,
     });
   }
 
   stopService(service: string) {
-    return this.command('stop_service', {
+    return this.command<void>('stop_service', {
       service,
     });
   }
@@ -43,44 +45,52 @@ export default class Daemon extends Service {
   }
 
   runningServices() {
-    return this.command('running_services');
+    return this.command<{
+      running_services: [string];
+    }>('running_services');
   }
 
   addPrivateKey(mnemonic: string, label?: string) {
-    return this.command('add_private_key', {
+    return this.command<{
+      fingerprint: string;
+    }>('add_private_key', {
       mnemonic,
       label,
     });
   }
 
   getKey(fingerprint: string, includeSecrets?: boolean) {
-    return this.command('get_key', {
+    return this.command<{
+      key: KeyData;
+    }>('get_key', {
       fingerprint,
       includeSecrets,
     });
   }
 
   getKeys(includeSecrets?: boolean) {
-    return this.command('get_keys', {
+    return this.command<{
+      keys: [KeyData];
+    }>('get_keys', {
       includeSecrets,
     });
   }
 
   setLabel(fingerprint: string, label: string) {
-    return this.command('set_label', {
+    return this.command<void>('set_label', {
       fingerprint,
       label,
     });
   }
 
   deleteLabel(fingerprint: string) {
-    return this.command('delete_label', {
+    return this.command<void>('delete_label', {
       fingerprint,
     });
   }
 
   keyringStatus() {
-    return this.command('keyring_status');
+    return this.command<KeyringStatus>('keyring_status');
   }
 
   setKeyringPassphrase(
@@ -89,7 +99,7 @@ export default class Daemon extends Service {
     passphraseHint?: string,
     savePassphrase?: boolean
   ) {
-    return this.command('set_keyring_passphrase', {
+    return this.command<void>('set_keyring_passphrase', {
       currentPassphrase,
       newPassphrase,
       passphraseHint,
@@ -98,13 +108,13 @@ export default class Daemon extends Service {
   }
 
   removeKeyringPassphrase(currentPassphrase: string) {
-    return this.command('remove_keyring_passphrase', {
+    return this.command<void>('remove_keyring_passphrase', {
       currentPassphrase,
     });
   }
 
   migrateKeyring(passphrase: string, passphraseHint: string, savePassphrase: boolean, cleanupLegacyKeyring: boolean) {
-    return this.command('migrate_keyring', {
+    return this.command<void>('migrate_keyring', {
       passphrase,
       passphraseHint,
       savePassphrase,
@@ -113,13 +123,15 @@ export default class Daemon extends Service {
   }
 
   unlockKeyring(key: string) {
-    return this.command('unlock_keyring', {
+    return this.command<void>('unlock_keyring', {
       key,
     });
   }
 
   getPlotters() {
-    return this.command('get_plotters');
+    return this.command<{
+      plotters: PlottersApi;
+    }>('get_plotters');
   }
 
   stopPlotting(id: string) {
@@ -222,11 +234,11 @@ export default class Daemon extends Service {
     // bladebitDiskNoT2Direct
     if (bbdisk_no_t2_direct) args.no_t2_direct = bbdisk_no_t2_direct;
 
-    return this.command('start_plotting', args, undefined, undefined, true);
+    return this.command<{ ids: string[] }>('start_plotting', args, undefined, undefined, true);
   }
 
   exit() {
-    return this.command('exit');
+    return this.command<void>('exit');
   }
 
   onKeyringStatusChanged(callback: (data: any, message: Message) => void, processData?: (data: any) => any) {
@@ -234,6 +246,6 @@ export default class Daemon extends Service {
   }
 
   getVersion() {
-    return this.command('get_version');
+    return this.command<{ version: string }>('get_version');
   }
 }
