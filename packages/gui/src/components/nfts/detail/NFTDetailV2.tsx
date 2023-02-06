@@ -45,7 +45,13 @@ export default function NFTDetail() {
 
   const isLoading = isLoadingNFT;
 
-  return isLoading ? <Loading center /> : <NFTDetailLoaded nft={localNFT ?? nft} />;
+  return isLoading ? (
+    <Box sx={{ marginTop: '25px' }}>
+      <Loading center />
+    </Box>
+  ) : (
+    <NFTDetailLoaded nft={localNFT ?? nft} />
+  );
 }
 
 type NFTDetailLoadedProps = {

@@ -177,7 +177,7 @@ export default function AppState(props: Props) {
     const backendVersionClean = backendVersion.replace(/[-+.]/g, '');
     const guiVersionClean = version.replace(/[-+.]/g, '');
 
-    if (backendVersionClean !== guiVersionClean) {
+    if (0 && backendVersionClean !== guiVersionClean) {
       return (
         <LayoutHero>
           <AppVersionWarning backV={backendVersion} guiV={version} setVersionDialog={setVersionDialog} />

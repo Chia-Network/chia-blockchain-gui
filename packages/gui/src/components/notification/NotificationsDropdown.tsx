@@ -6,7 +6,7 @@ import React from 'react';
 import useNotifications from '../../hooks/useNotifications';
 import NotificationsMenu from './NotificationsMenu';
 
-const buttonStyle = (theme) => ({
+const buttonStyle = (theme: any) => ({
   minWidth: 0,
   borderRadius: 2,
   borderColor: theme.palette.mode === 'dark' ? 'border.dark' : 'border.main',
@@ -21,7 +21,7 @@ export default function NotificationsDropdown() {
 
   return (
     <DropdownBase>
-      {({ onClose, onToggle }) => [
+      {({ onClose, onToggle }: { onClose: any; onToggle: any }) => [
         <Button
           key="button"
           onClick={(event) => {

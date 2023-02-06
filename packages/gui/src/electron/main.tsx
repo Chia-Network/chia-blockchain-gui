@@ -395,7 +395,7 @@ if (!handleSquirrelEvent()) {
                   });
 
                   response.on('end', () => {
-                    let content;
+                    let content: string;
                     // special case for iso-8859-1, which is mapped to 'latin1' in node
                     if (encoding.toLowerCase() === 'iso-8859-1') {
                       encoding = 'latin1';
@@ -733,7 +733,6 @@ if (!handleSquirrelEvent()) {
           preload: `${__dirname}/preload.js`,
           nodeIntegration: true,
           contextIsolation: false,
-          nativeWindowOpen: true,
           webSecurity: true,
         },
       });

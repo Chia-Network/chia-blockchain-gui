@@ -127,6 +127,7 @@ export default function SettingsGeneral() {
         </Grid>
         <Grid item container xs justifyContent="flex-end" marginTop="-6px">
           <FormControlLabel
+            label=""
             control={<Switch checked={hideObjectionableContent} onChange={handleChangeHideObjectionableContent} />}
           />
         </Grid>
@@ -147,6 +148,7 @@ export default function SettingsGeneral() {
         </Grid>
         <Grid item container xs justifyContent="flex-end" marginTop="-6px">
           <FormControlLabel
+            label=""
             control={<Switch checked={nftImageFittingMode === 'contain'} onChange={handleScalePreviewImages} />}
           />
         </Grid>

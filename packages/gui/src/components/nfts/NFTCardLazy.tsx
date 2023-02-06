@@ -10,7 +10,7 @@ export type NFTCardLazyProps = NFTCardProps & {
 
 export default function NFTCardLazy(props: NFTCardLazyProps) {
   const { minHeight = 300, ...rest } = props;
-  const cardRef = useRef();
+  const cardRef = useRef(null);
   const entry = useIntersectionObserver(cardRef, {
     freezeOnceVisible: true,
   });

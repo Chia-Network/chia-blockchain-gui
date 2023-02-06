@@ -124,14 +124,14 @@ const Filters = styled.div`
   }
 `;
 
-const FilterIconStyled = styled(FilterIcon)`
+const FilterIconStyled = styled(FilterIcon)<{ active: boolean; onMouseDown: any }>`
   cursor: pointer;
   path {
     stroke: ${(props) => (props.active ? props.theme.palette.primary.main : '#aaa')};
   }
 `;
 
-const MultiSelectIconStyled = styled(MultiSelectIcon)`
+const MultiSelectIconStyled = styled(MultiSelectIcon)<{ isDarkMode: boolean }>`
   cursor: pointer;
   path {
     stroke: ${(props) => (props.isDarkMode ? props.theme.palette.common.white : props.theme.palette.text.secondary)};

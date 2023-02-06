@@ -1,7 +1,7 @@
 import { useGetLoggedInFingerprintQuery, useGetKeyQuery } from '@chia-network/api-react';
 import { Exit as ExitIcon } from '@chia-network/icons';
 import { t, Trans } from '@lingui/macro';
-import { ExitToApp as ExitToAppIcon } from '@mui/icons-material';
+import { ExitToApp as ExitToAppIcon, type Theme } from '@mui/icons-material';
 import { Box, AppBar, Toolbar, Drawer, Container, IconButton, Typography, CircularProgress } from '@mui/material';
 import React, { ReactNode, Suspense } from 'react';
 import { useNavigate, Outlet } from 'react-router-dom';
@@ -20,20 +20,21 @@ const StyledRoot = styled(Flex)`
   // overflow: hidden;
 `;
 
-const StyledAppBar = styled(({ drawer, ...rest }) => <AppBar {...rest} />)`
-  border-bottom: 1px solid ${({ theme }) => theme.palette.divider};
-  width: ${({ theme, drawer }) => (drawer ? `calc(100% - ${theme.drawer.width})` : '100%')};
-  margin-left: ${({ theme, drawer }) => (drawer ? theme.drawer.width : 0)};
-  z-index: ${({ theme }) => theme.zIndex.drawer + 1};};
+const StyledAppBar = styled(({ drawer, ...rest }: { drawer: boolean; rest: any }) => <AppBar {...rest} />)`
+  border-bottom: 1px solid ${({ theme }: Theme) => theme.palette.divider};
+  width: ${({ theme, drawer }: { theme: Theme; drawer: boolean }) =>
+    drawer ? `calc(100% - ${theme.drawer.width})` : '100%'};
+  margin-left: ${({ theme, drawer }: { theme: Theme; drawer: boolean }) => (drawer ? theme.drawer.width : 0)};
+  z-index: ${({ theme }: Theme) => theme.zIndex.drawer + 1};};
 `;
 
 const StyledDrawer = styled(Drawer)`
-  z-index: ${({ theme }) => theme.zIndex.drawer + 2};
-  width: ${({ theme }) => theme.drawer.width};
+  z-index: ${({ theme }: Theme) => theme.zIndex.drawer + 2};
+  width: ${({ theme }: Theme) => theme.drawer.width};
   flex-shrink: 0;
 
   > div {
-    width: ${({ theme }) => theme.drawer.width};
+    width: ${({ theme }: Theme) => theme.drawer.width};
     // border-width: 0px;
   }
 `;
@@ -43,8 +44,8 @@ const StyledBody = styled(Flex)`
 `;
 
 const StyledToolbar = styled(Toolbar)`
-  padding-left: ${({ theme }) => theme.spacing(3)};
-  padding-right: ${({ theme }) => theme.spacing(3)};
+  padding-left: ${({ theme }: Theme) => theme.spacing(3)};
+  padding-right: ${({ theme }: Theme) => theme.spacing(3)};
 `;
 
 const StyledInlineTypography = styled(Typography)`

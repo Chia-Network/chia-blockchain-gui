@@ -1,11 +1,11 @@
-import { CircularProgress, CircularProgressProps, Typography } from '@mui/material';
+import { CircularProgress, CircularProgressProps, Typography, type Theme } from '@mui/material';
 import React, { type ReactNode } from 'react';
 import styled from 'styled-components';
 
 import Flex from '../Flex';
 
 const StyledCircularProgress = styled(CircularProgress)`
-  color: ${({ theme }) => (theme.palette.mode === 'dark' ? 'white' : 'inherit')}; ;
+  color: ${({ theme }: { theme: Theme }) => (theme.palette.mode === 'dark' ? 'white' : 'inherit')}; ;
 `;
 
 export type LoadingProps = CircularProgressProps & {
