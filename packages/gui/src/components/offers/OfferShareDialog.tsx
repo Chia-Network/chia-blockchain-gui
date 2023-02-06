@@ -508,10 +508,12 @@ async function postToKeybase(
 
 type PostToOfferpoolResponse = {
   success: boolean;
-  error_message?: string;
+  viewLink: string;
+  offerLink: string;
+  errorMessage?: string;
 };
 
-// Posts the offer data to offerpool and returns success and an error_message on failure
+// Posts the offer data to offerpool.io and returns the view and offer links.
 async function postToOfferpool(offerData: string, testnet: boolean): Promise<PostToOfferpoolResponse> {
   const { ipcRenderer } = window as any;
   const requestOptions = {
@@ -542,10 +544,12 @@ async function postToOfferpool(offerData: string, testnet: boolean): Promise<Pos
   log('offerpool upload completed');
 
   if (testnet) {
-    return { success: true };
+    return { success: true, viewLink: '', offerLink: '' }; // Offerpool.io doesn't support testnet
   }
 
-  return JSON.parse(responseBody);
+  const response = JSON.parse(responseBody);
+  const { success, share_url: viewLink, download_url: offerLink, error_message: errorMessage, ...rest } = response;
+  return { success, viewLink, offerLink, errorMessage, ...rest };
 }
 
 /* ========================================================================== */
@@ -1199,7 +1203,15 @@ function OfferShareKeybaseDialog(props: OfferShareServiceDialogProps) {
 }
 
 function OfferShareOfferpoolDialog(props: OfferShareServiceDialogProps) {
-  const { offerRecord, offerData, testnet = false, onClose = () => {}, open = false } = props;
+  const {
+    offerRecord,
+    offerData,
+    testnet = false,
+    onClose = () => {},
+    open = false,
+    isNFTOffer = false,
+    showSendOfferNotificationDialog = () => {},
+  } = props;
   const openExternal = useOpenExternal();
   const [offerResponse, setOfferResponse] = React.useState<PostToOfferpoolResponse>();
 
@@ -1211,6 +1223,12 @@ function OfferShareOfferpoolDialog(props: OfferShareServiceDialogProps) {
     const result = await postToOfferpool(offerData, testnet);
     log(`offerpool result ${JSON.stringify(result)}`);
     setOfferResponse(result);
+  }
+
+  function handleShowSendOfferNotificationDialog() {
+    if (offerResponse) {
+      showSendOfferNotificationDialog(true, offerResponse.offerLink);
+    }
   }
 
   if (offerResponse) {
@@ -1228,17 +1246,39 @@ function OfferShareOfferpoolDialog(props: OfferShareServiceDialogProps) {
         </DialogTitle>
         <DialogContent dividers>
           <Flex flexDirection="column" gap={3} sx={{ paddingTop: '1em' }}>
-            <Trans>
-              {offerResponse.success
-                ? 'Your offer has been successfully posted to offerpool.'
-                : `Error posting offer: ${offerResponse.error_message}`}
-            </Trans>
+            {offerResponse.success ? (
+              <>
+                <TextField
+                  label={<Trans>Offerpool URL</Trans>}
+                  value={offerResponse.viewLink}
+                  variant="filled"
+                  InputProps={{
+                    readOnly: true,
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <CopyToClipboard value={offerResponse.viewLink} />
+                      </InputAdornment>
+                    ),
+                  }}
+                  fullWidth
+                />
+                <Flex>
+                  <Button variant="outlined" onClick={() => openExternal(offerResponse.viewLink)}>
+                    <Trans>View on Offerpool</Trans>
+                  </Button>
+                </Flex>
+              </>
+            ) : (
+              t`Error posting offer: ${offerResponse.errorMessage ?? 'unknown error'}`
+            )}
           </Flex>
         </DialogContent>
         <DialogActions>
-          <Button variant="outlined" onClick={() => openExternal('https://offerpool.io/')}>
-            <Trans>Go to Offerpool</Trans>
-          </Button>
+          {isNFTOffer && (
+            <Button onClick={handleShowSendOfferNotificationDialog} color="primary" variant="outlined">
+              <Trans>Notify Current Owner</Trans>
+            </Button>
+          )}
           <Button onClick={handleClose} color="primary" variant="contained">
             <Trans>Close</Trans>
           </Button>
@@ -1310,12 +1350,12 @@ function OfferShareConfirmationDialog(props: OfferShareConfirmationDialogProps) 
             summary={offerRecord.summary}
             makerTitle={
               <Typography variant="subtitle1">
-                <Trans>Your offer:</Trans>
+                <Trans>Assets I am offering:</Trans>
               </Typography>
             }
             takerTitle={
               <Typography variant="subtitle1">
-                <Trans>In exchange for:</Trans>
+                <Trans>Assets I will receive:</Trans>
               </Typography>
             }
             rowIndentation={3}
@@ -1481,7 +1521,7 @@ export default function OfferShareDialog(props: OfferShareDialogProps) {
       </DialogTitle>
 
       <DialogContent dividers>
-        <Flex flexDirection="column" gap={2}>
+        <Flex flexDirection="column" gap={2} paddingTop={2}>
           <Flex flexDirection="column" gap={2}>
             <Typography variant="subtitle1">Where would you like to share your offer?</Typography>
             <Flex flexDirection="column" gap={3}>

@@ -54,7 +54,8 @@ export default async function fetchOffer(offerUrl: string) {
   if (errorOfferValidity) {
     throw errorOfferValidity;
   }
-  const { valid, success: isValiditySuccess } = dataOfferValidity;
+
+  const { valid, success: isValiditySuccess, id: offerId } = dataOfferValidity;
   resultOfferValidityPromise.unsubscribe();
   if (!isValiditySuccess) {
     throw new Error('Failed to check offer validity');
@@ -62,10 +63,26 @@ export default async function fetchOffer(offerUrl: string) {
 
   const offer = offerToOfferBuilderData(offerSummary);
 
+  /*
+  // get trade record
+  let tradeRecord;
+  if (offerId) {
+    const resultOfferRecordPromise = store.dispatch(walletApi.endpoints.getOfferRecord.initiate(offerId));
+    const { data: dataTradeRecord, error: errorTradeRecord } = await resultOfferRecordPromise;
+    if (!errorTradeRecord) {
+      tradeRecord = dataTradeRecord.data;
+    }
+
+    resultOfferRecordPromise.unsubscribe();
+  }
+  */
+
   return {
     valid,
     offer,
     offerData,
     offerSummary,
+    offerId,
+    // isMyOffer: tradeRecord?.is_my_offer,
   };
 }
