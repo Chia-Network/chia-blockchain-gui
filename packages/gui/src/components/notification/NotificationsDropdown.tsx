@@ -1,10 +1,20 @@
 import { DropdownBase } from '@chia-network/core';
-import { NotificationsNone as NotificationsNoneIcon } from '@mui/icons-material';
+import { Notification as NotificationIcon } from '@chia-network/icons';
 import { Badge, Box, Button } from '@mui/material';
 import React from 'react';
 
 import useNotifications from '../../hooks/useNotifications';
 import NotificationsMenu from './NotificationsMenu';
+
+const buttonStyle = (theme) => ({
+  minWidth: 0,
+  borderRadius: 2,
+  borderColor: theme.palette.mode === 'dark' ? 'border.dark' : 'border.main',
+  height: '42px',
+  '&:hover': {
+    borderColor: theme.palette.mode === 'dark' ? 'border.dark' : 'border.main',
+  },
+});
 
 export default function NotificationsDropdown() {
   const { unseenCount, setAsSeen } = useNotifications();
@@ -21,10 +31,10 @@ export default function NotificationsDropdown() {
           variant="outlined"
           color="secondary"
           size="small"
-          sx={{ px: 1, minWidth: 0 }}
+          sx={buttonStyle}
         >
           <Badge color="primary" badgeContent={unseenCount} invisible={!unseenCount}>
-            <NotificationsNoneIcon color="secondary" />
+            <NotificationIcon color="secondary" />
           </Badge>
         </Button>,
         <Box sx={{ minWidth: 360 }}>

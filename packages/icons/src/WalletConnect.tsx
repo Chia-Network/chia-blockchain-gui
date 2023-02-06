@@ -12,13 +12,13 @@ export default function WalletConnect(props: SvgIconProps) {
 }
 
 export function ConnectCheckmark(props: SvgIconProps) {
-  return <SvgIcon component={ConnectCheckmarkIcon} {...props} viewBox="-2 -3 20 20" />;
+  return <SvgIcon component={ConnectCheckmarkIcon} {...props} viewBox="-5 -5 21 21" />;
 }
 export function ConnectCancel(props: SvgIconProps) {
-  return <SvgIcon component={ConnectCancelIcon} {...props} viewBox="-3 -3 20 20" />;
+  return <SvgIcon component={ConnectCancelIcon} {...props} viewBox="-5 -5 21 21" />;
 }
 export function ConnectReload(props: SvgIconProps) {
-  return <SvgIcon component={ConnectReloadIcon} viewBox="-1 0 21 21" {...props} />;
+  return <SvgIcon component={ConnectReloadIcon} viewBox="-5 -5 21 21" {...props} />;
 }
 export function Exit(props: SvgIconProps) {
   return <SvgIcon component={ExitIcon} {...props} />;

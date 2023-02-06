@@ -9,12 +9,10 @@
   },
   "main": "dist/index.js",
   "module": "dist/esm.js",
-  "types": "dist/main.d.ts",
+  "types": "./dist/types",
   "scripts": {
-    "build": "npm run build:js",
-    "build:js": "rollup -c",
-    "build:watch": "rollup -c -w",
-    "build:types": "tsc --emitDeclarationOnly",
+    "build": "rollup -c && tsc --emitDeclarationOnly",
+    "build:watch": "tsc --emitDeclarationOnly --watch & rollup -c -w",
     "check:types": "tsc --noEmit --emitDeclarationOnly false",
     "test": "jest"
   },

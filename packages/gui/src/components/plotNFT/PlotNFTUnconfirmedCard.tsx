@@ -45,7 +45,7 @@ export default function PlotNFTUnconfirmedCard(props: Props) {
     if (transaction?.confirmed) {
       remove(transaction.name);
     }
-  }, [remove, transaction?.confirmed, transaction.name]);
+  }, [remove, transaction?.confirmed, transaction?.name]);
 
   if (isLoading || transaction?.confirmed) {
     return null;

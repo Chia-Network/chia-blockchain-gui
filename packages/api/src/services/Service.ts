@@ -2,6 +2,7 @@ import EventEmitter from 'events';
 
 import { isUndefined, omitBy } from 'lodash';
 
+import type Response from '../@types/Response';
 import type Client from '../Client';
 import Message from '../Message';
 import ServiceName from '../constants/ServiceName';
@@ -76,13 +77,13 @@ export default class Service extends EventEmitter {
     }
   }
 
-  async command(
+  async command<Data>(
     command: string,
     data: Object = {},
     ack = false,
     timeout?: number,
     disableFormat?: boolean
-  ): Promise<any> {
+  ): Promise<Data> {
     const { client, origin, name } = this;
 
     if (!command) {
@@ -104,19 +105,17 @@ export default class Service extends EventEmitter {
       disableFormat
     );
 
-    return response?.data;
+    return response?.data as Data;
   }
 
-  async ping(): Promise<{
-    success: boolean;
-  }> {
+  async ping(): Promise<Response> {
     return this.command('ping', undefined, undefined, 1000);
   }
 
   onCommand(
     command: string,
     callback: (data: any, message: Message) => void,
-    processData?: (data: any) => any
+    processData?: (data: any, message: Message) => any
   ): () => void {
     function handleCommand(data: any, message: Message) {
       const updatedData = processData ? processData(data, message) : data;

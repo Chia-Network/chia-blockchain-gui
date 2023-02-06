@@ -4,6 +4,7 @@ import {
   useDeleteAllKeysMutation,
   useLogInAndSkipImportMutation,
   useGetKeysQuery,
+  useLogout,
 } from '@chia-network/api-react';
 import { Trans } from '@lingui/macro';
 import { Alert, Typography, Container } from '@mui/material';
@@ -40,6 +41,7 @@ export default function SelectKey() {
   const [skippedMigration] = useSkipMigration();
   const [promptForKeyringMigration] = useKeyringMigrationPrompt();
   const showError = useShowError();
+  const cleanCache = useLogout();
 
   const isLoading = isLoadingPublicKeys || isLoadingLogIn;
 
@@ -53,6 +55,8 @@ export default function SelectKey() {
       await logIn({
         fingerprint,
       }).unwrap();
+
+      await cleanCache();
 
       navigate('/dashboard/wallets');
     } catch (err) {
@@ -176,17 +180,19 @@ export default function SelectKey() {
           >
             <Trans>Import from Mnemonics (12 or 24 words)</Trans>
           </Button>
-          <Button
-            onClick={handleDeleteAllKeys}
-            variant="outlined"
-            color="danger"
-            size="large"
-            disabled={isLoading}
-            data-testid="SelectKey-delete-all-keys"
-            fullWidth
-          >
-            <Trans>Delete all keys</Trans>
-          </Button>
+          {hasFingerprints && (
+            <Button
+              onClick={handleDeleteAllKeys}
+              variant="outlined"
+              color="danger"
+              size="large"
+              disabled={isLoading}
+              data-testid="SelectKey-delete-all-keys"
+              fullWidth
+            >
+              <Trans>Delete all keys</Trans>
+            </Button>
+          )}
         </Flex>
       </Flex>
     </StyledContainer>
