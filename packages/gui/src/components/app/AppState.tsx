@@ -90,8 +90,8 @@ export default function AppState(props: Props) {
       return false;
     }
 
-    const specificRunningServiceStates = servicesState.running.filter((serviceState) =>
-      runServices.includes(serviceState.service)
+    const specificRunningServiceStates = servicesState.running.filter((serviceName) =>
+      runServices.includes(serviceName)
     );
 
     return specificRunningServiceStates.length === runServices.length;
@@ -255,7 +255,7 @@ export default function AppState(props: Props) {
               runServices.map((service) => (
                 <Collapse
                   key={service}
-                  in={!servicesState.running.find((state) => state.service === service)}
+                  in={!servicesState.running.includes(service)}
                   timeout={{ enter: 0, exit: 1000 }}
                 >
                   <Typography variant="body1" color="textSecondary" align="center">
