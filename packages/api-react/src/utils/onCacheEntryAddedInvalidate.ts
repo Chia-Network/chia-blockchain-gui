@@ -15,7 +15,7 @@ type Invalidate =
     };
 
 export default function onCacheEntryAddedInvalidate(rtkQuery, invalidates: Invalidate[]) {
-  return async (args, api) => {
+  return async (args: any, api) => {
     const { cacheDataLoaded, cacheEntryRemoved, updateCachedData, dispatch } = api;
     const unsubscribes: Function[] = [];
     try {
@@ -23,6 +23,8 @@ export default function onCacheEntryAddedInvalidate(rtkQuery, invalidates: Inval
 
       await Promise.all(
         invalidates.map(async (invalidate) => {
+          // @ts-ignore -- Destructuring potentionally non-existing properties will be soon allowed in TS
+          // https://github.com/microsoft/TypeScript/issues/46318
           const { command, service, endpoint, onUpdate, skip } = invalidate;
 
           const response = await rtkQuery(
@@ -30,8 +32,8 @@ export default function onCacheEntryAddedInvalidate(rtkQuery, invalidates: Inval
               command,
               service,
               args: [
-                async (data) => {
-                  updateCachedData((draft) => {
+                async (data: any) => {
+                  updateCachedData((draft: any) => {
                     if (skip?.(draft, data, args)) {
                       return;
                     }

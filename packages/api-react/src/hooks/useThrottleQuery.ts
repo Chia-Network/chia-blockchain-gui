@@ -30,7 +30,7 @@ export default function useThrottleQuery(
 
   queryHook(variables, {
     ...options,
-    selectFromResult(state) {
+    selectFromResult(state: any) {
       refState.current = state;
 
       processUpdate();

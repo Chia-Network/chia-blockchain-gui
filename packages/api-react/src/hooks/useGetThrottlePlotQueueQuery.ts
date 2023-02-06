@@ -1,4 +1,4 @@
-import PlotQueueItem from 'types/PlotQueueItem';
+import { PlotQueueItem } from '@chia-network/api';
 
 import { useGetPlotQueueQuery } from '../services/plotter';
 import useThrottleQuery from './useThrottleQuery';

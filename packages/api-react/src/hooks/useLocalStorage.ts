@@ -4,6 +4,8 @@ import EventEmitter from '../utils/EventEmitter';
 
 const eventEmitter = new EventEmitter();
 
+type EventEmitterValue = { key: any; newValue: any };
+
 function getValueFromLocalStorage<T>(key: string): T | undefined {
   const item = window.localStorage.getItem(key);
 
@@ -36,7 +38,7 @@ export default function useLocalStorage<T>(
         }
 
         window.localStorage.setItem(key, newStoredValue);
-        eventEmitter.emit('storage', { key, newValue });
+        eventEmitter.emit('storage', { key, newValue } as EventEmitterValue);
 
         return newValue;
       });
@@ -45,7 +47,7 @@ export default function useLocalStorage<T>(
   );
 
   const changeHandler = useCallback(
-    (e) => {
+    (e: EventEmitterValue) => {
       const { key: changeKey, newValue } = e;
       if (key === changeKey) {
         setStoredValue(newValue);

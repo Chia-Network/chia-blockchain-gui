@@ -18,16 +18,17 @@ async function getClientInstance(api: BaseQueryApi): Promise<Client> {
   return clientInstance;
 }
 
-const services = new Map<Service, Service>();
+type ServiceClassType = typeof Service;
+const services = new Map<ServiceClassType, Service>();
 
-async function getServiceInstance(api: BaseQueryApi, ServiceClass: Service): Promise<Service> {
+async function getServiceInstance(api: BaseQueryApi, ServiceClass: ServiceClassType): Promise<Service> {
   if (!services.has(ServiceClass)) {
     const client = await getClientInstance(api);
     const serviceInstance = new ServiceClass(client);
     services.set(ServiceClass, serviceInstance);
   }
 
-  return services.get(ServiceClass);
+  return services.get(ServiceClass) as Service;
 }
 
 type Options = {
@@ -58,11 +59,10 @@ export default function chiaLazyBaseQuery(options: Options = {}): BaseQueryFn<
   }
 > {
   const { service: DefaultService } = options;
-
-  return async ({ command, service: ServiceClass, client = false, args = [], mockResponse }, api) => {
-    const instance = client
-      ? await getClientInstance(api)
-      : await getServiceInstance(api, ServiceClass || DefaultService);
+  // @ts-ignore -- Destructuring potentionally non-existing properties will be soon allowed in TS
+  // https://github.com/microsoft/TypeScript/issues/46318
+  return async ({ command, service: ServiceClass = DefaultService, client = false, args = [], mockResponse }, api) => {
+    const instance = client ? await getClientInstance(api) : await getServiceInstance(api, ServiceClass);
 
     const meta = {
       timestamp: Date.now(),
