@@ -402,7 +402,7 @@ export default class Client extends EventEmitter {
     });
   }
 
-  async close(force: true) {
+  async close(force: boolean = false) {
     if (force) {
       this.closed = true;
     }
