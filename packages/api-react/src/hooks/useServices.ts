@@ -86,9 +86,9 @@ export default function useMonitorServices(
   const isLoading = !!states.find((state) => state.isLoading);
   const error = states.find((state) => state.error)?.error;
 
-  const starting = states.filter((state) => state.state === 'starting');
-  const stopping = states.filter((state) => state.state === 'stopping');
-  const running = states.filter((state) => state.state === 'running');
+  const starting = states.filter((state) => state.state === 'starting').map((state) => state.service);
+  const stopping = states.filter((state) => state.state === 'stopping').map((state) => state.service);
+  const running = states.filter((state) => state.state === 'running').map((state) => state.service);
 
   return {
     isLoading,
