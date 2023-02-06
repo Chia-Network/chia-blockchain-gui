@@ -10,7 +10,6 @@ export { default as useGetNFTWallets } from './useGetNFTWallets';
 export { default as useLocalStorage } from './useLocalStorage';
 export { default as usePrefs } from './usePrefs';
 export { default as useLogout } from './useLogout';
-export { default as useNFTMetadata } from './useNFTMetadata';
 export { default as useService } from './useService';
 export { default as useGetThrottlePlotQueueQuery } from './useGetThrottlePlotQueueQuery';
 export { default as useServices } from './useServices';
