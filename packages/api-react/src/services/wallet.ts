@@ -2113,7 +2113,7 @@ export const walletApi = apiWithTag.injectEndpoints({
     resyncWallet: build.mutation<boolean, undefined>({
       query: () => ({
         command: 'resyncWallet',
-        service: Wallet,
+        service: WalletService,
         args: [],
       }),
       transformResponse: (response: any) => response?.success,

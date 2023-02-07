@@ -400,6 +400,10 @@ export default class Wallet extends Service {
     });
   }
 
+  async resyncWallet() {
+    return this.command('set_wallet_resync_on_startup');
+  }
+
   onSyncChanged(callback: (data: any, message: Message) => void, processData?: (data: any) => any) {
     return this.onStateChanged('sync_changed', callback, processData);
   }
@@ -522,9 +526,5 @@ export default class Wallet extends Service {
     processData?: (data: any) => any
   ) {
     return this.onStateChanged('new_derivation_index', callback, processData);
-  }
-
-  resyncWallet() {
-    return this.command('set_wallet_resync');
   }
 }

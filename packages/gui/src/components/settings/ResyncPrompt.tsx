@@ -1,12 +1,7 @@
 import { useResyncWalletMutation } from '@chia-network/api-react';
 import { AlertDialog, Button, DialogActions, useOpenDialog } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
-import {
-  Dialog,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-} from '@mui/material';
+import { Dialog, DialogContent, DialogContentText, DialogTitle } from '@mui/material';
 import React from 'react';
 
 type Props = {
@@ -37,33 +32,23 @@ export default function ResyncPrompt(props: Props) {
   }
 
   return (
-    <Dialog
-      open
-      aria-labelledby="form-dialog-title"
-      fullWidth
-      maxWidth="xs"
-    >
+    <Dialog open aria-labelledby="form-dialog-title" fullWidth maxWidth="xs">
       <DialogTitle id="form-dialog-title">
         <Trans>Resync Wallet</Trans>
       </DialogTitle>
       <DialogContent>
         <DialogContentText>
-          <Trans>To initiate a wallet resync, all Chia services must first be shut down. After shutting down, you will be required to restart Chia to begin the resyncing process. Are you sure you want to shut down and resync?</Trans>
+          <Trans>
+            To initiate a wallet resync, all Chia services must first be shut down. After shutting down, you will be
+            required to restart Chia to begin the resyncing process. Are you sure you want to shut down and resync?
+          </Trans>
         </DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button
-          onClick={handleCancel}
-          color="secondary"
-          variant="outlined"
-        >
+        <Button onClick={handleCancel} color="secondary" variant="outlined">
           <Trans>Cancel</Trans>
         </Button>
-        <Button
-          onClick={handleSubmit}
-          color="primary"
-          variant="contained"
-        >
+        <Button onClick={handleSubmit} color="primary" variant="contained">
           <Trans>Shut down</Trans>
         </Button>
       </DialogActions>
