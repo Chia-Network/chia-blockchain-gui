@@ -2118,6 +2118,15 @@ export const walletApi = apiWithTag.injectEndpoints({
       }),
     }),
 
+    resyncWallet: build.mutation<boolean, undefined>({
+      query: () => ({
+        command: 'resyncWallet',
+        service: WalletService,
+        args: [],
+      }),
+      transformResponse: (response: any) => response?.success,
+    }),
+
     // notifications
     getNotifications: build.query<
       any,
@@ -2235,6 +2244,7 @@ export const {
   useGetOfferRecordMutation,
   useGetCurrentDerivationIndexQuery,
   useExtendDerivationIndexMutation,
+  useResyncWalletMutation,
 
   // Pool
   useCreateNewPoolWalletMutation,

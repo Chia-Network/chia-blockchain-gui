@@ -133,6 +133,7 @@ export const {
   useGetOfferRecordMutation,
   useGetCurrentDerivationIndexQuery,
   useExtendDerivationIndexMutation,
+  useResyncWalletMutation,
 
   // Pool
   useCreateNewPoolWalletMutation,
