@@ -68,5 +68,5 @@ export default function useLocalStorage<T extends keyof (string | undefined)>(
     };
   }, [changeHandler]);
 
-  return [storedValue ?? defaultValue, setValue];
+  return [storedValue ?? defaultValueRef.current, setValue];
 }
