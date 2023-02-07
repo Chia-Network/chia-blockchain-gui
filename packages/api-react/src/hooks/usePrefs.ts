@@ -28,7 +28,7 @@ function setPreferences(key: string, value: Serializable) {
   (window as any).preferences[key] = value;
 }
 
-function isEqual(a: Serializable, b: Serializable) {
+export function isEqual(a: Serializable, b: Serializable) {
   return JSON.stringify(a) === JSON.stringify(b);
 }
 
@@ -39,6 +39,11 @@ export default function usePrefs<T extends Serializable>(
   const [value, setValue] = useState<T>(getPreferences(key));
   const valueRef = useRef(value);
   valueRef.current = value;
+  const defaultValueRef = useRef(defaultValue);
+
+  if (!isEqual(defaultValueRef.current, defaultValue)) {
+    defaultValueRef.current = defaultValue;
+  }
 
   const handleSetValue = useCallback(
     (newValueOrFn: T | ((nv: T) => T)) => {
@@ -76,5 +81,5 @@ export default function usePrefs<T extends Serializable>(
     };
   }, [handleOnChange]);
 
-  return [value ?? defaultValue, handleSetValue];
+  return [(valueRef.current ?? defaultValueRef.current) as T, handleSetValue];
 }
