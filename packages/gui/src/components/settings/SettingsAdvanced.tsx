@@ -16,7 +16,7 @@ export default function SettingsAdvanced() {
   function closeResyncWallet() {
     setResyncWalletOpen(false);
   }
-  
+
   return (
     <Grid container style={{ maxWidth: '624px' }} gap={2}>
       <Grid item style={{ maxWidth: '400px' }}>
@@ -35,24 +35,32 @@ export default function SettingsAdvanced() {
       </Grid>
 
       <Grid container>
-        <Grid item style={{width: "400px"}}>
+        <Grid item style={{ width: '400px' }}>
           <SettingsTitle>
             <Trans>Resync Wallet</Trans>
           </SettingsTitle>
         </Grid>
         <Grid item container xs justifyContent="flex-end" marginTop="-6px">
-          <Button onClick={() => setResyncWalletOpen(true)} variant="outlined" data-testid="SettingsPanel-resync-wallet-db">
+          <Button
+            onClick={() => setResyncWalletOpen(true)}
+            variant="outlined"
+            data-testid="SettingsPanel-resync-wallet-db"
+          >
             <Trans>Resync</Trans>
           </Button>
           {resyncWalletOpen && <ResyncPrompt onSuccess={resyncWalletSucceeded} onCancel={closeResyncWallet} />}
         </Grid>
-        <Grid item container style={{width: "400px"}} gap={2}>
+        <Grid item container style={{ width: '400px' }} gap={2}>
           <SettingsText>
-            <Trans>Resyncing forces reloading data from the blockchain about your transactions without losing other locally stored information like open, accepted, or cancelled offer files. Resyncing will require you to restart the app.</Trans>
+            <Trans>
+              Resyncing forces reloading data from the blockchain about your transactions without losing other locally
+              stored information like open, accepted, or cancelled offer files. Resyncing will require you to restart
+              the app.
+            </Trans>
           </SettingsText>
         </Grid>
       </Grid>
-  
+
       <Grid item xs={12} sm={12} lg={12}>
         <SettingsHR />
       </Grid>

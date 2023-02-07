@@ -188,6 +188,7 @@ if (!handleSquirrelEvent()) {
      ************************************************************ */
     let decidedToClose = false;
     let isClosing = false;
+    let promptOnQuit = true;
     let mainWindowLaunchTasks: ((window: BrowserWindow) => void)[] = [];
 
     const createWindow = async () => {
@@ -201,7 +202,10 @@ if (!handleSquirrelEvent()) {
 
       ipcMain.handle('getVersion', () => app.getVersion());
 
-      ipcMain.handle('quitGUI', () => app.quit());
+      ipcMain.handle('quitGUI', () => {
+        promptOnQuit = false;
+        app.quit();
+      });
 
       ipcMain.handle(
         'showNotification',
@@ -651,19 +655,21 @@ if (!handleSquirrelEvent()) {
         e.preventDefault();
         if (!isClosing) {
           isClosing = true;
-          const choice = dialog.showMessageBoxSync({
-            type: 'question',
-            buttons: [i18n._(/* i18n */ { id: 'No' }), i18n._(/* i18n */ { id: 'Yes' })],
-            title: i18n._(/* i18n */ { id: 'Confirm' }),
-            message: i18n._(
-              /* i18n */ {
-                id: 'Are you sure you want to quit?',
-              }
-            ),
-          });
-          if (choice === 0) {
-            isClosing = false;
-            return;
+          if (promptOnQuit) {
+            const choice = dialog.showMessageBoxSync({
+              type: 'question',
+              buttons: [i18n._(/* i18n */ { id: 'No' }), i18n._(/* i18n */ { id: 'Yes' })],
+              title: i18n._(/* i18n */ { id: 'Confirm' }),
+              message: i18n._(
+                /* i18n */ {
+                  id: 'Are you sure you want to quit?',
+                }
+              ),
+            });
+            if (choice === 0) {
+              isClosing = false;
+              return;
+            }
           }
           isClosing = false;
           decidedToClose = true;
