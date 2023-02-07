@@ -1,6 +1,7 @@
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect, useRef } from 'react';
 
 import EventEmitter from '../utils/EventEmitter';
+import { isEqual } from './usePrefs';
 
 const eventEmitter = new EventEmitter();
 
@@ -18,11 +19,16 @@ function getValueFromLocalStorage<T>(key: string): T | undefined {
   }
 }
 
-export default function useLocalStorage<T>(
+export default function useLocalStorage<T extends keyof (string | undefined)>(
   key: string,
   defaultValue?: T
 ): [T | undefined, (value: T | ((value: T | undefined) => T)) => void] {
   const [storedValue, setStoredValue] = useState<T | undefined>(getValueFromLocalStorage(key));
+  const defaultValueRef = useRef(defaultValue);
+
+  if (!isEqual(defaultValueRef.current, defaultValue)) {
+    defaultValueRef.current = defaultValue;
+  }
 
   const setValue = useCallback(
     (value: T | ((nv: T | undefined) => T)) => {
@@ -62,5 +68,5 @@ export default function useLocalStorage<T>(
     };
   }, [changeHandler]);
 
-  return [storedValue ?? defaultValue, setValue];
+  return [storedValue ?? defaultValueRef.current, setValue];
 }
