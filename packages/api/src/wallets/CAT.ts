@@ -1,19 +1,17 @@
 import Wallet from '../services/WalletService';
 
 export default class CATWallet extends Wallet {
-  async createNewWallet(amount: string, fee: string) {
+  async createNewWallet(amount: string) {
     return super.createNewWallet('cat_wallet', {
       mode: 'new',
       amount,
-      fee,
     });
   }
 
-  async createWalletForExisting(assetId: string, fee: string) {
+  async createWalletForExisting(assetId: string) {
     return super.createNewWallet('cat_wallet', {
       mode: 'existing',
       assetId,
-      fee,
     });
   }
 
