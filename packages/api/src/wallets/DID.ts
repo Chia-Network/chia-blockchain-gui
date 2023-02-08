@@ -101,6 +101,12 @@ export default class DIDWallet extends Wallet {
     });
   }
 
+  async getDidInfo(coin_or_did_id: string) {
+    return this.command('did_get_info', {
+      coin_id: coin_or_did_id,
+    });
+  }
+
   onDIDCoinAdded(callback: (data: any, message: Message) => void) {
     return this.onStateChanged('did_coin_added', callback);
   }

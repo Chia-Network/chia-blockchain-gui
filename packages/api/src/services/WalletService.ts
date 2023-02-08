@@ -408,6 +408,26 @@ export default class Wallet extends Service {
     });
   }
 
+  async verifySignature(
+    message: string,
+    pubkey: string,
+    signature: string,
+    address: string | undefined,
+    signingMode: string | undefined
+  ): Promise<{
+    success: boolean;
+    isValid: boolean;
+    error: string;
+  }> {
+    return this.command('verify_signature', {
+      message,
+      pubkey,
+      signature,
+      address,
+      signingMode,
+    });
+  }
+
   async resyncWallet() {
     return this.command('set_wallet_resync_on_startup');
   }

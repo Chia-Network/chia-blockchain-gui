@@ -163,6 +163,7 @@ export const {
   useGetDIDRecoveryListQuery,
   useGetDIDInformationNeededForRecoveryQuery,
   useGetDIDCurrentCoinInfoQuery,
+  useGetDIDInfoQuery,
 
   // NFTs
   useCalculateRoyaltiesForNFTsQuery,
@@ -183,6 +184,9 @@ export const {
   useGetNotificationsQuery,
   useDeleteNotificationsMutation,
   useSendNotificationsMutation,
+
+  // verify
+  useVerifySignatureMutation,
 } = wallet;
 
 // harvester hooks

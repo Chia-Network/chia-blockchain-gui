@@ -92,6 +92,7 @@ export default function OfferBuilderImport() {
     fs.stat(offerFilePath, (err, stats) => {
       if (err) {
         showError(err);
+        setIsParsing(false);
       } else {
         continueOpen(stats);
       }

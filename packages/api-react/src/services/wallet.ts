@@ -23,6 +23,7 @@ const apiWithTag = api.enhanceEndpoints({
     'Address',
     'DID',
     'DIDCoinInfo',
+    'DIDInfo',
     'DIDName',
     'DIDPubKey',
     'DIDRecoveryInfo',
@@ -1829,6 +1830,15 @@ export const walletApi = apiWithTag.injectEndpoints({
       providesTags: (result, _error, { walletId }) => (result ? [{ type: 'DIDCoinInfo', id: walletId }] : []),
     }),
 
+    getDIDInfo: build.query<any, { coinOrDIDId: string }>({
+      query: ({ coinOrDIDId }) => ({
+        command: 'getDidInfo',
+        service: DID,
+        args: [coinOrDIDId],
+      }),
+      providesTags: (result, _error, { coinOrDIDId }) => (result ? [{ type: 'DIDInfo', id: coinOrDIDId }] : []),
+    }),
+
     // createDIDBackup: did_create_backup_file needs an RPC change (remove filename param, return file contents)
 
     // NFTs
@@ -2191,6 +2201,23 @@ export const walletApi = apiWithTag.injectEndpoints({
       }),
       invalidatesTags: (result, _error) => (result ? [{ type: 'Notification', id: 'LIST' }] : []),
     }),
+
+    verifySignature: build.mutation<
+      any,
+      {
+        message: string;
+        pubkey: string;
+        signature: string;
+        address?: string;
+        signingMode?: string | undefined;
+      }
+    >({
+      query: ({ message, pubkey, signature, address, signingMode }) => ({
+        command: 'verifySignature',
+        service: WalletService,
+        args: [message, pubkey, signature, address, signingMode],
+      }),
+    }),
   }),
 });
 
@@ -2274,6 +2301,7 @@ export const {
   useGetDIDRecoveryListQuery,
   useGetDIDInformationNeededForRecoveryQuery,
   useGetDIDCurrentCoinInfoQuery,
+  useGetDIDInfoQuery,
 
   // NFTs
   useCalculateRoyaltiesForNFTsQuery,
@@ -2294,4 +2322,7 @@ export const {
   useGetNotificationsQuery,
   useDeleteNotificationsMutation,
   useSendNotificationsMutation,
+
+  // verify
+  useVerifySignatureMutation,
 } = walletApi;

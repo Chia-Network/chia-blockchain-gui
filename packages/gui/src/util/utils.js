@@ -112,3 +112,7 @@ export function getNFTFileType(nft) {
     ? 'Model'
     : 'Unknown';
 }
+
+export function isMac() {
+  return /(Mac|iPhone|iPod|iPad)/i.test(navigator.platform);
+}
