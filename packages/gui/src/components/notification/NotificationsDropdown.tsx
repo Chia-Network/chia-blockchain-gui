@@ -28,13 +28,13 @@ export default function NotificationsDropdown() {
             onToggle(event);
             setAsSeen();
           }}
-          variant="outlined"
-          color="secondary"
+          variant="text"
+          color="info"
           size="small"
           sx={buttonStyle}
         >
           <Badge color="primary" badgeContent={unseenCount} invisible={!unseenCount}>
-            <NotificationIcon color="secondary" />
+            <NotificationIcon color="info" />
           </Badge>
         </Button>,
         <Box sx={{ minWidth: 360 }}>

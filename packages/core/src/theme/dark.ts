@@ -17,6 +17,10 @@ export default createTheme({
       main: '#ffffff',
       contrastText: '#000000',
     },
+    info: {
+      ...theme.palette.info,
+      main: '#fff',
+    },
     mode: 'dark',
   },
 });
