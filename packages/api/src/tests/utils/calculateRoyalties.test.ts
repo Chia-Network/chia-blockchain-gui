@@ -29,6 +29,7 @@ describe('calculateRoyalties', () => {
       royaltyPercentage: 350,
       royaltyPuzzleHash: '0xf6c2a79af727bfada9fc8fa6eaa57189c6a5ad4407333e573d1e08293817d5ad',
       supportsDid: false,
+      p2Address: '',
       updaterPuzhash: '',
       walletId: undefined,
       $nftId: 'nft1g9xfeujpq402dhxrms5wqvh73rr02remvwvycr9s4cxzzlkg324s3nu8vj',

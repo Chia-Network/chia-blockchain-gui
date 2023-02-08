@@ -35,7 +35,11 @@ export function NFTProperty(props: NFTPropertyProps) {
   const { attribute, size = 'regular', color = 'secondary' } = props;
   const theme = useTheme();
   // eslint-disable-next-line @typescript-eslint/naming-convention -- Comes from API like this
-  const { name, trait_type, value } = attribute;
+  const { name, trait_type, value: rawValue } = attribute;
+  if (typeof rawValue === 'object') {
+    return null;
+  }
+  const value = rawValue.toString();
   const title = trait_type ?? name;
   const borderStyle = {
     border: 1,

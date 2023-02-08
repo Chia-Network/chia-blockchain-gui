@@ -1,14 +1,38 @@
 import { Flex, useMode, Mode, useDarkMode } from '@chia-network/core';
 import { WalletConnections, WalletStatus, WalletReceiveAddressField } from '@chia-network/wallets';
 import { Trans } from '@lingui/macro';
-import { Box, ButtonGroup, Button, Popover } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
+import { Box, ButtonGroup, Button, Popover, PopoverProps } from '@mui/material';
+import { useTheme, styled, alpha } from '@mui/material/styles';
 import React, { useState } from 'react';
 
 import Connections from '../fullNode/FullNodeConnections';
 import FullNodeStateIndicator from '../fullNode/FullNodeStateIndicator';
 import NotificationsDropdown from '../notification/NotificationsDropdown';
 import WalletConnectDropdown from '../walletConnect/WalletConnectDropdown';
+
+const StyledPopover = styled((props: PopoverProps) => <Popover {...props} />)(({ theme }) => ({
+  '& .MuiPopover-paper': {
+    borderRadius: '8px',
+    marginTop: theme.spacing(1),
+    minWidth: 180,
+    color: theme.palette.mode === 'light' ? 'rgb(55, 65, 81)' : theme.palette.grey[300],
+    boxShadow:
+      'rgb(255, 255, 255) 0px 0px 0px 0px, rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px',
+    '& .MuiMenu-list': {
+      padding: '4px 0',
+    },
+    '& .MuiMenuItem-root': {
+      '& .MuiSvgIcon-root': {
+        fontSize: 18,
+        color: theme.palette.text.secondary,
+        marginRight: theme.spacing(1.5),
+      },
+      '&:active': {
+        backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+      },
+    },
+  },
+}));
 
 export default function AppStatusHeader() {
   const theme = useTheme();
@@ -17,6 +41,7 @@ export default function AppStatusHeader() {
   const ButtonStyle = {
     paddingTop: '3px',
     paddingBottom: 0,
+    borderRadius: 2,
     border: `1px solid ${borderColor}`,
     '&:hover': {
       border: `1px solid ${borderColor}`,
@@ -58,7 +83,7 @@ export default function AppStatusHeader() {
                 <Trans>Full Node</Trans>
               </Flex>
             </Button>
-            <Popover
+            <StyledPopover
               open={!!anchorElFN}
               anchorEl={anchorElFN}
               onClose={handleCloseFN}
@@ -74,7 +99,7 @@ export default function AppStatusHeader() {
               <Box sx={{ minWidth: 800 }}>
                 <Connections />
               </Box>
-            </Popover>
+            </StyledPopover>
           </>
         )}
         <Button onClick={handleClickW} sx={ButtonStyle}>
@@ -83,7 +108,7 @@ export default function AppStatusHeader() {
             <Trans>Wallet</Trans>
           </Flex>
         </Button>
-        <Popover
+        <StyledPopover
           open={!!anchorElW}
           anchorEl={anchorElW}
           onClose={handleCloseW}
@@ -99,7 +124,7 @@ export default function AppStatusHeader() {
           <Box sx={{ minWidth: 800 }}>
             <WalletConnections walletId={1} />
           </Box>
-        </Popover>
+        </StyledPopover>
       </ButtonGroup>
       <NotificationsDropdown />
     </Flex>

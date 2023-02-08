@@ -148,7 +148,7 @@ async function writeTempOfferFile(offerData: string, filename: string): Promise<
 
 /* ========================================================================== */
 
-async function postToDexie(offerData: string, testnet: boolean): Promise<string> {
+async function postToDexie(offerData: string, testnet: boolean): Promise<{ viewLink: string; offerLink: string }> {
   const { ipcRenderer } = window as any;
   const requestOptions = {
     method: 'POST',
@@ -157,6 +157,7 @@ async function postToDexie(offerData: string, testnet: boolean): Promise<string>
     port: 443,
     path: '/v1/offers',
   };
+
   const requestHeaders = {
     'Content-Type': 'application/json',
   };
@@ -175,10 +176,17 @@ async function postToDexie(offerData: string, testnet: boolean): Promise<string>
     throw error;
   }
 
-  log('Dexie upload completed');
-  const { id } = JSON.parse(responseBody);
+  const { success, id, error_message: errorMessage } = JSON.parse(responseBody);
+  if (!success) {
+    throw new Error(`Dexie upload failed: ${errorMessage}`);
+  }
 
-  return `https://${testnet ? 'testnet.' : ''}dexie.space/offers/${id}`;
+  log('Dexie upload completed');
+
+  const viewLink = `https://${testnet ? 'testnet.' : ''}dexie.space/offers/${id}`;
+  const offerLink = `https://${testnet ? 'raw-testnet.' : 'raw.'}dexie.space/${id}`;
+
+  return { viewLink, offerLink };
 }
 
 async function postToMintGarden(offerData: string, testnet: boolean): Promise<string> {
@@ -336,10 +344,12 @@ type PostToSpacescanResponse = {
     id: string;
     summary: Record<string, any>;
   };
+  view_link: string;
+  offer_link: string;
 };
 
 // Posts the offer data to OfferBin and returns a URL to the offer.
-async function postToSpacescan(offerData: string, testnet: boolean): Promise<string> {
+async function postToSpacescan(offerData: string, testnet: boolean): Promise<{ viewLink: string; offerLink: string }> {
   const { ipcRenderer } = window as any;
   const requestOptions = {
     method: 'POST',
@@ -368,11 +378,9 @@ async function postToSpacescan(offerData: string, testnet: boolean): Promise<str
 
   log('Spacescan.io upload completed');
 
-  const {
-    offer: { id },
-  }: PostToSpacescanResponse = JSON.parse(responseBody);
+  const { view_link: viewLink, offer_link: offerLink }: PostToSpacescanResponse = JSON.parse(responseBody);
 
-  return `https://www.spacescan.io/${testnet ? 'txch' : 'xch'}/offer/${id}`;
+  return { viewLink, offerLink };
 }
 
 enum KeybaseCLIActions {
@@ -500,10 +508,12 @@ async function postToKeybase(
 
 type PostToOfferpoolResponse = {
   success: boolean;
-  error_message?: string;
+  viewLink: string;
+  offerLink: string;
+  errorMessage?: string;
 };
 
-// Posts the offer data to offerpool and returns success and an error_message on failure
+// Posts the offer data to offerpool.io and returns the view and offer links.
 async function postToOfferpool(offerData: string, testnet: boolean): Promise<PostToOfferpoolResponse> {
   const { ipcRenderer } = window as any;
   const requestOptions = {
@@ -534,10 +544,12 @@ async function postToOfferpool(offerData: string, testnet: boolean): Promise<Pos
   log('offerpool upload completed');
 
   if (testnet) {
-    return { success: true };
+    return { success: true, viewLink: '', offerLink: '' }; // Offerpool.io doesn't support testnet
   }
 
-  return JSON.parse(responseBody);
+  const response = JSON.parse(responseBody);
+  const { success, share_url: viewLink, download_url: offerLink, error_message: errorMessage, ...rest } = response;
+  return { success, viewLink, offerLink, errorMessage, ...rest };
 }
 
 /* ========================================================================== */
@@ -554,19 +566,22 @@ function OfferShareDexieDialog(props: OfferShareServiceDialogProps) {
   } = props;
   const openExternal = useOpenExternal();
   const [sharedURL, setSharedURL] = React.useState('');
+  const [rawOfferURL, setRawOfferURL] = React.useState('');
 
   function handleClose() {
     onClose(false);
   }
 
   async function handleConfirm() {
-    const url = await postToDexie(offerData, testnet);
+    const { viewLink: url, offerLink } = await postToDexie(offerData, testnet);
     log(`Dexie URL: ${url}`);
     setSharedURL(url);
+    log(`Dexie offerLink: ${offerLink}`);
+    setRawOfferURL(offerLink);
   }
 
   function handleShowSendOfferNotificationDialog() {
-    showSendOfferNotificationDialog(true, sharedURL);
+    showSendOfferNotificationDialog(true, rawOfferURL);
   }
 
   if (sharedURL) {
@@ -883,19 +898,22 @@ function OfferShareSpacescanDialog(props: OfferShareServiceDialogProps) {
   } = props;
   const openExternal = useOpenExternal();
   const [sharedURL, setSharedURL] = React.useState('');
+  const [rawOfferURL, setRawOfferURL] = React.useState('');
 
   function handleClose() {
     onClose(false);
   }
 
   async function handleConfirm() {
-    const url = await postToSpacescan(offerData, testnet);
+    const { viewLink: url, offerLink } = await postToSpacescan(offerData, testnet);
     log(`Spacescan.io URL: ${url}`);
     setSharedURL(url);
+    log(`Spacescan.io Offer URL: ${offerLink}`);
+    setRawOfferURL(offerLink);
   }
 
   function handleShowSendOfferNotificationDialog() {
-    showSendOfferNotificationDialog(true, sharedURL);
+    showSendOfferNotificationDialog(true, rawOfferURL);
   }
 
   if (sharedURL) {
@@ -1185,7 +1203,15 @@ function OfferShareKeybaseDialog(props: OfferShareServiceDialogProps) {
 }
 
 function OfferShareOfferpoolDialog(props: OfferShareServiceDialogProps) {
-  const { offerRecord, offerData, testnet = false, onClose = () => {}, open = false } = props;
+  const {
+    offerRecord,
+    offerData,
+    testnet = false,
+    onClose = () => {},
+    open = false,
+    isNFTOffer = false,
+    showSendOfferNotificationDialog = () => {},
+  } = props;
   const openExternal = useOpenExternal();
   const [offerResponse, setOfferResponse] = React.useState<PostToOfferpoolResponse>();
 
@@ -1197,6 +1223,12 @@ function OfferShareOfferpoolDialog(props: OfferShareServiceDialogProps) {
     const result = await postToOfferpool(offerData, testnet);
     log(`offerpool result ${JSON.stringify(result)}`);
     setOfferResponse(result);
+  }
+
+  function handleShowSendOfferNotificationDialog() {
+    if (offerResponse) {
+      showSendOfferNotificationDialog(true, offerResponse.offerLink);
+    }
   }
 
   if (offerResponse) {
@@ -1214,17 +1246,39 @@ function OfferShareOfferpoolDialog(props: OfferShareServiceDialogProps) {
         </DialogTitle>
         <DialogContent dividers>
           <Flex flexDirection="column" gap={3} sx={{ paddingTop: '1em' }}>
-            <Trans>
-              {offerResponse.success
-                ? 'Your offer has been successfully posted to offerpool.'
-                : `Error posting offer: ${offerResponse.error_message}`}
-            </Trans>
+            {offerResponse.success ? (
+              <>
+                <TextField
+                  label={<Trans>Offerpool URL</Trans>}
+                  value={offerResponse.viewLink}
+                  variant="filled"
+                  InputProps={{
+                    readOnly: true,
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <CopyToClipboard value={offerResponse.viewLink} />
+                      </InputAdornment>
+                    ),
+                  }}
+                  fullWidth
+                />
+                <Flex>
+                  <Button variant="outlined" onClick={() => openExternal(offerResponse.viewLink)}>
+                    <Trans>View on Offerpool</Trans>
+                  </Button>
+                </Flex>
+              </>
+            ) : (
+              t`Error posting offer: ${offerResponse.errorMessage ?? 'unknown error'}`
+            )}
           </Flex>
         </DialogContent>
         <DialogActions>
-          <Button variant="outlined" onClick={() => openExternal('https://offerpool.io/')}>
-            <Trans>Go to Offerpool</Trans>
-          </Button>
+          {isNFTOffer && (
+            <Button onClick={handleShowSendOfferNotificationDialog} color="primary" variant="outlined">
+              <Trans>Notify Current Owner</Trans>
+            </Button>
+          )}
           <Button onClick={handleClose} color="primary" variant="contained">
             <Trans>Close</Trans>
           </Button>
@@ -1296,12 +1350,12 @@ function OfferShareConfirmationDialog(props: OfferShareConfirmationDialogProps) 
             summary={offerRecord.summary}
             makerTitle={
               <Typography variant="subtitle1">
-                <Trans>Your offer:</Trans>
+                <Trans>Assets I am offering:</Trans>
               </Typography>
             }
             takerTitle={
               <Typography variant="subtitle1">
-                <Trans>In exchange for:</Trans>
+                <Trans>Assets I will receive:</Trans>
               </Typography>
             }
             rowIndentation={3}
@@ -1329,6 +1383,7 @@ type OfferShareDialogProps = CommonOfferProps &
   CommonDialogProps & {
     showSuppressionCheckbox?: boolean;
     exportOffer?: () => void;
+    address?: string;
   };
 
 interface OfferShareDialogProvider extends OfferSharingProvider {
@@ -1345,6 +1400,7 @@ export default function OfferShareDialog(props: OfferShareDialogProps) {
     onClose = () => {},
     showSuppressionCheckbox = false,
     testnet = false,
+    address,
   } = props;
   const openDialog = useOpenDialog();
   const [sendOfferNotificationOpen, setSendOfferNotificationOpen] = React.useState(false);
@@ -1430,10 +1486,10 @@ export default function OfferShareDialog(props: OfferShareDialogProps) {
 
   useEffect(() => {
     if (sendOfferNotificationOpen && offerURL && nftId) {
-      openDialog(<NotificationSendDialog offerURL={offerURL} nftId={nftId} />);
+      openDialog(<NotificationSendDialog offerURL={offerURL} nftId={nftId} address={address} />);
       setSendOfferNotificationOpen(false);
     }
-  }, [openDialog, sendOfferNotificationOpen, offerURL, nftId]);
+  }, [openDialog, sendOfferNotificationOpen, offerURL, nftId, address]);
 
   function handleClose() {
     onClose(false);
@@ -1465,7 +1521,7 @@ export default function OfferShareDialog(props: OfferShareDialogProps) {
       </DialogTitle>
 
       <DialogContent dividers>
-        <Flex flexDirection="column" gap={2}>
+        <Flex flexDirection="column" gap={2} paddingTop={2}>
           <Flex flexDirection="column" gap={2}>
             <Typography variant="subtitle1">Where would you like to share your offer?</Typography>
             <Flex flexDirection="column" gap={3}>

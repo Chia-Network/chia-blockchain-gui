@@ -22,6 +22,7 @@ import WebSocket from 'ws';
 
 import { i18n, defaultLocale, locales } from '../../config/locales';
 import LRUsProvider from '../lrus/LRUsProvider';
+import NotificationsProvider from '../notification/NotificationsProvider';
 import WalletConnectProvider, { WalletConnectChiaProjectId } from '../walletConnect/WalletConnectProvider';
 import AppState from './AppState';
 
@@ -80,20 +81,23 @@ export default function App(props: AppProps) {
           <ErrorBoundary>
             <LRUsProvider>
               <ModalDialogsProvider>
-                <WalletConnectProvider projectId={WalletConnectChiaProjectId}>
-                  {isReady ? (
-                    <Suspense fallback={<LayoutLoading />}>
-                      <AppState>{outlet ? <Outlet /> : children}</AppState>
-                    </Suspense>
-                  ) : (
-                    <LayoutLoading>
-                      <Typography variant="body1">
-                        <Trans>Loading configuration</Trans>
-                      </Typography>
-                    </LayoutLoading>
-                  )}
-                  <ModalDialogs />
-                </WalletConnectProvider>
+                {isReady ? (
+                  <Suspense fallback={<LayoutLoading />}>
+                    <WalletConnectProvider projectId={WalletConnectChiaProjectId}>
+                      <NotificationsProvider>
+                        <AppState>{outlet ? <Outlet /> : children}</AppState>
+                        <ModalDialogs />
+                      </NotificationsProvider>
+                    </WalletConnectProvider>
+                  </Suspense>
+                ) : (
+                  <LayoutLoading>
+                    <Typography variant="body1">
+                      <Trans>Loading configuration</Trans>
+                    </Typography>
+                    <ModalDialogs />
+                  </LayoutLoading>
+                )}
               </ModalDialogsProvider>
             </LRUsProvider>
           </ErrorBoundary>

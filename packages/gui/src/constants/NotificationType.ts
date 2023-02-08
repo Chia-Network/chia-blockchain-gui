@@ -1,5 +1,6 @@
 enum NotificationType {
-  OFFER = 'OFFER',
+  OFFER = 1,
+  COUNTER_OFFER = 2,
 }
 
 export default NotificationType;

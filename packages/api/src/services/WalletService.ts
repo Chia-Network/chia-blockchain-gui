@@ -212,6 +212,14 @@ export default class Wallet extends Service {
     });
   }
 
+  async getTimestampForHeight(height: number) {
+    return this.command<{
+      timestamp: number;
+    }>('get_timestamp_for_height', {
+      height,
+    });
+  }
+
   async getHeightInfo() {
     return this.command('get_height_info');
   }
@@ -418,6 +426,10 @@ export default class Wallet extends Service {
       address,
       signingMode,
     });
+  }
+
+  async resyncWallet() {
+    return this.command('set_wallet_resync_on_startup');
   }
 
   onSyncChanged(callback: (data: any, message: Message) => void, processData?: (data: any) => any) {

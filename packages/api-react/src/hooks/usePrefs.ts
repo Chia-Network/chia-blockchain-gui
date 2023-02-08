@@ -1,43 +1,69 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState, useRef } from 'react';
 
 import EventEmitter from '../utils/EventEmitter';
 
 const eventEmitter = new EventEmitter();
 
-function maybeEqual(objA: any, objB: any) {
-  // This does not consider object property ordering, so it's "maybe" equal.
-  return JSON.stringify(objA) === JSON.stringify(objB);
+export type Serializable =
+  | undefined
+  | number
+  | string
+  | null
+  | boolean
+  | { [k: string]: Serializable }
+  | Serializable[];
+
+function getPreferences(key: string) {
+  const { preferences } = window as any;
+  return preferences?.[key];
 }
 
-export type Serializable = number | string | null | boolean | { [k: string]: Serializable } | Serializable[];
+function setPreferences(key: string, value: Serializable) {
+  const { preferences } = window as any;
+  (window as any).ipcRenderer.invoke('savePrefs', {
+    ...preferences,
+    [key]: value,
+  });
+
+  (window as any).preferences[key] = value;
+}
+
+export function isEqual(a: Serializable, b: Serializable) {
+  return JSON.stringify(a) === JSON.stringify(b);
+}
 
 export default function usePrefs<T extends Serializable>(
   key: string,
-  initialValue?: T
-): [T | undefined, (value: T | ((value: T | undefined) => T)) => void] {
-  const prefsInRAM = (window as any).preferences;
-  const currentPrefValue = prefsInRAM[key] === undefined ? initialValue : prefsInRAM[key];
-  const [prefStateValue, setPrefStateValue] = useState<T | undefined>(currentPrefValue);
+  defaultValue?: T
+): [T, (value: T | ((value: T) => T)) => void] {
+  const [value, setValue] = useState<T>(getPreferences(key));
+  const valueRef = useRef(value);
+  valueRef.current = value;
+  const defaultValueRef = useRef(defaultValue);
 
-  const setPrefValue = useCallback(
-    (valueOrFunc: T | ((value: T | undefined) => T)) => {
-      const newPrefValue = valueOrFunc instanceof Function ? valueOrFunc(prefStateValue) : valueOrFunc;
-      if (maybeEqual(newPrefValue, currentPrefValue)) {
+  if (!isEqual(defaultValueRef.current, defaultValue)) {
+    defaultValueRef.current = defaultValue;
+  }
+
+  const handleSetValue = useCallback(
+    (newValueOrFn: T | ((nv: T) => T)) => {
+      const newValue = newValueOrFn instanceof Function ? newValueOrFn(valueRef.current) : newValueOrFn;
+      if (isEqual(valueRef.current, newValue)) {
         return;
       }
 
-      (window as any).preferences[key] = newPrefValue;
-      (window as any).ipcRenderer.invoke('savePrefs', (window as any).preferences);
+      setPreferences(key, newValue);
 
-      eventEmitter.emit('prefs', { key, newValue: newPrefValue });
+      // notify other hooks
+      eventEmitter.emit('prefs', { key, newValue });
     },
-    [prefStateValue, currentPrefValue, key]
+    [key]
   );
 
-  const changeHandler = useCallback(
-    (e: { key: string; newValue: any }) => {
+  const handleOnChange = useCallback(
+    (e: { key: string; newValue: T }) => {
       if (key === e.key) {
-        setPrefStateValue(e.newValue);
+        setValue(e.newValue);
       }
     },
     [key]
@@ -49,11 +75,11 @@ export default function usePrefs<T extends Serializable>(
   // By EventEmitter, state update from one component triggers `setPrefStateValue` of other components
   // which has the same preference key.
   useEffect(() => {
-    eventEmitter.on('prefs', changeHandler);
+    eventEmitter.on('prefs', handleOnChange);
     return () => {
-      eventEmitter.remove('prefs', changeHandler);
+      eventEmitter.remove('prefs', handleOnChange);
     };
-  }, [changeHandler]);
+  }, [handleOnChange]);
 
-  return [prefStateValue, setPrefValue];
+  return [(valueRef.current ?? defaultValueRef.current) as T, handleSetValue];
 }

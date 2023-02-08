@@ -17,8 +17,9 @@ export default function WalletConnectDropdown() {
 
   const ButtonStyle = {
     minWidth: 0,
+    borderRadius: 2,
     border: `1px solid ${borderColor}`,
-    height: '40px',
+    height: '42px',
     '&:hover': {
       border: `1px solid ${borderColor}`,
       backgroundColor: isDarkMode ? '#2c2c2c' : '#eee',

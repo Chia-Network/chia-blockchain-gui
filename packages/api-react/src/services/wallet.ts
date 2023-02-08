@@ -829,6 +829,14 @@ export const walletApi = apiWithTag.injectEndpoints({
       }),
     }),
 
+    getTimestampForHeight: build.query<{ timestamp: number }, { height: number }>({
+      query: ({ height }) => ({
+        command: 'getTimestampForHeight',
+        service: WalletService,
+        args: [height],
+      }),
+    }),
+
     getHeightInfo: build.query<number, undefined>({
       query: () => ({
         command: 'getHeightInfo',
@@ -1654,7 +1662,7 @@ export const walletApi = apiWithTag.injectEndpoints({
       }
     >({
       query: ({ amount, fee, backupDids, numOfBackupIdsNeeded, host }) => ({
-        command: 'createNewWallet',
+        command: 'createNewDIDWallet',
         service: DID,
         args: [amount, fee, backupDids, numOfBackupIdsNeeded, host],
       }),
@@ -2120,6 +2128,15 @@ export const walletApi = apiWithTag.injectEndpoints({
       }),
     }),
 
+    resyncWallet: build.mutation<boolean, undefined>({
+      query: () => ({
+        command: 'resyncWallet',
+        service: WalletService,
+        args: [],
+      }),
+      transformResponse: (response: any) => response?.success,
+    }),
+
     // notifications
     getNotifications: build.query<
       any,
@@ -2165,7 +2182,7 @@ export const walletApi = apiWithTag.injectEndpoints({
         service: WalletService,
         args: [ids],
       }),
-      invalidatesTags: (result, _error) => (result ? [{ type: 'Notification', id: 'LIST' }] : []),
+      invalidatesTags: [{ type: 'Notification', id: 'LIST' }],
     }),
 
     sendNotifications: build.mutation<
@@ -2235,6 +2252,7 @@ export const {
   useGetCurrentAddressQuery,
   useGetNextAddressMutation,
   useFarmBlockMutation,
+  useGetTimestampForHeightQuery,
   useGetHeightInfoQuery,
   useGetNetworkInfoQuery,
   useGetSyncStatusQuery,
@@ -2253,6 +2271,7 @@ export const {
   useGetOfferRecordMutation,
   useGetCurrentDerivationIndexQuery,
   useExtendDerivationIndexMutation,
+  useResyncWalletMutation,
 
   // Pool
   useCreateNewPoolWalletMutation,

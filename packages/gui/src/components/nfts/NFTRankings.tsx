@@ -26,7 +26,11 @@ export type NFTRankingsProps = {
 export function NFTRanking(props: NFTRankingProps) {
   const { attribute, size = 'regular', color = 'secondary', progressColor = 'primary' } = props;
   // eslint-disable-next-line @typescript-eslint/naming-convention -- Comes from API like this
-  const { name, trait_type, value, min_value = 0, max_value } = attribute;
+  const { name, trait_type, value: rawValue, min_value = 0, max_value } = attribute;
+  if (typeof rawValue === 'object') {
+    return null;
+  }
+  const value = parseFloat(rawValue);
   const title = trait_type ?? name;
   const percentage = (value - min_value) / (max_value - min_value);
   const progress = Math.floor(percentage * 100);

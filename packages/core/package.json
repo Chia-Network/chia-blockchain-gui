@@ -13,11 +13,11 @@
     "build": "npm run locale && npm run build:js",
     "build:js": "rollup -c",
     "build:watch": "rollup -c -w",
-    "build:types": "tsc --emitDeclarationOnly",
+    "build:ci": "npm run locale:compile && npm run build:js",
     "locale:extract": "lingui extract",
     "locale:clean": "lingui extract --clean",
     "locale:compile": "lingui compile",
-    "locale": "lingui extract && lingui compile",
+    "locale": "npm run locale:extract && npm run locale:compile",
     "check:types": "tsc --noEmit --emitDeclarationOnly false",
     "test": "jest"
   },

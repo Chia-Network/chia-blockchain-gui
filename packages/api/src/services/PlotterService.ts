@@ -1,4 +1,6 @@
+import PlotQueueItem from '../@types/PlotQueueItem';
 import Client from '../Client';
+import type Message from '../Message';
 import ServiceName from '../constants/ServiceName';
 import Service from './Service';
 import type { Options } from './Service';
@@ -45,8 +47,9 @@ function addPlotProgress(queue: PlotQueueItem[]): PlotQueueItem[] {
 }
 
 function mergeQueue(
+  // partialQueue does not contain `log` property. currentQueue and the result contains it
   currentQueue: PlotQueueItem[],
-  partialQueue: PlotQueueItemPartial[],
+  partialQueue: PlotQueueItem[],
   isLogChange: boolean
 ): PlotQueueItem[] {
   let result = [...currentQueue];
@@ -80,19 +83,19 @@ function mergeQueue(
 }
 
 export default class Plotter extends Service {
-  private queue: Object[] | undefined;
+  private queue: PlotQueueItem[] | undefined;
 
   constructor(client: Client, options?: Options) {
     super(ServiceName.PLOTTER, client, options, async () => {
       this.onLogChanged((data: any) => {
         const { queue } = data;
-        this.queue = mergeQueue(this.queue, queue, true);
+        this.queue = mergeQueue(this.queue || [], queue, true);
         this.emit('queue_changed', this.queue, null);
       });
 
       this.onPlotQueueStateChange((data: any) => {
         const { queue } = data;
-        this.queue = mergeQueue(this.queue, queue);
+        this.queue = mergeQueue(this.queue || [], queue, false);
         this.emit('queue_changed', this.queue, null);
       });
 

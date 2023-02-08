@@ -9,5 +9,5 @@ export function OffersSmall(props: SvgIconProps) {
 }
 
 export default function Offers(props: SvgIconProps) {
-  return <SvgIcon component={OffersIcon} viewBox="0 0 32 32" {...props} />;
+  return <SvgIcon component={OffersIcon} inheritViewBox {...props} />;
 }

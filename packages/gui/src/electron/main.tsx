@@ -16,6 +16,7 @@ import fs from 'fs';
 import path from 'path';
 import url from 'url';
 
+import { NFTInfo } from '@chia-network/api';
 import { initialize, enable } from '@electron/remote/main';
 import axios from 'axios';
 import chokidar from 'chokidar';
@@ -60,6 +61,9 @@ if (!fs.existsSync(defaultThumbCacheFolder)) {
 let mainWindow: BrowserWindow | null = null;
 
 let watcher;
+
+let currentDownloadRequest: any;
+let abortDownloadingFiles: boolean = false;
 
 function watchCacheFolder(folder: string) {
   function watchFolder(f) {
@@ -188,6 +192,7 @@ if (!handleSquirrelEvent()) {
      ************************************************************ */
     let decidedToClose = false;
     let isClosing = false;
+    let promptOnQuit = true;
     let mainWindowLaunchTasks: ((window: BrowserWindow) => void)[] = [];
 
     const createWindow = async () => {
@@ -200,6 +205,11 @@ if (!handleSquirrelEvent()) {
       ipcMain.handle('getTempDir', () => app.getPath('temp'));
 
       ipcMain.handle('getVersion', () => app.getVersion());
+
+      ipcMain.handle('quitGUI', () => {
+        promptOnQuit = false;
+        app.quit();
+      });
 
       ipcMain.handle(
         'showNotification',
@@ -273,7 +283,7 @@ if (!handleSquirrelEvent()) {
         });
       }
 
-      const allRequests: any = {};
+      const allRequests: Record<string, { abort: () => void; promise: Promise<any> }> = {};
 
       ipcMain.handle('abortFetchingBinary', (_event, uri: string) => {
         if (allRequests[uri]) {
@@ -312,154 +322,163 @@ if (!handleSquirrelEvent()) {
         async (_event, requestOptions = {}, requestHeaders = {}, requestData?: any) => {
           const { maxSize = Infinity, ...rest } = requestOptions;
 
-          let wasCached = false;
-
           if (allRequests[rest.url]) {
-            /* request already exists */
-            return undefined;
+            return allRequests[rest.url].promise;
           }
 
-          allRequests[rest.url] = net.request(rest);
+          const request = net.request(rest);
 
-          const nftIdUrl = `${rest.nftId}_${rest.url}`;
-          const fileOnDisk = path.join(thumbCacheFolder, computeHash(nftIdUrl, { encoding: 'utf-8' }));
+          async function processUri() {
+            let wasCached = false;
+            let error: Error | undefined;
+            let statusCode: number | undefined;
+            let statusMessage: string | undefined;
+            let contentType: string | undefined;
+            let encoding = 'binary';
+            let dataObject: { isValid?: boolean; content: string } = {
+              content: '',
+            };
 
-          const fileStream = fs.createWriteStream(fileOnDisk);
+            const nftIdUrl = `${rest.nftId}_${rest.url}`;
+            const fileOnDisk = path.join(thumbCacheFolder, computeHash(nftIdUrl, { encoding: 'utf-8' }));
 
-          Object.entries(requestHeaders).forEach(([header, value]: [string, any]) => {
-            allRequests[rest.url].setHeader(header, value);
-          });
+            try {
+              const fileStream = fs.createWriteStream(fileOnDisk);
 
-          let error: Error | undefined;
-          let statusCode: number | undefined;
-          let statusMessage: string | undefined;
-          let contentType: string | undefined;
-          let encoding = 'binary';
-          let dataObject: { isValid?: boolean; content: string } = {
-            content: '',
-          };
+              Object.entries(requestHeaders).forEach(([header, value]: [string, any]) => {
+                request.setHeader(header, value);
+              });
 
-          const buffers: Buffer[] = [];
-          let totalLength = 0;
+              const buffers: Buffer[] = [];
+              let totalLength = 0;
 
-          try {
-            /* GET FILE SIZE */
-            const fileSize: number = await getRemoteFileSize(rest.url);
-            dataObject = await new Promise((resolve, reject) => {
-              allRequests[rest.url].on('response', (response: IncomingMessage) => {
-                statusCode = response.statusCode;
-                statusMessage = response.statusMessage;
+              /* GET FILE SIZE */
+              const fileSize: number = await getRemoteFileSize(rest.url);
+              dataObject = await new Promise((resolve, reject) => {
+                request.on('response', (response: IncomingMessage) => {
+                  statusCode = response.statusCode;
+                  statusMessage = response.statusMessage;
 
-                const rawContentType = response.headers['content-type'];
-                if (rawContentType) {
-                  if (Array.isArray(rawContentType)) {
-                    [contentType] = rawContentType;
-                  } else {
-                    contentType = rawContentType;
-                  }
-
-                  if (contentType) {
-                    // extract charset from contentType
-                    const charsetMatch = contentType.match(/charset=([^;]+)/);
-                    if (charsetMatch) {
-                      [, encoding] = charsetMatch;
-                    }
-                  }
-                }
-
-                response.on('data', (chunk) => {
-                  buffers.push(chunk);
-
-                  fileStream.write(chunk);
-
-                  totalLength += chunk.byteLength;
-
-                  if (fileSize > 0) {
-                    mainWindow?.webContents.send('fetchBinaryContentProgress', {
-                      nftIdUrl,
-                      progress: totalLength / fileSize,
-                    });
-                  }
-                  if (totalLength > maxSize || fileSize > maxSize) {
-                    if (allRequests[rest.url]) {
-                      allRequests[rest.url].abort();
-                      if (fs.existsSync(fileOnDisk)) {
-                        fs.unlinkSync(fileOnDisk);
-                      }
-                    }
-                    reject(new Error('Response too large'));
-                  }
-                });
-
-                response.on('end', () => {
-                  let content;
-                  // special case for iso-8859-1, which is mapped to 'latin1' in node
-                  if (encoding.toLowerCase() === 'iso-8859-1') {
-                    encoding = 'latin1';
-                  }
-                  try {
-                    content = Buffer.concat(buffers).toString(encoding as BufferEncoding);
-                  } catch (e: any) {
-                    console.error(`Failed to convert data to string using encoding ${encoding}: ${e.message}`);
-                  }
-                  fileStream.end();
-                  getChecksum(fileOnDisk).then((checksum) => {
-                    const isValid = (checksum as string).replace(/^0x/, '') === rest.dataHash.replace(/^0x/, '');
-                    if (rest.forceCache) {
-                      /* should we cache it or delete it? */
-                      if (shouldCacheFile(fileOnDisk)) {
-                        wasCached = true;
-                      } else if (fs.existsSync(fileOnDisk)) {
-                        fs.unlinkSync(fileOnDisk);
-                      }
-                      mainWindow?.webContents.send('fetchBinaryContentDone', {
-                        nftIdUrl,
-                        valid: isValid,
-                      });
-                      const extension = parseExtensionFromUrl(rest.url);
-                      resolve({
-                        isValid,
-                        content: extension === 'svg' ? content : '',
-                      });
+                  const rawContentType = response.headers['content-type'];
+                  if (rawContentType) {
+                    if (Array.isArray(rawContentType)) {
+                      [contentType] = rawContentType;
                     } else {
-                      resolve({ isValid, content });
+                      contentType = rawContentType;
+                    }
+
+                    if (contentType) {
+                      // extract charset from contentType
+                      const charsetMatch = contentType.match(/charset=([^;]+)/);
+                      if (charsetMatch) {
+                        [, encoding] = charsetMatch;
+                      }
+                    }
+                  }
+
+                  response.on('data', (chunk) => {
+                    buffers.push(chunk);
+
+                    fileStream.write(chunk);
+
+                    totalLength += chunk.byteLength;
+
+                    if (fileSize > 0) {
+                      mainWindow?.webContents.send('fetchBinaryContentProgress', {
+                        nftIdUrl,
+                        progress: totalLength / fileSize,
+                      });
+                    }
+                    if (totalLength > maxSize || fileSize > maxSize) {
+                      if (request) {
+                        request.abort();
+                        if (fs.existsSync(fileOnDisk)) {
+                          fs.unlinkSync(fileOnDisk);
+                        }
+                      }
+                      reject(new Error('Response too large'));
                     }
                   });
-                  delete allRequests[rest.url];
+
+                  response.on('end', () => {
+                    let content;
+                    // special case for iso-8859-1, which is mapped to 'latin1' in node
+                    if (encoding.toLowerCase() === 'iso-8859-1') {
+                      encoding = 'latin1';
+                    }
+                    try {
+                      content = Buffer.concat(buffers).toString(encoding as BufferEncoding);
+                    } catch (e: any) {
+                      console.error(`Failed to convert data to string using encoding ${encoding}: ${e.message}`);
+                    }
+                    fileStream.end();
+                    getChecksum(fileOnDisk).then((checksum) => {
+                      const isValid = (checksum as string).replace(/^0x/, '') === rest.dataHash.replace(/^0x/, '');
+                      if (rest.forceCache) {
+                        /* should we cache it or delete it? */
+                        if (shouldCacheFile(fileOnDisk)) {
+                          wasCached = true;
+                        } else if (fs.existsSync(fileOnDisk)) {
+                          fs.unlinkSync(fileOnDisk);
+                        }
+                        mainWindow?.webContents.send('fetchBinaryContentDone', {
+                          nftIdUrl,
+                          valid: isValid,
+                        });
+                        const extension = parseExtensionFromUrl(rest.url);
+                        resolve({
+                          isValid,
+                          content: extension === 'svg' ? content : '',
+                        });
+                      } else {
+                        resolve({ isValid, content });
+                      }
+                    });
+                    delete allRequests[rest.url];
+                  });
+
+                  response.on('error', (e: string) => {
+                    fileStream.end();
+                    reject(new Error(e));
+                  });
                 });
 
-                response.on('error', (e: string) => {
-                  fileStream.end();
-                  reject(new Error(e));
+                request.on('error', (err: any) => {
+                  reject(err);
                 });
-              });
 
-              allRequests[rest.url].on('error', (err: any) => {
-                reject(err);
-              });
+                if (requestData) {
+                  request.write(requestData);
+                }
 
-              if (requestData) {
-                allRequests[rest.url].write(requestData);
+                request.end();
+              });
+            } catch (e: any) {
+              if (fs.existsSync(fileOnDisk)) {
+                fs.unlinkSync(fileOnDisk);
               }
-
-              allRequests[rest.url].end();
-            });
-          } catch (e: any) {
-            if (fs.existsSync(fileOnDisk)) {
-              fs.unlinkSync(fileOnDisk);
+              delete allRequests[rest.url];
+              error = e;
             }
-            delete allRequests[rest.url];
-            error = e;
+
+            return {
+              error,
+              statusCode,
+              statusMessage,
+              encoding,
+              dataObject,
+              wasCached,
+            };
           }
 
-          return {
-            error,
-            statusCode,
-            statusMessage,
-            encoding,
-            dataObject,
-            wasCached,
+          const promise = processUri();
+
+          allRequests[rest.url] = {
+            abort: () => request.abort(),
+            promise,
           };
+
+          return promise;
         }
       );
 
@@ -475,6 +494,113 @@ if (!handleSquirrelEvent()) {
         }
         console.error('mainWindow was not initialized');
         return undefined;
+      });
+
+      ipcMain.handle('selectMultipleDownloadFolder', async (_event: any) =>
+        dialog.showOpenDialog({
+          properties: ['openDirectory'],
+          defaultPath: app.getPath('downloads'),
+        })
+      );
+
+      type DownloadFileWithProgressProps = {
+        folder: string;
+        nft: NFTInfo;
+        current: number;
+        total: number;
+      };
+
+      function downloadFileWithProgress(props: DownloadFileWithProgressProps): Promise<number> {
+        const { folder, nft, current, total } = props;
+        const uri = nft.dataUris[0];
+        return new Promise((resolve, reject) => {
+          getRemoteFileSize(uri)
+            .then((fileSize: number) => {
+              let totalLength = 0;
+              currentDownloadRequest = net.request(uri);
+              currentDownloadRequest.on('response', (response: IncomingMessage) => {
+                let fileName: string = '';
+                /* first try to get file name from server headers */
+                const disposition = response.headers['content-disposition'];
+                if (disposition && typeof disposition === 'string') {
+                  const filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
+                  const matches = filenameRegex.exec(disposition);
+                  if (matches != null && matches[1]) {
+                    fileName = matches[1].replace(/['"]/g, '');
+                  }
+                }
+                /* if we didn't get file name from server headers, then parse it from uri */
+                fileName = fileName || uri.replace(/\/$/, '').split('/').splice(-1, 1)[0];
+                currentDownloadRequest.on('abort', () => {
+                  reject(new Error('download aborted'));
+                });
+
+                /* if there is already a file with that name in this folder, add nftId to the file name */
+                if (fs.existsSync(path.join(folder, fileName))) {
+                  fileName = `${fileName}-${nft.$nftId}`;
+                }
+
+                const fileStream = fs.createWriteStream(path.join(folder, fileName));
+                response.on('data', (chunk) => {
+                  fileStream.write(chunk);
+                  totalLength += chunk.byteLength;
+                  if (fileSize > 0) {
+                    mainWindow?.webContents.send('downloadProgress', {
+                      url: nft.dataUris[0],
+                      nftId: nft.$nftId,
+                      progress: totalLength / fileSize,
+                      i: current,
+                      total,
+                    });
+                  }
+                });
+                response.on('end', () => {
+                  fileStream.end();
+                  resolve(totalLength);
+                });
+              });
+              currentDownloadRequest.end();
+            })
+            .catch((error) => {
+              reject(error);
+            });
+        });
+      }
+
+      ipcMain.handle('startMultipleDownload', async (_event: any, options: any) => {
+        /* eslint no-await-in-loop: off -- we want to handle each file separately! */
+        let totalDownloadedSize = 0;
+        let successFileCount = 0;
+        let errorFileCount = 0;
+        for (let i = 0; i < options.nfts.length; i++) {
+          let fileSize;
+          try {
+            fileSize = await downloadFileWithProgress({
+              folder: options.folder,
+              nft: options.nfts[i],
+              current: i,
+              total: options.nfts.length,
+            });
+            totalDownloadedSize += fileSize;
+            successFileCount++;
+          } catch (e: any) {
+            if (e.message === 'download aborted' && abortDownloadingFiles) {
+              break;
+            }
+            mainWindow?.webContents.send('errorDownloadingUrl', options.nfts[i]);
+            errorFileCount++;
+          }
+        }
+        abortDownloadingFiles = false;
+        mainWindow?.webContents.send('multipleDownloadDone', { totalDownloadedSize, successFileCount, errorFileCount });
+        return true;
+      });
+
+      ipcMain.handle('abortDownloadingFiles', async (_event: any) => {
+        abortDownloadingFiles = true;
+        if (currentDownloadRequest) {
+          currentDownloadRequest.abort();
+        }
       });
 
       ipcMain.handle('processLaunchTasks', async (_event) => {
@@ -649,19 +775,21 @@ if (!handleSquirrelEvent()) {
         e.preventDefault();
         if (!isClosing) {
           isClosing = true;
-          const choice = dialog.showMessageBoxSync({
-            type: 'question',
-            buttons: [i18n._(/* i18n */ { id: 'No' }), i18n._(/* i18n */ { id: 'Yes' })],
-            title: i18n._(/* i18n */ { id: 'Confirm' }),
-            message: i18n._(
-              /* i18n */ {
-                id: 'Are you sure you want to quit?',
-              }
-            ),
-          });
-          if (choice === 0) {
-            isClosing = false;
-            return;
+          if (promptOnQuit) {
+            const choice = dialog.showMessageBoxSync({
+              type: 'question',
+              buttons: [i18n._(/* i18n */ { id: 'No' }), i18n._(/* i18n */ { id: 'Yes' })],
+              title: i18n._(/* i18n */ { id: 'Confirm' }),
+              message: i18n._(
+                /* i18n */ {
+                  id: 'Are you sure you want to quit?',
+                }
+              ),
+            });
+            if (choice === 0) {
+              isClosing = false;
+              return;
+            }
           }
           isClosing = false;
           decidedToClose = true;
