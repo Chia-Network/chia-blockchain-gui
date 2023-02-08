@@ -1475,7 +1475,6 @@ export const walletApi = apiWithTag.injectEndpoints({
       {
         assetId: string;
         name: string;
-        fee: string;
         host?: string;
       }
     >({
