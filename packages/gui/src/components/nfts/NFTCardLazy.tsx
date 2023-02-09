@@ -1,7 +1,6 @@
-import { Box, Card } from '@mui/material';
+import { Box } from '@mui/material';
 import React, { useRef } from 'react';
 
-import useIntersectionObserver from '../../hooks/useIntersectionObserver';
 import NFTCard, { type NFTCardProps } from './NFTCard';
 
 export type NFTCardLazyProps = NFTCardProps & {
@@ -9,17 +8,12 @@ export type NFTCardLazyProps = NFTCardProps & {
 };
 
 export default function NFTCardLazy(props: NFTCardLazyProps) {
-  const { minHeight = 300, ...rest } = props;
+  const { ...rest } = props;
   const cardRef = useRef();
-  const entry = useIntersectionObserver(cardRef, {
-    freezeOnceVisible: true,
-  });
-
-  const isVisible = !!entry?.isIntersecting;
 
   return (
-    <Box minHeight={isVisible ? undefined : `${minHeight}px`} ref={cardRef}>
-      {isVisible ? <NFTCard {...rest} /> : <Card />}
+    <Box ref={cardRef}>
+      <NFTCard {...rest} />
     </Box>
   );
 }
