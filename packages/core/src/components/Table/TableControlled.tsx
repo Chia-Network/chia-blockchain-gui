@@ -86,6 +86,7 @@ export type TableControlledProps = {
   onPageChange?: (rowsPerPage: number, page: number) => void;
   count?: number;
   isLoading?: boolean;
+  onToggleExpand?: (rowId: string, expanded: boolean) => void;
 };
 
 export default function TableControlled(props: TableControlledProps) {
@@ -107,6 +108,7 @@ export default function TableControlled(props: TableControlledProps) {
     onPageChange,
     count,
     isLoading,
+    onToggleExpand = () => {},
   } = props;
   const [expanded, setExpanded] = useState<{
     [key: string]: boolean;
@@ -125,6 +127,7 @@ export default function TableControlled(props: TableControlledProps) {
   }
 
   function handleToggleExpand(rowId: string) {
+    onToggleExpand(rowId, !expanded[rowId]);
     setExpanded({
       ...expanded,
       [rowId]: !expanded[rowId],

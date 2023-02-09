@@ -1,5 +1,10 @@
 import { WalletType, TransactionType, toBech32m } from '@chia-network/api';
-import { useGetOfferRecordMutation, useGetSyncStatusQuery } from '@chia-network/api-react';
+import type { Transaction } from '@chia-network/api';
+import {
+  useGetOfferRecordMutation,
+  useGetSyncStatusQuery,
+  useGetTransactionMemoMutation,
+} from '@chia-network/api-react';
 import {
   Card,
   CopyToClipboard,
@@ -176,7 +181,7 @@ const getCols = (type: WalletType, isSyncing, getOfferRecord, navigate) => [
   },
   {
     field: (row: Row, _metadata, isExpanded, toggleExpand) => (
-      <IconButton aria-label="expand row" size="small" onClick={toggleExpand}>
+      <IconButton aria-label="expand row" size="small" onClick={() => toggleExpand(row)}>
         {isExpanded ? <ExpandLessIcon /> : <ExpandMoreIcon />}
       </IconButton>
     ),
@@ -197,17 +202,26 @@ export default function WalletHistory(props: Props) {
     }
   );
   const { wallet, loading: isWalletLoading, unit } = useWallet(walletId);
+  const [transactions, setTransactions] = React.useState<Transaction[]>([]);
   const {
-    transactions,
+    transactions: transactionWithoutIncomingMemos,
     isLoading: isWalletTransactionsLoading,
     page,
     rowsPerPage,
     count,
     pageChange,
   } = useWalletTransactions(walletId, 10, 0, 'RELEVANCE');
+
+  React.useEffect(() => {
+    if (transactionWithoutIncomingMemos?.length) {
+      setTransactions(transactionWithoutIncomingMemos);
+    }
+  }, [transactionWithoutIncomingMemos]);
+
   const feeUnit = useCurrencyCode();
   const [getOfferRecord] = useGetOfferRecordMutation();
   const { navigate } = useSerializedNavigationState();
+  const [getTransactionMemo] = useGetTransactionMemoMutation();
 
   const isLoading = isWalletTransactionsLoading || isWalletLoading;
   const isSyncing = isWalletSyncLoading || !walletState || !!walletState?.syncing;
@@ -249,6 +263,17 @@ export default function WalletHistory(props: Props) {
         metadata={metadata}
         expandedCellShift={1}
         uniqueField="name"
+        onToggleExpand={async (rowId: string, expanded: boolean) => {
+          const memos = (await getTransactionMemo({ transactionId: rowId.split('-')[0] })).data;
+          if (expanded) {
+            const newTransactions = transactions.map((transaction) =>
+              transaction.name === rowId.split('-')[0] && memos && Object.keys(memos).length > 0
+                ? { ...transaction, memos }
+                : transaction
+            );
+            setTransactions(newTransactions);
+          }
+        }}
         // eslint-disable-next-line react/no-unstable-nested-components -- It would be risky to refactor without tests
         expandedField={(row) => {
           const { confirmedAtHeight, memos } = row;
