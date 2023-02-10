@@ -1,3 +1,9 @@
+import type Block from '../@types/Block';
+import type BlockHeader from '../@types/BlockHeader';
+import type BlockRecord from '../@types/BlockRecord';
+import type BlockchainState from '../@types/BlockchainState';
+import type Connection from '../@types/Connection';
+import type FeeEstimate from '../@types/FeeEstimate';
 import Client from '../Client';
 import type Message from '../Message';
 import ServiceName from '../constants/ServiceName';
@@ -9,52 +15,52 @@ export default class FullNode extends Service {
     super(ServiceName.FULL_NODE, client, options);
   }
 
-  async getBlockRecords(start?: number, end?: number) {
-    return this.command('get_block_records', {
+  async getBlockRecords(start: number, end: number) {
+    return this.command<{ blockRecords: BlockRecord[] }>('get_block_records', {
       start,
       end,
     });
   }
 
   async getUnfinishedBlockHeaders() {
-    return this.command('get_unfinished_block_headers');
+    return this.command<{ headers: BlockHeader[] }>('get_unfinished_block_headers');
   }
 
   async getBlockchainState() {
-    return this.command('get_blockchain_state');
+    return this.command<{ blockchainState: BlockchainState }>('get_blockchain_state');
   }
 
   async getConnections() {
-    return this.command('get_connections');
+    return this.command<{ connections: Connection[] }>('get_connections');
   }
 
   async openConnection(host: string, port: number) {
-    return this.command('open_connection', {
+    return this.command<void>('open_connection', {
       host,
       port,
     });
   }
 
   async closeConnection(nodeId: string) {
-    return this.command('close_connection', {
+    return this.command<void>('close_connection', {
       nodeId,
     });
   }
 
   async getBlock(headerHash: string) {
-    return this.command('get_block', {
+    return this.command<{ block: Block }>('get_block', {
       headerHash,
     });
   }
 
   async getBlockRecord(headerHash: string) {
-    return this.command('get_block_record', {
+    return this.command<{ blockRecord: BlockRecord }>('get_block_record', {
       headerHash,
     });
   }
 
   async getFeeEstimate(targetTimes: number[], spendType: string) {
-    return this.command('get_fee_estimate', {
+    return this.command<FeeEstimate>('get_fee_estimate', {
       targetTimes,
       spendType,
     });
