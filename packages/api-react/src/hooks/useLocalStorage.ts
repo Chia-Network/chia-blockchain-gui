@@ -23,7 +23,9 @@ export default function useLocalStorage<T extends keyof (string | undefined)>(
   key: string,
   defaultValue?: T
 ): [T | undefined, (value: T | ((value: T | undefined) => T)) => void] {
-  const [storedValue, setStoredValue] = useState<T | undefined>(getValueFromLocalStorage(key));
+  const localStorageValue: T | undefined = getValueFromLocalStorage(key);
+  const [useDefaultValue, setUseDefaultValue] = useState(localStorageValue === undefined);
+  const [storedValue, setStoredValue] = useState<T | undefined>(localStorageValue);
   const defaultValueRef = useRef(defaultValue);
 
   if (!isEqual(defaultValueRef.current, defaultValue)) {
@@ -33,7 +35,17 @@ export default function useLocalStorage<T extends keyof (string | undefined)>(
   const setValue = useCallback(
     (value: T | ((nv: T | undefined) => T)) => {
       setStoredValue((currentStoredValue) => {
-        const newValue = value instanceof Function ? value(currentStoredValue) : value;
+        let currentValue = currentStoredValue;
+
+        // If the current value is undefined, and the initial value was undefined,
+        // we'll override with the default value. We only do this once, so that we
+        // allow the user to set the value to undefined from a previous value.
+        if (currentValue === undefined && useDefaultValue) {
+          currentValue = defaultValueRef.current;
+          setUseDefaultValue(false);
+        }
+
+        const newValue = value instanceof Function ? value(currentValue) : value;
 
         const newStoredValue = JSON.stringify(newValue);
         const oldStoredValue = JSON.stringify(currentStoredValue);
@@ -47,7 +59,7 @@ export default function useLocalStorage<T extends keyof (string | undefined)>(
         return newValue;
       });
     },
-    [key]
+    [key, setStoredValue, defaultValueRef, useDefaultValue, setUseDefaultValue]
   );
 
   const changeHandler = useCallback(
