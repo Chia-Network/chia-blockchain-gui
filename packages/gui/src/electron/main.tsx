@@ -342,8 +342,12 @@ if (!handleSquirrelEvent()) {
             const nftIdUrl = `${rest.nftId}_${rest.url}`;
             const fileOnDisk = path.join(thumbCacheFolder, computeHash(nftIdUrl, { encoding: 'utf-8' }));
 
+            let fileStream: fs.WriteStream | undefined;
             try {
-              const fileStream = fs.createWriteStream(fileOnDisk);
+              fileStream = fs.createWriteStream(fileOnDisk);
+              if (!fileStream) {
+                throw new Error('Error creating file stream');
+              }
 
               Object.entries(requestHeaders).forEach(([header, value]: [string, any]) => {
                 request.setHeader(header, value);
@@ -352,8 +356,13 @@ if (!handleSquirrelEvent()) {
               const buffers: Buffer[] = [];
               let totalLength = 0;
 
-              /* GET FILE SIZE */
-              const fileSize: number = await getRemoteFileSize(rest.url);
+              /* GET FILE SIZE - This isn't critical, so a failure should be tolerated */
+              let fileSize = 0;
+              try {
+                fileSize = await getRemoteFileSize(rest.url);
+              } catch (e) {
+                // Not critical, knowing the file size up front is just a performance optimization
+              }
               dataObject = await new Promise((resolve, reject) => {
                 request.on('response', (response: IncomingMessage) => {
                   statusCode = response.statusCode;
@@ -379,7 +388,7 @@ if (!handleSquirrelEvent()) {
                   response.on('data', (chunk) => {
                     buffers.push(chunk);
 
-                    fileStream.write(chunk);
+                    fileStream?.write(chunk);
 
                     totalLength += chunk.byteLength;
 
@@ -411,7 +420,8 @@ if (!handleSquirrelEvent()) {
                     } catch (e: any) {
                       console.error(`Failed to convert data to string using encoding ${encoding}: ${e.message}`);
                     }
-                    fileStream.end();
+                    fileStream?.end();
+                    fileStream = undefined;
                     getChecksum(fileOnDisk).then((checksum) => {
                       const isValid = (checksum as string).replace(/^0x/, '') === rest.dataHash.replace(/^0x/, '');
                       if (rest.forceCache) {
@@ -438,7 +448,8 @@ if (!handleSquirrelEvent()) {
                   });
 
                   response.on('error', (e: string) => {
-                    fileStream.end();
+                    fileStream?.end();
+                    fileStream = undefined;
                     reject(new Error(e));
                   });
                 });
@@ -454,11 +465,20 @@ if (!handleSquirrelEvent()) {
                 request.end();
               });
             } catch (e: any) {
+              if (fileStream) {
+                fileStream.end();
+                fileStream = undefined;
+              }
+
               if (fs.existsSync(fileOnDisk)) {
                 fs.unlinkSync(fileOnDisk);
               }
               delete allRequests[rest.url];
               error = e;
+            } finally {
+              if (fileStream) {
+                fileStream.end();
+              }
             }
 
             return {
