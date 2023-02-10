@@ -7,6 +7,9 @@ type Connection = {
   lastMessageTime: BigNumber;
   localPort: number;
   nodeId: string;
+  peakHash?: string;
+  peakHeight?: number | null;
+  peakWeight?: number | null;
   peerHost: string;
   peerPort: number;
   peerServerPort: number;
