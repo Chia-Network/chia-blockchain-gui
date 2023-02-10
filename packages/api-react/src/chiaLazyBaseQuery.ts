@@ -1,8 +1,10 @@
-import Client, { Service } from '@chia-network/api';
+import Client, { Service, FullNode, WalletService, Harvester, Farmer, Daemon } from '@chia-network/api';
 import { BaseQueryApi } from '@reduxjs/toolkit/dist/query/baseQueryTypes';
-import { BaseQueryFn } from '@reduxjs/toolkit/query/react';
+import type { BaseQueryFn } from '@reduxjs/toolkit/query/react';
 
 import { selectApiConfig } from './slices/api';
+
+type ServiceConstructor<T extends Service> = new (client: Client) => T;
 
 let clientInstance: Client;
 
@@ -18,62 +20,77 @@ async function getClientInstance(api: BaseQueryApi): Promise<Client> {
   return clientInstance;
 }
 
-type ServiceClassType = typeof Service;
-const services = new Map<ServiceClassType, Service>();
+const services = new Map<typeof Service, Service>();
 
-async function getServiceInstance(api: BaseQueryApi, ServiceClass: ServiceClassType): Promise<Service> {
-  if (!services.has(ServiceClass)) {
+async function getServiceInstance<TService extends Service>(
+  api: BaseQueryApi,
+  ServiceClass: ServiceConstructor<TService>
+) {
+  if (!services.has(ServiceClass.prototype.constructor)) {
     const client = await getClientInstance(api);
     const serviceInstance = new ServiceClass(client);
-    services.set(ServiceClass, serviceInstance);
+    services.set(ServiceClass.prototype.constructor, serviceInstance);
   }
 
-  return services.get(ServiceClass) as Service;
+  return services.get(ServiceClass.prototype.constructor) as TService;
 }
 
-type Options = {
-  service?: Service;
+type ServiceQuery<TService extends Service> = {
+  service: ServiceConstructor<TService>;
+  command: keyof InstanceType<ServiceConstructor<TService>>;
+  args?: unknown[];
+  mockResponse?: any;
 };
 
-export default function chiaLazyBaseQuery(options: Options = {}): BaseQueryFn<
-  | {
-      command: string;
-      service: Service;
-      args?: any[];
-      mockResponse?: any;
-    }
-  | {
-      command: string;
-      client: boolean;
-      args?: any[];
-      mockResponse?: any;
-    },
-  unknown,
-  unknown,
-  {},
-  {
-    timestamp: number;
-    command: string;
-    client?: boolean;
-    args?: any[];
-  }
-> {
-  const { service: DefaultService } = options;
-  // @ts-ignore -- Destructuring potentionally non-existing properties will be soon allowed in TS
-  // https://github.com/microsoft/TypeScript/issues/46318
-  return async ({ command, service: ServiceClass = DefaultService, client = false, args = [], mockResponse }, api) => {
-    const instance = client ? await getClientInstance(api) : await getServiceInstance(api, ServiceClass);
+type ServiceArg =
+  | ServiceQuery<WalletService>
+  | ServiceQuery<FullNode>
+  | ServiceQuery<Harvester>
+  | ServiceQuery<Farmer>
+  | ServiceQuery<Daemon>;
 
-    const meta = {
-      timestamp: Date.now(),
-      command,
-      client,
-      args,
+type ClientArg = {
+  command: keyof InstanceType<typeof Client>;
+  client: true;
+  args?: unknown[];
+  mockResponse?: any;
+};
+
+type Metadata = {
+  timestamp: number;
+  command: string;
+  client?: boolean;
+  args?: unknown[];
+};
+
+const chiaLazyBaseQuery: BaseQueryFn<ServiceArg | ClientArg, unknown, unknown, unknown, Metadata> = async (
+  options,
+  api
+) => {
+  const { command, args = [], mockResponse } = options;
+
+  const meta = {
+    timestamp: Date.now(),
+    command,
+    args,
+  };
+
+  if (mockResponse) {
+    return {
+      data: mockResponse,
+      meta,
     };
+  }
 
+  if ('client' in options) {
     try {
+      const instance = await getClientInstance(api);
+      if (!(command in instance)) {
+        throw new Error(`Command "${command}" not found on Client`);
+      }
+
       return {
-        data: mockResponse ?? (await instance[command](...args)) ?? null,
+        data: (await instance[command](...args)) ?? null,
         meta,
       };
     } catch (error) {
@@ -82,5 +99,25 @@ export default function chiaLazyBaseQuery(options: Options = {}): BaseQueryFn<
         meta,
       };
     }
-  };
-}
+  }
+
+  try {
+    const { service } = options;
+    const instance = await getServiceInstance(api, service);
+    if (!(command in instance)) {
+      throw new Error(`Command "${command}" not found on Client`);
+    }
+
+    return {
+      data: (await instance[command](...args)) ?? null,
+      meta,
+    };
+  } catch (error) {
+    return {
+      error,
+      meta,
+    };
+  }
+};
+
+export default chiaLazyBaseQuery;

@@ -1,14 +1,57 @@
-import { FullNode } from '@chia-network/api';
+import { FullNode, Service } from '@chia-network/api';
 import type { Block, BlockRecord, BlockHeader, BlockchainState, FullNodeConnection } from '@chia-network/api';
 
 import api, { baseQuery } from '../api';
 import onCacheEntryAddedInvalidate from '../utils/onCacheEntryAddedInvalidate';
+// import query from '../utils/query';
 
 const apiWithTag = api.enhanceEndpoints({ addTagTypes: ['BlockchainState', 'FeeEstimate', 'FullNodeConnections'] });
 
+/*
+export const myTestApi = apiWithTag.injectEndpoints({
+  endpoints: (build) => ({
+
+    fullNodePing: build.query<
+      MethodReturnType<typeof FullNode, 'getBlockRecords'>,
+      MethodFirstParameter<typeof FullNode, 'getBlockRecords'>
+    >({
+      query: () => ({
+        command: 'ping',
+        service: FullNode,
+      }),
+      transformResponse: (response: any) => response?.success,
+    }),
+
+    testFunction: query(build, FullNode, 'getBlockRecords', {
+      transformResponse: (response) => response?.success,
+    }),
+  }),
+});
+
+const { useFullNodePingQuery: useFullNodePingQuery2, useTestFunctionQuery } = myTestApi;
+
+function ReactComponent() {
+  const { data } = useFullNodePingQuery2({
+    start: 12,
+    end: 'pmg',
+  });
+
+  const result = data?.responseField2;
+  console.log('result', result);
+
+  const { data: data2 } = useTestFunctionQuery({
+    start: 12,
+    end: '13',
+  });
+
+  const result2 = data2?.responseField2;
+  console.log('result2', result2);
+}
+*/
+
 export const fullNodeApi = apiWithTag.injectEndpoints({
   endpoints: (build) => ({
-    fullNodePing: build.query<boolean, {}>({
+    fullNodePing: build.query<Awaited<ReturnType<FullNode['ping']>>['success'], Parameters<FullNode['ping']>>({
       query: () => ({
         command: 'ping',
         service: FullNode,

@@ -12,7 +12,7 @@ export type Options = {
   skipAddService?: boolean;
 };
 
-export default class Service extends EventEmitter {
+export default abstract class Service extends EventEmitter {
   readonly client: Client;
 
   readonly name: ServiceName;
