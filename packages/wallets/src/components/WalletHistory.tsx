@@ -1,5 +1,6 @@
 import { WalletType, TransactionType, toBech32m } from '@chia-network/api';
 import { useGetOfferRecordMutation, useGetSyncStatusQuery } from '@chia-network/api-react';
+import type { Row } from '@chia-network/core';
 import {
   Card,
   CopyToClipboard,
@@ -11,8 +12,8 @@ import {
   mojoToChia,
   mojoToCAT,
   FormatLargeNumber,
+  useAddressBook,
 } from '@chia-network/core';
-import type { Row } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import {
   CallReceived as CallReceivedIcon,
@@ -71,7 +72,7 @@ async function handleRowClick(event: React.MouseEvent<HTMLTableRowElement>, row:
   }
 }
 
-const getCols = (type: WalletType, isSyncing, getOfferRecord, navigate) => [
+const getCols = (type: WalletType, isSyncing, getOfferRecord, navigate, getContactByAddress) => [
   {
     field: (row: Row) => {
       const isOutgoing = [TransactionType.OUTGOING, TransactionType.OUTGOING_TRADE].includes(row.type);
@@ -113,12 +114,21 @@ const getCols = (type: WalletType, isSyncing, getOfferRecord, navigate) => [
                   </StyledWarning>
                 )}
                 <Flex flexDirection="row" alignItems="center" gap={1}>
+                  <Box maxWidth={200}>
+                    {getContactByAddress(row.toAddress) !== undefined &&
+                      getContactByAddress(row.toAddress).friendlyname}
+                  </Box>
                   <Box maxWidth={200}>{row.toAddress}</Box>
                   {!shouldObscureAddress && <CopyToClipboard value={row.toAddress} fontSize="small" />}
                 </Flex>
               </Flex>
             }
           >
+            <span>
+              {getContactByAddress(row.toAddress) !== undefined && (
+                <Chip size="small" variant="outlined" label={getContactByAddress(row.toAddress).friendlyname} />
+              )}
+            </span>
             <span>{shouldObscureAddress ? `${row.toAddress.slice(0, 20)}...` : row.toAddress}</span>
           </Tooltip>
           <Flex gap={0.5}>
@@ -130,6 +140,9 @@ const getCols = (type: WalletType, isSyncing, getOfferRecord, navigate) => [
             {hasMemos && <Chip size="small" variant="outlined" label={<Trans>Memo</Trans>} />}
             {isRetire && <Chip size="small" variant="outlined" label={<Trans>Retire</Trans>} />}
             {isOffer && <Chip size="small" variant="outlined" label={<Trans>Offer Accepted</Trans>} />}
+            {getContactByAddress(row.toAddress) !== undefined && (
+              <Chip size="small" variant="outlined" label={getContactByAddress(row.toAddress).friendlyname} />
+            )}
           </Flex>
         </Flex>
       );
@@ -188,8 +201,8 @@ type Props = {
 };
 
 export default function WalletHistory(props: Props) {
+  const [addresses, addAddress, getContactByAddress] = useAddressBook();
   const { walletId } = props;
-
   const { data: walletState, isLoading: isWalletSyncLoading } = useGetSyncStatusQuery(
     {},
     {
@@ -232,8 +245,8 @@ export default function WalletHistory(props: Props) {
       return [];
     }
 
-    return getCols(wallet.type, isSyncing, getOfferRecord, navigate);
-  }, [getOfferRecord, isSyncing, navigate, wallet]);
+    return getCols(wallet.type, isSyncing, getOfferRecord, navigate, getContactByAddress);
+  }, [getOfferRecord, isSyncing, navigate, wallet, getContactByAddress]);
 
   return (
     <Card title={<Trans>Transactions</Trans>} titleVariant="h6" transparent>
