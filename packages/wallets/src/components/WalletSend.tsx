@@ -13,9 +13,10 @@ import {
   getTransactionResult,
   useIsSimulator,
   TooltipIcon,
+  useAddressBook,
 } from '@chia-network/core';
 import { Trans, t } from '@lingui/macro';
-import { Button, Grid, Typography } from '@mui/material';
+import { Button, Grid, Typography, Autocomplete } from '@mui/material';
 import React from 'react';
 import { useForm, useWatch } from 'react-hook-form';
 import isNumeric from 'validator/es/lib/isNumeric';
@@ -41,6 +42,12 @@ export default function WalletSend(props: SendCardProps) {
   const openDialog = useOpenDialog();
   const [sendTransaction, { isLoading: isSendTransactionLoading }] = useSendTransactionMutation();
   const [farmBlock] = useFarmBlockMutation();
+  const [addresses, addAddress, getContactByAddress] = useAddressBook();
+  const options = addresses.map((item: { label: string; value: string }) => ({
+    label: `${item.address} (${item.friendlyname})`,
+    value: item.address,
+  }));
+
   const methods = useForm<SendTransactionData>({
     defaultValues: {
       address: '',
@@ -146,7 +153,6 @@ export default function WalletSend(props: SendCardProps) {
     // Workaround to force a re-render of the form. Without this, the fee field will not be cleared.
     setSubmissionCount((prev: number) => prev + 1);
   }
-
   return (
     <Form methods={methods} key={submissionCount} onSubmit={handleSubmit}>
       <Flex gap={2} flexDirection="column">
@@ -163,15 +169,23 @@ export default function WalletSend(props: SendCardProps) {
         <Card>
           <Grid spacing={2} container>
             <Grid xs={12} item>
-              <TextField
-                name="address"
-                variant="filled"
-                color="secondary"
-                fullWidth
+              <Autocomplete
+                options={options}
+                getOptionLabel={(option) => option?.value || option}
+                renderOption={(props: object, option: any, state: object) => <div {...props}>{option?.label}</div>}
+                renderInput={(params) => (
+                  <TextField
+                    name="address"
+                    required
+                    {...params}
+                    label={<Trans>Address / Puzzle hash</Trans>}
+                    variant="outlined"
+                  />
+                )}
+                freeSolo
                 disabled={isSubmitting}
-                label={<Trans>Address / Puzzle hash</Trans>}
                 data-testid="WalletSend-address"
-                required
+                autoSelect
               />
             </Grid>
             <Grid xs={12} md={6} item>
