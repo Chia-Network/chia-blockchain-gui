@@ -125,11 +125,13 @@ const getCols = (type: WalletType, isSyncing, getOfferRecord, navigate, getConta
             }
           >
             <span>
-              {getContactByAddress(row.toAddress) !== undefined && (
-                <Chip size="small" variant="outlined" label={getContactByAddress(row.toAddress).friendlyname} />
-              )}
+              <span>
+                {getContactByAddress(row.toAddress) !== undefined && (
+                  <Chip size="small" variant="outlined" label={getContactByAddress(row.toAddress).friendlyname} />
+                )}
+              </span>
+              <span>{shouldObscureAddress ? `${row.toAddress.slice(0, 20)}...` : row.toAddress}</span>
             </span>
-            <span>{shouldObscureAddress ? `${row.toAddress.slice(0, 20)}...` : row.toAddress}</span>
           </Tooltip>
           <Flex gap={0.5}>
             {isConfirmed ? (
