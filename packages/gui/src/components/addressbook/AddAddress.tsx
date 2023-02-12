@@ -1,4 +1,4 @@
-import { TextField, ButtonLoading, Card, Flex, Form, useAddressBook } from '@chia-network/core';
+import { TextField, ButtonLoading, Card, Flex, Form, useAddressBook, useOpenDialog } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Typography, Grid } from '@mui/material';
 import React from 'react';
@@ -13,9 +13,8 @@ export default function AddAddress() {
     },
   });
   const navigate = useNavigate();
-
   const [s, add] = useAddressBook();
-  async function handleSubmit(formData: AddAddressData) {
+  function handleSubmit(formData: AddAddressData) {
     add(formData.friendlyname, formData.address);
     navigate('/dashboard/addressbook');
   }
