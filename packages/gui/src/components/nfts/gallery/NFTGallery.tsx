@@ -478,12 +478,19 @@ export default function NFTGallery() {
     e.stopPropagation();
   }
 
+  function forceScrollAwayFromTopOrBottom(e: any, currentScrollTop: number, direction: number) {
+    setTimeout(() => {
+      e.target.scrollTo(0, currentScrollTop - direction * 380);
+    }, 0);
+  }
+
   return (
     <LayoutDashboardSub
       // sidebar={<NFTGallerySidebar onWalletChange={setWalletId} />}
       onScroll={(e: MouseEvent) => {
         setScrollPosition((e.target as HTMLElement).scrollTop);
-        if (allowNFTsFiltered.filter((nft: NFTInfo) => showCard(nft)).length > maxNFTsPerPage) {
+        const nftCount = allowNFTsFiltered.filter((nft: NFTInfo) => showCard(nft)).length;
+        if (nftCount > maxNFTsPerPage) {
           const offset = window.document.body.offsetWidth;
           const perRowCount =
             offset > 1535 ? 4 : offset > 899 ? 3 : offset > 599 ? 2 : 1; /* number of NFTs in one row */
@@ -493,17 +500,20 @@ export default function NFTGallery() {
               (e.target as HTMLElement).scrollTop -
               (e.target as HTMLElement).offsetHeight -
               767 <
-            0
+              0 &&
+            visibleIndex + maxNFTsPerPage < nftCount
           ) {
             visibleIndex += perRowCount;
+            forceScrollAwayFromTopOrBottom(e, (e.target as HTMLElement).scrollTop, 1);
           } else if ((e.target as HTMLElement).scrollTop < 360 && visibleIndex - perRowCount >= 0) {
             visibleIndex -= perRowCount;
+            forceScrollAwayFromTopOrBottom(e, (e.target as HTMLElement).scrollTop, -1);
           }
           if (oldVisibleIndex !== visibleIndex) {
             setNfts(
               allowNFTsFiltered
                 .filter((nft: NFTInfo) => showCard(nft))
-                .filter((_: any, idx: number) => idx >= visibleIndex && idx <= maxNFTsPerPage + visibleIndex)
+                .filter((_: any, idx: number) => idx >= visibleIndex && idx < maxNFTsPerPage + visibleIndex)
             );
           }
         }
