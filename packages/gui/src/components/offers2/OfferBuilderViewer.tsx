@@ -1,5 +1,6 @@
 import { useGetWalletsQuery, useCheckOfferValidityMutation } from '@chia-network/api-react';
-import { Flex, ButtonLoading, Link, Loading, useShowError } from '@chia-network/core';
+import { Flex, ButtonLoading, Link, Loading, useShowError, AlertDialog, useOpenDialog } from '@chia-network/core';
+import { useIsWalletSynced } from '@chia-network/wallets';
 import { Trans } from '@lingui/macro';
 import { Alert, Grid } from '@mui/material';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
@@ -37,6 +38,8 @@ export default function OfferBuilderViewer(props: OfferBuilderViewerProps) {
   const [checkOfferValidity] = useCheckOfferValidityMutation();
   const [isValidating, setIsValidating] = useState<boolean>(offerData !== undefined);
   const [isValid, setIsValid] = useState<boolean | undefined>();
+  const isWalletSynced = useIsWalletSynced();
+  const openDialog = useOpenDialog();
 
   const showInvalid = !isValidating && isValid === false;
 
@@ -122,8 +125,16 @@ export default function OfferBuilderViewer(props: OfferBuilderViewerProps) {
     );
   }
 
-  function handleAcceptOffer() {
-    offerBuilderRef.current?.submit();
+  async function handleAcceptOffer() {
+    if (!isWalletSynced) {
+      await openDialog(
+        <AlertDialog>
+          <Trans>Please wait for wallet synchronization</Trans>
+        </AlertDialog>
+      );
+    } else {
+      offerBuilderRef.current?.submit();
+    }
   }
 
   return (
