@@ -1,8 +1,5 @@
 import { Harvester } from '@chia-network/api';
-import type { Plot } from '@chia-network/api';
 
-import { baseQuery } from '../api';
-import onCacheEntryAddedInvalidate from '../utils/onCacheEntryAddedInvalidate';
 import { apiWithTag } from './farmer';
 
 const apiWithTag2 = apiWithTag.enhanceEndpoints({
@@ -19,24 +16,6 @@ export const harvesterApi = apiWithTag2.injectEndpoints({
       transformResponse: (response: any) => response?.success,
     }),
 
-    getPlots: build.query<Plot[], {}>({
-      query: () => ({
-        command: 'getPlots',
-        service: Harvester,
-      }),
-      transformResponse: (response: any) => response?.plots,
-      providesTags: (plots) =>
-        plots
-          ? [...plots.map(({ filename }) => ({ type: 'Plots', id: filename } as const)), { type: 'Plots', id: 'LIST' }]
-          : [{ type: 'Plots', id: 'LIST' }],
-      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, [
-        {
-          command: 'onRefreshPlots',
-          service: Harvester,
-          endpoint: () => harvesterApi.endpoints.getPlots,
-        },
-      ]),
-    }),
     refreshPlots: build.mutation<undefined, {}>({
       query: () => ({
         command: 'refreshPlots',
@@ -155,7 +134,6 @@ export const harvesterApi = apiWithTag2.injectEndpoints({
 
 export const {
   useHarvesterPingQuery,
-  useGetPlotsQuery,
   useRefreshPlotsMutation,
   useDeletePlotMutation,
   useGetPlotDirectoriesQuery,
