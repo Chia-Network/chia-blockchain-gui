@@ -341,10 +341,9 @@ if (!handleSquirrelEvent()) {
 
             const nftIdUrl = `${rest.nftId}_${rest.url}`;
             const fileOnDisk = path.join(thumbCacheFolder, computeHash(nftIdUrl, { encoding: 'utf-8' }));
+            let fileStream: any;
 
             try {
-              const fileStream = fs.createWriteStream(fileOnDisk);
-
               Object.entries(requestHeaders).forEach(([header, value]: [string, any]) => {
                 request.setHeader(header, value);
               });
@@ -356,6 +355,7 @@ if (!handleSquirrelEvent()) {
               const fileSize: number = await getRemoteFileSize(rest.url);
               dataObject = await new Promise((resolve, reject) => {
                 request.on('response', (response: IncomingMessage) => {
+                  fileStream = fs.createWriteStream(fileOnDisk);
                   statusCode = response.statusCode;
                   statusMessage = response.statusMessage;
 
@@ -379,8 +379,9 @@ if (!handleSquirrelEvent()) {
                   response.on('data', (chunk) => {
                     buffers.push(chunk);
 
-                    fileStream.write(chunk);
-
+                    if (fileStream) {
+                      fileStream.write(chunk);
+                    }
                     totalLength += chunk.byteLength;
 
                     if (fileSize > 0) {
@@ -411,7 +412,9 @@ if (!handleSquirrelEvent()) {
                     } catch (e: any) {
                       console.error(`Failed to convert data to string using encoding ${encoding}: ${e.message}`);
                     }
-                    fileStream.end();
+                    if (fileStream) {
+                      fileStream.end();
+                    }
                     getChecksum(fileOnDisk).then((checksum) => {
                       const isValid = (checksum as string).replace(/^0x/, '') === rest.dataHash.replace(/^0x/, '');
                       if (rest.forceCache) {
@@ -438,12 +441,17 @@ if (!handleSquirrelEvent()) {
                   });
 
                   response.on('error', (e: string) => {
-                    fileStream.end();
+                    if (fileStream) {
+                      fileStream.end();
+                    }
                     reject(new Error(e));
                   });
                 });
 
                 request.on('error', (err: any) => {
+                  if (fileStream) {
+                    fileStream.end();
+                  }
                   reject(err);
                 });
 
@@ -555,7 +563,9 @@ if (!handleSquirrelEvent()) {
                   }
                 });
                 response.on('end', () => {
-                  fileStream.end();
+                  if (fileStream) {
+                    fileStream.end();
+                  }
                   resolve(totalLength);
                 });
               });
