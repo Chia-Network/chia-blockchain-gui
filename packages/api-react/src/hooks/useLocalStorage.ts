@@ -33,12 +33,19 @@ export default function useLocalStorage<T extends keyof (string | undefined)>(
   const setValue = useCallback(
     (value: T | ((nv: T | undefined) => T)) => {
       setStoredValue((currentStoredValue) => {
-        const newValue = value instanceof Function ? value(currentStoredValue) : value;
+        const currentValue = currentStoredValue ?? defaultValueRef.current;
+        const newValue = value instanceof Function ? value(currentValue) : value;
 
         const newStoredValue = JSON.stringify(newValue);
-        const oldStoredValue = JSON.stringify(currentStoredValue);
+        const oldStoredValue = JSON.stringify(currentValue);
         if (newStoredValue === oldStoredValue) {
           return currentStoredValue;
+        }
+
+        if (newStoredValue === JSON.stringify(defaultValueRef.current)) {
+          window.localStorage.removeItem(key);
+          eventEmitter.emit('storage', { key, newValue: undefined });
+          return undefined;
         }
 
         window.localStorage.setItem(key, newStoredValue);
