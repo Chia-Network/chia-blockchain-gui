@@ -192,6 +192,8 @@ type Props = {
   walletId: number;
 };
 
+const mapMemos: any = {};
+
 export default function WalletHistory(props: Props) {
   const { walletId } = props;
 
@@ -263,9 +265,10 @@ export default function WalletHistory(props: Props) {
         metadata={metadata}
         expandedCellShift={1}
         uniqueField="name"
-        onToggleExpand={async (rowId: string, expanded: boolean) => {
-          const memos = (await getTransactionMemo({ transactionId: rowId.split('-')[0] })).data;
-          if (expanded) {
+        onToggleExpand={async (rowId: string, wasExpanded: boolean) => {
+          if (wasExpanded) {
+            const memos = mapMemos[rowId] || (await getTransactionMemo({ transactionId: rowId.split('-')[0] })).data;
+            mapMemos[rowId] = memos;
             const newTransactions = transactions.map((transaction) =>
               transaction.name === rowId.split('-')[0] && memos && Object.keys(memos).length > 0
                 ? { ...transaction, memos }
