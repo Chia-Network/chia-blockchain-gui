@@ -35,10 +35,11 @@ export function isEqual(a: Serializable, b: Serializable) {
 export default function usePrefs<T extends Serializable>(
   key: string,
   defaultValue?: T
-): [T, (value: T | ((value: T) => T)) => void] {
+): [T, (value: T | ((value: T | undefined) => T)) => void] {
   const [value, setValue] = useState<T>(getPreferences(key));
   const valueRef = useRef(value);
   valueRef.current = value;
+
   const defaultValueRef = useRef(defaultValue);
 
   if (!isEqual(defaultValueRef.current, defaultValue)) {
@@ -46,9 +47,16 @@ export default function usePrefs<T extends Serializable>(
   }
 
   const handleSetValue = useCallback(
-    (newValueOrFn: T | ((nv: T) => T)) => {
-      const newValue = newValueOrFn instanceof Function ? newValueOrFn(valueRef.current) : newValueOrFn;
-      if (isEqual(valueRef.current, newValue)) {
+    (newValueOrFn: T | ((nv: T | undefined) => T)) => {
+      const currentValue = valueRef.current ?? defaultValueRef.current;
+      const newValue = newValueOrFn instanceof Function ? newValueOrFn(currentValue) : newValueOrFn;
+      if (isEqual(currentValue, newValue)) {
+        return;
+      }
+
+      if (isEqual(newValue, defaultValueRef.current)) {
+        setPreferences(key, undefined);
+        eventEmitter.emit('prefs', { key, newValue: undefined });
         return;
       }
 

@@ -1167,14 +1167,13 @@ export const walletApi = apiWithTag.injectEndpoints({
       any,
       {
         amount: string;
-        fee: string;
         host?: string;
       }
     >({
-      query: ({ amount, fee, host }) => ({
+      query: ({ amount, host }) => ({
         command: 'createNewWallet',
         service: CAT,
-        args: [amount, fee, host],
+        args: [amount, host],
       }),
       invalidatesTags: [
         { type: 'Wallets', id: 'LIST' },
@@ -1186,14 +1185,13 @@ export const walletApi = apiWithTag.injectEndpoints({
       any,
       {
         assetId: string;
-        fee: string;
         host?: string;
       }
     >({
-      query: ({ assetId, fee, host }) => ({
+      query: ({ assetId, host }) => ({
         command: 'createWalletForExisting',
         service: CAT,
-        args: [assetId, fee, host],
+        args: [assetId, host],
       }),
       invalidatesTags: [
         { type: 'Wallets', id: 'LIST' },
@@ -1489,16 +1487,15 @@ export const walletApi = apiWithTag.injectEndpoints({
       {
         assetId: string;
         name: string;
-        fee: string;
         host?: string;
       }
     >({
-      async queryFn({ assetId, name, fee, host }, _queryApi, _extraOptions, fetchWithBQ) {
+      async queryFn({ assetId, name, host }, _queryApi, _extraOptions, fetchWithBQ) {
         try {
           const { data, error } = await fetchWithBQ({
             command: 'createWalletForExisting',
             service: CAT,
-            args: [assetId, fee, host],
+            args: [assetId, host],
           });
 
           if (error) {

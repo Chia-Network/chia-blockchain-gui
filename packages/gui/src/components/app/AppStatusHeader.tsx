@@ -41,6 +41,7 @@ export default function AppStatusHeader() {
   const ButtonStyle = {
     paddingTop: '3px',
     paddingBottom: 0,
+    paddingLeft: '3px',
     borderRadius: 2,
     border: `1px solid ${borderColor}`,
     '&:hover': {
