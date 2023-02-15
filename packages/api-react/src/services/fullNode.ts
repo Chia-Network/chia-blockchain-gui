@@ -1,53 +1,53 @@
 import { FullNode, Service } from '@chia-network/api';
 import type { Block, BlockRecord, BlockHeader, BlockchainState, FullNodeConnection } from '@chia-network/api';
+// import MethodReturnType from '../@types/MethodReturnType'
+// import MethodFirstParameter from '../@types/MethodFirstParameter'
 
 import api, { baseQuery } from '../api';
 import onCacheEntryAddedInvalidate from '../utils/onCacheEntryAddedInvalidate';
-// import query from '../utils/query';
+import query from '../utils/query';
 
 const apiWithTag = api.enhanceEndpoints({ addTagTypes: ['BlockchainState', 'FeeEstimate', 'FullNodeConnections'] });
 
-/*
-export const myTestApi = apiWithTag.injectEndpoints({
-  endpoints: (build) => ({
+// export const myTestApi = apiWithTag.injectEndpoints({
+//   endpoints: (build) => ({
 
-    fullNodePing: build.query<
-      MethodReturnType<typeof FullNode, 'getBlockRecords'>,
-      MethodFirstParameter<typeof FullNode, 'getBlockRecords'>
-    >({
-      query: () => ({
-        command: 'ping',
-        service: FullNode,
-      }),
-      transformResponse: (response: any) => response?.success,
-    }),
+//     fullNodePing: build.query<
+//       MethodReturnType<typeof FullNode, 'getBlockRecords'>,
+//       MethodFirstParameter<typeof FullNode, 'getBlockRecords'>
+//     >({
+//       query: () => ({
+//         command: 'ping',
+//         service: FullNode,
+//       }),
+//       transformResponse: (response: any) => response?.success,
+//     }),
 
-    testFunction: query(build, FullNode, 'getBlockRecords', {
-      transformResponse: (response) => response?.success,
-    }),
-  }),
-});
+//     testFunction: query(build, FullNode, 'getBlockRecords', {
+//       transformResponse: (response) => response?.success,
+//     }),
+//   }),
+// });
 
-const { useFullNodePingQuery: useFullNodePingQuery2, useTestFunctionQuery } = myTestApi;
+// const { useFullNodePingQuery: useFullNodePingQuery2, useTestFunctionQuery } = myTestApi;
 
-function ReactComponent() {
-  const { data } = useFullNodePingQuery2({
-    start: 12,
-    end: 'pmg',
-  });
+// function ReactComponent() {
+//   const { data } = useFullNodePingQuery2({
+//     start: 12,
+//     end: 'pmg',
+//   });
 
-  const result = data?.responseField2;
-  console.log('result', result);
+//   const result = data?.responseField2;
+//   console.log('result', result);
 
-  const { data: data2 } = useTestFunctionQuery({
-    start: 12,
-    end: '13',
-  });
+//   const { data: data2 } = useTestFunctionQuery({
+//     start: 12,
+//     end: '13',
+//   });
 
-  const result2 = data2?.responseField2;
-  console.log('result2', result2);
-}
-*/
+//   const result2 = data2?.responseField2;
+//   console.log('result2', result2);
+// }
 
 export const fullNodeApi = apiWithTag.injectEndpoints({
   endpoints: (build) => ({
@@ -175,19 +175,11 @@ export const fullNodeApi = apiWithTag.injectEndpoints({
       }),
       transformResponse: (response: any) => response?.block,
     }),
-    getBlockRecord: build.query<
-      BlockRecord,
-      {
-        headerHash: string;
-      }
-    >({
-      query: ({ headerHash }) => ({
-        command: 'getBlockRecord',
-        service: FullNode,
-        args: [headerHash],
-      }),
-      transformResponse: (response: any) => response?.blockRecord,
+
+    getBlockRecord: query(build, FullNode, 'getBlockRecord', {
+      transformResponse: (response) => response.blockRecord,
     }),
+
     getFeeEstimate: build.query<
       string,
       {

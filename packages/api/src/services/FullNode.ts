@@ -53,10 +53,8 @@ export default class FullNode extends Service {
     });
   }
 
-  async getBlockRecord(headerHash: string) {
-    return this.command<{ blockRecord: BlockRecord }>('get_block_record', {
-      headerHash,
-    });
+  async getBlockRecord(args: { headerHash: string }) {
+    return this.command<{ blockRecord: BlockRecord }>('get_block_record', args);
   }
 
   async getFeeEstimate(targetTimes: number[], spendType: string) {
