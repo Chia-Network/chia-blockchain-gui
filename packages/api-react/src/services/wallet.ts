@@ -630,78 +630,6 @@ export const walletApi = apiWithTag.injectEndpoints({
       invalidatesTags: ['LoggedInFingerprint'],
     }),
 
-    logInAndSkipImport: build.mutation<
-      any,
-      {
-        fingerprint: string;
-        host?: string;
-      }
-    >({
-      query: ({ fingerprint, host }) => ({
-        command: 'logInAndSkipImport',
-        service: WalletService,
-        args: [fingerprint, host],
-      }),
-      invalidatesTags: ['LoggedInFingerprint'],
-    }),
-
-    logInAndImportBackup: build.mutation<
-      any,
-      {
-        fingerprint: string;
-        filePath: string;
-        host?: string;
-      }
-    >({
-      query: ({ fingerprint, filePath, host }) => ({
-        command: 'logInAndImportBackup',
-        service: WalletService,
-        args: [fingerprint, filePath, host],
-      }),
-    }),
-
-    getBackupInfo: build.query<
-      any,
-      {
-        filePath: string;
-        options: { fingerprint: string } | { words: string };
-      }
-    >({
-      query: ({ filePath, options }) => ({
-        command: 'getBackupInfo',
-        service: WalletService,
-        args: [filePath, options],
-      }),
-    }),
-
-    getBackupInfoByFingerprint: build.query<
-      any,
-      {
-        filePath: string;
-        fingerprint: string;
-      }
-    >({
-      query: ({ filePath, fingerprint }) => ({
-        command: 'getBackupInfoByFingerprint',
-        service: WalletService,
-        args: [filePath, fingerprint],
-      }),
-    }),
-
-    getBackupInfoByWords: build.query<
-      any,
-      {
-        filePath: string;
-        words: string;
-      }
-    >({
-      query: ({ filePath, words }) => ({
-        command: 'getBackupInfoByWords',
-        service: WalletService,
-        args: [filePath, words],
-      }),
-    }),
-
     getPrivateKey: build.query<
       {
         farmerPk: string;
@@ -982,18 +910,6 @@ export const walletApi = apiWithTag.injectEndpoints({
         { type: 'WalletConnections', id: 'LIST' },
         { type: 'WalletConnections', id: nodeId },
       ],
-    }),
-    createBackup: build.mutation<
-      any,
-      {
-        filePath: string;
-      }
-    >({
-      query: ({ filePath }) => ({
-        command: 'createBackup',
-        service: WalletService,
-        args: [filePath],
-      }),
     }),
 
     // Offers
@@ -2244,7 +2160,7 @@ export const walletApi = apiWithTag.injectEndpoints({
       invalidatesTags: [{ type: 'Notification', id: 'LIST' }],
     }),
 
-    sendNotifications: build.mutation<
+    sendNotification: build.mutation<
       any,
       {
         target: string;
@@ -2254,7 +2170,7 @@ export const walletApi = apiWithTag.injectEndpoints({
       }
     >({
       query: ({ target, message, amount, fee }) => ({
-        command: 'sendNotifications',
+        command: 'sendNotification',
         service: WalletService,
         args: [target, message, amount, fee],
       }),
@@ -2301,11 +2217,6 @@ export const {
   useCheckDeleteKeyMutation,
   useDeleteAllKeysMutation,
   useLogInMutation,
-  useLogInAndSkipImportMutation,
-  useLogInAndImportBackupMutation,
-  useGetBackupInfoQuery,
-  useGetBackupInfoByFingerprintQuery,
-  useGetBackupInfoByWordsQuery,
   useGetPrivateKeyQuery,
   useGetTransactionsQuery,
   useGetTransactionsCountQuery,
@@ -2319,7 +2230,6 @@ export const {
   useGetWalletConnectionsQuery,
   useOpenWalletConnectionMutation,
   useCloseWalletConnectionMutation,
-  useCreateBackupMutation,
   useGetAllOffersQuery,
   useGetOffersCountQuery,
   useCreateOfferForIdsMutation,
@@ -2386,7 +2296,7 @@ export const {
   // notifications
   useGetNotificationsQuery,
   useDeleteNotificationsMutation,
-  useSendNotificationsMutation,
+  useSendNotificationMutation,
 
   // verify
   useVerifySignatureMutation,

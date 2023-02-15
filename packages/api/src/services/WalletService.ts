@@ -1,3 +1,15 @@
+import BigNumber from 'bignumber.js';
+
+import type Connection from '../@types/Connection';
+import type FarmedAmount from '../@types/FarmedAmount';
+import type OfferSummaryRecord from '../@types/OfferSummaryRecord';
+import type PoolWalletStatus from '../@types/PoolWalletStatus';
+import type PrivateKey from '../@types/PrivateKey';
+import type TradeRecord from '../@types/TradeRecord';
+import type Transaction from '../@types/Transaction';
+import type { WalletListItem } from '../@types/Wallet';
+import type WalletBalance from '../@types/WalletBalance';
+import type WalletCreate from '../@types/WalletCreate';
 import Client from '../Client';
 import type Message from '../Message';
 import ServiceName from '../constants/ServiceName';
@@ -10,17 +22,17 @@ export default class Wallet extends Service {
   }
 
   async getLoggedInFingerprint() {
-    return this.command('get_logged_in_fingerprint');
+    return this.command<{ fingerprint: number }>('get_logged_in_fingerprint');
   }
 
-  async getWallets(includeData: boolean = false) {
-    return this.command('get_wallets', {
+  async getWallets({ includeData = false }: { includeData: boolean }) {
+    return this.command<{ fingerprint: number; wallets: WalletListItem[] }>('get_wallets', {
       includeData,
     });
   }
 
   async getTransaction(transactionId: string) {
-    return this.command('get_transaction', {
+    return this.command<{ transaction: Transaction; transactionId: string }>('get_transaction', {
       transactionId,
     });
   }
@@ -32,13 +44,13 @@ export default class Wallet extends Service {
   }
 
   async getPwStatus(walletId: number) {
-    return this.command('pw_status', {
+    return this.command<{ state: PoolWalletStatus; unconfirmedTransactions: Transaction[] }>('pw_status', {
       walletId,
     });
   }
 
   async pwAbsorbRewards(walletId: number, fee?: string) {
-    return this.command('pw_absorb_rewards', {
+    return this.command<{ state: PoolWalletStatus; transaction: Transaction }>('pw_absorb_rewards', {
       walletId,
       fee,
     });
@@ -51,7 +63,7 @@ export default class Wallet extends Service {
     targetPuzzlehash?: string,
     fee?: string
   ) {
-    return this.command('pw_join_pool', {
+    return this.command<{ totalFee: number; transaction: Transaction }>('pw_join_pool', {
       walletId,
       poolUrl,
       relativeLockHeight,
@@ -61,37 +73,37 @@ export default class Wallet extends Service {
   }
 
   async pwSelfPool(walletId: number, fee?: string) {
-    return this.command('pw_self_pool', {
+    return this.command<{ totalFee: number; transaction: Transaction }>('pw_self_pool', {
       walletId,
       fee,
     });
   }
 
   async createNewWallet(walletType: 'pool_wallet' | 'rl_wallet' | 'did_wallet' | 'cat_wallet', options: Object = {}) {
-    return this.command('create_new_wallet', {
+    return this.command<WalletCreate>('create_new_wallet', {
       walletType,
       ...options,
     });
   }
 
   async deleteUnconfirmedTransactions(walletId: number) {
-    return this.command('delete_unconfirmed_transactions', {
+    return this.command<void>('delete_unconfirmed_transactions', {
       walletId,
     });
   }
 
   async getWalletBalance(walletId: number) {
-    return this.command('get_wallet_balance', {
+    return this.command<{ walletBalance: WalletBalance }>('get_wallet_balance', {
       walletId,
     });
   }
 
   async getFarmedAmount() {
-    return this.command('get_farmed_amount');
+    return this.command<FarmedAmount>('get_farmed_amount');
   }
 
-  async sendTransaction(walletId: number, amount: string, fee: string, address: string, memos?: string[]) {
-    return this.command('send_transaction', {
+  async sendTransaction(walletId: number, amount: BigNumber, fee: BigNumber, address: string, memos?: string[]) {
+    return this.command<{ transaction: Transaction; transactionId: string }>('send_transaction', {
       walletId,
       amount,
       fee,
@@ -100,87 +112,58 @@ export default class Wallet extends Service {
     });
   }
 
-  async generateMnemonic(): Promise<{
-    mnemonic: string[];
-    success: boolean;
-  }> {
-    return this.command('generate_mnemonic');
+  async generateMnemonic() {
+    return this.command<{
+      mnemonic: string[];
+    }>('generate_mnemonic');
   }
 
-  async getPublicKeys(): Promise<{
-    publicKeyFingerprints: number[];
-    success: boolean;
-  }> {
-    return this.command('get_public_keys');
+  async getPublicKeys() {
+    return this.command<{
+      publicKeyFingerprints: number[];
+    }>('get_public_keys');
   }
 
-  async addKey(mnemonic: string[], type: 'new_wallet' | 'skip' | 'restore_backup', filePath?: string) {
-    return this.command('add_key', {
+  async addKey(mnemonic: string[], type: 'new_wallet' | 'skip' | 'restore_backup') {
+    return this.command<{ fingerprint: number }>('add_key', {
       mnemonic,
       type,
-      filePath,
     });
   }
 
-  async deleteKey(fingerprint: string) {
-    return this.command('delete_key', {
+  async deleteKey(fingerprint: number) {
+    return this.command<void>('delete_key', {
       fingerprint,
     });
   }
 
-  async checkDeleteKey(fingerprint: string) {
-    return this.command('check_delete_key', {
+  async checkDeleteKey(fingerprint: number) {
+    return this.command<{
+      fingerprint: number;
+      usedForFarmerRewards: boolean;
+      usedForPoolRewards: boolean;
+      walletBalance: boolean;
+    }>('check_delete_key', {
       fingerprint,
     });
   }
 
   async deleteAllKeys() {
-    return this.command('delete_all_keys');
+    return this.command<void>('delete_all_keys');
   }
 
   async logIn(
     fingerprint: string,
-    type: 'normal' | 'skip' | 'restore_backup' = 'normal', // skip is used to skip import
-    filePath?: string
+    type: 'normal' | 'skip' | 'restore_backup' = 'normal' // skip is used to skip import
   ) {
-    return this.command('log_in', {
+    return this.command<{ fingerprint: number }>('log_in', {
       fingerprint,
       type,
-      filePath,
     });
   }
 
-  // TODO: Remove
-  logInAndSkipImport(fingerprint: string) {
-    return this.logIn(fingerprint, 'skip');
-  }
-
-  // TODO: Remove
-  logInAndImportBackup(fingerprint: string, filePath: string) {
-    return this.logIn(fingerprint, 'restore_backup', filePath);
-  }
-
-  async getBackupInfo(filePath: string, options: { fingerprint: string } | { words: string }) {
-    return this.command('get_backup_info', {
-      filePath,
-      ...options,
-    });
-  }
-
-  async getBackupInfoByFingerprint(filePath: string, fingerprint: string) {
-    return this.getBackupInfo(filePath, {
-      fingerprint,
-    });
-  }
-
-  async getBackupInfoByWords(filePath: string, words: string) {
-    return this.getBackupInfo(filePath, {
-      words,
-    });
-  }
-
-  async getPrivateKey(fingerprint: string) {
-    return this.command('get_private_key', {
+  async getPrivateKey(fingerprint: number) {
+    return this.command<{ privateKey: PrivateKey }>('get_private_key', {
       fingerprint,
     });
   }
@@ -192,7 +175,7 @@ export default class Wallet extends Service {
     sortKey?: 'CONFIRMED_AT_HEIGHT' | 'RELEVANCE',
     reverse?: boolean
   ) {
-    return this.command('get_transactions', {
+    return this.command<{ transactions: Transaction[]; walletId: number }>('get_transactions', {
       walletId,
       start,
       end,
@@ -202,20 +185,23 @@ export default class Wallet extends Service {
   }
 
   async getTransactionsCount(walletId: number) {
-    return this.command('get_transaction_count', {
+    return this.command<{ count: number; walletId: number }>('get_transaction_count', {
       walletId,
     });
   }
 
   async getNextAddress(walletId: number, newAddress: boolean) {
-    return this.command('get_next_address', {
+    return this.command<{
+      address: string;
+      walletId: number;
+    }>('get_next_address', {
       walletId,
       newAddress,
     });
   }
 
   async farmBlock(address: string) {
-    return this.command('farm_block', {
+    return this.command<void>('farm_block', {
       address,
     });
   }
@@ -229,25 +215,23 @@ export default class Wallet extends Service {
   }
 
   async getHeightInfo() {
-    return this.command('get_height_info');
+    return this.command<{ height: number }>('get_height_info');
   }
 
   async getNetworkInfo() {
-    return this.command('get_network_info');
+    return this.command<{ networkName: string; networkPrefix: string }>('get_network_info');
   }
 
   async getSyncStatus() {
-    return this.command('get_sync_status');
+    return this.command<{
+      genesisInitialized: boolean;
+      synced: boolean;
+      syncing: boolean;
+    }>('get_sync_status');
   }
 
   async getConnections() {
-    return this.command('get_connections');
-  }
-
-  async createBackup(filePath: string) {
-    return this.command('create_backup', {
-      filePath,
-    });
+    return this.command<{ connections: Connection }>('get_connections');
   }
 
   async getAllOffers(
@@ -258,7 +242,7 @@ export default class Wallet extends Service {
     includeMyOffers?: boolean,
     includeTakenOffers?: boolean
   ) {
-    return this.command('get_all_offers', {
+    return this.command<{ offers: string[]; tradeRecords: TradeRecord[] }>('get_all_offers', {
       includeCompleted: true,
       fileContents: true,
       start,
@@ -271,7 +255,7 @@ export default class Wallet extends Service {
   }
 
   async getOffersCount() {
-    return this.command('get_offers_count', {});
+    return this.command<{ myOffersCount: number; takenOffersCount: number; total: number }>('get_offers_count');
   }
 
   async createOfferForIds(
@@ -281,7 +265,7 @@ export default class Wallet extends Service {
     validateOnly?: boolean,
     disableJSONFormatting?: boolean
   ) {
-    return this.command(
+    return this.command<{ offer: string; tradeRecord: TradeRecord }>(
       'create_offer_for_ids',
       {
         offer,
@@ -296,7 +280,7 @@ export default class Wallet extends Service {
   }
 
   async cancelOffer(tradeId: string, secure: boolean, fee: number | string) {
-    return this.command('cancel_offer', {
+    return this.command<void>('cancel_offer', {
       tradeId,
       secure,
       fee,
@@ -304,111 +288,95 @@ export default class Wallet extends Service {
   }
 
   async checkOfferValidity(offer: string) {
-    return this.command('check_offer_validity', {
+    return this.command<{ id: string; valid: boolean }>('check_offer_validity', {
       offer,
     });
   }
 
   async takeOffer(offer: string, fee: number | string) {
-    return this.command('take_offer', {
+    return this.command<{ tradeRecord: TradeRecord }>('take_offer', {
       offer,
       fee,
     });
   }
 
   async getOfferSummary(offerData: string) {
-    return this.command('get_offer_summary', {
+    return this.command<{ id: string; summary: OfferSummaryRecord }>('get_offer_summary', {
       offer: offerData,
     });
   }
 
+  // TODO refactor the getOfferData and getOfferRecord into get_offer, to match the backend
   async getOfferData(offerId: string) {
-    return this.command('get_offer', {
+    return this.command<{ offer: string; tradeRecord: TradeRecord }>('get_offer', {
       tradeId: offerId,
       fileContents: true,
     });
   }
 
   async getOfferRecord(offerId: string) {
-    return this.command('get_offer', {
+    return this.command<{ offer: null; tradeRecord: TradeRecord }>('get_offer', {
       tradeId: offerId,
       fileContents: false,
     });
   }
 
   async getCurrentDerivationIndex() {
-    return this.command('get_current_derivation_index');
+    return this.command<{ index: number }>('get_current_derivation_index');
   }
 
   async extendDerivationIndex(index: number) {
-    return this.command('extend_derivation_index', {
+    return this.command<{ index: number }>('extend_derivation_index', {
       index,
     });
   }
 
-  async signMessageByAddress(
-    address: string,
-    message: string
-  ): Promise<{
-    success: boolean;
-    pubkey: string;
-    signature: string;
-  }> {
-    return this.command('sign_message_by_address', {
+  async signMessageByAddress(address: string, message: string) {
+    return this.command<{
+      pubkey: string;
+      signature: string;
+    }>('sign_message_by_address', {
       address,
       message,
     });
   }
 
-  async signMessageById(
-    id: string,
-    message: string
-  ): Promise<{
-    success: boolean;
-    pubkey: string;
-    signature: string;
-    latestCoinId: string;
-  }> {
-    return this.command('sign_message_by_id', {
+  async signMessageById(id: string, message: string) {
+    return this.command<{
+      pubkey: string;
+      signature: string;
+      latestCoinId: string;
+    }>('sign_message_by_id', {
       id,
       message,
     });
   }
 
   // notifications
-  async getNotifications(
-    ids?: string[],
-    start?: number,
-    end?: number
-  ): Promise<{
-    notifications: {
-      id: string;
-      message: string;
-      amount: string;
-    }[];
-  }> {
-    return this.command('get_notifications', {
+  async getNotifications(ids?: string[], start?: number, end?: number) {
+    return this.command<{
+      notifications: {
+        id: string;
+        message: string;
+        amount: string;
+      }[];
+    }>('get_notifications', {
       ids,
       start,
       end,
     });
   }
 
-  async deleteNotifications(ids?: string[]): Promise<{}> {
-    return this.command('delete_notifications', {
+  async deleteNotifications(ids?: string[]) {
+    return this.command<void>('delete_notifications', {
       ids,
     });
   }
 
-  async sendNotifications(
-    target: string,
-    message: string,
-    amount: string | number,
-    fee: string | number
-  ): Promise<{
-    tx: any;
-  }> {
-    return this.command('send_notification', {
+  async sendNotification(target: string, message: string, amount: string | number, fee: string | number) {
+    return this.command<{
+      tx: Transaction;
+    }>('send_notification', {
       target,
       message,
       amount,

@@ -104,11 +104,6 @@ export const {
   useCheckDeleteKeyMutation,
   useDeleteAllKeysMutation,
   useLogInMutation,
-  useLogInAndSkipImportMutation,
-  useLogInAndImportBackupMutation,
-  useGetBackupInfoQuery,
-  useGetBackupInfoByFingerprintQuery,
-  useGetBackupInfoByWordsQuery,
   useGetPrivateKeyQuery,
   useGetTransactionsQuery,
   useGetTransactionsCountQuery,
@@ -122,7 +117,6 @@ export const {
   useGetWalletConnectionsQuery,
   useOpenWalletConnectionMutation,
   useCloseWalletConnectionMutation,
-  useCreateBackupMutation,
   useGetAllOffersQuery,
   useGetOffersCountQuery,
   useCreateOfferForIdsMutation,
@@ -189,7 +183,7 @@ export const {
   // notifications
   useGetNotificationsQuery,
   useDeleteNotificationsMutation,
-  useSendNotificationsMutation,
+  useSendNotificationMutation,
 
   // verify
   useVerifySignatureMutation,
@@ -200,7 +194,6 @@ export const {
   harvesterApi,
 
   useHarvesterPingQuery,
-  useGetPlotsQuery,
   useRefreshPlotsMutation,
   useDeletePlotMutation,
   useGetPlotDirectoriesQuery,

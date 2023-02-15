@@ -3,7 +3,6 @@ import {
   usePrefs,
   useGetKeyringStatusQuery,
   useDeleteAllKeysMutation,
-  useLogInAndSkipImportMutation,
   useGetKeysQuery,
   useLogout,
   type Serializable,
@@ -110,6 +109,7 @@ export default function SelectKey() {
       setSelectedFingerprint(fingerprint);
       await logIn({
         fingerprint,
+        type: 'skip',
       }).unwrap();
 
       await cleanCache();

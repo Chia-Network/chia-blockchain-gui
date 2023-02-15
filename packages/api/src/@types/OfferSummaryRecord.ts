@@ -1,5 +1,7 @@
+import type BigNumber from 'bignumber.js';
+
 export type OfferSummaryAssetAndAmount = {
-  [key: string]: string;
+  [key: string]: BigNumber | number;
 };
 
 export type OfferSummaryAssetInfo = {

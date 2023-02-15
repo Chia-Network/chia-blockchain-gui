@@ -126,7 +126,7 @@ export default function NotificationSendDialog(props: NotificationSendDialogProp
     setIsSubmitting(true);
 
     try {
-      const result = await sendNotifications({
+      const result = await sendNotification({
         target: targetPuzzleHash,
         amount: amountMojos,
         message: hexMessage,
