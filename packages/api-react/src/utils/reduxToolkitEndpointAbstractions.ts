@@ -4,7 +4,7 @@ import type { BaseQueryFn } from '@reduxjs/toolkit/query/react';
 import type MethodFirstParameter from '../@types/MethodFirstParameter';
 import type MethodReturnType from '../@types/MethodReturnType';
 
-export default function query<
+export function query<
   TagTypes extends string,
   ReducerPath extends string,
   Builder extends EndpointBuilder<BaseQueryFn, TagTypes, ReducerPath>,
@@ -28,6 +28,39 @@ export default function query<
   } = {} // Omit<Parameters<typeof build.query<MethodReturnType<TClass, Method>, MethodFirstParameter<TClass, Method>>>[0], 'query'> = {}
 ) {
   return build.query<MethodReturnType<TClass, Method>, MethodFirstParameter<TClass, Method>>({
+    ...options,
+    query: (args) => ({
+      service,
+      command,
+      args,
+    }),
+  });
+}
+
+export function mutation<
+  TagTypes extends string,
+  ReducerPath extends string,
+  Builder extends EndpointBuilder<BaseQueryFn, TagTypes, ReducerPath>,
+  TClass extends new (...args: any) => any,
+  Method extends keyof InstanceType<TClass> & string
+>(
+  build: Builder,
+  service: TClass,
+  command: Method,
+  options: {
+    transformResponse?: (response: MethodReturnType<TClass, Method>) => any;
+    onCacheEntryAdded?: Parameters<
+      typeof build.mutation<MethodReturnType<TClass, Method>, MethodFirstParameter<TClass, Method>>
+    >[0]['onCacheEntryAdded'];
+    providesTags?: Parameters<
+      typeof build.mutation<MethodReturnType<TClass, Method>, MethodFirstParameter<TClass, Method>>
+    >[0]['providesTags'];
+    invalidatesTags?: Parameters<
+      typeof build.mutation<MethodReturnType<TClass, Method>, MethodFirstParameter<TClass, Method>>
+    >[0]['invalidatesTags'];
+  } = {} // Omit<Parameters<typeof build.mutation<MethodReturnType<TClass, Method>, MethodFirstParameter<TClass, Method>>>[0], 'query'> = {}
+) {
+  return build.mutation<MethodReturnType<TClass, Method>, MethodFirstParameter<TClass, Method>>({
     ...options,
     query: (args) => ({
       service,

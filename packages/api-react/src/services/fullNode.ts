@@ -1,32 +1,28 @@
-import { FullNode, Service } from '@chia-network/api';
-import type { Block, BlockRecord, BlockHeader, BlockchainState, FullNodeConnection } from '@chia-network/api';
+import { FullNode } from '@chia-network/api';
+
 // import MethodReturnType from '../@types/MethodReturnType'
 // import MethodFirstParameter from '../@types/MethodFirstParameter'
 
 import api, { baseQuery } from '../api';
 import onCacheEntryAddedInvalidate from '../utils/onCacheEntryAddedInvalidate';
-import query from '../utils/query';
+import { query, mutation } from '../utils/reduxToolkitEndpointAbstractions';
 
 const apiWithTag = api.enhanceEndpoints({ addTagTypes: ['BlockchainState', 'FeeEstimate', 'FullNodeConnections'] });
 
-// Examples with levels of abstraction
+// // Examples with levels of abstraction
 // export const myTestApi = apiWithTag.injectEndpoints({
 //   endpoints: (build) => ({
-//
-//    # No abstraction, completely custom
-//
-//    fullNodePing: build.query<Awaited<ReturnType<FullNode['ping']>>['success'], Parameters<FullNode['ping']>>({
-//      query: () => ({
-//        command: 'ping',
-//        service: FullNode,
-//      }),
-//      transformResponse: (response: any) => response?.success,
-//    }),
-//
-//
-//    # Types helpers abstraction
-//
-//     // Custom example
+//     // # No abstraction, completely custom
+
+//     fullNodePing: build.query<Awaited<ReturnType<FullNode['ping']>>['success'], Parameters<FullNode['ping']>>({
+//       query: () => ({
+//         command: 'ping',
+//         service: FullNode,
+//       }),
+//       transformResponse: (response: any) => response?.success,
+//     }),
+
+//     // # Types helpers abstraction
 //     fullNodePing: build.query<
 //       MethodReturnType<typeof FullNode, 'getBlockRecords'>,
 //       MethodFirstParameter<typeof FullNode, 'getBlockRecords'>
@@ -37,10 +33,9 @@ const apiWithTag = api.enhanceEndpoints({ addTagTypes: ['BlockchainState', 'FeeE
 //       }),
 //       transformResponse: (response: any) => response?.success,
 //     }),
-//
-//
-//    # Full abstraction <- Most commonly used
-//
+
+//     // # Full abstraction <- Most commonly used
+
 //     testFunction: query(build, FullNode, 'getBlockRecords', {
 //       transformResponse: (response) => response?.success,
 //     }),
@@ -124,32 +119,11 @@ export const fullNodeApi = apiWithTag.injectEndpoints({
       ]),
     }),
 
-    openFullNodeConnection: build.mutation<
-      FullNodeConnection,
-      {
-        host: string;
-        port: number;
-      }
-    >({
-      query: ({ host, port }) => ({
-        command: 'openConnection',
-        service: FullNode,
-        args: [host, port],
-      }),
+    openFullNodeConnection: mutation(build, FullNode, 'openConnection', {
       invalidatesTags: [{ type: 'FullNodeConnections', id: 'LIST' }],
     }),
 
-    closeFullNodeConnection: build.mutation<
-      FullNodeConnection,
-      {
-        nodeId: string;
-      }
-    >({
-      query: ({ nodeId }) => ({
-        command: 'closeConnection',
-        service: FullNode,
-        args: [nodeId],
-      }),
+    closeFullNodeConnection: mutation(build, FullNode, 'closeConnection', {
       invalidatesTags: (_result, _error, { nodeId }) => [
         { type: 'FullNodeConnections', id: 'LIST' },
         { type: 'FullNodeConnections', id: nodeId },
