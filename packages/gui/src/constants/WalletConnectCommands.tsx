@@ -427,12 +427,6 @@ const walletConnectCommands: WalletConnectCommand[] = [
         label: <Trans>Name</Trans>,
         type: 'string',
       },
-      {
-        name: 'fee',
-        label: <Trans>Fee</Trans>,
-        type: 'BigNumber',
-        displayComponent: (value) => <MojoToChia value={value} />,
-      },
     ],
   },
 

@@ -15,8 +15,6 @@ const Color = {
 const StyledFlexContainer = styled(({ ...rest }) => <Flex {...rest} />)`
   position: relative;
   top: -1px;
-  left: -8px;
-  width: 15px;
 `;
 
 export type StateComponentProps = {
