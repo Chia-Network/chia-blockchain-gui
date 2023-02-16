@@ -2,7 +2,6 @@ import EventEmitter from 'events';
 
 import { isUndefined, omitBy } from 'lodash';
 
-import type Response from '../@types/Response';
 import type Client from '../Client';
 import Message from '../Message';
 import ServiceName from '../constants/ServiceName';
@@ -108,8 +107,8 @@ export default abstract class Service extends EventEmitter {
     return response?.data as Data;
   }
 
-  async ping(): Promise<Response> {
-    return this.command('ping', undefined, undefined, 1000);
+  async ping() {
+    return this.command<void>('ping', undefined, undefined, 1000);
   }
 
   onCommand(

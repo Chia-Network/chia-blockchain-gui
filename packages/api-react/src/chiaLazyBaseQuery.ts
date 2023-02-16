@@ -74,6 +74,7 @@ const chiaLazyBaseQuery: BaseQueryFn<ServiceArg | ClientArg, unknown, unknown, u
     command,
     args,
   };
+  const newArgs = Array.isArray(args) ? args : [args];
 
   if (mockResponse) {
     return {
@@ -90,7 +91,7 @@ const chiaLazyBaseQuery: BaseQueryFn<ServiceArg | ClientArg, unknown, unknown, u
       }
 
       return {
-        data: (await instance[command](...args)) ?? null,
+        data: (await instance[command](...newArgs)) ?? null,
         meta,
       };
     } catch (error) {
@@ -109,7 +110,7 @@ const chiaLazyBaseQuery: BaseQueryFn<ServiceArg | ClientArg, unknown, unknown, u
     }
 
     return {
-      data: (await instance[command](...args)) ?? null,
+      data: (await instance[command](...newArgs)) ?? null,
       meta,
     };
   } catch (error) {
