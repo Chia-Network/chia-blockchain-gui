@@ -209,7 +209,7 @@ export const walletApi = apiWithTag.injectEndpoints({
       transformResponse: (response: any) => {
         const id = Object.keys(response)[0];
         return {
-          [id]: response[id][id][0],
+          [id]: response[id][id]?.[0],
         };
       },
     }),
