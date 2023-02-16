@@ -94,7 +94,7 @@ const getCols = (type: WalletType, isSyncing, getOfferRecord, navigate) => [
     width: '100%',
     field: (row: Row, metadata) => {
       const { confirmed: isConfirmed, memos } = row;
-      const hasMemos = !!memos && !!Object.values(memos).length;
+      const hasMemos = !!memos && !!Object.keys(memos).length && !!memos[Object.keys(memos)[0]];
       const isRetire = row.toAddress === metadata.retireAddress;
       const isOffer = row.toAddress === metadata.offerTakerAddress;
       const shouldObscureAddress = isRetire || isOffer;
@@ -215,10 +215,10 @@ export default function WalletHistory(props: Props) {
   } = useWalletTransactions(walletId, 10, 0, 'RELEVANCE');
 
   React.useEffect(() => {
-    if (transactionWithoutIncomingMemos?.length) {
-      setTransactions(transactionWithoutIncomingMemos);
+    if (!isWalletTransactionsLoading) {
+      setTransactions(transactionWithoutIncomingMemos ?? []);
     }
-  }, [transactionWithoutIncomingMemos]);
+  }, [transactionWithoutIncomingMemos, isWalletTransactionsLoading]);
 
   const feeUnit = useCurrencyCode();
   const [getOfferRecord] = useGetOfferRecordMutation();
@@ -265,17 +265,30 @@ export default function WalletHistory(props: Props) {
         metadata={metadata}
         expandedCellShift={1}
         uniqueField="name"
-        onToggleExpand={async (rowId: string, wasExpanded: boolean) => {
-          if (wasExpanded) {
-            const memos = mapMemos[rowId] || (await getTransactionMemo({ transactionId: rowId.split('-')[0] })).data;
-            mapMemos[rowId] = memos;
-            const newTransactions = transactions.map((transaction) =>
-              transaction.name === rowId.split('-')[0] && memos && Object.keys(memos).length > 0
-                ? { ...transaction, memos }
-                : transaction
-            );
-            setTransactions(newTransactions);
+        onToggleExpand={async (rowId: string, wasExpanded: boolean, rowData: Transaction) => {
+          const { name: transactionId, type: transactionType } = rowData ?? {};
+          let { memos } = rowData ?? {};
+
+          // We're only interested in attempting to load memos if expanding an incoming txn and the txn doesn't already have memos
+          if (!wasExpanded || transactionType !== TransactionType.INCOMING || Object.keys(memos).length > 0) {
+            return;
           }
+
+          // Use previously cached memos if available
+          memos = mapMemos[rowId];
+
+          // memos is null if we've already tried to fetch memos for this txn and there weren't any
+          if (!memos && memos !== null) {
+            memos = (await getTransactionMemo({ transactionId })).data;
+            mapMemos[rowId] = memos ?? null;
+          }
+
+          const newTransactions = transactions.map((transaction) =>
+            transaction.name === transactionId && memos && Object.keys(memos).length > 0
+              ? { ...transaction, memos }
+              : transaction
+          );
+          setTransactions(newTransactions);
         }}
         // eslint-disable-next-line react/no-unstable-nested-components -- It would be risky to refactor without tests
         expandedField={(row) => {
