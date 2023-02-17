@@ -16,6 +16,7 @@ import {
   mojoToChia,
   mojoToCAT,
   FormatLargeNumber,
+  truncateValue,
 } from '@chia-network/core';
 import type { Row } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
@@ -91,63 +92,13 @@ const getCols = (type: WalletType, isSyncing, getOfferRecord, navigate) => [
     },
   },
   {
-    width: '100%',
-    field: (row: Row, metadata) => {
-      const { confirmed: isConfirmed, memos } = row;
-      const hasMemos = !!memos && !!Object.keys(memos).length && !!memos[Object.keys(memos)[0]];
-      const isRetire = row.toAddress === metadata.retireAddress;
-      const isOffer = row.toAddress === metadata.offerTakerAddress;
-      const shouldObscureAddress = isRetire || isOffer;
-
-      return (
-        <Flex
-          flexDirection="column"
-          gap={1}
-          onClick={(event) => {
-            if (!isSyncing) {
-              handleRowClick(event, row, getOfferRecord, navigate);
-            }
-          }}
-        >
-          <Tooltip
-            title={
-              <Flex flexDirection="column" gap={1}>
-                {shouldObscureAddress && (
-                  <StyledWarning>
-                    <Trans>This is not a valid address for sending funds to</Trans>
-                  </StyledWarning>
-                )}
-                <Flex flexDirection="row" alignItems="center" gap={1}>
-                  <Box maxWidth={200}>{row.toAddress}</Box>
-                  {!shouldObscureAddress && <CopyToClipboard value={row.toAddress} fontSize="small" />}
-                </Flex>
-              </Flex>
-            }
-          >
-            <span>{shouldObscureAddress ? `${row.toAddress.slice(0, 20)}...` : row.toAddress}</span>
-          </Tooltip>
-          <Flex gap={0.5}>
-            {isConfirmed ? (
-              <Chip size="small" variant="outlined" label={<Trans>Confirmed</Trans>} />
-            ) : (
-              <Chip size="small" color="primary" variant="outlined" label={<Trans>Pending</Trans>} />
-            )}
-            {hasMemos && <Chip size="small" variant="outlined" label={<Trans>Memo</Trans>} />}
-            {isRetire && <Chip size="small" variant="outlined" label={<Trans>Retire</Trans>} />}
-            {isOffer && <Chip size="small" variant="outlined" label={<Trans>Offer Accepted</Trans>} />}
-          </Flex>
-        </Flex>
-      );
-    },
-    title: <Trans>To</Trans>,
-  },
-  {
     field: (row: Row) => (
       <Typography color="textSecondary" variant="body2">
         {moment(row.createdAtTime * 1000).format('LLL')}
       </Typography>
     ),
     title: <Trans>Date</Trans>,
+    forceWrap: true,
   },
   {
     field: (row: Row, metadata) => {
@@ -180,6 +131,58 @@ const getCols = (type: WalletType, isSyncing, getOfferRecord, navigate) => [
     title: <Trans>Fee</Trans>,
   },
   {
+    field: (row: Row, metadata) => {
+      const { confirmed: isConfirmed, memos } = row;
+      const hasMemos = !!memos && !!Object.keys(memos).length && !!memos[Object.keys(memos)[0]];
+      const isRetire = row.toAddress === metadata.retireAddress;
+      const isOffer = row.toAddress === metadata.offerTakerAddress;
+      const shouldObscureAddress = isRetire || isOffer;
+
+      return (
+        <Flex
+          flexDirection="column"
+          gap={1}
+          onClick={(event) => {
+            if (!isSyncing) {
+              handleRowClick(event, row, getOfferRecord, navigate);
+            }
+          }}
+        >
+          <Tooltip
+            title={
+              <Flex flexDirection="column" gap={1}>
+                {shouldObscureAddress && (
+                  <StyledWarning>
+                    <Trans>This is not a valid address for sending funds to</Trans>
+                  </StyledWarning>
+                )}
+                <Flex flexDirection="row" alignItems="center" gap={1}>
+                  <Box maxWidth={200}>{row.toAddress}</Box>
+                  {!shouldObscureAddress && <CopyToClipboard value={row.toAddress} fontSize="small" />}
+                </Flex>
+              </Flex>
+            }
+          >
+            <span>{truncateValue(row.toAddress, {})}</span>
+          </Tooltip>
+          <Flex gap={0.5}>
+            {isConfirmed ? (
+              <Chip size="small" variant="outlined" label={<Trans>Confirmed</Trans>} />
+            ) : (
+              <Chip size="small" color="primary" variant="outlined" label={<Trans>Pending</Trans>} />
+            )}
+            {hasMemos && <Chip size="small" variant="outlined" label={<Trans>Memo</Trans>} />}
+            {isRetire && <Chip size="small" variant="outlined" label={<Trans>Retire</Trans>} />}
+            {isOffer && <Chip size="small" variant="outlined" label={<Trans>Offer Accepted</Trans>} />}
+          </Flex>
+        </Flex>
+      );
+    },
+    title: <Trans>To</Trans>,
+  },
+
+  {
+    width: '60px',
     field: (row: Row, _metadata, isExpanded, toggleExpand) => (
       <IconButton aria-label="expand row" size="small" onClick={() => toggleExpand(row)}>
         {isExpanded ? <ExpandLessIcon /> : <ExpandMoreIcon />}
