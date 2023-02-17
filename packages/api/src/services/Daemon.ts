@@ -13,35 +13,26 @@ export default class Daemon extends Service {
     });
   }
 
-  registerService(service: string) {
+  registerService(args: { service: string }) {
     return this.command<{
       queue: [PlotQueueItem];
-    }>('register_service', {
-      service,
-    });
+    }>('register_service', args);
   }
 
-  startService(service: string, testing?: boolean) {
+  startService(args: { service: string; testing?: boolean }) {
     return this.command<{
       service: string;
-    }>('start_service', {
-      service,
-      testing: testing ? true : undefined,
-    });
+    }>('start_service', args);
   }
 
-  stopService(service: string) {
-    return this.command<void>('stop_service', {
-      service,
-    });
+  stopService(args: { service: string }) {
+    return this.command<void>('stop_service', args);
   }
 
-  isRunning(service: string) {
+  isRunning(args: { service: string }) {
     return this.command<{
       isRunning: boolean;
-    }>('is_running', {
-      service,
-    });
+    }>('is_running', args);
   }
 
   runningServices() {
@@ -50,82 +41,60 @@ export default class Daemon extends Service {
     }>('running_services');
   }
 
-  addPrivateKey(mnemonic: string, label?: string) {
+  addPrivateKey(args: { mnemonic: string; label?: string }) {
     return this.command<{
       fingerprint: string;
-    }>('add_private_key', {
-      mnemonic,
-      label,
-    });
+    }>('add_private_key', args);
   }
 
-  getKey(fingerprint: string, includeSecrets?: boolean) {
+  getKey(args: { fingerprint: string; includeSecrets?: boolean }) {
     return this.command<{
       key: KeyData;
-    }>('get_key', {
-      fingerprint,
-      includeSecrets,
-    });
+    }>('get_key', args);
   }
 
-  getKeys(includeSecrets?: boolean) {
+  getKeys(args: { includeSecrets?: boolean }) {
     return this.command<{
       keys: [KeyData];
-    }>('get_keys', {
-      includeSecrets,
-    });
+    }>('get_keys', args);
   }
 
-  setLabel(fingerprint: string, label: string) {
-    return this.command<void>('set_label', {
-      fingerprint,
-      label,
-    });
+  setLabel(args: { fingerprint: string; label: string }) {
+    return this.command<void>('set_label', args);
   }
 
-  deleteLabel(fingerprint: string) {
-    return this.command<void>('delete_label', {
-      fingerprint,
-    });
+  deleteLabel(args: { fingerprint: string }) {
+    return this.command<void>('delete_label', args);
   }
 
   keyringStatus() {
     return this.command<KeyringStatus>('keyring_status');
   }
 
-  setKeyringPassphrase(
-    currentPassphrase?: string | null,
-    newPassphrase?: string,
-    passphraseHint?: string,
-    savePassphrase?: boolean
-  ) {
-    return this.command<void>('set_keyring_passphrase', {
-      currentPassphrase,
-      newPassphrase,
-      passphraseHint,
-      savePassphrase,
-    });
+  setKeyringPassphrase(args: {
+    currentPassphrase?: string | null;
+    newPassphrase?: string;
+    passphraseHint?: string;
+    savePassphrase?: boolean;
+  }) {
+    return this.command<void>('set_keyring_passphrase', args);
   }
 
-  removeKeyringPassphrase(currentPassphrase: string) {
-    return this.command<void>('remove_keyring_passphrase', {
-      currentPassphrase,
-    });
+  removeKeyringPassphrase(args: { currentPassphrase: string }) {
+    return this.command<void>('remove_keyring_passphrase', args);
   }
 
-  migrateKeyring(passphrase: string, passphraseHint: string, savePassphrase: boolean, cleanupLegacyKeyring: boolean) {
-    return this.command<void>('migrate_keyring', {
-      passphrase,
-      passphraseHint,
-      savePassphrase,
-      cleanupLegacyKeyring,
-    });
+  migrateKeyring(args: {
+    passphrase: string;
+    passphraseHint: string;
+    savePassphrase: boolean;
+    cleanupLegacyKeyring: boolean;
+  }) {
+    return this.command<void>('migrate_keyring', args);
   }
 
-  unlockKeyring(key: string) {
-    return this.command<void>('unlock_keyring', {
-      key,
-    });
+  unlockKeyring(args: { key: string }) {
+    return this.command<void>('unlock_keyring', args);
   }
 
   getPlotters() {
@@ -134,51 +103,90 @@ export default class Daemon extends Service {
     }>('get_plotters');
   }
 
-  stopPlotting(id: string) {
+  stopPlotting(args: { id: string }) {
     return this.command('stop_plotting', {
-      id,
+      ...args,
       service: ServiceName.PLOTTER,
     });
   }
 
-  startPlotting(
-    plotterName: string, // plotterName
-    k: number, // plotSize
-    n: number, // plotCount
-    t: string, // workspaceLocation
-    t2: string, // workspaceLocation2
-    d: string, // finalLocation
-    b: number, // maxRam
-    u: number, // numBuckets
-    r: number, // numThreads,
-    queue: string, // queue
-    a: number | undefined, // fingerprint
-    parallel: boolean, // parallel
-    delay: number, // delay
-    e?: boolean, // disableBitfieldPlotting
-    x?: boolean, // excludeFinalDir
-    overrideK?: boolean, // overrideK
-    f?: string, // farmerPublicKey
-    p?: string, // poolPublicKey
-    c?: string, // poolContractAddress
-    mm_v?: number, // madmaxNumBucketsPhase3,
-    mm_G?: boolean, // madmaxTempToggle,
-    mm_K?: number, // madmaxThreadMultiplier,
-    plot_type?: string, // 'diskplot' or 'ramplot'
-    bb_disable_numa?: boolean, // bladebitDisableNUMA,
-    bb_warm_start?: boolean, // bladebitWarmStart,
-    bb_no_cpu_affinity?: boolean, // bladebitNoCpuAffinity
-    bbdisk_cache?: number, // bladebitDiskCache
-    bbdisk_f1_threads?: number, // bladebitDiskF1Threads
-    bbdisk_fp_threads?: number, // bladebitDiskFpThreads
-    bbdisk_c_threads?: number, // bladebitDiskCThreads
-    bbdisk_p2_threads?: number, // bladebitDiskP2Threads
-    bbdisk_p3_threads?: number, // bladebitDiskP3Threads
-    bbdisk_alternate?: boolean, // bladebitDiskAlternate
-    bbdisk_no_t1_direct?: boolean, // bladebitDiskNoT1Direct
-    bbdisk_no_t2_direct?: boolean // bladebitDiskNoT2Direct
-  ) {
-    const args: Record<string, unknown> = {
+  // TODO refactor
+  startPlotting(inputArgs: {
+    plotterName: string; // plotterName
+    k: number; // plotSize
+    n: number; // plotCount
+    t: string; // workspaceLocation
+    t2: string; // workspaceLocation2
+    d: string; // finalLocation
+    b: number; // maxRam
+    u: number; // numBuckets
+    r: number; // numThreads,
+    queue: string; // queue
+    a: number | undefined; // fingerprint
+    parallel: boolean; // parallel
+    delay: number; // delay
+    e?: boolean; // disableBitfieldPlotting
+    x?: boolean; // excludeFinalDir
+    overrideK?: boolean; // overrideK
+    f?: string; // farmerPublicKey
+    p?: string; // poolPublicKey
+    c?: string; // poolContractAddress
+    mm_v?: number; // madmaxNumBucketsPhase3,
+    mm_G?: boolean; // madmaxTempToggle,
+    mm_K?: number; // madmaxThreadMultiplier,
+    plot_type?: string; // 'diskplot' or 'ramplot'
+    bb_disable_numa?: boolean; // bladebitDisableNUMA,
+    bb_warm_start?: boolean; // bladebitWarmStart,
+    bb_no_cpu_affinity?: boolean; // bladebitNoCpuAffinity
+    bbdisk_cache?: number; // bladebitDiskCache
+    bbdisk_f1_threads?: number; // bladebitDiskF1Threads
+    bbdisk_fp_threads?: number; // bladebitDiskFpThreads
+    bbdisk_c_threads?: number; // bladebitDiskCThreads
+    bbdisk_p2_threads?: number; // bladebitDiskP2Threads
+    bbdisk_p3_threads?: number; // bladebitDiskP3Threads
+    bbdisk_alternate?: boolean; // bladebitDiskAlternate
+    bbdisk_no_t1_direct?: boolean; // bladebitDiskNoT1Direct
+    bbdisk_no_t2_direct?: boolean; // bladebitDiskNoT2Direct
+  }) {
+    const {
+      plotterName,
+      k,
+      n,
+      t,
+      t2,
+      d,
+      b,
+      u,
+      r,
+      queue,
+      a,
+      parallel,
+      delay,
+      e,
+      x,
+      overrideK,
+      f,
+      p,
+      c,
+      mm_v,
+      mm_G,
+      mm_K,
+      plot_type,
+      bb_disable_numa,
+      bb_warm_start,
+      bb_no_cpu_affinity,
+      bbdisk_cache,
+      bbdisk_f1_threads,
+      bbdisk_fp_threads,
+      bbdisk_c_threads,
+      bbdisk_p2_threads,
+      bbdisk_p3_threads,
+      bbdisk_alternate,
+      bbdisk_no_t1_direct,
+      bbdisk_no_t2_direct,
+    } = inputArgs;
+
+    const outputArgs: Record<string, unknown> = {
       service: ServiceName.PLOTTER,
       plotter: plotterName.startsWith('bladebit') ? 'bladebit' : plotterName,
       k,
@@ -197,44 +205,44 @@ export default class Daemon extends Service {
       overrideK,
     };
 
-    if (a) args.a = a;
-    if (f) args.f = f;
-    if (p) args.p = p;
-    if (c) args.c = c;
+    if (a) outputArgs.a = a;
+    if (f) outputArgs.f = f;
+    if (p) outputArgs.p = p;
+    if (c) outputArgs.c = c;
     // madmaxNumBucketsPhase3
-    if (mm_v) args.v = mm_v;
+    if (mm_v) outputArgs.v = mm_v;
     // madmaxTempToggle
-    if (mm_G) args.G = mm_G;
+    if (mm_G) outputArgs.G = mm_G;
     // madmaxThreadMultiplier
-    if (mm_K) args.K = mm_K;
+    if (mm_K) outputArgs.K = mm_K;
     // 'ramplot' or 'diskplot'
-    if (plot_type) args.plot_type = plot_type;
+    if (plot_type) outputArgs.plot_type = plot_type;
     // bladebitDisableNUMA
-    if (bb_disable_numa) args.m = bb_disable_numa;
+    if (bb_disable_numa) outputArgs.m = bb_disable_numa;
     // bladebitWarmStart
-    if (bb_warm_start) args.w = bb_warm_start;
+    if (bb_warm_start) outputArgs.w = bb_warm_start;
     // bladebitNoCpuAffinity
-    if (bb_no_cpu_affinity) args.no_cpu_affinity = bb_no_cpu_affinity;
+    if (bb_no_cpu_affinity) outputArgs.no_cpu_affinity = bb_no_cpu_affinity;
     // bladebitDiskCache
-    if (bbdisk_cache) args.cache = `${bbdisk_cache}G`;
+    if (bbdisk_cache) outputArgs.cache = `${bbdisk_cache}G`;
     // bladebitDiskF1Threads
-    if (bbdisk_f1_threads) args.f1_threads = bbdisk_f1_threads;
+    if (bbdisk_f1_threads) outputArgs.f1_threads = bbdisk_f1_threads;
     // bladebitDiskFpThreads
-    if (bbdisk_fp_threads) args.fp_threads = bbdisk_fp_threads;
+    if (bbdisk_fp_threads) outputArgs.fp_threads = bbdisk_fp_threads;
     // bladebitDiskCThreads
-    if (bbdisk_c_threads) args.c_threads = bbdisk_c_threads;
+    if (bbdisk_c_threads) outputArgs.c_threads = bbdisk_c_threads;
     // bladebitDiskP2Threads
-    if (bbdisk_p2_threads) args.p2_threads = bbdisk_p2_threads;
+    if (bbdisk_p2_threads) outputArgs.p2_threads = bbdisk_p2_threads;
     // bladebitDiskP3Threads
-    if (bbdisk_p3_threads) args.p3_threads = bbdisk_p3_threads;
+    if (bbdisk_p3_threads) outputArgs.p3_threads = bbdisk_p3_threads;
     // bladebitDiskAlternate
-    if (bbdisk_alternate) args.alternate = bbdisk_alternate;
+    if (bbdisk_alternate) outputArgs.alternate = bbdisk_alternate;
     // bladebitDiskNoT1Direct
-    if (bbdisk_no_t1_direct) args.no_t1_direct = bbdisk_no_t1_direct;
+    if (bbdisk_no_t1_direct) outputArgs.no_t1_direct = bbdisk_no_t1_direct;
     // bladebitDiskNoT2Direct
-    if (bbdisk_no_t2_direct) args.no_t2_direct = bbdisk_no_t2_direct;
+    if (bbdisk_no_t2_direct) outputArgs.no_t2_direct = bbdisk_no_t2_direct;
 
-    return this.command<{ ids: string[] }>('start_plotting', args, undefined, undefined, true);
+    return this.command<{ ids: string[] }>('start_plotting', outputArgs, undefined, undefined, true);
   }
 
   exit() {
