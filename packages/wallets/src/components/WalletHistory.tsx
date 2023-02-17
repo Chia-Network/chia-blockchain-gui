@@ -1,5 +1,10 @@
 import { WalletType, TransactionType, toBech32m } from '@chia-network/api';
-import { useGetOfferRecordMutation, useGetSyncStatusQuery } from '@chia-network/api-react';
+import type { Transaction } from '@chia-network/api';
+import {
+  useGetOfferRecordMutation,
+  useGetSyncStatusQuery,
+  useGetTransactionMemoMutation,
+} from '@chia-network/api-react';
 import {
   Card,
   CopyToClipboard,
@@ -89,7 +94,7 @@ const getCols = (type: WalletType, isSyncing, getOfferRecord, navigate) => [
     width: '100%',
     field: (row: Row, metadata) => {
       const { confirmed: isConfirmed, memos } = row;
-      const hasMemos = !!memos && !!Object.values(memos).length;
+      const hasMemos = !!memos && !!Object.keys(memos).length && !!memos[Object.keys(memos)[0]];
       const isRetire = row.toAddress === metadata.retireAddress;
       const isOffer = row.toAddress === metadata.offerTakerAddress;
       const shouldObscureAddress = isRetire || isOffer;
@@ -176,7 +181,7 @@ const getCols = (type: WalletType, isSyncing, getOfferRecord, navigate) => [
   },
   {
     field: (row: Row, _metadata, isExpanded, toggleExpand) => (
-      <IconButton aria-label="expand row" size="small" onClick={toggleExpand}>
+      <IconButton aria-label="expand row" size="small" onClick={() => toggleExpand(row)}>
         {isExpanded ? <ExpandLessIcon /> : <ExpandMoreIcon />}
       </IconButton>
     ),
@@ -186,6 +191,8 @@ const getCols = (type: WalletType, isSyncing, getOfferRecord, navigate) => [
 type Props = {
   walletId: number;
 };
+
+const mapMemos: any = {};
 
 export default function WalletHistory(props: Props) {
   const { walletId } = props;
@@ -197,17 +204,26 @@ export default function WalletHistory(props: Props) {
     }
   );
   const { wallet, loading: isWalletLoading, unit } = useWallet(walletId);
+  const [transactions, setTransactions] = React.useState<Transaction[]>([]);
   const {
-    transactions,
+    transactions: transactionWithoutIncomingMemos,
     isLoading: isWalletTransactionsLoading,
     page,
     rowsPerPage,
     count,
     pageChange,
   } = useWalletTransactions(walletId, 10, 0, 'RELEVANCE');
+
+  React.useEffect(() => {
+    if (!isWalletTransactionsLoading) {
+      setTransactions(transactionWithoutIncomingMemos ?? []);
+    }
+  }, [transactionWithoutIncomingMemos, isWalletTransactionsLoading]);
+
   const feeUnit = useCurrencyCode();
   const [getOfferRecord] = useGetOfferRecordMutation();
   const { navigate } = useSerializedNavigationState();
+  const [getTransactionMemo] = useGetTransactionMemoMutation();
 
   const isLoading = isWalletTransactionsLoading || isWalletLoading;
   const isSyncing = isWalletSyncLoading || !walletState || !!walletState?.syncing;
@@ -249,6 +265,31 @@ export default function WalletHistory(props: Props) {
         metadata={metadata}
         expandedCellShift={1}
         uniqueField="name"
+        onToggleExpand={async (rowId: string, wasExpanded: boolean, rowData: Transaction) => {
+          const { name: transactionId, type: transactionType } = rowData ?? {};
+          let { memos } = rowData ?? {};
+
+          // We're only interested in attempting to load memos if expanding an incoming txn and the txn doesn't already have memos
+          if (!wasExpanded || transactionType !== TransactionType.INCOMING || Object.keys(memos).length > 0) {
+            return;
+          }
+
+          // Use previously cached memos if available
+          memos = mapMemos[rowId];
+
+          // memos is null if we've already tried to fetch memos for this txn and there weren't any
+          if (!memos && memos !== null) {
+            memos = (await getTransactionMemo({ transactionId })).data;
+            mapMemos[rowId] = memos ?? null;
+          }
+
+          const newTransactions = transactions.map((transaction) =>
+            transaction.name === transactionId && memos && Object.keys(memos).length > 0
+              ? { ...transaction, memos }
+              : transaction
+          );
+          setTransactions(newTransactions);
+        }}
         // eslint-disable-next-line react/no-unstable-nested-components -- It would be risky to refactor without tests
         expandedField={(row) => {
           const { confirmedAtHeight, memos } = row;

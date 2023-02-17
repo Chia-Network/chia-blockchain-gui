@@ -200,6 +200,20 @@ export const walletApi = apiWithTag.injectEndpoints({
       ]),
     }),
 
+    getTransactionMemo: build.mutation<any, any>({
+      query: ({ transactionId }) => ({
+        command: 'getTransactionMemo',
+        service: WalletService,
+        args: [transactionId],
+      }),
+      transformResponse: (response: any) => {
+        const id = Object.keys(response)[0];
+        return {
+          [id]: response[id][id]?.[0],
+        };
+      },
+    }),
+
     getPwStatus: build.query<
       any,
       {
@@ -1156,7 +1170,7 @@ export const walletApi = apiWithTag.injectEndpoints({
         host?: string;
       }
     >({
-      query: ({ amount, fee, host }) => ({
+      query: ({ amount, host }) => ({
         command: 'createNewWallet',
         service: CAT,
         args: [amount, host],
@@ -1174,7 +1188,7 @@ export const walletApi = apiWithTag.injectEndpoints({
         host?: string;
       }
     >({
-      query: ({ assetId, , host }) => ({
+      query: ({ assetId, host }) => ({
         command: 'createWalletForExisting',
         service: CAT,
         args: [assetId, host],
@@ -2223,6 +2237,7 @@ export const {
   useGetLoggedInFingerprintQuery,
   useGetWalletsQuery,
   useGetTransactionQuery,
+  useGetTransactionMemoMutation,
   useGetPwStatusQuery,
   usePwAbsorbRewardsMutation,
   usePwJoinPoolMutation,

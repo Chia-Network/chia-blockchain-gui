@@ -105,7 +105,11 @@ export default function SelectKeyItem(props: SelectKeyItemProps) {
         </Box>
         {currentFingerprint === fingerprint && (
           <Box position="absolute" bottom={-5} right={1}>
-            <Chip size="small" label={<WalletStatus variant="body2" indicator reversed color="textColor" />} />
+            <Chip
+              size="small"
+              sx={{ height: '29px', position: 'relative', top: '4px', paddingRight: '5px', paddingTop: '1px' }}
+              label={<WalletStatus variant="body2" indicator reversed color="textColor" />}
+            />
           </Box>
         )}
       </Flex>
