@@ -187,11 +187,11 @@ export default function NFTGallery() {
   const [nfts, setNfts] = useState<NFTInfo[]>([]);
   const [hideObjectionableContent] = useHideObjectionableContent();
   const { isSyncingCache } = useSyncCache();
-  const { allowNFTsFiltered, isDoneLoadingAllowedNFTs } = useAllowFilteredShow(
-    filteredNFTs,
-    hideObjectionableContent,
-    isLoading || isSyncingCache
-  );
+  const {
+    allowNFTsFiltered,
+    isDoneLoadingAllowedNFTs,
+    isLoading: isLoadingAllowedNFTs,
+  } = useAllowFilteredShow(filteredNFTs, hideObjectionableContent, isLoading || isSyncingCache);
 
   const [filtersShown, setFiltersShown] = useState<string[]>([]);
   const typesFilterRef = React.useRef<HTMLInputElement>(null);
@@ -208,14 +208,14 @@ export default function NFTGallery() {
       allowNFTsFiltered.forEach((nft) => {
         allowNFTsFilteredObject[nft.$nftId] = nft;
       });
-      allowNFTsFilteredNftIds = allowNFTsFiltered.map((nft) => nft.nftId);
+      allowNFTsFilteredNftIds = allowNFTsFiltered.map((nft) => nft.$nftId);
       setNfts(
         allowNFTsFiltered.length > maxNFTsPerPage
           ? allowNFTsFiltered.filter((_: any, idx: number) => idx < maxNFTsPerPage)
           : allowNFTsFiltered
       );
     }
-  }, [allowNFTsFiltered]);
+  }, [allowNFTsFiltered, allowNFTsFiltered.length]);
 
   const applyTypeFilter = React.useCallback(
     (nft: NFTInfo) => {
@@ -378,7 +378,7 @@ export default function NFTGallery() {
 
   const [selectedNFTIds, setSelectedNFTIds] = useLocalStorage('gallery-selected-nfts', []);
 
-  if (isLoading) {
+  if (isLoading || isLoadingAllowedNFTs) {
     return (
       <LoadingWrapper>
         <Loading center />
@@ -600,7 +600,7 @@ export default function NFTGallery() {
       }
     >
       <div id="scroll-helper" />
-      {!nfts?.length && !isLoading && !isSyncingCache ? (
+      {!nfts?.length && !isLoading && !isLoadingAllowedNFTs && !isSyncingCache ? (
         <NFTGalleryHero />
       ) : (
         <>
