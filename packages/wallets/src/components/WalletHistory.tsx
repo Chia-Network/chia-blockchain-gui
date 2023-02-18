@@ -182,7 +182,7 @@ const getCols = (type: WalletType, isSyncing, getOfferRecord, navigate) => [
   },
 
   {
-    width: '60px',
+    width: '66px',
     field: (row: Row, _metadata, isExpanded, toggleExpand) => (
       <IconButton aria-label="expand row" size="small" onClick={() => toggleExpand(row)}>
         {isExpanded ? <ExpandLessIcon /> : <ExpandMoreIcon />}
