@@ -13,23 +13,23 @@ export default class Daemon extends Service {
     });
   }
 
-  registerService(args: { service: string }) {
+  registerService(args: { service: ServiceName }) {
     return this.command<{
       queue: [PlotQueueItem];
     }>('register_service', args);
   }
 
-  startService(args: { service: string; testing?: boolean }) {
+  startService(args: { service: ServiceName; testing?: boolean }) {
     return this.command<{
-      service: string;
+      service: ServiceName;
     }>('start_service', args);
   }
 
-  stopService(args: { service: string }) {
+  stopService(args: { service: ServiceName }) {
     return this.command<void>('stop_service', args);
   }
 
-  isRunning(args: { service: string }) {
+  isRunning(args: { service: ServiceName }) {
     return this.command<{
       isRunning: boolean;
     }>('is_running', args);
@@ -110,137 +110,84 @@ export default class Daemon extends Service {
     });
   }
 
-  // TODO refactor
   startPlotting(inputArgs: {
-    plotterName: string; // plotterName
-    k: number; // plotSize
-    n: number; // plotCount
-    t: string; // workspaceLocation
-    t2: string; // workspaceLocation2
-    d: string; // finalLocation
-    b: number; // maxRam
-    u: number; // numBuckets
-    r: number; // numThreads,
-    queue: string; // queue
-    a: number | undefined; // fingerprint
-    parallel: boolean; // parallel
-    delay: number; // delay
-    e?: boolean; // disableBitfieldPlotting
-    x?: boolean; // excludeFinalDir
-    overrideK?: boolean; // overrideK
-    f?: string; // farmerPublicKey
-    p?: string; // poolPublicKey
-    c?: string; // poolContractAddress
-    mm_v?: number; // madmaxNumBucketsPhase3,
-    mm_G?: boolean; // madmaxTempToggle,
-    mm_K?: number; // madmaxThreadMultiplier,
-    plot_type?: string; // 'diskplot' or 'ramplot'
-    bb_disable_numa?: boolean; // bladebitDisableNUMA,
-    bb_warm_start?: boolean; // bladebitWarmStart,
-    bb_no_cpu_affinity?: boolean; // bladebitNoCpuAffinity
-    bbdisk_cache?: number; // bladebitDiskCache
-    bbdisk_f1_threads?: number; // bladebitDiskF1Threads
-    bbdisk_fp_threads?: number; // bladebitDiskFpThreads
-    bbdisk_c_threads?: number; // bladebitDiskCThreads
-    bbdisk_p2_threads?: number; // bladebitDiskP2Threads
-    bbdisk_p3_threads?: number; // bladebitDiskP3Threads
-    bbdisk_alternate?: boolean; // bladebitDiskAlternate
-    bbdisk_no_t1_direct?: boolean; // bladebitDiskNoT1Direct
-    bbdisk_no_t2_direct?: boolean; // bladebitDiskNoT2Direct
+    bladebitDisableNUMA: boolean;
+    bladebitWarmStart: boolean;
+    bladebitNoCpuAffinity?: boolean;
+    bladebitDiskCache?: number;
+    bladebitDiskF1Threads?: number;
+    bladebitDiskFpThreads?: number;
+    bladebitDiskCThreads?: number;
+    bladebitDiskP2Threads?: number;
+    bladebitDiskP3Threads?: number;
+    bladebitDiskAlternate?: boolean;
+    bladebitDiskNoT1Direct?: boolean;
+    bladebitDiskNoT2Direct?: boolean;
+    c?: string;
+    delay: number;
+    disableBitfieldPlotting?: boolean;
+    excludeFinalDir?: boolean;
+    farmerPublicKey?: string;
+    finalLocation: string;
+    fingerprint?: number;
+    madmaxNumBucketsPhase3?: number;
+    madmaxTempToggle?: boolean;
+    madmaxThreadMultiplier?: number;
+    maxRam: number;
+    numBuckets: number;
+    numThreads: number;
+    overrideK?: boolean;
+    parallel: boolean;
+    plotCount: number;
+    plotSize: number;
+    plotterName: string;
+    plotType?: string;
+    poolPublicKey?: string;
+    queue: string;
+    workspaceLocation: string;
+    workspaceLocation2: string;
   }) {
-    const {
-      plotterName,
-      k,
-      n,
-      t,
-      t2,
-      d,
-      b,
-      u,
-      r,
-      queue,
-      a,
-      parallel,
-      delay,
-      e,
-      x,
-      overrideK,
-      f,
-      p,
-      c,
-      mm_v,
-      mm_G,
-      mm_K,
-      plot_type,
-      bb_disable_numa,
-      bb_warm_start,
-      bb_no_cpu_affinity,
-      bbdisk_cache,
-      bbdisk_f1_threads,
-      bbdisk_fp_threads,
-      bbdisk_c_threads,
-      bbdisk_p2_threads,
-      bbdisk_p3_threads,
-      bbdisk_alternate,
-      bbdisk_no_t1_direct,
-      bbdisk_no_t2_direct,
-    } = inputArgs;
-
-    const outputArgs: Record<string, unknown> = {
-      service: ServiceName.PLOTTER,
-      plotter: plotterName.startsWith('bladebit') ? 'bladebit' : plotterName,
-      k,
-      n,
-      t,
-      t2,
-      d,
-      b,
-      u,
-      r,
-      queue,
-      parallel,
-      delay,
-      e,
-      x,
-      overrideK,
+    const conversionDict: Record<string, string> = {
+      bladebitDisableNUMA: 'm',
+      bladebitWarmStart: 'w',
+      bladebitNoCpuAffinity: 'noCpuAffinity',
+      bladebitDiskCache: 'cache',
+      bladebitDiskF1Threads: 'f1Threads',
+      bladebitDiskFpThreads: 'fpThreads',
+      bladebitDiskCThreads: 'cThreads',
+      bladebitDiskP2Threads: 'p2Threads',
+      bladebitDiskP3Threads: 'p3Threads',
+      bladebitDiskAlternate: 'alternate',
+      bladebitDiskNoT1Direct: 'noT1Direct',
+      bladebitDiskNoT2Direct: 'noT2Direct',
+      disableBitfieldPlotting: 'e',
+      excludeFinalDir: 'x',
+      farmerPublicKey: 'f',
+      finalLocation: 'd',
+      fingerprint: 'a',
+      madmaxNumBucketsPhase3: 'v',
+      madmaxTempToggle: 'G',
+      madmaxThreadMultiplier: 'K',
+      maxRam: 'b',
+      numBuckets: 'u',
+      numThreads: 'r',
+      plotCount: 'n',
+      plotSize: 'k',
+      plotterName: 'plotter',
+      poolPublicKey: 'p',
+      workspaceLocation: 't',
+      workspaceLocation2: 't2',
     };
 
-    if (a) outputArgs.a = a;
-    if (f) outputArgs.f = f;
-    if (p) outputArgs.p = p;
-    if (c) outputArgs.c = c;
-    // madmaxNumBucketsPhase3
-    if (mm_v) outputArgs.v = mm_v;
-    // madmaxTempToggle
-    if (mm_G) outputArgs.G = mm_G;
-    // madmaxThreadMultiplier
-    if (mm_K) outputArgs.K = mm_K;
-    // 'ramplot' or 'diskplot'
-    if (plot_type) outputArgs.plot_type = plot_type;
-    // bladebitDisableNUMA
-    if (bb_disable_numa) outputArgs.m = bb_disable_numa;
-    // bladebitWarmStart
-    if (bb_warm_start) outputArgs.w = bb_warm_start;
-    // bladebitNoCpuAffinity
-    if (bb_no_cpu_affinity) outputArgs.no_cpu_affinity = bb_no_cpu_affinity;
-    // bladebitDiskCache
-    if (bbdisk_cache) outputArgs.cache = `${bbdisk_cache}G`;
-    // bladebitDiskF1Threads
-    if (bbdisk_f1_threads) outputArgs.f1_threads = bbdisk_f1_threads;
-    // bladebitDiskFpThreads
-    if (bbdisk_fp_threads) outputArgs.fp_threads = bbdisk_fp_threads;
-    // bladebitDiskCThreads
-    if (bbdisk_c_threads) outputArgs.c_threads = bbdisk_c_threads;
-    // bladebitDiskP2Threads
-    if (bbdisk_p2_threads) outputArgs.p2_threads = bbdisk_p2_threads;
-    // bladebitDiskP3Threads
-    if (bbdisk_p3_threads) outputArgs.p3_threads = bbdisk_p3_threads;
-    // bladebitDiskAlternate
-    if (bbdisk_alternate) outputArgs.alternate = bbdisk_alternate;
-    // bladebitDiskNoT1Direct
-    if (bbdisk_no_t1_direct) outputArgs.no_t1_direct = bbdisk_no_t1_direct;
-    // bladebitDiskNoT2Direct
-    if (bbdisk_no_t2_direct) outputArgs.no_t2_direct = bbdisk_no_t2_direct;
+    const outputArgs: Record<string, unknown> = { service: ServiceName.PLOTTER };
+
+    Object.keys(inputArgs).forEach((key) => {
+      if (conversionDict[key]) outputArgs[conversionDict[key]] = inputArgs[key as keyof typeof inputArgs];
+      else outputArgs[key] = inputArgs[key as keyof typeof inputArgs];
+    });
+
+    if (outputArgs.plotter && (outputArgs.plotter as string).startsWith('bladebit')) outputArgs.plotter = 'bladebit';
+    if (outputArgs.cache) outputArgs.cache = `${outputArgs.cache}G`;
 
     return this.command<{ ids: string[] }>('start_plotting', outputArgs, undefined, undefined, true);
   }
