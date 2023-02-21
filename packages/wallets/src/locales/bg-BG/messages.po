@@ -18,75 +18,72 @@ msgstr ""
 "X-Crowdin-File: /main/packages/wallets/src/locales/en-US/messages.po\n"
 "X-Crowdin-File-ID: 1890\n"
 
-#: src/components/WalletHistory.tsx:209
+#: src/components/WalletHistory.tsx:109
 msgid "+"
 msgstr ""
 
-#: src/components/WalletHistory.tsx:209
+#: src/components/WalletHistory.tsx:109
 msgid "-"
 msgstr ""
 
-#: src/components/WalletHeader.tsx:80
+#: src/components/WalletHeader.tsx:62
 msgid "Actions"
 msgstr "Действие"
 
-#: src/components/cat/WalletCATCreateExistingSimple.tsx:96
+#: src/components/cat/WalletCATCreateExistingSimple.tsx:79
 msgid "Add"
 msgstr "Добави"
 
 #: src/components/cat/WalletDID.tsx:874
 #: src/components/did/WalletDID.tsx:874
 #: src/components/did/WalletDIDCreate.tsx:207
-msgid "Add Backup ID"
-msgstr ""
+#~ msgid "Add Backup ID"
+#~ msgstr ""
 
 #: src/components/hero/WalletHeroAdd.tsx:99
 #~ msgid "Add Custom Token"
 #~ msgstr "Add Custom Token"
 
-#: src/components/WalletsList.tsx:54
-#: src/components/WalletsManageTokens.tsx:174
+#: src/components/WalletsManageTokens.tsx:156
 #: src/components/cat/WalletCATCreateExistingSimple.tsx:61
-#: src/components/cat/WalletCATCreateSimple.tsx:70
+#: src/components/cat/WalletCATCreateSimple.tsx:68
 msgid "Add Token"
 msgstr ""
 
-#: src/components/cat/WalletCATCreateSimple.tsx:94
+#: src/components/cat/WalletCATCreateSimple.tsx:92
 msgid "Adding {0} token"
 msgstr ""
 
-#: src/components/WalletReceiveAddress.tsx:76
+#: src/components/WalletReceiveAddress.tsx:57
 msgid "Address"
 msgstr "Адрес"
 
-#: src/components/WalletSend.tsx:156
+#: src/components/WalletSend.tsx:172
 #: src/components/cat/WalletCATSend.tsx:195
-#: src/components/rateLimited/WalletRateLimited.jsx:700
 msgid "Address / Puzzle hash"
 msgstr "Адрес / Пъзел Хеш"
 
-#: src/components/WalletHistory.tsx:225
-#: src/components/WalletSend.tsx:167
+#: src/components/WalletHistory.tsx:119
+#: src/components/WalletSend.tsx:184
 #: src/components/cat/WalletCATSend.tsx:207
-#: src/components/rateLimited/WalletRateLimited.jsx:719
 msgid "Amount"
 msgstr "Количество"
 
 #: src/components/create/createRLAdmin.jsx:238
-msgid "Amount For Initial Coin"
-msgstr "Сума за първоначална монета"
+#~ msgid "Amount For Initial Coin"
+#~ msgstr "Сума за първоначална монета"
 
 #: src/components/did/WalletDIDCreate.tsx:60
-msgid "Amount must be an even amount."
-msgstr ""
+#~ msgid "Amount must be an even amount."
+#~ msgstr ""
 
-#: src/components/WalletHeader.tsx:36
+#: src/components/WalletHeader.tsx:30
 msgid "Are you sure you want to delete unconfirmed transactions?"
 msgstr ""
 
-#: src/components/cat/WalletCATCreateExistingSimple.tsx:80
-#: src/components/cat/WalletCATTAILDialog.tsx:46
-#: src/components/cat/WalletCATTAILDialog.tsx:56
+#: src/components/cat/WalletCATCreateExistingSimple.tsx:71
+#: src/components/cat/WalletCATTAILDialog.tsx:33
+#: src/components/cat/WalletCATTAILDialog.tsx:43
 msgid "Asset Id"
 msgstr ""
 
@@ -101,47 +98,47 @@ msgstr ""
 #: src/components/cat/WalletDID.tsx:646
 #: src/components/did/WalletDID.tsx:646
 #: src/components/rateLimited/WalletRateLimited.jsx:540
-msgid "Balance"
-msgstr "Баланс"
+#~ msgid "Balance"
+#~ msgstr "Баланс"
 
-#: src/components/PasteMnemonic.tsx:78
-#: src/components/WalletRenameDialog.tsx:90
+#: src/components/PasteMnemonic.tsx:76
+#: src/components/WalletRenameDialog.tsx:72
 msgid "Cancel"
 msgstr "Отмяна"
 
-#: src/components/WalletSend.tsx:103
-#: src/components/cat/WalletCATSend.tsx:118
+#: src/components/WalletSend.tsx:106
+#: src/components/cat/WalletCATSend.tsx:116
 msgid "Cannot send chia to coloured address. Please enter a chia address."
 msgstr ""
 
-#: src/components/WalletsSidebar.tsx:145
+#: src/components/WalletsSidebar.tsx:130
 msgid "Check my snapshot balance"
 msgstr ""
 
-#: src/components/cat/WalletCATSelect.tsx:24
-#: src/components/create/WalletCreateList.tsx:35
+#: src/components/cat/WalletCATSelect.tsx:25
+#: src/components/create/WalletCreateList.tsx:32
 #: src/constants/WalletName.ts:23
 msgid "Chia Asset Token"
 msgstr ""
 
-#: src/components/WalletsSidebar.tsx:160
+#: src/components/WalletsSidebar.tsx:141
 msgid "Click here to download an older version of the wallet"
 msgstr ""
 
 #: src/components/cat/WalletDID.tsx:984
 #: src/components/did/WalletDID.tsx:984
-msgid "Coin Name"
-msgstr ""
+#~ msgid "Coin Name"
+#~ msgstr ""
 
-#: src/components/WalletHeader.tsx:31
+#: src/components/WalletHeader.tsx:25
 msgid "Confirmation"
 msgstr ""
 
-#: src/components/WalletHistory.tsx:155
+#: src/components/WalletHistory.tsx:170
 msgid "Confirmed"
 msgstr ""
 
-#: src/components/WalletHistory.tsx:359
+#: src/components/WalletHistory.tsx:333
 msgid "Confirmed at Height"
 msgstr ""
 
@@ -149,7 +146,7 @@ msgstr ""
 #~ msgid "Connected ({0})"
 #~ msgstr "Connected ({0})"
 
-#: src/components/WalletConnections.tsx:62
+#: src/components/WalletConnections.tsx:47
 msgid "Connection type"
 msgstr "Тип на връзка"
 
@@ -157,57 +154,63 @@ msgstr "Тип на връзка"
 #~ msgid "Connections"
 #~ msgstr "Connections"
 
+#: src/components/WalletReceiveAddressField.tsx:71
+msgid "Copied"
+msgstr ""
+
 #: src/components/rateLimited/WalletRateLimited.jsx:305
 #: src/components/rateLimited/WalletRateLimited.jsx:427
 #: src/components/rateLimited/WalletRateLimited.jsx:484
-msgid "Copy"
-msgstr "Копиране"
+#~ msgid "Copy"
+#~ msgstr "Копиране"
+
+#: src/components/WalletReceiveAddressField.tsx:75
+msgid "Copy wallet address"
+msgstr ""
 
 #: src/components/cat/WalletCATCreateNew.tsx:101
 #: src/components/create/createRLAdmin.jsx:306
 #: src/components/create/createRLUser.jsx:99
 #: src/components/did/WalletDIDCreate.tsx:220
-msgid "Create"
-msgstr "Създаване"
+#~ msgid "Create"
+#~ msgstr "Създаване"
 
 #: src/components/cat/WalletDID.tsx:967
 #: src/components/did/WalletDID.tsx:967
-msgid "Create An Attestation Packet"
-msgstr ""
+#~ msgid "Create An Attestation Packet"
+#~ msgstr ""
 
 #: src/components/cat/WalletCATCreateExisting.tsx:76
 #~ msgid "Create Chia Asset Token Wallet from Existing TAIL"
 #~ msgstr "Create Chia Asset Token Wallet from Existing TAIL"
 
 #: src/components/did/WalletDIDCreate.tsx:113
-msgid "Create Distributed Identity Wallet"
-msgstr ""
+#~ msgid "Create Distributed Identity Wallet"
+#~ msgstr ""
 
 #: src/components/cat/WalletCATCreateNew.tsx:75
-msgid "Create New Chia Asset Token Wallet"
-msgstr ""
+#~ msgid "Create New Chia Asset Token Wallet"
+#~ msgstr ""
 
-#: src/components/cat/WalletCATSelect.tsx:31
-#: src/components/did/WalletDIDSelect.tsx:31
+#: src/components/cat/WalletCATSelect.tsx:32
 msgid "Create New Wallet"
 msgstr ""
 
-#: src/components/cat/WalletCAT.tsx:113
-#: src/components/standard/WalletStandard.tsx:48
+#: src/components/cat/WalletCAT.tsx:104
+#: src/components/standard/WalletStandard.tsx:46
 msgid "Create Offer"
 msgstr ""
 
 #: src/components/create/createRLAdmin.jsx:187
-msgid "Create Rate Limited Admin Wallet"
-msgstr "Създайте портфейл с ограничени администраторски права"
+#~ msgid "Create Rate Limited Admin Wallet"
+#~ msgstr "Създайте портфейл с ограничени администраторски права"
 
 #: src/components/create/createRLUser.jsx:78
-msgid "Create Rate Limited User Wallet"
-msgstr "Създайте портфейл с ограничен потребителски достъп"
+#~ msgid "Create Rate Limited User Wallet"
+#~ msgstr "Създайте портфейл с ограничен потребителски достъп"
 
-#: src/components/WalletSend.tsx:138
-#: src/components/cat/WalletCATSend.tsx:176
-#: src/components/rateLimited/WalletRateLimited.jsx:683
+#: src/components/WalletSend.tsx:154
+#: src/components/cat/WalletCATSend.tsx:177
 msgid "Create Transaction"
 msgstr "Създай транзакция"
 
@@ -219,7 +222,7 @@ msgstr "Създай транзакция"
 msgid "Custody Wallet"
 msgstr ""
 
-#: src/components/cat/WalletCATCreateSimple.tsx:102
+#: src/components/cat/WalletCATCreateSimple.tsx:100
 msgid "Custom"
 msgstr ""
 
@@ -231,74 +234,68 @@ msgstr ""
 msgid "Datalayer Wallet"
 msgstr ""
 
-#: src/components/WalletHistory.tsx:198
+#: src/components/WalletHistory.tsx:100
 msgid "Date"
 msgstr "Дата"
 
-#: src/components/WalletHeader.tsx:32
-#: src/components/cat/WalletDID.tsx:448
-#: src/components/cat/WalletDID.tsx:862
-#: src/components/did/WalletDID.tsx:448
-#: src/components/did/WalletDID.tsx:862
-#: src/components/did/WalletDIDCreate.tsx:196
-#: src/components/did/WalletDIDRecovery.tsx:101
+#: src/components/WalletHeader.tsx:26
 msgid "Delete"
 msgstr "Изтриване"
 
-#: src/components/WalletHeader.tsx:86
+#: src/components/WalletHeader.tsx:68
 msgid "Delete Unconfirmed Transactions"
 msgstr ""
 
-#: src/components/card/WalletCardTotalBalance.tsx:75
+#: src/components/card/WalletCardTotalBalance.tsx:68
 msgid "Derivation Index: {0}"
 msgstr ""
 
-#: src/components/create/WalletCreateList.tsx:42
-#: src/components/did/WalletDIDSelect.tsx:24
+#: src/components/create/WalletCreateList.tsx:39
 msgid "Distributed Identity"
 msgstr ""
 
 #: src/components/cat/WalletDID.tsx:426
 #: src/components/did/WalletDID.tsx:426
-msgid "Drag and drop attestation packet(s)"
-msgstr ""
+#~ msgid "Drag and drop attestation packet(s)"
+#~ msgstr ""
 
 #: src/components/did/WalletDIDRecovery.tsx:109
-msgid "Drag and drop your recovery backup file"
-msgstr ""
+#~ msgid "Drag and drop your recovery backup file"
+#~ msgstr ""
 
 #: src/components/WalletImport.tsx:151
-msgid "Enter the 24 word mnemonic that you have saved in order to restore your Chia wallet."
-msgstr "Въведи 24 думения ключ който сте запазили за да възстановите вашият Chia портфейл."
+#~ msgid "Enter the 24 word mnemonic that you have saved in order to restore your Chia wallet."
+#~ msgstr "Въведи 24 думения ключ който сте запазили за да възстановите вашият Chia портфейл."
 
-#: src/components/cat/WalletCATSend.tsx:128
+#: src/components/WalletImport.tsx:158
+msgid "Enter the {mnemonicWordCount} word mnemonic that you have saved in order to restore your Chia wallet."
+msgstr ""
+
+#: src/components/cat/WalletCATSend.tsx:126
 msgid "Error the entered address appears to be for a different colour."
 msgstr ""
 
-#: src/components/WalletSend.tsx:191
-#: src/components/cat/WalletCATSend.tsx:244
+#: src/components/WalletSend.tsx:221
+#: src/components/cat/WalletCATSend.tsx:245
 msgid "Farm"
 msgstr "Ферма"
 
-#: src/components/WalletHistory.tsx:237
-#: src/components/WalletSend.tsx:179
+#: src/components/WalletHistory.tsx:131
+#: src/components/WalletSend.tsx:197
 #: src/components/cat/WalletCATSend.tsx:221
-#: src/components/create/createRLAdmin.jsx:243
-#: src/components/create/createRLAdmin.jsx:271
-#: src/components/rateLimited/WalletRateLimited.jsx:732
 msgid "Fee"
 msgstr "Такса"
 
 #: src/components/cat/WalletDID.tsx:975
 #: src/components/did/WalletDID.tsx:975
-msgid "Filename"
-msgstr "Име на файл"
+#~ msgid "Filename"
+#~ msgstr "Име на файл"
 
-#: src/components/WalletReceiveAddress.tsx:49
+#: src/components/WalletReceiveAddress.tsx:32
 msgid "HD or Hierarchical Deterministic keys are a type of public key/private key scheme where one private key can have a nearly infinite number of different public keys (and therefore wallet receive addresses) that will all ultimately come back to and be spendable by a single private key."
 msgstr ""
 
-#: src/components/WalletConnections.tsx:27
+#: src/components/WalletConnections.tsx:22
 msgid "IP address"
 msgstr "IP адрес"
 
@@ -306,66 +303,71 @@ msgstr "IP адрес"
 msgid "If you would like to speed up the transaction, please delete unconfirmed transactions and retry with a higher fee."
 msgstr ""
 
-#: src/components/PasteMnemonic.tsx:86
+#: src/components/PasteMnemonic.tsx:79
 msgid "Import"
 msgstr ""
 
-#: src/components/WalletImport.tsx:148
+#: src/components/WalletImport.tsx:141
 msgid "Import Wallet from Mnemonics"
 msgstr "Внеси портфейл от мнемоники"
 
-#: src/components/WalletHistory.tsx:93
+#: src/components/WalletImport.tsx:226
+msgid "Import from {alternativeWordCount} word mnemonic"
+msgstr ""
+
+#: src/components/WalletHistory.tsx:87
 msgid "Incoming"
 msgstr "Входящи"
 
 #: src/components/rateLimited/WalletRateLimited.jsx:332
 #: src/components/rateLimited/WalletRateLimited.jsx:471
-msgid "Info Packet"
-msgstr "Информационен пакет"
+#~ msgid "Info Packet"
+#~ msgstr "Информационен пакет"
 
 #: src/components/create/createRLAdmin.jsx:259
-msgid "Initial Amount"
-msgstr "Първоначална сума"
+#~ msgid "Initial Amount"
+#~ msgstr "Първоначална сума"
 
 #: src/components/create/createRLUser.jsx:87
-msgid "Initialize a Rate Limited User Wallet:"
-msgstr "Създайте портфейл с ограничен потребителски достъп:"
+#~ msgid "Initialize a Rate Limited User Wallet:"
+#~ msgstr "Създайте портфейл с ограничен потребителски достъп:"
 
 #: src/components/create/createRLAdmin.jsx:217
-msgid "Interval"
-msgstr "Интервал"
+#~ msgid "Interval"
+#~ msgstr "Интервал"
 
-#: src/components/WalletConnections.tsx:85
+#: src/components/WalletConnections.tsx:71
 msgid "List of connections is empty"
 msgstr ""
 
 #: src/components/WalletReceiveAddressField.tsx:40
-msgid "Loading..."
-msgstr ""
+#~ msgid "Loading..."
+#~ msgstr ""
 
 #: src/components/cat/WalletDID.tsx:805
 #: src/components/did/WalletDID.tsx:805
-msgid "Manage Recovery DIDs"
-msgstr ""
+#~ msgid "Manage Recovery DIDs"
+#~ msgstr ""
 
-#: src/components/WalletsManageTokens.tsx:151
+#: src/components/WalletsManageTokens.tsx:133
 msgid "Manage token list"
 msgstr ""
 
-#: src/components/WalletHistory.tsx:169
-#: src/components/cat/WalletCATSend.tsx:234
+#: src/components/WalletHistory.tsx:174
+#: src/components/WalletSend.tsx:211
+#: src/components/cat/WalletCATSend.tsx:235
 msgid "Memo"
 msgstr ""
 
-#: src/components/WalletHistory.tsx:368
+#: src/components/WalletHistory.tsx:338
 msgid "Memos"
 msgstr ""
 
-#: src/components/WalletSendTransactionResultDialog.tsx:19
+#: src/components/WalletSendTransactionResultDialog.tsx:16
 msgid "Mempool Full"
 msgstr ""
 
-#: src/components/WalletConnections.tsx:55
+#: src/components/WalletConnections.tsx:40
 msgid "MiB Up/Down"
 msgstr ""
 
@@ -375,48 +377,52 @@ msgstr ""
 
 #: src/components/cat/WalletDID.tsx:536
 #: src/components/did/WalletDID.tsx:536
-msgid "My DID Wallet"
-msgstr ""
+#~ msgid "My DID Wallet"
+#~ msgstr ""
 
 #: src/components/rateLimited/WalletRateLimited.jsx:414
-msgid "My Pubkey"
-msgstr "Моят публичен ключ"
+#~ msgid "My Pubkey"
+#~ msgstr "Моят публичен ключ"
 
 #: src/constants/WalletName.ts:35
 msgid "NFT Wallet"
 msgstr ""
 
-#: src/components/cat/WalletCATCreateExistingSimple.tsx:71
+#: src/components/cat/WalletCATCreateExistingSimple.tsx:68
 msgid "Name"
 msgstr ""
 
-#: src/components/WalletReceiveAddress.tsx:64
+#: src/components/WalletReceiveAddress.tsx:45
 msgid "New Address"
 msgstr "Нов адрес"
 
-#: src/components/WalletAdd.tsx:91
+#: src/components/WalletReceiveAddressField.tsx:114
+msgid "New Receive Address"
+msgstr ""
+
+#: src/components/WalletAdd.tsx:64
 msgid "New Wallet"
 msgstr "Добави портфейл"
 
-#: src/components/WalletAdd.tsx:151
-#: src/components/WalletImport.tsx:189
+#: src/components/WalletAdd.tsx:124
+#: src/components/WalletImport.tsx:196
 msgid "Next"
 msgstr "Следващ"
 
-#: src/components/WalletRenameDialog.tsx:78
+#: src/components/WalletRenameDialog.tsx:67
 msgid "Nickname"
 msgstr "Псевдоним"
 
-#: src/components/WalletHistory.tsx:404
+#: src/components/WalletHistory.tsx:369
 msgid "No previous transactions"
 msgstr "Няма предишни транзакции"
 
-#: src/components/WalletConnections.tsx:23
+#: src/components/WalletConnections.tsx:18
 msgid "Node ID"
 msgstr "ID на възел"
 
-#: src/components/WalletHistory.tsx:353
-#: src/components/WalletHistory.tsx:363
+#: src/components/WalletHistory.tsx:327
+#: src/components/WalletHistory.tsx:334
 msgid "Not Available"
 msgstr "Недостъпно"
 
@@ -424,153 +430,150 @@ msgstr "Недостъпно"
 #~ msgid "Not Connected"
 #~ msgstr "Not Connected"
 
-#: src/components/WalletStatus.tsx:57
+#: src/components/WalletStatus.tsx:58
 msgid "Not Synced"
 msgstr "Не е синхронизирано"
 
-#: src/components/cat/WalletCATTAILDialog.tsx:83
+#: src/components/cat/WalletCATTAILDialog.tsx:66
 msgid "OK"
 msgstr "Ок"
 
-#: src/components/WalletHistory.tsx:183
+#: src/components/WalletHistory.tsx:176
 msgid "Offer Accepted"
 msgstr ""
 
-#: src/components/WalletSend.tsx:141
-#: src/components/cat/WalletCATSend.tsx:179
+#: src/components/WalletSend.tsx:157
+#: src/components/cat/WalletCATSend.tsx:180
 msgid "On average there is one minute between each transaction block. Unless there is congestion you can expect your transaction to be included in less than a minute."
 msgstr "Обикновенно има една минута между всеки блок с транзакции. Те могат да се осъществяват за по- малко от минута, в случай че няма натоварване."
 
 #: src/components/did/WalletDIDRecovery.tsx:33
-msgid "Only one backup file is allowed."
-msgstr ""
+#~ msgid "Only one backup file is allowed."
+#~ msgstr ""
 
-#: src/components/WalletHistory.tsx:93
+#: src/components/WalletHistory.tsx:87
 msgid "Outgoing"
 msgstr "Изходящи"
 
-#: src/components/WalletImport.tsx:101
+#: src/components/WalletImport.tsx:234
 msgid "Paste Mnemonic"
 msgstr ""
 
 #: src/components/PasteMnemonic.tsx:55
-msgid "Paste Mnemonic (24 words)"
+#~ msgid "Paste Mnemonic (24 words)"
+#~ msgstr ""
+
+#: src/components/PasteMnemonic.tsx:53
+msgid "Paste Mnemonic ({0} words)"
 msgstr ""
 
-#: src/components/WalletHistory.tsx:162
+#: src/components/WalletHistory.tsx:172
 msgid "Pending"
 msgstr "Изчакващо"
 
-#: src/components/card/WalletCardPendingBalance.tsx:36
-#: src/components/rateLimited/WalletRateLimited.jsx:572
+#: src/components/card/WalletCardPendingBalance.tsx:40
 msgid "Pending Balance"
 msgstr "Изчакващ баланс"
 
-#: src/components/card/WalletCardPendingChange.tsx:37
-#: src/components/rateLimited/WalletRateLimited.jsx:577
+#: src/components/card/WalletCardPendingChange.tsx:41
 msgid "Pending Change"
 msgstr "Изчакващи промени"
 
-#: src/components/card/WalletCardPendingTotalBalance.tsx:37
-#: src/components/rateLimited/WalletRateLimited.jsx:567
+#: src/components/card/WalletCardPendingTotalBalance.tsx:41
 msgid "Pending Total Balance"
 msgstr "Изчакващ общ баланс"
 
 #: src/components/rateLimited/WalletRateLimited.jsx:667
-msgid "Please enter 0 fee. Positive fees not supported yet for RL."
-msgstr "Моля, въведете 0 такса. Все още не се поддържат положителни такси за RL."
+#~ msgid "Please enter 0 fee. Positive fees not supported yet for RL."
+#~ msgstr "Моля, въведете 0 такса. Все още не се поддържат положителни такси за RL."
 
 #: src/components/cat/WalletDID.tsx:924
 #: src/components/did/WalletDID.tsx:924
-msgid "Please enter a coin"
-msgstr ""
+#~ msgid "Please enter a coin"
+#~ msgstr ""
 
 #: src/components/cat/WalletDID.tsx:525
 #: src/components/cat/WalletDID.tsx:914
 #: src/components/did/WalletDID.tsx:525
 #: src/components/did/WalletDID.tsx:914
-msgid "Please enter a filename"
-msgstr ""
+#~ msgid "Please enter a filename"
+#~ msgstr ""
 
 #: src/components/cat/WalletDID.tsx:934
 #: src/components/did/WalletDID.tsx:934
-msgid "Please enter a pubkey"
-msgstr ""
+#~ msgid "Please enter a pubkey"
+#~ msgstr ""
 
 #: src/components/cat/WalletDID.tsx:944
 #: src/components/did/WalletDID.tsx:944
-msgid "Please enter a puzzlehash"
-msgstr ""
+#~ msgid "Please enter a puzzlehash"
+#~ msgstr ""
 
 #: src/components/cat/WalletCATCreateExisting.tsx:40
 #~ msgid "Please enter a valid CAT name"
 #~ msgstr "Please enter a valid CAT name"
 
-#: src/components/cat/WalletCATCreateExistingSimple.tsx:41
+#: src/components/cat/WalletCATCreateExistingSimple.tsx:42
 msgid "Please enter a valid asset id"
 msgstr ""
 
 #: src/components/create/createRLAdmin.jsx:139
-msgid "Please enter a valid initial coin amount"
-msgstr "Моля, въведете валидна първоначална сума на монетата"
+#~ msgid "Please enter a valid initial coin amount"
+#~ msgstr "Моля, въведете валидна първоначална сума на монетата"
 
 #: src/components/cat/WalletDID.tsx:776
 #: src/components/did/WalletDID.tsx:776
 #: src/components/did/WalletDIDCreate.tsx:74
-msgid "Please enter a valid integer of 0 or greater for the number of Backup IDs needed for recovery."
-msgstr ""
+#~ msgid "Please enter a valid integer of 0 or greater for the number of Backup IDs needed for recovery."
+#~ msgstr ""
 
-#: src/components/WalletSend.tsx:93
-#: src/components/cat/WalletCATSend.tsx:104
-#: src/components/rateLimited/WalletRateLimited.jsx:638
+#: src/components/WalletSend.tsx:96
+#: src/components/cat/WalletCATSend.tsx:102
 msgid "Please enter a valid numeric amount"
-msgstr "35 / 5000\n"
+msgstr ""
+"35 / 5000\n"
 "Моля, въведете валидна числова сума"
 
 #: src/components/did/WalletDIDCreate.tsx:50
-msgid "Please enter a valid numeric amount."
-msgstr ""
+#~ msgid "Please enter a valid numeric amount."
+#~ msgstr ""
 
-#: src/components/WalletSend.tsx:98
-#: src/components/cat/WalletCATSend.tsx:109
-#: src/components/create/createRLAdmin.jsx:149
-#: src/components/rateLimited/WalletRateLimited.jsx:648
+#: src/components/WalletSend.tsx:101
+#: src/components/cat/WalletCATSend.tsx:107
 msgid "Please enter a valid numeric fee"
 msgstr "Моля, въведете валидна числова такса"
 
 #: src/components/create/createRLAdmin.jsx:99
-msgid "Please enter a valid numeric interval length"
-msgstr "Моля, въведете валидна продължителност на числовия интервал"
+#~ msgid "Please enter a valid numeric interval length"
+#~ msgstr "Моля, въведете валидна продължителност на числовия интервал"
 
 #: src/components/create/createRLAdmin.jsx:114
-msgid "Please enter a valid numeric spendable amount"
-msgstr "Моля въведете валидна числова сума, която може да бъде изразходвана"
+#~ msgid "Please enter a valid numeric spendable amount"
+#~ msgstr "Моля въведете валидна числова сума, която може да бъде изразходвана"
 
 #: src/components/create/createRLAdmin.jsx:124
-msgid "Please enter a valid pubkey"
-msgstr "Моля въведете валиден публичен ключ"
+#~ msgid "Please enter a valid pubkey"
+#~ msgstr "Моля въведете валиден публичен ключ"
 
-#: src/components/cat/WalletCATCreateExistingSimple.tsx:45
+#: src/components/cat/WalletCATCreateExistingSimple.tsx:46
 msgid "Please enter a valid token name"
 msgstr ""
 
-#: src/components/WalletRenameDialog.tsx:49
+#: src/components/WalletRenameDialog.tsx:41
 msgid "Please enter valid wallet name"
 msgstr ""
 
-#: src/components/WalletSend.tsx:88
-#: src/components/cat/WalletCATSend.tsx:95
-#: src/components/rateLimited/WalletRateLimited.jsx:622
+#: src/components/WalletSend.tsx:91
+#: src/components/cat/WalletCATSend.tsx:93
 msgid "Please finish syncing before making a transaction"
 msgstr "Моля завършете синхронизирането преди правене на транзакции"
 
 #: src/components/did/WalletDIDRecovery.tsx:54
-msgid "Please select backup file first"
-msgstr ""
+#~ msgid "Please select backup file first"
+#~ msgstr ""
 
-#: src/components/cat/WalletCATCreateExistingSimple.tsx:37
-#: src/components/cat/WalletCATCreateSimple.tsx:37
-#: src/components/did/WalletDIDRecovery.tsx:63
+#: src/components/cat/WalletCATCreateExistingSimple.tsx:38
+#: src/components/cat/WalletCATCreateSimple.tsx:38
 msgid "Please wait for wallet synchronization"
 msgstr ""
 
@@ -578,159 +581,156 @@ msgstr ""
 msgid "Pooling Wallet"
 msgstr ""
 
-#: src/components/WalletConnections.tsx:33
+#: src/components/WalletConnections.tsx:28
 msgid "Port"
 msgstr "~Порт"
 
 #: src/components/cat/WalletDID.tsx:993
 #: src/components/create/createRLAdmin.jsx:296
 #: src/components/did/WalletDID.tsx:993
-msgid "Pubkey"
-msgstr "Публичен ключ"
+#~ msgid "Pubkey"
+#~ msgstr "Публичен ключ"
 
 #: src/components/cat/WalletDID.tsx:1002
 #: src/components/did/WalletDID.tsx:1002
-msgid "Puzzlehash"
-msgstr ""
+#~ msgid "Puzzlehash"
+#~ msgstr ""
 
 #: src/constants/WalletName.ts:8
 msgid "RL Wallet"
 msgstr ""
 
-#: src/components/create/WalletCreateList.tsx:48
+#: src/components/create/WalletCreateList.tsx:45
 msgid "Rate Limited"
 msgstr "Скоростта е ограничена"
 
 #: src/components/rateLimited/WalletRateLimited.jsx:390
 #: src/components/rateLimited/WalletRateLimited.jsx:437
-msgid "Rate Limited Info"
-msgstr "Информация за ограничена скорост"
+#~ msgid "Rate Limited Info"
+#~ msgstr "Информация за ограничена скорост"
 
 #: src/components/rateLimited/WalletRateLimited.jsx:272
-msgid "Rate Limited User Wallet Setup"
-msgstr ""
+#~ msgid "Rate Limited User Wallet Setup"
+#~ msgstr ""
 
-#: src/components/WalletsSidebar.tsx:152
+#: src/components/WalletsSidebar.tsx:133
 msgid "Read the blog post for details"
 msgstr ""
 
-#: src/components/WalletHeader.tsx:64
+#: src/components/WalletHeader.tsx:48
 msgid "Receive"
 msgstr ""
 
-#: src/components/WalletReceiveAddress.tsx:46
-#: src/components/WalletReceiveAddressField.tsx:38
+#: src/components/WalletReceiveAddress.tsx:29
 msgid "Receive Address"
 msgstr "Адрес за получаване"
 
-#: src/components/cat/WalletCATSend.tsx:122
+#: src/components/cat/WalletCATSend.tsx:120
 msgid "Recipient address is not a coloured wallet address. Please enter a coloured wallet address"
 msgstr ""
 
 #: src/components/cat/WalletDID.tsx:463
 #: src/components/did/WalletDID.tsx:463
 #: src/components/did/WalletDIDRecovery.tsx:124
-msgid "Recover"
-msgstr ""
+#~ msgid "Recover"
+#~ msgstr ""
 
 #: src/components/cat/WalletDID.tsx:338
 #: src/components/cat/WalletDID.tsx:479
 #: src/components/did/WalletDID.tsx:338
 #: src/components/did/WalletDID.tsx:479
-msgid "Recover DID Wallet"
-msgstr ""
+#~ msgid "Recover DID Wallet"
+#~ msgstr ""
 
 #: src/components/did/WalletDIDRecovery.tsx:83
-msgid "Recover Distributed Identity Wallet"
-msgstr ""
+#~ msgid "Recover Distributed Identity Wallet"
+#~ msgstr ""
 
 #: src/components/did/WalletDIDSelect.tsx:38
-msgid "Recover Wallet"
-msgstr ""
+#~ msgid "Recover Wallet"
+#~ msgstr ""
 
 #: src/constants/WalletName.ts:26
 msgid "Recoverable Wallet"
 msgstr ""
 
-#: src/components/cat/WalletCATSelect.tsx:38
+#: src/components/cat/WalletCATSelect.tsx:39
 msgid "Recovery Wallet"
 msgstr ""
 
-#: src/components/WalletRenameDialog.tsx:69
-#: src/components/cat/WalletCAT.tsx:96
+#: src/components/WalletRenameDialog.tsx:61
+#: src/components/cat/WalletCAT.tsx:87
 msgid "Rename Wallet"
 msgstr ""
 
-#: src/components/WalletHistory.tsx:176
+#: src/components/WalletHistory.tsx:175
 msgid "Retire"
 msgstr ""
 
-#: src/components/WalletRenameDialog.tsx:98
+#: src/components/WalletRenameDialog.tsx:75
 msgid "Save"
 msgstr "Запази"
 
-#: src/components/WalletTokenCard.tsx:185
-#: src/components/cat/WalletCATTAILDialog.tsx:76
+#: src/components/WalletTokenCard.tsx:177
+#: src/components/cat/WalletCATTAILDialog.tsx:59
 msgid "Search on Tail Database"
 msgstr ""
 
 #: src/components/WalletsList.tsx:32
-msgid "Select Wallet"
-msgstr ""
+#~ msgid "Select Wallet"
+#~ msgstr ""
 
-#: src/components/create/WalletCreateList.tsx:28
+#: src/components/create/WalletCreateList.tsx:25
 msgid "Select Wallet Type"
 msgstr "Избери тип на портфейла"
 
 #: src/components/did/WalletDIDRecovery.tsx:90
-msgid "Selected recovery file:"
-msgstr ""
+#~ msgid "Selected recovery file:"
+#~ msgstr ""
 
-#: src/components/WalletHeader.tsx:59
-#: src/components/WalletSend.tsx:202
-#: src/components/cat/WalletCATSend.tsx:255
-#: src/components/rateLimited/WalletRateLimited.jsx:747
+#: src/components/WalletHeader.tsx:47
+#: src/components/WalletSend.tsx:232
+#: src/components/cat/WalletCATSend.tsx:256
 msgid "Send"
 msgstr "Изпрати"
 
 #: src/components/rateLimited/WalletRateLimited.jsx:459
-msgid "Send this info packet to your Rate Limited Wallet user who must use it to complete setup of their wallet:"
-msgstr ""
+#~ msgid "Send this info packet to your Rate Limited Wallet user who must use it to complete setup of their wallet:"
+#~ msgstr ""
 
 #: src/components/rateLimited/WalletRateLimited.jsx:278
-msgid "Send your pubkey to your Rate Limited Wallet admin:"
-msgstr ""
+#~ msgid "Send your pubkey to your Rate Limited Wallet admin:"
+#~ msgstr ""
 
-#: src/components/cat/WalletCAT.tsx:105
+#: src/components/cat/WalletCAT.tsx:96
 msgid "Show Asset Id"
 msgstr ""
 
 #: src/components/create/createRLAdmin.jsx:229
-msgid "Spendable Amount"
-msgstr "Сума за харчене"
+#~ msgid "Spendable Amount"
+#~ msgstr "Сума за харчене"
 
 #: src/components/create/createRLAdmin.jsx:201
-msgid "Spendable Amount Per Interval"
-msgstr "Сума за харчене на интервал"
+#~ msgid "Spendable Amount Per Interval"
+#~ msgstr "Сума за харчене на интервал"
 
-#: src/components/card/WalletCardSpendableBalance.tsx:37
-#: src/components/rateLimited/WalletRateLimited.jsx:547
+#: src/components/card/WalletCardSpendableBalance.tsx:41
 msgid "Spendable Balance"
 msgstr "Баланс за харчене"
 
 #: src/components/rateLimited/WalletRateLimited.jsx:395
 #: src/components/rateLimited/WalletRateLimited.jsx:442
-msgid "Spending Interval (number of blocks): {interval}"
-msgstr ""
+#~ msgid "Spending Interval (number of blocks): {interval}"
+#~ msgstr ""
 
 #: src/components/create/createRLAdmin.jsx:196
-msgid "Spending Interval Length (number of blocks)"
-msgstr ""
+#~ msgid "Spending Interval Length (number of blocks)"
+#~ msgstr ""
 
 #: src/components/rateLimited/WalletRateLimited.jsx:400
 #: src/components/rateLimited/WalletRateLimited.jsx:447
-msgid "Spending Limit (chia per interval): {0}"
-msgstr ""
+#~ msgid "Spending Limit (chia per interval): {0}"
+#~ msgstr ""
 
 #: src/constants/WalletName.ts:5
 msgid "Standard Wallet"
@@ -739,34 +739,34 @@ msgstr ""
 #: src/components/cat/WalletDID.tsx:886
 #: src/components/did/WalletDID.tsx:886
 #: src/components/rateLimited/WalletRateLimited.jsx:346
-msgid "Submit"
-msgstr "Изпрати"
+#~ msgid "Submit"
+#~ msgstr "Изпрати"
 
-#: src/components/WalletSendTransactionResultDialog.tsx:15
+#: src/components/WalletSendTransactionResultDialog.tsx:12
 msgid "Success"
 msgstr ""
 
-#: src/components/WalletHeader.tsx:54
+#: src/components/WalletHeader.tsx:46
 msgid "Summary"
 msgstr ""
 
-#: src/components/WalletStatus.tsx:69
+#: src/components/WalletStatus.tsx:70
 msgid "Synced"
 msgstr "Синхронизиран"
 
-#: src/components/WalletStatus.tsx:81
+#: src/components/WalletStatus.tsx:82
 msgid "Syncing"
 msgstr "Синхронизиране"
 
-#: src/components/card/WalletCardTotalBalance.tsx:77
+#: src/components/card/WalletCardTotalBalance.tsx:70
 msgid "The derivation index sets the range of wallet addresses that the wallet scans the blockchain for. This number is generally higher if you have a lot of transactions or canceled offers for XCH, CATs, or NFTs. If you believe your balance is incorrect because it’s missing coins, then increasing the derivation index could help the wallet include the missing coins in the balance total."
 msgstr ""
 
 #: src/components/cat/WalletDID.tsx:789
 #: src/components/did/WalletDID.tsx:789
 #: src/components/did/WalletDIDCreate.tsx:87
-msgid "The number of Backup IDs needed for recovery cannot exceed the number of Backup IDs added."
-msgstr ""
+#~ msgid "The number of Backup IDs needed for recovery cannot exceed the number of Backup IDs added."
+#~ msgstr ""
 
 #: src/components/WalletSendTransactionResultDialog.tsx:34
 msgid "The transaction could not be immediately included in the mempool because the specified fee is too low. The transaction will be retried periodically, and may be included in the mempool once fees are lower, or if space becomes available."
@@ -776,7 +776,7 @@ msgstr ""
 msgid "This access token is verified"
 msgstr ""
 
-#: src/components/WalletHistory.tsx:130
+#: src/components/WalletHistory.tsx:156
 msgid "This is not a valid address for sending funds to"
 msgstr ""
 
@@ -784,23 +784,23 @@ msgstr ""
 msgid "This is the amount of Chia that you can currently use to make transactions. It does not include pending farming rewards, pending incoming transactions, and Chia that you have just spent but is not yet in the blockchain."
 msgstr "Това е количеството Chia, което в момента можете да използвате за извършване на транзакции. То не включва чакащи фармерски награди, чакащи входящи транзакции и Chia, които току-що сте похарчили, но все още не са в блокчейна."
 
-#: src/components/standard/WalletStandardCards.tsx:44
+#: src/components/standard/WalletStandardCards.tsx:42
 msgid "This is the pending change, which are change coins which you have sent to yourself, but have not been confirmed yet."
 msgstr ""
 
-#: src/components/standard/WalletStandardCards.tsx:37
+#: src/components/standard/WalletStandardCards.tsx:36
 msgid "This is the sum of the incoming and outgoing pending transactions (not yet included into the blockchain). This does not include farming rewards."
 msgstr "Това е сумата от входящите и изходящите чакащи транзакции (които все още не са включени в блокчейна). Това не включва награди от фармене."
 
-#: src/components/standard/WalletStandardCards.tsx:16
+#: src/components/standard/WalletStandardCards.tsx:17
 msgid "This is the total amount of chia in the blockchain at the current peak block that is controlled by your private keys. It includes frozen farming rewards, but not pending incoming and outgoing transactions."
 msgstr ""
 
-#: src/components/standard/WalletStandardCards.tsx:31
+#: src/components/standard/WalletStandardCards.tsx:30
 msgid "This is the total balance + pending balance: it is what your balance will be after all pending transactions are confirmed."
 msgstr ""
 
-#: src/components/WalletHistory.tsx:190
+#: src/components/WalletHistory.tsx:181
 msgid "To"
 msgstr "Към"
 
@@ -808,20 +808,19 @@ msgstr "Към"
 #~ msgid "Token and Asset Issuance Limitations"
 #~ msgstr "Token and Asset Issuance Limitations"
 
-#: src/components/cat/WalletCATCreateSimple.tsx:45
+#: src/components/cat/WalletCATCreateSimple.tsx:46
 msgid "Token has empty asset id"
 msgstr ""
 
-#: src/components/cat/WalletCATCreateSimple.tsx:41
+#: src/components/cat/WalletCATCreateSimple.tsx:42
 msgid "Token has empty name"
 msgstr ""
 
-#: src/components/WalletsSidebar.tsx:216
+#: src/components/WalletsSidebar.tsx:187
 msgid "Tokens"
 msgstr ""
 
-#: src/components/card/WalletCardTotalBalance.tsx:62
-#: src/components/rateLimited/WalletRateLimited.jsx:542
+#: src/components/card/WalletCardTotalBalance.tsx:60
 msgid "Total Balance"
 msgstr "Общ баланс"
 
@@ -829,68 +828,69 @@ msgstr "Общ баланс"
 msgid "Transaction has successfully been sent to a full node and included in the mempool."
 msgstr ""
 
-#: src/components/WalletHistory.tsx:311
+#: src/components/WalletHistory.tsx:258
 msgid "Transactions"
 msgstr ""
 
 #: src/components/create/createRLAdmin.jsx:280
 #: src/components/rateLimited/WalletRateLimited.jsx:292
-msgid "User Pubkey"
-msgstr "Публичен ключ на потребител"
+#~ msgid "User Pubkey"
+#~ msgstr "Публичен ключ на потребител"
 
 #: src/components/rateLimited/WalletRateLimited.jsx:561
-msgid "View pending balances"
-msgstr "Виж изчакващи баланси"
+#~ msgid "View pending balances"
+#~ msgstr "Виж изчакващи баланси"
 
-#: src/components/WalletConnections.tsx:80
+#: src/components/WalletConnections.tsx:67
 msgid "Wallet Connections"
 msgstr ""
 
-#: src/components/WalletAdd.tsx:128
-#: src/components/WalletImport.tsx:176
+#: src/components/WalletAdd.tsx:101
+#: src/components/WalletImport.tsx:148
 msgid "Wallet Name"
 msgstr ""
 
-#: src/components/cat/WalletCAT.tsx:75
-#: src/components/cat/WalletDID.tsx:1118
-#: src/components/did/WalletDID.tsx:1118
+#: src/components/cat/WalletCAT.tsx:66
 msgid "Wallet does not exists"
 msgstr ""
 
-#: src/components/Wallet.tsx:50
+#: src/components/Wallet.tsx:37
 msgid "Wallet with type {0} not supported"
 msgstr ""
 
-#: src/components/Wallet.tsx:23
+#: src/components/Wallet.tsx:22
 msgid "Wallet {walletId} not found"
 msgstr ""
 
-#: src/components/WalletsSidebar.tsx:157
+#: src/components/WalletsSidebar.tsx:138
 msgid "Want to see your old balance for yourself?"
 msgstr ""
 
-#: src/components/WalletsSidebar.tsx:119
+#: src/components/WalletsSidebar.tsx:110
 msgid "We've made an upgrade to the CAT standard which requires all CATs to be re-issued. You will be airdropped your new tokens as they are re-issued by the original issuers. The airdropped tokens will be based on the balance as of block height:<0/><1/><2/>(Approximate time: July 26th, 2022 @ 17:00 UTC)"
 msgstr ""
 
-#: src/components/WalletAdd.tsx:94
+#: src/components/WalletAdd.tsx:67
 msgid "Welcome! The following words are used for your wallet backup. Without them, you will lose access to your wallet, keep them safe! Write down each word along with the order number next to them. (Order is important)"
 msgstr "Добре дошли! Следващите думи се използват за точка за възстановяване на вашият портфейл. Без тях, вие ще изгубите достъп до портфейла си, пазете ги в безопасност! Запишете ги в последователност с номерата до тях. (Реда е важен)"
 
 #: src/components/rateLimited/WalletRateLimited.jsx:315
-msgid "When you receive the setup info packet from your admin, enter it below to complete your Rate Limited Wallet setup:"
-msgstr ""
+#~ msgid "When you receive the setup info packet from your admin, enter it below to complete your Rate Limited Wallet setup:"
+#~ msgstr ""
 
-#: src/components/WalletsSidebar.tsx:115
+#: src/components/WalletsSidebar.tsx:106
 msgid "Your CAT tokens have been upgraded!"
 msgstr ""
 
 #: src/components/cat/WalletDID.tsx:326
 #: src/components/did/WalletDID.tsx:326
-msgid "Your DID requires at least {dids_num_req} attestation file{0} for recovery. Please upload additional files."
-msgstr ""
+#~ msgid "Your DID requires at least {dids_num_req} attestation file{0} for recovery. Please upload additional files."
+#~ msgstr ""
 
 #: src/components/WalletImport.tsx:77
-msgid "Your pasted list does not include 24 valid mnemonic words."
-msgstr ""
+#~ msgid "Your pasted list does not include 24 valid mnemonic words."
+#~ msgstr ""
 
+#: src/components/WalletImport.tsx:72
+msgid "Your pasted list does not include {mnemonicWordCount} valid mnemonic words."
+msgstr ""
