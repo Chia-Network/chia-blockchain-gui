@@ -18,75 +18,54 @@ msgstr ""
 "X-Crowdin-File: /main/packages/wallets/src/locales/en-US/messages.po\n"
 "X-Crowdin-File-ID: 1890\n"
 
-#: src/components/WalletHistory.tsx:209
+#: src/components/WalletHistory.tsx:109
 msgid "+"
 msgstr "+"
 
-#: src/components/WalletHistory.tsx:209
+#: src/components/WalletHistory.tsx:109
 msgid "-"
 msgstr "-"
 
-#: src/components/WalletHeader.tsx:80
+#: src/components/WalletHeader.tsx:62
 msgid "Actions"
 msgstr "Åtgärder"
 
-#: src/components/cat/WalletCATCreateExistingSimple.tsx:96
+#: src/components/cat/WalletCATCreateExistingSimple.tsx:79
 msgid "Add"
 msgstr "Lägg till"
 
-#: src/components/cat/WalletDID.tsx:874
-#: src/components/did/WalletDID.tsx:874
-#: src/components/did/WalletDIDCreate.tsx:207
-msgid "Add Backup ID"
-msgstr "Lägg till säkerhetskopierings-ID"
-
-#: src/components/hero/WalletHeroAdd.tsx:99
-#~ msgid "Add Custom Token"
-#~ msgstr "Add Custom Token"
-
-#: src/components/WalletsList.tsx:54
-#: src/components/WalletsManageTokens.tsx:174
+#: src/components/WalletsManageTokens.tsx:156
 #: src/components/cat/WalletCATCreateExistingSimple.tsx:61
-#: src/components/cat/WalletCATCreateSimple.tsx:70
+#: src/components/cat/WalletCATCreateSimple.tsx:68
 msgid "Add Token"
 msgstr "Lägg till token"
 
-#: src/components/cat/WalletCATCreateSimple.tsx:94
+#: src/components/cat/WalletCATCreateSimple.tsx:92
 msgid "Adding {0} token"
 msgstr "Lägger till token {0}"
 
-#: src/components/WalletReceiveAddress.tsx:76
+#: src/components/WalletReceiveAddress.tsx:57
 msgid "Address"
 msgstr "Adress"
 
-#: src/components/WalletSend.tsx:156
+#: src/components/WalletSend.tsx:172
 #: src/components/cat/WalletCATSend.tsx:195
-#: src/components/rateLimited/WalletRateLimited.jsx:700
 msgid "Address / Puzzle hash"
 msgstr "Adress/pusselhash"
 
-#: src/components/WalletHistory.tsx:225
-#: src/components/WalletSend.tsx:167
+#: src/components/WalletHistory.tsx:119
+#: src/components/WalletSend.tsx:184
 #: src/components/cat/WalletCATSend.tsx:207
-#: src/components/rateLimited/WalletRateLimited.jsx:719
 msgid "Amount"
 msgstr "Belopp"
 
-#: src/components/create/createRLAdmin.jsx:238
-msgid "Amount For Initial Coin"
-msgstr "Belopp för ursprungligt mynt"
-
-#: src/components/did/WalletDIDCreate.tsx:60
-msgid "Amount must be an even amount."
-msgstr "Beloppet måste vara ett jämnt belopp."
-
-#: src/components/WalletHeader.tsx:36
+#: src/components/WalletHeader.tsx:30
 msgid "Are you sure you want to delete unconfirmed transactions?"
 msgstr "Är du säker på att du vill radera obekräftade transaktioner?"
 
-#: src/components/cat/WalletCATCreateExistingSimple.tsx:80
-#: src/components/cat/WalletCATTAILDialog.tsx:46
-#: src/components/cat/WalletCATTAILDialog.tsx:56
+#: src/components/cat/WalletCATCreateExistingSimple.tsx:71
+#: src/components/cat/WalletCATTAILDialog.tsx:33
+#: src/components/cat/WalletCATTAILDialog.tsx:43
 msgid "Asset Id"
 msgstr "Tillgångs-ID"
 
@@ -98,128 +77,73 @@ msgstr ""
 msgid "Authorized Payee Wallet"
 msgstr "Plånbok för auktoriserad betalningsmottagare"
 
-#: src/components/cat/WalletDID.tsx:646
-#: src/components/did/WalletDID.tsx:646
-#: src/components/rateLimited/WalletRateLimited.jsx:540
-msgid "Balance"
-msgstr "Saldo"
-
-#: src/components/PasteMnemonic.tsx:78
-#: src/components/WalletRenameDialog.tsx:90
+#: src/components/PasteMnemonic.tsx:76
+#: src/components/WalletRenameDialog.tsx:72
 msgid "Cancel"
 msgstr "Avbryt"
 
-#: src/components/WalletSend.tsx:103
-#: src/components/cat/WalletCATSend.tsx:118
+#: src/components/WalletSend.tsx:106
+#: src/components/cat/WalletCATSend.tsx:116
 msgid "Cannot send chia to coloured address. Please enter a chia address."
 msgstr "Det går inte att skicka chia till färgad adress. Ange en chia-adress."
 
-#: src/components/WalletsSidebar.tsx:145
+#: src/components/WalletsSidebar.tsx:130
 msgid "Check my snapshot balance"
 msgstr ""
 
-#: src/components/cat/WalletCATSelect.tsx:24
-#: src/components/create/WalletCreateList.tsx:35
+#: src/components/cat/WalletCATSelect.tsx:25
+#: src/components/create/WalletCreateList.tsx:32
 #: src/constants/WalletName.ts:23
 msgid "Chia Asset Token"
 msgstr "Chia tillgångstoken (CAT)"
 
-#: src/components/WalletsSidebar.tsx:160
+#: src/components/WalletsSidebar.tsx:141
 msgid "Click here to download an older version of the wallet"
 msgstr "Klicka här för att ladda ner en äldre version av plånboken"
 
-#: src/components/cat/WalletDID.tsx:984
-#: src/components/did/WalletDID.tsx:984
-msgid "Coin Name"
-msgstr "Namn på mynt"
-
-#: src/components/WalletHeader.tsx:31
+#: src/components/WalletHeader.tsx:25
 msgid "Confirmation"
 msgstr "Bekräfta"
 
-#: src/components/WalletHistory.tsx:155
+#: src/components/WalletHistory.tsx:170
 msgid "Confirmed"
 msgstr "Bekräftad"
 
-#: src/components/WalletHistory.tsx:359
+#: src/components/WalletHistory.tsx:333
 msgid "Confirmed at Height"
 msgstr "Bekräftad vid höjd"
 
-#: src/components/WalletStatusHeader.tsx:40
-#~ msgid "Connected ({0})"
-#~ msgstr "Connected ({0})"
-
-#: src/components/WalletConnections.tsx:62
+#: src/components/WalletConnections.tsx:47
 msgid "Connection type"
 msgstr "Anslutningstyp"
 
-#: src/components/WalletConnections.tsx:80
-#~ msgid "Connections"
-#~ msgstr "Connections"
+#: src/components/WalletReceiveAddressField.tsx:71
+msgid "Copied"
+msgstr ""
 
-#: src/components/rateLimited/WalletRateLimited.jsx:305
-#: src/components/rateLimited/WalletRateLimited.jsx:427
-#: src/components/rateLimited/WalletRateLimited.jsx:484
-msgid "Copy"
-msgstr "Kopiera"
+#: src/components/WalletReceiveAddressField.tsx:75
+msgid "Copy wallet address"
+msgstr ""
 
-#: src/components/cat/WalletCATCreateNew.tsx:101
-#: src/components/create/createRLAdmin.jsx:306
-#: src/components/create/createRLUser.jsx:99
-#: src/components/did/WalletDIDCreate.tsx:220
-msgid "Create"
-msgstr "Skapa"
-
-#: src/components/cat/WalletDID.tsx:967
-#: src/components/did/WalletDID.tsx:967
-msgid "Create An Attestation Packet"
-msgstr "Skapa ett attestpaket"
-
-#: src/components/cat/WalletCATCreateExisting.tsx:76
-#~ msgid "Create Chia Asset Token Wallet from Existing TAIL"
-#~ msgstr "Create Chia Asset Token Wallet from Existing TAIL"
-
-#: src/components/did/WalletDIDCreate.tsx:113
-msgid "Create Distributed Identity Wallet"
-msgstr "Skapa distribuerad identitetsplånbok"
-
-#: src/components/cat/WalletCATCreateNew.tsx:75
-msgid "Create New Chia Asset Token Wallet"
-msgstr "Skapa ny plånbok för Chia tillgångstoken (CAT)"
-
-#: src/components/cat/WalletCATSelect.tsx:31
-#: src/components/did/WalletDIDSelect.tsx:31
+#: src/components/cat/WalletCATSelect.tsx:32
 msgid "Create New Wallet"
 msgstr "Skapa ny plånbok"
 
-#: src/components/cat/WalletCAT.tsx:113
-#: src/components/standard/WalletStandard.tsx:48
+#: src/components/cat/WalletCAT.tsx:104
+#: src/components/standard/WalletStandard.tsx:46
 msgid "Create Offer"
 msgstr "Skapa erbjudande"
 
-#: src/components/create/createRLAdmin.jsx:187
-msgid "Create Rate Limited Admin Wallet"
-msgstr "Skapa spenderbegränsad adminplånbok"
-
-#: src/components/create/createRLUser.jsx:78
-msgid "Create Rate Limited User Wallet"
-msgstr "Skapa spenderbegränsad användarplånbok"
-
-#: src/components/WalletSend.tsx:138
-#: src/components/cat/WalletCATSend.tsx:176
-#: src/components/rateLimited/WalletRateLimited.jsx:683
+#: src/components/WalletSend.tsx:154
+#: src/components/cat/WalletCATSend.tsx:177
 msgid "Create Transaction"
 msgstr "Skapa transaktion"
-
-#: src/components/cat/WalletCATCreateExisting.tsx:75
-#~ msgid "Create custom CAT Wallet"
-#~ msgstr "Create custom CAT Wallet"
 
 #: src/constants/WalletName.ts:20
 msgid "Custody Wallet"
 msgstr ""
 
-#: src/components/cat/WalletCATCreateSimple.tsx:102
+#: src/components/cat/WalletCATCreateSimple.tsx:100
 msgid "Custom"
 msgstr "Eget"
 
@@ -231,74 +155,50 @@ msgstr "DID-plånbok"
 msgid "Datalayer Wallet"
 msgstr "Plånbok för DataLayer"
 
-#: src/components/WalletHistory.tsx:198
+#: src/components/WalletHistory.tsx:100
 msgid "Date"
 msgstr "Datum"
 
-#: src/components/WalletHeader.tsx:32
-#: src/components/cat/WalletDID.tsx:448
-#: src/components/cat/WalletDID.tsx:862
-#: src/components/did/WalletDID.tsx:448
-#: src/components/did/WalletDID.tsx:862
-#: src/components/did/WalletDIDCreate.tsx:196
-#: src/components/did/WalletDIDRecovery.tsx:101
+#: src/components/WalletHeader.tsx:26
 msgid "Delete"
 msgstr "Ta bort"
 
-#: src/components/WalletHeader.tsx:86
+#: src/components/WalletHeader.tsx:68
 msgid "Delete Unconfirmed Transactions"
 msgstr "Ta bort obekräftade transaktioner"
 
-#: src/components/card/WalletCardTotalBalance.tsx:75
+#: src/components/card/WalletCardTotalBalance.tsx:68
 msgid "Derivation Index: {0}"
 msgstr ""
 
-#: src/components/create/WalletCreateList.tsx:42
-#: src/components/did/WalletDIDSelect.tsx:24
+#: src/components/create/WalletCreateList.tsx:39
 msgid "Distributed Identity"
 msgstr "Distribuerad identitet"
 
-#: src/components/cat/WalletDID.tsx:426
-#: src/components/did/WalletDID.tsx:426
-msgid "Drag and drop attestation packet(s)"
-msgstr "Dra och släpp attestpaket"
+#: src/components/WalletImport.tsx:158
+msgid "Enter the {mnemonicWordCount} word mnemonic that you have saved in order to restore your Chia wallet."
+msgstr ""
 
-#: src/components/did/WalletDIDRecovery.tsx:109
-msgid "Drag and drop your recovery backup file"
-msgstr "Drag och släpp din säkerhetskopierade fil"
-
-#: src/components/WalletImport.tsx:151
-msgid "Enter the 24 word mnemonic that you have saved in order to restore your Chia wallet."
-msgstr "Skriv in din sparade minnesfras på 24 ord för att återställa din Chia-plånbok."
-
-#: src/components/cat/WalletCATSend.tsx:128
+#: src/components/cat/WalletCATSend.tsx:126
 msgid "Error the entered address appears to be for a different colour."
 msgstr "Fel den angivna adressen verkar vara för en annan färg."
 
-#: src/components/WalletSend.tsx:191
-#: src/components/cat/WalletCATSend.tsx:244
+#: src/components/WalletSend.tsx:221
+#: src/components/cat/WalletCATSend.tsx:245
 msgid "Farm"
 msgstr "Odling"
 
-#: src/components/WalletHistory.tsx:237
-#: src/components/WalletSend.tsx:179
+#: src/components/WalletHistory.tsx:131
+#: src/components/WalletSend.tsx:197
 #: src/components/cat/WalletCATSend.tsx:221
-#: src/components/create/createRLAdmin.jsx:243
-#: src/components/create/createRLAdmin.jsx:271
-#: src/components/rateLimited/WalletRateLimited.jsx:732
 msgid "Fee"
 msgstr "Avgift"
 
-#: src/components/cat/WalletDID.tsx:975
-#: src/components/did/WalletDID.tsx:975
-msgid "Filename"
-msgstr "Filnamn"
-
-#: src/components/WalletReceiveAddress.tsx:49
+#: src/components/WalletReceiveAddress.tsx:32
 msgid "HD or Hierarchical Deterministic keys are a type of public key/private key scheme where one private key can have a nearly infinite number of different public keys (and therefore wallet receive addresses) that will all ultimately come back to and be spendable by a single private key."
 msgstr "\"HD\" eller Hierarkiska Deterministiska nycklar är en typ av schema med publik nyckel/privat nyckel där en privat nyckel kan ha ett nästan oändligt antal olika publika nycklar (och därigenom mottagaradresser i plånboken) som alla i slutänden kan härledas tillbaka till och är spenderbara med en och samma privata nyckel."
 
-#: src/components/WalletConnections.tsx:27
+#: src/components/WalletConnections.tsx:22
 msgid "IP address"
 msgstr "IP-adress"
 
@@ -306,66 +206,45 @@ msgstr "IP-adress"
 msgid "If you would like to speed up the transaction, please delete unconfirmed transactions and retry with a higher fee."
 msgstr "Om du vill påskynda transaktionen, ta bort obekräftade transaktioner och försök igen med en högre avgift."
 
-#: src/components/PasteMnemonic.tsx:86
+#: src/components/PasteMnemonic.tsx:79
 msgid "Import"
 msgstr "Importera"
 
-#: src/components/WalletImport.tsx:148
+#: src/components/WalletImport.tsx:141
 msgid "Import Wallet from Mnemonics"
 msgstr "Importera plånbok från minnesfras"
 
-#: src/components/WalletHistory.tsx:93
+#: src/components/WalletImport.tsx:226
+msgid "Import from {alternativeWordCount} word mnemonic"
+msgstr ""
+
+#: src/components/WalletHistory.tsx:87
 msgid "Incoming"
 msgstr "Inkommande"
 
-#: src/components/rateLimited/WalletRateLimited.jsx:332
-#: src/components/rateLimited/WalletRateLimited.jsx:471
-msgid "Info Packet"
-msgstr "Infopaket"
-
-#: src/components/create/createRLAdmin.jsx:259
-msgid "Initial Amount"
-msgstr "Ursprungligt belopp"
-
-#: src/components/create/createRLUser.jsx:87
-msgid "Initialize a Rate Limited User Wallet:"
-msgstr "Initiera spenderbegränsad användarplånbok:"
-
-#: src/components/create/createRLAdmin.jsx:217
-msgid "Interval"
-msgstr "Intervall"
-
-#: src/components/WalletConnections.tsx:85
+#: src/components/WalletConnections.tsx:71
 msgid "List of connections is empty"
 msgstr "Lista över anslutningar är tom"
 
-#: src/components/WalletReceiveAddressField.tsx:40
-msgid "Loading..."
-msgstr "Läser in …"
-
-#: src/components/cat/WalletDID.tsx:805
-#: src/components/did/WalletDID.tsx:805
-msgid "Manage Recovery DIDs"
-msgstr "Hantera återställnings-DID"
-
-#: src/components/WalletsManageTokens.tsx:151
+#: src/components/WalletsManageTokens.tsx:133
 msgid "Manage token list"
 msgstr "Hantera tokenlista"
 
-#: src/components/WalletHistory.tsx:169
-#: src/components/cat/WalletCATSend.tsx:234
+#: src/components/WalletHistory.tsx:174
+#: src/components/WalletSend.tsx:211
+#: src/components/cat/WalletCATSend.tsx:235
 msgid "Memo"
 msgstr "Anteckning"
 
-#: src/components/WalletHistory.tsx:368
+#: src/components/WalletHistory.tsx:338
 msgid "Memos"
 msgstr "Anteckningar"
 
-#: src/components/WalletSendTransactionResultDialog.tsx:19
+#: src/components/WalletSendTransactionResultDialog.tsx:16
 msgid "Mempool Full"
 msgstr "Mempoolen är full"
 
-#: src/components/WalletConnections.tsx:55
+#: src/components/WalletConnections.tsx:40
 msgid "MiB Up/Down"
 msgstr "MiB upp/ner"
 
@@ -373,203 +252,122 @@ msgstr "MiB upp/ner"
 msgid "Multi Sig Wallet"
 msgstr ""
 
-#: src/components/cat/WalletDID.tsx:536
-#: src/components/did/WalletDID.tsx:536
-msgid "My DID Wallet"
-msgstr "Min DID plånbok"
-
-#: src/components/rateLimited/WalletRateLimited.jsx:414
-msgid "My Pubkey"
-msgstr "Min publika nyckel"
-
 #: src/constants/WalletName.ts:35
 msgid "NFT Wallet"
 msgstr "NFT-plånbok"
 
-#: src/components/cat/WalletCATCreateExistingSimple.tsx:71
+#: src/components/cat/WalletCATCreateExistingSimple.tsx:68
 msgid "Name"
 msgstr "Namn"
 
-#: src/components/WalletReceiveAddress.tsx:64
+#: src/components/WalletReceiveAddress.tsx:45
 msgid "New Address"
 msgstr "Ny adress"
 
-#: src/components/WalletAdd.tsx:91
+#: src/components/WalletReceiveAddressField.tsx:114
+msgid "New Receive Address"
+msgstr ""
+
+#: src/components/WalletAdd.tsx:64
 msgid "New Wallet"
 msgstr "Ny plånbok"
 
-#: src/components/WalletAdd.tsx:151
-#: src/components/WalletImport.tsx:189
+#: src/components/WalletAdd.tsx:124
+#: src/components/WalletImport.tsx:196
 msgid "Next"
 msgstr "Nästa"
 
-#: src/components/WalletRenameDialog.tsx:78
+#: src/components/WalletRenameDialog.tsx:67
 msgid "Nickname"
 msgstr "Smeknamn"
 
-#: src/components/WalletHistory.tsx:404
+#: src/components/WalletHistory.tsx:369
 msgid "No previous transactions"
 msgstr "Inga tidigare transaktioner"
 
-#: src/components/WalletConnections.tsx:23
+#: src/components/WalletConnections.tsx:18
 msgid "Node ID"
 msgstr "Node-ID"
 
-#: src/components/WalletHistory.tsx:353
-#: src/components/WalletHistory.tsx:363
+#: src/components/WalletHistory.tsx:327
+#: src/components/WalletHistory.tsx:334
 msgid "Not Available"
 msgstr "Inte tillgänglig"
 
-#: src/components/WalletStatusHeader.tsx:38
-#~ msgid "Not Connected"
-#~ msgstr "Not Connected"
-
-#: src/components/WalletStatus.tsx:57
+#: src/components/WalletStatus.tsx:58
 msgid "Not Synced"
 msgstr "Ej synkad"
 
-#: src/components/cat/WalletCATTAILDialog.tsx:83
+#: src/components/cat/WalletCATTAILDialog.tsx:66
 msgid "OK"
 msgstr "OK"
 
-#: src/components/WalletHistory.tsx:183
+#: src/components/WalletHistory.tsx:176
 msgid "Offer Accepted"
 msgstr "Erbjudandet accepterat"
 
-#: src/components/WalletSend.tsx:141
-#: src/components/cat/WalletCATSend.tsx:179
+#: src/components/WalletSend.tsx:157
+#: src/components/cat/WalletCATSend.tsx:180
 msgid "On average there is one minute between each transaction block. Unless there is congestion you can expect your transaction to be included in less than a minute."
 msgstr "I genomsnitt är det en minut mellan varje transaktionsblock. Om det inte är någon form av köbildning kan du räkna med att en transaktion inkluderas i blockkedjan på under en minut."
 
-#: src/components/did/WalletDIDRecovery.tsx:33
-msgid "Only one backup file is allowed."
-msgstr "Endast en säkerhetskopieringsfil är tillåten."
-
-#: src/components/WalletHistory.tsx:93
+#: src/components/WalletHistory.tsx:87
 msgid "Outgoing"
 msgstr "Utgående"
 
-#: src/components/WalletImport.tsx:101
+#: src/components/WalletImport.tsx:234
 msgid "Paste Mnemonic"
 msgstr "Klistra in minnesfras"
 
-#: src/components/PasteMnemonic.tsx:55
-msgid "Paste Mnemonic (24 words)"
-msgstr "Klistra in minnesfras (24 ord)"
+#: src/components/PasteMnemonic.tsx:53
+msgid "Paste Mnemonic ({0} words)"
+msgstr ""
 
-#: src/components/WalletHistory.tsx:162
+#: src/components/WalletHistory.tsx:172
 msgid "Pending"
 msgstr "Väntande"
 
-#: src/components/card/WalletCardPendingBalance.tsx:36
-#: src/components/rateLimited/WalletRateLimited.jsx:572
+#: src/components/card/WalletCardPendingBalance.tsx:40
 msgid "Pending Balance"
 msgstr "Väntande saldo"
 
-#: src/components/card/WalletCardPendingChange.tsx:37
-#: src/components/rateLimited/WalletRateLimited.jsx:577
+#: src/components/card/WalletCardPendingChange.tsx:41
 msgid "Pending Change"
 msgstr "Väntande växel"
 
-#: src/components/card/WalletCardPendingTotalBalance.tsx:37
-#: src/components/rateLimited/WalletRateLimited.jsx:567
+#: src/components/card/WalletCardPendingTotalBalance.tsx:41
 msgid "Pending Total Balance"
 msgstr "Väntande totalt saldo"
 
-#: src/components/rateLimited/WalletRateLimited.jsx:667
-msgid "Please enter 0 fee. Positive fees not supported yet for RL."
-msgstr "Ange 0 som avgift. Positiv avgift stöds ännu inte för RL."
-
-#: src/components/cat/WalletDID.tsx:924
-#: src/components/did/WalletDID.tsx:924
-msgid "Please enter a coin"
-msgstr "Ange ett mynt"
-
-#: src/components/cat/WalletDID.tsx:525
-#: src/components/cat/WalletDID.tsx:914
-#: src/components/did/WalletDID.tsx:525
-#: src/components/did/WalletDID.tsx:914
-msgid "Please enter a filename"
-msgstr "Ange ett filnamn"
-
-#: src/components/cat/WalletDID.tsx:934
-#: src/components/did/WalletDID.tsx:934
-msgid "Please enter a pubkey"
-msgstr "Ange en giltig publik nyckel"
-
-#: src/components/cat/WalletDID.tsx:944
-#: src/components/did/WalletDID.tsx:944
-msgid "Please enter a puzzlehash"
-msgstr "Ange en pusselhash"
-
-#: src/components/cat/WalletCATCreateExisting.tsx:40
-#~ msgid "Please enter a valid CAT name"
-#~ msgstr "Please enter a valid CAT name"
-
-#: src/components/cat/WalletCATCreateExistingSimple.tsx:41
+#: src/components/cat/WalletCATCreateExistingSimple.tsx:42
 msgid "Please enter a valid asset id"
 msgstr "Ange ett giltigt tillgångs-ID"
 
-#: src/components/create/createRLAdmin.jsx:139
-msgid "Please enter a valid initial coin amount"
-msgstr "Ange ett giltigt belopp för ursprungligt mynt"
-
-#: src/components/cat/WalletDID.tsx:776
-#: src/components/did/WalletDID.tsx:776
-#: src/components/did/WalletDIDCreate.tsx:74
-msgid "Please enter a valid integer of 0 or greater for the number of Backup IDs needed for recovery."
-msgstr "Ange ett giltigt heltal på 0 eller fler för det säkerhetskopierings-ID som behövs för återställning."
-
-#: src/components/WalletSend.tsx:93
-#: src/components/cat/WalletCATSend.tsx:104
-#: src/components/rateLimited/WalletRateLimited.jsx:638
+#: src/components/WalletSend.tsx:96
+#: src/components/cat/WalletCATSend.tsx:102
 msgid "Please enter a valid numeric amount"
 msgstr "Ange ett giltigt numeriskt belopp"
 
-#: src/components/did/WalletDIDCreate.tsx:50
-msgid "Please enter a valid numeric amount."
-msgstr "Ange ett giltigt numeriskt belopp."
-
-#: src/components/WalletSend.tsx:98
-#: src/components/cat/WalletCATSend.tsx:109
-#: src/components/create/createRLAdmin.jsx:149
-#: src/components/rateLimited/WalletRateLimited.jsx:648
+#: src/components/WalletSend.tsx:101
+#: src/components/cat/WalletCATSend.tsx:107
 msgid "Please enter a valid numeric fee"
 msgstr "Ange en giltig numeriskt avgift"
 
-#: src/components/create/createRLAdmin.jsx:99
-msgid "Please enter a valid numeric interval length"
-msgstr "Ange en giltig numerisk intervallängd"
-
-#: src/components/create/createRLAdmin.jsx:114
-msgid "Please enter a valid numeric spendable amount"
-msgstr "Ange ett giltigt spenderbart belopp"
-
-#: src/components/create/createRLAdmin.jsx:124
-msgid "Please enter a valid pubkey"
-msgstr "Ange en giltig publik nyckel"
-
-#: src/components/cat/WalletCATCreateExistingSimple.tsx:45
+#: src/components/cat/WalletCATCreateExistingSimple.tsx:46
 msgid "Please enter a valid token name"
 msgstr "Ange ett giltigt tokennamn"
 
-#: src/components/WalletRenameDialog.tsx:49
+#: src/components/WalletRenameDialog.tsx:41
 msgid "Please enter valid wallet name"
 msgstr "Ange ett giltigt plånboksnamn"
 
-#: src/components/WalletSend.tsx:88
-#: src/components/cat/WalletCATSend.tsx:95
-#: src/components/rateLimited/WalletRateLimited.jsx:622
+#: src/components/WalletSend.tsx:91
+#: src/components/cat/WalletCATSend.tsx:93
 msgid "Please finish syncing before making a transaction"
 msgstr "Vänta på synkronisering innan du gör en transaktion"
 
-#: src/components/did/WalletDIDRecovery.tsx:54
-msgid "Please select backup file first"
-msgstr "Välj en säkerhetskopieringsfil först"
-
-#: src/components/cat/WalletCATCreateExistingSimple.tsx:37
-#: src/components/cat/WalletCATCreateSimple.tsx:37
-#: src/components/did/WalletDIDRecovery.tsx:63
+#: src/components/cat/WalletCATCreateExistingSimple.tsx:38
+#: src/components/cat/WalletCATCreateSimple.tsx:38
 msgid "Please wait for wallet synchronization"
 msgstr "Vänta på synkronisering av plånboken"
 
@@ -577,195 +375,101 @@ msgstr "Vänta på synkronisering av plånboken"
 msgid "Pooling Wallet"
 msgstr ""
 
-#: src/components/WalletConnections.tsx:33
+#: src/components/WalletConnections.tsx:28
 msgid "Port"
 msgstr "Port"
-
-#: src/components/cat/WalletDID.tsx:993
-#: src/components/create/createRLAdmin.jsx:296
-#: src/components/did/WalletDID.tsx:993
-msgid "Pubkey"
-msgstr "Publik nyckel"
-
-#: src/components/cat/WalletDID.tsx:1002
-#: src/components/did/WalletDID.tsx:1002
-msgid "Puzzlehash"
-msgstr "Pusselhash"
 
 #: src/constants/WalletName.ts:8
 msgid "RL Wallet"
 msgstr "RL-plånbok"
 
-#: src/components/create/WalletCreateList.tsx:48
+#: src/components/create/WalletCreateList.tsx:45
 msgid "Rate Limited"
 msgstr "Spenderbegränsad (Rate limited)"
 
-#: src/components/rateLimited/WalletRateLimited.jsx:390
-#: src/components/rateLimited/WalletRateLimited.jsx:437
-msgid "Rate Limited Info"
-msgstr "Info om spenderbegränsning"
-
-#: src/components/rateLimited/WalletRateLimited.jsx:272
-msgid "Rate Limited User Wallet Setup"
-msgstr "Konfiguration av spenderbegränsad användarplånbok"
-
-#: src/components/WalletsSidebar.tsx:152
+#: src/components/WalletsSidebar.tsx:133
 msgid "Read the blog post for details"
 msgstr "Läs blogginlägget för mer information"
 
-#: src/components/WalletHeader.tsx:64
+#: src/components/WalletHeader.tsx:48
 msgid "Receive"
 msgstr "Ta emot"
 
-#: src/components/WalletReceiveAddress.tsx:46
-#: src/components/WalletReceiveAddressField.tsx:38
+#: src/components/WalletReceiveAddress.tsx:29
 msgid "Receive Address"
 msgstr "Mottagaradress"
 
-#: src/components/cat/WalletCATSend.tsx:122
+#: src/components/cat/WalletCATSend.tsx:120
 msgid "Recipient address is not a coloured wallet address. Please enter a coloured wallet address"
 msgstr ""
-
-#: src/components/cat/WalletDID.tsx:463
-#: src/components/did/WalletDID.tsx:463
-#: src/components/did/WalletDIDRecovery.tsx:124
-msgid "Recover"
-msgstr "Återställ"
-
-#: src/components/cat/WalletDID.tsx:338
-#: src/components/cat/WalletDID.tsx:479
-#: src/components/did/WalletDID.tsx:338
-#: src/components/did/WalletDID.tsx:479
-msgid "Recover DID Wallet"
-msgstr "Återställ DID-plånbok"
-
-#: src/components/did/WalletDIDRecovery.tsx:83
-msgid "Recover Distributed Identity Wallet"
-msgstr "Återskapa distribuerad Id-plånbok"
-
-#: src/components/did/WalletDIDSelect.tsx:38
-msgid "Recover Wallet"
-msgstr "Återställ plånbok"
 
 #: src/constants/WalletName.ts:26
 msgid "Recoverable Wallet"
 msgstr ""
 
-#: src/components/cat/WalletCATSelect.tsx:38
+#: src/components/cat/WalletCATSelect.tsx:39
 msgid "Recovery Wallet"
 msgstr ""
 
-#: src/components/WalletRenameDialog.tsx:69
-#: src/components/cat/WalletCAT.tsx:96
+#: src/components/WalletRenameDialog.tsx:61
+#: src/components/cat/WalletCAT.tsx:87
 msgid "Rename Wallet"
 msgstr "Byt namn på plånboken"
 
-#: src/components/WalletHistory.tsx:176
+#: src/components/WalletHistory.tsx:175
 msgid "Retire"
 msgstr "Dra tillbaka"
 
-#: src/components/WalletRenameDialog.tsx:98
+#: src/components/WalletRenameDialog.tsx:75
 msgid "Save"
 msgstr "Spara"
 
-#: src/components/WalletTokenCard.tsx:185
-#: src/components/cat/WalletCATTAILDialog.tsx:76
+#: src/components/WalletTokenCard.tsx:177
+#: src/components/cat/WalletCATTAILDialog.tsx:59
 msgid "Search on Tail Database"
 msgstr "Sök i Tail-databasen"
 
-#: src/components/WalletsList.tsx:32
-msgid "Select Wallet"
-msgstr "Välj plånbok"
-
-#: src/components/create/WalletCreateList.tsx:28
+#: src/components/create/WalletCreateList.tsx:25
 msgid "Select Wallet Type"
 msgstr "Välj plånbokstyp"
 
-#: src/components/did/WalletDIDRecovery.tsx:90
-msgid "Selected recovery file:"
-msgstr "Vald återställningsfil:"
-
-#: src/components/WalletHeader.tsx:59
-#: src/components/WalletSend.tsx:202
-#: src/components/cat/WalletCATSend.tsx:255
-#: src/components/rateLimited/WalletRateLimited.jsx:747
+#: src/components/WalletHeader.tsx:47
+#: src/components/WalletSend.tsx:232
+#: src/components/cat/WalletCATSend.tsx:256
 msgid "Send"
 msgstr "Skicka"
 
-#: src/components/rateLimited/WalletRateLimited.jsx:459
-msgid "Send this info packet to your Rate Limited Wallet user who must use it to complete setup of their wallet:"
-msgstr "Skicka detta infopaket till användaren av din spenderbegränsade plånbok, som måste använda det för att slutföra skapandet av deras plånbok:"
-
-#: src/components/rateLimited/WalletRateLimited.jsx:278
-msgid "Send your pubkey to your Rate Limited Wallet admin:"
-msgstr "Skicka din publika nyckel till admin för din spenderbegränsade plånbok:"
-
-#: src/components/cat/WalletCAT.tsx:105
+#: src/components/cat/WalletCAT.tsx:96
 msgid "Show Asset Id"
 msgstr "Visa tillgångs-ID"
 
-#: src/components/create/createRLAdmin.jsx:229
-msgid "Spendable Amount"
-msgstr "Spenderbart belopp"
-
-#: src/components/create/createRLAdmin.jsx:201
-msgid "Spendable Amount Per Interval"
-msgstr "Spenderbart belopp per intervall"
-
-#: src/components/card/WalletCardSpendableBalance.tsx:37
-#: src/components/rateLimited/WalletRateLimited.jsx:547
+#: src/components/card/WalletCardSpendableBalance.tsx:41
 msgid "Spendable Balance"
 msgstr "Spenderbart belopp"
-
-#: src/components/rateLimited/WalletRateLimited.jsx:395
-#: src/components/rateLimited/WalletRateLimited.jsx:442
-msgid "Spending Interval (number of blocks): {interval}"
-msgstr "Spenderintervall (antal block): {interval}"
-
-#: src/components/create/createRLAdmin.jsx:196
-msgid "Spending Interval Length (number of blocks)"
-msgstr "Längd på spenderintervall (antal block)"
-
-#: src/components/rateLimited/WalletRateLimited.jsx:400
-#: src/components/rateLimited/WalletRateLimited.jsx:447
-msgid "Spending Limit (chia per interval): {0}"
-msgstr "Spenderbegränsning (chia per intervall): {0}"
 
 #: src/constants/WalletName.ts:5
 msgid "Standard Wallet"
 msgstr "Standardplånbok"
 
-#: src/components/cat/WalletDID.tsx:886
-#: src/components/did/WalletDID.tsx:886
-#: src/components/rateLimited/WalletRateLimited.jsx:346
-msgid "Submit"
-msgstr "Skicka"
-
-#: src/components/WalletSendTransactionResultDialog.tsx:15
+#: src/components/WalletSendTransactionResultDialog.tsx:12
 msgid "Success"
 msgstr "Lyckades"
 
-#: src/components/WalletHeader.tsx:54
+#: src/components/WalletHeader.tsx:46
 msgid "Summary"
 msgstr "Sammanfattning"
 
-#: src/components/WalletStatus.tsx:69
+#: src/components/WalletStatus.tsx:70
 msgid "Synced"
 msgstr "Synkad"
 
-#: src/components/WalletStatus.tsx:81
+#: src/components/WalletStatus.tsx:82
 msgid "Syncing"
 msgstr "Synkar"
 
-#: src/components/card/WalletCardTotalBalance.tsx:77
+#: src/components/card/WalletCardTotalBalance.tsx:70
 msgid "The derivation index sets the range of wallet addresses that the wallet scans the blockchain for. This number is generally higher if you have a lot of transactions or canceled offers for XCH, CATs, or NFTs. If you believe your balance is incorrect because it’s missing coins, then increasing the derivation index could help the wallet include the missing coins in the balance total."
 msgstr ""
-
-#: src/components/cat/WalletDID.tsx:789
-#: src/components/did/WalletDID.tsx:789
-#: src/components/did/WalletDIDCreate.tsx:87
-msgid "The number of Backup IDs needed for recovery cannot exceed the number of Backup IDs added."
-msgstr "Antalet säkerhetskopierings-ID som behövs för återställning kan inte överstiga antalet säkerhetskopierings-ID som lagts till."
 
 #: src/components/WalletSendTransactionResultDialog.tsx:34
 msgid "The transaction could not be immediately included in the mempool because the specified fee is too low. The transaction will be retried periodically, and may be included in the mempool once fees are lower, or if space becomes available."
@@ -775,7 +479,7 @@ msgstr "Transaktionen kunde inte omedelbart läggas till i mempoolen eftersom de
 msgid "This access token is verified"
 msgstr ""
 
-#: src/components/WalletHistory.tsx:130
+#: src/components/WalletHistory.tsx:156
 msgid "This is not a valid address for sending funds to"
 msgstr "Detta är inte en giltig adress för att skicka betalning till"
 
@@ -783,44 +487,39 @@ msgstr "Detta är inte en giltig adress för att skicka betalning till"
 msgid "This is the amount of Chia that you can currently use to make transactions. It does not include pending farming rewards, pending incoming transactions, and Chia that you have just spent but is not yet in the blockchain."
 msgstr "Detta är den mängd Chia du för tillfället kan använda för transaktioner. Det innefattar inte väntande odlingsbelöningar, väntande inkommande transaktioner eller Chia som du just spenderat men som ännu inte finns i blockkedjan."
 
-#: src/components/standard/WalletStandardCards.tsx:44
+#: src/components/standard/WalletStandardCards.tsx:42
 msgid "This is the pending change, which are change coins which you have sent to yourself, but have not been confirmed yet."
 msgstr "Detta är väntande växel, det vill säga de växelmynt du har skickat till dig själv men som ännu inte har bekräftats."
 
-#: src/components/standard/WalletStandardCards.tsx:37
+#: src/components/standard/WalletStandardCards.tsx:36
 msgid "This is the sum of the incoming and outgoing pending transactions (not yet included into the blockchain). This does not include farming rewards."
 msgstr "Detta är summan av inkommande och utgående väntande transaktioner (som ännu inte inkluderats i blockkedjan). Den innefattar inte odlingsbelöningar."
 
-#: src/components/standard/WalletStandardCards.tsx:16
+#: src/components/standard/WalletStandardCards.tsx:17
 msgid "This is the total amount of chia in the blockchain at the current peak block that is controlled by your private keys. It includes frozen farming rewards, but not pending incoming and outgoing transactions."
 msgstr "Detta är den sammanlagda mängden chia i blockkedjan vid det aktuella topp-blocket som kontrolleras av dina privata nycklar. Det innefattar frusna odlingsbelöningar, men inte väntande inkommande och utgående transaktioner."
 
-#: src/components/standard/WalletStandardCards.tsx:31
+#: src/components/standard/WalletStandardCards.tsx:30
 msgid "This is the total balance + pending balance: it is what your balance will be after all pending transactions are confirmed."
 msgstr "Detta är totalt saldo + väntande saldo: det är vad ditt saldo kommer att vara när alla väntande transaktioner har bekräftats."
 
-#: src/components/WalletHistory.tsx:190
+#: src/components/WalletHistory.tsx:181
 msgid "To"
 msgstr "Till"
 
-#: src/components/cat/WalletCATCreateExisting.tsx:85
-#~ msgid "Token and Asset Issuance Limitations"
-#~ msgstr "Token and Asset Issuance Limitations"
-
-#: src/components/cat/WalletCATCreateSimple.tsx:45
+#: src/components/cat/WalletCATCreateSimple.tsx:46
 msgid "Token has empty asset id"
 msgstr "Token har ett tomt tillgångs-id"
 
-#: src/components/cat/WalletCATCreateSimple.tsx:41
+#: src/components/cat/WalletCATCreateSimple.tsx:42
 msgid "Token has empty name"
 msgstr "Token har ett tomt namn"
 
-#: src/components/WalletsSidebar.tsx:216
+#: src/components/WalletsSidebar.tsx:187
 msgid "Tokens"
 msgstr "Token"
 
-#: src/components/card/WalletCardTotalBalance.tsx:62
-#: src/components/rateLimited/WalletRateLimited.jsx:542
+#: src/components/card/WalletCardTotalBalance.tsx:60
 msgid "Total Balance"
 msgstr "Totalt saldo"
 
@@ -828,68 +527,47 @@ msgstr "Totalt saldo"
 msgid "Transaction has successfully been sent to a full node and included in the mempool."
 msgstr "Transaktionen har skickats till en fullständig nod och inkluderats i mempoolen."
 
-#: src/components/WalletHistory.tsx:311
+#: src/components/WalletHistory.tsx:258
 msgid "Transactions"
 msgstr "Transaktioner"
 
-#: src/components/create/createRLAdmin.jsx:280
-#: src/components/rateLimited/WalletRateLimited.jsx:292
-msgid "User Pubkey"
-msgstr "Publik nyckel för användare"
-
-#: src/components/rateLimited/WalletRateLimited.jsx:561
-msgid "View pending balances"
-msgstr "Visa väntande saldon"
-
-#: src/components/WalletConnections.tsx:80
+#: src/components/WalletConnections.tsx:67
 msgid "Wallet Connections"
 msgstr "Plånbokens anslutningar"
 
-#: src/components/WalletAdd.tsx:128
-#: src/components/WalletImport.tsx:176
+#: src/components/WalletAdd.tsx:101
+#: src/components/WalletImport.tsx:148
 msgid "Wallet Name"
 msgstr "Plånboksnamn"
 
-#: src/components/cat/WalletCAT.tsx:75
-#: src/components/cat/WalletDID.tsx:1118
-#: src/components/did/WalletDID.tsx:1118
+#: src/components/cat/WalletCAT.tsx:66
 msgid "Wallet does not exists"
 msgstr "Plånboken finns inte"
 
-#: src/components/Wallet.tsx:50
+#: src/components/Wallet.tsx:37
 msgid "Wallet with type {0} not supported"
 msgstr "Plånbok av typ {0} stöds inte"
 
-#: src/components/Wallet.tsx:23
+#: src/components/Wallet.tsx:22
 msgid "Wallet {walletId} not found"
 msgstr "Plånbok {walletId} kunde inte hittas"
 
-#: src/components/WalletsSidebar.tsx:157
+#: src/components/WalletsSidebar.tsx:138
 msgid "Want to see your old balance for yourself?"
 msgstr "Vill du se ditt gamla saldo för dig själv?"
 
-#: src/components/WalletsSidebar.tsx:119
+#: src/components/WalletsSidebar.tsx:110
 msgid "We've made an upgrade to the CAT standard which requires all CATs to be re-issued. You will be airdropped your new tokens as they are re-issued by the original issuers. The airdropped tokens will be based on the balance as of block height:<0/><1/><2/>(Approximate time: July 26th, 2022 @ 17:00 UTC)"
 msgstr "Vi har gjort en uppgradering av CAT-standarden som kräver att alla CAT:er ges ut på nytt. Du kommer automatiskt att få dina nya token allteftersom de ges ut på nytt av de ursprungliga utgivarna. Dessa återutgivna token kommer att baseras på saldot vid blockhöjden: <0/><1/><2/>(Ungefärlig tidpunkt: 26 juli, 2022 @ 17:00 UTC)"
 
-#: src/components/WalletAdd.tsx:94
+#: src/components/WalletAdd.tsx:67
 msgid "Welcome! The following words are used for your wallet backup. Without them, you will lose access to your wallet, keep them safe! Write down each word along with the order number next to them. (Order is important)"
 msgstr "Välkommen! Följande ord används för din plånboks säkerhetskopia. Utan dem förlorar du åtkomst till din plånbok, så spara dom säkert! Skriv ner varje ord tillsammans med ordningsnumret vid sidan om. (Ordningen är viktig)"
 
-#: src/components/rateLimited/WalletRateLimited.jsx:315
-msgid "When you receive the setup info packet from your admin, enter it below to complete your Rate Limited Wallet setup:"
-msgstr "När du fått konfigurationsinfopaketet av din administratör anger du det nedan för att slutföra konfigurationen av din spenderbegränsade plånbok:"
-
-#: src/components/WalletsSidebar.tsx:115
+#: src/components/WalletsSidebar.tsx:106
 msgid "Your CAT tokens have been upgraded!"
 msgstr "Dina CAT-token har uppgraderats!"
 
-#: src/components/cat/WalletDID.tsx:326
-#: src/components/did/WalletDID.tsx:326
-msgid "Your DID requires at least {dids_num_req} attestation file{0} for recovery. Please upload additional files."
-msgstr "Ditt DID kräver minst {dids_num_req} attesteringsfil{0} för återställning. Ladda upp ytterligare filer."
-
-#: src/components/WalletImport.tsx:77
-msgid "Your pasted list does not include 24 valid mnemonic words."
-msgstr "Den lista du klistrat in är inte en giltig minnesfras med 24 ord."
-
+#: src/components/WalletImport.tsx:72
+msgid "Your pasted list does not include {mnemonicWordCount} valid mnemonic words."
+msgstr ""
