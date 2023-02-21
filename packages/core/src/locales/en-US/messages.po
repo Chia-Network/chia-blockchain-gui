@@ -8,7 +8,7 @@ msgstr ""
 "Language: en_US\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-10-24 18:14\n"
+"PO-Revision-Date: 2023-02-21 23:08\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -161,7 +161,7 @@ msgstr "Hide Advanced Options"
 
 #: src/screens/SelectKey/SelectKey.tsx:181
 msgid "Import from Mnemonics (12 or 24 words)"
-msgstr "Import from Mnemonics (12 or 24 words)"
+msgstr ""
 
 #: src/components/Fee/Fee.tsx:41
 msgid "Incorrect value"
@@ -177,11 +177,11 @@ msgstr "Light"
 
 #: src/components/EstimatedFee/EstimatedFee.tsx:232
 msgid "Likely in {0} seconds"
-msgstr "Likely in {0} seconds"
+msgstr ""
 
 #: src/components/EstimatedFee/EstimatedFee.tsx:232
 msgid "Likely in {minutes} minutes"
-msgstr "Likely in {minutes} minutes"
+msgstr ""
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:46
 msgid "Loading details"
@@ -436,3 +436,4 @@ msgstr "{0, plural, one {mojo} other {mojos}}"
 #: src/hooks/useValidateChangePassphraseParams.tsx:35
 msgid "{minPassphraseLength, plural, one {Passphrases must be at least # character in length} other {Passphrases must be at least # characters in length}}"
 msgstr "{minPassphraseLength, plural, one {Passphrases must be at least # character in length} other {Passphrases must be at least # characters in length}}"
+
