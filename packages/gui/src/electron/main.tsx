@@ -341,7 +341,7 @@ if (!handleSquirrelEvent()) {
 
             const nftIdUrl = `${rest.nftId}_${rest.url}`;
             const fileOnDisk = path.join(thumbCacheFolder, computeHash(nftIdUrl, { encoding: 'utf-8' }));
-            let fileStream: any;
+            let fileStream: fs.WriteStream | undefined;
 
             try {
               Object.entries(requestHeaders).forEach(([header, value]: [string, any]) => {
@@ -352,10 +352,19 @@ if (!handleSquirrelEvent()) {
               let totalLength = 0;
 
               /* GET FILE SIZE */
-              const fileSize: number = await getRemoteFileSize(rest.url);
+              let fileSize = 0;
+              try {
+                fileSize = await getRemoteFileSize(rest.url);
+              } catch (e) {
+                // Not critical, knowing the file size up front is just a performance optimization
+              }
               dataObject = await new Promise((resolve, reject) => {
                 request.on('response', (response: IncomingMessage) => {
                   fileStream = fs.createWriteStream(fileOnDisk);
+                  if (!fileStream) {
+                    reject(new Error('Error creating file stream'));
+                  }
+
                   statusCode = response.statusCode;
                   statusMessage = response.statusMessage;
 
@@ -414,6 +423,7 @@ if (!handleSquirrelEvent()) {
                     }
                     if (fileStream) {
                       fileStream.end();
+                      fileStream = undefined;
                     }
                     getChecksum(fileOnDisk).then((checksum) => {
                       const isValid = (checksum as string).replace(/^0x/, '') === rest.dataHash.replace(/^0x/, '');
@@ -443,6 +453,7 @@ if (!handleSquirrelEvent()) {
                   response.on('error', (e: string) => {
                     if (fileStream) {
                       fileStream.end();
+                      fileStream = undefined;
                     }
                     reject(new Error(e));
                   });
@@ -451,6 +462,7 @@ if (!handleSquirrelEvent()) {
                 request.on('error', (err: any) => {
                   if (fileStream) {
                     fileStream.end();
+                    fileStream = undefined;
                   }
                   reject(err);
                 });
@@ -462,11 +474,21 @@ if (!handleSquirrelEvent()) {
                 request.end();
               });
             } catch (e: any) {
+              if (fileStream) {
+                fileStream.end();
+                fileStream = undefined;
+              }
+
               if (fs.existsSync(fileOnDisk)) {
                 fs.unlinkSync(fileOnDisk);
               }
               delete allRequests[rest.url];
               error = e;
+            } finally {
+              if (fileStream) {
+                fileStream.end();
+                fileStream = undefined;
+              }
             }
 
             return {
