@@ -34,16 +34,6 @@ msgstr "操作"
 msgid "Add"
 msgstr "添加"
 
-#: src/components/cat/WalletDID.tsx:874
-#: src/components/did/WalletDID.tsx:874
-#: src/components/did/WalletDIDCreate.tsx:207
-#~ msgid "Add Backup ID"
-#~ msgstr "添加备份 ID"
-
-#: src/components/hero/WalletHeroAdd.tsx:99
-#~ msgid "Add Custom Token"
-#~ msgstr "Add Custom Token"
-
 #: src/components/WalletsManageTokens.tsx:156
 #: src/components/cat/WalletCATCreateExistingSimple.tsx:61
 #: src/components/cat/WalletCATCreateSimple.tsx:68
@@ -69,14 +59,6 @@ msgstr "地址 / 谜语哈希"
 msgid "Amount"
 msgstr "数量"
 
-#: src/components/create/createRLAdmin.jsx:238
-#~ msgid "Amount For Initial Coin"
-#~ msgstr "初始币数量"
-
-#: src/components/did/WalletDIDCreate.tsx:60
-#~ msgid "Amount must be an even amount."
-#~ msgstr "金额必须相同"
-
 #: src/components/WalletHeader.tsx:30
 msgid "Are you sure you want to delete unconfirmed transactions?"
 msgstr "确定要删除未确认的交易吗？"
@@ -94,12 +76,6 @@ msgstr "原子交换钱包"
 #: src/constants/WalletName.ts:14
 msgid "Authorized Payee Wallet"
 msgstr "授权的 Payee 钱包"
-
-#: src/components/cat/WalletDID.tsx:646
-#: src/components/did/WalletDID.tsx:646
-#: src/components/rateLimited/WalletRateLimited.jsx:540
-#~ msgid "Balance"
-#~ msgstr "余额"
 
 #: src/components/PasteMnemonic.tsx:76
 #: src/components/WalletRenameDialog.tsx:72
@@ -125,11 +101,6 @@ msgstr "奇亚资产代币"
 msgid "Click here to download an older version of the wallet"
 msgstr "点击这里下载旧版本的钱包"
 
-#: src/components/cat/WalletDID.tsx:984
-#: src/components/did/WalletDID.tsx:984
-#~ msgid "Coin Name"
-#~ msgstr "代币名称"
-
 #: src/components/WalletHeader.tsx:25
 msgid "Confirmation"
 msgstr "确认"
@@ -142,55 +113,17 @@ msgstr "已确认"
 msgid "Confirmed at Height"
 msgstr "确认于区块高度"
 
-#: src/components/WalletStatusHeader.tsx:40
-#~ msgid "Connected ({0})"
-#~ msgstr "Connected ({0})"
-
 #: src/components/WalletConnections.tsx:47
 msgid "Connection type"
 msgstr "连接类型"
-
-#: src/components/WalletConnections.tsx:80
-#~ msgid "Connections"
-#~ msgstr "Connections"
 
 #: src/components/WalletReceiveAddressField.tsx:71
 msgid "Copied"
 msgstr ""
 
-#: src/components/rateLimited/WalletRateLimited.jsx:305
-#: src/components/rateLimited/WalletRateLimited.jsx:427
-#: src/components/rateLimited/WalletRateLimited.jsx:484
-#~ msgid "Copy"
-#~ msgstr "复制"
-
 #: src/components/WalletReceiveAddressField.tsx:75
 msgid "Copy wallet address"
 msgstr ""
-
-#: src/components/cat/WalletCATCreateNew.tsx:101
-#: src/components/create/createRLAdmin.jsx:306
-#: src/components/create/createRLUser.jsx:99
-#: src/components/did/WalletDIDCreate.tsx:220
-#~ msgid "Create"
-#~ msgstr "创建"
-
-#: src/components/cat/WalletDID.tsx:967
-#: src/components/did/WalletDID.tsx:967
-#~ msgid "Create An Attestation Packet"
-#~ msgstr "创建一个认证包"
-
-#: src/components/cat/WalletCATCreateExisting.tsx:76
-#~ msgid "Create Chia Asset Token Wallet from Existing TAIL"
-#~ msgstr "Create Chia Asset Token Wallet from Existing TAIL"
-
-#: src/components/did/WalletDIDCreate.tsx:113
-#~ msgid "Create Distributed Identity Wallet"
-#~ msgstr "创建分布式身份钱包"
-
-#: src/components/cat/WalletCATCreateNew.tsx:75
-#~ msgid "Create New Chia Asset Token Wallet"
-#~ msgstr "创建新的Chia Asset Token 钱包"
 
 #: src/components/cat/WalletCATSelect.tsx:32
 msgid "Create New Wallet"
@@ -201,22 +134,10 @@ msgstr "新建钱包"
 msgid "Create Offer"
 msgstr "创建报价"
 
-#: src/components/create/createRLAdmin.jsx:187
-#~ msgid "Create Rate Limited Admin Wallet"
-#~ msgstr "创建费用限定型管理钱包"
-
-#: src/components/create/createRLUser.jsx:78
-#~ msgid "Create Rate Limited User Wallet"
-#~ msgstr "创建费用限定型用户钱包"
-
 #: src/components/WalletSend.tsx:154
 #: src/components/cat/WalletCATSend.tsx:177
 msgid "Create Transaction"
 msgstr "发起交易"
-
-#: src/components/cat/WalletCATCreateExisting.tsx:75
-#~ msgid "Create custom CAT Wallet"
-#~ msgstr "Create custom CAT Wallet"
 
 #: src/constants/WalletName.ts:20
 msgid "Custody Wallet"
@@ -254,19 +175,6 @@ msgstr "派生索引: {0}"
 msgid "Distributed Identity"
 msgstr "分布式身份认证"
 
-#: src/components/cat/WalletDID.tsx:426
-#: src/components/did/WalletDID.tsx:426
-#~ msgid "Drag and drop attestation packet(s)"
-#~ msgstr "拖放认证数据包"
-
-#: src/components/did/WalletDIDRecovery.tsx:109
-#~ msgid "Drag and drop your recovery backup file"
-#~ msgstr "拖放您的恢复备份文件"
-
-#: src/components/WalletImport.tsx:151
-#~ msgid "Enter the 24 word mnemonic that you have saved in order to restore your Chia wallet."
-#~ msgstr "请输入你保存的24个助记词来恢复奇亚钱包"
-
 #: src/components/WalletImport.tsx:158
 msgid "Enter the {mnemonicWordCount} word mnemonic that you have saved in order to restore your Chia wallet."
 msgstr ""
@@ -285,11 +193,6 @@ msgstr "农场"
 #: src/components/cat/WalletCATSend.tsx:221
 msgid "Fee"
 msgstr "费用"
-
-#: src/components/cat/WalletDID.tsx:975
-#: src/components/did/WalletDID.tsx:975
-#~ msgid "Filename"
-#~ msgstr "文件名"
 
 #: src/components/WalletReceiveAddress.tsx:32
 msgid "HD or Hierarchical Deterministic keys are a type of public key/private key scheme where one private key can have a nearly infinite number of different public keys (and therefore wallet receive addresses) that will all ultimately come back to and be spendable by a single private key."
@@ -319,35 +222,9 @@ msgstr ""
 msgid "Incoming"
 msgstr "收入"
 
-#: src/components/rateLimited/WalletRateLimited.jsx:332
-#: src/components/rateLimited/WalletRateLimited.jsx:471
-#~ msgid "Info Packet"
-#~ msgstr "信息包"
-
-#: src/components/create/createRLAdmin.jsx:259
-#~ msgid "Initial Amount"
-#~ msgstr "初始金额"
-
-#: src/components/create/createRLUser.jsx:87
-#~ msgid "Initialize a Rate Limited User Wallet:"
-#~ msgstr "初始化费用限定型用户钱包："
-
-#: src/components/create/createRLAdmin.jsx:217
-#~ msgid "Interval"
-#~ msgstr "间隔"
-
 #: src/components/WalletConnections.tsx:71
 msgid "List of connections is empty"
 msgstr "连接列表为空"
-
-#: src/components/WalletReceiveAddressField.tsx:40
-#~ msgid "Loading..."
-#~ msgstr "正在载入……"
-
-#: src/components/cat/WalletDID.tsx:805
-#: src/components/did/WalletDID.tsx:805
-#~ msgid "Manage Recovery DIDs"
-#~ msgstr "管理恢复去中心化标识"
 
 #: src/components/WalletsManageTokens.tsx:133
 msgid "Manage token list"
@@ -374,15 +251,6 @@ msgstr "MiB 上传/下载"
 #: src/constants/WalletName.ts:17
 msgid "Multi Sig Wallet"
 msgstr "多个签名钱包"
-
-#: src/components/cat/WalletDID.tsx:536
-#: src/components/did/WalletDID.tsx:536
-#~ msgid "My DID Wallet"
-#~ msgstr "我的去中心化标识钱包"
-
-#: src/components/rateLimited/WalletRateLimited.jsx:414
-#~ msgid "My Pubkey"
-#~ msgstr "我的公钥"
 
 #: src/constants/WalletName.ts:35
 msgid "NFT Wallet"
@@ -426,10 +294,6 @@ msgstr "节点ID"
 msgid "Not Available"
 msgstr "不可用"
 
-#: src/components/WalletStatusHeader.tsx:38
-#~ msgid "Not Connected"
-#~ msgstr "Not Connected"
-
 #: src/components/WalletStatus.tsx:58
 msgid "Not Synced"
 msgstr "未同步"
@@ -447,10 +311,6 @@ msgstr "报价已接受"
 msgid "On average there is one minute between each transaction block. Unless there is congestion you can expect your transaction to be included in less than a minute."
 msgstr "每个交易区块平均打包时间为一分钟。通常您的交易将在一分钟内被确认，除非出现拥堵。"
 
-#: src/components/did/WalletDIDRecovery.tsx:33
-#~ msgid "Only one backup file is allowed."
-#~ msgstr "只允许一个备份文件。"
-
 #: src/components/WalletHistory.tsx:87
 msgid "Outgoing"
 msgstr "支出"
@@ -458,10 +318,6 @@ msgstr "支出"
 #: src/components/WalletImport.tsx:234
 msgid "Paste Mnemonic"
 msgstr "粘贴助记符"
-
-#: src/components/PasteMnemonic.tsx:55
-#~ msgid "Paste Mnemonic (24 words)"
-#~ msgstr "粘贴助记符（24个词）"
 
 #: src/components/PasteMnemonic.tsx:53
 msgid "Paste Mnemonic ({0} words)"
@@ -483,75 +339,19 @@ msgstr "待处理的找回"
 msgid "Pending Total Balance"
 msgstr "待处理总余额"
 
-#: src/components/rateLimited/WalletRateLimited.jsx:667
-#~ msgid "Please enter 0 fee. Positive fees not supported yet for RL."
-#~ msgstr "请输入费用数字0。正费用目前在RL上还不支持。"
-
-#: src/components/cat/WalletDID.tsx:924
-#: src/components/did/WalletDID.tsx:924
-#~ msgid "Please enter a coin"
-#~ msgstr "请输入货币"
-
-#: src/components/cat/WalletDID.tsx:525
-#: src/components/cat/WalletDID.tsx:914
-#: src/components/did/WalletDID.tsx:525
-#: src/components/did/WalletDID.tsx:914
-#~ msgid "Please enter a filename"
-#~ msgstr "请输入文件名"
-
-#: src/components/cat/WalletDID.tsx:934
-#: src/components/did/WalletDID.tsx:934
-#~ msgid "Please enter a pubkey"
-#~ msgstr "请输入公钥"
-
-#: src/components/cat/WalletDID.tsx:944
-#: src/components/did/WalletDID.tsx:944
-#~ msgid "Please enter a puzzlehash"
-#~ msgstr "请输入谜题哈希"
-
-#: src/components/cat/WalletCATCreateExisting.tsx:40
-#~ msgid "Please enter a valid CAT name"
-#~ msgstr "Please enter a valid CAT name"
-
 #: src/components/cat/WalletCATCreateExistingSimple.tsx:42
 msgid "Please enter a valid asset id"
 msgstr "请输入一个有效的资产ID。"
-
-#: src/components/create/createRLAdmin.jsx:139
-#~ msgid "Please enter a valid initial coin amount"
-#~ msgstr "请输入一个有效的初始币数量"
-
-#: src/components/cat/WalletDID.tsx:776
-#: src/components/did/WalletDID.tsx:776
-#: src/components/did/WalletDIDCreate.tsx:74
-#~ msgid "Please enter a valid integer of 0 or greater for the number of Backup IDs needed for recovery."
-#~ msgstr "请输入一个大于或者等于 0 的整数，用于恢复所需的备份ID。"
 
 #: src/components/WalletSend.tsx:96
 #: src/components/cat/WalletCATSend.tsx:102
 msgid "Please enter a valid numeric amount"
 msgstr "请输入一个正确的数目"
 
-#: src/components/did/WalletDIDCreate.tsx:50
-#~ msgid "Please enter a valid numeric amount."
-#~ msgstr "请输入有效的数字金额。"
-
 #: src/components/WalletSend.tsx:101
 #: src/components/cat/WalletCATSend.tsx:107
 msgid "Please enter a valid numeric fee"
 msgstr "请输入一个正确的费用"
-
-#: src/components/create/createRLAdmin.jsx:99
-#~ msgid "Please enter a valid numeric interval length"
-#~ msgstr "请输入一个有效的长度数字"
-
-#: src/components/create/createRLAdmin.jsx:114
-#~ msgid "Please enter a valid numeric spendable amount"
-#~ msgstr "请输入一个有效的支出数目"
-
-#: src/components/create/createRLAdmin.jsx:124
-#~ msgid "Please enter a valid pubkey"
-#~ msgstr "请输入一个正确的公钥"
 
 #: src/components/cat/WalletCATCreateExistingSimple.tsx:46
 msgid "Please enter a valid token name"
@@ -566,10 +366,6 @@ msgstr "请输入有效的钱包名称"
 msgid "Please finish syncing before making a transaction"
 msgstr "同步完成后才能发起交易。"
 
-#: src/components/did/WalletDIDRecovery.tsx:54
-#~ msgid "Please select backup file first"
-#~ msgstr "请先选择备份文件"
-
 #: src/components/cat/WalletCATCreateExistingSimple.tsx:38
 #: src/components/cat/WalletCATCreateSimple.tsx:38
 msgid "Please wait for wallet synchronization"
@@ -583,17 +379,6 @@ msgstr "矿池钱包"
 msgid "Port"
 msgstr "端口"
 
-#: src/components/cat/WalletDID.tsx:993
-#: src/components/create/createRLAdmin.jsx:296
-#: src/components/did/WalletDID.tsx:993
-#~ msgid "Pubkey"
-#~ msgstr "公钥"
-
-#: src/components/cat/WalletDID.tsx:1002
-#: src/components/did/WalletDID.tsx:1002
-#~ msgid "Puzzlehash"
-#~ msgstr "谜题哈希"
-
 #: src/constants/WalletName.ts:8
 msgid "RL Wallet"
 msgstr "RL 钱包"
@@ -601,15 +386,6 @@ msgstr "RL 钱包"
 #: src/components/create/WalletCreateList.tsx:45
 msgid "Rate Limited"
 msgstr "费用限定"
-
-#: src/components/rateLimited/WalletRateLimited.jsx:390
-#: src/components/rateLimited/WalletRateLimited.jsx:437
-#~ msgid "Rate Limited Info"
-#~ msgstr "费用限制信息"
-
-#: src/components/rateLimited/WalletRateLimited.jsx:272
-#~ msgid "Rate Limited User Wallet Setup"
-#~ msgstr "费用限定型用户钱包设置"
 
 #: src/components/WalletsSidebar.tsx:133
 msgid "Read the blog post for details"
@@ -626,27 +402,6 @@ msgstr "接收地址"
 #: src/components/cat/WalletCATSend.tsx:120
 msgid "Recipient address is not a coloured wallet address. Please enter a coloured wallet address"
 msgstr "收件人地址不是彩色钱包地址。请输入一个彩色钱包地址"
-
-#: src/components/cat/WalletDID.tsx:463
-#: src/components/did/WalletDID.tsx:463
-#: src/components/did/WalletDIDRecovery.tsx:124
-#~ msgid "Recover"
-#~ msgstr "恢复"
-
-#: src/components/cat/WalletDID.tsx:338
-#: src/components/cat/WalletDID.tsx:479
-#: src/components/did/WalletDID.tsx:338
-#: src/components/did/WalletDID.tsx:479
-#~ msgid "Recover DID Wallet"
-#~ msgstr "恢复去中心化标识钱包"
-
-#: src/components/did/WalletDIDRecovery.tsx:83
-#~ msgid "Recover Distributed Identity Wallet"
-#~ msgstr "恢复分布式身份钱包"
-
-#: src/components/did/WalletDIDSelect.tsx:38
-#~ msgid "Recover Wallet"
-#~ msgstr "恢复钱包"
 
 #: src/constants/WalletName.ts:26
 msgid "Recoverable Wallet"
@@ -674,17 +429,9 @@ msgstr "保存"
 msgid "Search on Tail Database"
 msgstr "在 Tail 数据库中搜索"
 
-#: src/components/WalletsList.tsx:32
-#~ msgid "Select Wallet"
-#~ msgstr "选择钱包"
-
 #: src/components/create/WalletCreateList.tsx:25
 msgid "Select Wallet Type"
 msgstr "选择钱包类别"
-
-#: src/components/did/WalletDIDRecovery.tsx:90
-#~ msgid "Selected recovery file:"
-#~ msgstr "选择恢复文件："
 
 #: src/components/WalletHeader.tsx:47
 #: src/components/WalletSend.tsx:232
@@ -692,53 +439,17 @@ msgstr "选择钱包类别"
 msgid "Send"
 msgstr "发送"
 
-#: src/components/rateLimited/WalletRateLimited.jsx:459
-#~ msgid "Send this info packet to your Rate Limited Wallet user who must use it to complete setup of their wallet:"
-#~ msgstr "把这段信息发给你的费用限定型钱包用户, 以便他/她可以完成自己的钱包设置:"
-
-#: src/components/rateLimited/WalletRateLimited.jsx:278
-#~ msgid "Send your pubkey to your Rate Limited Wallet admin:"
-#~ msgstr "将你的公钥发送到你的费用限定型管理者钱包:"
-
 #: src/components/cat/WalletCAT.tsx:96
 msgid "Show Asset Id"
 msgstr "显示资产ID"
-
-#: src/components/create/createRLAdmin.jsx:229
-#~ msgid "Spendable Amount"
-#~ msgstr "可用金额"
-
-#: src/components/create/createRLAdmin.jsx:201
-#~ msgid "Spendable Amount Per Interval"
-#~ msgstr "每次迭代的支出数目"
 
 #: src/components/card/WalletCardSpendableBalance.tsx:41
 msgid "Spendable Balance"
 msgstr "可用余额"
 
-#: src/components/rateLimited/WalletRateLimited.jsx:395
-#: src/components/rateLimited/WalletRateLimited.jsx:442
-#~ msgid "Spending Interval (number of blocks): {interval}"
-#~ msgstr "支出迭代(区块数){interval}"
-
-#: src/components/create/createRLAdmin.jsx:196
-#~ msgid "Spending Interval Length (number of blocks)"
-#~ msgstr "支出迭代长度(区块数)"
-
-#: src/components/rateLimited/WalletRateLimited.jsx:400
-#: src/components/rateLimited/WalletRateLimited.jsx:447
-#~ msgid "Spending Limit (chia per interval): {0}"
-#~ msgstr "消费限额（单位时间可消费的奇亚币）：{0}"
-
 #: src/constants/WalletName.ts:5
 msgid "Standard Wallet"
 msgstr "标准钱包"
-
-#: src/components/cat/WalletDID.tsx:886
-#: src/components/did/WalletDID.tsx:886
-#: src/components/rateLimited/WalletRateLimited.jsx:346
-#~ msgid "Submit"
-#~ msgstr "提交"
 
 #: src/components/WalletSendTransactionResultDialog.tsx:12
 msgid "Success"
@@ -759,12 +470,6 @@ msgstr "正在同步"
 #: src/components/card/WalletCardTotalBalance.tsx:70
 msgid "The derivation index sets the range of wallet addresses that the wallet scans the blockchain for. This number is generally higher if you have a lot of transactions or canceled offers for XCH, CATs, or NFTs. If you believe your balance is incorrect because it’s missing coins, then increasing the derivation index could help the wallet include the missing coins in the balance total."
 msgstr "衍生指数设置钱包链扫描钱包地址的范围。 如果您有大量交易或取消了 XCH、CATs 或 NFT 的报价，这个数字通常更高。 如果你认为你的余额是不正确的，因为它缺少硬币， 增加衍生指数可以帮助钱包在余额总额中包括缺失的硬币。"
-
-#: src/components/cat/WalletDID.tsx:789
-#: src/components/did/WalletDID.tsx:789
-#: src/components/did/WalletDIDCreate.tsx:87
-#~ msgid "The number of Backup IDs needed for recovery cannot exceed the number of Backup IDs added."
-#~ msgstr "恢复所需的备份 ID 的数量不能超过添加的备份ID数量。"
 
 #: src/components/WalletSendTransactionResultDialog.tsx:34
 msgid "The transaction could not be immediately included in the mempool because the specified fee is too low. The transaction will be retried periodically, and may be included in the mempool once fees are lower, or if space becomes available."
@@ -802,10 +507,6 @@ msgstr "目前结余+待处理的结余: 在链上确认完成后就是你的最
 msgid "To"
 msgstr "目标地址"
 
-#: src/components/cat/WalletCATCreateExisting.tsx:85
-#~ msgid "Token and Asset Issuance Limitations"
-#~ msgstr "Token and Asset Issuance Limitations"
-
 #: src/components/cat/WalletCATCreateSimple.tsx:46
 msgid "Token has empty asset id"
 msgstr "代币有空资产ID"
@@ -829,15 +530,6 @@ msgstr "交易已成功发送到一个完整的节点，并包含在备注库中
 #: src/components/WalletHistory.tsx:258
 msgid "Transactions"
 msgstr "交易"
-
-#: src/components/create/createRLAdmin.jsx:280
-#: src/components/rateLimited/WalletRateLimited.jsx:292
-#~ msgid "User Pubkey"
-#~ msgstr "用户公钥"
-
-#: src/components/rateLimited/WalletRateLimited.jsx:561
-#~ msgid "View pending balances"
-#~ msgstr "查看处理中的余额"
 
 #: src/components/WalletConnections.tsx:67
 msgid "Wallet Connections"
@@ -872,22 +564,9 @@ msgstr "我们已经升级到CAT标准，该标准要求所有CAT代币必须重
 msgid "Welcome! The following words are used for your wallet backup. Without them, you will lose access to your wallet, keep them safe! Write down each word along with the order number next to them. (Order is important)"
 msgstr "欢迎使用奇亚! 下面的词语列表是你的钱包密语, 请务必严格完整的把它们记下来(保持顺序). 没有这段密语的话, 你就没办法找回钱包里的币. 千万也不要透露给别人."
 
-#: src/components/rateLimited/WalletRateLimited.jsx:315
-#~ msgid "When you receive the setup info packet from your admin, enter it below to complete your Rate Limited Wallet setup:"
-#~ msgstr "当你从管理员那收到这个设置信息后, 请把它输入到下面以便完成费用限定型钱包设置:"
-
 #: src/components/WalletsSidebar.tsx:106
 msgid "Your CAT tokens have been upgraded!"
 msgstr "您的 CAT 代币已被升级！"
-
-#: src/components/cat/WalletDID.tsx:326
-#: src/components/did/WalletDID.tsx:326
-#~ msgid "Your DID requires at least {dids_num_req} attestation file{0} for recovery. Please upload additional files."
-#~ msgstr "您的DID需要至少 {dids_num_req} 认证文件{0} 才能恢复。请上传其他文件。"
-
-#: src/components/WalletImport.tsx:77
-#~ msgid "Your pasted list does not include 24 valid mnemonic words."
-#~ msgstr "您粘贴的列表中未包含24个有效的助记词。"
 
 #: src/components/WalletImport.tsx:72
 msgid "Your pasted list does not include {mnemonicWordCount} valid mnemonic words."

@@ -18,10 +18,6 @@ msgstr ""
 "X-Crowdin-File: /main/packages/core/src/locales/en-US/messages.po\n"
 "X-Crowdin-File-ID: 1886\n"
 
-#: src/components/EstimatedFee/EstimatedFee.tsx:162
-#~ msgid "<0>{0}</0>"
-#~ msgstr ""
-
 #: src/components/Amount/Amount.tsx:36
 msgid "Amount"
 msgstr "Összeg"
@@ -39,10 +35,6 @@ msgstr ""
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:156
 msgid "Back"
 msgstr "Vissza"
-
-#: src/screens/SelectKey/SelectKeyItem.tsx:147
-#~ msgid "Can be backed up to mnemonic seed"
-#~ msgstr "Can be backed up to mnemonic seed"
 
 #: src/components/ConfirmDialog/ConfirmDialog.tsx:27
 #: src/hooks/useKeyringMigrationPrompt.tsx:17
@@ -71,10 +63,6 @@ msgstr "Másolás a vágólapra"
 msgid "Create a new private key"
 msgstr "Új privát kulcs készítése"
 
-#: src/screens/SelectKey/SelectKeyItem.tsx:163
-#~ msgid "DANGER: permanently delete private key"
-#~ msgstr "DANGER: permanently delete private key"
-
 #: src/components/Settings/SettingsApp.tsx:105
 msgid "Dark"
 msgstr "Sötét"
@@ -97,10 +85,6 @@ msgstr "Kulcs törlése {fingerprint}"
 #: src/screens/SelectKey/SelectKey.tsx:84
 msgid "Deleting all keys will permanently remove the keys from your computer, make sure you have backups. Are you sure you want to continue?"
 msgstr "Az összes kulcs törlése véglegesen eltávolítja a kulcsokat a számítógépedről, ezért gondoskodj biztonsági mentésekről. Biztos, hogy folytatni szeretnéd?"
-
-#: src/screens/SelectKey/SelectKeyItem.tsx:124
-#~ msgid "Deleting the key will permanently remove the key from your computer, make sure you have backups. Are you sure you want to continue?"
-#~ msgstr "Deleting the key will permanently remove the key from your computer, make sure you have backups. Are you sure you want to continue?"
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:92
 msgid "Details"
@@ -131,10 +115,6 @@ msgstr "Hiba:"
 #: src/screens/SelectKey/SelectKeyRenameForm.tsx:91
 msgid "Esc"
 msgstr ""
-
-#: src/components/LayoutMain/LayoutFooter.tsx:50
-#~ msgid "FAQ"
-#~ msgstr "FAQ"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:90
 msgid "Farmer Public Key"
@@ -182,10 +162,6 @@ msgstr "Speciális beállítások elrejtése"
 #: src/screens/SelectKey/SelectKey.tsx:181
 msgid "Import from Mnemonics (12 or 24 words)"
 msgstr ""
-
-#: src/screens/SelectKey/SelectKey.tsx:199
-#~ msgid "Import from Mnemonics (24 words)"
-#~ msgstr "Importálás a memonikából (24 szó)"
 
 #: src/components/Fee/Fee.tsx:41
 msgid "Incorrect value"
@@ -270,10 +246,6 @@ msgstr ""
 msgid "Pool public key:"
 msgstr "Pool nyilvános kulcsa:"
 
-#: src/screens/SelectKey/SelectKeyItem.tsx:142
-#~ msgid "Private key with public fingerprint {fingerprint}"
-#~ msgstr "Private key with public fingerprint {fingerprint}"
-
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:27
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:34
 msgid "Private key {fingerprint}"
@@ -315,10 +287,6 @@ msgstr ""
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:113
 msgid "Secret Key"
 msgstr ""
-
-#: src/screens/SelectKey/SelectKeyItem.tsx:151
-#~ msgid "See private key"
-#~ msgstr "See private key"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:131
 msgid "Seed Phrase"
@@ -448,18 +416,6 @@ msgstr ""
 msgid "Wallet {0}"
 msgstr ""
 
-#: src/screens/SelectKey/SelectKeyItem.tsx:117
-#~ msgid "Warning: This key is used for a wallet that may have a non-zero balance. By deleting this key you may lose access to this wallet"
-#~ msgstr "Warning: This key is used for a wallet that may have a non-zero balance. By deleting this key you may lose access to this wallet"
-
-#: src/screens/SelectKey/SelectKeyItem.tsx:99
-#~ msgid "Warning: This key is used for your farming rewards address. By deleting this key you may lose access to any future farming rewards"
-#~ msgstr "Warning: This key is used for your farming rewards address. By deleting this key you may lose access to any future farming rewards"
-
-#: src/screens/SelectKey/SelectKeyItem.tsx:108
-#~ msgid "Warning: This key is used for your pool rewards address. By deleting this key you may lose access to any future pool rewards"
-#~ msgstr "Warning: This key is used for your pool rewards address. By deleting this key you may lose access to any future pool rewards"
-
 #: src/screens/SelectKey/SelectKey.tsx:142
 msgid "Welcome to Chia. Please log in with an existing key, or create a new key."
 msgstr "Üdvözöljük a Chia-ban. Kérem jelentkezzen be egy létező kulccsal, vagy készítsen egy új kulcsot magának."
@@ -476,10 +432,6 @@ msgstr "Kulcsai nem kerültek át egy új kulcstartóra. A migráció befejezés
 #: src/components/Amount/Amount.tsx:86
 msgid "{0, plural, one {mojo} other {mojos}}"
 msgstr "{0, plural, one {mojo} other {mojok}}"
-
-#: src/components/EstimatedFee/EstimatedFee.tsx:159
-#~ msgid "{0} TXCH"
-#~ msgstr ""
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:35
 msgid "{minPassphraseLength, plural, one {Passphrases must be at least # character in length} other {Passphrases must be at least # characters in length}}"
