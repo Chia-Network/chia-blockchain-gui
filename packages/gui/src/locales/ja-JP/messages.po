@@ -8,7 +8,7 @@ msgstr ""
 "Language: ja_JP\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-10-24 18:15\n"
+"PO-Revision-Date: 2023-02-21 23:08\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -1579,15 +1579,13 @@ msgid "Install Keybase"
 msgstr ""
 
 #: src/hooks/useAcceptOfferHook.tsx:67
-msgid ""
-"Insufficient funds available to accept offer. Ensure that your\n"
+msgid "Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
 msgstr ""
 
 #: src/components/offers/OfferEditor.tsx:148
 #: src/components/offers2/CreateOfferBuilder.tsx:121
-msgid ""
-"Insufficient funds available to create offer. Ensure that your\n"
+msgid "Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
 msgstr ""
 
@@ -1629,8 +1627,7 @@ msgstr "プールに参加する"
 
 #: src/components/plot/add/PlotAddNFT.tsx:41
 msgid "Join a pool and get consistent XCH farming rewards. The average returns are the same, but it is much less volatile."
-msgstr ""
-"参加したプールが当選するとXCHを獲得できます。\n"
+msgstr "参加したプールが当選するとXCHを獲得できます。\n"
 "プールでは定期的にXCHを獲得できますが引き換えに毎度の払い出しは少なくなります。\n"
 "長期的のリターンはソロファーミングで得られる報酬と変わりません。"
 
@@ -4164,3 +4161,4 @@ msgstr ""
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:106
 msgid "{warning}"
 msgstr ""
+
