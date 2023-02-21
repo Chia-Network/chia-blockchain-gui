@@ -8,7 +8,7 @@ msgstr ""
 "Language: fr_FR\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-10-24 18:15\n"
+"PO-Revision-Date: 2023-02-21 16:58\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
@@ -292,7 +292,7 @@ msgstr "Acheter un NFT"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:243
 msgid "Cache size (GB)"
-msgstr ""
+msgstr "Taille du cache (Go)"
 
 #: src/components/app/AppPassPrompt.tsx:184
 #: src/components/backup/BackupCreate.tsx:51
@@ -997,7 +997,7 @@ msgstr "Fichier"
 
 #: src/components/nfts/NFTPreview.tsx:55
 msgid "File is over 100MB"
-msgstr ""
+msgstr "Le fichier est supérieur à 100 Mo"
 
 #: src/components/nfts/NFTPreview.tsx:26
 #~ msgid "File is over 10MB"
@@ -2909,7 +2909,7 @@ msgstr ""
 
 #: src/components/nfts/detail/NFTDetailV2.tsx:121
 msgid "Validating hash..."
-msgstr ""
+msgstr "Validation du hash..."
 
 #: src/components/plotNFT/select/PlotNFTSelectBase.tsx:156
 msgid "Verify Pool Details"
