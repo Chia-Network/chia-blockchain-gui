@@ -21,7 +21,7 @@ type FormData = {
 };
 
 export default function SelectKeyRenameForm(props: SelectKeyRenameFormProps) {
-  const { keyData, onClose, ...rest } = props;
+  const { keyData, onClose } = props;
   const [deleteLabel] = useDeleteLabelMutation();
   const [setLabel] = useSetLabelMutation();
   const methods = useForm<FormData>({
