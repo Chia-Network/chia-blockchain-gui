@@ -8,7 +8,7 @@ msgstr ""
 "Language: en_US\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-10-24 18:17\n"
+"PO-Revision-Date: 2023-02-21 23:10\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -119,11 +119,11 @@ msgstr "Connection type"
 
 #: src/components/WalletReceiveAddressField.tsx:71
 msgid "Copied"
-msgstr "Copied"
+msgstr ""
 
 #: src/components/WalletReceiveAddressField.tsx:75
 msgid "Copy wallet address"
-msgstr "Copy wallet address"
+msgstr ""
 
 #: src/components/cat/WalletCATSelect.tsx:32
 msgid "Create New Wallet"
@@ -177,7 +177,7 @@ msgstr "Distributed Identity"
 
 #: src/components/WalletImport.tsx:158
 msgid "Enter the {mnemonicWordCount} word mnemonic that you have saved in order to restore your Chia wallet."
-msgstr "Enter the {mnemonicWordCount} word mnemonic that you have saved in order to restore your Chia wallet."
+msgstr ""
 
 #: src/components/cat/WalletCATSend.tsx:126
 msgid "Error the entered address appears to be for a different colour."
@@ -216,7 +216,7 @@ msgstr "Import Wallet from Mnemonics"
 
 #: src/components/WalletImport.tsx:226
 msgid "Import from {alternativeWordCount} word mnemonic"
-msgstr "Import from {alternativeWordCount} word mnemonic"
+msgstr ""
 
 #: src/components/WalletHistory.tsx:87
 msgid "Incoming"
@@ -266,7 +266,7 @@ msgstr "New Address"
 
 #: src/components/WalletReceiveAddressField.tsx:114
 msgid "New Receive Address"
-msgstr "New Receive Address"
+msgstr ""
 
 #: src/components/WalletAdd.tsx:64
 msgid "New Wallet"
@@ -321,7 +321,7 @@ msgstr "Paste Mnemonic"
 
 #: src/components/PasteMnemonic.tsx:53
 msgid "Paste Mnemonic ({0} words)"
-msgstr "Paste Mnemonic ({0} words)"
+msgstr ""
 
 #: src/components/WalletHistory.tsx:172
 msgid "Pending"
@@ -570,4 +570,5 @@ msgstr "Your CAT tokens have been upgraded!"
 
 #: src/components/WalletImport.tsx:72
 msgid "Your pasted list does not include {mnemonicWordCount} valid mnemonic words."
-msgstr "Your pasted list does not include {mnemonicWordCount} valid mnemonic words."
+msgstr ""
+
