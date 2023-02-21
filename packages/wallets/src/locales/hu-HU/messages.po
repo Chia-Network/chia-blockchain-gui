@@ -8,7 +8,7 @@ msgstr ""
 "Language: hu_HU\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-10-24 18:16\n"
+"PO-Revision-Date: 2023-02-21 23:09\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -493,8 +493,7 @@ msgstr "Ez a függőben lévő változás, amely olyan pénzérme, amelyet Ön k
 
 #: src/components/standard/WalletStandardCards.tsx:36
 msgid "This is the sum of the incoming and outgoing pending transactions (not yet included into the blockchain). This does not include farming rewards."
-msgstr ""
-"Ez a függőben lévő, bejövő és kimenő ügyletek összesítése. (Még nem a blokklánc részei)\n"
+msgstr "Ez a függőben lévő, bejövő és kimenő ügyletek összesítése. (Még nem a blokklánc részei)\n"
 "Nem tartalmazza a termesztési díjakat."
 
 #: src/components/standard/WalletStandardCards.tsx:17
@@ -573,3 +572,4 @@ msgstr ""
 #: src/components/WalletImport.tsx:72
 msgid "Your pasted list does not include {mnemonicWordCount} valid mnemonic words."
 msgstr ""
+
