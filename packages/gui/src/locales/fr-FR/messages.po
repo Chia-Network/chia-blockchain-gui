@@ -8,7 +8,7 @@ msgstr ""
 "Language: fr_FR\n"
 "Project-Id-Version: chia-blockchain\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-02-21 16:58\n"
+"PO-Revision-Date: 2023-02-21 23:08\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
@@ -1579,20 +1579,16 @@ msgid "Install Keybase"
 msgstr "Installer Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:67
-msgid ""
-"Insufficient funds available to accept offer. Ensure that your\n"
+msgid "Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"Fonds insuffisants pour accepter l'offre. Assurez-vous que votre \n"
+msgstr "Fonds insuffisants pour accepter l'offre. Assurez-vous que votre \n"
 "solde disponible est suffisant pour couvrir le montant de l'offre."
 
 #: src/components/offers/OfferEditor.tsx:148
 #: src/components/offers2/CreateOfferBuilder.tsx:121
-msgid ""
-"Insufficient funds available to create offer. Ensure that your\n"
+msgid "Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"Fonds insuffisants pour créer l'offre. Assurez-vous que votre \n"
+msgstr "Fonds insuffisants pour créer l'offre. Assurez-vous que votre \n"
 "solde disponible est suffisant pour couvrir le montant de l'offre."
 
 #: src/components/settings/Settings.tsx:73
@@ -4165,3 +4161,4 @@ msgstr "{value} sur {max_value}"
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:106
 msgid "{warning}"
 msgstr "{warning}"
+
