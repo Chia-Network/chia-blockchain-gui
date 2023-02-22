@@ -19,7 +19,7 @@ const apiWithTag = api.enhanceEndpoints({ addTagTypes: ['BlockchainState', 'FeeE
 //         command: 'ping',
 //         service: FullNode,
 //       }),
-//       transformResponse: (response: any) => response?.success,
+//       transformResponse: (response) => response.success,
 //     }),
 
 //     // # Types helpers abstraction
@@ -31,13 +31,13 @@ const apiWithTag = api.enhanceEndpoints({ addTagTypes: ['BlockchainState', 'FeeE
 //         command: 'ping',
 //         service: FullNode,
 //       }),
-//       transformResponse: (response: any) => response?.success,
+//       transformResponse: (response) => response.success,
 //     }),
 
 //     // # Full abstraction <- Most commonly used
 
 //     testFunction: query(build, FullNode, 'getBlockRecords', {
-//       transformResponse: (response) => response?.success,
+//       transformResponse: (response) => response.success,
 //     }),
 //   }),
 // });
