@@ -36,17 +36,12 @@ export default class Farmer extends Service {
     return this.farmingInfo;
   }
 
-  async getRewardTargets(searchForPrivateKey: boolean) {
-    return this.command<RewardTargets>('get_reward_targets', {
-      searchForPrivateKey,
-    });
+  async getRewardTargets(args: { searchForPrivateKey: boolean }) {
+    return this.command<RewardTargets>('get_reward_targets', args);
   }
 
-  async setRewardTargets(farmerTarget: string, poolTarget: string) {
-    return this.command<void>('set_reward_targets', {
-      farmerTarget,
-      poolTarget,
-    });
+  async setRewardTargets(args: { farmerTarget: string; poolTarget: string }) {
+    return this.command<void>('set_reward_targets', args);
   }
 
   async getSignagePoints() {
@@ -57,74 +52,52 @@ export default class Farmer extends Service {
     return this.command<{ connections: Connection[] }>('get_connections');
   }
 
-  async openConnection(host: string, port: string) {
-    return this.command<void>('open_connection', {
-      host,
-      port,
-    });
+  async openConnection(args: { host: string; port: string }) {
+    return this.command<void>('open_connection', args);
   }
 
-  async closeConnection(nodeId: string) {
-    return this.command<void>('close_connection', {
-      nodeId,
-    });
+  async closeConnection(args: { nodeId: string }) {
+    return this.command<void>('close_connection', args);
   }
 
   async getPoolState() {
     return this.command<{ poolState: PoolState[] }>('get_pool_state');
   }
 
-  async setPayoutInstructions(launcherId: string, payoutInstructions: string) {
-    return this.command<void>('set_payout_instructions', {
-      launcherId,
-      payoutInstructions,
-    });
+  async setPayoutInstructions(args: { launcherId: string; payoutInstructions: string }) {
+    return this.command<void>('set_payout_instructions', args);
   }
 
   async getHarvesters() {
     return this.command<{ harvesters: Harvester[] }>('get_harvesters');
   }
 
-  async getHarvesterPlotsValid(nodeId: string, page = 0, pageSize = 10) {
-    return this.command<HarvesterPlotsPaginated>('get_harvester_plots_valid', {
-      nodeId,
-      page,
-      pageSize,
-    });
+  async getHarvesterPlotsValid(args: { nodeId: string; page?: number; pageSize?: number }) {
+    const { nodeId, page = 0, pageSize = 10 } = args;
+    return this.command<HarvesterPlotsPaginated>('get_harvester_plots_valid', { nodeId, page, pageSize });
   }
 
-  async getHarvesterPlotsInvalid(nodeId: string, page = 0, pageSize = 10) {
-    return this.command<HarvesterPlotsPaginated>('get_harvester_plots_invalid', {
-      nodeId,
-      page,
-      pageSize,
-    });
+  async getHarvesterPlotsInvalid(args: { nodeId: string; page?: number; pageSize?: number }) {
+    const { nodeId, page = 0, pageSize = 10 } = args;
+    return this.command<HarvesterPlotsPaginated>('get_harvester_plots_invalid', { nodeId, page, pageSize });
   }
 
-  async getHarvesterPlotsKeysMissing(nodeId: string, page = 0, pageSize = 10) {
-    return this.command<HarvesterPlotsPaginated>('get_harvester_plots_keys_missing', {
-      nodeId,
-      page,
-      pageSize,
-    });
+  async getHarvesterPlotsKeysMissing(args: { nodeId: string; page?: number; pageSize?: number }) {
+    const { nodeId, page = 0, pageSize = 10 } = args;
+    return this.command<HarvesterPlotsPaginated>('get_harvester_plots_keys_missing', { nodeId, page, pageSize });
   }
 
-  async getHarvesterPlotsDuplicates(nodeId: string, page = 0, pageSize = 10) {
-    return this.command<HarvesterPlotsPaginated>('get_harvester_plots_duplicates', {
-      nodeId,
-      page,
-      pageSize,
-    });
+  async getHarvesterPlotsDuplicates(args: { nodeId: string; page?: number; pageSize?: number }) {
+    const { nodeId, page = 0, pageSize = 10 } = args;
+    return this.command<HarvesterPlotsPaginated>('get_harvester_plots_duplicates', { nodeId, page, pageSize });
   }
 
   async getHarvestersSummary() {
     return this.command<HarvesterSummary>('get_harvesters_summary');
   }
 
-  async getPoolLoginLink(launcherId: string) {
-    return this.command<{ loginLink: string }>('get_pool_login_link', {
-      launcherId,
-    });
+  async getPoolLoginLink(args: { launcherId: string }) {
+    return this.command<{ loginLink: string }>('get_pool_login_link', args);
   }
 
   onConnections(callback: (data: any, message: Message) => void, processData?: (data: any) => any) {
