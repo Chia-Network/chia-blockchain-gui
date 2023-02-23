@@ -1,7 +1,7 @@
 import { PlotQueueItem, KeyringStatus, KeyData, PlottersApi } from '../@types';
 import type Client from '../Client';
 import type Message from '../Message';
-import ServiceName from '../constants/ServiceName';
+import ServiceName, { type ServiceNameValue } from '../constants/ServiceName';
 import Service from './Service';
 import type { Options } from './Service';
 
@@ -13,23 +13,23 @@ export default class Daemon extends Service {
     });
   }
 
-  registerService(args: { service: ServiceName }) {
+  registerService(args: { service: ServiceNameValue }) {
     return this.command<{
       queue: [PlotQueueItem];
     }>('register_service', args);
   }
 
-  startService(args: { service: ServiceName; testing?: boolean }) {
+  startService(args: { service: ServiceNameValue; testing?: boolean }) {
     return this.command<{
-      service: ServiceName;
+      service: ServiceNameValue;
     }>('start_service', args);
   }
 
-  stopService(args: { service: ServiceName }) {
+  stopService(args: { service: ServiceNameValue }) {
     return this.command<void>('stop_service', args);
   }
 
-  isRunning(args: { service: ServiceName }) {
+  isRunning(args: { service: ServiceNameValue }) {
     return this.command<{
       isRunning: boolean;
     }>('is_running', args);

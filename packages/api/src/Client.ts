@@ -7,7 +7,7 @@ import debug from 'debug';
 import type Response from './@types/Response';
 import Message from './Message';
 import ConnectionState from './constants/ConnectionState';
-import ServiceName from './constants/ServiceName';
+import ServiceName, { type ServiceNameValue } from './constants/ServiceName';
 import Daemon from './services/Daemon';
 import type Service from './services/Service';
 import ErrorData from './utils/ErrorData';
@@ -20,7 +20,7 @@ type Options = {
   cert: string;
   key: string;
   webSocket: any;
-  services?: ServiceName[];
+  services?: ServiceNameValue[];
   timeout?: number;
   camelCase?: boolean;
   debug?: boolean;
@@ -41,9 +41,9 @@ export default class Client extends EventEmitter {
     }
   > = new Map();
 
-  private services: Set<ServiceName> = new Set();
+  private services: Set<ServiceNameValue> = new Set();
 
-  private started: Set<ServiceName> = new Set();
+  private started: Set<ServiceNameValue> = new Set();
 
   private connectedPromise: Promise<void> | null = null;
 
@@ -57,7 +57,7 @@ export default class Client extends EventEmitter {
 
   private reconnectAttempt = 0;
 
-  private startingService?: ServiceName;
+  private startingService?: ServiceNameValue;
 
   constructor(options: Options) {
     super();
@@ -90,7 +90,7 @@ export default class Client extends EventEmitter {
     state: ConnectionState;
     attempt: number;
     startingService?: string;
-    startedServices: ServiceName[];
+    startedServices: ServiceNameValue[];
   } {
     return {
       state: this.state,
@@ -133,7 +133,7 @@ export default class Client extends EventEmitter {
     return this.options.debug;
   }
 
-  isStarted(serviceName: ServiceName) {
+  isStarted(serviceName: ServiceNameValue) {
     return this.started.has(serviceName);
   }
 
@@ -194,15 +194,15 @@ export default class Client extends EventEmitter {
     return this.connectedPromise;
   }
 
-  async startService(serviceName: ServiceName, disableWait?: boolean) {
+  async startService(serviceName: ServiceNameValue, disableWait?: boolean) {
     if (this.started.has(serviceName)) {
       return;
     }
 
-    const response = await this.daemon.isRunning(serviceName);
+    const response = await this.daemon.isRunning({ service: serviceName });
     if (!response.isRunning) {
       log(`Starting service: ${serviceName}`);
-      await this.daemon.startService(serviceName);
+      await this.daemon.startService({ service: serviceName });
     }
 
     // wait for service initialisation
@@ -244,15 +244,15 @@ export default class Client extends EventEmitter {
     await Promise.all(services.map(async (serviceName) => this.startService(serviceName)));
   }
 
-  async stopService(serviceName: ServiceName) {
+  async stopService(serviceName: ServiceNameValue) {
     if (!this.started.has(serviceName)) {
       return;
     }
 
-    const response = await this.daemon.isRunning(serviceName);
+    const response = await this.daemon.isRunning({ service: serviceName });
     if (response.isRunning) {
       log(`Closing down service: ${serviceName}`);
-      await this.daemon.stopService(serviceName);
+      await this.daemon.stopService({ service: serviceName });
     }
 
     // wait for service initialisation
@@ -299,8 +299,8 @@ export default class Client extends EventEmitter {
     }
   };
 
-  registerService(service: ServiceName) {
-    return this.daemon.registerService(service);
+  registerService(serviceName: ServiceNameValue) {
+    return this.daemon.registerService({ service: serviceName });
   }
 
   private handleClose = () => {

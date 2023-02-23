@@ -4,23 +4,23 @@ import { isUndefined, omitBy } from 'lodash';
 
 import type Client from '../Client';
 import Message from '../Message';
-import ServiceName from '../constants/ServiceName';
+import { type ServiceNameValue } from '../constants/ServiceName';
 
 export type Options = {
-  origin?: ServiceName;
+  origin?: ServiceNameValue;
   skipAddService?: boolean;
 };
 
 export default abstract class Service extends EventEmitter {
   readonly client: Client;
 
-  readonly name: ServiceName;
+  readonly name: ServiceNameValue;
 
-  readonly origin: ServiceName;
+  readonly origin: ServiceNameValue;
 
   #readyPromise: Promise<null> | undefined;
 
-  constructor(name: ServiceName, client: Client, options: Options = {}, onInit?: () => Promise<void>) {
+  constructor(name: ServiceNameValue, client: Client, options: Options = {}, onInit?: () => Promise<void>) {
     super();
 
     const { origin, skipAddService } = options;
