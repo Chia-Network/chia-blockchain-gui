@@ -933,6 +933,12 @@ if (!handleSquirrelEvent()) {
       i18n.activate(locale);
       app.applicationMenu = createMenu();
     });
+
+    ipcMain.handle('setWindowTitle', (_event, title: string) => {
+      if (mainWindow.title !== title) {
+        mainWindow.setTitle(title);
+      }
+    });
   }
 }
 
