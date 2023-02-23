@@ -6,6 +6,7 @@ import {
   useGetKeysQuery,
   useLogout,
 } from '@chia-network/api-react';
+import { ChiaBlack } from '@chia-network/icons';
 import { Trans } from '@lingui/macro';
 import { Alert, Typography, Container } from '@mui/material';
 import React, { useState } from 'react';
@@ -16,16 +17,17 @@ import Button from '../../components/Button';
 import ConfirmDialog from '../../components/ConfirmDialog';
 import Flex from '../../components/Flex';
 import Loading from '../../components/Loading';
-import Logo from '../../components/Logo';
 import TooltipIcon from '../../components/TooltipIcon';
 import useKeyringMigrationPrompt from '../../hooks/useKeyringMigrationPrompt';
 import useOpenDialog from '../../hooks/useOpenDialog';
 import useShowError from '../../hooks/useShowError';
 import useSkipMigration from '../../hooks/useSkipMigration';
+import Search from './Search';
 import SelectKeyItem from './SelectKeyItem';
 
 const StyledContainer = styled(Container)`
   padding-bottom: 1rem;
+  width: 900px;
 `;
 
 export default function SelectKey() {
@@ -108,10 +110,11 @@ export default function SelectKey() {
     }
   }
 
+  // isLoadingPublicKeys = true;
+
   return (
-    <StyledContainer maxWidth="xs">
-      <Flex flexDirection="column" alignItems="center" gap={3}>
-        <Logo width={130} />
+    <StyledContainer>
+      <Flex flexDirection="column" alignItems="flex-start" gap={3}>
         {isLoadingPublicKeys ? (
           <Loading center>
             <Trans>Loading list of the keys</Trans>
@@ -130,9 +133,31 @@ export default function SelectKey() {
             <TooltipIcon>{error.message}</TooltipIcon>
           </Alert>
         ) : hasFingerprints ? (
-          <Typography variant="h5" component="h1">
-            <Trans>Select Key</Trans>
-          </Typography>
+          <Flex
+            justifyContent="space-between"
+            width="100%"
+            sx={{ borderBottom: '1px solid #CCDDE1', paddingBottom: '30px' }}
+          >
+            <Flex alignItems="left">
+              <ChiaBlack color="secondary" />
+              <Typography variant="h4" component="h1" sx={{ position: 'relative', left: '15px', top: '5px' }}>
+                <Trans>Wallet Keys</Trans>
+              </Typography>
+            </Flex>
+            <Flex alignItems="right">
+              <Button
+                onClick={() => handleNavigationIfKeyringIsMutable('/wallet/add')}
+                variant="contained"
+                color="primary"
+                size="large"
+                disabled={isLoading}
+                data-testid="SelectKey-create-new-key"
+                fullWidth
+              >
+                <Trans>Create a new private key</Trans>
+              </Button>
+            </Flex>
+          </Flex>
         ) : (
           <>
             <Typography variant="h5" component="h1">
@@ -143,9 +168,20 @@ export default function SelectKey() {
             </Typography>
           </>
         )}
+        {/* <Search /> */}
         <Flex flexDirection="column" gap={3} alignItems="stretch" alignSelf="stretch">
           {hasFingerprints && (
-            <Flex gap={2} flexDirection="column" width="100%">
+            <Flex
+              sx={{
+                marginTop: '5px',
+                flexWrap: 'wrap',
+                rowGap: '22px',
+                columnGap: '22px',
+                '> div': {
+                  flexBasis: '269px',
+                },
+              }}
+            >
               {publicKeyFingerprints.map((keyData: KeyData, index: number) => (
                 <SelectKeyItem
                   key={keyData.fingerprint}
@@ -157,41 +193,6 @@ export default function SelectKey() {
                 />
               ))}
             </Flex>
-          )}
-          <Button
-            onClick={() => handleNavigationIfKeyringIsMutable('/wallet/add')}
-            variant="contained"
-            color="primary"
-            size="large"
-            disabled={isLoading}
-            data-testid="SelectKey-create-new-key"
-            fullWidth
-          >
-            <Trans>Create a new private key</Trans>
-          </Button>
-          <Button
-            onClick={() => handleNavigationIfKeyringIsMutable('/wallet/import')}
-            type="submit"
-            variant="outlined"
-            size="large"
-            disabled={isLoading}
-            data-testid="SelectKey-import-from-mnemonics"
-            fullWidth
-          >
-            <Trans>Import from Mnemonics (12 or 24 words)</Trans>
-          </Button>
-          {hasFingerprints && (
-            <Button
-              onClick={handleDeleteAllKeys}
-              variant="outlined"
-              color="danger"
-              size="large"
-              disabled={isLoading}
-              data-testid="SelectKey-delete-all-keys"
-              fullWidth
-            >
-              <Trans>Delete all keys</Trans>
-            </Button>
           )}
         </Flex>
       </Flex>
