@@ -38,10 +38,10 @@ const StyledTableCell = styled(({ width, minWidth, maxWidth, ...rest }) => <Tabl
   border-bottom: 1px solid ${({ theme }) => (theme.palette.mode === 'dark' ? '#353535' : '#e0e0e0')};
 `;
 
-const StyledTableCellContent = styled(Box)`
+const StyledTableCellContent = styled(Box)<{ forceWrap: boolean }>`
   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap;
+  white-space: ${(props) => (props.forceWrap ? 'wrap' : 'nowrap')};
 `;
 
 const StyledExpandedTableCell = styled(({ isExpanded, ...rest }) => <TableCell {...rest} />)``;
@@ -58,6 +58,7 @@ export type Col = {
   maxWidth?: string;
   width?: string;
   tooltip?: ReactNode | ((row: Row) => ReactNode);
+  forceWrap?: boolean;
 };
 
 export type Row = {
@@ -203,7 +204,7 @@ export default function TableControlled(props: TableControlledProps) {
                 <Fragment key={id}>
                   <StyledTableRow odd={rowIndex % 2 === 1} onClick={(e) => handleRowClick(e, row)} hover={rowHover}>
                     {currentCols.map((col) => {
-                      const { field, tooltip } = col;
+                      const { field, tooltip, forceWrap } = col;
 
                       const value =
                         typeof field === 'function'
@@ -236,7 +237,7 @@ export default function TableControlled(props: TableControlledProps) {
                               <StyledTableCellContent>{value}</StyledTableCellContent>
                             </Tooltip>
                           ) : (
-                            <StyledTableCellContent>{value}</StyledTableCellContent>
+                            <StyledTableCellContent forceWrap={forceWrap}>{value}</StyledTableCellContent>
                           )}
                         </StyledTableCell>
                       );

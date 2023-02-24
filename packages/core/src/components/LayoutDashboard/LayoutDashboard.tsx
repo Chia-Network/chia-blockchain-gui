@@ -1,12 +1,13 @@
 import { useGetLoggedInFingerprintQuery, useGetKeyQuery } from '@chia-network/api-react';
 import { Exit as ExitIcon } from '@chia-network/icons';
 import { t, Trans } from '@lingui/macro';
-import { ExitToApp as ExitToAppIcon } from '@mui/icons-material';
+import { ExitToApp as ExitToAppIcon, Edit as EditIcon } from '@mui/icons-material';
 import { Box, AppBar, Toolbar, Drawer, Container, IconButton, Typography, CircularProgress } from '@mui/material';
-import React, { ReactNode, Suspense } from 'react';
+import React, { type ReactNode, useState, Suspense } from 'react';
 import { useNavigate, Outlet } from 'react-router-dom';
 import styled from 'styled-components';
 
+import SelectKeyRenameForm from '../../screens/SelectKey/SelectKeyRenameForm';
 import Flex from '../Flex';
 import Loading from '../Loading';
 import Logo from '../Logo';
@@ -70,6 +71,7 @@ export default function LayoutDashboard(props: LayoutDashboardProps) {
   const { children, sidebar, settings, outlet = false, actions } = props;
 
   const navigate = useNavigate();
+  const [editWalletName, setEditWalletName] = useState(false);
   const { data: fingerprint, isLoading: isLoadingFingerprint } = useGetLoggedInFingerprintQuery();
   const { data: keyData, isLoading: isLoadingKeyData } = useGetKeyQuery(
     {
@@ -87,6 +89,14 @@ export default function LayoutDashboard(props: LayoutDashboardProps) {
     localStorage.setItem('typeFilter', JSON.stringify([]));
 
     navigate('/');
+  }
+
+  function handleEditWalletName() {
+    setEditWalletName(true);
+  }
+
+  function handleCloseEditWalletName() {
+    setEditWalletName(false);
   }
 
   return (
@@ -110,21 +120,34 @@ export default function LayoutDashboard(props: LayoutDashboardProps) {
                         <Box>
                           <CircularProgress size={32} color="secondary" />
                         </Box>
+                      ) : editWalletName ? (
+                        <Box flexGrow={1} maxWidth={{ md: '80%' }}>
+                          <SelectKeyRenameForm keyData={keyData} onClose={handleCloseEditWalletName} />
+                        </Box>
                       ) : (
                         <Flex minWidth={0} alignItems="baseline">
                           <Typography variant="h4" display="flex-inline" noWrap>
                             {keyData?.label || <Trans>Wallet</Trans>}
                           </Typography>
                           {fingerprint && (
-                            <StyledInlineTypography
-                              color="textSecondary"
-                              variant="h5"
-                              component="span"
-                              data-testid="LayoutDashboard-fingerprint"
-                            >
-                              &nbsp;
-                              {fingerprint}
-                            </StyledInlineTypography>
+                            <Flex flexDirection="row" alignItems="center" gap={0.5}>
+                              <StyledInlineTypography
+                                color="textSecondary"
+                                variant="h5"
+                                component="span"
+                                data-testid="LayoutDashboard-fingerprint"
+                              >
+                                &nbsp;
+                                {fingerprint}
+                              </StyledInlineTypography>
+                              <IconButton
+                                onClick={handleEditWalletName}
+                                size="small"
+                                data-testid="LayoutDashboard-edit-walletName"
+                              >
+                                <EditIcon color="disabled" />
+                              </IconButton>
+                            </Flex>
                           )}
                         </Flex>
                       )}
