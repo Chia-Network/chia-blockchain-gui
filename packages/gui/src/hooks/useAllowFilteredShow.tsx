@@ -65,14 +65,6 @@ async function getMetadata(nft: NFTInfo | undefined, lru: LRU<string, any>) {
   return { ...nft, metadata };
 }
 
-function forceNextTick() {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(true);
-    }, 0);
-  });
-}
-
 export default function useAllowFilteredShow(nfts: NFTInfo[], hideObjectionableContent: boolean, isLoading: boolean) {
   const [allowNFTsFiltered, setAllowNFTsFiltered] = useState<NFTInfo[]>([]);
   const [isGettingMetadata, setIsGettingMetadata] = useState(true);
@@ -89,6 +81,7 @@ export default function useAllowFilteredShow(nfts: NFTInfo[], hideObjectionableC
        the worst case we will be rendering first 50 NFTs 2 seconds after than we get them from BE - of course,
        this 2s wait will only happen if metadata is not cached already, if it's cached, then there will be no waiting
     */
+    nftArray.current = [];
     for (let i = 0; i < Math.ceil(nfts.length / concurrentCount); i++) {
       const tempCount =
         i === Math.ceil(nfts.length / concurrentCount) - 1 ? nfts.length % concurrentCount : concurrentCount;
@@ -101,12 +94,14 @@ export default function useAllowFilteredShow(nfts: NFTInfo[], hideObjectionableC
           !nftWithMetadata?.metadata ||
           (nftWithMetadata?.metadata && !nftWithMetadata?.metadata.sensitive_content)
         ) {
-          nftArray.current.push(nftWithMetadata);
+          nftArray.current = nftArray.current.concat(nftWithMetadata);
         }
       });
-      await forceNextTick(); /* this is mandatory! without this, parent component will not rerender partial results */
       setAllowNFTsFiltered(nftArray.current);
       setIsLoadingState(false);
+    }
+    if (nftArray.current.length === 0) {
+      setAllowNFTsFiltered([]);
     }
     setIsGettingMetadata(false);
   }, [hideObjectionableContent, lru, nfts]);
