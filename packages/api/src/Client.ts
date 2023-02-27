@@ -100,7 +100,7 @@ export default class Client extends EventEmitter {
     };
   }
 
-  changeState(state: ConnectionState) {
+  private changeState(state: ConnectionState) {
     log(`Connection state changed: ${state}`);
     if (state === ConnectionState.CONNECTING && state === this.state) {
       this.reconnectAttempt += 1;
@@ -133,11 +133,13 @@ export default class Client extends EventEmitter {
     return this.options.debug;
   }
 
-  isStarted(serviceName: ServiceNameValue) {
+  isStarted(args: { serviceName: ServiceNameValue }) {
+    const { serviceName } = args;
     return this.started.has(serviceName);
   }
 
-  addService(service: Service) {
+  addService(args: { service: Service }) {
+    const { service } = args;
     if (!this.services.has(service.name)) {
       this.services.add(service.name);
     }
@@ -194,7 +196,8 @@ export default class Client extends EventEmitter {
     return this.connectedPromise;
   }
 
-  async startService(serviceName: ServiceNameValue, disableWait?: boolean) {
+  async startService(args: { serviceName: ServiceNameValue; disableWait?: boolean }) {
+    const { serviceName, disableWait } = args;
     if (this.started.has(serviceName)) {
       return;
     }
@@ -241,10 +244,11 @@ export default class Client extends EventEmitter {
 
     const services = Array.from(this.services);
 
-    await Promise.all(services.map(async (serviceName) => this.startService(serviceName)));
+    await Promise.all(services.map(async (serviceName) => this.startService({ serviceName })));
   }
 
-  async stopService(serviceName: ServiceNameValue) {
+  async stopService(args: { serviceName: ServiceNameValue }) {
+    const { serviceName } = args;
     if (!this.started.has(serviceName)) {
       return;
     }
@@ -402,7 +406,8 @@ export default class Client extends EventEmitter {
     });
   }
 
-  async close(force: boolean = false) {
+  async close(args: { force?: boolean }) {
+    const { force = false } = args;
     if (force) {
       this.closed = true;
     }
@@ -411,7 +416,7 @@ export default class Client extends EventEmitter {
       return;
     }
 
-    await Promise.all(Array.from(this.started).map(async (serviceName) => this.stopService(serviceName)));
+    await Promise.all(Array.from(this.started).map(async (serviceName) => this.stopService({ serviceName })));
 
     await this.daemon.exit();
 

@@ -1,21 +1,18 @@
-import { ConnectionState, ServiceName } from '@chia-network/api';
+import Client, { ConnectionState, ServiceNameValue } from '@chia-network/api';
 
+import MethodFirstParameter from '../@types/MethodFirstParameter';
+import MethodReturnType from '../@types/MethodReturnType';
 import api, { baseQuery } from '../api';
 
 const apiWithTag = api.enhanceEndpoints({ addTagTypes: [] });
 
 export const clientApi = apiWithTag.injectEndpoints({
   endpoints: (build) => ({
-    close: build.mutation<
-      boolean,
-      {
-        force?: boolean;
-      }
-    >({
-      query: ({ force }) => ({
+    close: build.mutation<MethodReturnType<typeof Client, 'close'>, MethodFirstParameter<typeof Client, 'close'>>({
+      query: (args) => ({
         command: 'close',
         client: true,
-        args: [force],
+        args: [args],
       }),
     }),
 
@@ -23,7 +20,7 @@ export const clientApi = apiWithTag.injectEndpoints({
       {
         state: ConnectionState;
         attempt: number;
-        serviceName?: ServiceName;
+        serviceName?: ServiceNameValue;
       },
       undefined
     >({
@@ -68,7 +65,7 @@ export const clientApi = apiWithTag.injectEndpoints({
     clientStartService: build.mutation<
       boolean,
       {
-        service?: ServiceName;
+        service?: ServiceNameValue;
         disableWait?: boolean;
       }
     >({

@@ -30,7 +30,7 @@ export default abstract class Service extends EventEmitter {
     this.origin = origin ?? client.origin;
 
     if (!skipAddService) {
-      client.addService(this);
+      client.addService({ service: this });
     }
 
     client.on('message', this.handleMessage);
