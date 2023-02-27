@@ -7,9 +7,9 @@ import React, { useRef, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import type OfferBuilderData from '../../@types/OfferBuilderData';
+import useSuppressShareOnCreate from '../../hooks/useSuppressShareOnCreate';
 import offerBuilderDataToOffer from '../../util/offerBuilderDataToOffer';
 import OfferEditorConfirmationDialog from '../offers/OfferEditorConfirmationDialog';
-import OfferLocalStorageKeys from '../offers/OfferLocalStorage';
 import OfferBuilder, { emptyDefaultValues } from './OfferBuilder';
 import OfferNavigationHeader from './OfferNavigationHeader';
 
@@ -88,7 +88,7 @@ export default function CreateOfferBuilder(props: CreateOfferBuilderProps) {
     });
   }, [walletType, assetId, nftId, nftWalletId, nftIds, offer]);
 
-  const [suppressShareOnCreate] = usePrefs<boolean>(OfferLocalStorageKeys.SUPPRESS_SHARE_ON_CREATE);
+  const [suppressShareOnCreate] = useSuppressShareOnCreate();
 
   function handleCreateOffer() {
     offerBuilderRef.current?.submit();

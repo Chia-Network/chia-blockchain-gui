@@ -31,11 +31,11 @@ import debug from 'debug';
 import React, { useCallback, useEffect, useMemo } from 'react';
 
 import useAssetIdName, { AssetIdMapEntry } from '../../hooks/useAssetIdName';
+import useSuppressShareOnCreate from '../../hooks/useSuppressShareOnCreate';
 import { launcherIdToNFTId } from '../../util/nfts';
 import NotificationSendDialog from '../notification/NotificationSendDialog';
 import { NFTOfferSummary } from './NFTOfferViewer';
 import OfferAsset from './OfferAsset';
-import OfferLocalStorageKeys from './OfferLocalStorage';
 import OfferSummary from './OfferSummary';
 import {
   offerAssetIdForAssetType,
@@ -1405,9 +1405,7 @@ export default function OfferShareDialog(props: OfferShareDialogProps) {
   const openDialog = useOpenDialog();
   const [sendOfferNotificationOpen, setSendOfferNotificationOpen] = React.useState(false);
   const [offerURL, setOfferURL] = React.useState('');
-  const [suppressShareOnCreate, setSuppressShareOnCreate] = usePrefs<boolean>(
-    OfferLocalStorageKeys.SUPPRESS_SHARE_ON_CREATE
-  );
+  const [suppressShareOnCreate, setSuppressShareOnCreate] = useSuppressShareOnCreate();
   const isNFTOffer = offerContainsAssetOfType(offerRecord.summary, 'singleton');
   const nftLauncherId = isNFTOffer ? offerAssetIdForAssetType(OfferAsset.NFT, offerRecord.summary) : undefined;
   const nftId = nftLauncherId ? launcherIdToNFTId(nftLauncherId) : undefined;

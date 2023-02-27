@@ -43,12 +43,12 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 import useFetchNFTs from '../../hooks/useFetchNFTs';
+import useSuppressShareOnCreate from '../../hooks/useSuppressShareOnCreate';
 import { convertRoyaltyToPercentage, isValidNFTId, launcherIdFromNFTId } from '../../util/nfts';
 import NFTOfferExchangeType from './NFTOfferExchangeType';
 import NFTOfferPreview from './NFTOfferPreview';
 import NFTOfferTokenSelector from './NFTOfferTokenSelector';
 import OfferEditorConfirmationDialog from './OfferEditorConfirmationDialog';
-import OfferLocalStorageKeys from './OfferLocalStorage';
 import { calculateNFTRoyalties } from './utils';
 
 /* ========================================================================== */
@@ -547,7 +547,7 @@ export default function NFTOfferEditor(props: NFTOfferEditorProps) {
   const errorDialog = useShowError();
   const navigate = useNavigate();
   const theme = useTheme();
-  const [suppressShareOnCreate] = usePrefs<boolean>(OfferLocalStorageKeys.SUPPRESS_SHARE_ON_CREATE);
+  const [suppressShareOnCreate] = useSuppressShareOnCreate();
   const defaultValues: NFTOfferEditorFormData = {
     exchangeType,
     nftId: nft?.$nftId ?? '',

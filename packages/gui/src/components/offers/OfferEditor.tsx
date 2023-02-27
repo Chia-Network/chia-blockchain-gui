@@ -19,10 +19,10 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
+import useSuppressShareOnCreate from '../../hooks/useSuppressShareOnCreate';
 import OfferEditorConditionsPanel from './OfferEditorConditionsPanel';
 import OfferEditorConfirmationDialog from './OfferEditorConfirmationDialog';
 import type OfferEditorRowData from './OfferEditorRowData';
-import OfferLocalStorageKeys from './OfferLocalStorage';
 
 /* ========================================================================== */
 /*                                Offer Editor                                */
@@ -71,7 +71,7 @@ function OfferEditor(props: OfferEditorProps) {
   });
   const openDialog = useOpenDialog();
   const errorDialog = useShowError();
-  const [suppressShareOnCreate] = usePrefs<boolean>(OfferLocalStorageKeys.SUPPRESS_SHARE_ON_CREATE);
+  const [suppressShareOnCreate] = useSuppressShareOnCreate();
   const [createOfferForIds] = useCreateOfferForIdsMutation();
   const [processing, setIsProcessing] = useState<boolean>(false);
 
