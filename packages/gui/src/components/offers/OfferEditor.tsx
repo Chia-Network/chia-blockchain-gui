@@ -1,5 +1,5 @@
 import { WalletType } from '@chia-network/api';
-import { useCreateOfferForIdsMutation, usePrefs } from '@chia-network/api-react';
+import { useCreateOfferForIdsMutation } from '@chia-network/api-react';
 import {
   Back,
   Button,

@@ -5,7 +5,6 @@ import {
   useGetNFTInfoQuery,
   useGetNFTWallets,
   useGetWalletBalanceQuery,
-  usePrefs,
 } from '@chia-network/api-react';
 import {
   Amount,

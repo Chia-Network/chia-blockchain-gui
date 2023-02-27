@@ -3,7 +3,6 @@ import fs from 'fs';
 import path from 'path';
 
 import { OfferTradeRecord } from '@chia-network/api';
-import { usePrefs } from '@chia-network/api-react';
 import {
   ButtonLoading,
   CopyToClipboard,
