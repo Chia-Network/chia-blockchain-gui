@@ -8,7 +8,7 @@ import {
   useServices,
   useGetVersionQuery,
 } from '@chia-network/api-react';
-import { Flex, LayoutHero, LayoutLoading, useMode, useIsSimulator, useAppVersion } from '@chia-network/core';
+import { Flex, LayoutHero, LayoutLoading, Mode, useMode, useIsSimulator, useAppVersion } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Typography, Collapse } from '@mui/material';
 import isElectron from 'is-electron';
@@ -56,6 +56,14 @@ export default function AppState(props: Props) {
   const { data: backendVersion } = useGetVersionQuery();
   const { version } = useAppVersion();
   const lru = useNFTMetadataLRU();
+
+  useEffect(() => {
+    if (mode === Mode.WALLET) {
+      window.ipcRenderer.invoke('setPromptOnQuit', false);
+    } else {
+      window.ipcRenderer.invoke('setPromptOnQuit', true);
+    }
+  }, [mode]);
 
   const runServices = useMemo<ServiceName[] | undefined>(() => {
     if (mode) {

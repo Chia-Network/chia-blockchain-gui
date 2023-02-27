@@ -206,6 +206,10 @@ if (!handleSquirrelEvent()) {
 
       ipcMain.handle('getVersion', () => app.getVersion());
 
+      ipcMain.handle('setPromptOnQuit', (_event, modeBool: boolean) => {
+        promptOnQuit = modeBool;
+      });
+
       ipcMain.handle('quitGUI', () => {
         promptOnQuit = false;
         app.quit();
