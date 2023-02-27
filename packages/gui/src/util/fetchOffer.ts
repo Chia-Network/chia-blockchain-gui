@@ -61,7 +61,7 @@ export default async function fetchOffer(offerUrl: string) {
     throw new Error('Failed to check offer validity');
   }
 
-  const offer = offerToOfferBuilderData(offerSummary);
+  const offer = offerToOfferBuilderData(offerSummary, true);
 
   /*
   // get trade record
