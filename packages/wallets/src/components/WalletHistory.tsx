@@ -60,16 +60,25 @@ const StyledWarning = styled(Box)`
   color: ${StateColor.WARNING};
 `;
 
-async function handleRowClick(event: React.MouseEvent<HTMLTableRowElement>, row: Row, getOfferRecord, navigate) {
+async function handleRowClick(
+  event: React.MouseEvent<HTMLTableRowElement>,
+  row: Row,
+  getOfferRecord,
+  navigate,
+  location
+) {
   if (row.tradeId) {
     try {
       const { data: response } = await getOfferRecord(row.tradeId);
-      const { tradeRecord, success } = response;
+      const {
+        tradeRecord: { summary },
+        success,
+      } = response;
 
-      if (success === true && tradeRecord && navigate) {
-        // navigate('/dashboard/offers/view', {
-        //   state: { tradeRecord },
-        // });
+      if (success === true && summary && navigate && location) {
+        navigate('/dashboard/offers/view', {
+          state: { offerSummary: summary, imported: false, isMyOffer: false, referrerPath: location.pathname },
+        });
       }
     } catch (e) {
       console.error(e);
@@ -77,7 +86,7 @@ async function handleRowClick(event: React.MouseEvent<HTMLTableRowElement>, row:
   }
 }
 
-const getCols = (type: WalletType, isSyncing, getOfferRecord, navigate) => [
+const getCols = (type: WalletType, isSyncing, getOfferRecord, navigate, location) => [
   {
     field: (row: Row) => {
       const isOutgoing = [TransactionType.OUTGOING, TransactionType.OUTGOING_TRADE].includes(row.type);
@@ -144,7 +153,7 @@ const getCols = (type: WalletType, isSyncing, getOfferRecord, navigate) => [
           gap={1}
           onClick={(event) => {
             if (!isSyncing) {
-              handleRowClick(event, row, getOfferRecord, navigate);
+              handleRowClick(event, row, getOfferRecord, navigate, location);
             }
           }}
         >
@@ -225,7 +234,7 @@ export default function WalletHistory(props: Props) {
 
   const feeUnit = useCurrencyCode();
   const [getOfferRecord] = useGetOfferRecordMutation();
-  const { navigate } = useSerializedNavigationState();
+  const { navigate, location } = useSerializedNavigationState();
   const [getTransactionMemo] = useGetTransactionMemoMutation();
 
   const isLoading = isWalletTransactionsLoading || isWalletLoading;
@@ -251,8 +260,8 @@ export default function WalletHistory(props: Props) {
       return [];
     }
 
-    return getCols(wallet.type, isSyncing, getOfferRecord, navigate);
-  }, [getOfferRecord, isSyncing, navigate, wallet]);
+    return getCols(wallet.type, isSyncing, getOfferRecord, navigate, location);
+  }, [getOfferRecord, isSyncing, navigate, wallet, location]);
 
   return (
     <Card title={<Trans>Transactions</Trans>} titleVariant="h6" transparent>
