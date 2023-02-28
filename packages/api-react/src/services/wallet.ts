@@ -31,6 +31,7 @@ const apiWithTag = api.enhanceEndpoints({
     'DIDWallet',
     'Keys',
     'LoggedInFingerprint',
+    'NFTCount',
     'NFTInfo',
     'NFTRoyalties',
     'NFTWalletWithDID',
@@ -1903,6 +1904,15 @@ export const walletApi = apiWithTag.injectEndpoints({
       },
     }),
 
+    getNFTsCount: build.query<any, { walletId: number }>({
+      query: ({ walletId }) => ({
+        command: 'getNftsCount',
+        service: NFT,
+        args: [walletId],
+      }),
+      providesTags: (result, _error, { walletId }) => (result ? [{ type: 'NFTCount', id: walletId }] : []),
+    }),
+
     getNFTs: build.query<{ [walletId: number]: NFTInfo[] }, { walletIds: number[] }>({
       async queryFn(args, _queryApi, _extraOptions, fetchWithBQ) {
         try {
@@ -2318,6 +2328,7 @@ export const {
   // NFTs
   useCalculateRoyaltiesForNFTsQuery,
   useGetNFTsByNFTIDsQuery,
+  useGetNFTsCountQuery,
   useGetNFTsQuery,
   useGetNFTWalletsWithDIDsQuery,
   useGetNFTInfoQuery,
