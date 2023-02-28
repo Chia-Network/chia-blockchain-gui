@@ -12,6 +12,7 @@ import {
   Flex,
   LayoutHero,
   LayoutLoading,
+  Mode,
   useMode,
   useIsSimulator,
   useAppVersion,
@@ -66,6 +67,14 @@ export default function AppState(props: Props) {
   const { version } = useAppVersion();
   const lru = useNFTMetadataLRU();
   const isTestnet = useCurrencyCode() === 'TXCH';
+
+  useEffect(() => {
+    if (mode === Mode.WALLET) {
+      window.ipcRenderer.invoke('setPromptOnQuit', false);
+    } else {
+      window.ipcRenderer.invoke('setPromptOnQuit', true);
+    }
+  }, [mode]);
 
   const runServices = useMemo<ServiceName[] | undefined>(() => {
     if (mode) {
