@@ -8,7 +8,16 @@ import {
   useServices,
   useGetVersionQuery,
 } from '@chia-network/api-react';
-import { Flex, LayoutHero, LayoutLoading, Mode, useMode, useIsSimulator, useAppVersion, useCurrencyCode } from '@chia-network/core';
+import {
+  Flex,
+  LayoutHero,
+  LayoutLoading,
+  Mode,
+  useMode,
+  useIsSimulator,
+  useAppVersion,
+  useCurrencyCode,
+} from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Typography, Collapse } from '@mui/material';
 import isElectron from 'is-electron';
