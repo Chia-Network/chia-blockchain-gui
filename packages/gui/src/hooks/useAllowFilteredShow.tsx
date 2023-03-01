@@ -6,6 +6,8 @@ import getRemoteFileContent from '../util/getRemoteFileContent';
 import { getMetadataObject } from './useNFTMetadata';
 import useNFTMetadataLRU from './useNFTMetadataLRU';
 
+const concurrentCount = 50;
+
 async function getMetadata(nft: NFTInfo | undefined, lru: LRU<string, any>) {
   const uri = nft?.metadataUris?.[0];
   const nftId = nft?.$nftId;
@@ -60,39 +62,50 @@ async function getMetadata(nft: NFTInfo | undefined, lru: LRU<string, any>) {
     lru.set(nftId, stringifiedCacheObject);
     localStorage.setItem(`metadata-cache-${nft.$nftId}`, stringifiedCacheObject);
   }
-  return { ...nft, nftId: nft?.$nftId, metadata };
+  return { ...nft, metadata };
 }
 
 export default function useAllowFilteredShow(nfts: NFTInfo[], hideObjectionableContent: boolean, isLoading: boolean) {
   const [allowNFTsFiltered, setAllowNFTsFiltered] = useState<NFTInfo[]>([]);
   const [isGettingMetadata, setIsGettingMetadata] = useState(true);
+  const [isLoadingState, setIsLoadingState] = useState(true);
   const nftArray = React.useRef<NFTInfo[]>([]);
   const lru = useNFTMetadataLRU();
 
   const nftsLengthOld = React.useRef(0);
 
-  /* eslint no-await-in-loop: off -- cannot be executed in parallel, because of too many network requests,
-     todo: optimize to have a loop of 50 parallel requests */
   const fetchMultipleMetadata = useCallback(async () => {
+    /* eslint no-await-in-loop: off -- all network requests shouldn't be executed in parallel so we will be
+      "for looping" 50 requests in parallel (concurrentCount variable defaults to 50) so that way if we had any
+       metadata request timeouts (default 2s), then the first 50 NFTs will get their metadata in this 2s and in
+       the worst case we will be rendering first 50 NFTs 2 seconds after than we get them from BE - of course,
+       this 2s wait will only happen if metadata is not cached already, if it's cached, then there will be no waiting
+    */
     nftArray.current = [];
-    for (let i = 0; i < nfts.length; i++) {
-      const nftWithMetadata: any = (await getMetadata(nfts[i], lru)) || { nftId: nfts[i]?.$nftId };
-      if (
-        !hideObjectionableContent ||
-        !nftWithMetadata?.metadata ||
-        (nftWithMetadata?.metadata &&
-          (!nftWithMetadata?.metadata.sensitive_content ||
-            nftWithMetadata?.metadata.sensitive_content === false ||
-            nftWithMetadata?.metadata.sensitive_content === 'false'))
-      ) {
-        nftArray.current = nftArray.current.concat(nftWithMetadata);
-        /* compromise - rerender gallery only every 10% of the size of your whole collection */
-        if (i % (Math.floor(nfts.length / 10) + 1) === 0 && i > 0) {
-          setAllowNFTsFiltered(nftArray.current);
+    for (let i = 0; i < Math.ceil(nfts.length / concurrentCount); i++) {
+      const tempCount =
+        i === Math.ceil(nfts.length / concurrentCount) - 1 ? nfts.length % concurrentCount : concurrentCount;
+      const partialResults = await Promise.all(
+        Array.from(Array(tempCount).keys()).map((n) => getMetadata(nfts[n + i * concurrentCount], lru))
+      );
+      partialResults.forEach((nftWithMetadata) => {
+        if (
+          !hideObjectionableContent ||
+          !nftWithMetadata?.metadata ||
+          (nftWithMetadata?.metadata &&
+            (!nftWithMetadata?.metadata.sensitive_content ||
+              nftWithMetadata?.metadata.sensitive_content === false ||
+              nftWithMetadata?.metadata.sensitive_content === 'false'))
+        ) {
+          nftArray.current = nftArray.current.concat(nftWithMetadata);
         }
-      }
+      });
+      setAllowNFTsFiltered(nftArray.current);
+      setIsLoadingState(false);
     }
-    setAllowNFTsFiltered(nftArray.current);
+    if (nftArray.current.length === 0) {
+      setAllowNFTsFiltered([]);
+    }
     setIsGettingMetadata(false);
   }, [hideObjectionableContent, lru, nfts]);
 
@@ -103,5 +116,5 @@ export default function useAllowFilteredShow(nfts: NFTInfo[], hideObjectionableC
     }
   }, [isLoading, nfts.length, fetchMultipleMetadata]);
 
-  return { allowNFTsFiltered, isDoneLoadingAllowedNFTs: !isGettingMetadata };
+  return { allowNFTsFiltered, isDoneLoadingAllowedNFTs: !isGettingMetadata, isLoading: isLoadingState };
 }
