@@ -11,6 +11,7 @@ type Pair = {
     namespaces: WalletConnectNamespaces;
   }[];
   metadata?: WalletConnectMetadata;
+  bypassCommands?: Record<string, boolean>;
 };
 
 export default Pair;

@@ -21,10 +21,19 @@ export type OfferBuilderViewerProps = {
   state?: OfferState;
   isMyOffer?: boolean;
   imported?: boolean;
+  hideHeader?: boolean;
 };
 
 export default function OfferBuilderViewer(props: OfferBuilderViewerProps) {
-  const { offerSummary, referrerPath, offerData, state, isMyOffer = false, imported = false } = props;
+  const {
+    offerSummary,
+    referrerPath,
+    offerData,
+    state,
+    isMyOffer = false,
+    imported = false,
+    hideHeader = false,
+  } = props;
 
   const showError = useShowError();
   const navigate = useNavigate();
@@ -130,21 +139,23 @@ export default function OfferBuilderViewer(props: OfferBuilderViewerProps) {
   return (
     <Grid container>
       <Flex flexDirection="column" flexGrow={1} gap={4}>
-        <Flex alignItems="center" justifyContent="space-between" gap={2}>
-          <OfferNavigationHeader referrerPath={referrerPath} />
-          {canAccept && (
-            <ButtonLoading
-              variant="contained"
-              color="primary"
-              onClick={handleAcceptOffer}
-              isLoading={isAccepting}
-              disableElevation
-              disabled={disableAccept}
-            >
-              <Trans>Accept Offer</Trans>
-            </ButtonLoading>
-          )}
-        </Flex>
+        {!hideHeader && (
+          <Flex alignItems="center" justifyContent="space-between" gap={2}>
+            <OfferNavigationHeader referrerPath={referrerPath} />
+            {canAccept && (
+              <ButtonLoading
+                variant="contained"
+                color="primary"
+                onClick={handleAcceptOffer}
+                isLoading={isAccepting}
+                disableElevation
+                disabled={disableAccept}
+              >
+                <Trans>Accept Offer</Trans>
+              </ButtonLoading>
+            )}
+          </Flex>
+        )}
         {error ? (
           <Alert severity="error">{error.message}</Alert>
         ) : showInvalid ? (

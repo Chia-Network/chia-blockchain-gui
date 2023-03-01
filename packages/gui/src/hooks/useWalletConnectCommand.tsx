@@ -6,7 +6,7 @@ import api, {
 } from '@chia-network/api-react';
 import { useOpenDialog, ConfirmDialog, Flex } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
-import { Divider, Typography } from '@mui/material';
+import { Divider, Typography, Switch } from '@mui/material';
 import debug from 'debug';
 import React, { ReactNode } from 'react';
 
@@ -36,7 +36,7 @@ export default function useWalletConnectCommand() {
   const openDialog = useOpenDialog();
   const [logIn] = useLogInAndSkipImportMutation();
   const { data: currentFingerprint, isLoading: isLoadingLoggedInFingerprint } = useGetLoggedInFingerprintQuery();
-  const { getPairBySession } = useWalletConnectPairs();
+  const { getPairBySession, bypassCommand } = useWalletConnectPairs();
   const { data: keys, isLoading: isLoadingPublicKeys } = useGetKeysQuery();
   const { allowConfirmationFingerprintChange } = useWalletConnectPreferences();
 
@@ -53,8 +53,10 @@ export default function useWalletConnectCommand() {
     }[];
     fingerprint: number;
     isDifferentFingerprint: boolean;
+    command: string;
+    bypassConfirm?: boolean;
   }) {
-    const { topic, message, params = [], fingerprint, isDifferentFingerprint } = props;
+    const { topic, message, params = [], fingerprint, isDifferentFingerprint, command, bypassConfirm = false } = props;
 
     /*
     const { autoConfirm } = state.current;
@@ -63,11 +65,21 @@ export default function useWalletConnectCommand() {
     }
     */
 
+    let rememberChoice = false;
     const key = keys?.find((item) => item.fingerprint === fingerprint);
 
     const pair = getPairBySession(topic);
     if (!pair) {
       throw new Error('Invalid session topic');
+    }
+
+    if (pair.bypassCommands && command in pair.bypassCommands) {
+      log(`bypassing command ${command} with value ${pair.bypassCommands[command]}`);
+      return pair.bypassCommands[command];
+    }
+
+    function handleRememberChoiceChanged(_: any, checked: boolean) {
+      rememberChoice = checked;
     }
 
     const isConfirmed = await openDialog(
@@ -119,9 +131,25 @@ export default function useWalletConnectCommand() {
             </Typography>
             <WalletConnectMetadata metadata={pair.metadata} />
           </Flex>
+
+          {bypassConfirm && (
+            <>
+              <Divider />
+              <Flex justifyContent="space-between" alignItems="center">
+                <Typography variant="body2" color="warning">
+                  Remember my choice for this command
+                </Typography>
+                <Switch onChange={handleRememberChoiceChanged} />
+              </Flex>
+            </>
+          )}
         </Flex>
       </ConfirmDialog>
     );
+
+    if (rememberChoice) {
+      bypassCommand(topic, command, isConfirmed);
+    }
 
     return isConfirmed;
   }
@@ -150,7 +178,7 @@ export default function useWalletConnectCommand() {
       displayComponent?: (value: any, params: WalletConnectCommandParam[]) => ReactNode;
     }[] = [];
 
-    const { params: definitionParams = [] } = definition;
+    const { params: definitionParams = [], bypassConfirm } = definition;
     definitionParams.forEach((param) => {
       const { name, label, displayComponent, hide } = param;
 
@@ -179,6 +207,8 @@ export default function useWalletConnectCommand() {
       params: confirmParams,
       fingerprint,
       isDifferentFingerprint,
+      command,
+      bypassConfirm,
     });
 
     if (!confirmed) {
