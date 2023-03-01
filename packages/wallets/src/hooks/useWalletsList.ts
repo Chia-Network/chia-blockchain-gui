@@ -197,7 +197,6 @@ export default function useWalletsList(
           return addCATToken({
             name: cat.name,
             assetId: cat.assetId,
-            fee: '0',
           }).unwrap();
         }
 
@@ -207,7 +206,6 @@ export default function useWalletsList(
           return addCATToken({
             name: strayCat.name,
             assetId: strayCat.assetId,
-            fee: '0',
           }).unwrap();
         }
       }

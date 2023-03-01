@@ -71,12 +71,10 @@ export default function WalletReceiveAddressField(props: WalletReceiveAddressPro
     <Trans>Copied</Trans>
   ) : (
     <Flex flexDirection="column" gap={0.5}>
-      <Typography variant="caption" color="textSecondary">
+      <Typography variant="caption">
         <Trans>Copy wallet address</Trans>
       </Typography>
-      <Typography variant="caption" color="textPrimary">
-        {address}
-      </Typography>
+      <Typography variant="caption">{address}</Typography>
     </Flex>
   );
 
@@ -113,9 +111,11 @@ export default function WalletReceiveAddressField(props: WalletReceiveAddressPro
       {isLoading ? (
         <Loading size="1em" />
       ) : (
-        <IconButton onClick={handleNewAddress} size="small">
-          <ReloadIconSvg isDarkMode={props?.isDarkMode} />
-        </IconButton>
+        <Tooltip title={<Trans>New Receive Address</Trans>}>
+          <IconButton onClick={handleNewAddress} size="small">
+            <ReloadIconSvg isDarkMode={props?.isDarkMode} />
+          </IconButton>
+        </Tooltip>
       )}
     </WalletReceiveAddressWrapper>
   );

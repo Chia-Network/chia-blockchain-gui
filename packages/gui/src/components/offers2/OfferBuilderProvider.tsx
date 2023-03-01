@@ -68,10 +68,12 @@ export default function OfferBuilderProvider(props: OfferBuilderProviderProps) {
     return [offeredUnknownCATsLocal, requestedUnknownCATsLocal];
   }, [offeredTokens, requestedTokens, wallets]);
 
-  const { data: requestedNFTs } = useGetNFTsByNFTIDsQuery(
+  const { data: loadedRequestedNFTs, isLoading: isLoadingRequestedNFTs } = useGetNFTsByNFTIDsQuery(
     { nftIds: requestedNFTIds },
     { skip: requestedNFTIds.length === 0 }
   );
+
+  const requestedNFTs = !isLoadingRequestedNFTs && requestedNFTIds.length > 0 ? loadedRequestedNFTs : [];
 
   const { data: offeredNFTs } = useGetNFTsByNFTIDsQuery(
     { nftIds: offeredNFTIds },

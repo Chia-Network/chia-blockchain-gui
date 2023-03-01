@@ -4,6 +4,7 @@ import { Typography, Tab, Tabs } from '@mui/material';
 import React from 'react';
 import { Routes, Route, matchPath, useLocation, useNavigate } from 'react-router-dom';
 
+import SettingsAdvanced from './SettingsAdvanced';
 import SettingsDataLayer from './SettingsDataLayer';
 import SettingsGeneral from './SettingsGeneral';
 import SettingsIntegration from './SettingsIntegration';
@@ -18,6 +19,7 @@ enum SettingsTab {
   DATALAYER = 'datalayer',
   INTEGRATION = 'integration',
   NOTIFICATIONS = 'notifications',
+  ADVANCED = 'advanced',
 }
 
 const SettingsTabsPathMapping = {
@@ -27,6 +29,7 @@ const SettingsTabsPathMapping = {
   [SettingsTab.DATALAYER]: '/dashboard/settings/datalayer',
   [SettingsTab.INTEGRATION]: '/dashboard/settings/integration',
   [SettingsTab.NOTIFICATIONS]: '/dashboard/settings/notifications',
+  [SettingsTab.ADVANCED]: '/dashboard/settings/advanced',
 };
 
 export default function Settings() {
@@ -75,6 +78,7 @@ export default function Settings() {
               label={<Trans>Notifications</Trans>}
               data-testid="Settings-tab-notifications"
             />
+            <Tab value={SettingsTab.ADVANCED} label={<Trans>Advanced</Trans>} data-testid="Settings-tab-advanced" />
           </Tabs>
 
           <Routes>
@@ -84,6 +88,7 @@ export default function Settings() {
             <Route path="general" element={<SettingsGeneral />} />
             <Route path="integration" element={<SettingsIntegration />} />
             <Route path="notifications" element={<SettingsNotifications />} />
+            <Route path="advanced" element={<SettingsAdvanced />} />
           </Routes>
         </Flex>
       </Flex>

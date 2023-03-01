@@ -4,6 +4,9 @@ import { Trans } from '@lingui/macro';
 import React from 'react';
 
 import type WalletConnectCommand from '../@types/WalletConnectCommand';
+import WalletConnectCommandParam from '../@types/WalletConnectCommandParam';
+import WalletConnectCommandParamName from '../@types/WalletConnectCommandParamName';
+import WalletConnectCATAmount from '../components/walletConnect/WalletConnectCATAmount';
 
 const walletConnectCommands: WalletConnectCommand[] = [
   {
@@ -13,13 +16,12 @@ const walletConnectCommands: WalletConnectCommand[] = [
     allFingerprints: true,
     params: [
       {
-        name: 'fingerprint',
+        name: WalletConnectCommandParamName.FINGERPRINT,
         type: 'number',
         label: <Trans>Fingerprint</Trans>,
       },
     ],
   },
-
   {
     command: 'getWallets',
     label: <Trans>Get Wallets</Trans>,
@@ -31,7 +33,7 @@ const walletConnectCommands: WalletConnectCommand[] = [
     service: ServiceName.WALLET,
     params: [
       {
-        name: 'transactionId',
+        name: WalletConnectCommandParamName.TRANSACTION_ID,
         type: 'string',
         label: <Trans>Transaction Id</Trans>,
       },
@@ -43,7 +45,7 @@ const walletConnectCommands: WalletConnectCommand[] = [
     service: ServiceName.WALLET,
     params: [
       {
-        name: 'walletId',
+        name: WalletConnectCommandParamName.WALLET_ID,
         type: 'number',
         label: <Trans>Wallet Id</Trans>,
         isOptional: true,
@@ -58,7 +60,7 @@ const walletConnectCommands: WalletConnectCommand[] = [
     service: ServiceName.WALLET,
     params: [
       {
-        name: 'walletId',
+        name: WalletConnectCommandParamName.WALLET_ID,
         type: 'number',
         label: <Trans>Wallet Id</Trans>,
         isOptional: true,
@@ -75,31 +77,31 @@ const walletConnectCommands: WalletConnectCommand[] = [
     waitForSync: true,
     params: [
       {
-        name: 'amount',
+        name: WalletConnectCommandParamName.AMOUNT,
         label: <Trans>Amount</Trans>,
         type: 'BigNumber',
         displayComponent: (value) => <MojoToChia value={value} />,
       },
       {
-        name: 'fee',
+        name: WalletConnectCommandParamName.FEE,
         label: <Trans>Fee</Trans>,
         type: 'BigNumber',
         displayComponent: (value) => <MojoToChia value={value} />,
       },
       {
-        name: 'address',
+        name: WalletConnectCommandParamName.ADDRESS,
         label: <Trans>Address</Trans>,
         type: 'string',
       },
       {
-        name: 'walletId',
+        name: WalletConnectCommandParamName.WALLET_ID,
         label: <Trans>Wallet ID</Trans>,
         type: 'number',
         defaultValue: 1,
         hide: true,
       },
       {
-        name: 'waitForConfirmation',
+        name: WalletConnectCommandParamName.WAIT_FOR_CONFIRMATION,
         label: <Trans>Wait for Confirmation</Trans>,
         type: 'boolean',
         isOptional: true,
@@ -113,12 +115,12 @@ const walletConnectCommands: WalletConnectCommand[] = [
     service: ServiceName.WALLET,
     params: [
       {
-        name: 'id',
+        name: WalletConnectCommandParamName.ID,
         label: <Trans>Id</Trans>,
         type: 'string',
       },
       {
-        name: 'message',
+        name: WalletConnectCommandParamName.MESSAGE,
         label: <Trans>Message</Trans>,
         type: 'string',
       },
@@ -130,12 +132,12 @@ const walletConnectCommands: WalletConnectCommand[] = [
     service: ServiceName.WALLET,
     params: [
       {
-        name: 'address',
+        name: WalletConnectCommandParamName.ADDRESS,
         label: <Trans>Address</Trans>,
         type: 'string',
       },
       {
-        name: 'message',
+        name: WalletConnectCommandParamName.MESSAGE,
         label: <Trans>Message</Trans>,
         type: 'string',
       },
@@ -147,7 +149,7 @@ const walletConnectCommands: WalletConnectCommand[] = [
     service: ServiceName.WALLET,
     params: [
       {
-        name: 'walletId',
+        name: WalletConnectCommandParamName.WALLET_ID,
         label: <Trans>Wallet Id</Trans>,
         isOptional: true,
         defaultValue: 1,
@@ -155,7 +157,7 @@ const walletConnectCommands: WalletConnectCommand[] = [
         hide: true,
       },
       {
-        name: 'newAddress',
+        name: WalletConnectCommandParamName.NEW_ADDRESS,
         label: <Trans>New Address</Trans>,
         isOptional: true,
         defaultValue: true,
@@ -177,37 +179,37 @@ const walletConnectCommands: WalletConnectCommand[] = [
     service: ServiceName.WALLET,
     params: [
       {
-        name: 'start',
+        name: WalletConnectCommandParamName.START,
         label: <Trans>Start</Trans>,
         isOptional: true,
         type: 'number',
       },
       {
-        name: 'end',
+        name: WalletConnectCommandParamName.END,
         label: <Trans>End</Trans>,
         isOptional: true,
         type: 'number',
       },
       {
-        name: 'sortKey',
+        name: WalletConnectCommandParamName.SORT_KEY,
         label: <Trans>Start Key</Trans>,
         isOptional: true,
         type: 'string',
       },
       {
-        name: 'reverse',
+        name: WalletConnectCommandParamName.REVERSE,
         label: <Trans>Reverse</Trans>,
         isOptional: true,
         type: 'boolean',
       },
       {
-        name: 'includeMyOffers',
+        name: WalletConnectCommandParamName.INCLUDE_MY_OFFERS,
         label: <Trans>Include My Offers</Trans>,
         isOptional: true,
         type: 'boolean',
       },
       {
-        name: 'includeTakenOffers',
+        name: WalletConnectCommandParamName.INCLUDE_TAKEN_OFFERS,
         label: <Trans>Include Taken Offers</Trans>,
         isOptional: true,
         type: 'boolean',
@@ -225,23 +227,23 @@ const walletConnectCommands: WalletConnectCommand[] = [
     service: ServiceName.WALLET,
     params: [
       {
-        name: 'walletIdsAndAmounts',
+        name: WalletConnectCommandParamName.WALLETS_IDS_AND_AMOUNTS,
         label: <Trans>Wallet Ids and Amounts</Trans>,
         type: 'object',
       },
       {
-        name: 'driverDict',
+        name: WalletConnectCommandParamName.DRIVER_DICT,
         label: <Trans>Driver Dict</Trans>,
         type: 'object',
       },
       {
-        name: 'validateOnly',
+        name: WalletConnectCommandParamName.VALIDATE_ONLY,
         label: <Trans>Validate only</Trans>,
         isOptional: true,
         type: 'boolean',
       },
       {
-        name: 'disableJSONFormatting',
+        name: WalletConnectCommandParamName.DISABLE_JSON_FORMATTING,
         label: <Trans>Disable JSON Formatting</Trans>,
         isOptional: true,
         type: 'boolean',
@@ -254,17 +256,17 @@ const walletConnectCommands: WalletConnectCommand[] = [
     service: ServiceName.WALLET,
     params: [
       {
-        name: 'tradeId',
+        name: WalletConnectCommandParamName.TRADE_ID,
         label: <Trans>Trade Id</Trans>,
         type: 'string',
       },
       {
-        name: 'secure',
+        name: WalletConnectCommandParamName.SECURE,
         label: <Trans>Secure</Trans>,
         type: 'boolean',
       },
       {
-        name: 'fee',
+        name: WalletConnectCommandParamName.FEE,
         label: <Trans>Fee</Trans>,
         type: 'BigNumber',
         displayComponent: (value) => <MojoToChia value={value} />,
@@ -277,7 +279,7 @@ const walletConnectCommands: WalletConnectCommand[] = [
     service: ServiceName.WALLET,
     params: [
       {
-        name: 'offerData',
+        name: WalletConnectCommandParamName.OFFER_DATA,
         label: <Trans>Offer Data</Trans>,
         type: 'string',
       },
@@ -289,12 +291,12 @@ const walletConnectCommands: WalletConnectCommand[] = [
     service: ServiceName.WALLET,
     params: [
       {
-        name: 'offer',
+        name: WalletConnectCommandParamName.OFFER,
         label: <Trans>Offer</Trans>,
         type: 'string',
       },
       {
-        name: 'fee',
+        name: WalletConnectCommandParamName.FEE,
         label: <Trans>Fee</Trans>,
         type: 'BigNumber',
         displayComponent: (value) => <MojoToChia value={value} />,
@@ -307,7 +309,7 @@ const walletConnectCommands: WalletConnectCommand[] = [
     service: ServiceName.WALLET,
     params: [
       {
-        name: 'offerData',
+        name: WalletConnectCommandParamName.OFFER_DATA,
         label: <Trans>Offer Data</Trans>,
         type: 'string',
       },
@@ -319,7 +321,7 @@ const walletConnectCommands: WalletConnectCommand[] = [
     service: ServiceName.WALLET,
     params: [
       {
-        name: 'offerId',
+        name: WalletConnectCommandParamName.OFFER_ID,
         label: <Trans>Offer Id</Trans>,
         type: 'string',
       },
@@ -331,7 +333,7 @@ const walletConnectCommands: WalletConnectCommand[] = [
     service: ServiceName.WALLET,
     params: [
       {
-        name: 'offerId',
+        name: WalletConnectCommandParamName.OFFER_ID,
         label: <Trans>Offer Id</Trans>,
         type: 'string',
       },
@@ -345,13 +347,13 @@ const walletConnectCommands: WalletConnectCommand[] = [
     service: ServiceName.WALLET,
     params: [
       {
-        name: 'amount',
+        name: WalletConnectCommandParamName.AMOUNT,
         label: <Trans>Amount</Trans>,
         type: 'BigNumber',
         displayComponent: (value) => <MojoToChia value={value} />,
       },
       {
-        name: 'fee',
+        name: WalletConnectCommandParamName.FEE,
         label: <Trans>Fee</Trans>,
         type: 'BigNumber',
         displayComponent: (value) => <MojoToChia value={value} />,
@@ -364,7 +366,7 @@ const walletConnectCommands: WalletConnectCommand[] = [
     service: ServiceName.WALLET,
     params: [
       {
-        name: 'walletId',
+        name: WalletConnectCommandParamName.WALLET_ID,
         label: <Trans>Wallet Id</Trans>,
         type: 'number',
       },
@@ -377,34 +379,36 @@ const walletConnectCommands: WalletConnectCommand[] = [
     waitForSync: true,
     params: [
       {
-        name: 'walletId',
+        name: WalletConnectCommandParamName.WALLET_ID,
         label: <Trans>Wallet Id</Trans>,
         type: 'number',
       },
       {
-        name: 'address',
+        name: WalletConnectCommandParamName.ADDRESS,
         label: <Trans>Address</Trans>,
         type: 'string',
       },
       {
-        name: 'amount',
+        name: WalletConnectCommandParamName.AMOUNT,
         label: <Trans>Amount</Trans>,
         type: 'BigNumber',
-        displayComponent: (value) => <MojoToChia value={value} />,
+        displayComponent: (value, params: WalletConnectCommandParam[]) => (
+          <WalletConnectCATAmount amount={value} params={params} />
+        ),
       },
       {
-        name: 'fee',
+        name: WalletConnectCommandParamName.FEE,
         label: <Trans>Fee</Trans>,
         type: 'BigNumber',
         displayComponent: (value) => <MojoToChia value={value} />,
       },
       {
-        name: 'memos',
+        name: WalletConnectCommandParamName.MEMOS,
         label: <Trans>Memos</Trans>,
         isOptional: true,
       },
       {
-        name: 'waitForConfirmation',
+        name: WalletConnectCommandParamName.WAIT_FOR_CONFIRMATION,
         label: <Trans>Wait for Confirmation</Trans>,
         type: 'boolean',
         isOptional: true,
@@ -418,20 +422,14 @@ const walletConnectCommands: WalletConnectCommand[] = [
     service: ServiceName.WALLET,
     params: [
       {
-        name: 'assetId',
+        name: WalletConnectCommandParamName.ASSET_ID,
         label: <Trans>Asset Id</Trans>,
         type: 'string',
       },
       {
-        name: 'name',
+        name: WalletConnectCommandParamName.NAME,
         label: <Trans>Name</Trans>,
         type: 'string',
-      },
-      {
-        name: 'fee',
-        label: <Trans>Fee</Trans>,
-        type: 'BigNumber',
-        displayComponent: (value) => <MojoToChia value={value} />,
       },
     ],
   },
@@ -443,7 +441,7 @@ const walletConnectCommands: WalletConnectCommand[] = [
     service: ServiceName.WALLET,
     params: [
       {
-        name: 'walletIds',
+        name: WalletConnectCommandParamName.WALLET_IDS,
         label: <Trans>Wallet Ids</Trans>,
       },
     ],
@@ -454,7 +452,7 @@ const walletConnectCommands: WalletConnectCommand[] = [
     service: ServiceName.WALLET,
     params: [
       {
-        name: 'coinId',
+        name: WalletConnectCommandParamName.COIN_ID,
         label: <Trans>Coin Id</Trans>,
         type: 'string',
       },
@@ -466,27 +464,27 @@ const walletConnectCommands: WalletConnectCommand[] = [
     service: ServiceName.WALLET,
     params: [
       {
-        name: 'walletId',
+        name: WalletConnectCommandParamName.WALLET_ID,
         label: <Trans>Wallet Id</Trans>,
         type: 'number',
       },
       {
-        name: 'nftCoinId',
+        name: WalletConnectCommandParamName.NFT_COIN_ID,
         label: <Trans>NFT Coin Id</Trans>,
         type: 'string',
       },
       {
-        name: 'launcherId',
+        name: WalletConnectCommandParamName.LAUNCHER_ID,
         label: <Trans>Launcher Id</Trans>,
         type: 'string',
       },
       {
-        name: 'targetAddress',
+        name: WalletConnectCommandParamName.TARGET_ADDRESS,
         label: <Trans>Target Address</Trans>,
         type: 'string',
       },
       {
-        name: 'fee',
+        name: WalletConnectCommandParamName.FEE,
         label: <Trans>Fee</Trans>,
         type: 'BigNumber',
         displayComponent: (value) => <MojoToChia value={value} />,

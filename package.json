@@ -18,6 +18,8 @@
     "autofix:lint": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
     "autofix:prettier": "prettier --write --ignore-path .gitignore .",
     "build": "lerna run build",
+    "build:skipLocales": "lerna run build:js",
+    "build:ci": "lerna run build:ci",
     "build:watch": "lerna run build:watch",
     "start:gui": "lerna run start --scope @chia-network/gui",
     "dev:gui": "lerna run dev --scope @chia-network/gui --stream",
@@ -28,7 +30,7 @@
     "audit": "lerna exec -- npm audit",
     "audit:fix": "lerna exec -- npm audit fix",
     "test": "lerna run test --stream -- -- --passWithNoTests --coverage",
-    "restoreMessages": "./restoreMessages.sh"
+    "restoreMessages": "node restoreMessages.js"
   },
   "dependencies": {
     "lerna": "^5.1.8"

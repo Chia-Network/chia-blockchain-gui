@@ -192,6 +192,7 @@ if (!handleSquirrelEvent()) {
      ************************************************************ */
     let decidedToClose = false;
     let isClosing = false;
+    let promptOnQuit = true;
     let mainWindowLaunchTasks: ((window: BrowserWindow) => void)[] = [];
 
     const createWindow = async () => {
@@ -204,6 +205,15 @@ if (!handleSquirrelEvent()) {
       ipcMain.handle('getTempDir', () => app.getPath('temp'));
 
       ipcMain.handle('getVersion', () => app.getVersion());
+
+      ipcMain.handle('setPromptOnQuit', (_event, modeBool: boolean) => {
+        promptOnQuit = modeBool;
+      });
+
+      ipcMain.handle('quitGUI', () => {
+        promptOnQuit = false;
+        app.quit();
+      });
 
       ipcMain.handle(
         'showNotification',
@@ -335,10 +345,9 @@ if (!handleSquirrelEvent()) {
 
             const nftIdUrl = `${rest.nftId}_${rest.url}`;
             const fileOnDisk = path.join(thumbCacheFolder, computeHash(nftIdUrl, { encoding: 'utf-8' }));
+            let fileStream: fs.WriteStream | undefined;
 
             try {
-              const fileStream = fs.createWriteStream(fileOnDisk);
-
               Object.entries(requestHeaders).forEach(([header, value]: [string, any]) => {
                 request.setHeader(header, value);
               });
@@ -347,9 +356,19 @@ if (!handleSquirrelEvent()) {
               let totalLength = 0;
 
               /* GET FILE SIZE */
-              const fileSize: number = await getRemoteFileSize(rest.url);
+              let fileSize = 0;
+              try {
+                fileSize = await getRemoteFileSize(rest.url);
+              } catch (e) {
+                // Not critical, knowing the file size up front is just a performance optimization
+              }
               dataObject = await new Promise((resolve, reject) => {
                 request.on('response', (response: IncomingMessage) => {
+                  fileStream = fs.createWriteStream(fileOnDisk);
+                  if (!fileStream) {
+                    reject(new Error('Error creating file stream'));
+                  }
+
                   statusCode = response.statusCode;
                   statusMessage = response.statusMessage;
 
@@ -373,8 +392,9 @@ if (!handleSquirrelEvent()) {
                   response.on('data', (chunk) => {
                     buffers.push(chunk);
 
-                    fileStream.write(chunk);
-
+                    if (fileStream) {
+                      fileStream.write(chunk);
+                    }
                     totalLength += chunk.byteLength;
 
                     if (fileSize > 0) {
@@ -405,7 +425,10 @@ if (!handleSquirrelEvent()) {
                     } catch (e: any) {
                       console.error(`Failed to convert data to string using encoding ${encoding}: ${e.message}`);
                     }
-                    fileStream.end();
+                    if (fileStream) {
+                      fileStream.end();
+                      fileStream = undefined;
+                    }
                     getChecksum(fileOnDisk).then((checksum) => {
                       const isValid = (checksum as string).replace(/^0x/, '') === rest.dataHash.replace(/^0x/, '');
                       if (rest.forceCache) {
@@ -432,12 +455,19 @@ if (!handleSquirrelEvent()) {
                   });
 
                   response.on('error', (e: string) => {
-                    fileStream.end();
+                    if (fileStream) {
+                      fileStream.end();
+                      fileStream = undefined;
+                    }
                     reject(new Error(e));
                   });
                 });
 
                 request.on('error', (err: any) => {
+                  if (fileStream) {
+                    fileStream.end();
+                    fileStream = undefined;
+                  }
                   reject(err);
                 });
 
@@ -448,11 +478,21 @@ if (!handleSquirrelEvent()) {
                 request.end();
               });
             } catch (e: any) {
+              if (fileStream) {
+                fileStream.end();
+                fileStream = undefined;
+              }
+
               if (fs.existsSync(fileOnDisk)) {
                 fs.unlinkSync(fileOnDisk);
               }
               delete allRequests[rest.url];
               error = e;
+            } finally {
+              if (fileStream) {
+                fileStream.end();
+                fileStream = undefined;
+              }
             }
 
             return {
@@ -549,7 +589,9 @@ if (!handleSquirrelEvent()) {
                   }
                 });
                 response.on('end', () => {
-                  fileStream.end();
+                  if (fileStream) {
+                    fileStream.end();
+                  }
                   resolve(totalLength);
                 });
               });
@@ -769,19 +811,21 @@ if (!handleSquirrelEvent()) {
         e.preventDefault();
         if (!isClosing) {
           isClosing = true;
-          const choice = dialog.showMessageBoxSync({
-            type: 'question',
-            buttons: [i18n._(/* i18n */ { id: 'No' }), i18n._(/* i18n */ { id: 'Yes' })],
-            title: i18n._(/* i18n */ { id: 'Confirm' }),
-            message: i18n._(
-              /* i18n */ {
-                id: 'Are you sure you want to quit?',
-              }
-            ),
-          });
-          if (choice === 0) {
-            isClosing = false;
-            return;
+          if (promptOnQuit) {
+            const choice = dialog.showMessageBoxSync({
+              type: 'question',
+              buttons: [i18n._(/* i18n */ { id: 'No' }), i18n._(/* i18n */ { id: 'Yes' })],
+              title: i18n._(/* i18n */ { id: 'Confirm' }),
+              message: i18n._(
+                /* i18n */ {
+                  id: 'Are you sure you want to quit?',
+                }
+              ),
+            });
+            if (choice === 0) {
+              isClosing = false;
+              return;
+            }
           }
           isClosing = false;
           decidedToClose = true;
@@ -892,6 +936,12 @@ if (!handleSquirrelEvent()) {
     ipcMain.handle('setLocale', (_event, locale: string) => {
       i18n.activate(locale);
       app.applicationMenu = createMenu();
+    });
+
+    ipcMain.handle('setWindowTitle', (_event, title: string) => {
+      if (mainWindow.title !== title) {
+        mainWindow.setTitle(title);
+      }
     });
   }
 }

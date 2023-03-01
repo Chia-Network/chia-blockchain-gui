@@ -1,5 +1,6 @@
-import { DropdownBase } from '@chia-network/core';
+import { DropdownBase, Tooltip } from '@chia-network/core';
 import { Notification as NotificationIcon } from '@chia-network/icons';
+import { Trans } from '@lingui/macro';
 import { Badge, Box, Button } from '@mui/material';
 import React from 'react';
 
@@ -28,17 +29,21 @@ export default function NotificationsDropdown() {
             onToggle(event);
             setAsSeen();
           }}
-          variant="outlined"
-          color="secondary"
+          variant="text"
+          color="info"
           size="small"
           sx={buttonStyle}
         >
-          <Badge color="primary" badgeContent={unseenCount} invisible={!unseenCount}>
-            <NotificationIcon color="secondary" />
-          </Badge>
+          <Tooltip title={<Trans>Activity</Trans>}>
+            <Badge color="primary" badgeContent={unseenCount} invisible={!unseenCount}>
+              <NotificationIcon color="info" />
+            </Badge>
+          </Tooltip>
         </Button>,
         <Box sx={{ minWidth: 360 }}>
-          <NotificationsMenu onClose={onClose} size={3} />
+          <Tooltip title={<Trans>Activity</Trans>}>
+            <NotificationsMenu onClose={onClose} size={3} />
+          </Tooltip>
         </Box>,
       ]}
     </DropdownBase>

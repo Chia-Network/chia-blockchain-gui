@@ -88,6 +88,7 @@ export const {
   useGetLoggedInFingerprintQuery,
   useGetWalletsQuery,
   useGetTransactionQuery,
+  useGetTransactionMemoMutation,
   useGetPwStatusQuery,
   usePwAbsorbRewardsMutation,
   usePwJoinPoolMutation,
@@ -133,6 +134,7 @@ export const {
   useGetOfferRecordMutation,
   useGetCurrentDerivationIndexQuery,
   useExtendDerivationIndexMutation,
+  useResyncWalletMutation,
 
   // Pool
   useCreateNewPoolWalletMutation,
@@ -162,10 +164,12 @@ export const {
   useGetDIDRecoveryListQuery,
   useGetDIDInformationNeededForRecoveryQuery,
   useGetDIDCurrentCoinInfoQuery,
+  useGetDIDInfoQuery,
 
   // NFTs
   useCalculateRoyaltiesForNFTsQuery,
   useGetNFTsByNFTIDsQuery,
+  useGetNFTsCountQuery,
   useGetNFTsQuery,
   useGetNFTWalletsWithDIDsQuery,
   useGetNFTInfoQuery,
@@ -182,6 +186,9 @@ export const {
   useGetNotificationsQuery,
   useDeleteNotificationsMutation,
   useSendNotificationsMutation,
+
+  // verify
+  useVerifySignatureMutation,
 } = wallet;
 
 // harvester hooks

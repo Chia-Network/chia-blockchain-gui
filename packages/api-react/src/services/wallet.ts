@@ -23,6 +23,7 @@ const apiWithTag = api.enhanceEndpoints({
     'Address',
     'DID',
     'DIDCoinInfo',
+    'DIDInfo',
     'DIDName',
     'DIDPubKey',
     'DIDRecoveryInfo',
@@ -30,6 +31,7 @@ const apiWithTag = api.enhanceEndpoints({
     'DIDWallet',
     'Keys',
     'LoggedInFingerprint',
+    'NFTCount',
     'NFTInfo',
     'NFTRoyalties',
     'NFTWalletWithDID',
@@ -197,6 +199,20 @@ export const walletApi = apiWithTag.injectEndpoints({
           },
         },
       ]),
+    }),
+
+    getTransactionMemo: build.mutation<any, any>({
+      query: ({ transactionId }) => ({
+        command: 'getTransactionMemo',
+        service: WalletService,
+        args: [transactionId],
+      }),
+      transformResponse: (response: any) => {
+        const id = Object.keys(response)[0];
+        return {
+          [id]: response[id][id]?.[0],
+        };
+      },
     }),
 
     getPwStatus: build.query<
@@ -1152,14 +1168,13 @@ export const walletApi = apiWithTag.injectEndpoints({
       any,
       {
         amount: string;
-        fee: string;
         host?: string;
       }
     >({
-      query: ({ amount, fee, host }) => ({
+      query: ({ amount, host }) => ({
         command: 'createNewWallet',
         service: CAT,
-        args: [amount, fee, host],
+        args: [amount, host],
       }),
       invalidatesTags: [
         { type: 'Wallets', id: 'LIST' },
@@ -1171,14 +1186,13 @@ export const walletApi = apiWithTag.injectEndpoints({
       any,
       {
         assetId: string;
-        fee: string;
         host?: string;
       }
     >({
-      query: ({ assetId, fee, host }) => ({
+      query: ({ assetId, host }) => ({
         command: 'createWalletForExisting',
         service: CAT,
-        args: [assetId, fee, host],
+        args: [assetId, host],
       }),
       invalidatesTags: [
         { type: 'Wallets', id: 'LIST' },
@@ -1474,16 +1488,15 @@ export const walletApi = apiWithTag.injectEndpoints({
       {
         assetId: string;
         name: string;
-        fee: string;
         host?: string;
       }
     >({
-      async queryFn({ assetId, name, fee, host }, _queryApi, _extraOptions, fetchWithBQ) {
+      async queryFn({ assetId, name, host }, _queryApi, _extraOptions, fetchWithBQ) {
         try {
           const { data, error } = await fetchWithBQ({
             command: 'createWalletForExisting',
             service: CAT,
-            args: [assetId, fee, host],
+            args: [assetId, host],
           });
 
           if (error) {
@@ -1829,6 +1842,15 @@ export const walletApi = apiWithTag.injectEndpoints({
       providesTags: (result, _error, { walletId }) => (result ? [{ type: 'DIDCoinInfo', id: walletId }] : []),
     }),
 
+    getDIDInfo: build.query<any, { coinOrDIDId: string }>({
+      query: ({ coinOrDIDId }) => ({
+        command: 'getDidInfo',
+        service: DID,
+        args: [coinOrDIDId],
+      }),
+      providesTags: (result, _error, { coinOrDIDId }) => (result ? [{ type: 'DIDInfo', id: coinOrDIDId }] : []),
+    }),
+
     // createDIDBackup: did_create_backup_file needs an RPC change (remove filename param, return file contents)
 
     // NFTs
@@ -1880,6 +1902,15 @@ export const walletApi = apiWithTag.injectEndpoints({
           };
         }
       },
+    }),
+
+    getNFTsCount: build.query<any, { walletId: number }>({
+      query: ({ walletId }) => ({
+        command: 'getNftsCount',
+        service: NFT,
+        args: [walletId],
+      }),
+      providesTags: (result, _error, { walletId }) => (result ? [{ type: 'NFTCount', id: walletId }] : []),
     }),
 
     getNFTs: build.query<{ [walletId: number]: NFTInfo[] }, { walletIds: number[] }>({
@@ -2118,6 +2149,15 @@ export const walletApi = apiWithTag.injectEndpoints({
       }),
     }),
 
+    resyncWallet: build.mutation<boolean, undefined>({
+      query: () => ({
+        command: 'resyncWallet',
+        service: WalletService,
+        args: [],
+      }),
+      transformResponse: (response: any) => response?.success,
+    }),
+
     // notifications
     getNotifications: build.query<
       any,
@@ -2182,6 +2222,23 @@ export const walletApi = apiWithTag.injectEndpoints({
       }),
       invalidatesTags: (result, _error) => (result ? [{ type: 'Notification', id: 'LIST' }] : []),
     }),
+
+    verifySignature: build.mutation<
+      any,
+      {
+        message: string;
+        pubkey: string;
+        signature: string;
+        address?: string;
+        signingMode?: string | undefined;
+      }
+    >({
+      query: ({ message, pubkey, signature, address, signingMode }) => ({
+        command: 'verifySignature',
+        service: WalletService,
+        args: [message, pubkey, signature, address, signingMode],
+      }),
+    }),
   }),
 });
 
@@ -2190,6 +2247,7 @@ export const {
   useGetLoggedInFingerprintQuery,
   useGetWalletsQuery,
   useGetTransactionQuery,
+  useGetTransactionMemoMutation,
   useGetPwStatusQuery,
   usePwAbsorbRewardsMutation,
   usePwJoinPoolMutation,
@@ -2235,6 +2293,7 @@ export const {
   useGetOfferRecordMutation,
   useGetCurrentDerivationIndexQuery,
   useExtendDerivationIndexMutation,
+  useResyncWalletMutation,
 
   // Pool
   useCreateNewPoolWalletMutation,
@@ -2264,10 +2323,12 @@ export const {
   useGetDIDRecoveryListQuery,
   useGetDIDInformationNeededForRecoveryQuery,
   useGetDIDCurrentCoinInfoQuery,
+  useGetDIDInfoQuery,
 
   // NFTs
   useCalculateRoyaltiesForNFTsQuery,
   useGetNFTsByNFTIDsQuery,
+  useGetNFTsCountQuery,
   useGetNFTsQuery,
   useGetNFTWalletsWithDIDsQuery,
   useGetNFTInfoQuery,
@@ -2284,4 +2345,7 @@ export const {
   useGetNotificationsQuery,
   useDeleteNotificationsMutation,
   useSendNotificationsMutation,
+
+  // verify
+  useVerifySignatureMutation,
 } = walletApi;

@@ -4,9 +4,11 @@ import { FormControlLabel, Grid, Switch } from '@mui/material';
 import React from 'react';
 
 import useNotifications from '../../hooks/useNotifications';
+import useSuppressShareOnCreate from '../../hooks/useSuppressShareOnCreate';
 
 export default function SettingsNotifications() {
-  const { enabled, setEnabled } = useNotifications();
+  const { enabled: pushNotificationsEnabled, setEnabled: setPushNotificationsEnabled } = useNotifications();
+  const [suppressShareOnCreate, setSuppressShareOnCreate] = useSuppressShareOnCreate();
 
   return (
     <Grid container style={{ maxWidth: '624px' }} gap={3}>
@@ -35,8 +37,8 @@ export default function SettingsNotifications() {
           <FormControlLabel
             control={
               <Switch
-                checked={enabled}
-                onChange={() => setEnabled(!enabled)}
+                checked={pushNotificationsEnabled}
+                onChange={() => setPushNotificationsEnabled(!pushNotificationsEnabled)}
                 inputProps={{ 'data-testid': 'Notifications-Pause-All' }}
               />
             }
@@ -45,6 +47,30 @@ export default function SettingsNotifications() {
         <Grid item container style={{ width: '450px' }} gap={2}>
           <SettingsText>
             <Trans>Turn on/off the ability to show you notifications on the desktop.</Trans>
+          </SettingsText>
+        </Grid>
+      </Grid>
+
+      <Grid container>
+        <Grid item style={{ width: '450px' }}>
+          <SettingsTitle>
+            <Trans>Display sharing options after creating a new offer</Trans>
+          </SettingsTitle>
+        </Grid>
+        <Grid item container xs justifyContent="flex-end" marginTop="-6px">
+          <FormControlLabel
+            control={
+              <Switch
+                checked={!suppressShareOnCreate}
+                onChange={() => setSuppressShareOnCreate(!suppressShareOnCreate)}
+                inputProps={{ 'data-testid': 'SuppressShareOnCreate' }}
+              />
+            }
+          />
+        </Grid>
+        <Grid item container style={{ width: '450px' }} gap={2}>
+          <SettingsText>
+            <Trans>Turn on/off the automatic display of the sharing options panel after creating a new offer.</Trans>
           </SettingsText>
         </Grid>
       </Grid>

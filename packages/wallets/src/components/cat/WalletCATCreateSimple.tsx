@@ -49,7 +49,6 @@ export default function WalletCATCreateSimple() {
       const walletId = await addCATToken({
         assetId,
         name,
-        fee: '0',
       }).unwrap();
 
       navigate(`/dashboard/wallets/${walletId}`);

@@ -11,7 +11,9 @@
   "module": "dist/esm.js",
   "types": "./dist/types",
   "scripts": {
-    "build": "rollup -c && tsc --emitDeclarationOnly",
+    "build": "npm run build:js",
+    "build:js": "rollup -c && tsc --emitDeclarationOnly",
+    "build:ci": "npm run build:js",
     "build:watch": "tsc --emitDeclarationOnly --watch & rollup -c -w",
     "check:types": "tsc --noEmit --emitDeclarationOnly false",
     "test": "jest"

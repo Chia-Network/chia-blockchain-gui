@@ -42,9 +42,10 @@ export default function OfferBuilderFeeSection(props: OfferBuilderFeeSectionProp
   }
 
   const canAdd =
-    (!fields.length && state === undefined) || // If in builder mode, or in viewer mode when offer hasn't been accepted
+    (!fields.length && state === undefined && !viewer) || // If in builder mode, or in viewer mode when offer hasn't been accepted
     (viewer && imported && !offering); // If in viewer mode when offer has not been accepted and showing the requesting side
   const disableReadOnly = offering && viewer && imported;
+  const expanded = !!fields.length; // Fee section is expanded if there is a field value set. Could be ''.
 
   return (
     <OfferBuilderSection
@@ -52,7 +53,7 @@ export default function OfferBuilderFeeSection(props: OfferBuilderFeeSectionProp
       title={<Trans>Fees</Trans>}
       subtitle={<Trans>Optional network fee to expedite acceptance of your offer</Trans>}
       onAdd={canAdd ? handleAdd : undefined}
-      expanded={!!fields.length}
+      expanded={expanded}
       disableReadOnly={disableReadOnly}
     >
       {loading ? (

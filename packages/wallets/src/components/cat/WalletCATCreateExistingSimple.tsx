@@ -49,7 +49,6 @@ export default function WalletCATCreateExisting() {
     const walletId = await addCATToken({
       name,
       assetId,
-      fee: '0',
     }).unwrap();
 
     navigate(`/dashboard/wallets/${walletId}`);

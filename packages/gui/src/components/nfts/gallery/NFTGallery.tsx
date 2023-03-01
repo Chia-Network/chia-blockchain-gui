@@ -1,8 +1,15 @@
 import type { NFTInfo } from '@chia-network/api';
 import { useLocalStorage } from '@chia-network/api-react';
-import { Flex, LayoutDashboardSub, Loading, /* useTrans, */ useDarkMode, usePersistState } from '@chia-network/core';
+import {
+  Flex,
+  LayoutDashboardSub,
+  Loading,
+  /* useTrans, */ useDarkMode,
+  usePersistState,
+  Tooltip,
+} from '@chia-network/core';
 import { t, Trans } from '@lingui/macro';
-import { FormControlLabel, RadioGroup, FormControl, Checkbox, Grid, Button, Fade } from '@mui/material';
+import { FormControlLabel, RadioGroup, FormControl, Checkbox, Grid, Button, Fade, Box } from '@mui/material';
 import React, { useEffect, useState, useCallback, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
@@ -123,15 +130,19 @@ const Filters = styled.div`
   }
 `;
 
-const FilterIconStyled = styled(FilterIcon)`
+const FilterIconStyled = styled(FilterIcon)<{ active: boolean; onMouseDown: any }>`
   cursor: pointer;
+  position: relative;
+  top: 2px;
   path {
-    stroke: ${(props) => (props.active ? props.theme.palette.primary.main : '#aaa')};
+    stroke: ${(props) => (props.active ? props.theme.palette.primary.main : '')};
   }
 `;
 
-const MultiSelectIconStyled = styled(MultiSelectIcon)`
+const MultiSelectIconStyled = styled(MultiSelectIcon)<{ isDarkMode: boolean }>`
   cursor: pointer;
+  position: relative;
+  top: 3px;
   path {
     stroke: ${(props) => (props.isDarkMode ? props.theme.palette.common.white : props.theme.palette.text.secondary)};
   }
@@ -515,11 +526,19 @@ export default function NFTGallery() {
             <Flex alignItems="stretch" justifyContent="space-between">
               <Search onUpdate={setSearch} placeholder={t`Search...`} defaultValue={search || undefined} />
               <MultiSelectAndFilterWrapper className={inMultipleSelectionMode ? 'active' : ''} isDarkMode={isDarkMode}>
-                <MultiSelectIconStyled
-                  onClick={() => toggleMultipleSelection(!inMultipleSelectionMode)}
-                  isDarkMode={isDarkMode}
-                />
-                <FilterIconStyled onMouseDown={toggleShowFilters} active={filtersShown.length > 0} />
+                <Tooltip title={<Trans>Multi-select</Trans>}>
+                  <Box>
+                    <MultiSelectIconStyled
+                      onClick={() => toggleMultipleSelection(!inMultipleSelectionMode)}
+                      isDarkMode={isDarkMode}
+                    />
+                  </Box>
+                </Tooltip>
+                <Tooltip title={<Trans>Filter</Trans>}>
+                  <Box>
+                    <FilterIconStyled onMouseDown={toggleShowFilters} active={filtersShown.length > 0} />
+                  </Box>
+                </Tooltip>
               </MultiSelectAndFilterWrapper>
             </Flex>
           </Flex>
