@@ -68,14 +68,6 @@ export default function AppState(props: Props) {
   const lru = useNFTMetadataLRU();
   const isTestnet = useCurrencyCode() === 'TXCH';
 
-  useEffect(() => {
-    if (mode === Mode.WALLET) {
-      window.ipcRenderer.invoke('setPromptOnQuit', false);
-    } else {
-      window.ipcRenderer.invoke('setPromptOnQuit', true);
-    }
-  }, [mode]);
-
   const runServices = useMemo<ServiceName[] | undefined>(() => {
     if (mode) {
       const services: ServiceName[] = isSimulator ? SimulatorServices : ModeServices[mode];
@@ -117,6 +109,17 @@ export default function AppState(props: Props) {
   }, [servicesState, runServices]);
 
   const isConnected = !isClientStateLoading && clientState?.state === ConnectionState.CONNECTED;
+
+  useEffect(() => {
+    const allRunningServices = servicesState.running.map((serviceState) => serviceState.service);
+    const nonWalletServiceRunning = allRunningServices.some((service) => service !== ServiceName.WALLET);
+
+    if (mode === Mode.WALLET && !nonWalletServiceRunning) {
+      window.ipcRenderer.invoke('setPromptOnQuit', false);
+    } else {
+      window.ipcRenderer.invoke('setPromptOnQuit', true);
+    }
+  }, [mode, servicesState]);
 
   useEffect(() => {
     async function handleClose(event) {
