@@ -206,6 +206,10 @@ if (!handleSquirrelEvent()) {
 
       ipcMain.handle('getVersion', () => app.getVersion());
 
+      ipcMain.handle('setPromptOnQuit', (_event, modeBool: boolean) => {
+        promptOnQuit = modeBool;
+      });
+
       ipcMain.handle('quitGUI', () => {
         promptOnQuit = false;
         app.quit();
@@ -932,6 +936,12 @@ if (!handleSquirrelEvent()) {
     ipcMain.handle('setLocale', (_event, locale: string) => {
       i18n.activate(locale);
       app.applicationMenu = createMenu();
+    });
+
+    ipcMain.handle('setWindowTitle', (_event, title: string) => {
+      if (mainWindow.title !== title) {
+        mainWindow.setTitle(title);
+      }
     });
   }
 }

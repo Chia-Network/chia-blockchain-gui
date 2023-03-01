@@ -63,6 +63,7 @@ export default function OfferBuilderViewer(props: OfferBuilderViewerProps) {
     validateOfferData();
   }, [isValid, isValidating, offerData, validateOfferData]);
 
+  const setDefaultOfferedFee = !!imported; // When viewing an imported offer, we want to expand the offered fee section by default
   const offerSummaryStringified = JSON.stringify(offerSummary);
   const offerBuilderData = useMemo(() => {
     const offerSummaryParsed = JSON.parse(offerSummaryStringified);
@@ -70,12 +71,12 @@ export default function OfferBuilderViewer(props: OfferBuilderViewerProps) {
       return undefined;
     }
     try {
-      return offerToOfferBuilderData(offerSummaryParsed);
+      return offerToOfferBuilderData(offerSummaryParsed, setDefaultOfferedFee);
     } catch (e) {
       setError(e);
       return undefined;
     }
-  }, [offerSummaryStringified]);
+  }, [offerSummaryStringified, setDefaultOfferedFee]);
 
   const [offeredUnknownCATs, requestedUnknownCATs] = useMemo(() => {
     if (!offerBuilderData || !wallets) {
