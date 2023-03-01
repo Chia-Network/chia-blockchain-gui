@@ -169,6 +169,7 @@ export const {
   // NFTs
   useCalculateRoyaltiesForNFTsQuery,
   useGetNFTsByNFTIDsQuery,
+  useGetNFTsCountQuery,
   useGetNFTsQuery,
   useGetNFTWalletsWithDIDsQuery,
   useGetNFTInfoQuery,

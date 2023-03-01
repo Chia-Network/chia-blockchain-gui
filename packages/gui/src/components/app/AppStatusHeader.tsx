@@ -9,6 +9,7 @@ import Connections from '../fullNode/FullNodeConnections';
 import FullNodeStateIndicator from '../fullNode/FullNodeStateIndicator';
 import NotificationsDropdown from '../notification/NotificationsDropdown';
 import WalletConnectDropdown from '../walletConnect/WalletConnectDropdown';
+import AppTestnetIndicator from './AppTestnetIndicator';
 
 const StyledPopover = styled((props: PopoverProps) => <Popover {...props} />)(({ theme }) => ({
   '& .MuiPopover-paper': {
@@ -73,6 +74,7 @@ export default function AppStatusHeader() {
 
   return (
     <Flex gap={1}>
+      <AppTestnetIndicator />
       <WalletReceiveAddressField variant="outlined" size="small" fullWidth isDarkMode={isDarkMode} />
       <WalletConnectDropdown />
       <ButtonGroup variant="outlined" color="secondary" size="small">
