@@ -31,6 +31,7 @@ const apiWithTag = api.enhanceEndpoints({
     'DIDWallet',
     'Keys',
     'LoggedInFingerprint',
+    'NFTCount',
     'NFTInfo',
     'NFTRoyalties',
     'NFTWalletWithDID',
@@ -198,6 +199,20 @@ export const walletApi = apiWithTag.injectEndpoints({
           },
         },
       ]),
+    }),
+
+    getTransactionMemo: build.mutation<any, any>({
+      query: ({ transactionId }) => ({
+        command: 'getTransactionMemo',
+        service: WalletService,
+        args: [transactionId],
+      }),
+      transformResponse: (response: any) => {
+        const id = Object.keys(response)[0];
+        return {
+          [id]: response[id][id]?.[0],
+        };
+      },
     }),
 
     getPwStatus: build.query<
@@ -1156,7 +1171,7 @@ export const walletApi = apiWithTag.injectEndpoints({
         host?: string;
       }
     >({
-      query: ({ amount, fee, host }) => ({
+      query: ({ amount, host }) => ({
         command: 'createNewWallet',
         service: CAT,
         args: [amount, host],
@@ -1174,7 +1189,7 @@ export const walletApi = apiWithTag.injectEndpoints({
         host?: string;
       }
     >({
-      query: ({ assetId, , host }) => ({
+      query: ({ assetId, host }) => ({
         command: 'createWalletForExisting',
         service: CAT,
         args: [assetId, host],
@@ -1889,6 +1904,15 @@ export const walletApi = apiWithTag.injectEndpoints({
       },
     }),
 
+    getNFTsCount: build.query<any, { walletId: number }>({
+      query: ({ walletId }) => ({
+        command: 'getNftsCount',
+        service: NFT,
+        args: [walletId],
+      }),
+      providesTags: (result, _error, { walletId }) => (result ? [{ type: 'NFTCount', id: walletId }] : []),
+    }),
+
     getNFTs: build.query<{ [walletId: number]: NFTInfo[] }, { walletIds: number[] }>({
       async queryFn(args, _queryApi, _extraOptions, fetchWithBQ) {
         try {
@@ -2223,6 +2247,7 @@ export const {
   useGetLoggedInFingerprintQuery,
   useGetWalletsQuery,
   useGetTransactionQuery,
+  useGetTransactionMemoMutation,
   useGetPwStatusQuery,
   usePwAbsorbRewardsMutation,
   usePwJoinPoolMutation,
@@ -2303,6 +2328,7 @@ export const {
   // NFTs
   useCalculateRoyaltiesForNFTsQuery,
   useGetNFTsByNFTIDsQuery,
+  useGetNFTsCountQuery,
   useGetNFTsQuery,
   useGetNFTWalletsWithDIDsQuery,
   useGetNFTInfoQuery,

@@ -10,6 +10,8 @@ import { Divider, Typography } from '@mui/material';
 import debug from 'debug';
 import React, { ReactNode } from 'react';
 
+import type WalletConnectCommandParam from '../@types/WalletConnectCommandParam';
+import WalletConnectCommandParamName from '../@types/WalletConnectCommandParamName';
 import WalletConnectMetadata from '../components/walletConnect/WalletConnectMetadata';
 import walletConnectCommands from '../constants/WalletConnectCommands';
 import prepareWalletConnectCommand from '../util/prepareWalletConnectCommand';
@@ -44,9 +46,10 @@ export default function useWalletConnectCommand() {
     topic: string;
     message: ReactNode;
     params: {
+      name: WalletConnectCommandParamName;
       label: ReactNode;
       value: ReactNode;
-      displayComponent?: (value: ReactNode) => ReactNode;
+      displayComponent?: (value: ReactNode, params: WalletConnectCommandParam[]) => ReactNode;
     }[];
     fingerprint: number;
     isDifferentFingerprint: boolean;
@@ -83,7 +86,9 @@ export default function useWalletConnectCommand() {
                 <Flex flexDirection="column" key={label}>
                   <Typography color="textPrimary">{label}</Typography>
                   <Typography color="textSecondary">
-                    {displayComponent ? displayComponent(value) : value?.toString() ?? <Trans>Not Available</Trans>}
+                    {displayComponent
+                      ? displayComponent(value, params)
+                      : value?.toString() ?? <Trans>Not Available</Trans>}
                   </Typography>
                 </Flex>
               ))}
@@ -139,9 +144,10 @@ export default function useWalletConnectCommand() {
     }
 
     const confirmParams: {
+      name: WalletConnectCommandParamName;
       label: ReactNode;
       value: ReactNode;
-      displayComponent?: (value: any) => ReactNode;
+      displayComponent?: (value: any, params: WalletConnectCommandParam[]) => ReactNode;
     }[] = [];
 
     const { params: definitionParams = [] } = definition;
@@ -150,6 +156,7 @@ export default function useWalletConnectCommand() {
 
       if (name in params && !hide) {
         confirmParams.push({
+          name,
           label: label ?? name,
           value: params[name],
           displayComponent,

@@ -88,6 +88,7 @@ export const {
   useGetLoggedInFingerprintQuery,
   useGetWalletsQuery,
   useGetTransactionQuery,
+  useGetTransactionMemoMutation,
   useGetPwStatusQuery,
   usePwAbsorbRewardsMutation,
   usePwJoinPoolMutation,
@@ -168,6 +169,7 @@ export const {
   // NFTs
   useCalculateRoyaltiesForNFTsQuery,
   useGetNFTsByNFTIDsQuery,
+  useGetNFTsCountQuery,
   useGetNFTsQuery,
   useGetNFTWalletsWithDIDsQuery,
   useGetNFTInfoQuery,

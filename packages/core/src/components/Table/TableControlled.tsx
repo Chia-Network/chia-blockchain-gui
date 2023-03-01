@@ -38,10 +38,10 @@ const StyledTableCell = styled(({ width, minWidth, maxWidth, ...rest }) => <Tabl
   border-bottom: 1px solid ${({ theme }) => (theme.palette.mode === 'dark' ? '#353535' : '#e0e0e0')};
 `;
 
-const StyledTableCellContent = styled(Box)`
+const StyledTableCellContent = styled(Box)<{ forceWrap: boolean }>`
   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap;
+  white-space: ${(props) => (props.forceWrap ? 'wrap' : 'nowrap')};
 `;
 
 const StyledExpandedTableCell = styled(({ isExpanded, ...rest }) => <TableCell {...rest} />)``;
@@ -58,6 +58,7 @@ export type Col = {
   maxWidth?: string;
   width?: string;
   tooltip?: ReactNode | ((row: Row) => ReactNode);
+  forceWrap?: boolean;
 };
 
 export type Row = {
@@ -86,6 +87,7 @@ export type TableControlledProps = {
   onPageChange?: (rowsPerPage: number, page: number) => void;
   count?: number;
   isLoading?: boolean;
+  onToggleExpand?: (rowId: string, expanded: boolean, rowData: any) => void;
 };
 
 export default function TableControlled(props: TableControlledProps) {
@@ -107,6 +109,7 @@ export default function TableControlled(props: TableControlledProps) {
     onPageChange,
     count,
     isLoading,
+    onToggleExpand = () => {},
   } = props;
   const [expanded, setExpanded] = useState<{
     [key: string]: boolean;
@@ -124,7 +127,8 @@ export default function TableControlled(props: TableControlledProps) {
     }
   }
 
-  function handleToggleExpand(rowId: string) {
+  function handleToggleExpand(rowId: string, row: any) {
+    onToggleExpand(rowId, !expanded[rowId], row);
     setExpanded({
       ...expanded,
       [rowId]: !expanded[rowId],
@@ -200,11 +204,11 @@ export default function TableControlled(props: TableControlledProps) {
                 <Fragment key={id}>
                   <StyledTableRow odd={rowIndex % 2 === 1} onClick={(e) => handleRowClick(e, row)} hover={rowHover}>
                     {currentCols.map((col) => {
-                      const { field, tooltip } = col;
+                      const { field, tooltip, forceWrap } = col;
 
                       const value =
                         typeof field === 'function'
-                          ? field(row, metadata, isExpanded, () => handleToggleExpand(id))
+                          ? field(row, metadata, isExpanded, () => handleToggleExpand(id, row))
                           : // @ts-ignore
                             get(row, field);
 
@@ -233,7 +237,7 @@ export default function TableControlled(props: TableControlledProps) {
                               <StyledTableCellContent>{value}</StyledTableCellContent>
                             </Tooltip>
                           ) : (
-                            <StyledTableCellContent>{value}</StyledTableCellContent>
+                            <StyledTableCellContent forceWrap={forceWrap}>{value}</StyledTableCellContent>
                           )}
                         </StyledTableCell>
                       );

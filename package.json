@@ -30,7 +30,7 @@
     "audit": "lerna exec -- npm audit",
     "audit:fix": "lerna exec -- npm audit fix",
     "test": "lerna run test --stream -- -- --passWithNoTests --coverage",
-    "restoreMessages": "./restoreMessages.sh"
+    "restoreMessages": "node restoreMessages.js"
   },
   "dependencies": {
     "lerna": "^5.1.8"

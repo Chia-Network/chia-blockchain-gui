@@ -20,6 +20,7 @@ type Transaction = {
   walletId: number;
   tradeId?: number;
   name?: string;
+  memos?: Record<string, string>;
   sentTo?: string[];
   type: TransactionType;
 };

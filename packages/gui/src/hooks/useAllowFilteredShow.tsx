@@ -80,7 +80,10 @@ export default function useAllowFilteredShow(nfts: NFTInfo[], hideObjectionableC
       if (
         !hideObjectionableContent ||
         !nftWithMetadata?.metadata ||
-        (nftWithMetadata?.metadata && !nftWithMetadata?.metadata.sensitive_content)
+        (nftWithMetadata?.metadata &&
+          (!nftWithMetadata?.metadata.sensitive_content ||
+            nftWithMetadata?.metadata.sensitive_content === false ||
+            nftWithMetadata?.metadata.sensitive_content === 'false'))
       ) {
         nftArray.current = nftArray.current.concat(nftWithMetadata);
         /* compromise - rerender gallery only every 10% of the size of your whole collection */
