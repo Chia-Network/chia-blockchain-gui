@@ -3,11 +3,12 @@ import { useGetWalletsQuery, useCreateOfferForIdsMutation } from '@chia-network/
 import { Flex, ButtonLoading, useOpenDialog, Loading } from '@chia-network/core';
 import { t, Trans } from '@lingui/macro';
 import { Grid } from '@mui/material';
-import React, { useRef, useMemo } from 'react';
+import React, { useRef, useMemo, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import type OfferBuilderData from '../../@types/OfferBuilderData';
 import useSuppressShareOnCreate from '../../hooks/useSuppressShareOnCreate';
+import useWalletOffers from '../../hooks/useWalletOffers';
 import offerBuilderDataToOffer from '../../util/offerBuilderDataToOffer';
 import OfferEditorConfirmationDialog from '../offers/OfferEditorConfirmationDialog';
 import OfferBuilder, { emptyDefaultValues } from './OfferBuilder';
@@ -72,6 +73,7 @@ export default function CreateOfferBuilder(props: CreateOfferBuilderProps) {
   const openDialog = useOpenDialog();
   const navigate = useNavigate();
   const { data: wallets, isLoading } = useGetWalletsQuery();
+  const { offers, isLoading: isOffersLoading } = useWalletOffers(-1, 0, true, false, 'RELEVANCE', false);
   const [createOfferForIds] = useCreateOfferForIdsMutation();
   const offerBuilderRef = useRef<{ submit: () => void } | undefined>(undefined);
 
@@ -90,43 +92,44 @@ export default function CreateOfferBuilder(props: CreateOfferBuilderProps) {
 
   const [suppressShareOnCreate] = useSuppressShareOnCreate();
 
-  function handleCreateOffer() {
+  const handleCreateOffer = useCallback(() => {
     offerBuilderRef.current?.submit();
-  }
+  }, []);
 
-  async function handleSubmit(values: OfferBuilderData) {
-    const localOffer = await offerBuilderDataToOffer(values, wallets, false);
-
-    const confirmedCreation = await openDialog(<OfferEditorConfirmationDialog />);
-
-    if (!confirmedCreation) {
-      return;
-    }
-
-    try {
-      const response = await createOfferForIds({
-        ...localOffer,
-        disableJSONFormatting: true,
-      }).unwrap();
-
-      const { offer: offerData, tradeRecord: offerRecord } = response;
-
-      navigate(-1);
-
-      if (!suppressShareOnCreate) {
-        onOfferCreated({ offerRecord, offerData, address });
+  const handleSubmit = useCallback(
+    async (values: OfferBuilderData) => {
+      const localOffer = await offerBuilderDataToOffer(values, wallets, offers || [], false);
+      const confirmedCreation = await openDialog(<OfferEditorConfirmationDialog />);
+      if (!confirmedCreation) {
+        return;
       }
-    } catch (error) {
-      if ((error as Error).message.startsWith('insufficient funds')) {
-        throw new Error(t`
+
+      try {
+        const response = await createOfferForIds({
+          ...localOffer,
+          disableJSONFormatting: true,
+        }).unwrap();
+
+        const { offer: offerData, tradeRecord: offerRecord } = response;
+
+        navigate(-1);
+
+        if (!suppressShareOnCreate) {
+          onOfferCreated({ offerRecord, offerData, address });
+        }
+      } catch (error) {
+        if ((error as Error).message.startsWith('insufficient funds')) {
+          throw new Error(t`
           Insufficient funds available to create offer. Ensure that your
           spendable balance is sufficient to cover the offer amount.
         `);
-      } else {
-        throw error;
+        } else {
+          throw error;
+        }
       }
-    }
-  }
+    },
+    [wallets, createOfferForIds, navigate, suppressShareOnCreate, onOfferCreated, address, openDialog, offers]
+  );
 
   return (
     <Grid container>
@@ -138,7 +141,7 @@ export default function CreateOfferBuilder(props: CreateOfferBuilderProps) {
           </ButtonLoading>
         </Flex>
 
-        {isLoading ? (
+        {isLoading || isOffersLoading ? (
           <Loading center />
         ) : (
           <OfferBuilder onSubmit={handleSubmit} defaultValues={defaultValues} ref={offerBuilderRef} />

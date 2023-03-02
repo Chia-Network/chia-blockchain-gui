@@ -6,6 +6,7 @@ import BigNumber from 'bignumber.js';
 
 import type Driver from '../@types/Driver';
 import type OfferBuilderData from '../@types/OfferBuilderData';
+import type { OfferTradeRecordFormatted } from '../hooks/useWalletOffers';
 import findCATWalletByAssetId from './findCATWalletByAssetId';
 import hasSpendableBalance from './hasSpendableBalance';
 import { prepareNFTOfferFromNFTId } from './prepareNFTOffer';
@@ -14,6 +15,7 @@ import { prepareNFTOfferFromNFTId } from './prepareNFTOffer';
 export default async function offerBuilderDataToOffer(
   data: OfferBuilderData,
   wallets: Wallet[],
+  offers: OfferTradeRecordFormatted[],
   validateOnly?: boolean
 ): Promise<{
   walletIdsAndAmounts?: Record<string, BigNumber>;
@@ -39,70 +41,73 @@ export default async function offerBuilderDataToOffer(
     throw new Error(t`Please specify at least one offered asset`);
   }
 
-  await Promise.all(
-    offeredXch.map(async (xch) => {
-      const { amount } = xch;
-      if (!amount || amount === '0') {
-        throw new Error(t`Please enter an XCH amount`);
-      }
+  let standardWallet: Wallet | undefined;
+  if (offeredXch.length > 0) {
+    standardWallet = wallets.find((w) => w.type === WalletType.STANDARD_WALLET);
+  }
 
-      const wallet = wallets.find((w) => w.type === WalletType.STANDARD_WALLET);
-      if (!wallet) {
-        throw new Error(t`No standard wallet found`);
-      }
+  const myPendingOffers = offers.filter((o) => o.isMyOffer && o.status === 'PENDING_ACCEPT');
+  console.log('abc', myPendingOffers);
+  // @TODO Calculate locked coin amounts and check whether to prompt user to cancel existing offers.
 
-      const mojoAmount = chiaToMojo(amount);
-      walletIdsAndAmounts[wallet.id] = mojoAmount.negated();
+  const xchTasks = offeredXch.map(async (xch) => {
+    const { amount } = xch;
+    if (!amount || amount === '0') {
+      throw new Error(t`Please enter an XCH amount`);
+    }
+    if (!standardWallet) {
+      throw new Error(t`No standard wallet found`);
+    }
 
-      const hasEnoughBalance = await hasSpendableBalance(wallet.id, mojoAmount);
-      if (!hasEnoughBalance) {
-        throw new Error(t`Amount exceeds XCH spendable balance`);
-      }
-    })
-  );
+    const mojoAmount = chiaToMojo(amount);
+    walletIdsAndAmounts[standardWallet.id] = mojoAmount.negated();
 
-  await Promise.all(
-    offeredTokens.map(async (token) => {
-      const { assetId, amount } = token;
+    const hasEnoughBalance = await hasSpendableBalance(standardWallet.id, mojoAmount);
+    if (!hasEnoughBalance) {
+      throw new Error(t`Amount exceeds XCH spendable balance`);
+    }
+  });
 
-      if (!assetId) {
-        throw new Error(t`Please select an asset for each token`);
-      }
+  const tokenTasks = offeredTokens.map(async (token) => {
+    const { assetId, amount } = token;
 
-      const wallet = findCATWalletByAssetId(wallets, assetId);
-      if (!wallet) {
-        throw new Error(t`No CAT wallet found for ${assetId} token`);
-      }
+    if (!assetId) {
+      throw new Error(t`Please select an asset for each token`);
+    }
 
-      if (!amount || amount === '0') {
-        throw new Error(t`Please enter an amount for ${wallet.meta?.name} token`);
-      }
+    const wallet = findCATWalletByAssetId(wallets, assetId);
+    if (!wallet) {
+      throw new Error(t`No CAT wallet found for ${assetId} token`);
+    }
 
-      const mojoAmount = catToMojo(amount);
-      walletIdsAndAmounts[wallet.id] = mojoAmount.negated();
+    if (!amount || amount === '0') {
+      throw new Error(t`Please enter an amount for ${wallet.meta?.name} token`);
+    }
 
-      const hasEnoughBalance = await hasSpendableBalance(wallet.id, mojoAmount);
-      if (!hasEnoughBalance) {
-        throw new Error(t`Amount exceeds spendable balance for ${wallet.meta?.name} token`);
-      }
-    })
-  );
+    const mojoAmount = catToMojo(amount);
+    walletIdsAndAmounts[wallet.id] = mojoAmount.negated();
 
-  await Promise.all(
-    offeredNfts.map(async ({ nftId }) => {
-      if (usedNFTs.includes(nftId)) {
-        throw new Error(t`NFT ${nftId} is already used in this offer`);
-      }
-      usedNFTs.push(nftId);
+    const hasEnoughBalance = await hasSpendableBalance(wallet.id, mojoAmount);
+    if (!hasEnoughBalance) {
+      throw new Error(t`Amount exceeds spendable balance for ${wallet.meta?.name} token`);
+    }
+  });
 
-      const { id, amount, driver } = await prepareNFTOfferFromNFTId(nftId, true);
+  const nftTasks = offeredNfts.map(async ({ nftId }) => {
+    if (usedNFTs.includes(nftId)) {
+      throw new Error(t`NFT ${nftId} is already used in this offer`);
+    }
+    usedNFTs.push(nftId);
 
-      walletIdsAndAmounts[id] = amount;
-      if (driver) {
-        driverDict[id] = driver;
-      }
-    })
-  );
+    const { id, amount, driver } = await prepareNFTOfferFromNFTId(nftId, true);
+
+    walletIdsAndAmounts[id] = amount;
+    if (driver) {
+      driverDict[id] = driver;
+    }
+  });
+
+  await Promise.all([...xchTasks, ...tokenTasks, ...nftTasks]);
 
   // requested
   requestedXch.forEach((xch) => {

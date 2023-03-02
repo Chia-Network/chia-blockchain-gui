@@ -1,6 +1,20 @@
-import { OfferTradeRecord } from '@chia-network/api';
+import { OfferCoinOfInterest, OfferSummaryRecord } from '@chia-network/api';
 import { useGetOffersCountQuery, useGetAllOffersQuery } from '@chia-network/api-react';
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
+
+export type OfferTradeRecordFormatted = {
+  confirmedAtIndex: number;
+  acceptedAtTime: number;
+  createdAtTime: number;
+  isMyOffer: boolean;
+  sent: number;
+  coinsOfInterest: OfferCoinOfInterest[];
+  tradeId: string;
+  status: string;
+  sentTo: any[];
+  summary: OfferSummaryRecord;
+  offerData?: string;
+};
 
 export default function useWalletOffers(
   defaultRowsPerPage = 5,
@@ -11,7 +25,7 @@ export default function useWalletOffers(
   reverse?: boolean
 ): {
   isLoading: boolean;
-  offers?: OfferTradeRecord[];
+  offers?: OfferTradeRecordFormatted[];
   count?: number;
   error?: Error;
   page: number;
@@ -55,10 +69,13 @@ export default function useWalletOffers(
   const isLoading = isOffersLoading || isOffersCountLoading;
   const error = offersError || offersCountError;
 
-  function handlePageChange(rowsPerPageLocal: number, pageLocal: number) {
-    setRowsPerPage(rowsPerPageLocal);
-    setPage(pageLocal);
-  }
+  const handlePageChange = useCallback(
+    (rowsPerPageLocal: number, pageLocal: number) => {
+      setRowsPerPage(rowsPerPageLocal);
+      setPage(pageLocal);
+    },
+    [setRowsPerPage, setPage]
+  );
 
   return {
     offers,
