@@ -525,7 +525,6 @@ const walletConnectCommands: WalletConnectCommand[] = [
     command: 'transferNFT',
     label: <Trans>Transfer NFT</Trans>,
     service: ServiceName.WALLET,
-    bypassConfirm: true,
     params: [
       {
         name: WalletConnectCommandParamName.WALLET_ID,
