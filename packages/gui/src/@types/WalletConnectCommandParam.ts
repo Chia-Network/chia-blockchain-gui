@@ -10,7 +10,12 @@ type WalletConnectCommandParam = {
   description?: ReactNode;
   type?: 'string' | 'number' | 'boolean' | 'BigNumber' | 'object';
   defaultValue?: string | number | boolean | BigNumber | Record<any, any>;
-  displayComponent?: (value: any, params: WalletConnectCommandParam[]) => ReactNode;
+  displayComponent?: (
+    value: any,
+    params: WalletConnectCommandParam[],
+    values: Record<string, any>,
+    onChange: (values: Record<string, any>) => void
+  ) => ReactNode;
   hide?: boolean;
 };
 

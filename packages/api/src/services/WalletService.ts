@@ -418,8 +418,8 @@ export default class Wallet extends Service {
     message: string,
     pubkey: string,
     signature: string,
-    address: string | undefined,
-    signingMode: string | undefined
+    address?: string,
+    signingMode?: string
   ): Promise<{
     success: boolean;
     isValid: boolean;
