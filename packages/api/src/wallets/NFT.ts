@@ -12,7 +12,7 @@ export default class NFTWallet extends Wallet {
     return this.command('nft_get_nfts', {
       walletId,
       startIndex,
-      num,
+      num: num ?? 100_000,
     });
   }
 
