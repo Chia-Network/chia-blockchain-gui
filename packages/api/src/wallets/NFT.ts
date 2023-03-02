@@ -2,6 +2,12 @@ import { CalculateRoyaltiesRequest } from '../@types';
 import Wallet from '../services/WalletService';
 
 export default class NFTWallet extends Wallet {
+  async getNftsCount(walletId: number) {
+    return this.command('nft_count_nfts', {
+      walletId,
+    });
+  }
+
   async getNfts(walletId: number) {
     return this.command('nft_get_nfts', {
       walletId,

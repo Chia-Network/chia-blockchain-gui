@@ -121,7 +121,7 @@ function NFTCreateOfferContextualAction(props: NFTCreateOfferContextualActionPro
   const navigate = useNavigate();
   const [, setSelectedNFTIds] = useLocalStorage('gallery-selected-nfts', []);
   const selectedNft: NFTInfo | undefined = selection?.items[0];
-  const disabled = !selection?.items?.length || selectedNft?.pendingTransaction;
+  const disabled = !selection?.items?.length || selectedNft?.pendingTransaction || selection?.items?.length > 10;
 
   if (!selectedNft) return null;
 

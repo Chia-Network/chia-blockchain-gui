@@ -8,7 +8,16 @@ import {
   useServices,
   useGetVersionQuery,
 } from '@chia-network/api-react';
-import { Flex, LayoutHero, LayoutLoading, useMode, useIsSimulator, useAppVersion } from '@chia-network/core';
+import {
+  Flex,
+  LayoutHero,
+  LayoutLoading,
+  Mode,
+  useMode,
+  useIsSimulator,
+  useAppVersion,
+  useCurrencyCode,
+} from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Typography, Collapse } from '@mui/material';
 import isElectron from 'is-electron';
@@ -53,9 +62,11 @@ export default function AppState(props: Props) {
   const [isDataLayerEnabled] = useState(enableDataLayerService);
   const [isFilePropagationServerEnabled] = useState(enableFilePropagationServer);
   const [versionDialog, setVersionDialog] = useState<boolean>(true);
+  const [updatedWindowTitle, setUpdatedWindowTitle] = useState<boolean>(false);
   const { data: backendVersion } = useGetVersionQuery();
   const { version } = useAppVersion();
   const lru = useNFTMetadataLRU();
+  const isTestnet = useCurrencyCode() === 'TXCH';
 
   const runServices = useMemo<ServiceName[] | undefined>(() => {
     if (mode) {
@@ -100,6 +111,17 @@ export default function AppState(props: Props) {
   const isConnected = !isClientStateLoading && clientState?.state === ConnectionState.CONNECTED;
 
   useEffect(() => {
+    const allRunningServices = servicesState.running.map((serviceState) => serviceState.service);
+    const nonWalletServiceRunning = allRunningServices.some((service) => service !== ServiceName.WALLET);
+
+    if (mode === Mode.WALLET && !nonWalletServiceRunning) {
+      window.ipcRenderer.invoke('setPromptOnQuit', false);
+    } else {
+      window.ipcRenderer.invoke('setPromptOnQuit', true);
+    }
+  }, [mode, servicesState]);
+
+  useEffect(() => {
     async function handleClose(event) {
       if (closing) {
         return;
@@ -141,13 +163,18 @@ export default function AppState(props: Props) {
       // Handle files/URLs opened at launch now that the app is ready
       ipcRenderer.invoke('processLaunchTasks');
 
+      if (isTestnet && !updatedWindowTitle) {
+        ipcRenderer.invoke('setWindowTitle', 'Chia Blockchain (Testnet)');
+        setUpdatedWindowTitle(true);
+      }
+
       return () => {
         // @ts-ignore
         ipcRenderer.off('exit-daemon', handleClose);
       };
     }
     return undefined;
-  }, [close, closing, lru]);
+  }, [close, closing, lru, isTestnet, updatedWindowTitle]);
 
   if (closing) {
     return (
