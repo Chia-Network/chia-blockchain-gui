@@ -1,5 +1,6 @@
 import { Harvester } from '@chia-network/api';
 
+import { query, mutation } from '../utils/reduxToolkitEndpointAbstractions';
 import { apiWithTag } from './farmer';
 
 const apiWithTag2 = apiWithTag.enhanceEndpoints({
@@ -8,22 +9,13 @@ const apiWithTag2 = apiWithTag.enhanceEndpoints({
 
 export const harvesterApi = apiWithTag2.injectEndpoints({
   endpoints: (build) => ({
-    harvesterPing: build.query<boolean, {}>({
-      query: () => ({
-        command: 'ping',
-        service: Harvester,
-      }),
-      transformResponse: (response: any) => response?.success,
-    }),
+    harvesterPing: query(build, Harvester, 'ping'),
 
-    refreshPlots: build.mutation<undefined, {}>({
-      query: () => ({
-        command: 'refreshPlots',
-        service: Harvester,
-      }),
+    refreshPlots: mutation(build, Harvester, 'refreshPlots', {
       invalidatesTags: [{ type: 'Harvesters', id: 'LIST' }],
     }),
 
+    // TODO refactor
     deletePlot: build.mutation<
       boolean,
       {
@@ -83,12 +75,8 @@ export const harvesterApi = apiWithTag2.injectEndpoints({
       ],
     }),
 
-    getPlotDirectories: build.query<string[], undefined>({
-      query: () => ({
-        command: 'getPlotDirectories',
-        service: Harvester,
-      }),
-      transformResponse: (response: any) => response?.directories,
+    getPlotDirectories: query(build, Harvester, 'getPlotDirectories', {
+      transformResponse: (response) => response.directories,
       providesTags: (directories) =>
         directories
           ? [
@@ -97,33 +85,15 @@ export const harvesterApi = apiWithTag2.injectEndpoints({
             ]
           : [{ type: 'PlotDirectories', id: 'LIST' }],
     }),
-    addPlotDirectory: build.mutation<
-      Object,
-      {
-        dirname: string;
-      }
-    >({
-      query: ({ dirname }) => ({
-        command: 'addPlotDirectory',
-        service: Harvester,
-        args: [dirname],
-      }),
+
+    addPlotDirectory: mutation(build, Harvester, 'addPlotDirectory', {
       invalidatesTags: (_result, _error, { dirname }) => [
         { type: 'PlotDirectories', id: 'LIST' },
         { type: 'PlotDirectories', id: dirname },
       ],
     }),
-    removePlotDirectory: build.mutation<
-      Object,
-      {
-        dirname: string;
-      }
-    >({
-      query: ({ dirname }) => ({
-        command: 'removePlotDirectory',
-        service: Harvester,
-        args: [dirname],
-      }),
+
+    removePlotDirectory: mutation(build, Harvester, 'removePlotDirectory', {
       invalidatesTags: (_result, _error, { dirname }) => [
         { type: 'PlotDirectories', id: 'LIST' },
         { type: 'PlotDirectories', id: dirname },
