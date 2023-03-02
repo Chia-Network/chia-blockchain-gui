@@ -188,7 +188,10 @@ export default function SelectKeyItem(props: SelectKeyItemProps) {
               sx={{
                 zIndex: 9,
                 ':hover': {
-                  backgroundColor: theme.palette.colors[tempColor || background].main,
+                  // backgroundColor: theme.palette.colors[tempColor || background].main,
+                  backgroundColor: isColor(tempColor || background)
+                    ? theme.palette.colors[tempColor || background].main
+                    : theme.palette.colors.default.main,
                 },
                 width: '40px',
                 height: '40px',
