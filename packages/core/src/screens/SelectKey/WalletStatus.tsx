@@ -57,9 +57,7 @@ export default function WalletStatus(props: WalletStatusProps) {
           color={color}
           gap={gap}
           hideTitle={hideTitle}
-        >
-          <Trans>Not Synced</Trans> {height && <WalletStatusHeight />}
-        </StateIndicator>
+        />
       )}
       {syncingStatus === SyncingStatus.SYNCED && (
         <StateIndicator
@@ -69,9 +67,7 @@ export default function WalletStatus(props: WalletStatusProps) {
           color={color}
           gap={gap}
           hideTitle={hideTitle}
-        >
-          <Trans>Synced</Trans> {height && <WalletStatusHeight />}
-        </StateIndicator>
+        />
       )}
       {syncingStatus === SyncingStatus.SYNCING && (
         <StateIndicator
@@ -81,9 +77,7 @@ export default function WalletStatus(props: WalletStatusProps) {
           color={color}
           gap={gap}
           hideTitle={hideTitle}
-        >
-          <Trans>Syncing</Trans> {height && <WalletStatusHeight />}
-        </StateIndicator>
+        />
       )}
     </Tag>
   );

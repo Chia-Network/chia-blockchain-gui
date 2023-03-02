@@ -48,6 +48,7 @@
     "react-teleporter": "2.2.1",
     "react-use": "17.3.2",
     "react-use-timeout": "1.0.0",
+    "sortablejs": "^1.15.0",
     "stacktrace-gps": "3.0.4",
     "stacktrace-js": "2.0.2"
   },

@@ -3,6 +3,7 @@ import { useGetLoggedInFingerprintQuery, useLocalStorage } from '@chia-network/a
 import { Trans } from '@lingui/macro';
 import { Delete as DeleteIcon, Visibility as VisibilityIcon, Edit as EditIcon } from '@mui/icons-material';
 import { Box, Typography, ListItemIcon, Chip } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 import React, { useState } from 'react';
 
 import CardListItem from '../../components/CardListItem';
@@ -34,9 +35,18 @@ export default function SelectKeyItem(props: SelectKeyItemProps) {
   const { fingerprint, label } = keyData;
 
   const [showEmojiPicker, setShowEmojiPicker] = useState<boolean>(false);
-
+  const [tempEmoji, setTempEmoji] = useState<string | null>(null);
+  const [tempColor, setTempColor] = useState<string | null>(null);
   const [emoji, setEmoji] = useLocalStorage(`key-item-emoji-${keyData.fingerprint}`, null);
+
   const [background, setBackground] = useLocalStorage(`key-item-bg-${keyData.fingerprint}`, null);
+
+  const theme: any = useTheme();
+
+  function isColor(color: string) {
+    return Object.keys(theme.palette.colors).includes(color);
+  }
+  const isDark = theme.palette.mode === 'dark';
 
   async function handleLogin() {
     onSelect(fingerprint);
@@ -60,7 +70,20 @@ export default function SelectKeyItem(props: SelectKeyItemProps) {
 
   function renderOptions() {
     return (
-      <Flex flexDirection="column" alignItems="flex-end" gap={0.5}>
+      <Flex
+        flexDirection="column"
+        alignItems="flex-end"
+        gap={0.5}
+        sx={{
+          svg: {
+            path: {
+              color: isColor(tempColor || background)
+                ? theme.palette.colors[tempColor || background].accent
+                : theme.palette.colors.default.accent,
+            },
+          },
+        }}
+      >
         <More>
           <MenuItem onClick={handleRename} close>
             <ListItemIcon>
@@ -110,10 +133,24 @@ export default function SelectKeyItem(props: SelectKeyItemProps) {
       disabled={disabled}
       loading={loading}
       noPadding
+      sx={{
+        border: `1px solid ${
+          isColor(tempColor || background)
+            ? theme.palette.colors[tempColor || background].border
+            : theme.palette.colors.default.border
+        }`,
+        ':hover': {
+          border: `1px solid ${
+            isColor(tempColor || background)
+              ? theme.palette.colors[tempColor || background].border
+              : theme.palette.colors.default.border
+          }`,
+        },
+      }}
     >
       <Flex position="relative" flexDirection="column">
-        <Flex sx={{ padding: '10px 10px 5px 10px' }} direction="row">
-          <Flex sx={{ padding: '0 12px 0 1px', fontSize: '24px', position: 'relative' }}>
+        <Flex sx={{ padding: '7px 10px 5px 10px' }} direction="row">
+          <Flex sx={{ padding: '0 10px 0 0', fontSize: '24px', position: 'relative' }}>
             <span
               style={{ display: showEmojiPicker ? 'inline' : 'none', position: 'fixed', zIndex: 10 }}
               onClick={preventBubble}
@@ -121,7 +158,10 @@ export default function SelectKeyItem(props: SelectKeyItemProps) {
               {showEmojiPicker && (
                 <EmojiAndColorPicker
                   onSelect={(result: any) => {
-                    if (result.indexOf('#') === 0) {
+                    if (result === '') {
+                      setTempEmoji(null);
+                      setTempColor(null);
+                    } else if (isColor(result)) {
                       setBackground(result);
                     } else if (result !== '') {
                       setEmoji(result);
@@ -133,12 +173,33 @@ export default function SelectKeyItem(props: SelectKeyItemProps) {
                   }}
                   currentColor={background}
                   currentEmoji={emoji}
+                  themeColors={theme.palette.colors}
+                  isDark={isDark}
+                  onSelectTempEmoji={(tEmoji: string) => {
+                    setTempEmoji(tEmoji);
+                  }}
+                  onSelectTempColor={(tColor: string) => {
+                    setTempColor(tColor);
+                  }}
                 />
               )}
             </span>
-            <span style={{ zIndex: 9 }} onClick={toggleEmojiPicker}>
-              {emoji || `🍏`}
-            </span>
+            <Flex
+              sx={{
+                zIndex: 9,
+                ':hover': {
+                  backgroundColor: theme.palette.colors[tempColor || background].main,
+                },
+                width: '40px',
+                height: '40px',
+                alignItems: 'center',
+                justifyContent: 'center',
+                borderRadius: '4px',
+              }}
+              onClick={toggleEmojiPicker}
+            >
+              {tempEmoji || emoji || `⚪`}
+            </Flex>
           </Flex>
           <Flex
             direction="column"
@@ -147,7 +208,8 @@ export default function SelectKeyItem(props: SelectKeyItemProps) {
             flexGrow={1}
             sx={{
               ' > h6': {
-                lineHeight: 1.2,
+                lineHeight: 1.3,
+                paddingTop: '2px',
               },
             }}
           >
@@ -163,7 +225,19 @@ export default function SelectKeyItem(props: SelectKeyItemProps) {
             </Typography>
           </Flex>
         </Flex>
-        <Box sx={{ backgroundColor: background || '#CFDDE0', padding: '5px' }}>
+        <Box
+          sx={{
+            backgroundColor: isColor(tempColor || background)
+              ? theme.palette.colors[tempColor || background].main
+              : theme.palette.colors.default.main,
+            borderTop: `1px solid ${
+              isColor(tempColor || background)
+                ? theme.palette.colors[tempColor || background].main
+                : theme.palette.colors.default.main
+            }`,
+            padding: '5px',
+          }}
+        >
           {currentFingerprint === fingerprint && (
             <Box position="absolute" bottom={8} left={8}>
               <Chip
@@ -173,7 +247,7 @@ export default function SelectKeyItem(props: SelectKeyItemProps) {
                   paddingRight: '5px',
                   paddingTop: '1px',
                   borderRadius: '4px',
-                  backgroundColor: 'rgba(255, 255, 255, 0.4)',
+                  backgroundColor: 'transparent',
                   '> div': {
                     gap: '4px',
                   },
@@ -182,6 +256,16 @@ export default function SelectKeyItem(props: SelectKeyItemProps) {
                   },
                   span: {
                     fontSize: '10px',
+                  },
+                  svg: {
+                    g: {
+                      fill: isColor(tempColor || background)
+                        ? theme.palette.colors[tempColor || background].accent
+                        : theme.palette.colors.default.accent,
+                      stroke: isColor(tempColor || background)
+                        ? theme.palette.colors[tempColor || background].accent
+                        : theme.palette.colors.default.accent,
+                    },
                   },
                 }}
                 label={<WalletStatus variant="body2" indicator reversed color="textColor" />}

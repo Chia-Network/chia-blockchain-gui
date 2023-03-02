@@ -3,7 +3,6 @@ import { Search as SearchIcon } from '@chia-network/icons';
 import data from '@emoji-mart/data';
 import { t } from '@lingui/macro';
 import { InputBase, InputBaseProps, Box } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
 import { init, SearchIndex } from 'emoji-mart';
 import React from 'react';
 
@@ -12,10 +11,12 @@ init({ data });
 const { emojis: allEmojis } = data;
 
 type EmojiAndColorPickerType = {
-  onSelect?: (result: any) => void;
+  onSelect: (result: any) => void;
   onClickOutside?: () => void;
   currentColor?: string;
   currentEmoji?: string;
+  themeColors: any;
+  isDark: boolean;
 };
 
 const colorCircleStyle: any = {
@@ -27,14 +28,10 @@ const colorCircleStyle: any = {
 };
 
 export default function EmojiAndColorPicker(props: EmojiAndColorPickerType) {
-  const { onSelect = () => {}, onClickOutside = () => {}, currentColor, currentEmoji } = props;
+  const { onSelect = () => {}, onClickOutside = () => {}, currentColor, currentEmoji, themeColors, isDark } = props;
   const cmpRef = React.useRef(null);
-  const theme = useTheme();
   const [emojiFilter, setEmojiFilter] = React.useState<string[]>([]);
-  const [tempColor, setTempColor] = React.useState<string>('');
   const [tempEmoji, setTempEmoji] = React.useState<string>('');
-
-  const isDark = theme.palette.mode === 'dark';
 
   const pickerStyle: any = {
     backgroundColor: isDark ? '#344E54' : '#FFFFFF',
@@ -61,55 +58,34 @@ export default function EmojiAndColorPicker(props: EmojiAndColorPickerType) {
   }, []);
 
   function renderColorPicker() {
-    const colors = [
-      '#7EA9F8',
-      '#C3C3EE',
-      '#EAACFB',
-      '#FAA7B0',
-      '#FFAF3A',
-      '#FFF544',
-      '#D4FF72',
-      '#92E39F',
-      '#6CDCD6',
-      '#77D4FF',
-      '#AEB9CB',
-      '#B1B2C8',
-      '#C3B2C7',
-      '#DEC3D3',
-      '#CCB9A5',
-      '#D2CE9F',
-      '#BCC294',
-      '#9BAE98',
-      '#9FC0BC',
-      '#95BBCB',
-    ];
-
-    const colorNodes = colors.map((color) => {
-      const style = { ...colorCircleStyle, background: color };
-      return (
-        <div
-          style={style}
-          onClick={() => {
-            setTempColor(color);
-          }}
-        >
-          {(color === currentColor && !tempColor) || tempColor === color ? (
-            <div
-              style={{
-                position: 'absolute',
-                borderRadius: '50%',
-                width: '24px',
-                height: '24px',
-                border: `2px solid ${color}`,
-                zIndex: 11,
-                top: '-4px',
-                left: '-4px',
-              }}
-            />
-          ) : null}
-        </div>
-      );
-    });
+    const colorNodes = Object.keys(themeColors)
+      .filter((colorKey) => colorKey !== 'default')
+      .map((colorKey) => {
+        const style = { ...colorCircleStyle, background: themeColors[colorKey].border };
+        return (
+          <div
+            style={style}
+            onClick={() => {
+              onSelect(colorKey);
+            }}
+          >
+            {colorKey === currentColor ? (
+              <div
+                style={{
+                  position: 'absolute',
+                  borderRadius: '50%',
+                  width: '24px',
+                  height: '24px',
+                  border: `2px solid ${themeColors[colorKey].border}`,
+                  zIndex: 11,
+                  top: '-4px',
+                  left: '-4px',
+                }}
+              />
+            ) : null}
+          </div>
+        );
+      });
     return (
       <Flex sx={{ display: 'flex', flexWrap: 'wrap', columnGap: '8px', rowGap: '8px', width: '232px' }}>
         {colorNodes}
@@ -143,7 +119,7 @@ export default function EmojiAndColorPicker(props: EmojiAndColorPickerType) {
             width: '17px',
             height: '17px',
             path: {
-              stroke: theme.palette.mode === 'dark' ? theme.palette.info.main : 'theme.palette.info.main',
+              stroke: isDark ? '#eee' : '#999',
               fill: 'none',
             },
           }}
@@ -169,7 +145,7 @@ export default function EmojiAndColorPicker(props: EmojiAndColorPickerType) {
   function renderEmojis() {
     const style: any = {
       display: 'flex',
-      maxHeight: '189px',
+      maxHeight: '185px',
       overflowY: 'auto',
       scrollBehavior: 'auto',
       fontSize: '14px',
@@ -195,7 +171,7 @@ export default function EmojiAndColorPicker(props: EmojiAndColorPickerType) {
       .map((emojiName: string) => (
         <div
           onClick={() => {
-            setTempEmoji(allEmojis[emojiName].skins[0].native);
+            onSelect(allEmojis[emojiName].skins[0].native);
           }}
           style={{
             position: 'relative',
@@ -209,18 +185,17 @@ export default function EmojiAndColorPicker(props: EmojiAndColorPickerType) {
           >
             {allEmojis[emojiName].skins[0].native}
           </div>
-          {((allEmojis[emojiName].skins[0].native === currentEmoji && !tempEmoji) ||
-            allEmojis[emojiName].skins[0].native === tempEmoji) && (
+          {allEmojis[emojiName].skins[0].native === currentEmoji && (
             <div
               style={{
                 position: 'absolute',
                 borderRadius: '2px',
+                background: `${themeColors[currentColor || 'default'].main}`,
                 width: '26px',
                 height: '26px',
                 zIndex: 9,
                 top: '-4px',
                 left: '-4px',
-                border: `2px solid #AEB9CB`,
               }}
             />
           )}
@@ -229,40 +204,11 @@ export default function EmojiAndColorPicker(props: EmojiAndColorPickerType) {
     return <Flex sx={style}>{emojiList}</Flex>;
   }
 
-  function renderButtonActions() {
-    return (
-      <Flex sx={{ marginTop: '10px' }} justifyContent="space-between">
-        <Button
-          variant="outlined"
-          color="primary"
-          size="small"
-          onClick={() => {
-            onSelect('');
-          }}
-        >
-          {t`Cancel`}
-        </Button>
-        <Button
-          variant="contained"
-          color="primary"
-          size="small"
-          onClick={() => {
-            if (tempColor) onSelect(tempColor);
-            if (tempEmoji) onSelect(tempEmoji);
-          }}
-        >
-          {t`Save`}
-        </Button>
-      </Flex>
-    );
-  }
-
   return (
     <Box style={pickerStyle} ref={cmpRef}>
       {renderColorPicker()}
       {renderSearch()}
       {renderEmojis()}
-      {renderButtonActions()}
     </Box>
   );
 }

@@ -17,7 +17,7 @@ const StyledFlexContainer = styled(({ ...rest }) => <Flex {...rest} />)`
 `;
 
 export type StateComponentProps = {
-  children: ReactNode;
+  children?: ReactNode;
   state: State;
   indicator?: boolean;
   reversed?: boolean;
