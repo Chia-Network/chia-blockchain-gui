@@ -98,15 +98,23 @@ export default function useWalletConnectPairs(): Pairs {
 
   const bypassCommand = useCallback((sessionTopic: string, command: string, confirm: boolean) => {
     const [, setPairs] = pairsRef.current;
-    setPairs((pairs: Pair[]) =>
-      pairs.map((pair) => ({
-        ...pair,
-        bypassCommands: {
-          ...pair.bypassCommands,
-          [command]: confirm,
-        },
-      }))
-    );
+    setPairs((pairs: Pair[]) => {
+      const pair = pairs.find((item) => item.sessions?.find((session) => session.topic === sessionTopic));
+      if (!pair) {
+        throw new Error('Pair not found');
+      }
+
+      return pairs.map((item) => ({
+        ...item,
+        bypassCommands:
+          item.topic === pair.topic
+            ? {
+                ...item.bypassCommands,
+                [command]: confirm,
+              }
+            : item.bypassCommands,
+      }));
+    });
   }, []);
 
   const pairs = useMemo(
