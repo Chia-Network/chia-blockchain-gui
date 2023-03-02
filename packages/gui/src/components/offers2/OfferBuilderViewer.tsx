@@ -2,7 +2,7 @@ import { useGetWalletsQuery, useCheckOfferValidityMutation } from '@chia-network
 import { Flex, ButtonLoading, Link, Loading, useShowError } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Alert, Grid } from '@mui/material';
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useImperativeHandle, useMemo, useRef, useState, forwardRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import type OfferBuilderData from '../../@types/OfferBuilderData';
@@ -22,9 +22,10 @@ export type OfferBuilderViewerProps = {
   isMyOffer?: boolean;
   imported?: boolean;
   hideHeader?: boolean;
+  fee?: string; // in mojos
 };
 
-export default function OfferBuilderViewer(props: OfferBuilderViewerProps) {
+function OfferBuilderViewer(props: OfferBuilderViewerProps, ref: any) {
   const {
     offerSummary,
     referrerPath,
@@ -33,6 +34,7 @@ export default function OfferBuilderViewer(props: OfferBuilderViewerProps) {
     isMyOffer = false,
     imported = false,
     hideHeader = false,
+    fee,
   } = props;
 
   const showError = useShowError();
@@ -41,13 +43,18 @@ export default function OfferBuilderViewer(props: OfferBuilderViewerProps) {
   const [error, setError] = useState<Error | undefined>();
   const [isAccepting, setIsAccepting] = useState<boolean>(false);
   const { data: wallets, isLoading: isLoadingWallets } = useGetWalletsQuery();
-  const offerBuilderRef = useRef<{ submit: () => void } | undefined>(undefined);
+  const offerBuilderRef = useRef<{ submit: () => void; getValues: () => OfferBuilderData } | undefined>(undefined);
 
   const [checkOfferValidity] = useCheckOfferValidityMutation();
   const [isValidating, setIsValidating] = useState<boolean>(offerData !== undefined);
   const [isValid, setIsValid] = useState<boolean | undefined>();
 
   const showInvalid = !isValidating && isValid === false;
+
+  useImperativeHandle(ref, () => ({
+    submit: () => offerBuilderRef.current?.submit(),
+    getValues: () => offerBuilderRef.current?.getValues(),
+  }));
 
   const validateOfferData = useCallback(async () => {
     try {
@@ -80,12 +87,12 @@ export default function OfferBuilderViewer(props: OfferBuilderViewerProps) {
       return undefined;
     }
     try {
-      return offerToOfferBuilderData(offerSummaryParsed, setDefaultOfferedFee);
+      return offerToOfferBuilderData(offerSummaryParsed, setDefaultOfferedFee, fee);
     } catch (e) {
       setError(e);
       return undefined;
     }
-  }, [offerSummaryStringified, setDefaultOfferedFee]);
+  }, [offerSummaryStringified, setDefaultOfferedFee, fee]);
 
   const [offeredUnknownCATs, requestedUnknownCATs] = useMemo(() => {
     if (!offerBuilderData || !wallets) {
@@ -114,14 +121,14 @@ export default function OfferBuilderViewer(props: OfferBuilderViewerProps) {
 
   async function handleSubmit(values: OfferBuilderData) {
     const {
-      offered: { fee },
+      offered: { fee: offeredFee },
     } = values;
 
     if (isAccepting || !canAccept) {
       return;
     }
 
-    const feeAmount = fee?.[0]?.amount ?? '0'; // TODO convert to mojo here insted of in hook
+    const feeAmount = offeredFee?.[0]?.amount ?? '0'; // TODO convert to mojo here instead of in hook
 
     await acceptOffer(
       offerData,
@@ -213,3 +220,5 @@ export default function OfferBuilderViewer(props: OfferBuilderViewerProps) {
     </Grid>
   );
 }
+
+export default forwardRef(OfferBuilderViewer);

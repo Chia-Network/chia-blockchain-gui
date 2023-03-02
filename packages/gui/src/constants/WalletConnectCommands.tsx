@@ -4,7 +4,6 @@ import { Trans } from '@lingui/macro';
 import React from 'react';
 
 import type WalletConnectCommand from '../@types/WalletConnectCommand';
-import WalletConnectCommandParam from '../@types/WalletConnectCommandParam';
 import WalletConnectCommandParamName from '../@types/WalletConnectCommandParamName';
 import WalletConnectCATAmount from '../components/walletConnect/WalletConnectCATAmount';
 import WalletConnectOfferPreview from '../components/walletConnect/WalletConnectOfferPreview';
@@ -339,7 +338,9 @@ const walletConnectCommands: WalletConnectCommand[] = [
         name: WalletConnectCommandParamName.OFFER,
         label: <Trans>Offer</Trans>,
         type: 'string',
-        displayComponent: (value) => <WalletConnectOfferPreview offer={value} />,
+        displayComponent: (value, params, values, onChange) => (
+          <WalletConnectOfferPreview value={value} params={params} values={values} onChange={onChange} />
+        ),
       },
       {
         name: WalletConnectCommandParamName.FEE,
@@ -442,9 +443,7 @@ const walletConnectCommands: WalletConnectCommand[] = [
         name: WalletConnectCommandParamName.AMOUNT,
         label: <Trans>Amount</Trans>,
         type: 'BigNumber',
-        displayComponent: (value, params: WalletConnectCommandParam[]) => (
-          <WalletConnectCATAmount amount={value} params={params} />
-        ),
+        displayComponent: (value, _params, values) => <WalletConnectCATAmount amount={value} values={values} />,
       },
       {
         name: WalletConnectCommandParamName.FEE,

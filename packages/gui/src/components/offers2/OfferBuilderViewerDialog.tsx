@@ -3,34 +3,23 @@ import { DialogActions, Loading, Button } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import CloseIcon from '@mui/icons-material/Close';
 import { Alert, Divider, Dialog, DialogContent, DialogTitle, IconButton } from '@mui/material';
-import React, { useMemo, useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 
-import offerToOfferBuilderData from '../../util/offerToOfferBuilderData';
+import type OfferBuilderData from '../../@types/OfferBuilderData';
 import OfferBuilderViewer from './OfferBuilderViewer';
 
 export type OfferBuilderViewerDialogProps = {
   offer: string;
-  onClose?: () => void;
+  fee?: string; // fee in mojos
+  onClose?: (values?: OfferBuilderData) => void;
   open?: boolean;
 };
 
 export default function OfferBuilderViewerDialog(props: OfferBuilderViewerDialogProps) {
-  const { offer, onClose, open = false } = props;
+  const { offer, fee, onClose, open = false } = props;
 
+  const offerBuilderViewerRef = useRef<{ getValues: () => OfferBuilderData } | undefined>();
   const [getOfferSummary, { isLoading: isLoadingOfferSummary, data, error }] = useGetOfferSummaryMutation();
-
-  const offerBuilderData = useMemo(() => {
-    if (!data) {
-      return null;
-    }
-
-    const { summary } = data;
-    if (!summary) {
-      return null;
-    }
-
-    return offerToOfferBuilderData(summary, true);
-  }, [data]);
 
   useEffect(() => {
     if (offer) {
@@ -38,10 +27,16 @@ export default function OfferBuilderViewerDialog(props: OfferBuilderViewerDialog
     }
   }, [offer, getOfferSummary]);
 
-  const isLoading = isLoadingOfferSummary || !offerBuilderData;
+  function handleClose() {
+    const values = offerBuilderViewerRef.current?.getValues();
+
+    onClose?.(values);
+  }
+
+  const isLoading = isLoadingOfferSummary || !data;
 
   return (
-    <Dialog onClose={onClose} maxWidth="lg" open={open} fullWidth>
+    <Dialog onClose={handleClose} maxWidth="lg" open={open} fullWidth>
       <IconButton
         sx={{
           position: 'absolute',
@@ -49,7 +44,7 @@ export default function OfferBuilderViewerDialog(props: OfferBuilderViewerDialog
           top: 8,
           color: (theme) => theme.palette.grey[500],
         }}
-        onClick={onClose}
+        onClick={handleClose}
       >
         <CloseIcon />
       </IconButton>
@@ -62,12 +57,19 @@ export default function OfferBuilderViewerDialog(props: OfferBuilderViewerDialog
         ) : isLoading ? (
           <Loading center />
         ) : (
-          <OfferBuilderViewer offerData={offer} offerSummary={data.summary} hideHeader imported />
+          <OfferBuilderViewer
+            ref={offerBuilderViewerRef}
+            offerData={offer}
+            offerSummary={data.summary}
+            fee={fee}
+            hideHeader
+            imported
+          />
         )}
       </DialogContent>
       <Divider />
       <DialogActions>
-        <Button onClick={onClose} variant="contained" color="primary" disableElevation>
+        <Button onClick={handleClose} variant="contained" color="primary" disableElevation>
           <Trans>Close</Trans>
         </Button>
       </DialogActions>

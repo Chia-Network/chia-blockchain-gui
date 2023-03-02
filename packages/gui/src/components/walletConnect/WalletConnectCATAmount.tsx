@@ -2,19 +2,19 @@ import { MojoToCAT } from '@chia-network/core';
 import { t } from '@lingui/macro';
 import React from 'react';
 
-import type WalletConnectCommandParam from '../../@types/WalletConnectCommandParam';
 import WalletConnectCommandParamName from '../../@types/WalletConnectCommandParamName';
 import useAssetIdName from '../../hooks/useAssetIdName';
 
 export type WalletConnectCATAmountProps = {
   amount: number;
-  params: WalletConnectCommandParam[];
+  values: Record<string, any>;
 };
 
 export default function WalletConnectCATAmount(props: WalletConnectCATAmountProps) {
-  const { amount, params } = props;
-  const walletId = params.find((param) => param.name === WalletConnectCommandParamName.WALLET_ID)?.value;
+  const { amount, values } = props;
   const { lookupByWalletId } = useAssetIdName();
+
+  const walletId = values[WalletConnectCommandParamName.WALLET_ID];
   const assetIdInfo = lookupByWalletId(walletId);
   const displayName = assetIdInfo?.displayName;
   const currencyCode = displayName ?? t`Unknown CAT`;
