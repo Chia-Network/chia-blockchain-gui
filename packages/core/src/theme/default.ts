@@ -47,6 +47,7 @@ export default {
     },
     info: {
       main: '#757575',
+      dark: '#fff',
     },
   },
   drawer: {
