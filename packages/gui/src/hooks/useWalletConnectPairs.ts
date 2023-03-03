@@ -18,6 +18,8 @@ export type Pairs = {
   removePairBySession: (sessionTopic: string) => void;
 
   removeSessionFromPair: (sessionTopic: string) => void;
+
+  bypassCommand: (sessionTopic: string, command: string, confirm: boolean) => void;
 };
 
 export default function useWalletConnectPairs(): Pairs {
@@ -94,6 +96,27 @@ export default function useWalletConnectPairs(): Pairs {
 
   const get = useCallback(() => pairsRef.current[0], []);
 
+  const bypassCommand = useCallback((sessionTopic: string, command: string, confirm: boolean) => {
+    const [, setPairs] = pairsRef.current;
+    setPairs((pairs: Pair[]) => {
+      const pair = pairs.find((item) => item.sessions?.find((session) => session.topic === sessionTopic));
+      if (!pair) {
+        throw new Error('Pair not found');
+      }
+
+      return pairs.map((item) => ({
+        ...item,
+        bypassCommands:
+          item.topic === pair.topic
+            ? {
+                ...item.bypassCommands,
+                [command]: confirm,
+              }
+            : item.bypassCommands,
+      }));
+    });
+  }, []);
+
   const pairs = useMemo(
     () => ({
       addPair,
@@ -108,6 +131,7 @@ export default function useWalletConnectPairs(): Pairs {
       removePairBySession,
 
       removeSessionFromPair,
+      bypassCommand,
     }),
     [
       addPair,
@@ -119,6 +143,7 @@ export default function useWalletConnectPairs(): Pairs {
       getPairBySession,
       removePairBySession,
       removeSessionFromPair,
+      bypassCommand,
     ]
   );
 
