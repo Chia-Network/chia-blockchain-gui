@@ -194,18 +194,29 @@ export function formatAmountForWalletType(amount: string | number, walletType: W
   return amount.toString();
 }
 
-export function offerContainsAssetOfType(offerSummary: OfferSummaryRecord, assetType: string): boolean {
+export function offerContainsAssetOfType(
+  offerSummary: OfferSummaryRecord,
+  assetType: string,
+  side?: 'offered' | 'requested'
+): boolean {
   const { infos } = offerSummary;
-  const matchingAssetId: string | undefined = Object.keys(infos).find((assetId) => {
+  const matchingAssetIds: string[] = Object.keys(infos).filter((assetId) => {
     const info: OfferSummaryAssetInfo = infos[assetId];
     return info.type === assetType;
   });
 
+  let keys: string[] = [];
+  if (side) {
+    keys = Object.keys(offerSummary[side]);
+  } else {
+    keys = [...Object.keys(offerSummary.offered), ...Object.keys(offerSummary.requested)];
+  }
+
   return (
-    !!matchingAssetId &&
-    // Sanity check that the assetId is actually being offered/requested
-    (Object.keys(offerSummary.offered).includes(matchingAssetId) ||
-      Object.keys(offerSummary.requested).includes(matchingAssetId))
+    !!matchingAssetIds &&
+    matchingAssetIds.length > 0 &&
+    // Sanity check that at least one matchingAssetId is in the requested set of keys
+    matchingAssetIds.some((matchingAssetId) => keys.includes(matchingAssetId))
   );
 }
 
@@ -235,13 +246,24 @@ export function offerAssetTypeForAssetId(assetId: string, offerSummary: OfferSum
   return assetType;
 }
 
-export function offerAssetIdForAssetType(assetType: OfferAsset, offerSummary: OfferSummaryRecord): string | undefined {
+export function offerAssetIdForAssetType(
+  assetType: OfferAsset,
+  offerSummary: OfferSummaryRecord,
+  side?: 'offered' | 'requested'
+): string | undefined {
+  let keys: string[] = [];
+  if (side) {
+    keys = Object.keys(offerSummary[side]);
+  } else {
+    keys = [...Object.keys(offerSummary.offered), ...Object.keys(offerSummary.requested)];
+  }
+
   if (assetType === OfferAsset.CHIA) {
-    return 'xch';
+    return keys.includes('xch') ? 'xch' : undefined;
   }
 
   const assetId = Object.keys(offerSummary.infos).find(
-    (item) => offerAssetTypeForAssetId(item, offerSummary) === assetType
+    (item) => offerAssetTypeForAssetId(item, offerSummary) === assetType && keys.includes(item)
   );
 
   return assetId;

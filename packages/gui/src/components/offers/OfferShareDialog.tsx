@@ -1405,8 +1405,10 @@ export default function OfferShareDialog(props: OfferShareDialogProps) {
   const [sendOfferNotificationOpen, setSendOfferNotificationOpen] = React.useState(false);
   const [offerURL, setOfferURL] = React.useState('');
   const [suppressShareOnCreate, setSuppressShareOnCreate] = useSuppressShareOnCreate();
-  const isNFTOffer = offerContainsAssetOfType(offerRecord.summary, 'singleton');
-  const nftLauncherId = isNFTOffer ? offerAssetIdForAssetType(OfferAsset.NFT, offerRecord.summary) : undefined;
+  const isNFTOffer = offerContainsAssetOfType(offerRecord.summary, 'singleton', 'requested');
+  const nftLauncherId = isNFTOffer
+    ? offerAssetIdForAssetType(OfferAsset.NFT, offerRecord.summary, 'requested')
+    : undefined;
   const nftId = nftLauncherId ? launcherIdToNFTId(nftLauncherId) : undefined;
 
   const showSendOfferNotificationDialog = useCallback(
