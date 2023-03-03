@@ -157,6 +157,45 @@ export default function SelectKey() {
     return sorted;
   }
 
+  const NewWalletButtonGroup = (
+    <Flex alignItems="right">
+      <DropdownActions label={<Trans>New wallet</Trans>} variant="contained">
+        <MenuItem close onClick={() => handleNavigationIfKeyringIsMutable('/wallet/add')}>
+          <Typography variant="inherit" noWrap>
+            <Trans>Create New</Trans>
+          </Typography>
+        </MenuItem>
+        <MenuItem close onClick={() => handleNavigationIfKeyringIsMutable('/wallet/import')}>
+          <Typography variant="inherit" noWrap>
+            <Trans>Import Existing</Trans>
+          </Typography>
+        </MenuItem>
+      </DropdownActions>
+      {hasFingerprints && (
+        <Flex
+          sx={{
+            '> button': {
+              width: '37px',
+              height: '37px',
+              marginLeft: '10px',
+            },
+          }}
+        >
+          <More>
+            <MenuItem onClick={handleDeleteAllKeys} close>
+              <ListItemIcon>
+                <DeleteIcon />
+              </ListItemIcon>
+              <Typography variant="inherit" noWrap>
+                <Trans>Delete All Keys</Trans>
+              </Typography>
+            </MenuItem>
+          </More>
+        </Flex>
+      )}
+    </Flex>
+  );
+
   return (
     <StyledContainer>
       <Flex flexDirection="column" alignItems="flex-start" gap={3}>
@@ -189,40 +228,7 @@ export default function SelectKey() {
                 <Trans>Wallet Keys</Trans>
               </Typography>
             </Flex>
-            <Flex alignItems="right">
-              <DropdownActions label={<Trans>New wallet</Trans>} variant="contained">
-                <MenuItem close onClick={() => handleNavigationIfKeyringIsMutable('/wallet/add')}>
-                  <Typography variant="inherit" noWrap>
-                    <Trans>Create New</Trans>
-                  </Typography>
-                </MenuItem>
-                <MenuItem close onClick={() => handleNavigationIfKeyringIsMutable('/wallet/import')}>
-                  <Typography variant="inherit" noWrap>
-                    <Trans>Import Existing</Trans>
-                  </Typography>
-                </MenuItem>
-              </DropdownActions>
-              <Flex
-                sx={{
-                  '> button': {
-                    width: '37px',
-                    height: '37px',
-                    marginLeft: '10px',
-                  },
-                }}
-              >
-                <More>
-                  <MenuItem onClick={handleDeleteAllKeys} close>
-                    <ListItemIcon>
-                      <DeleteIcon />
-                    </ListItemIcon>
-                    <Typography variant="inherit" noWrap>
-                      <Trans>Delete All Keys</Trans>
-                    </Typography>
-                  </MenuItem>
-                </More>
-              </Flex>
-            </Flex>
+            {NewWalletButtonGroup}
           </Flex>
         ) : (
           <>
@@ -232,6 +238,7 @@ export default function SelectKey() {
             <Typography variant="subtitle1" align="center">
               <Trans>Welcome to Chia. Please log in with an existing key, or create a new key.</Trans>
             </Typography>
+            {NewWalletButtonGroup}
           </>
         )}
         {/* <Search /> */}
