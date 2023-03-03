@@ -247,10 +247,25 @@ export default function SelectKeyItem(props: SelectKeyItemProps) {
                   span: {
                     fontSize: '10px',
                   },
-                  svg: {
+                  '.checkmark-icon': {
                     g: {
-                      fill: color.accent,
-                      stroke: color.accent,
+                      circle: {
+                        stroke: color.accent,
+                      },
+                      path: {
+                        stroke: color.accent,
+                        fill: color.accent,
+                      },
+                    },
+                  },
+                  '.reload-icon,.cancel-icon': {
+                    g: {
+                      circle: {
+                        stroke: color.accent,
+                      },
+                      path: {
+                        fill: color.accent,
+                      },
                     },
                   },
                 }}
