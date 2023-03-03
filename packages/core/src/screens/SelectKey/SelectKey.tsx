@@ -146,10 +146,15 @@ export default function SelectKey() {
   }
 
   function sortedFingerprints(fingerprints: string[]) {
-    if (sortedWallets.length) {
-      return sortedWallets.map((fingerprint: string) => fingerprints.find((f: any) => fingerprint === f.fingerprint));
-    }
-    return fingerprints;
+    const sorted = sortedWallets
+      .map((fingerprint: string) => fingerprints.find((f: any) => fingerprint === f.fingerprint))
+      .filter((x: any) => !!x); /* if we added a new wallet and order was not saved yet case */
+    fingerprints.forEach((f: any) => {
+      if (sorted.map((f2: any) => f2.fingerprint).indexOf(f.fingerprint) === -1) {
+        sorted.push(f);
+      }
+    });
+    return sorted;
   }
 
   return (
