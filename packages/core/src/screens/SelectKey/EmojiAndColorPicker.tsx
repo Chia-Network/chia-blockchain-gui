@@ -1,10 +1,10 @@
-import { Flex, Button } from '@chia-network/core';
+import { Flex /* , Button */ } from '@chia-network/core';
 import { Search as SearchIcon } from '@chia-network/icons';
 import data from '@emoji-mart/data';
 import { t } from '@lingui/macro';
-import { InputBase, InputBaseProps, Box } from '@mui/material';
+import { InputBase /* , InputBaseProps */, Box } from '@mui/material';
 import { init, SearchIndex } from 'emoji-mart';
-import React from 'react';
+import React, { useCallback } from 'react';
 
 init({ data });
 
@@ -31,7 +31,7 @@ export default function EmojiAndColorPicker(props: EmojiAndColorPickerType) {
   const { onSelect = () => {}, onClickOutside = () => {}, currentColor, currentEmoji, themeColors, isDark } = props;
   const cmpRef = React.useRef(null);
   const [emojiFilter, setEmojiFilter] = React.useState<string[]>([]);
-  const [tempEmoji, setTempEmoji] = React.useState<string>('');
+  // const [tempEmoji, setTempEmoji] = React.useState<string>('');
 
   const pickerStyle: any = {
     backgroundColor: isDark ? '#344E54' : '#FFFFFF',
@@ -44,18 +44,21 @@ export default function EmojiAndColorPicker(props: EmojiAndColorPickerType) {
     left: '25px',
   };
 
-  const outsideClickListener = (e: any) => {
-    if (cmpRef.current && !(cmpRef.current as HTMLElement).contains(e.target)) {
-      onClickOutside();
-    }
-  };
+  const outsideClickListener = useCallback(
+    (e: any) => {
+      if (cmpRef.current && !(cmpRef.current as HTMLElement).contains(e.target)) {
+        onClickOutside();
+      }
+    },
+    [onClickOutside]
+  );
 
   React.useEffect(() => {
     document.addEventListener('mousedown', outsideClickListener);
     return () => {
       document.removeEventListener('mousedown', outsideClickListener);
     };
-  }, []);
+  }, [outsideClickListener]);
 
   function renderColorPicker() {
     const colorNodes = Object.keys(themeColors)

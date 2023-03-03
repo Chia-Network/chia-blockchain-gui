@@ -1,6 +1,6 @@
 import { SyncingStatus } from '@chia-network/api';
 import { useGetSyncStatusQuery } from '@chia-network/api-react';
-import { Trans } from '@lingui/macro';
+// import { Trans } from '@lingui/macro';
 import { Box, Typography } from '@mui/material';
 import React from 'react';
 
@@ -8,7 +8,7 @@ import Loading from '../../components/Loading';
 import StateIndicator from '../../components/StateIndicator';
 import State from '../../constants/State';
 import getWalletSyncingStatus from '../../utils/getWalletSyncingStatus';
-import WalletStatusHeight from './WalletStatusHeight';
+// import WalletStatusHeight from './WalletStatusHeight';
 
 export type WalletStatusProps = {
   variant?: string;
@@ -24,7 +24,7 @@ export type WalletStatusProps = {
 export default function WalletStatus(props: WalletStatusProps) {
   const {
     variant = 'body1',
-    height = false,
+    // height = false,
     indicator = false,
     reversed = false,
     color,
