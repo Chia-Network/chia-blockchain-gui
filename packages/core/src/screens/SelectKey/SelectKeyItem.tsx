@@ -1,10 +1,10 @@
 import type { KeyData } from '@chia-network/api';
-import { useGetLoggedInFingerprintQuery, useLocalStorage } from '@chia-network/api-react';
+import { useFingerprintSettings, useGetLoggedInFingerprintQuery } from '@chia-network/api-react';
 import { Trans } from '@lingui/macro';
 import { Delete as DeleteIcon, Visibility as VisibilityIcon, Edit as EditIcon } from '@mui/icons-material';
 import { Box, Typography, ListItemIcon, Chip } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 
 import CardListItem from '../../components/CardListItem';
 import Flex from '../../components/Flex';
@@ -25,6 +25,11 @@ type SelectKeyItemProps = {
   onSelect: (fingerprint: number) => void;
 };
 
+type WalletKeyTheme = {
+  emoji: string | null;
+  color: string | null;
+};
+
 export default function SelectKeyItem(props: SelectKeyItemProps) {
   const { keyData, onSelect, disabled, loading, index } = props;
   const openDialog = useOpenDialog();
@@ -34,19 +39,21 @@ export default function SelectKeyItem(props: SelectKeyItemProps) {
 
   const { fingerprint, label } = keyData;
 
-  const [showEmojiPicker, setShowEmojiPicker] = useState<boolean>(false);
-  const [tempEmoji, setTempEmoji] = useState<string | null>(null);
-  const [tempColor, setTempColor] = useState<string | null>(null);
-  const [emoji, setEmoji] = useLocalStorage(`key-item-emoji-${keyData.fingerprint}`, null);
+  const [walletKeyTheme, setWalletKeyTheme] = useFingerprintSettings<WalletKeyTheme>(fingerprint, 'walletKeyTheme', {
+    emoji: `🌱`,
+    color: 'green',
+  });
 
-  const [background, setBackground] = useLocalStorage(`key-item-bg-${keyData.fingerprint}`, null);
+  const [tempWalletKeyTheme, setTempWalletKeyTheme] = useState<WalletKeyTheme>({} as WalletKeyTheme);
+  const [showEmojiPicker, setShowEmojiPicker] = useState<boolean>(false);
 
   const theme: any = useTheme();
 
-  function isColor(color: string) {
-    return Object.keys(theme.palette.colors).includes(color);
-  }
+  const isColor = useCallback((color: string) => Object.keys(theme.palette.colors).includes(color), [theme]);
   const isDark = theme.palette.mode === 'dark';
+  const color = isColor(tempWalletKeyTheme.color || walletKeyTheme.color)
+    ? theme.palette.colors[tempWalletKeyTheme.color || walletKeyTheme.color]
+    : theme.palette.colors.default;
 
   async function handleLogin() {
     onSelect(fingerprint);
@@ -77,9 +84,7 @@ export default function SelectKeyItem(props: SelectKeyItemProps) {
         sx={{
           svg: {
             path: {
-              color: isColor(tempColor || background)
-                ? theme.palette.colors[tempColor || background].accent
-                : theme.palette.colors.default.accent,
+              color: color.accent,
             },
           },
         }}
@@ -134,17 +139,9 @@ export default function SelectKeyItem(props: SelectKeyItemProps) {
       loading={loading}
       noPadding
       sx={{
-        border: `1px solid ${
-          isColor(tempColor || background)
-            ? theme.palette.colors[tempColor || background].border
-            : theme.palette.colors.default.border
-        }`,
+        border: `1px solid ${color.border}`,
         ':hover': {
-          border: `1px solid ${
-            isColor(tempColor || background)
-              ? theme.palette.colors[tempColor || background].border
-              : theme.palette.colors.default.border
-          }`,
+          border: `1px solid ${color.border}`,
         },
       }}
     >
@@ -159,27 +156,26 @@ export default function SelectKeyItem(props: SelectKeyItemProps) {
                 <EmojiAndColorPicker
                   onSelect={(result: any) => {
                     if (result === '') {
-                      setTempEmoji(null);
-                      setTempColor(null);
+                      setTempWalletKeyTheme({} as WalletKeyTheme);
                     } else if (isColor(result)) {
-                      setBackground(result);
+                      setWalletKeyTheme({ ...walletKeyTheme, color: result });
                     } else if (result !== '') {
-                      setEmoji(result);
+                      setWalletKeyTheme({ ...walletKeyTheme, emoji: result });
                     }
                     setShowEmojiPicker(false);
                   }}
                   onClickOutside={() => {
                     setShowEmojiPicker(false);
                   }}
-                  currentColor={background}
-                  currentEmoji={emoji}
+                  currentColor={walletKeyTheme.color}
+                  currentEmoji={walletKeyTheme.emoji}
                   themeColors={theme.palette.colors}
                   isDark={isDark}
                   onSelectTempEmoji={(tEmoji: string) => {
-                    setTempEmoji(tEmoji);
+                    setTempWalletKeyTheme({ ...tempWalletKeyTheme, emoji: tEmoji });
                   }}
                   onSelectTempColor={(tColor: string) => {
-                    setTempColor(tColor);
+                    setTempWalletKeyTheme({ ...tempWalletKeyTheme, color: tColor });
                   }}
                 />
               )}
@@ -188,10 +184,7 @@ export default function SelectKeyItem(props: SelectKeyItemProps) {
               sx={{
                 zIndex: 9,
                 ':hover': {
-                  // backgroundColor: theme.palette.colors[tempColor || background].main,
-                  backgroundColor: isColor(tempColor || background)
-                    ? theme.palette.colors[tempColor || background].main
-                    : theme.palette.colors.default.main,
+                  backgroundColor: color.main,
                 },
                 width: '40px',
                 height: '40px',
@@ -201,7 +194,7 @@ export default function SelectKeyItem(props: SelectKeyItemProps) {
               }}
               onClick={toggleEmojiPicker}
             >
-              {tempEmoji || emoji || `⚪`}
+              {tempWalletKeyTheme.emoji || walletKeyTheme.emoji}
             </Flex>
           </Flex>
           <Flex
@@ -230,14 +223,8 @@ export default function SelectKeyItem(props: SelectKeyItemProps) {
         </Flex>
         <Box
           sx={{
-            backgroundColor: isColor(tempColor || background)
-              ? theme.palette.colors[tempColor || background].main
-              : theme.palette.colors.default.main,
-            borderTop: `1px solid ${
-              isColor(tempColor || background)
-                ? theme.palette.colors[tempColor || background].main
-                : theme.palette.colors.default.main
-            }`,
+            backgroundColor: color.main,
+            borderTop: `1px solid ${color.main}`,
             padding: '5px',
           }}
         >
@@ -262,12 +249,8 @@ export default function SelectKeyItem(props: SelectKeyItemProps) {
                   },
                   svg: {
                     g: {
-                      fill: isColor(tempColor || background)
-                        ? theme.palette.colors[tempColor || background].accent
-                        : theme.palette.colors.default.accent,
-                      stroke: isColor(tempColor || background)
-                        ? theme.palette.colors[tempColor || background].accent
-                        : theme.palette.colors.default.accent,
+                      fill: color.accent,
+                      stroke: color.accent,
                     },
                   },
                 }}
