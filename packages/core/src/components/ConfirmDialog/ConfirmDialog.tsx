@@ -16,6 +16,7 @@ export type ConfirmDialogProps = {
   cancelTitle: ReactNode;
   confirmColor?: ButtonProps['color'] | 'danger';
   onConfirm?: () => Promise<void>;
+  disableConfirmButton?: boolean;
 };
 
 export default function ConfirmDialog(props: ConfirmDialogProps) {
@@ -28,6 +29,7 @@ export default function ConfirmDialog(props: ConfirmDialogProps) {
     confirmTitle = <Trans>OK</Trans>,
     confirmColor = 'default',
     onConfirm,
+    disableConfirmButton,
     ...rest
   } = props;
 
@@ -72,7 +74,13 @@ export default function ConfirmDialog(props: ConfirmDialogProps) {
         <Button onClick={handleCancel} color="secondary" variant="outlined" autoFocus>
           {cancelTitle}
         </Button>
-        <ButtonLoading onClick={handleConfirm} color={confirmColor} variant="contained" loading={loading}>
+        <ButtonLoading
+          onClick={handleConfirm}
+          color={confirmColor}
+          variant="contained"
+          loading={loading}
+          disabled={disableConfirmButton}
+        >
           {confirmTitle}
         </ButtonLoading>
       </DialogActions>

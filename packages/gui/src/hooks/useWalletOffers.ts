@@ -7,6 +7,7 @@ export type OfferTradeRecordFormatted = {
   acceptedAtTime: number;
   createdAtTime: number;
   isMyOffer: boolean;
+  pending: Record<string, number>;
   sent: number;
   coinsOfInterest: OfferCoinOfInterest[];
   tradeId: string;

@@ -12,6 +12,7 @@ import useWalletOffers from '../../hooks/useWalletOffers';
 import offerBuilderDataToOffer from '../../util/offerBuilderDataToOffer';
 import OfferEditorConfirmationDialog from '../offers/OfferEditorConfirmationDialog';
 import OfferBuilder, { emptyDefaultValues } from './OfferBuilder';
+import OfferEditorConflictAlertDialog from './OfferEditorCancelConflictingOffersDialog';
 import OfferNavigationHeader from './OfferNavigationHeader';
 
 type CreateDefaultValuesParams = {
@@ -98,7 +99,32 @@ export default function CreateOfferBuilder(props: CreateOfferBuilderProps) {
 
   const handleSubmit = useCallback(
     async (values: OfferBuilderData) => {
-      const localOffer = await offerBuilderDataToOffer(values, wallets, offers || [], false);
+      const { offersToCancel, ...localOffer } = await offerBuilderDataToOffer(values, wallets, offers || [], false);
+
+      const offersRequiredToBeCanceled = [];
+      const offersBetterToBeCanceled = [];
+      for (let i = 0; i < offersToCancel.length; i++) {
+        const otc = offersToCancel[i];
+        if (otc.status === 'conflictsWithNewOffer') {
+          offersRequiredToBeCanceled.push(otc);
+        } else if (otc.status === 'alsoUsedInNewOfferWithoutConflict') {
+          offersBetterToBeCanceled.push(otc);
+        }
+      }
+
+      if (offersRequiredToBeCanceled.length + offersBetterToBeCanceled.length > 0) {
+        const dialog = (
+          <OfferEditorConflictAlertDialog
+            offersToCancel={offersRequiredToBeCanceled}
+            offersBetterCanceled={offersBetterToBeCanceled}
+          />
+        );
+        const confirmedToProceed = await openDialog(dialog);
+        if (!confirmedToProceed) {
+          return;
+        }
+      }
+
       const confirmedCreation = await openDialog(<OfferEditorConfirmationDialog />);
       if (!confirmedCreation) {
         return;
