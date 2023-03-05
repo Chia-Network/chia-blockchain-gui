@@ -1,7 +1,9 @@
 import { WalletType } from '@chia-network/api';
 import { useGetDIDQuery, useGetWalletsQuery } from '@chia-network/api-react';
 import { CardListItem, Flex, Truncate } from '@chia-network/core';
+import { Add } from '@mui/icons-material';
 import { Box, Card, CardContent, Typography } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 import { orderBy } from 'lodash';
 import React, { useMemo } from 'react';
 import { useNavigate, useParams } from 'react-router';
@@ -10,7 +12,7 @@ import styled from 'styled-components';
 import { didToDIDId } from '../../util/dids';
 
 const StyledRoot = styled(Box)`
-  min-width: 390px;
+  min-width: 300px;
   height: 100%;
   display: flex;
   padding-top: ${({ theme }) => `${theme.spacing(3)}`};
@@ -37,22 +39,6 @@ const StyledContent = styled(Box)`
   min-height: ${({ theme }) => theme.spacing(5)};
 `;
 
-const StyledCard = styled(Card)(
-  ({ theme }) => `
-  width: 100%;
-  border-radius: ${theme.spacing(1)};
-  border: 1px dashed ${theme.palette.divider};
-  background-color: ${theme.palette.background.paper};
-  margin-bottom: ${theme.spacing(1)};
-`
-);
-
-const StyledCardContent = styled(CardContent)(
-  ({ theme }) => `
-  padding-bottom: ${theme.spacing(2)} !important;
-`
-);
-
 function DisplayDid(wallet) {
   const { id } = wallet.wallet;
   const { data: did } = useGetDIDQuery({ walletId: id });
@@ -75,6 +61,7 @@ export default function IdentitiesPanel() {
   const navigate = useNavigate();
   const { walletId } = useParams();
   const { data: wallets, isLoading } = useGetWalletsQuery();
+  const theme = useTheme();
 
   const dids = [];
   if (wallets) {
@@ -92,22 +79,30 @@ export default function IdentitiesPanel() {
     function handleSelectWallet(id: number) {
       navigate(`/dashboard/settings/profiles/${id}`);
     }
-    const didLength = dids.length;
 
-    if (didLength === 0) {
-      return (
-        <StyledCard variant="outlined">
-          <StyledCardContent>
-            <Flex flexDirection="column" height="100%" width="100%">
-              <Typography>No Profiles</Typography>
-            </Flex>
-          </StyledCardContent>
-        </StyledCard>
-      );
+    function handleCreateProfile() {
+      navigate(`/dashboard/settings/profiles/add`);
     }
+
+    const createProfileItem = (
+      <CardListItem
+        variant="outlined"
+        onSelect={handleCreateProfile}
+        key="create-profile"
+        sx={{ border: `1px dashed ${(theme.palette as any).border.main}` }}
+      >
+        <Flex flexDirection="column" height="100%" width="100%" onClick={handleCreateProfile}>
+          <Flex flexDirection="row" justifyContent="space-between">
+            <Typography>Create Profile</Typography>
+            <Add />
+          </Flex>
+        </Flex>
+      </CardListItem>
+    );
+
     const orderedProfiles = orderBy(wallets, ['id'], ['asc']);
 
-    return orderedProfiles
+    const profileItems = orderedProfiles
       .filter((wallet) => [WalletType.DECENTRALIZED_ID].includes(wallet.type))
       .map((wallet) => {
         const primaryTitle = wallet.name;
@@ -131,7 +126,9 @@ export default function IdentitiesPanel() {
           </CardListItem>
         );
       });
-  }, [isLoading, dids.length, wallets, navigate, walletId]);
+
+    return [createProfileItem, ...profileItems];
+  }, [isLoading, wallets, navigate, walletId, theme]);
 
   return (
     <StyledRoot>

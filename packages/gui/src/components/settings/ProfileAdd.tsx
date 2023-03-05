@@ -68,7 +68,7 @@ export default function ProfileAdd() {
   const standardBalance = mojoToChiaLocaleString(balance?.confirmedWalletBalance);
 
   return (
-    <div style={{ width: '70%' }}>
+    <div style={{ width: '100%' }}>
       <Form methods={methods} onSubmit={handleSubmit}>
         <Flex flexDirection="column" gap={2.5} paddingBottom={3}>
           <Typography variant="h6">
