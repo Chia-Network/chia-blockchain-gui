@@ -72,18 +72,18 @@ export const fullNodeApi = apiWithTag.injectEndpoints({
 
     getUnfinishedBlockHeaders: query(build, FullNode, 'getUnfinishedBlockHeaders', {
       transformResponse: (response) => response.headers,
-      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, [
+      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, api, [
         {
           command: 'onBlockchainState',
           service: FullNode,
-          endpoint: () => fullNodeApi.endpoints.getUnfinishedBlockHeaders,
+          endpoint: 'getUnfinishedBlockHeaders',
         },
       ]),
     }),
 
     getBlockchainState: query(build, FullNode, 'getBlockchainState', {
       transformResponse: (response) => response.blockchainState,
-      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, [
+      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, api, [
         {
           command: 'onBlockchainState',
           service: FullNode,
@@ -104,7 +104,7 @@ export const fullNodeApi = apiWithTag.injectEndpoints({
               { type: 'FullNodeConnections', id: 'LIST' },
             ]
           : [{ type: 'FullNodeConnections', id: 'LIST' }],
-      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, [
+      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, api, [
         {
           command: 'onConnections',
           service: FullNode,

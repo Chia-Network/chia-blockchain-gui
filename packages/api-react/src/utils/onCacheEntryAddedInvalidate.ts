@@ -6,7 +6,7 @@ type Invalidate =
   | {
       command: string;
       service: Service;
-      endpoint: () => Object;
+      endpoint: string | (() => Object);
       skip?: (draft: any, data: any, args: any) => boolean;
     }
   | {
@@ -16,9 +16,9 @@ type Invalidate =
       skip?: (draft: any, data: any, args: any) => boolean;
     };
 
-export default function onCacheEntryAddedInvalidate(rtkQuery, invalidates: Invalidate[]) {
-  return async (args: any, api) => {
-    const { cacheDataLoaded, cacheEntryRemoved, updateCachedData, dispatch } = api;
+export default function onCacheEntryAddedInvalidate(rtkQuery, api, invalidates: Invalidate[]) {
+  return async (args: any, mutationApi) => {
+    const { cacheDataLoaded, cacheEntryRemoved, updateCachedData, dispatch } = mutationApi;
     const unsubscribes: Function[] = [];
     try {
       await cacheDataLoaded;
@@ -45,7 +45,17 @@ export default function onCacheEntryAddedInvalidate(rtkQuery, invalidates: Inval
                     }
 
                     if (endpoint) {
+                      if (typeof endpoint === 'string') {
+                        dispatch(
+                          api.endpoints[endpoint].initiate(args, {
+                            subscribe: false,
+                            forceRefetch: true,
+                          })
+                        );
+                      }
+
                       const currentEndpoint = endpoint();
+
                       dispatch(
                         currentEndpoint.initiate(args, {
                           subscribe: false,
@@ -57,7 +67,7 @@ export default function onCacheEntryAddedInvalidate(rtkQuery, invalidates: Inval
                 },
               ],
             },
-            api,
+            mutationApi,
             {}
           );
 
