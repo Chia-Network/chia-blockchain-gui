@@ -15,12 +15,13 @@ import { prepareNFTOfferFromNFTId } from './prepareNFTOffer';
 // A combination of `type` and `assetId` must be unique through an array of `OfferStatus`.
 export type OfferStatus = {
   type: 'XCH' | 'CAT' | 'SINGLETON';
-  assetId?: string;
+  assetId: string;
   assetName?: string; // Used just for labeling
   nftId?: string;
   lockedAmount: BigNumber;
   spendingAmount: BigNumber;
-  shouldCancel: boolean;
+  spendableAmount: BigNumber;
+  confirmedAmount: BigNumber;
   // - alsoUsedInNewOfferWithoutConflict
   //   The same asset is also offered in new offer but the amount is sufficient.
   //   Even existing offers are all settled, new offer won't fail because of lacked coin amount.
@@ -81,12 +82,14 @@ export default async function offerBuilderDataToOffer(
           } else {
             pendingOffers.push({
               type: 'XCH',
+              assetId,
               assetName: 'XCH',
               lockedAmount,
               status: '',
               spendingAmount: new BigNumber(0),
+              spendableAmount: new BigNumber(0),
+              confirmedAmount: new BigNumber(0),
               relevantOffers: [o],
-              shouldCancel: false,
             });
           }
         } else {
@@ -103,8 +106,9 @@ export default async function offerBuilderDataToOffer(
               lockedAmount,
               status: '',
               spendingAmount: new BigNumber(0),
+              spendableAmount: new BigNumber(0),
+              confirmedAmount: new BigNumber(0),
               relevantOffers: [o],
-              shouldCancel: false,
             });
           }
         }
@@ -151,8 +155,11 @@ export default async function offerBuilderDataToOffer(
     }
 
     if (pendingXchOffer) {
-      pendingXchOffer.spendingAmount = mojoAmount; // Assuming offeredXch.length is always `1`
-      const hasEnoughSpendableBalance = spendableBalance.gte(mojoAmount); // Assuming offeredXch.length is always `1`
+      // Assuming offeredXch.length is always `1`
+      pendingXchOffer.spendingAmount = mojoAmount;
+      pendingXchOffer.spendableAmount = spendableBalance;
+      pendingXchOffer.confirmedAmount = new BigNumber(standardWalletBalance.confirmedWalletBalance);
+      const hasEnoughSpendableBalance = spendableBalance.gte(mojoAmount);
       if (!hasEnoughSpendableBalance) {
         pendingXchOffer.status = 'conflictsWithNewOffer';
       } else {
@@ -193,7 +200,10 @@ export default async function offerBuilderDataToOffer(
     }
 
     if (pendingCatOffer) {
-      pendingCatOffer.spendingAmount = mojoAmount; // Assuming no duplicate of `assetId` exists in `offeredTokens`
+      // Assuming no duplicate of `assetId` exists in `offeredTokens`
+      pendingCatOffer.spendingAmount = mojoAmount;
+      pendingCatOffer.spendableAmount = spendableBalance;
+      pendingCatOffer.confirmedAmount = new BigNumber(walletBalance.confirmedWalletBalance);
       pendingCatOffer.assetName = catName;
       const hasEnoughSpendableBalance = spendableBalance.gte(mojoAmount);
       if (!hasEnoughSpendableBalance) {
