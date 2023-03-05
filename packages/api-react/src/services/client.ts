@@ -1,34 +1,16 @@
-import Client, { ConnectionState, ServiceNameValue } from '@chia-network/api';
+import Client from '@chia-network/api';
 
-import MethodFirstParameter from '../@types/MethodFirstParameter';
-import MethodReturnType from '../@types/MethodReturnType';
 import api, { baseQuery } from '../api';
+import { query, mutation } from '../utils/reduxToolkitEndpointAbstractions';
 
 const apiWithTag = api.enhanceEndpoints({ addTagTypes: [] });
 
 export const clientApi = apiWithTag.injectEndpoints({
   endpoints: (build) => ({
-    close: build.mutation<MethodReturnType<typeof Client, 'close'>, MethodFirstParameter<typeof Client, 'close'>>({
-      query: (args) => ({
-        command: 'close',
-        client: true,
-        args: [args],
-      }),
-    }),
+    close: mutation(build, Client, 'close'),
 
-    getState: build.query<
-      {
-        state: ConnectionState;
-        attempt: number;
-        serviceName?: ServiceNameValue;
-      },
-      undefined
-    >({
-      query: () => ({
-        command: 'getState',
-        client: true,
-      }),
-      async onCacheEntryAdded(_arg, apiLocal) {
+    getState: query(build, Client, 'getState', {
+      onCacheEntryAdded: async (_arg, apiLocal) => {
         const { updateCachedData, cacheDataLoaded, cacheEntryRemoved } = apiLocal;
         let unsubscribe;
         try {
@@ -62,19 +44,7 @@ export const clientApi = apiWithTag.injectEndpoints({
       },
     }),
 
-    clientStartService: build.mutation<
-      boolean,
-      {
-        service?: ServiceNameValue;
-        disableWait?: boolean;
-      }
-    >({
-      query: ({ service, disableWait }) => ({
-        command: 'startService',
-        args: [service, disableWait],
-        client: true,
-      }),
-    }),
+    clientStartService: mutation(build, Client, 'startService'),
   }),
 });
 
