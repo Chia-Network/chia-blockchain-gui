@@ -1,4 +1,6 @@
-import type { Service } from '@chia-network/api';
+import { Daemon, Farmer, FullNode, PlotterService, WalletService } from '@chia-network/api';
+
+type Service = typeof Daemon | typeof Farmer | typeof FullNode | typeof PlotterService | typeof WalletService;
 
 type Invalidate =
   | {
