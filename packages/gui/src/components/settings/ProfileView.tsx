@@ -81,7 +81,7 @@ export default function ProfileView() {
 
     return (
       <div style={{ width: '100%' }}>
-        <StyledCard>
+        <StyledCard sx={{ marginTop: '-16px' }}>
           <Flex flexDirection="column" gap={2.5} paddingBottom={3}>
             <InlineEdit text={nameText} walletId={walletId} />
           </Flex>

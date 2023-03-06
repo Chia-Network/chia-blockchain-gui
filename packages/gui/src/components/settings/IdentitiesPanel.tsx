@@ -1,8 +1,9 @@
 import { WalletType } from '@chia-network/api';
 import { useGetDIDQuery, useGetWalletsQuery } from '@chia-network/api-react';
 import { CardListItem, Flex, Truncate } from '@chia-network/core';
+import { Trans } from '@lingui/macro';
 import { Add } from '@mui/icons-material';
-import { Box, Card, CardContent, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import { orderBy } from 'lodash';
 import React, { useMemo } from 'react';
@@ -12,10 +13,10 @@ import styled from 'styled-components';
 import { didToDIDId } from '../../util/dids';
 
 const StyledRoot = styled(Box)`
-  min-width: 300px;
+  min-width: 280px;
   height: 100%;
   display: flex;
-  padding-top: ${({ theme }) => `${theme.spacing(3)}`};
+  padding-top: ${({ theme }) => `${theme.spacing(1)}`};
 `;
 
 const StyledBody = styled(Box)`
@@ -48,7 +49,7 @@ function DisplayDid(wallet) {
 
     return (
       <div>
-        <Truncate tooltip copyToClipboard>
+        <Truncate ValueProps={{ variant: 'body2' }} tooltip copyToClipboard>
           {myDidText}
         </Truncate>
       </div>
@@ -93,7 +94,9 @@ export default function IdentitiesPanel() {
       >
         <Flex flexDirection="column" height="100%" width="100%" onClick={handleCreateProfile}>
           <Flex flexDirection="row" justifyContent="space-between">
-            <Typography>Create Profile</Typography>
+            <Typography>
+              <Trans>Create Profile</Trans>
+            </Typography>
             <Add />
           </Flex>
         </Flex>
@@ -115,8 +118,8 @@ export default function IdentitiesPanel() {
           <CardListItem onSelect={handleSelect} key={wallet.id} selected={wallet.id === Number(walletId)}>
             <Flex gap={0.5} flexDirection="column" height="100%" width="100%">
               <Flex>
-                <Typography>
-                  <strong>{primaryTitle}</strong>
+                <Typography variant="body1" sx={{ fontWeight: 500, textOverflow: 'ellipsis', overflow: 'hidden' }}>
+                  {primaryTitle}
                 </Typography>
               </Flex>
               <Flex>
