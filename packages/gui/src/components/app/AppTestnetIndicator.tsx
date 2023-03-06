@@ -1,4 +1,4 @@
-import { AlertDialog, Flex, Tooltip, useCurrencyCode, useDarkMode, useOpenDialog } from '@chia-network/core';
+import { AlertDialog, Flex, Tooltip, useCurrencyCode, useOpenDialog } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Button, Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
@@ -7,8 +7,7 @@ import React, { useState } from 'react';
 export default function AppTestnetIndicator() {
   const isTestnet = useCurrencyCode() === 'TXCH';
   const theme = useTheme();
-  const { isDarkMode } = useDarkMode();
-  const borderColor = (theme.palette as any).border[isDarkMode ? 'dark' : 'main'];
+  const borderColor = (theme.palette as any).colors.blue.border;
   const [clickCount, setClickCount] = useState(0);
   const openDialog = useOpenDialog();
 
@@ -45,24 +44,24 @@ export default function AppTestnetIndicator() {
   }
 
   return isTestnet ? (
-    <Tooltip title={<Trans>Sorry, you can't switch to mainnet by clicking...</Trans>}>
+    <Tooltip title={<Trans>Sorry, you can't switch to mainnet by clicking here...</Trans>}>
       <Button
         variant="outlined"
-        color="secondary"
+        color="primary"
         size="small"
         onClick={handleTestnetClick}
         sx={{
           ...BorderStyle,
-          backgroundColor: theme.palette.primary.main,
-          '&:hover': { backgroundColor: theme.palette.primary.main, border: `1px solid ${borderColor}` },
+          backgroundColor: theme.palette.background.default,
+          '&:hover': { backgroundColor: theme.palette.background.default, border: `1px solid ${borderColor}` },
         }}
         disableRipple
       >
         <Flex gap={1} alignItems="center">
           <Typography
             variant="body2"
-            color={theme.palette.primary.contrastText}
-            sx={{ fontWeight: 500, textTransform: 'uppercase' }}
+            color={theme.palette.mode === 'dark' ? borderColor : theme.palette.secondary.main}
+            sx={{ fontSize: '13px', fontWeight: 500, marginTop: '3px', textTransform: 'uppercase' }}
           >
             Testnet
           </Typography>
