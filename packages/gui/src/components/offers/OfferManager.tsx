@@ -47,12 +47,15 @@ import useAssetIdName from '../../hooks/useAssetIdName';
 import useSaveOfferFile from '../../hooks/useSaveOfferFile';
 import useWalletOffers from '../../hooks/useWalletOffers';
 import resolveOfferInfo from '../../util/resolveOfferInfo';
+import NotificationNFTTitle from '../notification/NotificationNFTTitle';
+import NotificationPreviewNFT from '../notification/NotificationPreviewNFT';
 import CreateOfferBuilder from '../offers2/CreateOfferBuilder';
 import OfferBuilderImport from '../offers2/OfferBuilderImport';
 import OfferBuilderViewer from '../offers2/OfferBuilderViewer';
 import OfferIncomingTable from '../offers2/OfferIncomingTable';
 import { CreateNFTOfferEditor } from './NFTOfferEditor';
 import NFTOfferViewer from './NFTOfferViewer';
+import OfferAsset from './OfferAsset';
 import OfferDataDialog from './OfferDataDialog';
 import { CreateOfferEditor } from './OfferEditor';
 import { OfferImport } from './OfferImport';
@@ -170,6 +173,30 @@ export function ConfirmOfferCancellation(props: ConfirmOfferCancellationProps) {
   );
 }
 
+function OfferSectionSummaryRow({ displayAmount, displayName, assetType, showNFTs = false }) {
+  return (
+    <Flex gap={1} alignItems="center">
+      {showNFTs && assetType === OfferAsset.NFT ? (
+        <div style={{ width: '40px' }}>
+          <NotificationPreviewNFT nftId={displayName} size={40} />
+        </div>
+      ) : null}
+      <Flex flexDirection="row" gap={0.5} key={`${displayAmount}-${displayName}`}>
+        {assetType === OfferAsset.NFT ? (
+          <NotificationNFTTitle nftId={displayName} />
+        ) : (
+          <Flex flexDirection="row" gap={0.5}>
+            <Typography variant="body2">{(displayAmount as any).toString()}</Typography>
+            <Typography noWrap variant="body2">
+              {displayName}
+            </Typography>
+          </Flex>
+        )}
+      </Flex>
+    </Flex>
+  );
+}
+
 type OfferListProps = {
   title: string | React.ReactElement;
   includeMyOffers: boolean;
@@ -254,12 +281,7 @@ function OfferList(props: OfferListProps) {
         field: (row: OfferTradeRecord) => {
           const resolvedOfferInfo = resolveOfferInfo(row.summary, 'offered', lookupByAssetId);
           return resolvedOfferInfo.map((info) => (
-            <Flex flexDirection="row" gap={0.5} key={`${info.displayAmount}-${info.displayName}`}>
-              <Typography variant="body2">{(info.displayAmount as any).toString()}</Typography>
-              <Typography noWrap variant="body2">
-                {info.displayName}
-              </Typography>
-            </Flex>
+            <OfferSectionSummaryRow {...info} showNFTs={resolvedOfferInfo.length === 1} />
           ));
         },
         minWidth: '160px',
@@ -269,12 +291,7 @@ function OfferList(props: OfferListProps) {
         field: (row: OfferTradeRecord) => {
           const resolvedOfferInfo = resolveOfferInfo(row.summary, 'requested', lookupByAssetId);
           return resolvedOfferInfo.map((info) => (
-            <Flex flexDirection="row" gap={0.5} key={`${info.displayAmount}-${info.displayName}`}>
-              <Typography variant="body2">{(info.displayAmount as any).toString()}</Typography>
-              <Typography noWrap variant="body2">
-                {info.displayName}
-              </Typography>
-            </Flex>
+            <OfferSectionSummaryRow {...info} showNFTs={resolvedOfferInfo.length === 1} />
           ));
         },
         minWidth: '160px',
