@@ -228,7 +228,7 @@ export default function EstimatedFee(props: FeeProps) {
     const estimateList = ests?.estimates ?? [0, 0, 0];
     const defaultValues = [6_000_000, 5_000_000, 0];
     const allZeroes = estimateList.filter((value: number) => value !== 0).length === 0;
-    const estList = allZeroes // updates estimate to include a 0 fee entry if not already present
+    const estList = allZeroes // update estimate list to include a 0 fee entry if not already present
       ? defaultValues.some((val) => val === 0)
         ? defaultValues
         : defaultValues.concat([0])
