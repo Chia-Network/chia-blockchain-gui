@@ -93,7 +93,7 @@ function Select(props: SelectProps) {
               <Box sx={{ flexGrow: 1 }}>
                 {selectedValue} {displayedTime}
               </Box>
-              <Box sx={{ position: 'relative', top: '-8px', color: 'warning' }}>
+              <Box sx={{ position: 'relative', top: '-8px' }}>
                 <Typography color="textSecondary">{currencyCode}</Typography>
               </Box>
             </Box>
