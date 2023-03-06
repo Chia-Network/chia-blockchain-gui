@@ -1,9 +1,8 @@
 import { WalletType } from '@chia-network/api';
 import { useGetWalletsQuery } from '@chia-network/api-react';
-import { Flex, LayoutDashboardSub } from '@chia-network/core';
+import { Flex, LayoutDashboardSub, SettingsHR, SettingsSection, SettingsText } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
-import { Add } from '@mui/icons-material';
-import { IconButton, Typography } from '@mui/material';
+import { Grid } from '@mui/material';
 import React, { useEffect, useMemo, useState } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 
@@ -43,30 +42,35 @@ export default function SettingsProfiles() {
     }
   }, [isLoading, profileStartDisplay, didList, navigate]);
 
-  function navAdd() {
-    navigate(`/dashboard/settings/profiles/add`);
-  }
-
   return (
-    <div>
-      <Flex flexDirection="row" style={{ width: '350px' }}>
-        <Flex flexGrow={1}>
-          <Typography variant="h4">
-            <Trans>Profiles</Trans>
-          </Typography>
+    <Grid container style={{ maxWidth: '624px' }} gap={3}>
+      <Grid item>
+        <Flex flexDirection="column" gap={1}>
+          <SettingsSection>
+            <Trans>Profiles (DIDs)</Trans>
+          </SettingsSection>
+          <SettingsText>
+            <Trans>
+              A profile is a decentralized identifier (DID) that you can prove control and ownership of without having
+              to rely on any centralized authority. You can have as many DIDs as you want that can be used to represent
+              different aspects of your identity like establishing provenance of creation or ownership for NFTs.
+            </Trans>
+          </SettingsText>
         </Flex>
-        <Flex alignSelf="end">
-          <IconButton onClick={navAdd}>
-            <Add />
-          </IconButton>
-        </Flex>
-      </Flex>
-      <Routes>
-        <Route element={<LayoutDashboardSub sidebar={<IdentitiesPanel />} outlet />}>
-          <Route path=":walletId" element={<ProfileView />} />
-          <Route path="add" element={<ProfileAdd />} />
-        </Route>
-      </Routes>
-    </div>
+      </Grid>
+
+      <Grid item xs={12} sm={12} lg={12}>
+        <SettingsHR />
+      </Grid>
+
+      <Grid item xs={12} sm={12} lg={12}>
+        <Routes>
+          <Route element={<LayoutDashboardSub sidebar={<IdentitiesPanel />} outlet />}>
+            <Route path=":walletId" element={<ProfileView />} />
+            <Route path="add" element={<ProfileAdd />} />
+          </Route>
+        </Routes>
+      </Grid>
+    </Grid>
   );
 }
