@@ -49,6 +49,37 @@ export default function AppStatusHeader() {
       border: `1px solid ${borderColor}`,
     },
     whiteSpace: 'nowrap',
+    '.cancel-icon': {
+      g: {
+        circle: {
+          stroke: '#D32F2F',
+          fill: '#D32F2F',
+        },
+      },
+    },
+    '.checkmark-icon': {
+      g: {
+        circle: {
+          stroke: '#3AAC59',
+          fill: '#3AAC59',
+        },
+        path: {
+          stroke: '#3AAC59',
+          fill: '#3AAC59',
+        },
+      },
+    },
+    '.reload-icon': {
+      g: {
+        circle: {
+          stroke: '#FF9800',
+          fill: '#FF9800',
+        },
+        path: {
+          fill: '#FF9800',
+        },
+      },
+    },
   };
 
   const [mode] = useMode();
