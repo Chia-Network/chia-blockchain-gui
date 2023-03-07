@@ -60,6 +60,7 @@ function OfferBuilder(props: OfferBuilderProps, ref: any) {
         formRef.current.dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }));
       }
     },
+    getValues: () => methods.getValues(),
   }));
 
   const offerColumn = (

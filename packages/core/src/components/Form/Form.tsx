@@ -1,7 +1,10 @@
+import { styled } from '@mui/material/styles';
 import React, { forwardRef, ReactNode, useState } from 'react';
 import { UseFormMethods, FormProvider, SubmitHandler } from 'react-hook-form';
 
 import useShowError from '../../hooks/useShowError';
+
+const StyledForm = styled('form')``;
 
 function Form<T>(
   props: {
@@ -33,7 +36,7 @@ function Form<T>(
 
   return (
     <FormProvider {...methods}>
-      <form onSubmit={handleSubmit(processSubmit)} {...rest} ref={ref} />
+      <StyledForm onSubmit={handleSubmit(processSubmit)} {...rest} ref={ref} />
     </FormProvider>
   );
 }

@@ -5,12 +5,19 @@ import type OfferBuilderData from '../@types/OfferBuilderData';
 import type OfferSummary from '../@types/OfferSummary';
 import { launcherIdToNFTId } from './nfts';
 
-export default function offerToOfferBuilderData(offerSummary: OfferSummary): OfferBuilderData {
+export default function offerToOfferBuilderData(
+  offerSummary: OfferSummary,
+  setDefaultOfferedFee: boolean,
+  defaultFee: string // in mojos
+): OfferBuilderData {
   const { fees, offered, requested, infos } = offerSummary;
+
+  const defaultFeeXCH = defaultFee ? mojoToChia(defaultFee).toFixed() : '';
 
   const offeredXch: OfferBuilderData['offered']['xch'] = [];
   const offeredTokens: OfferBuilderData['offered']['tokens'] = [];
   const offeredNfts: OfferBuilderData['offered']['nfts'] = [];
+  const offeredFee: OfferBuilderData['offered']['fee'] = setDefaultOfferedFee ? [{ amount: defaultFeeXCH }] : [];
   const requestedXch: OfferBuilderData['requested']['xch'] = [];
   const requestedTokens: OfferBuilderData['requested']['tokens'] = [];
   const requestedNfts: OfferBuilderData['requested']['nfts'] = [];
@@ -62,7 +69,7 @@ export default function offerToOfferBuilderData(offerSummary: OfferSummary): Off
       xch: offeredXch,
       tokens: offeredTokens,
       nfts: offeredNfts,
-      fee: [],
+      fee: offeredFee,
     },
     requested: {
       xch: requestedXch,

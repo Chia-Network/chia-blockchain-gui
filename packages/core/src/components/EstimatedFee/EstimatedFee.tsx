@@ -10,7 +10,7 @@ import {
   Typography,
 } from '@mui/material';
 import React, { useCallback, useState, useEffect, useMemo } from 'react';
-import { Controller, useFormContext } from 'react-hook-form';
+import { Controller, useFormContext, useWatch } from 'react-hook-form';
 
 import useCurrencyCode from '../../hooks/useCurrencyCode';
 import useLocale from '../../hooks/useLocale';
@@ -179,7 +179,10 @@ export default function EstimatedFee(props: FeeProps) {
   );
   const { data: ests, isLoading, isSuccess, requestId: feeEstimateRequestId, startedTimeStamp } = result;
 
-  const [inputType, setInputType] = React.useState('dropdown');
+  const currentValue = useWatch({ name, defaultValue: '' });
+  const isCustom = currentValue !== '';
+
+  const [inputType, setInputType] = React.useState(isCustom ? 'custom' : 'dropdown');
   const [selectedValue, setSelectedValue] = React.useState('');
   const [selectedTime, setSelectedTime] = React.useState(0);
   const [selectOpen, setSelectOpen] = React.useState(false);

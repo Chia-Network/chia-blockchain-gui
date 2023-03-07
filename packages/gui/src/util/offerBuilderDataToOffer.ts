@@ -107,7 +107,16 @@ export default async function offerBuilderDataToOffer(
   // requested
   requestedXch.forEach((xch) => {
     const { amount } = xch;
-    if (!amount || amount === '0') {
+
+    // For one-sided offers where nothing is requested, we allow the amount to be '0'
+    // and skip adding an entry to the walletIdsAndAmounts object.
+    //
+    // If the amount is blank '', we prompt the user to enter an amount.
+    if (amount === '0') {
+      return;
+    }
+
+    if (!amount) {
       throw new Error(t`Please enter an XCH amount`);
     }
 

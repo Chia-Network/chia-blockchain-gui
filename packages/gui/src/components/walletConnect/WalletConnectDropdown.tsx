@@ -1,5 +1,6 @@
-import { DropdownBase, useDarkMode } from '@chia-network/core';
+import { DropdownBase, useDarkMode, Tooltip } from '@chia-network/core';
 import { WalletConnect } from '@chia-network/icons';
+import { Trans } from '@lingui/macro';
 import { Box, Button } from '@mui/material';
 import React from 'react';
 
@@ -24,9 +25,11 @@ export default function WalletConnectDropdown() {
   return (
     <DropdownBase>
       {({ onClose, onToggle }: { onClose: () => void; onToggle: () => void }) => [
-        <Button key="button" onClick={onToggle} variant="text" size="small" sx={ButtonStyle}>
-          <WalletConnect color={color} />
-        </Button>,
+        <Tooltip title={<Trans>WalletConnect</Trans>}>
+          <Button key="button" onClick={onToggle} variant="text" size="small" sx={ButtonStyle}>
+            <WalletConnect color={color} />
+          </Button>
+        </Tooltip>,
         <Box sx={{ minWidth: 360 }}>
           <WalletConnectConnections onClose={onClose} />
         </Box>,

@@ -1,7 +1,7 @@
 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g clip-path="url(#clip0_2009_67148)">
-<circle cx="8" cy="8" r="7" fill="#3AAC59" fill-opacity="0.2" stroke="#3AAC59" stroke-width="1.5"/>
-<path fill-rule="evenodd" clip-rule="evenodd" d="M10.8 5.60003C11.0209 5.76571 11.0657 6.07912 10.9 6.30003L7.90003 10.3C7.73434 10.5209 7.42094 10.5657 7.20003 10.4L5.20003 8.90003C4.97912 8.73434 4.93434 8.42094 5.10003 8.20003C5.26571 7.97912 5.57912 7.93434 5.80003 8.10003L7.40003 9.30003L10.1 5.70003C10.2657 5.47912 10.5791 5.43434 10.8 5.60003Z" fill="#3AAC59" stroke="#3AAC59" stroke-width="0.5"/>
+<circle cx="8" cy="8" r="7" fill="transparent" fill-opacity="0.2" stroke="transparent" stroke-width="1.5"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M10.8 5.60003C11.0209 5.76571 11.0657 6.07912 10.9 6.30003L7.90003 10.3C7.73434 10.5209 7.42094 10.5657 7.20003 10.4L5.20003 8.90003C4.97912 8.73434 4.93434 8.42094 5.10003 8.20003C5.26571 7.97912 5.57912 7.93434 5.80003 8.10003L7.40003 9.30003L10.1 5.70003C10.2657 5.47912 10.5791 5.43434 10.8 5.60003Z" fill="transparent" stroke="transparent" stroke-width="0.5"/>
 </g>
 <defs>
 <clipPath id="clip0_2009_67148">

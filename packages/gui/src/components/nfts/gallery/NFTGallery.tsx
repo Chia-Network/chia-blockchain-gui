@@ -1,8 +1,8 @@
 import type { NFTInfo } from '@chia-network/api';
 import { useLocalStorage } from '@chia-network/api-react';
-import { Flex, LayoutDashboardSub, Loading, /* useTrans, */ useDarkMode } from '@chia-network/core';
+import { Flex, LayoutDashboardSub, Loading, /* useTrans, */ useDarkMode, Tooltip } from '@chia-network/core';
 import { t, Trans } from '@lingui/macro';
-import { FormControlLabel, RadioGroup, FormControl, Checkbox, Grid, Button, Fade } from '@mui/material';
+import { FormControlLabel, RadioGroup, FormControl, Checkbox, Grid, Button, Fade, Box } from '@mui/material';
 import React, { useEffect, useState, useCallback, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
@@ -126,6 +126,8 @@ const Filters = styled.div`
 
 const FilterIconStyled = styled(FilterIcon)<{ active: boolean; onMouseDown: any }>`
   cursor: pointer;
+  position: relative;
+  top: 2px;
   path {
     stroke: ${(props) => (props.active ? props.theme.palette.primary.main : '')};
   }
@@ -133,6 +135,8 @@ const FilterIconStyled = styled(FilterIcon)<{ active: boolean; onMouseDown: any 
 
 const MultiSelectIconStyled = styled(MultiSelectIcon)<{ isDarkMode: boolean }>`
   cursor: pointer;
+  position: relative;
+  top: 3px;
   path {
     stroke: ${(props) => (props.isDarkMode ? props.theme.palette.common.white : props.theme.palette.text.secondary)};
   }
@@ -187,11 +191,11 @@ export default function NFTGallery() {
   const [nfts, setNfts] = useState<NFTInfo[]>([]);
   const [hideObjectionableContent] = useHideObjectionableContent();
   const { isSyncingCache } = useSyncCache();
-  const { allowNFTsFiltered, isDoneLoadingAllowedNFTs } = useAllowFilteredShow(
-    filteredNFTs,
-    hideObjectionableContent,
-    isLoading || isSyncingCache
-  );
+  const {
+    allowNFTsFiltered,
+    isDoneLoadingAllowedNFTs,
+    isLoading: isLoadingAllowedNFTs,
+  } = useAllowFilteredShow(filteredNFTs, hideObjectionableContent, isLoading || isSyncingCache);
 
   const [filtersShown, setFiltersShown] = useState<string[]>([]);
   const typesFilterRef = React.useRef<HTMLInputElement>(null);
@@ -208,14 +212,14 @@ export default function NFTGallery() {
       allowNFTsFiltered.forEach((nft) => {
         allowNFTsFilteredObject[nft.$nftId] = nft;
       });
-      allowNFTsFilteredNftIds = allowNFTsFiltered.map((nft) => nft.nftId);
+      allowNFTsFilteredNftIds = allowNFTsFiltered.map((nft) => nft.$nftId);
       setNfts(
         allowNFTsFiltered.length > maxNFTsPerPage
           ? allowNFTsFiltered.filter((_: any, idx: number) => idx < maxNFTsPerPage)
           : allowNFTsFiltered
       );
     }
-  }, [allowNFTsFiltered]);
+  }, [allowNFTsFiltered, allowNFTsFiltered.length]);
 
   const applyTypeFilter = React.useCallback(
     (nft: NFTInfo) => {
@@ -378,7 +382,7 @@ export default function NFTGallery() {
 
   const [selectedNFTIds, setSelectedNFTIds] = useLocalStorage('gallery-selected-nfts', []);
 
-  if (isLoading) {
+  if (isLoading || isLoadingAllowedNFTs) {
     return (
       <LoadingWrapper>
         <Loading center />
@@ -478,12 +482,19 @@ export default function NFTGallery() {
     e.stopPropagation();
   }
 
+  function forceScrollAwayFromTopOrBottom(e: any, currentScrollTop: number, direction: number) {
+    setTimeout(() => {
+      e.target.scrollTo(0, currentScrollTop - direction * 380);
+    }, 0);
+  }
+
   return (
     <LayoutDashboardSub
       // sidebar={<NFTGallerySidebar onWalletChange={setWalletId} />}
       onScroll={(e: MouseEvent) => {
         setScrollPosition((e.target as HTMLElement).scrollTop);
-        if (allowNFTsFiltered.filter((nft: NFTInfo) => showCard(nft)).length > maxNFTsPerPage) {
+        const nftCount = allowNFTsFiltered.filter((nft: NFTInfo) => showCard(nft)).length;
+        if (nftCount > maxNFTsPerPage) {
           const offset = window.document.body.offsetWidth;
           const perRowCount =
             offset > 1535 ? 4 : offset > 899 ? 3 : offset > 599 ? 2 : 1; /* number of NFTs in one row */
@@ -493,17 +504,20 @@ export default function NFTGallery() {
               (e.target as HTMLElement).scrollTop -
               (e.target as HTMLElement).offsetHeight -
               767 <
-            0
+              0 &&
+            visibleIndex + maxNFTsPerPage < nftCount
           ) {
             visibleIndex += perRowCount;
+            forceScrollAwayFromTopOrBottom(e, (e.target as HTMLElement).scrollTop, 1);
           } else if ((e.target as HTMLElement).scrollTop < 360 && visibleIndex - perRowCount >= 0) {
             visibleIndex -= perRowCount;
+            forceScrollAwayFromTopOrBottom(e, (e.target as HTMLElement).scrollTop, -1);
           }
           if (oldVisibleIndex !== visibleIndex) {
             setNfts(
               allowNFTsFiltered
                 .filter((nft: NFTInfo) => showCard(nft))
-                .filter((_: any, idx: number) => idx >= visibleIndex && idx <= maxNFTsPerPage + visibleIndex)
+                .filter((_: any, idx: number) => idx >= visibleIndex && idx < maxNFTsPerPage + visibleIndex)
             );
           }
         }
@@ -515,11 +529,19 @@ export default function NFTGallery() {
             <Flex alignItems="stretch" justifyContent="space-between">
               <Search onUpdate={setSearch} placeholder={t`Search...`} defaultValue={search || undefined} />
               <MultiSelectAndFilterWrapper className={inMultipleSelectionMode ? 'active' : ''} isDarkMode={isDarkMode}>
-                <MultiSelectIconStyled
-                  onClick={() => toggleMultipleSelection(!inMultipleSelectionMode)}
-                  isDarkMode={isDarkMode}
-                />
-                <FilterIconStyled onMouseDown={toggleShowFilters} active={filtersShown.length > 0} />
+                <Tooltip title={<Trans>Multi-select</Trans>}>
+                  <Box>
+                    <MultiSelectIconStyled
+                      onClick={() => toggleMultipleSelection(!inMultipleSelectionMode)}
+                      isDarkMode={isDarkMode}
+                    />
+                  </Box>
+                </Tooltip>
+                <Tooltip title={<Trans>Filter</Trans>}>
+                  <Box>
+                    <FilterIconStyled onMouseDown={toggleShowFilters} active={filtersShown.length > 0} />
+                  </Box>
+                </Tooltip>
               </MultiSelectAndFilterWrapper>
             </Flex>
           </Flex>
@@ -590,7 +612,7 @@ export default function NFTGallery() {
       }
     >
       <div id="scroll-helper" />
-      {!nfts?.length && !isLoading && !isSyncingCache ? (
+      {!nfts?.length && !isLoading && !isLoadingAllowedNFTs && !isSyncingCache ? (
         <NFTGalleryHero />
       ) : (
         <>

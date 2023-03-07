@@ -16,3 +16,4 @@ export { default as useShowError } from './useShowError';
 export { default as useSkipMigration } from './useSkipMigration';
 export { default as useTrans } from './useTrans';
 export { default as useValidateChangePassphraseParams } from './useValidateChangePassphraseParams';
+export { default as useWalletThemeColor } from './useWalletThemeColor';

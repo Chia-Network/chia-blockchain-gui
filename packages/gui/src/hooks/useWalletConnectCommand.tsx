@@ -1,16 +1,11 @@
-import api, {
-  store,
-  useGetLoggedInFingerprintQuery,
-  useLogInAndSkipImportMutation,
-  useGetKeysQuery,
-} from '@chia-network/api-react';
-import { useOpenDialog, ConfirmDialog, Flex } from '@chia-network/core';
+import api, { store, useGetLoggedInFingerprintQuery, useLogInAndSkipImportMutation } from '@chia-network/api-react';
+import { useOpenDialog } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
-import { Divider, Typography } from '@mui/material';
 import debug from 'debug';
 import React, { ReactNode } from 'react';
 
-import WalletConnectMetadata from '../components/walletConnect/WalletConnectMetadata';
+import type WalletConnectCommandParam from '../@types/WalletConnectCommandParam';
+import WalletConnectConfirmDialog from '../components/walletConnect/WalletConnectConfirmDialog';
 import walletConnectCommands from '../constants/WalletConnectCommands';
 import prepareWalletConnectCommand from '../util/prepareWalletConnectCommand';
 import waitForWalletSync from '../util/waitForWalletSync';
@@ -35,98 +30,67 @@ export default function useWalletConnectCommand() {
   const [logIn] = useLogInAndSkipImportMutation();
   const { data: currentFingerprint, isLoading: isLoadingLoggedInFingerprint } = useGetLoggedInFingerprintQuery();
   const { getPairBySession } = useWalletConnectPairs();
-  const { data: keys, isLoading: isLoadingPublicKeys } = useGetKeysQuery();
+
   const { allowConfirmationFingerprintChange } = useWalletConnectPreferences();
 
-  const isLoading = isLoadingLoggedInFingerprint || isLoadingPublicKeys;
+  const isLoading = isLoadingLoggedInFingerprint;
 
   async function confirm(props: {
     topic: string;
     message: ReactNode;
-    params: {
-      label: ReactNode;
-      value: ReactNode;
-      displayComponent?: (value: ReactNode) => ReactNode;
-    }[];
+    params: WalletConnectCommandParam[];
+    values: Record<string, any>;
     fingerprint: number;
     isDifferentFingerprint: boolean;
+    command: string;
+    bypassConfirm?: boolean;
+    onChange: (values: Record<string, any>) => void;
   }) {
-    const { topic, message, params = [], fingerprint, isDifferentFingerprint } = props;
-
-    /*
-    const { autoConfirm } = state.current;
-    if (autoConfirm) {
-      return true;
-    }
-    */
-
-    const key = keys?.find((item) => item.fingerprint === fingerprint);
+    const {
+      topic,
+      message,
+      params = [],
+      values,
+      fingerprint,
+      isDifferentFingerprint,
+      command,
+      bypassConfirm = false,
+      onChange,
+    } = props;
 
     const pair = getPairBySession(topic);
     if (!pair) {
       throw new Error('Invalid session topic');
     }
 
+    if (pair.bypassCommands && command in pair.bypassCommands) {
+      log(`bypassing command ${command} with value ${pair.bypassCommands[command]}`);
+      return pair.bypassCommands[command];
+    }
+
     const isConfirmed = await openDialog(
-      <ConfirmDialog
-        title={<Trans>Confirmation Request</Trans>}
-        confirmColor="primary"
-        confirmTitle={<Trans>Confirm</Trans>}
-        cancelTitle={<Trans>Reject</Trans>}
-      >
-        <Flex flexDirection="column" gap={2}>
-          <Typography variant="body1">{message}</Typography>
-
-          {params.length > 0 && (
-            <Flex flexDirection="column" gap={2}>
-              {params.map(({ label, value, displayComponent }) => (
-                <Flex flexDirection="column" key={label}>
-                  <Typography color="textPrimary">{label}</Typography>
-                  <Typography color="textSecondary">
-                    {displayComponent ? displayComponent(value) : value?.toString() ?? <Trans>Not Available</Trans>}
-                  </Typography>
-                </Flex>
-              ))}
-            </Flex>
-          )}
-
-          <Divider />
-          <Flex flexDirection="column" gap={1}>
-            <Typography variant="body1" color="textPrimary">
-              <Trans>Key</Trans>
-            </Typography>
-            {!!key && (
-              <Typography variant="body1" color={isDifferentFingerprint ? 'warning' : 'textSecondary'}>
-                {key.label ?? <Trans>Wallet</Trans>}
-              </Typography>
-            )}
-
-            <Typography variant="body2" color={isDifferentFingerprint ? 'warning' : 'textSecondary'}>
-              {fingerprint}
-            </Typography>
-          </Flex>
-
-          <Divider />
-
-          <Flex flexDirection="column" gap={1}>
-            <Typography variant="body1" color="textPrimary">
-              <Trans>Application</Trans>
-            </Typography>
-            <WalletConnectMetadata metadata={pair.metadata} />
-          </Flex>
-        </Flex>
-      </ConfirmDialog>
+      <WalletConnectConfirmDialog
+        topic={topic}
+        command={command}
+        message={message}
+        fingerprint={fingerprint}
+        isDifferentFingerprint={isDifferentFingerprint}
+        bypassConfirm={bypassConfirm}
+        params={params}
+        values={values}
+        onChange={onChange}
+      />
     );
 
     return isConfirmed;
   }
 
   async function handleProcess(topic: string, requestedCommand: string, requestedParams: any) {
-    const { command, params, definition } = prepareWalletConnectCommand(
-      walletConnectCommands,
-      requestedCommand,
-      requestedParams
-    );
+    const {
+      command,
+      values: defaultValues,
+      definition,
+    } = prepareWalletConnectCommand(walletConnectCommands, requestedCommand, requestedParams);
 
     // validate fingerprint for current command
     const { allFingerprints, waitForSync } = definition;
@@ -138,26 +102,15 @@ export default function useWalletConnectCommand() {
       }
     }
 
-    const confirmParams: {
-      label: ReactNode;
-      value: ReactNode;
-      displayComponent?: (value: any) => ReactNode;
-    }[] = [];
+    const { params: definitionParams = [], bypassConfirm } = definition;
 
-    const { params: definitionParams = [] } = definition;
-    definitionParams.forEach((param) => {
-      const { name, label, displayComponent, hide } = param;
+    log('Confirm arguments', definitionParams);
 
-      if (name in params && !hide) {
-        confirmParams.push({
-          label: label ?? name,
-          value: params[name],
-          displayComponent,
-        });
-      }
-    });
+    let values = defaultValues;
 
-    log('Confirm arguments', confirmParams);
+    function handleChangeParam(newValues: Record<string, any>) {
+      values = newValues;
+    }
 
     const confirmed = await confirm({
       topic,
@@ -169,9 +122,13 @@ export default function useWalletConnectCommand() {
         ) : (
           <Trans>Do you want to execute command {command}?</Trans>
         ),
-      params: confirmParams,
+      params: definitionParams,
+      values,
       fingerprint,
       isDifferentFingerprint,
+      command,
+      bypassConfirm,
+      onChange: handleChangeParam,
     });
 
     if (!confirmed) {
@@ -203,8 +160,8 @@ export default function useWalletConnectCommand() {
     }
 
     // execute command
-    log('Executing', command, params);
-    const resultPromise = store.dispatch(api.endpoints[command].initiate(params));
+    log('Executing', command, values);
+    const resultPromise = store.dispatch(api.endpoints[command].initiate(values));
     const result = await resultPromise;
     log('Result', result);
 

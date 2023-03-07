@@ -23,6 +23,12 @@ export default class Wallet extends Service {
     });
   }
 
+  async getTransactionMemo(transactionId: string) {
+    return this.command('get_transaction_memo', {
+      transactionId,
+    });
+  }
+
   async getPwStatus(walletId: number) {
     return this.command('pw_status', {
       walletId,
@@ -412,8 +418,8 @@ export default class Wallet extends Service {
     message: string,
     pubkey: string,
     signature: string,
-    address: string | undefined,
-    signingMode: string | undefined
+    address?: string,
+    signingMode?: string
   ): Promise<{
     success: boolean;
     isValid: boolean;
