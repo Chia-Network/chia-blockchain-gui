@@ -59,9 +59,6 @@ export const harvesterApi = apiWithTag2.injectEndpoints({
           };
         }
       },
-      transformResponse(response) {
-        return response?.success;
-      },
       invalidatesTags: (_result, _error, { filename }) => [
         { type: 'HarvestersSummary', id: 'LIST' },
         { type: 'HarvesterPlots', id: 'LIST' },

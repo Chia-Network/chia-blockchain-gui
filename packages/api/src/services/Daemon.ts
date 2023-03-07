@@ -37,7 +37,7 @@ export default class Daemon extends Service {
 
   runningServices() {
     return this.command<{
-      running_services: [string];
+      runningServices: [string];
     }>('running_services');
   }
 

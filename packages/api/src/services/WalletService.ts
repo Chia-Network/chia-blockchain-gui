@@ -338,7 +338,6 @@ export default class Wallet extends Service {
       data: {
         additionalData: Object;
         state: 'coin_added';
-        success: boolean;
         walletId: number;
       },
       message: Message
@@ -352,7 +351,6 @@ export default class Wallet extends Service {
       data: {
         additionalData: Object;
         state: 'coin_removed';
-        success: boolean;
         walletId: number;
       },
       message: Message
@@ -394,7 +392,6 @@ export default class Wallet extends Service {
       data: {
         additionalData: Object;
         state: 'nft_coin_added';
-        success: boolean;
         walletId: number;
       },
       message: Message
@@ -408,7 +405,6 @@ export default class Wallet extends Service {
       data: {
         additionalData: Object;
         state: 'nft_coin_removed';
-        success: boolean;
         walletId: number;
       },
       message: Message
@@ -422,7 +418,6 @@ export default class Wallet extends Service {
       data: {
         additionalData: Object;
         state: 'nft_coin_transferred';
-        success: boolean;
         walletId: number;
       },
       message: Message
