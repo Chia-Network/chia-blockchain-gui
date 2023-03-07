@@ -73,7 +73,7 @@ export default function CreateOfferBuilder(props: CreateOfferBuilderProps) {
 
   const openDialog = useOpenDialog();
   const navigate = useNavigate();
-  const { data: wallets, isLoading } = useGetWalletsQuery();
+  const { data: wallets, isLoading: isLoadingWallets } = useGetWalletsQuery();
   const { offers, isLoading: isOffersLoading } = useWalletOffers(-1, 0, true, false, 'RELEVANCE', false);
   const [createOfferForIds] = useCreateOfferForIdsMutation();
   const offerBuilderRef = useRef<{ submit: () => void } | undefined>(undefined);
@@ -168,7 +168,7 @@ export default function CreateOfferBuilder(props: CreateOfferBuilderProps) {
           </ButtonLoading>
         </Flex>
 
-        {isLoading || isOffersLoading ? (
+        {isLoadingWallets || isOffersLoading ? (
           <Loading center />
         ) : (
           <OfferBuilder onSubmit={handleSubmit} defaultValues={defaultValues} ref={offerBuilderRef} />

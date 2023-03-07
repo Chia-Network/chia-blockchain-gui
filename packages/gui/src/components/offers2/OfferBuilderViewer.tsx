@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import type OfferBuilderData from '../../@types/OfferBuilderData';
 import type OfferSummary from '../../@types/OfferSummary';
 import useAcceptOfferHook from '../../hooks/useAcceptOfferHook';
+import useWalletOffers from '../../hooks/useWalletOffers';
 import getUnknownCATs from '../../util/getUnknownCATs';
 import offerToOfferBuilderData from '../../util/offerToOfferBuilderData';
 import OfferState from '../offers/OfferState';
@@ -43,6 +44,7 @@ function OfferBuilderViewer(props: OfferBuilderViewerProps, ref: any) {
   const [error, setError] = useState<Error | undefined>();
   const [isAccepting, setIsAccepting] = useState<boolean>(false);
   const { data: wallets, isLoading: isLoadingWallets } = useGetWalletsQuery();
+  const { offers, isLoading: isOffersLoading } = useWalletOffers(-1, 0, true, false, 'RELEVANCE', false);
   const offerBuilderRef = useRef<{ submit: () => void; getValues: () => OfferBuilderData } | undefined>(undefined);
 
   const [checkOfferValidity] = useCheckOfferValidityMutation();
@@ -117,12 +119,11 @@ function OfferBuilderViewer(props: OfferBuilderViewerProps, ref: any) {
   const canAccept = !!offerData;
   const disableAccept = missingOfferedCATs || showInvalid;
 
-  const isLoading = isLoadingWallets || !offerBuilderData;
+  const isLoading = isLoadingWallets || !offerBuilderData || isOffersLoading;
 
   async function handleSubmit(values: OfferBuilderData) {
-    const {
-      offered: { fee: offeredFee },
-    } = values;
+    const { offered } = values;
+    const { fee: offeredFee } = offered;
 
     if (isAccepting || !canAccept) {
       return;
@@ -134,6 +135,8 @@ function OfferBuilderViewer(props: OfferBuilderViewerProps, ref: any) {
       offerData,
       offerSummary,
       feeAmount,
+      wallets,
+      offers,
       (accepting: boolean) => setIsAccepting(accepting),
       () => navigate('/dashboard/offers')
     );

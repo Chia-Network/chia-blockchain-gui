@@ -1,3 +1,4 @@
+import { OfferSummaryRecord } from '@chia-network/api';
 import { mojoToCAT, mojoToChia } from '@chia-network/core';
 import BigNumber from 'bignumber.js';
 
