@@ -1,5 +1,3 @@
-import { OfferStatus } from 'util/offerBuilderDataToOffer';
-
 import { ConfirmDialog, Flex } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Typography, Divider } from '@mui/material';
@@ -7,54 +5,94 @@ import BigNumber from 'bignumber.js';
 import { OfferTradeRecordFormatted } from 'hooks/useWalletOffers';
 import React, { useMemo, useState, useCallback } from 'react';
 
+import { AssetStatusForOffer } from '../../util/offerBuilderDataToOffer';
+import { PendingAsset, resolvePendingAssets } from '../../util/resolveOfferInfo';
 import CancelOfferList from './CancelOfferList';
 
 /* ========================================================================== */
 /*                      Offer Editor Conflict Resolver Dialog                 */
 /* ========================================================================== */
 
+/**
+ * When pending assets locked by open offers are unlocked (meaning that open offers are canceled),
+ * spendable balance for the asset will be refilled.
+ * This function calculates the refilling amount for an offer status dict.
+ * Note that offer status dict is constructed from all open offers and grouped by asset id.
+ */
+function getSpendableAmountUponUnlockingAssets(assetStatus: AssetStatusForOffer, assetsToBeUnlocked: PendingAsset[]) {
+  let { spendableAmount } = assetStatus;
+  for (let s = 0; s < assetsToBeUnlocked.length; s++) {
+    const lockedAsset = assetsToBeUnlocked[s];
+    if (lockedAsset.type === 'XCH' && assetStatus.type === 'XCH') {
+      // assetId might be either 'XCH' or 'UNKNOWN'(maybe fee) but here both are treated as just a XCH spending
+      spendableAmount = spendableAmount.plus(lockedAsset.amount);
+    } else if (lockedAsset.type === assetStatus.type && lockedAsset.assetId === assetStatus.assetId) {
+      if (assetStatus.type === 'CAT') {
+        spendableAmount = spendableAmount.plus(lockedAsset.amount);
+      }
+      // We don't care spendable amount for (offerToModify.type === 'SINGLETON') (NFT)
+    }
+  }
+
+  return spendableAmount;
+}
+
 export type OfferEditorCancelConflictingOffersDialogProps = {
-  offersToCancel: OfferStatus[];
-  offersBetterCanceled: OfferStatus[];
+  assetsToUnlock: AssetStatusForOffer[];
+  assetsBetterUnlocked: AssetStatusForOffer[];
+  allowSecureCancelling?: boolean;
 };
 
 export default function OfferEditorCancelConflictingOffersDialog(props: OfferEditorCancelConflictingOffersDialogProps) {
-  const { offersToCancel: initialOffersToCancel, offersBetterCanceled: initialOffersBetterCanceled, ...rest } = props;
-  const [offersToCancel, setOffersToCancel] = useState(initialOffersToCancel);
-  const [offersBetterCanceled, setOffersBetterCanceled] = useState(initialOffersBetterCanceled);
+  const {
+    assetsToUnlock: initialAssetsToUnlock,
+    assetsBetterUnlocked: initialAssetsBetterUnlocked,
+    allowSecureCancelling,
+    ...rest
+  } = props;
+  const [assetsToCancel, setAssetsToCancel] = useState(initialAssetsToUnlock);
+  const [assetsBetterCanceled, setAssetsBetterCanceled] = useState(initialAssetsBetterUnlocked);
 
   const offersRequiredToBeCanceled = useMemo(() => {
-    let offerRecords: OfferTradeRecordFormatted[] = [];
-    for (let i = 0; i < offersToCancel.length; i++) {
-      const item = offersToCancel[i];
-      offerRecords = offerRecords.concat(item.relevantOffers);
+    const offerRecords = new Set<OfferTradeRecordFormatted>();
+    for (let i = 0; i < assetsToCancel.length; i++) {
+      const item = assetsToCancel[i];
+      for (let k = 0; k < item.relevantOffers.length; k++) {
+        const o = item.relevantOffers[k];
+        offerRecords.add(o);
+      }
     }
-    return offerRecords;
-  }, [offersToCancel]);
+    return Array.from(offerRecords);
+  }, [assetsToCancel]);
 
   const offersBetterToBeCanceled = useMemo(() => {
-    let offerRecords: OfferTradeRecordFormatted[] = [];
-    for (let i = 0; i < offersBetterCanceled.length; i++) {
-      const item = offersBetterCanceled[i];
-      offerRecords = offerRecords.concat(item.relevantOffers);
+    const offerRecords = new Set<OfferTradeRecordFormatted>();
+    for (let i = 0; i < assetsBetterCanceled.length; i++) {
+      const item = assetsBetterCanceled[i];
+      for (let k = 0; k < item.relevantOffers.length; k++) {
+        const o = item.relevantOffers[k];
+        if (!offersRequiredToBeCanceled.find((o2) => o2 === o)) {
+          offerRecords.add(o);
+        }
+      }
     }
-    return offerRecords;
-  }, [offersBetterCanceled]);
+    return Array.from(offerRecords);
+  }, [assetsBetterCanceled, offersRequiredToBeCanceled]);
 
   const onCancelOffer1 = useCallback(
     (tradeId: string, _secure: boolean, _fee: BigNumber) => {
       let isUpdated = false;
 
-      const offersToCancelUpdated: OfferStatus[] = [];
-      const offersBetterCanceledAdded: OfferStatus[] = [];
+      let assetsToUnlockUpdated: AssetStatusForOffer[] = [];
+      const assetsBetterUnlockedAdded: AssetStatusForOffer[] = [];
       let lockedAssetsFoundIndex = -1;
-      const lockedAssets: Array<{ type: OfferStatus['type']; assetId?: string; amount: BigNumber }> = [];
+      let lockedAssets: PendingAsset[] = [];
 
-      for (let i = 0; i < offersToCancel.length; i++) {
-        const otc = { ...offersToCancel[i] };
+      for (let i = 0; i < assetsToCancel.length; i++) {
+        const atc = { ...assetsToCancel[i] };
         const offers = [];
-        for (let k = 0; k < otc.relevantOffers.length; k++) {
-          const ro = otc.relevantOffers[k];
+        for (let k = 0; k < atc.relevantOffers.length; k++) {
+          const ro = atc.relevantOffers[k];
           if (ro.tradeId === tradeId) {
             const relevantOfferNotFoundYet = lockedAssetsFoundIndex === -1;
             // Assuming that an offer is unique by its tradeId.
@@ -64,36 +102,27 @@ export default function OfferEditorCancelConflictingOffersDialog(props: OfferEdi
             if (relevantOfferNotFoundYet) {
               // The code in this block only runs 0 or 1 time for the loop indexed by `i`
               lockedAssetsFoundIndex = i;
-              const lockedAssetIds = Object.keys(ro.pending) as string[];
-              for (let m = 0; m < lockedAssetIds.length; m++) {
-                const assetId = lockedAssetIds[m];
-                const amount = new BigNumber(ro.pending[assetId]);
-                let type: OfferStatus['type'] | undefined;
-                if (assetId.toUpperCase() === 'XCH' || assetId.toUpperCase() === 'UNKNOWN') {
-                  type = 'XCH';
-                } else {
-                  const info = ro.summary.infos[assetId];
-                  type = info.type.toUpperCase() as 'CAT' | 'SINGLETON';
-                }
-                lockedAssets.push({ type, assetId, amount });
-              }
+              lockedAssets = resolvePendingAssets(ro);
+
               // Modify values in offersToCancelUpdated before this loop.
+              const indicesOfOffersToDelete: number[] = [];
               for (let p = 0; p < lockedAssetsFoundIndex; p++) {
-                const offerToModify = offersToCancelUpdated[p];
-                for (let s = 0; s < lockedAssets.length; s++) {
-                  const lockedAsset = lockedAssets[s];
-                  if (lockedAsset.type === 'XCH' && offerToModify.type === 'XCH') {
-                    // assetId might be either 'XCH' or 'UNKNOWN'(maybe fee) but here both are treated as just a XCH spending
-                    const spendableAmount = offerToModify.spendableAmount.plus(lockedAsset.amount);
-                    offersToCancelUpdated[p] = { ...offerToModify, spendableAmount };
-                  } else if (lockedAsset.type === offerToModify.type && lockedAsset.assetId === offerToModify.assetId) {
-                    if (offerToModify.type === 'CAT') {
-                      const spendableAmount = offerToModify.spendableAmount.plus(lockedAsset.amount);
-                      offersToCancelUpdated[p] = { ...offerToModify, spendableAmount };
-                    }
-                    // We don't care spendable amount for (offerToModify.type === 'SINGLETON') (NFT)
-                  }
+                const assetToModify = assetsToUnlockUpdated[p];
+                const newSpendableAmount = getSpendableAmountUponUnlockingAssets(assetToModify, lockedAssets);
+                if (!newSpendableAmount.eq(assetToModify.spendableAmount)) {
+                  assetsToUnlockUpdated[p] = { ...assetToModify, spendableAmount: newSpendableAmount };
                 }
+
+                if (assetsToUnlockUpdated[p].spendableAmount.gte(assetsToUnlockUpdated[p].spendingAmount)) {
+                  indicesOfOffersToDelete.push(p);
+                }
+              }
+
+              if (indicesOfOffersToDelete.length > 0) {
+                isUpdated = true;
+                assetsToUnlockUpdated = assetsToUnlockUpdated.filter(
+                  (_, idx) => !indicesOfOffersToDelete.includes(idx)
+                );
               }
             }
           } else {
@@ -101,69 +130,115 @@ export default function OfferEditorCancelConflictingOffersDialog(props: OfferEdi
           }
         }
 
-        // Modify values in otc
-        for (let s = 0; s < lockedAssets.length; s++) {
-          const lockedAsset = lockedAssets[s];
-          if (lockedAsset.type === 'XCH' && otc.type === 'XCH') {
-            // assetId might be either 'XCH' or 'UNKNOWN'(maybe fee) but here both are treated as just a XCH spending
-            otc.spendableAmount = otc.spendableAmount.plus(lockedAsset.amount);
-          } else if (lockedAsset.type === otc.type && lockedAsset.assetId === otc.assetId) {
-            if (otc.type === 'CAT') {
-              otc.spendableAmount = otc.spendableAmount.plus(lockedAsset.amount);
-            }
-            // We don't care spendable amount for (otc.type === 'SINGLETON') (NFT)
-          }
-        }
+        const wasOfferRemoved = offers.length !== atc.relevantOffers.length;
+        // Update relevant offers (Canceled offer is removed from original array)
+        atc.relevantOffers = offers;
 
-        if (otc.spendableAmount.gte(otc.spendingAmount)) {
+        // Modify spendableAmount in atc
+        atc.spendableAmount = getSpendableAmountUponUnlockingAssets(atc, lockedAssets);
+        const notRequiredToCancelAnymore = atc.spendableAmount.gte(atc.spendingAmount);
+
+        if (notRequiredToCancelAnymore) {
           // If spending amount is less than or equal to spendable amount for assetType/assetId,
           // then the offer for the asset is not required to cancel anymore.
           isUpdated = true;
-          // The priority of canceling the offer goes down.
-          offersBetterCanceledAdded.push(otc);
-        } else if (offers.length !== otc.relevantOffers.length) {
+          if (offers.length > 0) {
+            // The priority of canceling the offer goes down.
+            assetsBetterUnlockedAdded.push({
+              ...atc,
+              status: 'alsoUsedInNewOfferWithoutConflict',
+            });
+          }
+        } else if (wasOfferRemoved) {
           isUpdated = true;
-          otc.relevantOffers = offers;
-          offersToCancelUpdated.push(otc); // Will re-render since otc !== offersToCancel[i]. Remember that otc = {...offersToCancel[i]}.
+          assetsToUnlockUpdated.push(atc); // Will re-render since otc !== offersToCancel[i]. Remember that otc = {...offersToCancel[i]}.
         } else {
-          offersToCancelUpdated.push(offersToCancel[i]); // Will NOT re-render since object keeps the same reference
+          assetsToUnlockUpdated.push(assetsToCancel[i]); // Will NOT re-render since object keeps the same reference
         }
       }
 
       // Avoiding unnecessary re-render
       if (isUpdated) {
-        setOffersToCancel(offersToCancelUpdated);
-        if (offersBetterCanceledAdded.length > 0) {
-          setOffersBetterCanceled([...offersBetterCanceledAdded, ...offersBetterCanceled]);
+        setAssetsToCancel(assetsToUnlockUpdated);
+        if (assetsBetterUnlockedAdded.length > 0) {
+          setAssetsBetterCanceled([...assetsBetterUnlockedAdded, ...assetsBetterCanceled]);
         }
       }
     },
-    [offersToCancel, setOffersToCancel, offersBetterCanceled, setOffersBetterCanceled]
+    [assetsToCancel, setAssetsToCancel, assetsBetterCanceled, setAssetsBetterCanceled]
   );
 
   const onCancelOffer2 = useCallback(
     (tradeId: string, _secure: boolean, _fee: BigNumber) => {
       let isUpdated = false;
-      const offersBetterCanceledUpdated = offersBetterCanceled.map((otc) => {
+
+      let assetsBetterUnlockedUpdated: AssetStatusForOffer[] = [];
+      let lockedAssetsFoundIndex = -1;
+      let lockedAssets: PendingAsset[] = [];
+
+      for (let i = 0; i < assetsBetterCanceled.length; i++) {
+        const abc = { ...assetsBetterCanceled[i] };
         const offers = [];
-        for (let i = 0; i < otc.relevantOffers.length; i++) {
-          const o = otc.relevantOffers[i];
-          if (o.tradeId !== tradeId) {
-            offers.push(o);
+        for (let k = 0; k < abc.relevantOffers.length; k++) {
+          const ro = abc.relevantOffers[k];
+          if (ro.tradeId === tradeId) {
+            const relevantOfferNotFoundYet = lockedAssetsFoundIndex === -1;
+            // Assuming that an offer is unique by its tradeId.
+            // When canceled offer is already identified by tradeId in previous loop,
+            // no need to investigate locked assets anymore because we already know what they are
+            // in previous loop.
+            if (relevantOfferNotFoundYet) {
+              // The code in this block only runs 0 or 1 time for the loop indexed by `i`
+              lockedAssetsFoundIndex = i;
+              lockedAssets = resolvePendingAssets(ro);
+
+              // Modify values in offersBetterCanceledUpdated before this loop.
+              const indicesOfOffersToDelete: number[] = [];
+              for (let p = 0; p < lockedAssetsFoundIndex; p++) {
+                const assetToModify = assetsBetterUnlockedUpdated[p];
+                const newSpendableAmount = getSpendableAmountUponUnlockingAssets(assetToModify, lockedAssets);
+                if (!newSpendableAmount.eq(assetToModify.spendableAmount)) {
+                  assetsBetterUnlockedUpdated[p] = { ...assetToModify, spendableAmount: newSpendableAmount };
+                }
+
+                if (assetsBetterUnlockedUpdated[p].spendableAmount.gte(assetsBetterUnlockedUpdated[p].spendingAmount)) {
+                  indicesOfOffersToDelete.push(p);
+                }
+              }
+
+              if (indicesOfOffersToDelete.length > 0) {
+                isUpdated = true;
+                assetsBetterUnlockedUpdated = assetsBetterUnlockedUpdated.filter(
+                  (_, idx) => !indicesOfOffersToDelete.includes(idx)
+                );
+              }
+            }
+          } else {
+            offers.push(ro);
           }
         }
-        if (offers.length !== otc.relevantOffers.length) {
+
+        const wasOfferRemoved = offers.length !== abc.relevantOffers.length;
+        // Update relevant offers (Canceled offer is removed from original array)
+        abc.relevantOffers = offers;
+
+        // Modify spendableAmount in obc
+        abc.spendableAmount = getSpendableAmountUponUnlockingAssets(abc, lockedAssets);
+
+        if (wasOfferRemoved) {
           isUpdated = true;
-          return { ...otc, relevantOffers: offers };
+          assetsBetterUnlockedUpdated.push(abc); // Will re-render since obc !== offersBetterCanceled[i]. Remember that obc = {...offersBetterCanceled[i]}.
+        } else {
+          assetsBetterUnlockedUpdated.push(assetsBetterCanceled[i]); // Will NOT re-render since object keeps the same reference
         }
-        return otc;
-      });
+      }
+
       // Avoiding unnecessary re-render
       if (isUpdated) {
-        setOffersBetterCanceled(offersBetterCanceledUpdated);
+        setAssetsBetterCanceled(assetsBetterUnlockedUpdated);
       }
     },
-    [offersBetterCanceled, setOffersBetterCanceled]
+    [assetsBetterCanceled, setAssetsBetterCanceled]
   );
 
   const CancelList1 = useMemo(() => {
@@ -180,12 +255,13 @@ export default function OfferEditorCancelConflictingOffersDialog(props: OfferEdi
         </Typography>
         <CancelOfferList
           offers={offersRequiredToBeCanceled}
-          title={<Trans>Offers required to be canceled to refill spendable amount</Trans>}
+          title={<Trans>Open offers required to be canceled to refill spendable amount</Trans>}
           onOfferCanceled={onCancelOffer1}
+          allowSecureCancelling={allowSecureCancelling}
         />
       </Flex>
     );
-  }, [offersRequiredToBeCanceled, onCancelOffer1]);
+  }, [offersRequiredToBeCanceled, onCancelOffer1, allowSecureCancelling]);
 
   const CancelList2 = useMemo(() => {
     if (offersBetterToBeCanceled.length === 0) {
@@ -201,14 +277,15 @@ export default function OfferEditorCancelConflictingOffersDialog(props: OfferEdi
         </Typography>
         <CancelOfferList
           offers={offersBetterToBeCanceled}
-          title={<Trans>Offers which lock the same assets as the new offer</Trans>}
+          title={<Trans>Open offers which lock the same assets as the new offer</Trans>}
           onOfferCanceled={onCancelOffer2}
+          allowSecureCancelling={allowSecureCancelling}
         />
       </Flex>
     );
-  }, [offersBetterToBeCanceled, onCancelOffer2]);
+  }, [offersBetterToBeCanceled, onCancelOffer2, allowSecureCancelling]);
 
-  const needDivider = initialOffersToCancel.length > 0 && initialOffersBetterCanceled.length > 0;
+  const needDivider = initialAssetsToUnlock.length > 0 && initialAssetsBetterUnlocked.length > 0;
   const divider = useMemo(() => {
     if (needDivider) {
       return <Divider orientation="horizontal" flexItem />;

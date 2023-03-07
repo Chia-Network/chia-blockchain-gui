@@ -9,7 +9,7 @@ import React, { useMemo, useCallback, useState } from 'react';
 
 import useAssetIdName from '../../hooks/useAssetIdName';
 import { OfferTradeRecordFormatted } from '../../hooks/useWalletOffers';
-import resolveOfferInfo from '../../util/resolveOfferInfo';
+import resolveOfferInfo, { resolveOfferInfoWithPendingAmounts } from '../../util/resolveOfferInfo';
 import { ConfirmOfferCancellation } from '../offers/ConfirmOfferCancellation';
 import OfferState from '../offers/OfferState';
 
@@ -17,10 +17,11 @@ type CancelOfferListProps = {
   title: string | React.ReactElement;
   offers: OfferTradeRecordFormatted[];
   onOfferCanceled: (tradeId: string, secure: boolean, fee: BigNumber) => void;
+  allowSecureCancelling?: boolean;
 };
 
 export default function CancelOfferList(props: CancelOfferListProps) {
-  const { title, offers, onOfferCanceled } = props;
+  const { title, offers, onOfferCanceled, allowSecureCancelling = false } = props;
 
   const [cancelOffer] = useCancelOfferMutation();
   const { lookupByAssetId } = useAssetIdName();
@@ -86,6 +87,21 @@ export default function CancelOfferList(props: CancelOfferListProps) {
         title: <Trans>Requested</Trans>,
       },
       {
+        field: (row: OfferTradeRecordFormatted) => {
+          const resolvedOfferInfo = resolveOfferInfoWithPendingAmounts(row, 'offered', lookupByAssetId);
+          return resolvedOfferInfo.map((info) => (
+            <Flex flexDirection="row" gap={0.5} key={`${info.displayPendingAmount}-${info.displayName}`}>
+              <Typography variant="body2">{(info.displayPendingAmount as any).toString()}</Typography>
+              <Typography noWrap variant="body2">
+                {info.displayName}
+              </Typography>
+            </Flex>
+          ));
+        },
+        minWidth: '160px',
+        title: <Trans>Locked</Trans>,
+      },
+      {
         // eslint-disable-next-line react/no-unstable-nested-components -- The result is memoized. No performance issue
         field: (row: OfferTradeRecordFormatted) => {
           const { createdAtTime } = row;
@@ -113,7 +129,7 @@ export default function CancelOfferList(props: CancelOfferListProps) {
               <Flex style={{ width: '32px' }}>
                 {canCancel && (
                   <More>
-                    <MenuItem onClick={() => handleCancelOffer(tradeId, false)} close>
+                    <MenuItem onClick={() => handleCancelOffer(tradeId, allowSecureCancelling)} close>
                       <ListItemIcon>
                         <Cancel fontSize="small" />
                       </ListItemIcon>
@@ -132,7 +148,7 @@ export default function CancelOfferList(props: CancelOfferListProps) {
         title: <Flex justifyContent="center">Actions</Flex>,
       },
     ];
-  }, [cancelOffer, lookupByAssetId, openDialog, onOfferCanceled]);
+  }, [cancelOffer, lookupByAssetId, openDialog, onOfferCanceled, allowSecureCancelling]);
 
   const hasOffers = !!offers?.length;
 

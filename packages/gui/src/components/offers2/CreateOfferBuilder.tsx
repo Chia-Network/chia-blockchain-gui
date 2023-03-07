@@ -99,24 +99,25 @@ export default function CreateOfferBuilder(props: CreateOfferBuilderProps) {
 
   const handleSubmit = useCallback(
     async (values: OfferBuilderData) => {
-      const { offersToCancel, ...localOffer } = await offerBuilderDataToOffer(values, wallets, offers || [], false);
+      const { assetsToUnlock, ...localOffer } = await offerBuilderDataToOffer(values, wallets, offers || [], false);
 
-      const offersRequiredToBeCanceled = [];
-      const offersBetterToBeCanceled = [];
-      for (let i = 0; i < offersToCancel.length; i++) {
-        const otc = offersToCancel[i];
-        if (otc.status === 'conflictsWithNewOffer') {
-          offersRequiredToBeCanceled.push(otc);
-        } else if (otc.status === 'alsoUsedInNewOfferWithoutConflict') {
-          offersBetterToBeCanceled.push(otc);
+      const assetsRequiredToBeUnlocked = [];
+      const assetsBetterToBeUnlocked = [];
+      for (let i = 0; i < assetsToUnlock.length; i++) {
+        const atu = assetsToUnlock[i];
+        if (atu.status === 'conflictsWithNewOffer') {
+          assetsRequiredToBeUnlocked.push(atu);
+        } else if (atu.status === 'alsoUsedInNewOfferWithoutConflict') {
+          assetsBetterToBeUnlocked.push(atu);
         }
       }
 
-      if (offersRequiredToBeCanceled.length + offersBetterToBeCanceled.length > 0) {
+      if (assetsRequiredToBeUnlocked.length + assetsBetterToBeUnlocked.length > 0) {
         const dialog = (
           <OfferEditorConflictAlertDialog
-            offersToCancel={offersRequiredToBeCanceled}
-            offersBetterCanceled={offersBetterToBeCanceled}
+            assetsToUnlock={assetsRequiredToBeUnlocked}
+            assetsBetterUnlocked={assetsBetterToBeUnlocked}
+            allowSecureCancelling
           />
         );
         const confirmedToProceed = await openDialog(dialog);

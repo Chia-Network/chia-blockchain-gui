@@ -11,9 +11,9 @@ import findCATWalletByAssetId from './findCATWalletByAssetId';
 import { getBalance, WalletBalanceFormatted } from './hasSpendableBalance';
 import { prepareNFTOfferFromNFTId } from './prepareNFTOffer';
 
-// Status of existing offer
-// A combination of `type` and `assetId` must be unique through an array of `OfferStatus`.
-export type OfferStatus = {
+// Status of existing assets in offers
+// A combination of `type` and `assetId` must be unique through an array of `AssetStatusForOffer`.
+export type AssetStatusForOffer = {
   type: 'XCH' | 'CAT' | 'SINGLETON';
   assetId: string;
   assetName?: string; // Used just for labeling
@@ -43,7 +43,7 @@ export default async function offerBuilderDataToOffer(
   driverDict?: Record<string, any>;
   feeInMojos: BigNumber;
   validateOnly?: boolean;
-  offersToCancel: OfferStatus[];
+  assetsToUnlock: AssetStatusForOffer[];
 }> {
   const {
     offered: { xch: offeredXch = [], tokens: offeredTokens = [], nfts: offeredNfts = [], fee: [firstFee] = [] },
@@ -63,7 +63,7 @@ export default async function offerBuilderDataToOffer(
     throw new Error(t`Please specify at least one offered asset`);
   }
 
-  const pendingOffers: OfferStatus[] = [];
+  const pendingOffers: AssetStatusForOffer[] = [];
 
   for (let i = 0; i < offers.length; i++) {
     const o = offers[i];
@@ -79,6 +79,10 @@ export default async function offerBuilderDataToOffer(
           if (idx > -1) {
             pendingOffers[idx].lockedAmount = pendingOffers[idx].lockedAmount.plus(lockedAmount);
             pendingOffers[idx].relevantOffers.push(o);
+            if (pendingOffers[idx].assetId.toUpperCase() !== assetId.toUpperCase()) {
+              // Now we can distinguish that we have xch spending which is only XCH, only Fee or both XCH and Fee
+              pendingOffers[idx].assetId = 'XCH+FEE';
+            }
           } else {
             pendingOffers.push({
               type: 'XCH',
@@ -118,9 +122,9 @@ export default async function offerBuilderDataToOffer(
 
   let standardWallet: Wallet | undefined;
   let standardWalletBalance: WalletBalanceFormatted | undefined;
-  let pendingXchOffer: OfferStatus | undefined;
+  let pendingXchOffer: AssetStatusForOffer | undefined;
   let pendingXch = new BigNumber(0);
-  if (offeredXch.length > 0) {
+  if (offeredXch.length > 0 || feeInMojos.gt(0)) {
     standardWallet = wallets.find((w) => w.type === WalletType.STANDARD_WALLET);
     for (let i = 0; i < pendingOffers.length; i++) {
       const po = pendingOffers[i];
@@ -135,7 +139,7 @@ export default async function offerBuilderDataToOffer(
     }
   }
 
-  // offeredXch.length should be always `1`
+  // offeredXch.length should be always 0 or 1
   const xchTasks = offeredXch.map(async (xch) => {
     const { amount } = xch;
     if (!amount || amount === '0') {
@@ -149,17 +153,17 @@ export default async function offerBuilderDataToOffer(
     walletIdsAndAmounts[standardWallet.id] = mojoAmount.negated();
 
     const spendableBalance = new BigNumber(standardWalletBalance.spendableBalance);
-    const hasEnoughTotalBalance = spendableBalance.plus(pendingXch).gte(mojoAmount);
+    const hasEnoughTotalBalance = spendableBalance.plus(pendingXch).minus(feeInMojos).gte(mojoAmount);
     if (!hasEnoughTotalBalance) {
       throw new Error(t`Amount exceeds XCH total balance`);
     }
 
     if (pendingXchOffer) {
-      // Assuming offeredXch.length is always `1`
-      pendingXchOffer.spendingAmount = mojoAmount;
+      // Assuming offeredXch.length is always less then or equal to 1
+      pendingXchOffer.spendingAmount = mojoAmount.plus(feeInMojos);
       pendingXchOffer.spendableAmount = spendableBalance;
       pendingXchOffer.confirmedAmount = new BigNumber(standardWalletBalance.confirmedWalletBalance);
-      const hasEnoughSpendableBalance = spendableBalance.gte(mojoAmount);
+      const hasEnoughSpendableBalance = spendableBalance.gte(pendingXchOffer.spendingAmount);
       if (!hasEnoughSpendableBalance) {
         pendingXchOffer.status = 'conflictsWithNewOffer';
       } else {
@@ -167,6 +171,29 @@ export default async function offerBuilderDataToOffer(
       }
     }
   });
+  // Treat fee as xch spending
+  if (offeredXch.length === 0 && feeInMojos.gt(0)) {
+    if (!standardWallet || !standardWalletBalance) {
+      throw new Error(t`No standard wallet found`);
+    }
+
+    const spendableBalance = new BigNumber(standardWalletBalance.spendableBalance);
+    const hasEnoughTotalBalance = spendableBalance.gte(feeInMojos);
+    if (!hasEnoughTotalBalance) {
+      throw new Error(t`Fee exceeds XCH total balance`);
+    }
+    if (pendingXchOffer) {
+      pendingXchOffer.spendingAmount = feeInMojos;
+      pendingXchOffer.spendableAmount = spendableBalance;
+      pendingXchOffer.confirmedAmount = new BigNumber(standardWalletBalance.confirmedWalletBalance);
+      const hasEnoughSpendableBalance = spendableBalance.gte(pendingXchOffer.spendingAmount);
+      if (!hasEnoughSpendableBalance) {
+        pendingXchOffer.status = 'conflictsWithNewOffer';
+      } else {
+        pendingXchOffer.status = 'alsoUsedInNewOfferWithoutConflict';
+      }
+    }
+  }
 
   const tokenTasks = offeredTokens.map(async (token) => {
     const { assetId, amount } = token;
@@ -307,6 +334,6 @@ export default async function offerBuilderDataToOffer(
     driverDict,
     feeInMojos,
     validateOnly,
-    offersToCancel: pendingOffers.filter((po) => po.spendingAmount.gt(0)),
+    assetsToUnlock: pendingOffers.filter((po) => po.spendingAmount.gt(0)),
   };
 }
