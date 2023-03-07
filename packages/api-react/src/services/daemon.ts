@@ -1,5 +1,5 @@
 import { Daemon, optionsForPlotter, defaultsForPlotter, PlotterName } from '@chia-network/api';
-import type { Plotter, PlotterMap } from '@chia-network/api';
+import type { Plotter, PlotterMap, PlotterApi } from '@chia-network/api';
 
 import api, { baseQuery } from '../api';
 import onCacheEntryAddedInvalidate from '../utils/onCacheEntryAddedInvalidate';
@@ -43,13 +43,6 @@ export const daemonApi = apiWithTag.injectEndpoints({
     daemonPing: query(build, Daemon, 'ping'),
 
     getKeyringStatus: query(build, Daemon, 'keyringStatus', {
-      transformResponse: (response) => {
-        const { status, ...rest } = response;
-
-        return {
-          ...rest,
-        };
-      },
       providesTags: ['KeyringStatus'],
       onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, api, [
         {
@@ -111,7 +104,7 @@ export const daemonApi = apiWithTag.injectEndpoints({
             installed,
             canInstall,
             bladebitMemoryWarning,
-          } = plotters[plotterName];
+          } = plotters[plotterName] as PlotterApi;
 
           if (!plotterName.startsWith('bladebit')) {
             availablePlotters[plotterName] = {

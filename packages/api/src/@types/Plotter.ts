@@ -94,6 +94,8 @@ export type PlotterApi = {
   installed: boolean;
   version?: string;
   canInstall?: boolean;
+  // not sure if bladebitMemoryWarning should be here
+  bladebitMemoryWarning?: string;
 };
 
 export type PlottersApi = { [key in PlotterName]?: PlotterApi };
