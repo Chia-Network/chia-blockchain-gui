@@ -33,8 +33,6 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
-import type OfferBuilderData from '../../@types/OfferBuilderData';
-import type OfferSummary from '../../@types/OfferSummary';
 import useAcceptOfferHook from '../../hooks/useAcceptOfferHook';
 import useAssetIdName from '../../hooks/useAssetIdName';
 import useFetchNFTs from '../../hooks/useFetchNFTs';

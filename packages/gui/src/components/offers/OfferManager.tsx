@@ -20,7 +20,7 @@ import { Trans } from '@lingui/macro';
 import { Cancel, GetApp as Download, Info, Reply as Share, Visibility } from '@mui/icons-material';
 import { Box, Chip, Grid, ListItemIcon, Typography } from '@mui/material';
 import moment from 'moment';
-import React, { useMemo, useState } from 'react';
+import React, { useMemo } from 'react';
 import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 
 import useAssetIdName from '../../hooks/useAssetIdName';
