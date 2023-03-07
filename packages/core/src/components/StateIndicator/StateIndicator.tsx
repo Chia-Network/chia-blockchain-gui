@@ -13,12 +13,11 @@ const Color = {
 };
 
 const StyledFlexContainer = styled(({ ...rest }) => <Flex {...rest} />)`
-  position: relative;
-  top: -1px;
+  gap: 4px;
 `;
 
 export type StateComponentProps = {
-  children: ReactNode;
+  children?: ReactNode;
   state: State;
   indicator?: boolean;
   reversed?: boolean;

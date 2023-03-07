@@ -14,7 +14,6 @@ const StyledCard = styled(({ selected, disabled, ...rest }) => <Card {...rest} /
   border: 1px solid ${selected ? theme.palette.highlight.main : theme.palette.divider};
   background-color: ${selected ? useColorModeValue(theme, 'sidebarBackground') : theme.palette.background.paper};
   position: relative;
-
   &:hover {
     border-color: ${disabled ? theme.palette.divider : selected ? theme.palette.highlight.main : theme.palette.divider};
   }
@@ -27,18 +26,27 @@ const StyledCardContent = styled(CardContent)(
 `
 );
 
+const StyledCardContentNoPadding = styled(CardContent)`
+  padding: 0;
+`;
+
 export type CardListItemProps = {
   children: ReactNode;
   selected?: boolean;
   onSelect?: () => void;
   disabled?: boolean;
   loading?: boolean;
+  noPadding: boolean;
 };
 
 export default function CardListItem(props: CardListItemProps) {
-  const { children, selected, onSelect, loading, disabled, ...rest } = props;
+  const { children, selected, onSelect, loading, disabled, noPadding = false, ...rest } = props;
 
-  const content = <StyledCardContent>{children}</StyledCardContent>;
+  const content = noPadding ? (
+    <StyledCardContentNoPadding>{children}</StyledCardContentNoPadding>
+  ) : (
+    <StyledCardContent>{children}</StyledCardContent>
+  );
 
   return (
     <StyledCard variant="outlined" selected={selected} disabled={disabled} {...rest}>

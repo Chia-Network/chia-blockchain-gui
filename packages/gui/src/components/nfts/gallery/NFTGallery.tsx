@@ -191,11 +191,11 @@ export default function NFTGallery() {
   const [nfts, setNfts] = useState<NFTInfo[]>([]);
   const [hideObjectionableContent] = useHideObjectionableContent();
   const { isSyncingCache } = useSyncCache();
-  const { allowNFTsFiltered, isDoneLoadingAllowedNFTs } = useAllowFilteredShow(
-    filteredNFTs,
-    hideObjectionableContent,
-    isLoading || isSyncingCache
-  );
+  const {
+    allowNFTsFiltered,
+    isDoneLoadingAllowedNFTs,
+    isLoading: isLoadingAllowedNFTs,
+  } = useAllowFilteredShow(filteredNFTs, hideObjectionableContent, isLoading || isSyncingCache);
 
   const [filtersShown, setFiltersShown] = useState<string[]>([]);
   const typesFilterRef = React.useRef<HTMLInputElement>(null);
@@ -212,14 +212,14 @@ export default function NFTGallery() {
       allowNFTsFiltered.forEach((nft) => {
         allowNFTsFilteredObject[nft.$nftId] = nft;
       });
-      allowNFTsFilteredNftIds = allowNFTsFiltered.map((nft) => nft.nftId);
+      allowNFTsFilteredNftIds = allowNFTsFiltered.map((nft) => nft.$nftId);
       setNfts(
         allowNFTsFiltered.length > maxNFTsPerPage
           ? allowNFTsFiltered.filter((_: any, idx: number) => idx < maxNFTsPerPage)
           : allowNFTsFiltered
       );
     }
-  }, [allowNFTsFiltered]);
+  }, [allowNFTsFiltered, allowNFTsFiltered.length]);
 
   const applyTypeFilter = React.useCallback(
     (nft: NFTInfo) => {
@@ -382,7 +382,7 @@ export default function NFTGallery() {
 
   const [selectedNFTIds, setSelectedNFTIds] = useLocalStorage('gallery-selected-nfts', []);
 
-  if (isLoading) {
+  if (isLoading || isLoadingAllowedNFTs) {
     return (
       <LoadingWrapper>
         <Loading center />
@@ -482,12 +482,19 @@ export default function NFTGallery() {
     e.stopPropagation();
   }
 
+  function forceScrollAwayFromTopOrBottom(e: any, currentScrollTop: number, direction: number) {
+    setTimeout(() => {
+      e.target.scrollTo(0, currentScrollTop - direction * 380);
+    }, 0);
+  }
+
   return (
     <LayoutDashboardSub
       // sidebar={<NFTGallerySidebar onWalletChange={setWalletId} />}
       onScroll={(e: MouseEvent) => {
         setScrollPosition((e.target as HTMLElement).scrollTop);
-        if (allowNFTsFiltered.filter((nft: NFTInfo) => showCard(nft)).length > maxNFTsPerPage) {
+        const nftCount = allowNFTsFiltered.filter((nft: NFTInfo) => showCard(nft)).length;
+        if (nftCount > maxNFTsPerPage) {
           const offset = window.document.body.offsetWidth;
           const perRowCount =
             offset > 1535 ? 4 : offset > 899 ? 3 : offset > 599 ? 2 : 1; /* number of NFTs in one row */
@@ -497,17 +504,20 @@ export default function NFTGallery() {
               (e.target as HTMLElement).scrollTop -
               (e.target as HTMLElement).offsetHeight -
               767 <
-            0
+              0 &&
+            visibleIndex + maxNFTsPerPage < nftCount
           ) {
             visibleIndex += perRowCount;
+            forceScrollAwayFromTopOrBottom(e, (e.target as HTMLElement).scrollTop, 1);
           } else if ((e.target as HTMLElement).scrollTop < 360 && visibleIndex - perRowCount >= 0) {
             visibleIndex -= perRowCount;
+            forceScrollAwayFromTopOrBottom(e, (e.target as HTMLElement).scrollTop, -1);
           }
           if (oldVisibleIndex !== visibleIndex) {
             setNfts(
               allowNFTsFiltered
                 .filter((nft: NFTInfo) => showCard(nft))
-                .filter((_: any, idx: number) => idx >= visibleIndex && idx <= maxNFTsPerPage + visibleIndex)
+                .filter((_: any, idx: number) => idx >= visibleIndex && idx < maxNFTsPerPage + visibleIndex)
             );
           }
         }
@@ -602,7 +612,7 @@ export default function NFTGallery() {
       }
     >
       <div id="scroll-helper" />
-      {!nfts?.length && !isLoading && !isSyncingCache ? (
+      {!nfts?.length && !isLoading && !isLoadingAllowedNFTs && !isSyncingCache ? (
         <NFTGalleryHero />
       ) : (
         <>

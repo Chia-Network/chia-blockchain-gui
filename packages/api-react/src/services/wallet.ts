@@ -31,6 +31,7 @@ const apiWithTag = api.enhanceEndpoints({
     'DIDWallet',
     'Keys',
     'LoggedInFingerprint',
+    'NFTCount',
     'NFTInfo',
     'NFTRoyalties',
     'NFTWalletWithDID',
@@ -1903,15 +1904,55 @@ export const walletApi = apiWithTag.injectEndpoints({
       },
     }),
 
-    getNFTs: build.query<{ [walletId: number]: NFTInfo[] }, { walletIds: number[] }>({
-      async queryFn(args, _queryApi, _extraOptions, fetchWithBQ) {
+    getNFTsCount: build.query<{ [walletId: number]: number; total: number }, { walletIds: number[] }>({
+      async queryFn({ walletIds }, _queryApi, _extraOptions, fetchWithBQ) {
+        try {
+          const countByWalletId: Record<number, number> = {};
+          await Promise.all(
+            walletIds.map(async (walletId) => {
+              const { data: nftCountData, error: nftCountError } = await fetchWithBQ({
+                command: 'getNftsCount',
+                service: NFT,
+                args: [walletId],
+              });
+
+              if (nftCountError) {
+                throw nftCountError as Error;
+              }
+
+              countByWalletId[walletId] = nftCountData.count;
+            })
+          );
+
+          const total = Object.values(countByWalletId).reduce((a, b) => a + b, 0);
+
+          return {
+            data: {
+              ...countByWalletId,
+              total,
+            },
+          };
+        } catch (error: any) {
+          return {
+            error,
+          };
+        }
+      },
+      providesTags: (countByWalletId) =>
+        countByWalletId
+          ? [...Object.entries(countByWalletId).map(([walletId]) => ({ type: 'NFTCount', id: walletId } as const))]
+          : [],
+    }),
+
+    getNFTs: build.query<{ [walletId: number]: NFTInfo[] }, { walletIds: number[]; num: number; startIndex: number }>({
+      async queryFn({ walletIds, num, startIndex }, _queryApi, _extraOptions, fetchWithBQ) {
         try {
           const nftData: { [walletId: number]: NFTInfo[] }[] = await Promise.all(
-            args.walletIds.map(async (walletId) => {
+            walletIds.map(async (walletId) => {
               const { data: nftsData, error: nftsError } = await fetchWithBQ({
                 command: 'getNfts',
                 service: NFT,
-                args: [walletId],
+                args: [walletId, num, startIndex],
               });
 
               if (nftsError) {
@@ -2220,7 +2261,7 @@ export const walletApi = apiWithTag.injectEndpoints({
         pubkey: string;
         signature: string;
         address?: string;
-        signingMode?: string | undefined;
+        signingMode?: string;
       }
     >({
       query: ({ message, pubkey, signature, address, signingMode }) => ({
@@ -2318,6 +2359,7 @@ export const {
   // NFTs
   useCalculateRoyaltiesForNFTsQuery,
   useGetNFTsByNFTIDsQuery,
+  useGetNFTsCountQuery,
   useGetNFTsQuery,
   useGetNFTWalletsWithDIDsQuery,
   useGetNFTInfoQuery,

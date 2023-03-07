@@ -12,6 +12,7 @@ import {
   Flex,
   LayoutHero,
   LayoutLoading,
+  Mode,
   useMode,
   useIsSimulator,
   useAppVersion,
@@ -108,6 +109,17 @@ export default function AppState(props: Props) {
   }, [servicesState, runServices]);
 
   const isConnected = !isClientStateLoading && clientState?.state === ConnectionState.CONNECTED;
+
+  useEffect(() => {
+    const allRunningServices = servicesState.running.map((serviceState) => serviceState.service);
+    const nonWalletServiceRunning = allRunningServices.some((service) => service !== ServiceName.WALLET);
+
+    if (mode === Mode.WALLET && !nonWalletServiceRunning) {
+      window.ipcRenderer.invoke('setPromptOnQuit', false);
+    } else {
+      window.ipcRenderer.invoke('setPromptOnQuit', true);
+    }
+  }, [mode, servicesState]);
 
   useEffect(() => {
     async function handleClose(event) {

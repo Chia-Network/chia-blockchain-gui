@@ -39,20 +39,21 @@ export default function LayoutHero(props: LayoutHeroProps) {
   return (
     <StyledWrapper>
       <AppBar color="transparent" elevation={0}>
-        <Toolbar>
-          {header}
-          {back && (
+        {back && (
+          <Toolbar>
+            {header}
             <Link to="-1">
               <ArrowBackIosIcon fontSize="large" color="secondary" />
             </Link>
-          )}
-          <Flex flexGrow={1} />
-          {/*! hideSettings && (
+
+            <Flex flexGrow={1} />
+            {/*! hideSettings && (
             <Settings>
               {settings}
             </Settings>
           ) */}
-        </Toolbar>
+          </Toolbar>
+        )}
       </AppBar>
       <StyledBody>
         <Flex flexDirection="column" gap={2} alignItems="center" alignSelf="stretch">
