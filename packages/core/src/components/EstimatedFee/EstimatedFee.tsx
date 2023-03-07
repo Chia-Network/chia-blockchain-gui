@@ -272,7 +272,7 @@ export default function EstimatedFee(props: FeeProps) {
 
   useEffect(() => {
     if (formattedEstimates) {
-      if (!defaultFee) {
+      if (!defaultFee && !isLoading) {
         const defaultVal = formattedEstimates.find((formattedEstimate) => formattedEstimate.estimate === 0);
         if (defaultVal) {
           setSelectedValue(defaultVal.estimate);
