@@ -141,18 +141,18 @@ export const walletApi = apiWithTag.injectEndpoints({
           ? [...result.map(({ id }) => ({ type: 'Wallets', id } as const)), { type: 'Wallets', id: 'LIST' }]
           : [{ type: 'Wallets', id: 'LIST' }];
       },
-      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, [
+      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, api, [
         {
           command: 'onWalletCreated',
           service: WalletService,
-          endpoint: () => walletApi.endpoints.getWallets,
+          endpoint: 'getWallets',
         },
       ]),
     }),
 
     getTransaction: query(build, WalletService, 'getTransaction', {
       transformResponse: (response) => response.transaction,
-      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, [
+      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, api, [
         {
           command: 'onTransactionUpdate',
           service: WalletService,
@@ -235,46 +235,46 @@ export const walletApi = apiWithTag.injectEndpoints({
           pendingTotalBalance,
         };
       },
-      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, [
+      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, api, [
         {
           command: 'onCoinAdded',
           service: WalletService,
-          endpoint: () => walletApi.endpoints.getWalletBalance,
+          endpoint: 'getWalletBalance',
         },
         {
           command: 'onCoinRemoved',
           service: WalletService,
-          endpoint: () => walletApi.endpoints.getWalletBalance,
+          endpoint: 'getWalletBalance',
         },
         {
           command: 'onPendingTransaction',
           service: WalletService,
-          endpoint: () => walletApi.endpoints.getWalletBalance,
+          endpoint: 'getWalletBalance',
         },
         {
           command: 'onOfferAdded',
           service: WalletService,
-          endpoint: () => walletApi.endpoints.getWalletBalance,
+          endpoint: 'getWalletBalance',
         },
         {
           command: 'onOfferUpdated',
           service: WalletService,
-          endpoint: () => walletApi.endpoints.getWalletBalance,
+          endpoint: 'getWalletBalance',
         },
       ]),
     }),
 
     getFarmedAmount: query(build, WalletService, 'getFarmedAmount', {
-      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, [
+      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, api, [
         {
           command: 'onCoinAdded',
           service: WalletService,
-          endpoint: () => walletApi.endpoints.getFarmedAmount,
+          endpoint: 'getFarmedAmount',
         },
         {
           command: 'onCoinRemoved',
           service: WalletService,
-          endpoint: () => walletApi.endpoints.getFarmedAmount,
+          endpoint: 'getFarmedAmount',
         },
       ]),
     }),
@@ -460,21 +460,21 @@ export const walletApi = apiWithTag.injectEndpoints({
             ]
           : [{ type: 'Transactions', id: 'LIST' }];
       },
-      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, [
+      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, api, [
         {
           command: 'onCoinAdded',
           service: WalletService,
-          endpoint: () => walletApi.endpoints.getTransactions,
+          endpoint: 'getTransactions',
         },
         {
           command: 'onCoinRemoved',
           service: WalletService,
-          endpoint: () => walletApi.endpoints.getTransactions,
+          endpoint: 'getTransactions',
         },
         {
           command: 'onPendingTransaction',
           service: WalletService,
-          endpoint: () => walletApi.endpoints.getTransactions,
+          endpoint: 'getTransactions',
         },
       ]),
     }),
@@ -482,21 +482,21 @@ export const walletApi = apiWithTag.injectEndpoints({
     getTransactionsCount: query(build, WalletService, 'getTransactionsCount', {
       transformResponse: (response) => response.count,
       providesTags: (result, _error, { walletId }) => (result ? [{ type: 'TransactionCount', id: walletId }] : []),
-      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, [
+      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, api, [
         {
           command: 'onCoinAdded',
           service: WalletService,
-          endpoint: () => walletApi.endpoints.getTransactionsCount,
+          endpoint: 'getTransactionsCount',
         },
         {
           command: 'onCoinRemoved',
           service: WalletService,
-          endpoint: () => walletApi.endpoints.getTransactionsCount,
+          endpoint: 'getTransactionsCount',
         },
         {
           command: 'onPendingTransaction',
           service: WalletService,
-          endpoint: () => walletApi.endpoints.getTransactionsCount,
+          endpoint: 'getTransactionsCount',
         },
       ]),
     }),
@@ -518,23 +518,23 @@ export const walletApi = apiWithTag.injectEndpoints({
 
     getHeightInfo: query(build, WalletService, 'getHeightInfo', {
       transformResponse: (response) => response.height,
-      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, [
+      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, api, [
         {
           command: 'onSyncChanged',
           service: WalletService,
-          endpoint: () => walletApi.endpoints.getHeightInfo,
+          endpoint: 'getHeightInfo',
         },
         {
           command: 'onNewBlock',
           service: WalletService,
-          endpoint: () => walletApi.endpoints.getHeightInfo,
+          endpoint: 'getHeightInfo',
         },
       ]),
     }),
 
     getCurrentDerivationIndex: query(build, WalletService, 'getCurrentDerivationIndex', {
       providesTags: (result) => (result ? [{ type: 'DerivationIndex' }] : []),
-      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, [
+      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, api, [
         {
           command: 'onNewDerivationIndex',
           service: WalletService,
@@ -552,16 +552,16 @@ export const walletApi = apiWithTag.injectEndpoints({
     getNetworkInfo: query(build, WalletService, 'getNetworkInfo'),
 
     getSyncStatus: query(build, WalletService, 'getSyncStatus', {
-      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, [
+      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, api, [
         {
           command: 'onSyncChanged',
           service: WalletService,
-          endpoint: () => walletApi.endpoints.getSyncStatus,
+          endpoint: 'getSyncStatus',
         },
         {
           command: 'onNewBlock',
           service: WalletService,
-          endpoint: () => walletApi.endpoints.getSyncStatus,
+          endpoint: 'getSyncStatus',
         },
       ]),
     }),
@@ -575,7 +575,7 @@ export const walletApi = apiWithTag.injectEndpoints({
               { type: 'WalletConnections', id: 'LIST' },
             ]
           : [{ type: 'WalletConnections', id: 'LIST' }],
-      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, [
+      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, api, [
         {
           command: 'onConnections',
           service: WalletService,
@@ -621,21 +621,21 @@ export const walletApi = apiWithTag.injectEndpoints({
             ]
           : [{ type: 'OfferTradeRecord', id: 'LIST' }];
       },
-      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, [
+      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, api, [
         {
           command: 'onCoinAdded',
           service: WalletService,
-          endpoint: () => walletApi.endpoints.getAllOffers,
+          endpoint: 'getAllOffers',
         },
         {
           command: 'onCoinRemoved',
           service: WalletService,
-          endpoint: () => walletApi.endpoints.getAllOffers,
+          endpoint: 'getAllOffers',
         },
         {
           command: 'onPendingTransaction',
           service: WalletService,
-          endpoint: () => walletApi.endpoints.getAllOffers,
+          endpoint: 'getAllOffers',
         },
       ]),
     }),
@@ -1200,11 +1200,11 @@ export const walletApi = apiWithTag.injectEndpoints({
           ? [...result.map(({ id }) => ({ type: 'DIDWallet', id } as const)), { type: 'DIDWallet', id: 'LIST' }]
           : [{ type: 'DIDWallet', id: 'LIST' }];
       },
-      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, [
+      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, api, [
         {
           command: 'onWalletCreated',
           service: WalletService,
-          endpoint: () => walletApi.endpoints.getWallets,
+          endpoint: 'getWallets',
         },
       ]),
     }),
@@ -1370,21 +1370,21 @@ export const walletApi = apiWithTag.injectEndpoints({
               { type: 'NFTInfo', id: 'LIST' },
             ]
           : [{ type: 'NFTInfo', id: 'LIST' }],
-      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, [
+      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, api, [
         {
           command: 'onNFTCoinAdded',
           service: NFT,
-          endpoint: () => walletApi.endpoints.getNFTs,
+          endpoint: 'getNFTs',
         },
         {
           command: 'onNFTCoinRemoved',
           service: NFT,
-          endpoint: () => walletApi.endpoints.getNFTs,
+          endpoint: 'getNFTs',
         },
         {
           command: 'onNFTCoinTransferred',
           service: NFT,
-          endpoint: () => walletApi.endpoints.getNFTs,
+          endpoint: 'getNFTs',
         },
       ]),
     }),
@@ -1401,11 +1401,11 @@ export const walletApi = apiWithTag.injectEndpoints({
               { type: 'NFTWalletWithDID', id: 'LIST' },
             ]
           : [{ type: 'NFTWalletWithDID', id: 'LIST' }],
-      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, [
+      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, api, [
         {
           command: 'onWalletCreated',
           service: WalletService,
-          endpoint: () => walletApi.endpoints.getNFTWalletsWithDIDs,
+          endpoint: 'getNFTWalletsWithDIDs',
         },
       ]),
     }),
@@ -1491,11 +1491,11 @@ export const walletApi = apiWithTag.injectEndpoints({
               { type: 'Notification', id: 'LIST' },
             ]
           : [{ type: 'Notification', id: 'LIST' }],
-      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, [
+      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, api, [
         {
           command: 'onNewOnChainNotification',
           service: WalletService,
-          endpoint: () => walletApi.endpoints.getNotifications,
+          endpoint: 'getNotifications',
         },
       ]),
     }),

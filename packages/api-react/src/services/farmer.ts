@@ -33,11 +33,11 @@ export const farmerApi = apiWithTag.injectEndpoints({
         harvesters
           ? [...harvesters.map(({ id }) => ({ type: 'Harvesters', id } as const)), { type: 'Harvesters', id: 'LIST' }]
           : [{ type: 'Harvesters', id: 'LIST' }],
-      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, [
+      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, api, [
         {
           command: 'onHarvesterChanged',
           service: Farmer,
-          endpoint: () => farmerApi.endpoints.getHarvesters,
+          endpoint: 'getHarvesters',
         },
       ]),
     }),
@@ -51,7 +51,7 @@ export const farmerApi = apiWithTag.injectEndpoints({
               { type: 'HarvestersSummary', id: 'LIST' },
             ]
           : [{ type: 'HarvestersSummary', id: 'LIST' }],
-      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, [
+      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, api, [
         {
           command: 'onHarvesterUpdated',
           service: Farmer,
@@ -92,11 +92,11 @@ export const farmerApi = apiWithTag.injectEndpoints({
               { type: 'HarvesterPlots', id: 'LIST' },
             ]
           : [{ type: 'HarvesterPlots', id: 'LIST' }],
-      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, [
+      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, api, [
         {
           command: 'onHarvesterUpdated',
           service: Farmer,
-          endpoint: () => farmerApi.endpoints.getHarvesterPlotsValid,
+          endpoint: 'getHarvesterPlotsValid',
           skip: (_draft, data, args) => args.nodeId !== data?.connection?.nodeId,
         },
       ]),
@@ -111,11 +111,11 @@ export const farmerApi = apiWithTag.injectEndpoints({
               { type: 'HarvesterPlotsInvalid', id: 'LIST' },
             ]
           : [{ type: 'HarvesterPlotsInvalid', id: 'LIST' }],
-      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, [
+      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, api, [
         {
           command: 'onHarvesterUpdated',
           service: Farmer,
-          endpoint: () => farmerApi.endpoints.getHarvesterPlotsInvalid,
+          endpoint: 'getHarvesterPlotsInvalid',
           skip: (_draft, data, args) => args.nodeId !== data?.connection?.nodeId,
         },
       ]),
@@ -130,11 +130,11 @@ export const farmerApi = apiWithTag.injectEndpoints({
               { type: 'HarvesterPlotsKeysMissing', id: 'LIST' },
             ]
           : [{ type: 'HarvesterPlotsKeysMissing', id: 'LIST' }],
-      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, [
+      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, api, [
         {
           command: 'onHarvesterUpdated',
           service: Farmer,
-          endpoint: () => farmerApi.endpoints.getHarvesterPlotsKeysMissing,
+          endpoint: 'getHarvesterPlotsKeysMissing',
           skip: (_draft, data, args) => args.nodeId !== data?.connection?.nodeId,
         },
       ]),
@@ -149,11 +149,11 @@ export const farmerApi = apiWithTag.injectEndpoints({
               { type: 'HarvesterPlotsDuplicates', id: 'LIST' },
             ]
           : [{ type: 'HarvesterPlotsDuplicates', id: 'LIST' }],
-      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, [
+      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, api, [
         {
           command: 'onHarvesterUpdated',
           service: Farmer,
-          endpoint: () => farmerApi.endpoints.getHarvesterPlotsDuplicates,
+          endpoint: 'getHarvesterPlotsDuplicates',
           skip: (_draft, data, args) => args.nodeId !== data?.connection?.nodeId,
         },
       ]),
@@ -176,7 +176,7 @@ export const farmerApi = apiWithTag.injectEndpoints({
               { type: 'FarmerConnections', id: 'LIST' },
             ]
           : [{ type: 'FarmerConnections', id: 'LIST' }],
-      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, [
+      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, api, [
         {
           command: 'onConnections',
           service: Farmer,
@@ -219,7 +219,7 @@ export const farmerApi = apiWithTag.injectEndpoints({
               { type: 'SignagePoints', id: 'LIST' },
             ]
           : [{ type: 'SignagePoints', id: 'LIST' }],
-      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, [
+      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, api, [
         {
           command: 'onNewSignagePoint',
           service: Farmer,
@@ -249,11 +249,11 @@ export const farmerApi = apiWithTag.injectEndpoints({
     }),
 
     getFarmingInfo: query(build, Farmer, 'getFarmingInfo', {
-      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, [
+      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, api, [
         {
           command: 'onFarmingInfoChanged',
           service: Farmer,
-          endpoint: () => farmerApi.endpoints.getFarmingInfo,
+          endpoint: 'getFarmingInfo',
         },
       ]),
     }),

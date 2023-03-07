@@ -9,11 +9,11 @@ const apiWithTag = api.enhanceEndpoints({ addTagTypes: ['PlotQueue'] });
 export const plotterApi = apiWithTag.injectEndpoints({
   endpoints: (build) => ({
     getPlotQueue: query(build, PlotterService, 'getQueue', {
-      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, [
+      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, api, [
         {
           command: 'onQueueChanged',
           service: PlotterService,
-          endpoint: () => plotterApi.endpoints.getPlotQueue,
+          endpoint: 'getPlotQueue',
         },
       ]),
     }),

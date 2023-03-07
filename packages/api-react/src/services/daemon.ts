@@ -51,7 +51,7 @@ export const daemonApi = apiWithTag.injectEndpoints({
         };
       },
       providesTags: ['KeyringStatus'],
-      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, [
+      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, api, [
         {
           command: 'onKeyringStatusChanged',
           service: Daemon,
