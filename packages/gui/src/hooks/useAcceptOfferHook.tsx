@@ -40,7 +40,7 @@ export default function useAcceptOfferHook(): [AcceptOfferHook] {
     onSuccess?: () => void
   ): Promise<void> {
     const offerBuilderData = offerToOfferBuilderData(offerSummary, true);
-    const { assetsToUnlock } = await offerBuilderDataToOffer(offerBuilderData, wallets, offers || [], false);
+    const { assetsToUnlock } = await offerBuilderDataToOffer(offerBuilderData, wallets, offers || [], false, true);
 
     const assetsRequiredToBeUnlocked = [];
     const assetsBetterToBeUnlocked = [];

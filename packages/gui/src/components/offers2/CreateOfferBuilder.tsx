@@ -99,7 +99,13 @@ export default function CreateOfferBuilder(props: CreateOfferBuilderProps) {
 
   const handleSubmit = useCallback(
     async (values: OfferBuilderData) => {
-      const { assetsToUnlock, ...localOffer } = await offerBuilderDataToOffer(values, wallets, offers || [], false);
+      const { assetsToUnlock, ...localOffer } = await offerBuilderDataToOffer(
+        values,
+        wallets,
+        offers || [],
+        false,
+        true
+      );
 
       const assetsRequiredToBeUnlocked = [];
       const assetsBetterToBeUnlocked = [];

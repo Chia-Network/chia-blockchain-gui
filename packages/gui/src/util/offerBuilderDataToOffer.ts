@@ -37,7 +37,8 @@ export default async function offerBuilderDataToOffer(
   data: OfferBuilderData,
   wallets: Wallet[],
   offers: OfferTradeRecordFormatted[],
-  validateOnly?: boolean
+  validateOnly?: boolean,
+  considerNftRoyalty?: boolean
 ): Promise<{
   walletIdsAndAmounts?: Record<string, BigNumber>;
   driverDict?: Record<string, any>;
@@ -324,6 +325,23 @@ export default async function offerBuilderDataToOffer(
     walletIdsAndAmounts[id] = amount;
     if (driver) {
       driverDict[id] = driver;
+
+      if (considerNftRoyalty && pendingXchOffer) {
+        const royaltyPercentageStr = driver.also.also?.transfer_program.royalty_percentage;
+        if (royaltyPercentageStr) {
+          const royaltyMultiplier = 1 + +royaltyPercentageStr / 10_000;
+          const spendingXch = pendingXchOffer.spendingAmount.minus(feeInMojos);
+          const newSpendingXch = spendingXch.multipliedBy(royaltyMultiplier).plus(feeInMojos);
+          pendingXchOffer.spendingAmount = newSpendingXch;
+
+          const hasEnoughSpendableBalance = pendingXchOffer.spendableAmount.gte(pendingXchOffer.spendingAmount);
+          if (!hasEnoughSpendableBalance) {
+            pendingXchOffer.status = 'conflictsWithNewOffer';
+          } else {
+            pendingXchOffer.status = 'alsoUsedInNewOfferWithoutConflict';
+          }
+        }
+      }
     }
   });
 
