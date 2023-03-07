@@ -289,7 +289,7 @@ export default function EstimatedFee(props: FeeProps) {
         }
       }
     }
-  }, [formattedEstimates, name, selectedTime, setValue]);
+  }, [formattedEstimates, name, selectedTime, setValue, defaultFee]);
 
   const handleSelectOpen = () => {
     setSelectOpen(true);
