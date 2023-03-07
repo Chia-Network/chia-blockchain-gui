@@ -63,7 +63,11 @@ export default function Settings() {
             indicatorColor="primary"
           >
             <Tab value={SettingsTab.GENERAL} label={<Trans>General</Trans>} data-testid="Settings-tab-general" />
-            <Tab value={SettingsTab.PROFILES} label={<Trans>Profiles</Trans>} data-testid="Settings-tab-profiles" />
+            <Tab
+              value={SettingsTab.PROFILES}
+              label={<Trans>Profiles (DIDs)</Trans>}
+              data-testid="Settings-tab-profiles"
+            />
 
             <Tab value={SettingsTab.NFT} label={<Trans>NFT</Trans>} data-testid="Settings-tab-nft" />
 
