@@ -17,8 +17,8 @@ import {
   PermIdentity as PermIdentityIcon,
   Visibility as VisibilityIcon,
   VisibilityOff as VisibilityOffIcon,
-  DeleteForever as DeleteForeverIcon,
   Refresh as RefreshIcon,
+  LocalFireDepartment as LocalFireDepartmentIcon,
 } from '@mui/icons-material';
 import { ListItemIcon, Typography } from '@mui/material';
 import React, { useMemo, ReactNode } from 'react';
@@ -525,7 +525,7 @@ function NFTBurnContextualAction(props: NFTBurnContextualActionProps) {
   return (
     <MenuItem onClick={handleBurn} disabled={disabled} divider close>
       <ListItemIcon>
-        <DeleteForeverIcon />
+        <LocalFireDepartmentIcon />
       </ListItemIcon>
       <Typography variant="inherit" noWrap>
         <Trans>Burn</Trans>
