@@ -78,6 +78,9 @@ export default function CreateOfferBuilder(props: CreateOfferBuilderProps) {
   const [createOfferForIds] = useCreateOfferForIdsMutation();
   const offerBuilderRef = useRef<{ submit: () => void } | undefined>(undefined);
 
+  console.log('CreateOfferBuilder nftId:');
+  console.log(nftId);
+
   const defaultValues = useMemo(() => {
     if (offer) {
       return offer;
@@ -148,7 +151,7 @@ export default function CreateOfferBuilder(props: CreateOfferBuilderProps) {
         navigate(-1);
 
         if (!suppressShareOnCreate) {
-          onOfferCreated({ offerRecord, offerData, address });
+          onOfferCreated({ offerRecord, offerData, address, nftId });
         }
       } catch (error) {
         if ((error as Error).message.startsWith('insufficient funds')) {
@@ -161,7 +164,7 @@ export default function CreateOfferBuilder(props: CreateOfferBuilderProps) {
         }
       }
     },
-    [wallets, createOfferForIds, navigate, suppressShareOnCreate, onOfferCreated, address, openDialog, offers]
+    [wallets, createOfferForIds, navigate, suppressShareOnCreate, onOfferCreated, address, openDialog, offers, nftId]
   );
 
   return (
