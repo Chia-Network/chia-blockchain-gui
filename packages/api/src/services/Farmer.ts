@@ -93,7 +93,7 @@ export default class Farmer extends Service {
   }
 
   async getHarvestersSummary() {
-    return this.command<HarvesterSummary>('get_harvesters_summary');
+    return this.command<{ harvesters: HarvesterSummary[] }>('get_harvesters_summary');
   }
 
   async getPoolLoginLink(args: { launcherId: string }) {

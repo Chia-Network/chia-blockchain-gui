@@ -1,5 +1,5 @@
 /* eslint-disable no-param-reassign -- This file use Immer */
-import { Farmer } from '@chia-network/api';
+import { Farmer, type HarvesterSummary } from '@chia-network/api';
 
 import api, { baseQuery } from '../api';
 import onCacheEntryAddedInvalidate from '../utils/onCacheEntryAddedInvalidate';
@@ -55,7 +55,7 @@ export const farmerApi = apiWithTag.injectEndpoints({
         {
           command: 'onHarvesterUpdated',
           service: Farmer,
-          onUpdate(draft, data) {
+          onUpdate(draft: HarvesterSummary[], data) {
             const {
               connection: { nodeId },
             } = data;
@@ -71,7 +71,7 @@ export const farmerApi = apiWithTag.injectEndpoints({
         {
           command: 'onHarvesterRemoved',
           service: Farmer,
-          onUpdate(draft, data) {
+          onUpdate(draft: HarvesterSummary[], data) {
             const { nodeId } = data;
 
             const index = draft.findIndex((harvester) => harvester.connection.nodeId === nodeId);
@@ -167,7 +167,7 @@ export const farmerApi = apiWithTag.injectEndpoints({
       invalidatesTags: ['RewardTargets'],
     }),
 
-    getConnections: query(build, Farmer, 'getConnections', {
+    getFarmerConnections: query(build, Farmer, 'getConnections', {
       transformResponse: (response) => response.connections,
       providesTags: (connections) =>
         connections
