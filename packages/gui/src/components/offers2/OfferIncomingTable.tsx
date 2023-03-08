@@ -84,7 +84,7 @@ const cols = [
         await counterOffer(id);
       }
 
-      const tooltipTitle = puzzleHash ? '' : 'The offer creator has chosen not to allow counter offers';
+      const tooltipTitle = puzzleHash ? '' : <Trans>The offer creator has chosen not to allow counter offers</Trans>;
 
       return (
         <Flex gap={1}>
