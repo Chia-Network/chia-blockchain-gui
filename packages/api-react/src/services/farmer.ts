@@ -44,13 +44,7 @@ export const farmerApi = apiWithTag.injectEndpoints({
 
     getHarvestersSummary: query(build, Farmer, 'getHarvestersSummary', {
       transformResponse: (response) => response.harvesters,
-      providesTags: (harvesters) =>
-        harvesters
-          ? [
-              ...harvesters.map(({ id }) => ({ type: 'HarvestersSummary', id } as const)),
-              { type: 'HarvestersSummary', id: 'LIST' },
-            ]
-          : [{ type: 'HarvestersSummary', id: 'LIST' }],
+      providesTags: [{ type: 'HarvestersSummary', id: 'LIST' }],
       onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, api, [
         {
           command: 'onHarvesterUpdated',
@@ -213,9 +207,7 @@ export const farmerApi = apiWithTag.injectEndpoints({
       providesTags: (signagePoints) =>
         signagePoints
           ? [
-              ...signagePoints.map(
-                ({ signagePoint }) => ({ type: 'SignagePoints', id: signagePoint?.challengeHash } as const)
-              ),
+              ...signagePoints.map(({ challengeHash }) => ({ type: 'SignagePoints', id: challengeHash } as const)),
               { type: 'SignagePoints', id: 'LIST' },
             ]
           : [{ type: 'SignagePoints', id: 'LIST' }],
