@@ -143,6 +143,9 @@ export default function SelectKeyItem(props: SelectKeyItemProps) {
         ':hover': {
           border: `1px solid ${color.border}`,
         },
+        '.MuiCardActionArea-focusHighlight': {
+          // background: 'transparent',
+        },
       }}
     >
       <Flex position="relative" flexDirection="column">
@@ -191,6 +194,9 @@ export default function SelectKeyItem(props: SelectKeyItemProps) {
                 alignItems: 'center',
                 justifyContent: 'center',
                 borderRadius: '4px',
+                background: 'none',
+                transition: 'all .3s linear',
+                backgroundColor: 'transparent',
               }}
               onClick={toggleEmojiPicker}
             >
