@@ -1,3 +1,4 @@
+import { OfferSummaryRecord } from '@chia-network/api';
 import { mojoToCAT, mojoToChia } from '@chia-network/core';
 import BigNumber from 'bignumber.js';
 
@@ -6,9 +7,9 @@ import type OfferSummary from '../@types/OfferSummary';
 import { launcherIdToNFTId } from './nfts';
 
 export default function offerToOfferBuilderData(
-  offerSummary: OfferSummary,
+  offerSummary: OfferSummary | OfferSummaryRecord,
   setDefaultOfferedFee: boolean,
-  defaultFee: string // in mojos
+  defaultFee?: string // in mojos
 ): OfferBuilderData {
   const { fees, offered, requested, infos } = offerSummary;
 

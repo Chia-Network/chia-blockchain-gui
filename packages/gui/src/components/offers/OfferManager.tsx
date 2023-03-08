@@ -2,19 +2,14 @@ import { OfferTradeRecord } from '@chia-network/api';
 import { useCancelOfferMutation, useGetWalletsQuery } from '@chia-network/api-react';
 import {
   Button,
-  ButtonLoading,
   Card,
   CardHero,
-  EstimatedFee,
   Flex,
-  Form,
   IconButton,
   LoadingOverlay,
   More,
   TableControlled,
-  TooltipIcon,
   useOpenDialog,
-  chiaToMojo,
   useCurrencyCode,
   useSerializedNavigationState,
   Tooltip,
@@ -23,24 +18,9 @@ import {
 } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Cancel, GetApp as Download, Info, Reply as Share, Visibility } from '@mui/icons-material';
-import {
-  Box,
-  Checkbox,
-  Chip,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-  FormControlLabel,
-  Grid,
-  ListItemIcon,
-  Typography,
-} from '@mui/material';
-import BigNumber from 'bignumber.js';
+import { Box, Chip, Grid, ListItemIcon, Typography } from '@mui/material';
 import moment from 'moment';
-import React, { useMemo, useState } from 'react';
-import { useForm } from 'react-hook-form';
+import React, { useMemo } from 'react';
 import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 
 import useAssetIdName from '../../hooks/useAssetIdName';
@@ -53,6 +33,7 @@ import CreateOfferBuilder from '../offers2/CreateOfferBuilder';
 import OfferBuilderImport from '../offers2/OfferBuilderImport';
 import OfferBuilderViewer from '../offers2/OfferBuilderViewer';
 import OfferIncomingTable from '../offers2/OfferIncomingTable';
+import { ConfirmOfferCancellation } from './ConfirmOfferCancellation';
 import { CreateNFTOfferEditor } from './NFTOfferEditor';
 import NFTOfferViewer from './NFTOfferViewer';
 import OfferAsset from './OfferAsset';
@@ -62,116 +43,6 @@ import { OfferImport } from './OfferImport';
 import OfferShareDialog from './OfferShareDialog';
 import OfferState from './OfferState';
 import { colorForOfferState, displayStringForOfferState } from './utils';
-
-type ConfirmOfferCancellationProps = {
-  canCancelWithTransaction?: boolean;
-  onClose?: (value: any) => void;
-  open?: boolean;
-};
-
-export function ConfirmOfferCancellation(props: ConfirmOfferCancellationProps) {
-  const { canCancelWithTransaction = true, onClose = () => {}, open = true } = props;
-  const methods = useForm({
-    defaultValues: {
-      fee: '',
-    },
-  });
-  const [cancelWithTransaction, setCancelWithTransaction] = useState<boolean>(canCancelWithTransaction);
-
-  function handleCancel() {
-    onClose([false]);
-  }
-
-  async function handleConfirm() {
-    const { fee: xchFee } = methods.getValues();
-
-    const fee = cancelWithTransaction ? chiaToMojo(xchFee) : new BigNumber(0);
-
-    onClose([true, { cancelWithTransaction, cancellationFee: fee }]);
-  }
-
-  return (
-    <Dialog
-      onClose={handleCancel}
-      open={open}
-      aria-labelledby="alert-dialog-title"
-      aria-describedby="alert-dialog-description"
-    >
-      <DialogTitle id="alert-dialog-title">
-        <Trans>Cancel Offer</Trans>
-      </DialogTitle>
-      <DialogContent>
-        <DialogContentText id="alert-dialog-description">
-          <Form methods={methods} onSubmit={handleConfirm}>
-            <Flex flexDirection="column" gap={3}>
-              <Typography variant="body1">
-                <Trans>Are you sure you want to cancel your offer?</Trans>
-              </Typography>
-              {canCancelWithTransaction && (
-                <>
-                  <Typography variant="body1">
-                    <Trans>
-                      If you have already shared your offer file, you may need to submit a transaction to cancel the
-                      pending offer. Click "Cancel on blockchain" to submit a cancellation transaction.
-                    </Trans>
-                  </Typography>
-                  <Flex flexDirection="row" gap={3}>
-                    <Grid container>
-                      <Grid xs={6} item>
-                        <FormControlLabel
-                          control={
-                            <Checkbox
-                              name="cancelWithTransaction"
-                              checked={cancelWithTransaction}
-                              onChange={(event) => setCancelWithTransaction(event.target.checked)}
-                            />
-                          }
-                          label={
-                            <>
-                              <Trans>Cancel on blockchain</Trans>{' '}
-                              <TooltipIcon>
-                                <Trans>
-                                  Creates and submits a transaction on the blockchain that cancels the offer
-                                </Trans>
-                              </TooltipIcon>
-                            </>
-                          }
-                        />
-                      </Grid>
-                      {cancelWithTransaction && (
-                        <Grid xs={6} item>
-                          <EstimatedFee
-                            id="filled-secondary"
-                            variant="filled"
-                            name="fee"
-                            color="secondary"
-                            label={<Trans>Fee</Trans>}
-                            fullWidth
-                            txType="cancelOffer"
-                          />
-                        </Grid>
-                      )}
-                    </Grid>
-                  </Flex>
-                </>
-              )}
-            </Flex>
-          </Form>
-        </DialogContentText>
-      </DialogContent>
-      <DialogActions>
-        <Flex flexDirection="row" gap={3} style={{ paddingBottom: '8px', paddingRight: '16px' }}>
-          <Button onClick={handleCancel} color="secondary" variant="outlined" autoFocus>
-            <Trans>Close</Trans>
-          </Button>
-          <ButtonLoading onClick={handleConfirm} color="danger" variant="contained">
-            <Trans>Cancel Offer</Trans>
-          </ButtonLoading>
-        </Flex>
-      </DialogActions>
-    </Dialog>
-  );
-}
 
 function OfferSectionSummaryRow({ displayAmount, displayName, assetType, showNFTs = false }) {
   return (
