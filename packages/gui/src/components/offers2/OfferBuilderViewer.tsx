@@ -33,7 +33,7 @@ export type OfferBuilderViewerProps = {
   isMyOffer?: boolean;
   imported?: boolean;
   hideHeader?: boolean;
-  counterOffer?: boolean;
+  canCounterOffer?: boolean;
   address?: string; // where to send a counter offer
   fee?: string; // in mojos
 };
@@ -47,7 +47,7 @@ function OfferBuilderViewer(props: OfferBuilderViewerProps, ref: any) {
     isMyOffer = false,
     imported = false,
     hideHeader = false,
-    counterOffer = false,
+    canCounterOffer = false,
     address,
     fee,
   } = props;
@@ -134,7 +134,6 @@ function OfferBuilderViewer(props: OfferBuilderViewerProps, ref: any) {
   const missingRequestedCATs = !!requestedUnknownCATs?.length;
 
   const canAccept = !!offerData;
-  const canCounter = counterOffer;
   const disableAccept = missingOfferedCATs || showInvalid;
 
   const isLoading = isLoadingWallets || !offerBuilderData || isOffersLoading;
@@ -165,7 +164,7 @@ function OfferBuilderViewer(props: OfferBuilderViewerProps, ref: any) {
     navigate('/dashboard/offers/builder', {
       state: {
         referrerPath: location.pathname,
-        counterOffer: true,
+        isCounterOffer: true,
         address,
         offer,
       },
@@ -191,7 +190,7 @@ function OfferBuilderViewer(props: OfferBuilderViewerProps, ref: any) {
           <Flex alignItems="center" justifyContent="space-between" gap={2}>
             <OfferNavigationHeader referrerPath={referrerPath} />
             <Flex flexDirection="row" gap={1}>
-              {canCounter && (
+              {canCounterOffer && (
                 <Button variant="outlined" color="primary" onClick={handleCounterOffer} disableElevation>
                   <Trans>Counter Offer</Trans>
                 </Button>

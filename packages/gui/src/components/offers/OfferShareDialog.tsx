@@ -30,14 +30,15 @@ import debug from 'debug';
 import React, { useCallback, useEffect, useMemo } from 'react';
 
 import useAssetIdName, { AssetIdMapEntry } from '../../hooks/useAssetIdName';
+import useResolveNFTOffer from '../../hooks/useResolveNFTOffer';
 import useSuppressShareOnCreate from '../../hooks/useSuppressShareOnCreate';
-import { launcherIdToNFTId } from '../../util/nfts';
+// import { launcherIdToNFTId } from '../../util/nfts';
 import NotificationSendDialog from '../notification/NotificationSendDialog';
 import { NFTOfferSummary } from './NFTOfferViewer';
-import OfferAsset from './OfferAsset';
+// import OfferAsset from './OfferAsset';
 import OfferSummary from './OfferSummary';
 import {
-  offerAssetIdForAssetType,
+  // offerAssetIdForAssetType,
   offerContainsAssetOfType,
   shortSummaryForOffer,
   suggestedFilenameForOffer,
@@ -1405,11 +1406,25 @@ export default function OfferShareDialog(props: OfferShareDialogProps) {
   const [sendOfferNotificationOpen, setSendOfferNotificationOpen] = React.useState(false);
   const [offerURL, setOfferURL] = React.useState('');
   const [suppressShareOnCreate, setSuppressShareOnCreate] = useSuppressShareOnCreate();
-  const isNFTOffer = offerContainsAssetOfType(offerRecord.summary, 'singleton', 'requested');
-  const nftLauncherId = isNFTOffer
-    ? offerAssetIdForAssetType(OfferAsset.NFT, offerRecord.summary, 'requested')
-    : undefined;
-  const nftId = nftLauncherId ? launcherIdToNFTId(nftLauncherId) : undefined;
+  // const isNFTOffer = offerContainsAssetOfType(offerRecord.summary, 'singleton', 'requested');
+  // const nftLauncherId = isNFTOffer
+  //   ? offerAssetIdForAssetType(OfferAsset.NFT, offerRecord.summary, 'requested')
+  //   : undefined;
+  // const nftId = nftLauncherId ? launcherIdToNFTId(nftLauncherId) : undefined;
+
+  const { /* isResolving, */ ownedNFTId /* , ownedNFTOfferSide */ } = useResolveNFTOffer({
+    offerSummary: offerRecord.summary,
+  });
+
+  // console.log('isResolving:');
+  // console.log(isResolving);
+  // console.log('ownedNFTId:');
+  // console.log(ownedNFTId);
+  // console.log('ownedNFTOfferSide:');
+  // console.log(ownedNFTOfferSide);
+
+  const isNFTOffer = ownedNFTId !== undefined;
+  const nftId = ownedNFTId;
 
   const showSendOfferNotificationDialog = useCallback(
     (localOpen: boolean, localOfferURL: string) => {

@@ -52,7 +52,7 @@ export type CreateOfferBuilderProps = {
   referrerPath?: string;
   onOfferCreated: (obj: { offerRecord: any; offerData: any; address?: string }) => void;
   nftIds?: string[];
-  counterOffer?: boolean;
+  isCounterOffer?: boolean;
   offer?: OfferBuilderData;
   address?: string;
 };
@@ -66,7 +66,7 @@ export default function CreateOfferBuilder(props: CreateOfferBuilderProps) {
     nftId,
     nftWalletId,
     nftIds,
-    counterOffer = false,
+    isCounterOffer = false,
     offer,
     address,
   } = props;
@@ -77,9 +77,6 @@ export default function CreateOfferBuilder(props: CreateOfferBuilderProps) {
   const { offers, isLoading: isOffersLoading } = useWalletOffers(-1, 0, true, false, 'RELEVANCE', false);
   const [createOfferForIds] = useCreateOfferForIdsMutation();
   const offerBuilderRef = useRef<{ submit: () => void } | undefined>(undefined);
-
-  console.log('CreateOfferBuilder nftId:');
-  console.log(nftId);
 
   const defaultValues = useMemo(() => {
     if (offer) {
@@ -173,7 +170,7 @@ export default function CreateOfferBuilder(props: CreateOfferBuilderProps) {
         <Flex alignItems="center" justifyContent="space-between" gap={2}>
           <OfferNavigationHeader referrerPath={referrerPath} />
           <ButtonLoading variant="contained" color="primary" onClick={handleCreateOffer} disableElevation>
-            {counterOffer ? <Trans>Create Counter Offer</Trans> : <Trans>Create Offer</Trans>}
+            {isCounterOffer ? <Trans>Create Counter Offer</Trans> : <Trans>Create Offer</Trans>}
           </ButtonLoading>
         </Flex>
 

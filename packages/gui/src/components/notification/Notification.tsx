@@ -48,7 +48,7 @@ export default function Notification(props: NotificationProps) {
           offerData,
           offerSummary,
           imported: true,
-          counterOffer: canCounterOffer,
+          canCounterOffer,
           address: puzzleHash,
         },
       });

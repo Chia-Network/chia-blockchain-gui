@@ -368,12 +368,10 @@ export function CreateOffer() {
   const testnet = useCurrencyCode() === 'TXCH';
 
   async function handleOfferCreated(obj: { offerRecord: any; offerData: any }) {
-    const { offerRecord, offerData, address, nftId } = obj;
+    const { offerRecord, offerData, address } = obj;
 
-    console.log('handleOfferCreated address:');
-    console.log(address);
-    console.log('nftId:');
-    console.log(nftId);
+    // console.log('handleOfferCreated address:');
+    // console.log(address);
     await openDialog(
       <OfferShareDialog
         offerRecord={offerRecord}
@@ -399,7 +397,7 @@ export function CreateOffer() {
               nftIds={locationState?.nftIds}
               nftWalletId={locationState?.nftWalletId}
               referrerPath={locationState?.referrerPath}
-              counterOffer={locationState?.counterOffer}
+              isCounterOffer={locationState?.isCounterOffer}
               address={locationState?.address}
               offer={locationState?.offer}
               onOfferCreated={handleOfferCreated}
@@ -452,7 +450,7 @@ export function CreateOffer() {
               offerSummary={locationState?.offerSummary}
               imported={locationState?.imported}
               referrerPath={locationState?.referrerPath}
-              counterOffer={locationState?.counterOffer}
+              canCounterOffer={locationState?.canCounterOffer}
               address={locationState?.address}
             />
           }
