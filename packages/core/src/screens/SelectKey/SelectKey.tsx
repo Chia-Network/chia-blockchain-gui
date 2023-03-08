@@ -56,7 +56,7 @@ export default function SelectKey() {
   React.useEffect(() => {
     if (document.getElementById('key-items-container')) {
       keyItemsSortable.current = new Sortable(document.getElementById('key-items-container'), {
-        onEnd: (e: any) => {
+        onEnd: () => {
           const newArray = [...(document.getElementById('key-items-container') as HTMLElement).children].map(
             (node: any) => node.attributes['data-testid'].value.split('-')[2]
           );
