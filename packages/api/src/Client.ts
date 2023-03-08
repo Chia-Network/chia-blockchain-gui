@@ -133,9 +133,9 @@ export default class Client extends EventEmitter {
     return this.options.debug;
   }
 
-  isStarted(args: { serviceName: ServiceNameValue }) {
-    const { serviceName } = args;
-    return this.started.has(serviceName);
+  isStarted(args: { service: ServiceNameValue }) {
+    const { service } = args;
+    return this.started.has(service);
   }
 
   addService(args: { service: Service }) {
@@ -196,20 +196,20 @@ export default class Client extends EventEmitter {
     return this.connectedPromise;
   }
 
-  async startService(args: { serviceName: ServiceNameValue; disableWait?: boolean }) {
-    const { serviceName, disableWait } = args;
-    if (this.started.has(serviceName)) {
+  async startService(args: { service: ServiceNameValue; disableWait?: boolean }) {
+    const { service, disableWait } = args;
+    if (this.started.has(service)) {
       return;
     }
 
-    const response = await this.daemon.isRunning({ service: serviceName });
+    const response = await this.daemon.isRunning({ service });
     if (!response.isRunning) {
-      log(`Starting service: ${serviceName}`);
-      await this.daemon.startService({ service: serviceName });
+      log(`Starting service: ${service}`);
+      await this.daemon.startService({ service });
     }
 
     // wait for service initialisation
-    log(`Waiting for ping from service: ${serviceName}`);
+    log(`Waiting for ping from service: ${service}`);
     if (!disableWait) {
       while (true) {
         try {
@@ -217,7 +217,7 @@ export default class Client extends EventEmitter {
             new Message({
               command: 'ping',
               origin: this.origin,
-              destination: serviceName,
+              destination: service,
             }),
             1000
           );
@@ -230,10 +230,10 @@ export default class Client extends EventEmitter {
         }
       }
 
-      log(`Service: ${serviceName} started`);
+      log(`Service: ${service} started`);
     }
 
-    this.started.add(serviceName);
+    this.started.add(service);
     this.emit('state', this.getState());
   }
 
@@ -244,30 +244,30 @@ export default class Client extends EventEmitter {
 
     const services = Array.from(this.services);
 
-    await Promise.all(services.map(async (serviceName) => this.startService({ serviceName })));
+    await Promise.all(services.map(async (service) => this.startService({ service })));
   }
 
-  async stopService(args: { serviceName: ServiceNameValue }) {
-    const { serviceName } = args;
-    if (!this.started.has(serviceName)) {
+  async stopService(args: { service: ServiceNameValue }) {
+    const { service } = args;
+    if (!this.started.has(service)) {
       return;
     }
 
-    const response = await this.daemon.isRunning({ service: serviceName });
+    const response = await this.daemon.isRunning({ service });
     if (response.isRunning) {
-      log(`Closing down service: ${serviceName}`);
-      await this.daemon.stopService({ service: serviceName });
+      log(`Closing down service: ${service}`);
+      await this.daemon.stopService({ service });
     }
 
     // wait for service initialisation
-    log(`Waiting for service: ${serviceName}`);
+    log(`Waiting for service: ${service}`);
     while (true) {
       try {
         const { data } = <Message & { data: Response }>await this.send(
           new Message({
             command: 'ping',
             origin: this.origin,
-            destination: serviceName,
+            destination: service,
           }),
           1000
         );
@@ -280,9 +280,9 @@ export default class Client extends EventEmitter {
       }
     }
 
-    log(`Service: ${serviceName} stopped`);
+    log(`Service: ${service} stopped`);
 
-    this.started.delete(serviceName);
+    this.started.delete(service);
     this.emit('state', this.getState());
   }
 
@@ -416,7 +416,7 @@ export default class Client extends EventEmitter {
       return;
     }
 
-    await Promise.all(Array.from(this.started).map(async (serviceName) => this.stopService({ serviceName })));
+    await Promise.all(Array.from(this.started).map(async (service) => this.stopService({ service })));
 
     await this.daemon.exit();
 
