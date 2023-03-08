@@ -5,7 +5,7 @@ import {
   useLogInAndSkipImportMutation,
   useGetKeysQuery,
   useLogout,
-  useLocalStorage,
+  usePrefs,
 } from '@chia-network/api-react';
 import { ChiaBlack } from '@chia-network/icons';
 import { Trans } from '@lingui/macro';
@@ -49,32 +49,16 @@ export default function SelectKey() {
   const [promptForKeyringMigration] = useKeyringMigrationPrompt();
   const showError = useShowError();
   const cleanCache = useLogout();
-  const [sortedWallets, setSortedWallets] = useLocalStorage(
-    'sortedWallets',
-    publicKeyFingerprints.map((key: any) => key.fingerprint)
-  );
+  const [sortedWallets, setSortedWallets] = usePrefs('sortedWallets', []);
 
   const keyItemsSortable = React.useRef<any>(null);
-
-  function sortArray(arr: string[], fromIndex: number, toIndex: number) {
-    const element = arr[fromIndex];
-    const tempArr = [...arr];
-    tempArr.splice(fromIndex, 1);
-    tempArr.splice(toIndex, 0, element);
-    return tempArr;
-  }
 
   React.useEffect(() => {
     if (document.getElementById('key-items-container')) {
       keyItemsSortable.current = new Sortable(document.getElementById('key-items-container'), {
-        onEnd: (e: any) => {
-          const sortedWalletsStorage = JSON.parse(localStorage.getItem('sortedWallets') || '[]');
-          const newArray = sortArray(
-            sortedWalletsStorage.length
-              ? sortedWalletsStorage
-              : publicKeyFingerprints.map((key: any) => key.fingerprint),
-            e.oldIndex,
-            e.newIndex
+        onEnd: () => {
+          const newArray = [...(document.getElementById('key-items-container') as HTMLElement).children].map(
+            (node: any) => node.attributes['data-testid'].value.split('-')[2]
           );
           setSortedWallets(newArray);
         },
@@ -147,7 +131,7 @@ export default function SelectKey() {
 
   function sortedFingerprints(fingerprints: string[]) {
     const sorted = sortedWallets
-      .map((fingerprint: string) => fingerprints.find((f: any) => fingerprint === f.fingerprint))
+      .map((fingerprint: string) => fingerprints.find((f: any) => fingerprint === String(f.fingerprint)))
       .filter((x: any) => !!x); /* if we added a new wallet and order was not saved yet case */
     fingerprints.forEach((f: any) => {
       if (sorted.map((f2: any) => f2.fingerprint).indexOf(f.fingerprint) === -1) {
