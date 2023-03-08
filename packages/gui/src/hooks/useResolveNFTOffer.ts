@@ -18,22 +18,6 @@ function allNFTsByOfferSide(offerSummary: OfferSummaryRecord, sides: ('requested
   return allNFTs;
 }
 
-async function findFirstOwnedNFT(
-  nftIds: string[],
-  resolveOwnership: (nftId: string) => Promise<boolean>
-): Promise<string | undefined> {
-  // eslint-disable-next-line no-restricted-syntax -- Stop on first match
-  for (const nftId of nftIds) {
-    // eslint-disable-next-line no-await-in-loop -- Stop on first match
-    const owned = await resolveOwnership(nftId);
-    if (owned) {
-      return nftId;
-    }
-  }
-
-  return undefined;
-}
-
 export type UseResolveNFTOfferParams = {
   offerSummary: OfferSummaryRecord;
 };
@@ -41,8 +25,9 @@ export type UseResolveNFTOfferParams = {
 export default function useResolveNFTOffer({ offerSummary }: UseResolveNFTOfferParams) {
   const [signMessageById] = useSignMessageByIdMutation();
   const [resolved, setResolved] = useState(false);
-  const [ownedNFTId, setOwnedNFTId] = useState<string | undefined>(undefined);
-  const [ownedNFTOfferSide, setOwnedNFTOfferSide] = useState<'requested' | 'offered' | undefined>(undefined);
+  const [ownedNFTIds, setOwnedNFTIds] = useState<string[]>([]);
+  const [unownedNFTIds, setUnownedNFTIds] = useState<string[]>([]);
+  const [ownedNFTOfferSides, setOwnedNFTOfferSides] = useState<('requested' | 'offered')[]>([]);
 
   // Hacky test to determine if a given NFT is owned by the user
   const signWithNFT = useCallback(
@@ -59,21 +44,37 @@ export default function useResolveNFTOffer({ offerSummary }: UseResolveNFTOfferP
   );
 
   useMemo(async () => {
-    const sides = Object.keys(nftsBySide);
+    const sides = Object.keys(nftsBySide) as ('requested' | 'offered')[];
 
-    // eslint-disable-next-line no-restricted-syntax -- Stop on first match
-    for (const side of sides as ('requested' | 'offered')[]) {
-      // eslint-disable-next-line no-await-in-loop -- Stop on first match
-      const ownedNftId = await findFirstOwnedNFT(nftsBySide[side]!, signWithNFT);
-      if (ownedNftId) {
-        setOwnedNFTId(ownedNftId);
-        setOwnedNFTOfferSide(side);
-        break;
-      }
-    }
+    sides.forEach(async (side) => {
+      nftsBySide[side]!.forEach(async (nftId) => {
+        if (ownedNFTIds.includes(nftId) || unownedNFTIds.includes(nftId)) {
+          return;
+        }
+
+        const owned = await signWithNFT(nftId);
+
+        if (owned) {
+          setOwnedNFTIds([...ownedNFTIds, nftId]);
+          setOwnedNFTOfferSides([...ownedNFTOfferSides, side as any]);
+        } else {
+          setUnownedNFTIds([...unownedNFTIds, nftId]);
+        }
+      });
+    });
 
     setResolved(true);
-  }, [nftsBySide, signWithNFT, setOwnedNFTId, setOwnedNFTOfferSide, setResolved]);
+  }, [
+    nftsBySide,
+    signWithNFT,
+    setOwnedNFTIds,
+    setUnownedNFTIds,
+    setOwnedNFTOfferSides,
+    setResolved,
+    ownedNFTIds,
+    unownedNFTIds,
+    ownedNFTOfferSides,
+  ]);
 
-  return { isResolving: !resolved, ownedNFTId, ownedNFTOfferSide };
+  return { isResolving: !resolved, ownedNFTIds, unownedNFTIds, ownedNFTOfferSides };
 }
