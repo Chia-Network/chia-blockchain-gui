@@ -533,8 +533,8 @@ function buildOfferRequest(params: NFTBuildOfferRequestParams) {
 
 export default function NFTOfferEditor(props: NFTOfferEditorProps) {
   const { nft, onOfferCreated, exchangeType } = props;
-  const [createOfferForIds] = useCreateOfferForIdsMutation();
-  const [isProcessing, setIsProcessing] = useState(false);
+  const [createOfferForIds, { isLoading: isCreateOfferForIdsLoading }] = useCreateOfferForIdsMutation();
+
   const { nfts } = useNFTs();
   const currencyCode = useCurrencyCode();
   const openDialog = useOpenDialog();
@@ -658,8 +658,6 @@ export default function NFTOfferEditor(props: NFTOfferEditorProps) {
       return;
     }
 
-    setIsProcessing(true);
-
     try {
       const response = await createOfferForIds({
         walletIdsAndAmounts: offer,
@@ -669,22 +667,15 @@ export default function NFTOfferEditor(props: NFTOfferEditorProps) {
         disableJSONFormatting: true,
       }).unwrap();
 
-      if (response.success === false) {
-        const error = response.error || new Error('Encountered an unknown error while creating offer');
-        errorDialog(error);
-      } else {
-        const { offer: offerData, tradeRecord: offerRecord } = response;
+      const { offer: offerData, tradeRecord: offerRecord } = response;
 
-        navigate(-1);
+      navigate(-1);
 
-        if (!suppressShareOnCreate) {
-          onOfferCreated({ offerRecord, offerData });
-        }
+      if (!suppressShareOnCreate) {
+        onOfferCreated({ offerRecord, offerData });
       }
     } catch (err) {
       errorDialog(err);
-    } finally {
-      setIsProcessing(false);
     }
   }
 
@@ -704,7 +695,7 @@ export default function NFTOfferEditor(props: NFTOfferEditorProps) {
         }}
       >
         <Flex flexDirection="row">
-          <NFTOfferConditionalsPanel defaultValues={defaultValues} isProcessing={isProcessing} />
+          <NFTOfferConditionalsPanel defaultValues={defaultValues} isProcessing={isCreateOfferForIdsLoading} />
           <NFTOfferPreview nftId={nftId} />
         </Flex>
       </Flex>

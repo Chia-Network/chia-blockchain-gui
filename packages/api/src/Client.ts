@@ -357,7 +357,7 @@ export default class Client extends EventEmitter {
         return;
       }
 
-      if (message.data?.success === false) {
+      if (message.data?.success !== true) {
         log(`Request ${requestId} rejected`, 'Unknown error message');
         reject(new ErrorData(`Request ${requestId} failed: ${JSON.stringify(message.data)}`, message.data));
         return;

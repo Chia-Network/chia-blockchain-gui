@@ -90,17 +90,13 @@ export default function useAcceptOfferHook(): [AcceptOfferHook] {
     try {
       onUpdate?.(true);
 
-      const response = await takeOffer({ offer: offerData, fee: feeInMojos });
+      const response = await takeOffer({ offer: offerData, fee: feeInMojos }).unwrap();
 
-      if (response.data?.success === true) {
-        await openDialog(
-          <AlertDialog title={<Trans>Success</Trans>}>
-            {response.message ?? <Trans>Offer has been accepted and is awaiting confirmation.</Trans>}
-          </AlertDialog>
-        );
-      } else {
-        throw new Error(response.error?.message ?? 'Something went wrong');
-      }
+      await openDialog(
+        <AlertDialog title={<Trans>Success</Trans>}>
+          {response.message ?? <Trans>Offer has been accepted and is awaiting confirmation.</Trans>}
+        </AlertDialog>
+      );
 
       onSuccess?.();
     } catch (e) {

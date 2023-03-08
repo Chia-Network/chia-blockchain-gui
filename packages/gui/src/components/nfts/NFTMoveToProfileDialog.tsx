@@ -84,8 +84,8 @@ type NFTMoveToProfileActionProps = {
 
 export function NFTMoveToProfileAction(props: NFTMoveToProfileActionProps) {
   const { nfts, destination: defaultDestination, onComplete } = props;
-  const [isLoading, setIsLoading] = useState(false);
-  const [setNFTDID] = useSetNFTDIDMutation();
+
+  const [setNFTDID, { isLoading: isSetNFTDIDLoading }] = useSetNFTDIDMutation();
   const openDialog = useOpenDialog();
   const errorDialog = useShowError();
   const methods = useForm<NFTMoveToProfileFormData>({
@@ -165,18 +165,19 @@ export function NFTMoveToProfileAction(props: NFTMoveToProfileActionProps) {
 
     if (confirmation) {
       try {
-        setIsLoading(true);
-
-        const { error, data: response } = await setNFTDID({
+        const {
+          error,
+          isSuccess,
+          data: response,
+        } = await setNFTDID({
           walletId: nfts[0].walletId,
           nftLauncherId: stripHexPrefix(nfts[0].launcherId),
           nftCoinIds: nfts.map((nft) => stripHexPrefix(nft.nftCoinId)),
           did: destinationDID,
           fee: feeInMojos,
         });
-        const success = response?.success ?? false;
-        const errorMessage = error ?? undefined;
 
+        // TODO: this condition is never triggered, since the mutation never returns array
         if (Array.isArray(response)) {
           const successTransfers = response.filter((r: any) => r?.success === true);
           const failedTransfers = response.filter((r: any) => r?.success !== true);
@@ -198,14 +199,14 @@ export function NFTMoveToProfileAction(props: NFTMoveToProfileActionProps) {
               </ErrorTextWrapper>
             </AlertDialog>
           );
-        } else if (success) {
+        } else if (isSuccess) {
           openDialog(
             <AlertDialog title={<Trans>NFT Move Pending</Trans>}>
               <Trans>The NFT move transaction has been successfully submitted to the blockchain.</Trans>
             </AlertDialog>
           );
         } else {
-          const err = errorMessage || 'Unknown error';
+          const err = error || 'Unknown error';
           openDialog(
             <AlertDialog title={<Trans>NFT Move Failed</Trans>}>
               <Trans>The NFT move failed: {err}</Trans>
@@ -213,8 +214,6 @@ export function NFTMoveToProfileAction(props: NFTMoveToProfileActionProps) {
           );
         }
       } finally {
-        setIsLoading(false);
-
         if (onComplete) {
           onComplete();
         }
@@ -252,7 +251,7 @@ export function NFTMoveToProfileAction(props: NFTMoveToProfileActionProps) {
             includeNoneOption={inbox !== undefined && currentDIDId !== undefined}
             variant="outlined"
             color="primary"
-            disabled={isLoading || isLoadingDIDs || isLoadingNFTWallets}
+            disabled={isSetNFTDIDLoading || isLoadingDIDs || isLoadingNFTWallets}
           />
         </Flex>
         <Flex flexDirection="column" gap={2}>
@@ -323,7 +322,7 @@ export function NFTMoveToProfileAction(props: NFTMoveToProfileActionProps) {
           name="fee"
           color="secondary"
           label={<Trans>Fee</Trans>}
-          disabled={isLoading}
+          disabled={isSetNFTDIDLoading}
           txType={FeeTxType.assignDIDToNFT}
           fullWidth
         />
@@ -332,7 +331,7 @@ export function NFTMoveToProfileAction(props: NFTMoveToProfileActionProps) {
             <Button onClick={handleClose} color="secondary" variant="outlined" autoFocus>
               <Trans>Close</Trans>
             </Button>
-            <ButtonLoading type="submit" autoFocus color="primary" variant="contained" loading={isLoading}>
+            <ButtonLoading type="submit" autoFocus color="primary" variant="contained" loading={isSetNFTDIDLoading}>
               <Trans>Move</Trans>
             </ButtonLoading>
           </Flex>

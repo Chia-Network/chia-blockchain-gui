@@ -125,21 +125,17 @@ function OfferEditor(props: OfferEditorProps) {
         feeInMojos,
         validateOnly: false,
       }).unwrap();
-      if (response.success === false) {
-        const error = response.error || new Error('Encountered an unknown error while creating offer');
-        errorDialog(error);
-      } else {
-        const { offer: offerData, tradeRecord: offerRecord } = response;
 
-        try {
-          navigate(-1);
+      const { offer: offerData, tradeRecord: offerRecord } = response;
 
-          if (!suppressShareOnCreate) {
-            onOfferCreated({ offerRecord, offerData });
-          }
-        } catch (err) {
-          console.error(err);
+      try {
+        navigate(-1);
+
+        if (!suppressShareOnCreate) {
+          onOfferCreated({ offerRecord, offerData });
         }
+      } catch (err) {
+        console.error(err);
       }
     } catch (e) {
       let error = e as Error;

@@ -167,7 +167,7 @@ function NFTTransferContextualAction(props: NFTTransferContextualActionProps) {
 
   function handleComplete(result?: NFTTransferResult) {
     if (result) {
-      if (result.success) {
+      if (!result.error) {
         setSelectedNFTIds([]);
         openDialog(
           <AlertDialog title={<Trans>NFT Transfer Pending</Trans>}>
@@ -175,10 +175,9 @@ function NFTTransferContextualAction(props: NFTTransferContextualActionProps) {
           </AlertDialog>
         );
       } else {
-        const error = result.error || 'Unknown error';
         openDialog(
           <AlertDialog title={<Trans>NFT Transfer Failed</Trans>}>
-            <Trans>The NFT transfer failed: {error}</Trans>
+            <Trans>The NFT transfer failed: {result.error}</Trans>
           </AlertDialog>
         );
       }
@@ -244,16 +243,14 @@ function NFTCancelUnconfirmedTransactionContextualAction(props: NFTCancelUnconfi
   const disabled = (selection?.items.length ?? 0) !== 1 || !selectedNft?.pendingTransaction;
 
   async function handleCancelUnconfirmedTransaction() {
-    const { error, data: response } = await setNFTStatus({
+    const { error, isSuccess } = await setNFTStatus({
       walletId: selectedNft?.walletId,
       nftLauncherId: stripHexPrefix(selectedNft?.launcherId),
       nftCoinId: stripHexPrefix(selectedNft?.nftCoinId ?? ''),
       inTransaction: false,
     });
-    const success = response?.success ?? false;
-    const errorMessage = error ?? undefined;
 
-    if (success) {
+    if (isSuccess) {
       openDialog(
         <AlertDialog title={<Trans>NFT Status Updated</Trans>}>
           <Trans>
@@ -263,7 +260,7 @@ function NFTCancelUnconfirmedTransactionContextualAction(props: NFTCancelUnconfi
         </AlertDialog>
       );
     } else {
-      const err = errorMessage || 'Unknown error';
+      const err = error || 'Unknown error';
       openDialog(
         <AlertDialog title={<Trans>NFT Status Update Failed</Trans>}>
           <Trans>The NFT status update failed: {err}</Trans>
