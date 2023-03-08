@@ -7,7 +7,7 @@ import {
   useLogout,
   usePrefs,
 } from '@chia-network/api-react';
-import { ChiaBlack } from '@chia-network/icons';
+import { ChiaBlack, Coins } from '@chia-network/icons';
 import { Trans } from '@lingui/macro';
 import { Delete as DeleteIcon } from '@mui/icons-material';
 import { Alert, Typography, Container, ListItemIcon } from '@mui/material';
@@ -180,6 +180,24 @@ export default function SelectKey() {
     </Flex>
   );
 
+  function renderTopSection() {
+    return (
+      <Flex
+        justifyContent="space-between"
+        width="100%"
+        sx={{ borderBottom: '1px solid #CCDDE1', paddingBottom: '30px' }}
+      >
+        <Flex alignItems="left">
+          <ChiaBlack color="secondary" />
+          <Typography variant="h4" component="h1" sx={{ position: 'relative', left: '15px', top: '5px' }}>
+            <Trans>Wallet Keys</Trans>
+          </Typography>
+        </Flex>
+        {NewWalletButtonGroup}
+      </Flex>
+    );
+  }
+
   return (
     <StyledContainer>
       <Flex flexDirection="column" alignItems="flex-start" gap={3}>
@@ -201,28 +219,32 @@ export default function SelectKey() {
             <TooltipIcon>{error.message}</TooltipIcon>
           </Alert>
         ) : hasFingerprints ? (
-          <Flex
-            justifyContent="space-between"
-            width="100%"
-            sx={{ borderBottom: '1px solid #CCDDE1', paddingBottom: '30px' }}
-          >
-            <Flex alignItems="left">
-              <ChiaBlack color="secondary" />
-              <Typography variant="h4" component="h1" sx={{ position: 'relative', left: '15px', top: '5px' }}>
-                <Trans>Wallet Keys</Trans>
-              </Typography>
-            </Flex>
-            {NewWalletButtonGroup}
-          </Flex>
+          <>{renderTopSection()}</>
         ) : (
           <>
-            <Typography variant="h5" component="h1">
-              <Trans>Sign In</Trans>
-            </Typography>
-            <Typography variant="subtitle1" align="center">
-              <Trans>Welcome to Chia. Please log in with an existing key, or create a new key.</Trans>
-            </Typography>
-            {NewWalletButtonGroup}
+            {renderTopSection()}
+            <Flex alignItems="center" flexDirection="column">
+              <Typography component="div" variant="h4" color="textPrimary" sx={{ fontWeight: 600, fontSize: '40px' }}>
+                <Trans>Open a world of possibilities.</Trans>
+              </Typography>
+              <Typography
+                component="div"
+                variant="subtitle2"
+                color="textSecondary"
+                sx={{ fontWeight: 400, fontSize: '18px' }}
+              >
+                <Trans>Create a new wallet key to get started with Chia.</Trans>
+              </Typography>
+              <Button
+                onClick={() => handleNavigationIfKeyringIsMutable('/wallet/add')}
+                variant="outlined"
+                color="primary"
+                sx={{ margin: '15px 0' }}
+              >
+                <Trans>Create a new wallet key</Trans>
+              </Button>
+              <Coins />
+            </Flex>
           </>
         )}
         {/* <Search /> */}
