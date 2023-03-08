@@ -159,7 +159,7 @@ export default function SelectKey() {
 
   const NewWalletButtonGroup = (
     <Flex alignItems="right">
-      <DropdownActions label={<Trans>New wallet</Trans>} variant="contained">
+      <DropdownActions label={<Trans>Add wallet</Trans>} variant="contained">
         <MenuItem close onClick={() => handleNavigationIfKeyringIsMutable('/wallet/add')}>
           <Typography variant="inherit" noWrap>
             <Trans>Create New</Trans>
