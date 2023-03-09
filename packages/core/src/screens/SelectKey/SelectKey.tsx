@@ -1,16 +1,20 @@
 import type { KeyData } from '@chia-network/api';
 import {
+  usePrefs,
   useGetKeyringStatusQuery,
   useDeleteAllKeysMutation,
   useLogInAndSkipImportMutation,
   useGetKeysQuery,
   useLogout,
-  usePrefs,
+  type Serializable,
 } from '@chia-network/api-react';
 import { ChiaBlack, Coins } from '@chia-network/icons';
+import data from '@emoji-mart/data';
 import { Trans } from '@lingui/macro';
 import { Delete as DeleteIcon } from '@mui/icons-material';
 import { Alert, Typography, Container, ListItemIcon } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
+import { init } from 'emoji-mart';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
 import Sortable from 'sortablejs';
@@ -30,6 +34,9 @@ import useShowError from '../../hooks/useShowError';
 import useSkipMigration from '../../hooks/useSkipMigration';
 // import Search from './Search';
 import SelectKeyItem from './SelectKeyItem';
+
+init({ data });
+const { emojis: allEmojis } = data;
 
 const StyledContainer = styled(Container)`
   padding-bottom: 1rem;
@@ -65,6 +72,43 @@ export default function SelectKey() {
       });
     }
   }, [publicKeyFingerprints, setSortedWallets]);
+
+  type LocalStorageType = Record<string, Record<string, Serializable>>;
+  const theme = useTheme();
+  const [fingerprintSettings, setFingerprintSettings] = usePrefs<LocalStorageType>('fingerprintSettings', {});
+  const allColors = (theme.palette as any).colors;
+  /* useEffect - set random emojis and colors for each wallet
+     if we got no walletKeyTheme keys in each fingerprint inside prefs.yaml */
+  React.useEffect(() => {
+    if (publicKeyFingerprints.length) {
+      const newFingerprints: any = {};
+      let notifyChange: boolean = false;
+      publicKeyFingerprints.forEach((f: any) => {
+        const peopleAndNatureEmojisWords = (data as any).originalCategories
+          .filter((category: any) => ['people', 'nature'].indexOf(category.id) > -1)
+          .map((category: any) => category.emojis)
+          .flat();
+        const randomEmoji = peopleAndNatureEmojisWords[Math.floor(peopleAndNatureEmojisWords.length * Math.random())];
+        const themeColors = Object.keys(allColors);
+        const randomTheme = {
+          emoji: allEmojis[randomEmoji].skins[0].native,
+          color: themeColors[Math.floor(themeColors.length * Math.random())],
+        };
+        if (fingerprintSettings[f.fingerprint] && !fingerprintSettings[f.fingerprint].walletKeyTheme) {
+          newFingerprints[f.fingerprint] = { ...fingerprintSettings[f.fingerprint], walletKeyTheme: randomTheme };
+          notifyChange = true;
+        } else if (!fingerprintSettings[f.fingerprint]) {
+          newFingerprints[f.fingerprint] = { walletKeyTheme: randomTheme };
+          notifyChange = true;
+        } else {
+          newFingerprints[f.fingerprint] = fingerprintSettings[f.fingerprint];
+        }
+      });
+      if (notifyChange) {
+        setFingerprintSettings(newFingerprints);
+      }
+    }
+  }, [publicKeyFingerprints, fingerprintSettings, setFingerprintSettings, allColors]);
 
   async function handleSelect(fingerprint: number) {
     if (selectedFingerprint) {
