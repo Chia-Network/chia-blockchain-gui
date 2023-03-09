@@ -1,80 +1,82 @@
-import Client, { Service, FullNode, WalletService, Harvester, Farmer, Daemon } from '@chia-network/api';
+import Client, { FullNode, WalletService, Harvester, Farmer, Daemon } from '@chia-network/api';
 import { BaseQueryApi } from '@reduxjs/toolkit/dist/query/baseQueryTypes';
 import type { BaseQueryFn } from '@reduxjs/toolkit/query/react';
 
 import { selectApiConfig } from './slices/api';
 
-type ServiceConstructor<T extends Service> = new (client: Client) => T;
-
-let clientInstance: Client;
-
-async function getClientInstance(api: BaseQueryApi): Promise<Client> {
-  if (!clientInstance) {
-    const config = selectApiConfig(api.getState());
-    if (!config) {
-      throw new Error('Client API config is not defined. Dispatch initializeConfig first');
-    }
-    clientInstance = new Client(config);
-  }
-
-  return clientInstance;
-}
-
-const services = new Map<typeof Service, Service>();
-
-async function getServiceInstance<TService extends Service>(
-  api: BaseQueryApi,
-  ServiceClass: ServiceConstructor<TService>
-) {
-  if (!services.has(ServiceClass.prototype.constructor)) {
-    const client = await getClientInstance(api);
-    const serviceInstance = new ServiceClass(client);
-    services.set(ServiceClass.prototype.constructor, serviceInstance);
-  }
-
-  return services.get(ServiceClass.prototype.constructor) as TService;
-}
-
-type ServiceQuery<TService extends Service> = {
-  service: ServiceConstructor<TService>;
-  command: keyof InstanceType<ServiceConstructor<TService>>;
-  args?: unknown[];
-  mockResponse?: any;
+const serviceClasses = {
+  FullNode,
+  Wallet: WalletService,
+  Harvester,
+  Farmer,
+  Daemon,
 };
 
-type ServiceArg =
-  | ServiceQuery<WalletService>
-  | ServiceQuery<FullNode>
-  | ServiceQuery<Harvester>
-  | ServiceQuery<Farmer>
-  | ServiceQuery<Daemon>;
+export const allClasses = {
+  ...serviceClasses,
+  Client,
+};
 
-type ClientArg = {
-  command: keyof InstanceType<typeof Client>;
-  client: true;
-  args?: unknown[];
+type BaseServiceClass = typeof FullNode | typeof WalletService | typeof Harvester | typeof Farmer | typeof Daemon;
+type ServiceClass = BaseServiceClass | typeof Client;
+
+type ServiceQuery<Service extends ServiceClass> = {
+  service: Service;
+  command: keyof InstanceType<Service>;
+  args?: any[];
   mockResponse?: any;
 };
 
 type Metadata = {
   timestamp: number;
+  service: ServiceClass;
   command: string;
-  client?: boolean;
-  args?: unknown[];
+  args?: any[];
 };
 
-const chiaLazyBaseQuery: BaseQueryFn<ServiceArg | ClientArg, unknown, unknown, unknown, Metadata> = async (
-  options,
-  api
-) => {
-  const { command, args = [], mockResponse } = options;
+const instances = new Map<ServiceClass, InstanceType<ServiceClass>>();
+
+async function getInstance<Service extends ServiceClass>(
+  service: Service,
+  api: BaseQueryApi
+): Promise<InstanceType<Service>> {
+  if (!instances.has(service)) {
+    if (service === Client) {
+      const config = selectApiConfig(api.getState());
+      if (!config) {
+        throw new Error('Client API config is not defined. Dispatch initializeConfig first');
+      }
+      const clientInstance = new Client(config);
+
+      instances.set(service, clientInstance);
+    } else {
+      const client = await getInstance(Client, api);
+
+      const serviceInstance = new (service as BaseServiceClass)(client);
+      instances.set(service, serviceInstance);
+    }
+  }
+
+  return instances.get(service) as InstanceType<Service>;
+}
+
+type BaseQueryArgs =
+  | ServiceQuery<typeof FullNode>
+  | ServiceQuery<typeof WalletService>
+  | ServiceQuery<typeof Harvester>
+  | ServiceQuery<typeof Farmer>
+  | ServiceQuery<typeof Daemon>
+  | ServiceQuery<typeof Client>;
+
+const chiaLazyBaseQuery: BaseQueryFn<BaseQueryArgs, unknown, unknown, unknown, Metadata> = async (options, api) => {
+  const { service, command, args, mockResponse } = options;
 
   const meta = {
     timestamp: Date.now(),
+    service,
     command,
     args,
   };
-  const newArgs = Array.isArray(args) ? args : [args];
 
   if (mockResponse) {
     return {
@@ -83,34 +85,12 @@ const chiaLazyBaseQuery: BaseQueryFn<ServiceArg | ClientArg, unknown, unknown, u
     };
   }
 
-  if ('client' in options) {
-    try {
-      const instance = await getClientInstance(api);
-      if (!(command in instance)) {
-        throw new Error(`Command "${command}" not found on Client`);
-      }
-
-      return {
-        data: (await instance[command](...newArgs)) ?? null,
-        meta,
-      };
-    } catch (error) {
-      return {
-        error,
-        meta,
-      };
-    }
-  }
-
   try {
-    const { service } = options;
-    const instance = await getServiceInstance(api, service);
-    if (!(command in instance)) {
-      throw new Error(`Command "${command}" not found on Client`);
-    }
+    const instance = await getInstance(service, api);
+    const data = await instance[command](...args);
 
     return {
-      data: (await instance[command](...newArgs)) ?? null,
+      data: data ?? null,
       meta,
     };
   } catch (error) {
