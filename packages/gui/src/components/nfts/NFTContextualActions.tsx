@@ -4,6 +4,7 @@ import type { NFTInfo } from '@chia-network/api';
 import { useSetNFTStatusMutation, useLocalStorage } from '@chia-network/api-react';
 import { AlertDialog, DropdownActions, MenuItem, useOpenDialog } from '@chia-network/core';
 import {
+  Burn as BurnIcon,
   LinkSmall as LinkSmallIcon,
   NFTsSmall as NFTsSmallIcon,
   OffersSmall as OffersSmallIcon,
@@ -18,7 +19,6 @@ import {
   Visibility as VisibilityIcon,
   VisibilityOff as VisibilityOffIcon,
   Refresh as RefreshIcon,
-  LocalFireDepartment as LocalFireDepartmentIcon,
 } from '@mui/icons-material';
 import { ListItemIcon, Typography } from '@mui/material';
 import React, { useMemo, ReactNode } from 'react';
@@ -525,7 +525,7 @@ function NFTBurnContextualAction(props: NFTBurnContextualActionProps) {
   return (
     <MenuItem onClick={handleBurn} disabled={disabled} divider close>
       <ListItemIcon>
-        <LocalFireDepartmentIcon />
+        <BurnIcon />
       </ListItemIcon>
       <Typography variant="inherit" noWrap>
         <Trans>Burn</Trans>
