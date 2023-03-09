@@ -145,7 +145,6 @@ export default function OfferIncomingTable(props: OfferIncomingTableProps) {
     try {
       const {
         offer,
-        // offerSummary,
         metadata: {
           data: { puzzleHash },
         },
@@ -156,7 +155,6 @@ export default function OfferIncomingTable(props: OfferIncomingTableProps) {
       }
 
       const address = currencyCode && puzzleHash ? toBech32m(puzzleHash, currencyCode.toLowerCase()) : '';
-      // const nftLauncherId = offerAssetIdForAssetType(OfferAsset.NFT, offerSummary, 'offered');
 
       navigate('/dashboard/offers/builder', {
         state: {

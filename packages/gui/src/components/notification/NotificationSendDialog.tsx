@@ -188,11 +188,11 @@ export default function NotificationSendDialog(props: NotificationSendDialogProp
                 </Flex>
               ) : (
                 <Flex flexDirection="column" alignItems="center" gap={3}>
-                  {isNFTOffer ? (
+                  {isNFTOffer && (
                     <Box sx={nftPreviewContainer}>
                       <NFTPreview nft={nft} disableThumbnail setNFTCardMetadata={setMetadata} />
                     </Box>
-                  ) : null}
+                  )}
                   {/* <Flex flexDirection="column" alignItems="center" gap={1}>
                     <Typography variant="h6">
                       <Trans>Message the NFT Holder</Trans>

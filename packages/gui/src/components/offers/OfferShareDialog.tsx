@@ -32,17 +32,10 @@ import React, { useCallback, useEffect, useMemo } from 'react';
 import useAssetIdName, { AssetIdMapEntry } from '../../hooks/useAssetIdName';
 import useResolveNFTOffer from '../../hooks/useResolveNFTOffer';
 import useSuppressShareOnCreate from '../../hooks/useSuppressShareOnCreate';
-// import { launcherIdToNFTId } from '../../util/nfts';
 import NotificationSendDialog from '../notification/NotificationSendDialog';
 import { NFTOfferSummary } from './NFTOfferViewer';
-// import OfferAsset from './OfferAsset';
 import OfferSummary from './OfferSummary';
-import {
-  // offerAssetIdForAssetType,
-  offerContainsAssetOfType,
-  shortSummaryForOffer,
-  suggestedFilenameForOffer,
-} from './utils';
+import { offerContainsAssetOfType, shortSummaryForOffer, suggestedFilenameForOffer } from './utils';
 
 const log = debug('chia-gui:offers');
 
