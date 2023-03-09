@@ -1,4 +1,4 @@
-import { OfferTradeRecord } from '@chia-network/api';
+import { OfferTradeRecord, toBech32m } from '@chia-network/api';
 import { useCancelOfferMutation, useGetWalletsQuery } from '@chia-network/api-react';
 import {
   Button,
@@ -365,13 +365,13 @@ export function CreateOffer() {
   const locationState = getLocationState(); // For cases where we know that the state has been serialized
   const openDialog = useOpenDialog();
   const [saveOffer] = useSaveOfferFile();
-  const testnet = useCurrencyCode() === 'TXCH';
+  const currencyCode = useCurrencyCode();
+  const testnet = currencyCode === 'TXCH';
 
-  async function handleOfferCreated(obj: { offerRecord: any; offerData: any }) {
-    const { offerRecord, offerData, address } = obj;
+  async function handleOfferCreated(obj: { offerRecord: any; offerData: any; address?: string }) {
+    const { offerRecord, offerData, address: ph } = obj;
+    const address = ph && currencyCode ? toBech32m(ph, currencyCode.toLowerCase()) : undefined;
 
-    // console.log('handleOfferCreated address:');
-    // console.log(address);
     await openDialog(
       <OfferShareDialog
         offerRecord={offerRecord}
