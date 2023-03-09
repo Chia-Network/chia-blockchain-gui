@@ -41,7 +41,10 @@ export function query<
 ) {
   type Response = Transform extends undefined ? MethodReturnType<TClass, Method> : ReturnType<Transform>;
 
-  return build.query<Response, MethodFirstParameter<TClass, Method>>({
+  return build.query<
+    Response,
+    MethodFirstParameter<TClass, Method> extends undefined ? void : MethodFirstParameter<TClass, Method>
+  >({
     ...options,
     query: (args) => ({
       service,
@@ -85,7 +88,10 @@ export function mutation<
   } = {} // Omit<Parameters<typeof build.mutation<MethodReturnType<TClass, Method>, MethodFirstParameter<TClass, Method>>>[0], 'query'> = {}
 ) {
   type Response = Transform extends undefined ? MethodReturnType<TClass, Method> : ReturnType<Transform>;
-  return build.mutation<Response, MethodFirstParameter<TClass, Method>>({
+  return build.mutation<
+    Response,
+    MethodFirstParameter<TClass, Method> extends undefined ? void : MethodFirstParameter<TClass, Method>
+  >({
     ...options,
     query: (args) => ({
       service,
