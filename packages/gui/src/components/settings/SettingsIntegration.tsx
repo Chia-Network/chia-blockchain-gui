@@ -65,7 +65,7 @@ export default function SettingsIntegration() {
       <Grid container>
         <Grid item style={{ width: '400px' }}>
           <SettingsTitle>
-            <Trans>Key switching</Trans>
+            <Trans>Key Switching</Trans>
           </SettingsTitle>
         </Grid>
         <Grid item container xs justifyContent="flex-end" marginTop="-6px">
