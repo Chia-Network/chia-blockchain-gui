@@ -4,7 +4,7 @@ import { useGetHarvestersSummaryQuery } from '../services/farmer';
 
 export default function useGetHarvesterStats(nodeId: string): {
   isLoading: boolean;
-  error?: Error;
+  error?: unknown;
   harvester: any;
 } {
   const { data, isLoading, error } = useGetHarvestersSummaryQuery();

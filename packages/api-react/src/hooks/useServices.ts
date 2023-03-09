@@ -1,14 +1,14 @@
-import { ServiceName } from '@chia-network/api';
+import { type ServiceNameValue, ServiceName } from '@chia-network/api';
 
 import useService, { ServiceState } from './useService';
 
 type Options = {
-  keepRunning?: ServiceName[];
-  keepStopped?: ServiceName[];
+  keepRunning?: ServiceNameValue[];
+  keepStopped?: ServiceNameValue[];
   disabled?: boolean;
 };
 
-function getServiceKeepState(service: ServiceName, options: Options): ServiceState | undefined {
+function getServiceKeepState(service: ServiceNameValue, options: Options): ServiceState | undefined {
   const { keepRunning, keepStopped } = options;
   if (keepRunning && keepRunning.includes(service)) {
     return 'running';
@@ -19,12 +19,12 @@ function getServiceKeepState(service: ServiceName, options: Options): ServiceSta
   return undefined;
 }
 
-function getServiceDisabled(service: ServiceName, services: ServiceName[], options: Options) {
+function getServiceDisabled(service: ServiceNameValue, services: ServiceNameValue[], options: Options) {
   const { disabled } = options;
   return disabled || !services.includes(service);
 }
 
-function getServiceOptions(service: ServiceName, services: ServiceName[], options: Options) {
+function getServiceOptions(service: ServiceNameValue, services: ServiceNameValue[], options: Options) {
   const keepState = getServiceKeepState(service, options);
   const disabled = getServiceDisabled(service, services, options);
 
@@ -35,14 +35,14 @@ function getServiceOptions(service: ServiceName, services: ServiceName[], option
 }
 
 export default function useMonitorServices(
-  services: ServiceName[],
+  services: ServiceNameValue[],
   options: Options = {}
 ): {
   isLoading: boolean;
   error?: Error | unknown;
-  starting: ServiceName[];
-  stopping: ServiceName[];
-  running: ServiceName[];
+  starting: ServiceNameValue[];
+  stopping: ServiceNameValue[];
+  running: ServiceNameValue[];
 } {
   const walletState = useService(ServiceName.WALLET, getServiceOptions(ServiceName.WALLET, services, options));
 

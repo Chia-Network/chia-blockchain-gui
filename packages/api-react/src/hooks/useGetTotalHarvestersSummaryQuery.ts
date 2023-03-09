@@ -6,7 +6,7 @@ import { useGetHarvestersSummaryQuery } from '../services/farmer';
 export default function useGetTotalHarvestersSummaryQuery(): {
   isLoading: boolean;
   initialized: boolean;
-  error?: Error;
+  error?: unknown;
   harvesters: number;
   hasPlots: boolean;
   plots: BigNumber; // number of used plots without the plots that are not used (duplicate, failed, no keys)

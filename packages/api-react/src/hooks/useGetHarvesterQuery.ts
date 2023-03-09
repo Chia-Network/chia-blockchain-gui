@@ -4,7 +4,7 @@ import { useGetHarvestersSummaryQuery } from '../services/farmer';
 
 export default function useGetHarvesterQuery({ nodeId }: { nodeId: string }): {
   isLoading: boolean;
-  error?: Error;
+  error?: unknown;
   plots?: number;
   noKeyFilenames?: number;
   failedToOpenFilenames?: number;
