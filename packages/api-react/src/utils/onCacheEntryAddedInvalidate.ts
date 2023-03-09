@@ -1,5 +1,9 @@
 import { Daemon, Farmer, FullNode, PlotterService, WalletService } from '@chia-network/api';
 
+import { baseQuery } from '../api';
+
+type BaseQuery = typeof baseQuery;
+
 type Service = typeof Daemon | typeof Farmer | typeof FullNode | typeof PlotterService | typeof WalletService;
 
 type Invalidate =
@@ -16,7 +20,7 @@ type Invalidate =
       skip?: (draft: any, data: any, args: any) => boolean;
     };
 
-export default function onCacheEntryAddedInvalidate(rtkQuery, api, invalidates: Invalidate[]) {
+export default function onCacheEntryAddedInvalidate(rtkQuery: BaseQuery, api: any, invalidates: Invalidate[]) {
   return async (args: any, mutationApi) => {
     const { cacheDataLoaded, cacheEntryRemoved, updateCachedData, dispatch } = mutationApi;
     const unsubscribes: Function[] = [];

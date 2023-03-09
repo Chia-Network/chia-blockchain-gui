@@ -29,10 +29,7 @@ export const farmerApi = apiWithTag.injectEndpoints({
 
     getHarvesters: query(build, Farmer, 'getHarvesters', {
       transformResponse: (response) => response.harvesters,
-      providesTags: (harvesters) =>
-        harvesters
-          ? [...harvesters.map(({ id }) => ({ type: 'Harvesters', id } as const)), { type: 'Harvesters', id: 'LIST' }]
-          : [{ type: 'Harvesters', id: 'LIST' }],
+      providesTags: [{ type: 'Harvesters', id: 'LIST' }],
       onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, api, [
         {
           command: 'onHarvesterChanged',
