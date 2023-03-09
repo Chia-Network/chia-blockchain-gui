@@ -38,7 +38,7 @@ export default function EmojiAndColorPicker(props: EmojiAndColorPickerType) {
     border: '1px solid #CCDDE1',
     boxShadow: '0px 6px 19px rgba(15, 37, 42, 0.28), 0px 27px 65px rgba(101, 131, 138, 0.39)',
     borderRadius: '8px',
-    padding: '16px',
+    padding: '0px',
     position: 'relative',
     top: '30px',
     left: '25px',
@@ -90,7 +90,16 @@ export default function EmojiAndColorPicker(props: EmojiAndColorPickerType) {
         );
       });
     return (
-      <Flex sx={{ display: 'flex', flexWrap: 'wrap', columnGap: '8px', rowGap: '8px', width: '232px' }}>
+      <Flex
+        sx={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          columnGap: '8px',
+          rowGap: '8px',
+          width: '262px',
+          padding: '15px 15px 0 15px',
+        }}
+      >
         {colorNodes}
       </Flex>
     );
@@ -98,70 +107,71 @@ export default function EmojiAndColorPicker(props: EmojiAndColorPickerType) {
 
   function renderSearch() {
     return (
-      <Box
-        sx={{
-          position: 'relative',
-          border: `1px solid #C5D8DC`,
-          borderRadius: '8px',
-          marginTop: '15px',
-          input: {
-            paddingLeft: '30px',
-            fontSize: '14px',
-          },
-          '> div': {
-            display: 'block',
-          },
-          padding: '5px 0 0 0',
-        }}
-      >
-        <SearchIcon
+      <Flex sx={{ padding: '0 15px' }}>
+        <Box
           sx={{
-            position: 'absolute',
-            left: '8px',
-            top: '8px',
-            width: '17px',
-            height: '17px',
-            path: {
-              stroke: isDark ? '#eee' : '#999',
-              fill: 'none',
+            position: 'relative',
+            width: '100%',
+            border: `1px solid #C5D8DC`,
+            borderRadius: '8px',
+            marginTop: '15px',
+            input: {
+              paddingLeft: '30px',
+              fontSize: '14px',
             },
+            '> div': {
+              display: 'block',
+            },
+            padding: '5px 0 0 0',
           }}
-          color="secondary"
-        />
-        <InputBase
-          autoFocus
-          onChange={async (e: any) => {
-            if (e.target.value !== '') {
-              const emojis = await SearchIndex.search(e.target.value);
-              setEmojiFilter(emojis.map((emoji: any) => emoji.skins[0].native));
-            } else {
-              setEmojiFilter([]);
-            }
-          }}
-          size="small"
-          placeholder={t`Search`}
-        />
-      </Box>
+        >
+          <SearchIcon
+            sx={{
+              position: 'absolute',
+              left: '8px',
+              top: '8px',
+              width: '17px',
+              height: '17px',
+              path: {
+                stroke: isDark ? '#eee' : '#999',
+                fill: 'none',
+              },
+            }}
+            color="secondary"
+          />
+          <InputBase
+            autoFocus
+            onChange={async (e: any) => {
+              if (e.target.value !== '') {
+                const emojis = await SearchIndex.search(e.target.value);
+                setEmojiFilter(emojis.map((emoji: any) => emoji.skins[0].native));
+              } else {
+                setEmojiFilter([]);
+              }
+            }}
+            size="small"
+            placeholder={t`Search`}
+          />
+        </Box>
+      </Flex>
     );
   }
 
   function renderEmojis() {
     const style: any = {
       display: 'flex',
-      maxHeight: '185px',
+      maxHeight: '171px',
       overflowY: 'auto',
       scrollBehavior: 'auto',
       fontSize: '14px',
-      width: '232px',
-      gap: '6px',
+      width: '246px',
+      gap: '3px',
       marginTop: '10px',
       flexWrap: 'wrap',
       padding: '5px',
       '>div': {
-        width: '20px',
-        height: '20px',
+        fontSize: '18px',
         textAlign: 'center',
-        lineHeight: '20px',
       },
     };
     const emojiList = Object.keys(allEmojis)
@@ -178,33 +188,27 @@ export default function EmojiAndColorPicker(props: EmojiAndColorPickerType) {
           }}
           style={{
             position: 'relative',
+            borderRadius: '4px',
+            background: `${
+              allEmojis[emojiName].skins[0].native === currentEmoji
+                ? themeColors[currentColor || 'default'].main
+                : 'inherit'
+            }`,
+            width: '25px',
+            height: '25px',
+            zIndex: 9,
+            paddingTop: '2px',
           }}
         >
-          <div
-            style={{
-              position: 'absolute',
-              zIndex: 10,
-            }}
-          >
-            {allEmojis[emojiName].skins[0].native}
-          </div>
-          {allEmojis[emojiName].skins[0].native === currentEmoji && (
-            <div
-              style={{
-                position: 'absolute',
-                borderRadius: '2px',
-                background: `${themeColors[currentColor || 'default'].main}`,
-                width: '26px',
-                height: '26px',
-                zIndex: 9,
-                top: '-4px',
-                left: '-4px',
-              }}
-            />
-          )}
+          {allEmojis[emojiName].skins[0].native}
+          {allEmojis[emojiName].skins[0].native === currentEmoji && <div style={{}} />}
         </div>
       ));
-    return <Flex sx={style}>{emojiList}</Flex>;
+    return (
+      <Flex sx={{ padding: '0 0 10px 7px' }}>
+        <Flex sx={style}>{emojiList}</Flex>
+      </Flex>
+    );
   }
 
   return (

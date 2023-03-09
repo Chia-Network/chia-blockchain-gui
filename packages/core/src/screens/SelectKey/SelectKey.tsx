@@ -6,10 +6,9 @@ import {
   useLogInAndSkipImportMutation,
   useGetKeysQuery,
   useLogout,
-  useLocalStorage,
   type Serializable,
 } from '@chia-network/api-react';
-import { ChiaBlack } from '@chia-network/icons';
+import { ChiaBlack, Coins } from '@chia-network/icons';
 import data from '@emoji-mart/data';
 import { Trans } from '@lingui/macro';
 import { Delete as DeleteIcon } from '@mui/icons-material';
@@ -57,32 +56,16 @@ export default function SelectKey() {
   const [promptForKeyringMigration] = useKeyringMigrationPrompt();
   const showError = useShowError();
   const cleanCache = useLogout();
-  const [sortedWallets, setSortedWallets] = useLocalStorage(
-    'sortedWallets',
-    publicKeyFingerprints.map((key: any) => key.fingerprint)
-  );
+  const [sortedWallets, setSortedWallets] = usePrefs('sortedWallets', []);
 
   const keyItemsSortable = React.useRef<any>(null);
-
-  function sortArray(arr: string[], fromIndex: number, toIndex: number) {
-    const element = arr[fromIndex];
-    const tempArr = [...arr];
-    tempArr.splice(fromIndex, 1);
-    tempArr.splice(toIndex, 0, element);
-    return tempArr;
-  }
 
   React.useEffect(() => {
     if (document.getElementById('key-items-container')) {
       keyItemsSortable.current = new Sortable(document.getElementById('key-items-container'), {
-        onEnd: (e: any) => {
-          const sortedWalletsStorage = JSON.parse(localStorage.getItem('sortedWallets') || '[]');
-          const newArray = sortArray(
-            sortedWalletsStorage.length
-              ? sortedWalletsStorage
-              : publicKeyFingerprints.map((key: any) => key.fingerprint),
-            e.oldIndex,
-            e.newIndex
+        onEnd: () => {
+          const newArray = [...(document.getElementById('key-items-container') as HTMLElement).children].map(
+            (node: any) => node.attributes['data-testid'].value.split('-')[2]
           );
           setSortedWallets(newArray);
         },
@@ -192,7 +175,7 @@ export default function SelectKey() {
 
   function sortedFingerprints(fingerprints: string[]) {
     const sorted = sortedWallets
-      .map((fingerprint: string) => fingerprints.find((f: any) => fingerprint === f.fingerprint))
+      .map((fingerprint: string) => fingerprints.find((f: any) => fingerprint === String(f.fingerprint)))
       .filter((x: any) => !!x); /* if we added a new wallet and order was not saved yet case */
     fingerprints.forEach((f: any) => {
       if (sorted.map((f2: any) => f2.fingerprint).indexOf(f.fingerprint) === -1) {
@@ -204,7 +187,7 @@ export default function SelectKey() {
 
   const NewWalletButtonGroup = (
     <Flex alignItems="right">
-      <DropdownActions label={<Trans>New wallet</Trans>} variant="contained">
+      <DropdownActions label={<Trans>Add wallet</Trans>} variant="contained">
         <MenuItem close onClick={() => handleNavigationIfKeyringIsMutable('/wallet/add')}>
           <Typography variant="inherit" noWrap>
             <Trans>Create New</Trans>
@@ -241,6 +224,24 @@ export default function SelectKey() {
     </Flex>
   );
 
+  function renderTopSection() {
+    return (
+      <Flex
+        justifyContent="space-between"
+        width="100%"
+        sx={{ borderBottom: '1px solid #CCDDE1', paddingBottom: '30px' }}
+      >
+        <Flex alignItems="left">
+          <ChiaBlack color="secondary" />
+          <Typography variant="h4" component="h1" sx={{ position: 'relative', left: '15px', top: '5px' }}>
+            <Trans>Wallet Keys</Trans>
+          </Typography>
+        </Flex>
+        {NewWalletButtonGroup}
+      </Flex>
+    );
+  }
+
   return (
     <StyledContainer>
       <Flex flexDirection="column" alignItems="flex-start" gap={3}>
@@ -262,28 +263,32 @@ export default function SelectKey() {
             <TooltipIcon>{error.message}</TooltipIcon>
           </Alert>
         ) : hasFingerprints ? (
-          <Flex
-            justifyContent="space-between"
-            width="100%"
-            sx={{ borderBottom: '1px solid #CCDDE1', paddingBottom: '30px' }}
-          >
-            <Flex alignItems="left">
-              <ChiaBlack color="secondary" />
-              <Typography variant="h4" component="h1" sx={{ position: 'relative', left: '15px', top: '5px' }}>
-                <Trans>Wallet Keys</Trans>
-              </Typography>
-            </Flex>
-            {NewWalletButtonGroup}
-          </Flex>
+          <>{renderTopSection()}</>
         ) : (
           <>
-            <Typography variant="h5" component="h1">
-              <Trans>Sign In</Trans>
-            </Typography>
-            <Typography variant="subtitle1" align="center">
-              <Trans>Welcome to Chia. Please log in with an existing key, or create a new key.</Trans>
-            </Typography>
-            {NewWalletButtonGroup}
+            {renderTopSection()}
+            <Flex alignItems="center" flexDirection="column">
+              <Typography component="div" variant="h4" color="textPrimary" sx={{ fontWeight: 600, fontSize: '40px' }}>
+                <Trans>Open a world of possibilities.</Trans>
+              </Typography>
+              <Typography
+                component="div"
+                variant="subtitle2"
+                color="textSecondary"
+                sx={{ fontWeight: 400, fontSize: '18px' }}
+              >
+                <Trans>Create a new wallet key to get started with Chia.</Trans>
+              </Typography>
+              <Button
+                onClick={() => handleNavigationIfKeyringIsMutable('/wallet/add')}
+                variant="outlined"
+                color="primary"
+                sx={{ margin: '15px 0' }}
+              >
+                <Trans>Create a new wallet key</Trans>
+              </Button>
+              <Coins />
+            </Flex>
           </>
         )}
         {/* <Search /> */}

@@ -28,3 +28,5 @@ jobs:
         run: npm run check:lint
       - name: Check for TS issues
         run: npm run check:types
+      - name: Run tests
+        run: npm run test

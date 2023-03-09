@@ -28,6 +28,9 @@ const StyledCardContent = styled(CardContent)(
 
 const StyledCardContentNoPadding = styled(CardContent)`
   padding: 0;
+  :last-child {
+    padding-bottom: 0;
+  }
 `;
 
 export type CardListItemProps = {

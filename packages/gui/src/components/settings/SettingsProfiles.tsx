@@ -43,7 +43,7 @@ export default function SettingsProfiles() {
   }, [isLoading, profileStartDisplay, didList, navigate]);
 
   return (
-    <Grid container style={{ maxWidth: '624px' }} gap={3}>
+    <Grid container style={{ maxWidth: '928px' }} gap={3}>
       <Grid item>
         <Flex flexDirection="column" gap={1}>
           <SettingsSection>
@@ -52,8 +52,7 @@ export default function SettingsProfiles() {
           <SettingsText>
             <Trans>
               A profile is a decentralized identifier (DID) that you can prove control and ownership of without having
-              to rely on any centralized authority. You can have as many DIDs as you want that can be used to represent
-              different aspects of your identity like establishing provenance of creation or ownership for NFTs.
+              to rely on any centralized authority.
             </Trans>
           </SettingsText>
         </Flex>

@@ -1,5 +1,5 @@
 import { toBech32m } from '@chia-network/api';
-import { Card, Flex, Table, LoadingOverlay, Button, useShowError, useCurrencyCode } from '@chia-network/core';
+import { Card, Flex, Table, LoadingOverlay, Button, useShowError, Tooltip, useCurrencyCode } from '@chia-network/core';
 import { Offers as OffersIcon } from '@chia-network/icons';
 import { Trans } from '@lingui/macro';
 import { Typography } from '@mui/material';
@@ -84,14 +84,20 @@ const cols = [
         await counterOffer(id);
       }
 
+      const tooltipTitle = puzzleHash ? '' : <Trans>The offer creator has chosen not to allow counter offers</Trans>;
+
       return (
         <Flex gap={1}>
           <Button variant="outlined" color="primary" onClick={handleShowOffer}>
             <Trans>View</Trans>
           </Button>
-          <Button variant="outlined" color="primary" onClick={handleCounter} disabled={!puzzleHash}>
-            <Trans>Counter</Trans>
-          </Button>
+          <Tooltip title={tooltipTitle}>
+            <span>
+              <Button variant="outlined" color="primary" onClick={handleCounter} disabled={!puzzleHash}>
+                <Trans>Counter</Trans>
+              </Button>
+            </span>
+          </Tooltip>
           <Button variant="outlined" color="primary" onClick={handleDelete}>
             <Trans>Delete</Trans>
           </Button>
