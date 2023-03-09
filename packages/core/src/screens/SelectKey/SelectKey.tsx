@@ -101,10 +101,14 @@ export default function SelectKey() {
       const newFingerprints: any = {};
       let notifyChange: boolean = false;
       publicKeyFingerprints.forEach((f: any) => {
-        const randomEmojiIndex = Math.floor(Object.keys(allEmojis).length * Math.random());
+        const peopleAndNatureEmojisWords = (data as any).originalCategories
+          .filter((category: any) => ['people', 'nature'].indexOf(category.id) > -1)
+          .map((category: any) => category.emojis)
+          .flat();
+        const randomEmoji = peopleAndNatureEmojisWords[Math.floor(peopleAndNatureEmojisWords.length * Math.random())];
         const themeColors = Object.keys(allColors);
         const randomTheme = {
-          emoji: allEmojis[Object.keys(allEmojis)[randomEmojiIndex]].skins[0].native,
+          emoji: allEmojis[randomEmoji].skins[0].native,
           color: themeColors[Math.floor(themeColors.length * Math.random())],
         };
         if (fingerprintSettings[f.fingerprint] && !fingerprintSettings[f.fingerprint].walletKeyTheme) {
