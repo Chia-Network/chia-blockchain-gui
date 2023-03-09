@@ -46,6 +46,45 @@ const StyledBody = styled(Flex)`
 const StyledToolbar = styled(Toolbar)`
   padding-left: ${({ theme }) => theme.spacing(3)};
   padding-right: ${({ theme }) => theme.spacing(3)};
+
+  > div.testnet {
+    background-color: yellow;
+    position: absolute;
+    height: 20px;
+    width: 100%;
+  }
+
+  > div::before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 20px;
+    background: repeating-linear-gradient(-45deg, black, black 10px, transparent 10px, transparent 20px);
+  }
+`;
+
+const StyledTestnetBar = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  height: 20px;
+  width: 100%;
+  background-color: #77d4ff;
+
+  div.status-bar:before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 20px;
+    background: repeating-linear-gradient(-45deg, black, black 10px, transparent 10px, transparent 20px);
+  }
 `;
 
 const StyledInlineTypography = styled(Typography)`
@@ -106,6 +145,7 @@ export default function LayoutDashboard(props: LayoutDashboardProps) {
           <>
             <StyledAppBar position="fixed" color="transparent" elevation={0} drawer>
               <StyledToolbar>
+                <StyledTestnetBar class="status-bar" />
                 <Flex width="100%" alignItems="center" justifyContent="space-between" gap={3}>
                   <Flex
                     alignItems="center"
