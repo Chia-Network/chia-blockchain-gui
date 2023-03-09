@@ -74,7 +74,7 @@ export default function SelectKeyRenameForm(props: SelectKeyRenameFormProps) {
 
   return (
     <Form methods={methods} onSubmit={handleSubmit} sx={{ flexGrow: 1 }} noValidate>
-      <Flex gap={2}>
+      <Flex gap={1}>
         <TextField
           name="label"
           size="small"
