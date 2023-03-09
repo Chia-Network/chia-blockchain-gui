@@ -94,7 +94,7 @@ export default function SettingsIntegration() {
         <Grid item style={{ width: '624px' }}>
           <Flex flexDirection="row" alignItems="center" justifyContent="spaceBetween" gap={1}>
             <SettingsTitle>
-              <Trans>Reset Bypass</Trans>
+              <Trans>Reset WalletConnect Permissions</Trans>
             </SettingsTitle>
             <Flex flexDirection="row" flexGrow={1} justifyContent="flex-end" gap={2}>
               <Button
@@ -111,8 +111,8 @@ export default function SettingsIntegration() {
         <Grid item container style={{ width: '400px' }} gap={2}>
           <SettingsText>
             <Trans>
-              Take control of your WalletConnect security with reset bypass. Click the button to revoke previous command
-              approvals and ensure all future commands require your approval.
+              This will reset all previously granted permissions across all Dapps that have been connected to. After
+              resetting you will be asked to grant permission again.
             </Trans>
           </SettingsText>
         </Grid>
