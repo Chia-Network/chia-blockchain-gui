@@ -25,7 +25,7 @@
     "use-dark-mode": "2.3.1"
   },
   "devDependencies": {
-    "@babel/core": "7.16.7",
+    "@babel/core": "7.21.0",
     "@babel/plugin-transform-runtime": "7.16.8",
     "@babel/preset-env": "7.16.8",
     "@babel/preset-react": "7.16.7",
