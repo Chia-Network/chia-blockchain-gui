@@ -52,7 +52,7 @@ export type CreateOfferBuilderProps = {
   referrerPath?: string;
   onOfferCreated: (obj: { offerRecord: any; offerData: any; address?: string }) => void;
   nftIds?: string[];
-  counterOffer?: boolean;
+  isCounterOffer?: boolean;
   offer?: OfferBuilderData;
   address?: string;
 };
@@ -66,7 +66,7 @@ export default function CreateOfferBuilder(props: CreateOfferBuilderProps) {
     nftId,
     nftWalletId,
     nftIds,
-    counterOffer = false,
+    isCounterOffer = false,
     offer,
     address,
   } = props;
@@ -148,7 +148,7 @@ export default function CreateOfferBuilder(props: CreateOfferBuilderProps) {
         navigate(-1);
 
         if (!suppressShareOnCreate) {
-          onOfferCreated({ offerRecord, offerData, address });
+          onOfferCreated({ offerRecord, offerData, address, nftId });
         }
       } catch (error) {
         if ((error as Error).message.startsWith('insufficient funds')) {
@@ -161,7 +161,7 @@ export default function CreateOfferBuilder(props: CreateOfferBuilderProps) {
         }
       }
     },
-    [wallets, createOfferForIds, navigate, suppressShareOnCreate, onOfferCreated, address, openDialog, offers]
+    [wallets, createOfferForIds, navigate, suppressShareOnCreate, onOfferCreated, address, openDialog, offers, nftId]
   );
 
   return (
@@ -170,7 +170,7 @@ export default function CreateOfferBuilder(props: CreateOfferBuilderProps) {
         <Flex alignItems="center" justifyContent="space-between" gap={2}>
           <OfferNavigationHeader referrerPath={referrerPath} />
           <ButtonLoading variant="contained" color="primary" onClick={handleCreateOffer} disableElevation>
-            {counterOffer ? <Trans>Create Counter Offer</Trans> : <Trans>Create Offer</Trans>}
+            {isCounterOffer ? <Trans>Create Counter Offer</Trans> : <Trans>Create Offer</Trans>}
           </ButtonLoading>
         </Flex>
 

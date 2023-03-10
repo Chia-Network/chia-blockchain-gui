@@ -30,18 +30,12 @@ import debug from 'debug';
 import React, { useCallback, useEffect, useMemo } from 'react';
 
 import useAssetIdName, { AssetIdMapEntry } from '../../hooks/useAssetIdName';
+import useResolveNFTOffer from '../../hooks/useResolveNFTOffer';
 import useSuppressShareOnCreate from '../../hooks/useSuppressShareOnCreate';
-import { launcherIdToNFTId } from '../../util/nfts';
 import NotificationSendDialog from '../notification/NotificationSendDialog';
 import { NFTOfferSummary } from './NFTOfferViewer';
-import OfferAsset from './OfferAsset';
 import OfferSummary from './OfferSummary';
-import {
-  offerAssetIdForAssetType,
-  offerContainsAssetOfType,
-  shortSummaryForOffer,
-  suggestedFilenameForOffer,
-} from './utils';
+import { offerContainsAssetOfType, shortSummaryForOffer, suggestedFilenameForOffer } from './utils';
 
 const log = debug('chia-gui:offers');
 
@@ -83,7 +77,9 @@ type CommonDialogProps = {
 
 type CommonShareServiceDialogProps = CommonDialogProps & {
   // eslint-disable-next-line react/no-unused-prop-types -- False positive
-  isNFTOffer?: boolean;
+  notificationDestination?: string;
+  // eslint-disable-next-line react/no-unused-prop-types -- False positive
+  notificationDestinationType?: 'address' | 'nft';
   // eslint-disable-next-line react/no-unused-prop-types -- False positive
   showSendOfferNotificationDialog?: (show: boolean, offerURL: string) => void;
 };
@@ -560,7 +556,8 @@ function OfferShareDexieDialog(props: OfferShareServiceDialogProps) {
     testnet = false,
     onClose = () => {},
     open = false,
-    isNFTOffer = false,
+    notificationDestination,
+    notificationDestinationType,
     showSendOfferNotificationDialog = () => {},
   } = props;
   const openExternal = useOpenExternal();
@@ -620,9 +617,13 @@ function OfferShareDexieDialog(props: OfferShareServiceDialogProps) {
           </Flex>
         </DialogContent>
         <DialogActions>
-          {isNFTOffer && (
+          {notificationDestination && (
             <Button onClick={handleShowSendOfferNotificationDialog} color="primary" variant="outlined">
-              <Trans>Notify Current Owner</Trans>
+              {notificationDestinationType === 'nft' ? (
+                <Trans>Notify Current Owner</Trans>
+              ) : (
+                <Trans>Send Notification</Trans>
+              )}
             </Button>
           )}
           <Button onClick={handleClose} color="primary" variant="contained">
@@ -892,7 +893,8 @@ function OfferShareSpacescanDialog(props: OfferShareServiceDialogProps) {
     testnet = false,
     onClose = () => {},
     open = false,
-    isNFTOffer = false,
+    notificationDestination,
+    notificationDestinationType,
     showSendOfferNotificationDialog = () => {},
   } = props;
   const openExternal = useOpenExternal();
@@ -952,10 +954,13 @@ function OfferShareSpacescanDialog(props: OfferShareServiceDialogProps) {
           </Flex>
         </DialogContent>
         <DialogActions>
-          {' '}
-          {isNFTOffer && (
+          {notificationDestination && (
             <Button onClick={handleShowSendOfferNotificationDialog} color="primary" variant="outlined">
-              <Trans>Notify Current Owner</Trans>
+              {notificationDestinationType === 'nft' ? (
+                <Trans>Notify Current Owner</Trans>
+              ) : (
+                <Trans>Send Notification</Trans>
+              )}
             </Button>
           )}
           <Button onClick={handleClose} color="primary" variant="contained">
@@ -1208,7 +1213,8 @@ function OfferShareOfferpoolDialog(props: OfferShareServiceDialogProps) {
     testnet = false,
     onClose = () => {},
     open = false,
-    isNFTOffer = false,
+    notificationDestination,
+    notificationDestinationType,
     showSendOfferNotificationDialog = () => {},
   } = props;
   const openExternal = useOpenExternal();
@@ -1273,9 +1279,13 @@ function OfferShareOfferpoolDialog(props: OfferShareServiceDialogProps) {
           </Flex>
         </DialogContent>
         <DialogActions>
-          {isNFTOffer && (
+          {notificationDestination && (
             <Button onClick={handleShowSendOfferNotificationDialog} color="primary" variant="outlined">
-              <Trans>Notify Current Owner</Trans>
+              {notificationDestinationType === 'nft' ? (
+                <Trans>Notify Current Owner</Trans>
+              ) : (
+                <Trans>Send Notification</Trans>
+              )}
             </Button>
           )}
           <Button onClick={handleClose} color="primary" variant="contained">
@@ -1405,11 +1415,16 @@ export default function OfferShareDialog(props: OfferShareDialogProps) {
   const [sendOfferNotificationOpen, setSendOfferNotificationOpen] = React.useState(false);
   const [offerURL, setOfferURL] = React.useState('');
   const [suppressShareOnCreate, setSuppressShareOnCreate] = useSuppressShareOnCreate();
-  const isNFTOffer = offerContainsAssetOfType(offerRecord.summary, 'singleton', 'requested');
-  const nftLauncherId = isNFTOffer
-    ? offerAssetIdForAssetType(OfferAsset.NFT, offerRecord.summary, 'requested')
-    : undefined;
-  const nftId = nftLauncherId ? launcherIdToNFTId(nftLauncherId) : undefined;
+
+  const { ownedNFTIds, unownedNFTIds } = useResolveNFTOffer({
+    offerSummary: offerRecord.summary,
+  });
+
+  const isNFTOffer = ownedNFTIds?.length > 0 || unownedNFTIds?.length > 0;
+  const [nftId] = unownedNFTIds ?? [];
+
+  const notificationDestination = address || nftId;
+  const notificationDestinationType = address ? 'address' : 'nft';
 
   const showSendOfferNotificationDialog = useCallback(
     (localOpen: boolean, localOfferURL: string) => {
@@ -1423,7 +1438,8 @@ export default function OfferShareDialog(props: OfferShareDialogProps) {
     const capabilities = isNFTOffer ? [OfferSharingCapability.NFT] : [OfferSharingCapability.Token];
     const commonDialogProps: CommonShareServiceDialogProps = {
       showSendOfferNotificationDialog,
-      isNFTOffer,
+      notificationDestination,
+      notificationDestinationType,
     };
 
     const dialogComponents: {
@@ -1481,14 +1497,20 @@ export default function OfferShareDialog(props: OfferShareDialogProps) {
       });
 
     return options;
-  }, [isNFTOffer, testnet, showSendOfferNotificationDialog]);
+  }, [isNFTOffer, testnet, showSendOfferNotificationDialog, notificationDestination, notificationDestinationType]);
 
   useEffect(() => {
-    if (sendOfferNotificationOpen && offerURL && nftId) {
-      openDialog(<NotificationSendDialog offerURL={offerURL} nftId={nftId} address={address} />);
+    if (sendOfferNotificationOpen && offerURL && notificationDestination && notificationDestinationType) {
+      openDialog(
+        <NotificationSendDialog
+          offerURL={offerURL}
+          destination={notificationDestination}
+          destinationType={notificationDestinationType}
+        />
+      );
       setSendOfferNotificationOpen(false);
     }
-  }, [openDialog, sendOfferNotificationOpen, offerURL, nftId, address]);
+  }, [openDialog, sendOfferNotificationOpen, offerURL, notificationDestination, notificationDestinationType]);
 
   function handleClose() {
     onClose(false);

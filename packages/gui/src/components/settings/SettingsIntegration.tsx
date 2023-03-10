@@ -1,8 +1,9 @@
 import { Flex, SettingsHR, SettingsSection, SettingsTitle, SettingsText } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
-import { FormControlLabel, Grid, Switch } from '@mui/material';
+import { Button, FormControlLabel, Grid, Switch } from '@mui/material';
 import React from 'react';
 
+import useWalletConnectPairs from '../../hooks/useWalletConnectPairs';
 import useWalletConnectPreferences from '../../hooks/useWalletConnectPreferences';
 
 export default function SettingsIntegration() {
@@ -14,6 +15,8 @@ export default function SettingsIntegration() {
     allowConfirmationFingerprintChange,
     setAllowConfirmationFingerprintChange,
   } = useWalletConnectPreferences();
+
+  const { resetBypass } = useWalletConnectPairs();
 
   return (
     <Grid container style={{ maxWidth: '624px' }} gap={3}>
@@ -62,7 +65,7 @@ export default function SettingsIntegration() {
       <Grid container>
         <Grid item style={{ width: '400px' }}>
           <SettingsTitle>
-            <Trans>Key switching</Trans>
+            <Trans>Key Switching</Trans>
           </SettingsTitle>
         </Grid>
         <Grid item container xs justifyContent="flex-end" marginTop="-6px">
@@ -79,6 +82,38 @@ export default function SettingsIntegration() {
         <Grid item style={{ width: '400px' }}>
           <SettingsText>
             <Trans>Allow requests that require switching to a different wallet key.</Trans>
+          </SettingsText>
+        </Grid>
+      </Grid>
+
+      <Grid item xs={12} sm={12} lg={12}>
+        <SettingsHR />
+      </Grid>
+
+      <Grid container gap={2}>
+        <Grid item style={{ width: '624px' }}>
+          <Flex flexDirection="row" alignItems="center" justifyContent="spaceBetween" gap={1}>
+            <SettingsTitle>
+              <Trans>Reset WalletConnect Permissions</Trans>
+            </SettingsTitle>
+            <Flex flexDirection="row" flexGrow={1} justifyContent="flex-end" gap={2}>
+              <Button
+                onClick={() => resetBypass()}
+                color="secondary"
+                variant="outlined"
+                data-testid="SettingsPanel-resync-wallet-db"
+              >
+                <Trans>Reset</Trans>
+              </Button>
+            </Flex>
+          </Flex>
+        </Grid>
+        <Grid item container style={{ width: '400px' }} gap={2}>
+          <SettingsText>
+            <Trans>
+              This will reset all previously granted permissions across all Dapps that have been connected to. After
+              resetting you will be asked to grant permission again.
+            </Trans>
           </SettingsText>
         </Grid>
       </Grid>

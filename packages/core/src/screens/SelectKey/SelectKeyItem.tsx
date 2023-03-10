@@ -145,7 +145,7 @@ export default function SelectKeyItem(props: SelectKeyItemProps) {
       }}
     >
       <Flex position="relative" flexDirection="column">
-        <Flex sx={{ padding: '7px 10px 5px 10px', minHeight: '55px' }} direction="row">
+        <Flex sx={{ padding: '8px', minHeight: '55px' }} direction="row">
           <Flex sx={{ padding: '0 10px 0 0', fontSize: '24px', position: 'relative' }}>
             <span
               style={{ display: showEmojiPicker ? 'inline' : 'none', position: 'fixed', zIndex: 10 }}
@@ -177,8 +177,8 @@ export default function SelectKeyItem(props: SelectKeyItemProps) {
                 ':hover': {
                   backgroundColor: color.main,
                 },
-                width: '40px',
-                height: '40px',
+                width: '48px',
+                height: '48px',
                 alignItems: 'center',
                 justifyContent: 'center',
                 borderRadius: '4px',
@@ -216,12 +216,12 @@ export default function SelectKeyItem(props: SelectKeyItemProps) {
                 <SelectKeyRenameForm keyData={keyData} onClose={handleCloseRename} />
               </Flex>
             ) : (
-              <Typography variant="subtitle1" noWrap>
+              <Typography variant="h6" noWrap>
                 {label || <Trans>Wallet {index + 1}</Trans>}
               </Typography>
             )}
             {!isRenaming && (
-              <Typography variant="caption" color="textSecondary">
+              <Typography variant="body2" color="textSecondary">
                 {fingerprint}
               </Typography>
             )}

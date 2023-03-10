@@ -1,9 +1,19 @@
 import { useGetWalletsQuery, useCheckOfferValidityMutation } from '@chia-network/api-react';
-import { Flex, ButtonLoading, Link, Loading, useShowError } from '@chia-network/core';
+import {
+  AlertDialog,
+  Flex,
+  Button,
+  ButtonLoading,
+  Link,
+  Loading,
+  useShowError,
+  useOpenDialog,
+} from '@chia-network/core';
+import { useIsWalletSynced } from '@chia-network/wallets';
 import { Trans } from '@lingui/macro';
 import { Alert, Grid } from '@mui/material';
 import React, { useCallback, useEffect, useImperativeHandle, useMemo, useRef, useState, forwardRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 import type OfferBuilderData from '../../@types/OfferBuilderData';
 import type OfferSummary from '../../@types/OfferSummary';
@@ -23,6 +33,8 @@ export type OfferBuilderViewerProps = {
   isMyOffer?: boolean;
   imported?: boolean;
   hideHeader?: boolean;
+  canCounterOffer?: boolean;
+  address?: string; // where to send a counter offer
   fee?: string; // in mojos
 };
 
@@ -35,11 +47,14 @@ function OfferBuilderViewer(props: OfferBuilderViewerProps, ref: any) {
     isMyOffer = false,
     imported = false,
     hideHeader = false,
+    canCounterOffer = false,
+    address,
     fee,
   } = props;
 
   const showError = useShowError();
   const navigate = useNavigate();
+  const location = useLocation();
   const [acceptOffer] = useAcceptOfferHook();
   const [error, setError] = useState<Error | undefined>();
   const [isAccepting, setIsAccepting] = useState<boolean>(false);
@@ -50,6 +65,8 @@ function OfferBuilderViewer(props: OfferBuilderViewerProps, ref: any) {
   const [checkOfferValidity] = useCheckOfferValidityMutation();
   const [isValidating, setIsValidating] = useState<boolean>(offerData !== undefined);
   const [isValid, setIsValid] = useState<boolean | undefined>();
+  const isWalletSynced = useIsWalletSynced();
+  const openDialog = useOpenDialog();
 
   const showInvalid = !isValidating && isValid === false;
 
@@ -142,8 +159,28 @@ function OfferBuilderViewer(props: OfferBuilderViewerProps, ref: any) {
     );
   }
 
-  function handleAcceptOffer() {
-    offerBuilderRef.current?.submit();
+  function handleCounterOffer() {
+    const offer = offerToOfferBuilderData(offerSummary, false, '');
+    navigate('/dashboard/offers/builder', {
+      state: {
+        referrerPath: location.pathname,
+        isCounterOffer: true,
+        address,
+        offer,
+      },
+    });
+  }
+
+  async function handleAcceptOffer() {
+    if (!isWalletSynced) {
+      await openDialog(
+        <AlertDialog>
+          <Trans>Please wait for wallet synchronization</Trans>
+        </AlertDialog>
+      );
+    } else {
+      offerBuilderRef.current?.submit();
+    }
   }
 
   return (
@@ -152,18 +189,25 @@ function OfferBuilderViewer(props: OfferBuilderViewerProps, ref: any) {
         {!hideHeader && (
           <Flex alignItems="center" justifyContent="space-between" gap={2}>
             <OfferNavigationHeader referrerPath={referrerPath} />
-            {canAccept && (
-              <ButtonLoading
-                variant="contained"
-                color="primary"
-                onClick={handleAcceptOffer}
-                isLoading={isAccepting}
-                disableElevation
-                disabled={disableAccept}
-              >
-                <Trans>Accept Offer</Trans>
-              </ButtonLoading>
-            )}
+            <Flex flexDirection="row" gap={1}>
+              {canCounterOffer && (
+                <Button variant="outlined" color="primary" onClick={handleCounterOffer} disableElevation>
+                  <Trans>Counter Offer</Trans>
+                </Button>
+              )}
+              {canAccept && (
+                <ButtonLoading
+                  variant="contained"
+                  color="primary"
+                  onClick={handleAcceptOffer}
+                  isLoading={isAccepting}
+                  disableElevation
+                  disabled={disableAccept}
+                >
+                  <Trans>Accept Offer</Trans>
+                </ButtonLoading>
+              )}
+            </Flex>
           </Flex>
         )}
         {error ? (

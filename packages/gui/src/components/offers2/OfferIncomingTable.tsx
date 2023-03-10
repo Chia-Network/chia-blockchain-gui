@@ -159,7 +159,7 @@ export default function OfferIncomingTable(props: OfferIncomingTableProps) {
       navigate('/dashboard/offers/builder', {
         state: {
           referrerPath: location.pathname,
-          counterOffer: true,
+          isCounterOffer: true,
           address,
           offer,
         },
@@ -178,13 +178,23 @@ export default function OfferIncomingTable(props: OfferIncomingTableProps) {
   }
 
   function handleShowOffer(id: string) {
-    const { offerData, offerSummary } = filteredNotifications.find((notification) => notification.id === id);
+    const {
+      offerData,
+      offerSummary,
+      metadata: {
+        data: { puzzleHash },
+      },
+    } = filteredNotifications.find((notification) => notification.id === id);
+    const canCounterOffer = puzzleHash?.length > 0;
+
     navigate('/dashboard/offers/view', {
       state: {
         referrerPath: location.pathname,
         offerData,
         offerSummary,
         imported: true,
+        canCounterOffer,
+        address: puzzleHash,
       },
     });
   }
