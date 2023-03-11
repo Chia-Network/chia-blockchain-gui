@@ -69,7 +69,7 @@ type BaseQueryArgs =
   | ServiceQuery<typeof Client>;
 
 const chiaLazyBaseQuery: BaseQueryFn<BaseQueryArgs, unknown, unknown, unknown, Metadata> = async (options, api) => {
-  const { service, command, args, mockResponse } = options;
+  const { service, command, args = [], mockResponse } = options;
 
   const meta = {
     timestamp: Date.now(),
@@ -87,7 +87,8 @@ const chiaLazyBaseQuery: BaseQueryFn<BaseQueryArgs, unknown, unknown, unknown, M
 
   try {
     const instance = await getInstance(service, api);
-    const data = await instance[command](...args);
+    const arrayArgs = Array.isArray(args) ? args : [args];
+    const data = await instance[command](...arrayArgs);
 
     return {
       data: data ?? null,
