@@ -39,7 +39,7 @@ export default function EmojiAndColorPicker(props: EmojiAndColorPickerType) {
     boxShadow: '0px 6px 19px rgba(15, 37, 42, 0.28), 0px 27px 65px rgba(101, 131, 138, 0.39)',
     borderRadius: '8px',
     padding: '0px',
-    position: 'relative',
+    position: 'absolute',
     top: '30px',
     left: '25px',
   };
