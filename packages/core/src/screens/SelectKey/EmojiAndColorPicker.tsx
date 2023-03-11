@@ -25,6 +25,7 @@ const colorCircleStyle: any = {
   borderRadius: '50%',
   position: 'relative',
   zIndex: 10,
+  cursor: 'pointer',
 };
 
 export default function EmojiAndColorPicker(props: EmojiAndColorPickerType) {
@@ -198,6 +199,7 @@ export default function EmojiAndColorPicker(props: EmojiAndColorPickerType) {
             height: '25px',
             zIndex: 9,
             paddingTop: '2px',
+            cursor: 'pointer',
           }}
         >
           {allEmojis[emojiName].skins[0].native}
