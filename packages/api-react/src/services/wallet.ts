@@ -1579,7 +1579,7 @@ export const {
 
   // DID
   useCreateNewDIDWalletMutation,
-  useUpdateDIDRecoveryIdsQuery,
+  useUpdateDIDRecoveryIdsMutation,
   useGetDIDPubKeyQuery,
   useGetDIDQuery,
   useGetDIDsQuery,
