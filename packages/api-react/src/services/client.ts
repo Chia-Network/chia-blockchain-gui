@@ -19,7 +19,7 @@ export const clientApi = apiWithTag.injectEndpoints({
           const response = await baseQuery(
             {
               command: 'onStateChange',
-              client: true,
+              service: Client,
               args: [
                 (data: any) => {
                   updateCachedData((draft) => {
