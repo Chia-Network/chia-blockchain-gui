@@ -9,7 +9,7 @@ import { useNavigate, Outlet } from 'react-router-dom';
 import styled from 'styled-components';
 
 import SelectKeyRenameForm from '../../screens/SelectKey/SelectKeyRenameForm';
-import EmojiAndColorPicker from '../../screens/selectKey/EmojiAndColorPicker';
+import EmojiAndColorPicker from '../../screens/SelectKey/EmojiAndColorPicker';
 import Flex from '../Flex';
 import Loading from '../Loading';
 import Logo from '../Logo';
