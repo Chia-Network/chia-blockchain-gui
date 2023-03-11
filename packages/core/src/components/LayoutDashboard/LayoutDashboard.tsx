@@ -8,8 +8,8 @@ import React, { type ReactNode, useState, Suspense, useCallback } from 'react';
 import { useNavigate, Outlet } from 'react-router-dom';
 import styled from 'styled-components';
 
-import SelectKeyRenameForm from '../../screens/SelectKey/SelectKeyRenameForm';
 import EmojiAndColorPicker from '../../screens/SelectKey/EmojiAndColorPicker';
+import SelectKeyRenameForm from '../../screens/SelectKey/SelectKeyRenameForm';
 import Flex from '../Flex';
 import Loading from '../Loading';
 import Logo from '../Logo';
