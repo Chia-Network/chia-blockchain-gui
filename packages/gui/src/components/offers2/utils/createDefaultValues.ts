@@ -11,6 +11,12 @@ type CreateDefaultValuesParams = {
   nftWalletId?: number; // If set, indicates that we are offering the NFT, otherwise we are requesting it
 };
 
+/**
+ * Creates default values for OfferBuilder's form data. OfferBuilder can be instantiated with default values
+ * for creating an XCH offer, a CAT offer, or an NFT offer. XCH and CAT offers will have a default entry in
+ * the offered section. NFT offers can have default entries in either the offered or requested sections
+ * depending on whether the NFTs and an NFT wallet id are provided.
+ */
 export default function createDefaultValues(params: CreateDefaultValuesParams): OfferBuilderData {
   const { walletType, assetId, nftId, nftWalletId, nftIds } = params;
 
