@@ -185,6 +185,7 @@ export default function SelectKeyItem(props: SelectKeyItemProps) {
                 background: 'none',
                 transition: 'all .3s linear',
                 backgroundColor: 'transparent',
+                fontFamily: 'Roboto',
               }}
               onClick={toggleEmojiPicker}
             >
