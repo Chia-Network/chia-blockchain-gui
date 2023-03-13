@@ -44,15 +44,14 @@ export default function SelectKeyItem(props: SelectKeyItemProps) {
     color: 'green',
   });
 
-  const [tempWalletKeyTheme, setTempWalletKeyTheme] = useState<WalletKeyTheme>({} as WalletKeyTheme);
   const [showEmojiPicker, setShowEmojiPicker] = useState<boolean>(false);
 
   const theme: any = useTheme();
 
   const isColor = useCallback((color: string) => Object.keys(theme.palette.colors).includes(color), [theme]);
   const isDark = theme.palette.mode === 'dark';
-  const color = isColor(tempWalletKeyTheme.color || walletKeyTheme.color)
-    ? theme.palette.colors[tempWalletKeyTheme.color || walletKeyTheme.color]
+  const color = isColor(walletKeyTheme.color)
+    ? theme.palette.colors[walletKeyTheme.color]
     : theme.palette.colors.default;
 
   async function handleLogin() {
@@ -167,9 +166,7 @@ export default function SelectKeyItem(props: SelectKeyItemProps) {
               {showEmojiPicker && (
                 <EmojiAndColorPicker
                   onSelect={(result: any) => {
-                    if (result === '') {
-                      setTempWalletKeyTheme({} as WalletKeyTheme);
-                    } else if (isColor(result)) {
+                    if (isColor(result)) {
                       setWalletKeyTheme({ ...walletKeyTheme, color: result });
                     } else if (result !== '') {
                       setWalletKeyTheme({ ...walletKeyTheme, emoji: result });
@@ -183,12 +180,6 @@ export default function SelectKeyItem(props: SelectKeyItemProps) {
                   currentEmoji={walletKeyTheme.emoji}
                   themeColors={theme.palette.colors}
                   isDark={isDark}
-                  onSelectTempEmoji={(tEmoji: string) => {
-                    setTempWalletKeyTheme({ ...tempWalletKeyTheme, emoji: tEmoji });
-                  }}
-                  onSelectTempColor={(tColor: string) => {
-                    setTempWalletKeyTheme({ ...tempWalletKeyTheme, color: tColor });
-                  }}
                 />
               )}
             </span>
@@ -209,7 +200,7 @@ export default function SelectKeyItem(props: SelectKeyItemProps) {
               }}
               onClick={toggleEmojiPicker}
             >
-              <Typography variant="h4">{tempWalletKeyTheme.emoji || walletKeyTheme.emoji}</Typography>
+              {walletKeyTheme.emoji}
             </Flex>
           </Flex>
           <Flex
