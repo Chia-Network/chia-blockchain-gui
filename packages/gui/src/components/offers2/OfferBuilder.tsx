@@ -7,21 +7,7 @@ import type OfferBuilderData from '../../@types/OfferBuilderData';
 import OfferState from '../offers/OfferState';
 import OfferBuilderProvider from './OfferBuilderProvider';
 import OfferBuilderTradeColumn from './OfferBuilderTradeColumn';
-
-export const emptyDefaultValues = {
-  offered: {
-    xch: [],
-    tokens: [],
-    nfts: [],
-    fee: [],
-  },
-  requested: {
-    xch: [],
-    tokens: [],
-    nfts: [],
-    fee: [],
-  },
-};
+import { emptyDefaultValues } from './utils/defaultValues';
 
 export type OfferBuilderProps = {
   isMyOffer?: boolean;
