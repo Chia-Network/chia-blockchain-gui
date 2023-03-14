@@ -149,13 +149,13 @@ export const fullNodeApi = apiWithTag.injectEndpoints({
       string,
       {
         targetTimes: number[];
-        cost: number;
+        spendType: string;
       }
     >({
-      query: ({ targetTimes, cost }) => ({
+      query: ({ targetTimes, spendType }) => ({
         command: 'getFeeEstimate',
         service: FullNode,
-        args: [targetTimes, cost],
+        args: [targetTimes, spendType],
       }),
       providesTags: [{ type: 'FeeEstimate' }],
     }),

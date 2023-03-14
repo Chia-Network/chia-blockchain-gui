@@ -154,17 +154,16 @@ function CountdownBar({ startTime, refreshSeconds }: { startTime: number; refres
   );
 }
 
-enum FeeTxType {
-  walletSendXCH = 'walletSendXCH',
-  spendCATtx = 'spendCATtx',
-  acceptOffer = 'acceptOffer',
-  cancelOffer = 'cancelOffer',
-  burnNFT = 'burnNFT',
-  assignDIDToNFT = 'assignDIDToNFT',
-  transferNFT = 'transferNFT',
-  createPlotNFT = 'createPlotNFT',
-  claimPoolingReward = 'claimPoolingReward',
-  createDID = 'createDID',
+export enum FeeTxType {
+  walletSendXCH = 'send_xch_transaction',
+  spendCATtx = 'cat_spend',
+  acceptOffer = 'take_offer',
+  cancelOffer = 'cancel_offer',
+  assignDIDToNFT = 'nft_set_nft_did',
+  transferNFT = 'nft_transfer_nft',
+  createPlotNFT = 'create_new_pool_wallet',
+  claimPoolingReward = 'pw_absorb_rewards',
+  createDID = 'create_new_did_wallet',
 }
 
 type FeeProps = {
@@ -179,7 +178,7 @@ export default function EstimatedFee(props: FeeProps) {
   const [requestId, setRequestId] = useState<string | undefined>(undefined);
   const [startTime, setStartTime] = useState<number | undefined>(undefined);
   const result = useGetFeeEstimateQuery(
-    { targetTimes: TARGET_TIMES, cost: 1 },
+    { targetTimes: TARGET_TIMES, spendType: txType },
     {
       pollingInterval: REFRESH_SECONDS * 1000, // in milliseconds
     }

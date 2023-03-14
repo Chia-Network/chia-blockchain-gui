@@ -1,1 +1,1 @@
-export { default } from './EstimatedFee';
+export { default, FeeTxType } from './EstimatedFee';

@@ -4,6 +4,7 @@ import {
   Button,
   ButtonLoading,
   EstimatedFee,
+  FeeTxType,
   Form,
   Flex,
   TextField,
@@ -157,7 +158,7 @@ export default function NFTTransferAction(props: NFTTransferActionProps) {
           color="secondary"
           label={<Trans>Fee</Trans>}
           disabled={isLoading}
-          txType="transferNFT"
+          txType={FeeTxType.transferNFT}
           fullWidth
         />
         <DialogActions>

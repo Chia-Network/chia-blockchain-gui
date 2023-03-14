@@ -3,6 +3,7 @@ import {
   CopyToClipboard,
   EstimatedFee,
   Fee,
+  FeeTxType,
   Flex,
   FormatLargeNumber,
   Link,
@@ -149,7 +150,7 @@ export default function OfferBuilderValue(props: OfferBuilderValueProps) {
             ) : type === 'fee' ? (
               builderReadOnly ? (
                 <EstimatedFee
-                  txType="acceptOffer"
+                  txType={FeeTxType.acceptOffer}
                   variant="filled"
                   color="secondary"
                   label={label}
