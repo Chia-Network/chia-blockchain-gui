@@ -38,7 +38,7 @@ export function getMetadataObject(nftId: string, lru: LRU<string, any>): any {
   return parsedMetadataObject;
 }
 
-export default function useNFTsMetadata(nfts: NFTInfo[] | undefined) {
+export default function useNFTsMetadata(nfts: NFTInfo[], disableCache: boolean = false) {
   const nft: NFTInfo | undefined = nfts?.[0];
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [errorContent, setErrorContent] = useState<string | undefined>();
@@ -53,17 +53,19 @@ export default function useNFTsMetadata(nfts: NFTInfo[] | undefined) {
       const uri = nftObject?.metadataUris?.[0];
       const nftId = nftObject?.$nftId;
 
-      const metadataObject = getMetadataObject(nftId, lru);
+      if (!disableCache) {
+        const metadataObject = getMetadataObject(nftId, lru);
 
-      if (metadataObject.error) {
-        setErrorContent(metadataObject.error);
-        setIsLoading(false);
-        return;
-      }
-      if (metadataObject.isValid) {
-        setMetadata(metadataObject.metadata);
-        setIsLoading(false);
-        return;
+        if (metadataObject.error) {
+          setErrorContent(metadataObject.error);
+          setIsLoading(false);
+          return;
+        }
+        if (metadataObject.isValid) {
+          setMetadata(metadataObject.metadata);
+          setIsLoading(false);
+          return;
+        }
       }
 
       // ============== OTHERWISE FETCH DATA FROM INTERNET =========== //
@@ -117,7 +119,7 @@ export default function useNFTsMetadata(nfts: NFTInfo[] | undefined) {
       }
       setIsLoading(false);
     },
-    [lru, nft?.$nftId]
+    [lru, nft?.$nftId, disableCache]
   );
 
   useEffect(() => {

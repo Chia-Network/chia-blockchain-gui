@@ -18,6 +18,7 @@ type VerifyHash = {
   nftId: string;
   setNFTCardMetadata?: (obj: any) => void;
   setNFTPreviewMetadataError: (error: string | undefined) => void;
+  isOffer?: boolean;
 };
 
 let encoding: string = 'binary';
@@ -30,13 +31,14 @@ export default function useVerifyHash(props: VerifyHash): {
   encoding: string;
   isValid: boolean;
 } {
-  const { nft, ignoreSizeLimit, isPreview, dataHash, nftId, setNFTCardMetadata, setNFTPreviewMetadataError } = props;
+  const { nft, ignoreSizeLimit, isPreview, dataHash, nftId, setNFTCardMetadata, setNFTPreviewMetadataError, isOffer } =
+    props;
   const [isValidationProcessed, setIsValidationProcessed] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | undefined>();
   const [thumbnail, setThumbnail] = useState({});
-
-  const { metadata, isLoading: isLoadingMetadata, error: metadataError } = useNFTMetadata([nft]);
+  const disableCache = isOffer || false;
+  const { metadata, isLoading: isLoadingMetadata, error: metadataError } = useNFTMetadata([nft], disableCache);
 
   const hashIsValid = useRef(false);
 
