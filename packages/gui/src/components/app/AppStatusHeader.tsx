@@ -104,10 +104,9 @@ export default function AppStatusHeader() {
   };
 
   return (
-    <Flex gap={1}>
+    <Flex gap={2}>
       <AppTestnetIndicator />
       <WalletReceiveAddressField variant="outlined" size="small" fullWidth isDarkMode={isDarkMode} />
-      <WalletConnectDropdown />
       <ButtonGroup variant="outlined" color="secondary" size="small">
         {mode === Mode.FARMING && (
           <>
@@ -159,8 +158,18 @@ export default function AppStatusHeader() {
             <WalletConnections walletId={1} />
           </Box>
         </StyledPopover>
+        <Flex
+          sx={{
+            marginLeft: '15px',
+            '> div + div': {
+              marginLeft: '15px',
+            },
+          }}
+        >
+          <WalletConnectDropdown />
+          <NotificationsDropdown />
+        </Flex>
       </ButtonGroup>
-      <NotificationsDropdown />
     </Flex>
   );
 }
