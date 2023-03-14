@@ -120,7 +120,7 @@ export default function LayoutDashboard(props: LayoutDashboardProps) {
           <>
             <StyledAppBar position="fixed" color="transparent" elevation={0} drawer>
               <StyledToolbar>
-                <Flex width="100%" alignItems="center" justifyContent="space-between" gap={3}>
+                <Flex width="100%" alignItems="center" justifyContent="space-between" gap={2}>
                   <Flex
                     alignItems="center"
                     flexGrow={1}
