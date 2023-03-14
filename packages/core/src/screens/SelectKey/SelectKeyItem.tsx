@@ -200,7 +200,7 @@ export default function SelectKeyItem(props: SelectKeyItemProps) {
               }}
               onClick={toggleEmojiPicker}
             >
-              {walletKeyTheme.emoji}
+              <Typography variant="h4">{walletKeyTheme.emoji}</Typography>
             </Flex>
           </Flex>
           <Flex
