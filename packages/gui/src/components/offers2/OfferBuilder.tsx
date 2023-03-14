@@ -64,12 +64,12 @@ function OfferBuilder(props: OfferBuilderProps, ref: any) {
   }));
 
   const offerColumn = (
-    <Grid xs={12} md={6} item>
+    <Grid xs={12} md={6} item key={`offered-${viewer}-${isMyOffer}`}>
       <OfferBuilderTradeColumn name="offered" viewer={viewer} isMyOffer={isMyOffer} offering />
     </Grid>
   );
   const requestColumn = (
-    <Grid xs={12} md={6} item>
+    <Grid xs={12} md={6} item key={`requested-${viewer}-${isMyOffer}`}>
       <OfferBuilderTradeColumn name="requested" viewer={viewer} isMyOffer={isMyOffer} />
     </Grid>
   );
