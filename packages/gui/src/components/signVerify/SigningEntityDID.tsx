@@ -87,7 +87,7 @@ export default function SigningEntityDID(props: SigningEntityDIDProps) {
                 InputProps={{
                   endAdornment: (
                     <InputAdornment position="end">
-                      <CopyToClipboard value="currentAddress" data-testid="SigningEntityDID-did-copy" />
+                      <CopyToClipboard value={currentValue?.didId ?? ''} data-testid="SigningEntityDID-did-copy" />
                     </InputAdornment>
                   ),
                 }}
