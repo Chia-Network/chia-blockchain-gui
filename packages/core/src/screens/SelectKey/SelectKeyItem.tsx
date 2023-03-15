@@ -197,11 +197,12 @@ export default function SelectKeyItem(props: SelectKeyItemProps) {
                 background: 'none',
                 transition: 'all .3s linear',
                 backgroundColor: 'transparent',
-                fontFamily: 'Roboto',
               }}
               onClick={toggleEmojiPicker}
             >
-              <Typography variant="h4">{walletKeyTheme.emoji}</Typography>
+              <Typography variant="h4" sx={{ fontFamily: 'none', paddingTop: '6px' }}>
+                {walletKeyTheme.emoji}
+              </Typography>
             </Flex>
           </Flex>
           <Flex
