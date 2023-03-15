@@ -4,6 +4,7 @@ import {
   Button,
   ButtonLoading,
   EstimatedFee,
+  FeeTxType,
   Form,
   Flex,
   TextField,
@@ -165,7 +166,7 @@ export default function NFTBurnDialog(props: NFTPreviewDialogProps) {
                 color="secondary"
                 label={<Trans>Fee</Trans>}
                 disabled={isSubmitting}
-                txType="burnNFT"
+                txType={FeeTxType.transferNFT}
                 fullWidth
               />
               <DialogActions>

@@ -1,4 +1,13 @@
-import { Button, ButtonLoading, EstimatedFee, Flex, Form, TooltipIcon, chiaToMojo } from '@chia-network/core';
+import {
+  Button,
+  ButtonLoading,
+  EstimatedFee,
+  FeeTxType,
+  Flex,
+  Form,
+  TooltipIcon,
+  chiaToMojo,
+} from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import {
   Checkbox,
@@ -99,7 +108,7 @@ export function ConfirmOfferCancellation(props: ConfirmOfferCancellationProps) {
                             color="secondary"
                             label={<Trans>Fee</Trans>}
                             fullWidth
-                            txType="cancelOffer"
+                            txType={FeeTxType.cancelOffer}
                           />
                         </Grid>
                       )}

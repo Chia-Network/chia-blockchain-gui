@@ -4,6 +4,7 @@ import {
   Amount,
   ButtonLoading,
   EstimatedFee,
+  FeeTxType,
   Form,
   TextField,
   Flex,
@@ -197,7 +198,7 @@ export default function WalletSend(props: SendCardProps) {
                 label={<Trans>Fee</Trans>}
                 data-testid="WalletSend-fee"
                 fullWidth
-                txType="walletSendXCH"
+                txType={FeeTxType.walletSendXCH}
               />
             </Grid>
             <Grid xs={12} item>

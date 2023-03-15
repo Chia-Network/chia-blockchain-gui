@@ -53,10 +53,10 @@ export default class FullNode extends Service {
     });
   }
 
-  async getFeeEstimate(targetTimes: number[], cost: number) {
+  async getFeeEstimate(targetTimes: number[], spendType: string) {
     return this.command('get_fee_estimate', {
       targetTimes,
-      cost,
+      spendType,
     });
   }
 

@@ -6,6 +6,7 @@ import {
 import {
   ButtonLoading,
   EstimatedFee,
+  FeeTxType,
   Flex,
   Form,
   Link,
@@ -150,7 +151,7 @@ export default function ProfileAdd() {
                 color="secondary"
                 label={<Trans>Fee</Trans>}
                 fullWidth
-                txType="createDID"
+                txType={FeeTxType.createDID}
               />
             </Flex>
             <Flex justifyContent="flex-end">

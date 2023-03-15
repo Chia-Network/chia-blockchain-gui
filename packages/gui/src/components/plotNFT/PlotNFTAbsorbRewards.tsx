@@ -5,6 +5,7 @@ import {
   ButtonLoading,
   Loading,
   EstimatedFee,
+  FeeTxType,
   Flex,
   Form,
   State,
@@ -155,7 +156,7 @@ export default function PlotNFTAbsorbRewards(props: Props) {
                   variant="filled"
                   label={<Trans>Fee</Trans>}
                   fullWidth
-                  txType="claimPoolingReward"
+                  txType={FeeTxType.claimPoolingReward}
                 />
               </Grid>
             </Grid>

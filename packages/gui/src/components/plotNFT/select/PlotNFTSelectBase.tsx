@@ -1,4 +1,4 @@
-import { Button, Flex, Loading, CardStep, RadioGroup, EstimatedFee, TextField } from '@chia-network/core';
+import { Button, Flex, Loading, CardStep, RadioGroup, EstimatedFee, FeeTxType, TextField } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Alert, Grid, FormControl, FormControlLabel, Typography, Radio, Collapse } from '@mui/material';
 import React, { ReactNode } from 'react';
@@ -114,7 +114,7 @@ export default function PlotNFTSelectBase(props: Props) {
                 variant="filled"
                 label={<Trans>Fee</Trans>}
                 fullWidth
-                txType="createPlotNFT"
+                txType={FeeTxType.createPlotNFT}
               />
               {feeDescription}
             </Grid>

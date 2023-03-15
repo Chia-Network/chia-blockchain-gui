@@ -6,6 +6,7 @@ import {
   ButtonLoading,
   CopyToClipboard,
   EstimatedFee,
+  FeeTxType,
   Flex,
   Form,
   Loading,
@@ -260,7 +261,7 @@ export default function NotificationSendDialog(props: NotificationSendDialogProp
                       <EstimatedFee
                         name="fee"
                         label={<Trans>Transaction Fee</Trans>}
-                        txType="walletSendXCH"
+                        txType={FeeTxType.walletSendXCH}
                         disabled={isSubmitting}
                         fullWidth
                       />

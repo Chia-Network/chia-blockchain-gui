@@ -4,6 +4,7 @@ import {
   AdvancedOptions,
   Button,
   EstimatedFee,
+  FeeTxType,
   Form,
   Flex,
   Card,
@@ -221,7 +222,7 @@ export default function WalletCATSend(props: Props) {
                 label={<Trans>Fee</Trans>}
                 data-testid="WalletCATSend-fee"
                 fullWidth
-                txType="spendCATtx"
+                txType={FeeTxType.spendCATtx}
               />
             </Grid>
             <Grid xs={12} item>

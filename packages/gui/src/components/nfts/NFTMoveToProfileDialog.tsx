@@ -8,6 +8,7 @@ import {
   ConfirmDialog,
   CopyToClipboard,
   EstimatedFee,
+  FeeTxType,
   Flex,
   Form,
   TooltipIcon,
@@ -323,7 +324,7 @@ export function NFTMoveToProfileAction(props: NFTMoveToProfileActionProps) {
           color="secondary"
           label={<Trans>Fee</Trans>}
           disabled={isLoading}
-          txType="assignDIDToNFT"
+          txType={FeeTxType.assignDIDToNFT}
           fullWidth
         />
         <DialogActions>
