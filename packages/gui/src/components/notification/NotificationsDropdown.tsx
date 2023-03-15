@@ -15,6 +15,7 @@ const buttonStyle = (theme) => ({
   '&:hover': {
     borderColor: theme.palette.mode === 'dark' ? 'border.dark' : 'border.main',
   },
+  padding: '0 8px',
 });
 
 export default function NotificationsDropdown() {
@@ -30,7 +31,7 @@ export default function NotificationsDropdown() {
             setAsSeen();
           }}
           variant="text"
-          color="info"
+          color="secondary"
           size="small"
           sx={buttonStyle}
         >

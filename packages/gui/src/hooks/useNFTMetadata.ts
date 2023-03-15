@@ -85,7 +85,7 @@ export default function useNFTsMetadata(nfts: NFTInfo[], disableCache: boolean =
           uri,
           maxSize: MAX_FILE_SIZE,
           dataHash: metadataHash,
-          timeout: 2000,
+          timeout: 30_000,
         });
 
         if (!isValid) {

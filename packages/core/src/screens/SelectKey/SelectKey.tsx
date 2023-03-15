@@ -301,8 +301,10 @@ export default function SelectKey() {
                 flexWrap: 'wrap',
                 rowGap: '22px',
                 columnGap: '22px',
+                paddingBottom: '230px',
                 '> div': {
                   flexBasis: '292px',
+                  maxWidth: '292px',
                 },
               }}
             >

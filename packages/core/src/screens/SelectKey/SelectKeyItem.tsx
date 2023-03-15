@@ -142,13 +142,25 @@ export default function SelectKeyItem(props: SelectKeyItemProps) {
         ':hover': {
           border: `1px solid ${color.border}`,
         },
+        overflow: 'initial',
+        '> button': {
+          borderRadius: '7px',
+        },
       }}
     >
       <Flex position="relative" flexDirection="column">
         <Flex sx={{ padding: '8px', minHeight: '55px' }} direction="row">
           <Flex sx={{ padding: '0 10px 0 0', fontSize: '24px', position: 'relative' }}>
             <span
-              style={{ display: showEmojiPicker ? 'inline' : 'none', position: 'fixed', zIndex: 10 }}
+              style={{
+                display: showEmojiPicker ? 'inline' : 'none',
+                position: 'relative',
+                zIndex: 10,
+                height: 0,
+                width: 0,
+                left: '10px',
+                top: '6px',
+              }}
               onClick={preventBubble}
             >
               {showEmojiPicker && (
@@ -185,10 +197,11 @@ export default function SelectKeyItem(props: SelectKeyItemProps) {
                 background: 'none',
                 transition: 'all .3s linear',
                 backgroundColor: 'transparent',
+                fontFamily: 'Roboto',
               }}
               onClick={toggleEmojiPicker}
             >
-              {walletKeyTheme.emoji}
+              <Typography variant="h4">{walletKeyTheme.emoji}</Typography>
             </Flex>
           </Flex>
           <Flex
@@ -232,6 +245,7 @@ export default function SelectKeyItem(props: SelectKeyItemProps) {
             backgroundColor: color.main,
             borderTop: `1px solid ${color.main}`,
             padding: '5px',
+            borderRadius: '0 0 7px 7px',
           }}
         >
           {currentFingerprint === fingerprint && (

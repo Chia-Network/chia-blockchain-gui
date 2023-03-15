@@ -1,8 +1,7 @@
 import { useCancelOfferMutation } from '@chia-network/api-react';
-import { Card, Flex, More, TableControlled, useOpenDialog, MenuItem } from '@chia-network/core';
+import { Card, Flex, Button, TableControlled, useOpenDialog } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
-import { Cancel } from '@mui/icons-material';
-import { Box, ListItemIcon, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import BigNumber from 'bignumber.js';
 import moment from 'moment';
 import React, { useMemo, useCallback, useState } from 'react';
@@ -126,25 +125,25 @@ export default function CancelOfferList(props: CancelOfferListProps) {
 
           return (
             <Flex flexDirection="row" justifyContent="center" gap={0}>
-              <Flex style={{ width: '32px' }}>
+              <Flex>
                 {canCancel && (
-                  <More>
-                    <MenuItem onClick={() => handleCancelOffer(tradeId, allowSecureCancelling)} close>
-                      <ListItemIcon>
-                        <Cancel fontSize="small" />
-                      </ListItemIcon>
-                      <Typography variant="inherit" noWrap>
-                        <Trans>Cancel Offer</Trans>
-                      </Typography>
-                    </MenuItem>
-                  </More>
+                  <Button
+                    onClick={() => handleCancelOffer(tradeId, allowSecureCancelling)}
+                    variant="contained"
+                    color="danger"
+                    size="small"
+                  >
+                    <Typography variant="inherit" noWrap>
+                      <Trans>Cancel</Trans>
+                    </Typography>
+                  </Button>
                 )}
               </Flex>
             </Flex>
           );
         },
-        minWidth: '100px',
-        maxWidth: '100px',
+        minWidth: '120px',
+        maxWidth: '120px',
         title: <Flex justifyContent="center">Actions</Flex>,
       },
     ];

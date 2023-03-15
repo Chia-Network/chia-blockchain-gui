@@ -32,15 +32,14 @@ export default function EmojiAndColorPicker(props: EmojiAndColorPickerType) {
   const { onSelect = () => {}, onClickOutside = () => {}, currentColor, currentEmoji, themeColors, isDark } = props;
   const cmpRef = React.useRef(null);
   const [emojiFilter, setEmojiFilter] = React.useState<string[]>([]);
-  // const [tempEmoji, setTempEmoji] = React.useState<string>('');
 
   const pickerStyle: any = {
-    backgroundColor: isDark ? '#344E54' : '#FFFFFF',
+    backgroundColor: isDark ? '#292929' : '#FFFFFF',
     border: '1px solid #CCDDE1',
     boxShadow: '0px 6px 19px rgba(15, 37, 42, 0.28), 0px 27px 65px rgba(101, 131, 138, 0.39)',
     borderRadius: '8px',
     padding: '0px',
-    position: 'relative',
+    position: 'absolute',
     top: '30px',
     left: '25px',
   };
@@ -60,6 +59,8 @@ export default function EmojiAndColorPicker(props: EmojiAndColorPickerType) {
       document.removeEventListener('mousedown', outsideClickListener);
     };
   }, [outsideClickListener]);
+
+  const isRetina = window.matchMedia('(-webkit-min-device-pixel-ratio: 2),(min-resolution: 192dpi)').matches;
 
   function renderColorPicker() {
     const colorNodes = Object.keys(themeColors)
@@ -174,6 +175,17 @@ export default function EmojiAndColorPicker(props: EmojiAndColorPickerType) {
         fontSize: '18px',
         textAlign: 'center',
       },
+      '::-webkit-scrollbar': {
+        background: 'transparent',
+      },
+      '::-webkit-scrollbar-thumb': {
+        background: isDark ? '#444' : '#ddd',
+        height: '50px',
+        borderRadius: '10px',
+        width: '2px',
+        border: '3px solid transparent',
+        backgroundClip: 'content-box',
+      },
     };
     const emojiList = Object.keys(allEmojis)
       .filter((emojiName: string) => {
@@ -200,10 +212,12 @@ export default function EmojiAndColorPicker(props: EmojiAndColorPickerType) {
             zIndex: 9,
             paddingTop: '2px',
             cursor: 'pointer',
+            fontSize: isRetina ? '19px' : '15px',
+            lineHeight: '22px',
+            fontFamily: 'Roboto',
           }}
         >
           {allEmojis[emojiName].skins[0].native}
-          {allEmojis[emojiName].skins[0].native === currentEmoji && <div style={{}} />}
         </div>
       ));
     return (
