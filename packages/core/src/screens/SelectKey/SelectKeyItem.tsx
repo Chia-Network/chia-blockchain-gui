@@ -131,7 +131,7 @@ export default function SelectKeyItem(props: SelectKeyItemProps) {
 
   return (
     <CardListItem
-      onSelect={isRenaming ? undefined : handleLogin}
+      onSelect={isRenaming || showEmojiPicker ? undefined : handleLogin}
       data-testid={`SelectKeyItem-fingerprint-${fingerprint}`}
       key={fingerprint}
       disabled={disabled}
