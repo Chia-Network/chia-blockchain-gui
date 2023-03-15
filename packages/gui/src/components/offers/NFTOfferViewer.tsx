@@ -254,13 +254,13 @@ export function NFTOfferSummary(props: NFTOfferSummaryProps) {
     showMakerFee = true,
     overrideNFTSellerAmount,
   } = props;
-  const { lookupByAssetId } = useAssetIdName();
+  const { lookupByAssetId, isLoading: isLoadingAssetIdName } = useAssetIdName();
   const { wallets: nftWallets } = useGetNFTWallets();
   const { nfts, isLoading: isLoadingNFTs } = useFetchNFTs(nftWallets.map((wallet: Wallet) => wallet.id));
   const makerEntries: [string, number][] = Object.entries(summary.offered);
   const takerEntries: [string, number][] = Object.entries(summary.requested);
   const [takerUnknownAssets, makerUnknownAssets] = useMemo(() => {
-    if (isMyOffer || isLoadingNFTs) {
+    if (isMyOffer || isLoadingNFTs || isLoadingAssetIdName) {
       return [];
     }
     const takerUnknownAssetsLocal = makerEntries
@@ -283,7 +283,7 @@ export function NFTOfferSummary(props: NFTOfferSummaryProps) {
       .map(([assetId]) => assetId);
 
     return [takerUnknownAssetsLocal, makerUnknownAssetsLocal];
-  }, [isMyOffer, isLoadingNFTs, makerEntries, takerEntries, summary, lookupByAssetId, nfts]);
+  }, [isMyOffer, isLoadingNFTs, makerEntries, takerEntries, summary, lookupByAssetId, nfts, isLoadingAssetIdName]);
   const makerSummary: React.ReactElement = (
     <NFTOfferSummaryRow
       title={makerTitle}
