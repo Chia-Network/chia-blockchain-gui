@@ -217,8 +217,10 @@ export default function NotificationsProvider(props: NotificationsProviderProps)
       0
     );
 
-    setSeenHeight(highestHeight);
-  }, [setSeenHeight]);
+    if (highestHeight > seenHeight) {
+      setSeenHeight(highestHeight);
+    }
+  }, [setSeenHeight, seenHeight]);
 
   const handleDeleteNotification = useCallback(
     async (id: string) => {
