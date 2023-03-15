@@ -90,7 +90,7 @@ export default function NFTCard(props: NFTCardProps) {
             <CheckIcon />
           </MultipleSelectionCheckmark>
           <MultipleSelectionEmptyCheckmark className="multiple-selection-empty" />
-          <NFTPreview nft={nft} isPreview disableThumbnail={isOffer} setNFTCardMetadata={setMetadata} />
+          <NFTPreview nft={nft} isPreview isOffer={isOffer} setNFTCardMetadata={setMetadata} />
         </CardActionArea>
         <CardActionArea onClick={() => canExpandDetails && handleClick()} component="div">
           <StyledCardContent>

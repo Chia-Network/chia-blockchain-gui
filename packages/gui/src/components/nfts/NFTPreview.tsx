@@ -210,7 +210,7 @@ export type NFTPreviewProps = {
   fit?: 'cover' | 'contain' | 'fill';
   background?: any;
   isPreview?: boolean;
-  disableThumbnail?: boolean;
+  isOffer?: boolean;
   isCompact?: boolean;
   miniThumb?: boolean;
   setNFTCardMetadata: (obj: any) => void;
@@ -240,7 +240,7 @@ export default function NFTPreview(props: NFTPreviewProps) {
     background: Background = Fragment,
     isPreview = false,
     isCompact = false,
-    disableThumbnail = false,
+    isOffer = false,
     miniThumb,
     setNFTCardMetadata,
   } = props;
@@ -248,6 +248,7 @@ export default function NFTPreview(props: NFTPreviewProps) {
   const hasFile = dataUris?.length > 0;
   const file = dataUris?.[0];
   let extension = '';
+  const disableThumbnail = isOffer;
 
   try {
     [extension] = new URL(file).pathname.split('.').slice(-1);
@@ -275,6 +276,7 @@ export default function NFTPreview(props: NFTPreviewProps) {
     nftId: nft.$nftId,
     setNFTCardMetadata,
     setNFTPreviewMetadataError,
+    isOffer,
   });
 
   const [ignoreError, setIgnoreError] = usePersistState<boolean>(
