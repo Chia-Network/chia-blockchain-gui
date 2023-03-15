@@ -8,7 +8,6 @@ const WrapperStyled = styled.div`
   display: inline-block;
   font-size: 1rem;
   position: relative;
-  top: 1px;
 `;
 
 type StateIndicatorDotTypes = {
@@ -19,13 +18,13 @@ export default function StateIndicatorDot(props: StateIndicatorDotTypes) {
   const { state } = props;
   function renderIcon() {
     if (state === State.SUCCESS) {
-      return <ConnectCheckmark />;
+      return <ConnectCheckmark className="checkmark-icon" sx={{ width: '21px', height: '21px' }} />;
     }
     if (state === State.WARNING) {
-      return <ConnectReload />;
+      return <ConnectReload className="reload-icon" sx={{ width: '21px', height: '21px' }} />;
     }
     if (state === State.ERROR) {
-      return <ConnectCancel />;
+      return <ConnectCancel className="cancel-icon" sx={{ width: '21px', height: '21px' }} />;
     }
     return null;
   }

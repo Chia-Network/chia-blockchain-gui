@@ -1,20 +1,15 @@
-import { OfferTradeRecord } from '@chia-network/api';
+import { OfferTradeRecord, toBech32m } from '@chia-network/api';
 import { useCancelOfferMutation, useGetWalletsQuery } from '@chia-network/api-react';
 import {
   Button,
-  ButtonLoading,
   Card,
   CardHero,
-  EstimatedFee,
   Flex,
-  Form,
   IconButton,
   LoadingOverlay,
   More,
   TableControlled,
-  TooltipIcon,
   useOpenDialog,
-  chiaToMojo,
   useCurrencyCode,
   useSerializedNavigationState,
   Tooltip,
@@ -23,36 +18,25 @@ import {
 } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Cancel, GetApp as Download, Info, Reply as Share, Visibility } from '@mui/icons-material';
-import {
-  Box,
-  Checkbox,
-  Chip,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-  FormControlLabel,
-  Grid,
-  ListItemIcon,
-  Typography,
-} from '@mui/material';
-import BigNumber from 'bignumber.js';
+import { Box, Chip, Grid, ListItemIcon, Typography } from '@mui/material';
 import moment from 'moment';
-import React, { useMemo, useState } from 'react';
-import { useForm } from 'react-hook-form';
+import React, { useMemo } from 'react';
 import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 
 import useAssetIdName from '../../hooks/useAssetIdName';
 import useSaveOfferFile from '../../hooks/useSaveOfferFile';
 import useWalletOffers from '../../hooks/useWalletOffers';
 import resolveOfferInfo from '../../util/resolveOfferInfo';
+import NotificationNFTTitle from '../notification/NotificationNFTTitle';
+import NotificationPreviewNFT from '../notification/NotificationPreviewNFT';
 import CreateOfferBuilder from '../offers2/CreateOfferBuilder';
 import OfferBuilderImport from '../offers2/OfferBuilderImport';
 import OfferBuilderViewer from '../offers2/OfferBuilderViewer';
 import OfferIncomingTable from '../offers2/OfferIncomingTable';
+import { ConfirmOfferCancellation } from './ConfirmOfferCancellation';
 import { CreateNFTOfferEditor } from './NFTOfferEditor';
 import NFTOfferViewer from './NFTOfferViewer';
+import OfferAsset from './OfferAsset';
 import OfferDataDialog from './OfferDataDialog';
 import { CreateOfferEditor } from './OfferEditor';
 import { OfferImport } from './OfferImport';
@@ -60,113 +44,27 @@ import OfferShareDialog from './OfferShareDialog';
 import OfferState from './OfferState';
 import { colorForOfferState, displayStringForOfferState } from './utils';
 
-type ConfirmOfferCancellationProps = {
-  canCancelWithTransaction?: boolean;
-  onClose?: (value: any) => void;
-  open?: boolean;
-};
-
-export function ConfirmOfferCancellation(props: ConfirmOfferCancellationProps) {
-  const { canCancelWithTransaction = true, onClose = () => {}, open = true } = props;
-  const methods = useForm({
-    defaultValues: {
-      fee: '',
-    },
-  });
-  const [cancelWithTransaction, setCancelWithTransaction] = useState<boolean>(canCancelWithTransaction);
-
-  function handleCancel() {
-    onClose([false]);
-  }
-
-  async function handleConfirm() {
-    const { fee: xchFee } = methods.getValues();
-
-    const fee = cancelWithTransaction ? chiaToMojo(xchFee) : new BigNumber(0);
-
-    onClose([true, { cancelWithTransaction, cancellationFee: fee }]);
-  }
-
+function OfferSectionSummaryRow({ displayAmount, displayName, assetType, showNFTs = false }) {
   return (
-    <Dialog
-      onClose={handleCancel}
-      open={open}
-      aria-labelledby="alert-dialog-title"
-      aria-describedby="alert-dialog-description"
-    >
-      <DialogTitle id="alert-dialog-title">
-        <Trans>Cancel Offer</Trans>
-      </DialogTitle>
-      <DialogContent>
-        <DialogContentText id="alert-dialog-description">
-          <Form methods={methods} onSubmit={handleConfirm}>
-            <Flex flexDirection="column" gap={3}>
-              <Typography variant="body1">
-                <Trans>Are you sure you want to cancel your offer?</Trans>
-              </Typography>
-              {canCancelWithTransaction && (
-                <>
-                  <Typography variant="body1">
-                    <Trans>
-                      If you have already shared your offer file, you may need to submit a transaction to cancel the
-                      pending offer. Click "Cancel on blockchain" to submit a cancellation transaction.
-                    </Trans>
-                  </Typography>
-                  <Flex flexDirection="row" gap={3}>
-                    <Grid container>
-                      <Grid xs={6} item>
-                        <FormControlLabel
-                          control={
-                            <Checkbox
-                              name="cancelWithTransaction"
-                              checked={cancelWithTransaction}
-                              onChange={(event) => setCancelWithTransaction(event.target.checked)}
-                            />
-                          }
-                          label={
-                            <>
-                              <Trans>Cancel on blockchain</Trans>{' '}
-                              <TooltipIcon>
-                                <Trans>
-                                  Creates and submits a transaction on the blockchain that cancels the offer
-                                </Trans>
-                              </TooltipIcon>
-                            </>
-                          }
-                        />
-                      </Grid>
-                      {cancelWithTransaction && (
-                        <Grid xs={6} item>
-                          <EstimatedFee
-                            id="filled-secondary"
-                            variant="filled"
-                            name="fee"
-                            color="secondary"
-                            label={<Trans>Fee</Trans>}
-                            fullWidth
-                            txType="cancelOffer"
-                          />
-                        </Grid>
-                      )}
-                    </Grid>
-                  </Flex>
-                </>
-              )}
-            </Flex>
-          </Form>
-        </DialogContentText>
-      </DialogContent>
-      <DialogActions>
-        <Flex flexDirection="row" gap={3} style={{ paddingBottom: '8px', paddingRight: '16px' }}>
-          <Button onClick={handleCancel} color="secondary" variant="outlined" autoFocus>
-            <Trans>Close</Trans>
-          </Button>
-          <ButtonLoading onClick={handleConfirm} color="danger" variant="contained">
-            <Trans>Cancel Offer</Trans>
-          </ButtonLoading>
-        </Flex>
-      </DialogActions>
-    </Dialog>
+    <Flex gap={1} alignItems="center">
+      {showNFTs && assetType === OfferAsset.NFT ? (
+        <div style={{ width: '40px' }}>
+          <NotificationPreviewNFT nftId={displayName} size={40} />
+        </div>
+      ) : null}
+      <Flex flexDirection="row" gap={0.5} key={`${displayAmount}-${displayName}`}>
+        {assetType === OfferAsset.NFT ? (
+          <NotificationNFTTitle nftId={displayName} />
+        ) : (
+          <Flex flexDirection="row" gap={0.5}>
+            <Typography variant="body2">{(displayAmount as any).toString()}</Typography>
+            <Typography noWrap variant="body2">
+              {displayName}
+            </Typography>
+          </Flex>
+        )}
+      </Flex>
+    </Flex>
   );
 }
 
@@ -254,12 +152,7 @@ function OfferList(props: OfferListProps) {
         field: (row: OfferTradeRecord) => {
           const resolvedOfferInfo = resolveOfferInfo(row.summary, 'offered', lookupByAssetId);
           return resolvedOfferInfo.map((info) => (
-            <Flex flexDirection="row" gap={0.5} key={`${info.displayAmount}-${info.displayName}`}>
-              <Typography variant="body2">{(info.displayAmount as any).toString()}</Typography>
-              <Typography noWrap variant="body2">
-                {info.displayName}
-              </Typography>
-            </Flex>
+            <OfferSectionSummaryRow {...info} showNFTs={resolvedOfferInfo.length === 1} />
           ));
         },
         minWidth: '160px',
@@ -269,12 +162,7 @@ function OfferList(props: OfferListProps) {
         field: (row: OfferTradeRecord) => {
           const resolvedOfferInfo = resolveOfferInfo(row.summary, 'requested', lookupByAssetId);
           return resolvedOfferInfo.map((info) => (
-            <Flex flexDirection="row" gap={0.5} key={`${info.displayAmount}-${info.displayName}`}>
-              <Typography variant="body2">{(info.displayAmount as any).toString()}</Typography>
-              <Typography noWrap variant="body2">
-                {info.displayName}
-              </Typography>
-            </Flex>
+            <OfferSectionSummaryRow {...info} showNFTs={resolvedOfferInfo.length === 1} />
           ));
         },
         minWidth: '160px',
@@ -477,10 +365,12 @@ export function CreateOffer() {
   const locationState = getLocationState(); // For cases where we know that the state has been serialized
   const openDialog = useOpenDialog();
   const [saveOffer] = useSaveOfferFile();
-  const testnet = useCurrencyCode() === 'TXCH';
+  const currencyCode = useCurrencyCode();
+  const testnet = currencyCode === 'TXCH';
 
-  async function handleOfferCreated(obj: { offerRecord: any; offerData: any }) {
-    const { offerRecord, offerData, address } = obj;
+  async function handleOfferCreated(obj: { offerRecord: any; offerData: any; address?: string }) {
+    const { offerRecord, offerData, address: ph } = obj;
+    const address = ph && currencyCode ? toBech32m(ph, currencyCode.toLowerCase()) : undefined;
 
     await openDialog(
       <OfferShareDialog
@@ -507,7 +397,7 @@ export function CreateOffer() {
               nftIds={locationState?.nftIds}
               nftWalletId={locationState?.nftWalletId}
               referrerPath={locationState?.referrerPath}
-              counterOffer={locationState?.counterOffer}
+              isCounterOffer={locationState?.isCounterOffer}
               address={locationState?.address}
               offer={locationState?.offer}
               onOfferCreated={handleOfferCreated}
@@ -558,9 +448,10 @@ export function CreateOffer() {
               isMyOffer={locationState?.isMyOffer}
               offerData={locationState?.offerData}
               offerSummary={locationState?.offerSummary}
-              offerFilePath={locationState?.offerFilePath}
               imported={locationState?.imported}
               referrerPath={locationState?.referrerPath}
+              canCounterOffer={locationState?.canCounterOffer}
+              address={locationState?.address}
             />
           }
         />

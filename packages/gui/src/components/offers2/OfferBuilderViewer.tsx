@@ -1,13 +1,24 @@
 import { useGetWalletsQuery, useCheckOfferValidityMutation } from '@chia-network/api-react';
-import { Flex, ButtonLoading, Link, Loading, useShowError } from '@chia-network/core';
+import {
+  AlertDialog,
+  Flex,
+  Button,
+  ButtonLoading,
+  Link,
+  Loading,
+  useShowError,
+  useOpenDialog,
+} from '@chia-network/core';
+import { useIsWalletSynced } from '@chia-network/wallets';
 import { Trans } from '@lingui/macro';
 import { Alert, Grid } from '@mui/material';
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useCallback, useEffect, useImperativeHandle, useMemo, useRef, useState, forwardRef } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 import type OfferBuilderData from '../../@types/OfferBuilderData';
 import type OfferSummary from '../../@types/OfferSummary';
 import useAcceptOfferHook from '../../hooks/useAcceptOfferHook';
+import useWalletOffers from '../../hooks/useWalletOffers';
 import getUnknownCATs from '../../util/getUnknownCATs';
 import offerToOfferBuilderData from '../../util/offerToOfferBuilderData';
 import OfferState from '../offers/OfferState';
@@ -21,24 +32,48 @@ export type OfferBuilderViewerProps = {
   state?: OfferState;
   isMyOffer?: boolean;
   imported?: boolean;
+  hideHeader?: boolean;
+  canCounterOffer?: boolean;
+  address?: string; // where to send a counter offer
+  fee?: string; // in mojos
 };
 
-export default function OfferBuilderViewer(props: OfferBuilderViewerProps) {
-  const { offerSummary, referrerPath, offerData, state, isMyOffer = false, imported = false } = props;
+function OfferBuilderViewer(props: OfferBuilderViewerProps, ref: any) {
+  const {
+    offerSummary,
+    referrerPath,
+    offerData,
+    state,
+    isMyOffer = false,
+    imported = false,
+    hideHeader = false,
+    canCounterOffer = false,
+    address,
+    fee,
+  } = props;
 
   const showError = useShowError();
   const navigate = useNavigate();
+  const location = useLocation();
   const [acceptOffer] = useAcceptOfferHook();
   const [error, setError] = useState<Error | undefined>();
   const [isAccepting, setIsAccepting] = useState<boolean>(false);
   const { data: wallets, isLoading: isLoadingWallets } = useGetWalletsQuery();
-  const offerBuilderRef = useRef<{ submit: () => void } | undefined>(undefined);
+  const { offers, isLoading: isOffersLoading } = useWalletOffers(-1, 0, true, false, 'RELEVANCE', false);
+  const offerBuilderRef = useRef<{ submit: () => void; getValues: () => OfferBuilderData } | undefined>(undefined);
 
   const [checkOfferValidity] = useCheckOfferValidityMutation();
   const [isValidating, setIsValidating] = useState<boolean>(offerData !== undefined);
   const [isValid, setIsValid] = useState<boolean | undefined>();
+  const isWalletSynced = useIsWalletSynced();
+  const openDialog = useOpenDialog();
 
   const showInvalid = !isValidating && isValid === false;
+
+  useImperativeHandle(ref, () => ({
+    submit: () => offerBuilderRef.current?.submit(),
+    getValues: () => offerBuilderRef.current?.getValues(),
+  }));
 
   const validateOfferData = useCallback(async () => {
     try {
@@ -71,12 +106,12 @@ export default function OfferBuilderViewer(props: OfferBuilderViewerProps) {
       return undefined;
     }
     try {
-      return offerToOfferBuilderData(offerSummaryParsed, setDefaultOfferedFee);
+      return offerToOfferBuilderData(offerSummaryParsed, setDefaultOfferedFee, fee);
     } catch (e) {
       setError(e);
       return undefined;
     }
-  }, [offerSummaryStringified, setDefaultOfferedFee]);
+  }, [offerSummaryStringified, setDefaultOfferedFee, fee]);
 
   const [offeredUnknownCATs, requestedUnknownCATs] = useMemo(() => {
     if (!offerBuilderData || !wallets) {
@@ -101,50 +136,80 @@ export default function OfferBuilderViewer(props: OfferBuilderViewerProps) {
   const canAccept = !!offerData;
   const disableAccept = missingOfferedCATs || showInvalid;
 
-  const isLoading = isLoadingWallets || !offerBuilderData;
+  const isLoading = isLoadingWallets || !offerBuilderData || isOffersLoading;
 
   async function handleSubmit(values: OfferBuilderData) {
-    const {
-      offered: { fee },
-    } = values;
+    const { offered } = values;
+    const { fee: offeredFee } = offered;
 
     if (isAccepting || !canAccept) {
       return;
     }
 
-    const feeAmount = fee?.[0]?.amount ?? '0'; // TODO convert to mojo here insted of in hook
+    const feeAmount = offeredFee?.[0]?.amount ?? '0'; // TODO convert to mojo here instead of in hook
 
     await acceptOffer(
       offerData,
       offerSummary,
       feeAmount,
+      wallets,
+      offers,
       (accepting: boolean) => setIsAccepting(accepting),
       () => navigate('/dashboard/offers')
     );
   }
 
-  function handleAcceptOffer() {
-    offerBuilderRef.current?.submit();
+  function handleCounterOffer() {
+    const offer = offerToOfferBuilderData(offerSummary, false, '');
+    navigate('/dashboard/offers/builder', {
+      state: {
+        referrerPath: location.pathname,
+        isCounterOffer: true,
+        address,
+        offer,
+      },
+    });
+  }
+
+  async function handleAcceptOffer() {
+    if (!isWalletSynced) {
+      await openDialog(
+        <AlertDialog>
+          <Trans>Please wait for wallet synchronization</Trans>
+        </AlertDialog>
+      );
+    } else {
+      offerBuilderRef.current?.submit();
+    }
   }
 
   return (
     <Grid container>
       <Flex flexDirection="column" flexGrow={1} gap={4}>
-        <Flex alignItems="center" justifyContent="space-between" gap={2}>
-          <OfferNavigationHeader referrerPath={referrerPath} />
-          {canAccept && (
-            <ButtonLoading
-              variant="contained"
-              color="primary"
-              onClick={handleAcceptOffer}
-              isLoading={isAccepting}
-              disableElevation
-              disabled={disableAccept}
-            >
-              <Trans>Accept Offer</Trans>
-            </ButtonLoading>
-          )}
-        </Flex>
+        {!hideHeader && (
+          <Flex alignItems="center" justifyContent="space-between" gap={2}>
+            <OfferNavigationHeader referrerPath={referrerPath} />
+            <Flex flexDirection="row" gap={1}>
+              {canCounterOffer && (
+                <Button variant="outlined" color="primary" onClick={handleCounterOffer} disableElevation>
+                  <Trans>Counter Offer</Trans>
+                </Button>
+              )}
+              {canAccept && (
+                <ButtonLoading
+                  variant="contained"
+                  color="primary"
+                  onClick={handleAcceptOffer}
+                  isLoading={isAccepting}
+                  disableElevation
+                  disabled={disableAccept}
+                >
+                  <Trans>Accept Offer</Trans>
+                </ButtonLoading>
+              )}
+            </Flex>
+          </Flex>
+        )}
         {error ? (
           <Alert severity="error">{error.message}</Alert>
         ) : showInvalid ? (
@@ -202,3 +267,5 @@ export default function OfferBuilderViewer(props: OfferBuilderViewerProps) {
     </Grid>
   );
 }
+
+export default forwardRef(OfferBuilderViewer);

@@ -5,7 +5,7 @@ import type WalletConnectCommand from '../@types/WalletConnectCommand';
 export default function prepareWalletConnectCommand(
   commands: WalletConnectCommand[],
   command: string,
-  params: Record<string, any>
+  values: Record<string, any>
 ) {
   // remove chia_ prefix from command
   const commandName = command.replace(/^chia_/, '');
@@ -16,13 +16,13 @@ export default function prepareWalletConnectCommand(
   }
 
   // prepare params
-  const parsedParams: Record<string, any> = {};
+  const parsedValues: Record<string, any> = {};
 
   const { params: definitionParams = [] } = definition;
 
   definitionParams.forEach((arg) => {
     const { name, isOptional, type, defaultValue } = arg;
-    const value = name in params ? params[name] : defaultValue;
+    const value = name in values ? values[name] : defaultValue;
 
     if (value === undefined && !isOptional) {
       throw new Error(`Missing required argument ${name}`);
@@ -30,22 +30,30 @@ export default function prepareWalletConnectCommand(
 
     if (value !== undefined) {
       if (type === 'BigNumber') {
-        parsedParams[name] = new BigNumber(value);
+        parsedValues[name] = new BigNumber(value);
+
+        if (parsedValues[name].isNaN()) {
+          throw new Error(`Invalid BigNumber value for argument ${name}. Value: ${value}`);
+        }
       } else if (type === 'number') {
-        parsedParams[name] = Number(value);
+        parsedValues[name] = Number(value);
+
+        if (Number.isNaN(parsedValues[name])) {
+          throw new Error(`Invalid number value for argument ${name}. Value: ${value}`);
+        }
       } else if (type === 'boolean') {
-        parsedParams[name] = Boolean(value);
+        parsedValues[name] = Boolean(value);
       } else if (type === 'string') {
-        parsedParams[name] = String(value);
+        parsedValues[name] = String(value);
       } else {
-        parsedParams[name] = value;
+        parsedValues[name] = value;
       }
     }
   });
 
   return {
     command: commandName,
-    params: parsedParams,
+    values: parsedValues,
     definition,
   };
 }

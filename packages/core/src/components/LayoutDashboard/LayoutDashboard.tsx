@@ -1,12 +1,14 @@
-import { useGetLoggedInFingerprintQuery, useGetKeyQuery } from '@chia-network/api-react';
+import { useGetLoggedInFingerprintQuery, useGetKeyQuery, useFingerprintSettings } from '@chia-network/api-react';
 import { Exit as ExitIcon } from '@chia-network/icons';
 import { t, Trans } from '@lingui/macro';
 import { ExitToApp as ExitToAppIcon, Edit as EditIcon } from '@mui/icons-material';
 import { Box, AppBar, Toolbar, Drawer, Container, IconButton, Typography, CircularProgress } from '@mui/material';
-import React, { type ReactNode, useState, Suspense } from 'react';
+import { useTheme } from '@mui/material/styles';
+import React, { type ReactNode, useState, Suspense, useCallback } from 'react';
 import { useNavigate, Outlet } from 'react-router-dom';
 import styled from 'styled-components';
 
+import EmojiAndColorPicker from '../../screens/SelectKey/EmojiAndColorPicker';
 import SelectKeyRenameForm from '../../screens/SelectKey/SelectKeyRenameForm';
 import Flex from '../Flex';
 import Loading from '../Loading';
@@ -44,7 +46,7 @@ const StyledBody = styled(Flex)`
 `;
 
 const StyledToolbar = styled(Toolbar)`
-  padding-left: ${({ theme }) => theme.spacing(3)};
+  padding-left: calc(${({ theme }) => theme.spacing(3)} - 12px);
   padding-right: ${({ theme }) => theme.spacing(3)};
 `;
 
@@ -72,6 +74,7 @@ export default function LayoutDashboard(props: LayoutDashboardProps) {
 
   const navigate = useNavigate();
   const [editWalletName, setEditWalletName] = useState(false);
+  const [showEmojiPicker, setShowEmojiPicker] = useState<boolean>(false);
   const { data: fingerprint, isLoading: isLoadingFingerprint } = useGetLoggedInFingerprintQuery();
   const { data: keyData, isLoading: isLoadingKeyData } = useGetKeyQuery(
     {
@@ -81,6 +84,17 @@ export default function LayoutDashboard(props: LayoutDashboardProps) {
       skip: !fingerprint,
     }
   );
+  type WalletKeyTheme = {
+    emoji: string | null;
+    color: string | null;
+  };
+  const theme: any = useTheme();
+  const isColor = useCallback((color: string) => Object.keys(theme.palette.colors).includes(color), [theme]);
+  const isDark = theme.palette.mode === 'dark';
+  const [walletKeyTheme, setWalletKeyTheme] = useFingerprintSettings<WalletKeyTheme>(fingerprint, 'walletKeyTheme', {
+    emoji: `🌱`,
+    color: 'green',
+  });
 
   const isLoading = isLoadingFingerprint || isLoadingKeyData;
 
@@ -106,7 +120,7 @@ export default function LayoutDashboard(props: LayoutDashboardProps) {
           <>
             <StyledAppBar position="fixed" color="transparent" elevation={0} drawer>
               <StyledToolbar>
-                <Flex width="100%" alignItems="center" justifyContent="space-between" gap={3}>
+                <Flex width="100%" alignItems="center" justifyContent="space-between" gap={2}>
                   <Flex
                     alignItems="center"
                     flexGrow={1}
@@ -126,29 +140,78 @@ export default function LayoutDashboard(props: LayoutDashboardProps) {
                         </Box>
                       ) : (
                         <Flex minWidth={0} alignItems="baseline">
-                          <Typography variant="h4" display="flex-inline" noWrap>
-                            {keyData?.label || <Trans>Wallet</Trans>}
-                          </Typography>
-                          {fingerprint && (
-                            <Flex flexDirection="row" alignItems="center" gap={0.5}>
-                              <StyledInlineTypography
-                                color="textSecondary"
-                                variant="h5"
-                                component="span"
-                                data-testid="LayoutDashboard-fingerprint"
-                              >
-                                &nbsp;
-                                {fingerprint}
-                              </StyledInlineTypography>
-                              <IconButton
-                                onClick={handleEditWalletName}
-                                size="small"
-                                data-testid="LayoutDashboard-edit-walletName"
-                              >
-                                <EditIcon color="disabled" />
-                              </IconButton>
+                          <span
+                            style={{ display: showEmojiPicker ? 'inline' : 'none', position: 'fixed', zIndex: 10 }}
+                            onClick={() => {}}
+                          >
+                            {showEmojiPicker && (
+                              <EmojiAndColorPicker
+                                onSelect={(result: any) => {
+                                  if (isColor(result)) {
+                                    setWalletKeyTheme({ ...walletKeyTheme, color: result });
+                                  } else if (result !== '') {
+                                    setWalletKeyTheme({ ...walletKeyTheme, emoji: result });
+                                  }
+                                  setShowEmojiPicker(false);
+                                }}
+                                onClickOutside={() => {
+                                  setShowEmojiPicker(false);
+                                }}
+                                currentColor={walletKeyTheme.color}
+                                currentEmoji={walletKeyTheme.emoji}
+                                themeColors={theme.palette.colors}
+                                isDark={isDark}
+                              />
+                            )}
+                          </span>
+                          <Flex flexDirection="row">
+                            <Box
+                              sx={{
+                                fontSize: '48px',
+                                marginRight: '10px',
+                                width: '64px',
+                                height: '64px',
+                                lineHeight: '67px',
+                                textAlign: 'center',
+                                ':hover': {
+                                  cursor: 'pointer',
+                                  backgroundColor: theme.palette.colors[walletKeyTheme.color].main,
+                                  borderRadius: '5px',
+                                },
+                              }}
+                              onClick={() => setShowEmojiPicker(true)}
+                            >
+                              {walletKeyTheme.emoji}
+                            </Box>
+                            <Flex flexDirection="column">
+                              <Flex flexDirection="row" sx={{ height: '39px' }}>
+                                <Typography variant="h4" display="flex-inline" noWrap>
+                                  {keyData?.label || <Trans>Wallet</Trans>}
+                                </Typography>
+                                <IconButton
+                                  onClick={handleEditWalletName}
+                                  size="small"
+                                  data-testid="LayoutDashboard-edit-walletName"
+                                  sx={{ padding: '8px' }}
+                                >
+                                  <EditIcon color="disabled" />
+                                </IconButton>
+                              </Flex>
+                              {fingerprint && (
+                                <Flex flexDirection="row" alignItems="center" gap={0.5}>
+                                  <StyledInlineTypography
+                                    color="textSecondary"
+                                    component="span"
+                                    data-testid="LayoutDashboard-fingerprint"
+                                    sx={{ fontSize: '16px' }}
+                                  >
+                                    &nbsp;
+                                    {fingerprint}
+                                  </StyledInlineTypography>
+                                </Flex>
+                              )}
                             </Flex>
-                          )}
+                          </Flex>
                         </Flex>
                       )}
                     </Flex>

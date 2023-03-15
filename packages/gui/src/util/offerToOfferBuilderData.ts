@@ -1,3 +1,4 @@
+import { OfferSummaryRecord } from '@chia-network/api';
 import { mojoToCAT, mojoToChia } from '@chia-network/core';
 import BigNumber from 'bignumber.js';
 
@@ -6,15 +7,18 @@ import type OfferSummary from '../@types/OfferSummary';
 import { launcherIdToNFTId } from './nfts';
 
 export default function offerToOfferBuilderData(
-  offerSummary: OfferSummary,
-  setDefaultOfferedFee: boolean
+  offerSummary: OfferSummary | OfferSummaryRecord,
+  setDefaultOfferedFee: boolean,
+  defaultFee?: string // in mojos
 ): OfferBuilderData {
   const { fees, offered, requested, infos } = offerSummary;
+
+  const defaultFeeXCH = defaultFee ? mojoToChia(defaultFee).toFixed() : '';
 
   const offeredXch: OfferBuilderData['offered']['xch'] = [];
   const offeredTokens: OfferBuilderData['offered']['tokens'] = [];
   const offeredNfts: OfferBuilderData['offered']['nfts'] = [];
-  const offeredFee: OfferBuilderData['offered']['fee'] = setDefaultOfferedFee ? [{ amount: '' }] : [];
+  const offeredFee: OfferBuilderData['offered']['fee'] = setDefaultOfferedFee ? [{ amount: defaultFeeXCH }] : [];
   const requestedXch: OfferBuilderData['requested']['xch'] = [];
   const requestedTokens: OfferBuilderData['requested']['tokens'] = [];
   const requestedNfts: OfferBuilderData['requested']['nfts'] = [];

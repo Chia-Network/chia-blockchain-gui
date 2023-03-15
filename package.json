@@ -30,7 +30,12 @@
     "audit": "lerna exec -- npm audit",
     "audit:fix": "lerna exec -- npm audit fix",
     "test": "lerna run test --stream -- -- --passWithNoTests --coverage",
-    "restoreMessages": "node restoreMessages.js"
+    "restoreMessages": "node restoreMessages.js",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": "eslint",
+    "*": "prettier --check --ignore-unknown --ignore-path .gitignore"
   },
   "dependencies": {
     "lerna": "^5.1.8"
@@ -49,8 +54,10 @@
     "eslint-plugin-react-hooks": "4.6.0",
     "eslint-plugin-unicorn": "45.0.2",
     "lerna-audit": "^1.3.3",
+    "lint-staged": "13.1.2",
     "prettier": "2.8.1",
-    "typescript": "^4.9.4"
+    "typescript": "^4.9.4",
+    "husky": "8.0.0"
   },
   "version": "1.2.10-dev132"
 }

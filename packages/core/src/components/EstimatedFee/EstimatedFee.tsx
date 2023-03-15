@@ -10,7 +10,7 @@ import {
   Typography,
 } from '@mui/material';
 import React, { useCallback, useState, useEffect, useMemo } from 'react';
-import { Controller, useFormContext } from 'react-hook-form';
+import { Controller, useFormContext, useWatch } from 'react-hook-form';
 
 import useCurrencyCode from '../../hooks/useCurrencyCode';
 import useLocale from '../../hooks/useLocale';
@@ -48,6 +48,7 @@ function Select(props: SelectProps) {
     onTypeChange,
     onTimeChange,
     onValueChange,
+    currencyCode,
     children,
     ...rest
   } = props;
@@ -57,6 +58,7 @@ function Select(props: SelectProps) {
     setValue,
   } = useFormContext();
   const haveError = Object.keys(errors).length > 0;
+  const displayedTime = selectedTime === -1 ? t`(>5 min)` : t`(~${selectedTime} min)`;
 
   return (
     <Controller
@@ -88,7 +90,12 @@ function Select(props: SelectProps) {
           error={haveError}
           renderValue={() => (
             <Box sx={{ display: 'flex', gap: 1 }}>
-              {selectedValue} (~{selectedTime} min)
+              <Box sx={{ flexGrow: 1 }}>
+                {selectedValue} {displayedTime}
+              </Box>
+              <Box sx={{ position: 'relative', top: '-8px' }}>
+                <Typography color="textSecondary">{currencyCode}</Typography>
+              </Box>
             </Box>
           )}
           {...rest}
@@ -179,7 +186,11 @@ export default function EstimatedFee(props: FeeProps) {
   );
   const { data: ests, isLoading, isSuccess, requestId: feeEstimateRequestId, startedTimeStamp } = result;
 
-  const [inputType, setInputType] = React.useState('dropdown');
+  const currentValue = useWatch({ name, defaultValue: '' });
+  const isCustom = currentValue !== '';
+
+  const [inputType, setInputType] = React.useState(isCustom ? 'custom' : 'dropdown');
+  const [defaultFee, setDefaultFee] = React.useState(false);
   const [selectedValue, setSelectedValue] = React.useState('');
   const [selectedTime, setSelectedTime] = React.useState(0);
   const [selectOpen, setSelectOpen] = React.useState(false);
@@ -220,16 +231,28 @@ export default function EstimatedFee(props: FeeProps) {
     const estimateList = ests?.estimates ?? [0, 0, 0];
     const defaultValues = [6_000_000, 5_000_000, 0];
     const allZeroes = estimateList.filter((value: number) => value !== 0).length === 0;
+    const estList = allZeroes // update estimate list to include a 0 fee entry if not already present
+      ? defaultValues.some((val) => val === 0)
+        ? defaultValues
+        : defaultValues.concat([0])
+      : estimateList.some((val) => val === 0)
+      ? estimateList
+      : estimateList.concat([0]);
 
-    return (allZeroes ? defaultValues : estimateList).map((estimate: number, i: number) => {
+    return estList.map((estimate: number, i: number) => {
       const multiplierLocal = allZeroes ? 1 : multiplier;
       const multipliedEstimate = multiplyEstimate(estimate, multiplierLocal);
       const formattedEstimate = formatEst(estimate, multiplierLocal, locale);
-      const minutes = TARGET_TIMES[i] / 60;
+      const minutes = i === 3 ? -1 : TARGET_TIMES[i] / 60; // -1 designates a conditionally-added fourth dropdown selection with 0 fee and >5 minutes
 
       return {
         minutes,
-        timeDescription: minutes > 1 ? t`Likely in ${minutes} minutes` : t`Likely in ${TARGET_TIMES[i]} seconds`,
+        timeDescription:
+          minutes > 1
+            ? t`Likely in ${minutes} minutes`
+            : minutes === -1
+            ? t`Likely in >5 minutes`
+            : t`Likely in ${TARGET_TIMES[i]} seconds`,
         estimate: multipliedEstimate,
         formattedEstimate,
       };
@@ -249,6 +272,14 @@ export default function EstimatedFee(props: FeeProps) {
 
   useEffect(() => {
     if (formattedEstimates) {
+      if (!defaultFee && !isLoading) {
+        const defaultVal = formattedEstimates.find((formattedEstimate) => formattedEstimate.estimate === 0);
+        if (defaultVal) {
+          setSelectedValue(defaultVal.estimate);
+          setSelectedTime(defaultVal.minutes);
+        }
+        setDefaultFee(true);
+      }
       if (selectedTime) {
         const estimate = formattedEstimates.find((formattedEstimate) => formattedEstimate.minutes === selectedTime);
         if (estimate) {
@@ -258,7 +289,7 @@ export default function EstimatedFee(props: FeeProps) {
         }
       }
     }
-  }, [formattedEstimates, name, selectedTime, setValue]);
+  }, [formattedEstimates, name, selectedTime, setValue, defaultFee, isLoading]);
 
   const handleSelectOpen = () => {
     setSelectOpen(true);
@@ -286,6 +317,7 @@ export default function EstimatedFee(props: FeeProps) {
             formattedEstimates={formattedEstimates}
             selectedValue={selectedValue}
             selectedTime={selectedTime}
+            currencyCode={currencyCode}
             {...rest}
           >
             {formattedEstimates.map((formattedEstimate) => (

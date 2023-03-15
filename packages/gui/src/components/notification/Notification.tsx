@@ -20,9 +20,21 @@ export type NotificationProps = {
 
 export default function Notification(props: NotificationProps) {
   const {
-    notification: { offer, offerSummary, offerData, error, offered, requested, height },
+    notification: {
+      offer,
+      offerSummary,
+      offerData,
+      error,
+      offered,
+      requested,
+      height,
+      metadata: {
+        data: { puzzleHash },
+      },
+    },
     onClick,
   } = props;
+  const canCounterOffer = puzzleHash?.length > 0;
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -36,6 +48,8 @@ export default function Notification(props: NotificationProps) {
           offerData,
           offerSummary,
           imported: true,
+          canCounterOffer,
+          address: puzzleHash,
         },
       });
     }

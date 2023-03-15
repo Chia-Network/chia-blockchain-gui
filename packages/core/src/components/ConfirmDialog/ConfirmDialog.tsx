@@ -1,6 +1,6 @@
 import { Trans } from '@lingui/macro';
 import { ButtonProps, Dialog, DialogTitle, DialogContent, DialogContentText } from '@mui/material';
-import React, { type ReactNode, useState } from 'react';
+import React, { type ReactNode, useEffect, useState, useCallback } from 'react';
 
 import useShowError from '../../hooks/useShowError';
 import Button from '../Button';
@@ -16,6 +16,8 @@ export type ConfirmDialogProps = {
   cancelTitle: ReactNode;
   confirmColor?: ButtonProps['color'] | 'danger';
   onConfirm?: () => Promise<void>;
+  disableConfirmButton?: boolean;
+  autoClose?: 'confirm' | 'cancel';
 };
 
 export default function ConfirmDialog(props: ConfirmDialogProps) {
@@ -28,13 +30,15 @@ export default function ConfirmDialog(props: ConfirmDialogProps) {
     confirmTitle = <Trans>OK</Trans>,
     confirmColor = 'default',
     onConfirm,
+    disableConfirmButton,
+    autoClose,
     ...rest
   } = props;
 
   const [loading, setLoading] = useState<boolean>(false);
   const showError = useShowError();
 
-  async function handleConfirm() {
+  const handleConfirm = useCallback(async () => {
     if (onConfirm) {
       try {
         setLoading(true);
@@ -47,18 +51,27 @@ export default function ConfirmDialog(props: ConfirmDialogProps) {
     }
 
     onClose(true);
-  }
+  }, [onConfirm, setLoading, showError, onClose]);
 
-  function handleCancel() {
+  const handleCancel = useCallback(() => {
     onClose(false);
-  }
+  }, [onClose]);
+
+  useEffect(() => {
+    // When `autoClose` prop is set, it acts like clicking confirm/cancel button from code.
+    if (autoClose === 'cancel') {
+      handleCancel();
+    } else if (autoClose === 'confirm') {
+      handleConfirm();
+    }
+  }, [autoClose, handleConfirm, handleCancel]);
 
   return (
     <Dialog
       onClose={handleCancel}
       aria-labelledby="alert-dialog-title"
       aria-describedby="alert-dialog-description"
-      open={open}
+      open={!autoClose && open}
       {...rest}
     >
       {title && <DialogTitle id="alert-dialog-title">{title}</DialogTitle>}
@@ -72,7 +85,13 @@ export default function ConfirmDialog(props: ConfirmDialogProps) {
         <Button onClick={handleCancel} color="secondary" variant="outlined" autoFocus>
           {cancelTitle}
         </Button>
-        <ButtonLoading onClick={handleConfirm} color={confirmColor} variant="contained" loading={loading}>
+        <ButtonLoading
+          onClick={handleConfirm}
+          color={confirmColor}
+          variant="contained"
+          loading={loading}
+          disabled={disableConfirmButton}
+        >
           {confirmTitle}
         </ButtonLoading>
       </DialogActions>

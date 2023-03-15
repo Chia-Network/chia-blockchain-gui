@@ -44,18 +44,15 @@ export default function getRemoteFileContent(props: RemoteFileContent): Promise<
   const failedToFetchContent: string = `Failed to fetch content from ${requestOptions.url}`;
 
   return new Promise((resolve, reject) => {
+    if (props.timeout && !done) {
+      setTimeout(() => {
+        reject(failedToFetchContent);
+        done = true;
+      }, props.timeout);
+    }
     ipcRenderer?.invoke('fetchBinaryContent', requestOptions).then((response: FetchBinaryResponseType) => {
       if (typeof response === 'object') {
         const { dataObject, statusCode, encoding, error, wasCached } = response;
-        if (props.timeout) {
-          setTimeout(() => {
-            if (!error || !dataObject) {
-              console.warn('Reject.....', requestOptions.url);
-              reject(failedToFetchContent);
-              done = true;
-            }
-          }, props.timeout);
-        }
         if (error) {
           reject(error);
         }

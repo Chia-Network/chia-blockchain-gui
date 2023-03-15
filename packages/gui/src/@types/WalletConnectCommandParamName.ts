@@ -32,6 +32,16 @@ enum WalletConnectCommandParamName {
   WALLET_IDS = 'walletIds',
   WALLETS_IDS_AND_AMOUNTS = 'walletIdsAndAmounts',
   WAIT_FOR_CONFIRMATION = 'waitForConfirmation',
+  DID = 'did',
+  NFT_LAUNCHER_ID = 'nftLauncherId',
+  NFT_COIN_IDS = 'nftCoinIds',
+  BACKUP_DIDS = 'backupDids',
+  NUM_OF_BACKUP_IDS_NEEDED = 'numOfBackupIdsNeeded',
+  NUM = 'num',
+  START_INDEX = 'startIndex',
+  PUBKEY = 'pubkey',
+  SIGNATURE = 'signature',
+  SIGNING_MODE = 'signingMode',
 }
 
 export default WalletConnectCommandParamName;

@@ -10,6 +10,7 @@ type WalletConnectCommand = {
   allFingerprints?: boolean;
   waitForSync?: boolean;
   params?: WalletConnectCommandParam[];
+  bypassConfirm?: boolean;
 };
 
 export default WalletConnectCommand;

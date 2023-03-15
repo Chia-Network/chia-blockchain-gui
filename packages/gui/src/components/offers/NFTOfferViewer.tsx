@@ -1,6 +1,11 @@
 import type { Wallet } from '@chia-network/api';
 import { OfferSummaryRecord, OfferTradeRecord } from '@chia-network/api';
-import { useCheckOfferValidityMutation, useGetNFTInfoQuery, useGetNFTWallets } from '@chia-network/api-react';
+import {
+  useCheckOfferValidityMutation,
+  useGetNFTInfoQuery,
+  useGetNFTWallets,
+  useGetWalletsQuery,
+} from '@chia-network/api-react';
 import {
   Back,
   Button,
@@ -31,6 +36,7 @@ import styled from 'styled-components';
 import useAcceptOfferHook from '../../hooks/useAcceptOfferHook';
 import useAssetIdName from '../../hooks/useAssetIdName';
 import useFetchNFTs from '../../hooks/useFetchNFTs';
+import useWalletOffers from '../../hooks/useWalletOffers';
 import { convertRoyaltyToPercentage, launcherIdToNFTId } from '../../util/nfts';
 import { stripHexPrefix } from '../../util/utils';
 import NFTOfferExchangeType from './NFTOfferExchangeType';
@@ -367,6 +373,11 @@ function NFTOfferDetails(props: NFTOfferDetailsProps) {
   const assetIdInfo = assetId ? lookupByAssetId(assetId) : undefined;
   const displayName = assetIdInfo?.displayName ?? t`Unknown CAT`;
 
+  const { data: wallets, isLoading: isLoadingWallets } = useGetWalletsQuery();
+  const { offers, isLoading: isOffersLoading } = useWalletOffers(-1, 0, true, false, 'RELEVANCE', false);
+
+  const isLoading = isLoadingWallets || isOffersLoading;
+
   const nftSaleInfo = useMemo(() => {
     if (!exchangeType || amount === undefined || !nft || nft.royaltyPercentage === undefined) {
       return undefined;
@@ -431,6 +442,8 @@ function NFTOfferDetails(props: NFTOfferDetailsProps) {
       offerData,
       summary,
       fee,
+      wallets,
+      offers,
       (accepting: boolean) => setIsAccepting(accepting),
       () => navigate('/dashboard/offers')
     );
@@ -632,7 +645,7 @@ function NFTOfferDetails(props: NFTOfferDetailsProps) {
                       variant="contained"
                       color="primary"
                       type="submit"
-                      disabled={!isValid || isMissingRequestedAsset}
+                      disabled={!isValid || isMissingRequestedAsset || isLoading}
                       loading={isAccepting}
                     >
                       <Trans>Accept Offer</Trans>
