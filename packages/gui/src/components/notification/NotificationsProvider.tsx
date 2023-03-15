@@ -81,32 +81,35 @@ export default function NotificationsProvider(props: NotificationsProviderProps)
     'notificationsSeenHeight',
     0
   );
-  const [isPreparingNotifications, setIsPreparingNotifications] = useState<boolean>(false);
+  const [isPreparingNotifications, setIsPreparingNotifications] = useState<boolean>(true);
   const [preparingError, setPreparingError] = useState<Error | undefined>();
   const preparedNotificationsRef = useRef<NotificationDetails[]>([]);
-  const { lookupByAssetId } = useAssetIdName();
+  const { lookupByAssetId, isLoading: isLoadingAssetIdName } = useAssetIdName();
   const [deleteNotifications] = useDeleteNotificationsMutation();
   const showNotification = useShowNotification();
   const openDialog = useOpenDialog();
   const isSynced = state === SyncingStatus.SYNCED;
 
-  const isLoading =
+  const isLoadingServices =
     !isSynced ||
     isLoadingNotifications ||
-    isPreparingNotifications ||
     isLoadingWalletState ||
     isLoadingPushNotificationsHeight ||
-    isLoadingSeenHeight;
+    isLoadingSeenHeight ||
+    isLoadingAssetIdName;
+
+  const isLoading = isLoadingServices || isPreparingNotifications;
+
   const error = getNotificationsError || preparingError;
 
   const prepareNotifications = useCallback(async () => {
-    if (isPreparingNotifications) {
+    if (isLoadingServices) {
       return;
     }
 
     preparedNotificationsRef.current = [];
 
-    if (!notifications || !isSynced) {
+    if (!notifications) {
       return;
     }
 
@@ -168,9 +171,7 @@ export default function NotificationsProvider(props: NotificationsProviderProps)
     } finally {
       setIsPreparingNotifications(false);
     }
-    // TODO: fix dependency array
-    // eslint-disable-next-line react-hooks/exhaustive-deps -- isPreparingNotifications causes this to run infinitely
-  }, [notifications, lookupByAssetId, isSynced]);
+  }, [isLoadingServices, notifications, lookupByAssetId]);
 
   const showPushNotifications = useCallback(() => {
     if (!enabled || isLoading) {
@@ -201,8 +202,10 @@ export default function NotificationsProvider(props: NotificationsProviderProps)
   }, [seenHeight, isLoading]);
 
   useEffect(() => {
-    prepareNotifications();
-  }, [prepareNotifications]);
+    if (!isLoadingServices) {
+      prepareNotifications();
+    }
+  }, [prepareNotifications, isLoadingServices]);
 
   useEffect(() => {
     showPushNotifications();
