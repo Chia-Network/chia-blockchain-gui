@@ -271,7 +271,7 @@ export default function EstimatedFee(props: FeeProps) {
   }, [requestId, setRequestId, feeEstimateRequestId, startedTimeStamp, isLoading, isSuccess]);
 
   useEffect(() => {
-    if (formattedEstimates) {
+    if (formattedEstimates && inputType === 'dropdown') {
       if (!defaultFee && !isLoading) {
         const defaultVal = formattedEstimates.find((formattedEstimate) => formattedEstimate.estimate === 0);
         if (defaultVal) {
@@ -289,7 +289,7 @@ export default function EstimatedFee(props: FeeProps) {
         }
       }
     }
-  }, [formattedEstimates, name, selectedTime, setValue, defaultFee, isLoading]);
+  }, [formattedEstimates, name, selectedTime, setValue, defaultFee, isLoading, inputType]);
 
   const handleSelectOpen = () => {
     setSelectOpen(true);
