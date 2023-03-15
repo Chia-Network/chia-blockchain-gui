@@ -90,7 +90,7 @@ Function finish
 
   ${NSD_CreateLabel} 0 35 100% 12u "Chia has been installed successfully!"
   EnableWindow $BackButton 0 ; Disable the Back button
-  SendMessage $NextButton ${WM_SETTEXT} 0 "STR:Let's Farm!" ; Button title is "Close" by default. Update it here.
+  SendMessage $NextButton ${WM_SETTEXT} 0 "STR:Get Started" ; Button title is "Close" by default. Update it here.
 
   nsDialogs::Show
 
