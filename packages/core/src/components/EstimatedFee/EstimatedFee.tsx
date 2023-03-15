@@ -9,7 +9,7 @@ import {
   SelectProps as MaterialSelectProps,
   Typography,
 } from '@mui/material';
-import React, { useCallback, useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { Controller, useFormContext, useWatch } from 'react-hook-form';
 
 import useCurrencyCode from '../../hooks/useCurrencyCode';
@@ -196,36 +196,6 @@ export default function EstimatedFee(props: FeeProps) {
   const [locale] = useLocale();
   const currencyCode = useCurrencyCode();
 
-  const maxBlockCostCLVM = 11_000_000_000;
-
-  const txCostEstimates = {
-    walletSendXCH: Math.floor(maxBlockCostCLVM / 1170),
-    spendCATtx: 36_382_111,
-    acceptOffer: 721_393_265,
-    cancelOffer: 212_443_993,
-    burnNFT: 74_385_541,
-    assignDIDToNFT: 115_540_006,
-    transferNFT: 74_385_541,
-    createPlotNFT: 18_055_407,
-    claimPoolingReward: 82_668_466,
-    createDID: 57_360_396,
-  };
-
-  const multiplier = txCostEstimates[txType];
-
-  const multiplyEstimate = useCallback((estimate: number, multiplierLocal: number) => {
-    const num = Math.round(estimate * multiplierLocal * 10 ** -4) * 10 ** 4;
-    return num;
-  }, []);
-
-  const formatEst = useCallback(
-    (number: number, multiplierLocal: number, localeLocal: string) => {
-      const num = multiplyEstimate(number, multiplierLocal);
-      return mojoToChiaLocaleString(num, localeLocal);
-    },
-    [multiplyEstimate]
-  );
-
   const formattedEstimates: FormattedEstimate[] = useMemo(() => {
     const estimateList = ests?.estimates ?? [0, 0, 0];
     const defaultValues = [6_000_000, 5_000_000, 0];
@@ -239,9 +209,7 @@ export default function EstimatedFee(props: FeeProps) {
       : estimateList.concat([0]);
 
     return estList.map((estimate: number, i: number) => {
-      const multiplierLocal = allZeroes ? 1 : multiplier;
-      const multipliedEstimate = multiplyEstimate(estimate, multiplierLocal);
-      const formattedEstimate = formatEst(estimate, multiplierLocal, locale);
+      const formattedEstimate = mojoToChiaLocaleString(estimate, locale);
       const minutes = i === 3 ? -1 : TARGET_TIMES[i] / 60; // -1 designates a conditionally-added fourth dropdown selection with 0 fee and >5 minutes
 
       return {
@@ -252,11 +220,11 @@ export default function EstimatedFee(props: FeeProps) {
             : minutes === -1
             ? t`Likely in >5 minutes`
             : t`Likely in ${TARGET_TIMES[i]} seconds`,
-        estimate: multipliedEstimate,
+        estimate,
         formattedEstimate,
       };
     });
-  }, [ests, locale, multiplier, formatEst, multiplyEstimate]);
+  }, [ests, locale]);
 
   useEffect(() => {
     if (!isLoading) {
