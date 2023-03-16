@@ -346,18 +346,12 @@ export default function OfferEditorCancelConflictingOffersDialog(props: OfferEdi
     return undefined;
   }, [needDivider]);
 
-  const offerAllCleared = useMemo(() => {
+  const areOffersAllCleared = useMemo(() => {
     if (offersRequiredToBeCanceled.length + offersBetterToBeCanceled.length > 0) {
-      return null;
+      return undefined;
     }
-    return (
-      <Flex>
-        <Typography>
-          <Trans>All offers which lock coins/assets quoted by the new offer have been cleared!</Trans>
-        </Typography>
-      </Flex>
-    );
-  }, [offersRequiredToBeCanceled, offersBetterToBeCanceled]);
+    return 'confirm';
+  }, [offersRequiredToBeCanceled.length, offersBetterToBeCanceled.length]);
 
   return (
     <ConfirmDialog
@@ -368,12 +362,12 @@ export default function OfferEditorCancelConflictingOffersDialog(props: OfferEdi
       fullWidth
       maxWidth="md"
       disableConfirmButton={offersRequiredToBeCanceled.length > 0}
+      autoClose={areOffersAllCleared}
       {...rest}
     >
       <Flex flexDirection="column" gap={2} divider={divider}>
         {CancelList1}
         {CancelList2}
-        {offerAllCleared}
       </Flex>
     </ConfirmDialog>
   );
