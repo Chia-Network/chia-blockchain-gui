@@ -113,7 +113,11 @@ function NFTDetailLoaded(props: NFTDetailLoadedProps) {
 
   const ValidateContainer = styled.div`
     padding-top: 25px;
-    text-align: center;
+    float: right;
+    position: relative;
+    top: -25px;
+    font-size: 14px;
+    white-space: nowrap;
   `;
 
   const ErrorMessage = styled.div`
@@ -122,7 +126,7 @@ function NFTDetailLoaded(props: NFTDetailLoadedProps) {
 
   const LeftRightNavigation = styled.div`
     padding: 30px 0 20px 0;
-    text-align: right;
+    text-align: center;
     font-size: 14px;
     display: block;
     > div {
@@ -250,7 +254,6 @@ function NFTDetailLoaded(props: NFTDetailLoadedProps) {
                     </NavigationButton>
                   </div>
                 </LeftRightNavigation>
-                <ValidateContainer>{renderValidationState()}</ValidateContainer>
                 <NFTProgressBar
                   nftIdUrl={`${nft.$nftId}_${uri}`}
                   setValidateNFT={setValidateNFT}
@@ -264,6 +267,7 @@ function NFTDetailLoaded(props: NFTDetailLoadedProps) {
               <ArrowBackIosNew />
             </IconButton>
           </Box>
+          <ValidateContainer>{renderValidationState()}</ValidateContainer>
         </Flex>
       </Flex>
       <LayoutDashboardSub>
