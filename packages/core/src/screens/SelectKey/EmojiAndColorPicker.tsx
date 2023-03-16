@@ -35,7 +35,7 @@ export default function EmojiAndColorPicker(props: EmojiAndColorPickerType) {
   // const [tempEmoji, setTempEmoji] = React.useState<string>('');
 
   const pickerStyle: any = {
-    backgroundColor: isDark ? '#344E54' : '#FFFFFF',
+    backgroundColor: isDark ? '#292929' : '#FFFFFF',
     border: '1px solid #CCDDE1',
     boxShadow: '0px 6px 19px rgba(15, 37, 42, 0.28), 0px 27px 65px rgba(101, 131, 138, 0.39)',
     borderRadius: '8px',
@@ -173,6 +173,17 @@ export default function EmojiAndColorPicker(props: EmojiAndColorPickerType) {
       '>div': {
         fontSize: '18px',
         textAlign: 'center',
+      },
+      '::-webkit-scrollbar': {
+        background: 'transparent',
+      },
+      '::-webkit-scrollbar-thumb': {
+        background: isDark ? '#444' : '#ddd',
+        height: '50px',
+        borderRadius: '10px',
+        width: '2px',
+        border: '3px solid transparent',
+        backgroundClip: 'content-box',
       },
     };
     const emojiList = Object.keys(allEmojis)
