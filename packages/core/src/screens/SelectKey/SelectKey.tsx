@@ -64,9 +64,9 @@ export default function SelectKey() {
     if (document.getElementById('key-items-container')) {
       keyItemsSortable.current = new Sortable(document.getElementById('key-items-container'), {
         onEnd: () => {
-          const newArray = [...(document.getElementById('key-items-container') as HTMLElement).children].map(
-            (node: any) => node.attributes['data-testid'].value.split('-')[2]
-          );
+          const newArray = [...(document.getElementById('key-items-container') as HTMLElement).children]
+            .filter((node: any) => node.hasAttribute('data-testid'))
+            .map((node: any) => node.attributes['data-testid'].value.split('-')[2]);
           setSortedWallets(newArray);
         },
       });
