@@ -537,6 +537,24 @@ if (!handleSquirrelEvent()) {
         })
       );
 
+      type ResponseObjType = { data?: string; error?: string };
+
+      ipcMain.handle('fetchHtmlContent', async (_event, axiosUrl: string) => {
+        const responseObj: ResponseObjType = await new Promise((resolve) => {
+          axios({
+            method: 'GET',
+            url: axiosUrl,
+          })
+            .then((response) => {
+              resolve({ data: response.data });
+            })
+            .catch((e: Error) => {
+              resolve({ error: e.message });
+            });
+        });
+        return responseObj;
+      });
+
       type DownloadFileWithProgressProps = {
         folder: string;
         nft: NFTInfo;
