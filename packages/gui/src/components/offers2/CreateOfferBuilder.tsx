@@ -122,7 +122,8 @@ export default function CreateOfferBuilder(props: CreateOfferBuilderProps) {
         const dialog = (
           <OfferEditorConflictAlertDialog
             assetsToUnlock={assetsRequiredToBeUnlocked}
-            assetsBetterUnlocked={assetsBetterToBeUnlocked}
+            // assetsBetterUnlocked={assetsBetterToBeUnlocked}
+            assetsBetterUnlocked={[]} // Ignoring assetsBetterToBeUnlocked to avoid displaying the dialog unnecessarily
             allowSecureCancelling
           />
         );
