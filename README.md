@@ -90,7 +90,7 @@ After adding a new NPM package, please **pin down the package version**. This is
 
 ## Localization
 
-Do not edit files directly in the repo, but instead please head over to our [Crowdin project](https://crowdin.com/project/chia-blockchain/) and add/edit translations there.
+Do not edit files directly in the repo, but instead please head over to our [Crowdin project](https://chia.crowdin.com/chia-blockchain-gui) and add/edit translations there.
 
 ## Troubleshooting
 
