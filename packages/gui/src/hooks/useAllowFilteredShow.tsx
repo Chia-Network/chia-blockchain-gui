@@ -34,7 +34,7 @@ async function getMetadata(nft: NFTInfo | undefined, lru: LRU<string, any>) {
       nftId,
       uri,
       dataHash: metadataHash,
-      timeout: 2000,
+      timeout: 30_000,
     });
 
     if (!isValid) {
