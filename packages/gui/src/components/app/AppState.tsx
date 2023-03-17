@@ -7,7 +7,6 @@ import {
   useGetKeyringStatusQuery,
   useServices,
   useGetVersionQuery,
-  useLocalStorage,
 } from '@chia-network/api-react';
 import {
   Flex,
@@ -27,7 +26,6 @@ import React, { useState, useEffect, ReactNode, useMemo } from 'react';
 import ModeServices, { SimulatorServices } from '../../constants/ModeServices';
 import useEnableDataLayerService from '../../hooks/useEnableDataLayerService';
 import useEnableFilePropagationServer from '../../hooks/useEnableFilePropagationServer';
-import useGetLatestVersionFromWebsite from '../../hooks/useGetLatestVersionFromWebsite';
 import useNFTMetadataLRU from '../../hooks/useNFTMetadataLRU';
 import NFTContextualActionsEventEmitter from '../nfts/NFTContextualActionsEventEmitter';
 import AppAutoLogin from './AppAutoLogin';
@@ -35,7 +33,6 @@ import AppKeyringMigrator from './AppKeyringMigrator';
 import AppPassPrompt from './AppPassPrompt';
 import AppSelectMode from './AppSelectMode';
 import AppVersionWarning from './AppVersionWarning';
-import NewerAppVersionAvailable from './NewerAppVersionAvailable';
 
 const ALL_SERVICES = [
   ServiceName.WALLET,
@@ -65,8 +62,6 @@ export default function AppState(props: Props) {
   const [isDataLayerEnabled] = useState(enableDataLayerService);
   const [isFilePropagationServerEnabled] = useState(enableFilePropagationServer);
   const [versionDialog, setVersionDialog] = useState<boolean>(true);
-  const [skipVersion, setSkipVersion] = useLocalStorage('skipVersion', '');
-  const [latestVersionDialog, setLatestVersionDialog] = useState<boolean>(true);
   const [updatedWindowTitle, setUpdatedWindowTitle] = useState<boolean>(false);
   const { data: backendVersion } = useGetVersionQuery();
   const { version } = useAppVersion();
@@ -114,8 +109,6 @@ export default function AppState(props: Props) {
   }, [servicesState, runServices]);
 
   const isConnected = !isClientStateLoading && clientState?.state === ConnectionState.CONNECTED;
-
-  const { latestVersion } = useGetLatestVersionFromWebsite();
 
   useEffect(() => {
     const allRunningServices = servicesState.running.map((serviceState) => serviceState.service);
@@ -218,25 +211,6 @@ export default function AppState(props: Props) {
         </LayoutHero>
       );
     }
-  }
-
-  if (
-    latestVersion &&
-    latestVersionDialog &&
-    version &&
-    skipVersion !== latestVersion &&
-    latestVersion !== version.split('-')[0]
-  ) {
-    return (
-      <LayoutHero>
-        <NewerAppVersionAvailable
-          currentVersion={version.split('-')[0]}
-          latestVersion={latestVersion}
-          setVersionDialog={setLatestVersionDialog}
-          setSkipVersion={setSkipVersion}
-        />
-      </LayoutHero>
-    );
   }
 
   if (isLoadingKeyringStatus || !keyringStatus) {

@@ -5,7 +5,7 @@ import React from 'react';
 
 interface WarningDialogProps {
   currentVersion: string;
-  latestVersion: string;
+  latestVersion: string | null;
   onClose: () => void;
   open: boolean;
   setSkipVersion: (version: string) => void;
@@ -43,10 +43,10 @@ function WarningDialog(props: WarningDialogProps) {
             variant="outlined"
             style={{ marginBottom: '8px', marginRight: '8px' }}
           >
-            <Trans>Keep reminding me</Trans>
+            <Trans>Close dialog</Trans>
           </Button>
           <Button
-            onClick={() => setSkipVersion(latestVersion)}
+            onClick={() => setSkipVersion(latestVersion || '')}
             color="primary"
             variant="contained"
             style={{ marginBottom: '8px', marginRight: '8px' }}
@@ -61,7 +61,7 @@ function WarningDialog(props: WarningDialogProps) {
 
 interface AppVersionWarningProps {
   currentVersion: string;
-  latestVersion: string;
+  latestVersion: string | null;
   setVersionDialog: (isOpen: boolean) => void;
   setSkipVersion: (version: number) => void;
 }

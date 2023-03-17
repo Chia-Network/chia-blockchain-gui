@@ -1,20 +1,37 @@
-import { useGetLoggedInFingerprintQuery, useGetKeyQuery, useFingerprintSettings } from '@chia-network/api-react';
+import {
+  useGetLoggedInFingerprintQuery,
+  useGetKeyQuery,
+  useFingerprintSettings,
+  useLocalStorage,
+} from '@chia-network/api-react';
+import { useAppVersion } from '@chia-network/core';
 import { Exit as ExitIcon } from '@chia-network/icons';
 import { t, Trans } from '@lingui/macro';
 import { ExitToApp as ExitToAppIcon, Edit as EditIcon } from '@mui/icons-material';
-import { Box, AppBar, Toolbar, Drawer, Container, IconButton, Typography, CircularProgress } from '@mui/material';
+import {
+  Box,
+  AppBar,
+  Toolbar,
+  Drawer,
+  Container,
+  IconButton,
+  Typography,
+  CircularProgress,
+  Button,
+} from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import React, { type ReactNode, useState, Suspense, useCallback } from 'react';
 import { useNavigate, Outlet } from 'react-router-dom';
 import styled from 'styled-components';
 
+import useGetLatestVersionFromWebsite from '../../hooks/useGetLatestVersionFromWebsite';
 import EmojiAndColorPicker from '../../screens/SelectKey/EmojiAndColorPicker';
 import SelectKeyRenameForm from '../../screens/SelectKey/SelectKeyRenameForm';
 import Flex from '../Flex';
+import Link from '../Link';
 import Loading from '../Loading';
 import Logo from '../Logo';
 import Settings from '../Settings';
-import ToolbarSpacing from '../ToolbarSpacing';
 import Tooltip from '../Tooltip';
 // import LayoutFooter from '../LayoutMain/LayoutFooter';
 
@@ -95,6 +112,9 @@ export default function LayoutDashboard(props: LayoutDashboardProps) {
     emoji: `🌱`,
     color: 'green',
   });
+  const [skipVersion, setSkipVersion] = useLocalStorage('skipVersion', '');
+  const { latestVersion } = useGetLatestVersionFromWebsite();
+  const { version } = useAppVersion();
 
   const isLoading = isLoadingFingerprint || isLoadingKeyData;
 
@@ -113,12 +133,46 @@ export default function LayoutDashboard(props: LayoutDashboardProps) {
     setEditWalletName(false);
   }
 
+  function isNewVersionBannerShown() {
+    return latestVersion && version && skipVersion !== latestVersion && latestVersion !== version.split('-')[0];
+  }
+
+  function renderNewVersionBanner() {
+    if (isNewVersionBannerShown()) {
+      return (
+        <Flex
+          gap="16px"
+          flexDirection="row"
+          justifyContent="center"
+          style={{
+            background: 'rgba(58, 172, 89, 0.3',
+            padding: '12px',
+            lineHeight: '28px',
+            marginBottom: '10px',
+          }}
+        >
+          <Trans>New version {latestVersion} available</Trans>
+          <Button color="secondary" variant="outlined" size="small" onClick={() => setSkipVersion(latestVersion || '')}>
+            <Trans>Skip</Trans>
+          </Button>
+          <Link target="_blank" href="https://www.chia.net/downloads" sx={{ textDecoration: 'none !important' }}>
+            <Button size="small" variant="contained" color="primary" sx={{ boxShadow: 'none' }}>
+              <Trans>Download</Trans>
+            </Button>
+          </Link>
+        </Flex>
+      );
+    }
+    return null;
+  }
+
   return (
     <StyledRoot>
       <Suspense fallback={<Loading center />}>
         {sidebar ? (
           <>
             <StyledAppBar position="fixed" color="transparent" elevation={0} drawer>
+              {renderNewVersionBanner()}
               <StyledToolbar>
                 <Flex width="100%" alignItems="center" justifyContent="space-between" gap={2}>
                   <Flex
@@ -264,8 +318,13 @@ export default function LayoutDashboard(props: LayoutDashboardProps) {
         )}
 
         <StyledBody flexDirection="column" flexGrow={1}>
-          <ToolbarSpacing />
-          <Flex flexDirection="column" gap={2} flexGrow={1} overflow="auto">
+          <Flex
+            flexDirection="column"
+            gap={2}
+            flexGrow={1}
+            overflow="auto"
+            style={{ marginTop: isNewVersionBannerShown() ? '150px' : '85px' }}
+          >
             <Suspense fallback={<Loading center />}>{outlet ? <Outlet /> : children}</Suspense>
           </Flex>
         </StyledBody>
