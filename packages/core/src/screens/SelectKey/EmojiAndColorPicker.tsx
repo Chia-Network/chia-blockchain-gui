@@ -32,7 +32,6 @@ export default function EmojiAndColorPicker(props: EmojiAndColorPickerType) {
   const { onSelect = () => {}, onClickOutside = () => {}, currentColor, currentEmoji, themeColors, isDark } = props;
   const cmpRef = React.useRef(null);
   const [emojiFilter, setEmojiFilter] = React.useState<string[]>([]);
-  // const [tempEmoji, setTempEmoji] = React.useState<string>('');
 
   const pickerStyle: any = {
     backgroundColor: isDark ? '#292929' : '#FFFFFF',
@@ -60,6 +59,8 @@ export default function EmojiAndColorPicker(props: EmojiAndColorPickerType) {
       document.removeEventListener('mousedown', outsideClickListener);
     };
   }, [outsideClickListener]);
+
+  const isRetina = window.matchMedia('(-webkit-min-device-pixel-ratio: 2),(min-resolution: 192dpi)').matches;
 
   function renderColorPicker() {
     const colorNodes = Object.keys(themeColors)
@@ -211,10 +212,12 @@ export default function EmojiAndColorPicker(props: EmojiAndColorPickerType) {
             zIndex: 9,
             paddingTop: '2px',
             cursor: 'pointer',
+            fontSize: isRetina ? '19px' : '15px',
+            lineHeight: '22px',
+            fontFamily: 'Roboto',
           }}
         >
           {allEmojis[emojiName].skins[0].native}
-          {allEmojis[emojiName].skins[0].native === currentEmoji && <div style={{}} />}
         </div>
       ));
     return (
