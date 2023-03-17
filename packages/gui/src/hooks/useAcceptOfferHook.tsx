@@ -57,7 +57,8 @@ export default function useAcceptOfferHook(): [AcceptOfferHook] {
       const dialog = (
         <OfferEditorConflictAlertDialog
           assetsToUnlock={assetsRequiredToBeUnlocked}
-          assetsBetterUnlocked={assetsBetterToBeUnlocked}
+          // assetsBetterUnlocked={assetsBetterToBeUnlocked}
+          assetsBetterUnlocked={[]} // Ignoring assetsBetterToBeUnlocked to avoid displaying the dialog unnecessarily
         />
       );
       const confirmedToProceed = await openDialog(dialog);
