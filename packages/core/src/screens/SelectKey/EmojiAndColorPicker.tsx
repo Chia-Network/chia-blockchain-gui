@@ -214,7 +214,7 @@ export default function EmojiAndColorPicker(props: EmojiAndColorPickerType) {
             cursor: 'pointer',
             fontSize: isRetina ? '19px' : '15px',
             lineHeight: '22px',
-            fontFamily: 'Roboto',
+            fontFamily: 'none',
           }}
         >
           {allEmojis[emojiName].skins[0].native}
