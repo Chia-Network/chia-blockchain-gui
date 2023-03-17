@@ -21,7 +21,6 @@ export default createTheme({
       ...theme.palette.info,
       main: '#fff',
     },
-    border: theme.palette.border.dark,
     colors: {
       royal: {
         main: '#DCE6FD',

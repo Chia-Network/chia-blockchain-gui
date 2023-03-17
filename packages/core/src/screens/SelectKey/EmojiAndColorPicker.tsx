@@ -37,7 +37,7 @@ export default function EmojiAndColorPicker(props: EmojiAndColorPickerType) {
 
   const pickerStyle: any = {
     backgroundColor: isDark ? '#292929' : '#FFFFFF',
-    border: `1px solid ${theme.palette.border}`,
+    border: `1px solid ${isDark ? theme.palette.border.dark : theme.palette.border.main}`,
     boxShadow: '0px 6px 19px rgba(15, 37, 42, 0.28), 0px 27px 65px rgba(101, 131, 138, 0.39)',
     borderRadius: '8px',
     padding: '0px',
@@ -116,7 +116,7 @@ export default function EmojiAndColorPicker(props: EmojiAndColorPickerType) {
           sx={{
             position: 'relative',
             width: '100%',
-            border: `1px solid ${theme.palette.border}`,
+            border: `1px solid ${isDark ? theme.palette.border.dark : theme.palette.border.main}`,
             borderRadius: '8px',
             marginTop: '15px',
             input: {
