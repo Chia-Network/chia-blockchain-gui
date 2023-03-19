@@ -168,6 +168,7 @@ function OfferBuilderViewer(props: OfferBuilderViewerProps, ref: any) {
         address,
         offer,
       },
+      replace: true,
     });
   }
 
