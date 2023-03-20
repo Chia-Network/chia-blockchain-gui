@@ -1,6 +1,6 @@
 import { AssetStatusForOffer } from 'util/offerBuilderDataToOffer';
 
-import { OfferSummaryRecord } from '@chia-network/api';
+import { OfferSummaryRecord, WalletType } from '@chia-network/api';
 import { t } from '@lingui/macro';
 import BigNumber from 'bignumber.js';
 import { OfferTradeRecordFormatted } from 'hooks/useWalletOffers';
@@ -43,24 +43,36 @@ export default function resolveOfferInfo(
   summaryKey: 'offered' | 'requested',
   lookupByAssetId: (assetId: string) => AssetIdMapEntry | undefined
 ) {
-  const resolvedOfferInfo = Object.entries(summary[summaryKey]).map(([assetId, amount]) => {
+  return Object.entries(summary[summaryKey]).map(([assetId, amount]) => {
     const assetType = offerAssetTypeForAssetId(assetId, summary);
-    const isNFT = assetType === OfferAsset.NFT;
-    const assetIdInfo = isNFT ? undefined : lookupByAssetId(assetId);
-    const displayAmount = assetIdInfo ? formatAmountForWalletType(amount, assetIdInfo.walletType) : amount;
-    let displayName = '';
-    if (isNFT) {
-      displayName = launcherIdToNFTId(assetId);
-    } else {
-      displayName = assetIdInfo?.displayName ?? t`Unknown CAT`;
+
+    switch (assetType) {
+      case OfferAsset.CHIA:
+        return {
+          displayAmount: formatAmountForWalletType(amount, WalletType.STANDARD_WALLET),
+          displayName: lookupByAssetId(assetId)?.displayName ?? assetId.toUpperCase(),
+          assetType,
+        };
+      case OfferAsset.TOKEN:
+        return {
+          displayAmount: formatAmountForWalletType(amount, WalletType.CAT),
+          displayName: lookupByAssetId(assetId)?.displayName ?? t`Unknown CAT`,
+          assetType,
+        };
+      case OfferAsset.NFT:
+        return {
+          displayAmount: amount,
+          displayName: launcherIdToNFTId(assetId),
+          assetType,
+        };
+      default:
+        return {
+          displayAmount: amount,
+          displayName: t`Unknown Asset`,
+          assetType,
+        };
     }
-    return {
-      displayAmount,
-      displayName,
-      assetType,
-    };
   });
-  return resolvedOfferInfo;
 }
 
 export function resolveOfferInfoWithPendingAmounts(
