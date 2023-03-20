@@ -146,7 +146,9 @@ export default function EmojiAndColorPicker(props: EmojiAndColorPickerType) {
             onChange={async (e: any) => {
               if (e.target.value !== '') {
                 const emojis = await SearchIndex.search(e.target.value);
-                setEmojiFilter(emojis.map((emoji: any) => emoji.skins[0].native));
+                if (Array.isArray(emojis) && emojis.length) {
+                  setEmojiFilter(emojis.map((emoji: any) => emoji.skins[0].native));
+                }
               } else {
                 setEmojiFilter([]);
               }
