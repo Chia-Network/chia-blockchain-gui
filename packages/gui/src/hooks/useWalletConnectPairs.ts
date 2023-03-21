@@ -20,7 +20,9 @@ export type Pairs = {
   removeSessionFromPair: (sessionTopic: string) => void;
 
   bypassCommand: (sessionTopic: string, command: string, confirm: boolean) => void;
-  resetBypass: () => void;
+  removeBypassCommand: (sessionTopic: string, command: string) => void;
+  resetBypassForAllPairs: () => void;
+  resetBypassForPair: (pairTopic: string) => void;
 };
 
 export default function useWalletConnectPairs(): Pairs {
@@ -118,13 +120,51 @@ export default function useWalletConnectPairs(): Pairs {
     });
   }, []);
 
-  const resetBypass = useCallback(() => {
+  const removeBypassCommand = useCallback((sessionTopic: string, command: string) => {
+    const deleteCommand = (commands: Record<string, boolean> | undefined) => {
+      const newBypassCommands = { ...commands };
+      delete newBypassCommands[command];
+      return newBypassCommands;
+    };
+
+    const [, setPairs] = pairsRef.current;
+    setPairs((pairs: Pair[]) => {
+      const pair = pairs.find((item) => item.sessions?.find((session) => session.topic === sessionTopic));
+      if (!pair) {
+        throw new Error('Pair not found');
+      }
+
+      return pairs.map((item) => ({
+        ...item,
+        bypassCommands:
+          item.topic === pair.topic && item.bypassCommands && typeof item.bypassCommands[command] !== undefined
+            ? deleteCommand(item.bypassCommands)
+            : item.bypassCommands,
+      }));
+    });
+  }, []);
+
+  const resetBypassForAllPairs = useCallback(() => {
     const [, setPairs] = pairsRef.current;
 
     setPairs((pairs: Pair[]) =>
       pairs.map((item) => ({
         ...item,
         bypassCommands: {},
+      }))
+    );
+  }, []);
+
+  const resetBypassForPair = useCallback((pairTopic: string) => {
+    const [, setPairs] = pairsRef.current;
+
+    setPairs((pairs: Pair[]) =>
+      pairs.map((item) => ({
+        ...item,
+        bypassCommands:
+          item.topic === pairTopic
+            ? {} // reset bypass commands
+            : item.bypassCommands,
       }))
     );
   }, []);
@@ -144,7 +184,9 @@ export default function useWalletConnectPairs(): Pairs {
 
       removeSessionFromPair,
       bypassCommand,
-      resetBypass,
+      removeBypassCommand,
+      resetBypassForAllPairs,
+      resetBypassForPair,
     }),
     [
       addPair,
@@ -157,7 +199,9 @@ export default function useWalletConnectPairs(): Pairs {
       removePairBySession,
       removeSessionFromPair,
       bypassCommand,
-      resetBypass,
+      removeBypassCommand,
+      resetBypassForAllPairs,
+      resetBypassForPair,
     ]
   );
 
