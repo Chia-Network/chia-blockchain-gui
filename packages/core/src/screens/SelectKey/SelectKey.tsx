@@ -40,7 +40,7 @@ const { emojis: allEmojis } = data;
 
 const StyledContainer = styled(Container)`
   padding-bottom: 1rem;
-  width: 968px;
+  max-width: 968px;
 `;
 
 export default function SelectKey() {
@@ -64,9 +64,9 @@ export default function SelectKey() {
     if (document.getElementById('key-items-container')) {
       keyItemsSortable.current = new Sortable(document.getElementById('key-items-container'), {
         onEnd: () => {
-          const newArray = [...(document.getElementById('key-items-container') as HTMLElement).children].map(
-            (node: any) => node.attributes['data-testid'].value.split('-')[2]
-          );
+          const newArray = [...(document.getElementById('key-items-container') as HTMLElement).children]
+            .filter((node: any) => node.hasAttribute('data-testid'))
+            .map((node: any) => node.attributes['data-testid'].value.split('-')[2]);
           setSortedWallets(newArray);
         },
       });
@@ -224,6 +224,12 @@ export default function SelectKey() {
     </Flex>
   );
 
+  /* On smaller screens where we have 2 wallets per row and we have odd number of wallets,
+     render another empty div to prevent last wallet stretching to 100% in the last row */
+  function renderEmptyDivIfOddNumberOfWallets() {
+    return publicKeyFingerprints.length % 2 === 1 && <div />;
+  }
+
   function renderTopSection() {
     return (
       <Flex
@@ -303,8 +309,15 @@ export default function SelectKey() {
                 columnGap: '22px',
                 paddingBottom: '230px',
                 '> div': {
-                  flexBasis: '292px',
-                  maxWidth: '292px',
+                  '@media (min-width: 983px)': {
+                    flexBasis: '292px',
+                    maxWidth: '292px',
+                  },
+                  '@media (max-width: 982px)': {
+                    flexBasis: 'none',
+                    flex: 'calc(50% - 22px)',
+                    minWidth: '250px',
+                  },
                 },
               }}
             >
@@ -318,6 +331,7 @@ export default function SelectKey() {
                   disabled={!!selectedFingerprint && keyData.fingerprint !== selectedFingerprint}
                 />
               ))}
+              {renderEmptyDivIfOddNumberOfWallets()}
             </Flex>
           )}
         </Flex>
