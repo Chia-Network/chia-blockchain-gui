@@ -3,22 +3,18 @@ import { useCallback } from 'react';
 
 export type WalletConnectPreferences = {
   enabled?: boolean;
-  autoConfirm?: boolean;
   allowConfirmationFingerprintChange?: boolean;
 };
 
 export default function useWalletConnectPreferences(): {
   enabled: boolean;
   setEnabled: (enabled: boolean) => void;
-  autoConfirm: boolean;
-  setAutoConfirm: (enabled: boolean) => void;
   allowConfirmationFingerprintChange: boolean;
   setAllowConfirmationFingerprintChange: (enabled: boolean) => void;
 } {
   const [preferences, setPreferences] = useLocalStorage<WalletConnectPreferences>('walletConnectPreferences', {});
 
   const enabled = preferences?.enabled ?? false;
-  const autoConfirm = preferences?.autoConfirm ?? false;
   const allowConfirmationFingerprintChange = preferences?.allowConfirmationFingerprintChange ?? false;
 
   const setEnabled = useCallback(
@@ -26,16 +22,6 @@ export default function useWalletConnectPreferences(): {
       setPreferences((currentPreferences: WalletConnectPreferences) => ({
         ...currentPreferences,
         enabled: value,
-      }));
-    },
-    [setPreferences]
-  );
-
-  const setAutoConfirm = useCallback(
-    (value: boolean) => {
-      setPreferences((currentPreferences: WalletConnectPreferences) => ({
-        ...currentPreferences,
-        autoConfirm: value,
       }));
     },
     [setPreferences]
@@ -54,8 +40,6 @@ export default function useWalletConnectPreferences(): {
   return {
     enabled,
     setEnabled,
-    autoConfirm,
-    setAutoConfirm,
     allowConfirmationFingerprintChange,
     setAllowConfirmationFingerprintChange,
   };

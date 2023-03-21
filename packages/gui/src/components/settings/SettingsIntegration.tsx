@@ -22,14 +22,8 @@ import useWalletConnectPairs from '../../hooks/useWalletConnectPairs';
 import useWalletConnectPreferences from '../../hooks/useWalletConnectPreferences';
 
 export default function SettingsIntegration() {
-  const {
-    enabled,
-    setEnabled,
-    // autoConfirm,
-    // setAutoConfirm,
-    allowConfirmationFingerprintChange,
-    setAllowConfirmationFingerprintChange,
-  } = useWalletConnectPreferences();
+  const { enabled, setEnabled, allowConfirmationFingerprintChange, setAllowConfirmationFingerprintChange } =
+    useWalletConnectPreferences();
 
   const [selectedPair, setSelectedPair] = React.useState<Pair | null>(null);
   const [bypassCommands, setBypassCommands] = React.useState<Record<string, boolean> | undefined>();
