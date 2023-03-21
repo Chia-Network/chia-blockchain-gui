@@ -19,6 +19,9 @@ export default function useThrottleQuery(
 
   const refState = useRef<any>();
 
+  // Warning: Do not replace `useMemo` with `useCallback` below.
+  // `useMemo` is correct.
+  // lodash's `throttle` returns a function and does not execute the throttled function.
   const processUpdate = useMemo(
     () =>
       throttle(() => forceUpdate(), wait, {
