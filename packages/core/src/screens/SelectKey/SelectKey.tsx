@@ -224,12 +224,6 @@ export default function SelectKey() {
     </Flex>
   );
 
-  /* On smaller screens where we have 2 wallets per row and we have odd number of wallets,
-     render another empty div to prevent last wallet stretching to 100% in the last row */
-  function renderEmptyDivIfOddNumberOfWallets() {
-    return publicKeyFingerprints.length % 2 === 1 && <div />;
-  }
-
   function renderTopSection() {
     return (
       <Flex
@@ -313,9 +307,14 @@ export default function SelectKey() {
                     flexBasis: '292px',
                     maxWidth: '292px',
                   },
-                  '@media (max-width: 982px)': {
+                  '@media (max-width: 982px) and (min-width: 569px)': {
                     flexBasis: 'none',
                     flex: 'calc(50% - 22px)',
+                    minWidth: '250px',
+                    maxWidth: 'calc(50vw - 42px);',
+                  },
+                  '@media (max-width: 568px)': {
+                    flexBasis: 'none',
                     minWidth: '250px',
                   },
                 },
@@ -331,7 +330,6 @@ export default function SelectKey() {
                   disabled={!!selectedFingerprint && keyData.fingerprint !== selectedFingerprint}
                 />
               ))}
-              {renderEmptyDivIfOddNumberOfWallets()}
             </Flex>
           )}
         </Flex>
