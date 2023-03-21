@@ -14,15 +14,17 @@ export type AssetIdMapEntry = {
 };
 
 export default function useAssetIdName() {
-  const { data: wallets = [], isLoading } = useGetWalletsQuery();
+  const { data: wallets = [], isLoading: isLoadingWallets } = useGetWalletsQuery();
   const { data: catList = [], isLoading: isCatListLoading } = useGetCatListQuery();
   const currencyCode = useCurrencyCode();
+
+  const isLoading = isLoadingWallets || isCatListLoading;
 
   const memoized = useMemo(() => {
     const assetIdNameMapping = new Map<string, AssetIdMapEntry>();
     const walletIdNameMapping = new Map<number, AssetIdMapEntry>();
 
-    if (isLoading || isCatListLoading) {
+    if (isLoading) {
       return { assetIdNameMapping, walletIdNameMapping };
     }
 
@@ -105,7 +107,7 @@ export default function useAssetIdName() {
     }
 
     return { assetIdNameMapping, walletIdNameMapping };
-  }, [isLoading, isCatListLoading, wallets, catList, currencyCode]);
+  }, [isLoading, wallets, catList, currencyCode]);
 
   const ref = useRef(memoized);
   ref.current = memoized;
@@ -120,5 +122,5 @@ export default function useAssetIdName() {
     [ref]
   );
 
-  return { lookupByAssetId, lookupByWalletId };
+  return { lookupByAssetId, lookupByWalletId, isLoading };
 }
