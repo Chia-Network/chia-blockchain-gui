@@ -1,5 +1,5 @@
 import { throttle } from 'lodash';
-import { useRef, useCallback } from 'react';
+import { useRef, useMemo } from 'react';
 
 import useForceUpdate from './useForceUpdate';
 
@@ -19,7 +19,10 @@ export default function useThrottleQuery(
 
   const refState = useRef<any>();
 
-  const processUpdate = useCallback(
+  // Warning: Do not replace `useMemo` with `useCallback` below.
+  // `useMemo` is correct.
+  // lodash's `throttle` returns a function and does not execute the throttled function.
+  const processUpdate = useMemo(
     () =>
       throttle(() => forceUpdate(), wait, {
         leading,
