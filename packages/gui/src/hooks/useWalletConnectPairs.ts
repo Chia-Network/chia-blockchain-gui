@@ -20,6 +20,7 @@ export type Pairs = {
   removeSessionFromPair: (sessionTopic: string) => void;
 
   bypassCommand: (sessionTopic: string, command: string, confirm: boolean) => void;
+  removeBypassCommand: (sessionTopic: string, command: string) => void;
   resetBypass: () => void;
 };
 
@@ -118,6 +119,30 @@ export default function useWalletConnectPairs(): Pairs {
     });
   }, []);
 
+  const removeBypassCommand = useCallback((sessionTopic: string, command: string) => {
+    const deleteCommand = (commands: Record<string, boolean> | undefined) => {
+      const newBypassCommands = { ...commands };
+      delete newBypassCommands[command];
+      return newBypassCommands;
+    };
+
+    const [, setPairs] = pairsRef.current;
+    setPairs((pairs: Pair[]) => {
+      const pair = pairs.find((item) => item.sessions?.find((session) => session.topic === sessionTopic));
+      if (!pair) {
+        throw new Error('Pair not found');
+      }
+
+      return pairs.map((item) => ({
+        ...item,
+        bypassCommands:
+          item.topic === pair.topic && item.bypassCommands && typeof item.bypassCommands[command] !== undefined
+            ? deleteCommand(item.bypassCommands)
+            : item.bypassCommands,
+      }));
+    });
+  }, []);
+
   const resetBypass = useCallback(() => {
     const [, setPairs] = pairsRef.current;
 
@@ -144,6 +169,7 @@ export default function useWalletConnectPairs(): Pairs {
 
       removeSessionFromPair,
       bypassCommand,
+      removeBypassCommand,
       resetBypass,
     }),
     [
@@ -157,6 +183,7 @@ export default function useWalletConnectPairs(): Pairs {
       removePairBySession,
       removeSessionFromPair,
       bypassCommand,
+      removeBypassCommand,
       resetBypass,
     ]
   );
