@@ -19,6 +19,8 @@ type CancelOfferListProps = {
   allowSecureCancelling?: boolean;
 };
 
+const rowsPerPageOptions = [3, 5, 10];
+
 export default function CancelOfferList(props: CancelOfferListProps) {
   const { title, offers, onOfferCanceled, allowSecureCancelling = false } = props;
 
@@ -39,6 +41,13 @@ export default function CancelOfferList(props: CancelOfferListProps) {
     },
     [rowsPerPage, page]
   );
+
+  const rows = useMemo(() => {
+    const startIndex = page * rowsPerPage;
+    const endIndex = startIndex + rowsPerPage;
+
+    return offers.slice(startIndex, endIndex);
+  }, [rowsPerPage, page, offers]);
 
   const cols = useMemo(() => {
     async function handleCancelOffer(tradeId: string, canCancelWithTransaction: boolean) {
@@ -154,9 +163,9 @@ export default function CancelOfferList(props: CancelOfferListProps) {
   return (
     <Card title={title} titleVariant="h6" transparent>
       <TableControlled
-        rows={offers}
+        rows={rows}
         cols={cols}
-        rowsPerPageOptions={[3, 5, 10]}
+        rowsPerPageOptions={rowsPerPageOptions}
         count={offers.length}
         rowsPerPage={rowsPerPage}
         pages={hasOffers}
