@@ -1,17 +1,7 @@
 import { Avatar, Card, CardContent, CardHeader, Divider, Grid, Typography } from '@mui/material';
 import React, { ReactNode } from 'react';
-import styled from 'styled-components';
 
 import Flex from '../Flex';
-
-const StyledCardContent = styled(CardContent)`
-  padding-left: 72px;
-`;
-
-const StyledStep = styled(Avatar)`
-  width: 2rem;
-  height: 2rem;
-`;
 
 type Props = {
   children: ReactNode;
@@ -26,12 +16,16 @@ export default function CardStep(props: Props) {
   return (
     <Card>
       <CardHeader
-        avatar={<StyledStep aria-label="step">{step}</StyledStep>}
+        avatar={
+          <Avatar aria-label="step" sx={{ width: '2rem', height: '2rem' }}>
+            {step}
+          </Avatar>
+        }
         title={<Typography variant="h6">{title}</Typography>}
         action={action}
       />
       <Divider />
-      <StyledCardContent>
+      <CardContent sx={{ paddingLeft: '72px' }}>
         <Grid container>
           <Grid md={10} lg={8} item>
             <Flex flexDirection="column" gap={2}>
@@ -39,7 +33,7 @@ export default function CardStep(props: Props) {
             </Flex>
           </Grid>
         </Grid>
-      </StyledCardContent>
+      </CardContent>
     </Card>
   );
 }
