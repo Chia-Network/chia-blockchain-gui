@@ -6,7 +6,7 @@ export default function useFingerprintSettings<Type extends Serializable>(
   fingerprint: number | undefined,
   key: string,
   defaultValue?: Type
-) {
+): [Type | undefined, (value: Type) => void] {
   type LocalStorageType = Record<string, Record<string, Serializable>>;
   const [settings, setSettings] = usePrefs<LocalStorageType>('fingerprintSettings', {});
   const refSettings = useRef(settings);
@@ -46,5 +46,5 @@ export default function useFingerprintSettings<Type extends Serializable>(
     return [defaultValue, setValue];
   }
 
-  return [settings[fingerprint]?.[key] ?? defaultValue, setValue];
+  return [(settings[fingerprint]?.[key] as Type) ?? defaultValue, setValue];
 }

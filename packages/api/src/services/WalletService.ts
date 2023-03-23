@@ -186,7 +186,7 @@ export default class Wallet extends Service {
   }
 
   async getConnections() {
-    return this.command<{ connections: Connection }>('get_connections');
+    return this.command<{ connections: Connection[] }>('get_connections');
   }
 
   async getAllOffers(args: {

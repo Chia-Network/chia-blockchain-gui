@@ -15,49 +15,24 @@ export const harvesterApi = apiWithTag2.injectEndpoints({
       invalidatesTags: [{ type: 'Harvesters', id: 'LIST' }],
     }),
 
-    // TODO refactor
     deletePlot: build.mutation<
-      boolean,
+      void,
       {
         filename: string;
       }
     >({
-      /*
-      query: ({ filename }) => ({
-        command: 'deletePlot',
-        service: Harvester,
-        args: [filename],
-      }),
-      */
       async queryFn({ filename }, _queryApi, _extraOptions, fetchWithBQ) {
-        try {
-          const { data, error } = await fetchWithBQ({
-            command: 'deletePlot',
-            service: Harvester,
-            args: [filename],
-          });
+        await fetchWithBQ({
+          command: 'deletePlot',
+          service: Harvester,
+          args: [filename],
+        });
 
-          if (error) {
-            throw error as Error;
-          }
-
-          const refreshResponse = await fetchWithBQ({
-            command: 'refreshPlots',
-            service: Harvester,
-          });
-
-          if (refreshResponse.error) {
-            throw error;
-          }
-
-          return {
-            data,
-          };
-        } catch (error) {
-          return {
-            error,
-          };
-        }
+        await fetchWithBQ({
+          command: 'refreshPlots',
+          service: Harvester,
+        });
+        return { data: undefined };
       },
       invalidatesTags: (_result, _error, { filename }) => [
         { type: 'HarvestersSummary', id: 'LIST' },

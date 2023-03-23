@@ -52,6 +52,7 @@ export type { default as RewardTargets } from './RewardTargets';
 export type { default as RoyaltyCalculationFungibleAsset } from './RoyaltyCalculationFungibleAsset';
 export type { default as RoyaltyCalculationFungibleAssetPayout } from './RoyaltyCalculationFungibleAssetPayout';
 export type { default as RoyaltyCalculationRoyaltyAsset } from './RoyaltyCalculationRoyaltyAsset';
+export type { default as ServiceClass, ServiceClassWithoutClient } from './ServiceClass';
 export type { default as SignagePoint } from './SignagePoint';
 export type { default as SpendBundle } from './SpendBundle';
 export type { default as SubBlock } from './SubBlock';

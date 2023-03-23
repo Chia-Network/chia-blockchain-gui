@@ -1,21 +1,21 @@
-import { Daemon, Farmer, FullNode, PlotterService, WalletService } from '@chia-network/api';
+import { type ServiceClassWithoutClient } from '@chia-network/api';
 
 import { baseQuery } from '../api';
 
 type BaseQuery = typeof baseQuery;
 
-type Service = typeof Daemon | typeof Farmer | typeof FullNode | typeof PlotterService | typeof WalletService;
+// type Command = keyof InstanceType<ServiceClassWithoutClient>;
 
 type Invalidate =
   | {
+      service: ServiceClassWithoutClient;
       command: string;
-      service: Service;
       endpoint: string | (() => Object);
       skip?: (draft: any, data: any, args: any) => boolean;
     }
   | {
+      service: ServiceClassWithoutClient;
       command: string;
-      service: Service;
       onUpdate: (draft: any, data: any, args: any) => void;
       skip?: (draft: any, data: any, args: any) => boolean;
     };
@@ -56,16 +56,16 @@ export default function onCacheEntryAddedInvalidate(rtkQuery: BaseQuery, api: an
                             forceRefetch: true,
                           })
                         );
+                      } else {
+                        const currentEndpoint = endpoint();
+
+                        dispatch(
+                          currentEndpoint.initiate(args, {
+                            subscribe: false,
+                            forceRefetch: true,
+                          })
+                        );
                       }
-
-                      const currentEndpoint = endpoint();
-
-                      dispatch(
-                        currentEndpoint.initiate(args, {
-                          subscribe: false,
-                          forceRefetch: true,
-                        })
-                      );
                     }
                   });
                 },

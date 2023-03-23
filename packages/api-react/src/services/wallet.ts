@@ -1,5 +1,5 @@
 /* eslint-disable no-param-reassign -- This file use Immer */
-import { CAT, DID, Farmer, NFT, OfferTradeRecord, Pool, WalletService, WalletType, toBech32m } from '@chia-network/api';
+import { CAT, DID, Farmer, NFT, Pool, WalletService, WalletType, toBech32m } from '@chia-network/api';
 import type { NFTInfo, PlotNFT, PlotNFTExternal, Transaction, Wallet, WalletBalance } from '@chia-network/api';
 import BigNumber from 'bignumber.js';
 
@@ -41,12 +41,6 @@ const apiWithTag = api.enhanceEndpoints({
     'Notification',
   ],
 });
-
-type OfferCounts = {
-  total: number;
-  my_offers: number;
-  taken_offers: number;
-};
 
 export const walletApi = apiWithTag.injectEndpoints({
   endpoints: (build) => ({
@@ -590,17 +584,6 @@ export const walletApi = apiWithTag.injectEndpoints({
       ]),
     }),
 
-    openWalletConnection: mutation(build, WalletService, 'openConnection', {
-      invalidatesTags: [{ type: 'WalletConnections', id: 'LIST' }],
-    }),
-
-    closeWalletConnection: mutation(build, WalletService, 'closeConnection', {
-      invalidatesTags: (_result, _error, { nodeId }) => [
-        { type: 'WalletConnections', id: 'LIST' },
-        { type: 'WalletConnections', id: nodeId },
-      ],
-    }),
-
     // Offers
 
     getAllOffers: query(build, WalletService, 'getAllOffers', {
@@ -608,7 +591,7 @@ export const walletApi = apiWithTag.injectEndpoints({
         if (!response.offers) {
           return response.tradeRecords;
         }
-        return response.tradeRecords.map((tradeRecord: OfferTradeRecord, index: number) => ({
+        return response.tradeRecords.map((tradeRecord, index) => ({
           ...tradeRecord,
           _offerData: response.offers?.[index],
         }));
@@ -649,7 +632,7 @@ export const walletApi = apiWithTag.injectEndpoints({
     }),
 
     cancelOffer: mutation(build, WalletService, 'cancelOffer', {
-      invalidatesTags: (result, error, { tradeId }) => [{ type: 'OfferTradeRecord', id: tradeId }],
+      invalidatesTags: (_result, _error, { tradeId }) => [{ type: 'OfferTradeRecord', id: tradeId }],
     }),
 
     checkOfferValidity: mutation(build, WalletService, 'checkOfferValidity'),
@@ -1149,7 +1132,7 @@ export const walletApi = apiWithTag.injectEndpoints({
 
     // TODO refactor
     getDIDs: build.query<Wallet[], undefined>({
-      async queryFn(args, _queryApi, _extraOptions, fetchWithBQ) {
+      async queryFn(_args, _queryApi, _extraOptions, fetchWithBQ) {
         try {
           const { data, error } = await fetchWithBQ({
             command: 'getWallets',
@@ -1467,10 +1450,6 @@ export const walletApi = apiWithTag.injectEndpoints({
       invalidatesTags: (result, _error) => (result ? [{ type: 'NFTInfo', id: 'LIST' }] : []),
     }),
 
-    receiveNFT: mutation(build, NFT, 'receiveNft', {
-      invalidatesTags: (result, _error) => (result ? [{ type: 'NFTInfo', id: 'LIST' }] : []),
-    }),
-
     signMessageByAddress: mutation(build, WalletService, 'signMessageByAddress'),
 
     signMessageById: mutation(build, WalletService, 'signMessageById'),
@@ -1544,8 +1523,6 @@ export const {
   useGetNetworkInfoQuery,
   useGetSyncStatusQuery,
   useGetWalletConnectionsQuery,
-  useOpenWalletConnectionMutation,
-  useCloseWalletConnectionMutation,
   useGetAllOffersQuery,
   useGetOffersCountQuery,
   useCreateOfferForIdsMutation,
@@ -1603,7 +1580,6 @@ export const {
   useTransferNFTMutation,
   useSetNFTDIDMutation,
   useSetNFTStatusMutation,
-  useReceiveNFTMutation,
 
   // sign
   useSignMessageByAddressMutation,

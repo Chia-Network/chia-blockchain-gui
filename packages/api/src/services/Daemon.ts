@@ -1,4 +1,7 @@
-import { PlotQueueItem, KeyringStatus, KeyData, PlottersApi } from '../@types';
+import KeyData from '../@types/KeyData';
+import KeyringStatus from '../@types/KeyringStatus';
+import PlotQueueItem from '../@types/PlotQueueItem';
+import { PlottersApi } from '../@types/Plotter';
 import type Client from '../Client';
 import type Message from '../Message';
 import ServiceName, { type ServiceNameValue } from '../constants/ServiceName';

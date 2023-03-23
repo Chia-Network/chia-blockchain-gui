@@ -1,24 +1,17 @@
-import Client, { FullNode, WalletService, Harvester, Farmer, Daemon } from '@chia-network/api';
+import Client, {
+  FullNode,
+  WalletService,
+  Harvester,
+  Farmer,
+  Daemon,
+  PlotterService,
+  type ServiceClass,
+  type ServiceClassWithoutClient,
+} from '@chia-network/api';
 import { BaseQueryApi } from '@reduxjs/toolkit/dist/query/baseQueryTypes';
 import type { BaseQueryFn } from '@reduxjs/toolkit/query/react';
 
 import { selectApiConfig } from './slices/api';
-
-const serviceClasses = {
-  FullNode,
-  Wallet: WalletService,
-  Harvester,
-  Farmer,
-  Daemon,
-};
-
-export const allClasses = {
-  ...serviceClasses,
-  Client,
-};
-
-type BaseServiceClass = typeof FullNode | typeof WalletService | typeof Harvester | typeof Farmer | typeof Daemon;
-type ServiceClass = BaseServiceClass | typeof Client;
 
 type ServiceQuery<Service extends ServiceClass> = {
   service: Service;
@@ -52,7 +45,7 @@ async function getInstance<Service extends ServiceClass>(
     } else {
       const client = await getInstance(Client, api);
 
-      const serviceInstance = new (service as BaseServiceClass)(client);
+      const serviceInstance = new (service as ServiceClassWithoutClient)(client);
       instances.set(service, serviceInstance);
     }
   }
@@ -63,6 +56,7 @@ async function getInstance<Service extends ServiceClass>(
 type BaseQueryArgs =
   | ServiceQuery<typeof FullNode>
   | ServiceQuery<typeof WalletService>
+  | ServiceQuery<typeof PlotterService>
   | ServiceQuery<typeof Harvester>
   | ServiceQuery<typeof Farmer>
   | ServiceQuery<typeof Daemon>

@@ -115,8 +115,6 @@ export const {
   useGetNetworkInfoQuery,
   useGetSyncStatusQuery,
   useGetWalletConnectionsQuery,
-  useOpenWalletConnectionMutation,
-  useCloseWalletConnectionMutation,
   useGetAllOffersQuery,
   useGetOffersCountQuery,
   useCreateOfferForIdsMutation,
@@ -174,7 +172,6 @@ export const {
   useTransferNFTMutation,
   useSetNFTDIDMutation,
   useSetNFTStatusMutation,
-  useReceiveNFTMutation,
 
   // sign
   useSignMessageByAddressMutation,
