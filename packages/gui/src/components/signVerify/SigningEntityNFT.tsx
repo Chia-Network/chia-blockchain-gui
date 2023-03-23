@@ -56,6 +56,14 @@ export default function SigningEntityNFT(props: SigningEntityNFTProps) {
     }
   }, [entityName, entityValueName, setValue, getValues, nftInfo, currencyCode]);
 
+  useEffect(() => {
+    const localCurrentValue = getValues(entityValueName);
+
+    if (nftIdString && nftIdString !== localCurrentValue) {
+      setValue(entityValueName, nftIdString);
+    }
+  }, [entityValueName, setValue, getValues, nftIdString]);
+
   return (
     <Flex flexDirection="column" gap={1}>
       <Grid item xs={12}>
