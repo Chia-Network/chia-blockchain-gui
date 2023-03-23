@@ -8,7 +8,7 @@ import styled from 'styled-components';
 import useAllowFilteredShow from '../../hooks/useAllowFilteredShow';
 import useFetchNFTs from '../../hooks/useFetchNFTs';
 import useHideObjectionableContent from '../../hooks/useHideObjectionableContent';
-import NFTPreview from '../nfts/NFTPreview';
+import NFTPreview from './NFTPreview';
 
 const SearchNFTrow = styled.div`
   cursor: pointer;
@@ -72,7 +72,7 @@ const SearchPlaceholder = styled.div`
   }
 `;
 
-type OfferBuilderValueSearchProps = {
+type NFTSearchProps = {
   value: string;
   onSelectNFT: (nftId: string) => void;
 };
@@ -91,7 +91,7 @@ function highlightSearchedString(searchString: string, str: string) {
     );
 }
 
-export default function OfferBuilderValueSearch(props: OfferBuilderValueSearchProps) {
+export default function NFTSearch(props: NFTSearchProps) {
   const { value, onSelectNFT } = props;
   const { wallets: nftWallets } = useGetNFTWallets();
   const { nfts, isLoading } = useFetchNFTs(nftWallets.map((wallet: Wallet) => wallet.id));
@@ -139,9 +139,20 @@ export default function OfferBuilderValueSearch(props: OfferBuilderValueSearchPr
         </NFTSearchedText>
       </SearchNFTrow>
     ));
+
+  function valueIsNftId() {
+    return !!nfts.find((nft: NFTInfo) => nft.$nftId === value);
+  }
+  const showResults =
+    !valueIsNftId() && value.length > 0 && nfts.filter((nft) => isNFTInSearchValue(value, nft)).length > 0;
   return (
-    <SearchPlaceholder isDarkMode={isDarkMode} style={{ display: value.length > 0 ? 'block' : 'none' }}>
-      <div>{isLoading ? <Trans>Loading NFTs...</Trans> : nftPreviews}</div>
+    <SearchPlaceholder
+      isDarkMode={isDarkMode}
+      style={{
+        display: showResults ? 'block' : 'none',
+      }}
+    >
+      <div style={{ position: 'fixed' }}>{isLoading ? <Trans>Loading NFTs...</Trans> : nftPreviews}</div>
     </SearchPlaceholder>
   );
 }
