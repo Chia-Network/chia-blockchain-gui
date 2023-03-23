@@ -1,49 +1,111 @@
 import { Flex, SettingsHR, SettingsSection, SettingsTitle, SettingsText } from '@chia-network/core';
 import { t, Trans } from '@lingui/macro';
-// import CloseIcon from '@mui/icons-material/Close';
 import {
   Autocomplete,
   Box,
   Button,
+  Checkbox,
   FormControl,
   FormControlLabel,
   Grid,
-  // IconButton,
-  // InputLabel,
   MenuItem,
   Select,
   Switch,
   TextField,
 } from '@mui/material';
 import Pair from '@types/Pair';
-import React, { useCallback } from 'react';
+import React, { useCallback, useMemo } from 'react';
 
+import type WalletConnectCommand from '../../@types/WalletConnectCommand';
+import walletConnectCommands from '../../constants/WalletConnectCommands';
+import useWalletConnectContext from '../../hooks/useWalletConnectContext';
 import useWalletConnectPairs from '../../hooks/useWalletConnectPairs';
 import useWalletConnectPreferences from '../../hooks/useWalletConnectPreferences';
 
 export default function SettingsIntegration() {
+  const { disconnect } = useWalletConnectContext();
   const { enabled, setEnabled, allowConfirmationFingerprintChange, setAllowConfirmationFingerprintChange } =
     useWalletConnectPreferences();
 
   const [selectedPair, setSelectedPair] = React.useState<Pair | null>(null);
   const [bypassCommands, setBypassCommands] = React.useState<Record<string, boolean> | undefined>();
+  const [selection, setSelection] = React.useState<Set<string>>(new Set());
 
   React.useEffect(() => {
     setBypassCommands(selectedPair?.bypassCommands);
-  }, [selectedPair]);
+    setSelection(new Set());
+  }, [selectedPair, setBypassCommands, setSelection]);
 
-  const { /* bypassCommand, removeBypassCommand, */ resetBypassForAllPairs, resetBypassForPair, get } =
+  const { bypassCommand, removeBypassCommand, resetBypassForAllPairs, resetBypassForPair, get } =
     useWalletConnectPairs();
 
   const pairs = get();
 
-  const resetAppPermissions = useCallback(
+  const handleResetAppPermissions = useCallback(
     (pair) => {
       resetBypassForPair(pair.topic);
       setBypassCommands(undefined);
     },
     [resetBypassForPair, setBypassCommands]
   );
+
+  const handleDisconnectApp = useCallback(
+    (pair) => {
+      setSelectedPair(null);
+      setBypassCommands(undefined);
+      disconnect(pair.topic);
+    },
+    [disconnect, setSelectedPair, setBypassCommands]
+  );
+
+  const handleBypassCommandChange = useCallback(
+    (pair: Pair, command: string, newState: boolean) => {
+      bypassCommand(pair.sessions[0].topic, command, newState);
+      setBypassCommands((localBypassCommands) => {
+        if (!localBypassCommands) {
+          return undefined;
+        }
+
+        return {
+          ...localBypassCommands,
+          [command]: newState,
+        };
+      });
+    },
+    [bypassCommand, setBypassCommands]
+  );
+
+  const handleUpdateCommandSelection = useCallback(
+    (command: string, newState: boolean) => {
+      setSelection((localSelection) => {
+        const newSelection = new Set(localSelection);
+        if (newState) {
+          newSelection.add(command);
+        } else {
+          newSelection.delete(command);
+        }
+
+        return newSelection;
+      });
+    },
+    [setSelection]
+  );
+
+  const handleResetSelectedPermissions = useCallback(
+    (pair: Pair) => {
+      selection.forEach((command) => {
+        removeBypassCommand(pair.sessions[0].topic, command);
+      });
+      setSelection(new Set());
+      setBypassCommands(undefined);
+    },
+    [removeBypassCommand, setSelection, selection]
+  );
+
+  const commands = useMemo(() => {
+    const commandKeys = Object.keys(bypassCommands ?? {});
+    return walletConnectCommands.filter((c) => commandKeys.includes(c.command));
+  }, [bypassCommands]);
 
   return (
     <Grid container style={{ maxWidth: '624px' }} gap={3}>
@@ -73,6 +135,7 @@ export default function SettingsIntegration() {
         </Grid>
         <Grid item container xs justifyContent="flex-end" marginTop="-6px">
           <FormControlLabel
+            label={null}
             control={
               <Switch
                 checked={enabled}
@@ -97,6 +160,7 @@ export default function SettingsIntegration() {
         </Grid>
         <Grid item container xs justifyContent="flex-end" marginTop="-6px">
           <FormControlLabel
+            label={null}
             control={
               <Switch
                 checked={allowConfirmationFingerprintChange}
@@ -134,6 +198,7 @@ export default function SettingsIntegration() {
           <Grid item width="624px" marginTop="15px" marginLeft="8px">
             <Flex flexDirection="row" alignItems="center" justifyContent="spaceBetween" gap={1}>
               <FormControlLabel
+                label={null}
                 control={
                   <Autocomplete
                     id="app-permissions-select"
@@ -174,10 +239,10 @@ export default function SettingsIntegration() {
                 <Button
                   variant="outlined"
                   color="secondary"
-                  onClick={() => resetAppPermissions(selectedPair)}
-                  disabled={!selectedPair || Object.keys(bypassCommands ?? {}).length === 0}
+                  onClick={() => handleDisconnectApp(selectedPair)}
+                  disabled={!selectedPair}
                 >
-                  Reset Permissions
+                  Disconnect
                 </Button>
               </Flex>
             </Flex>
@@ -187,76 +252,103 @@ export default function SettingsIntegration() {
 
       {selectedPair ? (
         <Grid container>
-          <Flex flexDirection="column" gap={1}>
-            {bypassCommands && Object.keys(bypassCommands).length > 0 ? (
-              Object.keys(bypassCommands).map((command: string, idx: number) => (
-                <Grid item width="624px" marginTop="15px" marginLeft="8px">
-                  <Flex
-                    key={`row-${command}`}
-                    flexDirection="row"
-                    alignItems="center"
-                    justifyContent="spaceBetween"
-                    gap={1}
-                  >
-                    <Grid item style={{ width: '400px' }}>
-                      <SettingsTitle>
-                        <Trans>
-                          {/* {bypassCommands[command] ? 'Allow ' : 'Reject '} {command} */}
-                          {command}
-                        </Trans>
-                      </SettingsTitle>
-                    </Grid>
-                    <Grid item container xs justifyContent="flex-end" marginTop="-6px" marginRight="8px">
-                      <FormControl size="small">
-                        {/* <InputLabel required focused>
-                      <Trans>Asset Type</Trans>
-                    </InputLabel> */}
-                        <Select value={1} id={idx}>
-                          <MenuItem value={1}>
-                            <Trans>Allow</Trans>
-                          </MenuItem>
-                          <MenuItem value={2}>
-                            <Trans>Deny</Trans>
-                          </MenuItem>
-                        </Select>
-                      </FormControl>
-                      {/* <FormControlLabel
-                    control={
-                      <Switch
-                        checked={bypassCommands[command]}
-                        onChange={() => {
-                          bypassCommand(selectedPair.sessions[0].topic, command, !bypassCommands[command]);
-                          bypassCommands[command] = !bypassCommands[command];
-                        }}
-                        inputProps={{ 'data-testid': 'Enable_Wallet_Connect_Change_fingerprint' }}
-                      />
-                    }
-                  /> */}
-                      {/* <FormControlLabel
-                    control={
-                      <IconButton
-                        onClick={() => {
-                          removeBypassCommand(selectedPair.sessions[0].topic, command);
-                          delete bypassCommands[command];
-                        }}
-                      >
-                        <CloseIcon />
-                      </IconButton>
-                    }
-                  /> */}
-                    </Grid>
+          <Flex flexDirection="column" gap={2}>
+            <Flex flexDirection="column" gap={1}>
+              {commands.length > 0 ? (
+                <>
+                  <Flex flexDirection="row" alignItems="center" gap={1}>
+                    <Checkbox
+                      checked={selection.size === commands.length}
+                      size="small"
+                      onClick={(e) => {
+                        setSelection(
+                          (e.target as HTMLInputElement).checked ? new Set(commands.map((c) => c.command)) : new Set()
+                        );
+                        e.stopPropagation();
+                      }}
+                    />
+                    <Trans>Select All</Trans>
                   </Flex>
+                  {commands.map((commandInfo: WalletConnectCommand, idx: number) => (
+                    <Grid
+                      item
+                      key={`grid-command-${commandInfo.command}`}
+                      width="624px"
+                      marginTop="15px"
+                      marginLeft="8px"
+                    >
+                      <Flex flexDirection="row" alignItems="center" justifyContent="spaceBetween" gap={1}>
+                        <Grid item style={{ width: '400px' }}>
+                          <Flex flexDirection="row" alignItems="center" gap={1} marginLeft="-8px">
+                            <Checkbox
+                              checked={selection.has(commandInfo.command)}
+                              onChange={() =>
+                                handleUpdateCommandSelection(commandInfo.command, !selection.has(commandInfo.command))
+                              }
+                              size="small"
+                            />
+                            <SettingsTitle>{commandInfo.label ?? commandInfo.command}</SettingsTitle>
+                          </Flex>
+                        </Grid>
+                        <Grid item container xs justifyContent="flex-end" marginTop="-6px" marginRight="8px">
+                          <FormControl size="small">
+                            <Select
+                              value={(bypassCommands ?? {})[commandInfo.command] ? 1 : 0}
+                              id={`${idx}`}
+                              onChange={() =>
+                                handleBypassCommandChange(
+                                  selectedPair,
+                                  commandInfo.command,
+                                  !(bypassCommands ?? {})[commandInfo.command]
+                                )
+                              }
+                            >
+                              <MenuItem value={1}>
+                                <Trans>Always Allow</Trans>
+                              </MenuItem>
+                              <MenuItem value={0}>
+                                <Trans>Always Reject</Trans>
+                              </MenuItem>
+                            </Select>
+                          </FormControl>
+                        </Grid>
+                      </Flex>
+                      <Grid item style={{ width: '400px' }}>
+                        <Flex flexDirection="row" alignItems="center" gap={1} marginLeft="38px">
+                          <SettingsText>{commandInfo.description ?? ''}</SettingsText>
+                        </Flex>
+                      </Grid>
+                    </Grid>
+                  ))}
+                </>
+              ) : (
+                <Grid container sx={{ p: 2 }}>
+                  <Grid item style={{ width: '400px' }}>
+                    <SettingsTitle>
+                      <Trans>No Custom Permissions</Trans>
+                    </SettingsTitle>
+                  </Grid>
                 </Grid>
-              ))
-            ) : (
-              <Grid container sx={{ p: 2 }}>
-                <Grid item style={{ width: '400px' }}>
-                  <SettingsTitle>
-                    <Trans>No Custom Permissions</Trans>
-                  </SettingsTitle>
-                </Grid>
-              </Grid>
-            )}
+              )}
+            </Flex>
+            <Flex flexDirection="row" gap={1}>
+              <Button
+                variant="outlined"
+                color="secondary"
+                onClick={() => handleResetSelectedPermissions(selectedPair)}
+                disabled={selection.size === 0}
+              >
+                Restore Selected Permissions
+              </Button>
+              <Button
+                variant="outlined"
+                color="secondary"
+                onClick={() => handleResetAppPermissions(selectedPair)}
+                disabled={!selectedPair || Object.keys(bypassCommands ?? {}).length === 0}
+              >
+                Restore Default Permissions
+              </Button>
+            </Flex>
           </Flex>
         </Grid>
       ) : (
