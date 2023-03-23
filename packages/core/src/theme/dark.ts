@@ -21,6 +21,7 @@ export default createTheme({
       ...theme.palette.info,
       main: '#fff',
     },
+    sidebarBackground: theme.palette.sidebarBackground.dark,
     colors: {
       royal: {
         main: '#DCE6FD',

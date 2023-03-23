@@ -25,6 +25,7 @@ import { useNavigate, Outlet } from 'react-router-dom';
 import styled from 'styled-components';
 
 import useGetLatestVersionFromWebsite from '../../hooks/useGetLatestVersionFromWebsite';
+import useOpenDialog from '../../hooks/useOpenDialog';
 import EmojiAndColorPicker from '../../screens/SelectKey/EmojiAndColorPicker';
 import SelectKeyRenameForm from '../../screens/SelectKey/SelectKeyRenameForm';
 import Flex from '../Flex';
@@ -33,6 +34,8 @@ import Loading from '../Loading';
 import Logo from '../Logo';
 import Settings from '../Settings';
 import Tooltip from '../Tooltip';
+import NewerAppVersionAvailable from './NewerAppVersionAvailable';
+
 // import LayoutFooter from '../LayoutMain/LayoutFooter';
 
 const StyledRoot = styled(Flex)`
@@ -113,10 +116,26 @@ export default function LayoutDashboard(props: LayoutDashboardProps) {
     color: 'green',
   });
   const [skipVersion, setSkipVersion] = useLocalStorage('skipVersion', '');
-  const { latestVersion } = useGetLatestVersionFromWebsite();
+  const { latestVersion } = useGetLatestVersionFromWebsite(skipVersion !== '');
   const { version } = useAppVersion();
 
+  const openDialog = useOpenDialog();
+
   const isLoading = isLoadingFingerprint || isLoadingKeyData;
+
+  const preventDualCheck = React.useRef(false);
+
+  React.useEffect(() => {
+    function checkForUpdates(ver: string) {
+      if (ver) {
+        openDialog(<NewerAppVersionAvailable currentVersion={ver} />);
+      }
+    }
+    if (!preventDualCheck.current && version) {
+      (window as any).ipcRenderer.on('checkForUpdates', () => checkForUpdates(version));
+      preventDualCheck.current = true;
+    }
+  }, [openDialog, version]);
 
   async function handleLogout() {
     localStorage.setItem('visibilityFilters', JSON.stringify(['visible']));
@@ -145,10 +164,11 @@ export default function LayoutDashboard(props: LayoutDashboardProps) {
           flexDirection="row"
           justifyContent="center"
           style={{
-            background: 'rgba(58, 172, 89, 0.3',
+            background: theme.palette.sidebarBackground,
             padding: '12px',
-            lineHeight: '28px',
+            lineHeight: '29px',
             marginBottom: '10px',
+            fontSize: '15px',
           }}
         >
           <Trans>New version {latestVersion} available</Trans>

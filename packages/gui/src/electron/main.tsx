@@ -1132,6 +1132,12 @@ function getMenuTemplate() {
           },
         },
         {
+          label: i18n._(/* i18n */ { id: 'Check for updates...' }),
+          click: () => {
+            mainWindow?.webContents.send('checkForUpdates');
+          },
+        },
+        {
           type: 'separator',
         },
         {
@@ -1216,6 +1222,12 @@ function getMenuTemplate() {
         label: i18n._(/* i18n */ { id: 'About Chia Blockchain' }),
         click() {
           openAbout();
+        },
+      },
+      {
+        label: i18n._(/* i18n */ { id: 'Check for updates...' }),
+        click: () => {
+          mainWindow?.webContents.send('checkForUpdates');
         },
       }
     );
