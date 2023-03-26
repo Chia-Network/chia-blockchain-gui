@@ -27,6 +27,8 @@ type Options = {
 };
 
 export default class Client extends EventEmitter {
+  static isClient = true;
+
   private options: Required<Options>;
 
   private ws: any;
