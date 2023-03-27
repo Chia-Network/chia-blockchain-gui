@@ -33,6 +33,7 @@ export default function CardListItem(props: CardListItemProps) {
         backgroundColor: (theme) =>
           `${selected ? getColorModeValue(theme, 'sidebarBackground') : theme.palette.background.paper}`,
         position: 'relative',
+        overflow: 'visible',
 
         '&:hover': {
           borderColor: (theme) =>
