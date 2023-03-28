@@ -1,16 +1,11 @@
 import { toBech32m } from '@chia-network/api';
 import { Box } from '@mui/material';
 import React from 'react';
-import styled from 'styled-components';
 
 import useCurrencyCode from '../../hooks/useCurrencyCode';
 import CopyToClipboard from '../CopyToClipboard';
 import Flex from '../Flex';
 import Tooltip from '../Tooltip';
-
-const StyledValue = styled(Box)`
-  word-break: break-all;
-`;
 
 type Props = {
   value: string;
@@ -28,7 +23,13 @@ export default function Address(props: Props) {
     if (copyToClipboard) {
       return (
         <Flex alignItems="center" gap={1}>
-          <StyledValue>{address}</StyledValue>
+          <Box
+            sx={{
+              wordBreak: 'break-all',
+            }}
+          >
+            {address}
+          </Box>
           <CopyToClipboard value={address} fontSize="small" />
         </Flex>
       );

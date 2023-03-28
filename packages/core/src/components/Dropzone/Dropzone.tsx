@@ -1,15 +1,22 @@
 import { Paper, CircularProgress } from '@mui/material';
 import React, { ReactNode } from 'react';
 import { useDropzone, DropzoneOptions } from 'react-dropzone';
-import styled from 'styled-components';
 
 import AspectRatio from '../AspectRatio';
 import Flex from '../Flex';
 
-const StyledPaper = styled(Paper)`
-  background-color: #999999;
-  padding: ${({ theme }) => `${theme.spacing(1)} ${theme.spacing(2)}`};
-`;
+function StyledPaper({ children }: { children: ReactNode | ChildrenRender }) {
+  return (
+    <Paper
+      sx={{
+        backgroundColor: '#999999',
+        padding: (theme) => `${theme.spacing(1)} ${theme.spacing(2)}`,
+      }}
+    >
+      {children}
+    </Paper>
+  );
+}
 
 type ChildrenRender = (input: { isDragActive: boolean }) => ReactNode;
 
@@ -20,7 +27,7 @@ type Props = {
   accept?: string[]; // ['image/jpeg', 'image/png']
   ratio: number;
   processing?: boolean;
-  background?: ReactNode;
+  background?: React.ElementType;
 };
 
 export default function Dropzone(props: Props) {

@@ -11,3 +11,4 @@ restoreMessages.js
 rollup.config.js
 webpack.**
 packages/gui/tests
+**/coverage/**
