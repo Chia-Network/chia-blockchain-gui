@@ -17,7 +17,7 @@ export default function CardListItem(props: CardListItemProps) {
   const { children, selected, onSelect, loading, disabled, noPadding = false, ...rest } = props;
 
   const content = (
-    <CardContent sx={{ marginBottom: (theme) => (noPadding ? 0 : `${theme.spacing(2)} !important`) }}>
+    <CardContent sx={{ padding: (theme) => (noPadding ? `0px !important` : `${theme.spacing(2)}`) }}>
       {children}
     </CardContent>
   );
@@ -28,7 +28,7 @@ export default function CardListItem(props: CardListItemProps) {
       {...rest}
       sx={{
         width: '100%',
-        borderRadius: 1,
+        borderRadius: (theme) => `${theme.spacing(1)}`,
         border: (theme) => `1px solid ${selected ? theme.palette.highlight.main : theme.palette.divider}`,
         backgroundColor: (theme) =>
           `${selected ? getColorModeValue(theme, 'sidebarBackground') : theme.palette.background.paper}`,
