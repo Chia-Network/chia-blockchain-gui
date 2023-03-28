@@ -23,7 +23,6 @@ import chokidar from 'chokidar';
 import windowStateKeeper from 'electron-window-state';
 import React from 'react';
 // import os from 'os';
-// import installExtension, { REDUX_DEVTOOLS, REACT_DEVELOPER_TOOLS } from 'electron-devtools-installer';
 import ReactDOMServer from 'react-dom/server';
 import { ServerStyleSheet, StyleSheetManager } from 'styled-components';
 
@@ -40,6 +39,7 @@ import manageDaemonLifetime from '../util/manageDaemonLifetime';
 import { setUserDataDir } from '../util/userData';
 import { parseExtensionFromUrl } from '../util/utils';
 import handleSquirrelEvent from './handleSquirrelEvent';
+import installDevTools from './installDevTools.dev';
 import { readPrefs, savePrefs, migratePrefs } from './prefs';
 
 const isPlaywrightTesting = process.env.PLAYWRIGHT_TESTS === 'true';
@@ -857,6 +857,8 @@ if (!handleSquirrelEvent()) {
     };
 
     const appReady = async () => {
+      await installDevTools();
+
       createWindow();
       app.applicationMenu = createMenu();
       protocol.registerFileProtocol('cached', (request: any, callback: (obj: any) => void) => {
