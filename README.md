@@ -57,6 +57,21 @@ After adding a new NPM package, please **pin down the package version**. This is
 
   In all other cases, you have to figure out what unique string you will use as an `key`, or create a dedicated `ID`.
 
+- **import/no-extraneous-dependencies**
+
+  Packages that are used only in development should not be present on the production build. You have 3 options:
+
+  1. If its a whole directory, add it to the `.eslintrc.json` file
+  2. If its a single file, rename it by adding `.dev.` in the extension. Example: `file.ts` -> `file.dev.ts`
+  3. If its a file that is run on the production, use this:
+
+  ```
+  if (process.env.NODE_ENV === 'development') {
+    // eslint-disable-next-line global-require -- We cannot use import since it should be only loaded in development
+    const package = require('package');
+  }
+  ```
+
 ## Git workflow
 
 - Git branch from "**main**"

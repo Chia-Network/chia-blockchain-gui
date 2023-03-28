@@ -93,7 +93,9 @@
           "**/cypress/**",
           "**/vite.config.ts",
           "**/babel.config.js",
-          "**/playwright.config.js"
+          "**/playwright.config.js",
+          // You can change the file name extension to .dev.ts to avoid the: "XX should be listed in the project's dependencies, not devDependencies."
+          "**/*.dev.{js,jsx,ts,tsx}"
         ],
         "optionalDependencies": false
       }
