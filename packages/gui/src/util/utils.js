@@ -89,7 +89,7 @@ export function fromBase64Safe(base64String) {
 }
 
 export function isDocument(extension) {
-  return ['pdf', 'docx', 'doc', 'xls', 'xlsx', 'ppt', 'pptx', 'txt', 'rtf'].indexOf(extension) > -1;
+  return ['pdf', 'docx', 'doc', 'xls', 'xlsx', 'ppt', 'pptx', 'txt', 'rtf'].indexOf(extension) !== -1;
 }
 
 export function getNFTFileType(nft) {

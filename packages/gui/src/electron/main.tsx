@@ -38,6 +38,7 @@ import loadConfig from '../util/loadConfig';
 import manageDaemonLifetime from '../util/manageDaemonLifetime';
 import { setUserDataDir } from '../util/userData';
 import { parseExtensionFromUrl } from '../util/utils';
+import CacheManager from './CacheManager';
 import handleSquirrelEvent from './handleSquirrelEvent';
 import installDevTools from './installDevTools.dev';
 import { readPrefs, savePrefs, migratePrefs } from './prefs';
@@ -51,12 +52,35 @@ app.commandLine.appendSwitch('disable-http-cache');
 initialize();
 
 const appIcon = nativeImage.createFromPath(path.join(__dirname, AppIcon));
-const defaultThumbCacheFolder = path.join(app.getPath('cache'), app.getName());
+const defaultCacheFolder = path.join(app.getPath('cache'), app.getName());
+
+const defaultThumbCacheFolder = defaultCacheFolder;
 let thumbCacheFolder = defaultThumbCacheFolder;
 
 if (!fs.existsSync(defaultThumbCacheFolder)) {
   fs.mkdirSync(defaultThumbCacheFolder);
 }
+
+const prefs = readPrefs();
+const cacheFolder = prefs.cacheFolder || defaultCacheFolder;
+const cacheManager = new CacheManager(cacheFolder, prefs.maxCacheSize);
+
+// CacheManager IPC event listeners
+ipcMain.handle('cache:getCacheSize', () => cacheManager.getCacheSize());
+ipcMain.handle('cache:clearCache', () => cacheManager.clearCache());
+ipcMain.handle('cache:changeCacheDirectory', (_event, newDirectory: string) =>
+  cacheManager.changeCacheDirectory(newDirectory)
+);
+ipcMain.handle('cache:setMaxTotalSize', (_event, newSize: number) => cacheManager.setMaxTotalSize(newSize));
+ipcMain.handle('cache:get', (_event, uri: string, options?: { maxSize?: number; timeout?: number }) =>
+  cacheManager.get(uri, options)
+);
+ipcMain.handle('cache:invalidate', (_event, uri: string) => cacheManager.invalidate(uri));
+
+// IPC prefs listeners
+ipcMain.handle('readPrefs', (_event) => readPrefs());
+ipcMain.handle('savePrefs', (_event, prefsObj) => savePrefs(prefsObj));
+ipcMain.handle('migratePrefs', (_event, prefsObj) => migratePrefs(prefsObj));
 
 let mainWindow: BrowserWindow | null = null;
 
@@ -735,14 +759,6 @@ if (!handleSquirrelEvent()) {
         }
       });
 
-      ipcMain.handle('readPrefs', async (_event) => readPrefs());
-
-      ipcMain.handle('savePrefs', async (_event, prefsObj) => {
-        savePrefs(prefsObj);
-      });
-
-      ipcMain.handle('migratePrefs', async (_event, prefsObj) => migratePrefs(prefsObj));
-
       ipcMain.handle('getCacheFilenames', (_event) => fs.readdirSync(thumbCacheFolder));
 
       ipcMain.handle('clearNFTCache', (_event) => {
@@ -865,13 +881,14 @@ if (!handleSquirrelEvent()) {
         const filePath: string = path.join(thumbCacheFolder, request.url.replace(/^cached:\/\//, ''));
         callback({ path: filePath });
       });
-      const prefs = readPrefs();
-      thumbCacheFolder = prefs.cacheFolder || defaultThumbCacheFolder;
+      const prefs2 = readPrefs();
+
+      thumbCacheFolder = prefs2.cacheFolder || defaultThumbCacheFolder;
       watchCacheFolder(thumbCacheFolder);
 
-      if (prefs.cacheLimitSize !== undefined) {
+      if (prefs2.cacheLimitSize !== undefined) {
         try {
-          const prefsCacheLimitSize = +prefs.cacheLimitSize;
+          const prefsCacheLimitSize = +prefs2.cacheLimitSize;
           if (!Number.isNaN(prefsCacheLimitSize) && Number.isFinite(prefsCacheLimitSize) && prefsCacheLimitSize > 0) {
             cacheLimitSize = prefsCacheLimitSize;
           }
@@ -879,9 +896,9 @@ if (!handleSquirrelEvent()) {
           console.error(e);
         }
       }
-      if (prefs.cacheFolder !== undefined) {
+      if (prefs2.cacheFolder !== undefined) {
         try {
-          const prefsCacheFolder = prefs.cacheFolder;
+          const prefsCacheFolder = prefs2.cacheFolder;
           if (fs.existsSync(prefsCacheFolder)) {
             thumbCacheFolder = prefsCacheFolder;
           }

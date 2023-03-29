@@ -10,7 +10,7 @@ export type NFTTitleProps = {
 
 export default function NFTTitle(props: NFTTitleProps) {
   const { nft } = props;
-  const { metadata, isLoading } = useNFTMetadata([nft]);
+  const { metadata, isLoading } = useNFTMetadata(nft.$nftId);
 
   if (isLoading) {
     return <Trans>Loading...</Trans>;

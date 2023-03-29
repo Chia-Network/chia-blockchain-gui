@@ -1,16 +1,15 @@
 import { type NFTInfo } from '@chia-network/api';
 import { IconMessage, Loading, Flex, SandboxedIframe, Tooltip, usePersistState, useDarkMode } from '@chia-network/core';
 import { t, Trans } from '@lingui/macro';
-import { NotInterested, Error as ErrorIcon } from '@mui/icons-material';
+import { NotInterested /* , Error as ErrorIcon */ } from '@mui/icons-material';
 import CloseSvg from '@mui/icons-material/Close';
 import QuestionMarkSvg from '@mui/icons-material/QuestionMark';
-import { Box, Button, Typography } from '@mui/material';
-import mime from 'mime-types';
-import React, { useMemo, useState, useRef, Fragment } from 'react';
+import { Box, Typography } from '@mui/material';
+import React, { useMemo, useRef, Fragment } from 'react';
 import { renderToString } from 'react-dom/server';
 import styled from 'styled-components';
-import isURL from 'validator/lib/isURL';
 
+import FileType from '../../@types/FileType';
 import AudioSmallIcon from '../../assets/img/audio-small.svg';
 import DocumentBlobIcon from '../../assets/img/document-blob.svg';
 import DocumentSmallIcon from '../../assets/img/document-small.svg';
@@ -30,12 +29,9 @@ import VideoSmallIcon from '../../assets/img/video-small.svg';
 import VideoPngIcon from '../../assets/img/video.png';
 import VideoPngDarkIcon from '../../assets/img/video_dark.png';
 import useNFTImageFittingMode from '../../hooks/useNFTImageFittingMode';
-import useVerifyHash from '../../hooks/useVerifyHash';
-import { isImage, parseExtensionFromUrl } from '../../util/utils';
-
-function responseTooLarge(error) {
-  return error === 'Response too large';
-}
+import useNFTVerifyHash from '../../hooks/useNFTVerifyHash';
+import getFileExtension from '../../util/getFileExtension';
+import getFileType from '../../util/getFileType';
 
 const StyledCardPreview = styled(Box)`
   height: ${({ height }) => height};
@@ -210,10 +206,10 @@ export type NFTPreviewProps = {
   fit?: 'cover' | 'contain' | 'fill';
   background?: any;
   isPreview?: boolean;
-  disableThumbnail?: boolean;
+  icon?: boolean;
   isCompact?: boolean;
   miniThumb?: boolean;
-  setNFTCardMetadata: (obj: any) => void;
+  disableInteractions?: boolean;
 };
 
 function ThumbnailError({ children }: any) {
@@ -233,86 +229,51 @@ export default function NFTPreview(props: NFTPreviewProps) {
   const [nftImageFittingMode] = useNFTImageFittingMode();
   const {
     nft,
-    nft: { dataUris },
     height = '300px',
     width = '100%',
     fit = nftImageFittingMode,
     background: Background = Fragment,
     isPreview = false,
     isCompact = false,
-    disableThumbnail = false,
+    disableInteractions = false,
+    icon = false,
     miniThumb,
-    setNFTCardMetadata,
   } = props;
 
-  const hasFile = dataUris?.length > 0;
-  const file = dataUris?.[0];
-  let extension = '';
-
-  try {
-    [extension] = new URL(file).pathname.split('.').slice(-1);
-    if (!extension.match(/^[a-zA-Z0-9]+$/)) {
-      extension = '';
-    }
-  } catch (e) {
-    console.error(`Failed to check file extension for ${file}: ${e}`);
-  }
-
-  const [ignoreSizeLimit, setIgnoreSizeLimit] = usePersistState<boolean>(
+  const iframeRef = useRef<any>(null);
+  const { isDarkMode } = useDarkMode();
+  const [ignoreSizeLimit /* , setIgnoreSizeLimit */] = usePersistState<boolean>(
     false,
-    `nft-preview-ignore-size-limit-${nft.$nftId}-${file}`
+    `nft-preview-ignore-size-limit-${nft.$nftId}`
   );
 
-  const [loaded, setLoaded] = useState(false);
-
-  const [metadataError, setNFTPreviewMetadataError] = useState<string | undefined>(undefined);
-
-  const { isLoading, error, thumbnail, isValid } = useVerifyHash({
+  const {
+    data,
+    preview,
+    isLoading: isLoadingVerifyHash,
+    error: errorVerifyHash,
+  } = useNFTVerifyHash({
     nft,
+    preview: isPreview,
     ignoreSizeLimit,
-    isPreview,
-    dataHash: nft.dataHash,
-    nftId: nft.$nftId,
-    setNFTCardMetadata,
-    setNFTPreviewMetadataError,
   });
 
-  const [ignoreError, setIgnoreError] = usePersistState<boolean>(
-    false,
-    `nft-preview-ignore-error-${nft.$nftId}-${file}`
-  );
+  const isLoading = isLoadingVerifyHash;
+  const error = errorVerifyHash || preview?.error;
 
-  const iframeRef = useRef<any>(null);
+  const previewExtension = useMemo(() => getFileExtension(preview?.uri), [preview]);
 
-  const isUrlValid = useMemo(() => {
-    if (!file) {
-      return false;
+  const previewFileType = useMemo(() => {
+    if (!preview?.uri) {
+      return FileType.UNKNOWN;
     }
 
-    return isURL(file);
-  }, [file]);
+    const { uri } = preview;
+    return getFileType(uri);
+  }, [preview]);
 
-  const { isDarkMode } = useDarkMode();
-
-  const mimeType = React.useCallback((): string => {
-    let pathName = '';
-    try {
-      pathName = new URL(file).pathname;
-    } catch (e) {
-      console.error(`Failed to check file extension for ${file}: ${e}`);
-    }
-    return mime.lookup(pathName) || '';
-  }, [file]);
-
-  const isAudio = React.useCallback(
-    () =>
-      mimeType().match(/^audio/) &&
-      (!isPreview || (isPreview && !thumbnail.video && !thumbnail.image) || disableThumbnail),
-    [isPreview, thumbnail?.video, thumbnail?.image, disableThumbnail, mimeType]
-  );
-
-  const [srcDoc] = useMemo(() => {
-    if (!file) {
+  const srcDoc = useMemo(() => {
+    if (!preview) {
       return undefined;
     }
 
@@ -402,38 +363,23 @@ export default function NFTPreview(props: NFTPreviewProps) {
 
     let mediaElement = null;
 
-    if (thumbnail.image) {
-      mediaElement = <img src={thumbnail.image} alt={t`Preview`} width="100%" height="100%" />;
-    } else if (mimeType().match(/^video/)) {
+    if (previewFileType === FileType.VIDEO) {
       mediaElement = (
-        <video width="100%" height="100%">
-          <source src={thumbnail.binary || file} />
+        <video width="100%" height="100%" controls={!disableInteractions}>
+          <source src={preview.uri} />
         </video>
       );
-    } else if (parseExtensionFromUrl(file) === 'svg') {
-      /* cached svg exception */
-      mediaElement = <div id="replace-with-svg" />;
-    } else {
-      mediaElement = <img src={thumbnail.binary || file} alt={t`Preview`} width="100%" height="100%" />;
-    }
-
-    if (isPreview && thumbnail.video && !disableThumbnail && !miniThumb) {
+    } else if (previewFileType === FileType.AUDIO) {
       mediaElement = (
-        <video width="100%" height="100%" controls>
-          <source src={thumbnail.video} />
-        </video>
-      );
-    }
-
-    if (isAudio()) {
-      mediaElement = (
-        <audio className={isDarkMode ? 'dark' : ''} controls>
-          <source src={thumbnail.binary || file} />
+        <audio className={isDarkMode ? 'dark' : ''} controls={!disableInteractions}>
+          <source src={preview.uri} />
         </audio>
       );
+    } else {
+      mediaElement = <img src={preview.uri} alt={t`Preview`} width="100%" height="100%" />;
     }
 
-    let elem = renderToString(
+    return renderToString(
       <html>
         <head>
           <style dangerouslySetInnerHTML={{ __html: style }} />
@@ -441,176 +387,185 @@ export default function NFTPreview(props: NFTPreviewProps) {
         <body>{mediaElement}</body>
       </html>
     );
+  }, [preview, previewFileType, disableInteractions, isDarkMode, fit]);
 
-    /* cached svg exception */
-    elem = elem.replace(`<div id="replace-with-svg"></div>`, thumbnail.binary);
+  const previewCompactIcon = useMemo(() => {
+    switch (previewFileType) {
+      /*
+      case FileType.IMAGE:
+        return <CompactImageIcon />;
+        */
+      case FileType.VIDEO:
+        return <CompactVideoIcon />;
+      case FileType.AUDIO:
+        return <CompactAudioIcon />;
+      case FileType.MODEL:
+        return <CompactModelIcon />;
+      case FileType.DOCUMENT:
+        return <CompactDocumentIcon />;
+      default: {
+        if (previewExtension) {
+          return <CompactExtension>.{previewExtension}</CompactExtension>;
+        }
 
-    return [elem];
-  }, [file, thumbnail, disableThumbnail, fit, isPreview, isAudio, isDarkMode, mimeType, miniThumb]);
+        return <CompactUnknownIcon />;
+      }
+    }
+  }, [previewFileType, previewExtension]);
 
-  const handleLoadedChange = React.useCallback((loadedValue: any) => {
-    setLoaded(loadedValue);
-  }, []);
-
+  /*
   function handleIgnoreError(event: any) {
     event.stopPropagation();
 
-    setIgnoreError(true);
-    if (responseTooLarge(error)) {
-      setIgnoreSizeLimit(true);
-    }
+    setIgnoreSizeLimit(true);
   }
+  */
 
-  function isDocument() {
-    return ['pdf', 'docx', 'doc', 'xls', 'xlsx', 'ppt', 'pptx', 'txt', 'rtf'].indexOf(extension) > -1;
-  }
-
-  function renderCompactIcon() {
-    return (
-      <>
-        {mimeType().match(/^video/) && <CompactVideoIcon />}
-        {mimeType().match(/^audio/) && <CompactAudioIcon />}
-        {mimeType().match(/^model/) && <CompactModelIcon />}
-        {isDocument() && <CompactDocumentIcon />}
-        {isUnknownType() && <CompactUnknownIcon />}
-        {extension && <CompactExtension>.{extension}</CompactExtension>}
-      </>
-    );
-  }
-
-  function renderCompactIconWrapper() {
+  const compactPreviewIconWrapper = useMemo(() => {
     if (miniThumb) {
-      return renderCompactIcon();
+      return previewCompactIcon;
     }
     return (
       <CompactIconFrame>
         <CompactIcon />
-        {renderCompactIcon()}
+        {previewCompactIcon}
       </CompactIconFrame>
     );
-  }
+  }, [miniThumb, previewCompactIcon]);
 
-  function renderNftIcon() {
-    if (isDocument()) {
-      return (
-        <BlobBg isDarkMode={isDarkMode}>
-          <DocumentBlobIcon />
-          <img src={isDarkMode ? DocumentPngDarkIcon : DocumentPngIcon} />
-        </BlobBg>
-      );
+  const previewIcon = useMemo(() => {
+    switch (previewFileType) {
+      case FileType.DOCUMENT:
+        return (
+          <BlobBg isDarkMode={isDarkMode}>
+            <DocumentBlobIcon />
+            <img src={isDarkMode ? DocumentPngDarkIcon : DocumentPngIcon} />
+          </BlobBg>
+        );
+      /*
+      case FileType.AUDIO:
+        return (
+          <BlobBg isDarkMode={isDarkMode}>
+            <AudioBlobIcon />
+            <img src={isDarkMode ? AudioPngDarkIcon : AudioPngIcon} />
+          </BlobBg>
+        );
+        */
+      case FileType.VIDEO:
+        return (
+          <BlobBg isDarkMode={isDarkMode}>
+            <VideoBlobIcon />
+            <img src={isDarkMode ? VideoPngDarkIcon : VideoPngIcon} />
+          </BlobBg>
+        );
+      case FileType.MODEL:
+        return (
+          <BlobBg isDarkMode={isDarkMode}>
+            <ModelBlobIcon />
+            <img src={isDarkMode ? ModelPngDarkIcon : ModelPngIcon} />
+          </BlobBg>
+        );
+      default:
+        return (
+          <BlobBg isDarkMode={isDarkMode}>
+            <UnknownBlobIcon />
+            <img src={isDarkMode ? UnknownPngDarkIcon : UnknownPngIcon} />
+          </BlobBg>
+        );
     }
-    if (mimeType().match(/^model/)) {
-      return (
-        <BlobBg isDarkMode={isDarkMode}>
-          <ModelBlobIcon />
-          <img src={isDarkMode ? ModelPngDarkIcon : ModelPngIcon} />
-        </BlobBg>
-      );
-    }
-    if (mimeType().match(/^video/)) {
-      return (
-        <BlobBg isDarkMode={isDarkMode}>
-          <VideoBlobIcon />
-          <img src={isDarkMode ? VideoPngDarkIcon : VideoPngIcon} />
-        </BlobBg>
-      );
-    }
-    return (
-      <BlobBg isDarkMode={isDarkMode}>
-        <UnknownBlobIcon />
-        <img src={isDarkMode ? UnknownPngDarkIcon : UnknownPngIcon} />;
-      </BlobBg>
-    );
-  }
+  }, [previewFileType, isDarkMode]);
 
-  function isUnknownType() {
-    return (
-      !isDocument() &&
-      !mimeType().match(/^audio/) &&
-      !mimeType().match(/^video/) &&
-      !mimeType().match(/^model/) &&
-      !isImage(file)
-    );
-  }
-
-  function renderElementPreview() {
-    if (!isUrlValid) {
+  const previewIframe = useMemo(() => {
+    if (!preview?.isVerified) {
       return null;
     }
 
-    if (isCompact && !isImage(file)) {
-      return renderCompactIconWrapper();
+    if (isCompact && previewFileType !== FileType.IMAGE) {
+      return compactPreviewIconWrapper;
     }
 
-    const isOfferNft = disableThumbnail && !mimeType().match(/^video/) && !mimeType().match(/^audio/) && !isImage(file);
-
-    const isPreviewNft =
-      mimeType() !== '' &&
-      !isImage(file) &&
-      !thumbnail.video &&
-      !thumbnail.image &&
-      !mimeType().match(/^audio/) &&
-      isPreview &&
-      !disableThumbnail;
-
-    const notPreviewNft =
-      !disableThumbnail && !isPreview && (mimeType().match(/^model/) || isDocument() || isUnknownType());
-
-    if (isOfferNft || isPreviewNft || notPreviewNft) {
+    if (icon) {
       return (
         <>
-          {renderNftIcon()}
-          {extension && <ModelExtension isDarkMode={isDarkMode}>.{extension}</ModelExtension>}
+          {previewIcon}
+          {previewExtension && <ModelExtension isDarkMode={isDarkMode}>.{previewExtension}</ModelExtension>}
         </>
       );
     }
 
+    const canInteract =
+      !isPreview && !disableInteractions && (previewFileType === FileType.VIDEO || previewFileType === FileType.AUDIO);
+
     return (
       <IframeWrapper ref={iframeRef}>
-        {isPreview && !thumbnail.video && !isAudio() && <IframePreventEvents />}
-        <SandboxedIframe
-          srcDoc={srcDoc}
-          height={height}
-          onLoadedChange={handleLoadedChange}
-          hideUntilLoaded
-          allowPointerEvents
-          miniThumb={miniThumb}
-        />
+        {!canInteract && <IframePreventEvents />}
+        <SandboxedIframe srcDoc={srcDoc} height={height} hideUntilLoaded allowPointerEvents miniThumb={miniThumb} />
       </IframeWrapper>
     );
-  }
+  }, [
+    preview,
+    isPreview,
+    isCompact,
+    previewFileType,
+    miniThumb,
+    height,
+    disableInteractions,
+    previewIcon,
+    icon,
+    previewExtension,
+    srcDoc,
+    iframeRef,
+    compactPreviewIconWrapper,
+    isDarkMode,
+  ]);
 
-  function renderIsHashValid() {
-    if (isValid || miniThumb) return null;
-    let icon = null;
-    let tooltipString = null;
-
-    if (isPreview) {
-      if (isValid === undefined) {
-        icon = <QuestionMarkIcon />;
-        tooltipString = t`Content has not been validated against the hash that was specified during NFT minting.`;
-      } else if (!isValid) {
-        icon = <CloseIcon />;
-        tooltipString = t`Content does not match the expected hash value that was specified during NFT minting. The content may have been modified.`;
-      }
+  const isHashValid = useMemo(() => {
+    if (miniThumb || (data && data.isVerified)) {
+      return null;
     }
 
-    if (icon && tooltipString) {
-      return (
-        <Tooltip title={<Typography variant="caption">{tooltipString}</Typography>}>
-          <Sha256ValidatedIcon>{icon} HASH</Sha256ValidatedIcon>
-        </Tooltip>
-      );
-    }
-    return null;
-  }
+    let showedIcon = <CloseIcon />;
+    let tooltipString = t`Content does not match the expected hash value that was specified during NFT minting. The content may have been modified.`;
 
-  const showLoading = isLoading;
+    if (!data) {
+      showedIcon = <QuestionMarkIcon />;
+      tooltipString = t`Content has not been validated against the hash that was specified during NFT minting.`;
+    }
+
+    return (
+      <Tooltip title={<Typography variant="caption">{tooltipString}</Typography>}>
+        <Sha256ValidatedIcon>{showedIcon} HASH</Sha256ValidatedIcon>
+      </Tooltip>
+    );
+  }, [data, miniThumb]);
+
+  const hasFile = !!preview;
 
   return (
     <StyledCardPreview height={miniThumb ? '50px' : height} width={width}>
-      {renderIsHashValid()}
-      {miniThumb ? null : !hasFile ? (
+      {isHashValid}
+
+      {error ? (
+        <ThumbnailError>{error.message}</ThumbnailError>
+      ) : isLoading ? (
+        <Flex position="absolute" left="0" top="0" bottom="0" right="0" justifyContent="center" alignItems="center">
+          <Loading center>{!miniThumb && <Trans>{isPreview ? 'Loading preview...' : 'Loading NFT...'}</Trans>}</Loading>
+        </Flex>
+      ) : !hasFile ? (
+        <Background>
+          <IconMessage icon={<NotInterested fontSize="large" />}>
+            <Trans>No file available</Trans>
+          </IconMessage>
+        </Background>
+      ) : (
+        previewIframe
+      )}
+    </StyledCardPreview>
+  );
+}
+
+/*
+{miniThumb ? null : !hasFile ? (
         <Background>
           <IconMessage icon={<NotInterested fontSize="large" />}>
             <Trans>No file available</Trans>
@@ -670,20 +625,4 @@ export default function NFTPreview(props: NFTPreviewProps) {
           </Flex>
         </Background>
       ) : null}
-      <>
-        {(showLoading ||
-          (!loaded && isImage(file) && !thumbnail.image && !thumbnail.video) ||
-          (!isPreview && !loaded && isImage(file))) &&
-          !responseTooLarge(error) &&
-          isUrlValid && (
-            <Flex position="absolute" left="0" top="0" bottom="0" right="0" justifyContent="center" alignItems="center">
-              <Loading center>
-                {!miniThumb && <Trans>{isPreview ? 'Loading preview...' : 'Loading NFT...'}</Trans>}
-              </Loading>
-            </Flex>
-          )}
-        {!showLoading && !responseTooLarge(error) && renderElementPreview()}
-      </>
-    </StyledCardPreview>
-  );
-}
+      */

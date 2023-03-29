@@ -16,3 +16,6 @@ export { default as useGetThrottlePlotQueueQuery } from './useGetThrottlePlotQue
 export { default as useServices } from './useServices';
 export { default as useThrottleQuery } from './useThrottleQuery';
 export { default as useGetTotalHarvestersSummaryQuery } from './useGetTotalHarvestersSummaryQuery';
+
+// events
+export { default as useNFTCoinAdded } from './useNFTCoinAdded';

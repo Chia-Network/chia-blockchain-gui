@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 import CheckIcon from '../../assets/img/checkmark.svg';
+import useNFTMetadata from '../../hooks/useNFTMetadata';
 import NFTContextualActions, { NFTContextualActionTypes } from './NFTContextualActions';
 import NFTPreview from './NFTPreview';
 
@@ -69,7 +70,7 @@ export default function NFTCard(props: NFTCardProps) {
     selectedItemAction,
   } = props;
 
-  const [metadata, setMetadata] = React.useState<any>({});
+  const { metadata, isLoading } = useNFTMetadata(nft.$nftId);
 
   const navigate = useNavigate();
 
@@ -90,13 +91,15 @@ export default function NFTCard(props: NFTCardProps) {
             <CheckIcon />
           </MultipleSelectionCheckmark>
           <MultipleSelectionEmptyCheckmark className="multiple-selection-empty" />
-          <NFTPreview nft={nft} isPreview disableThumbnail={isOffer} setNFTCardMetadata={setMetadata} />
+          <NFTPreview nft={nft} isPreview disableInteractions={isOffer} />
         </CardActionArea>
         <CardActionArea onClick={() => canExpandDetails && handleClick()} component="div">
           <StyledCardContent>
             <Flex justifyContent="space-between" alignItems="center">
               <Flex gap={1} alignItems="center" minWidth={0}>
-                <Typography noWrap>{metadata?.name ?? <Trans>Title Not Available</Trans>}</Typography>
+                <Typography noWrap>
+                  {isLoading ? <Trans>Loading...</Trans> : metadata?.name ?? <Trans>Title Not Available</Trans>}
+                </Typography>
               </Flex>
               {availableActions !== NFTContextualActionTypes.None && (
                 <NFTContextualActions
