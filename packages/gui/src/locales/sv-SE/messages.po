@@ -6,17 +6,17 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: @lingui/cli\n"
 "Language: sv_SE\n"
-"Project-Id-Version: chia-blockchain\n"
+"Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-10-24 18:13\n"
+"PO-Revision-Date: 2023-03-29 23:27\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Crowdin-Project: chia-blockchain\n"
-"X-Crowdin-Project-ID: 440660\n"
-"X-Crowdin-Language: sv-SE\n"
-"X-Crowdin-File: /main/packages/gui/src/locales/en-US/messages.po\n"
-"X-Crowdin-File-ID: 1888\n"
+"X-Crowdin-Project: 1263bc1f20e1271bda78e84d2f4a6562\n"
+"X-Crowdin-Project-ID: 1\n"
+"X-Crowdin-Language: sv\n"
+"X-Crowdin-File: /[Chia-Network.chia-blockchain-gui] main/packages/gui/src/locales/en-US/messages.po\n"
+"X-Crowdin-File-ID: 1306\n"
 
 #: src/components/offers2/OfferBuilderImport.tsx:167
 msgid "(Ctrl-V) a blob"
@@ -376,11 +376,11 @@ msgstr "Bläddra"
 #: src/components/nfts/NFTBurnDialog.tsx:184
 #: src/components/nfts/NFTContextualActions.tsx:531
 msgid "Burn"
-msgstr "Bränn"
+msgstr ""
 
 #: src/components/nfts/NFTBurnDialog.tsx:72
 msgid "Burn NFT confirmation"
-msgstr "Bekräftelse för att bränna NFT"
+msgstr ""
 
 #: src/components/nfts/NFTBurnDialog.tsx:143
 msgid "Burning a non-fungible token means removing it from circulation by sending it to a verifiably un-spendable address. However, transactions leading up to the burn will remain on the blockchain ledger."
@@ -787,16 +787,16 @@ msgstr "Skapat (datum)"
 
 #: src/components/offers/NFTOfferViewer.tsx:514
 msgid "Creator Fee ({0}%)"
-msgstr "Skaparavgift ({0}%)"
+msgstr ""
 
 #: src/components/offers/NFTOfferEditor.tsx:334
 msgid "Creator Fee ({royaltyPercentage}%)"
-msgstr "Skaparavgift ({royaltyPercentage}%)"
+msgstr ""
 
 #: src/components/offers/NFTOfferEditor.tsx:337
 #: src/components/offers/NFTOfferViewer.tsx:517
 msgid "Creator royalty percentage seems high"
-msgstr "Skaparens royaltyprocent verkar hög"
+msgstr ""
 
 #: src/components/plot/add/PlotAddForm.tsx:120
 msgid "Currency code is not defined"
@@ -831,7 +831,7 @@ msgstr "Data-URL {0}"
 
 #: src/components/settings/Settings.tsx:70
 msgid "DataLayer"
-msgstr "DataLayer"
+msgstr ""
 
 #: src/components/settings/SettingsDataLayer.tsx:18
 msgid "DataLayer Services"
@@ -886,7 +886,7 @@ msgstr ""
 
 #: src/components/settings/SettingsDerivationIndex.tsx:45
 msgid "Derivation index must be greater than {index}"
-msgstr "Härledningsindex måste vara större än {index}"
+msgstr ""
 
 #: src/components/nfts/detail/NFTDetailV2.tsx:291
 msgid "Description"
@@ -976,7 +976,7 @@ msgstr "Har du redan några plottar på denna maskin? <0>Lägg till plottmapp</0
 
 #: src/components/nfts/NFTBurnDialog.tsx:134
 msgid "Do you want to burn this NFT?"
-msgstr "Vill du bränna denna NFT?"
+msgstr ""
 
 #: src/components/nfts/NFTBurnDialog.tsx:132
 msgid "Do you want to burn {count} NFTs?"
@@ -1579,15 +1579,13 @@ msgid "Install Keybase"
 msgstr "Installera Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:67
-msgid ""
-"Insufficient funds available to accept offer. Ensure that your\n"
+msgid "Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
 msgstr "Det finns inte tillräckliga medel för att acceptera erbjudandet. Se till att ditt spenderbara saldo är tillräckligt högt för att täcka erbjudandets belopp."
 
 #: src/components/offers/OfferEditor.tsx:148
 #: src/components/offers2/CreateOfferBuilder.tsx:121
-msgid ""
-"Insufficient funds available to create offer. Ensure that your\n"
+msgid "Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
 msgstr "Det finns inte tillräckliga medel för att skapa erbjudandet. Se till att ditt spenderbara saldo är tillräckligt högt för att täcka erbjudandets belopp."
 
@@ -2580,7 +2578,7 @@ msgstr "Plottar"
 
 #: src/components/plot/card/PlotCardPlotsFailedToOpen.tsx:11
 msgid "Plots Failed To Open"
-msgstr "Plottar som inte kunde öppnas"
+msgstr "Det gick inte att öppna plottar"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:21
 msgid "Plots Passed Filter"
@@ -2890,7 +2888,7 @@ msgstr ""
 
 #: src/components/nfts/NFTDetails.tsx:159
 msgid "Royalty Percentage"
-msgstr "Royaltyprocent"
+msgstr ""
 
 #: src/components/app/AppSelectMode.tsx:139
 msgid "Runs the full node"
@@ -3181,7 +3179,7 @@ msgstr ""
 
 #: src/components/offers/OfferShareDialog.tsx:935
 msgid "Spacescan.io URL"
-msgstr "Spacescan.io URL"
+msgstr ""
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:134
 msgid "Specify a value of 0 to use all available threads"
@@ -3252,7 +3250,7 @@ msgstr ""
 
 #: src/components/settings/SettingsDerivationIndex.tsx:54
 msgid "Successfully updated the derivation index. Your balances may take a while to update."
-msgstr "Härledningsindex uppdaterades. Det kan ta en stund innan dina saldon uppdateras."
+msgstr ""
 
 #: src/components/fullNode/card/FullNodeCardStatus.tsx:50
 msgid "Synced"
@@ -3331,7 +3329,7 @@ msgstr "Den minsta storlek som krävs för mainnet är k=32"
 
 #: src/components/offers/NFTOfferViewer.tsx:584
 msgid "The net proceeds include the asking price, minus any associated creator fees (if the NFT has royalty payments enabled)."
-msgstr "Nettointäkterna inkluderar det begärda priset, minus eventuella associerade skaparavgifter (om NFT:n har royaltybetalningar aktiverade)."
+msgstr ""
 
 #: src/components/fullNode/card/FullNodeCardStatus.tsx:16
 #: src/components/fullNode/card/FullNodeCardStatus.tsx:46
@@ -3503,7 +3501,7 @@ msgstr ""
 
 #: src/components/settings/ProfileView.tsx:127
 msgid "Token Standard"
-msgstr "Tokenstandard"
+msgstr ""
 
 #: src/components/dashboard/DashboardSideBar.tsx:51
 #: src/components/offers2/OfferBuilderTokensSection.tsx:113
@@ -3637,7 +3635,7 @@ msgstr "Det går inte att skapa ett erbjudande för en NFT som du inte äger."
 
 #: src/components/offers/NFTOfferEditor.tsx:647
 msgid "Unable to create an offer for an NFT with a creator royalty percentage greater than 100%"
-msgstr "Det går inte att skapa ett erbjudande för en NFT där skaparens royaltyprocent är högre än 100 %"
+msgstr ""
 
 #: src/components/offers/NFTOfferEditor.tsx:374
 msgid "Unable to create an offer where the net amount is negative"
@@ -4161,3 +4159,4 @@ msgstr "{value} av {max_value}"
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:106
 msgid "{warning}"
 msgstr "{warning}"
+
