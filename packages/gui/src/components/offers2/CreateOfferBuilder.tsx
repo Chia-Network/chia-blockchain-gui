@@ -71,13 +71,14 @@ export default function CreateOfferBuilder(props: CreateOfferBuilderProps) {
 
   const handleSubmit = useCallback(
     async (values: OfferBuilderData) => {
-      const { assetsToUnlock, ...localOffer } = await offerBuilderDataToOffer(
-        values,
+      const { assetsToUnlock, ...localOffer } = await offerBuilderDataToOffer({
+        data: values,
         wallets,
-        offers || [],
-        false,
-        true
-      );
+        offers: offers || [],
+        validateOnly: false,
+        considerNftRoyalty: true,
+        allowEmptyOfferColumn: false,
+      });
 
       const assetsRequiredToBeUnlocked = [];
       const assetsBetterToBeUnlocked = [];

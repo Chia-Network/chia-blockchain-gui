@@ -40,7 +40,14 @@ export default function useAcceptOfferHook(): [AcceptOfferHook] {
     onSuccess?: () => void
   ): Promise<void> {
     const offerBuilderData = offerToOfferBuilderData(offerSummary, true);
-    const { assetsToUnlock } = await offerBuilderDataToOffer(offerBuilderData, wallets, offers || [], false, true);
+    const { assetsToUnlock } = await offerBuilderDataToOffer({
+      data: offerBuilderData,
+      wallets,
+      offers: offers || [],
+      validateOnly: false,
+      considerNftRoyalty: true,
+      allowEmptyOfferColumn: true, // When accepting a one-sided offer, nothing is required in the offer column
+    });
 
     const assetsRequiredToBeUnlocked = [];
     const assetsBetterToBeUnlocked = [];
