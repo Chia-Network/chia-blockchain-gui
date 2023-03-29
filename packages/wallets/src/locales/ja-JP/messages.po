@@ -6,25 +6,25 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: @lingui/cli\n"
 "Language: ja_JP\n"
-"Project-Id-Version: chia-blockchain\n"
+"Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-10-24 18:16\n"
+"PO-Revision-Date: 2023-03-29 23:28\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Crowdin-Project: chia-blockchain\n"
-"X-Crowdin-Project-ID: 440660\n"
+"X-Crowdin-Project: 1263bc1f20e1271bda78e84d2f4a6562\n"
+"X-Crowdin-Project-ID: 1\n"
 "X-Crowdin-Language: ja\n"
-"X-Crowdin-File: /main/packages/wallets/src/locales/en-US/messages.po\n"
-"X-Crowdin-File-ID: 1890\n"
+"X-Crowdin-File: /[Chia-Network.chia-blockchain-gui] main/packages/wallets/src/locales/en-US/messages.po\n"
+"X-Crowdin-File-ID: 1308\n"
 
 #: src/components/WalletHistory.tsx:109
 msgid "+"
-msgstr ""
+msgstr "+"
 
 #: src/components/WalletHistory.tsx:109
 msgid "-"
-msgstr ""
+msgstr "-"
 
 #: src/components/WalletHeader.tsx:62
 msgid "Actions"
@@ -38,11 +38,11 @@ msgstr "追加"
 #: src/components/cat/WalletCATCreateExistingSimple.tsx:61
 #: src/components/cat/WalletCATCreateSimple.tsx:68
 msgid "Add Token"
-msgstr ""
+msgstr "トークンを追加"
 
 #: src/components/cat/WalletCATCreateSimple.tsx:92
 msgid "Adding {0} token"
-msgstr ""
+msgstr "{0} トークンを追加中"
 
 #: src/components/WalletReceiveAddress.tsx:57
 msgid "Address"
@@ -67,15 +67,15 @@ msgstr "未確認の取引を削除してもよろしいですか?"
 #: src/components/cat/WalletCATTAILDialog.tsx:33
 #: src/components/cat/WalletCATTAILDialog.tsx:43
 msgid "Asset Id"
-msgstr ""
+msgstr "資産 ID"
 
 #: src/constants/WalletName.ts:11
 msgid "Atomic Swap Wallet"
-msgstr ""
+msgstr "アトミック交換ウォレット"
 
 #: src/constants/WalletName.ts:14
 msgid "Authorized Payee Wallet"
-msgstr ""
+msgstr "承認済み支払先ウォレット"
 
 #: src/components/PasteMnemonic.tsx:76
 #: src/components/WalletRenameDialog.tsx:72
@@ -85,33 +85,33 @@ msgstr "キャンセル"
 #: src/components/WalletSend.tsx:106
 #: src/components/cat/WalletCATSend.tsx:116
 msgid "Cannot send chia to coloured address. Please enter a chia address."
-msgstr ""
+msgstr "チアは色付きのアドレスには送れません。チアのアドレスを入力してください。"
 
 #: src/components/WalletsSidebar.tsx:130
 msgid "Check my snapshot balance"
-msgstr ""
+msgstr "スナップショット残高を確認する"
 
 #: src/components/cat/WalletCATSelect.tsx:25
 #: src/components/create/WalletCreateList.tsx:32
 #: src/constants/WalletName.ts:23
 msgid "Chia Asset Token"
-msgstr ""
+msgstr "チア上資産トークン"
 
 #: src/components/WalletsSidebar.tsx:141
 msgid "Click here to download an older version of the wallet"
-msgstr ""
+msgstr "古いバージョンのウォレットをダウンロードするにはここをクリック"
 
 #: src/components/WalletHeader.tsx:25
 msgid "Confirmation"
-msgstr ""
+msgstr "承認状況"
 
 #: src/components/WalletHistory.tsx:170
 msgid "Confirmed"
-msgstr ""
+msgstr "承認済み"
 
 #: src/components/WalletHistory.tsx:333
 msgid "Confirmed at Height"
-msgstr ""
+msgstr "承認完了、高さ"
 
 #: src/components/WalletConnections.tsx:47
 msgid "Connection type"
@@ -127,12 +127,12 @@ msgstr ""
 
 #: src/components/cat/WalletCATSelect.tsx:32
 msgid "Create New Wallet"
-msgstr ""
+msgstr "新しいウォレットを作成"
 
 #: src/components/cat/WalletCAT.tsx:104
 #: src/components/standard/WalletStandard.tsx:46
 msgid "Create Offer"
-msgstr ""
+msgstr "オファーを作成"
 
 #: src/components/WalletSend.tsx:154
 #: src/components/cat/WalletCATSend.tsx:177
@@ -145,11 +145,11 @@ msgstr ""
 
 #: src/components/cat/WalletCATCreateSimple.tsx:100
 msgid "Custom"
-msgstr ""
+msgstr "カスタム"
 
 #: src/constants/WalletName.ts:29
 msgid "DID Wallet"
-msgstr ""
+msgstr "DID ウォレット"
 
 #: src/constants/WalletName.ts:38
 msgid "Datalayer Wallet"
@@ -165,7 +165,7 @@ msgstr "削除"
 
 #: src/components/WalletHeader.tsx:68
 msgid "Delete Unconfirmed Transactions"
-msgstr ""
+msgstr "未承認の取引を削除する"
 
 #: src/components/card/WalletCardTotalBalance.tsx:68
 msgid "Derivation Index: {0}"
@@ -173,7 +173,7 @@ msgstr ""
 
 #: src/components/create/WalletCreateList.tsx:39
 msgid "Distributed Identity"
-msgstr ""
+msgstr "分散型アイデンティティ"
 
 #: src/components/WalletImport.tsx:158
 msgid "Enter the {mnemonicWordCount} word mnemonic that you have saved in order to restore your Chia wallet."
@@ -196,7 +196,7 @@ msgstr "手数料"
 
 #: src/components/WalletReceiveAddress.tsx:32
 msgid "HD or Hierarchical Deterministic keys are a type of public key/private key scheme where one private key can have a nearly infinite number of different public keys (and therefore wallet receive addresses) that will all ultimately come back to and be spendable by a single private key."
-msgstr ""
+msgstr "階層的決定性鍵、または HD 鍵とは、一つの秘密鍵に無数の公開鍵 (= ウォレットの受け取りアドレス) を対応させられる公開・秘密鍵の生成方法です。どの公開鍵への入金も、最終的には同じ秘密鍵に着金し、同じ秘密鍵で支払うことができます。"
 
 #: src/components/WalletConnections.tsx:22
 msgid "IP address"
@@ -204,11 +204,11 @@ msgstr "IP アドレス"
 
 #: src/components/WalletSendTransactionResultDialog.tsx:41
 msgid "If you would like to speed up the transaction, please delete unconfirmed transactions and retry with a higher fee."
-msgstr ""
+msgstr "取引をより速く完了させたい場合は、未承認の取引を削除し、手数料を上げて再試行してください。"
 
 #: src/components/PasteMnemonic.tsx:79
 msgid "Import"
-msgstr ""
+msgstr "インポートする"
 
 #: src/components/WalletImport.tsx:141
 msgid "Import Wallet from Mnemonics"
@@ -224,25 +224,25 @@ msgstr "入金"
 
 #: src/components/WalletConnections.tsx:71
 msgid "List of connections is empty"
-msgstr ""
+msgstr "接続がありません"
 
 #: src/components/WalletsManageTokens.tsx:133
 msgid "Manage token list"
-msgstr ""
+msgstr "トークンリストの管理"
 
 #: src/components/WalletHistory.tsx:174
 #: src/components/WalletSend.tsx:211
 #: src/components/cat/WalletCATSend.tsx:235
 msgid "Memo"
-msgstr ""
+msgstr "メモ"
 
 #: src/components/WalletHistory.tsx:338
 msgid "Memos"
-msgstr ""
+msgstr "メモ"
 
 #: src/components/WalletSendTransactionResultDialog.tsx:16
 msgid "Mempool Full"
-msgstr ""
+msgstr "Mempool に空きがありません"
 
 #: src/components/WalletConnections.tsx:40
 msgid "MiB Up/Down"
@@ -254,11 +254,11 @@ msgstr ""
 
 #: src/constants/WalletName.ts:35
 msgid "NFT Wallet"
-msgstr ""
+msgstr "NFT ウォレット"
 
 #: src/components/cat/WalletCATCreateExistingSimple.tsx:68
 msgid "Name"
-msgstr ""
+msgstr "名称"
 
 #: src/components/WalletReceiveAddress.tsx:45
 msgid "New Address"
@@ -300,7 +300,7 @@ msgstr "同期されていません"
 
 #: src/components/cat/WalletCATTAILDialog.tsx:66
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: src/components/WalletHistory.tsx:176
 msgid "Offer Accepted"
@@ -441,7 +441,7 @@ msgstr "送る"
 
 #: src/components/cat/WalletCAT.tsx:96
 msgid "Show Asset Id"
-msgstr ""
+msgstr "資産 ID を表示"
 
 #: src/components/card/WalletCardSpendableBalance.tsx:41
 msgid "Spendable Balance"
@@ -449,15 +449,15 @@ msgstr "支払い可能額"
 
 #: src/constants/WalletName.ts:5
 msgid "Standard Wallet"
-msgstr ""
+msgstr "標準ウォレット"
 
 #: src/components/WalletSendTransactionResultDialog.tsx:12
 msgid "Success"
-msgstr ""
+msgstr "成功しました"
 
 #: src/components/WalletHeader.tsx:46
 msgid "Summary"
-msgstr ""
+msgstr "概要"
 
 #: src/components/WalletStatus.tsx:70
 msgid "Synced"
@@ -517,7 +517,7 @@ msgstr ""
 
 #: src/components/WalletsSidebar.tsx:187
 msgid "Tokens"
-msgstr ""
+msgstr "トークン"
 
 #: src/components/card/WalletCardTotalBalance.tsx:60
 msgid "Total Balance"
@@ -529,7 +529,7 @@ msgstr ""
 
 #: src/components/WalletHistory.tsx:258
 msgid "Transactions"
-msgstr ""
+msgstr "取引"
 
 #: src/components/WalletConnections.tsx:67
 msgid "Wallet Connections"
@@ -571,3 +571,4 @@ msgstr ""
 #: src/components/WalletImport.tsx:72
 msgid "Your pasted list does not include {mnemonicWordCount} valid mnemonic words."
 msgstr ""
+
