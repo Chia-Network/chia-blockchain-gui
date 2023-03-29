@@ -6,17 +6,17 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: @lingui/cli\n"
 "Language: pt_BR\n"
-"Project-Id-Version: chia-blockchain\n"
+"Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-10-24 18:17\n"
+"PO-Revision-Date: 2023-03-29 23:28\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Crowdin-Project: chia-blockchain\n"
-"X-Crowdin-Project-ID: 440660\n"
+"X-Crowdin-Project: 1263bc1f20e1271bda78e84d2f4a6562\n"
+"X-Crowdin-Project-ID: 1\n"
 "X-Crowdin-Language: pt-BR\n"
-"X-Crowdin-File: /main/packages/wallets/src/locales/en-US/messages.po\n"
-"X-Crowdin-File-ID: 1890\n"
+"X-Crowdin-File: /[Chia-Network.chia-blockchain-gui] main/packages/wallets/src/locales/en-US/messages.po\n"
+"X-Crowdin-File-ID: 1308\n"
 
 #: src/components/WalletHistory.tsx:109
 msgid "+"
@@ -42,7 +42,7 @@ msgstr "Adicionar token"
 
 #: src/components/cat/WalletCATCreateSimple.tsx:92
 msgid "Adding {0} token"
-msgstr ""
+msgstr "Adicionando {0} token"
 
 #: src/components/WalletReceiveAddress.tsx:57
 msgid "Address"
@@ -111,7 +111,7 @@ msgstr "Confirmado"
 
 #: src/components/WalletHistory.tsx:333
 msgid "Confirmed at Height"
-msgstr ""
+msgstr "Confirmado na altura"
 
 #: src/components/WalletConnections.tsx:47
 msgid "Connection type"
@@ -132,7 +132,7 @@ msgstr "Criar nova carteira"
 #: src/components/cat/WalletCAT.tsx:104
 #: src/components/standard/WalletStandard.tsx:46
 msgid "Create Offer"
-msgstr ""
+msgstr "Criar oferta"
 
 #: src/components/WalletSend.tsx:154
 #: src/components/cat/WalletCATSend.tsx:177
@@ -169,7 +169,7 @@ msgstr "Apagar transações não confirmadas"
 
 #: src/components/card/WalletCardTotalBalance.tsx:68
 msgid "Derivation Index: {0}"
-msgstr ""
+msgstr "Índice de Derivação: {0}"
 
 #: src/components/create/WalletCreateList.tsx:39
 msgid "Distributed Identity"
@@ -224,11 +224,11 @@ msgstr "Entrada"
 
 #: src/components/WalletConnections.tsx:71
 msgid "List of connections is empty"
-msgstr ""
+msgstr "A lista de conexões está vazia"
 
 #: src/components/WalletsManageTokens.tsx:133
 msgid "Manage token list"
-msgstr ""
+msgstr "Gerenciar lista de tokens"
 
 #: src/components/WalletHistory.tsx:174
 #: src/components/WalletSend.tsx:211
@@ -258,7 +258,7 @@ msgstr ""
 
 #: src/components/cat/WalletCATCreateExistingSimple.tsx:68
 msgid "Name"
-msgstr ""
+msgstr "Nome"
 
 #: src/components/WalletReceiveAddress.tsx:45
 msgid "New Address"
@@ -304,7 +304,7 @@ msgstr ""
 
 #: src/components/WalletHistory.tsx:176
 msgid "Offer Accepted"
-msgstr ""
+msgstr "Oferta aceita"
 
 #: src/components/WalletSend.tsx:157
 #: src/components/cat/WalletCATSend.tsx:180
@@ -317,7 +317,7 @@ msgstr "Enviado"
 
 #: src/components/WalletImport.tsx:234
 msgid "Paste Mnemonic"
-msgstr ""
+msgstr "Colar Mnemônico"
 
 #: src/components/PasteMnemonic.tsx:53
 msgid "Paste Mnemonic ({0} words)"
@@ -409,12 +409,12 @@ msgstr ""
 
 #: src/components/cat/WalletCATSelect.tsx:39
 msgid "Recovery Wallet"
-msgstr ""
+msgstr "Recuperar a carteira"
 
 #: src/components/WalletRenameDialog.tsx:61
 #: src/components/cat/WalletCAT.tsx:87
 msgid "Rename Wallet"
-msgstr ""
+msgstr "Recuperar a carteira"
 
 #: src/components/WalletHistory.tsx:175
 msgid "Retire"
@@ -449,15 +449,15 @@ msgstr "Saldo disponível"
 
 #: src/constants/WalletName.ts:5
 msgid "Standard Wallet"
-msgstr ""
+msgstr "Carteira Padrão"
 
 #: src/components/WalletSendTransactionResultDialog.tsx:12
 msgid "Success"
-msgstr ""
+msgstr "Sucesso"
 
 #: src/components/WalletHeader.tsx:46
 msgid "Summary"
-msgstr ""
+msgstr "Resumo"
 
 #: src/components/WalletStatus.tsx:70
 msgid "Synced"
@@ -477,11 +477,11 @@ msgstr ""
 
 #: src/components/WalletBadge.tsx:26
 msgid "This access token is verified"
-msgstr ""
+msgstr "Este token de acesso é verificado"
 
 #: src/components/WalletHistory.tsx:156
 msgid "This is not a valid address for sending funds to"
-msgstr ""
+msgstr "Este não é um endereço válido para o envio de fundos para"
 
 #: src/components/standard/WalletStandardCards.tsx:23
 msgid "This is the amount of Chia that you can currently use to make transactions. It does not include pending farming rewards, pending incoming transactions, and Chia that you have just spent but is not yet in the blockchain."
@@ -513,7 +513,7 @@ msgstr ""
 
 #: src/components/cat/WalletCATCreateSimple.tsx:42
 msgid "Token has empty name"
-msgstr ""
+msgstr "O token tem nome vazio"
 
 #: src/components/WalletsSidebar.tsx:187
 msgid "Tokens"
@@ -529,7 +529,7 @@ msgstr ""
 
 #: src/components/WalletHistory.tsx:258
 msgid "Transactions"
-msgstr ""
+msgstr "Transações"
 
 #: src/components/WalletConnections.tsx:67
 msgid "Wallet Connections"
@@ -546,7 +546,7 @@ msgstr "A carteira não existe"
 
 #: src/components/Wallet.tsx:37
 msgid "Wallet with type {0} not supported"
-msgstr ""
+msgstr "Carteira com tipo {0} não suportada"
 
 #: src/components/Wallet.tsx:22
 msgid "Wallet {walletId} not found"
@@ -554,7 +554,7 @@ msgstr ""
 
 #: src/components/WalletsSidebar.tsx:138
 msgid "Want to see your old balance for yourself?"
-msgstr ""
+msgstr "Quer ver seu saldo antigo para você mesmo?"
 
 #: src/components/WalletsSidebar.tsx:110
 msgid "We've made an upgrade to the CAT standard which requires all CATs to be re-issued. You will be airdropped your new tokens as they are re-issued by the original issuers. The airdropped tokens will be based on the balance as of block height:<0/><1/><2/>(Approximate time: July 26th, 2022 @ 17:00 UTC)"
@@ -571,3 +571,4 @@ msgstr ""
 #: src/components/WalletImport.tsx:72
 msgid "Your pasted list does not include {mnemonicWordCount} valid mnemonic words."
 msgstr ""
+
