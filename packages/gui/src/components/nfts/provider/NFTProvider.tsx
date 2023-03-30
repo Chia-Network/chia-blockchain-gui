@@ -6,7 +6,7 @@ import {
   useNFTCoinAdded,
   useGetLoggedInFingerprintQuery,
 } from '@chia-network/api-react';
-import { uniqBy } from 'lodash';
+import { uniqBy, sortBy } from 'lodash';
 import React, { useMemo, useEffect, type ReactNode } from 'react';
 
 import type Metadata from '../../../@types/Metadata';
@@ -109,18 +109,18 @@ export default function NFTProvider(props: NFTProviderProps) {
     const page = nftsByWallet[walletId];
 
     setNfts((prevNfts) => {
-      const updatedNfts = uniqBy(
+      const uniqueNfts = uniqBy(
         [...prevNfts, ...page.map((nft: NFTInfo) => ({ nft, metadata: undefined, isLoading: false }))],
         (nftItem) => nftItem.nft.$nftId
       );
 
-      return updatedNfts;
+      return sortBy(uniqueNfts, (nftItem) => nftItem.nft.confirmationHeight);
     }, signal);
 
     setLoaded((prevLoaded) => prevLoaded + page.length, signal);
 
-    // try to get metadata for each NFT
-    await Promise.all(page.map((nft: NFTInfo) => metadataAdd(() => fetchMetadata(nft, signal))));
+    // try to get metadata for each NFT without await (we can show data without metadata)
+    page.map((nft: NFTInfo) => metadataAdd(() => fetchMetadata(nft, signal)));
 
     return nftsByWallet[walletId];
   }
