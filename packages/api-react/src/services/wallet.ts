@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign -- This file use Immer */
 import { CAT, DID, Farmer, NFT, Pool, WalletService, WalletType, toBech32m } from '@chia-network/api';
-import type { NFTInfo, PlotNFT, PlotNFTExternal, Transaction, Wallet, WalletBalance } from '@chia-network/api';
+import type { NFTInfo, Transaction, Wallet, WalletBalance } from '@chia-network/api';
 import BigNumber from 'bignumber.js';
 
 import api, { baseQuery } from '../api';
@@ -74,7 +74,7 @@ export const walletApi = apiWithTag.injectEndpoints({
             data: await Promise.all(
               wallets.map(async (wallet: Wallet) => {
                 const { type } = wallet;
-                const meta = {};
+                const meta: any = {};
                 if (type === WalletType.CAT) {
                   // get CAT asset
                   const { data: assetData, error: assetError } = await fetchWithBQ({
@@ -322,7 +322,7 @@ export const walletApi = apiWithTag.injectEndpoints({
                     return false;
                   }
 
-                  const validSentTo = trx.sentTo.find((record: [string, number, string | null]) => {
+                  const validSentTo = trx.sentTo.find((record) => {
                     const [, , error] = record;
 
                     if (error === 'NO_TRANSACTIONS_WHILE_SYNCING') {
@@ -351,7 +351,7 @@ export const walletApi = apiWithTag.injectEndpoints({
                     command: 'onTransactionUpdate',
                     service: WalletService,
                     args: [
-                      (data) => {
+                      (data: any) => {
                         const {
                           additionalData: { transaction },
                         } = data;
@@ -361,8 +361,7 @@ export const walletApi = apiWithTag.injectEndpoints({
                       },
                     ],
                   },
-                  queryApi,
-                  {}
+                  queryApi
                 );
               }
 
@@ -682,7 +681,7 @@ export const walletApi = apiWithTag.injectEndpoints({
       transformResponse: (response) => response.catList,
       providesTags(result) {
         return result
-          ? [...result.map(({ id }) => ({ type: 'CATs', id } as const)), { type: 'CATs', id: 'LIST' }]
+          ? [...result.map(({ assetId }) => ({ type: 'CATs', id: assetId } as const)), { type: 'CATs', id: 'LIST' }]
           : [{ type: 'CATs', id: 'LIST' }];
       },
     }),
@@ -763,7 +762,7 @@ export const walletApi = apiWithTag.injectEndpoints({
                     command: 'onTransactionUpdate',
                     service: WalletService,
                     args: [
-                      (data) => {
+                      (data: any) => {
                         const {
                           additionalData: { transaction },
                         } = data;
@@ -773,8 +772,7 @@ export const walletApi = apiWithTag.injectEndpoints({
                       },
                     ],
                   },
-                  queryApi,
-                  {}
+                  queryApi
                 );
               }
 
@@ -964,7 +962,7 @@ export const walletApi = apiWithTag.injectEndpoints({
     getPlotNFTs: build.query<Object, undefined>({
       async queryFn(_args, { signal }, _extraOptions, fetchWithBQ) {
         try {
-          const [wallets, poolStates] = await Promise.all<Wallet[], PoolState[]>([
+          const [wallets, poolStates] = await Promise.all([
             (async () => {
               const { data, error } = await fetchWithBQ({
                 command: 'getWallets',
@@ -1005,11 +1003,11 @@ export const walletApi = apiWithTag.injectEndpoints({
           }
 
           // filter pool wallets
-          const poolWallets = wallets?.filter((wallet) => wallet.type === WalletType.POOLING_WALLET) ?? [];
+          const poolWallets = wallets?.filter((wallet: any) => wallet.type === WalletType.POOLING_WALLET) ?? [];
 
           const [poolWalletStates, walletBalances] = await Promise.all([
-            await Promise.all<PoolWalletStatus>(
-              poolWallets.map(async (wallet) => {
+            await Promise.all(
+              poolWallets.map(async (wallet: any) => {
                 const { data, error } = await fetchWithBQ({
                   command: 'getPwStatus',
                   service: WalletService,
@@ -1027,7 +1025,7 @@ export const walletApi = apiWithTag.injectEndpoints({
               })
             ),
             await Promise.all<WalletBalance>(
-              poolWallets.map(async (wallet) => {
+              poolWallets.map(async (wallet: any) => {
                 const { data, error } = await fetchWithBQ({
                   command: 'getWalletBalance',
                   service: WalletService,
@@ -1048,10 +1046,10 @@ export const walletApi = apiWithTag.injectEndpoints({
           }
 
           // combine poolState and poolWalletState
-          const nfts: PlotNFT[] = [];
-          const external: PlotNFTExternal[] = [];
+          const nfts: any = [];
+          const external: any = [];
 
-          poolStates.forEach((poolStateItem) => {
+          poolStates.forEach((poolStateItem: any) => {
             const poolWalletStatus = poolWalletStates.find(
               (item) => item.launcherId === poolStateItem.poolConfig.launcherId
             );
@@ -1148,7 +1146,7 @@ export const walletApi = apiWithTag.injectEndpoints({
             throw new Error('Wallets are not defined');
           }
 
-          const didWallets = wallets.filter((wallet) => wallet.type === WalletType.DECENTRALIZED_ID);
+          const didWallets = wallets.filter((wallet: any) => wallet.type === WalletType.DECENTRALIZED_ID);
 
           return {
             data: await Promise.all(
@@ -1318,7 +1316,7 @@ export const walletApi = apiWithTag.injectEndpoints({
               }
 
               // Add bech32m-encoded NFT identifier
-              const updatedNFTs = nftsData.nftList.map((nft) => ({
+              const updatedNFTs = nftsData.nftList.map((nft: any) => ({
                 ...nft,
                 walletId,
                 $nftId: toBech32m(nft.launcherId, 'nft'),
@@ -1329,7 +1327,7 @@ export const walletApi = apiWithTag.injectEndpoints({
               };
             })
           );
-          const nftsByWalletId: { [walletId: number]: NFTInfo[] } = {};
+          const nftsByWalletId: { [walletId: string]: NFTInfo[] } = {};
           nftData.forEach((entry) => {
             Object.entries(entry).forEach(([walletId, nfts]) => {
               nftsByWalletId[walletId] = nfts;
@@ -1432,7 +1430,7 @@ export const walletApi = apiWithTag.injectEndpoints({
     }),
 
     transferNFT: mutation(build, NFT, 'transferNft', {
-      invalidatesTags: (result, _error, { launcherId }) => (result ? [{ type: 'NFTInfo', id: launcherId }] : []),
+      invalidatesTags: (result, _error) => (result ? [{ type: 'NFTInfo', id: 'LIST' }] : []),
     }),
 
     setNFTDID: mutation(build, NFT, 'setNftDid', {

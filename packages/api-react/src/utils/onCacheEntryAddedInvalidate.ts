@@ -1,27 +1,25 @@
-import { type ServiceClassWithoutClient } from '@chia-network/api';
+import { type ServiceClassWithoutClient, type ServiceClassWithoutClientMethods } from '@chia-network/api';
 
 import { baseQuery } from '../api';
 
 type BaseQuery = typeof baseQuery;
 
-// type Command = keyof InstanceType<ServiceClassWithoutClient>;
-
 type Invalidate =
   | {
       service: ServiceClassWithoutClient;
-      command: string;
+      command: ServiceClassWithoutClientMethods;
       endpoint: string | (() => Object);
       skip?: (draft: any, data: any, args: any) => boolean;
     }
   | {
       service: ServiceClassWithoutClient;
-      command: string;
+      command: ServiceClassWithoutClientMethods;
       onUpdate: (draft: any, data: any, args: any) => void;
       skip?: (draft: any, data: any, args: any) => boolean;
     };
 
 export default function onCacheEntryAddedInvalidate(rtkQuery: BaseQuery, api: any, invalidates: Invalidate[]) {
-  return async (args: any, mutationApi) => {
+  return async (args: any, mutationApi: any) => {
     const { cacheDataLoaded, cacheEntryRemoved, updateCachedData, dispatch } = mutationApi;
     const unsubscribes: Function[] = [];
     try {
@@ -71,8 +69,7 @@ export default function onCacheEntryAddedInvalidate(rtkQuery: BaseQuery, api: an
                 },
               ],
             },
-            mutationApi,
-            {}
+            mutationApi
           );
 
           if (response.data) {
