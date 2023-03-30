@@ -1,5 +1,4 @@
 import Client from '@chia-network/api';
-import { BaseQueryApi } from '@reduxjs/toolkit/dist/query/baseQueryTypes';
 
 import type ServiceConstructor from './@types/ServiceConstructor';
 import { selectApiConfig } from './slices/api';
@@ -8,7 +7,7 @@ const instances = new Map<ServiceConstructor, InstanceType<ServiceConstructor>>(
 
 async function getInstance<TService extends ServiceConstructor>(
   service: TService,
-  api: BaseQueryApi
+  api: any
 ): Promise<InstanceType<TService>> {
   if (!instances.has(service)) {
     if (service.isClient) {
@@ -34,16 +33,17 @@ async function getInstance<TService extends ServiceConstructor>(
 const chiaLazyBaseQuery = async <
   TService extends ServiceConstructor,
   TMethod extends keyof InstanceType<TService> & string,
-  TParameter extends Parameters<InstanceType<TService>[TMethod]>[0],
+  // TParameter extends Parameters<InstanceType<TService>[TMethod]>[0],
   TResult extends ReturnType<InstanceType<TService>[TMethod]>
 >(
   options: {
     service: TService;
     command: TMethod;
-    args?: TParameter;
+    // args?: TParameter;
+    args?: any;
     mockResponse?: any;
   },
-  api: BaseQueryApi
+  api: any
 ) => {
   const { service, command, args = [], mockResponse } = options;
 

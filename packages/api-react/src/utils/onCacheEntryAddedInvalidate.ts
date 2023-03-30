@@ -33,7 +33,7 @@ export default function onCacheEntryAddedInvalidate(rtkQuery: BaseQuery, api: an
 
           const response = await rtkQuery(
             {
-              command,
+              command: command as any,
               service,
               args: [
                 async (data: any) => {

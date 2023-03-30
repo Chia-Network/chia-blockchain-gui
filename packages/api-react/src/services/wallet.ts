@@ -286,11 +286,7 @@ export const walletApi = apiWithTag.injectEndpoints({
       }
     >({
       async queryFn(args, queryApi, _extraOptions, fetchWithBQ) {
-        let subscribeResponse:
-          | {
-              data: Function;
-            }
-          | undefined;
+        let subscribeResponse: any;
 
         function unsubscribe() {
           if (subscribeResponse) {
@@ -714,11 +710,7 @@ export const walletApi = apiWithTag.injectEndpoints({
       }
     >({
       async queryFn(args, queryApi, _extraOptions, fetchWithBQ) {
-        let subscribeResponse:
-          | {
-              data: Function;
-            }
-          | undefined;
+        let subscribeResponse: any;
 
         function unsubscribe() {
           if (subscribeResponse) {
