@@ -4,11 +4,14 @@ import {
   useLazyGetNFTsQuery,
   useLazyGetNFTsCountQuery,
   useNFTCoinAdded,
+  useGetLoggedInFingerprintQuery,
 } from '@chia-network/api-react';
-import React, { useMemo, useState, useEffect, type ReactNode } from 'react';
+import { uniqBy } from 'lodash';
+import React, { useMemo, useEffect, type ReactNode } from 'react';
 
 import type Metadata from '../../../@types/Metadata';
 import useCache from '../../../hooks/useCache';
+import useStateAbort from '../../../hooks/useStateAbort';
 import compareChecksums from '../../../util/compareChecksums';
 import limit from '../../../util/limit';
 import NFTProviderContext from './NFTProviderContext';
@@ -52,22 +55,24 @@ export type NFTProviderProps = {
 export default function NFTProvider(props: NFTProviderProps) {
   const { children, pageSize = 10, concurrency = 5 } = props;
 
+  const { data: fingerprint, isLoading: isLoadingFingerprint } = useGetLoggedInFingerprintQuery();
+
   // number of loaded NFTs
-  const [loaded, setLoaded] = useState(0);
+  const [loaded, setLoaded] = useStateAbort(0);
   // total number of NFTs
-  const [total, setTotal] = useState(0);
+  const [total, setTotal] = useStateAbort(0);
   // list of NFTs
-  const [nfts, setNfts] = useState<NFTItem[]>([]);
+  const [nfts, setNfts] = useStateAbort<NFTItem[]>([]);
   // status of loading
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<Error | undefined>();
+  const [isLoading, setIsLoading] = useStateAbort(false);
+  const [error, setError] = useStateAbort<Error | undefined>(undefined);
   const cache = useCache();
 
   const [getNFTs] = useLazyGetNFTsQuery();
   const [getNFTsCount] = useLazyGetNFTsCountQuery();
   const { wallets: nftWallets, isLoading: isLoadingWallets } = useGetNFTWallets();
 
-  const [, setChanges] = useState<Change[]>([]);
+  const [, setChanges] = useStateAbort<Change[]>([]);
 
   const metadataAdd = limit(concurrency);
 
@@ -79,48 +84,61 @@ export default function NFTProvider(props: NFTProviderProps) {
     setChanges((prevChanges) => [...prevChanges, { type: 'add', nftId }]);
   });
 
-  async function fetchNFTsCount(walletId: number) {
+  async function fetchNFTsCount(walletId: number, signal?: AbortSignal) {
     const { total: count } = await getNFTsCount({
       walletIds: [walletId],
+      signal,
     }).unwrap();
 
     return count;
   }
 
-  async function fetchNFTsPage(walletId: number, pageIndex: number) {
+  async function fetchNFTsPage(walletId: number, pageIndex: number, signal: AbortSignal) {
     const startIndex = pageIndex * pageSize;
     const nftsByWallet = await getNFTs({
       walletIds: [walletId],
       startIndex,
       num: pageSize,
+      signal,
     }).unwrap();
+
+    if (signal?.aborted) {
+      throw new Error('Aborted');
+    }
 
     const page = nftsByWallet[walletId];
 
-    setNfts((prevNfts) => [
-      ...prevNfts,
-      ...page.map((nft: NFTInfo) => ({ nft, metadata: undefined, isLoading: false })),
-    ]);
-    setLoaded((prevLoaded) => prevLoaded + page.length);
+    setNfts((prevNfts) => {
+      const updatedNfts = uniqBy(
+        [...prevNfts, ...page.map((nft: NFTInfo) => ({ nft, metadata: undefined, isLoading: false }))],
+        (nftItem) => nftItem.nft.$nftId
+      );
+
+      return updatedNfts;
+    }, signal);
+
+    setLoaded((prevLoaded) => prevLoaded + page.length, signal);
 
     // try to get metadata for each NFT
-    await Promise.all(page.map((nft: NFTInfo) => metadataAdd(() => fetchMetadata(nft))));
+    await Promise.all(page.map((nft: NFTInfo) => metadataAdd(() => fetchMetadata(nft, signal))));
 
     return nftsByWallet[walletId];
   }
 
-  async function updateNft(id: string, data: Partial<NFTItem>) {
-    setNfts((prevNfts) =>
-      prevNfts.map((nftItem) => {
-        if (nftItem.nft.$nftId === id) {
-          return {
-            ...nftItem,
-            ...data,
-          };
-        }
+  async function updateNft(id: string, data: Partial<NFTItem>, signal: AbortSignal) {
+    setNfts(
+      (prevNfts) =>
+        prevNfts.map((nftItem) => {
+          if (nftItem.nft.$nftId === id) {
+            return {
+              ...nftItem,
+              ...data,
+            };
+          }
 
-        return nftItem;
-      })
+          return nftItem;
+        }),
+      signal
     );
   }
 
@@ -134,7 +152,7 @@ export default function NFTProvider(props: NFTProviderProps) {
     return parseMetadataFile(content, headers);
   }
 
-  async function fetchMetadata(nft: NFTInfo) {
+  async function fetchMetadata(nft: NFTInfo, signal: AbortSignal) {
     const { $nftId: nftId, metadataUris = [], metadataHash } = nft;
 
     const [firstUri] = metadataUris;
@@ -149,46 +167,63 @@ export default function NFTProvider(props: NFTProviderProps) {
 
     const promise = fetchAndProcessMetadata(firstUri, metadataHash);
 
-    updateNft(nftId, {
-      metadata: undefined,
-      metadataPromise: promise,
-    });
+    updateNft(
+      nftId,
+      {
+        metadata: undefined,
+        metadataPromise: promise,
+      },
+      signal
+    );
 
     promise.then(
       (metadata) => {
-        updateNft(nftId, {
-          metadata,
-          metadataPromise: undefined,
-        });
+        updateNft(
+          nftId,
+          {
+            metadata,
+            metadataPromise: undefined,
+          },
+          signal
+        );
       },
       () => {
-        updateNft(nftId, {
-          metadataPromise: undefined,
-        });
+        updateNft(
+          nftId,
+          {
+            metadataPromise: undefined,
+          },
+          signal
+        );
       }
     );
 
     return promise;
   }
 
-  async function fetchData() {
+  async function fetchData(options: { signal: AbortSignal }) {
+    const { signal } = options;
     if (isLoading) {
       return;
     }
 
-    setIsLoading(true);
-    setError(undefined);
-    setChanges([]);
+    setIsLoading(true, signal);
+    setError(undefined, signal);
+    setChanges([], signal);
 
     const add = limit(concurrency);
 
     async function processWallet(wallet: Wallet) {
       const { id: walletId } = wallet;
-      const count = await fetchNFTsCount(walletId);
-      setTotal((prevTotal) => prevTotal + count);
+      const count = await fetchNFTsCount(walletId, signal);
+      if (signal?.aborted) {
+        return;
+      }
+
+      setTotal((prevTotal) => prevTotal + count, signal);
       const numPages = Math.ceil(count / pageSize);
 
-      const fetchLimited = (pageIndex: number) => add(() => fetchNFTsPage(walletId, pageIndex));
+      const fetchLimited = (pageIndex: number) => add(() => fetchNFTsPage(walletId, pageIndex, signal));
 
       const pageIndices = [];
       for (let i = 0; i < numPages; i++) {
@@ -198,16 +233,20 @@ export default function NFTProvider(props: NFTProviderProps) {
       try {
         await Promise.all(pageIndices.map(fetchLimited));
       } catch (err) {
-        setError(err as Error);
+        if (signal?.aborted) {
+          return;
+        }
+
+        setError(err as Error, signal);
       }
     }
 
     try {
       await Promise.all(nftWallets.map(processWallet));
     } catch (err) {
-      setError(err as Error);
+      setError(err as Error, signal);
     } finally {
-      setIsLoading(false);
+      setIsLoading(false, signal);
     }
 
     // if changes changed while we were fetching, fetch again
@@ -217,24 +256,45 @@ export default function NFTProvider(props: NFTProviderProps) {
       }
 
       return [];
-    });
+    }, signal);
+  }
+
+  function reset() {
+    setChanges([]);
+    setNfts([]);
+    setTotal(0);
+    setLoaded(0);
+    setIsLoading(false);
+    setError(undefined);
   }
 
   useEffect(() => {
-    if (!isLoadingWallets && nftWallets) {
-      fetchData();
+    if (!isLoadingWallets && nftWallets && fingerprint) {
+      const abortController = new AbortController();
+      fetchData({
+        signal: abortController.signal,
+      });
+
+      return () => {
+        abortController.abort();
+        reset();
+      };
     }
-  }, [isLoadingWallets, nftWallets]); // eslint-disable-line react-hooks/exhaustive-deps -- we want to fetch data only once
+
+    return undefined;
+  }, [isLoadingWallets, nftWallets, fingerprint]); // eslint-disable-line react-hooks/exhaustive-deps -- we want to fetch data only once
+
+  const isLoadingNFTProvider = isLoading || isLoadingFingerprint;
 
   const context = useMemo(
     () => ({
       nfts,
       count: total,
       loaded,
-      isLoading,
+      isLoading: isLoadingNFTProvider,
       error,
     }),
-    [nfts, total, loaded, isLoading, error]
+    [nfts, total, loaded, isLoadingNFTProvider, error]
   );
 
   return <NFTProviderContext.Provider value={context}>{children}</NFTProviderContext.Provider>;
