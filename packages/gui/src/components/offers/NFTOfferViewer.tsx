@@ -1,11 +1,5 @@
-import type { Wallet } from '@chia-network/api';
 import { OfferSummaryRecord, OfferTradeRecord } from '@chia-network/api';
-import {
-  useCheckOfferValidityMutation,
-  useGetNFTInfoQuery,
-  useGetNFTWallets,
-  useGetWalletsQuery,
-} from '@chia-network/api-react';
+import { useCheckOfferValidityMutation, useGetNFTInfoQuery, useGetWalletsQuery } from '@chia-network/api-react';
 import {
   Back,
   Button,
@@ -35,7 +29,7 @@ import styled from 'styled-components';
 
 import useAcceptOfferHook from '../../hooks/useAcceptOfferHook';
 import useAssetIdName from '../../hooks/useAssetIdName';
-import useFetchNFTs from '../../hooks/useFetchNFTs';
+import useNFTs from '../../hooks/useNFTs';
 import useWalletOffers from '../../hooks/useWalletOffers';
 import { convertRoyaltyToPercentage, launcherIdToNFTId } from '../../util/nfts';
 import { stripHexPrefix } from '../../util/utils';
@@ -255,8 +249,7 @@ export function NFTOfferSummary(props: NFTOfferSummaryProps) {
     overrideNFTSellerAmount,
   } = props;
   const { lookupByAssetId, isLoading: isLoadingAssetIdName } = useAssetIdName();
-  const { wallets: nftWallets } = useGetNFTWallets();
-  const { nfts, isLoading: isLoadingNFTs } = useFetchNFTs(nftWallets.map((wallet: Wallet) => wallet.id));
+  const { nfts, isLoading: isLoadingNFTs } = useNFTs();
   const makerEntries: [string, number][] = Object.entries(summary.offered);
   const takerEntries: [string, number][] = Object.entries(summary.requested);
   const [takerUnknownAssets, makerUnknownAssets] = useMemo(() => {

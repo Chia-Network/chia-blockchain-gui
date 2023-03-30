@@ -46,7 +46,7 @@ export type UseNFTsProps = {
   hideSensitiveContent?: boolean | 'false' | 'true';
 };
 
-export default function useNFTs(props: UseNFTsProps) {
+export default function useNFTs(props: UseNFTsProps = {}) {
   const { walletId = [], type, search = '', visible, hideSensitiveContent = false } = props;
   const { nfts, isLoading, error } = useNFTProvider();
   const [isNFTHidden] = useHiddenNFTs();

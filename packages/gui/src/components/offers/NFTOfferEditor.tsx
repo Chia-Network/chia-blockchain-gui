@@ -1,11 +1,6 @@
 import { WalletType } from '@chia-network/api';
-import type { NFTInfo, Wallet } from '@chia-network/api';
-import {
-  useCreateOfferForIdsMutation,
-  useGetNFTInfoQuery,
-  useGetNFTWallets,
-  useGetWalletBalanceQuery,
-} from '@chia-network/api-react';
+import type { NFTInfo } from '@chia-network/api';
+import { useCreateOfferForIdsMutation, useGetNFTInfoQuery, useGetWalletBalanceQuery } from '@chia-network/api-react';
 import {
   Amount,
   AmountProps,
@@ -41,7 +36,7 @@ import { useForm, useFormContext } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
-import useFetchNFTs from '../../hooks/useFetchNFTs';
+import useNFTs from '../../hooks/useNFTs';
 import useSuppressShareOnCreate from '../../hooks/useSuppressShareOnCreate';
 import { convertRoyaltyToPercentage, isValidNFTId, launcherIdFromNFTId } from '../../util/nfts';
 import NFTOfferExchangeType from './NFTOfferExchangeType';
@@ -539,8 +534,7 @@ export default function NFTOfferEditor(props: NFTOfferEditorProps) {
   const { nft, onOfferCreated, exchangeType } = props;
   const [createOfferForIds] = useCreateOfferForIdsMutation();
   const [isProcessing, setIsProcessing] = useState(false);
-  const { wallets: nftWallets } = useGetNFTWallets();
-  const { nfts } = useFetchNFTs(nftWallets.map((wallet: Wallet) => wallet.id));
+  const { nfts } = useNFTs();
   const currencyCode = useCurrencyCode();
   const openDialog = useOpenDialog();
   const errorDialog = useShowError();

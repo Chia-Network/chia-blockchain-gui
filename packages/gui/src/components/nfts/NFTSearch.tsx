@@ -1,14 +1,13 @@
-import type { NFTInfo, Wallet } from '@chia-network/api';
-import { useGetNFTWallets } from '@chia-network/api-react';
+import type { NFTInfo } from '@chia-network/api';
 import { useDarkMode } from '@chia-network/core';
 import { t, Trans } from '@lingui/macro';
 import React from 'react';
 import styled from 'styled-components';
 
 import useAllowFilteredShow from '../../hooks/useAllowFilteredShow';
-import useFetchNFTs from '../../hooks/useFetchNFTs';
 import useHideObjectionableContent from '../../hooks/useHideObjectionableContent';
-import NFTPreview from './NFTPreview';
+import useNFTs from '../../hooks/useNFTs';
+import NFTPreview from '../nfts/NFTPreview';
 
 const SearchNFTrow = styled.div`
   cursor: pointer;
@@ -72,7 +71,7 @@ const SearchPlaceholder = styled.div`
   }
 `;
 
-type NFTSearchProps = {
+type OfferBuilderValueSearchProps = {
   value: string;
   onSelectNFT: (nftId: string) => void;
 };
@@ -91,10 +90,9 @@ function highlightSearchedString(searchString: string, str: string) {
     );
 }
 
-export default function NFTSearch(props: NFTSearchProps) {
+export default function OfferBuilderValueSearch(props: OfferBuilderValueSearchProps) {
   const { value, onSelectNFT } = props;
-  const { wallets: nftWallets } = useGetNFTWallets();
-  const { nfts, isLoading } = useFetchNFTs(nftWallets.map((wallet: Wallet) => wallet.id));
+  const { nfts, isLoading } = useNFTs();
   const [hideObjectionableContent] = useHideObjectionableContent();
   const { allowNFTsFiltered } = useAllowFilteredShow(nfts, hideObjectionableContent, isLoading);
   const { isDarkMode } = useDarkMode();
@@ -139,20 +137,9 @@ export default function NFTSearch(props: NFTSearchProps) {
         </NFTSearchedText>
       </SearchNFTrow>
     ));
-
-  function valueIsNftId() {
-    return !!nfts.find((nft: NFTInfo) => nft.$nftId === value);
-  }
-  const showResults =
-    !valueIsNftId() && value.length > 0 && nfts.filter((nft) => isNFTInSearchValue(value, nft)).length > 0;
   return (
-    <SearchPlaceholder
-      isDarkMode={isDarkMode}
-      style={{
-        display: showResults ? 'block' : 'none',
-      }}
-    >
-      <div style={{ position: 'fixed' }}>{isLoading ? <Trans>Loading NFTs...</Trans> : nftPreviews}</div>
+    <SearchPlaceholder isDarkMode={isDarkMode} style={{ display: value.length > 0 ? 'block' : 'none' }}>
+      <div>{isLoading ? <Trans>Loading NFTs...</Trans> : nftPreviews}</div>
     </SearchPlaceholder>
   );
 }
