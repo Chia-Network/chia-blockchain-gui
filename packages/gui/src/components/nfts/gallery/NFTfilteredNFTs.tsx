@@ -1,8 +1,7 @@
 import type { NFTInfo } from '@chia-network/api';
-import { useGetNFTWallets } from '@chia-network/api-react';
 import React from 'react';
 
-import useFetchNFTs from '../../../hooks/useFetchNFTs';
+import useNFTs from '../../../hooks/useNFTs';
 import useNachoNFTs from '../../../hooks/useNachoNFTs';
 
 type FilteredNFTtype = {
@@ -11,10 +10,9 @@ type FilteredNFTtype = {
 
 export default function useFilteredNFTs(props: FilteredNFTtype) {
   const { walletId } = props;
-  const { wallets: nftWallets, isLoading: isLoadingWallets } = useGetNFTWallets();
-  const { nfts, isLoading: isLoadingNFTs } = useFetchNFTs(nftWallets.map((wallet: Wallet) => wallet.id));
+  const { nfts, isLoading: isLoadingNFTs } = useNFTs();
 
-  const isLoading = isLoadingWallets || isLoadingNFTs;
+  const isLoading = isLoadingNFTs;
 
   const { data: nachoNFTs } = useNachoNFTs();
 
