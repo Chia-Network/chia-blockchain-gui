@@ -1,20 +1,14 @@
-import { type NFTInfo } from '@chia-network/api';
 import { Trans } from '@lingui/macro';
 import React from 'react';
 
-import useNFTMetadata from '../../hooks/useNFTMetadata';
+import NFTMetadata, { type NFTMetadataProps } from './NFTMetadata';
 
-export type NFTTitleProps = {
-  nft: NFTInfo;
-};
+export type NFTTitleProps = Omit<NFTMetadataProps, 'path'>;
 
 export default function NFTTitle(props: NFTTitleProps) {
-  const { nft } = props;
-  const { metadata, isLoading } = useNFTMetadata(nft.$nftId);
-
-  if (isLoading) {
-    return <Trans>Loading...</Trans>;
-  }
-
-  return metadata?.name ?? <Trans>Title Not Available</Trans>;
+  return (
+    <NFTMetadata path="name" {...props}>
+      <Trans>Title Not Available</Trans>
+    </NFTMetadata>
+  );
 }

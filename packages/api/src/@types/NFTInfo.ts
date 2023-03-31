@@ -21,6 +21,7 @@ type NFTInfo = {
   supportsDid: boolean;
   p2Address: string;
   updaterPuzhash: string;
+  nftCoinConfirmationHeight: number;
 
   // Properties added by the frontend
   walletId: number | undefined;

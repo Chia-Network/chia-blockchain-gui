@@ -1,13 +1,13 @@
-import type { NFTInfo } from '@chia-network/api';
-import { useDarkMode } from '@chia-network/core';
-import { t, Trans } from '@lingui/macro';
+import { Flex, useDarkMode } from '@chia-network/core';
+import { Trans } from '@lingui/macro';
 import React from 'react';
 import styled from 'styled-components';
 
-import useAllowFilteredShow from '../../hooks/useAllowFilteredShow';
 import useHideObjectionableContent from '../../hooks/useHideObjectionableContent';
 import useNFTs from '../../hooks/useNFTs';
+import NFTMetadata from '../nfts/NFTMetadata';
 import NFTPreview from '../nfts/NFTPreview';
+import NFTTitle from '../nfts/NFTTitle';
 
 const SearchNFTrow = styled.div`
   cursor: pointer;
@@ -71,75 +71,46 @@ const SearchPlaceholder = styled.div`
   }
 `;
 
-type OfferBuilderValueSearchProps = {
+export type OfferBuilderValueSearchProps = {
   value: string;
   onSelectNFT: (nftId: string) => void;
 };
 
-function highlightSearchedString(searchString: string, str: string) {
-  if (!str) return '';
-  const r = new RegExp(`(${searchString})`, 'i');
-  return str
-    .split(r)
-    .map((part) =>
-      part.toLocaleLowerCase() === searchString.toLocaleLowerCase() ? (
-        <span className="highlight">{part}</span>
-      ) : (
-        <span>{part}</span>
-      )
-    );
-}
-
 export default function OfferBuilderValueSearch(props: OfferBuilderValueSearchProps) {
-  const { value, onSelectNFT } = props;
-  const { nfts, isLoading } = useNFTs();
+  const { value = '', onSelectNFT } = props;
   const [hideObjectionableContent] = useHideObjectionableContent();
-  const { allowNFTsFiltered } = useAllowFilteredShow(nfts, hideObjectionableContent, isLoading);
-  const { isDarkMode } = useDarkMode();
+  const { nfts, isLoading } = useNFTs({
+    hideSensitiveContent: hideObjectionableContent,
+    search: value,
+  });
 
-  function isNFTInSearchValue(searchString: string, nft: NFTInfo) {
-    const metadataObj = allowNFTsFiltered.find((obj: any) => obj.nftId === nft.$nftId) || {};
-    if (metadataObj.metadata?.name?.toLowerCase().indexOf(searchString.toLowerCase()) > -1) {
-      return true;
-    }
-    if (
-      nft.metadata &&
-      metadataObj.metadata?.collection?.name?.toLowerCase().indexOf(searchString.toLowerCase()) > -1
-    ) {
-      return true;
-    }
-    return false;
-  }
+  const { isDarkMode } = useDarkMode();
 
   function selectNFT(nftId: string) {
     onSelectNFT(nftId);
   }
 
-  const nftPreviews = nfts
-    .map((nft: NFTInfo) => {
-      const metadataObj = allowNFTsFiltered.find((obj: any) => obj.nftId === nft.$nftId) || {};
-      const metadata = metadataObj?.metadata;
-      return { ...nft, metadata };
-    })
-    .map((nft: NFTInfo) => (
-      <SearchNFTrow
-        className="nft-searched-row"
-        onClick={() => selectNFT(nft.$nftId)}
-        style={{ display: isNFTInSearchValue(value, nft) ? 'block' : 'none' }}
-        isDarkMode={isDarkMode}
-      >
-        <div>
-          <NFTPreview nft={nft} fit="cover" isPreview metadata={nft?.metadata} isCompact miniThumb />
-        </div>
-        <NFTSearchedText>
-          <div>{highlightSearchedString(value, nft.metadata?.name) || t`Title Not Available`}</div>
-          <div>{highlightSearchedString(value, nft.metadata?.collection?.name)}</div>
-        </NFTSearchedText>
-      </SearchNFTrow>
-    ));
   return (
-    <SearchPlaceholder isDarkMode={isDarkMode} style={{ display: value.length > 0 ? 'block' : 'none' }}>
-      <div>{isLoading ? <Trans>Loading NFTs...</Trans> : nftPreviews}</div>
+    <SearchPlaceholder isDarkMode={isDarkMode} style={{ display: value.length ? 'block' : 'none' }}>
+      <div>
+        {isLoading ? (
+          <Trans>Loading NFTs...</Trans>
+        ) : (
+          nfts.map((nft) => (
+            <SearchNFTrow className="nft-searched-row" onClick={() => selectNFT(nft.$nftId)} isDarkMode={isDarkMode}>
+              <div>
+                <NFTPreview nft={nft} fit="cover" isPreview isCompact miniThumb />
+              </div>
+              <NFTSearchedText>
+                <Flex flexDirection="column">
+                  <NFTTitle nftId={nft.$nftId} highlight={value} />
+                  <NFTMetadata nftId={nft.$nftId} path="collection?.name" highlight={value} />
+                </Flex>
+              </NFTSearchedText>
+            </SearchNFTrow>
+          ))
+        )}
+      </div>
     </SearchPlaceholder>
   );
 }

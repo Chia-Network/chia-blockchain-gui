@@ -114,7 +114,7 @@ export default function NFTProvider(props: NFTProviderProps) {
         (nftItem) => nftItem.nft.$nftId
       );
 
-      return sortBy(uniqueNfts, (nftItem) => nftItem.nft.confirmationHeight);
+      return sortBy(uniqueNfts, (nftItem) => nftItem.nft.nftCoinConfirmationHeight);
     }, signal);
 
     setLoaded((prevLoaded) => prevLoaded + page.length, signal);

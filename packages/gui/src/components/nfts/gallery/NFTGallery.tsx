@@ -1,47 +1,28 @@
+// eslint-ignore-file - in progress
 import type { NFTInfo } from '@chia-network/api';
 import { useLocalStorage } from '@chia-network/api-react';
 import { Flex, LayoutDashboardSub, Loading, /* useTrans, */ useDarkMode, Tooltip } from '@chia-network/core';
 import { t, Trans } from '@lingui/macro';
 import { FormControlLabel, RadioGroup, FormControl, Checkbox, Grid, Button, Fade, Box } from '@mui/material';
-import React, { useEffect, useState, /* useCallback, */ useContext } from 'react';
-// import { useNavigate } from 'react-router-dom';
+import { xor, sort } from 'lodash';
+import React, { useState, useMemo } from 'react';
 import styled from 'styled-components';
 
+import type FileType from '../../../@types/FileType';
 import FilterIcon from '../../../assets/img/filter.svg';
 import MultiSelectIcon from '../../../assets/img/multi-select.svg';
-// import useAllowFilteredShow from '../../../hooks/useAllowFilteredShow';
+import useFilteredNFTs from '../../../hooks/useFilteredNFTs';
 import useHiddenNFTs from '../../../hooks/useHiddenNFTs';
-import useHideObjectionableContent from '../../../hooks/useHideObjectionableContent';
 // import useNFTGalleryScrollPosition from '../../../hooks/useNFTGalleryScrollPosition';
-import useNFTs from '../../../hooks/useNFTs';
-// import useShownNFTs from '../../../hooks/useShownNFTs';
-// import useSyncCache from '../../../hooks/useSyncCache';
-import { getNFTFileType } from '../../../util/utils';
 import NFTCardLazy from '../NFTCardLazy';
 import { NFTContextualActionTypes } from '../NFTContextualActions';
-import { NFTFilterContext } from '../NFTFilterProvider';
 import NFTProfileDropdown from '../NFTProfileDropdown';
 import FilterPill from './FilterPill';
 import NFTGalleryHero from './NFTGalleryHero';
 import Search from './NFTGallerySearch';
-// import useFilteredNFTs from './NFTfilteredNFTs';
 import SelectedActionsDialog from './SelectedActionsDialog';
 
 export const defaultCacheSizeLimit = 1024; /* MB */
-
-// const maxNFTsPerPage = 200;
-
-export function searchableNFTContent(nft: NFTInfo) {
-  const items = [
-    nft.$nftId,
-    nft.dataUris?.join(' ') ?? '',
-    nft.launcherId,
-    nft.metadata?.name,
-    nft.metadata?.collection?.name,
-  ];
-
-  return items.join(' ').toLowerCase();
-}
 
 const StyledGrid = styled(Grid)`
   &.show-multiple-select .empty .multiple-selection-empty {
@@ -149,10 +130,6 @@ const MultiSelectIconStyled = styled(MultiSelectIcon)<{ isDarkMode: boolean }>`
   }
 `;
 
-const LoadingWrapper = styled.div`
-  padding: 25px;
-`;
-
 const TotalItemsStyled = styled.div`
   display: flex;
   align-items: center;
@@ -167,143 +144,33 @@ const SelectAllButtonStyled = styled(Button)`
   user-select: none;
 `;
 
-// const visibleIndex = 0;
-const allowNFTsFilteredObject: any = {};
-// const allowNFTsFilteredNftIds: string[] = [];
-
 export default function NFTGallery() {
-  const filterContext = useContext(NFTFilterContext);
-
-  if (!filterContext) {
-    throw new Error('NFTGallery must be used within a NFTFilterProvider');
-  }
-
-  const walletId = filterContext.getWalletId();
-  const { setWalletId } = filterContext;
-  const typeFilter = filterContext.getTypeFilter();
-  const { setTypeFilter } = filterContext;
-  const visibilityFilters = filterContext.getVisibilityFilters();
-  const { setVisibilityFilters } = filterContext;
-  const search = filterContext.getSearchFilter();
-  const { setSearchFilter: setSearch } = filterContext;
   const [inMultipleSelectionMode, toggleMultipleSelection] = useState(false);
   const [isNFTHidden] = useHiddenNFTs();
-  const [hideObjectionableContent] = useHideObjectionableContent();
 
-  const { nfts, total, isLoading /* , statistics */ } = useNFTs({
-    walletId,
-    search,
-    hideSensitiveContent: hideObjectionableContent,
-    // type:
-  });
-
-  // const { filteredNFTs, isLoading } = useFilteredNFTs({ walletId });
-  // const [nfts, setNfts] = useState<NFTInfo[]>([]);
-
-  // const { isSyncingCache } = useSyncCache();
-  /*
   const {
-    allowNFTsFiltered,
-    isDoneLoadingAllowedNFTs,
-    isLoading: isLoadingAllowedNFTs,
-  } = useAllowFilteredShow(filteredNFTs, hideObjectionableContent, isLoading || isSyncingCache);
-  */
+    nfts,
+    total,
+    isLoading,
 
-  const [filtersShown, setFiltersShown] = useState<string[]>([]);
+    walletId,
+    setWalletId,
+
+    search,
+    setSearch,
+
+    types,
+    setTypes,
+
+    statistics,
+  } = useFilteredNFTs();
+
+  const [showFilters, setShowFilters] = useState(false);
   const typesFilterRef = React.useRef<HTMLInputElement>(null);
-  const visibilityFilterRef = React.useRef<HTMLInputElement>(null);
   const { isDarkMode } = useDarkMode();
-  const [nftTypes /* , setNftTypes */] = useState<any>([]);
-  // const [getScrollPosition, setScrollPosition] = useNFTGalleryScrollPosition();
-  const allTypes = Array.from(new Set([...Object.keys(nftTypes), ...typeFilter]));
-  // const [, setVisibleNFTs] = useShownNFTs();
-  // const navigate = useNavigate();
 
   /*
-  useEffect(() => {
-    if (allowNFTsFiltered.length) {
-      allowNFTsFiltered.forEach((nft) => {
-        allowNFTsFilteredObject[nft.$nftId] = nft;
-      });
-      allowNFTsFilteredNftIds = allowNFTsFiltered.map((nft) => nft.$nftId);
-      setNfts(
-        allowNFTsFiltered.length > maxNFTsPerPage
-          ? allowNFTsFiltered.filter((_: any, idx: number) => idx < maxNFTsPerPage)
-          : allowNFTsFiltered
-      );
-    }
-  }, [allowNFTsFiltered, allowNFTsFiltered.length]);
-  */
-
-  const applyTypeFilter = React.useCallback(
-    (nft: NFTInfo) => {
-      if (typeFilter.indexOf(getNFTFileType(nft)) > -1) {
-        return false;
-      }
-      return true;
-    },
-    [typeFilter]
-  );
-
-  /*
-  const showCard = useCallback(
-    (nft: NFTInfo) => {
-      if (allowNFTsFilteredNftIds.indexOf(nft?.$nftId) === -1) {
-        return false;
-      }
-      if (visibilityFilters.indexOf('hidden') === -1 && isNFTHidden(nft)) {
-        return false;
-      }
-      if (visibilityFilters.indexOf('visible') === -1 && !isNFTHidden(nft)) {
-        return false;
-      }
-      if (applyTypeFilter(nft) === false) {
-        return false;
-      }
-      const metadataObj = allowNFTsFilteredObject[nft.$nftId] || {};
-      const content = searchableNFTContent({ ...nft, metadata: metadataObj.metadata });
-      return content.includes(search.toLowerCase());
-    },
-    [isNFTHidden, search, visibilityFilters, applyTypeFilter]
-  );
-  /*
-  const nftsFiltered = useCallback((): NFTInfo[] => {
-    if (allowNFTsFiltered.length) {
-      return allowNFTsFiltered.filter((nft: NFTInfo) => showCard(nft)).length > maxNFTsPerPage
-        ? allowNFTsFiltered
-            .filter((nft: NFTInfo) => showCard(nft))
-            .filter((_: any, idx: number) => idx < maxNFTsPerPage)
-        : allowNFTsFiltered.filter((nft: NFTInfo) => showCard(nft));
-    }
-    return [];
-  }, [allowNFTsFiltered, showCard]);
-
-  useEffect(() => {
-    setNfts(nftsFiltered);
-    visibleIndex = 0;
-  }, [search, nftsFiltered]);
-  */
-
-  useEffect(() => {
-    const listener = (event: any) => {
-      if (
-        !typesFilterRef.current ||
-        typesFilterRef.current.contains(event.target) ||
-        !visibilityFilterRef.current ||
-        visibilityFilterRef.current.contains(event.target)
-      ) {
-        return;
-      }
-      if (event?.target) {
-        setFiltersShown([]);
-      }
-    };
-    document.addEventListener('mousedown', listener);
-    return () => {
-      document.removeEventListener('mousedown', listener);
-    };
-  }, []);
-  /*
+  const [getScrollPosition, setScrollPosition] = useNFTGalleryScrollPosition();
   const restoreScrollPosition = useCallback(() => {
     const scrollHelper = document.getElementById('scroll-helper');
     const scrollPosition = getScrollPosition();
@@ -314,160 +181,80 @@ export default function NFTGallery() {
     }
   }, [getScrollPosition]);
 
-  /*
   useEffect(() => {
     if (isDoneLoadingAllowedNFTs) {
       restoreScrollPosition();
     }
   }, [restoreScrollPosition, isDoneLoadingAllowedNFTs]);
 
-  const filteredShownNFTs = useCallback(
-    () =>
-      allowNFTsFiltered.filter((nft: NFTInfo) => {
-        if (applyTypeFilter(nft) === false) {
-          return false;
-        }
-        if (visibilityFilters.indexOf('hidden') === -1 && isNFTHidden(nft)) {
-          return false;
-        }
-        if (visibilityFilters.indexOf('visible') === -1 && !isNFTHidden(nft)) {
-          return false;
-        }
-        const metadataObj = allowNFTsFilteredObject[nft.$nftId] || {};
-        const content = searchableNFTContent({ ...nft, metadata: metadataObj.metadata });
-        return content.includes(search.toLowerCase());
-      }),
-    [allowNFTsFiltered, applyTypeFilter, isNFTHidden, visibilityFilters, search]
+*/
+
+  const availableTypes = useMemo(() => {
+    const result: FileType[] = [];
+
+    Object.keys(statistics).forEach((key) => {
+      if (statistics[key as FileType] > 0) {
+        result.push(key as FileType);
+      }
+    });
+
+    return result;
+  }, [statistics]);
+
+  const [selectedNFTIds, setSelectedNFTIds] = useLocalStorage<string[]>('gallery-selected-nfts', []);
+  const selectedAll = useMemo(
+    () => selectedNFTIds.every((id: string) => nfts.some((nft: NFTInfo) => nft.$nftId === id)),
+    [nfts, selectedNFTIds]
   );
-
-  useEffect(() => {
-    if (isDoneLoadingAllowedNFTs) {
-      setVisibleNFTs(filteredShownNFTs().map((nft: NFTInfo) => nft.$nftId));
-    }
-  }, [isDoneLoadingAllowedNFTs, filteredShownNFTs, setVisibleNFTs]);
-
-  useEffect(() => {
-    const nftTypesObject: any = {};
-    if (allowNFTsFilteredNftIds.length && nfts.length) {
-      allowNFTsFiltered
-        .filter((nft: NFTInfo) => {
-          if (allowNFTsFilteredNftIds.indexOf(nft.$nftId) === -1) {
-            return false;
-          }
-          if (visibilityFilters.indexOf('hidden') === -1 && isNFTHidden(nft)) {
-            return false;
-          }
-          if (visibilityFilters.indexOf('visible') === -1 && !isNFTHidden(nft)) {
-            return false;
-          }
-          return true;
-        })
-        .forEach((nft: NFTInfo) => {
-          const file = Array.isArray(nft.dataUris) && nft.dataUris[0];
-          if (file) {
-            let isDocumentTemp: boolean = false;
-            try {
-              const extension = new URL(file).pathname.split('.').slice(-1)[0];
-              if (extension.match(/^[a-zA-Z0-9]+$/) && isDocument(extension)) {
-                nftTypesObject.Document = (nftTypesObject.Document || 0) + 1;
-                isDocumentTemp = true;
-              }
-            } catch (e) {
-              console.error(`Failed to check file extension for ${file}: ${e}`);
-            }
-            if (!isDocumentTemp) {
-              if (mimeTypeRegex(file, /^audio/)) {
-                nftTypesObject.Audio = (nftTypesObject.Audio || 0) + 1;
-              } else if (mimeTypeRegex(file, /^video/)) {
-                nftTypesObject.Video = (nftTypesObject.Video || 0) + 1;
-              } else if (mimeTypeRegex(file, /^model/)) {
-                nftTypesObject.Model = (nftTypesObject.Model || 0) + 1;
-              } else if (isImage(file)) {
-                nftTypesObject.Image = (nftTypesObject.Image || 0) + 1;
-              } else {
-                nftTypesObject.Unknown = (nftTypesObject.Unknown || 0) + 1;
-              }
-            }
-          }
-        });
-    }
-    setNftTypes(nftTypesObject);
-  }, [allowNFTsFiltered, visibilityFilters, isNFTHidden, nfts]);
-
-  */
-
-  const nftContainerRef = React.useRef(null);
-  const galleryHeroRef = React.useRef(null);
-
-  const [selectedNFTIds, setSelectedNFTIds] = useLocalStorage('gallery-selected-nfts', []);
 
   if (isLoading) {
     return (
-      <LoadingWrapper>
+      <Box padding={3}>
         <Loading center />
-      </LoadingWrapper>
+      </Box>
     );
   }
-  /*
-  function selectedItemAction(nftId: string) {
+
+  async function handleSelectNFT(nftId: string) {
     if (inMultipleSelectionMode) {
-      setSelectedNFTIds(
-        selectedNFTIds.indexOf(nftId) === -1
-          ? selectedNFTIds.concat(nftId)
-          : selectedNFTIds.filter((x: string) => x !== nftId)
-      );
-    } else {
-      navigate(`/dashboard/nfts/${nftId}`);
+      setSelectedNFTIds(xor(selectedNFTIds, [nftId]));
+      return false;
     }
-  }
-  */
 
-  const filteredNFTs: NFTInfo[] = [];
-  const allowNFTsFiltered = [];
-
-  function countNFTs(type: any) {
-    return filteredNFTs.filter((nft: NFTInfo) => {
-      if (applyTypeFilter(nft) === false) {
-        return false;
-      }
-      if (!allowNFTsFilteredObject[nft?.$nftId]) {
-        return false;
-      }
-      if (type === 'visible' && isNFTHidden(nft)) {
-        return false;
-      }
-      if (type === 'hidden' && !isNFTHidden(nft)) {
-        return false;
-      }
-      return true;
-    }).length;
+    return true;
   }
+
+  function toggleType(type: FileType) {
+    setTypes(xor(types, [type]));
+  }
+
+  // console.log('availableTypes', availableTypes);
 
   function renderTypeFilter() {
-    if (Object.keys(allTypes).length === 0) return null;
+    if (!availableTypes.length) {
+      return null;
+    }
+
+    // sort by name
+    const allTypes = sort(availableTypes);
+
     return (
-      <div>
-        <FormControl>
-          <RadioGroup>
-            {allTypes.sort().map((key: string) => (
-              <FormControlLabel
-                control={<Checkbox />}
-                label={t`${key} (${nftTypes[key] || 0})`}
-                checked={typeFilter.indexOf(key) === -1}
-                onClick={(e) => {
-                  e.preventDefault();
-                  e.stopPropagation();
-                  setTypeFilter(
-                    typeFilter.indexOf(key) === -1
-                      ? typeFilter.concat(key)
-                      : typeFilter.filter((x: string) => key !== x)
-                  );
-                }}
-              />
-            ))}
-          </RadioGroup>
-        </FormControl>
-      </div>
+      <FormControl>
+        <RadioGroup>
+          {allTypes.map((key: FileType) => (
+            <FormControlLabel
+              control={<Checkbox />}
+              label={t`${key} (${statistics[key]})`}
+              checked={typeFilter.indexOf(key) === -1}
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                toggleType(key);
+              }}
+            />
+          ))}
+        </RadioGroup>
+      </FormControl>
     );
   }
 
@@ -485,24 +272,30 @@ export default function NFTGallery() {
     return Object.keys(nftTypeKeys).filter((key) => typeFilterArray.indexOf(key) > -1).length;
   }
 
+  function selectAll() {
+    const visibleNFTIds = nfts.map((nft: NFTInfo) => nft.$nftId);
+    setSelectedNFTIds(visibleNFTIds);
+  }
+
   function renderSelectDeselectButtons() {
     if (!inMultipleSelectionMode) return null;
-    const isSelectAll = selectedNFTIds.length < filteredShownNFTs().length;
+
     return (
       <SelectAllButtonStyled
         variant="text"
         onClick={() => {
-          setSelectedNFTIds(isSelectAll ? filteredShownNFTs().map((nft: NFTInfo) => nft.$nftId) : []);
+          setSelectedNFTIds(selectedAll ? [] : selectAll());
         }}
       >
-        {isSelectAll ? <Trans>Select all</Trans> : <Trans>Deselect all</Trans>}
+        {!selectedAll ? <Trans>Select all</Trans> : <Trans>Deselect all</Trans>}
       </SelectAllButtonStyled>
     );
   }
 
   function toggleShowFilters(e: MouseEvent) {
-    setFiltersShown(filtersShown.length < 2 ? ['types', 'visibility'] : []);
     e.stopPropagation();
+
+    setShowFilters(!showFilters);
   }
 
   /*
@@ -566,7 +359,7 @@ export default function NFTGallery() {
                 </Tooltip>
                 <Tooltip title={<Trans>Filter</Trans>}>
                   <Box>
-                    <FilterIconStyled onMouseDown={toggleShowFilters} active={filtersShown.length > 0} />
+                    <FilterIconStyled onMouseDown={toggleShowFilters} active={showFilters} />
                   </Box>
                 </Tooltip>
               </MultiSelectAndFilterWrapper>
@@ -594,10 +387,7 @@ export default function NFTGallery() {
                   </VisibilityRadioWrapper>
                 </FilterPill>
               </div>
-              <div
-                ref={visibilityFilterRef}
-                style={{ display: countNFTs('hidden') + countNFTs('visible') > 0 ? 'flex' : 'none' }}
-              >
+              <div style={{ display: countNFTs('hidden') + countNFTs('visible') > 0 ? 'flex' : 'none' }}>
                 <FilterPill
                   setFiltersShown={setFiltersShown}
                   filtersShown={filtersShown}
@@ -638,7 +428,7 @@ export default function NFTGallery() {
         </>
       }
     >
-      <div id="scroll-helper" />
+      <Box id="scroll-helper" />
       {!nfts?.length && !isLoading ? (
         <NFTGalleryHero />
       ) : (
@@ -651,15 +441,11 @@ export default function NFTGallery() {
               />
             </SelectedActionsContainer>
           </Fade>
-          <div ref={galleryHeroRef} style={{ display: 'none' }}>
-            <NFTGalleryHero />
-          </div>
           <StyledGrid
             spacing={2}
             alignItems="stretch"
             container
             className={`${inMultipleSelectionMode ? 'active show-multiple-select' : ''}`}
-            ref={nftContainerRef}
           >
             {nfts.map((nft: NFTInfo) => {
               const gridClassNames = [];
@@ -688,7 +474,8 @@ export default function NFTGallery() {
                     canExpandDetails
                     availableActions={NFTContextualActionTypes.All}
                     isOffer={false}
-                    // selectedItemAction={selectedItemAction}
+                    search={search}
+                    onSelect={handleSelectNFT}
                   />
                 </Grid>
               );

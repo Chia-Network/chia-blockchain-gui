@@ -1,6 +1,5 @@
 import { type NFTInfo } from '@chia-network/api';
 import { IconButton, Flex } from '@chia-network/core';
-import { Trans } from '@lingui/macro';
 import { MoreVert } from '@mui/icons-material';
 import { Card, CardActionArea, CardContent, Typography } from '@mui/material';
 import React from 'react';
@@ -8,9 +7,9 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 import CheckIcon from '../../assets/img/checkmark.svg';
-import useNFTMetadata from '../../hooks/useNFTMetadata';
 import NFTContextualActions, { NFTContextualActionTypes } from './NFTContextualActions';
 import NFTPreview from './NFTPreview';
+import NFTTitle from './NFTTitle';
 
 const StyledCardContent = styled(CardContent)``;
 
@@ -58,7 +57,8 @@ export type NFTCardProps = {
   canExpandDetails: boolean;
   availableActions: NFTContextualActionTypes;
   isOffer: boolean;
-  selectedItemAction?: (nft: NFTInfo) => void;
+  onSelect?: (nftId: string) => Promise<boolean>;
+  search?: string;
 };
 
 export default function NFTCard(props: NFTCardProps) {
@@ -67,18 +67,24 @@ export default function NFTCard(props: NFTCardProps) {
     canExpandDetails = true,
     availableActions = NFTContextualActionTypes.None,
     isOffer,
-    selectedItemAction,
+    onSelect,
+    search,
   } = props;
 
-  const { metadata, isLoading } = useNFTMetadata(nft.$nftId);
+  const nftId = nft.$nftId;
 
   const navigate = useNavigate();
 
-  function handleClick() {
-    if (selectedItemAction) {
-      selectedItemAction(nft.$nftId);
-    } else if (canExpandDetails) {
-      navigate(`/dashboard/nfts/${nft.$nftId}`);
+  async function handleClick() {
+    if (onSelect) {
+      const canContinue = await onSelect(nftId);
+      if (!canContinue) {
+        return;
+      }
+    }
+
+    if (canExpandDetails) {
+      navigate(`/dashboard/nfts/${nftId}`);
     }
   }
 
@@ -98,7 +104,7 @@ export default function NFTCard(props: NFTCardProps) {
             <Flex justifyContent="space-between" alignItems="center">
               <Flex gap={1} alignItems="center" minWidth={0}>
                 <Typography noWrap>
-                  {isLoading ? <Trans>Loading...</Trans> : metadata?.name ?? <Trans>Title Not Available</Trans>}
+                  <NFTTitle nftId={nftId} highlight={search} />
                 </Typography>
               </Flex>
               {availableActions !== NFTContextualActionTypes.None && (

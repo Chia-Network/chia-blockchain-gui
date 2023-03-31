@@ -4,16 +4,16 @@ import { Flex, LayoutDashboardSub, Loading, useOpenDialog, Tooltip, useDarkMode 
 import { Trans } from '@lingui/macro';
 import { MoreVert, ArrowBackIosNew } from '@mui/icons-material';
 import { Box, Grid, Typography, IconButton, Button } from '@mui/material';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import isURL from 'validator/lib/isURL';
 
 import NextIcon from '../../../assets/img/next.svg';
 import PreviousIcon from '../../../assets/img/previous.svg';
+import useFilteredNFTs from '../../../hooks/useFilteredNFTs';
 import useNFT from '../../../hooks/useNFT';
 import useNFTMetadata from '../../../hooks/useNFTMetadata';
-import useShownNFTs from '../../../hooks/useShownNFTs';
 import { isImage } from '../../../util/utils';
 import OfferIncomingTable from '../../offers2/OfferIncomingTable';
 import NFTContextualActions, { NFTContextualActionTypes } from '../NFTContextualActions';
@@ -41,18 +41,28 @@ function NFTDetailLoaded(props: NFTDetailLoadedProps) {
   const nftId = nft.$nftId;
   const openDialog = useOpenDialog();
   const [validationProcessed, setValidationProcessed] = useState(false);
-  const nftRef = React.useRef(null);
   const [isValid, setIsValid] = useState(false);
   const { metadata, isLoading /* , error */ } = useNFTMetadata(nftId);
 
   const uri = nft?.dataUris?.[0];
   const [contentCache] = useLocalStorage(`content-cache-${nftId}`, {});
   const [validateNFT, setValidateNFT] = useState(false);
-  const [getVisibleNFTs] = useShownNFTs();
-  const navigate = useNavigate();
+  const { nfts } = useFilteredNFTs();
   const { isDarkMode } = useDarkMode();
+  const navigate = useNavigate();
 
-  nftRef.current = nft;
+  const position = useMemo(() => nfts.findIndex((item: NFTInfo) => item.$nftId === nftId), [nftId, nfts]);
+  const isLastPosition = nfts.length === position + 1;
+
+  const navigateToDetail = useCallback(
+    (offset: number) => {
+      const nextPosition = position + offset;
+      if (nextPosition >= 0 && nextPosition < nfts.length) {
+        navigate(`/dashboard/nfts/${nfts[nextPosition].$nftId}`);
+      }
+    },
+    [nfts, navigate, position]
+  );
 
   useEffect(
     () => () => {
@@ -60,19 +70,6 @@ function NFTDetailLoaded(props: NFTDetailLoadedProps) {
       ipcRenderer.invoke('abortFetchingBinary', uri);
     },
     [uri]
-  );
-
-  const detailPosition = getVisibleNFTs().indexOf(nftId);
-  const isLastPosition = getVisibleNFTs().length === detailPosition + 1;
-  const navigateToDetail = React.useCallback(
-    (offset: number) => {
-      if (Array.isArray(getVisibleNFTs())) {
-        if (detailPosition >= 0 && detailPosition < getVisibleNFTs().length) {
-          navigate(`/dashboard/nfts/${getVisibleNFTs()[detailPosition + offset]}`);
-        }
-      }
-    },
-    [getVisibleNFTs, navigate, detailPosition]
   );
 
   useEffect(() => {
@@ -89,11 +86,6 @@ function NFTDetailLoaded(props: NFTDetailLoadedProps) {
       document.removeEventListener('keyup', detailKeyPress);
     };
   }, [navigateToDetail]);
-
-  useEffect(() => {
-    const { ipcRenderer } = window as any;
-    ipcRenderer.invoke('abortFetchingBinary', uri);
-  }, [uri]);
 
   const ValidateContainer = styled.div`
     padding-top: 25px;
@@ -214,9 +206,7 @@ function NFTDetailLoaded(props: NFTDetailLoadedProps) {
                 <Box sx={{ textAlign: 'center', color: 'rgba(0, 0, 0, 0.6)', paddingBottom: '20px' }}>
                   <Tooltip title={<Trans>Use left and right arrow keys to navigate</Trans>}>
                     <TypographyStyled variant="body2">
-                      {Array.isArray(getVisibleNFTs())
-                        ? `${getVisibleNFTs().indexOf(nftId) + 1} / ${getVisibleNFTs().length}`
-                        : null}
+                      {nfts.length > 1 ? `${position + 1} / ${nfts.length}` : null}
                     </TypographyStyled>
                   </Tooltip>
                 </Box>
@@ -225,10 +215,7 @@ function NFTDetailLoaded(props: NFTDetailLoadedProps) {
                 </Box>
                 <LeftRightNavigation>
                   <div>
-                    <NavigationButton
-                      onClick={() => navigateToDetail(-1)}
-                      className={detailPosition === 0 ? 'disabled' : ''}
-                    >
+                    <NavigationButton onClick={() => navigateToDetail(-1)} className={position === 0 ? 'disabled' : ''}>
                       <PreviousIcon />
                       <Trans>Previous</Trans>
                     </NavigationButton>

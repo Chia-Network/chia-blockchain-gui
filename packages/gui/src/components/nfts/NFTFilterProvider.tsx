@@ -1,58 +1,46 @@
-import React, { createContext, useCallback, useMemo, useState } from 'react';
+import React, { createContext, useMemo, useState, type ReactNode } from 'react';
+
+import type FileType from '../../@types/FileType';
 
 export interface NFTFilterContextData {
-  getWalletId: () => number | undefined;
-  getTypeFilter: () => string[];
-  getVisibilityFilters: () => string[];
-  getSearchFilter: () => string;
+  walletId?: number;
+  types?: string;
+  visibility?: string[];
+  search?: string;
 
   setWalletId: (value: number | undefined) => void;
-  setTypeFilter: (value: string[]) => void;
-  setVisibilityFilters: (value: string[]) => void;
-  setSearchFilter: (value: string) => void;
+  setTypes: (value: string[]) => void;
+  setVisibility: (value: string[]) => void;
+  setSearch: (value: string | undefined) => void;
 }
 
 export const NFTFilterContext = createContext<NFTFilterContextData | undefined>(undefined);
 
 export type NFTFilterProviderProps = {
-  children?: React.ReactNode;
+  children?: ReactNode;
 };
 
 export default function NFTFilterProvider(props: NFTFilterProviderProps) {
   const { children } = props;
 
   const [walletId, setWalletId] = useState<number | undefined>(undefined);
-  const [typeFilter, setTypeFilter] = useState<string[]>([]);
-  const [visibilityFilters, setVisibilityFilters] = useState<string[]>(['visible']);
-  const [searchFilter, setSearchFilter] = useState<string>('');
+  const [types, setTypes] = useState<FileType[]>([]);
+  const [visibility, setVisibility] = useState<string[]>(['visible']);
+  const [search, setSearch] = useState('');
 
-  const getWalletId = useCallback(() => walletId, [walletId]);
-  const getTypeFilter = useCallback(() => typeFilter, [typeFilter]);
-  const getVisibilityFilters = useCallback(() => visibilityFilters, [visibilityFilters]);
-  const getSearchFilter = useCallback(() => searchFilter, [searchFilter]);
-
-  const value: NFTFilterContextData = useMemo(
+  const value = useMemo(
     () => ({
-      getWalletId,
-      getTypeFilter,
-      getVisibilityFilters,
-      getSearchFilter,
+      walletId,
+      types,
+      visibility,
+      search,
 
       setWalletId,
-      setTypeFilter,
-      setVisibilityFilters,
-      setSearchFilter,
+      setTypes,
+      setVisibility,
+      setSearch,
     }),
-    [
-      getWalletId,
-      getTypeFilter,
-      getVisibilityFilters,
-      getSearchFilter,
-      setWalletId,
-      setTypeFilter,
-      setVisibilityFilters,
-      setSearchFilter,
-    ]
+    [walletId, types, visibility, search, setWalletId, setTypes, setVisibility, setSearch]
   );
 
   return <NFTFilterContext.Provider value={value}>{children}</NFTFilterContext.Provider>;

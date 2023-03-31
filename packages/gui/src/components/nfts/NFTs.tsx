@@ -5,7 +5,6 @@ import NFTFilterProvider from './NFTFilterProvider';
 import NFTDetail from './detail/NFTDetailV2';
 import NFTGallery from './gallery/NFTGallery';
 import NFTGalleryScrollPositionProvider from './gallery/NFTGalleryScrollPositionProvider';
-import NFTGalleryShowNFTsProvider from './gallery/NFTGalleryShowNFTsProvider';
 
 /* ========================================================================== */
 
@@ -23,14 +22,12 @@ export default function NFTs() {
     top.
     */
     <NFTFilterProvider>
-      <NFTGalleryShowNFTsProvider>
-        <NFTGalleryScrollPositionProvider>
-          <Routes>
-            <Route index element={<NFTGallery />} />
-            <Route path=":nftId" element={<NFTDetail />} />
-          </Routes>
-        </NFTGalleryScrollPositionProvider>
-      </NFTGalleryShowNFTsProvider>
+      <NFTGalleryScrollPositionProvider>
+        <Routes>
+          <Route index element={<NFTGallery />} />
+          <Route path=":nftId" element={<NFTDetail />} />
+        </Routes>
+      </NFTGalleryScrollPositionProvider>
     </NFTFilterProvider>
   );
 }

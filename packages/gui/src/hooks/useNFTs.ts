@@ -40,14 +40,13 @@ function searchableNFTContent(nft: NFTInfo, metadata: Metadata) {
 
 export type UseNFTsProps = {
   walletId?: number[] | number;
-  type?: string[] | string;
   search?: string;
   visible?: boolean;
   hideSensitiveContent?: boolean | 'false' | 'true';
 };
 
 export default function useNFTs(props: UseNFTsProps = {}) {
-  const { walletId = [], type, search = '', visible, hideSensitiveContent = false } = props;
+  const { walletId = [], types = [], search = '', visible, hideSensitiveContent = false } = props;
   const { nfts, isLoading, error } = useNFTProvider();
   const [isNFTHidden] = useHiddenNFTs();
 
@@ -62,18 +61,6 @@ export default function useNFTs(props: UseNFTsProps = {}) {
 
     return [walletId];
   }, [walletId]);
-
-  const types = useMemo(() => {
-    if (Array.isArray(type)) {
-      return type;
-    }
-
-    if (type === undefined) {
-      return [];
-    }
-
-    return [type];
-  }, [type]);
 
   const nftsWithType: {
     nft: NFTInfo;
@@ -103,7 +90,8 @@ export default function useNFTs(props: UseNFTsProps = {}) {
           return false;
         }
 
-        if (hideSensitiveContent && hasSensitiveContent(metadata)) {
+        // during loading of metadata we don't know if it's sensitive or not and hide it
+        if (hideSensitiveContent && (!metadata || hasSensitiveContent(metadata))) {
           return false;
         }
 
