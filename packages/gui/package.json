@@ -94,7 +94,15 @@
       "afterRemove": "../../../build_scripts/assets/deb/prerm.sh",
       "depends": [
         "libgbm1",
-        "libgtk-3-0", "libnotify4", "libnss3", "libxss1", "libxtst6", "xdg-utils", "libatspi2.0-0", "libuuid1", "libsecret-1-0"
+        "libgtk-3-0",
+        "libnotify4",
+        "libnss3",
+        "libxss1",
+        "libxtst6",
+        "xdg-utils",
+        "libatspi2.0-0",
+        "libuuid1",
+        "libsecret-1-0"
       ]
     },
     "rpm": {
@@ -232,7 +240,7 @@
     "copy-webpack-plugin": "10.2.0",
     "cross-env": "7.0.3",
     "css-loader": "6.5.1",
-    "electron": "22.0.1",
+    "electron": "22.3.5",
     "electron-devtools-assembler": "1.2.0",
     "electron-playwright-helpers": "^1.2.0",
     "electron-winstaller": "5.0.0",
