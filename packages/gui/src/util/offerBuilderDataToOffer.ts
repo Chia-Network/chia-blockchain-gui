@@ -32,14 +32,24 @@ export type AssetStatusForOffer = {
   relevantOffers: OfferTradeRecordFormatted[];
 };
 
+export type OfferBuilderDataToOfferParams = {
+  data: OfferBuilderData;
+  wallets: Wallet[];
+  offers: OfferTradeRecordFormatted[];
+  validateOnly?: boolean;
+  considerNftRoyalty?: boolean;
+  allowEmptyOfferColumn?: boolean;
+};
+
 // Amount exceeds spendable balance
-export default async function offerBuilderDataToOffer(
-  data: OfferBuilderData,
-  wallets: Wallet[],
-  offers: OfferTradeRecordFormatted[],
-  validateOnly?: boolean,
-  considerNftRoyalty?: boolean
-): Promise<{
+export default async function offerBuilderDataToOffer({
+  data,
+  wallets,
+  offers,
+  validateOnly = false,
+  considerNftRoyalty = false,
+  allowEmptyOfferColumn = false,
+}: OfferBuilderDataToOfferParams): Promise<{
   walletIdsAndAmounts?: Record<string, BigNumber>;
   driverDict?: Record<string, any>;
   feeInMojos: BigNumber;
@@ -58,10 +68,12 @@ export default async function offerBuilderDataToOffer(
   const walletIdsAndAmounts: Record<string, BigNumber> = {};
   const driverDict: Record<string, Driver> = {};
 
-  const hasOffer = !!offeredXch.length || !!offeredTokens.length || !!offeredNfts.length;
+  if (!allowEmptyOfferColumn) {
+    const hasOffer = !!offeredXch.length || !!offeredTokens.length || !!offeredNfts.length;
 
-  if (!hasOffer) {
-    throw new Error(t`Please specify at least one offered asset`);
+    if (!hasOffer) {
+      throw new Error(t`Please specify at least one offered asset`);
+    }
   }
 
   const pendingOffers: AssetStatusForOffer[] = [];
