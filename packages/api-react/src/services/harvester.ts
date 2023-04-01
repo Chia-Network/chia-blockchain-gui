@@ -25,7 +25,7 @@ export const harvesterApi = apiWithTag2.injectEndpoints({
         await fetchWithBQ({
           command: 'deletePlot',
           service: Harvester,
-          args: [filename],
+          args: { filename },
         });
 
         await fetchWithBQ({

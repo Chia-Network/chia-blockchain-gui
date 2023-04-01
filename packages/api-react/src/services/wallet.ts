@@ -80,7 +80,7 @@ export const walletApi = apiWithTag.injectEndpoints({
                   const { data: assetData, error: assetError } = await fetchWithBQ({
                     command: 'getAssetId',
                     service: CAT,
-                    args: [wallet.id],
+                    args: { walletId: wallet.id },
                   });
 
                   if (assetError) {
@@ -93,7 +93,7 @@ export const walletApi = apiWithTag.injectEndpoints({
                   const { data: nameData, error: nameError } = await fetchWithBQ({
                     command: 'getName',
                     service: CAT,
-                    args: [wallet.id],
+                    args: { walletId: wallet.id },
                   });
 
                   if (nameError) {
@@ -106,7 +106,7 @@ export const walletApi = apiWithTag.injectEndpoints({
                   const { data: didData, error: didError } = await fetchWithBQ({
                     command: 'getNftWalletDid',
                     service: NFT,
-                    args: [wallet.id],
+                    args: { walletId: wallet.id },
                   });
 
                   if (didError) {
@@ -296,7 +296,7 @@ export const walletApi = apiWithTag.injectEndpoints({
         }
 
         try {
-          const { walletId, amount, fee, address, memos, waitForConfirmation } = args;
+          const { waitForConfirmation, ...restArgs } = args;
 
           return {
             // eslint-disable-next-line no-async-promise-executor -- Not refactoring from `new Promise` to keep consistent
@@ -365,7 +365,7 @@ export const walletApi = apiWithTag.injectEndpoints({
               const { data: sendTransactionData, error } = await fetchWithBQ({
                 command: 'sendTransaction',
                 service: WalletService,
-                args: [walletId, amount, fee, address, memos],
+                args: restArgs,
               });
 
               if (error) {
@@ -490,8 +490,17 @@ export const walletApi = apiWithTag.injectEndpoints({
       ]),
     }),
 
-    // TODO this looks off. getCurrentAddress vs getNextAddress
-    getCurrentAddress: query(build, WalletService, 'getNextAddress', {
+    getCurrentAddress: build.query<
+      string,
+      {
+        walletId: number;
+      }
+    >({
+      query: ({ walletId }) => ({
+        command: 'getNextAddress',
+        service: WalletService,
+        args: { walletId, newAddress: false },
+      }),
       transformResponse: (response) => response.address,
       providesTags: (result, _error, { walletId }) => (result ? [{ type: 'Address', id: walletId }] : []),
     }),
@@ -720,7 +729,7 @@ export const walletApi = apiWithTag.injectEndpoints({
         }
 
         try {
-          const { walletId, address, amount, fee, memos, waitForConfirmation } = args;
+          const { waitForConfirmation, ...restArgs } = args;
 
           return {
             // eslint-disable-next-line no-async-promise-executor -- Not refactoring from `new Promise` to keep consistent
@@ -773,7 +782,8 @@ export const walletApi = apiWithTag.injectEndpoints({
               const { data: sendTransactionData, error } = await fetchWithBQ({
                 command: 'spend',
                 service: CAT,
-                args: [walletId, address, amount, fee, memos],
+
+                args: restArgs,
               });
 
               if (error) {
@@ -803,99 +813,6 @@ export const walletApi = apiWithTag.injectEndpoints({
         } finally {
           unsubscribe();
         }
-
-        /*
-        let subscribeResponse: {
-          data: Function;
-        } | undefined;
-
-        function unsubscribe() {
-          if (subscribeResponse) {
-            subscribeResponse.data();
-            subscribeResponse = undefined;
-          }
-        }
-
-        try {
-          const {
-            walletId,
-            address,
-            amount,
-            fee,
-            memos,
-            waitForConfirmation,
-          } = args;
-
-          return {
-            data: new Promise(async (resolve, reject) => {
-              const updatedTransactions: Transaction[] = [];
-              let transactionName: string;
-
-              function processUpdates() {
-                if (!transactionName) {
-                  return;
-                }
-
-                const transaction = updatedTransactions.find(
-                  (trx) => trx.name === transactionName && !!trx?.sentTo?.length,
-                );
-
-                if (transaction) {
-                  resolve({
-                    transaction,
-                    transactionId: transaction.name,
-                  });
-                }
-              }
-
-              // bind all changes related to transactions
-              if (waitForConfirmation) {
-                subscribeResponse = await baseQuery({
-                  command: 'onTransactionUpdate',
-                  args: [(data) => {
-                    const { additionalData: { transaction } } = data;
-
-                    updatedTransactions.push(transaction);
-                    processUpdates();
-                  }],
-                }, queryApi, {});
-              }
-
-              // make transaction
-              const { data: sendTransactionData, error } = await fetchWithBQ({
-                command: 'spend',
-                service: CAT,
-                args: [walletId, address, amount, fee, memos],
-              });
-
-              if (error) {
-                reject(error);
-                return;
-              }
-
-              if (!waitForConfirmation) {
-                resolve(sendTransactionData);
-                return;
-              }
-
-              const { transaction } = sendTransactionData;
-              if (!transaction) {
-                reject(new Error('Transaction is not present in response'));
-              }
-
-              transactionName = transaction.name;
-              updatedTransactions.push(transaction);
-              processUpdates();
-            }),
-          };
-        } catch (error) {
-          return {
-            error,
-          };
-        } finally {
-          unsubscribe();
-        }
-        */
       },
       invalidatesTags: [{ type: 'Transactions', id: 'LIST' }],
     }),
@@ -906,15 +823,15 @@ export const walletApi = apiWithTag.injectEndpoints({
       {
         assetId: string;
         name: string;
-        host?: string;
+        fee: string;
       }
     >({
-      async queryFn({ assetId, name, host }, _queryApi, _extraOptions, fetchWithBQ) {
+      async queryFn({ name, ...restArgs }, _queryApi, _extraOptions, fetchWithBQ) {
         try {
           const { data, error } = await fetchWithBQ({
             command: 'createWalletForExisting',
             service: CAT,
-            args: [assetId, host],
+            args: restArgs,
           });
 
           if (error) {
@@ -929,7 +846,7 @@ export const walletApi = apiWithTag.injectEndpoints({
           await fetchWithBQ({
             command: 'setName',
             service: CAT,
-            args: [walletId, name],
+            args: { walletId, name },
           });
 
           return {
@@ -1003,7 +920,7 @@ export const walletApi = apiWithTag.injectEndpoints({
                 const { data, error } = await fetchWithBQ({
                   command: 'getPwStatus',
                   service: WalletService,
-                  args: [wallet.id],
+                  args: { walletId: wallet.id },
                 });
 
                 if (error) {
@@ -1021,7 +938,7 @@ export const walletApi = apiWithTag.injectEndpoints({
                 const { data, error } = await fetchWithBQ({
                   command: 'getWalletBalance',
                   service: WalletService,
-                  args: [wallet.id],
+                  args: { walletId: wallet.id },
                 });
 
                 if (error) {
@@ -1146,7 +1063,7 @@ export const walletApi = apiWithTag.injectEndpoints({
                 const { data: dataLocal, error: errorLocal } = await fetchWithBQ({
                   command: 'getDid',
                   service: DID,
-                  args: [wallet.id],
+                  args: { walletId: wallet.id },
                 });
 
                 if (errorLocal) {
@@ -1224,7 +1141,7 @@ export const walletApi = apiWithTag.injectEndpoints({
               const { data: nftData, error: nftError } = await fetchWithBQ({
                 command: 'getNftInfo',
                 service: NFT,
-                args: [nftId],
+                args: { coinId: nftId },
               });
 
               if (nftError) {
@@ -1398,7 +1315,7 @@ export const walletApi = apiWithTag.injectEndpoints({
           const { data: nftData, error: nftError } = await fetchWithBQ({
             command: 'getNftInfo',
             service: NFT,
-            args: [coinId],
+            args: { coinId },
           });
 
           if (nftError) {
