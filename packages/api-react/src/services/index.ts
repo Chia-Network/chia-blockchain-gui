@@ -142,6 +142,7 @@ export const {
   // CAT wallet hooks
   useCreateNewCATWalletMutation,
   useCreateCATWalletForExistingMutation,
+  useGetCATWalletInfoQuery,
   useGetCATAssetIdQuery,
   useGetCatListQuery,
   useGetCATNameQuery,
