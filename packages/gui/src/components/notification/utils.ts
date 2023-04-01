@@ -1,6 +1,6 @@
 const NOTIFICATION_MESSAGE_VERSION = 1;
 
-enum NotificationTypeId {
+export enum NotificationTypeId {
   OFFER = 1,
 }
 
