@@ -76,17 +76,14 @@ export const walletApi = apiWithTag.injectEndpoints({
       providesTags: ['LoggedInFingerprint'],
     }),
 
-    getWallets: build.query<Wallet[], undefined>({
-      /*
-      query: () => ({
-        command: 'getWallets',
-      }),
-      */
-      async queryFn(_args, _queryApi, _extraOptions, fetchWithBQ) {
+    getWallets: build.query<Wallet[], { includeData?: boolean }>({
+      // eslint-disable-next-line @typescript-eslint/default-param-last -- Can't change the order of the parameters
+      async queryFn({ includeData = false } = {}, _queryApi, _extraOptions, fetchWithBQ) {
         try {
           const { data, error } = await fetchWithBQ({
             command: 'getWallets',
             service: WalletService,
+            args: [includeData],
           });
 
           if (error) {
