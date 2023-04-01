@@ -256,5 +256,25 @@ export default function NotificationsProvider(props: NotificationsProviderProps)
     [isLoading, error, unseenCount, setAsSeen, handleDeleteNotification, enabled, setEnabled, isSynced]
   );
 
+  const allowDebugDesktopNotification = process.env.NODE_ENV === 'development';
+  useEffect(() => {
+    if (!allowDebugDesktopNotification) {
+      return;
+    }
+
+    const { ipcRenderer } = window as any;
+    ipcRenderer.on('debug_triggerDesktopNotification', () => {
+      showNotification({
+        title: '[DEBUG] New Offer',
+        body: '[DEBUG] You have a new offer',
+      });
+    });
+
+    // eslint-disable-next-line consistent-return -- Cleanup in development mode
+    return () => {
+      ipcRenderer.removeListener('debug_triggerDesktopNotification');
+    };
+  }, [allowDebugDesktopNotification, showNotification]);
+
   return <NotificationsContext.Provider value={contextValue}>{children}</NotificationsContext.Provider>;
 }

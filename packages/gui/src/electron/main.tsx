@@ -1007,6 +1007,15 @@ function getMenuTemplate() {
               accelerator: process.platform === 'darwin' ? 'Alt+Command+I' : 'Ctrl+Shift+I',
               click: () => mainWindow.toggleDevTools(),
             },
+            {
+              type: 'separator',
+            },
+            {
+              label: i18n._(/* i18n */ { id: 'Trigger Desktop Notification' }),
+              click: () => {
+                mainWindow?.webContents.send('debug_triggerDesktopNotification', {});
+              },
+            },
             // {
             // label: isSimulator
             //  ? i18n._(/* i18n */ { id: 'Disable Simulator' })
