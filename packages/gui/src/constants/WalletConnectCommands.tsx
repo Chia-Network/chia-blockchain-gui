@@ -27,6 +27,13 @@ const walletConnectCommands: WalletConnectCommand[] = [
     label: <Trans>Get Wallets</Trans>,
     service: ServiceName.WALLET,
     bypassConfirm: true,
+    params: [
+      {
+        name: WalletConnectCommandParamName.INCLUDE_DATA,
+        type: 'boolean',
+        label: <Trans>Include Wallet Metadata</Trans>,
+      },
+    ],
   },
   {
     command: 'getTransaction',
