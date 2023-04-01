@@ -16,7 +16,7 @@ export const harvesterApi = apiWithTag2.injectEndpoints({
     }),
 
     deletePlot: build.mutation<
-      void,
+      any,
       {
         filename: string;
       }
@@ -32,7 +32,7 @@ export const harvesterApi = apiWithTag2.injectEndpoints({
           command: 'refreshPlots',
           service: Harvester,
         });
-        return { data: undefined };
+        return { data: null };
       },
       invalidatesTags: (_result, _error, { filename }) => [
         { type: 'HarvestersSummary', id: 'LIST' },
