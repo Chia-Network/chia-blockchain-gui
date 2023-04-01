@@ -1,16 +1,17 @@
 import React, { createContext, useMemo, useState, type ReactNode } from 'react';
 
 import type FileType from '../../@types/FileType';
+import NFTVisibility from '../../@types/NFTVisibility';
 
 export interface NFTFilterContextData {
-  walletId?: number;
-  types?: string;
-  visibility?: string[];
-  search?: string;
+  walletIds: number[];
+  types: FileType[];
+  visibility: NFTVisibility;
+  search: string | undefined;
 
-  setWalletId: (value: number | undefined) => void;
-  setTypes: (value: string[]) => void;
-  setVisibility: (value: string[]) => void;
+  setWalletIds: (value: number[]) => void;
+  setTypes: (value: FileType[]) => void;
+  setVisibility: (value: NFTVisibility) => void;
   setSearch: (value: string | undefined) => void;
 }
 
@@ -23,24 +24,24 @@ export type NFTFilterProviderProps = {
 export default function NFTFilterProvider(props: NFTFilterProviderProps) {
   const { children } = props;
 
-  const [walletId, setWalletId] = useState<number | undefined>(undefined);
+  const [walletIds, setWalletIds] = useState<number[]>([]);
   const [types, setTypes] = useState<FileType[]>([]);
-  const [visibility, setVisibility] = useState<string[]>(['visible']);
+  const [visibility, setVisibility] = useState<NFTVisibility>(NFTVisibility.ALL);
   const [search, setSearch] = useState('');
 
   const value = useMemo(
     () => ({
-      walletId,
+      walletIds,
       types,
       visibility,
       search,
 
-      setWalletId,
+      setWalletIds,
       setTypes,
       setVisibility,
       setSearch,
     }),
-    [walletId, types, visibility, search, setWalletId, setTypes, setVisibility, setSearch]
+    [walletIds, types, visibility, search, setWalletIds, setTypes, setVisibility, setSearch]
   );
 
   return <NFTFilterContext.Provider value={value}>{children}</NFTFilterContext.Provider>;

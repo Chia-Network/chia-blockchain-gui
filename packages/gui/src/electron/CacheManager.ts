@@ -25,9 +25,9 @@ function getHeadersFilePath(filePath: string) {
 }
 
 export default class CacheManager {
-  private cacheDirectory: string;
+  readonly cacheDirectory: string;
 
-  private maxTotalSize: number;
+  readonly maxTotalSize: number;
 
   private ongoingRequests: Map<string, Promise<CachedFile>> = new Map();
 

@@ -1,10 +1,10 @@
 enum FileType {
-  IMAGE = 'IMAGE',
-  VIDEO = 'VIDEO',
-  AUDIO = 'AUDIO',
-  DOCUMENT = 'DOCUMENT',
-  MODEL = 'MODEL',
-  UNKNOWN = 'UNKNOWN',
+  IMAGE = 'image',
+  VIDEO = 'video',
+  AUDIO = 'audio',
+  DOCUMENT = 'document',
+  MODEL = 'model',
+  UNKNOWN = 'unknown',
 }
 
 export default FileType;

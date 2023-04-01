@@ -10,9 +10,11 @@ import { uniqBy, sortBy } from 'lodash';
 import React, { useMemo, useEffect, type ReactNode } from 'react';
 
 import type Metadata from '../../../@types/Metadata';
+import type NFTData from '../../../@types/NFTData';
 import useCache from '../../../hooks/useCache';
 import useStateAbort from '../../../hooks/useStateAbort';
 import compareChecksums from '../../../util/compareChecksums';
+import getNFTFileType from '../../../util/getNFTFileType';
 import limit from '../../../util/limit';
 import NFTProviderContext from './NFTProviderContext';
 
@@ -37,13 +39,6 @@ type Change = {
   nftId: string;
 };
 
-type NFTItem = {
-  nft: NFTInfo;
-  metadata: any;
-  metadataPromise?: Promise<any>;
-  isLoading: boolean;
-};
-
 export type NFTProviderProps = {
   children: ReactNode;
   pageSize?: number;
@@ -53,7 +48,7 @@ export type NFTProviderProps = {
 // private ongoingRequests: Map<string, Promise<Buffer>> = new Map();
 
 export default function NFTProvider(props: NFTProviderProps) {
-  const { children, pageSize = 10, concurrency = 5 } = props;
+  const { children, pageSize = 12, concurrency = 5 } = props;
 
   const { data: fingerprint, isLoading: isLoadingFingerprint } = useGetLoggedInFingerprintQuery();
 
@@ -62,7 +57,7 @@ export default function NFTProvider(props: NFTProviderProps) {
   // total number of NFTs
   const [total, setTotal] = useStateAbort(0);
   // list of NFTs
-  const [nfts, setNfts] = useStateAbort<NFTItem[]>([]);
+  const [nfts, setNfts] = useStateAbort<NFTData[]>([]);
   // status of loading
   const [isLoading, setIsLoading] = useStateAbort(false);
   const [error, setError] = useStateAbort<Error | undefined>(undefined);
@@ -110,7 +105,13 @@ export default function NFTProvider(props: NFTProviderProps) {
 
     setNfts((prevNfts) => {
       const uniqueNfts = uniqBy(
-        [...prevNfts, ...page.map((nft: NFTInfo) => ({ nft, metadata: undefined, isLoading: false }))],
+        [
+          ...prevNfts,
+          ...page.map((nft: NFTInfo) => ({
+            nft,
+            type: getNFTFileType(nft),
+          })),
+        ],
         (nftItem) => nftItem.nft.$nftId
       );
 
@@ -125,7 +126,7 @@ export default function NFTProvider(props: NFTProviderProps) {
     return nftsByWallet[walletId];
   }
 
-  async function updateNft(id: string, data: Partial<NFTItem>, signal: AbortSignal) {
+  async function updateNft(id: string, data: Partial<NFTData>, signal: AbortSignal) {
     setNfts(
       (prevNfts) =>
         prevNfts.map((nftItem) => {
@@ -293,6 +294,7 @@ export default function NFTProvider(props: NFTProviderProps) {
       loaded,
       isLoading: isLoadingNFTProvider,
       error,
+      progress: total > 0 ? (loaded / total) * 100 : 0,
     }),
     [nfts, total, loaded, isLoadingNFTProvider, error]
   );

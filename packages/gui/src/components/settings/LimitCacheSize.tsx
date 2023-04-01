@@ -1,44 +1,26 @@
 import { usePrefs } from '@chia-network/api-react';
 import { AlertDialog, ButtonLoading, Flex, Form, TextField, useOpenDialog } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
-import React, { useEffect, useCallback } from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
 
-import { getCacheInstances, removeFromLocalStorage } from '../../util/utils';
-import { defaultCacheSizeLimit } from '../nfts/gallery/NFTGallery';
+import useCache from '../../hooks/useCache';
 
 type FormData = {
-  cacheLimitSize: number;
+  maxCacheSize: number;
 };
 
-const { ipcRenderer } = window as any;
-
-function LimitCacheSize(props: any) {
-  const { forceUpdateCacheSize } = props;
+export default function LimitCacheSize() {
   const openDialog = useOpenDialog();
+  const { setMaxTotalSize } = useCache();
 
-  const [cacheLimitSize, setCacheLimitSize] = usePrefs(`cacheLimitSize`, defaultCacheSizeLimit);
+  const [maxCacheSize, setCacheLimitSize] = usePrefs(`cacheLimitSize`, 0);
 
   const methods = useForm<FormData>({
     defaultValues: {
-      cacheLimitSize: cacheLimitSize ?? 0,
+      maxCacheSize,
     },
   });
-
-  const removeFromLocalStorageListener = useCallback(
-    (_event: any, response: any) => {
-      removeFromLocalStorage({ removedObjects: response?.removedEntries });
-      forceUpdateCacheSize();
-    },
-    [forceUpdateCacheSize]
-  );
-
-  useEffect(() => {
-    ipcRenderer.on('removedFromLocalStorage', removeFromLocalStorageListener);
-    return () => {
-      ipcRenderer.removeListener('removedFromLocalStorage', removeFromLocalStorageListener);
-    };
-  }, [removeFromLocalStorageListener]);
 
   const { isSubmitting } = methods.formState;
   const isLoading = isSubmitting;
@@ -49,14 +31,11 @@ function LimitCacheSize(props: any) {
       return;
     }
 
-    setCacheLimitSize(values?.cacheLimitSize);
+    const newValue = Number(values.maxCacheSize);
 
-    if (ipcRenderer) {
-      ipcRenderer.invoke('adjustCacheLimitSize', {
-        newSize: values?.cacheLimitSize,
-        cacheInstances: getCacheInstances(),
-      });
-    }
+    // todo move it ti electron/main
+    setCacheLimitSize(newValue);
+    await setMaxTotalSize(newValue);
 
     await openDialog(
       <AlertDialog>
@@ -70,7 +49,7 @@ function LimitCacheSize(props: any) {
       <Flex gap={2} row>
         <TextField
           label="MiB"
-          name="cacheLimitSize"
+          name="maxCacheSize"
           type="number"
           disabled={!canSubmit}
           size="small"
@@ -94,5 +73,3 @@ function LimitCacheSize(props: any) {
     </Form>
   );
 }
-
-export default React.memo(LimitCacheSize);
