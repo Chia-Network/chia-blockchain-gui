@@ -39,6 +39,7 @@ export default function SettingsIntegration() {
   const [topic, setTopic] = React.useState<string | null>(null);
   const [bypassCommands, setBypassCommands] = React.useState<Record<string, boolean> | undefined>();
   const selectedPair = useRef<Pair | undefined>(undefined);
+  const [autocompleteKey, setAutocompleteKey] = React.useState(0);
 
   const { bypassCommand, removeBypassCommand, resetBypassForAllPairs, resetBypassForPair, get } =
     useWalletConnectPairs();
@@ -68,6 +69,7 @@ export default function SettingsIntegration() {
     setTopic(null);
     setBypassCommands(undefined);
     selectedPair.current = undefined;
+    setAutocompleteKey((localKey) => localKey + 1); // hack to force autocomplete to re-render. without this, the selected value doesn't change
   }, [disconnect, selectedPair, setTopic, setBypassCommands]);
 
   const handleBypassCommandChange = useCallback(
@@ -123,6 +125,9 @@ export default function SettingsIntegration() {
       }
       selectedPair.current = pair;
       refreshBypassCommands();
+    } else {
+      selectedPair.current = undefined;
+      setBypassCommands(undefined);
     }
   }, [topic, pairs, refreshBypassCommands]);
 
@@ -220,6 +225,7 @@ export default function SettingsIntegration() {
                 label={null}
                 control={
                   <Autocomplete
+                    key={autocompleteKey}
                     id="app-permissions-select"
                     sx={{ width: 400 }}
                     options={pairs}
