@@ -13,8 +13,10 @@ export default class Wallet extends Service {
     return this.command('get_logged_in_fingerprint');
   }
 
-  async getWallets() {
-    return this.command('get_wallets');
+  async getWallets(includeData: boolean = false) {
+    return this.command('get_wallets', {
+      includeData,
+    });
   }
 
   async getTransaction(transactionId: string) {
