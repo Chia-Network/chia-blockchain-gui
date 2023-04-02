@@ -64,14 +64,6 @@ function NFTDetailLoaded(props: NFTDetailLoadedProps) {
     [nfts, navigate, position]
   );
 
-  useEffect(
-    () => () => {
-      const { ipcRenderer } = window as any;
-      ipcRenderer.invoke('abortFetchingBinary', uri);
-    },
-    [uri]
-  );
-
   useEffect(() => {
     function detailKeyPress(e: any) {
       if (e.code === 'ArrowLeft') {
