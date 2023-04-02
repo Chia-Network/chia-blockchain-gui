@@ -107,8 +107,6 @@ function watchCacheFolder(folder: string) {
   }
 }
 
-let cacheLimitSize: number = 1024;
-
 // Set the userData directory to its location within CHIA_ROOT/gui
 setUserDataDir();
 
@@ -313,36 +311,11 @@ if (!handleSquirrelEvent()) {
 
       const allRequests: Record<string, { abort: () => void; promise: Promise<any> }> = {};
 
-      ipcMain.handle('abortFetchingBinary', (_event, uri: string) => {
-        if (allRequests[uri]) {
-          allRequests[uri].abort();
-          delete allRequests[uri];
-        }
-      });
-
       ipcMain.handle('removeCachedFile', (_event, file: string) => {
         const filePath = path.join(thumbCacheFolder, file);
         if (fs.existsSync(filePath)) {
           fs.unlinkSync(filePath);
         }
-      });
-
-      function shouldCacheFile(filePath: string) {
-        const stats = fs.statSync(filePath);
-        const allowWriteCache = getCacheSize() + stats.size < cacheLimitSize * 1024 * 1024;
-        return allowWriteCache;
-      }
-
-      ipcMain.handle('getSvgContent', (_event, file) => {
-        if (file) {
-          const fileOnDisk = path.join(thumbCacheFolder, file);
-          if (fs.existsSync(fileOnDisk)) {
-            return fs.readFileSync(fileOnDisk, { encoding: 'utf8' });
-          }
-          return null;
-        }
-        console.error('Error getting svg file...', file);
-        return undefined;
       });
 
       ipcMain.handle(
@@ -671,108 +644,6 @@ if (!handleSquirrelEvent()) {
         tasks.forEach((task) => task(mainWindow!));
       });
 
-      /* ========================== CACHE FOLDER ================================ */
-      function getCacheSize() {
-        let folderSize: number = 0;
-        const files = fs.readdirSync(thumbCacheFolder);
-
-        files
-          .filter(
-            (file) =>
-              /* skip files that start with a dot */
-              !file.match(/^\./)
-          )
-          .forEach((file) => {
-            const stats = fs.statSync(path.join(thumbCacheFolder, file));
-            folderSize += stats.size;
-          });
-        return folderSize;
-      }
-      ipcMain.handle('getDefaultCacheFolder', (_event) => thumbCacheFolder);
-
-      ipcMain.handle('setCacheFolder', (_event, newFolder) => {
-        thumbCacheFolder = newFolder;
-      });
-
-      ipcMain.handle('selectCacheFolder', async (_event) =>
-        dialog.showOpenDialog({
-          properties: ['openDirectory'],
-          defaultPath: thumbCacheFolder,
-        })
-      );
-
-      ipcMain.handle('changeCacheFolderFromTo', async (_event, [from, to]) => {
-        const fromFolder = from || thumbCacheFolder;
-        if (fs.existsSync(fromFolder)) {
-          const fileStats = fs.statSync(fromFolder);
-          if (fileStats.isDirectory()) {
-            const files = fs.readdirSync(fromFolder);
-            files.forEach((file) => {
-              if (fs.lstatSync(path.join(fromFolder, file)).isFile()) {
-                fs.renameSync(path.join(fromFolder, file), path.join(to, file));
-              }
-            });
-          }
-          watchCacheFolder(to);
-        }
-
-        thumbCacheFolder = to;
-      });
-
-      ipcMain.handle('getCacheSize', async (_event) => getCacheSize());
-
-      ipcMain.handle(
-        'isNewFolderEmtpy',
-        (_event, selectedFolder) =>
-          fs.readdirSync(selectedFolder).filter(
-            (file) =>
-              /* skip files that start with a dot */
-              !file.match(/^\./)
-          ).length
-      );
-
-      ipcMain.handle('adjustCacheLimitSize', async (_event, { newSize, cacheInstances }) => {
-        if (newSize) {
-          cacheLimitSize = newSize;
-        }
-        let overSize = getCacheSize() - newSize * 1024 * 1024; /* MiB! */
-
-        if (overSize > 0) {
-          const removedEntries: any[] = [];
-          for (let cnt = 0; cnt < cacheInstances.length; cnt++) {
-            const fileString = cacheInstances[cnt].video || cacheInstances[cnt].image || cacheInstances[cnt].binary;
-            if (fileString) {
-              const filePath = path.join(thumbCacheFolder, fileString);
-              if (fs.existsSync(filePath)) {
-                const fileStats = fs.statSync(filePath);
-                fs.unlinkSync(filePath);
-                overSize -= fileStats.size;
-                removedEntries.push(cacheInstances[cnt]);
-              }
-            }
-            if (overSize < 0) break;
-          }
-          mainWindow?.webContents.send('removedFromLocalStorage', {
-            removedEntries,
-            occupied: getCacheSize(),
-          });
-        }
-      });
-
-      ipcMain.handle('getCacheFilenames', (_event) => fs.readdirSync(thumbCacheFolder));
-
-      ipcMain.handle('clearNFTCache', (_event) => {
-        if (fs.existsSync(thumbCacheFolder)) {
-          const files = fs.readdirSync(thumbCacheFolder);
-          for (let i = 0; i < files.length; i++) {
-            fs.unlinkSync(path.join(thumbCacheFolder, files[i]));
-          }
-        }
-        return true;
-      });
-
-      /* ======================================================================== */
-
       decidedToClose = false;
       const mainWindowState = windowStateKeeper({
         defaultWidth: 1200,
@@ -886,16 +757,6 @@ if (!handleSquirrelEvent()) {
       thumbCacheFolder = prefs2.cacheFolder || defaultThumbCacheFolder;
       watchCacheFolder(thumbCacheFolder);
 
-      if (prefs2.cacheLimitSize !== undefined) {
-        try {
-          const prefsCacheLimitSize = +prefs2.cacheLimitSize;
-          if (!Number.isNaN(prefsCacheLimitSize) && Number.isFinite(prefsCacheLimitSize) && prefsCacheLimitSize > 0) {
-            cacheLimitSize = prefsCacheLimitSize;
-          }
-        } catch (e) {
-          console.error(e);
-        }
-      }
       if (prefs2.cacheFolder !== undefined) {
         try {
           const prefsCacheFolder = prefs2.cacheFolder;
