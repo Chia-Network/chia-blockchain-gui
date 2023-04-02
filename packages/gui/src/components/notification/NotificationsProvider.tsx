@@ -18,6 +18,7 @@ import useShowNotification from '../../hooks/useShowNotification';
 import fetchOffer from '../../util/fetchOffer';
 import parseNotification from '../../util/parseNotification';
 import resolveOfferInfo from '../../util/resolveOfferInfo';
+import { pushNotificationStringsForNotificationType } from './utils';
 
 const log = debug('chia-gui:useNotifications');
 
@@ -25,6 +26,7 @@ type Notification = {
   id: string;
   message: string;
   height: number;
+  debug?: boolean;
 };
 
 export type NotificationDetails = Notification & {
@@ -55,8 +57,10 @@ export const NotificationsContext = createContext<
       unseenCount: number;
       setAsSeen: () => void;
       deleteNotification: (id: string) => void;
-      enabled: boolean;
-      setEnabled: (enabled: boolean) => void;
+      areNotificationsEnabled: boolean;
+      setNotificationsEnabled: (enabled: boolean) => void;
+      pushNotificationsEnabled: boolean;
+      setPushNotificationsEnabled: (enabled: boolean) => void;
     }
   | undefined
 >(undefined);
@@ -74,7 +78,8 @@ export default function NotificationsProvider(props: NotificationsProviderProps)
     error: getNotificationsError,
   } = useGetNotificationsQuery();
   const { state, isLoading: isLoadingWalletState } = useWalletState();
-  const [enabled, setEnabled] = usePrefs<number>('notifications', true);
+  const [enabled, setEnabled] = useState<boolean>('enableNotifications', true); // global notification setting. controls push and local notifications
+  const [pushNotificationsEnabled, setPushNotificationsEnabled] = usePrefs<boolean>('enablePushNotifications', true); // push notification setting
   const [lastPushNotificationHeight, setLastPushNotificationHeight, { isLoading: isLoadingPushNotificationsHeight }] =
     useCurrentFingerprintSettings<number>('lastPushNotificationHeight', 0);
   const [seenHeight, setSeenHeight, { isLoading: isLoadingSeenHeight }] = useCurrentFingerprintSettings<number>(
@@ -102,14 +107,21 @@ export default function NotificationsProvider(props: NotificationsProviderProps)
 
   const error = getNotificationsError || preparingError;
 
+  // Debug support
+  const allowDebugDesktopNotification = process.env.NODE_ENV === 'development';
+
   const prepareNotifications = useCallback(async () => {
     if (isLoadingServices) {
       return;
     }
 
+    const debugNotifications = allowDebugDesktopNotification
+      ? preparedNotificationsRef.current.filter((notification) => notification.debug)
+      : [];
+
     preparedNotificationsRef.current = [];
 
-    if (!notifications) {
+    if (!enabled || !notifications) {
       return;
     }
 
@@ -165,16 +177,16 @@ export default function NotificationsProvider(props: NotificationsProviderProps)
 
       const sortedNotifications = orderBy(prepared, ['height'], ['desc']);
 
-      preparedNotificationsRef.current = sortedNotifications;
+      preparedNotificationsRef.current = [...sortedNotifications, ...debugNotifications];
     } catch (e) {
       setPreparingError(e as Error);
     } finally {
       setIsPreparingNotifications(false);
     }
-  }, [isLoadingServices, notifications, lookupByAssetId]);
+  }, [isLoadingServices, enabled, notifications, lookupByAssetId, allowDebugDesktopNotification]);
 
   const showPushNotifications = useCallback(() => {
-    if (!enabled || isLoading) {
+    if (!enabled || !pushNotificationsEnabled || isLoading) {
       return;
     }
 
@@ -187,11 +199,24 @@ export default function NotificationsProvider(props: NotificationsProviderProps)
     }
 
     setLastPushNotificationHeight(firstUnseenNotification.height);
+
+    const { title, body } = pushNotificationStringsForNotificationType(
+      firstUnseenNotification.type,
+      firstUnseenNotification.debug
+    );
+
     showNotification({
-      title: 'New Offer',
-      body: 'You have a new offer',
+      title,
+      body,
     });
-  }, [lastPushNotificationHeight, enabled, setLastPushNotificationHeight, showNotification, isLoading]);
+  }, [
+    enabled,
+    lastPushNotificationHeight,
+    pushNotificationsEnabled,
+    setLastPushNotificationHeight,
+    showNotification,
+    isLoading,
+  ]);
 
   const unseenCount = useMemo(() => {
     if (isLoading) {
@@ -250,31 +275,82 @@ export default function NotificationsProvider(props: NotificationsProviderProps)
       unseenCount,
       setAsSeen,
       deleteNotification: handleDeleteNotification,
+      areNotificationsEnabled: enabled,
+      setNotificationsEnabled: setEnabled,
+      pushNotificationsEnabled,
+      setPushNotificationsEnabled,
+    }),
+    [
+      isLoading,
+      error,
+      unseenCount,
+      setAsSeen,
+      handleDeleteNotification,
       enabled,
       setEnabled,
-    }),
-    [isLoading, error, unseenCount, setAsSeen, handleDeleteNotification, enabled, setEnabled, isSynced]
+      pushNotificationsEnabled,
+      setPushNotificationsEnabled,
+      isSynced,
+    ]
   );
 
-  const allowDebugDesktopNotification = process.env.NODE_ENV === 'development';
-  useEffect(() => {
+  const debugTriggerNotificationHandler = useCallback(() => {
     if (!allowDebugDesktopNotification) {
       return;
     }
 
-    const { ipcRenderer } = window as any;
-    ipcRenderer.on('debug_triggerDesktopNotification', () => {
-      showNotification({
-        title: '[DEBUG] New Offer',
-        body: '[DEBUG] You have a new offer',
-      });
-    });
-
-    // eslint-disable-next-line consistent-return -- Cleanup in development mode
-    return () => {
-      ipcRenderer.removeListener('debug_triggerDesktopNotification');
+    const currentNotifications = preparedNotificationsRef.current;
+    const maxHeight = currentNotifications.reduce(
+      (acc, notification) => Math.max(acc, notification.height),
+      lastPushNotificationHeight
+    );
+    // create a dummy notification for debugging
+    const dummyNotification: NotificationDetails = {
+      id: `dummy_id_${Math.random()}`,
+      message: 'dummy_message',
+      height: maxHeight + 1,
+      debug: true,
+      type: NotificationType.OFFER,
+      metadata: {
+        type: NotificationType.OFFER,
+        version: 1,
+        data: {
+          ph: 'dummy_puzzle_hash',
+          url: 'dummy_url',
+        },
+      },
+      valid: true,
+      offered: [
+        {
+          assetType: 'CHIA',
+          displayName: 'XCH',
+          displayAmount: 1,
+        },
+      ],
+      requested: [
+        {
+          assetType: 'NFT',
+          displayName: 'Dummy NFT',
+          displayAmount: 1,
+        },
+      ],
     };
-  }, [allowDebugDesktopNotification, showNotification]);
+
+    currentNotifications.unshift(dummyNotification);
+
+    preparedNotificationsRef.current = currentNotifications;
+
+    showPushNotifications();
+  }, [allowDebugDesktopNotification, showPushNotifications, lastPushNotificationHeight]);
+
+  useEffect(() => {
+    const { ipcRenderer } = window as any;
+    ipcRenderer.on('debug_triggerDesktopNotification', debugTriggerNotificationHandler);
+
+    return () => {
+      ipcRenderer.removeListener('debug_triggerDesktopNotification', debugTriggerNotificationHandler);
+    };
+  }, [debugTriggerNotificationHandler]);
 
   return <NotificationsContext.Provider value={contextValue}>{children}</NotificationsContext.Provider>;
 }

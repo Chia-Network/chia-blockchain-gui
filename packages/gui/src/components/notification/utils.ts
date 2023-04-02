@@ -1,3 +1,7 @@
+import { t } from '@lingui/macro';
+
+import NotificationType from '../../constants/NotificationType';
+
 const NOTIFICATION_MESSAGE_VERSION = 1;
 
 export enum NotificationTypeId {
@@ -56,11 +60,11 @@ export function createOfferNotificationPayload({
 
 export function parseNotificationPayload(payload: string): { type: NotificationTypeId; data: NotificationData } | null {
   try {
-    const { v, t, d } = JSON.parse(payload);
+    const { v, t: notificationType, d } = JSON.parse(payload);
     if (v !== NOTIFICATION_MESSAGE_VERSION) {
       return null;
     }
-    return { type: t, data: d };
+    return { type: notificationType, data: d };
   } catch (e) {
     return null;
   }
@@ -79,5 +83,39 @@ export function parseNotificationOfferData(payload: string): NotificationOfferDa
   return {
     u: parsed.data?.u ?? '',
     ph: parsed.data?.ph,
+  };
+}
+
+export function pushNotificationStringsForNotificationType(
+  notificationType: NotificationType,
+  debug = false
+): {
+  title: string;
+  body: string;
+} {
+  let title;
+  let body;
+
+  switch (notificationType) {
+    case NotificationType.OFFER:
+      title = t`New offer`;
+      body = t`You have received a new offer`;
+      break;
+    case NotificationType.COUNTER_OFFER:
+      title = t`New counter offer`;
+      body = t`You have received a new counter offer`;
+      break;
+    default:
+      throw new Error(`Unknown notification type: ${notificationType}`);
+  }
+
+  if (debug) {
+    title = `[DEBUG] ${title}`;
+    body = `[DEBUG] ${body}`;
+  }
+
+  return {
+    title,
+    body,
   };
 }

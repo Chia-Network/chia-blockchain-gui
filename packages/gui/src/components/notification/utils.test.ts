@@ -1,9 +1,11 @@
+import NotificationType from '../../constants/NotificationType';
 import {
   createNotificationOfferData,
   createNotificationPayload,
   createOfferNotificationPayload,
   parseNotificationPayload,
   parseNotificationOfferData,
+  pushNotificationStringsForNotificationType,
   NotificationTypeId,
 } from './utils';
 
@@ -74,5 +76,38 @@ describe('Notification functions', () => {
     expect(parsedMissingUField).toEqual({ u: '', ph: puzzleHash });
 
     expect(parseNotificationOfferData('invalid')).toBeNull();
+  });
+
+  describe('pushNotificationStringsForNotificationType', () => {
+    test('returns strings for OFFER notification type', () => {
+      const result = pushNotificationStringsForNotificationType(NotificationType.OFFER);
+
+      expect(result).toEqual({
+        title: 'New offer',
+        body: 'You have received a new offer',
+      });
+    });
+
+    test('returns strings for COUNTER_OFFER notification type', () => {
+      const result = pushNotificationStringsForNotificationType(NotificationType.COUNTER_OFFER);
+
+      expect(result).toEqual({
+        title: 'New counter offer',
+        body: 'You have received a new counter offer',
+      });
+    });
+
+    test('throws error for unknown notification type', () => {
+      expect(() => pushNotificationStringsForNotificationType(999)).toThrowError('Unknown notification type: 999');
+    });
+
+    test('returns strings prefixed with [DEBUG] when debug is true', () => {
+      const result = pushNotificationStringsForNotificationType(NotificationType.OFFER, true);
+
+      expect(result).toEqual({
+        title: '[DEBUG] New offer',
+        body: '[DEBUG] You have received a new offer',
+      });
+    });
   });
 });
