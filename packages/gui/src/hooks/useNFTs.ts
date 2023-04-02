@@ -69,7 +69,7 @@ export default function useNFTs(props: UseNFTsProps = {}) {
           return false;
         }
 
-        const isHiddenByUser = isNFTHidden(nft);
+        const isHiddenByUser = isNFTHidden(nft.$nftId);
         const visible =
           visibility === NFTVisibility.ALL ||
           (visibility === NFTVisibility.VISIBLE && !isHiddenByUser) ||
@@ -78,7 +78,7 @@ export default function useNFTs(props: UseNFTsProps = {}) {
           return false;
         }
 
-        if (types.length && !types.includes(type)) {
+        if (!types.includes(type)) {
           return false;
         }
 

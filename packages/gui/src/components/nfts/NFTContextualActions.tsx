@@ -473,7 +473,7 @@ function NFTHideContextualAction(props: NFTHideContextualActionProps) {
   const [isNFTHidden, setIsNFTHidden, , setHiddenMultiple] = useHiddenNFTs();
   const [, setSelectedNFTIds] = useLocalStorage('gallery-selected-nfts', []);
 
-  const isHidden = isMultiSelect && showOrHide === 1 ? true : isNFTHidden(selectedNft);
+  const isHidden = isMultiSelect && showOrHide === 1 ? true : isNFTHidden(selectedNft?.$nftId);
 
   function handleToggle() {
     if (!selectedNft) {
@@ -481,10 +481,13 @@ function NFTHideContextualAction(props: NFTHideContextualActionProps) {
     }
 
     if (isMultiSelect) {
-      setHiddenMultiple(selection?.items, !isHidden);
+      setHiddenMultiple(
+        selection?.items.map((nft: NFTInfo) => nft.$nftId),
+        !isHidden
+      );
       setSelectedNFTIds([]);
     } else {
-      setIsNFTHidden(selectedNft, !isHidden);
+      setIsNFTHidden(selectedNft.$nftId, !isHidden);
     }
   }
 

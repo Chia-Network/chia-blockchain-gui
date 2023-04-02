@@ -6,19 +6,16 @@ export default function useHiddenNFTs() {
   const [isNFTHidden, setIsNFTHidden, hiddenNFTs, setIsNFTMultipleHidden] = useHiddenList<NFTInfo['$nftId']>('nfts');
 
   const handleSetIsHidden = useCallback(
-    (nft: NFTInfo, isHidden: boolean) => {
-      setIsNFTHidden(nft.$nftId, isHidden);
+    (nftId: string, isHidden: boolean) => {
+      setIsNFTHidden(nftId, isHidden);
     },
     [setIsNFTHidden]
   );
 
-  const handleIsNFTHidden = useCallback((nft: NFTInfo) => isNFTHidden(nft?.$nftId), [isNFTHidden]);
+  const handleIsNFTHidden = useCallback((nftId: string) => isNFTHidden(nftId), [isNFTHidden]);
   const setHiddenMultiple = useCallback(
-    (nfts: NFTInfo[], hide: boolean) => {
-      setIsNFTMultipleHidden(
-        nfts.map((nft) => nft?.$nftId),
-        hide
-      );
+    (nftIds: string[], hide: boolean) => {
+      setIsNFTMultipleHidden(nftIds, hide);
     },
     [setIsNFTMultipleHidden]
   );

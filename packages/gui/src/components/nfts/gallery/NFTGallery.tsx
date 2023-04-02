@@ -7,10 +7,9 @@ import { FilterList as FilterListIcon, LibraryAddCheck as LibraryAddCheckIcon } 
 import {
   Chip,
   ButtonGroup,
-  // FormControlLabel,
-  // RadioGroup,
+  FormControlLabel,
   FormControl,
-  // Checkbox,
+  Checkbox,
   Grid,
   Fade,
   Box,
@@ -22,7 +21,7 @@ import React, { useState, useMemo } from 'react';
 import { useToggle } from 'react-use';
 import styled from 'styled-components';
 
-// import type FileType from '../../../@types/FileType';
+import FileType from '../../../@types/FileType';
 import NFTVisibility from '../../../@types/NFTVisibility';
 import useFilteredNFTs from '../../../hooks/useFilteredNFTs';
 // import useNFTGalleryScrollPosition from '../../../hooks/useNFTGalleryScrollPosition';
@@ -41,45 +40,6 @@ const Mute = styled('span')(({ theme }) => ({
 
 export const defaultCacheSizeLimit = 1024; /* MB */
 
-const StyledGrid = styled(Grid)`
-  &.show-multiple-select .empty .multiple-selection-empty {
-    display: inline-block !important;
-  }
-  &.show-multiple-select .multiple-selection-empty {
-    display: none;
-  }
-  &.show-multiple-select .multiple-selection .card-wrapper {
-    border: 1px solid ${(props) => props.theme.palette.primary.main};
-    box-shadow: inset 0px 0px 0px 1px ${(props) => props.theme.palette.primary.main};
-    padding: 0;
-    border-radius: 5px;
-    .multiple-selection-checkmark {
-      display: inline-block;
-    }
-  }
-  .hidden .card-wrapper {
-    opacity: 0.5;
-  }
-`;
-
-/*
-const VisibilityRadioWrapper = styled.div<{ isDarkMode: boolean }>`
-  position: relative;
-  z-index: 7;
-  > div {
-    position: absolute;
-    right: -15px;
-    top: 30px;
-    background: ${(props) => (props.isDarkMode ? '#333' : '#fff')};
-    padding: 15px;
-    border: 1px solid ${(props) => (props.isDarkMode ? '#333' : '#e0e0e0')};
-  }
-  span {
-    white-space: nowrap;
-  }
-`;
-*/
-
 export default function NFTGallery() {
   const [inMultipleSelectionMode, toggleMultipleSelection] = useToggle(false);
 
@@ -94,8 +54,8 @@ export default function NFTGallery() {
     search,
     setSearch,
 
-    // types,
-    // setTypes,
+    types,
+    setTypes,
 
     visibility,
     setVisibility,
@@ -126,18 +86,6 @@ export default function NFTGallery() {
       restoreScrollPosition();
     }
   }, [restoreScrollPosition, isDoneLoadingAllowedNFTs]);
-
-  const availableTypes = useMemo(() => {
-    const result: FileType[] = [];
-
-    Object.keys(statistics).forEach((key) => {
-      if (statistics[key as FileType] > 0) {
-        result.push(key as FileType);
-      }
-    });
-
-    return result;
-  }, [statistics]);
   */
 
   const [selectedNFTIds, setSelectedNFTIds] = useLocalStorage<string[]>('gallery-selected-nfts', []);
@@ -157,40 +105,22 @@ export default function NFTGallery() {
 
     return true;
   }
-  /*
+
   function toggleType(type: FileType) {
     setTypes(xor(types, [type]));
   }
 
-  /*
-  function renderTypeFilter() {
-    if (!availableTypes.length) {
-      return null;
-    }
+  const availableTypes = useMemo(() => {
+    const result: FileType[] = [];
 
-    // sort by name
-    const allTypes = sortBy(availableTypes);
+    Object.keys(statistics).forEach((type) => {
+      if (type.toUpperCase() in FileType && statistics[type as FileType] > 0) {
+        result.push(type as FileType);
+      }
+    });
 
-    return (
-      <FormControl>
-        <RadioGroup>
-          {allTypes.map((key: FileType) => (
-            <FormControlLabel
-              control={<Checkbox />}
-              label={t`${key} (${statistics[key]})`}
-              checked={typeFilter.indexOf(key) === -1}
-              onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                toggleType(key);
-              }}
-            />
-          ))}
-        </RadioGroup>
-      </FormControl>
-    );
-  }
-  */
+    return result;
+  }, [statistics]);
 
   function handleToggleSelectAll() {
     if (selectedAll) {
@@ -272,12 +202,12 @@ export default function NFTGallery() {
                   borderStyle: 'solid',
                 }}
               >
-                <Tooltip title={<Trans>Multi-select</Trans>}>
+                <Tooltip title={<Trans>Multi-select</Trans>} placement="top">
                   <IconButton onClick={toggleMultipleSelection} color={inMultipleSelectionMode ? 'primary' : undefined}>
                     <LibraryAddCheckIcon />
                   </IconButton>
                 </Tooltip>
-                <Tooltip title={<Trans>Filter</Trans>}>
+                <Tooltip title={<Trans>Filter</Trans>} placement="top">
                   <IconButton onClick={toggleShowFilters} color={showFilters ? 'primary' : undefined}>
                     <FilterListIcon />
                   </IconButton>
@@ -316,21 +246,33 @@ export default function NFTGallery() {
                   </Box>
                 </Fade>
 
-                {/*
-                  <Fade in={showFilters} unmountOnExit>
-                <Box>
-                  <FilterPill
-                    title={t`Types (${Object.keys(nftTypes).length - checkedNftTypes(nftTypes, typeFilter)}/${
-                      allTypes.length
-                    })`}
-                  >
-                    <VisibilityRadioWrapper isDarkMode={isDarkMode}>
-                      <div>{renderTypeFilter()}</div>
-                    </VisibilityRadioWrapper>
-                  </FilterPill>
-                </Box>
+                <Fade in={showFilters} unmountOnExit>
+                  <Box>
+                    <FilterPill
+                      title={
+                        <Trans>
+                          Types &nbsp;
+                          <Chip label={<FormatLargeNumber value={availableTypes.length} />} size="extraSmall" />
+                        </Trans>
+                      }
+                    >
+                      <FormControl>
+                        {availableTypes.map((type: FileType) => (
+                          <FormControlLabel
+                            key={type}
+                            control={<Checkbox checked={types.includes(type)} onChange={() => toggleType(type)} />}
+                            label={
+                              <Trans>
+                                {type} &nbsp;{' '}
+                                <Chip label={<FormatLargeNumber value={statistics[type]} />} size="extraSmall" />
+                              </Trans>
+                            }
+                          />
+                        ))}
+                      </FormControl>
+                    </FilterPill>
+                  </Box>
                 </Fade>
-                */}
                 <Fade in={showFilters} unmountOnExit>
                   <Box>
                     <FilterPill
@@ -404,43 +346,30 @@ export default function NFTGallery() {
       {!nfts?.length && !isLoading ? (
         <NFTGalleryHero />
       ) : (
-        <StyledGrid
-          spacing={2}
-          alignItems="stretch"
-          container
-          className={`${inMultipleSelectionMode ? 'active show-multiple-select' : ''}`}
-        >
-          {nfts.map((nft: NFTInfo) => {
-            const gridClassNames = [];
-            if (selectedNFTIds.indexOf(nft.$nftId) > -1) {
-              gridClassNames.push('multiple-selection');
-            } else {
-              gridClassNames.push('empty');
-            }
-            return (
-              <Grid
-                xs={12}
-                sm={6}
-                md={4}
-                lg={4}
-                xl={3}
-                key={nft.$nftId}
-                style={{ display: 'block', height: '380px' }}
-                className={gridClassNames.join(' ')}
-                item
-              >
-                <NFTCardLazy
-                  nft={nft}
-                  canExpandDetails
-                  availableActions={NFTContextualActionTypes.All}
-                  isOffer={false}
-                  search={search}
-                  onSelect={handleSelectNFT}
-                />
-              </Grid>
-            );
-          })}
-        </StyledGrid>
+        <Grid spacing={2} alignItems="stretch" container>
+          {nfts.map((nft: NFTInfo) => (
+            <Grid
+              xs={12}
+              sm={6}
+              md={4}
+              lg={4}
+              xl={3}
+              key={nft.$nftId}
+              style={{ display: 'block', height: '380px' }}
+              item
+            >
+              <NFTCardLazy
+                nft={nft}
+                canExpandDetails
+                availableActions={NFTContextualActionTypes.All}
+                isOffer={false}
+                search={search}
+                selected={selectedNFTIds.includes(nft.$nftId)}
+                onSelect={inMultipleSelectionMode ? handleSelectNFT : undefined}
+              />
+            </Grid>
+          ))}
+        </Grid>
       )}
     </LayoutDashboardSub>
   );

@@ -1,6 +1,6 @@
 import React, { createContext, useMemo, useState, type ReactNode } from 'react';
 
-import type FileType from '../../@types/FileType';
+import FileType from '../../@types/FileType';
 import NFTVisibility from '../../@types/NFTVisibility';
 
 export interface NFTFilterContextData {
@@ -25,7 +25,14 @@ export default function NFTFilterProvider(props: NFTFilterProviderProps) {
   const { children } = props;
 
   const [walletIds, setWalletIds] = useState<number[]>([]);
-  const [types, setTypes] = useState<FileType[]>([]);
+  const [types, setTypes] = useState<FileType[]>([
+    FileType.AUDIO,
+    FileType.IMAGE,
+    FileType.VIDEO,
+    FileType.DOCUMENT,
+    FileType.MODEL,
+    FileType.UNKNOWN,
+  ]);
   const [visibility, setVisibility] = useState<NFTVisibility>(NFTVisibility.ALL);
   const [search, setSearch] = useState('');
 
