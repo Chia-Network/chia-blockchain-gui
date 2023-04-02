@@ -20,8 +20,10 @@ window.shell = shell;
 window.cacheApi = {
   getCacheSize: () => ipcRenderer.invoke('cache:getCacheSize'),
   clearCache: () => ipcRenderer.invoke('cache:clearCache'),
-  changeCacheDirectory: (...args) => ipcRenderer.invoke('cache:changeCacheDirectory', ...args),
-  setMaxTotalSize: (...args) => ipcRenderer.invoke('cache:setMaxTotalSize', ...args),
+  getCacheDirectory: () => ipcRenderer.invoke('cache:getCacheDirectory'),
+  setCacheDirectory: (...args) => ipcRenderer.invoke('cache:setCacheDirectory', ...args),
+  setMaxCacheSize: (...args) => ipcRenderer.invoke('cache:setMaxCacheSize', ...args),
+  getMaxCacheSize: () => ipcRenderer.invoke('cache:getMaxCacheSize'),
   get: (...args) => ipcRenderer.invoke('cache:get', ...args),
   invalidate: (...args) => ipcRenderer.invoke('cache:invalidate', ...args),
 };

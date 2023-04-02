@@ -2,10 +2,8 @@ import { store, walletApi } from '@chia-network/api-react';
 import isURL from 'validator/lib/isURL';
 
 import OfferServices from '../constants/OfferServices';
-import getRemoteFileContent from './getRemoteFileContent';
 import offerToOfferBuilderData from './offerToOfferBuilderData';
-
-const cache: Record<string, string> = {};
+import parseFileContent from './parseFileContent';
 
 export default async function fetchOffer(offerUrl: string) {
   if (!offerUrl || !isURL(offerUrl)) {
@@ -18,18 +16,11 @@ export default async function fetchOffer(offerUrl: string) {
     throw new Error('Service not found');
   }
 
-  if (!cache[offerUrl]) {
-    const { data } = await getRemoteFileContent({
-      uri: offerUrl,
-      maxSize: 10 * 1024 * 1024, // 10 MB
-      nftId: offerUrl,
-      dataHash: 'no hash',
-    });
+  const { content, headers } = await window.cacheApi.get(offerUrl, {
+    maxSize: 10 * 1024 * 1024, // 10 MB
+  });
 
-    cache[offerUrl] = data;
-  }
-
-  const offerData = cache[offerUrl];
+  const offerData = parseFileContent(content, headers);
 
   if (!offerData) {
     throw new Error('Failed to get offer data');

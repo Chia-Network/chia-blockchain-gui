@@ -21,7 +21,7 @@ import NFTContextualActionsEventEmitter from '../NFTContextualActionsEventEmitte
 import NFTDetails from '../NFTDetails';
 import NFTPreview from '../NFTPreview';
 import NFTPreviewDialog from '../NFTPreviewDialog';
-import NFTProgressBar from '../NFTProgressBar';
+// import NFTProgressBar from '../NFTProgressBar';
 import NFTProperties from '../NFTProperties';
 import NFTRankings from '../NFTRankings';
 
@@ -40,8 +40,8 @@ function NFTDetailLoaded(props: NFTDetailLoadedProps) {
   const { nft } = props;
   const nftId = nft.$nftId;
   const openDialog = useOpenDialog();
-  const [validationProcessed, setValidationProcessed] = useState(false);
-  const [isValid, setIsValid] = useState(false);
+  const [validationProcessed /* , setValidationProcessed */] = useState(false);
+  const [isValid /* , setIsValid */] = useState(false);
   const { metadata, isLoading /* , error */ } = useNFTMetadata(nftId);
 
   const uri = nft?.dataUris?.[0];
@@ -171,10 +171,12 @@ function NFTDetailLoaded(props: NFTDetailLoadedProps) {
     );
   }
 
+  /*
   function fetchBinaryContentDone(valid: boolean) {
     setValidationProcessed(true);
     setIsValid(valid);
   }
+  */
 
   function handleGoBack() {
     navigate('/dashboard/nfts');
@@ -217,11 +219,13 @@ function NFTDetailLoaded(props: NFTDetailLoadedProps) {
                     </NavigationButton>
                   </div>
                 </LeftRightNavigation>
+                {/*
                 <NFTProgressBar
                   nftIdUrl={`${nft.$nftId}_${uri}`}
                   setValidateNFT={setValidateNFT}
                   fetchBinaryContentDone={fetchBinaryContentDone}
                 />
+                */}
               </Flex>
             )}
           </Box>

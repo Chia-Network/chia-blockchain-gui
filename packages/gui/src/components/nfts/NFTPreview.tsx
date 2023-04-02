@@ -32,6 +32,7 @@ import useNFTImageFittingMode from '../../hooks/useNFTImageFittingMode';
 import useNFTVerifyHash from '../../hooks/useNFTVerifyHash';
 import getFileExtension from '../../util/getFileExtension';
 import getFileType from '../../util/getFileType';
+import parseFileContent from '../../util/parseFileContent';
 
 const StyledCardPreview = styled(Box)`
   height: ${({ height }) => height};
@@ -261,15 +262,15 @@ export default function NFTPreview(props: NFTPreviewProps) {
   const isLoading = isLoadingVerifyHash;
   const error = errorVerifyHash || preview?.error;
 
-  const previewExtension = useMemo(() => getFileExtension(preview?.uri), [preview]);
+  const previewExtension = useMemo(() => getFileExtension(preview?.originalUri), [preview]);
 
   const previewFileType = useMemo(() => {
-    if (!preview?.uri) {
+    if (!preview?.originalUri) {
       return FileType.UNKNOWN;
     }
 
-    const { uri } = preview;
-    return getFileType(uri);
+    const { originalUri } = preview;
+    return getFileType(originalUri);
   }, [preview]);
 
   const srcDoc = useMemo(() => {
@@ -376,7 +377,15 @@ export default function NFTPreview(props: NFTPreviewProps) {
         </audio>
       );
     } else {
-      mediaElement = <img src={preview.uri} alt={t`Preview`} width="100%" height="100%" />;
+      const isSVG = preview?.headers?.['content-type'].startsWith('image/svg+xml');
+      if (isSVG && preview.content && preview.headers) {
+        const svgImage = parseFileContent(preview.content, preview.headers);
+        const encodedSvg = encodeURIComponent(svgImage);
+        const dataUri = `data:image/svg+xml;charset=utf-8,${encodedSvg}`;
+        mediaElement = <img src={dataUri} alt={t`Preview`} width="100%" height="100%" />;
+      } else {
+        mediaElement = <img src={preview.uri} alt={t`Preview`} width="100%" height="100%" />;
+      }
     }
 
     return renderToString(

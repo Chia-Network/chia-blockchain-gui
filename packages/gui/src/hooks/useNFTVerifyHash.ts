@@ -10,6 +10,9 @@ type PreviewState = {
   isVerified: boolean;
   error?: Error;
   uri?: string;
+  originalUri?: string;
+  content?: any;
+  headers?: Record<string, string>;
 };
 
 export type UseNFTVerifyHashProps = {
@@ -20,7 +23,7 @@ export type UseNFTVerifyHashProps = {
 
 export default function useNFTVerifyHash(props: UseNFTVerifyHashProps) {
   const { nft, preview = false, ignoreSizeLimit = false } = props;
-  const { getChecksum } = useCache();
+  const { get } = useCache();
   const { isLoading: isLoadingMetadata, metadata, error: errorMetadata } = useNFTMetadata(nft.$nftId);
 
   const [errorVerify, setErrorVerify] = useState<Error | undefined>();
@@ -32,17 +35,6 @@ export default function useNFTVerifyHash(props: UseNFTVerifyHashProps) {
 
   const isLoading = isLoadingMetadata || isVerifying;
   const error = errorMetadata || errorVerify;
-
-  const verify = useCallback(
-    async (url: string, validChecksum: string) => {
-      const checksum = await getChecksum(url, {
-        maxSize: ignoreSizeLimit ? -1 : undefined,
-      });
-
-      return compareChecksums(checksum, validChecksum);
-    },
-    [getChecksum, ignoreSizeLimit]
-  );
 
   const findValidUri = useCallback(
     async (
@@ -56,23 +48,44 @@ export default function useNFTVerifyHash(props: UseNFTVerifyHashProps) {
 
       // use only first uri when onlyFirst is true
       const urisToCheck = onlyFirst ? [uris[0]] : uris;
+      let first = {};
       // eslint-disable-next-line no-restricted-syntax -- we are reading in sequence
       for (const uri of urisToCheck) {
-        const isValid = await verify(uri, hash); // eslint-disable-line no-await-in-loop -- because we are using for loop and we want to check in sequence
+        // eslint-disable-next-line no-await-in-loop -- we are reading in sequence
+        const response = await get(uri, {
+          maxSize: ignoreSizeLimit ? -1 : undefined,
+        });
+
+        const { checksum, content, headers, uri: localUri } = response;
+
+        if (!first && localUri) {
+          first = {
+            uri: localUri,
+            originalUri: uri,
+            headers,
+            content,
+          };
+        }
+
+        const isValid = compareChecksums(checksum, hash);
         if (isValid) {
           return {
+            content,
+            headers,
             isVerified: true,
-            uri,
+            originalUri: uri,
+            uri: localUri,
           };
         }
       }
 
       return {
+        ...first,
         isVerified: false,
         error: new Error('Invalid hash checksum'),
       };
     },
-    [verify]
+    [get, ignoreSizeLimit]
   );
 
   const verifyNFT = useCallback(

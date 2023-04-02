@@ -16,20 +16,11 @@ import useStateAbort from '../../../hooks/useStateAbort';
 import compareChecksums from '../../../util/compareChecksums';
 import getNFTFileType from '../../../util/getNFTFileType';
 import limit from '../../../util/limit';
+import parseFileContent from '../../../util/parseFileContent';
 import NFTProviderContext from './NFTProviderContext';
 
 function parseMetadataFile(content: Buffer, headers: any) {
-  let encoding: BufferEncoding = 'utf8';
-  if (headers?.['content-type']) {
-    const contentType = headers['content-type'];
-    const parsedEncoding = contentType?.split('charset=')[1];
-
-    if (parsedEncoding) {
-      encoding = parsedEncoding.toLowerCase() === 'iso-8859-1' ? 'latin1' : parsedEncoding;
-    }
-  }
-
-  const metadataString = Buffer.from(content).toString(encoding);
+  const metadataString = parseFileContent(content, headers);
 
   return JSON.parse(metadataString) as Metadata;
 }
@@ -98,7 +89,7 @@ export default function NFTProvider(props: NFTProviderProps) {
     }).unwrap();
 
     if (signal?.aborted) {
-      throw new Error('Aborted');
+      return;
     }
 
     const page = nftsByWallet[walletId];
@@ -122,8 +113,6 @@ export default function NFTProvider(props: NFTProviderProps) {
 
     // try to get metadata for each NFT without await (we can show data without metadata)
     page.map((nft: NFTInfo) => metadataAdd(() => fetchMetadata(nft, signal)));
-
-    return nftsByWallet[walletId];
   }
 
   async function updateNft(id: string, data: Partial<NFTData>, signal: AbortSignal) {
@@ -156,50 +145,75 @@ export default function NFTProvider(props: NFTProviderProps) {
   async function fetchMetadata(nft: NFTInfo, signal: AbortSignal) {
     const { $nftId: nftId, metadataUris = [], metadataHash } = nft;
 
-    const [firstUri] = metadataUris;
-    if (!firstUri) {
+    try {
+      const [firstUri] = metadataUris;
+      if (!firstUri) {
+        return undefined;
+      }
+
+      const existingNft = nfts.find((nftItem) => nftItem.nft.$nftId === nftId);
+      if (existingNft?.metadataPromise) {
+        return await existingNft.metadataPromise;
+      }
+
+      const promise = fetchAndProcessMetadata(firstUri, metadataHash);
+
+      updateNft(
+        nftId,
+        {
+          metadata: undefined,
+          metadataError: undefined,
+          metadataPromise: promise,
+        },
+        signal
+      );
+
+      promise.then(
+        (metadata) => {
+          updateNft(
+            nftId,
+            {
+              metadata,
+              metadataPromise: undefined,
+            },
+            signal
+          );
+        },
+        () => {
+          updateNft(
+            nftId,
+            {
+              metadataPromise: undefined,
+            },
+            signal
+          );
+        }
+      );
+
+      const metadata = await promise;
+
+      updateNft(
+        nftId,
+        {
+          metadata,
+          metadataPromise: undefined,
+        },
+        signal
+      );
+
+      return metadata;
+    } catch (err) {
+      updateNft(
+        nftId,
+        {
+          metadataError: err as Error,
+          metadataPromise: undefined,
+        },
+        signal
+      );
+
       return undefined;
     }
-
-    const existingNft = nfts.find((nftItem) => nftItem.nft.$nftId === nftId);
-    if (existingNft?.metadataPromise) {
-      return existingNft.metadataPromise;
-    }
-
-    const promise = fetchAndProcessMetadata(firstUri, metadataHash);
-
-    updateNft(
-      nftId,
-      {
-        metadata: undefined,
-        metadataPromise: promise,
-      },
-      signal
-    );
-
-    promise.then(
-      (metadata) => {
-        updateNft(
-          nftId,
-          {
-            metadata,
-            metadataPromise: undefined,
-          },
-          signal
-        );
-      },
-      () => {
-        updateNft(
-          nftId,
-          {
-            metadataPromise: undefined,
-          },
-          signal
-        );
-      }
-    );
-
-    return promise;
   }
 
   async function fetchData(options: { signal: AbortSignal }) {

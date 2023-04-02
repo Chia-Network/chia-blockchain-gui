@@ -7,6 +7,7 @@ type NFTData = {
   nft: NFTInfo;
   type: FileType;
   metadata?: Metadata;
+  metadataError?: Error;
   metadataPromise?: Promise<Metadata>;
 };
 
