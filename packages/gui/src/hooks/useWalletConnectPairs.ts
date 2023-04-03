@@ -137,7 +137,7 @@ export default function useWalletConnectPairs(): Pairs {
       return pairs.map((item) => ({
         ...item,
         bypassCommands:
-          item.topic === pair.topic && command in (item?.bypassCommands ?? [])
+          item.topic === pair.topic && command in (item.bypassCommands ?? [])
             ? deleteCommand(item.bypassCommands)
             : item.bypassCommands,
       }));
