@@ -47,7 +47,7 @@ export default function usePrefs<T extends Serializable>(
   }
 
   const handleSetValue = useCallback(
-    (newValueOrFn: T | ((nv: T | undefined) => T)) => {
+    (newValueOrFn: T | ((nv: T) => T)) => {
       const currentValue = valueRef.current ?? defaultValueRef.current;
       const newValue = newValueOrFn instanceof Function ? newValueOrFn(currentValue) : newValueOrFn;
       if (isEqual(currentValue, newValue)) {

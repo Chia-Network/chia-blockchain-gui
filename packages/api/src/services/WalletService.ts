@@ -36,7 +36,11 @@ export default class Wallet extends Service {
   }
 
   async getTransactionMemo(args: { transactionId: string }) {
-    return this.command('get_transaction_memo', args);
+    return this.command<{
+      [transactionId: string]: {
+        [coinId: string]: string[];
+      };
+    }>('get_transaction_memo', args);
   }
 
   async getPwStatus(args: { walletId: number }) {

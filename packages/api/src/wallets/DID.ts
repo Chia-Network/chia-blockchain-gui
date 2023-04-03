@@ -106,9 +106,20 @@ export default class DIDWallet extends Wallet {
     }>('did_get_current_coin_info', args);
   }
 
-  async getDidInfo(coin_or_did_id: string) {
-    return this.command('did_get_info', {
-      coin_id: coin_or_did_id,
+  async getDidInfo(args: { coinOrDIDId: string }) {
+    return this.command<{
+      latestCoin: string;
+      p2Address: string;
+      publicKey: string;
+      recoveryListHash: string;
+      numVerification: number;
+      metadata: Record<string, string>;
+      launcherId: string;
+      fullPuzzle: string; // hex bytes of serialized CLVM program
+      solution: any;
+      hints: string[];
+    }>('did_get_info', {
+      coinId: args.coinOrDIDId,
     });
   }
 

@@ -52,8 +52,9 @@ export const walletApi = apiWithTag.injectEndpoints({
     }),
 
     // TODO refactor
-    getWallets: build.query<Wallet[], { includeData?: boolean }>({
-      async queryFn(args, _queryApi, _extraOptions, fetchWithBQ) {
+    getWallets: build.query<Wallet[], { includeData?: boolean } | void>({
+      // eslint-disable-next-line @typescript-eslint/default-param-last -- cannot change order
+      async queryFn(args = { includeData: false }, _queryApi, _extraOptions, fetchWithBQ) {
         try {
           const { data, error } = await fetchWithBQ({
             command: 'getWallets',
