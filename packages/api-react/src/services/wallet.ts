@@ -21,6 +21,7 @@ import onCacheEntryAddedInvalidate from '../utils/onCacheEntryAddedInvalidate';
 const apiWithTag = api.enhanceEndpoints({
   addTagTypes: [
     'Address',
+    'CATWalletInfo',
     'DID',
     'DIDCoinInfo',
     'DIDInfo',
@@ -1197,6 +1198,15 @@ export const walletApi = apiWithTag.injectEndpoints({
       ],
     }),
 
+    getCATWalletInfo: build.query<{ walletId: number; name?: string }, { assetId: string }>({
+      query: ({ assetId }) => ({
+        command: 'getWalletIdAndName',
+        service: CAT,
+        args: [assetId],
+      }),
+      providesTags: (result, _error, { assetId }) => (result ? [{ type: 'CATWalletInfo', id: assetId }] : []),
+    }),
+
     getCATAssetId: build.query<
       string,
       {
@@ -2329,6 +2339,7 @@ export const {
   // CAT
   useCreateNewCATWalletMutation,
   useCreateCATWalletForExistingMutation,
+  useGetCATWalletInfoQuery,
   useGetCATAssetIdQuery,
   useGetCatListQuery,
   useGetCATNameQuery,

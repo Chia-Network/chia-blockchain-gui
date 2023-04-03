@@ -15,6 +15,12 @@ export default class CATWallet extends Wallet {
     });
   }
 
+  async getWalletIdAndName(assetId: string) {
+    return this.command('cat_asset_id_to_name', {
+      assetId,
+    });
+  }
+
   async getAssetId(walletId: number) {
     return this.command('cat_get_asset_id', {
       walletId,

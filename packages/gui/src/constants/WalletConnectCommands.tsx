@@ -418,6 +418,19 @@ const walletConnectCommands: WalletConnectCommand[] = [
     ],
   },
   {
+    command: 'getCATWalletInfo',
+    label: <Trans>Get CAT Wallet Info</Trans>,
+    service: ServiceName.WALLET,
+    bypassConfirm: true,
+    params: [
+      {
+        name: WalletConnectCommandParamName.ASSET_ID,
+        label: <Trans>Asset Id</Trans>,
+        type: 'string',
+      },
+    ],
+  },
+  {
     command: 'getCATAssetId',
     label: <Trans>Get CAT Asset Id</Trans>,
     service: ServiceName.WALLET,
