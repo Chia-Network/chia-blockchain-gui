@@ -16,7 +16,7 @@ import {
 } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Typography } from '@mui/material';
-import React, { useState } from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
 
 import NFTSummary from './NFTSummary';

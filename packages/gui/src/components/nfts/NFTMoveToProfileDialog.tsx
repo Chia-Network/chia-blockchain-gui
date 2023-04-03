@@ -19,7 +19,7 @@ import {
 } from '@chia-network/core';
 import { Trans, t } from '@lingui/macro';
 import { Box, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Typography } from '@mui/material';
-import React, { useMemo, useState } from 'react';
+import React, { useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 import styled from 'styled-components';
 
