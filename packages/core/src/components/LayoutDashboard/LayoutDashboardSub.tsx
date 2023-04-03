@@ -15,16 +15,16 @@ const StyledSidebar = styled(Box)`
   position: relative;
 `;
 
-const StyledHeader = styled(({ sidebar, ...rest }) => <Box {...rest} />)`
+const StyledHeader = styled(({ sidebar, gap, ...rest }) => <Box {...rest} />)`
   padding-top: ${({ theme }) => theme.spacing(3)};
-  padding-bottom: ${({ theme }) => theme.spacing(3)};
+  padding-bottom: ${({ theme, gap }) => theme.spacing(gap)};
   padding-right: ${({ theme }) => theme.spacing(3)};
 
   padding-left: ${({ theme, sidebar }) => (!sidebar ? theme.spacing(3) : '10px')};
   margin-left: ${({ sidebar }) => (!sidebar ? `0` : '-10px')};
 `;
 
-const StyledContent = styled(({ header, sidebar, ...rest }) => <Box {...rest} />)`
+const StyledContent = styled(({ header, sidebar, fullHeight, ...rest }) => <Box {...rest} />)`
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -33,7 +33,7 @@ const StyledContent = styled(({ header, sidebar, ...rest }) => <Box {...rest} />
   position: relative;
 
   padding-top: ${({ theme, header }) => (header ? 0 : theme.spacing(3))};
-  padding-bottom: ${({ theme }) => theme.spacing(3)};
+  padding-bottom: ${({ theme, fullHeight }) => (fullHeight ? 0 : theme.spacing(3))};
   padding-right: ${({ theme }) => theme.spacing(3)};
 
   padding-left: ${({ theme, sidebar }) => (!sidebar ? theme.spacing(3) : '10px')};
@@ -45,11 +45,13 @@ export type DashboardLayoutProps = {
   children?: ReactNode;
   header?: ReactNode;
   outlet?: boolean;
+  gap?: number;
+  fullHeight?: boolean;
   onScroll?: () => void;
 };
 
 export default function DashboardLayout(props: DashboardLayoutProps) {
-  const { sidebar, children, outlet = false, header } = props;
+  const { sidebar, children, outlet = false, fullHeight = false, gap = 3, header } = props;
   // two layout column with always visible left column
   // and right column with content
   return (
@@ -57,8 +59,10 @@ export default function DashboardLayout(props: DashboardLayoutProps) {
       {sidebar && <StyledSidebar>{sidebar}</StyledSidebar>}
       {header ? (
         <Flex flexDirection="column" flexGrow={1}>
-          <StyledHeader sidebar={!!sidebar}>{header}</StyledHeader>
-          <StyledContent sidebar={!!sidebar} header={!!header} onScroll={props?.onScroll}>
+          <StyledHeader sidebar={!!sidebar} gap={gap}>
+            {header}
+          </StyledHeader>
+          <StyledContent sidebar={!!sidebar} header={!!header} onScroll={props?.onScroll} fullHeight={fullHeight}>
             {outlet ? <Outlet /> : children}
           </StyledContent>
         </Flex>

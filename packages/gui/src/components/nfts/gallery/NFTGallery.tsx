@@ -10,29 +10,61 @@ import {
   FormControlLabel,
   FormControl,
   Checkbox,
-  Grid,
   Fade,
   Box,
   Typography,
   IconButton,
 } from '@mui/material';
+import { styled } from '@mui/styles';
 import { xor /* , sortBy */ } from 'lodash';
 import React, { useState, useMemo } from 'react';
 import { useToggle } from 'react-use';
-import styled from 'styled-components';
+import { VirtuosoGrid } from 'react-virtuoso';
 
 import FileType from '../../../@types/FileType';
 import NFTVisibility from '../../../@types/NFTVisibility';
 import useFilteredNFTs from '../../../hooks/useFilteredNFTs';
 // import useNFTGalleryScrollPosition from '../../../hooks/useNFTGalleryScrollPosition';
 import LabelProgress from '../../helpers/LabelProgress';
-import NFTCardLazy from '../NFTCardLazy';
+import NFTCard from '../NFTCard';
 import { NFTContextualActionTypes } from '../NFTContextualActions';
 import NFTProfileDropdown from '../NFTProfileDropdown';
 import FilterPill from './FilterPill';
 import NFTGalleryHero from './NFTGalleryHero';
 import Search from './NFTGallerySearch';
 import SelectedActionsDialog from './SelectedActionsDialog';
+
+function ItemContainer(props: { children: React.ReactNode }) {
+  const { children, ...rest } = props;
+
+  return (
+    <Box
+      sx={{
+        display: 'flex',
+        paddingLeft: 1,
+        paddingRight: 1,
+        paddingBottom: 2,
+        alignContent: 'stretch',
+        width: {
+          xs: '100%',
+          sm: '50%',
+          lg: '33.333333%',
+          xl: '25%',
+        },
+      }}
+      {...rest}
+    >
+      {children}
+    </Box>
+  );
+}
+
+const ListContainer = styled('div')({
+  display: 'flex',
+  flexWrap: 'wrap',
+  paddingLeft: 16,
+  paddingRight: 16,
+});
 
 const Mute = styled('span')(({ theme }) => ({
   color: theme.palette.text.secondary,
@@ -181,8 +213,25 @@ export default function NFTGallery() {
   }
   */
 
+  function renderNFTCard(index: number) {
+    const nft = nfts[index];
+    return (
+      <NFTCard
+        nft={nft}
+        canExpandDetails
+        availableActions={NFTContextualActionTypes.All}
+        isOffer={false}
+        search={search}
+        selected={selectedNFTIds.includes(nft.$nftId)}
+        onSelect={inMultipleSelectionMode ? handleSelectNFT : undefined}
+      />
+    );
+  }
+
   return (
     <LayoutDashboardSub
+      gap={2}
+      fullHeight
       // sidebar={<NFTGallerySidebar onWalletChange={setWalletId} />}
       // onScroll={handleOnScroll}
       header={
@@ -346,30 +395,19 @@ export default function NFTGallery() {
       {!nfts?.length && !isLoading ? (
         <NFTGalleryHero />
       ) : (
-        <Grid spacing={2} alignItems="stretch" container>
-          {nfts.map((nft: NFTInfo) => (
-            <Grid
-              xs={12}
-              sm={6}
-              md={4}
-              lg={4}
-              xl={3}
-              key={nft.$nftId}
-              style={{ display: 'block', height: '380px' }}
-              item
-            >
-              <NFTCardLazy
-                nft={nft}
-                canExpandDetails
-                availableActions={NFTContextualActionTypes.All}
-                isOffer={false}
-                search={search}
-                selected={selectedNFTIds.includes(nft.$nftId)}
-                onSelect={inMultipleSelectionMode ? handleSelectNFT : undefined}
-              />
-            </Grid>
-          ))}
-        </Grid>
+        <Box sx={{ height: '100%', marginLeft: -3, marginRight: -3 }}>
+          <VirtuosoGrid
+            style={{ height: '100%' }}
+            data={nfts}
+            overscan={200}
+            computeItemKey={(_index, nft) => nft.$nftId}
+            components={{
+              Item: ItemContainer,
+              List: ListContainer,
+            }}
+            itemContent={renderNFTCard}
+          />
+        </Box>
       )}
     </LayoutDashboardSub>
   );
