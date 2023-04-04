@@ -653,7 +653,7 @@ export const walletApi = apiWithTag.injectEndpoints({
     getOfferRecord: mutation(build, WalletService, 'getOfferRecord'),
 
     // Pool
-    createNewPoolWallet: mutation(build, Pool, 'createNewWallet', {
+    createNewPoolWallet: mutation(build, Pool, 'createNewPoolWallet', {
       invalidatesTags: [
         { type: 'Wallets', id: 'LIST' },
         { type: 'Transactions', id: 'LIST' },
@@ -661,7 +661,7 @@ export const walletApi = apiWithTag.injectEndpoints({
     }),
 
     // CAT
-    createNewCATWallet: mutation(build, CAT, 'createNewWallet', {
+    createNewCATWallet: mutation(build, CAT, 'createNewCatWallet', {
       invalidatesTags: [
         { type: 'Wallets', id: 'LIST' },
         { type: 'Transactions', id: 'LIST' },

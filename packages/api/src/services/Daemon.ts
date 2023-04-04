@@ -192,6 +192,14 @@ export default class Daemon extends Service {
     if (outputArgs.plotter && (outputArgs.plotter as string).startsWith('bladebit')) outputArgs.plotter = 'bladebit';
     if (outputArgs.cache) outputArgs.cache = `${outputArgs.cache}G`;
 
+    Object.keys(outputArgs).forEach((key) => {
+      if (outputArgs[key] === undefined) delete outputArgs[key];
+      // if (outputArgs[key] === '') delete outputArgs[key];
+    });
+
+    // some keys must be provided as empty strings and some must not be provided at all
+    if (outputArgs.p === '') delete outputArgs.p;
+
     return this.command<{ ids: string[] }>('start_plotting', outputArgs, undefined, undefined, true);
   }
 
