@@ -113,7 +113,10 @@ export default function CreateOfferBuilder(props: CreateOfferBuilderProps) {
 
       try {
         const response = await createOfferForIds({
-          ...localOffer,
+          offer: localOffer.walletIdsAndAmounts,
+          fee: localOffer.feeInMojos,
+          driverDict: localOffer.driverDict,
+          validateOnly: localOffer.validateOnly,
           disableJSONFormatting: true,
         }).unwrap();
 

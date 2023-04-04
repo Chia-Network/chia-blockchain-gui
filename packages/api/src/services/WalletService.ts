@@ -218,8 +218,8 @@ export default class Wallet extends Service {
   }
 
   async createOfferForIds(args: {
-    offer: { [key: string]: number };
-    fee: number;
+    offer: { [key: string]: number | BigNumber };
+    fee: number | BigNumber;
     driverDict: any;
     validateOnly?: boolean;
     disableJSONFormatting?: boolean;
