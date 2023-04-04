@@ -1,4 +1,4 @@
-import api, { store, useGetLoggedInFingerprintQuery, useLogInAndSkipImportMutation } from '@chia-network/api-react';
+import api, { store, useGetLoggedInFingerprintQuery, useLogInMutation } from '@chia-network/api-react';
 import { useOpenDialog } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import debug from 'debug';
@@ -27,7 +27,7 @@ export const STANDARD_ERROR_MAP = {
 
 export default function useWalletConnectCommand() {
   const openDialog = useOpenDialog();
-  const [logIn] = useLogInAndSkipImportMutation();
+  const [logIn] = useLogInMutation();
   const { data: currentFingerprint, isLoading: isLoadingLoggedInFingerprint } = useGetLoggedInFingerprintQuery();
   const { getPairBySession } = useWalletConnectPairs();
 
@@ -140,6 +140,7 @@ export default function useWalletConnectCommand() {
       log('Changing fingerprint', fingerprint);
       await logIn({
         fingerprint,
+        type: 'skip',
       }).unwrap();
     }
 

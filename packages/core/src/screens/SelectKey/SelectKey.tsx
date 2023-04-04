@@ -5,6 +5,7 @@ import {
   useDeleteAllKeysMutation,
   useGetKeysQuery,
   useLogout,
+  useLogInMutation,
   type Serializable,
 } from '@chia-network/api-react';
 import { ChiaBlack, Coins } from '@chia-network/icons';
@@ -42,7 +43,7 @@ export default function SelectKey() {
   const openDialog = useOpenDialog();
   const navigate = useNavigate();
   const [deleteAllKeys] = useDeleteAllKeysMutation();
-  const [logIn] = useLogInAndSkipImportMutation();
+  const [logIn] = useLogInMutation();
   const { data: publicKeyFingerprints, isLoading: isLoadingPublicKeys, error, refetch } = useGetKeysQuery();
   const { data: keyringState, isLoading: isLoadingKeyringStatus } = useGetKeyringStatusQuery();
   const hasFingerprints = !!publicKeyFingerprints?.length;
