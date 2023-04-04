@@ -1,5 +1,5 @@
 import crypto from 'crypto';
-import { protocol, ipcMain, BrowserWindow } from 'electron';
+import { protocol, BrowserWindow } from 'electron';
 import { EventEmitter } from 'events';
 import fs from 'fs/promises';
 import path from 'path';
@@ -11,6 +11,7 @@ import downloadFile from './utils/downloadFile';
 import ensureDirectoryExists from './utils/ensureDirectoryExists';
 import getChecksum from './utils/getChecksum';
 import getRemoteFileSize from './utils/getRemoteFileSize';
+import handleWithCustomErrors from './utils/handleWithCustomErrors';
 import sanitizeNumber from './utils/sanitizeNumber';
 
 type CachedFile = {
@@ -88,17 +89,19 @@ export default class CacheManager extends EventEmitter {
   }
 
   private prepareIPC() {
-    ipcMain.handle('cache:getCacheSize', () => this.getCacheSize());
-    ipcMain.handle('cache:clearCache', () => this.clearCache());
-    ipcMain.handle('cache:setCacheDirectory', (_event, newDirectory: string) => this.setCacheDirectory(newDirectory));
-    ipcMain.handle('cache:setMaxCacheSize', (_event, newSize: number) => this.setMaxCacheSize(newSize));
-    ipcMain.handle('cache:get', (_event, uri: string, options?: { maxSize?: number; timeout?: number }) =>
+    handleWithCustomErrors('cache:getCacheSize', () => this.getCacheSize());
+    handleWithCustomErrors('cache:clearCache', () => this.clearCache());
+    handleWithCustomErrors('cache:setCacheDirectory', (_event, newDirectory: string) =>
+      this.setCacheDirectory(newDirectory)
+    );
+    handleWithCustomErrors('cache:setMaxCacheSize', (_event, newSize: number) => this.setMaxCacheSize(newSize));
+    handleWithCustomErrors('cache:get', (_event, uri: string, options?: { maxSize?: number; timeout?: number }) =>
       this.get(uri, options)
     );
-    ipcMain.handle('cache:invalidate', (_event, uri: string) => this.invalidate(uri));
+    handleWithCustomErrors('cache:invalidate', (_event, uri: string) => this.invalidate(uri));
 
-    ipcMain.handle('cache:getCacheDirectory', () => this.cacheDirectory);
-    ipcMain.handle('cache:getMaxCacheSize', () => this.maxCacheSize);
+    handleWithCustomErrors('cache:getCacheDirectory', () => this.cacheDirectory);
+    handleWithCustomErrors('cache:getMaxCacheSize', () => this.maxCacheSize);
   }
 
   public bindEvents(window: BrowserWindow) {
@@ -253,9 +256,12 @@ export default class CacheManager extends EventEmitter {
     });
 
     this.ongoingRequests.set(url, requestPromise);
-    requestPromise.finally(() => this.ongoingRequests.delete(url));
 
-    return requestPromise;
+    try {
+      return await requestPromise;
+    } finally {
+      this.ongoingRequests.delete(url);
+    }
   }
 
   async clearCache() {

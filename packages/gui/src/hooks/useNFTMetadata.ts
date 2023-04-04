@@ -8,7 +8,7 @@ export default function useNFTMetadata(nftId: string) {
   const details = useMemo(() => nfts.find((item) => item.nft.$nftId === nftId), [nfts, nftId]);
 
   const metadata = details?.metadata;
-  const isLoading = !metadata || !!details?.metadataPromise;
+  const isLoading = !!details?.metadataPromise;
   const error = details?.metadataError;
 
   return {

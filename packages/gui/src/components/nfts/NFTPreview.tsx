@@ -1,10 +1,8 @@
 import { type NFTInfo } from '@chia-network/api';
-import { IconMessage, Loading, Flex, SandboxedIframe, Tooltip, usePersistState, useDarkMode } from '@chia-network/core';
+import { IconMessage, Loading, Flex, SandboxedIframe, usePersistState, useDarkMode } from '@chia-network/core';
 import { t, Trans } from '@lingui/macro';
 import { NotInterested /* , Error as ErrorIcon */ } from '@mui/icons-material';
-import CloseSvg from '@mui/icons-material/Close';
-import QuestionMarkSvg from '@mui/icons-material/QuestionMark';
-import { Box, Typography } from '@mui/material';
+import { Box } from '@mui/material';
 import React, { useMemo, useRef, Fragment } from 'react';
 import { renderToString } from 'react-dom/server';
 import styled from 'styled-components';
@@ -33,6 +31,7 @@ import useNFTVerifyHash from '../../hooks/useNFTVerifyHash';
 import getFileExtension from '../../util/getFileExtension';
 import getFileType from '../../util/getFileType';
 import parseFileContent from '../../util/parseFileContent';
+import NFTHashStatus from './NFTHashStatus';
 
 const StyledCardPreview = styled(Box)`
   height: ${({ height }) => height};
@@ -78,8 +77,9 @@ const StatusContainer = styled.div`
   justify-content: center;
   align-items: center;
   position: absolute;
-  top: 0;
-  height: 100%;
+  top: 48px;
+  left: 8px;
+  right: 8px;
   z-index: 3;
 `;
 
@@ -92,8 +92,6 @@ const StatusPill = styled.div`
   box-sizing: border-box;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   display: flex;
-  height: 30px;
-  margin-top: -200px;
   padding: 8px 20px;
 `;
 
@@ -163,43 +161,6 @@ const CompactExtension = styled.div`
   color: #3aac59;
 `;
 
-const Sha256ValidatedIcon = styled.div`
-  position: absolute;
-  background: ${({ theme }) => (theme.palette.mode === 'dark' ? 'rgba(33, 33, 33, 0.5)' : 'rgba(255, 255, 255, 0.66)')};
-  color: ${({ theme }) => (theme.palette.mode === 'dark' ? '#fff' : '#333')};
-  border-radius: 18px;
-  padding: 0 8px;
-  top: 10px;
-  left: 10px;
-  z-index: 3;
-  line-height: 25px;
-  box-shadow: 0 0 2px 0 #ccc;
-  font-size: 11px;
-  > * {
-    vertical-align: top;
-  }
-  svg {
-    position: relative;
-    top: 2px;
-    width: 20px;
-    height: 20px;
-    margin-left: -3px;
-    margin-right: -3px;
-  }
-`;
-
-const CloseIcon = styled(CloseSvg)`
-  path {
-    fill: red;
-  }
-`;
-
-const QuestionMarkIcon = styled(QuestionMarkSvg)`
-  path {
-    fill: grey;
-  }
-`;
-
 export type NFTPreviewProps = {
   nft: NFTInfo;
   height?: number | string;
@@ -248,13 +209,15 @@ export default function NFTPreview(props: NFTPreviewProps) {
     `nft-preview-ignore-size-limit-${nft.$nftId}`
   );
 
+  const nftId = nft.$nftId;
+
   const {
-    data,
+    // data,
     preview,
+    // isVerified,
     isLoading: isLoadingVerifyHash,
     error: errorVerifyHash,
-  } = useNFTVerifyHash({
-    nft,
+  } = useNFTVerifyHash(nftId, {
     preview: isPreview,
     ignoreSizeLimit,
   });
@@ -529,24 +492,16 @@ export default function NFTPreview(props: NFTPreviewProps) {
   ]);
 
   const isHashValid = useMemo(() => {
-    if (miniThumb || (data && data.isVerified)) {
+    if (miniThumb) {
       return null;
     }
 
-    let showedIcon = <CloseIcon />;
-    let tooltipString = t`Content does not match the expected hash value that was specified during NFT minting. The content may have been modified.`;
-
-    if (!data) {
-      showedIcon = <QuestionMarkIcon />;
-      tooltipString = t`Content has not been validated against the hash that was specified during NFT minting.`;
-    }
-
     return (
-      <Tooltip title={<Typography variant="caption">{tooltipString}</Typography>}>
-        <Sha256ValidatedIcon>{showedIcon} HASH</Sha256ValidatedIcon>
-      </Tooltip>
+      <Box sx={{ position: 'absolute', top: 16, left: 16 }}>
+        <NFTHashStatus nftId={nftId} hideValid />
+      </Box>
     );
-  }, [data, miniThumb]);
+  }, [miniThumb, nftId]);
 
   const hasFile = !!preview;
 

@@ -3,6 +3,7 @@ import { get } from 'lodash';
 import React, { type ReactNode } from 'react';
 
 import useNFTMetadata from '../../hooks/useNFTMetadata';
+import ErrorMessage from '../helpers/ErrorMessage';
 import Highlight from '../helpers/Highlight';
 
 export type NFTMetadataProps = {
@@ -10,6 +11,7 @@ export type NFTMetadataProps = {
   path: string;
   children?: ReactNode;
   loading?: ReactNode;
+  error?: ReactNode;
   highlight?: string;
 };
 
@@ -19,12 +21,17 @@ export default function NFTMetadata(props: NFTMetadataProps) {
     path,
     loading = <Trans>Loading...</Trans>,
     children = <Trans>Not Available</Trans>,
+    error: ErrorComponent = ErrorMessage,
     highlight,
   } = props;
-  const { metadata, isLoading } = useNFTMetadata(nftId);
+  const { metadata, isLoading, error } = useNFTMetadata(nftId);
 
   if (isLoading) {
     return loading;
+  }
+
+  if (error && ErrorComponent) {
+    return <ErrorComponent error={error} />;
   }
 
   const value = get(metadata, path);

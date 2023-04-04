@@ -1,5 +1,22 @@
 const { /* contextBridge, */ ipcRenderer, shell } = require('electron');
 
+function decodeError({ name, message, extra }) {
+  const error = new Error(message);
+  error.name = name;
+  Object.assign(error, extra);
+
+  return error;
+}
+
+async function invokeWithCustomErrors(channel, ...args) {
+  const { error, result } = await ipcRenderer.invoke(channel, ...args);
+  if (error) {
+    throw decodeError(error);
+  }
+
+  return result;
+}
+
 /*
 contextBridge.exposeInMainWorld('cacheApi', {
   getCacheSize: () => ipcRenderer.invoke('cache:getCacheSize'),
@@ -18,12 +35,12 @@ contextBridge.exposeInMainWorld('shell', shell);
 window.ipcRenderer = ipcRenderer;
 window.shell = shell;
 window.cacheApi = {
-  getCacheSize: () => ipcRenderer.invoke('cache:getCacheSize'),
-  clearCache: () => ipcRenderer.invoke('cache:clearCache'),
-  getCacheDirectory: () => ipcRenderer.invoke('cache:getCacheDirectory'),
-  setCacheDirectory: (...args) => ipcRenderer.invoke('cache:setCacheDirectory', ...args),
-  setMaxCacheSize: (...args) => ipcRenderer.invoke('cache:setMaxCacheSize', ...args),
-  getMaxCacheSize: () => ipcRenderer.invoke('cache:getMaxCacheSize'),
-  get: (...args) => ipcRenderer.invoke('cache:get', ...args),
-  invalidate: (...args) => ipcRenderer.invoke('cache:invalidate', ...args),
+  getCacheSize: () => invokeWithCustomErrors('cache:getCacheSize'),
+  clearCache: () => invokeWithCustomErrors('cache:clearCache'),
+  getCacheDirectory: () => invokeWithCustomErrors('cache:getCacheDirectory'),
+  setCacheDirectory: (...args) => invokeWithCustomErrors('cache:setCacheDirectory', ...args),
+  setMaxCacheSize: (...args) => invokeWithCustomErrors('cache:setMaxCacheSize', ...args),
+  getMaxCacheSize: () => invokeWithCustomErrors('cache:getMaxCacheSize'),
+  get: (...args) => invokeWithCustomErrors('cache:get', ...args),
+  invalidate: (...args) => invokeWithCustomErrors('cache:invalidate', ...args),
 };

@@ -24,7 +24,7 @@ export default function getNFTsDataStatistics(
     const { type } = item;
     stats[type] = (stats[type] ?? 0) + 1;
 
-    if (isHidden(item.nft)) {
+    if (isHidden(item.nft.$nftId)) {
       stats.hidden += 1;
     } else {
       stats.visible += 1;

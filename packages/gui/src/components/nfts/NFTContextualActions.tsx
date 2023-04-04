@@ -636,35 +636,43 @@ export default function NFTContextualActions(props: NFTContextualActionsProps) {
       [`${NFTContextualActionTypes.CopyNFTId}`]: {
         action: NFTCopyNFTIdContextualAction,
         props: {},
+        key: NFTContextualActionTypes.CopyNFTId,
       },
       [`${NFTContextualActionTypes.CreateOffer}`]: {
         action: NFTCreateOfferContextualAction,
         props: { isMultiSelect },
+        key: NFTContextualActionTypes.CreateOffer,
       },
       [`${NFTContextualActionTypes.Transfer}`]: {
         action: NFTTransferContextualAction,
         props: { isMultiSelect },
+        key: NFTContextualActionTypes.Transfer,
       },
       [`${NFTContextualActionTypes.MoveToProfile}`]: {
         action: NFTMoveToProfileContextualAction,
         props: {},
+        key: NFTContextualActionTypes.MoveToProfile,
       },
       [`${NFTContextualActionTypes.Invalidate}`]: {
         action: NFTInvalidateContextualAction,
         props: { isMultiSelect },
+        key: NFTContextualActionTypes.Invalidate,
       },
       [`${NFTContextualActionTypes.CancelUnconfirmedTransaction}`]: {
         action: NFTCancelUnconfirmedTransactionContextualAction,
         props: {},
+        key: NFTContextualActionTypes.CancelUnconfirmedTransaction,
       },
 
       [`${NFTContextualActionTypes.Hide}`]: {
         action: NFTHideContextualAction,
         props: { isMultiSelect, showOrHide },
+        key: NFTContextualActionTypes.Hide,
       },
       [`${NFTContextualActionTypes.Burn}`]: {
         action: NFTBurnContextualAction,
         props: { isMultiSelect },
+        key: NFTContextualActionTypes.Burn,
       },
 
       [`${NFTContextualActionTypes.ViewOnExplorer}`]: [
@@ -674,6 +682,7 @@ export default function NFTContextualActions(props: NFTContextualActionsProps) {
             title: <Trans>View on MintGarden</Trans>,
             explorer: NFTExplorer.MintGarden,
           },
+          key: 'view-on-mintgarden',
         },
         {
           action: NFTViewOnExplorerContextualAction,
@@ -681,19 +690,23 @@ export default function NFTContextualActions(props: NFTContextualActionsProps) {
             title: <Trans>View on Spacescan.io</Trans>,
             explorer: NFTExplorer.Spacescan,
           },
+          key: 'view-on-spacescan',
         },
       ],
       [`${NFTContextualActionTypes.OpenInBrowser}`]: {
         action: NFTOpenInBrowserContextualAction,
         props: {},
+        key: NFTContextualActionTypes.OpenInBrowser,
       },
       [`${NFTContextualActionTypes.CopyURL}`]: {
         action: NFTCopyURLContextualAction,
         props: {},
+        key: NFTContextualActionTypes.CopyURL,
       },
       [`${NFTContextualActionTypes.Download}`]: {
         action: NFTDownloadContextualAction,
         props: {},
+        key: NFTContextualActionTypes.Download,
       },
     };
 
@@ -714,8 +727,8 @@ export default function NFTContextualActions(props: NFTContextualActionsProps) {
       menuSx={{ top: '-78px', left: '38px' }} /* menu shouldn't appear over ACTIONS button, but above! */
       {...rest}
     >
-      {actions.map(({ action: Action, props: actionProps }) => (
-        <Action key={`${Action.name}`} selection={selection} {...actionProps} />
+      {actions.map(({ action: Action, props: actionProps, key }) => (
+        <Action key={key} selection={selection} {...actionProps} />
       ))}
     </DropdownActions>
   );

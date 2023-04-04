@@ -4,6 +4,7 @@ import { useEffect, useState, useCallback, useMemo } from 'react';
 import type Metadata from '../@types/Metadata';
 import compareChecksums from '../util/compareChecksums';
 import useCache from './useCache';
+import useNFT from './useNFT';
 import useNFTMetadata from './useNFTMetadata';
 
 type PreviewState = {
@@ -15,26 +16,27 @@ type PreviewState = {
   headers?: Record<string, string>;
 };
 
-export type UseNFTVerifyHashProps = {
-  nft: NFTInfo;
+export type UseNFTVerifyHashOptions = {
   preview?: boolean;
   ignoreSizeLimit?: boolean;
 };
 
-export default function useNFTVerifyHash(props: UseNFTVerifyHashProps) {
-  const { nft, preview = false, ignoreSizeLimit = false } = props;
+export default function useNFTVerifyHash(nftId: string, options: UseNFTVerifyHashOptions = {}) {
+  const { preview = false, ignoreSizeLimit = false } = options;
   const { get } = useCache();
+
+  const { nft, isLoading: isLoadingNFT, error: errorNFT } = useNFT(nftId);
   const { isLoading: isLoadingMetadata, metadata, error: errorMetadata } = useNFTMetadata(nft.$nftId);
 
   const [errorVerify, setErrorVerify] = useState<Error | undefined>();
   const [isVerifying, setIsVerifying] = useState<boolean>(false);
 
   const [data, setData] = useState<PreviewState | undefined>();
-  const [video, setVideo] = useState<PreviewState | undefined>();
-  const [image, setImage] = useState<PreviewState | undefined>();
+  const [previewVideo, setPreviewVideo] = useState<PreviewState | undefined>();
+  const [previewImage, setPreviewImage] = useState<PreviewState | undefined>();
 
-  const isLoading = isLoadingMetadata || isVerifying;
-  const error = errorMetadata || errorVerify;
+  const isLoading = isLoadingNFT || isLoadingMetadata || isVerifying;
+  const error = errorNFT || errorMetadata || errorVerify;
 
   const findValidUri = useCallback(
     async (
@@ -94,11 +96,11 @@ export default function useNFTVerifyHash(props: UseNFTVerifyHashProps) {
       setErrorVerify(undefined);
 
       setData(undefined);
-      setVideo(undefined);
-      setImage(undefined);
+      setPreviewVideo(undefined);
+      setPreviewImage(undefined);
 
       async function validateData() {
-        const dataState = await findValidUri(dataUris, dataHash, true);
+        const dataState = await findValidUri(dataUris, dataHash);
         setData(dataState);
       }
 
@@ -110,12 +112,12 @@ export default function useNFTVerifyHash(props: UseNFTVerifyHashProps) {
         const { preview_video_uris: previewVideoUris, preview_video_hash: previewVideoHash } = nftMetadata;
 
         const videoState = await findValidUri(previewVideoUris, previewVideoHash);
-        setVideo(videoState);
+        setPreviewVideo(videoState);
 
         if (!videoState?.isVerified) {
           const { preview_image_uris: previewImageUris, preview_image_hash: previewImageHash } = nftMetadata;
           const imageState = await findValidUri(previewImageUris, previewImageHash);
-          setImage(imageState);
+          setPreviewImage(imageState);
         }
       }
 
@@ -138,29 +140,31 @@ export default function useNFTVerifyHash(props: UseNFTVerifyHashProps) {
   }, [nft, metadata, verifyNFT]);
 
   const previewState = useMemo(() => {
-    if (video?.isVerified) {
-      return video;
+    if (previewVideo?.isVerified) {
+      return previewVideo;
     }
 
-    if (image?.isVerified) {
-      return image;
+    if (previewImage?.isVerified) {
+      return previewImage;
     }
 
     if (data?.isVerified) {
       return data;
     }
 
-    return video || image || data;
-  }, [data, image, video]);
+    return previewVideo || previewImage || data;
+  }, [previewVideo, previewImage, data]);
 
   return {
+    isVerified: data?.isVerified, // main data is the only one that matters
     isLoading,
     error,
 
     data,
-    image,
-    video,
+    previewImage,
+    previewVideo,
 
+    // preview is the first valid preview found or data
     preview: previewState,
   };
 }

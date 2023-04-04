@@ -77,7 +77,7 @@ export default function NFTCard(props: NFTCardProps) {
         <CardActionArea onClick={() => canExpandDetails && handleClick()} component="div">
           <CardContent>
             <Flex justifyContent="space-between" alignItems="center">
-              <Flex gap={1} alignItems="center" minWidth={0}>
+              <Flex gap={1} alignItems="center" minWidth={0} flexBasis={0} flexGrow={1}>
                 <Typography noWrap>
                   <NFTTitle nftId={nftId} highlight={search} />
                 </Typography>
