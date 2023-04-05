@@ -165,11 +165,7 @@ export function NFTMoveToProfileAction(props: NFTMoveToProfileActionProps) {
 
     if (confirmation) {
       try {
-        const {
-          error,
-          isSuccess,
-          data: response,
-        } = await setNFTDID({
+        const { error, data: response } = await setNFTDID({
           walletId: nfts[0].walletId,
           nftLauncherId: stripHexPrefix(nfts[0].launcherId),
           nftCoinIds: nfts.map((nft) => stripHexPrefix(nft.nftCoinId)),
@@ -199,7 +195,7 @@ export function NFTMoveToProfileAction(props: NFTMoveToProfileActionProps) {
               </ErrorTextWrapper>
             </AlertDialog>
           );
-        } else if (isSuccess) {
+        } else if (!error) {
           openDialog(
             <AlertDialog title={<Trans>NFT Move Pending</Trans>}>
               <Trans>The NFT move transaction has been successfully submitted to the blockchain.</Trans>

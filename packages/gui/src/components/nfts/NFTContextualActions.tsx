@@ -243,14 +243,14 @@ function NFTCancelUnconfirmedTransactionContextualAction(props: NFTCancelUnconfi
   const disabled = (selection?.items.length ?? 0) !== 1 || !selectedNft?.pendingTransaction;
 
   async function handleCancelUnconfirmedTransaction() {
-    const { error, isSuccess } = await setNFTStatus({
-      walletId: selectedNft?.walletId,
-      nftLauncherId: stripHexPrefix(selectedNft?.launcherId),
-      nftCoinId: stripHexPrefix(selectedNft?.nftCoinId ?? ''),
-      inTransaction: false,
-    });
+    try {
+      await setNFTStatus({
+        walletId: selectedNft?.walletId,
+        nftLauncherId: stripHexPrefix(selectedNft?.launcherId),
+        nftCoinId: stripHexPrefix(selectedNft?.nftCoinId ?? ''),
+        inTransaction: false,
+      }).unwrap();
 
-    if (isSuccess) {
       openDialog(
         <AlertDialog title={<Trans>NFT Status Updated</Trans>}>
           <Trans>
@@ -259,7 +259,7 @@ function NFTCancelUnconfirmedTransactionContextualAction(props: NFTCancelUnconfi
           </Trans>
         </AlertDialog>
       );
-    } else {
+    } catch (error) {
       const err = error?.message || 'Unknown error';
       openDialog(
         <AlertDialog title={<Trans>NFT Status Update Failed</Trans>}>
