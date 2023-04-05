@@ -25,7 +25,8 @@ export default class Wallet extends Service {
     return this.command<{ fingerprint: number }>('get_logged_in_fingerprint');
   }
 
-  async getWallets({ includeData = false }: { includeData: boolean }) {
+  async getWallets(args?: { includeData: boolean }) {
+    const { includeData = false } = args || {};
     return this.command<{ fingerprint: number; wallets: WalletListItem[] }>('get_wallets', {
       includeData,
     });
