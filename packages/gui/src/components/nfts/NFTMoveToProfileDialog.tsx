@@ -206,7 +206,7 @@ export function NFTMoveToProfileAction(props: NFTMoveToProfileActionProps) {
             </AlertDialog>
           );
         } else {
-          const err = error || 'Unknown error';
+          const err = error?.message || 'Unknown error';
           openDialog(
             <AlertDialog title={<Trans>NFT Move Failed</Trans>}>
               <Trans>The NFT move failed: {err}</Trans>

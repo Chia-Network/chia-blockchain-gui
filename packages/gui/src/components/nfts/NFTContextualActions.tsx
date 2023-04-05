@@ -260,7 +260,7 @@ function NFTCancelUnconfirmedTransactionContextualAction(props: NFTCancelUnconfi
         </AlertDialog>
       );
     } else {
-      const err = error || 'Unknown error';
+      const err = error?.message || 'Unknown error';
       openDialog(
         <AlertDialog title={<Trans>NFT Status Update Failed</Trans>}>
           <Trans>The NFT status update failed: {err}</Trans>
