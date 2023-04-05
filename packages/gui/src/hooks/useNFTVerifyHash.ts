@@ -26,7 +26,7 @@ export default function useNFTVerifyHash(nftId: string, options: UseNFTVerifyHas
   const { get } = useCache();
 
   const { nft, isLoading: isLoadingNFT, error: errorNFT } = useNFT(nftId);
-  const { isLoading: isLoadingMetadata, metadata, error: errorMetadata } = useNFTMetadata(nft.$nftId);
+  const { isLoading: isLoadingMetadata, metadata, error: errorMetadata } = useNFTMetadata(nftId);
 
   const [errorVerify, setErrorVerify] = useState<Error | undefined>();
   const [isVerifying, setIsVerifying] = useState<boolean>(false);
@@ -91,7 +91,7 @@ export default function useNFTVerifyHash(nftId: string, options: UseNFTVerifyHas
   );
 
   const verifyNFT = useCallback(
-    async ({ dataHash, dataUris }: NFTInfo, nftMetadata: Metadata) => {
+    async ({ dataHash, dataUris }: NFTInfo, nftMetadata?: Metadata) => {
       setIsVerifying(true);
       setErrorVerify(undefined);
 
@@ -105,7 +105,7 @@ export default function useNFTVerifyHash(nftId: string, options: UseNFTVerifyHas
       }
 
       async function validatePreview() {
-        if (!preview) {
+        if (!preview || !nftMetadata) {
           return;
         }
 
@@ -134,7 +134,7 @@ export default function useNFTVerifyHash(nftId: string, options: UseNFTVerifyHas
   );
 
   useEffect(() => {
-    if (nft && metadata) {
+    if (nft) {
       verifyNFT(nft, metadata);
     }
   }, [nft, metadata, verifyNFT]);

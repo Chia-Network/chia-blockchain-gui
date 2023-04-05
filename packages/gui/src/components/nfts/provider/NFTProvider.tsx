@@ -7,7 +7,7 @@ import {
   useGetLoggedInFingerprintQuery,
 } from '@chia-network/api-react';
 import { uniqBy, sortBy } from 'lodash';
-import React, { useMemo, useEffect, type ReactNode } from 'react';
+import React, { useMemo, useCallback, useEffect, type ReactNode } from 'react';
 
 import type Metadata from '../../../@types/Metadata';
 import type NFTData from '../../../@types/NFTData';
@@ -216,6 +216,49 @@ export default function NFTProvider(props: NFTProviderProps) {
     }
   }
 
+  const invalidate = useCallback(
+    async (nftId: string) => {
+      const item = nfts.find((nftItem) => nftItem.nft.$nftId === nftId);
+      if (!item) {
+        return;
+      }
+
+      const { nft, metadataPromise } = item;
+      const { dataUris, metadataUris } = nft;
+
+      // wait for old request to finish
+      if (metadataPromise) {
+        await metadataPromise;
+      }
+
+      const promises = dataUris.map((uri) => cache.invalidate(uri));
+
+      const firstMetadataUri = metadataUris && metadataUris[0];
+      if (firstMetadataUri) {
+        promises.push(cache.invalidate(firstMetadataUri));
+      }
+
+      try {
+        const metadata = item.metadata ?? item.metadataPromise ? await item.metadataPromise : item.metadata;
+        if (metadata) {
+          // invalidate all previews
+          const { preview_video_uris: previewVideoUris, preview_image_uris: previewImageUris } = nftMetadata;
+
+          if (previewVideoUris) {
+            previewVideoUris.forEach((uri: string) => promises.push(cache.invalidate(uri)));
+          }
+
+          if (previewImageUris) {
+            previewImageUris.forEach((uri: string) => promises.push(cache.invalidate(uri)));
+          }
+        }
+      } finally {
+        await Promise.all(promises);
+      }
+    },
+    [nfts, cache]
+  );
+
   async function fetchData(options: { signal: AbortSignal }) {
     const { signal } = options;
     if (isLoading) {
@@ -309,8 +352,9 @@ export default function NFTProvider(props: NFTProviderProps) {
       isLoading: isLoadingNFTProvider,
       error,
       progress: total > 0 ? (loaded / total) * 100 : 0,
+      invalidate,
     }),
-    [nfts, total, loaded, isLoadingNFTProvider, error]
+    [nfts, total, loaded, isLoadingNFTProvider, error, invalidate]
   );
 
   return <NFTProviderContext.Provider value={context}>{children}</NFTProviderContext.Provider>;

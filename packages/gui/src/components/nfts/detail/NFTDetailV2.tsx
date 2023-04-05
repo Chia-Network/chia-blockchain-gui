@@ -149,7 +149,7 @@ function NFTDetailLoaded(props: NFTDetailLoadedProps) {
             {nft && (
               <Flex flexDirection="column">
                 <Box onClick={handleShowFullScreen} sx={{ cursor: 'pointer' }}>
-                  <NFTPreview nft={nft} width="100%" height="412px" fit="contain" />
+                  <NFTPreview nft={nft} width="100%" height="412px" fit="contain" hideStatus />
                 </Box>
                 {/*
                 <NFTProgressBar

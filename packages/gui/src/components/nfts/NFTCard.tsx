@@ -4,19 +4,11 @@ import { MoreVert } from '@mui/icons-material';
 import { Card, CardActionArea, CardContent, Checkbox, Typography } from '@mui/material';
 import React, { useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
 
 import useHiddenNFTs from '../../hooks/useHiddenNFTs';
 import NFTContextualActions, { NFTContextualActionTypes } from './NFTContextualActions';
 import NFTPreview from './NFTPreview';
 import NFTTitle from './NFTTitle';
-
-const ClickableCardTop = styled.div`
-  position: absolute;
-  z-index: 3;
-  height: 50px;
-  width: 100%;
-`;
 
 export type NFTCardProps = {
   nft: NFTInfo;
@@ -63,7 +55,6 @@ export default function NFTCard(props: NFTCardProps) {
     <Flex flexDirection="column" flexGrow={1}>
       <Card sx={{ borderRadius: '8px', opacity: isHidden ? 0.5 : 1 }} variant="outlined">
         <CardActionArea onClick={handleClick}>
-          <ClickableCardTop onClick={handleClick} />
           {onSelect && (
             <Checkbox
               onClick={() => handleClick()}
@@ -72,7 +63,7 @@ export default function NFTCard(props: NFTCardProps) {
               sx={{ zIndex: 1, position: 'absolute', right: 2, top: 2 }}
             />
           )}
-          <NFTPreview nft={nft} isPreview disableInteractions={isOffer} />
+          <NFTPreview nft={nft} disableInteractions={isOffer} preview />
         </CardActionArea>
         <CardActionArea onClick={() => canExpandDetails && handleClick()} component="div">
           <CardContent>

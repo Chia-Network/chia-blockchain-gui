@@ -1,7 +1,7 @@
 // eslint-ignore-file - in progress
 import type { NFTInfo } from '@chia-network/api';
 import { useLocalStorage } from '@chia-network/api-react';
-import { Button, FormatLargeNumber, Flex, LayoutDashboardSub, Tooltip } from '@chia-network/core';
+import { Button, FormatLargeNumber, Flex, LayoutDashboardSub, Tooltip, usePersistState } from '@chia-network/core';
 import { t, Trans } from '@lingui/macro';
 import { FilterList as FilterListIcon, LibraryAddCheck as LibraryAddCheckIcon } from '@mui/icons-material';
 import {
@@ -17,13 +17,13 @@ import {
 } from '@mui/material';
 import { styled } from '@mui/styles';
 import { xor /* , sortBy */ } from 'lodash';
-import React, { useState, useMemo } from 'react';
-import { useToggle } from 'react-use';
+import React, { useMemo } from 'react';
 import { VirtuosoGrid } from 'react-virtuoso';
 
 import FileType from '../../../@types/FileType';
 import NFTVisibility from '../../../@types/NFTVisibility';
 import useFilteredNFTs from '../../../hooks/useFilteredNFTs';
+import useHideObjectionableContent from '../../../hooks/useHideObjectionableContent';
 // import useNFTGalleryScrollPosition from '../../../hooks/useNFTGalleryScrollPosition';
 import LabelProgress from '../../helpers/LabelProgress';
 import NFTCard from '../NFTCard';
@@ -73,8 +73,6 @@ const Mute = styled('span')(({ theme }) => ({
 export const defaultCacheSizeLimit = 1024; /* MB */
 
 export default function NFTGallery() {
-  const [inMultipleSelectionMode, toggleMultipleSelection] = useToggle(false);
-
   const {
     nfts,
     isLoading,
@@ -95,7 +93,20 @@ export default function NFTGallery() {
     statistics,
   } = useFilteredNFTs();
 
-  const [showFilters, setShowFilters] = useState(false);
+  const [hideSensitiveContent, setHideSensitiveContent] = useHideObjectionableContent();
+  const [showFilters, setShowFilters] = usePersistState(false, 'nft-gallery-show-filters');
+  const [inMultipleSelectionMode, setInMultipleSelectionMode] = usePersistState(
+    false,
+    'nft-gallery-multiple-selection'
+  );
+
+  function toggleMultipleSelection() {
+    setInMultipleSelectionMode(!inMultipleSelectionMode);
+  }
+
+  function toggleSensitiveContent() {
+    setHideSensitiveContent(!hideSensitiveContent);
+  }
 
   function handleSetWalletId(walletId: number | undefined) {
     setWalletIds(walletId ? [walletId] : []);
@@ -301,24 +312,35 @@ export default function NFTGallery() {
                       title={
                         <Trans>
                           Types &nbsp;
-                          <Chip label={<FormatLargeNumber value={availableTypes.length} />} size="extraSmall" />
+                          <Chip label={<FormatLargeNumber value={availableTypes.length + 1} />} size="extraSmall" />
                         </Trans>
                       }
                     >
-                      <FormControl>
+                      <Flex flexDirection="column">
                         {availableTypes.map((type: FileType) => (
                           <FormControlLabel
                             key={type}
                             control={<Checkbox checked={types.includes(type)} onChange={() => toggleType(type)} />}
                             label={
-                              <Trans>
-                                {type} &nbsp;{' '}
+                              <Flex width="100%" gap={1} justifyContent="space-between" alignItems="center">
+                                <Box textTransform="capitalize">{type}</Box>
                                 <Chip label={<FormatLargeNumber value={statistics[type]} />} size="extraSmall" />
-                              </Trans>
+                              </Flex>
                             }
                           />
                         ))}
-                      </FormControl>
+                        <FormControlLabel
+                          control={<Checkbox checked={!hideSensitiveContent} onChange={toggleSensitiveContent} />}
+                          label={
+                            <Flex width="100%" gap={1} justifyContent="space-between" alignItems="center">
+                              <Box>
+                                <Trans>Objectionable Content</Trans>
+                              </Box>
+                              <Chip label={<FormatLargeNumber value={statistics.sensitive} />} size="extraSmall" />
+                            </Flex>
+                          }
+                        />
+                      </Flex>
                     </FilterPill>
                   </Box>
                 </Fade>

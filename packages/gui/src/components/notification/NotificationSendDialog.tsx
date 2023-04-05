@@ -76,7 +76,6 @@ export default function NotificationSendDialog(props: NotificationSendDialogProp
   const { data: nft } = useGetNFTInfoQuery({ coinId: launcherId ?? '' }, { skip: !launcherId });
   const { data: currentAddress = '' } = useGetCurrentAddressQuery({ walletId: 1 });
   const [sendNotifications] = useSendNotificationsMutation();
-  const [, setMetadata] = React.useState<any>({});
   const [isLoading, setIsLoading] = React.useState(isNFTOffer);
   const [isSubmitting, setIsSubmitting] = React.useState(false);
   const address = methods.watch('address');
@@ -191,7 +190,7 @@ export default function NotificationSendDialog(props: NotificationSendDialogProp
                 <Flex flexDirection="column" alignItems="center" gap={3}>
                   {isNFTOffer && (
                     <Box sx={nftPreviewContainer}>
-                      <NFTPreview nft={nft} setNFTCardMetadata={setMetadata} disableInteractions />
+                      <NFTPreview nft={nft} disableInteractions />
                     </Box>
                   )}
                   {/* <Flex flexDirection="column" alignItems="center" gap={1}>

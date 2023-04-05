@@ -13,8 +13,7 @@ import { launcherIdToNFTId } from '../../util/nfts';
 import NFTPreview from './NFTPreview';
 import { NFTProperty } from './NFTProperties';
 import { NFTRanking } from './NFTRankings';
-
-/* ========================================================================== */
+import NFTTitle from './NFTTitle';
 
 const StyledTitle = styled(Box)`
   font-size: 0.625rem;
@@ -24,8 +23,6 @@ const StyledTitle = styled(Box)`
 const StyledValue = styled(Box)`
   word-break: break-all;
 `;
-
-/* ========================================================================== */
 
 export type NFTSummaryProps = {
   launcherId: string;
@@ -133,7 +130,7 @@ export default function NFTSummary(props: NFTSummaryProps) {
               }}
             >
               <Typography variant="h6" fontWeight="bold" noWrap>
-                {metadata?.name ?? <Trans>Title Not Available</Trans>}
+                <NFTTitle nftId={nftId} />
               </Typography>
               {metadata?.description && (
                 <Typography variant="caption" noWrap>

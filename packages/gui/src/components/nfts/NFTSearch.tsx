@@ -99,7 +99,7 @@ export default function OfferBuilderValueSearch(props: OfferBuilderValueSearchPr
           nfts.map((nft) => (
             <SearchNFTrow className="nft-searched-row" onClick={() => selectNFT(nft.$nftId)} isDarkMode={isDarkMode}>
               <div>
-                <NFTPreview nft={nft} fit="cover" isPreview isCompact miniThumb />
+                <NFTPreview nft={nft} fit="cover" isCompact preview />
               </div>
               <NFTSearchedText>
                 <Flex flexDirection="column">

@@ -32,5 +32,5 @@ export default function NotificationPreviewNFT(props: NotificationPreviewNFTProp
     return <ErrorIcon height={size} color="error" />;
   }
 
-  return <NFTPreview nft={nft} height={size} width={size} isPreview />;
+  return <NFTPreview nft={nft} height={size} width={size} preview isCompact />;
 }

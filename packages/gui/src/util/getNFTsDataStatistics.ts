@@ -1,12 +1,11 @@
-import { type NFTInfo } from '@chia-network/api';
-
 import FileType from '../@types/FileType';
 import type NFTData from '../@types/NFTData';
 import type NFTsDataStatistics from '../@types/NFTsDataStatistics';
+import hasSensitiveContent from './hasSensitiveContent';
 
 export default function getNFTsDataStatistics(
   data: NFTData[],
-  isHidden: (nft: NFTInfo) => boolean
+  isHidden: (nftId: string) => boolean
 ): NFTsDataStatistics {
   const stats: NFTsDataStatistics = {
     [FileType.IMAGE]: 0,
@@ -18,16 +17,21 @@ export default function getNFTsDataStatistics(
     visible: 0,
     hidden: 0,
     total: 0,
+    sensitive: 0,
   };
 
   data.forEach((item) => {
-    const { type } = item;
+    const { type, metadata } = item;
     stats[type] = (stats[type] ?? 0) + 1;
 
     if (isHidden(item.nft.$nftId)) {
       stats.hidden += 1;
     } else {
       stats.visible += 1;
+    }
+
+    if (!metadata || hasSensitiveContent(metadata)) {
+      stats.sensitive += 1;
     }
 
     stats.total += 1;

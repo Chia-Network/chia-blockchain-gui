@@ -14,6 +14,14 @@ import getRemoteFileSize from './utils/getRemoteFileSize';
 import handleWithCustomErrors from './utils/handleWithCustomErrors';
 import sanitizeNumber from './utils/sanitizeNumber';
 
+async function safeUnlink(filePath: string) {
+  try {
+    await fs.unlink(filePath);
+  } catch (error) {
+    // Ignore
+  }
+}
+
 type CachedFile = {
   uri: string;
   headers: any;
@@ -330,12 +338,8 @@ export default class CacheManager extends EventEmitter {
 
     await Promise.all(
       filesToRemove.map(async ({ filePath }) => {
-        await fs.unlink(filePath);
-
-        const headersFilePath = getHeadersFilePath(filePath);
-        if (await canReadFile(headersFilePath)) {
-          await fs.unlink(headersFilePath);
-        }
+        await safeUnlink(filePath);
+        await safeUnlink(getHeadersFilePath(filePath));
       })
     );
 
@@ -347,11 +351,8 @@ export default class CacheManager extends EventEmitter {
     const filePath = this.getCacheFilePath(url);
 
     // remove the file
-    await fs.unlink(filePath);
-    const headersFilePath = getHeadersFilePath(filePath);
-    if (await canReadFile(headersFilePath)) {
-      await fs.unlink(headersFilePath);
-    }
+    await safeUnlink(filePath);
+    await safeUnlink(getHeadersFilePath(filePath));
 
     this.emit('sizeChanged');
   }

@@ -5,21 +5,9 @@ import FileType from '../@types/FileType';
 import type Metadata from '../@types/Metadata';
 import NFTVisibility from '../@types/NFTVisibility';
 import getNFTsDataStatistics from '../util/getNFTsDataStatistics';
+// import hasSensitiveContent from '../util/hasSensitiveContent';
 import useHiddenNFTs from './useHiddenNFTs';
 import useNFTProvider from './useNFTProvider';
-
-function hasSensitiveContent(metadata?: Metadata) {
-  if (!metadata) {
-    return false;
-  }
-
-  const sensitiveContent = metadata.sensitive_content;
-  if (!sensitiveContent || sensitiveContent === false || sensitiveContent === 'false') {
-    return false;
-  }
-
-  return true;
-}
 
 function searchableNFTContent(nft: NFTInfo, metadata: Metadata) {
   const items = [nft.$nftId, nft.dataUris?.join(' ') ?? '', nft.launcherId, metadata?.name, metadata?.collection?.name];
@@ -41,12 +29,14 @@ export default function useNFTs(props: UseNFTsProps = {}) {
     types = [],
     search = '',
     visibility = NFTVisibility.ALL,
-    hideSensitiveContent = false,
+    // hideSensitiveContent = false,
   } = props;
 
-  const { nfts, isLoading, error, progress } = useNFTProvider();
+  const { nfts, isLoading, error, progress, invalidate } = useNFTProvider();
   const [isNFTHidden] = useHiddenNFTs();
 
+  const mainFiltered = nfts;
+  /*
   const mainFiltered = useMemo(
     () =>
       nfts.filter(({ metadata }) => {
@@ -59,6 +49,7 @@ export default function useNFTs(props: UseNFTsProps = {}) {
       }),
     [nfts, hideSensitiveContent]
   );
+  */
 
   const statistics = useMemo(() => getNFTsDataStatistics(mainFiltered, isNFTHidden), [mainFiltered, isNFTHidden]);
 
@@ -106,5 +97,6 @@ export default function useNFTs(props: UseNFTsProps = {}) {
     error,
     statistics,
     progress,
+    invalidate,
   };
 }

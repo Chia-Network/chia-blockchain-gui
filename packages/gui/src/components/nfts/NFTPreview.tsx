@@ -26,10 +26,13 @@ import VideoBlobIcon from '../../assets/img/video-blob.svg';
 import VideoSmallIcon from '../../assets/img/video-small.svg';
 import VideoPngIcon from '../../assets/img/video.png';
 import VideoPngDarkIcon from '../../assets/img/video_dark.png';
+import useHideObjectionableContent from '../../hooks/useHideObjectionableContent';
 import useNFTImageFittingMode from '../../hooks/useNFTImageFittingMode';
+import useNFTMetadata from '../../hooks/useNFTMetadata';
 import useNFTVerifyHash from '../../hooks/useNFTVerifyHash';
 import getFileExtension from '../../util/getFileExtension';
 import getFileType from '../../util/getFileType';
+import hasSensitiveContent from '../../util/hasSensitiveContent';
 import parseFileContent from '../../util/parseFileContent';
 import NFTHashStatus from './NFTHashStatus';
 
@@ -41,14 +44,6 @@ const StyledCardPreview = styled(Box)`
   justify-content: center;
   align-items: center;
   overflow: hidden;
-`;
-
-const IframeWrapper = styled.div`
-  padding: 0;
-  margin: 0;
-  height: 100%;
-  width: 100%;
-  position: relative;
 `;
 
 const IframePreventEvents = styled.div`
@@ -69,39 +64,6 @@ const ModelExtension = styled.div<{ isDarkMode: boolean }>`
   box-shadow: 0px 0px 24px rgba(24, 162, 61, 0.5), 0px 4px 8px rgba(18, 99, 60, 0.32);
   border-radius: 32px;
   color: ${(props) => (props.isDarkMode ? '#fff' : '#333')};
-`;
-
-const StatusContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  top: 48px;
-  left: 8px;
-  right: 8px;
-  z-index: 3;
-`;
-
-const StatusPill = styled.div`
-  background-color: ${({ theme }) =>
-    theme.palette.mode === 'dark' ? 'rgba(50, 50, 50, 0.4)' : 'rgba(255, 255, 255, 0.4)'};
-  backdrop-filter: blur(6px);
-  border: 1px solid rgba(255, 255, 255, 0.13);
-  border-radius: 16px;
-  box-sizing: border-box;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  display: flex;
-  padding: 8px 20px;
-`;
-
-const StatusText = styled.div`
-  font-family: 'Roboto', sans-serif;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 14px;
-  text-shadow: ${({ theme }) => (theme.palette.mode === 'dark' ? '0px 1px 4px black' : '')};
 `;
 
 const BlobBg = styled.div<{ isDarkMode: boolean }>`
@@ -167,26 +129,13 @@ export type NFTPreviewProps = {
   width?: number | string;
   fit?: 'cover' | 'contain' | 'fill';
   background?: any;
-  isPreview?: boolean;
+  preview?: boolean;
   icon?: boolean;
   isCompact?: boolean;
-  miniThumb?: boolean;
   disableInteractions?: boolean;
+  hideStatus?: boolean;
 };
 
-function ThumbnailError({ children }: any) {
-  return (
-    <StatusContainer>
-      <StatusPill>
-        <StatusText>{children}</StatusText>
-      </StatusPill>
-    </StatusContainer>
-  );
-}
-
-// ======================================================================= //
-// NFTPreview function
-// ======================================================================= //
 export default function NFTPreview(props: NFTPreviewProps) {
   const [nftImageFittingMode] = useNFTImageFittingMode();
   const {
@@ -195,15 +144,16 @@ export default function NFTPreview(props: NFTPreviewProps) {
     width = '100%',
     fit = nftImageFittingMode,
     background: Background = Fragment,
-    isPreview = false,
+    preview: isPreview = false,
     isCompact = false,
     disableInteractions = false,
     icon = false,
-    miniThumb,
+    hideStatus = false,
   } = props;
 
   const iframeRef = useRef<any>(null);
   const { isDarkMode } = useDarkMode();
+  const [hideObjectionableContent] = useHideObjectionableContent();
   const [ignoreSizeLimit /* , setIgnoreSizeLimit */] = usePersistState<boolean>(
     false,
     `nft-preview-ignore-size-limit-${nft.$nftId}`
@@ -211,19 +161,29 @@ export default function NFTPreview(props: NFTPreviewProps) {
 
   const nftId = nft.$nftId;
 
-  const {
-    // data,
-    preview,
-    // isVerified,
-    isLoading: isLoadingVerifyHash,
-    error: errorVerifyHash,
-  } = useNFTVerifyHash(nftId, {
+  const { preview, isLoading: isLoadingVerifyHash } = useNFTVerifyHash(nftId, {
     preview: isPreview,
     ignoreSizeLimit,
   });
 
-  const isLoading = isLoadingVerifyHash;
-  const error = errorVerifyHash || preview?.error;
+  const { metadata, isLoading: isLoadingMetadata } = useNFTMetadata(nftId);
+  const isLoading = isLoadingVerifyHash || isLoadingMetadata;
+
+  const blurPreview = useMemo(() => {
+    if (!hideObjectionableContent) {
+      return false;
+    }
+
+    if (isLoading) {
+      return false;
+    }
+
+    if (metadata && !hasSensitiveContent(metadata)) {
+      return false;
+    }
+
+    return true;
+  }, [hideObjectionableContent, isLoading, metadata]);
 
   const previewExtension = useMemo(() => getFileExtension(preview?.originalUri), [preview]);
 
@@ -393,18 +353,6 @@ export default function NFTPreview(props: NFTPreviewProps) {
   }
   */
 
-  const compactPreviewIconWrapper = useMemo(() => {
-    if (miniThumb) {
-      return previewCompactIcon;
-    }
-    return (
-      <CompactIconFrame>
-        <CompactIcon />
-        {previewCompactIcon}
-      </CompactIconFrame>
-    );
-  }, [miniThumb, previewCompactIcon]);
-
   const previewIcon = useMemo(() => {
     switch (previewFileType) {
       case FileType.DOCUMENT:
@@ -453,7 +401,12 @@ export default function NFTPreview(props: NFTPreviewProps) {
     }
 
     if (isCompact && previewFileType !== FileType.IMAGE) {
-      return compactPreviewIconWrapper;
+      return (
+        <CompactIconFrame>
+          <CompactIcon />
+          {previewCompactIcon}
+        </CompactIconFrame>
+      );
     }
 
     if (icon) {
@@ -469,17 +422,39 @@ export default function NFTPreview(props: NFTPreviewProps) {
       !isPreview && !disableInteractions && (previewFileType === FileType.VIDEO || previewFileType === FileType.AUDIO);
 
     return (
-      <IframeWrapper ref={iframeRef}>
+      <Box
+        ref={iframeRef}
+        sx={{
+          padding: 0,
+          margin: 0,
+          height: '100%',
+          width: '100%',
+          position: 'relative',
+        }}
+      >
         {!canInteract && <IframePreventEvents />}
-        <SandboxedIframe srcDoc={srcDoc} height={height} hideUntilLoaded allowPointerEvents miniThumb={miniThumb} />
-      </IframeWrapper>
+        <SandboxedIframe srcDoc={srcDoc} height={height} hideUntilLoaded allowPointerEvents />
+        {blurPreview && (
+          <Box
+            sx={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              backgroundColor: 'background.paper',
+            }}
+          >
+            <UnknownBlobIcon width="100%" height="100%" />
+          </Box>
+        )}
+      </Box>
     );
   }, [
     preview,
     isPreview,
     isCompact,
     previewFileType,
-    miniThumb,
     height,
     disableInteractions,
     previewIcon,
@@ -487,33 +462,24 @@ export default function NFTPreview(props: NFTPreviewProps) {
     previewExtension,
     srcDoc,
     iframeRef,
-    compactPreviewIconWrapper,
     isDarkMode,
+    blurPreview,
+    previewCompactIcon,
   ]);
-
-  const isHashValid = useMemo(() => {
-    if (miniThumb) {
-      return null;
-    }
-
-    return (
-      <Box sx={{ position: 'absolute', top: 16, left: 16 }}>
-        <NFTHashStatus nftId={nftId} hideValid />
-      </Box>
-    );
-  }, [miniThumb, nftId]);
 
   const hasFile = !!preview;
 
   return (
-    <StyledCardPreview height={miniThumb ? '50px' : height} width={width}>
-      {isHashValid}
+    <StyledCardPreview height={isCompact ? '50px' : height} width={width}>
+      {!isCompact && !hideStatus && (
+        <Box sx={{ display: 'flex', position: 'absolute', top: 16, left: 16, right: 16, justifyContent: 'center' }}>
+          <NFTHashStatus nftId={nftId} hideValid />
+        </Box>
+      )}
 
-      {error ? (
-        <ThumbnailError>{error.message}</ThumbnailError>
-      ) : isLoading ? (
+      {isLoading ? (
         <Flex position="absolute" left="0" top="0" bottom="0" right="0" justifyContent="center" alignItems="center">
-          <Loading center>{!miniThumb && <Trans>{isPreview ? 'Loading preview...' : 'Loading NFT...'}</Trans>}</Loading>
+          <Loading center>{!isCompact && <Trans>{isPreview ? 'Loading preview...' : 'Loading NFT...'}</Trans>}</Loading>
         </Flex>
       ) : !hasFile ? (
         <Background>
@@ -529,7 +495,7 @@ export default function NFTPreview(props: NFTPreviewProps) {
 }
 
 /*
-{miniThumb ? null : !hasFile ? (
+{isCompact ? null : !hasFile ? (
         <Background>
           <IconMessage icon={<NotInterested fontSize="large" />}>
             <Trans>No file available</Trans>

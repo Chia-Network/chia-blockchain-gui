@@ -7,7 +7,6 @@ import CircularProgress from '@mui/material/CircularProgress';
 import React, { useMemo } from 'react';
 
 import useNFTVerifyHash from '../../hooks/useNFTVerifyHash';
-import ErrorMessage from '../helpers/ErrorMessage';
 
 export type NFTHashStatusProps = {
   nftId: string;
@@ -38,40 +37,28 @@ export default function NFTHashStatus(props: NFTHashStatusProps) {
       return <CircularProgress size={16} />;
     }
 
-    if (error) {
-      return <ErrorIcon />;
-    }
-
     if (isVerified) {
       return <CheckCircleIcon />;
     }
 
     return <ErrorIcon />;
-  }, [isLoading, error, isVerified, hideIcon]);
+  }, [isLoading, isVerified, hideIcon]);
 
   const message = useMemo(() => {
     if (isLoading) {
-      return <Trans>Validating hash...</Trans>;
-    }
-
-    if (error) {
-      return <ErrorMessage error={error} />;
+      return <Trans>Verifying hash...</Trans>;
     }
 
     if (isVerified) {
-      return <Trans>Hash is valid</Trans>;
+      return <Trans>Hash matches</Trans>;
     }
 
-    return <Trans>Hash is not valid</Trans>;
-  }, [isLoading, error, isVerified]);
+    return <Trans>Invalid hash</Trans>;
+  }, [isLoading, isVerified]);
 
   const color = useMemo(() => {
     if (isLoading) {
       return undefined;
-    }
-
-    if (error) {
-      return 'error';
     }
 
     if (isVerified) {
@@ -79,11 +66,15 @@ export default function NFTHashStatus(props: NFTHashStatusProps) {
     }
 
     return 'error';
-  }, [isLoading, error, isVerified]);
+  }, [isLoading, isVerified]);
 
   const tooltipContent = useMemo(() => {
     if (error) {
-      return <Trans>Content has not been validated against the hash that was specified during NFT minting.</Trans>;
+      return (
+        <Trans>
+          Content has not been validated against the hash that was specified during NFT minting. Error: {error.message}
+        </Trans>
+      );
     }
     if (!isVerified) {
       return (

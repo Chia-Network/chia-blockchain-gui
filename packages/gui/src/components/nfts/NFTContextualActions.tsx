@@ -28,16 +28,14 @@ import isURL from 'validator/lib/isURL';
 
 import useBurnAddress from '../../hooks/useBurnAddress';
 import useHiddenNFTs from '../../hooks/useHiddenNFTs';
-import useNFTMetadataLRU from '../../hooks/useNFTMetadataLRU';
+import useNFTs from '../../hooks/useNFTs';
 import useOpenUnsafeLink from '../../hooks/useOpenUnsafeLink';
 import useViewNFTOnExplorer, { NFTExplorer } from '../../hooks/useViewNFTOnExplorer';
 import NFTSelection from '../../types/NFTSelection';
-import computeHash from '../../util/computeHash';
 import download from '../../util/download';
 import { stripHexPrefix } from '../../util/utils';
 import MultipleDownloadDialog from './MultipleDownloadDialog';
 import NFTBurnDialog from './NFTBurnDialog';
-import NFTContextualActionsEventEmitter from './NFTContextualActionsEventEmitter';
 import NFTMoveToProfileDialog from './NFTMoveToProfileDialog';
 import { NFTTransferDialog, NFTTransferResult } from './NFTTransferAction';
 
@@ -549,45 +547,16 @@ type NFTInvalidateContextualActionProps = NFTContextualActionProps & {
 function NFTInvalidateContextualAction(props: NFTInvalidateContextualActionProps) {
   const { selection, isMultiSelect } = props;
 
-  const selectedNft: NFTInfo | undefined = selection?.items[0];
-  const disabled = !selectedNft || selectedNft?.pendingTransaction;
-  const dataUrl = selectedNft?.dataUris?.[0];
-  const [, setThumbCache] = useLocalStorage(`thumb-cache-${selectedNft?.$nftId}`, null);
-  const [, setContentCache] = useLocalStorage(`content-cache-${selectedNft?.$nftId}`, null);
-  // const [, setMetadataCache] = useLocalStorage(`metadata-cache-${selectedNft?.$nftId}`, {});
-  const [, setSelectedNFTIds] = useLocalStorage('gallery-selected-nfts', []);
-  const lru = useNFTMetadataLRU();
-  const { ipcRenderer } = window as any;
+  const { invalidate } = useNFTs();
   async function handleInvalidate() {
     if (isMultiSelect) {
-      selection?.items.forEach((nft) => {
-        window.localStorage.removeItem(`thumb-cache-${nft?.$nftId}`);
-        window.localStorage.removeItem(`content-cache-${nft?.$nftId}`);
-        window.localStorage.removeItem(`metadata-cache-${nft?.$nftId}`);
-        lru.delete(nft?.$nftId);
-        ipcRenderer.invoke(
-          'removeCachedFile',
-          computeHash(`${nft?.$nftId}_${nft?.dataUris?.[0]}`, { encoding: 'utf-8' })
-        );
-        NFTContextualActionsEventEmitter.emit(`force-reload-metadata-${nft?.$nftId}`);
-      });
-      setSelectedNFTIds([]);
-      return;
+      if (selection?.items.length) {
+        await Promise.all(selection.items.map((nft: NFTInfo) => invalidate(nft.$nftId)));
+      }
+    } else if (selection?.items.length) {
+      const selectedNft = selection?.items[0];
+      await invalidate(selectedNft.$nftId);
     }
-    if (!selectedNft) {
-      return;
-    }
-
-    lru.delete(selectedNft?.$nftId);
-    setThumbCache({});
-    setContentCache({});
-    ipcRenderer.invoke('removeCachedFile', computeHash(`${selectedNft?.$nftId}_${dataUrl}`, { encoding: 'utf-8' }));
-    window.localStorage.removeItem(`metadata-cache-${selectedNft?.$nftId}`);
-    NFTContextualActionsEventEmitter.emit(`force-reload-metadata-${selectedNft?.$nftId}`);
-  }
-
-  if (!dataUrl) {
-    return null;
   }
 
   return (
@@ -595,7 +564,6 @@ function NFTInvalidateContextualAction(props: NFTInvalidateContextualActionProps
       onClick={() => {
         handleInvalidate();
       }}
-      disabled={disabled}
       close
     >
       <ListItemIcon>

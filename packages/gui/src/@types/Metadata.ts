@@ -10,7 +10,7 @@ type Metadata = {
       trait_type: string;
       value: string;
     }[];
-  }[];
+  };
   description?: string;
   image?: string;
   format?: string;

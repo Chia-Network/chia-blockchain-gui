@@ -10,6 +10,7 @@ const NFTProviderContext = createContext<
       isLoading: boolean;
       error: Error | undefined;
       progress: number;
+      invalidate: (nftId: string) => Promise<void>;
     }
   | undefined
 >(undefined);
