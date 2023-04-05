@@ -3,21 +3,7 @@ import { useMemo } from 'react';
 
 import { useGetHarvestersSummaryQuery } from '../services/farmer';
 
-export default function useGetTotalHarvestersSummaryQuery(): {
-  isLoading: boolean;
-  initialized: boolean;
-  error?: unknown;
-  harvesters: number;
-  hasPlots: boolean;
-  plots: BigNumber; // number of used plots without the plots that are not used (duplicate, failed, no keys)
-  noKeyFilenames: BigNumber;
-  failedToOpenFilenames: BigNumber;
-  duplicates: BigNumber;
-  plotsProcessed: BigNumber;
-  totalPlotSize: BigNumber;
-  plotFilesTotal: BigNumber;
-  initializedHarvesters: number;
-} {
+export default function useGetTotalHarvestersSummaryQuery() {
   const { data, isLoading, error } = useGetHarvestersSummaryQuery();
 
   const memoized = useMemo(() => {

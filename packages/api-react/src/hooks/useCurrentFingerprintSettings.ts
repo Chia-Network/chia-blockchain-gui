@@ -11,7 +11,7 @@ export default function useCurrentFingerprintSettings<Type extends Serializable>
   {
     fingerprint: number | undefined;
     isLoading: boolean;
-    error?: unknown;
+    error?: Error;
   }
 ] {
   const { data: fingerprint, isLoading, error } = useGetLoggedInFingerprintQuery();
@@ -22,7 +22,7 @@ export default function useCurrentFingerprintSettings<Type extends Serializable>
     setData,
     {
       isLoading,
-      error,
+      error: error as Error,
       fingerprint,
     },
   ];
