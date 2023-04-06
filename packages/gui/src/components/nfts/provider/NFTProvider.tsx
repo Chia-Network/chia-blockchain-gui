@@ -114,6 +114,7 @@ export default function NFTProvider(props: NFTProviderProps) {
           const originalItem = nftsByIds.get(nftId);
           if (originalItem) {
             originalItem.nft = nft;
+            originalItem.inList = true;
           }
         } else {
           newNFTs.push({
