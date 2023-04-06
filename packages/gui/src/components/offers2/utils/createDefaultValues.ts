@@ -1,4 +1,5 @@
 import { WalletType } from '@chia-network/api';
+import _ from 'lodash';
 
 import type OfferBuilderData from '../../../@types/OfferBuilderData';
 import { emptyDefaultValues } from './defaultValues';
@@ -23,16 +24,19 @@ export default function createDefaultValues(params: CreateDefaultValuesParams | 
   const nfts =
     nftIds && nftWalletId ? nftIds.map((nftIdItem) => ({ nftId: nftIdItem })) : nftId && nftWalletId ? [{ nftId }] : [];
 
+  // Deep clone the emptyDefaultValues object using Lodash's cloneDeep
+  const clonedEmptyDefaultValues = _.cloneDeep(emptyDefaultValues);
+
   return {
-    ...emptyDefaultValues,
+    ...clonedEmptyDefaultValues,
     offered: {
-      ...emptyDefaultValues.offered,
+      ...clonedEmptyDefaultValues.offered,
       nfts,
       xch: walletType === WalletType.STANDARD_WALLET ? [{ amount: '' }] : [],
       tokens: walletType === WalletType.CAT && assetId ? [{ assetId, amount: '' }] : [],
     },
     requested: {
-      ...emptyDefaultValues.requested,
+      ...clonedEmptyDefaultValues.requested,
       nfts: nftId && !nftWalletId ? [{ nftId }] : [], // NFTs that are not in a wallet are requested
     },
   };

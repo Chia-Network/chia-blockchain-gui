@@ -157,4 +157,13 @@ describe('createDefaultValues', () => {
       });
     });
   });
+  describe('when the returned data is modified', () => {
+    it('the original data is not modified', () => {
+      const values = createDefaultValues();
+      values.offered.xch = [{ amount: '1' }];
+      values.requested.xch = [{ amount: '2' }];
+      const values2 = createDefaultValues();
+      expect(values2.offered.xch).toStrictEqual([]);
+    });
+  });
 });
