@@ -11,7 +11,7 @@ export default function useNFT(nftId?: string) {
 
   const { nfts, invalidate } = context;
 
-  const details = useMemo(() => nfts.find((item) => item.nft.$nftId === nftId), [nfts, nftId]);
+  const details = useMemo(() => (nftId ? nfts.find((item) => item.nft?.$nftId === nftId) : undefined), [nfts, nftId]);
 
   const nft = details?.nft;
   const isLoading = !!details?.nftPromise;
