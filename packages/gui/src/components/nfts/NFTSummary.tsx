@@ -1,5 +1,4 @@
 import type { NFTAttribute } from '@chia-network/api';
-import { useGetNFTInfoQuery } from '@chia-network/api-react';
 import { CopyToClipboard, Flex, Loading, TooltipIcon, truncateValue } from '@chia-network/core';
 import { t, Trans } from '@lingui/macro';
 import { Box, Card, CardContent, Typography } from '@mui/material';
@@ -7,6 +6,7 @@ import { useTheme } from '@mui/material/styles';
 import React, { useMemo } from 'react';
 import styled from 'styled-components';
 
+import useNFTByCoinId from '../../hooks/useNFTByCoinId';
 import useNFTMetadata from '../../hooks/useNFTMetadata';
 import isRankingAttribute from '../../util/isRankingAttribute';
 import { launcherIdToNFTId } from '../../util/nfts';
@@ -33,9 +33,7 @@ export default function NFTSummary(props: NFTSummaryProps) {
   const nftId = launcherIdToNFTId(launcherId);
   const theme = useTheme();
   const bottomPadding = `${theme.spacing(2)}`; // logic borrowed from Flex's gap computation
-  const { data: nft, isLoading: isLoadingNFT } = useGetNFTInfoQuery({
-    coinId: launcherId,
-  });
+  const { nft, isLoading: isLoadingNFT } = useNFTByCoinId(launcherId);
   const { metadata, isLoading: isLoadingMetadata } = useNFTMetadata(nft.$nftId);
 
   const [properties, rankings] = useMemo(() => {

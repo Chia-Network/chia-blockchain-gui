@@ -21,10 +21,12 @@ export default function getNFTsDataStatistics(
   };
 
   data.forEach((item) => {
-    const { type, metadata } = item;
-    stats[type] = (stats[type] ?? 0) + 1;
+    const { nft, type, metadata } = item;
+    if (type) {
+      stats[type] = (stats[type] ?? 0) + 1;
+    }
 
-    if (isHidden(item.nft.$nftId)) {
+    if (nft && isHidden(nft.$nftId)) {
       stats.hidden += 1;
     } else {
       stats.visible += 1;

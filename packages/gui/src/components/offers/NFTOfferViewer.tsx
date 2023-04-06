@@ -1,5 +1,5 @@
 import { OfferSummaryRecord, OfferTradeRecord } from '@chia-network/api';
-import { useCheckOfferValidityMutation, useGetNFTInfoQuery, useGetWalletsQuery } from '@chia-network/api-react';
+import { useCheckOfferValidityMutation, useGetWalletsQuery } from '@chia-network/api-react';
 import {
   Back,
   Button,
@@ -29,6 +29,7 @@ import styled from 'styled-components';
 
 import useAcceptOfferHook from '../../hooks/useAcceptOfferHook';
 import useAssetIdName from '../../hooks/useAssetIdName';
+import useNFTByCoinId from '../../hooks/useNFTByCoinId';
 import useNFTs from '../../hooks/useNFTs';
 import useWalletOffers from '../../hooks/useWalletOffers';
 import { convertRoyaltyToPercentage, launcherIdToNFTId } from '../../util/nfts';
@@ -360,7 +361,7 @@ function NFTOfferDetails(props: NFTOfferDetailsProps) {
     (id: string) => driverDict[id].launcherId?.length > 0
   );
   const nftId: string | undefined = launcherId ? launcherIdToNFTId(launcherId) : undefined;
-  const { data: nft } = useGetNFTInfoQuery({ coinId: launcherId });
+  const { nft } = useNFTByCoinId(launcherId);
   const { amount, assetId, assetType } = getNFTPriceWithoutRoyalties(summary) ?? {};
   const { lookupByAssetId } = useAssetIdName();
   const assetIdInfo = assetId ? lookupByAssetId(assetId) : undefined;

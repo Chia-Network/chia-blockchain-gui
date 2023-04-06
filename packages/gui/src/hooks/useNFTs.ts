@@ -35,21 +35,21 @@ export default function useNFTs(props: UseNFTsProps = {}) {
   const { nfts, isLoading, error, progress, invalidate } = useNFTProvider();
   const [isNFTHidden] = useHiddenNFTs();
 
-  const mainFiltered = nfts;
-  /*
   const mainFiltered = useMemo(
     () =>
-      nfts.filter(({ metadata }) => {
+      nfts.filter(
+        ({ isPrivate }) => !isPrivate
+        /*
         // during loading of metadata we don't know if it's sensitive or not and hide it
         if (hideSensitiveContent && (!metadata || hasSensitiveContent(metadata))) {
           return false;
         }
 
         return true;
-      }),
-    [nfts, hideSensitiveContent]
+        */
+      ),
+    [nfts /* , hideSensitiveContent */]
   );
-  */
 
   const statistics = useMemo(() => getNFTsDataStatistics(mainFiltered, isNFTHidden), [mainFiltered, isNFTHidden]);
 
@@ -60,7 +60,7 @@ export default function useNFTs(props: UseNFTsProps = {}) {
           return false;
         }
 
-        const isHiddenByUser = isNFTHidden(nft.$nftId);
+        const isHiddenByUser = nft?.$nftId && isNFTHidden(nft.$nftId);
         const visible =
           visibility === NFTVisibility.ALL ||
           (visibility === NFTVisibility.VISIBLE && !isHiddenByUser) ||
@@ -69,7 +69,7 @@ export default function useNFTs(props: UseNFTsProps = {}) {
           return false;
         }
 
-        if (!types.includes(type)) {
+        if (!type || !types.includes(type)) {
           return false;
         }
 
@@ -78,8 +78,8 @@ export default function useNFTs(props: UseNFTsProps = {}) {
             return false;
           }
 
-          const content = searchableNFTContent(nft, metadata);
-          if (!content.includes(search.toLowerCase())) {
+          const content = nft && searchableNFTContent(nft, metadata);
+          if (!content || !content.includes(search.toLowerCase())) {
             return false;
           }
         }

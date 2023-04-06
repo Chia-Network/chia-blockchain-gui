@@ -5,9 +5,10 @@ import {
   useLazyGetNFTsCountQuery,
   useNFTCoinAdded,
   useGetLoggedInFingerprintQuery,
+  useLazyGetNFTInfoQuery,
 } from '@chia-network/api-react';
 import { uniqBy, sortBy } from 'lodash';
-import React, { useMemo, useCallback, useEffect, type ReactNode } from 'react';
+import React, { useMemo, useCallback, useEffect, useRef, type ReactNode } from 'react';
 
 import type Metadata from '../../../@types/Metadata';
 import type NFTData from '../../../@types/NFTData';
@@ -48,15 +49,20 @@ export default function NFTProvider(props: NFTProviderProps) {
   // total number of NFTs
   const [total, setTotal] = useStateAbort(0);
   // list of NFTs
-  const [nfts, setNfts] = useStateAbort<NFTData[]>([]);
+  const [nfts, setNFTs] = useStateAbort<NFTData[]>([]);
+  const nftsRef = useRef(nfts);
+  nftsRef.current = nfts;
   // status of loading
-  const [isLoading, setIsLoading] = useStateAbort(false);
+  const [isLoadingNFTs, setIsLoadingNFTs] = useStateAbort(false);
   const [error, setError] = useStateAbort<Error | undefined>(undefined);
   const cache = useCache();
 
   const [getNFTs] = useLazyGetNFTsQuery();
   const [getNFTsCount] = useLazyGetNFTsCountQuery();
   const { wallets: nftWallets, isLoading: isLoadingWallets } = useGetNFTWallets();
+
+  // launcherId
+  const [getNFTInfo] = useLazyGetNFTInfoQuery();
 
   const [, setChanges] = useStateAbort<Change[]>([]);
 
@@ -94,12 +100,13 @@ export default function NFTProvider(props: NFTProviderProps) {
 
     const page = nftsByWallet[walletId];
 
-    setNfts((prevNfts) => {
+    setNFTs((prevNfts) => {
       const uniqueNfts = uniqBy(
         [
           ...prevNfts,
           ...page.map((nft: NFTInfo) => ({
             nft,
+            coinId: nft.launcherId,
             type: getNFTFileType(nft),
           })),
         ],
@@ -116,7 +123,7 @@ export default function NFTProvider(props: NFTProviderProps) {
   }
 
   async function updateNft(id: string, data: Partial<NFTData>, signal: AbortSignal) {
-    setNfts(
+    setNFTs(
       (prevNfts) =>
         prevNfts.map((nftItem) => {
           if (nftItem.nft.$nftId === id) {
@@ -156,6 +163,7 @@ export default function NFTProvider(props: NFTProviderProps) {
         return await existingNft.metadataPromise;
       }
 
+      // todo add then
       const promise = fetchAndProcessMetadata(firstUri, metadataHash);
 
       updateNft(
@@ -218,7 +226,7 @@ export default function NFTProvider(props: NFTProviderProps) {
 
   const invalidate = useCallback(
     async (nftId: string) => {
-      const item = nfts.find((nftItem) => nftItem.nft.$nftId === nftId);
+      const item = nftsRef.current.find((nftItem) => nftItem.nft.$nftId === nftId);
       if (!item) {
         return;
       }
@@ -256,16 +264,16 @@ export default function NFTProvider(props: NFTProviderProps) {
         await Promise.all(promises);
       }
     },
-    [nfts, cache]
+    [cache, nftsRef]
   );
 
   async function fetchData(options: { signal: AbortSignal }) {
     const { signal } = options;
-    if (isLoading) {
+    if (isLoadingNFTs) {
       return;
     }
 
-    setIsLoading(true, signal);
+    setIsLoadingNFTs(true, signal);
     setError(undefined, signal);
     setChanges([], signal);
 
@@ -304,7 +312,7 @@ export default function NFTProvider(props: NFTProviderProps) {
     } catch (err) {
       setError(err as Error, signal);
     } finally {
-      setIsLoading(false, signal);
+      setIsLoadingNFTs(false, signal);
     }
 
     // if changes changed while we were fetching, fetch again
@@ -319,12 +327,79 @@ export default function NFTProvider(props: NFTProviderProps) {
 
   function reset() {
     setChanges([]);
-    setNfts([]);
+    setNFTs([]);
     setTotal(0);
     setLoaded(0);
-    setIsLoading(false);
+    setIsLoadingNFTs(false);
     setError(undefined);
   }
+
+  const getByCoinId = useCallback(
+    async (coinId: string) => {
+      const item = nftsRef.current.find((nftData) => nftData.coinId === coinId);
+      if (item) {
+        return item.nftPromise ? item.nftPromise : item.nft;
+      }
+
+      const promise = getNFTInfo({
+        coinId,
+      }).unwrap();
+
+      setNFTs((prevNfts) => [
+        ...prevNfts,
+        {
+          coinId,
+          isPrivate: true,
+          nftPromise: promise,
+        },
+      ]);
+
+      return promise.then(
+        (nft: NFTInfo) => {
+          setNFTs((prevNfts) => {
+            const newPrevNfts = [...prevNfts];
+            // immutable update by coinId
+            const index = newPrevNfts.findIndex((nftItem) => nftItem.coinId === coinId);
+            if (index !== -1) {
+              const current = newPrevNfts[index];
+
+              newPrevNfts[index] = {
+                ...current,
+                nft,
+                type: getNFTFileType(nft),
+                nftPromise: undefined,
+              };
+            }
+
+            return newPrevNfts;
+          });
+
+          return nft;
+        },
+        (e: Error) => {
+          setNFTs((prevNfts) => {
+            const newPrevNfts = [...prevNfts];
+            // immutable update by coinId
+            const index = newPrevNfts.findIndex((nftItem) => nftItem.coinId === coinId);
+            if (index !== -1) {
+              const current = newPrevNfts[index];
+
+              newPrevNfts[index] = {
+                ...current,
+                nftPromise: undefined,
+                nftError: e,
+              };
+            }
+
+            return newPrevNfts;
+          });
+
+          return undefined;
+        }
+      );
+    },
+    [setNFTs, getNFTInfo, nftsRef]
+  );
 
   useEffect(() => {
     if (!isLoadingWallets && nftWallets && fingerprint) {
@@ -342,19 +417,20 @@ export default function NFTProvider(props: NFTProviderProps) {
     return undefined;
   }, [isLoadingWallets, nftWallets, fingerprint]); // eslint-disable-line react-hooks/exhaustive-deps -- we want to fetch data only once
 
-  const isLoadingNFTProvider = isLoading || isLoadingFingerprint;
+  const isLoading = isLoadingNFTs || isLoadingFingerprint || isLoadingWallets;
 
   const context = useMemo(
     () => ({
       nfts,
       count: total,
       loaded,
-      isLoading: isLoadingNFTProvider,
+      isLoading,
       error,
       progress: total > 0 ? (loaded / total) * 100 : 0,
       invalidate,
+      getByCoinId,
     }),
-    [nfts, total, loaded, isLoadingNFTProvider, error, invalidate]
+    [nfts, total, loaded, isLoading, error, invalidate, getByCoinId]
   );
 
   return <NFTProviderContext.Provider value={context}>{children}</NFTProviderContext.Provider>;

@@ -2373,6 +2373,7 @@ export const {
   useLazyGetNFTsQuery,
   useGetNFTWalletsWithDIDsQuery,
   useGetNFTInfoQuery,
+  useLazyGetNFTInfoQuery,
   useTransferNFTMutation,
   useSetNFTDIDMutation,
   useSetNFTStatusMutation,

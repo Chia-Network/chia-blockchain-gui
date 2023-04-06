@@ -1,6 +1,6 @@
 import { WalletType } from '@chia-network/api';
 import type { NFTInfo } from '@chia-network/api';
-import { useCreateOfferForIdsMutation, useGetNFTInfoQuery, useGetWalletBalanceQuery } from '@chia-network/api-react';
+import { useCreateOfferForIdsMutation, useGetWalletBalanceQuery } from '@chia-network/api-react';
 import {
   Amount,
   AmountProps,
@@ -36,6 +36,7 @@ import { useForm, useFormContext } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
+import useNFTByCoinId from '../../hooks/useNFTByCoinId';
 import useNFTs from '../../hooks/useNFTs';
 import useSuppressShareOnCreate from '../../hooks/useSuppressShareOnCreate';
 import { convertRoyaltyToPercentage, isValidNFTId, launcherIdFromNFTId } from '../../util/nfts';
@@ -115,7 +116,7 @@ function NFTOfferConditionalsPanel(props: NFTOfferConditionalsPanelProps) {
   const makerFee = methods.watch('fee');
   const nftId = methods.watch('nftId');
   const launcherId = launcherIdFromNFTId(nftId ?? '');
-  const { data: nft } = useGetNFTInfoQuery({ coinId: launcherId });
+  const { nft } = useNFTByCoinId(launcherId);
   const { data: walletBalance, isLoading: isLoadingWalletBalance } = useGetWalletBalanceQuery(
     {
       walletId: tokenWalletInfo.walletId,
@@ -560,7 +561,7 @@ export default function NFTOfferEditor(props: NFTOfferEditorProps) {
   });
   const nftId = methods.watch('nftId');
   const launcherId = launcherIdFromNFTId(nftId ?? '');
-  const { data: queriedNFTInfo } = useGetNFTInfoQuery({ coinId: launcherId });
+  const { nft: queriedNFTInfo } = useNFTByCoinId(launcherId);
 
   function validateFormData(unvalidatedFormData: NFTOfferEditorFormData): NFTOfferEditorValidatedFormData | undefined {
     const {

@@ -14,8 +14,8 @@ export default function useNFT(nftId?: string) {
   const details = useMemo(() => nfts.find((item) => item.nft.$nftId === nftId), [nfts, nftId]);
 
   const nft = details?.nft;
-  const isLoading = !nft;
-  const error = undefined; // nfts don't have errors for now
+  const isLoading = !!details?.nftPromise;
+  const error = details?.nftError;
 
   const handleInvalidate = useCallback(() => {
     if (nftId) {
