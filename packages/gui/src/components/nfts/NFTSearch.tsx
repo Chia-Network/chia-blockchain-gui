@@ -5,9 +5,9 @@ import styled from 'styled-components';
 
 import useHideObjectionableContent from '../../hooks/useHideObjectionableContent';
 import useNFTs from '../../hooks/useNFTs';
-import NFTMetadata from '../nfts/NFTMetadata';
-import NFTPreview from '../nfts/NFTPreview';
-import NFTTitle from '../nfts/NFTTitle';
+import NFTMetadata from './NFTMetadata';
+import NFTPreview from './NFTPreview';
+import NFTTitle from './NFTTitle';
 
 const SearchNFTrow = styled.div`
   cursor: pointer;

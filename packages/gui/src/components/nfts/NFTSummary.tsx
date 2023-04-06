@@ -34,7 +34,7 @@ export default function NFTSummary(props: NFTSummaryProps) {
   const theme = useTheme();
   const bottomPadding = `${theme.spacing(2)}`; // logic borrowed from Flex's gap computation
   const { nft, isLoading: isLoadingNFT } = useNFTByCoinId(launcherId);
-  const { metadata, isLoading: isLoadingMetadata } = useNFTMetadata(nft.$nftId);
+  const { metadata, isLoading: isLoadingMetadata } = useNFTMetadata(nft?.$nftId);
 
   const [properties, rankings] = useMemo(() => {
     if (!nft) {

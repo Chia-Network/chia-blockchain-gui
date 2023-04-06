@@ -7,7 +7,7 @@ import {
   useGetLoggedInFingerprintQuery,
   useLazyGetNFTInfoQuery,
 } from '@chia-network/api-react';
-import { uniqBy, sortBy } from 'lodash';
+import { sortBy } from 'lodash';
 import React, { useMemo, useCallback, useEffect, useRef, type ReactNode } from 'react';
 
 import type Metadata from '../../../@types/Metadata';
@@ -18,6 +18,7 @@ import compareChecksums from '../../../util/compareChecksums';
 import getNFTFileType from '../../../util/getNFTFileType';
 import limit from '../../../util/limit';
 import parseFileContent from '../../../util/parseFileContent';
+import removeHexPrefix from '../../../util/removeHexPrefix';
 import NFTProviderContext from './NFTProviderContext';
 
 function parseMetadataFile(content: Buffer, headers: any) {
@@ -101,19 +102,30 @@ export default function NFTProvider(props: NFTProviderProps) {
     const page = nftsByWallet[walletId];
 
     setNFTs((prevNfts) => {
-      const uniqueNfts = uniqBy(
-        [
-          ...prevNfts,
-          ...page.map((nft: NFTInfo) => ({
-            nft,
-            coinId: nft.launcherId,
-            type: getNFTFileType(nft),
-          })),
-        ],
-        (nftItem) => nftItem.nft.$nftId
-      );
+      const nftsByIds = new Map(prevNfts.map((nftItem) => [nftItem.nft.$nftId, nftItem]));
 
-      return sortBy(uniqueNfts, (nftItem) => nftItem.nft.nftCoinConfirmationHeight);
+      const newNFTs = [...prevNfts];
+
+      // update existing NFTs
+      page.forEach((nft: NFTInfo) => {
+        const { $nftId: nftId } = nft;
+
+        if (nftsByIds.has(nftId)) {
+          const originalItem = nftsByIds.get(nftId);
+          if (originalItem) {
+            originalItem.nft = nft;
+          }
+        } else {
+          newNFTs.push({
+            inList: true,
+            nft,
+            coinId: removeHexPrefix(nft.launcherId),
+            type: getNFTFileType(nft),
+          });
+        }
+      });
+
+      return sortBy(newNFTs, (nftItem) => nftItem.nft?.nftCoinConfirmationHeight);
     }, signal);
 
     setLoaded((prevLoaded) => prevLoaded + page.length, signal);
@@ -349,7 +361,6 @@ export default function NFTProvider(props: NFTProviderProps) {
         ...prevNfts,
         {
           coinId,
-          isPrivate: true,
           nftPromise: promise,
         },
       ]);
@@ -383,12 +394,20 @@ export default function NFTProvider(props: NFTProviderProps) {
             const index = newPrevNfts.findIndex((nftItem) => nftItem.coinId === coinId);
             if (index !== -1) {
               const current = newPrevNfts[index];
-
-              newPrevNfts[index] = {
-                ...current,
-                nftPromise: undefined,
-                nftError: e,
-              };
+              // updated from different service
+              if (current.nft) {
+                newPrevNfts[index] = {
+                  ...current,
+                  nftPromise: undefined,
+                  nftError: undefined,
+                };
+              } else {
+                newPrevNfts[index] = {
+                  ...current,
+                  nftPromise: undefined,
+                  nftError: e,
+                };
+              }
             }
 
             return newPrevNfts;
