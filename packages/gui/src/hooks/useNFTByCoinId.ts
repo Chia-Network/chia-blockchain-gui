@@ -1,6 +1,7 @@
 import { useContext, useEffect, useMemo } from 'react';
 
 import NFTProviderContext from '../components/nfts/provider/NFTProviderContext';
+import removeHexPrefix from '../util/removeHexPrefix';
 
 export default function useNFTByCoinId(coinId?: string) {
   const context = useContext(NFTProviderContext);
@@ -10,7 +11,8 @@ export default function useNFTByCoinId(coinId?: string) {
 
   const { nfts, getByCoinId } = context;
 
-  const details = useMemo(() => nfts.find((item) => item.coinId === coinId), [nfts, coinId]);
+  const uniqueCoinId = useMemo(() => coinId && removeHexPrefix(coinId), [coinId]);
+  const details = useMemo(() => nfts.find((item) => item.coinId === uniqueCoinId), [nfts, uniqueCoinId]);
 
   useEffect(() => {
     if (coinId) {
