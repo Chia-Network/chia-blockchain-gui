@@ -5,6 +5,24 @@ import createDefaultValues from './createDefaultValues';
 describe('createDefaultValues', () => {
   describe('when no params are provided', () => {
     it('should return an object with empty value arrays', () => {
+      expect(createDefaultValues()).toEqual({
+        offered: {
+          xch: [],
+          tokens: [],
+          nfts: [],
+          fee: [],
+        },
+        requested: {
+          xch: [],
+          tokens: [],
+          nfts: [],
+          fee: [],
+        },
+      });
+    });
+  });
+  describe('when empty params are provided', () => {
+    it('should return an object with empty value arrays', () => {
       expect(createDefaultValues({})).toEqual({
         offered: {
           xch: [],

@@ -17,7 +17,7 @@ type CreateDefaultValuesParams = {
  * the offered section. NFT offers can have default entries in either the offered or requested sections
  * depending on whether the NFTs and an NFT wallet id are provided.
  */
-export default function createDefaultValues(params: CreateDefaultValuesParams): OfferBuilderData {
+export default function createDefaultValues(params: CreateDefaultValuesParams | undefined = {}): OfferBuilderData {
   const { walletType, assetId, nftId, nftWalletId, nftIds } = params;
 
   const nfts =
