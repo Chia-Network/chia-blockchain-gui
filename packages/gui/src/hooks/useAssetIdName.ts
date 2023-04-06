@@ -11,6 +11,7 @@ export type AssetIdMapEntry = {
   name: string;
   symbol?: string;
   displayName: string;
+  assetId: string;
 };
 
 export default function useAssetIdName() {
@@ -63,6 +64,7 @@ export default function useAssetIdName() {
           symbol,
           displayName,
           isVerified,
+          assetId,
         };
         assetIdNameMapping.set(assetId, entry);
         walletIdNameMapping.set(walletId, entry);
@@ -85,6 +87,7 @@ export default function useAssetIdName() {
         symbol,
         displayName,
         isVerified: true,
+        assetId,
       };
       assetIdNameMapping.set(assetId, entry);
     });
