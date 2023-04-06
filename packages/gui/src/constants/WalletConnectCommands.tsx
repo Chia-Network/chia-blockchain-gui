@@ -6,6 +6,7 @@ import React from 'react';
 import type WalletConnectCommand from '../@types/WalletConnectCommand';
 import WalletConnectCommandParamName from '../@types/WalletConnectCommandParamName';
 import WalletConnectCATAmount from '../components/walletConnect/WalletConnectCATAmount';
+import WalletConnectCreateOfferPreview from '../components/walletConnect/WalletConnectCreateOfferPreview';
 import WalletConnectOfferPreview from '../components/walletConnect/WalletConnectOfferPreview';
 
 const walletConnectCommands: WalletConnectCommand[] = [
@@ -277,14 +278,18 @@ const walletConnectCommands: WalletConnectCommand[] = [
     service: ServiceName.WALLET,
     params: [
       {
-        name: WalletConnectCommandParamName.WALLETS_IDS_AND_AMOUNTS,
+        name: WalletConnectCommandParamName.WALLET_IDS_AND_AMOUNTS,
         label: <Trans>Wallet Ids and Amounts</Trans>,
         type: 'object',
+        displayComponent: (value, params, values, onChange) => (
+          <WalletConnectCreateOfferPreview value={value} params={params} values={values} onChange={onChange} />
+        ),
       },
       {
         name: WalletConnectCommandParamName.DRIVER_DICT,
         label: <Trans>Driver Dict</Trans>,
         type: 'object',
+        displayComponent: (value) => <>{JSON.stringify(value)}</>,
       },
       {
         name: WalletConnectCommandParamName.VALIDATE_ONLY,
