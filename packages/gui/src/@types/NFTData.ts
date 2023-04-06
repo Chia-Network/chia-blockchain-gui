@@ -11,8 +11,8 @@ type NFTData = {
   metadataPromise?: Promise<Metadata>;
   nftPromise?: Promise<NFTInfo>;
   nftError?: Error;
-  coinId?: string;
-  isPrivate?: boolean;
+  coinId: string;
+  inList?: boolean;
 };
 
 export default NFTData;

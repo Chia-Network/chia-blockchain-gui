@@ -46,7 +46,7 @@ export default function OfferBuilderNFT(props: OfferBuilderNFTProps) {
 
   const { nft, isLoading: isLoadingNFT, error } = useNFTByCoinId(launcherId);
 
-  const hasNFT = launcherId && nft && !isLoadingNFT;
+  const hasNFT = launcherId && !!nft && !isLoadingNFT;
 
   return (
     <Flex flexDirection="column" gap={2}>

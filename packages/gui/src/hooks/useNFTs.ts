@@ -38,7 +38,7 @@ export default function useNFTs(props: UseNFTsProps = {}) {
   const mainFiltered = useMemo(
     () =>
       nfts.filter(
-        ({ isPrivate }) => !isPrivate
+        ({ inList }) => !!inList
         /*
         // during loading of metadata we don't know if it's sensitive or not and hide it
         if (hideSensitiveContent && (!metadata || hasSensitiveContent(metadata))) {
