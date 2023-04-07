@@ -1,10 +1,10 @@
-import { useGetNFTInfoQuery } from '@chia-network/api-react';
 import { Flex, Loading, Tooltip } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Grid, Typography, Card } from '@mui/material';
 import React from 'react';
 import { useWatch } from 'react-hook-form';
 
+import useNFTByCoinId from '../../hooks/useNFTByCoinId';
 import useNFTMinterDID from '../../hooks/useNFTMinterDID';
 import { launcherIdFromNFTId } from '../../util/nfts';
 import NFTCard from '../nfts/NFTCard';
@@ -44,15 +44,9 @@ export default function OfferBuilderNFT(props: OfferBuilderNFTProps) {
 
   const launcherId = launcherIdFromNFTId(value ?? '');
 
-  const {
-    data: nft,
-    isLoading: isLoadingNFT,
-    error,
-  } = useGetNFTInfoQuery({
-    coinId: launcherId ?? '',
-  });
+  const { nft, isLoading: isLoadingNFT, error } = useNFTByCoinId(launcherId);
 
-  const hasNFT = launcherId && nft && !isLoadingNFT;
+  const hasNFT = launcherId && !!nft && !isLoadingNFT;
 
   return (
     <Flex flexDirection="column" gap={2}>

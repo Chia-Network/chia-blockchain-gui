@@ -1,11 +1,11 @@
-import { usePrefs } from '@chia-network/api-react';
+// import { usePrefs } from '@chia-network/api-react';
 import {
   Flex,
   SettingsHR,
   SettingsSection,
   SettingsText,
   SettingsTitle,
-  AlertDialog,
+  // AlertDialog,
   useOpenDialog,
   FormatBytes,
   ConfirmDialog,
@@ -14,9 +14,19 @@ import { Trans } from '@lingui/macro';
 import { Grid, Button, Switch, FormControlLabel, Typography } from '@mui/material';
 import React from 'react';
 
+import useCache from '../../hooks/useCache';
 import useHideObjectionableContent from '../../hooks/useHideObjectionableContent';
 import useNFTImageFittingMode from '../../hooks/useNFTImageFittingMode';
 import LimitCacheSize from './LimitCacheSize';
+
+/* todo it is deprecated we should remove it from users local storage
+Object.keys(localStorage).forEach((key) => {
+  if (key.indexOf('content-cache-') > -1) localStorage.removeItem(key);
+  if (key.indexOf('thumb-cache-') > -1) localStorage.removeItem(key);
+  if (key.indexOf('metadata-cache-') > -1) localStorage.removeItem(key);
+  if (key.indexOf('force-reload-') > -1) localStorage.removeItem(key);
+});
+*/
 
 export default function SettingsGeneral() {
   const [hideObjectionableContent, setHideObjectionableContent] = useHideObjectionableContent();
@@ -25,28 +35,13 @@ export default function SettingsGeneral() {
     setHideObjectionableContent(event.target.checked);
   }
 
+  const { cacheSize, clearCache, cacheDirectory } = useCache();
   const [nftImageFittingMode, setNFTImageFittingMode] = useNFTImageFittingMode();
-  const [cacheFolder, setCacheFolder] = usePrefs('cacheFolder', '');
-  const [defaultCacheFolder, setDefaultCacheFolder] = React.useState('');
-  const [cacheSize, setCacheSize] = React.useState(0);
+  // const [, setCacheFolder] = usePrefs('cacheFolder', '');
   const openDialog = useOpenDialog();
-  const { ipcRenderer } = window as any;
 
   function handleScalePreviewImages(event: React.ChangeEvent<HTMLInputElement>) {
     setNFTImageFittingMode(event.target.checked ? 'contain' : 'cover');
-  }
-
-  React.useEffect(() => {
-    ipcRenderer.invoke('getDefaultCacheFolder').then((folder: string) => {
-      setDefaultCacheFolder(folder);
-    });
-    ipcRenderer.invoke('getCacheSize').then((cacheSizeLocal: number) => {
-      setCacheSize(cacheSizeLocal);
-    });
-  }, [ipcRenderer]);
-
-  async function forceUpdateCacheSize() {
-    setCacheSize(await ipcRenderer.invoke('getCacheSize'));
   }
 
   async function clearNFTCache() {
@@ -56,15 +51,7 @@ export default function SettingsGeneral() {
         confirmTitle={<Trans>Yes, delete</Trans>}
         confirmColor="danger"
         onConfirm={() => {
-          ipcRenderer.invoke('clearNFTCache').then(() => {
-            setCacheSize(0);
-            Object.keys(localStorage).forEach((key) => {
-              if (key.indexOf('content-cache-') > -1) localStorage.removeItem(key);
-              if (key.indexOf('thumb-cache-') > -1) localStorage.removeItem(key);
-              if (key.indexOf('metadata-cache-') > -1) localStorage.removeItem(key);
-              if (key.indexOf('force-reload-') > -1) localStorage.removeItem(key);
-            });
-          });
+          clearCache();
         }}
       >
         <Trans>Are you sure you want to delete the NFT cache?</Trans>
@@ -72,17 +59,7 @@ export default function SettingsGeneral() {
     );
   }
 
-  function renderCacheFolder() {
-    if (cacheFolder) {
-      return cacheFolder;
-    }
-    return defaultCacheFolder;
-  }
-
-  function renderCacheSize() {
-    return <FormatBytes value={cacheSize} precision={3} />;
-  }
-
+  /*
   async function chooseAnotherFolder() {
     const newFolder = await ipcRenderer.invoke('selectCacheFolder');
 
@@ -101,6 +78,7 @@ export default function SettingsGeneral() {
       }
     }
   }
+  */
 
   return (
     <Grid container style={{ maxWidth: '624px' }} gap={3}>
@@ -185,7 +163,7 @@ export default function SettingsGeneral() {
         </Grid>
         <Grid item style={{ width: '400px' }}>
           <Typography variant="body2" fontWeight="500" component="div">
-            {renderCacheSize()}
+            <FormatBytes value={cacheSize} precision={3} />
           </Typography>
         </Grid>
       </Grid>
@@ -197,13 +175,13 @@ export default function SettingsGeneral() {
           </SettingsTitle>
         </Grid>
         <Grid item container xs justifyContent="flex-end">
-          <Button onClick={chooseAnotherFolder} color="primary" variant="outlined" size="small">
+          <Button /* onClick={chooseAnotherFolder} */ color="primary" variant="outlined" size="small">
             <Trans>Change</Trans>
           </Button>
         </Grid>
         <Grid item style={{ width: '400px' }}>
           <Typography variant="body2" fontWeight="500" component="div">
-            {renderCacheFolder()}
+            {cacheDirectory}
           </Typography>
         </Grid>
       </Grid>
@@ -215,7 +193,7 @@ export default function SettingsGeneral() {
           </SettingsTitle>
         </Grid>
         <Grid item container xs justifyContent="flex-end">
-          <LimitCacheSize forceUpdateCacheSize={forceUpdateCacheSize} />
+          <LimitCacheSize />
         </Grid>
       </Grid>
     </Grid>

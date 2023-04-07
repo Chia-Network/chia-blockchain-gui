@@ -42,7 +42,7 @@ export default function SelectedActionsDialog(props: SelectedActionsDialogProps)
   const [isNFTHidden] = useHiddenNFTs();
   const showOrHide = nfts.reduce((p, nft) => {
     if (p === 0) return 0;
-    const isHidden = isNFTHidden(nft);
+    const isHidden = isNFTHidden(nft.$nftId);
     if ((isHidden && p === 2) || (!isHidden && p === 1)) return 0;
     return isHidden ? 1 : 2;
   }, -1);

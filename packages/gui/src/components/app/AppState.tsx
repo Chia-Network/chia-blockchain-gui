@@ -27,7 +27,6 @@ import ModeServices, { SimulatorServices } from '../../constants/ModeServices';
 import useEnableDataLayerService from '../../hooks/useEnableDataLayerService';
 import useEnableFilePropagationServer from '../../hooks/useEnableFilePropagationServer';
 import useNFTMetadataLRU from '../../hooks/useNFTMetadataLRU';
-import NFTContextualActionsEventEmitter from '../nfts/NFTContextualActionsEventEmitter';
 import AppAutoLogin from './AppAutoLogin';
 import AppKeyringMigrator from './AppKeyringMigrator';
 import AppPassPrompt from './AppPassPrompt';
@@ -136,29 +135,10 @@ export default function AppState(props: Props) {
       event.sender.send('daemon-exited');
     }
 
-    function handleRemovedCachedFile(e: any, hash: string) {
-      Object.keys({ ...localStorage }).forEach((key: string) => {
-        try {
-          const json = JSON.parse(localStorage.getItem(key)!);
-          if (json.binary === hash || json.video === hash || json.image === hash) {
-            localStorage.removeItem(key);
-            const nftId = key.replace('thumb-cache-', '').replace('metadata-cache-', '').replace('content-cache-', '');
-            NFTContextualActionsEventEmitter.emit(`force-reload-metadata-${nftId}`);
-            if (lru.get(nftId)) {
-              lru.delete(nftId);
-            }
-          }
-        } catch (err) {
-          console.error(err);
-        }
-      });
-    }
-
     if (isElectron()) {
       const { ipcRenderer } = window as unknown as { ipcRenderer: IpcRenderer };
 
       ipcRenderer.on('exit-daemon', handleClose);
-      ipcRenderer.on('removed-cache-file', handleRemovedCachedFile);
 
       // Handle files/URLs opened at launch now that the app is ready
       ipcRenderer.invoke('processLaunchTasks');

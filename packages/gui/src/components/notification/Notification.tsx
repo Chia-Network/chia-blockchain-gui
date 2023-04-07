@@ -6,8 +6,8 @@ import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 import HeightToTimestamp from '../helpers/HeightToTimestamp';
+import NFTTitle from '../nfts/NFTTitle';
 import OfferAsset from '../offers/OfferAsset';
-import NotificationNFTTitle from './NotificationNFTTitle';
 import NotificationPreview from './NotificationPreview';
 
 export type NotificationProps = {
@@ -71,7 +71,7 @@ export default function Notification(props: NotificationProps) {
             {offered.map((info) => (
               <Flex flexDirection="row" gap={0.5} key={`${info.displayAmount}-${info.displayName}`}>
                 {info.assetType === OfferAsset.NFT ? (
-                  <NotificationNFTTitle nftId={info.displayName} />
+                  <NFTTitle nftId={info.displayName} />
                 ) : (
                   <Typography noWrap>
                     {(info.displayAmount as any).toString()} {info.displayName}
@@ -83,7 +83,7 @@ export default function Notification(props: NotificationProps) {
               <Flex flexDirection="row" gap={0.5} key={`${info.displayAmount}-${info.displayName}`}>
                 {info.assetType === OfferAsset.NFT ? (
                   <Typography color="primary" variant="body2" noWrap>
-                    <NotificationNFTTitle nftId={info.displayName} />
+                    <NFTTitle nftId={info.displayName} />
                   </Typography>
                 ) : (
                   <Typography color="primary" variant="body2" noWrap>

@@ -1,9 +1,9 @@
-import { useGetNFTInfoQuery } from '@chia-network/api-react';
 import { useMemo } from 'react';
 
 import { didToDIDId } from '../util/dids';
 import { launcherIdFromNFTId } from '../util/nfts';
 import { stripHexPrefix } from '../util/utils';
+import useNFTByCoinId from './useNFTByCoinId';
 
 export type UseNFTMinterDIDResult = {
   didId: string | undefined;
@@ -15,7 +15,7 @@ export type UseNFTMinterDIDResult = {
 
 export default function useNFTMinterDID(nftId: string): UseNFTMinterDIDResult {
   const launcherId = launcherIdFromNFTId(nftId);
-  const { data: nft, isLoading, error } = useGetNFTInfoQuery({ coinId: launcherId ?? '' });
+  const { nft, isLoading, error } = useNFTByCoinId(launcherId);
 
   const [didId, hexDIDId, didName] = useMemo(() => {
     if (!nft) {

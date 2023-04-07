@@ -1,5 +1,5 @@
 import { toBech32m, fromBech32m } from '@chia-network/api';
-import { useGetCurrentAddressQuery, useGetNFTInfoQuery, useSendNotificationsMutation } from '@chia-network/api-react';
+import { useGetCurrentAddressQuery, useSendNotificationsMutation } from '@chia-network/api-react';
 import {
   AlertDialog,
   Amount,
@@ -33,6 +33,7 @@ import {
 import React, { SyntheticEvent, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 
+import useNFTByCoinId from '../../hooks/useNFTByCoinId';
 import { launcherIdFromNFTId } from '../../util/nfts';
 import NFTPreview from '../nfts/NFTPreview';
 import { createOfferNotificationPayload } from './utils';
@@ -73,10 +74,9 @@ export default function NotificationSendDialog(props: NotificationSendDialogProp
   });
   const currencyCode = useCurrencyCode();
   const openDialog = useOpenDialog();
-  const { data: nft } = useGetNFTInfoQuery({ coinId: launcherId ?? '' }, { skip: !launcherId });
+  const { nft } = useNFTByCoinId(launcherId);
   const { data: currentAddress = '' } = useGetCurrentAddressQuery({ walletId: 1 });
   const [sendNotifications] = useSendNotificationsMutation();
-  const [, setMetadata] = React.useState<any>({});
   const [isLoading, setIsLoading] = React.useState(isNFTOffer);
   const [isSubmitting, setIsSubmitting] = React.useState(false);
   const address = methods.watch('address');
@@ -191,7 +191,7 @@ export default function NotificationSendDialog(props: NotificationSendDialogProp
                 <Flex flexDirection="column" alignItems="center" gap={3}>
                   {isNFTOffer && (
                     <Box sx={nftPreviewContainer}>
-                      <NFTPreview nft={nft} disableThumbnail setNFTCardMetadata={setMetadata} />
+                      <NFTPreview nft={nft} disableInteractions />
                     </Box>
                   )}
                   {/* <Flex flexDirection="column" alignItems="center" gap={1}>

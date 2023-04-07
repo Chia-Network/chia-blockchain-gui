@@ -27,7 +27,7 @@ import useAssetIdName from '../../hooks/useAssetIdName';
 import useSaveOfferFile from '../../hooks/useSaveOfferFile';
 import useWalletOffers from '../../hooks/useWalletOffers';
 import resolveOfferInfo from '../../util/resolveOfferInfo';
-import NotificationNFTTitle from '../notification/NotificationNFTTitle';
+import NFTTitle from '../nfts/NFTTitle';
 import NotificationPreviewNFT from '../notification/NotificationPreviewNFT';
 import CreateOfferBuilder from '../offers2/CreateOfferBuilder';
 import OfferBuilderImport from '../offers2/OfferBuilderImport';
@@ -54,7 +54,7 @@ function OfferSectionSummaryRow({ displayAmount, displayName, assetType, showNFT
       ) : null}
       <Flex flexDirection="row" gap={0.5} key={`${displayAmount}-${displayName}`}>
         {assetType === OfferAsset.NFT ? (
-          <NotificationNFTTitle nftId={displayName} />
+          <NFTTitle nftId={displayName} />
         ) : (
           <Flex flexDirection="row" gap={0.5}>
             <Typography variant="body2">{(displayAmount as any).toString()}</Typography>

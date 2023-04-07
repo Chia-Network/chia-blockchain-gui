@@ -31,6 +31,7 @@ describe('calculateRoyalties', () => {
       supportsDid: false,
       p2Address: '',
       updaterPuzhash: '',
+      nftCoinConfirmationHeight: 0,
       walletId: undefined,
       $nftId: 'nft1g9xfeujpq402dhxrms5wqvh73rr02remvwvycr9s4cxzzlkg324s3nu8vj',
     };

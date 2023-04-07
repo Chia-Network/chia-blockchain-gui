@@ -1,11 +1,11 @@
 import { toBech32m } from '@chia-network/api';
-import { useGetNFTInfoQuery } from '@chia-network/api-react';
 import { CopyToClipboard, Flex, TextField, useCurrencyCode } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Box, Grid, InputAdornment } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 
+import useNFTByCoinId from '../../hooks/useNFTByCoinId';
 import { launcherIdFromNFTId } from '../../util/nfts';
 import NFTSearch from '../nfts/NFTSearch';
 import NFTSummary from '../nfts/NFTSummary';
@@ -23,7 +23,7 @@ export default function SigningEntityNFT(props: SigningEntityNFTProps) {
   const currentValue = getValues(entityName);
   const nftId = currentValue?.nftId;
   const launcherId = nftId ? launcherIdFromNFTId(nftId) : undefined;
-  const { data: nftInfo } = useGetNFTInfoQuery({ coinId: launcherId }, { skip: !launcherId });
+  const { nft: nftInfo } = useNFTByCoinId(launcherId);
   const [searchValue, setSearchValue] = useState<string>('');
   const [nftIdString, setNftId] = useState<string>('');
 
