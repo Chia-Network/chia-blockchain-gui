@@ -5,20 +5,23 @@ import CloseIcon from '@mui/icons-material/Close';
 import { Box, Divider, Dialog, DialogContent, DialogTitle, IconButton, Typography } from '@mui/material';
 import React, { useMemo, useState } from 'react';
 
-import useWalletConnectContext from '../../hooks/useWalletConnectContext';
+// import useWalletConnectContext from '../../hooks/useWalletConnectContext';
+import { WalletConnectContext } from './WalletConnectProvider';
 import HeroImage from './images/walletConnectConnected.svg';
 
 export type WalletConnectAddConnectionDialogProps = {
   onClose?: () => void;
   open?: boolean;
   topic: string;
+  context: WalletConnectContext;
 };
 
 export default function WalletConnectConnectedDialog(props: WalletConnectAddConnectionDialogProps) {
-  const { topic, onClose = () => {}, open = false } = props;
+  const { context, topic, onClose = () => {}, open = false } = props;
   const [isProcessing, setIsProcessing] = useState(false);
   const showError = useShowError();
-  const { pairs, disconnect, isLoading: isLoadingWallet } = useWalletConnectContext();
+  // const { pairs, disconnect, isLoading: isLoadingWallet } = useWalletConnectContext();
+  const { pairs, disconnect, isLoading: isLoadingWallet } = context;
   const { data: keys, isLoading: isLoadingPublicKeys } = useGetKeysQuery();
 
   const pair = pairs.getPair(topic);
