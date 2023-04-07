@@ -6,6 +6,7 @@ import { useTheme } from '@mui/material/styles';
 import React, { useMemo } from 'react';
 import styled from 'styled-components';
 
+import useOpenUnsafeLink from '../../hooks/useOpenUnsafeLink';
 import isRankingAttribute from '../../util/isRankingAttribute';
 
 /* ========================================================================== */
@@ -33,6 +34,7 @@ export type NFTPropertiesProps = {
 
 export function NFTProperty(props: NFTPropertyProps) {
   const { attribute, size = 'regular', color = 'secondary' } = props;
+  const openUnsafeLink = useOpenUnsafeLink();
   const theme = useTheme();
   // eslint-disable-next-line @typescript-eslint/naming-convention -- Comes from API like this
   const { name, trait_type, value: rawValue } = attribute;
@@ -47,6 +49,24 @@ export function NFTProperty(props: NFTPropertyProps) {
     borderColor: `${theme.palette[color].main}`,
     p: size === 'small' ? 1 : 2,
   };
+
+  function renderValueWithUrls(val: string) {
+    const urlRegex = /(https?:\/\/[^\s]+)/g;
+    const matches = val.split(urlRegex);
+    if (matches.length > 1) {
+      return matches.map((match, index) => {
+        if (index % 2 === 1) {
+          return (
+            <span style={{ cursor: 'pointer', textDecoration: 'underline' }} onClick={() => openUnsafeLink(match)}>
+              {match}
+            </span>
+          );
+        }
+        return match !== '' ? <span>{match}</span> : null;
+      });
+    }
+    return val;
+  }
 
   return (
     <Grid xs={12} sm={6} item>
@@ -73,7 +93,7 @@ export function NFTProperty(props: NFTPropertyProps) {
           }
         >
           <Typography variant={size === 'small' ? 'body2' : 'h6'} color={color} noWrap>
-            {value}
+            {renderValueWithUrls(value)}
           </Typography>
         </Tooltip>
       </Box>
