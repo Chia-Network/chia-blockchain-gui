@@ -12,9 +12,9 @@
   "types": "./dist/types",
   "scripts": {
     "build": "npm run build:js",
-    "build:js": "rollup -c && tsc --emitDeclarationOnly",
+    "build:js": "concurrently \"rollup -c\" \"tsc --emitDeclarationOnly\"",
     "build:ci": "npm run build:js",
-    "build:watch": "tsc --emitDeclarationOnly --watch & rollup -c -w",
+    "build:watch": "concurrently \"tsc --emitDeclarationOnly --watch\" \"rollup -c -w\"",
     "check:types": "tsc --noEmit --emitDeclarationOnly false",
     "test": "jest"
   },
@@ -50,6 +50,7 @@
     "babel-plugin-macros": "3.1.0",
     "babel-plugin-styled-components": "2.0.2",
     "babel-plugin-transform-imports": "2.0.0",
+    "concurrently": "8.0.1",
     "jest": "29.0.3",
     "react": "17.0.2",
     "react-dom": "17.0.2",
