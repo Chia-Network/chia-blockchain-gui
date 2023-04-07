@@ -9,12 +9,10 @@ import {
   type Serializable,
 } from '@chia-network/api-react';
 import { ChiaBlack, Coins } from '@chia-network/icons';
-import data from '@emoji-mart/data';
 import { Trans } from '@lingui/macro';
 import { Delete as DeleteIcon } from '@mui/icons-material';
 import { Alert, Typography, Container, ListItemIcon } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import { init } from 'emoji-mart';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
 import Sortable from 'sortablejs';
@@ -32,11 +30,9 @@ import useKeyringMigrationPrompt from '../../hooks/useKeyringMigrationPrompt';
 import useOpenDialog from '../../hooks/useOpenDialog';
 import useShowError from '../../hooks/useShowError';
 import useSkipMigration from '../../hooks/useSkipMigration';
+import { randomEmoji } from './EmojiAndColorPicker';
 // import Search from './Search';
 import SelectKeyItem from './SelectKeyItem';
-
-init({ data });
-const { emojis: allEmojis } = data;
 
 const StyledContainer = styled(Container)`
   padding-bottom: 1rem;
@@ -84,14 +80,9 @@ export default function SelectKey() {
       const newFingerprints: any = {};
       let notifyChange: boolean = false;
       publicKeyFingerprints.forEach((f: any) => {
-        const peopleAndNatureEmojisWords = (data as any).originalCategories
-          .filter((category: any) => ['people', 'nature'].indexOf(category.id) > -1)
-          .map((category: any) => category.emojis)
-          .flat();
-        const randomEmoji = peopleAndNatureEmojisWords[Math.floor(peopleAndNatureEmojisWords.length * Math.random())];
         const themeColors = Object.keys(allColors);
         const randomTheme = {
-          emoji: allEmojis[randomEmoji].skins[0].native,
+          emoji: randomEmoji(),
           color: themeColors[Math.floor(themeColors.length * Math.random())],
         };
         if (fingerprintSettings[f.fingerprint] && !fingerprintSettings[f.fingerprint].walletKeyTheme) {

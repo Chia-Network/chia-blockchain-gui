@@ -1,8 +1,9 @@
 import { Flex /* , Button */ } from '@chia-network/core';
 import { Search as SearchIcon } from '@chia-network/icons';
 import data from '@emoji-mart/data';
-import { t } from '@lingui/macro';
-import { InputBase /* , InputBaseProps */, Box } from '@mui/material';
+import { t, Trans } from '@lingui/macro';
+import ShuffleIcon from '@mui/icons-material/Shuffle';
+import { InputBase /* , InputBaseProps */, Box, Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import { init, SearchIndex } from 'emoji-mart';
 import React, { useCallback } from 'react';
@@ -28,6 +29,15 @@ const colorCircleStyle: any = {
   zIndex: 10,
   cursor: 'pointer',
 };
+
+export function randomEmoji() {
+  const peopleAndNatureEmojisWords = (data as any).originalCategories
+    .filter((category: any) => ['people', 'nature'].indexOf(category.id) > -1)
+    .map((category: any) => category.emojis)
+    .flat();
+  const emojiName = peopleAndNatureEmojisWords[Math.floor(peopleAndNatureEmojisWords.length * Math.random())];
+  return allEmojis[emojiName].skins[0].native;
+}
 
 export default function EmojiAndColorPicker(props: EmojiAndColorPickerType) {
   const { onSelect = () => {}, onClickOutside = () => {}, currentColor, currentEmoji, themeColors, isDark } = props;
@@ -231,9 +241,51 @@ export default function EmojiAndColorPicker(props: EmojiAndColorPickerType) {
     );
   }
 
+  function renderAddRemoveRandom() {
+    return (
+      <Flex sx={{ padding: '17px 13px 0 17px' }} justifyContent="space-between">
+        <Typography
+          variant="body2"
+          sx={{
+            fontWeight: 'bold',
+            lineHeight: '23px',
+            cursor: currentEmoji === '' ? 'default' : 'pointer',
+            color: theme.palette.colors.default.border,
+          }}
+          onClick={() => currentEmoji && onSelect('')}
+        >
+          {currentEmoji === '' ? <Trans>Add Icon</Trans> : <Trans>Remove Icon</Trans>}
+        </Typography>
+        <Flex
+          sx={{
+            cursor: 'pointer',
+            svg: {
+              fill: theme.palette.colors.default.border,
+            },
+          }}
+          onClick={() => onSelect(randomEmoji())}
+        >
+          <Typography
+            variant="body2"
+            sx={{
+              fontWeight: 'bold',
+              lineHeight: '23px',
+              color: theme.palette.colors.default.border,
+            }}
+          >
+            <Trans>Random</Trans>
+          </Typography>
+
+          <ShuffleIcon />
+        </Flex>
+      </Flex>
+    );
+  }
+
   return (
     <Box style={pickerStyle} ref={cmpRef}>
       {renderColorPicker()}
+      {renderAddRemoveRandom()}
       {renderSearch()}
       {renderEmojis()}
     </Box>

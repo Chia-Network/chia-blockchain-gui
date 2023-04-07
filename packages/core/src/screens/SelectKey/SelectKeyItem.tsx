@@ -168,7 +168,7 @@ export default function SelectKeyItem(props: SelectKeyItemProps) {
                   onSelect={(result: any) => {
                     if (isColor(result)) {
                       setWalletKeyTheme({ ...walletKeyTheme, color: result });
-                    } else if (result !== '') {
+                    } else {
                       setWalletKeyTheme({ ...walletKeyTheme, emoji: result });
                     }
                     setShowEmojiPicker(false);
@@ -186,6 +186,7 @@ export default function SelectKeyItem(props: SelectKeyItemProps) {
             <Flex
               sx={{
                 zIndex: 9,
+                backgroundColor: walletKeyTheme.emoji === '' ? color.main : 'none',
                 ':hover': {
                   backgroundColor: color.main,
                 },
@@ -194,9 +195,7 @@ export default function SelectKeyItem(props: SelectKeyItemProps) {
                 alignItems: 'center',
                 justifyContent: 'center',
                 borderRadius: '4px',
-                background: 'none',
                 transition: 'all .3s linear',
-                backgroundColor: 'transparent',
               }}
               onClick={toggleEmojiPicker}
             >
