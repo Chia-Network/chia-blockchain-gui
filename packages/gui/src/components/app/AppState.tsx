@@ -278,3 +278,7 @@ export default function AppState(props: Props) {
 
   return <AppAutoLogin>{children}</AppAutoLogin>;
 }
+
+AppState.whyDidYouRender = {
+  logOnDifferentValues: true,
+};

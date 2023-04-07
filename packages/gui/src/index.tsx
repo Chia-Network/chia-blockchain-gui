@@ -1,3 +1,4 @@
+import './wdyr.dev'; // must be first
 import './polyfill';
 import './config/env';
 import React from 'react';
