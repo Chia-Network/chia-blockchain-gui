@@ -1,6 +1,12 @@
 import { IpcRenderer } from 'electron';
 
-import { ConnectionState, ServiceHumanName, ServiceName, PassphrasePromptReason } from '@chia-network/api';
+import {
+  ConnectionState,
+  ServiceHumanName,
+  ServiceName,
+  ServiceNameValue,
+  PassphrasePromptReason,
+} from '@chia-network/api';
 import {
   useCloseMutation,
   useGetStateQuery,
@@ -67,9 +73,9 @@ export default function AppState(props: Props) {
   const lru = useNFTMetadataLRU();
   const isTestnet = useCurrencyCode() === 'TXCH';
 
-  const runServices = useMemo<ServiceName[] | undefined>(() => {
+  const runServices = useMemo<ServiceNameValue[] | undefined>(() => {
     if (mode) {
-      const services: ServiceName[] = isSimulator ? SimulatorServices : ModeServices[mode];
+      const services: ServiceNameValue[] = isSimulator ? SimulatorServices : ModeServices[mode];
 
       if (isDataLayerEnabled) {
         if (!services.includes(ServiceName.DATALAYER)) {
@@ -279,6 +285,6 @@ export default function AppState(props: Props) {
   return <AppAutoLogin>{children}</AppAutoLogin>;
 }
 
-AppState.whyDidYouRender = {
-  logOnDifferentValues: true,
-};
+// AppState.whyDidYouRender = {
+//   logOnDifferentValues: true,
+// };

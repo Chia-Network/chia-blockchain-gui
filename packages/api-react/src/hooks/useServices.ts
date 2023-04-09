@@ -1,4 +1,5 @@
 import { type ServiceNameValue, ServiceName } from '@chia-network/api';
+import { useMemo } from 'react';
 
 import useService, { ServiceState } from './useService';
 
@@ -90,11 +91,14 @@ export default function useMonitorServices(
   const stopping = states.filter((state) => state.state === 'stopping').map((state) => state.service);
   const running = states.filter((state) => state.state === 'running').map((state) => state.service);
 
-  return {
+  const objectToReturn = {
     isLoading,
     error,
     starting,
     stopping,
     running,
   };
+  const stringifiedObjectToReturn = JSON.stringify(objectToReturn);
+  const toReturn = useMemo(() => JSON.parse(stringifiedObjectToReturn), [stringifiedObjectToReturn]);
+  return toReturn;
 }

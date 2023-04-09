@@ -61,12 +61,12 @@ export default function useService(
   }, [isProcessing]);
 
   let state: ServiceState = 'stopped';
-  if (isStarting) {
+  if (isRunning) {
+    state = 'running';
+  } else if (isStarting) {
     state = 'starting';
   } else if (isStopping) {
     state = 'stopping';
-  } else if (isRunning) {
-    state = 'running';
   }
 
   const handleStart = useCallback(async () => {
@@ -105,7 +105,7 @@ export default function useService(
   }, [isProcessing, refetch, service, stopService]);
 
   useEffect(() => {
-    if (disabled) {
+    if (disabled || !runningServices) {
       return;
     }
 
@@ -114,7 +114,7 @@ export default function useService(
     } else if (keepState === 'stopped' && keepState !== state && !isProcessing && isRunning === true) {
       handleStop();
     }
-  }, [keepState, state, isProcessing, disabled, isRunning, handleStart, handleStop]);
+  }, [runningServices, keepState, service, state, isProcessing, disabled, isRunning, handleStart, handleStop]);
 
   return {
     state,
