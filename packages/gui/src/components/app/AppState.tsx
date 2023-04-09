@@ -1,6 +1,12 @@
 import { IpcRenderer } from 'electron';
 
-import { ConnectionState, ServiceHumanName, ServiceName, PassphrasePromptReason } from '@chia-network/api';
+import {
+  ConnectionState,
+  ServiceHumanName,
+  ServiceName,
+  ServiceNameValue,
+  PassphrasePromptReason,
+} from '@chia-network/api';
 import {
   useCloseMutation,
   useGetStateQuery,
@@ -67,9 +73,9 @@ export default function AppState(props: Props) {
   const lru = useNFTMetadataLRU();
   const isTestnet = useCurrencyCode() === 'TXCH';
 
-  const runServices = useMemo<ServiceName[] | undefined>(() => {
+  const runServices = useMemo<ServiceNameValue[] | undefined>(() => {
     if (mode) {
-      const services: ServiceName[] = isSimulator ? SimulatorServices : ModeServices[mode];
+      const services: ServiceNameValue[] = isSimulator ? SimulatorServices : ModeServices[mode];
 
       if (isDataLayerEnabled) {
         if (!services.includes(ServiceName.DATALAYER)) {
@@ -100,8 +106,8 @@ export default function AppState(props: Props) {
       return false;
     }
 
-    const specificRunningServiceStates = servicesState.running.filter((serviceState) =>
-      runServices.includes(serviceState.service)
+    const specificRunningServiceStates = servicesState.running.filter((serviceName) =>
+      runServices.includes(serviceName)
     );
 
     return specificRunningServiceStates.length === runServices.length;
@@ -262,7 +268,7 @@ export default function AppState(props: Props) {
               runServices.map((service) => (
                 <Collapse
                   key={service}
-                  in={!servicesState.running.find((state) => state.service === service)}
+                  in={!servicesState.running.includes(service)}
                   timeout={{ enter: 0, exit: 1000 }}
                 >
                   <Typography variant="body1" color="textSecondary" align="center">
@@ -278,3 +284,7 @@ export default function AppState(props: Props) {
 
   return <AppAutoLogin>{children}</AppAutoLogin>;
 }
+
+// AppState.whyDidYouRender = {
+//   logOnDifferentValues: true,
+// };

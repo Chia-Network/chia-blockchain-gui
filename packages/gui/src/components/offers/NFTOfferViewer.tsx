@@ -352,10 +352,10 @@ function NFTOfferDetails(props: NFTOfferDetailsProps) {
   const theme = useTheme();
   const [acceptOffer] = useAcceptOfferHook();
   const [isAccepting, setIsAccepting] = useState<boolean>(false);
-  const [isValidating, setIsValidating] = useState<boolean>(false);
+
   const [isValid, setIsValid] = useState<boolean>(tradeRecord !== undefined);
   const [isMissingRequestedAsset, setIsMissingRequestedAsset] = useState<boolean>(false);
-  const [checkOfferValidity] = useCheckOfferValidityMutation();
+  const [checkOfferValidity, { isLoading: isCheckOfferValidityLoading }] = useCheckOfferValidityMutation();
   const driverDict: { [key: string]: any } = summary?.infos ?? {};
   const launcherId: string | undefined = Object.keys(driverDict).find(
     (id: string) => driverDict[id].launcherId?.length > 0
@@ -407,20 +407,13 @@ function NFTOfferDetails(props: NFTOfferDetailsProps) {
     let valid = false;
 
     try {
-      setIsValidating(true);
+      const response = await checkOfferValidity(offerData).unwrap();
 
-      const response = await checkOfferValidity(offerData);
-
-      if (response.data?.success === true) {
-        valid = response.data?.valid === true;
-      } else {
-        showError(response.data?.error ?? new Error('Encountered an unknown error while checking offer validity'));
-      }
+      valid = response.data?.valid === true;
     } catch (e) {
       showError(e);
     } finally {
       setIsValid(valid);
-      setIsValidating(false);
     }
   }, [checkOfferValidity, offerData, showError]);
 
@@ -448,7 +441,7 @@ function NFTOfferDetails(props: NFTOfferDetailsProps) {
       <Flex flexDirection="column" flexGrow={1} gap={4}>
         <OfferHeader
           isMyOffer={isMyOffer}
-          isInvalid={!isValidating && !isValid}
+          isInvalid={!isCheckOfferValidityLoading && !isValid}
           isComplete={tradeRecord?.status === OfferState.CONFIRMED}
         />
 

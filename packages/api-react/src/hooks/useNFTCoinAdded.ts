@@ -11,8 +11,7 @@ function subscribe(cb: Function) {
         service: WalletService,
         args: [cb],
       },
-      api,
-      {}
+      api
     );
 
     return unsubscribe;

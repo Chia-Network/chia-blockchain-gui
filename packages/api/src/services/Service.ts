@@ -2,26 +2,25 @@ import EventEmitter from 'events';
 
 import { isUndefined, omitBy } from 'lodash';
 
-import type Response from '../@types/Response';
 import type Client from '../Client';
 import Message from '../Message';
-import ServiceName from '../constants/ServiceName';
+import { type ServiceNameValue } from '../constants/ServiceName';
 
 export type Options = {
-  origin?: ServiceName;
+  origin?: ServiceNameValue;
   skipAddService?: boolean;
 };
 
-export default class Service extends EventEmitter {
+export default abstract class Service extends EventEmitter {
   readonly client: Client;
 
-  readonly name: ServiceName;
+  readonly name: ServiceNameValue;
 
-  readonly origin: ServiceName;
+  readonly origin: ServiceNameValue;
 
   #readyPromise: Promise<null> | undefined;
 
-  constructor(name: ServiceName, client: Client, options: Options = {}, onInit?: () => Promise<void>) {
+  constructor(name: ServiceNameValue, client: Client, options: Options = {}, onInit?: () => Promise<void>) {
     super();
 
     const { origin, skipAddService } = options;
@@ -31,7 +30,7 @@ export default class Service extends EventEmitter {
     this.origin = origin ?? client.origin;
 
     if (!skipAddService) {
-      client.addService(this);
+      client.addService({ service: this });
     }
 
     client.on('message', this.handleMessage);
@@ -108,8 +107,8 @@ export default class Service extends EventEmitter {
     return response?.data as Data;
   }
 
-  async ping(): Promise<Response> {
-    return this.command('ping', undefined, undefined, 1000);
+  async ping() {
+    return this.command<void>('ping', undefined, undefined, 1000);
   }
 
   onCommand(

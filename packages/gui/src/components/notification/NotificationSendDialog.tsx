@@ -1,5 +1,5 @@
 import { toBech32m, fromBech32m } from '@chia-network/api';
-import { useGetCurrentAddressQuery, useSendNotificationsMutation } from '@chia-network/api-react';
+import { useGetCurrentAddressQuery, useSendNotificationMutation } from '@chia-network/api-react';
 import {
   AlertDialog,
   Amount,
@@ -76,9 +76,10 @@ export default function NotificationSendDialog(props: NotificationSendDialogProp
   const openDialog = useOpenDialog();
   const { nft } = useNFTByCoinId(launcherId);
   const { data: currentAddress = '' } = useGetCurrentAddressQuery({ walletId: 1 });
-  const [sendNotifications] = useSendNotificationsMutation();
+  const [sendNotification, { isLoading: isSendNotificationLoading }] = useSendNotificationMutation();
+
   const [isLoading, setIsLoading] = React.useState(isNFTOffer);
-  const [isSubmitting, setIsSubmitting] = React.useState(false);
+
   const address = methods.watch('address');
   const allowCounterOffer = methods.watch('allowCounterOffer');
 
@@ -123,22 +124,18 @@ export default function NotificationSendDialog(props: NotificationSendDialogProp
 
     const hexMessage = Buffer.from(payload).toString('hex');
 
-    setIsSubmitting(true);
-
     try {
-      const result = await sendNotifications({
+      await sendNotification({
         target: targetPuzzleHash,
         amount: amountMojos,
         message: hexMessage,
         fee: feeMojos,
       }).unwrap();
 
-      success = result?.success ?? false;
+      success = true;
     } catch (e: any) {
       console.error(e);
       error = e.message;
-    } finally {
-      setIsSubmitting(false);
     }
 
     const resultDialog = (
@@ -262,7 +259,7 @@ export default function NotificationSendDialog(props: NotificationSendDialogProp
                         name="fee"
                         label={<Trans>Transaction Fee</Trans>}
                         txType={FeeTxType.walletSendXCH}
-                        disabled={isSubmitting}
+                        disabled={isSendNotificationLoading}
                         fullWidth
                       />
                     </Grid>
@@ -309,7 +306,7 @@ export default function NotificationSendDialog(props: NotificationSendDialogProp
                 <Button onClick={handleClose} color="primary" variant="outlined">
                   <Trans>Close</Trans>
                 </Button>
-                <ButtonLoading type="submit" color="primary" variant="contained" loading={isSubmitting}>
+                <ButtonLoading type="submit" color="primary" variant="contained" loading={isSendNotificationLoading}>
                   <Trans>Send Message</Trans>
                 </ButtonLoading>
               </Flex>

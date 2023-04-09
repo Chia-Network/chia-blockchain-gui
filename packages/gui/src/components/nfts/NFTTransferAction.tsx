@@ -16,7 +16,7 @@ import {
 } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Typography } from '@mui/material';
-import React, { useState } from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
 
 import NFTSummary from './NFTSummary';
@@ -27,7 +27,6 @@ import NFTTransferConfirmationDialog from './NFTTransferConfirmationDialog';
 /* ========================================================================== */
 
 export type NFTTransferResult = {
-  success: boolean;
   transferInfo?: {
     nftAssetId: string;
     destination: string;
@@ -57,8 +56,8 @@ type NFTTransferActionProps = {
 
 export default function NFTTransferAction(props: NFTTransferActionProps) {
   const { nfts, destination = '', onComplete } = props;
-  const [isLoading, setIsLoading] = useState(false);
-  const [transferNFT] = useTransferNFTMutation();
+
+  const [transferNFT, { isLoading: isTransferNFTLoading }] = useTransferNFTMutation();
   const openDialog = useOpenDialog();
   const showError = useShowError();
   const currencyCode = useCurrencyCode();
@@ -102,19 +101,23 @@ export default function NFTTransferAction(props: NFTTransferActionProps) {
     );
 
     if (confirmation) {
-      setIsLoading(true);
+      let success;
+      let errorMessage;
 
-      const { error, data: response } = await transferNFT({
-        walletId: nfts[0].walletId,
-        nftCoinIds: nfts.map((nft: NFTInfo) => nft.nftCoinId),
-        launcherId: nfts[0].launcherId,
-        targetAddress: destinationLocal,
-        fee: feeInMojos,
-      });
-      const success = response?.success ?? false;
-      const errorMessage = error ?? undefined;
-
-      setIsLoading(false);
+      try {
+        await transferNFT({
+          walletId: nfts[0].walletId,
+          nftCoinIds: nfts.map((nft: NFTInfo) => nft.nftCoinId),
+          launcherId: nfts[0].launcherId,
+          targetAddress: destinationLocal,
+          fee: feeInMojos,
+        }).unwrap();
+        success = true;
+        errorMessage = undefined;
+      } catch (err: any) {
+        success = false;
+        errorMessage = err.message;
+      }
 
       if (onComplete) {
         onComplete({
@@ -146,7 +149,7 @@ export default function NFTTransferAction(props: NFTTransferActionProps) {
           color="secondary"
           fullWidth
           label={<Trans>Send to Address</Trans>}
-          disabled={isLoading}
+          disabled={isTransferNFTLoading}
           required
         />
         <EstimatedFee
@@ -155,7 +158,7 @@ export default function NFTTransferAction(props: NFTTransferActionProps) {
           name="fee"
           color="secondary"
           label={<Trans>Fee</Trans>}
-          disabled={isLoading}
+          disabled={isTransferNFTLoading}
           txType={FeeTxType.transferNFT}
           fullWidth
         />
@@ -164,7 +167,7 @@ export default function NFTTransferAction(props: NFTTransferActionProps) {
             <Button onClick={handleClose} color="secondary" variant="outlined" autoFocus>
               <Trans>Close</Trans>
             </Button>
-            <ButtonLoading type="submit" autoFocus color="primary" variant="contained" loading={isLoading}>
+            <ButtonLoading type="submit" autoFocus color="primary" variant="contained" loading={isTransferNFTLoading}>
               <Trans>Transfer</Trans>
             </ButtonLoading>
           </Flex>

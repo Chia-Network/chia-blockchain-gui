@@ -121,6 +121,18 @@ Do not edit files directly in the repo, but instead please head over to our [Cro
   4. Run `npm run dev:gui` to start the app.
   5. If still does not work, please open you process manager and kill all Chia / Python related processes.
 
+- **Why is my component keeps rerendering?**
+
+  We have [why-did-you-render](https://github.com/welldone-software/why-did-you-render) installed.
+
+  You will see the reasons in the electron console after adding this to your functional component:
+
+  ```
+  YourComponent.whyDidYouRender = {
+    logOnDifferentValues: true,
+  }
+  ```
+
 ## Chia FAQ/WIKI
 
 Please check out the [wiki](https://github.com/Chia-Network/chia-blockchain/wiki)

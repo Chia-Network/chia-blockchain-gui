@@ -1,13 +1,14 @@
 type WalletBalance = {
-  walletId: number;
   confirmedWalletBalance: number;
-  max_send_amount: number;
-  pending_change: number;
-  pending_coin_removal_count: number;
-  spendable_balance: number;
-  unconfirmed_wallet_balance: number;
-  unspent_coin_count: number;
-  balance_pending: number;
+  fingerprint: number;
+  maxSendAmount: number;
+  pendingChange: number;
+  pendingCoinRemovalCount: number;
+  spendableBalance: number;
+  unconfirmedWalletBalance: number;
+  unspentCoinCount: number;
+  walletId: number;
+  walletType: number;
 };
 
 export default WalletBalance;

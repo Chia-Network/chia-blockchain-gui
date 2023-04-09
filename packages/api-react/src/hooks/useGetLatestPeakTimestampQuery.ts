@@ -1,8 +1,9 @@
+import { type BlockRecord } from '@chia-network/api';
 import { useRef, useMemo } from 'react';
 
 import useGetLatestBlocksQuery from './useGetLatestBlocksQuery';
 
-function getLatestTimestamp(blocks?: Object[], lastPeekTimestamp?: number): number | undefined {
+function getLatestTimestamp(blocks?: BlockRecord[], lastPeekTimestamp?: number): number | undefined {
   const timestamps = [];
   if (lastPeekTimestamp) {
     timestamps.push(lastPeekTimestamp);

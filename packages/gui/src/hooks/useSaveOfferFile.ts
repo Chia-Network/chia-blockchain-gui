@@ -19,7 +19,7 @@ export default function useSaveOfferFile(): [SaveOfferFileHook] {
       data: response,
     }: {
       data: { offer: string; tradeRecord: OfferTradeRecord; success: boolean };
-    } = await getOfferData(tradeId);
+    } = await getOfferData({ offerId: tradeId });
     const { offer: offerData, tradeRecord, success } = response;
     if (success === true) {
       const dialogOptions = {

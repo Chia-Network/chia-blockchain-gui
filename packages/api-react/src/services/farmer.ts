@@ -1,9 +1,9 @@
 /* eslint-disable no-param-reassign -- This file use Immer */
-import { Farmer } from '@chia-network/api';
-import type { Plot, FarmerConnection, RewardTargets, SignagePoint, Pool, FarmingInfo } from '@chia-network/api';
+import { Farmer, type HarvesterSummary } from '@chia-network/api';
 
 import api, { baseQuery } from '../api';
 import onCacheEntryAddedInvalidate from '../utils/onCacheEntryAddedInvalidate';
+import { query, mutation } from '../utils/reduxToolkitEndpointAbstractions';
 
 const MAX_SIGNAGE_POINTS = 500;
 export const apiWithTag = api.enhanceEndpoints({
@@ -25,51 +25,28 @@ export const apiWithTag = api.enhanceEndpoints({
 
 export const farmerApi = apiWithTag.injectEndpoints({
   endpoints: (build) => ({
-    farmerPing: build.query<boolean, {}>({
-      query: () => ({
-        command: 'ping',
-        service: Farmer,
-      }),
-      transformResponse: (response: any) => response?.success,
-    }),
+    farmerPing: query(build, Farmer, 'ping'),
 
-    getHarvesters: build.query<Plot[], {}>({
-      query: () => ({
-        command: 'getHarvesters',
-        service: Farmer,
-      }),
-      transformResponse: (response: any) => response?.harvesters,
-      providesTags: (harvesters) =>
-        harvesters
-          ? [...harvesters.map(({ id }) => ({ type: 'Harvesters', id } as const)), { type: 'Harvesters', id: 'LIST' }]
-          : [{ type: 'Harvesters', id: 'LIST' }],
-      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, [
+    getHarvesters: query(build, Farmer, 'getHarvesters', {
+      transformResponse: (response) => response.harvesters,
+      providesTags: [{ type: 'Harvesters', id: 'LIST' }],
+      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, api, [
         {
           command: 'onHarvesterChanged',
           service: Farmer,
-          endpoint: () => farmerApi.endpoints.getHarvesters,
+          endpoint: 'getHarvesters',
         },
       ]),
     }),
 
-    getHarvestersSummary: build.query<Plot[], {}>({
-      query: () => ({
-        command: 'getHarvestersSummary',
-        service: Farmer,
-      }),
-      transformResponse: (response: any) => response?.harvesters,
-      providesTags: (harvesters) =>
-        harvesters
-          ? [
-              ...harvesters.map(({ id }) => ({ type: 'HarvestersSummary', id } as const)),
-              { type: 'HarvestersSummary', id: 'LIST' },
-            ]
-          : [{ type: 'HarvestersSummary', id: 'LIST' }],
-      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, [
+    getHarvestersSummary: query(build, Farmer, 'getHarvestersSummary', {
+      transformResponse: (response) => response.harvesters,
+      providesTags: [{ type: 'HarvestersSummary', id: 'LIST' }],
+      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, api, [
         {
           command: 'onHarvesterUpdated',
           service: Farmer,
-          onUpdate(draft, data) {
+          onUpdate(draft: HarvesterSummary[], data) {
             const {
               connection: { nodeId },
             } = data;
@@ -85,7 +62,7 @@ export const farmerApi = apiWithTag.injectEndpoints({
         {
           command: 'onHarvesterRemoved',
           service: Farmer,
-          onUpdate(draft, data) {
+          onUpdate(draft: HarvesterSummary[], data) {
             const { nodeId } = data;
 
             const index = draft.findIndex((harvester) => harvester.connection.nodeId === nodeId);
@@ -97,20 +74,8 @@ export const farmerApi = apiWithTag.injectEndpoints({
       ]),
     }),
 
-    getHarvesterPlotsValid: build.query<
-      Plot[],
-      {
-        nodeId: string;
-        page?: number;
-        pageSize?: number;
-      }
-    >({
-      query: ({ nodeId, page, pageSize }) => ({
-        command: 'getHarvesterPlotsValid',
-        service: Farmer,
-        args: [nodeId, page, pageSize],
-      }),
-      transformResponse: (response: any) => response?.plots,
+    getHarvesterPlotsValid: query(build, Farmer, 'getHarvesterPlotsValid', {
+      transformResponse: (response) => response.plots,
       providesTags: (plots) =>
         plots
           ? [
@@ -118,30 +83,18 @@ export const farmerApi = apiWithTag.injectEndpoints({
               { type: 'HarvesterPlots', id: 'LIST' },
             ]
           : [{ type: 'HarvesterPlots', id: 'LIST' }],
-      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, [
+      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, api, [
         {
           command: 'onHarvesterUpdated',
           service: Farmer,
-          endpoint: () => farmerApi.endpoints.getHarvesterPlotsValid,
+          endpoint: 'getHarvesterPlotsValid',
           skip: (_draft, data, args) => args.nodeId !== data?.connection?.nodeId,
         },
       ]),
     }),
 
-    getHarvesterPlotsInvalid: build.query<
-      Plot[],
-      {
-        nodeId: string;
-        page?: number;
-        pageSize?: number;
-      }
-    >({
-      query: ({ nodeId, page, pageSize }) => ({
-        command: 'getHarvesterPlotsInvalid',
-        service: Farmer,
-        args: [nodeId, page, pageSize],
-      }),
-      transformResponse: (response: any) => response?.plots,
+    getHarvesterPlotsInvalid: query(build, Farmer, 'getHarvesterPlotsInvalid', {
+      transformResponse: (response) => response.plots,
       providesTags: (plots) =>
         plots
           ? [
@@ -149,30 +102,18 @@ export const farmerApi = apiWithTag.injectEndpoints({
               { type: 'HarvesterPlotsInvalid', id: 'LIST' },
             ]
           : [{ type: 'HarvesterPlotsInvalid', id: 'LIST' }],
-      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, [
+      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, api, [
         {
           command: 'onHarvesterUpdated',
           service: Farmer,
-          endpoint: () => farmerApi.endpoints.getHarvesterPlotsInvalid,
+          endpoint: 'getHarvesterPlotsInvalid',
           skip: (_draft, data, args) => args.nodeId !== data?.connection?.nodeId,
         },
       ]),
     }),
 
-    getHarvesterPlotsKeysMissing: build.query<
-      Plot[],
-      {
-        nodeId: string;
-        page?: number;
-        pageSize?: number;
-      }
-    >({
-      query: ({ nodeId, page, pageSize }) => ({
-        command: 'getHarvesterPlotsKeysMissing',
-        service: Farmer,
-        args: [nodeId, page, pageSize],
-      }),
-      transformResponse: (response: any) => response?.plots,
+    getHarvesterPlotsKeysMissing: query(build, Farmer, 'getHarvesterPlotsKeysMissing', {
+      transformResponse: (response) => response.plots,
       providesTags: (plots) =>
         plots
           ? [
@@ -180,30 +121,18 @@ export const farmerApi = apiWithTag.injectEndpoints({
               { type: 'HarvesterPlotsKeysMissing', id: 'LIST' },
             ]
           : [{ type: 'HarvesterPlotsKeysMissing', id: 'LIST' }],
-      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, [
+      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, api, [
         {
           command: 'onHarvesterUpdated',
           service: Farmer,
-          endpoint: () => farmerApi.endpoints.getHarvesterPlotsKeysMissing,
+          endpoint: 'getHarvesterPlotsKeysMissing',
           skip: (_draft, data, args) => args.nodeId !== data?.connection?.nodeId,
         },
       ]),
     }),
 
-    getHarvesterPlotsDuplicates: build.query<
-      Plot[],
-      {
-        nodeId: string;
-        page?: number;
-        pageSize?: number;
-      }
-    >({
-      query: ({ nodeId, page, pageSize }) => ({
-        command: 'getHarvesterPlotsDuplicates',
-        service: Farmer,
-        args: [nodeId, page, pageSize],
-      }),
-      transformResponse: (response: any) => response?.plots,
+    getHarvesterPlotsDuplicates: query(build, Farmer, 'getHarvesterPlotsDuplicates', {
+      transformResponse: (response) => response.plots,
       providesTags: (plots) =>
         plots
           ? [
@@ -211,52 +140,26 @@ export const farmerApi = apiWithTag.injectEndpoints({
               { type: 'HarvesterPlotsDuplicates', id: 'LIST' },
             ]
           : [{ type: 'HarvesterPlotsDuplicates', id: 'LIST' }],
-      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, [
+      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, api, [
         {
           command: 'onHarvesterUpdated',
           service: Farmer,
-          endpoint: () => farmerApi.endpoints.getHarvesterPlotsDuplicates,
+          endpoint: 'getHarvesterPlotsDuplicates',
           skip: (_draft, data, args) => args.nodeId !== data?.connection?.nodeId,
         },
       ]),
     }),
 
-    getRewardTargets: build.query<
-      undefined,
-      {
-        searchForPrivateKey?: boolean;
-      }
-    >({
-      query: ({ searchForPrivateKey } = {}) => ({
-        command: 'getRewardTargets',
-        service: Farmer,
-        args: [searchForPrivateKey],
-      }),
-      // transformResponse: (response: any) => response,
+    getRewardTargets: query(build, Farmer, 'getRewardTargets', {
       providesTags: ['RewardTargets'],
     }),
 
-    setRewardTargets: build.mutation<
-      RewardTargets,
-      {
-        farmerTarget: string;
-        poolTarget: string;
-      }
-    >({
-      query: ({ farmerTarget, poolTarget }) => ({
-        command: 'setRewardTargets',
-        service: Farmer,
-        args: [farmerTarget, poolTarget],
-      }),
+    setRewardTargets: mutation(build, Farmer, 'setRewardTargets', {
       invalidatesTags: ['RewardTargets'],
     }),
 
-    getFarmerConnections: build.query<FarmerConnection[], undefined>({
-      query: () => ({
-        command: 'getConnections',
-        service: Farmer,
-      }),
-      transformResponse: (response: any) => response?.connections,
+    getFarmerConnections: query(build, Farmer, 'getConnections', {
+      transformResponse: (response) => response.connections,
       providesTags: (connections) =>
         connections
           ? [
@@ -264,7 +167,7 @@ export const farmerApi = apiWithTag.injectEndpoints({
               { type: 'FarmerConnections', id: 'LIST' },
             ]
           : [{ type: 'FarmerConnections', id: 'LIST' }],
-      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, [
+      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, api, [
         {
           command: 'onConnections',
           service: Farmer,
@@ -278,69 +181,34 @@ export const farmerApi = apiWithTag.injectEndpoints({
         },
       ]),
     }),
-    openFarmerConnection: build.mutation<
-      FarmerConnection,
-      {
-        host: string;
-        port: number;
-      }
-    >({
-      query: ({ host, port }) => ({
-        command: 'openConnection',
-        service: Farmer,
-        args: [host, port],
-      }),
+
+    openFarmerConnection: mutation(build, Farmer, 'openConnection', {
       invalidatesTags: [{ type: 'FarmerConnections', id: 'LIST' }],
     }),
-    closeFarmerConnection: build.mutation<
-      FarmerConnection,
-      {
-        nodeId: string;
-      }
-    >({
-      query: ({ nodeId }) => ({
-        command: 'closeConnection',
-        service: Farmer,
-        args: [nodeId],
-      }),
+
+    closeFarmerConnection: mutation(build, Farmer, 'closeConnection', {
       invalidatesTags: (_result, _error, { nodeId }) => [
         { type: 'FarmerConnections', id: 'LIST' },
         { type: 'FarmerConnections', id: nodeId },
       ],
     }),
 
-    getPoolLoginLink: build.query<
-      string,
-      {
-        launcherId: string;
-      }
-    >({
-      query: ({ launcherId }) => ({
-        command: 'getPoolLoginLink',
-        service: Farmer,
-        args: [launcherId],
-      }),
-      transformResponse: (response: any) => response?.loginLink,
+    getPoolLoginLink: query(build, Farmer, 'getPoolLoginLink', {
+      transformResponse: (response) => response.loginLink,
       providesTags: (launcherId) => [{ type: 'PoolLoginLink', id: launcherId }],
       // TODO invalidate when join pool/change pool
     }),
 
-    getSignagePoints: build.query<SignagePoint[], undefined>({
-      query: () => ({
-        command: 'getSignagePoints',
-        service: Farmer,
-      }),
-      transformResponse: (response: any) => response?.signagePoints,
+    getSignagePoints: query(build, Farmer, 'getSignagePoints', {
+      transformResponse: (response) => response.signagePoints,
       providesTags: (signagePoints) =>
         signagePoints
           ? [
-              ...signagePoints.map(
-                ({ signagePoint }) => ({ type: 'SignagePoints', id: signagePoint?.challengeHash } as const)
-              ),
+              ...signagePoints.map(({ challengeHash }) => ({ type: 'SignagePoints', id: challengeHash } as const)),
               { type: 'SignagePoints', id: 'LIST' },
             ]
           : [{ type: 'SignagePoints', id: 'LIST' }],
-      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, [
+      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, api, [
         {
           command: 'onNewSignagePoint',
           service: Farmer,
@@ -354,12 +222,8 @@ export const farmerApi = apiWithTag.injectEndpoints({
       ]),
     }),
 
-    getPoolState: build.query<Pool[], undefined>({
-      query: () => ({
-        command: 'getPoolState',
-        service: Farmer,
-      }),
-      transformResponse: (response: any) => response?.poolState,
+    getPoolState: query(build, Farmer, 'getPoolState', {
+      transformResponse: (response) => response.poolState,
       providesTags: (poolsList) =>
         poolsList
           ? [
@@ -369,32 +233,16 @@ export const farmerApi = apiWithTag.injectEndpoints({
           : [{ type: 'Pools', id: 'LIST' }],
     }),
 
-    setPayoutInstructions: build.mutation<
-      undefined,
-      {
-        launcherId: string;
-        payoutInstructions: string;
-      }
-    >({
-      query: ({ launcherId, payoutInstructions }) => ({
-        command: 'setPayoutInstructions',
-        service: Farmer,
-        args: [launcherId, payoutInstructions],
-      }),
+    setPayoutInstructions: mutation(build, Farmer, 'setPayoutInstructions', {
       invalidatesTags: (_result, _error, { launcherId }) => [{ type: 'PayoutInstructions', id: launcherId }],
     }),
 
-    getFarmingInfo: build.query<FarmingInfo[], {}>({
-      query: () => ({
-        command: 'getFarmingInfo',
-        service: Farmer,
-      }),
-      // transformResponse: (response: any) => response,
-      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, [
+    getFarmingInfo: query(build, Farmer, 'getFarmingInfo', {
+      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, api, [
         {
           command: 'onFarmingInfoChanged',
           service: Farmer,
-          endpoint: () => farmerApi.endpoints.getFarmingInfo,
+          endpoint: 'getFarmingInfo',
         },
       ]),
     }),

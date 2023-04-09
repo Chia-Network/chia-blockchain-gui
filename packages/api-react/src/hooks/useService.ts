@@ -1,4 +1,4 @@
-import { ServiceName } from '@chia-network/api';
+import { ServiceNameValue } from '@chia-network/api';
 import { useEffect, useState, useMemo, useCallback } from 'react';
 
 import { useClientStartServiceMutation } from '../services/client';
@@ -13,7 +13,7 @@ type Options = {
 };
 
 export default function useService(
-  service: ServiceName,
+  service: ServiceNameValue,
   options: Options = {}
 ): {
   isLoading: boolean;
@@ -23,7 +23,7 @@ export default function useService(
   start: () => Promise<void>;
   stop: () => Promise<void>;
   error?: Error | unknown;
-  service: ServiceName;
+  service: ServiceNameValue;
 } {
   const { keepState, disabled = false, disableWait = false } = options;
 
@@ -39,19 +39,15 @@ export default function useService(
     isLoading,
     refetch,
     error,
-  } = useRunningServicesQuery(
-    {},
-    {
-      pollingInterval: latestIsProcessing ? 1000 : 10_000,
-      skip: disabled,
-      selectFromResult: (state) => ({
-        data: state.data,
-        refetch: state.refetch,
-        error: state.error,
-        isLoading: state.isLoading,
-      }),
-    }
-  );
+  } = useRunningServicesQuery(undefined, {
+    pollingInterval: latestIsProcessing ? 1000 : 10_000,
+    skip: disabled,
+    selectFromResult: (state) => ({
+      data: state.data,
+      error: state.error,
+      isLoading: state.isLoading,
+    }),
+  });
 
   const isRunning = useMemo(
     () => !!(runningServices && runningServices?.includes(service)),
@@ -65,12 +61,12 @@ export default function useService(
   }, [isProcessing]);
 
   let state: ServiceState = 'stopped';
-  if (isStarting) {
+  if (isRunning) {
+    state = 'running';
+  } else if (isStarting) {
     state = 'starting';
   } else if (isStopping) {
     state = 'stopping';
-  } else if (isRunning) {
-    state = 'running';
   }
 
   const handleStart = useCallback(async () => {
@@ -109,7 +105,7 @@ export default function useService(
   }, [isProcessing, refetch, service, stopService]);
 
   useEffect(() => {
-    if (disabled) {
+    if (disabled || !runningServices) {
       return;
     }
 
@@ -118,7 +114,7 @@ export default function useService(
     } else if (keepState === 'stopped' && keepState !== state && !isProcessing && isRunning === true) {
       handleStop();
     }
-  }, [keepState, state, isProcessing, disabled, isRunning, handleStart, handleStop]);
+  }, [runningServices, keepState, service, state, isProcessing, disabled, isRunning, handleStart, handleStop]);
 
   return {
     state,
