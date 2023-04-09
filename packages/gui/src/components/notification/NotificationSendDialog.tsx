@@ -1,5 +1,5 @@
 import { toBech32m, fromBech32m } from '@chia-network/api';
-import { useGetCurrentAddressQuery, useSendNotificationsMutation } from '@chia-network/api-react';
+import { useGetCurrentAddressQuery, useSendNotificationMutation } from '@chia-network/api-react';
 import {
   AlertDialog,
   Amount,
