@@ -15,7 +15,7 @@ interface AppVersionWarningProps {
 
 export default function AppVersionWarning(props: AppVersionWarningProps) {
   const { currentVersion } = props;
-  const { latestVersion, isLoading: isLoadingVersion } = useGetLatestVersionFromWebsite(false);
+  const { latestVersion, isLoading: isLoadingVersion, downloadUrl } = useGetLatestVersionFromWebsite(false);
   const [open, setOpen] = React.useState<boolean>(true);
   const [, setSkipVersion] = useLocalStorage('skipVersion', '');
 
@@ -36,7 +36,7 @@ export default function AppVersionWarning(props: AppVersionWarningProps) {
           <Trans>Latest version:</Trans> {latestVersion}
           <br />
           <br />
-          <Link target="_blank" href="https://www.chia.net/downloads">
+          <Link target="_blank" href={downloadUrl}>
             <Trans>Open downloads in the browser</Trans>
           </Link>
         </Typography>

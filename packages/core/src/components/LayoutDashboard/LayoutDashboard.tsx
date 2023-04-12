@@ -116,7 +116,7 @@ export default function LayoutDashboard(props: LayoutDashboardProps) {
     color: 'green',
   });
   const [skipVersion, setSkipVersion] = useLocalStorage('skipVersion', '');
-  const { latestVersion } = useGetLatestVersionFromWebsite(skipVersion !== '');
+  const { latestVersion, downloadUrl } = useGetLatestVersionFromWebsite(skipVersion !== '');
   const { version } = useAppVersion();
 
   const openDialog = useOpenDialog();
@@ -175,7 +175,7 @@ export default function LayoutDashboard(props: LayoutDashboardProps) {
           <Button color="secondary" variant="outlined" size="small" onClick={() => setSkipVersion(latestVersion || '')}>
             <Trans>Skip</Trans>
           </Button>
-          <Link target="_blank" href="https://www.chia.net/downloads" sx={{ textDecoration: 'none !important' }}>
+          <Link target="_blank" href={downloadUrl} sx={{ textDecoration: 'none !important' }}>
             <Button size="small" variant="contained" color="primary" sx={{ boxShadow: 'none' }}>
               <Trans>Download</Trans>
             </Button>

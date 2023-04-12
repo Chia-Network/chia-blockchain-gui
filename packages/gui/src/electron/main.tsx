@@ -544,6 +544,10 @@ if (!handleSquirrelEvent()) {
           axios({
             method: 'GET',
             url: axiosUrl,
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept-Encoding': 'identity',
+            },
           })
             .then((response) => {
               resolve({ data: response.data });

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 
 export default function useGetLatestVersionFromWebsite(skipVersionExists: boolean) {
   const [latestVersion, setLatestVersion] = useState<string | null>(null);
+  const [downloadPath, setDownloadPath] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
@@ -9,27 +10,20 @@ export default function useGetLatestVersionFromWebsite(skipVersionExists: boolea
       return;
     }
     const { ipcRenderer } = window as any;
-    ipcRenderer.invoke('fetchHtmlContent', 'https://chia.net/downloads/').then((obj: any) => {
+    ipcRenderer.invoke('fetchHtmlContent', 'https://download.chia.net/latest/latest.json').then((obj: any) => {
       try {
-        const domParser = new DOMParser();
-        const doc = domParser.parseFromString(obj.data, 'text/html');
-        const versionHtmlTexts = Array.from(doc.body.querySelectorAll('*')).filter((node: any) => {
-          const noChildren = node.children.length === 0;
-          const hasVersionString = ((node as any).innerText || '').indexOf('Version') > -1;
-          return noChildren && hasVersionString;
-        });
-        const versionHtmlText = versionHtmlTexts[0];
-        const version = (versionHtmlText as any).innerText.match(/Version\s*([\d.]+)/i)[1];
+        const { version, downloadPageUrl } = obj.data;
         setTimeout(() => {
           setLatestVersion(version);
+          setDownloadPath(downloadPageUrl);
           setIsLoading(false);
-        }, 1000);
+        }, 1000); /* we need the delay, otherwise dialog will close too fast */
       } catch (e) {
-        /* we don't need to handle error here, if we are unable to fetch and parse version number
-           from chia.net/downloads, we just ignore showing reminder dialog */
+        /* we don't need to handle error here, if we are unable to fetch version number
+           from chia.net, we just ignore showing reminder dialog */
       }
     });
   }, [skipVersionExists]);
 
-  return { latestVersion, isLoading };
+  return { latestVersion, isLoading, downloadUrl: `https://www.chia.net/${downloadPath}` };
 }
