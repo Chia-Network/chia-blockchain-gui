@@ -53,10 +53,10 @@ const PlotAddNFT = forwardRef((props: Props, ref) => {
       title={
         <Flex gap={1} alignItems="baseline">
           <Box>
-            <Trans>Join a Pool</Trans>
+            <Trans>Make plots portable to pools</Trans>
           </Box>
           <Typography variant="body1" color="textSecondary">
-            <Trans>(Optional)</Trans>
+            <Trans>(Cannot be changed later)</Trans>
           </Typography>
         </Flex>
       }
@@ -66,7 +66,13 @@ const PlotAddNFT = forwardRef((props: Props, ref) => {
       {!loading && hasNFTs && (
         <>
           <Typography variant="subtitle1">
-            <Trans>Select your Plot NFT from the dropdown or create a new one.</Trans>
+            <Trans>
+              {
+                'Select your Plot NFT from the dropdown or create a new one. If you do not select a plot NFT, the plots you make cannot be used with standard pools later on'
+              }
+              <Link target="_blank" href="https://github.com/Chia-Network/chia-blockchain/wiki/Pooling-User-Guide">
+                Learn more
+            </Trans>
           </Typography>
 
           <Grid spacing={2} direction="column" container>
