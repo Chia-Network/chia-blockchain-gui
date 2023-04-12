@@ -27,6 +27,13 @@ const walletConnectCommands: WalletConnectCommand[] = [
     label: <Trans>Get Wallets</Trans>,
     service: ServiceName.WALLET,
     bypassConfirm: true,
+    params: [
+      {
+        name: WalletConnectCommandParamName.INCLUDE_DATA,
+        type: 'boolean',
+        label: <Trans>Include Wallet Metadata</Trans>,
+      },
+    ],
   },
   {
     command: 'getTransaction',
@@ -407,6 +414,19 @@ const walletConnectCommands: WalletConnectCommand[] = [
         label: <Trans>Fee</Trans>,
         type: 'BigNumber',
         displayComponent: (value) => <MojoToChia value={value} />,
+      },
+    ],
+  },
+  {
+    command: 'getCATWalletInfo',
+    label: <Trans>Get CAT Wallet Info</Trans>,
+    service: ServiceName.WALLET,
+    bypassConfirm: true,
+    params: [
+      {
+        name: WalletConnectCommandParamName.ASSET_ID,
+        label: <Trans>Asset Id</Trans>,
+        type: 'string',
       },
     ],
   },

@@ -1,25 +1,16 @@
 import { Copy as AssignmentIcon } from '@chia-network/icons';
 import { Trans } from '@lingui/macro';
 import { Tooltip, IconButton } from '@mui/material';
-import { styled } from '@mui/material/styles';
 import React, { useState } from 'react';
 import { useCopyToClipboard } from 'react-use';
-// @ts-ignore
 import { useTimeout } from 'react-use-timeout';
-
-const StyledAssignmentIcon = styled(({ invertColor, ...rest }) => <AssignmentIcon {...rest} />)(
-  ({ theme, invertColor }) => `
-  color: ${invertColor ? theme.palette.common.white : theme.palette.text.secondary};
-`
-);
 
 export type CopyToClipboardProps = {
   value: string;
   fontSize?: 'medium' | 'small' | 'large' | 'inherit';
-  size: 'small' | 'medium';
-  clearCopiedDelay: number;
+  size?: 'small' | 'medium';
+  clearCopiedDelay?: number;
   invertColor?: boolean;
-  color?: string;
   'data-testid'?: string;
 };
 
@@ -39,7 +30,7 @@ export default function CopyToClipboard(props: CopyToClipboardProps) {
     setCopied(false);
   }, clearCopiedDelay);
 
-  function handleCopy(event) {
+  function handleCopy(event: React.MouseEvent<HTMLButtonElement>) {
     event.preventDefault();
     event.stopPropagation();
 
@@ -53,7 +44,11 @@ export default function CopyToClipboard(props: CopyToClipboardProps) {
   return (
     <Tooltip title={tooltipTitle}>
       <IconButton onClick={handleCopy} size={size} data-testid={dataTestid}>
-        <StyledAssignmentIcon fontSize={fontSize} invertColor={invertColor} {...rest} />
+        <AssignmentIcon
+          fontSize={fontSize}
+          sx={{ color: (theme) => (invertColor ? theme.palette.common.white : theme.palette.text.secondary) }}
+          {...rest}
+        />
       </IconButton>
     </Tooltip>
   );

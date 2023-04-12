@@ -112,7 +112,7 @@ export default function LayoutDashboard(props: LayoutDashboardProps) {
   const isColor = useCallback((color: string) => Object.keys(theme.palette.colors).includes(color), [theme]);
   const isDark = theme.palette.mode === 'dark';
   const [walletKeyTheme, setWalletKeyTheme] = useFingerprintSettings<WalletKeyTheme>(fingerprint, 'walletKeyTheme', {
-    emoji: `🌱`,
+    emoji: ``,
     color: 'green',
   });
   const [skipVersion, setSkipVersion] = useLocalStorage('skipVersion', '');
@@ -223,7 +223,7 @@ export default function LayoutDashboard(props: LayoutDashboardProps) {
                                 onSelect={(result: any) => {
                                   if (isColor(result)) {
                                     setWalletKeyTheme({ ...walletKeyTheme, color: result });
-                                  } else if (result !== '') {
+                                  } else {
                                     setWalletKeyTheme({ ...walletKeyTheme, emoji: result });
                                   }
                                   setShowEmojiPicker(false);
@@ -241,16 +241,20 @@ export default function LayoutDashboard(props: LayoutDashboardProps) {
                           <Flex flexDirection="row">
                             <Box
                               sx={{
+                                backgroundColor:
+                                  walletKeyTheme.emoji === ''
+                                    ? theme.palette.colors[walletKeyTheme.color].main
+                                    : 'none',
                                 fontSize: '48px',
                                 marginRight: '10px',
                                 width: '64px',
                                 height: '64px',
                                 lineHeight: '67px',
                                 textAlign: 'center',
+                                borderRadius: '5px',
                                 ':hover': {
                                   cursor: 'pointer',
                                   backgroundColor: theme.palette.colors[walletKeyTheme.color].main,
-                                  borderRadius: '5px',
                                 },
                               }}
                               onClick={() => setShowEmojiPicker(true)}

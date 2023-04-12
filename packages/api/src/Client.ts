@@ -7,7 +7,7 @@ import debug from 'debug';
 import type Response from './@types/Response';
 import Message from './Message';
 import ConnectionState from './constants/ConnectionState';
-import ServiceName from './constants/ServiceName';
+import ServiceName, { type ServiceNameValue } from './constants/ServiceName';
 import Daemon from './services/Daemon';
 import type Service from './services/Service';
 import ErrorData from './utils/ErrorData';
@@ -20,13 +20,15 @@ type Options = {
   cert: string;
   key: string;
   webSocket: any;
-  services?: ServiceName[];
+  services?: ServiceNameValue[];
   timeout?: number;
   camelCase?: boolean;
   debug?: boolean;
 };
 
 export default class Client extends EventEmitter {
+  static isClient = true;
+
   private options: Required<Options>;
 
   private ws: any;
@@ -41,9 +43,9 @@ export default class Client extends EventEmitter {
     }
   > = new Map();
 
-  private services: Set<ServiceName> = new Set();
+  private services: Set<ServiceNameValue> = new Set();
 
-  private started: Set<ServiceName> = new Set();
+  private started: Set<ServiceNameValue> = new Set();
 
   private connectedPromise: Promise<void> | null = null;
 
@@ -57,7 +59,7 @@ export default class Client extends EventEmitter {
 
   private reconnectAttempt = 0;
 
-  private startingService?: ServiceName;
+  private startingService?: ServiceNameValue;
 
   constructor(options: Options) {
     super();
@@ -90,7 +92,7 @@ export default class Client extends EventEmitter {
     state: ConnectionState;
     attempt: number;
     startingService?: string;
-    startedServices: ServiceName[];
+    startedServices: ServiceNameValue[];
   } {
     return {
       state: this.state,
@@ -100,7 +102,7 @@ export default class Client extends EventEmitter {
     };
   }
 
-  changeState(state: ConnectionState) {
+  private changeState(state: ConnectionState) {
     log(`Connection state changed: ${state}`);
     if (state === ConnectionState.CONNECTING && state === this.state) {
       this.reconnectAttempt += 1;
@@ -133,11 +135,13 @@ export default class Client extends EventEmitter {
     return this.options.debug;
   }
 
-  isStarted(serviceName: ServiceName) {
-    return this.started.has(serviceName);
+  isStarted(args: { service: ServiceNameValue }) {
+    const { service } = args;
+    return this.started.has(service);
   }
 
-  addService(service: Service) {
+  addService(args: { service: Service }) {
+    const { service } = args;
     if (!this.services.has(service.name)) {
       this.services.add(service.name);
     }
@@ -194,19 +198,20 @@ export default class Client extends EventEmitter {
     return this.connectedPromise;
   }
 
-  async startService(serviceName: ServiceName, disableWait?: boolean) {
-    if (this.started.has(serviceName)) {
+  async startService(args: { service: ServiceNameValue; disableWait?: boolean }) {
+    const { service, disableWait } = args;
+    if (this.started.has(service)) {
       return;
     }
 
-    const response = await this.daemon.isRunning(serviceName);
+    const response = await this.daemon.isRunning({ service });
     if (!response.isRunning) {
-      log(`Starting service: ${serviceName}`);
-      await this.daemon.startService(serviceName);
+      log(`Starting service: ${service}`);
+      await this.daemon.startService({ service });
     }
 
     // wait for service initialisation
-    log(`Waiting for ping from service: ${serviceName}`);
+    log(`Waiting for ping from service: ${service}`);
     if (!disableWait) {
       while (true) {
         try {
@@ -214,7 +219,7 @@ export default class Client extends EventEmitter {
             new Message({
               command: 'ping',
               origin: this.origin,
-              destination: serviceName,
+              destination: service,
             }),
             1000
           );
@@ -227,10 +232,10 @@ export default class Client extends EventEmitter {
         }
       }
 
-      log(`Service: ${serviceName} started`);
+      log(`Service: ${service} started`);
     }
 
-    this.started.add(serviceName);
+    this.started.add(service);
     this.emit('state', this.getState());
   }
 
@@ -241,29 +246,30 @@ export default class Client extends EventEmitter {
 
     const services = Array.from(this.services);
 
-    await Promise.all(services.map(async (serviceName) => this.startService(serviceName)));
+    await Promise.all(services.map(async (service) => this.startService({ service })));
   }
 
-  async stopService(serviceName: ServiceName) {
-    if (!this.started.has(serviceName)) {
+  async stopService(args: { service: ServiceNameValue }) {
+    const { service } = args;
+    if (!this.started.has(service)) {
       return;
     }
 
-    const response = await this.daemon.isRunning(serviceName);
+    const response = await this.daemon.isRunning({ service });
     if (response.isRunning) {
-      log(`Closing down service: ${serviceName}`);
-      await this.daemon.stopService(serviceName);
+      log(`Closing down service: ${service}`);
+      await this.daemon.stopService({ service });
     }
 
     // wait for service initialisation
-    log(`Waiting for service: ${serviceName}`);
+    log(`Waiting for service: ${service}`);
     while (true) {
       try {
         const { data } = <Message & { data: Response }>await this.send(
           new Message({
             command: 'ping',
             origin: this.origin,
-            destination: serviceName,
+            destination: service,
           }),
           1000
         );
@@ -276,9 +282,9 @@ export default class Client extends EventEmitter {
       }
     }
 
-    log(`Service: ${serviceName} stopped`);
+    log(`Service: ${service} stopped`);
 
-    this.started.delete(serviceName);
+    this.started.delete(service);
     this.emit('state', this.getState());
   }
 
@@ -299,8 +305,8 @@ export default class Client extends EventEmitter {
     }
   };
 
-  registerService(service: ServiceName) {
-    return this.daemon.registerService(service);
+  registerService(serviceName: ServiceNameValue) {
+    return this.daemon.registerService({ service: serviceName });
   }
 
   private handleClose = () => {
@@ -353,7 +359,7 @@ export default class Client extends EventEmitter {
         return;
       }
 
-      if (message.data?.success === false) {
+      if (message.data?.success !== true) {
         log(`Request ${requestId} rejected`, 'Unknown error message');
         reject(new ErrorData(`Request ${requestId} failed: ${JSON.stringify(message.data)}`, message.data));
         return;
@@ -402,7 +408,8 @@ export default class Client extends EventEmitter {
     });
   }
 
-  async close(force: true) {
+  async close(args: { force?: boolean }) {
+    const { force = false } = args;
     if (force) {
       this.closed = true;
     }
@@ -411,7 +418,7 @@ export default class Client extends EventEmitter {
       return;
     }
 
-    await Promise.all(Array.from(this.started).map(async (serviceName) => this.stopService(serviceName)));
+    await Promise.all(Array.from(this.started).map(async (service) => this.stopService({ service })));
 
     await this.daemon.exit();
 

@@ -29,7 +29,7 @@ export async function getBalance(walletId: number) {
   resultPromise.unsubscribe();
 
   if (result.error) {
-    throw result.error;
+    throw result.error as Error;
   }
 
   const wb = result.data as WalletBalanceFormatted;

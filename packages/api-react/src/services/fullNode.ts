@@ -1,57 +1,89 @@
 import { FullNode } from '@chia-network/api';
-import type { Block, BlockRecord, BlockHeader, BlockchainState, FullNodeConnection } from '@chia-network/api';
+
+// import MethodReturnType from '../@types/MethodReturnType'
+// import MethodFirstParameter from '../@types/MethodFirstParameter'
 
 import api, { baseQuery } from '../api';
 import onCacheEntryAddedInvalidate from '../utils/onCacheEntryAddedInvalidate';
+import { query, mutation } from '../utils/reduxToolkitEndpointAbstractions';
 
 const apiWithTag = api.enhanceEndpoints({ addTagTypes: ['BlockchainState', 'FeeEstimate', 'FullNodeConnections'] });
 
+// // Examples with levels of abstraction
+// export const myTestApi = apiWithTag.injectEndpoints({
+//   endpoints: (build) => ({
+//     // # No abstraction, completely custom
+
+//     fullNodePing: build.query<Awaited<ReturnType<FullNode['ping']>>['success'], Parameters<FullNode['ping']>>({
+//       query: () => ({
+//         command: 'ping',
+//         service: FullNode,
+//       }),
+//       transformResponse: (response) => response.success,
+//     }),
+
+//     // # Types helpers abstraction
+//     fullNodePing: build.query<
+//       MethodReturnType<typeof FullNode, 'getBlockRecords'>,
+//       MethodFirstParameter<typeof FullNode, 'getBlockRecords'>
+//     >({
+//       query: () => ({
+//         command: 'ping',
+//         service: FullNode,
+//       }),
+//       transformResponse: (response) => response.success,
+//     }),
+
+//     // # Full abstraction <- Most commonly used
+
+//     testFunction: query(build, FullNode, 'getBlockRecords', {
+//       transformResponse: (response) => response.success,
+//     }),
+//   }),
+// });
+
+// const { useFullNodePingQuery: useFullNodePingQuery2, useTestFunctionQuery } = myTestApi;
+
+// function ReactComponent() {
+//   const { data } = useFullNodePingQuery2({
+//     start: 12,
+//     end: 'pmg',
+//   });
+
+//   const result = data?.responseField2;
+//   console.log('result', result);
+
+//   const { data: data2 } = useTestFunctionQuery({
+//     start: 12,
+//     end: '13',
+//   });
+
+//   const result2 = data2?.responseField2;
+//   console.log('result2', result2);
+// }
+
 export const fullNodeApi = apiWithTag.injectEndpoints({
   endpoints: (build) => ({
-    fullNodePing: build.query<boolean, {}>({
-      query: () => ({
-        command: 'ping',
-        service: FullNode,
-      }),
-      transformResponse: (response: any) => response?.success,
+    fullNodePing: query(build, FullNode, 'ping'),
+
+    getBlockRecords: query(build, FullNode, 'getBlockRecords', {
+      transformResponse: (response) => response.blockRecords,
     }),
 
-    getBlockRecords: build.query<
-      BlockRecord[],
-      {
-        start?: number;
-        end?: number;
-      }
-    >({
-      query: ({ start, end }) => ({
-        command: 'getBlockRecords',
-        service: FullNode,
-        args: [start, end],
-      }),
-      transformResponse: (response: any) => response?.blockRecords,
-    }),
-    getUnfinishedBlockHeaders: build.query<BlockHeader[], undefined>({
-      query: () => ({
-        command: 'getUnfinishedBlockHeaders',
-        service: FullNode,
-      }),
-      transformResponse: (response: any) => response?.headers,
-      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, [
+    getUnfinishedBlockHeaders: query(build, FullNode, 'getUnfinishedBlockHeaders', {
+      transformResponse: (response) => response.headers,
+      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, api, [
         {
           command: 'onBlockchainState',
           service: FullNode,
-          endpoint: () => fullNodeApi.endpoints.getUnfinishedBlockHeaders,
+          endpoint: 'getUnfinishedBlockHeaders',
         },
       ]),
     }),
-    getBlockchainState: build.query<BlockchainState, undefined>({
-      query: () => ({
-        command: 'getBlockchainState',
-        service: FullNode,
-      }),
-      providesTags: ['BlockchainState'],
-      transformResponse: (response: any) => response?.blockchainState,
-      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, [
+
+    getBlockchainState: query(build, FullNode, 'getBlockchainState', {
+      transformResponse: (response) => response.blockchainState,
+      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, api, [
         {
           command: 'onBlockchainState',
           service: FullNode,
@@ -62,12 +94,9 @@ export const fullNodeApi = apiWithTag.injectEndpoints({
         },
       ]),
     }),
-    getFullNodeConnections: build.query<FullNodeConnection[], undefined>({
-      query: () => ({
-        command: 'getConnections',
-        service: FullNode,
-      }),
-      transformResponse: (response: any) => response?.connections,
+
+    getFullNodeConnections: query(build, FullNode, 'getConnections', {
+      transformResponse: (response) => response.connections,
       providesTags: (connections) =>
         connections
           ? [
@@ -75,7 +104,7 @@ export const fullNodeApi = apiWithTag.injectEndpoints({
               { type: 'FullNodeConnections', id: 'LIST' },
             ]
           : [{ type: 'FullNodeConnections', id: 'LIST' }],
-      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, [
+      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, api, [
         {
           command: 'onConnections',
           service: FullNode,
@@ -89,74 +118,27 @@ export const fullNodeApi = apiWithTag.injectEndpoints({
         },
       ]),
     }),
-    openFullNodeConnection: build.mutation<
-      FullNodeConnection,
-      {
-        host: string;
-        port: number;
-      }
-    >({
-      query: ({ host, port }) => ({
-        command: 'openConnection',
-        service: FullNode,
-        args: [host, port],
-      }),
+
+    openFullNodeConnection: mutation(build, FullNode, 'openConnection', {
       invalidatesTags: [{ type: 'FullNodeConnections', id: 'LIST' }],
     }),
-    closeFullNodeConnection: build.mutation<
-      FullNodeConnection,
-      {
-        nodeId: string;
-      }
-    >({
-      query: ({ nodeId }) => ({
-        command: 'closeConnection',
-        service: FullNode,
-        args: [nodeId],
-      }),
+
+    closeFullNodeConnection: mutation(build, FullNode, 'closeConnection', {
       invalidatesTags: (_result, _error, { nodeId }) => [
         { type: 'FullNodeConnections', id: 'LIST' },
         { type: 'FullNodeConnections', id: nodeId },
       ],
     }),
-    getBlock: build.query<
-      Block,
-      {
-        headerHash: string;
-      }
-    >({
-      query: ({ headerHash }) => ({
-        command: 'getBlock',
-        service: FullNode,
-        args: [headerHash],
-      }),
-      transformResponse: (response: any) => response?.block,
+
+    getBlock: query(build, FullNode, 'getBlock', {
+      transformResponse: (response) => response.block,
     }),
-    getBlockRecord: build.query<
-      BlockRecord,
-      {
-        headerHash: string;
-      }
-    >({
-      query: ({ headerHash }) => ({
-        command: 'getBlockRecord',
-        service: FullNode,
-        args: [headerHash],
-      }),
-      transformResponse: (response: any) => response?.blockRecord,
+
+    getBlockRecord: query(build, FullNode, 'getBlockRecord', {
+      transformResponse: (response) => response.blockRecord,
     }),
-    getFeeEstimate: build.query<
-      string,
-      {
-        targetTimes: number[];
-        spendType: string;
-      }
-    >({
-      query: ({ targetTimes, spendType }) => ({
-        command: 'getFeeEstimate',
-        service: FullNode,
-        args: [targetTimes, spendType],
-      }),
+
+    getFeeEstimate: query(build, FullNode, 'getFeeEstimate', {
       providesTags: [{ type: 'FeeEstimate' }],
     }),
   }),

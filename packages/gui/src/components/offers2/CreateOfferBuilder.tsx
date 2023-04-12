@@ -71,13 +71,14 @@ export default function CreateOfferBuilder(props: CreateOfferBuilderProps) {
 
   const handleSubmit = useCallback(
     async (values: OfferBuilderData) => {
-      const { assetsToUnlock, ...localOffer } = await offerBuilderDataToOffer(
-        values,
+      const { assetsToUnlock, ...localOffer } = await offerBuilderDataToOffer({
+        data: values,
         wallets,
-        offers || [],
-        false,
-        true
-      );
+        offers: offers || [],
+        validateOnly: false,
+        considerNftRoyalty: true,
+        allowEmptyOfferColumn: false,
+      });
 
       const assetsRequiredToBeUnlocked = [];
       const assetsBetterToBeUnlocked = [];
@@ -94,7 +95,8 @@ export default function CreateOfferBuilder(props: CreateOfferBuilderProps) {
         const dialog = (
           <OfferEditorConflictAlertDialog
             assetsToUnlock={assetsRequiredToBeUnlocked}
-            assetsBetterUnlocked={assetsBetterToBeUnlocked}
+            // assetsBetterUnlocked={assetsBetterToBeUnlocked}
+            assetsBetterUnlocked={[]} // Ignoring assetsBetterToBeUnlocked to avoid displaying the dialog unnecessarily
             allowSecureCancelling
           />
         );
@@ -111,7 +113,10 @@ export default function CreateOfferBuilder(props: CreateOfferBuilderProps) {
 
       try {
         const response = await createOfferForIds({
-          ...localOffer,
+          offer: localOffer.walletIdsAndAmounts,
+          fee: localOffer.feeInMojos,
+          driverDict: localOffer.driverDict,
+          validateOnly: localOffer.validateOnly,
           disableJSONFormatting: true,
         }).unwrap();
 

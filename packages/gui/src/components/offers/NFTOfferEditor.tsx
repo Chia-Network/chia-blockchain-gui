@@ -1,11 +1,6 @@
 import { WalletType } from '@chia-network/api';
-import type { NFTInfo, Wallet } from '@chia-network/api';
-import {
-  useCreateOfferForIdsMutation,
-  useGetNFTInfoQuery,
-  useGetNFTWallets,
-  useGetWalletBalanceQuery,
-} from '@chia-network/api-react';
+import type { NFTInfo } from '@chia-network/api';
+import { useCreateOfferForIdsMutation, useGetWalletBalanceQuery } from '@chia-network/api-react';
 import {
   Amount,
   AmountProps,
@@ -41,7 +36,8 @@ import { useForm, useFormContext } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
-import useFetchNFTs from '../../hooks/useFetchNFTs';
+import useNFTByCoinId from '../../hooks/useNFTByCoinId';
+import useNFTs from '../../hooks/useNFTs';
 import useSuppressShareOnCreate from '../../hooks/useSuppressShareOnCreate';
 import { convertRoyaltyToPercentage, isValidNFTId, launcherIdFromNFTId } from '../../util/nfts';
 import NFTOfferExchangeType from './NFTOfferExchangeType';
@@ -120,7 +116,7 @@ function NFTOfferConditionalsPanel(props: NFTOfferConditionalsPanelProps) {
   const makerFee = methods.watch('fee');
   const nftId = methods.watch('nftId');
   const launcherId = launcherIdFromNFTId(nftId ?? '');
-  const { data: nft } = useGetNFTInfoQuery({ coinId: launcherId });
+  const { nft } = useNFTByCoinId(launcherId);
   const { data: walletBalance, isLoading: isLoadingWalletBalance } = useGetWalletBalanceQuery(
     {
       walletId: tokenWalletInfo.walletId,
@@ -537,10 +533,9 @@ function buildOfferRequest(params: NFTBuildOfferRequestParams) {
 
 export default function NFTOfferEditor(props: NFTOfferEditorProps) {
   const { nft, onOfferCreated, exchangeType } = props;
-  const [createOfferForIds] = useCreateOfferForIdsMutation();
-  const [isProcessing, setIsProcessing] = useState(false);
-  const { wallets: nftWallets } = useGetNFTWallets();
-  const { nfts } = useFetchNFTs(nftWallets.map((wallet: Wallet) => wallet.id));
+  const [createOfferForIds, { isLoading: isCreateOfferForIdsLoading }] = useCreateOfferForIdsMutation();
+
+  const { nfts } = useNFTs();
   const currencyCode = useCurrencyCode();
   const openDialog = useOpenDialog();
   const errorDialog = useShowError();
@@ -566,7 +561,7 @@ export default function NFTOfferEditor(props: NFTOfferEditorProps) {
   });
   const nftId = methods.watch('nftId');
   const launcherId = launcherIdFromNFTId(nftId ?? '');
-  const { data: queriedNFTInfo } = useGetNFTInfoQuery({ coinId: launcherId });
+  const { nft: queriedNFTInfo } = useNFTByCoinId(launcherId);
 
   function validateFormData(unvalidatedFormData: NFTOfferEditorFormData): NFTOfferEditorValidatedFormData | undefined {
     const {
@@ -663,8 +658,6 @@ export default function NFTOfferEditor(props: NFTOfferEditorProps) {
       return;
     }
 
-    setIsProcessing(true);
-
     try {
       const response = await createOfferForIds({
         walletIdsAndAmounts: offer,
@@ -674,22 +667,15 @@ export default function NFTOfferEditor(props: NFTOfferEditorProps) {
         disableJSONFormatting: true,
       }).unwrap();
 
-      if (response.success === false) {
-        const error = response.error || new Error('Encountered an unknown error while creating offer');
-        errorDialog(error);
-      } else {
-        const { offer: offerData, tradeRecord: offerRecord } = response;
+      const { offer: offerData, tradeRecord: offerRecord } = response;
 
-        navigate(-1);
+      navigate(-1);
 
-        if (!suppressShareOnCreate) {
-          onOfferCreated({ offerRecord, offerData });
-        }
+      if (!suppressShareOnCreate) {
+        onOfferCreated({ offerRecord, offerData });
       }
     } catch (err) {
       errorDialog(err);
-    } finally {
-      setIsProcessing(false);
     }
   }
 
@@ -709,7 +695,7 @@ export default function NFTOfferEditor(props: NFTOfferEditorProps) {
         }}
       >
         <Flex flexDirection="row">
-          <NFTOfferConditionalsPanel defaultValues={defaultValues} isProcessing={isProcessing} />
+          <NFTOfferConditionalsPanel defaultValues={defaultValues} isProcessing={isCreateOfferForIdsLoading} />
           <NFTOfferPreview nftId={nftId} />
         </Flex>
       </Flex>

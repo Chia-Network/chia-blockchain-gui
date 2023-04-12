@@ -1,8 +1,10 @@
 import { Flex /* , Button */ } from '@chia-network/core';
 import { Search as SearchIcon } from '@chia-network/icons';
 import data from '@emoji-mart/data';
-import { t } from '@lingui/macro';
-import { InputBase /* , InputBaseProps */, Box } from '@mui/material';
+import { t, Trans } from '@lingui/macro';
+import ShuffleIcon from '@mui/icons-material/Shuffle';
+import { InputBase /* , InputBaseProps */, Box, Typography } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 import { init, SearchIndex } from 'emoji-mart';
 import React, { useCallback } from 'react';
 
@@ -28,14 +30,24 @@ const colorCircleStyle: any = {
   cursor: 'pointer',
 };
 
+export function randomEmoji() {
+  const peopleAndNatureEmojisWords = (data as any).originalCategories
+    .filter((category: any) => ['people', 'nature'].indexOf(category.id) > -1)
+    .map((category: any) => category.emojis)
+    .flat();
+  const emojiName = peopleAndNatureEmojisWords[Math.floor(peopleAndNatureEmojisWords.length * Math.random())];
+  return allEmojis[emojiName].skins[0].native;
+}
+
 export default function EmojiAndColorPicker(props: EmojiAndColorPickerType) {
   const { onSelect = () => {}, onClickOutside = () => {}, currentColor, currentEmoji, themeColors, isDark } = props;
   const cmpRef = React.useRef(null);
   const [emojiFilter, setEmojiFilter] = React.useState<string[]>([]);
+  const theme: any = useTheme();
 
   const pickerStyle: any = {
     backgroundColor: isDark ? '#292929' : '#FFFFFF',
-    border: '1px solid #CCDDE1',
+    border: `1px solid ${isDark ? theme.palette.border.dark : theme.palette.border.main}`,
     boxShadow: '0px 6px 19px rgba(15, 37, 42, 0.28), 0px 27px 65px rgba(101, 131, 138, 0.39)',
     borderRadius: '8px',
     padding: '0px',
@@ -114,7 +126,7 @@ export default function EmojiAndColorPicker(props: EmojiAndColorPickerType) {
           sx={{
             position: 'relative',
             width: '100%',
-            border: `1px solid #C5D8DC`,
+            border: `1px solid ${isDark ? theme.palette.border.dark : theme.palette.border.main}`,
             borderRadius: '8px',
             marginTop: '15px',
             input: {
@@ -146,7 +158,9 @@ export default function EmojiAndColorPicker(props: EmojiAndColorPickerType) {
             onChange={async (e: any) => {
               if (e.target.value !== '') {
                 const emojis = await SearchIndex.search(e.target.value);
-                setEmojiFilter(emojis.map((emoji: any) => emoji.skins[0].native));
+                if (Array.isArray(emojis) && emojis.length) {
+                  setEmojiFilter(emojis.map((emoji: any) => emoji.skins[0].native));
+                }
               } else {
                 setEmojiFilter([]);
               }
@@ -179,7 +193,7 @@ export default function EmojiAndColorPicker(props: EmojiAndColorPickerType) {
         background: 'transparent',
       },
       '::-webkit-scrollbar-thumb': {
-        background: isDark ? '#444' : '#ddd',
+        background: theme.palette.border,
         height: '50px',
         borderRadius: '10px',
         width: '2px',
@@ -214,7 +228,7 @@ export default function EmojiAndColorPicker(props: EmojiAndColorPickerType) {
             cursor: 'pointer',
             fontSize: isRetina ? '19px' : '15px',
             lineHeight: '22px',
-            fontFamily: 'Roboto',
+            fontFamily: 'none',
           }}
         >
           {allEmojis[emojiName].skins[0].native}
@@ -227,9 +241,51 @@ export default function EmojiAndColorPicker(props: EmojiAndColorPickerType) {
     );
   }
 
+  function renderAddRemoveRandom() {
+    return (
+      <Flex sx={{ padding: '17px 13px 0 17px' }} justifyContent="space-between">
+        <Typography
+          variant="body2"
+          sx={{
+            fontWeight: 'bold',
+            lineHeight: '23px',
+            cursor: currentEmoji === '' ? 'default' : 'pointer',
+            color: theme.palette.colors.default.border,
+          }}
+          onClick={() => currentEmoji && onSelect('')}
+        >
+          {currentEmoji === '' ? <Trans>Add Icon</Trans> : <Trans>Remove Icon</Trans>}
+        </Typography>
+        <Flex
+          sx={{
+            cursor: 'pointer',
+            svg: {
+              fill: theme.palette.colors.default.border,
+            },
+          }}
+          onClick={() => onSelect(randomEmoji())}
+        >
+          <Typography
+            variant="body2"
+            sx={{
+              fontWeight: 'bold',
+              lineHeight: '23px',
+              color: theme.palette.colors.default.border,
+            }}
+          >
+            <Trans>Random</Trans>
+          </Typography>
+
+          <ShuffleIcon />
+        </Flex>
+      </Flex>
+    );
+  }
+
   return (
     <Box style={pickerStyle} ref={cmpRef}>
       {renderColorPicker()}
+      {renderAddRemoveRandom()}
       {renderSearch()}
       {renderEmojis()}
     </Box>

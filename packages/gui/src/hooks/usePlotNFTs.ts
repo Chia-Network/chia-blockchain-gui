@@ -26,11 +26,7 @@ export default function usePlotNFTs(): {
     if (isLoading) {
       return;
     }
-
-
   }
-
-  console.log('nfts', data?.nfts);
 
   useEffect(() => {
     removeConfirmed();

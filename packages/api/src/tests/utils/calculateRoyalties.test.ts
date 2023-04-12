@@ -6,9 +6,15 @@ import royaltyAssetFromNFTInfo, {
   fungibleAssetFromWalletIdAndAmount,
 } from '../../utils/calculateRoyalties';
 
+// TODO remove the added fields or move this whole file to the GUI
+type NFTInfoWithFrontEndData = NFTInfo & {
+  walletId: number | undefined;
+  $nftId: string; // bech32m-encoding of the launcherId e.g. nft1eryfv3va6lftjslhq3jhyx30dk8wtsfd8epseuq3rnlf2tavpjmsq0ljcv
+};
+
 describe('calculateRoyalties', () => {
   describe('#royaltyAssetFromNFTInfo', () => {
-    const exampleNFT: NFTInfo = {
+    const exampleNFT: NFTInfoWithFrontEndData = {
       chainInfo: '',
       dataHash: '',
       dataUris: [],
@@ -25,12 +31,14 @@ describe('calculateRoyalties', () => {
       nftCoinId: '',
       ownerDid: '',
       ownerPubkey: '',
-      pendingTransaction: 0,
+      pendingTransaction: false,
       royaltyPercentage: 350,
       royaltyPuzzleHash: '0xf6c2a79af727bfada9fc8fa6eaa57189c6a5ad4407333e573d1e08293817d5ad',
       supportsDid: false,
       p2Address: '',
       updaterPuzhash: '',
+      offChainMetadata: '',
+      nftCoinConfirmationHeight: 0,
       walletId: undefined,
       $nftId: 'nft1g9xfeujpq402dhxrms5wqvh73rr02remvwvycr9s4cxzzlkg324s3nu8vj',
     };

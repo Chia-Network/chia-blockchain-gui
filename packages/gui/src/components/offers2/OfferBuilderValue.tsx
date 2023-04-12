@@ -20,10 +20,10 @@ import React from 'react';
 import { useWatch } from 'react-hook-form';
 
 import useOfferBuilderContext from '../../hooks/useOfferBuilderContext';
+import NFTSearch from '../nfts/NFTSearch';
 import OfferBuilderAmountWithRoyalties from './OfferBuilderAmountWithRoyalties';
 import OfferBuilderRoyaltyPayouts from './OfferBuilderRoyaltyPayouts';
 import OfferBuilderTokenSelector from './OfferBuilderTokenSelector';
-import OfferBuilderValueSearch from './OfferBuilderValueSearch';
 
 export type OfferBuilderValueProps = {
   name: string;
@@ -163,7 +163,7 @@ export default function OfferBuilderValue(props: OfferBuilderValueProps) {
             ) : type === 'text' ? (
               <>
                 <TextField variant="filled" color="secondary" label={label} name={name} required fullWidth />
-                <OfferBuilderValueSearch value={value} onSelectNFT={onSelectNFT} />
+                <NFTSearch value={value} onSelectNFT={onSelectNFT} />
               </>
             ) : type === 'token' ? (
               <OfferBuilderTokenSelector

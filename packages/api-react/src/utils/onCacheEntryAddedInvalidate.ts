@@ -1,37 +1,43 @@
-import type { Service } from '@chia-network/api';
+import { type ServiceClassWithoutClient, type ServiceClassWithoutClientMethods } from '@chia-network/api';
+
+import { baseQuery } from '../api';
+
+type BaseQuery = typeof baseQuery;
 
 type Invalidate =
   | {
-      command: string;
-      service: Service;
-      endpoint: () => Object;
+      service: ServiceClassWithoutClient;
+      command: ServiceClassWithoutClientMethods;
+      endpoint: string | (() => Object);
       skip?: (draft: any, data: any, args: any) => boolean;
     }
   | {
-      command: string;
-      service: Service;
+      service: ServiceClassWithoutClient;
+      command: ServiceClassWithoutClientMethods;
       onUpdate: (draft: any, data: any, args: any) => void;
       skip?: (draft: any, data: any, args: any) => boolean;
     };
 
-export default function onCacheEntryAddedInvalidate(rtkQuery, invalidates: Invalidate[]) {
-  return async (args, api) => {
-    const { cacheDataLoaded, cacheEntryRemoved, updateCachedData, dispatch } = api;
+export default function onCacheEntryAddedInvalidate(rtkQuery: BaseQuery, api: any, invalidates: Invalidate[]) {
+  return async (args: any, mutationApi: any) => {
+    const { cacheDataLoaded, cacheEntryRemoved, updateCachedData, dispatch } = mutationApi;
     const unsubscribes: Function[] = [];
     try {
       await cacheDataLoaded;
 
       await Promise.all(
         invalidates.map(async (invalidate) => {
+          // @ts-ignore -- Destructuring potentionally non-existing properties will be soon allowed in TS
+          // https://github.com/microsoft/TypeScript/issues/46318
           const { command, service, endpoint, onUpdate, skip } = invalidate;
 
           const response = await rtkQuery(
             {
-              command,
+              command: command as any,
               service,
               args: [
-                async (data) => {
-                  updateCachedData((draft) => {
+                async (data: any) => {
+                  updateCachedData((draft: any) => {
                     if (skip?.(draft, data, args)) {
                       return;
                     }
@@ -41,20 +47,29 @@ export default function onCacheEntryAddedInvalidate(rtkQuery, invalidates: Inval
                     }
 
                     if (endpoint) {
-                      const currentEndpoint = endpoint();
-                      dispatch(
-                        currentEndpoint.initiate(args, {
-                          subscribe: false,
-                          forceRefetch: true,
-                        })
-                      );
+                      if (typeof endpoint === 'string') {
+                        dispatch(
+                          api.endpoints[endpoint].initiate(args, {
+                            subscribe: false,
+                            forceRefetch: true,
+                          })
+                        );
+                      } else {
+                        const currentEndpoint = endpoint();
+
+                        dispatch(
+                          currentEndpoint.initiate(args, {
+                            subscribe: false,
+                            forceRefetch: true,
+                          })
+                        );
+                      }
                     }
                   });
                 },
               ],
             },
-            api,
-            {}
+            mutationApi
           );
 
           if (response.data) {

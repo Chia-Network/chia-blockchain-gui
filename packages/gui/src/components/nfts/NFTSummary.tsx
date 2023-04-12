@@ -1,5 +1,4 @@
 import type { NFTAttribute } from '@chia-network/api';
-import { useGetNFTInfoQuery } from '@chia-network/api-react';
 import { CopyToClipboard, Flex, Loading, TooltipIcon, truncateValue } from '@chia-network/core';
 import { t, Trans } from '@lingui/macro';
 import { Box, Card, CardContent, Typography } from '@mui/material';
@@ -7,14 +6,14 @@ import { useTheme } from '@mui/material/styles';
 import React, { useMemo } from 'react';
 import styled from 'styled-components';
 
+import useNFTByCoinId from '../../hooks/useNFTByCoinId';
 import useNFTMetadata from '../../hooks/useNFTMetadata';
 import isRankingAttribute from '../../util/isRankingAttribute';
 import { launcherIdToNFTId } from '../../util/nfts';
 import NFTPreview from './NFTPreview';
 import { NFTProperty } from './NFTProperties';
 import { NFTRanking } from './NFTRankings';
-
-/* ========================================================================== */
+import NFTTitle from './NFTTitle';
 
 const StyledTitle = styled(Box)`
   font-size: 0.625rem;
@@ -25,8 +24,6 @@ const StyledValue = styled(Box)`
   word-break: break-all;
 `;
 
-/* ========================================================================== */
-
 export type NFTSummaryProps = {
   launcherId: string;
 };
@@ -36,10 +33,8 @@ export default function NFTSummary(props: NFTSummaryProps) {
   const nftId = launcherIdToNFTId(launcherId);
   const theme = useTheme();
   const bottomPadding = `${theme.spacing(2)}`; // logic borrowed from Flex's gap computation
-  const { data: nft, isLoading: isLoadingNFT } = useGetNFTInfoQuery({
-    coinId: launcherId,
-  });
-  const { metadata, isLoading: isLoadingMetadata } = useNFTMetadata([nft]);
+  const { nft, isLoading: isLoadingNFT } = useNFTByCoinId(launcherId);
+  const { metadata, isLoading: isLoadingMetadata } = useNFTMetadata(nft?.$nftId);
 
   const [properties, rankings] = useMemo(() => {
     if (!nft) {
@@ -121,7 +116,7 @@ export default function NFTSummary(props: NFTSummaryProps) {
               minWidth="80px"
               height="80px"
             >
-              <NFTPreview nft={nft} height={80} disableThumbnail />
+              <NFTPreview nft={nft} height={80} disableInteractions />
             </Box>
             <Flex
               flexDirection="column"
@@ -133,7 +128,7 @@ export default function NFTSummary(props: NFTSummaryProps) {
               }}
             >
               <Typography variant="h6" fontWeight="bold" noWrap>
-                {metadata?.name ?? <Trans>Title Not Available</Trans>}
+                <NFTTitle nftId={nftId} />
               </Typography>
               {metadata?.description && (
                 <Typography variant="caption" noWrap>

@@ -19,11 +19,9 @@ import url from 'url';
 import { NFTInfo } from '@chia-network/api';
 import { initialize, enable } from '@electron/remote/main';
 import axios from 'axios';
-import chokidar from 'chokidar';
 import windowStateKeeper from 'electron-window-state';
 import React from 'react';
 // import os from 'os';
-// import installExtension, { REDUX_DEVTOOLS, REACT_DEVELOPER_TOOLS } from 'electron-devtools-installer';
 import ReactDOMServer from 'react-dom/server';
 import { ServerStyleSheet, StyleSheetManager } from 'styled-components';
 
@@ -34,12 +32,12 @@ import AppIcon from '../assets/img/chia64x64.png';
 import About from '../components/about/About';
 import { i18n } from '../config/locales';
 import chiaEnvironment from '../util/chiaEnvironment';
-import computeHash from '../util/computeHash';
 import loadConfig from '../util/loadConfig';
 import manageDaemonLifetime from '../util/manageDaemonLifetime';
 import { setUserDataDir } from '../util/userData';
-import { parseExtensionFromUrl } from '../util/utils';
+import CacheManager from './CacheManager';
 import handleSquirrelEvent from './handleSquirrelEvent';
+import installDevTools from './installDevTools.dev';
 import { readPrefs, savePrefs, migratePrefs } from './prefs';
 
 const isPlaywrightTesting = process.env.PLAYWRIGHT_TESTS === 'true';
@@ -51,39 +49,26 @@ app.commandLine.appendSwitch('disable-http-cache');
 initialize();
 
 const appIcon = nativeImage.createFromPath(path.join(__dirname, AppIcon));
-const defaultThumbCacheFolder = path.join(app.getPath('cache'), app.getName());
-let thumbCacheFolder = defaultThumbCacheFolder;
 
-if (!fs.existsSync(defaultThumbCacheFolder)) {
-  fs.mkdirSync(defaultThumbCacheFolder);
-}
+const prefs = readPrefs();
+
+const defaultCacheFolder = path.join(app.getPath('cache'), app.getName());
+const cacheDirectory: string = prefs.cacheFolder || defaultCacheFolder;
+
+const cacheManager = new CacheManager({
+  cacheDirectory,
+  maxCacheSize: prefs.maxCacheSize,
+});
+
+// IPC prefs listeners
+ipcMain.handle('readPrefs', (_event) => readPrefs());
+ipcMain.handle('savePrefs', (_event, prefsObj) => savePrefs(prefsObj));
+ipcMain.handle('migratePrefs', (_event, prefsObj) => migratePrefs(prefsObj));
 
 let mainWindow: BrowserWindow | null = null;
 
-let watcher;
-
 let currentDownloadRequest: any;
 let abortDownloadingFiles: boolean = false;
-
-function watchCacheFolder(folder: string) {
-  function watchFolder(f) {
-    watcher = chokidar.watch(f, { persistent: true });
-    watcher.on('unlink', (pathLocal: any) => {
-      mainWindow?.webContents.send('removed-cache-file', pathLocal.split('/').splice(-1, 1)[0]);
-    });
-  }
-  if (folder) {
-    if (watcher) {
-      watcher.close().then(() => {
-        watchFolder(folder);
-      });
-    } else {
-      watchFolder(folder);
-    }
-  }
-}
-
-let cacheLimitSize: number = 1024;
 
 // Set the userData directory to its location within CHIA_ROOT/gui
 setUserDataDir();
@@ -287,235 +272,6 @@ if (!handleSquirrelEvent()) {
         });
       }
 
-      const allRequests: Record<string, { abort: () => void; promise: Promise<any> }> = {};
-
-      ipcMain.handle('abortFetchingBinary', (_event, uri: string) => {
-        if (allRequests[uri]) {
-          allRequests[uri].abort();
-          delete allRequests[uri];
-        }
-      });
-
-      ipcMain.handle('removeCachedFile', (_event, file: string) => {
-        const filePath = path.join(thumbCacheFolder, file);
-        if (fs.existsSync(filePath)) {
-          fs.unlinkSync(filePath);
-        }
-      });
-
-      function shouldCacheFile(filePath: string) {
-        const stats = fs.statSync(filePath);
-        const allowWriteCache = getCacheSize() + stats.size < cacheLimitSize * 1024 * 1024;
-        return allowWriteCache;
-      }
-
-      ipcMain.handle('getSvgContent', (_event, file) => {
-        if (file) {
-          const fileOnDisk = path.join(thumbCacheFolder, file);
-          if (fs.existsSync(fileOnDisk)) {
-            return fs.readFileSync(fileOnDisk, { encoding: 'utf8' });
-          }
-          return null;
-        }
-        console.error('Error getting svg file...', file);
-        return undefined;
-      });
-
-      ipcMain.handle(
-        'fetchBinaryContent',
-        async (_event, requestOptions = {}, requestHeaders = {}, requestData?: any) => {
-          const { maxSize = Infinity, ...rest } = requestOptions;
-
-          if (allRequests[rest.url]) {
-            return allRequests[rest.url].promise;
-          }
-
-          const request = net.request(rest);
-
-          async function processUri() {
-            let wasCached = false;
-            let error: Error | undefined;
-            let statusCode: number | undefined;
-            let statusMessage: string | undefined;
-            let contentType: string | undefined;
-            let encoding = 'binary';
-            let dataObject: { isValid?: boolean; content: string } = {
-              content: '',
-            };
-
-            const nftIdUrl = `${rest.nftId}_${rest.url}`;
-            const fileOnDisk = path.join(thumbCacheFolder, computeHash(nftIdUrl, { encoding: 'utf-8' }));
-            let fileStream: fs.WriteStream | undefined;
-
-            try {
-              Object.entries(requestHeaders).forEach(([header, value]: [string, any]) => {
-                request.setHeader(header, value);
-              });
-
-              const buffers: Buffer[] = [];
-              let totalLength = 0;
-
-              /* GET FILE SIZE */
-              let fileSize = 0;
-              try {
-                fileSize = await getRemoteFileSize(rest.url);
-              } catch (e) {
-                // Not critical, knowing the file size up front is just a performance optimization
-              }
-              dataObject = await new Promise((resolve, reject) => {
-                request.on('response', (response: IncomingMessage) => {
-                  fileStream = fs.createWriteStream(fileOnDisk);
-                  if (!fileStream) {
-                    reject(new Error('Error creating file stream'));
-                  }
-
-                  statusCode = response.statusCode;
-                  statusMessage = response.statusMessage;
-
-                  const rawContentType = response.headers['content-type'];
-                  if (rawContentType) {
-                    if (Array.isArray(rawContentType)) {
-                      [contentType] = rawContentType;
-                    } else {
-                      contentType = rawContentType;
-                    }
-
-                    if (contentType) {
-                      // extract charset from contentType
-                      const charsetMatch = contentType.match(/charset=([^;]+)/);
-                      if (charsetMatch) {
-                        [, encoding] = charsetMatch;
-                      }
-                    }
-                  }
-
-                  response.on('data', (chunk) => {
-                    buffers.push(chunk);
-
-                    if (fileStream) {
-                      fileStream.write(chunk);
-                    }
-                    totalLength += chunk.byteLength;
-
-                    if (fileSize > 0) {
-                      mainWindow?.webContents.send('fetchBinaryContentProgress', {
-                        nftIdUrl,
-                        progress: totalLength / fileSize,
-                      });
-                    }
-                    if (totalLength > maxSize || fileSize > maxSize) {
-                      if (request) {
-                        request.abort();
-                        if (fs.existsSync(fileOnDisk)) {
-                          fs.unlinkSync(fileOnDisk);
-                        }
-                      }
-                      reject(new Error('Response too large'));
-                    }
-                  });
-
-                  response.on('end', () => {
-                    let content;
-                    // special case for iso-8859-1, which is mapped to 'latin1' in node
-                    if (encoding.toLowerCase() === 'iso-8859-1') {
-                      encoding = 'latin1';
-                    }
-                    try {
-                      content = Buffer.concat(buffers).toString(encoding as BufferEncoding);
-                    } catch (e: any) {
-                      console.error(`Failed to convert data to string using encoding ${encoding}: ${e.message}`);
-                    }
-                    if (fileStream) {
-                      fileStream.end();
-                      fileStream = undefined;
-                    }
-                    getChecksum(fileOnDisk).then((checksum) => {
-                      const isValid = (checksum as string).replace(/^0x/, '') === rest.dataHash.replace(/^0x/, '');
-                      if (rest.forceCache) {
-                        /* should we cache it or delete it? */
-                        if (shouldCacheFile(fileOnDisk)) {
-                          wasCached = true;
-                        } else if (fs.existsSync(fileOnDisk)) {
-                          fs.unlinkSync(fileOnDisk);
-                        }
-                        mainWindow?.webContents.send('fetchBinaryContentDone', {
-                          nftIdUrl,
-                          valid: isValid,
-                        });
-                        const extension = parseExtensionFromUrl(rest.url);
-                        resolve({
-                          isValid,
-                          content: extension === 'svg' ? content : '',
-                        });
-                      } else {
-                        resolve({ isValid, content });
-                      }
-                    });
-                    delete allRequests[rest.url];
-                  });
-
-                  response.on('error', (e: string) => {
-                    if (fileStream) {
-                      fileStream.end();
-                      fileStream = undefined;
-                    }
-                    reject(new Error(e));
-                  });
-                });
-
-                request.on('error', (err: any) => {
-                  if (fileStream) {
-                    fileStream.end();
-                    fileStream = undefined;
-                  }
-                  reject(err);
-                });
-
-                if (requestData) {
-                  request.write(requestData);
-                }
-
-                request.end();
-              });
-            } catch (e: any) {
-              if (fileStream) {
-                fileStream.end();
-                fileStream = undefined;
-              }
-
-              if (fs.existsSync(fileOnDisk)) {
-                fs.unlinkSync(fileOnDisk);
-              }
-              delete allRequests[rest.url];
-              error = e;
-            } finally {
-              if (fileStream) {
-                fileStream.end();
-                fileStream = undefined;
-              }
-            }
-
-            return {
-              error,
-              statusCode,
-              statusMessage,
-              encoding,
-              dataObject,
-              wasCached,
-            };
-          }
-
-          const promise = processUri();
-
-          allRequests[rest.url] = {
-            abort: () => request.abort(),
-            promise,
-          };
-
-          return promise;
-        }
-      );
-
       ipcMain.handle('showMessageBox', async (_event, options) => dialog.showMessageBox(mainWindow, options));
 
       ipcMain.handle('showOpenDialog', async (_event, options) => dialog.showOpenDialog(options));
@@ -669,121 +425,14 @@ if (!handleSquirrelEvent()) {
         tasks.forEach((task) => task(mainWindow!));
       });
 
-      /* ========================== CACHE FOLDER ================================ */
-      function getCacheSize() {
-        let folderSize: number = 0;
-        const files = fs.readdirSync(thumbCacheFolder);
-
-        files
-          .filter(
-            (file) =>
-              /* skip files that start with a dot */
-              !file.match(/^\./)
-          )
-          .forEach((file) => {
-            const stats = fs.statSync(path.join(thumbCacheFolder, file));
-            folderSize += stats.size;
-          });
-        return folderSize;
-      }
-      ipcMain.handle('getDefaultCacheFolder', (_event) => thumbCacheFolder);
-
-      ipcMain.handle('setCacheFolder', (_event, newFolder) => {
-        thumbCacheFolder = newFolder;
-      });
-
-      ipcMain.handle('selectCacheFolder', async (_event) =>
-        dialog.showOpenDialog({
-          properties: ['openDirectory'],
-          defaultPath: thumbCacheFolder,
-        })
-      );
-
-      ipcMain.handle('changeCacheFolderFromTo', async (_event, [from, to]) => {
-        const fromFolder = from || thumbCacheFolder;
-        if (fs.existsSync(fromFolder)) {
-          const fileStats = fs.statSync(fromFolder);
-          if (fileStats.isDirectory()) {
-            const files = fs.readdirSync(fromFolder);
-            files.forEach((file) => {
-              if (fs.lstatSync(path.join(fromFolder, file)).isFile()) {
-                fs.renameSync(path.join(fromFolder, file), path.join(to, file));
-              }
-            });
-          }
-          watchCacheFolder(to);
-        }
-
-        thumbCacheFolder = to;
-      });
-
-      ipcMain.handle('getCacheSize', async (_event) => getCacheSize());
-
-      ipcMain.handle(
-        'isNewFolderEmtpy',
-        (_event, selectedFolder) =>
-          fs.readdirSync(selectedFolder).filter(
-            (file) =>
-              /* skip files that start with a dot */
-              !file.match(/^\./)
-          ).length
-      );
-
-      ipcMain.handle('adjustCacheLimitSize', async (_event, { newSize, cacheInstances }) => {
-        if (newSize) {
-          cacheLimitSize = newSize;
-        }
-        let overSize = getCacheSize() - newSize * 1024 * 1024; /* MiB! */
-
-        if (overSize > 0) {
-          const removedEntries: any[] = [];
-          for (let cnt = 0; cnt < cacheInstances.length; cnt++) {
-            const fileString = cacheInstances[cnt].video || cacheInstances[cnt].image || cacheInstances[cnt].binary;
-            if (fileString) {
-              const filePath = path.join(thumbCacheFolder, fileString);
-              if (fs.existsSync(filePath)) {
-                const fileStats = fs.statSync(filePath);
-                fs.unlinkSync(filePath);
-                overSize -= fileStats.size;
-                removedEntries.push(cacheInstances[cnt]);
-              }
-            }
-            if (overSize < 0) break;
-          }
-          mainWindow?.webContents.send('removedFromLocalStorage', {
-            removedEntries,
-            occupied: getCacheSize(),
-          });
-        }
-      });
-
-      ipcMain.handle('readPrefs', async (_event) => readPrefs());
-
-      ipcMain.handle('savePrefs', async (_event, prefsObj) => {
-        savePrefs(prefsObj);
-      });
-
-      ipcMain.handle('migratePrefs', async (_event, prefsObj) => migratePrefs(prefsObj));
-
-      ipcMain.handle('getCacheFilenames', (_event) => fs.readdirSync(thumbCacheFolder));
-
-      ipcMain.handle('clearNFTCache', (_event) => {
-        if (fs.existsSync(thumbCacheFolder)) {
-          const files = fs.readdirSync(thumbCacheFolder);
-          for (let i = 0; i < files.length; i++) {
-            fs.unlinkSync(path.join(thumbCacheFolder, files[i]));
-          }
-        }
-        return true;
-      });
-
-      /* ======================================================================== */
-
       decidedToClose = false;
       const mainWindowState = windowStateKeeper({
         defaultWidth: 1200,
         defaultHeight: 1200,
       });
+
+      await cacheManager.init();
+
       mainWindow = new BrowserWindow({
         x: mainWindowState.x,
         y: mainWindowState.y,
@@ -801,6 +450,8 @@ if (!handleSquirrelEvent()) {
           webSecurity: true,
         },
       });
+
+      cacheManager.bindEvents(mainWindow);
 
       mainWindowState.manage(mainWindow);
 
@@ -879,36 +530,14 @@ if (!handleSquirrelEvent()) {
     };
 
     const appReady = async () => {
+      await installDevTools();
+
       createWindow();
       app.applicationMenu = createMenu();
       protocol.registerFileProtocol('cached', (request: any, callback: (obj: any) => void) => {
         const filePath: string = path.join(thumbCacheFolder, request.url.replace(/^cached:\/\//, ''));
         callback({ path: filePath });
       });
-      const prefs = readPrefs();
-      thumbCacheFolder = prefs.cacheFolder || defaultThumbCacheFolder;
-      watchCacheFolder(thumbCacheFolder);
-
-      if (prefs.cacheLimitSize !== undefined) {
-        try {
-          const prefsCacheLimitSize = +prefs.cacheLimitSize;
-          if (!Number.isNaN(prefsCacheLimitSize) && Number.isFinite(prefsCacheLimitSize) && prefsCacheLimitSize > 0) {
-            cacheLimitSize = prefsCacheLimitSize;
-          }
-        } catch (e) {
-          console.error(e);
-        }
-      }
-      if (prefs.cacheFolder !== undefined) {
-        try {
-          const prefsCacheFolder = prefs.cacheFolder;
-          if (fs.existsSync(prefsCacheFolder)) {
-            thumbCacheFolder = prefsCacheFolder;
-          }
-        } catch (e) {
-          console.error(e);
-        }
-      }
     };
 
     app.on('ready', appReady);

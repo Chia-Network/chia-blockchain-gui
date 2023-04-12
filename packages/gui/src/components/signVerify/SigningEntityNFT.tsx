@@ -1,12 +1,13 @@
 import { toBech32m } from '@chia-network/api';
-import { useGetNFTInfoQuery } from '@chia-network/api-react';
 import { CopyToClipboard, Flex, TextField, useCurrencyCode } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Box, Grid, InputAdornment } from '@mui/material';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 
+import useNFTByCoinId from '../../hooks/useNFTByCoinId';
 import { launcherIdFromNFTId } from '../../util/nfts';
+import NFTSearch from '../nfts/NFTSearch';
 import NFTSummary from '../nfts/NFTSummary';
 import { SignMessageEntityType, SignMessageNFTEntity } from './SignMessageEntities';
 
@@ -22,7 +23,9 @@ export default function SigningEntityNFT(props: SigningEntityNFTProps) {
   const currentValue = getValues(entityName);
   const nftId = currentValue?.nftId;
   const launcherId = nftId ? launcherIdFromNFTId(nftId) : undefined;
-  const { data: nftInfo } = useGetNFTInfoQuery({ coinId: launcherId }, { skip: !launcherId });
+  const { nft: nftInfo } = useNFTByCoinId(launcherId);
+  const [searchValue, setSearchValue] = useState<string>('');
+  const [nftIdString, setNftId] = useState<string>('');
 
   useEffect(() => {
     if (entityName && entityValueName) {
@@ -53,28 +56,48 @@ export default function SigningEntityNFT(props: SigningEntityNFTProps) {
     }
   }, [entityName, entityValueName, setValue, getValues, nftInfo, currencyCode]);
 
+  useEffect(() => {
+    const localCurrentValue = getValues(entityValueName);
+
+    if (nftIdString && nftIdString !== localCurrentValue) {
+      setValue(entityValueName, nftIdString);
+    }
+  }, [entityValueName, setValue, getValues, nftIdString]);
+
   return (
     <Flex flexDirection="column" gap={1}>
       <Grid item xs={12}>
         <Box display="flex">
           <Box flexGrow={1}>
-            <Flex flexDirection="column" gap={1}>
+            <Flex flexDirection="column" gap={0}>
               <TextField
+                onChange={(e) => {
+                  setSearchValue(e.target.value);
+                  setNftId(e.target.value);
+                }}
                 label={<Trans>NFT ID</Trans>}
                 variant="filled"
                 name={entityValueName}
                 inputProps={{
                   'data-testid': 'SigningEntityNFT-nftId',
                   readOnly: false,
+                  value: nftIdString,
                 }}
                 InputProps={{
                   endAdornment: (
                     <InputAdornment position="end">
-                      <CopyToClipboard value="" data-testid="SigningEntityNFT-nftId-copy" />
+                      <CopyToClipboard value={searchValue} data-testid="SigningEntityNFT-nftId-copy" />
                     </InputAdornment>
                   ),
                 }}
                 fullWidth
+              />
+              <NFTSearch
+                value={searchValue}
+                onSelectNFT={(nft: string) => {
+                  setNftId(nft);
+                  setSearchValue(nft);
+                }}
               />
               {launcherId && <NFTSummary launcherId={launcherId} />}
             </Flex>

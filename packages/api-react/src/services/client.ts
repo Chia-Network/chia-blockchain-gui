@@ -1,37 +1,16 @@
-import { ConnectionState, ServiceName } from '@chia-network/api';
+import Client from '@chia-network/api';
 
 import api, { baseQuery } from '../api';
+import { query, mutation } from '../utils/reduxToolkitEndpointAbstractions';
 
 const apiWithTag = api.enhanceEndpoints({ addTagTypes: [] });
 
 export const clientApi = apiWithTag.injectEndpoints({
   endpoints: (build) => ({
-    close: build.mutation<
-      boolean,
-      {
-        force?: boolean;
-      }
-    >({
-      query: ({ force }) => ({
-        command: 'close',
-        client: true,
-        args: [force],
-      }),
-    }),
+    close: mutation(build, Client, 'close'),
 
-    getState: build.query<
-      {
-        state: ConnectionState;
-        attempt: number;
-        serviceName?: ServiceName;
-      },
-      undefined
-    >({
-      query: () => ({
-        command: 'getState',
-        client: true,
-      }),
-      async onCacheEntryAdded(_arg, apiLocal) {
+    getState: query(build, Client, 'getState', {
+      onCacheEntryAdded: async (_arg, apiLocal) => {
         const { updateCachedData, cacheDataLoaded, cacheEntryRemoved } = apiLocal;
         let unsubscribe;
         try {
@@ -40,7 +19,7 @@ export const clientApi = apiWithTag.injectEndpoints({
           const response = await baseQuery(
             {
               command: 'onStateChange',
-              client: true,
+              service: Client,
               args: [
                 (data: any) => {
                   updateCachedData((draft) => {
@@ -51,8 +30,7 @@ export const clientApi = apiWithTag.injectEndpoints({
                 },
               ],
             },
-            apiLocal,
-            {}
+            apiLocal
           );
 
           unsubscribe = response.data;
@@ -65,19 +43,7 @@ export const clientApi = apiWithTag.injectEndpoints({
       },
     }),
 
-    clientStartService: build.mutation<
-      boolean,
-      {
-        service?: ServiceName;
-        disableWait?: boolean;
-      }
-    >({
-      query: ({ service, disableWait }) => ({
-        command: 'startService',
-        args: [service, disableWait],
-        client: true,
-      }),
-    }),
+    clientStartService: mutation(build, Client, 'startService'),
   }),
 });
 

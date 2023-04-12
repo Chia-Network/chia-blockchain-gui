@@ -77,17 +77,20 @@ export default function NFTTransferConfirmationDialog(props: NFTTransferConfirma
           </Flex>
           <Flex flexDirection="row" gap={1}>
             <Typography variant="body1">Fee:</Typography>
-            <Typography variant="body1">
-              {fee || '0'} {currencyCode}
-            </Typography>
-            {feeInMojos > 0 && (
-              <>
-                <FormatLargeNumber value={feeInMojos} />
+            <Box>
+              <Typography variant="body1">
+                <span style={{ fontWeight: 500 }}>{fee || '0'}</span> {currencyCode}
+              </Typography>
+              {feeInMojos > 0 && (
                 <Box>
-                  <Plural value={feeInMojos.toNumber()} one="mojo" other="mojos" />
+                  <Typography fontSize="small">
+                    <FormatLargeNumber value={feeInMojos} />
+                    &nbsp;
+                    <Plural value={feeInMojos.toNumber()} one="mojo" other="mojos" />
+                  </Typography>
                 </Box>
-              </>
-            )}
+              )}
+            </Box>
           </Flex>
         </Flex>
       </Flex>

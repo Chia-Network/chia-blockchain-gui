@@ -9,6 +9,7 @@ enum WalletConnectCommandParamName {
   FEE = 'fee',
   FINGERPRINT = 'fingerprint',
   ID = 'id',
+  INCLUDE_DATA = 'includeData',
   INCLUDE_MY_OFFERS = 'includeMyOffers',
   INCLUDE_TAKEN_OFFERS = 'includeTakenOffers',
   LAUNCHER_ID = 'launcherId',

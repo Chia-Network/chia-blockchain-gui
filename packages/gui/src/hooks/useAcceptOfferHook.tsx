@@ -40,7 +40,14 @@ export default function useAcceptOfferHook(): [AcceptOfferHook] {
     onSuccess?: () => void
   ): Promise<void> {
     const offerBuilderData = offerToOfferBuilderData(offerSummary, true);
-    const { assetsToUnlock } = await offerBuilderDataToOffer(offerBuilderData, wallets, offers || [], false, true);
+    const { assetsToUnlock } = await offerBuilderDataToOffer({
+      data: offerBuilderData,
+      wallets,
+      offers: offers || [],
+      validateOnly: false,
+      considerNftRoyalty: true,
+      allowEmptyOfferColumn: true, // When accepting a one-sided offer, nothing is required in the offer column
+    });
 
     const assetsRequiredToBeUnlocked = [];
     const assetsBetterToBeUnlocked = [];
@@ -57,7 +64,8 @@ export default function useAcceptOfferHook(): [AcceptOfferHook] {
       const dialog = (
         <OfferEditorConflictAlertDialog
           assetsToUnlock={assetsRequiredToBeUnlocked}
-          assetsBetterUnlocked={assetsBetterToBeUnlocked}
+          // assetsBetterUnlocked={assetsBetterToBeUnlocked}
+          assetsBetterUnlocked={[]} // Ignoring assetsBetterToBeUnlocked to avoid displaying the dialog unnecessarily
         />
       );
       const confirmedToProceed = await openDialog(dialog);
@@ -82,17 +90,13 @@ export default function useAcceptOfferHook(): [AcceptOfferHook] {
     try {
       onUpdate?.(true);
 
-      const response = await takeOffer({ offer: offerData, fee: feeInMojos });
+      const response = await takeOffer({ offer: offerData, fee: feeInMojos }).unwrap();
 
-      if (response.data?.success === true) {
-        await openDialog(
-          <AlertDialog title={<Trans>Success</Trans>}>
-            {response.message ?? <Trans>Offer has been accepted and is awaiting confirmation.</Trans>}
-          </AlertDialog>
-        );
-      } else {
-        throw new Error(response.error?.message ?? 'Something went wrong');
-      }
+      await openDialog(
+        <AlertDialog title={<Trans>Success</Trans>}>
+          {response.message ?? <Trans>Offer has been accepted and is awaiting confirmation.</Trans>}
+        </AlertDialog>
+      );
 
       onSuccess?.();
     } catch (e) {

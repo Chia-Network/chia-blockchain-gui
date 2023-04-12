@@ -1,11 +1,5 @@
-import type { Wallet } from '@chia-network/api';
 import { OfferSummaryRecord, OfferTradeRecord } from '@chia-network/api';
-import {
-  useCheckOfferValidityMutation,
-  useGetNFTInfoQuery,
-  useGetNFTWallets,
-  useGetWalletsQuery,
-} from '@chia-network/api-react';
+import { useCheckOfferValidityMutation, useGetWalletsQuery } from '@chia-network/api-react';
 import {
   Back,
   Button,
@@ -35,7 +29,8 @@ import styled from 'styled-components';
 
 import useAcceptOfferHook from '../../hooks/useAcceptOfferHook';
 import useAssetIdName from '../../hooks/useAssetIdName';
-import useFetchNFTs from '../../hooks/useFetchNFTs';
+import useNFTByCoinId from '../../hooks/useNFTByCoinId';
+import useNFTs from '../../hooks/useNFTs';
 import useWalletOffers from '../../hooks/useWalletOffers';
 import { convertRoyaltyToPercentage, launcherIdToNFTId } from '../../util/nfts';
 import { stripHexPrefix } from '../../util/utils';
@@ -254,13 +249,12 @@ export function NFTOfferSummary(props: NFTOfferSummaryProps) {
     showMakerFee = true,
     overrideNFTSellerAmount,
   } = props;
-  const { lookupByAssetId } = useAssetIdName();
-  const { wallets: nftWallets } = useGetNFTWallets();
-  const { nfts, isLoading: isLoadingNFTs } = useFetchNFTs(nftWallets.map((wallet: Wallet) => wallet.id));
+  const { lookupByAssetId, isLoading: isLoadingAssetIdName } = useAssetIdName();
+  const { nfts, isLoading: isLoadingNFTs } = useNFTs();
   const makerEntries: [string, number][] = Object.entries(summary.offered);
   const takerEntries: [string, number][] = Object.entries(summary.requested);
   const [takerUnknownAssets, makerUnknownAssets] = useMemo(() => {
-    if (isMyOffer || isLoadingNFTs) {
+    if (isMyOffer || isLoadingNFTs || isLoadingAssetIdName) {
       return [];
     }
     const takerUnknownAssetsLocal = makerEntries
@@ -283,7 +277,7 @@ export function NFTOfferSummary(props: NFTOfferSummaryProps) {
       .map(([assetId]) => assetId);
 
     return [takerUnknownAssetsLocal, makerUnknownAssetsLocal];
-  }, [isMyOffer, isLoadingNFTs, makerEntries, takerEntries, summary, lookupByAssetId, nfts]);
+  }, [isMyOffer, isLoadingNFTs, makerEntries, takerEntries, summary, lookupByAssetId, nfts, isLoadingAssetIdName]);
   const makerSummary: React.ReactElement = (
     <NFTOfferSummaryRow
       title={makerTitle}
@@ -358,16 +352,16 @@ function NFTOfferDetails(props: NFTOfferDetailsProps) {
   const theme = useTheme();
   const [acceptOffer] = useAcceptOfferHook();
   const [isAccepting, setIsAccepting] = useState<boolean>(false);
-  const [isValidating, setIsValidating] = useState<boolean>(false);
+
   const [isValid, setIsValid] = useState<boolean>(tradeRecord !== undefined);
   const [isMissingRequestedAsset, setIsMissingRequestedAsset] = useState<boolean>(false);
-  const [checkOfferValidity] = useCheckOfferValidityMutation();
+  const [checkOfferValidity, { isLoading: isCheckOfferValidityLoading }] = useCheckOfferValidityMutation();
   const driverDict: { [key: string]: any } = summary?.infos ?? {};
   const launcherId: string | undefined = Object.keys(driverDict).find(
     (id: string) => driverDict[id].launcherId?.length > 0
   );
   const nftId: string | undefined = launcherId ? launcherIdToNFTId(launcherId) : undefined;
-  const { data: nft } = useGetNFTInfoQuery({ coinId: launcherId });
+  const { nft } = useNFTByCoinId(launcherId);
   const { amount, assetId, assetType } = getNFTPriceWithoutRoyalties(summary) ?? {};
   const { lookupByAssetId } = useAssetIdName();
   const assetIdInfo = assetId ? lookupByAssetId(assetId) : undefined;
@@ -413,20 +407,13 @@ function NFTOfferDetails(props: NFTOfferDetailsProps) {
     let valid = false;
 
     try {
-      setIsValidating(true);
+      const response = await checkOfferValidity(offerData).unwrap();
 
-      const response = await checkOfferValidity(offerData);
-
-      if (response.data?.success === true) {
-        valid = response.data?.valid === true;
-      } else {
-        showError(response.data?.error ?? new Error('Encountered an unknown error while checking offer validity'));
-      }
+      valid = response.data?.valid === true;
     } catch (e) {
       showError(e);
     } finally {
       setIsValid(valid);
-      setIsValidating(false);
     }
   }, [checkOfferValidity, offerData, showError]);
 
@@ -454,7 +441,7 @@ function NFTOfferDetails(props: NFTOfferDetailsProps) {
       <Flex flexDirection="column" flexGrow={1} gap={4}>
         <OfferHeader
           isMyOffer={isMyOffer}
-          isInvalid={!isValidating && !isValid}
+          isInvalid={!isCheckOfferValidityLoading && !isValid}
           isComplete={tradeRecord?.status === OfferState.CONFIRMED}
         />
 

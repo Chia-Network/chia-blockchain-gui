@@ -1,14 +1,12 @@
 type Plot = {
-  plot_id: string;
+  plotId: string;
+  fileSize: number;
   filename: string;
-  file_size: number;
+  plotPublicKey: string;
+  poolContractPuzzleHash: null | string;
+  poolPublicKey: string;
   size: number;
-  local_sk: string;
-  farmer_public_key: string;
-  plot_public_key: string;
-  pool_public_key: string;
-  pool_contract_puzzle_hash: string;
-  duplicates?: Plot[];
+  timeModified: number;
 };
 
 export default Plot;

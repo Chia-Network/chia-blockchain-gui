@@ -22,7 +22,7 @@ export default function useCurrentFingerprintSettings<Type extends Serializable>
     setData,
     {
       isLoading,
-      error,
+      error: error as Error,
       fingerprint,
     },
   ];

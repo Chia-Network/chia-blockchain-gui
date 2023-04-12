@@ -1,17 +1,21 @@
-import { Box, Typography, Table, TableBody, TableCell, TableRow } from '@mui/material';
+import { Box, Typography, Table, TableBody, TableCell, TableRow, type TableCellProps } from '@mui/material';
 import React, { ReactNode } from 'react';
-import styled from 'styled-components';
 
-const StyledTableCell = styled(({ hideDivider, ...rest }) => <TableCell {...rest} />)`
-  ${({ hideDivider }) =>
-    hideDivider
-      ? `
-      border-bottom: 0px solid transparent;
-      padding-left: 0;
-      padding-right: 0 !important;
-    `
-      : ''}
-`;
+type StyledTableCellProps = {
+  hideDivider: boolean;
+} & TableCellProps;
+
+function StyledTableCell(props: StyledTableCellProps) {
+  const { hideDivider, ...rest } = props;
+  const sx = hideDivider
+    ? {
+        borderBottom: '0px solid transparent',
+        paddingLeft: '0',
+        paddingRight: '0 !important',
+      }
+    : {};
+  return <TableCell {...rest} sx={sx} />;
+}
 
 export type CardKeyValueProps = {
   rows: {

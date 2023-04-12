@@ -1,8 +1,6 @@
-import { IconButton } from '@mui/material';
-import styled from 'styled-components';
+import { IconButton, type IconButtonProps } from '@mui/material';
+import React from 'react';
 
-const StyledIconButton = styled(IconButton)`
-  padding: 0.2rem;
-`;
-
-export default StyledIconButton;
+export default function StyledIconButton(props: IconButtonProps) {
+  return <IconButton {...props} sx={{ padding: '0.2rem' }} />;
+}

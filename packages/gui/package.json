@@ -91,7 +91,19 @@
     },
     "deb": {
       "afterInstall": "../../../build_scripts/assets/deb/postinst.sh",
-      "afterRemove": "../../../build_scripts/assets/deb/prerm.sh"
+      "afterRemove": "../../../build_scripts/assets/deb/prerm.sh",
+      "depends": [
+        "libgbm1",
+        "libgtk-3-0",
+        "libnotify4",
+        "libnss3",
+        "libxss1",
+        "libxtst6",
+        "xdg-utils",
+        "libatspi2.0-0",
+        "libuuid1",
+        "libsecret-1-0"
+      ]
     },
     "rpm": {
       "afterInstall": "../../../build_scripts/assets/rpm/postinst.sh",
@@ -182,6 +194,7 @@
     "react-scroll-to-bottom": "4.2.0",
     "react-teleporter": "2.2.1",
     "react-use": "17.3.2",
+    "react-virtuoso": "4.1.1",
     "redux": "4.1.2",
     "regenerator-runtime": "0.13.9",
     "seedrandom": "3.0.5",
@@ -202,7 +215,7 @@
     "@lingui/cli": "3.13.0",
     "@loadable/babel-plugin": "5.13.2",
     "@loadable/webpack-plugin": "5.15.2",
-    "@playwright/test": "^1.25.0",
+    "@playwright/test": "1.31.2",
     "@pmmmwh/react-refresh-webpack-plugin": "0.5.4",
     "@svgr/webpack": "6.2.0",
     "@types/big.js": "6.1.2",
@@ -218,6 +231,7 @@
     "@types/styled-components": "5.1.20",
     "@types/validator": "13.7.1",
     "@walletconnect/types": "2.4.9",
+    "@welldone-software/why-did-you-render": "7.0.1",
     "babel-core": "7.0.0-bridge.0",
     "babel-loader": "9.1.2",
     "babel-plugin-lodash": "3.3.4",
@@ -228,7 +242,8 @@
     "copy-webpack-plugin": "10.2.0",
     "cross-env": "7.0.3",
     "css-loader": "6.5.1",
-    "electron": "22.0.1",
+    "electron": "22.3.5",
+    "electron-devtools-assembler": "1.2.0",
     "electron-playwright-helpers": "^1.2.0",
     "electron-winstaller": "5.0.0",
     "html-webpack-plugin": "5.5.0",
@@ -240,13 +255,13 @@
     "terser": "5.14.2",
     "terser-webpack-plugin": "5.3.0",
     "typescript": "4.5.4",
-    "webpack": "5.66.0",
+    "webpack": "5.77.0",
     "webpack-cli": "4.10.0",
     "webpack-dev-server": "4.8.1",
     "xmldom": "github:xmldom/xmldom#0.8.0"
   },
   "optionalDependencies": {
-    "playwright": "^1.25.0"
+    "playwright": "1.31.2"
   },
   "browserslist": {
     "production": [

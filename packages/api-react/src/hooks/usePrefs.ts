@@ -34,8 +34,8 @@ export function isEqual(a: Serializable, b: Serializable) {
 
 export default function usePrefs<T extends Serializable>(
   key: string,
-  defaultValue?: T
-): [T, (value: T | ((value: T | undefined) => T)) => void] {
+  defaultValue: T
+): [T, (value: T | ((value: T) => T)) => void] {
   const [value, setValue] = useState<T>(getPreferences(key));
   const valueRef = useRef(value);
   valueRef.current = value;
@@ -47,7 +47,7 @@ export default function usePrefs<T extends Serializable>(
   }
 
   const handleSetValue = useCallback(
-    (newValueOrFn: T | ((nv: T | undefined) => T)) => {
+    (newValueOrFn: T | ((nv: T) => T)) => {
       const currentValue = valueRef.current ?? defaultValueRef.current;
       const newValue = newValueOrFn instanceof Function ? newValueOrFn(currentValue) : newValueOrFn;
       if (isEqual(currentValue, newValue)) {

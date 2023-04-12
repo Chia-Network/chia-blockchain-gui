@@ -46,5 +46,5 @@ export default function useFingerprintSettings<Type extends Serializable>(
     return [defaultValue, setValue];
   }
 
-  return [settings[fingerprint]?.[key] ?? defaultValue, setValue];
+  return [(settings[fingerprint]?.[key] as Type) ?? defaultValue, setValue];
 }

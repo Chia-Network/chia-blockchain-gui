@@ -104,11 +104,6 @@ export const {
   useCheckDeleteKeyMutation,
   useDeleteAllKeysMutation,
   useLogInMutation,
-  useLogInAndSkipImportMutation,
-  useLogInAndImportBackupMutation,
-  useGetBackupInfoQuery,
-  useGetBackupInfoByFingerprintQuery,
-  useGetBackupInfoByWordsQuery,
   useGetPrivateKeyQuery,
   useGetTransactionsQuery,
   useGetTransactionsCountQuery,
@@ -120,9 +115,6 @@ export const {
   useGetNetworkInfoQuery,
   useGetSyncStatusQuery,
   useGetWalletConnectionsQuery,
-  useOpenWalletConnectionMutation,
-  useCloseWalletConnectionMutation,
-  useCreateBackupMutation,
   useGetAllOffersQuery,
   useGetOffersCountQuery,
   useCreateOfferForIdsMutation,
@@ -142,6 +134,7 @@ export const {
   // CAT wallet hooks
   useCreateNewCATWalletMutation,
   useCreateCATWalletForExistingMutation,
+  useGetCATWalletInfoQuery,
   useGetCATAssetIdQuery,
   useGetCatListQuery,
   useGetCATNameQuery,
@@ -155,7 +148,7 @@ export const {
 
   // DID
   useCreateNewDIDWalletMutation,
-  useUpdateDIDRecoveryIdsQuery,
+  useUpdateDIDRecoveryIdsMutation,
   useGetDIDPubKeyQuery,
   useGetDIDQuery,
   useGetDIDsQuery,
@@ -170,13 +163,15 @@ export const {
   useCalculateRoyaltiesForNFTsQuery,
   useGetNFTsByNFTIDsQuery,
   useGetNFTsCountQuery,
+  useLazyGetNFTsCountQuery,
   useGetNFTsQuery,
+  useLazyGetNFTsQuery,
   useGetNFTWalletsWithDIDsQuery,
   useGetNFTInfoQuery,
+  useLazyGetNFTInfoQuery,
   useTransferNFTMutation,
   useSetNFTDIDMutation,
   useSetNFTStatusMutation,
-  useReceiveNFTMutation,
 
   // sign
   useSignMessageByAddressMutation,
@@ -185,7 +180,7 @@ export const {
   // notifications
   useGetNotificationsQuery,
   useDeleteNotificationsMutation,
-  useSendNotificationsMutation,
+  useSendNotificationMutation,
 
   // verify
   useVerifySignatureMutation,
@@ -196,7 +191,6 @@ export const {
   harvesterApi,
 
   useHarvesterPingQuery,
-  useGetPlotsQuery,
   useRefreshPlotsMutation,
   useDeletePlotMutation,
   useGetPlotDirectoriesQuery,

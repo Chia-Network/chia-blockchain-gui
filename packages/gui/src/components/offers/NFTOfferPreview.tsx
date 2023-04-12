@@ -1,10 +1,10 @@
-import { useGetNFTInfoQuery } from '@chia-network/api-react';
 import { Button, Flex, Loading, TooltipIcon, useColorModeValue } from '@chia-network/core';
 import { Trans, t } from '@lingui/macro';
 import { Card, Grid, Typography } from '@mui/material';
 import React from 'react';
 import styled from 'styled-components';
 
+import useNFTByCoinId from '../../hooks/useNFTByCoinId';
 import useViewNFTOnExplorer, { NFTExplorer } from '../../hooks/useViewNFTOnExplorer';
 import { launcherIdFromNFTId } from '../../util/nfts';
 import NFTCard from '../nfts/NFTCard';
@@ -35,7 +35,7 @@ type NFTOfferPreviewProps = {
 export default function NFTOfferPreview(props: NFTOfferPreviewProps) {
   const { nftId } = props;
   const launcherId = launcherIdFromNFTId(nftId ?? '');
-  const { data: nft, isLoading: isLoadingNFT, error: rawError } = useGetNFTInfoQuery({ coinId: launcherId ?? '' });
+  const { nft, isLoading: isLoadingNFT, error: rawError } = useNFTByCoinId(launcherId);
   const viewOnExplorer = useViewNFTOnExplorer();
   let error = rawError?.message ?? '';
 

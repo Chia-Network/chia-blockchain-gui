@@ -6,14 +6,9 @@ import {
 import { Typography } from '@mui/material';
 import React, { ReactNode } from 'react';
 import { useToggle } from 'react-use';
-import styled from 'styled-components';
 
 import Accordion from '../Accordion';
 import Flex from '../Flex';
-
-const StyledToggleAdvancedOptions = styled(({ expanded, ...rest }) => <Typography {...rest} />)`
-  cursor: pointer;
-`;
 
 type Props = {
   children?: ReactNode;
@@ -42,7 +37,7 @@ export default function AdvancedOptions(props: Props) {
   return (
     <Flex flexDirection="column" gap={1}>
       {!hideTitle && (
-        <StyledToggleAdvancedOptions variant="caption" expanded={isExpanded} onClick={handleToggle}>
+        <Typography variant="caption" onClick={handleToggle} sx={{ cursor: 'pointer' }}>
           {isExpanded ? (
             <Flex alignItems="center">
               <KeyboardArrowUpIcon />
@@ -54,7 +49,7 @@ export default function AdvancedOptions(props: Props) {
               {moreTitle}
             </Flex>
           )}
-        </StyledToggleAdvancedOptions>
+        </Typography>
       )}
 
       <Accordion expanded={isExpanded}>{children}</Accordion>

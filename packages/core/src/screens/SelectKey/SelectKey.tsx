@@ -3,18 +3,16 @@ import {
   usePrefs,
   useGetKeyringStatusQuery,
   useDeleteAllKeysMutation,
-  useLogInAndSkipImportMutation,
   useGetKeysQuery,
   useLogout,
+  useLogInMutation,
   type Serializable,
 } from '@chia-network/api-react';
 import { ChiaBlack, Coins } from '@chia-network/icons';
-import data from '@emoji-mart/data';
 import { Trans } from '@lingui/macro';
 import { Delete as DeleteIcon } from '@mui/icons-material';
 import { Alert, Typography, Container, ListItemIcon } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import { init } from 'emoji-mart';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
 import Sortable from 'sortablejs';
@@ -32,22 +30,20 @@ import useKeyringMigrationPrompt from '../../hooks/useKeyringMigrationPrompt';
 import useOpenDialog from '../../hooks/useOpenDialog';
 import useShowError from '../../hooks/useShowError';
 import useSkipMigration from '../../hooks/useSkipMigration';
+import { randomEmoji } from './EmojiAndColorPicker';
 // import Search from './Search';
 import SelectKeyItem from './SelectKeyItem';
 
-init({ data });
-const { emojis: allEmojis } = data;
-
 const StyledContainer = styled(Container)`
   padding-bottom: 1rem;
-  width: 968px;
+  max-width: 968px;
 `;
 
 export default function SelectKey() {
   const openDialog = useOpenDialog();
   const navigate = useNavigate();
   const [deleteAllKeys] = useDeleteAllKeysMutation();
-  const [logIn] = useLogInAndSkipImportMutation();
+  const [logIn] = useLogInMutation();
   const { data: publicKeyFingerprints, isLoading: isLoadingPublicKeys, error, refetch } = useGetKeysQuery();
   const { data: keyringState, isLoading: isLoadingKeyringStatus } = useGetKeyringStatusQuery();
   const hasFingerprints = !!publicKeyFingerprints?.length;
@@ -64,9 +60,9 @@ export default function SelectKey() {
     if (document.getElementById('key-items-container')) {
       keyItemsSortable.current = new Sortable(document.getElementById('key-items-container'), {
         onEnd: () => {
-          const newArray = [...(document.getElementById('key-items-container') as HTMLElement).children].map(
-            (node: any) => node.attributes['data-testid'].value.split('-')[2]
-          );
+          const newArray = [...(document.getElementById('key-items-container') as HTMLElement).children]
+            .filter((node: any) => node.hasAttribute('data-testid'))
+            .map((node: any) => node.attributes['data-testid'].value.split('-')[2]);
           setSortedWallets(newArray);
         },
       });
@@ -84,14 +80,9 @@ export default function SelectKey() {
       const newFingerprints: any = {};
       let notifyChange: boolean = false;
       publicKeyFingerprints.forEach((f: any) => {
-        const peopleAndNatureEmojisWords = (data as any).originalCategories
-          .filter((category: any) => ['people', 'nature'].indexOf(category.id) > -1)
-          .map((category: any) => category.emojis)
-          .flat();
-        const randomEmoji = peopleAndNatureEmojisWords[Math.floor(peopleAndNatureEmojisWords.length * Math.random())];
         const themeColors = Object.keys(allColors);
         const randomTheme = {
-          emoji: allEmojis[randomEmoji].skins[0].native,
+          emoji: randomEmoji(),
           color: themeColors[Math.floor(themeColors.length * Math.random())],
         };
         if (fingerprintSettings[f.fingerprint] && !fingerprintSettings[f.fingerprint].walletKeyTheme) {
@@ -119,6 +110,7 @@ export default function SelectKey() {
       setSelectedFingerprint(fingerprint);
       await logIn({
         fingerprint,
+        type: 'skip',
       }).unwrap();
 
       await cleanCache();
@@ -303,8 +295,20 @@ export default function SelectKey() {
                 columnGap: '22px',
                 paddingBottom: '230px',
                 '> div': {
-                  flexBasis: '292px',
-                  maxWidth: '292px',
+                  '@media (min-width: 983px)': {
+                    flexBasis: '292px',
+                    maxWidth: '292px',
+                  },
+                  '@media (max-width: 982px) and (min-width: 569px)': {
+                    flexBasis: 'none',
+                    flex: 'calc(50% - 22px)',
+                    minWidth: '250px',
+                    maxWidth: 'calc(50vw - 42px);',
+                  },
+                  '@media (max-width: 568px)': {
+                    flexBasis: 'none',
+                    minWidth: '250px',
+                  },
                 },
               }}
             >

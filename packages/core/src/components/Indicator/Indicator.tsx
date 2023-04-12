@@ -1,21 +1,7 @@
 import { Box, LinearProgress, Typography } from '@mui/material';
 import React, { ReactNode } from 'react';
-import styled from 'styled-components';
 
 import Flex from '../Flex';
-
-const StyledIndicator = styled(Box)`
-  display: inline-block;
-  height: 10px;
-  width: 75px;
-  background-color: ${({ color }) => color};
-`;
-
-const StyledLinearProgress = styled(LinearProgress)`
-  height: 10px;
-  width: 75px;
-  border-radius: 0;
-`;
 
 type Props = {
   color: string;
@@ -30,7 +16,16 @@ export default function PlotStatus(props: Props) {
     <Flex flexDirection="column" gap={1}>
       {progress !== undefined ? (
         <Flex gap={1} alignItems="center">
-          <StyledLinearProgress variant="determinate" value={progress * 100} color="secondary" />
+          <LinearProgress
+            variant="determinate"
+            value={progress * 100}
+            color="secondary"
+            sx={{
+              height: '10px',
+              width: '75px',
+              borderRadius: '0',
+            }}
+          />
           <Flex>
             <Typography variant="body2" color="textSecondary">
               {`${Math.round(progress * 100)}%`}
@@ -38,7 +33,14 @@ export default function PlotStatus(props: Props) {
           </Flex>
         </Flex>
       ) : (
-        <StyledIndicator color={color} />
+        <Box
+          sx={{
+            display: 'inline-block',
+            height: '10px',
+            width: '75px',
+            backgroundColor: color,
+          }}
+        />
       )}
 
       <Flex>{children}</Flex>

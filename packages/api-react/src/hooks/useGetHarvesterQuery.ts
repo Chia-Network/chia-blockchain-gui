@@ -2,21 +2,7 @@ import { useMemo } from 'react';
 
 import { useGetHarvestersSummaryQuery } from '../services/farmer';
 
-export default function useGetHarvesterQuery({ nodeId }: { nodeId: string }): {
-  isLoading: boolean;
-  error?: Error;
-  plots?: number;
-  noKeyFilenames?: number;
-  failedToOpenFilenames?: number;
-  duplicates?: number;
-  totalPlotSize?: number;
-  connection?: {
-    nodeId: string;
-    host: string;
-    port: number;
-  };
-  initialized: boolean;
-} {
+export default function useGetHarvesterQuery({ nodeId }: { nodeId: string }) {
   const { data, isLoading: isLoadingHarvesterSummary, error } = useGetHarvestersSummaryQuery();
 
   const harvester = useMemo(

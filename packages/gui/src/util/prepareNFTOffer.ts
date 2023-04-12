@@ -24,7 +24,7 @@ export async function prepareNFTOfferFromNFTId(nftId: string, offeredNFT: boolea
   resultPromise.unsubscribe();
 
   if (result.error) {
-    throw result.error;
+    throw result.error as Error;
   }
 
   const nft = result.data;

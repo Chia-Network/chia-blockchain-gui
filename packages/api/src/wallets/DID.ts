@@ -1,109 +1,125 @@
+import type BigNumber from 'bignumber.js';
+
+import type SpendBundle from '../@types/SpendBundle';
 import type Message from '../Message';
 import Wallet from '../services/WalletService';
 
 export default class DIDWallet extends Wallet {
-  async createNewDIDWallet(amount: string, fee: string, backupDids: string, numOfBackupIdsNeeded: number) {
-    return this.createNewWallet('did_wallet', {
-      did_type: 'new',
-      amount,
-      fee,
-      backupDids,
-      numOfBackupIdsNeeded,
+  async createNewDIDWallet(args: { amount: string; fee: string; backupDids: string; numOfBackupIdsNeeded: number }) {
+    return this.createNewWallet({
+      walletType: 'did_wallet',
+      options: {
+        did_type: 'new',
+        ...args,
+      },
     });
   }
 
-  async createNewRecoveryWallet(filename: string) {
-    return this.createNewWallet('did_wallet', {
-      did_type: 'recovery',
-      filename,
+  async createNewRecoveryWallet(args: { filename: string }) {
+    return this.createNewWallet({
+      walletType: 'did_wallet',
+      options: {
+        did_type: 'recovery',
+        ...args,
+      },
     });
   }
 
-  async updateRecoveryIds(walletId: number, newList: string[], numVerificationsRequired: boolean) {
-    return this.command('did_update_recovery_ids', {
-      walletId,
-      newList,
-      numVerificationsRequired,
-    });
+  async updateRecoveryIds(args: { walletId: number; newList: string[]; numVerificationsRequired: boolean }) {
+    return this.command<void>('did_update_recovery_ids', args);
   }
 
-  async getPubKey(walletId: number) {
-    return this.command('did_get_pubkey', {
-      walletId,
-    });
+  async getPubKey(args: { walletId: number }) {
+    return this.command<{
+      pubkey: string;
+    }>('did_get_pubkey', args);
   }
 
-  async spend(walletId: number, puzzlehash: string) {
-    return this.command('did_spend', {
-      walletId,
-      puzzlehash,
-    });
+  async getDid(args: { walletId: number }) {
+    return this.command<{
+      walletId: number;
+      myDid: string;
+      coinId: string;
+    }>('did_get_did', args);
   }
 
-  async getDid(walletId: number) {
-    return this.command('did_get_did', {
-      walletId,
-    });
+  async getDidName(args: { walletId: number }) {
+    return this.command<{
+      walletId: number;
+      name: string;
+    }>('did_get_wallet_name', args);
   }
 
-  async getDidName(walletId: number) {
-    return this.command('did_get_wallet_name', {
-      walletId,
-    });
+  async setDIDName(args: { walletId: number; name: string }) {
+    return this.command<{
+      walletId: number;
+    }>('did_set_wallet_name', args);
   }
 
-  async setDIDName(walletId: number, name: string) {
-    return this.command('did_set_wallet_name', {
-      walletId,
-      name,
-    });
+  async getRecoveryList(args: { walletId: number }) {
+    return this.command<{
+      walletId: number;
+      recoverList: string[];
+      numRequired: BigNumber | number;
+    }>('did_get_recovery_list', args);
   }
 
-  async getRecoveryList(walletId: number) {
-    return this.command('did_get_recovery_list', {
-      walletId,
-    });
+  async recoverySpend(args: { walletId: number; attestFilenames: string[] }) {
+    return this.command<{
+      spendBundle: SpendBundle;
+    }>('did_recovery_spend', args);
   }
 
-  async recoverySpend(walletId: number, attestFilenames: string[]) {
-    return this.command('did_recovery_spend', {
-      walletId,
-      attestFilenames,
-    });
+  async createAttest(args: { walletId: number; filename: string; coinName: string; pubkey: string; puzhash: string }) {
+    return this.command<{
+      messageSpendBundle: string;
+      info: (string | number | BigNumber)[];
+      attestData: string;
+    }>('did_create_attest', args);
   }
 
-  async createAttest(walletId: number, filename: string, coinName: string, pubkey: string, puzhash: string) {
-    return this.command('did_create_attest', {
-      walletId,
-      filename,
-      coinName,
-      pubkey,
-      puzhash,
-    });
+  async createBackupFile(args: { walletId: number; filename: string }) {
+    return this.command<{
+      walletId: number;
+      backupData: string;
+    }>('did_create_backup_file', args);
   }
 
-  async createBackupFile(walletId: number, filename: string) {
-    return this.command('did_create_backup_file', {
-      walletId,
-      filename,
-    });
+  async getInformationNeededForRecovery(args: { walletId: number }) {
+    return this.command<{
+      walletId: number;
+      myDid: string;
+      coinName: string;
+      newpuzhash: string;
+      pubkey: string;
+      backupDids: string[];
+    }>('did_get_information_needed_for_recovery', args);
   }
 
-  async getInformationNeededForRecovery(walletId: number) {
-    return this.command('did_get_information_needed_for_recovery', {
-      walletId,
-    });
+  async getCurrentCoinInfo(args: { walletId: number }) {
+    return this.command<{
+      walletId: number;
+      myDid: string;
+      didParent: string;
+      didInnerpuz: string;
+      didAmount: BigNumber | number;
+    }>('did_get_current_coin_info', args);
   }
 
-  async getCurrentCoinInfo(walletId: number) {
-    return this.command('did_get_current_coin_info', {
-      walletId,
-    });
-  }
-
-  async getDidInfo(coin_or_did_id: string) {
-    return this.command('did_get_info', {
-      coin_id: coin_or_did_id,
+  async getDidInfo(args: { coinOrDIDId: string }) {
+    return this.command<{
+      latestCoin: string;
+      p2Address: string;
+      publicKey: string;
+      recoveryListHash: string;
+      numVerification: number;
+      metadata: Record<string, string>;
+      launcherId: string;
+      fullPuzzle: string; // hex bytes of serialized CLVM program
+      solution: any;
+      hints: string[];
+    }>('did_get_info', {
+      coinId: args.coinOrDIDId,
     });
   }
 
