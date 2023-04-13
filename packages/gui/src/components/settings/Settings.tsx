@@ -6,6 +6,7 @@ import React from 'react';
 import { Routes, Route, matchPath, useLocation, useNavigate } from 'react-router-dom';
 
 import SettingsAdvanced from './SettingsAdvanced';
+import SettingsCustody from './SettingsCustody';
 import SettingsDataLayer from './SettingsDataLayer';
 import SettingsGeneral from './SettingsGeneral';
 import SettingsIntegration from './SettingsIntegration';
@@ -15,7 +16,7 @@ import SettingsProfiles from './SettingsProfiles';
 
 const settingsTabs = [
   { id: 'general', label: 'General', Component: SettingsGeneral, path: 'general' },
-  { id: 'custody', label: 'Custody', Component: SettingsNFT, path: 'custody', badge: 'NEW' },
+  { id: 'custody', label: 'Custody', Component: SettingsCustody, path: 'custody', badge: 'NEW' },
   { id: 'profiles', label: 'Profiles (DIDs)', Component: SettingsProfiles, path: 'profiles/*' },
   { id: 'nft', label: 'NFT', Component: SettingsNFT, path: 'nft' },
   { id: 'datalayer', label: 'DataLayer', Component: SettingsDataLayer, path: 'datalayer' },

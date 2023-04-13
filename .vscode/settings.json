@@ -12,5 +12,6 @@
   "files.associations": {
     ".eslintrc.json": "jsonc",
     "tsconfig.json": "jsonc"
-  }
+  },
+  "cSpell.words": ["clawback"]
 }
