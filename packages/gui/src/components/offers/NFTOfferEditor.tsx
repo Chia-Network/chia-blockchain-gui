@@ -36,7 +36,7 @@ import { useForm, useFormContext } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
-import useNFTByCoinId from '../../hooks/useNFTByCoinId';
+import useNFT from '../../hooks/useNFT';
 import useNFTs from '../../hooks/useNFTs';
 import useSuppressShareOnCreate from '../../hooks/useSuppressShareOnCreate';
 import { convertRoyaltyToPercentage, isValidNFTId, launcherIdFromNFTId } from '../../util/nfts';
@@ -116,7 +116,7 @@ function NFTOfferConditionalsPanel(props: NFTOfferConditionalsPanelProps) {
   const makerFee = methods.watch('fee');
   const nftId = methods.watch('nftId');
   const launcherId = launcherIdFromNFTId(nftId ?? '');
-  const { nft } = useNFTByCoinId(launcherId);
+  const { nft } = useNFT(launcherId);
   const { data: walletBalance, isLoading: isLoadingWalletBalance } = useGetWalletBalanceQuery(
     {
       walletId: tokenWalletInfo.walletId,
@@ -561,7 +561,7 @@ export default function NFTOfferEditor(props: NFTOfferEditorProps) {
   });
   const nftId = methods.watch('nftId');
   const launcherId = launcherIdFromNFTId(nftId ?? '');
-  const { nft: queriedNFTInfo } = useNFTByCoinId(launcherId);
+  const { nft: queriedNFTInfo } = useNFT(launcherId);
 
   function validateFormData(unvalidatedFormData: NFTOfferEditorFormData): NFTOfferEditorValidatedFormData | undefined {
     const {

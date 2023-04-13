@@ -6,7 +6,7 @@ import { useTheme } from '@mui/material/styles';
 import React, { useMemo } from 'react';
 import styled from 'styled-components';
 
-import useNFTByCoinId from '../../hooks/useNFTByCoinId';
+import useNFT from '../../hooks/useNFT';
 import useNFTMetadata from '../../hooks/useNFTMetadata';
 import isRankingAttribute from '../../util/isRankingAttribute';
 import { launcherIdToNFTId } from '../../util/nfts';
@@ -33,8 +33,8 @@ export default function NFTSummary(props: NFTSummaryProps) {
   const nftId = launcherIdToNFTId(launcherId);
   const theme = useTheme();
   const bottomPadding = `${theme.spacing(2)}`; // logic borrowed from Flex's gap computation
-  const { nft, isLoading: isLoadingNFT } = useNFTByCoinId(launcherId);
-  const { metadata, isLoading: isLoadingMetadata } = useNFTMetadata(nft?.$nftId);
+  const { nft, isLoading: isLoadingNFT } = useNFT(launcherId);
+  const { metadata, isLoading: isLoadingMetadata } = useNFTMetadata(launcherId);
 
   const [properties, rankings] = useMemo(() => {
     if (!nft) {

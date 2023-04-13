@@ -33,7 +33,7 @@ import {
 import React, { SyntheticEvent, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 
-import useNFTByCoinId from '../../hooks/useNFTByCoinId';
+import useNFT from '../../hooks/useNFT';
 import { launcherIdFromNFTId } from '../../util/nfts';
 import NFTPreview from '../nfts/NFTPreview';
 import { createOfferNotificationPayload } from './utils';
@@ -74,7 +74,7 @@ export default function NotificationSendDialog(props: NotificationSendDialogProp
   });
   const currencyCode = useCurrencyCode();
   const openDialog = useOpenDialog();
-  const { nft } = useNFTByCoinId(launcherId);
+  const { nft } = useNFT(launcherId);
   const { data: currentAddress = '' } = useGetCurrentAddressQuery({ walletId: 1 });
   const [sendNotification, { isLoading: isSendNotificationLoading }] = useSendNotificationMutation();
 

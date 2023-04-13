@@ -5,7 +5,7 @@ import { Box, Grid, InputAdornment } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 
-import useNFTByCoinId from '../../hooks/useNFTByCoinId';
+import useNFT from '../../hooks/useNFT';
 import { launcherIdFromNFTId } from '../../util/nfts';
 import NFTSearch from '../nfts/NFTSearch';
 import NFTSummary from '../nfts/NFTSummary';
@@ -23,7 +23,7 @@ export default function SigningEntityNFT(props: SigningEntityNFTProps) {
   const currentValue = getValues(entityName);
   const nftId = currentValue?.nftId;
   const launcherId = nftId ? launcherIdFromNFTId(nftId) : undefined;
-  const { nft: nftInfo } = useNFTByCoinId(launcherId);
+  const { nft: nftInfo } = useNFT(launcherId);
   const [searchValue, setSearchValue] = useState<string>('');
   const [nftIdString, setNftId] = useState<string>('');
 

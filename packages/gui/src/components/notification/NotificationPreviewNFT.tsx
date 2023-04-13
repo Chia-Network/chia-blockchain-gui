@@ -2,7 +2,7 @@ import { Loading } from '@chia-network/core';
 import { Error as ErrorIcon } from '@mui/icons-material';
 import React from 'react';
 
-import useNFTByCoinId from '../../hooks/useNFTByCoinId';
+import useNFT from '../../hooks/useNFT';
 import { launcherIdFromNFTId } from '../../util/nfts';
 import NFTPreview from '../nfts/NFTPreview';
 
@@ -16,7 +16,7 @@ export default function NotificationPreviewNFT(props: NotificationPreviewNFTProp
 
   const launcherId = launcherIdFromNFTId(nftId);
 
-  const { nft, isLoading, error } = useNFTByCoinId(launcherId);
+  const { nft, isLoading, error } = useNFT(launcherId);
 
   if (isLoading) {
     return <Loading size={size} />;

@@ -11,7 +11,7 @@ const NFTProviderContext = createContext<
       error: Error | undefined;
       progress: number;
       invalidate: (nftId: string) => Promise<void>;
-      getByCoinId: (coinId: string) => Promise<NFTData | undefined>;
+      load: (id: string) => Promise<NFTData | undefined>;
     }
   | undefined
 >(undefined);

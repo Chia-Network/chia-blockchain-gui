@@ -13,12 +13,14 @@ import React, { useMemo, useCallback, useEffect, useRef, type ReactNode } from '
 import type Metadata from '../../../@types/Metadata';
 import type NFTData from '../../../@types/NFTData';
 import useCache from '../../../hooks/useCache';
+import useNachoNFTs from '../../../hooks/useNachoNFTs';
 import useStateAbort from '../../../hooks/useStateAbort';
 import compareChecksums from '../../../util/compareChecksums';
 import getNFTFileType from '../../../util/getNFTFileType';
+import getNFTId from '../../../util/getNFTId';
 import limit from '../../../util/limit';
+import { launcherIdFromNFTId } from '../../../util/nfts';
 import parseFileContent from '../../../util/parseFileContent';
-import removeHexPrefix from '../../../util/removeHexPrefix';
 import NFTProviderContext from './NFTProviderContext';
 
 function parseMetadataFile(content: Buffer, headers: any) {
@@ -65,6 +67,9 @@ export default function NFTProvider(props: NFTProviderProps) {
   // launcherId
   const [getNFTInfo] = useLazyGetNFTInfoQuery();
 
+  // nachos
+  const { data: nachoNFTs } = useNachoNFTs();
+
   const [, setChanges] = useStateAbort<Change[]>([]);
 
   const metadataAdd = limit(concurrency);
@@ -86,6 +91,117 @@ export default function NFTProvider(props: NFTProviderProps) {
     return count;
   }
 
+  const updateNft = useCallback(
+    (id: string, data: Partial<NFTData>, signal?: AbortSignal) => {
+      setNFTs(
+        (prevNfts) =>
+          prevNfts.map((nftItem) => {
+            if (nftItem.id === id) {
+              return {
+                ...nftItem,
+                ...data,
+              };
+            }
+
+            return nftItem;
+          }),
+        signal
+      );
+    },
+    [setNFTs]
+  );
+
+  const fetchAndProcessMetadata = useCallback(
+    async (uri: string, hash: string | undefined) => {
+      const { content, headers, checksum } = await cache.get(uri);
+
+      if (hash && !compareChecksums(checksum, hash)) {
+        throw new Error('Checksum mismatch');
+      }
+
+      return parseMetadataFile(content, headers);
+    },
+    [cache]
+  );
+
+  const fetchMetadata = useCallback(
+    async (nft: NFTInfo, signal?: AbortSignal) => {
+      const { $nftId: nftId, metadataUris = [], metadataHash } = nft;
+
+      try {
+        const [firstUri] = metadataUris;
+        if (!firstUri) {
+          return undefined;
+        }
+
+        const existingNft = nftsRef.current.find((nftItem) => nftItem.id === nftId);
+        if (existingNft?.metadataPromise) {
+          return await existingNft.metadataPromise;
+        }
+
+        // todo add then
+        const promise = fetchAndProcessMetadata(firstUri, metadataHash);
+
+        updateNft(
+          nftId,
+          {
+            metadata: undefined,
+            metadataError: undefined,
+            metadataPromise: promise,
+          },
+          signal
+        );
+
+        promise.then(
+          (metadata) => {
+            updateNft(
+              nftId,
+              {
+                metadata,
+                metadataPromise: undefined,
+              },
+              signal
+            );
+          },
+          () => {
+            updateNft(
+              nftId,
+              {
+                metadataPromise: undefined,
+              },
+              signal
+            );
+          }
+        );
+
+        const metadata = await promise;
+
+        updateNft(
+          nftId,
+          {
+            metadata,
+            metadataPromise: undefined,
+          },
+          signal
+        );
+
+        return metadata;
+      } catch (err) {
+        updateNft(
+          nftId,
+          {
+            metadataError: err as Error,
+            metadataPromise: undefined,
+          },
+          signal
+        );
+
+        return undefined;
+      }
+    },
+    [fetchAndProcessMetadata, updateNft]
+  );
+
   async function fetchNFTsPage(walletId: number, pageIndex: number, signal: AbortSignal) {
     const startIndex = pageIndex * pageSize;
     const nftsByWallet = await getNFTs({
@@ -102,7 +218,7 @@ export default function NFTProvider(props: NFTProviderProps) {
     const page = nftsByWallet[walletId];
 
     setNFTs((prevNfts) => {
-      const nftsByIds = new Map(prevNfts.map((nftItem) => [nftItem.nft.$nftId, nftItem]));
+      const nftsByIds = new Map(prevNfts.map((nftItem) => [nftItem.id, nftItem]));
 
       const newNFTs = [...prevNfts];
 
@@ -114,13 +230,15 @@ export default function NFTProvider(props: NFTProviderProps) {
           const originalItem = nftsByIds.get(nftId);
           if (originalItem) {
             originalItem.nft = nft;
+            originalItem.nftError = undefined;
+            originalItem.nftPromise = undefined;
             originalItem.inList = true;
           }
         } else {
           newNFTs.push({
             inList: true,
             nft,
-            coinId: removeHexPrefix(nft.launcherId),
+            id: nft.$nftId,
             type: getNFTFileType(nft),
           });
         }
@@ -135,135 +253,38 @@ export default function NFTProvider(props: NFTProviderProps) {
     page.map((nft: NFTInfo) => metadataAdd(() => fetchMetadata(nft, signal)));
   }
 
-  async function updateNft(id: string, data: Partial<NFTData>, signal: AbortSignal) {
-    setNFTs(
-      (prevNfts) =>
-        prevNfts.map((nftItem) => {
-          if (nftItem.nft.$nftId === id) {
-            return {
-              ...nftItem,
-              ...data,
-            };
-          }
-
-          return nftItem;
-        }),
-      signal
-    );
-  }
-
-  async function fetchAndProcessMetadata(uri: string, hash: string | undefined) {
-    const { content, headers, checksum } = await cache.get(uri);
-
-    if (hash && !compareChecksums(checksum, hash)) {
-      throw new Error('Checksum mismatch');
-    }
-
-    return parseMetadataFile(content, headers);
-  }
-
-  async function fetchMetadata(nft: NFTInfo, signal: AbortSignal) {
-    const { $nftId: nftId, metadataUris = [], metadataHash } = nft;
-
-    try {
-      const [firstUri] = metadataUris;
-      if (!firstUri) {
-        return undefined;
-      }
-
-      const existingNft = nfts.find((nftItem) => nftItem.nft.$nftId === nftId);
-      if (existingNft?.metadataPromise) {
-        return await existingNft.metadataPromise;
-      }
-
-      // todo add then
-      const promise = fetchAndProcessMetadata(firstUri, metadataHash);
-
-      updateNft(
-        nftId,
-        {
-          metadata: undefined,
-          metadataError: undefined,
-          metadataPromise: promise,
-        },
-        signal
-      );
-
-      promise.then(
-        (metadata) => {
-          updateNft(
-            nftId,
-            {
-              metadata,
-              metadataPromise: undefined,
-            },
-            signal
-          );
-        },
-        () => {
-          updateNft(
-            nftId,
-            {
-              metadataPromise: undefined,
-            },
-            signal
-          );
-        }
-      );
-
-      const metadata = await promise;
-
-      updateNft(
-        nftId,
-        {
-          metadata,
-          metadataPromise: undefined,
-        },
-        signal
-      );
-
-      return metadata;
-    } catch (err) {
-      updateNft(
-        nftId,
-        {
-          metadataError: err as Error,
-          metadataPromise: undefined,
-        },
-        signal
-      );
-
-      return undefined;
-    }
-  }
-
   const invalidate = useCallback(
     async (nftId: string) => {
-      const item = nftsRef.current.find((nftItem) => nftItem.nft.$nftId === nftId);
+      const item = nftsRef.current.find((nftItem) => nftItem.id === nftId);
       if (!item) {
         return;
       }
 
       const { nft, metadataPromise } = item;
-      const { dataUris, metadataUris } = nft;
 
       // wait for old request to finish
       if (metadataPromise) {
         await metadataPromise;
       }
 
-      const promises = dataUris.map((uri) => cache.invalidate(uri));
+      const promises = [];
 
-      const firstMetadataUri = metadataUris && metadataUris[0];
-      if (firstMetadataUri) {
-        promises.push(cache.invalidate(firstMetadataUri));
+      if (nft) {
+        const { dataUris, metadataUris } = nft;
+
+        dataUris.forEach((uri) => promises.push(cache.invalidate(uri)));
+
+        const firstMetadataUri = metadataUris && metadataUris[0];
+        if (firstMetadataUri) {
+          promises.push(cache.invalidate(firstMetadataUri));
+        }
       }
 
       try {
         const metadata = item.metadata ?? item.metadataPromise ? await item.metadataPromise : item.metadata;
         if (metadata) {
           // invalidate all previews
-          const { preview_video_uris: previewVideoUris, preview_image_uris: previewImageUris } = nftMetadata;
+          const { preview_video_uris: previewVideoUris, preview_image_uris: previewImageUris } = metadata;
 
           if (previewVideoUris) {
             previewVideoUris.forEach((uri: string) => promises.push(cache.invalidate(uri)));
@@ -347,21 +368,23 @@ export default function NFTProvider(props: NFTProviderProps) {
     setError(undefined);
   }
 
-  const getByCoinId = useCallback(
-    async (coinId: string) => {
-      const item = nftsRef.current.find((nftData) => nftData.coinId === coinId);
+  const load = useCallback(
+    async (id: string) => {
+      const nftId = getNFTId(id);
+
+      const item = nftsRef.current.find((nftData) => nftData.id === nftId);
       if (item) {
         return item.nftPromise ? item.nftPromise : item.nft;
       }
 
       const promise = getNFTInfo({
-        coinId,
+        coinId: launcherIdFromNFTId(nftId),
       }).unwrap();
 
       setNFTs((prevNfts) => [
         ...prevNfts,
         {
-          coinId,
+          id: nftId,
           nftPromise: promise,
         },
       ]);
@@ -370,8 +393,8 @@ export default function NFTProvider(props: NFTProviderProps) {
         (nft: NFTInfo) => {
           setNFTs((prevNfts) => {
             const newPrevNfts = [...prevNfts];
-            // immutable update by coinId
-            const index = newPrevNfts.findIndex((nftItem) => nftItem.coinId === coinId);
+
+            const index = newPrevNfts.findIndex((nftItem) => nftItem.id === nftId);
             if (index !== -1) {
               const current = newPrevNfts[index];
 
@@ -380,7 +403,10 @@ export default function NFTProvider(props: NFTProviderProps) {
                 nft,
                 type: getNFTFileType(nft),
                 nftPromise: undefined,
+                nftError: undefined,
               };
+
+              metadataAdd(() => fetchMetadata(nft));
             }
 
             return newPrevNfts;
@@ -392,7 +418,7 @@ export default function NFTProvider(props: NFTProviderProps) {
           setNFTs((prevNfts) => {
             const newPrevNfts = [...prevNfts];
             // immutable update by coinId
-            const index = newPrevNfts.findIndex((nftItem) => nftItem.coinId === coinId);
+            const index = newPrevNfts.findIndex((nftItem) => nftItem.id === nftId);
             if (index !== -1) {
               const current = newPrevNfts[index];
               // updated from different service
@@ -418,7 +444,7 @@ export default function NFTProvider(props: NFTProviderProps) {
         }
       );
     },
-    [setNFTs, getNFTInfo, nftsRef]
+    [setNFTs, getNFTInfo, nftsRef, metadataAdd, fetchMetadata]
   );
 
   useEffect(() => {
@@ -437,20 +463,46 @@ export default function NFTProvider(props: NFTProviderProps) {
     return undefined;
   }, [isLoadingWallets, nftWallets, fingerprint]); // eslint-disable-line react-hooks/exhaustive-deps -- we want to fetch data only once
 
+  useEffect(() => {
+    if (!!isLoadingNFTs && nachoNFTs) {
+      setNFTs((prevNFTs) => {
+        const nachoNFTsToAdd: NFTInfo[] = nachoNFTs.filter(
+          (nachoNFT: NFTInfo) => !prevNFTs.find((nft) => nft.id === nachoNFT.$nftId)
+        );
+        nachoNFTsToAdd.forEach((nft) => metadataAdd(() => fetchMetadata(nft)));
+
+        return [
+          ...prevNFTs,
+          ...nachoNFTsToAdd.map((nft) => ({
+            id: nft.$nftId,
+            nft: {
+              ...nft,
+              walletId: -1,
+            },
+            type: getNFTFileType(nft),
+            inList: true,
+          })),
+        ];
+      });
+    }
+  }, [nachoNFTs, isLoadingNFTs, setNFTs, metadataAdd, fetchMetadata]);
+
   const isLoading = isLoadingNFTs || isLoadingFingerprint || isLoadingWallets;
 
   const context = useMemo(
     () => ({
       nfts,
-      count: total,
-      loaded,
       isLoading,
       error,
+
+      count: total,
+      loaded,
       progress: total > 0 ? (loaded / total) * 100 : 0,
+
       invalidate,
-      getByCoinId,
+      load,
     }),
-    [nfts, total, loaded, isLoading, error, invalidate, getByCoinId]
+    [nfts, total, loaded, isLoading, error, invalidate, load]
   );
 
   return <NFTProviderContext.Provider value={context}>{children}</NFTProviderContext.Provider>;

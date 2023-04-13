@@ -4,7 +4,7 @@ import { Card, Grid, Typography } from '@mui/material';
 import React from 'react';
 import styled from 'styled-components';
 
-import useNFTByCoinId from '../../hooks/useNFTByCoinId';
+import useNFT from '../../hooks/useNFT';
 import useViewNFTOnExplorer, { NFTExplorer } from '../../hooks/useViewNFTOnExplorer';
 import { launcherIdFromNFTId } from '../../util/nfts';
 import NFTCard from '../nfts/NFTCard';
@@ -35,7 +35,7 @@ type NFTOfferPreviewProps = {
 export default function NFTOfferPreview(props: NFTOfferPreviewProps) {
   const { nftId } = props;
   const launcherId = launcherIdFromNFTId(nftId ?? '');
-  const { nft, isLoading: isLoadingNFT, error: rawError } = useNFTByCoinId(launcherId);
+  const { nft, isLoading: isLoadingNFT, error: rawError } = useNFT(nftId);
   const viewOnExplorer = useViewNFTOnExplorer();
   let error = rawError?.message ?? '';
 
