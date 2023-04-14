@@ -1,3 +1,4 @@
+export type { AutoClaimSet, AutoClaimGet } from './AutoClaim';
 export type { default as Block } from './Block';
 export type { default as BlockchainConnection } from './BlockchainConnection';
 export type { default as BlockchainState } from './BlockchainState';

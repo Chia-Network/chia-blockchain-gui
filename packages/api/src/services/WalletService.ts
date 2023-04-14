@@ -1,5 +1,6 @@
 import BigNumber from 'bignumber.js';
 
+import type { AutoClaimSet, AutoClaimGet } from '../@types/AutoClaim';
 import type Connection from '../@types/Connection';
 import type FarmedAmount from '../@types/FarmedAmount';
 import type OfferSummaryRecord from '../@types/OfferSummaryRecord';
@@ -324,6 +325,15 @@ export default class Wallet extends Service {
 
   async resyncWallet() {
     return this.command<void>('set_wallet_resync_on_startup');
+  }
+
+  // Clawback
+  async setAutoClaim(args: AutoClaimSet) {
+    return this.command<AutoClaimSet>('set_auto_claim', args);
+  }
+
+  async getAutoClaim() {
+    return this.command<AutoClaimGet>('get_auto_claim');
   }
 
   onSyncChanged(callback: (data: any, message: Message) => void, processData?: (data: any) => any) {

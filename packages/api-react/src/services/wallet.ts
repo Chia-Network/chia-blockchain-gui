@@ -39,6 +39,7 @@ const apiWithTag = api.enhanceEndpoints({
     'CATs',
     'DaemonKey',
     'Notification',
+    'AutoClaim',
   ],
 });
 
@@ -1414,6 +1415,13 @@ export const walletApi = apiWithTag.injectEndpoints({
     getProofsForRoot: query(build, VC, 'getProofsForRoot'),
 
     revokeVC: mutation(build, VC, 'revokeVC'),
+    // clawback
+    setAutoClaim: mutation(build, WalletService, 'setAutoClaim', {
+      invalidatesTags: [{ type: 'AutoClaim' }],
+    }),
+    getAutoClaim: query(build, WalletService, 'getAutoClaim', {
+      providesTags: (result) => (result ? [{ type: 'AutoClaim' }] : []),
+    }),
   }),
 });
 
