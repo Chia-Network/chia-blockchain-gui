@@ -307,7 +307,6 @@ export type GetNFTPriceWithoutRoyaltiesResult = {
 export function getNFTPriceWithoutRoyalties(
   summary: OfferSummaryRecord
 ): GetNFTPriceWithoutRoyaltiesResult | undefined {
-  // eslint-disable-next-line no-restricted-syntax -- We are returning a value, so cannot use .forEach()
   for (const assetType of [OfferAsset.TOKEN, OfferAsset.CHIA]) {
     const assetId = offerAssetIdForAssetType(assetType, summary);
     if (assetId) {
