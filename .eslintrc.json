@@ -152,7 +152,23 @@
       }
     ],
     // We do not see the value of this turned on
-    "class-methods-use-this": "off"
+    "class-methods-use-this": "off",
+    // allow for-of loops
+    "no-restricted-syntax": [
+      "error",
+      {
+        "selector": "ForInStatement",
+        "message": "for..in loops iterate over the entire prototype chain, which is virtually never what you want. Use Object.{keys,values,entries}, and iterate over the resulting array."
+      },
+      {
+        "selector": "LabeledStatement",
+        "message": "Labels are a form of GOTO; using them makes code confusing and hard to maintain and understand."
+      },
+      {
+        "selector": "WithStatement",
+        "message": "`with` is disallowed in strict mode because it makes code impossible to predict and optimize."
+      }
+    ]
 
     //
     // ** Before adding or updating any rule, please read the comments at the top of this file
