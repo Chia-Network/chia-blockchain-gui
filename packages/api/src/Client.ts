@@ -51,6 +51,8 @@ export default class Client extends EventEmitter {
 
   private connectedPromiseResponse: { resolve: any; reject: any } | null = null;
 
+  private connectServicePromise: Map<ServiceNameValue, Promise<void>> = new Map();
+
   private daemon: Daemon;
 
   private closed = false;
@@ -65,7 +67,7 @@ export default class Client extends EventEmitter {
     super();
 
     this.options = {
-      timeout: 60 * 1000 * 10, // 10 minutes
+      timeout: 30 * 1000, // 30 seconds
       camelCase: true,
       debug: false,
       services: [],
@@ -200,43 +202,54 @@ export default class Client extends EventEmitter {
 
   async startService(args: { service: ServiceNameValue; disableWait?: boolean }) {
     const { service, disableWait } = args;
-    if (this.started.has(service)) {
-      return;
-    }
 
-    const response = await this.daemon.isRunning({ service });
-    if (!response.isRunning) {
-      log(`Starting service: ${service}`);
-      await this.daemon.startService({ service });
-    }
-
-    // wait for service initialisation
-    log(`Waiting for ping from service: ${service}`);
-    if (!disableWait) {
-      while (true) {
-        try {
-          const { data } = <Message & { data: Response }>await this.send(
-            new Message({
-              command: 'ping',
-              origin: this.origin,
-              destination: service,
-            }),
-            1000
-          );
-
-          if (data.success) {
-            break;
-          }
-        } catch (error) {
-          await sleep(1000);
-        }
+    /*
+     eslint-disable-next-line no-async-promise-executor
+    */
+    const startServiceTask = new Promise<void>(async (resolve) => {
+      if (this.started.has(service)) {
+        resolve();
+        return;
       }
 
-      log(`Service: ${service} started`);
-    }
+      const response = await this.daemon.isRunning({ service });
+      if (!response.isRunning) {
+        log(`Starting service: ${service}`);
+        await this.daemon.startService({ service });
+      }
 
-    this.started.add(service);
-    this.emit('state', this.getState());
+      // wait for service initialisation
+      log(`Waiting for ping from service: ${service}`);
+      if (!disableWait) {
+        while (true) {
+          try {
+            const { data } = <Message & { data: Response }>await this.send(
+              new Message({
+                command: 'ping',
+                origin: this.origin,
+                destination: service,
+              }),
+              1000
+            );
+
+            if (data.success) {
+              break;
+            }
+          } catch (error) {
+            await sleep(1000);
+          }
+        }
+
+        log(`Service: ${service} started`);
+      }
+
+      this.started.add(service);
+      this.emit('state', this.getState());
+      resolve();
+    });
+
+    this.connectServicePromise.set(service, startServiceTask);
+    await startServiceTask;
   }
 
   private async startServices() {
@@ -285,6 +298,7 @@ export default class Client extends EventEmitter {
     log(`Service: ${service} stopped`);
 
     this.started.delete(service);
+    this.connectServicePromise.delete(service);
     this.emit('state', this.getState());
   }
 
@@ -312,6 +326,7 @@ export default class Client extends EventEmitter {
   private handleClose = () => {
     this.connected = false;
     this.connectedPromise = null;
+    this.connectServicePromise.clear();
 
     this.requests.forEach((request) => {
       request.reject(new Error(`Connection closed`));
@@ -383,6 +398,14 @@ export default class Client extends EventEmitter {
     if (!connected) {
       log('API is not connected trying to connect');
       await this.connect();
+    }
+
+    if (message.destination !== ServiceName.DAEMON && message.command !== 'ping') {
+      const isServiceLaunched = this.connectServicePromise.has(message.destination);
+      if (!isServiceLaunched) {
+        throw new Error(`Service:${message.destination} has not yet been launched`);
+      }
+      await this.connectServicePromise.get(message.destination);
     }
 
     return new Promise((resolve, reject) => {
