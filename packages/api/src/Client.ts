@@ -203,12 +203,8 @@ export default class Client extends EventEmitter {
   async startService(args: { service: ServiceNameValue; disableWait?: boolean }) {
     const { service, disableWait } = args;
 
-    /*
-     eslint-disable-next-line no-async-promise-executor
-    */
-    const startServiceTask = new Promise<void>(async (resolve) => {
+    const startServiceAction = async () => {
       if (this.started.has(service)) {
-        resolve();
         return;
       }
 
@@ -245,11 +241,13 @@ export default class Client extends EventEmitter {
 
       this.started.add(service);
       this.emit('state', this.getState());
-      resolve();
-    });
+    };
 
+    const startServiceTask = startServiceAction();
     this.connectServicePromise.set(service, startServiceTask);
-    await startServiceTask;
+    startServiceTask.finally(() => {
+      this.connectServicePromise.delete(service);
+    });
   }
 
   private async startServices() {
@@ -401,11 +399,10 @@ export default class Client extends EventEmitter {
     }
 
     if (message.destination !== ServiceName.DAEMON && message.command !== 'ping') {
-      const isServiceLaunched = this.connectServicePromise.has(message.destination);
-      if (!isServiceLaunched) {
-        throw new Error(`Service:${message.destination} has not yet been launched`);
+      const isServiceLaunching = this.connectServicePromise.has(message.destination);
+      if (isServiceLaunching) {
+        await this.connectServicePromise.get(message.destination);
       }
-      await this.connectServicePromise.get(message.destination);
     }
 
     return new Promise((resolve, reject) => {
