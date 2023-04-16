@@ -245,7 +245,7 @@ export default class Client extends EventEmitter {
 
     const startServiceTask = startServiceAction();
     this.connectServicePromise.set(service, startServiceTask);
-    startServiceTask.finally(() => {
+    await startServiceTask.finally(() => {
       this.connectServicePromise.delete(service);
     });
   }
