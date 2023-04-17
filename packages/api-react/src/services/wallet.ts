@@ -1422,6 +1422,10 @@ export const walletApi = apiWithTag.injectEndpoints({
     getAutoClaim: query(build, WalletService, 'getAutoClaim', {
       providesTags: (result) => (result ? [{ type: 'AutoClaim' }] : []),
     }),
+
+    getCoinsByType: query(build, WalletService, 'getCoinsByType'),
+
+    spendClawbackCoins: mutation(build, WalletService, 'spendClawbackCoins'),
   }),
 });
 
@@ -1535,4 +1539,9 @@ export const {
   useAddVCProofsMutation,
   useGetProofsForRootQuery,
   useRevokeVCMutation,
+  // clawback
+  useSetAutoClaimMutation,
+  useGetAutoClaimQuery,
+  useGetCoinsByTypeQuery,
+  useSpendClawbackCoinsMutation,
 } = walletApi;

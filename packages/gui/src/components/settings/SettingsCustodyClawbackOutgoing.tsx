@@ -1,14 +1,14 @@
 import { Flex, Form, TextField, Button } from '@chia-network/core';
+import {
+  useClawbackDefaultTime,
+  type ClawbackDefaultTimeInput,
+  clawbackDefaultTimeDefaults,
+} from '@chia-network/wallets';
 import { Trans } from '@lingui/macro';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { Box, Typography } from '@mui/material';
 import React from 'react';
 import { useForm } from 'react-hook-form';
-
-import useClawbackDefaultTime, {
-  type ClawbackDefaultTimeInput,
-  clawbackDefaultTimeDefaults,
-} from '../../hooks/useClawbackDefaultTime';
 
 const fields = [
   { name: 'days', label: 'Days', max: 365 },

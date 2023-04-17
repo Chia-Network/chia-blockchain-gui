@@ -1,11 +1,13 @@
 import BigNumber from 'bignumber.js';
 
-import type { AutoClaimSet, AutoClaimGet } from '../@types/AutoClaim';
+import type AutoClaim from '../@types/AutoClaim';
+import Coin2 from '../@types/Coin2';
 import type Connection from '../@types/Connection';
 import type FarmedAmount from '../@types/FarmedAmount';
 import type OfferSummaryRecord from '../@types/OfferSummaryRecord';
 import type PoolWalletStatus from '../@types/PoolWalletStatus';
 import type PrivateKey from '../@types/PrivateKey';
+import type PuzzleDecorator from '../@types/PuzzleDecorator';
 import type TradeRecord from '../@types/TradeRecord';
 import type Transaction from '../@types/Transaction';
 import type { WalletListItem } from '../@types/Wallet';
@@ -95,6 +97,7 @@ export default class Wallet extends Service {
     fee: BigNumber;
     address: string;
     memos?: string[];
+    puzzleDecorator?: PuzzleDecorator;
   }) {
     return this.command<{ transaction: Transaction; transactionId: string }>('send_transaction', args);
   }
@@ -328,12 +331,25 @@ export default class Wallet extends Service {
   }
 
   // Clawback
-  async setAutoClaim(args: AutoClaimSet) {
-    return this.command<AutoClaimSet>('set_auto_claim', args);
+  async setAutoClaim(args: AutoClaim) {
+    return this.command<AutoClaim>('set_auto_claim', args);
   }
 
   async getAutoClaim() {
-    return this.command<AutoClaimGet>('get_auto_claim');
+    return this.command<AutoClaim>('get_auto_claim');
+  }
+
+  async getCoinsByType(args: { walletId: number; coinType: number; start?: number; end?: number; reverse?: boolean }) {
+    return this.command<{
+      coins: Coin2[];
+      walletId: number;
+    }>('get_coins_by_type', args);
+  }
+
+  async spendClawbackCoins(args: { coinIds: string[]; fee: number | BigNumber }) {
+    return this.command<{
+      spentCoins: string[];
+    }>('spend_clawback_coins', args);
   }
 
   onSyncChanged(callback: (data: any, message: Message) => void, processData?: (data: any) => any) {

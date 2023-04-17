@@ -1,15 +1,10 @@
 import type BigNumber from 'bignumber.js';
 
-export type AutoClaimSet = {
+type AutoClaim = {
   enabled: boolean;
   txFee: number | BigNumber;
   minAmount: number | BigNumber;
   batchSize: number;
 };
 
-export type AutoClaimGet = {
-  autoClaim: boolean;
-  autoClaimTxFee: number | BigNumber;
-  autoClaimMinAmount: number | BigNumber;
-  autoClaimBatchSize: number;
-};
+export default AutoClaim;

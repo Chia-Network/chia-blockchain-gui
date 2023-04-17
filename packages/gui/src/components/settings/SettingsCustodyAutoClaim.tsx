@@ -1,3 +1,4 @@
+import { useGetAutoClaimQuery, useSetAutoClaimMutation } from '@chia-network/api-react';
 import {
   Flex,
   SettingsText,
@@ -6,16 +7,18 @@ import {
   ButtonLoading,
   EstimatedFee,
   FeeTxType,
+  chiaToMojo,
   useCurrencyCode,
 } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { Box, Typography } from '@mui/material';
-import React, { useState } from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
 
-export default function SettingsCustodyClawbackOutgoing(props) {
-  const [fee, setFee] = useState(null);
+export default function SettingsCustodyAutoClaim(props) {
+  const [setAutoClaim, { isLoading: isSetAutoClaimLoading }] = useSetAutoClaimMutation();
+  const { data: autoClaimData, isLoading } = useGetAutoClaimQuery();
 
   const currencyCode = useCurrencyCode();
 
@@ -23,14 +26,36 @@ export default function SettingsCustodyClawbackOutgoing(props) {
     defaultValues: undefined,
   });
 
-  async function handleSubmit(values) {
-    setFee(values.fee);
+  async function handleSubmit({ fee }) {
+    const feeInMojos = chiaToMojo(fee);
+    await setAutoClaim({
+      enabled: true,
+      txFee: feeInMojos,
+      minAmount: feeInMojos,
+      batchSize: 50,
+    }).unwrap();
   }
+
+  async function disableAutoClaim() {
+    await setAutoClaim({
+      enabled: false,
+      txFee: 0,
+      minAmount: 0,
+      batchSize: 50,
+    }).unwrap();
+  }
+
+  if (isLoading) {
+    return 'Loading...';
+  }
+
+  const isAutoClaimEnabled = autoClaimData?.enabled;
+  const autoClaimFee = autoClaimData?.txFee;
 
   return (
     <Box {...props}>
       <Form methods={methods} onSubmit={handleSubmit}>
-        {fee && (
+        {isAutoClaimEnabled && (
           <div>
             <Flex gap={2} sx={{ alignItems: 'center' }}>
               <Typography component="div" variant="subtitle2">
@@ -44,11 +69,11 @@ export default function SettingsCustodyClawbackOutgoing(props) {
               </Typography>
               <ButtonLoading
                 size="small"
-                // type="submit"
+                loading={isSetAutoClaimLoading}
                 variant="outlined"
                 color="secondary"
-                // data-testid="SettingsCustodyClawbackOutgoing-save"
-                onClick={() => setFee(null)}
+                data-testid="SettingsCustodyAutoClaim-disable"
+                onClick={() => disableAutoClaim()}
                 sx={{ whiteSpace: 'nowrap', minWidth: 'auto' }}
               >
                 <Trans>Disable Auto claim</Trans>
@@ -57,7 +82,7 @@ export default function SettingsCustodyClawbackOutgoing(props) {
             <Box sx={{ marginTop: 2 }}>
               <SettingsText>
                 <Trans>
-                  You will pay a fee {fee} {currencyCode} when auto claiming Clawback transaction.
+                  You will pay a fee {autoClaimFee} {currencyCode} when auto claiming Clawback transaction.
                 </Trans>{' '}
                 <br />
                 <Trans>Transactions with values smaller than the fee will not be auto claimed.</Trans>
@@ -65,7 +90,7 @@ export default function SettingsCustodyClawbackOutgoing(props) {
             </Box>
           </div>
         )}
-        {!fee && (
+        {!isAutoClaimEnabled && (
           <>
             <SettingsTitle>
               <Trans>Please select the transaction fee to enable Auto claim:</Trans>
@@ -77,9 +102,9 @@ export default function SettingsCustodyClawbackOutgoing(props) {
                 variant="filled"
                 name="fee"
                 color="secondary"
-                // disabled={isSubmitting}
+                disabled={isSetAutoClaimLoading}
                 label={<Trans>Fee</Trans>}
-                // data-testid="WalletSend-fee"
+                data-testid="SettingsCustodyAutoClaim-fee"
                 fullWidth
                 sx={{ width: '380px' }}
                 txType={FeeTxType.walletSendXCH}
@@ -90,7 +115,8 @@ export default function SettingsCustodyClawbackOutgoing(props) {
                 type="submit"
                 variant="outlined"
                 color="secondary"
-                data-testid="SettingsCustodyClawbackOutgoing-save"
+                loading={isSetAutoClaimLoading}
+                data-testid="SettingsCustodyAutoClaim-save"
                 sx={{ height: '55px' }}
               >
                 <Trans>Save</Trans>
