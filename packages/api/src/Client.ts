@@ -67,7 +67,7 @@ export default class Client extends EventEmitter {
     super();
 
     this.options = {
-      timeout: 30 * 1000, // 30 seconds
+      timeout: 90 * 1000, // 90 seconds
       camelCase: true,
       debug: false,
       services: [],
