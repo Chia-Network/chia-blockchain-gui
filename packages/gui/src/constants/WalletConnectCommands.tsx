@@ -26,6 +26,7 @@ const walletConnectCommands: WalletConnectCommand[] = [
   {
     command: 'getWallets',
     label: <Trans>Get Wallets</Trans>,
+    description: <Trans>Requests a complete listing of the wallets associated with the current wallet key</Trans>,
     service: ServiceName.WALLET,
     bypassConfirm: true,
     params: [
@@ -39,6 +40,7 @@ const walletConnectCommands: WalletConnectCommand[] = [
   {
     command: 'getTransaction',
     label: <Trans>Get Transaction</Trans>,
+    description: <Trans>Requests details for a specific transaction</Trans>,
     service: ServiceName.WALLET,
     bypassConfirm: true,
     params: [
@@ -52,6 +54,7 @@ const walletConnectCommands: WalletConnectCommand[] = [
   {
     command: 'getWalletBalance',
     label: <Trans>Get Wallet Balance</Trans>,
+    description: <Trans>Requests the asset balance for a specific wallet associated with the current wallet key</Trans>,
     service: ServiceName.WALLET,
     bypassConfirm: true,
     params: [
@@ -68,6 +71,7 @@ const walletConnectCommands: WalletConnectCommand[] = [
   {
     command: 'getCurrentAddress',
     label: <Trans>Get Current Address</Trans>,
+    description: <Trans>Requests the current receive address associated with the current wallet key</Trans>,
     service: ServiceName.WALLET,
     bypassConfirm: true,
     params: [
@@ -158,6 +162,7 @@ const walletConnectCommands: WalletConnectCommand[] = [
   {
     command: 'verifySignature',
     label: <Trans>Verify Signature</Trans>,
+    description: <Trans>Requests the verification status for a digital signature</Trans>,
     service: ServiceName.WALLET,
     bypassConfirm: true,
     params: [
@@ -193,6 +198,7 @@ const walletConnectCommands: WalletConnectCommand[] = [
   {
     command: 'getNextAddress',
     label: <Trans>Get Next Address</Trans>,
+    description: <Trans>Requests a new receive address associated with the current wallet key</Trans>,
     service: ServiceName.WALLET,
     bypassConfirm: true,
     params: [
@@ -217,6 +223,7 @@ const walletConnectCommands: WalletConnectCommand[] = [
   {
     command: 'getSyncStatus',
     label: <Trans>Get Wallet Sync Status</Trans>,
+    description: <Trans>Requests the syncing status of current wallet</Trans>,
     service: ServiceName.WALLET,
     bypassConfirm: true,
   },
@@ -225,6 +232,7 @@ const walletConnectCommands: WalletConnectCommand[] = [
   {
     command: 'getAllOffers',
     label: <Trans>Get all Offers</Trans>,
+    description: <Trans>Requests a complete listing of the offers associated with the current wallet key</Trans>,
     service: ServiceName.WALLET,
     bypassConfirm: true,
     params: [
@@ -269,6 +277,7 @@ const walletConnectCommands: WalletConnectCommand[] = [
   {
     command: 'getOffersCount',
     label: <Trans>Get Offers Count</Trans>,
+    description: <Trans>Requests the number of offers associated with the current wallet key</Trans>,
     service: ServiceName.WALLET,
     bypassConfirm: true,
   },
@@ -331,6 +340,7 @@ const walletConnectCommands: WalletConnectCommand[] = [
   {
     command: 'checkOfferValidity',
     label: <Trans>Check Offer Validity</Trans>,
+    description: <Trans>Requests the validity status of a specific offer</Trans>,
     service: ServiceName.WALLET,
     bypassConfirm: true,
     params: [
@@ -365,6 +375,7 @@ const walletConnectCommands: WalletConnectCommand[] = [
   {
     command: 'getOfferSummary',
     label: <Trans>Get Offer Summary</Trans>,
+    description: <Trans>Requests the summarized details of a specific offer</Trans>,
     service: ServiceName.WALLET,
     bypassConfirm: true,
     params: [
@@ -378,6 +389,7 @@ const walletConnectCommands: WalletConnectCommand[] = [
   {
     command: 'getOfferData',
     label: <Trans>Get Offer Data</Trans>,
+    description: <Trans>Requests the raw offer data for a specific offer</Trans>,
     service: ServiceName.WALLET,
     bypassConfirm: true,
     params: [
@@ -392,6 +404,7 @@ const walletConnectCommands: WalletConnectCommand[] = [
     command: 'getOfferRecord',
     label: <Trans>Get Offer Record</Trans>,
     service: ServiceName.WALLET,
+    description: <Trans>Requests the details for a specific offer</Trans>,
     bypassConfirm: true,
     params: [
       {
@@ -438,6 +451,7 @@ const walletConnectCommands: WalletConnectCommand[] = [
   {
     command: 'getCATAssetId',
     label: <Trans>Get CAT Asset Id</Trans>,
+    description: <Trans>Requests the CAT asset ID for a specific CAT wallet</Trans>,
     service: ServiceName.WALLET,
     bypassConfirm: true,
     params: [
@@ -512,6 +526,12 @@ const walletConnectCommands: WalletConnectCommand[] = [
   {
     command: 'getNFTs',
     label: <Trans>Get NFTs</Trans>,
+    description: (
+      <Trans>
+        Requests a full or paginated listing of NFTs associated with one or more wallets associated with the current
+        wallet key
+      </Trans>
+    ),
     service: ServiceName.WALLET,
     bypassConfirm: true,
     params: [
@@ -536,6 +556,7 @@ const walletConnectCommands: WalletConnectCommand[] = [
   {
     command: 'getNFTInfo',
     label: <Trans>Get NFT Info</Trans>,
+    description: <Trans>Requests details for a specific NFT</Trans>,
     service: ServiceName.WALLET,
     bypassConfirm: true,
     params: [
@@ -582,6 +603,11 @@ const walletConnectCommands: WalletConnectCommand[] = [
   {
     command: 'getNFTsCount',
     label: <Trans>Get NFTs Count</Trans>,
+    description: (
+      <Trans>
+        Requests the number of NFTs associated with one or more wallets associated with the current wallet key
+      </Trans>
+    ),
     service: ServiceName.WALLET,
     bypassConfirm: true,
     params: [
