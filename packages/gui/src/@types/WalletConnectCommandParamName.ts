@@ -31,7 +31,7 @@ enum WalletConnectCommandParamName {
   VALIDATE_ONLY = 'validateOnly',
   WALLET_ID = 'walletId',
   WALLET_IDS = 'walletIds',
-  WALLETS_IDS_AND_AMOUNTS = 'walletIdsAndAmounts',
+  WALLET_IDS_AND_AMOUNTS = 'walletIdsAndAmounts',
   WAIT_FOR_CONFIRMATION = 'waitForConfirmation',
   DID = 'did',
   NFT_LAUNCHER_ID = 'nftLauncherId',
