@@ -433,7 +433,7 @@ export const walletApi = apiWithTag.injectEndpoints({
     }),
 
     logIn: mutation(build, WalletService, 'logIn', {
-      invalidatesTags: ['LoggedInFingerprint'],
+      invalidatesTags: ['LoggedInFingerprint', 'Address', 'Wallets', 'Transactions', 'WalletBalance', 'Notification'],
     }),
 
     getPrivateKey: query(build, WalletService, 'getPrivateKey', {
