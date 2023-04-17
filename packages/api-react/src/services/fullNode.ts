@@ -82,6 +82,7 @@ export const fullNodeApi = apiWithTag.injectEndpoints({
     }),
 
     getBlockchainState: query(build, FullNode, 'getBlockchainState', {
+      providesTags: ['BlockchainState'],
       transformResponse: (response) => response.blockchainState,
       onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, api, [
         {
