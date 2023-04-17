@@ -51,7 +51,7 @@ export default function useNFTVerifyHash(nftId?: string, options: UseNFTVerifyHa
       // use only first uri when onlyFirst is true
       const urisToCheck = onlyFirst ? [uris[0]] : uris;
       let first = {};
-      // eslint-disable-next-line no-restricted-syntax -- we are reading in sequence
+
       for (const uri of urisToCheck) {
         // eslint-disable-next-line no-await-in-loop -- we are reading in sequence
         const response = await get(uri, {
