@@ -67,12 +67,14 @@ const PlotAddNFT = forwardRef((props: Props, ref) => {
         <>
           <Typography variant="subtitle1">
             <Trans>
-              {
-                'Select your Plot NFT from the dropdown or create a new one. If you do not select a plot NFT, the plots you make cannot be used with standard pools later on'
-              }
-              <Link target="_blank" href="https://github.com/Chia-Network/chia-blockchain/wiki/Pooling-User-Guide">
-                Learn more
+              Plotting to a Plot NFT allows you the flexibility to join a pool or solo farm. You can easily switch
+              between different pools or solo farming at any time. If you choose not to plot to a Plot NFT, you will
+              need to replot in order to join any of the standard pools.
             </Trans>
+            &nbsp;
+            <Link target="_blank" href="https://docs.chia.net/pool-farming">
+              <Trans>Learn more</Trans>
+            </Link>
           </Typography>
 
           <Grid spacing={2} direction="column" container>
