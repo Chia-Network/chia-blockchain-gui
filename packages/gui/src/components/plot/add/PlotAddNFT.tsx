@@ -56,7 +56,7 @@ const PlotAddNFT = forwardRef((props: Props, ref) => {
             <Trans>Plot to a Plot NFT</Trans>
           </Box>
           <Typography variant="body1" color="textSecondary">
-            <Trans>(Cannot be changed later)</Trans>
+            <Trans>(Recommended)</Trans>
           </Typography>
         </Flex>
       }
