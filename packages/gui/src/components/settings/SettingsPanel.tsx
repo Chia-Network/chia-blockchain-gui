@@ -13,9 +13,6 @@ import {
   StateTypography,
   State,
   TooltipIcon,
-  Link,
-  NewerAppVersionAvailable,
-  useAppVersion,
 } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Help as HelpIcon } from '@mui/icons-material';
@@ -35,7 +32,6 @@ export default function SettingsPanel() {
   const [changePassphraseOpen, setChangePassphraseOpen] = React.useState(false);
   const [removePassphraseOpen, setRemovePassphraseOpen] = React.useState(false);
   const [addPassphraseOpen, setAddPassphraseOpen] = React.useState(false);
-  const { version } = useAppVersion();
 
   if (isLoading) {
     return <Suspender />;
@@ -162,21 +158,6 @@ export default function SettingsPanel() {
   return (
     <SettingsApp>
       <Flex flexDirection="column" gap={1}>
-        <SettingsLabel>
-          <Flex gap={1} alignItems="center">
-            <Trans>Chia Blockchain version</Trans>
-          </Flex>
-        </SettingsLabel>
-
-        <Link
-          onClick={() => {
-            openDialog(<NewerAppVersionAvailable currentVersion={version} />);
-          }}
-          sx={{ marginBottom: '20px' }}
-        >
-          <Trans>Check for updates</Trans>
-        </Link>
-
         <SettingsLabel>
           <Flex gap={1} alignItems="center">
             <Trans>Derivation Index</Trans>

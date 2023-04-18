@@ -115,8 +115,8 @@ export default function LayoutDashboard(props: LayoutDashboardProps) {
     emoji: ``,
     color: 'green',
   });
-  const [skipVersion, setSkipVersion] = useLocalStorage('skipVersion', '');
-  const { latestVersion, downloadUrl } = useGetLatestVersionFromWebsite(skipVersion !== '');
+  const [skipVersion, setSkipVersion] = useLocalStorage<string>('skipVersion', '');
+  const { latestVersion, downloadUrl, blogUrl } = useGetLatestVersionFromWebsite(skipVersion !== '');
   const { version } = useAppVersion();
 
   const openDialog = useOpenDialog();
@@ -160,7 +160,7 @@ export default function LayoutDashboard(props: LayoutDashboardProps) {
     if (isNewVersionBannerShown()) {
       return (
         <Flex
-          gap="16px"
+          gap={2}
           flexDirection="row"
           justifyContent="center"
           style={{
@@ -175,6 +175,13 @@ export default function LayoutDashboard(props: LayoutDashboardProps) {
           <Button color="secondary" variant="outlined" size="small" onClick={() => setSkipVersion(latestVersion || '')}>
             <Trans>Skip</Trans>
           </Button>
+          {blogUrl && (
+            <Link target="_blank" href={blogUrl} sx={{ textDecoration: 'none !important' }}>
+              <Button color="secondary" variant="outlined" size="small" sx={{ boxShadow: 'none' }}>
+                <Trans>What's New</Trans>
+              </Button>
+            </Link>
+          )}
           <Link target="_blank" href={downloadUrl} sx={{ textDecoration: 'none !important' }}>
             <Button size="small" variant="contained" color="primary" sx={{ boxShadow: 'none' }}>
               <Trans>Download</Trans>

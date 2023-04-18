@@ -1,9 +1,9 @@
-import { useLocalStorage } from '@chia-network/api-react';
 import { Trans } from '@lingui/macro';
 import { Dialog, DialogTitle, DialogContent, DialogActions, Typography, Box } from '@mui/material';
 import React from 'react';
 
 import useGetLatestVersionFromWebsite from '../../hooks/useGetLatestVersionFromWebsite';
+import useOpenExternal from '../../hooks/useOpenExternal';
 import Button from '../Button';
 import Flex from '../Flex';
 import Link from '../Link';
@@ -15,9 +15,15 @@ interface AppVersionWarningProps {
 
 export default function AppVersionWarning(props: AppVersionWarningProps) {
   const { currentVersion } = props;
-  const { latestVersion, isLoading: isLoadingVersion, downloadUrl } = useGetLatestVersionFromWebsite(false);
+  const {
+    latestVersion,
+    isLoading: isLoadingVersion,
+    downloadUrl,
+    releaseNotesUrl,
+    blogUrl,
+  } = useGetLatestVersionFromWebsite(false);
   const [open, setOpen] = React.useState<boolean>(true);
-  const [, setSkipVersion] = useLocalStorage('skipVersion', '');
+  const openExternal = useOpenExternal();
 
   function renderSpinner() {
     return (
@@ -30,16 +36,33 @@ export default function AppVersionWarning(props: AppVersionWarningProps) {
   function renderVersions() {
     return (
       <Flex flexDirection="column" gap={1}>
-        <Typography variant="body2" color="textSecondary">
-          <Trans>Your current version:</Trans> {currentVersion}
-          <br />
-          <Trans>Latest version:</Trans> {latestVersion}
-          <br />
-          <br />
-          <Link target="_blank" href={downloadUrl}>
-            <Trans>Open downloads in the browser</Trans>
+        <Flex flexDirection="row" gap={1}>
+          <Typography variant="body1" color="textPrimary">
+            <Trans>Your Current Version:</Trans>
+          </Typography>
+          <Typography variant="body1" color="textSecondary">
+            {currentVersion}
+          </Typography>
+        </Flex>
+        <Flex flexDirection="row" gap={1}>
+          <Typography variant="body1" color="textPrimary">
+            <Trans>Latest Version:</Trans>
+          </Typography>
+          <Typography variant="body1" color="textSecondary">
+            {latestVersion}
+          </Typography>
+        </Flex>
+        <br />
+        {blogUrl && (
+          <Link target="_blank" href={blogUrl}>
+            <Trans>What's New</Trans>
           </Link>
-        </Typography>
+        )}
+        {releaseNotesUrl && (
+          <Link target="_blank" href={releaseNotesUrl}>
+            <Trans>Release Notes</Trans>
+          </Link>
+        )}
       </Flex>
     );
   }
@@ -47,8 +70,8 @@ export default function AppVersionWarning(props: AppVersionWarningProps) {
   function renderUpToDate() {
     return (
       <Box sx={{ padding: '0 0 60px 0' }}>
-        <Typography variant="body2" color="textSecondary">
-          <Trans>Chia Blockchain {latestVersion} is currently the newest version available.</Trans>
+        <Typography variant="body1" color="textPrimary">
+          <Trans>Chia {latestVersion} is currently the latest version available.</Trans>
         </Typography>
       </Box>
     );
@@ -63,7 +86,7 @@ export default function AppVersionWarning(props: AppVersionWarningProps) {
           ) : latestVersion === currentVersion ? (
             <Trans>You're up to date</Trans>
           ) : (
-            <Trans>A new version of Chia Blockchain GUI is available</Trans>
+            <Trans>A new version of Chia is available!</Trans>
           )}
         </DialogTitle>
         <DialogContent>
@@ -78,19 +101,18 @@ export default function AppVersionWarning(props: AppVersionWarningProps) {
             variant="outlined"
             style={{ marginBottom: '8px', marginRight: '8px' }}
           >
-            <Trans>Close dialog</Trans>
+            <Trans>Close</Trans>
           </Button>
-          {!isLoadingVersion && latestVersion !== currentVersion && (
+          {!isLoadingVersion && latestVersion !== currentVersion && downloadUrl && (
             <Button
               onClick={() => {
-                setSkipVersion(latestVersion || '');
-                setOpen(false);
+                openExternal(downloadUrl);
               }}
               color="primary"
               variant="contained"
               style={{ marginBottom: '8px', marginRight: '8px' }}
             >
-              <Trans>Skip this version</Trans>
+              <Trans>Go To Download Page</Trans>
             </Button>
           )}
         </DialogActions>

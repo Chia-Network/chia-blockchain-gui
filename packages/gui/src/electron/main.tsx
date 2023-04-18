@@ -765,7 +765,7 @@ function getMenuTemplate() {
           },
         },
         {
-          label: i18n._(/* i18n */ { id: 'Check for updates...' }),
+          label: i18n._(/* i18n */ { id: 'Check for Updates...' }),
           click: () => {
             mainWindow?.webContents.send('checkForUpdates');
           },
