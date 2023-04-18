@@ -7,7 +7,20 @@ export { default as FullNode } from './FullNode';
 export { default as Home } from './Home';
 export { default as Keys } from './Keys';
 export { default as LinkSmall } from './Link';
-export { default as NFTs, NFTsSmall, Reload, Copy } from './NFTs';
+export {
+  default as NFTs,
+  NFTsSmall,
+  Reload,
+  Copy,
+  Filter,
+  Folder,
+  Inbox,
+  Profile,
+  Unassigned,
+  Plus,
+  ShowHide,
+  Trash,
+} from './NFTs';
 export { default as Offering } from './Offering';
 export { default as Offers, OffersSmall } from './Offers';
 export { default as Plot } from './Plot';

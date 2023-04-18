@@ -67,21 +67,24 @@ export default function NFTProvider(props: NFTProviderProps) {
 
   const [, setChanges] = useStateAbort<Change[]>([]);
 
+  // NFT profile counts in NFTProfileDropdown
+  const [nftsCounts, setNftsCounts] = useStateAbort<Record<string, number>>({});
+
   const metadataAdd = limit(concurrency);
 
   useNFTCoinAdded((data) => {
-    // console.log('NFT coin added', data);
-
     const { nftId } = data;
 
     setChanges((prevChanges) => [...prevChanges, { type: 'add', nftId }]);
   });
 
-  async function fetchNFTsCount(walletId: number, signal?: AbortSignal) {
+  async function fetchNFTsCount(walletId: number | undefined, signal?: AbortSignal) {
     const { total: count } = await getNFTsCount({
       walletIds: [walletId],
       signal,
     }).unwrap();
+
+    setNftsCounts(Object.assign(nftsCounts, { [walletId || 0]: count }), signal); // 0 is the default wallet (All NFTs)
 
     return count;
   }
@@ -321,6 +324,7 @@ export default function NFTProvider(props: NFTProviderProps) {
     }
 
     try {
+      await fetchNFTsCount(undefined, signal);
       await Promise.all(nftWallets.map(processWallet));
     } catch (err) {
       setError(err as Error, signal);
@@ -449,8 +453,9 @@ export default function NFTProvider(props: NFTProviderProps) {
       progress: total > 0 ? (loaded / total) * 100 : 0,
       invalidate,
       getByCoinId,
+      nftsCounts,
     }),
-    [nfts, total, loaded, isLoading, error, invalidate, getByCoinId]
+    [nfts, total, loaded, isLoading, error, invalidate, getByCoinId, nftsCounts]
   );
 
   return <NFTProviderContext.Provider value={context}>{children}</NFTProviderContext.Provider>;

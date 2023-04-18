@@ -12,6 +12,7 @@ const NFTProviderContext = createContext<
       progress: number;
       invalidate: (nftId: string) => Promise<void>;
       getByCoinId: (coinId: string) => Promise<NFTData | undefined>;
+      nftsCounts: Record<string, Record<string, Array<string>>>;
     }
   | undefined
 >(undefined);

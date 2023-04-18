@@ -198,6 +198,7 @@
     "redux": "4.1.2",
     "regenerator-runtime": "0.13.9",
     "seedrandom": "3.0.5",
+    "sortablejs": "1.15.0",
     "stream-browserify": "3.0.0",
     "styled-components": "5.3.3",
     "unique-names-generator": "4.6.0",

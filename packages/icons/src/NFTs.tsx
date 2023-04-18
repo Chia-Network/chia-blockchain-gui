@@ -4,7 +4,15 @@ import React from 'react';
 import NFTsIcon from './images/NFTs.svg';
 import NFTsSmallIcon from './images/NFTsSmall.svg';
 import CopyIcon from './images/copy.svg';
+import FilterIcon from './images/filter.svg';
+import FolderIcon from './images/folder.svg';
+import InboxIcon from './images/inbox.svg';
+import PlusIcon from './images/plus.svg';
+import ProfileIcon from './images/profile.svg';
 import ReloadIcon from './images/reload.svg';
+import ShowHideIcon from './images/show-hide.svg';
+import TrashIcon from './images/trash.svg';
+import UnassignedIcon from './images/unassigned.svg';
 
 export function NFTsSmall(props: SvgIconProps) {
   return <SvgIcon component={NFTsSmallIcon} viewBox="0 0 18 18" {...props} />;
@@ -22,6 +30,67 @@ function CopyIconWithoutFill() {
   // this icons looks bad when filling any color
   return <CopyIcon fill="none" />;
 }
+
 export function Copy(props: SvgIconProps) {
   return <SvgIcon fill="none" component={CopyIconWithoutFill} viewBox="0 0 22 22" {...props} />;
+}
+
+function FilterIconWithoutFill() {
+  return <FilterIcon fill="none" />;
+}
+
+export function Filter(props: SvgIconProps) {
+  return <SvgIcon component={FilterIconWithoutFill} viewBox="0 0 22 22" {...props} />;
+}
+
+function FolderIconWithoutFill() {
+  return <FolderIcon fill="none" />;
+}
+
+export function Folder(props: SvgIconProps) {
+  return <SvgIcon component={FolderIconWithoutFill} viewBox="0 0 22 22" {...props} />;
+}
+
+function InboxIconWithoutFill() {
+  return <InboxIcon fill="none" />;
+}
+
+export function Inbox(props: SvgIconProps) {
+  return <SvgIcon component={InboxIconWithoutFill} {...props} />;
+}
+
+function ProfileIconWithoutFill() {
+  return <ProfileIcon style={{ margin: '0 11px 0 1px' }} fill="none" />;
+}
+
+export function Profile(props: SvgIconProps) {
+  return <SvgIcon component={ProfileIconWithoutFill} {...props} />;
+}
+
+function UnassignedIconWithoutFill() {
+  return <UnassignedIcon fill="none" style={{ marginRight: '10px' }} />;
+}
+
+export function Unassigned(props: SvgIconProps) {
+  return <SvgIcon component={UnassignedIconWithoutFill} {...props} />;
+}
+
+function ShowHideWithoutFill() {
+  return <ShowHideIcon fill="none" />;
+}
+
+export function ShowHide(props: SvgIconProps) {
+  return <SvgIcon component={ShowHideWithoutFill} viewBox="0 0 22 22" {...props} />;
+}
+
+export function Plus(props: SvgIconProps) {
+  return <SvgIcon component={PlusIcon} viewBox="0 0 22 22" {...props} />;
+}
+
+function TrashIconWithoutFill() {
+  return <TrashIcon fill="none" />;
+}
+
+export function Trash(props: SvgIconProps) {
+  return <SvgIcon component={TrashIconWithoutFill} {...props} />;
 }
