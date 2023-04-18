@@ -8,6 +8,7 @@ import {
   EstimatedFee,
   FeeTxType,
   chiaToMojo,
+  mojoToChia,
   useCurrencyCode,
 } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
@@ -50,7 +51,7 @@ export default function SettingsCustodyAutoClaim(props) {
   }
 
   const isAutoClaimEnabled = autoClaimData?.enabled;
-  const autoClaimFee = autoClaimData?.txFee;
+  const autoClaimFee = autoClaimData?.txFee ? mojoToChia(autoClaimData.txFee) : 0;
 
   return (
     <Box {...props}>
