@@ -1508,14 +1508,10 @@ export default function OfferShareDialog(props: OfferShareDialogProps) {
         component: OfferShareHashgreenDialog,
         props: commonDialogProps,
       },
-      ...(testnet
-        ? {
-            [OfferSharingService.MintGarden]: {
-              component: OfferShareMintGardenDialog,
-              props: commonDialogProps,
-            },
-          }
-        : {}),
+      [OfferSharingService.MintGarden]: {
+        component: OfferShareMintGardenDialog,
+        props: commonDialogProps,
+      },
       [OfferSharingService.OfferBin]: {
         component: OfferShareOfferBinDialog,
         props: commonDialogProps,
@@ -1549,7 +1545,7 @@ export default function OfferShareDialog(props: OfferShareDialogProps) {
       });
 
     return options;
-  }, [isNFTOffer, testnet, showSendOfferNotificationDialog, address]);
+  }, [isNFTOffer, showSendOfferNotificationDialog, address]);
 
   useEffect(() => {
     if (sendOfferNotificationOpen && offerURL && notificationDestination && notificationDestinationType) {
