@@ -53,7 +53,7 @@ const PlotAddNFT = forwardRef((props: Props, ref) => {
       title={
         <Flex gap={1} alignItems="baseline">
           <Box>
-            <Trans>Make plots portable to pools</Trans>
+            <Trans>Plot to a Plot NFT</Trans>
           </Box>
           <Typography variant="body1" color="textSecondary">
             <Trans>(Cannot be changed later)</Trans>
