@@ -696,6 +696,12 @@ const walletConnectCommands: WalletConnectCommand[] = [
       },
     ],
   },
+  {
+    command: 'postNotification',
+    label: <Trans>Post Notification</Trans>,
+    service: undefined,
+    params: [],
+  },
 ];
 
 export default walletConnectCommands;
