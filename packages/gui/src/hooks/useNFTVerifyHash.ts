@@ -1,4 +1,5 @@
 import type { NFTInfo } from '@chia-network/api';
+import debug from 'debug';
 import { useEffect, useState, useCallback, useMemo } from 'react';
 
 import type Metadata from '../@types/Metadata';
@@ -6,6 +7,8 @@ import compareChecksums from '../util/compareChecksums';
 import useCache from './useCache';
 import useNFT from './useNFT';
 import useNFTMetadata from './useNFTMetadata';
+
+const log = debug('chia-gui:useNFTVerifyHash');
 
 type PreviewState = {
   isVerified: boolean;
@@ -51,34 +54,39 @@ export default function useNFTVerifyHash(nftId?: string, options: UseNFTVerifyHa
 
       // use only first uri when onlyFirst is true
       const urisToCheck = onlyFirst ? [uris[0]] : uris;
-      let first = {};
-
+      let first: PreviewState | undefined;
+      // eslint-disable-next-line no-restricted-syntax -- we are reading in sequence
       for (const uri of urisToCheck) {
-        // eslint-disable-next-line no-await-in-loop -- we are reading in sequence
-        const response = await get(uri, {
-          maxSize: ignoreSizeLimit ? -1 : undefined,
-        });
+        try {
+          // eslint-disable-next-line no-await-in-loop -- we are reading in sequence
+          const response = await get(uri, {
+            maxSize: ignoreSizeLimit ? -1 : undefined,
+          });
 
-        const { checksum, content, headers, uri: localUri } = response;
+          const { checksum, content, headers, uri: localUri } = response;
 
-        if (!first && localUri) {
-          first = {
-            uri: localUri,
-            originalUri: uri,
-            headers,
-            content,
-          };
-        }
+          const isValid = compareChecksums(checksum, hash);
+          if (isValid) {
+            return {
+              content,
+              headers,
+              isVerified: true,
+              originalUri: uri,
+              uri: localUri,
+            };
+          }
 
-        const isValid = compareChecksums(checksum, hash);
-        if (isValid) {
-          return {
-            content,
-            headers,
-            isVerified: true,
-            originalUri: uri,
-            uri: localUri,
-          };
+          if (!first && localUri) {
+            first = {
+              isVerified: false,
+              uri: localUri,
+              originalUri: uri,
+              headers,
+              content,
+            };
+          }
+        } catch (e) {
+          log(`Failed to fetch ${uri}: ${(e as Error).message}`);
         }
       }
 
