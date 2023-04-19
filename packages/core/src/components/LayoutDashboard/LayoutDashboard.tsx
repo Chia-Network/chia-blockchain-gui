@@ -28,6 +28,7 @@ import useGetLatestVersionFromWebsite from '../../hooks/useGetLatestVersionFromW
 import useOpenDialog from '../../hooks/useOpenDialog';
 import EmojiAndColorPicker from '../../screens/SelectKey/EmojiAndColorPicker';
 import SelectKeyRenameForm from '../../screens/SelectKey/SelectKeyRenameForm';
+import compareAppVersions from '../../utils/compareAppVersion';
 import Flex from '../Flex';
 import Link from '../Link';
 import Loading from '../Loading';
@@ -118,6 +119,8 @@ export default function LayoutDashboard(props: LayoutDashboardProps) {
   const [skipVersion, setSkipVersion] = useLocalStorage<string>('skipVersion', '');
   const { latestVersion, downloadUrl, blogUrl } = useGetLatestVersionFromWebsite(skipVersion !== '');
   const { version } = useAppVersion();
+  const versionComparisonResult = latestVersion ? compareAppVersions(version, latestVersion) : 0;
+  const newVersionAvailable = versionComparisonResult === -1;
 
   const openDialog = useOpenDialog();
 
@@ -153,7 +156,7 @@ export default function LayoutDashboard(props: LayoutDashboardProps) {
   }
 
   function isNewVersionBannerShown() {
-    return latestVersion && version && skipVersion !== latestVersion && latestVersion !== version.split('-')[0];
+    return latestVersion && version && skipVersion !== latestVersion && newVersionAvailable;
   }
 
   function renderNewVersionBanner() {
