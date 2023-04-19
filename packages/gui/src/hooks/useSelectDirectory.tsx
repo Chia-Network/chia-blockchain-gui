@@ -5,6 +5,7 @@ import isElectron from 'is-electron';
 import React from 'react';
 
 type Options = {
+  properties?: string[];
   defaultPath?: string;
   buttonLabel?: string;
 };
@@ -22,9 +23,12 @@ export default function useSelectDirectory(
         ...defaultOptions,
         ...options,
       });
-      const filePath = result.filePaths[0];
 
-      return filePath;
+      if (result.canceled) {
+        return undefined;
+      }
+
+      return result.filePaths[0];
     }
 
     openDialog(
