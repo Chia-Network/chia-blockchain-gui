@@ -16,8 +16,6 @@ type PlotAdd = {
   disableBitfieldPlotting?: boolean;
   excludeFinalDir?: boolean;
   overrideK?: boolean;
-  farmerPublicKey?: string;
-  poolPublicKey?: string;
   c: string;
 };
 

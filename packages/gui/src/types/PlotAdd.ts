@@ -1,10 +1,11 @@
 import Fingerprint from './Fingerprint';
 
 type PlotAdd = {
-  plotType?: 'ramplot' | 'diskplot';
+  plotType?: 'ramplot' | 'diskplot' | 'cudaplot';
   bladebitDisableNUMA?: boolean;
   bladebitWarmStart?: boolean;
   bladebitNoCpuAffinity?: boolean;
+  bladebitCompressionLevel?: number;
   bladebit2Cache?: number;
   bladebit2F1Threads?: number;
   bladebit2FpThreads?: number;
@@ -14,11 +15,12 @@ type PlotAdd = {
   bladebit2Alternate?: boolean;
   bladebit2NoT1Direct?: boolean;
   bladebit2NoT2Direct?: boolean;
+  bladebitDeviceIndex?: number;
+  bladebitDisableDirectDownloads?: boolean;
   c: string;
   delay: number;
   disableBitfieldPlotting?: boolean;
   excludeFinalDir?: boolean;
-  farmerPublicKey?: string;
   finalLocation: string;
   fingerprint?: Fingerprint;
   madmaxNumBucketsPhase3?: number;
@@ -33,7 +35,6 @@ type PlotAdd = {
   plotCount: number;
   plotSize: number;
   plotterName: string;
-  poolPublicKey?: string;
   queue: string;
   workspaceLocation: string;
   workspaceLocation2: string;
