@@ -1273,7 +1273,7 @@ export const walletApi = apiWithTag.injectEndpoints({
           endpoint: 'getNFTs',
         },
         {
-          command: 'onNFTCoinTransferred',
+          command: 'onNFTCoinUpdated',
           service: NFT,
           endpoint: 'getNFTs',
         },

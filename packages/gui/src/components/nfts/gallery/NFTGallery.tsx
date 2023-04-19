@@ -17,7 +17,7 @@ import {
 } from '@mui/material';
 import { styled } from '@mui/styles';
 import { xor, intersection /* , sortBy */ } from 'lodash';
-import React, { useMemo } from 'react';
+import React, { useMemo, useCallback, useRef } from 'react';
 import { VirtuosoGrid } from 'react-virtuoso';
 
 import FileType from '../../../@types/FileType';
@@ -34,7 +34,7 @@ import NFTGalleryHero from './NFTGalleryHero';
 import Search from './NFTGallerySearch';
 import SelectedActionsDialog from './SelectedActionsDialog';
 
-function ItemContainer(props: { children: React.ReactNode }) {
+function ItemContainer(props: { children?: React.ReactNode }) {
   const { children, ...rest } = props;
 
   return (
@@ -70,6 +70,11 @@ const Mute = styled('span')(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
+const COMPONENTS = {
+  Item: ItemContainer,
+  List: ListContainer,
+};
+
 export const defaultCacheSizeLimit = 1024; /* MB */
 
 export default function NFTGallery() {
@@ -92,6 +97,9 @@ export default function NFTGallery() {
 
     statistics,
   } = useFilteredNFTs();
+
+  const nftsRef = useRef(nfts);
+  nftsRef.current = nfts;
 
   const [hideSensitiveContent, setHideSensitiveContent] = useHideObjectionableContent();
   const [showFilters, setShowFilters] = usePersistState(false, 'nft-gallery-show-filters');
@@ -140,14 +148,13 @@ export default function NFTGallery() {
 
   const selectedAll = useMemo(() => selectedVisibleNFTs.length === nfts.length, [nfts, selectedVisibleNFTs]);
 
-  async function handleSelectNFT(nftId: string) {
-    if (inMultipleSelectionMode) {
-      setSelectedNFTIds(xor(selectedNFTIds, [nftId]));
+  const handleSelectNFT = useCallback(
+    async (nftId: string) => {
+      setSelectedNFTIds((prevSelectedNFTIds) => xor(prevSelectedNFTIds, [nftId]));
       return false;
-    }
-
-    return true;
-  }
+    },
+    [setSelectedNFTIds]
+  );
 
   function toggleType(type: FileType) {
     setTypes(xor(types, [type]));
@@ -255,11 +262,10 @@ export default function NFTGallery() {
   }
   */
 
-  function renderNFTCard(index: number) {
-    const nft = nfts[index];
+  function renderNFTCard(index: number, nft: NFTInfo) {
     return (
       <NFTCard
-        nft={nft}
+        id={nft.launcherId}
         canExpandDetails
         availableActions={NFTContextualActionTypes.All}
         isOffer={false}
@@ -470,12 +476,9 @@ export default function NFTGallery() {
           <VirtuosoGrid
             style={{ height: '100%' }}
             data={nfts}
-            overscan={200}
-            computeItemKey={(_index, nft) => nft.$nftId}
-            components={{
-              Item: ItemContainer,
-              List: ListContainer,
-            }}
+            overscan={600}
+            // computeItemKey={(_index, nft) => nft.launcherId}
+            components={COMPONENTS}
             itemContent={renderNFTCard}
           />
         </Box>

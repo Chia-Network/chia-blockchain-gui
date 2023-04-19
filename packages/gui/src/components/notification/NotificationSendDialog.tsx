@@ -188,7 +188,7 @@ export default function NotificationSendDialog(props: NotificationSendDialogProp
                 <Flex flexDirection="column" alignItems="center" gap={3}>
                   {isNFTOffer && (
                     <Box sx={nftPreviewContainer}>
-                      <NFTPreview nft={nft} disableInteractions />
+                      <NFTPreview id={launcherId} disableInteractions />
                     </Box>
                   )}
                   {/* <Flex flexDirection="column" alignItems="center" gap={1}>

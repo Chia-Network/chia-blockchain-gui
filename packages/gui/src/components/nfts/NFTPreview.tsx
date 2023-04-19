@@ -1,4 +1,3 @@
-import { type NFTInfo } from '@chia-network/api';
 import { IconMessage, Loading, Flex, SandboxedIframe, usePersistState, useDarkMode } from '@chia-network/core';
 import { t, Trans } from '@lingui/macro';
 import { NotInterested /* , Error as ErrorIcon */ } from '@mui/icons-material';
@@ -27,11 +26,13 @@ import VideoSmallIcon from '../../assets/img/video-small.svg';
 import VideoPngIcon from '../../assets/img/video.png';
 import VideoPngDarkIcon from '../../assets/img/video_dark.png';
 import useHideObjectionableContent from '../../hooks/useHideObjectionableContent';
+import useNFT from '../../hooks/useNFT';
 import useNFTImageFittingMode from '../../hooks/useNFTImageFittingMode';
 import useNFTMetadata from '../../hooks/useNFTMetadata';
 import useNFTVerifyHash from '../../hooks/useNFTVerifyHash';
 import getFileExtension from '../../util/getFileExtension';
 import getFileType from '../../util/getFileType';
+import getNFTId from '../../util/getNFTId';
 import hasSensitiveContent from '../../util/hasSensitiveContent';
 import parseFileContent from '../../util/parseFileContent';
 import NFTHashStatus from './NFTHashStatus';
@@ -124,7 +125,7 @@ const CompactExtension = styled.div`
 `;
 
 export type NFTPreviewProps = {
-  nft: NFTInfo;
+  id: string;
   height?: number | string;
   width?: number | string;
   fit?: 'cover' | 'contain' | 'fill';
@@ -139,7 +140,7 @@ export type NFTPreviewProps = {
 export default function NFTPreview(props: NFTPreviewProps) {
   const [nftImageFittingMode] = useNFTImageFittingMode();
   const {
-    nft,
+    id,
     height = '300px',
     width = '100%',
     fit = nftImageFittingMode,
@@ -151,23 +152,23 @@ export default function NFTPreview(props: NFTPreviewProps) {
     hideStatus = false,
   } = props;
 
+  const nftId = useMemo(() => getNFTId(id), [id]);
   const iframeRef = useRef<any>(null);
   const { isDarkMode } = useDarkMode();
   const [hideObjectionableContent] = useHideObjectionableContent();
   const [ignoreSizeLimit /* , setIgnoreSizeLimit */] = usePersistState<boolean>(
     false,
-    `nft-preview-ignore-size-limit-${nft.$nftId}`
+    `nft-preview-ignore-size-limit-${nftId}`
   );
-
-  const nftId = nft.$nftId;
 
   const { preview, isLoading: isLoadingVerifyHash } = useNFTVerifyHash(nftId, {
     preview: isPreview,
     ignoreSizeLimit,
   });
 
+  const { isLoading: isLoadingNFT } = useNFT(nftId);
   const { metadata, isLoading: isLoadingMetadata } = useNFTMetadata(nftId);
-  const isLoading = isLoadingVerifyHash || isLoadingMetadata;
+  const isLoading = isLoadingVerifyHash || isLoadingMetadata || isLoadingNFT;
 
   const blurPreview = useMemo(() => {
     if (!hideObjectionableContent) {
@@ -471,12 +472,6 @@ export default function NFTPreview(props: NFTPreviewProps) {
 
   return (
     <StyledCardPreview height={isCompact ? '50px' : height} width={width}>
-      {!isCompact && !hideStatus && (
-        <Box sx={{ display: 'flex', position: 'absolute', top: 16, left: 16, right: 16, justifyContent: 'center' }}>
-          <NFTHashStatus nftId={nftId} hideValid />
-        </Box>
-      )}
-
       {isLoading ? (
         <Flex position="absolute" left="0" top="0" bottom="0" right="0" justifyContent="center" alignItems="center">
           <Loading center>{!isCompact && <Trans>{isPreview ? 'Loading preview...' : 'Loading NFT...'}</Trans>}</Loading>
@@ -489,6 +484,22 @@ export default function NFTPreview(props: NFTPreviewProps) {
         </Background>
       ) : (
         previewIframe
+      )}
+
+      {!isCompact && !hideStatus && (
+        <Box
+          sx={{
+            display: 'flex',
+            position: 'absolute',
+            top: 16,
+            left: 16,
+            right: 16,
+            justifyContent: 'center',
+            zIndex: 1,
+          }}
+        >
+          <NFTHashStatus nftId={nftId} hideValid />
+        </Box>
       )}
     </StyledCardPreview>
   );

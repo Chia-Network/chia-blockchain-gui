@@ -30,5 +30,5 @@ export default function NotificationPreviewNFT(props: NotificationPreviewNFTProp
     return null;
   }
 
-  return <NFTPreview nft={nft} height={size} width={size} preview isCompact />;
+  return <NFTPreview id={nft.launcherId} height={size} width={size} preview isCompact />;
 }

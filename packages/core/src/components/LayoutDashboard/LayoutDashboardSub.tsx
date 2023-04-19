@@ -29,7 +29,7 @@ const StyledContent = styled(({ header, sidebar, fullHeight, ...rest }) => <Box 
   flex-direction: column;
   height: 100%;
   flex-grow: 1;
-  overflow-y: scroll;
+  overflow-y: auto;
   position: relative;
 
   padding-top: ${({ theme, header }) => (header ? 0 : theme.spacing(3))};

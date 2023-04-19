@@ -23,6 +23,7 @@ export type UseNFTVerifyHashOptions = {
 
 export default function useNFTVerifyHash(nftId?: string, options: UseNFTVerifyHashOptions = {}) {
   const { preview = false, ignoreSizeLimit = false } = options;
+
   const { get } = useCache();
 
   const { nft, isLoading: isLoadingNFT, error: errorNFT } = useNFT(nftId);

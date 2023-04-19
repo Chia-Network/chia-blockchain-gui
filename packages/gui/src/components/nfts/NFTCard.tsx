@@ -1,17 +1,18 @@
-import { type NFTInfo } from '@chia-network/api';
 import { IconButton, Flex } from '@chia-network/core';
 import { MoreVert } from '@mui/icons-material';
 import { Card, CardActionArea, CardContent, Checkbox, Typography } from '@mui/material';
-import React, { useMemo } from 'react';
+import React, { useMemo, memo } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import useHiddenNFTs from '../../hooks/useHiddenNFTs';
+import useNFT from '../../hooks/useNFT';
+import getNFTId from '../../util/getNFTId';
 import NFTContextualActions, { NFTContextualActionTypes } from './NFTContextualActions';
 import NFTPreview from './NFTPreview';
 import NFTTitle from './NFTTitle';
 
 export type NFTCardProps = {
-  nft: NFTInfo;
+  id: string;
   canExpandDetails: boolean;
   availableActions: NFTContextualActionTypes;
   isOffer: boolean;
@@ -20,9 +21,9 @@ export type NFTCardProps = {
   selected?: boolean;
 };
 
-export default function NFTCard(props: NFTCardProps) {
+function NFTCard(props: NFTCardProps) {
   const {
-    nft,
+    id,
     canExpandDetails = true,
     availableActions = NFTContextualActionTypes.None,
     isOffer,
@@ -31,12 +32,13 @@ export default function NFTCard(props: NFTCardProps) {
     selected = false,
   } = props;
 
-  const nftId = nft.$nftId;
+  const nftId = useMemo(() => getNFTId(id), [id]);
 
   const [isNFTHidden] = useHiddenNFTs();
   const navigate = useNavigate();
 
-  const isHidden = useMemo(() => isNFTHidden(nft.$nftId), [nft.$nftId, isNFTHidden]);
+  const { nft, isLoading } = useNFT(nftId);
+  const isHidden = useMemo(() => isNFTHidden(nftId), [nftId, isNFTHidden]);
 
   async function handleClick() {
     if (onSelect) {
@@ -52,7 +54,7 @@ export default function NFTCard(props: NFTCardProps) {
   }
 
   return (
-    <Flex flexDirection="column" flexGrow={1}>
+    <Flex flexDirection="column" flexGrow={1} minWidth={0}>
       <Card sx={{ borderRadius: '8px', opacity: isHidden ? 0.5 : 1 }} variant="outlined">
         <CardActionArea onClick={handleClick}>
           {onSelect && (
@@ -63,7 +65,7 @@ export default function NFTCard(props: NFTCardProps) {
               sx={{ zIndex: 1, position: 'absolute', right: 2, top: 2 }}
             />
           )}
-          <NFTPreview nft={nft} disableInteractions={isOffer} preview />
+          <NFTPreview id={nftId} disableInteractions={isOffer} preview />
         </CardActionArea>
         <CardActionArea onClick={() => canExpandDetails && handleClick()} component="div">
           <CardContent>
@@ -73,7 +75,7 @@ export default function NFTCard(props: NFTCardProps) {
                   <NFTTitle nftId={nftId} highlight={search} />
                 </Typography>
               </Flex>
-              {availableActions !== NFTContextualActionTypes.None && (
+              {!isLoading && availableActions !== NFTContextualActionTypes.None && (
                 <NFTContextualActions
                   selection={{ items: [nft] }}
                   availableActions={availableActions}
@@ -91,3 +93,5 @@ export default function NFTCard(props: NFTCardProps) {
     </Flex>
   );
 }
+
+export default memo(NFTCard);
