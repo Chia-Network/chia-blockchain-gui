@@ -4,6 +4,7 @@ import React from 'react';
 
 import useGetLatestVersionFromWebsite from '../../hooks/useGetLatestVersionFromWebsite';
 import useOpenExternal from '../../hooks/useOpenExternal';
+import compareAppVersions from '../../utils/compareAppVersion';
 import Button from '../Button';
 import Flex from '../Flex';
 import Link from '../Link';
@@ -24,6 +25,8 @@ export default function AppVersionWarning(props: AppVersionWarningProps) {
   } = useGetLatestVersionFromWebsite(false);
   const [open, setOpen] = React.useState<boolean>(true);
   const openExternal = useOpenExternal();
+  const versionComparisonResult = latestVersion ? compareAppVersions(currentVersion, latestVersion) : 0;
+  const newVersionAvailable = versionComparisonResult === -1;
 
   function renderSpinner() {
     return (
@@ -83,14 +86,14 @@ export default function AppVersionWarning(props: AppVersionWarningProps) {
         <DialogTitle id="alert-dialog-title">
           {isLoadingVersion ? (
             <Trans>Checking for updates...</Trans>
-          ) : latestVersion === currentVersion ? (
-            <Trans>You're up to date</Trans>
-          ) : (
+          ) : newVersionAvailable ? (
             <Trans>A new version of Chia is available!</Trans>
+          ) : (
+            <Trans>You're up to date</Trans>
           )}
         </DialogTitle>
         <DialogContent>
-          {isLoadingVersion ? renderSpinner() : latestVersion === currentVersion ? renderUpToDate() : renderVersions()}
+          {isLoadingVersion ? renderSpinner() : newVersionAvailable ? renderVersions() : renderUpToDate()}
         </DialogContent>
         <DialogActions>
           <Button
@@ -103,7 +106,7 @@ export default function AppVersionWarning(props: AppVersionWarningProps) {
           >
             <Trans>Close</Trans>
           </Button>
-          {!isLoadingVersion && latestVersion !== currentVersion && downloadUrl && (
+          {!isLoadingVersion && newVersionAvailable && downloadUrl && (
             <Button
               onClick={() => {
                 openExternal(downloadUrl);
