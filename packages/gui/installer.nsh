@@ -10,6 +10,8 @@ Var ChiaSquirrelInstallLocation
 Var ChiaSquirrelInstallVersion
 Var ChiaSquirrelUninstaller
 Var CheckboxUninstall
+Var CheckboxLaunchOnExit
+Var LaunchOnExit
 Var UninstallChiaSquirrelInstall
 Var BackButton
 Var NextButton
@@ -85,15 +87,26 @@ Function finish
     Abort
   ${EndIf}
 
+  ${NSD_CreateCheckbox} 0 50% 100% 10% "Launch Chia"
+  Pop $CheckboxLaunchOnExit
+  ${NSD_SetState} $CheckboxLaunchOnExit ${BST_CHECKED}
+  ${NSD_OnClick} $CheckboxLaunchOnExit SetLaunchOnExit
+  StrCpy $LaunchOnExit 1
+
   GetDlgItem $NextButton $HWNDPARENT 1 ; 1 = Next button
   GetDlgItem $BackButton $HWNDPARENT 3 ; 3 = Back button
 
   ${NSD_CreateLabel} 0 35 100% 12u "Chia has been installed successfully!"
   EnableWindow $BackButton 0 ; Disable the Back button
-  SendMessage $NextButton ${WM_SETTEXT} 0 "STR:Get Started" ; Button title is "Close" by default. Update it here.
+  SendMessage $NextButton ${WM_SETTEXT} 0 "STR:Finish" ; Button title is "Close" by default. Update it here.
 
   nsDialogs::Show
 
+FunctionEnd
+
+Function SetLaunchOnExit
+  ; Set LaunchOnExit accordingly
+  ${NSD_GetState} $CheckboxLaunchOnExit $LaunchOnExit
 FunctionEnd
 
 ; Copied from electron-builder NSIS templates
@@ -108,7 +121,9 @@ FunctionEnd
 
 Function finishLeave
   ; Launch the app at exit
-  Call StartApp
+  ${If} $LaunchOnExit == 1
+    Call StartApp
+  ${EndIf}
 FunctionEnd
 
 ; Section
