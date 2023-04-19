@@ -14,7 +14,7 @@ type NonNullableKeys<T> = {
 
 // Function to parse a version string into an AppVersion object.
 // Throws an error if the version string is invalid.
-function parseVersion(version: string): AppVersion {
+export function parseVersion(version: string): AppVersion {
   // Regular expression to match version strings in the format of X.Y.Z[-preRelease]
   const versionRegex = /^(\d+)\.(\d+)\.(\d+)(?:-?([a-z0-9]+))?$/i;
   const match = version.match(versionRegex);
@@ -38,9 +38,18 @@ function parseVersion(version: string): AppVersion {
 // - a negative value if versionA is less than versionB,
 // - zero if both versions are equal.
 function compareAppVersions(versionA: string, versionB: string): number {
-  // Parse both version strings into AppVersion objects.
-  const parsedA = parseVersion(versionA);
-  const parsedB = parseVersion(versionB);
+  let parsedA: AppVersion;
+  let parsedB: AppVersion;
+
+  try {
+    // Parse both version strings into AppVersion objects.
+    parsedA = parseVersion(versionA);
+    parsedB = parseVersion(versionB);
+  } catch (error) {
+    console.error(error);
+    // If either version string is invalid, return zero.
+    return 0;
+  }
 
   // Array of non-nullable keys for the AppVersion type.
   const nonNullableKeys: NonNullableKeys<AppVersion>[] = ['major', 'minor', 'patch'];
