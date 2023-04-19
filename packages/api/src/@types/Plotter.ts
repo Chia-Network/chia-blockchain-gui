@@ -14,6 +14,7 @@ interface BladeBitRamOptions extends CommonOptions {
   haveBladebitDisableNUMA: boolean;
   haveBladebitNoCpuAffinity: boolean;
   haveBladebitOutputDir: boolean;
+  haveBladebitCompressionLevel: boolean;
 }
 
 interface BladeBitDiskOptions extends BladeBitRamOptions {
@@ -28,13 +29,22 @@ interface BladeBitDiskOptions extends BladeBitRamOptions {
   haveBladebitDiskNoT2Direct: boolean;
 }
 
+interface BladeBitCudaOptions extends BladeBitRamOptions {
+  haveBladebitDeviceIndex: boolean;
+  haveBladebitDisableDirectDownloads: boolean;
+}
+
 interface MadMaxOptions extends CommonOptions {
   haveMadmaxNumBucketsPhase3: boolean;
   haveMadmaxThreadMultiplier: boolean;
   haveMadmaxTempToggle: boolean;
 }
 
-export type PlotterOptions = CommonOptions & BladeBitRamOptions & BladeBitDiskOptions & MadMaxOptions;
+export type PlotterOptions = CommonOptions &
+  BladeBitRamOptions &
+  BladeBitDiskOptions &
+  BladeBitCudaOptions &
+  MadMaxOptions;
 
 interface CommonDefaults {
   plotterName: string;
@@ -47,10 +57,11 @@ interface CommonDefaults {
 }
 
 interface BladeBitRamDefaults extends CommonDefaults {
-  plotType?: 'ramplot' | 'diskplot';
+  plotType?: 'ramplot' | 'diskplot' | 'cudaplot';
   bladebitWarmStart?: boolean;
   bladebitDisableNUMA?: boolean;
   bladebitNoCpuAffinity?: boolean;
+  bladebitCompressionLevel?: number;
 }
 
 interface BladeBitDiskDefaults extends BladeBitRamDefaults {
@@ -65,6 +76,11 @@ interface BladeBitDiskDefaults extends BladeBitRamDefaults {
   bladebitDiskNoT2Direct?: boolean;
 }
 
+interface BladeBitCudaDefaults extends BladeBitRamDefaults {
+  bladebitDeviceIndex?: number;
+  bladebitDisableDirectDownloads?: boolean;
+}
+
 interface MadMaxDefaults extends CommonDefaults {
   madmaxNumBucketsPhase3?: number;
   madmaxThreadMultiplier?: number;
@@ -72,7 +88,11 @@ interface MadMaxDefaults extends CommonDefaults {
   madmaxTempToggle?: boolean;
 }
 
-export type PlotterDefaults = CommonDefaults & BladeBitRamDefaults & BladeBitDiskDefaults & MadMaxDefaults;
+export type PlotterDefaults = CommonDefaults &
+  BladeBitRamDefaults &
+  BladeBitDiskDefaults &
+  BladeBitCudaDefaults &
+  MadMaxDefaults;
 
 type PlotterInstallInfo = {
   version?: string;

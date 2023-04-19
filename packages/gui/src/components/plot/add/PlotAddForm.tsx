@@ -1,4 +1,4 @@
-import { defaultPlotter, toBech32m, fromBech32m } from '@chia-network/api';
+import { defaultPlotter, toBech32m } from '@chia-network/api';
 import { useStartPlottingMutation, useCreateNewPoolWalletMutation } from '@chia-network/api-react';
 import { Back, useShowError, ButtonLoading, Flex, Form } from '@chia-network/core';
 import { t, Trans } from '@lingui/macro';
@@ -14,7 +14,6 @@ import PlotAddConfig from '../../../types/PlotAdd';
 import { PlotterDefaults, PlotterOptions } from '../../../types/Plotter';
 import PlotAddChoosePlotter from './PlotAddChoosePlotter';
 import PlotAddChooseSize from './PlotAddChooseSize';
-import PlotAddNFT from './PlotAddNFT';
 import PlotAddNumberOfPlots from './PlotAddNumberOfPlots';
 import PlotAddSelectFinalDirectory from './PlotAddSelectFinalDirectory';
 import PlotAddSelectTemporaryDirectory from './PlotAddSelectTemporaryDirectory';
@@ -22,7 +21,6 @@ import PlotAddSelectTemporaryDirectory from './PlotAddSelectTemporaryDirectory';
 type FormData = PlotAddConfig & {
   p2SingletonPuzzleHash?: string;
   createNFT?: boolean;
-  plotNFTContractAddr?: string;
 };
 
 type Props = {
@@ -63,9 +61,6 @@ export default function PlotAddForm(props: Props) {
     finalLocation: '',
     workspaceLocation: '',
     workspaceLocation2: '',
-    farmerPublicKey: '',
-    poolPublicKey: '',
-    plotNFTContractAddr: '',
     excludeFinalDir: false,
     p2SingletonPuzzleHash: state?.p2SingletonPuzzleHash ?? '',
     createNFT: false,
@@ -120,7 +115,6 @@ export default function PlotAddForm(props: Props) {
         workspaceLocation2,
         ...rest
       } = data;
-      const { farmerPublicKey, poolPublicKey, plotNFTContractAddr } = rest;
 
       let selectedP2SingletonPuzzleHash = p2SingletonPuzzleHash;
 
@@ -163,15 +157,11 @@ export default function PlotAddForm(props: Props) {
         workspaceLocation2: formPlotterName === 'madmax' ? workspaceLocation2 || workspaceLocation : workspaceLocation2,
       };
 
-      if (!selectedP2SingletonPuzzleHash && plotNFTContractAddr) {
-        selectedP2SingletonPuzzleHash = fromBech32m(plotNFTContractAddr);
-      }
-
       if (selectedP2SingletonPuzzleHash) {
         plotAddConfig.c = toBech32m(selectedP2SingletonPuzzleHash, currencyCode.toLowerCase());
       }
 
-      if (!selectedP2SingletonPuzzleHash && !farmerPublicKey && !poolPublicKey && fingerprint) {
+      if (!selectedP2SingletonPuzzleHash && fingerprint) {
         plotAddConfig.fingerprint = fingerprint;
       }
 
@@ -193,10 +183,9 @@ export default function PlotAddForm(props: Props) {
         </Back>
         <PlotAddChoosePlotter step={step++} onChange={handlePlotterChanged} />
         <PlotAddChooseSize step={step++} plotter={plotter} />
-        <PlotAddNumberOfPlots step={step++} plotter={plotter} />
+        <PlotAddNumberOfPlots step={step++} plotter={plotter} addNftRef={addNFTref} />
         {allowTempDirectorySelection && <PlotAddSelectTemporaryDirectory step={step++} plotter={plotter} />}
         <PlotAddSelectFinalDirectory step={step++} plotter={plotter} />
-        <PlotAddNFT ref={addNFTref} step={step++} plotter={plotter} />
         <Flex justifyContent="flex-end">
           <ButtonLoading loading={loading} color="primary" type="submit" variant="contained">
             <Trans>Create</Trans>

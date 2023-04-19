@@ -8,7 +8,7 @@ import {
   TooltipIcon,
   Select,
 } from '@chia-network/core';
-import { Trans, t } from '@lingui/macro';
+import { Trans } from '@lingui/macro';
 import {
   Grid,
   FormControl,
@@ -24,18 +24,22 @@ import { useFormContext } from 'react-hook-form';
 
 import PlotterName from '../../../constants/PlotterName';
 import Plotter from '../../../types/Plotter';
+import PlotAddNFT from './PlotAddNFT';
 
 type Props = {
   step: number;
   plotter: Plotter;
+  addNftRef: React.Ref<unknown>;
 };
 
 export default function PlotAddNumberOfPlots(props: Props) {
-  const { step, plotter } = props;
+  const { step, plotter, addNftRef } = props;
   const { watch } = useFormContext();
   const parallel = watch('parallel');
 
   const op = plotter.options;
+  const isBladebit3OrNewer =
+    plotter.defaults.plotterName.startsWith('bladebit') && plotter.version && +plotter.version.split('.')[0] >= 3;
 
   return (
     <CardStep step={step} title={<Trans>Choose Number of Plots</Trans>}>
@@ -103,6 +107,25 @@ export default function PlotAddNumberOfPlots(props: Props) {
 
       <AdvancedOptions>
         <Grid spacing={1} container>
+          {op.haveBladebitCompressionLevel && isBladebit3OrNewer && (
+            <Grid xs={12} sm={12} item>
+              <FormControl variant="filled" fullWidth>
+                <InputLabel>
+                  <Trans>Compression level</Trans>
+                </InputLabel>
+                <Select name="compressionLevel" defaultValue={plotter.defaults.bladebitCompressionLevel}>
+                  <MenuItem value={0}>0 - No compression</MenuItem>
+                  <MenuItem value={1}>1</MenuItem>
+                  <MenuItem value={2}>2</MenuItem>
+                  <MenuItem value={3}>3</MenuItem>
+                  <MenuItem value={4}>4</MenuItem>
+                  <MenuItem value={5}>5</MenuItem>
+                  <MenuItem value={6}>6</MenuItem>
+                  <MenuItem value={7}>7</MenuItem>
+                </Select>
+              </FormControl>
+            </Grid>
+          )}
           {op.canSetBufferSize && (
             <Grid xs={12} sm={6} item>
               <FormControl fullWidth>
@@ -443,39 +466,41 @@ export default function PlotAddNumberOfPlots(props: Props) {
                 />
               </FormControl>
             </Grid>
-          </Grid>
-          <Grid xs={12} item>
-            <FormControl variant="filled" fullWidth>
-              <TextField
-                name="farmerPublicKey"
-                type="text"
-                variant="filled"
-                placeholder="Hex farmer public key"
-                label={<Trans>Farmer Public Key</Trans>}
-              />
-            </FormControl>
-          </Grid>
-          <Grid xs={12} item>
-            <FormControl variant="filled" fullWidth>
-              <TextField
-                name="poolPublicKey"
-                type="text"
-                variant="filled"
-                placeholder="Hex public key of pool"
-                label={<Trans>Pool Public Key</Trans>}
-              />
-            </FormControl>
-          </Grid>
-          <Grid xs={12} item>
-            <FormControl variant="filled" fullWidth>
-              <TextField
-                name="plotNFTContractAddr"
-                type="text"
-                variant="filled"
-                placeholder={t`Plot NFT Plot Target Address`}
-                label={<Trans>Plot NFT Pool Contract Address</Trans>}
-              />
-            </FormControl>
+            {op.haveBladebitDisableDirectDownloads && (
+              <Grid xs={12} sm={4} item>
+                <FormControl variant="filled" fullWidth>
+                  <FormControlLabel
+                    control={<Checkbox name="disableDirectDownloads" />}
+                    label={
+                      <>
+                        <Trans>Disable direct download</Trans>{' '}
+                        <TooltipIcon>
+                          <Trans>
+                            Don't allocate host tables using pinned buffers, instead download to intermediate pinned
+                            buffers then copy to the final host buffer.
+                          </Trans>
+                        </TooltipIcon>
+                      </>
+                    }
+                  />
+                </FormControl>
+              </Grid>
+            )}
+            {op.haveBladebitDeviceIndex && (
+              <Grid xs={12} sm={12} item>
+                <FormControl variant="filled" fullWidth>
+                  <TextField
+                    name="queue"
+                    type="number"
+                    variant="filled"
+                    placeholder="default"
+                    label={<Trans>GPU Device Index</Trans>}
+                    helperText={<Trans>Which CUDA device to use when plotting</Trans>}
+                  />
+                </FormControl>
+              </Grid>
+            )}
+            <PlotAddNFT ref={addNftRef} />
           </Grid>
         </Grid>
       </AdvancedOptions>

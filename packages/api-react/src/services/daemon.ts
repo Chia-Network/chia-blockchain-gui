@@ -123,33 +123,7 @@ export const daemonApi = apiWithTag.injectEndpoints({
 
           // if (plotterName.startsWith('bladebit'))
           const majorVersion = typeof version === 'string' ? +version.split('.')[0] : 0;
-          if (majorVersion > 1) {
-            const bbDisk = PlotterName.BLADEBIT_DISK;
-            availablePlotters[bbDisk] = {
-              displayName,
-              version: `${version} (Disk plot)`,
-              options: optionsForPlotter(bbDisk),
-              defaults: defaultsForPlotter(bbDisk),
-              installInfo: {
-                installed,
-                canInstall,
-                bladebitMemoryWarning,
-              },
-            };
-
-            const bbRam = PlotterName.BLADEBIT_RAM;
-            availablePlotters[bbRam] = {
-              displayName,
-              version: `${version} (RAM plot)`,
-              options: optionsForPlotter(bbRam),
-              defaults: defaultsForPlotter(bbRam),
-              installInfo: {
-                installed,
-                canInstall,
-                bladebitMemoryWarning,
-              },
-            };
-          } else {
+          if (majorVersion <= 1) {
             const bbRam = PlotterName.BLADEBIT_RAM;
             availablePlotters[bbRam] = {
               displayName,
@@ -159,6 +133,46 @@ export const daemonApi = apiWithTag.injectEndpoints({
               installInfo: {
                 installed: false,
                 canInstall: false,
+                bladebitMemoryWarning,
+              },
+            };
+            return;
+          }
+          const bbDisk = PlotterName.BLADEBIT_DISK;
+          availablePlotters[bbDisk] = {
+            displayName,
+            version: `${version} (Disk plot)`,
+            options: optionsForPlotter(bbDisk),
+            defaults: defaultsForPlotter(bbDisk),
+            installInfo: {
+              installed,
+              canInstall,
+              bladebitMemoryWarning,
+            },
+          };
+
+          const bbRam = PlotterName.BLADEBIT_RAM;
+          availablePlotters[bbRam] = {
+            displayName,
+            version: `${version} (RAM plot)`,
+            options: optionsForPlotter(bbRam),
+            defaults: defaultsForPlotter(bbRam),
+            installInfo: {
+              installed,
+              canInstall,
+              bladebitMemoryWarning,
+            },
+          };
+          if (majorVersion === 3) {
+            const bbCuda = PlotterName.BLADEBIT_CUDA;
+            availablePlotters[bbCuda] = {
+              displayName,
+              version: `${version} (CUDA plot)`,
+              options: optionsForPlotter(bbCuda),
+              defaults: defaultsForPlotter(bbCuda),
+              installInfo: {
+                installed,
+                canInstall,
                 bladebitMemoryWarning,
               },
             };
