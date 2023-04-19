@@ -34,7 +34,7 @@ export default function NFTHashStatus(props: NFTHashStatusProps) {
   const error = errorNFT ?? preview ? nftPreview?.error : data?.error;
 
   const isValidURI = useMemo(() => {
-    if (!nftPreview) {
+    if (!nftPreview || !('originalUri' in nftPreview)) {
       return true;
     }
 
