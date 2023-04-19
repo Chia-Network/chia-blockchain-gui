@@ -179,11 +179,15 @@ export default function NFTPreview(props: NFTPreviewProps) {
       return false;
     }
 
-    if (metadata && !hasSensitiveContent(metadata)) {
+    if (!metadata) {
       return false;
     }
 
-    return true;
+    if (hasSensitiveContent(metadata)) {
+      return true;
+    }
+
+    return false;
   }, [hideObjectionableContent, isLoading, metadata]);
 
   const previewExtension = useMemo(() => getFileExtension(preview?.originalUri), [preview]);
@@ -397,10 +401,6 @@ export default function NFTPreview(props: NFTPreviewProps) {
   }, [previewFileType, isDarkMode]);
 
   const previewIframe = useMemo(() => {
-    if (!preview?.isVerified) {
-      return null;
-    }
-
     if (isCompact && previewFileType !== FileType.IMAGE) {
       return (
         <CompactIconFrame>
@@ -410,7 +410,7 @@ export default function NFTPreview(props: NFTPreviewProps) {
       );
     }
 
-    if (icon) {
+    if (icon || [FileType.MODEL, FileType.DOCUMENT].includes(previewFileType)) {
       return (
         <>
           {previewIcon}
@@ -452,7 +452,6 @@ export default function NFTPreview(props: NFTPreviewProps) {
       </Box>
     );
   }, [
-    preview,
     isPreview,
     isCompact,
     previewFileType,
