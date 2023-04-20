@@ -29,11 +29,11 @@ import styled from 'styled-components';
 
 import useAcceptOfferHook from '../../hooks/useAcceptOfferHook';
 import useAssetIdName from '../../hooks/useAssetIdName';
-import useNFTByCoinId from '../../hooks/useNFTByCoinId';
+import useNFT from '../../hooks/useNFT';
 import useNFTs from '../../hooks/useNFTs';
 import useWalletOffers from '../../hooks/useWalletOffers';
 import { convertRoyaltyToPercentage, launcherIdToNFTId } from '../../util/nfts';
-import { stripHexPrefix } from '../../util/utils';
+import removeHexPrefix from '../../util/removeHexPrefix';
 import NFTOfferExchangeType from './NFTOfferExchangeType';
 import NFTOfferPreview from './NFTOfferPreview';
 import OfferAsset from './OfferAsset';
@@ -269,7 +269,7 @@ export function NFTOfferSummary(props: NFTOfferSummaryProps) {
         const assetType = offerAssetTypeForAssetId(assetId, summary);
         if (assetType === OfferAsset.NFT) {
           return (
-            nfts.find((nft) => stripHexPrefix(nft.launcherId.toLowerCase()) === assetId.toLowerCase()) === undefined
+            nfts.find((nft) => removeHexPrefix(nft.launcherId.toLowerCase()) === assetId.toLowerCase()) === undefined
           );
         }
         return lookupByAssetId(assetId) === undefined;
@@ -361,7 +361,7 @@ function NFTOfferDetails(props: NFTOfferDetailsProps) {
     (id: string) => driverDict[id].launcherId?.length > 0
   );
   const nftId: string | undefined = launcherId ? launcherIdToNFTId(launcherId) : undefined;
-  const { nft } = useNFTByCoinId(launcherId);
+  const { nft } = useNFT(launcherId);
   const { amount, assetId, assetType } = getNFTPriceWithoutRoyalties(summary) ?? {};
   const { lookupByAssetId } = useAssetIdName();
   const assetIdInfo = assetId ? lookupByAssetId(assetId) : undefined;

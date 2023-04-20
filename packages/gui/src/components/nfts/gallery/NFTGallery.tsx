@@ -5,8 +5,8 @@ import { Button, FormatLargeNumber, Flex, LayoutDashboardSub, Tooltip, usePersis
 import { t, Trans } from '@lingui/macro';
 import { FilterList as FilterListIcon, LibraryAddCheck as LibraryAddCheckIcon } from '@mui/icons-material';
 import {
+  Divider,
   Chip,
-  ButtonGroup,
   FormControlLabel,
   FormControl,
   Checkbox,
@@ -16,8 +16,8 @@ import {
   IconButton,
 } from '@mui/material';
 import { styled } from '@mui/styles';
-import { xor /* , sortBy */ } from 'lodash';
-import React, { useMemo } from 'react';
+import { xor, intersection /* , sortBy */ } from 'lodash';
+import React, { useMemo, useCallback, useRef } from 'react';
 import { VirtuosoGrid } from 'react-virtuoso';
 import Sortable from 'sortablejs'; // eslint-ignore-file - in progress
 
@@ -35,7 +35,7 @@ import NFTGalleryHero from './NFTGalleryHero';
 import Search from './NFTGallerySearch';
 import SelectedActionsDialog from './SelectedActionsDialog';
 
-function ItemContainer(props: { children: React.ReactNode }) {
+function ItemContainer(props: { children?: React.ReactNode }) {
   const { children, ...rest } = props;
 
   return (
@@ -71,6 +71,11 @@ const Mute = styled('span')(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
+const COMPONENTS = {
+  Item: ItemContainer,
+  List: ListContainer,
+};
+
 export const defaultCacheSizeLimit = 1024; /* MB */
 
 export default function NFTGallery() {
@@ -96,6 +101,9 @@ export default function NFTGallery() {
 
     statistics,
   } = useFilteredNFTs();
+
+  const nftsRef = useRef(nfts);
+  nftsRef.current = nfts;
 
   const [hideSensitiveContent, setHideSensitiveContent] = useHideObjectionableContent();
   const [showFilters, setShowFilters] = usePersistState(false, 'nft-gallery-show-filters');
@@ -183,14 +191,13 @@ export default function NFTGallery() {
     }
   }, [fingerprint, userFolder, foldersSortedNFTs, setFoldersSortedNFTs]);
 
-  async function handleSelectNFT(nftId: string) {
-    if (inMultipleSelectionMode) {
-      setSelectedNFTIds(xor(selectedNFTIds, [nftId]));
+  const handleSelectNFT = useCallback(
+    async (nftId: string) => {
+      setSelectedNFTIds((prevSelectedNFTIds) => xor(prevSelectedNFTIds, [nftId]));
       return false;
-    }
-
-    return true;
-  }
+    },
+    [setSelectedNFTIds]
+  );
 
   function toggleType(type: FileType) {
     setTypes(xor(types, [type]));
@@ -208,6 +215,8 @@ export default function NFTGallery() {
     return result;
   }, [statistics]);
 
+  const selectedTypes = useMemo(() => intersection(types, availableTypes), [types, availableTypes]);
+
   function handleToggleSelectAll() {
     if (selectedAll) {
       setSelectedNFTIds([]);
@@ -222,9 +231,38 @@ export default function NFTGallery() {
     setShowFilters(!showFilters);
   }
 
-  function handleSetVisibility(e: React.MouseEvent<any, MouseEvent>, newVisibility: NFTVisibility) {
-    e.stopPropagation();
-    setVisibility(newVisibility);
+  function toggleVisible() {
+    switch (visibility) {
+      case NFTVisibility.ALL:
+        setVisibility(NFTVisibility.HIDDEN);
+        return;
+      case NFTVisibility.VISIBLE:
+        setVisibility(NFTVisibility.NONE);
+        return;
+      case NFTVisibility.NONE:
+        setVisibility(NFTVisibility.VISIBLE);
+        return;
+      case NFTVisibility.HIDDEN:
+      default:
+        setVisibility(NFTVisibility.ALL);
+    }
+  }
+
+  function toggleHidden() {
+    switch (visibility) {
+      case NFTVisibility.ALL:
+        setVisibility(NFTVisibility.VISIBLE);
+        return;
+      case NFTVisibility.VISIBLE:
+        setVisibility(NFTVisibility.ALL);
+        return;
+      case NFTVisibility.NONE:
+        setVisibility(NFTVisibility.HIDDEN);
+        return;
+      case NFTVisibility.HIDDEN:
+      default:
+        setVisibility(NFTVisibility.NONE);
+    }
   }
 
   /*
@@ -292,11 +330,10 @@ export default function NFTGallery() {
     return nfts;
   }, [fingerprint, foldersSortedNFTs, nfts, userFolder]);
 
-  function renderNFTCard(index: number) {
-    const nft = sortedNFTs()[index];
+  function renderNFTCard(index: number, nft: NFTInfo) {
     return (
       <NFTCard
-        nft={nft}
+        id={nft.launcherId}
         canExpandDetails
         availableActions={NFTContextualActionTypes.All}
         isOffer={false}
@@ -379,8 +416,20 @@ export default function NFTGallery() {
                     <FilterPill
                       title={
                         <Trans>
-                          Types &nbsp;
-                          <Chip label={<FormatLargeNumber value={availableTypes.length + 1} />} size="extraSmall" />
+                          Types
+                          {availableTypes.length > 0 && (
+                            <>
+                              &nbsp;
+                              <Chip
+                                label={
+                                  <>
+                                    {selectedTypes.length} / {availableTypes.length}
+                                  </>
+                                }
+                                size="extraSmall"
+                              />
+                            </>
+                          )}
                         </Trans>
                       }
                     >
@@ -397,6 +446,7 @@ export default function NFTGallery() {
                             }
                           />
                         ))}
+                        {availableTypes.length > 0 && <Divider />}
                         <FormControlLabel
                           control={<Checkbox checked={!hideSensitiveContent} onChange={toggleSensitiveContent} />}
                           label={
@@ -437,35 +487,40 @@ export default function NFTGallery() {
                       }
                     >
                       <FormControl>
-                        <ButtonGroup size="small" color="secondary">
-                          <Button
-                            key="all"
-                            selected={visibility === NFTVisibility.ALL}
-                            onClick={(e: any) => handleSetVisibility(e, NFTVisibility.ALL)}
-                          >
-                            <Trans>All</Trans>
-                            &nbsp;
-                            <Chip label={<FormatLargeNumber value={statistics.total} />} size="extraSmall" />
-                          </Button>
-                          <Button
-                            key="visible"
-                            selected={visibility === NFTVisibility.VISIBLE}
-                            onClick={(e: any) => handleSetVisibility(e, NFTVisibility.VISIBLE)}
-                          >
-                            <Trans>Visible</Trans>
-                            &nbsp;
-                            <Chip label={<FormatLargeNumber value={statistics.visible} />} size="extraSmall" />
-                          </Button>
-                          <Button
-                            key="hidden"
-                            selected={visibility === NFTVisibility.HIDDEN}
-                            onClick={(e: any) => handleSetVisibility(e, NFTVisibility.HIDDEN)}
-                          >
-                            <Trans>Hidden</Trans>
-                            &nbsp;
-                            <Chip label={<FormatLargeNumber value={statistics.hidden} />} size="extraSmall" />
-                          </Button>
-                        </ButtonGroup>
+                        <Flex flexDirection="column">
+                          <FormControlLabel
+                            control={
+                              <Checkbox
+                                checked={[NFTVisibility.VISIBLE, NFTVisibility.ALL].includes(visibility)}
+                                onChange={toggleVisible}
+                              />
+                            }
+                            label={
+                              <Flex width="100%" gap={1} justifyContent="space-between" alignItems="center">
+                                <Box>
+                                  <Trans>Visible</Trans>
+                                </Box>
+                                <Chip label={<FormatLargeNumber value={statistics.visible} />} size="extraSmall" />
+                              </Flex>
+                            }
+                          />
+                          <FormControlLabel
+                            control={
+                              <Checkbox
+                                checked={[NFTVisibility.HIDDEN, NFTVisibility.ALL].includes(visibility)}
+                                onChange={toggleHidden}
+                              />
+                            }
+                            label={
+                              <Flex width="100%" gap={1} justifyContent="space-between" alignItems="center">
+                                <Box>
+                                  <Trans>Hidden</Trans>
+                                </Box>
+                                <Chip label={<FormatLargeNumber value={statistics.hidden} />} size="extraSmall" />
+                              </Flex>
+                            }
+                          />
+                        </Flex>
                       </FormControl>
                     </FilterPill>
                   </Box>
@@ -499,12 +554,9 @@ export default function NFTGallery() {
           <VirtuosoGrid
             style={{ height: '100%' }}
             data={sortedNFTs()}
-            overscan={200}
-            computeItemKey={(_index, nft) => nft.$nftId}
-            components={{
-              Item: ItemContainer,
-              List: ListContainer,
-            }}
+            overscan={600}
+            // computeItemKey={(_index, nft) => nft.launcherId}
+            components={COMPONENTS}
             itemContent={renderNFTCard}
           />
         </Box>

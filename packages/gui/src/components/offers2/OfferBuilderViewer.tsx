@@ -26,8 +26,9 @@ import OfferBuilder from './OfferBuilder';
 import OfferNavigationHeader from './OfferNavigationHeader';
 
 export type OfferBuilderViewerProps = {
-  offerData: string;
+  offerData?: string; // when viewing and existing offer
   offerSummary: OfferSummary;
+  offerBuilderData?: OfferBuilderData; // when viewing an offer that hasn't been created yet
   referrerPath?: string;
   state?: OfferState;
   isMyOffer?: boolean;
@@ -43,6 +44,7 @@ function OfferBuilderViewer(props: OfferBuilderViewerProps, ref: any) {
     offerSummary,
     referrerPath,
     offerData,
+    offerBuilderData: prepopulatedOfferBuilderData,
     state,
     isMyOffer = false,
     imported = false,
@@ -99,8 +101,12 @@ function OfferBuilderViewer(props: OfferBuilderViewerProps, ref: any) {
   }, [isValid, isValidating, offerData, validateOfferData]);
 
   const setDefaultOfferedFee = !!imported; // When viewing an imported offer, we want to expand the offered fee section by default
-  const offerSummaryStringified = JSON.stringify(offerSummary);
-  const offerBuilderData = useMemo(() => {
+  const offerSummaryStringified = offerSummary ? JSON.stringify(offerSummary) : undefined;
+  const computedOfferBuilderData = useMemo(() => {
+    if (!offerSummaryStringified) {
+      return undefined;
+    }
+
     const offerSummaryParsed = JSON.parse(offerSummaryStringified);
     if (!offerSummaryParsed) {
       return undefined;
@@ -114,21 +120,21 @@ function OfferBuilderViewer(props: OfferBuilderViewerProps, ref: any) {
   }, [offerSummaryStringified, setDefaultOfferedFee, fee]);
 
   const [offeredUnknownCATs, requestedUnknownCATs] = useMemo(() => {
-    if (!offerBuilderData || !wallets) {
+    if (!computedOfferBuilderData || !wallets) {
       return [];
     }
 
     const offeredUnknownCATsLocal = getUnknownCATs(
       wallets,
-      offerBuilderData.offered.tokens.map(({ assetId }) => assetId)
+      computedOfferBuilderData.offered.tokens.map(({ assetId }) => assetId)
     );
     const requestedUnknownCATsLocal = getUnknownCATs(
       wallets,
-      offerBuilderData.requested.tokens.map(({ assetId }) => assetId)
+      computedOfferBuilderData.requested.tokens.map(({ assetId }) => assetId)
     );
 
     return [offeredUnknownCATsLocal, requestedUnknownCATsLocal];
-  }, [offerBuilderData, wallets]);
+  }, [computedOfferBuilderData, wallets]);
 
   const missingOfferedCATs = !!offeredUnknownCATs?.length;
   const missingRequestedCATs = !!requestedUnknownCATs?.length;
@@ -136,7 +142,7 @@ function OfferBuilderViewer(props: OfferBuilderViewerProps, ref: any) {
   const canAccept = !!offerData;
   const disableAccept = missingOfferedCATs || showInvalid;
 
-  const isLoading = isLoadingWallets || !offerBuilderData || isOffersLoading;
+  const isLoading = isLoadingWallets || (!computedOfferBuilderData && !prepopulatedOfferBuilderData) || isOffersLoading;
 
   async function handleSubmit(values: OfferBuilderData) {
     const { offered } = values;
@@ -254,7 +260,7 @@ function OfferBuilderViewer(props: OfferBuilderViewerProps, ref: any) {
           <Loading center />
         ) : (
           <OfferBuilder
-            defaultValues={offerBuilderData}
+            defaultValues={computedOfferBuilderData || prepopulatedOfferBuilderData}
             onSubmit={handleSubmit}
             ref={offerBuilderRef}
             isMyOffer={isMyOffer}

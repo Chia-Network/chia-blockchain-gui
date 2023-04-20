@@ -5,7 +5,9 @@ import ErrorIcon from '@mui/icons-material/Error';
 import { Chip, Typography } from '@mui/material';
 import CircularProgress from '@mui/material/CircularProgress';
 import React, { useMemo } from 'react';
+import isURL from 'validator/lib/isURL';
 
+import useNFT from '../../hooks/useNFT';
 import useNFTVerifyHash from '../../hooks/useNFTVerifyHash';
 
 export type NFTHashStatusProps = {
@@ -18,15 +20,30 @@ export type NFTHashStatusProps = {
 export default function NFTHashStatus(props: NFTHashStatusProps) {
   const { nftId, preview = false, hideValid = false, hideIcon = false } = props;
   const {
-    isLoading,
+    isLoading: isLoadingNFTVerifyHash,
     data,
     preview: nftPreview,
   } = useNFTVerifyHash(nftId, {
     preview,
   });
 
+  const { nft, isLoading: isLoadingNFT, error: errorNFT } = useNFT(nftId);
+
+  const isLoading = isLoadingNFTVerifyHash || isLoadingNFT;
   const isVerified = preview ? nftPreview?.isVerified : data?.isVerified;
-  const error = preview ? nftPreview?.error : data?.error;
+  const error = errorNFT ?? preview ? nftPreview?.error : data?.error;
+
+  const isValidURI = useMemo(() => {
+    if (!nftPreview || !('originalUri' in nftPreview)) {
+      return true;
+    }
+
+    if (nftPreview.originalUri) {
+      return isURL(nftPreview.originalUri);
+    }
+
+    return false;
+  }, [nftPreview]);
 
   const icon = useMemo(() => {
     if (hideIcon) {
@@ -49,16 +66,28 @@ export default function NFTHashStatus(props: NFTHashStatusProps) {
       return <Trans>Verifying hash...</Trans>;
     }
 
+    if (nft?.pendingTransaction) {
+      return <Trans>Update Pending</Trans>;
+    }
+
     if (isVerified) {
       return <Trans>Hash matches</Trans>;
     }
 
+    if (!isValidURI) {
+      return <Trans>URL is not valid</Trans>;
+    }
+
     return <Trans>Invalid hash</Trans>;
-  }, [isLoading, isVerified]);
+  }, [isLoading, isVerified, nft, isValidURI]);
 
   const color = useMemo(() => {
     if (isLoading) {
       return undefined;
+    }
+
+    if (nft?.pendingTransaction) {
+      return 'warning';
     }
 
     if (isVerified) {
@@ -66,7 +95,7 @@ export default function NFTHashStatus(props: NFTHashStatusProps) {
     }
 
     return 'error';
-  }, [isLoading, isVerified]);
+  }, [isLoading, isVerified, nft?.pendingTransaction]);
 
   const tooltipContent = useMemo(() => {
     if (error) {
@@ -88,11 +117,13 @@ export default function NFTHashStatus(props: NFTHashStatusProps) {
     return undefined;
   }, [error, isVerified]);
 
-  if (hideValid && isVerified) {
+  const canHide = !nft?.pendingTransaction;
+
+  if (hideValid && canHide && isVerified) {
     return null;
   }
 
-  const chip = <Chip avatar={icon} label={message} color={color} size="small" />;
+  const chip = <Chip icon={icon} label={message} color={color} size="small" />;
 
   if (tooltipContent) {
     return <Tooltip title={<Typography variant="caption">{tooltipContent}</Typography>}>{chip}</Tooltip>;

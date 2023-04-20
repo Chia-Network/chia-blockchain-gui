@@ -4,9 +4,8 @@ import { Grid, Typography, Card } from '@mui/material';
 import React from 'react';
 import { useWatch } from 'react-hook-form';
 
-import useNFTByCoinId from '../../hooks/useNFTByCoinId';
+import useNFT from '../../hooks/useNFT';
 import useNFTMinterDID from '../../hooks/useNFTMinterDID';
-import { launcherIdFromNFTId } from '../../util/nfts';
 import NFTCard from '../nfts/NFTCard';
 import { NFTContextualActionTypes } from '../nfts/NFTContextualActions';
 import OfferBuilderNFTProvenance from './OfferBuilderNFTProvenance';
@@ -30,34 +29,25 @@ export type OfferBuilderNFTProps = {
   provenance?: boolean;
   showRoyalties?: boolean;
   offering?: boolean;
-  onSelectNFT: (name: string, nftId: string) => void;
 };
 
 export default function OfferBuilderNFT(props: OfferBuilderNFTProps) {
-  const { name, provenance = false, showRoyalties = false, onRemove, offering = false, onSelectNFT } = props;
+  const { name, provenance = false, showRoyalties = false, onRemove, offering = false } = props;
 
   const fieldName = `${name}.nftId`;
   const value = useWatch({
     name: fieldName,
   });
+
   const { didId: minterDID, didName: minterDIDName } = useNFTMinterDID(value);
+  const { nft, isLoading, error } = useNFT(value);
 
-  const launcherId = launcherIdFromNFTId(value ?? '');
-
-  const { nft, isLoading: isLoadingNFT, error } = useNFTByCoinId(launcherId);
-
-  const hasNFT = launcherId && !!nft && !isLoadingNFT;
+  const hasNFT = !!nft;
 
   return (
     <Flex flexDirection="column" gap={2}>
       <Flex flexDirection="column" gap={1}>
-        <OfferBuilderValue
-          name={fieldName}
-          type="text"
-          label={<Trans>NFT ID</Trans>}
-          onRemove={onRemove}
-          onSelectNFT={onSelectNFT}
-        />
+        <OfferBuilderValue name={fieldName} type="text" label={<Trans>NFT ID</Trans>} onRemove={onRemove} />
         {(minterDID || minterDIDName) && (
           <Flex flexDirection="column" gap={1}>
             <Typography variant="body1" color="textSecondary">
@@ -79,22 +69,14 @@ export default function OfferBuilderNFT(props: OfferBuilderNFTProps) {
           </Typography>
           <Grid spacing={3} container>
             <Grid xs={12} md={6} item>
-              {!launcherId ? (
-                <PreviewCard>
-                  <Typography>
-                    <Trans>NFT not specified</Trans>
-                  </Typography>
-                </PreviewCard>
-              ) : isLoadingNFT ? (
+              {isLoading ? (
                 <PreviewCard>
                   <Loading />
                 </PreviewCard>
               ) : error ? (
-                <PreviewCard>
-                  <Typography variant="body1" color="error">
-                    {error.message}
-                  </Typography>
-                </PreviewCard>
+                <Typography variant="body1" color="error">
+                  {error.message}
+                </Typography>
               ) : nft ? (
                 <NFTCard
                   nft={nft}

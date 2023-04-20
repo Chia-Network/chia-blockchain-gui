@@ -10,6 +10,7 @@ export default createTheme({
       ...theme.palette.background,
       card: '#fff',
     },
+    sidebarBackground: theme.palette.sidebarBackground.main,
     colors: {
       royal: {
         main: '#C1D4FC',

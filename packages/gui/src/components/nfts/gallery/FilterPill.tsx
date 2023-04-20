@@ -31,7 +31,7 @@ export default function FilterPill(props: FilterPillProps) {
           &nbsp;
           <ArrowDropDownIcon color="secondary" />
         </Button>,
-        <Box sx={{ paddingX: 1, paddingY: 0.5 }}>{children}</Box>,
+        <Box sx={{ paddingX: 2, paddingY: 0.5 }}>{children}</Box>,
       ]}
     </DropdownBase>
   );

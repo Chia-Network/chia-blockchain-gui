@@ -1,21 +1,42 @@
-import { useGetLoggedInFingerprintQuery, useGetKeyQuery, useFingerprintSettings } from '@chia-network/api-react';
+import {
+  useGetLoggedInFingerprintQuery,
+  useGetKeyQuery,
+  useFingerprintSettings,
+  useLocalStorage,
+} from '@chia-network/api-react';
+import { useAppVersion } from '@chia-network/core';
 import { Exit as ExitIcon } from '@chia-network/icons';
 import { t, Trans } from '@lingui/macro';
 import { ExitToApp as ExitToAppIcon, Edit as EditIcon } from '@mui/icons-material';
-import { Box, AppBar, Toolbar, Drawer, Container, IconButton, Typography, CircularProgress } from '@mui/material';
+import {
+  Box,
+  AppBar,
+  Toolbar,
+  Drawer,
+  Container,
+  IconButton,
+  Typography,
+  CircularProgress,
+  Button,
+} from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import React, { type ReactNode, useState, Suspense, useCallback } from 'react';
 import { useNavigate, Outlet } from 'react-router-dom';
 import styled from 'styled-components';
 
+import useGetLatestVersionFromWebsite from '../../hooks/useGetLatestVersionFromWebsite';
+import useOpenDialog from '../../hooks/useOpenDialog';
 import EmojiAndColorPicker from '../../screens/SelectKey/EmojiAndColorPicker';
 import SelectKeyRenameForm from '../../screens/SelectKey/SelectKeyRenameForm';
+import compareAppVersions from '../../utils/compareAppVersion';
 import Flex from '../Flex';
+import Link from '../Link';
 import Loading from '../Loading';
 import Logo from '../Logo';
 import Settings from '../Settings';
-import ToolbarSpacing from '../ToolbarSpacing';
 import Tooltip from '../Tooltip';
+import NewerAppVersionAvailable from './NewerAppVersionAvailable';
+
 // import LayoutFooter from '../LayoutMain/LayoutFooter';
 
 const StyledRoot = styled(Flex)`
@@ -95,8 +116,29 @@ export default function LayoutDashboard(props: LayoutDashboardProps) {
     emoji: ``,
     color: 'green',
   });
+  const [skipVersion, setSkipVersion] = useLocalStorage<string>('skipVersion', '');
+  const { latestVersion, downloadUrl, blogUrl } = useGetLatestVersionFromWebsite(skipVersion !== '');
+  const { version } = useAppVersion();
+  const versionComparisonResult = latestVersion ? compareAppVersions(version, latestVersion) : 0;
+  const newVersionAvailable = versionComparisonResult === -1;
+
+  const openDialog = useOpenDialog();
 
   const isLoading = isLoadingFingerprint || isLoadingKeyData;
+
+  const preventDualCheck = React.useRef(false);
+
+  React.useEffect(() => {
+    function checkForUpdates(ver: string) {
+      if (ver) {
+        openDialog(<NewerAppVersionAvailable currentVersion={ver} />);
+      }
+    }
+    if (!preventDualCheck.current && version) {
+      (window as any).ipcRenderer.on('checkForUpdates', () => checkForUpdates(version));
+      preventDualCheck.current = true;
+    }
+  }, [openDialog, version]);
 
   async function handleLogout() {
     localStorage.setItem('visibilityFilters', JSON.stringify(['visible']));
@@ -113,12 +155,54 @@ export default function LayoutDashboard(props: LayoutDashboardProps) {
     setEditWalletName(false);
   }
 
+  function isNewVersionBannerShown() {
+    return latestVersion && version && skipVersion !== latestVersion && newVersionAvailable;
+  }
+
+  function renderNewVersionBanner() {
+    if (isNewVersionBannerShown()) {
+      return (
+        <Flex
+          gap={2}
+          flexDirection="row"
+          justifyContent="center"
+          style={{
+            background: theme.palette.sidebarBackground,
+            padding: '12px',
+            lineHeight: '29px',
+            marginBottom: '10px',
+            fontSize: '15px',
+          }}
+        >
+          <Trans>New version {latestVersion} available</Trans>
+          <Button color="secondary" variant="outlined" size="small" onClick={() => setSkipVersion(latestVersion || '')}>
+            <Trans>Skip</Trans>
+          </Button>
+          {blogUrl && (
+            <Link target="_blank" href={blogUrl} sx={{ textDecoration: 'none !important' }}>
+              <Button color="secondary" variant="outlined" size="small" sx={{ boxShadow: 'none' }}>
+                <Trans>What's New</Trans>
+              </Button>
+            </Link>
+          )}
+          <Link target="_blank" href={downloadUrl} sx={{ textDecoration: 'none !important' }}>
+            <Button size="small" variant="contained" color="primary" sx={{ boxShadow: 'none' }}>
+              <Trans>Download</Trans>
+            </Button>
+          </Link>
+        </Flex>
+      );
+    }
+    return null;
+  }
+
   return (
     <StyledRoot>
       <Suspense fallback={<Loading center />}>
         {sidebar ? (
           <>
             <StyledAppBar position="fixed" color="transparent" elevation={0} drawer>
+              {renderNewVersionBanner()}
               <StyledToolbar>
                 <Flex width="100%" alignItems="center" justifyContent="space-between" gap={2}>
                   <Flex
@@ -268,8 +352,13 @@ export default function LayoutDashboard(props: LayoutDashboardProps) {
         )}
 
         <StyledBody flexDirection="column" flexGrow={1}>
-          <ToolbarSpacing />
-          <Flex flexDirection="column" gap={2} flexGrow={1} overflow="auto">
+          <Flex
+            flexDirection="column"
+            gap={2}
+            flexGrow={1}
+            overflow="auto"
+            style={{ marginTop: isNewVersionBannerShown() ? '150px' : '85px' }}
+          >
             <Suspense fallback={<Loading center />}>{outlet ? <Outlet /> : children}</Suspense>
           </Flex>
         </StyledBody>

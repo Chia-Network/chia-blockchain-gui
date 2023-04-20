@@ -6,6 +6,7 @@ import type WalletConnectCommandParam from './WalletConnectCommandParam';
 type WalletConnectCommand = {
   command: string;
   label: ReactNode;
+  description?: ReactNode;
   service: ServiceName;
   allFingerprints?: boolean;
   waitForSync?: boolean;

@@ -293,6 +293,28 @@ if (!handleSquirrelEvent()) {
         })
       );
 
+      type ResponseObjType = { data?: string; error?: string };
+
+      ipcMain.handle('fetchHtmlContent', async (_event, axiosUrl: string) => {
+        const responseObj: ResponseObjType = await new Promise((resolve) => {
+          axios({
+            method: 'GET',
+            url: axiosUrl,
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept-Encoding': 'identity',
+            },
+          })
+            .then((response) => {
+              resolve({ data: response.data });
+            })
+            .catch((e: Error) => {
+              resolve({ error: e.message });
+            });
+        });
+        return responseObj;
+      });
+
       type DownloadFileWithProgressProps = {
         folder: string;
         nft: NFTInfo;
@@ -634,6 +656,15 @@ function getMenuTemplate() {
               accelerator: process.platform === 'darwin' ? 'Alt+Command+I' : 'Ctrl+Shift+I',
               click: () => mainWindow.toggleDevTools(),
             },
+            {
+              type: 'separator',
+            },
+            {
+              label: i18n._(/* i18n */ { id: 'Trigger Desktop Notification' }),
+              click: () => {
+                mainWindow?.webContents.send('debug_triggerDesktopNotification', {});
+              },
+            },
             // {
             // label: isSimulator
             //  ? i18n._(/* i18n */ { id: 'Disable Simulator' })
@@ -743,6 +774,12 @@ function getMenuTemplate() {
           },
         },
         {
+          label: i18n._(/* i18n */ { id: 'Check for Updates...' }),
+          click: () => {
+            mainWindow?.webContents.send('checkForUpdates');
+          },
+        },
+        {
           type: 'separator',
         },
         {
@@ -827,6 +864,12 @@ function getMenuTemplate() {
         label: i18n._(/* i18n */ { id: 'About Chia Blockchain' }),
         click() {
           openAbout();
+        },
+      },
+      {
+        label: i18n._(/* i18n */ { id: 'Check for updates...' }),
+        click: () => {
+          mainWindow?.webContents.send('checkForUpdates');
         },
       }
     );

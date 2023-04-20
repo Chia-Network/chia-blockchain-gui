@@ -4,14 +4,17 @@ import type FileType from './FileType';
 import type Metadata from './Metadata';
 
 type NFTData = {
+  id: string; // nftId
+
   nft?: NFTInfo;
-  type?: FileType;
+  nftPromise?: Promise<NFTInfo>;
+  nftError?: Error;
+
   metadata?: Metadata;
   metadataError?: Error;
   metadataPromise?: Promise<Metadata>;
-  nftPromise?: Promise<NFTInfo>;
-  nftError?: Error;
-  coinId: string;
+
+  type?: FileType;
   inList?: boolean;
 };
 

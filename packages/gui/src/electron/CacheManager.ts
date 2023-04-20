@@ -6,6 +6,7 @@ import path from 'path';
 
 import isURL from 'validator/lib/isURL';
 
+import limit from '../util/limit';
 import canReadFile from './utils/canReadFile';
 import downloadFile from './utils/downloadFile';
 import ensureDirectoryExists from './utils/ensureDirectoryExists';
@@ -29,11 +30,23 @@ type CachedFile = {
   checksum: string;
 };
 
+const HEADERS_SUFFIX = '-headers';
+const FILE_SUFFIX = '-chiacache';
 const MAX_TOTAL_SIZE = 1024 * 1024 * 1024; // 1GB
 const MAX_FILE_SIZE = 1024 * 1024 * 100; // 100MB
 
+const SUFFIXES = [FILE_SUFFIX, `${FILE_SUFFIX}${HEADERS_SUFFIX}`];
+
+function isChiaCacheFile(filePath: string) {
+  return SUFFIXES.some((suffix) => filePath.endsWith(suffix));
+}
+
+function isChiaCacheHeaderFile(filePath: string) {
+  return isChiaCacheFile(filePath) && filePath.endsWith(HEADERS_SUFFIX);
+}
+
 function getHeadersFilePath(filePath: string) {
-  return `${filePath}.json`;
+  return `${filePath}${HEADERS_SUFFIX}`;
 }
 
 function removePrefix(str: string, variable: string): string {
@@ -52,6 +65,8 @@ export default class CacheManager extends EventEmitter {
 
   #protocolScheme: string = 'cache';
 
+  #downloadLimit;
+
   private ongoingRequests: Map<string, Promise<CachedFile>> = new Map();
 
   constructor(
@@ -59,15 +74,24 @@ export default class CacheManager extends EventEmitter {
       cacheDirectory?: string;
       maxCacheSize?: number | string;
       protocolScheme?: string;
+      concurrency?: number;
     } = {}
   ) {
     super();
 
-    const { cacheDirectory = './cache', maxCacheSize = MAX_TOTAL_SIZE, protocolScheme = 'cache' } = options;
+    const {
+      cacheDirectory = './cache',
+      maxCacheSize = MAX_TOTAL_SIZE,
+      protocolScheme = 'cache',
+      concurrency = 5,
+    } = options;
 
     this.cacheDirectory = cacheDirectory;
     this.maxCacheSize = maxCacheSize;
     this.#protocolScheme = protocolScheme;
+    this.#downloadLimit = limit(concurrency);
+
+    this.setMaxListeners(1000);
 
     this.prepareElectron();
   }
@@ -178,11 +202,12 @@ export default class CacheManager extends EventEmitter {
 
   private getCacheFilePath(url: string) {
     const urlHash = crypto.createHash('md5').update(url).digest('hex');
-    return path.join(this.cacheDirectory, urlHash);
+    const fileName = `${urlHash}${FILE_SUFFIX}`;
+    return path.join(this.cacheDirectory, fileName);
   }
 
   private async readCachedFile(filePath: string) {
-    const headersFilePath = `${filePath}.json`;
+    const headersFilePath = getHeadersFilePath(filePath);
 
     const content = await fs.readFile(filePath);
     const headersString = await fs.readFile(headersFilePath, 'utf-8');
@@ -229,6 +254,7 @@ export default class CacheManager extends EventEmitter {
     const headersFilePath = getHeadersFilePath(filePath);
     await fs.writeFile(headersFilePath, JSON.stringify(updatedHeaders, null, 2));
 
+    // todo just add size and save it locally
     this.emit('sizeChanged');
 
     return this.readCachedFile(filePath);
@@ -252,31 +278,38 @@ export default class CacheManager extends EventEmitter {
       return ongoingRequest;
     }
 
-    const cacheFilePath = this.getCacheFilePath(url);
+    const process = async () => {
+      try {
+        const cacheFilePath = this.getCacheFilePath(url);
 
-    if (await canReadFile(cacheFilePath)) {
-      return this.readCachedFile(cacheFilePath);
-    }
+        if (await canReadFile(cacheFilePath)) {
+          return await this.readCachedFile(cacheFilePath);
+        }
 
-    const requestPromise = this.fetchData(url, {
-      maxSize,
-      timeout,
-    });
+        return await this.fetchData(url, {
+          maxSize,
+          timeout,
+        });
+      } finally {
+        this.ongoingRequests.delete(url);
+      }
+    };
+
+    const requestPromise = process();
 
     this.ongoingRequests.set(url, requestPromise);
 
-    try {
-      return await requestPromise;
-    } finally {
-      this.ongoingRequests.delete(url);
-    }
+    return requestPromise;
   }
 
   async clearCache() {
     const files = await fs.readdir(this.cacheDirectory);
     const unlinkPromises = files.map(async (file) => {
-      const filePath = path.join(this.cacheDirectory, file);
-      await fs.unlink(filePath);
+      const hasSuffix = SUFFIXES.some((suffix) => file.endsWith(suffix));
+      if (hasSuffix) {
+        const filePath = path.join(this.cacheDirectory, file);
+        await safeUnlink(filePath);
+      }
     });
 
     await Promise.all(unlinkPromises);
@@ -290,6 +323,10 @@ export default class CacheManager extends EventEmitter {
     // move the files from the current cache directory to the new directory
     const files = await fs.readdir(this.cacheDirectory);
     const movePromises = files.map(async (file) => {
+      if (!isChiaCacheFile(file)) {
+        return;
+      }
+
       const oldFilePath = path.join(this.cacheDirectory, file);
       const newFilePath = path.join(newDirectory, file);
 
@@ -308,7 +345,7 @@ export default class CacheManager extends EventEmitter {
   private async removeOldestFiles(targetSize: number): Promise<void> {
     const files = await fs.readdir(this.cacheDirectory);
     const filePaths = files
-      .filter((file) => !file.endsWith('.json'))
+      .filter((file) => isChiaCacheFile(file) && !isChiaCacheHeaderFile(file))
       .map((file) => path.join(this.cacheDirectory, file));
 
     // get the file sizes
@@ -364,7 +401,9 @@ export default class CacheManager extends EventEmitter {
 
   async getCacheSize() {
     const files = await fs.readdir(this.cacheDirectory);
-    const filePaths = files.map((file) => path.join(this.cacheDirectory, file));
+    const filePaths = files
+      .filter((filename) => isChiaCacheFile(filename))
+      .map((filename) => path.join(this.cacheDirectory, filename));
 
     // Get the file sizes and calculate the total size
     const fileSizes = await Promise.all(filePaths.map(async (filePath) => (await fs.stat(filePath)).size));

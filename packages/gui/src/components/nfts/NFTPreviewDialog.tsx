@@ -1,4 +1,3 @@
-import { type NFTInfo } from '@chia-network/api';
 import { Flex } from '@chia-network/core';
 import { Dialog, Paper } from '@mui/material';
 import { styled } from '@mui/styles';
@@ -10,14 +9,14 @@ const StyledNFTPreviewBackground = styled(Paper)({
   padding: '2rem',
 });
 
-type NFTPreviewDialogProps = {
-  nft: NFTInfo;
+export type NFTPreviewDialogProps = {
+  id: string;
   open?: boolean;
   onClose?: () => void;
 };
 
 export default function NFTPreviewDialog(props: NFTPreviewDialogProps) {
-  const { nft, onClose = () => ({}), open = false, ...rest } = props;
+  const { id, onClose = () => ({}), open = false, ...rest } = props;
 
   return (
     <Dialog
@@ -38,7 +37,7 @@ export default function NFTPreviewDialog(props: NFTPreviewDialogProps) {
       )}
       {...rest}
     >
-      <NFTPreview nft={nft} width="100%" height="100%" background={StyledNFTPreviewBackground} />
+      <NFTPreview id={id} width="100%" height="100%" background={StyledNFTPreviewBackground} />
     </Dialog>
   );
 }

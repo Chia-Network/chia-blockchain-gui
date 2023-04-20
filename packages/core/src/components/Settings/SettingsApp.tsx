@@ -7,15 +7,18 @@ import {
   NightsStay as NightsStayIcon,
   AccountBalanceWallet as AccountBalanceWalletIcon,
 } from '@mui/icons-material';
-import { ButtonGroup } from '@mui/material';
+import { ButtonGroup, Typography } from '@mui/material';
 import React, { type ReactNode } from 'react';
 
 import Mode from '../../constants/Mode';
+import useAppVersion from '../../hooks/useAppVersion';
 import useDarkMode from '../../hooks/useDarkMode';
 import useMode from '../../hooks/useMode';
+import useOpenDialog from '../../hooks/useOpenDialog';
 import useShowError from '../../hooks/useShowError';
 import Button from '../Button';
 import Flex from '../Flex';
+import NewerAppVersionAvailable from '../LayoutDashboard/NewerAppVersionAvailable';
 import Link from '../Link';
 import LocaleToggle from '../LocaleToggle';
 import SettingsLabel from './SettingsLabel';
@@ -29,7 +32,9 @@ export default function SettingsApp(props: SettingsAppProps) {
 
   const [mode, setMode] = useMode();
   const showError = useShowError();
+  const openDialog = useOpenDialog();
   const { enable, disable, isDarkMode } = useDarkMode();
+  const { version } = useAppVersion();
 
   function handleSetFarmingMode() {
     setMode(Mode.FARMING);
@@ -112,6 +117,27 @@ export default function SettingsApp(props: SettingsAppProps) {
           <Trans>Language</Trans>
         </SettingsLabel>
         <LocaleToggle variant="outlined" />
+      </Flex>
+
+      <Flex flexDirection="column" gap={1}>
+        <Flex flexDirection="row" gap={1}>
+          <SettingsLabel>
+            <Trans>Chia Application Version:</Trans>
+          </SettingsLabel>
+          {version && (
+            <Typography variant="body1" color="textSecondary">
+              {version}
+            </Typography>
+          )}
+        </Flex>
+
+        <Button
+          onClick={() => openDialog(<NewerAppVersionAvailable currentVersion={version!} />)}
+          variant="outlined"
+          data-testid="checkForUpdatesButton"
+        >
+          <Trans>Check for updates</Trans>
+        </Button>
       </Flex>
 
       {children}

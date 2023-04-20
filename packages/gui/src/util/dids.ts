@@ -1,14 +1,9 @@
 import { toBech32m, fromBech32m } from '@chia-network/api';
 
-function stripHexPrefix(hex: string) {
-  if (hex.startsWith('0x') || hex.startsWith('0X')) {
-    return hex.slice(2);
-  }
-  return hex;
-}
+import removeHexPrefix from './removeHexPrefix';
 
 export function didToDIDId(did: string): string {
-  return toBech32m(stripHexPrefix(did), 'did:chia:');
+  return toBech32m(removeHexPrefix(did), 'did:chia:');
 }
 
 export function didFromDIDId(didId: string): string | undefined {

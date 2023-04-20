@@ -5,6 +5,24 @@ import createDefaultValues from './createDefaultValues';
 describe('createDefaultValues', () => {
   describe('when no params are provided', () => {
     it('should return an object with empty value arrays', () => {
+      expect(createDefaultValues()).toEqual({
+        offered: {
+          xch: [],
+          tokens: [],
+          nfts: [],
+          fee: [],
+        },
+        requested: {
+          xch: [],
+          tokens: [],
+          nfts: [],
+          fee: [],
+        },
+      });
+    });
+  });
+  describe('when empty params are provided', () => {
+    it('should return an object with empty value arrays', () => {
       expect(createDefaultValues({})).toEqual({
         offered: {
           xch: [],
@@ -137,6 +155,15 @@ describe('createDefaultValues', () => {
           fee: [],
         },
       });
+    });
+  });
+  describe('when the returned data is modified', () => {
+    it('the original data is not modified', () => {
+      const values = createDefaultValues();
+      values.offered.xch = [{ amount: '1' }];
+      values.requested.xch = [{ amount: '2' }];
+      const values2 = createDefaultValues();
+      expect(values2.offered.xch).toStrictEqual([]);
     });
   });
 });

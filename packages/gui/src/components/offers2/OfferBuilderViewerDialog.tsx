@@ -9,14 +9,15 @@ import type OfferBuilderData from '../../@types/OfferBuilderData';
 import OfferBuilderViewer from './OfferBuilderViewer';
 
 export type OfferBuilderViewerDialogProps = {
-  offer: string;
+  offer?: string; // when viewing an existing offer
   fee?: string; // fee in mojos
+  offerBuilderData?: OfferBuilderData; // when viewing an offer that hasn't been created yet
   onClose?: (values?: OfferBuilderData) => void;
   open?: boolean;
 };
 
 export default function OfferBuilderViewerDialog(props: OfferBuilderViewerDialogProps) {
-  const { offer, fee, onClose, open = false } = props;
+  const { offer, offerBuilderData, fee, onClose, open = false } = props;
 
   const offerBuilderViewerRef = useRef<{ getValues: () => OfferBuilderData } | undefined>();
   const [getOfferSummary, { isLoading: isLoadingOfferSummary, data, error }] = useGetOfferSummaryMutation();
@@ -33,7 +34,7 @@ export default function OfferBuilderViewerDialog(props: OfferBuilderViewerDialog
     onClose?.(values);
   }
 
-  const isLoading = isLoadingOfferSummary || !data;
+  const isLoading = offer && (isLoadingOfferSummary || !data);
 
   return (
     <Dialog onClose={handleClose} maxWidth="lg" open={open} fullWidth>
@@ -60,7 +61,8 @@ export default function OfferBuilderViewerDialog(props: OfferBuilderViewerDialog
           <OfferBuilderViewer
             ref={offerBuilderViewerRef}
             offerData={offer}
-            offerSummary={data.summary}
+            offerBuilderData={offerBuilderData}
+            offerSummary={data?.summary}
             fee={fee}
             hideHeader
             imported
