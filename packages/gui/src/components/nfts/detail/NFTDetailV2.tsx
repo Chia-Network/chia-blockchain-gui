@@ -1,5 +1,5 @@
 import type { NFTInfo } from '@chia-network/api';
-import { Flex, LayoutDashboardSub, Loading, useOpenDialog, Tooltip } from '@chia-network/core';
+import { Flex, LayoutDashboardSub, useOpenDialog, Tooltip } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import {
   MoreVert,
@@ -14,6 +14,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import useFilteredNFTs from '../../../hooks/useFilteredNFTs';
 import useNFT from '../../../hooks/useNFT';
 import useNFTMetadata from '../../../hooks/useNFTMetadata';
+import getNFTId from '../../../util/getNFTId';
 import { isImage } from '../../../util/utils';
 import OfferIncomingTable from '../../offers2/OfferIncomingTable';
 import NFTContextualActions, { NFTContextualActionTypes } from '../NFTContextualActions';
@@ -44,19 +45,20 @@ function NFTDetailLoaded(props: NFTDetailLoadedProps) {
   const { nftId } = props;
   const openDialog = useOpenDialog();
   const { nft } = useNFT(nftId);
-  const { metadata, isLoading: isLoadingMetadata } = useNFTMetadata(nftId);
+  const { metadata } = useNFTMetadata(nftId);
 
   const { nfts } = useFilteredNFTs();
   const navigate = useNavigate();
 
-  const position = useMemo(() => nfts.findIndex((item: NFTInfo) => item.$nftId === nftId), [nftId, nfts]);
+  const position = useMemo(() => nfts.findIndex((item: NFTInfo) => getNFTId(item.launcherId) === nftId), [nftId, nfts]);
   const isLastPosition = nfts.length === position + 1;
 
   const navigateToDetail = useCallback(
     (offset: number) => {
       const nextPosition = position + offset;
       if (nextPosition >= 0 && nextPosition < nfts.length) {
-        navigate(`/dashboard/nfts/${nfts[nextPosition].$nftId}`);
+        const nextNFTId = getNFTId(nfts[nextPosition].launcherId);
+        navigate(`/dashboard/nfts/${nextNFTId}`);
       }
     },
     [nfts, navigate, position]
@@ -80,7 +82,7 @@ function NFTDetailLoaded(props: NFTDetailLoadedProps) {
   function handleShowFullScreen() {
     const uri = nft?.dataUris?.[0];
     if (isImage(uri)) {
-      openDialog(<NFTPreviewDialog nft={nft} />);
+      openDialog(<NFTPreviewDialog id={nftId} />);
     }
   }
 
@@ -149,7 +151,7 @@ function NFTDetailLoaded(props: NFTDetailLoadedProps) {
             {nft && (
               <Flex flexDirection="column">
                 <Box onClick={handleShowFullScreen} sx={{ cursor: 'pointer' }}>
-                  <NFTPreview nft={nft} width="100%" height="412px" fit="contain" hideStatus />
+                  <NFTPreview id={nftId} width="100%" height="412px" fit="contain" hideStatus />
                 </Box>
                 {/*
                 <NFTProgressBar
@@ -164,16 +166,12 @@ function NFTDetailLoaded(props: NFTDetailLoadedProps) {
         </Flex>
       </Flex>
       <LayoutDashboardSub>
-        {isLoadingMetadata ? (
-          <Flex justifyContent="center" alignItems="center">
-            <Loading />
-          </Flex>
-        ) : (
-          <Flex flexDirection="column" gap={2} maxWidth="1200px" width="100%" alignSelf="center" mb={3}>
-            <Flex alignItems="center" justifyContent="space-between">
-              <Typography variant="h4" overflow="hidden">
-                <NFTTitle nftId={nftId} />
-              </Typography>
+        <Flex flexDirection="column" gap={2} maxWidth="1200px" width="100%" alignSelf="center" mb={3}>
+          <Flex alignItems="center" justifyContent="space-between">
+            <Typography variant="h4" overflow="hidden">
+              <NFTTitle nftId={nftId} />
+            </Typography>
+            {nft && (
               <NFTContextualActions
                 selection={{ items: [nft] }}
                 availableActions={NFTContextualActionTypes.All}
@@ -183,56 +181,56 @@ function NFTDetailLoaded(props: NFTDetailLoadedProps) {
                   </IconButton>
                 }
               />
-            </Flex>
+            )}
+          </Flex>
 
-            <Grid spacing={{ xs: 6, lg: 8 }} container>
-              <Grid item xs={12} md={6}>
-                <Flex flexDirection="column" gap={3}>
+          <Grid spacing={{ xs: 6, lg: 8 }} container>
+            <Grid item xs={12} md={6}>
+              <Flex flexDirection="column" gap={3}>
+                <Flex flexDirection="column" gap={1}>
+                  <Typography variant="h6">
+                    <Trans>Description</Trans>
+                  </Typography>
+
+                  <Typography sx={{ whiteSpace: 'pre-line' }} overflow="hidden">
+                    <NFTMetadata path="description" nftId={nftId} />
+                  </Typography>
+                </Flex>
+                {metadata?.collection?.name && (
                   <Flex flexDirection="column" gap={1}>
                     <Typography variant="h6">
-                      <Trans>Description</Trans>
+                      <Trans>Collection</Trans>
                     </Typography>
 
-                    <Typography sx={{ whiteSpace: 'pre-line' }} overflow="hidden">
-                      <NFTMetadata path="description" nftId={nftId} />
+                    <Typography overflow="hidden">
+                      <NFTMetadata path="collection.name" nftId={nftId} />
                     </Typography>
                   </Flex>
-                  {metadata?.collection?.name && (
-                    <Flex flexDirection="column" gap={1}>
-                      <Typography variant="h6">
-                        <Trans>Collection</Trans>
-                      </Typography>
+                )}
+                {(nft?.editionTotal ?? 0) > 1 && (
+                  <Flex flexDirection="column" gap={1}>
+                    <Typography variant="h6">
+                      <Trans>Edition Number</Trans>
+                    </Typography>
 
-                      <Typography overflow="hidden">
-                        <NFTMetadata path="collection.name" nftId={nftId} />
-                      </Typography>
-                    </Flex>
-                  )}
-                  {(nft?.editionTotal ?? 0) > 1 && (
-                    <Flex flexDirection="column" gap={1}>
-                      <Typography variant="h6">
-                        <Trans>Edition Number</Trans>
-                      </Typography>
-
-                      <Typography>
-                        <Trans>
-                          {nft.editionNumber} of {nft.editionTotal}
-                        </Trans>
-                      </Typography>
-                    </Flex>
-                  )}
-                  <NFTProperties attributes={metadata?.attributes} />
-                  <NFTRankings attributes={metadata?.attributes} />
-                </Flex>
-              </Grid>
-              <Grid item xs={12} md={6}>
-                <NFTDetails nft={nft} metadata={metadata} />
-              </Grid>
+                    <Typography>
+                      <Trans>
+                        {nft?.editionNumber} of {nft?.editionTotal}
+                      </Trans>
+                    </Typography>
+                  </Flex>
+                )}
+                <NFTProperties attributes={metadata?.attributes} />
+                <NFTRankings attributes={metadata?.attributes} />
+              </Flex>
             </Grid>
+            <Grid item xs={12} md={6}>
+              {nft && <NFTDetails nft={nft} metadata={metadata} />}
+            </Grid>
+          </Grid>
 
-            <OfferIncomingTable nftId={nftId} title={<Trans>Offers</Trans>} />
-          </Flex>
-        )}
+          <OfferIncomingTable nftId={nftId} title={<Trans>Offers</Trans>} />
+        </Flex>
       </LayoutDashboardSub>
     </Flex>
   );

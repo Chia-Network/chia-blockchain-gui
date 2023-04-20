@@ -17,6 +17,7 @@ import React from 'react';
 import useCache from '../../hooks/useCache';
 import useHideObjectionableContent from '../../hooks/useHideObjectionableContent';
 import useNFTImageFittingMode from '../../hooks/useNFTImageFittingMode';
+import useSelectDirectory from '../../hooks/useSelectDirectory';
 import LimitCacheSize from './LimitCacheSize';
 
 /* todo it is deprecated we should remove it from users local storage
@@ -35,10 +36,11 @@ export default function SettingsGeneral() {
     setHideObjectionableContent(event.target.checked);
   }
 
-  const { cacheSize, clearCache, cacheDirectory } = useCache();
+  const { cacheSize, clearCache, cacheDirectory, setCacheDirectory } = useCache();
   const [nftImageFittingMode, setNFTImageFittingMode] = useNFTImageFittingMode();
   // const [, setCacheFolder] = usePrefs('cacheFolder', '');
   const openDialog = useOpenDialog();
+  const selectDirectory = useSelectDirectory();
 
   function handleScalePreviewImages(event: React.ChangeEvent<HTMLInputElement>) {
     setNFTImageFittingMode(event.target.checked ? 'contain' : 'cover');
@@ -59,26 +61,16 @@ export default function SettingsGeneral() {
     );
   }
 
-  /*
   async function chooseAnotherFolder() {
-    const newFolder = await ipcRenderer.invoke('selectCacheFolder');
+    const newFolder = await selectDirectory({
+      properties: ['openDirectory'],
+      defaultPath: cacheDirectory,
+    });
 
-    if (!newFolder.canceled) {
-      const folderFileCount = await ipcRenderer.invoke('isNewFolderEmtpy', newFolder.filePaths[0]);
-
-      if (folderFileCount > 0) {
-        openDialog(
-          <AlertDialog title={<Trans>Error</Trans>}>
-            <Trans>Please select an empty folder</Trans>
-          </AlertDialog>
-        );
-      } else {
-        ipcRenderer.invoke('changeCacheFolderFromTo', [cacheFolder, newFolder.filePaths[0]]);
-        setCacheFolder(newFolder.filePaths[0]);
-      }
+    if (newFolder) {
+      setCacheDirectory(newFolder);
     }
   }
-  */
 
   return (
     <Grid container style={{ maxWidth: '624px' }} gap={3}>
@@ -175,7 +167,7 @@ export default function SettingsGeneral() {
           </SettingsTitle>
         </Grid>
         <Grid item container xs justifyContent="flex-end">
-          <Button /* onClick={chooseAnotherFolder} */ color="primary" variant="outlined" size="small">
+          <Button onClick={chooseAnotherFolder} color="primary" variant="outlined" size="small">
             <Trans>Change</Trans>
           </Button>
         </Grid>

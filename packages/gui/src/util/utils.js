@@ -12,13 +12,6 @@ export function hexToArray(hexStringParam) {
   return arr;
 }
 
-export function stripHexPrefix(hexString) {
-  if (hexString.startsWith('0x') || hexString.startsWith('0X')) {
-    return hexString.slice(2);
-  }
-  return hexString;
-}
-
 export function arrToHex(buffer) {
   // buffer is an ArrayBuffer
   return Array.prototype.map.call(new Uint8Array(buffer), (x) => `00${x.toString(16)}`.slice(-2)).join('');

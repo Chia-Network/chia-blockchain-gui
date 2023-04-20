@@ -16,8 +16,8 @@ import {
 import { Trans } from '@lingui/macro';
 import { Remove } from '@mui/icons-material';
 import { Box, Typography, IconButton } from '@mui/material';
-import React from 'react';
-import { useWatch } from 'react-hook-form';
+import React, { useCallback, type ReactNode } from 'react';
+import { useFormContext, useWatch } from 'react-hook-form';
 
 import useOfferBuilderContext from '../../hooks/useOfferBuilderContext';
 import NFTSearch from '../nfts/NFTSearch';
@@ -36,7 +36,6 @@ export type OfferBuilderValueProps = {
   showAmountInMojos?: boolean;
   usedAssets?: string[];
   disableReadOnly?: boolean;
-  onSelectNFT: (nftId: string) => void;
   warnUnknownCAT?: boolean;
   amountWithRoyalties?: string;
   royaltyPayments?: Record<string, any>[];
@@ -54,7 +53,6 @@ export default function OfferBuilderValue(props: OfferBuilderValueProps) {
     showAmountInMojos,
     usedAssets,
     disableReadOnly = false,
-    onSelectNFT,
     warnUnknownCAT = false,
     amountWithRoyalties,
     royaltyPayments,
@@ -65,6 +63,15 @@ export default function OfferBuilderValue(props: OfferBuilderValueProps) {
   const value = useWatch({
     name,
   });
+
+  const formContext = useFormContext();
+
+  const handleSelectNFT = useCallback(
+    (nftId) => {
+      formContext.setValue(name, nftId);
+    },
+    [name, formContext]
+  );
 
   const readOnly = disableReadOnly ? false : builderReadOnly;
   const displayValue =
@@ -163,7 +170,7 @@ export default function OfferBuilderValue(props: OfferBuilderValueProps) {
             ) : type === 'text' ? (
               <>
                 <TextField variant="filled" color="secondary" label={label} name={name} required fullWidth />
-                <NFTSearch value={value} onSelectNFT={onSelectNFT} />
+                <NFTSearch value={value} onSelectNFT={handleSelectNFT} />
               </>
             ) : type === 'token' ? (
               <OfferBuilderTokenSelector

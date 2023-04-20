@@ -33,7 +33,7 @@ import useOpenUnsafeLink from '../../hooks/useOpenUnsafeLink';
 import useViewNFTOnExplorer, { NFTExplorer } from '../../hooks/useViewNFTOnExplorer';
 import NFTSelection from '../../types/NFTSelection';
 import download from '../../util/download';
-import { stripHexPrefix } from '../../util/utils';
+import removeHexPrefix from '../../util/removeHexPrefix';
 import MultipleDownloadDialog from './MultipleDownloadDialog';
 import NFTBurnDialog from './NFTBurnDialog';
 import NFTMoveToProfileDialog from './NFTMoveToProfileDialog';
@@ -246,8 +246,8 @@ function NFTCancelUnconfirmedTransactionContextualAction(props: NFTCancelUnconfi
     try {
       await setNFTStatus({
         walletId: selectedNft?.walletId,
-        nftLauncherId: stripHexPrefix(selectedNft?.launcherId),
-        nftCoinId: stripHexPrefix(selectedNft?.nftCoinId ?? ''),
+        nftLauncherId: removeHexPrefix(selectedNft?.launcherId),
+        nftCoinId: removeHexPrefix(selectedNft?.nftCoinId ?? ''),
         inTransaction: false,
       }).unwrap();
 

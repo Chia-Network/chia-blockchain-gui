@@ -24,7 +24,7 @@ import { useForm } from 'react-hook-form';
 import styled from 'styled-components';
 
 import { didToDIDId } from '../../util/dids';
-import { stripHexPrefix } from '../../util/utils';
+import removeHexPrefix from '../../util/removeHexPrefix';
 import DIDProfileDropdown from '../did/DIDProfileDropdown';
 import NFTSummary from './NFTSummary';
 import { getNFTInbox } from './utils';
@@ -98,7 +98,7 @@ export function NFTMoveToProfileAction(props: NFTMoveToProfileActionProps) {
   const destination = methods.watch('destination');
   const { data: didWallets, isLoading: isLoadingDIDs } = useGetDIDsQuery();
   const { wallets: nftWallets, isLoading: isLoadingNFTWallets } = useGetNFTWallets();
-  const currentDIDId = nfts[0].ownerDid ? didToDIDId(stripHexPrefix(nfts[0].ownerDid)) : undefined;
+  const currentDIDId = nfts[0].ownerDid ? didToDIDId(removeHexPrefix(nfts[0].ownerDid)) : undefined;
   const [, setSelectedNFTIds] = useLocalStorage('gallery-selected-nfts', []);
 
   const inbox: Wallet | undefined = useMemo(() => {
@@ -167,8 +167,8 @@ export function NFTMoveToProfileAction(props: NFTMoveToProfileActionProps) {
       try {
         const { error, data: response } = await setNFTDID({
           walletId: nfts[0].walletId,
-          nftLauncherId: stripHexPrefix(nfts[0].launcherId),
-          nftCoinIds: nfts.map((nft) => stripHexPrefix(nft.nftCoinId)),
+          nftLauncherId: removeHexPrefix(nfts[0].launcherId),
+          nftCoinIds: nfts.map((nft) => removeHexPrefix(nft.nftCoinId)),
           did: destinationDID,
           fee: feeInMojos,
         });

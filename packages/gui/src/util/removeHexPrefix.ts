@@ -1,3 +1,6 @@
 export default function removeHexPrefix(hex: string) {
-  return hex.replace(/^0x/, '');
+  if (hex.startsWith('0x') || hex.startsWith('0X')) {
+    return hex.slice(2);
+  }
+  return hex;
 }

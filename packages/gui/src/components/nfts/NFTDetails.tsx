@@ -17,7 +17,7 @@ import styled from 'styled-components';
 import useNFTMinterDID from '../../hooks/useNFTMinterDID';
 import { didToDIDId } from '../../util/dids';
 import { convertRoyaltyToPercentage } from '../../util/nfts';
-import { stripHexPrefix } from '../../util/utils';
+import removeHexPrefix from '../../util/removeHexPrefix';
 
 /* ========================================================================== */
 
@@ -64,7 +64,7 @@ export default function NFTDetails(props: NFTDetailsProps) {
         label: <Trans>Launcher ID</Trans>,
         value: (
           <Truncate ValueProps={{ variant: 'body2' }} tooltip copyToClipboard>
-            {stripHexPrefix(nft.launcherId)}
+            {removeHexPrefix(nft.launcherId)}
           </Truncate>
         ),
       },
@@ -73,7 +73,7 @@ export default function NFTDetails(props: NFTDetailsProps) {
         label: <Trans>NFT Coin ID</Trans>,
         value: (
           <Truncate ValueProps={{ variant: 'body2' }} tooltip copyToClipboard>
-            {stripHexPrefix(nft.nftCoinId)}
+            {removeHexPrefix(nft.nftCoinId)}
           </Truncate>
         ),
       },
@@ -98,7 +98,7 @@ export default function NFTDetails(props: NFTDetailsProps) {
     let truncatedDID;
 
     if (nft.ownerDid) {
-      hexDIDId = stripHexPrefix(nft.ownerDid);
+      hexDIDId = removeHexPrefix(nft.ownerDid);
       didId = didToDIDId(hexDIDId);
       truncatedDID = truncateValue(didId, {});
     }
@@ -148,7 +148,7 @@ export default function NFTDetails(props: NFTDetailsProps) {
         label: <Trans>Owner Public Key</Trans>,
         value: (
           <Truncate ValueProps={{ variant: 'body2' }} tooltip copyToClipboard>
-            {stripHexPrefix(nft.ownerPubkey)}
+            {removeHexPrefix(nft.ownerPubkey)}
           </Truncate>
         ),
       });
