@@ -167,7 +167,6 @@ export function NFTMoveToProfileAction(props: NFTMoveToProfileActionProps) {
       try {
         const { error, data: response } = await setNFTDID({
           walletId: nfts[0].walletId,
-          nftLauncherId: removeHexPrefix(nfts[0].launcherId),
           nftCoinIds: nfts.map((nft) => removeHexPrefix(nft.nftCoinId)),
           did: destinationDID,
           fee: feeInMojos,

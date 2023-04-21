@@ -407,7 +407,7 @@ function NFTOfferDetails(props: NFTOfferDetailsProps) {
     let valid = false;
 
     try {
-      const response = await checkOfferValidity(offerData).unwrap();
+      const response = await checkOfferValidity({ offer: offerData }).unwrap();
 
       valid = response.data?.valid === true;
     } catch (e) {

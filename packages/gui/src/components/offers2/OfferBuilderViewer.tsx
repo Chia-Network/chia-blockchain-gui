@@ -82,7 +82,7 @@ function OfferBuilderViewer(props: OfferBuilderViewerProps, ref: any) {
       setIsValid(undefined);
       setIsValidating(true);
 
-      const response = await checkOfferValidity(offerData).unwrap();
+      const response = await checkOfferValidity({ offer: offerData }).unwrap();
       setIsValid(response.valid === true);
     } catch (e) {
       setIsValid(false);

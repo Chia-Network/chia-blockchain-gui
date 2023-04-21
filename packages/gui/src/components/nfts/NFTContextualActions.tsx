@@ -246,7 +246,6 @@ function NFTCancelUnconfirmedTransactionContextualAction(props: NFTCancelUnconfi
     try {
       await setNFTStatus({
         walletId: selectedNft?.walletId,
-        nftLauncherId: removeHexPrefix(selectedNft?.launcherId),
         nftCoinId: removeHexPrefix(selectedNft?.nftCoinId ?? ''),
         inTransaction: false,
       }).unwrap();
