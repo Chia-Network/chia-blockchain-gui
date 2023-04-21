@@ -69,7 +69,7 @@ async function handleRowClick(
 ) {
   if (row.tradeId) {
     try {
-      const { data: response } = await getOfferRecord(row.tradeId);
+      const { data: response } = await getOfferRecord({ offerId: row.tradeId });
       const {
         tradeRecord: { summary },
         success,

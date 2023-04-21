@@ -108,7 +108,6 @@ export default function NFTTransferAction(props: NFTTransferActionProps) {
         await transferNFT({
           walletId: nfts[0].walletId,
           nftCoinIds: nfts.map((nft: NFTInfo) => nft.nftCoinId),
-          launcherId: nfts[0].launcherId,
           targetAddress: destinationLocal,
           fee: feeInMojos,
         }).unwrap();
