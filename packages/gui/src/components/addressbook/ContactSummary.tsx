@@ -1,4 +1,4 @@
-import { useGetNFTInfoQuery } from '@chia-network/api-react';
+// import { useGetNFTInfoQuery } from '@chia-network/api-react';
 import { CopyToClipboard, CardHero, Flex, Card, Table } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { ModeEdit } from '@mui/icons-material';
@@ -6,8 +6,8 @@ import { IconButton, Typography } from '@mui/material';
 import React, { useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
-import { launcherIdFromNFTId } from '../../util/nfts';
-import NFTPreview from '../nfts/NFTPreview';
+// import { launcherIdFromNFTId } from '../../util/nfts';
+// import NFTPreview from '../nfts/NFTPreview';
 import { AddressBookContext } from './AddressBookProvider';
 
 export default function ContactSummary() {
@@ -16,9 +16,10 @@ export default function ContactSummary() {
   const [, , , getContactContactId] = useContext(AddressBookContext);
   const contact = getContactContactId(Number(contactid));
 
-  const launcherId = launcherIdFromNFTId(contact.nftid ?? '');
+  // commented out - until this stops throwing an error when not a valid nft
+  // const launcherId = launcherIdFromNFTId(contact.nftid ?? '');
 
-  const { data: nft } = useGetNFTInfoQuery({ coinId: launcherId ?? '' });
+  // const { data: nft } = useGetNFTInfoQuery({ coinId: launcherId ?? '' });
 
   if (contactid === undefined || contact === undefined) return <div />;
 
@@ -27,7 +28,7 @@ export default function ContactSummary() {
   }
 
   function getImage() {
-    if (nft !== undefined) return <NFTPreview nft={nft} height={50} width={50} disableThumbnail />;
+    // if (nft !== undefined) return <NFTPreview nft={nft} height={50} width={50} disableThumbnail />;
     return <img height={50} width={50} style={{ backgroundColor: 'grey', color: 'grey' }} />;
   }
 
