@@ -79,7 +79,7 @@ export default function OfferBuilderNFT(props: OfferBuilderNFTProps) {
                 </Typography>
               ) : nft ? (
                 <NFTCard
-                  nft={nft}
+                  id={nft.launcherId}
                   canExpandDetails={false}
                   availableActions={
                     NFTContextualActionTypes.CopyNFTId +
