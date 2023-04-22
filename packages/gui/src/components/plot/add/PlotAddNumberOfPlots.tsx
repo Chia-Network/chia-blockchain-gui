@@ -113,7 +113,7 @@ export default function PlotAddNumberOfPlots(props: Props) {
                 <InputLabel>
                   <Trans>Compression level</Trans>
                 </InputLabel>
-                <Select name="compressionLevel" defaultValue={plotter.defaults.bladebitCompressionLevel}>
+                <Select name="bladebitCompressionLevel" defaultValue={plotter.defaults.bladebitCompressionLevel}>
                   <MenuItem value={0}>0 - No compression</MenuItem>
                   <MenuItem value={1}>1</MenuItem>
                   <MenuItem value={2}>2</MenuItem>
@@ -470,7 +470,7 @@ export default function PlotAddNumberOfPlots(props: Props) {
               <Grid xs={12} sm={4} item>
                 <FormControl variant="filled" fullWidth>
                   <FormControlLabel
-                    control={<Checkbox name="disableDirectDownloads" />}
+                    control={<Checkbox name="bladebitDisableDirectDownloads" />}
                     label={
                       <>
                         <Trans>Disable direct download</Trans>{' '}
@@ -490,7 +490,7 @@ export default function PlotAddNumberOfPlots(props: Props) {
               <Grid xs={12} sm={12} item>
                 <FormControl variant="filled" fullWidth>
                   <TextField
-                    name="queue"
+                    name="bladebitDeviceIndex"
                     type="number"
                     variant="filled"
                     placeholder="default"
