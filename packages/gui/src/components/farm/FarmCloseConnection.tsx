@@ -10,7 +10,7 @@ export default function FarmCloseConnection(props: Props): JSX.Element {
   const [closeFarmerConnection] = useCloseFarmerConnectionMutation();
 
   async function handleClose() {
-    await closeFarmerConnection(nodeId).unwrap();
+    await closeFarmerConnection({ nodeId }).unwrap();
   }
 
   return children({

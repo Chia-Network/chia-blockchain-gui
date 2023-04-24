@@ -660,8 +660,8 @@ export default function NFTOfferEditor(props: NFTOfferEditorProps) {
 
     try {
       const response = await createOfferForIds({
-        walletIdsAndAmounts: offer,
-        feeInMojos,
+        offer,
+        fee: feeInMojos,
         driverDict,
         validateOnly: false,
         disableJSONFormatting: true,
