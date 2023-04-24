@@ -68,7 +68,7 @@ export default function NFTOfferPreview(props: NFTOfferPreviewProps) {
       return (
         <Grid xs={12} item>
           <NFTCard
-            nft={nft}
+            id={nft.launcherId}
             canExpandDetails={false}
             availableActions={
               NFTContextualActionTypes.CopyNFTId +
