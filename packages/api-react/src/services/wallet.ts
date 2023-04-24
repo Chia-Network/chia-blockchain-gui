@@ -1,5 +1,5 @@
 /* eslint-disable no-param-reassign -- This file use Immer */
-import { CAT, DID, Farmer, NFT, Pool, WalletService, WalletType, toBech32m } from '@chia-network/api';
+import { CAT, DID, Farmer, NFT, Pool, WalletService, WalletType, toBech32m, VC } from '@chia-network/api';
 import type { NFTInfo, Transaction, Wallet, WalletBalance } from '@chia-network/api';
 import BigNumber from 'bignumber.js';
 
@@ -1396,6 +1396,31 @@ export const walletApi = apiWithTag.injectEndpoints({
     }),
 
     verifySignature: mutation(build, WalletService, 'verifySignature'),
+
+    getVC: build.query<string, { vcId: string }>({
+      query: ({ vcId }) => ({
+        command: 'getVC',
+        service: VC,
+        args: vcId,
+      }),
+      transformResponse: (response) => response.vcRecord,
+    }),
+
+    getVCList: build.query<string, { start: number; count: number }>({
+      query: ({ start, count }) => ({
+        command: 'getVCList',
+        service: VC,
+        args: [start, count],
+      }),
+    }),
+
+    spendVC: mutation(build, VC, 'spendVC'),
+
+    addVCProofs: mutation(build, VC, 'addVCProofs'),
+
+    getProofsForRoot: mutation(build, VC, 'getProofsForRoot'),
+
+    revokeVC: mutation(build, VC, 'revokeVC'),
   }),
 });
 
@@ -1500,4 +1525,11 @@ export const {
 
   // verify
   useVerifySignatureMutation,
+
+  // VC
+  useGetVCQuery,
+  useGetVCListQuery,
+  useSpendVCMutation,
+  useAddVCProofsMutation,
+  useRevokeVCMutation,
 } = walletApi;

@@ -184,6 +184,14 @@ export const {
 
   // verify
   useVerifySignatureMutation,
+
+  // VC
+  useGetVCQuery,
+  useGetVCListQuery,
+  useSpendVCMutation,
+  useAddVCProofsMutation,
+  useGetProofsForRootMutation,
+  useRevokeVCMutation,
 } = wallet;
 
 // harvester hooks
