@@ -1,7 +1,7 @@
 import type Connection from '../@types/Connection';
-import type FarmingInfo from '../@types/FarmingInfo';
 import Harvester, { type HarvesterSummary } from '../@types/Harvester';
 import type HarvesterPlotsPaginated from '../@types/HarvesterPlotsPaginated';
+import type NewFarmingInfo from '../@types/NewFarmingInfo';
 import type PoolState from '../@types/PoolState';
 import type ProofOfSpace from '../@types/ProofOfSpace';
 import type RewardTargets from '../@types/RewardTargets';
@@ -15,7 +15,7 @@ import type { Options } from './Service';
 const FARMING_INFO_MAX_ITEMS = 1000;
 export default class Farmer extends Service {
   // last FARMING_INFO_MAX_ITEMS farming info
-  private farmingInfo: FarmingInfo[] = [];
+  private newFarmingInfo: NewFarmingInfo[] = [];
 
   constructor(client: Client, options?: Options) {
     super(ServiceName.FARMER, client, options, async () => {
@@ -23,17 +23,17 @@ export default class Farmer extends Service {
         const { farmingInfo } = data;
 
         if (farmingInfo) {
-          this.farmingInfo = [farmingInfo, ...this.farmingInfo].slice(0, FARMING_INFO_MAX_ITEMS);
+          this.newFarmingInfo = [farmingInfo, ...this.newFarmingInfo].slice(0, FARMING_INFO_MAX_ITEMS);
 
-          this.emit('farming_info_changed', this.farmingInfo, null);
+          this.emit('farming_info_changed', this.newFarmingInfo, null);
         }
       });
     });
   }
 
-  async getFarmingInfo() {
+  async getNewFarmingInfo() {
     await this.whenReady();
-    return this.farmingInfo;
+    return this.newFarmingInfo;
   }
 
   async getRewardTargets(args: { searchForPrivateKey: boolean }) {
