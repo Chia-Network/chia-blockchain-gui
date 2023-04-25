@@ -11,6 +11,7 @@ export type { default as Coin } from './Coin';
 export type { default as CoinSolution } from './CoinSolution';
 export type { default as Connection } from './Connection';
 export type { default as FarmingInfo } from './FarmingInfo';
+export type { default as NewFarmingInfo } from './NewFarmingInfo';
 export type { default as Fingerprint } from './Fingerprint';
 export type { default as Foliage } from './Foliage';
 export type { default as FoliageTransactionBlock } from './FoliageTransactionBlock';
