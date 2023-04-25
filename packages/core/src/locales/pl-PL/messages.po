@@ -6,17 +6,17 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: @lingui/cli\n"
 "Language: pl_PL\n"
-"Project-Id-Version: chia-blockchain\n"
+"Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-02-21 16:58\n"
+"PO-Revision-Date: 2023-03-29 23:25\n"
 "Last-Translator: \n"
 "Language-Team: Polish\n"
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
-"X-Crowdin-Project: chia-blockchain\n"
-"X-Crowdin-Project-ID: 440660\n"
+"X-Crowdin-Project: 1263bc1f20e1271bda78e84d2f4a6562\n"
+"X-Crowdin-Project-ID: 1\n"
 "X-Crowdin-Language: pl\n"
-"X-Crowdin-File: /main/packages/core/src/locales/en-US/messages.po\n"
-"X-Crowdin-File-ID: 1886\n"
+"X-Crowdin-File: /[Chia-Network.chia-blockchain-gui] main/packages/core/src/locales/en-US/messages.po\n"
+"X-Crowdin-File-ID: 1304\n"
 
 #: src/components/Amount/Amount.tsx:36
 msgid "Amount"
@@ -371,11 +371,11 @@ msgstr "Transakcja nie została jeszcze przesłana do węzła"
 
 #: src/utils/getTransactionResult.ts:33
 msgid "Transaction has sent to a full node and is pending inclusion into the mempool. {0}"
-msgstr ""
+msgstr "Transakcja została wysłana do pełnego węzła i oczekuje na włączenie do mempool. {0}"
 
 #: src/utils/getTransactionResult.ts:24
 msgid "Transaction has successfully been sent to a full node and included in the mempool."
-msgstr ""
+msgstr "Transakcja została pomyślnie wysłana do pełnego węzła i włączona do mempool."
 
 #: src/screens/SelectKey/SelectKey.tsx:124
 msgid "Try Again"
@@ -396,11 +396,11 @@ msgstr "Niezapisane zmiany"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:61
 msgid "Using a passphrase is strongly recommended to protect your keys. Are you sure you want to disable passphrase protection?"
-msgstr ""
+msgstr "Zdecydowanie zaleca się używanie hasła, aby chronić klucze. Czy na pewno chcesz wyłączyć ochronę hasła?"
 
 #: src/components/Fee/Fee.tsx:33
 msgid "Value seems high"
-msgstr ""
+msgstr "Wartość wydaje się wysoka"
 
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:116
 #: src/components/Settings/SettingsApp.tsx:81
@@ -423,16 +423,17 @@ msgstr "Witaj w Chia. Zaloguj się z instniejącym kluczem, lub utwórz nowy klu
 #: src/components/Back/Back.tsx:40
 #: src/components/FormBackButton/FormBackButton.tsx:31
 msgid "You have made changes. Do you want to discard them?"
-msgstr ""
+msgstr "Wprowadziłeś zmiany. Czy chcesz je odrzucić?"
 
 #: src/hooks/useKeyringMigrationPrompt.tsx:20
 msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Would you like to migrate your keys now?"
-msgstr ""
+msgstr "Twoje klucze nie zostały zmigrowane na nowy pęk kluczy. Nie możesz utworzyć nowych kluczy lub usunąć istniejących kluczy do czasu zakończenia migracji. Czy chcesz teraz dokonać migracji kluczy?"
 
 #: src/components/Amount/Amount.tsx:86
 msgid "{0, plural, one {mojo} other {mojos}}"
-msgstr ""
+msgstr "{0, plural, one {moc} other {mocy}}"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:35
 msgid "{minPassphraseLength, plural, one {Passphrases must be at least # character in length} other {Passphrases must be at least # characters in length}}"
 msgstr ""
+
