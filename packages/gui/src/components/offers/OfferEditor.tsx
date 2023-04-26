@@ -121,8 +121,9 @@ function OfferEditor(props: OfferEditorProps) {
 
     try {
       const response = await createOfferForIds({
-        walletIdsAndAmounts: offer,
-        feeInMojos,
+        offer,
+        fee: feeInMojos,
+        driverDict: {},
         validateOnly: false,
       }).unwrap();
 

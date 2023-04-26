@@ -39,7 +39,7 @@ function SelectOfferFile() {
     let offerSummary: OfferSummaryRecord | undefined;
 
     if (offerData) {
-      const { data: response } = await getOfferSummary(offerData);
+      const { data: response } = await getOfferSummary({ offerData });
       const { summary, success } = response;
 
       if (success) {

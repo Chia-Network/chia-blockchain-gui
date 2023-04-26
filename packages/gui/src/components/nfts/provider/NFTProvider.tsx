@@ -655,7 +655,7 @@ export default function NFTProvider(props: NFTProviderProps) {
 
       count: total,
       loaded,
-      progress: total > 0 ? (loaded / total) * 100 : 0,
+      progress: total > 0 ? (loaded / total) * 100 : !isLoading && total === 0 ? 100 : 0,
 
       invalidate: (id?: string) => invalidate(id, currentAbortController.signal),
       getNft: (id?: string) => getNFTState(id, currentAbortController.signal),

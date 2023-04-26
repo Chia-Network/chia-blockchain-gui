@@ -344,7 +344,7 @@ export default function NFTGallery() {
         availableActions={NFTContextualActionTypes.All}
         isOffer={false}
         search={search}
-        selected={selectedNFTIds.includes(nft?.$nftId)}
+        selected={selectedNFTIds?.includes(nft.$nftId)}
         onSelect={inMultipleSelectionMode ? handleSelectNFT : undefined}
         userFolder={userFolder}
       />

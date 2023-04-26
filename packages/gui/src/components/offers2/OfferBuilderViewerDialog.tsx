@@ -24,7 +24,7 @@ export default function OfferBuilderViewerDialog(props: OfferBuilderViewerDialog
 
   useEffect(() => {
     if (offer) {
-      getOfferSummary(offer);
+      getOfferSummary({ offerData: offer });
     }
   }, [offer, getOfferSummary]);
 

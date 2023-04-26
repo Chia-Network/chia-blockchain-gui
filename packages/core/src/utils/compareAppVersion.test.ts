@@ -49,6 +49,11 @@ describe('compareAppVersions', () => {
     expect(compareAppVersions('1.3.6-dev157', '1.7.0b6')).toBe(-1);
     expect(compareAppVersions('1.7.0b6', '1.6.1')).toBe(1);
     expect(compareAppVersions('1.6.1', '1.6.1')).toBe(0);
+    expect(compareAppVersions('1.8.0rc1', '1.8.0')).toBe(-1);
+    expect(compareAppVersions('1.8.0', '1.8.0rc1')).toBe(1);
+    expect(compareAppVersions('1.8.0rc1', '1.8.0rc1')).toBe(0);
+    expect(compareAppVersions('1.8.0rc1', '1.8.0rc2')).toBe(-1);
+    expect(compareAppVersions('1.8.0rc4', '1.8.0')).toBe(-1);
   });
 
   test('should return zero for invalid version strings', () => {

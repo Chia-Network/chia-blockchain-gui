@@ -50,11 +50,17 @@ export default class CATWallet extends Wallet {
     }>('cat_set_name', args);
   }
 
-  async spend(args: { walletId: number; innerAddress: string; amount: string; fee: string; memos?: string[] }) {
+  async spend(args: { walletId: number; address: string; amount: string; fee: string; memos?: string[] }) {
+    const { address, ...updatedArgs } = args;
+    // cat_spend expects 'inner_address' instead of 'address'
+    if (!(updatedArgs as any).innerAddress) {
+      (updatedArgs as any).innerAddress = address;
+    }
+
     return this.command<{
       transaction: Transaction;
       transactionId: string;
-    }>('cat_spend', args);
+    }>('cat_spend', updatedArgs);
   }
 
   async getCatList() {
