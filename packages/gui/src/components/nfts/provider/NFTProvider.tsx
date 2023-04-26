@@ -130,7 +130,7 @@ export default function NFTProvider(props: NFTProviderProps) {
         walletIds: [walletId],
       }).unwrap();
 
-      setNftsCounts(Object.assign(nftsCounts, { [walletId || 0]: count })); // 0 is the default wallet (All NFTs)
+      setNftsCounts(Object.assign(nftsCounts, { [walletId as number]: count }));
 
       return count;
     },
@@ -534,7 +534,6 @@ export default function NFTProvider(props: NFTProviderProps) {
       }
 
       try {
-        await fetchNFTsCount(undefined);
         await Promise.all(nftWallets.map(processWallet));
       } catch (err) {
         setErrorLoading(err as Error, abortSignal);

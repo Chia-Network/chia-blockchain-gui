@@ -9,12 +9,16 @@ export interface NFTFilterContextData {
   visibility: NFTVisibility;
   search: string | undefined;
   userFolder: string | null;
+  selectedNFTIds: string[];
+  draggedNFT: string | null;
 
   setWalletIds: (value: number[]) => void;
   setTypes: (value: FileType[]) => void;
   setVisibility: (value: NFTVisibility) => void;
   setSearch: (value: string | undefined) => void;
   setUserFolder: (value: string | null) => void;
+  setSelectedNFTIds: (value: string[]) => void;
+  setDraggedNFT: (value: string | null) => void;
 }
 
 export const NFTFilterContext = createContext<NFTFilterContextData | undefined>(undefined);
@@ -38,6 +42,8 @@ export default function NFTFilterProvider(props: NFTFilterProviderProps) {
   const [visibility, setVisibility] = useState<NFTVisibility>(NFTVisibility.ALL);
   const [search, setSearch] = useState('');
   const [userFolder, setUserFolder] = useState(null);
+  const [selectedNFTIds, setSelectedNFTIds] = useState([]);
+  const [draggedNFT, setDraggedNFT] = useState(null);
 
   const value = useMemo(
     () => ({
@@ -46,14 +52,31 @@ export default function NFTFilterProvider(props: NFTFilterProviderProps) {
       visibility,
       search,
       userFolder,
+      selectedNFTIds,
+      draggedNFT,
 
       setWalletIds,
       setTypes,
       setVisibility,
       setSearch,
       setUserFolder,
+      setSelectedNFTIds,
+      setDraggedNFT,
     }),
-    [walletIds, types, visibility, search, userFolder, setWalletIds, setTypes, setVisibility, setSearch, setUserFolder]
+    [
+      walletIds,
+      types,
+      visibility,
+      search,
+      userFolder,
+      setWalletIds,
+      setTypes,
+      setVisibility,
+      setSearch,
+      setUserFolder,
+      selectedNFTIds,
+      draggedNFT,
+    ]
   );
 
   return <NFTFilterContext.Provider value={value}>{children}</NFTFilterContext.Provider>;

@@ -1,6 +1,6 @@
 /* eslint-disable no-bitwise -- enable bitwise operators for this file */
 import type { NFTInfo } from '@chia-network/api';
-import { useGetLoggedInFingerprintQuery, useSetNFTStatusMutation, useLocalStorage } from '@chia-network/api-react';
+import { usePrefs, useGetLoggedInFingerprintQuery, useSetNFTStatusMutation } from '@chia-network/api-react';
 import { AlertDialog, DropdownActions, MenuItem, useOpenDialog } from '@chia-network/core';
 import {
   Burn as BurnIcon,
@@ -121,7 +121,7 @@ type NFTCreateOfferContextualActionProps = NFTContextualActionProps;
 function NFTCreateOfferContextualAction(props: NFTCreateOfferContextualActionProps) {
   const { selection } = props;
   const navigate = useNavigate();
-  const [, setSelectedNFTIds] = useLocalStorage('gallery-selected-nfts', []);
+  const filter = useNFTFilter();
   const selectedNft: NFTInfo | undefined = selection?.items[0];
   const disabled = !selection?.items?.length || selectedNft?.pendingTransaction || selection?.items?.length > 10;
 
@@ -132,7 +132,7 @@ function NFTCreateOfferContextualAction(props: NFTCreateOfferContextualActionPro
       throw new Error('No NFT selected');
     }
 
-    setSelectedNFTIds([]);
+    filter.setSelectedNFTIds([]);
 
     navigate('/dashboard/offers/builder', {
       state: {
@@ -165,14 +165,14 @@ type NFTTransferContextualActionProps = NFTContextualActionProps;
 function NFTTransferContextualAction(props: NFTTransferContextualActionProps) {
   const { selection } = props;
   const openDialog = useOpenDialog();
-  const [, setSelectedNFTIds] = useLocalStorage('gallery-selected-nfts', []);
+  const filter = useNFTFilter();
 
   const disabled = selection?.items.reduce((p, c) => p || c?.pendingTransaction, false);
 
   function handleComplete(result?: NFTTransferResult) {
     if (result) {
       if (!result.error) {
-        setSelectedNFTIds([]);
+        filter.setSelectedNFTIds([]);
         openDialog(
           <AlertDialog title={<Trans>NFT Transfer Pending</Trans>}>
             <Trans>The NFT transfer transaction has been successfully submitted to the blockchain.</Trans>
@@ -402,7 +402,7 @@ function NFTDownloadContextualAction(props: NFTDownloadContextualActionProps) {
   const disabled = !selectedNft;
   const dataUrl = selectedNft?.dataUris?.[0];
   const openDialog = useOpenDialog();
-  const [, setSelectedNFTIds] = useLocalStorage('gallery-selected-nfts', []);
+  const filter = useNFTFilter();
 
   async function handleDownload() {
     const { ipcRenderer } = window as any;
@@ -426,7 +426,7 @@ function NFTDownloadContextualAction(props: NFTDownloadContextualActionProps) {
           }
           return { ...nft, hash };
         });
-        setSelectedNFTIds([]);
+        filter.setSelectedNFTIds([]);
         ipcRenderer.invoke('startMultipleDownload', { folder: folder.filePaths[0], nfts });
         await openDialog(<MultipleDownloadDialog folder={folder.filePaths[0]} />);
       }
@@ -470,7 +470,7 @@ function NFTHideContextualAction(props: NFTHideContextualActionProps) {
   const disabled = !selectedNft;
   const dataUrl = selectedNft?.dataUris?.[0];
   const [isNFTHidden, setIsNFTHidden, , setHiddenMultiple] = useHiddenNFTs();
-  const [, setSelectedNFTIds] = useLocalStorage('gallery-selected-nfts', []);
+  const filter = useNFTFilter();
 
   const isHidden = isMultiSelect && showOrHide === 1 ? true : isNFTHidden(selectedNft?.$nftId);
 
@@ -484,7 +484,7 @@ function NFTHideContextualAction(props: NFTHideContextualActionProps) {
         selection?.items.map((nft: NFTInfo) => nft.$nftId),
         !isHidden
       );
-      setSelectedNFTIds([]);
+      filter.setSelectedNFTIds([]);
     } else {
       setIsNFTHidden(selectedNft.$nftId, !isHidden);
     }
@@ -588,9 +588,8 @@ function NFTAddToGalleryContextualAction(props: NFTAddToGalleryContextualActionP
 
   const openDialog = useOpenDialog();
   const disabled = selection?.items.length === 0;
-  const [userFoldersNFTs, setUserFoldersNFTs] = useLocalStorage('user-folders-nfts', {});
+  const [userFoldersNFTs, setUserFoldersNFTs] = usePrefs('user-folders-nfts', {});
   const { data: fingerprint } = useGetLoggedInFingerprintQuery();
-  const [, setSelectedNFTIds] = useLocalStorage('gallery-selected-nfts', []);
   const filter = useNFTFilter();
 
   async function handleAddToUserFolder() {
@@ -609,7 +608,7 @@ function NFTAddToGalleryContextualAction(props: NFTAddToGalleryContextualActionP
           ),
         };
         setUserFoldersNFTs(copyUserFoldersNFTs);
-        setSelectedNFTIds([]);
+        filter.setSelectedNFTIds([]);
       }
     }
   }

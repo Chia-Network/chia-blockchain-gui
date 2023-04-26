@@ -1,9 +1,11 @@
-import { useGetLoggedInFingerprintQuery, useLocalStorage } from '@chia-network/api-react';
+import { useGetLoggedInFingerprintQuery, usePrefs } from '@chia-network/api-react';
 import { DropdownActions, MenuItem } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { FolderOpen as FolderIcon } from '@mui/icons-material';
 import { Dialog, DialogTitle, DialogContent, DialogActions, ListItemIcon, Button } from '@mui/material';
 import React from 'react';
+
+import useNFTFilter from '../../hooks/useNFTFilter';
 
 interface NFTSaveToFilterDialogProps {
   nftIds: string[];
@@ -12,10 +14,10 @@ interface NFTSaveToFilterDialogProps {
 export default function AppVersionWarning(props: NFTSaveToFilterDialogProps) {
   const [open, setOpen] = React.useState<boolean>(true);
   const { nftIds } = props;
-  const [userFolders] = useLocalStorage('user-folders', {});
-  const [userFoldersNFTs, setUserFoldersNFTs] = useLocalStorage('user-folders-nfts', {});
+  const [userFolders] = usePrefs('user-folders', {});
+  const [userFoldersNFTs, setUserFoldersNFTs] = usePrefs('user-folders-nfts', {});
   const { data: fingerprint } = useGetLoggedInFingerprintQuery();
-  const [, setSelectedNFTIds] = useLocalStorage('gallery-selected-nfts', []);
+  const filter = useNFTFilter();
 
   function addSelectedNFTsToGallery(folderName: string) {
     const fingerprintNFTs = { ...userFoldersNFTs[fingerprint] };
@@ -31,7 +33,7 @@ export default function AppVersionWarning(props: NFTSaveToFilterDialogProps) {
     setUserFoldersNFTs({
       [fingerprint]: fingerprintNFTs,
     });
-    setSelectedNFTIds([]);
+    filter.setSelectedNFTIds([]);
     setOpen(false);
   }
 

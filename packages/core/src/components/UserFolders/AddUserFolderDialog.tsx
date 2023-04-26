@@ -1,8 +1,9 @@
+import { Form, TextField, Button } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
-import { Dialog, DialogTitle, DialogContent, TextField } from '@mui/material';
+import { Dialog, DialogTitle, DialogContent } from '@mui/material';
 import React, { ReactNode } from 'react';
+import { useForm } from 'react-hook-form';
 
-import Button from '../Button';
 import DialogActions from '../DialogActions';
 
 export type AlertDialogProps = {
@@ -15,8 +16,6 @@ export type AlertDialogProps = {
 
 export default function AlertDialog(props: AlertDialogProps) {
   const { onClose = () => {}, open = false, title, onAdd, placeholderName = 'Title' } = props;
-
-  const [newFolder, setNewFolder] = React.useState('');
 
   const inputWrapper = React.useRef<HTMLDivElement>(null);
 
@@ -36,6 +35,21 @@ export default function AlertDialog(props: AlertDialogProps) {
     onClose?.();
   }
 
+  type FormData = {
+    folderName: string;
+  };
+
+  const formMethods = useForm<FormData>({
+    defaultValues: {
+      folderName: '',
+    },
+  });
+
+  function handleSubmit(objValue: any) {
+    onAdd(objValue.folderName);
+    handleClose();
+  }
+
   return (
     <Dialog
       onClose={handleHide}
@@ -43,43 +57,27 @@ export default function AlertDialog(props: AlertDialogProps) {
       aria-describedby="alert-dialog-description"
       open={open}
     >
-      {title && <DialogTitle id="alert-dialog-title">{title}</DialogTitle>}
-      <DialogContent id="alert-dialog-description">
-        <TextField
-          ref={inputWrapper}
-          autoFocus
-          onChange={(e) => {
-            setNewFolder(e.target.value);
-          }}
-          onKeyDown={(e) => {
-            if (e.key === 'Enter' && newFolder !== '') {
-              onAdd(newFolder);
-              handleClose();
-            }
-          }}
-          label={placeholderName}
-          variant="filled"
-        />
-      </DialogContent>
-
-      <DialogActions>
-        <Button onClick={handleClose} variant="outlined" color="primary" autoFocus>
-          <Trans>Cancel</Trans>
-        </Button>
-        <Button
-          onClick={() => {
-            if (newFolder !== '') {
-              onAdd(newFolder);
-              handleClose();
-            }
-          }}
-          variant="contained"
-          color="primary"
-          autoFocus
-        >
-          <Trans>Add</Trans>
-        </Button>
-      </DialogActions>
+      <Form methods={formMethods} onSubmit={formMethods.handleSubmit(handleSubmit)}>
+        {title && <DialogTitle id="alert-dialog-title">{title}</DialogTitle>}
+        <DialogContent id="alert-dialog-description">
+          <TextField
+            type="text"
+            ref={inputWrapper}
+            autoFocus
+            name="folderName"
+            label={placeholderName}
+            variant="filled"
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} variant="outlined" color="primary" autoFocus>
+            <Trans>Cancel</Trans>
+          </Button>
+          <Button type="submit" variant="contained" color="primary" autoFocus>
+            <Trans>Add</Trans>
+          </Button>
+        </DialogActions>
+      </Form>
     </Dialog>
   );
 }

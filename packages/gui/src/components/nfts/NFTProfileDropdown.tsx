@@ -1,10 +1,10 @@
 import type { Wallet } from '@chia-network/api';
 import {
+  usePrefs,
   useGetLoggedInFingerprintQuery,
   useGetDIDsQuery,
   useGetNFTWallets,
   useGetNFTWalletsWithDIDsQuery,
-  useLocalStorage,
 } from '@chia-network/api-react';
 import { useOpenDialog, AddUserFolderDialog, Flex, ConfirmDialog } from '@chia-network/core';
 import {
@@ -17,13 +17,14 @@ import {
   Trash as TrashIcon,
 } from '@chia-network/icons';
 import { Trans } from '@lingui/macro';
-import { Divider, MenuItem, Collapse } from '@mui/material';
+import { Divider, MenuItem, Collapse, Box } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import { orderBy } from 'lodash';
 import React, { useMemo } from 'react';
 
 import useNFTFilter from '../../hooks/useNFTFilter';
 import useNFTProvider from '../../hooks/useNFTProvider';
+import useNFTs from '../../hooks/useNFTs';
 import useNachoNFTs from '../../hooks/useNachoNFTs';
 import { getNFTInbox } from './utils';
 
@@ -68,16 +69,16 @@ export default function NFTProfileDropdown(props: NFTGallerySidebarProps) {
   const { data: nachoNFTs, isLoading: isLoadingNachoNFTs } = useNachoNFTs();
   const haveNachoNFTs = !isLoadingNachoNFTs && nachoNFTs?.length > 0;
   const openDialog = useOpenDialog();
-  const [userFolders, setUserFolders] = useLocalStorage('user-folders', {});
-  const [userFoldersNFTs, setUserFoldersNFTs] = useLocalStorage('user-folders-nfts', {});
+  const [userFolders, setUserFolders] = usePrefs('user-folders', {});
+  const [userFoldersNFTs, setUserFoldersNFTs] = usePrefs('user-folders-nfts', {});
   const { data: fingerprint } = useGetLoggedInFingerprintQuery();
   const theme: any = useTheme();
   const { nftsCounts } = useNFTProvider();
   const [showMenuItems, toggleShowMenuItems] = React.useState<boolean>(true);
-  const [draggedNFT, setDraggedNFT] = useLocalStorage<any>('dragged-nft', null);
-  const filter = useNFTFilter();
   const [editFolderName, setEditFolderName] = React.useState<string | null>(null);
   const [editingFolder, setEditingFolder] = React.useState<string | null>(null);
+  const filter = useNFTFilter();
+  const { statistics } = useNFTs();
 
   const inbox: Wallet | undefined = useMemo(() => {
     if (isLoadingNFTWallets) {
@@ -134,7 +135,12 @@ export default function NFTProfileDropdown(props: NFTGallerySidebarProps) {
           },
         }}
         onMouseUp={() => {
-          if (draggedNFT && props2.folderName) {
+          if (
+            filter.draggedNFT &&
+            filter.draggedNFT.length === 62 &&
+            filter.draggedNFT.substring(0, 3) === 'nft' &&
+            props2.folderName
+          ) {
             const copyUserFoldersNFTs = { ...userFoldersNFTs };
             if (!copyUserFoldersNFTs[fingerprint]) {
               copyUserFoldersNFTs[fingerprint] = { [props2.folderName]: [] };
@@ -142,21 +148,21 @@ export default function NFTProfileDropdown(props: NFTGallerySidebarProps) {
             if (!copyUserFoldersNFTs[fingerprint][props2.folderName]) {
               copyUserFoldersNFTs[fingerprint][props2.folderName] = [];
             }
-            if (copyUserFoldersNFTs[fingerprint][props2.folderName].indexOf(draggedNFT) === -1) {
+            if (copyUserFoldersNFTs[fingerprint][props2.folderName].indexOf(filter.draggedNFT) === -1) {
               copyUserFoldersNFTs[fingerprint] = {
                 ...copyUserFoldersNFTs[fingerprint],
-                [props2.folderName]: copyUserFoldersNFTs[fingerprint][props2.folderName].concat(draggedNFT),
+                [props2.folderName]: copyUserFoldersNFTs[fingerprint][props2.folderName].concat(filter.draggedNFT),
               };
             }
             setUserFoldersNFTs(copyUserFoldersNFTs);
-            setDraggedNFT(null);
+            filter.setDraggedNFT(null);
           }
         }}
       >
         {props2.children}
       </Flex>
     ),
-    [userFoldersNFTs, setUserFoldersNFTs, fingerprint, draggedNFT, setDraggedNFT]
+    [userFoldersNFTs, setUserFoldersNFTs, fingerprint, filter]
   );
 
   async function deleteUserFolder(folder) {
@@ -259,7 +265,7 @@ export default function NFTProfileDropdown(props: NFTGallerySidebarProps) {
   function renderMenuItems() {
     return (
       <Collapse orientation="horizontal" in={showMenuItems} timeout={200}>
-        <div style={{ display: 'flex', flexDirection: 'column', marginTop: '60px' }}>
+        <Box sx={{ display: 'flex', flexDirection: 'column', marginTop: '60px' }}>
           <MenuItem
             key="all"
             onClick={() => handleWalletChange()}
@@ -267,10 +273,10 @@ export default function NFTProfileDropdown(props: NFTGallerySidebarProps) {
           >
             <MenuItemChildren>
               <Flex>
-                <InboxIcon />
+                <InboxIcon color="info" />
                 <Trans>All NFTs</Trans>
               </Flex>
-              <Flex>{nftsCounts[0]}</Flex>
+              <Flex>{statistics.total}</Flex>
             </MenuItemChildren>
           </MenuItem>
           {inbox && (
@@ -281,7 +287,7 @@ export default function NFTProfileDropdown(props: NFTGallerySidebarProps) {
             >
               <MenuItemChildren>
                 <Flex>
-                  <UnassignedIcon />
+                  <UnassignedIcon color="info" />
                   <Trans>Unassigned NFTs</Trans>
                 </Flex>
                 <Flex>{nftsCounts[inbox.id]}</Flex>
@@ -295,7 +301,7 @@ export default function NFTProfileDropdown(props: NFTGallerySidebarProps) {
               selected={walletId === wallet.id && !filter.userFolder}
             >
               <MenuItemChildren>
-                <ProfileIcon /> {wallet.name} {wallet.id}
+                <ProfileIcon color="info" /> {wallet.name} {wallet.id}
               </MenuItemChildren>
             </MenuItem>
           ))}
@@ -307,8 +313,8 @@ export default function NFTProfileDropdown(props: NFTGallerySidebarProps) {
             >
               <MenuItemChildren>
                 <Flex>
-                  <ProfileIcon />
-                  <div style={{ maxWidth: '250px', overflowX: 'hidden', textOverflow: 'ellipsis' }}>{profile.name}</div>
+                  <ProfileIcon color="info" />
+                  <Box sx={{ maxWidth: '250px', overflowX: 'hidden', textOverflow: 'ellipsis' }}>{profile.name}</Box>
                 </Flex>
                 <Flex>{nftsCounts[profile.nftWalletId] >= 0 ? nftsCounts[profile.nftWalletId] : ''}</Flex>
               </MenuItemChildren>
@@ -318,7 +324,7 @@ export default function NFTProfileDropdown(props: NFTGallerySidebarProps) {
             <MenuItem key="nacho" onClick={() => handleWalletChange(-1)} selected={walletId === -1}>
               <MenuItemChildren>
                 <Flex>
-                  <ProfileIcon />
+                  <ProfileIcon color="info" />
                   <Trans>Nacho NFTs</Trans>
                 </Flex>
                 <Flex>{nachoNFTs?.length} </Flex>
@@ -391,7 +397,7 @@ export default function NFTProfileDropdown(props: NFTGallerySidebarProps) {
               ))
             : null}
           {userFolders[fingerprint] && userFolders[fingerprint].length > 0 ? <Divider /> : null}
-        </div>
+        </Box>
       </Collapse>
     );
   }
@@ -411,7 +417,7 @@ export default function NFTProfileDropdown(props: NFTGallerySidebarProps) {
           toggleShowMenuItems(!showMenuItems);
         }}
       >
-        <ShowHideIcon />
+        <ShowHideIcon color="info" />
         {showMenuItems ? <Trans>Hide</Trans> : <Trans>Show</Trans>}
       </Flex>
     );

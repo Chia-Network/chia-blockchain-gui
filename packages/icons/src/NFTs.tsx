@@ -32,7 +32,7 @@ function CopyIconWithoutFill() {
 }
 
 export function Copy(props: SvgIconProps) {
-  return <SvgIcon fill="none" component={CopyIconWithoutFill} viewBox="0 0 22 22" {...props} />;
+  return <SvgIcon fill="none" component={CopyIconWithoutFill} inheritViewBox {...props} />;
 }
 
 function FilterIconWithoutFill() {
@@ -40,7 +40,7 @@ function FilterIconWithoutFill() {
 }
 
 export function Filter(props: SvgIconProps) {
-  return <SvgIcon component={FilterIconWithoutFill} viewBox="0 0 22 22" {...props} />;
+  return <SvgIcon component={FilterIconWithoutFill} inheritViewBox {...props} />;
 }
 
 function FolderIconWithoutFill() {
@@ -48,43 +48,43 @@ function FolderIconWithoutFill() {
 }
 
 export function Folder(props: SvgIconProps) {
-  return <SvgIcon component={FolderIconWithoutFill} viewBox="0 0 22 22" {...props} />;
+  return <SvgIcon component={FolderIconWithoutFill} inheritViewBox {...props} />;
 }
 
-function InboxIconWithoutFill() {
-  return <InboxIcon fill="none" />;
+function InboxIconWithoutFill(props: SvgIconProps) {
+  return <InboxIcon {...props} style={{ fill: 'none', height: '22px', width: '22px' }} />;
 }
 
 export function Inbox(props: SvgIconProps) {
-  return <SvgIcon component={InboxIconWithoutFill} {...props} />;
+  return <SvgIcon component={InboxIconWithoutFill} inheritViewBox {...props} />;
 }
 
-function ProfileIconWithoutFill() {
-  return <ProfileIcon style={{ margin: '0 11px 0 1px' }} fill="none" />;
+function ProfileIconWithoutFill(props: SvgIconProps) {
+  return <ProfileIcon {...props} style={{ margin: '0 11px 0 1px', fill: 'none' }} />;
 }
 
 export function Profile(props: SvgIconProps) {
-  return <SvgIcon component={ProfileIconWithoutFill} {...props} />;
+  return <SvgIcon component={ProfileIconWithoutFill} inheritViewBox {...props} />;
 }
 
-function UnassignedIconWithoutFill() {
-  return <UnassignedIcon fill="none" style={{ marginRight: '10px' }} />;
+function UnassignedIconWithoutFill(props: SvgIconProps) {
+  return <UnassignedIcon fill="none" style={{ marginRight: '10px' }} {...props} />;
 }
 
 export function Unassigned(props: SvgIconProps) {
-  return <SvgIcon component={UnassignedIconWithoutFill} {...props} />;
+  return <SvgIcon component={UnassignedIconWithoutFill} inheritViewBox {...props} />;
 }
 
-function ShowHideWithoutFill() {
-  return <ShowHideIcon fill="none" />;
+function ShowHideWithoutFill(props: SvgIconProps) {
+  return <ShowHideIcon style={{ fill: 'none' }} {...props} />;
 }
 
 export function ShowHide(props: SvgIconProps) {
-  return <SvgIcon component={ShowHideWithoutFill} viewBox="0 0 22 22" {...props} />;
+  return <SvgIcon component={ShowHideWithoutFill} inheritViewBox {...props} />;
 }
 
 export function Plus(props: SvgIconProps) {
-  return <SvgIcon component={PlusIcon} viewBox="0 0 22 22" {...props} />;
+  return <SvgIcon component={PlusIcon} inheritViewBox {...props} />;
 }
 
 function TrashIconWithoutFill() {
