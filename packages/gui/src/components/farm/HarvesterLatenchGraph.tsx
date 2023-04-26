@@ -1,6 +1,6 @@
 import { FarmingInfoWithIndex } from '@chia-network/api';
 import { useGetFarmingInfoQuery } from '@chia-network/api-react';
-import { CardSimple, Flex, useDarkMode } from '@chia-network/core';
+import { Card, CardSimple, Flex, useDarkMode } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import * as React from 'react';
 import { useMeasure } from 'react-use';
@@ -43,6 +43,15 @@ function prepareGraphPoints(farmingInfo: FarmingInfoWithIndex[]) {
 
 const domainPadding = { x: 0, y: 1 };
 const chartPadding = { left: 64, bottom: 24, top: 24, right: 24 };
+
+function LinearGradient() {
+  return (
+    <linearGradient id="graph-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stopColor="rgba(92, 170, 98, 40%)" />
+      <stop offset="100%" stopColor="rgba(92, 170, 98, 0%)" />
+    </linearGradient>
+  );
+}
 
 export type HarvesterLatencyGraphProps = {
   height?: number | string;
@@ -155,16 +164,26 @@ export default function HarvesterLatencyGraph(props: HarvesterLatencyGraphProps)
         <VictoryScatter data={data} dataComponent={<ScatterPoint isDarkMode={isDarkMode} />} />
         {xAxis}
         {yAxis}
+        <LinearGradient />
       </VictoryChart>
     );
   }, [data, containerSize, chartDomain, zoomContainer, xAxis, yAxis, isDarkMode, areaStyle]);
 
+  const isReady = !isLoading && data.length >= 2;
+
   return (
-    <CardSimple loading={isLoading || data.length < 2} title={cardTitle} value={cardValue}>
-      <Flex flexGrow={1} />
-      <StyledGraphContainer height={height} ref={ref as React.Ref<HTMLDivElement>}>
-        {chart}
-      </StyledGraphContainer>
-    </CardSimple>
+    <Card title={cardTitle} gap={1} titleVariant="h6" transparent>
+      <CardSimple
+        value={isReady ? cardValue : ''}
+        description={isReady ? undefined : <Trans>Waiting for plot challenge data</Trans>}
+      >
+        <Flex flexGrow={1} />
+        {isReady && (
+          <StyledGraphContainer height={height} ref={ref as React.Ref<HTMLDivElement>}>
+            {chart}
+          </StyledGraphContainer>
+        )}
+      </CardSimple>
+    </Card>
   );
 }
