@@ -185,7 +185,7 @@ export const {
   // verify
   useVerifySignatureMutation,
 
-  // VC
+  // VC (Verifiable Credentials)
   useGetVCQuery,
   useGetVCListQuery,
   useSpendVCMutation,
