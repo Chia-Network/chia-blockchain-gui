@@ -143,7 +143,7 @@ export default function HarvesterLatencyGraph(props: HarvesterLatencyGraphProps)
     [isDarkMode]
   );
   const chart = React.useMemo(() => {
-    if (data.length < 2) {
+    if (data.length < 1) {
       return null;
     }
     return (
@@ -169,7 +169,7 @@ export default function HarvesterLatencyGraph(props: HarvesterLatencyGraphProps)
     );
   }, [data, containerSize, chartDomain, zoomContainer, xAxis, yAxis, isDarkMode, areaStyle]);
 
-  const isReady = !isLoading && data.length >= 2;
+  const isReady = !isLoading && data.length >= 1;
 
   return (
     <Card title={cardTitle} gap={1} titleVariant="h6" transparent>
