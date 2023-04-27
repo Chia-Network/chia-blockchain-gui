@@ -1,4 +1,4 @@
-import { Button, Select, Link, Loading } from '@chia-network/core';
+import { Button, Select, Link, Loading, TooltipIcon } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Box, Grid, FormControl, InputLabel, MenuItem, Typography } from '@mui/material';
 import React, { useState, forwardRef } from 'react';
@@ -7,6 +7,10 @@ import { useFormContext } from 'react-hook-form';
 import usePlotNFTs from '../../../hooks/usePlotNFTs';
 import PlotNFTName from '../../plotNFT/PlotNFTName';
 import PlotNFTSelectPool from '../../plotNFT/select/PlotNFTSelectPool';
+
+const descriptionStyle = {
+  marginBottom: 16,
+};
 
 type Props = {};
 
@@ -45,17 +49,22 @@ const PlotAddNFT = forwardRef((props: Props, ref) => {
 
   return (
     <Grid xs={12} item>
-      <Typography variant="subtitle1">
-        <Trans>
-          Plotting to a Plot NFT allows you the flexibility to join a pool or solo farm. You can easily switch
-          between different pools or solo farming at any time. If you choose not to plot to a Plot NFT, you will
-          need to replot in order to join any of the standard pools.
-        </Trans>
-        &nbsp;
-        <Link target="_blank" href="https://docs.chia.net/pool-farming">
-          <Trans>Learn more</Trans>
-        </Link>
-      </Typography>
+      <Grid item style={descriptionStyle}>
+        <Typography>
+          <Trans>(Recommended) Plot to a Plot NFT</Trans>{' '}
+          <TooltipIcon>
+            <Trans>
+              Plotting to a Plot NFT allows you the flexibility to join a pool or solo farm. You can easily switch
+              between different pools or solo farming at any time. If you choose not to plot to a Plot NFT, you will
+              need to replot in order to join any of the standard pools.
+            </Trans>
+            &nbsp;
+            <Link target="_blank" href="https://docs.chia.net/pool-farming">
+              <Trans>Learn more</Trans>
+            </Link>
+          </TooltipIcon>
+        </Typography>
+      </Grid>
       {loading && <Loading center />}
 
       {!loading && hasNFTs && (
