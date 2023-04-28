@@ -12,10 +12,6 @@ export default [
     domains: ['mintgarden.io'],
   },
   {
-    label: 'Offer Bin',
-    domains: ['offerbin.io'],
-  },
-  {
     label: 'Spacescan',
     domains: ['spacescan.io'],
   },
