@@ -8,7 +8,7 @@ msgstr ""
 "Language: fr_FR\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-03-29 23:27\n"
+"PO-Revision-Date: 2023-04-30 20:33\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
@@ -119,11 +119,11 @@ msgstr "Type de connexion"
 
 #: src/components/WalletReceiveAddressField.tsx:71
 msgid "Copied"
-msgstr ""
+msgstr "Copié"
 
 #: src/components/WalletReceiveAddressField.tsx:75
 msgid "Copy wallet address"
-msgstr ""
+msgstr "Copier l'adresse du portefeuille"
 
 #: src/components/cat/WalletCATSelect.tsx:32
 msgid "Create New Wallet"
@@ -153,7 +153,7 @@ msgstr "Portefeuille DID"
 
 #: src/constants/WalletName.ts:38
 msgid "Datalayer Wallet"
-msgstr ""
+msgstr "Portefeuille du Datalayer"
 
 #: src/components/WalletHistory.tsx:100
 msgid "Date"
@@ -266,7 +266,7 @@ msgstr "Nouvelle Adresse"
 
 #: src/components/WalletReceiveAddressField.tsx:114
 msgid "New Receive Address"
-msgstr ""
+msgstr "Nouvelle adresse de réception"
 
 #: src/components/WalletAdd.tsx:64
 msgid "New Wallet"
@@ -321,7 +321,7 @@ msgstr "Coller la phrase mnémonique"
 
 #: src/components/PasteMnemonic.tsx:53
 msgid "Paste Mnemonic ({0} words)"
-msgstr ""
+msgstr "Coller la phrase mnémonique ({0} mots)"
 
 #: src/components/WalletHistory.tsx:172
 msgid "Pending"
