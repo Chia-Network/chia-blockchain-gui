@@ -1,4 +1,3 @@
-import crypto from 'crypto';
 import {
   app,
   dialog,
@@ -116,20 +115,6 @@ function openAbout() {
   openedWindows.add(aboutWindow);
 
   // aboutWindow.webContents.openDevTools({ mode: 'detach' });
-}
-
-export function getChecksum(pathLocal: string) {
-  return new Promise((resolve, reject) => {
-    const hash = crypto.createHash('sha256');
-    const input = fs.createReadStream(pathLocal);
-    input.on('error', reject);
-    input.on('data', (chunk) => {
-      hash.update(chunk);
-    });
-    input.on('close', () => {
-      resolve(hash.digest('hex'));
-    });
-  });
 }
 
 if (!handleSquirrelEvent()) {

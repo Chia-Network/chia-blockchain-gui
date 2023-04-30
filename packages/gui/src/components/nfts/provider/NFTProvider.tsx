@@ -12,7 +12,7 @@ import {
   useLazyGetNFTInfoQuery,
 } from '@chia-network/api-react';
 import debug from 'debug';
-import React, { useMemo, useCallback, useEffect, type ReactNode } from 'react';
+import React, { useMemo, useCallback, useEffect, type ReactNode, useRef } from 'react';
 
 import type Metadata from '../../../@types/Metadata';
 import type MetadataOnDemand from '../../../@types/MetadataOnDemand';
@@ -25,6 +25,7 @@ import getNFTId from '../../../util/getNFTId';
 import limit from '../../../util/limit';
 import { launcherIdFromNFTId } from '../../../util/nfts';
 import parseFileContent from '../../../util/parseFileContent';
+import NFTFilterProvider from '../NFTFilterProvider';
 import NFTProviderContext from './NFTProviderContext';
 
 const log = debug('chia-gui:NFTProvider');
@@ -58,7 +59,7 @@ export type NFTProviderProps = {
 // private ongoingRequests: Map<string, Promise<Buffer>> = new Map();
 
 export default function NFTProvider(props: NFTProviderProps) {
-  const { children, pageSize = 24, concurrency = Infinity } = props;
+  const { children, pageSize = 24, concurrency = 20 } = props;
 
   const events = useMemo(() => {
     const eventEmitter = new EventEmitter();
@@ -67,9 +68,8 @@ export default function NFTProvider(props: NFTProviderProps) {
   }, []);
 
   const cache = useCache();
-  const nftAdd = useMemo(() => limit<NFTInfo>(concurrency), [concurrency]);
-  const metadataAdd = useMemo(() => limit<Metadata>(concurrency), [concurrency]);
-  const [currentAbortController, setCurrentAbortController] = useStateAbort<AbortController>(new AbortController());
+  const nftAdd = useMemo(() => limit(concurrency), [concurrency]);
+  const abortControllerRef = useRef(new AbortController());
 
   // queries
   const { wallets: nftWallets, isLoading: isLoadingWallets, error: errorWallets } = useGetNFTWallets();
@@ -103,7 +103,7 @@ export default function NFTProvider(props: NFTProviderProps) {
   const error = errorWallets || errorFingerprint || errorNachos || errorLoading;
 
   // events
-  const [changes, setChanges] = useStateAbort<Change[]>([]);
+  const [, setChanges] = useStateAbort<Change[]>([]);
   useNFTCoinAdded((data) => {
     const { walletId } = data;
     setChanges((prevChanges) => [...prevChanges, { type: 'add', walletId }]);
@@ -134,13 +134,16 @@ export default function NFTProvider(props: NFTProviderProps) {
   const fetchAndProcessMetadata = useCallback(
     async (uri: string, hash: string | undefined) => {
       log(`Fetching metadata from ${uri}`);
-      const { content, headers, checksum } = await cache.get(uri);
+
+      const checksum = await cache.getChecksum(uri);
 
       log(`Comparing checksums ${checksum} and ${hash}`);
       if (hash && !compareChecksums(checksum, hash)) {
         throw new Error('Checksum mismatch');
       }
 
+      const headers = await cache.getHeaders(uri);
+      const content = await cache.getContent(uri);
       return parseMetadataFile(content, headers);
     },
     [cache]
@@ -198,8 +201,8 @@ export default function NFTProvider(props: NFTProviderProps) {
         return nachoNFTsById.get(nftId);
       }
 
-      if (nftsOnDemand.has(nftId)) {
-        const nftOnDemand = nftsOnDemand.get(nftId);
+      const nftOnDemand = nftsOnDemand.get(nftId);
+      if (nftOnDemand) {
         if (nftOnDemand.nft) {
           return nftOnDemand.nft;
         }
@@ -246,7 +249,7 @@ export default function NFTProvider(props: NFTProviderProps) {
         }
       }
 
-      const promise = nftAdd(() => limitedFetchNFTById());
+      const promise = nftAdd<NFTInfo>(() => limitedFetchNFTById());
 
       setNFTOnDemand(
         nftId,
@@ -315,8 +318,8 @@ export default function NFTProvider(props: NFTProviderProps) {
     async (id: string, abortSignal: AbortSignal): Promise<Metadata> => {
       const nftId = getNFTId(id);
 
-      if (metadatasOnDemand.has(nftId)) {
-        const metadataOnDemand = metadatasOnDemand.get(nftId);
+      const metadataOnDemand = metadatasOnDemand.get(nftId);
+      if (metadataOnDemand) {
         if (metadataOnDemand.error) {
           throw metadataOnDemand.error;
         }
@@ -338,10 +341,7 @@ export default function NFTProvider(props: NFTProviderProps) {
 
           const [firstUri] = metadataUris;
           if (!firstUri) {
-            const metadataError = new Error('No metadata URI');
-            if (metadataError) {
-              throw metadataError;
-            }
+            throw new Error('No metadata URI');
           }
 
           const metadata = await fetchAndProcessMetadata(firstUri, metadataHash);
@@ -353,13 +353,13 @@ export default function NFTProvider(props: NFTProviderProps) {
         }
       }
 
-      const promise = metadataAdd(() => limitedFetchMetadata());
+      const promise = limitedFetchMetadata();
 
       setMetadataOnDemand(nftId, { promise }, abortSignal);
 
       return promise;
     },
-    [fetchAndProcessMetadata, fetchById, metadatasOnDemand, setMetadataOnDemand, metadataAdd]
+    [fetchAndProcessMetadata, fetchById, metadatasOnDemand, setMetadataOnDemand]
   );
 
   const startPreparingMetadata = useCallback(
@@ -385,7 +385,7 @@ export default function NFTProvider(props: NFTProviderProps) {
         const nftId = getNFTId(nachoNFT.launcherId);
         nachoNFTsById.set(nftId, nachoNFT);
 
-        startPreparingMetadata(nftId, currentAbortController.signal);
+        startPreparingMetadata(nftId, abortControllerRef.current.signal);
 
         events.emit('nftChanged', nftId, {
           nft: nachoNFT,
@@ -393,7 +393,7 @@ export default function NFTProvider(props: NFTProviderProps) {
         });
       });
     }
-  }, [nachoNFTsById, nachoNFTs, startPreparingMetadata, currentAbortController.signal, events]);
+  }, [nachoNFTsById, nachoNFTs, startPreparingMetadata, events]);
 
   const fetchNFTsPage = useCallback(
     async (walletId: number, pageIndex: number, abortSignal: AbortSignal) => {
@@ -550,12 +550,21 @@ export default function NFTProvider(props: NFTProviderProps) {
   );
 
   useEffect(() => {
-    if (changes.length && !isLoadingNFTs) {
-      setChanges([]);
+    if (nftWallets && fingerprint) {
+      log(`Reloading NFTs for wallets ${nftWallets.map((w) => w.id).join(', ')}`);
 
-      fetchData(currentAbortController.signal);
+      // refetch everything from scratch
+      abortControllerRef.current = new AbortController();
+      fetchData(abortControllerRef.current.signal);
     }
-  }, [changes, currentAbortController.signal, fetchData, isLoadingNFTs, setChanges]);
+
+    return () => {
+      log(`Aborting NFTs reload for wallets ${nftWallets.map((w) => w.id).join(', ')}`);
+      // cancel all in progress requests
+      abortControllerRef.current.abort();
+      reset();
+    };
+  }, [nftWallets, fingerprint]); // eslint-disable-line react-hooks/exhaustive-deps -- we want to fetch data only once
 
   const getMetadataState = useCallback(
     (
@@ -615,23 +624,6 @@ export default function NFTProvider(props: NFTProviderProps) {
   }
 
   useEffect(() => {
-    if (nftWallets && fingerprint) {
-      log(`Reloading NFTs for wallets ${nftWallets.map((w) => w.id).join(', ')}`);
-      const abortController = new AbortController();
-      setCurrentAbortController(abortController);
-      fetchData(abortController.signal);
-
-      return () => {
-        log(`Aborting NFTs reload for wallets ${nftWallets.map((w) => w.id).join(', ')}`);
-        abortController.abort();
-        reset();
-      };
-    }
-
-    return undefined;
-  }, [nftWallets, fingerprint]); // eslint-disable-line react-hooks/exhaustive-deps -- we want to fetch data only once
-
-  useEffect(() => {
     prepareNachoNFTsById();
   }, [prepareNachoNFTsById]);
 
@@ -651,9 +643,9 @@ export default function NFTProvider(props: NFTProviderProps) {
       loaded,
       progress: total > 0 ? (loaded / total) * 100 : !isLoading && total === 0 ? 100 : 0,
 
-      invalidate: (id?: string) => invalidate(id, currentAbortController.signal),
-      getNft: (id?: string) => getNFTState(id, currentAbortController.signal),
-      getMetadata: (id?: string) => getMetadataState(id, currentAbortController.signal),
+      invalidate: (id?: string) => invalidate(id, abortControllerRef.current.signal),
+      getNft: (id?: string) => getNFTState(id, abortControllerRef.current.signal),
+      getMetadata: (id?: string) => getMetadataState(id, abortControllerRef.current.signal),
     }),
     [
       events,
@@ -666,11 +658,14 @@ export default function NFTProvider(props: NFTProviderProps) {
       total,
       loaded,
       invalidate,
-      currentAbortController.signal,
       getNFTState,
       getMetadataState,
     ]
   );
 
-  return <NFTProviderContext.Provider value={context}>{children}</NFTProviderContext.Provider>;
+  return (
+    <NFTProviderContext.Provider value={context}>
+      <NFTFilterProvider>{children}</NFTFilterProvider>
+    </NFTProviderContext.Provider>
+  );
 }

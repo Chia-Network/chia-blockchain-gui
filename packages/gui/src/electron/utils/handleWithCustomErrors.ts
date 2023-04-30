@@ -7,7 +7,8 @@ export default function handleWithCustomErrors(channel: string, handler: (...arg
     try {
       return { result: await handler(...args) };
     } catch (e) {
-      return { error: encodeError(e as Error) };
+      const error = e || new Error('Unknown error');
+      return { error: encodeError(error as Error) };
     }
   });
 }

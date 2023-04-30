@@ -2,11 +2,10 @@ import { IconMessage, Loading, Flex, SandboxedIframe, usePersistState, useDarkMo
 import { t, Trans } from '@lingui/macro';
 import { NotInterested /* , Error as ErrorIcon */ } from '@mui/icons-material';
 import { Box } from '@mui/material';
-import React, { useMemo, useRef, Fragment } from 'react';
+import React, { useMemo, useRef, Fragment, useCallback, useEffect } from 'react';
 import { renderToString } from 'react-dom/server';
 import styled from 'styled-components';
 
-import FileType from '../../@types/FileType';
 import AudioSmallIcon from '../../assets/img/audio-small.svg';
 import DocumentBlobIcon from '../../assets/img/document-blob.svg';
 import DocumentSmallIcon from '../../assets/img/document-small.svg';
@@ -25,13 +24,16 @@ import VideoBlobIcon from '../../assets/img/video-blob.svg';
 import VideoSmallIcon from '../../assets/img/video-small.svg';
 import VideoPngIcon from '../../assets/img/video.png';
 import VideoPngDarkIcon from '../../assets/img/video_dark.png';
+import FileType from '../../constants/FileType';
+import useCache from '../../hooks/useCache';
+import useFileType from '../../hooks/useFileType';
 import useHideObjectionableContent from '../../hooks/useHideObjectionableContent';
 import useNFT from '../../hooks/useNFT';
 import useNFTImageFittingMode from '../../hooks/useNFTImageFittingMode';
 import useNFTMetadata from '../../hooks/useNFTMetadata';
 import useNFTVerifyHash from '../../hooks/useNFTVerifyHash';
+import useStateAbort from '../../hooks/useStateAbort';
 import getFileExtension from '../../util/getFileExtension';
-import getFileType from '../../util/getFileType';
 import getNFTId from '../../util/getNFTId';
 import hasSensitiveContent from '../../util/hasSensitiveContent';
 import parseFileContent from '../../util/parseFileContent';
@@ -152,9 +154,13 @@ export default function NFTPreview(props: NFTPreviewProps) {
     hideStatus = false,
   } = props;
 
+  const { getContent, getURI, getHeaders } = useCache();
   const nftId = useMemo(() => getNFTId(id), [id]);
   const iframeRef = useRef<any>(null);
   const { isDarkMode } = useDarkMode();
+  const [, setError] = useStateAbort<Error | undefined>(undefined);
+  const [srcDoc, setSrcDoc] = useStateAbort<string | undefined>(undefined);
+  const abortControllerRef = useRef(new AbortController());
   const [hideObjectionableContent] = useHideObjectionableContent();
   const [ignoreSizeLimit /* , setIgnoreSizeLimit */] = usePersistState<boolean>(
     false,
@@ -166,9 +172,11 @@ export default function NFTPreview(props: NFTPreviewProps) {
     ignoreSizeLimit,
   });
 
+  const { type: previewFileType, isLoading: isLoadingFileType } = useFileType(preview?.uri);
+
   const { isLoading: isLoadingNFT } = useNFT(nftId);
   const { metadata, isLoading: isLoadingMetadata } = useNFTMetadata(nftId);
-  const isLoading = isLoadingVerifyHash || isLoadingMetadata || isLoadingNFT;
+  const isLoading = isLoadingVerifyHash || isLoadingMetadata || isLoadingNFT || isLoadingFileType;
 
   const blurPreview = useMemo(() => {
     if (!hideObjectionableContent) {
@@ -190,141 +198,170 @@ export default function NFTPreview(props: NFTPreviewProps) {
     return false;
   }, [hideObjectionableContent, isLoading, metadata]);
 
-  const previewExtension = useMemo(() => getFileExtension(preview?.originalUri), [preview]);
+  const previewExtension = useMemo(() => getFileExtension(preview?.uri), [preview]);
 
-  const previewFileType = useMemo(() => {
-    if (!preview?.originalUri) {
-      return FileType.UNKNOWN;
-    }
+  const preparePreview = useCallback(
+    async (signal: AbortSignal) => {
+      try {
+        setError(undefined, signal);
 
-    const { originalUri } = preview;
-    return getFileType(originalUri);
-  }, [preview]);
+        if (!preview?.uri) {
+          setSrcDoc(undefined, signal);
+          return;
+        }
 
-  const srcDoc = useMemo(() => {
-    if (!preview) {
-      return undefined;
-    }
-
-    const style = `
-    html, body {
-      border: 0px;
-      margin: 0px;
-      padding: 0px;
-      height: 100%;
-      width: 100%;
-      text-align: center;
-    }
-
-    body {
-      overflow: hidden;
-    }
-
-    img {
-      object-fit: ${fit};
-    }
-
-    #status-container {
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      align-items: center;
-      position: absolute;
-        top: 0;
+        const style = `
+      html, body {
+        border: 0px;
+        margin: 0px;
+        padding: 0px;
+        height: 100%;
         width: 100%;
+        text-align: center;
       }
 
-      #status-pill {
-        background-color: rgba(255, 255, 255, 0.4);
-        backdrop-filter: blur(6px);
-        border: 1px solid rgba(255, 255, 255, 0.13);
-        border-radius: 16px;
-        box-sizing: border-box;
-        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      body {
+        overflow: hidden;
+      }
+
+      img {
+        object-fit: ${fit};
+      }
+
+      #status-container {
         display: flex;
-        height: 30px;
-        margin-top: 20px;
-        padding: 8px 20px;
-      }
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+          top: 0;
+          width: 100%;
+        }
 
-      #status-text {
-        font-family: 'Roboto', sans-serif;
-        font-style: normal;
-        font-weight: 500;
-        font-size: 12px;
-        line-height: 14px;
-      }
-      audio {
-        margin-top: 140px;
-        box-shadow: 0px 0px 24px rgba(24, 162, 61, 0.5),
-          0px 4px 8px rgba(18, 99, 60, 0.32);
-        border-radius: 32px;
-      }
-      audio.dark::-webkit-media-controls-enclosure {
-        background-color: #333;
-      }
-      audio.dark::-webkit-media-controls-current-time-display {
-        color: #fff;
-      }
-      audio.dark::-webkit-media-controls-time-remaining-display {
-        color: #fff;
-      }
-      audio.dark::-webkit-media-controls-mute-button {
-        background-image: url('data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjZmZmIiBoZWlnaHQ9IjI0IiB2aWV3Qm94PSIwIDAgMjQgMjQiIHdpZHRoPSIyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwYXRoIGQ9Ik0zIDl2Nmg0bDUgNVY0TDcgOUgzem0xMy41IDNjMC0xLjc3LTEuMDItMy4yOS0yLjUtNC4wM3Y4LjA1YzEuNDgtLjczIDIuNS0yLjI1IDIuNS00LjAyek0xNCAzLjIzdjIuMDZjMi44OS44NiA1IDMuNTQgNSA2Ljcxcy0yLjExIDUuODUtNSA2LjcxdjIuMDZjNC4wMS0uOTEgNy00LjQ5IDctOC43N3MtMi45OS03Ljg2LTctOC43N3oiLz4KICAgIDxwYXRoIGQ9Ik0wIDBoMjR2MjRIMHoiIGZpbGw9Im5vbmUiLz4KPC9zdmc+');
-      }
-      audio.dark::--webkit-media-controls-fullscreen-button {
-        background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMjQgMjQiIHhtbDpzcGFjZT0icHJlc2VydmUiIGZpbGw9IldpbmRvd1RleHQiPjxjaXJjbGUgY3g9IjEyIiBjeT0iNiIgcj0iMiIgZmlsbD0iI2ZmZiIvPjxjaXJjbGUgY3g9IjEyIiBjeT0iMTIiIHI9IiNmZmYiLz48Y2lyY2xlIGN4PSIxMiIgY3k9IjE4IiByPSIjZmZmIi8+PC9zdmc+');
-      }
-      audio.dark::-webkit-media-controls-toggle-closed-captions-button {
-        display: none;
-      }
-      audio.dark::-webkit-media-controls-timeline {
-            background: #444;
-            border-radius: 4px;
-            margin-left: 7px;
+        #status-pill {
+          background-color: rgba(255, 255, 255, 0.4);
+          backdrop-filter: blur(6px);
+          border: 1px solid rgba(255, 255, 255, 0.13);
+          border-radius: 16px;
+          box-sizing: border-box;
+          box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+          display: flex;
+          height: 30px;
+          margin-top: 20px;
+          padding: 8px 20px;
+        }
+
+        #status-text {
+          font-family: 'Roboto', sans-serif;
+          font-style: normal;
+          font-weight: 500;
+          font-size: 12px;
+          line-height: 14px;
+        }
+        audio {
+          margin-top: 140px;
+          box-shadow: 0px 0px 24px rgba(24, 162, 61, 0.5),
+            0px 4px 8px rgba(18, 99, 60, 0.32);
+          border-radius: 32px;
+        }
+        audio.dark::-webkit-media-controls-enclosure {
+          background-color: #333;
+        }
+        audio.dark::-webkit-media-controls-current-time-display {
+          color: #fff;
+        }
+        audio.dark::-webkit-media-controls-time-remaining-display {
+          color: #fff;
+        }
+        audio.dark::-webkit-media-controls-mute-button {
+          background-image: url('data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjZmZmIiBoZWlnaHQ9IjI0IiB2aWV3Qm94PSIwIDAgMjQgMjQiIHdpZHRoPSIyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwYXRoIGQ9Ik0zIDl2Nmg0bDUgNVY0TDcgOUgzem0xMy41IDNjMC0xLjc3LTEuMDItMy4yOS0yLjUtNC4wM3Y4LjA1YzEuNDgtLjczIDIuNS0yLjI1IDIuNS00LjAyek0xNCAzLjIzdjIuMDZjMi44OS44NiA1IDMuNTQgNSA2Ljcxcy0yLjExIDUuODUtNSA2LjcxdjIuMDZjNC4wMS0uOTEgNy00LjQ5IDctOC43N3MtMi45OS03Ljg2LTctOC43N3oiLz4KICAgIDxwYXRoIGQ9Ik0wIDBoMjR2MjRIMHoiIGZpbGw9Im5vbmUiLz4KPC9zdmc+');
+        }
+        audio.dark::--webkit-media-controls-fullscreen-button {
+          background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMjQgMjQiIHhtbDpzcGFjZT0icHJlc2VydmUiIGZpbGw9IldpbmRvd1RleHQiPjxjaXJjbGUgY3g9IjEyIiBjeT0iNiIgcj0iMiIgZmlsbD0iI2ZmZiIvPjxjaXJjbGUgY3g9IjEyIiBjeT0iMTIiIHI9IiNmZmYiLz48Y2lyY2xlIGN4PSIxMiIgY3k9IjE4IiByPSIjZmZmIi8+PC9zdmc+');
+        }
+        audio.dark::-webkit-media-controls-toggle-closed-captions-button {
+          display: none;
+        }
+        audio.dark::-webkit-media-controls-timeline {
+              background: #444;
+              border-radius: 4px;
+              margin-left: 7px;
+            }
           }
         }
-      }
-      video::-webkit-media-controls {
-          display: none;
-      }
-    `;
+        video::-webkit-media-controls {
+            display: none;
+        }
+      `;
 
-    let mediaElement = null;
+        let mediaElement = null;
 
-    if (previewFileType === FileType.VIDEO) {
-      mediaElement = (
-        <video width="100%" height="100%" controls={!disableInteractions}>
-          <source src={preview.uri} />
-        </video>
-      );
-    } else if (previewFileType === FileType.AUDIO) {
-      mediaElement = (
-        <audio className={isDarkMode ? 'dark' : ''} controls={!disableInteractions}>
-          <source src={preview.uri} />
-        </audio>
-      );
-    } else {
-      const isSVG = preview?.headers?.['content-type'].startsWith('image/svg+xml');
-      if (isSVG && preview.content && preview.headers) {
-        const svgImage = parseFileContent(preview.content, preview.headers);
-        const encodedSvg = encodeURIComponent(svgImage);
-        const dataUri = `data:image/svg+xml;charset=utf-8,${encodedSvg}`;
-        mediaElement = <img src={dataUri} alt={t`Preview`} width="100%" height="100%" />;
-      } else {
-        mediaElement = <img src={preview.uri} alt={t`Preview`} width="100%" height="100%" />;
+        const cachedURI = await getURI(preview.uri);
+
+        if (previewFileType === FileType.VIDEO) {
+          mediaElement = (
+            <video width="100%" height="100%" controls={!disableInteractions}>
+              <source src={cachedURI} />
+            </video>
+          );
+        } else if (previewFileType === FileType.AUDIO) {
+          mediaElement = (
+            <audio className={isDarkMode ? 'dark' : ''} controls={!disableInteractions}>
+              <source src={cachedURI} />
+            </audio>
+          );
+        } else {
+          try {
+            const headers = await getHeaders(preview.uri);
+            const isSVG = 'content-type' in headers && headers['content-type'].startsWith('image/svg+xml');
+            if (isSVG) {
+              const content = await getContent(preview.uri);
+
+              const svgImage = parseFileContent(content, headers);
+              const encodedSvg = encodeURIComponent(svgImage);
+              const dataUri = `data:image/svg+xml;charset=utf-8,${encodedSvg}`;
+              mediaElement = <img src={dataUri} alt={t`Preview`} width="100%" height="100%" />;
+            } else {
+              mediaElement = <img src={cachedURI} alt={t`Preview`} width="100%" height="100%" />;
+            }
+          } catch (e) {
+            mediaElement = <img src={cachedURI} alt={t`Preview`} width="100%" height="100%" />;
+          }
+        }
+
+        const iframeContent = renderToString(
+          <html>
+            <head>
+              <style dangerouslySetInnerHTML={{ __html: style }} />
+            </head>
+            <body>{mediaElement}</body>
+          </html>
+        );
+
+        setSrcDoc(iframeContent, signal);
+      } catch (e) {
+        setError(e as Error, signal);
       }
-    }
+    },
+    [
+      preview,
+      fit,
+      getURI,
+      previewFileType,
+      disableInteractions,
+      isDarkMode,
+      getHeaders,
+      getContent,
+      setSrcDoc,
+      setError,
+    ]
+  );
 
-    return renderToString(
-      <html>
-        <head>
-          <style dangerouslySetInnerHTML={{ __html: style }} />
-        </head>
-        <body>{mediaElement}</body>
-      </html>
-    );
-  }, [preview, previewFileType, disableInteractions, isDarkMode, fit]);
+  useEffect(() => {
+    abortControllerRef.current.abort();
+    abortControllerRef.current = new AbortController();
+    preparePreview(abortControllerRef.current.signal);
+  }, [preparePreview]);
 
   const previewCompactIcon = useMemo(() => {
     switch (previewFileType) {

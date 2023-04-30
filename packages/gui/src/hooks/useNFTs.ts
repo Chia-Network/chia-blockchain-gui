@@ -3,10 +3,10 @@ import MetadataOnDemand from '@types/MetadataOnDemand';
 import { throttle } from 'lodash';
 import { useMemo, useEffect, useState, useCallback } from 'react';
 
-import FileType from '../@types/FileType';
 import type Metadata from '../@types/Metadata';
 import NFTVisibility from '../@types/NFTVisibility';
 import NFTsDataStatistics from '../@types/NFTsDataStatistics';
+import FileType from '../constants/FileType';
 import getNFTFileType from '../util/getNFTFileType';
 import hasSensitiveContent from '../util/hasSensitiveContent';
 import useHiddenNFTs from './useHiddenNFTs';
@@ -145,7 +145,7 @@ export type UseNFTsProps = {
 export default function useNFTs(props: UseNFTsProps = {}) {
   const {
     walletIds = [],
-    types = [],
+    types = [FileType.IMAGE, FileType.VIDEO, FileType.AUDIO, FileType.DOCUMENT, FileType.MODEL, FileType.UNKNOWN],
     search = '',
     visibility = NFTVisibility.ALL,
     // hideSensitiveContent = false,

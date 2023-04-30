@@ -20,8 +20,8 @@ import { xor, intersection /* , sortBy */ } from 'lodash';
 import React, { useMemo, useCallback, useRef } from 'react';
 import { VirtuosoGrid } from 'react-virtuoso';
 
-import FileType from '../../../@types/FileType';
 import NFTVisibility from '../../../@types/NFTVisibility';
+import FileType from '../../../constants/FileType';
 import useFilteredNFTs from '../../../hooks/useFilteredNFTs';
 import useHideObjectionableContent from '../../../hooks/useHideObjectionableContent';
 // import useNFTGalleryScrollPosition from '../../../hooks/useNFTGalleryScrollPosition';
@@ -316,13 +316,16 @@ export default function NFTGallery() {
           <Flex gap={2} alignItems="center" flexWrap="wrap" justifyContent="space-between">
             <Flex gap={1} alignItems="center">
               <Typography variant="body2" display="inline-flex">
-                <Trans>
-                  <Mute>Showing</Mute>&nbsp;{nfts.length}&nbsp;
-                  <Mute>of</Mute>&nbsp;{statistics.total}&nbsp; <Mute>items</Mute>
-                </Trans>
+                {statistics.total > 0 && (
+                  <Trans>
+                    <Mute>Showing</Mute>&nbsp;{nfts.length}&nbsp;
+                    <Mute>of</Mute>&nbsp;{statistics.total}&nbsp; <Mute>items</Mute>
+                  </Trans>
+                )}
+
                 {progress < 100 && (
                   <>
-                    ,&nbsp;
+                    {statistics.total > 0 && <>,&nbsp;</>}
                     <LabelProgress value={progress} hideValue>
                       <Trans>
                         <Mute>Loading...</Mute>&nbsp;{Math.floor(progress)}%
@@ -349,7 +352,7 @@ export default function NFTGallery() {
                       title={
                         <Trans>
                           Types
-                          {availableTypes.length > 0 && (
+                          {availableTypes.length > 0 ? (
                             <>
                               &nbsp;
                               <Chip
@@ -361,7 +364,7 @@ export default function NFTGallery() {
                                 size="extraSmall"
                               />
                             </>
-                          )}
+                          ) : null}
                         </Trans>
                       }
                     >
@@ -476,7 +479,7 @@ export default function NFTGallery() {
           <VirtuosoGrid
             style={{ height: '100%' }}
             data={nfts}
-            overscan={600}
+            overscan={2000}
             // computeItemKey={(_index, nft) => nft.launcherId}
             components={COMPONENTS}
             itemContent={renderNFTCard}

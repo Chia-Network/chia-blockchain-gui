@@ -9,7 +9,7 @@ export default function useNFT(id?: string) {
     throw new Error('useNFT must be used within NFTProvider');
   }
 
-  const nftId = useMemo(() => id && getNFTId(id), [id]);
+  const nftId = useMemo(() => (typeof id === 'string' ? getNFTId(id) : undefined), [id]);
   const { invalidate, getNft, events } = context;
 
   const handleInvalidate = useCallback(() => invalidate(nftId), [invalidate, nftId]);
