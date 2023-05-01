@@ -8,7 +8,7 @@ msgstr ""
 "Language: fi_FI\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-05-01 12:06\n"
+"PO-Revision-Date: 2023-05-01 16:48\n"
 "Last-Translator: \n"
 "Language-Team: Finnish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -1108,7 +1108,7 @@ msgstr "Syötä lompakon osoite kirjautuaksesi"
 
 #: src/components/signVerify/SignMessage.tsx:90
 msgid "Enter an NFT or DID to sign with"
-msgstr ""
+msgstr "Anna NFT tai DID allekirjoittaaksesi"
 
 #: src/components/settings/RemovePassphrasePrompt.tsx:121
 msgid "Enter your passphrase:"
@@ -1133,15 +1133,15 @@ msgstr "JSONin parsiminen epäonnistui"
 
 #: src/components/offers/OfferShareDialog.tsx:1272
 msgid "Error posting offer: {0}"
-msgstr ""
+msgstr "Virhe lähetettäessä tarjousta: {0}"
 
 #: src/components/signVerify/VerifyMessage.tsx:146
 msgid "Error:"
-msgstr ""
+msgstr "Virhe:"
 
 #: src/components/settings/ResyncPrompt.tsx:23
 msgid "Error: {0}"
-msgstr ""
+msgstr "Virhe: {0}"
 
 #: src/components/fullNode/card/FullNodeEstimatedNetworkSpace.tsx:14
 msgid "Estimated Network Space"
@@ -1171,7 +1171,7 @@ msgstr "Epäonnistunut"
 
 #: src/components/nfts/MultipleDownloadDialog.tsx:59
 msgid "Failed downloads:"
-msgstr ""
+msgstr "Epäonnistuneet lataukset:"
 
 #: src/components/offers/NFTOfferEditor.tsx:587
 msgid "Failed to decode NFT identifier"
@@ -1183,7 +1183,7 @@ msgstr "Keybase-komennon suorittaminen epäonnistui: {stderr}"
 
 #: src/components/notification/NotificationSendDialog.tsx:147
 msgid "Failed to send the notification: {error}"
-msgstr ""
+msgstr "Ilmoituksen lähetys epäonnistui: {error}"
 
 #: src/components/settings/SetPassphrasePrompt.tsx:102
 msgid "Failed to set passphrase: {0}"
@@ -1195,7 +1195,7 @@ msgstr "Salasanan päivittäminen epäonnistui: {0}"
 
 #: src/components/notification/NotificationSendDialog.tsx:142
 msgid "Failure"
-msgstr ""
+msgstr "Epäonnistuminen"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:454
 msgid "Farmer Public Key"
@@ -1251,7 +1251,7 @@ msgstr "Farmaroinnin Tila"
 
 #: src/components/settings/SettingsAdvanced.tsx:47
 msgid "Features for advanced users."
-msgstr ""
+msgstr "Ominaisuudet edistyneille käyttäjille."
 
 #: src/components/nfts/NFTBurnDialog.tsx:166
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:324
@@ -1282,7 +1282,7 @@ msgstr "Siirtomaksua tarvitaan kahdesti: kerran poolin jättämiseen, kerran lii
 
 #: src/components/offers2/OfferBuilderFeeSection.tsx:52
 msgid "Fees"
-msgstr ""
+msgstr "Maksut"
 
 #: src/components/block/Block.jsx:239
 msgid "Fees Amount"
@@ -1307,7 +1307,7 @@ msgstr "Tiedoston nimi"
 
 #: src/components/nfts/gallery/NFTGallery.tsx:530
 msgid "Filter"
-msgstr ""
+msgstr "Suodatus"
 
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:45
 msgid "Final folder location"
@@ -1315,7 +1315,7 @@ msgstr "Lopullinen hakemisto"
 
 #: src/constants/WalletConnectCommands.tsx:21
 msgid "Fingerprint"
-msgstr ""
+msgstr "Sormenjälki"
 
 #: src/components/fullNode/FullNode.jsx:28
 #: src/components/fullNode/FullNode.jsx:77
@@ -1324,7 +1324,7 @@ msgstr "Valmis"
 
 #: src/components/settings/SettingsNFT.tsx:145
 msgid "Fit images to cards"
-msgstr ""
+msgstr "Sovita kuvat kortteihin"
 
 #: src/electron/main.tsx:1086
 msgid "Follow on Twitter"
@@ -1354,59 +1354,59 @@ msgstr "Yleisasetukset"
 
 #: src/constants/WalletConnectCommands.tsx:365
 msgid "Get CAT Asset Id"
-msgstr ""
+msgstr "Hae CAT assetin ID"
 
 #: src/constants/WalletConnectCommands.tsx:59
 msgid "Get Current Address"
-msgstr ""
+msgstr "Hae Nykyinen Osoite"
 
 #: src/constants/WalletConnectCommands.tsx:451
 msgid "Get NFT Info"
-msgstr ""
+msgstr "Hae NFT-tiedot"
 
 #: src/constants/WalletConnectCommands.tsx:440
 msgid "Get NFTs"
-msgstr ""
+msgstr "Hae NFT:t"
 
 #: src/constants/WalletConnectCommands.tsx:148
 msgid "Get Next Address"
-msgstr ""
+msgstr "Hae Seuraava Osoite"
 
 #: src/constants/WalletConnectCommands.tsx:320
 msgid "Get Offer Data"
-msgstr ""
+msgstr "Hae Tarjoustiedot"
 
 #: src/constants/WalletConnectCommands.tsx:332
 msgid "Get Offer Record"
-msgstr ""
+msgstr "Hae Tarjouksen Tietue"
 
 #: src/constants/WalletConnectCommands.tsx:308
 msgid "Get Offer Summary"
-msgstr ""
+msgstr "Hae Tarjouksen Yhteenveto"
 
 #: src/constants/WalletConnectCommands.tsx:221
 msgid "Get Offers Count"
-msgstr ""
+msgstr "Hae Tarjousten Lukumäärä"
 
 #: src/constants/WalletConnectCommands.tsx:32
 msgid "Get Transaction"
-msgstr ""
+msgstr "Hae Transaktio"
 
 #: src/constants/WalletConnectCommands.tsx:44
 msgid "Get Wallet Balance"
-msgstr ""
+msgstr "Hae Lompakon Saldo"
 
 #: src/constants/WalletConnectCommands.tsx:171
 msgid "Get Wallet Sync Status"
-msgstr ""
+msgstr "Hae Lompakon Synkronoinnin Tila"
 
 #: src/constants/WalletConnectCommands.tsx:27
 msgid "Get Wallets"
-msgstr ""
+msgstr "Hae Lompakot"
 
 #: src/constants/WalletConnectCommands.tsx:178
 msgid "Get all Offers"
-msgstr ""
+msgstr "Hae kaikki tarjoukset"
 
 #: src/components/nfts/gallery/NFTGalleryHero.tsx:15
 msgid "Go collect some gems"
@@ -1461,11 +1461,11 @@ msgstr "Tämänhetkiset lohkohaasteet, joiden tilatodisteet voivat löytyä plot
 
 #: src/components/nfts/gallery/NFTGallery.tsx:589
 msgid "Hidden"
-msgstr ""
+msgstr "Piilotettu"
 
 #: src/components/nfts/gallery/NFTGallery.tsx:573
 msgid "Hidden ({0})"
-msgstr ""
+msgstr "Piilotettu ({0})"
 
 #: src/components/nfts/NFTContextualActions.tsx:499
 msgid "Hide"
@@ -1505,7 +1505,7 @@ msgstr "IP-osoite / nimi"
 
 #: src/constants/WalletConnectCommands.tsx:119
 msgid "Id"
-msgstr ""
+msgstr "ID"
 
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:128
 msgid "If none selected, then it will default to the temporary directory."
@@ -1517,7 +1517,7 @@ msgstr "Jos valittu, tarjoustasi ei jaeta julkisesti."
 
 #: src/components/nfts/NFTBurnDialog.tsx:76
 msgid "If you burn these NFTs, nobody (including you) will ever be able to access it again. Are you sure you want to continue?"
-msgstr ""
+msgstr "Jos poltat nämä NFT:t, kukaan (itsesi mukaan lukien) ei voi enää käyttää niitä. Oletko varma, että haluat jatkaa?"
 
 #: src/components/nfts/NFTBurnDialog.tsx:81
 msgid "If you burn this NFT, nobody (including you) will ever be able to access it again. Are you sure you want to continue?"
@@ -1533,7 +1533,7 @@ msgstr "Kuvatiiviste ei täsmää"
 
 #: src/components/settings/SettingsNFT.tsx:155
 msgid "Images will be scaled to fill the NFT card and ignore their original proportions."
-msgstr ""
+msgstr "Kuvat skaalataan NFT-kortin täyttämiseksi ja niiden alkuperäiset mittasuhteet jätetään huomioimatta."
 
 #: src/components/offers/OfferDataEntryDialog.tsx:61
 msgid "Import"
@@ -1551,11 +1551,11 @@ msgstr "Vaihtaaksesi kohteeseen"
 
 #: src/constants/WalletConnectCommands.tsx:207
 msgid "Include My Offers"
-msgstr ""
+msgstr "Sisällytä Omat Tarjoukseni"
 
 #: src/constants/WalletConnectCommands.tsx:213
 msgid "Include Taken Offers"
-msgstr ""
+msgstr "Sisällytä Otetut Tarjoukset"
 
 #: src/components/offers/NFTOfferEditor.tsx:91
 #: src/components/offers/OfferEditorConditionsPanel.tsx:392
@@ -1564,7 +1564,7 @@ msgstr "Maksun sisällyttäminen tarjoukseen voi auttaa nopeuttamaan kauppaa, ku
 
 #: src/components/offers2/OfferIncomingTable.tsx:112
 msgid "Incoming Offers"
-msgstr ""
+msgstr "Saapuvat Tarjoukset"
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:17
 msgid "Index"
@@ -1593,11 +1593,11 @@ msgstr "Riittämätön määrä varoja tarjouksen luomiseen. Varmista, että\n"
 
 #: src/components/settings/Settings.tsx:73
 msgid "Integration"
-msgstr ""
+msgstr "Integrointi"
 
 #: src/components/signVerify/VerifyMessage.tsx:169
 msgid "Invalid"
-msgstr ""
+msgstr "Virheellinen"
 
 #: src/components/offers/NFTOfferEditor.tsx:585
 msgid "Invalid NFT identifier"
@@ -1605,7 +1605,7 @@ msgstr "Virheellinen NFT-tunniste"
 
 #: src/components/nfts/NFTPreview.tsx:653
 msgid "Invalid metadata url"
-msgstr ""
+msgstr "Virheellinen metadatan URL"
 
 #: src/components/plotNFT/PlotNFTState.tsx:27
 msgid "Invalid state"
@@ -1654,11 +1654,11 @@ msgstr "K-Arvo"
 
 #: src/hooks/useWalletConnectCommand.tsx:101
 msgid "Key"
-msgstr ""
+msgstr "Avain"
 
 #: src/components/settings/SettingsIntegration.tsx:65
 msgid "Key switching"
-msgstr ""
+msgstr "Avaimen vaihto"
 
 #: src/components/offers/OfferShareDialog.tsx:1086
 msgid "Keybase command failed {e}. If you haven't installed Keybase, you can download from https://keybase.io"
@@ -1730,7 +1730,7 @@ msgstr "Lisenssin URL {0}"
 
 #: src/components/settings/SettingsNFT.tsx:214
 msgid "Limit cache size"
-msgstr ""
+msgstr "Rajoita välimuistin kokoa"
 
 #: src/components/fullNode/FullNodeConnections.tsx:99
 msgid "List of connections is empty"
@@ -1746,7 +1746,7 @@ msgstr "Ladataan NFT-tietoja..."
 
 #: src/components/offers2/OfferBuilderValueSearch.tsx:144
 msgid "Loading NFTs..."
-msgstr ""
+msgstr "Ladataan NFT:itä..."
 
 #: src/components/app/AppProviders.tsx:96
 msgid "Loading configuration"
@@ -1780,11 +1780,11 @@ msgstr "Paikallinen"
 
 #: src/components/settings/SettingsNFT.tsx:196
 msgid "Local folder"
-msgstr ""
+msgstr "Paikallinen kansio"
 
 #: src/constants/WalletConnectCommands.tsx:14
 msgid "Log In"
-msgstr ""
+msgstr "Sisäänkirjautuminen"
 
 #: src/components/app/AppSelectMode.tsx:84
 msgid "Manage CAT tokens"
@@ -1800,7 +1800,7 @@ msgstr "Hallitse Farmaripalkkioiden Kohdeosoitteita"
 
 #: src/components/settings/SettingsNFT.tsx:166
 msgid "Manage how and where files are stored on this computer."
-msgstr ""
+msgstr "Hallitse kuinka ja mihin tiedostot tallennetaan tällä tietokoneella."
 
 #: src/constants/WalletConnectCommands.tsx:407
 msgid "Memos"
@@ -4119,7 +4119,7 @@ msgstr "{0} / {1}"
 
 #: src/components/nfts/gallery/SelectedActionsDialog.tsx:63
 msgid "{0} of {allCount} items selected:"
-msgstr ""
+msgstr "{0} / {allCount} kohdetta valittu:"
 
 #: src/components/plotNFT/PlotNFTGraph.tsx:63
 msgid "{0} points {1} - {2} hours ago"
@@ -4127,15 +4127,15 @@ msgstr "{0} pistettä {1} - {2} tuntia sitten"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:194
 msgid "{count} NFTs failed to move."
-msgstr ""
+msgstr "{count} NFT:tä ei voitu siirtää"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:187
 msgid "{count} transactions have been successfully submitted to the blockchain."
-msgstr ""
+msgstr "{count} tapahtumaa on onnistuneesti lähetetty lohkoketjuun."
 
 #: src/components/nfts/gallery/NFTGallery.tsx:432
 msgid "{key} ({0})"
-msgstr ""
+msgstr "{key} ({0})"
 
 #: src/components/offers/NFTOfferViewer.tsx:203
 #: src/components/offers/OfferSummary.tsx:173
@@ -4148,11 +4148,11 @@ msgstr "{mojos, plural, one {mojo} other {mojoa}}"
 
 #: src/components/nfts/gallery/FilterPill.tsx:50
 msgid "{title}"
-msgstr ""
+msgstr "{title}"
 
 #: src/components/offers2/OfferBuilderValue.tsx:179
 msgid "{type} is not supported"
-msgstr ""
+msgstr "{type} ei ole tuettu"
 
 #: src/components/nfts/NFTRankings.tsx:46
 msgid "{value} of {max_value}"
