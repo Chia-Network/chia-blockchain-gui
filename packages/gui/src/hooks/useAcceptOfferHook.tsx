@@ -47,6 +47,7 @@ export default function useAcceptOfferHook(): [AcceptOfferHook] {
       validateOnly: false,
       considerNftRoyalty: true,
       allowEmptyOfferColumn: true, // When accepting a one-sided offer, nothing is required in the offer column
+      allowUnknownRequestedCATs: true, // When accepting an offer containing unknown CATs, we can still accept it
     });
 
     const assetsRequiredToBeUnlocked = [];
