@@ -9,7 +9,6 @@ import {
   DialogActions,
   Flex,
   Loading,
-  TooltipIcon,
   useOpenDialog,
   useShowError,
   useOpenExternal,
@@ -46,7 +45,6 @@ enum OfferSharingService {
   Dexie = 'Dexie',
   Hashgreen = 'Hashgreen',
   MintGarden = 'MintGarden',
-  OfferBin = 'OfferBin',
   Offerpool = 'Offerpool',
   Spacescan = 'Spacescan',
   Keybase = 'Keybase',
@@ -109,11 +107,6 @@ const OfferSharingProviders: {
     service: OfferSharingService.MintGarden,
     name: 'MintGarden',
     capabilities: [OfferSharingCapability.NFT],
-  },
-  [OfferSharingService.OfferBin]: {
-    service: OfferSharingService.OfferBin,
-    name: 'OfferBin',
-    capabilities: [OfferSharingCapability.Token],
   },
   [OfferSharingService.Offerpool]: {
     service: OfferSharingService.Offerpool,
@@ -224,47 +217,6 @@ async function postToMintGarden(offerData: string, testnet: boolean): Promise<st
   return `https://${testnet ? 'testnet.' : ''}mintgarden.io/offers/${id}`;
 }
 
-// Posts the offer data to OfferBin and returns a URL to the offer.
-async function postToOfferBin(offerData: string, sharePrivately: boolean, testnet: boolean): Promise<string> {
-  const { ipcRenderer } = window as any;
-  const requestOptions = {
-    method: 'POST',
-    protocol: 'https:',
-    hostname: testnet ? testnetDummyHost : 'api.offerbin.io',
-    port: 443,
-    path: testnet
-      ? `/offerbin${sharePrivately ? '?private=true' : ''}`
-      : `/upload${sharePrivately ? '?private=true' : ''}`,
-  };
-  const requestHeaders = {
-    'Content-Type': 'application/text',
-  };
-  const requestData = offerData;
-  const { err, statusCode, statusMessage, responseBody } = await ipcRenderer.invoke(
-    'fetchTextResponse',
-    requestOptions,
-    requestHeaders,
-    requestData
-  );
-
-  if (err || statusCode !== 200) {
-    const error = new Error(
-      `OfferBin upload failed: ${err}, statusCode=${statusCode}, statusMessage=${statusMessage}, response=${responseBody}`
-    );
-    throw error;
-  }
-
-  log('OfferBin upload completed');
-
-  if (testnet) {
-    return 'https://www.chia.net/offers';
-  }
-
-  const { hash } = JSON.parse(responseBody);
-
-  return `https://offerbin.io/offer/${hash}`;
-}
-
 enum HashgreenErrorCodes {
   OFFERED_AMOUNT_TOO_SMALL = 40_020, // The offered amount is too small
   MARKET_NOT_FOUND = 50_029, // Pairing doesn't exist e.g. XCH/RandoCoin
@@ -347,7 +299,7 @@ type PostToSpacescanResponse = {
   offer_link: string;
 };
 
-// Posts the offer data to OfferBin and returns a URL to the offer.
+// Posts the offer data to SpaceScan and returns a URL to the offer.
 async function postToSpacescan(offerData: string, testnet: boolean): Promise<{ viewLink: string; offerLink: string }> {
   const { ipcRenderer } = window as any;
   const requestOptions = {
@@ -734,99 +686,6 @@ function OfferShareMintGardenDialog(props: OfferShareServiceDialogProps) {
       onConfirm={handleConfirm}
       open={open}
       onClose={onClose}
-    />
-  );
-}
-
-function OfferShareOfferBinDialog(props: OfferShareServiceDialogProps) {
-  const { offerRecord, offerData, testnet = false, onClose = () => {}, open = false } = props;
-  const openExternal = useOpenExternal();
-  const [sharePrivately, setSharePrivately] = React.useState(false);
-  const [sharedURL, setSharedURL] = React.useState('');
-
-  function handleClose() {
-    onClose(false);
-  }
-
-  async function handleConfirm() {
-    const url = await postToOfferBin(offerData, sharePrivately, testnet);
-    log(`OfferBin URL (private=${sharePrivately}): ${url}`);
-    setSharedURL(url);
-  }
-
-  if (sharedURL) {
-    return (
-      <Dialog
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-        maxWidth="xs"
-        open={open}
-        onClose={handleClose}
-        fullWidth
-      >
-        <DialogTitle>
-          <Trans>Offer Shared</Trans>
-        </DialogTitle>
-        <DialogContent dividers>
-          <Flex flexDirection="column" gap={3} sx={{ paddingTop: '1em' }}>
-            <TextField
-              label={<Trans>OfferBin URL</Trans>}
-              value={sharedURL}
-              variant="filled"
-              InputProps={{
-                readOnly: true,
-                endAdornment: (
-                  <InputAdornment position="end">
-                    <CopyToClipboard value={sharedURL} />
-                  </InputAdornment>
-                ),
-              }}
-              fullWidth
-            />
-            <Flex>
-              <Button variant="outlined" onClick={() => openExternal(sharedURL)}>
-                <Trans>View on OfferBin</Trans>
-              </Button>
-            </Flex>
-          </Flex>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose} color="primary" variant="contained">
-            <Trans>Close</Trans>
-          </Button>
-        </DialogActions>
-      </Dialog>
-    );
-  }
-
-  return (
-    <OfferShareConfirmationDialog
-      offerRecord={offerRecord}
-      offerData={offerData}
-      testnet={testnet}
-      title={<Trans>Share on OfferBin</Trans>}
-      onConfirm={handleConfirm}
-      open={open}
-      onClose={onClose}
-      actions={
-        <FormControlLabel
-          control={
-            <Checkbox
-              name="sharePrivately"
-              checked={sharePrivately}
-              onChange={(event) => setSharePrivately(event.target.checked)}
-            />
-          }
-          label={
-            <>
-              <Trans>Share Privately</Trans>{' '}
-              <TooltipIcon>
-                <Trans>If selected, your offer will be not be shared publicly.</Trans>
-              </TooltipIcon>
-            </>
-          }
-        />
-      }
     />
   );
 }
@@ -1510,10 +1369,6 @@ export default function OfferShareDialog(props: OfferShareDialogProps) {
       },
       [OfferSharingService.MintGarden]: {
         component: OfferShareMintGardenDialog,
-        props: commonDialogProps,
-      },
-      [OfferSharingService.OfferBin]: {
-        component: OfferShareOfferBinDialog,
         props: commonDialogProps,
       },
       [OfferSharingService.Offerpool]: {
