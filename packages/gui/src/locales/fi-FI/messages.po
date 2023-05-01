@@ -8,7 +8,7 @@ msgstr ""
 "Language: fi_FI\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-05-01 10:36\n"
+"PO-Revision-Date: 2023-05-01 12:06\n"
 "Last-Translator: \n"
 "Language-Team: Finnish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -749,7 +749,7 @@ msgstr "Luo Plot NFT"
 
 #: src/components/offers/OfferManager.tsx:440
 msgid "Create a file that you can use to trade XCH, Chia Asset Tokens, or NFTs with no counter-party risk."
-msgstr ""
+msgstr "Luo tiedosto, jota voit käyttää XCH, Chia Asset Tokenien, tai NFT:iden kaupankäyntiin ilman vastapuoliriskejä."
 
 #: src/components/settings/ProfileAdd.tsx:75
 msgid "Create a new profile"
@@ -766,7 +766,7 @@ msgstr "Luo Tarjous"
 
 #: src/constants/WalletConnectCommands.tsx:346
 msgid "Create new CAT Wallet"
-msgstr ""
+msgstr "Luo uusi CAT-lompakko"
 
 #: src/components/offers/OfferManager.tsx:130
 msgid "Creates and submits a transaction on the blockchain that cancels the offer"
@@ -819,7 +819,7 @@ msgstr "Tämänhetkinen Pistesaldo"
 #: src/components/signVerify/SignMessage.tsx:155
 #: src/components/signVerify/SigningEntityDID.tsx:79
 msgid "DID"
-msgstr ""
+msgstr "DID"
 
 #: src/components/nfts/NFTDetails.tsx:235
 msgid "Data Hash"
@@ -835,11 +835,11 @@ msgstr "Datakerros"
 
 #: src/components/settings/SettingsDataLayer.tsx:18
 msgid "DataLayer Services"
-msgstr ""
+msgstr "DataLayer-palvelut"
 
 #: src/components/settings/SettingsDataLayer.tsx:21
 msgid "DataLayer enables rich data to be stored on mirrored databases that can be verified using the Chia Blockchain."
-msgstr ""
+msgstr "DataLayer mahdollistaa tietojen tallentamisen peilattuihin tietokantoihin, jotka voidaan varmentaa Chia-lohkoketjun avulla."
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:31
 msgid "Date"
@@ -894,7 +894,7 @@ msgstr "Kuvaus"
 
 #: src/components/nfts/gallery/NFTGallery.tsx:475
 msgid "Deselect all"
-msgstr ""
+msgstr "Poista valinnat"
 
 #: src/components/nfts/NFTTransferConfirmationDialog.tsx:69
 msgid "Destination"
@@ -927,7 +927,7 @@ msgstr "Vaikeusaste"
 
 #: src/constants/WalletConnectCommands.tsx:247
 msgid "Disable JSON Formatting"
-msgstr ""
+msgstr "Poista JSON-muotoilu Käytöstä"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:377
 msgid "Disable NUMA"
@@ -980,19 +980,19 @@ msgstr "Haluatko polttaa tämän NFT:n?"
 
 #: src/components/nfts/NFTBurnDialog.tsx:132
 msgid "Do you want to burn {count} NFTs?"
-msgstr ""
+msgstr "Haluatko polttaa {count} NFT:tä?"
 
 #: src/hooks/useWalletConnectCommand.tsx:177
 msgid "Do you want to execute command {command}?"
-msgstr ""
+msgstr "Haluatko suorittaa komennon {command}?"
 
 #: src/hooks/useWalletConnectCommand.tsx:173
 msgid "Do you want to log in to {fingerprint} and execute command {command}?"
-msgstr ""
+msgstr "Haluatko kirjautua sisään kohteeseen {fingerprint} ja suorittaa komennon {command}?"
 
 #: src/components/notification/NotificationsProvider.tsx:233
 msgid "Do you want to remove this offer notification? This action cannot be undone."
-msgstr ""
+msgstr "Haluatko poistaa tämän tarjousilmoituksen? Tätä toimintoa ei voi peruuttaa."
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:62
 msgid "Does your machine support parallel plotting?"
@@ -1004,31 +1004,31 @@ msgstr "Lataa"
 
 #: src/components/nfts/MultipleDownloadDialog.tsx:91
 msgid "Download failed."
-msgstr ""
+msgstr "Lataus epäonnistui."
 
 #: src/components/nfts/MultipleDownloadDialog.tsx:93
 msgid "Download finished."
-msgstr ""
+msgstr "Lataus on valmis."
 
 #: src/components/nfts/MultipleDownloadDialog.tsx:88
 msgid "Download successful."
-msgstr ""
+msgstr "Lataus onnistui."
 
 #: src/components/nfts/MultipleDownloadDialog.tsx:55
 msgid "Downloaded files:"
-msgstr ""
+msgstr "Ladatut tiedostot:"
 
 #: src/components/nfts/MultipleDownloadDialog.tsx:77
 msgid "Downloading files {0}/{1}"
-msgstr ""
+msgstr "Ladataan tiedostoja {0}/{1}"
 
 #: src/components/nfts/MultipleDownloadDialog.tsx:85
 msgid "Downloading selected NFTs"
-msgstr ""
+msgstr "Ladataan valittuja NFT:itä"
 
 #: src/components/signVerify/VerifyMessageImport.tsx:77
 msgid "Drag & Drop a Signed Message File,<0/> Paste ({0}V)"
-msgstr ""
+msgstr "Vedä ja pudota allekirjoitettu viestitiedosto, <0/> Liitä ({0}V)"
 
 #: src/components/offers/OfferImport.tsx:167
 msgid "Drag & Drop an Offer File"
@@ -1036,11 +1036,11 @@ msgstr "Vedä ja pudota tarjoustiedosto"
 
 #: src/components/offers2/OfferBuilderImport.tsx:166
 msgid "Drag & Drop an Offer File, Paste"
-msgstr ""
+msgstr "Vedä ja pudota tarjoustiedosto, Liitä"
 
 #: src/constants/WalletConnectCommands.tsx:236
 msgid "Driver Dict"
-msgstr ""
+msgstr "Driver Dict"
 
 #: src/components/plot/PlotHarvester.tsx:136
 msgid "Duplicate"
@@ -1083,16 +1083,16 @@ msgstr "Ota Käyttöön Tiedostonvälityksen Palvelin"
 #: src/components/settings/SettingsIntegration.tsx:41
 #: src/components/walletConnect/WalletConnectConnections.tsx:106
 msgid "Enable WalletConnect"
-msgstr ""
+msgstr "Ota WalletConnect Käyttöön"
 
 #: src/constants/WalletConnectCommands.tsx:189
 msgid "End"
-msgstr ""
+msgstr "Lopeta"
 
 #: src/components/signVerify/SignMessage.tsx:61
 #: src/components/signVerify/SignMessage.tsx:85
 msgid "Enter a message to sign"
-msgstr ""
+msgstr "Syötä allekirjoitettava viesti"
 
 #: src/components/app/AppKeyringMigrator.tsx:136
 msgid "Enter a strong passphrase and click Migrate Keys to secure your keys"
@@ -1104,7 +1104,7 @@ msgstr "Anna vahva tunnuslause avainten suojaamiseksi:"
 
 #: src/components/signVerify/SignMessage.tsx:66
 msgid "Enter a wallet address to sign with"
-msgstr ""
+msgstr "Syötä lompakon osoite kirjautuaksesi"
 
 #: src/components/signVerify/SignMessage.tsx:90
 msgid "Enter an NFT or DID to sign with"
