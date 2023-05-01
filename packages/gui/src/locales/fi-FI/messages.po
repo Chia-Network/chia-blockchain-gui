@@ -8,7 +8,7 @@ msgstr ""
 "Language: fi_FI\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-05-01 16:48\n"
+"PO-Revision-Date: 2023-05-01 18:16\n"
 "Last-Translator: \n"
 "Language-Team: Finnish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -1804,14 +1804,14 @@ msgstr "Hallitse kuinka ja mihin tiedostot tallennetaan tällä tietokoneella."
 
 #: src/constants/WalletConnectCommands.tsx:407
 msgid "Memos"
-msgstr ""
+msgstr "Muistiot"
 
 #: src/components/signVerify/SignMessage.tsx:194
 #: src/components/signVerify/VerifyMessage.tsx:207
 #: src/constants/WalletConnectCommands.tsx:124
 #: src/constants/WalletConnectCommands.tsx:141
 msgid "Message"
-msgstr ""
+msgstr "Viesti"
 
 #: src/components/nfts/NFTDetails.tsx:265
 msgid "Metadata Hash"
@@ -1859,11 +1859,11 @@ msgstr "Lyöty lohkokorkeudessa"
 
 #: src/components/offers2/OfferBuilderNFT.tsx:70
 msgid "Minter"
-msgstr ""
+msgstr "Tekijä"
 
 #: src/components/nfts/NFTDetails.tsx:172
 msgid "Minter DID"
-msgstr ""
+msgstr "Tekijän DID"
 
 #: src/components/offers/OfferSummaryRow.tsx:115
 msgid "Minter:"
@@ -1887,7 +1887,7 @@ msgstr "Puuttuu preview_video_hash -avain"
 
 #: src/components/walletConnect/WalletConnectConnections.tsx:79
 msgid "More Info"
-msgstr ""
+msgstr "Lisätietoja"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:114
 msgid "More memory slightly increases speed"
