@@ -8,7 +8,7 @@ msgstr ""
 "Language: fi_FI\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-04-30 18:14\n"
+"PO-Revision-Date: 2023-05-01 10:36\n"
 "Last-Translator: \n"
 "Language-Team: Finnish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -698,19 +698,19 @@ msgstr "Kopioi Leikepöydälle"
 
 #: src/components/notification/NotificationSendDialog.tsx:230
 msgid "Cost to send notification to the NFT holder"
-msgstr ""
+msgstr "Kustannukset, jotka aiheutuvat ilmoituksen lähettämisestä NFT:n haltijalle"
 
 #: src/components/fullNode/FullNodeAddConnection.tsx:55
 msgid "Could not connect to host {host} on port {port}"
-msgstr ""
+msgstr "Palvelimeen {host} ei saatu yhteyttä portissa {port}"
 
 #: src/components/offers2/OfferBuilderImport.tsx:53
 msgid "Could not parse offer data"
-msgstr ""
+msgstr "Tarjoustietojen purkaminen ei onnistunut"
 
 #: src/components/offers2/OfferIncomingTable.tsx:93
 msgid "Counter"
-msgstr ""
+msgstr "Vastaus"
 
 #: src/components/plot/add/PlotAddForm.tsx:191
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:79
@@ -724,7 +724,7 @@ msgstr "Plottaa & Hallitse plotteja"
 
 #: src/components/offers2/CreateOfferBuilder.tsx:137
 msgid "Create Counter Offer"
-msgstr ""
+msgstr "Luo Vastatarjous"
 
 #: src/components/nfts/NFTContextualActions.tsx:151
 #: src/components/offers/NFTOfferEditor.tsx:442
@@ -737,11 +737,11 @@ msgstr "Luo Tarjous"
 
 #: src/constants/WalletConnectCommands.tsx:226
 msgid "Create Offer for Ids"
-msgstr ""
+msgstr "Luo tarjous tunnisteille"
 
 #: src/components/settings/SettingsAdvanced.tsx:69
 msgid "Create Signature"
-msgstr ""
+msgstr "Luo Allekirjoitus"
 
 #: src/components/plot/add/PlotAddNFT.tsx:39
 msgid "Create a Plot NFT"
