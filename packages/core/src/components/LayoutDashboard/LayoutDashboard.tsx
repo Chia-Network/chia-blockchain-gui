@@ -116,18 +116,18 @@ export default function LayoutDashboard(props: LayoutDashboardProps) {
 
   const isLoading = isLoadingFingerprint || isLoadingKeyData;
 
-  const preventDualCheck = React.useRef(false);
-
   React.useEffect(() => {
     function checkForUpdates(ver: string) {
       if (ver) {
         openDialog(<NewerAppVersionAvailable currentVersion={ver} />);
       }
     }
-    if (!preventDualCheck.current && appVersion) {
-      (window as any).ipcRenderer.on('checkForUpdates', () => checkForUpdates(appVersion));
-      preventDualCheck.current = true;
-    }
+    (window as any).ipcRenderer.on('checkForUpdates', () => checkForUpdates(appVersion));
+
+    // unregister event listener on unmount
+    return () => {
+      (window as any).ipcRenderer.removeAllListeners('checkForUpdates');
+    };
   }, [openDialog, appVersion]);
 
   async function handleLogout() {

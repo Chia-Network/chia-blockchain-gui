@@ -10,12 +10,14 @@ import Flex from '../Flex';
 import Link from '../Link';
 import Loading from '../Loading';
 
-interface AppVersionWarningProps {
+interface NewerAppVersionAvailableProps {
   currentVersion: string;
+  open?: boolean;
+  onClose?: () => void;
 }
 
-export default function AppVersionWarning(props: AppVersionWarningProps) {
-  const { currentVersion } = props;
+export default function NewerAppVersionAvailable(props: NewerAppVersionAvailableProps) {
+  const { currentVersion, onClose = () => ({}), open = false } = props;
   const {
     latestVersion,
     isLoading: isLoadingVersion,
@@ -23,10 +25,13 @@ export default function AppVersionWarning(props: AppVersionWarningProps) {
     releaseNotesUrl,
     blogUrl,
   } = useGetLatestVersionFromWebsite(false);
-  const [open, setOpen] = React.useState<boolean>(true);
   const openExternal = useOpenExternal();
   const versionComparisonResult = latestVersion ? compareAppVersions(currentVersion, latestVersion) : 0;
   const newVersionAvailable = versionComparisonResult === -1;
+
+  function handleClose() {
+    onClose();
+  }
 
   function renderSpinner() {
     return (
@@ -82,7 +87,7 @@ export default function AppVersionWarning(props: AppVersionWarningProps) {
 
   return (
     <div>
-      <Dialog open={open} aria-labelledby="alert-dialog-title" fullWidth>
+      <Dialog open={open} onClose={handleClose} aria-labelledby="alert-dialog-title" fullWidth>
         <DialogTitle id="alert-dialog-title">
           {isLoadingVersion ? (
             <Trans>Checking for updates...</Trans>
@@ -97,9 +102,7 @@ export default function AppVersionWarning(props: AppVersionWarningProps) {
         </DialogContent>
         <DialogActions>
           <Button
-            onClick={() => {
-              setOpen(false);
-            }}
+            onClick={handleClose}
             color="primary"
             variant="outlined"
             style={{ marginBottom: '8px', marginRight: '8px' }}
