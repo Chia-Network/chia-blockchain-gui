@@ -1,4 +1,4 @@
-import { useContext, useState, useCallback, useEffect } from 'react';
+import { useContext, useState, useCallback, useEffect, useMemo } from 'react';
 
 import NFTProviderContext from '../components/nfts/provider/NFTProviderContext';
 
@@ -12,6 +12,10 @@ export default function useNFT(id?: string) {
 
   const handleInvalidate = useCallback(() => invalidate(id), [invalidate, id]);
   const [nftState, setNFTState] = useState(() => getNFT(id));
+
+  useMemo(() => {
+    setNFTState(getNFT(id));
+  }, [id, getNFT]);
 
   useEffect(
     () =>

@@ -21,10 +21,11 @@ export type NFTAutocompleteProps = {
   color?: TextFieldProps['color'];
   required?: boolean;
   fullWidth?: boolean;
+  InputProps?: TextFieldProps['InputProps'];
 };
 
 export default function NFTAutocomplete(props: NFTAutocompleteProps) {
-  const { name, defaultValue, label, rules, variant, color, required, fullWidth } = props;
+  const { name, defaultValue, label, rules, variant, color, required, fullWidth, InputProps = {} } = props;
   const [inputValue, setInputValue] = useState('');
 
   const [hideObjectionableContent] = useHideObjectionableContent();
@@ -92,6 +93,7 @@ export default function NFTAutocomplete(props: NFTAutocompleteProps) {
           required={required}
           fullWidth={fullWidth}
           InputProps={{
+            ...InputProps,
             ...params.InputProps,
             type: 'new-password',
           }}

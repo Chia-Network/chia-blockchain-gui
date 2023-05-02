@@ -20,7 +20,6 @@ import { useWatch } from 'react-hook-form';
 
 import useOfferBuilderContext from '../../hooks/useOfferBuilderContext';
 import NFTAutocomplete from '../nfts/NFTAutocomplete';
-// import NFTSearch from '../nfts/NFTSearch';
 import OfferBuilderAmountWithRoyalties from './OfferBuilderAmountWithRoyalties';
 import OfferBuilderRoyaltyPayouts from './OfferBuilderRoyaltyPayouts';
 import OfferBuilderTokenSelector from './OfferBuilderTokenSelector';
