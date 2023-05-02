@@ -70,6 +70,7 @@ export default function SigningEntityDID(props: SigningEntityDIDProps) {
         variant="outlined"
         color="primary"
         disabled={isLoading}
+        fullWidth
       />
       <TextField
         label={<Trans>DID</Trans>}
