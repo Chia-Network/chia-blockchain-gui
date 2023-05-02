@@ -8,7 +8,7 @@ msgstr ""
 "Language: fi_FI\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-05-01 18:16\n"
+"PO-Revision-Date: 2023-05-02 14:42\n"
 "Last-Translator: \n"
 "Language-Team: Finnish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -581,7 +581,7 @@ msgstr "Suljetaan palveluja"
 
 #: src/constants/WalletConnectCommands.tsx:456
 msgid "Coin Id"
-msgstr "Kolikon ID"
+msgstr "Kolikon Tunnuste"
 
 #: src/components/nfts/NFTSummary.tsx:54
 #: src/components/nfts/detail/NFTDetailV2.tsx:301
@@ -1354,7 +1354,7 @@ msgstr "Yleisasetukset"
 
 #: src/constants/WalletConnectCommands.tsx:365
 msgid "Get CAT Asset Id"
-msgstr "Hae CAT assetin ID"
+msgstr "Hae CAT assetin tunniste"
 
 #: src/constants/WalletConnectCommands.tsx:59
 msgid "Get Current Address"
@@ -1505,7 +1505,7 @@ msgstr "IP-osoite / nimi"
 
 #: src/constants/WalletConnectCommands.tsx:119
 msgid "Id"
-msgstr "ID"
+msgstr "Tunniste"
 
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:128
 msgid "If none selected, then it will default to the temporary directory."
@@ -1907,7 +1907,7 @@ msgstr "Siirrä profiiliin"
 
 #: src/components/nfts/gallery/NFTGallery.tsx:522
 msgid "Multi-select"
-msgstr ""
+msgstr "Monivalinta"
 
 #: src/components/settings/ProfileView.tsx:90
 msgid "My DID"
@@ -1923,11 +1923,11 @@ msgstr "NFT"
 
 #: src/components/nfts/NFTDetails.tsx:73
 msgid "NFT Coin ID"
-msgstr ""
+msgstr "NFT-kolikon Tunniste"
 
 #: src/constants/WalletConnectCommands.tsx:473
 msgid "NFT Coin Id"
-msgstr ""
+msgstr "NFT-kolikon Tunniste"
 
 #: src/components/nfts/NFTDetails.tsx:55
 #: src/components/offers2/OfferBuilderNFT.tsx:63
