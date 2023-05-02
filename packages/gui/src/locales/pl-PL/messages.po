@@ -6,17 +6,17 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: @lingui/cli\n"
 "Language: pl_PL\n"
-"Project-Id-Version: chia-blockchain\n"
+"Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-10-24 18:15\n"
+"PO-Revision-Date: 2023-03-29 23:27\n"
 "Last-Translator: \n"
 "Language-Team: Polish\n"
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
-"X-Crowdin-Project: chia-blockchain\n"
-"X-Crowdin-Project-ID: 440660\n"
+"X-Crowdin-Project: 1263bc1f20e1271bda78e84d2f4a6562\n"
+"X-Crowdin-Project-ID: 1\n"
 "X-Crowdin-Language: pl\n"
-"X-Crowdin-File: /main/packages/gui/src/locales/en-US/messages.po\n"
-"X-Crowdin-File-ID: 1888\n"
+"X-Crowdin-File: /[Chia-Network.chia-blockchain-gui] main/packages/gui/src/locales/en-US/messages.po\n"
+"X-Crowdin-File-ID: 1306\n"
 
 #: src/components/offers2/OfferBuilderImport.tsx:167
 msgid "(Ctrl-V) a blob"
@@ -626,7 +626,7 @@ msgstr ""
 
 #: src/components/offers/utils.ts:159
 msgid "Confirmed"
-msgstr "Potwierdzone"
+msgstr ""
 
 #: src/components/fullNode/FullNodeAddConnection.tsx:103
 msgid "Connect"
@@ -870,7 +870,7 @@ msgstr "Usuń działkę"
 
 #: src/components/plotNFT/PlotNFTCard.tsx:259
 msgid "Delete Unconfirmed Transactions"
-msgstr "Usuń niepotwierdzone transakcje"
+msgstr ""
 
 #: src/components/app/AppPassPrompt.tsx:100
 msgid "Deleting key"
@@ -1048,7 +1048,7 @@ msgstr ""
 
 #: src/components/plot/card/PlotCardPlotsDuplicate.tsx:11
 msgid "Duplicate Plots"
-msgstr "Zduplikowane działki"
+msgstr ""
 
 #: src/electron/main.tsx:950
 msgid "Edit"
@@ -1145,7 +1145,7 @@ msgstr ""
 
 #: src/components/fullNode/card/FullNodeEstimatedNetworkSpace.tsx:14
 msgid "Estimated Network Space"
-msgstr "Przybliżona przestrzeń sieci"
+msgstr ""
 
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:48
 #: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:53
@@ -1469,7 +1469,7 @@ msgstr ""
 
 #: src/components/nfts/NFTContextualActions.tsx:499
 msgid "Hide"
-msgstr "Ukryj"
+msgstr ""
 
 #: src/components/settings/SettingsNFT.tsx:125
 msgid "Hide objectionable content"
@@ -1579,15 +1579,13 @@ msgid "Install Keybase"
 msgstr ""
 
 #: src/hooks/useAcceptOfferHook.tsx:67
-msgid ""
-"Insufficient funds available to accept offer. Ensure that your\n"
+msgid "Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
 msgstr ""
 
 #: src/components/offers/OfferEditor.tsx:148
 #: src/components/offers2/CreateOfferBuilder.tsx:121
-msgid ""
-"Insufficient funds available to create offer. Ensure that your\n"
+msgid "Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
 msgstr ""
 
@@ -4161,3 +4159,4 @@ msgstr ""
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:106
 msgid "{warning}"
 msgstr ""
+

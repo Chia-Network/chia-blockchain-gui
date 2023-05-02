@@ -6,17 +6,17 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: @lingui/cli\n"
 "Language: sk_SK\n"
-"Project-Id-Version: chia-blockchain\n"
+"Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-10-24 18:14\n"
+"PO-Revision-Date: 2023-03-29 23:25\n"
 "Last-Translator: \n"
 "Language-Team: Slovak\n"
 "Plural-Forms: nplurals=4; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 3;\n"
-"X-Crowdin-Project: chia-blockchain\n"
-"X-Crowdin-Project-ID: 440660\n"
+"X-Crowdin-Project: 1263bc1f20e1271bda78e84d2f4a6562\n"
+"X-Crowdin-Project-ID: 1\n"
 "X-Crowdin-Language: sk\n"
-"X-Crowdin-File: /main/packages/core/src/locales/en-US/messages.po\n"
-"X-Crowdin-File-ID: 1886\n"
+"X-Crowdin-File: /[Chia-Network.chia-blockchain-gui] main/packages/core/src/locales/en-US/messages.po\n"
+"X-Crowdin-File-ID: 1304\n"
 
 #: src/components/Amount/Amount.tsx:36
 msgid "Amount"
@@ -114,7 +114,7 @@ msgstr "Chyba:"
 
 #: src/screens/SelectKey/SelectKeyRenameForm.tsx:91
 msgid "Esc"
-msgstr "Esc"
+msgstr ""
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:90
 msgid "Farmer Public Key"
@@ -436,3 +436,4 @@ msgstr "{0, plural, one {mojo} few {mojos} many {mojos} other {mojos}}"
 #: src/hooks/useValidateChangePassphraseParams.tsx:35
 msgid "{minPassphraseLength, plural, one {Passphrases must be at least # character in length} other {Passphrases must be at least # characters in length}}"
 msgstr "{minPassphraseLength, plural, one {Prístupové frázy musia mať dĺžku aspoň # znak} few {Prístupové frázy musia mať dĺžku aspoň # znaky} many {Prístupové frázy musia mať dĺžku aspoň # znakov} other {Prístupové frázy musia mať dĺžku aspoň # znakov}}"
+

@@ -1,8 +1,8 @@
 import { IconButton, Flex } from '@chia-network/core';
+import Portal from '@mui/base/Portal';
 import { MoreVert } from '@mui/icons-material';
 import { Card, CardActionArea, CardContent, Checkbox, Typography, Box } from '@mui/material';
 import React, { useMemo, memo } from 'react';
-import { createPortal } from 'react-dom';
 import { useNavigate } from 'react-router-dom';
 
 import useHiddenNFTs from '../../hooks/useHiddenNFTs';
@@ -51,6 +51,7 @@ function NFTCard(props: NFTCardProps) {
   const isHidden = useMemo(() => isNFTHidden(nftId), [nftId, isNFTHidden]);
 
   async function handleClick() {
+    if (dragState) return;
     if (onSelect) {
       const canContinue = await onSelect(nftId);
       if (!canContinue) {
@@ -106,22 +107,25 @@ function NFTCard(props: NFTCardProps) {
   const widthBeforeDrag = React.useRef<number | null>(null);
   const heightBeforeDrag = React.useRef<number | null>(null);
 
+  const draggableRef = React.useRef<HTMLDivElement | null>(null);
+
   function renderPortal() {
-    return createPortal(
-      <Box
-        id="draggable-card"
-        sx={{
-          position: 'absolute',
-          zIndex: '1000',
-          width: `${widthBeforeDrag.current}px`,
-          height: `${heightBeforeDrag.current}px`,
-          transform: 'scale(0.5)',
-          opacity: isHidden ? 1 : 0.6,
-        }}
-      >
-        {renderCard()}
-      </Box>,
-      document.getElementById('portal') as HTMLElement
+    return (
+      <Portal>
+        <Box
+          ref={draggableRef}
+          sx={{
+            position: 'absolute',
+            zIndex: '1000',
+            width: `${widthBeforeDrag.current}px`,
+            height: `${heightBeforeDrag.current}px`,
+            transform: 'scale(0.5)',
+            opacity: isHidden ? 1 : 0.6,
+          }}
+        >
+          {renderCard()}
+        </Box>
+      </Portal>
     );
   }
 
@@ -138,7 +142,7 @@ function NFTCard(props: NFTCardProps) {
         if (!draggingInterval.current) {
           draggingInterval.current = setInterval(() => {
             countDown.current--;
-            if (document.getElementById('draggable-card')) {
+            if (draggableRef.current) {
               adjustPositionBeforeAdjusted(e);
             }
             if (countDown.current === 1) {
@@ -147,12 +151,10 @@ function NFTCard(props: NFTCardProps) {
           }, 1);
         }
       }
-      if (document.getElementById('draggable-card')) {
+      if (draggableRef.current) {
         if (countDown.current === 1) {
-          (document.getElementById('draggable-card') as HTMLElement).style.left = `${
-            e.pageX - (widthBeforeDrag.current || 0) / 4 + 10
-          }px`;
-          (document.getElementById('draggable-card') as HTMLElement).style.top = `${e.pageY - 81}px`;
+          (draggableRef.current as HTMLElement).style.left = `${e.pageX - (widthBeforeDrag.current || 0) / 4 + 10}px`;
+          (draggableRef.current as HTMLElement).style.top = `${e.pageY - 81}px`;
         } else {
           adjustPositionBeforeAdjusted(e);
         }
@@ -177,13 +179,13 @@ function NFTCard(props: NFTCardProps) {
   }, [filter, mouseMoveEvent]);
 
   function adjustPositionBeforeAdjusted(e: any) {
-    (document.getElementById('draggable-card') as HTMLElement).style.left = `${
+    (draggableRef.current as HTMLElement).style.left = `${
       e.pageX +
       ((startPositionLeft.current - e.pageX) * countDown.current) / countDownSpeed.current -
       (widthBeforeDrag.current || 0) / 4 +
       10
     }px`;
-    (document.getElementById('draggable-card') as HTMLElement).style.top = `${
+    (draggableRef.current as HTMLElement).style.top = `${
       e.pageY + ((startPositionTop.current - e.pageY) * countDown.current) / countDownSpeed.current - 81
     }px`;
   }

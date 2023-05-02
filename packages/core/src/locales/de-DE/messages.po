@@ -6,17 +6,17 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: @lingui/cli\n"
 "Language: de_DE\n"
-"Project-Id-Version: chia-blockchain\n"
+"Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-10-24 18:14\n"
+"PO-Revision-Date: 2023-03-29 23:25\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Crowdin-Project: chia-blockchain\n"
-"X-Crowdin-Project-ID: 440660\n"
+"X-Crowdin-Project: 1263bc1f20e1271bda78e84d2f4a6562\n"
+"X-Crowdin-Project-ID: 1\n"
 "X-Crowdin-Language: de\n"
-"X-Crowdin-File: /main/packages/core/src/locales/en-US/messages.po\n"
-"X-Crowdin-File-ID: 1886\n"
+"X-Crowdin-File: /[Chia-Network.chia-blockchain-gui] main/packages/core/src/locales/en-US/messages.po\n"
+"X-Crowdin-File-ID: 1304\n"
 
 #: src/components/Amount/Amount.tsx:36
 msgid "Amount"
@@ -84,8 +84,7 @@ msgstr "Key mit Fingerabdruck {fingerprint} löschen"
 
 #: src/screens/SelectKey/SelectKey.tsx:84
 msgid "Deleting all keys will permanently remove the keys from your computer, make sure you have backups. Are you sure you want to continue?"
-msgstr ""
-"Alle Schlüssel löschen entfernt alle Schlüssel unwiederbringlich vom Computer. \n"
+msgstr "Alle Schlüssel löschen entfernt alle Schlüssel unwiederbringlich vom Computer. \n"
 "Das Erstellen einer Sicherungskopie wird empfohlen!\n"
 "Bist du sicher, dass du mit dem Löschen fortfahren möchtest?"
 
@@ -439,3 +438,4 @@ msgstr ""
 #: src/hooks/useValidateChangePassphraseParams.tsx:35
 msgid "{minPassphraseLength, plural, one {Passphrases must be at least # character in length} other {Passphrases must be at least # characters in length}}"
 msgstr ""
+

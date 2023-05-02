@@ -1,0 +1,4162 @@
+msgid ""
+msgstr ""
+"POT-Creation-Date: 2021-02-08 18:51+0100\n"
+"Mime-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: @lingui/cli\n"
+"Language: srp\n"
+"Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2023-03-29 23:27\n"
+"Last-Translator: \n"
+"Language-Team: Serbian\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Crowdin-Project: 1263bc1f20e1271bda78e84d2f4a6562\n"
+"X-Crowdin-Project-ID: 1\n"
+"X-Crowdin-Language: sr\n"
+"X-Crowdin-File: /[Chia-Network.chia-blockchain-gui] main/packages/gui/src/locales/en-US/messages.po\n"
+"X-Crowdin-File-ID: 1306\n"
+
+#: src/components/offers2/OfferBuilderImport.tsx:167
+msgid "(Ctrl-V) a blob"
+msgstr ""
+
+#: src/components/plot/add/PlotAddChoosePlotter.tsx:63
+msgid "(Not Installed)"
+msgstr ""
+
+#: src/components/plot/add/PlotAddChoosePlotter.tsx:61
+msgid "(Not Supported)"
+msgstr ""
+
+#: src/components/plot/add/PlotAddNFT.tsx:59
+msgid "(Optional)"
+msgstr ""
+
+#: src/components/offers2/OfferBuilderImport.tsx:167
+msgid "(⌘V) a blob"
+msgstr ""
+
+#: src/components/plot/add/PlotAddNFT.tsx:112
+msgid "+ Add New Plot NFT"
+msgstr ""
+
+#: src/components/plot/overview/PlotOverviewPlots.tsx:40
+msgid "+ Add a Plot"
+msgstr ""
+
+#: src/components/settings/ProfileAdd.tsx:80
+msgid "<0>Need some XCH?</0>"
+msgstr ""
+
+#: src/components/settings/ProfileAdd.tsx:92
+msgid "<0>Use one (1) mojo to create a Profile.</0>"
+msgstr ""
+
+#: src/components/farm/FarmYourHarvesterNetwork.tsx:77
+msgid "A harvester is a service running on a machine where plot(s) are actually stored. A farmer and harvester talk to a full node to see the state of the chain. View your network of connected harvesters below Learn more"
+msgstr "Сакупљач је услуга која ради на машини на којој се плот(ови) заправо складишти. Фармер и сакупљач разговарају са пуним чвором да би видели стање ланца. У наставку погледај своју мрежу повезаних сакупљача Сазнај више"
+
+#: src/components/settings/SettingsDataLayer.tsx:79
+msgid "A reference server that enables creating mirrored copies of DataLayer."
+msgstr ""
+
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:152
+msgid "A value of {0} is recommended"
+msgstr ""
+
+#: src/electron/main.tsx:1101
+#: src/electron/main.tsx:1188
+msgid "About Chia Blockchain"
+msgstr "О Chia блокчејну"
+
+#: src/components/offers/NFTOfferViewer.tsx:638
+#: src/components/offers/OfferAcceptConfirmationDialog.tsx:21
+#: src/components/offers2/OfferBuilderViewer.tsx:143
+msgid "Accept Offer"
+msgstr ""
+
+#: src/components/plot/PlotHarvesterPlots.tsx:78
+#: src/components/plot/PlotHarvesterPlotsDuplicate.tsx:19
+#: src/components/plot/PlotHarvesterPlotsFailed.tsx:19
+#: src/components/plot/PlotHarvesterPlotsNotFound.tsx:19
+#: src/components/plot/PlotPlotting.tsx:30
+msgid "Action"
+msgstr "Акција"
+
+#: src/components/farm/FarmFullNodeConnections.tsx:52
+#: src/components/farm/FarmYourHarvesterNetwork.tsx:52
+#: src/components/fullNode/FullNodeConnections.tsx:64
+#: src/components/nfts/NFTContextualActions.tsx:623
+#: src/components/offers2/OfferIncomingTable.tsx:102
+msgid "Actions"
+msgstr "Акције"
+
+#: src/components/walletConnect/WalletConnectPairInfoDialog.tsx:121
+msgid "Active Sessions"
+msgstr ""
+
+#: src/components/notification/NotificationsDropdown.tsx:37
+#: src/components/notification/NotificationsDropdown.tsx:44
+#: src/components/notification/NotificationsMenu.tsx:35
+msgid "Activity"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:421
+msgid "Add CAT Token"
+msgstr ""
+
+#: src/components/offers/OfferAssetSelector.tsx:144
+msgid "Add CAT wallets to have more options"
+msgstr ""
+
+#: src/components/walletConnect/WalletConnectConnections.tsx:102
+msgid "Add Connection"
+msgstr ""
+
+#: src/components/plot/overview/PlotOverviewPlots.tsx:49
+msgid "Add Plot Directory"
+msgstr "Додај фолдер за плот"
+
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:71
+msgid "Add Plot to Queue"
+msgstr "Додај плот на чекање"
+
+#: src/components/farm/FarmHero.tsx:37
+#: src/components/plot/add/PlotAddForm.tsx:181
+#: src/components/plot/overview/PlotOverviewHero.tsx:43
+#: src/components/plotNFT/PlotExternalNFTCard.tsx:198
+#: src/components/plotNFT/PlotNFTCard.tsx:231
+msgid "Add a Plot"
+msgstr "Додај плот"
+
+#: src/components/plotNFT/PlotNFTAdd.tsx:53
+msgid "Add a Plot NFT"
+msgstr ""
+
+#: src/components/plot/PlotAddDirectoryDialog.tsx:83
+msgid "Add a plot"
+msgstr "Додај плот"
+
+#: src/components/plot/PlotAddDirectoryDialog.tsx:114
+msgid "Add plot directory"
+msgstr "Додај фолдер за плот"
+
+#: src/components/plotNFT/select/PlotNFTSelectFaucet.tsx:42
+msgid "Add {currencyCode} from the Faucet"
+msgstr ""
+
+#: src/components/notification/NotificationSendDialog.tsx:213
+#: src/components/signVerify/SigningEntityWalletAddress.tsx:45
+#: src/constants/WalletConnectCommands.tsx:93
+#: src/constants/WalletConnectCommands.tsx:136
+#: src/constants/WalletConnectCommands.tsx:388
+msgid "Address"
+msgstr ""
+
+#: src/components/settings/Settings.tsx:81
+#: src/components/settings/SettingsAdvanced.tsx:44
+msgid "Advanced"
+msgstr ""
+
+#: src/components/app/AppKeyringMigrator.tsx:250
+msgid "After your keys are successfully migrated to the new keyring, you may choose to have your keys removed from the old keyring."
+msgstr ""
+
+#: src/components/nfts/NFTProfileDropdown.tsx:101
+#: src/components/nfts/NFTProfileDropdown.tsx:114
+msgid "All NFTs"
+msgstr ""
+
+#: src/components/did/DIDProfileDropdown.tsx:23
+msgid "All Profiles"
+msgstr ""
+
+#: src/components/settings/SettingsIntegration.tsx:57
+msgid "Allow external Apps and websites to connect to your wallet through WalletConnect."
+msgstr ""
+
+#: src/components/settings/SettingsIntegration.tsx:81
+msgid "Allow requests that require switching to a different wallet key."
+msgstr ""
+
+#: src/components/notification/NotificationSendDialog.tsx:272
+msgid "Allow the NFT holder to send a counter offer"
+msgstr ""
+
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:418
+msgid "Alternate bucket writing"
+msgstr ""
+
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:345
+msgid "Alternate tmpdir/tmpdir2"
+msgstr ""
+
+#: src/components/offers/NFTOfferEditor.tsx:236
+#: src/components/offers/OfferEditorConditionsPanel.tsx:128
+#: src/components/offers2/OfferBuilderNFTRoyalties.tsx:120
+#: src/components/offers2/OfferBuilderWalletAmount.tsx:36
+#: src/constants/WalletConnectCommands.tsx:81
+#: src/constants/WalletConnectCommands.tsx:351
+#: src/constants/WalletConnectCommands.tsx:393
+msgid "Amount"
+msgstr ""
+
+#: src/components/offers2/OfferBuilderRoyaltyPayouts.tsx:38
+msgid "Amount before adding royalties"
+msgstr ""
+
+#: src/util/offerBuilderDataToOffer.ts:59
+msgid "Amount exceeds XCH spendable balance"
+msgstr ""
+
+#: src/components/offers/NFTOfferEditor.tsx:596
+#: src/components/offers/OfferEditor.tsx:108
+msgid "Amount exceeds spendable balance"
+msgstr ""
+
+#: src/util/offerBuilderDataToOffer.ts:86
+msgid "Amount exceeds spendable balance for {0} token"
+msgstr ""
+
+#: src/components/offers/NFTOfferPreview.tsx:137
+#: src/components/offers2/OfferBuilderNFTProvenance.tsx:23
+msgid "An NFT's provenance is a complete record of its ownership history. It provides a direct lineage that connects everyone who has owned the NFT, all the way back to the original artist. This helps to verify that the NFT is authentic."
+msgstr ""
+
+#: src/components/walletConnect/WalletConnectPairInfoDialog.tsx:90
+#: src/hooks/useWalletConnectCommand.tsx:118
+msgid "Application"
+msgstr ""
+
+#: src/components/walletConnect/WalletConnectPairInfoDialog.tsx:132
+msgid "Application has no active sessions"
+msgstr ""
+
+#: src/components/offers/OfferManager.tsx:105
+msgid "Are you sure you want to cancel your offer?"
+msgstr ""
+
+#: src/components/settings/SettingsNFT.tsx:70
+msgid "Are you sure you want to delete the NFT cache?"
+msgstr ""
+
+#: src/components/plot/PlotAction.tsx:29
+#: src/components/plot/queue/PlotQueueActions.tsx:41
+msgid "Are you sure you want to delete the plot? The plot cannot be recovered."
+msgstr "Да ли сте сигурни да желите да избришете плот? Плот се не може повратити."
+
+#: src/components/plotNFT/PlotNFTCard.tsx:112
+msgid "Are you sure you want to delete unconfirmed transactions?"
+msgstr ""
+
+#: src/components/fullNode/FullNodeCloseConnection.tsx:28
+msgid "Are you sure you want to disconnect?"
+msgstr "Да ли сигурно желиш да прекинеш везу?"
+
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:62
+msgid "Are you sure you want to move this NFT to the specified profile?"
+msgstr ""
+
+#: src/electron/main.tsx:816
+msgid "Are you sure you want to quit?"
+msgstr ""
+
+#: src/components/plot/add/PlotAddChooseSize.tsx:50
+msgid "Are you sure you want to use k={plotSize}?"
+msgstr "Да ли сигурно желиш да користиш k={plotSize}?"
+
+#: src/components/offers2/OfferBuilderRoyaltyPayouts.tsx:48
+msgid "Asset"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:426
+msgid "Asset Id"
+msgstr ""
+
+#: src/components/offers/NFTOfferTokenSelector.tsx:92
+#: src/components/offers/OfferAssetSelector.tsx:139
+#: src/components/offers2/OfferBuilderToken.tsx:52
+#: src/components/offers2/OfferBuilderTokenSelector.tsx:74
+msgid "Asset Type"
+msgstr ""
+
+#: src/components/offers/OfferShareDialog.tsx:1353
+msgid "Assets I am offering:"
+msgstr ""
+
+#: src/components/offers/OfferShareDialog.tsx:1358
+msgid "Assets I will receive:"
+msgstr ""
+
+#: src/components/offers2/OfferBuilderTradeColumn.tsx:47
+msgid "Assets I would like to receive"
+msgstr ""
+
+#: src/components/offers2/OfferBuilderTradeColumn.tsx:40
+msgid "Assets I would like to trade"
+msgstr ""
+
+#: src/components/offers2/OfferBuilderTradeColumn.tsx:37
+msgid "Assets you will give"
+msgstr ""
+
+#: src/components/offers2/OfferBuilderTradeColumn.tsx:44
+msgid "Assets you will receive"
+msgstr ""
+
+#: src/components/app/AppState.tsx:230
+msgid "Attempt {attempt}"
+msgstr ""
+
+#: src/components/plotNFT/PlotNFTName.tsx:40
+msgid "Autogenerated name from pool contract address"
+msgstr ""
+
+#: src/components/offers/NFTOfferViewer.tsx:629
+msgid "Back"
+msgstr ""
+
+#: src/components/settings/ProfileAdd.tsx:98
+msgid "Balance: {standardBalance} XCH"
+msgstr ""
+
+#: src/components/block/Block.jsx:235
+msgid "Base Farmer Reward Amount"
+msgstr "Основни износ награде за фармера"
+
+#: src/components/offers/OfferShareDialog.tsx:1177
+msgid "Before posting an offer in Keybase to the #{channelName} channel, you must first join the {teamName} team. Please note that it might take a few moments to join the channel."
+msgstr ""
+
+#: src/components/farm/FarmLatestBlockChallenges.tsx:35
+msgid "Below are the current block challenges. You may or may not have a proof of space for these challenges. These blocks do not currently contain a proof of time."
+msgstr "Испод су тренутни блок изазови. Можеш имати или немати доказ о простору за ове изазове. Ови блокови тренутно не садрже доказ о времену."
+
+#: src/components/farm/card/FarmCardTotalNetworkSpace.tsx:14
+msgid "Best estimate over last 24 hours"
+msgstr "Најбоља процена у последња 24 сата"
+
+#: src/components/block/Block.jsx:134
+msgid "Block"
+msgstr "Блок"
+
+#: src/components/farm/card/FarmCardBlockRewards.tsx:32
+msgid "Block Rewards"
+msgstr ""
+
+#: src/components/block/Block.jsx:195
+msgid "Block VDF Iterations"
+msgstr "Блок VDF понављања"
+
+#: src/components/block/Block.jsx:250
+msgid "Block at height {0} in the Chia blockchain"
+msgstr "Блок на висини {0} у Chia блокчејну"
+
+#: src/components/block/Block.jsx:120
+msgid "Block with hash {headerHash}"
+msgstr "Блок са хешом {headerHash}"
+
+#: src/components/block/Block.jsx:139
+msgid "Block with hash {headerHash} does not exist."
+msgstr "Блок са хешом {headerHash} не постоји."
+
+#: src/components/fullNode/FullNode.jsx:105
+msgid "Blocks"
+msgstr "Блокови"
+
+#: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:71
+#: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:79
+#: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:124
+msgid "Browse"
+msgstr "Претражи"
+
+#: src/components/nfts/NFTBurnDialog.tsx:88
+#: src/components/nfts/NFTBurnDialog.tsx:184
+#: src/components/nfts/NFTContextualActions.tsx:531
+msgid "Burn"
+msgstr ""
+
+#: src/components/nfts/NFTBurnDialog.tsx:72
+msgid "Burn NFT confirmation"
+msgstr ""
+
+#: src/components/nfts/NFTBurnDialog.tsx:143
+msgid "Burning a non-fungible token means removing it from circulation by sending it to a verifiably un-spendable address. However, transactions leading up to the burn will remain on the blockchain ledger."
+msgstr ""
+
+#: src/components/offers/NFTOfferEditor.tsx:312
+msgid "Buy an NFT"
+msgstr ""
+
+#: src/components/signVerify/VerifyMessage.tsx:252
+msgid "By providing a signing address, the public key can be validated as being associated with the address used for signing."
+msgstr ""
+
+#: src/components/settings/SettingsNFT.tsx:163
+msgid "Cache"
+msgstr ""
+
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:236
+msgid "Cache size (GB)"
+msgstr ""
+
+#: src/components/app/AppPassPrompt.tsx:183
+#: src/components/farm/FarmManageFarmingRewards.tsx:163
+#: src/components/fullNode/FullNodeAddConnection.tsx:100
+#: src/components/nfts/MultipleDownloadDialog.tsx:120
+#: src/components/nfts/NFTBurnDialog.tsx:174
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:57
+#: src/components/nfts/NFTTransferConfirmationDialog.tsx:49
+#: src/components/offers/OfferAcceptConfirmationDialog.tsx:24
+#: src/components/offers/OfferDataEntryDialog.tsx:58
+#: src/components/offers/OfferEditorConfirmationDialog.tsx:18
+#: src/components/offers/OfferShareDialog.tsx:1195
+#: src/components/offers/OfferShareDialog.tsx:1370
+#: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:110
+#: src/components/plotNFT/select/PlotNFTSelectBase.tsx:71
+#: src/components/plotNFT/select/PlotNFTSelectFaucet.tsx:30
+#: src/components/settings/ChangePassphrasePrompt.tsx:285
+#: src/components/settings/RemovePassphrasePrompt.tsx:168
+#: src/components/settings/ResyncPrompt.tsx:49
+#: src/components/settings/SetPassphrasePrompt.tsx:260
+#: src/components/signVerify/SignMessage.tsx:205
+#: src/components/signVerify/VerifyMessage.tsx:271
+#: src/hooks/useOpenUnsafeLink.tsx:33
+msgid "Cancel"
+msgstr "Откажи"
+
+#: src/components/offers/OfferManager.tsx:98
+#: src/components/offers/OfferManager.tsx:165
+#: src/components/offers/OfferManager.tsx:358
+#: src/constants/WalletConnectCommands.tsx:255
+msgid "Cancel Offer"
+msgstr ""
+
+#: src/components/nfts/NFTContextualActions.tsx:283
+msgid "Cancel Unconfirmed Transaction"
+msgstr ""
+
+#: src/components/offers/OfferManager.tsx:128
+msgid "Cancel on blockchain"
+msgstr ""
+
+#: src/components/offers/utils.ts:157
+msgid "Cancelled"
+msgstr ""
+
+#: src/util/offerBuilderDataToOffer.ts:120
+msgid "Cannot offer and request the same asset"
+msgstr ""
+
+#: src/components/farm/FarmLastAttemptedProof.tsx:15
+msgid "Challenge"
+msgstr "Изазов"
+
+#: src/components/farm/FarmLatestBlockChallenges.tsx:13
+msgid "Challenge Hash"
+msgstr "Хеш изазов"
+
+#: src/components/plotNFT/PlotNFTChangePool.tsx:108
+#: src/components/settings/SettingsNFT.tsx:201
+msgid "Change"
+msgstr ""
+
+#: src/components/settings/ChangePassphrasePrompt.tsx:288
+#: src/components/settings/SettingsPanel.tsx:121
+msgid "Change Passphrase"
+msgstr ""
+
+#: src/components/plotNFT/PlotNFTCard.tsx:334
+#: src/components/plotNFT/PlotNFTChangePool.tsx:107
+msgid "Change Pool"
+msgstr ""
+
+#: src/components/settings/SettingsStartup.tsx:32
+msgid "Changes will take effect the next time Chia is started"
+msgstr ""
+
+#: src/components/settings/SettingsDataLayer.tsx:54
+msgid "Changes will take effect the next time Chia is started."
+msgstr ""
+
+#: src/electron/main.tsx:1080
+msgid "Chat on KeyBase"
+msgstr "Разговарај на KeyBase-у"
+
+#: src/constants/WalletConnectCommands.tsx:278
+msgid "Check Offer Validity"
+msgstr ""
+
+#: src/components/offers/NFTOfferPreview.tsx:151
+#: src/components/offers2/OfferBuilderNFTProvenance.tsx:37
+msgid "Check Provenance on MintGarden"
+msgstr ""
+
+#: src/components/offers/NFTOfferPreview.tsx:161
+#: src/components/offers2/OfferBuilderNFTProvenance.tsx:47
+msgid "Check Provenance on Spacescan.io"
+msgstr ""
+
+#: src/electron/main.tsx:1098
+msgid "Chia"
+msgstr ""
+
+#: src/components/offers2/OfferBuilderXCHSection.tsx:76
+msgid "Chia ({currencyCode}) is a digital currency that is secure and sustainable"
+msgstr ""
+
+#: src/components/offers2/OfferBuilderTokensSection.tsx:114
+msgid "Chia Asset Tokens (CATs) are tokens built on top of XCH"
+msgstr ""
+
+#: src/electron/main.tsx:1047
+msgid "Chia Blockchain Wiki"
+msgstr "Вики за Chia блокчејн"
+
+#: src/components/app/AppSelectMode.tsx:145
+msgid "Choose Farming Mode"
+msgstr ""
+
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:41
+msgid "Choose Number of Plots"
+msgstr "Изабери број плотова"
+
+#: src/components/plot/add/PlotAddChooseSize.tsx:71
+msgid "Choose Plot Size"
+msgstr "Изабери величину плота"
+
+#: src/components/plot/add/PlotAddChoosePlotter.tsx:79
+msgid "Choose Plotter"
+msgstr ""
+
+#: src/components/app/AppSelectMode.tsx:96
+msgid "Choose Wallet Mode"
+msgstr ""
+
+#: src/components/settings/SettingsNFT.tsx:113
+msgid "Choose what you want to see and how you want to view it."
+msgstr ""
+
+#: src/components/settings/SettingsNotifications.tsx:19
+msgid "Choose your notification settings."
+msgstr ""
+
+#: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:129
+#: src/components/plotNFT/PlotNFTCard.tsx:319
+msgid "Claim Rewards"
+msgstr ""
+
+#: src/components/settings/SettingsNFT.tsx:55
+#: src/components/settings/SettingsNFT.tsx:183
+msgid "Clear NFT cache"
+msgstr ""
+
+#: src/components/app/AppVersionWarning.tsx:57
+#: src/components/nfts/MultipleDownloadDialog.tsx:116
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:332
+#: src/components/nfts/NFTTransferAction.tsx:166
+#: src/components/notification/NotificationSendDialog.tsx:291
+#: src/components/offers/OfferManager.tsx:162
+#: src/components/offers/OfferShareDialog.tsx:630
+#: src/components/offers/OfferShareDialog.tsx:703
+#: src/components/offers/OfferShareDialog.tsx:777
+#: src/components/offers/OfferShareDialog.tsx:869
+#: src/components/offers/OfferShareDialog.tsx:963
+#: src/components/offers/OfferShareDialog.tsx:1143
+#: src/components/offers/OfferShareDialog.tsx:1283
+#: src/components/offers/OfferShareDialog.tsx:1556
+#: src/components/plot/PlotAddDirectoryDialog.tsx:121
+#: src/components/plot/queue/PlotQueueLogDialog.tsx:66
+#: src/components/signVerify/SignMessageResultDialog.tsx:66
+#: src/components/walletConnect/WalletConnectConnectedDialog.tsx:122
+#: src/components/walletConnect/WalletConnectPairInfoDialog.tsx:154
+msgid "Close"
+msgstr "Затвори"
+
+#: src/components/app/AppState.tsx:157
+msgid "Closing down services"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:456
+msgid "Coin Id"
+msgstr ""
+
+#: src/components/nfts/NFTSummary.tsx:54
+#: src/components/nfts/detail/NFTDetailV2.tsx:301
+msgid "Collection"
+msgstr ""
+
+#: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:165
+#: src/electron/main.tsx:814
+#: src/hooks/useWalletConnectCommand.tsx:77
+msgid "Confirm"
+msgstr "Потврди"
+
+#: src/components/fullNode/FullNodeCloseConnection.tsx:19
+msgid "Confirm Disconnect"
+msgstr "Потврда прекида везе"
+
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:54
+msgid "Confirm Move"
+msgstr ""
+
+#: src/components/nfts/NFTTransferConfirmationDialog.tsx:30
+msgid "Confirm NFT Transfer"
+msgstr ""
+
+#: src/components/settings/ChangePassphrasePrompt.tsx:237
+msgid "Confirm New Passphrase"
+msgstr ""
+
+#: src/components/app/AppKeyringMigrator.tsx:177
+#: src/components/app/AppKeyringMigrator.tsx:178
+#: src/components/settings/SetPassphrasePrompt.tsx:202
+msgid "Confirm Passphrase"
+msgstr ""
+
+#: src/components/plotNFT/PlotNFTCard.tsx:103
+msgid "Confirmation"
+msgstr ""
+
+#: src/hooks/useWalletConnectCommand.tsx:75
+msgid "Confirmation Request"
+msgstr ""
+
+#: src/components/offers/utils.ts:159
+msgid "Confirmed"
+msgstr ""
+
+#: src/components/fullNode/FullNodeAddConnection.tsx:103
+msgid "Connect"
+msgstr "Повежи се"
+
+#: src/components/fullNode/FullNodeAddConnection.tsx:82
+#: src/components/fullNode/FullNodeConnections.tsx:92
+msgid "Connect to other peers"
+msgstr "Повежи се са другим пировима"
+
+#: src/components/plotNFT/select/PlotNFTSelectBase.tsx:90
+msgid "Connect to pool"
+msgstr ""
+
+#: src/components/fullNode/card/FullNodeCardConnectionStatus.tsx:15
+#: src/components/walletConnect/WalletConnectConnectedDialog.tsx:85
+msgid "Connected"
+msgstr "Повезано"
+
+#: src/components/walletConnect/WalletConnectConnections.tsx:61
+msgid "Connected Applications"
+msgstr ""
+
+#: src/components/app/AppState.tsx:222
+#: src/components/app/AppState.tsx:227
+msgid "Connecting to daemon"
+msgstr ""
+
+#: src/components/fullNode/card/FullNodeCardConnectionStatus.tsx:14
+msgid "Connection Status"
+msgstr "Статус везе"
+
+#: src/components/farm/FarmFullNodeConnections.tsx:87
+#: src/components/farm/FarmYourHarvesterNetwork.tsx:85
+msgid "Connection Status:"
+msgstr "Статус везе:"
+
+#: src/components/fullNode/FullNodeConnections.tsx:57
+msgid "Connection type"
+msgstr "Тип везе"
+
+#: src/components/nfts/NFTPreview.tsx:594
+msgid "Content does not match the expected hash value that was specified during NFT minting. The content may have been modified."
+msgstr ""
+
+#: src/components/nfts/NFTPreview.tsx:591
+msgid "Content has not been validated against the hash that was specified during NFT minting."
+msgstr ""
+
+#: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:188
+msgid "Continue"
+msgstr ""
+
+#: src/electron/main.tsx:1065
+msgid "Contribute on GitHub"
+msgstr "Допринеси на GitHub-у"
+
+#: src/components/nfts/NFTContextualActions.tsx:354
+msgid "Copy Media URL"
+msgstr ""
+
+#: src/components/nfts/NFTContextualActions.tsx:107
+msgid "Copy NFT ID"
+msgstr ""
+
+#: src/components/signVerify/SignMessageResultDialog.tsx:58
+msgid "Copy To Clipboard"
+msgstr ""
+
+#: src/components/notification/NotificationSendDialog.tsx:230
+msgid "Cost to send notification to the NFT holder"
+msgstr ""
+
+#: src/components/fullNode/FullNodeAddConnection.tsx:55
+msgid "Could not connect to host {host} on port {port}"
+msgstr ""
+
+#: src/components/offers2/OfferBuilderImport.tsx:53
+msgid "Could not parse offer data"
+msgstr ""
+
+#: src/components/offers2/OfferIncomingTable.tsx:93
+msgid "Counter"
+msgstr ""
+
+#: src/components/plot/add/PlotAddForm.tsx:191
+#: src/components/plotNFT/select/PlotNFTSelectPool.tsx:79
+#: src/components/settings/ProfileAdd.tsx:119
+msgid "Create"
+msgstr "Креирај"
+
+#: src/components/app/AppSelectMode.tsx:127
+msgid "Create & Manage plots"
+msgstr ""
+
+#: src/components/offers2/CreateOfferBuilder.tsx:137
+msgid "Create Counter Offer"
+msgstr ""
+
+#: src/components/nfts/NFTContextualActions.tsx:151
+#: src/components/offers/NFTOfferEditor.tsx:442
+#: src/components/offers/OfferEditor.tsx:177
+#: src/components/offers/OfferEditorConfirmationDialog.tsx:15
+#: src/components/offers/OfferManager.tsx:431
+#: src/components/offers2/CreateOfferBuilder.tsx:137
+msgid "Create Offer"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:226
+msgid "Create Offer for Ids"
+msgstr ""
+
+#: src/components/settings/SettingsAdvanced.tsx:69
+msgid "Create Signature"
+msgstr ""
+
+#: src/components/plot/add/PlotAddNFT.tsx:39
+msgid "Create a Plot NFT"
+msgstr ""
+
+#: src/components/offers/OfferManager.tsx:440
+msgid "Create a file that you can use to trade XCH, Chia Asset Tokens, or NFTs with no counter-party risk."
+msgstr ""
+
+#: src/components/settings/ProfileAdd.tsx:75
+msgid "Create a new profile"
+msgstr ""
+
+#: src/components/offers/NFTOfferEditor.tsx:735
+msgid "Create an NFT Offer"
+msgstr ""
+
+#: src/components/offers/OfferEditor.tsx:195
+#: src/components/offers/OfferManager.tsx:449
+msgid "Create an Offer"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:346
+msgid "Create new CAT Wallet"
+msgstr ""
+
+#: src/components/offers/OfferManager.tsx:130
+msgid "Creates and submits a transaction on the blockchain that cancels the offer"
+msgstr ""
+
+#: src/components/plotNFT/PlotNFTUnconfirmedCard.tsx:63
+msgid "Creating Plot NFT and Joining the Pool"
+msgstr ""
+
+#: src/components/plotNFT/PlotNFTUnconfirmedCard.tsx:61
+msgid "Creating Plot NFT for Self Pooling"
+msgstr ""
+
+#: src/components/offers/OfferManager.tsx:298
+#: src/components/offers2/OfferIncomingTable.tsx:64
+msgid "Creation Date"
+msgstr ""
+
+#: src/components/offers/NFTOfferViewer.tsx:514
+msgid "Creator Fee ({0}%)"
+msgstr ""
+
+#: src/components/offers/NFTOfferEditor.tsx:334
+msgid "Creator Fee ({royaltyPercentage}%)"
+msgstr ""
+
+#: src/components/offers/NFTOfferEditor.tsx:337
+#: src/components/offers/NFTOfferViewer.tsx:517
+msgid "Creator royalty percentage seems high"
+msgstr ""
+
+#: src/components/plot/add/PlotAddForm.tsx:120
+msgid "Currency code is not defined"
+msgstr ""
+
+#: src/components/plotNFT/PlotExternalNFTCard.tsx:120
+#: src/components/plotNFT/PlotNFTCard.tsx:153
+msgid "Current Difficulty"
+msgstr ""
+
+#: src/components/settings/ChangePassphrasePrompt.tsx:183
+msgid "Current Passphrase"
+msgstr ""
+
+#: src/components/plotNFT/PlotExternalNFTCard.tsx:136
+#: src/components/plotNFT/PlotNFTCard.tsx:169
+msgid "Current Points Balance"
+msgstr ""
+
+#: src/components/signVerify/SignMessage.tsx:155
+#: src/components/signVerify/SigningEntityDID.tsx:79
+msgid "DID"
+msgstr ""
+
+#: src/components/nfts/NFTDetails.tsx:235
+msgid "Data Hash"
+msgstr ""
+
+#: src/components/nfts/NFTDetails.tsx:222
+msgid "Data URL {0}"
+msgstr ""
+
+#: src/components/settings/Settings.tsx:70
+msgid "DataLayer"
+msgstr ""
+
+#: src/components/settings/SettingsDataLayer.tsx:18
+msgid "DataLayer Services"
+msgstr ""
+
+#: src/components/settings/SettingsDataLayer.tsx:21
+msgid "DataLayer enables rich data to be stored on mirrored databases that can be verified using the Chia Blockchain."
+msgstr ""
+
+#: src/components/farm/FarmLastAttemptedProof.tsx:31
+msgid "Date"
+msgstr "Датум"
+
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:89
+msgid "Delay"
+msgstr "Одлагање"
+
+#: src/components/notification/NotificationsProvider.tsx:225
+#: src/components/offers2/OfferIncomingTable.tsx:96
+#: src/components/plot/PlotAction.tsx:25
+#: src/components/plot/PlotAction.tsx:41
+#: src/components/plot/queue/PlotQueueActions.tsx:33
+#: src/components/plot/queue/PlotQueueActions.tsx:69
+#: src/components/plotNFT/PlotNFTCard.tsx:104
+msgid "Delete"
+msgstr "Обриши"
+
+#: src/components/app/AppPassPrompt.tsx:107
+msgid "Delete Key"
+msgstr ""
+
+#: src/components/plot/PlotAction.tsx:24
+#: src/components/plot/queue/PlotQueueActions.tsx:32
+msgid "Delete Plot"
+msgstr "Обриши плот"
+
+#: src/components/plotNFT/PlotNFTCard.tsx:259
+msgid "Delete Unconfirmed Transactions"
+msgstr ""
+
+#: src/components/app/AppPassPrompt.tsx:100
+msgid "Deleting key"
+msgstr ""
+
+#: src/components/plot/add/PlotAddChoosePlotter.tsx:81
+msgid "Depending on your system configuration, you may find that an alternative plotter produces plots faster than the default Chia Proof of Space plotter. If unsure, use the default Chia Proof of Space plotter."
+msgstr ""
+
+#: src/components/settings/SettingsPanel.tsx:163
+msgid "Derivation Index"
+msgstr ""
+
+#: src/components/settings/SettingsDerivationIndex.tsx:45
+msgid "Derivation index must be greater than {index}"
+msgstr ""
+
+#: src/components/nfts/detail/NFTDetailV2.tsx:291
+msgid "Description"
+msgstr ""
+
+#: src/components/nfts/gallery/NFTGallery.tsx:475
+msgid "Deselect all"
+msgstr ""
+
+#: src/components/nfts/NFTTransferConfirmationDialog.tsx:69
+msgid "Destination"
+msgstr ""
+
+#: src/components/nfts/NFTTransferConfirmationDialog.tsx:59
+msgid "Destination:"
+msgstr ""
+
+#: src/components/nfts/NFTDetails.tsx:351
+msgid "Details"
+msgstr ""
+
+#: src/electron/main.tsx:991
+msgid "Developer"
+msgstr "Програмер"
+
+#: src/electron/main.tsx:994
+msgid "Developer Tools"
+msgstr "Алати за програмера"
+
+#: src/components/offers/OfferShareDialog.tsx:603
+msgid "Dexie URL"
+msgstr ""
+
+#: src/components/block/Block.jsx:181
+#: src/components/fullNode/card/FullNodeCardDifficulty.tsx:14
+msgid "Difficulty"
+msgstr "Тежина"
+
+#: src/constants/WalletConnectCommands.tsx:247
+msgid "Disable JSON Formatting"
+msgstr ""
+
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:377
+msgid "Disable NUMA"
+msgstr ""
+
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:399
+msgid "Disable assigning automatic thread affinity. This is useful when running multiple simultaneous instances of Bladebit as you can manually assign thread affinity yourself when launching Bladebit."
+msgstr ""
+
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:379
+msgid "Disable automatic NUMA aware memory binding. If you set this parameter in a NUMA system you will likely get degraded performance."
+msgstr ""
+
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:324
+msgid "Disable bitfield plotting"
+msgstr "Онемогући цртање битног поља"
+
+#: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:90
+msgid "Disable direct I/O on the temp 1 directory in order to extract maximum performance with RAM disk"
+msgstr ""
+
+#: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:139
+msgid "Disable direct I/O on the temp 2 directory in order to extract maximum performance with RAM disk"
+msgstr ""
+
+#: src/components/fullNode/FullNodeCloseConnection.tsx:20
+#: src/components/walletConnect/WalletConnectConnectedDialog.tsx:119
+#: src/components/walletConnect/WalletConnectConnections.tsx:87
+#: src/components/walletConnect/WalletConnectPairInfoDialog.tsx:151
+msgid "Disconnect"
+msgstr "Прекини везу"
+
+#: src/components/offers/OfferManager.tsx:338
+msgid "Display Offer Data"
+msgstr ""
+
+#: src/components/offers/OfferShareDialog.tsx:1549
+#: src/hooks/useOpenUnsafeLink.tsx:64
+msgid "Do not show this dialog again"
+msgstr ""
+
+#: src/components/farm/FarmHero.tsx:43
+#: src/components/plot/overview/PlotOverviewHero.tsx:53
+msgid "Do you have existing plots on this machine? <0>Add Plot Directory</0>"
+msgstr "Имате ли постојеће плотове на овој машини? <0> Додај каталог плотова </0>"
+
+#: src/components/nfts/NFTBurnDialog.tsx:134
+msgid "Do you want to burn this NFT?"
+msgstr ""
+
+#: src/components/nfts/NFTBurnDialog.tsx:132
+msgid "Do you want to burn {count} NFTs?"
+msgstr ""
+
+#: src/hooks/useWalletConnectCommand.tsx:177
+msgid "Do you want to execute command {command}?"
+msgstr ""
+
+#: src/hooks/useWalletConnectCommand.tsx:173
+msgid "Do you want to log in to {fingerprint} and execute command {command}?"
+msgstr ""
+
+#: src/components/notification/NotificationsProvider.tsx:233
+msgid "Do you want to remove this offer notification? This action cannot be undone."
+msgstr ""
+
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:62
+msgid "Does your machine support parallel plotting?"
+msgstr "Да ли ваша машина подржава паралелно плотовање?"
+
+#: src/components/nfts/NFTContextualActions.tsx:452
+msgid "Download"
+msgstr ""
+
+#: src/components/nfts/MultipleDownloadDialog.tsx:91
+msgid "Download failed."
+msgstr ""
+
+#: src/components/nfts/MultipleDownloadDialog.tsx:93
+msgid "Download finished."
+msgstr ""
+
+#: src/components/nfts/MultipleDownloadDialog.tsx:88
+msgid "Download successful."
+msgstr ""
+
+#: src/components/nfts/MultipleDownloadDialog.tsx:55
+msgid "Downloaded files:"
+msgstr ""
+
+#: src/components/nfts/MultipleDownloadDialog.tsx:77
+msgid "Downloading files {0}/{1}"
+msgstr ""
+
+#: src/components/nfts/MultipleDownloadDialog.tsx:85
+msgid "Downloading selected NFTs"
+msgstr ""
+
+#: src/components/signVerify/VerifyMessageImport.tsx:77
+msgid "Drag & Drop a Signed Message File,<0/> Paste ({0}V)"
+msgstr ""
+
+#: src/components/offers/OfferImport.tsx:167
+msgid "Drag & Drop an Offer File"
+msgstr ""
+
+#: src/components/offers2/OfferBuilderImport.tsx:166
+msgid "Drag & Drop an Offer File, Paste"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:236
+msgid "Driver Dict"
+msgstr ""
+
+#: src/components/plot/PlotHarvester.tsx:136
+msgid "Duplicate"
+msgstr ""
+
+#: src/components/plot/card/PlotCardPlotsDuplicate.tsx:11
+msgid "Duplicate Plots"
+msgstr ""
+
+#: src/electron/main.tsx:950
+msgid "Edit"
+msgstr "Уреди"
+
+#: src/components/plotNFT/PlotExternalNFTCard.tsx:222
+#: src/components/plotNFT/PlotNFTCard.tsx:250
+#: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:65
+msgid "Edit Payout Instructions"
+msgstr ""
+
+#: src/components/nfts/NFTSummary.tsx:64
+msgid "Edition #"
+msgstr ""
+
+#: src/components/nfts/detail/NFTDetailV2.tsx:312
+msgid "Edition Number"
+msgstr ""
+
+#: src/components/settings/SettingsStartup.tsx:28
+msgid "Enable Auto Login"
+msgstr ""
+
+#: src/components/settings/SettingsDataLayer.tsx:36
+msgid "Enable DataLayer"
+msgstr ""
+
+#: src/components/settings/SettingsDataLayer.tsx:64
+msgid "Enable File Propagation Server"
+msgstr ""
+
+#: src/components/settings/SettingsIntegration.tsx:41
+#: src/components/walletConnect/WalletConnectConnections.tsx:106
+msgid "Enable WalletConnect"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:189
+msgid "End"
+msgstr ""
+
+#: src/components/signVerify/SignMessage.tsx:61
+#: src/components/signVerify/SignMessage.tsx:85
+msgid "Enter a message to sign"
+msgstr ""
+
+#: src/components/app/AppKeyringMigrator.tsx:136
+msgid "Enter a strong passphrase and click Migrate Keys to secure your keys"
+msgstr ""
+
+#: src/components/settings/SetPassphrasePrompt.tsx:164
+msgid "Enter a strong passphrase to secure your keys:"
+msgstr ""
+
+#: src/components/signVerify/SignMessage.tsx:66
+msgid "Enter a wallet address to sign with"
+msgstr ""
+
+#: src/components/signVerify/SignMessage.tsx:90
+msgid "Enter an NFT or DID to sign with"
+msgstr ""
+
+#: src/components/settings/RemovePassphrasePrompt.tsx:121
+msgid "Enter your passphrase:"
+msgstr ""
+
+#: src/components/farm/card/FarmCardStatus.tsx:35
+#: src/components/farm/card/FarmCardStatus.tsx:49
+#: src/components/plot/PlotStatus.tsx:21
+#: src/components/plot/PlotStatus.tsx:22
+#: src/components/plot/queue/PlotQueueIndicator.tsx:23
+#: src/components/settings/SettingsNFT.tsx:94
+msgid "Error"
+msgstr "Грешка"
+
+#: src/components/nfts/NFTPreview.tsx:645
+msgid "Error fetching video preview"
+msgstr ""
+
+#: src/components/nfts/NFTPreview.tsx:657
+msgid "Error parsing json"
+msgstr ""
+
+#: src/components/offers/OfferShareDialog.tsx:1272
+msgid "Error posting offer: {0}"
+msgstr ""
+
+#: src/components/signVerify/VerifyMessage.tsx:146
+msgid "Error:"
+msgstr ""
+
+#: src/components/settings/ResyncPrompt.tsx:23
+msgid "Error: {0}"
+msgstr ""
+
+#: src/components/fullNode/card/FullNodeEstimatedNetworkSpace.tsx:14
+msgid "Estimated Network Space"
+msgstr ""
+
+#: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:48
+#: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:53
+msgid "Estimated Time to Win"
+msgstr "Процењено време за победу"
+
+#: src/components/fullNode/card/FullNodeEstimatedNetworkSpace.tsx:15
+msgid "Estimated sum of all the plotted disk space of all farmers in the network"
+msgstr "Процењени збир укупног простора на диску свих фармера у мрежи"
+
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:437
+msgid "Exclude final directory"
+msgstr "Изузмите коначни директоријум"
+
+#: src/components/nfts/gallery/NFTGalleryHero.tsx:18
+msgid "Explore the Chia ecosystem; discover and trade great NFTs"
+msgstr ""
+
+#: src/components/offers/utils.ts:161
+#: src/components/plot/PlotHarvester.tsx:121
+msgid "Failed"
+msgstr ""
+
+#: src/components/nfts/MultipleDownloadDialog.tsx:59
+msgid "Failed downloads:"
+msgstr ""
+
+#: src/components/offers/NFTOfferEditor.tsx:587
+msgid "Failed to decode NFT identifier"
+msgstr ""
+
+#: src/components/offers/OfferShareDialog.tsx:462
+msgid "Failed to execute Keybase command: {stderr}"
+msgstr ""
+
+#: src/components/notification/NotificationSendDialog.tsx:147
+msgid "Failed to send the notification: {error}"
+msgstr ""
+
+#: src/components/settings/SetPassphrasePrompt.tsx:102
+msgid "Failed to set passphrase: {0}"
+msgstr ""
+
+#: src/components/settings/ChangePassphrasePrompt.tsx:126
+msgid "Failed to update passphrase: {0}"
+msgstr ""
+
+#: src/components/notification/NotificationSendDialog.tsx:142
+msgid "Failure"
+msgstr ""
+
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:454
+msgid "Farmer Public Key"
+msgstr ""
+
+#: src/components/block/Block.jsx:214
+msgid "Farmer Puzzle Hash"
+msgstr "Хеш слагалице фармера"
+
+#: src/components/farm/FarmManageFarmingRewards.tsx:131
+msgid "Farmer Reward Address"
+msgstr "Адреса за Награду Фармера"
+
+#: src/components/farm/FarmManageFarmingRewards.tsx:110
+msgid "Farmer Reward Address is not properly formatted."
+msgstr ""
+
+#: src/components/farm/FarmManageFarmingRewards.tsx:105
+msgid "Farmer Reward Address must not be empty."
+msgstr ""
+
+#: src/components/farm/card/FarmCardStatus.tsx:38
+#: src/components/plot/PlotStatus.tsx:29
+msgid "Farmer is not connected"
+msgstr "Фармер није повезан"
+
+#: src/components/farm/card/FarmCardStatus.tsx:52
+#: src/components/plot/PlotStatus.tsx:30
+msgid "Farmer is not running"
+msgstr "Фармер није покренут"
+
+#: src/components/farm/FarmHero.tsx:28
+msgid "Farmers earn block rewards and transaction fees by committing spare space to the network to help secure transactions. This is where your farm will be once you add a plot. <0>Learn more</0>"
+msgstr "Пољопривредници зарађују блоковске награде и накнаде за трансакције одвајањем резервног простора мрежи да би помогли у осигурању трансакција. Овде ће бити ваша фарма када додате парцелу. <0> Сазнајте више </0>"
+
+#: src/components/dashboard/DashboardSideBar.tsx:97
+#: src/components/farm/card/FarmCardStatus.tsx:62
+#: src/components/plot/PlotStatus.tsx:18
+msgid "Farming"
+msgstr "Обрађивање"
+
+#: src/components/app/AppSelectMode.tsx:112
+msgid "Farming Mode"
+msgstr ""
+
+#: src/components/farm/card/FarmCardStatus.tsx:15
+#: src/components/farm/card/FarmCardStatus.tsx:26
+#: src/components/farm/card/FarmCardStatus.tsx:32
+#: src/components/farm/card/FarmCardStatus.tsx:46
+#: src/components/farm/card/FarmCardStatus.tsx:59
+msgid "Farming Status"
+msgstr "Статус обраде"
+
+#: src/components/settings/SettingsAdvanced.tsx:47
+msgid "Features for advanced users."
+msgstr ""
+
+#: src/components/nfts/NFTBurnDialog.tsx:166
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:324
+#: src/components/nfts/NFTTransferAction.tsx:158
+#: src/components/offers/NFTOfferViewer.tsx:611
+#: src/components/offers/OfferManager.tsx:145
+#: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:156
+#: src/components/plotNFT/select/PlotNFTSelectBase.tsx:115
+#: src/components/pool/PoolInfo.tsx:18
+#: src/components/settings/ProfileAdd.tsx:107
+#: src/constants/WalletConnectCommands.tsx:87
+#: src/constants/WalletConnectCommands.tsx:270
+#: src/constants/WalletConnectCommands.tsx:300
+#: src/constants/WalletConnectCommands.tsx:357
+#: src/constants/WalletConnectCommands.tsx:401
+#: src/constants/WalletConnectCommands.tsx:488
+msgid "Fee"
+msgstr "Накнада"
+
+#: src/components/offers/NFTOfferEditor.tsx:86
+#: src/components/offers/OfferEditorConditionsPanel.tsx:386
+msgid "Fee (Optional)"
+msgstr ""
+
+#: src/components/plotNFT/PlotNFTChangePool.tsx:113
+msgid "Fee is used TWICE: once to leave pool, once to join."
+msgstr ""
+
+#: src/components/offers2/OfferBuilderFeeSection.tsx:52
+msgid "Fees"
+msgstr ""
+
+#: src/components/block/Block.jsx:239
+msgid "Fees Amount"
+msgstr "Износ накнада"
+
+#: src/components/offers/NFTOfferViewer.tsx:197
+#: src/components/offers/OfferSummary.tsx:167
+msgid "Fees included in offer:"
+msgstr ""
+
+#: src/electron/main.tsx:942
+#: src/electron/main.tsx:1135
+msgid "File"
+msgstr "Датотека"
+
+#: src/components/plot/PlotHarvesterPlots.tsx:70
+#: src/components/plot/PlotHarvesterPlotsDuplicate.tsx:14
+#: src/components/plot/PlotHarvesterPlotsFailed.tsx:14
+#: src/components/plot/PlotHarvesterPlotsNotFound.tsx:14
+msgid "Filename"
+msgstr "Ime datoteke"
+
+#: src/components/nfts/gallery/NFTGallery.tsx:530
+msgid "Filter"
+msgstr ""
+
+#: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:45
+msgid "Final folder location"
+msgstr "Коначна локација фолдера"
+
+#: src/constants/WalletConnectCommands.tsx:21
+msgid "Fingerprint"
+msgstr ""
+
+#: src/components/fullNode/FullNode.jsx:28
+#: src/components/fullNode/FullNode.jsx:77
+msgid "Finished"
+msgstr "Завршено"
+
+#: src/components/settings/SettingsNFT.tsx:145
+msgid "Fit images to cards"
+msgstr ""
+
+#: src/electron/main.tsx:1086
+msgid "Follow on Twitter"
+msgstr "Пратите нас на Твитеру"
+
+#: src/electron/main.tsx:1053
+msgid "Frequently Asked Questions"
+msgstr "Често Постављана Питања"
+
+#: src/components/app/AppStatusHeader.tsx:84
+#: src/components/dashboard/DashboardSideBar.tsx:76
+#: src/components/fullNode/FullNode.jsx:116
+msgid "Full Node"
+msgstr "Пун Чвор"
+
+#: src/components/fullNode/FullNodeConnections.tsx:89
+msgid "Full Node Connections"
+msgstr ""
+
+#: src/electron/main.tsx:1022
+msgid "Full Screen"
+msgstr "Цео Екран"
+
+#: src/components/settings/Settings.tsx:65
+msgid "General"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:365
+msgid "Get CAT Asset Id"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:59
+msgid "Get Current Address"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:451
+msgid "Get NFT Info"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:440
+msgid "Get NFTs"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:148
+msgid "Get Next Address"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:320
+msgid "Get Offer Data"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:332
+msgid "Get Offer Record"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:308
+msgid "Get Offer Summary"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:221
+msgid "Get Offers Count"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:32
+msgid "Get Transaction"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:44
+msgid "Get Wallet Balance"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:171
+msgid "Get Wallet Sync Status"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:27
+msgid "Get Wallets"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:178
+msgid "Get all Offers"
+msgstr ""
+
+#: src/components/nfts/gallery/NFTGalleryHero.tsx:15
+msgid "Go collect some gems"
+msgstr ""
+
+#: src/components/offers/OfferShareDialog.tsx:1140
+#: src/components/offers/OfferShareDialog.tsx:1191
+msgid "Go to #{channelName}"
+msgstr ""
+
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:420
+msgid "Halves the temp2 cache size requirements by alternating bucket writing methods between tables."
+msgstr ""
+
+#: src/components/plot/PlotHarvesters.tsx:37
+msgid "Harvesters"
+msgstr ""
+
+#: src/components/nfts/detail/NFTDetailV2.tsx:179
+msgid "Hash is validated."
+msgstr ""
+
+#: src/components/nfts/detail/NFTDetailV2.tsx:184
+msgid "Hash mismatch."
+msgstr ""
+
+#: src/components/offers/OfferShareDialog.tsx:847
+msgid "Hashgreen DEX URL"
+msgstr ""
+
+#: src/components/fullNode/FullNode.jsx:43
+msgid "Header Hash"
+msgstr "Хеш код заглавља"
+
+#: src/components/block/Block.jsx:155
+msgid "Header hash"
+msgstr "Хеш код заглавља"
+
+#: src/components/block/Block.jsx:168
+#: src/components/fullNode/FullNode.jsx:61
+#: src/components/fullNode/FullNodeConnections.tsx:61
+msgid "Height"
+msgstr "Висина"
+
+#: src/electron/main.tsx:1043
+msgid "Help"
+msgstr "Помоћ"
+
+#: src/components/farm/FarmLatestBlockChallenges.tsx:51
+msgid "Here are the current block challenges. You may or may not have a proof of space for these challenges. These blocks do not currently contain a proof of time."
+msgstr ""
+
+#: src/components/nfts/gallery/NFTGallery.tsx:589
+msgid "Hidden"
+msgstr ""
+
+#: src/components/nfts/gallery/NFTGallery.tsx:573
+msgid "Hidden ({0})"
+msgstr ""
+
+#: src/components/nfts/NFTContextualActions.tsx:499
+msgid "Hide"
+msgstr ""
+
+#: src/components/settings/SettingsNFT.tsx:125
+msgid "Hide objectionable content"
+msgstr ""
+
+#: src/components/app/AppPassPrompt.tsx:161
+#: src/components/settings/RemovePassphrasePrompt.tsx:153
+msgid "Hint"
+msgstr ""
+
+#: src/components/plot/PlotHarvesterPlotsDuplicate.tsx:69
+#: src/components/plot/PlotHarvesterPlotsFailed.tsx:69
+#: src/components/plot/PlotHarvesterPlotsNotFound.tsx:69
+msgid "Hooray, no files here!"
+msgstr ""
+
+#: src/components/farm/FarmFullNodeConnections.tsx:31
+#: src/components/farm/FarmYourHarvesterNetwork.tsx:31
+msgid "Host Name"
+msgstr "Назив хоста"
+
+#: src/components/offers/OfferEditorConfirmationDialog.tsx:16
+msgid "I Understand, Create Offer"
+msgstr ""
+
+#: src/components/fullNode/FullNodeConnections.tsx:32
+msgid "IP address"
+msgstr "IP адреса"
+
+#: src/components/fullNode/FullNodeAddConnection.tsx:89
+msgid "IP address / host"
+msgstr "IP адреса / хост"
+
+#: src/constants/WalletConnectCommands.tsx:119
+msgid "Id"
+msgstr ""
+
+#: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:128
+msgid "If none selected, then it will default to the temporary directory."
+msgstr "Ако ништа није изабрано, тада ће се подразумевано поставити на привременом директоријуму."
+
+#: src/components/offers/OfferShareDialog.tsx:806
+msgid "If selected, your offer will be not be shared publicly."
+msgstr ""
+
+#: src/components/nfts/NFTBurnDialog.tsx:76
+msgid "If you burn these NFTs, nobody (including you) will ever be able to access it again. Are you sure you want to continue?"
+msgstr ""
+
+#: src/components/nfts/NFTBurnDialog.tsx:81
+msgid "If you burn this NFT, nobody (including you) will ever be able to access it again. Are you sure you want to continue?"
+msgstr ""
+
+#: src/components/offers/OfferManager.tsx:110
+msgid "If you have already shared your offer file, you may need to submit a transaction to cancel the pending offer. Click \"Cancel on blockchain\" to submit a cancellation transaction."
+msgstr ""
+
+#: src/components/nfts/NFTPreview.tsx:633
+msgid "Image Hash Mismatch"
+msgstr ""
+
+#: src/components/settings/SettingsNFT.tsx:155
+msgid "Images will be scaled to fill the NFT card and ignore their original proportions."
+msgstr ""
+
+#: src/components/offers/OfferDataEntryDialog.tsx:61
+msgid "Import"
+msgstr ""
+
+#: src/components/fullNode/FullNode.jsx:28
+msgid "In Progress"
+msgstr "У процесу"
+
+#: src/components/offers/NFTOfferViewer.tsx:479
+#: src/components/offers/OfferEditorConditionsPanel.tsx:290
+#: src/components/offers2/OfferBuilderTradeColumn.tsx:26
+msgid "In exchange for"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:207
+msgid "Include My Offers"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:213
+msgid "Include Taken Offers"
+msgstr ""
+
+#: src/components/offers/NFTOfferEditor.tsx:91
+#: src/components/offers/OfferEditorConditionsPanel.tsx:392
+msgid "Including a fee in the offer can help expedite the transaction when the offer is accepted. The recommended minimum fee is 0.000005 XCH (5,000,000 mojos)"
+msgstr ""
+
+#: src/components/offers2/OfferIncomingTable.tsx:112
+msgid "Incoming Offers"
+msgstr ""
+
+#: src/components/farm/FarmLatestBlockChallenges.tsx:17
+msgid "Index"
+msgstr "Индекс"
+
+#: src/components/plot/PlotHarvesterPlots.tsx:126
+msgid "Initializing..."
+msgstr ""
+
+#: src/components/offers/OfferShareDialog.tsx:1172
+msgid "Install Keybase"
+msgstr ""
+
+#: src/hooks/useAcceptOfferHook.tsx:67
+msgid "Insufficient funds available to accept offer. Ensure that your\n"
+"spendable balance is sufficient to cover the offer amount."
+msgstr ""
+
+#: src/components/offers/OfferEditor.tsx:148
+#: src/components/offers2/CreateOfferBuilder.tsx:121
+msgid "Insufficient funds available to create offer. Ensure that your\n"
+"spendable balance is sufficient to cover the offer amount."
+msgstr ""
+
+#: src/components/settings/Settings.tsx:73
+msgid "Integration"
+msgstr ""
+
+#: src/components/signVerify/VerifyMessage.tsx:169
+msgid "Invalid"
+msgstr ""
+
+#: src/components/offers/NFTOfferEditor.tsx:585
+msgid "Invalid NFT identifier"
+msgstr ""
+
+#: src/components/nfts/NFTPreview.tsx:653
+msgid "Invalid metadata url"
+msgstr ""
+
+#: src/components/plotNFT/PlotNFTState.tsx:27
+msgid "Invalid state"
+msgstr ""
+
+#: src/components/plotNFT/PlotNFTGetPoolLoginLinkDialog.tsx:66
+msgid "It is a one-time login link that can be used to log in to a pool's website. It contains a signature using the farmer's key from the plot NFT. Not all pools support this feature."
+msgstr ""
+
+#: src/components/plotNFT/PlotNFTCard.tsx:334
+msgid "Join Pool"
+msgstr ""
+
+#: src/components/plot/add/PlotAddNFT.tsx:56
+#: src/components/plot/add/PlotAddNFT.tsx:130
+#: src/components/plotNFT/select/PlotNFTSelectPool.tsx:139
+#: src/components/plotNFT/select/PlotNFTSelectPool.tsx:153
+#: src/components/pool/PoolHero.tsx:24
+msgid "Join a Pool"
+msgstr ""
+
+#: src/components/plot/add/PlotAddNFT.tsx:41
+msgid "Join a pool and get consistent XCH farming rewards. The average returns are the same, but it is much less volatile."
+msgstr ""
+
+#: src/components/plotNFT/PlotNFTAdd.tsx:61
+msgid "Join a pool and get consistent XCH farming rewards. The average returns are the same, but it is much less volatile. Assign plots to a plot NFT. You can easily switch pools without having to re-plot."
+msgstr ""
+
+#: src/components/plot/add/PlotAddNFT.tsx:122
+msgid "Join a pool and get more consistent XCH farming rewards. Create a plot NFT and assign your new plots to a group."
+msgstr ""
+
+#: src/components/app/AppSelectMode.tsx:133
+msgid "Join farming pools"
+msgstr ""
+
+#: src/components/offers/OfferShareDialog.tsx:1184
+msgid "Join {teamName}"
+msgstr ""
+
+#: src/components/plot/PlotHarvesterPlots.tsx:39
+#: src/components/plot/PlotPlotting.tsx:18
+msgid "K-Size"
+msgstr "К-величина"
+
+#: src/hooks/useWalletConnectCommand.tsx:101
+msgid "Key"
+msgstr ""
+
+#: src/components/settings/SettingsIntegration.tsx:65
+msgid "Key switching"
+msgstr ""
+
+#: src/components/offers/OfferShareDialog.tsx:1086
+msgid "Keybase command failed {e}. If you haven't installed Keybase, you can download from https://keybase.io"
+msgstr ""
+
+#: src/components/offers/OfferShareDialog.tsx:1165
+msgid "Keybase is a secure messaging and file sharing application. To share an offer in the Keybase {teamName} team, you must first have Keybase installed."
+msgstr ""
+
+#: src/components/app/AppKeyringMigrator.tsx:83
+msgid "Keyring migration failed: {0}"
+msgstr ""
+
+#: src/components/farm/FarmFullNodeConnections.tsx:49
+#: src/components/farm/FarmYourHarvesterNetwork.tsx:49
+msgid "KiB Up/Down"
+msgstr "KiB горе/доле"
+
+#: src/components/farm/FarmLastAttemptedProof.tsx:45
+msgid "Last Attempted Proof"
+msgstr "Доказ последњег покушаја"
+
+#: src/components/farm/card/FarmCardLastHeightFarmed.tsx:13
+msgid "Last Height Farmed"
+msgstr "Последња обрађена величина"
+
+#: src/components/fullNode/card/FullNodeCardPeakTime.tsx:16
+msgid "Last Transaction Block Time"
+msgstr ""
+
+#: src/components/farm/FarmLatestBlockChallenges.tsx:31
+msgid "Latest Block Challenges"
+msgstr "Најновији блок изазови"
+
+#: src/components/nfts/NFTDetails.tsx:64
+msgid "Launcher ID"
+msgstr ""
+
+#: src/components/plotNFT/PlotExternalNFTCard.tsx:254
+#: src/components/plotNFT/PlotNFTCard.tsx:290
+#: src/constants/WalletConnectCommands.tsx:478
+msgid "Launcher Id"
+msgstr ""
+
+#: src/components/plotNFT/PlotNFTGetPoolLoginLinkDialog.tsx:75
+#: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:101
+msgid "Learn More"
+msgstr ""
+
+#: src/components/plotNFT/PlotNFTState.tsx:56
+msgid "Leaving Pool"
+msgstr ""
+
+#: src/components/app/AppKeyringMigrator.tsx:93
+msgid "Legacy keyrings are no longer supported. Your keys need to be migrated to a new keyring that is optionally secured by a master passphrase."
+msgstr ""
+
+#: src/components/app/AppKeyringMigrator.tsx:100
+msgid "Legacy keyrings are no longer supported. Your keys need to be migrated to a new keyring that is secured by a master passphrase."
+msgstr ""
+
+#: src/components/nfts/NFTDetails.tsx:295
+msgid "License Hash"
+msgstr ""
+
+#: src/components/nfts/NFTDetails.tsx:280
+msgid "License URL {0}"
+msgstr ""
+
+#: src/components/settings/SettingsNFT.tsx:214
+msgid "Limit cache size"
+msgstr ""
+
+#: src/components/fullNode/FullNodeConnections.tsx:99
+msgid "List of connections is empty"
+msgstr ""
+
+#: src/components/nfts/NFTSummary.tsx:103
+msgid "Loading NFT"
+msgstr ""
+
+#: src/components/offers/NFTOfferPreview.tsx:62
+msgid "Loading NFT Info..."
+msgstr ""
+
+#: src/components/offers2/OfferBuilderValueSearch.tsx:144
+msgid "Loading NFTs..."
+msgstr ""
+
+#: src/components/app/AppProviders.tsx:96
+msgid "Loading configuration"
+msgstr ""
+
+#: src/components/farm/Farm.tsx:25
+msgid "Loading farming data"
+msgstr ""
+
+#: src/components/app/AppAutoLogin.tsx:49
+msgid "Loading fingerprint"
+msgstr ""
+
+#: src/components/app/AppState.tsx:193
+msgid "Loading keyring status"
+msgstr ""
+
+#: src/components/did/DIDProfileDropdown.tsx:48
+#: src/components/helpers/HeightToTimestamp.tsx:16
+#: src/components/nfts/NFTTitle.tsx:16
+#: src/components/notification/NotificationNFTTitle.tsx:26
+#: src/components/offers/NFTOfferTokenSelector.tsx:97
+#: src/components/offers2/OfferBuilderTokenSelector.tsx:79
+#: src/components/plot/queue/PlotQueueLogDialog.tsx:27
+msgid "Loading..."
+msgstr "Учитавање..."
+
+#: src/components/plot/PlotHarvester.tsx:60
+msgid "Local"
+msgstr ""
+
+#: src/components/settings/SettingsNFT.tsx:196
+msgid "Local folder"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:14
+msgid "Log In"
+msgstr ""
+
+#: src/components/app/AppSelectMode.tsx:84
+msgid "Manage CAT tokens"
+msgstr ""
+
+#: src/components/farm/FarmHeader.tsx:30
+msgid "Manage Farming Rewards"
+msgstr "Управљај наградама"
+
+#: src/components/farm/FarmManageFarmingRewards.tsx:94
+msgid "Manage Your Farming Rewards Target Addresses"
+msgstr "Управљај циљаним адресама награда"
+
+#: src/components/settings/SettingsNFT.tsx:166
+msgid "Manage how and where files are stored on this computer."
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:407
+msgid "Memos"
+msgstr ""
+
+#: src/components/signVerify/SignMessage.tsx:194
+#: src/components/signVerify/VerifyMessage.tsx:207
+#: src/constants/WalletConnectCommands.tsx:124
+#: src/constants/WalletConnectCommands.tsx:141
+msgid "Message"
+msgstr ""
+
+#: src/components/nfts/NFTDetails.tsx:265
+msgid "Metadata Hash"
+msgstr ""
+
+#: src/components/nfts/NFTDetails.tsx:250
+msgid "Metadata URL {0}"
+msgstr ""
+
+#: src/components/nfts/NFTPreview.tsx:649
+msgid "Metadata hash mismatch"
+msgstr ""
+
+#: src/components/fullNode/FullNodeConnections.tsx:50
+msgid "MiB Up/Down"
+msgstr "MiB горе/доле"
+
+#: src/components/settings/SettingsPanel.tsx:136
+msgid "Migrate Keyring"
+msgstr ""
+
+#: src/components/app/AppKeyringMigrator.tsx:268
+msgid "Migrate Keys"
+msgstr ""
+
+#: src/components/app/AppKeyringMigrator.tsx:129
+msgid "Migration required"
+msgstr ""
+
+#: src/components/settings/SettingsPanel.tsx:92
+msgid "Migration required to support passphrase protection"
+msgstr ""
+
+#: src/components/pool/PoolInfo.tsx:28
+msgid "Minimum Difficulty"
+msgstr ""
+
+#: src/components/offers/OfferShareDialog.tsx:681
+msgid "MintGarden URL"
+msgstr ""
+
+#: src/components/nfts/NFTDetails.tsx:213
+msgid "Minted at Block Height"
+msgstr ""
+
+#: src/components/offers2/OfferBuilderNFT.tsx:70
+msgid "Minter"
+msgstr ""
+
+#: src/components/nfts/NFTDetails.tsx:172
+msgid "Minter DID"
+msgstr ""
+
+#: src/components/offers/OfferSummaryRow.tsx:115
+msgid "Minter:"
+msgstr ""
+
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:94
+msgid "Minutes"
+msgstr "Минута"
+
+#: src/components/plot/PlotHarvester.tsx:108
+msgid "Missing Keys"
+msgstr ""
+
+#: src/components/nfts/NFTPreview.tsx:641
+msgid "Missing preview_image_hash key"
+msgstr ""
+
+#: src/components/nfts/NFTPreview.tsx:637
+msgid "Missing preview_video_hash key"
+msgstr ""
+
+#: src/components/walletConnect/WalletConnectConnections.tsx:79
+msgid "More Info"
+msgstr ""
+
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:114
+msgid "More memory slightly increases speed"
+msgstr "Више меморије мало повећава брзину"
+
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:335
+msgid "Move"
+msgstr ""
+
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:379
+msgid "Move NFT to Profile"
+msgstr ""
+
+#: src/components/nfts/NFTContextualActions.tsx:228
+msgid "Move to Profile"
+msgstr ""
+
+#: src/components/nfts/gallery/NFTGallery.tsx:522
+msgid "Multi-select"
+msgstr ""
+
+#: src/components/settings/ProfileView.tsx:90
+msgid "My DID"
+msgstr ""
+
+#: src/components/offers/NFTOfferEditor.tsx:216
+#: src/components/offers2/OfferBuilderNFTSection.tsx:48
+#: src/components/settings/Settings.tsx:68
+#: src/components/settings/SettingsNFT.tsx:110
+#: src/components/signVerify/SignMessage.tsx:154
+msgid "NFT"
+msgstr ""
+
+#: src/components/nfts/NFTDetails.tsx:73
+msgid "NFT Coin ID"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:473
+msgid "NFT Coin Id"
+msgstr ""
+
+#: src/components/nfts/NFTDetails.tsx:55
+#: src/components/offers2/OfferBuilderNFT.tsx:63
+#: src/components/signVerify/SigningEntityNFT.tsx:63
+msgid "NFT ID"
+msgstr ""
+
+#: src/components/offers/NFTOfferEditor.tsx:218
+msgid "NFT Identifier"
+msgstr ""
+
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:209
+msgid "NFT Move Failed"
+msgstr ""
+
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:184
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:202
+msgid "NFT Move Pending"
+msgstr ""
+
+#: src/components/offers/NFTOfferViewer.tsx:494
+msgid "NFT Purchase Price"
+msgstr ""
+
+#: src/components/nfts/NFTContextualActions.tsx:270
+msgid "NFT Status Update Failed"
+msgstr ""
+
+#: src/components/nfts/NFTContextualActions.tsx:260
+msgid "NFT Status Updated"
+msgstr ""
+
+#: src/components/nfts/NFTContextualActions.tsx:182
+msgid "NFT Transfer Failed"
+msgstr ""
+
+#: src/components/nfts/NFTContextualActions.tsx:175
+msgid "NFT Transfer Pending"
+msgstr ""
+
+#: src/components/offers/NFTOfferEditor.tsx:622
+msgid "NFT details not available"
+msgstr ""
+
+#: src/components/offers2/OfferBuilderNFTRoyalties.tsx:171
+msgid "NFT has no royalties"
+msgstr ""
+
+#: src/components/notification/NotificationSendDialog.tsx:208
+msgid "NFT holder address"
+msgstr ""
+
+#: src/components/offers/NFTOfferPreview.tsx:44
+msgid "NFT identifier does not reference a valid NFT coin."
+msgstr ""
+
+#: src/components/offers/NFTOfferPreview.tsx:105
+#: src/components/offers2/OfferBuilderNFT.tsx:91
+#: src/components/offers2/OfferBuilderNFT.tsx:119
+msgid "NFT not specified"
+msgstr ""
+
+#: src/util/offerBuilderDataToOffer.ts:94
+#: src/util/offerBuilderDataToOffer.ts:148
+msgid "NFT {nftId} is already used in this offer"
+msgstr ""
+
+#: src/components/dashboard/DashboardSideBar.tsx:57
+msgid "NFTs"
+msgstr ""
+
+#: src/components/settings/SettingsNFT.tsx:135
+msgid "NFTs that have been categorized by the creator as objectionable content will be hidden by default."
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:431
+msgid "Name"
+msgstr ""
+
+#: src/components/offers/NFTOfferViewer.tsx:580
+msgid "Net Proceeds"
+msgstr ""
+
+#: src/components/offers/NFTOfferViewer.tsx:603
+msgid "Network Fee (Optional)"
+msgstr ""
+
+#: src/components/fullNode/card/FullNodeCardNetworkName.tsx:14
+msgid "Network Name"
+msgstr "Назив мреже"
+
+#: src/constants/WalletConnectCommands.tsx:161
+msgid "New Address"
+msgstr ""
+
+#: src/components/settings/ChangePassphrasePrompt.tsx:210
+msgid "New Passphrase"
+msgstr ""
+
+#: src/components/block/Block.jsx:259
+#: src/components/nfts/detail/NFTDetailV2.tsx:249
+msgid "Next"
+msgstr "Даље"
+
+#: src/electron/main.tsx:813
+msgid "No"
+msgstr "Не"
+
+#: src/util/offerBuilderDataToOffer.ts:74
+#: src/util/offerBuilderDataToOffer.ts:135
+msgid "No CAT wallet found for {assetId} token"
+msgstr ""
+
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:397
+msgid "No CPU Affinity"
+msgstr ""
+
+#: src/components/walletConnect/WalletConnectPairInfoDialog.tsx:113
+msgid "No Paired Keys"
+msgstr ""
+
+#: src/components/notification/NotificationsMenu.tsx:49
+msgid "No activities yet"
+msgstr ""
+
+#: src/components/farm/card/FarmCardLastHeightFarmed.tsx:15
+msgid "No blocks farmed yet"
+msgstr "Још нема обрађених блокова"
+
+#: src/components/offers/OfferManager.tsx:394
+msgid "No current offers"
+msgstr ""
+
+#: src/components/nfts/NFTPreview.tsx:616
+msgid "No file available"
+msgstr ""
+
+#: src/components/offers2/OfferIncomingTable.tsx:207
+msgid "No incoming offers"
+msgstr ""
+
+#: src/components/plot/PlotHarvesterPlots.tsx:126
+msgid "No plots yet"
+msgstr ""
+
+#: src/components/farm/FarmManageFarmingRewards.tsx:125
+msgid "No private keys for one or both addresses. Safe only if you are sending rewards to another wallet."
+msgstr "Нема приватних кључева за једну или обе адресе. Безбедно је само ако награде шаљете на други новчаник."
+
+#: src/util/offerBuilderDataToOffer.ts:51
+#: src/util/offerBuilderDataToOffer.ts:116
+msgid "No standard wallet found"
+msgstr ""
+
+#: src/components/farm/FarmFullNodeConnections.tsx:27
+#: src/components/farm/FarmYourHarvesterNetwork.tsx:27
+#: src/components/fullNode/FullNodeConnections.tsx:28
+msgid "Node ID"
+msgstr "ID чвора"
+
+#: src/components/did/DIDProfileDropdown.tsx:88
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:129
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:277
+#: src/components/plot/add/PlotAddNFT.tsx:81
+msgid "None"
+msgstr ""
+
+#: src/components/farm/FarmLastAttemptedProof.tsx:67
+msgid "None of your plots have passed the plot filter yet."
+msgstr "Ниједан твој плот још увек није прошао филтер."
+
+#: src/components/farm/card/FarmCardNotAvailable.tsx:19
+#: src/components/farm/card/FarmCardNotAvailable.tsx:22
+#: src/components/nfts/detail/NFTDetailV2.tsx:295
+#: src/components/nfts/detail/NFTDetailV2.tsx:305
+#: src/components/offers2/OfferBuilderValue.tsx:72
+#: src/components/plot/PlotStatus.tsx:20
+#: src/components/plotNFT/PlotNFTCard.tsx:305
+#: src/hooks/useWalletConnectCommand.tsx:91
+msgid "Not Available"
+msgstr "Недоступно"
+
+#: src/components/fullNode/card/FullNodeCardStatus.tsx:14
+#: src/components/fullNode/card/FullNodeCardStatus.tsx:44
+msgid "Not Synced"
+msgstr "Није синхронизовано"
+
+#: src/components/fullNode/card/FullNodeCardConnectionStatus.tsx:15
+msgid "Not connected"
+msgstr "Није повезано"
+
+#: src/components/farm/FarmManageFarmingRewards.tsx:152
+msgid "Note that this does not change your pooling payout addresses. This only affects old format plots, and the 0.25XCH reward for pooling plots."
+msgstr ""
+
+#: src/components/notification/NotificationSendDialog.tsx:145
+msgid "Notification has successfully been sent to a full node and included in the mempool."
+msgstr ""
+
+#: src/components/settings/Settings.tsx:78
+#: src/components/settings/SettingsNotifications.tsx:16
+msgid "Notifications"
+msgstr ""
+
+#: src/components/offers/OfferShareDialog.tsx:626
+#: src/components/offers/OfferShareDialog.tsx:959
+#: src/components/offers/OfferShareDialog.tsx:1279
+msgid "Notify Current Owner"
+msgstr ""
+
+#: src/components/plotNFT/PlotExternalNFTCard.tsx:105
+#: src/components/plotNFT/PlotNFTCard.tsx:138
+msgid "Number of Plots"
+msgstr ""
+
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:168
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:181
+msgid "Number of buckets"
+msgstr "Број кофа"
+
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:200
+msgid "Number of buckets for phase 3 & 4"
+msgstr ""
+
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:130
+msgid "Number of threads"
+msgstr "Број нити"
+
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:281
+msgid "Number of threads for C table processing"
+msgstr ""
+
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:253
+msgid "Number of threads for F1 generation"
+msgstr ""
+
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:295
+msgid "Number of threads for Phase 2"
+msgstr ""
+
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:309
+msgid "Number of threads for Phase 3"
+msgstr ""
+
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:267
+msgid "Number of threads for forward propagation"
+msgstr ""
+
+#: src/components/offers/OfferDataDialog.tsx:58
+#: src/components/plotNFT/PlotNFTGetPoolLoginLinkDialog.tsx:86
+msgid "OK"
+msgstr "ОК"
+
+#: src/components/settings/SettingsNFT.tsx:178
+msgid "Occupied space"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:295
+msgid "Offer"
+msgstr ""
+
+#: src/components/offers/OfferManager.tsx:437
+#: src/components/offers2/OfferNavigationHeader.tsx:16
+msgid "Offer Builder"
+msgstr ""
+
+#: src/components/offers/OfferDataDialog.tsx:29
+#: src/components/offers/OfferDataDialog.tsx:37
+#: src/constants/WalletConnectCommands.tsx:283
+#: src/constants/WalletConnectCommands.tsx:313
+msgid "Offer Data"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:325
+#: src/constants/WalletConnectCommands.tsx:337
+msgid "Offer Id"
+msgstr ""
+
+#: src/components/offers/OfferManager.tsx:418
+msgid "Offer Management"
+msgstr ""
+
+#: src/components/offers/OfferShareDialog.tsx:598
+#: src/components/offers/OfferShareDialog.tsx:676
+#: src/components/offers/OfferShareDialog.tsx:750
+#: src/components/offers/OfferShareDialog.tsx:842
+#: src/components/offers/OfferShareDialog.tsx:930
+#: src/components/offers/OfferShareDialog.tsx:1131
+#: src/components/offers/OfferShareDialog.tsx:1245
+msgid "Offer Shared"
+msgstr ""
+
+#: src/components/offers/NFTOfferViewer.tsx:170
+#: src/components/offers2/OfferBuilderValue.tsx:200
+#: src/components/offers2/OfferBuilderViewer.tsx:172
+msgid "Offer cannot be accepted because you don't possess the requested assets"
+msgstr ""
+
+#: src/components/offers2/OfferBuilderImport.tsx:77
+msgid "Offer file is too large (> 1MB)"
+msgstr ""
+
+#: src/hooks/useAcceptOfferHook.tsx:55
+msgid "Offer has been accepted and is awaiting confirmation."
+msgstr ""
+
+#: src/components/offers/OfferShareDialog.tsx:755
+msgid "OfferBin URL"
+msgstr ""
+
+#: src/components/offers/OfferManager.tsx:266
+msgid "Offered"
+msgstr ""
+
+#: src/components/offers2/OfferBuilderTradeColumn.tsx:22
+#: src/components/offers2/OfferIncomingTable.tsx:60
+msgid "Offering"
+msgstr ""
+
+#: src/components/offers/utils.ts:145
+msgid "Offering: [{makerString}], Requesting: [{takerString}]"
+msgstr ""
+
+#: src/components/offers/OfferShareDialog.tsx:1252
+msgid "Offerpool URL"
+msgstr ""
+
+#: src/components/dashboard/DashboardSideBar.tsx:63
+#: src/components/nfts/detail/NFTDetailV2.tsx:331
+msgid "Offers"
+msgstr ""
+
+#: src/components/offers2/OfferNavigationHeader.tsx:19
+msgid "Offers are a way to trade assets in a genuinely peer-to-peer way that eliminates counterparty risk."
+msgstr ""
+
+#: src/components/offers/OfferManager.tsx:421
+msgid "Offers are a way to trade assets in a genuinely peer-to-peer way to eliminate counterparty risk."
+msgstr ""
+
+#: src/components/offers/OfferManager.tsx:470
+msgid "Offers you accepted"
+msgstr ""
+
+#: src/components/offers/OfferManager.tsx:469
+msgid "Offers you created"
+msgstr ""
+
+#: src/components/offers/OfferAcceptConfirmationDialog.tsx:56
+msgid "Once you accept this offer, you will not be able to cancel the transaction. Are you sure you want to accept this offer?"
+msgstr ""
+
+#: src/components/nfts/NFTTransferConfirmationDialog.tsx:32
+msgid "Once you initiate this transfer, you will not be able to cancel the transaction. Are you sure you want to transfer the NFT?"
+msgstr ""
+
+#: src/components/nfts/NFTTransferAction.tsx:93
+msgid "Once you initiate this transfer, you will not be able to cancel the transaction. Are you sure you want to transfer {0} NFTs?"
+msgstr ""
+
+#: src/components/offers2/OfferBuilderViewer.tsx:176
+msgid "One or more unknown tokens are being offered. Be sure to verify that the asset IDs of the offered tokens match the asset IDs of the tokens you are expecting."
+msgstr ""
+
+#: src/components/offers/OfferAcceptConfirmationDialog.tsx:35
+msgid "One or more unknown tokens are being offered. Please verify that the asset IDs of the tokens listed below match the asset IDs of the tokens you expect to receive."
+msgstr ""
+
+#: src/components/offers2/OfferBuilderNFTSection.tsx:49
+msgid "One-of-a-kind Collectible assets"
+msgstr ""
+
+#: src/hooks/useOpenUnsafeLink.tsx:31
+msgid "Open Link"
+msgstr ""
+
+#: src/components/nfts/NFTContextualActions.tsx:322
+msgid "Open in Browser"
+msgstr ""
+
+#: src/components/offers2/OfferBuilderFeeSection.tsx:53
+msgid "Optional network fee to expedite acceptance of your offer"
+msgstr ""
+
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:282
+msgid "Override the thread count for C table processing"
+msgstr ""
+
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:254
+msgid "Override the thread count for F1 generation"
+msgstr ""
+
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:296
+msgid "Override the thread count for Phase 2"
+msgstr ""
+
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:310
+msgid "Override the thread count for Phase 3"
+msgstr ""
+
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:268
+msgid "Override the thread count for forward propagation"
+msgstr ""
+
+#: src/components/nfts/NFTDetails.tsx:87
+msgid "Owner Address"
+msgstr ""
+
+#: src/components/nfts/NFTDetails.tsx:108
+msgid "Owner DID"
+msgstr ""
+
+#: src/components/nfts/NFTDetails.tsx:148
+msgid "Owner Public Key"
+msgstr ""
+
+#: src/components/walletConnect/WalletConnectPairInfoDialog.tsx:75
+msgid "Pair Information"
+msgstr ""
+
+#: src/components/walletConnect/WalletConnectPairInfoDialog.tsx:84
+msgid "Pair does not exists"
+msgstr ""
+
+#: src/components/walletConnect/WalletConnectPairInfoDialog.tsx:97
+msgid "Paired Keys"
+msgstr ""
+
+#: src/components/app/AppKeyringMigrator.tsx:146
+#: src/components/app/AppKeyringMigrator.tsx:147
+#: src/components/app/AppPassPrompt.tsx:137
+#: src/components/settings/RemovePassphrasePrompt.tsx:129
+#: src/components/settings/SetPassphrasePrompt.tsx:173
+#: src/components/settings/SettingsPanel.tsx:180
+msgid "Passphrase"
+msgstr ""
+
+#: src/components/app/AppKeyringMigrator.tsx:208
+#: src/components/settings/ChangePassphrasePrompt.tsx:265
+#: src/components/settings/SetPassphrasePrompt.tsx:232
+msgid "Passphrase Hint"
+msgstr ""
+
+#: src/components/app/AppKeyringMigrator.tsx:207
+#: src/components/settings/ChangePassphrasePrompt.tsx:264
+#: src/components/settings/SetPassphrasePrompt.tsx:231
+msgid "Passphrase Hint (Optional)"
+msgstr ""
+
+#: src/components/settings/SettingsPanel.tsx:64
+msgid "Passphrase protection has been disabled"
+msgstr ""
+
+#: src/components/settings/SettingsPanel.tsx:101
+msgid "Passphrase protection is disabled"
+msgstr ""
+
+#: src/components/settings/SettingsPanel.tsx:98
+msgid "Passphrase protection is enabled"
+msgstr ""
+
+#: src/components/settings/SettingsPanel.tsx:93
+msgid "Passphrase support requires migrating your keys to a new keyring"
+msgstr ""
+
+#: src/components/offers/OfferDataEntryDialog.tsx:33
+#: src/components/offers/OfferImport.tsx:157
+msgid "Paste Offer Data"
+msgstr ""
+
+#: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:148
+msgid "Paste link"
+msgstr ""
+
+#: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:139
+msgid "Paste the address from WalletConnect below."
+msgstr ""
+
+#: src/components/plotNFT/PlotNFTCard.tsx:301
+msgid "Payout Address"
+msgstr ""
+
+#: src/components/fullNode/card/FullNodeCardPeakHeight.tsx:14
+msgid "Peak Height"
+msgstr "Врх раста"
+
+#: src/components/plotNFT/PlotNFTState.tsx:41
+msgid "Pending"
+msgstr "На чекању"
+
+#: src/components/offers/utils.ts:151
+msgid "Pending Accept"
+msgstr ""
+
+#: src/components/offers/utils.ts:155
+msgid "Pending Cancel"
+msgstr ""
+
+#: src/components/offers/utils.ts:153
+msgid "Pending Confirm"
+msgstr ""
+
+#: src/components/notification/NotificationsProvider.tsx:224
+#: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:137
+msgid "Please Confirm"
+msgstr ""
+
+#: src/hooks/useOpenUnsafeLink.tsx:38
+msgid "Please check the following link to verify the site you are going to visit. Proceed at your own risk."
+msgstr ""
+
+#: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:75
+msgid "Please enter a URI"
+msgstr ""
+
+#: src/components/app/AppPassPrompt.tsx:49
+#: src/components/settings/SetPassphrasePrompt.tsx:72
+msgid "Please enter a passphrase"
+msgstr ""
+
+#: src/components/settings/ProfileAdd.tsx:53
+msgid "Please enter a valid numeric fee"
+msgstr ""
+
+#: src/components/offers/NFTOfferEditor.tsx:583
+msgid "Please enter an NFT identifier"
+msgstr ""
+
+#: src/util/offerBuilderDataToOffer.ts:46
+#: src/util/offerBuilderDataToOffer.ts:111
+msgid "Please enter an XCH amount"
+msgstr ""
+
+#: src/components/offers/NFTOfferEditor.tsx:591
+msgid "Please enter an amount"
+msgstr ""
+
+#: src/components/offers/OfferEditor.tsx:106
+msgid "Please enter an amount for each row"
+msgstr ""
+
+#: src/util/offerBuilderDataToOffer.ts:78
+#: src/util/offerBuilderDataToOffer.ts:139
+msgid "Please enter an amount for {0} token"
+msgstr ""
+
+#: src/components/settings/ChangePassphrasePrompt.tsx:89
+msgid "Please enter your current passphrase, and a new passphrase"
+msgstr ""
+
+#: src/components/app/AppPassPrompt.tsx:89
+#: src/components/app/AppPassPrompt.tsx:110
+#: src/components/settings/RemovePassphrasePrompt.tsx:62
+msgid "Please enter your passphrase"
+msgstr ""
+
+#: src/components/app/AppPassPrompt.tsx:103
+msgid "Please enter your passphrase to proceed"
+msgstr ""
+
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:153
+msgid "Please select a profile to move the NFT to."
+msgstr ""
+
+#: src/components/offers/OfferEditor.tsx:104
+msgid "Please select an asset for each row"
+msgstr ""
+
+#: src/util/offerBuilderDataToOffer.ts:69
+#: src/util/offerBuilderDataToOffer.ts:130
+msgid "Please select an asset for each token"
+msgstr ""
+
+#: src/components/offers/NFTOfferEditor.tsx:589
+msgid "Please select an asset type"
+msgstr ""
+
+#: src/components/settings/SettingsNFT.tsx:95
+msgid "Please select an empty folder"
+msgstr ""
+
+#: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:84
+msgid "Please select at least one key"
+msgstr ""
+
+#: src/util/offerBuilderDataToOffer.ts:39
+msgid "Please specify at least one offered asset"
+msgstr ""
+
+#: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:54
+#: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:58
+msgid "Please specify final directory"
+msgstr "Наведи коначни директоријум"
+
+#: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:69
+#: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:73
+msgid "Please specify temporary directory"
+msgstr "Наведи привремени директоријум"
+
+#: src/components/farm/card/FarmCardPlotCount.tsx:10
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:51
+msgid "Plot Count"
+msgstr "Број плотова"
+
+#: src/components/block/Block.jsx:222
+msgid "Plot Id"
+msgstr "ID плота"
+
+#: src/components/plot/PlotHarvesterPlots.tsx:45
+msgid "Plot Key"
+msgstr "Кључ плота"
+
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:475
+msgid "Plot NFT Plot Target Address"
+msgstr ""
+
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:476
+msgid "Plot NFT Pool Contract Address"
+msgstr ""
+
+#: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:107
+#: src/components/plotNFT/PlotNFTChangePool.tsx:81
+msgid "Plot NFT with p2_singleton_puzzle_hash {plotNFTId} does not exists"
+msgstr ""
+
+#: src/components/block/Block.jsx:206
+msgid "Plot Public Key"
+msgstr "Јавни кључ плота"
+
+#: src/components/plot/add/PlotAddChooseSize.tsx:87
+msgid "Plot Size"
+msgstr "Величина плота"
+
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:72
+msgid "Plot in Parallel"
+msgstr "Плотуј паралелно"
+
+#: src/components/plot/PlotHarvesterPlots.tsx:23
+msgid "Plot is duplicate of {0}"
+msgstr "Плот је дупликат {0}"
+
+#: src/components/plotNFT/PlotNFTState.tsx:44
+msgid "PlotNFT is transitioning to (target state). This can take a while. Please do not close the application until this is finalized."
+msgstr ""
+
+#: src/components/dashboard/DashboardSideBar.tsx:83
+#: src/components/plot/PlotHarvester.tsx:96
+msgid "Plots"
+msgstr "Плотови"
+
+#: src/components/plot/card/PlotCardPlotsFailedToOpen.tsx:11
+msgid "Plots Failed To Open"
+msgstr ""
+
+#: src/components/farm/FarmLastAttemptedProof.tsx:21
+msgid "Plots Passed Filter"
+msgstr "Филтрирани плотови"
+
+#: src/components/plot/card/PlotCardNotFound.tsx:11
+msgid "Plots With Missing Keys"
+msgstr ""
+
+#: src/components/plot/overview/PlotOverviewHero.tsx:34
+msgid "Plots are allocated space on your hard drive used to farm and earn Chia.  <0>Learn more</0>"
+msgstr ""
+
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:217
+msgid "Plots in the same queue will run in serial"
+msgstr ""
+
+#: src/components/plot/add/PlotAddChoosePlotter.tsx:91
+msgid "Plotter"
+msgstr ""
+
+#: src/components/plot/PlotPlotting.tsx:45
+#: src/components/plot/queue/PlotQueueIndicator.tsx:35
+msgid "Plotting"
+msgstr "Плотовање"
+
+#: src/components/plot/overview/PlotOverviewPlots.tsx:36
+msgid "Plotting Manager"
+msgstr ""
+
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:65
+msgid "Plotting in parallel can save time. Otherwise, add plot(s) to the queue."
+msgstr "Паралелно плотовање може уштедети време. У супротном, додај плот(ове) у ред."
+
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:326
+msgid "Plotting with bitfield enabled has about 30% less overall writes and is now almost always faster. You may see reduced memory requirements with bitfield plotting disabled. If your CPU design is from before 2010 you may have to disable bitfield plotting."
+msgstr "Плотовање са омогућеним бит пољем има око 30% мање укупних уписа и готово је увек брже. Можда ћеш приметити смањене захтеве за меморијом са онемогућеним писањем бит поља. Ако је твој процесор пре 2010. године, можда ћеш морати да онемогућиш ову опцију."
+
+#: src/components/plotNFT/PlotExternalNFTCard.tsx:153
+#: src/components/plotNFT/PlotNFTCard.tsx:186
+msgid "Points Found Since Start"
+msgstr ""
+
+#: src/components/plotNFT/PlotExternalNFTCard.tsx:162
+#: src/components/plotNFT/PlotNFTCard.tsx:195
+msgid "Points Found in Last 24 Hours"
+msgstr ""
+
+#: src/components/plotNFT/PlotExternalNFTCard.tsx:171
+#: src/components/plotNFT/PlotNFTCard.tsx:204
+msgid "Points Successful in Last 24 Hours"
+msgstr ""
+
+#: src/components/plot/PlotHarvesterPlots.tsx:64
+msgid "Pool Contract Address"
+msgstr ""
+
+#: src/components/plot/PlotHarvesterPlots.tsx:51
+msgid "Pool Key"
+msgstr "Кључ пула"
+
+#: src/components/plotNFT/PlotNFTGetPoolLoginLinkDialog.tsx:53
+msgid "Pool Login Link"
+msgstr ""
+
+#: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:76
+msgid "Pool Payout Instructions"
+msgstr ""
+
+#: src/components/block/Block.jsx:210
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:465
+msgid "Pool Public Key"
+msgstr "Јавни кључ пула"
+
+#: src/components/block/Block.jsx:218
+msgid "Pool Puzzle Hash"
+msgstr "Хеш слагалица пула"
+
+#: src/components/farm/FarmManageFarmingRewards.tsx:141
+msgid "Pool Reward Address"
+msgstr "Адреса награде пула"
+
+#: src/components/farm/FarmManageFarmingRewards.tsx:120
+msgid "Pool Reward Address is not properly formatted."
+msgstr ""
+
+#: src/components/farm/FarmManageFarmingRewards.tsx:115
+msgid "Pool Reward Address must not be empty."
+msgstr ""
+
+#: src/components/block/Block.jsx:231
+msgid "Pool Reward Amount"
+msgstr "Износ награде за пул"
+
+#: src/components/plotNFT/select/PlotNFTSelectPool.tsx:33
+msgid "Pool does not provide relativeLockHeight."
+msgstr ""
+
+#: src/components/plotNFT/select/PlotNFTSelectPool.tsx:30
+msgid "Pool does not provide targetPuzzleHash."
+msgstr ""
+
+#: src/components/plotNFT/PlotExternalNFTCard.tsx:233
+#: src/components/plotNFT/PlotNFTCard.tsx:269
+#: src/components/plotNFT/PlotNFTUnconfirmedCard.tsx:69
+msgid "Pool:"
+msgstr ""
+
+#: src/components/dashboard/DashboardSideBar.tsx:103
+#: src/components/plotNFT/PlotNFTExternalState.tsx:25
+#: src/components/plotNFT/PlotNFTState.tsx:57
+msgid "Pooling"
+msgstr ""
+
+#: src/components/farm/FarmFullNodeConnections.tsx:37
+#: src/components/farm/FarmYourHarvesterNetwork.tsx:37
+#: src/components/fullNode/FullNodeAddConnection.tsx:95
+#: src/components/fullNode/FullNodeConnections.tsx:38
+msgid "Port"
+msgstr "Порт"
+
+#: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:93
+#: src/components/plotNFT/PlotNFTChangePool.tsx:75
+msgid "Preparing Plot NFT"
+msgstr ""
+
+#: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:101
+msgid "Preparing standard wallet"
+msgstr ""
+
+#: src/components/nfts/NFTPreview.tsx:406
+#: src/components/nfts/NFTPreview.tsx:417
+#: src/components/offers2/OfferBuilderNFT.tsx:84
+msgid "Preview"
+msgstr ""
+
+#: src/components/nfts/NFTPreview.tsx:621
+msgid "Preview URL is not valid"
+msgstr ""
+
+#: src/components/nfts/NFTDetails.tsx:315
+msgid "Preview image uris"
+msgstr ""
+
+#: src/components/nfts/NFTDetails.tsx:331
+msgid "Preview video uris"
+msgstr ""
+
+#: src/components/block/Block.jsx:256
+#: src/components/nfts/detail/NFTDetailV2.tsx:245
+msgid "Previous"
+msgstr "Назад"
+
+#: src/components/block/Block.jsx:177
+msgid "Previous Header Hash"
+msgstr "Претходно хеш заглавље"
+
+#: src/components/settings/ProfileView.tsx:57
+msgid "Profile Name"
+msgstr ""
+
+#: src/components/settings/Settings.tsx:66
+#: src/components/settings/SettingsProfiles.tsx:55
+msgid "Profiles"
+msgstr ""
+
+#: src/components/block/Block.jsx:202
+msgid "Proof of Space Size"
+msgstr "Доказ о величина простора"
+
+#: src/components/farm/FarmLastAttemptedProof.tsx:25
+msgid "Proofs Found"
+msgstr "Пронађени докази"
+
+#: src/components/nfts/NFTProperties.tsx:101
+msgid "Properties"
+msgstr ""
+
+#: src/components/pool/PoolInfo.tsx:23
+msgid "Protocol Version"
+msgstr ""
+
+#: src/components/settings/SettingsAdvanced.tsx:85
+msgid "Prove or verify possession of a wallet address, NFT, or DID using a digital signature."
+msgstr ""
+
+#: src/components/signVerify/VerifyMessage.tsx:219
+msgid "Public Key"
+msgstr ""
+
+#: src/components/offers/NFTOfferViewer.tsx:469
+msgid "Purchase Summary"
+msgstr ""
+
+#: src/components/plot/PlotPlotting.tsx:22
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:216
+msgid "Queue Name"
+msgstr "Назив реда"
+
+#: src/components/plot/queue/PlotQueueIndicator.tsx:36
+msgid "Queued"
+msgstr "У ред"
+
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:113
+msgid "RAM max usage"
+msgstr "Максимална меморија"
+
+#: src/components/nfts/NFTRankings.tsx:74
+msgid "Rankings"
+msgstr ""
+
+#: src/components/settings/SettingsNotifications.tsx:31
+msgid "Receive push notifications when your wallet is minimized"
+msgstr ""
+
+#: src/components/app/AppSelectMode.tsx:103
+msgid "Recommended"
+msgstr ""
+
+#: src/components/settings/ProfileAdd.tsx:114
+msgid "Recommended: 0.000005 XCH"
+msgstr ""
+
+#: src/components/nfts/NFTContextualActions.tsx:602
+msgid "Refresh NFT data"
+msgstr ""
+
+#: src/components/plot/overview/PlotOverviewHero.tsx:46
+#: src/components/plot/overview/PlotOverviewPlots.tsx:57
+msgid "Refresh Plots"
+msgstr "Освежи плотове"
+
+#: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:178
+#: src/hooks/useWalletConnectCommand.tsx:78
+msgid "Reject"
+msgstr ""
+
+#: src/components/pool/PoolInfo.tsx:33
+msgid "Relative Lock Height"
+msgstr ""
+
+#: src/electron/main.tsx:1059
+msgid "Release Notes"
+msgstr "Напомене о издању"
+
+#: src/components/plot/PlotHarvester.tsx:60
+msgid "Remote"
+msgstr ""
+
+#: src/components/settings/RemovePassphrasePrompt.tsx:116
+#: src/components/settings/RemovePassphrasePrompt.tsx:171
+#: src/components/settings/SettingsPanel.tsx:147
+msgid "Remove Passphrase"
+msgstr ""
+
+#: src/components/app/AppKeyringMigrator.tsx:246
+msgid "Remove keys from old keyring upon successful migration"
+msgstr ""
+
+#: src/components/plot/queue/PlotQueueIndicator.tsx:37
+msgid "Removing"
+msgstr "Уклањање"
+
+#: src/electron/main.tsx:1074
+msgid "Report an Issue..."
+msgstr "Пријави проблем..."
+
+#: src/components/offers/OfferManager.tsx:281
+msgid "Requested"
+msgstr ""
+
+#: src/components/offers2/OfferBuilderTradeColumn.tsx:29
+#: src/components/offers2/OfferIncomingTable.tsx:43
+msgid "Requesting"
+msgstr ""
+
+#: src/components/offers/NFTOfferEditor.tsx:439
+#: src/components/offers/OfferEditor.tsx:174
+#: src/components/signVerify/VerifyMessage.tsx:266
+msgid "Reset"
+msgstr ""
+
+#: src/components/nfts/NFTPreview.tsx:663
+msgid "Response too large"
+msgstr ""
+
+#: src/components/settings/SettingsAdvanced.tsx:102
+msgid "Resync"
+msgstr ""
+
+#: src/components/settings/ResyncPrompt.tsx:37
+#: src/components/settings/SettingsAdvanced.tsx:94
+msgid "Resync Wallet"
+msgstr ""
+
+#: src/components/settings/SettingsAdvanced.tsx:110
+msgid "Resyncing forces reloading data from the blockchain about your transactions without losing other locally stored information like open, accepted, or cancelled offer files. Resyncing will require you to restart the app."
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:201
+msgid "Reverse"
+msgstr ""
+
+#: src/components/offers2/OfferBuilderNFTRoyalties.tsx:93
+msgid "Royalties are built into the NFT, so they will automatically be accounted for when the offer is created/accepted."
+msgstr ""
+
+#: src/components/nfts/NFTDetails.tsx:159
+msgid "Royalty Percentage"
+msgstr ""
+
+#: src/components/app/AppSelectMode.tsx:139
+msgid "Runs the full node"
+msgstr ""
+
+#: src/components/farm/FarmManageFarmingRewards.tsx:166
+#: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:113
+#: src/components/settings/SettingsDerivationIndex.tsx:85
+msgid "Save"
+msgstr "Сачувај"
+
+#: src/components/offers/OfferManager.tsx:348
+msgid "Save Offer File"
+msgstr ""
+
+#: src/components/signVerify/SignMessageResultDialog.tsx:63
+msgid "Save To File"
+msgstr ""
+
+#: src/components/app/AppKeyringMigrator.tsx:225
+#: src/components/settings/ChangePassphrasePrompt.tsx:273
+#: src/components/settings/SetPassphrasePrompt.tsx:241
+msgid "Save passphrase"
+msgstr ""
+
+#: src/components/fullNode/FullNodeBlockSearch.tsx:38
+msgid "Search block by header hash"
+msgstr "Претражи блок по хешу заглавља"
+
+#: src/components/offers/OfferSummaryRow.tsx:171
+#: src/components/offers2/OfferBuilderValue.tsx:103
+msgid "Search on Tail Database"
+msgstr ""
+
+#: src/components/nfts/gallery/NFTGallery.tsx:520
+msgid "Search..."
+msgstr ""
+
+#: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:109
+msgid "Second temporary folder location"
+msgstr "Локација другог привременог фолдера"
+
+#: src/constants/WalletConnectCommands.tsx:265
+msgid "Secure"
+msgstr ""
+
+#: src/components/settings/SettingsPanel.tsx:95
+msgid "Secure your keychain using a strong passphrase"
+msgstr ""
+
+#: src/components/notification/NotificationsMenu.tsx:60
+msgid "See All Activity"
+msgstr ""
+
+#: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:103
+msgid "Select 2nd Temporary Directory"
+msgstr "Изабери други привремени фолдер"
+
+#: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:33
+msgid "Select Final Directory"
+msgstr "Изабери крајњи фолдер"
+
+#: src/components/offers/OfferImport.tsx:160
+msgid "Select Offer File"
+msgstr ""
+
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:249
+#: src/components/signVerify/SigningEntityDID.tsx:73
+msgid "Select Profile"
+msgstr ""
+
+#: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:48
+msgid "Select Temporary Directory"
+msgstr "Изабери привремени директоријум"
+
+#: src/components/app/AppSelectMode.tsx:56
+msgid "Select Your Client Mode"
+msgstr ""
+
+#: src/components/nfts/gallery/NFTGallery.tsx:475
+msgid "Select all"
+msgstr ""
+
+#: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:141
+msgid "Select keys which you want to share with WalletConnect"
+msgstr ""
+
+#: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:35
+msgid "Select the final destination for the folder where you would like the plot to be stored. We recommend you use a large slow hard drive (like external HDD)."
+msgstr "Изабери локацију фолдера где ће готов плот бити сачуван. Препоручујемо да користиш велики спори хард-диск (нпр. екстерни диск)."
+
+#: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:50
+msgid "Select the temporary destination for the folder where you would like the plot to be stored. We recommend you use a fast drive."
+msgstr "Изабери локацију фолдера у ком желиш да се плот чува током обраде. Препоручујемо да користиш брзе SSD дискове."
+
+#: src/components/plot/add/PlotAddNFT.tsx:76
+msgid "Select your Plot NFT"
+msgstr ""
+
+#: src/components/plot/add/PlotAddNFT.tsx:69
+msgid "Select your Plot NFT from the dropdown or create a new one."
+msgstr ""
+
+#: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:71
+#: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:79
+#: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:124
+msgid "Selected"
+msgstr "Изабрано"
+
+#: src/components/plotNFT/PlotNFTExternalState.tsx:24
+#: src/components/plotNFT/PlotNFTState.tsx:55
+msgid "Self Pooling"
+msgstr ""
+
+#: src/components/plotNFT/select/PlotNFTSelectBase.tsx:86
+msgid "Self pool. When you win a block you will earn XCH rewards."
+msgstr ""
+
+#: src/components/offers/NFTOfferEditor.tsx:313
+msgid "Sell an NFT"
+msgstr ""
+
+#: src/components/notification/NotificationSendDialog.tsx:294
+msgid "Send Message"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:75
+msgid "Send Transaction"
+msgstr ""
+
+#: src/components/notification/NotificationSendDialog.tsx:178
+msgid "Send offer notification"
+msgstr ""
+
+#: src/components/nfts/NFTBurnDialog.tsx:159
+#: src/components/nfts/NFTTransferAction.tsx:149
+msgid "Send to Address"
+msgstr ""
+
+#: src/components/settings/SetPassphrasePrompt.tsx:159
+#: src/components/settings/SetPassphrasePrompt.tsx:269
+#: src/components/settings/SettingsPanel.tsx:153
+msgid "Set Passphrase"
+msgstr ""
+
+#: src/components/dashboard/DashboardSideBar.tsx:113
+#: src/components/settings/Settings.tsx:56
+msgid "Settings"
+msgstr ""
+
+#: src/components/offers/OfferManager.tsx:314
+#: src/components/offers/OfferShareDialog.tsx:1198
+#: src/components/offers/OfferShareDialog.tsx:1373
+msgid "Share"
+msgstr ""
+
+#: src/components/offers/OfferShareDialog.tsx:1520
+msgid "Share Offer"
+msgstr ""
+
+#: src/components/offers/OfferShareDialog.tsx:804
+msgid "Share Privately"
+msgstr ""
+
+#: src/components/offers/OfferShareDialog.tsx:642
+msgid "Share on Dexie"
+msgstr ""
+
+#: src/components/offers/OfferShareDialog.tsx:881
+msgid "Share on Hashgreen DEX"
+msgstr ""
+
+#: src/components/offers/OfferShareDialog.tsx:1160
+msgid "Share on Keybase"
+msgstr ""
+
+#: src/components/offers/OfferShareDialog.tsx:715
+msgid "Share on MintGarden"
+msgstr ""
+
+#: src/components/offers/OfferShareDialog.tsx:789
+msgid "Share on OfferBin"
+msgstr ""
+
+#: src/components/offers/OfferShareDialog.tsx:975
+msgid "Share on Spacescan.io"
+msgstr ""
+
+#: src/components/offers/OfferShareDialog.tsx:1295
+msgid "Share on offerpool"
+msgstr ""
+
+#: src/components/nfts/NFTContextualActions.tsx:499
+msgid "Show"
+msgstr ""
+
+#: src/components/offers/OfferManager.tsx:328
+msgid "Show Details"
+msgstr ""
+
+#: src/components/nfts/NFTPreview.tsx:667
+msgid "Show Preview"
+msgstr ""
+
+#: src/components/nfts/gallery/NFTGallery.tsx:541
+msgid "Showing {0} of {1} items"
+msgstr ""
+
+#: src/components/settings/ResyncPrompt.tsx:52
+msgid "Shut down"
+msgstr ""
+
+#: src/components/signVerify/SignMessage.tsx:208
+msgid "Sign"
+msgstr ""
+
+#: src/components/signVerify/SignVerifyDialog.tsx:23
+msgid "Sign Message"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:131
+msgid "Sign Message by Address"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:114
+msgid "Sign Message by Id"
+msgstr ""
+
+#: src/components/signVerify/VerifyMessage.tsx:228
+msgid "Signature"
+msgstr ""
+
+#: src/components/signVerify/VerifyMessage.tsx:197
+msgid "Signature Details"
+msgstr ""
+
+#: src/components/signVerify/VerifyMessage.tsx:161
+msgid "Signature Status:"
+msgstr ""
+
+#: src/components/signVerify/VerifyMessage.tsx:123
+msgid "Signature Verified"
+msgstr ""
+
+#: src/components/settings/SettingsAdvanced.tsx:60
+msgid "Signatures"
+msgstr ""
+
+#: src/components/signVerify/VerifyMessage.tsx:129
+msgid "Signed By:"
+msgstr ""
+
+#: src/components/signVerify/SignMessageResultDialog.tsx:35
+msgid "Signed Message"
+msgstr ""
+
+#: src/components/signVerify/VerifyMessageImport.tsx:87
+msgid "Signed message file is too large (> 10MB)"
+msgstr ""
+
+#: src/components/signVerify/VerifyMessage.tsx:248
+msgid "Signing Address (Optional)"
+msgstr ""
+
+#: src/components/signVerify/SignMessage.tsx:164
+msgid "Signing Entity"
+msgstr ""
+
+#: src/components/signVerify/VerifyMessage.tsx:237
+msgid "Signing Mode"
+msgstr ""
+
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:240
+msgid "Size of cache to reserve for I/O"
+msgstr ""
+
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:439
+msgid "Skips adding a final directory to harvester for farming"
+msgstr "Прескаче додавање коначног фолдера сакупљачу за фармање"
+
+#: src/components/pool/PoolHero.tsx:21
+msgid "Smooth out your XCH farming rewards by joining a pool."
+msgstr ""
+
+#: src/components/notification/NotificationNFTTitle.tsx:30
+msgid "Something went wrong"
+msgstr ""
+
+#: src/components/offers/OfferShareDialog.tsx:935
+msgid "Spacescan.io URL"
+msgstr ""
+
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:134
+msgid "Specify a value of 0 to use all available threads"
+msgstr ""
+
+#: src/components/signVerify/SignMessage.tsx:21
+msgid "Specify a wallet address, NFT, or DID to sign with"
+msgstr ""
+
+#: src/electron/main.tsx:1149
+msgid "Speech"
+msgstr "Говор"
+
+#: src/constants/WalletConnectCommands.tsx:377
+msgid "Spend CAT"
+msgstr ""
+
+#: src/components/offers2/OfferBuilderWalletBalance.tsx:44
+msgid "Spendable Balance: {0}"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:183
+msgid "Start"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:195
+msgid "Start Key"
+msgstr ""
+
+#: src/components/app/AppState.tsx:251
+msgid "Starting services"
+msgstr ""
+
+#: src/components/settings/SettingsStartup.tsx:16
+msgid "Startup"
+msgstr ""
+
+#: src/components/fullNode/FullNode.jsx:79
+msgid "State"
+msgstr "Стање"
+
+#: src/components/fullNode/card/FullNodeCardStatus.tsx:69
+#: src/components/fullNode/card/FullNodeCardStatus.tsx:74
+#: src/components/offers/OfferManager.tsx:251
+#: src/components/plot/PlotHarvesterPlots.tsx:74
+#: src/components/plot/PlotPlotting.tsx:26
+#: src/components/plotNFT/PlotExternalNFTCard.tsx:100
+#: src/components/plotNFT/PlotNFTCard.tsx:128
+msgid "Status"
+msgstr "Статус"
+
+#: src/components/app/AppSelectMode.tsx:78
+msgid "Store and Send XCH"
+msgstr ""
+
+#: src/components/app/AppPassPrompt.tsx:111
+msgid "Submit"
+msgstr "Пошаљи"
+
+#: src/components/notification/NotificationSendDialog.tsx:142
+#: src/hooks/useAcceptOfferHook.tsx:54
+msgid "Success"
+msgstr ""
+
+#: src/components/settings/LimitCacheSize.tsx:63
+msgid "Successfully updated cache size limit."
+msgstr ""
+
+#: src/components/settings/SettingsDerivationIndex.tsx:54
+msgid "Successfully updated the derivation index. Your balances may take a while to update."
+msgstr ""
+
+#: src/components/fullNode/card/FullNodeCardStatus.tsx:50
+msgid "Synced"
+msgstr "Синхронизовано"
+
+#: src/components/farm/card/FarmCardStatus.tsx:18
+#: src/components/plot/PlotStatus.tsx:19
+msgid "Syncing"
+msgstr "Синхронизација"
+
+#: src/components/fullNode/card/FullNodeCardStatus.tsx:27
+msgid "Syncing <0/>/<1/>"
+msgstr "Синхронизација<0/>/<1/>"
+
+#: src/constants/WalletConnectCommands.tsx:290
+msgid "Take Offer"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:483
+msgid "Target Address"
+msgstr ""
+
+#: src/components/pool/PoolInfo.tsx:38
+msgid "Target Puzzle Hash"
+msgstr ""
+
+#: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:60
+msgid "Temporary folder location"
+msgstr "Локација привременог фолдера"
+
+#: src/components/app/AppVersionWarning.tsx:35
+msgid "The Chia application and its services are using different versions. Some functionality may not be behave properly as a result.<0/><1/>Chia services version: {backV}<2/>Chia application version: {guiV}<3/><4/>It is recommended that you quit the Chia application and stop all Chia services."
+msgstr ""
+
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:210
+msgid "The NFT move failed: {err}"
+msgstr ""
+
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:203
+msgid "The NFT move transaction has been successfully submitted to the blockchain."
+msgstr ""
+
+#: src/components/nfts/NFTContextualActions.tsx:261
+msgid "The NFT status has been updated. If the transaction was successfully sent to the mempool, it may still complete."
+msgstr ""
+
+#: src/components/nfts/NFTContextualActions.tsx:271
+msgid "The NFT status update failed: {err}"
+msgstr ""
+
+#: src/components/nfts/NFTContextualActions.tsx:183
+msgid "The NFT transfer failed: {error}"
+msgstr ""
+
+#: src/components/nfts/NFTContextualActions.tsx:176
+msgid "The NFT transfer transaction has been successfully submitted to the blockchain."
+msgstr ""
+
+#: src/components/settings/SettingsPanel.tsx:165
+msgid "The derivation index sets the range of wallet addresses that the wallet scans the blockchain for. This number is generally higher if you have a lot of transactions or canceled offers for XCH, CATs, or NFTs. If you believe your balance is incorrect because it’s missing coins, then increasing the derivation index could help the wallet include the missing coins in the balance total."
+msgstr ""
+
+#: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:88
+#: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:137
+msgid "The folder is on a RAM Disk"
+msgstr ""
+
+#: src/components/farm/FarmFullNodeConnections.tsx:77
+msgid "The full node that your farmer is connected to is below. <0>Learn more</0>"
+msgstr "Пуни чвор на ком је повезан фармер је испод. <0>Сазнај више</0>"
+
+#: src/components/plot/add/PlotAddChooseSize.tsx:46
+#: src/components/plot/add/PlotAddChooseSize.tsx:98
+msgid "The minimum required size for mainnet is k=32"
+msgstr "Минимална величина за плот је к=32"
+
+#: src/components/offers/NFTOfferViewer.tsx:584
+msgid "The net proceeds include the asking price, minus any associated creator fees (if the NFT has royalty payments enabled)."
+msgstr ""
+
+#: src/components/fullNode/card/FullNodeCardStatus.tsx:16
+#: src/components/fullNode/card/FullNodeCardStatus.tsx:46
+msgid "The node is not synced"
+msgstr "Чвор није синхронизован"
+
+#: src/components/fullNode/card/FullNodeCardStatus.tsx:35
+msgid "The node is syncing, which means it is downloading blocks from other nodes, to reach the latest block in the chain"
+msgstr "Чвор се синхронизује, што значи да преузима блокове од осталих чворова да би дошао до последњег блока у ланцу"
+
+#: src/hooks/usePoolInfo.ts:54
+msgid "The pool URL \"{normalizedUrl}\" is not working. Is it pool? Error: {0}"
+msgstr ""
+
+#: src/hooks/usePoolInfo.ts:43
+msgid "The pool URL is not valid. {normalizedUrl}"
+msgstr ""
+
+#: src/hooks/usePoolInfo.ts:40
+msgid "The pool URL needs to use protocol https. {normalizedUrl}"
+msgstr ""
+
+#: src/components/plotNFT/PlotNFTState.tsx:30
+msgid "The pool switching operation was cancelled, please try again by changing pool, or self pooling"
+msgstr ""
+
+#: src/components/block/Block.jsx:224
+msgid "The seed used to create the plot. This depends on the pool pk and plot pk."
+msgstr "Семе које се користи да се направи плот. Ово зависи од заједничког јавног кључа и јавног кључа плота."
+
+#: src/components/signVerify/VerifyMessage.tsx:135
+msgid "The signature was made by the private key associated with the wallet address. The signer can be assumed to be the owner of the private key."
+msgstr ""
+
+#: src/components/offers/NFTOfferViewer.tsx:558
+msgid "The total amount offered includes the offered purchase price, plus the optional offer creation fee.<0/>If the NFT has royalty payments enabled, those creator fees will be paid from the offered purchase price."
+msgstr ""
+
+#: src/components/offers/NFTOfferEditor.tsx:400
+msgid "The total amount offered includes the price you're willing to pay for the NFT, plus the optional offer creation fee. One or more coins totalling at least the amount shown below will be deducted from your spendable balance upon offer creation.<0/>If the NFT has royalty payments enabled, those creator fees will be paid by the party that accepts the offer."
+msgstr ""
+
+#: src/components/offers/NFTOfferEditor.tsx:391
+msgid "The total amount requested includes the asking price, plus the associated creator fees (if the NFT has royalty payments enabled). Creator fees will be paid by the party that accepts the offer.<0/>The optional offer creation fee is not included in this total, and will be deducted from your spendable balance upon offer creation."
+msgstr ""
+
+#: src/components/offers/NFTOfferViewer.tsx:547
+msgid "The total amount requested includes the asking price, plus the associated creator fees (if the NFT has royalty payments enabled).{0}"
+msgstr ""
+
+#: src/components/block/Block.jsx:188
+msgid "The total number of VDF (verifiable delay function) or proof of time iterations on the whole chain up to this block."
+msgstr ""
+
+#: src/components/block/Block.jsx:198
+msgid "The total number of VDF (verifiable delay function) or proof of time iterations on this block."
+msgstr "Укупан број VDF (проверљива функција одлагања) или доказ о временским понављањима овог блока."
+
+#: src/components/block/Block.jsx:241
+msgid "The total transactions fees in this block. Rewarded to the farmer."
+msgstr "Укупне накнаде за трансакције у овом блоку. Награда иде фармеру."
+
+#: src/components/plotNFT/PlotNFTPayoutInstructionsDialog.tsx:91
+msgid "These are the instructions for how the farmer wants to get paid. By default this will be an XCH address, but it can be set to any string with a size of less than 1024 characters, so it can represent another blockchain or payment system identifier."
+msgstr ""
+
+#: src/components/plot/card/PlotCardPlotsFailedToOpen.tsx:13
+msgid "These plots are invalid, you might want to delete them."
+msgstr "Плотови нису валидни, можда би требало да их обришеш."
+
+#: src/components/offers/NFTOfferEditor.tsx:365
+msgid "They will receive"
+msgstr ""
+
+#: src/components/plot/PlotAddDirectoryDialog.tsx:87
+msgid "This allows you to add a directory that has plots in it. If you have not created any plots, go to the plotting screen."
+msgstr "Ово ти омогућава да додаш фолдер који садржи плотове. Ако још немаш креиран ниједан плот, иди на прозор за њихово креирање."
+
+#: src/components/plotNFT/PlotExternalNFTCard.tsx:113
+#: src/components/plotNFT/PlotNFTCard.tsx:146
+msgid "This difficulty is an artifically lower difficulty than on the real network, and is used when farming, in order to find more proofs and send them to the pool. The more plots you have, the higher difficulty you will have. However, the difficulty does not affect rewards."
+msgstr ""
+
+#: src/hooks/useSelectDirectory.tsx:32
+msgid "This feature is available only from the GUI."
+msgstr "Ова опција је доступна само кроз корисничко окружење."
+
+#: src/components/block/Block.jsx:162
+msgid "This is the time the block was created by the farmer, which is before it is finalized with a proof of time"
+msgstr "Ово је време када је фармер креирао блок, и то пре него што је финализован доказом о времену"
+
+#: src/components/fullNode/card/FullNodeCardPeakTime.tsx:17
+msgid "This is the timestamp of the most recent transaction block."
+msgstr ""
+
+#: src/components/plotNFT/PlotExternalNFTCard.tsx:130
+#: src/components/plotNFT/PlotNFTCard.tsx:163
+msgid "This is the total number of points this plotNFT has with this pool, since the last payout. The pool will reset the points after making a payout."
+msgstr ""
+
+#: src/components/plotNFT/PlotExternalNFTCard.tsx:146
+#: src/components/plotNFT/PlotNFTCard.tsx:179
+msgid "This is the total number of points your farmer has found for this plot NFT. Each k32 plot will get around 10 points per day, so if you have 10TiB, should should expect around 1000 points per day, or 41 points per hour."
+msgstr ""
+
+#: src/components/fullNode/card/FullNodeCardStatus.tsx:52
+msgid "This node is fully caught up and validating the network"
+msgstr "Пун чвор је достигнут и верификује мрежу"
+
+#: src/components/offers/NFTOfferViewer.tsx:212
+#: src/components/offers/OfferSummary.tsx:182
+msgid "This offer has a fee included to help expedite the transaction when the offer is accepted."
+msgstr ""
+
+#: src/components/offers/NFTOfferViewer.tsx:207
+#: src/components/offers/OfferSummary.tsx:177
+msgid "This offer has a fee included to help expedite the transaction when the offer is accepted. You may specify an additional fee if you feel that the included fee is too small."
+msgstr ""
+
+#: src/components/offers/OfferHeader.tsx:63
+#: src/components/offers2/OfferBuilderViewer.tsx:164
+msgid "This offer has completed successfully"
+msgstr ""
+
+#: src/components/offers/OfferHeader.tsx:46
+#: src/components/offers2/OfferBuilderViewer.tsx:151
+msgid "This offer is no longer valid. To understand why, click <0>here</0> to learn more."
+msgstr ""
+
+#: src/components/offers2/OfferBuilderViewer.tsx:168
+msgid "This offer was cancelled"
+msgstr ""
+
+#: src/components/plotNFT/PlotExternalNFTCard.tsx:267
+msgid "This plot NFT is assigned to a different key. You can still create plots for this plot NFT, but you can not make changes."
+msgstr ""
+
+#: src/components/farm/FarmLastAttemptedProof.tsx:48
+msgid "This table shows you the last time your farm attempted to win a block challenge. <0>Learn more</0>"
+msgstr "Ова табела ти показује када је твоја фарма последњи пут покушала да победи у блок изазову. <0> Сазнај више </0>"
+
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:151
+msgid "Thread Multiplier for Phase 2"
+msgstr ""
+
+#: src/components/nfts/NFTPreview.tsx:629
+msgid "Thumbnail hash mismatch"
+msgstr ""
+
+#: src/components/fullNode/FullNode.jsx:71
+msgid "Time Created"
+msgstr "Време креирања"
+
+#: src/components/block/Block.jsx:159
+msgid "Timestamp"
+msgstr "Временска ознака"
+
+#: src/components/nfts/NFTCard.tsx:99
+#: src/components/nfts/NFTSummary.tsx:136
+#: src/components/nfts/NFTTitle.tsx:19
+#: src/components/nfts/detail/NFTDetailV2.tsx:273
+#: src/components/offers2/OfferBuilderValueSearch.tsx:137
+msgid "Title Not Available"
+msgstr ""
+
+#: src/components/settings/ResyncPrompt.tsx:41
+msgid "To initiate a wallet resync, all Chia services must first be shut down. After shutting down, you will be required to restart Chia to begin the resyncing process. Are you sure you want to shut down and resync?"
+msgstr ""
+
+#: src/components/settings/ProfileView.tsx:127
+msgid "Token Standard"
+msgstr ""
+
+#: src/components/dashboard/DashboardSideBar.tsx:51
+#: src/components/offers2/OfferBuilderTokensSection.tsx:113
+msgid "Tokens"
+msgstr ""
+
+#: src/components/plotNFT/select/PlotNFTSelectPool.tsx:111
+msgid "Too Many Plot NFTs"
+msgstr ""
+
+#: src/components/offers2/OfferBuilderWalletAmount.tsx:36
+msgid "Total Amount"
+msgstr ""
+
+#: src/components/offers/NFTOfferEditor.tsx:385
+#: src/components/offers/NFTOfferViewer.tsx:541
+msgid "Total Amount Offered"
+msgstr ""
+
+#: src/components/offers/NFTOfferEditor.tsx:383
+#: src/components/offers/NFTOfferViewer.tsx:537
+msgid "Total Amount Requested"
+msgstr ""
+
+#: src/components/offers2/OfferBuilderAmountWithRoyalties.tsx:31
+msgid "Total Amount with Royalties"
+msgstr ""
+
+#: src/components/farm/card/FarmCardTotalChiaFarmed.tsx:27
+msgid "Total Chia Farmed"
+msgstr ""
+
+#: src/components/plot/card/PlotCardTotalHarvesters.tsx:11
+msgid "Total Harvesters"
+msgstr ""
+
+#: src/components/fullNode/card/FullNodeCardTotalIterations.tsx:14
+msgid "Total Iterations"
+msgstr "Укупно понављања"
+
+#: src/components/farm/card/FarmCardTotalNetworkSpace.tsx:12
+msgid "Total Network Space"
+msgstr "Укупни простор на мрежи"
+
+#: src/components/plot/card/PlotCardTotalPlots.tsx:11
+msgid "Total Plots"
+msgstr ""
+
+#: src/components/plot/card/PlotCardTotalPlotsSize.tsx:11
+msgid "Total Plots Size"
+msgstr ""
+
+#: src/components/farm/card/FarmCardTotalSizeOfPlots.tsx:11
+msgid "Total Size of Plots"
+msgstr "Укупна величина плотова"
+
+#: src/components/block/Block.jsx:185
+msgid "Total VDF Iterations"
+msgstr "Укупно VDF понављања"
+
+#: src/components/offers2/OfferBuilderRoyaltyPayouts.tsx:32
+msgid "Total amount including royalties"
+msgstr ""
+
+#: src/components/fullNode/card/FullNodeCardTotalIterations.tsx:15
+msgid "Total iterations since the start of the blockchain"
+msgstr "Укупно понављања од почетка блокчејна"
+
+#: src/components/nfts/MultipleDownloadDialog.tsx:67
+msgid "Total size of downloaded files:"
+msgstr ""
+
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:362
+msgid "Touch all pages of buffer allocations before starting to plot."
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:260
+msgid "Trade Id"
+msgstr ""
+
+#: src/components/app/AppSelectMode.tsx:90
+msgid "Trade tokens"
+msgstr ""
+
+#: src/components/notification/NotificationSendDialog.tsx:250
+msgid "Transaction Fee"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:38
+msgid "Transaction Id"
+msgstr ""
+
+#: src/components/offers2/OfferBuilderFeeSection.tsx:65
+msgid "Transaction Speed"
+msgstr ""
+
+#: src/components/block/Block.jsx:227
+msgid "Transactions Filter Hash"
+msgstr "Хеш за филтер трансакције"
+
+#: src/components/nfts/NFTTransferAction.tsx:169
+#: src/components/nfts/NFTTransferConfirmationDialog.tsx:37
+msgid "Transfer"
+msgstr ""
+
+#: src/components/nfts/NFTContextualActions.tsx:200
+#: src/components/nfts/NFTTransferAction.tsx:217
+#: src/constants/WalletConnectCommands.tsx:463
+msgid "Transfer NFT"
+msgstr ""
+
+#: src/components/settings/SettingsDataLayer.tsx:51
+msgid "Turn on/off the DataLayer service."
+msgstr ""
+
+#: src/components/settings/SettingsNotifications.tsx:47
+msgid "Turn on/off the ability to show you notifications on the desktop."
+msgstr ""
+
+#: src/components/nfts/gallery/NFTGallery.tsx:550
+msgid "Types ({0}/{1})"
+msgstr ""
+
+#: src/hooks/useOpenUnsafeLink.tsx:43
+msgid "URL"
+msgstr ""
+
+#: src/components/offers/NFTOfferEditor.tsx:638
+msgid "Unable to create an offer for an NFT that you do not own."
+msgstr ""
+
+#: src/components/offers/NFTOfferEditor.tsx:647
+msgid "Unable to create an offer for an NFT with a creator royalty percentage greater than 100%"
+msgstr ""
+
+#: src/components/offers/NFTOfferEditor.tsx:374
+msgid "Unable to create an offer where the net amount is negative"
+msgstr ""
+
+#: src/components/signVerify/SignMessage.tsx:110
+msgid "Unable to find DID {entityId}"
+msgstr ""
+
+#: src/components/signVerify/SignMessage.tsx:108
+msgid "Unable to find NFT {entityId}"
+msgstr ""
+
+#: src/components/offers/OfferShareDialog.tsx:1099
+msgid "Unable to open Keybase. Install Keybase from https://keybase.io"
+msgstr ""
+
+#: src/components/offers/OfferShareDialog.tsx:1002
+msgid "Unable to open browser. Install Keybase from https://keybase.io"
+msgstr ""
+
+#: src/components/nfts/NFTDetails.tsx:141
+#: src/components/nfts/NFTDetails.tsx:162
+#: src/components/nfts/NFTDetails.tsx:205
+msgid "Unassigned"
+msgstr ""
+
+#: src/components/nfts/NFTProfileDropdown.tsx:86
+#: src/components/nfts/NFTProfileDropdown.tsx:121
+msgid "Unassigned NFTs"
+msgstr ""
+
+#: src/components/plotNFT/PlotNFTCard.tsx:133
+msgid "Unclaimed Rewards"
+msgstr ""
+
+#: src/components/fullNode/FullNode.jsx:77
+msgid "Unfinished"
+msgstr "Незавршено"
+
+#: src/components/offers/utils.ts:163
+#: src/components/offers2/OfferBuilderTokenSelector.tsx:66
+msgid "Unknown"
+msgstr ""
+
+#: src/components/walletConnect/WalletConnectConnections.tsx:71
+#: src/components/walletConnect/WalletConnectMetadata.tsx:17
+msgid "Unknown Application"
+msgstr ""
+
+#: src/components/offers/NFTOfferViewer.tsx:368
+#: src/components/offers/OfferSummaryRow.tsx:141
+#: src/components/offers/OfferSummaryRow.tsx:142
+#: src/components/walletConnect/WalletConnectCATAmount.tsx:20
+#: src/util/resolveOfferInfo.ts:22
+msgid "Unknown CAT"
+msgstr ""
+
+#: src/components/app/AppPassPrompt.tsx:93
+msgid "Unlock Keyring"
+msgstr ""
+
+#: src/components/offers/NFTOfferViewer.tsx:139
+msgid "Unrecognized asset"
+msgstr ""
+
+#: src/components/settings/LimitCacheSize.tsx:91
+msgid "Update"
+msgstr ""
+
+#: src/components/nfts/NFTPreview.tsx:625
+msgid "Update Pending"
+msgstr ""
+
+#: src/components/nfts/detail/NFTDetailV2.tsx:227
+msgid "Use left and right arrow keys to navigate"
+msgstr ""
+
+#: src/components/farm/card/FarmCardUserFees.tsx:28
+msgid "User Transaction Fees"
+msgstr ""
+
+#: src/components/fullNode/card/FullNodeCardVDFSubSlotIterations.tsx:14
+msgid "VDF Sub Slot Iterations"
+msgstr "Подслотови VDF понављања"
+
+#: src/components/signVerify/VerifyMessage.tsx:165
+msgid "Valid"
+msgstr ""
+
+#: src/components/nfts/detail/NFTDetailV2.tsx:197
+msgid "Validate SHA256 SUM"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:241
+msgid "Validate only"
+msgstr ""
+
+#: src/components/nfts/detail/NFTDetailV2.tsx:175
+msgid "Validating hash..."
+msgstr ""
+
+#: src/components/signVerify/VerifyMessage.tsx:123
+msgid "Verification Failed"
+msgstr ""
+
+#: src/components/signVerify/VerifyMessage.tsx:274
+msgid "Verify"
+msgstr ""
+
+#: src/components/signVerify/SignVerifyDialog.tsx:23
+msgid "Verify Message"
+msgstr ""
+
+#: src/components/plotNFT/select/PlotNFTSelectBase.tsx:126
+msgid "Verify Pool Details"
+msgstr ""
+
+#: src/components/settings/SettingsAdvanced.tsx:77
+msgid "Verify Signature"
+msgstr ""
+
+#: src/components/offers2/OfferIncomingTable.tsx:90
+#: src/electron/main.tsx:982
+msgid "View"
+msgstr "Преглед"
+
+#: src/components/plot/queue/PlotQueueActions.tsx:58
+#: src/components/plot/queue/PlotQueueLogDialog.tsx:44
+msgid "View Log"
+msgstr "Погледај евиденцију"
+
+#: src/components/offers/OfferManager.tsx:460
+msgid "View Offer"
+msgstr ""
+
+#: src/components/plotNFT/PlotNFTCard.tsx:240
+msgid "View Pool Login Link"
+msgstr ""
+
+#: src/components/offers/OfferImport.tsx:184
+msgid "View an Offer"
+msgstr ""
+
+#: src/components/offers/OfferShareDialog.tsx:618
+msgid "View on Dexie"
+msgstr ""
+
+#: src/components/offers/OfferShareDialog.tsx:862
+msgid "View on Hashgreen DEX"
+msgstr ""
+
+#: src/components/nfts/NFTContextualActions.tsx:671
+#: src/components/offers/OfferShareDialog.tsx:696
+msgid "View on MintGarden"
+msgstr ""
+
+#: src/components/offers/OfferShareDialog.tsx:770
+msgid "View on OfferBin"
+msgstr ""
+
+#: src/components/offers/OfferShareDialog.tsx:1267
+msgid "View on Offerpool"
+msgstr ""
+
+#: src/components/nfts/NFTContextualActions.tsx:678
+#: src/components/offers/OfferShareDialog.tsx:950
+msgid "View on Spacescan.io"
+msgstr ""
+
+#: src/components/offers/OfferViewerTitle.tsx:49
+msgid "Viewing offer"
+msgstr ""
+
+#: src/components/nfts/gallery/NFTGallery.tsx:583
+msgid "Visible"
+msgstr ""
+
+#: src/components/nfts/gallery/NFTGallery.tsx:572
+msgid "Visible ({0})"
+msgstr ""
+
+#: src/components/nfts/gallery/NFTGallery.tsx:570
+msgid "Visible and hidden ({0})"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:105
+#: src/constants/WalletConnectCommands.tsx:412
+msgid "Wait for Confirmation"
+msgstr ""
+
+#: src/components/farm/card/FarmCardNotAvailable.tsx:25
+#: src/components/plot/PlotStatus.tsx:27
+#: src/components/plot/PlotStatus.tsx:28
+msgid "Wait for synchronization"
+msgstr "Сачекај синхронизацију"
+
+#: src/components/plotNFT/PlotNFTUnconfirmedCard.tsx:80
+msgid "Waiting for the transaction to be confirmed"
+msgstr ""
+
+#: src/components/app/AppStatusHeader.tsx:109
+#: src/hooks/useWalletConnectCommand.tsx:105
+msgid "Wallet"
+msgstr ""
+
+#: src/components/signVerify/SignMessage.tsx:153
+msgid "Wallet Address"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:98
+msgid "Wallet ID"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:50
+#: src/constants/WalletConnectCommands.tsx:65
+#: src/constants/WalletConnectCommands.tsx:153
+#: src/constants/WalletConnectCommands.tsx:370
+#: src/constants/WalletConnectCommands.tsx:383
+#: src/constants/WalletConnectCommands.tsx:468
+msgid "Wallet Id"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:445
+msgid "Wallet Ids"
+msgstr ""
+
+#: src/constants/WalletConnectCommands.tsx:231
+msgid "Wallet Ids and Amounts"
+msgstr ""
+
+#: src/components/app/AppSelectMode.tsx:70
+#: src/components/app/AppSelectMode.tsx:120
+msgid "Wallet Mode"
+msgstr ""
+
+#: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:69
+msgid "Wallet is not defined"
+msgstr ""
+
+#: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:160
+msgid "Wallet {0}"
+msgstr ""
+
+#: src/components/settings/SettingsIntegration.tsx:23
+#: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:112
+#: src/components/walletConnect/WalletConnectConnectedDialog.tsx:65
+#: src/components/walletConnect/WalletConnectDropdown.tsx:28
+msgid "WalletConnect"
+msgstr ""
+
+#: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:135
+msgid "WalletConnect Integration"
+msgstr ""
+
+#: src/components/settings/SettingsIntegration.tsx:26
+msgid "WalletConnect enables a decentralized app on the Chia blockchain to communicate and make requests directly to a Chia wallet."
+msgstr ""
+
+#: src/components/plotNFT/PlotNFTAdd.tsx:59
+msgid "Want to Join a Pool? Create a Plot NFT"
+msgstr ""
+
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:83
+msgid "Want to have a delay before the next plot starts?"
+msgstr "Да ли желиш паузу пре почетка следећег плота?"
+
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:360
+msgid "Warm start"
+msgstr ""
+
+#: src/components/offers/OfferAcceptConfirmationDialog.tsx:32
+msgid "Warning"
+msgstr ""
+
+#: src/components/app/AppVersionWarning.tsx:30
+msgid "Warning: Mismatched Versions"
+msgstr ""
+
+#: src/components/offers/OfferSummary.tsx:133
+#: src/components/offers2/OfferBuilderValue.tsx:204
+msgid "Warning: Verify that the offered CAT asset IDs match the asset IDs of the tokens you expect to receive."
+msgstr ""
+
+#: src/hooks/useOpenUnsafeLink.tsx:30
+msgid "Warning: You're about to visit a website"
+msgstr ""
+
+#: src/components/block/Block.jsx:172
+msgid "Weight"
+msgstr "Тежина"
+
+#: src/components/block/Block.jsx:174
+msgid "Weight is the total added difficulty of all blocks up to and including this one"
+msgstr ""
+
+#: src/components/offers/OfferEditorConfirmationDialog.tsx:22
+msgid "When creating an offer, any assets that are being offered will be locked and unavailable until the offer is accepted or cancelled, resulting in your spendable balance changing."
+msgstr ""
+
+#: src/electron/main.tsx:1029
+msgid "Window"
+msgstr "Прозор"
+
+#: src/components/farm/card/FarmCardBlockRewards.tsx:33
+msgid "Without fees"
+msgstr "Без накнаде"
+
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:389
+msgid "Would you like to move the specified NFT to a profile?"
+msgstr ""
+
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:387
+msgid "Would you like to move {count} NFTs to a profile?"
+msgstr ""
+
+#: src/components/nfts/NFTTransferAction.tsx:227
+msgid "Would you like to transfer the specified NFT to a new owner"
+msgstr ""
+
+#: src/components/nfts/NFTTransferAction.tsx:225
+msgid "Would you like to transfer {count} NFTs to a new owner?"
+msgstr ""
+
+#: src/components/plot/add/PlotAddChooseSize.tsx:47
+#: src/electron/main.tsx:813
+msgid "Yes"
+msgstr "Да"
+
+#: src/components/offers/OfferAcceptConfirmationDialog.tsx:22
+msgid "Yes, Accept Offer"
+msgstr ""
+
+#: src/components/settings/SettingsNFT.tsx:56
+msgid "Yes, delete"
+msgstr ""
+
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:55
+msgid "Yes, move"
+msgstr ""
+
+#: src/components/plotNFT/select/PlotNFTSelectPool.tsx:167
+msgid "You already have 50 or more Plot NFTs."
+msgstr ""
+
+#: src/components/plotNFT/select/PlotNFTSelectPool.tsx:112
+msgid "You already have more than 10 Plot NFTs. Click OK if you're sure you want to create a new one."
+msgstr ""
+
+#: src/components/app/AppSelectMode.tsx:154
+msgid "You can always change your mode later in the settings"
+msgstr ""
+
+#: src/components/walletConnect/WalletConnectConnectedDialog.tsx:88
+msgid "You can now connect to {0} in your browser."
+msgstr ""
+
+#: src/components/plotNFT/PlotNFTCard.tsx:349
+msgid "You can still create plots for this plot NFT, but you can not make changes until sync is complete."
+msgstr ""
+
+#: src/components/offers/OfferHeader.tsx:38
+#: src/components/offers2/OfferBuilderViewer.tsx:183
+msgid "You created this offer"
+msgstr ""
+
+#: src/components/plot/add/PlotAddChooseSize.tsx:73
+msgid "You do not need to be synced or connected to plot. Temporary files are created during the plotting process which exceed the size of the final plot files. Make sure you have enough space. <0>Learn more</0>"
+msgstr ""
+
+#: src/components/notification/Notification.tsx:53
+msgid "You have a new offer"
+msgstr ""
+
+#: src/components/farm/card/FarmCardExpectedTimeToWin.tsx:56
+msgid "You have {0}% of the space on the network, so farming a block will take {expectedTimeToWin} in expectation. Actual results may take 3 to 4 times longer than this estimate."
+msgstr "Имаш {0}% простора на мрежи, за израду блока требаће ти {expectedTimeToWin}. Стварни резултати могу трајати 3 до 4 пута дуже од ове процене."
+
+#: src/components/pool/PoolJoin.tsx:34
+msgid "You need to claim your rewards first"
+msgstr ""
+
+#: src/components/plotNFT/select/PlotNFTSelectFaucet.tsx:37
+msgid "You need {currencyCode} to join a pool."
+msgstr ""
+
+#: src/components/offers2/OfferBuilderTradeColumn.tsx:19
+msgid "You will give"
+msgstr ""
+
+#: src/components/offers/OfferEditorConditionsPanel.tsx:289
+msgid "You will offer"
+msgstr ""
+
+#: src/components/offers/NFTOfferEditor.tsx:363
+#: src/components/offers/NFTOfferViewer.tsx:474
+msgid "You will receive"
+msgstr ""
+
+#: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:143
+msgid "You will recieve <0/> to {address}"
+msgstr ""
+
+#: src/components/farm/FarmHeader.tsx:21
+msgid "Your Farm Overview"
+msgstr "Преглед твоје фарме"
+
+#: src/components/farm/FarmFullNodeConnections.tsx:74
+msgid "Your Full Node Connection"
+msgstr "Твоја веза пуног чвора"
+
+#: src/components/farm/FarmYourHarvesterNetwork.tsx:74
+msgid "Your Harvester Network"
+msgstr "Твоја мрежа сакупљача"
+
+#: src/components/pool/PoolOverview.tsx:39
+msgid "Your Pool Overview"
+msgstr ""
+
+#: src/components/app/AppPassPrompt.tsx:86
+msgid "Your keyring is locked"
+msgstr ""
+
+#: src/components/offers/OfferShareDialog.tsx:1135
+msgid "Your offer has been successfully posted to Keybase."
+msgstr ""
+
+#: src/components/app/AppKeyringMigrator.tsx:229
+#: src/components/settings/ChangePassphrasePrompt.tsx:277
+#: src/components/settings/SetPassphrasePrompt.tsx:246
+msgid "Your passphrase can be stored in your system's secure credential store. Chia will be able to access your keys without prompting for your passphrase."
+msgstr ""
+
+#: src/components/settings/SettingsPanel.tsx:55
+msgid "Your passphrase has been set"
+msgstr ""
+
+#: src/components/settings/SettingsPanel.tsx:46
+msgid "Your passphrase has been updated"
+msgstr ""
+
+#: src/components/offers/OfferViewerTitle.tsx:36
+msgid "created {0}"
+msgstr ""
+
+#: src/components/offers2/OfferBuilderImport.tsx:170
+#: src/components/signVerify/VerifyMessageImport.tsx:154
+msgid "or <0>browse</0> on your computer"
+msgstr ""
+
+#: src/components/offers/OfferImport.tsx:170
+msgid "or Paste (Ctrl-V) an Offer blob"
+msgstr ""
+
+#: src/components/offers/OfferImport.tsx:170
+msgid "or Paste (⌘V) an Offer blob"
+msgstr ""
+
+#: src/components/plot/add/PlotAddForm.tsx:138
+msgid "p2SingletonPuzzleHash is not defined"
+msgstr ""
+
+#: src/components/nfts/NFTTransferConfirmationDialog.tsx:87
+msgid "{0, plural, one {mojo} other {mojos}}"
+msgstr ""
+
+#: src/components/nfts/NFTPreview.tsx:681
+msgid "{0}"
+msgstr ""
+
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:169
+#: src/components/plot/add/PlotAddNumberOfPlots.tsx:201
+msgid "{0} buckets is recommended"
+msgstr ""
+
+#: src/components/nfts/detail/NFTDetailV2.tsx:316
+msgid "{0} of {1}"
+msgstr ""
+
+#: src/components/nfts/gallery/SelectedActionsDialog.tsx:63
+msgid "{0} of {allCount} items selected:"
+msgstr ""
+
+#: src/components/plotNFT/PlotNFTGraph.tsx:63
+msgid "{0} points {1} - {2} hours ago"
+msgstr ""
+
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:194
+msgid "{count} NFTs failed to move."
+msgstr ""
+
+#: src/components/nfts/NFTMoveToProfileDialog.tsx:187
+msgid "{count} transactions have been successfully submitted to the blockchain."
+msgstr ""
+
+#: src/components/nfts/gallery/NFTGallery.tsx:432
+msgid "{key} ({0})"
+msgstr ""
+
+#: src/components/offers/NFTOfferViewer.tsx:203
+#: src/components/offers/OfferSummary.tsx:173
+msgid "{makerFee, plural, one {mojo} other {mojos}}"
+msgstr ""
+
+#: src/components/offers/OfferSummaryRow.tsx:39
+msgid "{mojos, plural, one {mojo} other {mojos}}"
+msgstr ""
+
+#: src/components/nfts/gallery/FilterPill.tsx:50
+msgid "{title}"
+msgstr ""
+
+#: src/components/offers2/OfferBuilderValue.tsx:179
+msgid "{type} is not supported"
+msgstr ""
+
+#: src/components/nfts/NFTRankings.tsx:46
+msgid "{value} of {max_value}"
+msgstr ""
+
+#: src/components/plot/add/PlotAddChoosePlotter.tsx:106
+msgid "{warning}"
+msgstr ""
+

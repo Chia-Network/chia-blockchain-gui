@@ -22,9 +22,9 @@ import { useTheme } from '@mui/material/styles';
 import { orderBy } from 'lodash';
 import React, { useMemo } from 'react';
 
+import useFilteredNFTs from '../../hooks/useFilteredNFTs';
 import useNFTFilter from '../../hooks/useNFTFilter';
 import useNFTProvider from '../../hooks/useNFTProvider';
-import useNFTs from '../../hooks/useNFTs';
 import useNachoNFTs from '../../hooks/useNachoNFTs';
 import { getNFTInbox } from './utils';
 
@@ -78,7 +78,7 @@ export default function NFTProfileDropdown(props: NFTGallerySidebarProps) {
   const [editFolderName, setEditFolderName] = React.useState<string | null>(null);
   const [editingFolder, setEditingFolder] = React.useState<string | null>(null);
   const filter = useNFTFilter();
-  const { statistics } = useNFTs();
+  const { statistics } = useFilteredNFTs();
 
   const inbox: Wallet | undefined = useMemo(() => {
     if (isLoadingNFTWallets) {

@@ -6,17 +6,17 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: @lingui/cli\n"
 "Language: hr_HR\n"
-"Project-Id-Version: chia-blockchain\n"
+"Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-10-24 18:14\n"
+"PO-Revision-Date: 2023-03-29 23:26\n"
 "Last-Translator: \n"
 "Language-Team: Croatian\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Crowdin-Project: chia-blockchain\n"
-"X-Crowdin-Project-ID: 440660\n"
+"X-Crowdin-Project: 1263bc1f20e1271bda78e84d2f4a6562\n"
+"X-Crowdin-Project-ID: 1\n"
 "X-Crowdin-Language: hr\n"
-"X-Crowdin-File: /main/packages/core/src/locales/en-US/messages.po\n"
-"X-Crowdin-File-ID: 1886\n"
+"X-Crowdin-File: /[Chia-Network.chia-blockchain-gui] main/packages/core/src/locales/en-US/messages.po\n"
+"X-Crowdin-File-ID: 1304\n"
 
 #: src/components/Amount/Amount.tsx:36
 msgid "Amount"
@@ -24,7 +24,7 @@ msgstr "Iznos"
 
 #: src/components/Settings/SettingsApp.tsx:88
 msgid "Appearance"
-msgstr "Izgled"
+msgstr ""
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:144
 msgid "Are you sure you want to continue? Type in the fingerprint of this wallet key to confirm deletion."
@@ -65,7 +65,7 @@ msgstr "Kreiraj novi privatni ključ"
 
 #: src/components/Settings/SettingsApp.tsx:105
 msgid "Dark"
-msgstr "Tamno"
+msgstr ""
 
 #: src/screens/SelectKey/SelectKey.tsx:79
 #: src/screens/SelectKey/SelectKeyItem.tsx:100
@@ -80,7 +80,7 @@ msgstr "Ukloni sve ključeve"
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:96
 msgid "Delete key {fingerprint}"
-msgstr "Izbriši ključ {fingerprint}"
+msgstr ""
 
 #: src/screens/SelectKey/SelectKey.tsx:84
 msgid "Deleting all keys will permanently remove the keys from your computer, make sure you have backups. Are you sure you want to continue?"
@@ -92,16 +92,16 @@ msgstr "Pojedinosti"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:59
 msgid "Disable"
-msgstr "Onemogući"
+msgstr ""
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:58
 msgid "Disable Passphrase Protection"
-msgstr "Isključi zaštitu lozinkom"
+msgstr ""
 
 #: src/components/Back/Back.tsx:37
 #: src/components/FormBackButton/FormBackButton.tsx:28
 msgid "Discard"
-msgstr "Odbaci"
+msgstr ""
 
 #: src/components/CardSimple/CardSimple.tsx:52
 #: src/hooks/useShowError.tsx:11
@@ -110,11 +110,11 @@ msgstr "Greška"
 
 #: src/components/ErrorBoundary/ErrorBoundary.tsx:72
 msgid "Error:"
-msgstr "Greška:"
+msgstr ""
 
 #: src/screens/SelectKey/SelectKeyRenameForm.tsx:91
 msgid "Esc"
-msgstr "Esc"
+msgstr ""
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:90
 msgid "Farmer Public Key"
@@ -122,7 +122,7 @@ msgstr "Javni ključ farmera"
 
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:58
 msgid "Farmer public key:"
-msgstr "Javni ključ farmera:"
+msgstr ""
 
 #: src/components/Settings/SettingsApp.tsx:73
 msgid "Farming"
@@ -165,15 +165,15 @@ msgstr ""
 
 #: src/components/Fee/Fee.tsx:41
 msgid "Incorrect value"
-msgstr "Neispravna vrijednost"
+msgstr ""
 
 #: src/components/Settings/SettingsApp.tsx:112
 msgid "Language"
-msgstr "Jezik"
+msgstr ""
 
 #: src/components/Settings/SettingsApp.tsx:97
 msgid "Light"
-msgstr "Svijetlo"
+msgstr ""
 
 #: src/components/EstimatedFee/EstimatedFee.tsx:232
 msgid "Likely in {0} seconds"
@@ -189,28 +189,28 @@ msgstr "Učitavanje pojedinosti"
 
 #: src/screens/SelectKey/SelectKey.tsx:117
 msgid "Loading list of the keys"
-msgstr "Učitavanje popisa ključeva"
+msgstr ""
 
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:150
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:169
 msgid "Log Out"
-msgstr "Odjavi se"
+msgstr ""
 
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:168
 msgid "Logout"
-msgstr "Odjava"
+msgstr ""
 
 #: src/hooks/useKeyringMigrationPrompt.tsx:16
 msgid "Migrate"
-msgstr "Migracija"
+msgstr ""
 
 #: src/hooks/useKeyringMigrationPrompt.tsx:15
 msgid "Migration required"
-msgstr "Potrebna migracija"
+msgstr ""
 
 #: src/components/Settings/SettingsApp.tsx:64
 msgid "Mode"
-msgstr "Način rada"
+msgstr ""
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:107
 msgid "NEVER SHARE THESE WITH ANYONE"
@@ -218,7 +218,7 @@ msgstr "NIKADA NEMOJTE PODIJELITI S BILO KIME"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:41
 msgid "New passphrase is the same as your current passphrase"
-msgstr "Nova lozinka je ista kao vaša trenutna lozinka"
+msgstr ""
 
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:84
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:138
@@ -244,12 +244,12 @@ msgstr "Javni ključ pool-a"
 
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:66
 msgid "Pool public key:"
-msgstr "Javni ključ pool-a:"
+msgstr ""
 
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:27
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:34
 msgid "Private key {fingerprint}"
-msgstr "Privatni ključ {fingerprint}"
+msgstr ""
 
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:42
 msgid "Private key:"
@@ -265,7 +265,7 @@ msgstr "Javni ključ:"
 
 #: src/components/ErrorBoundary/ErrorBoundary.tsx:85
 msgid "Reload Application"
-msgstr "Ponovno učitaj aplikaciju"
+msgstr ""
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:84
 msgid "Rename"
@@ -273,7 +273,7 @@ msgstr "Preimenuj"
 
 #: src/components/ErrorBoundary/ErrorBoundary.tsx:80
 msgid "Report an Issue"
-msgstr "Prijavi problem"
+msgstr ""
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:124
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:146
@@ -302,11 +302,11 @@ msgstr "Odaberi ključ"
 
 #: src/components/Dropdown/Dropdown.tsx:28
 msgid "Select..."
-msgstr "Odaberi..."
+msgstr ""
 
 #: src/components/Settings/SettingsApp.tsx:128
 msgid "Send Feedback"
-msgstr "Pošalji povratne informacije"
+msgstr ""
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:52
 msgid "Setting a passphrase is strongly recommended to protect your keys. Are you sure you want to skip setting a passphrase?"
@@ -436,3 +436,4 @@ msgstr ""
 #: src/hooks/useValidateChangePassphraseParams.tsx:35
 msgid "{minPassphraseLength, plural, one {Passphrases must be at least # character in length} other {Passphrases must be at least # characters in length}}"
 msgstr ""
+
