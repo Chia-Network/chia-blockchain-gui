@@ -1,7 +1,6 @@
-import { useContext, useState, useCallback, useMemo, useEffect } from 'react';
+import { useContext, useState, useCallback, useEffect } from 'react';
 
 import NFTProviderContext from '../components/nfts/provider/NFTProviderContext';
-import getNFTId from '../util/getNFTId';
 
 export default function useNFT(id?: string) {
   const context = useContext(NFTProviderContext);
@@ -9,26 +8,18 @@ export default function useNFT(id?: string) {
     throw new Error('useNFT must be used within NFTProvider');
   }
 
-  const nftId = useMemo(() => (typeof id === 'string' ? getNFTId(id) : undefined), [id]);
-  const { invalidate, getNft, events } = context;
+  const { invalidate, getNFT, onNFTChange } = context;
 
-  const handleInvalidate = useCallback(() => invalidate(nftId), [invalidate, nftId]);
-  const [nftState, setNFTState] = useState(getNft(nftId));
+  const handleInvalidate = useCallback(() => invalidate(id), [invalidate, id]);
+  const [nftState, setNFTState] = useState(() => getNFT(id));
 
-  useEffect(() => {
-    function handleChange(changedNFTId: string, state: ReturnType<typeof getNft>) {
-      if (changedNFTId === nftId) {
-        setNFTState(state);
-      }
-    }
-
-    events.on('nftChanged', handleChange);
-    setNFTState(getNft(nftId));
-
-    return () => {
-      events.off('nftChanged', handleChange);
-    };
-  }, [events, getNft, nftId]);
+  useEffect(
+    () =>
+      onNFTChange(id, (newNFTState) => {
+        setNFTState(newNFTState);
+      }),
+    [id, onNFTChange]
+  );
 
   return {
     ...nftState,

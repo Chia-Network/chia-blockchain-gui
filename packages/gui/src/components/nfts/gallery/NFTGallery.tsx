@@ -480,7 +480,7 @@ export default function NFTGallery() {
             style={{ height: '100%' }}
             data={nfts}
             overscan={2000}
-            // computeItemKey={(_index, nft) => nft.launcherId}
+            computeItemKey={(_index, nft) => nft.launcherId}
             components={COMPONENTS}
             itemContent={renderNFTCard}
           />

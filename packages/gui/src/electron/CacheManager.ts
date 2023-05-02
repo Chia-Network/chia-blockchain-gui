@@ -87,7 +87,7 @@ export default class CacheManager extends EventEmitter {
       cacheDirectory = './cache',
       maxCacheSize = MAX_TOTAL_SIZE,
       protocolScheme = 'cache',
-      concurrency = 30,
+      concurrency = 10,
     } = options;
 
     this.cacheDirectory = cacheDirectory;

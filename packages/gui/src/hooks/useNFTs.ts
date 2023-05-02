@@ -1,9 +1,9 @@
 import { type NFTInfo } from '@chia-network/api';
-import MetadataOnDemand from '@types/MetadataOnDemand';
 import { throttle } from 'lodash';
 import { useMemo, useEffect, useState, useCallback } from 'react';
 
 import type Metadata from '../@types/Metadata';
+import MetadataState from '../@types/MetadataState';
 import NFTVisibility from '../@types/NFTVisibility';
 import NFTsDataStatistics from '../@types/NFTsDataStatistics';
 import FileType from '../constants/FileType';
@@ -21,8 +21,8 @@ function searchableNFTContent(nftId: string, nft: NFTInfo, metadata: Metadata) {
 const prepareNFTs = throttle(
   (
     nfts: Map<string, NFTInfo>,
-    nachoNFTs: Map<string, NFTInfo>,
-    metadatasOnDemand: Map<string, MetadataOnDemand>,
+    nachos: Map<string, NFTInfo>,
+    getMetadata: (id: string) => MetadataState,
     walletIds: number[],
     isHidden: (nftId: string) => boolean,
     visibility: NFTVisibility,
@@ -53,9 +53,8 @@ const prepareNFTs = throttle(
     const searchString = search.toString().trim().toLowerCase();
 
     function process(nft: NFTInfo, nftId: string) {
-      const metadataStatus = metadatasOnDemand.get(nftId);
+      const { metadata } = getMetadata(nftId);
 
-      const metadata = metadataStatus?.metadata;
       const type = getNFTFileType(nft);
 
       nftsData.push({
@@ -117,7 +116,7 @@ const prepareNFTs = throttle(
       process(nft, nftId);
     });
 
-    nachoNFTs.forEach((nft, nftId) => {
+    nachos.forEach((nft, nftId) => {
       if (!nfts.has(nftId)) {
         process(nft, nftId);
       }
@@ -151,11 +150,10 @@ export default function useNFTs(props: UseNFTsProps = {}) {
     // hideSensitiveContent = false,
   } = props;
 
-  const { events, nfts, nachoNFTs, metadatasOnDemand, isLoading, error, progress, invalidate, count } =
-    useNFTProvider();
+  const { nfts, nachos, getMetadata, isLoading, error, progress, invalidate, count, onChange } = useNFTProvider();
   const [isNFTHidden] = useHiddenNFTs();
 
-  const total = useMemo(() => count + nachoNFTs.size, [count, nachoNFTs.size]);
+  const total = useMemo(() => count + nachos.size, [count, nachos.size]);
 
   const [filtered, setFiltered] = useState<NFTInfo[]>([]);
   const [statistics, setStatistics] = useState<NFTsDataStatistics>({
@@ -175,8 +173,8 @@ export default function useNFTs(props: UseNFTsProps = {}) {
     // prepareNFTs is debounced and can returns undefined => we will use old value
     prepareNFTs(
       nfts,
-      nachoNFTs,
-      metadatasOnDemand,
+      nachos,
+      getMetadata,
       walletIds,
       isNFTHidden,
       visibility,
@@ -188,10 +186,10 @@ export default function useNFTs(props: UseNFTsProps = {}) {
       }
     );
   }, [
-    nfts,
-    nachoNFTs,
-    metadatasOnDemand,
-    walletIds,
+    nfts, // immutable
+    nachos, // immutable
+    getMetadata, // immutable
+    walletIds, // immutable
     isNFTHidden,
     visibility,
     types,
@@ -204,19 +202,14 @@ export default function useNFTs(props: UseNFTsProps = {}) {
     updateFiltered();
   }, [updateFiltered]);
 
-  useEffect(() => {
-    function handleChange() {
-      updateFiltered();
-    }
-
-    events.on('nftChanged', handleChange);
-    events.on('metadataChanged', handleChange);
-
-    return () => {
-      events.off('nftChanged', handleChange);
-      events.off('metadataChanged', handleChange);
-    };
-  }, [events, updateFiltered]);
+  useEffect(
+    () =>
+      onChange(() => {
+        // todo invalidate only changed NFTs
+        updateFiltered();
+      }),
+    [onChange, updateFiltered]
+  );
 
   return {
     total,

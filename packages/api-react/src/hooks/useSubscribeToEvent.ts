@@ -20,7 +20,7 @@ function subscribe(event: string, service: ServiceConstructor, cb: Function) {
   const promise = process();
 
   return () => {
-    promise.then((unsubscribe) => unsubscribe);
+    promise.then((unsubscribe) => unsubscribe());
   };
 }
 

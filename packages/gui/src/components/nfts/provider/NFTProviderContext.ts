@@ -1,19 +1,13 @@
-import { type EventEmitter } from 'events';
-
 import { type NFTInfo } from '@chia-network/api';
 import { createContext } from 'react';
 
-import type Metadata from '../../../@types/Metadata';
-import MetadataOnDemand from '../../../@types/MetadataOnDemand';
-import NFTOnDemand from '../../../@types/NFTOnDemand';
+import type MetadataState from '../../../@types/MetadataState';
+import type NFTState from '../../../@types/NFTState';
 
 const NFTProviderContext = createContext<
   | {
-      events: EventEmitter;
       nfts: Map<string, NFTInfo>;
-      nachoNFTs: Map<string, NFTInfo>;
-      nftsOnDemand: Map<string, NFTOnDemand>;
-      metadatasOnDemand: Map<string, MetadataOnDemand>;
+      nachos: Map<string, NFTInfo>;
 
       count: number;
       loaded: number;
@@ -22,17 +16,15 @@ const NFTProviderContext = createContext<
       isLoading: boolean;
       error: Error | undefined;
 
-      invalidate: (id?: string) => Promise<void>;
-      getNft: (id?: string) => {
-        nft: NFTInfo | undefined;
-        error: Error | undefined;
-        isLoading: boolean;
-      };
-      getMetadata: (id?: string) => {
-        metadata: Metadata | undefined;
-        error: Error | undefined;
-        isLoading: boolean;
-      };
+      invalidate: (id: string | undefined) => Promise<void>;
+
+      onChange: (callback: () => void) => () => void;
+
+      getNFT: (id: string | undefined) => NFTState;
+      onNFTChange: (id: string | undefined, callback: (nftState: NFTState) => void) => () => void;
+
+      getMetadata: (id: string | undefined) => MetadataState;
+      onMetadataChange: (id: string | undefined, callback: (metadataState: MetadataState) => void) => () => void;
     }
   | undefined
 >(undefined);

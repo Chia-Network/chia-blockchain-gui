@@ -1,434 +1,102 @@
-import { EventEmitter } from 'events';
+import React, { useMemo, useCallback, type ReactNode } from 'react';
 
-import { type NFTInfo, type Wallet } from '@chia-network/api';
-import {
-  useGetNFTWallets,
-  useLazyGetNFTsQuery,
-  useLazyGetNFTsCountQuery,
-  useNFTCoinAdded,
-  useNFTCoinRemoved,
-  useNFTCoinUpdated,
-  useGetLoggedInFingerprintQuery,
-  useLazyGetNFTInfoQuery,
-} from '@chia-network/api-react';
-import debug from 'debug';
-import React, { useMemo, useCallback, useEffect, type ReactNode, useRef } from 'react';
-
-import type Metadata from '../../../@types/Metadata';
-import type MetadataOnDemand from '../../../@types/MetadataOnDemand';
-import type NFTOnDemand from '../../../@types/NFTOnDemand';
-import useCache from '../../../hooks/useCache';
-import useNachoNFTs from '../../../hooks/useNachoNFTs';
-import useStateAbort from '../../../hooks/useStateAbort';
-import compareChecksums from '../../../util/compareChecksums';
-import getNFTId from '../../../util/getNFTId';
-import limit from '../../../util/limit';
-import { launcherIdFromNFTId } from '../../../util/nfts';
-import parseFileContent from '../../../util/parseFileContent';
 import NFTFilterProvider from '../NFTFilterProvider';
 import NFTProviderContext from './NFTProviderContext';
-
-const log = debug('chia-gui:NFTProvider');
-
-function parseMetadataFile(content: Buffer, headers: any) {
-  const metadataString = parseFileContent(content, headers);
-
-  return JSON.parse(metadataString) as Metadata;
-}
-
-type Change =
-  | {
-      type: 'add';
-      walletId: string;
-    }
-  | {
-      type: 'remove';
-      walletId: string;
-    }
-  | {
-      type: 'updated';
-      walletId: string;
-    };
+import useMetadataData from './hooks/useMetadataData';
+import useNFTData from './hooks/useNFTData';
+import useNFTDataNachos from './hooks/useNFTDataNachos';
+import useNFTDataOnDemand from './hooks/useNFTDataOnDemand';
 
 export type NFTProviderProps = {
-  children: ReactNode;
-  pageSize?: number;
+  children?: ReactNode;
   concurrency?: number;
+  pageSize?: number;
 };
 
-// private ongoingRequests: Map<string, Promise<Buffer>> = new Map();
-
 export default function NFTProvider(props: NFTProviderProps) {
-  const { children, pageSize = 24, concurrency = 20 } = props;
+  const { children, concurrency = 10, pageSize = 24 } = props;
 
-  const events = useMemo(() => {
-    const eventEmitter = new EventEmitter();
-    eventEmitter.setMaxListeners(1000);
-    return eventEmitter;
-  }, []);
-
-  const cache = useCache();
-  const nftAdd = useMemo(() => limit(concurrency), [concurrency]);
-  const abortControllerRef = useRef(new AbortController());
-
-  // queries
-  const { wallets: nftWallets, isLoading: isLoadingWallets, error: errorWallets } = useGetNFTWallets();
-  const {
-    data: fingerprint,
-    isLoading: isLoadingFingerprint,
-    error: errorFingerprint,
-  } = useGetLoggedInFingerprintQuery();
-  const [getNFTs] = useLazyGetNFTsQuery();
-  const [getNFTsCount] = useLazyGetNFTsCountQuery();
-  const [getNFTInfo] = useLazyGetNFTInfoQuery();
-
-  // number of loaded NFTs
-  const [loaded, setLoaded] = useStateAbort(0);
-  // total number of NFTs
-  const [total, setTotal] = useStateAbort(0);
-
-  const [nfts] = useStateAbort(new Map<string, NFTInfo>());
-  const [nachoNFTsById] = useStateAbort(new Map<string, NFTInfo>());
-  const [nftsOnDemand] = useStateAbort(new Map<string, NFTOnDemand>());
-  const [metadatasOnDemand] = useStateAbort(new Map<string, MetadataOnDemand>());
-
-  const { data: nachoNFTs, isLoading: isLoadingNachos, error: errorNachos } = useNachoNFTs();
-
-  // status of loading
-  const [isLoadingNFTs, setIsLoadingNFTs] = useStateAbort(false);
-  const [errorLoading, setErrorLoading] = useStateAbort<Error | undefined>(undefined);
-
-  // global state
-  const isLoading = isLoadingWallets || isLoadingFingerprint || isLoadingNachos || isLoadingNFTs;
-  const error = errorWallets || errorFingerprint || errorNachos || errorLoading;
-
-  // events
-  const [, setChanges] = useStateAbort<Change[]>([]);
-  useNFTCoinAdded((data) => {
-    const { walletId } = data;
-    setChanges((prevChanges) => [...prevChanges, { type: 'add', walletId }]);
+  const { nfts, isLoading, error, getNFTData, onNFTDataChange, count, loaded, progress, onDataChange } = useNFTData({
+    concurrency,
+    pageSize,
+  });
+  const { nachos, getNFTNacho, onNFTNachosChange, onNachosChange } = useNFTDataNachos();
+  const { fetchNFTOnDemand, getNFTOnDemand, onNFTOnDemandChange } = useNFTDataOnDemand({
+    concurrency,
   });
 
-  useNFTCoinRemoved((data) => {
-    const { walletId } = data;
-    setChanges((prevChanges) => [...prevChanges, { type: 'remove', walletId }]);
-  });
+  // immutable function
+  const getNFT = useCallback(
+    (id: string) => {
+      const nftDataState = getNFTData(id);
+      if (nftDataState.nft) {
+        return nftDataState;
+      }
 
-  useNFTCoinUpdated((data) => {
-    const { walletId } = data;
-    setChanges((prevChanges) => [...prevChanges, { type: 'updated', walletId }]);
-  });
+      const nachoNFTState = getNFTNacho(id);
+      if (nachoNFTState.nft) {
+        return nachoNFTState;
+      }
 
-  const fetchNFTsCount = useCallback(
-    async (walletId: number) => {
-      log(`Fetching NFTs count for wallet ${walletId}`);
-      const { total: count } = await getNFTsCount({
-        walletIds: [walletId],
-      }).unwrap();
-
-      return count;
+      // must be last because it will try to load data from backend
+      return getNFTOnDemand(id);
     },
-    [getNFTsCount]
+    [getNFTOnDemand /* immutable */, getNFTNacho /* immutable */, getNFTData /* immutable */]
   );
 
-  const fetchAndProcessMetadata = useCallback(
-    async (uri: string, hash: string | undefined) => {
-      log(`Fetching metadata from ${uri}`);
-
-      const checksum = await cache.getChecksum(uri);
-
-      log(`Comparing checksums ${checksum} and ${hash}`);
-      if (hash && !compareChecksums(checksum, hash)) {
-        throw new Error('Checksum mismatch');
+  // immutable function
+  const fetchNFT = useCallback(
+    async (id: string) => {
+      const nftDataState = getNFTData(id);
+      if (nftDataState.nft) {
+        return nftDataState.nft;
       }
 
-      const headers = await cache.getHeaders(uri);
-      const content = await cache.getContent(uri);
-      return parseMetadataFile(content, headers);
+      const nachoNFTState = getNFTNacho(id);
+      if (nachoNFTState.nft) {
+        return nachoNFTState.nft;
+      }
+
+      // must be last because it will try to load data from backend
+      return fetchNFTOnDemand(id);
     },
-    [cache]
+    [fetchNFTOnDemand /* immutable */, getNFTNacho /* immutable */, getNFTData /* immutable */]
   );
 
-  const setNFTOnDemand = useCallback(
-    (nftId: string, nftOnDemand: NFTOnDemand, abortSignal: AbortSignal) => {
-      log(`Setting NFT on demand for ${nftId}`);
-      if (abortSignal.aborted) {
-        log(`Aborted setting NFT on demand for ${nftId}`);
-        return;
-      }
-      nftsOnDemand.set(nftId, nftOnDemand);
+  const onNFTChange = useCallback(
+    (id: string, callback: (nft: any) => void) => {
+      const unsubscribeData = onNFTDataChange(id, callback);
+      const unsubscribeNachos = onNFTNachosChange(id, callback);
+      const unsubscribeDemand = onNFTOnDemandChange(id, callback);
 
-      events.emit('nftChanged', nftId, {
-        nft: nftOnDemand.nft,
-        error: nftOnDemand.error,
-        isLoading: !!nftOnDemand.promise,
-      });
-    },
-    [events, nftsOnDemand]
-  );
-
-  const setMetadataOnDemand = useCallback(
-    (nftId: string, metadataOnDemand: MetadataOnDemand, abortSignal: AbortSignal) => {
-      log(`Setting metadata on demand for ${nftId}`);
-      if (abortSignal.aborted) {
-        log(`Aborted setting metadata on demand for ${nftId}`);
-        return;
-      }
-
-      metadatasOnDemand.set(nftId, metadataOnDemand);
-
-      events.emit('metadataChanged', nftId, {
-        metadata: metadataOnDemand.metadata,
-        error: metadataOnDemand.error,
-        isLoading: !!metadataOnDemand.promise,
-      });
-    },
-    [events, metadatasOnDemand]
-  );
-
-  const fetchById = useCallback(
-    async (id: string, abortSignal: AbortSignal): Promise<NFTInfo> => {
-      const nftId = getNFTId(id);
-      if (!nftId) {
-        throw new Error('Invalid NFT ID');
-      }
-
-      if (nfts.has(nftId)) {
-        return nfts.get(nftId);
-      }
-
-      if (nachoNFTsById.has(nftId)) {
-        return nachoNFTsById.get(nftId);
-      }
-
-      const nftOnDemand = nftsOnDemand.get(nftId);
-      if (nftOnDemand) {
-        if (nftOnDemand.nft) {
-          return nftOnDemand.nft;
-        }
-
-        if (nftOnDemand.error) {
-          throw nftOnDemand.error;
-        }
-
-        if (nftOnDemand.promise) {
-          return nftOnDemand.promise;
-        }
-      }
-
-      async function limitedFetchNFTById() {
-        try {
-          log(`Fetching NFT by ID ${id} from API`);
-          const coinId = launcherIdFromNFTId(nftId);
-          if (!coinId) {
-            throw new Error('Invalid NFT ID');
-          }
-
-          const nft = await getNFTInfo({
-            coinId,
-          }).unwrap();
-
-          setNFTOnDemand(
-            nftId,
-            {
-              nft,
-            },
-            abortSignal
-          );
-          return nft;
-        } catch (e) {
-          setNFTOnDemand(
-            nftId,
-            {
-              error: e as Error,
-            },
-            abortSignal
-          );
-
-          throw e;
-        }
-      }
-
-      const promise = nftAdd<NFTInfo>(() => limitedFetchNFTById());
-
-      setNFTOnDemand(
-        nftId,
-        {
-          promise,
-        },
-        abortSignal
-      );
-
-      return promise;
-    },
-    [nfts, nachoNFTsById, nftsOnDemand, getNFTInfo, setNFTOnDemand, nftAdd]
-  );
-
-  const getNFTState = useCallback(
-    (id: string | undefined, abortSignal: AbortSignal) => {
-      if (!id) {
-        return {
-          nft: undefined,
-          isLoading: false,
-          error: new Error('Invalid NFT ID'),
-        };
-      }
-
-      const nftId = getNFTId(id);
-
-      if (nfts.has(nftId)) {
-        return {
-          nft: nfts.get(nftId),
-          isLoading: false,
-          error: undefined,
-        };
-      }
-
-      if (nachoNFTsById.has(nftId)) {
-        return {
-          nft: nachoNFTsById.get(nftId),
-          isLoading: false,
-          error: undefined,
-        };
-      }
-
-      const nftOnDemand = nftsOnDemand.get(nftId);
-      if (nftOnDemand) {
-        return {
-          nft: nftOnDemand.nft,
-          isLoading: !!nftOnDemand.promise,
-          error: nftOnDemand.error,
-        };
-      }
-
-      fetchById(nftId, abortSignal).catch((e) => {
-        log(`Error fetching NFT ${nftId}. Error: ${e.message}`);
-      });
-
-      return {
-        nft: undefined,
-        isLoading: true,
-        error: undefined,
+      return () => {
+        unsubscribeData();
+        unsubscribeNachos();
+        unsubscribeDemand();
       };
     },
-    [nfts, nftsOnDemand, fetchById, nachoNFTsById]
+    [onNFTOnDemandChange, onNFTNachosChange, onNFTDataChange]
   );
 
-  const fetchMetadata = useCallback(
-    async (id: string, abortSignal: AbortSignal): Promise<Metadata> => {
-      const nftId = getNFTId(id);
+  const onChange = useCallback(
+    (callback: () => void) => {
+      const unsubscribeData = onDataChange(callback);
+      const unsubscribeNachos = onNachosChange(callback);
 
-      const metadataOnDemand = metadatasOnDemand.get(nftId);
-      if (metadataOnDemand) {
-        if (metadataOnDemand.error) {
-          throw metadataOnDemand.error;
-        }
-
-        if (metadataOnDemand.metadata) {
-          return metadataOnDemand.metadata;
-        }
-
-        if (metadataOnDemand.promise) {
-          return metadataOnDemand.promise;
-        }
-      }
-
-      async function limitedFetchMetadata() {
-        try {
-          log(`Fetching metadata for ${id} from API`);
-          const nft = await fetchById(nftId, abortSignal);
-          const { metadataUris = [], metadataHash } = nft;
-
-          const [firstUri] = metadataUris;
-          if (!firstUri) {
-            throw new Error('No metadata URI');
-          }
-
-          const metadata = await fetchAndProcessMetadata(firstUri, metadataHash);
-          setMetadataOnDemand(nftId, { metadata }, abortSignal);
-          return metadata;
-        } catch (e) {
-          setMetadataOnDemand(nftId, { error: e as Error }, abortSignal);
-          throw e;
-        }
-      }
-
-      const promise = limitedFetchMetadata();
-
-      setMetadataOnDemand(nftId, { promise }, abortSignal);
-
-      return promise;
+      return () => {
+        unsubscribeData();
+        unsubscribeNachos();
+      };
     },
-    [fetchAndProcessMetadata, fetchById, metadatasOnDemand, setMetadataOnDemand]
+    [onDataChange, onNachosChange]
   );
 
-  const startPreparingMetadata = useCallback(
-    (nftId: string, abortSignal: AbortSignal) => {
-      if (metadatasOnDemand.has(nftId)) {
-        return;
-      }
+  const { getMetadata, onMetadataChange } = useMetadataData({
+    fetchNFT,
+  });
 
-      fetchMetadata(nftId, abortSignal).catch((e) => {
-        log(`Error fetching metadata for NFT ${nftId}. Error: ${e.message}`);
-      });
-    },
-    [fetchMetadata, metadatasOnDemand]
-  );
-
-  const prepareNachoNFTsById = useCallback(() => {
-    log('Preparing nacho NFTs');
-    nachoNFTsById.clear();
-
-    if (nachoNFTs) {
-      nachoNFTsById.clear();
-      nachoNFTs.forEach((nachoNFT: NFTInfo) => {
-        const nftId = getNFTId(nachoNFT.launcherId);
-        nachoNFTsById.set(nftId, nachoNFT);
-
-        startPreparingMetadata(nftId, abortControllerRef.current.signal);
-
-        events.emit('nftChanged', nftId, {
-          nft: nachoNFT,
-          isLoading: false,
-        });
-      });
-    }
-  }, [nachoNFTsById, nachoNFTs, startPreparingMetadata, events]);
-
-  const fetchNFTsPage = useCallback(
-    async (walletId: number, pageIndex: number, abortSignal: AbortSignal) => {
-      log(`Fetching NFTs page ${pageIndex} for wallet ${walletId}`);
-      const startIndex = pageIndex * pageSize;
-      const nftsByWallet = await getNFTs({
-        walletIds: [walletId],
-        startIndex,
-        num: pageSize,
-      }).unwrap();
-
-      const page = nftsByWallet[walletId];
-      if (!page || abortSignal.aborted) {
-        return;
-      }
-
-      page.forEach((nft) => {
-        const nftId = getNFTId(nft.launcherId);
-
-        nfts.set(nftId, nft);
-
-        startPreparingMetadata(nftId, abortSignal);
-
-        events.emit('nftChanged', nftId, {
-          nft,
-          isLoading: false,
-        });
-      });
-
-      setLoaded((prevLoaded) => prevLoaded + page.length, abortSignal);
-    },
-    [pageSize, getNFTs, setLoaded, nfts, startPreparingMetadata, events]
-  );
-
-  const invalidate = useCallback(
+  /*
+  const invalidateNFT = useCallback(
     async (id: string | undefined, abortSignal: AbortSignal) => {
       log(`Invalidating ${id}`);
       if (!id) {
@@ -445,11 +113,11 @@ export default function NFTProvider(props: NFTProviderProps) {
 
       const { dataUris, metadataUris } = nft;
 
-      dataUris.forEach((uri) => promises.push(cache.invalidate(uri)));
+      dataUris.forEach((uri) => promises.push(invalidate(uri)));
 
       const firstMetadataUri = metadataUris && metadataUris[0];
       if (firstMetadataUri) {
-        promises.push(cache.invalidate(firstMetadataUri));
+        promises.push(invalidate(firstMetadataUri));
       }
 
       try {
@@ -463,11 +131,11 @@ export default function NFTProvider(props: NFTProviderProps) {
           const { preview_video_uris: previewVideoUris, preview_image_uris: previewImageUris } = metadata;
 
           if (previewVideoUris) {
-            previewVideoUris.forEach((uri: string) => promises.push(cache.invalidate(uri)));
+            previewVideoUris.forEach((uri: string) => promises.push(invalidate(uri)));
           }
 
           if (previewImageUris) {
-            previewImageUris.forEach((uri: string) => promises.push(cache.invalidate(uri)));
+            previewImageUris.forEach((uri: string) => promises.push(invalidate(uri)));
           }
         }
       } catch (e) {
@@ -483,183 +151,45 @@ export default function NFTProvider(props: NFTProviderProps) {
       nftsOnDemand.delete(nftId);
       metadatasOnDemand.delete(nftId);
     },
-    [fetchById, fetchMetadata, cache, nftsOnDemand, metadatasOnDemand]
+    [fetchById, fetchMetadata, invalidate, nftsOnDemand, metadatasOnDemand]
   );
-
-  const fetchData = useCallback(
-    async (abortSignal: AbortSignal) => {
-      if (isLoadingNFTs) {
-        return;
-      }
-
-      setIsLoadingNFTs(true, abortSignal);
-      setErrorLoading(undefined, abortSignal);
-      setChanges([], abortSignal);
-
-      const add = limit(concurrency);
-
-      async function processWallet(wallet: Wallet) {
-        log(`Processing wallet ${wallet.id}`);
-        const { id: walletId } = wallet;
-        const count = await fetchNFTsCount(walletId);
-        if (abortSignal?.aborted) {
-          return;
-        }
-
-        setTotal((prevTotal) => prevTotal + count, abortSignal);
-        const numPages = Math.ceil(count / pageSize);
-
-        const fetchLimited = (pageIndex: number) => add(() => fetchNFTsPage(walletId, pageIndex, abortSignal));
-
-        const pageIndices = [];
-        for (let i = 0; i < numPages; i++) {
-          pageIndices.push(i);
-        }
-
-        try {
-          await Promise.all(pageIndices.map(fetchLimited));
-        } catch (err) {
-          if (abortSignal.aborted) {
-            return;
-          }
-
-          setErrorLoading(err as Error, abortSignal);
-        }
-      }
-
-      try {
-        await Promise.all(nftWallets.map(processWallet));
-      } catch (err) {
-        setErrorLoading(err as Error, abortSignal);
-      } finally {
-        setIsLoadingNFTs(false, abortSignal);
-      }
-    },
-    [
-      concurrency,
-      fetchNFTsCount,
-      fetchNFTsPage,
-      isLoadingNFTs,
-      nftWallets,
-      pageSize,
-      setChanges,
-      setErrorLoading,
-      setIsLoadingNFTs,
-      setTotal,
-    ]
-  );
-
-  useEffect(() => {
-    if (nftWallets && fingerprint) {
-      log(`Reloading NFTs for wallets ${nftWallets.map((w) => w.id).join(', ')}`);
-
-      // refetch everything from scratch
-      abortControllerRef.current = new AbortController();
-      fetchData(abortControllerRef.current.signal);
-    }
-
-    return () => {
-      log(`Aborting NFTs reload for wallets ${nftWallets.map((w) => w.id).join(', ')}`);
-      // cancel all in progress requests
-      abortControllerRef.current.abort();
-      reset();
-    };
-  }, [nftWallets, fingerprint]); // eslint-disable-line react-hooks/exhaustive-deps -- we want to fetch data only once
-
-  const getMetadataState = useCallback(
-    (
-      id: string | undefined,
-      abortSignal: AbortSignal
-    ): {
-      metadata?: Metadata;
-      isLoading: boolean;
-      error?: Error;
-    } => {
-      if (!id) {
-        return {
-          metadata: undefined,
-          isLoading: false,
-          error: new Error('Invalid NFT ID'),
-        };
-      }
-
-      const nftId = getNFTId(id);
-
-      const metadataOnDemand = metadatasOnDemand.get(nftId);
-      if (metadataOnDemand) {
-        return {
-          metadata: metadataOnDemand.metadata,
-          isLoading: !!metadataOnDemand.promise,
-          error: metadataOnDemand.error,
-        };
-      }
-
-      fetchMetadata(nftId, abortSignal).catch((e) => {
-        log(`Error fetching Metadata ${nftId}`, e);
-      });
-
-      return {
-        metadata: undefined,
-        isLoading: true,
-        error: undefined,
-      };
-    },
-    [fetchMetadata, metadatasOnDemand]
-  );
-
-  function reset() {
-    log('Reset NFT provider');
-    // metadatasOnDemand.clear();
-    nftsOnDemand.clear();
-    nfts.clear();
-    prepareNachoNFTsById();
-
-    setChanges([]);
-    setTotal(0);
-    setLoaded(0);
-    setIsLoadingNFTs(false);
-    setErrorLoading(undefined);
-
-    events.emit('reset');
-  }
-
-  useEffect(() => {
-    prepareNachoNFTsById();
-  }, [prepareNachoNFTsById]);
+  */
 
   const context = useMemo(
     () => ({
-      events,
-
+      // immutable state
       nfts,
-      nachoNFTs: nachoNFTsById,
-      nftsOnDemand,
-      metadatasOnDemand,
+      nachos,
 
+      getNFT,
+      onNFTChange,
+
+      getMetadata,
+      onMetadataChange,
+
+      onChange,
+
+      // mutable state
       isLoading,
       error,
 
-      count: total,
+      count,
       loaded,
-      progress: total > 0 ? (loaded / total) * 100 : !isLoading && total === 0 ? 100 : 0,
-
-      invalidate: (id?: string) => invalidate(id, abortControllerRef.current.signal),
-      getNft: (id?: string) => getNFTState(id, abortControllerRef.current.signal),
-      getMetadata: (id?: string) => getMetadataState(id, abortControllerRef.current.signal),
+      progress,
     }),
     [
-      events,
       nfts,
-      nachoNFTsById,
-      nftsOnDemand,
-      metadatasOnDemand,
+      nachos,
       isLoading,
       error,
-      total,
+      getNFT,
+      onNFTChange,
+      getMetadata,
+      onMetadataChange,
+      count,
       loaded,
-      invalidate,
-      getNFTState,
-      getMetadataState,
+      progress,
+      onChange,
     ]
   );
 
