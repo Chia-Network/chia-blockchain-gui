@@ -8,17 +8,17 @@ export default function useNFT(id?: string) {
     throw new Error('useNFT must be used within NFTProvider');
   }
 
-  const { invalidate, getNFT, onNFTChange } = context;
+  const { invalidate, getNFT, subscribeToNFTChanges } = context;
 
   const handleInvalidate = useCallback(() => invalidate(id), [invalidate, id]);
   const [nftState, setNFTState] = useState(() => getNFT(id));
 
   useEffect(
     () =>
-      onNFTChange(id, (newNFTState) => {
+      subscribeToNFTChanges(id, (newNFTState) => {
         setNFTState(newNFTState);
       }),
-    [id, onNFTChange]
+    [id, subscribeToNFTChanges]
   );
 
   return {

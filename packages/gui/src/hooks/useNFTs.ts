@@ -125,7 +125,7 @@ const prepareNFTs = throttle(
     onReponse(filtered, stats);
     // return sortBy(filtered, (nft) => nft.nftCoinConfirmationHeight).reverse();
   },
-  1000,
+  250,
   {
     // https://llu.is/throttle-and-debounce-visualized/
     leading: true, // call on first call
@@ -150,7 +150,8 @@ export default function useNFTs(props: UseNFTsProps = {}) {
     // hideSensitiveContent = false,
   } = props;
 
-  const { nfts, nachos, getMetadata, isLoading, error, progress, invalidate, count, onChange } = useNFTProvider();
+  const { nfts, nachos, getMetadata, isLoading, error, progress, invalidate, count, subscribeToChanges } =
+    useNFTProvider();
   const [isNFTHidden] = useHiddenNFTs();
 
   const total = useMemo(() => count + nachos.size, [count, nachos.size]);
@@ -204,11 +205,11 @@ export default function useNFTs(props: UseNFTsProps = {}) {
 
   useEffect(
     () =>
-      onChange(() => {
+      subscribeToChanges(() => {
         // todo invalidate only changed NFTs
         updateFiltered();
       }),
-    [onChange, updateFiltered]
+    [subscribeToChanges, updateFiltered]
   );
 
   return {

@@ -103,6 +103,7 @@ export default function useMetadataData(props: UseMetadataDataProps) {
     ]
   );
 
+  // immutable function
   const getMetadata = useCallback(
     (id: string | undefined): MetadataState => {
       if (!id) {
@@ -138,7 +139,28 @@ export default function useMetadataData(props: UseMetadataDataProps) {
   );
 
   // immutable function
-  const onChanges = useCallback(
+  const invalidate = useCallback(
+    async (id: string) => {
+      const nftId = getNFTId(id);
+
+      const metadataOnDemand = metadatasOnDemand.get(nftId);
+      if (metadataOnDemand) {
+        // wait for the promise to resolve and ignore error
+        if (metadataOnDemand.promise) {
+          await metadataOnDemand.promise.catch(() => {});
+        }
+
+        metadatasOnDemand.delete(nftId);
+
+        // reload metadata
+        getMetadata(id);
+      }
+    },
+    [getMetadata /* immutable */, metadatasOnDemand /* immutable */]
+  );
+
+  // immutable function
+  const subscribeToMetadataChanges = useCallback(
     (id: string | undefined, callback: (nftState: MetadataState) => void) => {
       if (!id) {
         return () => {};
@@ -158,6 +180,7 @@ export default function useMetadataData(props: UseMetadataDataProps) {
   return {
     getMetadata,
     fetchMetadata,
-    onMetadataChange: onChanges,
+    subscribeToMetadataChanges,
+    invalidate,
   } as const;
 }

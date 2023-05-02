@@ -13,7 +13,7 @@ const log = debug('chia-gui:NFTProvider:useMetadataData');
 
 // warning: only used by NFTProvider
 export default function useNFTDataNachos() {
-  const { data: nachoNFTs, isLoading, error } = useNachoNFTs();
+  const { data: nachoNFTs, isLoading, error, refetch } = useNachoNFTs();
   const [nachos /* immutable */] = useState(() => new Map<string, NFTInfo>());
 
   const events = useMemo(() => {
@@ -43,7 +43,7 @@ export default function useNFTDataNachos() {
   }, [nachos, nachoNFTs, events]);
 
   // immutable function
-  const getNFTNacho = useCallback(
+  const getNFT = useCallback(
     (id: string | undefined): NFTState => {
       if (!id) {
         return {
@@ -64,7 +64,13 @@ export default function useNFTDataNachos() {
   );
 
   // immutable function
-  const onNFTChanges = useCallback(
+  const invalidate = useCallback(async () => {
+    log('Invalidating nacho NFTs');
+    await refetch();
+  }, [refetch /* immutable */]);
+
+  // immutable function
+  const subscribeToNFTChanges = useCallback(
     (id: string | undefined, callback: (nftState?: NFTState) => void) => {
       if (!id) {
         return () => {};
@@ -81,7 +87,8 @@ export default function useNFTDataNachos() {
     [events /* immutable */]
   );
 
-  const onChange = useCallback(
+  // immutable function
+  const subscribeToChanges = useCallback(
     (callback: () => void) => {
       events.on('changed', callback);
 
@@ -89,14 +96,15 @@ export default function useNFTDataNachos() {
         events.off('changed', callback);
       };
     },
-    [events]
+    [events /* immutable */]
   );
 
   return {
     nachos, // immutable
-    getNFTNacho, // immutable
-    onNFTNachosChange: onNFTChanges, // immutable
-    onNachosChange: onChange, // immutable
+    getNFT, // immutable
+    subscribeToNFTChanges, // immutable
+    subscribeToChanges, // immutable
+    invalidate, // immutable
     isLoading,
     error,
   } as const;

@@ -8,17 +8,17 @@ export default function useNFTMetadata(id?: string) {
     throw new Error('useNFT must be used within NFTProvider');
   }
 
-  const { invalidate, getMetadata, onMetadataChange } = context;
+  const { invalidate, getMetadata, subscribeToMetadataChanges } = context;
 
   const handleInvalidate = useCallback(() => invalidate(id), [invalidate, id]);
   const [metadataState, setMetadataState] = useState(() => getMetadata(id));
 
   useEffect(
     () =>
-      onMetadataChange(id, (newMetadataState) => {
+      subscribeToMetadataChanges(id, (newMetadataState) => {
         setMetadataState(newMetadataState);
       }),
-    [id, onMetadataChange]
+    [id, subscribeToMetadataChanges]
   );
 
   return {

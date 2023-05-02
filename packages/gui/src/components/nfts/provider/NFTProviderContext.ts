@@ -18,13 +18,16 @@ const NFTProviderContext = createContext<
 
       invalidate: (id: string | undefined) => Promise<void>;
 
-      onChange: (callback: () => void) => () => void;
+      subscribeToChanges: (callback: () => void) => () => void;
 
       getNFT: (id: string | undefined) => NFTState;
-      onNFTChange: (id: string | undefined, callback: (nftState: NFTState) => void) => () => void;
+      subscribeToNFTChanges: (id: string | undefined, callback: (nftState: NFTState) => void) => () => void;
 
       getMetadata: (id: string | undefined) => MetadataState;
-      onMetadataChange: (id: string | undefined, callback: (metadataState: MetadataState) => void) => () => void;
+      subscribeToMetadataChanges: (
+        id: string | undefined,
+        callback: (metadataState: MetadataState) => void
+      ) => () => void;
     }
   | undefined
 >(undefined);

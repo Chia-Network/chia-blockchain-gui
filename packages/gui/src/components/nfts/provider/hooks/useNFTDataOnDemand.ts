@@ -35,7 +35,7 @@ export default function useNFTDataOnDemand(props: UseNFTDataOnDemandProps) {
   }, []);
 
   // immutable function
-  const setNFTOnDemand = useCallback(
+  const setNFT = useCallback(
     (nftId: string, nftOnDemand: NFTOnDemand) => {
       log(`Setting NFT on demand for ${nftId}`);
 
@@ -53,7 +53,7 @@ export default function useNFTDataOnDemand(props: UseNFTDataOnDemandProps) {
   );
 
   // immutable function
-  const fetchNFTOnDemand = useCallback(
+  const fetchNFT = useCallback(
     async (id: string): Promise<NFTInfo> => {
       const nftId = getNFTId(id);
 
@@ -84,13 +84,13 @@ export default function useNFTDataOnDemand(props: UseNFTDataOnDemandProps) {
             coinId,
           }).unwrap();
 
-          setNFTOnDemand(nftId, {
+          setNFT(nftId, {
             nft,
           });
 
           return nft;
         } catch (e) {
-          setNFTOnDemand(nftId, {
+          setNFT(nftId, {
             error: e as Error,
           });
 
@@ -100,16 +100,16 @@ export default function useNFTDataOnDemand(props: UseNFTDataOnDemandProps) {
 
       const promise = add<NFTInfo>(() => limitedFetchNFTById());
 
-      setNFTOnDemand(nftId, {
+      setNFT(nftId, {
         promise,
       });
 
       return promise;
     },
-    [getNFTInfo /* immutable */, add /* immutable */, nftsOnDemand /* immutable */, setNFTOnDemand /* immutable */]
+    [getNFTInfo /* immutable */, add /* immutable */, nftsOnDemand /* immutable */, setNFT /* immutable */]
   );
 
-  const getNFTOnDemand = useCallback(
+  const getNFT = useCallback(
     (id: string | undefined): NFTState => {
       if (!id) {
         return {
@@ -130,7 +130,7 @@ export default function useNFTDataOnDemand(props: UseNFTDataOnDemandProps) {
         };
       }
 
-      fetchNFTOnDemand(nftId).catch((e) => {
+      fetchNFT(nftId).catch((e) => {
         log(`Error fetching nft for nftId: ${nftId}`, e);
       });
 
@@ -140,11 +140,32 @@ export default function useNFTDataOnDemand(props: UseNFTDataOnDemandProps) {
         error: undefined,
       };
     },
-    [fetchNFTOnDemand /* immutable */, nftsOnDemand /* immutable */]
+    [fetchNFT /* immutable */, nftsOnDemand /* immutable */]
   );
 
   // immutable function
-  const onChanges = useCallback(
+  const invalidate = useCallback(
+    async (id: string) => {
+      const nftId = getNFTId(id);
+
+      const nftOnDemand = nftsOnDemand.get(nftId);
+      if (nftOnDemand) {
+        // wait for the promise to resolve and ignore error
+        if (nftOnDemand.promise) {
+          await nftOnDemand.promise.catch(() => {});
+        }
+
+        nftsOnDemand.delete(nftId);
+
+        // reload metadata
+        getNFT(id);
+      }
+    },
+    [getNFT /* immutable */, nftsOnDemand /* immutable */]
+  );
+
+  // immutable function
+  const subscribeToNFTChanges = useCallback(
     (id: string | undefined, callback: (nftState: NFTState) => void) => {
       if (!id) {
         return () => {};
@@ -162,8 +183,9 @@ export default function useNFTDataOnDemand(props: UseNFTDataOnDemandProps) {
   );
 
   return {
-    getNFTOnDemand, // immutable
-    fetchNFTOnDemand, // immutable
-    onNFTOnDemandChange: onChanges, // immutable
+    getNFT, // immutable
+    fetchNFT, // immutable
+    subscribeToNFTChanges, // immutable
+    invalidate, // immutable
   } as const;
 }

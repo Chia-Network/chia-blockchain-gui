@@ -1,11 +1,15 @@
+import debug from 'debug';
 import React, { useMemo, useCallback, type ReactNode } from 'react';
 
+import useCache from '../../../hooks/useCache';
 import NFTFilterProvider from '../NFTFilterProvider';
 import NFTProviderContext from './NFTProviderContext';
 import useMetadataData from './hooks/useMetadataData';
 import useNFTData from './hooks/useNFTData';
 import useNFTDataNachos from './hooks/useNFTDataNachos';
 import useNFTDataOnDemand from './hooks/useNFTDataOnDemand';
+
+const log = debug('nft:NFTProvider');
 
 export type NFTProviderProps = {
   children?: ReactNode;
@@ -16,12 +20,37 @@ export type NFTProviderProps = {
 export default function NFTProvider(props: NFTProviderProps) {
   const { children, concurrency = 10, pageSize = 24 } = props;
 
-  const { nfts, isLoading, error, getNFTData, onNFTDataChange, count, loaded, progress, onDataChange } = useNFTData({
+  const { invalidate } = useCache();
+
+  const {
+    nfts,
+    isLoading,
+    error,
+    getNFT: getNFTData,
+    count,
+    loaded,
+    progress,
+    subscribeToNFTChanges: subscribeToNFTDataChanges,
+    subscribeToChanges: subscribeToDataChanges,
+  } = useNFTData({
     concurrency,
     pageSize,
   });
-  const { nachos, getNFTNacho, onNFTNachosChange, onNachosChange } = useNFTDataNachos();
-  const { fetchNFTOnDemand, getNFTOnDemand, onNFTOnDemandChange } = useNFTDataOnDemand({
+
+  const {
+    nachos,
+    getNFT: getNFTNacho,
+    subscribeToNFTChanges: subscribeToNFTNachosChanges,
+    subscribeToChanges: subscribeToNachosChanges,
+    invalidate: invalidateNachos,
+  } = useNFTDataNachos();
+
+  const {
+    fetchNFT: fetchNFTOnDemand,
+    getNFT: getNFTOnDemand,
+    subscribeToNFTChanges: subscribeToNFTOnDemandChanges,
+    invalidate: invalidateNFTOnDemand,
+  } = useNFTDataOnDemand({
     concurrency,
   });
 
@@ -63,11 +92,20 @@ export default function NFTProvider(props: NFTProviderProps) {
     [fetchNFTOnDemand /* immutable */, getNFTNacho /* immutable */, getNFTData /* immutable */]
   );
 
-  const onNFTChange = useCallback(
+  const {
+    getMetadata,
+    fetchMetadata,
+    subscribeToMetadataChanges,
+    invalidate: invalidateMetadata,
+  } = useMetadataData({
+    fetchNFT,
+  });
+
+  const subscribeToNFTChanges = useCallback(
     (id: string, callback: (nft: any) => void) => {
-      const unsubscribeData = onNFTDataChange(id, callback);
-      const unsubscribeNachos = onNFTNachosChange(id, callback);
-      const unsubscribeDemand = onNFTOnDemandChange(id, callback);
+      const unsubscribeData = subscribeToNFTDataChanges(id, callback);
+      const unsubscribeNachos = subscribeToNFTNachosChanges(id, callback);
+      const unsubscribeDemand = subscribeToNFTOnDemandChanges(id, callback);
 
       return () => {
         unsubscribeData();
@@ -75,42 +113,36 @@ export default function NFTProvider(props: NFTProviderProps) {
         unsubscribeDemand();
       };
     },
-    [onNFTOnDemandChange, onNFTNachosChange, onNFTDataChange]
+    [subscribeToNFTOnDemandChanges, subscribeToNFTNachosChanges, subscribeToNFTDataChanges]
   );
 
-  const onChange = useCallback(
+  const subscribeToChanges = useCallback(
     (callback: () => void) => {
-      const unsubscribeData = onDataChange(callback);
-      const unsubscribeNachos = onNachosChange(callback);
+      const unsubscribeData = subscribeToDataChanges(callback);
+      const unsubscribeNachos = subscribeToNachosChanges(callback);
 
       return () => {
         unsubscribeData();
         unsubscribeNachos();
       };
     },
-    [onDataChange, onNachosChange]
+    [subscribeToDataChanges, subscribeToNachosChanges]
   );
 
-  const { getMetadata, onMetadataChange } = useMetadataData({
-    fetchNFT,
-  });
-
-  /*
   const invalidateNFT = useCallback(
-    async (id: string | undefined, abortSignal: AbortSignal) => {
+    async (id: string | undefined) => {
       log(`Invalidating ${id}`);
       if (!id) {
         return;
       }
 
-      const nftId = getNFTId(id);
-      const nft = await fetchById(nftId, abortSignal);
-      if (!nft || abortSignal.aborted) {
+      const nft = await fetchNFT(id);
+      if (!nft) {
         return;
       }
 
+      // invalidate nft files
       const promises = [];
-
       const { dataUris, metadataUris } = nft;
 
       dataUris.forEach((uri) => promises.push(invalidate(uri)));
@@ -120,12 +152,9 @@ export default function NFTProvider(props: NFTProviderProps) {
         promises.push(invalidate(firstMetadataUri));
       }
 
+      // invalidate metadata files
       try {
-        const metadata = await fetchMetadata(nftId, abortSignal);
-        if (abortSignal.aborted) {
-          return;
-        }
-
+        const metadata = await fetchMetadata(id);
         if (metadata) {
           // invalidate all previews
           const { preview_video_uris: previewVideoUris, preview_image_uris: previewImageUris } = metadata;
@@ -139,21 +168,15 @@ export default function NFTProvider(props: NFTProviderProps) {
           }
         }
       } catch (e) {
-        log(`Error invalidating metadata for ${nftId}: ${(e as Error).message}`);
+        log(`Error loading metadata for ${id}: ${(e as Error).message}`);
       } finally {
         await Promise.all(promises);
       }
 
-      if (abortSignal.aborted) {
-        return;
-      }
-
-      nftsOnDemand.delete(nftId);
-      metadatasOnDemand.delete(nftId);
+      await Promise.all([invalidateNachos(), invalidateMetadata(id), invalidateNFTOnDemand(id)]);
     },
-    [fetchById, fetchMetadata, invalidate, nftsOnDemand, metadatasOnDemand]
+    [fetchNFT, fetchMetadata, invalidate, invalidateNachos, invalidateMetadata, invalidateNFTOnDemand]
   );
-  */
 
   const context = useMemo(
     () => ({
@@ -162,12 +185,14 @@ export default function NFTProvider(props: NFTProviderProps) {
       nachos,
 
       getNFT,
-      onNFTChange,
+      subscribeToNFTChanges,
 
       getMetadata,
-      onMetadataChange,
+      subscribeToMetadataChanges,
 
-      onChange,
+      subscribeToChanges,
+
+      invalidate: invalidateNFT,
 
       // mutable state
       isLoading,
@@ -183,13 +208,14 @@ export default function NFTProvider(props: NFTProviderProps) {
       isLoading,
       error,
       getNFT,
-      onNFTChange,
+      subscribeToNFTChanges,
       getMetadata,
-      onMetadataChange,
+      subscribeToMetadataChanges,
       count,
       loaded,
       progress,
-      onChange,
+      subscribeToChanges,
+      invalidateNFT,
     ]
   );
 

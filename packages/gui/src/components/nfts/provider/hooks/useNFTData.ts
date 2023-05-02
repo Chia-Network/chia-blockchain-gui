@@ -228,7 +228,7 @@ export default function useNFTData(props: UseNFTDataProps) {
   }, [refetchData, nftWallets, fingerprint, subscribeToNFTCoinChanges]);
 
   // immutable function
-  const getNFTData = useCallback(
+  const getNFT = useCallback(
     (id: string | undefined) => {
       if (!id) {
         return {
@@ -249,7 +249,7 @@ export default function useNFTData(props: UseNFTDataProps) {
   );
 
   // immutable function
-  const onNFTDataChange = useCallback(
+  const subscribeToNFTChanges = useCallback(
     (id: string | undefined, callback: (nftState?: NFTState) => void) => {
       if (!id) {
         return () => {};
@@ -266,7 +266,7 @@ export default function useNFTData(props: UseNFTDataProps) {
     [events /* immutable */]
   );
 
-  const onDataChange = useCallback(
+  const subscribeToChanges = useCallback(
     (callback: () => void) => {
       events.on('changed', callback);
 
@@ -280,7 +280,7 @@ export default function useNFTData(props: UseNFTDataProps) {
   return {
     nfts,
 
-    getNFTData,
+    getNFT,
 
     isLoading,
     error,
@@ -289,7 +289,7 @@ export default function useNFTData(props: UseNFTDataProps) {
     loaded,
     progress: count > 0 ? (loaded / count) * 100 : !isLoading && count === 0 ? 100 : 0,
 
-    onNFTDataChange, // immutable
-    onDataChange,
-  };
+    subscribeToNFTChanges, // immutable
+    subscribeToChanges,
+  } as const;
 }
