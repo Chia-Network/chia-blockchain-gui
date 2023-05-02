@@ -8,7 +8,7 @@ msgstr ""
 "Language: fi_FI\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-05-02 14:42\n"
+"PO-Revision-Date: 2023-05-02 15:57\n"
 "Last-Translator: \n"
 "Language-Team: Finnish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -1993,7 +1993,7 @@ msgstr "NFT:tä ei määritetty"
 #: src/util/offerBuilderDataToOffer.ts:94
 #: src/util/offerBuilderDataToOffer.ts:148
 msgid "NFT {nftId} is already used in this offer"
-msgstr ""
+msgstr "NFT {nftId} on jo käytetty tarjoukseen"
 
 #: src/components/dashboard/DashboardSideBar.tsx:57
 msgid "NFTs"
@@ -2001,11 +2001,11 @@ msgstr "NFT:t"
 
 #: src/components/settings/SettingsNFT.tsx:135
 msgid "NFTs that have been categorized by the creator as objectionable content will be hidden by default."
-msgstr ""
+msgstr "NFT:t, jotka niiden tekijä on luokitellut ristiriitaista sisältöä sisältäväksi, piilotetaan oletusarvoisesti."
 
 #: src/constants/WalletConnectCommands.tsx:431
 msgid "Name"
-msgstr ""
+msgstr "Nimi"
 
 #: src/components/offers/NFTOfferViewer.tsx:580
 msgid "Net Proceeds"
@@ -2021,7 +2021,7 @@ msgstr "Verkon Nimi"
 
 #: src/constants/WalletConnectCommands.tsx:161
 msgid "New Address"
-msgstr ""
+msgstr "Uusi Osoite"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:210
 msgid "New Passphrase"
@@ -2039,7 +2039,7 @@ msgstr "Ei"
 #: src/util/offerBuilderDataToOffer.ts:74
 #: src/util/offerBuilderDataToOffer.ts:135
 msgid "No CAT wallet found for {assetId} token"
-msgstr ""
+msgstr "CAT-lompakkoa ei löydy tokenille {assetId}"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:397
 msgid "No CPU Affinity"
@@ -2047,7 +2047,7 @@ msgstr "EI CPU:n affiniteettia"
 
 #: src/components/walletConnect/WalletConnectPairInfoDialog.tsx:113
 msgid "No Paired Keys"
-msgstr ""
+msgstr "Ei Avainpareja"
 
 #: src/components/notification/NotificationsMenu.tsx:49
 msgid "No activities yet"
@@ -2204,7 +2204,7 @@ msgstr "Tarjouksen Tiedot"
 #: src/constants/WalletConnectCommands.tsx:325
 #: src/constants/WalletConnectCommands.tsx:337
 msgid "Offer Id"
-msgstr ""
+msgstr "Tarjouksen Tunniste"
 
 #: src/components/offers/OfferManager.tsx:418
 msgid "Offer Management"
@@ -2290,7 +2290,7 @@ msgstr ""
 
 #: src/components/offers2/OfferBuilderViewer.tsx:176
 msgid "One or more unknown tokens are being offered. Be sure to verify that the asset IDs of the offered tokens match the asset IDs of the tokens you are expecting."
-msgstr ""
+msgstr "Yhtä tai useampaa tuntematonta tokenia tarjotaan. Varmista, että tarjouttujen tokeneiden Asset ID:t (tunnisteet) täsmäävät tokeneihin, joita odotat vastaanottavasi."
 
 #: src/components/offers/OfferAcceptConfirmationDialog.tsx:35
 msgid "One or more unknown tokens are being offered. Please verify that the asset IDs of the tokens listed below match the asset IDs of the tokens you expect to receive."
@@ -2765,7 +2765,7 @@ msgstr "Protokollaversio"
 
 #: src/components/settings/SettingsAdvanced.tsx:85
 msgid "Prove or verify possession of a wallet address, NFT, or DID using a digital signature."
-msgstr ""
+msgstr "Todista tai vahvista lompakon osoitteen, NFT:n tai DID:n hallinta digitaalisella allekirjoituksella."
 
 #: src/components/signVerify/VerifyMessage.tsx:219
 msgid "Public Key"
@@ -3117,7 +3117,7 @@ msgstr ""
 
 #: src/constants/WalletConnectCommands.tsx:114
 msgid "Sign Message by Id"
-msgstr ""
+msgstr "Allekirjoita viesti tunnisteella"
 
 #: src/components/signVerify/VerifyMessage.tsx:228
 msgid "Signature"
@@ -3189,7 +3189,7 @@ msgstr "Määritä arvo 0 käyttääksesi kaikkia käytettävissä olevia säike
 
 #: src/components/signVerify/SignMessage.tsx:21
 msgid "Specify a wallet address, NFT, or DID to sign with"
-msgstr ""
+msgstr "Määritä lompakon osoite, NFT tai DID allekirjoittaaksesi"
 
 #: src/electron/main.tsx:1149
 msgid "Speech"
@@ -3582,7 +3582,7 @@ msgstr "Kosketa puskurien allokoinnin kaikkia sivuja ennen kuin plottaus aloitet
 
 #: src/constants/WalletConnectCommands.tsx:260
 msgid "Trade Id"
-msgstr ""
+msgstr "Kaupan tunniste"
 
 #: src/components/app/AppSelectMode.tsx:90
 msgid "Trade tokens"
@@ -3594,7 +3594,7 @@ msgstr ""
 
 #: src/constants/WalletConnectCommands.tsx:38
 msgid "Transaction Id"
-msgstr ""
+msgstr "Tapahtuman Tunniste"
 
 #: src/components/offers2/OfferBuilderFeeSection.tsx:65
 msgid "Transaction Speed"
@@ -3645,11 +3645,11 @@ msgstr "Tarjousta ei voi luoda, jos nettosumma on negatiivinen"
 
 #: src/components/signVerify/SignMessage.tsx:110
 msgid "Unable to find DID {entityId}"
-msgstr ""
+msgstr "DID:tä {entityId} ei löydy"
 
 #: src/components/signVerify/SignMessage.tsx:108
 msgid "Unable to find NFT {entityId}"
-msgstr ""
+msgstr "NFT:tä {entityId} ei löydy"
 
 #: src/components/offers/OfferShareDialog.tsx:1099
 msgid "Unable to open Keybase. Install Keybase from https://keybase.io"
@@ -3726,7 +3726,7 @@ msgstr "VDF -alaiteraatioita"
 
 #: src/components/signVerify/VerifyMessage.tsx:165
 msgid "Valid"
-msgstr ""
+msgstr "Validi"
 
 #: src/components/nfts/detail/NFTDetailV2.tsx:197
 msgid "Validate SHA256 SUM"
@@ -3734,7 +3734,7 @@ msgstr "Validoi SHA256 SUM"
 
 #: src/constants/WalletConnectCommands.tsx:241
 msgid "Validate only"
-msgstr ""
+msgstr "Vain validoi"
 
 #: src/components/nfts/detail/NFTDetailV2.tsx:175
 msgid "Validating hash..."
@@ -3822,7 +3822,7 @@ msgstr ""
 
 #: src/components/nfts/gallery/NFTGallery.tsx:570
 msgid "Visible and hidden ({0})"
-msgstr ""
+msgstr "Näkyvät ja piilotetut ({0})"
 
 #: src/constants/WalletConnectCommands.tsx:105
 #: src/constants/WalletConnectCommands.tsx:412
@@ -3850,7 +3850,7 @@ msgstr ""
 
 #: src/constants/WalletConnectCommands.tsx:98
 msgid "Wallet ID"
-msgstr ""
+msgstr "Lompakon Tunniste"
 
 #: src/constants/WalletConnectCommands.tsx:50
 #: src/constants/WalletConnectCommands.tsx:65
@@ -3859,15 +3859,15 @@ msgstr ""
 #: src/constants/WalletConnectCommands.tsx:383
 #: src/constants/WalletConnectCommands.tsx:468
 msgid "Wallet Id"
-msgstr ""
+msgstr "Lompakon Tunniste"
 
 #: src/constants/WalletConnectCommands.tsx:445
 msgid "Wallet Ids"
-msgstr ""
+msgstr "Lompakon Tunnisteet"
 
 #: src/constants/WalletConnectCommands.tsx:231
 msgid "Wallet Ids and Amounts"
-msgstr ""
+msgstr "Lompakon tunnisteet ja summat"
 
 #: src/components/app/AppSelectMode.tsx:70
 #: src/components/app/AppSelectMode.tsx:120
