@@ -747,9 +747,9 @@ function getMenuTemplate() {
           },
         },
         {
-          label: i18n._(/* i18n */ { id: 'Chat on KeyBase' }),
+          label: i18n._(/* i18n */ { id: 'Chat on Discord' }),
           click: () => {
-            openExternal('https://keybase.io/team/chia_network.public');
+            openExternal('https://discord.gg/chia');
           },
         },
         {
