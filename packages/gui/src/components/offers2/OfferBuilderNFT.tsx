@@ -8,6 +8,7 @@ import useNFT from '../../hooks/useNFT';
 import useNFTMinterDID from '../../hooks/useNFTMinterDID';
 import NFTCard from '../nfts/NFTCard';
 import { NFTContextualActionTypes } from '../nfts/NFTContextualActions';
+import { isValueNFTId } from '../nfts/NFTSearch';
 import OfferBuilderNFTProvenance from './OfferBuilderNFTProvenance';
 import OfferBuilderNFTRoyalties from './OfferBuilderNFTRoyalties';
 import OfferBuilderValue from './OfferBuilderValue';
@@ -62,7 +63,7 @@ export default function OfferBuilderNFT(props: OfferBuilderNFTProps) {
         )}
       </Flex>
 
-      {value && (
+      {isValueNFTId(value) && (
         <Flex flexDirection="column" gap={2}>
           <Typography variant="body2" color="textSecondary">
             <Trans>Preview</Trans>

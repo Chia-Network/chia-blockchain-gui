@@ -5,9 +5,12 @@ import styled from 'styled-components';
 
 import useHideObjectionableContent from '../../hooks/useHideObjectionableContent';
 import useNFTs from '../../hooks/useNFTs';
+import { allTypesArray } from './NFTFilterProvider';
 import NFTMetadata from './NFTMetadata';
 import NFTPreview from './NFTPreview';
 import NFTTitle from './NFTTitle';
+
+export const isValueNFTId = (value: string) => value.length === 62 && value.substring(0, 3) === 'nft';
 
 const SearchNFTrow = styled.div`
   cursor: pointer;
@@ -38,11 +41,10 @@ const NFTSearchedText = styled.div`
 `;
 
 const SearchPlaceholder = styled.div`
-  position: relative;
-  top: 10px;
+  position: inherit;
   z-index: 3;
-  background: red;
   > div {
+    margin-top: 10px;
     background: ${(props) => (props.isDarkMode ? '#222' : '#fafafa')};
     ::-webkit-scrollbar-thumb {
       background-color: ${(props) => (props.isDarkMode ? '#444' : '#ddd')};
@@ -82,6 +84,8 @@ export default function OfferBuilderValueSearch(props: OfferBuilderValueSearchPr
   const { nfts, isLoading } = useNFTs({
     hideSensitiveContent: hideObjectionableContent,
     search: value,
+    walletIds: [],
+    types: value ? allTypesArray : [],
   });
 
   const { isDarkMode } = useDarkMode();
@@ -91,7 +95,10 @@ export default function OfferBuilderValueSearch(props: OfferBuilderValueSearchPr
   }
 
   return (
-    <SearchPlaceholder isDarkMode={isDarkMode} style={{ display: value.length ? 'block' : 'none' }}>
+    <SearchPlaceholder
+      isDarkMode={isDarkMode}
+      style={{ display: isValueNFTId(value) || nfts.length === 0 ? 'none' : 'block' }}
+    >
       <div>
         {isLoading ? (
           <Trans>Loading NFTs...</Trans>
