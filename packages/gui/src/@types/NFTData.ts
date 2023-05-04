@@ -1,6 +1,6 @@
 import { type NFTInfo } from '@chia-network/api';
 
-import type FileType from './FileType';
+import type FileType from '../constants/FileType';
 import type Metadata from './Metadata';
 
 type NFTData = {
