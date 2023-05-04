@@ -1,11 +1,22 @@
 import crypto from 'crypto';
-import fs from 'fs/promises';
+import fs from 'fs';
 
 export default async function getChecksum(filePath: string) {
-  const data = await fs.readFile(filePath);
+  return new Promise<string>((resolve, reject) => {
+    const hash = crypto.createHash('sha256');
+    const readStream = fs.createReadStream(filePath);
 
-  const hash = crypto.createHash('sha256');
-  hash.update(data);
+    readStream.on('data', (chunk) => {
+      hash.update(chunk);
+    });
 
-  return hash.digest('hex');
+    readStream.on('end', () => {
+      const checksum = hash.digest('hex');
+      resolve(checksum);
+    });
+
+    readStream.on('error', (error) => {
+      reject(error);
+    });
+  });
 }
