@@ -1,6 +1,6 @@
 import { alpha } from '@mui/material';
 
-const ColorValues = {
+const Color = {
   Royal: {
     '50': '#F0F4FE',
     '100': '#DCE6FD',
@@ -288,4 +288,4 @@ const ColorValues = {
   },
 };
 
-export default ColorValues;
+export default Color;
