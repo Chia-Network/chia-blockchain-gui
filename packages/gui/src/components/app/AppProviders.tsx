@@ -104,10 +104,10 @@ export default function App(props: AppProps) {
                       <WalletConnectProvider projectId={WalletConnectChiaProjectId}>
                         <NotificationsProvider>
                           <AppState>{outlet ? <Outlet /> : children}</AppState>
+                          <ModalDialogs />
                         </NotificationsProvider>
                       </WalletConnectProvider>
                     </Suspense>
-                    <ModalDialogs />
                   </ModalDialogsProvider>
                 </NFTProvider>
               </LRUsProvider>
