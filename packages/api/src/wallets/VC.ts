@@ -1,27 +1,15 @@
 import Wallet from '../services/WalletService';
 
 export default class VCWallet extends Wallet {
-  async getVC(vcId: string) {
-    return this.command('vc_get_vc', {
-      vc_id: vcId,
-    });
+  async getVC(args: { vcId: number }) {
+    return this.command('vc_get_vc', args);
   }
 
-  async getVCList({ start, count }: { start: number; count: number }) {
-    return this.command('vc_get_vc_list', {
-      start,
-      count,
-    });
+  async getVCList(args: { start: number; count: number }) {
+    return this.command('vc_get_vc_list', args);
   }
 
-  async spendVC({
-    vcId,
-    newPuzhash,
-    newProofHash,
-    providerInnerPuzhash,
-    fee,
-    reusePuzhash,
-  }: {
+  async spendVC(args: {
     vcId: string;
     newPuzhash?: string;
     newProofHash?: string;
@@ -29,14 +17,7 @@ export default class VCWallet extends Wallet {
     fee?: number;
     reusePuzhash?: boolean;
   }) {
-    return this.command('vc_spend_vc', {
-      vc_id: vcId,
-      new_puzhash: newPuzhash,
-      new_proof_hash: newProofHash,
-      provider_inner_puzhash: providerInnerPuzhash,
-      fee,
-      reuse_puzhash: reusePuzhash,
-    });
+    return this.command('vc_spend_vc', args);
   }
 
   async addVCProofs(proofs: string) {
@@ -47,11 +28,7 @@ export default class VCWallet extends Wallet {
     return this.command('get_proofs_for_root', { root });
   }
 
-  async revokeVC({ vcParentId, fee, reusePuzhash }: { vcParentId: string; fee: number; reusePuzhash: boolean }) {
-    return this.command('vc_revoke_vc', {
-      vc_parent_id: vcParentId,
-      fee,
-      reuse_puzhash: reusePuzhash,
-    });
+  async revokeVC(args: { vcParentId: string; fee: number; reusePuzhash: boolean }) {
+    return this.command('vc_revoke_vc', args);
   }
 }

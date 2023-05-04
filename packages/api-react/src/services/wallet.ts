@@ -1397,22 +1397,11 @@ export const walletApi = apiWithTag.injectEndpoints({
 
     verifySignature: mutation(build, WalletService, 'verifySignature'),
 
-    getVC: build.query<string, { vcId: string }>({
-      query: ({ vcId }) => ({
-        command: 'getVC',
-        service: VC,
-        args: vcId,
-      }),
+    getVC: query(build, VC, 'getVC', {
       transformResponse: (response) => response.vcRecord,
     }),
 
-    getVCList: build.query<string, { start: number; count: number }>({
-      query: ({ start, count }) => ({
-        command: 'getVCList',
-        service: VC,
-        args: [start, count],
-      }),
-    }),
+    getVCList: query(build, VC, 'getVCList'),
 
     spendVC: mutation(build, VC, 'spendVC'),
 
