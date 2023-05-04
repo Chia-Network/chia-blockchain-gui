@@ -66,6 +66,8 @@ export default class Client extends EventEmitter {
   constructor(options: Options) {
     super();
 
+    this.setMaxListeners(100);
+
     this.options = {
       timeout: 60 * 1000 * 10, // 10 minutes
       camelCase: true,
