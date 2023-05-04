@@ -12,7 +12,7 @@ import hasSensitiveContent from '../util/hasSensitiveContent';
 import useHiddenNFTs from './useHiddenNFTs';
 import useNFTProvider from './useNFTProvider';
 
-function searchableNFTContent(nftId: string, nft: NFTInfo, metadata: Metadata) {
+function searchableNFTContent(nftId: string, nft: NFTInfo, metadata?: Metadata) {
   const items = [nftId, nft.dataUris?.join(' ') ?? '', nft.launcherId, metadata?.name, metadata?.collection?.name];
 
   return items.join(' ').toLowerCase();
@@ -99,10 +99,6 @@ const prepareNFTs = throttle(
       }
 
       if (searchString.length) {
-        if (!metadata) {
-          return;
-        }
-
         const content = nft && searchableNFTContent(nftId, nft, metadata);
         if (!content || !content.includes(searchString)) {
           return;
@@ -141,10 +137,13 @@ export type UseNFTsProps = {
   hideSensitiveContent?: boolean | 'false' | 'true';
 };
 
+const emptyWalletIds: number[] = [];
+const allTypes = [FileType.IMAGE, FileType.VIDEO, FileType.AUDIO, FileType.DOCUMENT, FileType.MODEL, FileType.UNKNOWN];
+
 export default function useNFTs(props: UseNFTsProps = {}) {
   const {
-    walletIds = [],
-    types = [FileType.IMAGE, FileType.VIDEO, FileType.AUDIO, FileType.DOCUMENT, FileType.MODEL, FileType.UNKNOWN],
+    walletIds = emptyWalletIds,
+    types = allTypes,
     search = '',
     visibility = NFTVisibility.ALL,
     // hideSensitiveContent = false,
@@ -206,7 +205,7 @@ export default function useNFTs(props: UseNFTsProps = {}) {
   useEffect(
     () =>
       subscribeToChanges(() => {
-        // todo invalidate only changed NFTs
+        // todo performance improvement => invalidate only visibly changed NFTs
         updateFiltered();
       }),
     [subscribeToChanges, updateFiltered]

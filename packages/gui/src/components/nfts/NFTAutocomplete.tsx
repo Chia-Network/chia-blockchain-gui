@@ -1,8 +1,9 @@
 import { type NFTInfo } from '@chia-network/api';
 import { Flex } from '@chia-network/core';
+import { Trans } from '@lingui/macro';
 import { Autocomplete, Box, Typography, TextField, TextFieldProps } from '@mui/material';
 import { get } from 'lodash';
-import React, { useState, type ReactNode } from 'react';
+import React, { useState, type ReactNode, useMemo, useCallback } from 'react';
 import { useController, useFormContext } from 'react-hook-form';
 
 import useHideObjectionableContent from '../../hooks/useHideObjectionableContent';
@@ -28,10 +29,11 @@ export default function NFTAutocomplete(props: NFTAutocompleteProps) {
   const { name, defaultValue, label, rules, variant, color, required, fullWidth, InputProps = {} } = props;
   const [inputValue, setInputValue] = useState('');
 
+  const [searchText, setSearchText] = useState('');
   const [hideObjectionableContent] = useHideObjectionableContent();
   const { nfts, isLoading } = useNFTs({
     hideSensitiveContent: hideObjectionableContent,
-    search: inputValue,
+    search: searchText,
   });
 
   const { control, errors } = useFormContext();
@@ -46,40 +48,97 @@ export default function NFTAutocomplete(props: NFTAutocompleteProps) {
 
   const errorMessage = get(errors, name);
 
-  function renderOption(renderProps, nft) {
-    return (
-      <Box component="li" sx={{ '& > img': { mr: 2, flexShrink: 0 } }} {...renderProps}>
-        <Flex gap={2} alignItems="center" minWidth={0}>
-          <NFTPreview width="50px" id={nft.launcherId} fit="cover" isCompact preview />
-          <Flex flexDirection="column" minWidth={0}>
-            <NFTTitle nftId={nft.launcherId} highlight={inputValue} />
-            <Typography color="textSecondary" variant="body2">
-              <NFTMetadata nftId={nft.launcherId} path="collection?.name" highlight={inputValue} />
-            </Typography>
+  const renderOption = useCallback(
+    (renderProps, nft) => {
+      if (!nft) {
+        return (
+          <Box component="li" sx={{ '& > img': { mr: 2, flexShrink: 0 } }} {...renderProps}>
+            <Trans>Select an NFT</Trans>
+          </Box>
+        );
+      }
+
+      return (
+        <Box component="li" sx={{ '& > img': { mr: 2, flexShrink: 0 } }} {...renderProps}>
+          <Flex gap={2} alignItems="center" minWidth={0}>
+            <NFTPreview width="50px" id={nft.launcherId} fit="cover" isCompact preview />
+            <Flex flexDirection="column" minWidth={0}>
+              <NFTTitle nftId={nft.launcherId} highlight={inputValue} />
+              <Typography color="textSecondary" variant="body2">
+                <NFTMetadata nftId={nft.launcherId} path="collection.name" highlight={inputValue} />
+              </Typography>
+            </Flex>
           </Flex>
-        </Flex>
-      </Box>
-    );
-  }
+        </Box>
+      );
+    },
+    [inputValue]
+  );
 
-  function handleChange(_event: any, newValue: NFTInfo | undefined) {
-    if (newValue?.launcherId) {
-      onChange(getNFTId(newValue.launcherId));
+  const handleChange = useCallback(
+    (_event: any, newValue: NFTInfo | undefined) => {
+      if (!newValue) {
+        onChange('');
+        return;
+      }
+
+      if (newValue?.launcherId) {
+        onChange(getNFTId(newValue.launcherId));
+      }
+    },
+    [onChange]
+  );
+
+  const handleInputValueChange = useCallback(
+    (_event: any, newInputValue: string) => {
+      setInputValue(newInputValue);
+      setSearchText(newInputValue);
+      onChange(newInputValue || '');
+    },
+    [onChange]
+  );
+
+  const handleClose = useCallback(() => {
+    setSearchText('');
+  }, []);
+
+  const firstOption = useMemo(() => nfts[0], [nfts]);
+
+  const selectedNFT = useMemo(() => {
+    if (!value) {
+      return undefined;
     }
-  }
 
-  function handleInputValueChange(_event: any, newInputValue: string) {
-    setInputValue(newInputValue);
-    onChange(newInputValue || '');
-  }
+    return nfts.find((nft) => getNFTId(nft.launcherId) === value);
+  }, [nfts, value]);
+
+  const isOptionEqualToValue = useCallback(
+    (option) => {
+      if (!selectedNFT && option === firstOption) {
+        return true;
+      }
+
+      if (!selectedNFT) {
+        return false;
+      }
+
+      return option.launcherId === selectedNFT.launcherId;
+    },
+    [firstOption, selectedNFT]
+  );
 
   return (
     <Autocomplete
-      // freeSolo
       renderOption={renderOption}
       options={nfts}
       value={value}
       onChange={handleChange}
+      onClose={handleClose}
+      filterOptions={(options) => options} // disable filtering we are using our own
+      loading={isLoading}
+      inputValue={inputValue}
+      onInputChange={handleInputValueChange}
+      isOptionEqualToValue={isOptionEqualToValue}
       renderInput={(params) => (
         <TextField
           {...params}
@@ -110,9 +169,6 @@ export default function NFTAutocomplete(props: NFTAutocompleteProps) {
 
         return getNFTId(option.launcherId);
       }}
-      inputValue={inputValue}
-      onInputChange={handleInputValueChange}
-      loading={isLoading}
     />
   );
 }
