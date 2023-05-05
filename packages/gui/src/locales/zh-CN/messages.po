@@ -6,17 +6,17 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: @lingui/cli\n"
 "Language: zh_CN\n"
-"Project-Id-Version: chia-blockchain\n"
+"Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-10-24 18:15\n"
+"PO-Revision-Date: 2023-03-29 23:27\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Crowdin-Project: chia-blockchain\n"
-"X-Crowdin-Project-ID: 440660\n"
+"X-Crowdin-Project: 1263bc1f20e1271bda78e84d2f4a6562\n"
+"X-Crowdin-Project-ID: 1\n"
 "X-Crowdin-Language: zh-CN\n"
-"X-Crowdin-File: /main/packages/gui/src/locales/en-US/messages.po\n"
-"X-Crowdin-File-ID: 1888\n"
+"X-Crowdin-File: /[Chia-Network.chia-blockchain-gui] main/packages/gui/src/locales/en-US/messages.po\n"
+"X-Crowdin-File-ID: 1306\n"
 
 #: src/components/offers2/OfferBuilderImport.tsx:167
 msgid "(Ctrl-V) a blob"
@@ -376,7 +376,7 @@ msgstr "浏览"
 #: src/components/nfts/NFTBurnDialog.tsx:184
 #: src/components/nfts/NFTContextualActions.tsx:531
 msgid "Burn"
-msgstr ""
+msgstr "刻录"
 
 #: src/components/nfts/NFTBurnDialog.tsx:72
 msgid "Burn NFT confirmation"
@@ -388,7 +388,7 @@ msgstr ""
 
 #: src/components/offers/NFTOfferEditor.tsx:312
 msgid "Buy an NFT"
-msgstr ""
+msgstr "购买一个 NFT"
 
 #: src/components/signVerify/VerifyMessage.tsx:252
 msgid "By providing a signing address, the public key can be validated as being associated with the address used for signing."
@@ -1032,7 +1032,7 @@ msgstr ""
 
 #: src/components/offers/OfferImport.tsx:167
 msgid "Drag & Drop an Offer File"
-msgstr ""
+msgstr "拖放报价文件"
 
 #: src/components/offers2/OfferBuilderImport.tsx:166
 msgid "Drag & Drop an Offer File, Paste"
@@ -1342,7 +1342,7 @@ msgstr "全节点"
 
 #: src/components/fullNode/FullNodeConnections.tsx:89
 msgid "Full Node Connections"
-msgstr ""
+msgstr "完整节点连接"
 
 #: src/electron/main.tsx:1022
 msgid "Full Screen"
@@ -1469,7 +1469,7 @@ msgstr ""
 
 #: src/components/nfts/NFTContextualActions.tsx:499
 msgid "Hide"
-msgstr ""
+msgstr "隐藏"
 
 #: src/components/settings/SettingsNFT.tsx:125
 msgid "Hide objectionable content"
@@ -1579,20 +1579,16 @@ msgid "Install Keybase"
 msgstr "安装 Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:67
-msgid ""
-"Insufficient funds available to accept offer. Ensure that your\n"
+msgid "Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"可用资金不足，无法接受报价。请确保您的\n"
+msgstr "可用资金不足，无法接受报价。请确保您的\n"
 "可支出余额足以支付报价金额。"
 
 #: src/components/offers/OfferEditor.tsx:148
 #: src/components/offers2/CreateOfferBuilder.tsx:121
-msgid ""
-"Insufficient funds available to create offer. Ensure that your\n"
+msgid "Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
-msgstr ""
-"可用的资金不足，无法创建报价。请确保您的\n"
+msgstr "可用的资金不足，无法创建报价。请确保您的\n"
 "可支出余额足以支付报价金额。"
 
 #: src/components/settings/Settings.tsx:73
@@ -1738,7 +1734,7 @@ msgstr ""
 
 #: src/components/fullNode/FullNodeConnections.tsx:99
 msgid "List of connections is empty"
-msgstr ""
+msgstr "连接列表为空"
 
 #: src/components/nfts/NFTSummary.tsx:103
 msgid "Loading NFT"
@@ -2507,7 +2503,7 @@ msgstr ""
 
 #: src/components/offers/NFTOfferEditor.tsx:589
 msgid "Please select an asset type"
-msgstr ""
+msgstr "请选择资产类型"
 
 #: src/components/settings/SettingsNFT.tsx:95
 msgid "Please select an empty folder"
@@ -3015,7 +3011,7 @@ msgstr "自耕种。一旦发现新区块，你将得到全部XCH区块奖励。
 
 #: src/components/offers/NFTOfferEditor.tsx:313
 msgid "Sell an NFT"
-msgstr ""
+msgstr "卖出一个 NFT"
 
 #: src/components/notification/NotificationSendDialog.tsx:294
 msgid "Send Message"
@@ -3089,7 +3085,7 @@ msgstr "分享到Offerpool"
 
 #: src/components/nfts/NFTContextualActions.tsx:499
 msgid "Show"
-msgstr ""
+msgstr "显示"
 
 #: src/components/offers/OfferManager.tsx:328
 msgid "Show Details"
@@ -3846,7 +3842,7 @@ msgstr "正在等待交易确认"
 #: src/components/app/AppStatusHeader.tsx:109
 #: src/hooks/useWalletConnectCommand.tsx:105
 msgid "Wallet"
-msgstr ""
+msgstr "钱包"
 
 #: src/components/signVerify/SignMessage.tsx:153
 msgid "Wallet Address"
@@ -4165,3 +4161,4 @@ msgstr "{max_value}中的{value}"
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:106
 msgid "{warning}"
 msgstr "{warning}"
+

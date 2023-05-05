@@ -1,10 +1,4 @@
-import {
-  useGetLoggedInFingerprintQuery,
-  useGetKeyQuery,
-  useFingerprintSettings,
-  useLocalStorage,
-} from '@chia-network/api-react';
-import { useAppVersion } from '@chia-network/core';
+import { useGetLoggedInFingerprintQuery, useGetKeyQuery, useFingerprintSettings } from '@chia-network/api-react';
 import { Exit as ExitIcon } from '@chia-network/icons';
 import { t, Trans } from '@lingui/macro';
 import { ExitToApp as ExitToAppIcon, Edit as EditIcon } from '@mui/icons-material';
@@ -28,7 +22,6 @@ import useGetLatestVersionFromWebsite from '../../hooks/useGetLatestVersionFromW
 import useOpenDialog from '../../hooks/useOpenDialog';
 import EmojiAndColorPicker from '../../screens/SelectKey/EmojiAndColorPicker';
 import SelectKeyRenameForm from '../../screens/SelectKey/SelectKeyRenameForm';
-import compareAppVersions from '../../utils/compareAppVersion';
 import Flex from '../Flex';
 import Link from '../Link';
 import Loading from '../Loading';
@@ -116,17 +109,12 @@ export default function LayoutDashboard(props: LayoutDashboardProps) {
     emoji: ``,
     color: 'green',
   });
-  const [skipVersion, setSkipVersion] = useLocalStorage<string>('skipVersion', '');
-  const { latestVersion, downloadUrl, blogUrl } = useGetLatestVersionFromWebsite(skipVersion !== '');
-  const { version } = useAppVersion();
-  const versionComparisonResult = latestVersion ? compareAppVersions(version, latestVersion) : 0;
-  const newVersionAvailable = versionComparisonResult === -1;
+  const { appVersion, latestVersion, newVersionAvailable, isVersionSkipped, addVersionToSkip, downloadUrl, blogUrl } =
+    useGetLatestVersionFromWebsite();
 
   const openDialog = useOpenDialog();
 
   const isLoading = isLoadingFingerprint || isLoadingKeyData;
-
-  const preventDualCheck = React.useRef(false);
 
   React.useEffect(() => {
     function checkForUpdates(ver: string) {
@@ -134,11 +122,13 @@ export default function LayoutDashboard(props: LayoutDashboardProps) {
         openDialog(<NewerAppVersionAvailable currentVersion={ver} />);
       }
     }
-    if (!preventDualCheck.current && version) {
-      (window as any).ipcRenderer.on('checkForUpdates', () => checkForUpdates(version));
-      preventDualCheck.current = true;
-    }
-  }, [openDialog, version]);
+    (window as any).ipcRenderer.on('checkForUpdates', () => checkForUpdates(appVersion));
+
+    // unregister event listener on unmount
+    return () => {
+      (window as any).ipcRenderer.removeAllListeners('checkForUpdates');
+    };
+  }, [openDialog, appVersion]);
 
   async function handleLogout() {
     localStorage.setItem('visibilityFilters', JSON.stringify(['visible']));
@@ -156,7 +146,7 @@ export default function LayoutDashboard(props: LayoutDashboardProps) {
   }
 
   function isNewVersionBannerShown() {
-    return latestVersion && version && skipVersion !== latestVersion && newVersionAvailable;
+    return newVersionAvailable && !isVersionSkipped;
   }
 
   function renderNewVersionBanner() {
@@ -175,9 +165,11 @@ export default function LayoutDashboard(props: LayoutDashboardProps) {
           }}
         >
           <Trans>New version {latestVersion} available</Trans>
-          <Button color="secondary" variant="outlined" size="small" onClick={() => setSkipVersion(latestVersion || '')}>
-            <Trans>Skip</Trans>
-          </Button>
+          {latestVersion && (
+            <Button color="secondary" variant="outlined" size="small" onClick={() => addVersionToSkip(latestVersion)}>
+              <Trans>Skip</Trans>
+            </Button>
+          )}
           {blogUrl && (
             <Link target="_blank" href={blogUrl} sx={{ textDecoration: 'none !important' }}>
               <Button color="secondary" variant="outlined" size="small" sx={{ boxShadow: 'none' }}>

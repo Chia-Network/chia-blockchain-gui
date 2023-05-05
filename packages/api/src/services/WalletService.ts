@@ -444,4 +444,18 @@ export default class Wallet extends Service {
   ) {
     return this.onStateChanged('new_derivation_index', callback, processData);
   }
+
+  onNFTCoinDIDSet(
+    callback: (
+      data: {
+        additionalData: {
+          index: number;
+        };
+      },
+      message: Message
+    ) => void,
+    processData?: (data: any) => any
+  ) {
+    return this.onStateChanged('nft_coin_did_set', callback, processData);
+  }
 }

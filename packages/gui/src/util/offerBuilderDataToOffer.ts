@@ -39,6 +39,7 @@ export type OfferBuilderDataToOfferParams = {
   validateOnly?: boolean;
   considerNftRoyalty?: boolean;
   allowEmptyOfferColumn?: boolean;
+  allowUnknownRequestedCATs?: boolean;
 };
 
 // Amount exceeds spendable balance
@@ -49,6 +50,7 @@ export default async function offerBuilderDataToOffer({
   validateOnly = false,
   considerNftRoyalty = false,
   allowEmptyOfferColumn = false,
+  allowUnknownRequestedCATs = false,
 }: OfferBuilderDataToOfferParams): Promise<{
   walletIdsAndAmounts?: Record<string, BigNumber>;
   driverDict?: Record<string, any>;
@@ -314,16 +316,18 @@ export default async function offerBuilderDataToOffer({
       throw new Error(t`Please select an asset for each token`);
     }
 
-    const wallet = findCATWalletByAssetId(wallets, assetId);
-    if (!wallet) {
-      throw new Error(t`No CAT wallet found for ${assetId} token`);
-    }
+    if (!allowUnknownRequestedCATs) {
+      const wallet = findCATWalletByAssetId(wallets, assetId);
+      if (!wallet) {
+        throw new Error(t`No CAT wallet found for ${assetId} token`);
+      }
 
-    if (!amount || amount === '0') {
-      throw new Error(t`Please enter an amount for ${wallet.meta?.name} token`);
-    }
+      if (!amount || amount === '0') {
+        throw new Error(t`Please enter an amount for ${wallet.meta?.name} token`);
+      }
 
-    walletIdsAndAmounts[wallet.id] = catToMojo(amount);
+      walletIdsAndAmounts[wallet.id] = catToMojo(amount);
+    }
   });
 
   const prepareNftTasks = requestedNfts.map(async ({ nftId }) => {

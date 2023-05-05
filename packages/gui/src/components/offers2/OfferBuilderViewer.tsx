@@ -65,7 +65,7 @@ function OfferBuilderViewer(props: OfferBuilderViewerProps, ref: any) {
   const offerBuilderRef = useRef<{ submit: () => void; getValues: () => OfferBuilderData } | undefined>(undefined);
 
   const [checkOfferValidity] = useCheckOfferValidityMutation();
-  const [isValidating, setIsValidating] = useState<boolean>(offerData !== undefined);
+  const [isValidating, setIsValidating] = useState<boolean>();
   const [isValid, setIsValid] = useState<boolean | undefined>();
   const isWalletSynced = useIsWalletSynced();
   const openDialog = useOpenDialog();
@@ -82,7 +82,7 @@ function OfferBuilderViewer(props: OfferBuilderViewerProps, ref: any) {
       setIsValid(undefined);
       setIsValidating(true);
 
-      const response = await checkOfferValidity(offerData).unwrap();
+      const response = await checkOfferValidity({ offer: offerData }).unwrap();
       setIsValid(response.valid === true);
     } catch (e) {
       setIsValid(false);

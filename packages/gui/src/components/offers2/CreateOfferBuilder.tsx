@@ -115,9 +115,9 @@ export default function CreateOfferBuilder(props: CreateOfferBuilderProps) {
         const response = await createOfferForIds({
           offer: localOffer.walletIdsAndAmounts,
           fee: localOffer.feeInMojos,
-          driverDict: localOffer.driverDict,
-          validateOnly: localOffer.validateOnly,
-          disableJSONFormatting: true,
+          driver_dict: localOffer.driverDict, // snake case is intentional since disableJSONFormatting is true
+          validate_only: localOffer.validateOnly, // snake case is intentional since disableJSONFormatting is true
+          disableJSONFormatting: true, // true to avoid converting driver_dict keys/values to camel case. The camel case conversion breaks the driver_dict and causes offer creation to fail.
         }).unwrap();
 
         const { offer: offerData, tradeRecord: offerRecord } = response;

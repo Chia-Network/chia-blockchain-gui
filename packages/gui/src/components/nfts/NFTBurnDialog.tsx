@@ -100,7 +100,6 @@ export default function NFTBurnDialog(props: NFTPreviewDialogProps) {
       await transferNFT({
         walletId: nfts[0].walletId,
         nftCoinIds: nfts.map((nft: NFTInfo) => nft.nftCoinId),
-        launcherId: nfts[0].launcherId,
         targetAddress: destination,
         fee: feeInMojos,
       }).unwrap();

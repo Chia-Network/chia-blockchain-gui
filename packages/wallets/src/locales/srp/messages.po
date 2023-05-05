@@ -1,0 +1,574 @@
+msgid ""
+msgstr ""
+"POT-Creation-Date: 2021-02-08 18:51+0100\n"
+"Mime-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: @lingui/cli\n"
+"Language: srp\n"
+"Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2023-03-29 23:28\n"
+"Last-Translator: \n"
+"Language-Team: Serbian\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Crowdin-Project: 1263bc1f20e1271bda78e84d2f4a6562\n"
+"X-Crowdin-Project-ID: 1\n"
+"X-Crowdin-Language: sr\n"
+"X-Crowdin-File: /[Chia-Network.chia-blockchain-gui] main/packages/wallets/src/locales/en-US/messages.po\n"
+"X-Crowdin-File-ID: 1308\n"
+
+#: src/components/WalletHistory.tsx:109
+msgid "+"
+msgstr ""
+
+#: src/components/WalletHistory.tsx:109
+msgid "-"
+msgstr ""
+
+#: src/components/WalletHeader.tsx:62
+msgid "Actions"
+msgstr "Акције"
+
+#: src/components/cat/WalletCATCreateExistingSimple.tsx:79
+msgid "Add"
+msgstr "Додај"
+
+#: src/components/WalletsManageTokens.tsx:156
+#: src/components/cat/WalletCATCreateExistingSimple.tsx:61
+#: src/components/cat/WalletCATCreateSimple.tsx:68
+msgid "Add Token"
+msgstr ""
+
+#: src/components/cat/WalletCATCreateSimple.tsx:92
+msgid "Adding {0} token"
+msgstr ""
+
+#: src/components/WalletReceiveAddress.tsx:57
+msgid "Address"
+msgstr "Адреса"
+
+#: src/components/WalletSend.tsx:172
+#: src/components/cat/WalletCATSend.tsx:195
+msgid "Address / Puzzle hash"
+msgstr "Адреса / Хеш слагалица"
+
+#: src/components/WalletHistory.tsx:119
+#: src/components/WalletSend.tsx:184
+#: src/components/cat/WalletCATSend.tsx:207
+msgid "Amount"
+msgstr "Количина"
+
+#: src/components/WalletHeader.tsx:30
+msgid "Are you sure you want to delete unconfirmed transactions?"
+msgstr ""
+
+#: src/components/cat/WalletCATCreateExistingSimple.tsx:71
+#: src/components/cat/WalletCATTAILDialog.tsx:33
+#: src/components/cat/WalletCATTAILDialog.tsx:43
+msgid "Asset Id"
+msgstr ""
+
+#: src/constants/WalletName.ts:11
+msgid "Atomic Swap Wallet"
+msgstr ""
+
+#: src/constants/WalletName.ts:14
+msgid "Authorized Payee Wallet"
+msgstr ""
+
+#: src/components/PasteMnemonic.tsx:76
+#: src/components/WalletRenameDialog.tsx:72
+msgid "Cancel"
+msgstr "Откажи"
+
+#: src/components/WalletSend.tsx:106
+#: src/components/cat/WalletCATSend.tsx:116
+msgid "Cannot send chia to coloured address. Please enter a chia address."
+msgstr ""
+
+#: src/components/WalletsSidebar.tsx:130
+msgid "Check my snapshot balance"
+msgstr ""
+
+#: src/components/cat/WalletCATSelect.tsx:25
+#: src/components/create/WalletCreateList.tsx:32
+#: src/constants/WalletName.ts:23
+msgid "Chia Asset Token"
+msgstr ""
+
+#: src/components/WalletsSidebar.tsx:141
+msgid "Click here to download an older version of the wallet"
+msgstr ""
+
+#: src/components/WalletHeader.tsx:25
+msgid "Confirmation"
+msgstr ""
+
+#: src/components/WalletHistory.tsx:170
+msgid "Confirmed"
+msgstr ""
+
+#: src/components/WalletHistory.tsx:333
+msgid "Confirmed at Height"
+msgstr ""
+
+#: src/components/WalletConnections.tsx:47
+msgid "Connection type"
+msgstr "Тип везе"
+
+#: src/components/WalletReceiveAddressField.tsx:71
+msgid "Copied"
+msgstr ""
+
+#: src/components/WalletReceiveAddressField.tsx:75
+msgid "Copy wallet address"
+msgstr ""
+
+#: src/components/cat/WalletCATSelect.tsx:32
+msgid "Create New Wallet"
+msgstr ""
+
+#: src/components/cat/WalletCAT.tsx:104
+#: src/components/standard/WalletStandard.tsx:46
+msgid "Create Offer"
+msgstr ""
+
+#: src/components/WalletSend.tsx:154
+#: src/components/cat/WalletCATSend.tsx:177
+msgid "Create Transaction"
+msgstr "Креирај трансакцију"
+
+#: src/constants/WalletName.ts:20
+msgid "Custody Wallet"
+msgstr ""
+
+#: src/components/cat/WalletCATCreateSimple.tsx:100
+msgid "Custom"
+msgstr ""
+
+#: src/constants/WalletName.ts:29
+msgid "DID Wallet"
+msgstr ""
+
+#: src/constants/WalletName.ts:38
+msgid "Datalayer Wallet"
+msgstr ""
+
+#: src/components/WalletHistory.tsx:100
+msgid "Date"
+msgstr "Датум"
+
+#: src/components/WalletHeader.tsx:26
+msgid "Delete"
+msgstr "Обриши"
+
+#: src/components/WalletHeader.tsx:68
+msgid "Delete Unconfirmed Transactions"
+msgstr ""
+
+#: src/components/card/WalletCardTotalBalance.tsx:68
+msgid "Derivation Index: {0}"
+msgstr ""
+
+#: src/components/create/WalletCreateList.tsx:39
+msgid "Distributed Identity"
+msgstr ""
+
+#: src/components/WalletImport.tsx:158
+msgid "Enter the {mnemonicWordCount} word mnemonic that you have saved in order to restore your Chia wallet."
+msgstr ""
+
+#: src/components/cat/WalletCATSend.tsx:126
+msgid "Error the entered address appears to be for a different colour."
+msgstr ""
+
+#: src/components/WalletSend.tsx:221
+#: src/components/cat/WalletCATSend.tsx:245
+msgid "Farm"
+msgstr "Фарма"
+
+#: src/components/WalletHistory.tsx:131
+#: src/components/WalletSend.tsx:197
+#: src/components/cat/WalletCATSend.tsx:221
+msgid "Fee"
+msgstr "Накнада"
+
+#: src/components/WalletReceiveAddress.tsx:32
+msgid "HD or Hierarchical Deterministic keys are a type of public key/private key scheme where one private key can have a nearly infinite number of different public keys (and therefore wallet receive addresses) that will all ultimately come back to and be spendable by a single private key."
+msgstr ""
+
+#: src/components/WalletConnections.tsx:22
+msgid "IP address"
+msgstr "IP адреса"
+
+#: src/components/WalletSendTransactionResultDialog.tsx:41
+msgid "If you would like to speed up the transaction, please delete unconfirmed transactions and retry with a higher fee."
+msgstr ""
+
+#: src/components/PasteMnemonic.tsx:79
+msgid "Import"
+msgstr ""
+
+#: src/components/WalletImport.tsx:141
+msgid "Import Wallet from Mnemonics"
+msgstr "Увези новчаник уз помоћ мнемотехнике"
+
+#: src/components/WalletImport.tsx:226
+msgid "Import from {alternativeWordCount} word mnemonic"
+msgstr ""
+
+#: src/components/WalletHistory.tsx:87
+msgid "Incoming"
+msgstr "Долазни"
+
+#: src/components/WalletConnections.tsx:71
+msgid "List of connections is empty"
+msgstr ""
+
+#: src/components/WalletsManageTokens.tsx:133
+msgid "Manage token list"
+msgstr ""
+
+#: src/components/WalletHistory.tsx:174
+#: src/components/WalletSend.tsx:211
+#: src/components/cat/WalletCATSend.tsx:235
+msgid "Memo"
+msgstr ""
+
+#: src/components/WalletHistory.tsx:338
+msgid "Memos"
+msgstr ""
+
+#: src/components/WalletSendTransactionResultDialog.tsx:16
+msgid "Mempool Full"
+msgstr ""
+
+#: src/components/WalletConnections.tsx:40
+msgid "MiB Up/Down"
+msgstr "MiB горе/доле"
+
+#: src/constants/WalletName.ts:17
+msgid "Multi Sig Wallet"
+msgstr ""
+
+#: src/constants/WalletName.ts:35
+msgid "NFT Wallet"
+msgstr ""
+
+#: src/components/cat/WalletCATCreateExistingSimple.tsx:68
+msgid "Name"
+msgstr ""
+
+#: src/components/WalletReceiveAddress.tsx:45
+msgid "New Address"
+msgstr "Нова адреса"
+
+#: src/components/WalletReceiveAddressField.tsx:114
+msgid "New Receive Address"
+msgstr ""
+
+#: src/components/WalletAdd.tsx:64
+msgid "New Wallet"
+msgstr "Нови новчаник"
+
+#: src/components/WalletAdd.tsx:124
+#: src/components/WalletImport.tsx:196
+msgid "Next"
+msgstr "Даље"
+
+#: src/components/WalletRenameDialog.tsx:67
+msgid "Nickname"
+msgstr "Надимак"
+
+#: src/components/WalletHistory.tsx:369
+msgid "No previous transactions"
+msgstr "Нема претходних трансакција"
+
+#: src/components/WalletConnections.tsx:18
+msgid "Node ID"
+msgstr "ID чвора"
+
+#: src/components/WalletHistory.tsx:327
+#: src/components/WalletHistory.tsx:334
+msgid "Not Available"
+msgstr "Недоступно"
+
+#: src/components/WalletStatus.tsx:58
+msgid "Not Synced"
+msgstr "Није синхронизовано"
+
+#: src/components/cat/WalletCATTAILDialog.tsx:66
+msgid "OK"
+msgstr "ОК"
+
+#: src/components/WalletHistory.tsx:176
+msgid "Offer Accepted"
+msgstr ""
+
+#: src/components/WalletSend.tsx:157
+#: src/components/cat/WalletCATSend.tsx:180
+msgid "On average there is one minute between each transaction block. Unless there is congestion you can expect your transaction to be included in less than a minute."
+msgstr "У просеку је потребан један минут између сваког блока трансакције. Ако нема загушења, можеш очекивати да ће трансакција бити укључена за мање од једног минута."
+
+#: src/components/WalletHistory.tsx:87
+msgid "Outgoing"
+msgstr "Одлазни"
+
+#: src/components/WalletImport.tsx:234
+msgid "Paste Mnemonic"
+msgstr ""
+
+#: src/components/PasteMnemonic.tsx:53
+msgid "Paste Mnemonic ({0} words)"
+msgstr ""
+
+#: src/components/WalletHistory.tsx:172
+msgid "Pending"
+msgstr "На чекању"
+
+#: src/components/card/WalletCardPendingBalance.tsx:40
+msgid "Pending Balance"
+msgstr "Стање на чекању"
+
+#: src/components/card/WalletCardPendingChange.tsx:41
+msgid "Pending Change"
+msgstr "Промена на чекању"
+
+#: src/components/card/WalletCardPendingTotalBalance.tsx:41
+msgid "Pending Total Balance"
+msgstr "Укупно стање на чекању"
+
+#: src/components/cat/WalletCATCreateExistingSimple.tsx:42
+msgid "Please enter a valid asset id"
+msgstr ""
+
+#: src/components/WalletSend.tsx:96
+#: src/components/cat/WalletCATSend.tsx:102
+msgid "Please enter a valid numeric amount"
+msgstr "Унеси важећи нумерички износ"
+
+#: src/components/WalletSend.tsx:101
+#: src/components/cat/WalletCATSend.tsx:107
+msgid "Please enter a valid numeric fee"
+msgstr "Унеси важећи нумерички износ накнаде"
+
+#: src/components/cat/WalletCATCreateExistingSimple.tsx:46
+msgid "Please enter a valid token name"
+msgstr ""
+
+#: src/components/WalletRenameDialog.tsx:41
+msgid "Please enter valid wallet name"
+msgstr ""
+
+#: src/components/WalletSend.tsx:91
+#: src/components/cat/WalletCATSend.tsx:93
+msgid "Please finish syncing before making a transaction"
+msgstr "Заврши синхронизацију пре него што извршиш трансакцију"
+
+#: src/components/cat/WalletCATCreateExistingSimple.tsx:38
+#: src/components/cat/WalletCATCreateSimple.tsx:38
+msgid "Please wait for wallet synchronization"
+msgstr ""
+
+#: src/constants/WalletName.ts:32
+msgid "Pooling Wallet"
+msgstr ""
+
+#: src/components/WalletConnections.tsx:28
+msgid "Port"
+msgstr "Порт"
+
+#: src/constants/WalletName.ts:8
+msgid "RL Wallet"
+msgstr ""
+
+#: src/components/create/WalletCreateList.tsx:45
+msgid "Rate Limited"
+msgstr "Ограничена стопа"
+
+#: src/components/WalletsSidebar.tsx:133
+msgid "Read the blog post for details"
+msgstr ""
+
+#: src/components/WalletHeader.tsx:48
+msgid "Receive"
+msgstr ""
+
+#: src/components/WalletReceiveAddress.tsx:29
+msgid "Receive Address"
+msgstr "Адреса за пријем"
+
+#: src/components/cat/WalletCATSend.tsx:120
+msgid "Recipient address is not a coloured wallet address. Please enter a coloured wallet address"
+msgstr ""
+
+#: src/constants/WalletName.ts:26
+msgid "Recoverable Wallet"
+msgstr ""
+
+#: src/components/cat/WalletCATSelect.tsx:39
+msgid "Recovery Wallet"
+msgstr ""
+
+#: src/components/WalletRenameDialog.tsx:61
+#: src/components/cat/WalletCAT.tsx:87
+msgid "Rename Wallet"
+msgstr ""
+
+#: src/components/WalletHistory.tsx:175
+msgid "Retire"
+msgstr ""
+
+#: src/components/WalletRenameDialog.tsx:75
+msgid "Save"
+msgstr "Сачувај"
+
+#: src/components/WalletTokenCard.tsx:177
+#: src/components/cat/WalletCATTAILDialog.tsx:59
+msgid "Search on Tail Database"
+msgstr ""
+
+#: src/components/create/WalletCreateList.tsx:25
+msgid "Select Wallet Type"
+msgstr "Изабери тип новчаника"
+
+#: src/components/WalletHeader.tsx:47
+#: src/components/WalletSend.tsx:232
+#: src/components/cat/WalletCATSend.tsx:256
+msgid "Send"
+msgstr "Пошаљи"
+
+#: src/components/cat/WalletCAT.tsx:96
+msgid "Show Asset Id"
+msgstr ""
+
+#: src/components/card/WalletCardSpendableBalance.tsx:41
+msgid "Spendable Balance"
+msgstr "Стање које је могуће трошити"
+
+#: src/constants/WalletName.ts:5
+msgid "Standard Wallet"
+msgstr ""
+
+#: src/components/WalletSendTransactionResultDialog.tsx:12
+msgid "Success"
+msgstr ""
+
+#: src/components/WalletHeader.tsx:46
+msgid "Summary"
+msgstr ""
+
+#: src/components/WalletStatus.tsx:70
+msgid "Synced"
+msgstr "Синхронизовано"
+
+#: src/components/WalletStatus.tsx:82
+msgid "Syncing"
+msgstr "Синхронизација"
+
+#: src/components/card/WalletCardTotalBalance.tsx:70
+msgid "The derivation index sets the range of wallet addresses that the wallet scans the blockchain for. This number is generally higher if you have a lot of transactions or canceled offers for XCH, CATs, or NFTs. If you believe your balance is incorrect because it’s missing coins, then increasing the derivation index could help the wallet include the missing coins in the balance total."
+msgstr ""
+
+#: src/components/WalletSendTransactionResultDialog.tsx:34
+msgid "The transaction could not be immediately included in the mempool because the specified fee is too low. The transaction will be retried periodically, and may be included in the mempool once fees are lower, or if space becomes available."
+msgstr ""
+
+#: src/components/WalletBadge.tsx:26
+msgid "This access token is verified"
+msgstr ""
+
+#: src/components/WalletHistory.tsx:156
+msgid "This is not a valid address for sending funds to"
+msgstr ""
+
+#: src/components/standard/WalletStandardCards.tsx:23
+msgid "This is the amount of Chia that you can currently use to make transactions. It does not include pending farming rewards, pending incoming transactions, and Chia that you have just spent but is not yet in the blockchain."
+msgstr "Ово је количина Chia коју тренутно можеш користити за обављање трансакција. Не укључује награде за фармање на чекању, долазне трансакције на чекању и Chia која је управо потрошена, али још увек није на блокчејну."
+
+#: src/components/standard/WalletStandardCards.tsx:42
+msgid "This is the pending change, which are change coins which you have sent to yourself, but have not been confirmed yet."
+msgstr "Ово је промена на чекању, а то су новчићи који су себи послати, али још нису потврђени."
+
+#: src/components/standard/WalletStandardCards.tsx:36
+msgid "This is the sum of the incoming and outgoing pending transactions (not yet included into the blockchain). This does not include farming rewards."
+msgstr "Ово је збир долазних и одлазних трансакција на чекању (које још нису укључене у блокчејн). Ово не укључује награде за фарамање."
+
+#: src/components/standard/WalletStandardCards.tsx:17
+msgid "This is the total amount of chia in the blockchain at the current peak block that is controlled by your private keys. It includes frozen farming rewards, but not pending incoming and outgoing transactions."
+msgstr ""
+
+#: src/components/standard/WalletStandardCards.tsx:30
+msgid "This is the total balance + pending balance: it is what your balance will be after all pending transactions are confirmed."
+msgstr "Ово је укупно стање + стање на чекању: то ће бити твоје стање након потврде свих трансакција на чекању."
+
+#: src/components/WalletHistory.tsx:181
+msgid "To"
+msgstr "За"
+
+#: src/components/cat/WalletCATCreateSimple.tsx:46
+msgid "Token has empty asset id"
+msgstr ""
+
+#: src/components/cat/WalletCATCreateSimple.tsx:42
+msgid "Token has empty name"
+msgstr ""
+
+#: src/components/WalletsSidebar.tsx:187
+msgid "Tokens"
+msgstr ""
+
+#: src/components/card/WalletCardTotalBalance.tsx:60
+msgid "Total Balance"
+msgstr "Укупно стање"
+
+#: src/components/WalletSendTransactionResultDialog.tsx:27
+msgid "Transaction has successfully been sent to a full node and included in the mempool."
+msgstr ""
+
+#: src/components/WalletHistory.tsx:258
+msgid "Transactions"
+msgstr ""
+
+#: src/components/WalletConnections.tsx:67
+msgid "Wallet Connections"
+msgstr ""
+
+#: src/components/WalletAdd.tsx:101
+#: src/components/WalletImport.tsx:148
+msgid "Wallet Name"
+msgstr ""
+
+#: src/components/cat/WalletCAT.tsx:66
+msgid "Wallet does not exists"
+msgstr ""
+
+#: src/components/Wallet.tsx:37
+msgid "Wallet with type {0} not supported"
+msgstr ""
+
+#: src/components/Wallet.tsx:22
+msgid "Wallet {walletId} not found"
+msgstr ""
+
+#: src/components/WalletsSidebar.tsx:138
+msgid "Want to see your old balance for yourself?"
+msgstr ""
+
+#: src/components/WalletsSidebar.tsx:110
+msgid "We've made an upgrade to the CAT standard which requires all CATs to be re-issued. You will be airdropped your new tokens as they are re-issued by the original issuers. The airdropped tokens will be based on the balance as of block height:<0/><1/><2/>(Approximate time: July 26th, 2022 @ 17:00 UTC)"
+msgstr ""
+
+#: src/components/WalletAdd.tsx:67
+msgid "Welcome! The following words are used for your wallet backup. Without them, you will lose access to your wallet, keep them safe! Write down each word along with the order number next to them. (Order is important)"
+msgstr "Добродошли! Следеће речи се користе за резервну копију новчаника. Без њих ћеш изгубити приступ новчанику, чувај их! Запиши сваку реч заједно са бројем налога поред њих. (Редослед је важан)"
+
+#: src/components/WalletsSidebar.tsx:106
+msgid "Your CAT tokens have been upgraded!"
+msgstr ""
+
+#: src/components/WalletImport.tsx:72
+msgid "Your pasted list does not include {mnemonicWordCount} valid mnemonic words."
+msgstr ""
+

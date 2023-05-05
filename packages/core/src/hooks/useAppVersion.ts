@@ -1,7 +1,9 @@
+import { useLocalStorage } from '@chia-network/api-react';
 import { useState, useEffect } from 'react';
 
 export default function useAppVersion() {
   const [version, setVersion] = useState<string | undefined>(undefined);
+  const [appVersionOverride] = useLocalStorage<string>('appVersionOverride', '');
 
   async function getVersion() {
     const currentVersion = await window.ipcRenderer.invoke('getVersion');
@@ -13,7 +15,7 @@ export default function useAppVersion() {
   }, []);
 
   return {
-    version,
+    version: appVersionOverride || version,
     isLoading: version === undefined,
   };
 }
