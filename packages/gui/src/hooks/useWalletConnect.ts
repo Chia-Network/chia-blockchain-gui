@@ -1,3 +1,5 @@
+import { EventEmitter } from 'events';
+
 import { useEffect, useCallback, useRef } from 'react';
 
 import { disconnectPair, bindEvents, cleanupPairings } from '../util/walletConnect';
@@ -18,8 +20,31 @@ export type UseWalletConnectConfig = {
   debug?: boolean;
 };
 
+export function waitForSessionProposal(topic: string, eventEmitter: EventEmitter) {
+  const eventName = `wallet-connect-session-created:${topic}`;
+  return new Promise((resolve, reject) => {
+    const timeout = setTimeout(() => {
+      eventEmitter.off(eventName, handleSessionProposalCreated);
+      reject(new Error('Session proposal timeout'));
+    }, 30_000);
+
+    const handleSessionProposalCreated = (event: any) => {
+      console.log('handleSessionProposalCreated');
+      clearTimeout(timeout);
+      eventEmitter.off(eventName, handleSessionProposalCreated);
+      resolve(event);
+    };
+
+    console.log(`waiting for event: ${eventName}`);
+    eventEmitter.on(eventName, handleSessionProposalCreated);
+  });
+}
+
 export default function useWalletConnect(config: UseWalletConnectConfig) {
   const { projectId, relayUrl, metadata, debug } = config;
+  const eventEmitterRef = useRef(new EventEmitter());
+  console.log('eventEmitterRef.current:');
+  console.log(eventEmitterRef.current);
 
   const pairs = useWalletConnectPairs();
   const { client, isLoading, error } = useWalletConnectClient({
@@ -44,8 +69,9 @@ export default function useWalletConnect(config: UseWalletConnectConfig) {
 
     cleanupPairings(client, pairs);
 
-    return bindEvents(client, pairs, () => processRef.current);
-  }, [client, pairs]);
+    console.log('calling bindEvents from useWalletConnect.ts');
+    return bindEvents(client, pairs, () => processRef.current, eventEmitterRef.current);
+  }, [client, pairs, eventEmitterRef]);
 
   const handlePair = useCallback(
     async (uri: string, fingerprints: number[], mainnet = false) => {
@@ -65,6 +91,10 @@ export default function useWalletConnect(config: UseWalletConnectConfig) {
         sessions: [],
       });
 
+      console.log('waiting for session proposal');
+      await waitForSessionProposal(topic, eventEmitterRef.current);
+
+      console.log('handlePair returning topic', topic);
       return topic;
     },
     [client, pairs]

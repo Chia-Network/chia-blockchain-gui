@@ -1,3 +1,5 @@
+import { EventEmitter } from 'events';
+
 import Client from '@walletconnect/sign-client';
 import initDebug from 'debug';
 
@@ -39,7 +41,8 @@ export async function processSessionProposal(
         };
       };
     };
-  }
+  },
+  eventEmitter: EventEmitter
 ) {
   try {
     if (!client) {
@@ -119,6 +122,9 @@ export async function processSessionProposal(
         },
       ],
     }));
+
+    console.log(`Emitting event: wallet-connect-session-created:${pairingTopic}`);
+    eventEmitter.emit(`wallet-connect-session-created:${pairingTopic}`);
   } catch (e) {
     processError(e as Error);
   }
@@ -288,16 +294,19 @@ export async function cleanupPairings(client: Client, pairs: Pairs) {
 export function bindEvents(
   client: Client,
   pairs: Pairs,
-  onProcess: () => (topic: string, command: string, params: any) => Promise<any>
+  onProcess: () => (topic: string, command: string, params: any) => Promise<any>,
+  eventEmitter: EventEmitter
 ) {
   if (!client) {
     throw new Error('Client not initialized');
   }
+  console.log('in bindEvents');
 
   async function handleSessionProposal(event: any) {
     try {
       if (client) {
-        await processSessionProposal(client, pairs, event);
+        console.log('handling session proposal');
+        await processSessionProposal(client, pairs, event, eventEmitter);
       }
     } catch (e) {
       log('Session proposal error', e);

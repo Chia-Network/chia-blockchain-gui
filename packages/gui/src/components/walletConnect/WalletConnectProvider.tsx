@@ -1,3 +1,5 @@
+import EventEmitter from 'events';
+
 import React, { ReactNode, createContext } from 'react';
 
 import type Pair from '../../@types/Pair';
@@ -16,6 +18,7 @@ export const WalletConnectContext = createContext<
         getPair: (topic: string) => Pair | undefined;
         get: () => Pair[];
       };
+      eventEmitter: EventEmitter;
     }
   | undefined
 >(undefined);

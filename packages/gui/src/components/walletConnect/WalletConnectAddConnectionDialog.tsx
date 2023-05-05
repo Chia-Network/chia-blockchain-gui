@@ -75,6 +75,7 @@ export default function WalletConnectAddConnectionDialog(props: WalletConnectAdd
       throw new Error(t`Please enter a URI`);
     }
 
+    console.log('handleSubmit step', step);
     if (step === Step.CONNECT) {
       setStep(Step.SELECT_KEYS);
       return;
@@ -84,7 +85,9 @@ export default function WalletConnectAddConnectionDialog(props: WalletConnectAdd
       throw new Error(t`Please select at least one key`);
     }
 
+    console.log('handleSubmit waiting for pair()');
     const topic = await pair(uri, selectedFingerprints, mainnet);
+    console.log('handleSubmit pair() returned topic', topic);
     onClose(topic);
   }
 
