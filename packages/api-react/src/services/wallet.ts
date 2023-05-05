@@ -1520,5 +1520,6 @@ export const {
   useGetVCListQuery,
   useSpendVCMutation,
   useAddVCProofsMutation,
+  useGetProofsForRootMutation,
   useRevokeVCMutation,
 } = walletApi;
