@@ -38,6 +38,7 @@ import CacheManager from './CacheManager';
 import handleSquirrelEvent from './handleSquirrelEvent';
 import installDevTools from './installDevTools.dev';
 import { readPrefs, savePrefs, migratePrefs } from './prefs';
+// import { calculateRootHash } from './utils/rootHash';
 
 const isPlaywrightTesting = process.env.PLAYWRIGHT_TESTS === 'true';
 const NET = 'mainnet';
@@ -299,6 +300,17 @@ if (!handleSquirrelEvent()) {
         });
         return responseObj;
       });
+
+      // ipcMain.handle('addProofsFromLocalFile', async (_event) => {
+      //   const filePaths = dialog.showOpenDialogSync({ properties: ['openFile'] });
+      //   return Array.isArray(filePaths) ? fs.readFileSync(filePaths[0], 'utf-8') : 'Error';
+      // });
+
+      // ipcMain.handle('calculateRootHash', (_event, proofsObject) => {
+      //   console.log('Data.......', proofsObject);
+      //   console.log('Proofs hash.........', calculateRootHash(proofsObject));
+      //   return calculateRootHash(proofsObject);
+      // });
 
       type DownloadFileWithProgressProps = {
         folder: string;

@@ -190,7 +190,7 @@ export const {
   useGetVCListQuery,
   useSpendVCMutation,
   useAddVCProofsMutation,
-  useGetProofsForRootMutation,
+  useGetProofsForRootQuery,
   useRevokeVCMutation,
 } = wallet;
 
