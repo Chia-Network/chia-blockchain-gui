@@ -14,7 +14,7 @@ export async function prepareNFTOfferFromNFTId(nftId: string, offeredNFT: boolea
   // Adding a cache subscription
   const resultPromise = store.dispatch(
     walletApi.endpoints.getNFTInfo.initiate({
-      coinId: launcherId ?? '',
+      coinId: launcherId,
     })
   );
 
