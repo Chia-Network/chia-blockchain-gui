@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh_TW\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-05-08 12:12\n"
+"PO-Revision-Date: 2023-05-08 13:13\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -96,7 +96,7 @@ msgstr "停用"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:58
 msgid "Disable Passphrase Protection"
-msgstr "停用密碼保護"
+msgstr "停用私鑰密碼保護"
 
 #: src/components/Back/Back.tsx:37
 #: src/components/FormBackButton/FormBackButton.tsx:28
@@ -218,7 +218,7 @@ msgstr ""
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:41
 msgid "New passphrase is the same as your current passphrase"
-msgstr "新的密碼與現在的密碼相符"
+msgstr "新的私鑰密碼與現在的私鑰密碼相符"
 
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:84
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:138
@@ -310,7 +310,7 @@ msgstr "寄送反饋"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:52
 msgid "Setting a passphrase is strongly recommended to protect your keys. Are you sure you want to skip setting a passphrase?"
-msgstr "強烈建議設置密碼以保護您的密鑰。您確定要跳過設置密碼嗎？"
+msgstr "強烈建議設置私鑰密碼以保護您的私鑰。您確定要跳過設置私鑰密碼嗎？"
 
 #: src/components/Settings/Settings.tsx:49
 #: src/components/Settings/Settings.tsx:59
@@ -331,7 +331,7 @@ msgstr "跳過"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:49
 msgid "Skip Passphrase Protection"
-msgstr "跳過密碼保護"
+msgstr "跳過私鑰密碼保護"
 
 #: src/components/ErrorBoundary/ErrorBoundary.tsx:67
 msgid "Something went wrong"
@@ -347,7 +347,7 @@ msgstr ""
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:28
 msgid "The provided passphrase and confirmation do not match"
-msgstr "密碼與再次確認密碼不相符"
+msgstr "私鑰密碼與再次確認私鑰密碼不相符"
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:126
 msgid "This key is used for a wallet that may have a non-zero balance. By deleting this key you may lose access to this wallet"
@@ -396,7 +396,7 @@ msgstr "尚未儲存變更"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:61
 msgid "Using a passphrase is strongly recommended to protect your keys. Are you sure you want to disable passphrase protection?"
-msgstr "強烈建議使用密碼來保護您的密鑰。您確定要禁用密碼保護嗎？"
+msgstr "強烈建議使用私鑰密碼來保護您的私鑰。您確定要禁用私鑰密碼保護嗎？"
 
 #: src/components/Fee/Fee.tsx:33
 msgid "Value seems high"
@@ -435,5 +435,5 @@ msgstr "{0, plural,one {mojo}other {mojo}}"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:35
 msgid "{minPassphraseLength, plural, one {Passphrases must be at least # character in length} other {Passphrases must be at least # characters in length}}"
-msgstr "{minPassphraseLength, plural,one {密碼的長度必須至少為 # 個字符}other {密碼的長度必須至少為 # 個字符}}"
+msgstr "{minPassphraseLength, plural,one {私鑰密碼的長度必須至少為 # 個字符}other {私鑰密碼的長度必須至少為 # 個字符}}"
 
