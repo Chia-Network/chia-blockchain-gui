@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh_TW\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-03-29 23:26\n"
+"PO-Revision-Date: 2023-05-08 12:12\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -24,7 +24,7 @@ msgstr "數量"
 
 #: src/components/Settings/SettingsApp.tsx:88
 msgid "Appearance"
-msgstr ""
+msgstr "外觀"
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:144
 msgid "Are you sure you want to continue? Type in the fingerprint of this wallet key to confirm deletion."
@@ -65,7 +65,7 @@ msgstr "建立一個新的私鑰"
 
 #: src/components/Settings/SettingsApp.tsx:105
 msgid "Dark"
-msgstr ""
+msgstr "黑暗模式"
 
 #: src/screens/SelectKey/SelectKey.tsx:79
 #: src/screens/SelectKey/SelectKeyItem.tsx:100
@@ -92,11 +92,11 @@ msgstr ""
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:59
 msgid "Disable"
-msgstr ""
+msgstr "停用"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:58
 msgid "Disable Passphrase Protection"
-msgstr ""
+msgstr "停用密碼保護"
 
 #: src/components/Back/Back.tsx:37
 #: src/components/FormBackButton/FormBackButton.tsx:28
@@ -110,7 +110,7 @@ msgstr "錯誤"
 
 #: src/components/ErrorBoundary/ErrorBoundary.tsx:72
 msgid "Error:"
-msgstr ""
+msgstr "錯誤:"
 
 #: src/screens/SelectKey/SelectKeyRenameForm.tsx:91
 msgid "Esc"
@@ -169,11 +169,11 @@ msgstr "數值不正確"
 
 #: src/components/Settings/SettingsApp.tsx:112
 msgid "Language"
-msgstr ""
+msgstr "語言"
 
 #: src/components/Settings/SettingsApp.tsx:97
 msgid "Light"
-msgstr ""
+msgstr "光亮模式"
 
 #: src/components/EstimatedFee/EstimatedFee.tsx:232
 msgid "Likely in {0} seconds"
@@ -189,28 +189,28 @@ msgstr ""
 
 #: src/screens/SelectKey/SelectKey.tsx:117
 msgid "Loading list of the keys"
-msgstr ""
+msgstr "載入密鑰列表"
 
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:150
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:169
 msgid "Log Out"
-msgstr ""
+msgstr "登出"
 
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:168
 msgid "Logout"
-msgstr ""
+msgstr "登出"
 
 #: src/hooks/useKeyringMigrationPrompt.tsx:16
 msgid "Migrate"
-msgstr ""
+msgstr "遷移"
 
 #: src/hooks/useKeyringMigrationPrompt.tsx:15
 msgid "Migration required"
-msgstr ""
+msgstr "必須遷移"
 
 #: src/components/Settings/SettingsApp.tsx:64
 msgid "Mode"
-msgstr ""
+msgstr "模式"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:107
 msgid "NEVER SHARE THESE WITH ANYONE"
@@ -218,7 +218,7 @@ msgstr ""
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:41
 msgid "New passphrase is the same as your current passphrase"
-msgstr ""
+msgstr "新的密碼與現在的密碼相符"
 
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:84
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:138
@@ -249,7 +249,7 @@ msgstr "礦池公鑰 (PPK):"
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:27
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:34
 msgid "Private key {fingerprint}"
-msgstr ""
+msgstr "私鑰 {fingerprint}"
 
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:42
 msgid "Private key:"
@@ -265,7 +265,7 @@ msgstr "公鑰："
 
 #: src/components/ErrorBoundary/ErrorBoundary.tsx:85
 msgid "Reload Application"
-msgstr ""
+msgstr "重啟應用程式"
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:84
 msgid "Rename"
@@ -273,7 +273,7 @@ msgstr ""
 
 #: src/components/ErrorBoundary/ErrorBoundary.tsx:80
 msgid "Report an Issue"
-msgstr ""
+msgstr "回報問題"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:124
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:146
@@ -302,20 +302,20 @@ msgstr "選擇金鑰"
 
 #: src/components/Dropdown/Dropdown.tsx:28
 msgid "Select..."
-msgstr ""
+msgstr "選擇..."
 
 #: src/components/Settings/SettingsApp.tsx:128
 msgid "Send Feedback"
-msgstr ""
+msgstr "寄送反饋"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:52
 msgid "Setting a passphrase is strongly recommended to protect your keys. Are you sure you want to skip setting a passphrase?"
-msgstr ""
+msgstr "強烈建議設置密碼以保護您的密鑰。您確定要跳過設置密碼嗎？"
 
 #: src/components/Settings/Settings.tsx:49
 #: src/components/Settings/Settings.tsx:59
 msgid "Settings"
-msgstr ""
+msgstr "設定"
 
 #: src/components/AdvancedOptions/AdvancedOptions.tsx:31
 msgid "Show Advanced Options"
@@ -327,15 +327,15 @@ msgstr "登入"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:50
 msgid "Skip"
-msgstr ""
+msgstr "跳過"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:49
 msgid "Skip Passphrase Protection"
-msgstr ""
+msgstr "跳過密碼保護"
 
 #: src/components/ErrorBoundary/ErrorBoundary.tsx:67
 msgid "Something went wrong"
-msgstr ""
+msgstr "某個地方出了錯誤"
 
 #: src/screens/SelectKey/WalletStatus.tsx:73
 msgid "Synced"
@@ -347,7 +347,7 @@ msgstr ""
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:28
 msgid "The provided passphrase and confirmation do not match"
-msgstr ""
+msgstr "密碼與再次確認密碼不相符"
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:126
 msgid "This key is used for a wallet that may have a non-zero balance. By deleting this key you may lose access to this wallet"
@@ -367,23 +367,23 @@ msgstr ""
 
 #: src/utils/getTransactionResult.ts:15
 msgid "Transaction has not been sent to node yet"
-msgstr ""
+msgstr "交易還沒發送至節點"
 
 #: src/utils/getTransactionResult.ts:33
 msgid "Transaction has sent to a full node and is pending inclusion into the mempool. {0}"
-msgstr ""
+msgstr "該筆交易已發送至一個完整節點並正在等待被加入記憶池。{0}"
 
 #: src/utils/getTransactionResult.ts:24
 msgid "Transaction has successfully been sent to a full node and included in the mempool."
-msgstr ""
+msgstr "該筆交易已成功發送至一個完整節點並被加入記憶池。"
 
 #: src/screens/SelectKey/SelectKey.tsx:124
 msgid "Try Again"
-msgstr ""
+msgstr "在試一次"
 
 #: src/screens/SelectKey/SelectKey.tsx:128
 msgid "Unable to load the list of the keys"
-msgstr ""
+msgstr "無法加載密鑰列表"
 
 #: src/components/LocaleToggle/LocaleToggle.tsx:44
 msgid "Unknown"
@@ -396,7 +396,7 @@ msgstr "尚未儲存變更"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:61
 msgid "Using a passphrase is strongly recommended to protect your keys. Are you sure you want to disable passphrase protection?"
-msgstr ""
+msgstr "強烈建議使用密碼來保護您的密鑰。您確定要禁用密碼保護嗎？"
 
 #: src/components/Fee/Fee.tsx:33
 msgid "Value seems high"
@@ -405,7 +405,7 @@ msgstr "數值有點高"
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:116
 #: src/components/Settings/SettingsApp.tsx:81
 msgid "Wallet"
-msgstr ""
+msgstr "錢包"
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:149
 msgid "Wallet Fingerprint"
@@ -427,13 +427,13 @@ msgstr "您有做過變更。請問您想要放棄它們嗎？"
 
 #: src/hooks/useKeyringMigrationPrompt.tsx:20
 msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Would you like to migrate your keys now?"
-msgstr ""
+msgstr "您的密鑰尚未遷移至新的密鑰圈。在遷移完成之前，您將無法創建新密鑰或刪除現有密鑰。您現在要遷移您的密鑰嗎？"
 
 #: src/components/Amount/Amount.tsx:86
 msgid "{0, plural, one {mojo} other {mojos}}"
-msgstr ""
+msgstr "{0, plural,one {mojo}other {mojo}}"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:35
 msgid "{minPassphraseLength, plural, one {Passphrases must be at least # character in length} other {Passphrases must be at least # characters in length}}"
-msgstr ""
+msgstr "{minPassphraseLength, plural,one {密碼的長度必須至少為 # 個字符}other {密碼的長度必須至少為 # 個字符}}"
 
