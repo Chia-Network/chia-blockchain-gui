@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh_TW\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-03-29 23:27\n"
+"PO-Revision-Date: 2023-05-08 12:12\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Traditional\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -24,11 +24,11 @@ msgstr ""
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:63
 msgid "(Not Installed)"
-msgstr ""
+msgstr "(尚未安裝)"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:61
 msgid "(Not Supported)"
-msgstr ""
+msgstr "(不支援)"
 
 #: src/components/plot/add/PlotAddNFT.tsx:59
 msgid "(Optional)"
@@ -44,15 +44,15 @@ msgstr "+ 新增新的農場"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:40
 msgid "+ Add a Plot"
-msgstr ""
+msgstr "+新增一個耕地"
 
 #: src/components/settings/ProfileAdd.tsx:80
 msgid "<0>Need some XCH?</0>"
-msgstr ""
+msgstr "<0>需要一些XCH</0>"
 
 #: src/components/settings/ProfileAdd.tsx:92
 msgid "<0>Use one (1) mojo to create a Profile.</0>"
-msgstr ""
+msgstr "<0>使用1mojo的XCH來創造一個檔案</0>"
 
 #: src/components/farm/FarmYourHarvesterNetwork.tsx:77
 msgid "A harvester is a service running on a machine where plot(s) are actually stored. A farmer and harvester talk to a full node to see the state of the chain. View your network of connected harvesters below Learn more"
@@ -64,7 +64,7 @@ msgstr ""
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:152
 msgid "A value of {0} is recommended"
-msgstr ""
+msgstr "推薦數值為{0}"
 
 #: src/electron/main.tsx:1101
 #: src/electron/main.tsx:1188
@@ -75,7 +75,7 @@ msgstr "關於 Chia 區塊鏈"
 #: src/components/offers/OfferAcceptConfirmationDialog.tsx:21
 #: src/components/offers2/OfferBuilderViewer.tsx:143
 msgid "Accept Offer"
-msgstr ""
+msgstr "接受報價單"
 
 #: src/components/plot/PlotHarvesterPlots.tsx:78
 #: src/components/plot/PlotHarvesterPlotsDuplicate.tsx:19
@@ -109,7 +109,7 @@ msgstr ""
 
 #: src/components/offers/OfferAssetSelector.tsx:144
 msgid "Add CAT wallets to have more options"
-msgstr ""
+msgstr "添加 CAT 錢包以獲得更多選項"
 
 #: src/components/walletConnect/WalletConnectConnections.tsx:102
 msgid "Add Connection"
@@ -162,16 +162,16 @@ msgstr ""
 
 #: src/components/app/AppKeyringMigrator.tsx:250
 msgid "After your keys are successfully migrated to the new keyring, you may choose to have your keys removed from the old keyring."
-msgstr ""
+msgstr "在您的密鑰成功遷移到新的密鑰圈之後，您可以選擇將您的密鑰從舊的密鑰圈中刪除。"
 
 #: src/components/nfts/NFTProfileDropdown.tsx:101
 #: src/components/nfts/NFTProfileDropdown.tsx:114
 msgid "All NFTs"
-msgstr ""
+msgstr "所有的NFTs"
 
 #: src/components/did/DIDProfileDropdown.tsx:23
 msgid "All Profiles"
-msgstr ""
+msgstr "所有的檔案"
 
 #: src/components/settings/SettingsIntegration.tsx:57
 msgid "Allow external Apps and websites to connect to your wallet through WalletConnect."
