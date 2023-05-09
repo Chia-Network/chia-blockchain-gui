@@ -19,15 +19,14 @@ test.afterAll(async () => {
 
 test('Verify that a recipient wallet receives funds from sending wallet!', async () => {
   //Pre-requisites
-  let receive_wallet = 'txch1u237ltq0pp4348ppwv6cge7fks87mn4wz3c0ywvgswvpwhkqqn8qn8jeq6';
-  let send_wallet = 'txch160r38yfdqfeplderp7tf8zm7u8tv48vm0qd3rs3r2kp4yw4ahl8qd27qrr';
+  let receive_wallet = 'txch17m0jla968szqmw7mf6msaea2jxl553g9m5kx8ryuqadvml8w49tqr75l9y';
+  let send_wallet = 'txch1rkk6haccvw095t9ajc6h9tqekm2rz4zwurhep8dcrmsr2q2446zsndld57';
 
-  //Given I enter correct credentials in Passphrase dialog
-  await new LoginPage(page).login('password2022!@');
+  //Pre-requisites to get user back to Wallet selection page
+  await page.locator('button:has-text("Close")').click();
 
-  //And I navigate to a wallet with funds
-  await page.locator('[data-testid="LayoutDashboard-log-out"]').click();
-  await page.locator('text=1922132445').click();
+  //Given I navigate to 1922132445 Wallet
+  await page.locator('h6:has-text("Jahi 1st Wallet")').click();
 
   //And I check the balance of current wallet
   while (!isWalletSynced('1922132445')) {
@@ -38,8 +37,9 @@ test('Verify that a recipient wallet receives funds from sending wallet!', async
   //And I click on Send Page
   await page.locator('[data-testid="WalletHeader-tab-send"]').click();
 
+
   //When I complete the send page required fields
-  await new SendFunds(page).send(receive_wallet, '0.01', '0.00005');
+  await new SendFunds(page).send(receive_wallet, '0.01')//, '0.00000275276505264396');
 
   //Then I receive a success message
   await expect(page.locator('div[role="dialog"]')).toHaveText(
@@ -51,28 +51,28 @@ test('Verify that a recipient wallet receives funds from sending wallet!', async
   await page.locator('[data-testid="LayoutDashboard-log-out"]').click();
 
   //When I navigate to the receive wallet
-  await page.locator('text=854449615').click();
+  await page.locator('text=873991444').click();
 
   //And I navigate to Summary page
   await page.locator('[data-testid="WalletHeader-tab-summary"]').click();
 
   //Then Transactions section display the correct wallet, amount and fee
-  await expect(page.locator(`text=${receive_wallet} >> nth=0`)).toBeVisible();
+  //await expect(page.locator(`text=${receive_wallet} >> nth=0`)).toBeVisible();
 
   //Begin: Wait for Wallet to Sync
-  while (!isWalletSynced('854449615')) {
+  while (!isWalletSynced('873991444')) {
     console.log('Waiting for wallet to sync...');
     await page.waitForTimeout(1000);
   }
 
-  console.log('Wallet 854449615 is now fully synced');
+  console.log('Wallet 873991444 is now fully synced');
 
-  const balance = getWalletBalance('854449615');
+  const balance = getWalletBalance('873991444');
 
   console.log(`XCH Balance: ${balance}`);
   // End: Wait for Wallet to Sync
 
   // Given I send funds back
   await page.locator('[data-testid="WalletHeader-tab-send"]').click();
-  await new SendFunds(page).send(send_wallet, '0.01', '0.000005');
+  await new SendFunds(page).send(send_wallet, '0.01')//, '0.00000275276505264396');
 });

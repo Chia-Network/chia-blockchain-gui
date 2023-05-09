@@ -12,17 +12,19 @@ test.beforeAll(async () => {
   page = await electronApp.firstWindow();
 });
 
-test.beforeEach(async () => {
-  //Given I enter correct credentials in Passphrase dialog
-  await new LoginPage(page).login('password2022!@');
-});
-
 test.afterAll(async () => {
   await page.close();
 });
 
 //Works and Passes
 test('Confirm user can navigate and interact with the Settings page in user acceptable manner. ', async () => {
+
+  //Pre-requisites to Close Version dialog 
+  await page.locator('button:has-text("Close")').click();
+
+   //Given I navigate to 1922132445 Wallet
+   await page.locator('h6:has-text("Jahi 1st Wallet")').click();
+
   //Given I navigate to the Setting's Gear
   await page.locator('[data-testid="DashboardSideBar-settings"]').click();
 
@@ -39,6 +41,8 @@ test('Confirm user can navigate and interact with the Settings page in user acce
   await page.close();
   electronApp = await electron.launch({ args: ['./build/electron/main.js'] });
   page = await electronApp.firstWindow();
+  await page.locator('button:has-text("Close")').click();
+  await page.locator('h6:has-text("Jahi 1st Wallet")').click();
 
   //And I navigate back to Data layer tab
   await page.locator('[data-testid="DashboardSideBar-settings"]').click();

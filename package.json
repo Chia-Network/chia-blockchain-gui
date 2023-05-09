@@ -40,6 +40,7 @@
     "*": "prettier --check --ignore-unknown --ignore-path .gitignore"
   },
   "dependencies": {
+    "date-and-time": "^2.4.3",
     "lerna": "^5.1.8"
   },
   "devDependencies": {

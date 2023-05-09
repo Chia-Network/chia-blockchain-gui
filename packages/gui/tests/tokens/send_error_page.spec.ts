@@ -19,11 +19,10 @@ test.afterAll(async () => {
 test('Confirm Error Dialog when wrong data is entered on Send Page for 1922132445 ID', async () => {
   let funded_wallet = '1922132445';
 
-  //Given I enter correct credentials in Passphrase dialog
-  await new LoginPage(page).login('password2022!@');
-
-  // And I navigate to a wallet with funds
-  await page.locator('[data-testid="LayoutDashboard-log-out"]').click();
+  //Pre-requisites to get user back to Wallet selection page
+  await page.locator('button:has-text("Close")').click();
+  
+  //Given I navigate to a wallet with funds
   await page.locator(`text=${funded_wallet}`).click();
 
   // Begin: Wait for Wallet to Sync
@@ -49,7 +48,7 @@ test('Confirm Error Dialog when wrong data is entered on Send Page for 192213244
   await page.locator('[data-testid="WalletSend-amount"]').fill('.0005');
 
   //And I enter a valid Fee
-  await page.locator('[data-testid="WalletSend-fee"]').fill('.00000005');
+  //await page.locator('[data-testid="WalletSend-fee"]').fill('.00000005');
 
   //And I click Send button
   await page.locator('[data-testid="WalletSend-send"]').click();
