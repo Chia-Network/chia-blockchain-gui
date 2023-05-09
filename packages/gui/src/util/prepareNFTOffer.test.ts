@@ -1,6 +1,8 @@
 import { store, walletApi } from '@chia-network/api-react';
 import BigNumber from 'bignumber.js';
 
+import { prepareNFTOffer, prepareNFTOfferFromNFTId } from './prepareNFTOffer';
+
 jest.mock('@chia-network/api-react', () => ({
   store: {
     dispatch: jest.fn(),
@@ -14,8 +16,6 @@ jest.mock('@chia-network/api-react', () => ({
   },
 }));
 
-import { prepareNFTOffer, prepareNFTOfferFromNFTId } from './prepareNFTOffer';
-
 describe('prepareNFTOfferFromNFTId', () => {
   let mockUnsubscribe: jest.Mock;
 
@@ -25,14 +25,14 @@ describe('prepareNFTOfferFromNFTId', () => {
     mockUnsubscribe = jest.fn();
   });
 
-  it('should throw an error if launcherId is invalid', async () => {
+  it('throws an error if launcherId is invalid', async () => {
     expect.assertions(1);
     const nftId = 'invalid_nft_id';
 
     await expect(prepareNFTOfferFromNFTId(nftId, true)).rejects.toThrowError('Invalid NFT ID');
   });
 
-  it("should throw an error if getNFTInfo doesn't find the NFT", async () => {
+  it("throws an error if getNFTInfo doesn't find the NFT", async () => {
     expect.assertions(1);
     const nftId = 'nft1sy37ezgaqjzg3mg3pwhltvz8ukc3uh9yaeagrs46qj4l8mdy7pmsun32tp';
 
@@ -44,7 +44,7 @@ describe('prepareNFTOfferFromNFTId', () => {
     await expect(prepareNFTOfferFromNFTId(nftId, true)).rejects.toThrowError('NFT not found');
   });
 
-  it('should throw na error if getNFTInfo returns an error', async () => {
+  it('throws an error if getNFTInfo returns an error', async () => {
     expect.assertions(1);
     const nftId = 'nft1sy37ezgaqjzg3mg3pwhltvz8ukc3uh9yaeagrs46qj4l8mdy7pmsun32tp';
 
@@ -56,7 +56,7 @@ describe('prepareNFTOfferFromNFTId', () => {
     await expect(prepareNFTOfferFromNFTId(nftId, true)).rejects.toThrowError('getNFTInfo error');
   });
 
-  it('should call getNFTInfo with the correct parameters and return a prepared NFT offer', async () => {
+  it('calls getNFTInfo with the correct parameters and return a prepared NFT offer', async () => {
     const nftId = 'nft1sy37ezgaqjzg3mg3pwhltvz8ukc3uh9yaeagrs46qj4l8mdy7pmsun32tp';
     const mockNFTData = {
       launcherId: '0x8123ec891d048488ed110baff5b047e5b11e5ca4ee7a81c2ba04abf3eda4f077',
@@ -92,7 +92,7 @@ describe('prepareNFTOffer', () => {
     supportsDid: false,
   };
 
-  it('should return a prepared NFT offer with correct properties when offeredNFT is false', () => {
+  it('returns a prepared NFT offer with correct properties when offeredNFT is false', () => {
     const result = prepareNFTOffer(nftInfo as any, false);
 
     expect(result.nft).toEqual(nftInfo);
@@ -104,7 +104,7 @@ describe('prepareNFTOffer', () => {
     expect(result.driver!.launcher_ph).toBe(nftInfo.launcherPuzhash);
   });
 
-  it('should return a prepared NFT offer with correct properties when offeredNFT is true', () => {
+  it('returns a prepared NFT offer with correct properties when offeredNFT is true', () => {
     const result = prepareNFTOffer(nftInfo as any, true);
 
     expect(result.nft).toEqual(nftInfo);
@@ -113,7 +113,7 @@ describe('prepareNFTOffer', () => {
     expect(result.driver).toBeUndefined();
   });
 
-  it('should include the ownership field if nft.supportsDid is true', () => {
+  it('includes the ownership field if nft.supportsDid is true', () => {
     const nftWithDidSupport = { ...nftInfo, supportsDid: true, royaltyPuzzleHash: '0xabc', royaltyPercentage: 10 };
     const result = prepareNFTOffer(nftWithDidSupport as any, false);
 
@@ -128,7 +128,7 @@ describe('prepareNFTOffer', () => {
     );
   });
 
-  it('should throw an error if the nftId is invalid', () => {
+  it('throws an error if the nftId is invalid', () => {
     const invalidNFTInfo = { ...nftInfo, $nftId: 'invalid_nft_id', launcherId: '0x789' };
     expect(() => prepareNFTOffer(invalidNFTInfo as any, false)).toThrowError('Invalid NFT ID');
   });
