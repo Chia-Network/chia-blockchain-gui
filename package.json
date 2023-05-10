@@ -31,7 +31,7 @@
     "audit:fix": "lerna exec -- npm audit fix",
     "test": "lerna run test --stream -- -- --passWithNoTests --coverage --coverageDirectory=.coverage && npm run coverage:merge && npm run coverage:report",
     "coverage:merge": "npx istanbul-merge --out .nyc_output/coverage.json packages/api/.coverage/coverage-final.json packages/api-react/.coverage/coverage-final.json packages/core/.coverage/coverage-final.json packages/gui/.coverage/coverage-final.json  packages/icons/.coverage/coverage-final.json packages/wallets/.coverage/coverage-final.json",
-    "coverage:report": "npx nyc report --reporter=html --reporter=text --reporter=lcov",
+    "coverage:report": "npx nyc report --reporter=text --reporter=lcov",
     "restoreMessages": "node restoreMessages.js",
     "prepare": "husky install"
   },
