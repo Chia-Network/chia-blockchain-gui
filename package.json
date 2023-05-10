@@ -29,7 +29,9 @@
     "locale": "lerna run locale",
     "audit": "lerna exec -- npm audit",
     "audit:fix": "lerna exec -- npm audit fix",
-    "test": "lerna run test --stream -- -- --passWithNoTests --coverage",
+    "test": "lerna run test --stream -- -- --passWithNoTests --coverage --coverageDirectory=.coverage && npm run coverage:merge && npm run coverage:report",
+    "coverage:merge": "npx istanbul-merge --out .nyc_output/coverage.json packages/api/.coverage/coverage-final.json packages/api-react/.coverage/coverage-final.json packages/core/.coverage/coverage-final.json packages/gui/.coverage/coverage-final.json  packages/icons/.coverage/coverage-final.json packages/wallets/.coverage/coverage-final.json",
+    "coverage:report": "npx nyc report --reporter=text --reporter=lcov",
     "restoreMessages": "node restoreMessages.js",
     "prepare": "husky install"
   },
@@ -53,11 +55,13 @@
     "eslint-plugin-react": "7.31.11",
     "eslint-plugin-react-hooks": "4.6.0",
     "eslint-plugin-unicorn": "45.0.2",
+    "husky": "8.0.0",
+    "istanbul-merge": "2.0.0",
     "lerna-audit": "^1.3.3",
     "lint-staged": "13.1.2",
+    "nyc": "15.1.0",
     "prettier": "2.8.1",
-    "typescript": "^4.9.4",
-    "husky": "8.0.0"
+    "typescript": "^4.9.4"
   },
   "version": "1.2.10-dev132"
 }
