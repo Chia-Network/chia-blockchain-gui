@@ -1,8 +1,8 @@
-import { useGetThrottlePlotQueueQuery, useRefreshPlotsMutation } from '@chia-network/api-react';
+import { useGetThrottlePlotQueueQuery } from '@chia-network/api-react';
 import { Card, Table } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { TableRow } from '@mui/material';
-import React, { useEffect, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import styled from 'styled-components';
 
 import PlotQueueActions from './queue/PlotQueueActions';
@@ -34,18 +34,8 @@ const cols = [
 
 export default function PlotPlotting() {
   const { isLoading, queue } = useGetThrottlePlotQueueQuery();
-  const [refreshPlots] = useRefreshPlotsMutation();
 
   const nonFinished = useMemo(() => queue?.filter((item) => item.state !== 'FINISHED'), [queue]);
-  const finished = useMemo(() => queue?.filter((item) => item.state === 'FINISHED'), [queue]);
-
-  const finishedLength = finished?.length || 0;
-
-  useEffect(() => {
-    if (finishedLength > 0) {
-      refreshPlots().unwrap();
-    }
-  }, [finishedLength, refreshPlots]);
 
   if (isLoading || !nonFinished?.length) {
     return null;
