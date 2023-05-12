@@ -1,4 +1,5 @@
 import type FarmingInfo from '../@types/FarmingInfo';
+import type { HarvestingMode } from '../@types/Harvester';
 import Client from '../Client';
 import type Message from '../Message';
 import ServiceName from '../constants/ServiceName';
@@ -7,6 +8,7 @@ import type { Options } from './Service';
 
 const FARMING_INFO_MAX_ITEMS = 1000;
 export type FarmingInfoWithIndex = FarmingInfo & { index: number };
+
 export default class Harvester extends Service {
   private farmingInfo: FarmingInfoWithIndex[] = [];
 
@@ -51,11 +53,11 @@ export default class Harvester extends Service {
   }
 
   async getHarvestingModeInfo() {
-    return this.command<{ support_gpu: boolean; mode: 'CPU' | 'GPU' }>('get_harvesting_mode_info');
+    return this.command<{ support_gpu: boolean; mode: HarvestingMode }>('get_harvesting_mode_info');
   }
 
-  async changeHarvestingMode(args: { mode: 'CPU' | 'GPU' }) {
-    return this.command<{ mode: 'CPU' | 'GPU' }>('change_harvesting_mode', args);
+  async changeHarvestingMode(args: { mode: HarvestingMode }) {
+    return this.command<{ mode: HarvestingMode }>('change_harvesting_mode', args);
   }
 
   onRefreshPlots(callback: (data: any, message: Message) => void, processData?: (data: any) => any) {
