@@ -111,7 +111,15 @@ export default function PlotAddForm(props: Props) {
   const handleSubmit: SubmitHandler<FormData> = async (data) => {
     try {
       setLoading(true);
-      const { p2SingletonPuzzleHash, delay, createNFT, ...rest } = data;
+      const {
+        p2SingletonPuzzleHash,
+        delay,
+        createNFT,
+        plotterName: formPlotterName,
+        workspaceLocation,
+        workspaceLocation2,
+        ...rest
+      } = data;
       const { farmerPublicKey, poolPublicKey, plotNFTContractAddr } = rest;
 
       let selectedP2SingletonPuzzleHash = p2SingletonPuzzleHash;
@@ -150,6 +158,9 @@ export default function PlotAddForm(props: Props) {
       const plotAddConfig = {
         ...rest,
         delay: delay * 60,
+        plotterName: formPlotterName,
+        workspaceLocation,
+        workspaceLocation2: formPlotterName === 'madmax' ? workspaceLocation2 || workspaceLocation : workspaceLocation2,
       };
 
       if (!selectedP2SingletonPuzzleHash && plotNFTContractAddr) {
