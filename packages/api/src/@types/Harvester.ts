@@ -15,7 +15,11 @@ type HarvesterSyncingStatus = {
   plotFilesTotal: number;
 };
 
-type Harvester = {
+export type CPUHarvesting = 1;
+export type GPUHarvesting = 2;
+export type HarvestingMode = CPUHarvesting | GPUHarvesting;
+
+type HarvesterInfo = {
   connection: Connection;
   duplicates: string[];
   failedToOpenFilenames: string[];
@@ -24,10 +28,11 @@ type Harvester = {
   syncing?: HarvesterSyncingStatus;
   totalPlotSize: number;
   plots: Plot[];
+  harvesting_mode?: HarvestingMode;
 };
 
 export type HarvesterSummary = Modify<
-  Harvester,
+  HarvesterInfo,
   {
     duplicates: number;
     failedToOpenFilenames: number;
@@ -36,4 +41,4 @@ export type HarvesterSummary = Modify<
   }
 >;
 
-export default Harvester;
+export default HarvesterInfo;

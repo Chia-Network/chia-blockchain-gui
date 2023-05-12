@@ -16,7 +16,7 @@ export type { default as Fingerprint } from './Fingerprint';
 export type { default as Foliage } from './Foliage';
 export type { default as FoliageTransactionBlock } from './FoliageTransactionBlock';
 export type { default as G2Element } from './G2Element';
-export type { default as Harveste, HarvesterSummary } from './Harvester';
+export type { default as HarvesterInfo, HarvesterSummary } from './Harvester';
 export type { default as HarvesterPlotsPaginated } from './HarvesterPlotsPaginated';
 export type { default as Header } from './Header';
 export type { default as InitialTargetState } from './InitialTargetState';

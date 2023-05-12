@@ -9,7 +9,6 @@ import FarmHero from './FarmHero';
 import FarmLastAttemptedProof from './FarmLastAttemptedProof';
 import FarmLatestBlockChallenges from './FarmLatestBlockChallenges';
 import FarmYourHarvesterNetwork from './FarmYourHarvesterNetwork';
-import HarvesterLatencyGraph from './HarvesterLatenchGraph';
 import FarmCards from './card/FarmCards';
 
 export default function Farm() {
@@ -32,7 +31,6 @@ export default function Farm() {
               <FarmCards />
               <FarmLastAttemptedProof />
               <FarmLatestBlockChallenges />
-              <HarvesterLatencyGraph />
               <AdvancedOptions>
                 <Flex flexDirection="column" gap={3}>
                   <FarmFullNodeConnections />

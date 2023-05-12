@@ -35,9 +35,14 @@ const cols = [
 export default function FarmLastAttemptedProof() {
   // const { size } = usePlots();
 
-  const { data: lastAttemptedProof, isLoading } = useGetNewFarmingInfoQuery();
+  const { data, isLoading } = useGetNewFarmingInfoQuery();
 
-  const reducedLastAttemptedProof = lastAttemptedProof?.slice(0, 5);
+  const reducedLastAttemptedProof = React.useMemo(() => {
+    if (!data) {
+      return data;
+    }
+    return data.newFarmingInfo.slice(0, 5);
+  }, [data]);
   const isEmpty = !reducedLastAttemptedProof?.length;
 
   return (
