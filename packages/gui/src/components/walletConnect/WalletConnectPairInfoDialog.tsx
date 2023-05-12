@@ -6,6 +6,7 @@ import { Divider, Dialog, DialogContent, DialogTitle, IconButton, Typography } f
 import React, { useMemo, useState } from 'react';
 
 import useWalletConnectContext from '../../hooks/useWalletConnectContext';
+import WalletConnectActiveSessions from './WalletConnectActiveSessions';
 import WalletConnectMetadata from './WalletConnectMetadata';
 
 export type WalletConnectPairInfoDialogProps = {
@@ -115,25 +116,7 @@ export default function WalletConnectPairInfoDialog(props: WalletConnectPairInfo
                     )}
                   </Flex>
                 </Flex>
-
-                <Flex flexDirection="column" gap={1}>
-                  <Typography>
-                    <Trans>Active Sessions</Trans>
-                  </Typography>
-                  <Flex flexDirection="column" gap={1}>
-                    {pair.sessions.length ? (
-                      pair.sessions.map((session) => (
-                        <Typography key={session.topic} variant="body2" color="textSecondary" noWrap>
-                          {session.topic}
-                        </Typography>
-                      ))
-                    ) : (
-                      <Typography variant="body2" color="textSecondary">
-                        <Trans>Application has no active sessions</Trans>
-                      </Typography>
-                    )}
-                  </Flex>
-                </Flex>
+                <WalletConnectActiveSessions topic={topic} />
               </Flex>
             )}
           </Flex>

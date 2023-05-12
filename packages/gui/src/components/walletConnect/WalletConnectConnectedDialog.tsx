@@ -6,6 +6,7 @@ import { Box, Divider, Dialog, DialogContent, DialogTitle, IconButton, Typograph
 import React, { useMemo, useState } from 'react';
 
 import useWalletConnectContext from '../../hooks/useWalletConnectContext';
+import WalletConnectActiveSessions from './WalletConnectActiveSessions';
 import HeroImage from './images/walletConnectConnected.svg';
 
 export type WalletConnectAddConnectionDialogProps = {
@@ -77,9 +78,9 @@ export default function WalletConnectConnectedDialog(props: WalletConnectAddConn
       </IconButton>
 
       <DialogContent>
-        <Flex flexDirection="column" alignItems="center" gap={3}>
+        <Flex flexDirection="column" alignItems="center" gap={3} width="100%">
           <HeroImage width={106} />
-          <Flex flexDirection="column" gap={3}>
+          <Flex flexDirection="column" gap={3} width="100%">
             <Box>
               <Typography variant="h6" textAlign="center">
                 <Trans>Connected</Trans>
@@ -104,6 +105,7 @@ export default function WalletConnectConnectedDialog(props: WalletConnectAddConn
                 ))}
               </Flex>
             )}
+            <WalletConnectActiveSessions topic={topic} />
           </Flex>
         </Flex>
       </DialogContent>
