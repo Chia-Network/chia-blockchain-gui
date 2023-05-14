@@ -1,7 +1,7 @@
 import { HarvesterInfo, LatencyData } from '@chia-network/api';
 import { Flex, FormatBytes, Tooltip } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
-import { Box, Paper, Typography, LinearProgress } from '@mui/material';
+import { Box, Paper, Typography, LinearProgress, Chip } from '@mui/material';
 import * as React from 'react';
 
 import isLocalhost from '../../util/isLocalhost';
@@ -26,35 +26,35 @@ function HarvesterLatencyGraph(props: HarvesterLatencyGraphProps) {
   // const latencyRecords = latencyData && nodeId ? latencyData[nodeId] : undefined;
   const isLocal = host ? isLocalhost(host) : undefined;
   const simpleNodeId = nodeId ? `${nodeId.substring(0, 6)}...${nodeId.substring(nodeId.length - 6)}` : undefined;
+  const harvestingMode = harvester?.harvestingMode;
 
   const cardTitle = React.useMemo(
     () => (
-      <Box marginBottom={1}>
-        <Flex flexGrow={1} justifyContent="space-between" alignItems="center" flexWrap="wrap" gap={0.5}>
-          <Flex gap={1} alignItems="center">
-            <Flex flexDirection="column">
-              <Flex alignItems="baseline">
-                <Typography color="textPrimary">
-                  {isLocal ? <Trans>Local Harvester</Trans> : <Trans>Remote Harvester</Trans>}
-                </Typography>
-                &nbsp;
-                <Tooltip title={nodeId}>
-                  <Typography variant="body2" color="textSecondary">
-                    {simpleNodeId}
-                  </Typography>
-                </Tooltip>
-              </Flex>
-              <Flex alignItems="center" gap={2}>
+      <Box marginBottom={2}>
+        <Flex flexDirection="column">
+          <Flex alignItems="center" justifyContent="space-between" sx={{ width: '100%' }}>
+            <Flex alignItems="baseline">
+              <Typography variant="h6">
+                {isLocal ? <Trans>Local Harvester</Trans> : <Trans>Remote Harvester</Trans>}
+              </Typography>
+              &nbsp;
+              <Tooltip title={nodeId}>
                 <Typography variant="body2" color="textSecondary">
-                  {host}
+                  {simpleNodeId}
                 </Typography>
-              </Flex>
+              </Tooltip>
             </Flex>
+            <Box>{harvestingMode === 2 && <Chip label="GPU" color="primary" />}</Box>
+          </Flex>
+          <Flex alignItems="center" gap={2}>
+            <Typography variant="body2" color="textSecondary">
+              {host}
+            </Typography>
           </Flex>
         </Flex>
       </Box>
     ),
-    [isLocal, nodeId, simpleNodeId, host]
+    [isLocal, nodeId, simpleNodeId, host, harvestingMode]
   );
 
   const space = React.useMemo(() => {
@@ -70,7 +70,7 @@ function HarvesterLatencyGraph(props: HarvesterLatencyGraphProps) {
       <Paper variant="outlined">
         <Box sx={{ p: 1.5 }}>
           <Flex direction="column" gap={1}>
-            <Typography variant="textPrimary">
+            <Typography sx={{ fontWeight: 500 }}>
               <Trans>Space</Trans>
             </Typography>
             <table style={{ width: '100%' }}>

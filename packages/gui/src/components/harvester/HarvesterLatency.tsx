@@ -1,22 +1,10 @@
-import { LatencyInfo, LatencyRecord } from '@chia-network/api';
+import { LatencyInfo } from '@chia-network/api';
 import { Flex } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Box, Paper, Typography, Select, MenuItem, FormControl, SelectChangeEvent } from '@mui/material';
 import * as React from 'react';
 
-function getSliceOfLatency(data: LatencyRecord[], periodInHours: number) {
-  const now = Date.now();
-  const periodInMs = 3_600_000 * periodInHours;
-
-  // @TODO Replace below with better algorithm for performance
-  for (let i = 0; i < data.length; i++) {
-    const d = data[i][0];
-    if (now - d < periodInMs) {
-      return data.slice(i);
-    }
-  }
-  return [] as LatencyRecord[];
-}
+import { PureLatencyBarChart, getSliceOfLatency, formatTime } from './LatencyCharts';
 
 export type HarvesterLatencyProps = {
   latencyInfo?: LatencyInfo;
@@ -25,7 +13,7 @@ export type HarvesterLatencyProps = {
 export default React.memo(HarvesterLatency);
 function HarvesterLatency(props: HarvesterLatencyProps) {
   const { latencyInfo } = props;
-  const [period, setPeriod] = React.useState<1 | 12 | 24>(24); // in Hour
+  const [period, setPeriod] = React.useState<'1h' | '12h' | '24h' | '64sp'>('64sp'); // in Hour
 
   const slice = React.useMemo(() => {
     if (!latencyInfo || latencyInfo.latency.length === 0) {
@@ -38,7 +26,7 @@ function HarvesterLatency(props: HarvesterLatencyProps) {
     if (!latencyInfo || latencyInfo.latency.length === 0) {
       return { avg: 0, max: 0, min: 0 };
     }
-    if (period === 24) {
+    if (period === '24h') {
       return {
         avg: Math.round((latencyInfo.avg / 1000) * 100) / 100,
         max: Math.round((latencyInfo.max / 1000) * 100) / 100,
@@ -61,12 +49,14 @@ function HarvesterLatency(props: HarvesterLatencyProps) {
     };
   }, [slice, latencyInfo, period]);
 
+  const unit = stat.avg > 2000 ? 's' : 'ms';
+
   const onChangePeriod = React.useCallback((e: SelectChangeEvent) => {
     const selectEl = e.target as HTMLSelectElement;
     if (!selectEl) {
       return;
     }
-    setPeriod(+selectEl.value as 1 | 12 | 24);
+    setPeriod(selectEl.value as '1h' | '12h' | '24h' | '64sp');
   }, []);
 
   return (
@@ -77,26 +67,31 @@ function HarvesterLatency(props: HarvesterLatencyProps) {
             <tbody>
               <tr>
                 <td>
-                  <Typography>
+                  <Typography sx={{ fontWeight: 500 }}>
                     <Trans>Harvester latency</Trans>
                   </Typography>
                 </td>
                 <td rowSpan={2} style={{ verticalAlign: 'top', width: 1, whiteSpace: 'nowrap' }}>
                   <FormControl size="small">
                     <Select value={period.toString()} onChange={onChangePeriod}>
-                      <MenuItem value={1}>
+                      <MenuItem value="1h">
                         <Typography color="primary">
-                          1 <Trans>HOURS</Trans>
+                          <Trans>LAST 1 HOUR</Trans>
                         </Typography>
                       </MenuItem>
-                      <MenuItem value={12}>
+                      <MenuItem value="12h">
                         <Typography color="primary">
-                          12 <Trans>HOURS</Trans>
+                          <Trans>LAST 12 HOURS</Trans>
                         </Typography>
                       </MenuItem>
-                      <MenuItem value={24}>
+                      <MenuItem value="24h">
                         <Typography color="primary">
-                          24 <Trans>HOURS</Trans>
+                          <Trans>LAST 24 HOURS</Trans>
+                        </Typography>
+                      </MenuItem>
+                      <MenuItem value="64sp">
+                        <Typography color="primary">
+                          <Trans>Last 64 SPs</Trans>
                         </Typography>
                       </MenuItem>
                     </Select>
@@ -106,15 +101,16 @@ function HarvesterLatency(props: HarvesterLatencyProps) {
               <tr>
                 <td>
                   <Typography color="primary" sx={{ display: 'inline-block' }}>
-                    <Trans>Ave</Trans> {stat.avg} ms
+                    <Trans>Ave</Trans> {formatTime(stat.avg)}
                   </Typography>
                   <Typography sx={{ display: 'inline-block', marginLeft: 2 }}>
-                    <Trans>Max</Trans> {stat.max} ms
+                    <Trans>Max</Trans> {formatTime(stat.max)}
                   </Typography>
                 </td>
               </tr>
             </tbody>
           </table>
+          <PureLatencyBarChart latency={slice} period={period} unit={unit} />
         </Flex>
       </Box>
     </Paper>

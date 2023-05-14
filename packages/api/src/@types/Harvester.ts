@@ -28,7 +28,7 @@ type HarvesterInfo = {
   syncing?: HarvesterSyncingStatus;
   totalPlotSize: number;
   plots: Plot[];
-  harvesting_mode?: HarvestingMode;
+  harvestingMode?: HarvestingMode;
 };
 
 export type HarvesterSummary = Modify<
