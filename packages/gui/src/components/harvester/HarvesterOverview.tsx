@@ -4,8 +4,7 @@ import { Trans } from '@lingui/macro';
 import { Grid, Typography } from '@mui/material';
 import React from 'react';
 
-import isLocalhost from '../../util/isLocalhost';
-import { UI_ACTUAL_SPACE_CONSTANT_FACTOR, expectedPlotSize } from '../../util/plot';
+import { UI_ACTUAL_SPACE_CONSTANT_FACTOR, expectedPlotSize, PLOT_FILTER } from '../../util/plot';
 import HarvesterDetail from './HarvesterDetail';
 
 export default function HarvesterOverview() {
@@ -56,16 +55,48 @@ export default function HarvesterOverview() {
 
   const eligiblePlots = React.useMemo(() => {
     if (!newFarmingInfo || newFarmingInfo.length === 0) {
-      return 'N/A';
+      return {
+        tooltip: <Trans>The average number of plots which passed filter over last 64 signage points</Trans>,
+        value: 'N/A',
+      };
     }
-    let totalPlots = 0;
-    let totalPassedFilter = 0;
-    if (newFarmingInfo.length > 0) {
-      const info = newFarmingInfo[0]; // Only cares the latest farming info
-      totalPlots += info.totalPlots;
-      totalPassedFilter += info.passedFilter;
+
+    const eligiblePlotsPerSp: Record<string, { totalPlots: number; passedFilter: number }> = {};
+    for (let i = 0; i < newFarmingInfo.length; i++) {
+      const nfi = newFarmingInfo[i];
+      eligiblePlotsPerSp[nfi.signagePoint] = eligiblePlotsPerSp[nfi.signagePoint] || {
+        totalPlots: 0,
+        passedFilter: 0,
+      };
+      eligiblePlotsPerSp[nfi.signagePoint].totalPlots += nfi.totalPlots;
+      eligiblePlotsPerSp[nfi.signagePoint].passedFilter += nfi.passedFilter;
+      if (Object.keys(eligiblePlotsPerSp).length > 64) {
+        // Only cares last 64 sps
+        break;
+      }
     }
-    return `${totalPassedFilter} / ${totalPlots}`;
+
+    let sumTotalPlots = 0;
+    let sumPassedFilter = 0;
+    const sps = Object.keys(eligiblePlotsPerSp);
+    for (let i = 0; i < sps.length; i++) {
+      const sp = sps[i];
+      const { totalPlots, passedFilter } = eligiblePlotsPerSp[sp];
+      sumTotalPlots += totalPlots;
+      sumPassedFilter += passedFilter;
+    }
+
+    const expectedAvgPassedFilter = Math.round((sumTotalPlots / PLOT_FILTER / sps.length) * 1000) / 1000;
+    const avgPassedFilter = Math.round((sumPassedFilter / sps.length) * 1000) / 1000;
+    return {
+      tooltip: (
+        <Trans>
+          The average number of plots which passed filter over last 64 signage points. It is expected to be{' '}
+          {expectedAvgPassedFilter}
+        </Trans>
+      ),
+      value: avgPassedFilter,
+    };
   }, [newFarmingInfo]);
 
   const duplicatePlots = React.useMemo(() => {
@@ -87,23 +118,19 @@ export default function HarvesterOverview() {
     const elements: React.ReactElement[] = [];
     for (let i = 0; i < harvesters.length; i++) {
       const h = harvesters[i];
-      if (isLocalhost(h.connection.host)) {
-        elements.push(
-          <Grid xs={12} sm={12} md={6} item>
-            <HarvesterDetail
-              key={h.connection.nodeId}
-              loading={isLoadingFarmingInfo}
-              harvester={h}
-              latencyData={latencyData}
-              totalFarmSizeRaw={totalFarmSizeRaw}
-              totalFarmSizeEffective={totalFarmSizeEffective}
-            />
-          </Grid>
-        );
-      }
+      elements.push(
+        <Grid key={h.connection.nodeId} xs={12} sm={12} md={6} item>
+          <HarvesterDetail
+            harvester={h}
+            latencyData={latencyData}
+            totalFarmSizeRaw={totalFarmSizeRaw}
+            totalFarmSizeEffective={totalFarmSizeEffective}
+          />
+        </Grid>
+      );
     }
     return elements;
-  }, [harvesters, isLoadingFarmingInfo, latencyData, totalFarmSizeRaw, totalFarmSizeEffective]);
+  }, [harvesters, latencyData, totalFarmSizeRaw, totalFarmSizeEffective]);
 
   return (
     <Flex flexDirection="column" gap={2}>
@@ -151,7 +178,8 @@ export default function HarvesterOverview() {
               loading={isLoadingFarmingInfo}
               valueColor="primary"
               title={<Trans>Eligible plots per signage point</Trans>}
-              value={eligiblePlots}
+              tooltip={eligiblePlots.tooltip}
+              value={eligiblePlots.value}
             />
           </Grid>
           <Grid xs={12} sm={6} md={4} item>
