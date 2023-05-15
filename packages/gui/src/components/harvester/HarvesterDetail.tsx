@@ -28,8 +28,15 @@ function HarvesterLatencyGraph(props: HarvesterLatencyGraphProps) {
   const simpleNodeId = nodeId ? `${nodeId.substring(0, 6)}...${nodeId.substring(nodeId.length - 6)}` : undefined;
   const harvestingMode = harvester?.harvestingMode;
 
-  const cardTitle = React.useMemo(
-    () => (
+  const cardTitle = React.useMemo(() => {
+    let chip;
+    if (harvestingMode === 2) {
+      chip = <Chip label="GPU" color="primary" />;
+    } else if (typeof harvestingMode !== 'number') {
+      chip = <Chip label="Old" />;
+    }
+
+    return (
       <Box marginBottom={2}>
         <Flex flexDirection="column">
           <Flex alignItems="center" justifyContent="space-between" sx={{ width: '100%' }}>
@@ -44,7 +51,7 @@ function HarvesterLatencyGraph(props: HarvesterLatencyGraphProps) {
                 </Typography>
               </Tooltip>
             </Flex>
-            <Box>{harvestingMode === 2 && <Chip label="GPU" color="primary" />}</Box>
+            <Box>{chip}</Box>
           </Flex>
           <Flex alignItems="center" gap={2}>
             <Typography variant="body2" color="textSecondary">
@@ -53,9 +60,8 @@ function HarvesterLatencyGraph(props: HarvesterLatencyGraphProps) {
           </Flex>
         </Flex>
       </Box>
-    ),
-    [isLocal, nodeId, simpleNodeId, host, harvestingMode]
-  );
+    );
+  }, [isLocal, nodeId, simpleNodeId, host, harvestingMode]);
 
   const space = React.useMemo(() => {
     const effectiveSpace = harvester

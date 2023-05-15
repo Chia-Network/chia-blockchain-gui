@@ -32,7 +32,12 @@ export const farmerApi = apiWithTag.injectEndpoints({
       providesTags: [{ type: 'Harvesters', id: 'LIST' }],
       onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, api, [
         {
-          command: 'onHarvesterChanged',
+          command: 'onHarvesterUpdated',
+          service: Farmer,
+          endpoint: 'getHarvesters',
+        },
+        {
+          command: 'onHarvesterRemoved',
           service: Farmer,
           endpoint: 'getHarvesters',
         },

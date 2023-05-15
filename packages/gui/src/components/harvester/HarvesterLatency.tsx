@@ -23,29 +23,33 @@ function HarvesterLatency(props: HarvesterLatencyProps) {
   }, [latencyInfo, period]);
 
   const stat = React.useMemo(() => {
-    if (!latencyInfo || latencyInfo.latency.length === 0) {
-      return { avg: 0, max: 0, min: 0 };
+    if (!latencyInfo || latencyInfo.latency.length === 0 || Number.isNaN(latencyInfo.max)) {
+      return { avg: 0, max: 0, avgEl: <Trans>N/A</Trans>, maxEl: <Trans>N/A</Trans> };
     }
     if (period === '24h') {
+      const avg = Math.round((latencyInfo.avg / 1000) * 100) / 100;
+      const max = Math.round((latencyInfo.max / 1000) * 100) / 100;
       return {
-        avg: Math.round((latencyInfo.avg / 1000) * 100) / 100,
-        max: Math.round((latencyInfo.max / 1000) * 100) / 100,
-        min: Math.round((latencyInfo.min / 1000) * 100) / 100,
+        avg,
+        max,
+        avgEl: formatTime(avg),
+        maxEl: formatTime(max),
       };
     }
     let sum = 0;
     let max = 0;
-    let min = 0;
     for (let i = 0; i < slice.length; i++) {
       const latency = slice[i][1];
       sum += latency;
       max = max < latency ? latency : max;
-      min = min > latency ? latency : min;
     }
+    const avg = Math.round((sum / 1000 / slice.length) * 100) / 100;
+    max = Math.round((max / 1000) * 100) / 100;
     return {
-      avg: Math.round((sum / 1000 / slice.length) * 100) / 100,
-      max: Math.round((max / 1000) * 100) / 100,
-      min: Math.round((min / 1000) * 100) / 100,
+      avg,
+      max,
+      avgEl: formatTime(avg),
+      maxEl: formatTime(max),
     };
   }, [slice, latencyInfo, period]);
 
@@ -101,10 +105,10 @@ function HarvesterLatency(props: HarvesterLatencyProps) {
               <tr>
                 <td>
                   <Typography color="primary" sx={{ display: 'inline-block' }}>
-                    <Trans>Ave</Trans> {formatTime(stat.avg)}
+                    <Trans>Ave</Trans> {stat.avgEl}
                   </Typography>
                   <Typography sx={{ display: 'inline-block', marginLeft: 2 }}>
-                    <Trans>Max</Trans> {formatTime(stat.max)}
+                    <Trans>Max</Trans> {stat.maxEl}
                   </Typography>
                 </td>
               </tr>
