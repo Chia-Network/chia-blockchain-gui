@@ -1,8 +1,8 @@
 // import { useGetNFTInfoQuery } from '@chia-network/api-react';
-import { CopyToClipboard, CardHero, Flex, Card, Table } from '@chia-network/core';
+import { CopyToClipboard, Flex } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
-import { ModeEdit } from '@mui/icons-material';
-import { IconButton, Typography } from '@mui/material';
+import { EditOutlined } from '@mui/icons-material';
+import { IconButton, InputAdornment, TextField } from '@mui/material';
 import React, { useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
@@ -29,141 +29,86 @@ export default function ContactSummary() {
 
   function getImage() {
     // if (nft !== undefined) return <NFTPreview nft={nft} height={50} width={50} disableThumbnail />;
-    return <img height={50} width={50} style={{ backgroundColor: 'grey', color: 'grey' }} />;
+    return <img height={80} width={80} style={{ backgroundColor: 'grey', color: 'grey' }} />;
   }
-
-  const addressCols = [
-    {
-      // eslint-disable-next-line react/no-unstable-nested-components -- The result is memoized. No performance issue
-      field: (row: any) => <div>{row.name}</div>,
-      minWidth: '170px',
-      maxWidth: '170px',
-      title: <Trans>Name</Trans>,
-    },
-    {
-      // eslint-disable-next-line react/no-unstable-nested-components -- The result is memoized. No performance issue
-      field: (row: any) => <div>{row.address}</div>,
-      minWidth: '170px',
-      maxWidth: '170px',
-      title: <Trans>Address</Trans>,
-    },
-    {
-      // eslint-disable-next-line react/no-unstable-nested-components -- The result is memoized. No performance issue
-      field: (row: any) => (
-        <Flex alignItems="center" gap={1}>
-          <CopyToClipboard value={row.address} fontSize="small" />
-        </Flex>
-      ),
-      minWidth: '170px',
-      maxWidth: '170px',
-      title: <Trans>Action</Trans>,
-    },
-  ];
-
-  const didCols = [
-    {
-      // eslint-disable-next-line react/no-unstable-nested-components -- The result is memoized. No performance issue
-      field: (row: any) => <div>{row.did}</div>,
-      minWidth: '170px',
-      maxWidth: '170px',
-      title: <Trans>DID</Trans>,
-    },
-    {
-      // eslint-disable-next-line react/no-unstable-nested-components -- The result is memoized. No performance issue
-      field: (row: any) => (
-        <Flex alignItems="center" gap={1}>
-          <CopyToClipboard value={row.did} fontSize="small" />
-        </Flex>
-      ),
-      minWidth: '170px',
-      maxWidth: '170px',
-      title: <Trans>Action</Trans>,
-    },
-  ];
-
-  const domainCols = [
-    {
-      // eslint-disable-next-line react/no-unstable-nested-components -- The result is memoized. No performance issue
-      field: (row: any) => <div>{row.domainname}</div>,
-      minWidth: '170px',
-      maxWidth: '170px',
-      title: <Trans>DomainName</Trans>,
-    },
-    {
-      // eslint-disable-next-line react/no-unstable-nested-components -- The result is memoized. No performance issue
-      field: (row: any) => (
-        <Flex alignItems="center" gap={1}>
-          <CopyToClipboard value={row.domainname} fontSize="small" />
-        </Flex>
-      ),
-      minWidth: '170px',
-      maxWidth: '170px',
-      title: <Trans>Action</Trans>,
-    },
-  ];
 
   return (
     <div>
-      <CardHero variant="outlined" style={{ backgroundColor: 'blue' }}>
-        <Flex
-          flexDirection="column"
-          flexGrow={1}
-          alignItems="flex-end"
-          justifyContent="flex-end"
-          style={{ paddingBottom: '1em' }}
-        >
-          <Typography>
-            <IconButton onClick={() => handleEditContact(contactid)}>
-              <ModeEdit />
-            </IconButton>
-          </Typography>
+      <Flex flexDirection="row" justifyContent="right" style={{ height: '80px', background: '#BBBBBB' }}>
+        <Flex style={{ paddingRight: '30px' }}>
+          <IconButton
+            onClick={() => handleEditContact(contactid)}
+            sx={{
+              position: 'absolute',
+              right: 44,
+              top: 44,
+            }}
+          >
+            <EditOutlined />
+          </IconButton>
         </Flex>
-      </CardHero>
+      </Flex>
 
-      <div style={{ width: '95%', margin: 'auto', marginTop: -40 }}>
-        {getImage()}
-        <h1 style={{ display: 'Inline', marginLeft: '10px' }}>
-          <Trans>{contact.name}</Trans>
-        </h1>
-      </div>
-
-      <Flex flexDirection="column" gap={4}>
-        <Flex flexDirection="column" gap={4}>
-          <Card title={<Trans>Addresses</Trans>} titleVariant="h6">
-            <Table
-              rows={contact.addresses}
-              cols={addressCols}
-              rowsPerPageOptions={[5, 25, 100]}
-              rowsPerPage={25}
-              pages={5}
-              isLoading={false}
-            />
-          </Card>
+      <Flex flexDirection="column" gap={2} alignItems="center" style={{ marginTop: '-41px' }}>
+        <Flex style={{ width: '600px' }}>{getImage()}</Flex>
+        <Flex style={{ width: '600px' }}>
+          <Flex alignSelf="flex-start">
+            <h1>
+              <Trans>{contact.name}</Trans>
+            </h1>
+          </Flex>
         </Flex>
-        <Flex flexDirection="column" gap={4}>
-          <Card title={<Trans>DIDS</Trans>} titleVariant="h6">
-            <Table
-              rows={contact.dids}
-              cols={didCols}
-              rowsPerPageOptions={[5, 25, 100]}
-              rowsPerPage={25}
-              pages={5}
-              isLoading={false}
+        {contact.addresses.map((addressInfo) => (
+          <Flex flexDirection="column" gap={2} style={{ width: '600px' }}>
+            {addressInfo.name}
+            <TextField
+              label={<Trans>Address</Trans>}
+              value={addressInfo.address}
+              fullWidth
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <CopyToClipboard value={addressInfo.address} />
+                  </InputAdornment>
+                ),
+              }}
             />
-          </Card>
-        </Flex>
-        <Flex flexDirection="column" gap={4}>
-          <Card title={<Trans>Domains</Trans>} titleVariant="h6">
-            <Table
-              rows={contact.domainnames}
-              cols={domainCols}
-              rowsPerPageOptions={[5, 25, 100]}
-              rowsPerPage={25}
-              pages={5}
-              isLoading={false}
+          </Flex>
+        ))}
+        {contact.dids.map((addressInfo) => (
+          <Flex flexDirection="column" gap={2} style={{ width: '600px' }}>
+            Placeholder
+            <TextField
+              label={<Trans>DID</Trans>}
+              value={addressInfo.did}
+              fullWidth
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <CopyToClipboard value={addressInfo.did} />
+                  </InputAdornment>
+                ),
+              }}
             />
-          </Card>
-        </Flex>
+          </Flex>
+        ))}
+        {contact.domainnames.map((addressInfo) => (
+          <Flex flexDirection="column" gap={2} style={{ width: '600px' }}>
+            Placeholder
+            <TextField
+              label={<Trans>Domain</Trans>}
+              value={addressInfo.domainname}
+              fullWidth
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <CopyToClipboard value={addressInfo.domainname} />
+                  </InputAdornment>
+                ),
+              }}
+            />
+          </Flex>
+        ))}
       </Flex>
     </div>
   );

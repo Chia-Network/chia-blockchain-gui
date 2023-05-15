@@ -1,5 +1,5 @@
-import { ButtonLoading, Flex } from '@chia-network/core';
 import type { IAddressContact } from '@chia-network/core';
+import { ButtonLoading, Flex, LayoutDashboardSub } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { TextField, Typography } from '@mui/material';
 import React, { useState, useContext } from 'react';
@@ -85,30 +85,32 @@ export default function AddressBookSideBar() {
   }
 
   return (
-    <div style={{ padding: '10px', minWidth: '390px', maxWidth: '500px' }}>
-      <Typography variant="h5">
-        <Trans>Addresses</Trans>
-      </Typography>
-      <Flex flexDirection="column" gap={2.5}>
-        <Flex flexDirection="column" gap={2.5}>
-          <ButtonLoading variant="contained" color="primary" onClick={handleCreateNewContact} disableElevation>
-            <Trans>New Contact</Trans>
-          </ButtonLoading>
-        </Flex>
-        <TextField
-          name="name"
-          variant="filled"
-          color="secondary"
-          fullWidth
-          disabled={false}
-          label={<Trans>Filter</Trans>}
-          data-testid="WalletCATSend-address"
-          onChange={handleFilterChanged}
-        />
-        <Flex flexDirection="column" gap={1.5}>
-          {listOfContacts()}
+    <LayoutDashboardSub>
+      <Flex flexDirection="column" gap={3} minWidth="300px">
+        <Typography variant="h5">
+          <Trans>Address Book</Trans>
+        </Typography>
+        <Flex gap={3} flexDirection="column">
+          <Flex flexDirection="column" gap={2.5}>
+            <ButtonLoading variant="contained" color="primary" onClick={handleCreateNewContact} disableElevation>
+              <Trans>New Contact</Trans>
+            </ButtonLoading>
+          </Flex>
+          <TextField
+            name="name"
+            variant="filled"
+            color="secondary"
+            fullWidth
+            disabled={false}
+            label={<Trans>Filter</Trans>}
+            data-testid="WalletCATSend-address"
+            onChange={handleFilterChanged}
+          />
+          <Flex flexDirection="column" gap={1.5}>
+            {listOfContacts()}
+          </Flex>
         </Flex>
       </Flex>
-    </div>
+    </LayoutDashboardSub>
   );
 }
