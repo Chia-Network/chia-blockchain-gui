@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react';
 
-export default function useStateAbort<T = undefined>(initialValue: T) {
+export default function useStateAbort<T = undefined>(initialValue: T | (() => T)) {
   const [value, setValue] = useState(initialValue);
 
   const handleSetValue = useCallback((newValue: Parameters<typeof setValue>[0], signal?: AbortSignal) => {

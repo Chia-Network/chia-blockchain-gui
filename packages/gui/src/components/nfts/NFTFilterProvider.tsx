@@ -1,7 +1,7 @@
 import React, { createContext, useMemo, useState, type ReactNode } from 'react';
 
-import FileType from '../../@types/FileType';
 import NFTVisibility from '../../@types/NFTVisibility';
+import FileType from '../../constants/FileType';
 
 export interface NFTFilterContextData {
   walletIds: number[];

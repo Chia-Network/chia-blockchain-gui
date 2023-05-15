@@ -17,15 +17,16 @@ import {
 } from '@mui/material';
 import { styled } from '@mui/styles';
 import { xor, intersection /* , sortBy */ } from 'lodash';
-import React, { useMemo, useCallback, useRef } from 'react';
+import React, { useMemo, useCallback, useRef, useEffect } from 'react';
 import { VirtuosoGrid } from 'react-virtuoso';
 import Sortable from 'sortablejs'; // eslint-ignore-file - in progress
 
-import FileType from '../../../@types/FileType';
 import NFTVisibility from '../../../@types/NFTVisibility';
+import FileType from '../../../constants/FileType';
 import useFilteredNFTs from '../../../hooks/useFilteredNFTs';
 import useHideObjectionableContent from '../../../hooks/useHideObjectionableContent';
-// import useNFTGalleryScrollPosition from '../../../hooks/useNFTGalleryScrollPosition';
+import useNFTGalleryScrollPosition from '../../../hooks/useNFTGalleryScrollPosition';
+import getNFTId from '../../../util/getNFTId';
 import LabelProgress from '../../helpers/LabelProgress';
 import NFTCard from '../NFTCard';
 import { NFTContextualActionTypes } from '../NFTContextualActions';
@@ -105,8 +106,25 @@ export default function NFTGallery() {
     setSelectedNFTIds,
   } = useFilteredNFTs();
 
+  const [scrollPosition, setScrollPosition] = useNFTGalleryScrollPosition();
+  const scrollerRef = useRef<HTMLElement>(null);
   const nftsRef = useRef(nfts);
   nftsRef.current = nfts;
+
+  function handleScrolling() {
+    if (scrollerRef.current) {
+      const { scrollTop } = scrollerRef.current;
+      setScrollPosition(scrollTop);
+    }
+  }
+
+  useEffect(() => {
+    setTimeout(() => {
+      if (scrollerRef.current && scrollPosition) {
+        scrollerRef.current?.scrollTo(0, scrollPosition);
+      }
+    }, 0);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps -- only run during initial render
 
   const [hideSensitiveContent, setHideSensitiveContent] = useHideObjectionableContent();
   const [showFilters, setShowFilters] = usePersistState(false, 'nft-gallery-show-filters');
@@ -126,25 +144,6 @@ export default function NFTGallery() {
   function handleSetWalletId(walletId: number | undefined) {
     setWalletIds(walletId ? [walletId] : []);
   }
-
-  /*
-  const [getScrollPosition, setScrollPosition] = useNFTGalleryScrollPosition();
-  const restoreScrollPosition = useCallback(() => {
-    const scrollHelper = document.getElementById('scroll-helper');
-    const scrollPosition = getScrollPosition();
-    if (scrollHelper && scrollPosition > 0) {
-      if (scrollHelper?.parentNode) {
-        (scrollHelper?.parentNode as HTMLElement).scrollTo(0, scrollPosition);
-      }
-    }
-  }, [getScrollPosition]);
-
-  useEffect(() => {
-    if (isDoneLoadingAllowedNFTs) {
-      restoreScrollPosition();
-    }
-  }, [restoreScrollPosition, isDoneLoadingAllowedNFTs]);
-  */
 
   const [foldersSortedNFTs, setFoldersSortedNFTs] = usePrefs('user-folders-nfts', {});
 
@@ -223,11 +222,18 @@ export default function NFTGallery() {
 
   const selectedTypes = useMemo(() => intersection(types, availableTypes), [types, availableTypes]);
 
+  const handleScrollRef = useCallback(
+    (ref: HTMLElement | null) => {
+      scrollerRef.current = ref;
+    },
+    [scrollerRef]
+  );
+
   function handleToggleSelectAll() {
     if (selectedAll) {
       setSelectedNFTIds([]);
     } else {
-      const visibleNFTIds = nfts.map((nft: NFTInfo) => nft.$nftId);
+      const visibleNFTIds = nfts.map((nft: NFTInfo) => getNFTId(nft.launcherId));
       setSelectedNFTIds(visibleNFTIds);
     }
   }
@@ -271,46 +277,6 @@ export default function NFTGallery() {
     }
   }
 
-  /*
-  function forceScrollAwayFromTopOrBottom(e: any, currentScrollTop: number, direction: number) {
-    setTimeout(() => {
-      e.target.scrollTo(0, currentScrollTop - direction * 380);
-    }, 0);
-  }
-
-  function handleOnScroll(e: MouseEvent) {
-    setScrollPosition((e.target as HTMLElement).scrollTop);
-    const nftCount = allowNFTsFiltered.filter((nft: NFTInfo) => showCard(nft)).length;
-    if (nftCount > maxNFTsPerPage) {
-      const offset = window.document.body.offsetWidth;
-      const perRowCount =
-        offset > 1535 ? 4 : offset > 899 ? 3 : offset > 599 ? 2 : 1;
-      const oldVisibleIndex = visibleIndex;
-      if (
-        (e.target as HTMLElement).scrollHeight -
-          (e.target as HTMLElement).scrollTop -
-          (e.target as HTMLElement).offsetHeight -
-          767 <
-          0 &&
-        visibleIndex + maxNFTsPerPage < nftCount
-      ) {
-        visibleIndex += perRowCount;
-        forceScrollAwayFromTopOrBottom(e, (e.target as HTMLElement).scrollTop, 1);
-      } else if ((e.target as HTMLElement).scrollTop < 360 && visibleIndex - perRowCount >= 0) {
-        visibleIndex -= perRowCount;
-        forceScrollAwayFromTopOrBottom(e, (e.target as HTMLElement).scrollTop, -1);
-      }
-      if (oldVisibleIndex !== visibleIndex) {
-        setNfts(
-          allowNFTsFiltered
-            .filter((nft: NFTInfo) => showCard(nft))
-            .filter((_: any, idx: number) => idx >= visibleIndex && idx < maxNFTsPerPage + visibleIndex)
-        );
-      }
-    }
-  }
-  */
-
   function onSelectUserFolder() {
     handleSetWalletId(undefined);
   }
@@ -344,7 +310,7 @@ export default function NFTGallery() {
         availableActions={NFTContextualActionTypes.All}
         isOffer={false}
         search={search}
-        selected={selectedNFTIds?.includes(nft.$nftId)}
+        selected={selectedNFTIds?.includes(getNFTId(nft.launcherId))}
         onSelect={inMultipleSelectionMode ? handleSelectNFT : undefined}
         userFolder={userFolder}
       />
@@ -390,13 +356,15 @@ export default function NFTGallery() {
           <Flex gap={2} alignItems="center" flexWrap="wrap" justifyContent="space-between">
             <Flex gap={1} alignItems="center">
               <Typography variant="body2" display="inline-flex">
-                <Trans>
-                  <Mute>Showing</Mute>&nbsp;{sortedNFTs.length}&nbsp;
-                  <Mute>of</Mute>&nbsp;{statistics.total}&nbsp; <Mute>items</Mute>
-                </Trans>
+                {statistics.total > 0 && (
+                  <Trans>
+                    <Mute>Showing</Mute>&nbsp;{sortedNFTs.length}&nbsp;
+                    <Mute>of</Mute>&nbsp;{statistics.total}&nbsp; <Mute>items</Mute>
+                  </Trans>
+                )}
                 {progress < 100 && (
                   <>
-                    ,&nbsp;
+                    {statistics.total > 0 && <>,&nbsp;</>}
                     <LabelProgress value={progress} hideValue>
                       <Trans>
                         <Mute>Loading...</Mute>&nbsp;{Math.floor(progress)}%
@@ -423,7 +391,7 @@ export default function NFTGallery() {
                       title={
                         <Trans>
                           Types
-                          {availableTypes.length > 0 && (
+                          {availableTypes.length > 0 ? (
                             <>
                               &nbsp;
                               <Chip
@@ -435,7 +403,7 @@ export default function NFTGallery() {
                                 size="extraSmall"
                               />
                             </>
-                          )}
+                          ) : null}
                         </Trans>
                       }
                     >
@@ -558,10 +526,12 @@ export default function NFTGallery() {
           <VirtuosoGrid
             style={{ height: '100%' }}
             data={sortedNFTs}
-            overscan={600}
-            // computeItemKey={(_index, nft) => nft.launcherId}
+            overscan={2000}
+            computeItemKey={(_index, nft) => nft.launcherId}
             components={COMPONENTS}
             itemContent={renderNFTCard}
+            scrollerRef={handleScrollRef}
+            isScrolling={handleScrolling}
           />
         </Box>
       )}

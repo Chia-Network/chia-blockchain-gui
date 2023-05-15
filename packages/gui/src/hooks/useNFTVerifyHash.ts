@@ -12,11 +12,8 @@ const log = debug('chia-gui:useNFTVerifyHash');
 
 type PreviewState = {
   isVerified: boolean;
+  uri: string;
   error?: Error;
-  uri?: string;
-  originalUri?: string;
-  content?: any;
-  headers?: Record<string, string>;
 };
 
 export type UseNFTVerifyHashOptions = {
@@ -27,7 +24,7 @@ export type UseNFTVerifyHashOptions = {
 export default function useNFTVerifyHash(nftId?: string, options: UseNFTVerifyHashOptions = {}) {
   const { preview = false, ignoreSizeLimit = false } = options;
 
-  const { get } = useCache();
+  const { getChecksum } = useCache();
 
   const { nft, isLoading: isLoadingNFT, error: errorNFT } = useNFT(nftId);
   const { isLoading: isLoadingMetadata, metadata, error: errorMetadata } = useNFTMetadata(nftId);
@@ -58,45 +55,35 @@ export default function useNFTVerifyHash(nftId?: string, options: UseNFTVerifyHa
 
       for (const uri of urisToCheck) {
         try {
-          // eslint-disable-next-line no-await-in-loop -- we are reading in sequence
-          const response = await get(uri, {
+          // eslint-disable-next-line no-await-in-loop -- we need sync version
+          const checksum = await getChecksum(uri, {
             maxSize: ignoreSizeLimit ? -1 : undefined,
           });
-
-          const { checksum, content, headers, uri: localUri } = response;
 
           const isValid = compareChecksums(checksum, hash);
           if (isValid) {
             return {
-              content,
-              headers,
               isVerified: true,
-              originalUri: uri,
-              uri: localUri,
+              uri,
             };
           }
 
-          if (!first && localUri) {
-            first = {
-              isVerified: false,
-              uri: localUri,
-              originalUri: uri,
-              headers,
-              content,
-            };
-          }
+          throw new Error('Invalid hash checksum');
         } catch (e) {
           log(`Failed to fetch ${uri}: ${(e as Error).message}`);
+          if (!first) {
+            first = {
+              isVerified: false,
+              uri,
+              error: e as Error,
+            };
+          }
         }
       }
 
-      return {
-        ...first,
-        isVerified: false,
-        error: new Error('Invalid hash checksum'),
-      };
+      return first;
     },
-    [get, ignoreSizeLimit]
+    [getChecksum, ignoreSizeLimit]
   );
 
   const verifyNFT = useCallback(

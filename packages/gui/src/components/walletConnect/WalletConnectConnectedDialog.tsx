@@ -5,24 +5,22 @@ import CloseIcon from '@mui/icons-material/Close';
 import { Box, Divider, Dialog, DialogContent, DialogTitle, IconButton, Typography } from '@mui/material';
 import React, { useMemo, useState } from 'react';
 
-// import useWalletConnectContext from '../../hooks/useWalletConnectContext';
-import { WalletConnectContext } from './WalletConnectProvider';
+import useWalletConnectContext from '../../hooks/useWalletConnectContext';
+import WalletConnectActiveSessions from './WalletConnectActiveSessions';
 import HeroImage from './images/walletConnectConnected.svg';
 
 export type WalletConnectAddConnectionDialogProps = {
   onClose?: () => void;
   open?: boolean;
   topic: string;
-  context: WalletConnectContext;
 };
 
 export default function WalletConnectConnectedDialog(props: WalletConnectAddConnectionDialogProps) {
-  const { context, topic, onClose = () => {}, open = false } = props;
+  const { topic, onClose = () => {}, open = false } = props;
   const [isProcessing, setIsProcessing] = useState(false);
   const showError = useShowError();
-  // const { pairs, disconnect, isLoading: isLoadingWallet } = useWalletConnectContext();
-  const { pairs, disconnect, isLoading: isLoadingWallet } = context;
-  const { data: keys, isLoading: isLoadingPublicKeys } = useGetKeysQuery();
+  const { pairs, disconnect, isLoading: isLoadingWallet } = useWalletConnectContext();
+  const { data: keys, isLoading: isLoadingPublicKeys } = useGetKeysQuery({});
 
   const pair = pairs.getPair(topic);
 
@@ -80,9 +78,9 @@ export default function WalletConnectConnectedDialog(props: WalletConnectAddConn
       </IconButton>
 
       <DialogContent>
-        <Flex flexDirection="column" alignItems="center" gap={3}>
+        <Flex flexDirection="column" alignItems="center" gap={3} width="100%">
           <HeroImage width={106} />
-          <Flex flexDirection="column" gap={3}>
+          <Flex flexDirection="column" gap={3} width="100%">
             <Box>
               <Typography variant="h6" textAlign="center">
                 <Trans>Connected</Trans>
@@ -107,6 +105,7 @@ export default function WalletConnectConnectedDialog(props: WalletConnectAddConn
                 ))}
               </Flex>
             )}
+            <WalletConnectActiveSessions topic={topic} />
           </Flex>
         </Flex>
       </DialogContent>

@@ -96,7 +96,7 @@ Function finish
   StrCpy $LaunchOnExit 1
   
   ${NSD_CreateLabel} 0 65% 100% 10% "Advanced Options:"
-  ${NSD_CreateCheckbox} 5% 75% 100% 10% "Add Chia Command Line executable to PATH (Restart required)"
+  ${NSD_CreateCheckbox} 5% 75% 100% 10% "Add Chia Command Line executable to PATH"
   Pop $CheckboxAddToPath
   ${NSD_SetState} $CheckboxAddToPath ${BST_UNCHECKED}
   ${NSD_OnClick} $CheckboxAddToPath SetAddToPath
@@ -167,6 +167,8 @@ Function UpdatePath
     ${Else}
       WriteRegExpandStr HKCU "Environment" "Path" $UpdatedPath
     ${EndIf}
+
+    SendMessage ${HWND_BROADCAST} ${WM_SETTINGCHANGE} 0 "STR:Environment" /TIMEOUT=3000
   ${EndIf}
 
   Pop $3

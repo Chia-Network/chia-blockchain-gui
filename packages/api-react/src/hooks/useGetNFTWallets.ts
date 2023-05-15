@@ -5,7 +5,7 @@ import { useMemo } from 'react';
 import { useGetWalletsQuery } from '../services';
 
 export default function useGetNFTWallets() {
-  const { data, isLoading } = useGetWalletsQuery();
+  const { data, isLoading, error } = useGetWalletsQuery();
   const nftWallets = useMemo(() => {
     if (!data || isLoading) {
       return [];
@@ -14,5 +14,5 @@ export default function useGetNFTWallets() {
     return data.filter((wallet: Wallet) => wallet.type === WalletType.NFT);
   }, [data, isLoading]);
 
-  return { wallets: nftWallets, isLoading };
+  return { wallets: nftWallets, isLoading, error };
 }

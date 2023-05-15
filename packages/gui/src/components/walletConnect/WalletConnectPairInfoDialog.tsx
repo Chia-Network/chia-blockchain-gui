@@ -5,24 +5,22 @@ import CloseIcon from '@mui/icons-material/Close';
 import { Divider, Dialog, DialogContent, DialogTitle, IconButton, Typography } from '@mui/material';
 import React, { useMemo, useState } from 'react';
 
-// import useWalletConnectContext from '../../hooks/useWalletConnectContext';
+import useWalletConnectContext from '../../hooks/useWalletConnectContext';
+import WalletConnectActiveSessions from './WalletConnectActiveSessions';
 import WalletConnectMetadata from './WalletConnectMetadata';
-import { WalletConnectContext } from './WalletConnectProvider';
 
 export type WalletConnectPairInfoDialogProps = {
   onClose?: () => void;
   open?: boolean;
   topic: string;
-  context: WalletConnectContext;
 };
 
 export default function WalletConnectPairInfoDialog(props: WalletConnectPairInfoDialogProps) {
-  const { context, topic, onClose = () => {}, open = false } = props;
+  const { topic, onClose = () => {}, open = false } = props;
   const [isProcessing, setIsProcessing] = useState(false);
   const showError = useShowError();
-  // const { pairs, disconnect, isLoading: isLoadingWallet } = useWalletConnectContext();
-  const { pairs, disconnect, isLoading: isLoadingWallet } = context;
-  const { data: keys, isLoading: isLoadingPublicKeys } = useGetKeysQuery();
+  const { pairs, disconnect, isLoading: isLoadingWallet } = useWalletConnectContext();
+  const { data: keys, isLoading: isLoadingPublicKeys } = useGetKeysQuery({});
 
   const pair = useMemo(() => pairs.getPair(topic), [topic, pairs]);
 
@@ -118,25 +116,7 @@ export default function WalletConnectPairInfoDialog(props: WalletConnectPairInfo
                     )}
                   </Flex>
                 </Flex>
-
-                <Flex flexDirection="column" gap={1}>
-                  <Typography>
-                    <Trans>Active Sessions</Trans>
-                  </Typography>
-                  <Flex flexDirection="column" gap={1}>
-                    {pair.sessions.length ? (
-                      pair.sessions.map((session) => (
-                        <Typography key={session.topic} variant="body2" color="textSecondary" noWrap>
-                          {session.topic}
-                        </Typography>
-                      ))
-                    ) : (
-                      <Typography variant="body2" color="textSecondary">
-                        <Trans>Application has no active sessions</Trans>
-                      </Typography>
-                    )}
-                  </Flex>
-                </Flex>
+                <WalletConnectActiveSessions topic={topic} />
               </Flex>
             )}
           </Flex>

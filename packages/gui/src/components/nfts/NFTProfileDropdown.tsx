@@ -5,6 +5,7 @@ import {
   useGetDIDsQuery,
   useGetNFTWallets,
   useGetNFTWalletsWithDIDsQuery,
+  useLazyGetNFTsCountQuery,
 } from '@chia-network/api-react';
 import { useOpenDialog, AddUserFolderDialog, Flex, ConfirmDialog } from '@chia-network/core';
 import {
@@ -24,13 +25,13 @@ import React, { useMemo } from 'react';
 
 import useFilteredNFTs from '../../hooks/useFilteredNFTs';
 import useNFTFilter from '../../hooks/useNFTFilter';
-import useNFTProvider from '../../hooks/useNFTProvider';
 import useNachoNFTs from '../../hooks/useNachoNFTs';
 import { getNFTInbox } from './utils';
 
 type Profile = Wallet & {
   nftWalletId: number;
 };
+
 function useProfiles() {
   // const { data: wallets, isLoading, error } = useGetWalletsQuery();
   const { data: dids, isLoading, error } = useGetDIDsQuery();
@@ -73,20 +74,37 @@ export default function NFTProfileDropdown(props: NFTGallerySidebarProps) {
   const [userFoldersNFTs, setUserFoldersNFTs] = usePrefs('user-folders-nfts', {});
   const { data: fingerprint } = useGetLoggedInFingerprintQuery();
   const theme: any = useTheme();
-  const { nftsCounts } = useNFTProvider();
+  const [nftsCounts, setNftsCounts] = React.useState<any>({});
   const [showMenuItems, toggleShowMenuItems] = React.useState<boolean>(true);
   const [editFolderName, setEditFolderName] = React.useState<string | null>(null);
   const [editingFolder, setEditingFolder] = React.useState<string | null>(null);
   const filter = useNFTFilter();
   const { statistics } = useFilteredNFTs();
+  const [getNFTsCount /* immutable */] = useLazyGetNFTsCountQuery();
 
   const inbox: Wallet | undefined = useMemo(() => {
     if (isLoadingNFTWallets) {
       return undefined;
     }
-
     return getNFTInbox(nftWallets);
   }, [nftWallets, isLoadingNFTWallets]);
+
+  React.useEffect(() => {
+    function fetchWalletCounts() {
+      const nftWalletIds = profiles.map((profile: Profile) => profile.nftWalletId);
+      const fetchCountPromises = nftWalletIds.map((id) => getNFTsCount({ walletIds: [id] }).unwrap());
+      if (inbox) {
+        fetchCountPromises.push(getNFTsCount({ walletIds: [inbox.id] }).unwrap());
+      }
+      Promise.all(fetchCountPromises).then((counts) => {
+        const countsObject = counts.reduce((p: any, c: any) => ({ ...p, [Object.keys(c)[0]]: c.total }), {});
+        setNftsCounts(countsObject);
+      });
+    }
+    if (profiles.length > 0) {
+      fetchWalletCounts();
+    }
+  }, [profiles, getNFTsCount, inbox]);
 
   const remainingNFTWallets = useMemo(() => {
     if (isLoadingProfiles || isLoadingNFTWallets || !inbox) {
