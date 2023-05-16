@@ -8,6 +8,17 @@ const log = initDebug('chia-gui:walletConnect');
 
 const availableCommands = walletConnectCommands.map((command) => `chia_${command.command}`);
 
+/*
+export const STANDARD_ERROR_MAP = {
+  [PARSE_ERROR]: { code: -32700, message: "Parse error" },
+  [INVALID_REQUEST]: { code: -32600, message: "Invalid Request" },
+  [METHOD_NOT_FOUND]: { code: -32601, message: "Method not found" },
+  [INVALID_PARAMS]: { code: -32602, message: "Invalid params" },
+  [INTERNAL_ERROR]: { code: -32603, message: "Internal error" },
+  [SERVER_ERROR]: { code: -32000, message: "Server error" },
+};
+*/
+
 export function processError(error: Error) {
   if (error.message.includes('No matching key')) {
     log('Pairing not found');
@@ -73,7 +84,8 @@ export async function processSessionProposal(
     // find unsupported methods
     const method = methods.find((item) => !availableCommands.includes(item));
     if (method) {
-      throw new Error(`Method not supported: ${method}`);
+      log('dApp wants to use unsupported command', method);
+      // throw new Error(`Method not supported: ${method}`);
     }
 
     if (proposerMetadata) {
@@ -119,12 +131,33 @@ export async function processSessionProposal(
         },
       ],
     }));
-  } catch (e) {
-    processError(e as Error);
+  } catch (error) {
+    try {
+      log('Session proposal error', error);
+
+      const {
+        id,
+        params: { pairingTopic },
+      } = event;
+
+      await client?.respond({
+        topic: pairingTopic,
+        response: {
+          id,
+          jsonrpc: '2.0',
+          error: {
+            code: -32_600,
+            message: (error as Error).message ?? 'Invalid Session Proposal',
+          },
+        },
+      });
+    } catch (e) {
+      processError(e as Error);
+    }
   }
 }
 
-export function processSessionDelete(pairs: Pairs, event: { topic: string }) {
+export async function processSessionDelete(client: Client, pairs: Pairs, event: { id: number; topic: string }) {
   try {
     const { topic: session } = event;
 
@@ -132,7 +165,9 @@ export function processSessionDelete(pairs: Pairs, event: { topic: string }) {
       pairs.removeSessionFromPair(session);
     }
   } catch (error) {
-    log(error);
+    // session was deleted we are not sending any response
+    log('Session delete error', error);
+    processError(e as Error);
   }
 }
 
@@ -143,7 +178,7 @@ export function processPairingDelete(pairs: Pairs, event: { topic: string }) {
 }
 
 export async function processSessionRequest(
-  client: Client,
+  client: Client | undefined,
   pairs: Pairs,
   process: (topic: string, command: string, params: any) => Promise<any>,
   event: {
@@ -155,16 +190,16 @@ export async function processSessionRequest(
     };
   }
 ) {
-  const {
-    id,
-    topic,
-    params: {
-      request: { method, params },
-      chainId,
-    },
-  } = event;
-
   try {
+    const {
+      id,
+      topic,
+      params: {
+        request: { method, params },
+        chainId,
+      },
+    } = event;
+
     if (!client) {
       throw new Error('Client not initialized');
     }
@@ -209,6 +244,8 @@ export async function processSessionRequest(
   } catch (error) {
     try {
       log('Session request error', error);
+
+      const { id, topic } = event;
       await client?.respond({
         topic,
         response: {
@@ -216,7 +253,7 @@ export async function processSessionRequest(
           jsonrpc: '2.0',
           error: {
             code: -32_600,
-            message: (error as Error).message ?? 'Invalid Request',
+            message: (error as Error).message ?? 'Invalid Session Request',
           },
         },
       });
@@ -295,31 +332,15 @@ export function bindEvents(
   }
 
   async function handleSessionProposal(event: any) {
-    try {
-      if (client) {
-        await processSessionProposal(client, pairs, event);
-      }
-    } catch (e) {
-      log('Session proposal error', e);
-    }
+    await processSessionProposal(client, pairs, event);
   }
 
   async function handleSessionDelete(event: any) {
-    try {
-      await processSessionDelete(pairs, event);
-    } catch (e) {
-      log('Session delete error', e);
-    }
+    await processSessionDelete(client, pairs, event);
   }
 
   async function handleSessionRequest(event: any) {
-    try {
-      if (client) {
-        await processSessionRequest(client, pairs, onProcess(), event);
-      }
-    } catch (e) {
-      log('Session request error', e);
-    }
+    await processSessionRequest(client, pairs, onProcess(), event);
   }
 
   async function handlePairingDelete(event: any) {
