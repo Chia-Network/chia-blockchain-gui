@@ -2,7 +2,7 @@
 import { Flex } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { SaveOutlined, DeleteOutlined } from '@mui/icons-material';
-import { TextField, IconButton } from '@mui/material';
+import { TextField, IconButton, Typography } from '@mui/material';
 import React, { useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
@@ -21,10 +21,12 @@ export default function ContactEdit() {
 
   // const { data: nft } = useGetNFTInfoQuery({ coinId: launcherId });
 
+  /*
   function getImage() {
     // if (nft !== undefined) return <NFTPreview nft={nft} height={50} width={50} disableThumbnail />;
     return <img height={80} width={80} style={{ backgroundColor: 'grey', color: 'grey' }} />;
   }
+  */
 
   function handleRemove(contactId: number) {
     removeAddress(contactId);
@@ -33,50 +35,60 @@ export default function ContactEdit() {
 
   return (
     <div>
-      <Flex flexDirection="row" justifyContent="right" style={{ height: '80px', background: '#BBBBBB' }}>
+      <Flex flexDirection="row" justifyContent="right" style={{ height: '80px', background: '#CCDDE1' }}>
         <Flex style={{ paddingRight: '30px' }}>
+          <Typography
+            variant="h5"
+            sx={{
+              position: 'absolute',
+              left: 44,
+              top: 48,
+            }}
+          >
+            <Trans>{contact.name}</Trans>
+          </Typography>
           <IconButton
-            onClick={() => handleRemove(Number(contact.contactid))}
             sx={{
               position: 'absolute',
               right: 44,
               top: 44,
             }}
           >
-            <DeleteOutlined />
+            <SaveOutlined />
           </IconButton>
           <IconButton
+            onClick={() => handleRemove(Number(contact.contactid))}
             sx={{
               position: 'absolute',
               right: 88,
               top: 44,
             }}
           >
-            <SaveOutlined />
+            <DeleteOutlined />
           </IconButton>
         </Flex>
       </Flex>
 
-      <Flex flexDirection="column" gap={2} alignItems="center" style={{ marginTop: '-41px' }}>
-        <Flex style={{ width: '600px' }}>{getImage()}</Flex>
-        <Flex style={{ width: '600px' }}>
-          <Flex alignSelf="flex-start">
-            <h1>
-              <Trans>{contact.name}</Trans>
-            </h1>
-          </Flex>
-        </Flex>
-        <Flex flexDirection="column" gap={2} style={{ width: '600px' }}>
-          <TextField label={<Trans>Name</Trans>} value={contact.name} variant="filled" fullWidth />
-          <TextField
-            label={<Trans>Address</Trans>}
-            value={contact.addresses[0]}
-            variant="filled"
-            inputProps={{
-              'data-testid': 'WalletReceiveAddress-address',
-            }}
-            fullWidth
-          />
+      <Flex flexDirection="column" gap={2} alignItems="center" style={{ marginTop: '40px', paddingBottom: '40px' }}>
+        <Flex flexDirection="column" gap={6}>
+          {contact.addresses.map((addressInfo) => (
+            <Flex flexDirection="column" gap={3} style={{ width: '600px' }}>
+              <Typography variant="h6">{addressInfo.name}</Typography>
+              <TextField label={<Trans>Address</Trans>} value={addressInfo.address} fullWidth />
+            </Flex>
+          ))}
+          {contact.dids.map((didInfo) => (
+            <Flex flexDirection="column" gap={3} style={{ width: '600px' }}>
+              <Typography variant="h6">{didInfo.name}</Typography>
+              <TextField label={<Trans>DID</Trans>} value={didInfo.did} fullWidth />
+            </Flex>
+          ))}
+          {contact.domainnames.map((domainInfo) => (
+            <Flex flexDirection="column" gap={3} style={{ width: '600px' }}>
+              <Typography variant="h6">{domainInfo.name}</Typography>
+              <TextField label={<Trans>Domain</Trans>} value={domainInfo.domainname} fullWidth />
+            </Flex>
+          ))}
         </Flex>
       </Flex>
     </div>

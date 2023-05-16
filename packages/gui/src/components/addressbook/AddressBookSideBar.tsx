@@ -86,12 +86,12 @@ export default function AddressBookSideBar() {
 
   return (
     <LayoutDashboardSub>
-      <Flex flexDirection="column" gap={3} minWidth="300px">
+      <Flex flexDirection="column" gap={1.5} minWidth="300px">
         <Typography variant="h5">
           <Trans>Address Book</Trans>
         </Typography>
         <Flex gap={3} flexDirection="column">
-          <Flex flexDirection="column" gap={2.5}>
+          <Flex flexDirection="column" gap={2.5} style={{ paddingBottom: '24px' }}>
             <ButtonLoading variant="contained" color="primary" onClick={handleCreateNewContact} disableElevation>
               <Trans>New Contact</Trans>
             </ButtonLoading>
