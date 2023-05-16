@@ -696,6 +696,12 @@ const walletConnectCommands: WalletConnectCommand[] = [
       },
     ],
   },
+  {
+    command: 'getNFTWalletsWithDIDs',
+    label: <Trans>Get NFT Wallets with DIDs</Trans>,
+    service: ServiceName.WALLET,
+    bypassConfirm: true,
+  },
 ];
 
 export default walletConnectCommands;
