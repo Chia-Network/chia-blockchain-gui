@@ -25,7 +25,7 @@ test('Verify that an NFT can be Transfer to another account', async () => {
   await new CloseDialog(page).closeIt();
 
   // Given I am in a Wallet with NFTs
-  await page.getByRole('button', { name: 'send_wallet' }).click();
+  await page.getByRole('button', { name: 'receive_nft_wallet' }).click();
   //await page.pause();
 
   //When I navigate to the NFTs tab and select an NFT
@@ -34,7 +34,7 @@ test('Verify that an NFT can be Transfer to another account', async () => {
 
   //Then I should be able to transfer the NFT to another account
   await page.getByRole('menuitem', { name: 'Transfer NFT' }).click();
-  await page.getByLabel('Send to Address *').type(receive_nft_wallet)
+  await page.getByLabel('Send to Address *').type(send_wallet);
   await page.getByRole('button', { name: '0 (>5 min) TXCH' }).click();
   await page.getByRole('option', { name: 'Enter a custom fee...' }).click();
   await page.getByLabel('Fee').fill('0.00003');
@@ -42,28 +42,28 @@ test('Verify that an NFT can be Transfer to another account', async () => {
   await page.getByRole('button', { name: 'Transfer' }).click();
 
   //And I should see a confirmation dialog
-  await expect(page.getByText('The NFT transfer transaction has been successfully submitted to the blockchain.')).toBeVisible();
+  await expect(
+    page.getByText('The NFT transfer transaction has been successfully submitted to the blockchain.')
+  ).toBeVisible();
   await page.getByRole('button', { name: 'OK' }).click();
   await expect(page.getByRole('button', { name: 'Update Pending' })).toBeVisible();
 
   //And I should be able to transfer the NFT to another back to the original account
   await page.locator('[data-testid="LayoutDashboard-log-out"]').click();
-  await page.getByRole('button', { name: 'receive_nft_wallet' }).click();
+  await page.getByRole('button', { name: 'send_wallet' }).click();
   await page.getByTestId('DashboardSideBar-nfts').click();
-  await page.waitForSelector('text=Bobble #3', { state: 'visible', timeout: 300000  })
+  await page.waitForSelector('text=Bobble #3', { state: 'visible', timeout: 300000 });
   await page.getByRole('button', { name: 'Bobble #3' }).getByRole('button').click();
   await page.getByRole('menuitem', { name: 'Transfer NFT' }).click();
-  await page.getByLabel('Send to Address *').type(send_wallet)
+  await page.getByLabel('Send to Address *').type(receive_nft_wallet);
   await page.getByRole('button', { name: '0 (>5 min) TXCH' }).click();
   await page.getByRole('option', { name: 'Enter a custom fee...' }).click();
   await page.getByLabel('Fee').fill('0.00003');
   await page.getByRole('button', { name: 'Transfer' }).click();
   await page.getByRole('button', { name: 'Transfer' }).click();
-  await expect(page.getByText('The NFT transfer transaction has been successfully submitted to the blockchain.')).toBeVisible();
+  await expect(
+    page.getByText('The NFT transfer transaction has been successfully submitted to the blockchain.')
+  ).toBeVisible();
   await page.getByRole('button', { name: 'OK' }).click();
   await expect(page.getByRole('button', { name: 'Update Pending' })).toBeVisible();
-
-
-
-
 });

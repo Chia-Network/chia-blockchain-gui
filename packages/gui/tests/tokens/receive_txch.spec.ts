@@ -37,9 +37,8 @@ test('Verify that a recipient wallet receives funds from sending wallet!', async
   //And I click on Send Page
   await page.locator('[data-testid="WalletHeader-tab-send"]').click();
 
-
   //When I complete the send page required fields
-  await new SendFunds(page).send(receive_wallet, '0.01')//, '0.00000275276505264396');
+  await new SendFunds(page).send(receive_wallet, '0.01'); //, '0.00000275276505264396');
 
   //Then I receive a success message
   await expect(page.locator('div[role="dialog"]')).toHaveText(
@@ -74,5 +73,5 @@ test('Verify that a recipient wallet receives funds from sending wallet!', async
 
   // Given I send funds back
   await page.locator('[data-testid="WalletHeader-tab-send"]').click();
-  await new SendFunds(page).send(send_wallet, '0.01')//, '0.00000275276505264396');
+  await new SendFunds(page).send(send_wallet, '0.01'); //, '0.00000275276505264396');
 });

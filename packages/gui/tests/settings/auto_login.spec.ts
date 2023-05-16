@@ -40,7 +40,6 @@ test('Confirm Enable Auto Login feature works as expected. ', async () => {
   await page.locator('button:has-text("Close")').click();
   await page.locator('[data-testid="DashboardSideBar-settings"]').click();
 
-
   //When I disable Auto Login
   await page.locator('[data-testid="DashboardSideBar-settings"]').click();
   await page.locator('input[type="checkbox"]').uncheck();

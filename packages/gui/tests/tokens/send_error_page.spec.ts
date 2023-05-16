@@ -21,7 +21,7 @@ test('Confirm Error Dialog when wrong data is entered on Send Page for 192213244
 
   //Pre-requisites to get user back to Wallet selection page
   await page.locator('button:has-text("Close")').click();
-  
+
   //Given I navigate to a wallet with funds
   await page.locator(`text=${funded_wallet}`).click();
 

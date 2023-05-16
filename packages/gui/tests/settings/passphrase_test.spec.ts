@@ -29,7 +29,7 @@ test('Confirm user can add and remove passphrase ', async () => {
   await page.locator('div[role="button"]:has-text("Settings")').click();
 
   //When I enable passphrase
-  await page.locator('[data-testid="SettingsPanel-set-passphrase"]').click()
+  await page.locator('[data-testid="SettingsPanel-set-passphrase"]').click();
   await page.locator('[placeholder="Passphrase"]').fill('password2023!@');
   await page.locator('[data-testid="SetPassphrasePrompt-confirm-passphrase"]').fill('password2023!@');
   await page.getByTestId('SetPassphrasePrompt-hint').click();
@@ -74,6 +74,4 @@ test('Confirm user can add and remove passphrase ', async () => {
   await page.locator('button:has-text("Close")').click();
 
   //Then I will not use passphrase to log in
-  
-
 });

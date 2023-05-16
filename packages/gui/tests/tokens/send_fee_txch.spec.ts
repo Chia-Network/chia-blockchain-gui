@@ -40,8 +40,8 @@ test('Verify that a recipient wallet receives funds from sending wallet!', async
   //And I click on Send Page
   await page.locator('[data-testid="WalletHeader-tab-send"]').click();
 
-  //When I enter a valid Fee amount 
-  await page.getByRole('button', { name: '0 (>5 min) TXCH' }).click()
+  //When I enter a valid Fee amount
+  await page.getByRole('button', { name: '0 (>5 min) TXCH' }).click();
   await page.getByRole('option', { name: 'Enter a custom fee...' }).click();
   await page.getByLabel('Fee').fill('0.0005');
 
@@ -66,7 +66,7 @@ test('Verify that a recipient wallet receives funds from sending wallet!', async
     'SuccessTransaction has successfully been sent to a full node and included in the mempool.OK'
   );
   await page.locator('div[role="dialog"] >> text=OK').click();
-  
+
   //Given I navigate out to all wallets
   await new CloseDialog(page).logOut();
 
@@ -82,7 +82,7 @@ test('Verify that a recipient wallet receives funds from sending wallet!', async
   //And I click on Send Page
   await page.locator('[data-testid="WalletHeader-tab-send"]').click();
 
-  //And I enter a valid wallet address in address field and amount 
+  //And I enter a valid wallet address in address field and amount
   await page.locator('[data-testid="WalletSend-address"]').fill(send_wallet);
   await page.locator('[data-testid="WalletSend-amount"]').fill('.05');
   await page.getByText('Show Advanced Options').click();
@@ -97,14 +97,13 @@ test('Verify that a recipient wallet receives funds from sending wallet!', async
   await page.locator('div[role="dialog"] >> text=OK').click();
 
   //Given I navigate out to all wallets
-  await page.waitForTimeout(30000)
+  await page.waitForTimeout(30000);
   await page.locator('[data-testid="LayoutDashboard-log-out"]').click();
 
   //When I log in to send wallet I can confirm transaction and memo
   await page.locator('h6:has-text("send_wallet")').click();
   await page.getByRole('button', { name: 'expand row' }).nth(0).click();
   await expect(page.getByText('Show me the money')).toBeVisible();
-
 
   //await page.pause();
   //Assert that Memo is avaiable on transaction
@@ -118,16 +117,9 @@ test('Verify that a recipient wallet receives funds from sending wallet!', async
   // //await expect(page.getByRole('row', { name: `${date.format(now, 'MMMM D, YYYY')} + 0.09 TXCH 0 TXCH txch1km02...0dnf Confirmed expand row` }).nth(0)).toBeVisible();
 
   // //await page.getByRole('button', { name: 'expand row' }).nth(0).click();
-  
+
   // //await page.getByRole('row', { name: 'April 19, 2023 6:38 PM + 0.09 TXCH 0 TXCH txch1km02...0dnf Confirmed Memo expand row' }).getByRole('button', { name: 'expand row' }).click();
 
   // console.log(date.format(now, 'MMMM D, YYYY h:mm A'));
   // //await page.getByText('Show me the money').click();
-
-  
-
-   
-
-  
-
 });

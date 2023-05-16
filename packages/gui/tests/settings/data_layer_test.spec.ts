@@ -18,12 +18,11 @@ test.afterAll(async () => {
 
 //Works and Passes
 test('Confirm user can navigate and interact with the Settings page in user acceptable manner. ', async () => {
-
-  //Pre-requisites to Close Version dialog 
+  //Pre-requisites to Close Version dialog
   await page.locator('button:has-text("Close")').click();
 
-   //Given I navigate to 1922132445 Wallet
-   await page.locator('h6:has-text("Jahi 1st Wallet")').click();
+  //Given I navigate to 1922132445 Wallet
+  await page.locator('h6:has-text("Jahi 1st Wallet")').click();
 
   //Given I navigate to the Setting's Gear
   await page.locator('[data-testid="DashboardSideBar-settings"]').click();

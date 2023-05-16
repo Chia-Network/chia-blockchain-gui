@@ -19,7 +19,7 @@ export class ReadData {
       // Given I enter the first 24 words of the mnemonic
       await this.page.locator(`[data-testid="mnemonic-${i}"] input[role="combobox"]`).fill(dataVariable);
       //await this.page.waitForTimeout(1000);
-      
+
       i++;
     }
   }
@@ -39,6 +39,10 @@ export class ReadData {
 
   async pasteWords() {
     //await this.page.locator('#mui-52').fill(' "abandon" "ability" "able" "about" "above" "absent" "baby" "bachelor" "bacon" "badge" "bag" "balance" "cabbage" "cabin" "cable" "cactus" "cage" "cake" "dad" "damage" "damp" "dance" "danger" "daring"');
-    await this.page.locator('#mui-52').fill("abandon ability able about above absent baby bachelor bacon badge bag balance cabbage cabin cable cactus cage cake dad damage damp dance danger daring");
+    await this.page
+      .locator('#mui-52')
+      .fill(
+        'abandon ability able about above absent baby bachelor bacon badge bag balance cabbage cabin cable cactus cage cake dad damage damp dance danger daring'
+      );
   }
 }

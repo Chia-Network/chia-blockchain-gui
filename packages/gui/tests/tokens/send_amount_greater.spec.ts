@@ -22,7 +22,7 @@ test('Confirm that User cannot send a TXCH amount greater then in Wallet', async
 
   //Pre-requisites to get user back to Wallet selection page
   await page.locator('button:has-text("Close")').click();
-  
+
   //And I navigate to a wallet with funds
   await page.locator(`text=${funded_wallet}`).click();
 
@@ -70,5 +70,4 @@ test('Confirm that User cannot send a TXCH amount greater then in Wallet', async
 
   //Then there are no changes in the Pending Balance section
   await expect(page.getByText('Pending Balance0 TXCH')).toBeVisible();
-
 });

@@ -29,7 +29,7 @@ test('Verify that an Offer can created via the NFT page', async () => {
   await page.getByRole('menuitem', { name: 'Create Offer' }).click();
 
   //await page.pause();
-  //Then I should be able to save the offer 
+  //Then I should be able to save the offer
   await page.getByRole('heading', { name: 'Requesting' }).click();
   await page.getByRole('button', { name: 'Create Offer' }).click();
   await page.getByRole('button', { name: 'I Understand, Create Offer' }).click();
@@ -37,9 +37,15 @@ test('Verify that an Offer can created via the NFT page', async () => {
 
   //And I should be able to cancel the offer
   await page.getByTestId('DashboardSideBar-offers').click();
-  await expect(page.getByRole('row', { name: `Pending Accept ChiREX #996 ${date.format(now, 'MMMM D, YYYY h:mm A')}` }).getByRole('button', { name: 'more' })).toBeVisible();
-  await page.getByRole('row', { name: `Pending Accept ChiREX #996 ${date.format(now, 'MMMM D, YYYY h:mm A')}` }).getByRole('button', { name: 'more' }).click();
+  await expect(
+    page
+      .getByRole('row', { name: `Pending Accept ChiREX #996 ${date.format(now, 'MMMM D, YYYY h:mm A')}` })
+      .getByRole('button', { name: 'more' })
+  ).toBeVisible();
+  await page
+    .getByRole('row', { name: `Pending Accept ChiREX #996 ${date.format(now, 'MMMM D, YYYY h:mm A')}` })
+    .getByRole('button', { name: 'more' })
+    .click();
   await page.getByText('Cancel Offer').click();
   await page.getByRole('button', { name: 'Cancel Offer' }).click();
-
 });

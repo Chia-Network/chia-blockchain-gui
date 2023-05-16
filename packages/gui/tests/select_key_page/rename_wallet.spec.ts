@@ -5,7 +5,6 @@ import { isWalletSynced, getWalletBalance } from '../utils/wallet';
 import { waitForDebugger } from 'inspector';
 import { CloseDialog } from '../data_object_model/close_dialog';
 
-
 let electronApp: ElectronApplication;
 let page: Page;
 

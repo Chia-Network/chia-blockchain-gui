@@ -3,7 +3,6 @@ import { test, expect } from '@playwright/test';
 import { CloseDialog } from '../data_object_model/close_dialog';
 import { ReadData } from '../data_object_model/read_data_file';
 
-
 let electronApp: ElectronApplication;
 let page: Page;
 
@@ -35,29 +34,30 @@ test('Read data from Json file', async () => {
 
   //And I click the Import button
   await page.getByRole('button', { name: 'Next' }).click();
-  
+
   //Then user should receive an error message
   await expect(page.locator('text=Invalid order of mnemonic words')).toBeVisible();
   await page.getByRole('button', { name: 'OK' }).click();
 
   /***************************************************SECOND SCENARIO**************************************/
 
-
   // Given I click on IMPORT FROM 12 WORD MNEMONIC
   await page.getByRole('button', { name: 'Import from 12 word mnemonic' }).click();
 
   //Verify user is on the Enter 12 Mnemonics page
-  await expect(page.getByRole('heading', { name: 'Enter the 12 word mnemonic that you have saved in order to restore your Chia wallet.' })).toBeVisible();
+  await expect(
+    page.getByRole('heading', {
+      name: 'Enter the 12 word mnemonic that you have saved in order to restore your Chia wallet.',
+    })
+  ).toBeVisible();
 
   //When I enter the first 12 words of the mnemonic
   await new ReadData(page).get12Words();
 
   //And I click the NEXT button
   await page.getByRole('button', { name: 'Next' }).click();
-  
+
   //Then user should receive an error message
   await expect(page.locator('text=Invalid order of mnemonic words')).toBeVisible();
   await page.getByRole('button', { name: 'OK' }).click();
-
- 
 });

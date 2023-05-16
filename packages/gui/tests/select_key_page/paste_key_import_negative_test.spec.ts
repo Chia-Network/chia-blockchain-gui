@@ -3,7 +3,6 @@ import { test, expect } from '@playwright/test';
 import { CloseDialog } from '../data_object_model/close_dialog';
 import { ReadData } from '../data_object_model/read_data_file';
 
-
 let electronApp: ElectronApplication;
 let page: Page;
 
@@ -36,11 +35,15 @@ test('Read data from Json file and Paste in Mnemonic', async () => {
   await page.pause();
   //And I enter the first 24 words of the mnemonic
   //await new ReadData(page).pasteWords();
-  await page.locator('#mui-51').fill(' "abandon" "ability" "able" "about" "above" "absent" "baby" "bachelor" "bacon" "badge" "bag" "balance" "cabbage" "cabin" "cable" "cactus" "cage" "cake" "dad" "damage" "damp" "dance" "danger" "daring"');
+  await page
+    .locator('#mui-51')
+    .fill(
+      ' "abandon" "ability" "able" "about" "above" "absent" "baby" "bachelor" "bacon" "badge" "bag" "balance" "cabbage" "cabin" "cable" "cactus" "cage" "cake" "dad" "damage" "damp" "dance" "danger" "daring"'
+    );
 
   //And I click the Cancel on Import
   await page.getByRole('button', { name: 'Cancel' }).click();
-  
+
   //And I click on PASTE MNEMONIC and complete Import process
   await page.getByRole('button', { name: 'Paste Mnemonic' }).click();
   //await page.locator('#mui-52').fill(' "abandon" "ability" "able" "about" "above" "absent" "baby" "bachelor" "bacon" "badge" "bag" "balance" "cabbage" "cabin" "cable" "cactus" "cage" "cake" "dad" "damage" "damp" "dance" "danger" "daring"');
@@ -51,5 +54,4 @@ test('Read data from Json file and Paste in Mnemonic', async () => {
   //Then user should receive an error message
   await expect(page.locator('text=Invalid order of mnemonic words')).toBeVisible();
   await page.getByRole('button', { name: 'OK' }).click();
-  
 });

@@ -17,7 +17,6 @@ test.afterAll(async () => {
   await page.close();
 });
 
-
 test('Create a new Wallet , logout and Delete new Wallet', async () => {
   //Pre-requisites to get user back to Wallet selection page
   await new CloseDialog(page).closeIt();
@@ -70,11 +69,8 @@ test('Create a new Wallet , logout and Delete new Wallet', async () => {
     await page.locator(`[data-testid="SelectKeyItem-fingerprint-${newlyDeleteWallet}"] [aria-label="more"]`).count()
   ).toEqual(0);
 
+  //
 
-  
-  
-  // 
-  
   // await page.getByTestId('SelectKeyItem-fingerprint-1362932744').getByRole('button', { name: 'more', exact: true }).click();
   // await page.getByText('Delete', { exact: true }).click();
   // await page.getByRole('heading', { name: 'Delete key 1362932744' }).click();

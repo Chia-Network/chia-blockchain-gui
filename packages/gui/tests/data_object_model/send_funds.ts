@@ -9,9 +9,9 @@ export class SendFunds {
         await this.page.type('input[type="password"]', password);
         await this.page.click('button[type="submit"]');
     }*/
-    
 
-  async send(receive_wallet: string, amount: string){//}, fee: string) {
+  async send(receive_wallet: string, amount: string) {
+    //}, fee: string) {
     // Given I enter a valid wallet address in address field
     //await this.page.locator('[data-testid="WalletSend-address"]').fill(receive_wallet);
     await this.page.getByTestId('WalletSend-address').fill(receive_wallet);
