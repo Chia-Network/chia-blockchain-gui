@@ -1407,7 +1407,7 @@ export const walletApi = apiWithTag.injectEndpoints({
 
     addVCProofs: mutation(build, VC, 'addVCProofs'),
 
-    getProofsForRoot: mutation(build, VC, 'getProofsForRoot'),
+    getProofsForRoot: query(build, VC, 'getProofsForRoot'),
 
     revokeVC: mutation(build, VC, 'revokeVC'),
   }),
@@ -1520,6 +1520,6 @@ export const {
   useGetVCListQuery,
   useSpendVCMutation,
   useAddVCProofsMutation,
-  useGetProofsForRootMutation,
+  useGetProofsForRootQuery,
   useRevokeVCMutation,
 } = walletApi;

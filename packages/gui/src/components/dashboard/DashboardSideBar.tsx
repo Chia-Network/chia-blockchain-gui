@@ -8,6 +8,7 @@ import {
   Offers as OffersIcon,
   Tokens as TokensIcon,
   Settings as SettingsIcon,
+  VC as VCIcon,
 } from '@chia-network/icons';
 import { Trans } from '@lingui/macro';
 import { Box } from '@mui/material';
@@ -56,6 +57,12 @@ export default function DashboardSideBar(props: DashboardSideBarProps) {
           icon={NFTsIcon}
           title={<Trans>NFTs</Trans>}
           data-testid="DashboardSideBar-nfts"
+        />
+        <SideBarItem
+          to="/dashboard/vc"
+          icon={VCIcon}
+          title={<Trans>Credentials</Trans>}
+          data-testid="DashboardSideBar-vc"
         />
         <SideBarItem
           to="/dashboard/offers"
