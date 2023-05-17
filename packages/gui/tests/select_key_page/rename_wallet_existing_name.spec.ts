@@ -1,6 +1,7 @@
 import { ElectronApplication, Page, _electron as electron } from 'playwright';
 import { test, expect } from '@playwright/test';
 import { CloseDialog } from '../data_object_model/close_dialog';
+import { waitForDebugger } from 'inspector';
 
 let electronApp: ElectronApplication;
 let page: Page;
@@ -42,6 +43,8 @@ test('Verify that renaming a wallet to an existing wallet name should throw an e
 
   //Then previous name is still displaying
   await page.locator('[data-testid="SelectKeyItem-fingerprint-965505910"]').click();
-  //await expect(page.getByRole('heading', { name: 'NFT TESTING WALLET' })).toBeVisible();
-  await expect(page.getByRole('heading', { name: orgName })).toBeVisible();
+  //await page.pause();
+  await page.waitForLoadState();
+  await expect(page.getByRole('heading', { name: 'NFT TESTING WALLET' })).toBeVisible();
+  //await expect(page.getByRole('heading', { name: orgName })).toBeVisible();
 });
