@@ -32,7 +32,12 @@ export const farmerApi = apiWithTag.injectEndpoints({
       providesTags: [{ type: 'Harvesters', id: 'LIST' }],
       onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, api, [
         {
-          command: 'onHarvesterChanged',
+          command: 'onHarvesterUpdated',
+          service: Farmer,
+          endpoint: 'getHarvesters',
+        },
+        {
+          command: 'onHarvesterRemoved',
           service: Farmer,
           endpoint: 'getHarvesters',
         },
@@ -237,12 +242,12 @@ export const farmerApi = apiWithTag.injectEndpoints({
       invalidatesTags: (_result, _error, { launcherId }) => [{ type: 'PayoutInstructions', id: launcherId }],
     }),
 
-    getFarmingInfo: query(build, Farmer, 'getFarmingInfo', {
+    getNewFarmingInfo: query(build, Farmer, 'getNewFarmingInfo', {
       onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, api, [
         {
           command: 'onFarmingInfoChanged',
           service: Farmer,
-          endpoint: 'getFarmingInfo',
+          endpoint: 'getNewFarmingInfo',
         },
       ]),
     }),
@@ -268,5 +273,5 @@ export const {
   useGetSignagePointsQuery,
   useGetPoolStateQuery,
   useSetPayoutInstructionsMutation,
-  useGetFarmingInfoQuery,
+  useGetNewFarmingInfoQuery,
 } = farmerApi;

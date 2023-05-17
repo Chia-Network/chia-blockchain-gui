@@ -117,6 +117,7 @@ export default class Daemon extends Service {
     bladebitDisableNUMA: boolean;
     bladebitWarmStart: boolean;
     bladebitNoCpuAffinity?: boolean;
+    bladebitCompressionLevel?: number;
     bladebitDiskCache?: number;
     bladebitDiskF1Threads?: number;
     bladebitDiskFpThreads?: number;
@@ -126,11 +127,12 @@ export default class Daemon extends Service {
     bladebitDiskAlternate?: boolean;
     bladebitDiskNoT1Direct?: boolean;
     bladebitDiskNoT2Direct?: boolean;
+    bladebitDeviceIndex?: number;
+    bladebitDisableDirectDownloads?: boolean;
     c?: string;
     delay: number;
     disableBitfieldPlotting?: boolean;
     excludeFinalDir?: boolean;
-    farmerPublicKey?: string;
     finalLocation: string;
     fingerprint?: number;
     madmaxNumBucketsPhase3?: number;
@@ -145,7 +147,6 @@ export default class Daemon extends Service {
     plotSize: number;
     plotterName: string;
     plotType?: string;
-    poolPublicKey?: string;
     queue: string;
     workspaceLocation: string;
     workspaceLocation2: string;
@@ -154,6 +155,7 @@ export default class Daemon extends Service {
       bladebitDisableNUMA: 'm',
       bladebitWarmStart: 'w',
       bladebitNoCpuAffinity: 'no_cpu_affinity',
+      bladebitCompressionLevel: 'compression_level',
       bladebitDiskCache: 'cache',
       bladebitDiskF1Threads: 'f1_threads',
       bladebitDiskFpThreads: 'fp_threads',
@@ -163,9 +165,10 @@ export default class Daemon extends Service {
       bladebitDiskAlternate: 'alternate',
       bladebitDiskNoT1Direct: 'no_t1_direct',
       bladebitDiskNoT2Direct: 'no_t2_direct',
+      bladebitDeviceIndex: 'device_index',
+      bladebitDisableDirectDownloads: 'disable_direct_downloads',
       disableBitfieldPlotting: 'e',
       excludeFinalDir: 'x',
-      farmerPublicKey: 'f',
       finalLocation: 'd',
       fingerprint: 'a',
       madmaxNumBucketsPhase3: 'v',
@@ -192,6 +195,7 @@ export default class Daemon extends Service {
 
     if (outputArgs.plotter && (outputArgs.plotter as string).startsWith('bladebit')) outputArgs.plotter = 'bladebit';
     if (outputArgs.cache) outputArgs.cache = `${outputArgs.cache}G`;
+    if (!outputArgs.compressionLevel) delete outputArgs.compressionLevel;
 
     Object.keys(outputArgs).forEach((key) => {
       if (outputArgs[key] === undefined) delete outputArgs[key];

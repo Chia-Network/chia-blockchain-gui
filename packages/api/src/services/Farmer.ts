@@ -1,7 +1,7 @@
 import type Connection from '../@types/Connection';
-import type FarmingInfo from '../@types/FarmingInfo';
 import Harvester, { type HarvesterSummary } from '../@types/Harvester';
 import type HarvesterPlotsPaginated from '../@types/HarvesterPlotsPaginated';
+import type NewFarmingInfo from '../@types/NewFarmingInfo';
 import type PoolState from '../@types/PoolState';
 import type ProofOfSpace from '../@types/ProofOfSpace';
 import type RewardTargets from '../@types/RewardTargets';
@@ -13,27 +13,104 @@ import Service from './Service';
 import type { Options } from './Service';
 
 const FARMING_INFO_MAX_ITEMS = 1000;
+
+// To reduce unnecessary data, utilize array for storing latency data
+export type LatencyRecord = [number, number]; // [timestamp, latency]
+export type LatencyInfo = {
+  latency: LatencyRecord[];
+  avg: number;
+  min: number;
+  max: number;
+  latest: number;
+  totalPlots: number;
+};
+export type LatencyData = {
+  [nodeId: string]: LatencyInfo;
+};
+
 export default class Farmer extends Service {
   // last FARMING_INFO_MAX_ITEMS farming info
-  private farmingInfo: FarmingInfo[] = [];
+  private newFarmingInfo: NewFarmingInfo[] = [];
+
+  private latencyData: LatencyData = {};
 
   constructor(client: Client, options?: Options) {
     super(ServiceName.FARMER, client, options, async () => {
-      this.onNewFarmingInfo((data) => {
+      this.onNewFarmingInfo((data: { farmingInfo: NewFarmingInfo }) => {
         const { farmingInfo } = data;
 
         if (farmingInfo) {
-          this.farmingInfo = [farmingInfo, ...this.farmingInfo].slice(0, FARMING_INFO_MAX_ITEMS);
+          this.newFarmingInfo = [farmingInfo, ...this.newFarmingInfo].slice(0, FARMING_INFO_MAX_ITEMS);
 
-          this.emit('farming_info_changed', this.farmingInfo, null);
+          // The Unit of Python's timestamp is seconds so converting it to milliseconds
+          // to make it easy to compare with js timestamps
+          const jsTimestamp = farmingInfo.timestamp * 1000;
+          const latencyRecords: LatencyRecord[] = [
+            ...(this.latencyData[farmingInfo.nodeId] ? this.latencyData[farmingInfo.nodeId].latency : []),
+            [jsTimestamp, farmingInfo.lookupTime],
+          ];
+
+          const now = Date.now() / 1000; // Convert to seconds from milliseconds
+          let deleteStartIndex = -1;
+          let deleteCount = -1;
+          let latencySum = 0;
+          let latencyMax = 0;
+          let latencyMin = 0;
+          for (let i = 0; i < latencyRecords.length; i++) {
+            const d = latencyRecords[i];
+            const [timestamp, latency] = d;
+
+            // Retire records older than or equal to 24 hours
+            if (now - timestamp >= 86_400) {
+              if (deleteStartIndex === -1) {
+                deleteStartIndex = i;
+                deleteCount = 1;
+              } else {
+                deleteCount++;
+              }
+            } else {
+              latencySum += latency;
+              latencyMax = Math.max(latencyMax, latency);
+              latencyMin = Math.min(latencyMin, latency);
+            }
+          }
+          if (deleteStartIndex > -1 && deleteCount > -1) {
+            latencyRecords.splice(deleteStartIndex, deleteCount);
+          }
+
+          const latencyInfo: LatencyInfo = {
+            latency: latencyRecords,
+            avg: latencySum / latencyRecords.length,
+            max: latencyMax,
+            min: latencyMin,
+            latest: farmingInfo.lookupTime,
+            totalPlots: farmingInfo.totalPlots,
+          };
+
+          this.latencyData = {
+            ...this.latencyData,
+            [farmingInfo.nodeId]: latencyInfo,
+          };
+
+          this.emit(
+            'farming_info_changed',
+            {
+              newFarmingInfo: this.newFarmingInfo,
+              latencyData: this.latencyData,
+            },
+            null
+          );
         }
       });
     });
   }
 
-  async getFarmingInfo() {
+  async getNewFarmingInfo() {
     await this.whenReady();
-    return this.farmingInfo;
+    return {
+      newFarmingInfo: this.newFarmingInfo,
+      latencyData: this.latencyData,
+    };
   }
 
   async getRewardTargets(args: { searchForPrivateKey: boolean }) {

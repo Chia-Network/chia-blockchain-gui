@@ -78,6 +78,12 @@ export default function DashboardSideBar(props: DashboardSideBarProps) {
               end
             />
             <SideBarItem
+              to="/dashboard/harvester"
+              icon={PlotsIcon /* @TODO Replace with valid icon */}
+              title={<Trans>Harvester</Trans>}
+              data-testid="DashboardSideBar-harvester"
+            />
+            <SideBarItem
               to="/dashboard/plot"
               icon={PlotsIcon}
               title={<Trans>Plots</Trans>}

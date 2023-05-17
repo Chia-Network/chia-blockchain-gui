@@ -7,6 +7,7 @@ type Plot = {
   poolPublicKey: string;
   size: number;
   timeModified: number;
+  compressionLevel?: number;
 };
 
 export default Plot;

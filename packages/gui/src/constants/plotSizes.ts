@@ -38,6 +38,7 @@ export const plottingInfo: Record<PlotterName, PlotSize[]> = {
   ],
   [PlotterName.BLADEBIT_RAM]: [{ value: 32, label: getPlotSize(32), workspace: '416GiB', defaultRam: 3390 }],
   [PlotterName.BLADEBIT_DISK]: [{ value: 32, label: getPlotSize(32), workspace: '480GiB', defaultRam: 3390 }],
+  [PlotterName.BLADEBIT_CUDA]: [{ value: 32, label: getPlotSize(32), workspace: '128GiB', defaultRam: 128_000 }],
 };
 
 export function getPlotSizeOptions(plotterName: PlotterName) {
