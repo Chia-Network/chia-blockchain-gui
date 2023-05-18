@@ -93,7 +93,7 @@ export default function ContactAdd() {
           </Flex>
         </Flex>
         <Flex flexDirection="column" gap={6} alignItems="center" style={{ paddingBottom: '40px' }}>
-          <Flex flexDirection="column" gap={6} style={{ width: '600px', paddingTop: '40px' }}>
+          <Flex flexDirection="column" gap={6} maxWidth="600px" style={{ width: '100%', paddingTop: '40px' }}>
             <Flex gap={2} flexDirection="column">
               <Typography variant="h6">
                 <Trans>Contact Name</Trans>

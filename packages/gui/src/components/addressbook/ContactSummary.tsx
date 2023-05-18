@@ -72,9 +72,9 @@ export default function ContactSummary() {
           </Flex>
         </Flex>
         */}
-        <Flex flexDirection="column" gap={6}>
+        <Flex flexDirection="column" gap={6} maxWidth="600px" style={{ width: '100%' }}>
           {contact.addresses.map((addressInfo) => (
-            <Flex flexDirection="column" gap={3} style={{ width: '600px' }}>
+            <Flex flexDirection="column" gap={3} flexGrow={1}>
               <Typography variant="h6">{addressInfo.name}</Typography>
               <TextField
                 label={<Trans>Address</Trans>}
@@ -92,7 +92,7 @@ export default function ContactSummary() {
             </Flex>
           ))}
           {contact.dids.map((didInfo) => (
-            <Flex flexDirection="column" gap={3} style={{ width: '600px' }}>
+            <Flex flexDirection="column" gap={3} maxWidth="600px" style={{ width: '100%' }}>
               <Typography variant="h6">{didInfo.name}</Typography>
               <TextField
                 label={<Trans>DID</Trans>}
@@ -110,7 +110,7 @@ export default function ContactSummary() {
             </Flex>
           ))}
           {contact.domainnames.map((domainInfo) => (
-            <Flex flexDirection="column" gap={3} style={{ width: '600px' }}>
+            <Flex flexDirection="column" gap={3} maxWidth="600px" style={{ width: '100%' }}>
               <Typography variant="h6">{domainInfo.name}</Typography>
               <TextField
                 label={<Trans>Domain</Trans>}
