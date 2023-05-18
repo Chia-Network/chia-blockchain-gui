@@ -8,7 +8,6 @@ let electronApp: ElectronApplication;
 let page: Page;
 
 test.beforeAll(async () => {
-  stopAllChia();
   electronApp = await electron.launch({ args: ['./build/electron/main.js'] });
   page = await electronApp.firstWindow();
 });
@@ -18,25 +17,17 @@ test.afterAll(async () => {
 });
 
 test('Confirm Enable Auto Login feature works as expected. ', async () => {
-  //Given I enter correct credentials in Passphrase dialog
-  await new LoginPage(page).login('password2022!@');
+  //Pre-requisites to get user back to Wallet selection page
+  await page.locator('button:has-text("Close")').click();
+  //await page.locator('[data-testid="LayoutDashboard-log-out"]').click();
 
-  //And I click the Setting's Gear
+  //Given I navigate to 1922132445 Wallet
+  await page.locator('h6:has-text("Jahi 1st Wallet")').click();
+
+  //And I navigate to the Setting's Gear
   await page.locator('[data-testid="DashboardSideBar-settings"]').click();
 
-  //And I disable Auto Login feature
-  await page.locator('input[type="checkbox"]').uncheck();
-
-  //When I log out and back in
-  await page.close();
-  electronApp = await electron.launch({ args: ['./build/electron/main.js'] });
-  page = await electronApp.firstWindow();
-
-  //Then user should have to select a Wallet
-  await page.locator('[data-testid="SelectKeyItem-fingerprint-1922132445"]').click();
-
-  //When I re-enable Auto Login
-  await page.locator('[data-testid="DashboardSideBar-settings"]').click();
+  //When I enable Auto Login feature
   await page.locator('input[type="checkbox"]').check();
 
   //Then Auto Login setting is saved
@@ -46,8 +37,20 @@ test('Confirm Enable Auto Login feature works as expected. ', async () => {
   //And User is Auto logged in upon next visit
   electronApp = await electron.launch({ args: ['./build/electron/main.js'] });
   page = await electronApp.firstWindow();
-  await new LoginPage(page).login('password2022!@');
+  await page.locator('button:has-text("Close")').click();
   await page.locator('[data-testid="DashboardSideBar-settings"]').click();
+
+  //When I disable Auto Login
+  await page.locator('[data-testid="DashboardSideBar-settings"]').click();
+  await page.locator('input[type="checkbox"]').uncheck();
+
+  //Then I can confirm Wallet page loads
+  //await page.locator('[data-testid="LayoutDashboard-log-out"]').click();
   await page.close();
   stopAllChia();
+
+  //And User is not Auto logged in upon next visit
+  electronApp = await electron.launch({ args: ['./build/electron/main.js'] });
+  page = await electronApp.firstWindow();
+  await page.locator('button:has-text("Close")').click();
 });
