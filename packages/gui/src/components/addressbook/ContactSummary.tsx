@@ -36,7 +36,11 @@ export default function ContactSummary() {
 
   return (
     <div>
-      <Flex flexDirection="row" justifyContent="right" style={{ height: '80px', background: '#CCDDE1' }}>
+      <Flex
+        flexDirection="row"
+        justifyContent="right"
+        style={{ height: '80px', background: '#CCDDE1', borderRadius: '10px' }}
+      >
         <Flex style={{ paddingRight: '30px' }}>
           <Typography
             variant="h5"
@@ -73,60 +77,66 @@ export default function ContactSummary() {
         </Flex>
         */}
         <Flex flexDirection="column" gap={6} maxWidth="600px" style={{ width: '100%' }}>
-          {contact.addresses.map((addressInfo) => (
+          <Flex flexDirection="column" gap={3} flexGrow={1}>
+            <Typography variant="h6">Addresses</Typography>
             <Flex flexDirection="column" gap={3} flexGrow={1}>
-              <Typography variant="h6">{addressInfo.name}</Typography>
-              <TextField
-                label={<Trans>Address</Trans>}
-                value={addressInfo.address}
-                fullWidth
-                InputProps={{
-                  readOnly: true,
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <CopyToClipboard value={addressInfo.address} />
-                    </InputAdornment>
-                  ),
-                }}
-              />
+              {contact.addresses.map((addressInfo) => (
+                <TextField
+                  label={addressInfo.name}
+                  value={addressInfo.address}
+                  fullWidth
+                  InputProps={{
+                    readOnly: true,
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <CopyToClipboard value={addressInfo.address} />
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+              ))}
             </Flex>
-          ))}
-          {contact.dids.map((didInfo) => (
-            <Flex flexDirection="column" gap={3} maxWidth="600px" style={{ width: '100%' }}>
-              <Typography variant="h6">{didInfo.name}</Typography>
-              <TextField
-                label={<Trans>DID</Trans>}
-                value={didInfo.did}
-                fullWidth
-                InputProps={{
-                  readOnly: true,
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <CopyToClipboard value={didInfo.did} />
-                    </InputAdornment>
-                  ),
-                }}
-              />
+          </Flex>
+          <Flex flexDirection="column" gap={3} flexGrow={1}>
+            <Typography variant="h6">DIDs</Typography>
+            <Flex flexDirection="column" gap={3} flexGrow={1}>
+              {contact.dids.map((didInfo) => (
+                <TextField
+                  label={didInfo.name}
+                  value={didInfo.did}
+                  fullWidth
+                  InputProps={{
+                    readOnly: true,
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <CopyToClipboard value={didInfo.did} />
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+              ))}
             </Flex>
-          ))}
-          {contact.domainnames.map((domainInfo) => (
-            <Flex flexDirection="column" gap={3} maxWidth="600px" style={{ width: '100%' }}>
-              <Typography variant="h6">{domainInfo.name}</Typography>
-              <TextField
-                label={<Trans>Domain</Trans>}
-                value={domainInfo.domainname}
-                fullWidth
-                InputProps={{
-                  readOnly: true,
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <CopyToClipboard value={domainInfo.domainname} />
-                    </InputAdornment>
-                  ),
-                }}
-              />
+          </Flex>
+          <Flex flexDirection="column" gap={3} flexGrow={1}>
+            <Typography variant="h6">Domain Names</Typography>
+            <Flex flexDirection="column" gap={3} flexGrow={1}>
+              {contact.domainnames.map((domainInfo) => (
+                <TextField
+                  label={domainInfo.name}
+                  value={domainInfo.domainname}
+                  fullWidth
+                  InputProps={{
+                    readOnly: true,
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <CopyToClipboard value={domainInfo.domainname} />
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+              ))}
             </Flex>
-          ))}
+          </Flex>
         </Flex>
       </Flex>
     </div>
