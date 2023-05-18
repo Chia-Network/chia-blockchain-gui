@@ -120,6 +120,6 @@ export default class VCWallet extends Wallet {
   async revokeVC(args: { vcParentId: string; fee: number; reusePuzhash: boolean }) {
     return this.command<{
       transactions: TransactionType[];
-    }>('vc_revoke_vc', args);
+    }>('vc_revoke', args);
   }
 }

@@ -4,8 +4,9 @@ import {
   // useSpendVCMutation,
   // useGetDIDsQuery,
   // useGetDIDCurrentCoinInfoQuery,
+  useRevokeVCMutation,
 } from '@chia-network/api-react';
-import { Truncate, Button } from '@chia-network/core';
+import { Truncate, Button, useOpenDialog, ConfirmDialog, AlertDialog, Flex } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Box, Card, Typography, Table, TableRow, TableCell } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
@@ -40,8 +41,10 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
   });
   const navigate = useNavigate();
   // const [addVCProofs] = useAddVCProofsMutation();
-  // const [spendVC] = useSpendVCMutation();
+  // const [spendVC] = useSpendVCMutation();{
+  const [revokeVC] = useRevokeVCMutation();
   const theme: any = useTheme();
+  const openDialog = useOpenDialog();
 
   function renderProofs() {
     if (isDetail && proofs && Object.keys(proofs).length > 0) {
@@ -51,7 +54,7 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
           <TableCell sx={{ border: '1px solid rgba(255, 255, 255, 0.5)' }}>{proofs[key]}</TableCell>
         </TableRow>
       ));
-      return <Table sx={{ width: 'inherit', marginTop: '5px' }}>{proofsRows}</Table>;
+      return <Table sx={{ width: 'inherit', margin: '5px 0 25px 0' }}>{proofsRows}</Table>;
     }
     return isDetail && (!proofs || Object.keys(proofs).length === 0) ? <Trans>No</Trans> : <Trans>Yes</Trans>;
   }
@@ -123,6 +126,49 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
   //   );
   // }
 
+  async function openRevokeVCDialog() {
+    const confirmed = await openDialog(
+      <ConfirmDialog
+        title={<Trans>Confirm Revoke</Trans>}
+        confirmTitle={<Trans>Yes, Revoke</Trans>}
+        confirmColor="secondary"
+        cancelTitle={<Trans>Cancel</Trans>}
+      >
+        <Flex flexDirection="column" gap={3}>
+          <Typography variant="body1">
+            <Trans>Are you sure you want to revoke this Verifiable Credential?</Trans>
+          </Typography>
+        </Flex>
+      </ConfirmDialog>
+    );
+    if (confirmed) {
+      const revokedResponse = await revokeVC({ vcParentId: vcRecord.vc.coin.parentCoinInfo });
+      if (revokedResponse.data?.success) {
+        await openDialog(
+          <AlertDialog title={<Trans>Verifiable Credential Revoked</Trans>}>
+            <Trans>Transaction sent to blockchain successfully.</Trans>
+          </AlertDialog>
+        );
+        navigate('/dashboard/vc');
+      } else {
+        openDialog(
+          <AlertDialog title={<Trans>Error</Trans>}>
+            {revokedResponse?.error?.data?.error ? <Box>{revokedResponse?.error?.data?.error}</Box> : null}
+          </AlertDialog>
+        );
+      }
+    }
+  }
+
+  function renderRevokeVCButton() {
+    if (!isDetail) return null;
+    return (
+      <Button variant="outlined" sx={{ width: '100%' }} onClick={() => openRevokeVCDialog()}>
+        <Trans>Revoke VC</Trans>
+      </Button>
+    );
+  }
+
   return (
     <Card
       variant="outlined"
@@ -151,6 +197,7 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
       >
         {renderProperties()}
         {renderViewDetailButton()}
+        {renderRevokeVCButton()}
       </Box>
     </Card>
   );
