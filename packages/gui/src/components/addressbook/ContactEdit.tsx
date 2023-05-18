@@ -14,7 +14,7 @@ import { AddressBookContext } from './AddressBookProvider';
 export default function ContactEdit() {
   const { contactid } = useParams();
   const navigate = useNavigate();
-  const [, , removeAddress, getContactContactId] = useContext(AddressBookContext);
+  const [, editContact, removeAddress, getContactContactId] = useContext(AddressBookContext);
   const contact = getContactContactId(Number(contactid));
 
   const [name, setName] = useState([contact.name]);
@@ -70,7 +70,7 @@ export default function ContactEdit() {
     addresses.map((entry, index) => addDefaultName(entry, index, 'address', addresses, setAddresses));
     dids.map((entry, index) => addDefaultName(entry, index, 'did', dids, setDIDs));
     domains.map((entry, index) => addDefaultName(entry, index, 'domainname', domains, setDomains));
-    addContact(contact.contactid, data.name, addresses, dids, data.notes, data.nftid, domains);
+    editContact(contact.contactid, data.name, addresses, dids, data.notes, data.nftid, domains);
     navigate(`/dashboard/addressbook/`);
   }
 
