@@ -6,7 +6,7 @@ import { query, mutation } from '../utils/reduxToolkitEndpointAbstractions';
 import { apiWithTag } from './farmer';
 
 const apiWithTag2 = apiWithTag.enhanceEndpoints({
-  addTagTypes: ['Plots', 'PlotDirectories', 'HarvestingMode'],
+  addTagTypes: ['Plots', 'PlotDirectories'],
 });
 
 export const harvesterApi = apiWithTag2.injectEndpoints({
@@ -74,21 +74,6 @@ export const harvesterApi = apiWithTag2.injectEndpoints({
       ],
     }),
 
-    getHarvestingModeInfo: query(build, Harvester, 'getHarvestingModeInfo', {
-      providesTags: ['HarvestingMode'],
-      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, api, [
-        {
-          command: 'onHarvestingModeChanged',
-          service: Harvester,
-          endpoint: 'getHarvestingModeInfo',
-        },
-      ]),
-    }),
-
-    changeHarvestingMode: mutation(build, Harvester, 'changeHarvestingMode', {
-      invalidatesTags: ['HarvestingMode'],
-    }),
-
     getFarmingInfo: query(build, Harvester, 'getFarmingInfo', {
       onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, api, [
         {
@@ -108,7 +93,5 @@ export const {
   useGetPlotDirectoriesQuery,
   useAddPlotDirectoryMutation,
   useRemovePlotDirectoryMutation,
-  useGetHarvestingModeInfoQuery,
-  useChangeHarvestingModeMutation,
   useGetFarmingInfoQuery,
 } = harvesterApi;

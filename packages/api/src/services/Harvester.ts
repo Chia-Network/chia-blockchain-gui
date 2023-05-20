@@ -1,5 +1,4 @@
 import type FarmingInfo from '../@types/FarmingInfo';
-import type { HarvestingMode } from '../@types/Harvester';
 import Client from '../Client';
 import type Message from '../Message';
 import ServiceName from '../constants/ServiceName';
@@ -52,14 +51,6 @@ export default class Harvester extends Service {
     return this.command<void>('remove_plot_directory', args);
   }
 
-  async getHarvestingModeInfo() {
-    return this.command<{ support_gpu: boolean; mode: HarvestingMode }>('get_harvesting_mode_info');
-  }
-
-  async changeHarvestingMode(args: { mode: HarvestingMode }) {
-    return this.command<{ mode: HarvestingMode }>('change_harvesting_mode', args);
-  }
-
   onRefreshPlots(callback: (data: any, message: Message) => void, processData?: (data: any) => any) {
     return this.onCommand('refresh_plots', callback, processData);
   }
@@ -70,9 +61,5 @@ export default class Harvester extends Service {
 
   onFarmingInfoChanged(callback: (data: any, message: Message) => void, processData?: (data: any) => any) {
     return this.onCommand('farming_info_changed', callback, processData);
-  }
-
-  onHarvestingModeChanged(callback: (data: any, message: Message) => void, processData?: (data: any) => any) {
-    return this.onCommand('harvesting_mode_changed', callback, processData);
   }
 }
