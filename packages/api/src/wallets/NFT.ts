@@ -36,6 +36,30 @@ export default class NFTWallet extends Wallet {
     }>('nft_get_wallet_did', args);
   }
 
+  async mintNft(args: { walletId: number; royaltyAddress: string; royaltyPercentage: string; targetAddress: string; uris: string[]; hash: string; metaUris: string[]; metaHash: string; licenseUris: string[]; licenseHash: string; editionNumber: number; editionTotal: number; did: string; fee: string }) {
+      const { walletId, royaltyAddress, royaltyPercentage, targetAddress, uris, hash, metaUris, metaHash, licenseUris, licenseHash, editionNumber, editionTotal, did, fee } = args;
+      return this.command<{
+        walletId: number;
+        spendBundle: SpendBundle;
+        nftId: NftId;
+      }>('nft_mint_nft', {
+        walletId,
+        royaltyAddress,
+        royaltyPercentage,
+        targetAddress,
+        uris[0],
+        hash,
+        metaUris[0],
+        metaHash,
+        licenseUris[0],
+        licenseHash,
+        editionNumber,
+        editionTotal,
+        did,
+        fee,
+      });
+    }
+
   async transferNft(args: { walletId: number; nftCoinIds: string[]; targetAddress: string; fee: string }) {
     const { walletId, nftCoinIds, targetAddress, fee } = args;
     if (nftCoinIds.length === 1) {
