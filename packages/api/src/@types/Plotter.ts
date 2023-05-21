@@ -99,6 +99,7 @@ type PlotterInstallInfo = {
   installed: boolean;
   canInstall?: boolean;
   bladebitMemoryWarning?: string;
+  cudaSupport?: boolean;
 };
 
 type Plotter = {
@@ -116,6 +117,7 @@ export type PlotterApi = {
   canInstall?: boolean;
   // not sure if bladebitMemoryWarning should be here
   bladebitMemoryWarning?: string;
+  cudaSupport?: boolean;
 };
 
 export type PlottersApi = { [key in PlotterName]?: PlotterApi };
