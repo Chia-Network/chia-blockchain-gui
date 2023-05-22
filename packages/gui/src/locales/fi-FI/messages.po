@@ -8,7 +8,7 @@ msgstr ""
 "Language: fi_FI\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-05-03 17:50\n"
+"PO-Revision-Date: 2023-05-22 16:14\n"
 "Last-Translator: \n"
 "Language-Team: Finnish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -2125,12 +2125,12 @@ msgstr "Huomaa, että tämä ei muuta poolauksen maksuosoitteitasi. Tämä vaiku
 
 #: src/components/notification/NotificationSendDialog.tsx:145
 msgid "Notification has successfully been sent to a full node and included in the mempool."
-msgstr ""
+msgstr "Ilmoitus on onnistuneesti lähetetty noodille, ja se on sisällytetty mempoolin."
 
 #: src/components/settings/Settings.tsx:78
 #: src/components/settings/SettingsNotifications.tsx:16
 msgid "Notifications"
-msgstr ""
+msgstr "Ilmoitukset"
 
 #: src/components/offers/OfferShareDialog.tsx:626
 #: src/components/offers/OfferShareDialog.tsx:959
