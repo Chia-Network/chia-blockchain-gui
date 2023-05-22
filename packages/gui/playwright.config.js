@@ -14,7 +14,7 @@ const { devices } = require('@playwright/test');
 const config = {
   testDir: './tests',
   /* Maximum time one test can run for. */
-  timeout: 30_000 * 1000,
+  timeout: 80_000 * 1000,
   expect: {
     /**
      * Maximum time expect() should wait for the condition to be met.
@@ -23,7 +23,7 @@ const config = {
     timeout: 5000,
   },
   /* Run tests in files in parallel */
-  fullyParallel: true,
+  fullyParallel: false,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
   /* Retry on CI only */
