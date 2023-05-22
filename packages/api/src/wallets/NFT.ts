@@ -36,8 +36,8 @@ export default class NFTWallet extends Wallet {
     }>('nft_get_wallet_did', args);
   }
 
-  async mintNFT(args: { walletId: number; royaltyAddress: string; royaltyPercentage: string; targetAddress: string; uris: string[]; hash: string; metaUris: string[]; metaHash: string; licenseUris: string[]; licenseHash: string; editionNumber: number; editionTotal: number; did: string; fee: string }) {
-      const { walletId, royaltyAddress, royaltyPercentage, targetAddress, uris, hash, metaUris, metaHash, licenseUris, licenseHash, editionNumber, editionTotal, did, fee } = args;
+  async mintNFT(args: { walletId: number; royaltyAddress: string; royaltyPercentage: string; targetAddress: string; uris: string[]; hash: string; metaUris: string[]; metaHash: string; licenseUris: string[]; licenseHash: string; editionNumber: number; editionTotal: number; didId: string; fee: string }) {
+      const { walletId, royaltyAddress, royaltyPercentage, targetAddress, uris, hash, metaUris, metaHash, licenseUris, licenseHash, editionNumber, editionTotal, didId, fee } = args;
       return this.command<{
         walletId: number;
         spendBundle: SpendBundle;
@@ -55,7 +55,7 @@ export default class NFTWallet extends Wallet {
         licenseHash,
         editionNumber,
         editionTotal,
-        did,
+        didId,
         fee,
       });
     }
