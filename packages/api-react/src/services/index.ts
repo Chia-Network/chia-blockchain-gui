@@ -12,6 +12,7 @@ export const {
   useCloseMutation,
   useGetStateQuery,
   useClientStartServiceMutation,
+  useClientStopServiceMutation,
 } = client;
 
 // daemon hooks
@@ -205,6 +206,8 @@ export const {
   useAddPlotDirectoryMutation,
   useRemovePlotDirectoryMutation,
   useGetFarmingInfoQuery,
+  useGetHarvestingModeQuery,
+  useUpdateHarvestingModeMutation,
 } = harvester;
 
 // plotter hooks

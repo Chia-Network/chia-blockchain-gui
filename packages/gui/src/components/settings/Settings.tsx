@@ -7,6 +7,7 @@ import { Routes, Route, matchPath, useLocation, useNavigate } from 'react-router
 import SettingsAdvanced from './SettingsAdvanced';
 import SettingsDataLayer from './SettingsDataLayer';
 import SettingsGeneral from './SettingsGeneral';
+import SettingsHarvester from './SettingsHarvester';
 import SettingsIntegration from './SettingsIntegration';
 import SettingsNFT from './SettingsNFT';
 import SettingsNotifications from './SettingsNotifications';
@@ -20,6 +21,7 @@ enum SettingsTab {
   INTEGRATION = 'integration',
   NOTIFICATIONS = 'notifications',
   ADVANCED = 'advanced',
+  HARVESTER = 'harvester',
 }
 
 const SettingsTabsPathMapping = {
@@ -27,6 +29,7 @@ const SettingsTabsPathMapping = {
   [SettingsTab.PROFILES]: '/dashboard/settings/profiles',
   [SettingsTab.NFT]: '/dashboard/settings/nft',
   [SettingsTab.DATALAYER]: '/dashboard/settings/datalayer',
+  [SettingsTab.HARVESTER]: '/dashboard/settings/harvester',
   [SettingsTab.INTEGRATION]: '/dashboard/settings/integration',
   [SettingsTab.NOTIFICATIONS]: '/dashboard/settings/notifications',
   [SettingsTab.ADVANCED]: '/dashboard/settings/advanced',
@@ -72,6 +75,7 @@ export default function Settings() {
             <Tab value={SettingsTab.NFT} label={<Trans>NFT</Trans>} data-testid="Settings-tab-nft" />
 
             <Tab value={SettingsTab.DATALAYER} label={<Trans>DataLayer</Trans>} data-testid="Settings-tab-datalayer" />
+            <Tab value={SettingsTab.HARVESTER} label={<Trans>Harvester</Trans>} data-testid="Settings-tab-harvester" />
             <Tab
               value={SettingsTab.INTEGRATION}
               label={<Trans>Integration</Trans>}
@@ -89,6 +93,7 @@ export default function Settings() {
             <Route path="profiles/*" element={<SettingsProfiles />} />
             <Route path="nft" element={<SettingsNFT />} />
             <Route path="datalayer" element={<SettingsDataLayer />} />
+            <Route path="harvester" element={<SettingsHarvester />} />
             <Route path="general" element={<SettingsGeneral />} />
             <Route path="integration" element={<SettingsIntegration />} />
             <Route path="notifications" element={<SettingsNotifications />} />
