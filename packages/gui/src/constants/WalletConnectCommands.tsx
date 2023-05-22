@@ -569,7 +569,7 @@ const walletConnectCommands: WalletConnectCommand[] = [
   },
   {
     command: 'mintNFT',
-    label: <Trans>Transfer NFT</Trans>,
+    label: <Trans>Mint NFT</Trans>,
     service: ServiceName.WALLET,
     params: [
       {
