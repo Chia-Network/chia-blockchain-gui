@@ -187,7 +187,7 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
     >
       <Box
         sx={{
-          background: theme.palette.colors.default.main,
+          background: theme.palette.colors.default.background,
           borderRadius: '15px',
           padding: '25px',
           '> div': {
