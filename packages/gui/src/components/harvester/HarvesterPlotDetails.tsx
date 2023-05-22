@@ -136,6 +136,9 @@ function HarvesterPlotDetails(props: HarvesterPlotDetailsProps) {
     if (!plotStats.compressionData || !plotStats.sizeData) {
       return undefined;
     }
+    if (plotStats.compressionData.data.length === 1 && plotStats.sizeData.data.length === 1) {
+      return undefined;
+    }
 
     return (
       <PurePlotDetailsChart compressionData={plotStats.compressionData} sizeData={plotStats.compressionAndSizeData} />

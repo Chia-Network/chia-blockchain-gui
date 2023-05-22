@@ -33,7 +33,7 @@ function HarvesterLatencyGraph(props: HarvesterLatencyGraphProps) {
     if (harvestingMode === 2) {
       chip = <Chip label="GPU" color="primary" />;
     } else if (typeof harvestingMode !== 'number') {
-      chip = <Chip label="Old" />;
+      chip = <Chip label="OLD" />;
     }
 
     return (
