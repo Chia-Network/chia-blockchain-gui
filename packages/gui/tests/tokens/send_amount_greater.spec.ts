@@ -9,7 +9,6 @@ let page: Page;
 
 test.beforeAll(async () => {
   electronApp = await electron.launch({ args: ['./build/electron/main.js'] });
-  //electronApp = await electron.launch({ headless: true });
   page = await electronApp.firstWindow();
 });
 
@@ -18,14 +17,13 @@ test.afterAll(async () => {
 });
 
 test('Confirm that User cannot send a TXCH amount greater then in Wallet', async () => {
-  let receive_wallet = 'txch1u237ltq0pp4348ppwv6cge7fks87mn4wz3c0ywvgswvpwhkqqn8qn8jeq6';
+  let receive_wallet = 'txch1ksr59en3j3t9zaprmya0jp9k6mkazq2u5lfccaf85sej7kgmvjjscanfxd';
   let funded_wallet = '1922132445';
 
-  //Given I enter correct credentials in Passphrase dialog
-  await new LoginPage(page).login('password2022!@');
+  //Pre-requisites to get user back to Wallet selection page
+  await page.locator('button:has-text("Close")').click();
 
   //And I navigate to a wallet with funds
-  await page.locator('[data-testid="LayoutDashboard-log-out"]').click();
   await page.locator(`text=${funded_wallet}`).click();
 
   //Begin: Wait for Wallet to Sync
@@ -48,21 +46,22 @@ test('Confirm that User cannot send a TXCH amount greater then in Wallet', async
   await page.locator('[data-testid="WalletSend-address"]').fill(receive_wallet);
 
   //And I enter an amount higher then in account
-  await page.locator('[data-testid="WalletSend-amount"]').fill('25');
+  await page.locator('[data-testid="WalletSend-amount"]').fill('200');
 
-  //And I enter a valid Fee
-  await page.locator('text=Fee *TXCH >> input[type="text"]').fill('0.000005');
+  //Have to revisit the FEE component. And I enter a valid Fee
+  //await page.locator('text=Fee *TXCH >> input[type="text"]').fill('0.000005');
 
   //And I click Send button
   await page.locator('[data-testid="WalletSend-send"]').click();
 
-  //Then I receive a success message
+  //Then I receive an error message
   let haveBalanceString, stringBalance;
   stringBalance = balance?.toString();
   haveBalanceString = stringBalance.replace(/\./g, '');
   console.log(haveBalanceString);
   await expect(page.locator('div[role="dialog"]')).toHaveText(
-    `ErrorCan\'t send more than ${haveBalanceString} in a single transactionOK`
+    //`ErrorCan\'t send more than ${haveBalanceString} in a single transactionOK`
+    `ErrorCan't send more than ${haveBalanceString} mojos in a single transaction, got 200000000000000OK`
   );
   await page.locator('div[role="dialog"] >> text=OK').click();
 
@@ -70,5 +69,5 @@ test('Confirm that User cannot send a TXCH amount greater then in Wallet', async
   await page.locator('[data-testid="WalletHeader-tab-summary"]').click();
 
   //Then there are no changes in the Pending Balance section
-  await expect(page.locator('text=Pending Balance0 TXCH')).toBeVisible();
+  await expect(page.getByText('Pending Balance0 TXCH')).toBeVisible();
 });

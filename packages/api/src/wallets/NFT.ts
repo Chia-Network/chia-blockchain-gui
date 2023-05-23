@@ -11,12 +11,7 @@ export default class NFTWallet extends Wallet {
   }
 
   async getNfts(args: { walletId: number; num: number; startIndex: number }) {
-    const { num = 100_000, ...rest } = args;
-
-    return this.command('nft_get_nfts', {
-      num,
-      ...rest,
-    });
+    return this.command('nft_get_nfts', args);
   }
 
   async getNftInfo(args: { coinId: string }) {
@@ -39,6 +34,60 @@ export default class NFTWallet extends Wallet {
     return this.command<{
       didId: string;
     }>('nft_get_wallet_did', args);
+  }
+
+  async mintNFT(args: {
+    walletId: number;
+    royaltyAddress: string;
+    royaltyPercentage: string;
+    targetAddress: string;
+    uris: string[];
+    hash: string;
+    metaUris: string[];
+    metaHash: string;
+    licenseUris: string[];
+    licenseHash: string;
+    editionNumber: number;
+    editionTotal: number;
+    didId: string;
+    fee: string;
+  }) {
+    const {
+      walletId,
+      royaltyAddress,
+      royaltyPercentage,
+      targetAddress,
+      uris,
+      hash,
+      metaUris,
+      metaHash,
+      licenseUris,
+      licenseHash,
+      editionNumber,
+      editionTotal,
+      didId,
+      fee,
+    } = args;
+    return this.command<{
+      walletId: number;
+      spendBundle: SpendBundle;
+      nftId: string;
+    }>('nft_mint_nft', {
+      walletId,
+      royaltyAddress,
+      royaltyPercentage,
+      targetAddress,
+      uris,
+      hash,
+      metaUris,
+      metaHash,
+      licenseUris,
+      licenseHash,
+      editionNumber,
+      editionTotal,
+      didId,
+      fee,
+    });
   }
 
   async transferNft(args: { walletId: number; nftCoinIds: string[]; targetAddress: string; fee: string }) {

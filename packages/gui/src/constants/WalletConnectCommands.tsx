@@ -568,6 +568,93 @@ const walletConnectCommands: WalletConnectCommand[] = [
     ],
   },
   {
+    command: 'mintNFT',
+    label: <Trans>Mint NFT</Trans>,
+    service: ServiceName.WALLET,
+    params: [
+      {
+        name: WalletConnectCommandParamName.WALLET_ID,
+        label: <Trans>Wallet Id</Trans>,
+        type: 'number',
+      },
+      {
+        name: WalletConnectCommandParamName.ROYALTY_ADDRESS,
+        label: <Trans>Royalty Address</Trans>,
+        type: 'string',
+        isOptional: true,
+      },
+      {
+        name: WalletConnectCommandParamName.ROYALTY_PERCENTAGE,
+        label: <Trans>Royalty Percentage</Trans>,
+        type: 'BigNumber',
+        isOptional: true,
+      },
+      {
+        name: WalletConnectCommandParamName.TARGET_ADDRESS,
+        label: <Trans>Target Address</Trans>,
+        type: 'string',
+        isOptional: true,
+      },
+      {
+        name: WalletConnectCommandParamName.URIS,
+        label: <Trans>Uris</Trans>,
+        type: 'string',
+      },
+      {
+        name: WalletConnectCommandParamName.HASH,
+        label: <Trans>Hash</Trans>,
+        type: 'string',
+      },
+      {
+        name: WalletConnectCommandParamName.META_URIS,
+        label: <Trans>Meta Uris</Trans>,
+        type: 'string',
+      },
+      {
+        name: WalletConnectCommandParamName.META_HASH,
+        label: <Trans>Meta Hash</Trans>,
+        type: 'string',
+        isOptional: true,
+      },
+      {
+        name: WalletConnectCommandParamName.LICENSE_URIS,
+        label: <Trans>License Uris</Trans>,
+        type: 'string',
+      },
+      {
+        name: WalletConnectCommandParamName.LICENSE_HASH,
+        label: <Trans>License Hash</Trans>,
+        type: 'string',
+        isOptional: true,
+      },
+      {
+        name: WalletConnectCommandParamName.EDITION_NUMBER,
+        label: <Trans>Edition Number</Trans>,
+        type: 'number',
+        isOptional: true,
+      },
+      {
+        name: WalletConnectCommandParamName.EDITION_TOTAL,
+        label: <Trans>Edition Total</Trans>,
+        type: 'number',
+        isOptional: true,
+      },
+      {
+        name: WalletConnectCommandParamName.DID_ID,
+        label: <Trans>DID Id</Trans>,
+        type: 'string',
+        isOptional: true,
+      },
+      {
+        name: WalletConnectCommandParamName.FEE,
+        label: <Trans>Fee</Trans>,
+        type: 'BigNumber',
+        displayComponent: (value) => <MojoToChia value={value} />,
+        isOptional: true,
+      },
+    ],
+  },
+  {
     command: 'transferNFT',
     label: <Trans>Transfer NFT</Trans>,
     service: ServiceName.WALLET,
@@ -695,6 +782,12 @@ const walletConnectCommands: WalletConnectCommand[] = [
         displayComponent: (value) => <MojoToChia value={value} />,
       },
     ],
+  },
+  {
+    command: 'getNFTWalletsWithDIDs',
+    label: <Trans>Get NFT Wallets with DIDs</Trans>,
+    service: ServiceName.WALLET,
+    bypassConfirm: true,
   },
 ];
 
