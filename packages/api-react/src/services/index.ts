@@ -169,6 +169,7 @@ export const {
   useGetNFTWalletsWithDIDsQuery,
   useGetNFTInfoQuery,
   useLazyGetNFTInfoQuery,
+  useMintNFTMutation,
   useTransferNFTMutation,
   useSetNFTDIDMutation,
   useSetNFTStatusMutation,
