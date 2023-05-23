@@ -1,11 +1,4 @@
-import {
-  useGetTimestampForHeightQuery,
-  // useAddVCProofsMutation,
-  // useSpendVCMutation,
-  // useGetDIDsQuery,
-  // useGetDIDCurrentCoinInfoQuery,
-  useRevokeVCMutation,
-} from '@chia-network/api-react';
+import { useGetTimestampForHeightQuery, useRevokeVCMutation } from '@chia-network/api-react';
 import { Truncate, Button, useOpenDialog, ConfirmDialog, AlertDialog, Flex } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Box, Card, Typography, Table, TableRow, TableCell } from '@mui/material';
@@ -32,16 +25,11 @@ function RenderProperty(props: RenderPropertyProps) {
 }
 
 export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proofs?: any }) {
-  // const { data: dids } = useGetDIDsQuery();
-  // const didObject = dids ? dids.find((did) => did.type === 8) : null;
-  // const { data: didInfo } = useGetDIDCurrentCoinInfoQuery({ walletId: didObject?.id || 0 });
   const { vcRecord, isDetail, proofs } = props;
   const { data: mintedTimestamp, isLoading: isLoadingMintHeight } = useGetTimestampForHeightQuery({
     height: vcRecord.confirmedAtHeight,
   });
   const navigate = useNavigate();
-  // const [addVCProofs] = useAddVCProofsMutation();
-  // const [spendVC] = useSpendVCMutation();{
   const [revokeVC] = useRevokeVCMutation();
   const theme: any = useTheme();
   const openDialog = useOpenDialog();
@@ -97,34 +85,6 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
       </Button>
     );
   }
-
-  // async function chooseFileLocal() {
-  //   const fileContent = await (window as any).ipcRenderer.invoke('addProofsFromLocalFile');
-  //   let json;
-  //   try {
-  //     json = JSON.parse(fileContent);
-  //   } catch (e) {
-  //     console.log('Error parsing json', e);
-  //   }
-  //   if (json) {
-  //     const rootHash = await (window as any).ipcRenderer.invoke('calculateRootHash', json);
-  //     const proofsResult = await addVCProofs(json);
-  //     if (proofsResult.data?.success) {
-  //       console.log('Spend result..........', spendResult);
-  //     } else {
-  //       console.log('ERROR..........', proofsResult);
-  //     }
-  //   }
-  // }
-
-  // function renderAddProofButton() {
-  //   if (!isDetail) return null;
-  //   return (
-  //     <Button variant="outlined" sx={{ width: '100%' }} onClick={() => chooseFileLocal()}>
-  //       <Trans>Add Proofs</Trans>
-  //     </Button>
-  //   );
-  // }
 
   async function openRevokeVCDialog() {
     const confirmed = await openDialog(
