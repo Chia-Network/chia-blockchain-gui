@@ -21,7 +21,7 @@
   "dependencies": {
     "@babel/runtime": "7.16.7",
     "bech32": "2.0.0",
-    "bignumber.js": "9.0.2",
+    "bignumber.js": "9.1.1",
     "core-js": "3.20.3",
     "crypto-browserify": "3.12.0",
     "debug": "4.3.3",
