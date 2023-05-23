@@ -30,7 +30,7 @@
     "@babel/preset-env": "7.16.8",
     "@babel/preset-react": "7.16.7",
     "@babel/preset-typescript": "7.16.7",
-    "@mui/icons-material": "5.8.4",
+    "@mui/icons-material": "5.11.16",
     "@mui/material": "5.10.0",
     "@mui/styled-engine-sc": "5.10.0",
     "@rollup/plugin-alias": "3.1.9",
