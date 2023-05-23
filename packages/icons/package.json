@@ -19,7 +19,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@babel/runtime": "7.16.7",
+    "@babel/runtime": "7.21.5",
     "core-js": "3.28.0",
     "match-sorter": "6.3.1",
     "use-dark-mode": "2.3.1"
