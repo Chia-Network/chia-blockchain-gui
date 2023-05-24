@@ -9,7 +9,10 @@ import VCCard from './VCCard';
 export default function VCDetail() {
   const { vcId } = useParams();
   const { isLoading, data } = useGetVCQuery({ vcId: vcId as string });
-  const { data: proofsData } = useGetProofsForRootQuery((data as any)?.vc?.proofHash);
+  const proofHash = (data as any)?.vc?.proofHash;
+  const { data: proofsData } = useGetProofsForRootQuery(proofHash, {
+    skip: !proofHash,
+  });
   const navigate = useNavigate();
 
   function renderBackButton() {

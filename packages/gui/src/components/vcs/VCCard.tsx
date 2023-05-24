@@ -66,7 +66,9 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
         </RenderProperty>
         {vcRecord.vc.proofProvider && (
           <RenderProperty label={<Trans>Issuer DID</Trans>}>
-            <Truncate>{didToDIDId(vcRecord.vc.proofProvider)}</Truncate>
+            <Truncate tooltip copyToClipboard>
+              {didToDIDId(vcRecord.vc.proofProvider)}
+            </Truncate>
           </RenderProperty>
         )}
         <RenderProperty label={<Trans>Proofs</Trans>}>
