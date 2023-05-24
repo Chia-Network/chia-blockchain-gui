@@ -38,7 +38,7 @@ export function NFTProperty(props: NFTPropertyProps) {
   const theme = useTheme();
   // eslint-disable-next-line @typescript-eslint/naming-convention -- Comes from API like this
   const { name, trait_type, value: rawValue } = attribute;
-  if (typeof rawValue === 'object') {
+  if (typeof rawValue === 'object' || typeof rawValue === 'undefined') {
     return null;
   }
   const value = rawValue.toString();
