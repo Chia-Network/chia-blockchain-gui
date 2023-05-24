@@ -75,19 +75,19 @@ type TransactionType = {
 };
 
 export default class VCWallet extends Wallet {
-  async getVC(args: { vcId: number }) {
+  async getVC(args: { vcId: string }) {
     return this.command<{
       success: boolean;
       vcRecord: VCType;
-    }>('vc_get_vc', args);
+    }>('vc_get', args);
   }
 
-  async getVCList(args: { start: number; count: number }) {
+  async getVCList(args: { start?: number; count?: number }) {
     return this.command<{
       proofs: any;
       success: boolean;
       vcRecords: VCRecordType[];
-    }>('vc_get_vc_list', args);
+    }>('vc_get_list', args);
   }
 
   async spendVC(args: {
@@ -101,22 +101,22 @@ export default class VCWallet extends Wallet {
     return this.command<{
       success: boolean;
       transactions: TransactionType[];
-    }>('vc_spend_vc', args);
+    }>('vc_spend', args);
   }
 
   async addVCProofs(proofs: string) {
     return this.command<{
       proofs: any;
-    }>('add_vc_proofs', { proofs });
+    }>('vc_add_proofs', { proofs });
   }
 
   async getProofsForRoot(root: string) {
-    return this.command<{ proofs: any }>('get_proofs_for_root', { root });
+    return this.command<{ proofs: any }>('vc_get_proofs_for_root', { root });
   }
 
   async revokeVC(args: { vcParentId: string; fee: number; reusePuzhash: boolean }) {
     return this.command<{
       transactions: TransactionType[];
-    }>('vc_revoke_vc', args);
+    }>('vc_revoke', args);
   }
 }

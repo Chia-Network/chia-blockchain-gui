@@ -117,6 +117,7 @@ export default createTheme({
         main: Color.Neutral[300],
         border: Color.Neutral[400],
         accent: Color.Neutral[900],
+        background: Color.Neutral[300],
       },
     },
   },
