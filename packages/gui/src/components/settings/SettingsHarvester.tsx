@@ -46,6 +46,38 @@ export default function SettingsHarvester() {
     [data, isLoading, updateHarvestingMode, isUpdating]
   );
 
+  const onChangeDisableCpuAffinity = React.useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      if (isLoading || isUpdating || !data || data.disableCpuAffinity === e.target.checked) {
+        return;
+      }
+      updateHarvestingMode({ disableCpuAffinity: e.target.checked });
+    },
+    [data, isLoading, updateHarvestingMode, isUpdating]
+  );
+
+  const onChangeParallelDecompressorsCount = React.useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const value = +e.target.value;
+      if (isLoading || isUpdating || !data || Number.isNaN(value) || data.parallelDecompressersCount === value) {
+        return;
+      }
+      updateHarvestingMode({ parallelDecompressersCount: value });
+    },
+    [data, isLoading, updateHarvestingMode, isUpdating]
+  );
+
+  const onChangeDecompresserThreadCount = React.useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const value = +e.target.value;
+      if (isLoading || isUpdating || !data || Number.isNaN(value) || data.decompresserThreadCount === value) {
+        return;
+      }
+      updateHarvestingMode({ decompresserThreadCount: value });
+    },
+    [data, isLoading, updateHarvestingMode, isUpdating]
+  );
+
   const onClickRestartHarvester = React.useCallback(() => {
     if (isLoading || isUpdating) {
       return;
@@ -75,6 +107,45 @@ export default function SettingsHarvester() {
     }
     return <Switch checked={data.enforceGpuIndex || false} onChange={onChangeEnforceGPUIndex} readOnly={isUpdating} />;
   }, [data, isLoading, onChangeEnforceGPUIndex, isUpdating]);
+
+  const disableCpuAffinitySwitch = React.useMemo(() => {
+    if (isLoading || !data) {
+      return <Switch disabled />;
+    }
+    return (
+      <Switch checked={data.disableCpuAffinity || false} onChange={onChangeDisableCpuAffinity} readOnly={isUpdating} />
+    );
+  }, [data, isLoading, onChangeDisableCpuAffinity, isUpdating]);
+
+  const parallelDecompressersCountInput = React.useMemo(() => {
+    if (isLoading || !data) {
+      return <TextField size="small" type="number" disabled />;
+    }
+    return (
+      <TextField
+        size="small"
+        type="number"
+        value={data.parallelDecompressersCount}
+        onChange={onChangeParallelDecompressorsCount}
+        disabled={isUpdating}
+      />
+    );
+  }, [data, isLoading, onChangeParallelDecompressorsCount, isUpdating]);
+
+  const decompresserThreadCountInput = React.useMemo(() => {
+    if (isLoading || !data) {
+      return <TextField size="small" type="number" disabled />;
+    }
+    return (
+      <TextField
+        size="small"
+        type="number"
+        value={data.decompresserThreadCount}
+        onChange={onChangeDecompresserThreadCount}
+        disabled={isUpdating}
+      />
+    );
+  }, [data, isLoading, onChangeDecompresserThreadCount, isUpdating]);
 
   return (
     <Grid container style={{ maxWidth: '624px' }} gap={3}>
@@ -150,6 +221,57 @@ export default function SettingsHarvester() {
                 index, it is an error. If it's turned off, it tries to use the device specified, or the first available,
                 if any. If no device is available it defaults to CPU harvesting.
               </Trans>
+            </SettingsText>
+          </Grid>
+        </Grid>
+
+        <Grid container>
+          <Grid item style={{ width: '400px' }}>
+            <SettingsTitle>
+              <Trans>Disable CPU Affinity</Trans>
+            </SettingsTitle>
+          </Grid>
+          <Grid item container xs justifyContent="flex-end" marginTop="-6px">
+            <FormControlLabel control={disableCpuAffinitySwitch} />
+          </Grid>
+          <Grid item container style={{ width: '400px' }} gap={2}>
+            <SettingsText>
+              <Trans>
+                Disable assigning automatic thread affinity. This is useful when you want to manually assign thread
+                affinity.
+              </Trans>
+            </SettingsText>
+          </Grid>
+        </Grid>
+
+        <Grid container>
+          <Grid item style={{ width: '400px' }}>
+            <SettingsTitle>
+              <Trans>Parallel decompressors count</Trans>
+            </SettingsTitle>
+          </Grid>
+          <Grid item container xs justifyContent="flex-end" marginTop="-6px">
+            <FormControlLabel control={parallelDecompressersCountInput} />
+          </Grid>
+          <Grid item container style={{ width: '400px' }} gap={2}>
+            <SettingsText>
+              <Trans>&lt;INSERT DESCRIPTION HERE&gt;</Trans>
+            </SettingsText>
+          </Grid>
+        </Grid>
+
+        <Grid container>
+          <Grid item style={{ width: '400px' }}>
+            <SettingsTitle>
+              <Trans>Decompressor thread count</Trans>
+            </SettingsTitle>
+          </Grid>
+          <Grid item container xs justifyContent="flex-end" marginTop="-6px">
+            <FormControlLabel control={decompresserThreadCountInput} />
+          </Grid>
+          <Grid item container style={{ width: '400px' }} gap={2}>
+            <SettingsText>
+              <Trans>&lt;INSERT DESCRIPTION HERE&gt;</Trans>
             </SettingsText>
           </Grid>
         </Grid>

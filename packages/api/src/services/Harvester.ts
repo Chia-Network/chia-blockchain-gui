@@ -56,10 +56,20 @@ export default class Harvester extends Service {
       useGpuHarvesting: boolean | null;
       gpuIndex: number | null;
       enforceGpuIndex: boolean | null;
+      disableCpuAffinity: boolean | null;
+      parallelDecompressersCount: number | null;
+      decompresserThreadCount: number | null;
     }>('get_harvesting_mode');
   }
 
-  async updateHarvestingMode(args: { useGpuHarvesting?: boolean; gpuIndex?: number; enforceGpuIndex?: boolean }) {
+  async updateHarvestingMode(args: {
+    useGpuHarvesting?: boolean;
+    gpuIndex?: number;
+    enforceGpuIndex?: boolean;
+    disableCpuAffinity?: boolean;
+    parallelDecompressersCount?: number;
+    decompresserThreadCount?: number;
+  }) {
     return this.command<void>('update_harvesting_mode', args);
   }
 
