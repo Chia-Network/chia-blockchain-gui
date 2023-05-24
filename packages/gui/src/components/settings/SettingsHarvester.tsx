@@ -82,7 +82,7 @@ export default function SettingsHarvester() {
     if (isLoading || isUpdating) {
       return;
     }
-    stopService({ service: ServiceName.HARVESTER });
+    stopService({ service: ServiceName.HARVESTER, disableWait: true });
   }, [stopService, isLoading, isUpdating]);
 
   const harvestingModeSwitch = React.useMemo(() => {

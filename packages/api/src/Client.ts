@@ -53,6 +53,8 @@ export default class Client extends EventEmitter {
 
   private connectServicePromise: Map<ServiceNameValue, Promise<void>> = new Map();
 
+  private stopServicePromise: Map<ServiceNameValue, Promise<void>> = new Map();
+
   private daemon: Daemon;
 
   private closed = false;
@@ -206,6 +208,10 @@ export default class Client extends EventEmitter {
     const { service, disableWait } = args;
 
     const startServiceAction = async () => {
+      if (this.stopServicePromise.has(service)) {
+        await this.stopServicePromise.get(service);
+      }
+
       if (this.started.has(service)) {
         return;
       }
@@ -262,44 +268,56 @@ export default class Client extends EventEmitter {
     await Promise.all(services.map(async (service) => this.startService({ service })));
   }
 
-  async stopService(args: { service: ServiceNameValue }) {
-    const { service } = args;
-    if (!this.started.has(service)) {
-      return;
-    }
+  async stopService(args: { service: ServiceNameValue; disableWait?: boolean }) {
+    const { service, disableWait } = args;
 
-    const response = await this.daemon.isRunning({ service });
-    if (response.isRunning) {
-      log(`Closing down service: ${service}`);
-      await this.daemon.stopService({ service });
-    }
-
-    // wait for service initialisation
-    log(`Waiting for service: ${service}`);
-    while (true) {
-      try {
-        const { data } = <Message & { data: Response }>await this.send(
-          new Message({
-            command: 'ping',
-            origin: this.origin,
-            destination: service,
-          }),
-          1000
-        );
-
-        if (data.success) {
-          await sleep(1000);
-        }
-      } catch (error) {
-        break;
+    const stopServiceAction = async () => {
+      if (!this.started.has(service)) {
+        log(`Service: ${service} is already stopped`);
+        return;
       }
-    }
 
-    log(`Service: ${service} stopped`);
+      const response = await this.daemon.isRunning({ service });
+      if (response.isRunning) {
+        log(`Closing down service: ${service}`);
+        await this.daemon.stopService({ service });
+      }
 
-    this.started.delete(service);
-    this.connectServicePromise.delete(service);
-    this.emit('state', this.getState());
+      // wait for service initialisation
+      log(`Waiting for service: ${service}`);
+      if (!disableWait) {
+        while (true) {
+          try {
+            const { data } = <Message & { data: Response }>await this.send(
+              new Message({
+                command: 'ping',
+                origin: this.origin,
+                destination: service,
+              }),
+              1000
+            );
+
+            if (data.success) {
+              await sleep(1000);
+            }
+          } catch (error) {
+            break;
+          }
+        }
+      }
+
+      log(`Service: ${service} stopped`);
+
+      this.started.delete(service);
+      this.connectServicePromise.delete(service);
+      this.emit('state', this.getState());
+    };
+
+    const stopServiceTask = stopServiceAction();
+    this.stopServicePromise.set(service, stopServiceTask);
+    await stopServiceTask.finally(() => {
+      this.stopServicePromise.delete(service);
+    });
   }
 
   private handleOpen = async () => {
