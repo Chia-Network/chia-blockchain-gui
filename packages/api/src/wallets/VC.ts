@@ -78,7 +78,7 @@ export default class VCWallet extends Wallet {
   async getVC(args: { vcId: string }) {
     return this.command<{
       success: boolean;
-      vc: VCType;
+      vcRecord: VCType;
     }>('vc_get', args);
   }
 
