@@ -2,120 +2,174 @@ import { ServiceName } from '@chia-network/api';
 import {
   useGetHarvestingModeQuery,
   useUpdateHarvestingModeMutation,
+  useClientStartServiceMutation,
   useClientStopServiceMutation,
 } from '@chia-network/api-react';
 import { ButtonLoading, Flex, SettingsHR, SettingsSection, SettingsTitle, SettingsText } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Warning as WarningIcon } from '@mui/icons-material';
-import { FormControlLabel, FormHelperText, Grid, Switch, TextField } from '@mui/material';
+import { FormControlLabel, FormHelperText, Grid, Switch, TextField, Snackbar } from '@mui/material';
 import React from 'react';
+
+const messageAnchorOrigin = { vertical: 'bottom', horizontal: 'center' };
 
 export default function SettingsHarvester() {
   const { data, isLoading } = useGetHarvestingModeQuery();
   const [updateHarvestingMode, { isLoading: isUpdating }] = useUpdateHarvestingModeMutation();
-  const [stopService, { isLoading: isRestarting }] = useClientStopServiceMutation();
+  const [startService, { isLoading: isStarting }] = useClientStartServiceMutation();
+  const [stopService, { isLoading: isStopping }] = useClientStopServiceMutation();
+  const [message, setMessage] = React.useState<React.ReactElement | false>(false);
+
+  const isProcessing = isStarting || isStopping || isUpdating || isLoading;
 
   const onChangeHarvestingMode = React.useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
-      if (isLoading || isUpdating || !data || data.useGpuHarvesting === e.target.checked) {
+      if (isProcessing || !data || data.useGpuHarvesting === e.target.checked) {
         return;
       }
       updateHarvestingMode({ useGpuHarvesting: e.target.checked });
     },
-    [data, isLoading, updateHarvestingMode, isUpdating]
+    [data, updateHarvestingMode, isProcessing]
   );
 
   const onChangeGPUIndex = React.useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const value = +e.target.value;
-      if (isLoading || isUpdating || !data || Number.isNaN(value) || data.gpuIndex === value) {
+      if (isProcessing || !data || Number.isNaN(value) || data.gpuIndex === value) {
         return;
       }
       updateHarvestingMode({ gpuIndex: value });
     },
-    [data, isLoading, updateHarvestingMode, isUpdating]
+    [data, updateHarvestingMode, isProcessing]
   );
 
   const onChangeEnforceGPUIndex = React.useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
-      if (isLoading || isUpdating || !data || data.enforceGpuIndex === e.target.checked) {
+      if (isProcessing || !data || data.enforceGpuIndex === e.target.checked) {
         return;
       }
       updateHarvestingMode({ enforceGpuIndex: e.target.checked });
     },
-    [data, isLoading, updateHarvestingMode, isUpdating]
+    [data, updateHarvestingMode, isProcessing]
   );
 
   const onChangeDisableCpuAffinity = React.useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
-      if (isLoading || isUpdating || !data || data.disableCpuAffinity === e.target.checked) {
+      if (isProcessing || !data || data.disableCpuAffinity === e.target.checked) {
         return;
       }
       updateHarvestingMode({ disableCpuAffinity: e.target.checked });
     },
-    [data, isLoading, updateHarvestingMode, isUpdating]
+    [data, updateHarvestingMode, isProcessing]
   );
 
   const onChangeParallelDecompressorsCount = React.useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const value = +e.target.value;
-      if (isLoading || isUpdating || !data || Number.isNaN(value) || data.parallelDecompressersCount === value) {
+      if (isProcessing || !data || Number.isNaN(value) || data.parallelDecompressersCount === value) {
         return;
       }
       updateHarvestingMode({ parallelDecompressersCount: value });
     },
-    [data, isLoading, updateHarvestingMode, isUpdating]
+    [data, updateHarvestingMode, isProcessing]
   );
 
   const onChangeDecompresserThreadCount = React.useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const value = +e.target.value;
-      if (isLoading || isUpdating || !data || Number.isNaN(value) || data.decompresserThreadCount === value) {
+      if (isProcessing || !data || Number.isNaN(value) || data.decompresserThreadCount === value) {
         return;
       }
       updateHarvestingMode({ decompresserThreadCount: value });
     },
-    [data, isLoading, updateHarvestingMode, isUpdating]
+    [data, updateHarvestingMode, isProcessing]
   );
 
-  const onClickRestartHarvester = React.useCallback(() => {
-    if (isLoading || isUpdating) {
+  const onChangeRecursivePlotScan = React.useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      if (isProcessing || !data || data.recursivePlotScan === e.target.checked) {
+        return;
+      }
+      updateHarvestingMode({ recursivePlotScan: e.target.checked });
+    },
+    [data, updateHarvestingMode, isProcessing]
+  );
+
+  const onChangeRefreshParameterIntervalSeconds = React.useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const value = +e.target.value;
+      if (isProcessing || !data || Number.isNaN(value) || data.refreshParameterIntervalSeconds === value) {
+        return;
+      }
+      updateHarvestingMode({ refreshParameterIntervalSeconds: value });
+    },
+    [data, updateHarvestingMode, isProcessing]
+  );
+
+  const onClickRestartHarvester = React.useCallback(async () => {
+    if (isProcessing) {
       return;
     }
-    stopService({ service: ServiceName.HARVESTER, disableWait: true });
-  }, [stopService, isLoading, isUpdating]);
+    let error: unknown;
+    const onError = (e: unknown) => {
+      console.error(e);
+      error = e;
+      setMessage(<Trans>Failed to restart Harvester</Trans>);
+    };
+    await stopService({ service: ServiceName.HARVESTER, disableWait: true }).catch(onError);
+    if (error) {
+      return;
+    }
+    await startService({ service: ServiceName.HARVESTER, disableWait: true }).catch(onError);
+    if (error) {
+      return;
+    }
+    setMessage(<Trans>Successfully restarted Harvester</Trans>);
+  }, [stopService, isProcessing, startService]);
+
+  const onCloseMessage = React.useCallback(() => {
+    setMessage(false);
+  }, []);
 
   const harvestingModeSwitch = React.useMemo(() => {
     if (isLoading || !data) {
       return <Switch disabled />;
     }
-    return <Switch checked={data.useGpuHarvesting || false} onChange={onChangeHarvestingMode} readOnly={isUpdating} />;
-  }, [data, isLoading, onChangeHarvestingMode, isUpdating]);
+    return (
+      <Switch checked={data.useGpuHarvesting || false} onChange={onChangeHarvestingMode} readOnly={isProcessing} />
+    );
+  }, [data, isLoading, onChangeHarvestingMode, isProcessing]);
 
   const gpuIndexInput = React.useMemo(() => {
     if (isLoading || !data) {
       return <TextField size="small" type="number" disabled />;
     }
     return (
-      <TextField size="small" type="number" value={data.gpuIndex} onChange={onChangeGPUIndex} disabled={isUpdating} />
+      <TextField size="small" type="number" value={data.gpuIndex} onChange={onChangeGPUIndex} disabled={isProcessing} />
     );
-  }, [data, isLoading, onChangeGPUIndex, isUpdating]);
+  }, [data, isLoading, onChangeGPUIndex, isProcessing]);
 
   const enforceGPUIndexSwitch = React.useMemo(() => {
     if (isLoading || !data) {
       return <Switch disabled />;
     }
-    return <Switch checked={data.enforceGpuIndex || false} onChange={onChangeEnforceGPUIndex} readOnly={isUpdating} />;
-  }, [data, isLoading, onChangeEnforceGPUIndex, isUpdating]);
+    return (
+      <Switch checked={data.enforceGpuIndex || false} onChange={onChangeEnforceGPUIndex} readOnly={isProcessing} />
+    );
+  }, [data, isLoading, onChangeEnforceGPUIndex, isProcessing]);
 
   const disableCpuAffinitySwitch = React.useMemo(() => {
     if (isLoading || !data) {
       return <Switch disabled />;
     }
     return (
-      <Switch checked={data.disableCpuAffinity || false} onChange={onChangeDisableCpuAffinity} readOnly={isUpdating} />
+      <Switch
+        checked={data.disableCpuAffinity || false}
+        onChange={onChangeDisableCpuAffinity}
+        readOnly={isProcessing}
+      />
     );
-  }, [data, isLoading, onChangeDisableCpuAffinity, isUpdating]);
+  }, [data, isLoading, onChangeDisableCpuAffinity, isProcessing]);
 
   const parallelDecompressersCountInput = React.useMemo(() => {
     if (isLoading || !data) {
@@ -127,10 +181,10 @@ export default function SettingsHarvester() {
         type="number"
         value={data.parallelDecompressersCount}
         onChange={onChangeParallelDecompressorsCount}
-        disabled={isUpdating}
+        disabled={isProcessing}
       />
     );
-  }, [data, isLoading, onChangeParallelDecompressorsCount, isUpdating]);
+  }, [data, isLoading, onChangeParallelDecompressorsCount, isProcessing]);
 
   const decompresserThreadCountInput = React.useMemo(() => {
     if (isLoading || !data) {
@@ -142,10 +196,34 @@ export default function SettingsHarvester() {
         type="number"
         value={data.decompresserThreadCount}
         onChange={onChangeDecompresserThreadCount}
-        disabled={isUpdating}
+        disabled={isProcessing}
       />
     );
-  }, [data, isLoading, onChangeDecompresserThreadCount, isUpdating]);
+  }, [data, isLoading, onChangeDecompresserThreadCount, isProcessing]);
+
+  const recursivePlotScanSwitch = React.useMemo(() => {
+    if (isLoading || !data) {
+      return <Switch disabled />;
+    }
+    return (
+      <Switch checked={data.recursivePlotScan || false} onChange={onChangeRecursivePlotScan} readOnly={isProcessing} />
+    );
+  }, [data, isLoading, onChangeRecursivePlotScan, isProcessing]);
+
+  const refreshParameterIntervalSecondsInput = React.useMemo(() => {
+    if (isLoading || !data) {
+      return <TextField size="small" type="number" disabled />;
+    }
+    return (
+      <TextField
+        size="small"
+        type="number"
+        value={data.refreshParameterIntervalSeconds}
+        onChange={onChangeRefreshParameterIntervalSeconds}
+        disabled={isProcessing}
+      />
+    );
+  }, [data, isLoading, onChangeRefreshParameterIntervalSeconds, isProcessing]);
 
   return (
     <Grid container style={{ maxWidth: '624px' }} gap={3}>
@@ -156,7 +234,7 @@ export default function SettingsHarvester() {
           </SettingsSection>
           <SettingsText>
             <Trans>
-              Harvester manages plots and fetches proof of space corresponding to challenges sent by a farmer.
+              Harvester manages plots and fetches proofs of space corresponding to challenges sent by a farmer.
             </Trans>
           </SettingsText>
         </Flex>
@@ -176,6 +254,38 @@ export default function SettingsHarvester() {
         <Grid container>
           <Grid item style={{ width: '400px' }}>
             <SettingsTitle>
+              <Trans>Recursive Plot Scan</Trans>
+            </SettingsTitle>
+          </Grid>
+          <Grid item container xs justifyContent="flex-end" marginTop="-6px">
+            <FormControlLabel control={recursivePlotScanSwitch} />
+          </Grid>
+          <Grid item container style={{ width: '400px' }} gap={2}>
+            <SettingsText>
+              <Trans>Whether to scan plots directory recursively</Trans>
+            </SettingsText>
+          </Grid>
+        </Grid>
+
+        <Grid container>
+          <Grid item style={{ width: '400px' }}>
+            <SettingsTitle>
+              <Trans>Plots Refresh Interval (seconds)</Trans>
+            </SettingsTitle>
+          </Grid>
+          <Grid item container xs justifyContent="flex-end" marginTop="-6px">
+            <FormControlLabel control={refreshParameterIntervalSecondsInput} />
+          </Grid>
+          <Grid item container style={{ width: '400px' }} gap={2}>
+            <SettingsText>
+              <Trans>Interval seconds to refresh plots.</Trans>
+            </SettingsText>
+          </Grid>
+        </Grid>
+
+        <Grid container>
+          <Grid item style={{ width: '400px' }}>
+            <SettingsTitle>
               <Trans>Enable GPU Harvesting</Trans>
             </SettingsTitle>
           </Grid>
@@ -184,7 +294,7 @@ export default function SettingsHarvester() {
           </Grid>
           <Grid item container style={{ width: '400px' }} gap={2}>
             <SettingsText>
-              <Trans>Enable/Disable GPU harvesting.</Trans>
+              <Trans>Enable/Disable GPU harvesting</Trans>
             </SettingsText>
           </Grid>
         </Grid>
@@ -192,7 +302,7 @@ export default function SettingsHarvester() {
         <Grid container>
           <Grid item style={{ width: '400px' }}>
             <SettingsTitle>
-              <Trans>GPU device index</Trans>
+              <Trans>GPU Device Index</Trans>
             </SettingsTitle>
           </Grid>
           <Grid item container xs justifyContent="flex-end" marginTop="-6px">
@@ -205,10 +315,10 @@ export default function SettingsHarvester() {
           </Grid>
         </Grid>
 
-        <Grid container>
+        <Grid container style={{ display: 'none' }}>
           <Grid item style={{ width: '400px' }}>
             <SettingsTitle>
-              <Trans>Enforce GPU index</Trans>
+              <Trans>Enforce GPU Index</Trans>
             </SettingsTitle>
           </Grid>
           <Grid item container xs justifyContent="flex-end" marginTop="-6px">
@@ -216,16 +326,17 @@ export default function SettingsHarvester() {
           </Grid>
           <Grid item container style={{ width: '400px' }} gap={2}>
             <SettingsText>
+              <Trans>* Enabled - use device at specified index if available; else error</Trans>
+              <br />
               <Trans>
-                Whether to use the specified device only. If it's turned on and no GPU is available with the specified
-                index, it is an error. If it's turned off, it tries to use the device specified, or the first available,
-                if any. If no device is available it defaults to CPU harvesting.
+                * Disabled - use device at specified index if available; if not, attempt to use device at other indices;
+                if no GPUs available, use CPU
               </Trans>
             </SettingsText>
           </Grid>
         </Grid>
 
-        <Grid container>
+        <Grid container style={{ display: 'none' }}>
           <Grid item style={{ width: '400px' }}>
             <SettingsTitle>
               <Trans>Disable CPU Affinity</Trans>
@@ -247,7 +358,7 @@ export default function SettingsHarvester() {
         <Grid container>
           <Grid item style={{ width: '400px' }}>
             <SettingsTitle>
-              <Trans>Parallel decompressors count</Trans>
+              <Trans>Parallel Decompressors Count</Trans>
             </SettingsTitle>
           </Grid>
           <Grid item container xs justifyContent="flex-end" marginTop="-6px">
@@ -263,7 +374,7 @@ export default function SettingsHarvester() {
         <Grid container>
           <Grid item style={{ width: '400px' }}>
             <SettingsTitle>
-              <Trans>Decompressor thread count</Trans>
+              <Trans>Decompressor Thread Count</Trans>
             </SettingsTitle>
           </Grid>
           <Grid item container xs justifyContent="flex-end" marginTop="-6px">
@@ -283,12 +394,19 @@ export default function SettingsHarvester() {
               variant="contained"
               color="danger"
               data-testid="restartHarvester"
-              loading={isRestarting}
+              loading={isProcessing}
               loadingPosition="start"
               startIcon={<WarningIcon />}
             >
               <Trans>Restart local harvester</Trans>
             </ButtonLoading>
+            <Snackbar
+              open={Boolean(message)}
+              onClose={onCloseMessage}
+              autoHideDuration={3000}
+              message={message}
+              anchorOrigin={messageAnchorOrigin}
+            />
           </Grid>
           <Grid item container style={{ width: '400px', marginTop: 8 }} gap={2}>
             <SettingsText>

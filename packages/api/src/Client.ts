@@ -207,6 +207,11 @@ export default class Client extends EventEmitter {
   async startService(args: { service: ServiceNameValue; disableWait?: boolean }) {
     const { service, disableWait } = args;
 
+    if (this.connectServicePromise.has(service)) {
+      await this.connectServicePromise.get(service);
+      return;
+    }
+
     const startServiceAction = async () => {
       if (this.stopServicePromise.has(service)) {
         await this.stopServicePromise.get(service);

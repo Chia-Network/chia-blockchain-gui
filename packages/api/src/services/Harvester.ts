@@ -59,6 +59,8 @@ export default class Harvester extends Service {
       disableCpuAffinity: boolean | null;
       parallelDecompressersCount: number | null;
       decompresserThreadCount: number | null;
+      recursivePlotScan: boolean | null;
+      refreshParameterIntervalSeconds: number | null;
     }>('get_harvesting_mode');
   }
 
@@ -69,6 +71,8 @@ export default class Harvester extends Service {
     disableCpuAffinity?: boolean;
     parallelDecompressersCount?: number;
     decompresserThreadCount?: number;
+    recursivePlotScan?: boolean;
+    refreshParameterIntervalSeconds?: number;
   }) {
     return this.command<void>('update_harvesting_mode', args);
   }
