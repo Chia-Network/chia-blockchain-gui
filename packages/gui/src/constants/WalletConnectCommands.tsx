@@ -287,7 +287,7 @@ const walletConnectCommands: WalletConnectCommand[] = [
     service: ServiceName.WALLET,
     params: [
       {
-        name: WalletConnectCommandParamName.WALLET_IDS_AND_AMOUNTS,
+        name: WalletConnectCommandParamName.OFFER,
         label: <Trans>Wallet Ids and Amounts</Trans>,
         type: 'object',
         displayComponent: (value, params, values, onChange) => (
