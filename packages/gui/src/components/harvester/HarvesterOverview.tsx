@@ -21,7 +21,10 @@ export default function HarvesterOverview() {
     let size = 0;
     for (let i = 0; i < harvesters.length; i++) {
       const h = harvesters[i];
-      size += h.totalPlotSize;
+      const totalPlotSize = +h.totalPlotSize;
+      if (!Number.isNaN(totalPlotSize)) {
+        size += totalPlotSize;
+      }
     }
     return size;
   }, [harvesters]);
@@ -35,7 +38,10 @@ export default function HarvesterOverview() {
       const h = harvesters[i];
       for (let k = 0; k < h.plots.length; k++) {
         const p = h.plots[k];
-        size += expectedPlotSize(p.size) * UI_ACTUAL_SPACE_CONSTANT_FACTOR;
+        const kSize = +p.size;
+        if (!Number.isNaN(kSize)) {
+          size += expectedPlotSize(kSize) * UI_ACTUAL_SPACE_CONSTANT_FACTOR;
+        }
       }
     }
     return size;
@@ -91,8 +97,8 @@ export default function HarvesterOverview() {
     return {
       tooltip: (
         <Trans>
-          The average number of plots which passed filter over last 64 signage points. It is expected to be{' '}
-          {expectedAvgPassedFilter}
+          The average number of plots which passed filter over the last 64 signage points. It is expected to be{' '}
+          {expectedAvgPassedFilter} for total {sumTotalPlots} plots
         </Trans>
       ),
       value: avgPassedFilter,
