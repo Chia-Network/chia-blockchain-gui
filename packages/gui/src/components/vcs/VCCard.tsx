@@ -1,13 +1,15 @@
-import { useGetTimestampForHeightQuery, useRevokeVCMutation } from '@chia-network/api-react';
-import { Truncate, Button, useOpenDialog, ConfirmDialog, AlertDialog, Flex } from '@chia-network/core';
+import { useGetTimestampForHeightQuery, useRevokeVCMutation, usePrefs } from '@chia-network/api-react';
+import { Truncate, Button, useOpenDialog, ConfirmDialog, AlertDialog, Flex, More, MenuItem } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
-import { Box, Card, Typography, Table, TableRow, TableCell } from '@mui/material';
+import { Delete as DeleteIcon, Edit as EditIcon } from '@mui/icons-material';
+import { Box, Card, Typography, Table, TableRow, TableCell, ListItemIcon, IconButton } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import moment from 'moment';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { didToDIDId } from '../../util/dids';
+import VCEditTitle from './VCEditTitle';
 
 type RenderPropertyProps = {
   children?: JSX.Element | string | null;
@@ -33,6 +35,8 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
   const [revokeVC] = useRevokeVCMutation();
   const theme: any = useTheme();
   const openDialog = useOpenDialog();
+  const [vcTitlesObject] = usePrefs<any>('verifiable-credentials-titles', {});
+  const [isEditingTitle, setIsEditingTitle] = React.useState(false);
 
   function renderProofs() {
     if (isDetail && proofs && Object.keys(proofs).length > 0) {
@@ -50,6 +54,17 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
   function renderProperties() {
     return (
       <>
+        {vcRecord.vc.proofProvider && (
+          <RenderProperty label={<Trans>Issuer DID</Trans>}>
+            {isDetail ? (
+              didToDIDId(vcRecord.vc.proofProvider)
+            ) : (
+              <Truncate tooltip copyToClipboard>
+                {didToDIDId(vcRecord.vc.proofProvider)}
+              </Truncate>
+            )}
+          </RenderProperty>
+        )}
         <RenderProperty
           label={
             <Typography sx={{ fontSize: '12px' }}>
@@ -57,18 +72,17 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
             </Typography>
           }
         >
-          <Truncate tooltip copyToClipboard>
-            {vcRecord.vc.launcherId}
-          </Truncate>
+          {isDetail ? (
+            vcRecord.vc.launcherId
+          ) : (
+            <Truncate tooltip copyToClipboard>
+              {vcRecord.vc.launcherId}
+            </Truncate>
+          )}
         </RenderProperty>
         <RenderProperty label={<Trans>Issued</Trans>}>
           {!isLoadingMintHeight && mintedTimestamp ? moment(mintedTimestamp.timestamp * 1000).format('LLL') : null}
         </RenderProperty>
-        {vcRecord.vc.proofProvider && (
-          <RenderProperty label={<Trans>Issuer DID</Trans>}>
-            <Truncate>{didToDIDId(vcRecord.vc.proofProvider)}</Truncate>
-          </RenderProperty>
-        )}
         <RenderProperty label={<Trans>Proofs</Trans>}>
           {vcRecord.vc.proofHash ? renderProofs() : <Trans>No</Trans>}
         </RenderProperty>
@@ -120,12 +134,50 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
     }
   }
 
-  function renderRevokeVCButton() {
+  function renderActionsDropdown() {
     if (!isDetail) return null;
     return (
-      <Button variant="outlined" sx={{ width: '100%' }} onClick={() => openRevokeVCDialog()}>
-        <Trans>Revoke VC</Trans>
-      </Button>
+      <Flex sx={{ marginBottom: '10px', padding: '8px' }}>
+        <More>
+          <MenuItem onClick={openRevokeVCDialog} close>
+            <ListItemIcon>
+              <DeleteIcon />
+            </ListItemIcon>
+            <Typography variant="inherit" noWrap>
+              <Trans>Revoke Verifiable Credential</Trans>
+            </Typography>
+          </MenuItem>
+        </More>
+      </Flex>
+    );
+  }
+
+  function renderTitle() {
+    if (isEditingTitle) {
+      return (
+        <Box sx={{ marginBottom: '10px' }}>
+          <VCEditTitle
+            vcId={vcRecord.vc.launcherId}
+            onClose={() => {
+              setIsEditingTitle(false);
+            }}
+          />
+        </Box>
+      );
+    }
+    return (
+      <Flex flexDirection="row" sx={{ padding: '4px 12px 19px 14px' }}>
+        <Flex sx={{ margin: '1px 5px 0 0' }}>
+          <Typography variant="h6">
+            {vcTitlesObject[vcRecord.vc.launcherId] || <Trans>Verifiable Credential</Trans>}
+          </Typography>
+        </Flex>
+        {isDetail && (
+          <IconButton onClick={() => setIsEditingTitle(true)} size="small" sx={{ padding: '4px' }}>
+            <EditIcon color="disabled" />
+          </IconButton>
+        )}
+      </Flex>
     );
   }
 
@@ -145,6 +197,10 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
         navigate(`/dashboard/vc/${vcRecord.vc.launcherId}`);
       }}
     >
+      <Flex flexDirection="row" justifyContent="space-between">
+        {renderTitle()}
+        {renderActionsDropdown()}
+      </Flex>
       <Box
         sx={{
           background: theme.palette.colors.default.background,
@@ -157,7 +213,6 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
       >
         {renderProperties()}
         {renderViewDetailButton()}
-        {renderRevokeVCButton()}
       </Box>
     </Card>
   );
