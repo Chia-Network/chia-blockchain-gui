@@ -22,10 +22,11 @@ type Props = {
   precision?: number;
   removeUnit?: boolean;
   fixedDecimals?: boolean;
+  effectiveSize?: boolean;
 };
 
 export default function FormatBytes(props: Props) {
-  const { value, precision, unit, removeUnit, unitSeparator = ' ', fixedDecimals } = props;
+  const { value, precision, unit, removeUnit, unitSeparator = ' ', fixedDecimals, effectiveSize } = props;
 
   if (value === null || value === undefined) {
     return null;
@@ -68,6 +69,10 @@ export default function FormatBytes(props: Props) {
 
   if (removeUnit) {
     return humanValue;
+  }
+
+  if (effectiveSize && humanUnit) {
+    humanUnit += 'e';
   }
 
   return (

@@ -116,7 +116,7 @@ function HarvesterLatencyGraph(props: HarvesterLatencyGraphProps) {
                 </tr>
                 <tr>
                   <td style={{ width: 1, whiteSpace: 'nowrap' }}>
-                    <FormatBytes value={effectiveSpace} precision={3} />
+                    <FormatBytes value={effectiveSpace} precision={3} effectiveSize />
                   </td>
                   <td>
                     <Box sx={{ paddingLeft: 2 }}>

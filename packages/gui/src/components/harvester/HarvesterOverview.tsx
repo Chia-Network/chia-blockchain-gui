@@ -68,6 +68,7 @@ export default function HarvesterOverview() {
     }
 
     const eligiblePlotsPerSp: Record<string, { totalPlots: number; passedFilter: number }> = {};
+    let latestTotalPlots = 0;
     for (let i = 0; i < newFarmingInfo.length; i++) {
       const nfi = newFarmingInfo[i];
       eligiblePlotsPerSp[nfi.signagePoint] = eligiblePlotsPerSp[nfi.signagePoint] || {
@@ -76,29 +77,30 @@ export default function HarvesterOverview() {
       };
       eligiblePlotsPerSp[nfi.signagePoint].totalPlots += nfi.totalPlots;
       eligiblePlotsPerSp[nfi.signagePoint].passedFilter += nfi.passedFilter;
+      if (i === 0) {
+        latestTotalPlots = nfi.totalPlots;
+      }
       if (Object.keys(eligiblePlotsPerSp).length > 64) {
         // Only cares last 64 sps
         break;
       }
     }
 
-    let sumTotalPlots = 0;
     let sumPassedFilter = 0;
     const sps = Object.keys(eligiblePlotsPerSp);
     for (let i = 0; i < sps.length; i++) {
       const sp = sps[i];
-      const { totalPlots, passedFilter } = eligiblePlotsPerSp[sp];
-      sumTotalPlots += totalPlots;
+      const { passedFilter } = eligiblePlotsPerSp[sp];
       sumPassedFilter += passedFilter;
     }
 
-    const expectedAvgPassedFilter = Math.round((sumTotalPlots / PLOT_FILTER / sps.length) * 1000) / 1000;
+    const expectedAvgPassedFilter = Math.round((latestTotalPlots / PLOT_FILTER) * 1000) / 1000;
     const avgPassedFilter = Math.round((sumPassedFilter / sps.length) * 1000) / 1000;
     return {
       tooltip: (
         <Trans>
           The average number of plots which passed filter over the last 64 signage points. It is expected to be{' '}
-          {expectedAvgPassedFilter} for total {sumTotalPlots} plots
+          {expectedAvgPassedFilter} for total {latestTotalPlots} plots
         </Trans>
       ),
       value: avgPassedFilter,
@@ -161,7 +163,7 @@ export default function HarvesterOverview() {
               loading={isLoadingHarvesters}
               valueColor="primary"
               title={<Trans>Total farm size effective</Trans>}
-              value={<FormatBytes value={totalFarmSizeEffective} precision={3} />}
+              value={<FormatBytes value={totalFarmSizeEffective} precision={3} effectiveSize />}
             />
           </Grid>
           <Grid xs={12} sm={6} md={4} item>
