@@ -1,29 +1,29 @@
 import { useState, useEffect } from 'react';
 
 export default function useAddressBook(): [
-  IAddressContact[] | undefined, // contacts
+  AddressContact[] | undefined, // contacts
   (
     name: string,
-    addresses: IContactAddress[],
-    dids: IContactDID[],
+    addresses: ContactAddress[],
+    dids: ContactDID[],
     notes: string,
     nftid: string,
-    domainnames: IContactDomainName[]
+    domainnames: ContactDomainName[]
   ) => void, // addContact
   (contactid: number) => void, // removeContact
-  (contactid: number) => IAddressContact | undefined, // getContactContactId
-  (contact: IAddressContact, contactid: number) => void,
-  (address: string) => IAddressContact | undefined // getContactByAddress
+  (contactid: number) => AddressContact | undefined, // getContactContactId
+  (contact: AddressContact, contactid: number) => void,
+  (address: string) => AddressContact | undefined // getContactByAddress
 ] {
   // editContact
-  const [addressBook, setAddressBook] = useState<IAddressContact[]>([]);
+  const [addressBook, setAddressBook] = useState<AddressContact[]>([]);
   const LOCAL_STORAGE_KEY = 'addressbook';
   const contactBookJSON = JSON.stringify(addressBook);
   useEffect(() => {
     if (localStorage.getItem(LOCAL_STORAGE_KEY) === undefined || localStorage.getItem(LOCAL_STORAGE_KEY) === null) {
       setAddressBook([]);
     } else {
-      const addresses: IAddressContact[] = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
+      const addresses: AddressContact[] = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
       setAddressBook([...addresses]);
     }
   }, []);
@@ -39,14 +39,14 @@ export default function useAddressBook(): [
 
   function addContact(
     name: string,
-    addresses: IContactAddress[],
-    dids: IContactDID[],
+    addresses: ContactAddress[],
+    dids: ContactDID[],
     notes: string,
     nftid: string,
-    domainnames: IContactDomainName[]
+    domainnames: ContactDomainName[]
   ) {
     const contactid = getNewContactId();
-    const newAddress: IAddressContact = {
+    const newAddress: AddressContact = {
       contactid,
       name,
       addresses: [...addresses],
@@ -70,7 +70,7 @@ export default function useAddressBook(): [
     return found;
   }
 
-  function editContact(contact: IAddressContact, contactid: number) {
+  function editContact(contact: AddressContact, contactid: number) {
     const found = addressBook.find((c) => c.contactid === contactid);
     return found;
   }
@@ -85,25 +85,25 @@ export default function useAddressBook(): [
   return [addressBook, addContact, removeContact, getContactByContactId, editContact, getContactByAddress];
 }
 
-interface IAddressContact {
+interface AddressContact {
   contactid: number;
   name: string;
-  addresses: IContactAddress[];
-  dids: IContactDID[];
+  addresses: ContactAddress[];
+  dids: ContactDID[];
   notes: string;
   nftid: string;
-  domainnames: IContactDomainName[];
+  domainnames: ContactDomainName[];
 }
 
-interface IContactAddress {
+interface ContactAddress {
   name: string;
   address: string;
 }
 
-interface IContactDID {
+interface ContactDID {
   did: string;
 }
 
-interface IContactDomainName {
+interface ContactDomainName {
   domainname: string;
 }

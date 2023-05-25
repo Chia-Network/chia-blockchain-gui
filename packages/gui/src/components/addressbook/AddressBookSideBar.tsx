@@ -1,12 +1,11 @@
-import type { IAddressContact } from '@chia-network/core';
-import { ButtonLoading, Flex, LayoutDashboardSub } from '@chia-network/core';
+import type { AddressContact } from '@chia-network/core';
+import { AddressBookContext, ButtonLoading, Flex, LayoutDashboardSub } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { TextField, Typography } from '@mui/material';
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import AddressBookMenuItem from './AddressBookMenuItem';
-import { AddressBookContext } from './AddressBookProvider';
 
 export default function AddressBookSideBar() {
   const [filter, setFilter] = useState<string>('');
@@ -19,7 +18,7 @@ export default function AddressBookSideBar() {
   // - domain name
   // - contact name
   function filterArray(arrayList, search: string) {
-    return arrayList.filter((item: IAddressContact) => {
+    return arrayList.filter((item: AddressContact) => {
       const { dids, domainnames, addresses, name } = item;
 
       if (search === '') return true;
@@ -66,12 +65,12 @@ export default function AddressBookSideBar() {
   function listOfContacts() {
     if (addressBook !== undefined) {
       if (filter === '') {
-        return addressBook.map((contact: IAddressContact) => <AddressBookMenuItem contact={contact} />);
+        return addressBook.map((contact: AddressContact) => <AddressBookMenuItem contact={contact} />);
       }
 
       const filtered = filterArray(addressBook, filter);
 
-      return filtered.map((contact: IAddressContact) => <AddressBookMenuItem contact={contact} />);
+      return filtered.map((contact: AddressContact) => <AddressBookMenuItem contact={contact} />);
     }
     return <div>No Contacts</div>;
   }

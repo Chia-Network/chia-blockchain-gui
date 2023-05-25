@@ -1,5 +1,5 @@
 // import { useGetNFTInfoQuery } from '@chia-network/api-react';
-import { CopyToClipboard, Flex } from '@chia-network/core';
+import { AddressBookContext, CopyToClipboard, Flex } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { EditOutlined } from '@mui/icons-material';
 import { IconButton, InputAdornment, TextField, Typography } from '@mui/material';
@@ -8,7 +8,6 @@ import { useParams, useNavigate } from 'react-router-dom';
 
 // import { launcherIdFromNFTId } from '../../util/nfts';
 // import NFTPreview from '../nfts/NFTPreview';
-import { AddressBookContext } from './AddressBookProvider';
 
 export default function ContactSummary() {
   const { contactid } = useParams();
@@ -34,6 +33,89 @@ export default function ContactSummary() {
   }
   */
 
+  function showAddresses() {
+    if (!contact.addresses || contact.addresses.length === 0) {
+      return null;
+    }
+    return (
+      <Flex flexDirection="column" gap={3} flexGrow={1}>
+        <Typography variant="h6">Addresses</Typography>
+        <Flex flexDirection="column" gap={3} flexGrow={1}>
+          {contact.addresses.map((addressInfo) => (
+            <TextField
+              label={addressInfo.name}
+              value={addressInfo.address}
+              fullWidth
+              InputProps={{
+                readOnly: true,
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <CopyToClipboard value={addressInfo.address} />
+                  </InputAdornment>
+                ),
+              }}
+            />
+          ))}
+        </Flex>
+      </Flex>
+    );
+  }
+
+  function showDIDs() {
+    if (!contact.dids || contact.dids.length === 0) {
+      return null;
+    }
+    return (
+      <Flex flexDirection="column" gap={3} flexGrow={1}>
+        <Typography variant="h6">Profiles</Typography>
+        <Flex flexDirection="column" gap={3} flexGrow={1}>
+          {contact.dids.map((didInfo) => (
+            <TextField
+              label={didInfo.name}
+              value={didInfo.did}
+              fullWidth
+              InputProps={{
+                readOnly: true,
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <CopyToClipboard value={didInfo.did} />
+                  </InputAdornment>
+                ),
+              }}
+            />
+          ))}
+        </Flex>
+      </Flex>
+    );
+  }
+
+  function showDomains() {
+    if (!contact.domainnames || contact.domainnames.length === 0) {
+      return null;
+    }
+    return (
+      <Flex flexDirection="column" gap={3} flexGrow={1}>
+        <Typography variant="h6">Domain Names</Typography>
+        <Flex flexDirection="column" gap={3} flexGrow={1}>
+          {contact.domainnames.map((domainInfo) => (
+            <TextField
+              label={domainInfo.name}
+              value={domainInfo.domainname}
+              fullWidth
+              InputProps={{
+                readOnly: true,
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <CopyToClipboard value={domainInfo.domainname} />
+                  </InputAdornment>
+                ),
+              }}
+            />
+          ))}
+        </Flex>
+      </Flex>
+    );
+  }
   return (
     <div>
       <Flex
@@ -77,66 +159,9 @@ export default function ContactSummary() {
         </Flex>
         */}
         <Flex flexDirection="column" gap={6} maxWidth="600px" style={{ width: '100%' }}>
-          <Flex flexDirection="column" gap={3} flexGrow={1}>
-            <Typography variant="h6">Addresses</Typography>
-            <Flex flexDirection="column" gap={3} flexGrow={1}>
-              {contact.addresses.map((addressInfo) => (
-                <TextField
-                  label={addressInfo.name}
-                  value={addressInfo.address}
-                  fullWidth
-                  InputProps={{
-                    readOnly: true,
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <CopyToClipboard value={addressInfo.address} />
-                      </InputAdornment>
-                    ),
-                  }}
-                />
-              ))}
-            </Flex>
-          </Flex>
-          <Flex flexDirection="column" gap={3} flexGrow={1}>
-            <Typography variant="h6">DIDs</Typography>
-            <Flex flexDirection="column" gap={3} flexGrow={1}>
-              {contact.dids.map((didInfo) => (
-                <TextField
-                  label={didInfo.name}
-                  value={didInfo.did}
-                  fullWidth
-                  InputProps={{
-                    readOnly: true,
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <CopyToClipboard value={didInfo.did} />
-                      </InputAdornment>
-                    ),
-                  }}
-                />
-              ))}
-            </Flex>
-          </Flex>
-          <Flex flexDirection="column" gap={3} flexGrow={1}>
-            <Typography variant="h6">Domain Names</Typography>
-            <Flex flexDirection="column" gap={3} flexGrow={1}>
-              {contact.domainnames.map((domainInfo) => (
-                <TextField
-                  label={domainInfo.name}
-                  value={domainInfo.domainname}
-                  fullWidth
-                  InputProps={{
-                    readOnly: true,
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <CopyToClipboard value={domainInfo.domainname} />
-                      </InputAdornment>
-                    ),
-                  }}
-                />
-              ))}
-            </Flex>
-          </Flex>
+          {showAddresses()}
+          {showDIDs()}
+          {showDomains()}
         </Flex>
       </Flex>
     </div>

@@ -1,12 +1,10 @@
-import { Form, TextField, TooltipIcon, Flex } from '@chia-network/core';
+import { AddressBookContext, Form, TextField, TooltipIcon, Flex } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Add, Remove, SaveOutlined } from '@mui/icons-material';
 import { IconButton, Typography, Box } from '@mui/material';
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-
-import { AddressBookContext } from './AddressBookProvider';
 
 export default function ContactAdd() {
   const [, addContact] = useContext(AddressBookContext);

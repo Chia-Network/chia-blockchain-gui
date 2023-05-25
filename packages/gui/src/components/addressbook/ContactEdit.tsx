@@ -1,5 +1,5 @@
 // import { useGetNFTInfoQuery } from '@chia-network/api-react';
-import { Flex, Form } from '@chia-network/core';
+import { AddressBookContext, Flex, Form } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Add, Remove, SaveOutlined, DeleteOutlined } from '@mui/icons-material';
 import { Box, TextField, IconButton, Typography } from '@mui/material';
@@ -9,7 +9,6 @@ import { useParams, useNavigate } from 'react-router-dom';
 
 // import { launcherIdFromNFTId } from '../../util/nfts';
 // import NFTPreview from '../nfts/NFTPreview';
-import { AddressBookContext } from './AddressBookProvider';
 
 export default function ContactEdit() {
   const { contactid } = useParams();

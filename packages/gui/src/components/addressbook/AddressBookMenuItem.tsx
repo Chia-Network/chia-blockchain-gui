@@ -1,6 +1,5 @@
 // import { useGetNFTInfoQuery } from '@chia-network/api-react';
-import { IconButton, CardListItem } from '@chia-network/core';
-import { MoreVert } from '@mui/icons-material';
+import { CardListItem } from '@chia-network/core';
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
@@ -19,11 +18,16 @@ export default function AddressBookMenuItem({ contact }) {
   // const launcherId = launcherIdFromNFTId(contact.nftid ?? '');
   // const { data: nft } = useGetNFTInfoQuery({ coinId: launcherId ?? '' });
 
+  /*
   function getImage() {
     // if (nft !== undefined) return <NFTPreview nft={nft} height={50} width={50} disableThumbnail />;
 
     return <img height={50} width={50} style={{ backgroundColor: 'grey', color: 'grey' }} />;
   }
+  */
+
+  // <div style={{ paddingLeft: '10px', paddingRight: '10px', flex: 'flex-start' }}>{getImage()}</div>
+  // ^ goes before <div style={{ flexGrow: 4, flexBasis: '100', paddingRight: '20px', overflow: 'hidden' }}>
 
   return (
     <CardListItem
@@ -40,20 +44,12 @@ export default function AddressBookMenuItem({ contact }) {
           paddingBottom: '10px',
         }}
       >
-        <div style={{ paddingLeft: '10px', paddingRight: '10px', flex: 'flex-start' }}>{getImage()}</div>
-        <div style={{ flexGrow: 4, flexBasis: '100', paddingRight: '20px', overflow: 'hidden' }}>
+        <div style={{ flexGrow: 4, flexBasis: '100', paddingLeft: '10px', paddingTop: '16px', overflow: 'hidden' }}>
           <div>
             <span style={{ fontWeight: 'bold', fontSize: '1.2rem' }}>
               {contact.name !== '' ? contact.name : 'Unnamed Contact'}
             </span>
           </div>
-        </div>
-        <div style={{ justifyContent: 'flex-end' }}>
-          <span style={{ top: '50%', verticalAlign: 'middle' }}>
-            <IconButton>
-              <MoreVert />
-            </IconButton>
-          </span>
         </div>
       </div>
     </CardListItem>

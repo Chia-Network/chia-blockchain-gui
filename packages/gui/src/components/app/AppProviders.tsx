@@ -7,6 +7,7 @@ import {
   ModalDialogs,
   LocaleProvider,
   LayoutLoading,
+  AddressBookProvider,
   dark,
   light,
   ErrorBoundary,
@@ -21,7 +22,6 @@ import { Outlet } from 'react-router-dom';
 import WebSocket from 'ws';
 
 import { i18n, defaultLocale, locales } from '../../config/locales';
-import AddressBookProvider from '../addressbook/AddressBookProvider';
 import LRUsProvider from '../lrus/LRUsProvider';
 import NFTProvider from '../nfts/provider/NFTProvider';
 import NotificationsProvider from '../notification/NotificationsProvider';
