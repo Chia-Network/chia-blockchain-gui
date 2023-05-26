@@ -65,7 +65,10 @@ function HarvesterLatencyGraph(props: HarvesterLatencyGraphProps) {
 
   const space = React.useMemo(() => {
     const effectiveSpace = harvester
-      ? harvester.plots.reduce((acc, val) => acc + UI_ACTUAL_SPACE_CONSTANT_FACTOR * expectedPlotSize(val.size), 0)
+      ? harvester.plots.reduce(
+          (acc: number, val: { size: number }) => acc + UI_ACTUAL_SPACE_CONSTANT_FACTOR * expectedPlotSize(val.size),
+          0
+        )
       : undefined;
     const totalSpaceOccupation =
       harvester && totalFarmSizeRaw ? (harvester.totalPlotSize / totalFarmSizeRaw) * 100 : undefined;
@@ -86,6 +89,25 @@ function HarvesterLatencyGraph(props: HarvesterLatencyGraphProps) {
                     <Typography variant="body2" color="textSecondary">
                       <Trans>Total Space</Trans>
                     </Typography>
+                  </td>
+                  <td rowSpan={5} style={{ width: 1, whiteSpace: 'nowrap' }}>
+                    <Box sx={{ paddingLeft: 2 }}>
+                      <Paper variant="outlined">
+                        <Box sx={{ p: 1.5 }}>
+                          <Typography variant="body2" color="textSecondary">
+                            <Trans>Earned</Trans>
+                          </Typography>
+                          <Typography variant="h6" color="textSecondary">
+                            {harvester && (
+                              <FormatBytes value={effectiveSpace - harvester.totalPlotSize} precision={0} />
+                            )}
+                          </Typography>
+                          <Typography variant="body2" color="textSecondary">
+                            <Trans>Bonus space</Trans>
+                          </Typography>
+                        </Box>
+                      </Paper>
+                    </Box>
                   </td>
                 </tr>
                 <tr>

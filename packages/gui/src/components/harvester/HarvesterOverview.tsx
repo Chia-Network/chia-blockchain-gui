@@ -126,8 +126,10 @@ export default function HarvesterOverview() {
     const elements: React.ReactElement[] = [];
     for (let i = 0; i < harvesters.length; i++) {
       const h = harvesters[i];
+      // When there're only 1 harvester, occupy the entire width of the page.
+      const md = harvesters.length === 1 ? 12 : 6;
       elements.push(
-        <Grid key={h.connection.nodeId} xs={12} sm={12} md={6} item>
+        <Grid key={h.connection.nodeId} xs={12} sm={12} md={md} item>
           <HarvesterDetail
             harvester={h}
             latencyData={latencyData}

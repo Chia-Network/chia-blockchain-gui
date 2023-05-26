@@ -63,6 +63,7 @@ function LatencyBarChart(props: BarChartProps) {
     () => ({
       responsive: true,
       animation: false,
+      maintainAspectRatio: false,
       scales: {
         x: {
           display: false,
@@ -150,5 +151,5 @@ function LatencyBarChart(props: BarChartProps) {
     };
   }, [latency, period]);
 
-  return <Bar data={data} options={options} />;
+  return <Bar data={data} options={options} height={240} />;
 }

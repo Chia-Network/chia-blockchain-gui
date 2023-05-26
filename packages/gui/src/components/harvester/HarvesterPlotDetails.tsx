@@ -48,7 +48,7 @@ function HarvesterPlotDetails(props: HarvesterPlotDetailsProps) {
     const totalPlots = plots.length;
     const plotsByCompression: Record<number, number> = {};
     const plotsBySize: Record<number, number> = {};
-    const plotsByCompressionAndSize: Record<number, Record<number, number>> = {};
+    const plotsBySizeAndCompression: Record<number, Record<number, number>> = {};
     for (let i = 0; i < plots.length; i++) {
       const p = plots[i];
       const cl = p.compressionLevel || 0;
@@ -56,23 +56,53 @@ function HarvesterPlotDetails(props: HarvesterPlotDetailsProps) {
 
       plotsByCompression[cl] = (plotsByCompression[cl] || 0) + 1;
       plotsBySize[s] = (plotsBySize[s] || 0) + 1;
-      plotsByCompressionAndSize[cl] = plotsByCompressionAndSize[cl] || {};
-      plotsByCompressionAndSize[cl][s] = (plotsByCompressionAndSize[cl][s] || 0) + 1;
+      plotsBySizeAndCompression[s] = plotsBySizeAndCompression[s] || {};
+      plotsBySizeAndCompression[s][cl] = (plotsBySizeAndCompression[s][cl] || 0) + 1;
     }
 
-    const compressionLevels = Object.keys(plotsByCompression).sort((a, b) => +a - +b);
-    const compressionRecords: React.ReactElement[] = [];
-    const compressionData: DoughnutChartData = { data: [], colors: [] };
-    const compressionAndSizeData: DoughnutChartData = { data: [], colors: [] };
-    for (let i = 0; i < compressionLevels.length; i++) {
-      const cl = +compressionLevels[i];
-      const count = plotsByCompression[cl];
+    const kSizes = Object.keys(plotsBySize).sort((a, b) => +a - +b);
+    const breakDown: React.ReactElement[] = [];
+    const kSizeData: DoughnutChartData = { data: [], colors: [], labels: [] };
+    const kSizeAndCompressionData: DoughnutChartData = { data: [], colors: [], labels: [] };
+    for (let i = 0; i < kSizes.length; i++) {
+      const kSize = +kSizes[i];
+      const count = plotsBySize[kSize];
       const percentage = (count / totalPlots) * 100;
-      const bgColor = ColorCodesForCompressions[cl] || ColorCodesForCompressions[9];
-      compressionData.data.push(percentage);
-      compressionData.colors.push(bgColor);
-      compressionRecords.push(
-        <Box key={i} sx={{ marginTop: 1 }}>
+      const bgColor = ColorCodesForKSizes[kSize] || ColorCodesForKSizes[35];
+      kSizeData.labels.push(`K${kSize}`);
+      kSizeData.data.push(count);
+      kSizeData.colors.push(bgColor);
+
+      const kSizeAndCompressionBreakDown: React.ReactElement[] = [];
+      const compressions = plotsBySizeAndCompression[kSize] ? Object.keys(plotsBySizeAndCompression[kSize]) : [];
+      for (let k = 0; k < compressions.length; k++) {
+        const cl = +compressions[k];
+        const countCompression = plotsBySizeAndCompression[kSize][cl];
+        const percentageCompression = Math.round((countCompression / count) * 100);
+        const bgColorSize = ColorCodesForCompressions[cl] || ColorCodesForCompressions[9];
+        kSizeAndCompressionData.labels.push(`C${cl}`);
+        kSizeAndCompressionData.data.push(countCompression);
+        kSizeAndCompressionData.colors.push(bgColorSize);
+
+        kSizeAndCompressionBreakDown.push(
+          <Typography variant="body2" key={`${kSize}-${cl}`} sx={{ whiteSpace: 'nowrap' }}>
+            <Box
+              sx={{
+                backgroundColor: ColorCodesForCompressions[cl],
+                width: '10px',
+                height: '10px',
+                display: 'inline-block',
+                marginRight: 1,
+                borderRadius: '3px',
+              }}
+            />
+            C{cl} {countCompression} {percentageCompression}%
+          </Typography>
+        );
+      }
+
+      breakDown.push(
+        <Box key={kSize} sx={{ marginTop: 1 }}>
           <Typography variant="body2">
             <Box
               sx={{
@@ -84,65 +114,41 @@ function HarvesterPlotDetails(props: HarvesterPlotDetailsProps) {
                 borderRadius: '3px',
               }}
             />
-            C{cl} {count} {Math.round(percentage)}%
+            K{kSize} {count} {Math.round(percentage)}%
           </Typography>
-        </Box>
-      );
-
-      const sizes = plotsByCompressionAndSize[cl] ? Object.keys(plotsByCompressionAndSize[cl]) : [];
-      for (let k = 0; k < sizes.length; k++) {
-        const size = +sizes[k];
-        const countSize = plotsByCompressionAndSize[cl][size];
-        const percentageSize = percentage * (countSize / count);
-        const bgColorSize = ColorCodesForKSizes[size] || ColorCodesForKSizes[35];
-        compressionAndSizeData.data.push(percentageSize);
-        compressionAndSizeData.colors.push(bgColorSize);
-      }
-    }
-
-    const sizes = Object.keys(plotsBySize).sort((a, b) => +a - +b);
-    const sizeRecords: React.ReactElement[] = [];
-    const sizeData: DoughnutChartData = { data: [], colors: [] };
-    for (let i = 0; i < sizes.length; i++) {
-      const s = +sizes[i];
-      const count = plotsBySize[s];
-      const percentage = (count / totalPlots) * 100;
-      const bgColor = ColorCodesForKSizes[s] || ColorCodesForKSizes[35];
-      sizeData.data.push(percentage);
-      sizeData.colors.push(bgColor);
-      sizeRecords.push(
-        <Box key={i} sx={{ marginTop: 1 }}>
-          <Typography variant="body2">
-            <Box
-              sx={{
-                backgroundColor: ColorCodesForKSizes[s],
-                width: '10px',
-                height: '10px',
-                display: 'inline-block',
-                marginRight: 1,
-                borderRadius: '3px',
+          <Box sx={{ paddingLeft: 2, position: 'relative' }}>
+            <div
+              style={{
+                position: 'absolute',
+                height: 14,
+                width: 6,
+                top: 0,
+                left: 4,
+                borderLeft: '1px solid #ccc',
+                borderBottom: '1px solid #ccc',
               }}
             />
-            K{s} {count} {Math.round(percentage)}%
-          </Typography>
+            <Typography sx={{ fontWeight: 500 }} variant="caption">
+              <Trans>Compression</Trans>
+            </Typography>
+            {kSizeAndCompressionBreakDown}
+          </Box>
         </Box>
       );
     }
 
-    return { compressionRecords, compressionData, sizeRecords, sizeData, compressionAndSizeData };
+    return { breakDown, kSizeData, kSizeAndCompressionData };
   }, [harvester]);
 
   const plotDetailsChart = React.useMemo(() => {
-    if (!plotStats.compressionData || !plotStats.sizeData) {
+    if (!plotStats.kSizeData || !plotStats.kSizeAndCompressionData) {
       return undefined;
     }
-    if (plotStats.compressionData.data.length === 1 && plotStats.sizeData.data.length === 1) {
+    if (plotStats.kSizeData.data.length === 1 && plotStats.kSizeAndCompressionData.data.length === 1) {
       return undefined;
     }
 
-    return (
-      <PurePlotDetailsChart compressionData={plotStats.compressionData} sizeData={plotStats.compressionAndSizeData} />
-    );
+    return <PurePlotDetailsChart kSizeData={plotStats.kSizeData} compressionData={plotStats.kSizeAndCompressionData} />;
   }, [plotStats]);
 
   return (
@@ -164,23 +170,15 @@ function HarvesterPlotDetails(props: HarvesterPlotDetailsProps) {
             </Typography>
           </Box>
           <Flex sx={{ marginTop: 2 }}>
-            <Box sx={{ width: '50%' }}>
-              <Flex gap={2}>
-                <Box>
-                  <Typography>
-                    <Trans>Compression</Trans>
-                  </Typography>
-                  {plotStats.compressionRecords}
-                </Box>
-                <Box>
-                  <Typography>
-                    <Trans>Plot Sizes</Trans>
-                  </Typography>
-                  {plotStats.sizeRecords}
-                </Box>
+            <Box sx={{ width: '55%' }}>
+              <Typography sx={{ fontWeight: 500 }}>
+                <Trans>Plot Sizes</Trans>
+              </Typography>
+              <Flex gap={2} sx={{ flexWrap: 'wrap' }}>
+                {plotStats.breakDown}
               </Flex>
             </Box>
-            <Box sx={{ width: '50%', padding: 1 }}>{plotDetailsChart}</Box>
+            <Box sx={{ width: '45%', padding: 1 }}>{plotDetailsChart}</Box>
           </Flex>
         </Flex>
       </Box>

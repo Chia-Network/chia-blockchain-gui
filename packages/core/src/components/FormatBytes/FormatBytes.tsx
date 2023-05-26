@@ -61,7 +61,7 @@ export default function FormatBytes(props: Props) {
     humanValue = humanValue.decimalPlaces(precision ?? 2);
   }
 
-  if (precision || fixedDecimals) {
+  if (typeof precision === 'number' || fixedDecimals) {
     humanValue = humanValue.toFixed(precision ?? 2);
   } else {
     humanValue = humanValue.toString();

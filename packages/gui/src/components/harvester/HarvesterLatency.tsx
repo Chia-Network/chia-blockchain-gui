@@ -78,6 +78,11 @@ function HarvesterLatency(props: HarvesterLatencyProps) {
                 <td rowSpan={2} style={{ verticalAlign: 'top', width: 1, whiteSpace: 'nowrap' }}>
                   <FormControl size="small">
                     <Select value={period.toString()} onChange={onChangePeriod}>
+                      <MenuItem value="64sp">
+                        <Typography color="primary">
+                          <Trans>LAST 64 SPs</Trans>
+                        </Typography>
+                      </MenuItem>
                       <MenuItem value="1h">
                         <Typography color="primary">
                           <Trans>LAST 1 HOUR</Trans>
@@ -93,11 +98,6 @@ function HarvesterLatency(props: HarvesterLatencyProps) {
                           <Trans>LAST 24 HOURS</Trans>
                         </Typography>
                       </MenuItem>
-                      <MenuItem value="64sp">
-                        <Typography color="primary">
-                          <Trans>Last 64 SPs</Trans>
-                        </Typography>
-                      </MenuItem>
                     </Select>
                   </FormControl>
                 </td>
@@ -105,7 +105,7 @@ function HarvesterLatency(props: HarvesterLatencyProps) {
               <tr>
                 <td>
                   <Typography color="primary" sx={{ display: 'inline-block' }}>
-                    <Trans>Ave</Trans> {stat.avgEl}
+                    <Trans>Avg</Trans> {stat.avgEl}
                   </Typography>
                   <Typography sx={{ display: 'inline-block', marginLeft: 2 }}>
                     <Trans>Max</Trans> {stat.maxEl}
@@ -114,7 +114,9 @@ function HarvesterLatency(props: HarvesterLatencyProps) {
               </tr>
             </tbody>
           </table>
-          <PureLatencyBarChart latency={slice} period={period} unit={unit} />
+          <Box sx={{ height: '240px' }}>
+            <PureLatencyBarChart latency={slice} period={period} unit={unit} />
+          </Box>
         </Flex>
       </Box>
     </Paper>
