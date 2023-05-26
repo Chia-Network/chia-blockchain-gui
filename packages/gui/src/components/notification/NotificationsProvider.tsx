@@ -14,6 +14,7 @@ import React, { useMemo, useState, useEffect, useCallback, createContext, useRef
 
 import NotificationType from '../../constants/NotificationType';
 import useAssetIdName from '../../hooks/useAssetIdName';
+import useCache from '../../hooks/useCache';
 import useShowNotification from '../../hooks/useShowNotification';
 import fetchOffer from '../../util/fetchOffer';
 import parseNotification from '../../util/parseNotification';
@@ -77,6 +78,7 @@ export default function NotificationsProvider(props: NotificationsProviderProps)
     isLoading: isLoadingNotifications,
     error: getNotificationsError,
   } = useGetNotificationsQuery();
+  const { getContent, getHeaders } = useCache();
   const { state, isLoading: isLoadingWalletState } = useWalletState();
   const [enabled, setEnabled] = useState<boolean>('enableNotifications', true); // global notification setting. controls push and local notifications
   const [pushNotificationsEnabled, setPushNotificationsEnabled] = usePrefs<boolean>('enablePushNotifications', true); // push notification setting
@@ -145,7 +147,7 @@ export default function NotificationsProvider(props: NotificationsProviderProps)
                 const {
                   data: { url },
                 } = metadata;
-                const data = await fetchOffer(url);
+                const data = await fetchOffer({ offerUrl: url, getContent, getHeaders });
                 const { valid, offerSummary } = data;
                 if (!valid) {
                   return null;
@@ -183,7 +185,15 @@ export default function NotificationsProvider(props: NotificationsProviderProps)
     } finally {
       setIsPreparingNotifications(false);
     }
-  }, [isLoadingServices, enabled, notifications, lookupByAssetId, allowDebugDesktopNotification]);
+  }, [
+    isLoadingServices,
+    enabled,
+    notifications,
+    lookupByAssetId,
+    allowDebugDesktopNotification,
+    getContent,
+    getHeaders,
+  ]);
 
   const showPushNotifications = useCallback(() => {
     if (!enabled || !pushNotificationsEnabled || isLoading) {
