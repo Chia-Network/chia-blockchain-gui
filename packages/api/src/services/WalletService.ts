@@ -1,7 +1,6 @@
 import BigNumber from 'bignumber.js';
 
 import type AutoClaim from '../@types/AutoClaim';
-import Coin2 from '../@types/Coin2';
 import type Connection from '../@types/Connection';
 import type FarmedAmount from '../@types/FarmedAmount';
 import type OfferSummaryRecord from '../@types/OfferSummaryRecord';
@@ -152,7 +151,12 @@ export default class Wallet extends Service {
     start?: number;
     end?: number;
     sortKey?: 'CONFIRMED_AT_HEIGHT' | 'RELEVANCE';
+    typeFilter?: {
+      mode: number;
+      values: number[];
+    };
     reverse?: boolean;
+    confirmed?: boolean;
   }) {
     return this.command<{ transactions: Transaction[]; walletId: number }>('get_transactions', args);
   }
@@ -339,16 +343,9 @@ export default class Wallet extends Service {
     return this.command<AutoClaim>('get_auto_claim');
   }
 
-  async getCoinsByType(args: { walletId: number; coinType: number; start?: number; end?: number; reverse?: boolean }) {
-    return this.command<{
-      coins: Coin2[];
-      walletId: number;
-    }>('get_coins_by_type', args);
-  }
-
   async spendClawbackCoins(args: { coinIds: string[]; fee: number | BigNumber }) {
     return this.command<{
-      spentCoins: string[];
+      transactionIds: string[];
     }>('spend_clawback_coins', args);
   }
 

@@ -51,7 +51,7 @@ export default function SettingsCustody() {
           <Trans>Claim assets transferred to you automatically when the Clawback expires.</Trans>
         </SettingsText>
       </div>
-      <SettingsCustodyAutoClaim sx={{ marginTop: 2.5 }} />
+      <SettingsCustodyAutoClaim sx={{ marginTop: 1 }} />
     </Grid>
   );
 }

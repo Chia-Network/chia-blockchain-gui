@@ -6,6 +6,7 @@ export { default as useWalletTransactions } from './useWalletTransactions';
 export {
   default as useClawbackDefaultTime,
   clawbackDefaultTimeDefaults,
+  getClawbackTimeInSeconds,
   type ClawbackDefaultTimeInput,
   type ClawbackDefaultTimeOutput,
 } from './useClawbackDefaultTime';

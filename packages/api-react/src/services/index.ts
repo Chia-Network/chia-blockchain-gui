@@ -196,7 +196,6 @@ export const {
   // clawback
   useSetAutoClaimMutation,
   useGetAutoClaimQuery,
-  useGetCoinsByTypeQuery,
   useSpendClawbackCoinsMutation,
 } = wallet;
 

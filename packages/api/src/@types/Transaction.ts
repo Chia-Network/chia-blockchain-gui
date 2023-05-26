@@ -28,6 +28,13 @@ type Transaction = {
   tradeId: string | null;
   type: TransactionType;
   walletId: number;
+  metadata?: {
+    coinId: string;
+    recipientPuzzleHash: string;
+    senderPuzzleHash: string;
+    timeLock: number;
+    spent: boolean;
+  };
 };
 
 export default Transaction;

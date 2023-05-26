@@ -1,11 +1,11 @@
 import { Flex, Form, TextField, Button } from '@chia-network/core';
+import { ConnectCheckmark } from '@chia-network/icons';
 import {
   useClawbackDefaultTime,
   type ClawbackDefaultTimeInput,
   clawbackDefaultTimeDefaults,
 } from '@chia-network/wallets';
 import { Trans } from '@lingui/macro';
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { Box, Typography } from '@mui/material';
 import React from 'react';
 import { useForm } from 'react-hook-form';
@@ -81,7 +81,27 @@ export default function SettingsCustodyClawbackOutgoing(props) {
       </Form>
       {isClawbackDefaultTimeEnabled && (
         <Typography component="div" variant="subtitle2" sx={{ width: '100%', color: 'green', marginTop: 3 }}>
-          <CheckCircleIcon sx={{ verticalAlign: 'middle', marginRight: 0.5, position: 'relative', top: '-2px' }} />
+          <ConnectCheckmark
+            sx={{
+              verticalAlign: 'middle',
+              position: 'relative',
+              top: '-5px',
+              left: '-7px',
+              width: '31px',
+              height: '31px',
+
+              '& g': {
+                circle: {
+                  stroke: '#3AAC59',
+                  fill: '#3AAC59',
+                },
+                path: {
+                  stroke: '#3AAC59',
+                  fill: '#3AAC59',
+                },
+              },
+            }}
+          />
           <Trans>Default Clawback time is enabled. </Trans>{' '}
         </Typography>
       )}

@@ -5,14 +5,13 @@ import {
   Form,
   SettingsTitle,
   ButtonLoading,
-  EstimatedFee,
-  FeeTxType,
+  Fee,
   chiaToMojo,
   mojoToChia,
   useCurrencyCode,
 } from '@chia-network/core';
+import { ConnectCheckmark } from '@chia-network/icons';
 import { Trans } from '@lingui/macro';
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { Box, Typography } from '@mui/material';
 import React from 'react';
 import { useForm } from 'react-hook-form';
@@ -58,16 +57,7 @@ export default function SettingsCustodyAutoClaim(props) {
       <Form methods={methods} onSubmit={handleSubmit}>
         {isAutoClaimEnabled && (
           <div>
-            <Flex gap={2} sx={{ alignItems: 'center' }}>
-              <Typography component="div" variant="subtitle2">
-                <span style={{ color: 'green' }}>
-                  <CheckCircleIcon
-                    sx={{ verticalAlign: 'middle', marginRight: 0.5, position: 'relative', top: '-2px' }}
-                  />
-
-                  <Trans>Auto claim is enabled.</Trans>
-                </span>
-              </Typography>
+            <Flex gap={3} flexDirection="column" alignItems="flex-start">
               <ButtonLoading
                 size="small"
                 loading={isSetAutoClaimLoading}
@@ -79,6 +69,32 @@ export default function SettingsCustodyAutoClaim(props) {
               >
                 <Trans>Disable Auto claim</Trans>
               </ButtonLoading>
+
+              <Typography component="div" variant="subtitle2">
+                <ConnectCheckmark
+                  sx={{
+                    verticalAlign: 'middle',
+                    position: 'relative',
+                    top: '-5px',
+                    left: '-7px',
+                    width: '31px',
+                    height: '31px',
+
+                    '& g': {
+                      circle: {
+                        stroke: '#3AAC59',
+                        fill: '#3AAC59',
+                      },
+                      path: {
+                        stroke: '#3AAC59',
+                        fill: '#3AAC59',
+                      },
+                    },
+                  }}
+                />
+
+                <Trans>Auto claim is enabled.</Trans>
+              </Typography>
             </Flex>
             <Box sx={{ marginTop: 2 }}>
               <SettingsText>
@@ -94,11 +110,11 @@ export default function SettingsCustodyAutoClaim(props) {
         {!isAutoClaimEnabled && (
           <>
             <SettingsTitle>
-              <Trans>Please select the transaction fee to enable Auto claim:</Trans>
+              <Trans>Please enter the transaction fee to enable Auto claim:</Trans>
             </SettingsTitle>
 
             <Flex gap={2} sx={{ marginTop: 1, alignItems: 'top' }}>
-              <EstimatedFee
+              <Fee
                 id="filled-secondary"
                 variant="filled"
                 name="fee"
@@ -107,8 +123,7 @@ export default function SettingsCustodyAutoClaim(props) {
                 label={<Trans>Fee</Trans>}
                 data-testid="SettingsCustodyAutoClaim-fee"
                 fullWidth
-                sx={{ width: '380px' }}
-                txType={FeeTxType.walletSendXCH}
+                sx={{ width: '300px' }}
               />
 
               <ButtonLoading

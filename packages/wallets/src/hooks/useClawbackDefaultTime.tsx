@@ -19,6 +19,14 @@ export const clawbackDefaultTimeDefaults = {
   minutes: 0,
 };
 
+export function getClawbackTimeInSeconds(clawbackTimeObject: ClawbackDefaultTimeInput) {
+  const { days, hours, minutes } = stringPropertiesToNumbers(clawbackTimeObject);
+  const daysInSeconds = days * 24 * 60 * 60;
+  const hoursInSeconds = hours * 60 * 60;
+  const minutesInSeconds = minutes * 60;
+  return daysInSeconds + hoursInSeconds + minutesInSeconds;
+}
+
 function stringPropertiesToNumbers(objWithStrings: ClawbackDefaultTimeInput) {
   return {
     days: Number(objWithStrings.days),
