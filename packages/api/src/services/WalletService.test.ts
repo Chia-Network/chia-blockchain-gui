@@ -324,7 +324,7 @@ describe('WalletService', () => {
   });
 
   it('calls add_key with the correct parameters', async () => {
-    const args = {
+    const args: { mnemonic: string[]; type: 'new_wallet' | 'skip' | 'restore_backup' } = {
       mnemonic: ['test', 'mnemonic', 'words'],
       type: 'new_wallet',
     };
@@ -398,7 +398,7 @@ describe('WalletService', () => {
   });
 
   it('calls log_in with the correct parameters', async () => {
-    const args = {
+    const args: { fingerprint: string; type: 'normal' | 'skip' | 'restore_backup' } = {
       fingerprint: 'test_fingerprint',
       type: 'skip',
     };
@@ -437,7 +437,13 @@ describe('WalletService', () => {
   });
 
   it('calls get_transactions with the correct parameters', async () => {
-    const args = {
+    const args: {
+      walletId: number;
+      start?: number;
+      end?: number;
+      sortKey?: 'CONFIRMED_AT_HEIGHT' | 'RELEVANCE';
+      reverse?: boolean;
+    } = {
       walletId: 1,
       start: 0,
       end: 10,
@@ -601,7 +607,14 @@ describe('WalletService', () => {
   });
 
   it('calls get_all_offers with the correct parameters', async () => {
-    const args = {
+    const args: {
+      start?: number;
+      end?: number;
+      sortKey?: 'CONFIRMED_AT_HEIGHT' | 'RELEVANCE';
+      reverse?: boolean;
+      includeMyOffers?: boolean;
+      includeTakenOffers?: boolean;
+    } = {
       start: 0,
       end: 10,
       sortKey: 'CONFIRMED_AT_HEIGHT',

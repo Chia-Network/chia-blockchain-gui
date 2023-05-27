@@ -33,6 +33,7 @@ describe('Service', () => {
   it('throws if command is not provided', async () => {
     expect.assertions(1);
     try {
+      // @ts-ignore TS2554: Testing invalid params case
       await service.command();
     } catch (e: any) {
       expect(e.message).toEqual('Command is required parameter');

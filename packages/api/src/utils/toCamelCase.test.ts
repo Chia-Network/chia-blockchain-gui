@@ -46,13 +46,13 @@ describe('toCamelCase', () => {
   it('handles null input by returning empty object', () => {
     const input = null;
     const expectedOutput = {};
-    expect(toCamelCase(input)).toEqual(expectedOutput);
+    expect(toCamelCase(input as any)).toEqual(expectedOutput);
   });
 
   it('handles undefined input by returning empty object', () => {
     const input = undefined;
     const expectedOutput = {};
-    expect(toCamelCase(input)).toEqual(expectedOutput);
+    expect(toCamelCase(input as any)).toEqual(expectedOutput);
   });
 
   it('handles non-object input', () => {
