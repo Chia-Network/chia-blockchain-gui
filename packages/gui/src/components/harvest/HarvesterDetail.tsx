@@ -27,6 +27,7 @@ function HarvesterLatencyGraph(props: HarvesterLatencyGraphProps) {
   const isLocal = host ? isLocalhost(host) : undefined;
   const simpleNodeId = nodeId ? `${nodeId.substring(0, 6)}...${nodeId.substring(nodeId.length - 6)}` : undefined;
   const harvestingMode = harvester?.harvestingMode;
+  const noPlots = harvester && harvester.plots.length === 0;
 
   const cardTitle = React.useMemo(() => {
     let chip;
@@ -59,11 +60,22 @@ function HarvesterLatencyGraph(props: HarvesterLatencyGraphProps) {
             </Typography>
           </Flex>
         </Flex>
+        {noPlots && (
+          <Box sx={{ marginTop: 2 }}>
+            <Typography variant="body2" color="textSecondary">
+              <Trans>This harvester does not have any plots to harvest</Trans>
+            </Typography>
+          </Box>
+        )}
       </Box>
     );
-  }, [isLocal, nodeId, simpleNodeId, host, harvestingMode]);
+  }, [isLocal, nodeId, simpleNodeId, host, harvestingMode, noPlots]);
 
   const space = React.useMemo(() => {
+    if (noPlots) {
+      return null;
+    }
+
     const effectiveSpace = harvester ? new BigNumber(harvester.totalEffectivePlotSize) : undefined;
     const totalSpaceOccupation =
       harvester && totalFarmSizeRaw
@@ -165,14 +177,23 @@ function HarvesterLatencyGraph(props: HarvesterLatencyGraphProps) {
         </Box>
       </Paper>
     );
-  }, [harvester, totalFarmSizeRaw, totalFarmSizeEffective]);
+  }, [harvester, totalFarmSizeRaw, totalFarmSizeEffective, noPlots]);
 
-  const harvesterLatency = React.useMemo(
-    () => <HarvesterLatency latencyInfo={latencyData && nodeId ? latencyData[nodeId] : undefined} />,
-    [latencyData, nodeId]
-  );
+  const harvesterLatency = React.useMemo(() => {
+    if (noPlots) {
+      return null;
+    }
 
-  const plotDetails = React.useMemo(() => <HarvesterPlotDetails harvester={harvester} />, [harvester]);
+    return <HarvesterLatency latencyInfo={latencyData && nodeId ? latencyData[nodeId] : undefined} />;
+  }, [latencyData, nodeId, noPlots]);
+
+  const plotDetails = React.useMemo(() => {
+    if (noPlots) {
+      return null;
+    }
+
+    return <HarvesterPlotDetails harvester={harvester} />;
+  }, [harvester, noPlots]);
 
   return (
     <Paper variant="outlined" sx={{ p: 2 }}>

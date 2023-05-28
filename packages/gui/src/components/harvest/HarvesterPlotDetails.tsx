@@ -144,7 +144,7 @@ function HarvesterPlotDetails(props: HarvesterPlotDetailsProps) {
     if (!plotStats.kSizeData || !plotStats.kSizeAndCompressionData) {
       return undefined;
     }
-    if (plotStats.kSizeData.data.length === 1 && plotStats.kSizeAndCompressionData.data.length === 1) {
+    if (plotStats.kSizeData.data.length <= 1 && plotStats.kSizeAndCompressionData.data.length <= 1) {
       return undefined;
     }
 

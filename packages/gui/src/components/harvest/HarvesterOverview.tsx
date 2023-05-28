@@ -17,7 +17,7 @@ export default function HarvesterOverview() {
 
   const totalFarmSizeRaw = React.useMemo(() => {
     if (!harvesters) {
-      return 0;
+      return new BigNumber(0);
     }
     let size = new BigNumber(0);
     for (let i = 0; i < harvesters.length; i++) {
@@ -30,7 +30,7 @@ export default function HarvesterOverview() {
 
   const totalFarmSizeEffective = React.useMemo(() => {
     if (!harvesters) {
-      return 0;
+      return new BigNumer(0);
     }
     let size = new BigNumber(0);
     for (let i = 0; i < harvesters.length; i++) {
@@ -57,7 +57,7 @@ export default function HarvesterOverview() {
     if (!newFarmingInfo || newFarmingInfo.length === 0) {
       return {
         tooltip: <Trans>The average number of plots which passed filter over last 64 signage points</Trans>,
-        value: 'N/A',
+        value: '0',
       };
     }
 
@@ -89,7 +89,7 @@ export default function HarvesterOverview() {
     }
 
     const expectedAvgPassedFilter = Math.round((latestTotalPlots / PLOT_FILTER) * 1000) / 1000;
-    const avgPassedFilter = Math.round((sumPassedFilter / sps.length) * 1000) / 1000;
+    const avgPassedFilter = sps.length > 0 ? Math.round((sumPassedFilter / sps.length) * 1000) / 1000 : 0;
     return {
       tooltip: (
         <Trans>
