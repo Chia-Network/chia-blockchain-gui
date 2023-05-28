@@ -2,18 +2,18 @@ import { HarvesterInfo, LatencyData } from '@chia-network/api';
 import { Flex, FormatBytes, Tooltip } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Box, Paper, Typography, LinearProgress, Chip } from '@mui/material';
+import BigNumber from 'bignumber.js';
 import * as React from 'react';
 
 import isLocalhost from '../../util/isLocalhost';
-import { UI_ACTUAL_SPACE_CONSTANT_FACTOR, expectedPlotSize } from '../../util/plot';
 import HarvesterLatency from './HarvesterLatency';
 import HarvesterPlotDetails from './HarvesterPlotDetails';
 
 export type HarvesterLatencyGraphProps = {
   harvester?: HarvesterInfo;
   latencyData?: LatencyData;
-  totalFarmSizeRaw?: number;
-  totalFarmSizeEffective?: number;
+  totalFarmSizeRaw?: BigNumber;
+  totalFarmSizeEffective?: BigNumber;
 };
 
 export default React.memo(HarvesterLatencyGraph);
@@ -64,21 +64,23 @@ function HarvesterLatencyGraph(props: HarvesterLatencyGraphProps) {
   }, [isLocal, nodeId, simpleNodeId, host, harvestingMode]);
 
   const space = React.useMemo(() => {
-    const effectiveSpace = harvester
-      ? harvester.plots.reduce(
-          (acc: number, val: { size: number }) => acc + UI_ACTUAL_SPACE_CONSTANT_FACTOR * expectedPlotSize(val.size),
-          0
-        )
-      : undefined;
+    const effectiveSpace = harvester ? new BigNumber(harvester.totalEffectivePlotSize) : undefined;
     const totalSpaceOccupation =
-      harvester && totalFarmSizeRaw ? (harvester.totalPlotSize / totalFarmSizeRaw) * 100 : undefined;
+      harvester && totalFarmSizeRaw
+        ? new BigNumber(harvester.totalPlotSize).div(totalFarmSizeRaw).multipliedBy(100)
+        : undefined;
     const effectiveSpaceOccupation =
-      effectiveSpace && totalFarmSizeEffective ? (effectiveSpace / totalFarmSizeEffective) * 100 : undefined;
+      effectiveSpace && totalFarmSizeEffective
+        ? effectiveSpace.div(totalFarmSizeEffective).multipliedBy(100)
+        : undefined;
 
     const earnedSpacePercentage: React.ReactElement | string =
-      harvester && totalFarmSizeRaw ? (
-        <Tooltip title={<FormatBytes value={effectiveSpace - harvester.totalPlotSize} precision={3} />}>
-          {Math.round(((effectiveSpace - totalFarmSizeRaw) / totalFarmSizeRaw) * 1000) / 10} %
+      harvester && totalFarmSizeRaw && effectiveSpace ? (
+        <Tooltip
+          title={<FormatBytes value={effectiveSpace.minus(new BigNumber(harvester.totalPlotSize))} precision={3} />}
+        >
+          {Math.round(effectiveSpace.minus(totalFarmSizeRaw).div(totalFarmSizeRaw).multipliedBy(1000).toNumber()) / 10}{' '}
+          %
         </Tooltip>
       ) : (
         '-'
@@ -125,7 +127,7 @@ function HarvesterLatencyGraph(props: HarvesterLatencyGraphProps) {
                     <Box sx={{ paddingLeft: 2 }}>
                       <LinearProgress
                         variant="determinate"
-                        value={totalSpaceOccupation}
+                        value={totalSpaceOccupation?.toNumber()}
                         sx={{ height: 20, '& > span': { backgroundColor: '#1a8284' } }}
                       />
                     </Box>
@@ -151,7 +153,7 @@ function HarvesterLatencyGraph(props: HarvesterLatencyGraphProps) {
                     <Box sx={{ paddingLeft: 2 }}>
                       <LinearProgress
                         variant="determinate"
-                        value={effectiveSpaceOccupation}
+                        value={effectiveSpaceOccupation?.toNumber()}
                         sx={{ height: 20, '& > span': { backgroundColor: '#5ece71' } }}
                       />
                     </Box>

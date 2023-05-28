@@ -16,7 +16,7 @@ export default function FarmCardExpectedTimeToWin() {
 
   const { data, isLoading: isLoadingBlockchainState, error: errorBlockchainState } = useGetBlockchainStateQuery();
   const {
-    totalPlotSize,
+    totalEffectivePlotSize,
     isLoading: isLoadingTotalHarvesterSummary,
     error: errorLoadingPlots,
   } = useGetTotalHarvestersSummaryQuery();
@@ -31,8 +31,8 @@ export default function FarmCardExpectedTimeToWin() {
       return new BigNumber(0);
     }
 
-    return totalPlotSize.div(totalNetworkSpace);
-  }, [isLoading, totalPlotSize, totalNetworkSpace]);
+    return totalEffectivePlotSize.div(totalNetworkSpace);
+  }, [isLoading, totalEffectivePlotSize, totalNetworkSpace]);
 
   const minutes = !proportion.isZero() ? new BigNumber(MINUTES_PER_BLOCK).div(proportion) : new BigNumber(0);
 

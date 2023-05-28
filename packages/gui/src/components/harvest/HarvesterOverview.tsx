@@ -2,9 +2,10 @@ import { useGetHarvestersQuery, useGetNewFarmingInfoQuery } from '@chia-network/
 import { Flex, FormatBytes, FormatLargeNumber, CardSimple } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Grid, Typography } from '@mui/material';
+import BigNumber from 'bignumber.js';
 import React from 'react';
 
-import { UI_ACTUAL_SPACE_CONSTANT_FACTOR, expectedPlotSize, PLOT_FILTER } from '../../util/plot';
+import { PLOT_FILTER } from '../../util/plot';
 import HarvesterDetail from './HarvesterDetail';
 
 export default function HarvesterOverview() {
@@ -18,13 +19,11 @@ export default function HarvesterOverview() {
     if (!harvesters) {
       return 0;
     }
-    let size = 0;
+    let size = new BigNumber(0);
     for (let i = 0; i < harvesters.length; i++) {
       const h = harvesters[i];
-      const totalPlotSize = +h.totalPlotSize;
-      if (!Number.isNaN(totalPlotSize)) {
-        size += totalPlotSize;
-      }
+      const totalPlotSize = new BigNumber(h.totalPlotSize);
+      size = size.plus(totalPlotSize);
     }
     return size;
   }, [harvesters]);
@@ -33,16 +32,11 @@ export default function HarvesterOverview() {
     if (!harvesters) {
       return 0;
     }
-    let size = 0;
+    let size = new BigNumber(0);
     for (let i = 0; i < harvesters.length; i++) {
       const h = harvesters[i];
-      for (let k = 0; k < h.plots.length; k++) {
-        const p = h.plots[k];
-        const kSize = +p.size;
-        if (!Number.isNaN(kSize)) {
-          size += expectedPlotSize(kSize) * UI_ACTUAL_SPACE_CONSTANT_FACTOR;
-        }
-      }
+      const totalEffectivePlotSize = new BigNumber(h.totalEffectivePlotSize);
+      size = size.plus(totalEffectivePlotSize);
     }
     return size;
   }, [harvesters]);

@@ -27,6 +27,7 @@ type HarvesterInfo = {
   lastSyncTime?: BigNumber;
   syncing?: HarvesterSyncingStatus;
   totalPlotSize: number;
+  totalEffectivePlotSize: number;
   plots: Plot[];
   harvestingMode?: HarvestingMode;
 };
