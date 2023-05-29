@@ -789,6 +789,102 @@ const walletConnectCommands: WalletConnectCommand[] = [
     service: ServiceName.WALLET,
     bypassConfirm: true,
   },
+  {
+    command: 'getVCList',
+    label: <Trans>Get All Verifiable Credentials</Trans>,
+    service: ServiceName.WALLET,
+    bypassConfirm: true,
+  },
+  {
+    command: 'getVC',
+    label: <Trans>Get Verifiable Credential</Trans>,
+    service: ServiceName.WALLET,
+    bypassConfirm: true,
+    params: [
+      {
+        name: WalletConnectCommandParamName.VC_ID,
+        type: 'string',
+        label: <Trans>Launcher Id</Trans>,
+      },
+    ],
+  },
+  {
+    command: 'spendVC',
+    label: <Trans>Add Proofs To Verifiable Credential</Trans>,
+    service: ServiceName.WALLET,
+    bypassConfirm: true,
+    params: [
+      {
+        name: WalletConnectCommandParamName.VC_ID,
+        type: 'string',
+        label: <Trans>Launcher Id</Trans>,
+      },
+      {
+        name: WalletConnectCommandParamName.NEW_PUZHASH,
+        type: 'string',
+        label: <Trans>New Puzzle Hash</Trans>,
+      },
+      {
+        name: WalletConnectCommandParamName.NEW_PROOF_HASH,
+        type: 'string',
+        label: <Trans>New Proof Hash</Trans>,
+      },
+      {
+        name: WalletConnectCommandParamName.PROVIDER_INNER_PUZHASH,
+        type: 'string',
+        label: <Trans>Provider Inner Puzzle Hash</Trans>,
+      },
+      {
+        name: WalletConnectCommandParamName.FEE,
+        type: 'number',
+        label: <Trans>Spend Fee</Trans>,
+      },
+      {
+        name: WalletConnectCommandParamName.REUSE_PUZHASH,
+        type: 'boolean',
+        label: <Trans>Reuse Puzzle Hash</Trans>,
+      },
+    ],
+  },
+  {
+    command: 'addVCProofs',
+    label: <Trans>Add Proofs</Trans>,
+    service: ServiceName.WALLET,
+    bypassConfirm: true,
+    params: [
+      {
+        name: WalletConnectCommandParamName.PROOFS,
+        type: 'object',
+        label: <Trans>Proofs Object (Key Value Pairs)</Trans>,
+      },
+    ],
+  },
+  {
+    command: 'getProofsForRoot',
+    label: <Trans>Get Proofs For Root Hash</Trans>,
+    service: ServiceName.WALLET,
+    bypassConfirm: true,
+    params: [
+      {
+        name: WalletConnectCommandParamName.ROOT,
+        type: 'string',
+        label: <Trans>Proofs Hash</Trans>,
+      },
+    ],
+  },
+  {
+    command: 'revokeVC',
+    label: <Trans>Revoke Verifiable Credential</Trans>,
+    service: ServiceName.WALLET,
+    bypassConfirm: true,
+    params: [
+      {
+        name: WalletConnectCommandParamName.VC_PARENT_ID,
+        type: 'string',
+        label: <Trans>Parent Coin Info</Trans>,
+      },
+    ],
+  },
 ];
 
 export default walletConnectCommands;
