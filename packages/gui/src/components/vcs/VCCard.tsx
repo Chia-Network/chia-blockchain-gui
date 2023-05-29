@@ -1,5 +1,5 @@
 import { useGetTimestampForHeightQuery, useRevokeVCMutation, usePrefs } from '@chia-network/api-react';
-import { Truncate, Button, useOpenDialog, ConfirmDialog, AlertDialog, Flex, More, MenuItem } from '@chia-network/core';
+import { Truncate, Button, useOpenDialog, AlertDialog, Flex, More, MenuItem } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Delete as DeleteIcon, Edit as EditIcon } from '@mui/icons-material';
 import { Box, Card, Typography, Table, TableRow, TableCell, ListItemIcon, IconButton } from '@mui/material';
@@ -10,6 +10,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { didToDIDId } from '../../util/dids';
 import VCEditTitle from './VCEditTitle';
+import VCRevokeDialog from './VCRevokeDialog';
 
 type RenderPropertyProps = {
   children?: JSX.Element | string | null;
@@ -36,6 +37,10 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
   const theme: any = useTheme();
   const openDialog = useOpenDialog();
   const [vcTitlesObject] = usePrefs<any>('verifiable-credentials-titles', {});
+  const vcTitle = React.useMemo(
+    () => vcTitlesObject[vcRecord.vc.launcherId] || <Trans>Verifiable Credential</Trans>,
+    [vcRecord.vc.launcherId, vcTitlesObject]
+  );
   const [isEditingTitle, setIsEditingTitle] = React.useState(false);
 
   function renderProofs() {
@@ -101,22 +106,12 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
   }
 
   async function openRevokeVCDialog() {
-    const confirmed = await openDialog(
-      <ConfirmDialog
-        title={<Trans>Confirm Revoke</Trans>}
-        confirmTitle={<Trans>Yes, Revoke</Trans>}
-        confirmColor="secondary"
-        cancelTitle={<Trans>Cancel</Trans>}
-      >
-        <Flex flexDirection="column" gap={3}>
-          <Typography variant="body1">
-            <Trans>Are you sure you want to revoke this Verifiable Credential?</Trans>
-          </Typography>
-        </Flex>
-      </ConfirmDialog>
-    );
-    if (confirmed) {
-      const revokedResponse = await revokeVC({ vcParentId: vcRecord.vc.coin.parentCoinInfo });
+    const confirmedWithFee = await openDialog(<VCRevokeDialog vcTitle={vcTitle} />);
+    if (confirmedWithFee >= 0) {
+      const revokedResponse = await revokeVC({
+        vcParentId: vcRecord.vc.coin.parentCoinInfo,
+        fee: parseFloat(confirmedWithFee),
+      });
       if (revokedResponse.data?.success) {
         await openDialog(
           <AlertDialog title={<Trans>Verifiable Credential Revoked</Trans>}>
@@ -124,10 +119,10 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
           </AlertDialog>
         );
         navigate('/dashboard/vc');
-      } else {
+      } else if ((revokedResponse as any).error) {
         openDialog(
           <AlertDialog title={<Trans>Error</Trans>}>
-            {revokedResponse?.error?.data?.error ? <Box>{revokedResponse?.error?.data?.error}</Box> : null}
+            {(revokedResponse as any).error ? <Box>{(revokedResponse as any).error?.data?.error}</Box> : null}
           </AlertDialog>
         );
       }
@@ -168,9 +163,7 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
     return (
       <Flex flexDirection="row" sx={{ padding: '4px 12px 19px 14px' }}>
         <Flex sx={{ margin: '1px 5px 0 0' }}>
-          <Typography variant="h6">
-            {vcTitlesObject[vcRecord.vc.launcherId] || <Trans>Verifiable Credential</Trans>}
-          </Typography>
+          <Typography variant="h6">{vcTitle}</Typography>
         </Flex>
         {isDetail && (
           <IconButton onClick={() => setIsEditingTitle(true)} size="small" sx={{ padding: '4px' }}>
