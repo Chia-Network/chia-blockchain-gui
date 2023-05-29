@@ -80,6 +80,64 @@ export default function SettingsNotifications() {
       <Grid container>
         <Grid item style={{ width: '450px' }}>
           <SettingsTitle>
+            <Trans>Receive offer notifications from connected Dapps</Trans>
+          </SettingsTitle>
+        </Grid>
+        <Grid item container xs justifyContent="flex-end" marginTop="-6px">
+          <FormControlLabel
+            control={
+              <Switch
+                checked={areNotificationsEnabled && pushNotificationsEnabled}
+                disabled={!areNotificationsEnabled}
+                onChange={() => setPushNotificationsEnabled(!pushNotificationsEnabled)}
+                inputProps={{ 'data-testid': 'Notifications-dapps-offers' }}
+              />
+            }
+          />
+        </Grid>
+        <Grid item container style={{ width: '450px' }} gap={2}>
+          <SettingsText>
+            <Trans>
+              Turn on/off the ability to receive notifications about new offers from Dapps connected to your wallet. By
+              turning this on, you stay informed about the latest offers and opportunities brought forth by your trusted
+              Dapps, ensuring you never miss out on a potential deal.
+            </Trans>
+          </SettingsText>
+        </Grid>
+      </Grid>
+
+      <Grid container>
+        <Grid item style={{ width: '450px' }}>
+          <SettingsTitle>
+            <Trans>Receive general announcement notifications from connected Dapps</Trans>
+          </SettingsTitle>
+        </Grid>
+        <Grid item container xs justifyContent="flex-end" marginTop="-6px">
+          <FormControlLabel
+            control={
+              <Switch
+                checked={areNotificationsEnabled && pushNotificationsEnabled}
+                disabled={!areNotificationsEnabled}
+                onChange={() => setPushNotificationsEnabled(!pushNotificationsEnabled)}
+                inputProps={{ 'data-testid': 'Notifications-dapps-announcement' }}
+              />
+            }
+          />
+        </Grid>
+        <Grid item container style={{ width: '450px' }} gap={2}>
+          <SettingsText>
+            <Trans>
+              Turn on/off the ability to receive general announcements and updates from any Dapp connected to your
+              wallet. This allows you to stay informed about new features and important updates directly from the Dapps
+              you use.
+            </Trans>
+          </SettingsText>
+        </Grid>
+      </Grid>
+
+      <Grid container>
+        <Grid item style={{ width: '450px' }}>
+          <SettingsTitle>
             <Trans>Display sharing options after creating a new offer</Trans>
           </SettingsTitle>
         </Grid>

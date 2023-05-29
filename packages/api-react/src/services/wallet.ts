@@ -1427,6 +1427,7 @@ export const {
   useGetNextAddressMutation,
   useFarmBlockMutation,
   useGetTimestampForHeightQuery,
+  useLazyGetTimestampForHeightQuery,
   useGetHeightInfoQuery,
   useGetNetworkInfoQuery,
   useGetSyncStatusQuery,

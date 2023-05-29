@@ -6,36 +6,33 @@ import { Typography } from '@mui/material';
 import React, { useMemo, type ReactNode } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
+import type Notification from '../../@types/Notification';
 import NotificationType from '../../constants/NotificationType';
-import useNotifications, { type NotificationDetails } from '../../hooks/useNotifications';
-import HeightToTimestamp from '../helpers/HeightToTimestamp';
-import NFTTitle from '../nfts/NFTTitle';
+import useNotifications from '../../hooks/useNotifications';
+import HumanTimestamp from '../helpers/HumanTimestamp';
 import NotificationPreview from '../notification/NotificationPreview';
-import OfferAsset from '../offers/OfferAsset';
+import OfferDetails from './OfferDetails';
 
 const cols = [
   {
-    field: (notification: NotificationDetails) => {
-      const { requested: resolvedOfferInfo, offer } = notification;
+    field: (notification: Notification) => {
+      const offerURLOrData =
+        'offerURL' in notification
+          ? notification.offerURL
+          : 'offerData' in notification
+          ? notification.offerData
+          : undefined;
 
       return (
         <Flex gap={1} alignItems="center">
           <div style={{ width: '40px' }}>
-            <NotificationPreview offer={offer} fallback={<OffersIcon sx={{ fontSize: 32 }} />} />
+            <NotificationPreview
+              notification={notification}
+              fallback={<OffersIcon sx={{ fontSize: 32 }} />}
+              requested
+            />
           </div>
-          <Flex flexDirection="column">
-            {resolvedOfferInfo.map((info) => (
-              <Flex flexDirection="row" gap={0.5} key={`${info.displayAmount}-${info.displayName}`}>
-                {info.assetType === OfferAsset.NFT ? (
-                  <NFTTitle nftId={info.displayName} />
-                ) : (
-                  <Typography variant="body2" noWrap>
-                    {(info.displayAmount as any).toString()} {info.displayName}
-                  </Typography>
-                )}
-              </Flex>
-            ))}
-          </Flex>
+          <Flex flexDirection="column">{offerURLOrData && <OfferDetails id={offerURLOrData} requested />}</Flex>
         </Flex>
       );
     },
@@ -43,34 +40,33 @@ const cols = [
     title: <Trans>Requesting</Trans>,
   },
   {
-    field: (notification: NotificationDetails) => {
-      const { offered: resolvedOfferInfo } = notification;
-      return resolvedOfferInfo.map((info) => (
-        <Flex flexDirection="row" gap={0.5} key={`${info.displayAmount}-${info.displayName}`}>
-          {info.assetType === OfferAsset.NFT ? (
-            <NFTTitle nftId={info.displayName} />
-          ) : (
-            <Typography variant="body2" noWrap>
-              {(info.displayAmount as any).toString()} {info.displayName}
-            </Typography>
-          )}
+    field: (notification: Notification) => {
+      const offerURLOrData =
+        'offerURL' in notification
+          ? notification.offerURL
+          : 'offerData' in notification
+          ? notification.offerData
+          : undefined;
+
+      return (
+        <Flex gap={1} alignItems="center">
+          <div style={{ width: '40px' }}>
+            <NotificationPreview notification={notification} fallback={<OffersIcon sx={{ fontSize: 32 }} />} />
+          </div>
+          <Flex flexDirection="column">{offerURLOrData && <OfferDetails id={offerURLOrData} />}</Flex>
         </Flex>
-      ));
+      );
     },
     title: <Trans>Offering</Trans>,
   },
   {
-    field: (notification: NotificationDetails) => <HeightToTimestamp height={notification.height} />,
+    field: (notification: Notification) => <HumanTimestamp value={notification.timestamp} />,
     title: <Trans>Creation Date</Trans>,
   },
   {
-    field: (notification: NotificationDetails, { deleteNotification, showOffer, counterOffer }) => {
-      const {
-        id,
-        metadata: {
-          data: { puzzleHash },
-        },
-      } = notification;
+    field: (notification: Notification, { deleteNotification, showOffer, counterOffer }) => {
+      const { id } = notification;
+      const puzzleHash = 'puzzleHash' in notification ? notification.puzzleHash : undefined;
 
       async function handleDelete() {
         await deleteNotification(id);

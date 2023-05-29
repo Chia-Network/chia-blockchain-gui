@@ -43,6 +43,9 @@ enum WalletConnectCommandParamName {
   PUBKEY = 'pubkey',
   SIGNATURE = 'signature',
   SIGNING_MODE = 'signingMode',
+  TYPE = 'type',
+  URL = 'url',
+  ALL_FINGERPRINTS = 'allFingerprints',
 }
 
 export default WalletConnectCommandParamName;
