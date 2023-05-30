@@ -155,6 +155,27 @@ export default function NotificationsProvider(props: NotificationsProviderProps)
     }
   }, [setSeenAt, notifications]);
 
+  const handleDeleteNotification = useCallback(
+    async (notificationId: string) => {
+      let deleted = false;
+
+      setTriggeredNotifications((prev = []) => {
+        const index = prev.findIndex((notification) => notification.id === notificationId);
+        if (index !== -1) {
+          deleted = true;
+          return [...prev.slice(0, index), ...prev.slice(index + 1)];
+        }
+
+        return prev;
+      });
+
+      if (!deleted) {
+        await deleteNotification(notificationId);
+      }
+    },
+    [setTriggeredNotifications, deleteNotification]
+  );
+
   useEffect(() => {
     showPushNotifications();
   }, [showPushNotifications]);
@@ -175,7 +196,7 @@ export default function NotificationsProvider(props: NotificationsProviderProps)
       setPushNotificationsEnabled,
 
       showNotification,
-      deleteNotification,
+      deleteNotification: handleDeleteNotification,
     }),
     [
       notifications,
@@ -191,7 +212,7 @@ export default function NotificationsProvider(props: NotificationsProviderProps)
       setPushNotificationsEnabled,
 
       showNotification,
-      deleteNotification,
+      handleDeleteNotification,
     ]
   );
 

@@ -1,5 +1,16 @@
 import { toBech32m } from '@chia-network/api';
-import { Card, Flex, Table, LoadingOverlay, Button, useShowError, Tooltip, useCurrencyCode } from '@chia-network/core';
+import {
+  Card,
+  Flex,
+  Table,
+  LoadingOverlay,
+  Button,
+  useShowError,
+  Tooltip,
+  useCurrencyCode,
+  useOpenDialog,
+  ConfirmDialog,
+} from '@chia-network/core';
 import { Offers as OffersIcon } from '@chia-network/icons';
 import { Trans } from '@lingui/macro';
 import { Typography } from '@mui/material';
@@ -8,7 +19,9 @@ import { useNavigate, useLocation } from 'react-router-dom';
 
 import type Notification from '../../@types/Notification';
 import NotificationType from '../../constants/NotificationType';
+import useOffers from '../../hooks/useOffers';
 import useValidNotifications from '../../hooks/useValidNotifications';
+import offerToOfferBuilderData from '../../util/offerToOfferBuilderData';
 import HumanTimestamp from '../helpers/HumanTimestamp';
 import NotificationPreview from '../notification/NotificationPreview';
 import OfferDetails from './OfferDetails';
@@ -65,19 +78,18 @@ const cols = [
   },
   {
     field: (notification: Notification, { deleteNotification, showOffer, counterOffer }) => {
-      const { id } = notification;
       const puzzleHash = 'puzzleHash' in notification ? notification.puzzleHash : undefined;
 
       async function handleDelete() {
-        await deleteNotification(id);
+        await deleteNotification(notification);
       }
 
       function handleShowOffer() {
-        showOffer(id);
+        showOffer(notification);
       }
 
       async function handleCounter() {
-        await counterOffer(id);
+        await counterOffer(notification);
       }
 
       const tooltipTitle = puzzleHash ? '' : <Trans>The offer creator has chosen not to allow counter offers</Trans>;
@@ -115,8 +127,10 @@ export default function OfferIncomingTable(props: OfferIncomingTableProps) {
   const { notifications = [], isLoading, deleteNotification } = useValidNotifications();
   const navigate = useNavigate();
   const location = useLocation();
+  const openDialog = useOpenDialog();
   const currencyCode = useCurrencyCode();
   const showError = useShowError();
+  const { getOffer } = useOffers();
 
   const filteredNotifications = useMemo(
     () =>
@@ -137,20 +151,25 @@ export default function OfferIncomingTable(props: OfferIncomingTableProps) {
     [notifications, nftId]
   );
 
-  async function handleCounterOffer(id: string) {
+  async function handleCounterOffer(notification: Notification) {
     try {
-      const {
-        offer,
-        metadata: {
-          data: { puzzleHash },
-        },
-      } = filteredNotifications.find((notification) => notification.id === id);
+      const puzzleHash = 'puzzleHash' in notification ? notification.puzzleHash : undefined;
+      const offerId =
+        'offerURL' in notification
+          ? notification.offerURL
+          : 'offerData' in notification
+          ? notification.offerData
+          : undefined;
+      const offerState = getOffer(offerId);
 
-      if (!puzzleHash || !currencyCode) {
+      if (!offerState || !puzzleHash || !currencyCode) {
         return;
       }
 
       const address = currencyCode && puzzleHash ? toBech32m(puzzleHash, currencyCode.toLowerCase()) : '';
+      const offerSummary = offerState.offer?.summary;
+
+      const offer = offerToOfferBuilderData(offerSummary);
 
       navigate('/dashboard/offers/builder', {
         state: {
@@ -165,23 +184,41 @@ export default function OfferIncomingTable(props: OfferIncomingTableProps) {
     }
   }
 
-  async function handleDeleteNotification(id: string) {
+  async function handleDeleteNotification(notification: Notification) {
     try {
-      await deleteNotification(id);
+      const canProcess = await openDialog(
+        <ConfirmDialog title={<Trans>Confirmation</Trans>} confirmTitle={<Trans>Yes</Trans>} confirmColor="primary">
+          <Trans>
+            Are you sure you'd like to remove this offer? Please remember that this action is not reversible.
+          </Trans>
+        </ConfirmDialog>
+      );
+
+      if (canProcess) {
+        await deleteNotification(notification.id);
+      }
     } catch (e) {
       showError(e);
     }
   }
 
-  function handleShowOffer(id: string) {
-    const {
-      offerData,
-      offerSummary,
-      metadata: {
-        data: { puzzleHash },
-      },
-    } = filteredNotifications.find((notification) => notification.id === id);
-    const canCounterOffer = puzzleHash?.length > 0;
+  function handleShowOffer(notification: Notification) {
+    const puzzleHash = 'puzzleHash' in notification ? notification.puzzleHash : undefined;
+    const offerId =
+      'offerURL' in notification
+        ? notification.offerURL
+        : 'offerData' in notification
+        ? notification.offerData
+        : undefined;
+    const offerState = getOffer(offerId);
+
+    if (!offerState) {
+      return;
+    }
+
+    const canCounterOffer = puzzleHash && puzzleHash.length > 0;
+    const offerData = offerState.offer?.data;
+    const offerSummary = offerState.offer?.summary;
 
     navigate('/dashboard/offers/view', {
       state: {
