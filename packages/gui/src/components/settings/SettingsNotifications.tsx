@@ -3,12 +3,23 @@ import { Trans } from '@lingui/macro';
 import { FormControlLabel, Grid, Switch } from '@mui/material';
 import React from 'react';
 
-import useNotifications from '../../hooks/useNotifications';
+import useNotificationSettings from '../../hooks/useNotificationSettings';
 import useSuppressShareOnCreate from '../../hooks/useSuppressShareOnCreate';
 
 export default function SettingsNotifications() {
-  const { areNotificationsEnabled, setNotificationsEnabled, pushNotificationsEnabled, setPushNotificationsEnabled } =
-    useNotifications();
+  const {
+    globalNotifications,
+    setGlobalNotifications,
+
+    pushNotifications,
+    setPushNotifications,
+
+    dappOfferNotifications,
+    setDappOfferNotifications,
+
+    dappAnnouncementNotifications,
+    setDappAnnouncementNotifications,
+  } = useNotificationSettings();
   const [suppressShareOnCreate, setSuppressShareOnCreate] = useSuppressShareOnCreate();
 
   return (
@@ -38,8 +49,8 @@ export default function SettingsNotifications() {
           <FormControlLabel
             control={
               <Switch
-                checked={areNotificationsEnabled}
-                onChange={() => setNotificationsEnabled(!areNotificationsEnabled)}
+                checked={globalNotifications}
+                onChange={() => setGlobalNotifications(!globalNotifications)}
                 inputProps={{ 'data-testid': 'Notifications-Global-Toggle' }}
               />
             }
@@ -62,9 +73,9 @@ export default function SettingsNotifications() {
           <FormControlLabel
             control={
               <Switch
-                checked={areNotificationsEnabled && pushNotificationsEnabled}
-                disabled={!areNotificationsEnabled}
-                onChange={() => setPushNotificationsEnabled(!pushNotificationsEnabled)}
+                checked={pushNotifications}
+                disabled={!globalNotifications}
+                onChange={() => setPushNotifications(!pushNotifications)}
                 inputProps={{ 'data-testid': 'Notifications-Pause-All' }}
               />
             }
@@ -87,9 +98,9 @@ export default function SettingsNotifications() {
           <FormControlLabel
             control={
               <Switch
-                checked={areNotificationsEnabled && pushNotificationsEnabled}
-                disabled={!areNotificationsEnabled}
-                onChange={() => setPushNotificationsEnabled(!pushNotificationsEnabled)}
+                checked={dappOfferNotifications}
+                disabled={!globalNotifications}
+                onChange={() => setDappOfferNotifications(!dappOfferNotifications)}
                 inputProps={{ 'data-testid': 'Notifications-dapps-offers' }}
               />
             }
@@ -116,9 +127,9 @@ export default function SettingsNotifications() {
           <FormControlLabel
             control={
               <Switch
-                checked={areNotificationsEnabled && pushNotificationsEnabled}
-                disabled={!areNotificationsEnabled}
-                onChange={() => setPushNotificationsEnabled(!pushNotificationsEnabled)}
+                checked={dappAnnouncementNotifications}
+                disabled={!globalNotifications}
+                onChange={() => setDappAnnouncementNotifications(!dappAnnouncementNotifications)}
                 inputProps={{ 'data-testid': 'Notifications-dapps-announcement' }}
               />
             }
