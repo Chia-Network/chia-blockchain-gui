@@ -24,3 +24,4 @@ export { default as Settings } from './Settings';
 export { default as WalletConnect, ConnectCheckmark, ConnectCancel, ConnectReload, Exit } from './WalletConnect';
 export { default as Search } from './Search';
 export { default as Coins } from './ZeroState';
+export { default as VC } from './VC';

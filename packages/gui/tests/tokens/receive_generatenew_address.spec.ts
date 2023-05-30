@@ -16,12 +16,11 @@ test.afterAll(async () => {
 });
 
 test('Verify that new address button creates new address', async () => {
-  //Given I enter correct credentials in Passphrase dialog
-  await new LoginPage(page).login('password2022!@');
+  //Pre-requisites to get user back to Wallet selection page
+  await page.locator('button:has-text("Close")').click();
 
-  //And I navigate to a wallet with funds
-  await page.locator('[data-testid="LayoutDashboard-log-out"]').click();
-  await page.locator('text=975437849').click();
+  //Given I navigate to 1922132445 Wallet
+  await page.locator('h6:has-text("Testnet-10k-NFT")').click();
 
   //And I confirm page has correct Title
   expect(page).toHaveTitle('Chia Blockchain');

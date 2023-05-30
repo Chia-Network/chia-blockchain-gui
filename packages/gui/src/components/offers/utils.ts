@@ -109,42 +109,6 @@ export function suggestedFilenameForOffer(
   return `${makerString}_x_${takerString}.offer`;
 }
 
-export function shortSummaryForOffer(
-  summary: OfferSummaryRecord,
-  lookupByAssetId: (assetId: string) => AssetIdMapEntry | undefined
-): string {
-  if (!summary) {
-    return '';
-  }
-
-  function summaryBuilder(
-    shortSummaryParam: string,
-    args: [assetInfo: AssetIdMapEntry | undefined, amount: string]
-  ): string {
-    let shortSummary = shortSummaryParam;
-    const [assetInfo, amount] = args;
-
-    if (shortSummary) {
-      shortSummary += ', ';
-    }
-
-    if (assetInfo && amount !== undefined) {
-      shortSummary += `${formatAmountForWalletType(amount, assetInfo.walletType)} ${assetInfo.displayName.replace(
-        /\s/g,
-        ''
-      )}`;
-    }
-
-    return shortSummary;
-  }
-
-  const [makerString, takerString] = offerContainsAssetOfType(summary, 'singleton')
-    ? summaryStringsForNFTOffer(summary, lookupByAssetId, summaryBuilder)
-    : summaryStringsForOffer(summary, lookupByAssetId, summaryBuilder);
-
-  return t`Offering: [${makerString}], Requesting: [${takerString}]`;
-}
-
 export function displayStringForOfferState(state: OfferState): string {
   switch (state) {
     case OfferState.PENDING_ACCEPT:

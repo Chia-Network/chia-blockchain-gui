@@ -6,17 +6,17 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: @lingui/cli\n"
 "Language: pt_BR\n"
-"Project-Id-Version: chia-blockchain\n"
+"Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-10-24 18:16\n"
+"PO-Revision-Date: 2023-03-29 23:27\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Crowdin-Project: chia-blockchain\n"
-"X-Crowdin-Project-ID: 440660\n"
+"X-Crowdin-Project: 1263bc1f20e1271bda78e84d2f4a6562\n"
+"X-Crowdin-Project-ID: 1\n"
 "X-Crowdin-Language: pt-BR\n"
-"X-Crowdin-File: /main/packages/gui/src/locales/en-US/messages.po\n"
-"X-Crowdin-File-ID: 1888\n"
+"X-Crowdin-File: /[Chia-Network.chia-blockchain-gui] main/packages/gui/src/locales/en-US/messages.po\n"
+"X-Crowdin-File-ID: 1306\n"
 
 #: src/components/offers2/OfferBuilderImport.tsx:167
 msgid "(Ctrl-V) a blob"
@@ -167,11 +167,11 @@ msgstr ""
 #: src/components/nfts/NFTProfileDropdown.tsx:101
 #: src/components/nfts/NFTProfileDropdown.tsx:114
 msgid "All NFTs"
-msgstr ""
+msgstr "Todos NFTs"
 
 #: src/components/did/DIDProfileDropdown.tsx:23
 msgid "All Profiles"
-msgstr ""
+msgstr "Todos os perfis"
 
 #: src/components/settings/SettingsIntegration.tsx:57
 msgid "Allow external Apps and websites to connect to your wallet through WalletConnect."
@@ -201,7 +201,7 @@ msgstr ""
 #: src/constants/WalletConnectCommands.tsx:351
 #: src/constants/WalletConnectCommands.tsx:393
 msgid "Amount"
-msgstr ""
+msgstr "Quantidade"
 
 #: src/components/offers2/OfferBuilderRoyaltyPayouts.tsx:38
 msgid "Amount before adding royalties"
@@ -316,11 +316,11 @@ msgstr "Nome gerado automaticamente a partir do endereço de contrato do bolão"
 
 #: src/components/offers/NFTOfferViewer.tsx:629
 msgid "Back"
-msgstr ""
+msgstr "Voltar"
 
 #: src/components/settings/ProfileAdd.tsx:98
 msgid "Balance: {standardBalance} XCH"
-msgstr ""
+msgstr "Saldo: {standardBalance} XCH"
 
 #: src/components/block/Block.jsx:235
 msgid "Base Farmer Reward Amount"
@@ -376,7 +376,7 @@ msgstr "Navegar"
 #: src/components/nfts/NFTBurnDialog.tsx:184
 #: src/components/nfts/NFTContextualActions.tsx:531
 msgid "Burn"
-msgstr ""
+msgstr "Queimar"
 
 #: src/components/nfts/NFTBurnDialog.tsx:72
 msgid "Burn NFT confirmation"
@@ -388,7 +388,7 @@ msgstr ""
 
 #: src/components/offers/NFTOfferEditor.tsx:312
 msgid "Buy an NFT"
-msgstr ""
+msgstr "Comprar um NFT"
 
 #: src/components/signVerify/VerifyMessage.tsx:252
 msgid "By providing a signing address, the public key can be validated as being associated with the address used for signing."
@@ -432,19 +432,19 @@ msgstr "Cancelar"
 #: src/components/offers/OfferManager.tsx:358
 #: src/constants/WalletConnectCommands.tsx:255
 msgid "Cancel Offer"
-msgstr ""
+msgstr "Cancelar oferta"
 
 #: src/components/nfts/NFTContextualActions.tsx:283
 msgid "Cancel Unconfirmed Transaction"
-msgstr ""
+msgstr "Cancelar transação não confirmada"
 
 #: src/components/offers/OfferManager.tsx:128
 msgid "Cancel on blockchain"
-msgstr ""
+msgstr "Cancelar na blockchain"
 
 #: src/components/offers/utils.ts:157
 msgid "Cancelled"
-msgstr ""
+msgstr "Cancelada"
 
 #: src/util/offerBuilderDataToOffer.ts:120
 msgid "Cannot offer and request the same asset"
@@ -1579,15 +1579,13 @@ msgid "Install Keybase"
 msgstr ""
 
 #: src/hooks/useAcceptOfferHook.tsx:67
-msgid ""
-"Insufficient funds available to accept offer. Ensure that your\n"
+msgid "Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
 msgstr ""
 
 #: src/components/offers/OfferEditor.tsx:148
 #: src/components/offers2/CreateOfferBuilder.tsx:121
-msgid ""
-"Insufficient funds available to create offer. Ensure that your\n"
+msgid "Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
 msgstr ""
 
@@ -4161,3 +4159,4 @@ msgstr ""
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:106
 msgid "{warning}"
 msgstr ""
+

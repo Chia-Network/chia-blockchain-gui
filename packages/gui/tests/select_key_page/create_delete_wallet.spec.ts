@@ -3,38 +3,37 @@ import { test, expect } from '@playwright/test';
 import { LoginPage } from '../data_object_model/passphrase_login';
 import { isWalletSynced, getWalletBalance } from '../utils/wallet';
 import { waitForDebugger } from 'inspector';
+import { CloseDialog } from '../data_object_model/close_dialog';
 
 let electronApp: ElectronApplication;
 let page: Page;
 
 test.beforeAll(async () => {
   electronApp = await electron.launch({ args: ['./build/electron/main.js'] });
-  //electronApp = await electron.launch({ headless: true });
   page = await electronApp.firstWindow();
-});
-
-test.beforeEach(async () => {
-  //Given I enter correct credentials in Passphrase dialog
-  await new LoginPage(page).login('password2022!@');
-
-  //Logout of the wallet_new
-  await page.locator('[data-testid="ExitToAppIcon"]').click();
 });
 
 test.afterAll(async () => {
   await page.close();
 });
 
-//Works
 test('Create a new Wallet , logout and Delete new Wallet', async () => {
-  //Given I click the Create New Private Key button
-  await page.locator('text=Create a new private key').click();
+  //Pre-requisites to get user back to Wallet selection page
+  await new CloseDialog(page).closeIt();
+
+  //Given I navigate to the Import Existing page
+  await page.getByRole('button', { name: 'Add wallet' }).click();
+
+  //And I click the Create New Private Key button
+  await page.getByText('Create New').click();
 
   //When I enter a Wallet Name
+  // await page.getByLabel('Wallet Name').fill('New Wallet');
   await page.locator('text=Wallet NameWallet Name >> input[type="text"]').fill('New Wallet');
 
   //And I click on the Next button
-  await page.locator('button:has-text("Next")').click();
+  await page.getByRole('button', { name: 'Next' }).click();
+  //await page.locator('button:has-text("Next")').click();
 
   //And I save the Wallet ID of the wallet
   await page.waitForTimeout(10000);
@@ -46,7 +45,7 @@ test('Create a new Wallet , logout and Delete new Wallet', async () => {
   await getWalletBalance(newlyDeleteWallet);
 
   //Given I logout of the new wallet
-  await page.locator('[data-testid="ExitToAppIcon"]').click();
+  await page.getByTestId('LayoutDashboard-log-out').click();
 
   //When I click on the mini menu for the new the wallet
   await page.locator(`[data-testid="SelectKeyItem-fingerprint-${newlyDeleteWallet}"] [aria-label="more"]`).click();
@@ -69,4 +68,13 @@ test('Create a new Wallet , logout and Delete new Wallet', async () => {
   expect(
     await page.locator(`[data-testid="SelectKeyItem-fingerprint-${newlyDeleteWallet}"] [aria-label="more"]`).count()
   ).toEqual(0);
+
+  //
+
+  // await page.getByTestId('SelectKeyItem-fingerprint-1362932744').getByRole('button', { name: 'more', exact: true }).click();
+  // await page.getByText('Delete', { exact: true }).click();
+  // await page.getByRole('heading', { name: 'Delete key 1362932744' }).click();
+  // await page.getByLabel('Wallet Fingerprint').click();
+  // await page.getByLabel('Wallet Fingerprint').fill('1362932744');
+  // await page.getByRole('button', { name: 'Delete' }).click();
 });

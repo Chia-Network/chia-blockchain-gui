@@ -6,17 +6,17 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: @lingui/cli\n"
 "Language: ja_JP\n"
-"Project-Id-Version: chia-blockchain\n"
+"Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-10-24 18:14\n"
+"PO-Revision-Date: 2023-03-29 23:25\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Crowdin-Project: chia-blockchain\n"
-"X-Crowdin-Project-ID: 440660\n"
+"X-Crowdin-Project: 1263bc1f20e1271bda78e84d2f4a6562\n"
+"X-Crowdin-Project-ID: 1\n"
 "X-Crowdin-Language: ja\n"
-"X-Crowdin-File: /main/packages/core/src/locales/en-US/messages.po\n"
-"X-Crowdin-File-ID: 1886\n"
+"X-Crowdin-File: /[Chia-Network.chia-blockchain-gui] main/packages/core/src/locales/en-US/messages.po\n"
+"X-Crowdin-File-ID: 1304\n"
 
 #: src/components/Amount/Amount.tsx:36
 msgid "Amount"
@@ -310,7 +310,7 @@ msgstr "フィードバックの送信"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:52
 msgid "Setting a passphrase is strongly recommended to protect your keys. Are you sure you want to skip setting a passphrase?"
-msgstr ""
+msgstr "鍵を保護するため、パスフレーズを設定することを強く推奨します。本当にパスフレーズ設定をスキップしますか？"
 
 #: src/components/Settings/Settings.tsx:49
 #: src/components/Settings/Settings.tsx:59
@@ -347,7 +347,7 @@ msgstr ""
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:28
 msgid "The provided passphrase and confirmation do not match"
-msgstr ""
+msgstr "入力されたパスフレーズと確認用の再入力が一致しません"
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:126
 msgid "This key is used for a wallet that may have a non-zero balance. By deleting this key you may lose access to this wallet"
@@ -367,23 +367,23 @@ msgstr ""
 
 #: src/utils/getTransactionResult.ts:15
 msgid "Transaction has not been sent to node yet"
-msgstr ""
+msgstr "取引内容はまだノードに送られていません"
 
 #: src/utils/getTransactionResult.ts:33
 msgid "Transaction has sent to a full node and is pending inclusion into the mempool. {0}"
-msgstr ""
+msgstr "取引内容はフルノードに送信され、 mempool への追加待ち中です。 {0}"
 
 #: src/utils/getTransactionResult.ts:24
 msgid "Transaction has successfully been sent to a full node and included in the mempool."
-msgstr ""
+msgstr "取引内容はフルノードに送信され、 mempool に追加されました。"
 
 #: src/screens/SelectKey/SelectKey.tsx:124
 msgid "Try Again"
-msgstr ""
+msgstr "やり直す"
 
 #: src/screens/SelectKey/SelectKey.tsx:128
 msgid "Unable to load the list of the keys"
-msgstr ""
+msgstr "鍵の一覧を読み込めませんでした"
 
 #: src/components/LocaleToggle/LocaleToggle.tsx:44
 msgid "Unknown"
@@ -392,15 +392,15 @@ msgstr "不明"
 #: src/components/Back/Back.tsx:36
 #: src/components/FormBackButton/FormBackButton.tsx:27
 msgid "Unsaved Changes"
-msgstr ""
+msgstr "変更が保存されていません"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:61
 msgid "Using a passphrase is strongly recommended to protect your keys. Are you sure you want to disable passphrase protection?"
-msgstr ""
+msgstr "鍵の保護には、パスフレーズの使用を強く推奨します。本当にパスフレーズ保護機能を無効にしますか？"
 
 #: src/components/Fee/Fee.tsx:33
 msgid "Value seems high"
-msgstr ""
+msgstr "値が通常の範囲より高そうです"
 
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:116
 #: src/components/Settings/SettingsApp.tsx:81
@@ -423,16 +423,17 @@ msgstr "チアにようこそ。お持ちの鍵でログインするか、新し
 #: src/components/Back/Back.tsx:40
 #: src/components/FormBackButton/FormBackButton.tsx:31
 msgid "You have made changes. Do you want to discard them?"
-msgstr ""
+msgstr "未保存の変更があります。本当に破棄しますか？"
 
 #: src/hooks/useKeyringMigrationPrompt.tsx:20
 msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Would you like to migrate your keys now?"
-msgstr ""
+msgstr "あなたの鍵は新しいキーリングに移行されていません。移行が完了するまで、鍵の新規作成、及び既存の鍵の削除が行えません。今すぐ鍵を移行しますか？"
 
 #: src/components/Amount/Amount.tsx:86
 msgid "{0, plural, one {mojo} other {mojos}}"
-msgstr ""
+msgstr "{0, plural, other {モージョー}}"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:35
 msgid "{minPassphraseLength, plural, one {Passphrases must be at least # character in length} other {Passphrases must be at least # characters in length}}"
-msgstr ""
+msgstr "{minPassphraseLength, plural, other {パスフレーズの長さは少なくとも # 文字必要です}}"
+
