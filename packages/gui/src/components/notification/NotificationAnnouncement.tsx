@@ -1,12 +1,13 @@
-import { Flex, useOpenExternal, useOpenDialog, ConfirmDialog } from '@chia-network/core';
-import { Offers as OffersIcon } from '@chia-network/icons';
+import { Flex, useOpenDialog } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
+import { InsertComment as InsertCommentIcon, Link as LinkIcon } from '@mui/icons-material';
 import { Typography } from '@mui/material';
 import React from 'react';
 
 import type Notification from '../../@types/Notification';
 import NotificationType from '../../constants/NotificationType';
 import HumanTimestamp from '../helpers/HumanTimestamp';
+import NotificationAnnouncementDialog from './NotificationAnnouncementDialog';
 import NotificationPreview from './NotificationPreview';
 import NotificationWrapper from './NotificationWrapper';
 
@@ -26,7 +27,6 @@ export default function NotificationAnnouncement(props: NotificationAnnouncement
     throw new Error('NotificationAnnouncement can only be used with ANNOUNCEMENT notifications');
   }
 
-  const openExternal = useOpenExternal();
   const openDialog = useOpenDialog();
 
   const message = 'message' in notification ? notification.message : undefined;
@@ -35,15 +35,7 @@ export default function NotificationAnnouncement(props: NotificationAnnouncement
   async function handleClick() {
     onClick?.();
 
-    const canProcess = await openDialog(
-      <ConfirmDialog title={<Trans>Hang On</Trans>} confirmTitle={<Trans>Yes</Trans>} confirmColor="primary">
-        <Trans>This link will take you to {url}. Are you sure you want to go there?</Trans>
-      </ConfirmDialog>
-    );
-
-    if (canProcess) {
-      openExternal(url);
-    }
+    await openDialog(<NotificationAnnouncementDialog notification={notification} />);
   }
 
   return (
@@ -52,7 +44,7 @@ export default function NotificationAnnouncement(props: NotificationAnnouncement
       icon={
         <NotificationPreview
           notification={notification}
-          fallback={<OffersIcon sx={{ fontSize: '32px !important' }} />}
+          fallback={<InsertCommentIcon sx={{ fontSize: '32px !important' }} />}
         />
       }
     >
@@ -62,7 +54,12 @@ export default function NotificationAnnouncement(props: NotificationAnnouncement
           {' · '}
           <HumanTimestamp value={timestamp} fromNow />
         </Typography>
-        <Typography variant="body2">{message}</Typography>
+        <Flex flexDirection="row" gap={1} alignItems="center">
+          <Typography variant="body2" noWrap>
+            {message} fdgdfgdfg df gdg dg df g
+          </Typography>
+          {url ? <LinkIcon /> : null}
+        </Flex>
       </Flex>
     </NotificationWrapper>
   );
