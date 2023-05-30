@@ -3,7 +3,7 @@ import type { Transaction } from '@chia-network/api';
 import {
   useGetOfferRecordMutation,
   useGetSyncStatusQuery,
-  // useGetTransactionMemoMutation,
+  useGetTransactionMemoMutation,
 } from '@chia-network/api-react';
 import {
   Card,
@@ -235,7 +235,7 @@ type Props = {
 };
 
 // null means transaction memo was tried but it has no memo
-// type TransactionResolvedMemos = Record<string, Array<String> | null>;
+type TransactionResolvedMemos = Record<string, Array<String> | null>;
 
 export default function WalletHistory(props: Props) {
   const { walletId } = props;
@@ -244,7 +244,7 @@ export default function WalletHistory(props: Props) {
     pollingInterval: 10_000,
   });
   const { wallet, loading: isWalletLoading, unit } = useWallet(walletId);
-  // const [transactionResolvedMemos, setTransactionResolvedMemos] = React.useState<TransactionResolvedMemos>({});
+  const [transactionResolvedMemos, setTransactionResolvedMemos] = React.useState<TransactionResolvedMemos>({});
 
   const {
     transactions,
@@ -258,12 +258,10 @@ export default function WalletHistory(props: Props) {
     values: [TransactionType.INCOMING_CLAWBACK_RECEIVE, TransactionType.INCOMING_CLAWBACK_SEND],
   });
 
-  // console.log('transactions: ', transactions);
-
   const feeUnit = useCurrencyCode();
   const [getOfferRecord] = useGetOfferRecordMutation();
   const { navigate, location } = useSerializedNavigationState();
-  // const [getTransactionMemo] = useGetTransactionMemoMutation();
+  const [getTransactionMemo] = useGetTransactionMemoMutation();
 
   const isLoading = isWalletTransactionsLoading || isWalletLoading;
   const isSyncing = isWalletSyncLoading || !walletState || !!walletState?.syncing;
@@ -301,98 +299,103 @@ export default function WalletHistory(props: Props) {
     return getCols(wallet.type, isSyncing, getOfferRecord, navigate, location);
   }, [getOfferRecord, isSyncing, navigate, wallet, location]);
 
-  // const loadTransactionMemos = async (rowId: string, wasExpanded: boolean, rowData: Transaction) => {
-  //   console.log('loadTransactionMemos');
-  //   const { name: transactionId, type: transactionType } = rowData ?? {};
-  //   const { memos } = rowData ?? {};
+  const loadTransactionMemos = async (_rowId: string, wasExpanded: boolean, rowData: Transaction) => {
+    const { name: transactionId, type: transactionType } = rowData ?? {};
+    const { memos } = rowData ?? {};
 
-  //   // We're only interested in attempting to load memos if expanding an incoming txn and the txn doesn't already have memos
-  //   if (!wasExpanded || transactionType !== TransactionType.INCOMING || Object.keys(memos).length > 0) {
-  //     console.log('loadTransactionMemosReturn');
-  //     return;
-  //   }
+    // We're only interested in attempting to load memos if expanding an incoming txn and the txn doesn't already have memos
+    if (!wasExpanded || transactionType !== TransactionType.INCOMING || Object.keys(memos).length > 0) {
+      return;
+    }
 
-  //   console.log('loadTransactionMemos2');
+    const resolvedMemos = transactionResolvedMemos[transactionId];
 
-  //   const resolvedMemos = transactionResolvedMemos[transactionId];
-
-  //   // memos is null if we've already tried to fetch memos for this txn and there weren't any
-  //   if (!resolvedMemos && resolvedMemos !== null) {
-  //     const resolvedMemo = (await getTransactionMemo({ transactionId })).data;
-  //     console.log('resolvedMemo: ', resolvedMemo);
-  //     setTransactionResolvedMemos((prev) => ({ ...prev, [transactionId]: resolvedMemo ?? null }));
-  //   }
-  // };
-
-  const expandedField = (row) => {
-    const { confirmedAtHeight, memos } = row;
-    const memoValues = memos ? Object.values(memos) : [];
-    const memoValuesDecoded = memoValues.map((memoHex) => {
-      try {
-        const buf = Buffer.from(memoHex, 'hex');
-        const decodedValue = buf.toString('utf8');
-
-        const bufCheck = Buffer.from(decodedValue, 'utf8');
-        if (bufCheck.toString('hex') !== memoHex) {
-          throw new Error('Memo is not valid utf8 string');
-        }
-
-        return decodedValue;
-      } catch (error: any) {
-        return memoHex;
-      }
-    });
-
-    const memosDescription =
-      memoValuesDecoded && memoValuesDecoded.length ? (
-        <Flex flexDirection="column">
-          {memoValuesDecoded.map((memo, index) => (
-            // eslint-disable-next-line react/no-array-index-key -- There is no ID to use
-            <Typography variant="inherit" key={index}>
-              {memo ?? ''}
-            </Typography>
-          ))}
-        </Flex>
-      ) : (
-        <Trans>Not Available</Trans>
-      );
-
-    const rows = [
-      confirmedAtHeight && {
-        key: 'confirmedAtHeight',
-        label: <Trans>Confirmed at Height</Trans>,
-        value: confirmedAtHeight || <Trans>Not Available</Trans>,
-      },
-      {
-        key: 'memos',
-        label: <Trans>Memos</Trans>,
-        value: memosDescription,
-      },
-    ].filter((item) => !!item);
-
-    return (
-      <TableBase size="small">
-        <TableBody>
-          {rows.map((rowItem) => (
-            <TableRow key={rowItem.key}>
-              <StyledTableCellSmall>
-                <Typography component="div" variant="body2" color="textSecondary" noWrap>
-                  {rowItem.label}
-                </Typography>
-              </StyledTableCellSmall>
-              <StyledTableCellSmallRight>
-                <Box maxWidth="100%">
-                  <Typography component="div" variant="body2" noWrap>
-                    {rowItem.value}
-                  </Typography>
-                </Box>
-              </StyledTableCellSmallRight>
-            </TableRow>
-          ))}
-        </TableBody>
-      </TableBase>
-    );
+    // memos is null if we've already tried to fetch memos for this txn and there weren't any
+    if (!resolvedMemos && resolvedMemos !== null) {
+      let resolvedMemo = (await getTransactionMemo({ transactionId })).data;
+      if (!resolvedMemo || Object.keys(resolvedMemo).length === 0) resolvedMemo = null;
+      setTransactionResolvedMemos((prev) => ({ ...prev, [transactionId]: resolvedMemo }));
+    }
   };
+
+  const expandedField = useCallback(
+    (row) => {
+      const { confirmedAtHeight, name: transactionId } = row;
+      let { memos } = row;
+
+      if (!memos || Object.keys(memos).length === 0) {
+        memos = transactionResolvedMemos[transactionId];
+      }
+
+      const memoValues = memos ? Object.values(memos) : [];
+
+      const memoValuesDecoded = memoValues.map((memoHex) => {
+        try {
+          const buf = Buffer.from(memoHex, 'hex');
+          const decodedValue = buf.toString('utf8');
+          const bufCheck = Buffer.from(decodedValue, 'utf8');
+          if (bufCheck.toString('hex') !== memoHex) {
+            throw new Error('Memo is not valid utf8 string');
+          }
+
+          return decodedValue;
+        } catch (error: any) {
+          return memoHex;
+        }
+      });
+
+      const memosDescription =
+        memoValuesDecoded && memoValuesDecoded.length ? (
+          <Flex flexDirection="column">
+            {memoValuesDecoded.map((memo, index) => (
+              // eslint-disable-next-line react/no-array-index-key -- There is no ID to use
+              <Typography variant="inherit" key={index}>
+                {memo ?? ''}
+              </Typography>
+            ))}
+          </Flex>
+        ) : (
+          <Trans>Not Available</Trans>
+        );
+
+      const rows = [
+        confirmedAtHeight && {
+          key: 'confirmedAtHeight',
+          label: <Trans>Confirmed at Height</Trans>,
+          value: confirmedAtHeight || <Trans>Not Available</Trans>,
+        },
+        {
+          key: 'memos',
+          label: <Trans>Memos</Trans>,
+          value: memosDescription,
+        },
+      ].filter((item) => !!item);
+
+      return (
+        <TableBase size="small">
+          <TableBody>
+            {rows.map((rowItem) => (
+              <TableRow key={rowItem.key}>
+                <StyledTableCellSmall>
+                  <Typography component="div" variant="body2" color="textSecondary" noWrap>
+                    {rowItem.label}
+                  </Typography>
+                </StyledTableCellSmall>
+                <StyledTableCellSmallRight>
+                  <Box maxWidth="100%">
+                    <Typography component="div" variant="body2" noWrap>
+                      {rowItem.value}
+                    </Typography>
+                  </Box>
+                </StyledTableCellSmallRight>
+              </TableRow>
+            ))}
+          </TableBody>
+        </TableBase>
+      );
+    },
+    [transactionResolvedMemos]
+  );
 
   const ExtraRowsAfterHeader = useMemo(
     () => (
@@ -404,7 +407,7 @@ export default function WalletHistory(props: Props) {
         expandedCellShift={1}
       />
     ),
-    [cols, metadata, walletId]
+    [cols, expandedField, metadata, walletId]
   );
 
   return (
@@ -426,7 +429,7 @@ export default function WalletHistory(props: Props) {
         metadata={metadata}
         expandedCellShift={1}
         uniqueField="name"
-        // onToggleExpand={loadTransactionMemos}
+        onToggleExpand={loadTransactionMemos}
         expandedField={expandedField}
         caption={
           !transactions?.length && (
