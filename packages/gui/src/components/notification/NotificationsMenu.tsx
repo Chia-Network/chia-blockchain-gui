@@ -4,7 +4,7 @@ import { Button, Typography, Divider } from '@mui/material';
 import React, { useCallback, useState, useMemo } from 'react';
 import { useNavigate } from 'react-router';
 
-import useNotifications from '../../hooks/useNotifications';
+import useValidNotifications from '../../hooks/useValidNotifications';
 import Notification from './Notification';
 
 export type NotificationsMenuProps = {
@@ -15,7 +15,7 @@ export type NotificationsMenuProps = {
 export default function NotificationsMenu(props: NotificationsMenuProps) {
   const { onClose, size = 7 } = props;
   const navigate = useNavigate();
-  const { notifications = [], isLoading } = useNotifications();
+  const { notifications = [], isLoading } = useValidNotifications();
 
   function handleSeeAllActivity() {
     onClose?.();

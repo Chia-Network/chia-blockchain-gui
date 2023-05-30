@@ -8,7 +8,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 
 import type Notification from '../../@types/Notification';
 import NotificationType from '../../constants/NotificationType';
-import useNotifications from '../../hooks/useNotifications';
+import useValidNotifications from '../../hooks/useValidNotifications';
 import HumanTimestamp from '../helpers/HumanTimestamp';
 import NotificationPreview from '../notification/NotificationPreview';
 import OfferDetails from './OfferDetails';
@@ -112,7 +112,7 @@ export type OfferIncomingTableProps = {
 
 export default function OfferIncomingTable(props: OfferIncomingTableProps) {
   const { nftId, title = <Trans>Incoming Offers</Trans> } = props;
-  const { notifications = [], isLoading, deleteNotification } = useNotifications();
+  const { notifications = [], isLoading, deleteNotification } = useValidNotifications();
   const navigate = useNavigate();
   const location = useLocation();
   const currencyCode = useCurrencyCode();
