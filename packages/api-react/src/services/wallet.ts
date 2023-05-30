@@ -1277,6 +1277,16 @@ export const walletApi = apiWithTag.injectEndpoints({
           service: NFT,
           endpoint: 'getNFTs',
         },
+        {
+          command: 'onVCCoinAdded',
+          service: VC,
+          endpoint: 'getVCList',
+        },
+        {
+          command: 'onVCCoinRemoved',
+          service: VC,
+          endpoint: 'getVCList',
+        },
       ]),
     }),
 

@@ -431,6 +431,32 @@ export default class Wallet extends Service {
     return this.onStateChanged('nft_coin_updated', callback);
   }
 
+  onVCCoinAdded(
+    callback: (
+      data: {
+        additionalData: Object;
+        state: 'vc_coin_added';
+        walletId: number;
+      },
+      message: Message
+    ) => void
+  ) {
+    return this.onStateChanged('vc_coin_added', callback);
+  }
+
+  onVCCoinRemoved(
+    callback: (
+      data: {
+        additionalData: Object;
+        state: 'vc_coin_removed';
+        walletId: number;
+      },
+      message: Message
+    ) => void
+  ) {
+    return this.onStateChanged('vc_coin_removed', callback);
+  }
+
   onNewDerivationIndex(
     callback: (
       data: {

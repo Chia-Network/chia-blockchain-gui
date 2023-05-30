@@ -83,6 +83,7 @@ export default class VCWallet extends Wallet {
   }
 
   async getVCList(args: { start?: number; count?: number }) {
+    // console.log('GET VC LIST!!!');
     return this.command<{
       proofs: any;
       success: boolean;

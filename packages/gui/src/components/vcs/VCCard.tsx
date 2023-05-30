@@ -1,6 +1,6 @@
 import { useGetTimestampForHeightQuery, useRevokeVCMutation, usePrefs } from '@chia-network/api-react';
 import { Truncate, Button, useOpenDialog, AlertDialog, Flex, More, MenuItem } from '@chia-network/core';
-import { Trans } from '@lingui/macro';
+import { Trans, t } from '@lingui/macro';
 import { Delete as DeleteIcon, Edit as EditIcon } from '@mui/icons-material';
 import { Box, Card, Typography, Table, TableRow, TableCell, ListItemIcon, IconButton } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
@@ -38,9 +38,10 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
   const openDialog = useOpenDialog();
   const [vcTitlesObject] = usePrefs<any>('verifiable-credentials-titles', {});
   const vcTitle = React.useMemo(
-    () => vcTitlesObject[vcRecord.vc.launcherId] || <Trans>Verifiable Credential</Trans>,
+    () => vcTitlesObject[vcRecord.vc.launcherId] || t`Verifiable Credential`,
     [vcRecord.vc.launcherId, vcTitlesObject]
   );
+
   const [isEditingTitle, setIsEditingTitle] = React.useState(false);
 
   function renderProofs() {
