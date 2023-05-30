@@ -1,5 +1,6 @@
 import { TransactionType } from '@chia-network/api';
 import type { Transaction } from '@chia-network/api';
+import { useGetAutoClaimQuery } from '@chia-network/api-react';
 import { useTrans, Button } from '@chia-network/core';
 import { defineMessage } from '@lingui/macro';
 import { AccessTime as AccessTimeIcon } from '@mui/icons-material';
@@ -14,6 +15,10 @@ type Props = {
 
 export default function WalletHistoryClawbackChip(props: Props) {
   const { transactionRow, setClawbackClaimTransactionDialogProps } = props;
+
+  const { data: autoClaimData, isLoading } = useGetAutoClaimQuery();
+  const isAutoClaimEnabled = !isLoading && autoClaimData?.enabled;
+
   const t = useTrans();
 
   let text = '';
@@ -30,11 +35,18 @@ export default function WalletHistoryClawbackChip(props: Props) {
   if (transactionRow.type === TransactionType.INCOMING_CLAWBACK_RECEIVE) {
     if (timeLeft > 0) {
       Icon = <AccessTimeIcon />;
-      text = t(
-        defineMessage({
-          message: 'Can be claimed in ',
-        })
-      );
+
+      text = isAutoClaimEnabled
+        ? t(
+            defineMessage({
+              message: 'Will be autoclaimed in ',
+            })
+          )
+        : t(
+            defineMessage({
+              message: 'Can be claimed in ',
+            })
+          );
       text += canBeClaimedAt.fromNow(true); // ... 3 days
     } else if (transactionRow.sent === 0) {
       text = t(
