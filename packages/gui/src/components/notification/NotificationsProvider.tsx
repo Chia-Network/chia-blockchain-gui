@@ -1,6 +1,5 @@
 import {
   useGetLoggedInFingerprintQuery,
-  usePrefs,
   useCurrentFingerprintSettings,
   useLocalStorage,
 } from '@chia-network/api-react';
@@ -9,6 +8,7 @@ import React, { useMemo, useEffect, useCallback, createContext, type ReactNode }
 
 import type Notification from '../../@types/Notification';
 import useBlockchainNotifications from '../../hooks/useBlockchainNotifications';
+import useNotificationSettings from '../../hooks/useNotificationSettings';
 import useShowNotification from '../../hooks/useShowNotification';
 import { pushNotificationStringsForNotificationType } from './utils';
 
@@ -59,10 +59,14 @@ export default function NotificationsProvider(props: NotificationsProviderProps)
   // list of all triggered notifications except backend notifications
   const [triggeredNotifications, setTriggeredNotifications] = useLocalStorage<Notification[]>('localNotifications', []);
 
-  const [enabled, setEnabled] = usePrefs<boolean>('enableNotifications', true); // global notification setting. controls push and local notifications
+  const {
+    globalNotifications,
+    setGlobalNotifications,
 
-  // state for push notifications
-  const [pushNotificationsEnabled, setPushNotificationsEnabled] = usePrefs<boolean>('enablePushNotifications', true); // push notification setting
+    pushNotifications,
+    setPushNotifications,
+  } = useNotificationSettings();
+
   const [, setLastPushNotificationTimestamp, { isLoading: isLoadingPushNotificationsTimestamp }] =
     useCurrentFingerprintSettings<number>('lastPushNotificationTimestamp', 0);
 
@@ -110,7 +114,7 @@ export default function NotificationsProvider(props: NotificationsProviderProps)
   }, [triggeredNotificationsByCurrentFingerprint, blockchainNotifications]);
 
   const showPushNotifications = useCallback(() => {
-    if (!enabled || !pushNotificationsEnabled || isLoadingServices) {
+    if (!globalNotifications || !pushNotifications || isLoadingServices) {
       return;
     }
 
@@ -133,8 +137,8 @@ export default function NotificationsProvider(props: NotificationsProviderProps)
       return firstUnseenNotification.timestamp;
     });
   }, [
-    enabled,
-    pushNotificationsEnabled,
+    globalNotifications,
+    pushNotifications,
     isLoadingServices,
     setLastPushNotificationTimestamp,
     notifications,
@@ -190,10 +194,10 @@ export default function NotificationsProvider(props: NotificationsProviderProps)
       unseenCount,
       setAsSeen,
       // settings
-      areNotificationsEnabled: enabled,
-      setNotificationsEnabled: setEnabled,
-      pushNotificationsEnabled,
-      setPushNotificationsEnabled,
+      areNotificationsEnabled: globalNotifications,
+      setNotificationsEnabled: setGlobalNotifications,
+      pushNotificationsEnabled: pushNotifications,
+      setPushNotificationsEnabled: setPushNotifications,
 
       showNotification,
       deleteNotification: handleDeleteNotification,
@@ -206,10 +210,10 @@ export default function NotificationsProvider(props: NotificationsProviderProps)
       unseenCount,
       setAsSeen,
 
-      enabled,
-      setEnabled,
-      pushNotificationsEnabled,
-      setPushNotificationsEnabled,
+      globalNotifications,
+      setGlobalNotifications,
+      pushNotifications,
+      setPushNotifications,
 
       showNotification,
       handleDeleteNotification,
