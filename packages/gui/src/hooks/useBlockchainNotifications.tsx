@@ -53,12 +53,17 @@ export default function useBlockchainNotifications() {
 
   // immutable
   const prepareNotifications = useCallback(
-    async (blockchainNotificationsList: BlockchainNotification[], abortSignal: AbortSignal) => {
+    async (
+      blockchainNotificationsList: BlockchainNotification[],
+      isWalletSynced: boolean,
+      abortSignal: AbortSignal
+    ) => {
       try {
         setPreparingError(undefined, abortSignal);
         setIsPreparingNotifications(true, abortSignal);
 
-        if (!blockchainNotificationsList?.length) {
+        // without wallet sync we can't get timestamp
+        if (!blockchainNotificationsList?.length || !isWalletSynced) {
           setNotifications([], abortSignal);
           return;
         }
@@ -74,6 +79,7 @@ export default function useBlockchainNotifications() {
 
               const { t: type, d: data } = JSON.parse(message);
 
+              // without wallet sync we can't get timestamp
               const timestampData = await getTimestampForHeight({
                 height,
               }).unwrap();
@@ -132,11 +138,11 @@ export default function useBlockchainNotifications() {
   );
 
   useEffect(() => {
-    if (isSynced && blockchainNotifications) {
+    if (blockchainNotifications) {
       abortControllerRef.current.abort();
       abortControllerRef.current = new AbortController();
 
-      prepareNotifications(blockchainNotifications, abortControllerRef.current.signal);
+      prepareNotifications(blockchainNotifications, isSynced, abortControllerRef.current.signal);
     }
   }, [blockchainNotifications, prepareNotifications, isSynced]);
 

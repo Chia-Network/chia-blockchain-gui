@@ -4,7 +4,7 @@ import {
   useGetKeyringStatusQuery,
   useDeleteAllKeysMutation,
   useGetKeysQuery,
-  useLogout,
+  useClearCache,
   useLogInMutation,
   type Serializable,
 } from '@chia-network/api-react';
@@ -51,7 +51,7 @@ export default function SelectKey() {
   const [skippedMigration] = useSkipMigration();
   const [promptForKeyringMigration] = useKeyringMigrationPrompt();
   const showError = useShowError();
-  const cleanCache = useLogout();
+  const clearCache = useClearCache();
   const [sortedWallets, setSortedWallets] = usePrefs('sortedWallets', []);
 
   const keyItemsSortable = React.useRef<any>(null);
@@ -108,12 +108,13 @@ export default function SelectKey() {
 
     try {
       setSelectedFingerprint(fingerprint);
+
       await logIn({
         fingerprint,
         type: 'skip',
       }).unwrap();
 
-      await cleanCache();
+      await clearCache();
 
       navigate('/dashboard/wallets');
     } catch (err) {
