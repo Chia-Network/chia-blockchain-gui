@@ -21,6 +21,7 @@ import type Notification from '../../@types/Notification';
 import NotificationType from '../../constants/NotificationType';
 import useOffers from '../../hooks/useOffers';
 import useValidNotifications from '../../hooks/useValidNotifications';
+import { launcherIdFromNFTId } from '../../util/nfts';
 import offerToOfferBuilderData from '../../util/offerToOfferBuilderData';
 import HumanTimestamp from '../helpers/HumanTimestamp';
 import NotificationPreview from '../notification/NotificationPreview';
@@ -143,12 +144,31 @@ export default function OfferIncomingTable(props: OfferIncomingTableProps) {
           return true;
         }
 
-        const { requested = [] } = notification;
-        const nft = requested.find((info) => info.assetType === 'NFT' && info.displayName === nftId);
+        const offerId =
+          'offerURL' in notification
+            ? notification.offerURL
+            : 'offerData' in notification
+            ? notification.offerData
+            : undefined;
+        const offerState = getOffer(offerId);
+        if (!offerState) {
+          return false;
+        }
 
-        return !!nft;
+        const offerSummary = offerState.offer?.summary;
+        if (!offerSummary) {
+          return false;
+        }
+
+        const { requested } = offerSummary;
+        const launcherId = launcherIdFromNFTId(nftId);
+        if (launcherId && requested && launcherId in requested) {
+          return true;
+        }
+
+        return false;
       }),
-    [notifications, nftId]
+    [notifications, nftId, getOffer]
   );
 
   async function handleCounterOffer(notification: Notification) {
