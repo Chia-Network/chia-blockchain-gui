@@ -1,8 +1,6 @@
-type PuzzleDecoratorItem = {
+type PuzzleDecorator = {
   decorator: 'CLAWBACK';
   clawbackTimelock: number;
 };
-
-type PuzzleDecorator = PuzzleDecoratorItem[];
 
 export default PuzzleDecorator;

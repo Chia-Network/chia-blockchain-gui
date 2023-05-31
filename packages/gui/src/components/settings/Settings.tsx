@@ -41,7 +41,8 @@ export default function Settings() {
 
     let path = pathPrefix + newTab.path;
 
-    // remove /* from path
+    // The path in the settingsTabs is used for matching, so it might contain a wildcard.
+    // So we need to remove /* from the path to navigate to the correct path.
     if (path.endsWith('/*')) {
       path = path.slice(0, -2);
     }

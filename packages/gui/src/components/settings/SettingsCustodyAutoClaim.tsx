@@ -46,7 +46,7 @@ export default function SettingsCustodyAutoClaim(props) {
   }
 
   if (isLoading) {
-    return 'Loading...';
+    return <Box>'Loading...'</Box>;
   }
 
   const isAutoClaimEnabled = autoClaimData?.enabled;
@@ -56,7 +56,7 @@ export default function SettingsCustodyAutoClaim(props) {
     <Box {...props}>
       <Form methods={methods} onSubmit={handleSubmit}>
         {isAutoClaimEnabled && (
-          <div>
+          <Box>
             <Flex gap={3} flexDirection="column" alignItems="flex-start">
               <ButtonLoading
                 size="small"
@@ -70,9 +70,9 @@ export default function SettingsCustodyAutoClaim(props) {
                 <Trans>Disable Auto claim</Trans>
               </ButtonLoading>
 
-              <Typography component="div" variant="subtitle2">
+              <Typography component="div" variant="subtitle2" sx={(theme) => ({ color: theme.palette.primary.dark })}>
                 <ConnectCheckmark
-                  sx={{
+                  sx={(theme) => ({
                     verticalAlign: 'middle',
                     position: 'relative',
                     top: '-5px',
@@ -80,17 +80,15 @@ export default function SettingsCustodyAutoClaim(props) {
                     width: '31px',
                     height: '31px',
 
-                    '& g': {
-                      circle: {
-                        stroke: '#3AAC59',
-                        fill: '#3AAC59',
-                      },
-                      path: {
-                        stroke: '#3AAC59',
-                        fill: '#3AAC59',
-                      },
+                    circle: {
+                      stroke: theme.palette.primary.main,
+                      fill: theme.palette.primary.main,
                     },
-                  }}
+                    path: {
+                      stroke: theme.palette.primary.main,
+                      fill: theme.palette.primary.main,
+                    },
+                  })}
                 />
 
                 <Trans>Auto claim is enabled.</Trans>
@@ -100,12 +98,13 @@ export default function SettingsCustodyAutoClaim(props) {
               <SettingsText>
                 <Trans>
                   You will pay a fee {autoClaimFee} {currencyCode} when auto claiming Clawback transaction.
-                </Trans>{' '}
-                <br />
+                </Trans>
+              </SettingsText>
+              <SettingsText>
                 <Trans>Transactions with values smaller than the fee will not be auto claimed.</Trans>
               </SettingsText>
             </Box>
-          </div>
+          </Box>
         )}
         {!isAutoClaimEnabled && (
           <>

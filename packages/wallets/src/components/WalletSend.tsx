@@ -310,7 +310,11 @@ export default function WalletSend(props: SendCardProps) {
                   </Flex>
                   {willClawbackBeEnabled && (
                     <Flex gap={2} justifyContent="flex-start" sx={{ marginTop: 3 }} alignItems="center">
-                      <Typography component="div" variant="subtitle2" sx={{ color: 'green' }}>
+                      <Typography
+                        component="div"
+                        variant="subtitle2"
+                        sx={(theme) => ({ color: theme.palette.primary.dark })}
+                      >
                         <CheckCircleIcon
                           sx={{ verticalAlign: 'middle', marginRight: 0.5, position: 'relative', top: '-2px' }}
                         />

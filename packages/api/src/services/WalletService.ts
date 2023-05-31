@@ -96,7 +96,7 @@ export default class Wallet extends Service {
     fee: BigNumber;
     address: string;
     memos?: string[];
-    puzzleDecorator?: PuzzleDecorator;
+    puzzleDecorator?: PuzzleDecorator[];
   }) {
     return this.command<{ transaction: Transaction; transactionId: string }>('send_transaction', args);
   }

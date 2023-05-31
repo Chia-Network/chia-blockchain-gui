@@ -1,6 +1,6 @@
 import { Flex, SettingsHR, SettingsSection, SettingsText } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
-import { Grid } from '@mui/material';
+import { Grid, Box } from '@mui/material';
 import React from 'react';
 
 import SettingsCustodyAutoClaim from './SettingsCustodyAutoClaim';
@@ -24,17 +24,19 @@ export default function SettingsCustody() {
         <SettingsHR />
       </Grid>
 
-      <div>
+      <Box>
         <SettingsSection>
           <Trans>Default Clawback time of outgoing transactions</Trans>
         </SettingsSection>
 
         <SettingsText>
           <Trans>Set a default time frame withing which you can revoke (Clawback) the transaction.</Trans>
-          <br />
+        </SettingsText>
+
+        <SettingsText>
           <Trans>You can always change the Clawback time for a specific transaction.</Trans>
         </SettingsText>
-      </div>
+      </Box>
 
       <SettingsCustodyClawbackOutgoing sx={{ marginTop: 2.5 }} />
 
@@ -42,7 +44,7 @@ export default function SettingsCustody() {
         <SettingsHR />
       </Grid>
 
-      <div>
+      <Box>
         <SettingsSection>
           <Trans>Auto claim incoming Clawback transactions</Trans>
         </SettingsSection>
@@ -50,7 +52,7 @@ export default function SettingsCustody() {
         <SettingsText>
           <Trans>Claim assets transferred to you automatically when the Clawback expires.</Trans>
         </SettingsText>
-      </div>
+      </Box>
       <SettingsCustodyAutoClaim sx={{ marginTop: 1 }} />
     </Grid>
   );

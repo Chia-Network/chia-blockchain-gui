@@ -80,9 +80,13 @@ export default function SettingsCustodyClawbackOutgoing(props) {
         </Flex>
       </Form>
       {isClawbackDefaultTimeEnabled && (
-        <Typography component="div" variant="subtitle2" sx={{ width: '100%', color: 'green', marginTop: 3 }}>
+        <Typography
+          component="div"
+          variant="subtitle2"
+          sx={(theme) => ({ width: '100%', color: theme.palette.primary.dark, marginTop: 3 })}
+        >
           <ConnectCheckmark
-            sx={{
+            sx={(theme) => ({
               verticalAlign: 'middle',
               position: 'relative',
               top: '-5px',
@@ -92,15 +96,15 @@ export default function SettingsCustodyClawbackOutgoing(props) {
 
               '& g': {
                 circle: {
-                  stroke: '#3AAC59',
-                  fill: '#3AAC59',
+                  stroke: theme.palette.primary.main,
+                  fill: theme.palette.primary.main,
                 },
                 path: {
-                  stroke: '#3AAC59',
-                  fill: '#3AAC59',
+                  stroke: theme.palette.primary.main,
+                  fill: theme.palette.primary.main,
                 },
               },
-            }}
+            })}
           />
           <Trans>Default Clawback time is enabled. </Trans>{' '}
         </Typography>
