@@ -25,6 +25,7 @@ import CacheProvider from '../cache/CacheProvider';
 import LRUsProvider from '../lrus/LRUsProvider';
 import NFTProvider from '../nfts/provider/NFTProvider';
 import NotificationsProvider from '../notification/NotificationsProvider';
+import OffersProvider from '../offers2/OffersProvider';
 import WalletConnectProvider, { WalletConnectChiaProjectId } from '../walletConnect/WalletConnectProvider';
 import AppState from './AppState';
 
@@ -101,12 +102,14 @@ export default function App(props: AppProps) {
                 <NFTProvider>
                   <ModalDialogsProvider>
                     <Suspense fallback={<LayoutLoading />}>
-                      <WalletConnectProvider projectId={WalletConnectChiaProjectId}>
+                      <OffersProvider>
                         <NotificationsProvider>
-                          <AppState>{outlet ? <Outlet /> : children}</AppState>
-                          <ModalDialogs />
+                          <WalletConnectProvider projectId={WalletConnectChiaProjectId}>
+                            <AppState>{outlet ? <Outlet /> : children}</AppState>
+                            <ModalDialogs />
+                          </WalletConnectProvider>
                         </NotificationsProvider>
-                      </WalletConnectProvider>
+                      </OffersProvider>
                     </Suspense>
                   </ModalDialogsProvider>
                 </NFTProvider>

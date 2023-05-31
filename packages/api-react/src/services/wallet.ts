@@ -8,39 +8,41 @@ import normalizePoolState from '../utils/normalizePoolState';
 import onCacheEntryAddedInvalidate from '../utils/onCacheEntryAddedInvalidate';
 import { query, mutation } from '../utils/reduxToolkitEndpointAbstractions';
 
+const tagTypes = [
+  'Address',
+  'CATWalletInfo',
+  'DID',
+  'DIDCoinInfo',
+  'DIDInfo',
+  'DIDName',
+  'DIDPubKey',
+  'DIDRecoveryInfo',
+  'DIDRecoveryList',
+  'DIDWallet',
+  'Keys',
+  'LoggedInFingerprint',
+  'NFTCount',
+  'NFTInfo',
+  'NFTRoyalties',
+  'NFTWalletWithDID',
+  'OfferCounts',
+  'OfferTradeRecord',
+  'PlotNFT',
+  'PoolWalletStatus',
+  'TransactionCount',
+  'Transactions',
+  'WalletBalance',
+  'WalletConnections',
+  'Wallets',
+  'DerivationIndex',
+  'CATs',
+  'DaemonKey',
+  'Notification',
+  'AutoClaim',
+];
+
 const apiWithTag = api.enhanceEndpoints({
-  addTagTypes: [
-    'Address',
-    'CATWalletInfo',
-    'DID',
-    'DIDCoinInfo',
-    'DIDInfo',
-    'DIDName',
-    'DIDPubKey',
-    'DIDRecoveryInfo',
-    'DIDRecoveryList',
-    'DIDWallet',
-    'Keys',
-    'LoggedInFingerprint',
-    'NFTCount',
-    'NFTInfo',
-    'NFTRoyalties',
-    'NFTWalletWithDID',
-    'OfferCounts',
-    'OfferTradeRecord',
-    'PlotNFT',
-    'PoolWalletStatus',
-    'TransactionCount',
-    'Transactions',
-    'WalletBalance',
-    'WalletConnections',
-    'Wallets',
-    'DerivationIndex',
-    'CATs',
-    'DaemonKey',
-    'Notification',
-    'AutoClaim',
-  ],
+  addTagTypes: tagTypes,
 });
 
 export const walletApi = apiWithTag.injectEndpoints({
@@ -434,7 +436,9 @@ export const walletApi = apiWithTag.injectEndpoints({
     }),
 
     logIn: mutation(build, WalletService, 'logIn', {
-      invalidatesTags: ['LoggedInFingerprint', 'Address', 'Wallets', 'Transactions', 'WalletBalance', 'Notification'],
+      // we need to use useClearCache after logIn,
+      // invalidateTags will not work because it will just do refetch and user see data from previous key until new data will be fetched
+      // invalidatesTags: tagTypes, // invalidates all tags
     }),
 
     getPrivateKey: query(build, WalletService, 'getPrivateKey', {
@@ -1455,6 +1459,7 @@ export const {
   useGetNextAddressMutation,
   useFarmBlockMutation,
   useGetTimestampForHeightQuery,
+  useLazyGetTimestampForHeightQuery,
   useGetHeightInfoQuery,
   useGetNetworkInfoQuery,
   useGetSyncStatusQuery,

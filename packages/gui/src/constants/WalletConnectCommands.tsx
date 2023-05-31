@@ -294,7 +294,7 @@ const walletConnectCommands: WalletConnectCommand[] = [
     service: ServiceName.WALLET,
     params: [
       {
-        name: WalletConnectCommandParamName.WALLET_IDS_AND_AMOUNTS,
+        name: WalletConnectCommandParamName.OFFER,
         label: <Trans>Wallet Ids and Amounts</Trans>,
         type: 'object',
         displayComponent: (value, params, values, onChange) => (
@@ -788,6 +788,42 @@ const walletConnectCommands: WalletConnectCommand[] = [
     label: <Trans>Get NFT Wallets with DIDs</Trans>,
     service: ServiceName.WALLET,
     bypassConfirm: true,
+  },
+  {
+    command: 'showNotification',
+    label: <Trans>Show notification with offer or general announcement</Trans>,
+    service: 'NOTIFICATION',
+    params: [
+      {
+        name: WalletConnectCommandParamName.TYPE,
+        type: 'string',
+        label: <Trans>Type</Trans>,
+      },
+      {
+        name: WalletConnectCommandParamName.MESSAGE,
+        type: 'string',
+        label: <Trans>Message</Trans>,
+        isOptional: true,
+      },
+      {
+        name: WalletConnectCommandParamName.URL,
+        type: 'string',
+        label: <Trans>URL</Trans>,
+        isOptional: true,
+      },
+      {
+        name: WalletConnectCommandParamName.OFFER_DATA,
+        type: 'string',
+        label: <Trans>Offer Data</Trans>,
+        isOptional: true,
+      },
+      {
+        name: WalletConnectCommandParamName.ALL_FINGERPRINTS,
+        type: 'boolean',
+        label: <Trans>Is notification visible to all paired fingerprints</Trans>,
+        isOptional: true,
+      },
+    ],
   },
 ];
 

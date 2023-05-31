@@ -4,7 +4,7 @@ import {
   useGetKeyringStatusQuery,
   useDeleteAllKeysMutation,
   useGetKeysQuery,
-  useLogout,
+  useClearCache,
   useLogInMutation,
   type Serializable,
 } from '@chia-network/api-react';
@@ -51,7 +51,7 @@ export default function SelectKey() {
   const [skippedMigration] = useSkipMigration();
   const [promptForKeyringMigration] = useKeyringMigrationPrompt();
   const showError = useShowError();
-  const cleanCache = useLogout();
+  const clearCache = useClearCache();
   const [sortedWallets, setSortedWallets] = usePrefs('sortedWallets', []);
 
   const keyItemsSortable = React.useRef<any>(null);
@@ -76,7 +76,7 @@ export default function SelectKey() {
   /* useEffect - set random emojis and colors for each wallet
      if we got no walletKeyTheme keys in each fingerprint inside prefs.yaml */
   React.useEffect(() => {
-    if (publicKeyFingerprints.length) {
+    if (publicKeyFingerprints?.length) {
       const newFingerprints: any = {};
       let notifyChange: boolean = false;
       publicKeyFingerprints.forEach((f: any) => {
@@ -108,12 +108,15 @@ export default function SelectKey() {
 
     try {
       setSelectedFingerprint(fingerprint);
+
+      // we need to clear cache before logging in, because we need to clean notifications
       await logIn({
         fingerprint,
         type: 'skip',
       }).unwrap();
 
-      await cleanCache();
+      // because some queries may be run during login , we need to clear them again
+      await clearCache();
 
       navigate('/dashboard/wallets');
     } catch (err) {
