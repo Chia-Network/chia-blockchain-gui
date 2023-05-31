@@ -1,10 +1,10 @@
-import { Flex, useOpenDialog } from '@chia-network/core';
+import { Flex, useOpenDialog, Mute } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { InsertComment as InsertCommentIcon, Link as LinkIcon } from '@mui/icons-material';
 import { Typography } from '@mui/material';
 import React from 'react';
 
-import type Notification from '../../@types/Notification';
+import { type NotificationAnnouncement as NotificationAnnouncementType } from '../../@types/Notification';
 import NotificationType from '../../constants/NotificationType';
 import HumanTimestamp from '../helpers/HumanTimestamp';
 import NotificationAnnouncementDialog from './NotificationAnnouncementDialog';
@@ -12,7 +12,7 @@ import NotificationPreview from './NotificationPreview';
 import NotificationWrapper from './NotificationWrapper';
 
 export type NotificationAnnouncementProps = {
-  notification: Notification;
+  notification: NotificationAnnouncementType;
   onClick?: () => void;
 };
 
@@ -20,7 +20,7 @@ export default function NotificationAnnouncement(props: NotificationAnnouncement
   const {
     onClick,
     notification,
-    notification: { type, timestamp },
+    notification: { type, timestamp, message, url, from = 'Dapp' },
   } = props;
 
   if (type !== NotificationType.ANNOUNCEMENT) {
@@ -28,9 +28,6 @@ export default function NotificationAnnouncement(props: NotificationAnnouncement
   }
 
   const openDialog = useOpenDialog();
-
-  const message = 'message' in notification ? notification.message : undefined;
-  const url = 'url' in notification ? notification.url : undefined;
 
   async function handleClick() {
     onClick?.();
@@ -49,16 +46,21 @@ export default function NotificationAnnouncement(props: NotificationAnnouncement
       }
     >
       <Flex flexDirection="column" minWidth={0} flexBasis={0} maxWidth={320}>
-        <Typography variant="body2" color="textSecondary">
-          <Trans>Dapp sending the message</Trans>
-          {' · '}
-          <HumanTimestamp value={timestamp} fromNow />
-        </Typography>
         <Flex flexDirection="row" gap={1} alignItems="center">
-          <Typography variant="body2" noWrap>
-            {message} fdgdfgdfg df gdg dg df g
+          <Typography variant="subtitle2" sx={{ wordWrap: 'break-word' }}>
+            <Trans>
+              {from} <Mute>sending the message</Mute>
+            </Trans>
+            {' · '}
+            <Mute>
+              <HumanTimestamp value={timestamp} fromNow />
+            </Mute>
+          </Typography>{' '}
+        </Flex>
+        <Flex flexDirection="row" gap={1} alignItems="center">
+          <Typography variant="body2">
+            {message} {url ? <LinkIcon sx={{ verticalAlign: 'middle' }} /> : null}
           </Typography>
-          {url ? <LinkIcon /> : null}
         </Flex>
       </Flex>
     </NotificationWrapper>

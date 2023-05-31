@@ -18,18 +18,18 @@ type OfferDataOrUrl =
       offerURL: string;
     };
 
-type NotificationOffer = NotificationBase &
+export type NotificationOffer = NotificationBase &
   OfferDataOrUrl & {
     type: NotificationType.OFFER;
   };
 
-type NotificationCounterOffer = NotificationBase &
+export type NotificationCounterOffer = NotificationBase &
   OfferDataOrUrl & {
     type: NotificationType.COUNTER_OFFER;
     puzzleHash: string;
   };
 
-type NotificationAnnouncement = NotificationBase & {
+export type NotificationAnnouncement = NotificationBase & {
   type: NotificationType.ANNOUNCEMENT;
   message: string;
   url?: string;

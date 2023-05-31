@@ -34,9 +34,13 @@ export default function OfferDetails(props: OfferDetailsProps) {
   return (
     <>
       {isLoading ? (
-        <Trans>Loading...</Trans>
+        <Typography color={color} variant="body2">
+          <Trans>Loading...</Trans>
+        </Typography>
       ) : error ? (
-        <Trans>Error</Trans>
+        <Typography color={color} variant="body2">
+          <Trans>Error</Trans>
+        </Typography>
       ) : infos ? (
         infos.map((info) => (
           <Flex flexDirection="row" gap={0.5} key={`${info.displayAmount}-${info.displayName}`}>

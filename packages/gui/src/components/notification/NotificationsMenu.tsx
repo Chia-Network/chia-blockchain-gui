@@ -1,7 +1,7 @@
 import { Flex, Loading } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Button, Typography, Divider } from '@mui/material';
-import React, { useCallback, useState, useMemo } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router';
 
 import useValidNotifications from '../../hooks/useValidNotifications';
@@ -26,21 +26,7 @@ export default function NotificationsMenu(props: NotificationsMenuProps) {
     onClose?.();
   }
 
-  const [hiddenNotifications, setHiddenNotifications] = useState<Record<string, boolean>>({});
-
-  const hideNotification = useCallback((id: string) => {
-    setHiddenNotifications((prevNotifications) => ({
-      ...prevNotifications,
-      [id]: true,
-    }));
-  }, []);
-
-  // get the latest notifications that are not hidden
-  const latestNotifications = useMemo(
-    () => notifications.filter((notification) => !hiddenNotifications[notification.id]).slice(0, size),
-    [notifications, hiddenNotifications, size]
-  );
-
+  const limited = notifications.slice(0, size);
   const hasMore = notifications.length > size;
 
   return (
@@ -51,13 +37,8 @@ export default function NotificationsMenu(props: NotificationsMenuProps) {
         </Typography>
         {!!notifications.length && (
           <Flex flexDirection="column">
-            {latestNotifications.map((notification) => (
-              <Notification
-                key={notification.id}
-                notification={notification}
-                onClick={handleClick}
-                onHide={hideNotification}
-              />
+            {limited.map((notification) => (
+              <Notification key={notification.id} notification={notification} onClick={handleClick} />
             ))}
           </Flex>
         )}
@@ -77,7 +58,7 @@ export default function NotificationsMenu(props: NotificationsMenuProps) {
         <>
           <Divider />
           <Flex>
-            <Button onClick={handleSeeAllActivity} color="secondary" size="small" fullWidth>
+            <Button onClick={handleSeeAllActivity} variant="text" color="secondary" size="small" fullWidth>
               <Trans>See All Activity</Trans>
             </Button>
           </Flex>

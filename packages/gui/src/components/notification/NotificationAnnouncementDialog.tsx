@@ -1,7 +1,9 @@
-import { Flex, Link, DialogActions, useOpenExternal, useOpenDialog, ConfirmDialog } from '@chia-network/core';
+import { Flex, Link, DialogActions } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Button, Dialog, DialogContent, DialogTitle, Typography } from '@mui/material';
 import React from 'react';
+
+import useOpenUnsafeLink from '../../hooks/useOpenUnsafeLink';
 
 export type NotificationAnnouncementDialogProps = {
   notification: Notification;
@@ -11,8 +13,7 @@ export type NotificationAnnouncementDialogProps = {
 export default function NotificationAnnouncementDialog(props: NotificationAnnouncementDialogProps) {
   const { notification, onClose } = props;
 
-  const openExternal = useOpenExternal();
-  const openDialog = useOpenDialog();
+  const openUnsafeLink = useOpenUnsafeLink();
 
   function handleClose() {
     onClose?.(false);
@@ -23,15 +24,7 @@ export default function NotificationAnnouncementDialog(props: NotificationAnnoun
   const from = 'from' in notification ? notification.from : undefined;
 
   async function handleURLClick() {
-    const canProcess = await openDialog(
-      <ConfirmDialog title={<Trans>Hang On</Trans>} confirmTitle={<Trans>Yes</Trans>} confirmColor="primary">
-        <Trans>This link will take you to {url}. Are you sure you want to go there?</Trans>
-      </ConfirmDialog>
-    );
-
-    if (canProcess) {
-      openExternal(url);
-    }
+    openUnsafeLink(url);
   }
 
   return (

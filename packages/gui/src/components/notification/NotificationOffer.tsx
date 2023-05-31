@@ -2,10 +2,13 @@ import { Flex } from '@chia-network/core';
 import { Offers as OffersIcon } from '@chia-network/icons';
 import { Trans } from '@lingui/macro';
 import { Typography } from '@mui/material';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
-import type Notification from '../../@types/Notification';
+import {
+  type NotificationCounterOffer,
+  type NotificationOffer as NotificationOfferType,
+} from '../../@types/Notification';
 import NotificationType from '../../constants/NotificationType';
 import useOffer from '../../hooks/useOffer';
 import HumanTimestamp from '../helpers/HumanTimestamp';
@@ -14,9 +17,8 @@ import NotificationPreview from './NotificationPreview';
 import NotificationWrapper from './NotificationWrapper';
 
 export type NotificationOfferProps = {
-  notification: Notification;
+  notification: NotificationCounterOffer | NotificationOfferType;
   onClick?: () => void;
-  onHide?: () => void;
 };
 
 export default function NotificationOffer(props: NotificationOfferProps) {
@@ -24,7 +26,6 @@ export default function NotificationOffer(props: NotificationOfferProps) {
     onClick,
     notification,
     notification: { type, timestamp },
-    onHide,
   } = props;
 
   const offerURLOrData =
@@ -43,12 +44,6 @@ export default function NotificationOffer(props: NotificationOfferProps) {
   }
 
   const { offer, isLoading, error } = useOffer(offerURLOrData);
-
-  useEffect(() => {
-    if (offer && !offer.valid) {
-      onHide?.();
-    }
-  }, [offer, onHide]);
 
   const canCounterOffer =
     type === NotificationType.COUNTER_OFFER && 'puzzleHash' in notification && !!notification.puzzleHash;
@@ -89,13 +84,15 @@ export default function NotificationOffer(props: NotificationOfferProps) {
       isLoading={isLoading}
     >
       <Flex flexDirection="column">
-        <Typography variant="body2" color="textSecondary">
+        <Typography variant="subtitle2" color="textSecondary">
           <Trans>You have a new offer</Trans>
           {' · '}
           <HumanTimestamp value={timestamp} fromNow />
         </Typography>
-        <OfferDetails id={offerURLOrData} />
-        <OfferDetails id={offerURLOrData} color="primary" requested />
+        <Typography variant="body2">
+          <OfferDetails id={offerURLOrData} />
+          <OfferDetails id={offerURLOrData} color="primary" requested />
+        </Typography>
       </Flex>
     </NotificationWrapper>
   );

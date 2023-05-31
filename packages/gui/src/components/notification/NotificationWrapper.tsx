@@ -1,5 +1,5 @@
 import { Flex } from '@chia-network/core';
-import { MenuItem, Typography } from '@mui/material';
+import { Box, MenuItem, Typography } from '@mui/material';
 import React, { type ReactNode } from 'react';
 
 export type NotificationWrapperProps = {
@@ -15,8 +15,8 @@ export default function NotificationWrapper(props: NotificationWrapperProps) {
 
   return (
     <MenuItem onClick={onClick} disabled={isLoading}>
-      <Flex alignItems="flex-start" gap={2}>
-        {icon}
+      <Flex alignItems="flex-start" gap={2} whiteSpace="normal">
+        <Box width={40}>{icon}</Box>
         {error ? (
           <Typography color="error">{error.message}</Typography>
         ) : (
