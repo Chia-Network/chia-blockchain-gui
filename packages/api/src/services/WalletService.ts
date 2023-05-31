@@ -298,6 +298,7 @@ export default class Wallet extends Service {
         id: string;
         message: string;
         amount: string;
+        height: number;
       }[];
     }>('get_notifications', args);
   }

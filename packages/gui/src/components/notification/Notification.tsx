@@ -1,100 +1,25 @@
-import { Flex } from '@chia-network/core';
-import { Offers as OffersIcon } from '@chia-network/icons';
-import { Trans } from '@lingui/macro';
-import { MenuItem, Typography } from '@mui/material';
 import React from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
 
-import HeightToTimestamp from '../helpers/HeightToTimestamp';
-import NFTTitle from '../nfts/NFTTitle';
-import OfferAsset from '../offers/OfferAsset';
-import NotificationPreview from './NotificationPreview';
+import type NotificationData from '../../@types/Notification';
+import NotificationType from '../../constants/NotificationType';
+import NotificationAnnouncement from './NotificationAnnouncement';
+import NotificationOffer from './NotificationOffer';
 
 export type NotificationProps = {
-  notification: {
-    id: string;
-    message: string;
-  };
+  notification: NotificationData;
   onClick?: () => void;
 };
 
 export default function Notification(props: NotificationProps) {
-  const {
-    notification: {
-      offer,
-      offerSummary,
-      offerData,
-      error,
-      offered,
-      requested,
-      height,
-      metadata: {
-        data: { puzzleHash },
-      },
-    },
-    onClick,
-  } = props;
-  const canCounterOffer = puzzleHash?.length > 0;
-  const navigate = useNavigate();
-  const location = useLocation();
+  const { onClick, notification } = props;
 
-  function handleClick() {
-    onClick?.();
-
-    if (offerSummary) {
-      navigate('/dashboard/offers/view', {
-        state: {
-          referrerPath: location.pathname,
-          offerData,
-          offerSummary,
-          imported: true,
-          canCounterOffer,
-          address: puzzleHash,
-        },
-      });
-    }
+  if (notification.type === NotificationType.OFFER || notification.type === NotificationType.COUNTER_OFFER) {
+    return <NotificationOffer notification={notification} onClick={onClick} />;
   }
 
-  return (
-    <MenuItem onClick={handleClick}>
-      <Flex alignItems="flex-start" gap={2}>
-        <NotificationPreview offer={offer} fallback={<OffersIcon sx={{ fontSize: '32px !important' }} />} />
-        {error ? (
-          <Typography color="error">{error.message}</Typography>
-        ) : (
-          <Flex flexDirection="column">
-            <Typography variant="body2" color="textSecondary">
-              <Trans>You have a new offer</Trans>
-              {' · '}
-              <HeightToTimestamp height={height} fromNow />
-            </Typography>
-            {offered.map((info) => (
-              <Flex flexDirection="row" gap={0.5} key={`${info.displayAmount}-${info.displayName}`}>
-                {info.assetType === OfferAsset.NFT ? (
-                  <NFTTitle nftId={info.displayName} />
-                ) : (
-                  <Typography noWrap>
-                    {(info.displayAmount as any).toString()} {info.displayName}
-                  </Typography>
-                )}
-              </Flex>
-            ))}
-            {requested.map((info) => (
-              <Flex flexDirection="row" gap={0.5} key={`${info.displayAmount}-${info.displayName}`}>
-                {info.assetType === OfferAsset.NFT ? (
-                  <Typography color="primary" variant="body2" noWrap>
-                    <NFTTitle nftId={info.displayName} />
-                  </Typography>
-                ) : (
-                  <Typography color="primary" variant="body2" noWrap>
-                    {(info.displayAmount as any).toString()} {info.displayName}
-                  </Typography>
-                )}
-              </Flex>
-            ))}
-          </Flex>
-        )}
-      </Flex>
-    </MenuItem>
-  );
+  if (notification.type === NotificationType.ANNOUNCEMENT) {
+    return <NotificationAnnouncement notification={notification} onClick={onClick} />;
+  }
+
+  return null;
 }

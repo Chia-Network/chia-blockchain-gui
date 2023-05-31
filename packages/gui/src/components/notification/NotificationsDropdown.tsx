@@ -43,7 +43,7 @@ export default function NotificationsDropdown() {
         </Button>,
         <Box sx={{ minWidth: 360 }}>
           <Tooltip title={<Trans>Activity</Trans>}>
-            <NotificationsMenu onClose={onClose} size={3} />
+            <NotificationsMenu onClose={onClose} size={5} />
           </Tooltip>
         </Box>,
       ]}

@@ -1,66 +1,35 @@
-import { SyncingStatus } from '@chia-network/api';
 import {
-  useGetNotificationsQuery,
-  usePrefs,
-  useDeleteNotificationsMutation,
+  useGetLoggedInFingerprintQuery,
   useCurrentFingerprintSettings,
+  useLocalStorage,
 } from '@chia-network/api-react';
-import { ConfirmDialog, useOpenDialog } from '@chia-network/core';
-import { useWalletState } from '@chia-network/wallets';
-import { Trans } from '@lingui/macro';
-import debug from 'debug';
 import { orderBy } from 'lodash';
-import React, { useMemo, useState, useEffect, useCallback, createContext, useRef, type ReactNode } from 'react';
+import React, { useMemo, useEffect, useCallback, createContext, type ReactNode } from 'react';
 
-import NotificationType from '../../constants/NotificationType';
-import useAssetIdName from '../../hooks/useAssetIdName';
+import type Notification from '../../@types/Notification';
+import useBlockchainNotifications from '../../hooks/useBlockchainNotifications';
+import useNotificationSettings from '../../hooks/useNotificationSettings';
 import useShowNotification from '../../hooks/useShowNotification';
-import fetchOffer from '../../util/fetchOffer';
-import parseNotification from '../../util/parseNotification';
-import resolveOfferInfo from '../../util/resolveOfferInfo';
 import { pushNotificationStringsForNotificationType } from './utils';
 
-const log = debug('chia-gui:useNotifications');
-
-type Notification = {
-  id: string;
-  message: string;
-  height: number;
-  debug?: boolean;
-};
-
-export type NotificationDetails = Notification & {
-  type: NotificationType;
-  metadata: {
-    type: NotificationType;
-    version: number;
-    data: Record<string, any>;
-  };
-  valid: boolean;
-  offered?: {
-    assetType: string;
-    displayName: string;
-    displayAmount: number;
-  }[];
-  requested?: {
-    assetType: string;
-    displayName: string;
-    displayAmount: number;
-  }[];
-};
+const MAX_NOTIFICATIONS = 500;
 
 export const NotificationsContext = createContext<
   | {
-      notifications: NotificationDetails[];
+      notifications: Notification[];
       isLoading: boolean;
       error?: Error;
+
       unseenCount: number;
       setAsSeen: () => void;
-      deleteNotification: (id: string) => void;
+
       areNotificationsEnabled: boolean;
       setNotificationsEnabled: (enabled: boolean) => void;
       pushNotificationsEnabled: boolean;
       setPushNotificationsEnabled: (enabled: boolean) => void;
+
+      showNotification: (notification: Notification) => void;
+      deleteNotification: (notificationId: string) => void;
     }
   | undefined
 >(undefined);
@@ -73,284 +42,183 @@ export default function NotificationsProvider(props: NotificationsProviderProps)
   const { children } = props;
 
   const {
-    data: notifications,
-    isLoading: isLoadingNotifications,
-    error: getNotificationsError,
-  } = useGetNotificationsQuery();
-  const { state, isLoading: isLoadingWalletState } = useWalletState();
-  const [enabled, setEnabled] = useState<boolean>('enableNotifications', true); // global notification setting. controls push and local notifications
-  const [pushNotificationsEnabled, setPushNotificationsEnabled] = usePrefs<boolean>('enablePushNotifications', true); // push notification setting
-  const [lastPushNotificationHeight, setLastPushNotificationHeight, { isLoading: isLoadingPushNotificationsHeight }] =
-    useCurrentFingerprintSettings<number>('lastPushNotificationHeight', 0);
-  const [seenHeight, setSeenHeight, { isLoading: isLoadingSeenHeight }] = useCurrentFingerprintSettings<number>(
-    'notificationsSeenHeight',
+    data: currentFingerprint,
+    isLoading: isLoadingLoggedInFingerprint,
+    error: errorLoggedInFingerprint,
+  } = useGetLoggedInFingerprintQuery();
+
+  const {
+    notifications: blockchainNotifications,
+    isLoading: isLoadingBlockchainNotifications,
+    error: errorBlockchainNotifications,
+    deleteNotification,
+  } = useBlockchainNotifications();
+
+  const showPushNotification = useShowNotification();
+
+  // list of all triggered notifications except backend notifications
+  const [triggeredNotifications, setTriggeredNotifications] = useLocalStorage<Notification[]>('localNotifications', []);
+
+  const {
+    globalNotifications,
+    setGlobalNotifications,
+
+    pushNotifications,
+    setPushNotifications,
+  } = useNotificationSettings();
+
+  const [, setLastPushNotificationTimestamp, { isLoading: isLoadingPushNotificationsTimestamp }] =
+    useCurrentFingerprintSettings<number>('lastPushNotificationTimestamp', 0);
+
+  // state for visible badge
+  const [seenAt, setSeenAt, { isLoading: isLoadingSeenHeight }] = useCurrentFingerprintSettings<number>(
+    'notificationsSeenAt',
     0
   );
-  const [isPreparingNotifications, setIsPreparingNotifications] = useState<boolean>(true);
-  const [preparingError, setPreparingError] = useState<Error | undefined>();
-  const preparedNotificationsRef = useRef<NotificationDetails[]>([]);
-  const { lookupByAssetId, isLoading: isLoadingAssetIdName } = useAssetIdName();
-  const [deleteNotifications] = useDeleteNotificationsMutation();
-  const showNotification = useShowNotification();
-  const openDialog = useOpenDialog();
-  const isSynced = state === SyncingStatus.SYNCED;
 
-  const isLoadingServices =
-    !isSynced ||
-    isLoadingNotifications ||
-    isLoadingWalletState ||
-    isLoadingPushNotificationsHeight ||
-    isLoadingSeenHeight ||
-    isLoadingAssetIdName;
+  const isLoadingServices = isLoadingLoggedInFingerprint || isLoadingPushNotificationsTimestamp || isLoadingSeenHeight;
 
-  const isLoading = isLoadingServices || isPreparingNotifications;
+  // local can work without blockchain notifications
+  const isLoading = isLoadingServices || isLoadingBlockchainNotifications;
 
-  const error = getNotificationsError || preparingError;
+  const error = (errorLoggedInFingerprint as Error | undefined) || errorBlockchainNotifications;
 
-  // Debug support
-  const allowDebugDesktopNotification = process.env.NODE_ENV === 'development';
+  // immutable
+  const showNotification = useCallback(
+    (notification: Notification) => {
+      setTriggeredNotifications((prev = []) => [...prev, notification].slice(-MAX_NOTIFICATIONS));
+    },
+    [setTriggeredNotifications /* immutable */]
+  );
 
-  const prepareNotifications = useCallback(async () => {
-    if (isLoadingServices) {
-      return;
-    }
+  const triggeredNotificationsByCurrentFingerprint = useMemo(() => {
+    const list: Notification[] = [];
 
-    const debugNotifications = allowDebugDesktopNotification
-      ? preparedNotificationsRef.current.filter((notification) => notification.debug)
-      : [];
+    triggeredNotifications?.forEach((notification) => {
+      const { fingerprints } = notification;
+      if (fingerprints && (!currentFingerprint || !fingerprints.includes(currentFingerprint))) {
+        return;
+      }
 
-    preparedNotificationsRef.current = [];
+      list.push(notification);
+    });
 
-    if (!enabled || !notifications) {
-      return;
-    }
+    return list;
+  }, [triggeredNotifications, currentFingerprint]);
 
-    try {
-      setIsPreparingNotifications(true);
+  const notifications = useMemo(() => {
+    // only show blockchain notifications when synced otherwise it will be not able to download notification state
+    const list: Notification[] = [...blockchainNotifications, ...triggeredNotificationsByCurrentFingerprint];
 
-      const prepared = (
-        await Promise.all(
-          notifications.map(async (notification) => {
-            try {
-              const { message: hexMessage } = notification;
-              const message = hexMessage ? Buffer.from(hexMessage, 'hex').toString() : '';
-              if (!message) {
-                throw new Error('Notification has not message');
-              }
-
-              const metadata = parseNotification(message);
-              const { type } = metadata;
-
-              if ([NotificationType.OFFER, NotificationType.COUNTER_OFFER].includes(type)) {
-                const {
-                  data: { url },
-                } = metadata;
-                const data = await fetchOffer(url);
-                const { valid, offerSummary } = data;
-                if (!valid) {
-                  return null;
-                }
-
-                const offered = resolveOfferInfo(offerSummary, 'offered', lookupByAssetId);
-                const requested = resolveOfferInfo(offerSummary, 'requested', lookupByAssetId);
-
-                // todo add limit to 1 NFT per offer
-
-                return {
-                  type,
-                  metadata,
-                  offered,
-                  requested,
-                  ...data,
-                  ...notification,
-                };
-              }
-
-              throw new Error(`Unknown notification type: ${type}`);
-            } catch (e) {
-              log('Failed to prepare notification', e);
-              return null;
-            }
-          })
-        )
-      ).filter(Boolean);
-
-      const sortedNotifications = orderBy(prepared, ['height'], ['desc']);
-
-      preparedNotificationsRef.current = [...sortedNotifications, ...debugNotifications];
-    } catch (e) {
-      setPreparingError(e as Error);
-    } finally {
-      setIsPreparingNotifications(false);
-    }
-  }, [isLoadingServices, enabled, notifications, lookupByAssetId, allowDebugDesktopNotification]);
+    return orderBy(list, ['timestamp'], ['desc']);
+  }, [triggeredNotificationsByCurrentFingerprint, blockchainNotifications]);
 
   const showPushNotifications = useCallback(() => {
-    if (!enabled || !pushNotificationsEnabled || isLoading) {
+    if (!globalNotifications || !pushNotifications || isLoadingServices) {
       return;
     }
 
-    const firstUnseenNotification = preparedNotificationsRef.current.find(
-      (notification) => notification.height > lastPushNotificationHeight
-    );
+    setLastPushNotificationTimestamp((prevLastPushNotificationTimestamp = 0) => {
+      const firstUnseenNotification = notifications.find(
+        (notification) => notification.timestamp > prevLastPushNotificationTimestamp
+      );
 
-    if (!firstUnseenNotification) {
-      return;
-    }
+      if (!firstUnseenNotification) {
+        return prevLastPushNotificationTimestamp;
+      }
 
-    setLastPushNotificationHeight(firstUnseenNotification.height);
+      const { title, body } = pushNotificationStringsForNotificationType(firstUnseenNotification);
 
-    const { title, body } = pushNotificationStringsForNotificationType(
-      firstUnseenNotification.type,
-      firstUnseenNotification.debug
-    );
+      showPushNotification({
+        title,
+        body,
+      });
 
-    showNotification({
-      title,
-      body,
+      return firstUnseenNotification.timestamp;
     });
   }, [
-    enabled,
-    lastPushNotificationHeight,
-    pushNotificationsEnabled,
-    setLastPushNotificationHeight,
-    showNotification,
-    isLoading,
+    globalNotifications,
+    pushNotifications,
+    isLoadingServices,
+    setLastPushNotificationTimestamp,
+    notifications,
+    showPushNotification,
   ]);
 
-  const unseenCount = useMemo(() => {
-    if (isLoading) {
-      return 0;
-    }
+  const unseenCount = useMemo(
+    () =>
+      seenAt ? notifications.filter((notification) => notification.timestamp > seenAt).length : notifications.length,
+    [seenAt, notifications]
+  );
 
-    return preparedNotificationsRef.current.filter((notification) => notification.height > seenHeight).length;
-  }, [seenHeight, isLoading]);
-
-  useEffect(() => {
-    if (!isLoadingServices) {
-      prepareNotifications();
+  const setAsSeen = useCallback(() => {
+    const [firstNotification] = notifications;
+    if (firstNotification) {
+      const { timestamp } = firstNotification;
+      setSeenAt((prevSeenAt: number = 0) => Math.max(prevSeenAt, timestamp));
     }
-  }, [prepareNotifications, isLoadingServices]);
+  }, [setSeenAt, notifications]);
+
+  const handleDeleteNotification = useCallback(
+    async (notificationId: string) => {
+      let deleted = false;
+
+      setTriggeredNotifications((prev = []) => {
+        const index = prev.findIndex((notification) => notification.id === notificationId);
+        if (index !== -1) {
+          deleted = true;
+          return [...prev.slice(0, index), ...prev.slice(index + 1)];
+        }
+
+        return prev;
+      });
+
+      if (!deleted) {
+        await deleteNotification(notificationId);
+      }
+    },
+    [setTriggeredNotifications, deleteNotification]
+  );
 
   useEffect(() => {
     showPushNotifications();
   }, [showPushNotifications]);
 
-  const setAsSeen = useCallback(() => {
-    const highestHeight = preparedNotificationsRef.current.reduce(
-      (acc, notification) => Math.max(notification.height, acc),
-      0
-    );
-
-    if (highestHeight > seenHeight) {
-      setSeenHeight(highestHeight);
-    }
-  }, [setSeenHeight, seenHeight]);
-
-  const handleDeleteNotification = useCallback(
-    async (id: string) => {
-      await openDialog(
-        <ConfirmDialog
-          title={<Trans>Please Confirm</Trans>}
-          confirmTitle={<Trans>Delete</Trans>}
-          confirmColor="danger"
-          onConfirm={() =>
-            deleteNotifications({
-              ids: [id],
-            }).unwrap()
-          }
-        >
-          <Trans>Do you want to remove this offer notification? This action cannot be undone.</Trans>
-        </ConfirmDialog>
-      );
-    },
-    [deleteNotifications, openDialog]
-  );
-
   const contextValue = useMemo(
     () => ({
-      notifications: isSynced ? preparedNotificationsRef.current : [],
+      // base state
+      notifications,
       isLoading,
       error,
+      // seen
       unseenCount,
       setAsSeen,
+      // settings
+      areNotificationsEnabled: globalNotifications,
+      setNotificationsEnabled: setGlobalNotifications,
+      pushNotificationsEnabled: pushNotifications,
+      setPushNotificationsEnabled: setPushNotifications,
+
+      showNotification,
       deleteNotification: handleDeleteNotification,
-      areNotificationsEnabled: enabled,
-      setNotificationsEnabled: setEnabled,
-      pushNotificationsEnabled,
-      setPushNotificationsEnabled,
     }),
     [
+      notifications,
       isLoading,
       error,
+
       unseenCount,
       setAsSeen,
+
+      globalNotifications,
+      setGlobalNotifications,
+      pushNotifications,
+      setPushNotifications,
+
+      showNotification,
       handleDeleteNotification,
-      enabled,
-      setEnabled,
-      pushNotificationsEnabled,
-      setPushNotificationsEnabled,
-      isSynced,
     ]
   );
-
-  const debugTriggerNotificationHandler = useCallback(() => {
-    if (!allowDebugDesktopNotification) {
-      return;
-    }
-
-    const currentNotifications = preparedNotificationsRef.current;
-    const maxHeight = currentNotifications.reduce(
-      (acc, notification) => Math.max(acc, notification.height),
-      lastPushNotificationHeight
-    );
-    // create a dummy notification for debugging
-    const dummyNotification: NotificationDetails = {
-      id: `dummy_id_${Math.random()}`,
-      message: 'dummy_message',
-      height: maxHeight + 1,
-      debug: true,
-      type: NotificationType.OFFER,
-      metadata: {
-        type: NotificationType.OFFER,
-        version: 1,
-        data: {
-          ph: 'dummy_puzzle_hash',
-          url: 'dummy_url',
-        },
-      },
-      valid: true,
-      offered: [
-        {
-          assetType: 'CHIA',
-          displayName: 'XCH',
-          displayAmount: 1,
-        },
-      ],
-      requested: [
-        {
-          assetType: 'NFT',
-          displayName: 'Dummy NFT',
-          displayAmount: 1,
-        },
-      ],
-    };
-
-    currentNotifications.unshift(dummyNotification);
-
-    preparedNotificationsRef.current = currentNotifications;
-
-    showPushNotifications();
-  }, [allowDebugDesktopNotification, showPushNotifications, lastPushNotificationHeight]);
-
-  useEffect(() => {
-    const { ipcRenderer } = window as any;
-    ipcRenderer.on('debug_triggerDesktopNotification', debugTriggerNotificationHandler);
-
-    return () => {
-      ipcRenderer.removeListener('debug_triggerDesktopNotification', debugTriggerNotificationHandler);
-    };
-  }, [debugTriggerNotificationHandler]);
 
   return <NotificationsContext.Provider value={contextValue}>{children}</NotificationsContext.Provider>;
 }
