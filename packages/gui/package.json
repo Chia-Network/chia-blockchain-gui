@@ -201,7 +201,7 @@
     "stream-browserify": "3.0.0",
     "styled-components": "5.3.3",
     "unique-names-generator": "4.6.0",
-    "validator": "13.7.0",
+    "validator": "13.9.0",
     "victory": "^36.6.6",
     "ws": "8.4.2"
   },

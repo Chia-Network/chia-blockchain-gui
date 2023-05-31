@@ -44,7 +44,7 @@
     "react-use": "17.3.2",
     "react-use-timeout": "1.0.0",
     "use-dark-mode": "2.3.1",
-    "validator": "13.7.0",
+    "validator": "13.9.0",
     "victory": "36.6.6"
   },
   "devDependencies": {
