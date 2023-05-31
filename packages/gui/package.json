@@ -229,7 +229,7 @@
     "@types/react-router-dom": "5.3.2",
     "@types/seedrandom": "3.0.1",
     "@types/styled-components": "5.1.20",
-    "@types/validator": "13.7.1",
+    "@types/validator": "13.7.17",
     "@walletconnect/types": "2.6.0",
     "@welldone-software/why-did-you-render": "7.0.1",
     "babel-core": "7.0.0-bridge.0",
