@@ -17,3 +17,4 @@ export { default as sleep } from './sleep';
 export { default as useColorModeValue } from './useColorModeValue';
 export { default as validAddress } from './validAddress';
 export { default as LRU, lruCreate } from './lru';
+export { default as isValidURL } from './isValidURL';
