@@ -680,13 +680,13 @@ describe('WalletService', () => {
       },
       offer: { '38a0dd823db068c6169e1e7e060e6a386031b9b145510d5a9b4610212383fbe9': 1, '42': -1234 },
       validateOnly: true,
-      disableJSONFormatting: true,
+      disableJSONFormatting: false,
     };
     const { disableJSONFormatting, driverDict, ...restArgs } = args;
     const expected = [
       new Message({
         command: 'create_offer_for_ids',
-        data: { driverDict, ...restArgs },
+        data: { driver_dict: driverDict, ...restArgs },
         destination: 'chia_wallet',
         origin: 'test_origin' as ServiceNameValue,
       }),
