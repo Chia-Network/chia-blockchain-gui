@@ -8,13 +8,14 @@ import { useController, useFormContext } from 'react-hook-form';
 type Props = TextFieldProps &
   AddressBookAutocompleteProps<string, false, false, true> & {
     name: string;
+    getType: string; // currently supports 'address' and 'did'
     fullWidth?: boolean;
     freeSolo?: boolean;
     renderInput?: any;
   };
 
 export default function AddressBookAutocomplete(props: Props) {
-  const { name, required, fullWidth, freeSolo, disableClearable, ...rest } = props;
+  const { name, getType, required, fullWidth, freeSolo, disableClearable, ...rest } = props;
   const [addressBook, ,] = useContext(AddressBookContext);
   const [options, setOptions] = useState([]);
   const { control } = useFormContext();
@@ -33,16 +34,24 @@ export default function AddressBookAutocomplete(props: Props) {
 
   useEffect(() => {
     const contactList = [];
-    addressBook.map((contact: AddressContact) =>
-      contact.addresses.forEach((addressInfo) => {
-        const nameStr = JSON.stringify(contact.name).slice(1, -1);
-        const addNameStr = JSON.stringify(addressInfo.name).slice(1, -1);
-        const optionStr = `${nameStr} | ${addNameStr}`;
-        contactList.push({ label: optionStr, id: addressInfo.address });
-      })
-    );
+    addressBook.forEach((contact: AddressContact) => {
+      const nameStr = JSON.stringify(contact.name).slice(1, -1);
+      if (getType === 'address') {
+        contact.addresses.forEach((addressInfo) => {
+          const addNameStr = JSON.stringify(addressInfo.name).slice(1, -1);
+          const optionStr = `${nameStr} | ${addNameStr}`;
+          contactList.push({ label: optionStr, id: addressInfo.address });
+        });
+      } else if (getType === 'did') {
+        contact.dids.forEach((didInfo) => {
+          const didNameStr = JSON.stringify(didInfo.name).slice(1, -1);
+          const optionStr = `${nameStr} | ${didNameStr}`;
+          contactList.push({ label: optionStr, id: didInfo.did });
+        });
+      }
+    });
     setOptions(contactList);
-  }, [addressBook]);
+  }, [addressBook, getType]);
 
   return (
     <FormControl variant="filled" fullWidth>

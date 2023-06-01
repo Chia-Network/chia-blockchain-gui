@@ -167,7 +167,14 @@ export default function WalletSend(props: SendCardProps) {
         <Card>
           <Grid spacing={2} container>
             <Grid xs={12} item>
-              <AddressBookAutocomplete name="address" freeSolo variant="filled" required disabled={isSubmitting} />
+              <AddressBookAutocomplete
+                name="address"
+                getType="address"
+                freeSolo
+                variant="filled"
+                required
+                disabled={isSubmitting}
+              />
             </Grid>
             <Grid xs={12} md={6} item>
               <Amount
