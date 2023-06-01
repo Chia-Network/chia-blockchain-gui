@@ -17,5 +17,6 @@
     "noEmit": true,
     "jsx": "react"
   },
-  "include": ["src/**/*", "babel.config.js", "playwright.config.js"]
+  "include": ["src/**/*", "babel.config.js", "playwright.config.js"],
+  "exclude": ["node_modules", "dist", "**/*.test.ts"]
 }
