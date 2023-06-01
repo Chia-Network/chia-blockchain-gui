@@ -1,9 +1,9 @@
 import { EventEmitter } from 'events';
 
 import { useGetOfferSummaryMutation, useCheckOfferValidityMutation } from '@chia-network/api-react';
+import { isValidURL } from '@chia-network/core';
 import debug from 'debug';
 import React, { useState, createContext, useMemo, useCallback, type ReactNode } from 'react';
-import isURL from 'validator/lib/isURL';
 
 import type Offer from '../../@types/Offer';
 import type OfferOnDemand from '../../@types/OfferOnDemand';
@@ -71,7 +71,7 @@ export default function OffersProvider(props: OffersProviderProps) {
   // immutable function
   const prepareOfferData = useCallback(
     async (urlOrOfferData: string) => {
-      if (!isURL(urlOrOfferData)) {
+      if (!isValidURL(urlOrOfferData)) {
         return urlOrOfferData;
       }
 
