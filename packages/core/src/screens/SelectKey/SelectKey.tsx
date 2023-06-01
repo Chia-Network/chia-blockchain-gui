@@ -4,8 +4,6 @@ import {
   useGetKeyringStatusQuery,
   useDeleteAllKeysMutation,
   useGetKeysQuery,
-  useClearCache,
-  useLogInMutation,
   type Serializable,
 } from '@chia-network/api-react';
 import { ChiaBlack, Coins } from '@chia-network/icons';
@@ -26,6 +24,7 @@ import Loading from '../../components/Loading';
 import MenuItem from '../../components/MenuItem/MenuItem';
 import More from '../../components/More';
 import TooltipIcon from '../../components/TooltipIcon';
+import useAuth from '../../hooks/useAuth';
 import useKeyringMigrationPrompt from '../../hooks/useKeyringMigrationPrompt';
 import useOpenDialog from '../../hooks/useOpenDialog';
 import useShowError from '../../hooks/useShowError';
@@ -43,15 +42,15 @@ export default function SelectKey() {
   const openDialog = useOpenDialog();
   const navigate = useNavigate();
   const [deleteAllKeys] = useDeleteAllKeysMutation();
-  const [logIn] = useLogInMutation();
-  const { data: publicKeyFingerprints, isLoading: isLoadingPublicKeys, error, refetch } = useGetKeysQuery();
+
+  const { isLoading: isLoggingIn, logIn } = useAuth();
+  const [selectedKey, setSelectedKey] = useState<number | null>(null);
+  const { data: publicKeyFingerprints, isLoading: isLoadingPublicKeys, error, refetch } = useGetKeysQuery({});
   const { data: keyringState, isLoading: isLoadingKeyringStatus } = useGetKeyringStatusQuery();
   const hasFingerprints = !!publicKeyFingerprints?.length;
-  const [selectedFingerprint, setSelectedFingerprint] = useState<number | undefined>();
   const [skippedMigration] = useSkipMigration();
   const [promptForKeyringMigration] = useKeyringMigrationPrompt();
   const showError = useShowError();
-  const clearCache = useClearCache();
   const [sortedWallets, setSortedWallets] = usePrefs('sortedWallets', []);
 
   const keyItemsSortable = React.useRef<any>(null);
@@ -101,28 +100,16 @@ export default function SelectKey() {
     }
   }, [publicKeyFingerprints, fingerprintSettings, setFingerprintSettings, allColors]);
 
-  async function handleSelect(fingerprint: number) {
-    if (selectedFingerprint) {
-      return;
-    }
-
+  async function handleSelect(logInFingerprint: number) {
     try {
-      setSelectedFingerprint(fingerprint);
-
-      // we need to clear cache before logging in, because we need to clean notifications
-      await logIn({
-        fingerprint,
-        type: 'skip',
-      }).unwrap();
-
-      // because some queries may be run during login , we need to clear them again
-      await clearCache();
+      setSelectedKey(logInFingerprint);
+      await logIn(logInFingerprint);
 
       navigate('/dashboard/wallets');
     } catch (err) {
-      showError(err);
+      showError(err as Error);
     } finally {
-      setSelectedFingerprint(undefined);
+      setSelectedKey(null);
     }
   }
 
@@ -170,7 +157,7 @@ export default function SelectKey() {
 
   function sortedFingerprints(fingerprints: string[]) {
     const sorted = sortedWallets
-      .map((fingerprint: string) => fingerprints.find((f: any) => fingerprint === String(f.fingerprint)))
+      .map((value: string) => fingerprints.find((f: any) => value === String(f.fingerprint)))
       .filter((x: any) => !!x); /* if we added a new wallet and order was not saved yet case */
     fingerprints.forEach((f: any) => {
       if (sorted.map((f2: any) => f2.fingerprint).indexOf(f.fingerprint) === -1) {
@@ -321,8 +308,8 @@ export default function SelectKey() {
                   index={index}
                   keyData={keyData}
                   onSelect={handleSelect}
-                  loading={keyData.fingerprint === selectedFingerprint}
-                  disabled={!!selectedFingerprint && keyData.fingerprint !== selectedFingerprint}
+                  loading={isLoggingIn && keyData.fingerprint === selectedKey}
+                  disabled={isLoggingIn}
                 />
               ))}
             </Flex>

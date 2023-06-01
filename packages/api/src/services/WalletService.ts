@@ -132,7 +132,7 @@ export default class Wallet extends Service {
   }
 
   async logIn(args: {
-    fingerprint: string;
+    fingerprint: number;
     type?: 'normal' | 'skip' | 'restore_backup'; // skip is used to skip import
   }) {
     const { fingerprint, type = 'normal' } = args;

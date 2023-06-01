@@ -4,7 +4,7 @@ import {
   useDeleteNotificationsMutation,
   useLazyGetTimestampForHeightQuery,
 } from '@chia-network/api-react';
-import { ConfirmDialog, useOpenDialog } from '@chia-network/core';
+import { ConfirmDialog, useOpenDialog, useAuth } from '@chia-network/core';
 import { useWalletState } from '@chia-network/wallets';
 import { Trans } from '@lingui/macro';
 import debug from 'debug';
@@ -33,6 +33,7 @@ export default function useBlockchainNotifications() {
 
   const [getTimestampForHeight] = useLazyGetTimestampForHeightQuery();
 
+  const { isLoading: isLoggingIn } = useAuth();
   const { state, isLoading: isLoadingWalletState } = useWalletState();
 
   const [notifications, setNotifications] = useStateAbort<Notification[]>([]);
@@ -56,14 +57,16 @@ export default function useBlockchainNotifications() {
     async (
       blockchainNotificationsList: BlockchainNotification[],
       isWalletSynced: boolean,
+      loggingIn: boolean,
       abortSignal: AbortSignal
     ) => {
       try {
         setPreparingError(undefined, abortSignal);
         setIsPreparingNotifications(true, abortSignal);
 
-        // without wallet sync we can't get timestamp
-        if (!blockchainNotificationsList?.length || !isWalletSynced) {
+        // without wallet sync we can't get timestamp, during loggingIn we have wrong
+        // list of notifications from previous fingerprint and we need to wait for clear cache
+        if (!blockchainNotificationsList?.length || !isWalletSynced || !loggingIn) {
           setNotifications([], abortSignal);
           return;
         }
@@ -142,9 +145,9 @@ export default function useBlockchainNotifications() {
       abortControllerRef.current.abort();
       abortControllerRef.current = new AbortController();
 
-      prepareNotifications(blockchainNotifications, isSynced, abortControllerRef.current.signal);
+      prepareNotifications(blockchainNotifications, isSynced, isLoggingIn, abortControllerRef.current.signal);
     }
-  }, [blockchainNotifications, prepareNotifications, isSynced]);
+  }, [blockchainNotifications, prepareNotifications, isSynced, isLoggingIn]);
 
   const handleDeleteNotification = useCallback(
     async (id: string) => {
