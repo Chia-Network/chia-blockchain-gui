@@ -22,6 +22,7 @@ import { useForm, useWatch } from 'react-hook-form';
 import isNumeric from 'validator/es/lib/isNumeric';
 
 import useWallet from '../hooks/useWallet';
+import AddressBookAutocomplete from './AddressBookAutocomplete';
 import CreateWalletSendTransactionResultDialog from './WalletSendTransactionResultDialog';
 
 type SendCardProps = {
@@ -30,6 +31,7 @@ type SendCardProps = {
 
 type SendTransactionData = {
   address: string;
+  addressauto: string;
   amount: string;
   fee: string;
   memo: string;
@@ -45,6 +47,7 @@ export default function WalletSend(props: SendCardProps) {
   const methods = useForm<SendTransactionData>({
     defaultValues: {
       address: '',
+      addressauto: '',
       amount: '',
       fee: '',
       memo: '',
@@ -164,16 +167,7 @@ export default function WalletSend(props: SendCardProps) {
         <Card>
           <Grid spacing={2} container>
             <Grid xs={12} item>
-              <TextField
-                name="address"
-                variant="filled"
-                color="secondary"
-                fullWidth
-                disabled={isSubmitting}
-                label={<Trans>Address / Puzzle hash</Trans>}
-                data-testid="WalletSend-address"
-                required
-              />
+              <AddressBookAutocomplete name="address" freeSolo variant="filled" required disabled={isSubmitting} />
             </Grid>
             <Grid xs={12} md={6} item>
               <Amount
