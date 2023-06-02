@@ -70,8 +70,6 @@ type InternalTableCol = Col & { key: string | number };
 
 export type InternalTableRow = Row & { id: string | number };
 
-// type InjectRow = { beforeOrAfter: 'before' | 'after'; Component: ReactNode };
-
 export type TableControlledProps = {
   cols: Col[];
   rows: Row[];

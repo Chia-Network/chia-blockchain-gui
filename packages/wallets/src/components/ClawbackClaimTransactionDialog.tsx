@@ -122,7 +122,7 @@ export default function ClawbackClaimTransactionDialog(props: Props) {
   return (
     <Dialog onClose={handleDialogClose} maxWidth="lg" aria-labelledby="confirmation-dialog-title" open={open}>
       <DialogTitle id="confirmation-dialog-title" sx={{ minWidth: '550px' }}>
-        {fromOrTo === 'from' ? <Trans>Claim Transaction</Trans> : <Trans>Claw back Transaction</Trans>}
+        {fromOrTo === 'from' ? <Trans>Claim Transaction</Trans> : <Trans>Claw Back Transaction</Trans>}
         <IconButton
           aria-label="close"
           onClick={onClose}
@@ -186,9 +186,9 @@ export default function ClawbackClaimTransactionDialog(props: Props) {
 
               <Typography variant="body1">
                 {fromOrTo === 'from' ? (
-                  <Trans>Please enter the transaction fee to claim this transaction:</Trans>
+                  <Trans>Please enter a transaction fee to claim the above amount:</Trans>
                 ) : (
-                  <Trans>Please enter the transaction fee to claw back this transaction:</Trans>
+                  <Trans>Please enter a transaction fee to claw back the above amount:</Trans>
                 )}
               </Typography>
               <Fee

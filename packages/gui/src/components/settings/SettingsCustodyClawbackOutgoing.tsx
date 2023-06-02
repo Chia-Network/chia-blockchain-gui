@@ -106,12 +106,12 @@ export default function SettingsCustodyClawbackOutgoing(props) {
               },
             })}
           />
-          <Trans>Default Clawback time is enabled. </Trans>{' '}
+          <Trans>Default claw back time is enabled.</Trans>{' '}
         </Typography>
       )}
       {!isClawbackDefaultTimeEnabled && (
         <Typography component="div" variant="subtitle2" sx={{ width: '100%', marginTop: 3 }}>
-          <Trans>Default Clawback time is disabled. </Trans>
+          <Trans>Default claw back time is disabled.</Trans>
         </Typography>
       )}
     </Box>

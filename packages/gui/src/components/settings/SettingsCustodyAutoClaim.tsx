@@ -101,7 +101,7 @@ export default function SettingsCustodyAutoClaim(props) {
                 </Trans>
               </SettingsText>
               <SettingsText>
-                <Trans>Transactions with values smaller than the fee will not be auto claimed.</Trans>
+                <Trans>Transactions less than the fee will not be auto claimed.</Trans>
               </SettingsText>
             </Box>
           </Box>
@@ -109,7 +109,7 @@ export default function SettingsCustodyAutoClaim(props) {
         {!isAutoClaimEnabled && (
           <>
             <SettingsTitle>
-              <Trans>Please enter the transaction fee to enable Auto claim:</Trans>
+              <Trans>Please enter the transaction fee to enable auto claim:</Trans>
             </SettingsTitle>
 
             <Flex gap={2} sx={{ marginTop: 1, alignItems: 'top' }}>

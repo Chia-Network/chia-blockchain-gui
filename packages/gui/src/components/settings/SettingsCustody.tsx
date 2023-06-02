@@ -12,10 +12,10 @@ export default function SettingsCustody() {
       <Grid item>
         <Flex flexDirection="column" gap={1}>
           <SettingsSection>
-            <Trans>Token Protection</Trans>
+            <Trans>Transaction protection</Trans>
           </SettingsSection>
           <SettingsText>
-            <Trans>Protect your valuables by controlling the rules by which your assets - TODO fix this wording</Trans>
+            <Trans>Features to give you more protection and control over your digital assets.</Trans>
           </SettingsText>
         </Flex>
       </Grid>
@@ -26,15 +26,15 @@ export default function SettingsCustody() {
 
       <Box>
         <SettingsSection>
-          <Trans>Default Clawback time of outgoing transactions</Trans>
+          <Trans>Default claw back time for outgoing XCH transactions</Trans>
         </SettingsSection>
 
         <SettingsText>
-          <Trans>Set a default time frame withing which you can revoke (Clawback) the transaction.</Trans>
+          <Trans>Set a default time frame for all outbound XCH transactions.</Trans>
         </SettingsText>
 
         <SettingsText>
-          <Trans>You can always change the Clawback time for a specific transaction.</Trans>
+          <Trans>The claw back time can be manually adjusted per transaction.</Trans>
         </SettingsText>
       </Box>
 
@@ -46,11 +46,17 @@ export default function SettingsCustody() {
 
       <Box>
         <SettingsSection>
-          <Trans>Auto claim incoming Clawback transactions</Trans>
+          <Trans>Auto claim incoming claw back transactions</Trans>
         </SettingsSection>
 
         <SettingsText>
-          <Trans>Claim assets transferred to you automatically when the Clawback expires.</Trans>
+          <Trans>Claim assets sent to you automatically when the claw back time period expires.</Trans>
+        </SettingsText>
+        <SettingsText>
+          <Trans>Your wallet is required to be running for auto claim to work. </Trans>
+        </SettingsText>
+        <SettingsText>
+          <Trans>Transactions less than the fee will not be auto claimed.</Trans>
         </SettingsText>
       </Box>
       <SettingsCustodyAutoClaim sx={{ marginTop: 1 }} />

@@ -51,7 +51,7 @@ function WalletHistoryPending(props: Props) {
             },
           }}
         >
-          <AccessTimeIcon /> <Trans>Pending Clawback transactions</Trans>
+          <AccessTimeIcon /> <Trans>Pending claw back transactions</Trans>
           <Chip
             label={transactions?.length}
             sx={{

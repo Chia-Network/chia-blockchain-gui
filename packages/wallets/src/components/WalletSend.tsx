@@ -236,33 +236,6 @@ export default function WalletSend(props: SendCardProps) {
             </Grid>
             <Grid xs={12} item>
               <Accordion
-                expanded={isMemoExpanded}
-                onChange={(_event, isExpanded: boolean) => {
-                  setIsMemoExpanded(isExpanded);
-                }}
-                sx={{ boxShadow: 'none' }}
-              >
-                <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1bh-content" id="panel1bh-header">
-                  <Typography variant="subtitle2">Add transaction memo</Typography>
-                </AccordionSummary>
-                <AccordionDetails>
-                  <Alert severity="info" sx={{ marginBottom: 3 }}>
-                    - Memo helps the receiver side to identify the payment.
-                    <br />- Anything you enter will be publicly accessible on the blockchain.
-                  </Alert>
-
-                  <TextField
-                    name="memo"
-                    variant="filled"
-                    color="secondary"
-                    fullWidth
-                    disabled={isSubmitting}
-                    label={<Trans>Memo</Trans>}
-                    data-testid="WalletSend-memo"
-                  />
-                </AccordionDetails>
-              </Accordion>
-              <Accordion
                 expanded={isClawbackExpanded}
                 onChange={(_event, isExpanded: boolean) => {
                   setIsClawbackExpanded(isExpanded);
@@ -280,13 +253,13 @@ export default function WalletSend(props: SendCardProps) {
                       },
                     }}
                   >
-                    <Typography variant="subtitle2">Add option to revoke transaction (Clawback)</Typography>
+                    <Typography variant="subtitle2">Add option to claw back transaction</Typography>
                   </Badge>
                 </AccordionSummary>
                 <AccordionDetails>
                   <Alert severity="info" sx={{ marginBottom: 3 }}>
-                    - Set a time frame withing which you can revoke (Clawback) the transaction.
-                    <br />- Transaction receiver will be able to claim the funds only after the time frame expires.
+                    - Set a time frame which allows you claw back (revoke) the transaction.
+                    <br />- Recipient of the transaction can only claim the funds once that time frame expires.
                   </Alert>
                   <Flex gap={2}>
                     {fields.map((field) => (
@@ -337,6 +310,33 @@ export default function WalletSend(props: SendCardProps) {
                       <Trans>Clawback will not be applied. </Trans>{' '}
                     </Typography>
                   )}
+                </AccordionDetails>
+              </Accordion>
+              <Accordion
+                expanded={isMemoExpanded}
+                onChange={(_event, isExpanded: boolean) => {
+                  setIsMemoExpanded(isExpanded);
+                }}
+                sx={{ boxShadow: 'none' }}
+              >
+                <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1bh-content" id="panel1bh-header">
+                  <Typography variant="subtitle2">Add transaction memo</Typography>
+                </AccordionSummary>
+                <AccordionDetails>
+                  <Alert severity="info" sx={{ marginBottom: 3 }}>
+                    - Memo helps the receiver side to identify the payment.
+                    <br />- Anything you enter will be publicly accessible on the blockchain.
+                  </Alert>
+
+                  <TextField
+                    name="memo"
+                    variant="filled"
+                    color="secondary"
+                    fullWidth
+                    disabled={isSubmitting}
+                    label={<Trans>Memo</Trans>}
+                    data-testid="WalletSend-memo"
+                  />
                 </AccordionDetails>
               </Accordion>
             </Grid>
