@@ -226,10 +226,10 @@ export default function SelectKey() {
 
   return (
     <StyledContainer>
-      <Flex flexDirection="column" alignItems="flex-start" gap={3}>
+      <Flex flexDirection="column" alignItems="center" gap={3}>
         {isLoadingPublicKeys ? (
           <Loading center>
-            <Trans>Loading list of the keys</Trans>
+            <Trans>Loading keys</Trans>
           </Loading>
         ) : error ? (
           <Alert
@@ -240,7 +240,7 @@ export default function SelectKey() {
               </Button>
             }
           >
-            <Trans>Unable to load the list of the keys</Trans>
+            <Trans>Unable to load keys</Trans>
             &nbsp;
             <TooltipIcon>{error.message}</TooltipIcon>
           </Alert>
