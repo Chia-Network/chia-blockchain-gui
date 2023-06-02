@@ -116,7 +116,7 @@ export default function NFTSummary(props: NFTSummaryProps) {
               minWidth="80px"
               height="80px"
             >
-              <NFTPreview id={nftId} height={80} disableInteractions />
+              <NFTPreview id={nftId} width={80} disableInteractions />
             </Box>
             <Flex
               flexDirection="column"

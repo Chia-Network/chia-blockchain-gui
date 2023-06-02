@@ -85,7 +85,11 @@ export default function NotificationOffer(props: NotificationOfferProps) {
     >
       <Flex flexDirection="column">
         <Typography variant="subtitle2" color="textSecondary">
-          <Trans>You have a new offer</Trans>
+          {type === NotificationType.COUNTER_OFFER ? (
+            <Trans>You have a new counter offer</Trans>
+          ) : (
+            <Trans>You have a new offer</Trans>
+          )}
           {' · '}
           <HumanTimestamp value={timestamp} fromNow />
         </Typography>

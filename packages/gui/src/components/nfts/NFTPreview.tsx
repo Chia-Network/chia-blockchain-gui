@@ -15,7 +15,6 @@ import ModelBlobIcon from '../../assets/img/model-blob.svg';
 import ModelSmallIcon from '../../assets/img/model-small.svg';
 import ModelPngIcon from '../../assets/img/model.png';
 import ModelPngDarkIcon from '../../assets/img/model_dark.png';
-import CompactIconSvg from '../../assets/img/nft-small-frame.svg';
 import UnknownBlobIcon from '../../assets/img/unknown-blob.svg';
 import UnknownSmallIcon from '../../assets/img/unknown-small.svg';
 import UnknownPngIcon from '../../assets/img/unknown.png';
@@ -40,13 +39,13 @@ import parseFileContent from '../../util/parseFileContent';
 import NFTHashStatus from './NFTHashStatus';
 
 const StyledCardPreview = styled(Box)`
-  height: ${({ height }) => height};
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   overflow: hidden;
+  background-color: ${({ theme }) => theme.palette.background.paper};
 `;
 
 const IframePreventEvents = styled.div`
@@ -91,25 +90,6 @@ const BlobBg = styled.div<{ isDarkMode: boolean }>`
   }
 `;
 
-const CompactIconFrame = styled.div`
-  > svg:nth-child(2) {
-    position: absolute;
-    left: 23px;
-    top: 14px;
-    width: 32px;
-    height: 32px;
-  }
-`;
-
-const CompactIcon = styled(CompactIconSvg)`
-  width: 66px;
-  height: 66px;
-  filter: drop-shadow(0px 2px 4px rgba(18 99 60 / 0.5));
-  path {
-    fill: #fff;
-  }
-`;
-
 const CompactVideoIcon = styled(VideoSmallIcon)``;
 const CompactAudioIcon = styled(AudioSmallIcon)``;
 const CompactUnknownIcon = styled(UnknownSmallIcon)``;
@@ -122,14 +102,14 @@ const CompactExtension = styled.div`
   left: 0;
   right: 4px;
   text-align: center;
-  font-size: 11px;
   color: #3aac59;
 `;
 
 export type NFTPreviewProps = {
   id: string;
-  height?: number | string;
   width?: number | string;
+  height?: number | string;
+  ratio?: number;
   fit?: 'cover' | 'contain' | 'fill';
   background?: any;
   preview?: boolean;
@@ -143,8 +123,9 @@ export default function NFTPreview(props: NFTPreviewProps) {
   const [nftImageFittingMode] = useNFTImageFittingMode();
   const {
     id,
-    height = '300px',
     width = '100%',
+    height = 'auto',
+    ratio = 1,
     fit = nftImageFittingMode,
     background: Background = Fragment,
     preview: isPreview = false,
@@ -211,87 +192,24 @@ export default function NFTPreview(props: NFTPreviewProps) {
         }
 
         const style = `
-      html, body {
-        border: 0px;
-        margin: 0px;
-        padding: 0px;
-        height: 100%;
-        width: 100%;
-        text-align: center;
-      }
-
-      body {
-        overflow: hidden;
-      }
-
-      img {
-        object-fit: ${fit};
-      }
-
-      #status-container {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        position: absolute;
-          top: 0;
-          width: 100%;
-        }
-
-        #status-pill {
-          background-color: rgba(255, 255, 255, 0.4);
-          backdrop-filter: blur(6px);
-          border: 1px solid rgba(255, 255, 255, 0.13);
-          border-radius: 16px;
-          box-sizing: border-box;
-          box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-          display: flex;
-          height: 30px;
-          margin-top: 20px;
-          padding: 8px 20px;
-        }
-
-        #status-text {
-          font-family: 'Roboto', sans-serif;
-          font-style: normal;
-          font-weight: 500;
-          font-size: 12px;
-          line-height: 14px;
-        }
-        audio {
-          margin-top: 140px;
-          box-shadow: 0px 0px 24px rgba(24, 162, 61, 0.5),
-            0px 4px 8px rgba(18, 99, 60, 0.32);
-          border-radius: 32px;
-        }
-        audio.dark::-webkit-media-controls-enclosure {
-          background-color: #333;
-        }
-        audio.dark::-webkit-media-controls-current-time-display {
-          color: #fff;
-        }
-        audio.dark::-webkit-media-controls-time-remaining-display {
-          color: #fff;
-        }
-        audio.dark::-webkit-media-controls-mute-button {
-          background-image: url('data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjZmZmIiBoZWlnaHQ9IjI0IiB2aWV3Qm94PSIwIDAgMjQgMjQiIHdpZHRoPSIyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwYXRoIGQ9Ik0zIDl2Nmg0bDUgNVY0TDcgOUgzem0xMy41IDNjMC0xLjc3LTEuMDItMy4yOS0yLjUtNC4wM3Y4LjA1YzEuNDgtLjczIDIuNS0yLjI1IDIuNS00LjAyek0xNCAzLjIzdjIuMDZjMi44OS44NiA1IDMuNTQgNSA2Ljcxcy0yLjExIDUuODUtNSA2LjcxdjIuMDZjNC4wMS0uOTEgNy00LjQ5IDctOC43N3MtMi45OS03Ljg2LTctOC43N3oiLz4KICAgIDxwYXRoIGQ9Ik0wIDBoMjR2MjRIMHoiIGZpbGw9Im5vbmUiLz4KPC9zdmc+');
-        }
-        audio.dark::--webkit-media-controls-fullscreen-button {
-          background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMjQgMjQiIHhtbDpzcGFjZT0icHJlc2VydmUiIGZpbGw9IldpbmRvd1RleHQiPjxjaXJjbGUgY3g9IjEyIiBjeT0iNiIgcj0iMiIgZmlsbD0iI2ZmZiIvPjxjaXJjbGUgY3g9IjEyIiBjeT0iMTIiIHI9IiNmZmYiLz48Y2lyY2xlIGN4PSIxMiIgY3k9IjE4IiByPSIjZmZmIi8+PC9zdmc+');
-        }
-        audio.dark::-webkit-media-controls-toggle-closed-captions-button {
-          display: none;
-        }
-        audio.dark::-webkit-media-controls-timeline {
-              background: #444;
-              border-radius: 4px;
-              margin-left: 7px;
-            }
+          html, body {
+            border: 0px;
+            margin: 0px;
+            padding: 0px;
+            height: 100%;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
           }
-        }
-        video::-webkit-media-controls {
-            display: none;
-        }
+
+          body {
+            overflow: hidden;
+          }
+
+          img {
+            object-fit: ${fit};
+          }
       `;
 
         let mediaElement = null;
@@ -370,19 +288,19 @@ export default function NFTPreview(props: NFTPreviewProps) {
         return <CompactImageIcon />;
         */
       case FileType.VIDEO:
-        return <CompactVideoIcon />;
+        return <CompactVideoIcon width="100%" />;
       case FileType.AUDIO:
-        return <CompactAudioIcon />;
+        return <CompactAudioIcon width="100%" />;
       case FileType.MODEL:
-        return <CompactModelIcon />;
+        return <CompactModelIcon width="100%" />;
       case FileType.DOCUMENT:
-        return <CompactDocumentIcon />;
+        return <CompactDocumentIcon width="100%" />;
       default: {
         if (previewExtension) {
           return <CompactExtension>.{previewExtension}</CompactExtension>;
         }
 
-        return <CompactUnknownIcon />;
+        return <CompactUnknownIcon width="100%" />;
       }
     }
   }, [previewFileType, previewExtension]);
@@ -440,10 +358,11 @@ export default function NFTPreview(props: NFTPreviewProps) {
   const previewIframe = useMemo(() => {
     if (isCompact && previewFileType !== FileType.IMAGE) {
       return (
-        <CompactIconFrame>
-          <CompactIcon />
-          {previewCompactIcon}
-        </CompactIconFrame>
+        <Flex alignItems="center" justifyContent="center">
+          <Flex width="50%" alignItems="center" justifyContent="center">
+            {previewCompactIcon}
+          </Flex>
+        </Flex>
       );
     }
 
@@ -471,7 +390,7 @@ export default function NFTPreview(props: NFTPreviewProps) {
         }}
       >
         {!canInteract && <IframePreventEvents />}
-        <SandboxedIframe srcDoc={srcDoc} height={height} hideUntilLoaded allowPointerEvents />
+        <SandboxedIframe srcDoc={srcDoc} hideUntilLoaded allowPointerEvents />
         {blurPreview && (
           <Box
             sx={{
@@ -492,7 +411,6 @@ export default function NFTPreview(props: NFTPreviewProps) {
     isPreview,
     isCompact,
     previewFileType,
-    height,
     disableInteractions,
     previewIcon,
     icon,
@@ -507,7 +425,7 @@ export default function NFTPreview(props: NFTPreviewProps) {
   const hasFile = !!preview;
 
   return (
-    <StyledCardPreview height={height} width={width}>
+    <StyledCardPreview width={width} height={height} sx={{ aspectRatio: ratio.toString() }}>
       {isLoading ? (
         <Flex position="absolute" left="0" top="0" bottom="0" right="0" justifyContent="center" alignItems="center">
           <Loading center>{!isCompact && <Trans>{isPreview ? 'Loading preview...' : 'Loading NFT...'}</Trans>}</Loading>
