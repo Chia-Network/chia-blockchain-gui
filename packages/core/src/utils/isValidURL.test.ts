@@ -21,11 +21,6 @@ describe('isValidURL', () => {
     expect(isValidURL(url)).toBe(false);
   });
 
-  test('returns false for an invalid URL that throws when decoded', () => {
-    const url = 'https://example.com/%2';
-    expect(isValidURL(url)).toBe(false);
-  });
-
   test('returns false for a URL with an invalid hostname', () => {
     const url = 'https://example';
     expect(isValidURL(url)).toBe(false);
@@ -57,5 +52,19 @@ describe('isValidURL', () => {
       protocols: ['ftp'],
     };
     expect(isValidURL(url, options)).toBe(false);
+  });
+
+  test('returns false if decoding fails and URL is invalid', () => {
+    // mock decodeURI to throw an error
+    const { decodeURI } = global;
+    global.decodeURI = () => {
+      throw new Error('mock error');
+    };
+
+    const url = 'https://example.com/foo bar';
+    expect(isValidURL(url)).toBe(false);
+
+    // restore decodeURI
+    global.decodeURI = decodeURI;
   });
 });

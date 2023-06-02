@@ -12,13 +12,10 @@ function isValidURL(url: string, options?: IsURLOptions): boolean {
     normalizedURL = decodeURI(url) === url ? encodeURI(url) : url;
   } catch (e) {
     // URL wasn't properly encoded
+    return isURL(url, options);
   }
 
-  if (normalizedURL) {
-    return isURL(normalizedURL, options);
-  }
-
-  return false;
+  return isURL(normalizedURL, options);
 }
 
 export default isValidURL;
