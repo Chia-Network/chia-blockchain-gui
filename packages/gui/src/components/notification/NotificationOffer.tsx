@@ -46,7 +46,9 @@ export default function NotificationOffer(props: NotificationOfferProps) {
   const { offer, isLoading, error } = useOffer(offerURLOrData);
 
   const canCounterOffer =
-    type === NotificationType.COUNTER_OFFER && 'puzzleHash' in notification && !!notification.puzzleHash;
+    [NotificationType.OFFER, NotificationType.COUNTER_OFFER].includes(type) &&
+    'puzzleHash' in notification &&
+    !!notification.puzzleHash;
   const navigate = useNavigate();
   const location = useLocation();
 
