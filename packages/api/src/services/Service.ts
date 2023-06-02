@@ -129,6 +129,7 @@ export default abstract class Service extends EventEmitter {
   }
 
   onStateChanged(state: string, callback: (data: any, message: Message) => void, processData?: (data: any) => any) {
+    // console.log('onStateChanged>>>>>>>>>>>>>>>>>>>>>>>', state, callback);
     return this.onCommand(
       'state_changed',
       (data, message) => {

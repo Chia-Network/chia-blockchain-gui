@@ -579,6 +579,11 @@ if (!handleSquirrelEvent()) {
         mainWindow.setTitle(title);
       }
     });
+
+    ipcMain.handle('getVCfromFile', async (_event) => {
+      const filePaths = dialog.showOpenDialogSync({ properties: ['openFile'] });
+      return Array.isArray(filePaths) ? fs.readFileSync(filePaths[0], 'utf-8') : 'Error';
+    });
   }
 }
 

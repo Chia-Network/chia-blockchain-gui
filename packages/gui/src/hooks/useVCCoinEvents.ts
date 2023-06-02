@@ -25,7 +25,7 @@ export default function useVCCoinEvents() {
 
   // Subscribe to all events related to VCs
   useVCCoinAdded((data) => {
-    // console.log('Coin Added.......', data);
+    // console.log('Coin Added.......', data, handleVCEvent);
     handleVCEvent('add', data.walletId);
   });
 

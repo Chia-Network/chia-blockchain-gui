@@ -7,6 +7,11 @@ import { useForm, useWatch } from 'react-hook-form';
 export type ConfirmDialogProps = {
   vcTitle: string;
   onClose?: (value: any) => void;
+  isLocal: boolean;
+  confirmTitle?: ReactNode;
+  cancelTitle?: ReactNode;
+  title?: ReactNode;
+  content?: ReactNode;
 };
 
 type FeeValueType = {
@@ -14,11 +19,17 @@ type FeeValueType = {
 };
 
 export default function VCRevokeDialog(props: ConfirmDialogProps) {
-  const confirmTitle = <Trans>Yes, Revoke</Trans>;
-  const cancelTitle = <Trans>Cancel</Trans>;
-  const title = <Trans>Confirm Revoke</Trans>;
   const confirmColor = 'danger';
-  const { vcTitle, onClose = () => {} } = props;
+  const {
+    vcTitle,
+    onClose = () => {},
+    isLocal,
+    confirmTitle = <Trans>Confirm</Trans>,
+    cancelTitle = <Trans>Cancel</Trans>,
+    content,
+    title,
+  } = props;
+
   const methods = useForm<FeeValueType>({
     defaultValues: {
       fee: '',
@@ -35,11 +46,11 @@ export default function VCRevokeDialog(props: ConfirmDialogProps) {
   } = methods;
 
   const handleConfirm = useCallback(async () => {
-    onClose(revokeFee);
-  }, [revokeFee, onClose]);
+    onClose(isLocal ? -1 : revokeFee);
+  }, [revokeFee, onClose, isLocal]);
 
   const handleCancel = useCallback(() => {
-    onClose(-1);
+    onClose(-2);
   }, [onClose]);
 
   return (
@@ -55,21 +66,23 @@ export default function VCRevokeDialog(props: ConfirmDialogProps) {
         <DialogContentText id="alert-dialog-description">
           <Flex flexDirection="column" gap={3}>
             <Typography variant="body1">
-              <Trans>Are you sure you want to revoke</Trans>
+              {content}
               <b>{` ${vcTitle}`}</b>?
             </Typography>
-            <Form methods={methods}>
-              <EstimatedFee
-                id="filled-secondary"
-                variant="filled"
-                name="fee"
-                color="secondary"
-                disabled={isSubmitting}
-                label={<Trans>Fee</Trans>}
-                fullWidth
-                txType={FeeTxType.walletSendXCH}
-              />
-            </Form>
+            {!isLocal && (
+              <Form methods={methods}>
+                <EstimatedFee
+                  id="filled-secondary"
+                  variant="filled"
+                  name="fee"
+                  color="secondary"
+                  disabled={isSubmitting}
+                  label={<Trans>Fee</Trans>}
+                  fullWidth
+                  txType={FeeTxType.walletSendXCH}
+                />
+              </Form>
+            )}
           </Flex>
         </DialogContentText>
       </DialogContent>
