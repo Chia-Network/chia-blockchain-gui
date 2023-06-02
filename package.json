@@ -33,7 +33,8 @@
     "coverage:merge": "npx istanbul-merge --out .nyc_output/coverage.json packages/api/.coverage/coverage-final.json packages/api-react/.coverage/coverage-final.json packages/core/.coverage/coverage-final.json packages/gui/.coverage/coverage-final.json  packages/icons/.coverage/coverage-final.json packages/wallets/.coverage/coverage-final.json",
     "coverage:report": "npx nyc report --reporter=text --reporter=lcov",
     "restoreMessages": "node restoreMessages.js",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "resetSimulator": "node ./simulator-reset-seed/reset.mjs"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": "eslint",

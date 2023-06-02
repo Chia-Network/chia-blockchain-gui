@@ -8,6 +8,7 @@ packages/*/test/data_fixtures
 packages/wallet/*
 locales
 restoreMessages.js
+simulator-reset-seed/reset.mjs
 rollup.config.js
 webpack.**
 packages/gui/tests
