@@ -1,11 +1,10 @@
-import { Tooltip } from '@chia-network/core';
+import { Tooltip, isValidURL } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import ErrorIcon from '@mui/icons-material/Error';
 import { Chip, Typography } from '@mui/material';
 import CircularProgress from '@mui/material/CircularProgress';
 import React, { useMemo } from 'react';
-import isURL from 'validator/lib/isURL';
 
 import useNFT from '../../hooks/useNFT';
 import useNFTVerifyHash from '../../hooks/useNFTVerifyHash';
@@ -39,7 +38,7 @@ export default function NFTHashStatus(props: NFTHashStatusProps) {
     }
 
     if (nftPreview.uri) {
-      return isURL(nftPreview.uri);
+      return isValidURL(nftPreview.uri);
     }
 
     return false;

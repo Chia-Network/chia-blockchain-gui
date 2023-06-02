@@ -1,6 +1,6 @@
+import { isValidURL } from '@chia-network/core';
 import { t } from '@lingui/macro';
 import { useAsync } from 'react-use';
-import isURL from 'validator/es/lib/isURL';
 
 import type PoolInfo from '../types/PoolInfo';
 import getPoolInfo from '../util/getPoolInfo';
@@ -33,7 +33,7 @@ export default function usePoolInfo(poolUrl?: string): {
     }
 
     const normalizedUrl = normalizeUrl(poolUrl);
-    const isValidUrl = isURL(normalizedUrl, isUrlOptions);
+    const isValidUrl = isValidURL(normalizedUrl, isUrlOptions);
 
     if (!isValidUrl) {
       if (isMainnet && !normalizedUrl.startsWith('https:')) {

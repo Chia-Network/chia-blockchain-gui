@@ -1,5 +1,5 @@
 import { store, walletApi } from '@chia-network/api-react';
-import isURL from 'validator/lib/isURL';
+import { isValidURL } from '@chia-network/core';
 
 import OfferServices from '../constants/OfferServices';
 import offerToOfferBuilderData from './offerToOfferBuilderData';
@@ -12,7 +12,7 @@ type FetchOfferParams = {
 };
 
 export default async function fetchOffer({ offerUrl, getContent, getHeaders }: FetchOfferParams) {
-  if (!offerUrl || !isURL(offerUrl)) {
+  if (!offerUrl || !isValidURL(offerUrl)) {
     throw new Error(`URL is not valid: ${offerUrl}`);
   }
 
