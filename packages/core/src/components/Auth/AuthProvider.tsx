@@ -41,7 +41,7 @@ export default function AuthProvider(props: AuthProviderProps) {
     [clearCache]
   );
 
-  // automatically log in if we have a fingerprint already and not logIn is not in progress
+  // automatically log in if we have a fingerprint already and logIn is not in progress
   useEffect(() => {
     if (!!currentFingerprint && currentFingerprint !== fingerprint) {
       processNewFingerprint(currentFingerprint);
