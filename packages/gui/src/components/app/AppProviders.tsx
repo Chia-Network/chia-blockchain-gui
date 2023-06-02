@@ -10,6 +10,7 @@ import {
   dark,
   light,
   ErrorBoundary,
+  AuthProvider,
 } from '@chia-network/core';
 import { nativeTheme } from '@electron/remote';
 import { Trans } from '@lingui/macro';
@@ -97,24 +98,26 @@ export default function App(props: AppProps) {
       <LocaleProvider i18n={i18n} defaultLocale={defaultLocale} locales={locales}>
         <ThemeProvider theme={theme} fonts global>
           <ErrorBoundary>
-            <CacheProvider>
-              <LRUsProvider>
-                <NFTProvider>
-                  <ModalDialogsProvider>
-                    <Suspense fallback={<LayoutLoading />}>
-                      <OffersProvider>
-                        <NotificationsProvider>
-                          <WalletConnectProvider projectId={WalletConnectChiaProjectId}>
-                            <AppState>{outlet ? <Outlet /> : children}</AppState>
-                            <ModalDialogs />
-                          </WalletConnectProvider>
-                        </NotificationsProvider>
-                      </OffersProvider>
-                    </Suspense>
-                  </ModalDialogsProvider>
-                </NFTProvider>
-              </LRUsProvider>
-            </CacheProvider>
+            <AuthProvider>
+              <CacheProvider>
+                <LRUsProvider>
+                  <NFTProvider>
+                    <ModalDialogsProvider>
+                      <Suspense fallback={<LayoutLoading />}>
+                        <OffersProvider>
+                          <NotificationsProvider>
+                            <WalletConnectProvider projectId={WalletConnectChiaProjectId}>
+                              <AppState>{outlet ? <Outlet /> : children}</AppState>
+                              <ModalDialogs />
+                            </WalletConnectProvider>
+                          </NotificationsProvider>
+                        </OffersProvider>
+                      </Suspense>
+                    </ModalDialogsProvider>
+                  </NFTProvider>
+                </LRUsProvider>
+              </CacheProvider>
+            </AuthProvider>
           </ErrorBoundary>
         </ThemeProvider>
       </LocaleProvider>

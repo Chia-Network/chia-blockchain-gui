@@ -4,6 +4,7 @@ export { default as AdvancedOptions } from './AdvancedOptions';
 export { default as AlertDialog } from './AlertDialog';
 export { default as Amount } from './Amount';
 export { default as AspectRatio } from './AspectRatio';
+export { AuthProvider } from './Auth';
 export { default as Autocomplete } from './Autocomplete';
 export { default as Back } from './Back';
 export { default as Button } from './Button';
