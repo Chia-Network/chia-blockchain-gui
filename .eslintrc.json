@@ -20,7 +20,7 @@
     "jest": true
   },
   "parserOptions": {
-    "project": "./packages/*/tsconfig.json"
+    "project": "./packages/*/tsconfig.eslint.json"
   },
   // Allow electron to be only a devDependency instead of normal dependency
   "settings": {
@@ -91,6 +91,7 @@
           "**/test/**",
           "**/tests/**",
           "**/cypress/**",
+          "**/*.test.ts",
           "**/vite.config.ts",
           "**/babel.config.js",
           "**/playwright.config.js",

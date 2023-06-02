@@ -4,7 +4,7 @@ import { Button, Typography, Divider } from '@mui/material';
 import React from 'react';
 import { useNavigate } from 'react-router';
 
-import useNotifications from '../../hooks/useNotifications';
+import useValidNotifications from '../../hooks/useValidNotifications';
 import Notification from './Notification';
 
 export type NotificationsMenuProps = {
@@ -15,9 +15,10 @@ export type NotificationsMenuProps = {
 export default function NotificationsMenu(props: NotificationsMenuProps) {
   const { onClose, size = 7 } = props;
   const navigate = useNavigate();
-  const { notifications = [], isLoading } = useNotifications();
+  const { notifications = [], isLoading } = useValidNotifications();
 
   function handleSeeAllActivity() {
+    onClose?.();
     navigate('/dashboard/offers');
   }
 
@@ -25,7 +26,7 @@ export default function NotificationsMenu(props: NotificationsMenuProps) {
     onClose?.();
   }
 
-  const latestNotifications = notifications.slice(0, size);
+  const limited = notifications.slice(0, size);
   const hasMore = notifications.length > size;
 
   return (
@@ -34,29 +35,30 @@ export default function NotificationsMenu(props: NotificationsMenuProps) {
         <Typography variant="h6" paddingX={2}>
           <Trans>Activity</Trans>
         </Typography>
-        {isLoading ? (
-          <Flex flexDirection="column" minHeight="4rem">
-            <Loading center />
-          </Flex>
-        ) : notifications.length ? (
+        {!!notifications.length && (
           <Flex flexDirection="column">
-            {latestNotifications.map((notification) => (
+            {limited.map((notification) => (
               <Notification key={notification.id} notification={notification} onClick={handleClick} />
             ))}
           </Flex>
-        ) : (
+        )}
+
+        {isLoading ? (
+          <Flex flexDirection="column" minHeight="3rem">
+            <Loading center />
+          </Flex>
+        ) : !notifications.length ? (
           <Typography paddingX={2} paddingY={2} color="textSecondary">
             <Trans>No activities yet</Trans>
           </Typography>
-        )}
+        ) : null}
       </Flex>
 
       {hasMore && (
         <>
           <Divider />
-
           <Flex>
-            <Button onClick={handleSeeAllActivity} color="secondary" size="small" fullWidth>
+            <Button onClick={handleSeeAllActivity} variant="text" color="secondary" size="small" fullWidth>
               <Trans>See All Activity</Trans>
             </Button>
           </Flex>

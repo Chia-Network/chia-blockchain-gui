@@ -1,4 +1,5 @@
 import Client from '@walletconnect/sign-client';
+import { getSdkError } from '@walletconnect/utils';
 import initDebug from 'debug';
 
 import walletConnectCommands from '../constants/WalletConnectCommands';
@@ -268,6 +269,15 @@ export async function disconnectPair(client: Client, pairs: Pairs, topic: string
     const pairings = await client.core.pairing.getPairings();
     const pairing = pairings.find((p) => p.topic === topic);
     if (pairing) {
+      // disconnect all sessions
+      const sessions = pairs.getPair(topic)?.sessions ?? [];
+      await Promise.all(
+        sessions.map(async (session) => {
+          await client.disconnect({ topic: session.topic, reason: getSdkError('USER_DISCONNECTED') });
+        })
+      );
+
+      // then disconnect pairing
       await client.core.pairing.disconnect({ topic });
     }
 

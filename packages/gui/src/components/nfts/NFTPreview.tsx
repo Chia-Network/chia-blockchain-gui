@@ -507,7 +507,7 @@ export default function NFTPreview(props: NFTPreviewProps) {
   const hasFile = !!preview;
 
   return (
-    <StyledCardPreview height={isCompact ? '50px' : height} width={width}>
+    <StyledCardPreview height={height} width={width}>
       {isLoading ? (
         <Flex position="absolute" left="0" top="0" bottom="0" right="0" justifyContent="center" alignItems="center">
           <Loading center>{!isCompact && <Trans>{isPreview ? 'Loading preview...' : 'Loading NFT...'}</Trans>}</Loading>

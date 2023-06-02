@@ -1,5 +1,6 @@
 enum WalletConnectCommandParamName {
   ADDRESS = 'address',
+  ALL_FINGERPRINTS = 'allFingerprints',
   AMOUNT = 'amount',
   ASSET_ID = 'assetId',
   BACKUP_DIDS = 'backupDids',
@@ -54,7 +55,9 @@ enum WalletConnectCommandParamName {
   TARGET_ADDRESS = 'targetAddress',
   TRADE_ID = 'tradeId',
   TRANSACTION_ID = 'transactionId',
+  TYPE = 'type',
   URIS = 'uris',
+  URL = 'url',
   VALIDATE_ONLY = 'validateOnly',
   VC_ID = 'vcId',
   VC_PARENT_ID = 'vcParentId',

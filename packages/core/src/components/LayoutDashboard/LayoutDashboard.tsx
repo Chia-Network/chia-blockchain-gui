@@ -18,6 +18,7 @@ import React, { type ReactNode, useState, Suspense, useCallback } from 'react';
 import { useNavigate, Outlet } from 'react-router-dom';
 import styled from 'styled-components';
 
+import useAuth from '../../hooks/useAuth';
 import useGetLatestVersionFromWebsite from '../../hooks/useGetLatestVersionFromWebsite';
 import useOpenDialog from '../../hooks/useOpenDialog';
 import EmojiAndColorPicker from '../../screens/SelectKey/EmojiAndColorPicker';
@@ -87,6 +88,7 @@ export default function LayoutDashboard(props: LayoutDashboardProps) {
   const { children, sidebar, settings, outlet = false, actions } = props;
 
   const navigate = useNavigate();
+  const { logOut } = useAuth();
   const [editWalletName, setEditWalletName] = useState(false);
   const [showEmojiPicker, setShowEmojiPicker] = useState<boolean>(false);
   const { data: fingerprint, isLoading: isLoadingFingerprint } = useGetLoggedInFingerprintQuery();
@@ -131,8 +133,7 @@ export default function LayoutDashboard(props: LayoutDashboardProps) {
   }, [openDialog, appVersion]);
 
   async function handleLogout() {
-    localStorage.setItem('visibilityFilters', JSON.stringify(['visible']));
-    localStorage.setItem('typeFilter', JSON.stringify([]));
+    await logOut();
 
     navigate('/');
   }

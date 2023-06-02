@@ -132,7 +132,7 @@ export default class Wallet extends Service {
   }
 
   async logIn(args: {
-    fingerprint: string;
+    fingerprint: number;
     type?: 'normal' | 'skip' | 'restore_backup'; // skip is used to skip import
   }) {
     const { fingerprint, type = 'normal' } = args;
@@ -225,10 +225,10 @@ export default class Wallet extends Service {
     validateOnly?: boolean;
     disableJSONFormatting?: boolean;
   }) {
-    const { disableJSONFormatting, ...restArgs } = args;
+    const { disableJSONFormatting, driverDict, ...restArgs } = args;
     return this.command<{ offer: string; tradeRecord: TradeRecord }>(
       'create_offer_for_ids',
-      restArgs,
+      { driver_dict: driverDict, ...restArgs },
       false,
       undefined,
       disableJSONFormatting
@@ -298,6 +298,7 @@ export default class Wallet extends Service {
         id: string;
         message: string;
         amount: string;
+        height: number;
       }[];
     }>('get_notifications', args);
   }

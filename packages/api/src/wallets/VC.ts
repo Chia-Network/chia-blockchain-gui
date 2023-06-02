@@ -112,9 +112,6 @@ export default class VCWallet extends Wallet {
   }
 
   async getProofsForRoot(root: string) {
-    if (!root) {
-      return { proofs: {} };
-    }
     return this.command<{ proofs: any }>('vc_get_proofs_for_root', { root });
   }
 
