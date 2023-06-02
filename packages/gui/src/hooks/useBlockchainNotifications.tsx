@@ -66,7 +66,7 @@ export default function useBlockchainNotifications() {
 
         // without wallet sync we can't get timestamp, during loggingIn we have wrong
         // list of notifications from previous fingerprint and we need to wait for clear cache
-        if (!blockchainNotificationsList?.length || !isWalletSynced || !loggingIn) {
+        if (!blockchainNotificationsList?.length || !isWalletSynced || loggingIn) {
           setNotifications([], abortSignal);
           return;
         }
