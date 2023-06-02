@@ -176,7 +176,7 @@ export default function VCList() {
   }
 
   return (
-    <Box sx={{ height: '100%', padding: '25px' }}>
+    <Box sx={{ height: '100%', padding: '25px 0 0 25px', overflowY: 'hidden' }}>
       {Array.isArray(blockchainVCs?.vcRecords) &&
         blockchainVCs?.vcRecords.map((vcRecord: any) => (
           <VCGetTimestamp vcRecord={vcRecord} onVCTimestamp={onVCTimestamp} />
@@ -189,13 +189,15 @@ export default function VCList() {
         </Flex>
         {renderActionsDropdown()}
       </Flex>
-      <VirtuosoGrid
-        style={{ height: '100%' }}
-        data={allVCsSortLatest}
-        components={COMPONENTS}
-        itemContent={renderVCCard}
-        scrollerRef={handleScrollRef}
-      />
+      <Box sx={{ height: 'calc(100% - 75px)' }}>
+        <VirtuosoGrid
+          style={{ height: '100%' }}
+          data={allVCsSortLatest}
+          components={COMPONENTS}
+          itemContent={renderVCCard}
+          scrollerRef={handleScrollRef}
+        />
+      </Box>
     </Box>
   );
 }
