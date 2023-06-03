@@ -67,7 +67,7 @@ export default function NotificationsProvider(props: NotificationsProviderProps)
     setPushNotifications,
   } = useNotificationSettings();
 
-  const [, setLastPushNotificationTimestamp, { isLoading: isLoadingPushNotificationsTimestamp }] =
+  const [, setLastPushNotificationTimestamp, { isLoading: isLoadingPushNotificationsTimestamp, fingerprint }] =
     useCurrentFingerprintSettings<number>('lastPushNotificationTimestamp', 0);
 
   // state for visible badge
@@ -114,7 +114,8 @@ export default function NotificationsProvider(props: NotificationsProviderProps)
   }, [triggeredNotificationsByCurrentFingerprint, blockchainNotifications]);
 
   const showPushNotifications = useCallback(() => {
-    if (!globalNotifications || !pushNotifications || isLoadingServices) {
+    // if fingerprint is not set then we can't show push notifications (user is not logged in)
+    if (!globalNotifications || !pushNotifications || isLoadingServices || !fingerprint) {
       return;
     }
 
@@ -143,6 +144,7 @@ export default function NotificationsProvider(props: NotificationsProviderProps)
     setLastPushNotificationTimestamp,
     notifications,
     showPushNotification,
+    fingerprint,
   ]);
 
   const unseenCount = useMemo(
