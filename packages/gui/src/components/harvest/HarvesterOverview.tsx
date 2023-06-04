@@ -30,7 +30,7 @@ export default function HarvesterOverview() {
 
   const totalFarmSizeEffective = React.useMemo(() => {
     if (!harvesters) {
-      return new BigNumer(0);
+      return new BigNumber(0);
     }
     let size = new BigNumber(0);
     for (let i = 0; i < harvesters.length; i++) {
