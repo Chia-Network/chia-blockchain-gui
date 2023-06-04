@@ -236,6 +236,18 @@ export const farmerApi = apiWithTag.injectEndpoints({
               { type: 'Pools', id: 'LIST' },
             ]
           : [{ type: 'Pools', id: 'LIST' }],
+      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, api, [
+        {
+          command: 'onSubmittedPartial',
+          service: Farmer,
+          endpoint: 'getPoolState',
+        },
+        {
+          command: 'onFailedPartial',
+          service: Farmer,
+          endpoint: 'getPoolState',
+        },
+      ]),
     }),
 
     setPayoutInstructions: mutation(build, Farmer, 'setPayoutInstructions', {

@@ -250,4 +250,12 @@ export default class Farmer extends Service {
   onFarmingInfoChanged(callback: (data: any, message?: Message) => void, processData?: (data: any) => any) {
     return this.onCommand('farming_info_changed', callback, processData);
   }
+
+  onSubmittedPartial(callback: (data: any, message?: Message) => void, processData?: (data: any) => any) {
+    return this.onCommand('submitted_partial', callback, processData);
+  }
+
+  onFailedPartial(callback: (data: any, message?: Message) => void, processData?: (data: any) => any) {
+    return this.onCommand('failed_partial', callback, processData);
+  }
 }

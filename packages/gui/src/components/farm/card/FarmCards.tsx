@@ -1,15 +1,15 @@
 import { Grid } from '@mui/material';
 import React from 'react';
 
+import ExpectedTimeToWin from './ExpectedTimeToWin';
 import FarmCardBlockRewards from './FarmCardBlockRewards';
-import FarmCardExpectedTimeToWin from './FarmCardExpectedTimeToWin';
 import FarmCardLastHeightFarmed from './FarmCardLastHeightFarmed';
 import FarmCardPlotCount from './FarmCardPlotCount';
 import FarmCardStatus from './FarmCardStatus';
 import FarmCardTotalChiaFarmed from './FarmCardTotalChiaFarmed';
-import FarmCardTotalNetworkSpace from './FarmCardTotalNetworkSpace';
-import FarmCardTotalSizeOfPlots from './FarmCardTotalSizeOfPlots';
 import FarmCardUserFees from './FarmCardUserFees';
+import FarmCardTotalNetworkSpace from './TotalNetworkSpace';
+import FarmCardTotalSizeOfPlots from './TotalSizeOfPlots';
 
 export default function FarmCards() {
   return (
@@ -40,7 +40,7 @@ export default function FarmCards() {
           <FarmCardTotalNetworkSpace />
         </Grid>
         <Grid xs={12} md={4} item>
-          <FarmCardExpectedTimeToWin />
+          <ExpectedTimeToWin />
         </Grid>
       </Grid>
     </div>

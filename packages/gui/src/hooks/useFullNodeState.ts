@@ -32,6 +32,6 @@ export default function useFullNodeState(): {
   return {
     isLoading,
     state,
-    error,
+    error: error as Error,
   };
 }
