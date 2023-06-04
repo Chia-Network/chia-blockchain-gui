@@ -27,12 +27,17 @@ export type LatencyInfo = {
 export type LatencyData = {
   [nodeId: string]: LatencyInfo;
 };
+export type MissingSignagePointsRecord = [number, number]; // [timestamp, count of missing sps]
 
 export default class Farmer extends Service {
   // last FARMING_INFO_MAX_ITEMS farming info
   private newFarmingInfo: NewFarmingInfo[] = [];
 
   private latencyData: LatencyData = {};
+
+  private missingSps: MissingSignagePointsRecord[] = [];
+
+  private totalMissingSps: number = 0;
 
   constructor(client: Client, options?: Options) {
     super(ServiceName.FARMER, client, options, async () => {
@@ -102,6 +107,31 @@ export default class Farmer extends Service {
           );
         }
       });
+
+      this.onNewSignagePoint((data: { missingSignagePoints: MissingSignagePointsRecord }) => {
+        if (!data.missingSignagePoints) {
+          return;
+        }
+        this.missingSps.unshift(data.missingSignagePoints);
+        const now = Date.now() / 1000; // Convert to seconds from milliseconds
+
+        let deletingIndex = -1;
+        for (let i = this.missingSps.length - 1; i >= 0; i--) {
+          const [timestamp] = this.missingSps[i];
+          if (now - timestamp <= 86_400) {
+            break;
+          } else {
+            deletingIndex = i;
+          }
+        }
+
+        this.totalMissingSps += +data.missingSignagePoints[1];
+
+        if (deletingIndex > -1) {
+          // Remove array items expired.
+          this.missingSps.splice(deletingIndex, this.missingSps.length - deletingIndex);
+        }
+      });
     });
   }
 
@@ -110,6 +140,14 @@ export default class Farmer extends Service {
     return {
       newFarmingInfo: this.newFarmingInfo,
       latencyData: this.latencyData,
+    };
+  }
+
+  async getMissingSignagePoints() {
+    await this.whenReady();
+    return {
+      missingSignagePoints: this.missingSps,
+      totalMissingSps: this.totalMissingSps,
     };
   }
 

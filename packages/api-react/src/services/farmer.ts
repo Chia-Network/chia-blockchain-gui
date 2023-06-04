@@ -251,10 +251,20 @@ export const farmerApi = apiWithTag.injectEndpoints({
         },
       ]),
     }),
+
+    getMissingSignagePoints: query(build, Farmer, 'getMissingSignagePoints', {
+      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, api, [
+        {
+          command: 'onNewSignagePoint',
+          service: Farmer,
+          endpoint: 'getMissingSignagePoints',
+        },
+      ]),
+    }),
   }),
 });
 
-// TODO add new farming info query and event for last_attepmtp_proofs
+// TODO add new farming info query and event for last_attempt_proofs
 
 export const {
   useFarmerPingQuery,
@@ -274,4 +284,5 @@ export const {
   useGetPoolStateQuery,
   useSetPayoutInstructionsMutation,
   useGetNewFarmingInfoQuery,
+  useGetMissingSignagePointsQuery,
 } = farmerApi;
