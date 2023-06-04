@@ -101,7 +101,8 @@ export default function VCList() {
 
   const allVCs = React.useMemo(() => {
     if (fingerprint) {
-      return (blockchainVCs?.vcRecords || []).concat(VCsLocalStorage[fingerprint]);
+      // filter out undefined values
+      return (blockchainVCs?.vcRecords || []).concat(VCsLocalStorage[fingerprint]).filter(Boolean);
     }
     return [];
   }, [VCsLocalStorage, blockchainVCs?.vcRecords, fingerprint]);
@@ -121,7 +122,10 @@ export default function VCList() {
     : allVCs;
 
   async function getVCFromLocalFile() {
-    const fileContent = await (window as any).ipcRenderer.invoke('getVCfromFile');
+    const fileContent = await (window as any).ipcRenderer.invoke('showOpenFileDialog');
+    if (!fileContent) {
+      return;
+    }
     let json;
     try {
       json = JSON.parse(fileContent);
