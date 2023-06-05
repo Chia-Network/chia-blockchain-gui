@@ -86,17 +86,18 @@ function HarvesterLatencyGraph(props: HarvesterLatencyGraphProps) {
         ? effectiveSpace.div(totalFarmSizeEffective).multipliedBy(100)
         : undefined;
 
-    const earnedSpacePercentage: React.ReactElement | string =
-      harvester && totalFarmSizeRaw && effectiveSpace ? (
-        <Tooltip
-          title={<FormatBytes value={effectiveSpace.minus(new BigNumber(harvester.totalPlotSize))} precision={3} />}
-        >
-          {Math.round(effectiveSpace.minus(totalFarmSizeRaw).div(totalFarmSizeRaw).multipliedBy(1000).toNumber()) / 10}{' '}
+    let earnedSpacePercentage: React.ReactElement | string = '-';
+    if (harvester && totalFarmSizeRaw && effectiveSpace) {
+      const harvesterTotalPlotSize = new BigNumber(harvester.totalPlotSize);
+      earnedSpacePercentage = (
+        <Tooltip title={<FormatBytes value={effectiveSpace.minus(harvesterTotalPlotSize)} precision={3} />}>
+          {Math.round(
+            effectiveSpace.minus(harvesterTotalPlotSize).div(harvesterTotalPlotSize).multipliedBy(1000).toNumber()
+          ) / 10}{' '}
           %
         </Tooltip>
-      ) : (
-        '-'
       );
+    }
 
     return (
       <Paper variant="outlined">
