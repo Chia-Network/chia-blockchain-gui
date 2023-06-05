@@ -6,7 +6,6 @@ import { styled } from '@mui/styles';
 import React, { useCallback, useRef } from 'react';
 import { VirtuosoGrid } from 'react-virtuoso';
 
-// import useVCCoinEvents from '../../hooks/useVCCoinEvents';
 import { sha256, arrToHex } from '../../util/utils';
 import VCCard from './VCCard';
 import VCGetTimestamp from './VCGetTimestamp';
@@ -54,11 +53,7 @@ export default function VCList() {
     [scrollerRef]
   );
 
-  // const [forceUpdate, setForceUpdate] = React.useState(false);
-
   const { data: fingerprint } = useGetLoggedInFingerprintQuery();
-
-  // const subscribeToVCCoinChanges = useVCCoinEvents();
 
   const openDialog = useOpenDialog();
 
@@ -67,17 +62,6 @@ export default function VCList() {
   const trackVCTimestamps = React.useRef<any>({});
 
   const [sortByTimestamp, setSortByTimestamp] = React.useState(false);
-
-  // React.useEffect(() => {
-  //   const unsubscribe = subscribeToVCCoinChanges((changed) => {
-  //     if (changed) {
-  //       console.log('Query List.........', blockchainVCs?.vcRecords);
-  //       console.log('Changed data.........', changed);
-  //     }
-  //     setForceUpdate(!forceUpdate);
-  //   });
-  //   return () => unsubscribe();
-  // }, [subscribeToVCCoinChanges, forceUpdate]);
 
   const COMPONENTS = {
     Item: ItemContainer,

@@ -70,7 +70,7 @@ export default function VCRevokeDialog(props: ConfirmDialogProps) {
               <b>{` ${vcTitle}`}</b>?
             </Typography>
             {!isLocal && (
-              <Form methods={methods}>
+              <Form methods={methods} onSubmit={handleConfirm}>
                 <EstimatedFee
                   id="filled-secondary"
                   variant="filled"
