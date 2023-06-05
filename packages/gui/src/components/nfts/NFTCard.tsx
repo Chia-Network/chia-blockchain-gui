@@ -19,6 +19,7 @@ export type NFTCardProps = {
   onSelect?: (nftId: string) => Promise<boolean>;
   search?: string;
   selected?: boolean;
+  ratio?: number;
 };
 
 function NFTCard(props: NFTCardProps) {
@@ -30,6 +31,7 @@ function NFTCard(props: NFTCardProps) {
     onSelect,
     search,
     selected = false,
+    ratio = 4 / 3,
   } = props;
 
   const nftId = useMemo(() => getNFTId(id), [id]);
@@ -65,7 +67,7 @@ function NFTCard(props: NFTCardProps) {
               sx={{ zIndex: 1, position: 'absolute', right: 2, top: 2 }}
             />
           )}
-          <NFTPreview id={nftId} disableInteractions={isOffer} preview />
+          <NFTPreview id={nftId} disableInteractions={isOffer} ratio={ratio} preview />
         </CardActionArea>
         <CardActionArea onClick={() => canExpandDetails && handleClick()} component="div">
           <CardContent>
