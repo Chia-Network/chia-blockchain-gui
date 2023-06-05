@@ -3,6 +3,10 @@ import React from 'react';
 
 import VCIcon from './images/vc.svg';
 
+function VCIconWithoutFill(props: SvgIconProps) {
+  return <VCIcon {...props} style={{ fill: 'none' }} />;
+}
+
 export default function VC(props: SvgIconProps) {
-  return <SvgIcon component={VCIcon} inheritViewBox {...props} />;
+  return <SvgIcon component={VCIconWithoutFill} inheritViewBox {...props} />;
 }

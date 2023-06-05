@@ -1410,7 +1410,20 @@ export const walletApi = apiWithTag.injectEndpoints({
       transformResponse: (response) => response.vcRecord,
     }),
 
-    getVCList: query(build, VC, 'getVCList'),
+    getVCList: query(build, VC, 'getVCList', {
+      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, api, [
+        {
+          command: 'onVCCoinAdded',
+          service: VC,
+          endpoint: 'getVCList',
+        },
+        {
+          command: 'onVCCoinRemoved',
+          service: VC,
+          endpoint: 'getVCList',
+        },
+      ]),
+    }),
 
     spendVC: mutation(build, VC, 'spendVC'),
 
