@@ -72,7 +72,7 @@ export { default as Spinner } from './Spinner';
 export { default as StateIndicator, StateIndicatorDot } from './StateIndicator';
 export { default as StateTypography } from './StateTypography';
 export { default as Suspender } from './Suspender';
-export { default as Table, TableControlled } from './Table';
+export { default as Table, TableControlled, TableControlledRow } from './Table';
 export { default as TextField } from './TextField';
 export { default as ThemeProvider } from './ThemeProvider';
 export { default as ToolbarSpacing } from './ToolbarSpacing';

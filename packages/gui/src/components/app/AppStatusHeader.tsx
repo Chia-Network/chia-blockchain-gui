@@ -60,12 +60,12 @@ export default function AppStatusHeader() {
     '.checkmark-icon': {
       g: {
         circle: {
-          stroke: '#3AAC59',
-          fill: '#3AAC59',
+          stroke: theme.palette.primary.main,
+          fill: theme.palette.primary.main,
         },
         path: {
-          stroke: '#3AAC59',
-          fill: '#3AAC59',
+          stroke: theme.palette.primary.main,
+          fill: theme.palette.primary.main,
         },
       },
     },

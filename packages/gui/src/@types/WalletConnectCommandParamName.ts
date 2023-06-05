@@ -65,6 +65,7 @@ enum WalletConnectCommandParamName {
   WALLET_ID = 'walletId',
   WALLET_IDS = 'walletIds',
   WALLET_IDS_AND_AMOUNTS = 'walletIdsAndAmounts',
+  PUZZLE_DECORATOR = 'puzzleDecorator',
 }
 
 export default WalletConnectCommandParamName;

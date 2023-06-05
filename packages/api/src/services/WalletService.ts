@@ -1,10 +1,12 @@
 import BigNumber from 'bignumber.js';
 
+import type AutoClaim from '../@types/AutoClaim';
 import type Connection from '../@types/Connection';
 import type FarmedAmount from '../@types/FarmedAmount';
 import type OfferSummaryRecord from '../@types/OfferSummaryRecord';
 import type PoolWalletStatus from '../@types/PoolWalletStatus';
 import type PrivateKey from '../@types/PrivateKey';
+import type PuzzleDecorator from '../@types/PuzzleDecorator';
 import type TradeRecord from '../@types/TradeRecord';
 import type Transaction from '../@types/Transaction';
 import type { WalletListItem } from '../@types/Wallet';
@@ -94,6 +96,7 @@ export default class Wallet extends Service {
     fee: BigNumber;
     address: string;
     memos?: string[];
+    puzzleDecorator?: PuzzleDecorator[];
   }) {
     return this.command<{ transaction: Transaction; transactionId: string }>('send_transaction', args);
   }
@@ -148,7 +151,12 @@ export default class Wallet extends Service {
     start?: number;
     end?: number;
     sortKey?: 'CONFIRMED_AT_HEIGHT' | 'RELEVANCE';
+    typeFilter?: {
+      mode: number;
+      values: number[];
+    };
     reverse?: boolean;
+    confirmed?: boolean;
   }) {
     return this.command<{ transactions: Transaction[]; walletId: number }>('get_transactions', args);
   }
@@ -325,6 +333,21 @@ export default class Wallet extends Service {
 
   async resyncWallet() {
     return this.command<void>('set_wallet_resync_on_startup');
+  }
+
+  // Clawback
+  async setAutoClaim(args: AutoClaim) {
+    return this.command<AutoClaim>('set_auto_claim', args);
+  }
+
+  async getAutoClaim() {
+    return this.command<AutoClaim>('get_auto_claim');
+  }
+
+  async spendClawbackCoins(args: { coinIds: string[]; fee: number | BigNumber }) {
+    return this.command<{
+      transactionIds: string[];
+    }>('spend_clawback_coins', args);
   }
 
   onSyncChanged(callback: (data: any, message: Message) => void, processData?: (data: any) => any) {
