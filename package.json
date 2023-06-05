@@ -20,7 +20,7 @@
     "build": "lerna run build",
     "build:skipLocales": "lerna run build:js",
     "build:ci": "lerna run build:ci",
-    "build:watch": "lerna run build:watch",
+    "build:watch": "lerna run build:watch --parallel",
     "start:gui": "lerna run start --scope @chia-network/gui",
     "dev:gui": "lerna run dev --scope @chia-network/gui --stream",
     "electron": "npm run start:gui",

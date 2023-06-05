@@ -7,7 +7,12 @@ export default function useWalletTransactions(
   defaultRowsPerPage = 10,
   defaultPage = 0,
   sortKey?: 'CONFIRMED_AT_HEIGHT' | 'RELEVANCE',
-  reverse?: boolean
+  reverse?: boolean,
+  confirmed?: boolean,
+  typeFilter?: {
+    mode: number;
+    values: number[];
+  }
 ): {
   isLoading: boolean;
   transactions?: Transaction[];
@@ -45,6 +50,8 @@ export default function useWalletTransactions(
       end,
       sortKey,
       reverse,
+      confirmed,
+      typeFilter,
     },
     {
       skipToken: count === undefined,

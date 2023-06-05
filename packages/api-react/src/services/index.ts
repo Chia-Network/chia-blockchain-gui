@@ -194,6 +194,10 @@ export const {
   useAddVCProofsMutation,
   useGetProofsForRootQuery,
   useRevokeVCMutation,
+  // clawback
+  useSetAutoClaimMutation,
+  useGetAutoClaimQuery,
+  useSpendClawbackCoinsMutation,
 } = wallet;
 
 // harvester hooks
