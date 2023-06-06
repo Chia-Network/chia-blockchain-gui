@@ -1,4 +1,4 @@
-import { Flex, Form, TextField, Button } from '@chia-network/core';
+import { Flex, Form, TextField, ButtonLoading } from '@chia-network/core';
 import { ConnectCheckmark } from '@chia-network/icons';
 import {
   useClawbackDefaultTime,
@@ -52,7 +52,7 @@ export default function SettingsCustodyClawbackOutgoing(props) {
             />
           ))}
 
-          <Button
+          <ButtonLoading
             size="small"
             type="submit"
             variant="contained"
@@ -60,10 +60,10 @@ export default function SettingsCustodyClawbackOutgoing(props) {
             disabled={!methods.formState.isDirty}
             data-testid="SettingsCustodyClawbackOutgoing-submit"
           >
-            <Trans>{isClawbackDefaultTimeEnabled ? 'Save' : 'Enable'}</Trans>
-          </Button>
+            {isClawbackDefaultTimeEnabled ? <Trans>Save</Trans> : <Trans>Enable</Trans>}
+          </ButtonLoading>
           {isClawbackDefaultTimeEnabled && (
-            <Button
+            <ButtonLoading
               size="small"
               type="submit"
               variant="outlined"
@@ -75,7 +75,7 @@ export default function SettingsCustodyClawbackOutgoing(props) {
               data-testid="SettingsCustodyClawbackOutgoing-disable"
             >
               <Trans>Disable</Trans>
-            </Button>
+            </ButtonLoading>
           )}
         </Flex>
       </Form>
