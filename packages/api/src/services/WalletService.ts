@@ -86,6 +86,10 @@ export default class Wallet extends Service {
     return this.command<{ walletBalance: WalletBalance }>('get_wallet_balance', args);
   }
 
+  async getWalletBalances(args?: { walletIds: number[] }) {
+    return this.command<{ walletBalances: WalletBalance[] }>('get_wallet_balances', args);
+  }
+
   async getFarmedAmount() {
     return this.command<FarmedAmount>('get_farmed_amount');
   }

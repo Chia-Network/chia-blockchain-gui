@@ -262,6 +262,8 @@ export const walletApi = apiWithTag.injectEndpoints({
       ]),
     }),
 
+    getWalletBalances: query(build, WalletService, 'getWalletBalances', {}),
+
     getFarmedAmount: query(build, WalletService, 'getFarmedAmount', {
       onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, api, [
         {
@@ -1457,6 +1459,7 @@ export const {
   useCreateNewWalletMutation,
   useDeleteUnconfirmedTransactionsMutation,
   useGetWalletBalanceQuery,
+  useGetWalletBalancesQuery,
   useGetFarmedAmountQuery,
   useSendTransactionMutation,
   useGenerateMnemonicMutation,
