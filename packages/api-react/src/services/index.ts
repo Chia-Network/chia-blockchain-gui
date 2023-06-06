@@ -96,6 +96,7 @@ export const {
   useCreateNewWalletMutation,
   useDeleteUnconfirmedTransactionsMutation,
   useGetWalletBalanceQuery,
+  useGetWalletBalancesQuery,
   useGetFarmedAmountQuery,
   useSendTransactionMutation,
   useGenerateMnemonicMutation,
