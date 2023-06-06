@@ -1,8 +1,8 @@
 // import { useGetNFTInfoQuery } from '@chia-network/api-react';
-import { AddressBookContext, CopyToClipboard, Flex } from '@chia-network/core';
+import { AddressBookContext, CopyToClipboard, Flex, MenuItem, More } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
-import { EditOutlined } from '@mui/icons-material';
-import { IconButton, InputAdornment, TextField, Typography } from '@mui/material';
+import { Delete, Edit } from '@mui/icons-material';
+import { InputAdornment, ListItemIcon, TextField, Typography } from '@mui/material';
 import React, { useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
@@ -10,20 +10,25 @@ import { useParams, useNavigate } from 'react-router-dom';
 // import NFTPreview from '../nfts/NFTPreview';
 
 export default function ContactSummary() {
-  const { contactid } = useParams();
+  const { contactId } = useParams();
   const navigate = useNavigate();
-  const [, , , getContactContactId] = useContext(AddressBookContext);
-  const contact = getContactContactId(Number(contactid));
+  const [, , removeAddress, getContactContactId] = useContext(AddressBookContext);
+  const contact = getContactContactId(Number(contactId));
 
   // commented out - until this stops throwing an error when not a valid nft
   // const launcherId = launcherIdFromNFTId(contact.nftid ?? '');
 
   // const { data: nft } = useGetNFTInfoQuery({ coinId: launcherId ?? '' });
 
-  if (contactid === undefined || contact === undefined) return <div />;
+  if (contactId === undefined || contact === undefined) return <div />;
 
   function handleEditContact(id: number) {
     navigate(`/dashboard/addressbook/edit/${id}`);
+  }
+
+  function handleRemove(id: number) {
+    removeAddress(id);
+    navigate(`/dashboard/addressbook/`);
   }
 
   /*
@@ -90,14 +95,14 @@ export default function ContactSummary() {
   }
 
   function showDomains() {
-    if (!contact.domainnames || contact.domainnames.length === 0) {
+    if (!contact.domainNames || contact.domainNames.length === 0) {
       return null;
     }
     return (
       <Flex flexDirection="column" gap={3} flexGrow={1}>
         <Typography variant="h6">Domain Names</Typography>
         <Flex flexDirection="column" gap={3} flexGrow={1}>
-          {contact.domainnames.map((domainInfo) => (
+          {contact.domainNames.map((domainInfo) => (
             <TextField
               label={domainInfo.name}
               value={domainInfo.domainname}
@@ -116,6 +121,7 @@ export default function ContactSummary() {
       </Flex>
     );
   }
+
   return (
     <div>
       <Flex
@@ -134,16 +140,33 @@ export default function ContactSummary() {
           >
             <Trans>{contact.name}</Trans>
           </Typography>
-          <IconButton
-            onClick={() => handleEditContact(contactid)}
+          <Flex
+            style={{ height: '30px' }}
             sx={{
               position: 'absolute',
               right: 44,
-              top: 44,
+              top: 48,
             }}
           >
-            <EditOutlined />
-          </IconButton>
+            <More>
+              <MenuItem onClick={() => handleEditContact(contactId)} close>
+                <ListItemIcon>
+                  <Edit fontSize="small" />
+                </ListItemIcon>
+                <Typography variant="inherit" noWrap>
+                  <Trans>Edit Contact</Trans>
+                </Typography>
+              </MenuItem>
+              <MenuItem onClick={() => handleRemove(Number(contact.contactId))} close>
+                <ListItemIcon>
+                  <Delete fontSize="small" />
+                </ListItemIcon>
+                <Typography variant="inherit" noWrap>
+                  <Trans>Delete Contact</Trans>
+                </Typography>
+              </MenuItem>
+            </More>
+          </Flex>
         </Flex>
       </Flex>
 

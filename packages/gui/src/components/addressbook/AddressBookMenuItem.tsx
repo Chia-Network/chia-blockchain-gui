@@ -7,7 +7,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 // import NFTPreview from '../nfts/NFTPreview';
 
 export default function AddressBookMenuItem({ contact }) {
-  const { contactid } = useParams();
+  const { contactId } = useParams();
   const navigate = useNavigate();
 
   function handleSelectContact(id: number) {
@@ -31,20 +31,20 @@ export default function AddressBookMenuItem({ contact }) {
 
   return (
     <CardListItem
-      onSelect={() => handleSelectContact(Number(contact.contactid))}
-      key={contact.contactid}
-      selected={Number(contact.contactid) === Number(contactid)}
-      data-testid={`WalletsSidebar-wallet-${contactid}`}
+      onSelect={() => handleSelectContact(Number(contact.contactId))}
+      key={contact.contactId}
+      selected={Number(contact.contactId) === Number(contactId)}
+      data-testid={`WalletsSidebar-wallet-${contactId}`}
     >
       <div
         style={{
           display: 'flex',
-          minHeight: '60px',
-          height: '60px',
-          paddingBottom: '10px',
+          minHeight: '40px',
+          height: '40px',
+          paddingBottom: '0px',
         }}
       >
-        <div style={{ flexGrow: 4, flexBasis: '100', paddingLeft: '10px', paddingTop: '16px', overflow: 'hidden' }}>
+        <div style={{ flexGrow: 4, flexBasis: '100', paddingLeft: '10px', paddingTop: '8px', overflow: 'hidden' }}>
           <div>
             <span style={{ fontWeight: 'bold', fontSize: '1.2rem' }}>
               {contact.name !== '' ? contact.name : 'Unnamed Contact'}

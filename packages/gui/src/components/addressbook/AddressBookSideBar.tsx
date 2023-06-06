@@ -19,7 +19,7 @@ export default function AddressBookSideBar() {
   // - contact name
   function filterArray(arrayList, search: string) {
     return arrayList.filter((item: AddressContact) => {
-      const { dids, domainnames, addresses, name } = item;
+      const { dids, domainNames, addresses, name } = item;
 
       if (search === '') return true;
 
@@ -43,8 +43,8 @@ export default function AddressBookSideBar() {
         }
       }
 
-      if (domainnames && domainnames.length > 0) {
-        const filteredDomains = domainnames.filter(
+      if (domainNames && domainNames.length > 0) {
+        const filteredDomains = domainNames.filter(
           (domain: any) => domain.domainname && domain.domainname.toLowerCase() === search.toLowerCase()
         );
         if (filteredDomains && filteredDomains.length > 0) {

@@ -8,7 +8,7 @@ import {
   Offers as OffersIcon,
   Tokens as TokensIcon,
   Settings as SettingsIcon,
-  Settings as AddressBookIcon,
+  Contacts as AddressBookIcon,
 } from '@chia-network/icons';
 import { Trans } from '@lingui/macro';
 import { Box } from '@mui/material';
@@ -67,7 +67,7 @@ export default function DashboardSideBar(props: DashboardSideBarProps) {
         <SideBarItem
           to="/dashboard/addressbook"
           icon={AddressBookIcon}
-          title={<Trans>Address Book</Trans>}
+          title={<Trans>Contacts</Trans>}
           data-testid="DashboardSideBar-addressbook"
         />
 

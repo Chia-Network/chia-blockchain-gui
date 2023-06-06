@@ -1,8 +1,8 @@
 // import { useGetNFTInfoQuery } from '@chia-network/api-react';
 import { AddressBookContext, Flex, Form } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
-import { Add, Remove, SaveOutlined, DeleteOutlined } from '@mui/icons-material';
-import { Box, TextField, IconButton, Typography } from '@mui/material';
+import { Add, Remove } from '@mui/icons-material';
+import { Box, Button, TextField, IconButton, Typography } from '@mui/material';
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useParams, useNavigate } from 'react-router-dom';
@@ -11,15 +11,15 @@ import { useParams, useNavigate } from 'react-router-dom';
 // import NFTPreview from '../nfts/NFTPreview';
 
 export default function ContactEdit() {
-  const { contactid } = useParams();
+  const { contactId } = useParams();
   const navigate = useNavigate();
-  const [, editContact, removeAddress, getContactContactId] = useContext(AddressBookContext);
-  const contact = getContactContactId(Number(contactid));
+  const [, editContact, , getContactContactId] = useContext(AddressBookContext);
+  const contact = getContactContactId(Number(contactId));
 
   const [name, setName] = useState([contact.name]);
   const [addresses, setAddresses] = useState(contact.addresses);
   const [dids, setDIDs] = useState(contact.dids);
-  const [domains, setDomains] = useState(contact.domainnames);
+  const [domains, setDomains] = useState(contact.domainNames);
 
   const methods = useForm<ContactAddData>({
     name: '',
@@ -69,13 +69,12 @@ export default function ContactEdit() {
     addresses.map((entry, index) => addDefaultName(entry, index, 'address', addresses, setAddresses));
     dids.map((entry, index) => addDefaultName(entry, index, 'did', dids, setDIDs));
     domains.map((entry, index) => addDefaultName(entry, index, 'domainname', domains, setDomains));
-    editContact(contact.contactid, data.name, addresses, dids, data.notes, data.nftid, domains);
+    editContact(contact.contactId, data.name, addresses, dids, data.notes, data.nftid, domains);
     navigate(`/dashboard/addressbook/`);
   }
 
-  function handleRemove(contactId: number) {
-    removeAddress(contactId);
-    navigate(`/dashboard/addressbook/`);
+  function handleCancel(id: number) {
+    navigate(`/dashboard/addressbook/${id}`);
   }
 
   return (
@@ -99,26 +98,30 @@ export default function ContactEdit() {
             </Typography>
           </Flex>
           <Flex style={{ paddingRight: '30px' }}>
-            <IconButton
+            <Button
+              variant="outlined"
+              color="secondary"
+              type="submit"
               sx={{
                 position: 'absolute',
                 right: 44,
                 top: 44,
               }}
-              type="submit"
             >
-              <SaveOutlined />
-            </IconButton>
-            <IconButton
-              onClick={() => handleRemove(Number(contact.contactid))}
+              <Trans>Save</Trans>
+            </Button>
+            <Button
+              variant="outlined"
+              color="secondary"
+              onClick={() => handleCancel(Number(contact.contactId))}
               sx={{
                 position: 'absolute',
-                right: 88,
+                right: 122,
                 top: 44,
               }}
             >
-              <DeleteOutlined />
-            </IconButton>
+              <Trans>Cancel</Trans>
+            </Button>
           </Flex>
         </Flex>
 

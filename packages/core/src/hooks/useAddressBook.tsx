@@ -8,11 +8,11 @@ export default function useAddressBook(): [
     dids: ContactDID[],
     notes: string,
     nftid: string,
-    domainnames: ContactDomainName[]
+    domainNames: ContactDomainName[]
   ) => void, // addContact
-  (contactid: number) => void, // removeContact
-  (contactid: number) => AddressContact | undefined, // getContactContactId
-  (contact: AddressContact, contactid: number) => void,
+  (contactId: number) => void, // removeContact
+  (contactId: number) => AddressContact | undefined, // getContactContactId
+  (contact: AddressContact, contactId: number) => void,
   (address: string) => AddressContact | undefined // getContactByAddress
 ] {
   // editContact
@@ -34,7 +34,7 @@ export default function useAddressBook(): [
 
   function getNewContactId(): number {
     if (addressBook.length === 0 || addressBook === undefined) return 1;
-    return Math.max(...addressBook.map((o) => o.contactid)) + 1;
+    return Math.max(...addressBook.map((o) => o.contactId)) + 1;
   }
 
   function addContact(
@@ -43,35 +43,35 @@ export default function useAddressBook(): [
     dids: ContactDID[],
     notes: string,
     nftid: string,
-    domainnames: ContactDomainName[]
+    domainNames: ContactDomainName[]
   ) {
-    const contactid = getNewContactId();
+    const contactId = getNewContactId();
     const newAddress: AddressContact = {
-      contactid,
+      contactId,
       name,
       addresses: [...addresses],
       dids,
       notes,
       nftid,
-      domainnames,
+      domainNames,
     };
 
     setAddressBook([...addressBook, newAddress]);
   }
 
   function removeContact(contactId: number) {
-    const filteredContacts = addressBook.filter((contact) => contact.contactid !== contactId);
+    const filteredContacts = addressBook.filter((contact) => contact.contactId !== contactId);
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(filteredContacts));
     setAddressBook([...filteredContacts]);
   }
 
-  function getContactByContactId(contactid: number) {
-    const found = addressBook.find((contact) => contact.contactid === contactid);
+  function getContactByContactId(contactId: number) {
+    const found = addressBook.find((contact) => contact.contactId === contactId);
     return found;
   }
 
-  function editContact(contact: AddressContact, contactid: number) {
-    const found = addressBook.find((c) => c.contactid === contactid);
+  function editContact(contact: AddressContact, contactId: number) {
+    const found = addressBook.find((c) => c.contactId === contactId);
     return found;
   }
 
@@ -86,13 +86,13 @@ export default function useAddressBook(): [
 }
 
 interface AddressContact {
-  contactid: number;
+  contactId: number;
   name: string;
   addresses: ContactAddress[];
   dids: ContactDID[];
   notes: string;
   nftid: string;
-  domainnames: ContactDomainName[];
+  domainNames: ContactDomainName[];
 }
 
 interface ContactAddress {

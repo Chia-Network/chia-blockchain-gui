@@ -1,7 +1,7 @@
 import { AddressBookContext, Form, TextField, TooltipIcon, Flex } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
-import { Add, Remove, SaveOutlined } from '@mui/icons-material';
-import { IconButton, Typography, Box } from '@mui/material';
+import { Add, Remove } from '@mui/icons-material';
+import { Button, IconButton, Typography, Box } from '@mui/material';
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
@@ -82,16 +82,18 @@ export default function ContactAdd() {
             </Typography>
           </Flex>
           <Flex style={{ paddingRight: '30px' }}>
-            <IconButton
+            <Button
+              variant="outlined"
+              color="secondary"
+              type="submit"
               sx={{
                 position: 'absolute',
                 right: 44,
                 top: 44,
               }}
-              type="submit"
             >
-              <SaveOutlined />
-            </IconButton>
+              <Trans>Save</Trans>
+            </Button>
           </Flex>
         </Flex>
         <Flex flexDirection="column" gap={6} alignItems="center" style={{ paddingBottom: '40px' }}>

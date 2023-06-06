@@ -12,8 +12,8 @@ export default function AddressBook() {
     <Routes>
       <Route element={<LayoutDashboardSub sidebar={<AddressBookSideBar />} outlet />}>
         <Route path="/new" element={<ContactAdd />} />
-        <Route path="edit/:contactid" element={<ContactEdit />} />
-        <Route path=":contactid" element={<ContactSummary />} />
+        <Route path="edit/:contactId" element={<ContactEdit />} />
+        <Route path=":contactId" element={<ContactSummary />} />
         <Route path="*" element={<div />} />
       </Route>
     </Routes>
