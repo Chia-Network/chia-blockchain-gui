@@ -1,8 +1,9 @@
+import { useLocalStorage } from '@chia-network/api-react';
 import { Flex, LayoutDashboardSub } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Typography, Tab, Tabs } from '@mui/material';
 import Badge from '@mui/material/Badge';
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Routes, Route, matchPath, useLocation, useNavigate } from 'react-router-dom';
 
 import SettingsAdvanced from './SettingsAdvanced';
@@ -14,22 +15,32 @@ import SettingsNFT from './SettingsNFT';
 import SettingsNotifications from './SettingsNotifications';
 import SettingsProfiles from './SettingsProfiles';
 
-const settingsTabs = [
-  { id: 'general', label: 'General', Component: SettingsGeneral, path: 'general' },
-  { id: 'custody', label: 'Custody', Component: SettingsCustody, path: 'custody', badge: 'NEW' },
-  { id: 'profiles', label: 'Profiles (DIDs)', Component: SettingsProfiles, path: 'profiles/*' },
-  { id: 'nft', label: 'NFT', Component: SettingsNFT, path: 'nft' },
-  { id: 'datalayer', label: 'DataLayer', Component: SettingsDataLayer, path: 'datalayer' },
-  { id: 'integration', label: 'Integration', Component: SettingsIntegration, path: 'integration' },
-  { id: 'notifications', label: 'Notifications', Component: SettingsNotifications, path: 'notifications' },
-  { id: 'advanced', label: 'Advanced', Component: SettingsAdvanced, path: 'advanced' },
-];
-
 const pathPrefix = '/dashboard/settings/';
 
 export default function Settings() {
   const navigate = useNavigate();
   const { pathname } = useLocation();
+  const [wasSettingsCustodyVisited] = useLocalStorage<boolean>('newFlag--wasSettingsCustodyVisited', false);
+
+  const settingsTabs = useMemo(
+    () => [
+      { id: 'general', label: 'General', Component: SettingsGeneral, path: 'general' },
+      {
+        id: 'custody',
+        label: 'Custody',
+        Component: SettingsCustody,
+        path: 'custody',
+        badge: wasSettingsCustodyVisited ? undefined : 'NEW',
+      },
+      { id: 'profiles', label: 'Profiles (DIDs)', Component: SettingsProfiles, path: 'profiles/*' },
+      { id: 'nft', label: 'NFT', Component: SettingsNFT, path: 'nft' },
+      { id: 'datalayer', label: 'DataLayer', Component: SettingsDataLayer, path: 'datalayer' },
+      { id: 'integration', label: 'Integration', Component: SettingsIntegration, path: 'integration' },
+      { id: 'notifications', label: 'Notifications', Component: SettingsNotifications, path: 'notifications' },
+      { id: 'advanced', label: 'Advanced', Component: SettingsAdvanced, path: 'advanced' },
+    ],
+    [wasSettingsCustodyVisited]
+  );
 
   const activeTabId = settingsTabs.find((tab) => !!matchPath(pathPrefix + tab.path, pathname))?.id;
 
