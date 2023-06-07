@@ -112,12 +112,12 @@ export default class Farmer extends Service {
         if (!data.missingSignagePoints) {
           return;
         }
-        this.missingSps.unshift(data.missingSignagePoints);
+        const missingSps = [data.missingSignagePoints, ...this.missingSps];
         const now = Date.now() / 1000; // Convert to seconds from milliseconds
 
         let deletingIndex = -1;
-        for (let i = this.missingSps.length - 1; i >= 0; i--) {
-          const [timestamp] = this.missingSps[i];
+        for (let i = missingSps.length - 1; i >= 0; i--) {
+          const [timestamp] = missingSps[i];
           if (now - timestamp <= 86_400) {
             break;
           } else {
@@ -129,8 +129,10 @@ export default class Farmer extends Service {
 
         if (deletingIndex > -1) {
           // Remove array items expired.
-          this.missingSps.splice(deletingIndex, this.missingSps.length - deletingIndex);
+          missingSps.splice(deletingIndex, this.missingSps.length - deletingIndex);
         }
+
+        this.missingSps = missingSps;
       });
     });
   }
