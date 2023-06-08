@@ -823,6 +823,7 @@ const walletConnectCommands: WalletConnectCommand[] = [
         name: WalletConnectCommandParamName.NEW_PUZHASH,
         type: 'string',
         label: <Trans>New Puzzle Hash</Trans>,
+        isOptional: true,
       },
       {
         name: WalletConnectCommandParamName.NEW_PROOF_HASH,
@@ -838,11 +839,13 @@ const walletConnectCommands: WalletConnectCommand[] = [
         name: WalletConnectCommandParamName.FEE,
         type: 'number',
         label: <Trans>Spend Fee</Trans>,
+        isOptional: true,
       },
       {
         name: WalletConnectCommandParamName.REUSE_PUZHASH,
         type: 'boolean',
         label: <Trans>Reuse Puzzle Hash</Trans>,
+        isOptional: true,
       },
     ],
   },
@@ -854,7 +857,7 @@ const walletConnectCommands: WalletConnectCommand[] = [
     params: [
       {
         name: WalletConnectCommandParamName.PROOFS,
-        type: 'object',
+        type: 'string',
         label: <Trans>Proofs Object (Key Value Pairs)</Trans>,
       },
     ],
@@ -883,6 +886,7 @@ const walletConnectCommands: WalletConnectCommand[] = [
         type: 'string',
         label: <Trans>Parent Coin Info</Trans>,
       },
+      { name: WalletConnectCommandParamName.FEE, type: 'number', label: <Trans>Fee</Trans> },
     ],
   },
   {
