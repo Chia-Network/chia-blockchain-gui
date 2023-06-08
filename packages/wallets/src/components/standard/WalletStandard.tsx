@@ -2,7 +2,7 @@ import { WalletType } from '@chia-network/api';
 import { Flex, MenuItem } from '@chia-network/core';
 import { Offers as OffersIcon } from '@chia-network/icons';
 import { Trans } from '@lingui/macro';
-import { Box, Typography, ListItemIcon } from '@mui/material';
+import { Typography, ListItemIcon } from '@mui/material';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -48,25 +48,22 @@ export default function StandardWallet(props: StandardWalletProps) {
           </MenuItem>
         }
       />
+      <Flex flexDirection="column" gap={4}>
+        <WalletStandardCards walletId={walletId} />
 
-      <Box display={selectedTab === 'summary' ? 'block' : 'none'}>
-        <Flex flexDirection="column" gap={4}>
-          <WalletStandardCards walletId={walletId} />
-          <WalletHistory walletId={walletId} />
-        </Flex>
-      </Box>
-      <Box display={selectedTab === 'send' ? 'block' : 'none'}>
-        <WalletSend walletId={walletId} />
-      </Box>
-      <Box display={selectedTab === 'receive' ? 'block' : 'none'}>
-        <WalletReceiveAddress walletId={walletId} />
-      </Box>
-
-      {/*
-      {showDebugInformation && (
-        <WalletConnections walletId={walletId} />
-      )}
-      */}
+        {(() => {
+          switch (selectedTab) {
+            case 'summary':
+              return <WalletHistory walletId={walletId} />;
+            case 'send':
+              return <WalletSend walletId={walletId} />;
+            case 'receive':
+              return <WalletReceiveAddress walletId={walletId} />;
+            default:
+              return null;
+          }
+        })()}
+      </Flex>
     </Flex>
   );
 }

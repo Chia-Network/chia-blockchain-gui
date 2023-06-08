@@ -96,7 +96,8 @@ export default function useBlockchainNotifications() {
 
                 if (puzzleHash) {
                   return {
-                    type: NotificationType.COUNTER_OFFER,
+                    // type: NotificationType.COUNTER_OFFER,
+                    type: NotificationType.OFFER,
                     id,
                     source: 'BLOCKCHAIN',
                     timestamp: timestampData.timestamp,

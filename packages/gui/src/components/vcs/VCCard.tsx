@@ -253,9 +253,9 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
               </ListItemIcon>
               <Typography variant="inherit" noWrap>
                 {isVCLocal() ? (
-                  <Trans>Revoke Verifiable Credential</Trans>
-                ) : (
                   <Trans>Delete Verifiable Credential</Trans>
+                ) : (
+                  <Trans>Revoke Verifiable Credential</Trans>
                 )}
               </Typography>
             </MenuItem>

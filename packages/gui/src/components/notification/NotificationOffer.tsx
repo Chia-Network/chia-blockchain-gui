@@ -46,7 +46,9 @@ export default function NotificationOffer(props: NotificationOfferProps) {
   const { offer, isLoading, error } = useOffer(offerURLOrData);
 
   const canCounterOffer =
-    type === NotificationType.COUNTER_OFFER && 'puzzleHash' in notification && !!notification.puzzleHash;
+    [NotificationType.OFFER, NotificationType.COUNTER_OFFER].includes(type) &&
+    'puzzleHash' in notification &&
+    !!notification.puzzleHash;
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -85,7 +87,11 @@ export default function NotificationOffer(props: NotificationOfferProps) {
     >
       <Flex flexDirection="column">
         <Typography variant="subtitle2" color="textSecondary">
-          <Trans>You have a new offer</Trans>
+          {type === NotificationType.COUNTER_OFFER ? (
+            <Trans>You have a new counter offer</Trans>
+          ) : (
+            <Trans>You have a new offer</Trans>
+          )}
           {' · '}
           <HumanTimestamp value={timestamp} fromNow />
         </Typography>
