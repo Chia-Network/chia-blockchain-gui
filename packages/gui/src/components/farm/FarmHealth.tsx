@@ -63,7 +63,7 @@ function FarmHealth() {
     if (farmerStatus === FarmerStatus.NOT_AVAILABLE) {
       return (
         <StateIndicator state={State.ERROR} indicator reversed>
-          <Trans>Farmer state is not available</Trans>
+          <Trans>Not available</Trans>
         </StateIndicator>
       );
     }
@@ -71,7 +71,7 @@ function FarmHealth() {
     if (farmerStatus === FarmerStatus.NOT_CONNECTED) {
       return (
         <StateIndicator state={State.ERROR} indicator reversed>
-          <Trans>Farmer is not connected</Trans>
+          <Trans>Not connected</Trans>
         </StateIndicator>
       );
     }
@@ -79,7 +79,7 @@ function FarmHealth() {
     if (farmerStatus === FarmerStatus.NOT_RUNNING) {
       return (
         <StateIndicator state={State.ERROR} indicator reversed>
-          <Trans>Farmer is not running</Trans>
+          <Trans>Not running</Trans>
         </StateIndicator>
       );
     }
