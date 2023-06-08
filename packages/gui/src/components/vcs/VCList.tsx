@@ -6,6 +6,7 @@ import { styled } from '@mui/styles';
 import React, { useCallback, useRef } from 'react';
 import { VirtuosoGrid } from 'react-virtuoso';
 
+import VCEmptyPng from '../../assets/img/vc_empty.png';
 import { sha256, arrToHex } from '../../util/utils';
 import VCCard from './VCCard';
 import VCGetTimestamp from './VCGetTimestamp';
@@ -161,6 +162,32 @@ export default function VCList() {
         </More>
       </Flex>
     );
+  }
+
+  function renderZeroState() {
+    return (
+      <>
+        <Box sx={{ marginBottom: '10px', padding: '25px' }}>{renderActionsDropdown()}</Box>
+        <Flex flexDirection="column" sx={{ alignItems: 'center', maxWidth: '1200px' }}>
+          <Box sx={{ padding: '10px 100px 25px 150px', maxWidth: '900px', textAlign: 'center' }}>
+            <Typography variant="h3" sx={{ marginBottom: '20px' }}>
+              <Trans>Verifiable Credentials</Trans>
+            </Typography>
+            <Typography variant="h6" sx={{ fontWeight: '500' }} color="textSecondary">
+              <Trans>
+                Verifiable Credentials are like digital ID cards that can prove certain information about you without
+                giving away your private details.
+              </Trans>
+            </Typography>
+          </Box>
+          <img src={VCEmptyPng} style={{ marginLeft: '120px' }} />
+        </Flex>
+      </>
+    );
+  }
+
+  if (allVCsSortLatest.length === 0) {
+    return renderZeroState();
   }
 
   return (
