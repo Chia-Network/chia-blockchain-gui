@@ -27,9 +27,17 @@ function WalletHistoryPending(props: Props) {
     });
   }
 
-  const { transactions, isLoading } = useWalletTransactions(walletId, 100, 0, 'RELEVANCE', false, false, {
-    mode: 1,
-    values: [TransactionType.INCOMING_CLAWBACK_RECEIVE, TransactionType.INCOMING_CLAWBACK_SEND],
+  const { transactions, isLoading } = useWalletTransactions({
+    walletId,
+    defaultRowsPerPage: 100,
+    defaultPage: 0,
+    sortKey: 'RELEVANCE',
+    reverse: false,
+    confirmed: false,
+    typeFilter: {
+      mode: 1,
+      values: [TransactionType.INCOMING_CLAWBACK_RECEIVE, TransactionType.INCOMING_CLAWBACK_SEND],
+    },
   });
 
   if (isLoading) return null;
