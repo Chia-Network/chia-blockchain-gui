@@ -1,0 +1,11 @@
+<svg width="202" height="322" viewBox="0 0 202 322" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect x="1" y="1" width="200" height="320" rx="16" stroke="currentColor" stroke-width="2"/>
+<rect x="35" y="203" width="136" height="16" rx="8" stroke="currentColor" stroke-width="2"/>
+<rect x="53" y="235" width="101" height="16" rx="8" stroke="currentColor" stroke-width="2"/>
+<rect width="33" height="1" rx="0.5" transform="matrix(1 0 0 -1 35 285)" stroke="currentColor" stroke-width="2"/>
+<rect width="33" height="1" rx="0.5" transform="matrix(1 0 0 -1 84 285)" stroke="currentColor" stroke-width="2"/>
+<rect width="33" height="1" rx="0.5" transform="matrix(1 0 0 -1 133 285)" stroke="currentColor" stroke-width="2"/>
+<circle cx="100" cy="91" r="28" stroke="currentColor" stroke-width="2"/>
+<path d="M50 145.5C50 145.5 73.5 133 101.5 133C129.5 133 153 145.5 153 145.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+<circle cx="101" cy="104" r="79" stroke="currentColor" stroke-width="2"/>
+</svg>

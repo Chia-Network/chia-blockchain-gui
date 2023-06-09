@@ -7,7 +7,7 @@ import React from 'react';
 export default function SettingsStartup() {
   const [enableVerifiableCredentials, toggleVerifiableCredentials] = useLocalStorage<boolean>(
     'enable-verifiable-credentials',
-    false
+    true
   );
   return (
     <Grid container>
