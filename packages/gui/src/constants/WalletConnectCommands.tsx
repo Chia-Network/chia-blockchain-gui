@@ -69,6 +69,23 @@ const walletConnectCommands: WalletConnectCommand[] = [
     ],
   },
   {
+    command: 'getWalletBalances',
+    label: <Trans>Get Wallet Balances</Trans>,
+    description: <Trans>Requests the asset balances for specific wallets associated with the current wallet key</Trans>,
+    service: ServiceName.WALLET,
+    bypassConfirm: true,
+    params: [
+      {
+        name: WalletConnectCommandParamName.WALLET_IDS,
+        type: 'object',
+        label: <Trans>Wallet Ids</Trans>,
+        isOptional: true,
+        defaultValue: undefined,
+        hide: false,
+      },
+    ],
+  },
+  {
     command: 'getCurrentAddress',
     label: <Trans>Get Current Address</Trans>,
     description: <Trans>Requests the current receive address associated with the current wallet key</Trans>,
