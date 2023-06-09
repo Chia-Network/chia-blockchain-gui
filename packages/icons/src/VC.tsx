@@ -25,10 +25,12 @@ export function VCZeroStateBackgroundDark(props: SvgIconProps) {
 
 const styledBadge = (node: any) => styled(node)`
   rect {
-    fill: ${({ theme }: { theme: Theme }) => theme.palette.colors.default.backgroundBadge};
+    fill: ${({ theme }: { theme: Theme }) => (theme.palette as any).colors.default.backgroundBadge};
   }
   color: ${({ theme }: { theme: Theme }) =>
-    theme.palette.mode === 'dark' ? theme.palette.colors.default.accent : theme.palette.colors.default.border};
+    theme.palette.mode === 'dark'
+      ? (theme.palette as any).colors.default.accent
+      : (theme.palette as any).colors.default.border};
 `;
 
 const StyledVCZeroStateBadge = styledBadge(VCZeroStateBadgeIcon);
