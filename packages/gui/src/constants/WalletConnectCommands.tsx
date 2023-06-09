@@ -352,7 +352,7 @@ const walletConnectCommands: WalletConnectCommand[] = [
     bypassConfirm: true,
     params: [
       {
-        name: WalletConnectCommandParamName.OFFER_DATA,
+        name: WalletConnectCommandParamName.OFFER,
         label: <Trans>Offer Data</Trans>,
         type: 'string',
       },
