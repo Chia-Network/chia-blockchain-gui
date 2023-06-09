@@ -1,7 +1,15 @@
 import { useGetVCListQuery, useLocalStorage, useGetLoggedInFingerprintQuery } from '@chia-network/api-react';
-import { Flex, More, MenuItem, AlertDialog, useOpenDialog } from '@chia-network/core';
+import { Flex, More, MenuItem, AlertDialog, useOpenDialog, useDarkMode } from '@chia-network/core';
+import {
+  VCZeroStateBackground as VCZeroStateBackgroundIcon,
+  VCZeroStateBackgroundDark as VCZeroStateBackgroundDarkIcon,
+  VCZeroStateBadge as VCZeroStateBadgeIcon,
+  VCZeroStateKYCBadge as VCZeroStateKYCBadgeIcon,
+  VCZeroStateMembership as VCZeroStateMembershipIcon,
+} from '@chia-network/icons';
 import { Trans } from '@lingui/macro';
 import { Box, Typography } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 import { styled } from '@mui/styles';
 import React, { useCallback, useRef } from 'react';
 import { VirtuosoGrid } from 'react-virtuoso';
@@ -64,10 +72,14 @@ export default function VCList() {
 
   const [sortByTimestamp, setSortByTimestamp] = React.useState(false);
 
+  const { isDarkMode } = useDarkMode();
+
   const COMPONENTS = {
     Item: ItemContainer,
     List: ListContainer,
   };
+
+  const theme = useTheme();
 
   function onVCTimestamp(id: string, timestamp: number) {
     trackVCTimestamps.current[id] = timestamp;
@@ -164,12 +176,37 @@ export default function VCList() {
     );
   }
 
+  function renderBadgeContainer(titleNode: React.ReactNode) {
+    return (
+      <Flex
+        sx={{
+          display: 'inline-flex',
+          padding: '5px 10px',
+          borderRadius: '45px',
+          border: `2px solid ${isDarkMode ? theme.palette.colors.default.accent : theme.palette.colors.default.border}`,
+          textAlign: 'center',
+          background: theme.palette.colors.default.backgroundLight,
+        }}
+      >
+        <Typography variant="body1" sx={{ color: theme.palette.colors.default.text }}>
+          {titleNode}
+        </Typography>
+      </Flex>
+    );
+  }
+
   function renderZeroState() {
     return (
       <>
-        <Box sx={{ marginBottom: '10px', padding: '25px' }}>{renderActionsDropdown()}</Box>
-        <Flex flexDirection="column" sx={{ alignItems: 'center', maxWidth: '1200px' }}>
-          <Box sx={{ padding: '10px 100px 25px 150px', maxWidth: '900px', textAlign: 'center' }}>
+        <Box sx={{ marginBottom: '10px', padding: '25px 25px 0 25px' }}>{renderActionsDropdown()}</Box>
+        <Flex flexDirection="column" sx={{ alignItems: 'center', zIndex: 2 }}>
+          <Flex
+            flexDirection="column"
+            sx={{ padding: '10px 100px 50px ', maxWidth: '900px', textAlign: 'center', position: 'relative' }}
+          >
+            <Box sx={{ position: 'absolute', zIndex: -1, top: '50px', left: '-250px' }}>
+              {isDarkMode ? <VCZeroStateBackgroundDarkIcon /> : <VCZeroStateBackgroundIcon />}
+            </Box>
             <Typography variant="h3" sx={{ marginBottom: '20px' }}>
               <Trans>Verifiable Credentials</Trans>
             </Typography>
@@ -179,8 +216,40 @@ export default function VCList() {
                 giving away your private details.
               </Trans>
             </Typography>
-          </Box>
-          <img src={VCEmptyPng} style={{ marginLeft: '120px' }} />
+          </Flex>
+          <Flex flexDirection="row" gap={4}>
+            <Flex flexDirection="column" sx={{ alignItems: 'center', paddingTop: '25px' }} gap={2}>
+              <VCZeroStateBadgeIcon />
+              {renderBadgeContainer(<Trans>Badging</Trans>)}
+            </Flex>
+            <Flex flexDirection="column" sx={{ position: 'relative' }}>
+              <Flex
+                sx={{
+                  img: {
+                    position: 'absolute',
+                    top: '-15px',
+                  },
+                  width: '0px',
+                  height: '410px',
+                }}
+              >
+                <img src={VCEmptyPng} />
+              </Flex>
+              <Flex sx={{ width: '430px', justifyContent: 'center' }}>
+                {renderBadgeContainer(<Trans>Government IDs</Trans>)}
+              </Flex>
+            </Flex>
+            <Flex flexDirection="column" sx={{ alignItems: 'center', paddingTop: '0px' }} gap={4}>
+              <Flex flexDirection="column" sx={{ alignItems: 'center' }} gap={2}>
+                <VCZeroStateKYCBadgeIcon />
+                {renderBadgeContainer(<Trans>KYC status</Trans>)}
+              </Flex>
+              <Flex flexDirection="column" sx={{ alignItems: 'center' }} gap={2}>
+                <VCZeroStateMembershipIcon />
+                {renderBadgeContainer(<Trans>Memberships</Trans>)}
+              </Flex>
+            </Flex>
+          </Flex>
         </Flex>
       </>
     );
