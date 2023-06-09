@@ -1,3 +1,4 @@
+import { useLocalStorage } from '@chia-network/api-react';
 import { Flex, SettingsHR, SettingsSection, SettingsText } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Grid, Box } from '@mui/material';
@@ -7,6 +8,17 @@ import SettingsCustodyAutoClaim from './SettingsCustodyAutoClaim';
 import SettingsCustodyClawbackOutgoing from './SettingsCustodyClawbackOutgoing';
 
 export default function SettingsCustody() {
+  const [wasSettingsCustodyVisited, setWasSettingsCustodyVisited] = useLocalStorage<boolean>(
+    'newFlag--wasSettingsCustodyVisited',
+    false
+  );
+
+  React.useEffect(() => {
+    if (!wasSettingsCustodyVisited) {
+      setWasSettingsCustodyVisited(true);
+    }
+  }, [wasSettingsCustodyVisited, setWasSettingsCustodyVisited]);
+
   return (
     <Grid container style={{ maxWidth: '624px' }} gap={3}>
       <Grid item>
@@ -51,12 +63,6 @@ export default function SettingsCustody() {
 
         <SettingsText>
           <Trans>Claim assets sent to you automatically when the claw back time period expires.</Trans>
-        </SettingsText>
-        <SettingsText>
-          <Trans>Your wallet is required to be running for auto claim to work. </Trans>
-        </SettingsText>
-        <SettingsText>
-          <Trans>Transactions less than the fee will not be auto claimed.</Trans>
         </SettingsText>
       </Box>
       <SettingsCustodyAutoClaim sx={{ marginTop: 1 }} />
