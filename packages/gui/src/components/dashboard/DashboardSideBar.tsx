@@ -43,7 +43,7 @@ export type DashboardSideBarProps = {
 
 export default function DashboardSideBar(props: DashboardSideBarProps) {
   const { simple = false } = props;
-  const [enableVerifiableCredentials] = useLocalStorage<boolean>('enable-verifiable-credentials', false);
+  const [enableVerifiableCredentials] = useLocalStorage<boolean>('enable-verifiable-credentials', true);
 
   return (
     <StyledRoot>
