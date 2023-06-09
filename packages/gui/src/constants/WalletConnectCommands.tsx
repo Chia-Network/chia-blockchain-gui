@@ -665,14 +665,9 @@ const walletConnectCommands: WalletConnectCommand[] = [
         type: 'number',
       },
       {
-        name: WalletConnectCommandParamName.NFT_COIN_ID,
-        label: <Trans>NFT Coin Id</Trans>,
-        type: 'string',
-      },
-      {
-        name: WalletConnectCommandParamName.LAUNCHER_ID,
-        label: <Trans>Launcher Id</Trans>,
-        type: 'string',
+        name: WalletConnectCommandParamName.NFT_COIN_IDS,
+        label: <Trans>NFT Coin Ids</Trans>,
+        type: 'object',
       },
       {
         name: WalletConnectCommandParamName.TARGET_ADDRESS,
