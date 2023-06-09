@@ -8,6 +8,8 @@ export default function useShowError() {
   const openDialog = useOpenDialog();
 
   async function showError(error: Error) {
+    console.error(error);
+
     return openDialog(<AlertDialog title={<Trans>Error</Trans>}>{error.message}</AlertDialog>);
   }
 
