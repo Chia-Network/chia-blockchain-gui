@@ -69,6 +69,23 @@ const walletConnectCommands: WalletConnectCommand[] = [
     ],
   },
   {
+    command: 'getWalletBalances',
+    label: <Trans>Get Wallet Balances</Trans>,
+    description: <Trans>Requests the asset balances for specific wallets associated with the current wallet key</Trans>,
+    service: ServiceName.WALLET,
+    bypassConfirm: true,
+    params: [
+      {
+        name: WalletConnectCommandParamName.WALLET_IDS,
+        type: 'object',
+        label: <Trans>Wallet Ids</Trans>,
+        isOptional: true,
+        defaultValue: undefined,
+        hide: false,
+      },
+    ],
+  },
+  {
     command: 'getCurrentAddress',
     label: <Trans>Get Current Address</Trans>,
     description: <Trans>Requests the current receive address associated with the current wallet key</Trans>,
@@ -352,7 +369,7 @@ const walletConnectCommands: WalletConnectCommand[] = [
     bypassConfirm: true,
     params: [
       {
-        name: WalletConnectCommandParamName.OFFER_DATA,
+        name: WalletConnectCommandParamName.OFFER,
         label: <Trans>Offer Data</Trans>,
         type: 'string',
       },
@@ -665,14 +682,9 @@ const walletConnectCommands: WalletConnectCommand[] = [
         type: 'number',
       },
       {
-        name: WalletConnectCommandParamName.NFT_COIN_ID,
-        label: <Trans>NFT Coin Id</Trans>,
-        type: 'string',
-      },
-      {
-        name: WalletConnectCommandParamName.LAUNCHER_ID,
-        label: <Trans>Launcher Id</Trans>,
-        type: 'string',
+        name: WalletConnectCommandParamName.NFT_COIN_IDS,
+        label: <Trans>NFT Coin Ids</Trans>,
+        type: 'object',
       },
       {
         name: WalletConnectCommandParamName.TARGET_ADDRESS,

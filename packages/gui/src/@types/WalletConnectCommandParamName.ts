@@ -30,7 +30,6 @@ enum WalletConnectCommandParamName {
   NEW_ADDRESS = 'newAddress',
   NEW_PROOF_HASH = 'newProofHash',
   NEW_PUZHASH = 'newPuzhash',
-  NFT_COIN_ID = 'nftCoinId',
   NFT_COIN_IDS = 'nftCoinIds',
   NFT_LAUNCHER_ID = 'nftLauncherId',
   NUM = 'num',
