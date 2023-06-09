@@ -1,4 +1,149 @@
+!include "LogicLib.nsh"
 !include "nsDialogs.nsh"
+!include "nsProcess.nsh"
+
+!macro customWelcomePage
+XPStyle on
+
+Var AlreadyAlerted
+Var IsChiaProcessRunning
+Var RemainingProcesses
+
+Page custom checkIsChiaRunning checkIsChiaRunningLeave
+
+;https://nsis.sourceforge.io/StrTok_function
+;author bigmac666
+Function StrTok
+  Exch $R1
+  Exch 1
+  Exch $R0
+  Push $R2
+  Push $R3
+  Push $R4
+  Push $R5
+ 
+  ;R0 fullstring
+  ;R1 tokens
+  ;R2 len of fullstring
+  ;R3 len of tokens
+  ;R4 char from string
+  ;R5 testchar
+ 
+  StrLen $R2 $R0
+  IntOp $R2 $R2 + 1
+ 
+  loop1:
+    IntOp $R2 $R2 - 1
+    IntCmp $R2 0 exit
+ 
+    StrCpy $R4 $R0 1 -$R2
+ 
+    StrLen $R3 $R1
+    IntOp $R3 $R3 + 1
+ 
+    loop2:
+      IntOp $R3 $R3 - 1
+      IntCmp $R3 0 loop1
+ 
+      StrCpy $R5 $R1 1 -$R3
+ 
+      StrCmp $R4 $R5 Found
+    Goto loop2
+  Goto loop1
+ 
+  exit:
+  ;Not found!!!
+  StrCpy $R1 ""
+  StrCpy $R0 ""
+  Goto Cleanup
+ 
+  Found:
+  StrLen $R3 $R0
+  IntOp $R3 $R3 - $R2
+  StrCpy $R1 $R0 $R3
+ 
+  IntOp $R2 $R2 - 1
+  IntOp $R3 $R3 + 1
+  StrCpy $R0 $R0 $R2 $R3
+ 
+  Cleanup:
+  Pop $R5
+  Pop $R4
+  Pop $R3
+  Pop $R2
+  Exch $R0
+  Exch 1
+  Exch $R1
+ 
+FunctionEnd
+
+Function checkIsChiaRunning
+  StrCpy $AlreadyAlerted 0
+  loop:
+    ClearErrors
+    ; Check if the main Chia.exe process is running
+    ${nsProcess::FindProcess} "chia.exe" $IsChiaProcessRunning
+    ${If} $IsChiaProcessRunning == 0
+      ${If} $AlreadyAlerted == 0
+        StrCpy $AlreadyAlerted 1
+        MessageBox MB_OKCANCEL|MB_ICONEXCLAMATION "Installation cannot continue while Chia is still running. Please exit the Chia application and then click OK to proceed." IDOK retry IDCANCEL exit
+      ${Else}
+        MessageBox MB_OKCANCEL|MB_ICONEXCLAMATION "Chia is still running. Please exit the Chia application and then click OK to proceed." IDOK retry IDCANCEL exit
+      ${EndIf}
+    ${EndIf}
+
+    StrCpy $R0 "daemon.exe chia_data_layer.exe start_data_layer.exe chia_data_layer_http.exe start_data_layer_http.exe chia_farmer.exe start_farmer.exe chia_full_node.exe start_full_node.exe chia_harvester.exe start_harvester.exe chia_wallet.exe start_wallet.exe"
+    StrCpy $R3 "" ; Accumulator for the names of all running processes
+  processLoop:
+    ClearErrors
+    StrCpy $RemainingProcesses $R0
+
+    ; Get the next process name from the string
+    StrCpy $R1 " " ; Delimiter for StrTok
+    Push $R0
+    Push $R1
+    Call StrTok
+    Pop $R1 ; $R1 will have the next process name
+    Pop $R0 ; $R0 will have the remaining processes to check
+
+    ${If} $R1 == ""
+    ${AndIf} $R0 == ""
+      StrCpy $R1 $RemainingProcesses
+    ${EndIf}
+
+    ${If} $R1 == ""
+      ; If no more process names, end the loop
+      Goto endLoop
+    ${EndIf}
+    ; Check if the process is running
+    ${nsProcess::FindProcess} $R1 $R2
+    ${If} $R2 == 0
+      ; If the process is running, add its name to $R3
+      StrCpy $R3 "$R3$R1 "
+    ${EndIf}
+    Goto processLoop
+  endLoop:
+    ; If any processes are running, show a message box with their names
+    ${If} $R3 != ""
+      MessageBox MB_OKCANCEL|MB_ICONEXCLAMATION "The following Chia processes are still running. Please stop all Chia services and then click OK to proceed.$\n$\nRunning processes:$\n$R3" IDOK retry IDCANCEL exit
+    ${Else}
+      Goto done
+    ${EndIf}
+  retry:
+    Goto loop
+  exit:
+    Quit
+  done:
+    Return
+FunctionEnd
+
+
+Function checkIsChiaRunningLeave
+  ${nsProcess::FindProcess} "chia.exe" $R0
+  Pop $0
+FunctionEnd
+!macroend ; customWelcomePage
+
 
 ; Add our customizations to the finish page
 !macro customFinishPage
