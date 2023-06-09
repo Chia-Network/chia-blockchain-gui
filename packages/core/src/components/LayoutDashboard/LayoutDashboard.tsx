@@ -350,7 +350,7 @@ export default function LayoutDashboard(props: LayoutDashboardProps) {
             gap={2}
             flexGrow={1}
             overflow="auto"
-            style={{ marginTop: isNewVersionBannerShown() ? '150px' : '85px' }}
+            style={{ marginTop: isNewVersionBannerShown() ? '157px' : '92px' }}
           >
             <Suspense fallback={<Loading center />}>{outlet ? <Outlet /> : children}</Suspense>
           </Flex>
