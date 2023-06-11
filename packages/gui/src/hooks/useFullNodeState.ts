@@ -1,3 +1,4 @@
+import { BlockchainState } from '@chia-network/api';
 import { useGetBlockchainStateQuery } from '@chia-network/api-react';
 
 import FullNodeState from '../constants/FullNodeState';
@@ -5,6 +6,7 @@ import FullNodeState from '../constants/FullNodeState';
 export default function useFullNodeState(): {
   isLoading: boolean;
   state?: FullNodeState;
+  data?: BlockchainState;
   error?: Error;
 } {
   const {
@@ -32,6 +34,7 @@ export default function useFullNodeState(): {
   return {
     isLoading,
     state,
+    data: blockchainState,
     error: error as Error,
   };
 }

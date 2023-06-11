@@ -39,12 +39,19 @@ export default class Farmer extends Service {
 
   private totalMissingSps: number = 0;
 
+  private totalPlotFilterChallenge: number = 0;
+
+  private totalPlotsPassingFilter: number = 0;
+
   constructor(client: Client, options?: Options) {
     super(ServiceName.FARMER, client, options, async () => {
       this.onNewFarmingInfo((data: { farmingInfo: NewFarmingInfo }) => {
         const { farmingInfo } = data;
 
         if (farmingInfo) {
+          this.totalPlotFilterChallenge += farmingInfo.totalPlots;
+          this.totalPlotsPassingFilter += farmingInfo.passedFilter;
+
           this.newFarmingInfo = [farmingInfo, ...this.newFarmingInfo].slice(0, FARMING_INFO_MAX_ITEMS);
 
           // The Unit of Python's timestamp is seconds so converting it to milliseconds
@@ -150,6 +157,28 @@ export default class Farmer extends Service {
     return {
       missingSignagePoints: this.missingSps,
       totalMissingSps: this.totalMissingSps,
+    };
+  }
+
+  getFilterChallengeStat(height: number) {
+    const n = this.totalPlotFilterChallenge;
+    const x = this.totalPlotsPassingFilter;
+    let fb = 9; // Filter bits
+    if (height < 5_496_000) {
+      fb = 9;
+    } else if (height < 10_542_000) {
+      fb = 8;
+    } else if (height < 15_592_000) {
+      fb = 7;
+    } else if (height < 20_643_000) {
+      fb = 6;
+    } else {
+      fb = 5;
+    }
+    return {
+      n,
+      x,
+      fb,
     };
   }
 

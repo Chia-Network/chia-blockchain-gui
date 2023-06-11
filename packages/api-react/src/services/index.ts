@@ -64,6 +64,7 @@ export const {
   useSetPayoutInstructionsMutation,
   useGetNewFarmingInfoQuery,
   useGetMissingSignagePointsQuery,
+  useGetFilterChallengeStatQuery,
 } = farmer;
 
 // full node hooks

@@ -273,6 +273,16 @@ export const farmerApi = apiWithTag.injectEndpoints({
         },
       ]),
     }),
+
+    getFilterChallengeStat: query(build, Farmer, 'getFilterChallengeStat', {
+      onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, api, [
+        {
+          command: 'onFarmingInfoChanged',
+          service: Farmer,
+          endpoint: 'getFilterChallengeStat',
+        },
+      ]),
+    }),
   }),
 });
 
@@ -297,4 +307,5 @@ export const {
   useSetPayoutInstructionsMutation,
   useGetNewFarmingInfoQuery,
   useGetMissingSignagePointsQuery,
+  useGetFilterChallengeStatQuery,
 } = farmerApi;
