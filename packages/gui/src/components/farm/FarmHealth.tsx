@@ -6,6 +6,7 @@ import {
 import { Flex, StateIndicator, State, Tooltip } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Box, Paper, Typography, CircularProgress } from '@mui/material';
+import BigNumber from 'bignumber.js';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -65,9 +66,9 @@ const indicatorStyle = {
 
 function factorial(n: number) {
   let k = n;
-  let f = 1;
+  let f = new BigNumber(1);
   while (k > 1) {
-    f *= k;
+    f = f.multipliedBy(k);
     k--;
   }
   return f;
@@ -76,9 +77,9 @@ function factorial(n: number) {
 function permute(n: number, k: number) {
   let i = 0;
   let m = n;
-  let f = 1;
+  let f = new BigNumber(1);
   while (i < k) {
-    f *= m;
+    f = f.multipliedBy(m);
     m--;
     i++;
   }
@@ -87,17 +88,21 @@ function permute(n: number, k: number) {
 
 function combination(n: number, k: number) {
   if (k > n / 2) {
-    return permute(n, n - k) / factorial(n - k);
+    return permute(n, n - k).dividedBy(factorial(n - k));
   }
-  return permute(n, k) / factorial(k);
+  return permute(n, k).dividedBy(factorial(k));
 }
 
 function getCumulativeBinomialProb(n: number, x: number, p: number) {
-  let P = 0;
+  let P = new BigNumber(0);
   for (let i = 0; i <= x; i++) {
-    P += combination(n, i) * p ** i * (1 - p) ** (n - i);
+    P = P.plus(
+      combination(n, i)
+        .multipliedBy(new BigNumber(p).exponentiatedBy(i))
+        .multipliedBy(new BigNumber(1 - p).exponentiatedBy(n - i))
+    );
   }
-  return P;
+  return P.toNumber();
 }
 
 export default React.memo(FarmHealth);
@@ -261,9 +266,9 @@ function FarmHealth() {
           </tr>
           <tr>
             <td>
-              Probability where {filterChallengeStat.x} or less plots
+              Probability where {filterChallengeStat.x} or fewer plots
               <br />
-              passing filter in total {filterChallengeStat.n} challenges
+              passing filter in {filterChallengeStat.n} challenges
             </td>
             <td>{displayPercentage} %</td>
           </tr>
