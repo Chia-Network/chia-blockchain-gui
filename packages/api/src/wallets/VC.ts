@@ -111,7 +111,7 @@ export default class VCWallet extends Wallet {
   }
 
   async getProofsForRoot(root: string) {
-    return this.command<{ proofs: any }>('vc_get_proofs_for_root', { root });
+    return this.command<{ proofs: any }>('vc_get_proofs_for_root', root);
   }
 
   async revokeVC(args: { vcParentId: string; fee?: number; reusePuzhash?: boolean }) {
