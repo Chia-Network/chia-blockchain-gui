@@ -45,8 +45,8 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
   const openDialog = useOpenDialog();
   const [vcTitlesObject] = usePrefs<any>('verifiable-credentials-titles', {});
   const vcTitle = React.useMemo(
-    () => vcTitlesObject[vcRecord?.vc?.launcherId] || t`Verifiable Credential`,
-    [vcRecord?.vc?.launcherId, vcTitlesObject]
+    () => vcTitlesObject[vcRecord?.vc?.launcherId] || vcTitlesObject[vcRecord?.sha256] || t`Verifiable Credential`,
+    [vcRecord?.vc?.launcherId, vcRecord?.sha256, vcTitlesObject]
   );
 
   const [isEditingTitle, setIsEditingTitle] = React.useState(false);
@@ -121,7 +121,7 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
             <Trans>Expired</Trans>
           ) : vcRecord.revoked ? (
             <Trans>Revoked</Trans>
-          ) : vcRecord.vc?.proofHash || proofs ? (
+          ) : proofs && Object.keys(proofs).length ? (
             <Trans>Valid</Trans>
           ) : (
             <Trans>Invalid</Trans>
@@ -236,7 +236,7 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
     return (
       <Flex sx={{ marginBottom: '10px', padding: '8px' }}>
         <More>
-          {isVCLocal() && vcRecord.revoked && (
+          {isVCLocal() && (
             <MenuItem onClick={() => openRevokeVCDialog('remove')} close>
               <ListItemIcon>
                 <DeleteIcon />
@@ -246,7 +246,7 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
               </Typography>
             </MenuItem>
           )}
-          {!vcRecord.revoked && (
+          {!isVCLocal() && (
             <MenuItem onClick={() => openRevokeVCDialog('revoke')} close>
               <ListItemIcon>
                 <BurnIcon />
@@ -270,7 +270,7 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
       return (
         <Box sx={{ marginBottom: '10px' }}>
           <VCEditTitle
-            vcId={vcRecord?.vc?.launcherId}
+            vcId={vcRecord?.vc?.launcherId || vcRecord.sha256}
             onClose={() => {
               setIsEditingTitle(false);
             }}
