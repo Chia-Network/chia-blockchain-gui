@@ -1,5 +1,5 @@
 import { useGetPoolStateQuery } from '@chia-network/api-react';
-import { Flex, StateIndicator, State } from '@chia-network/core';
+import { Flex, StateIndicator, State, Tooltip } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Box, Paper, Typography, CircularProgress } from '@mui/material';
 import React from 'react';
@@ -210,30 +210,45 @@ function PoolingHealth() {
           </Typography>
         </Box>
         <Flex justifyContent="space-between" sx={indicatorStyle}>
-          <Box>
-            <Typography variant="body2" color="textSecondary">
-              <Trans>Valid Partials</Trans>
-            </Typography>
-            {validPartials}
-          </Box>
-          <Box>
-            <Typography variant="body2">
-              <Trans>Stale Partials</Trans>
-            </Typography>
-            {stalePartials}
-          </Box>
-          <Box>
-            <Typography variant="body2">
-              <Trans>Invalid partials</Trans>
-            </Typography>
-            {invalidPartials}
-          </Box>
-          <Box>
-            <Typography variant="body2">
-              <Trans>Missing partials</Trans>
-            </Typography>
-            {missingPartials}
-          </Box>
+          <Tooltip title={<Trans>Partials successfully sent and acknowledged by pools</Trans>}>
+            <Box>
+              <Typography variant="body2" color="textSecondary">
+                <Trans>Valid Partials</Trans>
+              </Typography>
+              {validPartials}
+            </Box>
+          </Tooltip>
+          <Tooltip title={<Trans>Partials sent to pools but too late</Trans>}>
+            <Box>
+              <Typography variant="body2">
+                <Trans>Stale Partials</Trans>
+              </Typography>
+              {stalePartials}
+            </Box>
+          </Tooltip>
+          <Tooltip title={<Trans>Partials not good enough or rejected by pools</Trans>}>
+            <Box>
+              <Typography variant="body2">
+                <Trans>Invalid partials</Trans>
+              </Typography>
+              {invalidPartials}
+            </Box>
+          </Tooltip>
+          <Tooltip
+            title={
+              <Trans>
+                Partials found but not sent to pools. This usually happens when a partial is found before connections to
+                pools are established
+              </Trans>
+            }
+          >
+            <Box>
+              <Typography variant="body2">
+                <Trans>Missing partials</Trans>
+              </Typography>
+              {missingPartials}
+            </Box>
+          </Tooltip>
         </Flex>
       </Paper>
     </Box>
