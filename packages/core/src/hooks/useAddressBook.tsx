@@ -12,7 +12,14 @@ export default function useAddressBook(): [
   ) => void, // addContact
   (contactId: number) => void, // removeContact
   (contactId: number) => AddressContact | undefined, // getContactContactId
-  (contact: AddressContact, contactId: number) => void,
+  (
+    name: string,
+    addresses: ContactAddress[],
+    dids: ContactDID[],
+    notes: string,
+    nftid: string,
+    domainNames: ContactDomainName[]
+  ) => void, // editContact
   (address: string) => AddressContact | undefined // getContactByAddress
 ] {
   // editContact
@@ -70,9 +77,29 @@ export default function useAddressBook(): [
     return found;
   }
 
-  function editContact(contact: AddressContact, contactId: number) {
-    const found = addressBook.find((c) => c.contactId === contactId);
-    return found;
+  function editContact(
+    contactId: number,
+    name: string,
+    addresses: ContactAddress[],
+    dids: ContactDID[],
+    notes: string,
+    nftid: string,
+    domainNames: ContactDomainName[]
+  ) {
+    const filteredContacts = addressBook.filter((contact) => contact.contactId !== contactId);
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(filteredContacts));
+
+    const newAddress: AddressContact = {
+      contactId,
+      name,
+      addresses: [...addresses],
+      dids,
+      notes,
+      nftid,
+      domainNames,
+    };
+
+    setAddressBook([...filteredContacts, newAddress]);
   }
 
   function getContactByAddress(address: string) {

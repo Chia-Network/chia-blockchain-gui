@@ -1,8 +1,8 @@
 // import { useGetNFTInfoQuery } from '@chia-network/api-react';
-import { AddressBookContext, Flex, Form } from '@chia-network/core';
+import { AddressBookContext, Flex, Form, TextField } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Add, Remove } from '@mui/icons-material';
-import { Box, Button, TextField, IconButton, Typography } from '@mui/material';
+import { Box, Button, IconButton, Typography } from '@mui/material';
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useParams, useNavigate } from 'react-router-dom';
@@ -11,17 +11,17 @@ import { useParams, useNavigate } from 'react-router-dom';
 // import NFTPreview from '../nfts/NFTPreview';
 
 export default function ContactEdit() {
+  const [, , , getContactContactId, editContact] = useContext(AddressBookContext);
   const { contactId } = useParams();
   const navigate = useNavigate();
-  const [, editContact, , getContactContactId] = useContext(AddressBookContext);
   const contact = getContactContactId(Number(contactId));
 
-  const [name, setName] = useState([contact.name]);
+  const [name, setName] = useState(contact.name);
   const [addresses, setAddresses] = useState(contact.addresses);
   const [dids, setDIDs] = useState(contact.dids);
   const [domains, setDomains] = useState(contact.domainNames);
 
-  const methods = useForm<ContactAddData>({
+  const methods = useForm<ContactEditData>({
     name: '',
     notes: '',
     nftid: '',
@@ -63,13 +63,13 @@ export default function ContactEdit() {
     setStateVar(newList);
   }
 
-  async function handleSubmit(data: ContactAddData) {
+  async function handleSubmit(data: ContactEditData) {
     if (addresses.length === 0) throw new Error('At least one Address must be provided to create contact');
     if (addresses.name === 0) throw new Error('Name must be provided to create a contact');
     addresses.map((entry, index) => addDefaultName(entry, index, 'address', addresses, setAddresses));
     dids.map((entry, index) => addDefaultName(entry, index, 'did', dids, setDIDs));
     domains.map((entry, index) => addDefaultName(entry, index, 'domainname', domains, setDomains));
-    editContact(contact.contactId, data.name, addresses, dids, data.notes, data.nftid, domains);
+    editContact(contact.contactId, name, addresses, dids, data.notes, data.nftid, domains);
     navigate(`/dashboard/addressbook/`);
   }
 
@@ -99,8 +99,8 @@ export default function ContactEdit() {
           </Flex>
           <Flex style={{ paddingRight: '30px' }}>
             <Button
-              variant="outlined"
-              color="secondary"
+              variant="contained"
+              color="primary"
               type="submit"
               sx={{
                 position: 'absolute',
@@ -266,3 +266,9 @@ export default function ContactEdit() {
     </div>
   );
 }
+
+type ContactEditData = {
+  name: string;
+  notes: string;
+  nftid: string;
+};

@@ -1,5 +1,13 @@
 // import { useGetNFTInfoQuery } from '@chia-network/api-react';
-import { AddressBookContext, CopyToClipboard, Flex, MenuItem, More } from '@chia-network/core';
+import {
+  AddressBookContext,
+  ConfirmDialog,
+  CopyToClipboard,
+  Flex,
+  MenuItem,
+  More,
+  useOpenDialog,
+} from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Delete, Edit } from '@mui/icons-material';
 import { InputAdornment, ListItemIcon, TextField, Typography } from '@mui/material';
@@ -14,6 +22,7 @@ export default function ContactSummary() {
   const navigate = useNavigate();
   const [, , removeAddress, getContactContactId] = useContext(AddressBookContext);
   const contact = getContactContactId(Number(contactId));
+  const openDialog = useOpenDialog();
 
   // commented out - until this stops throwing an error when not a valid nft
   // const launcherId = launcherIdFromNFTId(contact.nftid ?? '');
@@ -26,9 +35,24 @@ export default function ContactSummary() {
     navigate(`/dashboard/addressbook/edit/${id}`);
   }
 
-  function handleRemove(id: number) {
-    removeAddress(id);
-    navigate(`/dashboard/addressbook/`);
+  async function handleRemove(id: number) {
+    const deleteContact = await openDialog(
+      <ConfirmDialog
+        title={<Trans>Delete contact</Trans>}
+        confirmTitle={<Trans>Delete</Trans>}
+        cancelTitle={<Trans>Cancel</Trans>}
+        confirmColor="danger"
+      >
+        <Trans>
+          Are you sure you want to permanently delete this contact? Once deleted, this contact cannot be recovered.
+        </Trans>
+      </ConfirmDialog>
+    );
+
+    if (deleteContact) {
+      removeAddress(id);
+      navigate(`/dashboard/addressbook/`);
+    }
   }
 
   /*
