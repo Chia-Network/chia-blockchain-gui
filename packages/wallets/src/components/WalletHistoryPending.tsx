@@ -1,4 +1,4 @@
-import { TransactionType } from '@chia-network/api';
+import { TransactionType, TransactionTypeFilterMode } from '@chia-network/api';
 import { TableControlledRow } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { AccessTime as AccessTimeIcon } from '@mui/icons-material';
@@ -35,7 +35,7 @@ function WalletHistoryPending(props: Props) {
     reverse: false,
     confirmed: false,
     typeFilter: {
-      mode: 1,
+      mode: TransactionTypeFilterMode.INCLUDE,
       values: [TransactionType.INCOMING_CLAWBACK_RECEIVE, TransactionType.INCOMING_CLAWBACK_SEND],
     },
   });

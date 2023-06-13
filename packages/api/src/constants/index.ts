@@ -7,4 +7,5 @@ export { default as ServiceName, type ServiceNameValue } from './ServiceName';
 export { default as ServiceHumanName } from './ServiceHumanName';
 export { default as SyncingStatus } from './SyncingStatus';
 export { default as TransactionType } from './TransactionType';
+export { default as TransactionTypeFilterMode } from './TransactionTypeFilterMode';
 export { default as WalletType } from './WalletType';
