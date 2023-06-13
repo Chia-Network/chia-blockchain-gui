@@ -253,9 +253,17 @@ export default function WalletHistory(props: Props) {
     rowsPerPage,
     count,
     pageChange,
-  } = useWalletTransactions(walletId, 10, 0, 'RELEVANCE', false, undefined, {
-    mode: 2,
-    values: [TransactionType.INCOMING_CLAWBACK_RECEIVE, TransactionType.INCOMING_CLAWBACK_SEND],
+  } = useWalletTransactions({
+    walletId,
+    defaultRowsPerPage: 10,
+    defaultPage: 0,
+    sortKey: 'RELEVANCE',
+    reverse: false,
+    // confirmed: true,
+    typeFilter: {
+      mode: 2,
+      values: [TransactionType.INCOMING_CLAWBACK_RECEIVE, TransactionType.INCOMING_CLAWBACK_SEND],
+    },
   });
 
   const feeUnit = useCurrencyCode();

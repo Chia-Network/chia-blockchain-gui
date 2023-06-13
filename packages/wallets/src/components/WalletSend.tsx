@@ -1,4 +1,9 @@
-import { useGetSyncStatusQuery, useSendTransactionMutation, useFarmBlockMutation } from '@chia-network/api-react';
+import {
+  useGetSyncStatusQuery,
+  useSendTransactionMutation,
+  useFarmBlockMutation,
+  useLocalStorage,
+} from '@chia-network/api-react';
 import {
   Amount,
   ButtonLoading,
@@ -66,6 +71,11 @@ export default function WalletSend(props: SendCardProps) {
       ...clawbackDefaultTime,
     },
   });
+
+  const [wasClawbackSendTransactionVisited, setWasClawbackSendTransactionVisited] = useLocalStorage<boolean>(
+    'newFlag--wasClawbackSendTransactionVisited',
+    false
+  );
 
   const {
     formState: { isSubmitting },
@@ -238,6 +248,9 @@ export default function WalletSend(props: SendCardProps) {
               <Accordion
                 expanded={isClawbackExpanded}
                 onChange={(_event, isExpanded: boolean) => {
+                  if (!wasClawbackSendTransactionVisited) {
+                    setWasClawbackSendTransactionVisited(true);
+                  }
                   setIsClawbackExpanded(isExpanded);
                 }}
                 sx={{ boxShadow: 'none' }}
@@ -252,6 +265,7 @@ export default function WalletSend(props: SendCardProps) {
                         right: '-25px',
                       },
                     }}
+                    invisible={wasClawbackSendTransactionVisited}
                   >
                     <Typography variant="subtitle2">Add option to claw back transaction</Typography>
                   </Badge>

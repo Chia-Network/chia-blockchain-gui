@@ -1,15 +1,5 @@
 import { useGetAutoClaimQuery, useSetAutoClaimMutation } from '@chia-network/api-react';
-import {
-  Flex,
-  SettingsText,
-  Form,
-  SettingsTitle,
-  ButtonLoading,
-  Fee,
-  chiaToMojo,
-  mojoToChia,
-  useCurrencyCode,
-} from '@chia-network/core';
+import { Flex, SettingsText, Form, ButtonLoading, Fee, chiaToMojo, mojoToChia } from '@chia-network/core';
 import { ConnectCheckmark } from '@chia-network/icons';
 import { Trans } from '@lingui/macro';
 import { Box, Typography } from '@mui/material';
@@ -20,20 +10,26 @@ export default function SettingsCustodyAutoClaim(props) {
   const [setAutoClaim, { isLoading: isSetAutoClaimLoading }] = useSetAutoClaimMutation();
   const { data: autoClaimData, isLoading } = useGetAutoClaimQuery();
 
-  const currencyCode = useCurrencyCode();
+  const isAutoClaimEnabled = autoClaimData?.enabled;
+  const autoClaimFee = autoClaimData?.txFee ? mojoToChia(autoClaimData.txFee).toNumber() : 0;
 
   const methods = useForm({
-    defaultValues: undefined,
+    defaultValues: {
+      fee: autoClaimFee,
+    },
   });
 
-  async function handleSubmit({ fee }) {
+  async function handleSubmit({ fee }: { fee: number }) {
     const feeInMojos = chiaToMojo(fee);
     await setAutoClaim({
-      enabled: true,
+      enabled: fee > 0,
       txFee: feeInMojos,
       minAmount: feeInMojos,
       batchSize: 50,
     }).unwrap();
+
+    // hook form does not reset isDirty after submit
+    methods.reset({}, { keepValues: true });
   }
 
   async function disableAutoClaim() {
@@ -49,27 +45,56 @@ export default function SettingsCustodyAutoClaim(props) {
     return <Box>'Loading...'</Box>;
   }
 
-  const isAutoClaimEnabled = autoClaimData?.enabled;
-  const autoClaimFee = autoClaimData?.txFee ? mojoToChia(autoClaimData.txFee) : 0;
-
   return (
     <Box {...props}>
       <Form methods={methods} onSubmit={handleSubmit}>
-        {isAutoClaimEnabled && (
-          <Box>
-            <Flex gap={3} flexDirection="column" alignItems="flex-start">
+        <>
+          <Flex gap={2} sx={{ marginTop: 1, alignItems: 'flex-start' }}>
+            <Fee
+              id="filled-secondary"
+              variant="filled"
+              name="fee"
+              color="secondary"
+              disabled={isSetAutoClaimLoading}
+              label={<Trans>Transaction auto claim fee</Trans>}
+              data-testid="SettingsCustodyAutoClaim-fee"
+              fullWidth
+              sx={{ width: '300px' }}
+            />
+
+            <ButtonLoading
+              size="small"
+              type="submit"
+              variant="contained"
+              color="primary"
+              loading={isSetAutoClaimLoading}
+              disabled={!methods.formState.isDirty}
+              data-testid="SettingsCustodyAutoClaim-save"
+              sx={{ height: '55px' }}
+            >
+              {isAutoClaimEnabled ? <Trans>Save</Trans> : <Trans>Enable</Trans>}
+            </ButtonLoading>
+
+            {isAutoClaimEnabled && (
               <ButtonLoading
                 size="small"
                 loading={isSetAutoClaimLoading}
                 variant="outlined"
                 color="secondary"
                 data-testid="SettingsCustodyAutoClaim-disable"
-                onClick={() => disableAutoClaim()}
-                sx={{ whiteSpace: 'nowrap', minWidth: 'auto' }}
+                onClick={async () => {
+                  await disableAutoClaim();
+                  methods.reset({ fee: 0 });
+                }}
+                sx={{ height: '55px' }}
               >
-                <Trans>Disable Auto claim</Trans>
+                <Trans>Disable</Trans>
               </ButtonLoading>
-
+            )}
+          </Flex>
+          <Box sx={{ marginTop: 3 }} />
+          {isAutoClaimEnabled && (
+            <>
               <Typography component="div" variant="subtitle2" sx={(theme) => ({ color: theme.palette.primary.dark })}>
                 <ConnectCheckmark
                   sx={(theme) => ({
@@ -93,55 +118,23 @@ export default function SettingsCustodyAutoClaim(props) {
 
                 <Trans>Auto claim is enabled.</Trans>
               </Typography>
-            </Flex>
-            <Box sx={{ marginTop: 2 }}>
-              <SettingsText>
-                <Trans>
-                  You will pay a fee {autoClaimFee} {currencyCode} when auto claiming Clawback transaction.
-                </Trans>
-              </SettingsText>
-              <SettingsText>
-                <Trans>Transactions less than the fee will not be auto claimed.</Trans>
-              </SettingsText>
-            </Box>
-          </Box>
-        )}
-        {!isAutoClaimEnabled && (
-          <>
-            <SettingsTitle>
-              <Trans>Please enter the transaction fee to enable auto claim:</Trans>
-            </SettingsTitle>
 
-            <Flex gap={2} sx={{ marginTop: 1, alignItems: 'top' }}>
-              <Fee
-                id="filled-secondary"
-                variant="filled"
-                name="fee"
-                color="secondary"
-                disabled={isSetAutoClaimLoading}
-                label={<Trans>Fee</Trans>}
-                data-testid="SettingsCustodyAutoClaim-fee"
-                fullWidth
-                sx={{ width: '300px' }}
-              />
-
-              <ButtonLoading
-                size="small"
-                type="submit"
-                variant="outlined"
-                color="secondary"
-                loading={isSetAutoClaimLoading}
-                data-testid="SettingsCustodyAutoClaim-save"
-                sx={{ height: '55px' }}
-              >
-                <Trans>Save</Trans>
-              </ButtonLoading>
-            </Flex>
+              <Box sx={{ marginTop: 2 }}>
+                <SettingsText>
+                  <Trans>Your wallet is required to be running for auto claim to work. </Trans>
+                </SettingsText>
+                <SettingsText>
+                  <Trans>Transactions less than the fee will not be auto claimed.</Trans>
+                </SettingsText>
+              </Box>
+            </>
+          )}
+          {!isAutoClaimEnabled && (
             <Typography component="div" variant="subtitle2" sx={{ marginTop: 3 }}>
               <Trans>Auto claim is disabled. </Trans>
             </Typography>
-          </>
-        )}
+          )}
+        </>
       </Form>
     </Box>
   );

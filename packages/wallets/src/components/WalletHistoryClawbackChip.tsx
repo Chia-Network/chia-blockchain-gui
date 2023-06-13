@@ -74,33 +74,25 @@ export default function WalletHistoryClawbackChip(props: Props) {
 
   // when you create/send clawback transaction
   if (transactionRow.type === TransactionType.INCOMING_CLAWBACK_SEND) {
-    if (timeLeft > 0) {
-      if (transactionRow.sent === 0) {
-        text = t(
-          defineMessage({
-            message: 'Claw back this transaction',
-          })
-        );
-
-        onClick = () =>
-          setClawbackClaimTransactionDialogProps({
-            coinId: transactionRow.metadata?.coinId,
-            amountInMojo: transactionRow.amount,
-            fromOrTo: 'to',
-            address: transactionRow.toAddress,
-          });
-      } else {
-        Icon = <AccessTimeIcon />;
-        text = t(
-          defineMessage({
-            message: 'Clawing back...',
-          })
-        );
-      }
-    } else {
+    if (transactionRow.sent === 0) {
       text = t(
         defineMessage({
-          message: 'Waiting for recipient to claim',
+          message: 'Claw back this transaction',
+        })
+      );
+
+      onClick = () =>
+        setClawbackClaimTransactionDialogProps({
+          coinId: transactionRow.metadata?.coinId,
+          amountInMojo: transactionRow.amount,
+          fromOrTo: 'to',
+          address: transactionRow.toAddress,
+        });
+    } else {
+      Icon = <AccessTimeIcon />;
+      text = t(
+        defineMessage({
+          message: 'Clawing back...',
         })
       );
     }
