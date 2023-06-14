@@ -57,7 +57,7 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
   const [getTransactionAsync] = useGetTransactionAsyncMutation();
 
   React.useEffect(() => {
-    if (pendingRevoke[vcRecord.vc.launcherId]) {
+    if (vcRecord?.vc?.launcherId && pendingRevoke[vcRecord.vc.launcherId]) {
       getTransactionAsync({ transactionId: pendingRevoke[vcRecord.vc.launcherId] }).then((res) => {
         if (res.error) {
           const copyPendingRevoke = { ...pendingRevoke };
@@ -66,7 +66,7 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
         }
       });
     }
-  }, [getTransactionAsync, pendingRevoke, vcRecord.vc.launcherId, setPendingRevoke]);
+  }, [getTransactionAsync, pendingRevoke, vcRecord?.vc?.launcherId, setPendingRevoke]);
 
   if (!vcRecord) return null;
 
@@ -101,7 +101,7 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
     return (
       <Box
         sx={{
-          color: pendingRevoke[vcRecord.vc.launcherId] ? '#999' : 'inherit',
+          color: vcRecord?.vc?.launcherId && pendingRevoke[vcRecord.vc.launcherId] ? '#999' : 'inherit',
         }}
       >
         {didString && (
@@ -159,7 +159,7 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
   function renderViewDetailButton() {
     if (isDetail) return null;
 
-    if (pendingRevoke[vcRecord.vc.launcherId]) {
+    if (vcRecord?.vc?.launcherId && pendingRevoke[vcRecord.vc.launcherId]) {
       return (
         <Button variant="outlined" disabled sx={{ width: '100%' }}>
           <Trans>Pending removal</Trans>
