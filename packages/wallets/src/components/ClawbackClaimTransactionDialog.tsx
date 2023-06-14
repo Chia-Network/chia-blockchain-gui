@@ -9,7 +9,8 @@ import {
   Button,
   Form,
   ButtonLoading,
-  Fee,
+  EstimatedFee,
+  FeeTxType,
   useCurrencyCode,
   mojoToChia,
   FormatLargeNumber,
@@ -86,7 +87,7 @@ export default function ClawbackClaimTransactionDialog(props: Props) {
 
   const { isSubmitting } = methods.formState;
 
-  const canSubmit = !isSyncing && !isSubmitting && !isGetAutoClaimLoading && feeValue && feeValue > 0;
+  const canSubmit = !isSyncing && !isSubmitting && !isGetAutoClaimLoading && feeValue;
 
   function handleClose() {
     methods.reset();
@@ -107,7 +108,7 @@ export default function ClawbackClaimTransactionDialog(props: Props) {
       throw new Error('No transaction ids returned');
     }
 
-    if (shouldEnableAutoClaim) {
+    if (shouldEnableAutoClaim && feeInMojos > 0) {
       // do not error on this secondary action
       try {
         await setAutoClaim({
@@ -207,17 +208,18 @@ export default function ClawbackClaimTransactionDialog(props: Props) {
                   <Trans>Please enter a transaction fee to claw back the above amount:</Trans>
                 )}
               </Typography>
-              <Fee
-                id="filled-secondary"
+
+              <EstimatedFee
                 variant="filled"
                 name="fee"
                 color="secondary"
-                label={<Trans>Transaction fee</Trans>}
-                sx={{ width: '300px' }}
+                fullWidth
+                sx={{ width: '300px', textAlign: 'left' }}
+                txType={FeeTxType.walletSendXCH}
               />
             </Flex>
           </DialogContent>
-          {!isAutoClaimEnabled && fromOrTo === 'from' && (
+          {!isAutoClaimEnabled && fromOrTo === 'from' && feeValue && feeValue > 0 && (
             <DialogContent dividers>
               <FormControlLabel
                 control={<Checkbox name="shouldEnableAutoClaim" />}
