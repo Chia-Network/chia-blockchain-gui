@@ -70,7 +70,7 @@ export default function ContactEdit() {
     dids.map((entry, index) => addDefaultName(entry, index, 'did', dids, setDIDs));
     domains.map((entry, index) => addDefaultName(entry, index, 'domainname', domains, setDomains));
     editContact(contact.contactId, name, addresses, dids, data.notes, data.nftid, domains);
-    navigate(`/dashboard/addressbook/`);
+    navigate(`/dashboard/addressbook/${Number(contact.contactId)}`);
   }
 
   function handleCancel(id: number) {

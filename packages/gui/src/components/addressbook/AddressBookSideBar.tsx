@@ -1,7 +1,7 @@
 import type { AddressContact } from '@chia-network/core';
-import { AddressBookContext, ButtonLoading, Flex, LayoutDashboardSub } from '@chia-network/core';
+import { AddressBookContext, ButtonLoading, CardListItem, Flex, LayoutDashboardSub } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
-import { TextField, Typography } from '@mui/material';
+import { Divider, TextField, Typography } from '@mui/material';
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -83,14 +83,18 @@ export default function AddressBookSideBar() {
     setFilter(e.target.value);
   }
 
+  function handleSelectMyContact() {
+    navigate(`/dashboard/addressbook/myContact`);
+  }
+
   return (
     <LayoutDashboardSub>
       <Flex flexDirection="column" gap={1.5} minWidth="300px">
         <Typography variant="h5">
           <Trans>Address Book</Trans>
         </Typography>
-        <Flex gap={3} flexDirection="column">
-          <Flex flexDirection="column" gap={2.5} style={{ paddingBottom: '24px' }}>
+        <Flex gap={2} flexDirection="column">
+          <Flex flexDirection="column" gap={2.5}>
             <ButtonLoading variant="contained" color="primary" onClick={handleCreateNewContact} disableElevation>
               <Trans>New Contact</Trans>
             </ButtonLoading>
@@ -105,6 +109,27 @@ export default function AddressBookSideBar() {
             data-testid="WalletCATSend-address"
             onChange={handleFilterChanged}
           />
+          <Flex flexDirection="column" gap={1.5}>
+            <CardListItem onSelect={() => handleSelectMyContact()}>
+              <div
+                style={{
+                  display: 'flex',
+                  minHeight: '40px',
+                  height: '40px',
+                  paddingBottom: '0px',
+                }}
+              >
+                <div
+                  style={{ flexGrow: 4, flexBasis: '100', paddingLeft: '10px', paddingTop: '8px', overflow: 'hidden' }}
+                >
+                  <div>
+                    <span style={{ fontWeight: 'bold', fontSize: '1.2rem' }}>My Addresses</span>
+                  </div>
+                </div>
+              </div>
+            </CardListItem>
+          </Flex>
+          <Divider />
           <Flex flexDirection="column" gap={1.5}>
             {listOfContacts()}
           </Flex>

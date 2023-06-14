@@ -6,6 +6,7 @@ import {
   useGetTransactionMemoMutation,
 } from '@chia-network/api-react';
 import {
+  AddressBookContext,
   Card,
   CopyToClipboard,
   Flex,
@@ -38,7 +39,7 @@ import {
   Chip,
 } from '@mui/material';
 import moment from 'moment';
-import React, { useMemo } from 'react';
+import React, { useContext, useMemo } from 'react';
 import styled from 'styled-components';
 
 import useWallet from '../hooks/useWallet';
@@ -147,6 +148,16 @@ const getCols = (type: WalletType, isSyncing, getOfferRecord, navigate, location
       const isOffer = row.toAddress === metadata.offerTakerAddress;
       const shouldObscureAddress = isRetire || isOffer;
 
+      let displayAddress = truncateValue(row.toAddress, {});
+
+      if (metadata.matchList) {
+        metadata.matchList.forEach((contact) => {
+          if (contact.address === row.toAddress) {
+            displayAddress = contact.displayName;
+          }
+        });
+      }
+
       return (
         <Flex
           flexDirection="column"
@@ -172,7 +183,7 @@ const getCols = (type: WalletType, isSyncing, getOfferRecord, navigate, location
               </Flex>
             }
           >
-            <span>{truncateValue(row.toAddress, {})}</span>
+            <span>{displayAddress}</span>
           </Tooltip>
           <Flex gap={0.5}>
             {isConfirmed ? (
@@ -237,8 +248,30 @@ export default function WalletHistory(props: Props) {
   const { navigate, location } = useSerializedNavigationState();
   const [getTransactionMemo] = useGetTransactionMemoMutation();
 
+  const [, , , , , getContactByAddress] = useContext(AddressBookContext);
+
   const isLoading = isWalletTransactionsLoading || isWalletLoading;
   const isSyncing = isWalletSyncLoading || !walletState || !!walletState?.syncing;
+
+  const contacts = useMemo(() => {
+    const contactList = [];
+
+    transactions.forEach((transaction) => {
+      const match = getContactByAddress(transaction.toAddress);
+
+      if (match) {
+        match.addresses.forEach((addressInfo) => {
+          if (transaction.toAddress === addressInfo.address) {
+            const nameStr = JSON.stringify(match.name).slice(1, -1);
+            const addNameStr = JSON.stringify(addressInfo.name).slice(1, -1);
+            const matchName = `${nameStr} | ${addNameStr}`;
+            contactList.push({ displayName: matchName, address: addressInfo.address });
+          }
+        });
+      }
+    });
+    return contactList;
+  }, [transactions, getContactByAddress]);
 
   const metadata = useMemo(() => {
     const retireAddress =
@@ -247,13 +280,16 @@ export default function WalletHistory(props: Props) {
     const offerTakerAddress =
       feeUnit && toBech32m('0101010101010101010101010101010101010101010101010101010101010101', feeUnit);
 
+    const matchList = contacts;
+
     return {
       unit,
       feeUnit,
       retireAddress,
       offerTakerAddress,
+      matchList,
     };
-  }, [unit, feeUnit]);
+  }, [unit, feeUnit, contacts]);
 
   const cols = useMemo(() => {
     if (!wallet) {
