@@ -615,7 +615,7 @@ const walletConnectCommands: WalletConnectCommand[] = [
       {
         name: WalletConnectCommandParamName.URIS,
         label: <Trans>Uris</Trans>,
-        type: 'string',
+        type: 'object',
       },
       {
         name: WalletConnectCommandParamName.HASH,
@@ -625,7 +625,7 @@ const walletConnectCommands: WalletConnectCommand[] = [
       {
         name: WalletConnectCommandParamName.META_URIS,
         label: <Trans>Meta Uris</Trans>,
-        type: 'string',
+        type: 'object',
       },
       {
         name: WalletConnectCommandParamName.META_HASH,
@@ -636,7 +636,7 @@ const walletConnectCommands: WalletConnectCommand[] = [
       {
         name: WalletConnectCommandParamName.LICENSE_URIS,
         label: <Trans>License Uris</Trans>,
-        type: 'string',
+        type: 'object',
       },
       {
         name: WalletConnectCommandParamName.LICENSE_HASH,
