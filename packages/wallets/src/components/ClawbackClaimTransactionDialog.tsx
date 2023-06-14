@@ -1,4 +1,9 @@
-import { useGetAutoClaimQuery, useSetAutoClaimMutation, useSpendClawbackCoinsMutation } from '@chia-network/api-react';
+import {
+  useGetAutoClaimQuery,
+  useSetAutoClaimMutation,
+  useSpendClawbackCoinsMutation,
+  useGetSyncStatusQuery,
+} from '@chia-network/api-react';
 import {
   AlertDialog,
   Button,
@@ -74,9 +79,14 @@ export default function ClawbackClaimTransactionDialog(props: Props) {
     name: 'fee',
   });
 
+  const { data: walletState, isLoading: isWalletSyncLoading } = useGetSyncStatusQuery(undefined, {
+    pollingInterval: 10_000,
+  });
+  const isSyncing = isWalletSyncLoading || !!walletState?.syncing;
+
   const { isSubmitting } = methods.formState;
 
-  const canSubmit = !isSubmitting && !isGetAutoClaimLoading && feeValue && feeValue > 0;
+  const canSubmit = !isSyncing && !isSubmitting && !isGetAutoClaimLoading && feeValue && feeValue > 0;
 
   function handleClose() {
     methods.reset();
@@ -181,6 +191,12 @@ export default function ClawbackClaimTransactionDialog(props: Props) {
                 <Alert severity="info" sx={{ marginBottom: 3 }}>
                   <Trans>This transaction will be automatically claimed with a fee:</Trans>{' '}
                   {`${autoClaimFee} ${currencyCode}`}
+                </Alert>
+              )}
+
+              {isSyncing && (
+                <Alert severity="info" sx={{ marginBottom: 3 }}>
+                  <Trans>Wallet needs to be synced for claiming clawback transactions</Trans>
                 </Alert>
               )}
 
