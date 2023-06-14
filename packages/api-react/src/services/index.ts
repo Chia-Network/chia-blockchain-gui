@@ -89,6 +89,7 @@ export const {
   useGetWalletsQuery,
   useGetTransactionQuery,
   useGetTransactionMemoMutation,
+  useGetTransactionAsyncMutation,
   useGetPwStatusQuery,
   usePwAbsorbRewardsMutation,
   usePwJoinPoolMutation,
