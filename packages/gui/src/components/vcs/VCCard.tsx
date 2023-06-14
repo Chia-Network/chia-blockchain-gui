@@ -4,6 +4,7 @@ import {
   usePrefs,
   useLocalStorage,
   useGetLoggedInFingerprintQuery,
+  useGetTransactionAsyncMutation,
 } from '@chia-network/api-react';
 import { Truncate, Button, useOpenDialog, AlertDialog, Flex, More, MenuItem } from '@chia-network/core';
 import { Burn as BurnIcon } from '@chia-network/icons';
@@ -51,7 +52,21 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
 
   const [isEditingTitle, setIsEditingTitle] = React.useState(false);
   const [VCsLocalStorage, setVCsLocalStorage] = useLocalStorage<any>('verifiable-credentials-local', {});
+  const [pendingRevoke, setPendingRevoke] = useLocalStorage<any>('verifiable-credentials-pending-revoke', {});
   const { data: fingerprint } = useGetLoggedInFingerprintQuery();
+  const [getTransactionAsync] = useGetTransactionAsyncMutation();
+
+  React.useEffect(() => {
+    if (pendingRevoke[vcRecord.vc.launcherId]) {
+      getTransactionAsync({ transactionId: pendingRevoke[vcRecord.vc.launcherId] }).then((res) => {
+        if (res.error) {
+          const copyPendingRevoke = { ...pendingRevoke };
+          delete copyPendingRevoke[vcRecord.vc.launcherId];
+          setPendingRevoke(copyPendingRevoke);
+        }
+      });
+    }
+  }, [getTransactionAsync, pendingRevoke, vcRecord.vc.launcherId, setPendingRevoke]);
 
   if (!vcRecord) return null;
 
@@ -84,7 +99,11 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
     const vcType = Array.isArray(vcRecord.type) && vcRecord.type.indexOf('KYCCredential') > -1 ? 'KYCCredential' : null;
 
     return (
-      <>
+      <Box
+        sx={{
+          color: pendingRevoke[vcRecord.vc.launcherId] ? '#999' : 'inherit',
+        }}
+      >
         {didString && (
           <RenderProperty label={<Trans>Issuer DID</Trans>}>
             {isDetail ? (
@@ -133,12 +152,20 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
         {isDetail && proofs && Object.keys(proofs).length > 0 && (
           <RenderProperty label={<Trans>Proofs</Trans>}>{renderProofs()}</RenderProperty>
         )}
-      </>
+      </Box>
     );
   }
 
   function renderViewDetailButton() {
     if (isDetail) return null;
+
+    if (pendingRevoke[vcRecord.vc.launcherId]) {
+      return (
+        <Button variant="outlined" disabled sx={{ width: '100%' }}>
+          <Trans>Pending removal</Trans>
+        </Button>
+      );
+    }
 
     return (
       <Button variant="outlined" sx={{ width: '100%' }}>
@@ -205,6 +232,9 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
     }
 
     if (revokedResponse?.data?.success) {
+      if (Array.isArray(revokedResponse.data?.transactions) && revokedResponse.data?.transactions.length > 1) {
+        setPendingRevoke({ ...pendingRevoke, [vcRecord.vc.launcherId]: revokedResponse.data.transactions[1].name });
+      }
       await openDialog(
         <AlertDialog title={<Trans>Verifiable Credential Removed</Trans>}>
           <Trans>Transaction sent to blockchain successfully.</Trans>

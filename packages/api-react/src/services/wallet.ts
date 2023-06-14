@@ -167,6 +167,10 @@ export const walletApi = apiWithTag.injectEndpoints({
       ]),
     }),
 
+    getTransactionAsync: mutation(build, WalletService, 'getTransaction', {
+      transformResponse: (response) => response.transaction,
+    }),
+
     getTransactionMemo: mutation(build, WalletService, 'getTransactionMemo', {
       transformResponse: (response) => {
         const id = Object.keys(response)[0];
@@ -1451,6 +1455,7 @@ export const {
   useGetLoggedInFingerprintQuery,
   useGetWalletsQuery,
   useGetTransactionQuery,
+  useGetTransactionAsyncMutation,
   useGetTransactionMemoMutation,
   useGetPwStatusQuery,
   usePwAbsorbRewardsMutation,
