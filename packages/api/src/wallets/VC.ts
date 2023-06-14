@@ -104,14 +104,14 @@ export default class VCWallet extends Wallet {
     }>('vc_spend', args);
   }
 
-  async addVCProofs(proofs: string) {
+  async addVCProofs(args: { proofs: string }) {
     return this.command<{
       proofs: any;
-    }>('vc_add_proofs', { proofs });
+    }>('vc_add_proofs', args);
   }
 
-  async getProofsForRoot(root: string) {
-    return this.command<{ proofs: any }>('vc_get_proofs_for_root', root);
+  async getProofsForRoot(args: { root: string }) {
+    return this.command<{ proofs: any }>('vc_get_proofs_for_root', args);
   }
 
   async revokeVC(args: { vcParentId: string; fee?: number; reusePuzhash?: boolean }) {
