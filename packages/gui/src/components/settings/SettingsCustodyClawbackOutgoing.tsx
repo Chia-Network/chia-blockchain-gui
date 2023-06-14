@@ -83,7 +83,7 @@ export default function SettingsCustodyClawbackOutgoing(props) {
         <Typography
           component="div"
           variant="subtitle2"
-          sx={(theme) => ({ width: '100%', color: theme.palette.primary.dark, marginTop: 3 })}
+          sx={(theme) => ({ width: '100%', color: theme.palette.primary.main, marginTop: 3 })}
         >
           <ConnectCheckmark
             sx={(theme) => ({

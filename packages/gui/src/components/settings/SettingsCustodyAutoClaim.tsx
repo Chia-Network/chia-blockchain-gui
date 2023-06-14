@@ -95,7 +95,7 @@ export default function SettingsCustodyAutoClaim(props) {
           <Box sx={{ marginTop: 3 }} />
           {isAutoClaimEnabled && (
             <>
-              <Typography component="div" variant="subtitle2" sx={(theme) => ({ color: theme.palette.primary.dark })}>
+              <Typography component="div" variant="subtitle2" sx={(theme) => ({ color: theme.palette.primary.main })}>
                 <ConnectCheckmark
                   sx={(theme) => ({
                     verticalAlign: 'middle',
