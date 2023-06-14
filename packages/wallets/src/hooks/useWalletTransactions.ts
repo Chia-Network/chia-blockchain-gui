@@ -35,6 +35,8 @@ export default function useWalletTransactions(args: UseWalletTransactionsArgs): 
     error: transactionsCountError,
   } = useGetTransactionsCountQuery({
     walletId,
+    typeFilter,
+    confirmed,
   });
 
   const all = rowsPerPage === -1;

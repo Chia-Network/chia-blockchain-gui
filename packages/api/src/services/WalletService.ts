@@ -165,7 +165,14 @@ export default class Wallet extends Service {
     return this.command<{ transactions: Transaction[]; walletId: number }>('get_transactions', args);
   }
 
-  async getTransactionsCount(args: { walletId: number }) {
+  async getTransactionsCount(args: {
+    walletId: number;
+    typeFilter?: {
+      mode: number;
+      values: number[];
+    };
+    confirmed?: boolean;
+  }) {
     return this.command<{ count: number; walletId: number }>('get_transaction_count', args);
   }
 

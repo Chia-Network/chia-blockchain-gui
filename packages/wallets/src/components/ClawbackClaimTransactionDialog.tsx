@@ -1,10 +1,16 @@
-import { useGetAutoClaimQuery, useSetAutoClaimMutation, useSpendClawbackCoinsMutation } from '@chia-network/api-react';
+import {
+  useGetAutoClaimQuery,
+  useSetAutoClaimMutation,
+  useSpendClawbackCoinsMutation,
+  useGetSyncStatusQuery,
+} from '@chia-network/api-react';
 import {
   AlertDialog,
   Button,
   Form,
   ButtonLoading,
-  Fee,
+  EstimatedFee,
+  FeeTxType,
   useCurrencyCode,
   mojoToChia,
   FormatLargeNumber,
@@ -74,9 +80,14 @@ export default function ClawbackClaimTransactionDialog(props: Props) {
     name: 'fee',
   });
 
+  const { data: walletState, isLoading: isWalletSyncLoading } = useGetSyncStatusQuery(undefined, {
+    pollingInterval: 10_000,
+  });
+  const isSyncing = isWalletSyncLoading || !!walletState?.syncing;
+
   const { isSubmitting } = methods.formState;
 
-  const canSubmit = !isSubmitting && !isGetAutoClaimLoading && feeValue && feeValue > 0;
+  const canSubmit = !isSyncing && !isSubmitting && !isGetAutoClaimLoading && feeValue;
 
   function handleClose() {
     methods.reset();
@@ -97,7 +108,7 @@ export default function ClawbackClaimTransactionDialog(props: Props) {
       throw new Error('No transaction ids returned');
     }
 
-    if (shouldEnableAutoClaim) {
+    if (shouldEnableAutoClaim && feeInMojos > 0) {
       // do not error on this secondary action
       try {
         await setAutoClaim({
@@ -184,6 +195,12 @@ export default function ClawbackClaimTransactionDialog(props: Props) {
                 </Alert>
               )}
 
+              {isSyncing && (
+                <Alert severity="info" sx={{ marginBottom: 3 }}>
+                  <Trans>Wallet needs to be synced for claiming clawback transactions</Trans>
+                </Alert>
+              )}
+
               <Typography variant="body1">
                 {fromOrTo === 'from' ? (
                   <Trans>Please enter a transaction fee to claim the above amount:</Trans>
@@ -191,17 +208,18 @@ export default function ClawbackClaimTransactionDialog(props: Props) {
                   <Trans>Please enter a transaction fee to claw back the above amount:</Trans>
                 )}
               </Typography>
-              <Fee
-                id="filled-secondary"
+
+              <EstimatedFee
                 variant="filled"
                 name="fee"
                 color="secondary"
-                label={<Trans>Transaction fee</Trans>}
-                sx={{ width: '300px' }}
+                fullWidth
+                sx={{ width: '300px', textAlign: 'left' }}
+                txType={FeeTxType.walletSendXCH}
               />
             </Flex>
           </DialogContent>
-          {!isAutoClaimEnabled && fromOrTo === 'from' && (
+          {!isAutoClaimEnabled && fromOrTo === 'from' && feeValue && feeValue > 0 && (
             <DialogContent dividers>
               <FormControlLabel
                 control={<Checkbox name="shouldEnableAutoClaim" />}
