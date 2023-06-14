@@ -3,8 +3,8 @@ import { Flex, MenuItem } from '@chia-network/core';
 import { Offers as OffersIcon } from '@chia-network/icons';
 import { Trans } from '@lingui/macro';
 import { Typography, ListItemIcon } from '@mui/material';
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React from 'react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 import WalletHeader from '../WalletHeader';
 import WalletHistory from '../WalletHistory';
@@ -18,9 +18,15 @@ type StandardWalletProps = {
 
 export default function StandardWallet(props: StandardWalletProps) {
   const { walletId } = props;
-  // const showDebugInformation = useShowDebugInformation();
+
   const navigate = useNavigate();
-  const [selectedTab, setSelectedTab] = useState<'summary' | 'send' | 'receive'>('summary');
+
+  const [searchParams, setSearchParams] = useSearchParams();
+  const selectedTab = searchParams.get('selectedTab') || 'summary';
+
+  const setSelectedTab = (tab: 'summary' | 'send' | 'receive') => {
+    setSearchParams({ selectedTab: tab });
+  };
 
   function handleCreateOffer() {
     navigate('/dashboard/offers/builder', {
