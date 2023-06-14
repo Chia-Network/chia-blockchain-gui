@@ -22,6 +22,7 @@ import { Outlet } from 'react-router-dom';
 import WebSocket from 'ws';
 
 import { i18n, defaultLocale, locales } from '../../config/locales';
+import CacheProvider from '../cache/CacheProvider';
 import LRUsProvider from '../lrus/LRUsProvider';
 import NFTProvider from '../nfts/provider/NFTProvider';
 import NotificationsProvider from '../notification/NotificationsProvider';
@@ -96,22 +97,24 @@ export default function App(props: AppProps) {
       <LocaleProvider i18n={i18n} defaultLocale={defaultLocale} locales={locales}>
         <ThemeProvider theme={theme} fonts global>
           <ErrorBoundary>
-            <LRUsProvider>
-              <NFTProvider>
-                <ModalDialogsProvider>
-                  <Suspense fallback={<LayoutLoading />}>
-                    <AddressBookProvider>
-                      <WalletConnectProvider projectId={WalletConnectChiaProjectId}>
-                        <NotificationsProvider>
-                          <AppState>{outlet ? <Outlet /> : children}</AppState>
-                        </NotificationsProvider>
-                      </WalletConnectProvider>
-                    </AddressBookProvider>
-                  </Suspense>
-                  <ModalDialogs />
-                </ModalDialogsProvider>
-              </NFTProvider>
-            </LRUsProvider>
+            <CacheProvider>
+              <LRUsProvider>
+                <NFTProvider>
+                  <ModalDialogsProvider>
+                    <Suspense fallback={<LayoutLoading />}>
+                      <AddressBookProvider>
+                        <WalletConnectProvider projectId={WalletConnectChiaProjectId}>
+                          <NotificationsProvider>
+                            <AppState>{outlet ? <Outlet /> : children}</AppState>
+                            <ModalDialogs />
+                          </NotificationsProvider>
+                        </WalletConnectProvider>
+                      </AddressBookProvider>
+                    </Suspense>
+                  </ModalDialogsProvider>
+                </NFTProvider>
+              </LRUsProvider>
+            </CacheProvider>
           </ErrorBoundary>
         </ThemeProvider>
       </LocaleProvider>

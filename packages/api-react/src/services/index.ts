@@ -169,6 +169,7 @@ export const {
   useGetNFTWalletsWithDIDsQuery,
   useGetNFTInfoQuery,
   useLazyGetNFTInfoQuery,
+  useMintNFTMutation,
   useTransferNFTMutation,
   useSetNFTDIDMutation,
   useSetNFTStatusMutation,
@@ -184,6 +185,14 @@ export const {
 
   // verify
   useVerifySignatureMutation,
+
+  // VC (Verifiable Credentials)
+  useGetVCQuery,
+  useGetVCListQuery,
+  useSpendVCMutation,
+  useAddVCProofsMutation,
+  useGetProofsForRootQuery,
+  useRevokeVCMutation,
 } = wallet;
 
 // harvester hooks

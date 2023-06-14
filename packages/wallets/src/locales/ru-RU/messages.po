@@ -6,17 +6,17 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: @lingui/cli\n"
 "Language: ru_RU\n"
-"Project-Id-Version: chia-blockchain\n"
+"Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-01-18 21:18\n"
+"PO-Revision-Date: 2023-03-29 23:28\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "Plural-Forms: nplurals=4; plural=((n%10==1 && n%100!=11) ? 0 : ((n%10 >= 2 && n%10 <=4 && (n%100 < 12 || n%100 > 14)) ? 1 : ((n%10 == 0 || (n%10 >= 5 && n%10 <=9)) || (n%100 >= 11 && n%100 <= 14)) ? 2 : 3));\n"
-"X-Crowdin-Project: chia-blockchain\n"
-"X-Crowdin-Project-ID: 440660\n"
+"X-Crowdin-Project: 1263bc1f20e1271bda78e84d2f4a6562\n"
+"X-Crowdin-Project-ID: 1\n"
 "X-Crowdin-Language: ru\n"
-"X-Crowdin-File: /main/packages/wallets/src/locales/en-US/messages.po\n"
-"X-Crowdin-File-ID: 1890\n"
+"X-Crowdin-File: /[Chia-Network.chia-blockchain-gui] main/packages/wallets/src/locales/en-US/messages.po\n"
+"X-Crowdin-File-ID: 1308\n"
 
 #: src/components/WalletHistory.tsx:109
 msgid "+"
@@ -75,7 +75,7 @@ msgstr "Кошелек для атомарного обмена"
 
 #: src/constants/WalletName.ts:14
 msgid "Authorized Payee Wallet"
-msgstr ""
+msgstr "Авторизованный Payee кошелек"
 
 #: src/components/PasteMnemonic.tsx:76
 #: src/components/WalletRenameDialog.tsx:72
@@ -89,17 +89,17 @@ msgstr "Не удается отправить Chia по цветному адр
 
 #: src/components/WalletsSidebar.tsx:130
 msgid "Check my snapshot balance"
-msgstr ""
+msgstr "Проверить баланс моего снимка"
 
 #: src/components/cat/WalletCATSelect.tsx:25
 #: src/components/create/WalletCreateList.tsx:32
 #: src/constants/WalletName.ts:23
 msgid "Chia Asset Token"
-msgstr ""
+msgstr "Токен активов Chia"
 
 #: src/components/WalletsSidebar.tsx:141
 msgid "Click here to download an older version of the wallet"
-msgstr ""
+msgstr "Нажмите здесь, чтобы загрузить более раннюю версию кошелька"
 
 #: src/components/WalletHeader.tsx:25
 msgid "Confirmation"
@@ -111,7 +111,7 @@ msgstr "Подтверждено"
 
 #: src/components/WalletHistory.tsx:333
 msgid "Confirmed at Height"
-msgstr ""
+msgstr "Подтверждено на блоке"
 
 #: src/components/WalletConnections.tsx:47
 msgid "Connection type"
@@ -132,7 +132,7 @@ msgstr "Создать новый кошелек"
 #: src/components/cat/WalletCAT.tsx:104
 #: src/components/standard/WalletStandard.tsx:46
 msgid "Create Offer"
-msgstr "Создать предложение"
+msgstr "Создать Предложение"
 
 #: src/components/WalletSend.tsx:154
 #: src/components/cat/WalletCATSend.tsx:177
@@ -141,15 +141,15 @@ msgstr "Создать транзакцию"
 
 #: src/constants/WalletName.ts:20
 msgid "Custody Wallet"
-msgstr ""
+msgstr "Кошелек для хранения"
 
 #: src/components/cat/WalletCATCreateSimple.tsx:100
 msgid "Custom"
-msgstr ""
+msgstr "Настраиваемый"
 
 #: src/constants/WalletName.ts:29
 msgid "DID Wallet"
-msgstr ""
+msgstr "DID кошелек"
 
 #: src/constants/WalletName.ts:38
 msgid "Datalayer Wallet"
@@ -169,7 +169,7 @@ msgstr "Удалить неподтвержденные транзакции"
 
 #: src/components/card/WalletCardTotalBalance.tsx:68
 msgid "Derivation Index: {0}"
-msgstr ""
+msgstr "Индекс деривации"
 
 #: src/components/create/WalletCreateList.tsx:39
 msgid "Distributed Identity"
@@ -204,7 +204,7 @@ msgstr "IP адрес"
 
 #: src/components/WalletSendTransactionResultDialog.tsx:41
 msgid "If you would like to speed up the transaction, please delete unconfirmed transactions and retry with a higher fee."
-msgstr ""
+msgstr "Если вы хотите ускорить транзакцию, удалите неподтвержденные транзакции и повторите попытку с более высокой комиссией."
 
 #: src/components/PasteMnemonic.tsx:79
 msgid "Import"
@@ -224,7 +224,7 @@ msgstr "Входящие"
 
 #: src/components/WalletConnections.tsx:71
 msgid "List of connections is empty"
-msgstr ""
+msgstr "Список соединений пуст"
 
 #: src/components/WalletsManageTokens.tsx:133
 msgid "Manage token list"
@@ -242,7 +242,7 @@ msgstr ""
 
 #: src/components/WalletSendTransactionResultDialog.tsx:16
 msgid "Mempool Full"
-msgstr ""
+msgstr "Mempool заполнен"
 
 #: src/components/WalletConnections.tsx:40
 msgid "MiB Up/Down"
@@ -250,15 +250,15 @@ msgstr "МиБ Исх./Вх."
 
 #: src/constants/WalletName.ts:17
 msgid "Multi Sig Wallet"
-msgstr ""
+msgstr "Кошелек с несколькими подписями"
 
 #: src/constants/WalletName.ts:35
 msgid "NFT Wallet"
-msgstr ""
+msgstr "Кошелек NFT"
 
 #: src/components/cat/WalletCATCreateExistingSimple.tsx:68
 msgid "Name"
-msgstr "Название"
+msgstr "Имя"
 
 #: src/components/WalletReceiveAddress.tsx:45
 msgid "New Address"
@@ -304,7 +304,7 @@ msgstr "OK"
 
 #: src/components/WalletHistory.tsx:176
 msgid "Offer Accepted"
-msgstr "Предложение принято"
+msgstr "Предложение Принято"
 
 #: src/components/WalletSend.tsx:157
 #: src/components/cat/WalletCATSend.tsx:180
@@ -341,7 +341,7 @@ msgstr "Ожидаемый итоговый баланс"
 
 #: src/components/cat/WalletCATCreateExistingSimple.tsx:42
 msgid "Please enter a valid asset id"
-msgstr ""
+msgstr "Пожалуйста, введите действительный идентификатор актива"
 
 #: src/components/WalletSend.tsx:96
 #: src/components/cat/WalletCATSend.tsx:102
@@ -355,7 +355,7 @@ msgstr "Пожалуйста, укажите корректное численн
 
 #: src/components/cat/WalletCATCreateExistingSimple.tsx:46
 msgid "Please enter a valid token name"
-msgstr ""
+msgstr "Пожалуйста, правильно введите имя токена"
 
 #: src/components/WalletRenameDialog.tsx:41
 msgid "Please enter valid wallet name"
@@ -389,11 +389,11 @@ msgstr "Ограниченной Скорости"
 
 #: src/components/WalletsSidebar.tsx:133
 msgid "Read the blog post for details"
-msgstr ""
+msgstr "Прочитать запись блога подробнее"
 
 #: src/components/WalletHeader.tsx:48
 msgid "Receive"
-msgstr ""
+msgstr "Получить"
 
 #: src/components/WalletReceiveAddress.tsx:29
 msgid "Receive Address"
@@ -409,7 +409,7 @@ msgstr "Восстановляемый кошелек"
 
 #: src/components/cat/WalletCATSelect.tsx:39
 msgid "Recovery Wallet"
-msgstr ""
+msgstr "Кошелек восстановления"
 
 #: src/components/WalletRenameDialog.tsx:61
 #: src/components/cat/WalletCAT.tsx:87
@@ -554,7 +554,7 @@ msgstr "Кошелек {walletId} не найден"
 
 #: src/components/WalletsSidebar.tsx:138
 msgid "Want to see your old balance for yourself?"
-msgstr ""
+msgstr "Хотите увидеть свой старый баланс для себя?"
 
 #: src/components/WalletsSidebar.tsx:110
 msgid "We've made an upgrade to the CAT standard which requires all CATs to be re-issued. You will be airdropped your new tokens as they are re-issued by the original issuers. The airdropped tokens will be based on the balance as of block height:<0/><1/><2/>(Approximate time: July 26th, 2022 @ 17:00 UTC)"
@@ -571,3 +571,4 @@ msgstr ""
 #: src/components/WalletImport.tsx:72
 msgid "Your pasted list does not include {mnemonicWordCount} valid mnemonic words."
 msgstr ""
+

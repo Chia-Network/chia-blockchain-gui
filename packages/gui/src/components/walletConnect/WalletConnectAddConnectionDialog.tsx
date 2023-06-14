@@ -16,8 +16,7 @@ import { Box, Divider, Dialog, DialogContent, DialogTitle, IconButton, Typograph
 import React, { useEffect, useState } from 'react';
 import { useForm, useWatch } from 'react-hook-form';
 
-// import useWalletConnectContext from '../../hooks/useWalletConnectContext';
-import { WalletConnectContext } from './WalletConnectProvider';
+import useWalletConnectContext from '../../hooks/useWalletConnectContext';
 import HeroImage from './images/walletConnectToChia.svg';
 
 enum Step {
@@ -33,16 +32,14 @@ type FormData = {
 export type WalletConnectAddConnectionDialogProps = {
   onClose?: (topic?: string) => void;
   open?: boolean;
-  context: WalletConnectContext;
 };
 
 export default function WalletConnectAddConnectionDialog(props: WalletConnectAddConnectionDialogProps) {
-  const { context, onClose = () => {}, open = false } = props;
+  const { onClose = () => {}, open = false } = props;
 
   const [step, setStep] = useState<Step>(Step.CONNECT);
-  // const { pair, isLoading: isLoadingWallet } = useWalletConnectContext();
-  const { pair, isLoading: isLoadingWallet } = context;
-  const { data: keys, isLoading: isLoadingPublicKeys } = useGetKeysQuery();
+  const { pair, isLoading: isLoadingWallet } = useWalletConnectContext();
+  const { data: keys, isLoading: isLoadingPublicKeys } = useGetKeysQuery({});
   const { data: fingerprint, isLoading: isLoadingLoggedInFingerprint } = useGetLoggedInFingerprintQuery();
   const mainnet = useCurrencyCode() === 'XCH';
   const methods = useForm<FormData>({

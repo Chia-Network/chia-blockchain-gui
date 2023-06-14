@@ -9,18 +9,17 @@ import {
   Link,
   Loading,
   StateColor,
-  TextField,
   Tooltip,
   TooltipIcon,
 } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Remove } from '@mui/icons-material';
 import { Box, Typography, IconButton } from '@mui/material';
-import React, { useCallback, type ReactNode } from 'react';
-import { useFormContext, useWatch } from 'react-hook-form';
+import React, { type ReactNode } from 'react';
+import { useWatch } from 'react-hook-form';
 
 import useOfferBuilderContext from '../../hooks/useOfferBuilderContext';
-import NFTSearch from '../nfts/NFTSearch';
+import NFTAutocomplete from '../nfts/NFTAutocomplete';
 import OfferBuilderAmountWithRoyalties from './OfferBuilderAmountWithRoyalties';
 import OfferBuilderRoyaltyPayouts from './OfferBuilderRoyaltyPayouts';
 import OfferBuilderTokenSelector from './OfferBuilderTokenSelector';
@@ -63,15 +62,6 @@ export default function OfferBuilderValue(props: OfferBuilderValueProps) {
   const value = useWatch({
     name,
   });
-
-  const formContext = useFormContext();
-
-  const handleSelectNFT = useCallback(
-    (nftId) => {
-      formContext.setValue(name, nftId);
-    },
-    [name, formContext]
-  );
 
   const readOnly = disableReadOnly ? false : builderReadOnly;
   const displayValue =
@@ -168,10 +158,7 @@ export default function OfferBuilderValue(props: OfferBuilderValueProps) {
                 <Fee variant="filled" color="secondary" label={label} name={name} fullWidth />
               )
             ) : type === 'text' ? (
-              <>
-                <TextField variant="filled" color="secondary" label={label} name={name} required fullWidth />
-                <NFTSearch value={value} onSelectNFT={handleSelectNFT} />
-              </>
+              <NFTAutocomplete variant="filled" color="secondary" label={label} name={name} required fullWidth />
             ) : type === 'token' ? (
               <OfferBuilderTokenSelector
                 variant="filled"

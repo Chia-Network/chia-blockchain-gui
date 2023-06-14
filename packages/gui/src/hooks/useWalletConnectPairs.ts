@@ -27,6 +27,7 @@ export type Pairs = {
 
 export default function useWalletConnectPairs(): Pairs {
   const localStorageData = useLocalStorage<Pair[]>('walletConnectPairs', []);
+  const [currentPairs] = localStorageData;
 
   const pairsRef = useRef<[Pair[], (pairs: Pair[] | PairCallback) => void]>(localStorageData);
   pairsRef.current = localStorageData;
@@ -187,6 +188,7 @@ export default function useWalletConnectPairs(): Pairs {
       removeBypassCommand,
       resetBypassForAllPairs,
       resetBypassForPair,
+      pairs: currentPairs,
     }),
     [
       addPair,
@@ -202,6 +204,7 @@ export default function useWalletConnectPairs(): Pairs {
       removeBypassCommand,
       resetBypassForAllPairs,
       resetBypassForPair,
+      currentPairs,
     ]
   );
 

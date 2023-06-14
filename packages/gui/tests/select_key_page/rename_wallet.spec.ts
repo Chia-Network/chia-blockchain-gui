@@ -3,6 +3,7 @@ import { test, expect } from '@playwright/test';
 import { LoginPage } from '../data_object_model/passphrase_login';
 import { isWalletSynced, getWalletBalance } from '../utils/wallet';
 import { waitForDebugger } from 'inspector';
+import { CloseDialog } from '../data_object_model/close_dialog';
 
 let electronApp: ElectronApplication;
 let page: Page;
@@ -12,14 +13,6 @@ test.beforeAll(async () => {
   page = await electronApp.firstWindow();
 });
 
-test.beforeEach(async () => {
-  // Given I enter correct credentials in Passphrase dialog
-  await new LoginPage(page).login('password2022!@');
-
-  // Logout of the wallet_new
-  await page.locator('[data-testid="ExitToAppIcon"]').click();
-});
-
 test.afterAll(async () => {
   await page.close();
 });
@@ -27,6 +20,9 @@ test.afterAll(async () => {
 test('Verify that renaming work and canceling the renaming wallet flow works.', async () => {
   const orgName = 'Jahi 1st Wallet';
   const newName = 'MyChiaMainWallet';
+
+  //Pre-requisites to get user back to Wallet selection page
+  await new CloseDialog(page).closeIt();
 
   //Given I click on miniMenu on a Wallet name
   await page.locator('[data-testid="SelectKeyItem-fingerprint-1922132445"] [aria-label="more"]').click();
@@ -53,7 +49,8 @@ test('Verify that renaming work and canceling the renaming wallet flow works.', 
   await page.waitForTimeout(10000);
   await page.locator('[data-testid="SelectKeyItem-fingerprint-1922132445"]').click();
   await expect(page.locator(`text=${newName}`)).toBeVisible();
-  await page.locator('[data-testid="ExitToAppIcon"]').click();
+  //await page.locator('[data-testid="ExitToAppIcon"]').click();
+  await page.locator('[data-testid="LayoutDashboard-log-out"]').click();
 
   //And new name displays on select page
   await expect(page.locator(`h6:has-text("${newName}")`)).toBeVisible();

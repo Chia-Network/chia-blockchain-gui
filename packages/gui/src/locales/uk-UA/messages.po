@@ -6,17 +6,17 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: @lingui/cli\n"
 "Language: uk_UA\n"
-"Project-Id-Version: chia-blockchain\n"
+"Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-10-24 18:15\n"
+"PO-Revision-Date: 2023-03-29 23:27\n"
 "Last-Translator: \n"
 "Language-Team: Ukrainian\n"
 "Plural-Forms: nplurals=4; plural=((n%10==1 && n%100!=11) ? 0 : ((n%10 >= 2 && n%10 <=4 && (n%100 < 12 || n%100 > 14)) ? 1 : ((n%10 == 0 || (n%10 >= 5 && n%10 <=9)) || (n%100 >= 11 && n%100 <= 14)) ? 2 : 3));\n"
-"X-Crowdin-Project: chia-blockchain\n"
-"X-Crowdin-Project-ID: 440660\n"
+"X-Crowdin-Project: 1263bc1f20e1271bda78e84d2f4a6562\n"
+"X-Crowdin-Project-ID: 1\n"
 "X-Crowdin-Language: uk\n"
-"X-Crowdin-File: /main/packages/gui/src/locales/en-US/messages.po\n"
-"X-Crowdin-File-ID: 1888\n"
+"X-Crowdin-File: /[Chia-Network.chia-blockchain-gui] main/packages/gui/src/locales/en-US/messages.po\n"
+"X-Crowdin-File-ID: 1306\n"
 
 #: src/components/offers2/OfferBuilderImport.tsx:167
 msgid "(Ctrl-V) a blob"
@@ -831,7 +831,7 @@ msgstr "Data URL {0}"
 
 #: src/components/settings/Settings.tsx:70
 msgid "DataLayer"
-msgstr "DataLayer"
+msgstr ""
 
 #: src/components/settings/SettingsDataLayer.tsx:18
 msgid "DataLayer Services"
@@ -1579,15 +1579,13 @@ msgid "Install Keybase"
 msgstr "Встановити Keybase"
 
 #: src/hooks/useAcceptOfferHook.tsx:67
-msgid ""
-"Insufficient funds available to accept offer. Ensure that your\n"
+msgid "Insufficient funds available to accept offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
 msgstr "Недостатньо доступних коштів для прийняття пропозиції. Переконайтеся, що вашого балансу достатньо для покриття суми пропозиції."
 
 #: src/components/offers/OfferEditor.tsx:148
 #: src/components/offers2/CreateOfferBuilder.tsx:121
-msgid ""
-"Insufficient funds available to create offer. Ensure that your\n"
+msgid "Insufficient funds available to create offer. Ensure that your\n"
 "spendable balance is sufficient to cover the offer amount."
 msgstr "Недостатньо доступних коштів для створення пропозиції. Переконайтеся, що вашого балансу достатньо для покриття суми пропозиції."
 
@@ -1867,7 +1865,7 @@ msgstr ""
 
 #: src/components/offers/OfferSummaryRow.tsx:115
 msgid "Minter:"
-msgstr "Minter:"
+msgstr ""
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:94
 msgid "Minutes"
@@ -2043,7 +2041,7 @@ msgstr ""
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:397
 msgid "No CPU Affinity"
-msgstr "No CPU Affinity"
+msgstr ""
 
 #: src/components/walletConnect/WalletConnectPairInfoDialog.tsx:113
 msgid "No Paired Keys"
@@ -3181,7 +3179,7 @@ msgstr ""
 
 #: src/components/offers/OfferShareDialog.tsx:935
 msgid "Spacescan.io URL"
-msgstr "Spacescan.io URL"
+msgstr ""
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:134
 msgid "Specify a value of 0 to use all available threads"
@@ -4161,3 +4159,4 @@ msgstr "{value} з {max_value}"
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:106
 msgid "{warning}"
 msgstr "{warning}"
+

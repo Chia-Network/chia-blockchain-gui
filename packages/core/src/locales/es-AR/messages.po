@@ -6,17 +6,17 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: @lingui/cli\n"
 "Language: es_AR\n"
-"Project-Id-Version: chia-blockchain\n"
+"Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-10-24 18:14\n"
+"PO-Revision-Date: 2023-03-29 23:26\n"
 "Last-Translator: \n"
 "Language-Team: Spanish, Argentina\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Crowdin-Project: chia-blockchain\n"
-"X-Crowdin-Project-ID: 440660\n"
+"X-Crowdin-Project: 1263bc1f20e1271bda78e84d2f4a6562\n"
+"X-Crowdin-Project-ID: 1\n"
 "X-Crowdin-Language: es-AR\n"
-"X-Crowdin-File: /main/packages/core/src/locales/en-US/messages.po\n"
-"X-Crowdin-File-ID: 1886\n"
+"X-Crowdin-File: /[Chia-Network.chia-blockchain-gui] main/packages/core/src/locales/en-US/messages.po\n"
+"X-Crowdin-File-ID: 1304\n"
 
 #: src/components/Amount/Amount.tsx:36
 msgid "Amount"
@@ -24,7 +24,7 @@ msgstr "Cantidad"
 
 #: src/components/Settings/SettingsApp.tsx:88
 msgid "Appearance"
-msgstr ""
+msgstr "Apariencia"
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:144
 msgid "Are you sure you want to continue? Type in the fingerprint of this wallet key to confirm deletion."
@@ -65,7 +65,7 @@ msgstr "Crear una nueva llave privada"
 
 #: src/components/Settings/SettingsApp.tsx:105
 msgid "Dark"
-msgstr ""
+msgstr "Oscuro"
 
 #: src/screens/SelectKey/SelectKey.tsx:79
 #: src/screens/SelectKey/SelectKeyItem.tsx:100
@@ -92,11 +92,11 @@ msgstr ""
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:59
 msgid "Disable"
-msgstr ""
+msgstr "Deshabilitar"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:58
 msgid "Disable Passphrase Protection"
-msgstr ""
+msgstr "Desactivar la Protección por Contraseña"
 
 #: src/components/Back/Back.tsx:37
 #: src/components/FormBackButton/FormBackButton.tsx:28
@@ -106,7 +106,7 @@ msgstr "Descartar"
 #: src/components/CardSimple/CardSimple.tsx:52
 #: src/hooks/useShowError.tsx:11
 msgid "Error"
-msgstr ""
+msgstr "Error"
 
 #: src/components/ErrorBoundary/ErrorBoundary.tsx:72
 msgid "Error:"
@@ -122,7 +122,7 @@ msgstr ""
 
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:58
 msgid "Farmer public key:"
-msgstr ""
+msgstr "Clave pública de granjero:"
 
 #: src/components/Settings/SettingsApp.tsx:73
 msgid "Farming"
@@ -169,11 +169,11 @@ msgstr "Valor incorrecto"
 
 #: src/components/Settings/SettingsApp.tsx:112
 msgid "Language"
-msgstr ""
+msgstr "Idioma"
 
 #: src/components/Settings/SettingsApp.tsx:97
 msgid "Light"
-msgstr ""
+msgstr "Claro"
 
 #: src/components/EstimatedFee/EstimatedFee.tsx:232
 msgid "Likely in {0} seconds"
@@ -189,28 +189,28 @@ msgstr ""
 
 #: src/screens/SelectKey/SelectKey.tsx:117
 msgid "Loading list of the keys"
-msgstr ""
+msgstr "Cargando lista de claves"
 
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:150
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:169
 msgid "Log Out"
-msgstr ""
+msgstr "Cerrar Sesión"
 
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:168
 msgid "Logout"
-msgstr ""
+msgstr "Cerrar sesión"
 
 #: src/hooks/useKeyringMigrationPrompt.tsx:16
 msgid "Migrate"
-msgstr ""
+msgstr "Migrar"
 
 #: src/hooks/useKeyringMigrationPrompt.tsx:15
 msgid "Migration required"
-msgstr ""
+msgstr "Se requiere una migración"
 
 #: src/components/Settings/SettingsApp.tsx:64
 msgid "Mode"
-msgstr ""
+msgstr "Modo"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:107
 msgid "NEVER SHARE THESE WITH ANYONE"
@@ -218,7 +218,7 @@ msgstr ""
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:41
 msgid "New passphrase is the same as your current passphrase"
-msgstr ""
+msgstr "La nueva contraseña es la misma que su contraseña actual"
 
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:84
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:138
@@ -236,7 +236,7 @@ msgstr "No conectado"
 #: src/components/AlertDialog/AlertDialog.tsx:23
 #: src/components/ConfirmDialog/ConfirmDialog.tsx:28
 msgid "OK"
-msgstr ""
+msgstr "De acuerdo"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:98
 msgid "Pool Public Key"
@@ -244,12 +244,12 @@ msgstr ""
 
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:66
 msgid "Pool public key:"
-msgstr ""
+msgstr "Clave pública de la piscina:"
 
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:27
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:34
 msgid "Private key {fingerprint}"
-msgstr ""
+msgstr "Clave privada {fingerprint}"
 
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:42
 msgid "Private key:"
@@ -302,20 +302,20 @@ msgstr "Seleccione Llave"
 
 #: src/components/Dropdown/Dropdown.tsx:28
 msgid "Select..."
-msgstr ""
+msgstr "Seleccione..."
 
 #: src/components/Settings/SettingsApp.tsx:128
 msgid "Send Feedback"
-msgstr ""
+msgstr "Envíe su opinión"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:52
 msgid "Setting a passphrase is strongly recommended to protect your keys. Are you sure you want to skip setting a passphrase?"
-msgstr ""
+msgstr "Se recomienda encarecidamente establecer una frase de contraseña para proteger sus claves. ¿Está seguro de que quiere omitir la configuración de una frase de contraseña?"
 
 #: src/components/Settings/Settings.tsx:49
 #: src/components/Settings/Settings.tsx:59
 msgid "Settings"
-msgstr ""
+msgstr "Configuraciones"
 
 #: src/components/AdvancedOptions/AdvancedOptions.tsx:31
 msgid "Show Advanced Options"
@@ -327,11 +327,11 @@ msgstr "Iniciar sesión"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:50
 msgid "Skip"
-msgstr ""
+msgstr "Omitir"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:49
 msgid "Skip Passphrase Protection"
-msgstr ""
+msgstr "Omitir Protección de Contraseña"
 
 #: src/components/ErrorBoundary/ErrorBoundary.tsx:67
 msgid "Something went wrong"
@@ -436,3 +436,4 @@ msgstr ""
 #: src/hooks/useValidateChangePassphraseParams.tsx:35
 msgid "{minPassphraseLength, plural, one {Passphrases must be at least # character in length} other {Passphrases must be at least # characters in length}}"
 msgstr ""
+

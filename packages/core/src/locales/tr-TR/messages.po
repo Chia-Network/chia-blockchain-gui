@@ -6,17 +6,17 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: @lingui/cli\n"
 "Language: tr_TR\n"
-"Project-Id-Version: chia-blockchain\n"
+"Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-10-24 18:14\n"
+"PO-Revision-Date: 2023-03-29 23:26\n"
 "Last-Translator: \n"
 "Language-Team: Turkish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Crowdin-Project: chia-blockchain\n"
-"X-Crowdin-Project-ID: 440660\n"
+"X-Crowdin-Project: 1263bc1f20e1271bda78e84d2f4a6562\n"
+"X-Crowdin-Project-ID: 1\n"
 "X-Crowdin-Language: tr\n"
-"X-Crowdin-File: /main/packages/core/src/locales/en-US/messages.po\n"
-"X-Crowdin-File-ID: 1886\n"
+"X-Crowdin-File: /[Chia-Network.chia-blockchain-gui] main/packages/core/src/locales/en-US/messages.po\n"
+"X-Crowdin-File-ID: 1304\n"
 
 #: src/components/Amount/Amount.tsx:36
 msgid "Amount"
@@ -24,7 +24,7 @@ msgstr "Miktar"
 
 #: src/components/Settings/SettingsApp.tsx:88
 msgid "Appearance"
-msgstr ""
+msgstr "Görünüm"
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:144
 msgid "Are you sure you want to continue? Type in the fingerprint of this wallet key to confirm deletion."
@@ -80,7 +80,7 @@ msgstr "Tüm anahtarları sil"
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:96
 msgid "Delete key {fingerprint}"
-msgstr ""
+msgstr "Anahtarı sil {fingerprint}"
 
 #: src/screens/SelectKey/SelectKey.tsx:84
 msgid "Deleting all keys will permanently remove the keys from your computer, make sure you have backups. Are you sure you want to continue?"
@@ -92,16 +92,16 @@ msgstr ""
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:59
 msgid "Disable"
-msgstr ""
+msgstr "Etkisiz Kıl"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:58
 msgid "Disable Passphrase Protection"
-msgstr ""
+msgstr "Parola Korumasını Etkisiz Kıl"
 
 #: src/components/Back/Back.tsx:37
 #: src/components/FormBackButton/FormBackButton.tsx:28
 msgid "Discard"
-msgstr ""
+msgstr "İptal Et"
 
 #: src/components/CardSimple/CardSimple.tsx:52
 #: src/hooks/useShowError.tsx:11
@@ -122,7 +122,7 @@ msgstr ""
 
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:58
 msgid "Farmer public key:"
-msgstr ""
+msgstr "Çiftçi Açık Anahtarı:"
 
 #: src/components/Settings/SettingsApp.tsx:73
 msgid "Farming"
@@ -173,7 +173,7 @@ msgstr "Dil"
 
 #: src/components/Settings/SettingsApp.tsx:97
 msgid "Light"
-msgstr ""
+msgstr "Açık Renk"
 
 #: src/components/EstimatedFee/EstimatedFee.tsx:232
 msgid "Likely in {0} seconds"
@@ -189,24 +189,24 @@ msgstr ""
 
 #: src/screens/SelectKey/SelectKey.tsx:117
 msgid "Loading list of the keys"
-msgstr ""
+msgstr "Anahtar listesi yükleniyor"
 
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:150
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:169
 msgid "Log Out"
-msgstr ""
+msgstr "Çıkış Yap"
 
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:168
 msgid "Logout"
-msgstr ""
+msgstr "Çıkış"
 
 #: src/hooks/useKeyringMigrationPrompt.tsx:16
 msgid "Migrate"
-msgstr ""
+msgstr "Taşı"
 
 #: src/hooks/useKeyringMigrationPrompt.tsx:15
 msgid "Migration required"
-msgstr ""
+msgstr "Taşıma gerekli"
 
 #: src/components/Settings/SettingsApp.tsx:64
 msgid "Mode"
@@ -218,7 +218,7 @@ msgstr ""
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:41
 msgid "New passphrase is the same as your current passphrase"
-msgstr ""
+msgstr "Yeni parola şu an kullandığınız parola ile aynıdır"
 
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:84
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:138
@@ -249,7 +249,7 @@ msgstr "Herkese Açık Havuz Anahtarı:"
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:27
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:34
 msgid "Private key {fingerprint}"
-msgstr ""
+msgstr "Kişisel anahtar {fingerprint}"
 
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:42
 msgid "Private key:"
@@ -265,7 +265,7 @@ msgstr "Açık anahtar"
 
 #: src/components/ErrorBoundary/ErrorBoundary.tsx:85
 msgid "Reload Application"
-msgstr ""
+msgstr "Uygulamayı Yeniden Yükle"
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:84
 msgid "Rename"
@@ -273,7 +273,7 @@ msgstr ""
 
 #: src/components/ErrorBoundary/ErrorBoundary.tsx:80
 msgid "Report an Issue"
-msgstr ""
+msgstr "Sorun Bildirin"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:124
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:146
@@ -306,11 +306,11 @@ msgstr "Seç..."
 
 #: src/components/Settings/SettingsApp.tsx:128
 msgid "Send Feedback"
-msgstr ""
+msgstr "Geri Bildirim Gönderin"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:52
 msgid "Setting a passphrase is strongly recommended to protect your keys. Are you sure you want to skip setting a passphrase?"
-msgstr ""
+msgstr "Anahtarlarınızı korumak için bir parola oluşturmanız tavsiye edilmektedir. Parola atama adımını atlamak istediğinize emin misiniz?"
 
 #: src/components/Settings/Settings.tsx:49
 #: src/components/Settings/Settings.tsx:59
@@ -327,15 +327,15 @@ msgstr "Oturum Aç"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:50
 msgid "Skip"
-msgstr ""
+msgstr "Atla"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:49
 msgid "Skip Passphrase Protection"
-msgstr ""
+msgstr "Parola Korumasını Atla"
 
 #: src/components/ErrorBoundary/ErrorBoundary.tsx:67
 msgid "Something went wrong"
-msgstr ""
+msgstr "Bir şeyler ters gitti"
 
 #: src/screens/SelectKey/WalletStatus.tsx:73
 msgid "Synced"
@@ -347,7 +347,7 @@ msgstr ""
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:28
 msgid "The provided passphrase and confirmation do not match"
-msgstr ""
+msgstr "Girilen parola ile onaylama paraloası bir biri ile aynı değil"
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:126
 msgid "This key is used for a wallet that may have a non-zero balance. By deleting this key you may lose access to this wallet"
@@ -367,15 +367,15 @@ msgstr ""
 
 #: src/utils/getTransactionResult.ts:15
 msgid "Transaction has not been sent to node yet"
-msgstr ""
+msgstr "İşlem düğüme henüz gönderilmedi"
 
 #: src/utils/getTransactionResult.ts:33
 msgid "Transaction has sent to a full node and is pending inclusion into the mempool. {0}"
-msgstr ""
+msgstr "İşlem düğüme gönderildi ve mempool'a dahil edilmesi için bekleniyor. {0}"
 
 #: src/utils/getTransactionResult.ts:24
 msgid "Transaction has successfully been sent to a full node and included in the mempool."
-msgstr ""
+msgstr "İşlem düğüme başarılı bir şekilde gönderildi ve mempool'a dahil edildi."
 
 #: src/screens/SelectKey/SelectKey.tsx:124
 msgid "Try Again"
@@ -383,7 +383,7 @@ msgstr "Tekrar Dene"
 
 #: src/screens/SelectKey/SelectKey.tsx:128
 msgid "Unable to load the list of the keys"
-msgstr ""
+msgstr "Anahtar listesi yüklenemedi"
 
 #: src/components/LocaleToggle/LocaleToggle.tsx:44
 msgid "Unknown"
@@ -392,15 +392,15 @@ msgstr "Bilinmeyen"
 #: src/components/Back/Back.tsx:36
 #: src/components/FormBackButton/FormBackButton.tsx:27
 msgid "Unsaved Changes"
-msgstr ""
+msgstr "Kaydedilmemiş Değişiklikler"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:61
 msgid "Using a passphrase is strongly recommended to protect your keys. Are you sure you want to disable passphrase protection?"
-msgstr ""
+msgstr "Anahtarlarınızı korumak için bir parola oluşturmanız tavsiye edilmektedir. Parola atama adımını atlamak istediğinize emin misiniz?"
 
 #: src/components/Fee/Fee.tsx:33
 msgid "Value seems high"
-msgstr ""
+msgstr "Değer çok yüksek gibi duruyor"
 
 #: src/components/LayoutDashboard/LayoutDashboard.tsx:116
 #: src/components/Settings/SettingsApp.tsx:81
@@ -427,12 +427,13 @@ msgstr "Kaydedilmemiş değişiklikler var. Değişiklikleri çıkarmak ister mi
 
 #: src/hooks/useKeyringMigrationPrompt.tsx:20
 msgid "Your keys have not been migrated to a new keyring. You will be unable to create new keys or delete existing keys until migration completes. Would you like to migrate your keys now?"
-msgstr ""
+msgstr "Anahtarlarınız yeni anahtarlığa henüz taşınmadı. Taşınma işlemi bitmeden yeni bir anahtar veya var olan anahtarlarınız silme işlemini yapamazsınız. Anahtarlarınızı şimdi taşımak istiyor musunuz?"
 
 #: src/components/Amount/Amount.tsx:86
 msgid "{0, plural, one {mojo} other {mojos}}"
-msgstr ""
+msgstr "{0, plural, one {mojo} other {mojos}}"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:35
 msgid "{minPassphraseLength, plural, one {Passphrases must be at least # character in length} other {Passphrases must be at least # characters in length}}"
-msgstr ""
+msgstr "{minPassphraseLength, plural, one {Parola en az # karakter olmalıdır} other {Parola en az # karakter olmalıdır}}"
+

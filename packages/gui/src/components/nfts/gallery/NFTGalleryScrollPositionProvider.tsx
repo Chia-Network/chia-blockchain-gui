@@ -1,7 +1,7 @@
-import React, { createContext, useCallback, useMemo, useState } from 'react';
+import React, { createContext, useMemo, useState, type ReactNode } from 'react';
 
 export interface NFTGalleryScrollPositionContextData {
-  getScrollPosition: () => number;
+  scrollPosition: number;
   setScrollPosition: (value: number) => void;
 }
 
@@ -10,29 +10,23 @@ export const NFTGalleryScrollPositionContext = createContext<NFTGalleryScrollPos
 );
 
 export type NFTGalleryScrollPositionProviderProps = {
-  children?: React.ReactNode;
+  children?: ReactNode;
 };
-
-/*
-  This context is used to store the scroll position of the NFT gallery.
-  The functions returned in the context are used to get and set the
-  scroll position.
- */
 
 export default function NFTGalleryScrollPositionProvider(props: NFTGalleryScrollPositionProviderProps) {
   const { children } = props;
 
   const [scrollPosition, setScrollPosition] = useState(0);
 
-  const getScrollPosition = useCallback(() => scrollPosition, [scrollPosition]);
-
-  const value = useMemo(
+  const context = useMemo(
     () => ({
-      getScrollPosition,
+      scrollPosition,
       setScrollPosition,
     }),
-    [getScrollPosition, setScrollPosition]
+    [scrollPosition, setScrollPosition]
   );
 
-  return <NFTGalleryScrollPositionContext.Provider value={value}>{children}</NFTGalleryScrollPositionContext.Provider>;
+  return (
+    <NFTGalleryScrollPositionContext.Provider value={context}>{children}</NFTGalleryScrollPositionContext.Provider>
+  );
 }
