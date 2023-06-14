@@ -20,8 +20,8 @@ import {
   TooltipIcon,
   Button,
 } from '@chia-network/core';
+import { ConnectCheckmark } from '@chia-network/icons';
 import { Trans, t } from '@lingui/macro';
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Grid, Typography, Accordion, AccordionDetails, AccordionSummary, Badge, Alert } from '@mui/material';
 import React from 'react';
@@ -294,19 +294,7 @@ export default function WalletSend(props: SendCardProps) {
                         sx={{ width: 100 }}
                       />
                     ))}
-                  </Flex>
-                  {willClawbackBeEnabled && (
-                    <Flex gap={2} justifyContent="flex-start" sx={{ marginTop: 3 }} alignItems="center">
-                      <Typography
-                        component="div"
-                        variant="subtitle2"
-                        sx={(theme) => ({ color: theme.palette.primary.dark })}
-                      >
-                        <CheckCircleIcon
-                          sx={{ verticalAlign: 'middle', marginRight: 0.5, position: 'relative', top: '-2px' }}
-                        />
-                        <Trans>Clawback will be applied. </Trans>{' '}
-                      </Typography>
+                    {willClawbackBeEnabled && (
                       <Button
                         variant="outlined"
                         onClick={() => {
@@ -317,6 +305,36 @@ export default function WalletSend(props: SendCardProps) {
                       >
                         Disable
                       </Button>
+                    )}
+                  </Flex>
+                  {willClawbackBeEnabled && (
+                    <Flex gap={2} justifyContent="flex-start" sx={{ marginTop: 3 }} alignItems="center">
+                      <Typography
+                        component="div"
+                        variant="subtitle2"
+                        sx={(theme) => ({ color: theme.palette.primary.main })}
+                      >
+                        <ConnectCheckmark
+                          sx={(theme) => ({
+                            verticalAlign: 'middle',
+                            position: 'relative',
+                            top: '-5px',
+                            left: '-7px',
+                            width: '31px',
+                            height: '31px',
+
+                            circle: {
+                              stroke: theme.palette.primary.main,
+                              fill: theme.palette.primary.main,
+                            },
+                            path: {
+                              stroke: theme.palette.primary.main,
+                              fill: theme.palette.primary.main,
+                            },
+                          })}
+                        />
+                        <Trans>Clawback will be applied. </Trans>{' '}
+                      </Typography>
                     </Flex>
                   )}
                   {!willClawbackBeEnabled && (

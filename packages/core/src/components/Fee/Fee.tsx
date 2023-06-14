@@ -15,7 +15,7 @@ export default function Fee(props: FeeProps) {
         const isLow = mojo.gt('0') && mojo.lt('1');
 
         if (!value) {
-          return <Trans>Recommended value: 0.000 0xxx</Trans>;
+          return <Trans>Recommended value: 0.000005</Trans>;
         }
 
         if (isHigh) {
