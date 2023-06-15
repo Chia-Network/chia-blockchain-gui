@@ -88,33 +88,28 @@ export default function VCList() {
   useVCCoinAdded(() => {});
 
   React.useEffect(() => {
-    if (blockchainVCs?.vcRecords) {
-      Promise.all(
-        blockchainVCs.vcRecords
-          .filter((vcRecord: any) => !!vcRecord.vc?.proofHash)
-          .map(
-            (vcRecord) =>
-              new Promise((resolve, reject) => {
-                getProofsForRoot(vcRecord.vc?.proofHash).then((result: any) => {
-                  if (proofs) {
-                    resolve([vcRecord.vc?.launcherId, result.data?.proofs]);
-                  } else {
-                    reject();
-                  }
-                });
-              })
-          )
-      ).then((results) => {
-        const proofsObj: any = {};
-        results.forEach((result: any) => {
-          const vcId = result[0];
-          const p = result[1];
-          proofsObj[vcId] = p;
-        });
-        setProofs(proofsObj);
+    async function loadProofsData() {
+      if (isLoading || !blockchainVCs) {
+        return;
+      }
+
+      const mapping: Record<string, any> = {};
+
+      const proofDataPromises = blockchainVCs.vcRecords.map(async (vcRecord: any) => {
+        const proofHash = (vcRecord as any)?.vc?.proofHash;
+        if (proofHash) {
+          const { data } = await getProofsForRoot({ root: proofHash });
+          const vcProofs = data?.proofs;
+          mapping[proofHash] = vcProofs;
+        }
       });
+      await Promise.all(proofDataPromises);
+
+      setProofs(mapping);
     }
-  }, [blockchainVCs, getProofsForRoot, proofs]);
+
+    loadProofsData();
+  }, [isLoading, blockchainVCs, getProofsForRoot]);
 
   const COMPONENTS = {
     Item: ItemContainer,
@@ -135,7 +130,9 @@ export default function VCList() {
   }
 
   function renderVCCard(index: number, vcRecord: any) {
-    return <VCCard vcRecord={vcRecord} />;
+    const proofHash = vcRecord?.vc?.proofHash;
+    const vcProofs = proofHash ? proofs[proofHash] : undefined;
+    return <VCCard vcRecord={vcRecord} proofs={vcProofs} />;
   }
 
   const allVCs = React.useMemo(() => {
@@ -144,7 +141,7 @@ export default function VCList() {
       return blockchainVCs?.vcRecords
         .map((record) => ({
           ...record,
-          isValid: !!(proofs[record.vc.launcherId] && Object.keys(proofs[record.vc.launcherId]).length > 0),
+          isValid: !!(proofs[record.vc.proofHash] && Object.keys(proofs[record.vc.proofHash]).length > 0),
         }))
         .concat(VCsLocalStorage[fingerprint])
         .filter(Boolean);
