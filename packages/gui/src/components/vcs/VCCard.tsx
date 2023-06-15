@@ -4,6 +4,7 @@ import {
   usePrefs,
   useLocalStorage,
   useGetLoggedInFingerprintQuery,
+  useGetTransactionAsyncMutation,
 } from '@chia-network/api-react';
 import { Truncate, Button, useOpenDialog, AlertDialog, Flex, More, MenuItem } from '@chia-network/core';
 import { Burn as BurnIcon } from '@chia-network/icons';
@@ -45,13 +46,27 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
   const openDialog = useOpenDialog();
   const [vcTitlesObject] = usePrefs<any>('verifiable-credentials-titles', {});
   const vcTitle = React.useMemo(
-    () => vcTitlesObject[vcRecord?.vc?.launcherId] || t`Verifiable Credential`,
-    [vcRecord?.vc?.launcherId, vcTitlesObject]
+    () => vcTitlesObject[vcRecord?.vc?.launcherId] || vcTitlesObject[vcRecord?.sha256] || t`Verifiable Credential`,
+    [vcRecord?.vc?.launcherId, vcRecord?.sha256, vcTitlesObject]
   );
 
   const [isEditingTitle, setIsEditingTitle] = React.useState(false);
   const [VCsLocalStorage, setVCsLocalStorage] = useLocalStorage<any>('verifiable-credentials-local', {});
+  const [pendingRevoke, setPendingRevoke] = useLocalStorage<any>('verifiable-credentials-pending-revoke', {});
   const { data: fingerprint } = useGetLoggedInFingerprintQuery();
+  const [getTransactionAsync] = useGetTransactionAsyncMutation();
+
+  React.useEffect(() => {
+    if (vcRecord?.vc?.launcherId && pendingRevoke[vcRecord.vc.launcherId]) {
+      getTransactionAsync({ transactionId: pendingRevoke[vcRecord.vc.launcherId] }).then((res) => {
+        if (res.error) {
+          const copyPendingRevoke = { ...pendingRevoke };
+          delete copyPendingRevoke[vcRecord.vc.launcherId];
+          setPendingRevoke(copyPendingRevoke);
+        }
+      });
+    }
+  }, [getTransactionAsync, pendingRevoke, vcRecord?.vc?.launcherId, setPendingRevoke]);
 
   if (!vcRecord) return null;
 
@@ -84,7 +99,11 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
     const vcType = Array.isArray(vcRecord.type) && vcRecord.type.indexOf('KYCCredential') > -1 ? 'KYCCredential' : null;
 
     return (
-      <>
+      <Box
+        sx={{
+          color: vcRecord?.vc?.launcherId && pendingRevoke[vcRecord.vc.launcherId] ? '#999' : 'inherit',
+        }}
+      >
         {didString && (
           <RenderProperty label={<Trans>Issuer DID</Trans>}>
             {isDetail ? (
@@ -121,7 +140,7 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
             <Trans>Expired</Trans>
           ) : vcRecord.revoked ? (
             <Trans>Revoked</Trans>
-          ) : vcRecord.vc?.proofHash || proofs ? (
+          ) : proofs && Object.keys(proofs).length ? (
             <Trans>Valid</Trans>
           ) : (
             <Trans>Invalid</Trans>
@@ -133,12 +152,20 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
         {isDetail && proofs && Object.keys(proofs).length > 0 && (
           <RenderProperty label={<Trans>Proofs</Trans>}>{renderProofs()}</RenderProperty>
         )}
-      </>
+      </Box>
     );
   }
 
   function renderViewDetailButton() {
     if (isDetail) return null;
+
+    if (vcRecord?.vc?.launcherId && pendingRevoke[vcRecord.vc.launcherId]) {
+      return (
+        <Button variant="outlined" disabled sx={{ width: '100%' }}>
+          <Trans>Pending removal</Trans>
+        </Button>
+      );
+    }
 
     return (
       <Button variant="outlined" sx={{ width: '100%' }}>
@@ -205,6 +232,9 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
     }
 
     if (revokedResponse?.data?.success) {
+      if (Array.isArray(revokedResponse.data?.transactions) && revokedResponse.data?.transactions.length > 1) {
+        setPendingRevoke({ ...pendingRevoke, [vcRecord.vc.launcherId]: revokedResponse.data.transactions[1].name });
+      }
       await openDialog(
         <AlertDialog title={<Trans>Verifiable Credential Removed</Trans>}>
           <Trans>Transaction sent to blockchain successfully.</Trans>
@@ -236,7 +266,7 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
     return (
       <Flex sx={{ marginBottom: '10px', padding: '8px' }}>
         <More>
-          {isVCLocal() && vcRecord.revoked && (
+          {isVCLocal() && (
             <MenuItem onClick={() => openRevokeVCDialog('remove')} close>
               <ListItemIcon>
                 <DeleteIcon />
@@ -246,7 +276,7 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
               </Typography>
             </MenuItem>
           )}
-          {!vcRecord.revoked && (
+          {!isVCLocal() && (
             <MenuItem onClick={() => openRevokeVCDialog('revoke')} close>
               <ListItemIcon>
                 <BurnIcon />
@@ -270,7 +300,7 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
       return (
         <Box sx={{ marginBottom: '10px' }}>
           <VCEditTitle
-            vcId={vcRecord?.vc?.launcherId}
+            vcId={vcRecord?.vc?.launcherId || vcRecord.sha256}
             onClose={() => {
               setIsEditingTitle(false);
             }}

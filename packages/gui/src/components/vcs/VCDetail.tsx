@@ -14,7 +14,10 @@ import VCCard from './VCCard';
 export default function VCDetail() {
   const { vcId } = useParams();
   const { isLoading, data } = useGetVCQuery({ vcId: vcId as string });
-  const { data: proofsData } = useGetProofsForRootQuery((data as any)?.vc?.proofHash);
+  const { data: proofsData } = useGetProofsForRootQuery(
+    { root: (data as any)?.vc?.proofHash },
+    { skip: isLoading || !data }
+  );
   const [VCsLocalStorage] = useLocalStorage<any>('verifiable-credentials-local', {});
 
   const navigate = useNavigate();
