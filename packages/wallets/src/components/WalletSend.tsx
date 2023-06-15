@@ -26,6 +26,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Grid, Typography, Accordion, AccordionDetails, AccordionSummary, Badge, Alert } from '@mui/material';
 import React from 'react';
 import { useForm, useWatch } from 'react-hook-form';
+import { useSearchParams } from 'react-router-dom';
 import isNumeric from 'validator/es/lib/isNumeric';
 
 import useClawbackDefaultTime, { getClawbackTimeInSeconds } from '../hooks/useClawbackDefaultTime';
@@ -62,6 +63,7 @@ export default function WalletSend(props: SendCardProps) {
   const [isClawbackExpanded, setIsClawbackExpanded] = React.useState<boolean>(isClawbackDefaultTimeEnabled);
   const [sendTransaction, { isLoading: isSendTransactionLoading }] = useSendTransactionMutation();
   const [farmBlock] = useFarmBlockMutation();
+  const [, setSearchParams] = useSearchParams();
   const methods = useForm<SendTransactionData>({
     defaultValues: {
       address: '',
@@ -189,6 +191,8 @@ export default function WalletSend(props: SendCardProps) {
     methods.reset();
     // Workaround to force a re-render of the form. Without this, the fee field will not be cleared.
     setSubmissionCount((prev: number) => prev + 1);
+
+    setSearchParams({ selectedTab: 'summary' });
   }
 
   return (
