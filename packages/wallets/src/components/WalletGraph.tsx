@@ -151,6 +151,10 @@ export default function WalletGraph(props: WalletGraphProps) {
     defaultRowsPerPage: 50,
     defaultPage: 0,
     sortKey: 'RELEVANCE',
+    typeFilter: {
+      mode: 2,
+      values: [TransactionType.INCOMING_CLAWBACK_RECEIVE, TransactionType.INCOMING_CLAWBACK_SEND],
+    },
   });
   const { data: walletBalance, isLoading: isWalletBalanceLoading } = useGetWalletBalanceQuery({
     walletId,
