@@ -160,6 +160,11 @@ export default class Farmer extends Service {
     };
   }
 
+  resetMissingSignagePoints() {
+    this.missingSps = [];
+    this.totalMissingSps = 0;
+  }
+
   getFilterChallengeStat(height: number) {
     const n = this.totalPlotFilterChallenge;
     const x = this.totalPlotsPassingFilter;
@@ -180,6 +185,11 @@ export default class Farmer extends Service {
       x,
       fb,
     };
+  }
+
+  resetFilterChallengeStat() {
+    this.totalPlotFilterChallenge = 0;
+    this.totalPlotsPassingFilter = 0;
   }
 
   async getRewardTargets(args: { searchForPrivateKey: boolean }) {

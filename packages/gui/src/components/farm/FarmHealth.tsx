@@ -2,11 +2,12 @@ import {
   useGetFilterChallengeStatQuery,
   useGetMissingSignagePointsQuery,
   useGetPoolStateQuery,
+  useResetMissingSignagePointsMutation,
+  useResetFilterChallengeStatMutation,
 } from '@chia-network/api-react';
 import { Flex, StateIndicator, State, Tooltip } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
-import { Box, Paper, Typography, CircularProgress } from '@mui/material';
-import BigNumber from 'bignumber.js';
+import { Box, Button, Paper, Typography, CircularProgress } from '@mui/material';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -15,7 +16,7 @@ import useFarmerStatus from '../../hooks/useFarmerStatus';
 
 const StyledTable = styled.table`
   border-collapse: collapse;
-  td:first-child {
+  tr:not(:last-child) td:first-child {
     padding-right: 8px;
   }
   td {
@@ -23,6 +24,13 @@ const StyledTable = styled.table`
   }
   tr:not(:first-child) td {
     border-top: 1px solid #ddd;
+  }
+  tr:last-child td {
+    padding-top: 4px;
+    & > div {
+      display: flex;
+      justify-content: flex-end;
+    }
   }
 `;
 
@@ -64,55 +72,65 @@ const indicatorStyle = {
   },
 };
 
-function factorial(n: number) {
-  let k = n;
-  let f = new BigNumber(1);
-  while (k > 1) {
-    f = f.multipliedBy(k);
-    k--;
+const ln2pi = Math.log(2 * Math.PI);
+// Compute ln(n!) - natural logarithm of the factorial of n
+function lnFact(m: number) {
+  let k = m;
+  if (m === 0 || m === 1) {
+    return 0;
   }
-  return f;
+  if (m < 10) {
+    // Compute factorial directly for small n
+    let f = 2;
+    for (let i = 3; i <= m; i++) {
+      f *= i;
+    }
+    return Math.log(f);
+  }
+  // Log-Gamma function approximation
+  k++;
+  const lnN = Math.log(k);
+  const one810 = 0.001_234_567_901_234_567_9;
+  let ret = ln2pi - lnN;
+  let k6 = k * k * k;
+  k6 *= k6;
+  ret += k * (2 * lnN + Math.log(k * Math.sinh(1 / k) + one810 / k6) - 2);
+  ret /= 2;
+  return ret;
 }
 
-function permute(n: number, k: number) {
-  let i = 0;
-  let m = n;
-  let f = new BigNumber(1);
-  while (i < k) {
-    f = f.multipliedBy(m);
-    m--;
-    i++;
-  }
-  return f;
+// Compute ln(C(n, k)) - natural logarithm of the binomial coefficient C(n, k)
+function lnComb(m: number, k: number, lnFactM: number) {
+  return lnFactM - lnFact(k) - lnFact(m - k);
 }
 
-function combination(n: number, k: number) {
-  if (k > n / 2) {
-    return permute(n, n - k).dividedBy(factorial(n - k));
-  }
-  return permute(n, k).dividedBy(factorial(k));
-}
+// Compute probability P(X <= t) where X has binomial distribution with n
+// trials and success probability p.
+function binomialProb(n: number, p: number, t: number) {
+  let s = 0;
+  const lnP = Math.log(p);
+  const lnPInv = Math.log(1 - p);
+  const lnFactN = lnFact(n);
 
-function getCumulativeBinomialProb(n: number, x: number, p: number) {
-  let P = new BigNumber(0);
-  for (let i = 0; i <= x; i++) {
-    P = P.plus(
-      combination(n, i)
-        .multipliedBy(new BigNumber(p).exponentiatedBy(i))
-        .multipliedBy(new BigNumber(1 - p).exponentiatedBy(n - i))
-    );
+  for (let i = 0; i <= t; i++) {
+    const c = lnComb(n, i, lnFactN);
+    const lnProb = c + i * lnP + (n - i) * lnPInv;
+    s += Math.exp(lnProb);
   }
-  return P.toNumber();
+
+  return s;
 }
 
 export default React.memo(FarmHealth);
 function FarmHealth() {
   const { farmerStatus, blockchainState } = useFarmerStatus();
   const { data: missingSpsData, isLoading: isLoadingMissingSps } = useGetMissingSignagePointsQuery();
+  const [resetMissingSps] = useResetMissingSignagePointsMutation();
   const { data: poolStateData, isLoading: isLoadingPoolStateData } = useGetPoolStateQuery();
   const { data: filterChallengeStat, isLoading: isLoadingFilterChallengeStat } = useGetFilterChallengeStatQuery(
     blockchainState?.peak.height || 0
   );
+  const [resetFilterChallengeStat] = useResetFilterChallengeStatMutation();
   const significantLevel = 0.01; // 1%
 
   const famSyncStatus = React.useMemo(() => {
@@ -159,7 +177,7 @@ function FarmHealth() {
     if (!filterChallengeStat) {
       return null;
     }
-    return getCumulativeBinomialProb(filterChallengeStat.n, filterChallengeStat.x, 1 / 2 ** filterChallengeStat.fb);
+    return binomialProb(filterChallengeStat.n, 1 / 2 ** filterChallengeStat.fb, filterChallengeStat.x);
   }, [filterChallengeStat]);
 
   const plotsPassingFilter = React.useMemo(() => {
@@ -272,6 +290,15 @@ function FarmHealth() {
             </td>
             <td>{displayPercentage} %</td>
           </tr>
+          <tr>
+            <td colSpan={2}>
+              <div>
+                <Button size="small" onClick={() => resetFilterChallengeStat()}>
+                  <Trans>Reset</Trans>
+                </Button>
+              </div>
+            </td>
+          </tr>
         </tbody>
       </StyledTable>
     );
@@ -286,26 +313,50 @@ function FarmHealth() {
         </Box>
       </Tooltip>
     );
-  }, [plotsPassingFilter, isLoadingFilterChallengeStat, filterChallengeStat, cumulativeBinomialProbability]);
+  }, [
+    plotsPassingFilter,
+    isLoadingFilterChallengeStat,
+    filterChallengeStat,
+    cumulativeBinomialProbability,
+    resetFilterChallengeStat,
+  ]);
 
-  const missingSps = React.useMemo(() => {
+  const missingSpsWithTooltip = React.useMemo(() => {
     if (isLoadingMissingSps) {
       return <CircularProgress color="secondary" size={14} />;
     }
     if (!missingSpsData?.totalMissingSps) {
       return (
-        <StateIndicator state={State.SUCCESS} indicator reversed>
-          <Trans>None</Trans>
-        </StateIndicator>
+        <Box>
+          <Typography variant="body2">
+            <Trans>Missing signage point</Trans>
+          </Typography>
+          <StateIndicator state={State.SUCCESS} indicator reversed>
+            <Trans>None</Trans>
+          </StateIndicator>
+        </Box>
       );
     }
 
-    return (
-      <StateIndicator state={State.WARNING} indicator reversed>
-        {missingSpsData.totalMissingSps}
-      </StateIndicator>
+    const tooltipTitle = (
+      <Button size="small" onClick={() => resetMissingSps()}>
+        <Trans>Reset</Trans>
+      </Button>
     );
-  }, [missingSpsData, isLoadingMissingSps]);
+
+    return (
+      <Tooltip title={tooltipTitle}>
+        <Box>
+          <Typography variant="body2">
+            <Trans>Missing signage point</Trans>
+          </Typography>
+          <StateIndicator state={State.WARNING} indicator reversed>
+            {missingSpsData.totalMissingSps}
+          </StateIndicator>
+        </Box>
+      </Tooltip>
+    );
+  }, [missingSpsData, isLoadingMissingSps, resetMissingSps]);
 
   const stalePartials = React.useMemo(() => {
     if (isLoadingPoolStateData) {
@@ -355,12 +406,7 @@ function FarmHealth() {
           {famSyncStatus}
         </Box>
         {plotPassingFilterWithTooltip}
-        <Box>
-          <Typography variant="body2">
-            <Trans>Missing signage point</Trans>
-          </Typography>
-          {missingSps}
-        </Box>
+        {missingSpsWithTooltip}
         <Box>
           <Typography variant="body2">
             <Trans>Stale partials</Trans>

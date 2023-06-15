@@ -20,6 +20,8 @@ export const apiWithTag = api.enhanceEndpoints({
     'HarvestersSummary',
     'HarvesterPlotsKeysMissing',
     'HarvesterPlotsDuplicates',
+    'MissingSignagePoints',
+    'FilterChallengeStat',
   ],
 });
 
@@ -265,6 +267,7 @@ export const farmerApi = apiWithTag.injectEndpoints({
     }),
 
     getMissingSignagePoints: query(build, Farmer, 'getMissingSignagePoints', {
+      providesTags: ['MissingSignagePoints'],
       onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, api, [
         {
           command: 'onNewSignagePoint',
@@ -274,7 +277,12 @@ export const farmerApi = apiWithTag.injectEndpoints({
       ]),
     }),
 
+    resetMissingSignagePoints: mutation(build, Farmer, 'resetMissingSignagePoints', {
+      invalidatesTags: ['MissingSignagePoints'],
+    }),
+
     getFilterChallengeStat: query(build, Farmer, 'getFilterChallengeStat', {
+      providesTags: ['FilterChallengeStat'],
       onCacheEntryAdded: onCacheEntryAddedInvalidate(baseQuery, api, [
         {
           command: 'onFarmingInfoChanged',
@@ -282,6 +290,10 @@ export const farmerApi = apiWithTag.injectEndpoints({
           endpoint: 'getFilterChallengeStat',
         },
       ]),
+    }),
+
+    resetFilterChallengeStat: mutation(build, Farmer, 'resetFilterChallengeStat', {
+      invalidatesTags: ['FilterChallengeStat'],
     }),
   }),
 });
@@ -307,5 +319,7 @@ export const {
   useSetPayoutInstructionsMutation,
   useGetNewFarmingInfoQuery,
   useGetMissingSignagePointsQuery,
+  useResetMissingSignagePointsMutation,
   useGetFilterChallengeStatQuery,
+  useResetFilterChallengeStatMutation,
 } = farmerApi;
