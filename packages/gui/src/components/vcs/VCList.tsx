@@ -3,6 +3,7 @@ import {
   useLocalStorage,
   useGetLoggedInFingerprintQuery,
   useLazyGetProofsForRootQuery,
+  useVCCoinAdded,
 } from '@chia-network/api-react';
 import { Flex, More, MenuItem, AlertDialog, useOpenDialog, useDarkMode } from '@chia-network/core';
 import {
@@ -82,6 +83,9 @@ export default function VCList() {
   const [getProofsForRoot] = useLazyGetProofsForRootQuery();
 
   const [proofs, setProofs] = React.useState<any>({});
+
+  /* We only need to subscribe to event and the list will be updated automatically on added VC */
+  useVCCoinAdded(() => {});
 
   React.useEffect(() => {
     if (blockchainVCs?.vcRecords) {
