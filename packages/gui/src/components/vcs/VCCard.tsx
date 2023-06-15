@@ -140,7 +140,7 @@ export default function VCCard(props: { vcRecord: any; isDetail?: boolean; proof
             <Trans>Expired</Trans>
           ) : vcRecord.revoked ? (
             <Trans>Revoked</Trans>
-          ) : proofs && Object.keys(proofs).length ? (
+          ) : vcRecord.isValid || !!(proofs && Object.keys(proofs).length > 0) ? (
             <Trans>Valid</Trans>
           ) : (
             <Trans>Invalid</Trans>

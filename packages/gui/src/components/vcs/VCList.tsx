@@ -1,4 +1,10 @@
-import { useGetVCListQuery, useLocalStorage, useGetLoggedInFingerprintQuery } from '@chia-network/api-react';
+import {
+  useGetVCListQuery,
+  useLocalStorage,
+  useGetLoggedInFingerprintQuery,
+  useLazyGetProofsForRootQuery,
+  useVCCoinAdded,
+} from '@chia-network/api-react';
 import { Flex, More, MenuItem, AlertDialog, useOpenDialog, useDarkMode } from '@chia-network/core';
 import {
   VCZeroStateBackground as VCZeroStateBackgroundIcon,
@@ -74,6 +80,37 @@ export default function VCList() {
 
   const { isDarkMode } = useDarkMode();
 
+  const [getProofsForRoot] = useLazyGetProofsForRootQuery();
+
+  const [proofs, setProofs] = React.useState<any>({});
+
+  /* We only need to subscribe to event and the list will be updated automatically on added VC */
+  useVCCoinAdded(() => {});
+
+  React.useEffect(() => {
+    async function loadProofsData() {
+      if (isLoading || !blockchainVCs) {
+        return;
+      }
+
+      const mapping: Record<string, any> = {};
+
+      const proofDataPromises = blockchainVCs.vcRecords.map(async (vcRecord: any) => {
+        const proofHash = (vcRecord as any)?.vc?.proofHash;
+        if (proofHash) {
+          const { data } = await getProofsForRoot({ root: proofHash });
+          const vcProofs = data?.proofs;
+          mapping[proofHash] = vcProofs;
+        }
+      });
+      await Promise.all(proofDataPromises);
+
+      setProofs(mapping);
+    }
+
+    loadProofsData();
+  }, [isLoading, blockchainVCs, getProofsForRoot]);
+
   const COMPONENTS = {
     Item: ItemContainer,
     List: ListContainer,
@@ -93,16 +130,24 @@ export default function VCList() {
   }
 
   function renderVCCard(index: number, vcRecord: any) {
-    return <VCCard vcRecord={vcRecord} />;
+    const proofHash = vcRecord?.vc?.proofHash;
+    const vcProofs = proofHash ? proofs[proofHash] : undefined;
+    return <VCCard vcRecord={vcRecord} proofs={vcProofs} />;
   }
 
   const allVCs = React.useMemo(() => {
     if (fingerprint) {
       // filter out undefined values
-      return (blockchainVCs?.vcRecords || []).concat(VCsLocalStorage[fingerprint]).filter(Boolean);
+      return blockchainVCs?.vcRecords
+        .map((record) => ({
+          ...record,
+          isValid: !!(proofs[record.vc.proofHash] && Object.keys(proofs[record.vc.proofHash]).length > 0),
+        }))
+        .concat(VCsLocalStorage[fingerprint])
+        .filter(Boolean);
     }
     return [];
-  }, [VCsLocalStorage, blockchainVCs?.vcRecords, fingerprint]);
+  }, [VCsLocalStorage, blockchainVCs?.vcRecords, fingerprint, proofs]);
 
   if (isLoading) return null;
 

@@ -195,6 +195,7 @@ export const {
   useSpendVCMutation,
   useAddVCProofsMutation,
   useGetProofsForRootQuery,
+  useLazyGetProofsForRootQuery,
   useRevokeVCMutation,
   // clawback
   useSetAutoClaimMutation,
