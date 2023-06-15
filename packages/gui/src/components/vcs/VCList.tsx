@@ -1,4 +1,9 @@
-import { useGetVCListQuery, useLocalStorage, useGetLoggedInFingerprintQuery } from '@chia-network/api-react';
+import {
+  useGetVCListQuery,
+  useLocalStorage,
+  useGetLoggedInFingerprintQuery,
+  useLazyGetProofsForRootQuery,
+} from '@chia-network/api-react';
 import { Flex, More, MenuItem, AlertDialog, useOpenDialog, useDarkMode } from '@chia-network/core';
 import {
   VCZeroStateBackground as VCZeroStateBackgroundIcon,
@@ -74,6 +79,39 @@ export default function VCList() {
 
   const { isDarkMode } = useDarkMode();
 
+  const [getProofsForRoot] = useLazyGetProofsForRootQuery();
+
+  const [proofs, setProofs] = React.useState<any>({});
+
+  React.useEffect(() => {
+    if (blockchainVCs?.vcRecords) {
+      Promise.all(
+        blockchainVCs.vcRecords
+          .filter((vcRecord: any) => !!vcRecord.vc?.proofHash)
+          .map(
+            (vcRecord) =>
+              new Promise((resolve, reject) => {
+                getProofsForRoot(vcRecord.vc?.proofHash).then((result: any) => {
+                  if (proofs) {
+                    resolve([vcRecord.vc?.launcherId, result.data?.proofs]);
+                  } else {
+                    reject();
+                  }
+                });
+              })
+          )
+      ).then((results) => {
+        const proofsObj: any = {};
+        results.forEach((result: any) => {
+          const vcId = result[0];
+          const p = result[1];
+          proofsObj[vcId] = p;
+        });
+        setProofs(proofsObj);
+      });
+    }
+  }, [blockchainVCs, getProofsForRoot, proofs]);
+
   const COMPONENTS = {
     Item: ItemContainer,
     List: ListContainer,
@@ -99,10 +137,16 @@ export default function VCList() {
   const allVCs = React.useMemo(() => {
     if (fingerprint) {
       // filter out undefined values
-      return (blockchainVCs?.vcRecords || []).concat(VCsLocalStorage[fingerprint]).filter(Boolean);
+      return blockchainVCs?.vcRecords
+        .map((record) => ({
+          ...record,
+          isValid: !!(proofs[record.vc.launcherId] && Object.keys(proofs[record.vc.launcherId]).length > 0),
+        }))
+        .concat(VCsLocalStorage[fingerprint])
+        .filter(Boolean);
     }
     return [];
-  }, [VCsLocalStorage, blockchainVCs?.vcRecords, fingerprint]);
+  }, [VCsLocalStorage, blockchainVCs?.vcRecords, fingerprint, proofs]);
 
   if (isLoading) return null;
 
