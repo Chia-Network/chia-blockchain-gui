@@ -1,4 +1,4 @@
-import { WalletType, TransactionType, toBech32m } from '@chia-network/api';
+import { WalletType, TransactionType, TransactionTypeFilterMode, toBech32m } from '@chia-network/api';
 import type { Transaction } from '@chia-network/api';
 import {
   useGetOfferRecordMutation,
@@ -261,7 +261,7 @@ export default function WalletHistory(props: Props) {
     reverse: false,
     // confirmed: true,
     typeFilter: {
-      mode: 2,
+      mode: TransactionTypeFilterMode.EXCLUDE,
       values: [TransactionType.INCOMING_CLAWBACK_RECEIVE, TransactionType.INCOMING_CLAWBACK_SEND],
     },
   });
