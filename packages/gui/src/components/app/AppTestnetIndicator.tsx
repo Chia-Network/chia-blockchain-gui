@@ -4,12 +4,18 @@ import { Button, Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import React, { useState } from 'react';
 
+import useWalletKeyAddresses from '../../hooks/useWalletKeyAddresses';
+
 export default function AppTestnetIndicator() {
   const isTestnet = useCurrencyCode() === 'TXCH';
   const theme = useTheme();
   const borderColor = (theme.palette as any).colors.blue.border;
   const [clickCount, setClickCount] = useState(0);
   const openDialog = useOpenDialog();
+
+  const x = useWalletKeyAddresses();
+  // eslint-disable-next-line no-console -- temporary
+  console.log('x: ', x);
 
   const BorderStyle = {
     borderRadius: 2,
