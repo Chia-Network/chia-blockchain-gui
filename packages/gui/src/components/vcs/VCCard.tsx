@@ -28,7 +28,7 @@ type RenderPropertyProps = {
 function RenderProperty(props: RenderPropertyProps) {
   const { label, children } = props;
   return (
-    <Box>
+    <Box sx={{ padding: '5px 0' }}>
       <Typography sx={{ fontSize: '12px' }}>{label}</Typography>
       <Box>{children}</Box>
     </Box>
