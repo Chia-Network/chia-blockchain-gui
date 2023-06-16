@@ -150,6 +150,25 @@ const walletConnectCommands: WalletConnectCommand[] = [
     ],
   },
   {
+    command: 'spendClawbackCoins',
+    label: <Trans>Claw back or claim claw back transaction</Trans>,
+    service: ServiceName.WALLET,
+    waitForSync: true,
+    params: [
+      {
+        name: WalletConnectCommandParamName.COIN_IDS,
+        label: <Trans>Coin Ids</Trans>,
+        type: 'object',
+      },
+      {
+        name: WalletConnectCommandParamName.FEE,
+        label: <Trans>Fee</Trans>,
+        type: 'BigNumber',
+        displayComponent: (value) => <MojoToChia value={value} />,
+      },
+    ],
+  },
+  {
     command: 'signMessageById',
     label: <Trans>Sign Message by Id</Trans>,
     service: ServiceName.WALLET,
