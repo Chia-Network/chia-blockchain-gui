@@ -247,7 +247,15 @@ function FarmHealth() {
           </tr>
           <tr>
             <td>
-              <Trans>Significant level</Trans>
+              Probability where {filterChallengeStat.x} or fewer plots
+              <br />
+              passing filter in {filterChallengeStat.n} challenges
+            </td>
+            <td>{displayPercentage} %</td>
+          </tr>
+          <tr>
+            <td>
+              <Trans>Warning Threshold</Trans>
             </td>
             <td>
               <StyledInput
@@ -262,14 +270,6 @@ function FarmHealth() {
               />
               %
             </td>
-          </tr>
-          <tr>
-            <td>
-              Probability where {filterChallengeStat.x} or fewer plots
-              <br />
-              passing filter in {filterChallengeStat.n} challenges
-            </td>
-            <td>{displayPercentage} %</td>
           </tr>
           <tr>
             <td colSpan={2}>

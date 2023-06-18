@@ -366,7 +366,7 @@ export default function SettingsHarvester() {
           </Grid>
           <Grid item container style={{ width: '400px' }} gap={2}>
             <SettingsText>
-              <Trans>&lt;INSERT DESCRIPTION HERE&gt;</Trans>
+              <Trans>Number of plot files scanned in parallel during harvesting.</Trans>
             </SettingsText>
           </Grid>
         </Grid>
@@ -382,7 +382,7 @@ export default function SettingsHarvester() {
           </Grid>
           <Grid item container style={{ width: '400px' }} gap={2}>
             <SettingsText>
-              <Trans>&lt;INSERT DESCRIPTION HERE&gt;</Trans>
+              <Trans>Number of threads for a decompressor process</Trans>
             </SettingsText>
           </Grid>
         </Grid>
