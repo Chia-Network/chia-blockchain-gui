@@ -7,6 +7,16 @@ import type { Options } from './Service';
 
 const FARMING_INFO_MAX_ITEMS = 1000;
 export type FarmingInfoWithIndex = FarmingInfo & { index: number };
+export type HarvesterConfig = {
+  useGpuHarvesting: boolean | null;
+  gpuIndex: number | null;
+  enforceGpuIndex: boolean | null;
+  disableCpuAffinity: boolean | null;
+  parallelDecompressersCount: number | null;
+  decompresserThreadCount: number | null;
+  recursivePlotScan: boolean | null;
+  refreshParameterIntervalSeconds: number | null;
+};
 
 export default class Harvester extends Service {
   private farmingInfo: FarmingInfoWithIndex[] = [];
@@ -52,16 +62,7 @@ export default class Harvester extends Service {
   }
 
   async getHarvesterConfig() {
-    return this.command<{
-      useGpuHarvesting: boolean | null;
-      gpuIndex: number | null;
-      enforceGpuIndex: boolean | null;
-      disableCpuAffinity: boolean | null;
-      parallelDecompressersCount: number | null;
-      decompresserThreadCount: number | null;
-      recursivePlotScan: boolean | null;
-      refreshParameterIntervalSeconds: number | null;
-    }>('get_harvester_config');
+    return this.command<HarvesterConfig>('get_harvester_config');
   }
 
   async updateHarvesterConfig(args: {
