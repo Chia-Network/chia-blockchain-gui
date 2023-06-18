@@ -1,7 +1,7 @@
 import { ServiceName } from '@chia-network/api';
 import {
-  useGetHarvestingModeQuery,
-  useUpdateHarvestingModeMutation,
+  useGetHarvesterConfigQuery,
+  useUpdateHarvesterConfigMutation,
   useClientStartServiceMutation,
   useClientStopServiceMutation,
 } from '@chia-network/api-react';
@@ -14,8 +14,8 @@ import React from 'react';
 const messageAnchorOrigin = { vertical: 'bottom', horizontal: 'center' };
 
 export default function SettingsHarvester() {
-  const { data, isLoading } = useGetHarvestingModeQuery();
-  const [updateHarvestingMode, { isLoading: isUpdating }] = useUpdateHarvestingModeMutation();
+  const { data, isLoading } = useGetHarvesterConfigQuery();
+  const [updateHarvestingMode, { isLoading: isUpdating }] = useUpdateHarvesterConfigMutation();
   const [startService, { isLoading: isStarting }] = useClientStartServiceMutation();
   const [stopService, { isLoading: isStopping }] = useClientStopServiceMutation();
   const [message, setMessage] = React.useState<React.ReactElement | false>(false);

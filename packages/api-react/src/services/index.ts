@@ -221,8 +221,8 @@ export const {
   useAddPlotDirectoryMutation,
   useRemovePlotDirectoryMutation,
   useGetFarmingInfoQuery,
-  useGetHarvestingModeQuery,
-  useUpdateHarvestingModeMutation,
+  useGetHarvesterConfigQuery,
+  useUpdateHarvesterConfigMutation,
 } = harvester;
 
 // plotter hooks

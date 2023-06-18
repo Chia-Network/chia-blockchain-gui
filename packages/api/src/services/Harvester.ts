@@ -51,7 +51,7 @@ export default class Harvester extends Service {
     return this.command<void>('remove_plot_directory', args);
   }
 
-  async getHarvestingMode() {
+  async getHarvesterConfig() {
     return this.command<{
       useGpuHarvesting: boolean | null;
       gpuIndex: number | null;
@@ -61,10 +61,10 @@ export default class Harvester extends Service {
       decompresserThreadCount: number | null;
       recursivePlotScan: boolean | null;
       refreshParameterIntervalSeconds: number | null;
-    }>('get_harvesting_mode');
+    }>('get_harvester_config');
   }
 
-  async updateHarvestingMode(args: {
+  async updateHarvesterConfig(args: {
     useGpuHarvesting?: boolean;
     gpuIndex?: number;
     enforceGpuIndex?: boolean;
@@ -74,7 +74,7 @@ export default class Harvester extends Service {
     recursivePlotScan?: boolean;
     refreshParameterIntervalSeconds?: number;
   }) {
-    return this.command<void>('update_harvesting_mode', args);
+    return this.command<void>('update_harvester_config', args);
   }
 
   onRefreshPlots(callback: (data: any, message: Message) => void, processData?: (data: any) => any) {
