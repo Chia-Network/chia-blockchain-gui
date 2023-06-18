@@ -43,6 +43,23 @@ export default class Farmer extends Service {
 
   private totalPlotsPassingFilter: number = 0;
 
+  private latestPartialStats = {
+    time: new Date(),
+    valid: 0,
+    stale: 0,
+    invalid: 0,
+    missing: 0,
+  };
+
+  // This is used to reset partial stats.
+  private partialStatsOffset = {
+    resetTime: new Date(),
+    valid: 0,
+    stale: 0,
+    invalid: 0,
+    missing: 0,
+  };
+
   constructor(client: Client, options?: Options) {
     super(ServiceName.FARMER, client, options, async () => {
       this.onNewFarmingInfo((data: { farmingInfo: NewFarmingInfo }) => {
@@ -217,7 +234,29 @@ export default class Farmer extends Service {
   }
 
   async getPoolState() {
-    return this.command<{ poolState: PoolState[] }>('get_pool_state');
+    const res = await this.command<{ poolState: PoolState[] }>('get_pool_state');
+    this.latestPartialStats = {
+      time: new Date(),
+      valid: res.poolState.reduce((acc, val) => acc + val.validPartialsSinceStart, 0),
+      stale: res.poolState.reduce((acc, val) => acc + val.stalePartialsSinceStart, 0),
+      invalid: res.poolState.reduce((acc, val) => acc + val.invalidPartialsSinceStart, 0),
+      missing: res.poolState.reduce((acc, val) => acc + val.missingPartialsSinceStart, 0),
+    };
+    return res;
+  }
+
+  getPartialStatsOffset() {
+    return this.partialStatsOffset;
+  }
+
+  resetPartialStats() {
+    this.partialStatsOffset = {
+      resetTime: new Date(),
+      valid: this.latestPartialStats.valid,
+      stale: this.latestPartialStats.stale,
+      invalid: this.latestPartialStats.invalid,
+      missing: this.latestPartialStats.missing,
+    };
   }
 
   async setPayoutInstructions(args: { launcherId: string; payoutInstructions: string }) {

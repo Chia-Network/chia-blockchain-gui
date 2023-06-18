@@ -67,6 +67,8 @@ export const {
   useResetMissingSignagePointsMutation,
   useGetFilterChallengeStatQuery,
   useResetFilterChallengeStatMutation,
+  useGetPartialStatsOffsetQuery,
+  useResetPartialStatsMutation,
 } = farmer;
 
 // full node hooks

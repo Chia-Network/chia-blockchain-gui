@@ -4,6 +4,7 @@ import {
   useGetPoolStateQuery,
   useResetMissingSignagePointsMutation,
   useResetFilterChallengeStatMutation,
+  useGetPartialStatsOffsetQuery,
 } from '@chia-network/api-react';
 import { Flex, StateIndicator, State, Tooltip } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
@@ -13,6 +14,7 @@ import styled from 'styled-components';
 
 import FarmerStatus from '../../constants/FarmerStatus';
 import useFarmerStatus from '../../hooks/useFarmerStatus';
+import { binomialProb } from '../../util/math';
 
 const StyledTable = styled.table`
   border-collapse: collapse;
@@ -23,7 +25,10 @@ const StyledTable = styled.table`
     vertical-align: top;
   }
   tr:not(:first-child) td {
-    border-top: 1px solid #ddd;
+    border-top: 1px solid #ccc;
+  }
+  tr:not(:last-child) td {
+    padding: 4px 8px;
   }
   tr:last-child td {
     padding-top: 4px;
@@ -32,6 +37,16 @@ const StyledTable = styled.table`
       justify-content: flex-end;
     }
   }
+`;
+
+const StyledInput = styled.input`
+  font-size: 0.6875rem;
+  color: #fff;
+  width: 38px;
+  background: transparent;
+  border: none;
+  padding: 0;
+  display: inline-block;
 `;
 
 const indicatorStyle = {
@@ -72,55 +87,6 @@ const indicatorStyle = {
   },
 };
 
-const ln2pi = Math.log(2 * Math.PI);
-// Compute ln(n!) - natural logarithm of the factorial of n
-function lnFact(m: number) {
-  let k = m;
-  if (m === 0 || m === 1) {
-    return 0;
-  }
-  if (m < 10) {
-    // Compute factorial directly for small n
-    let f = 2;
-    for (let i = 3; i <= m; i++) {
-      f *= i;
-    }
-    return Math.log(f);
-  }
-  // Log-Gamma function approximation
-  k++;
-  const lnN = Math.log(k);
-  const one810 = 0.001_234_567_901_234_567_9;
-  let ret = ln2pi - lnN;
-  let k6 = k * k * k;
-  k6 *= k6;
-  ret += k * (2 * lnN + Math.log(k * Math.sinh(1 / k) + one810 / k6) - 2);
-  ret /= 2;
-  return ret;
-}
-
-// Compute ln(C(n, k)) - natural logarithm of the binomial coefficient C(n, k)
-function lnComb(m: number, k: number, lnFactM: number) {
-  return lnFactM - lnFact(k) - lnFact(m - k);
-}
-
-// Compute probability P(X <= t) where X has binomial distribution with n
-// trials and success probability p.
-function binomialProb(n: number, p: number, t: number) {
-  let s = 0;
-  const lnP = Math.log(p);
-  const lnPInv = Math.log(1 - p);
-  const lnFactN = lnFact(n);
-
-  for (let i = 0; i <= t; i++) {
-    const c = lnComb(n, i, lnFactN);
-    const lnProb = c + i * lnP + (n - i) * lnPInv;
-    s += Math.exp(lnProb);
-  }
-
-  return s;
-}
-
 export default React.memo(FarmHealth);
 function FarmHealth() {
   const { farmerStatus, blockchainState } = useFarmerStatus();
@@ -131,7 +97,8 @@ function FarmHealth() {
     blockchainState?.peak.height || 0
   );
   const [resetFilterChallengeStat] = useResetFilterChallengeStatMutation();
-  const significantLevel = 0.01; // 1%
+  const { data: partialStatsOffset, isLoading: isLoadingPartialStatsOffset } = useGetPartialStatsOffsetQuery();
+  const [significantLevel, setSignificantLevel] = React.useState(1); // 1%
 
   const famSyncStatus = React.useMemo(() => {
     if (farmerStatus === FarmerStatus.SYNCHING) {
@@ -221,7 +188,7 @@ function FarmHealth() {
       );
     }
 
-    if (cumulativeBinomialProbability < significantLevel) {
+    if (cumulativeBinomialProbability < significantLevel / 100.0) {
       return (
         <StateIndicator state={State.WARNING} indicator reversed>
           <Trans>Warning</Trans>
@@ -234,7 +201,7 @@ function FarmHealth() {
         <Trans>OK</Trans>
       </StateIndicator>
     );
-  }, [farmerStatus, isLoadingFilterChallengeStat, blockchainState, cumulativeBinomialProbability]);
+  }, [farmerStatus, isLoadingFilterChallengeStat, blockchainState, cumulativeBinomialProbability, significantLevel]);
 
   const plotPassingFilterWithTooltip = React.useMemo(() => {
     if (isLoadingFilterChallengeStat || !filterChallengeStat) {
@@ -249,6 +216,8 @@ function FarmHealth() {
     }
     const displayPercentage =
       cumulativeBinomialProbability !== null ? (cumulativeBinomialProbability * 100).toFixed(3) : '-';
+    const expectedPlotsPassingFilter =
+      Math.round(filterChallengeStat.n * (1 / 2 ** filterChallengeStat.fb) * 1000) / 1000;
     const tooltipTitle = (
       <StyledTable>
         <tbody>
@@ -274,13 +243,25 @@ function FarmHealth() {
             <td>
               <Trans>Expected Total plots passing filter</Trans>
             </td>
-            <td>{filterChallengeStat.n * (1 / 2 ** filterChallengeStat.fb)}</td>
+            <td>{expectedPlotsPassingFilter}</td>
           </tr>
           <tr>
             <td>
               <Trans>Significant level</Trans>
             </td>
-            <td>{(significantLevel * 100).toFixed(3)} %</td>
+            <td>
+              <StyledInput
+                type="number"
+                value={significantLevel}
+                max={100}
+                min={0}
+                step={1}
+                onChange={(e) => {
+                  setSignificantLevel(+e.target.value);
+                }}
+              />
+              %
+            </td>
           </tr>
           <tr>
             <td>
@@ -319,6 +300,7 @@ function FarmHealth() {
     filterChallengeStat,
     cumulativeBinomialProbability,
     resetFilterChallengeStat,
+    significantLevel,
   ]);
 
   const missingSpsWithTooltip = React.useMemo(() => {
@@ -376,6 +358,10 @@ function FarmHealth() {
       stalePartialsSinceStart += d.stalePartialsSinceStart;
     }
 
+    if (!isLoadingPartialStatsOffset && partialStatsOffset) {
+      stalePartialsSinceStart -= partialStatsOffset.stale;
+    }
+
     if (stalePartialsSinceStart === 0) {
       return (
         <StateIndicator state={State.SUCCESS} indicator reversed>
@@ -389,7 +375,7 @@ function FarmHealth() {
         {stalePartialsSinceStart}
       </StateIndicator>
     );
-  }, [poolStateData, isLoadingPoolStateData]);
+  }, [poolStateData, isLoadingPoolStateData, isLoadingPartialStatsOffset, partialStatsOffset]);
 
   return (
     <Paper sx={{ padding: 2 }} variant="outlined">

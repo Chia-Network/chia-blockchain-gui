@@ -22,6 +22,7 @@ export const apiWithTag = api.enhanceEndpoints({
     'HarvesterPlotsDuplicates',
     'MissingSignagePoints',
     'FilterChallengeStat',
+    'partialStats',
   ],
 });
 
@@ -252,6 +253,14 @@ export const farmerApi = apiWithTag.injectEndpoints({
       ]),
     }),
 
+    getPartialStatsOffset: query(build, Farmer, 'getPartialStatsOffset', {
+      providesTags: ['partialStats'],
+    }),
+
+    resetPartialStats: mutation(build, Farmer, 'resetPartialStats', {
+      invalidatesTags: ['partialStats'],
+    }),
+
     setPayoutInstructions: mutation(build, Farmer, 'setPayoutInstructions', {
       invalidatesTags: (_result, _error, { launcherId }) => [{ type: 'PayoutInstructions', id: launcherId }],
     }),
@@ -322,4 +331,6 @@ export const {
   useResetMissingSignagePointsMutation,
   useGetFilterChallengeStatQuery,
   useResetFilterChallengeStatMutation,
+  useGetPartialStatsOffsetQuery,
+  useResetPartialStatsMutation,
 } = farmerApi;

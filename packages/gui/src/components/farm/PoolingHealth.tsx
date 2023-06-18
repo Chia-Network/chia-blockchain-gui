@@ -1,7 +1,11 @@
-import { useGetPoolStateQuery } from '@chia-network/api-react';
+import {
+  useGetPoolStateQuery,
+  useGetPartialStatsOffsetQuery,
+  useResetPartialStatsMutation,
+} from '@chia-network/api-react';
 import { Flex, StateIndicator, State, Tooltip } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
-import { Box, Paper, Typography, CircularProgress } from '@mui/material';
+import { Box, Paper, Typography, CircularProgress, Button } from '@mui/material';
 import React from 'react';
 
 const indicatorStyle = {
@@ -45,6 +49,8 @@ const indicatorStyle = {
 export default React.memo(PoolingHealth);
 function PoolingHealth() {
   const { data, isLoading } = useGetPoolStateQuery();
+  const { data: partialStatsOffset, isLoading: isLoadingPartialStatsOffset } = useGetPartialStatsOffsetQuery();
+  const [resetPartialStatsOffset] = useResetPartialStatsMutation();
 
   const totalPartials = React.useMemo(() => {
     if (!data) {
@@ -59,8 +65,12 @@ function PoolingHealth() {
         d.missingPartialsSinceStart +
         d.stalePartialsSinceStart;
     }
+    if (!isLoadingPartialStatsOffset && partialStatsOffset) {
+      value -=
+        partialStatsOffset.valid + partialStatsOffset.stale + partialStatsOffset.invalid + partialStatsOffset.missing;
+    }
     return value;
-  }, [data]);
+  }, [data, isLoadingPartialStatsOffset, partialStatsOffset]);
 
   const validPartials = React.useMemo(() => {
     if (isLoading || !data) {
@@ -80,6 +90,10 @@ function PoolingHealth() {
       value += d.validPartialsSinceStart;
     }
 
+    if (!isLoadingPartialStatsOffset && partialStatsOffset) {
+      value -= partialStatsOffset.valid;
+    }
+
     const rate = Math.floor((value / totalPartials) * 1000) / 10;
     if (value === totalPartials) {
       return (
@@ -94,7 +108,7 @@ function PoolingHealth() {
         {rate}% {value} / {totalPartials}
       </StateIndicator>
     );
-  }, [isLoading, data, totalPartials]);
+  }, [isLoading, data, totalPartials, isLoadingPartialStatsOffset, partialStatsOffset]);
 
   const invalidPartials = React.useMemo(() => {
     if (isLoading || !data) {
@@ -113,6 +127,9 @@ function PoolingHealth() {
       const d = data[i];
       value += d.invalidPartialsSinceStart;
     }
+    if (!isLoadingPartialStatsOffset && partialStatsOffset) {
+      value -= partialStatsOffset.invalid;
+    }
 
     const rate = Math.floor((value / totalPartials) * 1000) / 10;
     if (value === 0) {
@@ -128,7 +145,7 @@ function PoolingHealth() {
         {rate}% {value} / {totalPartials}
       </StateIndicator>
     );
-  }, [isLoading, data, totalPartials]);
+  }, [isLoading, data, totalPartials, isLoadingPartialStatsOffset, partialStatsOffset]);
 
   const missingPartials = React.useMemo(() => {
     if (isLoading || !data) {
@@ -147,6 +164,9 @@ function PoolingHealth() {
       const d = data[i];
       value += d.missingPartialsSinceStart;
     }
+    if (!isLoadingPartialStatsOffset && partialStatsOffset) {
+      value -= partialStatsOffset.missing;
+    }
 
     const rate = Math.floor((value / totalPartials) * 1000) / 10;
     if (value === 0) {
@@ -162,7 +182,7 @@ function PoolingHealth() {
         {rate}% {value} / {totalPartials}
       </StateIndicator>
     );
-  }, [isLoading, data, totalPartials]);
+  }, [isLoading, data, totalPartials, isLoadingPartialStatsOffset, partialStatsOffset]);
 
   const stalePartials = React.useMemo(() => {
     if (isLoading || !data) {
@@ -181,6 +201,9 @@ function PoolingHealth() {
       const d = data[i];
       value += d.stalePartialsSinceStart;
     }
+    if (!isLoadingPartialStatsOffset && partialStatsOffset) {
+      value -= partialStatsOffset.stale;
+    }
 
     const rate = Math.floor((value / totalPartials) * 1000) / 10;
     if (value === 0) {
@@ -196,7 +219,11 @@ function PoolingHealth() {
         {rate}% {value} / {totalPartials}
       </StateIndicator>
     );
-  }, [isLoading, data, totalPartials]);
+  }, [isLoading, data, totalPartials, isLoadingPartialStatsOffset, partialStatsOffset]);
+
+  const onClickResetButton = React.useCallback(() => {
+    resetPartialStatsOffset();
+  }, [resetPartialStatsOffset]);
 
   return (
     <Box>
@@ -204,11 +231,12 @@ function PoolingHealth() {
         <Trans>Pooling</Trans>
       </Typography>
       <Paper sx={{ padding: 2 }} variant="outlined">
-        <Box>
+        <Flex justifyContent="space-between" alignItems="center">
           <Typography variant="h6">
             <Trans>Pooling Health</Trans>
           </Typography>
-        </Box>
+          <Button onClick={onClickResetButton}>Reset</Button>
+        </Flex>
         <Flex justifyContent="space-between" sx={indicatorStyle}>
           <Tooltip title={<Trans>Partials successfully sent and acknowledged by pools</Trans>}>
             <Box>
