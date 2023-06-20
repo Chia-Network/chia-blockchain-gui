@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh_CN\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-06-19 08:02\n"
+"PO-Revision-Date: 2023-06-20 08:27\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -414,7 +414,7 @@ msgstr "钱包指纹"
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:63
 #: src/screens/SelectKey/SelectKeyItem.tsx:69
 msgid "Wallet {0}"
-msgstr ""
+msgstr "钱包 {0}"
 
 #: src/screens/SelectKey/SelectKey.tsx:142
 msgid "Welcome to Chia. Please log in with an existing key, or create a new key."
