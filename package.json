@@ -40,7 +40,7 @@
     "*": "prettier --check --ignore-unknown --ignore-path .gitignore"
   },
   "dependencies": {
-    "lerna": "^5.1.8"
+    "lerna": "^7.0.0"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "5.46.1",
