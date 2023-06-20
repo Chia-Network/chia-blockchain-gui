@@ -5,6 +5,7 @@ enum WalletConnectCommandParamName {
   ASSET_ID = 'assetId',
   BACKUP_DIDS = 'backupDids',
   COIN_ID = 'coinId',
+  COIN_IDS = 'coinIds',
   DID = 'did',
   DID_ID = 'didId',
   DISABLE_JSON_FORMATTING = 'disableJSONFormatting',
