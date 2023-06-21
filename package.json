@@ -1,13 +1,15 @@
 {
   "name": "root",
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
     "clean": "lerna clean",
-    "bootstrap": "lerna bootstrap",
     "version:major": "lerna version major",
     "version:minor": "lerna version minor",
     "version:patch": "lerna version patch",
     "publish": "lerna publish",
-    "postinstall": "npm run bootstrap && npm run prettier:postinstall",
+    "postinstall": "npm run prettier:postinstall",
     "prettier:postinstall": "prettier --write **/package.json **/package-lock.json",
     "check": "npm run check:lint ; npm run check:prettier ; npm run check:types",
     "check:lint": "eslint . --ext .ts,.tsx,.js,.jsx",
