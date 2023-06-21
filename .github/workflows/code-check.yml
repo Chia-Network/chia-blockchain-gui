@@ -18,8 +18,8 @@ jobs:
         with:
           # Use node version from '.nvmrc' instead of hardcoding here
           node-version-file: '.nvmrc'
-      - name: npm ci && npx lerna bootstrap
-        run: npm ci && npx lerna bootstrap
+      - name: npm ci
+        run: npm ci
       - name: npm run build:ci
         run: npm run build:ci
       - name: Check for Prettier issues

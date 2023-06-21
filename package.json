@@ -1,13 +1,15 @@
 {
   "name": "root",
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
     "clean": "lerna clean",
-    "bootstrap": "lerna bootstrap",
     "version:major": "lerna version major",
     "version:minor": "lerna version minor",
     "version:patch": "lerna version patch",
     "publish": "lerna publish",
-    "postinstall": "npm run bootstrap && npm run prettier:postinstall",
+    "postinstall": "npm run prettier:postinstall",
     "prettier:postinstall": "prettier --write **/package.json **/package-lock.json",
     "check": "npm run check:lint ; npm run check:prettier ; npm run check:types",
     "check:lint": "eslint . --ext .ts,.tsx,.js,.jsx",
@@ -29,7 +31,7 @@
     "locale": "lerna run locale",
     "audit": "lerna exec -- npm audit",
     "audit:fix": "lerna exec -- npm audit fix",
-    "test": "lerna run test --stream -- -- --passWithNoTests --coverage --coverageDirectory=.coverage && npm run coverage:merge && npm run coverage:report",
+    "test": "lerna run test --stream -- --passWithNoTests --coverage --coverageDirectory=.coverage && npm run coverage:merge && npm run coverage:report",
     "coverage:merge": "npx istanbul-merge --out .nyc_output/coverage.json packages/api/.coverage/coverage-final.json packages/api-react/.coverage/coverage-final.json packages/core/.coverage/coverage-final.json packages/gui/.coverage/coverage-final.json  packages/icons/.coverage/coverage-final.json packages/wallets/.coverage/coverage-final.json",
     "coverage:report": "npx nyc report --reporter=text --reporter=lcov",
     "restoreMessages": "node restoreMessages.js",
@@ -40,11 +42,12 @@
     "*": "prettier --check --ignore-unknown --ignore-path .gitignore"
   },
   "dependencies": {
-    "lerna": "^5.1.8"
+    "lerna": "^7.0.0"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "5.46.1",
     "@typescript-eslint/parser": "5.46.1",
+    "date-and-time": "2.4.3",
     "eslint": "8.30.0",
     "eslint-config-airbnb": "19.0.4",
     "eslint-config-airbnb-typescript": "17.0.0",
@@ -55,7 +58,6 @@
     "eslint-plugin-react": "7.31.11",
     "eslint-plugin-react-hooks": "4.6.0",
     "eslint-plugin-unicorn": "45.0.2",
-    "date-and-time": "2.4.3",
     "husky": "8.0.0",
     "istanbul-merge": "2.0.0",
     "lerna-audit": "^1.3.3",
