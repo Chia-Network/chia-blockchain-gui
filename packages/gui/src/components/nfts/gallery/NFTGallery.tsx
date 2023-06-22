@@ -321,6 +321,25 @@ export default function NFTGallery() {
     );
   }
 
+  function showingVisibleOfTotal() {
+    if (userFolder && Array.isArray(foldersSortedNFTs[fingerprint][userFolder])) {
+      return (
+        <Trans>
+          <Mute>Showing</Mute>&nbsp;{foldersSortedNFTs[fingerprint][userFolder].length}&nbsp; <Mute>items</Mute>
+        </Trans>
+      );
+    }
+    if (statistics.total > 0) {
+      return (
+        <Trans>
+          <Mute>Showing</Mute>&nbsp;{sortedNFTs.length}&nbsp;
+          <Mute>of</Mute>&nbsp;{statistics.total}&nbsp; <Mute>items</Mute>
+        </Trans>
+      );
+    }
+    return null;
+  }
+
   return (
     <LayoutDashboardSub
       gap={2}
@@ -360,12 +379,7 @@ export default function NFTGallery() {
           <Flex gap={2} alignItems="center" flexWrap="wrap" justifyContent="space-between">
             <Flex gap={1} alignItems="center">
               <Typography variant="body2" display="inline-flex">
-                {statistics.total > 0 && (
-                  <Trans>
-                    <Mute>Showing</Mute>&nbsp;{sortedNFTs.length}&nbsp;
-                    <Mute>of</Mute>&nbsp;{statistics.total}&nbsp; <Mute>items</Mute>
-                  </Trans>
-                )}
+                {showingVisibleOfTotal()}
                 {progress < 100 && (
                   <>
                     {statistics.total > 0 && <>,&nbsp;</>}
