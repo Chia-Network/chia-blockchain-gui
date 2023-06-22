@@ -1,6 +1,6 @@
 // eslint-ignore-file - in progress
 import type { NFTInfo } from '@chia-network/api';
-import { useLocalStorage } from '@chia-network/api-react';
+import { usePrefs, useGetLoggedInFingerprintQuery } from '@chia-network/api-react';
 import {
   Button,
   FormatLargeNumber,
@@ -27,6 +27,7 @@ import { styled } from '@mui/styles';
 import { xor, intersection /* , sortBy */ } from 'lodash';
 import React, { useMemo, useCallback, useRef, useEffect } from 'react';
 import { VirtuosoGrid } from 'react-virtuoso';
+import Sortable from 'sortablejs'; // eslint-ignore-file - in progress
 
 import NFTVisibility from '../../../@types/NFTVisibility';
 import FileType from '../../../constants/FileType';
@@ -100,7 +101,13 @@ export default function NFTGallery() {
     visibility,
     setVisibility,
 
+    userFolder,
+    setUserFolder,
+
     statistics,
+
+    selectedNFTIds,
+    setSelectedNFTIds,
   } = useFilteredNFTs();
 
   const [scrollPosition, setScrollPosition] = useNFTGalleryScrollPosition();
@@ -142,7 +149,7 @@ export default function NFTGallery() {
     setWalletIds(walletId ? [walletId] : []);
   }
 
-  const [selectedNFTIds, setSelectedNFTIds] = useLocalStorage<string[]>('gallery-selected-nfts', []);
+  const [foldersSortedNFTs, setFoldersSortedNFTs] = usePrefs('user-folders-nfts', {});
 
   const selectedVisibleNFTs = useMemo(
     () => nfts.filter((nft: NFTInfo) => selectedNFTIds.includes(nft.$nftId)),
@@ -150,6 +157,48 @@ export default function NFTGallery() {
   );
 
   const selectedAll = useMemo(() => selectedVisibleNFTs.length === nfts.length, [nfts, selectedVisibleNFTs]);
+
+  const nftsSorted = useRef<any>(null);
+
+  const lastSelectedUserFolder = useRef<string | null>();
+
+  const isSortableActive = useRef<boolean>(false);
+
+  const { data: fingerprint } = useGetLoggedInFingerprintQuery();
+
+  const VirtuosoParentRef = useRef<any>(null);
+
+  React.useEffect(() => {
+    if (
+      lastSelectedUserFolder.current &&
+      userFolder !== lastSelectedUserFolder.current &&
+      nftsSorted.current?.destroy &&
+      isSortableActive.current
+    ) {
+      isSortableActive.current = false;
+      nftsSorted.current?.destroy();
+    }
+    lastSelectedUserFolder.current = userFolder;
+    if (VirtuosoParentRef.current) {
+      const sortableParent = VirtuosoParentRef.current.querySelector('[data-test-id=virtuoso-item-list]');
+      if (userFolder && sortableParent && isSortableActive.current === false) {
+        isSortableActive.current = true;
+        nftsSorted.current = new Sortable(sortableParent, {
+          onEnd: () => {
+            const newArray = Array.from(sortableParent.children).map(
+              (node: any) => node.querySelector('[data-testid]').attributes['data-testid'].value
+            );
+            const copySorted = { ...foldersSortedNFTs };
+            if (!copySorted[fingerprint]) {
+              copySorted[fingerprint] = {};
+            }
+            copySorted[fingerprint][userFolder as string] = newArray;
+            setFoldersSortedNFTs(copySorted);
+          },
+        });
+      }
+    }
+  }, [fingerprint, userFolder, foldersSortedNFTs, setFoldersSortedNFTs]);
 
   const handleSelectNFT = useCallback(
     async (nftId: string) => {
@@ -232,6 +281,31 @@ export default function NFTGallery() {
     }
   }
 
+  function onSelectUserFolder() {
+    handleSetWalletId(undefined);
+  }
+
+  const sortedNFTs = React.useMemo(() => {
+    if (userFolder) {
+      if (
+        nfts &&
+        foldersSortedNFTs[fingerprint] &&
+        Array.isArray(foldersSortedNFTs[fingerprint][userFolder]) &&
+        foldersSortedNFTs[fingerprint][userFolder].length > 0
+      ) {
+        const sorted = foldersSortedNFTs[fingerprint][userFolder]
+          .map((nftId: string) => {
+            const found = nfts.find((nft: any) => nft.$nftId === nftId);
+            return found || null;
+          })
+          .filter((nft: any) => nft && !!nft.$nftId);
+        return sorted;
+      }
+      return [];
+    }
+    return nfts;
+  }, [fingerprint, foldersSortedNFTs, nfts, userFolder]);
+
   function renderNFTCard(index: number, nft: NFTInfo) {
     return (
       <NFTCard
@@ -242,8 +316,28 @@ export default function NFTGallery() {
         search={search}
         selected={selectedNFTIds?.includes(getNFTId(nft.launcherId))}
         onSelect={inMultipleSelectionMode ? handleSelectNFT : undefined}
+        userFolder={userFolder}
       />
     );
+  }
+
+  function showingVisibleOfTotal() {
+    if (userFolder && Array.isArray(foldersSortedNFTs[fingerprint][userFolder])) {
+      return (
+        <Trans>
+          <Mute>Showing</Mute>&nbsp;{foldersSortedNFTs[fingerprint][userFolder].length}&nbsp; <Mute>items</Mute>
+        </Trans>
+      );
+    }
+    if (statistics.total > 0) {
+      return (
+        <Trans>
+          <Mute>Showing</Mute>&nbsp;{sortedNFTs.length}&nbsp;
+          <Mute>of</Mute>&nbsp;{statistics.total}&nbsp; <Mute>items</Mute>
+        </Trans>
+      );
+    }
+    return null;
   }
 
   return (
@@ -254,9 +348,8 @@ export default function NFTGallery() {
       // onScroll={handleOnScroll}
       header={
         <Flex gap={1} flexDirection="column">
-          <Flex gap={2} alignItems="stretch" flexWrap="wrap" justifyContent="space-between">
-            <NFTProfileDropdown onChange={handleSetWalletId} walletId={walletIds?.[0]} />
-            <Flex gap={2} alignItems="stretch" justifyContent="space-between">
+          <Flex gap={2} flexWrap="wrap" justifyContent="flex-end">
+            <Flex gap={2} justifyContent="flex-end">
               <Search onUpdate={setSearch} placeholder={t`Search...`} defaultValue={search} />
               <Flex
                 alignItems="center"
@@ -286,13 +379,7 @@ export default function NFTGallery() {
           <Flex gap={2} alignItems="center" flexWrap="wrap" justifyContent="space-between">
             <Flex gap={1} alignItems="center">
               <Typography variant="body2" display="inline-flex">
-                {statistics.total > 0 && (
-                  <Trans>
-                    <Mute>Showing</Mute>&nbsp;{nfts.length}&nbsp;
-                    <Mute>of</Mute>&nbsp;{statistics.total}&nbsp; <Mute>items</Mute>
-                  </Trans>
-                )}
-
+                {showingVisibleOfTotal()}
                 {progress < 100 && (
                   <>
                     {statistics.total > 0 && <>,&nbsp;</>}
@@ -435,6 +522,14 @@ export default function NFTGallery() {
           </Flex>
         </Flex>
       }
+      sidebar={
+        <NFTProfileDropdown
+          onChange={handleSetWalletId}
+          walletId={walletIds?.[0]}
+          onSelectUserFolder={onSelectUserFolder}
+          setUserFolder={setUserFolder}
+        />
+      }
     >
       <Fade in={inMultipleSelectionMode && !!selectedVisibleNFTs.length}>
         <Box position="fixed" zIndex={7} bottom={16} alignSelf="center">
@@ -445,10 +540,10 @@ export default function NFTGallery() {
       {!nfts?.length && !isLoading ? (
         <NFTGalleryHero />
       ) : (
-        <Box sx={{ height: '100%', marginLeft: -3, marginRight: -3 }}>
+        <Box ref={VirtuosoParentRef} sx={{ height: '100%', marginLeft: -3, marginRight: -3 }}>
           <VirtuosoGrid
             style={{ height: '100%' }}
-            data={nfts}
+            data={sortedNFTs}
             overscan={2000}
             computeItemKey={(_index, nft) => nft.launcherId}
             components={COMPONENTS}

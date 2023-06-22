@@ -1,11 +1,13 @@
 import { IconButton, Flex } from '@chia-network/core';
+import Portal from '@mui/base/Portal';
 import { MoreVert } from '@mui/icons-material';
-import { Card, CardActionArea, CardContent, Checkbox, Typography } from '@mui/material';
+import { Card, CardActionArea, CardContent, Checkbox, Typography, Box } from '@mui/material';
 import React, { useMemo, memo } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import useHiddenNFTs from '../../hooks/useHiddenNFTs';
 import useNFT from '../../hooks/useNFT';
+import useNFTFilter from '../../hooks/useNFTFilter';
 import getNFTId from '../../util/getNFTId';
 import NFTContextualActions, { NFTContextualActionTypes } from './NFTContextualActions';
 import NFTPreview from './NFTPreview';
@@ -19,6 +21,7 @@ export type NFTCardProps = {
   onSelect?: (nftId: string) => Promise<boolean>;
   search?: string;
   selected?: boolean;
+  userFolder?: string | null;
   ratio?: number;
 };
 
@@ -31,18 +34,26 @@ function NFTCard(props: NFTCardProps) {
     onSelect,
     search,
     selected = false,
+    userFolder,
     ratio = 4 / 3,
   } = props;
 
   const nftId = useMemo(() => getNFTId(id), [id]);
-
   const [isNFTHidden] = useHiddenNFTs();
   const navigate = useNavigate();
+
+  const filter = useNFTFilter();
+
+  const [, setMouseDownState] = React.useState(false);
+  const [dragState, setDragState] = React.useState(false);
+
+  const draggableContainerRef = React.useRef<HTMLDivElement | null>(null);
 
   const { nft, isLoading } = useNFT(nftId);
   const isHidden = useMemo(() => isNFTHidden(nftId), [nftId, isNFTHidden]);
 
   async function handleClick() {
+    if (dragState) return;
     if (onSelect) {
       const canContinue = await onSelect(nftId);
       if (!canContinue) {
@@ -55,8 +66,8 @@ function NFTCard(props: NFTCardProps) {
     }
   }
 
-  return (
-    <Flex flexDirection="column" flexGrow={1} minWidth={0}>
+  function renderCard() {
+    return (
       <Card sx={{ borderRadius: '8px', opacity: isHidden ? 0.5 : 1 }} variant="outlined">
         <CardActionArea onClick={handleClick}>
           {onSelect && (
@@ -92,6 +103,120 @@ function NFTCard(props: NFTCardProps) {
           </CardContent>
         </CardActionArea>
       </Card>
+    );
+  }
+
+  const widthBeforeDrag = React.useRef<number | null>(null);
+  const heightBeforeDrag = React.useRef<number | null>(null);
+
+  const draggableRef = React.useRef<HTMLDivElement | null>(null);
+
+  function renderPortal() {
+    return (
+      <Portal>
+        <Box
+          ref={draggableRef}
+          sx={{
+            position: 'absolute',
+            zIndex: '1000',
+            width: `${widthBeforeDrag.current}px`,
+            height: `${heightBeforeDrag.current}px`,
+            transform: 'scale(0.5)',
+            opacity: isHidden ? 1 : 0.6,
+          }}
+        >
+          {renderCard()}
+        </Box>
+      </Portal>
+    );
+  }
+
+  const startPositionLeft = React.useRef<number | undefined>();
+  const startPositionTop = React.useRef<number | undefined>();
+  const draggingInterval = React.useRef<any | undefined>();
+  const countDownSpeed = React.useRef<number | undefined>(30); /* less is faster */
+  const countDown = React.useRef<number | undefined>(countDownSpeed.current);
+
+  const mouseMoveEvent = React.useCallback(
+    (e: any) => {
+      if (!dragState) {
+        setDragState(true);
+        if (!draggingInterval.current) {
+          draggingInterval.current = setInterval(() => {
+            countDown.current--;
+            if (draggableRef.current) {
+              adjustPositionBeforeAdjusted(e);
+            }
+            if (countDown.current === 1) {
+              clearInterval(draggingInterval.current);
+            }
+          }, 1);
+        }
+      }
+      if (draggableRef.current) {
+        if (countDown.current === 1) {
+          (draggableRef.current as HTMLElement).style.left = `${e.pageX - (widthBeforeDrag.current || 0) / 4 + 10}px`;
+          (draggableRef.current as HTMLElement).style.top = `${e.pageY - 81}px`;
+        } else {
+          adjustPositionBeforeAdjusted(e);
+        }
+      }
+    },
+    [dragState]
+  );
+
+  const mouseUpEvent = React.useCallback(() => {
+    setTimeout(() => {
+      document.body.removeEventListener('mouseup', mouseUpEvent);
+    }, 0);
+    document.body.removeEventListener('mousemove', mouseMoveEvent);
+    setMouseDownState(false);
+    setDragState(false);
+    filter.setDraggedNFT(null);
+    countDown.current = countDownSpeed.current;
+    if (draggingInterval.current) {
+      clearInterval(draggingInterval.current);
+      draggingInterval.current = null;
+    }
+  }, [filter, mouseMoveEvent]);
+
+  function adjustPositionBeforeAdjusted(e: any) {
+    (draggableRef.current as HTMLElement).style.left = `${
+      e.pageX +
+      ((startPositionLeft.current - e.pageX) * countDown.current) / countDownSpeed.current -
+      (widthBeforeDrag.current || 0) / 4 +
+      10
+    }px`;
+    (draggableRef.current as HTMLElement).style.top = `${
+      e.pageY + ((startPositionTop.current - e.pageY) * countDown.current) / countDownSpeed.current - 81
+    }px`;
+  }
+
+  const mouseDownEvent = React.useCallback(
+    (e: MouseEvent) => {
+      /* drag and drop to folders */
+      if (userFolder) return;
+      const rect = (draggableContainerRef.current as HTMLElement).getBoundingClientRect();
+      if (!startPositionLeft.current) startPositionLeft.current = rect.left;
+      if (!startPositionTop.current) startPositionTop.current = rect.top;
+      heightBeforeDrag.current = rect.height;
+      widthBeforeDrag.current = rect.width;
+      e.preventDefault();
+      setMouseDownState(true);
+      document.body.addEventListener('mouseup', mouseUpEvent);
+      document.body.addEventListener('mousemove', mouseMoveEvent);
+      filter.setDraggedNFT(nftId);
+      countDown.current = countDownSpeed.current;
+    },
+    [userFolder, nftId, mouseUpEvent, mouseMoveEvent, filter]
+  );
+
+  return (
+    <Flex flexDirection="column" flexGrow={1} onMouseDown={mouseDownEvent}>
+      <div ref={draggableContainerRef}>
+        {dragState && renderPortal()}
+        {renderCard()}
+      </div>
     </Flex>
   );
 }

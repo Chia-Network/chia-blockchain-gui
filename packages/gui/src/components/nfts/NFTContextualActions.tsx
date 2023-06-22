@@ -1,7 +1,6 @@
 /* eslint-disable no-bitwise -- enable bitwise operators for this file */
-
 import type { NFTInfo } from '@chia-network/api';
-import { useSetNFTStatusMutation, useLocalStorage } from '@chia-network/api-react';
+import { usePrefs, useGetLoggedInFingerprintQuery, useSetNFTStatusMutation } from '@chia-network/api-react';
 import { AlertDialog, DropdownActions, MenuItem, useOpenDialog, isValidURL } from '@chia-network/core';
 import {
   Burn as BurnIcon,
@@ -19,6 +18,7 @@ import {
   Visibility as VisibilityIcon,
   VisibilityOff as VisibilityOffIcon,
   Refresh as RefreshIcon,
+  FolderOpen as FolderIcon,
 } from '@mui/icons-material';
 import { ListItemIcon, Typography } from '@mui/material';
 import React, { useMemo, ReactNode } from 'react';
@@ -27,6 +27,7 @@ import { useCopyToClipboard } from 'react-use';
 
 import useBurnAddress from '../../hooks/useBurnAddress';
 import useHiddenNFTs from '../../hooks/useHiddenNFTs';
+import useNFTFilter from '../../hooks/useNFTFilter';
 import useNFTs from '../../hooks/useNFTs';
 import useOpenUnsafeLink from '../../hooks/useOpenUnsafeLink';
 import useViewNFTOnExplorer, { NFTExplorer } from '../../hooks/useViewNFTOnExplorer';
@@ -36,6 +37,7 @@ import removeHexPrefix from '../../util/removeHexPrefix';
 import MultipleDownloadDialog from './MultipleDownloadDialog';
 import NFTBurnDialog from './NFTBurnDialog';
 import NFTMoveToProfileDialog from './NFTMoveToProfileDialog';
+import NFTSaveToFilterDialog from './NFTSaveToFilterDialog';
 import { NFTTransferDialog, NFTTransferResult } from './NFTTransferAction';
 
 /* ========================================================================== */
@@ -53,9 +55,10 @@ export enum NFTContextualActionTypes {
   Burn = 64,
   CopyNFTId = 128,
   CopyURL = 256,
-  ViewOnExplorer = 512,
-  OpenInBrowser = 1024,
-  Download = 2048,
+  AddToGallery = 512,
+  ViewOnExplorer = 1024,
+  OpenInBrowser = 2048,
+  Download = 4096,
 
   All = CreateOffer |
     Transfer |
@@ -68,7 +71,8 @@ export enum NFTContextualActionTypes {
     Download |
     Hide |
     Burn |
-    Invalidate,
+    Invalidate |
+    AddToGallery,
 }
 
 type NFTContextualActionProps = {
@@ -116,7 +120,7 @@ type NFTCreateOfferContextualActionProps = NFTContextualActionProps;
 function NFTCreateOfferContextualAction(props: NFTCreateOfferContextualActionProps) {
   const { selection } = props;
   const navigate = useNavigate();
-  const [, setSelectedNFTIds] = useLocalStorage('gallery-selected-nfts', []);
+  const filter = useNFTFilter();
   const selectedNft: NFTInfo | undefined = selection?.items[0];
   const disabled = !selection?.items?.length || selectedNft?.pendingTransaction || selection?.items?.length > 10;
 
@@ -127,7 +131,7 @@ function NFTCreateOfferContextualAction(props: NFTCreateOfferContextualActionPro
       throw new Error('No NFT selected');
     }
 
-    setSelectedNFTIds([]);
+    filter.setSelectedNFTIds([]);
 
     navigate('/dashboard/offers/builder', {
       state: {
@@ -160,14 +164,14 @@ type NFTTransferContextualActionProps = NFTContextualActionProps;
 function NFTTransferContextualAction(props: NFTTransferContextualActionProps) {
   const { selection } = props;
   const openDialog = useOpenDialog();
-  const [, setSelectedNFTIds] = useLocalStorage('gallery-selected-nfts', []);
+  const filter = useNFTFilter();
 
   const disabled = selection?.items.reduce((p, c) => p || c?.pendingTransaction, false);
 
   function handleComplete(result?: NFTTransferResult) {
     if (result) {
       if (!result.error) {
-        setSelectedNFTIds([]);
+        filter.setSelectedNFTIds([]);
         openDialog(
           <AlertDialog title={<Trans>NFT Transfer Pending</Trans>}>
             <Trans>The NFT transfer transaction has been successfully submitted to the blockchain.</Trans>
@@ -339,7 +343,7 @@ function NFTCopyURLContextualAction(props: NFTCopyURLContextualActionProps) {
   }
 
   return (
-    <MenuItem onClick={handleCopy} disabled={disabled} divider close>
+    <MenuItem onClick={handleCopy} disabled={disabled} close>
       <ListItemIcon>
         <LinkIcon />
       </ListItemIcon>
@@ -396,7 +400,7 @@ function NFTDownloadContextualAction(props: NFTDownloadContextualActionProps) {
   const disabled = !selectedNft;
   const dataUrl = selectedNft?.dataUris?.[0];
   const openDialog = useOpenDialog();
-  const [, setSelectedNFTIds] = useLocalStorage('gallery-selected-nfts', []);
+  const filter = useNFTFilter();
 
   async function handleDownload() {
     const { ipcRenderer } = window as any;
@@ -420,7 +424,7 @@ function NFTDownloadContextualAction(props: NFTDownloadContextualActionProps) {
           }
           return { ...nft, hash };
         });
-        setSelectedNFTIds([]);
+        filter.setSelectedNFTIds([]);
         ipcRenderer.invoke('startMultipleDownload', { folder: folder.filePaths[0], nfts });
         await openDialog(<MultipleDownloadDialog folder={folder.filePaths[0]} />);
       }
@@ -464,7 +468,7 @@ function NFTHideContextualAction(props: NFTHideContextualActionProps) {
   const disabled = !selectedNft;
   const dataUrl = selectedNft?.dataUris?.[0];
   const [isNFTHidden, setIsNFTHidden, , setHiddenMultiple] = useHiddenNFTs();
-  const [, setSelectedNFTIds] = useLocalStorage('gallery-selected-nfts', []);
+  const filter = useNFTFilter();
 
   const isHidden = isMultiSelect && showOrHide === 1 ? true : isNFTHidden(selectedNft?.$nftId);
 
@@ -478,7 +482,7 @@ function NFTHideContextualAction(props: NFTHideContextualActionProps) {
         selection?.items.map((nft: NFTInfo) => nft.$nftId),
         !isHidden
       );
-      setSelectedNFTIds([]);
+      filter.setSelectedNFTIds([]);
     } else {
       setIsNFTHidden(selectedNft.$nftId, !isHidden);
     }
@@ -519,7 +523,7 @@ function NFTBurnContextualAction(props: NFTBurnContextualActionProps) {
   }
 
   return (
-    <MenuItem onClick={handleBurn} disabled={disabled} divider close>
+    <MenuItem onClick={handleBurn} disabled={disabled} close>
       <ListItemIcon>
         <BurnIcon />
       </ListItemIcon>
@@ -566,6 +570,54 @@ function NFTInvalidateContextualAction(props: NFTInvalidateContextualActionProps
       </ListItemIcon>
       <Typography variant="inherit" noWrap>
         <Trans>Refresh NFT data</Trans>
+      </Typography>
+    </MenuItem>
+  );
+}
+
+/* ========================================================================== */
+/*                          "Add To"/ "Remove from" Filter NFT                */
+/* ========================================================================== */
+
+type NFTAddToGalleryContextualActionProps = NFTContextualActionProps;
+
+function NFTAddToGalleryContextualAction(props: NFTAddToGalleryContextualActionProps) {
+  const { selection } = props;
+
+  const openDialog = useOpenDialog();
+  const disabled = selection?.items.length === 0;
+  const [userFoldersNFTs, setUserFoldersNFTs] = usePrefs('user-folders-nfts', {});
+  const { data: fingerprint } = useGetLoggedInFingerprintQuery();
+  const filter = useNFTFilter();
+
+  async function handleAddToUserFolder() {
+    if (!selection?.items) {
+      return;
+    }
+    if (!filter.userFolder) {
+      await openDialog(<NFTSaveToFilterDialog nftIds={selection?.items.map((nft: NFTInfo) => nft.$nftId) || []} />);
+    } else {
+      const copyUserFoldersNFTs = { ...userFoldersNFTs };
+      if (userFoldersNFTs[fingerprint] && userFoldersNFTs[fingerprint][filter.userFolder]) {
+        copyUserFoldersNFTs[fingerprint] = {
+          ...copyUserFoldersNFTs[fingerprint],
+          [filter.userFolder as string]: userFoldersNFTs[fingerprint][filter.userFolder].filter(
+            (nftId: string) => selection.items.map((nft: any) => nft.$nftId).indexOf(nftId) === -1
+          ),
+        };
+        setUserFoldersNFTs(copyUserFoldersNFTs);
+        filter.setSelectedNFTIds([]);
+      }
+    }
+  }
+
+  return (
+    <MenuItem onClick={handleAddToUserFolder} disabled={disabled} close divider>
+      <ListItemIcon>
+        <FolderIcon />
+      </ListItemIcon>
+      <Typography variant="inherit" noWrap>
+        {filter.userFolder === '' ? <Trans>Add To Folder</Trans> : <Trans>Remove From Folder</Trans>}
       </Typography>
     </MenuItem>
   );
@@ -665,6 +717,10 @@ export default function NFTContextualActions(props: NFTContextualActionsProps) {
         action: NFTCopyURLContextualAction,
         props: {},
         key: NFTContextualActionTypes.CopyURL,
+      },
+      [`${NFTContextualActionTypes.AddToGallery}`]: {
+        action: NFTAddToGalleryContextualAction,
+        props: {},
       },
       [`${NFTContextualActionTypes.Download}`]: {
         action: NFTDownloadContextualAction,

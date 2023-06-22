@@ -5,7 +5,10 @@ import hasSensitiveContent from './hasSensitiveContent';
 
 export default function getNFTsDataStatistics(
   data: NFTData[],
-  isHidden: (nftId: string) => boolean
+  isHidden: (nftId: string) => boolean,
+  fingerprint: number | undefined,
+  userFolder: string | undefined,
+  userFoldersNFTs: any
 ): NFTsDataStatistics {
   const stats: NFTsDataStatistics = {
     [FileType.IMAGE]: 0,
@@ -22,6 +25,11 @@ export default function getNFTsDataStatistics(
 
   data.forEach((item) => {
     const { nft, type, metadata } = item;
+
+    if (userFolder && fingerprint && userFoldersNFTs?.[fingerprint]?.[userFolder]?.indexOf(nft?.$nftId) === -1) {
+      return;
+    }
+
     if (type) {
       stats[type] = (stats[type] ?? 0) + 1;
     }
