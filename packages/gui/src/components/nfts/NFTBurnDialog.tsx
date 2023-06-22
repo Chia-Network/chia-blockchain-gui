@@ -1,5 +1,5 @@
 import { type NFTInfo } from '@chia-network/api';
-import { useTransferNFTMutation, useLocalStorage } from '@chia-network/api-react';
+import { useTransferNFTMutation } from '@chia-network/api-react';
 import {
   Button,
   ButtonLoading,
@@ -18,6 +18,7 @@ import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 
 import useBurnAddress from '../../hooks/useBurnAddress';
+import useNFTFilter from '../../hooks/useNFTFilter';
 import NFTSummary from './NFTSummary';
 import NFTTransferConfirmationDialog from './NFTTransferConfirmationDialog';
 
@@ -38,7 +39,7 @@ export default function NFTBurnDialog(props: NFTPreviewDialogProps) {
   const openDialog = useOpenDialog();
   const showError = useShowError();
   const [transferNFT] = useTransferNFTMutation();
-  const [, setSelectedNFTIds] = useLocalStorage('gallery-selected-nfts', []);
+  const filter = useNFTFilter();
 
   const methods = useForm<FormData>({
     defaultValues: {
@@ -104,7 +105,7 @@ export default function NFTBurnDialog(props: NFTPreviewDialogProps) {
         fee: feeInMojos,
       }).unwrap();
 
-      setSelectedNFTIds([]);
+      filter.setSelectedNFTIds([]);
 
       onClose();
     } catch (error) {

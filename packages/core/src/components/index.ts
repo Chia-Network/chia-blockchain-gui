@@ -81,4 +81,5 @@ export { default as TooltipIcon } from './TooltipIcon';
 export { default as TooltipTypography } from './TooltipTypography';
 export { default as Truncate, truncateValue } from './Truncate';
 export { default as UnitFormat } from './UnitFormat';
+export { default as AddUserFolderDialog } from './UserFolders/AddUserFolderDialog';
 export { default as NewerAppVersionAvailable } from './LayoutDashboard/NewerAppVersionAvailable';

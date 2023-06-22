@@ -1,6 +1,6 @@
 import { NFTInfo } from '@chia-network/api';
 import type { Wallet } from '@chia-network/api';
-import { useGetDIDsQuery, useGetNFTWallets, useSetNFTDIDMutation, useLocalStorage } from '@chia-network/api-react';
+import { useGetDIDsQuery, useGetNFTWallets, useSetNFTDIDMutation } from '@chia-network/api-react';
 import {
   AlertDialog,
   Button,
@@ -23,6 +23,7 @@ import React, { useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 import styled from 'styled-components';
 
+import useNFTFilter from '../../hooks/useNFTFilter';
 import { didToDIDId } from '../../util/dids';
 import removeHexPrefix from '../../util/removeHexPrefix';
 import DIDProfileDropdown from '../did/DIDProfileDropdown';
@@ -99,7 +100,7 @@ export function NFTMoveToProfileAction(props: NFTMoveToProfileActionProps) {
   const { data: didWallets, isLoading: isLoadingDIDs } = useGetDIDsQuery();
   const { wallets: nftWallets, isLoading: isLoadingNFTWallets } = useGetNFTWallets();
   const currentDIDId = nfts[0].ownerDid ? didToDIDId(removeHexPrefix(nfts[0].ownerDid)) : undefined;
-  const [, setSelectedNFTIds] = useLocalStorage('gallery-selected-nfts', []);
+  const filter = useNFTFilter();
 
   const inbox: Wallet | undefined = useMemo(() => {
     if (isLoadingNFTWallets) {
@@ -176,7 +177,7 @@ export function NFTMoveToProfileAction(props: NFTMoveToProfileActionProps) {
         if (Array.isArray(response)) {
           const successTransfers = response.filter((r: any) => r?.success === true);
           const failedTransfers = response.filter((r: any) => r?.success !== true);
-          setSelectedNFTIds([]);
+          filter.setSelectedNFTIds([]);
           openDialog(
             <AlertDialog title={<Trans>NFT Move Pending</Trans>}>
               <ErrorTextWrapper>
