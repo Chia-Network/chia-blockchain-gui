@@ -8,7 +8,7 @@ msgstr ""
 "Language: si_LK\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-03-29 23:28\n"
+"PO-Revision-Date: 2023-06-23 06:12\n"
 "Last-Translator: \n"
 "Language-Team: Sinhala\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -119,11 +119,11 @@ msgstr "සම්බන්ධතාවයේ වර්ගය"
 
 #: src/components/WalletReceiveAddressField.tsx:71
 msgid "Copied"
-msgstr ""
+msgstr "පිටපත් විය"
 
 #: src/components/WalletReceiveAddressField.tsx:75
 msgid "Copy wallet address"
-msgstr ""
+msgstr "පසුම්බි ලිපිනයේ පිටපතක්"
 
 #: src/components/cat/WalletCATSelect.tsx:32
 msgid "Create New Wallet"
@@ -266,7 +266,7 @@ msgstr "නව ලිපිනය"
 
 #: src/components/WalletReceiveAddressField.tsx:114
 msgid "New Receive Address"
-msgstr ""
+msgstr "නව ලැබෙන ලිපිනය"
 
 #: src/components/WalletAdd.tsx:64
 msgid "New Wallet"
@@ -538,7 +538,7 @@ msgstr ""
 #: src/components/WalletAdd.tsx:101
 #: src/components/WalletImport.tsx:148
 msgid "Wallet Name"
-msgstr ""
+msgstr "පසුම්බියේ නම"
 
 #: src/components/cat/WalletCAT.tsx:66
 msgid "Wallet does not exists"
