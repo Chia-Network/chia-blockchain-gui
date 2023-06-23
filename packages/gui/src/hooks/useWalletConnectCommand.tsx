@@ -1,5 +1,5 @@
-import api, { store, useGetLoggedInFingerprintQuery, useLogInMutation } from '@chia-network/api-react';
-import { useOpenDialog } from '@chia-network/core';
+import api, { store, useGetLoggedInFingerprintQuery } from '@chia-network/api-react';
+import { useOpenDialog, useAuth } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import debug from 'debug';
 import React, { type ReactNode } from 'react';
@@ -71,7 +71,7 @@ function parseNotification(
 export default function useWalletConnectCommand(options: UseWalletConnectCommandOptions) {
   const { onNotification } = options;
   const openDialog = useOpenDialog();
-  const [logIn] = useLogInMutation();
+  const { logIn } = useAuth();
   const { data: currentFingerprint, isLoading: isLoadingLoggedInFingerprint } = useGetLoggedInFingerprintQuery();
   const { getPairBySession } = useWalletConnectPairs();
 
@@ -197,10 +197,7 @@ export default function useWalletConnectCommand(options: UseWalletConnectCommand
     // auto login before execute command
     if (isDifferentFingerprint && allowConfirmationFingerprintChange) {
       log('Changing fingerprint', fingerprint);
-      await logIn({
-        fingerprint,
-        type: 'skip',
-      }).unwrap();
+      await logIn(fingerprint);
     }
 
     // wait for sync
