@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh_CN\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-06-25 08:25\n"
+"PO-Revision-Date: 2023-06-25 09:25\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -1887,7 +1887,7 @@ msgstr "缺少预览视频哈希值"
 
 #: src/components/walletConnect/WalletConnectConnections.tsx:79
 msgid "More Info"
-msgstr ""
+msgstr "更多信息"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:114
 msgid "More memory slightly increases speed"
@@ -1907,7 +1907,7 @@ msgstr "移动到资料"
 
 #: src/components/nfts/gallery/NFTGallery.tsx:522
 msgid "Multi-select"
-msgstr ""
+msgstr "多选"
 
 #: src/components/settings/ProfileView.tsx:90
 msgid "My DID"
@@ -1923,11 +1923,11 @@ msgstr "非同质化代币"
 
 #: src/components/nfts/NFTDetails.tsx:73
 msgid "NFT Coin ID"
-msgstr ""
+msgstr "NFT 硬币ID"
 
 #: src/constants/WalletConnectCommands.tsx:473
 msgid "NFT Coin Id"
-msgstr ""
+msgstr "NFT 硬币ID"
 
 #: src/components/nfts/NFTDetails.tsx:55
 #: src/components/offers2/OfferBuilderNFT.tsx:63
@@ -1974,7 +1974,7 @@ msgstr "NFT 详细信息不可用"
 
 #: src/components/offers2/OfferBuilderNFTRoyalties.tsx:171
 msgid "NFT has no royalties"
-msgstr ""
+msgstr "该NFT无版税"
 
 #: src/components/notification/NotificationSendDialog.tsx:208
 msgid "NFT holder address"
@@ -2592,11 +2592,11 @@ msgstr "缺少密钥的农田"
 
 #: src/components/plot/overview/PlotOverviewHero.tsx:34
 msgid "Plots are allocated space on your hard drive used to farm and earn Chia.  <0>Learn more</0>"
-msgstr "农田是在硬盘上分配的一块空间，用于耕种并获取Chia。<0>了解更多</0>"
+msgstr "图块（Plots）是在硬盘上分配的空间，用于挖矿和赚取Chia。<0>了解更多</0>"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:217
 msgid "Plots in the same queue will run in serial"
-msgstr ""
+msgstr "相同队列中的图块（Plots）将按顺序运行。"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:91
 msgid "Plotter"
@@ -2723,11 +2723,11 @@ msgstr "预览URL无效"
 
 #: src/components/nfts/NFTDetails.tsx:315
 msgid "Preview image uris"
-msgstr ""
+msgstr "预览图片的网址"
 
 #: src/components/nfts/NFTDetails.tsx:331
 msgid "Preview video uris"
-msgstr ""
+msgstr "预览视频网址"
 
 #: src/components/block/Block.jsx:256
 #: src/components/nfts/detail/NFTDetailV2.tsx:245
@@ -2765,11 +2765,11 @@ msgstr "协议版本"
 
 #: src/components/settings/SettingsAdvanced.tsx:85
 msgid "Prove or verify possession of a wallet address, NFT, or DID using a digital signature."
-msgstr ""
+msgstr "使用数字签名来证明或验证对钱包地址、NFT或DID的所有权。"
 
 #: src/components/signVerify/VerifyMessage.tsx:219
 msgid "Public Key"
-msgstr ""
+msgstr "公钥"
 
 #: src/components/offers/NFTOfferViewer.tsx:469
 msgid "Purchase Summary"
@@ -2794,7 +2794,7 @@ msgstr "排名"
 
 #: src/components/settings/SettingsNotifications.tsx:31
 msgid "Receive push notifications when your wallet is minimized"
-msgstr ""
+msgstr "当钱包最小化时接收推送通知"
 
 #: src/components/app/AppSelectMode.tsx:103
 msgid "Recommended"
@@ -2806,7 +2806,7 @@ msgstr "推荐：0.000005 XCH"
 
 #: src/components/nfts/NFTContextualActions.tsx:602
 msgid "Refresh NFT data"
-msgstr ""
+msgstr "刷新 NFT 数据"
 
 #: src/components/plot/overview/PlotOverviewHero.tsx:46
 #: src/components/plot/overview/PlotOverviewPlots.tsx:57
@@ -2816,7 +2816,7 @@ msgstr "刷新农田列表"
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:178
 #: src/hooks/useWalletConnectCommand.tsx:78
 msgid "Reject"
-msgstr ""
+msgstr "拒绝"
 
 #: src/components/pool/PoolInfo.tsx:33
 msgid "Relative Lock Height"
@@ -2855,7 +2855,7 @@ msgstr "已请求"
 #: src/components/offers2/OfferBuilderTradeColumn.tsx:29
 #: src/components/offers2/OfferIncomingTable.tsx:43
 msgid "Requesting"
-msgstr ""
+msgstr "正在请求"
 
 #: src/components/offers/NFTOfferEditor.tsx:439
 #: src/components/offers/OfferEditor.tsx:174
@@ -2865,16 +2865,16 @@ msgstr "重置"
 
 #: src/components/nfts/NFTPreview.tsx:663
 msgid "Response too large"
-msgstr ""
+msgstr "响应太大"
 
 #: src/components/settings/SettingsAdvanced.tsx:102
 msgid "Resync"
-msgstr ""
+msgstr "重新同步"
 
 #: src/components/settings/ResyncPrompt.tsx:37
 #: src/components/settings/SettingsAdvanced.tsx:94
 msgid "Resync Wallet"
-msgstr ""
+msgstr "重新同步钱包"
 
 #: src/components/settings/SettingsAdvanced.tsx:110
 msgid "Resyncing forces reloading data from the blockchain about your transactions without losing other locally stored information like open, accepted, or cancelled offer files. Resyncing will require you to restart the app."
