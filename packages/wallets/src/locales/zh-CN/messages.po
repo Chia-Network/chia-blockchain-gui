@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh_CN\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-03-29 23:28\n"
+"PO-Revision-Date: 2023-06-25 06:25\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -119,11 +119,11 @@ msgstr "连接类型"
 
 #: src/components/WalletReceiveAddressField.tsx:71
 msgid "Copied"
-msgstr ""
+msgstr "已复制"
 
 #: src/components/WalletReceiveAddressField.tsx:75
 msgid "Copy wallet address"
-msgstr ""
+msgstr "复制钱包地址"
 
 #: src/components/cat/WalletCATSelect.tsx:32
 msgid "Create New Wallet"
@@ -153,7 +153,7 @@ msgstr "DID钱包"
 
 #: src/constants/WalletName.ts:38
 msgid "Datalayer Wallet"
-msgstr ""
+msgstr "Datalayer钱包"
 
 #: src/components/WalletHistory.tsx:100
 msgid "Date"
@@ -177,7 +177,7 @@ msgstr "分布式身份认证"
 
 #: src/components/WalletImport.tsx:158
 msgid "Enter the {mnemonicWordCount} word mnemonic that you have saved in order to restore your Chia wallet."
-msgstr ""
+msgstr "请输入你保存的{mnemonicWordCount} 个助记词来恢复奇亚钱包"
 
 #: src/components/cat/WalletCATSend.tsx:126
 msgid "Error the entered address appears to be for a different colour."
@@ -216,7 +216,7 @@ msgstr "使用助记词导入钱包"
 
 #: src/components/WalletImport.tsx:226
 msgid "Import from {alternativeWordCount} word mnemonic"
-msgstr ""
+msgstr "导入{alternativeWordCount} 位助记词"
 
 #: src/components/WalletHistory.tsx:87
 msgid "Incoming"
@@ -266,7 +266,7 @@ msgstr "新地址"
 
 #: src/components/WalletReceiveAddressField.tsx:114
 msgid "New Receive Address"
-msgstr ""
+msgstr "新接收地址"
 
 #: src/components/WalletAdd.tsx:64
 msgid "New Wallet"
@@ -321,7 +321,7 @@ msgstr "粘贴助记符"
 
 #: src/components/PasteMnemonic.tsx:53
 msgid "Paste Mnemonic ({0} words)"
-msgstr ""
+msgstr "粘贴助记词({0} 位)"
 
 #: src/components/WalletHistory.tsx:172
 msgid "Pending"
@@ -538,7 +538,7 @@ msgstr "钱包连接"
 #: src/components/WalletAdd.tsx:101
 #: src/components/WalletImport.tsx:148
 msgid "Wallet Name"
-msgstr ""
+msgstr "钱包名称"
 
 #: src/components/cat/WalletCAT.tsx:66
 msgid "Wallet does not exists"
@@ -570,5 +570,5 @@ msgstr "您的 CAT 代币已被升级！"
 
 #: src/components/WalletImport.tsx:72
 msgid "Your pasted list does not include {mnemonicWordCount} valid mnemonic words."
-msgstr ""
+msgstr "粘贴列表中未包含 {mnemonicWordCount} 个有效助记词。"
 
