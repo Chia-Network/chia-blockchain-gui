@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh_CN\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-06-25 07:25\n"
+"PO-Revision-Date: 2023-06-25 08:25\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -2515,7 +2515,7 @@ msgstr "请至少选择一个密钥"
 
 #: src/util/offerBuilderDataToOffer.ts:39
 msgid "Please specify at least one offered asset"
-msgstr ""
+msgstr "请至少提供一种资产"
 
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:54
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:58
@@ -2592,7 +2592,7 @@ msgstr "缺少密钥的农田"
 
 #: src/components/plot/overview/PlotOverviewHero.tsx:34
 msgid "Plots are allocated space on your hard drive used to farm and earn Chia.  <0>Learn more</0>"
-msgstr ""
+msgstr "农田是在硬盘上分配的一块空间，用于耕种并获取Chia。<0>了解更多</0>"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:217
 msgid "Plots in the same queue will run in serial"
