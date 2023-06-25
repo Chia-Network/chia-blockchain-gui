@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh_CN\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-06-20 08:27\n"
+"PO-Revision-Date: 2023-06-25 07:25\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -36,7 +36,7 @@ msgstr "（可选）"
 
 #: src/components/offers2/OfferBuilderImport.tsx:167
 msgid "(⌘V) a blob"
-msgstr ""
+msgstr "粘贴报价文件数据(Ctrl/⌘+V)"
 
 #: src/components/plot/add/PlotAddNFT.tsx:112
 msgid "+ Add New Plot NFT"
@@ -60,7 +60,7 @@ msgstr "收割机是一个在存有农田文件的机器上运行的服务。农
 
 #: src/components/settings/SettingsDataLayer.tsx:79
 msgid "A reference server that enables creating mirrored copies of DataLayer."
-msgstr ""
+msgstr "允许创建DataLayer副本的参考服务。"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:152
 msgid "A value of {0} is recommended"
@@ -105,7 +105,7 @@ msgstr ""
 
 #: src/constants/WalletConnectCommands.tsx:421
 msgid "Add CAT Token"
-msgstr ""
+msgstr "添加CAT资产"
 
 #: src/components/offers/OfferAssetSelector.tsx:144
 msgid "Add CAT wallets to have more options"
@@ -113,7 +113,7 @@ msgstr "添加 CAT 钱包以提供更多选项"
 
 #: src/components/walletConnect/WalletConnectConnections.tsx:102
 msgid "Add Connection"
-msgstr ""
+msgstr "添加连接"
 
 #: src/components/plot/overview/PlotOverviewPlots.tsx:49
 msgid "Add Plot Directory"
@@ -153,12 +153,12 @@ msgstr "从水龙头获取 {currencyCode}"
 #: src/constants/WalletConnectCommands.tsx:136
 #: src/constants/WalletConnectCommands.tsx:388
 msgid "Address"
-msgstr ""
+msgstr "地址"
 
 #: src/components/settings/Settings.tsx:81
 #: src/components/settings/SettingsAdvanced.tsx:44
 msgid "Advanced"
-msgstr ""
+msgstr "高级选项"
 
 #: src/components/app/AppKeyringMigrator.tsx:250
 msgid "After your keys are successfully migrated to the new keyring, you may choose to have your keys removed from the old keyring."
@@ -175,15 +175,15 @@ msgstr "所有配置"
 
 #: src/components/settings/SettingsIntegration.tsx:57
 msgid "Allow external Apps and websites to connect to your wallet through WalletConnect."
-msgstr ""
+msgstr "允许外部应用程序和网站通过WalletConnect连接到你的钱包。"
 
 #: src/components/settings/SettingsIntegration.tsx:81
 msgid "Allow requests that require switching to a different wallet key."
-msgstr ""
+msgstr "允许在不同钱包之间进行切换。"
 
 #: src/components/notification/NotificationSendDialog.tsx:272
 msgid "Allow the NFT holder to send a counter offer"
-msgstr ""
+msgstr "允许NFT持有者发送报价"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:418
 msgid "Alternate bucket writing"
@@ -205,11 +205,11 @@ msgstr "数量"
 
 #: src/components/offers2/OfferBuilderRoyaltyPayouts.tsx:38
 msgid "Amount before adding royalties"
-msgstr ""
+msgstr "不包含版税的金额"
 
 #: src/util/offerBuilderDataToOffer.ts:59
 msgid "Amount exceeds XCH spendable balance"
-msgstr ""
+msgstr "超出XCH可用余额"
 
 #: src/components/offers/NFTOfferEditor.tsx:596
 #: src/components/offers/OfferEditor.tsx:108
@@ -218,7 +218,7 @@ msgstr "金额超过可支出余额"
 
 #: src/util/offerBuilderDataToOffer.ts:86
 msgid "Amount exceeds spendable balance for {0} token"
-msgstr ""
+msgstr "超出代币CAT {0} 的可用余额"
 
 #: src/components/offers/NFTOfferPreview.tsx:137
 #: src/components/offers2/OfferBuilderNFTProvenance.tsx:23
@@ -240,7 +240,7 @@ msgstr "你确定要取消你的报价吗？"
 
 #: src/components/settings/SettingsNFT.tsx:70
 msgid "Are you sure you want to delete the NFT cache?"
-msgstr ""
+msgstr "确定删除NFT缓存吗？"
 
 #: src/components/plot/PlotAction.tsx:29
 #: src/components/plot/queue/PlotQueueActions.tsx:41
@@ -269,11 +269,11 @@ msgstr "你确定要使用 k={plotSize}？"
 
 #: src/components/offers2/OfferBuilderRoyaltyPayouts.tsx:48
 msgid "Asset"
-msgstr ""
+msgstr "资产"
 
 #: src/constants/WalletConnectCommands.tsx:426
 msgid "Asset Id"
-msgstr ""
+msgstr "资产ID"
 
 #: src/components/offers/NFTOfferTokenSelector.tsx:92
 #: src/components/offers/OfferAssetSelector.tsx:139
@@ -284,27 +284,27 @@ msgstr "资产类型"
 
 #: src/components/offers/OfferShareDialog.tsx:1353
 msgid "Assets I am offering:"
-msgstr ""
+msgstr "提供的资产："
 
 #: src/components/offers/OfferShareDialog.tsx:1358
 msgid "Assets I will receive:"
-msgstr ""
+msgstr "将会收到的资产："
 
 #: src/components/offers2/OfferBuilderTradeColumn.tsx:47
 msgid "Assets I would like to receive"
-msgstr ""
+msgstr "希望收到的资产"
 
 #: src/components/offers2/OfferBuilderTradeColumn.tsx:40
 msgid "Assets I would like to trade"
-msgstr ""
+msgstr "希望交易的资产"
 
 #: src/components/offers2/OfferBuilderTradeColumn.tsx:37
 msgid "Assets you will give"
-msgstr ""
+msgstr "提供的资产"
 
 #: src/components/offers2/OfferBuilderTradeColumn.tsx:44
 msgid "Assets you will receive"
-msgstr ""
+msgstr "将会收到的资产："
 
 #: src/components/app/AppState.tsx:230
 msgid "Attempt {attempt}"
@@ -384,7 +384,7 @@ msgstr "燃烧 NFT 确认"
 
 #: src/components/nfts/NFTBurnDialog.tsx:143
 msgid "Burning a non-fungible token means removing it from circulation by sending it to a verifiably un-spendable address. However, transactions leading up to the burn will remain on the blockchain ledger."
-msgstr ""
+msgstr "燃烧不可互换代币意味着将其从流通中移除，将其发送到可核查的不可用地址。 然而，该笔交易仍然可用从链上查询到。"
 
 #: src/components/offers/NFTOfferEditor.tsx:312
 msgid "Buy an NFT"
@@ -392,15 +392,15 @@ msgstr "购买一个 NFT"
 
 #: src/components/signVerify/VerifyMessage.tsx:252
 msgid "By providing a signing address, the public key can be validated as being associated with the address used for signing."
-msgstr ""
+msgstr "通过提供签名地址，可以使用公钥来验证该地址的有效性。"
 
 #: src/components/settings/SettingsNFT.tsx:163
 msgid "Cache"
-msgstr ""
+msgstr "缓存"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:236
 msgid "Cache size (GB)"
-msgstr ""
+msgstr "缓存大小(GB)"
 
 #: src/components/app/AppPassPrompt.tsx:183
 #: src/components/farm/FarmManageFarmingRewards.tsx:163
@@ -448,7 +448,7 @@ msgstr "已取消"
 
 #: src/util/offerBuilderDataToOffer.ts:120
 msgid "Cannot offer and request the same asset"
-msgstr ""
+msgstr "无法提供和请求相同的资产"
 
 #: src/components/farm/FarmLastAttemptedProof.tsx:15
 msgid "Challenge"
@@ -475,11 +475,11 @@ msgstr "更换农业合作社"
 
 #: src/components/settings/SettingsStartup.tsx:32
 msgid "Changes will take effect the next time Chia is started"
-msgstr ""
+msgstr "修改将在Chia下次启动时生效"
 
 #: src/components/settings/SettingsDataLayer.tsx:54
 msgid "Changes will take effect the next time Chia is started."
-msgstr ""
+msgstr "修改将在Chia下次启动时生效."
 
 #: src/electron/main.tsx:1080
 msgid "Chat on KeyBase"
@@ -487,7 +487,7 @@ msgstr "在Keybase上参与讨论"
 
 #: src/constants/WalletConnectCommands.tsx:278
 msgid "Check Offer Validity"
-msgstr ""
+msgstr "检查报价的有效性"
 
 #: src/components/offers/NFTOfferPreview.tsx:151
 #: src/components/offers2/OfferBuilderNFTProvenance.tsx:37
@@ -505,11 +505,11 @@ msgstr "奇亚"
 
 #: src/components/offers2/OfferBuilderXCHSection.tsx:76
 msgid "Chia ({currencyCode}) is a digital currency that is secure and sustainable"
-msgstr ""
+msgstr "Chia ({currencyCode}) 是一种安全和可持续的数字货币"
 
 #: src/components/offers2/OfferBuilderTokensSection.tsx:114
 msgid "Chia Asset Tokens (CATs) are tokens built on top of XCH"
-msgstr ""
+msgstr "Chia资产代币 (Chia Asset Tokens - CATs) 是基于XCH构建的代币"
 
 #: src/electron/main.tsx:1047
 msgid "Chia Blockchain Wiki"
@@ -537,11 +537,11 @@ msgstr "选择钱包模式"
 
 #: src/components/settings/SettingsNFT.tsx:113
 msgid "Choose what you want to see and how you want to view it."
-msgstr ""
+msgstr "选择想要看的内容以及如何查看它。"
 
 #: src/components/settings/SettingsNotifications.tsx:19
 msgid "Choose your notification settings."
-msgstr ""
+msgstr "选择通知选项。"
 
 #: src/components/plotNFT/PlotNFTAbsorbRewards.tsx:129
 #: src/components/plotNFT/PlotNFTCard.tsx:319
@@ -551,7 +551,7 @@ msgstr "申领奖励"
 #: src/components/settings/SettingsNFT.tsx:55
 #: src/components/settings/SettingsNFT.tsx:183
 msgid "Clear NFT cache"
-msgstr ""
+msgstr "清除 NFT 缓存"
 
 #: src/components/app/AppVersionWarning.tsx:57
 #: src/components/nfts/MultipleDownloadDialog.tsx:116
@@ -581,7 +581,7 @@ msgstr "关闭服务"
 
 #: src/constants/WalletConnectCommands.tsx:456
 msgid "Coin Id"
-msgstr ""
+msgstr "硬币ID"
 
 #: src/components/nfts/NFTSummary.tsx:54
 #: src/components/nfts/detail/NFTDetailV2.tsx:301
@@ -622,7 +622,7 @@ msgstr "确认"
 
 #: src/hooks/useWalletConnectCommand.tsx:75
 msgid "Confirmation Request"
-msgstr ""
+msgstr "确认请求"
 
 #: src/components/offers/utils.ts:159
 msgid "Confirmed"
@@ -648,7 +648,7 @@ msgstr "已连接"
 
 #: src/components/walletConnect/WalletConnectConnections.tsx:61
 msgid "Connected Applications"
-msgstr ""
+msgstr "已连接的应用程序"
 
 #: src/components/app/AppState.tsx:222
 #: src/components/app/AppState.tsx:227
@@ -670,15 +670,15 @@ msgstr "连接类型"
 
 #: src/components/nfts/NFTPreview.tsx:594
 msgid "Content does not match the expected hash value that was specified during NFT minting. The content may have been modified."
-msgstr ""
+msgstr "文件的哈希值与NFT初始铸造时指定的值不同，可能已被修改。"
 
 #: src/components/nfts/NFTPreview.tsx:591
 msgid "Content has not been validated against the hash that was specified during NFT minting."
-msgstr ""
+msgstr "文件尚未与在NFT铸造过程中指定的哈希进行验证。"
 
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:188
 msgid "Continue"
-msgstr ""
+msgstr "继续"
 
 #: src/electron/main.tsx:1065
 msgid "Contribute on GitHub"
@@ -694,19 +694,19 @@ msgstr "复制 NFT ID"
 
 #: src/components/signVerify/SignMessageResultDialog.tsx:58
 msgid "Copy To Clipboard"
-msgstr ""
+msgstr "复制到剪贴板"
 
 #: src/components/notification/NotificationSendDialog.tsx:230
 msgid "Cost to send notification to the NFT holder"
-msgstr ""
+msgstr "向 NFT 持有者发送通知的成本"
 
 #: src/components/fullNode/FullNodeAddConnection.tsx:55
 msgid "Could not connect to host {host} on port {port}"
-msgstr ""
+msgstr "无法连接到主机{port} 的端口 {host}"
 
 #: src/components/offers2/OfferBuilderImport.tsx:53
 msgid "Could not parse offer data"
-msgstr ""
+msgstr "无法解析报价数据"
 
 #: src/components/offers2/OfferIncomingTable.tsx:93
 msgid "Counter"
@@ -1251,7 +1251,7 @@ msgstr "耕种状态"
 
 #: src/components/settings/SettingsAdvanced.tsx:47
 msgid "Features for advanced users."
-msgstr ""
+msgstr "高级用户的特性。"
 
 #: src/components/nfts/NFTBurnDialog.tsx:166
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:324
@@ -1282,7 +1282,7 @@ msgstr "使用的是TWICE：一次离开池，一次加入。"
 
 #: src/components/offers2/OfferBuilderFeeSection.tsx:52
 msgid "Fees"
-msgstr ""
+msgstr "手续费"
 
 #: src/components/block/Block.jsx:239
 msgid "Fees Amount"
@@ -1307,7 +1307,7 @@ msgstr "文件名"
 
 #: src/components/nfts/gallery/NFTGallery.tsx:530
 msgid "Filter"
-msgstr ""
+msgstr "筛选"
 
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:45
 msgid "Final folder location"
@@ -1315,7 +1315,7 @@ msgstr "最终输出文件夹位置"
 
 #: src/constants/WalletConnectCommands.tsx:21
 msgid "Fingerprint"
-msgstr ""
+msgstr "指纹"
 
 #: src/components/fullNode/FullNode.jsx:28
 #: src/components/fullNode/FullNode.jsx:77
@@ -1324,7 +1324,7 @@ msgstr "已完成"
 
 #: src/components/settings/SettingsNFT.tsx:145
 msgid "Fit images to cards"
-msgstr ""
+msgstr "使图像适应卡片"
 
 #: src/electron/main.tsx:1086
 msgid "Follow on Twitter"
@@ -1354,59 +1354,59 @@ msgstr "常规"
 
 #: src/constants/WalletConnectCommands.tsx:365
 msgid "Get CAT Asset Id"
-msgstr ""
+msgstr "获取 CAT 资产ID"
 
 #: src/constants/WalletConnectCommands.tsx:59
 msgid "Get Current Address"
-msgstr ""
+msgstr "获取当前地址"
 
 #: src/constants/WalletConnectCommands.tsx:451
 msgid "Get NFT Info"
-msgstr ""
+msgstr "获取NFT信息"
 
 #: src/constants/WalletConnectCommands.tsx:440
 msgid "Get NFTs"
-msgstr ""
+msgstr "获取NFT"
 
 #: src/constants/WalletConnectCommands.tsx:148
 msgid "Get Next Address"
-msgstr ""
+msgstr "获取新地址"
 
 #: src/constants/WalletConnectCommands.tsx:320
 msgid "Get Offer Data"
-msgstr ""
+msgstr "获取报价数据"
 
 #: src/constants/WalletConnectCommands.tsx:332
 msgid "Get Offer Record"
-msgstr ""
+msgstr "获取报价记录"
 
 #: src/constants/WalletConnectCommands.tsx:308
 msgid "Get Offer Summary"
-msgstr ""
+msgstr "获取报价摘要"
 
 #: src/constants/WalletConnectCommands.tsx:221
 msgid "Get Offers Count"
-msgstr ""
+msgstr "获取报价数量"
 
 #: src/constants/WalletConnectCommands.tsx:32
 msgid "Get Transaction"
-msgstr ""
+msgstr "获取交易"
 
 #: src/constants/WalletConnectCommands.tsx:44
 msgid "Get Wallet Balance"
-msgstr ""
+msgstr "获取钱包余额"
 
 #: src/constants/WalletConnectCommands.tsx:171
 msgid "Get Wallet Sync Status"
-msgstr ""
+msgstr "获取钱包同步状态"
 
 #: src/constants/WalletConnectCommands.tsx:27
 msgid "Get Wallets"
-msgstr ""
+msgstr "获取钱包"
 
 #: src/constants/WalletConnectCommands.tsx:178
 msgid "Get all Offers"
-msgstr ""
+msgstr "获取所有报价"
 
 #: src/components/nfts/gallery/NFTGalleryHero.tsx:15
 msgid "Go collect some gems"
@@ -1419,7 +1419,7 @@ msgstr "跳转至 #{channelName}"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:420
 msgid "Halves the temp2 cache size requirements by alternating bucket writing methods between tables."
-msgstr ""
+msgstr "通过在table之间交替写入bucket的方法将缓存大小要求减半。"
 
 #: src/components/plot/PlotHarvesters.tsx:37
 msgid "Harvesters"
@@ -1427,11 +1427,11 @@ msgstr "收割机"
 
 #: src/components/nfts/detail/NFTDetailV2.tsx:179
 msgid "Hash is validated."
-msgstr ""
+msgstr "已验证哈希值。"
 
 #: src/components/nfts/detail/NFTDetailV2.tsx:184
 msgid "Hash mismatch."
-msgstr ""
+msgstr "哈希值不匹配。"
 
 #: src/components/offers/OfferShareDialog.tsx:847
 msgid "Hashgreen DEX URL"
@@ -1461,11 +1461,11 @@ msgstr "下面是当前的区块挑战。您可能有也可能没有这些挑战
 
 #: src/components/nfts/gallery/NFTGallery.tsx:589
 msgid "Hidden"
-msgstr ""
+msgstr "隐藏"
 
 #: src/components/nfts/gallery/NFTGallery.tsx:573
 msgid "Hidden ({0})"
-msgstr ""
+msgstr "隐藏({0})"
 
 #: src/components/nfts/NFTContextualActions.tsx:499
 msgid "Hide"
@@ -1505,7 +1505,7 @@ msgstr "IP地址 / 主机"
 
 #: src/constants/WalletConnectCommands.tsx:119
 msgid "Id"
-msgstr ""
+msgstr "Id"
 
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:128
 msgid "If none selected, then it will default to the temporary directory."
@@ -1517,11 +1517,11 @@ msgstr "如果选中，您的报价将不会公开共享。"
 
 #: src/components/nfts/NFTBurnDialog.tsx:76
 msgid "If you burn these NFTs, nobody (including you) will ever be able to access it again. Are you sure you want to continue?"
-msgstr ""
+msgstr "如果销毁这些NFT，任何人都将无法再次访问它。确定要继续吗？"
 
 #: src/components/nfts/NFTBurnDialog.tsx:81
 msgid "If you burn this NFT, nobody (including you) will ever be able to access it again. Are you sure you want to continue?"
-msgstr ""
+msgstr "如果销毁该NFT，任何人都将无法再次访问它。确定要继续吗？"
 
 #: src/components/offers/OfferManager.tsx:110
 msgid "If you have already shared your offer file, you may need to submit a transaction to cancel the pending offer. Click \"Cancel on blockchain\" to submit a cancellation transaction."
@@ -1533,7 +1533,7 @@ msgstr "图片哈希不符合"
 
 #: src/components/settings/SettingsNFT.tsx:155
 msgid "Images will be scaled to fill the NFT card and ignore their original proportions."
-msgstr ""
+msgstr "图像将被缩放以填充NFT卡并忽略原始比例."
 
 #: src/components/offers/OfferDataEntryDialog.tsx:61
 msgid "Import"
@@ -1551,11 +1551,11 @@ msgstr "以兑换"
 
 #: src/constants/WalletConnectCommands.tsx:207
 msgid "Include My Offers"
-msgstr ""
+msgstr "包含我的报价"
 
 #: src/constants/WalletConnectCommands.tsx:213
 msgid "Include Taken Offers"
-msgstr ""
+msgstr "包括已成交的报价"
 
 #: src/components/offers/NFTOfferEditor.tsx:91
 #: src/components/offers/OfferEditorConditionsPanel.tsx:392
@@ -1564,7 +1564,7 @@ msgstr "在报价中加入收费可以帮助在接受报价时加速交易。建
 
 #: src/components/offers2/OfferIncomingTable.tsx:112
 msgid "Incoming Offers"
-msgstr ""
+msgstr "收到的报价"
 
 #: src/components/farm/FarmLatestBlockChallenges.tsx:17
 msgid "Index"
@@ -1597,7 +1597,7 @@ msgstr ""
 
 #: src/components/signVerify/VerifyMessage.tsx:169
 msgid "Invalid"
-msgstr ""
+msgstr "无效"
 
 #: src/components/offers/NFTOfferEditor.tsx:585
 msgid "Invalid NFT identifier"
@@ -1605,7 +1605,7 @@ msgstr "无效的 NFT 标识符"
 
 #: src/components/nfts/NFTPreview.tsx:653
 msgid "Invalid metadata url"
-msgstr ""
+msgstr "无效的元数据网址"
 
 #: src/components/plotNFT/PlotNFTState.tsx:27
 msgid "Invalid state"
@@ -1654,11 +1654,11 @@ msgstr "K值大小"
 
 #: src/hooks/useWalletConnectCommand.tsx:101
 msgid "Key"
-msgstr ""
+msgstr "密钥"
 
 #: src/components/settings/SettingsIntegration.tsx:65
 msgid "Key switching"
-msgstr ""
+msgstr "切换密钥"
 
 #: src/components/offers/OfferShareDialog.tsx:1086
 msgid "Keybase command failed {e}. If you haven't installed Keybase, you can download from https://keybase.io"
@@ -1730,7 +1730,7 @@ msgstr "许可证URL {0}"
 
 #: src/components/settings/SettingsNFT.tsx:214
 msgid "Limit cache size"
-msgstr ""
+msgstr "限制缓存大小"
 
 #: src/components/fullNode/FullNodeConnections.tsx:99
 msgid "List of connections is empty"
@@ -1746,7 +1746,7 @@ msgstr "正在加载NFT信息..."
 
 #: src/components/offers2/OfferBuilderValueSearch.tsx:144
 msgid "Loading NFTs..."
-msgstr ""
+msgstr "正在加载 NFT..."
 
 #: src/components/app/AppProviders.tsx:96
 msgid "Loading configuration"
@@ -1758,7 +1758,7 @@ msgstr "正在加载农业数据"
 
 #: src/components/app/AppAutoLogin.tsx:49
 msgid "Loading fingerprint"
-msgstr ""
+msgstr "加载指纹中"
 
 #: src/components/app/AppState.tsx:193
 msgid "Loading keyring status"
@@ -1780,11 +1780,11 @@ msgstr "区域"
 
 #: src/components/settings/SettingsNFT.tsx:196
 msgid "Local folder"
-msgstr ""
+msgstr "本地文件夹"
 
 #: src/constants/WalletConnectCommands.tsx:14
 msgid "Log In"
-msgstr ""
+msgstr "登录"
 
 #: src/components/app/AppSelectMode.tsx:84
 msgid "Manage CAT tokens"
@@ -1800,18 +1800,18 @@ msgstr "管理耕种奖励发放地址"
 
 #: src/components/settings/SettingsNFT.tsx:166
 msgid "Manage how and where files are stored on this computer."
-msgstr ""
+msgstr "管理存储本地计算机上的文件。"
 
 #: src/constants/WalletConnectCommands.tsx:407
 msgid "Memos"
-msgstr ""
+msgstr "备注"
 
 #: src/components/signVerify/SignMessage.tsx:194
 #: src/components/signVerify/VerifyMessage.tsx:207
 #: src/constants/WalletConnectCommands.tsx:124
 #: src/constants/WalletConnectCommands.tsx:141
 msgid "Message"
-msgstr ""
+msgstr "消息"
 
 #: src/components/nfts/NFTDetails.tsx:265
 msgid "Metadata Hash"
@@ -1823,7 +1823,7 @@ msgstr "元数据 URL {0}"
 
 #: src/components/nfts/NFTPreview.tsx:649
 msgid "Metadata hash mismatch"
-msgstr ""
+msgstr "元数据哈希不匹配"
 
 #: src/components/fullNode/FullNodeConnections.tsx:50
 msgid "MiB Up/Down"
@@ -1859,15 +1859,15 @@ msgstr "铸造在区块高度"
 
 #: src/components/offers2/OfferBuilderNFT.tsx:70
 msgid "Minter"
-msgstr ""
+msgstr "铸造者"
 
 #: src/components/nfts/NFTDetails.tsx:172
 msgid "Minter DID"
-msgstr ""
+msgstr "铸造者DID"
 
 #: src/components/offers/OfferSummaryRow.tsx:115
 msgid "Minter:"
-msgstr ""
+msgstr "铸造者:"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:94
 msgid "Minutes"
@@ -1879,11 +1879,11 @@ msgstr "缺少密钥"
 
 #: src/components/nfts/NFTPreview.tsx:641
 msgid "Missing preview_image_hash key"
-msgstr ""
+msgstr "缺少预览图像哈希值"
 
 #: src/components/nfts/NFTPreview.tsx:637
 msgid "Missing preview_video_hash key"
-msgstr ""
+msgstr "缺少预览视频哈希值"
 
 #: src/components/walletConnect/WalletConnectConnections.tsx:79
 msgid "More Info"
@@ -2441,7 +2441,7 @@ msgstr "请检查以下链接以验证您要访问的站点。请自行承担操
 
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:75
 msgid "Please enter a URI"
-msgstr ""
+msgstr "请输入网址"
 
 #: src/components/app/AppPassPrompt.tsx:49
 #: src/components/settings/SetPassphrasePrompt.tsx:72
@@ -2459,7 +2459,7 @@ msgstr "请输入一个NFT标识符。"
 #: src/util/offerBuilderDataToOffer.ts:46
 #: src/util/offerBuilderDataToOffer.ts:111
 msgid "Please enter an XCH amount"
-msgstr ""
+msgstr "请输入XCH金额"
 
 #: src/components/offers/NFTOfferEditor.tsx:591
 msgid "Please enter an amount"
@@ -2472,7 +2472,7 @@ msgstr "请为每行输入一个金额"
 #: src/util/offerBuilderDataToOffer.ts:78
 #: src/util/offerBuilderDataToOffer.ts:139
 msgid "Please enter an amount for {0} token"
-msgstr ""
+msgstr "请输入代币 {0} 金额"
 
 #: src/components/settings/ChangePassphrasePrompt.tsx:89
 msgid "Please enter your current passphrase, and a new passphrase"
@@ -2499,7 +2499,7 @@ msgstr "请为每行选择一个资产。"
 #: src/util/offerBuilderDataToOffer.ts:69
 #: src/util/offerBuilderDataToOffer.ts:130
 msgid "Please select an asset for each token"
-msgstr ""
+msgstr "请为每个代币选择一个资产"
 
 #: src/components/offers/NFTOfferEditor.tsx:589
 msgid "Please select an asset type"
@@ -2507,11 +2507,11 @@ msgstr "请选择资产类型"
 
 #: src/components/settings/SettingsNFT.tsx:95
 msgid "Please select an empty folder"
-msgstr ""
+msgstr "请选择一个空文件夹"
 
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:84
 msgid "Please select at least one key"
-msgstr ""
+msgstr "请至少选择一个密钥"
 
 #: src/util/offerBuilderDataToOffer.ts:39
 msgid "Please specify at least one offered asset"
