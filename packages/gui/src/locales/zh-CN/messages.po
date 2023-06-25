@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh_CN\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-06-25 09:25\n"
+"PO-Revision-Date: 2023-06-25 10:25\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -2878,7 +2878,7 @@ msgstr "重新同步钱包"
 
 #: src/components/settings/SettingsAdvanced.tsx:110
 msgid "Resyncing forces reloading data from the blockchain about your transactions without losing other locally stored information like open, accepted, or cancelled offer files. Resyncing will require you to restart the app."
-msgstr ""
+msgstr "重新同步会强制从区块链重新加载有关交易数据，而不会丢失其他本地存储的信息，如打开、接受或取消的报价文件。重新同步将在重启应用后生效。"
 
 #: src/constants/WalletConnectCommands.tsx:201
 msgid "Reverse"
@@ -2886,7 +2886,7 @@ msgstr ""
 
 #: src/components/offers2/OfferBuilderNFTRoyalties.tsx:93
 msgid "Royalties are built into the NFT, so they will automatically be accounted for when the offer is created/accepted."
-msgstr ""
+msgstr "版税已内置在NFT中，因此在创建/接受报价时将自动计算在内。"
 
 #: src/components/nfts/NFTDetails.tsx:159
 msgid "Royalty Percentage"
@@ -2908,7 +2908,7 @@ msgstr "保存报价文件"
 
 #: src/components/signVerify/SignMessageResultDialog.tsx:63
 msgid "Save To File"
-msgstr ""
+msgstr "保存到文件"
 
 #: src/components/app/AppKeyringMigrator.tsx:225
 #: src/components/settings/ChangePassphrasePrompt.tsx:273
@@ -2927,7 +2927,7 @@ msgstr "在 Tail 数据库中搜索"
 
 #: src/components/nfts/gallery/NFTGallery.tsx:520
 msgid "Search..."
-msgstr ""
+msgstr "搜索..."
 
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:109
 msgid "Second temporary folder location"
@@ -2935,7 +2935,7 @@ msgstr "第二临时文件夹位置"
 
 #: src/constants/WalletConnectCommands.tsx:265
 msgid "Secure"
-msgstr ""
+msgstr "安全"
 
 #: src/components/settings/SettingsPanel.tsx:95
 msgid "Secure your keychain using a strong passphrase"
@@ -2972,11 +2972,11 @@ msgstr "选择客户端模式"
 
 #: src/components/nfts/gallery/NFTGallery.tsx:475
 msgid "Select all"
-msgstr ""
+msgstr "选择所有"
 
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:141
 msgid "Select keys which you want to share with WalletConnect"
-msgstr ""
+msgstr "选择将要与 WalletConnect 交互的密钥"
 
 #: src/components/plot/add/PlotAddSelectFinalDirectory.tsx:35
 msgid "Select the final destination for the folder where you would like the plot to be stored. We recommend you use a large slow hard drive (like external HDD)."
@@ -3015,15 +3015,15 @@ msgstr "卖出一个 NFT"
 
 #: src/components/notification/NotificationSendDialog.tsx:294
 msgid "Send Message"
-msgstr ""
+msgstr "发送消息"
 
 #: src/constants/WalletConnectCommands.tsx:75
 msgid "Send Transaction"
-msgstr ""
+msgstr "发起交易"
 
 #: src/components/notification/NotificationSendDialog.tsx:178
 msgid "Send offer notification"
-msgstr ""
+msgstr "发送报价通知"
 
 #: src/components/nfts/NFTBurnDialog.tsx:159
 #: src/components/nfts/NFTTransferAction.tsx:149
@@ -3077,7 +3077,7 @@ msgstr "分享到OfferBin"
 
 #: src/components/offers/OfferShareDialog.tsx:975
 msgid "Share on Spacescan.io"
-msgstr ""
+msgstr "分享到Spacescan.io"
 
 #: src/components/offers/OfferShareDialog.tsx:1295
 msgid "Share on offerpool"
@@ -3097,75 +3097,75 @@ msgstr "显示预览"
 
 #: src/components/nfts/gallery/NFTGallery.tsx:541
 msgid "Showing {0} of {1} items"
-msgstr ""
+msgstr "显示 {1} 项中的 {0} 项"
 
 #: src/components/settings/ResyncPrompt.tsx:52
 msgid "Shut down"
-msgstr ""
+msgstr "关闭"
 
 #: src/components/signVerify/SignMessage.tsx:208
 msgid "Sign"
-msgstr ""
+msgstr "签名"
 
 #: src/components/signVerify/SignVerifyDialog.tsx:23
 msgid "Sign Message"
-msgstr ""
+msgstr "消息签名"
 
 #: src/constants/WalletConnectCommands.tsx:131
 msgid "Sign Message by Address"
-msgstr ""
+msgstr "通过地址对消息进行签名"
 
 #: src/constants/WalletConnectCommands.tsx:114
 msgid "Sign Message by Id"
-msgstr ""
+msgstr "通过ID对消息进行签名"
 
 #: src/components/signVerify/VerifyMessage.tsx:228
 msgid "Signature"
-msgstr ""
+msgstr "签名"
 
 #: src/components/signVerify/VerifyMessage.tsx:197
 msgid "Signature Details"
-msgstr ""
+msgstr "签名详细信息"
 
 #: src/components/signVerify/VerifyMessage.tsx:161
 msgid "Signature Status:"
-msgstr ""
+msgstr "签名状态："
 
 #: src/components/signVerify/VerifyMessage.tsx:123
 msgid "Signature Verified"
-msgstr ""
+msgstr "已验证签名"
 
 #: src/components/settings/SettingsAdvanced.tsx:60
 msgid "Signatures"
-msgstr ""
+msgstr "签名"
 
 #: src/components/signVerify/VerifyMessage.tsx:129
 msgid "Signed By:"
-msgstr ""
+msgstr "签名者："
 
 #: src/components/signVerify/SignMessageResultDialog.tsx:35
 msgid "Signed Message"
-msgstr ""
+msgstr "已签名的消息"
 
 #: src/components/signVerify/VerifyMessageImport.tsx:87
 msgid "Signed message file is too large (> 10MB)"
-msgstr ""
+msgstr "签名消息文件过大 (> 10MB)"
 
 #: src/components/signVerify/VerifyMessage.tsx:248
 msgid "Signing Address (Optional)"
-msgstr ""
+msgstr "签名地址 (可选)"
 
 #: src/components/signVerify/SignMessage.tsx:164
 msgid "Signing Entity"
-msgstr ""
+msgstr "签名实体"
 
 #: src/components/signVerify/VerifyMessage.tsx:237
 msgid "Signing Mode"
-msgstr ""
+msgstr "签名模式"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:240
 msgid "Size of cache to reserve for I/O"
-msgstr ""
+msgstr "为I/O 预留的缓存大小"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:439
 msgid "Skips adding a final directory to harvester for farming"
@@ -3177,11 +3177,11 @@ msgstr "加入农业合作社来稳定XCH耕作收益。"
 
 #: src/components/notification/NotificationNFTTitle.tsx:30
 msgid "Something went wrong"
-msgstr ""
+msgstr "出错了"
 
 #: src/components/offers/OfferShareDialog.tsx:935
 msgid "Spacescan.io URL"
-msgstr ""
+msgstr "Spacescan.io 网址"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:134
 msgid "Specify a value of 0 to use all available threads"
@@ -3189,7 +3189,7 @@ msgstr "输 0 即使用所有可用线程"
 
 #: src/components/signVerify/SignMessage.tsx:21
 msgid "Specify a wallet address, NFT, or DID to sign with"
-msgstr ""
+msgstr "指定用于签名的钱包地址、NFT或 DID"
 
 #: src/electron/main.tsx:1149
 msgid "Speech"
@@ -3197,15 +3197,15 @@ msgstr "演说"
 
 #: src/constants/WalletConnectCommands.tsx:377
 msgid "Spend CAT"
-msgstr ""
+msgstr "花费CAT"
 
 #: src/components/offers2/OfferBuilderWalletBalance.tsx:44
 msgid "Spendable Balance: {0}"
-msgstr ""
+msgstr "可用余额： {0}"
 
 #: src/constants/WalletConnectCommands.tsx:183
 msgid "Start"
-msgstr ""
+msgstr "开始"
 
 #: src/constants/WalletConnectCommands.tsx:195
 msgid "Start Key"
@@ -3217,7 +3217,7 @@ msgstr "正在启动服务..."
 
 #: src/components/settings/SettingsStartup.tsx:16
 msgid "Startup"
-msgstr ""
+msgstr "启动"
 
 #: src/components/fullNode/FullNode.jsx:79
 msgid "State"
@@ -3248,7 +3248,7 @@ msgstr "成功"
 
 #: src/components/settings/LimitCacheSize.tsx:63
 msgid "Successfully updated cache size limit."
-msgstr ""
+msgstr "成功更新缓存大小限制。"
 
 #: src/components/settings/SettingsDerivationIndex.tsx:54
 msgid "Successfully updated the derivation index. Your balances may take a while to update."
@@ -3269,11 +3269,11 @@ msgstr "正在同步 <0/> / <1/>"
 
 #: src/constants/WalletConnectCommands.tsx:290
 msgid "Take Offer"
-msgstr ""
+msgstr "接受报价"
 
 #: src/constants/WalletConnectCommands.tsx:483
 msgid "Target Address"
-msgstr ""
+msgstr "目标地址"
 
 #: src/components/pool/PoolInfo.tsx:38
 msgid "Target Puzzle Hash"
@@ -3285,11 +3285,11 @@ msgstr "临时文件夹位置"
 
 #: src/components/app/AppVersionWarning.tsx:35
 msgid "The Chia application and its services are using different versions. Some functionality may not be behave properly as a result.<0/><1/>Chia services version: {backV}<2/>Chia application version: {guiV}<3/><4/>It is recommended that you quit the Chia application and stop all Chia services."
-msgstr ""
+msgstr "Chia应用程序与后台服务版本不一致。一些功能可能无法正常操作。 <0/><1/>Chia 后台服务版本： {backV}<2/>Chia 应用程序版本： {guiV}<3/><4/>建议退出Chia应用程序并停止所有Chia后台服务。"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:210
 msgid "The NFT move failed: {err}"
-msgstr ""
+msgstr "NFT 移动失败: {err}"
 
 #: src/components/nfts/NFTMoveToProfileDialog.tsx:203
 msgid "The NFT move transaction has been successfully submitted to the blockchain."
@@ -3301,7 +3301,7 @@ msgstr "NFT 状态已更新。如果交易已成功发送到内存池，它可�
 
 #: src/components/nfts/NFTContextualActions.tsx:271
 msgid "The NFT status update failed: {err}"
-msgstr ""
+msgstr "NFT 状态更新失败: {err}"
 
 #: src/components/nfts/NFTContextualActions.tsx:183
 msgid "The NFT transfer failed: {error}"
@@ -3318,7 +3318,7 @@ msgstr "衍生指数设置钱包链扫描钱包地址的范围。 如果您有�
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:88
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:137
 msgid "The folder is on a RAM Disk"
-msgstr ""
+msgstr "文件夹在内存盘上"
 
 #: src/components/farm/FarmFullNodeConnections.tsx:77
 msgid "The full node that your farmer is connected to is below. <0>Learn more</0>"
@@ -3364,7 +3364,7 @@ msgstr "密语用于创建农田。农田是与农场池的公钥与农田的公
 
 #: src/components/signVerify/VerifyMessage.tsx:135
 msgid "The signature was made by the private key associated with the wallet address. The signer can be assumed to be the owner of the private key."
-msgstr ""
+msgstr "该签名是由与钱包地址关联的私钥生成的。可以认为签名者是私钥的拥有者。"
 
 #: src/components/offers/NFTOfferViewer.tsx:558
 msgid "The total amount offered includes the offered purchase price, plus the optional offer creation fee.<0/>If the NFT has royalty payments enabled, those creator fees will be paid from the offered purchase price."
@@ -3463,7 +3463,7 @@ msgstr "此报价不再有效。要了解原因，请点击 <0>这里</0> 了解
 
 #: src/components/offers2/OfferBuilderViewer.tsx:168
 msgid "This offer was cancelled"
-msgstr ""
+msgstr "此报价已取消"
 
 #: src/components/plotNFT/PlotExternalNFTCard.tsx:267
 msgid "This plot NFT is assigned to a different key. You can still create plots for this plot NFT, but you can not make changes."
@@ -3479,7 +3479,7 @@ msgstr "第 2 阶段的线程倍数"
 
 #: src/components/nfts/NFTPreview.tsx:629
 msgid "Thumbnail hash mismatch"
-msgstr ""
+msgstr "缩略图哈希值不匹配"
 
 #: src/components/fullNode/FullNode.jsx:71
 msgid "Time Created"
@@ -3499,7 +3499,7 @@ msgstr "标题不可用"
 
 #: src/components/settings/ResyncPrompt.tsx:41
 msgid "To initiate a wallet resync, all Chia services must first be shut down. After shutting down, you will be required to restart Chia to begin the resyncing process. Are you sure you want to shut down and resync?"
-msgstr ""
+msgstr "要重新同步钱包，必须先关闭所有Chia服务。 关闭后，需要重启 Chia 以开始重新同步。确定要关闭并重新同步吗？"
 
 #: src/components/settings/ProfileView.tsx:127
 msgid "Token Standard"
@@ -3516,7 +3516,7 @@ msgstr "过多NFT农田"
 
 #: src/components/offers2/OfferBuilderWalletAmount.tsx:36
 msgid "Total Amount"
-msgstr ""
+msgstr "总金额"
 
 #: src/components/offers/NFTOfferEditor.tsx:385
 #: src/components/offers/NFTOfferViewer.tsx:541
@@ -3530,7 +3530,7 @@ msgstr "要求的金额"
 
 #: src/components/offers2/OfferBuilderAmountWithRoyalties.tsx:31
 msgid "Total Amount with Royalties"
-msgstr ""
+msgstr "包含版税的总金额"
 
 #: src/components/farm/card/FarmCardTotalChiaFarmed.tsx:27
 msgid "Total Chia Farmed"
