@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh_CN\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-06-25 10:25\n"
+"PO-Revision-Date: 2023-06-25 11:25\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -1978,7 +1978,7 @@ msgstr "该NFT无版税"
 
 #: src/components/notification/NotificationSendDialog.tsx:208
 msgid "NFT holder address"
-msgstr ""
+msgstr "NFT 持有者地址"
 
 #: src/components/offers/NFTOfferPreview.tsx:44
 msgid "NFT identifier does not reference a valid NFT coin."
