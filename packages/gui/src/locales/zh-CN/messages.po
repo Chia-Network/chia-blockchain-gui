@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh_CN\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-06-26 14:56\n"
+"PO-Revision-Date: 2023-06-26 16:06\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -20,7 +20,7 @@ msgstr ""
 
 #: src/components/offers2/OfferBuilderImport.tsx:167
 msgid "(Ctrl-V) a blob"
-msgstr "粘贴报价文件数据(Ctrl/⌘+V)"
+msgstr "报价文件数据(Ctrl/⌘+V)"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:63
 msgid "(Not Installed)"
@@ -36,7 +36,7 @@ msgstr "（可选）"
 
 #: src/components/offers2/OfferBuilderImport.tsx:167
 msgid "(⌘V) a blob"
-msgstr "粘贴报价文件数据(Ctrl/⌘+V)"
+msgstr "报价文件数据(Ctrl/⌘+V)"
 
 #: src/components/plot/add/PlotAddNFT.tsx:112
 msgid "+ Add New Plot NFT"
@@ -269,11 +269,11 @@ msgstr "你确定要使用 k={plotSize}？"
 
 #: src/components/offers2/OfferBuilderRoyaltyPayouts.tsx:48
 msgid "Asset"
-msgstr "资产"
+msgstr "资产代币"
 
 #: src/constants/WalletConnectCommands.tsx:426
 msgid "Asset Id"
-msgstr "资产ID"
+msgstr "资产代币ID"
 
 #: src/components/offers/NFTOfferTokenSelector.tsx:92
 #: src/components/offers/OfferAssetSelector.tsx:139
@@ -749,7 +749,7 @@ msgstr "创建地块NFT"
 
 #: src/components/offers/OfferManager.tsx:440
 msgid "Create a file that you can use to trade XCH, Chia Asset Tokens, or NFTs with no counter-party risk."
-msgstr "创建一个没有交易对手风险的情况下交易 XCH、Chia 资产代币或 NFT的文件。"
+msgstr "创建一个没有交易对手风险的情况下交易XCH、Chia资产代币或NFT的文件。"
 
 #: src/components/settings/ProfileAdd.tsx:75
 msgid "Create a new profile"
@@ -2224,7 +2224,7 @@ msgstr "已共享报价"
 #: src/components/offers2/OfferBuilderValue.tsx:200
 #: src/components/offers2/OfferBuilderViewer.tsx:172
 msgid "Offer cannot be accepted because you don't possess the requested assets"
-msgstr "因为您没有被请求的资产，所以不能接受报价"
+msgstr "因为你没有被请求的资产，所以不能接受报价"
 
 #: src/components/offers2/OfferBuilderImport.tsx:77
 msgid "Offer file is too large (> 1MB)"
@@ -2592,11 +2592,11 @@ msgstr "缺少密钥地块"
 
 #: src/components/plot/overview/PlotOverviewHero.tsx:34
 msgid "Plots are allocated space on your hard drive used to farm and earn Chia.  <0>Learn more</0>"
-msgstr "图块（Plots）是在硬盘上分配的空间，用于挖矿和赚取Chia。<0>了解更多</0>"
+msgstr "地块是在硬盘上分配的空间，用于耕种和赚取Chia。<0>了解更多</0>"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:217
 msgid "Plots in the same queue will run in serial"
-msgstr "相同队列中的图块（Plots）将按顺序运行。"
+msgstr "相同队列中的地块将按顺序运行。"
 
 #: src/components/plot/add/PlotAddChoosePlotter.tsx:91
 msgid "Plotter"
@@ -2855,7 +2855,7 @@ msgstr "已请求"
 #: src/components/offers2/OfferBuilderTradeColumn.tsx:29
 #: src/components/offers2/OfferIncomingTable.tsx:43
 msgid "Requesting"
-msgstr "正在请求"
+msgstr "请求"
 
 #: src/components/offers/NFTOfferEditor.tsx:439
 #: src/components/offers/OfferEditor.tsx:174
@@ -3508,7 +3508,7 @@ msgstr "代币标准"
 #: src/components/dashboard/DashboardSideBar.tsx:51
 #: src/components/offers2/OfferBuilderTokensSection.tsx:113
 msgid "Tokens"
-msgstr "资产"
+msgstr "资产代币"
 
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:111
 msgid "Too Many Plot NFTs"
@@ -3920,7 +3920,7 @@ msgstr "警告：不匹配的版本"
 #: src/components/offers/OfferSummary.tsx:133
 #: src/components/offers2/OfferBuilderValue.tsx:204
 msgid "Warning: Verify that the offered CAT asset IDs match the asset IDs of the tokens you expect to receive."
-msgstr "警告：验证提供的 CAT 资产ID是否与您预期收到的代币的资产ID相匹配。"
+msgstr "警告：验证提供的资产代币ID是否与您预期收到的资产代币ID相匹配。"
 
 #: src/hooks/useOpenUnsafeLink.tsx:30
 msgid "Warning: You're about to visit a website"
@@ -3936,7 +3936,7 @@ msgstr "权重是施加给所有块包括目前这块的额外的困难度."
 
 #: src/components/offers/OfferEditorConfirmationDialog.tsx:22
 msgid "When creating an offer, any assets that are being offered will be locked and unavailable until the offer is accepted or cancelled, resulting in your spendable balance changing."
-msgstr "在创建报价时，在接受或取消报价之前，任何正在提供的资产都将被锁定并不可用。 导致您的可动用余额变化。"
+msgstr "在创建一个报价时，任何正在被提供的资产都将被锁定且状态为不可用，直到该报价被接受或取消，从而导致你的可用余额发生变化。"
 
 #: src/electron/main.tsx:1029
 msgid "Window"
@@ -4086,7 +4086,7 @@ msgstr "已创建 {0}"
 #: src/components/offers2/OfferBuilderImport.tsx:170
 #: src/components/signVerify/VerifyMessageImport.tsx:154
 msgid "or <0>browse</0> on your computer"
-msgstr "或者<0>在电脑中 浏览</0>"
+msgstr "或者在电脑中<0>浏览</0>"
 
 #: src/components/offers/OfferImport.tsx:170
 msgid "or Paste (Ctrl-V) an Offer blob"
