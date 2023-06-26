@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh_CN\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-06-26 04:57\n"
+"PO-Revision-Date: 2023-06-26 14:56\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -60,7 +60,7 @@ msgstr "收割机是一个在存有地块文件的机器上运行的服务。农
 
 #: src/components/settings/SettingsDataLayer.tsx:79
 msgid "A reference server that enables creating mirrored copies of DataLayer."
-msgstr "允许创建DataLayer副本的参考服务。"
+msgstr "允许创建DataLayer镜像副本的参考服务。"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:152
 msgid "A value of {0} is recommended"
@@ -95,17 +95,17 @@ msgstr "操作"
 
 #: src/components/walletConnect/WalletConnectPairInfoDialog.tsx:121
 msgid "Active Sessions"
-msgstr ""
+msgstr "活动的会话"
 
 #: src/components/notification/NotificationsDropdown.tsx:37
 #: src/components/notification/NotificationsDropdown.tsx:44
 #: src/components/notification/NotificationsMenu.tsx:35
 msgid "Activity"
-msgstr ""
+msgstr "未读通知"
 
 #: src/constants/WalletConnectCommands.tsx:421
 msgid "Add CAT Token"
-msgstr "添加CAT资产"
+msgstr "添加资产代币"
 
 #: src/components/offers/OfferAssetSelector.tsx:144
 msgid "Add CAT wallets to have more options"
@@ -187,7 +187,7 @@ msgstr "允许NFT持有者发送报价"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:418
 msgid "Alternate bucket writing"
-msgstr ""
+msgstr "轮流写入bucket"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:345
 msgid "Alternate tmpdir/tmpdir2"
@@ -218,7 +218,7 @@ msgstr "金额超过可支出余额"
 
 #: src/util/offerBuilderDataToOffer.ts:86
 msgid "Amount exceeds spendable balance for {0} token"
-msgstr "超出代币CAT {0} 的可用余额"
+msgstr "超出资产代币 {0} 的可用余额"
 
 #: src/components/offers/NFTOfferPreview.tsx:137
 #: src/components/offers2/OfferBuilderNFTProvenance.tsx:23
@@ -384,7 +384,7 @@ msgstr "燃烧 NFT 确认"
 
 #: src/components/nfts/NFTBurnDialog.tsx:143
 msgid "Burning a non-fungible token means removing it from circulation by sending it to a verifiably un-spendable address. However, transactions leading up to the burn will remain on the blockchain ledger."
-msgstr "燃烧不可互换代币意味着将其从流通中移除，将其发送到可核查的不可用地址。 然而，该笔交易仍然可用从链上查询到。"
+msgstr "销毁不可互换代币意味着将其从流通中移除，将其发送到可核查的不可用地址。 然而，该笔交易仍然可用从链上查询到。"
 
 #: src/components/offers/NFTOfferEditor.tsx:312
 msgid "Buy an NFT"
@@ -509,7 +509,7 @@ msgstr "Chia ({currencyCode}) 是一种安全和可持续的数字货币"
 
 #: src/components/offers2/OfferBuilderTokensSection.tsx:114
 msgid "Chia Asset Tokens (CATs) are tokens built on top of XCH"
-msgstr "Chia资产代币 (Chia Asset Tokens - CATs) 是基于XCH构建的代币"
+msgstr "Chia资产代币 (Chia Asset Tokens - CATs) 是基于XCH构建的一种代币"
 
 #: src/electron/main.tsx:1047
 msgid "Chia Blockchain Wiki"
@@ -710,7 +710,7 @@ msgstr "无法解析报价数据"
 
 #: src/components/offers2/OfferIncomingTable.tsx:93
 msgid "Counter"
-msgstr ""
+msgstr "倒计时"
 
 #: src/components/plot/add/PlotAddForm.tsx:191
 #: src/components/plotNFT/select/PlotNFTSelectPool.tsx:79
@@ -724,7 +724,7 @@ msgstr "创建和管理地块"
 
 #: src/components/offers2/CreateOfferBuilder.tsx:137
 msgid "Create Counter Offer"
-msgstr ""
+msgstr "创建定时报价"
 
 #: src/components/nfts/NFTContextualActions.tsx:151
 #: src/components/offers/NFTOfferEditor.tsx:442
@@ -737,7 +737,7 @@ msgstr "创建报价"
 
 #: src/constants/WalletConnectCommands.tsx:226
 msgid "Create Offer for Ids"
-msgstr ""
+msgstr "创建指定ID的报价"
 
 #: src/components/settings/SettingsAdvanced.tsx:69
 msgid "Create Signature"
@@ -766,7 +766,7 @@ msgstr "创建报价"
 
 #: src/constants/WalletConnectCommands.tsx:346
 msgid "Create new CAT Wallet"
-msgstr "新建CAT钱包"
+msgstr "新建资产代币钱包"
 
 #: src/components/offers/OfferManager.tsx:130
 msgid "Creates and submits a transaction on the blockchain that cancels the offer"
@@ -935,11 +935,11 @@ msgstr "禁用 NUMA"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:399
 msgid "Disable assigning automatic thread affinity. This is useful when running multiple simultaneous instances of Bladebit as you can manually assign thread affinity yourself when launching Bladebit."
-msgstr ""
+msgstr "禁用自动线程绑定。这在同时运行多个Bladebit实例时非常有用，因为可以在启动Bladebit时手动分配线程绑定。"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:379
 msgid "Disable automatic NUMA aware memory binding. If you set this parameter in a NUMA system you will likely get degraded performance."
-msgstr ""
+msgstr "禁用自动NUMA感知内存绑定。如果在NUMA系统中设置此参数，可能会导致性能下降。"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:324
 msgid "Disable bitfield plotting"
@@ -947,11 +947,11 @@ msgstr "禁用bitfield"
 
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:90
 msgid "Disable direct I/O on the temp 1 directory in order to extract maximum performance with RAM disk"
-msgstr ""
+msgstr "禁用临时目录1上的直接I/O，以获取RAM磁盘的最大性能。"
 
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:139
 msgid "Disable direct I/O on the temp 2 directory in order to extract maximum performance with RAM disk"
-msgstr ""
+msgstr "禁用临时目录2上的直接I/O，以获取RAM磁盘的最大性能。"
 
 #: src/components/fullNode/FullNodeCloseConnection.tsx:20
 #: src/components/walletConnect/WalletConnectConnectedDialog.tsx:119
@@ -1040,7 +1040,7 @@ msgstr "拖放报价文件，粘贴"
 
 #: src/constants/WalletConnectCommands.tsx:236
 msgid "Driver Dict"
-msgstr ""
+msgstr "驱动字典"
 
 #: src/components/plot/PlotHarvester.tsx:136
 msgid "Duplicate"
@@ -1354,7 +1354,7 @@ msgstr "常规"
 
 #: src/constants/WalletConnectCommands.tsx:365
 msgid "Get CAT Asset Id"
-msgstr "获取 CAT 资产ID"
+msgstr "获取资产代币ID"
 
 #: src/constants/WalletConnectCommands.tsx:59
 msgid "Get Current Address"
@@ -2039,19 +2039,19 @@ msgstr "否"
 #: src/util/offerBuilderDataToOffer.ts:74
 #: src/util/offerBuilderDataToOffer.ts:135
 msgid "No CAT wallet found for {assetId} token"
-msgstr "未找到代币ID为 {assetId} 的钱包"
+msgstr "未找到资产代币ID为 {assetId} 的钱包"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:397
 msgid "No CPU Affinity"
-msgstr ""
+msgstr "没有CPU关联"
 
 #: src/components/walletConnect/WalletConnectPairInfoDialog.tsx:113
 msgid "No Paired Keys"
-msgstr ""
+msgstr "无配对的密钥"
 
 #: src/components/notification/NotificationsMenu.tsx:49
 msgid "No activities yet"
-msgstr ""
+msgstr "目前没有未读通知"
 
 #: src/components/farm/card/FarmCardLastHeightFarmed.tsx:15
 msgid "No blocks farmed yet"
@@ -2158,23 +2158,23 @@ msgstr "线程数量"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:281
 msgid "Number of threads for C table processing"
-msgstr ""
+msgstr "C table的线程数"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:253
 msgid "Number of threads for F1 generation"
-msgstr ""
+msgstr "F1的线程数量"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:295
 msgid "Number of threads for Phase 2"
-msgstr ""
+msgstr "第2阶段的线程数"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:309
 msgid "Number of threads for Phase 3"
-msgstr ""
+msgstr "第3阶段的线程数"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:267
 msgid "Number of threads for forward propagation"
-msgstr ""
+msgstr "转发时的线程数"
 
 #: src/components/offers/OfferDataDialog.tsx:58
 #: src/components/plotNFT/PlotNFTGetPoolLoginLinkDialog.tsx:86
@@ -2183,7 +2183,7 @@ msgstr "确定"
 
 #: src/components/settings/SettingsNFT.tsx:178
 msgid "Occupied space"
-msgstr ""
+msgstr "已占用空间"
 
 #: src/constants/WalletConnectCommands.tsx:295
 msgid "Offer"
@@ -2253,7 +2253,7 @@ msgstr "提供： [{makerString}]，请求： [{takerString}]"
 
 #: src/components/offers/OfferShareDialog.tsx:1252
 msgid "Offerpool URL"
-msgstr ""
+msgstr "Offerpool URL"
 
 #: src/components/dashboard/DashboardSideBar.tsx:63
 #: src/components/nfts/detail/NFTDetailV2.tsx:331
@@ -2298,7 +2298,7 @@ msgstr "一个或多个未知的代币正被报价。 请验证下面列出的�
 
 #: src/components/offers2/OfferBuilderNFTSection.tsx:49
 msgid "One-of-a-kind Collectible assets"
-msgstr ""
+msgstr "独一无二的收藏品资产"
 
 #: src/hooks/useOpenUnsafeLink.tsx:31
 msgid "Open Link"
@@ -2314,23 +2314,23 @@ msgstr "为加快报价成交，提供可选的手续费"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:282
 msgid "Override the thread count for C table processing"
-msgstr ""
+msgstr "覆盖C table的线程计数"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:254
 msgid "Override the thread count for F1 generation"
-msgstr ""
+msgstr "覆盖F1生成的线程计数"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:296
 msgid "Override the thread count for Phase 2"
-msgstr ""
+msgstr "覆盖第2阶段的线程计数"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:310
 msgid "Override the thread count for Phase 3"
-msgstr ""
+msgstr "覆盖第3阶段的线程计数"
 
 #: src/components/plot/add/PlotAddNumberOfPlots.tsx:268
 msgid "Override the thread count for forward propagation"
-msgstr ""
+msgstr "覆盖转发时的线程计数"
 
 #: src/components/nfts/NFTDetails.tsx:87
 msgid "Owner Address"
@@ -2346,15 +2346,15 @@ msgstr "所有者公钥"
 
 #: src/components/walletConnect/WalletConnectPairInfoDialog.tsx:75
 msgid "Pair Information"
-msgstr ""
+msgstr "配对信息"
 
 #: src/components/walletConnect/WalletConnectPairInfoDialog.tsx:84
 msgid "Pair does not exists"
-msgstr ""
+msgstr "配对不存在"
 
 #: src/components/walletConnect/WalletConnectPairInfoDialog.tsx:97
 msgid "Paired Keys"
-msgstr ""
+msgstr "已配对密钥"
 
 #: src/components/app/AppKeyringMigrator.tsx:146
 #: src/components/app/AppKeyringMigrator.tsx:147
@@ -2400,7 +2400,7 @@ msgstr "粘贴报价数据"
 
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:148
 msgid "Paste link"
-msgstr ""
+msgstr "粘贴链接"
 
 #: src/components/walletConnect/WalletConnectAddConnectionDialog.tsx:139
 msgid "Paste the address from WalletConnect below."
@@ -2882,7 +2882,7 @@ msgstr "重新同步会强制从区块链重新加载有关交易数据，而不
 
 #: src/constants/WalletConnectCommands.tsx:201
 msgid "Reverse"
-msgstr ""
+msgstr "反转"
 
 #: src/components/offers2/OfferBuilderNFTRoyalties.tsx:93
 msgid "Royalties are built into the NFT, so they will automatically be accounted for when the offer is created/accepted."
@@ -2943,7 +2943,7 @@ msgstr "使用加强私钥密码保护您的钥匙链"
 
 #: src/components/notification/NotificationsMenu.tsx:60
 msgid "See All Activity"
-msgstr ""
+msgstr "查看所有通知"
 
 #: src/components/plot/add/PlotAddSelectTemporaryDirectory.tsx:103
 msgid "Select 2nd Temporary Directory"
@@ -3209,7 +3209,7 @@ msgstr "开始"
 
 #: src/constants/WalletConnectCommands.tsx:195
 msgid "Start Key"
-msgstr ""
+msgstr "选择密钥"
 
 #: src/components/app/AppState.tsx:251
 msgid "Starting services"
