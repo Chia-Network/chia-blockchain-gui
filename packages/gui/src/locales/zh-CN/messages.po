@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh_CN\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-06-25 15:36\n"
+"PO-Revision-Date: 2023-06-26 00:50\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -551,7 +551,7 @@ msgstr "申领奖励"
 #: src/components/settings/SettingsNFT.tsx:55
 #: src/components/settings/SettingsNFT.tsx:183
 msgid "Clear NFT cache"
-msgstr "清除 NFT 缓存"
+msgstr "清除NFT缓存"
 
 #: src/components/app/AppVersionWarning.tsx:57
 #: src/components/nfts/MultipleDownloadDialog.tsx:116
