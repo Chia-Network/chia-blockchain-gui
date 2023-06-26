@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh_CN\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-06-20 08:27\n"
+"PO-Revision-Date: 2023-06-26 04:57\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -244,7 +244,7 @@ msgstr "池公钥"
 
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:66
 msgid "Pool public key:"
-msgstr "奖励池公钥："
+msgstr "联合耕种公钥："
 
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:27
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:34
@@ -371,11 +371,11 @@ msgstr "交易尚未发送到节点"
 
 #: src/utils/getTransactionResult.ts:33
 msgid "Transaction has sent to a full node and is pending inclusion into the mempool. {0}"
-msgstr "交易已经发送到一个完整的节点，正在等待加入备注。 {0}"
+msgstr "交易已经发送到全节点，并等待添加到内存池中。{0}"
 
 #: src/utils/getTransactionResult.ts:24
 msgid "Transaction has successfully been sent to a full node and included in the mempool."
-msgstr "交易已成功发送到一个完整的节点，并包含在备注库中。"
+msgstr "交易已成功发送到全节点，且已添加到内存池中。"
 
 #: src/screens/SelectKey/SelectKey.tsx:124
 msgid "Try Again"
