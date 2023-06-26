@@ -33,14 +33,7 @@ export default function AppRouter() {
           </Route>
           {mode === Mode.WALLET ? (
             <Route
-              element={
-                <LayoutDashboard
-                  settings={<SettingsPanel />}
-                  sidebar={<DashboardSideBar simple />}
-                  actions={<AppStatusHeader />}
-                  outlet
-                />
-              }
+              element={<LayoutDashboard sidebar={<DashboardSideBar simple />} actions={<AppStatusHeader />} outlet />}
             >
               <Route path="dashboard" element={<Navigate to="wallets" />} />
               <Route path="dashboard/wallets/*" element={<Wallets />} />
@@ -51,16 +44,7 @@ export default function AppRouter() {
               <Route path="dashboard/settings/*" element={<Settings />} />
             </Route>
           ) : (
-            <Route
-              element={
-                <LayoutDashboard
-                  settings={<SettingsPanel />}
-                  sidebar={<DashboardSideBar />}
-                  actions={<AppStatusHeader />}
-                  outlet
-                />
-              }
-            >
+            <Route element={<LayoutDashboard sidebar={<DashboardSideBar />} actions={<AppStatusHeader />} outlet />}>
               <Route path="dashboard" element={<FullNode />} />
               <Route path="dashboard/block/:headerHash" element={<Block />} />
               <Route path="dashboard/wallets/*" element={<Wallets />} />
