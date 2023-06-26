@@ -8,7 +8,7 @@ msgstr ""
 "Language: zh_CN\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-06-26 06:02\n"
+"PO-Revision-Date: 2023-06-26 08:59\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -28,7 +28,7 @@ msgstr "界面"
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:144
 msgid "Are you sure you want to continue? Type in the fingerprint of this wallet key to confirm deletion."
-msgstr "您确定要继续吗？输入钱包密钥的指纹以确认删除。"
+msgstr "确定要继续吗？输入钱包密钥的指纹以确认删除。"
 
 #: src/components/FormBackButton/FormBackButton.tsx:15
 #: src/screens/SelectKey/SelectKey.tsx:80
@@ -161,7 +161,7 @@ msgstr "隐藏高级选项"
 
 #: src/screens/SelectKey/SelectKey.tsx:181
 msgid "Import from Mnemonics (12 or 24 words)"
-msgstr "自助记词导入（24个词）"
+msgstr "从助记词导入（12或24g个单词）"
 
 #: src/components/Fee/Fee.tsx:41
 msgid "Incorrect value"
@@ -214,7 +214,7 @@ msgstr "工作模式"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:107
 msgid "NEVER SHARE THESE WITH ANYONE"
-msgstr "通过任何方式提供更多服务"
+msgstr "永远不要与任何人分享这些信息"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:41
 msgid "New passphrase is the same as your current passphrase"
@@ -351,7 +351,7 @@ msgstr "密码错误"
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:126
 msgid "This key is used for a wallet that may have a non-zero balance. By deleting this key you may lose access to this wallet"
-msgstr "警告：此密钥用于可能有余额的钱包。删除此密钥可能会无法访问此钱包。"
+msgstr "警告：此密钥用于可能有余额的钱包。删除此密钥可能导致无法访问该钱包。"
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:108
 msgid "This key is used for your farming rewards address. By deleting this key you may lose access to any future farming rewards"
@@ -363,7 +363,7 @@ msgstr "此密钥用作联合耕种奖励地址。删除此密钥可能导致无
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:138
 msgid "This will permanently remove the key from your computer, make sure you have your mnemonic phrase backed up."
-msgstr "这将从您的计算机中永久删除密钥，请确保您已备份您的助记词。"
+msgstr "这将永久从计算机中删除该密钥，请确保备份了助记词。"
 
 #: src/utils/getTransactionResult.ts:15
 msgid "Transaction has not been sent to node yet"
