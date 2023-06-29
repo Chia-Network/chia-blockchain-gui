@@ -1,56 +1,244 @@
+import { fromBech32m } from '@chia-network/api';
 import { AddressBookContext, Form, TextField, TooltipIcon, Flex } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { Add, Remove } from '@mui/icons-material';
 import { Button, IconButton, Typography, Box } from '@mui/material';
-import React, { useContext, useState } from 'react';
-import { useForm } from 'react-hook-form';
+import React, { useContext } from 'react';
+import { useForm, useFormContext, useFieldArray } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
+
+function AddressFields() {
+  const { control } = useFormContext();
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: 'addresses',
+  });
+
+  const handleAppend = (value) => {
+    append(value);
+  };
+
+  const handleRemove = (index) => {
+    remove(index);
+  };
+
+  return (
+    <>
+      <Box display="flex" alignItems="center" justifyContent="space-between">
+        <Typography variant="h6">
+          <Trans>Addresses</Trans>
+        </Typography>
+        <IconButton onClick={() => handleAppend({ name: '', address: '' })}>
+          <Add />
+        </IconButton>
+      </Box>
+      {fields.map((item, index) => (
+        <Box key={item.id} display="flex" alignItems="center" justifyContent="space-between" gap={2}>
+          <TextField
+            render={({ field }) => <input {...field} />}
+            defaultValue={item.name}
+            name={`addresses[${index}].name`}
+            control={control}
+            variant="filled"
+            color="secondary"
+            fullWidth
+            disabled={false}
+            label={<Trans>Name</Trans>}
+          />
+          <TextField
+            render={({ field }) => <input {...field} />}
+            defaultValue={item.address}
+            name={`addresses[${index}].address`}
+            control={control}
+            variant="filled"
+            color="secondary"
+            fullWidth
+            disabled={false}
+            label={<Trans>Address</Trans>}
+          />
+          <IconButton onClick={() => handleRemove(index)}>
+            <Remove />
+          </IconButton>
+        </Box>
+      ))}
+    </>
+  );
+}
+
+function ProfileFields() {
+  const { control } = useFormContext();
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: 'dids',
+  });
+
+  const handleAppend = (value) => {
+    append(value);
+  };
+
+  const handleRemove = (index) => {
+    remove(index);
+  };
+
+  return (
+    <>
+      <Box display="flex" alignItems="center" justifyContent="space-between">
+        <Typography variant="h6">
+          <Trans>Profiles</Trans>
+        </Typography>
+        <IconButton onClick={() => handleAppend({ name: '', did: '' })}>
+          <Add />
+        </IconButton>
+      </Box>
+      {fields.map((item, index) => (
+        <Box key={item.id} display="flex" alignItems="center" justifyContent="space-between" gap={2}>
+          <TextField
+            render={({ field }) => <input {...field} />}
+            defaultValue={item.name}
+            name={`dids[${index}].name`}
+            control={control}
+            variant="filled"
+            color="secondary"
+            fullWidth
+            disabled={false}
+            label={<Trans>Name</Trans>}
+          />
+          <TextField
+            render={({ field }) => <input {...field} />}
+            defaultValue={item.did}
+            name={`dids[${index}].did`}
+            control={control}
+            variant="filled"
+            color="secondary"
+            fullWidth
+            disabled={false}
+            label={<Trans>DID</Trans>}
+          />
+          <IconButton onClick={() => handleRemove(index)}>
+            <Remove />
+          </IconButton>
+        </Box>
+      ))}
+    </>
+  );
+}
+
+function DomainFields() {
+  const { control } = useFormContext();
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: 'domains',
+  });
+
+  const handleAppend = (value) => {
+    append(value);
+  };
+
+  const handleRemove = (index) => {
+    remove(index);
+  };
+
+  return (
+    <>
+      <Box display="flex" alignItems="center" justifyContent="space-between">
+        <Typography variant="h6">
+          <Trans>Domain Names</Trans>
+        </Typography>
+        <IconButton onClick={() => handleAppend({ name: '', domainname: '' })}>
+          <Add />
+        </IconButton>
+      </Box>
+      {fields.map((item, index) => (
+        <Box key={item.id} display="flex" alignItems="center" justifyContent="space-between" gap={2}>
+          <TextField
+            render={({ field }) => <input {...field} />}
+            defaultValue={item.name}
+            name={`domains[${index}].name`}
+            control={control}
+            variant="filled"
+            color="secondary"
+            fullWidth
+            disabled={false}
+            label={<Trans>Name</Trans>}
+          />
+          <TextField
+            render={({ field }) => <input {...field} />}
+            defaultValue={item.address}
+            name={`domains[${index}].domainname`}
+            control={control}
+            variant="filled"
+            color="secondary"
+            fullWidth
+            disabled={false}
+            label={<Trans>Domain</Trans>}
+          />
+          <IconButton onClick={() => handleRemove(index)}>
+            <Remove />
+          </IconButton>
+        </Box>
+      ))}
+    </>
+  );
+}
 
 export default function ContactAdd() {
   const [, addContact] = useContext(AddressBookContext);
-  const [addresses, setAddresses] = useState([]);
-  const [dids, setDIDs] = useState([]);
-  const [domains, setDomains] = useState([]);
-  const [name, setName] = useState([]);
   const navigate = useNavigate();
 
   const methods = useForm<ContactAddData>({
-    name: '',
-    notes: '',
-    nftid: '',
+    defaultValues: {
+      name: '',
+      addresses: [{ name: '', address: '' }],
+      dids: [],
+      domains: [],
+      notes: '',
+      nftid: '',
+    },
   });
 
-  function handleChange(i, type, e, stateVar, setStateVar) {
-    const newList = [...stateVar];
-    newList[i][type] = e.target.value;
-    setStateVar(newList);
+  function handleCancel() {
+    navigate(`/dashboard/addressbook`);
   }
 
-  function addField(type, stateVar, setStateVar) {
-    setStateVar([...stateVar, { name: '', [type]: '' }]);
-  }
-
-  function removeField(i, stateVar, setStateVar) {
-    const newList = [...stateVar];
-    newList.splice(i, 1);
-    setStateVar(newList);
-  }
-
-  function addDefaultName(entry, i, type, stateVar, setStateVar) {
-    const newList = [...stateVar];
-    if (newList[i].name === '') {
-      newList[i].name = newList[i][type];
-    }
-    setStateVar(newList);
-  }
-
-  async function handleSubmit(data: ContactAddData) {
-    if (addresses.length === 0) throw new Error('At least one Address must be provided to create contact');
-    if (addresses.name === 0) throw new Error('Name must be provided to create a contact');
-    addresses.map((entry, index) => addDefaultName(entry, index, 'address', addresses, setAddresses));
-    dids.map((entry, index) => addDefaultName(entry, index, 'did', dids, setDIDs));
-    domains.map((entry, index) => addDefaultName(entry, index, 'domainname', domains, setDomains));
-    addContact(data.name, addresses, dids, data.notes, data.nftid, domains);
+  function handleSubmit(data) {
+    if (data.addresses.name === 0) throw new Error('A name must be provided to create a contact');
+    const filteredAddresses = data.addresses.filter((item) => item.name.length > 0 || item.address.length > 0);
+    const filteredProfiles = data.dids.filter((item) => item.name.length > 0 || item.did.length > 0);
+    const filteredDomains = data.domains.filter((item) => item.name.length > 0 || item.domainname.length > 0);
+    if (filteredAddresses.length === 0) throw new Error('At least one Address must be provided to create contact');
+    filteredAddresses.forEach((entry) => {
+      try {
+        if (entry.address[3] === '1') {
+          if (entry.address.slice(0, 3).toLowerCase() !== 'xch') {
+            throw new Error();
+          } else if (fromBech32m(entry.address).length !== 64) {
+            throw new Error();
+          }
+        } else if (entry.address[4] === '1') {
+          if (entry.address.slice(0, 4).toLowerCase() !== 'txch') {
+            throw new Error();
+          } else if (fromBech32m(entry.address).length !== 64) {
+            throw new Error();
+          }
+        } else {
+          throw new Error();
+        }
+      } catch (err) {
+        throw new Error(`${entry.address} is not a valid address`);
+      }
+    });
+    filteredProfiles.forEach((entry) => {
+      try {
+        if (entry.did.slice(0, 9).toLowerCase() !== 'did:chia:') {
+          throw new Error();
+        } else if (fromBech32m(entry.did).length !== 64) {
+          throw new Error();
+        }
+      } catch (err) {
+        throw new Error(`${entry.did} is not a valid DID`);
+      }
+    });
+    addContact(data.name, filteredAddresses, filteredProfiles, data.notes, data.nftid, filteredDomains);
     navigate(`/dashboard/addressbook/`);
   }
 
@@ -94,6 +282,18 @@ export default function ContactAdd() {
             >
               <Trans>Save</Trans>
             </Button>
+            <Button
+              variant="outlined"
+              color="secondary"
+              onClick={() => handleCancel()}
+              sx={{
+                position: 'absolute',
+                right: 122,
+                top: 44,
+              }}
+            >
+              <Trans>Cancel</Trans>
+            </Button>
           </Flex>
         </Flex>
         <Flex flexDirection="column" gap={6} alignItems="center" style={{ paddingBottom: '40px' }}>
@@ -110,142 +310,16 @@ export default function ContactAdd() {
                 disabled={false}
                 label={<Trans>Name</Trans>}
                 required
-                value={name}
-                onChange={(e) => setName(e.target.value)}
               />
             </Flex>
-            {/*
             <Flex gap={2} flexDirection="column">
-              <Typography variant="h6">
-                <Trans>NFT ID</Trans>
-              </Typography>
-              <TextField
-                name="nftid"
-                variant="filled"
-                color="secondary"
-                fullWidth
-                disabled={false}
-                label={<Trans>NFTID</Trans>}
-                data-testid="WalletCATSend-address"
-              />
-            </Flex>
-            */}
-            <Flex gap={2} flexDirection="column">
-              <Box display="flex" alignItems="center" justifyContent="space-between">
-                <Typography variant="h6">
-                  <Trans>Addresses</Trans>
-                </Typography>
-                <IconButton onClick={() => addField('address', addresses, setAddresses)}>
-                  <Add />
-                </IconButton>
-              </Box>
-              {addresses.map((element, index) => (
-                <div>
-                  <Box display="flex" alignItems="center" justifyContent="space-between" gap={2}>
-                    <TextField
-                      name="addressName"
-                      variant="filled"
-                      color="secondary"
-                      fullWidth
-                      disabled={false}
-                      label={<Trans>Name</Trans>}
-                      value={element.name || ''}
-                      onChange={(e) => handleChange(index, 'name', e, addresses, setAddresses)}
-                    />
-                    <TextField
-                      name="address"
-                      variant="filled"
-                      color="secondary"
-                      fullWidth
-                      disabled={false}
-                      label={<Trans>Address</Trans>}
-                      value={addresses[index].address}
-                      onChange={(e) => handleChange(index, 'address', e, addresses, setAddresses)}
-                    />
-                    <IconButton onClick={() => removeField(index, addresses, setAddresses)}>
-                      <Remove />
-                    </IconButton>
-                  </Box>
-                </div>
-              ))}
+              <AddressFields />
             </Flex>
             <Flex gap={2} flexDirection="column">
-              <Box display="flex" alignItems="center" justifyContent="space-between">
-                <Typography variant="h6">
-                  <Trans>DIDs</Trans>
-                </Typography>
-                <IconButton onClick={() => addField('did', dids, setDIDs)}>
-                  <Add />
-                </IconButton>
-              </Box>
-              {dids.map((element, index) => (
-                <div>
-                  <Box display="flex" alignItems="center" justifyContent="space-between" gap={2}>
-                    <TextField
-                      name="didName"
-                      variant="filled"
-                      color="secondary"
-                      fullWidth
-                      disabled={false}
-                      label={<Trans>Name</Trans>}
-                      value={element.name || ''}
-                      onChange={(e) => handleChange(index, 'name', e, dids, setDIDs)}
-                    />
-                    <TextField
-                      name="did"
-                      variant="filled"
-                      color="secondary"
-                      fullWidth
-                      disabled={false}
-                      label={<Trans>DID</Trans>}
-                      value={dids[index].did}
-                      onChange={(e) => handleChange(index, 'did', e, dids, setDIDs)}
-                    />
-                    <IconButton onClick={() => removeField(index, dids, setDIDs)}>
-                      <Remove />
-                    </IconButton>
-                  </Box>
-                </div>
-              ))}
+              <ProfileFields />
             </Flex>
             <Flex gap={2} flexDirection="column">
-              <Box display="flex" alignItems="center" justifyContent="space-between">
-                <Typography variant="h6">
-                  <Trans>Domain Names</Trans>
-                </Typography>
-                <IconButton onClick={() => addField('domainname', domains, setDomains)}>
-                  <Add />
-                </IconButton>
-              </Box>
-              {domains.map((element, index) => (
-                <div>
-                  <Box display="flex" alignItems="center" justifyContent="space-between" gap={2}>
-                    <TextField
-                      name="domainName"
-                      variant="filled"
-                      color="secondary"
-                      fullWidth
-                      disabled={false}
-                      label={<Trans>Name</Trans>}
-                      value={element.name || ''}
-                      onChange={(e) => handleChange(index, 'name', e, domains, setDomains)}
-                    />
-                    <TextField
-                      name="domain"
-                      variant="filled"
-                      color="secondary"
-                      fullWidth
-                      disabled={false}
-                      label={<Trans>Domain</Trans>}
-                      value={domains[index].domainname}
-                      onChange={(e) => handleChange(index, 'domainname', e, domains, setDomains)}
-                    />
-                    <IconButton onClick={() => removeField(index, domains, setDomains)}>
-                      <Remove />
-                    </IconButton>
-                  </Box>
-                </div>
-              ))}
+              <DomainFields />
             </Flex>
           </Flex>
         </Flex>
@@ -256,6 +330,9 @@ export default function ContactAdd() {
 
 type ContactAddData = {
   name: string;
+  addresses: [];
+  dids: [];
+  domains: [];
   notes: string;
   nftid: string;
 };

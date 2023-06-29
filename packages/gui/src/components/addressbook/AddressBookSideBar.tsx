@@ -27,8 +27,8 @@ export default function AddressBookSideBar() {
       if (addresses && addresses.length > 0) {
         const filteredAddressesByName = addresses.filter(
           (t: any) =>
-            (t.name && t.name.toLowerCase() === search.toLowerCase()) ||
-            (t.address && t.address.toLowerCase() === search.toLowerCase())
+            (t.name && t.name.toLowerCase().includes(search.toLowerCase())) ||
+            (t.address && t.address.toLowerCase().includes(search.toLowerCase()))
         );
         if (filteredAddressesByName && filteredAddressesByName.length > 0) {
           return true;
@@ -37,7 +37,11 @@ export default function AddressBookSideBar() {
 
       // filter by did
       if (dids && dids.length > 0) {
-        const filteredDids = dids.filter((did: any) => did.did && did.did.toLowerCase() === search.toLowerCase());
+        const filteredDids = dids.filter(
+          (did: any) =>
+            (did.name && did.name.toLowerCase().includes(search.toLowerCase())) ||
+            (did.did && did.did.toLowerCase().includes(search.toLowerCase()))
+        );
         if (filteredDids && filteredDids.length > 0) {
           return true;
         }
@@ -45,7 +49,9 @@ export default function AddressBookSideBar() {
 
       if (domainNames && domainNames.length > 0) {
         const filteredDomains = domainNames.filter(
-          (domain: any) => domain.domainname && domain.domainname.toLowerCase() === search.toLowerCase()
+          (domain: any) =>
+            (domain.name && domain.name.toLowerCase().includes(search.toLowerCase())) ||
+            (domain.domainname && domain.domainname.toLowerCase().includes(search.toLowerCase()))
         );
         if (filteredDomains && filteredDomains.length > 0) {
           return true;
@@ -64,11 +70,12 @@ export default function AddressBookSideBar() {
 
   function listOfContacts() {
     if (addressBook !== undefined) {
+      const orderedContacts = addressBook.sort((a, b) => a.name.localeCompare(b.name));
       if (filter === '') {
-        return addressBook.map((contact: AddressContact) => <AddressBookMenuItem contact={contact} />);
+        return orderedContacts.map((contact: AddressContact) => <AddressBookMenuItem contact={contact} />);
       }
 
-      const filtered = filterArray(addressBook, filter);
+      const filtered = filterArray(orderedContacts, filter);
 
       return filtered.map((contact: AddressContact) => <AddressBookMenuItem contact={contact} />);
     }
@@ -89,16 +96,23 @@ export default function AddressBookSideBar() {
 
   return (
     <LayoutDashboardSub>
-      <Flex flexDirection="column" gap={1.5} minWidth="300px">
+      <Flex
+        flexDirection="column"
+        gap={1.5}
+        minWidth="300px"
+        sx={{
+          overflowY: 'auto',
+          scrollBehavior: 'auto',
+          '::-webkit-scrollbar': {
+            background: 'transparent',
+            width: '0px',
+          },
+        }}
+      >
         <Typography variant="h5">
-          <Trans>Address Book</Trans>
+          <Trans>Contacts</Trans>
         </Typography>
         <Flex gap={2} flexDirection="column">
-          <Flex flexDirection="column" gap={2.5}>
-            <ButtonLoading variant="contained" color="primary" onClick={handleCreateNewContact} disableElevation>
-              <Trans>New Contact</Trans>
-            </ButtonLoading>
-          </Flex>
           <TextField
             name="name"
             variant="filled"
@@ -123,7 +137,7 @@ export default function AddressBookSideBar() {
                   style={{ flexGrow: 4, flexBasis: '100', paddingLeft: '10px', paddingTop: '8px', overflow: 'hidden' }}
                 >
                   <div>
-                    <span style={{ fontWeight: 'bold', fontSize: '1.2rem' }}>My Addresses</span>
+                    <span style={{ fontWeight: 'bold', fontSize: '1.2rem' }}>My Contact Info</span>
                   </div>
                 </div>
               </div>
@@ -131,6 +145,11 @@ export default function AddressBookSideBar() {
           </Flex>
           <Divider />
           <Flex flexDirection="column" gap={1.5}>
+            <Flex flexDirection="column" gap={2.5}>
+              <ButtonLoading variant="contained" color="primary" onClick={handleCreateNewContact} disableElevation>
+                <Trans>New Contact</Trans>
+              </ButtonLoading>
+            </Flex>
             {listOfContacts()}
           </Flex>
         </Flex>
