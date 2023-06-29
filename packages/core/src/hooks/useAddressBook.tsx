@@ -128,9 +128,11 @@ interface ContactAddress {
 }
 
 interface ContactDID {
+  name: string;
   did: string;
 }
 
 interface ContactDomainName {
-  domainName: string;
+  name: string;
+  domain: string;
 }

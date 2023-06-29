@@ -144,7 +144,7 @@ function DomainFields() {
         <Typography variant="h6">
           <Trans>Domain Names</Trans>
         </Typography>
-        <IconButton onClick={() => handleAppend({ name: '', domainName: '' })}>
+        <IconButton onClick={() => handleAppend({ name: '', domain: '' })}>
           <Add />
         </IconButton>
       </Box>
@@ -164,7 +164,7 @@ function DomainFields() {
           <TextField
             render={({ field }) => <input {...field} />}
             defaultValue={item.address}
-            name={`domains[${index}].domainName`}
+            name={`domains[${index}].domain`}
             control={control}
             variant="filled"
             color="secondary"

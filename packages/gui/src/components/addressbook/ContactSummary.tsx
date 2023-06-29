@@ -129,13 +129,13 @@ export default function ContactSummary() {
           {contact.domainNames.map((domainInfo) => (
             <TextField
               label={domainInfo.name}
-              value={domainInfo.domainName}
+              value={domainInfo.domain}
               fullWidth
               InputProps={{
                 readOnly: true,
                 endAdornment: (
                   <InputAdornment position="end">
-                    <CopyToClipboard value={domainInfo.domainName} />
+                    <CopyToClipboard value={domainInfo.domain} />
                   </InputAdornment>
                 ),
               }}

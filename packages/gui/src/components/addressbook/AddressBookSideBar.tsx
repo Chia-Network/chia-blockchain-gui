@@ -51,7 +51,7 @@ export default function AddressBookSideBar() {
         const filteredDomains = domainNames.filter(
           (domain: any) =>
             (domain.name && domain.name.toLowerCase().includes(search.toLowerCase())) ||
-            (domain.domainName && domain.domainName.toLowerCase().includes(search.toLowerCase()))
+            (domain.domain && domain.domain.toLowerCase().includes(search.toLowerCase()))
         );
         if (filteredDomains && filteredDomains.length > 0) {
           return true;
