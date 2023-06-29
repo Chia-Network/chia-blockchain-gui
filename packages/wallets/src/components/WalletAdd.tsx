@@ -1,5 +1,5 @@
-import { useGenerateMnemonicMutation, useAddPrivateKeyMutation, useLogInMutation } from '@chia-network/api-react';
-import { ButtonLoading, Form, TextField, Flex, Loading, Logo, useShowError } from '@chia-network/core';
+import { useGenerateMnemonicMutation, useAddPrivateKeyMutation } from '@chia-network/api-react';
+import { ButtonLoading, Form, TextField, Flex, Loading, Logo, useAuth, useShowError } from '@chia-network/core';
 import { Trans } from '@lingui/macro';
 import { TextField as TextFieldMaterial, Typography, Grid, Container } from '@mui/material';
 import React from 'react';
@@ -15,7 +15,7 @@ export default function WalletAdd() {
   const navigate = useNavigate();
   const [generateMnemonic, { data: words, isLoading }] = useGenerateMnemonicMutation();
   const [addPrivateKey] = useAddPrivateKeyMutation();
-  const [logIn] = useLogInMutation();
+  const { logIn } = useAuth();
   const methods = useForm<FormData>({
     defaultValues: {
       label: '',
@@ -45,9 +45,7 @@ export default function WalletAdd() {
         ...(label && { label: label.trim() }), // omit `label` if label is undefined/empty. backend returns an error if label is set and undefined/empty
       }).unwrap();
 
-      await logIn({
-        fingerprint,
-      }).unwrap();
+      await logIn(fingerprint);
 
       navigate('/dashboard/wallets/1');
     } catch (error) {
