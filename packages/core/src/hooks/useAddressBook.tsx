@@ -132,5 +132,5 @@ interface ContactDID {
 }
 
 interface ContactDomainName {
-  domainname: string;
+  domainName: string;
 }

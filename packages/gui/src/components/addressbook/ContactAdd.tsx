@@ -144,7 +144,7 @@ function DomainFields() {
         <Typography variant="h6">
           <Trans>Domain Names</Trans>
         </Typography>
-        <IconButton onClick={() => handleAppend({ name: '', domainname: '' })}>
+        <IconButton onClick={() => handleAppend({ name: '', domainName: '' })}>
           <Add />
         </IconButton>
       </Box>
@@ -164,7 +164,7 @@ function DomainFields() {
           <TextField
             render={({ field }) => <input {...field} />}
             defaultValue={item.address}
-            name={`domains[${index}].domainname`}
+            name={`domains[${index}].domainName`}
             control={control}
             variant="filled"
             color="secondary"
@@ -204,7 +204,7 @@ export default function ContactAdd() {
     if (data.addresses.name === 0) throw new Error('A name must be provided to create a contact');
     const filteredAddresses = data.addresses.filter((item) => item.name.length > 0 || item.address.length > 0);
     const filteredProfiles = data.dids.filter((item) => item.name.length > 0 || item.did.length > 0);
-    const filteredDomains = data.domains.filter((item) => item.name.length > 0 || item.domainname.length > 0);
+    const filteredDomains = data.domains.filter((item) => item.name.length > 0 || item.domainName.length > 0);
     if (filteredAddresses.length === 0) throw new Error('At least one Address must be provided to create contact');
     filteredAddresses.forEach((entry) => {
       try {
