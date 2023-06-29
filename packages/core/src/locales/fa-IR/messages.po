@@ -8,7 +8,7 @@ msgstr ""
 "Language: fa_IR\n"
 "Project-Id-Version: 1263bc1f20e1271bda78e84d2f4a6562\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-03-29 23:26\n"
+"PO-Revision-Date: 2023-06-29 09:17\n"
 "Last-Translator: \n"
 "Language-Team: Persian\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -45,7 +45,7 @@ msgstr "انصراف"
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:47
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:70
 msgid "Close"
-msgstr ""
+msgstr "بستن"
 
 #: src/components/FormatConnectionStatus/FormatConnectionStatus.tsx:37
 msgid "Connected"
@@ -89,7 +89,7 @@ msgstr "حذف همه کلیدها، آنها را برای همیشه از رو
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:92
 msgid "Details"
-msgstr ""
+msgstr "جزئیات"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:59
 msgid "Disable"
@@ -115,11 +115,11 @@ msgstr ""
 
 #: src/screens/SelectKey/SelectKeyRenameForm.tsx:91
 msgid "Esc"
-msgstr ""
+msgstr "خروج"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:90
 msgid "Farmer Public Key"
-msgstr ""
+msgstr "کلید عمومی فارمر"
 
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:58
 msgid "Farmer public key:"
@@ -154,7 +154,7 @@ msgstr ""
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:124
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:146
 msgid "Hide"
-msgstr ""
+msgstr "مخفی"
 
 #: src/components/AdvancedOptions/AdvancedOptions.tsx:32
 msgid "Hide Advanced Options"
@@ -186,7 +186,7 @@ msgstr ""
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:46
 msgid "Loading details"
-msgstr ""
+msgstr "در حال بارگیری جزئیات"
 
 #: src/screens/SelectKey/SelectKey.tsx:117
 msgid "Loading list of the keys"
@@ -228,7 +228,7 @@ msgstr "هیچ بذر ۲۴ کلمه‌ای نیست، از هنگامی که ا�
 
 #: src/screens/SelectKey/WalletStatus.tsx:61
 msgid "Not Synced"
-msgstr ""
+msgstr "سینک نشده"
 
 #: src/components/FormatConnectionStatus/FormatConnectionStatus.tsx:38
 msgid "Not connected"
@@ -241,7 +241,7 @@ msgstr "تأیید"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:98
 msgid "Pool Public Key"
-msgstr ""
+msgstr "کلید عمومی استخر"
 
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:66
 msgid "Pool public key:"
@@ -258,7 +258,7 @@ msgstr ""
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:82
 msgid "Public Key"
-msgstr ""
+msgstr "کلید عمومی"
 
 #: src/screens/SelectKey/SelectKeyDeleteKeyDialog.tsx:50
 msgid "Public key:"
@@ -270,7 +270,7 @@ msgstr ""
 
 #: src/screens/SelectKey/SelectKeyItem.tsx:84
 msgid "Rename"
-msgstr ""
+msgstr "تغییر نام"
 
 #: src/components/ErrorBoundary/ErrorBoundary.tsx:80
 msgid "Report an Issue"
@@ -279,15 +279,15 @@ msgstr ""
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:124
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:146
 msgid "Reveal"
-msgstr ""
+msgstr "نمایان"
 
 #: src/screens/SelectKey/SelectKeyRenameForm.tsx:109
 msgid "Save"
-msgstr ""
+msgstr "ذخیره"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:113
 msgid "Secret Key"
-msgstr ""
+msgstr "کلید مخفی"
 
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:131
 msgid "Seed Phrase"
@@ -340,11 +340,11 @@ msgstr ""
 
 #: src/screens/SelectKey/WalletStatus.tsx:73
 msgid "Synced"
-msgstr ""
+msgstr "سینک شده"
 
 #: src/screens/SelectKey/WalletStatus.tsx:85
 msgid "Syncing"
-msgstr ""
+msgstr "درحال بارگذاری"
 
 #: src/hooks/useValidateChangePassphraseParams.tsx:28
 msgid "The provided passphrase and confirmation do not match"
@@ -352,15 +352,15 @@ msgstr ""
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:126
 msgid "This key is used for a wallet that may have a non-zero balance. By deleting this key you may lose access to this wallet"
-msgstr ""
+msgstr "این کلید برای کیف پول استفاده شده است و ممکن است خالی نباشد در صورت حذف دیگر به آن دسترسی نخواهید داشت"
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:108
 msgid "This key is used for your farming rewards address. By deleting this key you may lose access to any future farming rewards"
-msgstr ""
+msgstr "این کلید برای دریافت پاداش استخر فارم شما استفاده شده است. با حذف کلید دسترسی به پاداشهای بعدی استخر را از دست میدهید"
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:117
 msgid "This key is used for your pool rewards address. By deleting this key you may lose access to any future pool rewards"
-msgstr ""
+msgstr "این کلید برای دریافت پاداش استخر فارم شما استفاده شده است. با حذف کلید دسترسی به پاداشهای بعدی استخر را از دست میدهید"
 
 #: src/screens/SelectKey/WalletDeleteDialog.tsx:138
 msgid "This will permanently remove the key from your computer, make sure you have your mnemonic phrase backed up."
@@ -415,7 +415,7 @@ msgstr ""
 #: src/screens/SelectKey/SelectKeyDetailDialog.tsx:63
 #: src/screens/SelectKey/SelectKeyItem.tsx:69
 msgid "Wallet {0}"
-msgstr ""
+msgstr "کیف پول {0}"
 
 #: src/screens/SelectKey/SelectKey.tsx:142
 msgid "Welcome to Chia. Please log in with an existing key, or create a new key."
